@@ -1,197 +1,99 @@
-Return-Path: <devicetree+bounces-16141-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16142-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D948E7EDB91
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 07:30:52 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63E117EDB9B
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 07:36:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E337BB20A31
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 06:30:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 230221F237CB
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 06:36:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA577FBF3;
-	Thu, 16 Nov 2023 06:30:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4ED0120E7;
+	Thu, 16 Nov 2023 06:36:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="P41VhJ4F"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="gX0jXVQ0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BD78A4;
-	Wed, 15 Nov 2023 22:30:43 -0800 (PST)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AG5fPto019356;
-	Thu, 16 Nov 2023 06:30:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=lJBWb0DFVaqBPn5WS2xIqEkp3Evqw9zDxdFgf67KCDo=;
- b=P41VhJ4FWvC3R/tlx2/fjOppb0a7ygI7oPFOOnIq3PGdAUBFnQLz0KLwh5RDpJB+sOH2
- /Hiop52rgGkF7KB5IMwl1Q9p18e1dlqqAsrE6SWoFTZU80N0NlgFK6PpKa78V2oRvW0k
- njcJM+hKtKcKEaWsv5rMc22+B7OSvSfU2LyTccaXV2vWhEtxa9k65fRvdasTgT3im0bH
- 8CfpUO9pJ3D+e0M8m1X+3dFcoasXryjHVc7kyiw+xOawV8rhXlNHAHaBFHbkiL9WOudY
- iM5JRfL8rwLo/9DoSyPurWF50/j3Xioqi2dU23v3Jr5JbvFseUTv/fIkkp6wQOOZMh/N dg== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ud6ecgtwm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 16 Nov 2023 06:30:17 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AG6UGH3014552
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 16 Nov 2023 06:30:16 GMT
-Received: from [10.216.41.162] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Wed, 15 Nov
- 2023 22:30:02 -0800
-Message-ID: <5a476b51-5916-74f8-0395-60d94f210aa0@quicinc.com>
-Date: Thu, 16 Nov 2023 11:59:58 +0530
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AECEED44;
+	Wed, 15 Nov 2023 22:35:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1700116558; x=1731652558;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=NhJFAkjBjxz5fsTOs2J5L3f/p7315LrIQIeFZVA13Qc=;
+  b=gX0jXVQ0Kl9BURLQTjTLLc8p+h4tw6mFQZrhGNkKzlZBLzm1OLLO0ooE
+   KMmCfYY9RZT0kOzYT6zD2WTeHzEFQpX6IDyGFoJglYhgf6FbiygUVQzvz
+   aLentn6XEt9fsev7ZmdzJv1/VvpJAc71px2O1Ov12S6mgbVhiiB5vq+qC
+   75humB1I1avKtoy5aeE0tDqwKJ9YrL+BE563n98aVTR45uKqGREbHz2Uc
+   hR+honIZb2LayGX3xR+jAntK20xKZOXTFVK30fuXoULxbb4zzRvPW/66j
+   E/54eI83RcuNDQqfonHRmcmszdYWtP5UYqZ2LJ5zh8/fvL6SLwBYxkTRf
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10895"; a="457519149"
+X-IronPort-AV: E=Sophos;i="6.03,307,1694761200"; 
+   d="scan'208";a="457519149"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Nov 2023 22:35:58 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10895"; a="909017849"
+X-IronPort-AV: E=Sophos;i="6.03,307,1694761200"; 
+   d="scan'208";a="909017849"
+Received: from lkp-server02.sh.intel.com (HELO b8de5498638e) ([10.239.97.151])
+  by fmsmga001.fm.intel.com with ESMTP; 15 Nov 2023 22:35:55 -0800
+Received: from kbuild by b8de5498638e with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1r3Vyj-0001P9-0n;
+	Thu, 16 Nov 2023 06:35:53 +0000
+Date: Thu, 16 Nov 2023 14:35:52 +0800
+From: kernel test robot <lkp@intel.com>
+To: Andrew Davis <afd@ti.com>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>
+Cc: oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Andrew Davis <afd@ti.com>
+Subject: Re: [PATCH v2 2/4] dt-bindings: clock: Convert keystone-gate.txt to
+ YAML
+Message-ID: <202311161400.qg1QNgEh-lkp@intel.com>
+References: <20231114212911.429951-2-afd@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH V2 0/3] iio: adc: Add support for QCOM SPMI PMIC5 Gen3 ADC
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: <jic23@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <daniel.lezcano@linaro.org>,
-        <linus.walleij@linaro.org>, <linux-arm-msm@vger.kernel.org>,
-        <andriy.shevchenko@linux.intel.com>, <quic_subbaram@quicinc.com>,
-        <quic_collinsd@quicinc.com>, <quic_amelende@quicinc.com>,
-        <quic_kamalw@quicinc.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <marijn.suijten@somainline.org>,
-        <lars@metafoo.de>, <luca@z3ntu.xyz>, <linux-iio@vger.kernel.org>,
-        <lee@kernel.org>, <rafael@kernel.org>, <rui.zhang@intel.com>,
-        <lukasz.luba@arm.com>, <cros-qcom-dts-watchers@chromium.org>,
-        <sboyd@kernel.org>, <linux-pm@vger.kernel.org>,
-        <linux-arm-msm-owner@vger.kernel.org>, <kernel@quicinc.com>
-References: <20231116032530.753192-1-quic_jprakash@quicinc.com>
- <CAA8EJprJuiFq5UXc9weNr1hy2vW_10TaQweN_ZW5XW=3LKrgtA@mail.gmail.com>
-Content-Language: en-US
-From: Jishnu Prakash <quic_jprakash@quicinc.com>
-In-Reply-To: <CAA8EJprJuiFq5UXc9weNr1hy2vW_10TaQweN_ZW5XW=3LKrgtA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: DV90G0dLrhL99O234ZHLt0xsMNWcxz9J
-X-Proofpoint-ORIG-GUID: DV90G0dLrhL99O234ZHLt0xsMNWcxz9J
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-16_03,2023-11-15_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 adultscore=0
- lowpriorityscore=0 malwarescore=0 mlxscore=0 mlxlogscore=999 bulkscore=0
- suspectscore=0 phishscore=0 priorityscore=1501 spamscore=0 impostorscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2311060000
- definitions=main-2311160049
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231114212911.429951-2-afd@ti.com>
 
-Hi Dmitry,
+Hi Andrew,
 
-On 11/16/2023 10:52 AM, Dmitry Baryshkov wrote:
-> On Thu, 16 Nov 2023 at 05:26, Jishnu Prakash <quic_jprakash@quicinc.com> wrote:
->> PMIC5 Gen3 has a similar ADC architecture to that on PMIC5 Gen2,
->> with all SW communication to ADC going through PMK8550 which
->> communicates with other PMICs through PBS. The major difference is
->> that the register interface used here is that of an SDAM present on
->> PMK8550, rather than a dedicated ADC peripheral. There may be more than one
->> SDAM used for ADC5 Gen3. Each ADC SDAM has eight channels, each of which may
->> be used for either immediate reads (same functionality as previous PMIC5 and
->> PMIC5 Gen2 ADC peripherals) or recurring measurements (same as PMIC5 and PMIC5
->> Gen2 ADC_TM functionality). In this case, we have VADC and ADC_TM functionality
->> combined into the same driver.
->>
->> Patches 1 adds bindings for ADC5 Gen3 peripheral.
->>
->> Patches 2 adds driver support for ADC5 Gen3.
-> For some reason I don't see this patch in my inbox. Maybe it will
-> arrive later. Immediate response: please add
-> devm_thermal_add_hwmon_sysfs().
+kernel test robot noticed the following build warnings:
 
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on vkoul-dmaengine/next broonie-spi/for-next clk/clk-next linus/master v6.7-rc1 next-20231116]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Yes, I'll check and add this in the next patch series, I'll wait for 
-some more comments on the existing patches for now.
+url:    https://github.com/intel-lab-lkp/linux/commits/Andrew-Davis/dt-bindings-clock-Convert-keystone-gate-txt-to-YAML/20231115-053346
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20231114212911.429951-2-afd%40ti.com
+patch subject: [PATCH v2 2/4] dt-bindings: clock: Convert keystone-gate.txt to YAML
+reproduce: (https://download.01.org/0day-ci/archive/20231116/202311161400.qg1QNgEh-lkp@intel.com/reproduce)
 
-I ran into some error after sending the first two mails (cover letter 
-and patch 1), so I sent patches 2 and 3 separately after it, I think you 
-may have received them separately.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202311161400.qg1QNgEh-lkp@intel.com/
 
+All warnings (new ones prefixed by >>):
 
->
->> Patch 3 is a cleanup, to move the QCOM ADC dt-bindings files from
->> dt-bindings/iio to dt-bindings/iio/adc folder, as they are
->> specifically for ADC devices. It also fixes all compilation errors
->> with this change in driver and devicetree files and similar errors
->> in documentation for dtbinding check.
-> NAK. The kernel is expected to build and work after each commit.
-> Otherwise git-bisecting the kernel becomes impossible.
-> So, please rework your series in a way that there are no compilation
-> errors after any of the patches. The easiest way would be to rearrange
-> your patches in 3-1-2 order.
+>> Warning: Documentation/devicetree/bindings/remoteproc/ti,keystone-rproc.txt references a file that doesn't exist: Documentation/devicetree/bindings/clock/keystone-gate.txt
 
-
-I think you may have misunderstood the meaning here, I had verified 
-compilation works each time after applying each of the three patches in 
-this series. It's not that this last patch fixes compilation errors 
-caused by the first two, this is a completely separate patch which 
-affects existing QCOM ADC code (driver and devicetree) including ADC5 Gen3.
-
-
-This patch does two things mainly:
-
-Move the ADC binding files from dt-bindings/iio folder to 
-dt-bindings/iio/adc folder (this would naturally cause some errors in 
-driver and devicetree code due to path update)
-
-Fix all compilation and dtbinding errors generated by the move
-
-
-I added this change at the end of the series as I was not completely 
-sure if it could get picked, just wanted to make it easier to drop if 
-that is the final decision.
-
-
-Thanks,
-
-Jishnu
-
-
->
->
->> Changes since v1:
->> - Dropped patches 1-5 for changing 'ADC7' peripheral name to 'ADC5 Gen2'.
->> - Addressed reviewer comments for binding and driver patches for ADC5 Gen3.
->> - Combined patches 8-11 into a single patch as requested by reviewers to make
->>    the change clearer and made all fixes required in same patch.
->>
->>   .../iio/{ => adc}/qcom,spmi-adc7-pm8350b.h    |    2 +-
->>   .../iio/{ => adc}/qcom,spmi-adc7-pmk8350.h    |    2 +-
->>   .../iio/{ => adc}/qcom,spmi-adc7-pmr735a.h    |    2 +-
->>   .../iio/{ => adc}/qcom,spmi-adc7-pmr735b.h    |    0
->>   .../iio/{ => adc}/qcom,spmi-vadc.h            |   81 ++
->>   46 files changed, 1725 insertions(+), 61 deletions(-)
->>   create mode 100644 drivers/iio/adc/qcom-spmi-adc5-gen3.c
->>   create mode 100644 include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pm8550.h
->>   create mode 100644 include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pm8550b.h
->>   create mode 100644 include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pm8550vx.h
->>   create mode 100644 include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pmk8550.h
->>   rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pm8350.h (98%)
->>   rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pm8350b.h (99%)
->>   rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pmk8350.h (97%)
->>   rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pmr735a.h (95%)
->>   rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pmr735b.h (100%)
->>   rename include/dt-bindings/iio/{ => adc}/qcom,spmi-vadc.h (77%)
->>
->> --
->> 2.25.1
->>
->
-> --
-> With best wishes
-> Dmitry
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
