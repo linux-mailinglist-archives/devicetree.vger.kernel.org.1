@@ -1,147 +1,138 @@
-Return-Path: <devicetree+bounces-16286-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16287-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D7BC7EE30C
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 15:39:50 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C63B7EE315
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 15:40:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5EB221C209F3
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 14:39:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3BF771C209B6
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 14:40:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACCD62FE32;
-	Thu, 16 Nov 2023 14:39:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A16431A79;
+	Thu, 16 Nov 2023 14:40:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gDKZr70C"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="CxWmUrLq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-x72a.google.com (mail-qk1-x72a.google.com [IPv6:2607:f8b0:4864:20::72a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 365B41A8
-	for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 06:39:46 -0800 (PST)
-Received: by mail-qk1-x72a.google.com with SMTP id af79cd13be357-77897c4ac1fso49956085a.3
-        for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 06:39:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700145585; x=1700750385; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=G8x9m07rVl5SKHa83K+oZHoiEsMEscf7mSS9P25vw08=;
-        b=gDKZr70CwPzAkTfDOAm0uR3Edep0GZyZ5LG83ca+QR5WmLmcqCbfgb1u081JDBS7zw
-         mVRAi+zZQYgV9pmjNSG/aNpuWGDPUBjumjBYUcBWywe5l5bGrOOaBjx2dXh+VDMBGY7m
-         cjmpP+QV9EPRwBtmP0fxOI0VlHc0Qzbjga1UUQRiRoetQde/jYzpF6XSXwRi577BIA9F
-         fKRGaFQZBZ6kB5AA+clf7lYwk6f6+pPTUWCR9Xw+LTkSmmF+8x9FLWb/p2HFeWB7gb3X
-         X4P4mFNz3gxx6run8p2KKv69Bx+9FyFKjnaIumwQXM5qpubnp8NGNDgzuzfGXCf+e6Mz
-         E4jQ==
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1CECAD
+	for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 06:40:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1700145620;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=k7D0AcpsS9Uv2SNG5VR/PuBu6Vv17rtl3JFWSaBIyyw=;
+	b=CxWmUrLqqmEXJnNXfi5LkrkZrH3QLpa5cdZHJAi7pKHNHneGcX6+eQFh2lPMrtkYYCTnPQ
+	pldr2RtiwCkqycTMkYLMf46nacFU7dTQ5mC9esucoY2L8FeYQQiLPIO/gAHHYpdcBTtHFR
+	jk6oYxWnKnTmNd6eB/65OqE+Njd1AXE=
+Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
+ [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-274-Z9EVHmrHMp-YZzP4stjL8g-1; Thu, 16 Nov 2023 09:40:19 -0500
+X-MC-Unique: Z9EVHmrHMp-YZzP4stjL8g-1
+Received: by mail-wm1-f72.google.com with SMTP id 5b1f17b1804b1-4083fec2c30so5023115e9.1
+        for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 06:40:18 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700145585; x=1700750385;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=G8x9m07rVl5SKHa83K+oZHoiEsMEscf7mSS9P25vw08=;
-        b=iywzChnFCGY95/G7RlQxxcyBNaD2e2yu9rLHkEsyEGKPdmNlwT9rCpI8v1nv8Cj98S
-         FcNIgib6Xx270ZpofnYwnrMP6e7WjtwPDELrkA5aom/nD+CT+jPgQLsYhq8yq/VDNJAW
-         96FH3xKwPKdrWa01myCpQp14yRLnrtP15DMWjLNYHtP5W/0SjT7TcaC7C1t8pOhEniro
-         nc6liI3MeCsMgFshGp8XSg8YBXGUb2XqWhncclojIbrC2+DUWBouzuFFrVkA6sLRhKyF
-         LCEYCNM46MqJOcDmkpQsghSAxLc0PnhkCkE6qPYK+yn+ib3JWYA7un8iskkpjPxesMmA
-         PIxw==
-X-Gm-Message-State: AOJu0YxAOFi7jWU91C83jw7mGWQDL0YW8rsfFz8z5oKhjFNw7fKFlQDO
-	D3FNhVjaZ45naAJiMrgsVmX9bg==
-X-Google-Smtp-Source: AGHT+IFd/fNrxur5uy0bROGLYTvuKPpMTKJCcd+sXxDxk9JzDfOWbYDgDBtcAUR+Qk2qnVNRzYpndA==
-X-Received: by 2002:a05:620a:c42:b0:775:d7d7:cdbb with SMTP id u2-20020a05620a0c4200b00775d7d7cdbbmr9762689qki.38.1700145585327;
-        Thu, 16 Nov 2023 06:39:45 -0800 (PST)
-Received: from [10.50.4.74] ([50.201.115.146])
-        by smtp.gmail.com with ESMTPSA id m11-20020a05620a290b00b007743382121esm4315994qkp.84.2023.11.16.06.39.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Nov 2023 06:39:45 -0800 (PST)
-Message-ID: <b9290a88-f52a-4880-bf14-2b7f64762498@linaro.org>
-Date: Thu, 16 Nov 2023 15:39:44 +0100
+        d=1e100.net; s=20230601; t=1700145618; x=1700750418;
+        h=content-transfer-encoding:mime-version:message-id:date:references
+         :in-reply-to:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=k7D0AcpsS9Uv2SNG5VR/PuBu6Vv17rtl3JFWSaBIyyw=;
+        b=BADop5ak0lUPBo8WGwmIKxbF3BMiCfzqhiUqN8vYmwM2GY04noZUdFw7mj9pKibMGS
+         U143cDB+KCqClikMVfgECdqkJxCawPbluzxwb7KDgvMYl9A5YjbIZx6vnscqHm6llxF/
+         WhWLwPek7kN48OEIZ9tzeCiutqJQrZTR1YxyLn5wjjAKdKxt5anDFhMr0KziAqZG48yX
+         cpJt0Ua6F4eNASpDzxg954G0NX1/p91nFMnHzOYsmtR1IYJawslku296+H5mk+ONqn6R
+         UljPweOzLSa/uLmg1uB/ZK2ltE1dnfYN0TgHkz3WZPyzq//R3kMZD4ADu99iMj3u2+Yc
+         3QxQ==
+X-Gm-Message-State: AOJu0YzcYCbMPzdhR8623Msh0LMLLh+PoW6iyLBkNDR7oblWFka4A03T
+	pQRic5L34zL18wymfjpIbqzNIpcCN6VLwGfmGv4Ft+JOqJzOurABuKRCx4XVit59pQg3xi0urn1
+	OmZNaz4P9irLucGH5xNG3Pg==
+X-Received: by 2002:a05:600c:45cb:b0:407:4944:76d1 with SMTP id s11-20020a05600c45cb00b00407494476d1mr14152426wmo.17.1700145617750;
+        Thu, 16 Nov 2023 06:40:17 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IE1Rh8dw2fcZL0K82vhYxadq8V4csNqH6IfNjG3OoldQslRz9TvV/kE57Gz/UgC84cOs3jVNg==
+X-Received: by 2002:a05:600c:45cb:b0:407:4944:76d1 with SMTP id s11-20020a05600c45cb00b00407494476d1mr14152411wmo.17.1700145617390;
+        Thu, 16 Nov 2023 06:40:17 -0800 (PST)
+Received: from localhost (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
+        by smtp.gmail.com with ESMTPSA id n7-20020a05600c4f8700b0040588d85b3asm3908881wmq.15.2023.11.16.06.40.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Nov 2023 06:40:17 -0800 (PST)
+From: Javier Martinez Canillas <javierm@redhat.com>
+To: Rob Herring <robh@kernel.org>
+Cc: linux-kernel@vger.kernel.org, Thomas Zimmermann <tzimmermann@suse.de>,
+ Ard Biesheuvel <ardb@kernel.org>, Sima Vetter <daniel.vetter@ffwll.ch>,
+ dri-devel@lists.freedesktop.org, Andrew Worsley <amworsley@gmail.com>,
+ Hector Martin <marcan@marcan.st>, Sergio Lopez <slp@redhat.com>, Frank
+ Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org
+Subject: Re: [RFC PATCH] of/platform: Disable sysfb if a simple-framebuffer
+ node is found
+In-Reply-To: <CAL_JsqJM9+cbNviwuKGB5+3YbyAP3UH+TxCxsU5nUtX-iRGP2w@mail.gmail.com>
+References: <20231113085305.1823455-1-javierm@redhat.com>
+ <CAL_JsqKHTN5hfd4qpg5RXbmQLKZNVywDkSj9mxvfGmjrcChQQg@mail.gmail.com>
+ <87jzqi59bt.fsf@minerva.mail-host-address-is-not-set>
+ <CAL_JsqJM9+cbNviwuKGB5+3YbyAP3UH+TxCxsU5nUtX-iRGP2w@mail.gmail.com>
+Date: Thu, 16 Nov 2023 15:40:16 +0100
+Message-ID: <87pm09223z.fsf@minerva.mail-host-address-is-not-set>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2] dt-bindings: thermal: convert Mediatek Thermal to the
- json-schema
-Content-Language: en-US
-To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: "Rafael J . Wysocki" <rafael@kernel.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>, Sascha Hauer <s.hauer@pengutronix.de>,
- linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
- <rafal@milecki.pl>
-References: <20231116131316.5897-1-zajec5@gmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231116131316.5897-1-zajec5@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On 16/11/2023 14:13, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> This helps validating DTS files.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> ---
+Rob Herring <robh@kernel.org> writes:
 
-Please implement all my comments from previous version.
+> On Thu, Nov 16, 2023 at 3:36=E2=80=AFAM Javier Martinez Canillas
+> <javierm@redhat.com> wrote:
 
-Also, one patch per day, so you get testing (since you do no test) and
-also allow people to actually do review.
+[...]
 
+>> >
+>> > This is the opposite of what we do for memory and memory reservations.
+>> > EFI is the source of truth for those.
+>> >
+>> > This could also lead to an interesting scenario. As simple-framebuffer
+>> > can define its memory in a /reserved-memory node, but that is ignored
+>> > in EFI boot. Probably would work, but only because EFI probably
+>> > generates its memory map table from the /reserved-memory nodes.
+>> >
+>>
+>> I see. So what would be the solution then? Ignoring creating a platform
+>> device for "simple-framebuffer" if booted using EFI and have an EFI-GOP?
+>
+> Shrug. I don't really know anything more about EFI FB, but I would
+> guess it can't support handling resources like clocks, power domains,
+> regulators, etc. that simple-fb can. So if a platform needs those, do
+
+That's correct, and the reason why I thought that the DTB would be the
+single source of truth for the firmware provided framebuffer.
+
+For example, in some arm platforms that u-boot does provide an EFI-GOP,
+you need to boot with clk_ignore_unused or the system framebuffer just
+goes away once the unused clocks are gated. Same for PD, regulators, etc.
+
+> we say they should not setup EFI-GOP? Or is there a use case for
+> having both? Clients that don't muck with resources can use EFI-GOP
+> and those that do use simple-fb. For example, does/can grub use
+> EFI-GOP, but not simple-fb?
+>
+
+I don't think grub can use the simple-fb, it can use the EFI-GOP if is
+available though. And things work because of course grub won't try to
+disable unused resources like Linux does.
+
+> Rob
+>
+
+--=20
 Best regards,
-Krzysztof
+
+Javier Martinez Canillas
+Core Platforms
+Red Hat
 
 
