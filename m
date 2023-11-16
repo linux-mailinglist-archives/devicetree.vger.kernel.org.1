@@ -1,77 +1,164 @@
-Return-Path: <devicetree+bounces-16266-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16267-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FDDA7EE26E
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 15:15:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F0E57EE272
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 15:16:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5159A1C2083A
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 14:15:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 49F34280E57
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 14:16:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DE3D31728;
-	Thu, 16 Nov 2023 14:15:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B68C53174D;
+	Thu, 16 Nov 2023 14:15:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="kPMkCqRY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O7iLLyr6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A078711F;
-	Thu, 16 Nov 2023 06:15:36 -0800 (PST)
-Received: from [100.107.97.3] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 82342660734A;
-	Thu, 16 Nov 2023 14:15:34 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1700144135;
-	bh=EIPsM67ANJzpy88Piqk/eKq1WBdo5WSII3uZmoT8sOk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=kPMkCqRYwKWnoOxHiRwASL+IIWJYbjM4FcTkMQHZt3rYct2xV3lG6J9SIMtEAVs86
-	 Du5Kj9l38OjG4SOd43rnBBRz0fuWpXLo1B2XvV+kGzv9FRWVARc+eo5CFq/5IWkqV4
-	 syjVJhywj3pJZQY3CcEb1kbZoId+l0j1N8pa3oRumqTQQBV51hVnozMRuy1IvGDl0B
-	 yOsNVhj/rAxPXJ3iPv4jClAky0ERJ5x/SnMbw2EJuWNaQXf+z/aFEibpOzDlXtDmfz
-	 7ck3+XwaJKxY7gSJwg/vT2Gtv8pGup9/4It/dE3pD4KTl80hxmyfJ9qhnuOKlWLG6P
-	 yZdE+Ua8lXrLw==
-Message-ID: <a5a3e14f-9e10-46cb-a0a3-f76248738a87@collabora.com>
-Date: Thu, 16 Nov 2023 15:15:32 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9690A31728;
+	Thu, 16 Nov 2023 14:15:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 348A4C433C8;
+	Thu, 16 Nov 2023 14:15:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1700144159;
+	bh=NqNngx7IGcQZOL1i4RZBel57M9UqE/S+QpP/P7tzoOA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=O7iLLyr6LioSjjzCjCGziuC79WrEY3vRI00z8amYxugxe24caU82NjV7DMCVcO/94
+	 /AFtXQM/j2NS5CO4qVVGnV+SmpejgmBL3dllBXZVtGfFHvOqIbK0v/zLi2khPwNNGI
+	 P6XbSz5uSVhPTKhWFRGyHatRcpolH9loc9BxPGGOJOua6qmpZMcAHMDhsEy/PPpunD
+	 +ZYanRf9plGcO/bgEQ1kF/ZvWrET1xOWV05Wj1Vnx3UBE3B21OWLI4QsBUkl+C53mV
+	 EzWWz3vSkE2TNCZWMXGJzWKgmn6RWVRKPo+txnkoZPBDu8y/eng256Wse+6d+TmABc
+	 WneJheSwEnp7w==
+Date: Thu, 16 Nov 2023 14:15:56 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Li peiyu <579lpy@gmail.com>
+Cc: jic23@kernel.org, lars@metafoo.de, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH [2/2]] dt-bindings: iio: humidity: Add TI HDC302x support
+Message-ID: <20231116-shriek-retouch-6a367b2422a3@squawk>
+References: <20231116125433.13285-1-579lpy@gmail.com>
+ <20231116131407.13860-1-579lpy@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] dt-bindings: soc: mediatek: add mt8186 and mt8195
- svs dt-bindings
-Content-Language: en-US
-To: Mark Tseng <chun-jen.tseng@mediatek.com>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, Roger Lu <roger.lu@mediatek.com>,
- Kevin Hilman <khilman@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20231116110447.3598-1-chun-jen.tseng@mediatek.com>
- <20231116110447.3598-4-chun-jen.tseng@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20231116110447.3598-4-chun-jen.tseng@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-
-Il 16/11/23 12:04, Mark Tseng ha scritto:
-> Support more SoC svs compatible in dt-bindings.
-> 1. MT8186
-> 2. MT8195
-> 
-> Signed-off-by: Mark Tseng <chun-jen.tseng@mediatek.com>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="4A5WVN84xMuEuPuU"
+Content-Disposition: inline
+In-Reply-To: <20231116131407.13860-1-579lpy@gmail.com>
 
 
+--4A5WVN84xMuEuPuU
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Thu, Nov 16, 2023 at 09:14:07PM +0800, Li peiyu wrote:
+> Add device tree bindings for HDC3020/HDC3021/HDC3022 humidity and
+> temperature sensors.
+>=20
+> Signed-off-by: Li peiyu <579lpy@gmail.com>
+> ---
+>  .../bindings/iio/humidity/ti,hdc3020.yaml     | 48 +++++++++++++++++++
+>  1 file changed, 48 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/humidity/ti,hdc=
+3020.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/humidity/ti,hdc3020.ya=
+ml b/Documentation/devicetree/bindings/iio/humidity/ti,hdc3020.yaml
+> new file mode 100644
+> index 000000000000..8015c4bb5b2f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/humidity/ti,hdc3020.yaml
+> @@ -0,0 +1,48 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/humidity/ti,hdc3020.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: HDC3020/HDC3021/HDC3022 humidity and temperature iio sensors
+> +
+> +maintainers:
+> +  - Jonathan Cameron <jic23@kernel.org>
+
+Usually this is you, not the maintainer of the subsystem, since you have
+the hardware in question and an interest in it specifically.
+
+> +
+> +description: |
+> +  The HDC302x is an integrated capacitive based relative humidity (RH)
+> +  and temperature sensor.
+> +
+> +  datasheet is available:
+> +    https://www.ti.com/lit/ds/symlink/hdc3020.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - ti,hdc3020
+> +      - ti,hdc3021
+> +      - ti,hdc3022
+
+Looking at your driver, all three of these seem to be compatible?
+I did only have a quick look though, so please correct me if that is not
+the case. If they are compatible, please set this up to use a fallback
+compatible - for example allow
+compatible =3D "ti,hdc3020";
+compatible =3D "ti,hdc3021", "ti,hdc3020";
+compatible =3D "ti,hdc3022", "ti,hdc3020";
+
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        humidity@47 {
+
+The generic node name here should probably be "humidity-sensor".
+
+Cheers,
+Conor.
+
+> +            compatible =3D "ti,hdc3020";
+> +            reg =3D <0x47>;
+> +        };
+> +    };
+> --=20
+> 2.34.1
+>=20
+
+--4A5WVN84xMuEuPuU
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZVYkGQAKCRB4tDGHoIJi
+0isfAQDx4UAz4ZKk6C7D0bkkz/wh9YVUhL1bnysGg+PaGTo17wD/Ul22ueR6jCtR
+DJhfPCD36Jj+R0FMeVN4l2bfg2z/Dgg=
+=uVyx
+-----END PGP SIGNATURE-----
+
+--4A5WVN84xMuEuPuU--
 
