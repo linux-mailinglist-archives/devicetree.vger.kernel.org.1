@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-16211-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16212-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E36E7EE037
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 12:56:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A48977EE03B
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 12:57:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9439BB20B87
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 11:56:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5DFB0280FA9
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 11:57:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 593C02F857;
-	Thu, 16 Nov 2023 11:56:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E7EA2F846;
+	Thu, 16 Nov 2023 11:57:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Fm93XQ36"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NzBAC1OX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-x72e.google.com (mail-qk1-x72e.google.com [IPv6:2607:f8b0:4864:20::72e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71C27C4
-	for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 03:56:36 -0800 (PST)
-Received: by mail-qk1-x72e.google.com with SMTP id af79cd13be357-778a47bc09aso39253685a.3
-        for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 03:56:36 -0800 (PST)
+Received: from mail-qv1-xf33.google.com (mail-qv1-xf33.google.com [IPv6:2607:f8b0:4864:20::f33])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45C89182
+	for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 03:57:20 -0800 (PST)
+Received: by mail-qv1-xf33.google.com with SMTP id 6a1803df08f44-66d0760cd20so5811656d6.0
+        for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 03:57:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700135795; x=1700740595; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1700135839; x=1700740639; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=6sduR18SAGL/LrSQHVtqPdn++QC3UjL5bC7BaWYG+KE=;
-        b=Fm93XQ361inLUqfBuF59B5NVoT7vQ3nd9ddJpzVFKHH2mZIDomKs3UPbyW/1x884LM
-         thx0qBGleO+OMdocW01XCPl1Mtubem1lc6xE/SBMbMslx9GqHmr5cCE+uXbRJSkiTn5w
-         tk9D1w+15aNfbCTp0itMJulDDBbM7VAUWL3/d0PDbxzLAX6tasH8+qSd0gMNbRKYhdyf
-         f+hMK1WedRfZsFy3HdIlxXxKBdWLjUiS+pXEsAmdQ6D6v9tQUH8aoKJUMr77y34PUvtd
-         sfGUjKFwBlbeD3/k5E9rXANxSVyM1k+nPQDOIoGgVMsu7vfmZLDZ7VRvK8b1eiD1+m6O
-         8V8g==
+        bh=krk4VBYuGi0GRPy3jr9qgf+JsOMGZYRly2u1txqNaOs=;
+        b=NzBAC1OXNlUjSNbO+kZVwJXIVxTsaQjBhBadCIP10wQpb15JY6KRRfrqpZ9dFGi+Qj
+         RmIKrIYTvl0XycilgJY7u7GKayxbDxuJ3sKGQJj4gClFDOBzhRQMCUQNPFhQFxGEYwCg
+         Zluqf7wk7S4Ti9hxSJ/GSLGVX2uSMFkNJrC3ooaU8QdEnO9uic3b4tgshDzPzWnRr+mG
+         BYiwPBOdVZXHcH8ntmS/OqlgO8kfrRbkT104M62+mcyOJpyJj/32hGnFC9qrRLL5uvCg
+         bMkI93JFLyu3WYLbGFWsklOqJtqQ7Fja2T68bNHEgfL5kDzhdNtNl1ioN+tN3WwKSf5b
+         oBlw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700135795; x=1700740595;
+        d=1e100.net; s=20230601; t=1700135839; x=1700740639;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6sduR18SAGL/LrSQHVtqPdn++QC3UjL5bC7BaWYG+KE=;
-        b=uTC+PeiMoN/tpXfdghhSjL57i7Jjj4SOhy1Zv8B6i5p17icsO0IjTpS/uEPgQzbOXl
-         WUQL+5wAaondObxOij4LfnKVqaQQQq6fIWa2ZVMQ+09O8SJux0Zjt+SHdCfIT5VYyATu
-         Wr6T42WR3A/WnLDnHvYafN1QDe5ssTR2gfG3Zev1iwzty59aKxL1r6JYQ2+v85sLMifR
-         xt1LIdX6jT32qjuvQ5o8mu0hxAk2RLkHVrhF5Nj6XiTHhyf6rnhjHfkOUiLstJeB8PJG
-         bbjr/FZoJTc3TmavxoFTRi0y30l0hyMK34ofua+havr5CDPcVVi1mSySxUSc3vVjr17u
-         Zy9A==
-X-Gm-Message-State: AOJu0YxC1Ql3FTcniSpzZ5p5jRoSgIn6JODlx3k88eKYlJoARfsJfxIt
-	YIaLB/8yGPtCxxH1FSWLbTJPRg==
-X-Google-Smtp-Source: AGHT+IFGiq+EEnneJQhbyMpvhM5nd0O8GlvkBn6OEiICIj/lDbbqEaBBZyC3Z30TIPhx9JFCSDNNNQ==
-X-Received: by 2002:ad4:4089:0:b0:675:b904:9bc1 with SMTP id l9-20020ad44089000000b00675b9049bc1mr8608767qvp.49.1700135795582;
-        Thu, 16 Nov 2023 03:56:35 -0800 (PST)
+        bh=krk4VBYuGi0GRPy3jr9qgf+JsOMGZYRly2u1txqNaOs=;
+        b=sFswpZg4a8/hBH1kJdoUWI5OAym8v9g7fUU60LfgwikzAo0XuBzlRRtiLizpN8NQgL
+         ZGV5mP2SXc6WKWtQGG4IUyDfRJhrepWc/AXPlZenINUDQaGHgMIQ3YsOZQPaEFVswzww
+         nEDNkwW1QMn/jKwrP+6M+Mz8+QzDKh25WdtyCfDAW6XuAiYLa3pB9MxKqM+4HQYojarS
+         7VyF8m9UY29LbcsgHCwJENYDsnZyfJUXWslvbAeio8tNgRO2ahK74JaSA8+u9s7ksA+8
+         Anpp1pGledu+C+eEB0IKXMN2dYAQBrrQ84gcHwC+ukijwDvHUawa7/CgGjUnzvOov9Ji
+         7O4g==
+X-Gm-Message-State: AOJu0Ywq4x0uZ++6ha/6A7wjeu14YtLZUVLQ0J1+0xXSDTngqa+aGFCj
+	lpAG1RgUFxGTFWqMX9+whp1pHg==
+X-Google-Smtp-Source: AGHT+IFU9LBKvJxlcV3mqN0WuU20u/5D5JH6PPclyR4BBA180Ey+p7XrU5hEyiqU+4an3rs0N3nRaw==
+X-Received: by 2002:a05:6214:ca4:b0:66d:5cfe:82a6 with SMTP id s4-20020a0562140ca400b0066d5cfe82a6mr2074829qvs.27.1700135839405;
+        Thu, 16 Nov 2023 03:57:19 -0800 (PST)
 Received: from [192.168.212.13] ([12.191.197.195])
-        by smtp.gmail.com with ESMTPSA id l15-20020ad4408f000000b00670867d7bdfsm1315936qvp.122.2023.11.16.03.56.28
+        by smtp.gmail.com with ESMTPSA id l15-20020ad4408f000000b00670867d7bdfsm1315936qvp.122.2023.11.16.03.57.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Nov 2023 03:56:35 -0800 (PST)
-Message-ID: <834cbb58-3a88-4ba6-8db6-10440a4d0893@linaro.org>
-Date: Thu, 16 Nov 2023 12:56:19 +0100
+        Thu, 16 Nov 2023 03:57:19 -0800 (PST)
+Message-ID: <7786f8e0-2395-4bb6-bc29-071ed637611f@linaro.org>
+Date: Thu, 16 Nov 2023 12:57:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,7 +62,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 9/9] dt-bindings: net: ipq4019-mdio: Document ipq5332
+Subject: Re: [PATCH 1/9] net: mdio: ipq4019: increase eth_ldo_rdy for ipq5332
  platform
 Content-Language: en-US
 To: Luo Jie <quic_luoj@quicinc.com>, agross@kernel.org, andersson@kernel.org,
@@ -74,7 +74,7 @@ Cc: linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  quic_srichara@quicinc.com
 References: <20231115032515.4249-1-quic_luoj@quicinc.com>
- <20231115032515.4249-10-quic_luoj@quicinc.com>
+ <20231115032515.4249-2-quic_luoj@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -120,131 +120,56 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231115032515.4249-10-quic_luoj@quicinc.com>
+In-Reply-To: <20231115032515.4249-2-quic_luoj@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 15/11/2023 04:25, Luo Jie wrote:
-> On platform IPQ5332, the MDIO address of qca8084 can be programed
-> when the device tree property "fixup" defined, the clock sequence
-> needs to be completed before the PHY probeable.
+> There are two PCS(UNIPHY) supported in SOC side on ipq5332,
+> and three PCS(UNIPHY) supported on ipq9574.
 > 
 > Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
 > ---
->  .../bindings/net/qcom,ipq4019-mdio.yaml       | 138 +++++++++++++++++-
->  1 file changed, 130 insertions(+), 8 deletions(-)
+>  drivers/net/mdio/mdio-ipq4019.c | 55 +++++++++++++++++++--------------
+>  1 file changed, 32 insertions(+), 23 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml b/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml
-> index 3407e909e8a7..7ff92be14ee1 100644
-> --- a/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml
-> +++ b/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml
-> @@ -15,11 +15,13 @@ properties:
->        - enum:
->            - qcom,ipq4019-mdio
->            - qcom,ipq5018-mdio
-> +          - qcom,ipq5332-mdio
->  
->        - items:
->            - enum:
->                - qcom,ipq6018-mdio
->                - qcom,ipq8074-mdio
-> +              - qcom,ipq9574-mdio
->            - const: qcom,ipq4019-mdio
->  
->    "#address-cells":
-> @@ -30,19 +32,47 @@ properties:
->  
->    reg:
->      minItems: 1
-> -    maxItems: 2
-> +    maxItems: 5
->      description:
-> -      the first Address and length of the register set for the MDIO controller.
-> -      the second Address and length of the register for ethernet LDO, this second
-> -      address range is only required by the platform IPQ50xx.
-> +      the first Address and length of the register set for the MDIO controller,
-> +      the optional second, third and fourth address and length of the register
-> +      for ethernet LDO, these three address range are required by the platform
-> +      IPQ50xx/IPQ5332, the last address and length is for the CMN clock to
-> +      select the reference clock.
-> +
-> +  reg-names:
-> +    minItems: 1
-> +    maxItems: 5
+> diff --git a/drivers/net/mdio/mdio-ipq4019.c b/drivers/net/mdio/mdio-ipq4019.c
+> index abd8b508ec16..9d444f5f7efb 100644
+> --- a/drivers/net/mdio/mdio-ipq4019.c
+> +++ b/drivers/net/mdio/mdio-ipq4019.c
+> @@ -18,28 +18,31 @@
+>  #define MDIO_DATA_WRITE_REG			0x48
+>  #define MDIO_DATA_READ_REG			0x4c
+>  #define MDIO_CMD_REG				0x50
+> -#define MDIO_CMD_ACCESS_BUSY		BIT(16)
+> -#define MDIO_CMD_ACCESS_START		BIT(8)
+> -#define MDIO_CMD_ACCESS_CODE_READ	0
+> -#define MDIO_CMD_ACCESS_CODE_WRITE	1
+> -#define MDIO_CMD_ACCESS_CODE_C45_ADDR	0
+> -#define MDIO_CMD_ACCESS_CODE_C45_WRITE	1
+> -#define MDIO_CMD_ACCESS_CODE_C45_READ	2
+> +#define MDIO_CMD_ACCESS_BUSY			BIT(16)
+> +#define MDIO_CMD_ACCESS_START			BIT(8)
+> +#define MDIO_CMD_ACCESS_CODE_READ		0
+> +#define MDIO_CMD_ACCESS_CODE_WRITE		1
+> +#define MDIO_CMD_ACCESS_CODE_C45_ADDR		0
+> +#define MDIO_CMD_ACCESS_CODE_C45_WRITE		1
+> +#define MDIO_CMD_ACCESS_CODE_C45_READ		2
 
-You must describe the items and constrain them per each variant.
-
->  
->    clocks:
-> -    items:
-> -      - description: MDIO clock source frequency fixed to 100MHZ
-> +    minItems: 1
-> +    maxItems: 5
-> +    description:
-
-Doesn't this make all other variants with incorrect constraints?
-
-> +      MDIO system clock frequency fixed to 100MHZ, and the GCC uniphy
-> +      clocks enabled for resetting ethernet PHY.
->  
->    clock-names:
-> -    items:
-> -      - const: gcc_mdio_ahb_clk
-> +    minItems: 1
-> +    maxItems: 5
-> +
-> +  phy-reset-gpio:
-
-No, for multiple reasons. It's gpios first of all. Where do you see such
-property? Where is the existing definition?
-
-Then it is "reset-gpios" if this is MDIO. Why do you put phy properties
-in MDIO?
-
-> +    minItems: 1
-> +    maxItems: 3
-> +    description:
-> +      GPIO used to reset the PHY, each GPIO is for resetting the connected
-> +      ethernet PHY device.
-> +
-> +  phyaddr-fixup:
-> +    description: Register address for programing MDIO address of PHY devices
-
-You did not test code which you sent.
-
-> +
-> +  pcsaddr-fixup:
-> +    description: Register address for programing MDIO address of PCS devices
-> +
-> +  mdio-clk-fixup:
-> +    description: The initialization clocks to be configured
-> +
-> +  fixup:
-> +    description: The MDIO address of PHY/PCS device to be programed
-
-Please do not send untested code.
+Where is anything related to ipq5332 here?
 
 
-...
+..
 
-> +
-> +      qca8kphy2: ethernet-phy@3 {
-> +        reg = <3>;
-> +        fixup;
-> +      };
-> +
-> +      qca8kphy3: ethernet-phy@4 {
-> +        reg = <4>;
-> +        fixup;
-> +      };
-> +
-> +      qca8kpcs0: pcsphy0@5 {
-> +        compatible = "qcom,qca8k_pcs";
-> +        reg = <5>;
-> +        fixup;
-> +        };
+>  	bus->name = "ipq4019_mdio";
+>  	bus->read = ipq4019_mdio_read_c22;
+> @@ -288,6 +296,7 @@ static void ipq4019_mdio_remove(struct platform_device *pdev)
+>  static const struct of_device_id ipq4019_mdio_dt_ids[] = {
+>  	{ .compatible = "qcom,ipq4019-mdio" },
+>  	{ .compatible = "qcom,ipq5018-mdio" },
+> +	{ .compatible = "qcom,ipq5332-mdio" },
 
-Fix indentation.
+How user comes before binding?
 
 Best regards,
 Krzysztof
