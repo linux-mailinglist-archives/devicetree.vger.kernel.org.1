@@ -1,171 +1,142 @@
-Return-Path: <devicetree+bounces-16157-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16152-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20C3F7EDC89
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 09:02:03 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D5747EDC78
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 09:01:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 51A6C1C20832
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 08:02:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 185C6280F0E
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 08:01:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5228C101EE;
-	Thu, 16 Nov 2023 08:01:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 504B3FC1F;
+	Thu, 16 Nov 2023 08:01:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="nNLbm/ms"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="KWqvvflA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EED41A1
-	for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 00:01:52 -0800 (PST)
-Received: from epcas2p4.samsung.com (unknown [182.195.41.56])
-	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20231116080149epoutp04a1adfeb713a1a1f6223d0ffbe9da88c2~YC6-P66Zd1292212922epoutp04d
-	for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 08:01:49 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20231116080149epoutp04a1adfeb713a1a1f6223d0ffbe9da88c2~YC6-P66Zd1292212922epoutp04d
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1700121709;
-	bh=TBbO7iBclxfuW4EBG0I88RBSDHlp7OHLhY3ApZFcSmY=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=nNLbm/msH7xKjpP354n2yLw8qhoOakGpiQPRc24OKJB7XpafyRDPratyaEImCSQHn
-	 ZkvRhXrJqOwjbKqbG69bqlsjEqpcTBAegRg8LFjoGoxOzs5m9EkBY9paXLnjij+vo4
-	 hLPegzXwEi82ktc8gisci+G7RmNZ1LDVWqWnJeVw=
-Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
-	epcas2p2.samsung.com (KnoxPortal) with ESMTP id
-	20231116080148epcas2p2a21f6ecb885d3377882c2f1343c4a987~YC6_uNipo1423114231epcas2p2V;
-	Thu, 16 Nov 2023 08:01:48 +0000 (GMT)
-Received: from epsmges2p2.samsung.com (unknown [182.195.36.90]) by
-	epsnrtp2.localdomain (Postfix) with ESMTP id 4SWCDC6rvkz4x9Pw; Thu, 16 Nov
-	2023 08:01:47 +0000 (GMT)
-Received: from epcas2p3.samsung.com ( [182.195.41.55]) by
-	epsmges2p2.samsung.com (Symantec Messaging Gateway) with SMTP id
-	87.FF.09622.B6CC5556; Thu, 16 Nov 2023 17:01:47 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-	epcas2p1.samsung.com (KnoxPortal) with ESMTPA id
-	20231116080147epcas2p1211d42721f485b617fec2ff11102726c~YC69yMOGa1989619896epcas2p1U;
-	Thu, 16 Nov 2023 08:01:47 +0000 (GMT)
-Received: from epsmgmc1p1new.samsung.com (unknown [182.195.42.40]) by
-	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-	20231116080147epsmtrp23ccd4b9684f7e196a25ae91c02f57525~YC69xKMV52973929739epsmtrp27;
-	Thu, 16 Nov 2023 08:01:47 +0000 (GMT)
-X-AuditID: b6c32a46-fcdfd70000002596-5a-6555cc6b1135
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-	epsmgmc1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	C8.83.07368.B6CC5556; Thu, 16 Nov 2023 17:01:47 +0900 (KST)
-Received: from [10.229.8.168] (unknown [10.229.8.168]) by
-	epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20231116080147epsmtip2751449db92a1db80522202c924313615~YC69aPBUy2106821068epsmtip2f;
-	Thu, 16 Nov 2023 08:01:47 +0000 (GMT)
-Message-ID: <87f3616f-42e4-3713-e5ce-6c3a1914c565@samsung.com>
-Date: Thu, 16 Nov 2023 16:59:00 +0900
+X-Greylist: delayed 2093 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 16 Nov 2023 00:01:04 PST
+Received: from mail-m118112.qiye.163.com (mail-m118112.qiye.163.com [115.236.118.112])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4814319D;
+	Thu, 16 Nov 2023 00:01:04 -0800 (PST)
+DKIM-Signature: a=rsa-sha256;
+	b=KWqvvflA9+/axwizsRSRSGyg5fk6IiUM3lVg4IWeuLgSTHP3EQwrAHevkwLc9fj1YaVp0MhVr5sxIW+M6U3bH5A8RWx1FFuNaXhOfQX4jKKO0eplRABeNejJiZklHazkzs1VNUFwz0Ei+cMawQgO4+qE4HMijB789pKyiY4iVWo=;
+	c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=tb1X4KpeIfR7YuU+9FGfgBz5jQqP4HMT01BOCR63WJc=;
+	h=date:mime-version:subject:message-id:from;
+Received: from [172.16.12.141] (unknown [58.22.7.114])
+	by mail-m12779.qiye.163.com (Hmail) with ESMTPA id A79AA7801AF;
+	Thu, 16 Nov 2023 16:00:06 +0800 (CST)
+Message-ID: <d6c77064-bae5-41c3-b49f-8c5c3a076a6b@rock-chips.com>
+Date: Thu, 16 Nov 2023 16:00:06 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
-	Thunderbird/102.11.0
-Subject: Re: [PATCH v2 00/12] Introduce ExynosAutov920 SoC and SADK board
-To: =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Alim Akhtar
-	<alim.akhtar@samsung.com>, Rob Herring <robh+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Tomasz Figa <tomasz.figa@gmail.com>, Sylwester
-	Nawrocki <s.nawrocki@samsung.com>, Linus Walleij <linus.walleij@linaro.org>,
-	Thierry Reding <thierry.reding@gmail.com>, Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
-	linux-serial@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 09/11] drm/rockchip: vop2: Add support for rk3588
 Content-Language: en-US
-From: Jaewon Kim <jaewon02.kim@samsung.com>
-In-Reply-To: <20231116075635.onolshbu4waqsqag@pengutronix.de>
+To: Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Andy Yan <andyshrk@163.com>, heiko@sntech.de, hjc@rock-chips.com,
+ dri-devel@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ robh+dt@kernel.org, devicetree@vger.kernel.org,
+ sebastian.reichel@collabora.com, kever.yang@rock-chips.com,
+ chris.obbard@collabora.com
+References: <20231114112534.1770731-1-andyshrk@163.com>
+ <20231114112855.1771372-1-andyshrk@163.com>
+ <20231115090823.GY3359458@pengutronix.de>
+ <229557d7-beec-44e0-9ee6-4a962b33ec79@rock-chips.com>
+ <20231116075015.GG3359458@pengutronix.de>
+From: Andy Yan <andy.yan@rock-chips.com>
+In-Reply-To: <20231116075015.GG3359458@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrJJsWRmVeSWpSXmKPExsWy7bCmuW72mdBUg/9XTC0ezNvGZrFm7zkm
-	i/lHzrFaNC9ez2bxbq6Mxd7XW9ktpvxZzmSx6fE1VovN8/8wWlzeNYfN4u7dVYwWM87vY7I4
-	s7iX3aJ17xF2i8Nv2lktfu6ax2KxahdQ3e2JkxkdhDx2zrrL7rFpVSebx51re9g89s9dw+6x
-	eUm9R/9fA4++LasYPT5vkgvgiMq2yUhNTEktUkjNS85PycxLt1XyDo53jjc1MzDUNbS0MFdS
-	yEvMTbVVcvEJ0HXLzAH6REmhLDGnFCgUkFhcrKRvZ1OUX1qSqpCRX1xiq5RakJJTYF6gV5yY
-	W1yal66Xl1piZWhgYGQKVJiQndFyZCtLwQr2itltX1gaGBvZuhg5OSQETCSWNV9h7GLk4hAS
-	2MEoMX/RPTYI5xOjxK1DE6Gcb4wSDWcXMsK0HLzygh0isZdR4v7/fVD9r4Favv9jBaniFbCT
-	mL1vDwuIzSKgKnH27DF2iLigxMmZT8DiogLREq3L7oMdIizgKTF5/1/mLkYODhEBN4mP6yRB
-	wswCXawS0zYyQtjiEreezGcCsdkEtCW+r18MtopTwFbi0Mr1zBA18hLNW2czg9wjIfCBQ+LL
-	nyPMEFe7SPzbA9EgISAs8er4FnYIW0ri87u90MDIlmif/geqpkLi4obZUHFjiVnP2hlBbmMW
-	0JRYv0sfxJQQUJY4cosFYi2fRMfhv+wQYV6JjjYhiEY1iftTz0ENkZGYdGQlE4TtIXGyYx/r
-	BEbFWUhhMgvJk7OQPDMLYe8CRpZVjGKpBcW56anFRgVG8LhOzs/dxAhO41puOxinvP2gd4iR
-	iYPxEKMEB7OSCK+5XEiqEG9KYmVValF+fFFpTmrxIUZTYMxMZJYSTc4HZpK8knhDE0sDEzMz
-	Q3MjUwNzJXHee61zU4QE0hNLUrNTUwtSi2D6mDg4pRqYIhc/uC8eFJ7urag/I0f52upwveIg
-	I9up860z/hcE3avJiOb7va9emGmCxbw1j+5IbS68YHlHtPywxrXd8z3Zfn+IMrvxbuorK0WH
-	KGFFXfYp9rYLrqb+e6e2ro9Hu9vh71d9AQeJW4cDBe/WfeKUPHXErzJpV4eET1raTPPFj+7K
-	NDF2W9/IEnqYr3/NbsstRaaDK36wGcdeuvnvcO35OQpmcve/c7zWuCkqHN5u8kF47Vnb5esO
-	fV9pw6Tw/LKv7OmH+m+ETi6V7kwM2/OzW/kId/gtK6UPEydfMZHy5S33ulQ079UypbQHKlpr
-	uv7qXZy4wNSxN13Kf//pRdez1746Mjkl85XO4v6w90utlViKMxINtZiLihMBz6vvH2wEAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrFIsWRmVeSWpSXmKPExsWy7bCSvG72mdBUg+6pohYP5m1js1iz9xyT
-	xfwj51gtmhevZ7N4N1fGYu/rrewWU/4sZ7LY9Pgaq8Xm+X8YLS7vmsNmcffuKkaLGef3MVmc
-	WdzLbtG69wi7xeE37awWP3fNY7FYtQuo7vbEyYwOQh47Z91l99i0qpPN4861PWwe++euYffY
-	vKTeo/+vgUffllWMHp83yQVwRHHZpKTmZJalFunbJXBltBzZylKwgr1idtsXlgbGRrYuRk4O
-	CQETiYNXXrCD2EICuxklpn1ygojLSCx/1gdVIyxxv+UIaxcjF1DNS0aJr3e+MYEkeAXsJGbv
-	28MCYrMIqEqcPXuMHSIuKHFy5hOwuKhAtMTqzxdYQWxhAU+Jyfv/MncxcnCICLhJfFwnCTKT
-	WaCHVeJV3yWoBXOZJT5OPs0I0sAsIC5x68l8sGVsAtoS39cvBhvEKWArcWjlemaIGjOJrq1d
-	UPXyEs1bZzNPYBSaheSOWUhGzULSMgtJywJGllWMkqkFxbnpucmGBYZ5qeV6xYm5xaV56XrJ
-	+bmbGMHRq6Wxg/He/H96hxiZOBgPMUpwMCuJ8JrLhaQK8aYkVlalFuXHF5XmpBYfYpTmYFES
-	5zWcMTtFSCA9sSQ1OzW1ILUIJsvEwSnVwLRDc/GzJyr5608psLKvj+T935N7LGjT1l6PyYeu
-	995Zzb/Y547u9lUH5nLe8PHcrrQ58fZL63hF8bKf2371sZ7bkmMeJFosMHWBwdPVN/Pm6Gmm
-	+2x48/Dd+xLlhrQ8C71qG2WvPRkH5z5TLewM3qE7ceYbrllfpii92PZpTR2z95k7dy4+8g2o
-	PWZylcHXwPGH/LXnvwtZjdT2/d2mn7svlHuSV3bEURN/2W0dbi5xU7j6snL/Ta6YEx7qVvCi
-	anED86byHbNUTT5JrK/05zdfuIthhcD3lcd/nt7mkvO/M2LNngPfqtjmWUcrrZlbtFquSMBD
-	9UGnzfH/qdH7Vdfu38bKVWJ4JaXVaXF5p64SS3FGoqEWc1FxIgCQx9C0TQMAAA==
-X-CMS-MailID: 20231116080147epcas2p1211d42721f485b617fec2ff11102726c
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20231115095852epcas2p21e067efe75275c6abd2aebf04c5c6166
-References: <CGME20231115095852epcas2p21e067efe75275c6abd2aebf04c5c6166@epcas2p2.samsung.com>
-	<20231115095609.39883-1-jaewon02.kim@samsung.com>
-	<170005362858.21132.4200897251821879805.b4-ty@linaro.org>
-	<6e69df6c-10fa-404a-ac02-4880723b8c50@linaro.org>
-	<55a0f27c-ea46-40ae-b1e5-e650802b89a8@linaro.org>
-	<d6f3d451-6a53-46b6-2263-cc071a9dc44c@samsung.com>
-	<20231116075635.onolshbu4waqsqag@pengutronix.de>
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQxkZGVZKH0weGEofGR9NQ0pVEwETFh
+	oSFyQUDg9ZV1kYEgtZQVlOQ1VJSVVMVUpKT1lXWRYaDxIVHRRZQVlPS0hVSk5MSUpJVUpLS1VKQl
+	kG
+X-HM-Tid: 0a8bd724fb70b24fkuuua79aa7801af
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NU06Pzo6Pzw8KUIOMiocFBA0
+	SyNPCxRVSlVKTEtLSklKTUtMT0NCVTMWGhIXVRoVHwJVAhoVOwkUGBBWGBMSCwhVGBQWRVlXWRIL
+	WUFZTkNVSUlVTFVKSk9ZV1kIAVlBT05NTjcG
 
-Hello,
+Hi Sascha:
 
-
-On 23. 11. 16. 16:56, Uwe Kleine-König wrote:
-> Hello,
+On 11/16/23 15:50, Sascha Hauer wrote:
+> On Thu, Nov 16, 2023 at 03:24:54PM +0800, Andy Yan wrote:
+>>> 	case ROCKCHIP_VOP2_EP_HDMI0:
+>>> 	case ROCKCHIP_VOP2_EP_HDMI1:
+>>> 		...
+>>> }
+>>>
+>>> would look a bit better overall.
+>>>
+>>>> +		/*
+>>>> +		 * K = 2: dclk_core = if_pixclk_rate > if_dclk_rate
+>>>> +		 * K = 1: dclk_core = hdmie_edp_dclk > if_pixclk_rate
+>>>> +		 */
+>>>> +		if (output_mode == ROCKCHIP_OUT_MODE_YUV420) {
+>>>> +			dclk_rate = dclk_rate >> 1;
+>>>> +			K = 2;
+>>>> +		}
+>>>> +
+>>>> +		if_pixclk_rate = (dclk_core_rate << 1) / K;
+>>>> +		if_dclk_rate = dclk_core_rate / K;
+>>>> +
+>>>> +		*if_pixclk_div = dclk_rate / if_pixclk_rate;
+>>>> +		*if_dclk_div = dclk_rate / if_dclk_rate;
+>>> Not sure if this will change with future extensions, but currently
+>>> *if_pixclk_div will always be 2 and *if_dclk_div will alway be 4,
+>>> so maybe better write it like this
+>>
+>> Yes, the calculation of *if_pixclk_div is always 2 and *if_dclk_div is always 4,
+>>
+>> I think calculation formula can give us a clear explanation why is 2 or 4.
+>>
+>> considering the great power of rk3588, i think it can calculate it very easy.
+> Sure it can. My concern is not the CPU time it takes to do that
+> equation, but more the readability of the code. For me as a reader it
+> might be more easily acceptable that both dividers have fixed values
+> than it is to understand the equation.
 >
-> On Thu, Nov 16, 2023 at 12:32:30PM +0900, Jaewon Kim wrote:
->> I already checked and there were no warnings or errors as shown below.
->>
->> Did I miss something??
->>
->>
->> $ make CHECK_DTBS=y ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu-
->> exynos/exynosautov920-sadk.dtb
->>     LINT    Documentation/devicetree/bindings
->>     CHKDT Documentation/devicetree/bindings/processed-schema.json
->>     SCHEMA Documentation/devicetree/bindings/processed-schema.json
->>     UPD     include/config/kernel.release
->>     DTC_CHK arch/arm64/boot/dts/exynos/exynosautov920-sadk.dtb
-> https://www.kernel.org/doc/html/latest/process/maintainer-soc-clean-dts.html
-> also talks about W=1 that you didn't pass.
+> Your mileage may vary, I won't insist on this.
 
-Thanks Uwe,
 
-I found Warning when I add W=1.
-
-I will fix it in next version.
+Or I make it as fixed values, and leave the calculation formula as comments ?
 
 >
-> Best regards
-> Uwe
+>>>
+>>>> +		*dclk_core_div = dclk_rate / dclk_core_rate;
+>>> *dclk_core_div is calculated the same way for all cases. You could pull
+>>> this out of the if/else.
+>> Okay, will do.
+>>>> +	} else if (vop2_output_if_is_edp(id)) {
+>>>> +		/* edp_pixclk = edp_dclk > dclk_core */
+>>>> +		if_pixclk_rate = v_pixclk / K;
+>>>> +		if_dclk_rate = v_pixclk / K;
+>>> if_dclk_rate is unused here.
+>>
+>> It will be removed in next version.
+>>
+>>>> +		dclk_rate = if_pixclk_rate * K;
+>>>> +		*dclk_core_div = dclk_rate / dclk_core_rate;
+>>>> +		*if_pixclk_div = dclk_rate / if_pixclk_rate;
+>>>> +		*if_dclk_div = *if_pixclk_div;
+>>> Both *if_pixclk_div and *if_dclk_div will always be 1.
+>> Actually,  they will be the value of K here,  if it work at split mode(two
+>>
+>> edp connect to one VP, one show the image for left half, one for right half,
+>>
+>> a function like a dual channel mipi dsi).
+>>
+>> I know it split mode is not supported by the current mainline, but i think keep
+> Ok.
 >
-
-Thanks
-
-Jaewon Kim
-
+> Sascha
+>
+>
 
