@@ -1,174 +1,128 @@
-Return-Path: <devicetree+bounces-16115-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16116-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C2997ED924
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 03:11:24 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC1A37ED983
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 03:30:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9C3AF1C20934
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 02:11:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 851D41F234A3
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 02:30:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CBE44594E;
-	Thu, 16 Nov 2023 02:11:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AD68A21;
+	Thu, 16 Nov 2023 02:30:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b="rPP/8Pqg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF2A119E;
-	Wed, 15 Nov 2023 18:11:15 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-	by fd01.gateway.ufhost.com (Postfix) with ESMTP id BDCAB80BE;
-	Thu, 16 Nov 2023 10:11:01 +0800 (CST)
-Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 16 Nov
- 2023 10:11:01 +0800
-Received: from localhost.localdomain (202.188.176.82) by EXMBX172.cuchost.com
- (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 16 Nov
- 2023 10:10:57 +0800
-From: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
-To: <conor@kernel.org>
-CC: <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-	<jisheng.teoh@starfivetech.com>, <krzysztof.kozlowski+dt@linaro.org>,
-	<leyfoon.tan@starfivetech.com>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <mark.rutland@arm.com>,
-	<peterz@infradead.org>, <robh+dt@kernel.org>, <tglx@linutronix.de>,
-	<will@kernel.org>
-Subject: Re: [PATCH v3 2/2] dt-bindings: perf: starfive: Add StarLink PMU
-Date: Thu, 16 Nov 2023 10:10:35 +0800
-Message-ID: <20231116021035.4043907-1-jisheng.teoh@starfivetech.com>
+Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01on2057.outbound.protection.outlook.com [40.107.255.57])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACA4F199;
+	Wed, 15 Nov 2023 18:30:36 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=gZtwGZJwqELxwVItcQTJF4l+L2OjUT8pYi57u0e2si95W5vo4EfH+hZ4tb35R606KQBwqmgC/aSI1S++5Judq+wIjJ62JB/LqRvHP7KHQLRvXqJy+mxUq81PnSrCLYGh334LE8ATMzr+tlgJbx6gAI2ja4KQIJx4VIqMMx1mDOYxTG6Sg9lV81PTuVoxQanaCi1jXcIjo574zScPLAEO674kvbXcT0uW8o8ZoPpdiuKNAl8I4Q6oFSyYVqK6DsZJJlYV55hGv6CClRMRuLfclDOjKej1mCrlEuAw8wq6Q0L+NFkWFk33klotmlC0nLwsi4F3TPFswqgrYliaG2+bZA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=IDwsTrDmJIq/t7JHJuotqQXIpjuKo2gdW8geUlgyyC4=;
+ b=bF0sP9wxOfj8eUDpz1V3zWpvMxsdSv8UP1iAwJf7amIWxeOCaiQpSNjyJjnlVEQATd9e/nbEx6+goAHS5rdBTLt3QFI0hljiUyRulv2iSVdosnVgrqcwHF8anS/L70mVOn+eXud7bxBLCJEZQi42SPeOJU1DooBFxzbfTFGA/R6s2QpN5sYXgf3xB9gs62zXFcCykMNM11k9KCT26ChH9ymAmhxQGd5kSNveVA91/JMD3AUWnz2FrGp0Ckk6ZQE1dPtEuJEKGa+zXQP/3OaaoPDSajrHk2wbo2zrqvP9bUHGHwzsJUi1bVIaDygY+5bP1RCp9kL7hUQU3J7XxuSuHQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 211.20.1.79) smtp.rcpttodomain=stwcx.xyz smtp.mailfrom=wiwynn.com; dmarc=fail
+ (p=quarantine sp=quarantine pct=100) action=quarantine
+ header.from=wiwynn.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wiwynn.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=IDwsTrDmJIq/t7JHJuotqQXIpjuKo2gdW8geUlgyyC4=;
+ b=rPP/8PqgDxfnx189eoCKYeDH8o4gi74NISMNIEbrvNb9Nhd/sokeqLn7A0YueXIWtaSyVCNsPE+kl5Sfk1EjZca9O6dZK3Lh1MZR0pCjF9ubvSDcrYaemWlBBdQZILGgm8yukeWzNn2svR8+2TjRcWpPr7sZQQkOHRdQT1fcQb+O4LofzBWZgRkc6kWYJJXYuKV1oCgXYmuxF9oHNTheMX72Rm9XFB1CsfiFJi+2CESDNiAJ81O7IpjuZPCyP+WX5S72w/Viy8b3y6C7I+QD7QZhRuWpMR9zQwqEXCbsZLPSdoJW1wpLQtT/F4TIpcgWZYSgOxeKBWkOuhp7NntKeA==
+Received: from PS2PR02CA0068.apcprd02.prod.outlook.com (2603:1096:300:5a::32)
+ by PUZPR04MB6535.apcprd04.prod.outlook.com (2603:1096:301:f4::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7002.18; Thu, 16 Nov
+ 2023 02:30:32 +0000
+Received: from HK2PEPF00006FB4.apcprd02.prod.outlook.com
+ (2603:1096:300:5a:cafe::3c) by PS2PR02CA0068.outlook.office365.com
+ (2603:1096:300:5a::32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7002.17 via Frontend
+ Transport; Thu, 16 Nov 2023 02:30:32 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 211.20.1.79)
+ smtp.mailfrom=Wiwynn.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=Wiwynn.com;
+Received-SPF: Fail (protection.outlook.com: domain of Wiwynn.com does not
+ designate 211.20.1.79 as permitted sender) receiver=protection.outlook.com;
+ client-ip=211.20.1.79; helo=localhost.localdomain;
+Received: from localhost.localdomain (211.20.1.79) by
+ HK2PEPF00006FB4.mail.protection.outlook.com (10.167.8.10) with Microsoft SMTP
+ Server id 15.20.7002.20 via Frontend Transport; Thu, 16 Nov 2023 02:30:30
+ +0000
+From: Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>
+To: patrick@stwcx.xyz
+Cc: Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>,
+	Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	linux-i2c@vger.kernel.org,
+	linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: [PATCH v5 0/2] LTC4286 and LTC4287 driver support
+Date: Thu, 16 Nov 2023 10:30:23 +0800
+Message-Id: <20231116023027.24855-1-Delphine_CC_Chiu@Wiwynn.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231115-landing-earflap-ed11982ac610@squawk>
-References: <20231115-landing-earflap-ed11982ac610@squawk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: HK2PEPF00006FB4:EE_|PUZPR04MB6535:EE_
 Content-Type: text/plain
-X-Originating-IP: [202.188.176.82]
-X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX172.cuchost.com
- (172.16.6.92)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: quoted-printable
+X-MS-Office365-Filtering-Correlation-Id: 735d1a63-9225-4866-a090-08dbe64c00fc
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	bRkHZkg8EEQhOWRN9skxlu7RvrKnw1mF9mRmWWWx5294LCrWnaGtF0+R1sA7vUN4kIkeGL1oRTd/Dq8pxSm3MXdbGle+NiGlM2Iff49T12ciVsMLgh2CeXaoeI3/woeozEdCGQlkPQd/BJLFzGR7sKGWj2dTaQAiBtc0qC3tGV+I9H2j5zXJmGkI/+IchSBX47pmuBlCyG/HHHS59vf93vGVKv3LRp+6UfAPfQluUN5gJJN7CsmE6Dt+wo6WroJlbRGOkpOiOVXwWHYnHLMeEGVUJ8e5IkOdXViyvUmDmep/tKyg3+INALSJICprrazlHl3zA6txE9xrqud3DTonKe86npEQa25bjjWWabzxuDBEQBPLaLVZUUwGfGjD0SYFIBKQDKNceraSrGK9gsLhLtERpeoEaoufrQfTckNsAWrfZAQBQYxC/a5u1Ep9U/iTP72l4cu9z3dFfHzqn5HUVG9/jlAkUtj6UIbQCBofjzcOwX6qjTqL7MPBO93OPvplX/vP8FuvuUY1f7sFCBsfHg/NlFflRaCTj+CkDpxDXyWnbBbBzUtHqFYRcBnkFcm2IibsanHT3rimuYujOvVTw+/RkiSKd0Ox8ZxMqeegOKlPxawOHnW854IZRbjuN7NR8502yrO10wFfjANJaf+P/cyZGpCRTkbrExLo/CZ5d4FxZP+l1sp5IAmYUQqR0Mqfk95yK7J6Ad+NuRnQWmRqGw==
+X-Forefront-Antispam-Report:
+	CIP:211.20.1.79;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:localhost.localdomain;PTR:211-20-1-79.hinet-ip.hinet.net;CAT:NONE;SFS:(13230031)(6069001)(4636009)(376002)(136003)(396003)(39860400002)(346002)(230922051799003)(451199024)(186009)(82310400011)(1800799009)(64100799003)(46966006)(36840700001)(356005)(82740400003)(6512007)(81166007)(41300700001)(6666004)(47076005)(6506007)(9316004)(26005)(36860700001)(956004)(1076003)(336012)(2616005)(8676002)(8936002)(4744005)(4326008)(2906002)(36756003)(7416002)(86362001)(5660300002)(70586007)(316002)(70206006)(54906003)(6916009)(40480700001)(36736006)(6486002)(478600001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: wiwynn.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Nov 2023 02:30:30.8702
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 735d1a63-9225-4866-a090-08dbe64c00fc
+X-MS-Exchange-CrossTenant-Id: da6e0628-fc83-4caf-9dd2-73061cbab167
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=da6e0628-fc83-4caf-9dd2-73061cbab167;Ip=[211.20.1.79];Helo=[localhost.localdomain]
+X-MS-Exchange-CrossTenant-AuthSource:
+	HK2PEPF00006FB4.apcprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PUZPR04MB6535
 
-On Wed, 15 Nov 2023 20:03:53 +0000
-Conor Dooley <conor@kernel.org> wrote:
+v5 - Add LTC4286 and LTC4287 binding document
+   - Add LTC4286 and LTC4287 driver
 
-> Yo,
->=20
-> On Wed, Nov 15, 2023 at 11:36:08AM +0800, Ji Sheng Teoh wrote:
-> > Add device tree binding for StarFive's StarLink PMU (Performance
-> > Monitor Unit).
-> >=20
-> > Signed-off-by: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
-> > ---
-> >  .../bindings/perf/starfive,starlink-pmu.yaml  | 46
-> > +++++++++++++++++++ 1 file changed, 46 insertions(+)
-> >  create mode 100644
-> > Documentation/devicetree/bindings/perf/starfive,starlink-pmu.yaml
-> >=20
-> > diff --git
-> > a/Documentation/devicetree/bindings/perf/starfive,starlink-pmu.yaml
-> > b/Documentation/devicetree/bindings/perf/starfive,starlink-pmu.yaml
-> > new file mode 100644 index 000000000000..a9426a7faeae --- /dev/null
-> > +++
-> > b/Documentation/devicetree/bindings/perf/starfive,starlink-pmu.yaml
-> > =20
->=20
-> btw, since you changed the compatible, the filename should have been
-> changed to match it.
+Delphine CC Chiu (2):
+  dt-bindings: hwmon: Add lltc ltc4286 driver bindings
+  hwmon: pmbus: Add ltc4286 driver
 
-The intention to keep the filename generic is to allow addition of new
-version of StarLink PMU in future if any, similar to what arm,cmn.yaml
-is doing. Hope that makes sense.
+ .../bindings/hwmon/lltc,ltc4286.yaml          |  51 ++++++
+ Documentation/hwmon/index.rst                 |   1 +
+ Documentation/hwmon/ltc4286.rst               |  95 ++++++++++
+ MAINTAINERS                                   |  10 ++
+ drivers/hwmon/pmbus/Kconfig                   |  10 ++
+ drivers/hwmon/pmbus/Makefile                  |   1 +
+ drivers/hwmon/pmbus/ltc4286.c                 | 169 ++++++++++++++++++
+ 7 files changed, 337 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/lltc,ltc4286.yaml
+ create mode 100644 Documentation/hwmon/ltc4286.rst
+ create mode 100644 drivers/hwmon/pmbus/ltc4286.c
 
->=20
-> > @@ -0,0 +1,46 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/perf/starfive,starlink-pmu.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: StarFive StarLink PMU
-> > +
-> > +maintainers:
-> > +  - Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
-> > +
-> > +description:
-> > +  StarFive's StarLink PMU integrates one or more CPU cores with a
-> > shared L3
-> > +  memory system. The PMU support overflow interrupt, up to 16
-> > programmable
-> > +  64bit event counters, and an independent 64bit cycle counter.
-> > +  StarLink PMU is accessed via MMIO.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: starfive,starlink-500-pmu =20
->=20
-> So this is not what I had in mind by a "device". I was looking for a
-> compatible representing an soc in which this IP had been integrated.
-> A soc-specific compatible, rather than something generic, is
-> requirement for devicetree - we don't want various integrations of
-> this IP to all be using a generic compatible when there may be subtle
-> (or less subtle) differences between integrations.
->=20
-> I'm trying to come up with the syntax for enforcing having two
-> compatibles with your current one as the fallback, but I have yet to
-> come up with the correct syntax for that that works correctly.
->=20
-> Hopefully by the time you get some feedback on the driver side of this
-> submission I will have a concrete suggestion for what to do here.
+-- 
+2.25.1
 
-Thanks Conor for the enlightenment. In the meantime, to fit the requireme=
-nt
-I would suggest going for "starfive,jh8100-starlink-pmu", making it JH810=
-0
-SOC specific if that makes sense.
-
->=20
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    soc {
-> > +        #address-cells =3D <2>;
-> > +        #size-cells =3D <2>;
-> > +
-> > +        l3_pmu: pmu@12900000 { =20
->=20
-> This label here is never used and should be dropped.
->=20
-> Cheers.
-> Conor.
-
-Noted, will drop it in v4.
-
->=20
-> > +            compatible =3D "starfive,starlink-500-pmu";
-> > +            reg =3D <0x0 0x12900000 0x0 0x10000>;
-> > +            interrupts =3D <34>;
-> > +        };
-> > +    };
-> > --=20
-> > 2.25.1
-> >  =20
->=20
 
