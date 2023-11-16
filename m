@@ -1,130 +1,82 @@
-Return-Path: <devicetree+bounces-16380-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16381-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB5707EE6C9
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 19:34:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 012817EE6CF
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 19:36:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 645DB281144
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 18:34:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AE6632811ED
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 18:36:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0914C2F867;
-	Thu, 16 Nov 2023 18:34:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GxzYQgfX"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4DE43212;
+	Thu, 16 Nov 2023 18:36:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD42A46524;
-	Thu, 16 Nov 2023 18:34:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C348C433C8;
-	Thu, 16 Nov 2023 18:34:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700159660;
-	bh=8EhJKo8rDeezKqxLzMDL7DCLOC6nqzPZCy8ff/Ayqe8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GxzYQgfX6q6Qrk30HeKvn5JTCTDM4xnC9E62Ky78pyXCsCpuwnhHWYNOLpqJeoS69
-	 jXrNYndJ1RNR0GrPzvtu4KF+txcfx6nxgKaaM/yebJ+PrZ4wTvQUdpo9CkKFR6aq9f
-	 liU+UUd76DmQahOVwgWLldkF3hUEc352EUWtArptO1Z7R7rk/ai32G/x0K5ui3Jvw/
-	 lB1kfJ3/YMyar+tzvnnBJGmr8j43nmyddwH5G+2pw6mriYvglmKOOwi1+igINbrv5O
-	 mOwuEcanj2bpiv0H8AEugX4oZ+ohKmJ/amHFUkQ28APHiNOW9NEfoGjC3kCYn6ynU8
-	 W30nira3eBMzQ==
-Date: Thu, 16 Nov 2023 18:34:16 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Andreas Klinger <ak@it-klinger.de>
-Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Petre Rodan <petre.rodan@subdimension.ro>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] iio: honeywell,mprls0025pa.yaml: fix function numbering
-Message-ID: <20231116-grudge-hankering-b7a71d831b93@squawk>
-References: <20231116182443.7290-1-ak@it-klinger.de>
+Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 845A71AD;
+	Thu, 16 Nov 2023 10:36:11 -0800 (PST)
+Received: by mail-ot1-f54.google.com with SMTP id 46e09a7af769-6d67d32adc2so612144a34.2;
+        Thu, 16 Nov 2023 10:36:11 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700159771; x=1700764571;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=l664GmxrgPjuwcC4+iWO5BImv8+Ysd5uofTp+SZ3EtQ=;
+        b=MyqnP+WFd8bC4oq0i7/MLYSHXjQnxhYN2cT5GG1slmtmHvcgDTwfo8WKZ0n26fbGRI
+         kJAfBKlAx1/Qf6KCjQeVXfUvqkD4sOrV1ddvxoNcKbczxAAcaxivEk/Br+okOsQWwYAR
+         oYidDwMev/fRIOR7docR67QNquwwjt3GPhtMGR9RKUw+rgv5YndPlnwsz4RvZNoZvqZ0
+         JQG7YMGRsow8hpbQOI5FJgo9E+fkoF98SAuRdrcxiwQqwx9lEJ5DMhF532kAmS6oa4xq
+         COfccpBd+O7awkTgWSChmQxHJGnp8Abl69juPSt9pBer+uHuhxh7fhkxc+EuPboznWid
+         JAog==
+X-Gm-Message-State: AOJu0YwpUhsGoTQ4ffXxIxrLh6yQwq8V9ptQr4eTfOoOKM9zPxPT4xKM
+	sB/QzktWiMjEi3keXV7sfg==
+X-Google-Smtp-Source: AGHT+IECY03TsLRs0oGlkUq/iwK4eJMeWbz6d/rZUHpXcAxKlWApqjsSErN0XjgUFVsSkueEAMlNaA==
+X-Received: by 2002:a05:6830:1bdc:b0:6d6:3926:9a2b with SMTP id v28-20020a0568301bdc00b006d639269a2bmr9644653ota.26.1700159770825;
+        Thu, 16 Nov 2023 10:36:10 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id q16-20020a05683033d000b006ce2e6eb5bfsm1005504ott.0.2023.11.16.10.36.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Nov 2023 10:36:10 -0800 (PST)
+Received: (nullmailer pid 2814974 invoked by uid 1000);
+	Thu, 16 Nov 2023 18:36:09 -0000
+Date: Thu, 16 Nov 2023 12:36:09 -0600
+From: Rob Herring <robh@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, Hans de Goede <hdegoede@redhat.com>, Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>, Mark Gross <markgross@kernel.org>, Heikki Krogerus <heikki.krogerus@linux.intel.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, platform-driver-x86@vger.kernel.org, linux-usb@vger.kernel.org
+Subject: Re: [PATCH v2 0/3] dt-bindings: connector: usb: provide bindings for
+ altmodes
+Message-ID: <20231116183609.GA2742530-robh@kernel.org>
+References: <20231113221528.749481-1-dmitry.baryshkov@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="hdaK5Truep84srtq"
-Content-Disposition: inline
-In-Reply-To: <20231116182443.7290-1-ak@it-klinger.de>
-
-
---hdaK5Truep84srtq
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20231113221528.749481-1-dmitry.baryshkov@linaro.org>
 
-On Thu, Nov 16, 2023 at 07:24:43PM +0100, Andreas Klinger wrote:
-> Fix wrongly documented numbering of transfer functions.
->=20
-> Fixes: a765c985e696 ("dt-bindings: iio: pressure: Support Honeywell mprls=
-0025pa sensor")
->
+On Tue, Nov 14, 2023 at 12:13:26AM +0200, Dmitry Baryshkov wrote:
+> In some cases we need a way to specify USB-C AltModes that can be
+> supportd on the particular USB-C connector. For example, x86 INT33FE
+> driver does this by populating fwnode properties internally. For the
+> Qualcomm Robotics RB5 platform (and several similar devices which use
+> Qualcomm PMIC TCPM) we have to put this information to the DT.
+> 
+> Provide the DT bindings for this kind of information and while we are at
+> it, change svid property to be 16-bit unsigned integer instead of a
+> simple u32.
+> 
+> NOTE: usage of u16 is not compatible with the recenty extended
+> qcom/qrb5165-rb5.dts DT file. I'm looking for the guidance from DT and
+> USB maintainers whether to retain u32 usage or it's better to switch to
+> u16.
 
-No blank line here.
+Depends if you are fine with the ABI break on this platform...
 
-> Suggested-by: Petre Rodan <petre.rodan@subdimension.ro>
-
-This should be Reported-by.
-
-> Signed-off-by: Andreas Klinger <ak@it-klinger.de>
-> ---
->  .../bindings/iio/pressure/honeywell,mprls0025pa.yaml        | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/iio/pressure/honeywell,mpr=
-ls0025pa.yaml b/Documentation/devicetree/bindings/iio/pressure/honeywell,mp=
-rls0025pa.yaml
-> index b31f8120f14e..61775eff1128 100644
-> --- a/Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025p=
-a.yaml
-> +++ b/Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025p=
-a.yaml
-> @@ -64,9 +64,9 @@ properties:
->      description: |
->        Transfer function which defines the range of valid values delivere=
-d by the
->        sensor.
-> -      1 - A, 10% to 90% of 2^24 (1677722 .. 15099494)
-> -      2 - B, 2.5% to 22.5% of 2^24 (419430 .. 3774874)
-> -      3 - C, 20% to 80% of 2^24 (3355443 .. 13421773)
-> +      0 - A, 10% to 90% of 2^24 (1677722 .. 15099494)
-> +      1 - B, 2.5% to 22.5% of 2^24 (419430 .. 3774874)
-> +      2 - C, 20% to 80% of 2^24 (3355443 .. 13421773)
-
-I don't understand. These are arbitrary numbers in a dt-binding, why
-does zero or one indexing make any difference here?
-Can't you just fix up the driver to correctly map the dt-binding to
-whatever needs to be written to registers in the hardware?
-
-Cheers,
-Conor.
-
->      $ref: /schemas/types.yaml#/definitions/uint32
-> =20
->    vdd-supply:
-> --=20
-> 2.39.2
->=20
-
---hdaK5Truep84srtq
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZVZgpQAKCRB4tDGHoIJi
-0ro9AP41/miHXh7XhWfNmwyktMkO3qn/gHtMyuEiySwMJSiQygEA5W0rZahN92ag
-PUp2JscwQiOwmt7fQzs1cJb7N8aOvgI=
-=C+WP
------END PGP SIGNATURE-----
-
---hdaK5Truep84srtq--
+Rob
 
