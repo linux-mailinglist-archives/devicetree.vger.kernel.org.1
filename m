@@ -1,49 +1,60 @@
-Return-Path: <devicetree+bounces-16192-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16191-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C08917EDF6C
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 12:17:33 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5D7E7EDF6E
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 12:17:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F176B1C20A44
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 345EEB20A89
 	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 11:17:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E405C2DF9B;
-	Thu, 16 Nov 2023 11:17:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBBE22D048;
+	Thu, 16 Nov 2023 11:17:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="YkOUP86y"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CKHcynpx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C38CD4B;
-	Thu, 16 Nov 2023 03:17:29 -0800 (PST)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AG93IT7012664;
-	Thu, 16 Nov 2023 11:17:13 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=SyAr0+834frsHXJosNimVgW4YH4JIr7IPM5AnqXeAGI=;
- b=YkOUP86yQ+BItnCcdr5Yl4EKM59qpaRaiubWxF0b1fnGdPa3wryuvTcis4cjXJjGDSdK
- 0sgXPwEqPj4m2F+fd/E6SnHj7sRC/PIQw+53WRHTELo1AG+KbUt7vcon1aZd+tPbZB8t
- HPyyYmEXlBBJbxfhE2Aq5fKryM24VW9rBzEVeic2onQ32AJH53oS/4Lp/205FumO5Ny5
- 0vxrnoyu6MM1vdHCsLa9BmaWxvQ62EEEMlXqsoybm9LrUIYFzbBHPpEY0PMWrH0MVaR+
- sBBOR5sIMNxKqC2Q/l9ubhwZF0fk2WZkQryBtXx5kk8E8bK0XdHFbKblKkLZ8LpGwnHe Iw== 
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ucu27u58x-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 16 Nov 2023 11:17:13 +0000
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AGBHC1Z031871
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 16 Nov 2023 11:17:12 GMT
-Received: from [10.253.72.184] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Thu, 16 Nov
- 2023 03:17:07 -0800
-Message-ID: <272ce8f7-9c57-4d5f-a609-52c098b63227@quicinc.com>
-Date: Thu, 16 Nov 2023 19:17:05 +0800
+Received: from mail-qt1-x835.google.com (mail-qt1-x835.google.com [IPv6:2607:f8b0:4864:20::835])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 469F9D4D
+	for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 03:17:23 -0800 (PST)
+Received: by mail-qt1-x835.google.com with SMTP id d75a77b69052e-41cbd2cf3bbso15882251cf.0
+        for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 03:17:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1700133442; x=1700738242; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=AZ/TPrRt7wGDAtsL7z75CFLMe7OaDKMtS2L/Acn1Gf8=;
+        b=CKHcynpxQtjnpdGAVJvxlvPl5chamPLO0UVInz3Llr3K4ZMJiYTbR60SS7PTLc9nO+
+         fp9rCa5fIMqEEfP9dQcsdOk3ZzCksM7EVpULIAT24laWehQLAKs9TR23xWfpMrC9XvQP
+         ds8dwuMxm4kkbvOOPn5HKwt4gQnohx3qZW5OuLtBQupmMUP7wzfz+v5TegOkNrUA/T7C
+         F4UQfgvQnjXT/plTj7+IxzPpCh4oB0yUOjDXjPOk0YI/SaMJPWeSKeizxEabKqpW0jyR
+         wLzXQgsDI1XL3PM5nB5uN3Ip3fH/SoPdAUsUPiHK31caUC1dkiy9YqO9UuplV2C811vK
+         AI2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700133442; x=1700738242;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=AZ/TPrRt7wGDAtsL7z75CFLMe7OaDKMtS2L/Acn1Gf8=;
+        b=we5G5oQVFDrgROrGLZl4R+4P7udM27TB5aI0wVGxD2F/daHvfRcfWxXio72M2aBO3k
+         4RVM4AFl5uUBO1TSisYCewYcQLmD8NJZ964vtAJsg6JsD8VSo1DArG8+u4Pvd0OZRnqK
+         TY9hqT49AyNjTFzP0Ro80UeVAezoArJ00l6j/tBdu8lXxOe2MNL7Rfi1aM2ISnrNBk8d
+         uv7gS+yPh38vZVMBwjyWwil09i2/ZcrbCeB/XjOfzFk6qWib71ibnywNxZSU0IPC5lqT
+         FmBRyh1WcT/ZVYYdli05Z5Nj3By86ZZ3UGl936FQmhRFVDjrSeLsZVTINbnkYGlee6oo
+         NQCA==
+X-Gm-Message-State: AOJu0YzKki7QWBJYqxc99KNlG9HDWWYmIratxmta9vjNBlI1sQIuXX5h
+	XP/f6yeLJiHedxWzmC12NTP2pw==
+X-Google-Smtp-Source: AGHT+IFmmaQlWCVQq+Z4pad7EfT5yzVQ60zAGELZE+CBUonMIq99/eK7f71KJlHmt2PGRw03sXxT6w==
+X-Received: by 2002:a05:622a:19aa:b0:410:a895:21fd with SMTP id u42-20020a05622a19aa00b00410a89521fdmr1794300qtc.23.1700133442100;
+        Thu, 16 Nov 2023 03:17:22 -0800 (PST)
+Received: from [192.168.212.13] ([12.191.197.195])
+        by smtp.gmail.com with ESMTPSA id r5-20020ac85205000000b0041519614354sm4271080qtn.7.2023.11.16.03.17.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 16 Nov 2023 03:17:21 -0800 (PST)
+Message-ID: <d8fbd100-2351-4dbe-ae7f-d98a84432589@linaro.org>
+Date: Thu, 16 Nov 2023 12:17:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -51,65 +62,120 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 7/9] net: mdio: ipq4019: program phy address when "fixup"
- defined
+Subject: Re: [PATCH v2 00/12] Introduce ExynosAutov920 SoC and SADK board
 Content-Language: en-US
-To: Andrew Lunn <andrew@lunn.ch>
-CC: <agross@kernel.org>, <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-        <pabeni@redhat.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <hkallweit1@gmail.com>, <linux@armlinux.org.uk>,
-        <robert.marko@sartura.hr>, <linux-arm-msm@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quic_srichara@quicinc.com>
-References: <20231115032515.4249-1-quic_luoj@quicinc.com>
- <20231115032515.4249-8-quic_luoj@quicinc.com>
- <2cf175d7-d96b-4f51-9dd7-2ce8229ca212@lunn.ch>
-From: Jie Luo <quic_luoj@quicinc.com>
-In-Reply-To: <2cf175d7-d96b-4f51-9dd7-2ce8229ca212@lunn.ch>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To: Jaewon Kim <jaewon02.kim@samsung.com>,
+ Alim Akhtar <alim.akhtar@samsung.com>, Rob Herring <robh+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Tomasz Figa <tomasz.figa@gmail.com>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Uwe Kleine-K?nig <u.kleine-koenig@pengutronix.de>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
+ linux-serial@vger.kernel.org
+References: <CGME20231115095852epcas2p21e067efe75275c6abd2aebf04c5c6166@epcas2p2.samsung.com>
+ <20231115095609.39883-1-jaewon02.kim@samsung.com>
+ <170005362858.21132.4200897251821879805.b4-ty@linaro.org>
+ <6e69df6c-10fa-404a-ac02-4880723b8c50@linaro.org>
+ <55a0f27c-ea46-40ae-b1e5-e650802b89a8@linaro.org>
+ <d6f3d451-6a53-46b6-2263-cc071a9dc44c@samsung.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <d6f3d451-6a53-46b6-2263-cc071a9dc44c@samsung.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: D4tc1U-T_wSHTygZBBDfZ6JOmujM6fLc
-X-Proofpoint-ORIG-GUID: D4tc1U-T_wSHTygZBBDfZ6JOmujM6fLc
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-16_09,2023-11-15_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 malwarescore=0
- phishscore=0 impostorscore=0 bulkscore=0 adultscore=0 priorityscore=1501
- clxscore=1015 lowpriorityscore=0 suspectscore=0 spamscore=0
- mlxlogscore=635 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311060000 definitions=main-2311160090
 
-
-
-On 11/16/2023 12:17 AM, Andrew Lunn wrote:
-> On Wed, Nov 15, 2023 at 11:25:13AM +0800, Luo Jie wrote:
->> The PHY/PCS MDIO address can be programed when the property
->> "fixup" of phy node is defined.
->>
->> The qca8084 PHY/PCS address configuration register is accessed
->> by MDIO bus with the special MDIO sequence.
->>
->> The PHY address configuration register of IPQ5018 is accessed
->> by local bus.
->>
->> Add the function ipq_mdio_preinit, which should be called before
->> the PHY device scanned and registered.
+On 16/11/2023 04:32, Jaewon Kim wrote:
 > 
-> I'm not convinced this belongs in the MDIO bus driver. Its really a
-> PHY property, so i think all this should be in the PHY driver. If you
-> specify the PHY ID in the compatible string, you can get the driver
-> loaded and the probe function called. You can then set the PHY
-> address.
+> On 23. 11. 16. 06:17, Krzysztof Kozlowski wrote:
+>> On 15/11/2023 22:11, Krzysztof Kozlowski wrote:
+>>> On 15/11/2023 14:08, Krzysztof Kozlowski wrote:
+>>>> On Wed, 15 Nov 2023 18:55:56 +0900, Jaewon Kim wrote:
+>>>>> ExynosAutov920[1] is ARMv8-based automotive-oriented SoC.
+>>>>> This SoC is the next generation of exynosautov9 and AE(Automotive Enhanced)
+>>>>> IPs are used for safety.
+>>>>>
+>>>>> This patchset is the minimal set for ExynosAutov920 SoC and SADK board.
+>>>>> Currently, ramdisk console is available and Clock, UFS, and USI will be
+>>>>> added after this patchset.
+>>>>>
+>>>>> [...]
+>>>> Applied, thanks!
+>>>>
+>>> And dropped. You did not test it. Please read Samsung SoC maintainer
+>>> profile:
+>>> https://www.kernel.org/doc/html/latest/process/maintainers.html#arm-samsung-s3c-s5p-and-exynos-arm-architectures
+>>>
+>>> I also made announcements on the lists and on social.kernel.org. I don't
+>>> know where to announce it more...
+>>>
+>> To clarify, I dropped only DTS and kept bindings. Let me know if
+>> bindings are problematic here...
+>>
+>> I also repeated the announcement:
+>> https://social.kernel.org/notice/AbqJkj9gOZJ3sG8eCu
+>> Please share internally within Samsung, so there will be no surprises.
+>>
+>> Best regards,
+>> Krzysztof
+>>
+>>
 > 
-> 	Andrew
+> I already checked and there were no warnings or errors as shown below.
+> 
+> Did I miss something??
 
-I will try to do the initialization configs in the PHY probe function,
-Thanks Andrew for the suggestions.
+It's not what is written in maintainer profile. Where do you see the
+result of dtc W=1?
+
+Best regards,
+Krzysztof
+
 
