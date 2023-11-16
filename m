@@ -1,281 +1,274 @@
-Return-Path: <devicetree+bounces-16330-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16332-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F0E87EE4D5
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 16:55:20 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03CBC7EE4E0
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 17:00:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3DDD4B20C34
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 15:55:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B1F2D280D37
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 16:00:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA15D36B10;
-	Thu, 16 Nov 2023 15:55:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A4B5321BE;
+	Thu, 16 Nov 2023 16:00:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="ZW+vyXwV"
+	dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b="on49I4na"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E20819E;
-	Thu, 16 Nov 2023 07:55:08 -0800 (PST)
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AGAW7ag006394;
-	Thu, 16 Nov 2023 16:54:53 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding:content-type; s=
-	selector1; bh=e5JQ/h42L5uhpTPt24TWXUIHpp+cXePsoRZw+56u2lo=; b=ZW
-	+vyXwVlozFjute4FKqE/SKMfyU7VDHej1yiGbmTH8NR5EasKdre4XF4vc1sS3GqJ
-	wEdsMf/fporzFzBieQkjQrfIMZnycdW1TbxiYEsbe1lvCZ0OYMcvv0sj3UIXyyPn
-	082L79XTE2wJL3fY6/AF04SaYoe4ND/91AGPn4P0EHrovm6+/GcyVvXfcooYpgAT
-	pdSlqUU9/fovNPvDBiY0OxAC7Tf3VyboK6oRdHuNA8jmdy6xyC25Vzs/Uvvt0uVg
-	saYd0hIDa/uPHSrwb9BiySN5g4WycnOWw4Xd9xPY4qD4/cgDBnO5hk4B84STZYpN
-	LAi5/W1Hb/0qhDhDHjcQ==
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3u9ym8ymkm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 16 Nov 2023 16:54:53 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id A842910005A;
-	Thu, 16 Nov 2023 16:54:52 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 9D56923D3EC;
-	Thu, 16 Nov 2023 16:54:52 +0100 (CET)
-Received: from localhost (10.201.21.240) by SHFDAG1NODE1.st.com (10.75.129.69)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 16 Nov
- 2023 16:54:52 +0100
-From: <gabriel.fernandez@foss.st.com>
-To: Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd
-	<sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue
-	<alexandre.torgue@foss.st.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Gabriel Fernandez <gabriel.fernandez@foss.st.com>
-CC: <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 5/5] arm64: dts: st: add rcc support in stm32mp251
-Date: Thu, 16 Nov 2023 16:49:52 +0100
-Message-ID: <20231116154952.1206705-6-gabriel.fernandez@foss.st.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231116154952.1206705-1-gabriel.fernandez@foss.st.com>
-References: <20231116154952.1206705-1-gabriel.fernandez@foss.st.com>
+Received: from EUR02-AM0-obe.outbound.protection.outlook.com (mail-am0eur02on2055.outbound.protection.outlook.com [40.107.247.55])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6CD21AD;
+	Thu, 16 Nov 2023 08:00:28 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=D7oNF9mAJOOWzuYk3mCoReOks4QVja9EpKisVSr7bi7i/rWT7Xe9oHG+FEf3zjPHvjF8TtwTtlsZ61+vSIA9Bjjr/Bb5IGvjl6pKCYbP1jAXBCwSbHQRQ12sYc9o6VpU9F2slcx/idbtWCVBYAbakGHZY9fM/n5Yw6XBilNdUmg4SUo1LuIbzCeQOEx2YDf6CDRfJoLaRqaJFX/qM4+L1RIWaKPIcKj8QIsUN2RkV4FJNzrPiUftT1NdKMoFIEe9zSZ5iTPfTdVQ9ASrUCKJ8GOxKFSZArPvVbMY5GJLjt3plb93VOJJ/cAElNZGSDi0eBZvzbbT7pAjRT1hFSaeZQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=i8LICqfskccjVVPVKvYb+txoQL8I85WDna+5rUbUqz0=;
+ b=BOUh32/QHkYqrO6AdjboppdyFykT8hq3LVB5h9Y+SXNZNOphy3AKMxMfJz6wyJX0rtiFZm6tuxralofyZ4GlBUPtntBMTn6CtMS2ndNNXvBspdxFcRtZyFwJ759HvVDWSc6qmqaKXQCXawbrHZ3BmLyS8DGKaa3W2biFIRR3DMlpZvq9DI/XcwUnkVIW7xaxoHaZ92mKeHiagoggNhxaRQUE2wvWfIm03PAufHwOGJqWd14pnzzhXuiZDXA17pCUN6bABQ0IAXX3s95JkAv2ZHHovsOlEMkZso7tmwIPvAIWH8QAWlGtyK+uzz6KpoARXZ0+RPp06b/Ylkmx20xi2Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=2n.com; dmarc=pass action=none header.from=axis.com; dkim=pass
+ header.d=axis.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axis.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=i8LICqfskccjVVPVKvYb+txoQL8I85WDna+5rUbUqz0=;
+ b=on49I4naEbGHgaSecje0g0CfjPqMzqpKPVu62/7OT0DnaSLlM0SZRGLA4k4H8BSzUNB4E6BL9mtO+CV6gHviBkOhkHJNGc19pnBqoQQsNyxEGGI/XwAe2LcxxJKHiL7BM8VqVn8K47Kfm9WU48QBxlHHigWzIPDr/xvbmAYU4dU=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=axis.com;
+Received: from PAXPR02MB7263.eurprd02.prod.outlook.com (2603:10a6:102:1c5::18)
+ by PAVPR02MB10413.eurprd02.prod.outlook.com (2603:10a6:102:2fc::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7002.20; Thu, 16 Nov
+ 2023 16:00:23 +0000
+Received: from PAXPR02MB7263.eurprd02.prod.outlook.com
+ ([fe80::dfa8:c276:ca2e:b053]) by PAXPR02MB7263.eurprd02.prod.outlook.com
+ ([fe80::dfa8:c276:ca2e:b053%4]) with mapi id 15.20.7002.021; Thu, 16 Nov 2023
+ 16:00:23 +0000
+Message-ID: <368eea0d-0445-4286-8489-9a4a109606db@axis.com>
+Date: Thu, 16 Nov 2023 17:00:20 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 1/3] dt-bindings: input: microchip,cap11xx: add
+ advanced sensitivity settings
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ krzysztof.kozlowski+dt@linaro.org, dmitry.torokhov@gmail.com
+Cc: devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+ linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+ u.kleine-koenig@pengutronix.de
+References: <20231108155647.1812835-1-jiriv@axis.com>
+ <20231108155647.1812835-2-jiriv@axis.com>
+ <eede2e04-45e5-46fb-ba00-fec0a7862711@linaro.org>
+From: Jiri Valek - 2N <jiriv@axis.com>
+In-Reply-To: <eede2e04-45e5-46fb-ba00-fec0a7862711@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FR0P281CA0233.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:b2::6) To PAXPR02MB7263.eurprd02.prod.outlook.com
+ (2603:10a6:102:1c5::18)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.201.21.240]
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-16_16,2023-11-16_01,2023-05-22_02
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR02MB7263:EE_|PAVPR02MB10413:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7537b837-ceea-4711-5f34-08dbe6bd2410
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	Cs59JSv00Ik9vO/p5xVZzqIp9Y3xr+Y8u5ka2tXPxQlXpRV96TaGfbV79THsjddZVJPLIJ4tj4I7Lp4Eb3fsMnnMO/NLk5yhEZnfhSbwbGbliL2kRAcUaIFwaXdgaUyTrfPWZuoyCEk8B6S/R9UoEDp9pDQZcLh76ezi6dO5QPtoYGYIzBD/3otQAL2Dd+xsen0rdDo+ie6OftVuQXbBbrXJewj/vZtoOZXfbH3MPbDSbSpqz2HlzdgSuixcZ8FlQKGezgRkF6MSOR5rhXMLCWRBCeKAGpfMlamEbGpYouvOCSYgFs1S2bzWC3T0WdaLwdqknCdc6uuQ9NawF03djWLHQnZqHudWobL1GtjiESWS85hVOHLUQbxaMvxEOtracP/W87uO54NA79TrvenF2ozTnDE5SJjxLQSDzaSFuaSmraijZY+zzDhrCwVYqtLv4luGo1EnxTdPLAyz3t6gSYtJM1YxPA6Z1xweKt/xl1mAxkYTTjAxXOchp5QN/0UtHSw1An+tOwqs6jXgyIc4N1sq3w49UCns4xQPy45g6glefDI8PaxADpDdda7Z07QiKD6ZxNr/avsPw6Yk8QDigNnf7892KglJkFRVvJbkfQHux6Xwf6v5J11ZM6jR370QGMd78gaIQaXmmZkKQ4X2IQ==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR02MB7263.eurprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(136003)(366004)(376002)(39860400002)(346002)(230922051799003)(451199024)(1800799009)(186009)(64100799003)(36756003)(83170400001)(38100700002)(2906002)(41300700001)(5660300002)(66476007)(83380400001)(6506007)(31696002)(6486002)(53546011)(8676002)(8936002)(4326008)(66946007)(316002)(66556008)(478600001)(42882007)(2616005)(26005)(6512007)(31686004)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?RmlqZDREb21IcVVXMUxZc1NNUkxQNVQ4ZWFaNWJ3UkRCOSs0VHZvTVhzdVR3?=
+ =?utf-8?B?QUd4ZDlzUmlydVRjd2xDbTJ5cVpnRU40MnZKcUFtUkZUT0UzMlJjVUMzVFYz?=
+ =?utf-8?B?Qi9xQW1GMzlocDJDTVQ2dWZuRmVkWDFOWktlcTd2WDVzOWwvSHJPRksrZVda?=
+ =?utf-8?B?ejJlelIxSkxDVWUycTlNMDhlYmQwengwcEdNNGU3QXpnS0MydFdGV1pwWXU2?=
+ =?utf-8?B?aVY0SndNSGoycWp1NlExM01KREdWd2Zxa1dERzNLYlA3eWRweWs0VzZ2cXNR?=
+ =?utf-8?B?SG96K3B5aU1Ca1UzQVhFWnFFREtTOEFTNUJ3c0FzTzdOa3d5OVlSQnRSeEV5?=
+ =?utf-8?B?dzVYcjV3NU5mTWtZamE5eEJaS29Ndy9VY3c0SEUrMXV1NmtQdmRKV2hxRk9T?=
+ =?utf-8?B?R2FEOXpma3RJOS8xNDZjNnA0L0V3T2VBSCtGWXdwSXBqQlZ2UHJIYVl4QWNs?=
+ =?utf-8?B?SzJVRFpvTGhac1l3cnlma0JHSTA4R1hPUFJlaFdNbll3MjJvaTlvYmxFZ25R?=
+ =?utf-8?B?YlQxL1pGMGxob3V5QXdBamtUQ2EyTWtmSUtkbEVLV2I5RmxmTU9nSnV4aTlZ?=
+ =?utf-8?B?UkxiRXF2QmZ0WjJNTWMxTmxKdXJLeVpCQWs5dTE4LzR4Z2lVbkM4Tk0zeGhz?=
+ =?utf-8?B?Ny9ieTdrMnFIS3BZM3E4SlJZUHY2YytLZlRmMmhYc3daUjZDY3hEaXVuM051?=
+ =?utf-8?B?NjB5cFh0cGFtb1l0SnorcmN6TjVWbkN6YytGVldFcDVNcVNBWHphMzNSWXRW?=
+ =?utf-8?B?SXI1TGlWblEvK0YrVi9wYzgwZ2taQVBkcWpDZjlrYjlRb3l5RC9VbGpvbWJR?=
+ =?utf-8?B?cnhTaVB0WStUN3FUYkJCTUJPQjRMSXRCcjdzZEZGc2JCRjgxbGwzSklpK2hi?=
+ =?utf-8?B?L0JMRXFmWkpPMUJRYnNKNUlTUURQRVNvSW9KNjNRQzRwdE9pV1JrS2k4YmpZ?=
+ =?utf-8?B?SXFpZ0hzeTdFNVZpVFdFakl0dU9pNmR4Tmg0QWJtRWdsMG5JL3AvbTA5cE5S?=
+ =?utf-8?B?MFF4VjNKbWRvRHRzdDh4b2R0QlVTV0UwWjBlODdiK2xHZHZSVzRDVHlVcHJY?=
+ =?utf-8?B?QlJsWmlTZnRySkM2TlBGWjZGdTZkbklUb1owU1RZT1pJOXJOZXlRdjdyczVv?=
+ =?utf-8?B?LzR5cldaRU5SUklmZ2RJQmxvSGtyWTdPc3VKTXRUbmNsWjVETHlzRXE2L3lm?=
+ =?utf-8?B?SFZVd2ZwYnY0S0Q4V2NFYVJLMUdFY3JralIzZnJYTEZ2MGFHRjJveHpSRmd1?=
+ =?utf-8?B?d2tOQmV2NWEvT0RzQVdsWFZEdkk1TEdNbG1pTkxWTmlENlU1YXVuWDBWWm96?=
+ =?utf-8?B?bDZOS0hsc3lHN2NaRDRPUzRzczhzS2g1NXpsOTdRMzcvenBRajBIUG9ucEEr?=
+ =?utf-8?B?aFVhdDRlSS8rcVU3VjQwcXA2b0NuUFRvWStxYzVHWmxkN3AvNEd5U1lsd3Jy?=
+ =?utf-8?B?RFRSYkdsYWJPaU5admhmMlZLbkxLOEN3UWN0WXYxcXFiNG5RWUprOGtiOFNR?=
+ =?utf-8?B?L1ppd3NLN1lEdG91eXhZTkpqOXJneGtwQ3NzWlg3cGpnM0NLVEtWc1YwWE50?=
+ =?utf-8?B?V0VLS1ZOMk9LdjQ0bURnT3J0akZTZGJGMzdFclc5eGhRYkc1c2RmUmxCOUlI?=
+ =?utf-8?B?eTNQNGFKYnByMTZtZ2Q4QWZXdmxXMU9sZGpMa1kyZWk3aFBZZUFOSWZNZTRO?=
+ =?utf-8?B?b2ZNeU5ISjZxaDZ3R2NWVE0wWDUyazNGN2JISnJDeHFEYWdzdE90aURvbGFo?=
+ =?utf-8?B?R0xhZk14UHdEeEx0alhVS0Z0MkNnYXlud3lqVzdTZXd6L0ZuTC9NRW9Pd1lH?=
+ =?utf-8?B?cmoxcVpPSGRGS001clZFaXhBYnAzYW5VeTc0M1p4anphcmlZWWNYUGtHRFFz?=
+ =?utf-8?B?RDk1TmpsUEpPR0wrak9iSStuYVk3T1VUcmY1YUcySmlneFlnVUhLVU5Wa0dh?=
+ =?utf-8?B?VGhCU210dFRFWWcrcmRQVG5DY1VFaHFyV3ZzYU9sQWxkTnluSUhxYXlnQ1oz?=
+ =?utf-8?B?dldTSlpxaHg3RlE3TnloNnprQzNsWnVEN3U4VE5PSFQrd1N0T2dmMWdLVXdH?=
+ =?utf-8?B?VDlvTG5EenppbUl1dG5BcjdxYXcyZ1pIdy9MeVAvcHdTR3MrVnA3b3QxSUJS?=
+ =?utf-8?Q?XqlV9SEKD6OGQf/Ee6ZIIUrDq?=
+X-OriginatorOrg: axis.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7537b837-ceea-4711-5f34-08dbe6bd2410
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR02MB7263.eurprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Nov 2023 16:00:23.3675
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 78703d3c-b907-432f-b066-88f7af9ca3af
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: bgEAtFMbwx51xiWYA/X4kESSx3UvvaEOCSi8Lg22lw5/Yuh0jEn2cnG2lx4thRd9
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAVPR02MB10413
 
-From: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+On 11/10/23 09:22, Krzysztof Kozlowski wrote:
+> On 08/11/2023 16:56, Jiri Valek - 2N wrote:
+>> Add support for advanced sensitivity settings and signal guard feature.
+>>
+>> Signed-off-by: Jiri Valek - 2N <jiriv@axis.com>
+>> ---
+>>  .../bindings/input/microchip,cap11xx.yaml     | 76 ++++++++++++++++++-
+>>  1 file changed, 73 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml b/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml
+>> index 5b5d4f7d3482..aa97702c43ef 100644
+>> --- a/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml
+>> +++ b/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml
+>> @@ -45,13 +45,13 @@ properties:
+>>        Enables the Linux input system's autorepeat feature on the input device.
+>>  
+>>    linux,keycodes:
+>> -    minItems: 6
+>> -    maxItems: 6
+>> +    minItems: 3
+>> +    maxItems: 8
+>>      description: |
+>>        Specifies an array of numeric keycode values to
+>>        be used for the channels. If this property is
+>>        omitted, KEY_A, KEY_B, etc are used as defaults.
+>> -      The array must have exactly six entries.
+>> +      The number of entries must correspond to the number of channels.
+>>  
+>>    microchip,sensor-gain:
+>>      $ref: /schemas/types.yaml#/definitions/uint32
+>> @@ -70,6 +70,55 @@ properties:
+>>        open drain. This property allows using the active
+>>        high push-pull output.
+>>  
+>> +  microchip,sensitivity-delta-sense:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    default: 32
+>> +    enum: [1, 2, 4, 8, 16, 32, 64, 128]
+>> +    description:
+>> +      Optional parameter. Controls the sensitivity multiplier of a touch detection.
+>> +      At the more sensitive settings, touches are detected for a smaller delta
+> 
+> Which values are more sensitive?
 
-Add RCC support to manage clocks and resets on the STM32MP251.
+Higher value means more sensitive settings.
+I will add this line to description.
 
-Signed-off-by: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
----
- arch/arm64/boot/dts/st/stm32mp251.dtsi | 59 ++++++++++++++------------
- 1 file changed, 31 insertions(+), 28 deletions(-)
+> 
+>> +      capacitance corresponding to a “lighter” touch.
+> 
+> Looks like you use some non-ASCII characters for ".
 
-diff --git a/arch/arm64/boot/dts/st/stm32mp251.dtsi b/arch/arm64/boot/dts/st/stm32mp251.dtsi
-index 124403f5f1f4..dfbdb3a773e4 100644
---- a/arch/arm64/boot/dts/st/stm32mp251.dtsi
-+++ b/arch/arm64/boot/dts/st/stm32mp251.dtsi
-@@ -3,7 +3,9 @@
-  * Copyright (C) STMicroelectronics 2023 - All Rights Reserved
-  * Author: Alexandre Torgue <alexandre.torgue@foss.st.com> for STMicroelectronics.
-  */
-+#include <dt-bindings/clock/st,stm32mp25-rcc.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/reset/st,stm32mp25-rcc.h>
- 
- / {
- 	#address-cells = <2>;
-@@ -35,22 +37,10 @@ arm_wdt: watchdog {
- 	};
- 
- 	clocks {
--		ck_flexgen_08: ck-flexgen-08 {
-+		clk_rcbsec: clk-rcbsec {
- 			#clock-cells = <0>;
- 			compatible = "fixed-clock";
--			clock-frequency = <100000000>;
--		};
--
--		ck_flexgen_51: ck-flexgen-51 {
--			#clock-cells = <0>;
--			compatible = "fixed-clock";
--			clock-frequency = <200000000>;
--		};
--
--		ck_icn_ls_mcu: ck-icn-ls-mcu {
--			#clock-cells = <0>;
--			compatible = "fixed-clock";
--			clock-frequency = <200000000>;
-+			clock-frequency = <64000000>;
- 		};
- 	};
- 
-@@ -122,7 +112,7 @@ usart2: serial@400e0000 {
- 				compatible = "st,stm32h7-uart";
- 				reg = <0x400e0000 0x400>;
- 				interrupts = <GIC_SPI 115 IRQ_TYPE_LEVEL_HIGH>;
--				clocks = <&ck_flexgen_08>;
-+				clocks = <&rcc CK_KER_USART2>;
- 				status = "disabled";
- 			};
- 
-@@ -131,7 +121,7 @@ sdmmc1: mmc@48220000 {
- 				arm,primecell-periphid = <0x00353180>;
- 				reg = <0x48220000 0x400>, <0x44230400 0x8>;
- 				interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>;
--				clocks = <&ck_flexgen_51>;
-+				clocks = <&rcc CK_KER_SDMMC1 >;
- 				clock-names = "apb_pclk";
- 				cap-sd-highspeed;
- 				cap-mmc-highspeed;
-@@ -140,6 +130,19 @@ sdmmc1: mmc@48220000 {
- 			};
- 		};
- 
-+		rcc: clock-controller@44200000 {
-+			compatible = "st,stm32mp25-rcc";
-+			reg = <0x44200000 0x10000>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			clock-names = "hse", "hsi", "msi", "lse", "lsi";
-+			clocks = <&scmi_clk CK_SCMI_HSE>,
-+				<&scmi_clk CK_SCMI_HSI>,
-+				<&scmi_clk CK_SCMI_MSI>,
-+				<&scmi_clk CK_SCMI_LSE>,
-+				<&scmi_clk CK_SCMI_LSI>;
-+		};
-+
- 		syscfg: syscon@44230000 {
- 			compatible = "st,stm32mp25-syscfg", "syscon";
- 			reg = <0x44230000 0x10000>;
-@@ -158,7 +161,7 @@ gpioa: gpio@44240000 {
- 				interrupt-controller;
- 				#interrupt-cells = <2>;
- 				reg = <0x0 0x400>;
--				clocks = <&ck_icn_ls_mcu>;
-+				clocks = <&scmi_clk CK_SCMI_GPIOA>;
- 				st,bank-name = "GPIOA";
- 				status = "disabled";
- 			};
-@@ -169,7 +172,7 @@ gpiob: gpio@44250000 {
- 				interrupt-controller;
- 				#interrupt-cells = <2>;
- 				reg = <0x10000 0x400>;
--				clocks = <&ck_icn_ls_mcu>;
-+				clocks = <&scmi_clk CK_SCMI_GPIOB>;
- 				st,bank-name = "GPIOB";
- 				status = "disabled";
- 			};
-@@ -180,7 +183,7 @@ gpioc: gpio@44260000 {
- 				interrupt-controller;
- 				#interrupt-cells = <2>;
- 				reg = <0x20000 0x400>;
--				clocks = <&ck_icn_ls_mcu>;
-+				clocks = <&scmi_clk CK_SCMI_GPIOC>;
- 				st,bank-name = "GPIOC";
- 				status = "disabled";
- 			};
-@@ -191,7 +194,7 @@ gpiod: gpio@44270000 {
- 				interrupt-controller;
- 				#interrupt-cells = <2>;
- 				reg = <0x30000 0x400>;
--				clocks = <&ck_icn_ls_mcu>;
-+				clocks = <&scmi_clk CK_SCMI_GPIOD>;
- 				st,bank-name = "GPIOD";
- 				status = "disabled";
- 			};
-@@ -202,7 +205,7 @@ gpioe: gpio@44280000 {
- 				interrupt-controller;
- 				#interrupt-cells = <2>;
- 				reg = <0x40000 0x400>;
--				clocks = <&ck_icn_ls_mcu>;
-+				clocks = <&scmi_clk CK_SCMI_GPIOE>;
- 				st,bank-name = "GPIOE";
- 				status = "disabled";
- 			};
-@@ -213,7 +216,7 @@ gpiof: gpio@44290000 {
- 				interrupt-controller;
- 				#interrupt-cells = <2>;
- 				reg = <0x50000 0x400>;
--				clocks = <&ck_icn_ls_mcu>;
-+				clocks = <&scmi_clk CK_SCMI_GPIOF>;
- 				st,bank-name = "GPIOF";
- 				status = "disabled";
- 			};
-@@ -224,7 +227,7 @@ gpiog: gpio@442a0000 {
- 				interrupt-controller;
- 				#interrupt-cells = <2>;
- 				reg = <0x60000 0x400>;
--				clocks = <&ck_icn_ls_mcu>;
-+				clocks = <&scmi_clk CK_SCMI_GPIOG>;
- 				st,bank-name = "GPIOG";
- 				status = "disabled";
- 			};
-@@ -235,7 +238,7 @@ gpioh: gpio@442b0000 {
- 				interrupt-controller;
- 				#interrupt-cells = <2>;
- 				reg = <0x70000 0x400>;
--				clocks = <&ck_icn_ls_mcu>;
-+				clocks = <&scmi_clk CK_SCMI_GPIOH>;
- 				st,bank-name = "GPIOH";
- 				status = "disabled";
- 			};
-@@ -246,7 +249,7 @@ gpioi: gpio@442c0000 {
- 				interrupt-controller;
- 				#interrupt-cells = <2>;
- 				reg = <0x80000 0x400>;
--				clocks = <&ck_icn_ls_mcu>;
-+				clocks = <&scmi_clk CK_SCMI_GPIOI>;
- 				st,bank-name = "GPIOI";
- 				status = "disabled";
- 			};
-@@ -257,7 +260,7 @@ gpioj: gpio@442d0000 {
- 				interrupt-controller;
- 				#interrupt-cells = <2>;
- 				reg = <0x90000 0x400>;
--				clocks = <&ck_icn_ls_mcu>;
-+				clocks = <&scmi_clk CK_SCMI_GPIOJ>;
- 				st,bank-name = "GPIOJ";
- 				status = "disabled";
- 			};
-@@ -268,7 +271,7 @@ gpiok: gpio@442e0000 {
- 				interrupt-controller;
- 				#interrupt-cells = <2>;
- 				reg = <0xa0000 0x400>;
--				clocks = <&ck_icn_ls_mcu>;
-+				clocks = <&scmi_clk CK_SCMI_GPIOK>;
- 				st,bank-name = "GPIOK";
- 				status = "disabled";
- 			};
-@@ -287,7 +290,7 @@ gpioz: gpio@46200000 {
- 				interrupt-controller;
- 				#interrupt-cells = <2>;
- 				reg = <0 0x400>;
--				clocks = <&ck_icn_ls_mcu>;
-+				clocks = <&scmi_clk CK_SCMI_GPIOZ>;
- 				st,bank-name = "GPIOZ";
- 				st,bank-ioport = <11>;
- 				status = "disabled";
--- 
-2.25.1
+I will fix it.
 
+> 
+>> +
+>> +  microchip,signal-guard:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+>> +    minItems: 3
+>> +    maxItems: 8
+>> +    items:
+>> +      minimum: 0
+>> +      maximum: 1
+>> +    description: |
+>> +      Optional parameter supported only for CAP129x.
+>> +      0 - off
+>> +      1 - on
+>> +      The signal guard isolates the signal from virtual grounds.
+>> +      If enabled then the behavior of the channel is changed to signal guard.
+>> +      The number of entries must correspond to the number of channels.
+>> +
+>> +  microchip,input-treshold:
+> 
+> typo: threshold
+
+I will fix it in Documentation and also in source code.
+Copy paste error...
+
+> 
+>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+>> +    minItems: 3
+>> +    maxItems: 8
+>> +    items:
+>> +      minimum: 0
+>> +      maximum: 127
+>> +    description:
+>> +      Optional parameter. Specifies the delta threshold that is used to
+> 
+> Drop everywhere the "optional parameter". It's redundant. required:
+> block tells what is / is not optional.
+
+OK will be fixed.
+
+> 
+>> +      determine if a touch has been detected.
+> 
+> In what units are the values?
+
+According to the datasheet it is dimensionless, no more info.
+A higher value means a larger difference in capacitance is required for a touch to be registered.
+
+> 
+>> +      The number of entries must correspond to the number of channels.
+>> +
+>> +  microchip,calib-sensitivity:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+>> +    minItems: 3
+>> +    maxItems: 8
+>> +    items:
+>> +      minimum: 1
+>> +      maximum: 4
+>> +    description:
+>> +      Optional parameter supported only for CAP129x. Specifies an array of
+>> +      numeric values that controls the gain used by the calibration routine to
+>> +      enable sensor inputs to be more sensitive for proximity detection.
+> 
+> Gain is usually in dB, isn't it?
+
+Usually yes, but again there are no units in datasheet.
+There is note that gain is based on capacitance touch pad capacitance range
+1 - 5-50pF
+2 - 0-25pF 
+4 - 0-12.5pF
+I will add this to description and change items to enum: [1, 2, 4]
+
+> 
+>> +      The number of entries must correspond to the number of channels.
+>> +
+>>  patternProperties:
+>>    "^led@[0-7]$":
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
+
+So are these changes fine for you?
+If yes I prepare new patch revision.
+
+Best regards,
+Jiri
 
