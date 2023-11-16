@@ -1,102 +1,152 @@
-Return-Path: <devicetree+bounces-16305-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16306-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF11C7EE406
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 16:18:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A0887EE42C
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 16:25:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5B21A1F23554
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 15:18:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4AF721C2084E
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 15:25:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A7D031595;
-	Thu, 16 Nov 2023 15:17:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="t9h81Cn6"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F9FA34573;
+	Thu, 16 Nov 2023 15:25:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDCD0194
-	for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 07:17:54 -0800 (PST)
-Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-50a938dda08so1317453e87.3
-        for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 07:17:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700147873; x=1700752673; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=c86qO4XwJ1JxYo95YcC/cJ889pUl6EruyihJzXoM0Hw=;
-        b=t9h81Cn6XW8J0eKo2E9Narw0Plr0+RWdXP7GgJllmWOTF4R1Bz+1n5Vh1Yi4mKPcbq
-         iER3z0D3oV+FdZsDiGRbU2x48hKKx2q8nKBELfz6sJF9AdIK6awBEifJc5aD15zZ1893
-         NA4TsrQwEiyVOecMh9tfJ4U6PUbQ0ss+0ZIX1l22fntv9p2b3BYq0/MO3p5Iz4JWCHWN
-         Yq4c0RPc7JiJLiUi+OFXumoemCjg2C319hSAKjtXu7J5Nqa2S4+uRFwp2PJmDfLKhOeF
-         0pGb+yu0LF/t/D0ZB5TTrcu1L4Cmb6X9NWcI4yj6XiU31niQihkZYEaRTkNM29RTjF4J
-         gCCQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700147873; x=1700752673;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=c86qO4XwJ1JxYo95YcC/cJ889pUl6EruyihJzXoM0Hw=;
-        b=nlSEYnipbBN3dp2SVTjYCcZsaSNsblgM9R+4cBFd0DeNgeaZougZIoxG2H+wwsnSHq
-         dqnfx+DhBuY8YGUomk68dYdRgIXZlLNrwjY0PN8P349upUbRNDMa3irhCEXVQxfMb9Si
-         rrfTZXEcHUghnnCfiOba3hJHJrrk1pM5wLne2Yvx0mng0dGJCHlk6r0+uSlRvA3yLuO9
-         smLJusXX/bpke0PjaqnpXC4eGTG8QeBfR5b3CHG5oNaiX5gdhLcnDnbbDQAwcqhKYMq7
-         7sL0/gYldEoZrpCFBm+7XYk3Spw6mhXbL2BV8HdLncxU6p+qsEhkcUofGEiFO9f493GY
-         d9vg==
-X-Gm-Message-State: AOJu0YxGxoDNWQqm+vxGq04nugHLYEeFTMdmY5Ct8qTxnoh2piTDeQJv
-	3PuetzXqiianuZbg0vibssztXg==
-X-Google-Smtp-Source: AGHT+IGCynGKBV2xfjm3/F22zFoI2s5tPIReaIcXe1jrsp/JQdWKJTZfqSlwxIOf0g1DRrLOUyhTtA==
-X-Received: by 2002:a05:6512:60d:b0:507:f0f2:57b1 with SMTP id b13-20020a056512060d00b00507f0f257b1mr10401985lfe.15.1700147873129;
-        Thu, 16 Nov 2023 07:17:53 -0800 (PST)
-Received: from [172.30.204.128] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
-        by smtp.gmail.com with ESMTPSA id y22-20020a199156000000b00507f1c8040fsm24856lfj.58.2023.11.16.07.17.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Nov 2023 07:17:52 -0800 (PST)
-Message-ID: <8f13d5d7-a8fa-49ea-bd34-4bbe89261faf@linaro.org>
-Date: Thu, 16 Nov 2023 16:17:51 +0100
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A95C319D;
+	Thu, 16 Nov 2023 07:25:30 -0800 (PST)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+	by ex01.ufhost.com (Postfix) with ESMTP id 84ABC24DCA6;
+	Thu, 16 Nov 2023 23:25:13 +0800 (CST)
+Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 16 Nov
+ 2023 23:25:13 +0800
+Received: from localhost.localdomain (202.188.176.82) by EXMBX172.cuchost.com
+ (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 16 Nov
+ 2023 23:25:05 +0800
+From: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
+To: <conor@kernel.org>
+CC: <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
+	<jisheng.teoh@starfivetech.com>, <krzysztof.kozlowski+dt@linaro.org>,
+	<leyfoon.tan@starfivetech.com>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <mark.rutland@arm.com>,
+	<peterz@infradead.org>, <robh+dt@kernel.org>, <tglx@linutronix.de>,
+	<will@kernel.org>
+Subject: Re: [PATCH v3 2/2] dt-bindings: perf: starfive: Add StarLink PMU
+Date: Thu, 16 Nov 2023 23:24:56 +0800
+Message-ID: <20231116152456.1039195-1-jisheng.teoh@starfivetech.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20231116-penalize-turbojet-bf8ea2a9a2ad@squawk>
+References: <20231116-penalize-turbojet-bf8ea2a9a2ad@squawk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 4/6] arm64: dts: qcom: sm8350: Fix remoteproc interrupt
- type
-Content-Language: en-US
-To: Nia Espera <nespera@igalia.com>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
- Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Kees Cook <keescook@chromium.org>,
- Tony Luck <tony.luck@intel.com>, "Guilherme G. Piccoli"
- <gpiccoli@igalia.com>, Vinod Koul <vkoul@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, phone-devel@vger.kernel.org, Rob <Me@orbit.sh>,
- Clayton Craft <clayton@igalia.com>,
- Caleb Connolly <caleb.connolly@linaro.org>,
- Luca Weiss <luca.weiss@fairphone.com>, ~postmarketos/upstreaming@lists.sr.ht
-References: <20231111-nia-sm8350-for-upstream-v4-0-3a638b02eea5@igalia.com>
- <20231111-nia-sm8350-for-upstream-v4-4-3a638b02eea5@igalia.com>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20231111-nia-sm8350-for-upstream-v4-4-3a638b02eea5@igalia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Level: *
+Content-Type: text/plain
+X-Originating-IP: [202.188.176.82]
+X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX172.cuchost.com
+ (172.16.6.92)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: quoted-printable
 
+On Thu, 16 Nov 2023 14:34:00 +0000
+Conor Dooley <conor@kernel.org> wrote:
 
+> On Thu, Nov 16, 2023 at 10:10:35AM +0800, Ji Sheng Teoh wrote:
+> > On Wed, 15 Nov 2023 20:03:53 +0000
+> > Conor Dooley <conor@kernel.org> wrote: =20
+> > > On Wed, Nov 15, 2023 at 11:36:08AM +0800, Ji Sheng Teoh wrote: =20
+> > > > Add device tree binding for StarFive's StarLink PMU (Performance
+> > > > Monitor Unit).
+> > > >=20
+> > > > Signed-off-by: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
+> > > > ---
+> > > >  .../bindings/perf/starfive,starlink-pmu.yaml  | 46
+> > > > +++++++++++++++++++ 1 file changed, 46 insertions(+)
+> > > >  create mode 100644
+> > > > Documentation/devicetree/bindings/perf/starfive,starlink-pmu.yaml
+> > > >=20
+> > > > diff --git
+> > > > a/Documentation/devicetree/bindings/perf/starfive,starlink-pmu.ya=
+ml
+> > > > b/Documentation/devicetree/bindings/perf/starfive,starlink-pmu.ya=
+ml
+> > > > new file mode 100644 index 000000000000..a9426a7faeae ---
+> > > > /dev/null +++
+> > > > b/Documentation/devicetree/bindings/perf/starfive,starlink-pmu.ya=
+ml
+> > > >   =20
+> > >=20
+> > > btw, since you changed the compatible, the filename should have
+> > > been changed to match it. =20
+> >=20
+> > The intention to keep the filename generic is to allow addition of
+> > new version of StarLink PMU in future if any, similar to what
+> > arm,cmn.yaml is doing. Hope that makes sense. =20
+>=20
+> No, please keep the filename matching the compatible. Even if the
+> filename contains "500", there's nothing stopping you from then adding
+> other pmu variants. There are many many examples of this in the tree.
+>=20
 
-On 11/11/23 23:07, Nia Espera wrote:
-> In a similar vein to
-> https://lore.kernel.org/lkml/20220530080842.37024-3-manivannan.sadhasivam@linaro.org/,
-> the remote processors on sm8350 fail to initialize with the 'correct'
-> (i.e., specified in downstream) IRQ type. Change this to EDGE_RISING.
-> 
-> Signed-off-by: Nia Espera <nespera@igalia.com>
-> ---
-Acked-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Sure, will do that in v4.=20
 
-Konrad
+> > > > @@ -0,0 +1,46 @@
+> > > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id:
+> > > > http://devicetree.org/schemas/perf/starfive,starlink-pmu.yaml#
+> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml# +
+> > > > +title: StarFive StarLink PMU
+> > > > +
+> > > > +maintainers:
+> > > > +  - Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
+> > > > +
+> > > > +description:
+> > > > +  StarFive's StarLink PMU integrates one or more CPU cores
+> > > > with a shared L3
+> > > > +  memory system. The PMU support overflow interrupt, up to 16
+> > > > programmable
+> > > > +  64bit event counters, and an independent 64bit cycle counter.
+> > > > +  StarLink PMU is accessed via MMIO.
+> > > > +
+> > > > +properties:
+> > > > +  compatible:
+> > > > +    const: starfive,starlink-500-pmu   =20
+> > >=20
+> > > So this is not what I had in mind by a "device". I was looking
+> > > for a compatible representing an soc in which this IP had been
+> > > integrated. A soc-specific compatible, rather than something
+> > > generic, is requirement for devicetree - we don't want various
+> > > integrations of this IP to all be using a generic compatible when
+> > > there may be subtle (or less subtle) differences between
+> > > integrations.
+> > >=20
+> > > I'm trying to come up with the syntax for enforcing having two
+> > > compatibles with your current one as the fallback, but I have yet
+> > > to come up with the correct syntax for that that works correctly.
+> > >=20
+> > > Hopefully by the time you get some feedback on the driver side of
+> > > this submission I will have a concrete suggestion for what to do
+> > > here. =20
+> >=20
+> > Thanks Conor for the enlightenment. In the meantime, to fit the
+> > requirement I would suggest going for
+> > "starfive,jh8100-starlink-pmu", making it JH8100 SOC specific if
+> > that makes sense. =20
+>=20
+> Okay, you could definitely do that!
+>=20
+> Cheers,
+> Conor.
+>=20
+
+Ok, will use that in v4. Thanks!
 
