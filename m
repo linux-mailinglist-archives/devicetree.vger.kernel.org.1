@@ -1,52 +1,51 @@
-Return-Path: <devicetree+bounces-16510-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16508-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77C107EEE95
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 10:30:18 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C85F7EEE94
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 10:30:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9A9C01C209F3
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 09:30:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 44DC81F2137C
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 09:30:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C69514F62;
-	Fri, 17 Nov 2023 09:30:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA98213AF6;
+	Fri, 17 Nov 2023 09:30:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="bqhtWhg/"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="YCgluMwU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F082D55;
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DD6CD72;
 	Fri, 17 Nov 2023 01:30:03 -0800 (PST)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3AH9TWDB011177;
-	Fri, 17 Nov 2023 03:29:32 -0600
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3AH9TXMh058787;
+	Fri, 17 Nov 2023 03:29:33 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1700213372;
-	bh=8AY1Zj2fDh+MvTGvo5m3oqX+4w3vXGLhL0h02wTVRPo=;
-	h=From:Subject:Date:To:CC;
-	b=bqhtWhg/a1vyWGmT6iG03CiIZe9c6MKFu+x8I1WcK+QGeyxMKmb1qLGBOjvwDQ6TK
-	 nvF+PskNL0i0a71awX4TFDdPhtVelPOFltDKFQUEbPlGIefehdw13R3Qmj6qiNP30v
-	 7Wk0ETbrVnVmnVf7wicgXPJTFnbWqITtPxm2Hlgg=
-Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3AH9TW9A023814
+	s=ti-com-17Q1; t=1700213373;
+	bh=CE16wh9zl1KgMuVJ0r2u9v6WuIGMBSyHIrUg3kv13nk=;
+	h=From:Date:Subject:References:In-Reply-To:To:CC;
+	b=YCgluMwUd8suq94SZHXdXNR7vNQ+5lXaqR37nulSVvU0Z/HqIxnZBptLkpoFjpLip
+	 ohF1qQPIRY76Qa+1986xYm0KsVyZu5NkbaEwIvDXrsLVo2LN1Ls7iyFy+L4iqxPQLc
+	 93pUwZLXfWbDXUnNAHjIhWMKO1kgZATguyFHTT64=
+Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3AH9TX9r075646
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 17 Nov 2023 03:29:32 -0600
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 17 Nov 2023 03:29:33 -0600
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 17
- Nov 2023 03:29:31 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ Nov 2023 03:29:33 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 17 Nov 2023 03:29:31 -0600
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3AH9TV2x000416;
-	Fri, 17 Nov 2023 03:29:31 -0600
+ Frontend Transport; Fri, 17 Nov 2023 03:29:33 -0600
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3AH9TW11125272;
+	Fri, 17 Nov 2023 03:29:33 -0600
 From: Jai Luthra <j-luthra@ti.com>
-Subject: [PATCH v2 0/9] arm64: dts: ti: Enable CSI cameras for AM62 family
-Date: Fri, 17 Nov 2023 14:58:08 +0530
-Message-ID: <20231117-csi_dts-v2-0-bf4312194a6b@ti.com>
+Date: Fri, 17 Nov 2023 14:58:09 +0530
+Subject: [PATCH v2 1/9] arm64: defconfig: Enable AM62 CSI2RX
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,9 +54,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIACkyV2UC/z3MQQrCMBCF4auUWRtpkqZQV96jFEmTiZ2FjWRCU
- Urubizo8n88vh0YEyHDpdkh4UZMca2hTg24xa53FORrg2qVllJ2wjHdfGZhQqe1dVb3vYH6fiY
- M9Dqkcaq9EOeY3ge8ye/6M8zf2KRoxTAEZ7SZ1ezxmuns4gOmUsoHnh0nhZsAAAA=
+Message-ID: <20231117-csi_dts-v2-1-bf4312194a6b@ti.com>
+References: <20231117-csi_dts-v2-0-bf4312194a6b@ti.com>
+In-Reply-To: <20231117-csi_dts-v2-0-bf4312194a6b@ti.com>
 To: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
         Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
         Tero
@@ -78,71 +77,63 @@ CC: <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
         Jai Luthra
 	<j-luthra@ti.com>
 X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2298; i=j-luthra@ti.com;
- h=from:subject:message-id; bh=5rJSVTpPkU1Yl+21VLiJPuQ+ThVzlJaMtsvyE3RSoHU=;
- b=owEBbQKS/ZANAwAIAUPekfkkmnFFAcsmYgBlVzJrT6fPIBmvgT8kjhynkbXmLZEbZKUlQhRlp
- X1FaizsHcmJAjMEAAEIAB0WIQRN4NgY5dV16NRar8VD3pH5JJpxRQUCZVcyawAKCRBD3pH5JJpx
- RWQcD/43cZDvDKNUF+Wjou83dNT7Cyk4jrL/YOpcdyAXhEYNGF6KlUR9HLkdwO67yrFdCvC1EPJ
- RPboizqAFFIsEUHUBRqVoLangqYI56W6UnW6dqDwj1QeWfpuEgSgoWTuEB2aaoOuW1tftyUwkOe
- OO2NtM5PjDtEzmrmg83ZMSeemsaCd0r+8xSxB9CApGXrg2NuIw283aeVuHTtTCgNKSbx+va+KvM
- WZv8Pe4cpaT6xqXCSPsrFOpw8pba3/lg9GY6yK2YCO83e7zCMbQzrluxM34OB6DSzLOICuPXAEV
- rd+5f+YiVhr6V7niPENxFTSGbkBjUKC94CQ6Wu0dJCQbh38wrAQTyyQNXkcKZMTPfqlW9DG5Nq1
- PY8r5222NX1vo7eXKLHZhoNNe9DGKNPFx22uHyCoCeQYbM9F2ybQWfcmKJQqdDuoPpp9ZN3l8BW
- 9LkJEFhrfwAjxOaj0q6D1rgpOjWNtMK0wUk9WfIfbgynMOYWzoIuiCR3eWvETDN5EUu+laoI9rH
- 5u9PF/TGLEi5R4SsoeMCY+NHxsp1DxOYFt4I5Vxk1WmUmB4e5gQ6T0rN28X50fb/IkZHADwJ+JX
- TN+w1JhiYXrY33OfUWk2HVwGagRvYzz5vAeILCMVxvvwXyGNXu4YOHE24sU2zLf9sKxAKzUwWXY
- OZMWe9CBbaB3KQw==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1283; i=j-luthra@ti.com;
+ h=from:subject:message-id; bh=rUb+tMOTZAb+lVYb64icNGmFWgAhMwWgJGOMQV1XTKI=;
+ b=owEBbQKS/ZANAwAIAUPekfkkmnFFAcsmYgBlVzJsuaA30WzP72QhttVUNkNtw3tMHNph8yWp/
+ rQA93smxKuJAjMEAAEIAB0WIQRN4NgY5dV16NRar8VD3pH5JJpxRQUCZVcybAAKCRBD3pH5JJpx
+ Rfr+D/sHMfFB4h7n0BFJsbJ+20P0uwCTUJ4L0GQ1Lwv7vp5ySZ5uRtVCkdNk5TOF0bDdqMybWYs
+ I9VfMaizm8boY2h2mTIg//6YEOptYHMPPsTM0oC2VXNfZXudW4XBDwdX9+n23wAYStmi547KBCf
+ yxUVRi0qPzw2As5iqf3H5Y12Twe59ZwVQfzhn9JHaoIe+0tiAUjyFK7r2vEStxgMnHsJotx0/WH
+ VSHZVDiexIU8/ZQ9+r7emzjuaEI8mQZBl17JlAMfZIE/LWFsAdb3SRcjUukMPvnQUne1bzaZlg+
+ +Jpn5+rzO5mv62K+NxhYholRTK748nq211EKNO4+Yn32HqyjNglgHF9H8eoFN7Nu/fIpf6Jc7ob
+ x7OkH3OCt0PmVtb8QDodK4JJD7suepZT/EEMGxNqs+Ogsa6sUcg5MNggTC/swAyOZqchb6Bhzq9
+ F267QewTmXQb9k+sRycbaRpqfPxW0i56FDnC737J05UszpVtfcIgU6twwDQwk9niqmSlJU9n9pe
+ ZBJjff9kAjvMkhETKpEago6wYDETPh5y6IW96Zhc3oDC9Jy6F7e+YHB96nO5KQV+Aunz+UieoXw
+ CMSMxssyLyfAeXQgJ5bjPv51QNSSzBPHrbQCIlhUa7eWFnYzPnfFgmXIl6X/+Fusnojv83XmxJI
+ 3KBAdTtVrFBqJSw==
 X-Developer-Key: i=j-luthra@ti.com; a=openpgp;
  fpr=4DE0D818E5D575E8D45AAFC543DE91F9249A7145
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-This series enables CSI camera support on BeaglePlay, SK-AM62 and
-SK-AM62A, now that the dt-bindings and driver support for CSI-RX related
-IPs is merged in v6.7-rc1.
+AM62 and other K3 based SoCs use Cadence DPHY and CSI-RX bridge drivers,
+along with a DMA wrapper CSI IP for the camera pipeline.
 
-Along with the device tree nodes for CSI-RX, add new DT overlays for
-different camera modules like RPiv2 (IMX219) or PCam5C (OV5640).
-
+Tested-by: Martyn Welch <martyn.welch@collabora.com>
 Signed-off-by: Jai Luthra <j-luthra@ti.com>
 ---
-Changes in v2:
-- Follow Andrew's comments to avoid creating combined DTBs with overlays
-  applied, instead adding them with "dtb- +=" to optionally test that
-  they apply cleanly with OF_ALL_DTBS=y config.
-- [New Patch] Cleanup existing combined DTBs to also do the same as above
-- Pick Martyn's Tested-By tag for SK-AM62
-- Link to v1: https://lore.kernel.org/r/20231115-csi_dts-v1-0-99fc535b2bde@ti.com
+ arch/arm64/configs/defconfig | 3 +++
+ 1 file changed, 3 insertions(+)
 
----
-Jai Luthra (9):
-      arm64: defconfig: Enable AM62 CSI2RX
-      arm64: dts: ti: Enable CSI-RX on AM62
-      arm64: dts: ti: Enable CSI-RX on AM62A
-      arm64: dts: ti: k3-am625-beagleplay: Add overlays for OV5640
-      arm64: dts: ti: k3-am62x-sk: Enable camera peripherals
-      arm64: dts: ti: k3-am62x: Add overlays for OV5640
-      arm64: dts: ti: k3-am62a7-sk: Enable camera peripherals
-      arm64: dts: ti: k3-am62x: Add overlay for IMX219
-      arm64: dts: ti: Use OF_ALL_DTBS for combined blobs
+diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+index b60aa1f89343..aa2df39d072e 100644
+--- a/arch/arm64/configs/defconfig
++++ b/arch/arm64/configs/defconfig
+@@ -783,6 +783,7 @@ CONFIG_USB_VIDEO_CLASS=m
+ CONFIG_V4L_PLATFORM_DRIVERS=y
+ CONFIG_SDR_PLATFORM_DRIVERS=y
+ CONFIG_V4L_MEM2MEM_DRIVERS=y
++CONFIG_VIDEO_CADENCE_CSI2RX=m
+ CONFIG_VIDEO_MEDIATEK_JPEG=m
+ CONFIG_VIDEO_MEDIATEK_VCODEC=m
+ CONFIG_VIDEO_IMX7_CSI=m
+@@ -804,6 +805,7 @@ CONFIG_VIDEO_SAMSUNG_EXYNOS_GSC=m
+ CONFIG_VIDEO_SAMSUNG_S5P_JPEG=m
+ CONFIG_VIDEO_SAMSUNG_S5P_MFC=m
+ CONFIG_VIDEO_SUN6I_CSI=m
++CONFIG_VIDEO_TI_J721E_CSI2RX=m
+ CONFIG_VIDEO_HANTRO=m
+ CONFIG_VIDEO_IMX219=m
+ CONFIG_VIDEO_IMX412=m
+@@ -1421,6 +1423,7 @@ CONFIG_PHY_XGENE=y
+ CONFIG_PHY_CAN_TRANSCEIVER=m
+ CONFIG_PHY_SUN4I_USB=y
+ CONFIG_PHY_CADENCE_TORRENT=m
++CONFIG_PHY_CADENCE_DPHY_RX=m
+ CONFIG_PHY_CADENCE_SIERRA=m
+ CONFIG_PHY_MIXEL_MIPI_DPHY=m
+ CONFIG_PHY_FSL_IMX8M_PCIE=y
 
- arch/arm64/boot/dts/ti/Makefile                    | 60 ++++++++++---
- arch/arm64/boot/dts/ti/k3-am62-main.dtsi           | 62 ++++++++++++++
- .../dts/ti/k3-am625-beagleplay-csi2-ov5640.dtso    | 77 +++++++++++++++++
- .../ti/k3-am625-beagleplay-csi2-tevi-ov5640.dtso   | 77 +++++++++++++++++
- arch/arm64/boot/dts/ti/k3-am62a-main.dtsi          | 99 ++++++++++++++++++++++
- arch/arm64/boot/dts/ti/k3-am62a7-sk.dts            | 35 ++++++++
- arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi     | 15 ++++
- .../arm64/boot/dts/ti/k3-am62x-sk-csi2-imx219.dtso | 76 +++++++++++++++++
- .../arm64/boot/dts/ti/k3-am62x-sk-csi2-ov5640.dtso | 74 ++++++++++++++++
- .../boot/dts/ti/k3-am62x-sk-csi2-tevi-ov5640.dtso  | 74 ++++++++++++++++
- arch/arm64/configs/defconfig                       |  3 +
- 11 files changed, 640 insertions(+), 12 deletions(-)
----
-base-commit: 569293c4ad62826ba18e1e8371ce9667a5529efb
-change-id: 20231114-csi_dts-5f433aca3665
-
-Best regards,
 -- 
-Jai Luthra <j-luthra@ti.com>
+2.42.1
 
 
