@@ -1,155 +1,131 @@
-Return-Path: <devicetree+bounces-16647-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16648-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED94D7EF2A2
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 13:30:06 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A13C27EF2A8
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 13:33:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9FD621F26B0D
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 12:30:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 98A53B20A1F
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 12:33:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6938530D13;
-	Fri, 17 Nov 2023 12:30:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB9F318E10;
+	Fri, 17 Nov 2023 12:33:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="sixIIizj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q8/AkM6q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12olkn2074.outbound.protection.outlook.com [40.92.22.74])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80493120;
-	Fri, 17 Nov 2023 04:29:59 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=co06BH6iWnHGnXdQ1QwJaoWseLKjgW9D50eQNGLy8USf2Cfkhdd/GgZjTbbTVgKo19oSClSnTd7rlmNzArUpKb/vlhtRbUER87NGF8gYk31gYSuGXqvXcsIUAs2w5qe1859HnHWGdlwPXidzTGRIDUOBALDD3DX0kSrOOMzhAaiV67BxkGSBr9PbMZzg1k1lj+fe6E2Axs6gLytV6rG6qZpVbPw4YN0lhVZPQ138ezczbU2SpCCcY+tBrc97IlY5ALM0YHFL7eFpcVXzWW2LkyEdPWiMe+a44/Nr1AoSLuPsoS89wQuT4KBV4Ta9TGEMMGAcpIvSm8WpHganECjmrQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dgb9MnYg92WAdlAIt0V37YY42Eq44e6tJfsI1M9LBjo=;
- b=RWImgo39Yfk+kItCVINP9OaPeDNAyCtO/DrCJ44Smo6uEe9GepRQmz1wkVwesnuntuY7rqGzTcHgn2POh4ulsGR9Hwkp6QiuTfTpvHI09i4Vjb9uGbJ2clq4hefxCMBAxp6xsZUJg9od7wRaJpjbE8i7WGhjbK8x5JQoxAeLMR+vyhyKS8MPvOvblXuse8Z/BB/YNW8adsfgmwdG2nKxSsYDZVrEdlBxom7s2K/KKRr1nLGy+EPcujDhGxihmdV4ddzOxTXziaS+cG1q80Iyo2mH3l+XtXFUzRHUyQR7kwlsJXiyNiJgQICunezJ55DTvK1sagq0Bc4crrbGV3h4BQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dgb9MnYg92WAdlAIt0V37YY42Eq44e6tJfsI1M9LBjo=;
- b=sixIIizjopSG8PSc7hB+IBgmBYO2avSV4Ka60mS8d2Ia1kaqYNT/7gdl8DjIrwcEe8LwamX4kbHelZSEpmzwReVKm4I59G/2e+BwFIcVY/fXN+WZMbRxm/aD6UfR1M3Tr+wakf5yusa7F4kxJIUpML92axFjOjSmorlNl2jb1FRf8atw1hiNVsp7juVWCxmu7YgB2r2hydKwgWjhynkXZFDRCRZeUBGSsIJlBBWlXEYKVsgqb24I0pdemUz7cHjRukqY10OcaLEB0sgm893mk6zxX9AjrHkxV8MasbSlw2uBFHls7gW4dSzq6kSyxI3FXHSF4UD1rOl5MDcO0Vq3mA==
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
- by PH0PR20MB6063.namprd20.prod.outlook.com (2603:10b6:510:2a3::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7002.18; Fri, 17 Nov
- 2023 12:29:56 +0000
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::55b:c350:980:ad8]) by IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::55b:c350:980:ad8%6]) with mapi id 15.20.6977.029; Fri, 17 Nov 2023
- 12:29:55 +0000
-From: Inochi Amaoto <inochiama@outlook.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh+dt@kernel.org>,
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B580130FAB;
+	Fri, 17 Nov 2023 12:33:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8AD36C433C8;
+	Fri, 17 Nov 2023 12:33:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1700224386;
+	bh=6GwD/+0RW2AAON4W/qJdWK7zK0D+kuihmnQOP4ByGns=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Q8/AkM6qMsYZXczTXA7cHWvewZuvlhCf7ZVVeo5iIVmwEZrVSyLiGZZJG5PFlIfYS
+	 adUik5JSfkw38cS68Ei5jwSAKcMIXgU6HTEe/kTg+RVSUKl0awhTx6+WDooxzfZzyk
+	 424/QbYjoMaoLyOc17nb3t2UD0sRpNCVrDWl9fVdkC5ijyALU9eHK36KrP8mvm/OVU
+	 vQDxefo/ZyS/AMjRUeIWVxgemBcQhL6iT2txRHYymjrfhcScw69JFVqUN8H4HBEn1x
+	 3lrtRc+JPxWI2XkV0UDJ4XY2uZlW8Ykt2+qstKv00MyDsKbJp2rIs8W3RwjU0SzZ5T
+	 /D4yh+oSa3FCg==
+Date: Fri, 17 Nov 2023 12:32:59 +0000
+From: Lee Jones <lee@kernel.org>
+To: Shiji Yang <yangshiji66@outlook.com>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Andrew Lunn <andrew@lunn.ch>
+Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+	Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Chen Wang <unicorn_wang@outlook.com>
-Cc: Inochi Amaoto <inochiama@outlook.com>,
-	Guo Ren <guoren@kernel.org>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: timer: thead,c900-aclint-mtimer: separate mtime and mtimecmp regs
-Date: Fri, 17 Nov 2023 20:30:21 +0800
-Message-ID:
- <IA1PR20MB49532AF0A7C6DA5A2184B250BBB7A@IA1PR20MB4953.namprd20.prod.outlook.com>
-X-Mailer: git-send-email 2.42.1
-In-Reply-To: <184ab92d-9246-43e4-a40d-465d51208585@linaro.org>
-References: <184ab92d-9246-43e4-a40d-465d51208585@linaro.org>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-TMN: [pwcW6CZLAbcI8+ZBEEC3mAoNSh9lqSZdv9M7ksQBUu0=]
-X-ClientProxiedBy: BY5PR17CA0052.namprd17.prod.outlook.com
- (2603:10b6:a03:167::29) To IA1PR20MB4953.namprd20.prod.outlook.com
- (2603:10b6:208:3af::19)
-X-Microsoft-Original-Message-ID:
- <20231117123021.1056247-1-inochiama@outlook.com>
+	Jisheng Zhang <jszhang@kernel.org>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3] dt-bindings: leds: add 'internet' and 'signal'
+ function definitions
+Message-ID: <20231117123259.GA153049@google.com>
+References: <TYAP286MB0315AE8F62E6AB48E3F9A0DDBCA5A@TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|PH0PR20MB6063:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7ab8e22e-bd7b-440e-1ee4-08dbe768e7a4
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	/or+8REnQI9qFdZgPceGkgqMlParxX3Quov2bcgg7wE1YQMOzxNm09gfIXHgUDj55ECPOGLyIFmKae6JyR5JS5UW4sL6Mlao5kPEehf6v5usMUyiQbl1ydh6fsnJZkqieqmgNze/fdiwOGStZ58UowFdWgQY9Bf0uPFRnvY2Ed0aCWJXNWbkwvHkLZSzCAb63IXvGTlc22lOxJYDOk8X/TY3MWw63pBQOrviUi+2PUb7PyLvPOo/OROyA46HB6PTbBj+sJ7dKzdSaDCg6ERaPrDxk+AR7CGYHEMAl23raCKsZowehn0HqHYAw9NcLrM7EuquEziAxInbr0IQgtpGfgB78yvFy3R9EwMZmxge7sDjlwPc0wqaGLw3yPoVF+Cf067AOix5hTnUhA29CgrbRNklS1Wc/5/sLgogot+eo1Dun0VofREaTalKwSa+1GljCI6enM/Q9I21aZbPkb4mSyilkGYuTdc+MNkgDUyuSo3F29SoN/wMpH/m8yVwB3V2uRozvxcRlcQd71cR+vL1emDDha2Wes6c55SIYnoPoH1piGKwmYopZEeJlDKg8bc+lcR07+9keGCA+GWYPpwnvT/wsdk9Zw9pgUjUKcqfratP4H0MX1u7mvVKfw8hkdxB
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?WMY1a7w0QEIBrHzCuBSq13Pu4H6884TwIkghQT6znC6eFe+AUtPnztyobMSw?=
- =?us-ascii?Q?w0mMFowhvKzPN8MWsVjan5EPp4bFvpu65iXFeDKh6D1OHtrxwQvGqKNcSHAJ?=
- =?us-ascii?Q?xBryoxwL5JRvwepg071K6JLShaCTaH2Y6kSZycjsx+nIr4dPhEqy7RWm4o9d?=
- =?us-ascii?Q?fpK8cgiO5n9IFSGi/5+Vo5h2rrIHWgg5rTdxfeajfwPMoMNYI6bvMaE9fM49?=
- =?us-ascii?Q?6bG2NdxTqxdHIxvMrkwBMKRmzfvOn+w5XPsHCPDXP4r+dBNlySUDtOXlJoQM?=
- =?us-ascii?Q?5vHGa/JrzGjri9u9fk6WTG1Kv9s53BOLwwSI+rq/rf4YXu0P+zgubO02hqtA?=
- =?us-ascii?Q?9MME9O+iW6reImU6cuDlu1fguuSiYZbSdo0UvRM6vIh3/esAgtTXU1CJYD0R?=
- =?us-ascii?Q?jyEou92vCBrKe5m+hoMqwFXgbmF8dkl7RZFTnwtInS/pavIrfjF7NvHN/AUS?=
- =?us-ascii?Q?A1cHhfQbegLAPlzXPJwnE5QiZdCxrZjpNE98/zv7heQTYe8lme7ns/uyt9s0?=
- =?us-ascii?Q?xP3kWyoTnU5g4EcrbUE0dZayDnNCYsaozUhbGTjYtcyRY55VT64+h5hQ1ipQ?=
- =?us-ascii?Q?hzAqlqkBii3KErEI+ksp9iqOKcTDG09jCOGrdF78Mna27kdTPEuAdh8y2B9Z?=
- =?us-ascii?Q?1c2Kha3Yudbrt9IThXDwozUKxZV82ceoENX7zyujF8CDAiMEGcDcTToN09Z4?=
- =?us-ascii?Q?bwbASuNb2udlcwOU3MS93bpLlURhufCblq3/HWW1Q68/2muiI38x4a6tBDdC?=
- =?us-ascii?Q?r7+InrHOAWwo63+1qEH4X+1dshoUbf5VbcgR8uAgo2sQYxCH+4DbNoW20vkc?=
- =?us-ascii?Q?+jt6Fc4TM1Ut5XqRs4pUwAVpbd/0rf/ZKdGW+8Z2j7EI0pNnwk8xNewn/Kok?=
- =?us-ascii?Q?aiDplUKpabnA5pirmc7+fXvhOlh7i6Ocn1s5dPalPS9k/kIPacbDrViJWbb+?=
- =?us-ascii?Q?bnoprCIlUggSKgE/ZYCVKIZtPDIcHUHQ9f81ZtniBWsB2I3LddKpxIidL8B9?=
- =?us-ascii?Q?wDgnwweZLugoxLsWRrw4LuFljgw9LTKXft+7mv9ObD79cvWIQOKiulrBfodA?=
- =?us-ascii?Q?ZWE62GK+d0+MBpl7INcKy+eqDNt+9L4ikjrXD9N5bMNooItwX+9nlGvrtqub?=
- =?us-ascii?Q?bpKQW9yoQlzK8rCSV5zj0wuD/qucXdiZvOzKTL8zKSgl4VXb40gWE0472zvL?=
- =?us-ascii?Q?Iiv60TziqxuLfVWS6Ct5boY+tJRCBi/QpFquT8OYYq5TA/n8NE7zoMhQ0FE?=
- =?us-ascii?Q?=3D?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7ab8e22e-bd7b-440e-1ee4-08dbe768e7a4
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Nov 2023 12:29:55.4370
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR20MB6063
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <TYAP286MB0315AE8F62E6AB48E3F9A0DDBCA5A@TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM>
 
->
->On 17/11/2023 06:07, Inochi Amaoto wrote:
->> The timer registers of aclint don't follow the clint layout and can
->> be mapped on any different offset. As sg2042 uses separated timer
->> and mswi for its clint, it should follow the aclint spec and have
->> separated registers.
->>
->> The previous patch introduced a new type of T-HEAD aclint timer which
->> has clint timer layout. Although it has the clint timer layout, it
->> should follow the aclint spec and uses the separated mtime and mtimecmp
->> regs. So a ABI change is needed to make the timer fit the aclint spec.
->>
->> To make T-HEAD aclint timer more closer to the aclint spec, use
->> regs-names to represent the mtimecmp register, which can avoid hack
->> for unsupport mtime register of T-HEAD aclint timer.
->>
->
->I don't understand this reasoning. You had one entry, you still have one
->entry. Adding reg-names (not regs-names) does not change it.
->
+[Intentional top-post]
 
-If no "reg-names", all the register of ACLINT should be defined. However,
-T-HEAD aclint timer of sg2042 only supports mtimecmp register. If no extra
-prompt is provided for the SBI, it will fail to recognize aclint timer
-registers when parsing the aclint node with one reg entry.
+Andrew, Florian,
 
-There is another way to avoid this by using an empty entry to identify
-unsupported mtime, but Conor have already rejected this. See [1].
+Does this fall into your area of expertise?
 
-Link: https://lore.kernel.org/all/20231114-skedaddle-precinct-66c8897227bb@squawk/ [1]
+On Fri, 03 Nov 2023, Shiji Yang wrote:
+
+> These two types of LEDs are widely used in routers and NICs.
+> 
+> The 'signal' LED is used to display the wireless signal strength.
+> Usually, there are 3~4 LEDs in one group to indicate the signal
+> strength, similar to the signal icon on a mobile phone.
+> 
+> The 'internet' LED can indicate whether the device can access a
+> specific server. It's different from 'wan'. 'wan' usually indicates
+> whether the WAN port is connected to the modem (internet services
+> may still be unavailable). But the 'internet' shows if the device
+> can successfully ping servers such as 8.8.8.8 to detect the internet
+> connection status. When the router is running in AP only mode, we
+> can even connect LAN port to the AC/modem to connect to the internet.
+> In this case, the 'internet' LED should be on. On some routers, both
+> 'internet' and 'wan' are available and can be controlled separately.
+> 
+> Signed-off-by: Shiji Yang <yangshiji66@outlook.com>
+> ---
+> 
+> Changes in v2:
+> * Remove the LED name sorting patch as it changes the ABI.
+> * Add "devicetree@vger.kernel.org" to '--to' list.
+>   Thanks to Rob Herring and Krzysztof Kozlowski for letting me know I
+>   can send patch to multiple mailing list at once.
+> 
+> Changes in v3:
+> * Add more information about the new added LEDs.
+> * Remove the missing LED fix as Jisheng Zhang has already sent a
+>   similar one. I should search the mailing list first...
+> 
+> v1:
+> https://lore.kernel.org/all/TYAP286MB0315FE921FF113BF76F7B700BCA0A@TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM/
+> 
+> v2:
+> https://lore.kernel.org/all/TYAP286MB03159A83A77E6FD59F271D9BBCA0A@TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM/
+> 
+>  include/dt-bindings/leds/common.h | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/include/dt-bindings/leds/common.h b/include/dt-bindings/leds/common.h
+> index 9a0d33d02..55a426e39 100644
+> --- a/include/dt-bindings/leds/common.h
+> +++ b/include/dt-bindings/leds/common.h
+> @@ -88,11 +88,13 @@
+>  #define LED_FUNCTION_FLASH "flash"
+>  #define LED_FUNCTION_HEARTBEAT "heartbeat"
+>  #define LED_FUNCTION_INDICATOR "indicator"
+> +#define LED_FUNCTION_INTERNET "internet"
+>  #define LED_FUNCTION_LAN "lan"
+>  #define LED_FUNCTION_MAIL "mail"
+>  #define LED_FUNCTION_MTD "mtd"
+>  #define LED_FUNCTION_PANIC "panic"
+>  #define LED_FUNCTION_PROGRAMMING "programming"
+> +#define LED_FUNCTION_RSSI "rssi"
+>  #define LED_FUNCTION_RX "rx"
+>  #define LED_FUNCTION_SD "sd"
+>  #define LED_FUNCTION_STANDBY "standby"
+> -- 
+> 2.39.2
+> 
+
+-- 
+Lee Jones [李琼斯]
 
