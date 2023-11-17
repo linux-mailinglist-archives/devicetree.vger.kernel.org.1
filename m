@@ -1,110 +1,112 @@
-Return-Path: <devicetree+bounces-16559-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16560-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFE927EEF81
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 10:58:26 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94F4A7EEF99
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 11:00:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C4784B209CF
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 09:58:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 93ABD1C20A90
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 10:00:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DE2E17988;
-	Fri, 17 Nov 2023 09:58:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 121B018029;
+	Fri, 17 Nov 2023 10:00:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="EVJLxhTO"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="AyVKdcVo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::225])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42986CE;
-	Fri, 17 Nov 2023 01:58:14 -0800 (PST)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 8D1311C000C;
-	Fri, 17 Nov 2023 09:58:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1700215093;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=P4oNQfBYlP0AUFjj519pmqm6CCbxiBl1lNX7nXCCgt0=;
-	b=EVJLxhTOOVfvd33Q80JnB+XnSjByT68Q3jMleNJjJUxeIFxwaMM7KtWiP3rhrh17K7hJjl
-	sCvVVbITb/hJeupyFUxjrBmn7Xn5shTxVixdaOAQYsm024OTXLKACmyT4/v3eeBoEQOGWz
-	jDOUZlj/HXfFA6g3o+wz299a0RVrjBoAIrPXiqAzpTsRkS1e0vjhkmot05yXW43PhSclBr
-	qSc2HZ0daoGKLuTZ7371FKP5/6qFozzliywTaE3KPTLI/NvIJ8wK2LQywM8W9k1AXLJ7bD
-	EnGKye/pSQG8peGAvI9WQSCJGBiUXsZGcOs6E6WQNwWUOICxwo9fxfK2LMOxdA==
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C53284;
+	Fri, 17 Nov 2023 02:00:13 -0800 (PST)
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AH9KDIL002157;
+	Fri, 17 Nov 2023 09:59:59 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=q3iC62ynP/mZpKHk8fWgTSo66zEj7Zi2/0wjFcoZTGQ=;
+ b=AyVKdcVov8hJCEoszwR2yzPg3FtYQpFAdLCOUa7IkkAHIW3yLfu/cIFgnXe3kisPG/C8
+ HN/xE3WgmimYrTZERjSsijSfrXapuGaJ63qIH2VmgysX59q0O2CRzDOLoVA42l2OFayr
+ nGbMKGoa4zWinQUTgJFC9IOQegFjvaYkIB6dKQluAmVsSKABJT8ylxHD3sutd45uoK4F
+ Snd9P7WBL1JKyZoNk3QcIUa5tf4RfBcBUGUGP3NDHNazMwv09Fu1WbDLiaDxq8Z1+V9X
+ jPCgEO3FWKlEIKDzZeDnTtIXv3gjyM3GwJ4TtJ+ADkrTvRcUrnxOEtFYZeFERAFJY3/8 1A== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ue5exr2hq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 17 Nov 2023 09:59:59 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AH9xvmZ009296
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 17 Nov 2023 09:59:57 GMT
+Received: from [10.253.8.81] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Fri, 17 Nov
+ 2023 01:59:53 -0800
+Message-ID: <7e856fc9-25c7-489f-8a42-759ed126ae68@quicinc.com>
+Date: Fri, 17 Nov 2023 17:59:51 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 17 Nov 2023 10:58:12 +0100
-Message-Id: <CX0ZY6JPH6HP.3JWUAN8KZ2SZB@tleb-bootlin-xps13-01>
-Cc: "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>, "Rob Herring"
- <robh+dt@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Roger Quadros" <rogerq@kernel.org>, "Pawel Laszczak" <pawell@cadence.com>,
- "Nishanth Menon" <nm@ti.com>, "Vignesh Raghavendra" <vigneshr@ti.com>,
- "Tero Kristo" <kristo@kernel.org>, <linux-usb@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-arm-kernel@lists.infradead.org>
-To: "Peter Chen" <peter.chen@kernel.org>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Subject: Re: [PATCH 4/6] usb: cdns3: support power-off of controller when in
- host role
-X-Mailer: aerc 0.15.2
-References: <20231113-j7200-usb-suspend-v1-0-ad1ee714835c@bootlin.com>
- <20231113-j7200-usb-suspend-v1-4-ad1ee714835c@bootlin.com>
- <20231114083838.GC64573@nchen-desktop>
- <CWYHLRBFE1X1.15330WETL2R7U@tleb-bootlin-xps13-01>
- <20231117033814.GA485583@nchen-desktop>
-In-Reply-To: <20231117033814.GA485583@nchen-desktop>
-X-GND-Sasl: theo.lebrun@bootlin.com
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/9] net: mdio: ipq4019: Enable GPIO reset for ipq5332
+ platform
+Content-Language: en-US
+To: Andrew Lunn <andrew@lunn.ch>
+CC: <agross@kernel.org>, <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+        <pabeni@redhat.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <hkallweit1@gmail.com>, <linux@armlinux.org.uk>,
+        <robert.marko@sartura.hr>, <linux-arm-msm@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_srichara@quicinc.com>
+References: <20231115032515.4249-1-quic_luoj@quicinc.com>
+ <20231115032515.4249-4-quic_luoj@quicinc.com>
+ <e740a206-37af-49b1-a6b6-baa3c99165c0@lunn.ch>
+ <33246b49-2579-4889-9fcb-babec5003a88@quicinc.com>
+ <dd2c3cfa-f7ee-4abb-9eff-2aac04fa914f@lunn.ch>
+From: Jie Luo <quic_luoj@quicinc.com>
+In-Reply-To: <dd2c3cfa-f7ee-4abb-9eff-2aac04fa914f@lunn.ch>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: M_yXy1nGjp7G9GwYZKFTPx6kEDNQjrct
+X-Proofpoint-ORIG-GUID: M_yXy1nGjp7G9GwYZKFTPx6kEDNQjrct
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-17_07,2023-11-16_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 suspectscore=0
+ impostorscore=0 bulkscore=0 phishscore=0 malwarescore=0 adultscore=0
+ priorityscore=1501 clxscore=1015 lowpriorityscore=0 spamscore=0
+ mlxlogscore=774 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2311060000 definitions=main-2311170073
 
-Hello,
 
-On Fri Nov 17, 2023 at 4:38 AM CET, Peter Chen wrote:
-> On 23-11-14 12:10:18, Th=C3=A9o Lebrun wrote:
-> > Hello,
-> >=20
-> > On Tue Nov 14, 2023 at 9:38 AM CET, Peter Chen wrote:
-> > > > +	if (cdns->pdata && cdns->pdata->quirks & CDNS3_RESET_ON_RESUME)
-> > > > +		cdns->xhci_plat_data->quirks |=3D XHCI_RESET_ON_RESUME | XHCI_SU=
-SPEND_RESUME_CLKS;
-> > > > +
-> > >
-> > > If you set this flag, how could you support the USB remote wakeup
-> > > request? In that case, the USB bus does not expect re-enumeration.
-> >=20
-> > We didn't support remote USB wakeup. Only S2R mattered in our case and
-> > USB remote wakeup wasn't a possibility.
->
-> Without this patch, will below be hit for your platform:
->
-> 	/* re-initialize the HC on Restore Error, or Host Controller Error */
-> 	if (temp & (STS_SRE | STS_HCE)) {
-> 		reinit_xhc =3D true;
-> 		if (!xhci->broken_suspend)
-> 			xhci_warn(xhci, "xHC error in resume, USBSTS 0x%x, Reinit\n", temp);
-> 	}
 
-Yes it hits. The warning as well. How big of an issue is that?
+On 11/17/2023 1:20 AM, Andrew Lunn wrote:
+>> FYI, here is the sequence to bring up qca8084.
+>> a. enable clock output to qca8084.
+>> b. do gpio reset of qca8084.
+>> c. customize MDIO address and initialization configurations.
+>> d. the PHY ID can be acquired.
+> 
+> This all sounds like it is specific to the qca8084, so it should be in
+> the driver for the qca8084.
+> 
+> Its been pointed out you can get the driver to load by using the PHY
+> ID in the compatible. You want the SoC clock driver to export a CCF
+> clock, which the PHY driver can use. The PHY driver should also be
+> able to get the GPIO. So i think the PHY driver can do all this.
+> 
+>       Andrew
 
-My understanding is that this is the expected behavior with reset on
-resume if we don't explicitely pass the flag XHCI_RESET_ON_RESUME. I
-don't think we should be having the broken_suspend bit set as its
-mentioning some specific quirk on AMD hardware.
-
-Is the only expected difference inbetween having CDNS3_RESET_ON_RESUME &
-not having it is resume time? For reference, the status read is 0x411
-ie STS_HALT | STS_PCD | STS_SRE. xhc_state is zero.
-
-Regards,
-
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Yes, Andrew, that is feasible, i will update the patches to move the
+initialized clock configs in the PHY probe function.
 
