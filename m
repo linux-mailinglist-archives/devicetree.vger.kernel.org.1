@@ -1,244 +1,156 @@
-Return-Path: <devicetree+bounces-16514-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16517-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A5A47EEEA0
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 10:30:30 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADAA57EEEC5
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 10:33:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8D6511C20A9F
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 09:30:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1BFD9B209A9
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 09:33:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 718D0134AB;
-	Fri, 17 Nov 2023 09:30:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE1731401A;
+	Fri, 17 Nov 2023 09:33:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="r8M4t6tR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AbJpxXIK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2079.outbound.protection.outlook.com [40.107.94.79])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02D71D72;
-	Fri, 17 Nov 2023 01:30:12 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=NvB384MRywjKZnXklDYhrDoCHC2CnLbz2nkYAsCkyjLrfuX5U5k3RZrkM3kJSe1yJ2O0ojpbwlQzP8T+bF0ST2vtJVTAgvMGpUFtsxUvwWcI2dFz7OGxy3akKEoXRalhWi2WrsWGo79iGXeIxD9C/ST37oaYDgesyCQsG5jZR9D/5DzEsXKjwfuiJnESXCuPBw1hIeaN2YRkPsGmUs8gEPTTaTfWScOT6uBAMPmCz6n6MvhHojq2g/BumPcj7RlkCIBu8OBGFrWdNJmEV3a+8BaYHg5s/ZVqkCSvWqnCeWa0Ewelq246IfbGAQKcFqyskKN8CRNu5Lal8UULvFZsaA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ADYf81Hycw0btEuUqlS0DbgN0xoea1hWZrRYHuIyxfE=;
- b=BIsZw2nMvhFRt5Gmj78JDkfkHB7tBzy3JI0hjGe2ipAw143hi+roBXS5K8Cg5gVK7AIGaIzh8mDoujW0fjvTRLMj4dAIL8n+s3BiPGB5pgtodgtmTwSVFKcj9eu5AhSn7ZUYdrBd7rIzLbfTTCXbU8wg618qoT7Wcorv2iXyDu1kWEFan+lmAOpMMI3OKseE81TOmUlIsX12IA1+snqe6kVAPbUXtT9q83HBT9ZW9AKYBTpuj7HXSYHQ4RX/MiqVP6luvPOjYIBhHh/wZLNapVcAKd2xdc4jFC4c+l8E0YjwZ2RgsQqVdOYxDBidMI9LBJawkEciH6qK6W2VLrqc+Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=grandegger.com smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ADYf81Hycw0btEuUqlS0DbgN0xoea1hWZrRYHuIyxfE=;
- b=r8M4t6tRZr2PFP8Z4B6ns7IvUuqc5/0W/NFjFGCTnm58LWBNCSDsmYYY5exmC9NnCv051Vx7VqJq0546nSONzodhEvhvlQYHBMKsxciPBWZDcsQIjnz9MRQV/0wwNYulv8Yy19Mppm/8YU9MMWH5bE6sSBqimTReFx8OTQ0NoB0=
-Received: from CH0PR04CA0050.namprd04.prod.outlook.com (2603:10b6:610:77::25)
- by BL3PR12MB6619.namprd12.prod.outlook.com (2603:10b6:208:38e::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7002.23; Fri, 17 Nov
- 2023 09:30:09 +0000
-Received: from SA2PEPF000015C8.namprd03.prod.outlook.com
- (2603:10b6:610:77:cafe::11) by CH0PR04CA0050.outlook.office365.com
- (2603:10b6:610:77::25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7002.20 via Frontend
- Transport; Fri, 17 Nov 2023 09:30:08 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- SA2PEPF000015C8.mail.protection.outlook.com (10.167.241.198) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7002.20 via Frontend Transport; Fri, 17 Nov 2023 09:30:08 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.32; Fri, 17 Nov
- 2023 03:30:04 -0600
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB06.amd.com
- (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.32; Fri, 17 Nov
- 2023 03:30:03 -0600
-Received: from xhdvnc205.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.32 via Frontend
- Transport; Fri, 17 Nov 2023 03:29:59 -0600
-From: Srinivas Goud <srinivas.goud@amd.com>
-To: <wg@grandegger.com>, <mkl@pengutronix.de>, <davem@davemloft.net>,
-	<edumazet@google.com>, <kuba@kernel.org>, <pabeni@redhat.com>,
-	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-	<conor+dt@kernel.org>, <p.zabel@pengutronix.de>
-CC: <git@amd.com>, <michal.simek@xilinx.com>, <linux-can@vger.kernel.org>,
-	<netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<appana.durga.rao@xilinx.com>, <naga.sureshkumar.relli@xilinx.com>, "Srinivas
- Goud" <srinivas.goud@amd.com>
-Subject: [PATCH v5 3/3] can: xilinx_can: Add ethtool stats interface for ECC errors
-Date: Fri, 17 Nov 2023 14:58:56 +0530
-Message-ID: <1700213336-652-4-git-send-email-srinivas.goud@amd.com>
-X-Mailer: git-send-email 2.1.1
-In-Reply-To: <1700213336-652-1-git-send-email-srinivas.goud@amd.com>
-References: <1700213336-652-1-git-send-email-srinivas.goud@amd.com>
+Received: from mail-yw1-x1133.google.com (mail-yw1-x1133.google.com [IPv6:2607:f8b0:4864:20::1133])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5C0FD4F
+	for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 01:33:30 -0800 (PST)
+Received: by mail-yw1-x1133.google.com with SMTP id 00721157ae682-5c59fe8b07bso12534397b3.2
+        for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 01:33:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1700213610; x=1700818410; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=v760LgpcfQOP0YeuG/30ZJ0hYcCt31Y4fxVmQiAp9qA=;
+        b=AbJpxXIKhs5PE+dfsniMzY02N9ojS6WFDP3EZX41VNtFg/xjoVu0PD67zZia3ZLcgx
+         dUdQgkDKlXxdzp/orUKj/A7hzP1Sz4AXiYH+tdHciedS8XsNyQ8FUm7EJ9NsF8TG7ybp
+         1Niy3XIf3/spEW6v2jT5W0OyftXYghhu0/BXfqdcjd8bA8YMRD8ZahLpPdqiCLoO5gjk
+         sIsLWZ7GLxUsmf38dMs6LsynWQEHn8kCXZCx6be1p0YmFfl0i48qGNVhEDdEPfWgehq3
+         Ztr8EgW6//kIQKHokvgwjqPhwUQDUeiu6bi0i7ZEGN5b5foiuYZQn6fSVg6rbFzvKcjO
+         TIuw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700213610; x=1700818410;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=v760LgpcfQOP0YeuG/30ZJ0hYcCt31Y4fxVmQiAp9qA=;
+        b=kOIWppm2+bOlt6ChJlh0p9WL9WrcpoL52lckxUgezB7igHZdsqI2DThU+kLgzbTKyy
+         LoMCKobFNpYiPWSUmwUfaSB8u5CThInM8/VSMoPjFf+/XQTYXPXq0DTeumF6HZNr2DI4
+         97DgF06fHRMeVgVwt6+1SfQeH+SjHhkD/CUpQGShwOY99FBqpFfFgdyyvmmc6EPL2A6G
+         IM0Q1GHSnDo582cJlb1+XtVfT4cXghn14WNFtpPJG52rjRbglp6fBf3UC284RhJiTF7R
+         3djhYUqh425Gbvh3qMq+xSCuIZDQfQGg0Qja3fhyc1k5Crbb6jAfideZarX/IKF/m7QD
+         C+WA==
+X-Gm-Message-State: AOJu0Yw0QBUaesyxMXp0y7ueEHWise/n65MBHNwCLBVkh0IA9NHpVdQe
+	6xjyLum1WHOpmhasr2lvCnnVwFikaar4qXb5DdVPMA==
+X-Google-Smtp-Source: AGHT+IFK3e0M4t/vG0KKQGcetbavVwPTP98E38NRyc8wthbNVKwBEsAsuMN/W/rfY75Lu6AiZ0ieKM7si7+AeZXz+wU=
+X-Received: by 2002:a81:9c52:0:b0:5c6:9488:4c99 with SMTP id
+ n18-20020a819c52000000b005c694884c99mr1803791ywa.18.1700213610008; Fri, 17
+ Nov 2023 01:33:30 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA2PEPF000015C8:EE_|BL3PR12MB6619:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5a075f94-b650-4b82-72d8-08dbe74fca76
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	GUMDBJYBwDNCsU3pvkF0h1D15Q2al5FQizTTa4vynbJZoz+oFQEqU8GVNP20PjS/qBcQ4dJo9QCFwwQ17yll/xg48QG8+Wgnb5Fqjyhix10ka2vvppaeiL9yAlNNraGUhwLld+Q514Agei0WJZeMZFVzs+1Twaj3+VmvE6mVCWkFHipQlhz5eo0ptIZr4Rzq33fjOiiBGVeITYGn0Nc/3ierFop5AVWgkCGGQnfxJWMEoLsBeh31R8NmW4+nB2TWFc4OWBUXQcRyZwKftMTGejSvFBfT2+K5+6djNhSouGeWWD2xLS8eBfNuSliaCUWFziVm8kMnG3GdnMmfDfwb9wOTgxqKJS9tNmZj7ZQYM8K2T8KPTVQNjqd7IDqLlbVTY8zSv4crxUH7Dt1lHWuaq7NwrXDou3+l0MuzroxRlVqvBIzh2M7M7qwvfWBOjRE3gW+6Wj8ePsc13eYM7r5ri6miDxRXo67RN4ZYjH6suId0BYkJhqpZHWy1KqBzbpNNZmBNR4l5h6onyz2DUzA0jbf1cK8IFRmk6jKjttsCTV0czmReLMmusQ1RV1zcIqvvpQ2jZO4b5BOJD+/fB2YTWIZqYA2G4FSd9RqYCcOLVPZIbmFb7ZSG3EwASqDPcBCoVPdE7hPrxags4dFugqLsvFwiNTJlOXlgYq4jCItO0aZySdaB18JmGD5FatOV7M6gUTISLazC3jJrX7OL4vQrUrjscUWAr7cpQWYGIWi2gvLjP79IGsXeh9YBU5riRX2FSYytHoiRZbGpNrUAnNXV6uz3r/3PzAF3zlVv21VUyxk=
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(136003)(39860400002)(376002)(346002)(396003)(230922051799003)(1800799009)(451199024)(186009)(82310400011)(64100799003)(36840700001)(40470700004)(46966006)(41300700001)(44832011)(36756003)(40460700003)(2906002)(7416002)(5660300002)(86362001)(921008)(2616005)(26005)(40480700001)(83380400001)(82740400003)(336012)(426003)(6666004)(478600001)(47076005)(81166007)(356005)(36860700001)(316002)(54906003)(4326008)(8676002)(8936002)(70206006)(70586007)(110136005)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Nov 2023 09:30:08.7625
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5a075f94-b650-4b82-72d8-08dbe74fca76
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SA2PEPF000015C8.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR12MB6619
+References: <20231103184655.23555-1-quic_kbajaj@quicinc.com>
+ <20231103184655.23555-3-quic_kbajaj@quicinc.com> <CAA8EJprNyu0r_mV9hbKA1fSvoEvTHuk5umxU8H64Voj_cnZcFQ@mail.gmail.com>
+ <4d8c094f-07b0-2b38-4680-145eb2d7c4f5@quicinc.com>
+In-Reply-To: <4d8c094f-07b0-2b38-4680-145eb2d7c4f5@quicinc.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Fri, 17 Nov 2023 11:33:18 +0200
+Message-ID: <CAA8EJpr_PwD0kD0RdgcwLCGaCdau+3EUPAQd32hxccNbtoKaKg@mail.gmail.com>
+Subject: Re: [RFC PATCH 2/2] arm64: dts: qcom: qcm6490: Add qcm6490 idp and
+ rb3 board
+To: Komal Bajaj <quic_kbajaj@quicinc.com>
+Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, quic_nainmeht@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
 
-Add ethtool stats interface for reading FIFO 1bit/2bit ECC errors information.
+On Fri, 17 Nov 2023 at 08:53, Komal Bajaj <quic_kbajaj@quicinc.com> wrote:
 
-Signed-off-by: Srinivas Goud <srinivas.goud@amd.com>
----
-Changes in v5:
-Address review comments
-Add get_strings and get_sset_count stats interface
-Use u64 stats helper function
+No HTML mail on kernel mailing lists, please. Some developers can have
+'MIME => junk' mail filters.
+And replying to the HTML mail messes up quotation level.
 
-Changes in v4:
-None
- 
-Changes in v3:
-None
- 
-Changes in v2:
-Add ethtool stats interface
+> On 11/4/2023 3:52 AM, Dmitry Baryshkov wrote:
+>
+> On Fri, 3 Nov 2023 at 20:49, Komal Bajaj <quic_kbajaj@quicinc.com> wrote:
+>
+> Add qcm6490 devicetree file for QCM6490 IDP and QCM6490 RB3
+> platform. QCM6490 is derived from SC7280 meant for various
+> form factor including IoT.
+>
+> Supported features are, as of now:
+> * Debug UART
+> * eMMC (only in IDP)
+> * USB
+>
+> Co-developed-by: Naina Mehta <quic_nainmeht@quicinc.com>
+> Signed-off-by: Naina Mehta <quic_nainmeht@quicinc.com>
+> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/Makefile             |   2 +
+>  arch/arm64/boot/dts/qcom/qcm6490-idp.dts      |  33 ++
+>  .../boot/dts/qcom/qcm6490-iot-common.dtsi     | 291 ++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/qcm6490-rb3.dts      |  26 ++
+>  4 files changed, 352 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+>  create mode 100644 arch/arm64/boot/dts/qcom/qcm6490-iot-common.dtsi
+>  create mode 100644 arch/arm64/boot/dts/qcom/qcm6490-rb3.dts
+>
+>
+> [...]
+>
+>
+> diff --git a/arch/arm64/boot/dts/qcom/qcm6490-rb3.dts b/arch/arm64/boot/dts/qcom/qcm6490-rb3.dts
+> new file mode 100644
+> index 000000000000..5b4c2826ac5c
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/qcm6490-rb3.dts
+> @@ -0,0 +1,26 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +/*
+> + * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+> + */
+> +
+> +/dts-v1/;
+> +
+> +/* PM7250B is configured to use SID8/9 */
+> +#define PM7250B_SID 8
+> +#define PM7250B_SID1 9
+> +
+> +#include "qcm6490-iot-common.dtsi"
+> +#include "pm7250b.dtsi"
+> +
+> +/ {
+> +       model = "Qualcomm Technologies, Inc. QCM6490 RB3";
+>
+> Is this a marketing name of the platform?
+>
+>
+> Sorry for the confusion, QCS6490 RB3gen2 is the correct marketing name for this board.
+> Will correct this in the next patchset.
 
- drivers/net/can/xilinx_can.c | 54 ++++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 54 insertions(+)
+Then it is probably "Qualcomm Technologies, Inc. Robotics RB3gen2"?
 
-diff --git a/drivers/net/can/xilinx_can.c b/drivers/net/can/xilinx_can.c
-index c8691a1..40c912b 100644
---- a/drivers/net/can/xilinx_can.c
-+++ b/drivers/net/can/xilinx_can.c
-@@ -228,6 +228,7 @@ struct xcan_devtype_data {
-  * @transceiver:		Optional pointer to associated CAN transceiver
-  * @rstc:			Pointer to reset control
-  * @ecc_enable:			ECC enable flag
-+ * @stats_lock:			Lock for synchronizing ECC errors stats
-  * @ecc_2bit_rxfifo_cnt:	RXFIFO 2bit ECC count
-  * @ecc_1bit_rxfifo_cnt:	RXFIFO 1bit ECC count
-  * @ecc_2bit_txolfifo_cnt:	TXOLFIFO 2bit ECC count
-@@ -254,6 +255,7 @@ struct xcan_priv {
- 	struct phy *transceiver;
- 	struct reset_control *rstc;
- 	bool ecc_enable;
-+	spinlock_t stats_lock; /* Lock for synchronizing ECC errors stats */
- 	u64_stats_t ecc_2bit_rxfifo_cnt;
- 	u64_stats_t ecc_1bit_rxfifo_cnt;
- 	u64_stats_t ecc_2bit_txolfifo_cnt;
-@@ -347,6 +349,12 @@ static const struct can_tdc_const xcan_tdc_const_canfd2 = {
- 	.tdcf_max = 0,
- };
- 
-+static const char xcan_priv_flags_strings[][ETH_GSTRING_LEN] = {
-+	"err-ecc-rx-2-bit", "err-ecc-rx-1-bit",
-+	"err-ecc-txol-2-bit", "err-ecc-txol-1-bit",
-+	"err-ecc-txtl-2-bit", "err-ecc-txtl-1-bit",
-+};
-+
- /**
-  * xcan_write_reg_le - Write a value to the device register little endian
-  * @priv:	Driver private data structure
-@@ -1171,6 +1179,9 @@ static void xcan_err_interrupt(struct net_device *ndev, u32 isr)
- 
- 	if (priv->ecc_enable && isr & XCAN_IXR_ECC_MASK) {
- 		u32 reg_rx_ecc, reg_txol_ecc, reg_txtl_ecc;
-+		unsigned long flags;
-+
-+		spin_lock_irqsave(&priv->stats_lock, flags);
- 
- 		reg_rx_ecc = priv->read_reg(priv, XCAN_RXFIFO_ECC_OFFSET);
- 		reg_txol_ecc = priv->read_reg(priv, XCAN_TXOLFIFO_ECC_OFFSET);
-@@ -1182,6 +1193,8 @@ static void xcan_err_interrupt(struct net_device *ndev, u32 isr)
- 		priv->write_reg(priv, XCAN_ECC_CFG_OFFSET, XCAN_ECC_CFG_REECRX_MASK |
- 				XCAN_ECC_CFG_REECTXOL_MASK | XCAN_ECC_CFG_REECTXTL_MASK);
- 
-+		spin_unlock_irqrestore(&priv->stats_lock, flags);
-+
- 		if (isr & XCAN_IXR_E2BERX_MASK) {
- 			u64_stats_add(&priv->ecc_2bit_rxfifo_cnt,
- 				      FIELD_GET(XCAN_ECC_2BIT_CNT_MASK, reg_rx_ecc));
-@@ -1637,6 +1650,44 @@ static int xcan_get_auto_tdcv(const struct net_device *ndev, u32 *tdcv)
- 	return 0;
- }
- 
-+static void xcan_get_strings(struct net_device *ndev, u32 stringset, u8 *buf)
-+{
-+	switch (stringset) {
-+	case ETH_SS_STATS:
-+		memcpy(buf, &xcan_priv_flags_strings,
-+		       sizeof(xcan_priv_flags_strings));
-+	}
-+}
-+
-+static int xcan_get_sset_count(struct net_device *netdev, int sset)
-+{
-+	switch (sset) {
-+	case ETH_SS_STATS:
-+		return ARRAY_SIZE(xcan_priv_flags_strings);
-+	default:
-+		return -EOPNOTSUPP;
-+	}
-+}
-+
-+static void xcan_get_ethtool_stats(struct net_device *ndev,
-+				   struct ethtool_stats *stats, u64 *data)
-+{
-+	struct xcan_priv *priv = netdev_priv(ndev);
-+	unsigned long flags;
-+	int i = 0;
-+
-+	spin_lock_irqsave(&priv->stats_lock, flags);
-+
-+	data[i++] = u64_stats_read(&priv->ecc_2bit_rxfifo_cnt);
-+	data[i++] = u64_stats_read(&priv->ecc_1bit_rxfifo_cnt);
-+	data[i++] = u64_stats_read(&priv->ecc_2bit_txolfifo_cnt);
-+	data[i++] = u64_stats_read(&priv->ecc_1bit_txolfifo_cnt);
-+	data[i++] = u64_stats_read(&priv->ecc_2bit_txtlfifo_cnt);
-+	data[i++] = u64_stats_read(&priv->ecc_1bit_txtlfifo_cnt);
-+
-+	spin_unlock_irqrestore(&priv->stats_lock, flags);
-+}
-+
- static const struct net_device_ops xcan_netdev_ops = {
- 	.ndo_open	= xcan_open,
- 	.ndo_stop	= xcan_close,
-@@ -1646,6 +1697,9 @@ static const struct net_device_ops xcan_netdev_ops = {
- 
- static const struct ethtool_ops xcan_ethtool_ops = {
- 	.get_ts_info = ethtool_op_get_ts_info,
-+	.get_strings = xcan_get_strings,
-+	.get_sset_count = xcan_get_sset_count,
-+	.get_ethtool_stats = xcan_get_ethtool_stats,
- };
- 
- /**
+> +       compatible = "qcom,qcm6490-rb3", "qcom,qcm6490";
+>
+> chassis-type = ?
+>
+>
+> No, this won't be needed as it is an evaluation board and will be used for multiple use cases.
+> So, we don't want to mark it to any specific type.
+
+Then it is "embedded". We should probably update existing
+dragonboards/RB boards to have this type too.
+
 -- 
-2.1.1
-
+With best wishes
+Dmitry
 
