@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-16593-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16595-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 355187EF073
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 11:31:23 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18B2E7EF079
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 11:31:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D46121F2672E
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 10:31:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C3796280FC2
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 10:31:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D629D270;
-	Fri, 17 Nov 2023 10:31:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 489A6D270;
+	Fri, 17 Nov 2023 10:31:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="j5kmtH5B"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kWapA/u5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F52C1702
-	for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 02:31:14 -0800 (PST)
-Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-5484ef5e3d2so386826a12.3
-        for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 02:31:14 -0800 (PST)
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EA4D1725
+	for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 02:31:32 -0800 (PST)
+Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-53e3b8f906fso2657477a12.2
+        for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 02:31:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700217073; x=1700821873; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1700217091; x=1700821891; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=m8hqxAEu5F8fIoBRR/eQ2vaQTLBlxxChgjeDIF/8l7M=;
-        b=j5kmtH5B355LcrySdHQJWxcP5GIX75UgoiQrp6j5Hq4XBXRY0bhcv3jmZaSNVbhXnR
-         lTZoC7fdBxq0/9nfvtheeURgN2ONxdmJMSCzwmDfRY7YuuOLtGrbW/ekfC5LrI0I84iF
-         66skqsaNPE1SPH5rJcOwZRarvyFq8g3+dvFoeWxveVW/yjflwrlSUoWMt4YfuZHV9byR
-         wih+E7a0wkLbYypRaS1aLS8nhVHIVjluWiewlkMUpSQ2fkLhmwWc2XLiCG/NZGCZnxfo
-         hv6Pimrjj5UOzbo+bBEoSnooJBqaWXdm6S7OhXDgf2MSHXQRgD5oMm/b8RRzTLfvU4Qo
-         T+VQ==
+        bh=Fq/mBkkFvRGdzVgNdzV1zuTizhcwiAr3fhu4RMypp6Q=;
+        b=kWapA/u51nQtFVs5AWy8yW6NTJdlzKHZzWRrVG0abSx18lP8aoH2bbe9TafVWmOyBU
+         oNhlOtmd3VQjl0xQO2teQAbgEKDvU1LnL+PwD9qe9xeOVGDg9wQKQCN+tsnaVcSg9Iyv
+         QziDh7a/tq9hDXpk8QRpsyZLjN//wTZibeiAf5YjvhKeyYZNjsslZclCz+CSpFnpOaM8
+         UIfugvFmC4r0Xrt6RbqD5jv0Wo3wv9Q/jzsqmwBCa4Zut0r1+t3Gh8zFiWLz0TUORZS5
+         dnjKpsxRU92kwcBTpiD4uz2nLToFsiRpLEIiD0mzK2Rmo9Z5dx193EUFUHaKDm+ncc+4
+         Wn0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700217073; x=1700821873;
+        d=1e100.net; s=20230601; t=1700217091; x=1700821891;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=m8hqxAEu5F8fIoBRR/eQ2vaQTLBlxxChgjeDIF/8l7M=;
-        b=BLVcN5rVynY2B+xc1+PJjjOXCopTOosiA3Ym4CL8yTtpEGZNvKdXtfjaIs9xjzwBzx
-         jyRjFCA6pRm+eajmJxCVKz8FIpVjC+Kp7SglWEmeLyocSIHd6hMKz7LSwGKC4SF0Oxw8
-         ZFmpSi7So5Y3KmTfoTAxK3w/5NYcWSN1IgTrEcILVYDoPSVypBrEVz+Qw4WpolsVcN1M
-         ynA1GhgpaN1KgNiAwtoKYjhPayHPRzvPKHE0fyY34QnETcnUPW4XV80qg3CB60RNVPlZ
-         TOwxFbZFYBzFGUTvc2d+gUW882gLh3aadmV4+RQBMErmZSEbdg5NzDb2L5EkTpdWOmtY
-         +gqA==
-X-Gm-Message-State: AOJu0YzDQC2lSLuhA6CC90oxwoq1R+i6Qts7N904VoGuI+4cae3TKd1r
-	HVFi6HO7VJ3Kj5fka02Bzifmow==
-X-Google-Smtp-Source: AGHT+IH29pfLiuFWQ6k4n8Xq1FCwMT8LRxCcgJytX3tR1GnQgP4HmXjdZa5o6ubgwLEc5wSionjCcw==
-X-Received: by 2002:a05:6402:348c:b0:547:9ebd:c0ab with SMTP id v12-20020a056402348c00b005479ebdc0abmr9505081edc.13.1700217072889;
-        Fri, 17 Nov 2023 02:31:12 -0800 (PST)
+        bh=Fq/mBkkFvRGdzVgNdzV1zuTizhcwiAr3fhu4RMypp6Q=;
+        b=V0QoiUAqTZaXpyuHLUp7j0bLNenq/xi4WoMey9U4wVW2MMZXodlVaZKygrE1U8Lzi2
+         50eL/OvQ1ao9v/MamY5MQnqKTtrjmbjS+gPQqktjVCGzosUJH7rxCSjjHp+Ec/SPheM1
+         pngUlez7SZe1ISF3P+gVA660N7dy/Icz7hfZtYB6Q0NDDa+uWO9QAWEPkurPuaZdvska
+         91/IR4rDqvphJUAfSNUX82kvy646LaP8YHxorVRR2aUlXF1hz87bxC/yQ6DCvgBbb2a1
+         lFNXwjQBYpslX2b1x4UrG8zEmSr/xZqPRT1mHtbBr/twcBgL3kc1wTPZkEsagDxj3qpa
+         m09g==
+X-Gm-Message-State: AOJu0Yyq33SaBJiyhuUzIXdnLyAQ98DpEp7l7cdoEISlStHAIY0jnWra
+	o3nKu+LeuUkqa00QBmkLQEURjQ==
+X-Google-Smtp-Source: AGHT+IEY+ImFj6J075FizBpKYFgxR0kEUHL+d/z876Ok2pyIzxY2E5PCirWwZJlpoKK3ynyqKGKTIA==
+X-Received: by 2002:aa7:dbd9:0:b0:544:7c9b:6227 with SMTP id v25-20020aa7dbd9000000b005447c9b6227mr12485283edt.4.1700217091166;
+        Fri, 17 Nov 2023 02:31:31 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id v27-20020aa7cd5b000000b0053e43492ef1sm567026edw.65.2023.11.17.02.31.10
+        by smtp.gmail.com with ESMTPSA id v27-20020aa7cd5b000000b0053e43492ef1sm567026edw.65.2023.11.17.02.31.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Nov 2023 02:31:11 -0800 (PST)
-Message-ID: <3e013534-f6c6-48e9-9cfa-82055fe04f7a@linaro.org>
-Date: Fri, 17 Nov 2023 11:31:10 +0100
+        Fri, 17 Nov 2023 02:31:28 -0800 (PST)
+Message-ID: <42c7db83-5016-43e7-a1c2-ae14c6058198@linaro.org>
+Date: Fri, 17 Nov 2023 11:31:26 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,8 +62,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 08/16] arm64: dts: qcom: sm8550-aim300: add WCD9385
- audio-codec
+Subject: Re: [PATCH 10/16] arm64: dts: qcom: sm8550-aim300: add display and
+ panel
 Content-Language: en-US
 To: Tengfei Fan <quic_tengfan@quicinc.com>, agross@kernel.org,
  andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
@@ -71,7 +71,7 @@ To: Tengfei Fan <quic_tengfan@quicinc.com>, agross@kernel.org,
 Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, -cc=kernel@quicinc.com
 References: <20231117101817.4401-1-quic_tengfan@quicinc.com>
- <20231117101817.4401-9-quic_tengfan@quicinc.com>
+ <20231117101817.4401-11-quic_tengfan@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -117,15 +117,15 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231117101817.4401-9-quic_tengfan@quicinc.com>
+In-Reply-To: <20231117101817.4401-11-quic_tengfan@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 17/11/2023 11:18, Tengfei Fan wrote:
-> Add Qualcomm Aqstic WCD9385 audio codec on two Soundwire interfaces: RX
-> and TX.
+> Enable Display Subsystem with Visionox VTDR6130 Panel.
 > 
 > Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+> ---
 
 You just added this board. Does it mean you added incomplete and wrong DTS?
 
