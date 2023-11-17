@@ -1,134 +1,131 @@
-Return-Path: <devicetree+bounces-16686-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16688-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2F8D7EF454
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 15:21:02 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35A637EF464
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 15:25:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 64DBFB209B1
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 14:21:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 675E9B20C22
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 14:25:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C09D936AEE;
-	Fri, 17 Nov 2023 14:20:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AF4E36AF0;
+	Fri, 17 Nov 2023 14:24:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="AY3jmh9h"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="e16YPxUl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::226])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1935DD63;
-	Fri, 17 Nov 2023 06:20:47 -0800 (PST)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 45106C0005;
-	Fri, 17 Nov 2023 14:20:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1700230846;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=A7DGBR0dkS+OrVfnBIKiOX0inpfDHFx2Yamqr04yBT8=;
-	b=AY3jmh9h98qwoUR+Hqo7x9nmLegoG7h9iwphY783CZ6nJnE0zvCSGVp3HL1s5aNewLRO6+
-	EsB72lNlzT7C5GDQXUcwyGk6tc8gibBCQDmcnYXBnMpatGc1q3h2sk70PafLsPdUgF6FvB
-	rQa7JYrfm7P4b135D8rQCS8HwarDOQXLpECUfW/ID72q6pL3p1kJdf30yNyMo0eI+SyOa2
-	3UNCNyxlK8eCkIQWMG909DcAMTqQLLHGj8xZP1yYoNq+yTko5I0NL+BHgZnTTaWrN4rW9B
-	CDcD9OTEdqm9JH1E5X6WO5oo+ZTGF+ss7VGaCSVvOQ8HrdUHGpnBLBKKY+hSFg==
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B719211D;
+	Fri, 17 Nov 2023 06:24:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1700231092; x=1731767092;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=KkQB0JC1sh9iALs/FsLxS+o9qCBJEgLAxvhigYsmDTs=;
+  b=e16YPxUlr/CWppKe4X6YaPGH/YZo5/Zqi1x+j9GoRsG6kS/K4X4Zg23a
+   dK1v3qWhmGDVIkNIAquQf/+sOfCDhk1QzpAYClyrF2N8m2kAuqjpDZ9+1
+   3uMpp+hzn7xPKGOVTMER0kzyaypVjNMY8ffeizFx14ntrSlnbd+ep6IU/
+   hiqNCp87/+N40rwzxcLak3euD96ELQBD2rlFCd6a75HQ0CYrnyZQp+yO+
+   I34b6C962Qdv8qwVx56x/TNvk2meU7TSyiOpGlu1OojjTbCr9jfXjOUqK
+   w7FlDSLdR8reWXnEbEv+U6FFWFR+1beT9PrY2esnK36008u8FclsRtq7A
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10897"; a="390163905"
+X-IronPort-AV: E=Sophos;i="6.04,206,1695711600"; 
+   d="scan'208";a="390163905"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Nov 2023 06:24:52 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10897"; a="889255853"
+X-IronPort-AV: E=Sophos;i="6.04,206,1695711600"; 
+   d="scan'208";a="889255853"
+Received: from lkp-server02.sh.intel.com (HELO b8de5498638e) ([10.239.97.151])
+  by orsmga004.jf.intel.com with ESMTP; 17 Nov 2023 06:24:48 -0800
+Received: from kbuild by b8de5498638e with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1r3zlz-0002qh-1u;
+	Fri, 17 Nov 2023 14:24:43 +0000
+Date: Fri, 17 Nov 2023 22:23:41 +0800
+From: kernel test robot <lkp@intel.com>
+To: Anshul Dalal <anshulusr@gmail.com>, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, Anshul Dalal <anshulusr@gmail.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	linux-kernel-mentees@lists.linuxfoundation.org,
+	Jonathan Cameron <jic23@kernel.org>,
+	Shuah Khan <skhan@linuxfoundation.org>
+Subject: Re: [PATCH v2 2/2] iio: light: driver for Lite-On ltr390
+Message-ID: <202311172224.S2IXNUii-lkp@intel.com>
+References: <20231117074554.700970-2-anshulusr@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 17 Nov 2023 15:20:44 +0100
-Message-Id: <CX15J7B8F8HH.1WZ10OOW31X1H@tleb-bootlin-xps13-01>
-Subject: Re: [PATCH 3/6] usb: cdns3-ti: add suspend/resume procedures for
- J7200
-Cc: <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, "Thomas
- Petazzoni" <thomas.petazzoni@bootlin.com>
-To: "Roger Quadros" <rogerq@kernel.org>, "Greg Kroah-Hartman"
- <gregkh@linuxfoundation.org>, "Rob Herring" <robh+dt@kernel.org>,
- "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley"
- <conor+dt@kernel.org>, "Peter Chen" <peter.chen@kernel.org>, "Pawel
- Laszczak" <pawell@cadence.com>, "Nishanth Menon" <nm@ti.com>, "Vignesh
- Raghavendra" <vigneshr@ti.com>, "Tero Kristo" <kristo@kernel.org>,
- "Vardhan, Vibhore" <vibhore@ti.com>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-X-Mailer: aerc 0.15.2
-References: <20231113-j7200-usb-suspend-v1-0-ad1ee714835c@bootlin.com>
- <20231113-j7200-usb-suspend-v1-3-ad1ee714835c@bootlin.com>
- <5080372b-1f48-4cbc-a6c4-8689c28983cb@kernel.org>
- <CWZH66HQZNYM.T623ZOEEE0BK@tleb-bootlin-xps13-01>
- <dad980f3-e032-41e4-a1e4-a16a7f45ff95@kernel.org>
- <CX0GOP07I40N.198G7LJ0HYDBG@tleb-bootlin-xps13-01>
- <bdea68ad-7523-4738-8fa1-b670d81a6b93@kernel.org>
- <CX10D9YX1O1C.30PF317AG065N@tleb-bootlin-xps13-01>
- <3e00b2ad-b58f-4b09-9230-683c58d3bb92@kernel.org>
-In-Reply-To: <3e00b2ad-b58f-4b09-9230-683c58d3bb92@kernel.org>
-X-GND-Sasl: theo.lebrun@bootlin.com
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231117074554.700970-2-anshulusr@gmail.com>
 
-Hi Roger,
+Hi Anshul,
 
-On Fri Nov 17, 2023 at 12:51 PM CET, Roger Quadros wrote:
-> On 17/11/2023 12:17, Th=C3=A9o Lebrun wrote:
-> > On Thu Nov 16, 2023 at 10:44 PM CET, Roger Quadros wrote:
-> >> On 16/11/2023 20:56, Th=C3=A9o Lebrun wrote:
-> >>> On Thu Nov 16, 2023 at 1:40 PM CET, Roger Quadros wrote:
-> >>>> On 15/11/2023 17:02, Th=C3=A9o Lebrun wrote:
-> >>>>> On Wed Nov 15, 2023 at 12:37 PM CET, Roger Quadros wrote:
-> >>>>>> You might want to check suspend/resume ops in cdns3-plat and
-> >>>>>> do something similar here.
-> >>>>>
-> >>>>> I'm unsure what you are referring to specifically in cdns3-plat?
-> >>>>
-> >>>> What I meant is, calling pm_runtime_get/put() from system suspend/re=
-sume
-> >>>> hooks doesn't seem right.
-> >>>>
-> >>>> How about using something like pm_runtime_forbid(dev) on devices whi=
-ch
-> >>>> loose USB context on runtime suspend e.g. J7200.
-> >>>> So at probe we can get rid of the pm_runtime_get_sync() call.
-> >>>
-> >>> What is the goal of enabling PM runtime to then block (ie forbid) it =
-in
-> >>> its enabled state until system suspend?
-> >>
-> >> If USB controller retains context on runtime_suspend on some platforms
-> >> then we don't want to forbid PM runtime.
-> >=20
-> > What's the point of runtime PM if nothing is done based on it? This is
-> > the current behavior of the driver.
->
-> Even if driver doesn't have runtime_suspend/resume hooks, wouldn't=20
-> the USB Power domain turn off if we enable runtime PM and allow runtime
-> autosuspend and all children have runtime suspended?
+kernel test robot noticed the following build errors:
 
-That cannot be the currently desired behavior as it would require a
-runtime_resume implementation that restores this wrapper to its desired
-state.
+[auto build test ERROR on jic23-iio/togreg]
+[also build test ERROR on robh/for-next linus/master v6.7-rc1 next-20231117]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-It could however be something that could be implemented. It would be a
-matter of enabling PM runtime and that is it in the probe. No need to
-even init the hardware in the probe. Then the runtime_resume
-implementation would call the new cdns_ti_init_hw.
+url:    https://github.com/intel-lab-lkp/linux/commits/Anshul-Dalal/iio-light-driver-for-Lite-On-ltr390/20231117-154922
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
+patch link:    https://lore.kernel.org/r/20231117074554.700970-2-anshulusr%40gmail.com
+patch subject: [PATCH v2 2/2] iio: light: driver for Lite-On ltr390
+config: xtensa-randconfig-r081-20231117 (https://download.01.org/0day-ci/archive/20231117/202311172224.S2IXNUii-lkp@intel.com/config)
+compiler: xtensa-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231117/202311172224.S2IXNUii-lkp@intel.com/reproduce)
 
-This is what the cdns3-imx wrapper is doing in a way, though what they
-need is clocks rather than some registers to be written.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202311172224.S2IXNUii-lkp@intel.com/
 
-That all feels like outside the scope of the current patch series
-though.
+All errors (new ones prefixed by >>):
 
-My suggestion for V2 would still therefore be to remove all PM runtime
-as it has no impact. It could be added later down the road if cutting
-the power-domain is a goal of yours.
+   In file included from include/linux/device/driver.h:21,
+                    from include/linux/device.h:32,
+                    from include/linux/acpi.h:14,
+                    from include/linux/i2c.h:13,
+                    from drivers/iio/light/ltr390.c:23:
+>> drivers/iio/light/ltr390.c:217:25: error: 'ltr390_id_table' undeclared here (not in a function); did you mean 'ltr390_of_table'?
+     217 | MODULE_DEVICE_TABLE(of, ltr390_id_table);
+         |                         ^~~~~~~~~~~~~~~
+   include/linux/module.h:244:15: note: in definition of macro 'MODULE_DEVICE_TABLE'
+     244 | extern typeof(name) __mod_##type##__##name##_device_table               \
+         |               ^~~~
+>> include/linux/module.h:244:21: error: '__mod_of__ltr390_id_table_device_table' aliased to undefined symbol 'ltr390_id_table'
+     244 | extern typeof(name) __mod_##type##__##name##_device_table               \
+         |                     ^~~~~~
+   drivers/iio/light/ltr390.c:217:1: note: in expansion of macro 'MODULE_DEVICE_TABLE'
+     217 | MODULE_DEVICE_TABLE(of, ltr390_id_table);
+         | ^~~~~~~~~~~~~~~~~~~
 
-Thanks,
 
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+vim +217 drivers/iio/light/ltr390.c
+
+   212	
+   213	static const struct of_device_id ltr390_of_table[] = {
+   214		{ .compatible = "liteon,ltr390"},
+   215		{ /* Sentinel */ }
+   216	};
+ > 217	MODULE_DEVICE_TABLE(of, ltr390_id_table);
+   218	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
