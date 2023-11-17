@@ -1,97 +1,106 @@
-Return-Path: <devicetree+bounces-16444-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16445-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC22F7EEB5E
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 04:21:08 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7EF47EEB78
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 04:38:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A273E1F24D41
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 03:21:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6E5FFB20A5B
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 03:38:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89367523A;
-	Fri, 17 Nov 2023 03:21:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5650E6AAD;
+	Fri, 17 Nov 2023 03:38:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Kb1Ddgn/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m0Bbp8Ae"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D3DDB9;
-	Thu, 16 Nov 2023 19:21:01 -0800 (PST)
-Received: by mail-pf1-x429.google.com with SMTP id d2e1a72fcca58-6c32a20d5dbso1429248b3a.1;
-        Thu, 16 Nov 2023 19:21:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1700191261; x=1700796061; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=04yJ8YqPKGFpqj3v0iOVI9DtylMq/xzGcXD8UiSYJ3g=;
-        b=Kb1Ddgn/HOoMl9tY9JCOZckEZXTVXGOdYBGR67qpX9jj9mfp9YewVIlQmr0NB2RQgq
-         eIi3Wyf63UNlVkwvA5qjih9psYB6AnDJ/lHpe+TJoJ3eCiO9ZOnvlsP863cFvBQfKlWH
-         nJ9P5gTcHga8jsGITwkDVe07U3nkty5CLbCPJnbPUNmklK7XfdWkZ6/EOhVmj2DnoVs/
-         NCkPY8wiIuM+laI824rTgwEb5Mi/upgGgozDOgzRF6iQwF0bPVG08ETz8Nq6i3kgizrl
-         PLPXz6GzWE8vTffvdyCzebw+ljCo2KfiumO/TWKcQU0ayzBMtRuhhz+LZB7VOOn+R49T
-         2KYQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700191261; x=1700796061;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=04yJ8YqPKGFpqj3v0iOVI9DtylMq/xzGcXD8UiSYJ3g=;
-        b=o1IZJGLRVpg/ETWgy9CN9o5ORZLX03jMkC/a2/ipI1EvEZEhIR1UKFAOFg+O+iVPri
-         lqQv6OUpVjSp2rRwTtLthsrYZCRxoNwyOxOlRYp8z67B3Bwf8y8d0WnD/CqyJhsrekgA
-         +j0jj793jWuW3kWw8WVVKXfmFcx/dRI5fmnc9SOehVxghgUrzJFvN8bVJChQis9NF4eq
-         u9KWEORBbnXk5lVs2xiXon3rlZSOszbwFgVpfBleD5Qpwr+ryNhmRoFSCY22i2QCzrFg
-         Kvq6tmuonh8Y2yvRjd8mU5c4+ULhOlPwlHmJ0Lf52A1fPgU1D5wO9FmuxV7SN6bitS7d
-         GVgQ==
-X-Gm-Message-State: AOJu0Yx/t9hlMI6RMYagK8/PA7niEYI58s4cq6hGQ5dPj7+ZIF5L/53r
-	+D0Ya08+x0ybJEquOwZT5ypbYkhVgQc=
-X-Google-Smtp-Source: AGHT+IFjDnrMp2pgy7V0U4koa/oNWvYszgsQ2cUM3Qj+UHiq3IVv4gnZaiFGgPGTKFjFRrGq+pa71Q==
-X-Received: by 2002:a05:6a00:4511:b0:6c4:e8a1:8b3b with SMTP id cw17-20020a056a00451100b006c4e8a18b3bmr21681438pfb.25.1700191261004;
-        Thu, 16 Nov 2023 19:21:01 -0800 (PST)
-Received: from [10.10.14.80] (1-34-21-66.hinet-ip.hinet.net. [1.34.21.66])
-        by smtp.gmail.com with ESMTPSA id j7-20020aa78007000000b0068ff267f094sm453663pfi.158.2023.11.16.19.20.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Nov 2023 19:21:00 -0800 (PST)
-Message-ID: <69657f96-4849-4134-911d-4785d5d6b8d8@gmail.com>
-Date: Fri, 17 Nov 2023 11:18:47 +0800
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30DB563C1;
+	Fri, 17 Nov 2023 03:38:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4256BC433C8;
+	Fri, 17 Nov 2023 03:38:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1700192307;
+	bh=pT1BzgitY92OrK+bcmiH4d/YlOWx34mfM/YbnLtCb3E=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=m0Bbp8AeEm3UxtlqyPQPLRXg82ZM0TQdcnipmtkwDsW+4DZZ50ef9wqoevPWRMyOG
+	 NBSYb1Z9XXmbs5+n7QfFGUO8kgfQLZWvV9aDb29YrpsIr2iACm0euhAKpAp/OEfPDl
+	 AgsmzhqcQB+jAWtbYKx0229xVosdWvyY6DH4jKPCHNRbl8UlzbuKk3pNhxXmuuglC5
+	 1psVDWzt8iYqPiYmUeyXKmo0e7i0w9WRB5jgyG+FwAm13aI0LQdkOB8EFVEhvv+Y06
+	 5M9zzp4DvSz7C0NdWKBdufjSxOG2ItZyIgjiGZewM6zkksVTCzN48QyWHT8+NrNCtJ
+	 gnypkcvrJuraA==
+Date: Fri, 17 Nov 2023 11:38:14 +0800
+From: Peter Chen <peter.chen@kernel.org>
+To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Roger Quadros <rogerq@kernel.org>,
+	Pawel Laszczak <pawell@cadence.com>, Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 4/6] usb: cdns3: support power-off of controller when in
+ host role
+Message-ID: <20231117033814.GA485583@nchen-desktop>
+References: <20231113-j7200-usb-suspend-v1-0-ad1ee714835c@bootlin.com>
+ <20231113-j7200-usb-suspend-v1-4-ad1ee714835c@bootlin.com>
+ <20231114083838.GC64573@nchen-desktop>
+ <CWYHLRBFE1X1.15330WETL2R7U@tleb-bootlin-xps13-01>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: hwmon: Add mps mp5990 driver bindings
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: patrick@stwcx.xyz, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
- Jonathan Corbet <corbet@lwn.net>, Joel Stanley <joel@jms.id.au>,
- Chanh Nguyen <chanh@os.amperecomputing.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
- linux-doc@vger.kernel.org
-References: <20231113155008.2147090-1-peteryin.openbmc@gmail.com>
- <20231113155008.2147090-2-peteryin.openbmc@gmail.com>
- <a3445201-58f2-42c6-bef7-ca6968fd80d6@roeck-us.net>
-Content-Language: en-US
-From: PeterYin <peteryin.openbmc@gmail.com>
-In-Reply-To: <a3445201-58f2-42c6-bef7-ca6968fd80d6@roeck-us.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <CWYHLRBFE1X1.15330WETL2R7U@tleb-bootlin-xps13-01>
 
-
-
-Guenter Roeck æ–¼ 11/16/23 06:27 å¯«é“:
-> On Mon, Nov 13, 2023 at 11:50:07PM +0800, Peter Yin wrote:
->> Add a device tree bindings for mp5990 device.
->>
->> Signed-off-by: Peter Yin <peteryin.openbmc@gmail.com>
->> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+On 23-11-14 12:10:18, Théo Lebrun wrote:
+> Hello,
 > 
-> What branch is this patch based on ? git fails to apply it.
+> On Tue Nov 14, 2023 at 9:38 AM CET, Peter Chen wrote:
+> > On 23-11-13 15:26:59, Théo Lebrun wrote:
+> > > The controller is not being reconfigured at resume. Change resume to
+> > > redo hardware config if quirk CDNS3_RESET_ON_RESUME is active.
+> >
+> > Current logic has power off judgement, see cdns3_controller_resume for
+> > detail.
 > 
-> Guenter
-I think I don't pull the last version. I can rebase it and push the new 
-version. Thanks for your feedback.
+> Indeed! Thanks for the pointer. I had not noticed that, those patches
+> come from an older kernel which didn't have it. That'll make for less
+> changes; patches 4 & 5 can go away.
+> 
+> > > +	if (cdns->pdata && cdns->pdata->quirks & CDNS3_RESET_ON_RESUME)
+> > > +		cdns->xhci_plat_data->quirks |= XHCI_RESET_ON_RESUME | XHCI_SUSPEND_RESUME_CLKS;
+> > > +
+> >
+> > If you set this flag, how could you support the USB remote wakeup
+> > request? In that case, the USB bus does not expect re-enumeration.
+> 
+> We didn't support remote USB wakeup. Only S2R mattered in our case and
+> USB remote wakeup wasn't a possibility.
+
+Without this patch, will below be hit for your platform:
+
+
+	/* re-initialize the HC on Restore Error, or Host Controller Error */
+	if (temp & (STS_SRE | STS_HCE)) {
+		reinit_xhc = true;
+		if (!xhci->broken_suspend)
+			xhci_warn(xhci, "xHC error in resume, USBSTS 0x%x, Reinit\n", temp);
+	}
+
+
+-- 
+
+Thanks,
+Peter Chen
 
