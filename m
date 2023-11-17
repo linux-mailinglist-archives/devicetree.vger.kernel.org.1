@@ -1,112 +1,171 @@
-Return-Path: <devicetree+bounces-16607-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16606-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB9F97EF0C1
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 11:41:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F31537EF0C0
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 11:41:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5AA10B20B4A
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 10:41:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7860EB20B52
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 10:41:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B04A312E54;
-	Fri, 17 Nov 2023 10:41:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6FED125C7;
+	Fri, 17 Nov 2023 10:41:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VdzKGDr3"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CAjeTB/0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9849FC2
-	for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 02:41:12 -0800 (PST)
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-9d267605ceeso247122866b.2
-        for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 02:41:12 -0800 (PST)
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D4FA194
+	for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 02:41:07 -0800 (PST)
+Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2c5039d4e88so23939561fa.3
+        for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 02:41:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1700217671; x=1700822471; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=HJ88IwdiOvkbHJtvRBlItyTFrZZfFt5aS8G00MHeueo=;
-        b=VdzKGDr3NJuZ4lpNTAOSA60annzpPLstLs/BS05ARAc/1/u5eT0kLsydAiM+UwF+wa
-         2b4Q57ewnOtwOTgwUZpwVCd0KESYZ9ACQqV0AoBUpn9NR5Ocbe1IoET2jPrtA9y1cPpV
-         3mpP2X/onMPOoPf+N4CVy1gs1BmGxRqXi39sWwA3BSQbRFIZp9WyQH/kr9WCREBIZEqe
-         /meHNf1PIwqB1FrABHXK2UeeQWlz8pjqRtMr0RUjVT0JeIAaq9EYgy+Idowo7GFOZ9QF
-         UqkcsoT7BjgywGCj1+ATUa7M9INLjleQakVKNwNS2ShOXjlbMJxywUiC03lfAFrY3ZcX
-         x1JA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700217671; x=1700822471;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1700217666; x=1700822466; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=HJ88IwdiOvkbHJtvRBlItyTFrZZfFt5aS8G00MHeueo=;
-        b=CIEn2KPbTi/DzMwVH6rkUtbwO37WUsMhcrKMwDqDwn3GRehPVv+kmSz11p4epk0O3S
-         xME3o23tSHXpxv+TOTrEJggkMHPbvDoFLj2L162SMjaJEvsU3hLzoHSAe5WREiM5hf4i
-         LJw0MRl573+a+nFupv31I33IizQAY7ZQ4yiLJOHzQiDEpry+nBn1qdawbHsU9JdK67T/
-         c+ohyGG97L0TTA2s/ArnMSdAxkXsYEmCBpXlEaTTFaHKcHe+U6vqQdDWWRhMikRi4tT1
-         jQsydoFHswMgr+MAqZuqjR2Wqd5AxjL0mZ8yM/4/MDSDS1tC5Y/kP064wqfcy4A6O2C/
-         DuGw==
-X-Gm-Message-State: AOJu0Yw08D11N0AVAlrqn6uPFWFCFSWLaDhcYwEQ4O4dwZSO4yXfF1O/
-	AZ7G+VIfKmlthC2+N9d3Sx4=
-X-Google-Smtp-Source: AGHT+IFDFSZuerVdE87A34NYgCYoDzSsFybwYsehWhEvfGBZXxYMrZGjwklbhgsWcBs4n+AbYXMHOQ==
-X-Received: by 2002:a17:906:3942:b0:9e3:b88c:d735 with SMTP id g2-20020a170906394200b009e3b88cd735mr12999101eje.61.1700217670799;
-        Fri, 17 Nov 2023 02:41:10 -0800 (PST)
-Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.gmail.com with ESMTPSA id ox17-20020a170907101100b009920a690cd9sm639868ejb.59.2023.11.17.02.41.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Nov 2023 02:41:10 -0800 (PST)
-From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= <nfraprado@collabora.com>,
-	Macpaul Lin <macpaul.lin@mediatek.com>,
-	=?UTF-8?q?Bernhard=20Rosenkr=C3=A4nzer?= <bero@baylibre.com>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Chris Morgan <macromorgan@hotmail.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Sean Wang <sean.wang@mediatek.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH 1/3] dt-bindings: vendor-prefixes: add acelink
-Date: Fri, 17 Nov 2023 11:40:59 +0100
-Message-Id: <20231117104101.9374-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.35.3
+        bh=mw4HRiUCk/Doy4cjgHODSEEb9fobmzOoP3kKgYZym14=;
+        b=CAjeTB/0cVq5thlYdwcM0cN2d0m+21XgekVP9d9r9qC+fgc5JtGDWWzVpRmtZpNVml
+         cvIwI5lIasBgTkQw5Op3FkSGckI9cSB/jLGWj0djd8b0Cm1pgUBZuGB3RBoW3IBwPvR8
+         JBJFnqQDpkfrai8zARbW9yQdQ9VuOGeyLcIA45puWTYVDuCHcO7dWGOlSc7pMtVI3X5s
+         BBSsRpJLnUVAcyRnfMlAwuSb66ulMP+ZdceHLw7avdGgsjWkZagZhB+WHHgoZDi57Nig
+         iWUj1iVT3oxgFhOosmyitdRqnqUW5EAHT0gc4Gal/jCLYi1sMsNJjFqx5iTToQC8WfQC
+         yR/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700217666; x=1700822466;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=mw4HRiUCk/Doy4cjgHODSEEb9fobmzOoP3kKgYZym14=;
+        b=HleSnS9h9fpvlS/KXi9PIyTgSTLFto3iN3GbT9uQYU2Th9YTcxuw4CXYPrTzmNLmsK
+         H9GD3TwzqtBnoZjeOhLr1C0CtPVfcafMTmhfkGPDkP8J+Y/YwXwHhYazQIOmtN6irI/U
+         hmBselXrKt+gO6DuxUGQmhn9vuJ54E18sGcYi6WGtNBqoIJ7TfU6jfedc+GBi3nrmCKP
+         BM8/1KI9wcfoheEqPpLNgynCQ3LzdFxUpxgPfIXTGWYssr9U22zcMj1YaAtjMwVyjW62
+         GuYAdF8EequjaMZDpulc2Qn58SFGlgP6gfO2bdZY+mkH8s4FJEE0Fw1fX9tTHtaTp3bH
+         YotQ==
+X-Gm-Message-State: AOJu0Yxq11OkK2kpW1rlto0zNB+B6iZruZlvWuVxC3CP4wnXplCzkCxW
+	lIjGP09lpK/kCXXdA8FIYdqB7A==
+X-Google-Smtp-Source: AGHT+IGIqp9+SOQlbf1VSxJyUVykN8s+rSSZd9z9CNa3yPMJGm2Wwo3Xl7+OnSLwDaVGp6wVzgC7VA==
+X-Received: by 2002:a05:651c:20c:b0:2c6:f711:cea1 with SMTP id y12-20020a05651c020c00b002c6f711cea1mr10048056ljn.39.1700217665860;
+        Fri, 17 Nov 2023 02:41:05 -0800 (PST)
+Received: from [192.168.7.188] (679773502.box.freepro.com. [212.114.21.58])
+        by smtp.gmail.com with ESMTPSA id p6-20020a05600c358600b0040a45fffd27sm6751494wmq.10.2023.11.17.02.41.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 17 Nov 2023 02:41:04 -0800 (PST)
+Message-ID: <247f4654-ec65-4857-8b35-1a79088e8b87@linaro.org>
+Date: Fri, 17 Nov 2023 11:41:02 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla Thunderbird
+From: neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 07/16] arm64: dts: qcom: sm8550-aim300: add PCIe0
+Content-Language: en-US, fr
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Tengfei Fan <quic_tengfan@quicinc.com>, agross@kernel.org,
+ andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, tglx@linutronix.de
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, -cc=kernel@quicinc.com
+References: <20231117101817.4401-1-quic_tengfan@quicinc.com>
+ <20231117101817.4401-8-quic_tengfan@quicinc.com>
+ <37a3a407-07e7-49d8-bbce-b1dac8cfcf5a@linaro.org>
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro Developer Services
+In-Reply-To: <37a3a407-07e7-49d8-bbce-b1dac8cfcf5a@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-From: Rafał Miłecki <rafal@milecki.pl>
+On 17/11/2023 11:29, Dmitry Baryshkov wrote:
+> On 17/11/2023 12:18, Tengfei Fan wrote:
+>> Add PCIe0 nodes used with WCN7851 device.  The PCIe1 is not connected,
+>> thus skip pcie_1_phy_aux_clk input clock to GCC.
+>>
+>> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/sm8550-aim300.dts | 32 ++++++++++++++++++++++
+>>   1 file changed, 32 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8550-aim300.dts b/arch/arm64/boot/dts/qcom/sm8550-aim300.dts
+>> index 202b979da8ca..3aca0a433a00 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm8550-aim300.dts
+>> +++ b/arch/arm64/boot/dts/qcom/sm8550-aim300.dts
+>> @@ -393,6 +393,38 @@
+>>       };
+>>   };
+>> +&gcc {
+>> +    clocks = <&bi_tcxo_div2>, <&sleep_clk>,
+>> +         <&pcie0_phy>,
+>> +         <&pcie1_phy>,
+>> +         <0>,
+>> +         <&ufs_mem_phy 0>,
+>> +         <&ufs_mem_phy 1>,
+>> +         <&ufs_mem_phy 2>,
+>> +         <&usb_dp_qmpphy QMP_USB43DP_USB3_PIPE_CLK>;
+>> +};
+> 
+> NAK, this should go to sm8550.dtsi unless there is a good reason.
 
-Acelink is a Taiwan company providing network products (routers, access
-points, switches, cameras and more).
+Actually this is how QRD8550 was designed, so it's fine to mimic.
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+Neil
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 309b94c328c8..503a3caf6fc9 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -39,6 +39,8 @@ patternProperties:
-     description: ShenZhen Asia Better Technology Ltd.
-   "^acbel,.*":
-     description: Acbel Polytech Inc.
-+  "^acelink,.*":
-+    description: Acelink Technology Co., Ltd.
-   "^acer,.*":
-     description: Acer Inc.
-   "^acme,.*":
--- 
-2.35.3
+> 
+>> +
+>> +&pcie_1_phy_aux_clk {
+>> +    status = "disabled";
+>> +};
+>> +
+>> +&pcie0 {
+>> +    perst-gpios = <&tlmm 94 GPIO_ACTIVE_LOW>;
+>> +    wake-gpios = <&tlmm 96 GPIO_ACTIVE_HIGH>;
+>> +
+>> +    pinctrl-0 = <&pcie0_default_state>;
+>> +    pinctrl-names = "default";
+>> +
+>> +    status = "okay";
+>> +};
+>> +
+>> +&pcie0_phy {
+>> +    vdda-phy-supply = <&vreg_l1e_0p88>;
+>> +    vdda-pll-supply = <&vreg_l3e_1p2>;
+>> +
+>> +    status = "okay";
+>> +};
+>> +
+>>   &pm8550b_eusb2_repeater {
+>>       vdd18-supply = <&vreg_l15b_1p8>;
+>>       vdd3-supply = <&vreg_l5b_3p1>;
+> 
 
 
