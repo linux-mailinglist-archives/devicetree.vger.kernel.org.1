@@ -1,61 +1,60 @@
-Return-Path: <devicetree+bounces-16574-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16582-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EF307EF011
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 11:19:44 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E9A47EF02C
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 11:22:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C32241C2094B
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 10:19:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4528B1F26794
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 10:22:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41CED18C1B;
-	Fri, 17 Nov 2023 10:19:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FA9718E28;
+	Fri, 17 Nov 2023 10:22:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lYHN1msc"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZqssYfcv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A5D5D72
-	for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 02:19:32 -0800 (PST)
-Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-9f2a53704aaso234090066b.3
-        for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 02:19:32 -0800 (PST)
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A82F85
+	for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 02:22:39 -0800 (PST)
+Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-40a46ea95f0so14717035e9.2
+        for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 02:22:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700216371; x=1700821171; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=kgKIl/09fDX42jlxnw2ZLH0zYM8NcURkoiDxmFpK8N4=;
-        b=lYHN1mscDo87ffZrHcxblNJqOjs7N/mVd43iDJKDv2jla2Fzf6gMjIIgPtZke05xIU
-         38BWvGJRLZDqJpmGyp/SLvRRr9NvfN5VXZVX0bJtkUx41uPZW06M87obWHMcfJ78xDfo
-         MXGOVF7gOlQMmIBdXp3driT5KlBtiMhO/08BG56QW2m91X4N0ptCyFomTbooQv9nAkBT
-         lNSxSVJepHwdUAbnSGu08Et8isx0FMCwdcn1veuLlzS5yKCxS7mE6vBOfVZq7KEVFakZ
-         26qYk185xlNKGF4qfjsur5SoZ5ki+615maV3SRzPlyvTIUTTj06Ffx5hum1+GPOkNowr
-         h1hw==
+        d=linaro.org; s=google; t=1700216558; x=1700821358; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=f8EzOI3JPHdPzMM9gv3BMVKYnG8PIMzGI3VBnnJOMgs=;
+        b=ZqssYfcvncnRDnJ5DRW/IPiUEtDIM5fIorhLaecQcDQ9lfmGlbd9e/vHBiUQ/wgDDW
+         BqNpLQOo/hX56PRKaZUCYW6So+pmDeQHr4fBY6JsfqT2CjcAv94piN/E0X7E2BhW+r8G
+         Iq9+bKqskJmYF7E8aeuCirr/4GB58ae6qaKF8hxGMt7PX/YB56qt3PHJE/P/yz7i8oDT
+         VmtFp8zekk1hIlnFHansBAGb9VDcD1I52AWw4bR29flyV71jJ5WlX0ireupWzFTOERh+
+         a9a1Abo94XmmdPl8x4f/I/uKorxKF/oxpVi7N9Ve7z9bHDAsRtyLkLEBs3pD9uWe35KG
+         QnXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700216371; x=1700821171;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kgKIl/09fDX42jlxnw2ZLH0zYM8NcURkoiDxmFpK8N4=;
-        b=E8aKOp17eYJ09YV18AAmY8BskL8jW0RHSDnJksQlw84MxxGT6r+cNeQ/GWa8T97jDl
-         ujVcv1sgy+0OBjatqMBBFpEP9PErZPvi4KQeHQ+t1Wwe6hHSaFNthYISJo4KDswQxkod
-         FWnH2jeCPMyJRr0pEsEbmLQcz+Uk/kjBJ/7GsiOZ0dD9pBSsV7VWpL/xoCTr1JzGX2l7
-         AZ6A7qWEahyVapxH5cUIvotsIIfh5kDEZD0ZNGU53dJYKEorO+4ptZaQAOtKkdbaOpp9
-         dipWnhgTqiNroHRRoIaw5GLpscn9oEuzKxVTzX0HbBi0g9CKGSn28xk47+I32/dzHCpp
-         wZSw==
-X-Gm-Message-State: AOJu0YzAhs/jOBYGiiBqVa0TAnHn5mYUmedtrKG4y1l0tvh/mbzRujxP
-	ipNjuzdx7oO1bY/IyJzRwS21vg==
-X-Google-Smtp-Source: AGHT+IH3vMQLqIoV9HGbcoXYg1xhTId9AEbuTn/I7/YiYDai3ISz4BAZGWQHloANnCEj2hYZBbNzKw==
-X-Received: by 2002:a17:906:fc04:b0:9e0:5dab:a0f6 with SMTP id ov4-20020a170906fc0400b009e05daba0f6mr14708235ejb.22.1700216370682;
-        Fri, 17 Nov 2023 02:19:30 -0800 (PST)
+        d=1e100.net; s=20230601; t=1700216558; x=1700821358;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=f8EzOI3JPHdPzMM9gv3BMVKYnG8PIMzGI3VBnnJOMgs=;
+        b=eCIsQxytmGR0nGPvKkFZ3aOOwkIliR2Kbx+urguFty+6RCyTDxhqVywS/9jpeB3vxK
+         wLNvgWzA5qAoadwUgSGFaFDg1O5P8IT96Yz77cXAKzl6jJy5Yp4EaXRcA5VNFUZ64Uqb
+         9RJEk3Wg6icDy5QZdxwJlBcQOKsf3fUxGRT3M8gDAwnzr60N29v1oZkfj2w5w4ejMKP/
+         D/z4zMBKFUhNxtW5Xv7sHNun0P3EZcGrhIYBlvuq8fON3o17qO1PA21/usm70IjEYVLL
+         2YkXTvbL/K1EJLcxjnXOr4Y5jFv6kxItShqh5DQzTxUESW5izP/qfqz2hm9w9e9FcZIz
+         xJxg==
+X-Gm-Message-State: AOJu0YweBU4KzsDnhxjG0uYk9FY5BZA3VQ+F5+WhFiQzLJ8M61iAm+HY
+	nYw6tzheN2Egr0/++ta3iuZ1gA==
+X-Google-Smtp-Source: AGHT+IGFuLmv5SPeXhNZZWLJiQ8uJkWEHVLosOF6q96RvvoIh7UDQGdv1FNOZHaCfyM/suFV+igarg==
+X-Received: by 2002:a05:600c:46cf:b0:3f5:fff8:d4f3 with SMTP id q15-20020a05600c46cf00b003f5fff8d4f3mr16268351wmo.7.1700216557681;
+        Fri, 17 Nov 2023 02:22:37 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id g17-20020a170906595100b00989828a42e8sm621887ejr.154.2023.11.17.02.19.29
+        by smtp.gmail.com with ESMTPSA id f16-20020a05600c155000b003fe1fe56202sm2189174wmg.33.2023.11.17.02.22.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Nov 2023 02:19:30 -0800 (PST)
-Message-ID: <ee10e67b-6a2f-4ab5-91ef-e42d2f03a424@linaro.org>
-Date: Fri, 17 Nov 2023 11:19:28 +0100
+        Fri, 17 Nov 2023 02:22:36 -0800 (PST)
+Message-ID: <519b89a2-550e-44a2-bff0-a6a86c50d073@linaro.org>
+Date: Fri, 17 Nov 2023 11:22:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,13 +62,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm/arm64: samsung: Enable W=1 on dtbs by default
-To: Rob Herring <robh@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231116211739.3228239-1-robh@kernel.org>
+Subject: Re: [PATCH 01/16] dt-bindings: arm: qcom: add SM8550 AIM300
 Content-Language: en-US
+To: Tengfei Fan <quic_tengfan@quicinc.com>, agross@kernel.org,
+ andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, tglx@linutronix.de
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, -cc=kernel@quicinc.com
+References: <20231117101817.4401-1-quic_tengfan@quicinc.com>
+ <20231117101817.4401-2-quic_tengfan@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -115,33 +116,17 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231116211739.3228239-1-robh@kernel.org>
+In-Reply-To: <20231117101817.4401-2-quic_tengfan@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 16/11/2023 22:17, Rob Herring wrote:
-> Samsung platforms are clean of W=1 dtc warnings, so enable the warnings
-> by default. This way submitters don't have to remember to run a W=1
-> build of the .dts files and the grumpiness of the maintainers can be
-> reduced.
-> 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
-> Well, there's a couple of warnings on 32-bit, but they look fixable to
-> me.
-> 
-> There's a few other platforms we could do this to. Sadly, they are still
-> the minority. Otherwise, we could change the default and add a flag to
-> disable (I_STILL_HAVENT_FIXED_MY_PLATFORMS=1).
+On 17/11/2023 11:18, Tengfei Fan wrote:
+> Add board compatible for SM8550 AIM300.
 
-64-bit has still few warnings:
-https://krzk.eu/#/builders/29/builds/3710/steps/26/logs/warnings__6_
+Subject, commit msg and compatible tell basically the same... and none
+of them tell me what is AIM300.
 
-I guess these could be fixed by changing ports to port in the DTS and
-bindings. I assume drivers are ready for it.
 
-32-bit I fixed in this cycle - last three commits - so all Samsung
-32-bit platforms are free from W=1 dtc warnings (yay!).
 
 Best regards,
 Krzysztof
