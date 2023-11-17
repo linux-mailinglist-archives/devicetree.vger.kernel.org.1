@@ -1,169 +1,217 @@
-Return-Path: <devicetree+bounces-16643-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16644-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E87157EF220
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 12:52:03 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 116DC7EF254
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 13:09:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 770C3B209ED
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 11:52:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7060AB20A13
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 12:09:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AC5D1A738;
-	Fri, 17 Nov 2023 11:51:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C06D30357;
+	Fri, 17 Nov 2023 12:08:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KZGdU4Pu"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="ZZac0NVq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BC00BC;
+	Fri, 17 Nov 2023 04:08:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1700222931; x=1731758931;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=npsjKK1E4mamKGL3cTGyWHJLzKqW6Cwvf80sD82f9kc=;
+  b=ZZac0NVqlt6WNqlxEDkI6i8mlNQSO4vBXhFBAX1kFTMkC3eMpbs/Ffn9
+   B7Omh+i5iaamx5p8MqTjb/SgufzBpo5mU2abJrLSS4hlkpoG0tp7HBW+P
+   92WcN+OObLFxVbZQPGqGJS8Lvh3jR/rfA64nTaMteMLB+tblJ2vrdntQg
+   IiXRM+RRn1W8WIJbF08bOcSE+X/TIR1wmKmGt3tbvrPIYo4iZsHpnarEL
+   8CrC79XoVR7A+qXiWNpBwe7iHs4CMsKqM2d7rtR0x3kON9DIQsgRqBl/H
+   tL5Pu2BbfhyH0o7nyswQW5pIfu02C7qTtC5Yg9Ae7m24NYQ8N1UwacOwq
+   w==;
+X-IronPort-AV: E=Sophos;i="6.04,206,1695679200"; 
+   d="scan'208";a="34042550"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 17 Nov 2023 13:08:49 +0100
+Received: from steina-w.localnet (steina-w.tq-net.de [10.123.53.18])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BA2A30325;
-	Fri, 17 Nov 2023 11:51:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65A6BC433C7;
-	Fri, 17 Nov 2023 11:51:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700221916;
-	bh=5ZHexz3dAhJlMDGTudHyhTd6kwWzrrePNKd8DrxTuEo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=KZGdU4Pu42n4aaFkPPt5SUe0neGnHjVCJoi1rFNP07vq5JqEsYQkzXoXTZxO25mfy
-	 aX++K93oA2GkRMwgUp71LAhNBP8FSCr554nZDZaMXlPgLBLsb1nOX3LP2x7FXniJ7O
-	 XXhIOOLCJcTiQsIuadxtOAMXNejf7T8n19zTVt0JoXqBrI5t0O0+GMgv0dDom+HRDU
-	 KMAWxjZRFe81M88eQQEmzqeslO1kcksjuc5JRGjygkMJGFZcgupSPr1vrWgeGmzZTd
-	 w8UI+fq7+f0jjSRJMktV559GXqXLP307h2CtIQI7LF3L9fRNvOBK9n7zL6YxTWEVU9
-	 H8/aIIhsTDGTQ==
-Message-ID: <3e00b2ad-b58f-4b09-9230-683c58d3bb92@kernel.org>
-Date: Fri, 17 Nov 2023 13:51:49 +0200
+	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 2F5EC28007F;
+	Fri, 17 Nov 2023 13:08:49 +0100 (CET)
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: MyungJoo Ham <myungjoo.ham@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, =?ISO-8859-1?Q?Beno=EEt?= Cousson <bcousson@baylibre.com>, Tony Lindgren <tony@atomide.com>, Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, Heiko Stuebner <heiko@sntech.de>, linux-mediatek@lists.infradead.org
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>, NXP Linux Team <linux-imx@nxp.com>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org, linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org, linux-rockchip@lists.infradead.org, Alexander Stein <alexander.stein@ew.tq-group.com>
+Subject: Re: [PATCH v4 2/6] ARM: dts: ti/omap: Replace deprecated extcon-usb-gpio id-gpio/vbus-gpio properties
+Date: Fri, 17 Nov 2023 13:08:53 +0100
+Message-ID: <10373360.nUPlyArG6x@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20230724103914.1779027-3-alexander.stein@ew.tq-group.com>
+References: <20230724103914.1779027-1-alexander.stein@ew.tq-group.com> <20230724103914.1779027-3-alexander.stein@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/6] usb: cdns3-ti: add suspend/resume procedures for
- J7200
-Content-Language: en-US
-To: =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Peter Chen <peter.chen@kernel.org>,
- Pawel Laszczak <pawell@cadence.com>, Nishanth Menon <nm@ti.com>,
- Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
- "Vardhan, Vibhore" <vibhore@ti.com>
-Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- =?UTF-8?Q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-References: <20231113-j7200-usb-suspend-v1-0-ad1ee714835c@bootlin.com>
- <20231113-j7200-usb-suspend-v1-3-ad1ee714835c@bootlin.com>
- <5080372b-1f48-4cbc-a6c4-8689c28983cb@kernel.org>
- <CWZH66HQZNYM.T623ZOEEE0BK@tleb-bootlin-xps13-01>
- <dad980f3-e032-41e4-a1e4-a16a7f45ff95@kernel.org>
- <CX0GOP07I40N.198G7LJ0HYDBG@tleb-bootlin-xps13-01>
- <bdea68ad-7523-4738-8fa1-b670d81a6b93@kernel.org>
- <CX10D9YX1O1C.30PF317AG065N@tleb-bootlin-xps13-01>
-From: Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <CX10D9YX1O1C.30PF317AG065N@tleb-bootlin-xps13-01>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+
+Hi everybody,
+
+any feedback on this? Patch 3,4 and 6 have already been merged.
+
+Thanks
+Alexander
+
+Am Montag, 24. Juli 2023, 12:39:09 CET schrieb Alexander Stein:
+> Use id-gpios and vbus-gpios instead.
+>=20
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> ---
+>  arch/arm/boot/dts/ti/omap/am571x-idk.dts          | 4 ++--
+>  arch/arm/boot/dts/ti/omap/am5729-beagleboneai.dts | 2 +-
+>  arch/arm/boot/dts/ti/omap/am572x-idk-common.dtsi  | 4 ++--
+>  arch/arm/boot/dts/ti/omap/dra7-evm-common.dtsi    | 4 ++--
+>  arch/arm/boot/dts/ti/omap/dra71-evm.dts           | 4 ++--
+>  arch/arm/boot/dts/ti/omap/dra72-evm-common.dtsi   | 4 ++--
+>  arch/arm/boot/dts/ti/omap/dra76-evm.dts           | 4 ++--
+>  7 files changed, 13 insertions(+), 13 deletions(-)
+>=20
+> diff --git a/arch/arm/boot/dts/ti/omap/am571x-idk.dts
+> b/arch/arm/boot/dts/ti/omap/am571x-idk.dts index 48425020281a..322cf79d22=
+e9
+> 100644
+> --- a/arch/arm/boot/dts/ti/omap/am571x-idk.dts
+> +++ b/arch/arm/boot/dts/ti/omap/am571x-idk.dts
+> @@ -168,8 +168,8 @@ blue3-led {
+>  };
+>=20
+>  &extcon_usb2 {
+> -	id-gpio =3D <&gpio5 7 GPIO_ACTIVE_HIGH>;
+> -	vbus-gpio =3D <&gpio7 22 GPIO_ACTIVE_HIGH>;
+> +	id-gpios =3D <&gpio5 7 GPIO_ACTIVE_HIGH>;
+> +	vbus-gpios =3D <&gpio7 22 GPIO_ACTIVE_HIGH>;
+>  };
+>=20
+>  &sn65hvs882 {
+> diff --git a/arch/arm/boot/dts/ti/omap/am5729-beagleboneai.dts
+> b/arch/arm/boot/dts/ti/omap/am5729-beagleboneai.dts index
+> 149cfafb90bf..c5272302eb11 100644
+> --- a/arch/arm/boot/dts/ti/omap/am5729-beagleboneai.dts
+> +++ b/arch/arm/boot/dts/ti/omap/am5729-beagleboneai.dts
+> @@ -197,7 +197,7 @@ brcmf_pwrseq: brcmf_pwrseq {
+>  	extcon_usb1: extcon_usb1 {
+>  		compatible =3D "linux,extcon-usb-gpio";
+>  		ti,enable-id-detection;
+> -		id-gpio =3D <&gpio3 13 GPIO_ACTIVE_HIGH>;
+> +		id-gpios =3D <&gpio3 13 GPIO_ACTIVE_HIGH>;
+>  	};
+>  };
+>=20
+> diff --git a/arch/arm/boot/dts/ti/omap/am572x-idk-common.dtsi
+> b/arch/arm/boot/dts/ti/omap/am572x-idk-common.dtsi index
+> 1d66278c3a72..3fca84819dc0 100644
+> --- a/arch/arm/boot/dts/ti/omap/am572x-idk-common.dtsi
+> +++ b/arch/arm/boot/dts/ti/omap/am572x-idk-common.dtsi
+> @@ -169,8 +169,8 @@ blue3-led {
+>  };
+>=20
+>  &extcon_usb2 {
+> -	id-gpio =3D <&gpio3 16 GPIO_ACTIVE_HIGH>;
+> -	vbus-gpio =3D <&gpio3 26 GPIO_ACTIVE_HIGH>;
+> +	id-gpios =3D <&gpio3 16 GPIO_ACTIVE_HIGH>;
+> +	vbus-gpios =3D <&gpio3 26 GPIO_ACTIVE_HIGH>;
+>  };
+>=20
+>  &sn65hvs882 {
+> diff --git a/arch/arm/boot/dts/ti/omap/dra7-evm-common.dtsi
+> b/arch/arm/boot/dts/ti/omap/dra7-evm-common.dtsi index
+> 4cdffd6db740..ed5199d7acd8 100644
+> --- a/arch/arm/boot/dts/ti/omap/dra7-evm-common.dtsi
+> +++ b/arch/arm/boot/dts/ti/omap/dra7-evm-common.dtsi
+> @@ -15,12 +15,12 @@ chosen {
+>=20
+>  	extcon_usb1: extcon_usb1 {
+>  		compatible =3D "linux,extcon-usb-gpio";
+> -		id-gpio =3D <&pcf_gpio_21 1 GPIO_ACTIVE_HIGH>;
+> +		id-gpios =3D <&pcf_gpio_21 1 GPIO_ACTIVE_HIGH>;
+>  	};
+>=20
+>  	extcon_usb2: extcon_usb2 {
+>  		compatible =3D "linux,extcon-usb-gpio";
+> -		id-gpio =3D <&pcf_gpio_21 2 GPIO_ACTIVE_HIGH>;
+> +		id-gpios =3D <&pcf_gpio_21 2 GPIO_ACTIVE_HIGH>;
+>  	};
+>=20
+>  	sound0: sound0 {
+> diff --git a/arch/arm/boot/dts/ti/omap/dra71-evm.dts
+> b/arch/arm/boot/dts/ti/omap/dra71-evm.dts index a64364443031..f747ac56eb92
+> 100644
+> --- a/arch/arm/boot/dts/ti/omap/dra71-evm.dts
+> +++ b/arch/arm/boot/dts/ti/omap/dra71-evm.dts
+> @@ -293,11 +293,11 @@ &hdmi {
+>  };
+>=20
+>  &extcon_usb1 {
+> -	vbus-gpio =3D <&pcf_lcd 14 GPIO_ACTIVE_HIGH>;
+> +	vbus-gpios =3D <&pcf_lcd 14 GPIO_ACTIVE_HIGH>;
+>  };
+>=20
+>  &extcon_usb2 {
+> -	vbus-gpio =3D <&pcf_lcd 15 GPIO_ACTIVE_HIGH>;
+> +	vbus-gpios =3D <&pcf_lcd 15 GPIO_ACTIVE_HIGH>;
+>  };
+>=20
+>  &ipu2 {
+> diff --git a/arch/arm/boot/dts/ti/omap/dra72-evm-common.dtsi
+> b/arch/arm/boot/dts/ti/omap/dra72-evm-common.dtsi index
+> 31ab0c60ca75..f8151c61488e 100644
+> --- a/arch/arm/boot/dts/ti/omap/dra72-evm-common.dtsi
+> +++ b/arch/arm/boot/dts/ti/omap/dra72-evm-common.dtsi
+> @@ -96,12 +96,12 @@ evm_3v3_sd: fixedregulator-sd {
+>=20
+>  	extcon_usb1: extcon_usb1 {
+>  		compatible =3D "linux,extcon-usb-gpio";
+> -		id-gpio =3D <&pcf_gpio_21 1 GPIO_ACTIVE_HIGH>;
+> +		id-gpios =3D <&pcf_gpio_21 1 GPIO_ACTIVE_HIGH>;
+>  	};
+>=20
+>  	extcon_usb2: extcon_usb2 {
+>  		compatible =3D "linux,extcon-usb-gpio";
+> -		id-gpio =3D <&pcf_gpio_21 2 GPIO_ACTIVE_HIGH>;
+> +		id-gpios =3D <&pcf_gpio_21 2 GPIO_ACTIVE_HIGH>;
+>  	};
+>=20
+>  	hdmi0: connector {
+> diff --git a/arch/arm/boot/dts/ti/omap/dra76-evm.dts
+> b/arch/arm/boot/dts/ti/omap/dra76-evm.dts index 57868ac60d29..cf9c3d35b049
+> 100644
+> --- a/arch/arm/boot/dts/ti/omap/dra76-evm.dts
+> +++ b/arch/arm/boot/dts/ti/omap/dra76-evm.dts
+> @@ -533,11 +533,11 @@ &pcie1_ep {
+>  };
+>=20
+>  &extcon_usb1 {
+> -	vbus-gpio =3D <&pcf_lcd 14 GPIO_ACTIVE_HIGH>;
+> +	vbus-gpios =3D <&pcf_lcd 14 GPIO_ACTIVE_HIGH>;
+>  };
+>=20
+>  &extcon_usb2 {
+> -	vbus-gpio =3D <&pcf_lcd 15 GPIO_ACTIVE_HIGH>;
+> +	vbus-gpios =3D <&pcf_lcd 15 GPIO_ACTIVE_HIGH>;
+>  };
+>=20
+>  &m_can0 {
 
 
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
 
-On 17/11/2023 12:17, Théo Lebrun wrote:
-> Hello,
-> 
-> On Thu Nov 16, 2023 at 10:44 PM CET, Roger Quadros wrote:
->> On 16/11/2023 20:56, Théo Lebrun wrote:
->>> On Thu Nov 16, 2023 at 1:40 PM CET, Roger Quadros wrote:
->>>> On 15/11/2023 17:02, Théo Lebrun wrote:
->>>>> On Wed Nov 15, 2023 at 12:37 PM CET, Roger Quadros wrote:
->>>>>> You might want to check suspend/resume ops in cdns3-plat and
->>>>>> do something similar here.
->>>>>
->>>>> I'm unsure what you are referring to specifically in cdns3-plat?
->>>>
->>>> What I meant is, calling pm_runtime_get/put() from system suspend/resume
->>>> hooks doesn't seem right.
->>>>
->>>> How about using something like pm_runtime_forbid(dev) on devices which
->>>> loose USB context on runtime suspend e.g. J7200.
->>>> So at probe we can get rid of the pm_runtime_get_sync() call.
->>>
->>> What is the goal of enabling PM runtime to then block (ie forbid) it in
->>> its enabled state until system suspend?
->>
->> If USB controller retains context on runtime_suspend on some platforms
->> then we don't want to forbid PM runtime.
-> 
-> What's the point of runtime PM if nothing is done based on it? This is
-> the current behavior of the driver.
 
-Even if driver doesn't have runtime_suspend/resume hooks, wouldn't 
-the USB Power domain turn off if we enable runtime PM and allow runtime
-autosuspend and all children have runtime suspended?
-
-> 
->>> Thinking some more about it and having read parts of the genpd source,
->>> it's unclear to me why there even is some PM runtime calls in this
->>> driver. No runtime_suspend/runtime_resume callbacks are registered.
->>> Also, power-domains work as expected without any PM runtime calls.
->>
->> Probably it was required when the driver was introduced.
-> 
-> I'm not seeing any behavior change in cdns3-ti since its addition in Oct
-> 2019.
-> 
->>> The power domain is turned on when attached to a device
->>> (see genpd_dev_pm_attach). It gets turned off automatically at
->>> suspend_noirq (taking into account the many things that make genpd
->>> complex: multiple devices per PD, subdomains, flags to customise the
->>> behavior, etc.). Removing calls to PM runtime at probe keeps the driver
->>> working.
->>>
->>> So my new proposal would be: remove all all PM runtime calls from this
->>> driver. Anything wrong with this approach?
->>
->> Nothing wrong if we don't expect runtime_pm to work with this driver.
->>
->>>
->>> Only possible reason I see for having PM runtime in this wrapper driver
->>> would be cut the full power-domain when USB isn't used, with some PM
->>> runtime interaction with the children node. But that cannot work
->>> currently as we don't register a runtime_resume to init the hardware,
->>> so this cannot be the current expected behavior.
->>>
->>>> e.g.
->>>>
->>>>         pm_runtime_set_active(dev);
->>>>         pm_runtime_enable(dev);
->>>>         if (cnds_ti->can_loose_context)
->>>>                 pm_runtime_forbid(dev);
->>>>
->>>>         pm_runtime_set_autosuspend_delay(dev, CNDS_TI_AUTOSUSPEND_DELAY);	/* could be 20ms? */
->>>
->>> Why mention autosuspend in this driver? This will turn the device off in
->>> CNDS_TI_AUTOSUSPEND_DELAY then nothing enables it back using
->>> pm_runtime_get. We have nothing to reconfigure the device, ie no
->>> runtime_resume, so we must not go into runtime suspend.
->>
->> It would be enabled/disabled based on when the child "cdns3,usb"
->> does runtime_resume/suspend.
-> 
-> Why care about being enabled or disabled if we don't do anything based
-> on that? Children does do runtime PM stuff but I don't understand how
-> that could influence us.
-> 
-> Regards,
-> 
-> --
-> Théo Lebrun, Bootlin
-> Embedded Linux and Kernel engineering
-> https://bootlin.com
-> 
-
--- 
-cheers,
--roger
 
