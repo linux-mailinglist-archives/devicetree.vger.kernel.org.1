@@ -1,132 +1,116 @@
-Return-Path: <devicetree+bounces-16442-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16443-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FFAE7EEB16
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 03:33:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE8AB7EEB4B
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 04:00:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 514441C209A3
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 02:33:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7DB721F2520F
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 03:00:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87228389;
-	Fri, 17 Nov 2023 02:33:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 947264A0F;
+	Fri, 17 Nov 2023 03:00:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ahEx1e32"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NlF90bvE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 972111A8;
-	Thu, 16 Nov 2023 18:33:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1700188408; x=1731724408;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=3gLagopNTFrZ+no4RRGv3edWm/bc9IZNOJcKZBnlVV8=;
-  b=ahEx1e32vlj2plWVEGOOR75BnhofNUp3fEM6mbIFVTKya6SEqD8GNtUV
-   RxaK+U21IKi9UbrTsPfRF9DVWcgfScVT9IDL9b8jQeYS2x1Sgnv4dSQ7T
-   wyQcbbUxZtAW8FESGTyxa16/acgh3gv/HgLwSDO1shQBR8cPL4vHkx/Q1
-   T/OUKQhIg64c5gmjKNEsUQzbciij1L40VrvA9IZgPbhf8AC27vlD6uW+F
-   +TZTJroPFohvADmAjBafNUbPZvVLkZcqc1rf75mq9xzchcTHOgSSt+nxx
-   HGpj+c7gkAnF0j3yvlW1n2QbZvxuW1/wbgY52QxavUnwd9U+bSTobD0ck
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="457720617"
-X-IronPort-AV: E=Sophos;i="6.04,205,1695711600"; 
-   d="scan'208";a="457720617"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Nov 2023 18:33:27 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="909308544"
-X-IronPort-AV: E=Sophos;i="6.04,205,1695711600"; 
-   d="scan'208";a="909308544"
-Received: from lkp-server02.sh.intel.com (HELO b8de5498638e) ([10.239.97.151])
-  by fmsmga001.fm.intel.com with ESMTP; 16 Nov 2023 18:33:24 -0800
-Received: from kbuild by b8de5498638e with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1r3ofa-0002I7-1x;
-	Fri, 17 Nov 2023 02:33:22 +0000
-Date: Fri, 17 Nov 2023 10:33:10 +0800
-From: kernel test robot <lkp@intel.com>
-To: Li peiyu <579lpy@gmail.com>, jic23@kernel.org, lars@metafoo.de,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Li peiyu <579lpy@gmail.com>
-Subject: Re: [PATCH [1/2]] iio: humidity: Add driver for ti HDC302x humidity
- sensors
-Message-ID: <202311171052.IjyxJMuw-lkp@intel.com>
-References: <20231116125805.13466-1-579lpy@gmail.com>
+Received: from mail-qv1-xf32.google.com (mail-qv1-xf32.google.com [IPv6:2607:f8b0:4864:20::f32])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F19AD4A;
+	Thu, 16 Nov 2023 19:00:31 -0800 (PST)
+Received: by mail-qv1-xf32.google.com with SMTP id 6a1803df08f44-66d24ccc6f2so23788386d6.0;
+        Thu, 16 Nov 2023 19:00:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1700190031; x=1700794831; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=cfh/n50sV9zDL7CpRsgoAkjALbUjhc6nk0SgI0MAzG8=;
+        b=NlF90bvEH73dPaEZfsH2+uGwQi4zuEfkAm3wEsDVqy3U2TH/t9yyRCeo3CDBnIo2LQ
+         cDukCVOuz0L2pMgLXTsWK5rfrahvnQMED71pzqG7ummZPO3mtaB0XNGYBoNu06N54yhE
+         8KTeSWbYDmqVSYdFBtci14yl5P9atNsDf9uE64roeiFxgp4Buyz+YwTGMmk2ki8cOLa3
+         YtpsVg7ATlrD6SRUP/8Y7esTD8SVhXqd4Z6Yvo+AXBSh0Q85z4AQVxMkutzK8ju98gts
+         OE/E1OZsWq9SBHSZ/AHNRsaoMm5GZ4g+JmiprDK3ewLWaEJ3BTm0nqP0Mv4yXpsrq/ed
+         qsOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700190031; x=1700794831;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=cfh/n50sV9zDL7CpRsgoAkjALbUjhc6nk0SgI0MAzG8=;
+        b=AJ9mdmDyEOVkflu9hayjz6bTXzw01OcKxEc41CGWook+jo/gkVE7oUYLbcYbvCEF5c
+         TvK1hA1JLL+ixH4RacAaYE8fp3GgJlDa3xai2beETseKXt2f4rZfQXY89gYUW7iBPJcL
+         X7lvwyvxLdmifIgcfirBt2Jybr6GQ6JsOqmz+IqPBBdFLPhrKwg1EIAg/oEBaHkDdthv
+         wfaTIwXUKxfeK/OvfYc9VGuuKVnjx+zpp6Dsz7Y+VPrp7G5dW4zDJb2J3HHY6oPSkQyB
+         7jaO1WM+Su+5VItz+uzP5h3UK1KkSupsOyJlMkp5pu8XmlxE2IdLXqvUdGQQ0Ka4E1qG
+         0pzw==
+X-Gm-Message-State: AOJu0YwlHIbnFIlVF95ydOrXxV+2UfqDDBoFn7h0XwdLT7e+lWrTU5En
+	JvBiQbyCp8ANM2QwsAmO9FE=
+X-Google-Smtp-Source: AGHT+IFFvYGeUevkkm4iGUX82D5/wf+kjQ1tbxFALDK15kELTovdQXDsQi0snNEfVRxy812FA7AiAA==
+X-Received: by 2002:ad4:5d47:0:b0:66d:303a:46bd with SMTP id jk7-20020ad45d47000000b0066d303a46bdmr7163090qvb.13.1700190030594;
+        Thu, 16 Nov 2023 19:00:30 -0800 (PST)
+Received: from google.com ([205.220.129.19])
+        by smtp.gmail.com with ESMTPSA id rv13-20020a05620a688d00b0077a7d02cffbsm294058qkn.24.2023.11.16.19.00.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Nov 2023 19:00:30 -0800 (PST)
+Date: Fri, 17 Nov 2023 02:59:44 +0000
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Jiri Valek - 2N <jiriv@axis.com>
+Cc: Rob Herring <robh+dt@kernel.org>, krzysztof.kozlowski+dt@linaro.org,
+	devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+	linux-kernel@vger.kernel.org, u.kleine-koenig@pengutronix.de
+Subject: Re: [PATCH v5 3/3] Input: cap11xx - remove unnecessary IRQ parsing
+Message-ID: <ZVbWZXvzudWTFpBk@google.com>
+References: <20231108155647.1812835-1-jiriv@axis.com>
+ <20231108155647.1812835-4-jiriv@axis.com>
+ <CAL_JsqL3veRuuDqWnZ+eUTP5Mvz5WffYktrBh6HqyARRThzmYQ@mail.gmail.com>
+ <f2df3ba6-76d2-4e2e-9c7e-54f6a84464b7@axis.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20231116125805.13466-1-579lpy@gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <f2df3ba6-76d2-4e2e-9c7e-54f6a84464b7@axis.com>
 
-Hi Li,
+On Thu, Nov 16, 2023 at 08:43:00AM +0100, Jiri Valek - 2N wrote:
+> On 11/8/23 20:53, Rob Herring wrote:
+> > On Wed, Nov 8, 2023 at 9:57 AM Jiri Valek - 2N <jiriv@axis.com> wrote:
+> >>
+> >> Separate IRQ parsing is not necessary, I2C core do the job.
+> >>
+> >> Signed-off-by: Jiri Valek - 2N <jiriv@axis.com>
+> >> ---
+> >>  drivers/input/keyboard/cap11xx.c | 10 ++--------
+> >>  1 file changed, 2 insertions(+), 8 deletions(-)
+> >>
+> >> diff --git a/drivers/input/keyboard/cap11xx.c b/drivers/input/keyboard/cap11xx.c
+> >> index 4711ea985627..ccca9936ef25 100644
+> >> --- a/drivers/input/keyboard/cap11xx.c
+> >> +++ b/drivers/input/keyboard/cap11xx.c
+> >> @@ -518,7 +518,7 @@ static int cap11xx_i2c_probe(struct i2c_client *i2c_client)
+> >>         struct device *dev = &i2c_client->dev;
+> >>         struct cap11xx_priv *priv;
+> >>         const struct cap11xx_hw_model *cap;
+> >> -       int i, error, irq;
+> >> +       int i, error;
+> >>         unsigned int val, rev;
+> >>
+> >>         if (id->driver_data >= ARRAY_SIZE(cap11xx_devices)) {
+> >> @@ -624,13 +624,7 @@ static int cap11xx_i2c_probe(struct i2c_client *i2c_client)
+> >>         if (error)
+> >>                 return error;
+> >>
+> >> -       irq = irq_of_parse_and_map(dev->of_node, 0);
+> > 
+> > Probably can drop the include of of_irq.h as well.
+> Ack. Thanks for notice!
 
-kernel test robot noticed the following build warnings:
-
-[auto build test WARNING on jic23-iio/togreg]
-[also build test WARNING on linus/master v6.7-rc1 next-20231116]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Li-peiyu/iio-humidity-Add-driver-for-ti-HDC302x-humidity-sensors/20231116-210050
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
-patch link:    https://lore.kernel.org/r/20231116125805.13466-1-579lpy%40gmail.com
-patch subject: [PATCH [1/2]] iio: humidity: Add driver for ti HDC302x humidity sensors
-config: x86_64-randconfig-r111-20231117 (https://download.01.org/0day-ci/archive/20231117/202311171052.IjyxJMuw-lkp@intel.com/config)
-compiler: gcc-9 (Debian 9.3.0-22) 9.3.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231117/202311171052.IjyxJMuw-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202311171052.IjyxJMuw-lkp@intel.com/
-
-sparse warnings: (new ones prefixed by >>)
->> drivers/iio/humidity/hdc3020.c:23:10: sparse: sparse: symbol 'HDC3020_S_AUTO_10HZ_MOD0' was not declared. Should it be static?
->> drivers/iio/humidity/hdc3020.c:25:10: sparse: sparse: symbol 'HDC3020_EXIT_AUTO' was not declared. Should it be static?
->> drivers/iio/humidity/hdc3020.c:27:10: sparse: sparse: symbol 'HDC3020_R_T_RH_AUTO' was not declared. Should it be static?
->> drivers/iio/humidity/hdc3020.c:28:10: sparse: sparse: symbol 'HDC3020_R_T_LOW_AUTO' was not declared. Should it be static?
->> drivers/iio/humidity/hdc3020.c:29:10: sparse: sparse: symbol 'HDC3020_R_T_HIGH_AUTO' was not declared. Should it be static?
->> drivers/iio/humidity/hdc3020.c:30:10: sparse: sparse: symbol 'HDC3020_R_RH_LOW_AUTO' was not declared. Should it be static?
->> drivers/iio/humidity/hdc3020.c:31:10: sparse: sparse: symbol 'HDC3020_R_RH_HIGH_AUTO' was not declared. Should it be static?
->> drivers/iio/humidity/hdc3020.c:33:10: sparse: sparse: symbol 'HDC3020_ENABLE_HEATER' was not declared. Should it be static?
->> drivers/iio/humidity/hdc3020.c:34:10: sparse: sparse: symbol 'HDC3020_DISABLE_HEATER' was not declared. Should it be static?
->> drivers/iio/humidity/hdc3020.c:36:10: sparse: sparse: symbol 'HDC3020_HEATER_FULL' was not declared. Should it be static?
->> drivers/iio/humidity/hdc3020.c:37:10: sparse: sparse: symbol 'HDC3020_HEATER_HALF' was not declared. Should it be static?
->> drivers/iio/humidity/hdc3020.c:38:10: sparse: sparse: symbol 'HDC3020_HEATER_QUARTER' was not declared. Should it be static?
-
-vim +/HDC3020_S_AUTO_10HZ_MOD0 +23 drivers/iio/humidity/hdc3020.c
-
-    22	
-  > 23	const u8 HDC3020_S_AUTO_10HZ_MOD0[2] = { 0x27, 0x37 };
-    24	
-  > 25	const u8 HDC3020_EXIT_AUTO[2] = { 0x30, 0x93 };
-    26	
-  > 27	const u8 HDC3020_R_T_RH_AUTO[2] = { 0xE0, 0x00 };
-  > 28	const u8 HDC3020_R_T_LOW_AUTO[2] = { 0xE0, 0x02 };
-  > 29	const u8 HDC3020_R_T_HIGH_AUTO[2] = { 0xE0, 0x03 };
-  > 30	const u8 HDC3020_R_RH_LOW_AUTO[2] = { 0xE0, 0x04 };
-  > 31	const u8 HDC3020_R_RH_HIGH_AUTO[2] = { 0xE0, 0x05 };
-    32	
-  > 33	const u8 HDC3020_ENABLE_HEATER[2] = { 0x30, 0x6D };
-  > 34	const u8 HDC3020_DISABLE_HEATER[2] = { 0x30, 0x66 };
-    35	
-  > 36	const u8 HDC3020_HEATER_FULL[5] = { 0x30, 0x6E, 0x3F, 0xFF, 0x06 };
-  > 37	const u8 HDC3020_HEATER_HALF[5] = { 0x30, 0x6E, 0x03, 0xFF, 0x00 };
-  > 38	const u8 HDC3020_HEATER_QUARTER[5] = { 0x30, 0x6E, 0x00, 0x9F, 0x96 };
-    39	
+I replaced it with #include <of.h> and applied, thank you.
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Dmitry
 
