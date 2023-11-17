@@ -1,64 +1,52 @@
-Return-Path: <devicetree+bounces-16711-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16712-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AC0B7EF644
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 17:33:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7113B7EF696
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 17:51:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BAE552813B3
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 16:33:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 942F61C20A42
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 16:51:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 648DF32C8B;
-	Fri, 17 Nov 2023 16:33:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9C4E3EA9F;
+	Fri, 17 Nov 2023 16:50:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="p8ZiYuR3"
+	dkim=pass (1024-bit key) header.d=subdimension.ro header.i=@subdimension.ro header.b="KzLG9mzb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A08A196;
-	Fri, 17 Nov 2023 08:33:50 -0800 (PST)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3AHGXfJD000580;
-	Fri, 17 Nov 2023 10:33:41 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1700238821;
-	bh=TRVFdbxp5TfB9zohoIzap5ZelvMfSVt1e9KtfukunVc=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=p8ZiYuR3j+zQLfETJ0OmYQF/VmtESq62TxInPoZl0cHr73sLuMFmGo3m1tknDdK7h
-	 0gFgZLqn1snrVLtvW3Hv4JzG837Ds+3C4Pz9dibBXMe9MYqa0DG6VsEqWl4I/kRFWL
-	 F/n/0gSngu9bBnv4bHaWyU0pj9qwkUHuL2o7oQdM=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3AHGXfpY097084
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 17 Nov 2023 10:33:41 -0600
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 17
- Nov 2023 10:33:41 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 17 Nov 2023 10:33:41 -0600
-Received: from fllv0039.itg.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3AHGXeYg127988;
-	Fri, 17 Nov 2023 10:33:41 -0600
-From: Andrew Davis <afd@ti.com>
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Andrew Davis <afd@ti.com>
-Subject: [PATCH 2/2] arm64: dts: ti: k3-am64: Enable SDHCI nodes at the board level
-Date: Fri, 17 Nov 2023 10:33:39 -0600
-Message-ID: <20231117163339.89952-2-afd@ti.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20231117163339.89952-1-afd@ti.com>
-References: <20231117163339.89952-1-afd@ti.com>
+X-Greylist: delayed 464 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 17 Nov 2023 08:50:55 PST
+Received: from mail.subdimension.ro (skycaves.subdimension.ro [172.104.132.142])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64277D56;
+	Fri, 17 Nov 2023 08:50:55 -0800 (PST)
+Received: from localhost.localdomain (unknown [188.24.94.216])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by mail.subdimension.ro (Postfix) with ESMTPSA id 9F67828F040;
+	Fri, 17 Nov 2023 16:43:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=subdimension.ro;
+	s=skycaves; t=1700239386;
+	bh=QT8vpu+ylcxkag8lhmcsJJ4NYnz4R5VzA35fbKzvegw=;
+	h=From:To:Cc:Subject:Date;
+	b=KzLG9mzbk+hWS8oRpqEdF1tdUD+MXGnWAHpfXJv9gHmgxJRzWGsSxxrsd0Nekco0C
+	 6M/W5hHuVzMAim1hPU9h6PetYh7L3opB3w3T04s8eC5mjMKYmzyz8LiDcMt05yfQ6J
+	 +YEWRAUQJRymrrJCaWtQllJD9LB/xMl0234dafvs=
+From: Petre Rodan <petre.rodan@subdimension.ro>
+To: petre.rodan@subdimension.ro,
+	linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: Conor Dooley <conor+dt@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	linux-kernel-mentees@lists.linuxfoundation.org,
+	Jonathan Cameron <jic23@kernel.org>
+Subject: [PATCH 1/2] dt-bindings: iio: pressure: add honeywell,hsc030
+Date: Fri, 17 Nov 2023 18:42:05 +0200
+Message-ID: <20231117164232.8474-1-petre.rodan@subdimension.ro>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,148 +54,193 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-SDHCI nodes defined in the top-level AM64 SoC dtsi files are incomplete
-and will not be functional unless they are extended.
+Adds binding for digital Honeywell TruStability HSC and SSC series
+pressure and temperature sensors.
 
-As the attached SD/eMMC is only known about at the board integration level,
-these nodes should only be enabled when provided with this information.
+Datasheet:
+ [HSC] https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/products/sensors/pressure-sensors/board-mount-pressure-sensors/trustability-hsc-series/documents/sps-siot-trustability-hsc-series-high-accuracy-board-mount-pressure-sensors-50099148-a-en-ciid-151133.pdf
+ [SSC] https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/products/sensors/pressure-sensors/board-mount-pressure-sensors/trustability-ssc-series/documents/sps-siot-trustability-ssc-series-standard-accuracy-board-mount-pressure-sensors-50099533-a-en-ciid-151134.pdf
 
-Disable the SDHCI nodes in the dtsi files and only enable the ones that
-are actually pinned out on a given board.
-
-Signed-off-by: Andrew Davis <afd@ti.com>
+Signed-off-by: Petre Rodan <petre.rodan@subdimension.ro>
 ---
- arch/arm64/boot/dts/ti/k3-am64-main.dtsi                 | 2 ++
- arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi          | 1 +
- arch/arm64/boot/dts/ti/k3-am642-evm.dts                  | 6 ++++--
- arch/arm64/boot/dts/ti/k3-am642-phyboard-electra-rdk.dts | 1 +
- arch/arm64/boot/dts/ti/k3-am642-sk.dts                   | 4 +++-
- arch/arm64/boot/dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts   | 1 -
- arch/arm64/boot/dts/ti/k3-am642-tqma64xxl.dtsi           | 1 +
- 7 files changed, 12 insertions(+), 4 deletions(-)
+ .../iio/pressure/honeywell,hsc030pa.yaml     | 166 ++++++++++++++++++
+ 1 file changed, 166 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/pressure/honeywell,hsc0030pa.yaml
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-index 0be642bc1b86d..c3300c36fdbcb 100644
---- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-@@ -623,6 +623,7 @@ sdhci0: mmc@fa10000 {
- 		ti,otap-del-sel-mmc-hs = <0x0>;
- 		ti,otap-del-sel-ddr52 = <0x6>;
- 		ti,otap-del-sel-hs200 = <0x7>;
-+		status = "disabled";
- 	};
- 
- 	sdhci1: mmc@fa00000 {
-@@ -641,6 +642,7 @@ sdhci1: mmc@fa00000 {
- 		ti,otap-del-sel-sdr104 = <0x6>;
- 		ti,otap-del-sel-ddr50 = <0x9>;
- 		ti,clkbuf-sel = <0x7>;
-+		status = "disabled";
- 	};
- 
- 	cpsw3g: ethernet@8000000 {
-diff --git a/arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi b/arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi
-index f87f09d83c956..b8f844f667afc 100644
---- a/arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi
-@@ -211,6 +211,7 @@ flash@0 {
- };
- 
- &sdhci0 {
-+	status = "okay";
- 	bus-width = <8>;
- 	non-removable;
- 	ti,driver-strength-ohm = <50>;
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm.dts b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-index 4dba18941015d..256606be56fef 100644
---- a/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-@@ -487,17 +487,19 @@ eeprom@0 {
- 	};
- };
- 
-+/* eMMC */
- &sdhci0 {
--	/* emmc */
-+	status = "okay";
- 	bus-width = <8>;
- 	non-removable;
- 	ti,driver-strength-ohm = <50>;
- 	disable-wp;
- };
- 
-+/* SD/MMC */
- &sdhci1 {
--	/* SD/MMC */
- 	bootph-all;
-+	status = "okay";
- 	vmmc-supply = <&vdd_mmc1>;
- 	pinctrl-names = "default";
- 	bus-width = <4>;
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-phyboard-electra-rdk.dts b/arch/arm64/boot/dts/ti/k3-am642-phyboard-electra-rdk.dts
-index 9175e96842d82..53b64e55413f9 100644
---- a/arch/arm64/boot/dts/ti/k3-am642-phyboard-electra-rdk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am642-phyboard-electra-rdk.dts
-@@ -264,6 +264,7 @@ &main_uart1 {
- };
- 
- &sdhci1 {
-+	status = "okay";
- 	vmmc-supply = <&vcc_3v3_mmc>;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&main_mmc1_pins_default>;
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-sk.dts b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-index f29c8a9b59ba7..bffbd234f715a 100644
---- a/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-@@ -439,6 +439,7 @@ &mcu_gpio0 {
- };
- 
- &sdhci0 {
-+	status = "okay";
- 	vmmc-supply = <&wlan_en>;
- 	bus-width = <4>;
- 	non-removable;
-@@ -458,9 +459,10 @@ wlcore: wlcore@2 {
- 	};
- };
- 
-+/* SD/MMC */
- &sdhci1 {
--	/* SD/MMC */
- 	bootph-all;
-+	status = "okay";
- 	vmmc-supply = <&vdd_mmc1>;
- 	pinctrl-names = "default";
- 	bus-width = <4>;
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts b/arch/arm64/boot/dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts
-index d95d80076a427..55102d35cecc1 100644
---- a/arch/arm64/boot/dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts
-@@ -425,7 +425,6 @@ &sdhci1 {
- 	ti,driver-strength-ohm = <50>;
- 	ti,fails-without-test-cd;
- 	/* Enabled by overlay */
--	status = "disabled";
- };
- 
- &tscadc0 {
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-tqma64xxl.dtsi b/arch/arm64/boot/dts/ti/k3-am642-tqma64xxl.dtsi
-index d82d4a98306a7..6c785eff7d2ff 100644
---- a/arch/arm64/boot/dts/ti/k3-am642-tqma64xxl.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am642-tqma64xxl.dtsi
-@@ -219,6 +219,7 @@ partitions {
- };
- 
- &sdhci0 {
-+	status = "okay";
- 	non-removable;
- 	disable-wp;
- 	no-sdio;
+diff --git a/Documentation/devicetree/bindings/iio/pressure/honeywell,hsc030pa.yaml b/Documentation/devicetree/bindings/iio/pressure/honeywell,hsc030pa.yaml
+new file mode 100644
+index 000000000000..777710790696
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/pressure/honeywell,hsc030pa.yaml
+@@ -0,0 +1,166 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/pressure/honeywell,hsc030pa.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Honeywell TruStability HSC and SSC pressure sensor families
++
++maintainers:
++  - Petre Rodan <petre.rodan@subdimension.ro>
++
++description: |
++  support for Honeywell TruStability HSC and SSC digital pressure sensor
++  families.
++
++  These sensors have either an I2C, an SPI or an analog interface. Only the
++  digital versions are supported by this driver.
++
++  There are 118 models with different pressure ranges available in each family.
++  The vendor calls them "HSC series" and "SSC series". All of them have an
++  identical programming model but differ in pressure range, unit and transfer
++  function.
++
++  To support different models one need to specify the pressure range as well as
++  the transfer function. Pressure range can either be provided via range_str or
++  in case it's a custom chip via numerical range limits converted to pascals.
++
++  The transfer function defines the ranges of raw conversion values delivered
++  by the sensor. pmin-pascal and pmax-pascal corespond to the minimum and
++  maximum pressure that can be measured.
++
++  Specifications about the devices can be found at:
++  https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/products/sensors/pressure-sensors/board-mount-pressure-sensors/trustability-hsc-series/documents/sps-siot-trustability-hsc-series-high-accuracy-board-mount-pressure-sensors-50099148-a-en-ciid-151133.pdf
++  https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/products/sensors/pressure-sensors/board-mount-pressure-sensors/trustability-ssc-series/documents/sps-siot-trustability-ssc-series-standard-accuracy-board-mount-pressure-sensors-50099533-a-en-ciid-151134.pdf
++
++properties:
++  compatible:
++    enum:
++      - honeywell,hsc
++      - honeywell,ssc
++
++  reg:
++    maxItems: 1
++
++  honeywell,transfer-function:
++    description: |
++      Transfer function which defines the range of valid values delivered by
++      the sensor.
++      0 - A, 10% to 90% of 2^14
++      1 - B, 5% to 95% of 2^14
++      2 - C, 5% to 85% of 2^14
++      3 - F, 4% to 94% of 2^14
++    $ref: /schemas/types.yaml#/definitions/uint32
++
++  honeywell,range_str:
++    description: |
++      Five character string that defines "pressure range, unit and type"
++      as part of the device nomenclature. In the unlikely case of a custom
++      chip, set to "NA" and provide honeywell,pmin-pascal honeywell,pmax-pascal
++    enum: [ "001BA", "1.6BA", "2.5BA", "004BA", "006BA", "010BA", "1.6MD",
++            "2.5MD", "004MD", "006MD", "010MD", "016MD", "025MD", "040MD",
++            "060MD", "100MD", "160MD", "250MD", "400MD", "600MD", "001BD",
++            "1.6BD", "2.5BD", "004BD", "2.5MG", "004MG", "006MG", "010MG",
++            "016MG", "025MG", "040MG", "060MG", "100MG", "160MG", "250MG",
++            "400MG", "600MG", "001BG", "1.6BG", "2.5BG", "004BG", "006BG",
++            "010BG", "100KA", "160KA", "250KA", "400KA", "600KA", "001GA",
++            "160LD", "250LD", "400LD", "600LD", "001KD", "1.6KD", "2.5KD",
++            "004KD", "006KD", "010KD", "016KD", "025KD", "040KD", "060KD",
++            "100KD", "160KD", "250KD", "400KD", "250LG", "400LG", "600LG",
++            "001KG", "1.6KG", "2.5KG", "004KG", "006KG", "010KG", "016KG",
++            "025KG", "040KG", "060KG", "100KG", "160KG", "250KG", "400KG",
++            "600KG", "001GG", "015PA", "030PA", "060PA", "100PA", "150PA",
++            "0.5ND", "001ND", "002ND", "004ND", "005ND", "010ND", "020ND",
++            "030ND", "001PD", "005PD", "015PD", "030PD", "060PD", "001NG",
++            "002NG", "004NG", "005NG", "010NG", "020NG", "030NG", "001PG",
++            "005PG", "015PG", "030PG", "060PG", "100PG", "150PG", "NA" ]
++    $ref: /schemas/types.yaml#/definitions/string
++
++  honeywell,pmin-pascal:
++    description: |
++      Minimum pressure value the sensor can measure in pascal.
++      To be specified only if honeywell,range_str is set to "NA".
++    $ref: /schemas/types.yaml#/definitions/int32
++
++  honeywell,pmax-pascal:
++    description: |
++      Maximum pressure value the sensor can measure in pascal.
++      To be specified only if honeywell,range_str is set to "NA".
++    $ref: /schemas/types.yaml#/definitions/int32
++
++  vdd-supply:
++    description: |
++      Provide VDD power to the sensor (either 3.3V or 5V depending on the chip).
++      Optional, activate only if required by the target board.
++
++  spi-max-frequency:
++    description: SPI clock to be kept between 50 and 800kHz
++
++  clock-frequency:
++    description: i2c clock to be kept between 100 and 400kHz
++
++required:
++  - compatible
++  - reg
++  - honeywell,transfer-function
++  - honeywell,range_str
++  - clock-frequency
++  - spi-max-frequency
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    i2c {
++        status = "okay";
++        clock-frequency = <400000>;
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        HSCMRNN030PA2A3@28 {
++          status = "okay";
++          compatible = "honeywell,hsc";
++          reg = <0x28>;
++          honeywell,transfer-function = <0>;
++          honeywell,range_str = "030PA";
++          honeywell,pmin-pascal = <0>;
++          honeywell,pmax-pascal = <206850>;
++
++		      //vdd-supply = <&foo>;
++        };
++    };
++
++    spi {
++        # note that MOSI is not required by this sensor
++        status = "okay";
++        #address-cells = <1>;
++        #size-cells = <0>;
++        pinctrl-names = "default";
++        pinctrl-0 = <&spi0_pins>;
++
++        channel@0{
++          status = "disabled";
++          reg = <0>;
++        };
++
++        HSCMLNN100PASA3@0 {
++          status = "okay";
++          compatible = "honeywell,hsc";
++		      reg = <0>;
++		      spi-max-frequency = <800000>;
++
++		      honeywell,transfer-function = <0>;
++		      honeywell,range_str = "100PA";
++
++		      // in case of a custom range, use NA as range_str
++		      // and populate pmin-pascal and pmax-pascal
++		      // with the range limits converted into pascals
++		      //honeywell,range_str = "NA";
++		      //honeywell,pmin-pascal = <0>;
++		      //honeywell,pmax-pascal = <206850>;
++
++		      //vdd-supply = <&foo>;
++	      };
++    };
++
 -- 
-2.39.2
+2.41.0
 
 
