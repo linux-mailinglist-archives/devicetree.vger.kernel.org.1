@@ -1,106 +1,192 @@
-Return-Path: <devicetree+bounces-16467-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16468-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A501D7EEC89
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 08:19:00 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C783F7EEC9E
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 08:22:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5EEAD280F6A
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 07:18:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E875D1C20831
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 07:22:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2357DDC1;
-	Fri, 17 Nov 2023 07:18:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81E1DCA63;
+	Fri, 17 Nov 2023 07:22:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="Nu292DN2"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="YEfux1A0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m17244.xmail.ntesmail.com (mail-m17244.xmail.ntesmail.com [45.195.17.244])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 868C8194
-	for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 23:18:52 -0800 (PST)
-DKIM-Signature: a=rsa-sha256;
-	b=Nu292DN2E6gfuHIj233Rh8Mdr+z5CJlMWHO8NWBfbI4ao9MCcWWM5VLf2BnX2BVH9c92Fx09CxiX4W8gRKqXwKDxiAREUGNt1I7x/DpyeAWDV6rYxLJjP9k4eRtbglzyPG0EIa1YuA5UhPKtrAj8LITcaYyVn1FdDw0padxAVRs=;
-	c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=at1ne/rWq7oflyNTr5NsoIEOTljtkrgIcuWxm4pqXDc=;
-	h=date:mime-version:subject:message-id:from;
-Received: from [172.16.12.141] (unknown [58.22.7.114])
-	by mail-m12779.qiye.163.com (Hmail) with ESMTPA id 6C5477804C6;
-	Fri, 17 Nov 2023 15:06:35 +0800 (CST)
-Message-ID: <3e011d52-017e-4360-86b4-781535ef61ad@rock-chips.com>
-Date: Fri, 17 Nov 2023 15:06:35 +0800
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADC62D55
+	for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 23:22:35 -0800 (PST)
+Received: from epcas2p1.samsung.com (unknown [182.195.41.53])
+	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20231117072231epoutp0201745f598b3740ab131791b74e9e2e34~YWB98C4uS2083420834epoutp02J
+	for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 07:22:31 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20231117072231epoutp0201745f598b3740ab131791b74e9e2e34~YWB98C4uS2083420834epoutp02J
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1700205751;
+	bh=nuKoc41/Xq57xqzk4CX3/OUT0Nfb5VpmaXRO3fmAdEE=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=YEfux1A0iwVWjvs7WRLSFgBmCSPKm/+hs6mBUVsl7relmUyHSUXq2H73kEx0HwfSx
+	 j70/N5ixlCIrcua8wqWWy+uT6t3ryGvadzK5qMPZUsJkYYo0K4TuoHSzyhtTUFj9dl
+	 uxaOAs4o6WZWmGYrsDyJnSvuV4FcUXzcNhQlr2Vs=
+Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
+	epcas2p1.samsung.com (KnoxPortal) with ESMTP id
+	20231117072230epcas2p1f863d5b0f520ed28155b4d0c45e1429f~YWB9XYYOM1711117111epcas2p1J;
+	Fri, 17 Nov 2023 07:22:30 +0000 (GMT)
+Received: from epsmges2p2.samsung.com (unknown [182.195.36.100]) by
+	epsnrtp4.localdomain (Postfix) with ESMTP id 4SWpJQ1Xr5z4x9Px; Fri, 17 Nov
+	2023 07:22:30 +0000 (GMT)
+Received: from epcas2p1.samsung.com ( [182.195.41.53]) by
+	epsmges2p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+	A0.EA.09622.6B417556; Fri, 17 Nov 2023 16:22:30 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+	epcas2p3.samsung.com (KnoxPortal) with ESMTPA id
+	20231117072229epcas2p3c414169b8fa8149dd2b74679d7325bda~YWB74Cnp81759617596epcas2p33;
+	Fri, 17 Nov 2023 07:22:29 +0000 (GMT)
+Received: from epsmgmcp1.samsung.com (unknown [182.195.42.82]) by
+	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20231117072229epsmtrp2580b1bb3b22f0d2f0cfb6d8d5d4ef47c~YWB73I7111221912219epsmtrp2K;
+	Fri, 17 Nov 2023 07:22:29 +0000 (GMT)
+X-AuditID: b6c32a46-d61ff70000002596-0a-655714b66111
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+	epsmgmcp1.samsung.com (Symantec Messaging Gateway) with SMTP id
+	6E.A7.18939.5B417556; Fri, 17 Nov 2023 16:22:29 +0900 (KST)
+Received: from [10.229.8.168] (unknown [10.229.8.168]) by
+	epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20231117072228epsmtip10dc61d154637b301fca9e4f789cb67bb~YWB7hKoUo0271802718epsmtip1Q;
+	Fri, 17 Nov 2023 07:22:28 +0000 (GMT)
+Message-ID: <af102ef7-aa34-1b9d-c39c-228729fef015@samsung.com>
+Date: Fri, 17 Nov 2023 16:19:42 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 09/11] drm/rockchip: vop2: Add support for rk3588
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+	Thunderbird/102.11.0
+Subject: Re: [PATCH v2 00/12] Introduce ExynosAutov920 SoC and SADK board
 Content-Language: en-US
-To: Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>, Andy Yan <andyshrk@163.com>,
- heiko@sntech.de, hjc@rock-chips.com, dri-devel@lists.freedesktop.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
- devicetree@vger.kernel.org, kever.yang@rock-chips.com,
- chris.obbard@collabora.com
-References: <20231114112534.1770731-1-andyshrk@163.com>
- <20231114112855.1771372-1-andyshrk@163.com>
- <20231115090823.GY3359458@pengutronix.de>
- <8f2ebc81-51c5-44d5-b27b-633a6cc85d0d@rock-chips.com>
- <20231116134757.zu7axb6cvriqjm6y@mercury.elektranox.org>
-From: Andy Yan <andy.yan@rock-chips.com>
-In-Reply-To: <20231116134757.zu7axb6cvriqjm6y@mercury.elektranox.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Alim Akhtar
+	<alim.akhtar@samsung.com>, Rob Herring <robh+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Tomasz Figa <tomasz.figa@gmail.com>, Sylwester
+	Nawrocki <s.nawrocki@samsung.com>, Linus Walleij <linus.walleij@linaro.org>,
+	Thierry Reding <thierry.reding@gmail.com>, Uwe Kleine-K?nig
+	<u.kleine-koenig@pengutronix.de>, Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
+	linux-serial@vger.kernel.org
+From: Jaewon Kim <jaewon02.kim@samsung.com>
+In-Reply-To: <d8fbd100-2351-4dbe-ae7f-d98a84432589@linaro.org>
 Content-Transfer-Encoding: 7bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGR5DGFYZTU8fSEIfSk5LHh1VEwETFh
-	oSFyQUDg9ZV1kYEgtZQVlOQ1VJSVVMVUpKT1lXWRYaDxIVHRRZQVlPS0hVSk5MSUpJVUpLS1VKQl
-	kG
-X-HM-Tid: 0a8bdc1a5771b24fkuuu6c5477804c6
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NxA6Dgw6KDw5MDhKPzJKLA0o
-	DyIwFCFVSlVKTEtLSUtPTEJNSU5PVTMWGhIXVRoVHwJVAhoVOwkUGBBWGBMSCwhVGBQWRVlXWRIL
-	WUFZTkNVSUlVTFVKSk9ZV1kIAVlBSE5ISzcG
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrFJsWRmVeSWpSXmKPExsWy7bCmqe42kfBUg7+XWS0ezNvGZrFm7zkm
+	i/lHzrFaNC9ez2bxbq6Mxd7XW9ktpvxZzmSx6fE1VovN8/8wWlzeNYfN4u7dVYwWM87vY7I4
+	s7iX3aJ17xF2i8Nv2lktfu6ax2KxahdQ3e2JkxkdhDx2zrrL7rFpVSebx51re9g89s9dw+6x
+	eUm9R/9fA4++LasYPT5vkgvgiMq2yUhNTEktUkjNS85PycxLt1XyDo53jjc1MzDUNbS0MFdS
+	yEvMTbVVcvEJ0HXLzAH6REmhLDGnFCgUkFhcrKRvZ1OUX1qSqpCRX1xiq5RakJJTYF6gV5yY
+	W1yal66Xl1piZWhgYGQKVJiQnfGooZ+14BBfRcuz56wNjC+5uxg5OSQETCS+3pvP3MXIxSEk
+	sINR4uj+Y2wQzidGicdXOhjhnLUbbzHCtBw+8oEVIrGTUaL73CRWkISQwGtGiWs97CA2r4Cd
+	xKn5m5hBbBYBVYk1f2czQcQFJU7OfMICYosKREu0LrvPBmILC3hKTN7/F6yeWUBc4taT+WD1
+	IgL3mSVet1WDLGMWeMAoMffcV7Ar2AS0Jb6vXwy2mBNo2ba199ggmuUltr+dA/aQhMAbDonW
+	fQuYIc52kZjXdgbKFpZ4dXwLO4QtJfH53V42CDtbon36H1YIu0Li4obZUHFjiVnP2oEWcwAt
+	0JRYv0sfxJQQUJY4cosFYi2fRMfhv+wQYV6JjjYhiEY1iftTz0ENkZGYdGQlE4TtIXGyYx/r
+	BEbFWUihMgvJ97OQPDMLYe8CRpZVjGKpBcW56anFRgVG8MhOzs/dxAhO5FpuOxinvP2gd4iR
+	iYPxEKMEB7OSCK+5XEiqEG9KYmVValF+fFFpTmrxIUZTYNxMZJYSTc4H5pK8knhDE0sDEzMz
+	Q3MjUwNzJXHee61zU4QE0hNLUrNTUwtSi2D6mDg4pRqYXFtmszAs/mfScHGecd7LZVpusiz8
+	Bkmn83+Ltimf7lnGM2vBlP5Cq+svDwVfKOVlPv9jS6ePnYP1HpfroXM43iQ+WMQWliaivi3q
+	2oSrT68kr5aKz21Ytr9h+ZNz/Qc27P0yU1udUS2v7pH9dSWDZ1e/+D39bHpxx/pJe4+98Mku
+	Yeqf7RFY7u9z+1Z7kKG62tWvPz/evvv2xpTeSSIVCUsy9a/FTEpb7S/fp3145Y696XtXrxM7
+	0v3S8Z/fM5dnSqyiinpVT9oOKP08ufRs1p6bW5kaDwksPj7ZRYJBmTE3c6b2CaaztjxrVy6V
+	eDp17sunCQ5nfe8tlT3eqaAZOPnydJmqBCYlSblTdgurLimxFGckGmoxFxUnAgAcHPfWbQQA
+	AA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrJIsWRmVeSWpSXmKPExsWy7bCSnO5WkfBUg1tdPBYP5m1js1iz9xyT
+	xfwj51gtmhevZ7N4N1fGYu/rrewWU/4sZ7LY9Pgaq8Xm+X8YLS7vmsNmcffuKkaLGef3MVmc
+	WdzLbtG69wi7xeE37awWP3fNY7FYtQuo7vbEyYwOQh47Z91l99i0qpPN4861PWwe++euYffY
+	vKTeo/+vgUffllWMHp83yQVwRHHZpKTmZJalFunbJXBlPGroZy04xFfR8uw5awPjS+4uRk4O
+	CQETicNHPrB2MXJxCAlsZ5RYsHo9I0RCRmL5sz42CFtY4n7LEaiil4wSn1e/ZAdJ8ArYSZya
+	v4kZxGYRUJVY83c2E0RcUOLkzCcsILaoQLTE6s8XWEFsYQFPicn7/4LVMwuIS9x6Mp8JZKiI
+	wGNmiYdT/zODOMwCDxgllk96BLVuHrPEy1vLwcayCWhLfF+/GGwUJ9DqbWvvsUGMMpPo2trF
+	CGHLS2x/O4d5AqPQLCSXzEKycRaSlllIWhYwsqxiFE0tKM5Nz00uMNQrTswtLs1L10vOz93E
+	CI5draAdjMvW/9U7xMjEwXiIUYKDWUmE11wuJFWINyWxsiq1KD++qDQntfgQozQHi5I4r3JO
+	Z4qQQHpiSWp2ampBahFMlomDU6qBaVrRvk283beE2Pv/8+5s3e5puWV/e9SlnZFzrjj2ede5
+	CZinXm29fMOL93f5k70XKt6vCi37+DFvcaTry9cN27nfhxUXTfi/kulrw7+r94wZf0zK2XLS
+	+U+sONP566Z5fsV/9CcEVvJsSf3HzBD01CDeLudUUvN+o7cMQdYfah4p272SYjI6HbtRsf/H
+	TaEX2uwHe45+vS584WDh4R23TZYezRGNP1uldPykj/ubN552Bbddbu72m2Z9ZmWkuuautkB1
+	5gmbzhyROKkg2nZ6nZA+73eVJX9W7nt3dFqdN4/q3VsNQp89AmfOaOvW9lq4YfHGlOfzfu4U
+	21I01dggLeNd65RshSjLuhueR87nViixFGckGmoxFxUnAgAgBulJTAMAAA==
+X-CMS-MailID: 20231117072229epcas2p3c414169b8fa8149dd2b74679d7325bda
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20231115095852epcas2p21e067efe75275c6abd2aebf04c5c6166
+References: <CGME20231115095852epcas2p21e067efe75275c6abd2aebf04c5c6166@epcas2p2.samsung.com>
+	<20231115095609.39883-1-jaewon02.kim@samsung.com>
+	<170005362858.21132.4200897251821879805.b4-ty@linaro.org>
+	<6e69df6c-10fa-404a-ac02-4880723b8c50@linaro.org>
+	<55a0f27c-ea46-40ae-b1e5-e650802b89a8@linaro.org>
+	<d6f3d451-6a53-46b6-2263-cc071a9dc44c@samsung.com>
+	<d8fbd100-2351-4dbe-ae7f-d98a84432589@linaro.org>
 
-Hi Sebastian:
 
-On 11/16/23 21:47, Sebastian Reichel wrote:
-> Hi,
->
-> On Thu, Nov 16, 2023 at 06:39:40PM +0800, Andy Yan wrote:
->>>>    	vop2->sys_grf = syscon_regmap_lookup_by_phandle(dev->of_node, "rockchip,grf");
->>> This already lacks an error check, shame on me...
+On 23. 11. 16. 20:17, Krzysztof Kozlowski wrote:
+> On 16/11/2023 04:32, Jaewon Kim wrote:
+>> On 23. 11. 16. 06:17, Krzysztof Kozlowski wrote:
+>>> On 15/11/2023 22:11, Krzysztof Kozlowski wrote:
+>>>> On 15/11/2023 14:08, Krzysztof Kozlowski wrote:
+>>>>> On Wed, 15 Nov 2023 18:55:56 +0900, Jaewon Kim wrote:
+>>>>>> ExynosAutov920[1] is ARMv8-based automotive-oriented SoC.
+>>>>>> This SoC is the next generation of exynosautov9 and AE(Automotive Enhanced)
+>>>>>> IPs are used for safety.
+>>>>>>
+>>>>>> This patchset is the minimal set for ExynosAutov920 SoC and SADK board.
+>>>>>> Currently, ramdisk console is available and Clock, UFS, and USI will be
+>>>>>> added after this patchset.
+>>>>>>
+>>>>>> [...]
+>>>>> Applied, thanks!
+>>>>>
+>>>> And dropped. You did not test it. Please read Samsung SoC maintainer
+>>>> profile:
+>>>> https://www.kernel.org/doc/html/latest/process/maintainers.html#arm-samsung-s3c-s5p-and-exynos-arm-architectures
+>>>>
+>>>> I also made announcements on the lists and on social.kernel.org. I don't
+>>>> know where to announce it more...
+>>>>
+>>> To clarify, I dropped only DTS and kept bindings. Let me know if
+>>> bindings are problematic here...
 >>>
->>>> +	vop2->vop_grf = syscon_regmap_lookup_by_phandle(dev->of_node, "rockchip,vop-grf");
->>>> +	vop2->vo1_grf = syscon_regmap_lookup_by_phandle(dev->of_node, "rockchip,vo1-grf");
->>>> +	vop2->sys_pmu = syscon_regmap_lookup_by_phandle(dev->of_node, "rockchip,pmu");
->>> ... but please don't duplicate that.
->> It a little difficult to find a proper way to do the check, as not every soc need all these phandles.
+>>> I also repeated the announcement:
+>>> https://social.kernel.org/notice/AbqJkj9gOZJ3sG8eCu
+>>> Please share internally within Samsung, so there will be no surprises.
+>>>
+>>> Best regards,
+>>> Krzysztof
+>>>
+>>>
+>> I already checked and there were no warnings or errors as shown below.
 >>
->> Do i need check it per soc?
-> I suggest adding a u32 flags to struct vop2_data and then have
-> something like this:
+>> Did I miss something??
+> It's not what is written in maintainer profile. Where do you see the
+> result of dtc W=1?
 >
-> if (vop2_data->flags & VOP2_HAS_VOP_GRF) {
->      vop2->vop_grf = syscon_regmap_lookup_by_phandle(dev->of_node, "rockchip,vop-grf");
->      if (IS_ERR(vop2->vop_grf))
->          return dev_err_probe(dev, PTR_ERR(vop2->vop_grf) "cannot get vop-grf");
-> }
->
-> if (vop2_data->flags & VOP2_HAS_VO1_GRF) {
->      vop2->vo1_grf = syscon_regmap_lookup_by_phandle(dev->of_node, "rockchip,vo1-grf");
->      if (IS_ERR(vop2->vo1_grf))
->          return dev_err_probe(dev, PTR_ERR(vop2->vo1_grf) "cannot get vo1-grf");
-> }
->
-> ...
+
+Sorry, Krzysztof I miss W=1.
+
+I haven`t been active in mainline for a long time, so I`m missing out on 
+a lot of things.
+
+Thanks you for letting us know one by one.
+
+I will catch up quickly.
 
 
-I can do it like this if Sascha is also happy with it.
+Thanks
 
->
-> Greetings,
->
-> -- Sebastian
+Jaewon Kim
+
 
