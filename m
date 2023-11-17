@@ -1,333 +1,277 @@
-Return-Path: <devicetree+bounces-16460-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16461-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AAD87EEBDC
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 06:07:30 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 342917EEBF0
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 06:22:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2F9EAB20A11
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 05:07:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5C1AC1C20898
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 05:22:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C5E4D273;
-	Fri, 17 Nov 2023 05:07:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FE98ECF;
+	Fri, 17 Nov 2023 05:22:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="PKCnmi2e"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fCIWPhNr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (mail-dm3nam02olkn2108.outbound.protection.outlook.com [40.92.43.108])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEB551AD;
-	Thu, 16 Nov 2023 21:07:18 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=K9GKGDl+zY8GjgsYUNfhmQUfXhjgIIrUMdHVb1OBhddtU5KiAYm6hpHqf8CCSC49oU7aQp7Y68KUsohIOFclI4if5Xg4KNdXD5MfWaKcKVzz3AMQ4f2E7gjac6IYqB1RE3M3X52PZucaftWBjHxJoqOM87s5V5j1+N4lFHW9k1ncpmBK7eloAOlAVzHZgQAvuC0k2C4xwRZ/D0b6mU4Wb7mKDfHdEiqiZlVilI9UQNj7Qz5ROcxhTr0eNaU/m2p34iNU7N8n1ywhyRk0SEEulRa5VKt8h8Ofce+kO88eXG9USV3Z9lC7fnKAaYvgs1fq+fMVVTg2xkl+bsgRHRGa3A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kBBd0hiRl1kC/4CnV0dwx/zTn7/DG0Ghrwu95ZdJb3M=;
- b=JuWQFmbkv0OHYFGJfzqWv1FcA/ukcFyPu4BGchMiORHsfVGchrGQ3ocWCZGcVz+ddUHwBwxZjv1eCW7eXY30U4DJUMn8kM7uNzXlytbcnGGnfOVjfPswsxkWH7eiwUEj5f/tXUHdyM4dj/HUxOX7uPZubdBLBmfa1jd7r9HXAqM3Hjc374pwuroxWSTjctujKmzVZb/ZQ0wQRk/EJznCshIPy1uJpQF67paP7Xz1+2B8kIW1Kti+behHNLuhjgVzcj/5/tNl5ZzVr2dP5xhMLOiUFSFopTqPV6pIX0N5KSJqxs6wDKeCfvrZAv2SnqMcBCzrc5KKQnw7rSgzTKNk9w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kBBd0hiRl1kC/4CnV0dwx/zTn7/DG0Ghrwu95ZdJb3M=;
- b=PKCnmi2eK1Q7QVvCrGcvVlmkNs4CcDmfjkWdtmxG0NxdzL2CjHDHTFi40I1Fp+o7HsKdLk/kqHy2fIaH/5Vpe1E6+DueDu2jO1TkCuhtb4ZOcvODpU2yu5dCP/FRlK2aKxR4Ms2wSFlih3jLlg1y+sk91+5Sv+DXPdD6dG27AnlV3o0j5+MOx766LFLhaFLO7Fr3mmFfQhbfp/MAvsqf65XyNyh3HVeGHzTy6DtqQ4fjyODspMQUHMUrm8VL6c/Exsc8j1NyXycfRHfyyDcx6ZeLj6/OBsSomXsFCB9Cz9LSqK4Cu5dh++mPWHeKdxnav4An+KwDm4iJLd2rhjl/IA==
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
- by PH8PR20MB6394.namprd20.prod.outlook.com (2603:10b6:510:25e::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7002.23; Fri, 17 Nov
- 2023 05:07:15 +0000
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::55b:c350:980:ad8]) by IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::55b:c350:980:ad8%6]) with mapi id 15.20.6977.029; Fri, 17 Nov 2023
- 05:07:15 +0000
-From: Inochi Amaoto <inochiama@outlook.com>
-To: Chao Wei <chao.wei@sophgo.com>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Rob Herring <robh+dt@kernel.org>,
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1748D52;
+	Thu, 16 Nov 2023 21:22:48 -0800 (PST)
+Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-9c3aec5f326so544155766b.1;
+        Thu, 16 Nov 2023 21:22:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1700198567; x=1700803367; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=v27wSqqrShCzztVlfwu/zWkCL4FJgwhMdx/No5LYqKU=;
+        b=fCIWPhNrmcUuocfy+nJNKMMmwWH2q8is6D+RLwtc52vR8fyp5uE6wJLXECNy9meFQ+
+         joxreVmcf4g1knIpmY5UQHR9wRSN6tZ39VO6rNrFr4dbGRaQp5PRSSFxD+s0ns3sxUwD
+         ZyhJhBHgkj80jDoMuInIa9Axn/5bqW+loKs/GXxRaa9kztC58ZYpEkNKyiyQMU8XHY74
+         BpzLbjgsrbfv9g8xCYLeEd3jp+lvoBxkrAQqjQCYk5+kHlTNTkurIff/MkdsVjTo3sD0
+         qNi4q0RYZ97m1TrjKlInC2tOc2S8kl+810OV0TDowHbsjnVrSKZ8aFZBAD3w5ZKhZ2Yt
+         DZWw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700198567; x=1700803367;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=v27wSqqrShCzztVlfwu/zWkCL4FJgwhMdx/No5LYqKU=;
+        b=XeOSiUyY9XPCa7HUYh0ZlQ0ji6o7jky4uEOmuq37jwWXyf4iZ4JuwiP9oSgjqyndvf
+         NMWZQv/VjKfbffE2LNnkdNFhfydNTWxnVvVA1wq+5rV+Rn9DoH7xvmVSc2aaRfsVJCYj
+         xQSinamUFS46zupY8qxbF3YwjPksICTI2py9a/N3KL1vNCHk8IaSshmGgsi90s4FmZOi
+         ZSCGuiBdTXUmecy10P81L3JkXhRZ12FiReTpbxvIWW+eRCnWFNcpOVhYApMgi5Jp1gnj
+         DFz1ur0657bd/OdgjuT2eZ7ee3+quDIU4CZYV7tqpBjAPxbOb6VqKqC5QxyPQWD+HL8e
+         ARhw==
+X-Gm-Message-State: AOJu0YyB+N1X8kLeCZ6JUW7njRI6BA372pUPDAFAFJVKKeWdTb3pyfOc
+	30/q5iLcBCyi6xmByg9lRNc=
+X-Google-Smtp-Source: AGHT+IFWYXXsNUiwsA640Taj8FVTPG3BMMTjDOpghUVLL6KpPkR4Qh5oftQ0IlSbTvHeL6rafpGPEw==
+X-Received: by 2002:a17:907:970f:b0:9ad:e3fd:d46c with SMTP id jg15-20020a170907970f00b009ade3fdd46cmr4388479ejc.10.1700198567153;
+        Thu, 16 Nov 2023 21:22:47 -0800 (PST)
+Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
+        by smtp.gmail.com with ESMTPSA id lt16-20020a170906fa9000b009e71efcce28sm380238ejb.210.2023.11.16.21.22.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Nov 2023 21:22:46 -0800 (PST)
+From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To: Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Guo Ren <guoren@kernel.org>,
-	Xiaoguang Xing <xiaoguang.xing@sophgo.com>,
-	Inochi Amaoto <inochiama@outlook.com>
-Cc: Jisheng Zhang <jszhang@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: "Rafael J . Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>,
+	Lukasz Luba <lukasz.luba@arm.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	linux-pm@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v3 2/2] riscv: dts: sophgo: separate sg2042 mtime and mtimecmp to fit aclint format
-Date: Fri, 17 Nov 2023 13:07:52 +0800
-Message-ID:
- <IA1PR20MB4953104293CCDC29B08343CCBBB7A@IA1PR20MB4953.namprd20.prod.outlook.com>
-X-Mailer: git-send-email 2.42.1
-In-Reply-To: <IA1PR20MB49533488308F7317C28AA6BDBBB7A@IA1PR20MB4953.namprd20.prod.outlook.com>
-References: <IA1PR20MB49533488308F7317C28AA6BDBBB7A@IA1PR20MB4953.namprd20.prod.outlook.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-TMN: [mkQOPn6RrDr/EOxQVts4RJAiUvtU04Jxjg5wcZU7Oxk=]
-X-ClientProxiedBy: SJ0PR13CA0049.namprd13.prod.outlook.com
- (2603:10b6:a03:2c2::24) To IA1PR20MB4953.namprd20.prod.outlook.com
- (2603:10b6:208:3af::19)
-X-Microsoft-Original-Message-ID:
- <20231117050753.870596-2-inochiama@outlook.com>
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH V3] dt-bindings: thermal: convert Mediatek Thermal to the json-schema
+Date: Fri, 17 Nov 2023 06:22:14 +0100
+Message-Id: <20231117052214.24554-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.35.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|PH8PR20MB6394:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3e2b5128-b0d9-46af-c819-08dbe72b10df
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	F1WDU9CPleeGB7ELLtyKs2wNjKertzMkrvqRwMpDfI+KG9RjjTQQyLk6+hw3M6ci2wMnD4AmnZeRKnXbRPxiRY9Ej4qwEu35qWX6E2GU3wyzYGVj/SvhmpR941NYqVnFZb3RULP7Glm+6dmkf7ibiNpm0gxm0dSUm3JJ5zrsGuSaEOHgu7FnP2nglx7n9cASyXuRIdkP3yYceBrbHR9HZcgb5LczMEgN9AjomuATkU6dHLm6z4ikFBWaA1C0Y3tzKQ2p22XQ9lriwAfKo6PS8F4Y3hHJaWD5Z7dZO7/fXBETr/TCa5usbgUXzy0tF8tV3DKyDjiAdA4wtvtXePXJ57jNhulQXui41/YBqCLfYpnpJSz9mTr8EdzW1GZViYjCfM2tA0BC64nHN20tb+qKiJ5okgCVUgy8IrVlGtFx+p33NNyOZ1ji1S6VE8B8icQz+eBOku8QGWF4KLnz6m1n8wJA3INcp/11XXTsRZHylRadBdosHZOAyzQGPtuqqCFjc3S5dG3BpaoO3UYcZpmchtOKcsN/0JrnkeZbnfL2yzzK+JGoSUFkXVJ2lRvZb9pf0i3GMgJ1zYuMsF2gvDfLkVSCBD1UPSK8qi+Wb9YaVgah3Bmcsrr939Zvi8/ii52O
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?g5K3mnjhMnxAPQ5EznO6zGhbqW+PQjNCM/5VDZsnanwqdD+57TmwyKw1VGeO?=
- =?us-ascii?Q?r1rfKT05j4jDEM8jXsxIv4fcmWjXwc+W8JfluGL3UuaqzV1JsqQRRi6r3LCw?=
- =?us-ascii?Q?R3EzZ/O+HpuVioZAdA5veAIBJqUg58atVw0SYAxxs0ydy48Cm7CaCfFlzUzw?=
- =?us-ascii?Q?MO5+KGHnywDmR2eqY8IMovb6FmJc8wCTgLqAtYFQR3ahoW4MbdSZmvxcBjVL?=
- =?us-ascii?Q?RE5BUmFNiSmMym89QSM/EFl/FiaI9AgQmkzdEbhvXFgvt2m5FspyioBf0xXr?=
- =?us-ascii?Q?WOejSsVubyCoW9EeveTRmyf47BIp90YN/p4RTQlp2YaEQFhhMEUHtapzaZQr?=
- =?us-ascii?Q?uQ9ulKmt3g37VtpZajQXq/JAPAnglLcHauPbccLzuo9hZbYOOaYqA+OZYCDr?=
- =?us-ascii?Q?FMtDT5w8DGVw6/n8WIxN02lejHZovScdNI60G1cfNADVIDV0khLgQl/Mq0uP?=
- =?us-ascii?Q?QZu1f+XItbniXP8YB03pkNBPq+9EIpKUbEEEKS/K7bzxBLcK81XiNYyCXNjd?=
- =?us-ascii?Q?D/sYcZJE+N50yWlB9WGJxxSjRNYFafAe9EohnQLdAMjNeoomqIcA/79xGcSH?=
- =?us-ascii?Q?++K3oI4mKrGMra2M0uXwYTNmkoOjk2K3WwnmayVh1WjM/bGShEKhJcNDr1Ib?=
- =?us-ascii?Q?LsSTqzr/IIjSDAmzXmk8CmHsCuG7/Geaon4NBXYrcL5JpF2K2tuQB10aD0Vz?=
- =?us-ascii?Q?WUOfN/oQvA1914LIRnPV3dYJNTNXIjSmBxTKg9pb7DstDJ9GLPaQlIdco73x?=
- =?us-ascii?Q?2GBe2IWUI77TRDpo3Ccceg+EfBS338g7MmVYK5IigBQIYWFxt86cYYiI424O?=
- =?us-ascii?Q?Fmiae6YlrSBgho5j2MFUuyvQSHDITPM+RyMd0uCVSD7JCUWz1Bj+qCANvmdA?=
- =?us-ascii?Q?Ae97Yq72/17+fP+vZJTgbsSZCFfIt7UpTXvJntiehMI72oKEI6fNZzajwK3h?=
- =?us-ascii?Q?kTV9eTKB/xlJMVi4IGk7XPop6QK/9ScPwdOvIFmkvxDOH8rrdXMS+2dTA1MB?=
- =?us-ascii?Q?Kj907VOqhK44tgv6l/J2E5zNHHQfHjxdR1PR/xM/tfhoD8+eKTzAfWwLw7ND?=
- =?us-ascii?Q?RPL9oLjPwJhhMKNsyfEXuoHhWbqHd6BGvkuHJ2E1mwsjI2R9B/78IA85Ssaq?=
- =?us-ascii?Q?byQ40f8KZ7ISZF8J9B7M3u4p1WAnUA9LXTl7fOytd4HfVEczTcswJMcLr4n1?=
- =?us-ascii?Q?Ge69AdOBFknFl0Pm7sUe5Jm6M7Oeg+YbGCjvptb/hZr6RelDnBj7GQTJgFw?=
- =?us-ascii?Q?=3D?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3e2b5128-b0d9-46af-c819-08dbe72b10df
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Nov 2023 05:07:15.8311
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR20MB6394
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Change the timer layout in the dtb to fit the format that needed by
-the SBI.
+From: Rafał Miłecki <rafal@milecki.pl>
 
-Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
-Fixes: 967a94a92aaa ("riscv: dts: add initial Sophgo SG2042 SoC device tree")
+This helps validating DTS files. Introduced changes:
+1. Improved title
+2. Simplified description (dropped "This describes the device tree...")
+3. Dropped undocumented "reset-names" from example
+
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 ---
- arch/riscv/boot/dts/sophgo/sg2042.dtsi | 80 +++++++++++++++-----------
- 1 file changed, 48 insertions(+), 32 deletions(-)
+V2: Add "maintainers"
+V3: Introduce changes described in commit body
+    Fix schema syntax
+    Move unevaluatedProperties to the bottom
+    Rename file to match compatible more closely
 
-diff --git a/arch/riscv/boot/dts/sophgo/sg2042.dtsi b/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-index 93256540d078..ead1cc35d88b 100644
---- a/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-+++ b/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-@@ -93,144 +93,160 @@ clint_mswi: interrupt-controller@7094000000 {
- 					      <&cpu63_intc 3>;
- 		};
+I'm totally sorry for sending broken schema patch yesterday. Brainfart.
+There is no excuse for sth that doesn't even pass dt_binding_check.
+  DTEX    Documentation/devicetree/bindings/thermal/mediatek,thermal.example.dts
+  DTC_CHK Documentation/devicetree/bindings/thermal/mediatek,thermal.example.dtb
 
--		clint_mtimer0: timer@70ac000000 {
-+		clint_mtimer0: timer@70ac004000 {
- 			compatible = "sophgo,sg2042-aclint-mtimer", "thead,c900-aclint-mtimer";
--			reg = <0x00000070 0xac000000 0x00000000 0x00007ff8>;
-+			reg = <0x00000070 0xac004000 0x00000000 0x0000c000>;
-+			reg-names = "mtimecmp";
- 			interrupts-extended = <&cpu0_intc 7>,
- 					      <&cpu1_intc 7>,
- 					      <&cpu2_intc 7>,
- 					      <&cpu3_intc 7>;
- 		};
+ .../bindings/thermal/mediatek,thermal.yaml    | 99 +++++++++++++++++++
+ .../bindings/thermal/mediatek-thermal.txt     | 52 ----------
+ 2 files changed, 99 insertions(+), 52 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/thermal/mediatek,thermal.yaml
+ delete mode 100644 Documentation/devicetree/bindings/thermal/mediatek-thermal.txt
 
--		clint_mtimer1: timer@70ac010000 {
-+		clint_mtimer1: timer@70ac014000 {
- 			compatible = "sophgo,sg2042-aclint-mtimer", "thead,c900-aclint-mtimer";
--			reg = <0x00000070 0xac010000 0x00000000 0x00007ff8>;
-+			reg = <0x00000070 0xac014000 0x00000000 0x0000c000>;
-+			reg-names = "mtimecmp";
- 			interrupts-extended = <&cpu4_intc 7>,
- 					      <&cpu5_intc 7>,
- 					      <&cpu6_intc 7>,
- 					      <&cpu7_intc 7>;
- 		};
-
--		clint_mtimer2: timer@70ac020000 {
-+		clint_mtimer2: timer@70ac024000 {
- 			compatible = "sophgo,sg2042-aclint-mtimer", "thead,c900-aclint-mtimer";
--			reg = <0x00000070 0xac020000 0x00000000 0x00007ff8>;
-+			reg = <0x00000070 0xac024000 0x00000000 0x0000c000>;
-+			reg-names = "mtimecmp";
- 			interrupts-extended = <&cpu8_intc 7>,
- 					      <&cpu9_intc 7>,
- 					      <&cpu10_intc 7>,
- 					      <&cpu11_intc 7>;
- 		};
-
--		clint_mtimer3: timer@70ac030000 {
-+		clint_mtimer3: timer@70ac034000 {
- 			compatible = "sophgo,sg2042-aclint-mtimer", "thead,c900-aclint-mtimer";
--			reg = <0x00000070 0xac030000 0x00000000 0x00007ff8>;
-+			reg = <0x00000070 0xac034000 0x00000000 0x0000c000>;
-+			reg-names = "mtimecmp";
- 			interrupts-extended = <&cpu12_intc 7>,
- 					      <&cpu13_intc 7>,
- 					      <&cpu14_intc 7>,
- 					      <&cpu15_intc 7>;
- 		};
-
--		clint_mtimer4: timer@70ac040000 {
-+		clint_mtimer4: timer@70ac044000 {
- 			compatible = "sophgo,sg2042-aclint-mtimer", "thead,c900-aclint-mtimer";
--			reg = <0x00000070 0xac040000 0x00000000 0x00007ff8>;
-+			reg = <0x00000070 0xac044000 0x00000000 0x0000c000>;
-+			reg-names = "mtimecmp";
- 			interrupts-extended = <&cpu16_intc 7>,
- 					      <&cpu17_intc 7>,
- 					      <&cpu18_intc 7>,
- 					      <&cpu19_intc 7>;
- 		};
-
--		clint_mtimer5: timer@70ac050000 {
-+		clint_mtimer5: timer@70ac054000 {
- 			compatible = "sophgo,sg2042-aclint-mtimer", "thead,c900-aclint-mtimer";
--			reg = <0x00000070 0xac050000 0x00000000 0x00007ff8>;
-+			reg = <0x00000070 0xac054000 0x00000000 0x0000c000>;
-+			reg-names = "mtimecmp";
- 			interrupts-extended = <&cpu20_intc 7>,
- 					      <&cpu21_intc 7>,
- 					      <&cpu22_intc 7>,
- 					      <&cpu23_intc 7>;
- 		};
-
--		clint_mtimer6: timer@70ac060000 {
-+		clint_mtimer6: timer@70ac064000 {
- 			compatible = "sophgo,sg2042-aclint-mtimer", "thead,c900-aclint-mtimer";
--			reg = <0x00000070 0xac060000 0x00000000 0x00007ff8>;
-+			reg = <0x00000070 0xac064000 0x00000000 0x0000c000>;
-+			reg-names = "mtimecmp";
- 			interrupts-extended = <&cpu24_intc 7>,
- 					      <&cpu25_intc 7>,
- 					      <&cpu26_intc 7>,
- 					      <&cpu27_intc 7>;
- 		};
-
--		clint_mtimer7: timer@70ac070000 {
-+		clint_mtimer7: timer@70ac074000 {
- 			compatible = "sophgo,sg2042-aclint-mtimer", "thead,c900-aclint-mtimer";
--			reg = <0x00000070 0xac070000 0x00000000 0x00007ff8>;
-+			reg = <0x00000070 0xac074000 0x00000000 0x0000c000>;
-+			reg-names = "mtimecmp";
- 			interrupts-extended = <&cpu28_intc 7>,
- 					      <&cpu29_intc 7>,
- 					      <&cpu30_intc 7>,
- 					      <&cpu31_intc 7>;
- 		};
-
--		clint_mtimer8: timer@70ac080000 {
-+		clint_mtimer8: timer@70ac084000 {
- 			compatible = "sophgo,sg2042-aclint-mtimer", "thead,c900-aclint-mtimer";
--			reg = <0x00000070 0xac080000 0x00000000 0x00007ff8>;
-+			reg = <0x00000070 0xac084000 0x00000000 0x0000c000>;
-+			reg-names = "mtimecmp";
- 			interrupts-extended = <&cpu32_intc 7>,
- 					      <&cpu33_intc 7>,
- 					      <&cpu34_intc 7>,
- 					      <&cpu35_intc 7>;
- 		};
-
--		clint_mtimer9: timer@70ac090000 {
-+		clint_mtimer9: timer@70ac094000 {
- 			compatible = "sophgo,sg2042-aclint-mtimer", "thead,c900-aclint-mtimer";
--			reg = <0x00000070 0xac090000 0x00000000 0x00007ff8>;
-+			reg = <0x00000070 0xac094000 0x00000000 0x0000c000>;
-+			reg-names = "mtimecmp";
- 			interrupts-extended = <&cpu36_intc 7>,
- 					      <&cpu37_intc 7>,
- 					      <&cpu38_intc 7>,
- 					      <&cpu39_intc 7>;
- 		};
-
--		clint_mtimer10: timer@70ac0a0000 {
-+		clint_mtimer10: timer@70ac0a4000 {
- 			compatible = "sophgo,sg2042-aclint-mtimer", "thead,c900-aclint-mtimer";
--			reg = <0x00000070 0xac0a0000 0x00000000 0x00007ff8>;
-+			reg = <0x00000070 0xac0a4000 0x00000000 0x0000c000>;
-+			reg-names = "mtimecmp";
- 			interrupts-extended = <&cpu40_intc 7>,
- 					      <&cpu41_intc 7>,
- 					      <&cpu42_intc 7>,
- 					      <&cpu43_intc 7>;
- 		};
-
--		clint_mtimer11: timer@70ac0b0000 {
-+		clint_mtimer11: timer@70ac0b4000 {
- 			compatible = "sophgo,sg2042-aclint-mtimer", "thead,c900-aclint-mtimer";
--			reg = <0x00000070 0xac0b0000 0x00000000 0x00007ff8>;
-+			reg = <0x00000070 0xac0b4000 0x00000000 0x0000c000>;
-+			reg-names = "mtimecmp";
- 			interrupts-extended = <&cpu44_intc 7>,
- 					      <&cpu45_intc 7>,
- 					      <&cpu46_intc 7>,
- 					      <&cpu47_intc 7>;
- 		};
-
--		clint_mtimer12: timer@70ac0c0000 {
-+		clint_mtimer12: timer@70ac0c4000 {
- 			compatible = "sophgo,sg2042-aclint-mtimer", "thead,c900-aclint-mtimer";
--			reg = <0x00000070 0xac0c0000 0x00000000 0x00007ff8>;
-+			reg = <0x00000070 0xac0c4000 0x00000000 0x0000c000>;
-+			reg-names = "mtimecmp";
- 			interrupts-extended = <&cpu48_intc 7>,
- 					      <&cpu49_intc 7>,
- 					      <&cpu50_intc 7>,
- 					      <&cpu51_intc 7>;
- 		};
-
--		clint_mtimer13: timer@70ac0d0000 {
-+		clint_mtimer13: timer@70ac0d4000 {
- 			compatible = "sophgo,sg2042-aclint-mtimer", "thead,c900-aclint-mtimer";
--			reg = <0x00000070 0xac0d0000 0x00000000 0x00007ff8>;
-+			reg = <0x00000070 0xac0d4000 0x00000000 0x0000c000>;
-+			reg-names = "mtimecmp";
- 			interrupts-extended = <&cpu52_intc 7>,
- 					      <&cpu53_intc 7>,
- 					      <&cpu54_intc 7>,
- 					      <&cpu55_intc 7>;
- 		};
-
--		clint_mtimer14: timer@70ac0e0000 {
-+		clint_mtimer14: timer@70ac0e4000 {
- 			compatible = "sophgo,sg2042-aclint-mtimer", "thead,c900-aclint-mtimer";
--			reg = <0x00000070 0xac0e0000 0x00000000 0x00007ff8>;
-+			reg = <0x00000070 0xac0e4000 0x00000000 0x0000c000>;
-+			reg-names = "mtimecmp";
- 			interrupts-extended = <&cpu56_intc 7>,
- 					      <&cpu57_intc 7>,
- 					      <&cpu58_intc 7>,
- 					      <&cpu59_intc 7>;
- 		};
-
--		clint_mtimer15: timer@70ac0f0000 {
-+		clint_mtimer15: timer@70ac0f4000 {
- 			compatible = "sophgo,sg2042-aclint-mtimer", "thead,c900-aclint-mtimer";
--			reg = <0x00000070 0xac0f0000 0x00000000 0x00007ff8>;
-+			reg = <0x00000070 0xac0f4000 0x00000000 0x0000c000>;
-+			reg-names = "mtimecmp";
- 			interrupts-extended = <&cpu60_intc 7>,
- 					      <&cpu61_intc 7>,
- 					      <&cpu62_intc 7>,
---
-2.42.1
+diff --git a/Documentation/devicetree/bindings/thermal/mediatek,thermal.yaml b/Documentation/devicetree/bindings/thermal/mediatek,thermal.yaml
+new file mode 100644
+index 000000000000..d96a2e32bd8f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/thermal/mediatek,thermal.yaml
+@@ -0,0 +1,99 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/thermal/mediatek,thermal.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Mediatek thermal controller for on-SoC temperatures
++
++maintainers:
++  - Sascha Hauer <s.hauer@pengutronix.de>
++
++description:
++  This device does not have its own ADC, instead it directly controls the AUXADC
++  via AHB bus accesses. For this reason it needs phandles to the AUXADC. Also it
++  controls a mux in the apmixedsys register space via AHB bus accesses, so a
++  phandle to the APMIXEDSYS is also needed.
++
++allOf:
++  - $ref: thermal-sensor.yaml#
++
++properties:
++  compatible:
++    enum:
++      - mediatek,mt2701-thermal
++      - mediatek,mt2712-thermal
++      - mediatek,mt7622-thermal
++      - mediatek,mt7981-thermal
++      - mediatek,mt7986-thermal
++      - mediatek,mt8173-thermal
++      - mediatek,mt8183-thermal
++      - mediatek,mt8365-thermal
++      - mediatek,mt8516-thermal
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: Main clock needed for register access
++      - description: The AUXADC clock
++
++  clock-names:
++    items:
++      - const: therm
++      - const: auxadc
++
++  mediatek,auxadc:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: A phandle to the AUXADC which the thermal controller uses
++
++  mediatek,apmixedsys:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: A phandle to the APMIXEDSYS controller
++
++  resets:
++    description: Reset controller controlling the thermal controller
++
++  nvmem-cells:
++    items:
++      - description:
++          NVMEM cell with EEPROMA phandle to the calibration data provided by an
++          NVMEM device. If unspecified default values shall be used.
++
++  nvmem-cell-names:
++    items:
++      - const: calibration-data
++
++required:
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++  - mediatek,auxadc
++  - mediatek,apmixedsys
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/clock/mt8173-clk.h>
++    #include <dt-bindings/reset/mt8173-resets.h>
++
++    thermal@1100b000 {
++        compatible = "mediatek,mt8173-thermal";
++        reg = <0x1100b000 0x1000>;
++        interrupts = <0 70 IRQ_TYPE_LEVEL_LOW>;
++        clocks = <&pericfg CLK_PERI_THERM>, <&pericfg CLK_PERI_AUXADC>;
++        clock-names = "therm", "auxadc";
++        resets = <&pericfg MT8173_PERI_THERM_SW_RST>;
++        mediatek,auxadc = <&auxadc>;
++        mediatek,apmixedsys = <&apmixedsys>;
++        nvmem-cells = <&thermal_calibration_data>;
++        nvmem-cell-names = "calibration-data";
++        #thermal-sensor-cells = <1>;
++    };
+diff --git a/Documentation/devicetree/bindings/thermal/mediatek-thermal.txt b/Documentation/devicetree/bindings/thermal/mediatek-thermal.txt
+deleted file mode 100644
+index ac39c7156fde..000000000000
+--- a/Documentation/devicetree/bindings/thermal/mediatek-thermal.txt
++++ /dev/null
+@@ -1,52 +0,0 @@
+-* Mediatek Thermal
+-
+-This describes the device tree binding for the Mediatek thermal controller
+-which measures the on-SoC temperatures. This device does not have its own ADC,
+-instead it directly controls the AUXADC via AHB bus accesses. For this reason
+-this device needs phandles to the AUXADC. Also it controls a mux in the
+-apmixedsys register space via AHB bus accesses, so a phandle to the APMIXEDSYS
+-is also needed.
+-
+-Required properties:
+-- compatible:
+-  - "mediatek,mt8173-thermal" : For MT8173 family of SoCs
+-  - "mediatek,mt2701-thermal" : For MT2701 family of SoCs
+-  - "mediatek,mt2712-thermal" : For MT2712 family of SoCs
+-  - "mediatek,mt7622-thermal" : For MT7622 SoC
+-  - "mediatek,mt7981-thermal", "mediatek,mt7986-thermal" : For MT7981 SoC
+-  - "mediatek,mt7986-thermal" : For MT7986 SoC
+-  - "mediatek,mt8183-thermal" : For MT8183 family of SoCs
+-  - "mediatek,mt8365-thermal" : For MT8365 family of SoCs
+-  - "mediatek,mt8516-thermal", "mediatek,mt2701-thermal : For MT8516 family of SoCs
+-- reg: Address range of the thermal controller
+-- interrupts: IRQ for the thermal controller
+-- clocks, clock-names: Clocks needed for the thermal controller. required
+-                       clocks are:
+-		       "therm":	 Main clock needed for register access
+-		       "auxadc": The AUXADC clock
+-- mediatek,auxadc: A phandle to the AUXADC which the thermal controller uses
+-- mediatek,apmixedsys: A phandle to the APMIXEDSYS controller.
+-- #thermal-sensor-cells : Should be 0. See Documentation/devicetree/bindings/thermal/thermal-sensor.yaml for a description.
+-
+-Optional properties:
+-- resets: Reference to the reset controller controlling the thermal controller.
+-- nvmem-cells: A phandle to the calibration data provided by a nvmem device. If
+-               unspecified default values shall be used.
+-- nvmem-cell-names: Should be "calibration-data"
+-
+-Example:
+-
+-	thermal: thermal@1100b000 {
+-		#thermal-sensor-cells = <1>;
+-		compatible = "mediatek,mt8173-thermal";
+-		reg = <0 0x1100b000 0 0x1000>;
+-		interrupts = <0 70 IRQ_TYPE_LEVEL_LOW>;
+-		clocks = <&pericfg CLK_PERI_THERM>, <&pericfg CLK_PERI_AUXADC>;
+-		clock-names = "therm", "auxadc";
+-		resets = <&pericfg MT8173_PERI_THERM_SW_RST>;
+-		reset-names = "therm";
+-		mediatek,auxadc = <&auxadc>;
+-		mediatek,apmixedsys = <&apmixedsys>;
+-		nvmem-cells = <&thermal_calibration_data>;
+-		nvmem-cell-names = "calibration-data";
+-	};
+-- 
+2.35.3
 
 
