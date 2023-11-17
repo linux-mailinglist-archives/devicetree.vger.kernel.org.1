@@ -1,128 +1,197 @@
-Return-Path: <devicetree+bounces-16717-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16719-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA5A67EF6F9
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 18:32:46 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C7927EF72C
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 18:43:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 05FD61C2074F
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 17:32:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E489E281345
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 17:43:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CC7A30CEE;
-	Fri, 17 Nov 2023 17:32:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DB56433B9;
+	Fri, 17 Nov 2023 17:42:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="LHcyLzUp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31150A5;
-	Fri, 17 Nov 2023 09:32:39 -0800 (PST)
-Received: by mail-ot1-f49.google.com with SMTP id 46e09a7af769-6d261cb07dcso1321573a34.3;
-        Fri, 17 Nov 2023 09:32:39 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700242358; x=1700847158;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=4S/ec2GwXMEDgodu8Dp1Lk3HdoFb4k1XivOumHh1GgI=;
-        b=gdgDqxoCfr/SowEUZC+Vkbzn+lDlac5zw1OA1/i9JRFuBLAnaySAYCKjLxyKiZ36Ws
-         M7F3/jUXfj3OmJSlU6q7TOXELPxDjzhiRjfT4F2VxZXMwExBrdtZSzgt/FXYCxCjll7u
-         8dW77SdiV0Oks91uVdEFA6WMYiruJs1wHHkd/cPggF/v7kT3HU2J37NCMvpLf4K4I7l4
-         R9aJRqMmaLfcJ1Eje8ysvED/c4hD6jrAs/cBVXA/dY1kbvArOs8DWe9mYcCKn8JPYakl
-         AkOaiaKcLajPlMTyHfovZsKaU3gmGURDCRszPZd1PpyRcwc2DAKTM+x21ZESVVkNg9R1
-         MC8g==
-X-Gm-Message-State: AOJu0YzLuhY5LipgKLCkkkf9/scLkUZnegg13JkPCOrPPEympgZEkVia
-	0zT/ipsgmw/cqTY4rHVr0h3RpINTFQ==
-X-Google-Smtp-Source: AGHT+IENcOdeZog7yqJ5QnrNxZdL429ema4GkIhCtwuxzVuOwfOYl6UI9G7rrEG8iz4nSd6Vbna01g==
-X-Received: by 2002:a05:6830:20b:b0:6d6:4c54:72e4 with SMTP id em11-20020a056830020b00b006d64c5472e4mr12715956otb.36.1700242358397;
-        Fri, 17 Nov 2023 09:32:38 -0800 (PST)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id b26-20020a9d755a000000b006ce2c31dd9bsm303819otl.20.2023.11.17.09.32.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Nov 2023 09:32:36 -0800 (PST)
-Received: (nullmailer pid 1869910 invoked by uid 1000);
-	Fri, 17 Nov 2023 17:32:33 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 8bit
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2070.outbound.protection.outlook.com [40.107.243.70])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0D51D49;
+	Fri, 17 Nov 2023 09:42:48 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=njseX81+YM164nsKgwftn0yKWeR+V3Hp0OIeBHvqx5uuokoh2eJuQfNHZBSwUMLRoA/kd/dMlr9nhI2m+dqaF4tL7qh/zJKElrU41vxo50eoDWtmDLzEHdSsGYOXEtkGPr/1706kkKsbA+s/6Coi04SzsgCfhHwtC1WfSVcv8Qr+xTHfM9q5g3lN8AMYWasxte7AUlC/5Sk4bEVEyWHbNVGlqmRzWJIZo98OYlSbwdZDg+YKhF7ii8gDHHR/vtN3JHhEJbyubv9gxrq1VcP/L/nrirK/ykggDhIW3UoXMBFjGwakFVPV4/V6mOnblwUFbUH18AGwyZE4tnH4gX/wxA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=yk2wFb+OyRkCb+X6lryRbXXlzujHGuq6g7Au1xOdqE8=;
+ b=F9e1VAG39foK+oibICdUK5F5XRHHdlF1uLEOO/dv6LLN8fvOx7qTGKOeCtZpqpHzU3LBjPHQWmtNeNJ2ILOA2Pc6ypQdl66ixXg3erOO4gEmfTteMRgBtarBemyL5LA4BpfUMzYEKjko2jkHnifDnYbVCgk18RpKtkNdiG63sNyomyxCq8IVLL0Dc0A+++xXxA1zSIwgxPO6s2uZMsTk8Zxd/KaCS0GXOABwZPSZoYUOSxYUKGHrgR36tRYGdq4WLqP5O9SgdQgVCBuPn/QrU3HAi/idyYlawmwEbAdtySxfTCho2rBcveRCF5gOTlaFecGCTw5kFyI8hz+3tX7siA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=yk2wFb+OyRkCb+X6lryRbXXlzujHGuq6g7Au1xOdqE8=;
+ b=LHcyLzUpZusAaEcc/Q1f1w2I4vCzV39gLn1OxaDCP0RZIlCQUNE6/BcWcLwUxdRL3xdFKqAPt6tczwgI6r9/Sr3QHFwI7rEXjyGAOacHAiAoI0DxePnYwM2ww4bBka0REJtXpchp+rncESjd5iP7aJ8jrkGzR/sW2/rMPmqOq0Y=
+Received: from SN7PR18CA0020.namprd18.prod.outlook.com (2603:10b6:806:f3::14)
+ by PH0PR12MB8029.namprd12.prod.outlook.com (2603:10b6:510:26c::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6977.31; Fri, 17 Nov
+ 2023 17:42:45 +0000
+Received: from SA2PEPF00001504.namprd04.prod.outlook.com
+ (2603:10b6:806:f3:cafe::d6) by SN7PR18CA0020.outlook.office365.com
+ (2603:10b6:806:f3::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7002.23 via Frontend
+ Transport; Fri, 17 Nov 2023 17:42:45 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ SA2PEPF00001504.mail.protection.outlook.com (10.167.242.36) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7025.12 via Frontend Transport; Fri, 17 Nov 2023 17:42:45 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.32; Fri, 17 Nov
+ 2023 11:42:44 -0600
+Received: from xsjtanmays50.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.32 via Frontend
+ Transport; Fri, 17 Nov 2023 11:42:43 -0600
+From: Tanmay Shah <tanmay.shah@amd.com>
+To: <andersson@kernel.org>, <mathieu.poirier@linaro.org>,
+	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+	<conor+dt@kernel.org>, <michal.simek@amd.com>, <ben.levinsky@amd.com>,
+	<tanmay.shah@amd.com>
+CC: <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v7 0/4] add zynqmp TCM bindings
+Date: Fri, 17 Nov 2023 09:42:34 -0800
+Message-ID: <20231117174238.1876655-1-tanmay.shah@amd.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: James Tai <james.tai@realtek.com>
-Cc: linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, Thomas Gleixner <tglx@linutronix.de>, Marc Zyngier <maz@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>
-In-Reply-To: <20231117162709.1096585-2-james.tai@realtek.com>
-References: <20231117162709.1096585-1-james.tai@realtek.com>
- <20231117162709.1096585-2-james.tai@realtek.com>
-Message-Id: <170024235327.1869893.15173077111056096496.robh@kernel.org>
-Subject: Re: [PATCH v2 1/6] dt-bindings: interrupt-controller: Add support
- for Realtek DHC SoCs
-Date: Fri, 17 Nov 2023 11:32:33 -0600
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SA2PEPF00001504:EE_|PH0PR12MB8029:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2581bcc3-b508-4451-833b-08dbe7949b98
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	PCOe3afr7inOt++P6m38iAzsEiRxfHyeLHRVECG+C3SbuX2/2g5Wr8wKtHkNAK/L8jMg5N7/sOidTVFXZT3sdaf5D5c8DbZ/YnIRu+e1le9PSgnZ82EFYLyHTwb8EEdM5ppe8cSHn51MGv9KwGflbe1UsWa+f02dZ+DXi/YZ77q7Gn0gfPYJuZl2CAH6Z0ZrBo/VapA6VvXO/7Cia8zWLLm13KflqifgXHyf9ldN8V5HaTOjX5EwuAfELMcITi6x76Gkh4J2IOy9Fl+67SYxmFexfvsrp+91gcFeg7gaCdCP4npxRFK/Ls4AxGq1WRALfA+v2dMSGvjc49BBUcdKl8YbLUeKmJy7tTiqWHdLg8ADycJNCg2VsChL9MfV5AsPAOLXTjLNtVi/uaiRTU1Ved6p60xyAOoia3ZK1E8teI6YunbsH7ejHmfPvfQuz/uhMbhbaI0QAf/7bfTvOC3rcx07XwJaiJlILfucOkA1dgs5d0Ggv6LUPX3dSBmOq3F33o4JzTTIkmAVaX5bLbMNYI0WxzikNInqqy3HDAvMypzofA7KDamY+t+t/96TLRVLPZ/lXit3Bt/nMGk/qUU+nEGOChGHUDwdxP2+SPge6Nom21ThItMxa8gq2jb2VFgSISgXRPEJ1sgF1VW7hO4RZmSZP2KNZvFlCQgnFKbQ/5X+s85fW3p2ZozfnsXdEtbSm/X4NOoGza7OYcLK5vRsBl+s0bKWU/LxJOG9Cv/9nAFM+u8cYyzDMZfoJLeaDiq1B49ldqB3+pl3dIywlfwUhxfk3tp/mmiScCt0K1eFh5c=
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(39860400002)(346002)(136003)(396003)(376002)(230922051799003)(1800799009)(186009)(451199024)(64100799003)(82310400011)(46966006)(36840700001)(40470700004)(40460700003)(54906003)(26005)(426003)(47076005)(336012)(2616005)(6666004)(83380400001)(8676002)(36860700001)(5660300002)(41300700001)(8936002)(44832011)(2906002)(478600001)(110136005)(966005)(1076003)(316002)(36756003)(70206006)(86362001)(356005)(70586007)(82740400003)(81166007)(4326008)(7049001)(40480700001)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Nov 2023 17:42:45.3759
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2581bcc3-b508-4451-833b-08dbe7949b98
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SA2PEPF00001504.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB8029
+
+Tightly-Coupled Memories(TCMs) are low-latency memory that provides
+predictable instruction execution and predictable data load/store
+timing. Each Cortex-R5F processor contains exclusive two 64 KB memory
+banks on the ATCM and BTCM ports, for a total of 128 KB of memory.
+In lockstep mode, both 128KB memory is accessible to the cluster.
+
+As per ZynqMP Ultrascale+ Technical Reference Manual UG1085, following
+is address space of TCM memory. The bindings in this patch series
+introduces properties to accommodate following address space with
+address translation between Linux and Cortex-R5 views.
+
+|     |     |     |
+| --- | --- | --- |
+|      *Mode*        |   *R5 View* | *Linux view* |  Notes               |
+| *Split Mode*       | *start addr*| *start addr* |                      |
+| R5_0 ATCM (64 KB)  | 0x0000_0000 | 0xFFE0_0000  |                      |
+| R5_0 BTCM (64 KB)  | 0x0002_0000 | 0xFFE2_0000  |                      |
+| R5_1 ATCM (64 KB)  | 0x0000_0000 | 0xFFE9_0000  | alias of 0xFFE1_0000 |
+| R5_1 BTCM (64 KB)  | 0x0002_0000 | 0xFFEB_0000  | alias of 0xFFE3_0000 |
+|  ___               |     ___     |    ___       |                      |
+| *Lockstep Mode*    |             |              |                      |
+| R5_0 ATCM (128 KB) | 0x0000_0000 | 0xFFE0_0000  |                      |
+| R5_0 BTCM (128 KB) | 0x0002_0000 | 0xFFE2_0000  |                      |
+
+References:
+UG1085 TCM address space:
+https://docs.xilinx.com/r/en-US/ug1085-zynq-ultrascale-trm/Tightly-Coupled-Memory-Address-Map
+
+Changes in v7:
+  - %s/pm_dev1/pm_dev_core0/r
+  - %s/pm_dev_link1/pm_dev_core0_link/r
+  - %s/pm_dev2/pm_dev_core1/r
+  - %s/pm_dev_link2/pm_dev_core1_link/r
+  - remove pm_domain_id check to move next patch
+  - add comment about how 1st entry in pm domain list is used
+  - fix loop when jump to fail_add_pm_domains loop
+  - move checking of pm_domain_id from previous patch
+  - fix mem_bank_data memory allocation
+
+Changes in v6:
+  - Introduce new node entry for r5f cluster split mode dts and
+    keep it disabled by default.
+  - Keep remoteproc lockstep mode enabled by default to maintian
+    back compatibility.
+  - Enable split mode only for zcu102 board to demo split mode use
+  - Remove spurious change
+  - Handle errors in add_pm_domains function
+  - Remove redundant code to handle errors from remove_pm_domains
+  - Missing . at the end of the commit message
+  - remove redundant initialization of variables
+  - remove fail_tcm label and relevant code to free memory
+    acquired using devm_* API. As this will be freed when device free it
+  - add extra check to see if "reg" property is supported or not
+
+Changes in v5:
+  - maintain Rob's Ack on bindings patch as no changes in bindings
+  - split previous patch into multiple patches
+  - Use pm domain framework to turn on/off TCM
+  - Add support of parsing TCM information from device-tree
+  - maintain backward compatibility with previous bindings without
+    TCM information available in device-tree
+
+This patch series continues previous effort to upstream ZynqMP
+TCM bindings:
+Previous v4 version link:
+https://lore.kernel.org/all/20230829181900.2561194-1-tanmay.shah@amd.com/
+
+Previous v3 version link:
+https://lore.kernel.org/all/1689964908-22371-1-git-send-email-radhey.shyam.pandey@amd.com/
+Radhey Shyam Pandey (1):
+  dt-bindings: remoteproc: add Tightly Coupled Memory (TCM) bindings
 
 
-On Sat, 18 Nov 2023 00:27:04 +0800, James Tai wrote:
-> Add the YAML documentation for Realtek DHC SoCs.
-> 
-> CC: Thomas Gleixner <tglx@linutronix.de>
-> CC: Marc Zyngier <maz@kernel.org>
-> CC: Rob Herring <robh+dt@kernel.org>
-> CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> CC: Conor Dooley <conor+dt@kernel.org>
-> CC: linux-kernel@vger.kernel.org
-> CC: devicetree@vger.kernel.org
-> Signed-off-by: James Tai <james.tai@realtek.com>
-> ---
-> v1 to v2 change:
-> - Tested the bindings using 'make dt_binding_check'
-> - Fixed code style issues
-> 
->  .../realtek,rtd1319-intc.yaml                 | 79 +++++++++++++++++++
->  .../realtek,rtd1319d-intc.yaml                | 79 +++++++++++++++++++
->  .../realtek,rtd1325-intc.yaml                 | 79 +++++++++++++++++++
->  .../realtek,rtd1619b-intc.yaml                | 78 ++++++++++++++++++
->  4 files changed, 315 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/realtek,rtd1319-intc.yaml
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/realtek,rtd1319d-intc.yaml
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/realtek,rtd1325-intc.yaml
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/realtek,rtd1619b-intc.yaml
-> 
+Radhey Shyam Pandey (1):
+  dt-bindings: remoteproc: add Tightly Coupled Memory (TCM) bindings
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Tanmay Shah (3):
+  dts: zynqmp: add properties for TCM in remoteproc
+  remoteproc: zynqmp: add pm domains support
+  remoteproc: zynqmp: parse TCM from device tree
 
-yamllint warnings/errors:
+ .../remoteproc/xlnx,zynqmp-r5fss.yaml         | 131 ++++++-
+ .../boot/dts/xilinx/zynqmp-zcu102-rev1.0.dts  |   8 +
+ arch/arm64/boot/dts/xilinx/zynqmp.dtsi        |  60 ++-
+ drivers/remoteproc/xlnx_r5_remoteproc.c       | 363 ++++++++++++++++--
+ 4 files changed, 514 insertions(+), 48 deletions(-)
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/realtek,rtd1319d-intc.yaml: title: 'Realtek DHC RTD1319D Interrupt Controller Device Tree Bindings' should not be valid under {'pattern': '([Bb]inding| [Ss]chema)'}
-	hint: Everything is a binding/schema, no need to say it. Describe what hardware the binding is for.
-	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/realtek,rtd1325-intc.yaml: title: 'Realtek DHC RTD1325 Interrupt Controller Device Tree Bindings' should not be valid under {'pattern': '([Bb]inding| [Ss]chema)'}
-	hint: Everything is a binding/schema, no need to say it. Describe what hardware the binding is for.
-	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/realtek,rtd1619b-intc.yaml: title: 'Realtek DHC RTD1619B Interrupt Controller Device Tree Bindings' should not be valid under {'pattern': '([Bb]inding| [Ss]chema)'}
-	hint: Everything is a binding/schema, no need to say it. Describe what hardware the binding is for.
-	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/realtek,rtd1319-intc.yaml: title: 'Realtek DHC RTD1319 Interrupt Controller Device Tree Bindings' should not be valid under {'pattern': '([Bb]inding| [Ss]chema)'}
-	hint: Everything is a binding/schema, no need to say it. Describe what hardware the binding is for.
-	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231117162709.1096585-2-james.tai@realtek.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+base-commit: 6dc66a3096730db94a89b098da66887a390cc6af
+-- 
+2.25.1
 
 
