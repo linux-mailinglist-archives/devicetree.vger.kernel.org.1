@@ -1,50 +1,42 @@
-Return-Path: <devicetree+bounces-16782-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16783-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 514007EFB76
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 23:31:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 82D5B7EFB99
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 23:49:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 83EC7B20AC2
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 22:31:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A7A15B20AC0
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 22:49:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0676A43148;
-	Fri, 17 Nov 2023 22:31:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED815446B2;
+	Fri, 17 Nov 2023 22:49:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="uAfsRqb4"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="FZQKVqdj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65012D4F;
-	Fri, 17 Nov 2023 14:31:38 -0800 (PST)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3AHMVXRO125560;
-	Fri, 17 Nov 2023 16:31:33 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1700260293;
-	bh=tEboc8imaZ8lgoNITxEkXtjHrBowVf0NeGv/0Wb/Bnk=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=uAfsRqb4B9W1RazSWaTVMwDrixbOu2DexwlgSnwS7aETJni5MUI2240RoaVT0EV0Z
-	 y06xb4Jm/G7K2H0SQh6+FX2gbL3+4NjRlQOM7dJMhiY2DdjDd+isIjxSiIxSzASPPh
-	 GVEhnPU2cm6ZWlLvXAhe8XuXqF9/V9xUQ1oiC1Yo=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3AHMVXoo048524
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 17 Nov 2023 16:31:33 -0600
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 17
- Nov 2023 16:31:32 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 17 Nov 2023 16:31:32 -0600
-Received: from [10.250.36.5] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3AHMVWTK075571;
-	Fri, 17 Nov 2023 16:31:32 -0600
-Message-ID: <64ac9f61-9a87-4d91-bab7-41cb10245de3@ti.com>
-Date: Fri, 17 Nov 2023 16:31:31 -0600
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B237D5B;
+	Fri, 17 Nov 2023 14:49:05 -0800 (PST)
+Received: from [100.116.17.117] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: cristicc)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id D91826607392;
+	Fri, 17 Nov 2023 22:49:01 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1700261343;
+	bh=0tjjKjAurRBn5zKIbePAVaEbSE3D2bVElukfuHa4ky0=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=FZQKVqdj8c4YnfPf8Ln2LNSP1PEuIphRLQYbKAGWR6YfGVw1MtjOEX/wct3rVvHY1
+	 SA4Ihjwc2X8BRBh/O69W4lpnlnnzwloaKupoS7dPFrBaZXvrihuVyXVJHa29VGKyOC
+	 OuBVPmsy2ClqfU2zxcRpNQsjtbromviSrfF8aA/PF3gLcODKw3n1B/mbG1D01xADGx
+	 h1hsLodXzXwkQYI9QaRonqclZzteXFm8ErvbEhg3rWNd6hCIvBvYfVwPLW4YvsGVKh
+	 EaE+iRLu3x1gDXDtlQhJVfQvGew/L5al27uQ8WUyDkB6zBm++op7EKXhK/2KQpXDoh
+	 53YJXXX+alJVw==
+Message-ID: <daa8c056-0279-4c2d-9a22-2375fd63f0a1@collabora.com>
+Date: Sat, 18 Nov 2023 00:48:58 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,59 +44,152 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/8] arm64: dts: ti: k3-am64: Convert serdes_ln_ctrl node
- into reg-mux
+Subject: Re: [PATCH v2 12/12] [UNTESTED] riscv: dts: starfive:
+ beaglev-starlight: Enable gmac
 Content-Language: en-US
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20231117222930.228688-1-afd@ti.com>
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <20231117222930.228688-1-afd@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Conor Dooley <conor@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+ Conor Dooley <conor+dt@kernel.org>, Emil Renner Berthing <kernel@esmil.dk>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Samin Guo <samin.guo@starfivetech.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Jose Abreu <joabreu@synopsys.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Richard Cochran <richardcochran@gmail.com>,
+ Giuseppe Cavallaro <peppe.cavallaro@st.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, kernel@collabora.com
+References: <20231029042712.520010-1-cristian.ciocaltea@collabora.com>
+ <20231029042712.520010-13-cristian.ciocaltea@collabora.com>
+ <f253b50a-a0ac-40c6-b13d-013de7bac407@lunn.ch>
+ <233a45e1-15ac-40da-badf-dee2d3d60777@collabora.com>
+ <cb6597be-2185-45ad-aa47-c6804ff68c85@collabora.com>
+ <20231116-stellar-anguished-7cf06eb5634a@squawk>
+ <CAMuHMdXdeW9SRN8hq-0722CiLvXDFVwpJxjFTGgdc2mhT=ppYw@mail.gmail.com>
+ <b4a3a139-4831-447e-94ed-d590986aed8c@collabora.com>
+ <84fd076b-6db4-4251-aff8-36befc28e574@collabora.com>
+ <CAMuHMdVXAx+b6=70PdgJrpbegBkDpb3w1UF0_u1Odi=JoYL2-w@mail.gmail.com>
+ <e2f4ba34-24db-4669-bac4-ac64ea7761cf@collabora.com>
+In-Reply-To: <e2f4ba34-24db-4669-bac4-ac64ea7761cf@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On 11/17/23 4:29 PM, Andrew Davis wrote:
-> This removes a dependency on the parent node being a syscon node.
-> Convert from mmio-mux to reg-mux adjusting node name and properties
-> as needed.
+On 11/17/23 13:19, Cristian Ciocaltea wrote:
+> On 11/17/23 11:12, Geert Uytterhoeven wrote:
+>> Hi Cristian,
+>>
+>> On Fri, Nov 17, 2023 at 9:59 AM Cristian Ciocaltea
+>> <cristian.ciocaltea@collabora.com> wrote:
+>>> On 11/17/23 10:49, Cristian Ciocaltea wrote:
+>>>> On 11/17/23 10:37, Geert Uytterhoeven wrote:
+>>>>> On Thu, Nov 16, 2023 at 6:55 PM Conor Dooley <conor@kernel.org> wrote:
+>>>>>> On Thu, Nov 16, 2023 at 03:15:46PM +0200, Cristian Ciocaltea wrote:
+>>>>>>> On 10/30/23 00:53, Cristian Ciocaltea wrote:
+>>>>>>>> On 10/29/23 20:46, Andrew Lunn wrote:
+>>>>>>>>> On Sun, Oct 29, 2023 at 06:27:12AM +0200, Cristian Ciocaltea wrote:
+>>>>>>>>>> The BeagleV Starlight SBC uses a Microchip KSZ9031RNXCA PHY supporting
+>>>>>>>>>> RGMII-ID.
+>>>>>>>>>>
+>>>>>>>>>> TODO: Verify if manual adjustment of the RX internal delay is needed. If
+>>>>>>>>>> yes, add the mdio & phy sub-nodes.
+>>>>>>>>>
+>>>>>>>>> Please could you try to get this tested. It might shed some light on
+>>>>>>>>> what is going on here, since it is a different PHY.
+>>>>>>>>
+>>>>>>>> Actually, this is the main reason I added the patch. I don't have access
+>>>>>>>> to this board, so it would be great if we could get some help with testing.
+>>>>>>>
+>>>>>>> @Emil, @Conor: Any idea who might help us with a quick test on the
+>>>>>>> BeagleV Starlight board?
+>>>>>>
+>>>>>> I don't have one & I am not sure if Emil does. Geert (CCed) should have
+>>>>>
+>>>>> I believe Esmil has.
+>>>>>
+>>>>>> one though. Is there a specific test you need to have done?
+>>>>>
+>>>>> I gave it a try, on top of latest renesas-drivers[1].
+>>>
+>>> [...]
+>>>
+>>>>>
+>>>>> Looks like it needs more non-coherent support before we can test
+>>>>> Ethernet.
+>>>>
+>>>> Hi Geert,
+>>>>
+>>>> Thanks for taking the time to test this!
+>>>>
+>>>> Could you please check if the following are enabled in your kernel config:
+>>>>
+>>>>   CONFIG_DMA_GLOBAL_POOL
+>>>>   CONFIG_RISCV_DMA_NONCOHERENT
+>>>>   CONFIG_RISCV_NONSTANDARD_CACHE_OPS
+>>>>   CONFIG_SIFIVE_CCACHE
+>>
+>> CONFIG_DMA_GLOBAL_POOL and CONFIG_RISCV_NONSTANDARD_CACHE_OPS were
+>> indeed no longer enabled, as they cannot be enabled manually.
+>>
+>> After cherry-picking commit e14ad9ff67fd51dc ("riscv: errata: Add
+>> StarFive JH7100 errata") in esmil/visionfive these options become
+>> enabled. Now it gets a bit further, but still lots of CCACHE DataFail
+>> errors.
 > 
-> Signed-off-by: Andrew Davis <afd@ti.com>
-> ---
-
-This series depends on this driver fix[0].
-
-Andrew
-
-[0] https://lore.kernel.org/lkml/20231025161247.1283319-1-afd@ti.com/
-
->   arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 7 ++++---
->   1 file changed, 4 insertions(+), 3 deletions(-)
+> Right, there is an open question [2] in PATCH v2 08/12 if this patch
+> should have been part of Emil's ccache series or I will send it in v3
+> of my series.
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-> index 0be642bc1b86d..d630cbe6d7eb9 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-> @@ -51,10 +51,11 @@ chipid@14 {
->   			reg = <0x00000014 0x4>;
->   		};
->   
-> -		serdes_ln_ctrl: mux-controller {
-> -			compatible = "mmio-mux";
-> +		serdes_ln_ctrl: mux-controller@4080 {
-> +			compatible = "reg-mux";
-> +			reg = <0x4080 0x4>;
->   			#mux-control-cells = <1>;
-> -			mux-reg-masks = <0x4080 0x3>; /* SERDES0 lane0 select */
-> +			mux-reg-masks = <0x0 0x3>; /* SERDES0 lane0 select */
->   		};
->   
->   		phy_gmii_sel: phy@4044 {
+> [2]: https://lore.kernel.org/lkml/4f661818-1585-41d8-a305-96fd359bc8b8@collabora.com/
+> 
+>>> Also please note the series requires the SiFive Composable Cache
+>>> controller patches provided by Emil [1].
+>>>
+>>> [1]: https://lore.kernel.org/all/20231031141444.53426-1-emil.renner.berthing@canonical.com/
+>>
+>> That series does not contain any Kconfig changes, so there must be
+>> other missing dependencies?
+> 
+> There shouldn't be any additional Kconfig changes or dependencies as 
+> those patches just extend an already existing driver. There were some 
+> changes in v2, but they are still compatible with this series (I've 
+> retested that to make sure).
+> 
+> My tree is based on next-20231024, so I'm going to rebase it onto
+> next-20231117, to exclude the possibility of a regression somewhere.
+> 
+> I will also test with renesas-drivers.
+
+I verified with both trees and didn't notice any issues with my 
+VisionFive board, so I don't really understand why BeagleV Starlight 
+shows a different behavior.
+
+For reference, please see [3] which contains all required patches 
+applied on top of next-20231117. The top-most one 9d36dec7e6da ("riscv: 
+dts: starfive: Add JH7100 MMC nodes") is optional, I added it to extend 
+a bit the test suite (SD-card card access also works fine).
+
+[3]: https://gitlab.collabora.com/cristicc/linux-next/-/tree/visionfive-eth
+
+For configuring the kernel, I used:
+
+  $ make [...] defconfig
+  $ scripts/config --enable CONFIG_NONPORTABLE --enable ERRATA_STARFIVE_JH7100
+
+I also noticed a warning message right before building starts, but it 
+doesn't seem to be harmful:
+
+WARNING: unmet direct dependencies detected for DMA_GLOBAL_POOL
+  Depends on [n]: !ARCH_HAS_DMA_SET_UNCACHED [=n] && !DMA_DIRECT_REMAP [=y]
+  Selected by [y]:
+  - ERRATA_STARFIVE_JH7100 [=y] && ARCH_STARFIVE [=y] && NONPORTABLE [=y]
+
+Thanks,
+Cristian
 
