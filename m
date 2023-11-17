@@ -1,67 +1,104 @@
-Return-Path: <devicetree+bounces-16549-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16552-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 605A97EEF3D
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 10:50:56 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5001A7EEF4E
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 10:54:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8BF951C20828
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 09:50:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CD315B209F9
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 09:54:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C94B171B9;
-	Fri, 17 Nov 2023 09:50:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99DC1171C6;
+	Fri, 17 Nov 2023 09:54:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="YXsIV8QD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B5FED8;
-	Fri, 17 Nov 2023 01:50:50 -0800 (PST)
-Received: from i5e861935.versanet.de ([94.134.25.53] helo=phil.lan)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1r3vUq-0003ER-7U; Fri, 17 Nov 2023 10:50:44 +0100
-From: Heiko Stuebner <heiko@sntech.de>
-To: Mark Brown <broonie@kernel.org>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	kernel@collabora.com,
-	Rob Herring <robh+dt@kernel.org>,
-	linux-rockchip@lists.infradead.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: (subset) [PATCH v1 1/2] dt-bindings: es8328: convert to DT schema format
-Date: Fri, 17 Nov 2023 10:50:35 +0100
-Message-Id: <170021461021.1221251.790740434324924821.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20231109184453.108676-1-sebastian.reichel@collabora.com>
-References: <20231109184453.108676-1-sebastian.reichel@collabora.com>
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEC76D56;
+	Fri, 17 Nov 2023 01:54:11 -0800 (PST)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AH9pob7031877;
+	Fri, 17 Nov 2023 09:54:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=8PHjishFk/rDJbuAwLGo4DIdsK0nxVJpPl5Q+3+yl58=;
+ b=YXsIV8QDK+IwL85TKocCUX9EX6vrchLuNg3cMfGb1B0Pvw3exBsCdt7q79PMqM002U98
+ ZTaOXk8kAdaQmMQa4AgY/cBBmBUE+pWnxHQdRKt6l6WzhfPepCN+qe4uOzmQbkeraouG
+ uE7SV5GrTqaHH3+XbJN6tKmqecYCuFzUDfv7CwqNNeOBxaUct8L0CXs7eWHcKmgmO20q
+ qtDOZnA5bE+SCbK52oE7ENqFSYX1fpTSiz+A9m0J4ONOYtsl8MT+wvm8NvHblzgpfB/u
+ 6Mt6Boe9TA+0cYosWY6dASPyUcAaX4ZRVXgFH3Z4RIjXhJPpc3KEEwTrCir1fFdSbLdL 3A== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3udw46s199-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 17 Nov 2023 09:54:08 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AH9reTZ023544
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 17 Nov 2023 09:53:40 GMT
+Received: from blr-ubuntu-87.ap.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.39; Fri, 17 Nov 2023 01:53:35 -0800
+From: Sibi Sankar <quic_sibis@quicinc.com>
+To: <andersson@kernel.org>, <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+CC: <agross@kernel.org>, <conor+dt@kernel.org>, <quic_rjendra@quicinc.com>,
+        <abel.vesa@linaro.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_tsoni@quicinc.com>, <neil.armstrong@linaro.org>,
+        Sibi Sankar
+	<quic_sibis@quicinc.com>
+Subject: [PATCH V2 0/2] cache: qcom,llcc: Add llcc support for X1E80100
+Date: Fri, 17 Nov 2023 15:23:13 +0530
+Message-ID: <20231117095315.2087-1-quic_sibis@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: yCoPhn1bkOHHZbSk_Ed2-3Rgaegw5L_J
+X-Proofpoint-ORIG-GUID: yCoPhn1bkOHHZbSk_Ed2-3Rgaegw5L_J
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-17_07,2023-11-16_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
+ clxscore=1015 phishscore=0 mlxlogscore=962 suspectscore=0 bulkscore=0
+ adultscore=0 spamscore=0 malwarescore=0 lowpriorityscore=0 impostorscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2311060000
+ definitions=main-2311170073
 
-On Thu, 9 Nov 2023 19:44:43 +0100, Sebastian Reichel wrote:
-> Convert the binding to DT schema format. Note, that "IPVDD-supply"
-> got fixed to be "HPVDD-supply" during the conversion. This was
-> obviously a typo in the old binding. The old binding example, DT
-> files, chip datasheet and Linux driver use HPVDD.
-> 
-> 
+This series adds llcc support for the Qualcomm X1E80100 platform, aka Snapdragon X Elite.
 
-Applied, thanks!
+Our v1 post of the patchsets adding support for Snapdragon X Elite SoC had
+the part number sc8380xp which is now updated to the new part number x1e80100
+based on the new branding scheme and refers to the exact same SoC.
 
-[2/2] arm64: dts: rockchip: add analog audio to RK3588 EVB1
-      commit: 97c39c7a0965b3eba87baa2b7d51443a46e21b8f
+v2:
+* Update the part number from sc8380xp to x1e80100.
+* Pickup Rbs.
 
-Best regards,
+Dependencies: None
+Release Link: https://www.qualcomm.com/news/releases/2023/10/qualcomm-unleashes-snapdragon-x-elite--the-ai-super-charged-plat
+
+Rajendra Nayak (2):
+  dt-bindings: cache: qcom,llcc: Add X1E80100 compatible
+  soc: qcom: llcc: Add configuration data for X1E80100
+
+ .../devicetree/bindings/cache/qcom,llcc.yaml  |  2 +
+ drivers/soc/qcom/llcc-qcom.c                  | 39 +++++++++++++++++++
+ 2 files changed, 41 insertions(+)
+
 -- 
-Heiko Stuebner <heiko@sntech.de>
+2.17.1
+
 
