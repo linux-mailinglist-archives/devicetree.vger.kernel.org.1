@@ -1,94 +1,147 @@
-Return-Path: <devicetree+bounces-16763-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16766-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6801B7EF8DA
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 21:51:09 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2490B7EFAB0
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 22:27:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 94C561C20AE0
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 20:51:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B7329B20D01
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 21:27:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6138D446DD;
-	Fri, 17 Nov 2023 20:51:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B827851C3B;
+	Fri, 17 Nov 2023 21:20:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cxymiNZK"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="o9ZmKDY5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 212C7D5B
-	for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 12:51:00 -0800 (PST)
-Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-407c3adef8eso21144815e9.2
-        for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 12:51:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700254258; x=1700859058; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3Cfb9CpRJGax+VMCUnz4cwDEpCdrdsrUj8kZuGAr5ZY=;
-        b=cxymiNZKAxhdcmdx5RX7VH/snGLgCNEeorBQnO9tnizwKVQE2SXJljutN7N43zElas
-         HyQJ7684IF0aZC5fZMRCqEF/IIahRnIHfzxvebQzjzEWMxKmEYa4Gl85jzE8l73Caezy
-         jsexBtZD2Cvu3yzv3u6iJegtwdFLqIHpxFgzHdP1Q+bSHaIi8GfX+XRupMhFkWVIqu+u
-         rGpQvhivx4Ek9RxWsVKyM+dF25cllZ5Wv0hCvlcKamiQL4lI7kTRCClg4iY3L588fgCJ
-         nDevZc0uio7RAbo0KDVYnj9UFy7dVEgak0M6kPZB/bYZfyAy7Is90k0B9ACAC4FdGdFe
-         wSmA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700254258; x=1700859058;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3Cfb9CpRJGax+VMCUnz4cwDEpCdrdsrUj8kZuGAr5ZY=;
-        b=jgqDlxV/HLN1OTolFp6G2Bb21xuwBIBbH+wj3DORPNbLrdbvFbxqQuta1jOZoavy2J
-         4wGbR1FPWZIj4L4FLsxv6Nk853V9r6k3JQfxAFF/gFzma4TaFO+KdyoygpOwakB1vmB2
-         ixmJf4aKUFqvlqFNBbsnDMCUoD7eX3mTgHzmMmGcyb2mN9+0pVkjhgtU29sAJJDVKM+A
-         afr036bnYEWg+5L+TEqBD3kYH2pHrwUFhKd4GJ3Hx7+MJFnrgrZRSGMGTGUuAXwiqNDP
-         2NDgWVwPcnKCdADd8nidKZBEvEw9uAcTYmT0Ik9LO8HZPjU4ua/8Dro4zXlCeEsgujMs
-         xl+Q==
-X-Gm-Message-State: AOJu0YyN5qvYxhWj5Br5+8XD+0hrGUoNuO2in/fc3NbPgJqGoeUpkUot
-	y4qk1T66Cd7RrK9EmnAcm4Cb3FtlyP/qyCQOdWMC4RVH
-X-Google-Smtp-Source: AGHT+IFjAiXluizJ9xFU9rHxpbwZ5V6ciMuUpG4zoA9i1A1H/vCkh74tzaHFHMJWi4Ib6mtXQ4tgSw==
-X-Received: by 2002:a05:600c:45ca:b0:405:499a:7fc1 with SMTP id s10-20020a05600c45ca00b00405499a7fc1mr203435wmo.40.1700254257945;
-        Fri, 17 Nov 2023 12:50:57 -0800 (PST)
-Received: from [192.168.100.102] ([37.228.218.3])
-        by smtp.gmail.com with ESMTPSA id je14-20020a05600c1f8e00b0040596352951sm8679047wmb.5.2023.11.17.12.50.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Nov 2023 12:50:57 -0800 (PST)
-Message-ID: <ec9d03f7-7158-4309-9a04-b08c69b89f39@linaro.org>
-Date: Fri, 17 Nov 2023 20:50:56 +0000
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CCE02D6D;
+	Fri, 17 Nov 2023 13:19:23 -0800 (PST)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AHKgQv4006270;
+	Fri, 17 Nov 2023 21:19:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : subject :
+ date : message-id : mime-version : content-type :
+ content-transfer-encoding : to : cc; s=qcppdkim1;
+ bh=udv6NyKKVwCyn6noriaiVFU15xIFM+OhIbVPIwhcJ8U=;
+ b=o9ZmKDY5oAAYXnX7KcOpAEs64UyzwACMW+VWlIjRtcvY1ZLmAt8/dhyZXNaPL8Nn9sLt
+ ENqnsyAe89hQ9FHZlJE6K5/+1/nlBFXkC7SjPs3pMldLspl4REsQCXtUidkwicupN5/9
+ A9HzFxPLkgsP97mgI5Se/3cNGFm1p2/sJHHTngOIhyd0Ztu/VjzvzszwaeSR6P6FfCuc
+ qMvWx6b/Ru99RaxXL9wYej33//Ry2C1wUsvfgNQwUshq+n3u/iuHpC0c/LN8j2nh4vge
+ J/lYfHVmtRbVhXmgUsYxGGhpuMTw8ax9l7L6CmWbRJuOwrPtE0GNZk5Kj+TKGQCY2Elp nA== 
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ue2na1uaj-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 17 Nov 2023 21:19:08 +0000
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AHLJ809013105
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 17 Nov 2023 21:19:08 GMT
+Received: from hu-eberman-lv.qualcomm.com (10.49.16.6) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Fri, 17 Nov 2023 13:19:07 -0800
+From: Elliot Berman <quic_eberman@quicinc.com>
+Subject: [PATCH 0/3] Implement vendor resets for PSCI SYSTEM_RESET2
+Date: Fri, 17 Nov 2023 13:18:45 -0800
+Message-ID: <20231117-arm-psci-system_reset2-vendor-reboots-v1-0-03c4612153e2@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 2/4] clk: qcom: Add Global Clock controller (GCC)
- driver for X1E80100
-Content-Language: en-US
-To: Sibi Sankar <quic_sibis@quicinc.com>, andersson@kernel.org,
- konrad.dybcio@linaro.org, mturquette@baylibre.com, sboyd@kernel.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc: agross@kernel.org, conor+dt@kernel.org, quic_tdas@quicinc.com,
- quic_rjendra@quicinc.com, linux-arm-msm@vger.kernel.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, neil.armstrong@linaro.org,
- abel.vesa@linaro.org, quic_tsoni@quicinc.com
-References: <20231117092737.28362-1-quic_sibis@quicinc.com>
- <20231117092737.28362-3-quic_sibis@quicinc.com>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20231117092737.28362-3-quic_sibis@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIALXYV2UC/5XNMQ6CQBCF4auYrR0zu4sQrbyHIQZmR50CFneQa
+ Ax3F9TGTsv3iv97GOUkrGa7eJjEg6jEdhp2uTB0rtoTg4RpG4fOW7Q5VKmBTklA79pzc0is3Ds
+ YuA0xQeI6xl6ByFchW+eEBZqp1SU+yu3l7Mtpn0X7mO4vdrDz+xFc9qMwWEDA3NZFQbixGe4uV
+ yFpaUWxmcl3z+M/vUAh5N6vXRXsV68cx/EJ6FI4YywBAAA=
+To: Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Mark Rutland
+	<mark.rutland@arm.com>
+CC: Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>,
+        Melody Olvera
+	<quic_molvera@quicinc.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Florian Fainelli <florian.fainelli@broadcom.com>,
+        Elliot Berman
+	<quic_eberman@quicinc.com>
+X-Mailer: b4 0.13-dev
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: WKdL-ltEy1yibgSilSECFLnA6e2q4IS1
+X-Proofpoint-ORIG-GUID: WKdL-ltEy1yibgSilSECFLnA6e2q4IS1
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-17_21,2023-11-17_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
+ priorityscore=1501 malwarescore=0 mlxscore=0 lowpriorityscore=0
+ mlxlogscore=949 phishscore=0 suspectscore=0 clxscore=1011 adultscore=0
+ impostorscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2311060000 definitions=main-2311170159
 
-On 17/11/2023 09:27, Sibi Sankar wrote:
-> * Use shared ops in the x1e80100 gcc driver [Bryan].
+The PSCI SYSTEM_RESET2 call allows vendor firmware to define additional
+reset types which could be mapped to the reboot argument.
 
-This looks better to me now / more consistent with what we have in 
-sc8280xp - where we do try to hit suspend and => retention/parking matters.
+Setting up reboot on Qualcomm devices can be inconsistent from chipset
+to chipset.  Generally, there is a PMIC register that gets written to
+decide the reboot type. There is also sometimes a cookie that can be
+written to indicate that the bootloader should behave differently than a
+regular boot. These knobs evolve over product generations and require 
+more drivers. Qualcomm firmwares are beginning to expose vendor
+SYSTEM_RESET2 types to simplify driver requirements from Linux.
 
-Could you give a bit more detail on why SDCC* doesn't warrant parking on 
-X1E80100 as on SC8280XP though ?
+Add support in PSCI to statically wire reboot mode commands from
+userspace to a vendor reset and cookie value using the device tree. The
+DT bindings are similar to reboot mode framework except that 2
+integers are accepted (the type and cookie). Also, reboot mode framework
+is intended to program, but not reboot, the host. PSCI SYSTEM_RESET2
+does both. I've not added support for reading ACPI tables since I don't
+have any device which provides them + firmware that supports vendor
+SYSTEM_RESET2 types.
+
+Previous discussions around SYSTEM_RESET2:
+- https://lore.kernel.org/lkml/20230724223057.1208122-2-quic_eberman@quicinc.com/T/
+- https://lore.kernel.org/all/4a679542-b48d-7e11-f33a-63535a5c68cb@quicinc.com/
+
+This RFC approach differs from the one sent in July by:
+- Not using the reboot mode framework
+- Added support to control both reset type and cookie
+- Implicitly dropped "normal" reboot command, which is always just
+  SYSTEM_RESET anyway.
+
+Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
+---
+Changes since RFC:
+- Reference reboot-mode bindings as suggeted by Rob.
+- Link to RFC: https://lore.kernel.org/r/20231030-arm-psci-system_reset2-vendor-reboots-v1-0-dcdd63352ad1@quicinc.com
 
 ---
-bod
+Elliot Berman (3):
+      dt-bindings: power: reset: Convert mode-.* properties to array
+      dt-bindings: arm: Document reboot mode magic
+      firmware: psci: Read and use vendor reset types
+
+ Documentation/devicetree/bindings/arm/psci.yaml    | 36 ++++++++-
+ .../bindings/power/reset/reboot-mode.yaml          |  7 +-
+ drivers/firmware/psci/psci.c                       | 87 +++++++++++++++++++++-
+ 3 files changed, 125 insertions(+), 5 deletions(-)
+---
+base-commit: f86128050d2d854035bfa461aadf36e6951b2bac
+change-id: 20231016-arm-psci-system_reset2-vendor-reboots-cc3ad456c070
+
+Best regards,
+-- 
+Elliot Berman <quic_eberman@quicinc.com>
+
 
