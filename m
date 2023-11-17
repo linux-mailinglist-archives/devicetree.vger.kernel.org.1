@@ -1,42 +1,60 @@
-Return-Path: <devicetree+bounces-16628-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16629-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28B977EF18B
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 12:19:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 161A57EF18E
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 12:19:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AB8EBB20A5C
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 11:19:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 175BDB20A0E
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 11:19:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 587F71C6A3;
-	Fri, 17 Nov 2023 11:19:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4461D1C2A8;
+	Fri, 17 Nov 2023 11:19:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="l4V9cavg"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UlxvOgO1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2930DD50;
-	Fri, 17 Nov 2023 03:19:36 -0800 (PST)
-Received: from [100.116.17.117] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: cristicc)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id ADD726601711;
-	Fri, 17 Nov 2023 11:19:32 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1700219974;
-	bh=h2jcyuHxfZJvtCW/6nbh9J0OGrBeJS/78VqRCazEDN4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=l4V9cavg+Usm4d4l1NP4QhqbJ0vO/LogHGKqbNYkR30f9w5CnxCWk9EkZ3RodIQJx
-	 rfPgRlQ4EfYvyFKbv1IqRhOioL9pysvwb+gH0AhXdcHfAbUhk3Yyb45+kKSQa2esqd
-	 VeEvo8D+lFAt0NWppFw2pZjrIWTAxcGZmVLqC54pDoxv5TDXo+cQGUKh+b7BBe7ap+
-	 PcJJMrdDnMS1iRwscQ1hUepm36wPoSues76Hmsa3/al6nYLYwHZHPtJt3zDjtDPIDP
-	 +Dm5zhbGtZzVSVVlTC4HTUaTikOS2qlPw1mBHny4wUHM8ijJraYVQtGVZB3zgesPdo
-	 E5MgVGbufksNw==
-Message-ID: <e2f4ba34-24db-4669-bac4-ac64ea7761cf@collabora.com>
-Date: Fri, 17 Nov 2023 13:19:29 +0200
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BC1BD51
+	for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 03:19:43 -0800 (PST)
+Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-507a98517f3so2489122e87.0
+        for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 03:19:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1700219981; x=1700824781; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=y6USDx8Olm02SV7ancGlpAKNxsUtiVNxTCjii6VovlM=;
+        b=UlxvOgO1r6d3tOH8AAA66WRVW5+TkwY+P9sJK/oucWLqluyNEVgNbpFTaQOERsbua9
+         mDWUlDZoWA9nSOydE94PfMdKM53HLfC7CCYwgqEwMCbo9ft74hmk5QYvRahnxEzn4kBo
+         7J6ermfrsXOC2az14vYBCmQ1hQjPg66JLHItoq3WG8DiKq/MCEOdjHqBOOLsyLX40d7L
+         vXCXvlJMmvZDPymBsG8+MIFdwGSCshIcXcGQqHJTuVpSVxPGpKK09GiLZ/nYnBWSu7CB
+         P1jH3iiUOgwAZD0KprsmIiL30AL69a6y5E5xP7qSsy9lzg9hgnZas59VzvkOGR/p74gn
+         F3qA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700219981; x=1700824781;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=y6USDx8Olm02SV7ancGlpAKNxsUtiVNxTCjii6VovlM=;
+        b=KdNvqbxkP62ijAEPBHCKc7PJQrt2U1TNOBSag7ZXr7qPoKGCXV3w5b/z6t89GOIWQ+
+         axDw38HwcU0fPVZCRyHEnBPalXTzKd0g7uohXjYBspm5bvckpfQucbY67Z9kdP5dRx80
+         R8M6myWn8XSHLKtUjKHcC+8Ky9kn5MRESrzJZbY3O/eFaqjkrVLFP+E6PoTljtYpeCDO
+         QQ2JTr60W4IHS8XCUagAr9LdEyTnG0WFQtrAqVJHpR5YDZT6bDOZl8O+uKtvE5GEDg9K
+         zYlE5jmeXo/202nV1susFHJvQocg4Cat5LHLYKnlyJE4UbLW/tcTy3JLlqWqGo6/QLRh
+         PVgA==
+X-Gm-Message-State: AOJu0YzONPr7nRTHW2jfbrHeCnqgIZcDKHdQpboDMdBJoc85m0wtCRH+
+	VgtgT+bWBedydisQ6UGdiesoat+m/xLR10/txVYzZg==
+X-Google-Smtp-Source: AGHT+IFjlz4xeq3YtVmk5386MTT/bKi2LMf2OANxOcjnCHQAi9Omu082GVdxTQJ0Z64b2/u2H9mPXA==
+X-Received: by 2002:a19:5210:0:b0:509:4bd1:6b63 with SMTP id m16-20020a195210000000b005094bd16b63mr12810297lfb.16.1700219981273;
+        Fri, 17 Nov 2023 03:19:41 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.126])
+        by smtp.gmail.com with ESMTPSA id u11-20020adfa18b000000b0033142b1a1eesm2008463wru.87.2023.11.17.03.19.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 17 Nov 2023 03:19:40 -0800 (PST)
+Message-ID: <00e57873-7fb0-4084-80f1-f1b590129b2e@linaro.org>
+Date: Fri, 17 Nov 2023 12:19:39 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -44,133 +62,84 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 12/12] [UNTESTED] riscv: dts: starfive:
- beaglev-starlight: Enable gmac
+Subject: Re: [PATCH V2] dt-bindings: crypto: convert Inside Secure SafeXcel to
+ the json-schema
 Content-Language: en-US
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Conor Dooley <conor@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
- Conor Dooley <conor+dt@kernel.org>, Emil Renner Berthing <kernel@esmil.dk>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh+dt@kernel.org>,
+To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+ Herbert Xu <herbert@gondor.apana.org.au>,
+ "David S . Miller" <davem@davemloft.net>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Samin Guo <samin.guo@starfivetech.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Jose Abreu <joabreu@synopsys.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Richard Cochran <richardcochran@gmail.com>,
- Giuseppe Cavallaro <peppe.cavallaro@st.com>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, kernel@collabora.com
-References: <20231029042712.520010-1-cristian.ciocaltea@collabora.com>
- <20231029042712.520010-13-cristian.ciocaltea@collabora.com>
- <f253b50a-a0ac-40c6-b13d-013de7bac407@lunn.ch>
- <233a45e1-15ac-40da-badf-dee2d3d60777@collabora.com>
- <cb6597be-2185-45ad-aa47-c6804ff68c85@collabora.com>
- <20231116-stellar-anguished-7cf06eb5634a@squawk>
- <CAMuHMdXdeW9SRN8hq-0722CiLvXDFVwpJxjFTGgdc2mhT=ppYw@mail.gmail.com>
- <b4a3a139-4831-447e-94ed-d590986aed8c@collabora.com>
- <84fd076b-6db4-4251-aff8-36befc28e574@collabora.com>
- <CAMuHMdVXAx+b6=70PdgJrpbegBkDpb3w1UF0_u1Odi=JoYL2-w@mail.gmail.com>
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-In-Reply-To: <CAMuHMdVXAx+b6=70PdgJrpbegBkDpb3w1UF0_u1Odi=JoYL2-w@mail.gmail.com>
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Antoine Tenart <atenart@kernel.org>, linux-crypto@vger.kernel.org,
+ devicetree@vger.kernel.org, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
+ <rafal@milecki.pl>
+References: <20231116180641.29420-1-zajec5@gmail.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231116180641.29420-1-zajec5@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 11/17/23 11:12, Geert Uytterhoeven wrote:
-> Hi Cristian,
+On 16/11/2023 19:06, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> On Fri, Nov 17, 2023 at 9:59 AM Cristian Ciocaltea
-> <cristian.ciocaltea@collabora.com> wrote:
->> On 11/17/23 10:49, Cristian Ciocaltea wrote:
->>> On 11/17/23 10:37, Geert Uytterhoeven wrote:
->>>> On Thu, Nov 16, 2023 at 6:55 PM Conor Dooley <conor@kernel.org> wrote:
->>>>> On Thu, Nov 16, 2023 at 03:15:46PM +0200, Cristian Ciocaltea wrote:
->>>>>> On 10/30/23 00:53, Cristian Ciocaltea wrote:
->>>>>>> On 10/29/23 20:46, Andrew Lunn wrote:
->>>>>>>> On Sun, Oct 29, 2023 at 06:27:12AM +0200, Cristian Ciocaltea wrote:
->>>>>>>>> The BeagleV Starlight SBC uses a Microchip KSZ9031RNXCA PHY supporting
->>>>>>>>> RGMII-ID.
->>>>>>>>>
->>>>>>>>> TODO: Verify if manual adjustment of the RX internal delay is needed. If
->>>>>>>>> yes, add the mdio & phy sub-nodes.
->>>>>>>>
->>>>>>>> Please could you try to get this tested. It might shed some light on
->>>>>>>> what is going on here, since it is a different PHY.
->>>>>>>
->>>>>>> Actually, this is the main reason I added the patch. I don't have access
->>>>>>> to this board, so it would be great if we could get some help with testing.
->>>>>>
->>>>>> @Emil, @Conor: Any idea who might help us with a quick test on the
->>>>>> BeagleV Starlight board?
->>>>>
->>>>> I don't have one & I am not sure if Emil does. Geert (CCed) should have
->>>>
->>>> I believe Esmil has.
->>>>
->>>>> one though. Is there a specific test you need to have done?
->>>>
->>>> I gave it a try, on top of latest renesas-drivers[1].
->>
->> [...]
->>
->>>>
->>>> Looks like it needs more non-coherent support before we can test
->>>> Ethernet.
->>>
->>> Hi Geert,
->>>
->>> Thanks for taking the time to test this!
->>>
->>> Could you please check if the following are enabled in your kernel config:
->>>
->>>   CONFIG_DMA_GLOBAL_POOL
->>>   CONFIG_RISCV_DMA_NONCOHERENT
->>>   CONFIG_RISCV_NONSTANDARD_CACHE_OPS
->>>   CONFIG_SIFIVE_CCACHE
+> This helps validating DTS files.
 > 
-> CONFIG_DMA_GLOBAL_POOL and CONFIG_RISCV_NONSTANDARD_CACHE_OPS were
-> indeed no longer enabled, as they cannot be enabled manually.
-> 
-> After cherry-picking commit e14ad9ff67fd51dc ("riscv: errata: Add
-> StarFive JH7100 errata") in esmil/visionfive these options become
-> enabled. Now it gets a bit further, but still lots of CCACHE DataFail
-> errors.
+> Cc: Antoine Tenart <atenart@kernel.org>
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> ---
+> V2: Rename file to inside-secure,safexcel.yaml
+>     Drop minItems from interrupts
+>     Move additionalProperties down
+>     Improve condition in allOf
 
-Right, there is an open question [2] in PATCH v2 08/12 if this patch
-should have been part of Emil's ccache series or I will send it in v3
-of my series.
 
-[2]: https://lore.kernel.org/lkml/4f661818-1585-41d8-a305-96fd359bc8b8@collabora.com/
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
->> Also please note the series requires the SiFive Composable Cache
->> controller patches provided by Emil [1].
->>
->> [1]: https://lore.kernel.org/all/20231031141444.53426-1-emil.renner.berthing@canonical.com/
-> 
-> That series does not contain any Kconfig changes, so there must be
-> other missing dependencies?
+Best regards,
+Krzysztof
 
-There shouldn't be any additional Kconfig changes or dependencies as 
-those patches just extend an already existing driver. There were some 
-changes in v2, but they are still compatible with this series (I've 
-retested that to make sure).
-
-My tree is based on next-20231024, so I'm going to rebase it onto
-next-20231117, to exclude the possibility of a regression somewhere.
-
-I will also test with renesas-drivers.
-
-Thanks,
-Cristian
- 
-> Perhaps I should just defer to Emil ;-)
-> 
-> Gr{oetje,eeting}s,
-> 
->                         Geert
-> 
 
