@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-16588-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16589-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EDAD7EF056
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 11:28:54 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 738BB7EF061
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 11:29:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 59094B20984
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 10:28:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1EBB41F28793
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 10:29:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1D8519463;
-	Fri, 17 Nov 2023 10:28:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC3CC199B0;
+	Fri, 17 Nov 2023 10:29:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wP94JC0J"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LsCpPG7L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32624D56
-	for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 02:28:44 -0800 (PST)
-Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-507975d34e8so2571657e87.1
-        for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 02:28:44 -0800 (PST)
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 745BFD56
+	for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 02:29:41 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-507962561adso2680523e87.0
+        for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 02:29:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700216922; x=1700821722; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+        d=linaro.org; s=google; t=1700216979; x=1700821779; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ShhCFgXd2a+dvyNdsyEko8wz3smY5YE3Ye1PpRkAbAg=;
-        b=wP94JC0JK9jqluLM6ZH/Ed/oo14Kh0wVK9CU2ZoWdEUC/9XKStHiT5WPN5dSi2JUgb
-         KNa+G0gPWLJbP1IzKXXXUrirD/xHiW7D6Xcbd9CohrU9DKnmIL51dweIDdtN3sKn30R3
-         F91lM9aYQ7lPlVGckQG3qqIzgbDSwwjwSB0evv/NtBo1s+WZtrmIaIkVdV9vYdo1gvNV
-         KX2NOF0APy12alcQvrtunLaLhVl7DmGyNuNgHBluMOf4K3N0a6e7arEk6izYPEgQ8vUE
-         tqCYSFaWbDD+FP5hrEMcMxwmOnKbIrG5jQqsxZWabo2q56iBu76DfykFV5KdwT9P+nIl
-         9PTA==
+        bh=BoEox1kgRFqAIJhjXGjp6oBa+sl9y3mmkTtvH+PZDss=;
+        b=LsCpPG7Lj1m4hzP6hOBXiHcYP8euJZn6kUNhXs2VlwvmA6jB8S48EBvrTtNmB22dIQ
+         5n89fbEe37UiwD6/etqulKhAWoVnsrEjL/CEQQk2NQiy7OsDvdLK3nv4E20fHSolDJZM
+         UY+Aotzl1uDbfAqxmYcN3t+wTJRE0yWVE+7cFSpr6EbehgL/LZaEL8UoPWZ5GgSI6SFh
+         xBp55OH3pkuWVZMO+IBdtdQYQzXT32TjNWJ4Ku7BvyL/OLelny73ENotBgZ45nHn2Ypd
+         2yn4YiYxNl4Bu1T3GQKrwhkqoUYnzbk/QYAlMEl56mSyD5mGuPE4s1ak9QeoUs7suz7G
+         FaEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700216922; x=1700821722;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+        d=1e100.net; s=20230601; t=1700216979; x=1700821779;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ShhCFgXd2a+dvyNdsyEko8wz3smY5YE3Ye1PpRkAbAg=;
-        b=RJkhM9TZRqoBUxKIJATHkcyvLieIrA/g3hcBavLPVnoJQcb/FEzbXfV8Xvv8udtqdY
-         u7psnVPEuemQammgVYoKXt9KBAs5BLQTactamlQXiRUa1CVf1WcRfvHI+8q0Di74G0nS
-         a21GV/1feg/Svg/ioAfcl5+kRiQvnVDOuYbeob1v+zpgfC1O8EJwI6aC/+ADJwsU7ZfS
-         H2+aUjdDU4W/GQGheNBn/I3SYgDvVy1zgIJ42oPaUTpalEzeJOBCvkPShgDHYvcwuyDY
-         OyjY0i4FWOPk4idT3cbdK3KBNYGIB+kbP8Uqeo/w4xRmX2HQbGyb/SlI2wE82lVH5/xN
-         3oNQ==
-X-Gm-Message-State: AOJu0Yx37iRvmSBYqUmt+q6QmAoTiPXKGkqtJM2c+1jYLuASg6DI3xIQ
-	bFB61Qh/bovWx2FYxBlLpJpHXA==
-X-Google-Smtp-Source: AGHT+IF0BZd04HLR6MOunPzO6jiedB2Bw+xOtumPjIrJ/5/oPAvhPKq1GDMGHAIBn4pDBscR/FufTQ==
-X-Received: by 2002:a19:ac03:0:b0:508:1a25:a190 with SMTP id g3-20020a19ac03000000b005081a25a190mr13102253lfc.23.1700216922440;
-        Fri, 17 Nov 2023 02:28:42 -0800 (PST)
+        bh=BoEox1kgRFqAIJhjXGjp6oBa+sl9y3mmkTtvH+PZDss=;
+        b=RcubnzjHV85T8d8SvzddRfuAJm1UNzlQC98NoNQCP6W8T0vY1F6tux0JJr3rbHTHyY
+         I0KQKVBsm9KTKsv2+H3hQWEbiiQ/JE+s87M1XO1Gs/FH3cXQHF35tx4O7Lgrk1ZzaWZg
+         mxgAbyVmxMr2HEsBM1U9+77an3puboYsw4/2z0+fFq5f7bCrvZm86LUWezHKCmvrxkkG
+         1w/Y1Vwa3I08JYmUJ1IkA5LvbBMGZiPvccip5IDgFS9kCJ5XHLqOS8rxbBFacoMJH96z
+         LQIP63fogVyx13IYSh1BgKzomTbHFie5kHSQsIC+3DB3hvFWN4jkuO/arYt9rjTZpXzU
+         /gmQ==
+X-Gm-Message-State: AOJu0YyclLIUOpAO9iDfH09GMTYUm0kVXNXkOAL3KGbNCMRxHlkpeNvE
+	UKj6ij4/I3VRCGvyyRHtNLYOxQ==
+X-Google-Smtp-Source: AGHT+IGT/UprG83MbsSA21snmE3q243sJytU2zp9hpuCBZ/SGQrf1LgXnlEPx71KcgssY0H1xYU1Bw==
+X-Received: by 2002:a05:6512:21cd:b0:509:faef:82f1 with SMTP id d13-20020a05651221cd00b00509faef82f1mr11625958lft.26.1700216979660;
+        Fri, 17 Nov 2023 02:29:39 -0800 (PST)
 Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id f16-20020a19ae10000000b005041a71237asm182106lfc.111.2023.11.17.02.28.41
+        by smtp.gmail.com with ESMTPSA id f16-20020a19ae10000000b005041a71237asm182106lfc.111.2023.11.17.02.29.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Nov 2023 02:28:41 -0800 (PST)
-Message-ID: <ec50efde-f291-4d1b-a527-d64e0263beed@linaro.org>
-Date: Fri, 17 Nov 2023 12:28:41 +0200
+        Fri, 17 Nov 2023 02:29:39 -0800 (PST)
+Message-ID: <37a3a407-07e7-49d8-bbce-b1dac8cfcf5a@linaro.org>
+Date: Fri, 17 Nov 2023 12:29:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,40 +62,75 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 05/16] arm64: dts: qcom: sm8550: remove address/size-cells
- from mdss_dsi1
+Subject: Re: [PATCH 07/16] arm64: dts: qcom: sm8550-aim300: add PCIe0
 Content-Language: en-GB
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To: Tengfei Fan <quic_tengfan@quicinc.com>, agross@kernel.org,
  andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
  krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, tglx@linutronix.de
 Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, -cc=kernel@quicinc.com
 References: <20231117101817.4401-1-quic_tengfan@quicinc.com>
- <20231117101817.4401-6-quic_tengfan@quicinc.com>
- <a66be060-9941-4c4b-84bb-1fcc554791ce@linaro.org>
-In-Reply-To: <a66be060-9941-4c4b-84bb-1fcc554791ce@linaro.org>
+ <20231117101817.4401-8-quic_tengfan@quicinc.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20231117101817.4401-8-quic_tengfan@quicinc.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 17/11/2023 12:24, Dmitry Baryshkov wrote:
-> On 17/11/2023 12:18, Tengfei Fan wrote:
->> Address/size-cells will cause dtbs check warning, because mdss_dsi1 node
->> have not ranges and child also have not reg, so remove 
->> address/size-cells.
->>
->> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/sm8550.dtsi | 3 ---
->>   1 file changed, 3 deletions(-)
+On 17/11/2023 12:18, Tengfei Fan wrote:
+> Add PCIe0 nodes used with WCN7851 device.  The PCIe1 is not connected,
+> thus skip pcie_1_phy_aux_clk input clock to GCC.
 > 
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+> ---
+>   arch/arm64/boot/dts/qcom/sm8550-aim300.dts | 32 ++++++++++++++++++++++
+>   1 file changed, 32 insertions(+)
 > 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8550-aim300.dts b/arch/arm64/boot/dts/qcom/sm8550-aim300.dts
+> index 202b979da8ca..3aca0a433a00 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8550-aim300.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm8550-aim300.dts
+> @@ -393,6 +393,38 @@
+>   	};
+>   };
+>   
+> +&gcc {
+> +	clocks = <&bi_tcxo_div2>, <&sleep_clk>,
+> +		 <&pcie0_phy>,
+> +		 <&pcie1_phy>,
+> +		 <0>,
+> +		 <&ufs_mem_phy 0>,
+> +		 <&ufs_mem_phy 1>,
+> +		 <&ufs_mem_phy 2>,
+> +		 <&usb_dp_qmpphy QMP_USB43DP_USB3_PIPE_CLK>;
+> +};
 
-On the other hand, probably no.
+NAK, this should go to sm8550.dtsi unless there is a good reason.
 
-Panels beneath the DSI node will have single cell of address and 0 size 
-cells. So these propeties are correct.
+> +
+> +&pcie_1_phy_aux_clk {
+> +	status = "disabled";
+> +};
+> +
+> +&pcie0 {
+> +	perst-gpios = <&tlmm 94 GPIO_ACTIVE_LOW>;
+> +	wake-gpios = <&tlmm 96 GPIO_ACTIVE_HIGH>;
+> +
+> +	pinctrl-0 = <&pcie0_default_state>;
+> +	pinctrl-names = "default";
+> +
+> +	status = "okay";
+> +};
+> +
+> +&pcie0_phy {
+> +	vdda-phy-supply = <&vreg_l1e_0p88>;
+> +	vdda-pll-supply = <&vreg_l3e_1p2>;
+> +
+> +	status = "okay";
+> +};
+> +
+>   &pm8550b_eusb2_repeater {
+>   	vdd18-supply = <&vreg_l15b_1p8>;
+>   	vdd3-supply = <&vreg_l5b_3p1>;
 
 -- 
 With best wishes
