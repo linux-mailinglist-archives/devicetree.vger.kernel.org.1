@@ -1,105 +1,176 @@
-Return-Path: <devicetree+bounces-16496-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16497-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64C7B7EEE21
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 10:06:59 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA5A87EEE2C
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 10:13:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DFD2BB20A5F
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 09:06:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 93D491F25A23
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 09:13:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB6A7EADC;
-	Fri, 17 Nov 2023 09:06:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ph8JTNUw"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C65CF515;
+	Fri, 17 Nov 2023 09:13:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6A6CD296;
-	Fri, 17 Nov 2023 09:06:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F80DC433C8;
-	Fri, 17 Nov 2023 09:06:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700212012;
-	bh=T2mILB6OLuIKTcfZr2BT0zwlCFYVwcwy0W1B4jyIbBE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ph8JTNUwYgHtIXJfkfXPfLie5d2K5Wq7VgxuXrBZHlXit6KamtJbUtOoX5xMiPa8A
-	 WUCPHw0FLlH3j9CX/vgJ0uRohjNxLdFFxSGyDhtENnG9sBVOFPm43vcBFvbG7vg906
-	 dzRvI4DM9urmNNRj8LcfFjxtK3QS1gOYduKIgsi9zbWQv2bVMGtRqIt/tmLQaSGu9p
-	 a3JFTg6j8ArUTbhERl+jSspESFJ9ii/zQmyBECMLfRy5x+JUlYNZWVY3R++zwMP7qk
-	 /0aXsEY+KOV1XzaN+8F8S2DXZVPP6IyhZK26tvXj29oTozCor0sD7ocf5KCzN8nOg3
-	 jgUt9gI0Rabrw==
-Date: Fri, 17 Nov 2023 14:36:40 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Mrinmay Sarkar <quic_msarkar@quicinc.com>
-Cc: agross@kernel.org, andersson@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	konrad.dybcio@linaro.org, robh+dt@kernel.org,
-	quic_shazhuss@quicinc.com, quic_nitegupt@quicinc.com,
-	quic_ramkri@quicinc.com, quic_nayiluri@quicinc.com,
-	dmitry.baryshkov@linaro.org, robh@kernel.org,
-	quic_krichai@quicinc.com, quic_vbadigan@quicinc.com,
-	quic_parass@quicinc.com, quic_schintav@quicinc.com,
-	quic_shijjose@quicinc.com,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org
-Subject: Re: [PATCH v3 3/3] arm64: dts: qcom: sa8775p: Mark PCIe controller
- as cache coherent
-Message-ID: <20231117090640.GB250770@thinkpad>
-References: <1700051821-1087-1-git-send-email-quic_msarkar@quicinc.com>
- <1700051821-1087-4-git-send-email-quic_msarkar@quicinc.com>
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C095D4D;
+	Fri, 17 Nov 2023 01:13:03 -0800 (PST)
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-5a92782615dso19899157b3.2;
+        Fri, 17 Nov 2023 01:13:03 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700212382; x=1700817182;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=rvynnOaR8xM7O4hHqd8ZbKUHknCSu+mkNKpvTcNlZWQ=;
+        b=GHRcOfaG5VipmUy/IneoL5CEqTXarwStwUggOYUG1ZSippxel2jD4co44MZJOwNVLe
+         Y2Nwo0Gr7wx7AvoEYLrr7SgTW0L0NToXbuKLYM5+tME4gPaw8OPgbtBrc/hRiks1Umkx
+         ZviMS4j09PdCp/wj+gAKzb3uY3X7Ym0r7AxfUis8xUlzNu728Pz1PXHbpeDBxkEv4nB/
+         zsT84VDKE74nF31Oxvj0SJXU2VRnuq6lZKbgGmZ2aLktY0fFOTsGgNIo2fSZmrXtoFqb
+         kVdm3ySnbqJ0tPD2gbNm7mLvI61ngTc8tojmo0CqaTv0nV3Q+NR/QvVOCiTKRuSkdKFr
+         HaOA==
+X-Gm-Message-State: AOJu0YwO+lmOXIxos05q9CUmU60UKB05lgcpai1P0qtBerabfERoi0Th
+	Vlwwh3cWd1g9xxYDk2Oqqo0rHdEJ9WXA7w==
+X-Google-Smtp-Source: AGHT+IEqV1d1S2TY2YJglHD+oyTEHEWo7a4JuRmZM51yO10Dcd15gTMUTbR9JEBfeNoNGyOIOmKnBQ==
+X-Received: by 2002:a0d:ea55:0:b0:595:89b0:6b41 with SMTP id t82-20020a0dea55000000b0059589b06b41mr20205664ywe.38.1700212381096;
+        Fri, 17 Nov 2023 01:13:01 -0800 (PST)
+Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com. [209.85.219.169])
+        by smtp.gmail.com with ESMTPSA id r7-20020a0de807000000b005b054a1ec5dsm381553ywe.126.2023.11.17.01.12.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 17 Nov 2023 01:12:58 -0800 (PST)
+Received: by mail-yb1-f169.google.com with SMTP id 3f1490d57ef6-da077db5145so1707161276.0;
+        Fri, 17 Nov 2023 01:12:57 -0800 (PST)
+X-Received: by 2002:a25:3792:0:b0:da3:743d:ea3e with SMTP id
+ e140-20020a253792000000b00da3743dea3emr18343937yba.21.1700212377409; Fri, 17
+ Nov 2023 01:12:57 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1700051821-1087-4-git-send-email-quic_msarkar@quicinc.com>
+References: <20231029042712.520010-1-cristian.ciocaltea@collabora.com>
+ <20231029042712.520010-13-cristian.ciocaltea@collabora.com>
+ <f253b50a-a0ac-40c6-b13d-013de7bac407@lunn.ch> <233a45e1-15ac-40da-badf-dee2d3d60777@collabora.com>
+ <cb6597be-2185-45ad-aa47-c6804ff68c85@collabora.com> <20231116-stellar-anguished-7cf06eb5634a@squawk>
+ <CAMuHMdXdeW9SRN8hq-0722CiLvXDFVwpJxjFTGgdc2mhT=ppYw@mail.gmail.com>
+ <b4a3a139-4831-447e-94ed-d590986aed8c@collabora.com> <84fd076b-6db4-4251-aff8-36befc28e574@collabora.com>
+In-Reply-To: <84fd076b-6db4-4251-aff8-36befc28e574@collabora.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 17 Nov 2023 10:12:46 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVXAx+b6=70PdgJrpbegBkDpb3w1UF0_u1Odi=JoYL2-w@mail.gmail.com>
+Message-ID: <CAMuHMdVXAx+b6=70PdgJrpbegBkDpb3w1UF0_u1Odi=JoYL2-w@mail.gmail.com>
+Subject: Re: [PATCH v2 12/12] [UNTESTED] riscv: dts: starfive:
+ beaglev-starlight: Enable gmac
+To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Cc: Conor Dooley <conor@kernel.org>, Andrew Lunn <andrew@lunn.ch>, Conor Dooley <conor+dt@kernel.org>, 
+	Emil Renner Berthing <kernel@esmil.dk>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Samin Guo <samin.guo@starfivetech.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	Jose Abreu <joabreu@synopsys.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+	Richard Cochran <richardcochran@gmail.com>, Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org, kernel@collabora.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Nov 15, 2023 at 06:07:01PM +0530, Mrinmay Sarkar wrote:
-> The PCIe controller on SA8775P supports cache coherency, hence add the
+Hi Cristian,
 
-"PCIe RC controller" both in subject and description.
+On Fri, Nov 17, 2023 at 9:59=E2=80=AFAM Cristian Ciocaltea
+<cristian.ciocaltea@collabora.com> wrote:
+> On 11/17/23 10:49, Cristian Ciocaltea wrote:
+> > On 11/17/23 10:37, Geert Uytterhoeven wrote:
+> >> On Thu, Nov 16, 2023 at 6:55=E2=80=AFPM Conor Dooley <conor@kernel.org=
+> wrote:
+> >>> On Thu, Nov 16, 2023 at 03:15:46PM +0200, Cristian Ciocaltea wrote:
+> >>>> On 10/30/23 00:53, Cristian Ciocaltea wrote:
+> >>>>> On 10/29/23 20:46, Andrew Lunn wrote:
+> >>>>>> On Sun, Oct 29, 2023 at 06:27:12AM +0200, Cristian Ciocaltea wrote=
+:
+> >>>>>>> The BeagleV Starlight SBC uses a Microchip KSZ9031RNXCA PHY suppo=
+rting
+> >>>>>>> RGMII-ID.
+> >>>>>>>
+> >>>>>>> TODO: Verify if manual adjustment of the RX internal delay is nee=
+ded. If
+> >>>>>>> yes, add the mdio & phy sub-nodes.
+> >>>>>>
+> >>>>>> Please could you try to get this tested. It might shed some light =
+on
+> >>>>>> what is going on here, since it is a different PHY.
+> >>>>>
+> >>>>> Actually, this is the main reason I added the patch. I don't have a=
+ccess
+> >>>>> to this board, so it would be great if we could get some help with =
+testing.
+> >>>>
+> >>>> @Emil, @Conor: Any idea who might help us with a quick test on the
+> >>>> BeagleV Starlight board?
+> >>>
+> >>> I don't have one & I am not sure if Emil does. Geert (CCed) should ha=
+ve
+> >>
+> >> I believe Esmil has.
+> >>
+> >>> one though. Is there a specific test you need to have done?
+> >>
+> >> I gave it a try, on top of latest renesas-drivers[1].
+>
+> [...]
+>
+> >>
+> >> Looks like it needs more non-coherent support before we can test
+> >> Ethernet.
+> >
+> > Hi Geert,
+> >
+> > Thanks for taking the time to test this!
+> >
+> > Could you please check if the following are enabled in your kernel conf=
+ig:
+> >
+> >   CONFIG_DMA_GLOBAL_POOL
+> >   CONFIG_RISCV_DMA_NONCOHERENT
+> >   CONFIG_RISCV_NONSTANDARD_CACHE_OPS
+> >   CONFIG_SIFIVE_CCACHE
 
-> "dma-coherent" property to mark it as such.
-> 
-> Signed-off-by: Mrinmay Sarkar <quic_msarkar@quicinc.com>
+CONFIG_DMA_GLOBAL_POOL and CONFIG_RISCV_NONSTANDARD_CACHE_OPS were
+indeed no longer enabled, as they cannot be enabled manually.
 
-With that,
+After cherry-picking commit e14ad9ff67fd51dc ("riscv: errata: Add
+StarFive JH7100 errata") in esmil/visionfive these options become
+enabled. Now it gets a bit further, but still lots of CCACHE DataFail
+errors.
 
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> Also please note the series requires the SiFive Composable Cache
+> controller patches provided by Emil [1].
+>
+> [1]: https://lore.kernel.org/all/20231031141444.53426-1-emil.renner.berth=
+ing@canonical.com/
 
-- Mani
+That series does not contain any Kconfig changes, so there must be
+other missing dependencies?
 
-> ---
->  arch/arm64/boot/dts/qcom/sa8775p.dtsi | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> index 7eab458..ab01efe 100644
-> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> @@ -3620,6 +3620,7 @@
->  				<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_PCIE_0 0>;
->  		interconnect-names = "pcie-mem", "cpu-pcie";
->  
-> +		dma-coherent;
->  		iommus = <&pcie_smmu 0x0000 0x7f>;
->  		resets = <&gcc GCC_PCIE_0_BCR>;
->  		reset-names = "core";
-> -- 
-> 2.7.4
-> 
+Perhaps I should just defer to Emil ;-)
 
--- 
-மணிவண்ணன் சதாசிவம்
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
