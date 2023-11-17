@@ -1,144 +1,130 @@
-Return-Path: <devicetree+bounces-16673-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16674-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16F0D7EF382
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 14:09:50 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BC857EF3A9
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 14:19:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C4A242812FB
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 13:09:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B53C51F265D7
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 13:19:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE204315B9;
-	Fri, 17 Nov 2023 13:09:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED1BC31A74;
+	Fri, 17 Nov 2023 13:19:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vxwRiPya"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="PjQ2pSJd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 286FFD59
-	for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 05:09:44 -0800 (PST)
-Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-40859dee28cso16210735e9.0
-        for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 05:09:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700226582; x=1700831382; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=RZ861qPhmcYLNIPpFrmLJFMqjIODRETy69SyllrTHqQ=;
-        b=vxwRiPyaS3h2h4HTsgARVjVfAMwQz2AD5sQp0cMqYNkRIRlIVab9YakRTPHZHjqJwr
-         l+S4KBc1XTKTJtCtoue4mdstKStsANlp1JEyqAZ/H+U9B0mo2+OvY08jpBBoZzHj/vnQ
-         QLgpC6nTe2uLT8z8NMT4dh+2q3cCHEBgVanc9GHa68LsS6bSsT+fvL9FQGejPhZCeiTa
-         iP1zbVBZsXchfQilHSf793Yc4V2e2/feHORAEW9NB+L00JZtGYJLLjtSNUv/dmK0tEkm
-         DRH8KVJKrN4zbzQ9Z1kSolzCKhMdMkoQ7jUtA8VAq58zJnR/pWBk/QqMZ69uBIn8+dv2
-         YzCA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700226582; x=1700831382;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RZ861qPhmcYLNIPpFrmLJFMqjIODRETy69SyllrTHqQ=;
-        b=aU48GqA+hLyiFx0iWtFWfsn1Alwi1BokkhzDhfvb+QackEwcUEkeNIn0ATmw0TzJG7
-         Tg4Tp+S3NKO8HdKTfedPxz+gbALG1N5EzpAoUbbT4OQ8jE0fJH4N2FUjHeCmxYz8bY4Q
-         ruqwxcBoEvxtkcCJbZIQFMKb7utSCXXsT6PQyXyiLgHoWkW/kPMgx0qNGsaTMBDPUjkt
-         Ptbd0EPbUqyUlGuPqXngRX0sbdEAuNKN5c2sI4rc1zj1Snz+wGGmR+e8ODWTNP0uqzq+
-         XPawF1zkgVHfiRj1CNx/cn1rxbW7porgsB06n/cJqsrWFDF3NsFL4bx3AXSmseqRpjuC
-         m4Kg==
-X-Gm-Message-State: AOJu0YzhGn4YO8tXRKZKdWbmTSaAFSgzmNLRnOfx+kvc4xBzeJi8RXFC
-	iD+pnJ0pl4ZQddFopoeoxMrSeA==
-X-Google-Smtp-Source: AGHT+IFSYsD8mfV/aod6CYLaYG6GTod1TTdOQpxt/uCTP6yIBkKg9enjuJlCoWHYfmvxtPYno8wSxw==
-X-Received: by 2002:a1c:4b0d:0:b0:40a:48af:4821 with SMTP id y13-20020a1c4b0d000000b0040a48af4821mr15767333wma.31.1700226582412;
-        Fri, 17 Nov 2023 05:09:42 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id p13-20020a05600c358d00b0040841e79715sm2734381wmq.27.2023.11.17.05.09.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Nov 2023 05:09:37 -0800 (PST)
-Message-ID: <9c025d37-50c5-4951-9b50-ef11ab2e2351@linaro.org>
-Date: Fri, 17 Nov 2023 14:09:30 +0100
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9EF5E0;
+	Fri, 17 Nov 2023 05:19:40 -0800 (PST)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 99FF4E0003;
+	Fri, 17 Nov 2023 13:19:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1700227179;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=FoBJqFPZps/IfTWChc3pHLcKO0nSjgo4MRL5iaSeOk0=;
+	b=PjQ2pSJdu9x5ihXwMQAH4DLve4Tq7tBDAn/SBjaOXh+lKzC1L0Gi7wEMV113BVBWXN89UT
+	VuqQ2p9jKeGm0lNWjmCwz8AdmfozHIOGZa2yo6iPNuKhP5vRU18squYOBVZKjux2WM0izA
+	xeGzy3J8mwq8OQ6oHTGIFIgnut/z8z1DSbiTzJi6fmYogiM2GpYqHtWmroebymlEjBn1NO
+	d45wq6H8ND0urpxOnyU7c/aIKyGq11Sg6xKS8hL1ypvc5h4QvJaQdtZMqkCpX5I+KDGzSs
+	59a5zRN3swyuAx/p0+IaFNnu/bDpfAw/FE0+Ih2HvJBdSu5IlBnAu4qrIlv2MQ==
+Date: Fri, 17 Nov 2023 14:19:38 +0100
+From: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+To: Mehdi Djait <mehdi.djait@bootlin.com>
+Cc: mchehab@kernel.org, heiko@sntech.de, hverkuil-cisco@xs4all.nl,
+	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+	conor+dt@kernel.org, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	thomas.petazzoni@bootlin.com, alexandre.belloni@bootlin.com,
+	maxime.chevallier@bootlin.com, michael.riesch@wolfvision.net
+Subject: Re: [PATCH v11 3/3] arm64: dts: rockchip: Add the camera interface
+Message-ID: <ZVdoaqgS7Fy8fC1y@aptenodytes>
+References: <cover.1700132457.git.mehdi.djait@bootlin.com>
+ <3566c176d1ef5ae93aa54587a14ccfa80974e872.1700132457.git.mehdi.djait@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 1/2] dt-bindings: pinctrl: qcom: Add X1E80100 pinctrl
-Content-Language: en-US
-To: Sibi Sankar <quic_sibis@quicinc.com>, andersson@kernel.org,
- konrad.dybcio@linaro.org, linus.walleij@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org
-Cc: agross@kernel.org, conor+dt@kernel.org, quic_rjendra@quicinc.com,
- abel.vesa@linaro.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-gpio@vger.kernel.org, quic_tsoni@quicinc.com, neil.armstrong@linaro.org
-References: <20231117093921.31968-1-quic_sibis@quicinc.com>
- <20231117093921.31968-2-quic_sibis@quicinc.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231117093921.31968-2-quic_sibis@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="TFD2HmYut63ln2GZ"
+Content-Disposition: inline
+In-Reply-To: <3566c176d1ef5ae93aa54587a14ccfa80974e872.1700132457.git.mehdi.djait@bootlin.com>
+X-GND-Sasl: paul.kocialkowski@bootlin.com
 
-On 17/11/2023 10:39, Sibi Sankar wrote:
-> From: Rajendra Nayak <quic_rjendra@quicinc.com>
-> 
-> Add device tree binding Documentation details for Qualcomm X1E80100 TLMM
-> device.
-> 
-> Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
-> Co-developed-by: Sibi Sankar <quic_sibis@quicinc.com>
-> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
-> Reviewed-by: Bjorn Andersson <andersson@kernel.org>
+
+--TFD2HmYut63ln2GZ
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi Mehdi,
+
+On Thu 16 Nov 23, 12:04, Mehdi Djait wrote:
+> The PX30 has a video capture component, supporting the BT.656
+> parallel interface. Add a DT description for it.
+
+One thing I missed: you need the commit title to mention the PX30, otherwise
+we cannot see which chip you are adding camera support for.
+
+> Reviewed-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> Signed-off-by: Mehdi Djait <mehdi.djait@bootlin.com>
 > ---
-> 
+>  arch/arm64/boot/dts/rockchip/px30.dtsi | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/rockchip/px30.dtsi b/arch/arm64/boot/dts=
+/rockchip/px30.dtsi
+> index 42ce78beb413..3a4e859e5a49 100644
+> --- a/arch/arm64/boot/dts/rockchip/px30.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/px30.dtsi
+> @@ -1281,6 +1281,18 @@ isp_mmu: iommu@ff4a8000 {
+>  		#iommu-cells =3D <0>;
+>  	};
+> =20
+> +	cif: video-capture@ff490000 {
+> +		compatible =3D "rockchip,px30-vip";
+> +		reg =3D <0x0 0xff490000 0x0 0x200>;
+> +		interrupts =3D <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>;
+> +		clocks =3D <&cru ACLK_CIF>, <&cru HCLK_CIF>, <&cru PCLK_CIF>;
+> +		clock-names =3D "aclk", "hclk", "pclk";
+> +		power-domains =3D <&power PX30_PD_VI>;
+> +		resets =3D <&cru SRST_CIF_A>, <&cru SRST_CIF_H>, <&cru SRST_CIF_PCLKIN=
+>;
+> +		reset-names =3D "axi", "ahb", "pclkin";
+> +		status =3D "disabled";
+> +	};
+> +
+>  	qos_gmac: qos@ff518000 {
+>  		compatible =3D "rockchip,px30-qos", "syscon";
+>  		reg =3D <0x0 0xff518000 0x0 0x20>;
+> --=20
+> 2.41.0
+>=20
 
+--=20
+Paul Kocialkowski, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+--TFD2HmYut63ln2GZ
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Best regards,
-Krzysztof
+-----BEGIN PGP SIGNATURE-----
 
+iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAmVXaGoACgkQ3cLmz3+f
+v9FIRAf8CSuN94tBIxlWPN+Yhiy8dbHRhZ9rV2bkQ2+eJ/8f7y5OFlsXVoeTk3Bd
+sFsN74KvBzgsxB8z6Lfon1xz44Dd+d8gR588ZFhTgk4h8Dllj5JtN6Qr/CCTXI9X
+YqrA6vRba93rUuuy/2AWtTHFZizD0sU43n9mMOuzxCSrZrY6OlE4UG7ctvsNMTf5
+pl4s1LUP2Dn7ZXmxFnlYCe9/1Y3YXH3bUnbNU/bXFUsUIg6mwyJbdvFFn9aSe/BH
+JxCbu44eS/T/0yG2Rbk7qqhKT+P8CDVblmRRv0Exve2AhizkVK32Tiv0+6WVIOzQ
+QTDVBDCRScDZbTVyk2d408rCJgC57w==
+=iLKP
+-----END PGP SIGNATURE-----
+
+--TFD2HmYut63ln2GZ--
 
