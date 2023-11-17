@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-16624-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16625-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02D5D7EF162
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 12:06:22 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6512C7EF170
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 12:09:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3314E1C2074D
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 11:06:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E0683B209AE
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 11:09:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 532D8199D6;
-	Fri, 17 Nov 2023 11:06:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3534171D4;
+	Fri, 17 Nov 2023 11:09:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ogi0Cclu"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SZlz11Yx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35E79101
-	for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 03:06:14 -0800 (PST)
-Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-5482df11e73so1003163a12.0
-        for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 03:06:14 -0800 (PST)
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4325C2
+	for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 03:09:19 -0800 (PST)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-9d10f94f70bso250493566b.3
+        for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 03:09:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700219173; x=1700823973; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1700219358; x=1700824158; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=oI7Elb9e8/vme7IV0bd4BSK4DVilTDzG34tKnyz/ha8=;
-        b=ogi0CcluGwfBhsiIIQ2DiySThuWsNKNzVhlnPeC2EyeGJrq0dYX1j1ISxicLcLfGct
-         dZDEF5NnrzaaaPvWv6QcFR8Z3GRF2RekNqHZRz0Iacgt7YsY3V36X4tu0JM3Isb8/MjV
-         Kf6pWnHdFhc1e2F7S4bMJ/m/japhuaWpUb0nUkXXS+m2E03N8BsrMBvHiCvIfkBeZsRg
-         VcrrBvu3SNWlHCw+l2adwH34iv7qCGXSfMvuzPq5GacT4cmw4P87nyudJMrmRHXyI+ur
-         9Soa4OvulxksZ4n8Xdgw0bJsglGVwNRJjqL/h8yEg1YaLnJzexXculvtPhiQK8FYh3R9
-         A+pA==
+        bh=0n3u9fRI60jjBFdxE1f7jCXBiQGJhq1ggpW/mHJyVwM=;
+        b=SZlz11YxqBBKGjqfs7P5wHWf6FOeLRtVXeoAPYYL0F6Y8qU7J6uptppf28wLdZC0Om
+         aRnDSnmaBXHb2+EARQZyxZGvG5ZpcNzq37Zattx83t3rRWc6obqk/k3ZS83k0McoSVyi
+         B7BDzasClHlV2RR28vuSfDEseq4au9CmLKeB9249z09E0FDe9m1Ku0hQB9+aD0OLHfBe
+         x4u5iWnUbO36aS7IJvRWCHLbxu5A3bFdIcXzNbb7DV6Q8PkPmixmbtoFhvajQtSkW0P1
+         Xe7VzhS+37y+IJwQu8nAFPFf9qA/CcxdtPtgSNHlPvMgeAdB2g2+ArsyN0xDd9brczcJ
+         sZDQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700219173; x=1700823973;
+        d=1e100.net; s=20230601; t=1700219358; x=1700824158;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oI7Elb9e8/vme7IV0bd4BSK4DVilTDzG34tKnyz/ha8=;
-        b=dTPV6WT31mXb2QpmiAjQT/qemAQhnuAhXX9jGC7uYcoN9J2G63XLMZWsXKqeCls3gg
-         COorJx2eXuZ16W/5QRNtREA50c2Zl8KeQfVH+qFBwUNJzD8eJovvzEp6bSOaE2Prj0Vx
-         A6SAcWwjIdER33QlI9Us+0USNVdi+HxGBAcWX68JKBgJJR9ZQpdwl21fAcM+hIXgADe8
-         90w0goCX4UqprFQg8JxKtsR+WvIHgC6RcL05LvkqpORJv2kPA+VBodjBm8NzS8J8N6uj
-         7y6BhZLWKFs14gOYk05AjLvh/udMg41ljhGpDkqgKDiiS7WtjwJ3dis495MaFgUNpeaQ
-         VvBw==
-X-Gm-Message-State: AOJu0YxLu6DbONoZ2Vmme/BTtNGirE9aH2nXeaHmg6xDr+o1E1FWq0o9
-	R6Vm3hxbkKMhzkUpKVv3iEf9hQ==
-X-Google-Smtp-Source: AGHT+IEU5JA2STtUJTbQEzaA/xr+ZIAyk748yl2c9veyR5EqxUMKSEKlEmB6sgipKPpnMWBgnABfjw==
-X-Received: by 2002:a17:906:494b:b0:9dd:c54d:1ee9 with SMTP id f11-20020a170906494b00b009ddc54d1ee9mr12497870ejt.53.1700219173293;
-        Fri, 17 Nov 2023 03:06:13 -0800 (PST)
+        bh=0n3u9fRI60jjBFdxE1f7jCXBiQGJhq1ggpW/mHJyVwM=;
+        b=I6z/MKUyFJmPlSdm5pji7Tv/OSnhmq4OZM14FmCoyaHc+I3xJU/6Yw8NIndRtcNU7I
+         wZvE7GJ2RpvUELqkX5WUGanfyVdhf89HzQoMoaHOZAXUFqUB7iUg6NUY70BLDsOVyR1s
+         zIBpiuHF81ue82N6Jtsu+eD5BLqe9LynrPbNfMna0H9rLgN5CcHRXNj18cYVlsCulq8s
+         GAHNPym+jP7/CxMnpbDjjhsmvunaKA40I+lpHqK3ysVQOt/PL2lhYeKsyp/Z7Oei/6CL
+         wUGwWQ6KRfmxHsuLcWqRAbIJ/aytxJDQpSC/RN1ow2GXcnq7lyke/ILYPeXXcvMdZf4x
+         l2zw==
+X-Gm-Message-State: AOJu0Yy7FiUO0CM8/BouYS2VHCDzfkPDyupsb+1ePRUBeAFCPXcqz2Zi
+	YGH9jIGcCPwydhobCLnQWkp7nA==
+X-Google-Smtp-Source: AGHT+IEv1uOhvk9siILV7ti9nbf4vN9fKcaNHPiVIalZIiAJAa8rlZPjTC+gurs4WzQOmQaH/nh7Gg==
+X-Received: by 2002:a17:907:98e:b0:9ba:fe6:225 with SMTP id bf14-20020a170907098e00b009ba0fe60225mr17358830ejc.55.1700219357850;
+        Fri, 17 Nov 2023 03:09:17 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id d2-20020a170906640200b0099bd7b26639sm668446ejm.6.2023.11.17.03.06.11
+        by smtp.gmail.com with ESMTPSA id f12-20020a1709062c4c00b009ddcfbac9e7sm671379ejh.84.2023.11.17.03.09.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Nov 2023 03:06:12 -0800 (PST)
-Message-ID: <be3c67fa-29b4-430c-8de6-c4753e7831fa@linaro.org>
-Date: Fri, 17 Nov 2023 12:06:11 +0100
+        Fri, 17 Nov 2023 03:09:16 -0800 (PST)
+Message-ID: <1878f651-e444-43a1-b077-d63e8ee4cdbe@linaro.org>
+Date: Fri, 17 Nov 2023 12:09:13 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,18 +62,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] pmdomain: qcom: rpmhpd: Update part number to
- X1E80100
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: light: add ltr390
 Content-Language: en-US
-To: Sibi Sankar <quic_sibis@quicinc.com>, andersson@kernel.org,
- konrad.dybcio@linaro.org, ulf.hansson@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org
-Cc: agross@kernel.org, conor+dt@kernel.org, quic_rjendra@quicinc.com,
- abel.vesa@linaro.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org, quic_tsoni@quicinc.com, neil.armstrong@linaro.org
-References: <20231117104254.28862-1-quic_sibis@quicinc.com>
- <20231117104254.28862-3-quic_sibis@quicinc.com>
+To: Anshul Dalal <anshulusr@gmail.com>, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Cc: Conor Dooley <conor+dt@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ linux-kernel-mentees@lists.linuxfoundation.org,
+ Jonathan Cameron <jic23@kernel.org>, Shuah Khan <skhan@linuxfoundation.org>
+References: <20231117074554.700970-1-anshulusr@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -119,17 +117,21 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231117104254.28862-3-quic_sibis@quicinc.com>
+In-Reply-To: <20231117074554.700970-1-anshulusr@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 17/11/2023 11:42, Sibi Sankar wrote:
-> Replace SC8380xp with the updated part number (X1E80100).
+On 17/11/2023 08:45, Anshul Dalal wrote:
+> Add binding for Lite-On LTR390 which is an Ambient/UV light sensor that
+> communicates over i2c with an address of 0x53.
 > 
-> Fixes: 2050c9bc4f7b ("pmdomain: qcom: rpmhpd: Add SC8380XP power domains")
+> Datasheet:
+>   https://optoelectronics.liteon.com/upload/download/DS86-2015-0004/LTR-390UV_Final_%20DS_V1%201.pdf
+> 
+> Signed-off-by: Anshul Dalal <anshulusr@gmail.com>
+> ---
 
-No, there was no bug or at least you did not describe a bug. If it was a
-bug, please define it in the commit msg.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
