@@ -1,150 +1,106 @@
-Return-Path: <devicetree+bounces-16448-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16449-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 995447EEB89
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 05:08:00 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B35CD7EEB98
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 05:16:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CA9F91C204F6
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 04:07:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5E3A91F22B13
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 04:16:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC67C8F68;
-	Fri, 17 Nov 2023 04:07:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 217B32915;
+	Fri, 17 Nov 2023 04:16:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="OPbnHXli"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FV47go9O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13F8A98;
-	Thu, 16 Nov 2023 20:07:52 -0800 (PST)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AH3l0L4032547;
-	Fri, 17 Nov 2023 04:07:30 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=KntgboeI2VjPb3sUlPr93+tw81LneJ/w+xKvRlUs9rw=;
- b=OPbnHXlinxLLQf7RJO9zRTVPF0zKgkrRpM0oov+L2ENeAxtskZD7vvlqo8EdkeIA5hMG
- Dl1sGJmPcyiNeD8Fuq2Jw8w8nqZTg3dT2SrvsJvseqIFvnu2i2E9va50fEJ0/jvW5thI
- cUrHAczEINgDS4kDQh13h/iVnHKvAEphW+uZDGZJRBZ6XfLEeIDgkZQrtpaTglPsBsKY
- 36R+C5vMLQNuJjJPP5pNP+T6hGy0gH8MP0Jvy6OYotpW2wzpQPbxlzPMlmyefo4kWHGz
- iSEDkAFy0A6FnpwqpSo/GsKieoDZWFV274UtxpXpAqgqcXRPG7LXz84S7bV6ZxUOLMdW hg== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3udhe1t3cq-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 17 Nov 2023 04:07:30 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AH47TRw015930
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 17 Nov 2023 04:07:29 GMT
-Received: from [10.79.43.91] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Thu, 16 Nov
- 2023 20:07:21 -0800
-Message-ID: <a17d3739-504a-9502-4a2c-3aeddd96c8fa@quicinc.com>
-Date: Fri, 17 Nov 2023 09:37:18 +0530
+Received: from mail-ot1-x32f.google.com (mail-ot1-x32f.google.com [IPv6:2607:f8b0:4864:20::32f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53FC01A5;
+	Thu, 16 Nov 2023 20:16:15 -0800 (PST)
+Received: by mail-ot1-x32f.google.com with SMTP id 46e09a7af769-6ce2ee17cb5so823909a34.2;
+        Thu, 16 Nov 2023 20:16:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1700194574; x=1700799374; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:sender
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=s0pRml4UbUCFGgeFvuEdYG1JjP5SjBhqOmjNulrwupY=;
+        b=FV47go9OZNgD1Qtx35+vGJq+fI8BeiAQQ4MkfGx6OG8jPmXCW/kH3jCz6/YoGCPn05
+         ZrR128aQY/2HnRw8LQbi1P3zIdmSwm5ieVmQcTE66BYae7dYR4oIJyulxMWOU1zovmxf
+         oqsITrGOjE7rcUvqun/JeEyE8Ufqyd1xVbcuuiEDhTe7vSG+EEYxh8sVvkkNYNbypqoa
+         yknwm7fPWK8bLt+9Fl5VkrqpYlNuiB8n/eitBFcwulLQsDZwbHXcWPAaG61r6o9rwzVX
+         csplpVT7tSqjqT4bO3SJVJiN+hP5NXnTqB0jtcXD6gVNqUfw8isR/bditCOwhm3aaz6l
+         s0kA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700194574; x=1700799374;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:sender
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=s0pRml4UbUCFGgeFvuEdYG1JjP5SjBhqOmjNulrwupY=;
+        b=K1UZW/6CZESybl2kiYymtvvrV0QzSbmyeIS0DWLNiQiZCKd0SLysEaD6ZJ0seuSkpb
+         x6sV4y3j49pvMFN5s7tE9cj2qHe1LC/gYzGgIxlpvaTKobrjgvx/Wx5NQBidvO7kgHFG
+         i/tDmEJYIvnPGWZ8Pz2K2ZJIn1raHeAcZxQQ6HMHXgixcd+SPoXWcBEd0xFkn8slOedZ
+         PvOtNZEq3SkAKY1PXQtz7Bo4M0TC5nQAZZ8cSuhi3GDFkw0SU4/vdflMWvnPJlSwqtIp
+         qdx24D0n5JBsJ2JR3kxJkWY/GP+7X0VD2EkNRFJS8wHeagZvf8maDYry8JAYfRYxTb1r
+         SyFg==
+X-Gm-Message-State: AOJu0YygzlfROWuwrY4JUXQMtHmTjQa4toZyxud1yUkNFeX9QZpWrISl
+	87MKAHbSRruLhmnumT8/OTc=
+X-Google-Smtp-Source: AGHT+IHqSGYNZe+p9rpMhNdWcSO96mJzQypDORJ4+HZbbq3eCBx9k9JoQvFAsEaqrOMkfPqf57THnw==
+X-Received: by 2002:a9d:6244:0:b0:6ce:29cd:b699 with SMTP id i4-20020a9d6244000000b006ce29cdb699mr11397480otk.10.1700194574472;
+        Thu, 16 Nov 2023 20:16:14 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id f37-20020a635125000000b005a9b20408a7sm502148pgb.23.2023.11.16.20.16.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Nov 2023 20:16:13 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Thu, 16 Nov 2023 20:16:12 -0800
+From: Guenter Roeck <linux@roeck-us.net>
+To: PeterYin <peteryin.openbmc@gmail.com>
+Cc: patrick@stwcx.xyz, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jean Delvare <jdelvare@suse.com>, Jonathan Corbet <corbet@lwn.net>,
+	Joel Stanley <joel@jms.id.au>,
+	Chanh Nguyen <chanh@os.amperecomputing.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: hwmon: Add mps mp5990 driver bindings
+Message-ID: <140086a7-c89d-48b7-9574-7db28dcc056e@roeck-us.net>
+References: <20231113155008.2147090-1-peteryin.openbmc@gmail.com>
+ <20231113155008.2147090-2-peteryin.openbmc@gmail.com>
+ <a3445201-58f2-42c6-bef7-ca6968fd80d6@roeck-us.net>
+ <69657f96-4849-4134-911d-4785d5d6b8d8@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 2/5] dt-bindings: arm: qcom: Document SC8380XP SoC and
- boards
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <catalin.marinas@arm.com>, <ulf.hansson@linaro.org>
-CC: <agross@kernel.org>, <conor+dt@kernel.org>, <ayan.kumar.halder@amd.com>,
-        <j@jannau.net>, <dmitry.baryshkov@linaro.org>,
-        <nfraprado@collabora.com>, <m.szyprowski@samsung.com>,
-        <u-kumar1@ti.com>, <peng.fan@nxp.com>, <lpieralisi@kernel.org>,
-        <quic_rjendra@quicinc.com>, <abel.vesa@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <quic_tsoni@quicinc.com>, <neil.armstrong@linaro.org>
-References: <20231025142427.2661-1-quic_sibis@quicinc.com>
- <20231025142427.2661-3-quic_sibis@quicinc.com>
- <2cecb51e-9528-471c-8de0-cb716977c0e0@linaro.org>
-From: Sibi Sankar <quic_sibis@quicinc.com>
-In-Reply-To: <2cecb51e-9528-471c-8de0-cb716977c0e0@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: -hP7qev6dDIavmZEbnbu2NbPLK_DzyMH
-X-Proofpoint-ORIG-GUID: -hP7qev6dDIavmZEbnbu2NbPLK_DzyMH
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-16_25,2023-11-16_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 spamscore=0
- priorityscore=1501 suspectscore=0 bulkscore=0 mlxlogscore=999
- clxscore=1015 impostorscore=0 lowpriorityscore=0 mlxscore=0 adultscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311060000 definitions=main-2311170029
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <69657f96-4849-4134-911d-4785d5d6b8d8@gmail.com>
 
-Hey Krzysztof,
-
-Thanks for taking time to review the series.
-
-On 10/27/23 13:46, Krzysztof Kozlowski wrote:
-> On 25/10/2023 16:24, Sibi Sankar wrote:
->> From: Rajendra Nayak <quic_rjendra@quicinc.com>
->>
->> Document the SC8380XP SoC binding and also the boards using it.
->> Also document the new board id qcp (Qualcomm Compute Platform).
->>
->> Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
->> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
->> ---
->>   Documentation/devicetree/bindings/arm/qcom.yaml | 8 ++++++++
->>   1 file changed, 8 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
->> index 88b84035e7b1..6145e9ad340c 100644
->> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
->> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
->> @@ -62,6 +62,7 @@ description: |
->>           sc7280
->>           sc8180x
->>           sc8280xp
->> +        sc8380xp
->>           sda660
->>           sdm450
->>           sdm630
->> @@ -110,6 +111,7 @@ description: |
->>           liquid
->>           rdp432-c2
->>           mtp
->> +        qcp
->>           qrd
->>           rb2
->>           ride
->> @@ -1044,6 +1046,12 @@ properties:
->>                 - qcom,sm8550-qrd
->>             - const: qcom,sm8550
->>   
->> +      - items:
->> +          - enum:
->> +              - qcom,sc8380xp-crd
->> +              - qcom,sc8380xp-qcp
->> +          - const: qcom,sc8380xp
+On Fri, Nov 17, 2023 at 11:18:47AM +0800, PeterYin wrote:
 > 
-> This is some odd placement. Please keep things properly ordered.
-
-will fix this in the next re-spin.
-
--Sibi
-
 > 
-> Best regards,
-> Krzysztof
-> 
+> Guenter Roeck 於 11/16/23 06:27 寫道:
+> > On Mon, Nov 13, 2023 at 11:50:07PM +0800, Peter Yin wrote:
+> > > Add a device tree bindings for mp5990 device.
+> > > 
+> > > Signed-off-by: Peter Yin <peteryin.openbmc@gmail.com>
+> > > Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> > 
+> > What branch is this patch based on ? git fails to apply it.
+> > 
+> > Guenter
+> I think I don't pull the last version. I can rebase it and push the new
+> version. Thanks for your feedback.
+
+Question is: Last version of what ? Best would be if it was based
+on mainline.
+
+Thanks,
+Guenter
 
