@@ -1,123 +1,101 @@
-Return-Path: <devicetree+bounces-16494-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16495-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4286B7EEE16
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 10:05:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A614F7EEE1A
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 10:06:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CA1462811F2
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 09:05:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 352DD281191
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 09:06:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11A60DF6E;
-	Fri, 17 Nov 2023 09:05:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E619F4EE;
+	Fri, 17 Nov 2023 09:06:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kXqyJl2c"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dXW2bCLq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E122BDF60;
-	Fri, 17 Nov 2023 09:05:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F46FC433C7;
-	Fri, 17 Nov 2023 09:05:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700211930;
-	bh=CRcBtu19n+PndQnrzEF4vcUcLQOW1EwvMXHrCXvikac=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kXqyJl2c200zNl9Fb+ks/yfpk04iMRehm+4xpX8AAc+7ZEBB3DOEtHpp4kxZ2X59T
-	 +gQlHr/8WBht8H8aq2wT5Dcchk7n7oKAbRoV4xVqs24Q/NHHy44+/onhCOJrJsYWlo
-	 /1FEoXoVzTirhxrZv9kLPc8peuPHqQzq+LZcAyNU5CzeYxDgcdgTCyK2BYuuU+3T6B
-	 wgrrybCZ0DFNrWbEHjWWxYGzl74uz6FKhlqMMmCu3dSp7z9gPQmVCrPDjc/O6G/yPj
-	 1VgfYojN7Bp6hVspr3g0e3/sr8yeJ1ye952uiLFe5GutIt6Z72F3ZuuvzMmmrO89hT
-	 saGBuERF72nYw==
-Date: Fri, 17 Nov 2023 14:35:19 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Mrinmay Sarkar <quic_msarkar@quicinc.com>
-Cc: agross@kernel.org, andersson@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	konrad.dybcio@linaro.org, mani@kernel.org, robh+dt@kernel.org,
-	quic_shazhuss@quicinc.com, quic_nitegupt@quicinc.com,
-	quic_ramkri@quicinc.com, quic_nayiluri@quicinc.com,
-	dmitry.baryshkov@linaro.org, robh@kernel.org,
-	quic_krichai@quicinc.com, quic_vbadigan@quicinc.com,
-	quic_parass@quicinc.com, quic_schintav@quicinc.com,
-	quic_shijjose@quicinc.com,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org
-Subject: Re: [PATCH v3 2/3] PCI: qcom-ep: Enable cache coherency for SA8775P
- EP
-Message-ID: <20231117090519.GA250770@thinkpad>
-References: <1700051821-1087-1-git-send-email-quic_msarkar@quicinc.com>
- <1700051821-1087-3-git-send-email-quic_msarkar@quicinc.com>
+Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C729D4E;
+	Fri, 17 Nov 2023 01:06:01 -0800 (PST)
+Received: by mail-yb1-xb32.google.com with SMTP id 3f1490d57ef6-da7ea62e76cso1805700276.3;
+        Fri, 17 Nov 2023 01:06:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1700211960; x=1700816760; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LrD8+qkSJjr9Q+fiMn2ZGucWuBAaYvxiKOqNR6fU0Tg=;
+        b=dXW2bCLqomF1ugBldSMZ9p3D02VTxtwUdMsfkmAdvEQU9cmz3ohLkeqi9qJiebNIBa
+         bHRKzGc6iza2+8kWPDg63zx5Gsnt8BTNbnYhuzYImPBSGdA6yJhkYed3jxdWphF/KvAS
+         dHIgC8eI2mhHrJMA7Knteqd9Oa0Q5E59gir0kE90cDYgU/rv/Upm+CWclXYQqGCnWbn0
+         2P4zfSLoy4Oj4Fx7KVUd6ll5spUkhYvy3CnDz5B4xKLbcq0U/WuzgYOFK4YLpigi1ps2
+         chRIR+vOVoUoq/4JLjyEs1f8Zy1xynHTHIXb5+lstQL6Gwr6qmM8J8hduRzWiX23Jn69
+         LTiA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700211960; x=1700816760;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=LrD8+qkSJjr9Q+fiMn2ZGucWuBAaYvxiKOqNR6fU0Tg=;
+        b=voMT3M/k1DMMT092neCY5gNdb+kUY8HwBuXhqYFIzxqrl+kVjLOTfYUVpvNA2sAsnk
+         KEc9g6bHKYidRmWEijpmtpUxw5NiUudCsLNWJSNHo51SjNVj3+gw+uiV45afxkuLgtIO
+         CYYOVL8/WZyIH61Imx6cLaQdolBLMFERT5tMX0CUWz9WqWNvu8lNSMWCuMt0Jjj+pbHQ
+         ZTn88HqKweqt2Uf+9jw2d8YNF/N08LwRNMty9Ng12jFbc3vsxEpwIYqGAYizo4uJ7qux
+         GMO6602NyQVgn2PQ930MetRx3YTp4WfkuW42jD9qhwMt8IAuBCbqxKZPgP/H7LWoBMPq
+         thyg==
+X-Gm-Message-State: AOJu0YysG7Ie1k/8kevfc74gJDrOOu1Yb9gn0pzJYhHonBHmjLLIgDvp
+	3S9EHVvm4YRes0mmmFR4eCP9rMEz1pmqlcdHpKk=
+X-Google-Smtp-Source: AGHT+IEPixzhGpSc3tEVO8ZRFesnGrSzYBPawj/qAai8ntLRg9Ayp0XOI/51MrxatMcMZiHLvSJYqxEGgMe7A1fzuaU=
+X-Received: by 2002:a25:6ad7:0:b0:d9b:4bfd:b75 with SMTP id
+ f206-20020a256ad7000000b00d9b4bfd0b75mr15683441ybc.18.1700211960566; Fri, 17
+ Nov 2023 01:06:00 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1700051821-1087-3-git-send-email-quic_msarkar@quicinc.com>
+References: <cover.1699521866.git.zhoubinbin@loongson.cn> <84cb3df17eee993fc6a10e965b3f438f9034d2de.1699521866.git.zhoubinbin@loongson.cn>
+ <20231116173907.GA2446677-robh@kernel.org>
+In-Reply-To: <20231116173907.GA2446677-robh@kernel.org>
+From: Binbin Zhou <zhoubb.aaron@gmail.com>
+Date: Fri, 17 Nov 2023 15:05:49 +0600
+Message-ID: <CAMpQs4KkOS1Eo-Y7=D2kP+yOW78zVN_7WDO_w0mc5-uaBGT47w@mail.gmail.com>
+Subject: Re: [PATCH v4 1/5] dt-bindings: interrupt-controller:
+ loongson,liointc: Standardize the naming of 'loongson,parent-int-map'
+To: Rob Herring <robh@kernel.org>
+Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
+	Thomas Gleixner <tglx@linutronix.de>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Huacai Chen <chenhuacai@kernel.org>, loongson-kernel@lists.loongnix.cn, 
+	devicetree@vger.kernel.org, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
+	Jiaxun Yang <jiaxun.yang@flygoat.com>, linux-mips@vger.kernel.org, lvjianmin@loongson.cn, 
+	WANG Xuerui <git@xen0n.name>, loongarch@lists.linux.dev, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Nov 15, 2023 at 06:07:00PM +0530, Mrinmay Sarkar wrote:
-> This change will enable cache snooping logic to support
-> cache coherency for 8775 EP platform.
-> 
-> Signed-off-by: Mrinmay Sarkar <quic_msarkar@quicinc.com>
+On Thu, Nov 16, 2023 at 11:39=E2=80=AFPM Rob Herring <robh@kernel.org> wrot=
+e:
+>
+> On Mon, Nov 13, 2023 at 10:36:21AM +0800, Binbin Zhou wrote:
+> > Since the 'loongson,parent_int_map' attribute naming is non-standard, w=
+e
+> > should use 'loongson,parent-int-map' instead.
+> > Also, 'loongson,parent_int_map' will be marked as deprecated.
+>
+> Again, as I said last time, it is not worth adding
+> 'loongson,parent-int-map' and having to support both forms in the kernel
+> forever. If you can define a time that we keep 'loongson,parent_int_map'
+> that's less than "forever", then may be it would be worth changing.
+>
+> To put this another way, using '-' instead of '_' is for *new* bindings,
+> not existing users.
+>
+OK, I see, and I will fix it in the next version.
 
-Same comment as patch 1/3.
+Thanks.
+Binbin
 
-- Mani
-
-> ---
->  drivers/pci/controller/dwc/pcie-qcom-ep.c | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-qcom-ep.c b/drivers/pci/controller/dwc/pcie-qcom-ep.c
-> index 3a53d97..ee99fb1 100644
-> --- a/drivers/pci/controller/dwc/pcie-qcom-ep.c
-> +++ b/drivers/pci/controller/dwc/pcie-qcom-ep.c
-> @@ -47,6 +47,7 @@
->  #define PARF_DBI_BASE_ADDR_HI			0x354
->  #define PARF_SLV_ADDR_SPACE_SIZE		0x358
->  #define PARF_SLV_ADDR_SPACE_SIZE_HI		0x35c
-> +#define PCIE_PARF_NO_SNOOP_OVERIDE		0x3d4
->  #define PARF_ATU_BASE_ADDR			0x634
->  #define PARF_ATU_BASE_ADDR_HI			0x638
->  #define PARF_SRIS_MODE				0x644
-> @@ -86,6 +87,10 @@
->  #define PARF_DEBUG_INT_CFG_BUS_MASTER_EN	BIT(2)
->  #define PARF_DEBUG_INT_RADM_PM_TURNOFF		BIT(3)
->  
-> +/* PARF_NO_SNOOP_OVERIDE register fields */
-> +#define WR_NO_SNOOP_OVERIDE_EN                 BIT(1)
-> +#define RD_NO_SNOOP_OVERIDE_EN                 BIT(3)
-> +
->  /* PARF_DEVICE_TYPE register fields */
->  #define PARF_DEVICE_TYPE_EP			0x0
->  
-> @@ -489,6 +494,11 @@ static int qcom_pcie_perst_deassert(struct dw_pcie *pci)
->  	val |= BIT(8);
->  	writel_relaxed(val, pcie_ep->parf + PARF_LTSSM);
->  
-> +	/* Enable cache snooping for SA8775P */
-> +	if (of_device_is_compatible(dev->of_node, "qcom,sa8775p-pcie-ep"))
-> +		writel_relaxed(WR_NO_SNOOP_OVERIDE_EN | RD_NO_SNOOP_OVERIDE_EN,
-> +				pcie_ep->parf + PCIE_PARF_NO_SNOOP_OVERIDE);
-> +
->  	return 0;
->  
->  err_disable_resources:
-> -- 
-> 2.7.4
-> 
-
--- 
-மணிவண்ணன் சதாசிவம்
+> Rob
 
