@@ -1,119 +1,174 @@
-Return-Path: <devicetree+bounces-16785-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16786-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E160D7EFC19
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 00:24:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC7CF7EFC1A
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 00:25:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9B5CB281390
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 23:24:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8992C28135D
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 23:25:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A1EC4642D;
-	Fri, 17 Nov 2023 23:24:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C34A46521;
+	Fri, 17 Nov 2023 23:25:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mnb0yIFB"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="CJfTj73W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37AB793
-	for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 15:24:08 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-50a938dda08so3675266e87.3
-        for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 15:24:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1700263446; x=1700868246; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=XQ+B/L8i5I4moYPo2ebVEMU/rIESTe0wmqEektzIRIA=;
-        b=mnb0yIFBFbaywjEj7uh6xh1jfdAc3ubduNWXydIj5rkrj0d9FeNfZJxfN82HRRYJ9a
-         AInphNguJ1hRnd9qUtaVEBCP2ZffWfINqcmDddbJY+hU0LG86y+g9KkCm1GpWMJoWh+t
-         Ojt74urGHCN43QSUeOxqkEbOUuyLo2Fa4fBhBNgeHC7u8URQRY5tqOWd3d816RfqI24x
-         At5q+D33jqUsD7ak6VcbrMLTl9Olpn6lFgWDpMMFK9+VZ+WwR0fX+DWqNOsrZFyrIFzx
-         710MyHJB6cRvbu7jQmqDE/BB+G/7mlGjLyXrKEhww5bC5BrpdnBkqkSOFbbqDNz82B/U
-         5Vcw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700263446; x=1700868246;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=XQ+B/L8i5I4moYPo2ebVEMU/rIESTe0wmqEektzIRIA=;
-        b=Tojz184tNYqrbv7gY3sdkSWGiNc9gm5Qf7Im6rXXVVU5SnGR1UENCd+4JjpFpxkrv3
-         nwFKZv7YhZBGnhSwwRrWDhEHHITqn/eqYeOr+7gmJxd1jCOCP8GhVpPTcpRxgOnUb3AO
-         W1iIgphUlFObTUkZY6XOMRcKIw09zFBQ6FNl2dJ9x7pSOYshcF75RmtJQ6VEwUSVQKEK
-         2ZAccGs5hZJeJyyevENmpnMH+Mz25DiEDChXnTwF0s+lro/1KpLznJXvWtZRYRX3v6ur
-         OtlynnLaupeCnIF9+DoUYpHEfVvUiw1QHkpgOqJ+621QLedvr5QwubzehbPAXjmpl9sV
-         dSIQ==
-X-Gm-Message-State: AOJu0Yz/JI/CE7epWz7lSws7wKYN6RLnZgegc3a7lbYuIe2ujOCdJtve
-	Lq39ureENWuBtEyrV8KDs7cdoz/0jb5swg==
-X-Google-Smtp-Source: AGHT+IHbL8Fipc6DqYjMonL8xSBpXYLVPeX4bMf4q0OhHuelxRNX5XGpO3vo0CzO5eB4Qth5TzTZoQ==
-X-Received: by 2002:a05:6512:1111:b0:50a:a6b4:de4f with SMTP id l17-20020a056512111100b0050aa6b4de4fmr102354lfg.36.1700263446191;
-        Fri, 17 Nov 2023 15:24:06 -0800 (PST)
-Received: from rafiki.local ([89.35.145.100])
-        by smtp.gmail.com with ESMTPSA id l6-20020a056512110600b00507d1cc0458sm382789lfg.51.2023.11.17.15.24.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Nov 2023 15:24:05 -0800 (PST)
-From: Lech Perczak <lech.perczak@gmail.com>
-To: linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org
-Cc: Lech Perczak <lech.perczak@gmail.com>,
-	Fabio Estevam <festevam@gmail.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>
-Subject: [PATCH] ARM: dts: nxp: imx7d-pico: add cpu-supply nodes
-Date: Sat, 18 Nov 2023 00:23:52 +0100
-Message-Id: <20231117232352.101713-1-lech.perczak@gmail.com>
-X-Mailer: git-send-email 2.39.2
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10olkn2065.outbound.protection.outlook.com [40.92.41.65])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86D2CD7A;
+	Fri, 17 Nov 2023 15:25:17 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=fR2+hZUL8x6jqZJuPd+x19oqrLSQboUbmqhJ4iLPk7Qg37dAgfJSkDFxiWDx+zTPSStyL3SnU0RVrcq3N3a/Nr8IrGSFKolbNrh1GW08ysDzuGxcnjnjAqXGEd1yyY4DlkgzpAL4enwchNuULUMXyNPrvMYyX2l83p3jbtQ5twpJzU7GPm5Xvem1Il/sIjQEfIGqFtY9N8ibc13X1i6SbDFXzLWpe1SYDTmOD3moQZK1hkIDDmFx/Z3CHKG9Enleut1kfyB9OhYlqzI4hgnsplVu2evcoF+lpDWkfqfvNYpv2JlnFuUu3NXv9Ln6pZyNmoStTpTdcnHL6hNdh8mOGA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/l6ghdF3Y3OC+NKRGDbiNXVrKM40+5YLguD4TuM/l2w=;
+ b=lOC6W8voCdG/k0+AX9pZ5mqlqbqzZEg9STXifb/ohREyhPCHczkaxW/iIp4XqGBEuYNxlk7gN/isr/bbA6n3jq3neRsnFvwhOL4mzbOoFW6RhZCkjf0AvZiWgJOFdTOliDMTHQTPuJTAVo/V5NTDSyaXJtRN0XhBblWTM0RbLiWoDXHPEVNo/HLjXVVJuXqheD+QhNn4qiMUXsaNvoF1duOZXeDMF+T7ksgaa92t/nrE6uczRWyhIs3wHDPUsewFI8XWRx/fXko5VTttdCjyBXabD6baebMqs8K/5zZezLVwIF34qis1TCIV1RjRyRnkzs75BTcMXcN3R0v/HGuGDQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/l6ghdF3Y3OC+NKRGDbiNXVrKM40+5YLguD4TuM/l2w=;
+ b=CJfTj73WHc8CjoUTwi8juE/w/EOxR15wZ5SL9iu/Dbf5WGmXLeVZRTTodiFJuVpuYB6GJUNdO2OsZZfHGN3maUnqTaQkTTGVt0ZkX041eDJRvySJG6p/9MM8vAjT7qVA0cBodvzg64fp5kBungrT9Q0BnQptvzlzLMYBsiW8JV5UNBoax0pQfevyU9Um/4VMOJKz2UYyMKADIQnM2TfQz4/CLzTQ89cECea2Qc5M0vEfrCHJTxxnvIM4bQR5phJIrrt4q89P4+U5/HZ92jalo5h2ZC/7aI+PN7Zd+2qv55BGqpkUXxz7qV8qYqEqBfMtLLJRxzbSqznqg2am9FsbIg==
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
+ by LV3PR20MB7169.namprd20.prod.outlook.com (2603:10b6:408:1a9::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7002.23; Fri, 17 Nov
+ 2023 23:25:15 +0000
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::55b:c350:980:ad8]) by IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::55b:c350:980:ad8%6]) with mapi id 15.20.6977.029; Fri, 17 Nov 2023
+ 23:25:15 +0000
+From: Inochi Amaoto <inochiama@outlook.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Inochi Amaoto <inochiama@outlook.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Guo Ren <guoren@kernel.org>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: timer: thead,c900-aclint-mtimer: separate mtime and mtimecmp regs
+Date: Sat, 18 Nov 2023 07:25:48 +0800
+Message-ID:
+ <IA1PR20MB49536A1E4C97EA62558C6CC3BBB7A@IA1PR20MB4953.namprd20.prod.outlook.com>
+X-Mailer: git-send-email 2.42.1
+In-Reply-To: <20231117-kindred-manor-863549870bcd@spud>
+References: <20231117-kindred-manor-863549870bcd@spud>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TMN: [RJkU9cbkDMHgrrcKjiEQvrqQ9e37gzXS0yhkCwBIEdg=]
+X-ClientProxiedBy: TYAPR01CA0176.jpnprd01.prod.outlook.com
+ (2603:1096:404:ba::20) To IA1PR20MB4953.namprd20.prod.outlook.com
+ (2603:10b6:208:3af::19)
+X-Microsoft-Original-Message-ID:
+ <20231117232549.57371-1-inochiama@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|LV3PR20MB7169:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5818d864-9566-443b-166b-08dbe7c473ee
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	KgUmz6bRNjhPH+tZ4gTnDxCuidQRcBbV6bbWoiHOLwQeDwaXDyUMt8HJ8VGUs2GQ8FxZ/+wNOFgtmRvYkbgh+LWBLnLRvdcnX/XudP9/KCZo/iEfHOMFijfdRSAvJY3YXpjYDssrGs2Kb8nH0L0+lcZ82VyZSSvGxlCGHrvxL0chg5kyD2qU5xh7uY9Ro3RUPBAAj2Hh6pfJB7ss21c9P0hrOuQj+JzU8LcVCAPMGQfBWiXTDyDjJuqn9mMc2gaKcOdRN4FTaQjnT5QFLzbb0sxd6ZWQWoqGiDCbnXWmJWfJBPqJYbxp+p2Ukc6JZOq+jX31eGRAvgFG3wEngSZMw5HpzR4y4nRu1JT6jPh7guwbG7dCIs/urVAE1jw9upf3R8cDVr+bp2AGW2w5c84USyya4dUFIDdUHKiDzyWB6IAdbSXy6DcnkHRswvh6lldb4ieIjv+S1PmpWD9Al3B2YfRYC7TS1TDInGYhdlzScRubYTBkvHh0ZR1lJItHlR/JZfBKF/H/FzJW0KkXyCbqdQQ5bCQ7znuEP5K96Eq5MMVkRQpH5p/WFNa96S8ho5uNCkVbyG3ug6SQZr2aVGd7KrwNt9mFXiiHOCMv9vuol//GPx05OL6iHTPrVvIHC6qL
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?UIhoiHJE54Ql1Ysg9WFpdJsXvWGqwzCRBShdk1lzDU5lSrdd2Tl/tWlNEVxd?=
+ =?us-ascii?Q?Gpk5fWlZFiHmRguRP9jWk021mvPXLOZch3zTv+d1sgnOMg88yOqOOSsbBZm4?=
+ =?us-ascii?Q?Pk435oeYYUA4vYNKRvdmjCZsaainawT6RQBnEZDD9lFQ09li5wj4d5+1F/fF?=
+ =?us-ascii?Q?/qL5IuA6AHL57ZpWdzslxuJFHoXzwMl7M6caBcXV8a7cFuJ6J75/OK62GdLH?=
+ =?us-ascii?Q?QigW2vqGiYDJKhzGXg2vs9hOcsR4YUtd+oN1w33ucXUw1zYscyhMs+BN91+e?=
+ =?us-ascii?Q?u8Is4SibJ9u/EzanInnRlKyZPN05CrLm0XJos/4Ab44lz0JbQkrPl79ILkuk?=
+ =?us-ascii?Q?Gr15mpNNJO+A+sK1n8/ZiPmgQrPmir9hKvoHC6/WfhWhpehGUAJHD4yMBhpA?=
+ =?us-ascii?Q?yIH8HpFrZQKTPnqYrUdnzB2f++N28RQMxmKMItj0GmbYpY0QrksQQo9P3kSs?=
+ =?us-ascii?Q?s9ykAvnlwSi0GKyJsyXi67LtWddIuyPuV/sX1ukwkKdVPssqOfhErliHymk2?=
+ =?us-ascii?Q?49mm4Iqu/3RbdgTc6OldLUPklKatacyhRnqut+G6aHJ15WBgdPLQHZu3MAK+?=
+ =?us-ascii?Q?wn/Jm0J8HZhu+HC0p6IXh292yj3bv4rAzweequ1av8f3ay7IjIae3fP+9zqU?=
+ =?us-ascii?Q?XByI6bdVjqWMib+GP5wHV/7+mJEyZwBmOam7XFHi8ESNvxtM5OMK/+IZi9c0?=
+ =?us-ascii?Q?vJNNrh7M6YZRc4ALKL89GP8D6cLn574uz7P/thagzM2QF/D28WnfejuldAAQ?=
+ =?us-ascii?Q?BUIKiOeuy0gp6VV3eyn6v5h4mzZdC+q0m0MfYPn0JZ3VRQpvBNQ/L9xtoa/E?=
+ =?us-ascii?Q?jr12YA+BtZ8P8JsRUe2ZHNBGN4/oDELyfikceJ5jktWB6WaDIE5ZmsdIfrnW?=
+ =?us-ascii?Q?UxvOy7F6e5bIOiiAyjfv2OL8bRe7mYirHKu340mk/U+OB1BQzHltlMCEkHk/?=
+ =?us-ascii?Q?YLimTCwgT59qjUj+fbS6hhSAyXP+f8449vsCEPsmCzGhMyysRGtliTxF6yTP?=
+ =?us-ascii?Q?PZ7HPBYbY1b95saMR+iINj/Tq1aMLBN/f+SsxEDlxz62wsaVm9duHCZvcUUa?=
+ =?us-ascii?Q?BGum4gA0EkSJEQG/wsYZGEkrPjHAjxfK4G1OcQaSI3wk2QLn3hp298ivMBIO?=
+ =?us-ascii?Q?2mG1OXvQGOS0mzWthShyvxBH37JDfimTdStrv4f3UagK/gY5bNxqc/F9Uoq+?=
+ =?us-ascii?Q?JeEocap3SL4yx1umu3hLIFfgGqkM8dZM41QjcX2Dj6rHFVdVdxexB8WUUzw?=
+ =?us-ascii?Q?=3D?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5818d864-9566-443b-166b-08dbe7c473ee
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Nov 2023 23:25:15.0918
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR20MB7169
 
-The PICO-IMX7D SoM has the usual power supply configuration using
-output sw1a of PF3000 PMIC, which was defined in downstream derivative
-of linux-imx (see link) in the sources for "Android Things" devkit.
-It is required to support CPU frequency scaling.
+>
+>On Fri, Nov 17, 2023 at 08:30:21PM +0800, Inochi Amaoto wrote:
+>>>
+>>> On 17/11/2023 06:07, Inochi Amaoto wrote:
+>>>> The timer registers of aclint don't follow the clint layout and can
+>>>> be mapped on any different offset. As sg2042 uses separated timer
+>>>> and mswi for its clint, it should follow the aclint spec and have
+>>>> separated registers.
+>>>>
+>>>> The previous patch introduced a new type of T-HEAD aclint timer which
+>>>> has clint timer layout. Although it has the clint timer layout, it
+>>>> should follow the aclint spec and uses the separated mtime and mtimecmp
+>>>> regs. So a ABI change is needed to make the timer fit the aclint spec.
+>>>>
+>>>> To make T-HEAD aclint timer more closer to the aclint spec, use
+>>>> regs-names to represent the mtimecmp register, which can avoid hack
+>>>> for unsupport mtime register of T-HEAD aclint timer.
+>>>>
+>>>
+>>> I don't understand this reasoning. You had one entry, you still have one
+>>> entry. Adding reg-names (not regs-names) does not change it.
+>>>
+>>
+>> If no "reg-names", all the register of ACLINT should be defined. However,
+>> T-HEAD aclint timer of sg2042 only supports mtimecmp register. If no extra
+>> prompt is provided for the SBI, it will fail to recognize aclint timer
+>> registers when parsing the aclint node with one reg entry.
+>>
+>> There is another way to avoid this by using an empty entry to identify
+>> unsupported mtime, but Conor have already rejected this. See [1].
+>>
+>> Link: https://lore.kernel.org/all/20231114-skedaddle-precinct-66c8897227bb@squawk/ [1]
+>
+>Perhaps you misunderstood my suggestion. I was looking for _both_
+>registers to be defined in the binding as well as adding reg-names as a
+>required property. Doing what you have here might work for your use
+>case, but does not make sense from a bindings point of view as there is
+>no way to describe the mtime register, should it exist in another SoC.
+>
 
-Map the respective "cpu-supply" nodes of each core to sw1a of the PMIC.
+Thanks for your clarification. If I understand you correctly, the binding
+should have all registers that ACLINT has. But for specific use case,
+it should only contain supported registers and omit unsupported. Please
+correct me if I misunderstood. Thanks.
 
-Enabling them causes cpufreq-dt, and imx-thermal drivers to probe
-successfully, and CPU frequency scaling to function.
-
-Link: https://android.googlesource.com/platform/hardware/bsp/kernel/nxp/imx-v4.1/+/o-iot-preview-5/arch/arm/boot/dts/imx7d-pico.dtsi#849
-
-Cc: Fabio Estevam <festevam@gmail.com>
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>
-
-Signed-off-by: Lech Perczak <lech.perczak@gmail.com>
----
- arch/arm/boot/dts/nxp/imx/imx7d-pico.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/arch/arm/boot/dts/nxp/imx/imx7d-pico.dtsi b/arch/arm/boot/dts/nxp/imx/imx7d-pico.dtsi
-index c5eefe89cd99..8d5037ac03c7 100644
---- a/arch/arm/boot/dts/nxp/imx/imx7d-pico.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx7d-pico.dtsi
-@@ -108,6 +108,14 @@ &clks {
- 	assigned-clock-rates = <0>, <32768>;
- };
- 
-+&cpu0 {
-+	cpu-supply = <&sw1a_reg>;
-+};
-+
-+&cpu1 {
-+	cpu-supply = <&sw1a_reg>;
-+};
-+
- &ecspi3 {
- 	cs-gpios = <&gpio4 11 GPIO_ACTIVE_LOW>;
- 	pinctrl-names = "default";
-
-base-commit: b85ea95d086471afb4ad062012a4d73cd328fa86
--- 
-2.39.2
-
+>Cheers,
+>Conor
+>
 
