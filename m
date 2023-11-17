@@ -1,67 +1,120 @@
-Return-Path: <devicetree+bounces-16498-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16499-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14ABA7EEE3D
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 10:15:46 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED00D7EEE70
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 10:28:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A6778B20A4D
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 09:15:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 295BA1C208A3
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 09:28:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F02A1FBFF;
-	Fri, 17 Nov 2023 09:15:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF04C12B91;
+	Fri, 17 Nov 2023 09:28:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=corebizinsight.com header.i=@corebizinsight.com header.b="caOrbaZt"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="GnbfWv5B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.corebizinsight.com (mail.corebizinsight.com [217.61.112.124])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BC8CD4F
-	for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 01:15:37 -0800 (PST)
-Received: by mail.corebizinsight.com (Postfix, from userid 1002)
-	id 5463884001; Fri, 17 Nov 2023 10:15:22 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=corebizinsight.com;
-	s=mail; t=1700212536;
-	bh=CEmchsDu5Oe+RNHCZSBmKSgMOuy1xnO2dydqkEjt3Qs=;
-	h=Date:From:To:Subject:From;
-	b=caOrbaZt7rNI08hAfqxTlQR/EvxlhjQGv9fVz3kIrme0e/su3YkeO2fQM9lZABk/F
-	 ALaVsi1MWbLckuKSCnxpuBk84xDKYQd4IexWIuriBucEJ/YBRH3geLV4TR79TU7Opj
-	 OhbhkEl3b/hCDAhW1W+C4wMYMTW1oUlH2dQXZjSs6V6sc4jlWAi2uzuZ8mwUG7gaV2
-	 NN3XgSynhzdfQWtVr71rqk9fLiJvFpSU0vpZ/5FNbDZnI8W+JBMR7M+BmuhvA2tXXh
-	 PlQpTJLkJWV7wHiNHlIJ8LFlAUUAACzZKbXS7qi7idsTJbBkYQKpMYcAhQZwpLXaDB
-	 fKyDM5wSZkdvg==
-Received: by mail.corebizinsight.com for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 09:15:16 GMT
-Message-ID: <20231117084500-0.1.22.9ytv.0.pqzxakt9lm@corebizinsight.com>
-Date: Fri, 17 Nov 2023 09:15:16 GMT
-From: "Jakub Kovarik" <jakub.kovarik@corebizinsight.com>
-To: <devicetree@vger.kernel.org>
-Subject: =?UTF-8?Q?Pros=C3=ADm_kontaktujte?=
-X-Mailer: mail.corebizinsight.com
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 293BAB7;
+	Fri, 17 Nov 2023 01:28:10 -0800 (PST)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AH7c2BU021895;
+	Fri, 17 Nov 2023 09:28:06 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=BHCF9LnbimJFinOpOG3HG9Nb3gkW+d7+o8Jglj+Eehs=;
+ b=GnbfWv5BThqVGttQZ9jb5f3NSH0Jq1FMAy7uNAo55tuqp5ji9+YBca6tjp29QHmYsEpe
+ bl9Qog/WV4OkKK3eypa9he/oFxgCmRGwlDg5rRsG0dAXJY9/kgk/Qw3dj0BGF1K2gTYf
+ U9lwzPl0RRlO8cYZVP0PFrgMgqe1DDlR6f3gpY3Q/CdBk6vtr4ehx9vbGNThjBjkHTUb
+ lS11reGGq1xFyeNP/noZ1ANZo+/sENHTVeCqtXbWHOSAVKDoexvmeku7LtlS2YrXLd2Y
+ MFIHyJaoC5DidtfJ8XqJth9Q22t+8eb7LQLfp604QRoVL6fE97wR6GI4IjSLd+5o+Eqq tw== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3udmw429dy-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 17 Nov 2023 09:28:06 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AH9S5nL007799
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 17 Nov 2023 09:28:05 GMT
+Received: from blr-ubuntu-87.ap.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.39; Fri, 17 Nov 2023 01:27:59 -0800
+From: Sibi Sankar <quic_sibis@quicinc.com>
+To: <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+CC: <agross@kernel.org>, <conor+dt@kernel.org>, <quic_tdas@quicinc.com>,
+        <quic_rjendra@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <neil.armstrong@linaro.org>,
+        <abel.vesa@linaro.org>, <quic_tsoni@quicinc.com>,
+        Sibi Sankar
+	<quic_sibis@quicinc.com>
+Subject: [PATCH V2 0/4] clk: qcom: Introduce clocks drivers for X1E80100
+Date: Fri, 17 Nov 2023 14:57:33 +0530
+Message-ID: <20231117092737.28362-1-quic_sibis@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: nfUvZy-4QDhZdOozExmRLyAEV0avd-7s
+X-Proofpoint-ORIG-GUID: nfUvZy-4QDhZdOozExmRLyAEV0avd-7s
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-17_07,2023-11-16_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 mlxlogscore=679
+ clxscore=1015 suspectscore=0 mlxscore=0 malwarescore=0 bulkscore=0
+ priorityscore=1501 adultscore=0 lowpriorityscore=0 impostorscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2311060000 definitions=main-2311170069
 
-Dobr=C3=A9 r=C3=A1no,
+This series adds initial clock support for the Qualcomm X1E80100 platform,
+aka Snapdragon X Elite.
 
-Je mo=C5=BEn=C3=A9 s v=C3=A1mi nav=C3=A1zat spolupr=C3=A1ci?
+Our v1 post of the patchsets adding support for Snapdragon X Elite SoC had
+the part number sc8380xp which is now updated to the new part number x1e80100
+based on the new branding scheme and refers to the exact same SoC.
 
-R=C3=A1d si promluv=C3=ADm s osobou zab=C3=BDvaj=C3=ADc=C3=AD se prodejn=C3=
-=AD =C4=8Dinnost=C3=AD.
+v2:
+* Update the part number from sc8380xp to x1e80100.
+* Use shared ops in the x1e80100 gcc driver [Bryan].
+* Inline clock names [Konrad]
+* Fix Kconfig [Krzysztof]
+* Pick-up Rbs from the list.
 
-Pom=C3=A1h=C3=A1me efektivn=C4=9B z=C3=ADsk=C3=A1vat nov=C3=A9 z=C3=A1kaz=
-n=C3=ADky.
+Dependencies: None
+Release Link: https://www.qualcomm.com/news/releases/2023/10/qualcomm-unleashes-snapdragon-x-elite--the-ai-super-charged-plat
 
-Nevahejte me kontaktovat.
+Rajendra Nayak (4):
+  dt-bindings: clock: qcom: Add X1E80100 GCC clocks
+  clk: qcom: Add Global Clock controller (GCC) driver for X1E80100
+  dt-bindings: clock: qcom-rpmhcc: Add RPMHCC bindings for X1E80100
+  clk: qcom: rpmh: Add support for X1E80100 rpmh clocks
 
-V p=C5=99=C3=ADpad=C4=9B z=C3=A1jmu V=C3=A1s bude kontaktovat n=C3=A1=C5=A1=
- anglicky mluv=C3=ADc=C3=AD z=C3=A1stupce.
+ .../bindings/clock/qcom,rpmhcc.yaml           |    1 +
+ .../bindings/clock/qcom,x1e80100-gcc.yaml     |   72 +
+ drivers/clk/qcom/Kconfig                      |   10 +
+ drivers/clk/qcom/Makefile                     |    1 +
+ drivers/clk/qcom/clk-rpmh.c                   |   26 +
+ drivers/clk/qcom/gcc-x1e80100.c               | 6807 +++++++++++++++++
+ include/dt-bindings/clock/qcom,x1e80100-gcc.h |  485 ++
+ 7 files changed, 7402 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,x1e80100-gcc.yaml
+ create mode 100644 drivers/clk/qcom/gcc-x1e80100.c
+ create mode 100644 include/dt-bindings/clock/qcom,x1e80100-gcc.h
 
+-- 
+2.17.1
 
-Pozdravy
-Jakub Kovarik
 
