@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-16790-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16791-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 153157EFC4B
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 00:53:59 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E73667EFC4D
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 00:55:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7A602B20B8A
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 23:53:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2419B1C2042E
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 23:55:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96EF54655D;
-	Fri, 17 Nov 2023 23:53:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2A3B46559;
+	Fri, 17 Nov 2023 23:55:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WAr2aqXo"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ywJQyLb7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B1031A1
-	for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 15:53:47 -0800 (PST)
-Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-543456dbd7bso7054273a12.1
-        for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 15:53:47 -0800 (PST)
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 492A51AD
+	for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 15:55:05 -0800 (PST)
+Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-545ed16b137so3595872a12.1
+        for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 15:55:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700265226; x=1700870026; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1700265303; x=1700870103; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=QpkeRFmyHdjXxHSMX/08tAo8DUmw9sl0gY2M0hTw6us=;
-        b=WAr2aqXowqGesSyRlxz8YgLRIJhpWo5Y2wjSCJ6Y1J1stLGLhQD3d1XbOYrliZVNFs
-         af3CXcKRJIoQzItRKsxCNvgunuYVehTEgXZD5u7RVh1bGrMtCLXgKsBHVaZyb7rJShF1
-         2j2b/IzxYTy8pZtgUgAqf2ROKqU855sM8dybULk3iyX9nlLT5qGcP0KD8wnmhF7+Jwxg
-         gPLDiyR45+BTZumQEeRcprARxS3f1mplz8BfQGQ7O1gz3hn16UQOtbkkYguLpPgOiLpe
-         6fLOdex1Xo7m4/CiI0/+RdiyhfEGHXc0v76bctWOeCdJQXmbIsvkY6CMANpuokxqN7Dt
-         ZxtQ==
+        bh=ljV4Q6tR89A5wxiqzJ4UnGOWvdZFI4MNjFEOjggc/vI=;
+        b=ywJQyLb760abYnFkahCxk0KnSN+m570G7ohwX8+Ya/eJT0Rd6IqE51JHSuFs2LCWjK
+         SdmEbBrO7jHZGhUW8M1fDPPOZn8zKElpVB0QXMQjC3mgi8fcwAn5X0fMVsXSiG1OaEO9
+         y2FBs4/1jl53lla+XSrk/Dl/y4NxbPepYKg8kz1/xcSXsxIiUzG71wKr3beYxRCbWbhr
+         82f8vLochCbge7kF+8PAnFNA2fDkgw+iQmCnPe5WiYx98JTh8qiIPr9UyL13g2KMEBGt
+         YfEvtMON0Nv4JlzKZZtBF8LGLYGbpYZmxKl06ZihiYXvUNYpXdD372vq9p5MOoPcnYik
+         9bGw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700265226; x=1700870026;
+        d=1e100.net; s=20230601; t=1700265303; x=1700870103;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QpkeRFmyHdjXxHSMX/08tAo8DUmw9sl0gY2M0hTw6us=;
-        b=BIsNb1vS0q7SV3fQ+cwHWPEQWT6FGuln1LOpY4Nwuv5YTtMss+58hn7DN+oLFr4/lq
-         5X4IIcxLUf+MEGfOvNk9kNe1aOxL9KnYkWr5CJZuNA9qZwL/8gSM5a7P+k3k4ATQWjj2
-         wQQfehWHEdYKGLnMIL6Nc7Zmji6kozSDfVl2NAvrNjz7PnnWsYle52vo4zDr0zYaNJ//
-         PSEv1q3F487HQ6NOXE8d/89/R7IjdHIL2eFJAbK4lvFWds/kdMJiMX1wsOD3QI52DTqQ
-         ENhA193VACzm6Rygi5wm4QWGNgAqsVKbM9RcdcS3syMVg2ApqNcNAAnsCg0AnHOdRhDV
-         J86A==
-X-Gm-Message-State: AOJu0YzM3v8xCCBSKIPqE9nxRXtW1Uiec+CpN4EqXrAo02J8312WD6AK
-	VnNBO7SUQwT7hchmHGEFd+7WPA==
-X-Google-Smtp-Source: AGHT+IERRUx2K3z9OcsDVqVpgc/p+P/uXFJB6cFpdU9ndK7CI8fuO6ZZUamLOspDZiEx4d/L5233MQ==
-X-Received: by 2002:a50:e612:0:b0:53e:1207:5b69 with SMTP id y18-20020a50e612000000b0053e12075b69mr6774002edm.10.1700265225678;
-        Fri, 17 Nov 2023 15:53:45 -0800 (PST)
+        bh=ljV4Q6tR89A5wxiqzJ4UnGOWvdZFI4MNjFEOjggc/vI=;
+        b=FxPGbU1nsrCJ7TnsXyCJ1dpzeJrZKwxBnJLzcDnbQm78gHtMaINn3AoOcuyUqoD1RQ
+         STmRFXG1kZHBIkw0H/EPBFEY9PCBK8mBtMvG1b5AYLXfgi80vMcDPfdcb7ujBFBlZ3WS
+         l+hFkkygKnO0n0Vr+MnQUnbIEcp5DflJdtEXDl96tma6QhdlFLIhpaQ178ea4v8WsOCJ
+         eJG36jOKwjj6fS4w0KZSO2CsfgsazBWLyVUl01XRpSileUtoQTnWsM4B89jntvKymJHB
+         diiu9gu56ae//+VJNvQI0U5A49krtlONnCiqmArdVpLn4UCT6DCJhyz26Yb8aVyl/vn+
+         +6sA==
+X-Gm-Message-State: AOJu0YxNsB63/wvJb8brkYI87TsHkqK5A2CuSFNmuNGjge5yi5+DNVYO
+	3EWbEP4Mos3yV/QDSLL/DSETvA==
+X-Google-Smtp-Source: AGHT+IHIR4VuBM5WMRwHLnmNmf4PPdje0cmCiUWIOjF8N+E+jC1C7c9VDK2C4qll9ycR3jpAonAEcg==
+X-Received: by 2002:aa7:d4c6:0:b0:548:615c:33aa with SMTP id t6-20020aa7d4c6000000b00548615c33aamr426485edr.20.1700265303508;
+        Fri, 17 Nov 2023 15:55:03 -0800 (PST)
 Received: from [192.168.201.100] (178235187040.dynamic-4-waw-k-2-3-0.vectranet.pl. [178.235.187.40])
-        by smtp.gmail.com with ESMTPSA id j18-20020aa7c0d2000000b00533e915923asm1169741edp.49.2023.11.17.15.53.43
+        by smtp.gmail.com with ESMTPSA id j18-20020aa7c0d2000000b00533e915923asm1169741edp.49.2023.11.17.15.55.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Nov 2023 15:53:45 -0800 (PST)
-Message-ID: <bbbd30c4-75ca-4d04-ac07-1b458ee543b7@linaro.org>
-Date: Sat, 18 Nov 2023 00:53:42 +0100
+        Fri, 17 Nov 2023 15:55:03 -0800 (PST)
+Message-ID: <9f58fae1-6348-4396-b099-1d9517227e86@linaro.org>
+Date: Sat, 18 Nov 2023 00:55:01 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,12 +64,12 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH] docs: dt-bindings: add DTS Coding Style document
 Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ linux-kernel@vger.kernel.org,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
  Arnd Bergmann <arnd@arndb.de>, Bjorn Andersson <andersson@kernel.org>,
  Geert Uytterhoeven <geert+renesas@glider.be>,
  Heiko Stuebner <heiko@sntech.de>, Matthias Brugger <matthias.bgg@gmail.com>,
@@ -77,6 +77,7 @@ Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
  Neil Armstrong <neil.armstrong@linaro.org>, Nishanth Menon <nm@ti.com>,
  Olof Johansson <olof@lixom.net>
 References: <20231116181218.18886-1-krzysztof.kozlowski@linaro.org>
+ <CAL_JsqLxKWXVXp6+-yNxvHifZHEDvMdQChR7AHD9STJw_S9UiA@mail.gmail.com>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -113,77 +114,47 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20231116181218.18886-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAL_JsqLxKWXVXp6+-yNxvHifZHEDvMdQChR7AHD9STJw_S9UiA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 16.11.2023 19:12, Krzysztof Kozlowski wrote:
-> Document preferred coding style for Devicetree sources (DTS and DTSI),
-> to bring consistency among all (sub)architectures and ease in reviews.
+On 16.11.2023 21:44, Rob Herring wrote:
+> On Thu, Nov 16, 2023 at 12:12 PM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> Document preferred coding style for Devicetree sources (DTS and DTSI),
+>> to bring consistency among all (sub)architectures and ease in reviews.
 > 
-> Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> Cc: Arnd Bergmann <arnd@arndb.de>
-> Cc: Bjorn Andersson <andersson@kernel.org>
-> Cc: Geert Uytterhoeven <geert+renesas@glider.be>
-> Cc: Heiko Stuebner <heiko@sntech.de>
-> Cc: Konrad Dybcio <konrad.dybcio@linaro.org>
-> Cc: Matthias Brugger <matthias.bgg@gmail.com>
-> Cc: Michal Simek <michal.simek@amd.com>
-> Cc: Neil Armstrong <neil.armstrong@linaro.org>
-> Cc: Nishanth Menon <nm@ti.com>
-> Cc: Olof Johansson <olof@lixom.net>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Thanks for doing this.
 > 
-> ---
+>>
+>> Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> Cc: Arnd Bergmann <arnd@arndb.de>
+>> Cc: Bjorn Andersson <andersson@kernel.org>
+>> Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+>> Cc: Heiko Stuebner <heiko@sntech.de>
+>> Cc: Konrad Dybcio <konrad.dybcio@linaro.org>
+>> Cc: Matthias Brugger <matthias.bgg@gmail.com>
+>> Cc: Michal Simek <michal.simek@amd.com>
+>> Cc: Neil Armstrong <neil.armstrong@linaro.org>
+>> Cc: Nishanth Menon <nm@ti.com>
+>> Cc: Olof Johansson <olof@lixom.net>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>
+>> ---
 [...]
 
-> +Order of Nodes
-> +--------------
-> +
-> +1. Nodes within any bus, thus using unit addresses for children, shall be
-> +   ordered incrementally by unit address.
-> +
-> +2. Nodes without unit addresses should be ordered alpha-numerically.
-I largely agree with all this given our fight for some level of
-tidyness across linux-msm, but there's one specific case where I think
-it would make sense to break this ordering, and that's GPIO states:
+>> +Example::
+>> +
+>> +       thermal-sensor@c271000 {
+>> +               compatible = "qcom,sm8550-tsens", "qcom,tsens-v2";
+>> +               reg = <0x0 0x0c271000 0x0 0x1000>,
+>> +                     <0x0 0x0c222000 0x0 0x1000>;
+> 
+> You should cover the <> style too, meaning <> around each logical entry.
+FWIW this matters because e.g.
 
-
-&pinctrl {
-	xyz-active-state {
-		pins ="gpio0";
-		...
-	};
-
-	abc-active-state {
-		pins ="gpio1";
-		...
-	};
-
-	qwe-active-state {
-		pins ="gpio2";
-		...
-	};
-};
-
-looks so much more readable to me than
-
-&pinctrl {
-	abc-active-state {
-		pins ="gpio1";
-		...
-	};
-
-	qwe-active-state {
-		pins ="gpio2";
-		...
-	};
-
-	xyz-active-state {
-		pins ="gpio0";
-		...
-	};
-};
+https://github.com/devicetree-org/devicetree-specification/issues/66
 
 Konrad
 
