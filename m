@@ -1,245 +1,147 @@
-Return-Path: <devicetree+bounces-16725-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16726-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 100897EF7CA
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 20:23:35 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65E6F7EF7EE
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 20:38:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8A1A11F238CC
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 19:23:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F573280D96
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 19:38:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26F1F43AA7;
-	Fri, 17 Nov 2023 19:23:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=subdimension.ro header.i=@subdimension.ro header.b="eWcPjy6o"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 383D743AAB;
+	Fri, 17 Nov 2023 19:38:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.subdimension.ro (skycaves.subdimension.ro [172.104.132.142])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35D09D4B;
-	Fri, 17 Nov 2023 11:23:24 -0800 (PST)
-Received: from localhost.localdomain (unknown [188.24.94.216])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by mail.subdimension.ro (Postfix) with ESMTPSA id 89D6A28F040;
-	Fri, 17 Nov 2023 19:23:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=subdimension.ro;
-	s=skycaves; t=1700249002;
-	bh=WwNgEfUL7AsMa3dejpCXesMzNmnY3tanbmMGBdRVRRk=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=eWcPjy6oa2wGm6i6YN7h+qOwT4PpafXPQXgnBF2A+XfsBzlnHgc7h3NCdY/bdKoZX
-	 /R9NJN84MxcfzNqHZ2aKpnxWI7lGANPkPXTzVIAl4F1U3+4h+/kerutPTfR7O0RXNM
-	 TIa0Taqp7OuUGUFK9nl147Fdv2c5JXhsEi2U3SJU=
-From: Petre Rodan <petre.rodan@subdimension.ro>
-To: linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: Petre Rodan <petre.rodan@subdimension.ro>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	linux-kernel-mentees@lists.linuxfoundation.org,
-	Jonathan Cameron <jic23@kernel.org>
-Subject: [PATCH v2 1/2] dt-bindings: iio: pressure: add honeywell,hsc030
-Date: Fri, 17 Nov 2023 21:22:57 +0200
-Message-ID: <20231117192305.17612-1-petre.rodan@subdimension.ro>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20231117164232.8474-1-petre.rodan@subdimension.ro>
-References: <20231117164232.8474-1-petre.rodan@subdimension.ro>
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1606D6A;
+	Fri, 17 Nov 2023 11:38:17 -0800 (PST)
+Received: from i5e861935.versanet.de ([94.134.25.53] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1r44fO-0000Ix-QK; Fri, 17 Nov 2023 20:38:14 +0100
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Andrew Davis <afd@ti.com>
+Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Arnd Bergmann <arnd@arndb.de>, Bjorn Andersson <andersson@kernel.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ Michal Simek <michal.simek@amd.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Nishanth Menon <nm@ti.com>,
+ Olof Johansson <olof@lixom.net>
+Subject: Re: [PATCH] docs: dt-bindings: add DTS Coding Style document
+Date: Fri, 17 Nov 2023 20:38:13 +0100
+Message-ID: <4289147.1BCLMh4Saa@diego>
+In-Reply-To: <2cb3f992-f214-4cdf-8443-9e14ab864a66@ti.com>
+References:
+ <20231116181218.18886-1-krzysztof.kozlowski@linaro.org>
+ <7592981.EvYhyI6sBW@phil> <2cb3f992-f214-4cdf-8443-9e14ab864a66@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Adds binding for digital Honeywell TruStability HSC and SSC series pressure 
-and temperature sensors.
+Am Freitag, 17. November 2023, 15:03:38 CET schrieb Andrew Davis:
+> On 11/16/23 2:33 PM, Heiko Stuebner wrote:
+> > Am Donnerstag, 16. November 2023, 21:23:20 CET schrieb Krzysztof Kozlowski:
+> >> On 16/11/2023 21:03, Heiko Stuebner wrote:
+> > going with the vcc5v0_host regulator of the rk3588-quartzpro64 and
+> > 
+> > +1. compatible
+> > +2. reg
+> > +3. ranges
+> > +4. All properties with values
+> > +5. Boolean properties
+> > +6. status (if applicable)
+> > +7. Child nodes
+> > 
+> > we'd end up with
+> > 
+> >          vcc5v0_host: vcc5v0-host-regulator {
+> > /* 1. */        compatible = "regulator-fixed";
+> > /* 4. */        gpio = <&gpio4 RK_PB0 GPIO_ACTIVE_HIGH>;
+> >                  pinctrl-names = "default";
+> >                  pinctrl-0 = <&vcc5v0_host_en>;
+> >                  regulator-min-microvolt = <5000000>;
+> >                  regulator-max-microvolt = <5000000>;
+> >                  regulator-name = "vcc5v0_host";
+> >                  vin-supply = <&vcc5v0_usb>;
+> > /* 5. */        enable-active-high;
+> >                  regulator-always-on;
+> >                  regulator-boot-on;
+> >          };
+> > 
+> 
+> How about grouping like properties (defined in the same schema),
+> then sorting within that group. Would also allow for defining
+> where to add spacing.
+> 
+> 1. compatible
+> 2. reg
+> 3. ranges
+> 4. All property groups
+>    4.1 Properties with values
+>    4.2 Boolean properties
+>    4.3 Separating space
+> 6. status (if applicable)
+> 7. Child nodes
+> 
+> Your node then would look like we expect:
+> 
+> vcc5v0_host: vcc5v0-host-regulator {
+> /* 1   */   compatible = "regulator-fixed";
+> 
+> /* 4.1 */   pinctrl-names = "default";
+> /* 4.1 */   pinctrl-0 = <&vcc5v0_host_en>;
+> /* 4.3 */
+> /* 4.1 */   regulator-min-microvolt = <5000000>;
+> /* 4.1 */   regulator-max-microvolt = <5000000>;
+> /* 4.1 */   regulator-name = "vcc5v0_host";
+> /* 4.2 */   regulator-always-on;
+> /* 4.2 */   regulator-boot-on;
+> /* 4.2 */   enable-active-high;
+> /* 4.3 */
+> /* 4.1 */   gpio = <&gpio4 RK_PB0 GPIO_ACTIVE_HIGH>;
+> ...
+> };
 
-Datasheet:
- [HSC] https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/products/sensors/pressure-sensors/board-mount-pressure-sensors/trustability-hsc-series/documents/sps-siot-trustability-hsc-series-high-accuracy-board-mount-pressure-sensors-50099148-a-en-ciid-151133.pdf
- [SSC] https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/products/sensors/pressure-sensors/board-mount-pressure-sensors/trustability-ssc-series/documents/sps-siot-trustability-ssc-series-standard-accuracy-board-mount-pressure-sensors-50099533-a-en-ciid-151134.pdf
+I'm really not sure about adding big sets of rules.
+In the above example you'd also need to define which schema has a higher
+priority? ;-)
 
-Signed-off-by: Petre Rodan <petre.rodan@subdimension.ro>
----
 
-Changes for v2:
-- Removed redundant quotations reported by robh's bot
-- Fixed yamllint warnings
+When I started with Rockchip stuff, I also had some fancy way of sorting
+elements in mind that was really intuitive to myself :-) .
+Over time I realized that it was quite complex - especially when I had to
+explain it to people.
 
-I'm failing to run 'make DT_CHECKER_FLAGS=-m dt_binding_check' due to
-python errors and exceptions
----
- .../iio/pressure/honeywell,hsc030pa.yaml      | 156 ++++++++++++++++++
- 1 file changed, 156 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/pressure/honeywell,hsc030pa.yaml
+There are definite advantages for having compatible + reg + status in
+fixed positions, as it helps going over a whole dt to spot the huge
+mistakes (accidentially disabled, wrong address), but for the rest a
+simple alphabetical sorting is easiest to explain to people :-) .
 
-diff --git a/Documentation/devicetree/bindings/iio/pressure/honeywell,hsc030pa.yaml b/Documentation/devicetree/bindings/iio/pressure/honeywell,hsc030pa.yaml
-new file mode 100644
-index 000000000000..c7e5d3bd5ef4
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/pressure/honeywell,hsc030pa.yaml
-@@ -0,0 +1,156 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/pressure/honeywell,hsc030pa.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Honeywell TruStability HSC and SSC pressure sensor families
-+
-+description: |
-+  support for Honeywell TruStability HSC and SSC digital pressure sensor
-+  families.
-+
-+  These sensors have either an I2C, an SPI or an analog interface. Only the
-+  digital versions are supported by this driver.
-+
-+  There are 118 models with different pressure ranges available in each family.
-+  The vendor calls them "HSC series" and "SSC series". All of them have an
-+  identical programming model but differ in pressure range, unit and transfer
-+  function.
-+
-+  To support different models one need to specify the pressure range as well as
-+  the transfer function. Pressure range can either be provided via range_str or
-+  in case it's a custom chip via numerical range limits converted to pascals.
-+
-+  The transfer function defines the ranges of raw conversion values delivered
-+  by the sensor. pmin-pascal and pmax-pascal corespond to the minimum and
-+  maximum pressure that can be measured.
-+
-+  Specifications about the devices can be found at:
-+  https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/products/sensors/pressure-sensors/board-mount-pressure-sensors/trustability-hsc-series/documents/sps-siot-trustability-hsc-series-high-accuracy-board-mount-pressure-sensors-50099148-a-en-ciid-151133.pdf
-+  https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/products/sensors/pressure-sensors/board-mount-pressure-sensors/trustability-ssc-series/documents/sps-siot-trustability-ssc-series-standard-accuracy-board-mount-pressure-sensors-50099533-a-en-ciid-151134.pdf
-+
-+maintainers:
-+  - Petre Rodan <petre.rodan@subdimension.ro>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - honeywell,hsc
-+      - honeywell,ssc
-+
-+  reg:
-+    maxItems: 1
-+
-+  honeywell,transfer-function:
-+    description: |
-+      Transfer function which defines the range of valid values delivered by
-+      the sensor.
-+      0 - A, 10% to 90% of 2^14
-+      1 - B, 5% to 95% of 2^14
-+      2 - C, 5% to 85% of 2^14
-+      3 - F, 4% to 94% of 2^14
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+
-+  honeywell,range_str:
-+    description: |
-+      Five character string that defines "pressure range, unit and type"
-+      as part of the device nomenclature. In the unlikely case of a custom
-+      chip, set to "NA" and provide honeywell,pmin-pascal honeywell,pmax-pascal
-+    enum: [001BA, 1.6BA, 2.5BA, 004BA, 006BA, 010BA, 1.6MD, 2.5MD, 004MD,
-+           006MD, 010MD, 016MD, 025MD, 040MD, 060MD, 100MD, 160MD, 250MD,
-+           400MD, 600MD, 001BD, 1.6BD, 2.5BD, 004BD, 2.5MG, 004MG, 006MG,
-+           010MG, 016MG, 025MG, 040MG, 060MG, 100MG, 160MG, 250MG, 400MG,
-+           600MG, 001BG, 1.6BG, 2.5BG, 004BG, 006BG, 010BG, 100KA, 160KA,
-+           250KA, 400KA, 600KA, 001GA, 160LD, 250LD, 400LD, 600LD, 001KD,
-+           1.6KD, 2.5KD, 004KD, 006KD, 010KD, 016KD, 025KD, 040KD, 060KD,
-+           100KD, 160KD, 250KD, 400KD, 250LG, 400LG, 600LG, 001KG, 1.6KG,
-+           2.5KG, 004KG, 006KG, 010KG, 016KG, 025KG, 040KG, 060KG, 100KG,
-+           160KG, 250KG, 400KG, 600KG, 001GG, 015PA, 030PA, 060PA, 100PA,
-+           150PA, 0.5ND, 001ND, 002ND, 004ND, 005ND, 010ND, 020ND, 030ND,
-+           001PD, 005PD, 015PD, 030PD, 060PD, 001NG, 002NG, 004NG, 005NG,
-+           010NG, 020NG, 030NG, 001PG, 005PG, 015PG, 030PG, 060PG, 100PG,
-+           150PG, NA]
-+    $ref: /schemas/types.yaml#/definitions/string
-+
-+  honeywell,pmin-pascal:
-+    description: |
-+      Minimum pressure value the sensor can measure in pascal.
-+      To be specified only if honeywell,range_str is set to "NA".
-+    $ref: /schemas/types.yaml#/definitions/int32
-+
-+  honeywell,pmax-pascal:
-+    description: |
-+      Maximum pressure value the sensor can measure in pascal.
-+      To be specified only if honeywell,range_str is set to "NA".
-+    $ref: /schemas/types.yaml#/definitions/int32
-+
-+  vdd-supply:
-+    description: |
-+      Provide VDD power to the sensor (either 3.3V or 5V depending on the chip).
-+      Optional, activate only if required by the target board.
-+
-+  spi-max-frequency:
-+    description: SPI clock to be kept between 50 and 800kHz
-+
-+  clock-frequency:
-+    description: i2c clock to be kept between 100 and 400kHz
-+
-+required:
-+  - compatible
-+  - reg
-+  - honeywell,transfer-function
-+  - honeywell,range_str
-+  - clock-frequency
-+  - spi-max-frequency
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    i2c {
-+        status = "okay";
-+        clock-frequency = <400000>;
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        HSCMRNN030PA2A3@28 {
-+          status = "okay";
-+          compatible = "honeywell,hsc";
-+          reg = <0x28>;
-+
-+          honeywell,transfer-function = <0>;
-+          honeywell,range_str = "030PA";
-+        };
-+    };
-+
-+    spi {
-+        # note that MOSI is not required by this sensor
-+        status = "okay";
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        HSCMLNN100PASA3@0 {
-+          status = "okay";
-+          compatible = "honeywell,hsc";
-+          reg = <0>;
-+          spi-max-frequency = <800000>;
-+
-+          honeywell,transfer-function = <0>;
-+          honeywell,range_str = "100PA";
-+        };
-+
-+        HSC_CUSTOM_CHIP@0 {
-+          status = "okay";
-+          compatible = "honeywell,hsc";
-+          reg = <1>;
-+          spi-max-frequency = <800000>;
-+
-+          honeywell,transfer-function = <0>;
-+          honeywell,range_str = "NA";
-+          honeywell,pmin-pascal = <0>;
-+          honeywell,pmax-pascal = <206850>;
-+        };
-+
-+    };
--- 
-2.41.0
+And alphabetic elements are also easier on my eyes.
+
+
+I just think having a short clean set of rules like Krzysztof proposed,
+is easier to follow and "enforce" and also most likely doesn't deter
+people from contributing, if mainline work is not their main occupation.
+
+
+Heiko
+
+
 
 
