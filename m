@@ -1,143 +1,117 @@
-Return-Path: <devicetree+bounces-16455-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16456-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 497C07EEBB5
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 05:30:04 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C3EA7EEBC7
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 05:54:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E27001F235A4
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 04:30:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A3172280F66
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 04:54:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99860CA6B;
-	Fri, 17 Nov 2023 04:29:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B52433FD;
+	Fri, 17 Nov 2023 04:54:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="D7d9F09D"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Vnge7/5b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36D121A1;
-	Thu, 16 Nov 2023 20:29:56 -0800 (PST)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AH2r1Kb022534;
-	Fri, 17 Nov 2023 04:29:53 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=UMZOIO9trN3OtwWbqyrliZaioQtUGn+fkfAHSFLVDpw=;
- b=D7d9F09Du5Gk6iuwjy/PdYgQkI36DHQKXFKO6K6rpEG6BVCTJ+S5ibncM/B++i+tU8N6
- ftseZ/N4p8r+y6HaJusUIMxQEWSFYejhbc7N7YmeB70exm2kqCNGkyqXUXH5OtXD3BHh
- LpPWMHLE+k31IDKkVlVwdstkqRY0OuqYiDE6XexKIeUF59IJdqGBtP1r2z4GF3Uglpih
- ZXTjgO4pHLWXMpZ0uL9+AwokgFDY9H8F7X4TH40fNe2BCRUyTIqQ+imtp964Gyip0K2z
- ktywBNxLEtd9SOyPGkQgrZ0pfryFpEZ3+gAM7CaHA46fMlYYCGyi3M1bkCeIQU/dG2OO 1A== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3udxs3880j-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 17 Nov 2023 04:29:53 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AH4Tq28015854
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 17 Nov 2023 04:29:52 GMT
-Received: from [10.79.43.91] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Thu, 16 Nov
- 2023 20:29:47 -0800
-Message-ID: <d01ea2be-176c-aa0e-38d6-f721a1a29edb@quicinc.com>
-Date: Fri, 17 Nov 2023 09:59:44 +0530
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A9CD1A1;
+	Thu, 16 Nov 2023 20:54:14 -0800 (PST)
+Received: by mail-pf1-x433.google.com with SMTP id d2e1a72fcca58-6b77ab73c6fso1215846b3a.1;
+        Thu, 16 Nov 2023 20:54:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1700196854; x=1700801654; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/lmKwmdeL65ZlMvWyE8ViyW/IEvLXZ106QkyWY1HoSE=;
+        b=Vnge7/5biuqSbk0RzDLJ+6eoIX/gdp1M90IHNnXc34hA24LYKK36nbuFSp5Itej4jD
+         B7aUS1/O5ekEtWFsxhwzDCteEoteXGg+0PpdcVuzlbPB3SMhn3/IMynZlaBQmAalNb0n
+         rmL7M9mlC5YKukCNQE8qp/juNsUaixBVg2pwv1wvVAiJF2tAquCsAtkjpJi4SXoXIdv7
+         F4+S1pfyR0aiFTVQZMFif1Y4jOvN42qvMAEJrtcvxoW7nFiZdSvC4G6VUQBIUim+UxZJ
+         6eJdVcvZ7XJvprVAFKEHV4qCqZaNVAYfB3UUU04o3CUu3DNMYi7bhSwIascyyfeVJbp3
+         fZ+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700196854; x=1700801654;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/lmKwmdeL65ZlMvWyE8ViyW/IEvLXZ106QkyWY1HoSE=;
+        b=UJqOY8TQ6WhS2IMtyRY63v2rYoTvKF2mAhqOxXJdyPWCNF5xp4MvKKRc1SXtDA3YlX
+         0K4fdcYADmlxOafEwRVn84P/nMOJqa9wlwU6p/hqr3T7dv0dC2H2a75UOYTPpT+Zxrm7
+         4h4zlAfM65b7i+bKh62T8/eqKmCB59DQjs8HPWCQkPK10nwTao9dqczjjg1BcUfsDCTq
+         4nedr3zr47lxJL4IU/C+HnqNHu3HFfBQyGKUBQpX1beOBEnlHI8QzQ9P1v+lXJ1tsQpy
+         A2wTPmotMBzpa/lD4h31+yLw63g1BqIgP/k7edDnNkkvxVJJodYBUjwmpPcD9VXzmAzd
+         CJuA==
+X-Gm-Message-State: AOJu0Yz/fNLC7RtBiEz9vU1lG33qcqnhSuk7f4z7WD3stw9GWOU7hnVR
+	Rvt4s3+nVbN9YVf8Q/RXTYBTWR6S4tU=
+X-Google-Smtp-Source: AGHT+IGEWBjc364kyBtrL2ltQbOgcPCiHETUvmBsIqW35a7IsgEIWjdVMMe5fccFaEPw0ylxLY/kTA==
+X-Received: by 2002:a05:6a00:310f:b0:6c4:d6fa:ee9d with SMTP id bi15-20020a056a00310f00b006c4d6faee9dmr5104694pfb.1.1700196853698;
+        Thu, 16 Nov 2023 20:54:13 -0800 (PST)
+Received: from [10.10.14.80] (1-34-21-66.hinet-ip.hinet.net. [1.34.21.66])
+        by smtp.gmail.com with ESMTPSA id v1-20020aa78081000000b0065a1b05193asm568042pff.185.2023.11.16.20.54.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 16 Nov 2023 20:54:13 -0800 (PST)
+Message-ID: <7080c9f3-2a57-4855-be1b-9a206f6ef8e1@gmail.com>
+Date: Fri, 17 Nov 2023 12:52:33 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 1/2] dt-bindings: interconnect: Add Qualcomm SC8380XP SoC
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] dt-bindings: hwmon: Add mps mp5990 driver bindings
 Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <andersson@kernel.org>, <djakov@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>
-CC: <agross@kernel.org>, <conor+dt@kernel.org>, <quic_rjendra@quicinc.com>,
-        <abel.vesa@linaro.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quic_tsoni@quicinc.com>,
-        <neil.armstrong@linaro.org>
-References: <20231025134049.9734-1-quic_sibis@quicinc.com>
- <20231025134049.9734-2-quic_sibis@quicinc.com>
- <67345a93-2c29-4b66-95dc-34917affd3b1@linaro.org>
-From: Sibi Sankar <quic_sibis@quicinc.com>
-In-Reply-To: <67345a93-2c29-4b66-95dc-34917affd3b1@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: VG2Dv0oFjuG4lKVWFbs7MvnkNCIVrd4Q
-X-Proofpoint-ORIG-GUID: VG2Dv0oFjuG4lKVWFbs7MvnkNCIVrd4Q
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-17_01,2023-11-16_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- phishscore=0 bulkscore=0 clxscore=1011 mlxlogscore=893 mlxscore=0
- adultscore=0 spamscore=0 priorityscore=1501 malwarescore=0 suspectscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311060000 definitions=main-2311170031
-
-Hey Krzysztof,
+To: Guenter Roeck <linux@roeck-us.net>
+Cc: patrick@stwcx.xyz, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
+ Jonathan Corbet <corbet@lwn.net>, Joel Stanley <joel@jms.id.au>,
+ Chanh Nguyen <chanh@os.amperecomputing.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+ linux-doc@vger.kernel.org
+References: <20231113155008.2147090-1-peteryin.openbmc@gmail.com>
+ <20231113155008.2147090-2-peteryin.openbmc@gmail.com>
+ <a3445201-58f2-42c6-bef7-ca6968fd80d6@roeck-us.net>
+ <69657f96-4849-4134-911d-4785d5d6b8d8@gmail.com>
+ <140086a7-c89d-48b7-9574-7db28dcc056e@roeck-us.net>
+From: PeterYin <peteryin.openbmc@gmail.com>
+In-Reply-To: <140086a7-c89d-48b7-9574-7db28dcc056e@roeck-us.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
 
-On 10/25/23 19:20, Krzysztof Kozlowski wrote:
-> On 25/10/2023 15:40, Sibi Sankar wrote:
->> From: Rajendra Nayak <quic_rjendra@quicinc.com>
+
+Guenter Roeck 於 11/17/23 12:16 寫道:
+> On Fri, Nov 17, 2023 at 11:18:47AM +0800, PeterYin wrote:
 >>
->> The Qualcomm SC8380XP SoC has several bus fabrics that could be controlled
->> and tuned dynamically according to the bandwidth demand.
+>>
+>> Guenter Roeck 於 11/16/23 06:27 寫道:
+>>> On Mon, Nov 13, 2023 at 11:50:07PM +0800, Peter Yin wrote:
+>>>> Add a device tree bindings for mp5990 device.
+>>>>
+>>>> Signed-off-by: Peter Yin <peteryin.openbmc@gmail.com>
+>>>> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+>>>
+>>> What branch is this patch based on ? git fails to apply it.
+>>>
+>>> Guenter
+>> I think I don't pull the last version. I can rebase it and push the new
+>> version. Thanks for your feedback.
 > 
+> Question is: Last version of what ? Best would be if it was based
+> on mainline.
 > 
-> ...
-> 
->> +  reg:
->> +    maxItems: 1
->> +
->> +allOf:
->> +  - $ref: qcom,rpmh-common.yaml#
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - qcom,sc8380xp-clk-virt
->> +              - qcom,sc8380xp-mc-virt
->> +    then:
->> +      properties:
->> +        reg: false
->> +    else:
->> +      required:
->> +        - reg
->> +
->> +required:
->> +  - compatible
-> 
-> By convention we put required: block before allOf: and that's what
-> existing recent code has (qcom,sc8280xp-rpmh.yaml or
-> qcom,sc7280-rpmh.yaml' for example). Please use recent files as a
-> template for new bindings, so there will not be a need to fix the same
-> things again.
-> 
-> With fixes like in qcom,sc7280-rpmh.yaml:
+> Thanks,
+> Guenter
 
-Thanks will fix ^^
+It is base on Linux 6.5.4, OpenBMC Kernel tree
+https://github.com/openbmc/linux/commit/2ba0babe7865cd5f4fac3d76ad15d9b6131bd283
 
--Sibi
+I can regenerate it on mainline.
 
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
->> +
->> +unevaluatedProperties: false
-> Best regards,
-> Krzysztof
-> 
+Thanks,
+Peter.
 
