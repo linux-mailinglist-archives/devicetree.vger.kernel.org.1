@@ -1,86 +1,100 @@
-Return-Path: <devicetree+bounces-16462-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16464-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D07D27EEBF9
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 06:30:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 366527EEC02
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 06:40:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8C46A28102E
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 05:30:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DC424281116
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 05:40:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35BB01383;
-	Fri, 17 Nov 2023 05:30:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80CD4D2EC;
+	Fri, 17 Nov 2023 05:40:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JAY5QYGv"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="sFf5faKY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1BB0A6;
-	Thu, 16 Nov 2023 21:30:46 -0800 (PST)
-Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2c742186a3bso20509861fa.1;
-        Thu, 16 Nov 2023 21:30:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1700199045; x=1700803845; darn=vger.kernel.org;
-        h=content-transfer-encoding:to:subject:message-id:date:from
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=6+5OfOb2sZO7MAbLVWKJTky5HfBI5gwmrmh4yrNi8bE=;
-        b=JAY5QYGvB8oH5aK9ZzPfwtrJu9dyjUWq5q7r+KmeWMNXkvswsl7ReFZB68RNurztf6
-         SBNVV8wlyNb8+YWVxpcMk8lGJrjKuI9+qzGcELEr7esL2OEaDnE9uUPteweYoac2VV03
-         1j6cBzSvz/icRZxOVKkQTPC7ID6zcravFNwGi8u5ISX0GiHDID1aLkPsy4K+fAUSNoV5
-         X0+/UXib4CL1o07cXpmMhg/df7oAMGWxizF+FTEgtRnWekZkUe1bqrNdbBUCo4foBCQl
-         FPYEgZfjPbG0nsFjFfTZvBQ8eXxjSU1RMfs+jj0KiCbRez7+HJRQhVytysdjeskN9+c2
-         RseA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700199045; x=1700803845;
-        h=content-transfer-encoding:to:subject:message-id:date:from
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=6+5OfOb2sZO7MAbLVWKJTky5HfBI5gwmrmh4yrNi8bE=;
-        b=UFGLJFCVrd2VHgKp28Cwnx1pA1ZwNEQ12e6dJtWwSEsGdQwjyn4z6GyWNIUqM51lvu
-         QxSkvn4IwtZHCIs1djEe49OqACL7f/t4KXz86FP4nc0vqpHeAZ8o6MZFdjtTesrHNH8W
-         N7ZZLPCrgd5kxSOPNMdT2Nz4wfZ8WouqFZ0uZ7QsPHHiJfmVNqdMpAAsmuCWbI2d+PhK
-         T0KoFOSlJIGALrLTTU+Rsp3mdgHRAZVrGAHnGNUUzs5g8HjNOZo17cG0wZPybAu18ZL6
-         yL9kyvjzA6pJHhBRnv7sJJvY8mnhxJdtUTcZgneytqRFUbf3ee8h7k8OIkq8WRyvv1U/
-         GkmA==
-X-Gm-Message-State: AOJu0Yzbd+ozi6qQKvccw0F84/T3pwcecsIAfT7FA/rhmCrdngqSxQoN
-	iWiBx+Pw8K2RPR7WBhOsbkWT2pAf5dI6WNzhkfmnbKCVc9w=
-X-Google-Smtp-Source: AGHT+IFkqKplUEU97iUGS1k/jBNokuHKyp3swU6pHYOmFPf12NGCOQ/6JotOz8HTpkiR8bJHkmUX9TlxFfLQslWUNNs=
-X-Received: by 2002:a2e:3208:0:b0:2c6:f6eb:b396 with SMTP id
- y8-20020a2e3208000000b002c6f6ebb396mr8092700ljy.40.1700199044527; Thu, 16 Nov
- 2023 21:30:44 -0800 (PST)
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 917421A8;
+	Thu, 16 Nov 2023 21:40:05 -0800 (PST)
+X-UUID: be1f892c850b11ee8051498923ad61e6-20231117
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=SakHYGlnJTkESNc4jc3OYlJVVY65U2yDXuFC27guwwE=;
+	b=sFf5faKY5f7AlBZoZs9ccrUWkzp4ak9bbZDOz7n6e1tIYBjIMxpGCwOkj3tyEm/Po1pvlRXKhGNWMrQZdafvmI64R7v/2BEUMvuQ+rFXRqasJJtpKauqKVhXKTKQbLRmAZOZ9j4OjYskdSRgcFOHB6u/4N8QLBFuAaormWi2CPs=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.33,REQID:9145cec3-6317-4481-9e9a-16e1456d1978,IP:0,U
+	RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+	:release,TS:-5
+X-CID-META: VersionHash:364b77b,CLOUDID:8edda2fc-4a48-46e2-b946-12f04f20af8c,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
+	DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
+X-UUID: be1f892c850b11ee8051498923ad61e6-20231117
+Received: from mtkmbs14n2.mediatek.inc [(172.21.101.76)] by mailgw02.mediatek.com
+	(envelope-from <yu-chang.lee@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1633126473; Fri, 17 Nov 2023 13:39:57 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Fri, 17 Nov 2023 13:39:56 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Fri, 17 Nov 2023 13:39:56 +0800
+From: yu-chang.lee <yu-chang.lee@mediatek.com>
+To: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>
+CC: Garmin Chang <garmin.chang@mediatek.com>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>, "yu-chang . lee"
+	<yu-chang.lee@mediatek.com>
+Subject: [PATCH v3 0/2] Migrate MT8188 VPPSYS 0/1 to mtk-mmsys driver
+Date: Fri, 17 Nov 2023 13:39:32 +0800
+Message-ID: <20231117053934.10571-1-yu-chang.lee@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Date: Fri, 17 Nov 2023 06:30:32 +0100
-Message-ID: <CACna6rwZ8q1Zoz4UAryipsZ90yVD86BrcTNv1yKyS8F4DXsuSQ@mail.gmail.com>
-Subject: mt76 DT binding: undocumented interrupts
-To: "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, Peter Chiu <chui-hao.chiu@mediatek.com>, 
-	Sam Shih <sam.shih@mediatek.com>, Ryder Lee <ryder.lee@mediatek.com>, 
-	Felix Fietkau <nbd@nbd.name>, Lorenzo Bianconi <lorenzo@kernel.org>, 
-	Shayne Chen <shayne.chen@mediatek.com>, Sean Wang <sean.wang@mediatek.com>, 
-	linux-mediatek <linux-mediatek@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+X-MTK: N
+
+Changes in v3:
+- Separate binding patch from driver patch
+
+Changes in v2:
+- Refine commit message
+- Refine commit title
 
 Hi,
 
-I noticed that Wi-Fi on mt7986 has 4 interrupts instead of 1. See:
-arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-300218b0503d ("arm64: dts: mt7986: add built-in Wi-Fi device nodes")
+The purpose of series is to separate MT8188 VPPSYS-related binding patch
+from the original mailing list mentioned below:
+https://lore.kernel.org/all/20231116080129.20617-1-yu-chang.lee@mediatek.com/
 
-Those interrupts seem unused by Linux's mt76 driver and are
-undocumented in mediatek,mt76.yaml.
+These binding files reflect VPPSYS' dependency on mtk-mmsys for mediatek
+MT8188 platform.
 
-Can someone explain what those interrupts are, or just send DT binding
-update patch, please? I'd like to get DTS matching DT binding and
-passing dtbs_check validation.
 
---=20
-Rafa=C5=82
+yu-chang.lee (2):
+  dt-bindings: clock: mediatek: Remove compatible for MT8188 VPPSYS
+  dt-bindings: arm: mediatek: mmsys: Add VPPSYS compatible for MT8188
+
+ .../devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml        | 2 ++
+ .../devicetree/bindings/clock/mediatek,mt8188-clock.yaml        | 2 --
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+-- 
+2.18.0
+
 
