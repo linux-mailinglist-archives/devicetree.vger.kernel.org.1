@@ -1,92 +1,126 @@
-Return-Path: <devicetree+bounces-16696-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16697-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DE087EF540
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 16:26:55 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D2B87EF57F
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 16:42:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 21E68B20A59
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 15:26:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 17388280D80
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 15:42:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C36DB1A59F;
-	Fri, 17 Nov 2023 15:26:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4991F30F8F;
+	Fri, 17 Nov 2023 15:42:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="B31NSXJE"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Yb+6bvWS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A4D610D9;
-	Fri, 17 Nov 2023 07:26:42 -0800 (PST)
-Received: by mail-pf1-x436.google.com with SMTP id d2e1a72fcca58-6c320a821c4so1929869b3a.2;
-        Fri, 17 Nov 2023 07:26:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1700234801; x=1700839601; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ddFA885Lew1a2TIxEdkKv5i0KGKf0gF/uEp1+TNXPM0=;
-        b=B31NSXJER03zss/suRoC8C303zs8N2sFp5oBVjcVsck/QZ/iM8S0WHPA2jlnAnzCfM
-         fj7SA9F0HIU8ayTujLwZorl/Hh7/AfqZCJ9ZQzRb0VpvDmesm/jX6jkXyRKGDCLOyNLr
-         jhR2AemYO31/qX2cbs2tTR5nymo4HENwYLQc3nO5VwewjXkPpKHSTSxAYwRestcy0d0x
-         kuoocZU9o43Fh6T2pQsy6NNR0H72nYhHXz/63LD8ICRCflReIjEOg9Wom/td7iCfnDiH
-         WWJ6/SW+c0O2vZa6ft9DIvt9OZcrSRtIKmjkp5oYmfQ+jLkqHLsPsPiWv1ULY+Hw4mQZ
-         RGBA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700234801; x=1700839601;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ddFA885Lew1a2TIxEdkKv5i0KGKf0gF/uEp1+TNXPM0=;
-        b=Gh8Fz97yVdJsmXnqzic/rfZygdKZussZEn+eb6bTH3tsuWVHrpD8As839RkpCUN9Pb
-         qcH+lAcJb/Y6UKFIsAbjbEzPiFs3Am1ztNlTx2z49y432e5kNhRUHcbx9eP0Djfv4kh3
-         g7BnUmOw7hAuTnsGkzns3TZwNWwQafYVTbH6sUTFeGottkMV0S9/R2PjegcitBDkFMA+
-         I6dLlt1VvKL0C5h7FL5ywmH7jN+JVjV2Woj9bqtKxiHtnBQtVfB+kssI9RAohCGjcUio
-         u5ZQjUtcldEgmcABlH3IjTo+B+bJUjzpQesVuR1AP0Jfi3jbcAaBe7mvdVzO5JLt2Z/h
-         qOkw==
-X-Gm-Message-State: AOJu0YxP+nzjchfh4OHdaOZjcSpZyQUPqVLBQRwnw6wTgNi+F5J3Ygk6
-	BA5eCqG4iUI2P377ZTsml1I=
-X-Google-Smtp-Source: AGHT+IGkJBJDsY3m5GSxybyrpFYcyEdmYPgHhELkWF11rl2pBhQgEbEKLNqgWAWqyowjUa0KQp8WWQ==
-X-Received: by 2002:a17:90b:1a8c:b0:27d:ba33:6990 with SMTP id ng12-20020a17090b1a8c00b0027dba336990mr16366785pjb.10.1700234801427;
-        Fri, 17 Nov 2023 07:26:41 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id gq17-20020a17090b105100b00283a09df0besm413384pjb.43.2023.11.17.07.26.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Nov 2023 07:26:41 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Fri, 17 Nov 2023 07:26:39 -0800
-From: Guenter Roeck <linux@roeck-us.net>
-To: Peter Yin <peteryin.openbmc@gmail.com>
-Cc: patrick@stwcx.xyz, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jean Delvare <jdelvare@suse.com>, Jonathan Corbet <corbet@lwn.net>,
-	Joel Stanley <joel@jms.id.au>,
-	Chanh Nguyen <chanh@os.amperecomputing.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] hwmon: (pmbus) Add support for MPS Multi-phase
- mp5990
-Message-ID: <68bbb3c3-7bb7-4b8f-bfb2-2fb855a9f67a@roeck-us.net>
-References: <20231113155008.2147090-1-peteryin.openbmc@gmail.com>
- <20231113155008.2147090-3-peteryin.openbmc@gmail.com>
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1FE6E6;
+	Fri, 17 Nov 2023 07:42:33 -0800 (PST)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 9B8D61BF204;
+	Fri, 17 Nov 2023 15:42:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1700235752;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=yNqh1W+l1xyxCiKwmG3HCTekXHZkRRwcjr0CZxdvgL4=;
+	b=Yb+6bvWSy9bvYwB3oTuh9ttCmd2iHinW74sbHwSeHKzbL+T5BHhSwT+nXBLUbo82l0M5vj
+	xTRY2Sj8+Sp+TKAsZRpWT2Q9s66zL+ZbYX9sz8OIG3rlXfpKhMcpP+E6L5p8BoqUO5M+QH
+	POxIUP1bazxDidjeESogrwg5e8GfzAdUoLFTxAfQyS3xoEI6FPe3Am7F1ZqjoPdQfUyDg7
+	NGHfJugs5alDUL/aESpAoUWg0mE85UADWmKDsOhxnsOSk1S6IHfUmpk79CDmxUoWlkpdJA
+	sxqOH4wWFc0d64qeRe5oXFl7TpbMb9HK3+4zDbIcSDfOBJyoWShppANZEQCoLA==
+From: Mehdi Djait <mehdi.djait@bootlin.com>
+To: mchehab@kernel.org,
+	heiko@sntech.de,
+	hverkuil-cisco@xs4all.nl,
+	laurent.pinchart@ideasonboard.com,
+	krzysztof.kozlowski+dt@linaro.org,
+	robh+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	thomas.petazzoni@bootlin.com,
+	alexandre.belloni@bootlin.com,
+	maxime.chevallier@bootlin.com,
+	paul.kocialkowski@bootlin.com,
+	Mehdi Djait <mehdi.djait@bootlin.com>
+Subject: [PATCH v9 0/3] media: i2c: Introduce driver for the TW9900 video decoder
+Date: Fri, 17 Nov 2023 16:42:26 +0100
+Message-ID: <cover.1700235276.git.mehdi.djait@bootlin.com>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231113155008.2147090-3-peteryin.openbmc@gmail.com>
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: mehdi.djait@bootlin.com
 
-On Mon, Nov 13, 2023 at 11:50:08PM +0800, Peter Yin wrote:
-> Add support for mp5990 device from Monolithic Power Systems, Inc. (MPS)
-> vendor. This is a Hot-Swap Controller.
-> 
-> Signed-off-by: Peter Yin <peteryin.openbmc@gmail.com>
+Hello everyone,
 
-Applied together with the first patch of the series.
+V8 of the series adding support for the Techwell TW9900 multi standard decoder.
+It's a pretty simple decoder compared to the TW9910, since it doesn't have a 
+built-in scaler/crop engine.
 
-Guenter
+v8 => v9:
+- added a "depends on" GPIOLIB, PM and "select" V4L2_ASYNC to Kconfig
+- reworked the locking to protect the tw9900->streaming global state
+- folded power_on and power_off into runtime_resume and runtime_suspend
+  callbacks
+- used pm_runtime_resume_and get instead pm_runtime_get_sync
+
+v7 => v8:
+- fixed the number of analog input ports: it is just one.
+- added endpoints of the analog input port
+- added vdd-supply to the required in the dt-binding documentation
+- added back pm_runtime
+- added a mutex to Serialize access to hardware and current mode configuration
+- split get_fmt and set_fmt callbacks 
+- removed the tw9900_cancel_autodetect()
+
+v6 => v7:
+- added powerdown-gpios and input ports to dt-bindings
+- added #include <linux/bitfield.h> to fix a Warning from the kernel
+  robot
+- removed a dev_info and replaced a dev_err by dev_err_probe
+
+v5[1] => v6:
+- dropped .skip_top and .field in the supported_modes
+- added error handling for the i2c writes/reads
+- added the colorimetry information to fill_fmt
+- removed pm_runtime
+- added the g_input_status callback
+- dropped SECAM
+- dropped the non-standard PAL/NTSC variants
+
+Any feedback is appreciated,
+
+Mehdi Djait
+
+media_tree, base-commit: 3e238417254bfdcc23fe207780b59cbb08656762
+
+[1] https://lore.kernel.org/linux-media/20210401070802.1685823-1-maxime.chevallier@bootlin.com/
+
+Mehdi Djait (3):
+  dt-bindings: vendor-prefixes: Add techwell vendor prefix
+  media: dt-bindings: media: i2c: Add bindings for TW9900
+  media: i2c: Introduce a driver for the Techwell TW9900 decoder
+
+ .../bindings/media/i2c/techwell,tw9900.yaml   | 137 +++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ MAINTAINERS                                   |   6 +
+ drivers/media/i2c/Kconfig                     |  15 +
+ drivers/media/i2c/Makefile                    |   1 +
+ drivers/media/i2c/tw9900.c                    | 777 ++++++++++++++++++
+ 6 files changed, 938 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/techwell,tw9900.yaml
+ create mode 100644 drivers/media/i2c/tw9900.c
+
+-- 
+2.41.0
+
 
