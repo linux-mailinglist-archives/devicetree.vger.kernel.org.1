@@ -1,116 +1,87 @@
-Return-Path: <devicetree+bounces-16436-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16438-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 068367EEA50
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 01:29:22 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94F057EEA56
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 01:30:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6BFA0B20A4E
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 00:29:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3ECCE1F2587C
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 00:30:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 140B338F;
-	Fri, 17 Nov 2023 00:29:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E330634;
+	Fri, 17 Nov 2023 00:30:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="OIOGtxRp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CUZcgwo/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54F22129;
-	Thu, 16 Nov 2023 16:29:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1700180950; x=1731716950;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=G81BQ2iXB3r4UGdfkxg8I/QkdGorZFJiy/L5uN7kqOU=;
-  b=OIOGtxRpDpLTx70EWsLcMRPrizy1zfEwG84cKKuPHzdODasI8cEdbjOt
-   sczoaOh53BvouiR/Pf3dr/+2u+Xhw4UJYo3U7tcholoZNmiWjN7lbqd31
-   QGzlRpBYpKAsi469ml6051NgcokI+9cVJw6aGMAFFSd4Z4wRBo393dR5y
-   jmVhvm6fOgGAvdtHP/gUaEoKsO+sHHKrQepzn7eF42vLeMWUb7fe28l0k
-   ARyX8xdsZJXgY0HBqijRSXjwl/KE3WjkMhZb/cKqbxW83UidraXO3AMRg
-   fGBhyBVi9FlZ8dAesGd2tb73kjYS8F6kg3bkE+3lWLReJrSh6MhkKRoap
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="371387574"
-X-IronPort-AV: E=Sophos;i="6.04,205,1695711600"; 
-   d="scan'208";a="371387574"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Nov 2023 16:29:09 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="909280262"
-X-IronPort-AV: E=Sophos;i="6.04,205,1695711600"; 
-   d="scan'208";a="909280262"
-Received: from lkp-server02.sh.intel.com (HELO b8de5498638e) ([10.239.97.151])
-  by fmsmga001.fm.intel.com with ESMTP; 16 Nov 2023 16:29:04 -0800
-Received: from kbuild by b8de5498638e with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1r3mjG-0002AR-04;
-	Fri, 17 Nov 2023 00:29:02 +0000
-Date: Fri, 17 Nov 2023 08:28:31 +0800
-From: kernel test robot <lkp@intel.com>
-To: Romain Gantois <romain.gantois@bootlin.com>, davem@davemloft.net,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Paul Gazzillo <paul@pgazz.com>,
-	Necip Fazil Yildiran <fazilyildiran@gmail.com>,
-	oe-kbuild-all@lists.linux.dev,
-	Romain Gantois <romain.gantois@bootlin.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, thomas.petazzoni@bootlin.com,
-	Andrew Lunn <andrew@lunn.ch>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	linux-arm-kernel@lists.infradead.org,
-	Vladimir Oltean <vladimir.oltean@nxp.com>,
-	Luka Perkov <luka.perkov@sartura.hr>,
-	Robert Marko <robert.marko@sartura.hr>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@somainline.org>
-Subject: Re: [PATCH net-next v3 3/8] net: qualcomm: ipqess: introduce the
- Qualcomm IPQESS driver
-Message-ID: <202311170830.ltsTVtIh-lkp@intel.com>
-References: <20231114105600.1012056-4-romain.gantois@bootlin.com>
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1E87384;
+	Fri, 17 Nov 2023 00:30:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 517BCC43391;
+	Fri, 17 Nov 2023 00:30:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1700181023;
+	bh=HlypnzxeE3S9lFFNCAPZqir+lGEfON+V4ihvlsSuaB4=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=CUZcgwo/BdCJXTHjVctNu3MZOGJd1/HCRmPM9ZqC+UnMm9FXsQf4wzrwntzL/SYPR
+	 4lSyyRw60HMadKhEnTOt/svDNZHQAghfwcEgi1RmiRss/0H1pzPcH6IFpxOK940G/f
+	 tyvn9WPVNn78WtvIcNqmn2HiFJSzlJ0zn6WqKExG8XbyA4+0OFbsrTbnGqQc/+WtYd
+	 ZffCjMi9ECydsuxcnaQRJn7kz7ywYye6iEkD+r2+oqLVUGTNbr2pKy91yc5W9rkIRE
+	 PZq/nL4aNjxnaTwLGtUN8Wy6mDhbrx5+CkIhoj4hhX2uQyvmDQiLLkc1FFVeyPeD7a
+	 xYq2PtCqwepOQ==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 307A3E00092;
+	Fri, 17 Nov 2023 00:30:23 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231114105600.1012056-4-romain.gantois@bootlin.com>
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH] dt-bindings: net: renesas,etheravb: Document RZ/Five SoC
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <170018102319.11691.12519242645299739953.git-patchwork-notify@kernel.org>
+Date: Fri, 17 Nov 2023 00:30:23 +0000
+References: <20231115210448.31575-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20231115210448.31575-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: s.shtylyov@omp.ru, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ geert+renesas@glider.be, sergei.shtylyov@gmail.com, magnus.damm@gmail.com,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ biju.das.jz@bp.renesas.com, prabhakar.mahadev-lad.rj@bp.renesas.com
 
-Hi Romain,
+Hello:
 
-kernel test robot noticed the following build warnings:
+This patch was applied to netdev/net-next.git (main)
+by David S. Miller <davem@davemloft.net>:
 
-[auto build test WARNING on net-next/main]
+On Wed, 15 Nov 2023 21:04:48 +0000 you wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> 
+> The Gigabit Ethernet IP block on the RZ/Five SoC is identical to one
+> found on the RZ/G2UL SoC. "renesas,r9a07g043-gbeth" compatible string
+> will be used on the RZ/Five SoC so to make this clear and to keep this
+> file consistent, update the comment to include RZ/Five SoC.
+> 
+> [...]
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Romain-Gantois/dt-bindings-net-Introduce-the-Qualcomm-IPQESS-Ethernet-switch/20231114-185953
-base:   net-next/main
-patch link:    https://lore.kernel.org/r/20231114105600.1012056-4-romain.gantois%40bootlin.com
-patch subject: [PATCH net-next v3 3/8] net: qualcomm: ipqess: introduce the Qualcomm IPQESS driver
-config: i386-kismet-CONFIG_NET_DSA-CONFIG_QCOM_IPQ4019_ESS-0-0 (https://download.01.org/0day-ci/archive/20231117/202311170830.ltsTVtIh-lkp@intel.com/config)
-reproduce: (https://download.01.org/0day-ci/archive/20231117/202311170830.ltsTVtIh-lkp@intel.com/reproduce)
+Here is the summary with links:
+  - dt-bindings: net: renesas,etheravb: Document RZ/Five SoC
+    https://git.kernel.org/netdev/net-next/c/7c93d177d913
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202311170830.ltsTVtIh-lkp@intel.com/
-
-kismet warnings: (new ones prefixed by >>)
->> kismet: WARNING: unmet direct dependencies detected for NET_DSA when selected by QCOM_IPQ4019_ESS
-   
-   WARNING: unmet direct dependencies detected for NET_DSA
-     Depends on [n]: NET [=y] && (BRIDGE [=n] || BRIDGE [=n]=n) && (HSR [=n] || HSR [=n]=n) && INET [=n] && NETDEVICES [=y]
-     Selected by [y]:
-     - QCOM_IPQ4019_ESS [=y] && NETDEVICES [=y] && ETHERNET [=y] && NET_VENDOR_QUALCOMM [=y] && (OF [=n] && ARCH_QCOM || COMPILE_TEST [=y])
-
+You are awesome, thank you!
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
 
