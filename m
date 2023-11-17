@@ -1,406 +1,300 @@
-Return-Path: <devicetree+bounces-16470-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16471-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06CEA7EECAD
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 08:33:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B86607EECBA
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 08:39:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AF4D7280E22
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 07:33:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6D21D280EF5
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 07:39:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62EE1DF4F;
-	Fri, 17 Nov 2023 07:33:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E0B0D529;
+	Fri, 17 Nov 2023 07:39:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dFPoIwuq"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="RY2im7SU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DAC4109;
-	Thu, 16 Nov 2023 23:33:33 -0800 (PST)
-Received: by mail-pf1-x431.google.com with SMTP id d2e1a72fcca58-6bf03b98b9bso2124010b3a.1;
-        Thu, 16 Nov 2023 23:33:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1700206412; x=1700811212; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2NGlGNctGDlanhrEHu2JUTOFi1+KtX2xOYnzLURQZaU=;
-        b=dFPoIwuqgL5JL7Ya+2iWMuujwfjNI3Yknc0/TGsJ2+cKr1oitdKiaxyJRxKw+hVG53
-         I2mINxYXt20KuuGauDxa/rQuHrIOUEaSD/JEEF4+LfjrdAqAskxMfChCAHgQSNgMITAE
-         B6OuhZKu1GfP/wIt9D2oAOTZSYOHchYSU/8pU1hj2THKH6uSrk4Bi/gk+tLm3fCCzEjI
-         xDQZfk0pMBEut6zdLs9GQOaBFEqN8abRNC8tsUAj4j3jhoyNz+0md+eLDgDjW0bWfJyN
-         fGAXDyVWBI6B28WgqPmzsbhWvEW4ojHIuMOFTOD3xQ80HKyHNrEPBuE/NpH3KFHWVnWp
-         md1w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700206412; x=1700811212;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2NGlGNctGDlanhrEHu2JUTOFi1+KtX2xOYnzLURQZaU=;
-        b=UeJQ0waOpPJa5YbC6wrxfTwrbvxj+o9KixmUXuaaokNHOYXcX3cOQoA+yA2tBSX9Rp
-         SRSpUT2ob+JFUhCXk7HMxakJ3q7p1SyBoVrxWv7Uh4AnYjMaKS0RWZPKelocmN92flPu
-         CVYeOVyPzVCAuW2GSXxe5JkAc8VfUQZQrUQ3Jcab6784N3vjKl2rXujhq4pekexz100W
-         5cebf4j9+/XTiAxo02FKTaVVDM72uMeOY0gIgE4FNA5acoo1hvfG9BX4FMHxMOMcUA7H
-         Gdz85QAlQhRA/iKrE5XRj799F3JlzVVmvO0CoOXIyzA1wPWRw1fIfAB/GW1y2hNn4uJL
-         2DkA==
-X-Gm-Message-State: AOJu0YwbSi5mAzQHKcfFY73geJTZGt2wcsGpOi+bwVxHOQe46mHotIiu
-	8hVtMa4k9Q7dO+qG8O713f8II4ivvdEK2On5
-X-Google-Smtp-Source: AGHT+IELcbxSGA2pKYWFsXT9O+cG5iALQpD9vj8Wr/lhr/eWUXju5DlXU7X/ywFCGTtjnH0IPQ493Q==
-X-Received: by 2002:a05:6a20:3941:b0:15e:7323:5bf3 with SMTP id r1-20020a056a20394100b0015e73235bf3mr6267381pzg.26.1700206412414;
-        Thu, 16 Nov 2023 23:33:32 -0800 (PST)
-Received: from localhost.localdomain ([2401:4900:2353:8963:b940:1ac0:2fbc:6b6])
-        by smtp.gmail.com with ESMTPSA id s11-20020a65644b000000b005bcebc93d7asm705106pgv.47.2023.11.16.23.33.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Nov 2023 23:33:31 -0800 (PST)
-From: Anshul Dalal <anshulusr@gmail.com>
-To: linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: Anshul Dalal <anshulusr@gmail.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	linux-kernel-mentees@lists.linuxfoundation.org,
-	Jonathan Cameron <jic23@kernel.org>,
-	Shuah Khan <skhan@linuxfoundation.org>
-Subject: [PATCH 2/2] iio: dac: driver for MCP4821
-Date: Fri, 17 Nov 2023 13:00:38 +0530
-Message-ID: <20231117073040.685860-2-anshulusr@gmail.com>
-X-Mailer: git-send-email 2.42.1
-In-Reply-To: <20231117073040.685860-1-anshulusr@gmail.com>
-References: <20231117073040.685860-1-anshulusr@gmail.com>
+Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0836D56
+	for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 23:39:28 -0800 (PST)
+Received: from epcas2p1.samsung.com (unknown [182.195.41.53])
+	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20231117073926epoutp019b5d53814626042585ae0b66d6e86819~YWQuyv1-R1064010640epoutp01k
+	for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 07:39:26 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20231117073926epoutp019b5d53814626042585ae0b66d6e86819~YWQuyv1-R1064010640epoutp01k
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1700206766;
+	bh=wDrKubwuI3Sqsj91xOGLNjY6z0KTspS1GXMj5gRrwS4=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=RY2im7SUHeHdbCTyMQdsO/kp6KtOfeT9Z8k+bOZW4uVyrk2AyoAnZ3cc/+EwGqlDr
+	 okXJ0Y71v2MI9cYEfqLjdNUYeRJLif4B59uhqMi6J9y/uNG3hTvfXcDeEvcDtXxQ0W
+	 kqZVUIYuRXPse8Zv219dmDdbuowNRn3qi+MUdrak=
+Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
+	epcas2p4.samsung.com (KnoxPortal) with ESMTP id
+	20231117073925epcas2p4086e54e4767ad4a0ead78e02b8dfe035~YWQuOQ74j0776207762epcas2p4B;
+	Fri, 17 Nov 2023 07:39:25 +0000 (GMT)
+Received: from epsmges2p2.samsung.com (unknown [182.195.36.88]) by
+	epsnrtp4.localdomain (Postfix) with ESMTP id 4SWpgw6C80z4x9QD; Fri, 17 Nov
+	2023 07:39:24 +0000 (GMT)
+Received: from epcas2p2.samsung.com ( [182.195.41.54]) by
+	epsmges2p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+	7B.62.09622.CA817556; Fri, 17 Nov 2023 16:39:24 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+	epcas2p4.samsung.com (KnoxPortal) with ESMTPA id
+	20231117073924epcas2p429428d5dfdcd3a4d6019bb8ceb7ce151~YWQtB-Npn0743507435epcas2p4M;
+	Fri, 17 Nov 2023 07:39:24 +0000 (GMT)
+Received: from epsmgmc1p1new.samsung.com (unknown [182.195.42.40]) by
+	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20231117073924epsmtrp1e52659ddfbc92dfb6dfeb70b6c6d9567~YWQtBErpj2370223702epsmtrp1f;
+	Fri, 17 Nov 2023 07:39:24 +0000 (GMT)
+X-AuditID: b6c32a46-d61ff70000002596-07-655718ac2c06
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+	epsmgmc1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	A3.8A.07368.CA817556; Fri, 17 Nov 2023 16:39:24 +0900 (KST)
+Received: from [10.229.8.168] (unknown [10.229.8.168]) by
+	epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20231117073923epsmtip2cfd70f45d1e145aa5f07cdd69d3bea12~YWQsx-xse0135401354epsmtip2L;
+	Fri, 17 Nov 2023 07:39:23 +0000 (GMT)
+Message-ID: <926ea5c5-20ac-5e63-16ea-6f0c20e2db0a@samsung.com>
+Date: Fri, 17 Nov 2023 16:36:35 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+	Thunderbird/102.11.0
+Subject: Re: [PATCH v2 10/12] pinctrl: samsung: add exynosautov920 pinctrl
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Alim Akhtar
+	<alim.akhtar@samsung.com>, Rob Herring <robh+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Tomasz Figa <tomasz.figa@gmail.com>, Sylwester
+	Nawrocki <s.nawrocki@samsung.com>, Linus Walleij <linus.walleij@linaro.org>,
+	Thierry Reding <thierry.reding@gmail.com>, Uwe Kleine-K?nig
+	<u.kleine-koenig@pengutronix.de>, Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
+	linux-serial@vger.kernel.org
+From: Jaewon Kim <jaewon02.kim@samsung.com>
+In-Reply-To: <6a5610e0-e60d-4ab7-8708-6f77a38527b7@linaro.org>
 Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrFJsWRmVeSWpSXmKPExsWy7bCmme4aifBUg4/LdSwezNvGZrFm7zkm
+	i/lHzrFaNC9ez2bxbq6Mxd7XW9ktpvxZzmSx6fE1VovN8/8wWlzeNYfN4u7dVYwWM87vY7I4
+	s7iX3aJ17xF2i8Nv2lktfu6ax2KxahdQ3e2JkxkdhDx2zrrL7rFpVSebx51re9g89s9dw+6x
+	eUm9R/9fA4++LasYPT5vkgvgiMq2yUhNTEktUkjNS85PycxLt1XyDo53jjc1MzDUNbS0MFdS
+	yEvMTbVVcvEJ0HXLzAH6REmhLDGnFCgUkFhcrKRvZ1OUX1qSqpCRX1xiq5RakJJTYF6gV5yY
+	W1yal66Xl1piZWhgYGQKVJiQnfHx4EG2gtmWFb1nprI3MB7T7WLk5JAQMJHoWbqKpYuRi0NI
+	YAejxPb9/9ghnE+MEj/WHoLKfANyWs+xwbQ0Pn/FCJHYyyjx9fYFJgjnNaPExd9dTCBVvAJ2
+	Ej+vnGcBsVkEVCVW/t3MBhEXlDg58wlYXFQgWqJ12X2wuLCAl8SpnXtYQWxmAXGJW0/mg80R
+	EbjPLPG6rRpkAbPAA0aJuee+MoIk2AS0Jb6vXwzWwAm0rGXrZCaIZnmJ5q2zmSFOfcMhsWG3
+	JYTtIrHl4kmoF4QlXh3fwg5hS0m87G+DsrMl2qf/YYWwKyQubpgNVW8sMetZO9BeDqD5mhLr
+	d+mDmBICyhJHbrFAbOWT6Dj8lx0izCvR0SYE0agmcX8qLNxkJCYdWckEYXtINE+ezjaBUXEW
+	UqDMQvL8LCS/zELYu4CRZRWjWGpBcW56arFRgRE8spPzczcxghO5ltsOxilvP+gdYmTiYDzE
+	KMHBrCTCay4XkirEm5JYWZValB9fVJqTWnyI0RQYNROZpUST84G5JK8k3tDE0sDEzMzQ3MjU
+	wFxJnPde69wUIYH0xJLU7NTUgtQimD4mDk6pBqbizIZnE6S501zMTFuvJe5Z/+DY61k3G70P
+	LdwkN03woKOdfdWk+nVxt9x+/psbcXIL+7q0Fa5Ta8reXauaGtgUwsOlL8XgrJofE2N8M6Is
+	mY+R5U17ku+VzfN6V9q9DU3IqG3+9WOv7eaVt490m1z4knl5x3q31esDtTrPbZ4md6Npcfsk
+	oVc1txLcdXcu3fr0xGtG77YyO4vuX7X850T3narwrtzf7DS5MOV15Z7Gl6UXTqlEJb1lLeGY
+	G6fJyHm5MESyczLHrRwDg+7PnI0sDczZuzy9nnw8fnDfrtC28tMcWcrOl+fcD5A7VxSz03Dv
+	gh3HnEKbsnduj88/9W9Tzo231iJTfftP5terv1BiKc5INNRiLipOBABkgeg7bQQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrLIsWRmVeSWpSXmKPExsWy7bCSvO4aifBUgw8X2CwezNvGZrFm7zkm
+	i/lHzrFaNC9ez2bxbq6Mxd7XW9ktpvxZzmSx6fE1VovN8/8wWlzeNYfN4u7dVYwWM87vY7I4
+	s7iX3aJ17xF2i8Nv2lktfu6ax2KxahdQ3e2JkxkdhDx2zrrL7rFpVSebx51re9g89s9dw+6x
+	eUm9R/9fA4++LasYPT5vkgvgiOKySUnNySxLLdK3S+DK+HjwIFvBbMuK3jNT2RsYj+l2MXJy
+	SAiYSDQ+f8XYxcjFISSwm1Gi8+ISVoiEjMTyZ31sELawxP2WI6wQRS8ZJY7/OcUIkuAVsJP4
+	eeU8C4jNIqAqsfLvZjaIuKDEyZlPwOKiAtESqz9fABsqLOAlcWrnHjCbWUBc4taT+UwgQ0UE
+	HjNLPJz6nxnEYRZ4wCixfNIjqHWPmSRmrHjFDtLCJqAt8X39YrB2TqDVLVsnM0GMMpPo2trF
+	CGHLSzRvnc08gVFoFpJLZiHZOAtJyywkLQsYWVYxSqYWFOem5yYbFhjmpZbrFSfmFpfmpesl
+	5+duYgTHsJbGDsZ78//pHWJk4mA8xCjBwawkwmsuF5IqxJuSWFmVWpQfX1Sak1p8iFGag0VJ
+	nNdwxuwUIYH0xJLU7NTUgtQimCwTB6dUA9Nch8jzkTqNRfu6DBdFh0xjZpwldPR7qvFLmbOG
+	MQfrWmYIWmRrCO1oabvikN4fxivF4sLyOkOx58rFV0vjX6+6eDBMwPvv8hOft4vpbzcQcgha
+	9Pz+7gveX3VeVO6ebH96dUhHxN4un4IJR9UfWou6fViRElNx48AH0/hCNRuBFZmHLhps3XQg
+	KfPOxD32ShVPnOZqzRNbl3itlTU691wyQ5xrqaLdF/03cU8fsvp8kZSM+s2y5pf13u9huVyP
+	Am5YdPS3dLP48505HOkjKlVznd3M4O7W317xgiuMTUOWXXdP3bj08/tnBwpzSjbN+BCwWkvs
+	Y7KnKuOG2Ju1lypVS6e9n9Qt1x8XKuk/R4mlOCPRUIu5qDgRAMZetlVQAwAA
+X-CMS-MailID: 20231117073924epcas2p429428d5dfdcd3a4d6019bb8ceb7ce151
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20231115095856epcas2p1c3ee85750828bec2ee4ab0adeaeaff28
+References: <20231115095609.39883-1-jaewon02.kim@samsung.com>
+	<CGME20231115095856epcas2p1c3ee85750828bec2ee4ab0adeaeaff28@epcas2p1.samsung.com>
+	<20231115095609.39883-11-jaewon02.kim@samsung.com>
+	<62b7176d-f99c-49f6-a287-17a6b3604c1c@linaro.org>
+	<f0f6a7af-2170-89a2-1eea-dfb9d8440321@samsung.com>
+	<6a5610e0-e60d-4ab7-8708-6f77a38527b7@linaro.org>
 
-Adds driver for the MCP48xx series of DACs.
 
-Device uses a simplex SPI channel.
-To set the value of an output channel, a 16-bit
-data of following format must be written:
+On 23. 11. 16. 20:21, Krzysztof Kozlowski wrote:
+> On 16/11/2023 06:39, Jaewon Kim wrote:
+>> On 23. 11. 15. 21:28, Krzysztof Kozlowski wrote:
+>>
+>>> On 15/11/2023 10:56, Jaewon Kim wrote:
+>>>> ExynosAutov920 GPIO has a different register structure.
+>>>> In the existing Exynos series, EINT control register enumerated after
+>>>> a specific offset (e.g EXYNOS_GPIO_ECON_OFFSET).
+>>>> However, in ExynosAutov920 SoC, the register that controls EINT belongs
+>>>> to each GPIO group, and each GPIO group has 0x1000 align.
+>>>>
+>>>> This is a structure to protect the GPIO group with S2MPU in VM environment,
+>>>> and will only be applied in ExynosAuto series SoCs.
+>>>>
+>>>> Example)
+>>>> -------------------------------------------------
+>>>> | original		| ExynosAutov920	|
+>>>> |-----------------------------------------------|
+>>>> | 0x0	GPIO_CON	| 0x0	GPIO_CON	|
+>>>> | 0x4	GPIO_DAT	| 0x4	GPIO_DAT	|
+>>>> | 0x8	GPIO_PUD	| 0x8	GPIO_PUD	|
+>>>> | 0xc	GPIO_DRV	| 0xc	GPIO_DRV	|
+>>>> | 0x700	EINT_CON	| 0x18	EINT_CON	|
+>>>> | 0x800	EINT_FLTCON	| 0x1c	EINT_FLTCON0	|
+>>>> | 0x900	EINT_MASK	| 0x20	EINT_FLTCON1	|
+>>>> | 0xa00	EINT_PEND	| 0x24	EINT_MASK	|
+>>>> |			| 0x28	EINT_PEND	|
+>>>> -------------------------------------------------
+>>>>
+>>>> Pinctrl data for ExynosAutoV920 SoC.
+>>>>    - GPA0,GPA1 (10): External wake up interrupt
+>>>>    - GPQ0 (2): SPMI (PMIC I/F)
+>>>>    - GPB0,GPB1,GPB2,GPB3,GPB4,GPB5,GPB6 (47): I2S Audio
+>>>>    - GPH0,GPH1,GPH2,GPH3,GPH4,GPH5,GPH6,GPH8 (49): PCIE, UFS, Ethernet
+>>>>    - GPG0,GPG1,GPG2,GPG3,GPG4,GPG5 (29): General purpose
+>>>>    - GPP0,GPP1,GPP2,GPP3,GPP4,GPP5,GPP6,GPP7,GPP8,GPP9,GPP10 (77): USI
+>>>>
+>>>> Signed-off-by: Jaewon Kim<jaewon02.kim@samsung.com>
+>>>> ---
+>>>>    .../pinctrl/samsung/pinctrl-exynos-arm64.c    | 140 ++++++++++++++++++
+>>>>    drivers/pinctrl/samsung/pinctrl-exynos.c      | 102 ++++++++++++-
+>>>>    drivers/pinctrl/samsung/pinctrl-exynos.h      |  27 ++++
+>>>>    drivers/pinctrl/samsung/pinctrl-samsung.c     |   5 +
+>>>>    drivers/pinctrl/samsung/pinctrl-samsung.h     |  13 ++
+>>>>    5 files changed, 280 insertions(+), 7 deletions(-)
+>>>>
+>>>> diff --git a/drivers/pinctrl/samsung/pinctrl-exynos-arm64.c b/drivers/pinctrl/samsung/pinctrl-exynos-arm64.c
+>>>> index cb965cf93705..cf86722a70a3 100644
+>>>> --- a/drivers/pinctrl/samsung/pinctrl-exynos-arm64.c
+>>>> +++ b/drivers/pinctrl/samsung/pinctrl-exynos-arm64.c
+>>>> @@ -796,3 +796,143 @@ const struct samsung_pinctrl_of_match_data fsd_of_data __initconst = {
+>>>>    	.ctrl		= fsd_pin_ctrl,
+>>>>    	.num_ctrl	= ARRAY_SIZE(fsd_pin_ctrl),
+>>>>    };
+>>>> +
+>>>> +/* pin banks of exynosautov920 pin-controller 0 (ALIVE) */
+>>>> +static struct samsung_pin_bank_data exynosautov920_pin_banks0[] = {
+>>> So you created patch from some downstream code? No, please work on
+>>> upstream. Take upstream code and customize it to your needs. That way
+>>> you won't introduce same mistakes fixes years ago.
+>>>
+>>> Missing const.
+>> Thanks for the guide.
+>>
+>> I didn`t work on downstream source, but when I copy/paste
+>>
+>> the struct enumerations from downstream, it seemed like
+> That's what I am talking about. Don't do like this.
+>
+> We fixed several things in Linux kernel, so copying unfixed code is
+> wasting of everyone's time. Don't work on downstream. Don't copy
+> anything from downstream. You *MUST CUSTOMIZE* upstream file, not
+> downstream.
 
-Bit field | Description
-15 [MSB]  | Channel selection bit
-            0 -> Channel A
-            1 -> Channel B
-13        | Output Gain Selection bit
-            0 -> 2x Gain (Vref = 4.096V)
-            1 -> 1x Gain (Vref = 2.048V)
-12        | Output Shutdown Control bit
-            0 -> Shutdown the selected channel
-            1 -> Active mode operation
-11-0 [LSB]| DAC Input Data bits
-            Value's big endian representation is
-            taken as input for the selected DAC
-            channel.
-            For devices with a resolution of less
-            than 12-bits, only the x most
-            significant bits are considered where
-            x is the resolution of the device.
-Reference: Page#22 [MCP48x2 Datasheet]
+Got it. I will not copy from downstream code.
 
-Supported devices:
-  +---------+--------------+-------------+
-  | Device  |  Resolution  |   Channels  |
-  |---------|--------------|-------------|
-  | MCP4801 |     8-bit    |      1      |
-  | MCP4811 |    10-bit    |      1      |
-  | MCP4821 |    12-bit    |      1      |
-  | MCP4802 |     8-bit    |      2      |
-  | MCP4812 |    10-bit    |      2      |
-  | MCP4822 |    12-bit    |      2      |
-  +---------+--------------+-------------+
 
-Devices tested:
-  MCP4821 [12-bit single channel]
-  MCP4802 [8-bit dual channel]
+>
+>
+>> 'const' was missing.
+>>
+>>> ...
+>>>
+>>>> @@ -31,6 +31,7 @@
+>>>>    #define EXYNOS7_WKUP_EMASK_OFFSET	0x900
+>>>>    #define EXYNOS7_WKUP_EPEND_OFFSET	0xA00
+>>>>    #define EXYNOS_SVC_OFFSET		0xB08
+>>>> +#define EXYNOSAUTOV920_SVC_OFFSET	0xF008
+>>>>    
+>>> ...
+>>>
+>>>>    #ifdef CONFIG_PINCTRL_S3C64XX
+>>>>    	{ .compatible = "samsung,s3c64xx-pinctrl",
+>>>> diff --git a/drivers/pinctrl/samsung/pinctrl-samsung.h b/drivers/pinctrl/samsung/pinctrl-samsung.h
+>>>> index 9b3db50adef3..cbb78178651b 100644
+>>>> --- a/drivers/pinctrl/samsung/pinctrl-samsung.h
+>>>> +++ b/drivers/pinctrl/samsung/pinctrl-samsung.h
+>>>> @@ -122,6 +122,9 @@ struct samsung_pin_bank_type {
+>>>>     * @eint_type: type of the external interrupt supported by the bank.
+>>>>     * @eint_mask: bit mask of pins which support EINT function.
+>>>>     * @eint_offset: SoC-specific EINT register or interrupt offset of bank.
+>>>> + * @mask_offset: SoC-specific EINT mask register offset of bank.
+>>>> + * @pend_offset: SoC-specific EINT pend register offset of bank.
+>>>> + * @combine: EINT register is adjacent to the GPIO control register.
+>>> I don't understand it. Adjacent? Are you sure? GPIO control register has
+>>> 0xF004 (EXYNOSAUTOV920_SVC_OFFSET + 0x4)? Anyway, this does not scale.
+>>> What if next revision comes with not-adjacent. There will be
+>>> "combine_plus"? Also name confuses me - combine means together.
+>>>
+>>> Also your first map of registers does not have it adjacent...
+>> I think I should have added a little more information about new struct.
+>>
+>> -------------------------------------------------
+>> | original             | ExynosAutov920         |
+>> |-----------------------------------------------|
+>> | 0x0   GPA_CON	       | 0x0    GPA_CON         |
+>> | 0x4   GPA_DAT	       | 0x4    GPA_DAT         |
+>> | 0x8   GPA_PUD	       | 0x8    GPA_PUD         |
+>> | 0xc   GPA_DRV	       | 0xc    GPA_DRV         |
+>> |----------------------| 0x18   EINT_GPA_CON    |
+>> | 0x20  GPB_CON        | 0x1c   EINT_GPA_FLTCON0|
+>> | 0x4   GPB_DAT	       | 0x20   EINT_GPA_FLTCON1|
+>> | 0x28  GPB_PUD	       | 0x24   EINT_GPA_MASK   |
+>> | 0x2c  GPB_DRV	       | 0x28   EINT_GPA_PEND   |
+>> |----------------------|------------------------|
+>> | 0x700	EINT_GPA_CON   | 0x1000 GPA_CON         |
+>> | 0x704	EINT_GPB_CON   | 0x1004 GPA_DAT         |
+>> |----------------------| 0x1008 GPA_PUD         |
+>> | 0x800	EINT_GPA_FLTCON| 0x100c GPA_DRV         |
+>> | 0x804	EINT_GPB_FLTCON| 0x1018 EINT_GPA_CON    |
+>> |----------------------| 0x101c EINT_GPA_FLTCON0|
+>> | 0x900	EINT_GPA_MASK  | 0x1020 EINT_GPA_FLTCON1|
+>> | 0x904	EINT_GPB_MASK  | 0x1024 EINT_GPA_MASK   |
+>> |----------------------| 0x1028 EINT_GPA_PEND   |
+>> | 0xa00	EINT_GPA_PEND  |------------------------|
+>> | 0xa04	EINT_GPB_PEND  |                        |
+>> ------------------------------------------------|
+>> | 0xb08 SVC            | 0xf008 SVC             |
+>> -------------------------------------------------
+>>
+>> The reason why I chose variable name 'combine' is that EINT registers was
+>> separated from gpio control address. However, in exynosautov920 EINT
+>> registers combined with GPx group. So I chose "combine" word.
+> What does it mean "the GPx group"? Combined means the same place, the
+> same register. I could imagine offset is 0x4, what I wrote last time.
+>
+> Is the offset 0x4?
+>
+>
+>> Is another reasonable word, I will change it.
+>
+> Why you cannot store the offset?
+>
+>> EINT registers related to the entire group(e.g SVC) were at the end of
+>> the GPIO block and are now moved to 0xf000.
+> So not in the same register, not combined?
+>
+Okay,
 
-Tested on Raspberry Pi Zero 2W
+Instead of the word combine, I will think of a better word in next version.
 
-Datasheet:
-  [MCP48x1] https://ww1.microchip.com/downloads/en/DeviceDoc/22244B.pdf
-  [MCP48x2] https://ww1.microchip.com/downloads/en/DeviceDoc/20002249B.pdf
 
-Signed-off-by: Anshul Dalal <anshulusr@gmail.com>
----
- MAINTAINERS               |   7 ++
- drivers/iio/dac/Kconfig   |  10 ++
- drivers/iio/dac/Makefile  |   1 +
- drivers/iio/dac/mcp4821.c | 207 ++++++++++++++++++++++++++++++++++++++
- 4 files changed, 225 insertions(+)
- create mode 100644 drivers/iio/dac/mcp4821.c
+Thanks
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 81d5fc0bba68..8d9274c33c6e 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -13029,6 +13029,13 @@ F:	Documentation/ABI/testing/sysfs-bus-iio-potentiometer-mcp4531
- F:	drivers/iio/potentiometer/mcp4018.c
- F:	drivers/iio/potentiometer/mcp4531.c
- 
-+MCP4821 DAC DRIVER
-+M:	Anshul Dalal <anshulusr@gmail.com>
-+L:	linux-iio@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/iio/dac/microchip,mcp4821.yaml
-+F:	drivers/iio/dac/mcp4821.c
-+
- MCR20A IEEE-802.15.4 RADIO DRIVER
- M:	Stefan Schmidt <stefan@datenfreihafen.org>
- L:	linux-wpan@vger.kernel.org
-diff --git a/drivers/iio/dac/Kconfig b/drivers/iio/dac/Kconfig
-index 93b8be183de6..f5adc364de30 100644
---- a/drivers/iio/dac/Kconfig
-+++ b/drivers/iio/dac/Kconfig
-@@ -400,6 +400,16 @@ config MCP4728
- 	  To compile this driver as a module, choose M here: the module
- 	  will be called mcp4728.
- 
-+config MCP4821
-+	tristate "MCP4801/11/21/02/12/22 DAC driver"
-+	depends on SPI
-+	help
-+	  Say yes here to build the driver for the Microchip MCP4801
-+	  MCP4811, MCP4821, MCP4802, MCP4812 and MCP4822 DAC devices.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called mcp4821.
-+
- config MCP4922
- 	tristate "MCP4902, MCP4912, MCP4922 DAC driver"
- 	depends on SPI
-diff --git a/drivers/iio/dac/Makefile b/drivers/iio/dac/Makefile
-index 5b2bac900d5a..55bf89739d14 100644
---- a/drivers/iio/dac/Makefile
-+++ b/drivers/iio/dac/Makefile
-@@ -42,6 +42,7 @@ obj-$(CONFIG_MAX5522) += max5522.o
- obj-$(CONFIG_MAX5821) += max5821.o
- obj-$(CONFIG_MCP4725) += mcp4725.o
- obj-$(CONFIG_MCP4728) += mcp4728.o
-+obj-$(CONFIG_MCP4821) += mcp4821.o
- obj-$(CONFIG_MCP4922) += mcp4922.o
- obj-$(CONFIG_STM32_DAC_CORE) += stm32-dac-core.o
- obj-$(CONFIG_STM32_DAC) += stm32-dac.o
-diff --git a/drivers/iio/dac/mcp4821.c b/drivers/iio/dac/mcp4821.c
-new file mode 100644
-index 000000000000..d08acf6b8993
---- /dev/null
-+++ b/drivers/iio/dac/mcp4821.c
-@@ -0,0 +1,207 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Copyright (C) 2023 Anshul Dalal <anshulusr@gmail.com>
-+ *
-+ * Driver for Microchip MCP4801, MCP4811, MCP4821, MCP4802, MCP4812 and MCP4822
-+ *
-+ * Based on the work of:
-+ *	Michael Welling (MCP4922 Driver)
-+ *
-+ * Datasheet:
-+ *	MCP48x1: https://ww1.microchip.com/downloads/en/DeviceDoc/22244B.pdf
-+ *	MCP48x2: https://ww1.microchip.com/downloads/en/DeviceDoc/20002249B.pdf
-+ *
-+ * TODO:
-+ *	- Configurable gain
-+ *	- Regulator control
-+ */
-+
-+#include <asm/unaligned.h>
-+#include <linux/iio/iio.h>
-+#include <linux/iio/types.h>
-+#include <linux/module.h>
-+#include <linux/mutex.h>
-+#include <linux/spi/spi.h>
-+
-+#define MCP4821_ACTIVE_MODE BIT(12)
-+#define MCP4802_SECOND_CHAN BIT(15)
-+#define MCP4821_CHAN_NUM    1
-+
-+/* DAC uses an internal Voltage reference of 4.096V at a gain of 2x */
-+#define MCP4821_2X_GAIN_VREF_MV 4096
-+
-+enum mcp4821_supported_drvice_ids {
-+	ID_MCP4801,
-+	ID_MCP4811,
-+	ID_MCP4821,
-+	ID_MCP4802,
-+	ID_MCP4812,
-+	ID_MCP4822,
-+};
-+
-+static int mcp4821_chan_count(enum mcp4821_supported_drvice_ids device_id)
-+{
-+	switch (device_id) {
-+	case ID_MCP4801:
-+	case ID_MCP4811:
-+	case ID_MCP4821:
-+		return 1;
-+	default:
-+		return 2;
-+	}
-+}
-+
-+struct mcp4821_state {
-+	struct spi_device *spi;
-+	struct mutex lock;
-+	u16 dac_value[2];
-+};
-+
-+#define MCP4821_CHAN(channel_id, resolution)				\
-+	{								\
-+		.type = IIO_VOLTAGE,					\
-+		.output = 1,						\
-+		.indexed = 1,						\
-+		.channel = (channel_id),				\
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),		\
-+		.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),	\
-+		.scan_type = {						\
-+			.sign = 'u',					\
-+			.realbits = (resolution),			\
-+			.storagebits = 16,				\
-+			.shift = 12 - (resolution),			\
-+		},							\
-+	}
-+
-+static const struct iio_chan_spec mcp4821_channels[6][2] = {
-+	[ID_MCP4801] = { MCP4821_CHAN(0, 8), {} },
-+	[ID_MCP4811] = { MCP4821_CHAN(0, 10), {} },
-+	[ID_MCP4821] = { MCP4821_CHAN(0, 12), {} },
-+	[ID_MCP4802] = { MCP4821_CHAN(0, 8), MCP4821_CHAN(1, 8) },
-+	[ID_MCP4812] = { MCP4821_CHAN(0, 10), MCP4821_CHAN(1, 10) },
-+	[ID_MCP4822] = { MCP4821_CHAN(0, 12), MCP4821_CHAN(1, 12) },
-+};
-+
-+static int mcp4821_read_raw(struct iio_dev *indio_dev,
-+			    struct iio_chan_spec const *chan, int *val,
-+			    int *val2, long mask)
-+{
-+	struct mcp4821_state *state;
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_RAW:
-+		state = iio_priv(indio_dev);
-+		mutex_lock(&state->lock);
-+		*val = state->dac_value[chan->channel];
-+		mutex_unlock(&state->lock);
-+		return IIO_VAL_INT;
-+	case IIO_CHAN_INFO_SCALE:
-+		*val = MCP4821_2X_GAIN_VREF_MV;
-+		*val2 = chan->scan_type.realbits;
-+		return IIO_VAL_FRACTIONAL_LOG2;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int mcp4821_write_raw(struct iio_dev *indio_dev,
-+			     struct iio_chan_spec const *chan, int val,
-+			     int val2, long mask)
-+{
-+	struct mcp4821_state *state;
-+	__be16 write_val;
-+	u8 write_buffer[2];
-+	int ret;
-+	bool is_value_valid = val >= 0 && val < BIT(chan->scan_type.realbits) &&
-+			      val2 == 0;
-+	if (mask == IIO_CHAN_INFO_RAW && is_value_valid) {
-+		state = iio_priv(indio_dev);
-+
-+		write_val = MCP4821_ACTIVE_MODE | val << chan->scan_type.shift;
-+		if (chan->channel)
-+			write_val |= MCP4802_SECOND_CHAN;
-+		put_unaligned_be16(write_val, write_buffer);
-+		ret = spi_write(state->spi, write_buffer, sizeof(write_buffer));
-+		if (ret) {
-+			dev_err(&state->spi->dev,
-+				"Failed to write to device: %d", ret);
-+			return ret;
-+		}
-+
-+		mutex_lock(&state->lock);
-+		state->dac_value[chan->channel] = val;
-+		mutex_unlock(&state->lock);
-+		return 0;
-+	} else {
-+		return -EINVAL;
-+	}
-+}
-+
-+static const struct iio_info mcp4821_info = {
-+	.read_raw = &mcp4821_read_raw,
-+	.write_raw = &mcp4821_write_raw,
-+};
-+
-+static int mcp4821_probe(struct spi_device *spi)
-+{
-+	struct iio_dev *indio_dev;
-+	struct mcp4821_state *state;
-+	const struct spi_device_id *id;
-+
-+	indio_dev = devm_iio_device_alloc(&spi->dev, sizeof(*state));
-+	if (indio_dev == NULL) {
-+		dev_err(&spi->dev, "Failed to allocate iio device\n");
-+		return -ENOMEM;
-+	}
-+
-+	state = iio_priv(indio_dev);
-+	spi_set_drvdata(spi, indio_dev);
-+	id = spi_get_device_id(spi);
-+
-+	state->spi = spi;
-+	mutex_init(&state->lock);
-+
-+	indio_dev->name = id->name;
-+	indio_dev->info = &mcp4821_info;
-+	indio_dev->modes = INDIO_DIRECT_MODE;
-+	indio_dev->channels = mcp4821_channels[id->driver_data];
-+	indio_dev->num_channels = mcp4821_chan_count(id->driver_data);
-+	return devm_iio_device_register(&spi->dev, indio_dev);
-+}
-+
-+static const struct spi_device_id mcp4821_id_table[] = {
-+	{ "mcp4801", ID_MCP4801},
-+	{ "mcp4811", ID_MCP4811},
-+	{ "mcp4821", ID_MCP4821},
-+	{ "mcp4802", ID_MCP4802},
-+	{ "mcp4812", ID_MCP4812},
-+	{ "mcp4822", ID_MCP4822},
-+	{ /* Sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(spi, mcp4821_id_table);
-+
-+static const struct of_device_id mcp4821_of_table[] = {
-+	{ .compatible = "microchip,mcp4801"},
-+	{ .compatible = "microchip,mcp4811"},
-+	{ .compatible = "microchip,mcp4821"},
-+	{ .compatible = "microchip,mcp4802"},
-+	{ .compatible = "microchip,mcp4812"},
-+	{ .compatible = "microchip,mcp4822"},
-+	{ /* Sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, mcp4821_of_table);
-+
-+static struct spi_driver mcp4821_driver = {
-+	.driver = {
-+		.name = "mcp4821",
-+		.of_match_table = mcp4821_of_table,
-+	},
-+	.probe = mcp4821_probe,
-+	.id_table = mcp4821_id_table,
-+};
-+
-+module_spi_driver(mcp4821_driver);
-+
-+MODULE_AUTHOR("Anshul Dalal <anshulusr@gmail.com>");
-+MODULE_DESCRIPTION("Microchip MCP4821 DAC Driver");
-+MODULE_LICENSE("GPL");
--- 
-2.42.1
+Jaewon Kim
 
 
