@@ -1,148 +1,182 @@
-Return-Path: <devicetree+bounces-16772-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16773-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 300FA7EFB4A
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 23:21:57 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21EDA7EFB5B
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 23:26:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 60BAC1C2099E
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 22:21:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AA5D2B20B02
+	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 22:26:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F55646429;
-	Fri, 17 Nov 2023 22:21:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8655243160;
+	Fri, 17 Nov 2023 22:26:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Vodl7Yic"
+	dkim=pass (1024-bit key) header.d=wolfvision.net header.i=@wolfvision.net header.b="jARbkjoI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59494D4D;
-	Fri, 17 Nov 2023 14:21:47 -0800 (PST)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 0457960002;
-	Fri, 17 Nov 2023 22:21:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1700259705;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=z+XRMcZX0l03AC5u4LRSmNZEIVypqySKCEXV2aTX1bg=;
-	b=Vodl7YicdQp6H8eKKBzX+WV5WOiJ29HWHexR5suyxhKzXzzboMec5CMbwVlUuAQGlHH+i0
-	w51lGEaddRZ3lekpEtUWIS4mAhBMr1w1ChRqkC7VJ+h3PjPDa6/LdLvAd1cNFur7MRHjsG
-	lweLsQcNTO/qSS3AU6US/VgJy0UOjdwslNZCO8nqjZbf/NkkBqJYP3SusgO3BGTrqSl0Mx
-	Uog+HRbihWzsCIQdH3P1iIXsBrhBFzyvO823q9gMTL4oCXekEr1B7Bc8VUygeUQWUrTKf1
-	OjNeikDCgkvIpkq1f5bpEM5l8WMmRtTaG5dh670mEIv+QCFeuz+RrSCqvog9eg==
-Date: Fri, 17 Nov 2023 23:21:44 +0100
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Carlos Menin <menin@carlosaurelio.net>
-Cc: linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
-	Alessandro Zummo <a.zummo@towertech.it>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Sergio Prado <sergio.prado@e-labworks.com>
-Subject: Re: [PATCH v2 1/2] rtc: add pcf85053a
-Message-ID: <2023111722214402006513@mail.local>
-References: <20231103125106.78220-1-menin@carlosaurelio.net>
- <20231103142822abbca0ed@mail.local>
- <ZUf_3TAZh1bpVOVt@arch-bow>
+Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-vi1eur04on2074.outbound.protection.outlook.com [40.107.8.74])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62E11D4D;
+	Fri, 17 Nov 2023 14:26:00 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=CVmVVkjgequQUeIbCK0tYHELem4eV8e82hBo0K/097Jm7xskedxBzj1uMl/jeLgAzX+4y7J6xxAvPD2BY9X5//3ZuCdOx35G/fJ+N7IOULWhVhwmwvE6yajwj7p5yX/XyzBbuT3EGkqMdxOXew15gacanRD9D+p1CECRJ8LQMG5edpcQoks6vB5N8Yj4TcBK3p/nXdGqAu/Kf5rIZJLbP6zKrbjHu5IpLyen2KtcSxC9YcSxncuYrmSpaJDqJsibTa9DoWr287TU1VeoHZuU+7uo9mUtUGbGx2gQyBmrDyfYY3CLkyOyU1HqXMY5XftDq6nAuUcRTgvlPN5/+THPyA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=20h1+XXOdYobLWf8HKoZX44YrlZDcU6G1Ju1nV8OZTo=;
+ b=WCme0w7gacrBKn8xdFAY7IXEpUPAsPbzgCd+wMnWBdqTmCKwLVLAYE4lyCotyVz7Iw7uENr3M4dOU16ZV1Rk80BeObr8TaDv/pVIwGswUp0vG3ey1jhH/2OaY7nvh6e8MRFpDk6NT5jsZ2yVpVUZogJRHMBAwN6A7gURxCKxZVcYQDxgRITQQuV7LWsWNDyavdlwrPOEfg3AXmgZmMbX5NymWrpaYzOK9Iyee41dJ4r56zCPAT4L+kgysvR5Osre1Lvb+/rRBU/YqF+uJsLkR3Ds5DJ1TJ85mn2+JXztfCXQH9Ko22mlJ6vlJH1FUjlV5hKpQ995rbrzhjqhe+MMfw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=wolfvision.net; dmarc=pass action=none
+ header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=20h1+XXOdYobLWf8HKoZX44YrlZDcU6G1Ju1nV8OZTo=;
+ b=jARbkjoIE7CtaxbfjzaQW1mwlPdWroAKcwyZC3HDmO2cQ2/ZiN9liEmlsyDCAxkthCKLWZ2XgcSHn41zH4oXlrXEIytoH3sepwcKoaFUo2Ucj3Xtbig8YllE9RL4Lt6umBfAVctZynt7JmKwPRz67gcl/PnWKrqUeUy6ir8dFL0=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=wolfvision.net;
+Received: from DU0PR08MB9155.eurprd08.prod.outlook.com (2603:10a6:10:416::5)
+ by PR3PR08MB5867.eurprd08.prod.outlook.com (2603:10a6:102:87::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7002.23; Fri, 17 Nov
+ 2023 22:25:57 +0000
+Received: from DU0PR08MB9155.eurprd08.prod.outlook.com
+ ([fe80::79a1:5ad6:b221:ad]) by DU0PR08MB9155.eurprd08.prod.outlook.com
+ ([fe80::79a1:5ad6:b221:ad%4]) with mapi id 15.20.7002.022; Fri, 17 Nov 2023
+ 22:25:57 +0000
+Message-ID: <465b920e-9a0a-42c1-bf6c-451fb2471956@wolfvision.net>
+Date: Fri, 17 Nov 2023 23:25:54 +0100
+User-Agent: Mozilla Thunderbird
+From: Michael Riesch <michael.riesch@wolfvision.net>
+Subject: Re: [PATCH v11 2/3] media: rockchip: Add a driver for Rockchip's
+ camera interface
+To: Mehdi Djait <mehdi.djait@bootlin.com>, mchehab@kernel.org,
+ heiko@sntech.de, hverkuil-cisco@xs4all.nl,
+ krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org, conor+dt@kernel.org
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, thomas.petazzoni@bootlin.com,
+ alexandre.belloni@bootlin.com, maxime.chevallier@bootlin.com,
+ paul.kocialkowski@bootlin.com
+References: <cover.1700132457.git.mehdi.djait@bootlin.com>
+ <db605935ad21c4780b73db87605b52d30bc936a4.1700132457.git.mehdi.djait@bootlin.com>
+Content-Language: en-US
+In-Reply-To: <db605935ad21c4780b73db87605b52d30bc936a4.1700132457.git.mehdi.djait@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: ZR0P278CA0143.CHEP278.PROD.OUTLOOK.COM
+ (2603:10a6:910:40::22) To DU0PR08MB9155.eurprd08.prod.outlook.com
+ (2603:10a6:10:416::5)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZUf_3TAZh1bpVOVt@arch-bow>
-X-GND-Sasl: alexandre.belloni@bootlin.com
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU0PR08MB9155:EE_|PR3PR08MB5867:EE_
+X-MS-Office365-Filtering-Correlation-Id: 098535c3-1ed2-4dbb-ff2f-08dbe7bc2b44
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	G6UgEeI8QDA0RczWyW67TY8ahMQyyUs2Tv9vqJgb+Qny/psIRuoyO4g5/a5i99RH1sCRXqVRYPhKJidpPQauKhAtgtQafMHVieXqktG/gyDA6T4LKkM3FamRpYDgVqax3RokpTLtoqTDpgQh/hmuOhMXzeprbcjsZO/gosMOcCcEr3Rp92QcgHrKeUDSTIzDCGIWiuN9ePGLOi50dwi5rr/oe6QTsx2YDFwmS5vKwxwHZTlJ7YWwFKgsqsOqvn1uCKqVWirD+tmo1b5buqL5Jh1fVr8kLoL4kbt3a0L0sAj7uB0GhPRP8zh1WmZba/WpZbIBv/nitARvIWREW5kApfaJGkpLVCkngLu1pjVr8iE5jAU/FVMtiDaazcxJ9VtUP2EyT293tRv3qsc/S8YyGh99dG3ZwOJFrf5WZWW69mgZgQa0M+UYC/GOO2G3vkQanNi8NKYG3z7aV8w5yDSeVolw4wwLjBabuMgUbi7Lz6T0PSwQlt2T+kIKxmMqx6qsAXqd4aLfk/5orkn6r3ucPUi2b9Ape9to880FjdHB+66rbXs4OV/pX+Lpux5R9M61c/rRbpPLv2fqtlOtpQPe7zYgct/DVotMd/yHmVCltrdE7Cy4XedZn8VvhmZUK3JNTLtiKPGwEcZfu8DFhPydUA==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR08MB9155.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(136003)(366004)(346002)(396003)(39850400004)(230922051799003)(451199024)(1800799009)(186009)(64100799003)(31686004)(53546011)(6666004)(6506007)(478600001)(6486002)(8936002)(8676002)(4326008)(5660300002)(7416002)(31696002)(86362001)(2906002)(38100700002)(44832011)(6512007)(41300700001)(2616005)(36756003)(66556008)(66476007)(316002)(66946007)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?YzhFU3FJMFVOb1pRK2xTWWpkdG5sY2cyZCt3VlJIdVdHZHhESVlNSUlUc0Nu?=
+ =?utf-8?B?MjVOUy90WW9seGJHV0pNTGlXT2JNV3pWN01FaXFmbXZkVTF6eDRkUEFzR2Jj?=
+ =?utf-8?B?UVZNUmdaRUJqUnBDVmdnTGdPSFFJMmVCajlyOGg5TmFzN0EwRzZUYWZDWEQ3?=
+ =?utf-8?B?eWF2eFVaSGdMWm0zSzNyaVpBendRbDdmbVhlMnluQmw1VngzdzE3d3JGV2Fm?=
+ =?utf-8?B?YlJVNXd0ODZZT2IwV2lZbnhpNldWNmFuTUU0SnhPZW5ETEhNMHZJemc2YUVY?=
+ =?utf-8?B?VUYzQ3d4dGFlTUNZQlBxaGVKQ2huZmp3aDNkTWZ2SWU0VnhnRHRNakM2VEE1?=
+ =?utf-8?B?ekdRa2VmaE81ckV6Z0drZEVCUjBUbjIvUzA3eG0vVVpsS1ZVdUhYYmtIWGlG?=
+ =?utf-8?B?TFlVWnBJNlV1UkJSbmswTm5NZE13aTBrdFBBaTdMQi9lcDFVUlBBcVRQRktR?=
+ =?utf-8?B?ajZMK1dRamRGSUxEVktHN2oyMVJYc2dzM0lDTytkbXdkRGx1aHVjVmliemgy?=
+ =?utf-8?B?U2h6K1hZZ2R4MVYrRUlUa3VKT1ZEWlM2Z0dsN09UWUVhQW9vSlVkbEhuczNi?=
+ =?utf-8?B?ODNwZGRURnM0c1ZKZXRSbGNpWjBFdEJTcTRtNmNqSnFCbGRVaEJNWnhUdVhh?=
+ =?utf-8?B?MnhFWlVuOU1PUW44UUJvS2xpWTFVZXNDbU5uc2Nneml5ZDJGVi9oMVRqazNN?=
+ =?utf-8?B?M04vaUVEQUU0Z0NjVGowVy82eEx6SXpaRUZWSW5OVU9DR1BzQWN5VUc1V1ZT?=
+ =?utf-8?B?a3Era0ttbGFQUTBlYlBQcmpROE80N1oycG4xcjZya2N1V3NpdWViWjczaFhx?=
+ =?utf-8?B?RjlXcGVWUU15VDhLOVNEMDhoMi8zZ0g4Z1RtdUVGK3hUOXA5OUt4c0N5U1dw?=
+ =?utf-8?B?dVUzMXF1TmNRMzJRNnFlNFlrbUVTbDFkWXNIazFSL0ZBR0dINVZIY0RFdFMx?=
+ =?utf-8?B?VFVVODhiLytEWEhZaUh2UTg0TXQzRXlSeElhRGd1UndOY3h6YThvVXU4TlBS?=
+ =?utf-8?B?VjUraXJnWUZoMFkvbEtZOEJ0NFhnaDBKZ1ZiZ0liK2szL0U1Rnp1RFdYcGJ2?=
+ =?utf-8?B?L1BnMXpiT0prV3F1bUZZeURPdzEwL0FSL2lBS1dFSVdBOENQZzlhU09CVjJK?=
+ =?utf-8?B?TGRrUDMvbERTd0J1NWxiZ1R3azJhaU84cW9tV1pNSS9Dd292ZlhqRGt3Rm12?=
+ =?utf-8?B?TmtrWURNZmFMcXhyR0EvWTE4emVJS1lvTmZDaFVBdkxjcGp5aFNjOHFHWm1m?=
+ =?utf-8?B?Q2RrNFR1QWZqRjFxNENadzg4OG1qMUJ6SEhwS1NTM3RpWVZaNkhVSjBFNldj?=
+ =?utf-8?B?M3JJYXBCUVFYUUlVWllSZUtEZjdoN2VRUkUvWXZ5TUJtNVNKaDUwYStOYjJY?=
+ =?utf-8?B?RWI1QTZXRGVBY0k3eEM3cGtNaVBRbW1KenovZ3F5YjhvUnk0SERJZ3AyaHFF?=
+ =?utf-8?B?eGtobEpNclFiMlBvQjBySFovMHBraGk3MjdNVFBJWm81dUJPVk9ZSFU1SzRK?=
+ =?utf-8?B?U3MwRnYvMmRSdW1NYlNlVmRzRXFqalI1a3lob1p0cjhDbGdHVWEvMm1kVWhH?=
+ =?utf-8?B?bmpyMHp0MkNMbG8yUUtwYzc3azJCNkVYVXNiQ3JvdytjeGwxcXFObVh4dzJI?=
+ =?utf-8?B?S255SC85UGNmV2VTVzFpVTdIU2RmQjZVQytIUU1KRXdPZHVhSzBrd3RuTHpU?=
+ =?utf-8?B?S1QwZEU1YndvODMyTnhlT0h1V3FtWkxMVTQvY2NyUi9sOTAybmdPOGVUWW9T?=
+ =?utf-8?B?bS9ibTFWTGdVYkNGU1ZGbWUxUXlMeWlZNG5XNEpyREtGaTNObFcyRnJRK0ts?=
+ =?utf-8?B?eWYyY0RTWndnZWJPZ0d6UG5TUDZ5K3NXaHZuTGJjekRlTGlGRGtXY2NnMGpP?=
+ =?utf-8?B?VXlCTVZ3K01Ba1JENlludFFER0FocVRoWi9uanVUQTQ1aW1WVWFaMWpOMHJI?=
+ =?utf-8?B?NUZ0OUhSTnk3UFZuUlppdllNTmdjOUdOdzBxbFJVOEtVb1c2YlNUeVNkSFZl?=
+ =?utf-8?B?NnlqYUEwSEgyY3JWQ3hkN0FRMHBuY1pMWE5qY1NkYis2TUlyNEt5cVl2OWtk?=
+ =?utf-8?B?ZXVVdEhzaksxalFMRGRPamdSNk9HR3JaMmcwNy9iL0hVVXVuUVhWcGRnZk16?=
+ =?utf-8?B?R21PcFl4MHpZU3ZhL1c5Y3FjeG5iUnA1Y1cxcXduM1JRYmdYRHY2R0VxdzdW?=
+ =?utf-8?B?QVJnNVJyWkQzbloyVXQ4alhjS0lycTRISmlsTVdHd29lMHYzN2hyekhUcXV4?=
+ =?utf-8?B?ekVrM3pQR0paNkFaYnBqRnJXQkt3PT0=?=
+X-OriginatorOrg: wolfvision.net
+X-MS-Exchange-CrossTenant-Network-Message-Id: 098535c3-1ed2-4dbb-ff2f-08dbe7bc2b44
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR08MB9155.eurprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Nov 2023 22:25:57.0310
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 6p18rYv8PNJL/H+IzSaSfJzmvRODy54bG4ofAZoyPwD9bydjW7fhOZCpzVAaBeK9e+uTjn2NFpZsI4/P7RjbAOMsenBelzIqxCG2jjyP4pU=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PR3PR08MB5867
 
-On 05/11/2023 17:49:33-0300, Carlos Menin wrote:
-> > > +static int pcf85053a_rtc_check_reliability(struct device *dev, u8 status_reg)
-> > > +{
-> > > +	int ret = 0;
-> > > +
-> > > +	if (status_reg & REG_STATUS_CIF) {
-> > > +		dev_warn(dev, "tamper detected,"
-> > > +			 " date/time is not reliable\n");
-> > You should not split strings. Also, I don't think most of the messages
-> > are actually useful as the end user doesn't have any specific action
-> > after seeing it. You should probably drop them.
-> > 
-> 
-> About the usefullness of the message, do this apply to this CIF related
-> message or also to the other two flags?
+Hi Mehdi,
 
-This actually applies to all the messages of the driver, they will add
-to the size of the kernel then slow the boot time so please have a
-careful look at the usefulness of messages. You may consider swtching
-them to dev_dbg.
+One more thing:
 
-> > > +	tm->tm_year = buf[REG_YEARS];
-> > > +	/* adjust for 1900 base of rtc_time */
-> > > +	tm->tm_year += 100;
-> > > +
-> > > +	tm->tm_wday = (buf[REG_WEEKDAYS] - 1) & 7; /* 1 - 7 */
-> > > +	tm->tm_sec = buf[REG_SECS];
-> > > +	tm->tm_min = buf[REG_MINUTES];
-> > > +	tm->tm_hour = buf[REG_HOURS];
-> > > +	tm->tm_mday = buf[REG_DAYS];
-> > > +	tm->tm_mon = buf[REG_MONTHS] - 1; /* 1 - 12 */
-> > 
-> > Those comments are not useful.
-> > 
-> 
-> I Will improve them to explain why I am offsetting the register value.
+On 11/16/23 12:04, Mehdi Djait wrote:
+> [...]
+> diff --git a/drivers/media/platform/rockchip/cif/capture.h b/drivers/media/platform/rockchip/cif/capture.h
+> new file mode 100644
+> index 000000000000..533e62f518da
+> --- /dev/null
+> +++ b/drivers/media/platform/rockchip/cif/capture.h
+> @@ -0,0 +1,21 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Rockchip CIF Driver
+> + *
+> + * Copyright (C) 2023 Mehdi Djait <mehdi.djait@bootlin.com>
+> + */
+> +
+> +#ifndef _CIF_CAPTURE_H
+> +#define _CIF_CAPTURE_H
+> +
+> +struct cif_device;
+> +
+> +void cif_unregister_stream_vdev(struct cif_device *dev);
+> +int cif_register_stream_vdev(struct cif_device *dev);
+> +void cif_stream_init(struct cif_device *dev);
+> +void cif_set_default_format(struct cif_device *dev);
+> +
+> +irqreturn_t cif_irq_pingpong(int irq, void *ctx);
+> +void cif_soft_reset(struct cif_device *cif_dev);
 
-I don't think this is necessary, most of the drivers are doing it so
-this is expected.
+This cif_soft_reset occurs only here?! I think it should be removed.
 
-> > > +static struct attribute *pcf85053a_attrs_flags[] = {
-> > > +	&dev_attr_rtc_fail.attr,
-> > > +	&dev_attr_oscillator_fail.attr,
-> > > +	&dev_attr_rtc_clear.attr,
-> > > +	0,
-> > > +};
-> > 
-> > Don't add undocumented sysfs files. Also, You must not allow userspace
-> > to clear those flags without setting the time properly.
-> > 
-> 
-> Should the flags be cleared only by setting the time, or is there
-> another acceptable method? What would be the correct way to let
-> userspace read those flags?
+> +
+> +#endif
+> [...]
+With that (and maybe the renaming "Rockchip CIF Camera Interface" ->
+"Rockchip Camera Interface (CIF)" throughout the driver, if you find
+that suitable) addressed:
 
-The RTC_VL_READ ioctl will allow reading the flags from userspace. For
-the flags that monitor the validity of the time and date, they must only
-be cleared when the time and date is known to be good s only when
-setting the time.
+Reviewed-by: Michael Riesch <michael.riesch@wolfvision.net>
 
-> > > +}
-> > > +
-> > > +static void pcf85053a_set_low_jitter(struct device *dev, u8 *reg_ctrl)
-> > > +{
-> > > +	bool val;
-> > > +	u8 regval;
-> > > +
-> > > +	val = of_property_read_bool(dev->of_node, "nxp,low-jitter-mode");
-> > 
-> > Bool properties don't work well with RTC because with this, there is now
-> > way to enable the normal mode.
-> > 
-> 
-> Wouldn't the absence of the property enable normal mode? Or I am missing
-> something?
-
-RTC have a greater lifetime than the linux system so you must have a way
-to indicate that you don't want to change the configuration for example
-if it has been set from the bootloader or at the factory.
-
-Regards,
-
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Thanks and best regards,
+Michael
 
