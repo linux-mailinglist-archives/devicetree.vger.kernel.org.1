@@ -1,125 +1,213 @@
-Return-Path: <devicetree+bounces-16859-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16860-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBADD7EFFE7
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 14:33:15 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F4A87EFFF2
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 14:43:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DF91DB20988
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 13:33:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 70D891C20621
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 13:43:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF65C107BB;
-	Sat, 18 Nov 2023 13:33:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13BBF134AA;
+	Sat, 18 Nov 2023 13:43:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="L1D97QTZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30DF212B;
-	Sat, 18 Nov 2023 05:33:01 -0800 (PST)
-X-SpamFilter-By: ArmorX SpamTrap 5.78 with qID 3AIDWir263688789, This message is accepted by code: ctloc85258
-Received: from mail.realtek.com (rtexh36505.realtek.com.tw[172.21.6.25])
-	by rtits2.realtek.com.tw (8.15.2/2.95/5.92) with ESMTPS id 3AIDWir263688789
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Sat, 18 Nov 2023 21:32:44 +0800
-Received: from RTEXMBS03.realtek.com.tw (172.21.6.96) by
- RTEXH36505.realtek.com.tw (172.21.6.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.32; Sat, 18 Nov 2023 21:32:44 +0800
-Received: from RTEXMBS03.realtek.com.tw (172.21.6.96) by
- RTEXMBS03.realtek.com.tw (172.21.6.96) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.7; Sat, 18 Nov 2023 21:32:44 +0800
-Received: from RTEXMBS03.realtek.com.tw ([fe80::5510:ad08:5390:1ed3]) by
- RTEXMBS03.realtek.com.tw ([fe80::5510:ad08:5390:1ed3%2]) with mapi id
- 15.01.2375.007; Sat, 18 Nov 2023 21:32:44 +0800
-From: =?big5?B?SmFtZXMgVGFpIFvAuafTrnBd?= <james.tai@realtek.com>
-To: Rob Herring <robh@kernel.org>
-CC: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Rob Herring
-	<robh+dt@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>, Marc Zyngier
-	<maz@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-Subject: RE: [PATCH v2 1/6] dt-bindings: interrupt-controller: Add support for Realtek DHC SoCs
-Thread-Topic: [PATCH v2 1/6] dt-bindings: interrupt-controller: Add support
- for Realtek DHC SoCs
-Thread-Index: AQHaGXMHJnbDooY4VkyEcMH4aisPjrB+PxWAgAGjMjA=
-Date: Sat, 18 Nov 2023 13:32:44 +0000
-Message-ID: <fff420e3928c465abe1f0488062aafe7@realtek.com>
-References: <20231117162709.1096585-1-james.tai@realtek.com>
- <20231117162709.1096585-2-james.tai@realtek.com>
- <170024235327.1869893.15173077111056096496.robh@kernel.org>
-In-Reply-To: <170024235327.1869893.15173077111056096496.robh@kernel.org>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-x-originating-ip: [114.25.81.91]
-x-kse-serverinfo: RTEXMBS03.realtek.com.tw, 9
-x-kse-antispam-interceptor-info: fallback
-x-kse-antivirus-interceptor-info: fallback
-Content-Type: text/plain; charset="big5"
-Content-Transfer-Encoding: base64
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D2FDA2;
+	Sat, 18 Nov 2023 05:43:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1700315026; x=1731851026;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=7/M5S0nC2Rw3WJg/Loza0Avq02rrTZUsNGGN6T9wjHo=;
+  b=L1D97QTZ7cK0BeuoyebKN50siKFt0LmFz9fVZYT8PUpzpuWXymlHDqgp
+   5opGIvHkFRKtD2AqULo0hi4PYXv11YgaS68I9XIePvi6pv+kWvp7Wv7Ak
+   KjLBEA9AhIvmm3F995gMxWBnh38dMPaysLaVv+v8T+Ki8+JA+O43cqXuv
+   S6bFQeWtbCiEFvxiS5st10ZWGBlN7TK/z898Dm4IeyMAkIyJsn/O3OXGc
+   AyR8ti2O6y+7sOETgfmC5Z1QxhLN7v+JUiSazSZk0dz7TCU/J/zL25u0h
+   CVhLwuccSeuPezb+GhvXtl87NC1LOzCsCc8izWfQi66RI4kDmZhFR5zCO
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10897"; a="371604281"
+X-IronPort-AV: E=Sophos;i="6.04,209,1695711600"; 
+   d="scan'208";a="371604281"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Nov 2023 05:43:45 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10897"; a="759414040"
+X-IronPort-AV: E=Sophos;i="6.04,209,1695711600"; 
+   d="scan'208";a="759414040"
+Received: from lkp-server02.sh.intel.com (HELO b8de5498638e) ([10.239.97.151])
+  by orsmga007.jf.intel.com with ESMTP; 18 Nov 2023 05:43:39 -0800
+Received: from kbuild by b8de5498638e with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1r4Lbk-0003x2-1d;
+	Sat, 18 Nov 2023 13:43:36 +0000
+Date: Sat, 18 Nov 2023 21:43:05 +0800
+From: kernel test robot <lkp@intel.com>
+To: Yi-De Wu <yi-de.wu@mediatek.com>,
+	Yingshiuan Pan <yingshiuan.pan@mediatek.com>,
+	Ze-Yu Wang <ze-yu.wang@mediatek.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: oe-kbuild-all@lists.linux.dev, Arnd Bergmann <arnd@arndb.de>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	David Bradil <dbrazdil@google.com>,
+	Trilok Soni <quic_tsoni@quicinc.com>,
+	Jade Shih <jades.shih@mediatek.com>,
+	Ivan Tseng <ivan.tseng@mediatek.com>,
+	My Chuang <my.chuang@mediatek.com>,
+	Shawn Hsiao <shawn.hsiao@mediatek.com>,
+	PeiLun Suei <peilun.suei@mediatek.com>,
+	Liju Chen <liju-clr.chen@mediatek.com>,
+	Willix Yeh <chi-shen.yeh@mediatek.com>,
+	Kevenny Hsieh <kevenny.hsieh@mediatek.com>
+Subject: Re: [PATCH v7 09/16] virt: geniezone: Add irqfd support
+Message-ID: <202311182112.B1KM0yj9-lkp@intel.com>
+References: <20231116152756.4250-10-yi-de.wu@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-KSE-ServerInfo: RTEXH36505.realtek.com.tw, 9
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-KSE-Antivirus-Interceptor-Info: fallback
-X-KSE-AntiSpam-Interceptor-Info: fallback
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231116152756.4250-10-yi-de.wu@mediatek.com>
 
-SGkgUm9iLA0KDQo+eWFtbGxpbnQgd2FybmluZ3MvZXJyb3JzOg0KPg0KPmR0c2NoZW1hL2R0YyB3
-YXJuaW5ncy9lcnJvcnM6DQo+L2J1aWxkcy9yb2JoZXJyaW5nL2R0LXJldmlldy1jaS9saW51eC9E
-b2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvaW50ZXINCj5ydXB0LWNvbnRyb2xsZXIv
-cmVhbHRlayxydGQxMzE5ZC1pbnRjLnlhbWw6IHRpdGxlOiAnUmVhbHRlayBESEMgUlREMTMxOUQN
-Cj5JbnRlcnJ1cHQgQ29udHJvbGxlciBEZXZpY2UgVHJlZSBCaW5kaW5ncycgc2hvdWxkIG5vdCBi
-ZSB2YWxpZCB1bmRlciB7J3BhdHRlcm4nOg0KPicoW0JiXWluZGluZ3wgW1NzXWNoZW1hKSd9DQo+
-ICAgICAgICBoaW50OiBFdmVyeXRoaW5nIGlzIGEgYmluZGluZy9zY2hlbWEsIG5vIG5lZWQgdG8g
-c2F5IGl0LiBEZXNjcmliZSB3aGF0DQo+aGFyZHdhcmUgdGhlIGJpbmRpbmcgaXMgZm9yLg0KPiAg
-ICAgICAgZnJvbSBzY2hlbWEgJGlkOiBodHRwOi8vZGV2aWNldHJlZS5vcmcvbWV0YS1zY2hlbWFz
-L2Jhc2UueWFtbCMNCj4vYnVpbGRzL3JvYmhlcnJpbmcvZHQtcmV2aWV3LWNpL2xpbnV4L0RvY3Vt
-ZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9pbnRlcg0KPnJ1cHQtY29udHJvbGxlci9yZWFs
-dGVrLHJ0ZDEzMjUtaW50Yy55YW1sOiB0aXRsZTogJ1JlYWx0ZWsgREhDIFJURDEzMjUgSW50ZXJy
-dXB0DQo+Q29udHJvbGxlciBEZXZpY2UgVHJlZSBCaW5kaW5ncycgc2hvdWxkIG5vdCBiZSB2YWxp
-ZCB1bmRlciB7J3BhdHRlcm4nOg0KPicoW0JiXWluZGluZ3wgW1NzXWNoZW1hKSd9DQo+ICAgICAg
-ICBoaW50OiBFdmVyeXRoaW5nIGlzIGEgYmluZGluZy9zY2hlbWEsIG5vIG5lZWQgdG8gc2F5IGl0
-LiBEZXNjcmliZSB3aGF0DQo+aGFyZHdhcmUgdGhlIGJpbmRpbmcgaXMgZm9yLg0KPiAgICAgICAg
-ZnJvbSBzY2hlbWEgJGlkOiBodHRwOi8vZGV2aWNldHJlZS5vcmcvbWV0YS1zY2hlbWFzL2Jhc2Uu
-eWFtbCMNCj4vYnVpbGRzL3JvYmhlcnJpbmcvZHQtcmV2aWV3LWNpL2xpbnV4L0RvY3VtZW50YXRp
-b24vZGV2aWNldHJlZS9iaW5kaW5ncy9pbnRlcg0KPnJ1cHQtY29udHJvbGxlci9yZWFsdGVrLHJ0
-ZDE2MTliLWludGMueWFtbDogdGl0bGU6ICdSZWFsdGVrIERIQyBSVEQxNjE5Qg0KPkludGVycnVw
-dCBDb250cm9sbGVyIERldmljZSBUcmVlIEJpbmRpbmdzJyBzaG91bGQgbm90IGJlIHZhbGlkIHVu
-ZGVyIHsncGF0dGVybic6DQo+JyhbQmJdaW5kaW5nfCBbU3NdY2hlbWEpJ30NCj4gICAgICAgIGhp
-bnQ6IEV2ZXJ5dGhpbmcgaXMgYSBiaW5kaW5nL3NjaGVtYSwgbm8gbmVlZCB0byBzYXkgaXQuIERl
-c2NyaWJlIHdoYXQNCj5oYXJkd2FyZSB0aGUgYmluZGluZyBpcyBmb3IuDQo+ICAgICAgICBmcm9t
-IHNjaGVtYSAkaWQ6IGh0dHA6Ly9kZXZpY2V0cmVlLm9yZy9tZXRhLXNjaGVtYXMvYmFzZS55YW1s
-Iw0KPi9idWlsZHMvcm9iaGVycmluZy9kdC1yZXZpZXctY2kvbGludXgvRG9jdW1lbnRhdGlvbi9k
-ZXZpY2V0cmVlL2JpbmRpbmdzL2ludGVyDQo+cnVwdC1jb250cm9sbGVyL3JlYWx0ZWsscnRkMTMx
-OS1pbnRjLnlhbWw6IHRpdGxlOiAnUmVhbHRlayBESEMgUlREMTMxOSBJbnRlcnJ1cHQNCj5Db250
-cm9sbGVyIERldmljZSBUcmVlIEJpbmRpbmdzJyBzaG91bGQgbm90IGJlIHZhbGlkIHVuZGVyIHsn
-cGF0dGVybic6DQo+JyhbQmJdaW5kaW5nfCBbU3NdY2hlbWEpJ30NCj4gICAgICAgIGhpbnQ6IEV2
-ZXJ5dGhpbmcgaXMgYSBiaW5kaW5nL3NjaGVtYSwgbm8gbmVlZCB0byBzYXkgaXQuIERlc2NyaWJl
-IHdoYXQNCj5oYXJkd2FyZSB0aGUgYmluZGluZyBpcyBmb3IuDQo+ICAgICAgICBmcm9tIHNjaGVt
-YSAkaWQ6IGh0dHA6Ly9kZXZpY2V0cmVlLm9yZy9tZXRhLXNjaGVtYXMvYmFzZS55YW1sIw0KPg0K
-PmRvYyByZWZlcmVuY2UgZXJyb3JzIChtYWtlIHJlZmNoZWNrZG9jcyk6DQo+DQo+U2VlDQo+aHR0
-cHM6Ly9wYXRjaHdvcmsub3psYWJzLm9yZy9wcm9qZWN0L2RldmljZXRyZWUtYmluZGluZ3MvcGF0
-Y2gvMjAyMzExMTcxNjI3DQo+MDkuMTA5NjU4NS0yLWphbWVzLnRhaUByZWFsdGVrLmNvbQ0KPg0K
-PlRoZSBiYXNlIGZvciB0aGUgc2VyaWVzIGlzIGdlbmVyYWxseSB0aGUgbGF0ZXN0IHJjMS4gQSBk
-aWZmZXJlbnQgZGVwZW5kZW5jeSBzaG91bGQNCj5iZSBub3RlZCBpbiAqdGhpcyogcGF0Y2guDQo+
-DQo+SWYgeW91IGFscmVhZHkgcmFuICdtYWtlIGR0X2JpbmRpbmdfY2hlY2snIGFuZCBkaWRuJ3Qg
-c2VlIHRoZSBhYm92ZSBlcnJvcihzKSwNCj50aGVuIG1ha2Ugc3VyZSAneWFtbGxpbnQnIGlzIGlu
-c3RhbGxlZCBhbmQgZHQtc2NoZW1hIGlzIHVwIHRvDQo+ZGF0ZToNCj4NCj5waXAzIGluc3RhbGwg
-ZHRzY2hlbWEgLS11cGdyYWRlDQo+DQo+UGxlYXNlIGNoZWNrIGFuZCByZS1zdWJtaXQgYWZ0ZXIg
-cnVubmluZyB0aGUgYWJvdmUgY29tbWFuZCB5b3Vyc2VsZi4gTm90ZQ0KPnRoYXQgRFRfU0NIRU1B
-X0ZJTEVTIGNhbiBiZSBzZXQgdG8geW91ciBzY2hlbWEgZmlsZSB0byBzcGVlZCB1cCBjaGVja2lu
-Zw0KPnlvdXIgc2NoZW1hLiBIb3dldmVyLCBpdCBtdXN0IGJlIHVuc2V0IHRvIHRlc3QgYWxsIGV4
-YW1wbGVzIHdpdGggeW91ciBzY2hlbWEuDQoNCk9LLiBJIHdpbGwgdXBkYXRlIHRoZSBkdHNjaGVt
-YSBhbmQgcmVydW4gJ21ha2UgZHRfYmluZGluZ19jaGVjaycuDQoNClRoYW5rIHlvdSBmb3IgeW91
-ciBmZWVkYmFjay4NCg0KUmVnYXJkcywNCkphbWVzDQoNCg0K
+Hi Yi-De,
+
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on linus/master]
+[also build test ERROR on v6.7-rc1 next-20231117]
+[cannot apply to arm64/for-next/core robh/for-next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Yi-De-Wu/docs-geniezone-Introduce-GenieZone-hypervisor/20231116-233442
+base:   linus/master
+patch link:    https://lore.kernel.org/r/20231116152756.4250-10-yi-de.wu%40mediatek.com
+patch subject: [PATCH v7 09/16] virt: geniezone: Add irqfd support
+config: arm64-randconfig-r081-20231118 (https://download.01.org/0day-ci/archive/20231118/202311182112.B1KM0yj9-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231118/202311182112.B1KM0yj9-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202311182112.B1KM0yj9-lkp@intel.com/
+
+All error/warnings (new ones prefixed by >>):
+
+   arch/arm64/geniezone/../../../drivers/virt/geniezone/gzvm_irqfd.c: In function 'gzvm_irqfd_assign':
+>> arch/arm64/geniezone/../../../drivers/virt/geniezone/gzvm_irqfd.c:185:19: error: implicit declaration of function 'eventfd_ctx_fileget'; did you mean 'eventfd_ctx_fdget'? [-Werror=implicit-function-declaration]
+     185 |         eventfd = eventfd_ctx_fileget(f.file);
+         |                   ^~~~~~~~~~~~~~~~~~~
+         |                   eventfd_ctx_fdget
+>> arch/arm64/geniezone/../../../drivers/virt/geniezone/gzvm_irqfd.c:185:17: warning: assignment to 'struct eventfd_ctx *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
+     185 |         eventfd = eventfd_ctx_fileget(f.file);
+         |                 ^
+   cc1: some warnings being treated as errors
+
+
+vim +185 arch/arm64/geniezone/../../../drivers/virt/geniezone/gzvm_irqfd.c
+
+   160	
+   161	static int gzvm_irqfd_assign(struct gzvm *gzvm, struct gzvm_irqfd *args)
+   162	{
+   163		struct gzvm_kernel_irqfd *irqfd, *tmp;
+   164		struct fd f;
+   165		struct eventfd_ctx *eventfd = NULL;
+   166		int ret;
+   167		int idx;
+   168	
+   169		irqfd = kzalloc(sizeof(*irqfd), GFP_KERNEL_ACCOUNT);
+   170		if (!irqfd)
+   171			return -ENOMEM;
+   172	
+   173		irqfd->gzvm = gzvm;
+   174		irqfd->gsi = args->gsi;
+   175	
+   176		INIT_LIST_HEAD(&irqfd->list);
+   177		INIT_WORK(&irqfd->shutdown, irqfd_shutdown);
+   178	
+   179		f = fdget(args->fd);
+   180		if (!f.file) {
+   181			ret = -EBADF;
+   182			goto out;
+   183		}
+   184	
+ > 185		eventfd = eventfd_ctx_fileget(f.file);
+   186		if (IS_ERR(eventfd)) {
+   187			ret = PTR_ERR(eventfd);
+   188			goto fail;
+   189		}
+   190	
+   191		irqfd->eventfd = eventfd;
+   192	
+   193		/*
+   194		 * Install our own custom wake-up handling so we are notified via
+   195		 * a callback whenever someone signals the underlying eventfd
+   196		 */
+   197		init_waitqueue_func_entry(&irqfd->wait, irqfd_wakeup);
+   198		init_poll_funcptr(&irqfd->pt, irqfd_ptable_queue_proc);
+   199	
+   200		spin_lock_irq(&gzvm->irqfds.lock);
+   201	
+   202		ret = 0;
+   203		list_for_each_entry(tmp, &gzvm->irqfds.items, list) {
+   204			if (irqfd->eventfd != tmp->eventfd)
+   205				continue;
+   206			/* This fd is used for another irq already. */
+   207			pr_err("already used: gsi=%d fd=%d\n", args->gsi, args->fd);
+   208			ret = -EBUSY;
+   209			spin_unlock_irq(&gzvm->irqfds.lock);
+   210			goto fail;
+   211		}
+   212	
+   213		idx = srcu_read_lock(&gzvm->irq_srcu);
+   214	
+   215		list_add_tail(&irqfd->list, &gzvm->irqfds.items);
+   216	
+   217		spin_unlock_irq(&gzvm->irqfds.lock);
+   218	
+   219		vfs_poll(f.file, &irqfd->pt);
+   220	
+   221		srcu_read_unlock(&gzvm->irq_srcu, idx);
+   222	
+   223		/*
+   224		 * do not drop the file until the irqfd is fully initialized, otherwise
+   225		 * we might race against the EPOLLHUP
+   226		 */
+   227		fdput(f);
+   228		return 0;
+   229	
+   230	fail:
+   231		if (eventfd && !IS_ERR(eventfd))
+   232			eventfd_ctx_put(eventfd);
+   233	
+   234		fdput(f);
+   235	
+   236	out:
+   237		kfree(irqfd);
+   238		return ret;
+   239	}
+   240	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
