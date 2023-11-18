@@ -1,49 +1,68 @@
-Return-Path: <devicetree+bounces-16870-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16871-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C6087F02DA
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 21:20:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CF9737F0304
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 22:35:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4EBB61C2082F
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 20:20:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EF0BE1C204AB
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 21:35:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE4BD1B26E;
-	Sat, 18 Nov 2023 20:20:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5E001E534;
+	Sat, 18 Nov 2023 21:35:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="VLP+pfvd"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="TqIbyDZh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 863A71A1;
-	Sat, 18 Nov 2023 12:19:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=SjXWAYmFEc1rO45Mv1FCK3wC/fa6+5kmEE0zIU9kiS0=; b=VLP+pfvdw1d3r5xTGcSD0PaueI
-	fRcAAr7XA7s+pc4BUmgqQDuhNbefPXcsMgi+BixYwYq/TQY7uZ6ZZyfBYw0XOj/et2KfurHfzYDXa
-	vFJrZg5IX99IXX5Gs3NS/pKMSgKajnXaQpRB1icjMs+NwQwAb5YezfZlmeZFj2S9y+OA=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1r4Rn2-000WiP-4j; Sat, 18 Nov 2023 21:19:40 +0100
-Date: Sat, 18 Nov 2023 21:19:40 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: Luo Jie <quic_luoj@quicinc.com>, davem@davemloft.net,
-	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, hkallweit1@gmail.com, corbet@lwn.net,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
-Subject: Re: [PATCH v5 3/6] net: phy: at803x: add QCA8084 ethernet phy support
-Message-ID: <eee39816-b0b8-475c-aa4a-8500ba488a29@lunn.ch>
-References: <20231118062754.2453-1-quic_luoj@quicinc.com>
- <20231118062754.2453-4-quic_luoj@quicinc.com>
- <1eb60a08-f095-421a-bec6-96f39db31c09@lunn.ch>
- <ZVkRkhMHWcAR37fW@shell.armlinux.org.uk>
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03EA9E0;
+	Sat, 18 Nov 2023 13:35:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1700343345; x=1731879345;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=LJXjOb+KewYsrTEUlJCa92ls1KMHSAnBn81gLT7ZRXk=;
+  b=TqIbyDZh8XOb+gOjP4cuz0Rafzg9UR6C2KPvlc2sSAq0aQVRKhoUireP
+   GGvZo7HyPWYrCT+YlP1Jtd6N1dnrNjFVHw2s7v2n6x45QdhJnPVrtFuJk
+   axVoI2CIbC/KCujgzHvvU2HVA3E6/iMrKHlvVz1R400YKWlceswMsaqiS
+   vhNwujeKLnamAFDHN97Ne83u01yj/1d0u3zSaCyuNZ+bkr33IaFmSKb97
+   FZZd4sKc2rOV8jaLReHVmN0axJT2Ie2FYxxFpbzJn3VEb+9tr3qM8QFBU
+   aCyx9asVbRFf8AlVRf15DetnNWQnr5j0eLOksXI9S5f+91eJ1mPw1m35H
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10898"; a="388604876"
+X-IronPort-AV: E=Sophos;i="6.04,209,1695711600"; 
+   d="scan'208";a="388604876"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Nov 2023 13:35:45 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.04,209,1695711600"; 
+   d="scan'208";a="14219335"
+Received: from lkp-server02.sh.intel.com (HELO b8de5498638e) ([10.239.97.151])
+  by fmviesa001.fm.intel.com with ESMTP; 18 Nov 2023 13:35:42 -0800
+Received: from kbuild by b8de5498638e with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1r4SyZ-0004Jj-1Q;
+	Sat, 18 Nov 2023 21:35:39 +0000
+Date: Sun, 19 Nov 2023 05:35:09 +0800
+From: kernel test robot <lkp@intel.com>
+To: Mehdi Djait <mehdi.djait@bootlin.com>, mchehab@kernel.org,
+	heiko@sntech.de, hverkuil-cisco@xs4all.nl,
+	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: Paul Gazzillo <paul@pgazz.com>,
+	Necip Fazil Yildiran <fazilyildiran@gmail.com>,
+	oe-kbuild-all@lists.linux.dev, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	thomas.petazzoni@bootlin.com, alexandre.belloni@bootlin.com,
+	maxime.chevallier@bootlin.com, paul.kocialkowski@bootlin.com,
+	michael.riesch@wolfvision.net,
+	Mehdi Djait <mehdi.djait@bootlin.com>
+Subject: Re: [PATCH v11 2/3] media: rockchip: Add a driver for Rockchip's
+ camera interface
+Message-ID: <202311190502.W5r6jlfH-lkp@intel.com>
+References: <db605935ad21c4780b73db87605b52d30bc936a4.1700132457.git.mehdi.djait@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,50 +71,39 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ZVkRkhMHWcAR37fW@shell.armlinux.org.uk>
+In-Reply-To: <db605935ad21c4780b73db87605b52d30bc936a4.1700132457.git.mehdi.djait@bootlin.com>
 
-> 10G_QXGMII is defined in the Cisco USXGMII multi-port document as one
-> of several possibilities for a USXGMII-M link. The Cisco document can
-> be a little confusing beause it states that 10G_QXGMII supports 10M,
-> 100M, 1G and 2.5G, and then only talks about a 10G and 100M/1G MAC.
-> 
-> For 10G_QXGMII, there are 4 MAC interfaces. These are connected to a
-> rate "adaption" through symbol replication block, and then on to a
-> clause 49 PCS block.
-> 
-> There is then a port MUX and framing block, followed by the PMA
-> serdes which communicates with the remote end over a single pair of
-> transmit/receive serdes lines.
-> 
-> Each interface also has its own clause 37 autoneg block.
-> 
-> So, for an interface to operate in SGMII mode, it would have to be
-> muxed to a different path before being presented to the USXGMII-M
-> block since each interface does not have its own external data lane
-> - thus that's out of scope of USXGMII-M as documented by Cisco.
+Hi Mehdi,
 
-Hi Russell
+kernel test robot noticed the following build warnings:
 
-I think it helps.
+[auto build test WARNING on rockchip/for-next]
+[also build test WARNING on linuxtv-media-stage/master robh/for-next linus/master v6.7-rc1 next-20231117]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Where i'm having trouble is deciding if this is actually an interface
-mode. Interface mode is a per PHY property. Where as it seems
-10G_QXGMII is a property of the USXGMII-M link? Should we be
-representing the package with 4 PHYs in it, and specify the package
-has a PMA which is using 10G_QXGMII over USXGMII-M? The PHY interface
-mode is then internal? Its just the link between the PHY and the MUX?
+url:    https://github.com/intel-lab-lkp/linux/commits/Mehdi-Djait/media-dt-bindings-media-add-bindings-for-Rockchip-CIF/20231116-190910
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git for-next
+patch link:    https://lore.kernel.org/r/db605935ad21c4780b73db87605b52d30bc936a4.1700132457.git.mehdi.djait%40bootlin.com
+patch subject: [PATCH v11 2/3] media: rockchip: Add a driver for Rockchip's camera interface
+config: x86_64-kismet-CONFIG_VIDEO_V4L2_SUBDEV_API-CONFIG_VIDEO_ROCKCHIP_CIF-0-0 (https://download.01.org/0day-ci/archive/20231119/202311190502.W5r6jlfH-lkp@intel.com/config)
+reproduce: (https://download.01.org/0day-ci/archive/20231119/202311190502.W5r6jlfH-lkp@intel.com/reproduce)
 
-By saying the interface mode is 10G_QXGMII and not describing the PMA
-mode, are we setting ourselves up for problems in the future? Could
-there be a PMA interface which could carry different PHY interface
-modes?
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202311190502.W5r6jlfH-lkp@intel.com/
 
-If we decide we do want to use 10G_QXGMII as an interface made, i
-think the driver should be doing some validation. If asked to do
-anything else, it should return -EINVAL.
+kismet warnings: (new ones prefixed by >>)
+>> kismet: WARNING: unmet direct dependencies detected for VIDEO_V4L2_SUBDEV_API when selected by VIDEO_ROCKCHIP_CIF
+   
+   WARNING: unmet direct dependencies detected for VIDEO_V4L2_SUBDEV_API
+     Depends on [n]: MEDIA_SUPPORT [=y] && VIDEO_DEV [=y] && MEDIA_CONTROLLER [=n]
+     Selected by [y]:
+     - VIDEO_ROCKCHIP_CIF [=y] && MEDIA_SUPPORT [=y] && MEDIA_PLATFORM_SUPPORT [=y] && MEDIA_PLATFORM_DRIVERS [=y] && VIDEO_DEV [=y] && (ARCH_ROCKCHIP || COMPILE_TEST [=y]) && V4L_PLATFORM_DRIVERS [=y] && PM [=y] && COMMON_CLK [=y]
 
-And i don't yet understand how it can also do 1000BaseX and 2500BaseX
-and SGMII?
-
-    Andrew
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
