@@ -1,119 +1,125 @@
-Return-Path: <devicetree+bounces-16858-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16859-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C54F07EFFB1
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 13:43:41 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBADD7EFFE7
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 14:33:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 69A8F1F230D0
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 12:43:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DF91DB20988
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 13:33:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4709F12B99;
-	Sat, 18 Nov 2023 12:43:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="SZAcbAsK"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF65C107BB;
+	Sat, 18 Nov 2023 13:33:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED6A2D5;
-	Sat, 18 Nov 2023 04:43:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-	s=s31663417; t=1700311391; x=1700916191; i=wahrenst@gmx.net;
-	bh=uE3UgaMWX691oAfqe3827yIFDo67qS1ai4DImMS0WyQ=;
-	h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:
-	 References;
-	b=SZAcbAsKE95527j4cZy41RIF/9MVkwmU5zN2itUAkvJnKizu8ZF6Iu8U+DTZugfJ
-	 FlBsPoI2Uphr5hLLC8PeAy/X24innpwOb/2kqMtCoL294M2PV/W3fWZNAEjG8x/Wl
-	 usEzA8SwD9qtPK3W2mmRA0GO3qsErUCd61AjCDMcTFKM5CWuTyagmVw0kt8Fo4rNe
-	 7VmHO7L7snm8EP9bjFwcwPRrqvr+hqzmqR92ybaIYGq9NI9U0VY1zv7lgp8sUVqGi
-	 iuNioI+bw7c8D920E5tChNh4K9C7cAZtfiXVFehitPo34/Ms/2HieYUHcM2YHti2t
-	 3nCIg+Blrvy9gwpbKg==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from stefanw-SCHENKER ([37.4.248.43]) by mail.gmx.net (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MRCOE-1qjUOA3q6e-00N6Vg; Sat, 18
- Nov 2023 13:43:11 +0100
-From: Stefan Wahren <wahrenst@gmx.net>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Pavel Machek <pavel@ucw.cz>,
-	Lee Jones <lee@kernel.org>
-Cc: bcm-kernel-feedback-list@broadcom.com,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-leds@vger.kernel.org,
-	Stefan Wahren <wahrenst@gmx.net>
-Subject: [PATCH V2 2/2] ARM: dts: bcm2711-rpi-400: Fix delete-node of led_act
-Date: Sat, 18 Nov 2023 13:42:52 +0100
-Message-Id: <20231118124252.14838-3-wahrenst@gmx.net>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231118124252.14838-1-wahrenst@gmx.net>
-References: <20231118124252.14838-1-wahrenst@gmx.net>
+Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30DF212B;
+	Sat, 18 Nov 2023 05:33:01 -0800 (PST)
+X-SpamFilter-By: ArmorX SpamTrap 5.78 with qID 3AIDWir263688789, This message is accepted by code: ctloc85258
+Received: from mail.realtek.com (rtexh36505.realtek.com.tw[172.21.6.25])
+	by rtits2.realtek.com.tw (8.15.2/2.95/5.92) with ESMTPS id 3AIDWir263688789
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Sat, 18 Nov 2023 21:32:44 +0800
+Received: from RTEXMBS03.realtek.com.tw (172.21.6.96) by
+ RTEXH36505.realtek.com.tw (172.21.6.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.32; Sat, 18 Nov 2023 21:32:44 +0800
+Received: from RTEXMBS03.realtek.com.tw (172.21.6.96) by
+ RTEXMBS03.realtek.com.tw (172.21.6.96) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.7; Sat, 18 Nov 2023 21:32:44 +0800
+Received: from RTEXMBS03.realtek.com.tw ([fe80::5510:ad08:5390:1ed3]) by
+ RTEXMBS03.realtek.com.tw ([fe80::5510:ad08:5390:1ed3%2]) with mapi id
+ 15.01.2375.007; Sat, 18 Nov 2023 21:32:44 +0800
+From: =?big5?B?SmFtZXMgVGFpIFvAuafTrnBd?= <james.tai@realtek.com>
+To: Rob Herring <robh@kernel.org>
+CC: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>, Marc Zyngier
+	<maz@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+Subject: RE: [PATCH v2 1/6] dt-bindings: interrupt-controller: Add support for Realtek DHC SoCs
+Thread-Topic: [PATCH v2 1/6] dt-bindings: interrupt-controller: Add support
+ for Realtek DHC SoCs
+Thread-Index: AQHaGXMHJnbDooY4VkyEcMH4aisPjrB+PxWAgAGjMjA=
+Date: Sat, 18 Nov 2023 13:32:44 +0000
+Message-ID: <fff420e3928c465abe1f0488062aafe7@realtek.com>
+References: <20231117162709.1096585-1-james.tai@realtek.com>
+ <20231117162709.1096585-2-james.tai@realtek.com>
+ <170024235327.1869893.15173077111056096496.robh@kernel.org>
+In-Reply-To: <170024235327.1869893.15173077111056096496.robh@kernel.org>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+x-originating-ip: [114.25.81.91]
+x-kse-serverinfo: RTEXMBS03.realtek.com.tw, 9
+x-kse-antispam-interceptor-info: fallback
+x-kse-antivirus-interceptor-info: fallback
+Content-Type: text/plain; charset="big5"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:tUqmj8fVqWa6a8fOCIKp6khTGQuGLFarRxUH2BHqKTL3thukt8s
- VvsH4PdKf+JtRufzia8ap+dVrpby8R+WGeBBlWgxRO3cP7+xmtdUZKY0l8rgiaqI4zyuxIX
- K/3B3ugJ49Jp9wArswTZPe5LwBE5PjNM/F/AoRQCmgmtHcCKxAR+tADHfgl/Xcs/YK2H8OS
- RpReDNBLc6d2iqcZStmBw==
-UI-OutboundReport: notjunk:1;M01:P0:AiN5NzomRGw=;PbOc9bN2KdSP+tn+MysYfgRAFsb
- M8Qd4U4G2D0RJZdYteCs44gxio2zidBg6MTrBHH5uReupAr3xaCkhk8QykdJ3vha1Z1BJFAkI
- XNfCL/sJ5S79eIGy+RJpNeC6HZqj/FlhYHgZuVquoFf93gLg3jYS5ennq8S53O0g41O8MezqI
- 0ZGcpoTKFYX+m7eWd/yv3yLlonUcgFcew4cU0pwcarOwKGSHiGI1bXFufGcTnRxhSG++jrn4/
- 6GjXb1eDFRJLZjLUDCC0oGagSHz8FCXq0lEkmfAiTV1xMY1/xVRw6PjxUG2tsbNdQaoPKE6p6
- 8IwzBPpg5xdnHWaAhyGrKB8LkPXrHAnzAIleceOh7eE3JH4fbbd9n3/RQ6Q43yAJ0c+bYiQqq
- yNV7z4l6MCZ/He8SDfj92sGr+jUKTAMC9FOczJI8oisjPpuNGiqvqOuP7X2yrvBoqjFFiZWKv
- d3euh4PuNv6CysIrDc8W59OtuYlSrcZLopZZ3Eejd5RYnz9P54Aq1FD7kwnsmrcSF6I3VElnc
- dC4YGKiLcbNMH94BsZZu2AqqJBY+0eaQvDfsbJBmam5hJTiNUbTFZak4/ue/dACbr1Ei5vCP0
- UG4RZ3pjs+tXvklS0IXakbd3P6y/DEDVTaTABazjAiB52v9X8jUUzmVJiei++XfwFW4519srY
- vID0hpvV1oGLfzVld+sPsb21fGcno8NFe40Q/N0IB0JzMPzfmNMSb4MrHpjFoJJCYS140GHir
- fHFLDZD6vb6KQDRvBmpywygAvU33HjcM2LxEp4Ea+yERC8V3pENKa/CNyCh0ymGf9iALpTcy/
- u2DQLjubohANI7uKejnm4W1eTbOelH8wh4E6Bvw1Jd4SRAQX4uZigDdTWGTBjmm5imVN0jreg
- 4LbdR5NFysnxPU2yMQGllj8ae4iMJeVA6+Y0OhRZDmKXtoi6ResBwfeb/6yqS4RzwvEJ1yvtE
- YEW5Sg==
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-KSE-ServerInfo: RTEXH36505.realtek.com.tw, 9
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-KSE-Antivirus-Interceptor-Info: fallback
+X-KSE-AntiSpam-Interceptor-Info: fallback
 
-The LED ACT which is included from bcm2711-rpi-4-b doesn't exists
-on the Raspberry Pi 400. So the bcm2711-rpi-400.dts tries to
-use the delete-node directive in order to remove the complete
-node. Unfortunately the usage get broken in commit 1156e3a78bcc
-("ARM: dts: bcm283x: Move ACT LED into separate dtsi")
-and now ACT and PWR LED using the same GPIO and this prevent
-probing of led-gpios on Raspberry Pi 400:
-
-    leds-gpio: probe of leds failed with error -16
-
-So fix the delete-node directive.
-
-Fixes: 1156e3a78bcc ("ARM: dts: bcm283x: Move ACT LED into separate dtsi")
-Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
-=2D--
- arch/arm/boot/dts/broadcom/bcm2711-rpi-400.dts | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
-
-diff --git a/arch/arm/boot/dts/broadcom/bcm2711-rpi-400.dts b/arch/arm/boo=
-t/dts/broadcom/bcm2711-rpi-400.dts
-index 1ab8184302db..5a2869a18bd5 100644
-=2D-- a/arch/arm/boot/dts/broadcom/bcm2711-rpi-400.dts
-+++ b/arch/arm/boot/dts/broadcom/bcm2711-rpi-400.dts
-@@ -36,9 +36,7 @@ &led_pwr {
- 	gpios =3D <&gpio 42 GPIO_ACTIVE_HIGH>;
- };
-
--&leds {
--	/delete-node/ led_act;
--};
-+/delete-node/ &led_act;
-
- &pm {
- 	/delete-property/ system-power-controller;
-=2D-
-2.34.1
-
+SGkgUm9iLA0KDQo+eWFtbGxpbnQgd2FybmluZ3MvZXJyb3JzOg0KPg0KPmR0c2NoZW1hL2R0YyB3
+YXJuaW5ncy9lcnJvcnM6DQo+L2J1aWxkcy9yb2JoZXJyaW5nL2R0LXJldmlldy1jaS9saW51eC9E
+b2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvaW50ZXINCj5ydXB0LWNvbnRyb2xsZXIv
+cmVhbHRlayxydGQxMzE5ZC1pbnRjLnlhbWw6IHRpdGxlOiAnUmVhbHRlayBESEMgUlREMTMxOUQN
+Cj5JbnRlcnJ1cHQgQ29udHJvbGxlciBEZXZpY2UgVHJlZSBCaW5kaW5ncycgc2hvdWxkIG5vdCBi
+ZSB2YWxpZCB1bmRlciB7J3BhdHRlcm4nOg0KPicoW0JiXWluZGluZ3wgW1NzXWNoZW1hKSd9DQo+
+ICAgICAgICBoaW50OiBFdmVyeXRoaW5nIGlzIGEgYmluZGluZy9zY2hlbWEsIG5vIG5lZWQgdG8g
+c2F5IGl0LiBEZXNjcmliZSB3aGF0DQo+aGFyZHdhcmUgdGhlIGJpbmRpbmcgaXMgZm9yLg0KPiAg
+ICAgICAgZnJvbSBzY2hlbWEgJGlkOiBodHRwOi8vZGV2aWNldHJlZS5vcmcvbWV0YS1zY2hlbWFz
+L2Jhc2UueWFtbCMNCj4vYnVpbGRzL3JvYmhlcnJpbmcvZHQtcmV2aWV3LWNpL2xpbnV4L0RvY3Vt
+ZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9pbnRlcg0KPnJ1cHQtY29udHJvbGxlci9yZWFs
+dGVrLHJ0ZDEzMjUtaW50Yy55YW1sOiB0aXRsZTogJ1JlYWx0ZWsgREhDIFJURDEzMjUgSW50ZXJy
+dXB0DQo+Q29udHJvbGxlciBEZXZpY2UgVHJlZSBCaW5kaW5ncycgc2hvdWxkIG5vdCBiZSB2YWxp
+ZCB1bmRlciB7J3BhdHRlcm4nOg0KPicoW0JiXWluZGluZ3wgW1NzXWNoZW1hKSd9DQo+ICAgICAg
+ICBoaW50OiBFdmVyeXRoaW5nIGlzIGEgYmluZGluZy9zY2hlbWEsIG5vIG5lZWQgdG8gc2F5IGl0
+LiBEZXNjcmliZSB3aGF0DQo+aGFyZHdhcmUgdGhlIGJpbmRpbmcgaXMgZm9yLg0KPiAgICAgICAg
+ZnJvbSBzY2hlbWEgJGlkOiBodHRwOi8vZGV2aWNldHJlZS5vcmcvbWV0YS1zY2hlbWFzL2Jhc2Uu
+eWFtbCMNCj4vYnVpbGRzL3JvYmhlcnJpbmcvZHQtcmV2aWV3LWNpL2xpbnV4L0RvY3VtZW50YXRp
+b24vZGV2aWNldHJlZS9iaW5kaW5ncy9pbnRlcg0KPnJ1cHQtY29udHJvbGxlci9yZWFsdGVrLHJ0
+ZDE2MTliLWludGMueWFtbDogdGl0bGU6ICdSZWFsdGVrIERIQyBSVEQxNjE5Qg0KPkludGVycnVw
+dCBDb250cm9sbGVyIERldmljZSBUcmVlIEJpbmRpbmdzJyBzaG91bGQgbm90IGJlIHZhbGlkIHVu
+ZGVyIHsncGF0dGVybic6DQo+JyhbQmJdaW5kaW5nfCBbU3NdY2hlbWEpJ30NCj4gICAgICAgIGhp
+bnQ6IEV2ZXJ5dGhpbmcgaXMgYSBiaW5kaW5nL3NjaGVtYSwgbm8gbmVlZCB0byBzYXkgaXQuIERl
+c2NyaWJlIHdoYXQNCj5oYXJkd2FyZSB0aGUgYmluZGluZyBpcyBmb3IuDQo+ICAgICAgICBmcm9t
+IHNjaGVtYSAkaWQ6IGh0dHA6Ly9kZXZpY2V0cmVlLm9yZy9tZXRhLXNjaGVtYXMvYmFzZS55YW1s
+Iw0KPi9idWlsZHMvcm9iaGVycmluZy9kdC1yZXZpZXctY2kvbGludXgvRG9jdW1lbnRhdGlvbi9k
+ZXZpY2V0cmVlL2JpbmRpbmdzL2ludGVyDQo+cnVwdC1jb250cm9sbGVyL3JlYWx0ZWsscnRkMTMx
+OS1pbnRjLnlhbWw6IHRpdGxlOiAnUmVhbHRlayBESEMgUlREMTMxOSBJbnRlcnJ1cHQNCj5Db250
+cm9sbGVyIERldmljZSBUcmVlIEJpbmRpbmdzJyBzaG91bGQgbm90IGJlIHZhbGlkIHVuZGVyIHsn
+cGF0dGVybic6DQo+JyhbQmJdaW5kaW5nfCBbU3NdY2hlbWEpJ30NCj4gICAgICAgIGhpbnQ6IEV2
+ZXJ5dGhpbmcgaXMgYSBiaW5kaW5nL3NjaGVtYSwgbm8gbmVlZCB0byBzYXkgaXQuIERlc2NyaWJl
+IHdoYXQNCj5oYXJkd2FyZSB0aGUgYmluZGluZyBpcyBmb3IuDQo+ICAgICAgICBmcm9tIHNjaGVt
+YSAkaWQ6IGh0dHA6Ly9kZXZpY2V0cmVlLm9yZy9tZXRhLXNjaGVtYXMvYmFzZS55YW1sIw0KPg0K
+PmRvYyByZWZlcmVuY2UgZXJyb3JzIChtYWtlIHJlZmNoZWNrZG9jcyk6DQo+DQo+U2VlDQo+aHR0
+cHM6Ly9wYXRjaHdvcmsub3psYWJzLm9yZy9wcm9qZWN0L2RldmljZXRyZWUtYmluZGluZ3MvcGF0
+Y2gvMjAyMzExMTcxNjI3DQo+MDkuMTA5NjU4NS0yLWphbWVzLnRhaUByZWFsdGVrLmNvbQ0KPg0K
+PlRoZSBiYXNlIGZvciB0aGUgc2VyaWVzIGlzIGdlbmVyYWxseSB0aGUgbGF0ZXN0IHJjMS4gQSBk
+aWZmZXJlbnQgZGVwZW5kZW5jeSBzaG91bGQNCj5iZSBub3RlZCBpbiAqdGhpcyogcGF0Y2guDQo+
+DQo+SWYgeW91IGFscmVhZHkgcmFuICdtYWtlIGR0X2JpbmRpbmdfY2hlY2snIGFuZCBkaWRuJ3Qg
+c2VlIHRoZSBhYm92ZSBlcnJvcihzKSwNCj50aGVuIG1ha2Ugc3VyZSAneWFtbGxpbnQnIGlzIGlu
+c3RhbGxlZCBhbmQgZHQtc2NoZW1hIGlzIHVwIHRvDQo+ZGF0ZToNCj4NCj5waXAzIGluc3RhbGwg
+ZHRzY2hlbWEgLS11cGdyYWRlDQo+DQo+UGxlYXNlIGNoZWNrIGFuZCByZS1zdWJtaXQgYWZ0ZXIg
+cnVubmluZyB0aGUgYWJvdmUgY29tbWFuZCB5b3Vyc2VsZi4gTm90ZQ0KPnRoYXQgRFRfU0NIRU1B
+X0ZJTEVTIGNhbiBiZSBzZXQgdG8geW91ciBzY2hlbWEgZmlsZSB0byBzcGVlZCB1cCBjaGVja2lu
+Zw0KPnlvdXIgc2NoZW1hLiBIb3dldmVyLCBpdCBtdXN0IGJlIHVuc2V0IHRvIHRlc3QgYWxsIGV4
+YW1wbGVzIHdpdGggeW91ciBzY2hlbWEuDQoNCk9LLiBJIHdpbGwgdXBkYXRlIHRoZSBkdHNjaGVt
+YSBhbmQgcmVydW4gJ21ha2UgZHRfYmluZGluZ19jaGVjaycuDQoNClRoYW5rIHlvdSBmb3IgeW91
+ciBmZWVkYmFjay4NCg0KUmVnYXJkcywNCkphbWVzDQoNCg0K
 
