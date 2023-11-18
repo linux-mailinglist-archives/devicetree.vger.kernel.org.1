@@ -1,96 +1,90 @@
-Return-Path: <devicetree+bounces-16864-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16865-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A60357F013F
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 17:58:42 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFB1A7F015B
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 18:39:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7D495B2099E
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 16:58:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1537FB20984
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 17:39:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EF5216433;
-	Sat, 18 Nov 2023 16:58:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E75316418;
+	Sat, 18 Nov 2023 17:39:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OyHHTfN8"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="eGCQe3hg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-xb31.google.com (mail-yb1-xb31.google.com [IPv6:2607:f8b0:4864:20::b31])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E904E5;
-	Sat, 18 Nov 2023 08:58:32 -0800 (PST)
-Received: by mail-yb1-xb31.google.com with SMTP id 3f1490d57ef6-d9ca471cf3aso2890272276.2;
-        Sat, 18 Nov 2023 08:58:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1700326711; x=1700931511; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=s+puumHBwG15d9J6rc0y92l94G1vv6CAlOkN6zqMuV0=;
-        b=OyHHTfN8OWCfVHTs3YJzi+i1odxmjrMdY+RIhzxNdrJwC2V2/qFaYl7GJ2MRXM8w+R
-         8UoUivcBOhVLsG26KadiRR9OF1SRRfJXrLBiIvCR1TnrxD503gRJhVR6BzsA7gl73sLa
-         jCpwYuqT6rjkJuw9wMaE5POFJ/UptMjwxJcGqQzlwGKNAAEZUQQhCZlCVgf4pv1fkJ8o
-         SXQntDUx4t5wOcTCKwHeQqoe3n7+s/m/SZgRcvG3+/9MMb/HHlHUZ1+ObBBWtB5P0vcA
-         /dWEj4vIgQp4crj7nU9N0eViRgLoGz7wPC+j+AYsjUfb65dNLPClcuZ6GBKAtXZTXKZ0
-         7IgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700326711; x=1700931511;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=s+puumHBwG15d9J6rc0y92l94G1vv6CAlOkN6zqMuV0=;
-        b=T7pODJQ0eDykD25pVybO8Y23TFgijDqvTHgDTg3Wxyp5anr5LAN6xBLSz/RF9Y7aJT
-         kwIXaMQDR6hoJJ7xeZNVLytWVdaj+PoAjwraM0nJHVEJ51VRoWdR1eaIGzwApGgAxIAQ
-         bSIY+ylZa2kvFwNsTaXOoVrJHjQZKfujExSye20KxgFFcKP56NW5Iqsikisg+32WwmbP
-         loxQOLGeW0Is8p1RYOncThLJbaoaeLAxLZ6tJPsFq9LBMlA72BVF2OgJMj4gLIODsPK9
-         RQOfteANGgaSdhJplMP9s3XASTbEsDC8FEQqaEhrCFsFDLBkeX8Qf3zNoXBOmC46oJ/L
-         vhMQ==
-X-Gm-Message-State: AOJu0YwOU4Y7BqzMhipM/oF7SVHCJHcNjfUPyYxUCfKpGxaQRbIsjMwr
-	nJVeFILekce/HE53IAxgM5VVjU1BcQ/8wrRFFek=
-X-Google-Smtp-Source: AGHT+IEiHHassuObi4T4IbCqGNK6bxkEISXFCSXcgm/rvOZinGs4+1EcvnBaloGDhAB8ee7sFndHInenrYwiqxcNN2M=
-X-Received: by 2002:a25:dbc5:0:b0:db0:2f97:8757 with SMTP id
- g188-20020a25dbc5000000b00db02f978757mr2705194ybf.38.1700326711409; Sat, 18
- Nov 2023 08:58:31 -0800 (PST)
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 935FE1AD;
+	Sat, 18 Nov 2023 09:39:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=ODf/EeD7TdfM/V4kFavfoqfzEFUPK1joSi1qIu1/vpo=; b=eGCQe3hghc9aC7kqR7Alui+/Y/
+	Wd918gat2/NjcQkpHigcJScHVxcq/DLVNWKzkD+HFQ2J+T2m+AVawujJT/6g6HqDYVLeCdZYXKjVq
+	fSCofpLsEC86sjc2Kmt3dhd7BKkCbqozrCVEHUGaZkmWN5kgWlx50j/BVbDWj0HUXxo0=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1r4PHH-000WBY-3h; Sat, 18 Nov 2023 18:38:43 +0100
+Date: Sat, 18 Nov 2023 18:38:43 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Kory Maincent <kory.maincent@bootlin.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Luis Chamberlain <mcgrof@kernel.org>,
+	Russ Weight <russ.weight@linux.dev>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 2/9] ethtool: Expand Ethernet Power Equipment
+ with PoE alongside PoDL
+Message-ID: <04cb7d87-bb6b-4997-878d-490c17bfdfd0@lunn.ch>
+References: <20231116-feature_poe-v1-0-be48044bf249@bootlin.com>
+ <20231116-feature_poe-v1-2-be48044bf249@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231101142445.8753-1-ddrokosov@salutedevices.com>
-In-Reply-To: <20231101142445.8753-1-ddrokosov@salutedevices.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Sat, 18 Nov 2023 18:57:55 +0200
-Message-ID: <CAHp75Vffji=WH8_vTwrvhmPqwD=NjqHB2B83dSk0axSWM9vTnA@mail.gmail.com>
-Subject: Re: [PATCH v3 00/11] leds: aw200xx: several driver updates
-To: Dmitry Rokosov <ddrokosov@salutedevices.com>
-Cc: lee@kernel.org, pavel@ucw.cz, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, kernel@sberdevices.ru, 
-	rockosov@gmail.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-leds@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231116-feature_poe-v1-2-be48044bf249@bootlin.com>
 
-On Wed, Nov 1, 2023 at 4:24=E2=80=AFPM Dmitry Rokosov
-<ddrokosov@salutedevices.com> wrote:
->
-> The following patch series includes several updates for the AW200XX LED
-> driver:
->     - some small fixes and optimizations to the driver implementation:
->       delays, autodimming calculation, disable_locking regmap flag,
->       display_rows calculation in runtime;
->     - fix LED device tree node pattern to accept LED names counting not
->       only from 0 to f;
->     - add missing reg constraints;
->     - support HWEN hardware control, which allows enabling or disabling
->       AW200XX RTL logic from the main SoC using a GPIO pin;
->     - introduce the new AW20108 LED controller, the datasheet for this
->       controller can be found at [1].
+On Thu, Nov 16, 2023 at 03:01:34PM +0100, Kory Maincent wrote:
+> In the current PSE interface for Ethernet Power Equipment, support is
+> limited to PoDL. This patch extends the interface to accommodate the
+> objects specified in IEEE 802.3-2022 145.2 for Power sourcing
+> Equipment (PSE).
 
-For non device tree binding patches
-Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
-One nit I commented on the individual patch.
+Sorry for taking a while getting to these patches. Plumbers and other
+patches have been keeping me busy.
 
---=20
-With Best Regards,
-Andy Shevchenko
+I'm trying to get my head around naming... Is there some sort of
+hierarchy? Is PSE the generic concept for putting power down the
+cable? Then you have the sub-type PoDL, and the sub-type PoE?
+
+>  struct pse_control_config {
+>  	enum ethtool_podl_pse_admin_state podl_admin_control;
+> +	enum ethtool_pse_admin_state admin_control;
+
+When i look at this, it seems to me admin_control should be generic
+across all schemes which put power down the cable, and
+podl_admin_control is specific to how PoDL puts power down the cable.
+
+Since you appear to be adding support for a second way to put power
+down the cable, i would expect something like poe_admin_control being
+added here. But maybe that is in a later patch?
+
+      Andrew
 
