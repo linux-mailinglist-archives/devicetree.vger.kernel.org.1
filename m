@@ -1,108 +1,103 @@
-Return-Path: <devicetree+bounces-16850-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16851-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 881227EFF83
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 13:32:06 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1E917EFF9C
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 13:40:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 36FFE280F72
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 12:32:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F079AB209BA
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 12:40:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0C814F88F;
-	Sat, 18 Nov 2023 12:32:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F427DF4B;
+	Sat, 18 Nov 2023 12:40:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="k1NekQyW"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="RxdncbbN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC4FED61;
-	Sat, 18 Nov 2023 04:31:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-	s=s31663417; t=1700310696; x=1700915496; i=wahrenst@gmx.net;
-	bh=Z1OND/AiiDHMqRaOoZ7TJNhdG8OOj1E5sq3ErQeKSO0=;
-	h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:
-	 In-Reply-To;
-	b=k1NekQyWizA2ODr1KtmjCAGKbbLs1V4ug/lMHooAmxgUuOpEUAsrjekXYmKb21wC
-	 C8EAxesi36ldpP1OYOGBLZCrwwLvxn2t/X7cG1kEGLxTQWFQQWSFlcQtS2z9k2khl
-	 jSJ0oajxCaWYnQ80KZrtoadCxWsAZetmxcGlC/9YAJgewxmDAmwOvTo7gcBCDv6+x
-	 mnCsphtWhLscMhr41uThDeksq/gaY+f31TGjonCMuleN/1RCluUMVtn3GIaxPqCEx
-	 HBQc7P4rWjRCIiZqcT0FnalYqWYHeamE5FptGM0NhHmP7BPpSo69RFskl3d61oFTp
-	 BkhnPCpKohAzSrFi6w==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.1.129] ([37.4.248.43]) by mail.gmx.net (mrgmx104
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MdNY8-1rdOBc2fey-00ZMYB; Sat, 18
- Nov 2023 13:31:36 +0100
-Message-ID: <4233bd69-e5e4-49e9-96d9-b52492061ef8@gmx.net>
-Date: Sat, 18 Nov 2023 13:31:34 +0100
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AB55130;
+	Sat, 18 Nov 2023 04:40:28 -0800 (PST)
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AICYlUu003643;
+	Sat, 18 Nov 2023 12:40:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=Lb6dyCD8ylRcQzXPHqPYqGZ83BPWesGMtRU9lEP1SVM=;
+ b=RxdncbbNoQ+uSkYECF2FOATg2ucvSMe/u5j2qGGRARVdNSF1OW99q9X2zRJuJhVvh27n
+ luKikC4dykH0tz3JgyaSA8cPIMnxNx3N1xy9F/acu9ZZaK28SxcFQhCSxwc9SskmF7wJ
+ Yjetw62u0RUU86tsqagqJbl75hXYI0CXOC7HIVW/v3Qk0X4pzeAFxt9EyJ2oZellOOln
+ Rash+ahCA2L6ss+gWflCxin4J7/K5iQk/1lGJH92gm0nH4+zw0t1JUkGhGH3R1+NezX2
+ lffN2TI/6HRcIVnTIDZjFXYXaigX34E9BFYJZSWQOzolgFdVsi1atm4GN34JdWBHl0qq ug== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uejmurqu6-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 18 Nov 2023 12:40:23 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AICeMlv002105
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 18 Nov 2023 12:40:22 GMT
+Received: from hu-skakitap-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Sat, 18 Nov 2023 04:40:18 -0800
+From: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
+To: Andy Gross <agross@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        "Satya
+ Priya Kakitapalli" <quic_skakitap@quicinc.com>
+Subject: [PATCH V2 0/4] Add runtime PM support for videocc on SM8150
+Date: Sat, 18 Nov 2023 18:09:40 +0530
+Message-ID: <20231118123944.2202630-1-quic_skakitap@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] leds: gpio: Add kernel log if devm_fwnode_gpiod_get
- fails
-Content-Language: en-US
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>, Pavel Machek
- <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
- bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-leds@vger.kernel.org
-References: <20231105154940.97688-1-wahrenst@gmx.net>
- <20231105154940.97688-2-wahrenst@gmx.net>
- <ZUjLuTPppvI9xlOD@smile.fi.intel.com>
-From: Stefan Wahren <wahrenst@gmx.net>
-In-Reply-To: <ZUjLuTPppvI9xlOD@smile.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:tj8WAVX5BKrSoeM5bVyEFlq5A0r+sg6RDDr6WZMNUQrbmFaAFZ0
- Km3Og5Z/Y3OSr/nJ/xsP/euHSlOhbVpAl2ln2rcxSCVaSm6dI9ZL5d+SyFj4hSCBNOb7dC7
- SlclEfIB9EVcjxo8VFKd7iu0otjtDV8DgdkbY/oS5hRS3bnSzb+5iJT43ViMbY9Yp7eUDj7
- Lhnhwv50aQp/Pgn2/cLhw==
-UI-OutboundReport: notjunk:1;M01:P0:Fm6udvCQFgU=;b2G1j5SlSd9ehNQWxfvbL+M+Dtb
- advx1UZUjtjRfxW90WZK/TYEg7OOqjUarYQ9WjNI3lVK62s6QvJ9zGQdwioRhY/K8WhrRyCrW
- WgRAbHH/IQX+/Q9O4/xu0Q9bnKy83/kQAHsWZch7fjc5PeRJsKIVwZlwr1UE/kMcW6p88idiA
- 3LORtsYrL24jbwgyMLQOzoE2AYVDx+IsXRgIYS7Gde4HClMUHn6PHMSOWuf0XIg8kudVnSUV5
- dUYzMt8ssQYcHQq1BWw0uqM4zBweeCk+MfmXvBblApu8G5LzXD6FSnyPalsais/hcXTvnf9Gn
- HDXfrzBPGR+T2l1mixPBoZqH++m/kcIiRrXRdI+clyIC4w0V8z6iLumfID6TgJWDizuUalowe
- /luYD9nE3Yp/d9PNw4TZGQSiwmfCi1ffUS4TmOZj85GUs27jProqYVBNhNkI2tbGL87CQ+lCk
- V4bn+3c5OQyTRL67vc3zC1e3eQF9LJFYe7h0NixBBGSQrhTLgOn6Q6SleP88fKWbj7BgEhgVc
- krQgnfL6JrgBJAUuyHUIg6ySbD8r3YoGiHGVv74uvGVhFuVTeWr7pKYO1Nk7lSddl6bV+/9zM
- ib3gHyK3i53lYlYPh95dr5rx09ykrfN7nX8aZ035OPX0QZqrkjJJ3rT3ZiUsZCK7jsfQMqM9l
- rysdIRZB1AY/ZwZmHcszMuq6320Ad/1ifwV6HoVhdeG7XWcrahAq1Nm7yADgLgvNEvX3J0/25
- 3T1JYzlCsUO4aBu1XXQRxmVjA8URY4Dh7i2ILkEOlruZwLqDLaXjUv4n6O4aX2RoS04/1HMlp
- K+h0KziDusgH7Vpm0X8cWiiMPaKz0pxSEq6vR0qp8dGbfw43+UX5P7QPz3uZX8z9t9j8TleYH
- B5GyTiTPb3WEp2klMwoPEdUUN1yu7MUqQoivcusBpQS9d2PtbmdX7vd2fJDGT4VRqR1gw6XEK
- bWdaM5t5hmBcwjndfsPy3dM4Pao=
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: pOfWTpfzxsYc4IbnSSzrDRAzw56XRTfF
+X-Proofpoint-ORIG-GUID: pOfWTpfzxsYc4IbnSSzrDRAzw56XRTfF
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-18_10,2023-11-17_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 adultscore=0
+ malwarescore=0 spamscore=0 lowpriorityscore=0 bulkscore=0 mlxlogscore=999
+ impostorscore=0 priorityscore=1501 clxscore=1015 suspectscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2311060000 definitions=main-2311180094
 
-Hi Andy,
+Add runtime support for videocc on SM8150 and update the resets
+and video_pll0_config configuration.
 
-Am 06.11.23 um 12:19 schrieb Andy Shevchenko:
-> On Sun, Nov 05, 2023 at 04:49:39PM +0100, Stefan Wahren wrote:
->> In case leds-gpio fails to get the GPIO from the DT (e.g. the GPIO is
->> already requested) the driver doesn't provide any helpful error log:
->>
->>      leds-gpio: probe of leds failed with error -16
->>
->> So add a new error log in case devm_fwnode_gpiod_get() fails.
-> ...
->
->>   		led.gpiod =3D devm_fwnode_gpiod_get(dev, child, NULL, GPIOD_ASIS,
->>   						  NULL);
->>   		if (IS_ERR(led.gpiod)) {
->> +			dev_err(dev, "Failed to get gpio '%pfw': %ld\n",
->> +				child, PTR_ERR(led.gpiod));
-> Perhaps %pe ?
-i notice that i need to use dev_err_probe because of EPROBE_DEFER
-anyway. So i will drop the second parameter in the next version.
->
->>   			fwnode_handle_put(child);
->>   			return ERR_CAST(led.gpiod);
->>   		}
+Satya Priya Kakitapalli (4):
+  dt-bindings: clock: Update the videocc resets for sm8150
+  clk: qcom: videocc-sm8150: Update the videocc resets
+  clk: qcom: videocc-sm8150: Add missing PLL config properties
+  clk: qcom: videocc-sm8150: Add runtime PM support
+
+ drivers/clk/qcom/videocc-sm8150.c             | 25 +++++++++++++++++--
+ .../dt-bindings/clock/qcom,videocc-sm8150.h   |  4 +++
+ 2 files changed, 27 insertions(+), 2 deletions(-)
+
+-- 
+2.25.1
 
 
