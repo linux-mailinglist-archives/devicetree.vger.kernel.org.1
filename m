@@ -1,203 +1,134 @@
-Return-Path: <devicetree+bounces-16823-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16827-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 136537EFDB1
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 05:28:13 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 934EB7EFDFE
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 07:28:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7D5B31F23638
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 04:28:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 46B481F22FF8
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 06:28:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2FB0D27F;
-	Sat, 18 Nov 2023 04:28:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC2D5DF58;
+	Sat, 18 Nov 2023 06:28:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="jbtlV97J"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="bzkEC6Sh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92BC1D7E;
-	Fri, 17 Nov 2023 20:28:04 -0800 (PST)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AI4K7pO031048;
-	Sat, 18 Nov 2023 04:27:47 GMT
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17155D5D;
+	Fri, 17 Nov 2023 22:28:24 -0800 (PST)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AI6MOOZ031123;
+	Sat, 18 Nov 2023 06:28:08 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
+ subject : date : message-id : mime-version : content-transfer-encoding :
  content-type; s=qcppdkim1;
- bh=Jx7XpE4p1+yp472e6E8rOuie91cn+ZCzBIkBDICt56c=;
- b=jbtlV97JqKuVgtdayWyHjG8258pkiunQF4vdsf1eNFTcghxt/5T4y2EE83u3KrAtlX9Z
- UBmuopyFaNDu1+VePio3P+Oz0XWsdxSDqd2ZLdvsj/ytbFlS58aXpkvWuct3rbXFLXcy
- coqVOqAN8uEIWBDvps051r48tzZ3sGa+puG5k5a3WXn71wYYQ9u9TrpeX4yNeSqgJJfk
- li7aKmUUeWfcYF/Pqjz6Ea68iK/QxNTYHQD8jVcBbis6iPpGrX0TiUxVAqTwIxUMg8WX
- s7wQXSJcM65f6oMuqYmbG3bLy4xgO1U5AKw/NkVBZb7QjA/KMyTenlGxPQMKlWfPKIAh xg== 
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uemks03pb-1
+ bh=y3Zz7GCHDFah9QxpNLHMDf5YRAeO9fNs/MMz1Kc2zS0=;
+ b=bzkEC6Sh9LSiNXxP2zAW/U/utVDAUIxAb4dCapg9H36vd1ZvjSWM5spBGT9gdIbeM7qJ
+ fLPHVN9xKxZjBnIO9E/7kRSwIuClZHbTr1FKmJJ/q1hn3D6kKLPSZG/cKE8p+c8wEmO9
+ Ucm+6z7NndZXv1I9vZK9ydOwk2M4AFoBSBbj2yxxNIkenMMA1BqB9EWqi0mVWKswSNX8
+ NGtqVOJ+GZLoG+vXwD8vDBulQgnTP4bZsDDKByrXqFw+nPDtrv4QDsQqzqOCuqmkviFH
+ 91UoZqlhDHTXMOYT+5dsZjj+XkxYstRJVVcR4aTD3pm+RJUKU9TyO3Qw9t9seIqYItNr zQ== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uem80g8rt-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 18 Nov 2023 04:27:46 +0000
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AI4RjeQ005937
+	Sat, 18 Nov 2023 06:28:07 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AI6S7Am017661
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 18 Nov 2023 04:27:45 GMT
-Received: from hu-c-gdjako-lv.qualcomm.com (10.49.16.6) by
- nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
+	Sat, 18 Nov 2023 06:28:07 GMT
+Received: from akronite-sh-dev02.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Fri, 17 Nov 2023 20:27:45 -0800
-From: Georgi Djakov <quic_c_gdjako@quicinc.com>
-To: <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <will@kernel.org>, <robin.murphy@arm.com>,
-        <joro@8bytes.org>
-CC: <devicetree@vger.kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <linux-arm-kernel@lists.infradead.org>,
-        <iommu@lists.linux.dev>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <quic_cgoldswo@quicinc.com>,
-        <quic_sukadev@quicinc.com>, <quic_pdaly@quicinc.com>,
-        <quic_sudaraja@quicinc.com>, <djakov@kernel.org>
-Subject: [PATCH v2 6/6] arm64: dts: qcom: sdm845: Add DT nodes for the TBUs
-Date: Fri, 17 Nov 2023 20:27:30 -0800
-Message-ID: <20231118042730.2799-7-quic_c_gdjako@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20231118042730.2799-1-quic_c_gdjako@quicinc.com>
-References: <20231118042730.2799-1-quic_c_gdjako@quicinc.com>
+ 15.2.1118.40; Fri, 17 Nov 2023 22:28:03 -0800
+From: Luo Jie <quic_luoj@quicinc.com>
+To: <andrew@lunn.ch>, <davem@davemloft.net>, <edumazet@google.com>,
+        <kuba@kernel.org>, <pabeni@redhat.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <hkallweit1@gmail.com>, <linux@armlinux.org.uk>, <corbet@lwn.net>
+CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>
+Subject: [PATCH v5 0/6] add qca8084 ethernet phy driver
+Date: Sat, 18 Nov 2023 14:27:48 +0800
+Message-ID: <20231118062754.2453-1-quic_luoj@quicinc.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 9JEs0RbV9wY5aJ2WFQgM00B4DHU9SYmY
-X-Proofpoint-ORIG-GUID: 9JEs0RbV9wY5aJ2WFQgM00B4DHU9SYmY
+X-Proofpoint-GUID: _9XxuwS-eAsb7qcFOKPmGfEQ8WWrOf4z
+X-Proofpoint-ORIG-GUID: _9XxuwS-eAsb7qcFOKPmGfEQ8WWrOf4z
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-18_02,2023-11-17_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 impostorscore=0
- suspectscore=0 phishscore=0 priorityscore=1501 mlxscore=0 adultscore=0
- malwarescore=0 mlxlogscore=975 spamscore=0 lowpriorityscore=0 bulkscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2311060000
- definitions=main-2311180032
+ definitions=2023-11-18_04,2023-11-17_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxlogscore=638
+ adultscore=0 priorityscore=1501 phishscore=0 malwarescore=0
+ impostorscore=0 lowpriorityscore=0 mlxscore=0 spamscore=0 bulkscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2311060000 definitions=main-2311180045
 
-Add the device-tree nodes for the TBUs (translation buffer units) that
-are present on the sdm845 platforms. The TBUs can be used debug the
-kernel and provide additional information when a context faults occur.
+QCA8084 is four-port PHY with maximum link capability 2.5G,
+which supports the interface mode qusgmii and sgmii mode,
+there are two PCSs available to connected with ethernet port.
 
-Describe the all registers, clocks, interconnects and power-domain
-resources that are needed for each of the TBUs.
+QCA8084 can work in switch mode or PHY mode.
+For switch mode, both PCS0 and PCS1 work on sgmii mode.
+For PHY mode, PCS1 works on qusgmii mode, the last port
+(the fourth port) works on sgmii mode.
 
-Signed-off-by: Georgi Djakov <quic_c_gdjako@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sdm845.dtsi | 82 ++++++++++++++++++++++++++++
- 1 file changed, 82 insertions(+)
+Besides this PHY driver patches, the PCS driver is also needed
+to bring up the qca8084 device, which mainly configurs PCS
+and clocks.
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index bf5e6eb9d313..5c7174415ae9 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -15,6 +15,7 @@
- #include <dt-bindings/dma/qcom-gpi.h>
- #include <dt-bindings/firmware/qcom,scm.h>
- #include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interconnect/qcom,icc.h>
- #include <dt-bindings/interconnect/qcom,osm-l3.h>
- #include <dt-bindings/interconnect/qcom,sdm845.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-@@ -5000,6 +5001,7 @@ pil-reloc@94c {
- 		apps_smmu: iommu@15000000 {
- 			compatible = "qcom,sdm845-smmu-500", "arm,mmu-500";
- 			reg = <0 0x15000000 0 0x80000>;
-+			ranges;
- 			#iommu-cells = <2>;
- 			#global-interrupts = <1>;
- 			interrupts = <GIC_SPI 65 IRQ_TYPE_LEVEL_HIGH>,
-@@ -5067,6 +5069,86 @@ apps_smmu: iommu@15000000 {
- 				     <GIC_SPI 341 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 342 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 343 IRQ_TYPE_LEVEL_HIGH>;
-+
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+
-+			anoc_1_tbu: tbu@150c5000 {
-+				compatible = "qcom,qsmmuv500-tbu";
-+				reg = <0x0 0x150c5000 0x0 0x1000>;
-+				reg-names = "base";
-+				interconnects = <&system_noc MASTER_GNOC_SNOC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_IMEM_CFG QCOM_ICC_TAG_ACTIVE_ONLY>;
-+				power-domains = <&gcc HLOS1_VOTE_AGGRE_NOC_MMU_TBU1_GDSC>;
-+				qcom,stream-id-range = <0x0 0x400>;
-+			};
-+
-+			anoc_2_tbu: tbu@150c9000 {
-+				compatible = "qcom,qsmmuv500-tbu";
-+				reg = <0x0 0x150c9000 0x0 0x1000>;
-+				reg-names = "base";
-+				interconnects = <&system_noc MASTER_GNOC_SNOC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_IMEM_CFG QCOM_ICC_TAG_ACTIVE_ONLY>;
-+				power-domains = <&gcc HLOS1_VOTE_AGGRE_NOC_MMU_TBU2_GDSC>;
-+				qcom,stream-id-range = <0x400 0x400>;
-+			};
-+
-+			mnoc_hf_0_tbu: tbu@150cd000 {
-+				compatible = "qcom,qsmmuv500-tbu";
-+				reg = <0x0 0x150cd000 0x0 0x1000>;
-+				reg-names = "base";
-+				interconnects = <&mmss_noc MASTER_MDP0 QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &mmss_noc SLAVE_MNOC_HF_MEM_NOC QCOM_ICC_TAG_ACTIVE_ONLY>;
-+				qcom,stream-id-range = <0x800 0x400>;
-+			};
-+
-+			mnoc_hf_1_tbu: tbu@150d1000 {
-+				compatible = "qcom,qsmmuv500-tbu";
-+				reg = <0x0 0x150d1000 0x0 0x1000>;
-+				reg-names = "base";
-+				interconnects = <&mmss_noc MASTER_MDP0 QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &mmss_noc SLAVE_MNOC_HF_MEM_NOC QCOM_ICC_TAG_ACTIVE_ONLY>;
-+				qcom,stream-id-range = <0xc00 0x400>;
-+			};
-+
-+			mnoc_sf_0_tbu: tbu@150d5000 {
-+				compatible = "qcom,qsmmuv500-tbu";
-+				reg = <0x0 0x150d5000 0x0 0x1000>;
-+				reg-names = "base";
-+				interconnects = <&mmss_noc MASTER_CAMNOC_SF QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &mmss_noc SLAVE_MNOC_SF_MEM_NOC QCOM_ICC_TAG_ACTIVE_ONLY>;
-+				qcom,stream-id-range = <0x1000 0x400>;
-+			};
-+
-+			compute_dsp_tbu: tbu@150d9000 {
-+				compatible = "qcom,qsmmuv500-tbu";
-+				reg = <0x0 0x150d9000 0x0 0x1000>;
-+				reg-names = "base";
-+				interconnects = <&system_noc MASTER_GNOC_SNOC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_IMEM_CFG QCOM_ICC_TAG_ACTIVE_ONLY>;
-+				qcom,stream-id-range = <0x1400 0x400>;
-+			};
-+
-+			adsp_tbu: tbu@150dd000 {
-+				compatible = "qcom,qsmmuv500-tbu";
-+				reg = <0x0 0x150dd000 0x0 0x1000>;
-+				reg-names = "base";
-+				interconnects = <&system_noc MASTER_GNOC_SNOC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_IMEM_CFG QCOM_ICC_TAG_ACTIVE_ONLY>;
-+				power-domains = <&gcc HLOS1_VOTE_AGGRE_NOC_MMU_AUDIO_TBU_GDSC>;
-+				qcom,stream-id-range = <0x1800 0x400>;
-+			};
-+
-+			anoc_1_pcie_tbu: tbu@150e1000 {
-+				compatible = "qcom,qsmmuv500-tbu";
-+				reg = <0x0 0x150e1000 0x0 0x1000>;
-+				reg-names = "base";
-+				clocks = <&gcc GCC_AGGRE_NOC_PCIE_TBU_CLK>;
-+				interconnects = <&system_noc MASTER_GNOC_SNOC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_IMEM_CFG QCOM_ICC_TAG_ACTIVE_ONLY>;
-+				power-domains = <&gcc HLOS1_VOTE_AGGRE_NOC_MMU_PCIE_TBU_GDSC>;
-+				qcom,stream-id-range = <0x1c00 0x400>;
-+			};
- 		};
- 
- 		lpasscc: clock-controller@17014000 {
+Changes in v3:
+	* pick the two patches to introduce the interface mode
+	  10g-qxgmii from Vladimir Oltean(olteanv@gmail.com).
+	* add the function phydev_id_is_qca808x to identify the
+	  PHY qca8081 and qca8084.
+	* update the interface mode name PHY_INTERFACE_MODE_QUSGMII
+	  to PHY_INTERFACE_MODE_10G_QXGMII.
+
+Changes in v4:
+	* remove the following patch:
+	  <net: phylink: move phylink_pcs_neg_mode() to phylink.c>.
+	* split out 10g_qxgmii change of ethernet-controller.yaml.
+
+Changes in v5:
+	* update the author of the patch below.
+	  <introduce core support for phy-mode = "10g-qxgmii">.
+
+Luo Jie (4):
+  net: phy: at803x: add QCA8084 ethernet phy support
+  net: phy: at803x: add the function phydev_id_is_qca808x
+  net: phy: at803x: Add qca8084_config_init function
+  net: phy: qca8084: add qca8084_link_change_notify
+
+Vladimir Oltean (2):
+  net: phy: introduce core support for phy-mode = "10g-qxgmii"
+  dt-bindings: net: ethernet-controller: add 10g-qxgmii mode
+
+ .../bindings/net/ethernet-controller.yaml     |   1 +
+ Documentation/networking/phy.rst              |   6 +
+ drivers/net/phy/at803x.c                      | 130 +++++++++++++++++-
+ drivers/net/phy/phy-core.c                    |   1 +
+ drivers/net/phy/phylink.c                     |  11 +-
+ include/linux/phy.h                           |   4 +
+ include/linux/phylink.h                       |   2 +
+ 7 files changed, 147 insertions(+), 8 deletions(-)
+
+
+base-commit: eff99d8edbed7918317331ebd1e365d8e955d65e
+-- 
+2.42.0
+
 
