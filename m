@@ -1,84 +1,124 @@
-Return-Path: <devicetree+bounces-16862-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16863-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BDC17F00A9
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 16:53:08 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFF527F0137
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 17:47:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4DDB41C209E6
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 15:53:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DD6381C20843
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 16:47:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 683DB18E3A;
-	Sat, 18 Nov 2023 15:52:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A89E12B6A;
+	Sat, 18 Nov 2023 16:47:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="nm3gHz3a"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nA/+3o3X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D86E71FF7;
-	Sat, 18 Nov 2023 07:51:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=1hYM5k/OHJIzmc6ChT9Yo9Kr+sThyS1yvMvl/d2IeDU=; b=nm3gHz3aDSLq2/llOzW0U+nuKn
-	o2SNCFi4rcF7TqLhPDzjkyCehL4mE51lMojstFVeXqTHRP1h2YOzZlP4cDCbn7xhn3a/9TEm6F5qJ
-	VkFlZJv8e8E0qeKWJv4aHmvgFm7K9F3EF8b7Lke2vIqCVMYsSOKockkdUeaeaVyIFRK4=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1r4Nbi-000Vtr-FC; Sat, 18 Nov 2023 16:51:42 +0100
-Date: Sat, 18 Nov 2023 16:51:42 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Luo Jie <quic_luoj@quicinc.com>
-Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	hkallweit1@gmail.com, linux@armlinux.org.uk, corbet@lwn.net,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
-Subject: Re: [PATCH v5 3/6] net: phy: at803x: add QCA8084 ethernet phy support
-Message-ID: <1eb60a08-f095-421a-bec6-96f39db31c09@lunn.ch>
-References: <20231118062754.2453-1-quic_luoj@quicinc.com>
- <20231118062754.2453-4-quic_luoj@quicinc.com>
+Received: from mail-yw1-x112a.google.com (mail-yw1-x112a.google.com [IPv6:2607:f8b0:4864:20::112a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF106E0;
+	Sat, 18 Nov 2023 08:47:23 -0800 (PST)
+Received: by mail-yw1-x112a.google.com with SMTP id 00721157ae682-5c9169300caso5990867b3.2;
+        Sat, 18 Nov 2023 08:47:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1700326043; x=1700930843; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wc5iY++oK0EVkooDY6ElLmU2NXeGpGEobVkWGqYFYOY=;
+        b=nA/+3o3XlClFnqyz43PNXC5RdSdZJMfw4cvUuFEHaTgffLmHH+SzjAkQNMRReCec2B
+         4neRERDK7nMqGeiLmfiYOF4XF5rdwQAAUy8K3FVcjEq1+1JeO55hdRpxu80vjWDaVvba
+         SfSF/Q1xMoi1rsUf/BmQdeadAX37s3FWqFBbq07vs7EeD7ChboTDvQZtX0XA/Jqqz3L4
+         Ebah8Z6eV1OLb06tw/8Ki8/9y1dOYkH5cTw+im5n5zt/u1mSmCIphquzK3E6WnzME1kx
+         T+EQsEyAuC8cwpebDB5COuJfHN+p4xy8BDlbU+nJGfbBU19hYCtCJNQk8y7IX0hOoP9q
+         6efA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700326043; x=1700930843;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=wc5iY++oK0EVkooDY6ElLmU2NXeGpGEobVkWGqYFYOY=;
+        b=E6ByceA7hh8j+EkGjNfkqHcdhkZfQurxq4BHWIk3M0TEJWezbvGgsam6ljG6lxrmzc
+         lxrYPfg9XvIPqTWVG/gnuc1qUHYlAiuPfzXE/+L18gxvYFIIFbeDgaFovfPCoBMa2cW6
+         Liu9YIanuOhPz0nKEaLueQ8cgAmgwglfmRf3T2vQe6QhPvxAZ2ObHQkaBAE4nT9YpHJh
+         9sDjLJnShEdtwEC95DkAoBaivXVBVEHHhTdcYSXymrIUaw7CxHBrbN+k7dbkZB0j2QeT
+         u8Sr6NsMNVMLTCO5sFip8/byCbIW6MODxUzfyik2idpumYJHncw7Epq7BwWLaY88aB70
+         3CkA==
+X-Gm-Message-State: AOJu0Yzp0NV0E8zzmTbNIfdfRimKv2ydILgOcIIGQ1JnrIjzBplU6vgs
+	aphsbBn2Zr8aG62iLDYRhRpvpLTAIDmJ+pNAn2QoA4j+IKQ=
+X-Google-Smtp-Source: AGHT+IFLfT+GCO3PNsz8qgZwUHjSmGMuS1fLvWXPX2aNLZswe9JssRj0JNz9IEu7QD/5YT46sNGpcnrFLDqKUhbbwbE=
+X-Received: by 2002:a81:4f06:0:b0:589:8b55:f7f7 with SMTP id
+ d6-20020a814f06000000b005898b55f7f7mr2798636ywb.39.1700326042865; Sat, 18 Nov
+ 2023 08:47:22 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231118062754.2453-4-quic_luoj@quicinc.com>
+References: <20231101142445.8753-1-ddrokosov@salutedevices.com> <20231101142445.8753-5-ddrokosov@salutedevices.com>
+In-Reply-To: <20231101142445.8753-5-ddrokosov@salutedevices.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Sat, 18 Nov 2023 18:46:45 +0200
+Message-ID: <CAHp75VcZ9JN2Ah3z8fDwdFNzts330Dccs0UYUx07KZ8_dV4aaQ@mail.gmail.com>
+Subject: Re: [PATCH v3 04/11] leds: aw200xx: calculate dts property
+ display_rows in the driver
+To: Dmitry Rokosov <ddrokosov@salutedevices.com>
+Cc: lee@kernel.org, pavel@ucw.cz, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, kernel@sberdevices.ru, 
+	rockosov@gmail.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-leds@vger.kernel.org, George Stark <gnstark@salutedevices.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Sat, Nov 18, 2023 at 02:27:51PM +0800, Luo Jie wrote:
-> Add qca8084 PHY support, which is four-port PHY with maximum
-> link capability 2.5G, the features of each port is almost same
-> as QCA8081 and slave seed config is not needed.
-> 
-> Three kind of interface modes supported by qca8084.
-> PHY_INTERFACE_MODE_10G_QXGMII, PHY_INTERFACE_MODE_2500BASEX and
-> PHY_INTERFACE_MODE_SGMII.
+On Wed, Nov 1, 2023 at 4:24=E2=80=AFPM Dmitry Rokosov
+<ddrokosov@salutedevices.com> wrote:
+>
+> From: George Stark <gnstark@salutedevices.com>
+>
+> Get rid of device tree property "awinic,display-rows". The property
+> value actually means number of current switches and depends on how leds
+> are connected to the device. It should be calculated manually by max
+> used led number. In the same way it is computed automatically now.
+> Max used led is taken from led definition subnodes.
 
-Sorry for joining the conversation late.
+...
 
-I'm trying to get my head around QXGMII. Let me describe what i think
-is happening, and then you can correct me....
+> +static bool aw200xx_probe_get_display_rows(struct device *dev, struct aw=
+200xx *chip)
+> +{
+> +       struct fwnode_handle *child;
+> +       u32 max_source =3D 0;
+> +
+> +       device_for_each_child_node(dev, child) {
+> +               u32 source;
+> +               int ret;
+> +
+> +               ret =3D fwnode_property_read_u32(child, "reg", &source);
+> +               if (ret || source >=3D chip->cdef->channels)
+> +                       continue;
+> +
+> +               max_source =3D max(max_source, source);
+> +       }
 
-You have 4 MACs, probably in a switch. The MII interfaces from these
-MACs go into a multiplexer, and out comes QXGMII? You then have a
-SERDES interface out of the switch and into the PHY package. Inside
-the PHY package there is a demultiplexor, giving you four MII
-interfaces, one to each PHY in the package.
+> +       chip->display_rows =3D max_source / chip->cdef->display_size_colu=
+mns + 1;
+> +       return !!chip->display_rows;
 
-If you have the PHY SERDES running in 2500BaseX, you have a single
-MAC, no mux/demux, and only one PHY is used? The other three are idle.
-Same from SGMII?
+This is a bit weird. Can we rewrite it as
 
-So the interface mode QXGMII is a property of the package. It is not
-really a property of one PHY. Having one PHY using QXGMII and another
-SGMII does not work?
+  if (max_source =3D=3D 0)
+    return false;
 
-     Andrew
+  ->display_rows =3D ...
+  return true;
+
+?
+
+> +}
+
+
+--=20
+With Best Regards,
+Andy Shevchenko
 
