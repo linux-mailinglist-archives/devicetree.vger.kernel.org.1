@@ -1,75 +1,71 @@
-Return-Path: <devicetree+bounces-16872-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16873-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E1207F0311
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 22:53:46 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CD0E7F0318
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 23:19:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 99A82B2098A
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 21:53:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A6E5AB2098A
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 22:19:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F6301E502;
-	Sat, 18 Nov 2023 21:53:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51DF91E528;
+	Sat, 18 Nov 2023 22:19:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cbBFKT7B"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EeTxpU/u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEFC0EA;
-	Sat, 18 Nov 2023 13:53:35 -0800 (PST)
-Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-53e70b0a218so4510658a12.2;
-        Sat, 18 Nov 2023 13:53:35 -0800 (PST)
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45F08E6
+	for <devicetree@vger.kernel.org>; Sat, 18 Nov 2023 14:19:25 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-50aab0ca90aso158586e87.0
+        for <devicetree@vger.kernel.org>; Sat, 18 Nov 2023 14:19:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1700344414; x=1700949214; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1700345963; x=1700950763; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Wtt/oFJ6mp4pvc5MxO64v8GI8P+1Sx5CjrqoYf23NVA=;
-        b=cbBFKT7BmXU4GV/bgV/otEe6mlIKW00Xpzq/9Kfvpsbg6GNKTeB6bchq/K/9YDhnHk
-         OL4dN4PULZYtx40aKcOAAvaVXFOgphjqtXxjUiw3vPeUGI9cLndDSAFi5yq3glP8KLge
-         dIfmyZox6mGBRRu7/TvGfn2rDieZNl+RHHWt9Td2ewtFGw6YlVGDPVEmd8fp3AXHZoHM
-         x4iXA0eJxCGcr0j1i3KLaULqL/wr+PAYNFk6mR+mbMUNgonm04Vo3FXExKQIk2srVxxW
-         JxxlIaYEgMWa2o7lRrbU2E0LClgl8iq/hlbDJJuT1eSQ3ceBwviygECZoJiw/6y0WLGx
-         v2sw==
+        bh=0SdUlrf4eM0AylepdE1Wf9qlP5oYXQhUKgEsdEd0m+c=;
+        b=EeTxpU/u1oqafrU4z1RdZjwQIY2sKE6q1VVgVU4cQ0aindw+fcP+AbeJTVihBI2pwx
+         9XS+fUDsVjgjtKyA5Xyg93+nsrlT/ZwreMsdPDMrxivosCBjAUBy+BpNf/BpWnYuQPSU
+         CVRpXyxRBSConl2+pSsZ77tyaeskno2V4WKgWLvrb11T9mrrxjNsTv5NX0j5yy46r976
+         gHjRNTCxpP5Y9541HqRRJA3I1pssnhjyHiA7lPXIeAyNPSCwK1SbgzQ9/1LAriwtZACW
+         CzCnXeuE1s7iGy7ch+UiPCqlq4p1OVPlRcn82Mb7g9J5jsXSUgqyVapkBDzF8tNP/Z/N
+         4I9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700344414; x=1700949214;
+        d=1e100.net; s=20230601; t=1700345963; x=1700950763;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Wtt/oFJ6mp4pvc5MxO64v8GI8P+1Sx5CjrqoYf23NVA=;
-        b=C2YWyeG3nhCqM9QqlTj/3YBc6xvjRVvc0uRFOzDtgFb81MqTEFLDZ61MX6eiEC2TtP
-         QPaW+BrfgT/xi0cDYGuq27deL7agPKikC6rWz0n4Ny+a8VBv8YzVOgiMp741IE9RBqQR
-         e6L5M7tHLRlPM04Tila8cMKwGLLJrjDsZ3hVPMnEattFio8eERUOUuJcHhzZMd+jNNqi
-         +p6zAiEBjfzofhLPvS9OLqj7an3J/Ysn6UkIqEjszNeGbF6uPJoFj6+wCFE8j84Mlr3q
-         F/nq+u4aEH+q1TRID/GjKyzfgr3VNA+GxnwvCJM5haoLCPrq7mvq8zJlTjYnqMQRW9XN
-         IwEw==
-X-Gm-Message-State: AOJu0Yz5xiWoR3mbqKEDv2vCQsChbyDaXJRfPCKt4byBVMvfQuPXkvvq
-	i/pp3oujiIUu6jQ/J9ZfY81j2IOVnMk=
-X-Google-Smtp-Source: AGHT+IEsj8NvVPt+C+yDrHzdKUUesSpB0lSD7yp/W/7z0ksNKCl2sWrmAL563BNLNRtvG/DBVkqbfw==
-X-Received: by 2002:a17:907:7401:b0:9bf:60f9:9b7c with SMTP id gj1-20020a170907740100b009bf60f99b7cmr1955872ejc.62.1700344413958;
-        Sat, 18 Nov 2023 13:53:33 -0800 (PST)
+        bh=0SdUlrf4eM0AylepdE1Wf9qlP5oYXQhUKgEsdEd0m+c=;
+        b=k/3U+t5Tdmmb9PogF57sr9e7qhVYh9ts8LlwD4O+mSaLAIidWCvCKfOapHQmZ/dSVd
+         ocWQaEmAALJhzS9iImU/pjfE4xirbRDwmt3FYbBFnaLQRLggyKzUTycL0ZsrRmn+mwTV
+         jKCo4np6rsDuI4LcdFJi9C7bYXXbvpJ2bSa0rJVty8VP15iHh4JANh9w396cl9YkV+U2
+         JAuQ5uB39urdG36llOWpIRKyUPrBqRo/VNDEhiqQy3MOB2pqUISAK5f0z+X7DcIh4zYM
+         lf437z5TYBzu/hxsHXlLqR9VdFf/R9rMJJ0lyEbYfESafXp9/ASjE2+7qcFYImkaJlNu
+         1dVw==
+X-Gm-Message-State: AOJu0YyPyWmqilpVLPvfwAbsXhbzngRxBA72ZxCCeuZd87FTeiZsNbJ7
+	PlaBE4nQ31wJsPQ9xmEKkXU=
+X-Google-Smtp-Source: AGHT+IFZFJf565TqTikKzO/ClYoNkt69RXWTXyDiHbUvibAso77wJ1lAXFJDchewe4Jjve6l3KDzPw==
+X-Received: by 2002:ac2:4469:0:b0:503:19d8:8dc3 with SMTP id y9-20020ac24469000000b0050319d88dc3mr2336421lfl.31.1700345963374;
+        Sat, 18 Nov 2023 14:19:23 -0800 (PST)
 Received: from jernej-laptop.localnet (82-149-12-148.dynamic.telemach.net. [82.149.12.148])
-        by smtp.gmail.com with ESMTPSA id ca3-20020a170906a3c300b009fc42f37970sm296837ejb.171.2023.11.18.13.53.32
+        by smtp.gmail.com with ESMTPSA id mf3-20020a170906cb8300b009f28db2b702sm2236761ejb.209.2023.11.18.14.19.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 18 Nov 2023 13:53:33 -0800 (PST)
+        Sat, 18 Nov 2023 14:19:22 -0800 (PST)
 From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Chukun Pan <amadeus@jmu.edu.cn>
-Cc: Samuel Holland <samuel@sholland.org>,
- Andre Przywara <andre.przywara@arm.com>, Chen-Yu Tsai <wens@csie.org>,
+To: Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Chukun Pan <amadeus@jmu.edu.cn>
-Subject:
- Re: [PATCH v2 1/1] arm64: dts: allwinner: h616: update emac for Orange Pi
- Zero 3
-Date: Sat, 18 Nov 2023 22:53:32 +0100
-Message-ID: <2303336.ElGaqSPkdT@jernej-laptop>
-In-Reply-To: <20231029074009.7820-2-amadeus@jmu.edu.cn>
-References:
- <20231029074009.7820-1-amadeus@jmu.edu.cn>
- <20231029074009.7820-2-amadeus@jmu.edu.cn>
+ Conor Dooley <conor+dt@kernel.org>, Samuel Holland <samuel@sholland.org>,
+ Chen-Yu Tsai <wens@csie.org>, Andre Przywara <andre.przywara@arm.com>
+Cc: Marc Zyngier <maz@kernel.org>,
+ Piotr Oniszczuk <piotr.oniszczuk@gmail.com>, linux-sunxi@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 0/2] arm64: dts: allwinner: Add Orange Pi Zero 2W support
+Date: Sat, 18 Nov 2023 23:19:21 +0100
+Message-ID: <1868924.tdWV9SEqCh@jernej-laptop>
+In-Reply-To: <20231020145706.705420-1-andre.przywara@arm.com>
+References: <20231020145706.705420-1-andre.przywara@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,68 +75,39 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
 
-Dne nedelja, 29. oktober 2023 ob 08:40:09 CET je Chukun Pan napisal(a):
-> The current emac setting is not suitable for Orange Pi Zero 3,
-> move it back to Orange Pi Zero 2 DT. Also update phy mode and
-> delay values for emac on Orange Pi Zero 3.
-> With these changes, Ethernet now looks stable.
+Dne petek, 20. oktober 2023 ob 16:57:04 CET je Andre Przywara napisal(a):
+> Hi,
 > 
-> Fixes: 322bf103204b ("arm64: dts: allwinner: h616: Split Orange Pi Zero 2 DT")
-> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
+> this adds support for the Orange Pi Zero 2W, a small board in the
+> Raspberry Pi Zero form factor, but with an Allwinner H618 Soc and up to
+> 4 GB of DRAM.
+> 
+> This is just for the base board, created by looking at the schematics.
+> There is an FPC connector, which connects to a stackable expansion
+> board, that provides two additional USB-A sockets and an Ethernet jack,
+> among other connectors.
+> What is the recommended way to model this, via a DT overlay, applied
+> dynamically by the bootloader, or using a separate .dts file, that
+> includes this base board file?
+> 
+> Cheers,
+> Andre
 
-Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+Applied, thanks!
 
 Best regards,
 Jernej
 
-> ---
->  arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi | 3 ---
->  arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts | 3 +++
->  arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts | 2 ++
->  3 files changed, 5 insertions(+), 3 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi
-> index 15290e6892fc..fc7315b94406 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi
-> @@ -68,10 +68,7 @@ &ehci1 {
->  &emac0 {
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&ext_rgmii_pins>;
-> -	phy-mode = "rgmii";
->  	phy-handle = <&ext_rgmii_phy>;
-> -	allwinner,rx-delay-ps = <3100>;
-> -	allwinner,tx-delay-ps = <700>;
->  	status = "okay";
->  };
->  
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts
-> index d83852e72f06..b5d713926a34 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts
-> @@ -13,6 +13,9 @@ / {
->  };
->  
->  &emac0 {
-> +	allwinner,rx-delay-ps = <3100>;
-> +	allwinner,tx-delay-ps = <700>;
-> +	phy-mode = "rgmii";
->  	phy-supply = <&reg_dcdce>;
->  };
->  
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts b/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts
-> index 00fe28caac93..b3b1b8692125 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts
-> @@ -13,6 +13,8 @@ / {
->  };
->  
->  &emac0 {
-> +	allwinner,tx-delay-ps = <700>;
-> +	phy-mode = "rgmii-rxid";
->  	phy-supply = <&reg_dldo1>;
->  };
->  
+> Andre Przywara (2):
+>   dt-bindings: arm: sunxi: add Orange Pi Zero 2W
+>   arm64: dts: allwinner: h616: add Orange Pi Zero 2W support
+> 
+>  .../devicetree/bindings/arm/sunxi.yaml        |   5 +
+>  .../allwinner/sun50i-h618-orangepi-zero2w.dts | 176 ++++++++++++++++++
+>  2 files changed, 181 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero2w.dts
+> 
 > 
 
 
