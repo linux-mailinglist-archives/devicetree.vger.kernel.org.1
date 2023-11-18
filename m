@@ -1,203 +1,244 @@
-Return-Path: <devicetree+bounces-16837-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16838-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E6E07EFE58
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 08:46:27 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63E717EFE75
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 09:07:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5DAA91C2037A
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 07:46:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7A893B209D7
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 08:07:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B176423CA;
-	Sat, 18 Nov 2023 07:46:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A1B053B8;
+	Sat, 18 Nov 2023 08:07:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="vhGEcGX6"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="P46aDAL5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3A99D75
-	for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 23:46:18 -0800 (PST)
-Received: from epcas2p2.samsung.com (unknown [182.195.41.54])
-	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20231118074615epoutp042fc09076920a901ff443447d47db67a6~Yp-_gj-SO2331223312epoutp04Y
-	for <devicetree@vger.kernel.org>; Sat, 18 Nov 2023 07:46:15 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20231118074615epoutp042fc09076920a901ff443447d47db67a6~Yp-_gj-SO2331223312epoutp04Y
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1700293575;
-	bh=vxlFjRpQHG/9qO2SmYUUMv1L/YanqCR+lSiJehcyrD4=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=vhGEcGX6mcyzUnuY+s3bpRiVQ3+jHYQ0QNCIeNuXd77t2huVm+sHnFXZCVFejDYtT
-	 P4j9PjmbE40H4v9C05W4bivsVciGIKu6kOv55gixk28uhQhSKyxNQJRc3o3HO+CquL
-	 8FZrCVIQKcfrGEvRcre8+ImayGmPDVpimta5/nlc=
-Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
-	epcas2p1.samsung.com (KnoxPortal) with ESMTP id
-	20231118074614epcas2p151f840ee664d3130848da3fd7faf9105~Yp-9f4f6g3120531205epcas2p1L;
-	Sat, 18 Nov 2023 07:46:14 +0000 (GMT)
-Received: from epsmges2p2.samsung.com (unknown [182.195.36.91]) by
-	epsnrtp3.localdomain (Postfix) with ESMTP id 4SXQnL22K3z4x9Pr; Sat, 18 Nov
-	2023 07:46:14 +0000 (GMT)
-Received: from epcas2p3.samsung.com ( [182.195.41.55]) by
-	epsmges2p2.samsung.com (Symantec Messaging Gateway) with SMTP id
-	D8.09.09622.6CB68556; Sat, 18 Nov 2023 16:46:14 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-	epcas2p4.samsung.com (KnoxPortal) with ESMTPA id
-	20231118074613epcas2p422f7c882546ce89461420d92a70f5ee3~Yp-8qrZNr1418714187epcas2p4R;
-	Sat, 18 Nov 2023 07:46:13 +0000 (GMT)
-Received: from epsmgmc1p1new.samsung.com (unknown [182.195.42.40]) by
-	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-	20231118074613epsmtrp282137b87c7e7ca89811fd3644159abc4~Yp-8pDwxC2675426754epsmtrp2J;
-	Sat, 18 Nov 2023 07:46:13 +0000 (GMT)
-X-AuditID: b6c32a46-fcdfd70000002596-c8-65586bc6b895
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-	epsmgmc1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	BF.C8.07368.5CB68556; Sat, 18 Nov 2023 16:46:13 +0900 (KST)
-Received: from [10.229.8.168] (unknown [10.229.8.168]) by
-	epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20231118074613epsmtip2454513e84a2a41152fd3a056707b3d5d~Yp-8PetGS1672716727epsmtip2N;
-	Sat, 18 Nov 2023 07:46:13 +0000 (GMT)
-Message-ID: <ab17d61e-f645-9b76-962c-4ba2849c5f42@samsung.com>
-Date: Sat, 18 Nov 2023 16:43:26 +0900
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9530D5D;
+	Sat, 18 Nov 2023 00:07:31 -0800 (PST)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AI7a4sH024517;
+	Sat, 18 Nov 2023 08:07:14 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=HCBNS+RoQsIDvjafJAvRjkAYymAZefxDdkPg6CwX7aI=;
+ b=P46aDAL5YtWR4T/uzWOcxnvUjhxajndri1p/msia8MY83BncEeF/U0uzvfbwJVtmo952
+ l+pNPBC1L1xqx5bt500QmpGi1koGHHTWCprKZHntPPS+MsdNOmI67IzaDKO/HCLBMMOT
+ YwngdlqAOasjz57kq4DmYaaNl2B6glm6IOd5LdNsbvtSmYesnndgUZUYQKkiuozYGyet
+ d7+bgtEik39GZq7qrG0wF2ep26Vsq+gc93V2mjlRjVUc7Hle0CpP0A8yFABW7yDhOZ/H
+ 0cJdPlTiDraVvE86fTXjy6BK68kELO5nLY+RDKmq+xpaTMB3DseCF9uHEyDwrAwxBsSU MQ== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uep1qr7aa-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 18 Nov 2023 08:07:13 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AI87Dnw023484
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 18 Nov 2023 08:07:13 GMT
+Received: from [10.253.8.221] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Sat, 18 Nov
+ 2023 00:07:08 -0800
+Message-ID: <de4fa95e-4bc7-438a-94bb-4b31b1b89704@quicinc.com>
+Date: Sat, 18 Nov 2023 16:07:06 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
-	Thunderbird/102.11.0
-Subject: Re: [PATCH v2 10/12] pinctrl: samsung: add exynosautov920 pinctrl
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 9/9] dt-bindings: net: ipq4019-mdio: Document ipq5332
+ platform
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, <agross@kernel.org>,
+        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+        <pabeni@redhat.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <andrew@lunn.ch>, <hkallweit1@gmail.com>, <linux@armlinux.org.uk>,
+        <robert.marko@sartura.hr>
+CC: <linux-arm-msm@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_srichara@quicinc.com>
+References: <20231115032515.4249-1-quic_luoj@quicinc.com>
+ <20231115032515.4249-10-quic_luoj@quicinc.com>
+ <834cbb58-3a88-4ba6-8db6-10440a4d0893@linaro.org>
+ <76e081ba-9d5a-41df-9c1b-d782e5656973@quicinc.com>
+ <2a9bb683-da73-47af-8800-f14a833e8ee4@linaro.org>
+ <386fcee0-1eab-4c0b-8866-a67821a487ee@quicinc.com>
+ <77a194cd-d6a4-4c9b-87f5-373ed335528f@linaro.org>
 Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Alim Akhtar
-	<alim.akhtar@samsung.com>, Rob Herring <robh+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Tomasz Figa <tomasz.figa@gmail.com>, Sylwester
-	Nawrocki <s.nawrocki@samsung.com>, Linus Walleij <linus.walleij@linaro.org>,
-	Thierry Reding <thierry.reding@gmail.com>, Uwe Kleine-K?nig
-	<u.kleine-koenig@pengutronix.de>, Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
-	linux-serial@vger.kernel.org
-From: Jaewon Kim <jaewon02.kim@samsung.com>
-In-Reply-To: <0fdb7bec-9ea4-454f-a0fb-d450f27ebc6b@linaro.org>
-Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrNJsWRmVeSWpSXmKPExsWy7bCmue6x7IhUg4VP2C0ezNvGZrFm7zkm
-	i/lHzrFaNC9ez2bxbq6Mxd7XW9ktpvxZzmSx6fE1VovN8/8wWlzeNYfN4u7dVYwWM87vY7I4
-	s7iX3aJ17xF2i8Nv2lktfu6ax2KxahdQ3e2JkxkdhDx2zrrL7rFpVSebx51re9g89s9dw+6x
-	eUm9R/9fA4++LasYPT5vkgvgiMq2yUhNTEktUkjNS85PycxLt1XyDo53jjc1MzDUNbS0MFdS
-	yEvMTbVVcvEJ0HXLzAH6REmhLDGnFCgUkFhcrKRvZ1OUX1qSqpCRX1xiq5RakJJTYF6gV5yY
-	W1yal66Xl1piZWhgYGQKVJiQnfH+03+Wgn08FSvunmJqYLzM2cXIySEhYCJxe9cz1i5GLg4h
-	gR2MEpfebGGEcD4xSiz7+JkZwvnGKHG55QcrTEv3jbfsEIm9jBKTv99mgXBeM0qcmLCIGaSK
-	V8BO4tiKGewgNouAqsSJm39ZIOKCEidnPgGzRQWiJVqX3WcDsYUFvCRO7dwDtoFZQFzi1pP5
-	TCC2iMB9ZonXbdUgC5gFHjBKzD33lREkwSagLfF9/WKwBk6gZQePvGWGaJaXaN46G+xuCYE3
-	HBIXV05mg7jbReL7sU6oH4QlXh3fwg5hS0l8frcXqiZbon36H6iaComLG2ZDxY0lZj1rB1rM
-	AbRAU2L9Ln0QU0JAWeLILRaItXwSHYf/skOEeSU62oQgGtUk7k89BzVERmLSkZVMELaHRPPk
-	6WwTGBVnIYXKLCTfz0LyzCyEvQsYWVYxiqUWFOempxYbFRjBYzs5P3cTIziVa7ntYJzy9oPe
-	IUYmDsZDjBIczEoivN+EIlKFeFMSK6tSi/Lji0pzUosPMZoC42Yis5Rocj4wm+SVxBuaWBqY
-	mJkZmhuZGpgrifPea52bIiSQnliSmp2aWpBaBNPHxMEp1cBkdDZiq4kNR2FVr5x8VrAta79o
-	qdCW4kszNLY+/ruGjSG0aFnA/V/F2wTU74WJB31ZxG3rIBLDK7Vso+/0n8sdu7dFXtBX2xV9
-	VebS9zXTAh37GQ2eznqY9pp//p3aMu8w5kfC1UIfpy/MMJu2+FTCQuOwJ+G/Tr/gMI2pqMib
-	MeedhuvaEzOYY5jFTpQYL72T47D70BIv46x3Z5RiIr3j/ic7bF70vvzfXQ+DRec/yzgLerTy
-	5DlNvfR9h04nz3zr6w+/S/7+yhmqI+bac+7fmhqp9ovxt2VfPF7yL7BOe79Vb53u7cJVT4+w
-	Xzm7ct96BivljAKNoOu5Gj7b1zLtndx+/v6XU8uZjNdVfrqnxFKckWioxVxUnAgAduB9v24E
-	AAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrLIsWRmVeSWpSXmKPExsWy7bCSvO7R7IhUg9WT5C0ezNvGZrFm7zkm
-	i/lHzrFaNC9ez2bxbq6Mxd7XW9ktpvxZzmSx6fE1VovN8/8wWlzeNYfN4u7dVYwWM87vY7I4
-	s7iX3aJ17xF2i8Nv2lktfu6ax2KxahdQ3e2JkxkdhDx2zrrL7rFpVSebx51re9g89s9dw+6x
-	eUm9R/9fA4++LasYPT5vkgvgiOKySUnNySxLLdK3S+DKeP/pP0vBPp6KFXdPMTUwXubsYuTk
-	kBAwkei+8Za9i5GLQ0hgN6PEze5eRoiEjMTyZ31sELawxP2WI6wQRS8ZJS4tewpWxCtgJ3Fs
-	xQx2EJtFQFXixM2/LBBxQYmTM5+A2aIC0RKrP19gBbGFBbwkTu3cA2YzC4hL3HoynwlkqIjA
-	Y2aJh1P/M4M4zAIPGCWWT3oEte4Ms8TlG01g69gEtCW+r18M1s4JtPrgkbfMEKPMJLq2djFC
-	2PISzVtnM09gFJqF5JJZSDbOQtIyC0nLAkaWVYySqQXFuem5yYYFhnmp5XrFibnFpXnpesn5
-	uZsYwTGspbGD8d78f3qHGJk4GA8xSnAwK4nwfhOKSBXiTUmsrEotyo8vKs1JLT7EKM3BoiTO
-	azhjdoqQQHpiSWp2ampBahFMlomDU6qByY7ndO2ulclNgdJdMQli2j7tllfOP5slxmC4+mvp
-	5JTALTcmfGM2Oa6+c9LjQ7ETWmf5x7sZHUhve2TduL/o49K55+8etotP+um+oPyJmYqXc6eq
-	HqOO377zLxczcgRKsEgvkTycGGlj1j+F9Z071w3uiKr92mZsZe8vvrmu+7Kg9Y8Od9eSkumH
-	SssWNn6vzYkxb7A0at3mmqlgXXdZXT6T7eCUCY2sJWfqDySeWGQdLZ2pFp+3y4e16mBQxq+z
-	lVvXVlfpfs/2VWzezhqmvSV0vo3+lq8f2gX2GTZay7wS5w75Xvjz2oSzvSYFbEWrxcwseR94
-	fIiS75vifMaGMf3dLTZZzlnTd/+uPqrEUpyRaKjFXFScCAB1RboDUAMAAA==
-X-CMS-MailID: 20231118074613epcas2p422f7c882546ce89461420d92a70f5ee3
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20231115095856epcas2p1c3ee85750828bec2ee4ab0adeaeaff28
-References: <20231115095609.39883-1-jaewon02.kim@samsung.com>
-	<CGME20231115095856epcas2p1c3ee85750828bec2ee4ab0adeaeaff28@epcas2p1.samsung.com>
-	<20231115095609.39883-11-jaewon02.kim@samsung.com>
-	<62b7176d-f99c-49f6-a287-17a6b3604c1c@linaro.org>
-	<f0f6a7af-2170-89a2-1eea-dfb9d8440321@samsung.com>
-	<6a5610e0-e60d-4ab7-8708-6f77a38527b7@linaro.org>
-	<926ea5c5-20ac-5e63-16ea-6f0c20e2db0a@samsung.com>
-	<0fdb7bec-9ea4-454f-a0fb-d450f27ebc6b@linaro.org>
+From: Jie Luo <quic_luoj@quicinc.com>
+In-Reply-To: <77a194cd-d6a4-4c9b-87f5-373ed335528f@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: S1IxcI4idQDzTWEvoKDYaTWkaAf4VhZK
+X-Proofpoint-ORIG-GUID: S1IxcI4idQDzTWEvoKDYaTWkaAf4VhZK
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-18_07,2023-11-17_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 suspectscore=0
+ impostorscore=0 malwarescore=0 phishscore=0 spamscore=0 adultscore=0
+ mlxlogscore=999 clxscore=1015 lowpriorityscore=0 priorityscore=1501
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2311060000 definitions=main-2311180058
 
 
-On 23. 11. 17. 19:48, Krzysztof Kozlowski wrote:
-> On 17/11/2023 08:36, Jaewon Kim wrote:
->>>> The reason why I chose variable name 'combine' is that EINT registers was
->>>> separated from gpio control address. However, in exynosautov920 EINT
->>>> registers combined with GPx group. So I chose "combine" word.
->>> What does it mean "the GPx group"? Combined means the same place, the
->>> same register. I could imagine offset is 0x4, what I wrote last time.
->>>
->>> Is the offset 0x4?
 
-If you are asking about the offset of GPIO control register and EINT 
-control register, 0x4 is correct.
-
-There is no empty space between the two register.
-
-
-0x0 CON
-
-0x4 DAT
-
-0x8 PUD
-
-0xc DRV
-
-0x10 CONPDN
-
-0x14 PUDPDN
-
-0x18 EINT_CON
-
-0x1c EINT_FLTCON
-
-0x20 or 0x24 EINT_MASK (The size of FLTCON register depending on the 
-number of gpio)
-
-0x24 or 0x28 EINT_PEND
-
-
->>>
->>>
->>>> Is another reasonable word, I will change it.
->>> Why you cannot store the offset?
->>>
->>>> EINT registers related to the entire group(e.g SVC) were at the end of
->>>> the GPIO block and are now moved to 0xf000.
->>> So not in the same register, not combined?
->>>
->> Okay,
+On 11/17/2023 8:43 PM, Krzysztof Kozlowski wrote:
+> On 17/11/2023 12:20, Jie Luo wrote:
 >>
->> Instead of the word combine, I will think of a better word in next version.
-> I want to know answer to:
->
-> "Why you cannot store the offset?"
->
-I did not understand exactly what you said, but if i guess,,
+>>
+>> On 11/17/2023 6:40 PM, Krzysztof Kozlowski wrote:
+>>> On 17/11/2023 11:36, Jie Luo wrote:
+>>>>>>       clocks:
+>>>>>> -    items:
+>>>>>> -      - description: MDIO clock source frequency fixed to 100MHZ
+>>>>>> +    minItems: 1
+>>>>>> +    maxItems: 5
+>>>>>> +    description:
+>>>>>
+>>>>> Doesn't this make all other variants with incorrect constraints?
+>>>>
+>>>> There are 5 clock items, the first one is the legacy MDIO clock, the
+>>>> other clocks are new added for ipq5332 platform, will describe it more
+>>>> clearly in the next patch set.
+>>>
+>>> OTHER variants. Not this one.
+>>
+>> The change here is for the clock number added for the ipq5332 platform,
+>> the other platforms still use only legacy MDIO clock.
+> 
+> Then your patch is wrong as I said. You now affect other variants. I
+> don't quite get your responses. Style of them suggests that you
+> disagree, but you are not providing any relevant argument.
 
-you want to get rid of the offs because the value of the offs is always 
-the same?
+The clock arguments are provided in the later part as below. i will also
+provide more detail clock names for the new added clocks for the ipq5332
+platform in description.
 
-#define EXYNOSV920_PIN_BANK_EINTG(pins, reg, id, offs, mask_offs, pend_offs)
+   - if: 
+
+       properties: 
+
+         compatible: 
+
+           contains: 
+
+             enum: 
+
+               - qcom,ipq5332-mdio 
+
+     then: 
+
+       properties: 
+
+         clocks: 
+
+           items: 
+
+             - description: MDIO clock source frequency fixed to 100MHZ 
+
+             - description: UNIPHY0 AHB clock source frequency fixed to 
+100MHZ
+             - description: UNIPHY0 SYS clock source frequency fixed to 
+24MHZ
+             - description: UNIPHY1 AHB clock source frequency fixed to 
+100MHZ
+             - description: UNIPHY1 SYS clock source frequency fixed to 
+24MHZ
+         clock-names: 
+
+           items: 
+
+             - const: gcc_mdio_ahb_clk 
+
+             - const: gcc_uniphy0_ahb_clk 
+
+             - const: gcc_uniphy0_sys_clk 
+
+             - const: gcc_uniphy1_ahb_clk 
+
+             - const: gcc_uniphy1_sys_clk
+> 
+>>
+>> so i add minItems  and maxItems, i will check other .yaml files for the
+>> reference.
+>>
+>>>
+>>>>
+>>>>>
+>>>>>> +      MDIO system clock frequency fixed to 100MHZ, and the GCC uniphy
+>>>>>> +      clocks enabled for resetting ethernet PHY.
+>>>>>>     
+>>>>>>       clock-names:
+>>>>>> -    items:
+>>>>>> -      - const: gcc_mdio_ahb_clk
+>>>>>> +    minItems: 1
+>>>>>> +    maxItems: 5
+>>>>>> +
+>>>>>> +  phy-reset-gpio:
+>>>>>
+>>>>> No, for multiple reasons. It's gpios first of all. Where do you see such
+>>>>> property? Where is the existing definition?
+>>>>
+>>>> will remove this property, and update to use the exited PHY GPIO reset.
+>>>>
+>>>>>
+>>>>> Then it is "reset-gpios" if this is MDIO. Why do you put phy properties
+>>>>> in MDIO?
+>>>>>
+>>>>>> +    minItems: 1
+>>>>>> +    maxItems: 3
+>>>>>> +    description:
+>>>>>> +      GPIO used to reset the PHY, each GPIO is for resetting the connected
+>>>>>> +      ethernet PHY device.
+>>>>>> +
+>>>>>> +  phyaddr-fixup:
+>>>>>> +    description: Register address for programing MDIO address of PHY devices
+>>>>>
+>>>>> You did not test code which you sent.
+>>>>
+>>>> Hi Krzysztof,
+>>>> This patch is passed with the following command in my workspace.
+>>>> i will upgrade and install yamllint to make sure there is no
+>>>> warning reported anymore.
+>>>>
+>>>> make dt_bg_check
+>>>
+>>> No clue what's this, but no, I do not believe you tested it at all. It's
+>>> not about yamllint. It's was not tested. Look at errors reported on
+>>> mailing list.
+>>>
+>>>> DT_SCHEMA_FILES=Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml
+>>>
+>>
+>> Hi Krzysztof,
+>> Here is the output when i run the dt check with this patch applied in my
+>> workspace, md64 is the alias for compiling the arm64 platform.
+> 
+> We still do not know your base and dtschema version.
+
+The code base is the commit id:
+5ba73bec5e7b0494da7fdca3e003d8b97fa932cd
+<Add linux-next specific files for 20231114>
+
+The dtschema version is as below.
+dt-doc-validate --version
+2023.9
 
 
-Thanks
-
-Jaewon Kim
-
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
 
