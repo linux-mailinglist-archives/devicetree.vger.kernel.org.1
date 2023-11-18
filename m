@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-16794-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16795-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1AD17EFC5E
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 01:01:31 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D26D77EFC6C
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 01:06:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A40281F27BA7
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 00:01:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 67A76B20A45
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 00:06:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E084C110E;
-	Sat, 18 Nov 2023 00:01:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58EB5362;
+	Sat, 18 Nov 2023 00:06:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cbaxbOvs"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LZRZKrJ8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB35910CE
-	for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 16:01:21 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-507a62d4788so3689120e87.0
-        for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 16:01:21 -0800 (PST)
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3142710CE
+	for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 16:06:11 -0800 (PST)
+Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-50930f126b1so3365266e87.3
+        for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 16:06:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700265680; x=1700870480; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1700265969; x=1700870769; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=TmdYVnabDczkPmlEpci5lqKCRm4aGlo0N/NrM1uCFSA=;
-        b=cbaxbOvsjKHEFf7v4C3FmwfsSPE3fe7N6eekAqbQVSBl19JlUQ5+hR9GhlCA+WnjdY
-         GInsGTU2V3Lez4O+2sWIZYKJWvQuN6Xo4yVzbfSGBKcqDANV8D99ryHozygDci3Xtz2N
-         JeTg5cn0K5IaDJQJ7GQerJfrEY4pqKSyTDc+vDrp0TIjUkOZPcW8/zJwrUxcYIMl6SJF
-         9c3+Vf31jIj5VquCdMGsIDK5c07tsTDxEoeUIq8OESnStS/Ue5kkQML1CnotE9EaL5NF
-         OBTW4nWOkCW6pWgHl93uItApBIEa7xBbPwRr8jO/r+hkpZalNzUqivTR/9QumNOuoeUY
-         QP4g==
+        bh=BkuSxfBC4F+DNLrW68HIrLQZh2sF2jMkW+/1oAq+d0E=;
+        b=LZRZKrJ8BEjwR1LlXQQhr49mBNtLxYqUPbXDOS+b2mXWH9cJaAXWM2vWMrrDhTRTj7
+         bSRcRl7bbbmuCeAI5JbqXG+BxoMZHMX9oBRmujnUBhxGdmLC+ZTTNGr6bKEh37nPDf/Y
+         WQ+hcXlK+m2N5k9VLidoFBnxVNVsp+268v3AqQDi5ZMKTraNsriOaHljwKjn0OqXC9yz
+         TTdwqqsq8L+6ZjcMGilQIcFGoa5ph36oNc4lZAYsnHCxYkrzS5PE5HnRDBpF5sVi6Pdf
+         J+HNZgICbLM+tActzsrNUJsK67SwJjVLnguZ8tJela3fjuB5+nastQt3o6xsWoakqa3n
+         FT0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700265680; x=1700870480;
+        d=1e100.net; s=20230601; t=1700265969; x=1700870769;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TmdYVnabDczkPmlEpci5lqKCRm4aGlo0N/NrM1uCFSA=;
-        b=p71r6ai7Kj9yryFjpnddX1Vb4SBaDT1LFGNpbvzZ3mO1IdihMFAlgjDjws2CqkcMTz
-         SGZUPJEbKZU15bLkljRBarmhnMsXj/t6EWWiknxW8XbGugB9nx12PofoyQ0VjkCjZ6dq
-         kA/5xAIl1Ulkc4Iy6M5rxH/uc5bl2f+HXSAT5+UCEI6Y3pZTv1Il6C8q6uI/xVjf+vuC
-         WgFdKc7cimJdyJaNH9Xf3Shlpdn65Mzw8AfeBAlpY9Rt3i2zKq693WNXR679jRfAwyyR
-         Dso16JvsP/hAKzklGeJdjAU8mD9oJanqHTvTHzMqVfxeN/UijMPWylAYMPkd/okPAeNK
-         RytQ==
-X-Gm-Message-State: AOJu0YzatfpYE1Isvmn3jd1u54L3aTQOkQ3YBOIFodmOgWwi4Vtu533R
-	DU3eZWHUZ3VdMT5lj1fJ/0qseg==
-X-Google-Smtp-Source: AGHT+IG/gsUbmvwkJwzl1LYjmIcDG0B+kqiWMJxFy24Yv4JY8EI8QJKCJhTPM7igScF2UPvZaGl4Hw==
-X-Received: by 2002:ac2:532f:0:b0:50a:a337:1f42 with SMTP id f15-20020ac2532f000000b0050aa3371f42mr768384lfh.36.1700265680109;
-        Fri, 17 Nov 2023 16:01:20 -0800 (PST)
+        bh=BkuSxfBC4F+DNLrW68HIrLQZh2sF2jMkW+/1oAq+d0E=;
+        b=egwoEtBsdCZcoXU5dFBZv7e0jyIt8uVwj9KXjlZX2/eq0Ol3tprxhT61aamE6bJ7ai
+         xyZJq/OJNThutvUiDIhweMUxOsXZvL82i2pcoN7rP4eRGQ6VLynjxQ7a2BQqpqxlgSnE
+         wOZ6allyMTaredZPpP9OYNNnoigb4kqJuFeHDl0i60lbLSvmbo9cz4AuGyYFAjqoJsDC
+         S8BX54HBHdElTRF2J21WLu9wyKgAf786K9cT+885ns5UeHMnEJXKY7yjXt4aZaDbAvYg
+         cFU1ykKnYBL68O3WZraZRmvT4QiJ7sOIki1XaeyYJrPcagc/Xoe25kS1702IQODYNHHA
+         EmpQ==
+X-Gm-Message-State: AOJu0YxwLvN+38s9HpzYeSDTTrlJmxyMQqIi5fa95bEWLZmHPinmGmdI
+	VXdgFugK8pXcBW/WuR4xI2kF/w==
+X-Google-Smtp-Source: AGHT+IF3EYLf/B1NjPvHxo4zxynXWYMW6ljJWIj9L+81F5pUXD3r1olmF3CI8NaR46EVAodUBTG9AQ==
+X-Received: by 2002:a05:6512:480f:b0:509:489f:d84e with SMTP id eo15-20020a056512480f00b00509489fd84emr845440lfb.37.1700265969447;
+        Fri, 17 Nov 2023 16:06:09 -0800 (PST)
 Received: from [192.168.201.100] (178235187040.dynamic-4-waw-k-2-3-0.vectranet.pl. [178.235.187.40])
-        by smtp.gmail.com with ESMTPSA id q11-20020ac2514b000000b004fe2f085d5csm390317lfd.299.2023.11.17.16.01.17
+        by smtp.gmail.com with ESMTPSA id l19-20020aa7c313000000b0052ffc2e82f1sm1190361edq.4.2023.11.17.16.06.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Nov 2023 16:01:19 -0800 (PST)
-Message-ID: <abf7da98-6213-42d8-a0ef-422ad111c6a9@linaro.org>
-Date: Sat, 18 Nov 2023 01:01:16 +0100
+        Fri, 17 Nov 2023 16:06:09 -0800 (PST)
+Message-ID: <2e0d2c55-fb2f-4903-a555-f51019942c6e@linaro.org>
+Date: Sat, 18 Nov 2023 01:06:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,9 +65,11 @@ User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH V2 2/4] clk: qcom: Add Global Clock controller (GCC)
  driver for X1E80100
 Content-Language: en-US
-To: Sibi Sankar <quic_sibis@quicinc.com>, andersson@kernel.org,
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Sibi Sankar <quic_sibis@quicinc.com>, andersson@kernel.org,
  mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org
+ krzysztof.kozlowski+dt@linaro.org,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 Cc: agross@kernel.org, conor+dt@kernel.org, quic_tdas@quicinc.com,
  quic_rjendra@quicinc.com, linux-arm-msm@vger.kernel.org,
  linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
@@ -75,6 +77,7 @@ Cc: agross@kernel.org, conor+dt@kernel.org, quic_tdas@quicinc.com,
  abel.vesa@linaro.org, quic_tsoni@quicinc.com
 References: <20231117092737.28362-1-quic_sibis@quicinc.com>
  <20231117092737.28362-3-quic_sibis@quicinc.com>
+ <ec9d03f7-7158-4309-9a04-b08c69b89f39@linaro.org>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -111,23 +114,24 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20231117092737.28362-3-quic_sibis@quicinc.com>
+In-Reply-To: <ec9d03f7-7158-4309-9a04-b08c69b89f39@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 17.11.2023 10:27, Sibi Sankar wrote:
-> From: Rajendra Nayak <quic_rjendra@quicinc.com>
+On 17.11.2023 21:50, Bryan O'Donoghue wrote:
+> On 17/11/2023 09:27, Sibi Sankar wrote:
+>> * Use shared ops in the x1e80100 gcc driver [Bryan].
 > 
-> Add support for the global clock controller found on X1E80100
-> based devices.
-> 
-> Co-developed-by: Abel Vesa <abel.vesa@linaro.org>
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
-> Co-developed-by: Sibi Sankar <quic_sibis@quicinc.com>
-> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> This looks better to me now / more consistent with what we have in sc8280xp - where we do try to hit suspend and => retention/parking matters.
+Parking the clock is separate from putting the system to sleep.
+
+IIUC we usually use shared ops on clocks that may have different users
+(e.g. not only controlled by Linux) and/or that are crucial to the
+functioning of hardware (like AXI clocks, which if gated would make
+the system crash on any access attempt, from any subsystem, unless
+turned on beforehand)
+
+Perhaps Dmitry can use some clearer wording than me..
 
 Konrad
 
