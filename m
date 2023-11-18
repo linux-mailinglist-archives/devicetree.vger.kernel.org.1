@@ -1,49 +1,39 @@
-Return-Path: <devicetree+bounces-16838-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16839-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63E717EFE75
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 09:07:42 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC6647EFEF2
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 11:41:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7A893B209D7
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 08:07:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E8A1B1C208B5
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 10:41:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A1B053B8;
-	Sat, 18 Nov 2023 08:07:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00D6E10795;
+	Sat, 18 Nov 2023 10:41:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="P46aDAL5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eJpfNqUS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9530D5D;
-	Sat, 18 Nov 2023 00:07:31 -0800 (PST)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AI7a4sH024517;
-	Sat, 18 Nov 2023 08:07:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=HCBNS+RoQsIDvjafJAvRjkAYymAZefxDdkPg6CwX7aI=;
- b=P46aDAL5YtWR4T/uzWOcxnvUjhxajndri1p/msia8MY83BncEeF/U0uzvfbwJVtmo952
- l+pNPBC1L1xqx5bt500QmpGi1koGHHTWCprKZHntPPS+MsdNOmI67IzaDKO/HCLBMMOT
- YwngdlqAOasjz57kq4DmYaaNl2B6glm6IOd5LdNsbvtSmYesnndgUZUYQKkiuozYGyet
- d7+bgtEik39GZq7qrG0wF2ep26Vsq+gc93V2mjlRjVUc7Hle0CpP0A8yFABW7yDhOZ/H
- 0cJdPlTiDraVvE86fTXjy6BK68kELO5nLY+RDKmq+xpaTMB3DseCF9uHEyDwrAwxBsSU MQ== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uep1qr7aa-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 18 Nov 2023 08:07:13 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AI87Dnw023484
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 18 Nov 2023 08:07:13 GMT
-Received: from [10.253.8.221] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Sat, 18 Nov
- 2023 00:07:08 -0800
-Message-ID: <de4fa95e-4bc7-438a-94bb-4b31b1b89704@quicinc.com>
-Date: Sat, 18 Nov 2023 16:07:06 +0800
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D04FC107A5;
+	Sat, 18 Nov 2023 10:41:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55C91C433C8;
+	Sat, 18 Nov 2023 10:41:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1700304074;
+	bh=IbhrKQIHbt867NOmvlXVQQ/KhWWhW4WnEbDhXB0zfMc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=eJpfNqUS/ufprXVU1rWDyuPlonh5+Ts3e9BtwgX66m32maoUHUJu3smuB7zBHdfe1
+	 d9SloI8FOsAAlx6nuDUi73c9w5lQSH5lbwYb2HQeFVRkS12sL9y6NyCB/uKm5ERIt2
+	 CtgrMt0Zc72Q/veFUMGfYyJGjRACEVOZ/oEWLvLoqhqLIwTZElQ4Uh0SbzeOC06jxA
+	 dkjlVqfjXCqwY+YFNgagFDD0YPQ21XbPbtT7/VHOdhCfYsXGOzqS/+HApU0NdB6p5K
+	 rqpuoTSxuStU93Vi/lLuW8x3KXfcITBuF3Ii1A1aoD3ALpwRuHKc+mzI3TcOVi/CgY
+	 1qVkxjuRGNZKQ==
+Message-ID: <6a8c44e1-d3a3-49ee-bfbc-8a994a6d4ff8@kernel.org>
+Date: Sat, 18 Nov 2023 12:41:07 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -51,194 +41,95 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 9/9] dt-bindings: net: ipq4019-mdio: Document ipq5332
- platform
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, <agross@kernel.org>,
-        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-        <pabeni@redhat.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <andrew@lunn.ch>, <hkallweit1@gmail.com>, <linux@armlinux.org.uk>,
-        <robert.marko@sartura.hr>
-CC: <linux-arm-msm@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_srichara@quicinc.com>
-References: <20231115032515.4249-1-quic_luoj@quicinc.com>
- <20231115032515.4249-10-quic_luoj@quicinc.com>
- <834cbb58-3a88-4ba6-8db6-10440a4d0893@linaro.org>
- <76e081ba-9d5a-41df-9c1b-d782e5656973@quicinc.com>
- <2a9bb683-da73-47af-8800-f14a833e8ee4@linaro.org>
- <386fcee0-1eab-4c0b-8866-a67821a487ee@quicinc.com>
- <77a194cd-d6a4-4c9b-87f5-373ed335528f@linaro.org>
+Subject: Re: [PATCH 3/6] usb: cdns3-ti: add suspend/resume procedures for
+ J7200
 Content-Language: en-US
-From: Jie Luo <quic_luoj@quicinc.com>
-In-Reply-To: <77a194cd-d6a4-4c9b-87f5-373ed335528f@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: S1IxcI4idQDzTWEvoKDYaTWkaAf4VhZK
-X-Proofpoint-ORIG-GUID: S1IxcI4idQDzTWEvoKDYaTWkaAf4VhZK
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-18_07,2023-11-17_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 suspectscore=0
- impostorscore=0 malwarescore=0 phishscore=0 spamscore=0 adultscore=0
- mlxlogscore=999 clxscore=1015 lowpriorityscore=0 priorityscore=1501
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311060000 definitions=main-2311180058
+To: =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Peter Chen <peter.chen@kernel.org>,
+ Pawel Laszczak <pawell@cadence.com>, Nishanth Menon <nm@ti.com>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+ "Vardhan, Vibhore" <vibhore@ti.com>
+Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ =?UTF-8?Q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20231113-j7200-usb-suspend-v1-0-ad1ee714835c@bootlin.com>
+ <20231113-j7200-usb-suspend-v1-3-ad1ee714835c@bootlin.com>
+ <5080372b-1f48-4cbc-a6c4-8689c28983cb@kernel.org>
+ <CWZH66HQZNYM.T623ZOEEE0BK@tleb-bootlin-xps13-01>
+ <dad980f3-e032-41e4-a1e4-a16a7f45ff95@kernel.org>
+ <CX0GOP07I40N.198G7LJ0HYDBG@tleb-bootlin-xps13-01>
+ <bdea68ad-7523-4738-8fa1-b670d81a6b93@kernel.org>
+ <CX10D9YX1O1C.30PF317AG065N@tleb-bootlin-xps13-01>
+ <3e00b2ad-b58f-4b09-9230-683c58d3bb92@kernel.org>
+ <CX15J7B8F8HH.1WZ10OOW31X1H@tleb-bootlin-xps13-01>
+From: Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <CX15J7B8F8HH.1WZ10OOW31X1H@tleb-bootlin-xps13-01>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
 
 
-On 11/17/2023 8:43 PM, Krzysztof Kozlowski wrote:
-> On 17/11/2023 12:20, Jie Luo wrote:
->>
->>
->> On 11/17/2023 6:40 PM, Krzysztof Kozlowski wrote:
->>> On 17/11/2023 11:36, Jie Luo wrote:
->>>>>>       clocks:
->>>>>> -    items:
->>>>>> -      - description: MDIO clock source frequency fixed to 100MHZ
->>>>>> +    minItems: 1
->>>>>> +    maxItems: 5
->>>>>> +    description:
+On 17/11/2023 16:20, Théo Lebrun wrote:
+> Hi Roger,
+> 
+> On Fri Nov 17, 2023 at 12:51 PM CET, Roger Quadros wrote:
+>> On 17/11/2023 12:17, Théo Lebrun wrote:
+>>> On Thu Nov 16, 2023 at 10:44 PM CET, Roger Quadros wrote:
+>>>> On 16/11/2023 20:56, Théo Lebrun wrote:
+>>>>> On Thu Nov 16, 2023 at 1:40 PM CET, Roger Quadros wrote:
+>>>>>> On 15/11/2023 17:02, Théo Lebrun wrote:
+>>>>>>> On Wed Nov 15, 2023 at 12:37 PM CET, Roger Quadros wrote:
+>>>>>>>> You might want to check suspend/resume ops in cdns3-plat and
+>>>>>>>> do something similar here.
+>>>>>>>
+>>>>>>> I'm unsure what you are referring to specifically in cdns3-plat?
+>>>>>>
+>>>>>> What I meant is, calling pm_runtime_get/put() from system suspend/resume
+>>>>>> hooks doesn't seem right.
+>>>>>>
+>>>>>> How about using something like pm_runtime_forbid(dev) on devices which
+>>>>>> loose USB context on runtime suspend e.g. J7200.
+>>>>>> So at probe we can get rid of the pm_runtime_get_sync() call.
 >>>>>
->>>>> Doesn't this make all other variants with incorrect constraints?
+>>>>> What is the goal of enabling PM runtime to then block (ie forbid) it in
+>>>>> its enabled state until system suspend?
 >>>>
->>>> There are 5 clock items, the first one is the legacy MDIO clock, the
->>>> other clocks are new added for ipq5332 platform, will describe it more
->>>> clearly in the next patch set.
+>>>> If USB controller retains context on runtime_suspend on some platforms
+>>>> then we don't want to forbid PM runtime.
 >>>
->>> OTHER variants. Not this one.
+>>> What's the point of runtime PM if nothing is done based on it? This is
+>>> the current behavior of the driver.
 >>
->> The change here is for the clock number added for the ipq5332 platform,
->> the other platforms still use only legacy MDIO clock.
+>> Even if driver doesn't have runtime_suspend/resume hooks, wouldn't 
+>> the USB Power domain turn off if we enable runtime PM and allow runtime
+>> autosuspend and all children have runtime suspended?
 > 
-> Then your patch is wrong as I said. You now affect other variants. I
-> don't quite get your responses. Style of them suggests that you
-> disagree, but you are not providing any relevant argument.
-
-The clock arguments are provided in the later part as below. i will also
-provide more detail clock names for the new added clocks for the ipq5332
-platform in description.
-
-   - if: 
-
-       properties: 
-
-         compatible: 
-
-           contains: 
-
-             enum: 
-
-               - qcom,ipq5332-mdio 
-
-     then: 
-
-       properties: 
-
-         clocks: 
-
-           items: 
-
-             - description: MDIO clock source frequency fixed to 100MHZ 
-
-             - description: UNIPHY0 AHB clock source frequency fixed to 
-100MHZ
-             - description: UNIPHY0 SYS clock source frequency fixed to 
-24MHZ
-             - description: UNIPHY1 AHB clock source frequency fixed to 
-100MHZ
-             - description: UNIPHY1 SYS clock source frequency fixed to 
-24MHZ
-         clock-names: 
-
-           items: 
-
-             - const: gcc_mdio_ahb_clk 
-
-             - const: gcc_uniphy0_ahb_clk 
-
-             - const: gcc_uniphy0_sys_clk 
-
-             - const: gcc_uniphy1_ahb_clk 
-
-             - const: gcc_uniphy1_sys_clk
+> That cannot be the currently desired behavior as it would require a
+> runtime_resume implementation that restores this wrapper to its desired
+> state.
 > 
->>
->> so i add minItems  and maxItems, i will check other .yaml files for the
->> reference.
->>
->>>
->>>>
->>>>>
->>>>>> +      MDIO system clock frequency fixed to 100MHZ, and the GCC uniphy
->>>>>> +      clocks enabled for resetting ethernet PHY.
->>>>>>     
->>>>>>       clock-names:
->>>>>> -    items:
->>>>>> -      - const: gcc_mdio_ahb_clk
->>>>>> +    minItems: 1
->>>>>> +    maxItems: 5
->>>>>> +
->>>>>> +  phy-reset-gpio:
->>>>>
->>>>> No, for multiple reasons. It's gpios first of all. Where do you see such
->>>>> property? Where is the existing definition?
->>>>
->>>> will remove this property, and update to use the exited PHY GPIO reset.
->>>>
->>>>>
->>>>> Then it is "reset-gpios" if this is MDIO. Why do you put phy properties
->>>>> in MDIO?
->>>>>
->>>>>> +    minItems: 1
->>>>>> +    maxItems: 3
->>>>>> +    description:
->>>>>> +      GPIO used to reset the PHY, each GPIO is for resetting the connected
->>>>>> +      ethernet PHY device.
->>>>>> +
->>>>>> +  phyaddr-fixup:
->>>>>> +    description: Register address for programing MDIO address of PHY devices
->>>>>
->>>>> You did not test code which you sent.
->>>>
->>>> Hi Krzysztof,
->>>> This patch is passed with the following command in my workspace.
->>>> i will upgrade and install yamllint to make sure there is no
->>>> warning reported anymore.
->>>>
->>>> make dt_bg_check
->>>
->>> No clue what's this, but no, I do not believe you tested it at all. It's
->>> not about yamllint. It's was not tested. Look at errors reported on
->>> mailing list.
->>>
->>>> DT_SCHEMA_FILES=Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml
->>>
->>
->> Hi Krzysztof,
->> Here is the output when i run the dt check with this patch applied in my
->> workspace, md64 is the alias for compiling the arm64 platform.
+> It could however be something that could be implemented. It would be a
+> matter of enabling PM runtime and that is it in the probe. No need to
+> even init the hardware in the probe. Then the runtime_resume
+> implementation would call the new cdns_ti_init_hw.
 > 
-> We still do not know your base and dtschema version.
-
-The code base is the commit id:
-5ba73bec5e7b0494da7fdca3e003d8b97fa932cd
-<Add linux-next specific files for 20231114>
-
-The dtschema version is as below.
-dt-doc-validate --version
-2023.9
-
-
+> This is what the cdns3-imx wrapper is doing in a way, though what they
+> need is clocks rather than some registers to be written.
 > 
+> That all feels like outside the scope of the current patch series
+> though.
 > 
-> Best regards,
-> Krzysztof
-> 
+> My suggestion for V2 would still therefore be to remove all PM runtime
+> as it has no impact. It could be added later down the road if cutting
+> the power-domain is a goal of yours.
+
+OK let's do this.
+
+-- 
+cheers,
+-roger
 
