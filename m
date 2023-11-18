@@ -1,163 +1,139 @@
-Return-Path: <devicetree+bounces-16818-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16819-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0663B7EFD75
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 04:36:20 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 173527EFD9C
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 04:56:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3B7A0B20A12
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 03:36:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 47C8F1C2085C
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 03:56:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C84B74F893;
-	Sat, 18 Nov 2023 03:36:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E499E6AA1;
+	Sat, 18 Nov 2023 03:56:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="uvlFMF+J"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="CbetOfXp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01olkn2055.outbound.protection.outlook.com [40.92.99.55])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16E49E0;
-	Fri, 17 Nov 2023 19:36:08 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TBVyy7FK0waDOmE0QnmtwG7Rx9UXkOp17f9/a/OEX+arH0lFJ0nPe0ciFF7l/1sazA9+wAjYANlK+9jtOpt6J9lqHHr9CRtEeiqAzTSnMKj1nBmzmAoY/rr5xluxZ4otz/QGBLl5qTw17Cn6eSPp2Qkb617zUnsrXfRP1YWtI5eIu62BTobNxjjNQOtxaF88W4XrmRWoSTzYU+8EPkr1WJAAlzO8gW1h2g0fxgQIJcvjCKh3rmGJND2eZYh3obdILfm2gejALdQp+m5t7gT4hzT2S7Q2xAihUSSItTQWTi7uqk01gGTFihIQib8Qltsq5w5EYFHnjLaO17INxInJLw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xbTJTqeR4IQH8jOE/fboA9WsMoMQ1UdKMiKkprcx+Vw=;
- b=fhgLCZrQJHX7vUiDTM8xb4iy34Uic12CZxciAN5JCgBFnjXbo+T4/XDO926sskEH099Gy7LAjCwzyMa36wt2vcPyA9wpggMJPcVCmsrXD7TXkyjSd5cwTMSxn1xYV9p6Ia5VujfmtcFYy7d9SOuxsu1FTowhokrY6qGgzZn3yAIYPGkLn/B7oUxy5sdcvrc5Fq7W6JqvsuZiJv9NcU1ya5tgq/L7a8ujwSrJKX6qiJnm+hJiwPadFU1BrvxxR1LN702jUtrpcaVsQ/pWP96hwgROH+0KghrUDwsqhcX4Y8sZIhEzizAIK75Z6G/wePvnXboSLs2GzNk/gc1N9MrOaw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xbTJTqeR4IQH8jOE/fboA9WsMoMQ1UdKMiKkprcx+Vw=;
- b=uvlFMF+J8vkqV2uRO2BSeU1Tn49qwNnQuiCwNRd0nSZeuVPDvwnv2/GSotZ0EJqK4EkHTf2f4HhKpw3AzATT+kyloo55X9TbAVVI6nBpI4AfonuRvERpyzpiPD9SbzBjuBE0CI6o+TFGlNsBqylBfKqJdNJFVmMZZNo94fzSWwPQ/qKOoof+TPONlefsZTe235ZX1xipIsnHkRgz0y/Y72pkUmAD/nmBYsig8eGBSpDFZ6ftz8/ARCFzrH2WwpRxKIXQrw7zrie6xzvGLw79j2w5bUoyTnXyr4sjb9Uvp+q8YqSP/woCKDCGKnU61NMMAk6aeZ9qFi1cuGAB/vD6NA==
-Received: from TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM (2603:1096:404:8041::8)
- by TY3P286MB2499.JPNP286.PROD.OUTLOOK.COM (2603:1096:400:228::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7002.25; Sat, 18 Nov
- 2023 03:36:04 +0000
-Received: from TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM
- ([fe80::b840:5197:9b15:ea2d]) by TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM
- ([fe80::b840:5197:9b15:ea2d%6]) with mapi id 15.20.7002.025; Sat, 18 Nov 2023
- 03:36:04 +0000
-From: Shiji Yang <yangshiji66@outlook.com>
-To: lee@kernel.org
-Cc: conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	linux-kernel@vger.kernel.org,
-	linux-leds@vger.kernel.org,
-	oliver@schinagl.nl,
-	pavel@ucw.cz,
-	robh+dt@kernel.org
-Subject: Re: [PATCH v2 0/2] leds: add more LED color and function definitions
-Date: Sat, 18 Nov 2023 11:35:50 +0800
-Message-ID:
- <TYAP286MB03150903EBA3D5C4CE570952BCB6A@TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20231117125219.GB153049@google.com>
-References: <20231117125219.GB153049@google.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-TMN: [OF0diryouMZ8k2scxnIgjzv3OkdWVlqc]
-X-ClientProxiedBy: TYCP301CA0060.JPNP301.PROD.OUTLOOK.COM
- (2603:1096:400:384::9) To TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:404:8041::8)
-X-Microsoft-Original-Message-ID:
- <20231118033550.1064-1-yangshiji66@outlook.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4634FD79;
+	Fri, 17 Nov 2023 19:56:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1700279791; x=1731815791;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=jmR/I9SjDyuqbZa8xaQjea+2jnKMA4EejRbqRkPplhM=;
+  b=CbetOfXpRHGvoKdOR1ttN7SX1SmcFtfmGUlMuYK9yaxWyON7Dx5L8QAW
+   kpiPCXjYjXbakGOPwbvviDcGNaX/K0GGMe0Ou6R0RxlVsUze8g4PdX8oU
+   CaniDWWfT6+rNXK9d0U1Wb09MHCzA+E0aS4ykP2pVwKd+uduy54z7LYnb
+   FBHiO3TTioIF9zZ9thW4WBh4MMdXlV03gg4jbAZXeXgN71gLfP6w6kvkg
+   Pz8HpP/gZuo4J6aVTfG0Rb8VOvxzKA4cgVVOHQKVDVhYvnLz/PW+wEyiG
+   VpR+E99Rg/bI6YcueUOxAYOg0A8+9OyJy4jqOuBzqM9jKZTVBxtUnsi/s
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10897"; a="4555599"
+X-IronPort-AV: E=Sophos;i="6.04,207,1695711600"; 
+   d="scan'208";a="4555599"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Nov 2023 19:56:30 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10897"; a="939331045"
+X-IronPort-AV: E=Sophos;i="6.04,207,1695711600"; 
+   d="scan'208";a="939331045"
+Received: from lkp-server02.sh.intel.com (HELO b8de5498638e) ([10.239.97.151])
+  by orsmga005.jf.intel.com with ESMTP; 17 Nov 2023 19:56:26 -0800
+Received: from kbuild by b8de5498638e with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1r4CRT-0003VI-2n;
+	Sat, 18 Nov 2023 03:56:23 +0000
+Date: Sat, 18 Nov 2023 11:55:47 +0800
+From: kernel test robot <lkp@intel.com>
+To: David Lechner <dlechner@baylibre.com>, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, David Lechner <dlechner@baylibre.com>,
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Lars-Peter Clausen <lars@metafoo.de>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 09/14] spi: axi-spi-engine: move msg state to new struct
+Message-ID: <202311181130.WXViTdUs-lkp@intel.com>
+References: <20231117-axi-spi-engine-series-1-v1-9-cc59db999b87@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYAP286MB0315:EE_|TY3P286MB2499:EE_
-X-MS-Office365-Filtering-Correlation-Id: a3359615-52c7-4e0d-9600-08dbe7e77dd6
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	w7k8+ybFieIRYEVzj4TxJ80h7AKTTXYa5bPBpWHVCQQQAFSdEjrcFBQ364cIFt8M6EI2hGiPUDQg0RaPS5mZqxPXMML91BHURALOyOgWgE5wEe5vtYaDy/n2Yyz9MPXZZayj0VBPGc+yQ495XJCRvWfzbGcEP3z9CUg+/PFcZY5VfF5gRqaDGtJ1e6ZiKvBloVDicPawu63tTeTElETkb0En2nMxS1lNY5GtnhEKVbRz/dPw89rSuGSU04LvYJI9HT6eR5bDOvG/L/2/i/7AnPqyZoDhWSRCoWaf/omK1IxvA0PzskMaXONxDQOe3In+9yzHOin1xqS++SqC7qzIIajydfRk39S8U88ZK3C/tY0yy4pDUib5e1ww4lUKm1aC77cXyj72GZNuTpyt0KaQDL0XdriaPM3dHK0ytx1RvGcb149l5FNSGo4G+lMB92NsX7u9dD+Lwp6qoR/i9amF55HzL8eTXGUESuvBzNrqEbQXt0bBUXW3cVG7LQjkMbzgv4rhe04kV7ze+c6OxPPF898Lyk40jcUjVrBQinFPUh1JOLOO1llz6Z3k/CR7XmIB6PEaqVjt0QXHdFD9HUx4WA==
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?YXFsYXA3R2RpL3cvQlRCbWhoTGo0c3lENFlWcWNpcDVVdnBYSFRrUzFpQmN2?=
- =?utf-8?B?Vk5QSkIxL2MvMXBjcnR0UlA4Q1ZyTW40dUVQcmV2Z1ZMS1ZHa0JNWU1GOFNj?=
- =?utf-8?B?ampEeWJCU2lHd3F5cTdtZ2w5Yk14NklBRlVQS3p1Si9UVm1lNjhtbktpWXNl?=
- =?utf-8?B?OWdEMVJ3ZndYMVpqSlF3U3F4enl0OWZKa2tzUGtYZ3c3UUc4c2xtZ3MzNXdL?=
- =?utf-8?B?clhTeHFXVE15UmYzQnA2azVXTGVPcjh4eXpURDdDUHdabm9GRTE1RjZvY1c5?=
- =?utf-8?B?djdGQ1I4bWNSc0JMRmEzVkFUaElFRUE0d1gySHNUWXVmYk1CRXhBVTJ5UHlV?=
- =?utf-8?B?UFVhWXlPOCt6MnV2S2tmUUM3dEtLMmdtUHJ1dzM2aytzcno5V1hSTGp2Z2ha?=
- =?utf-8?B?SnpOVzZaMFZzYzVvMDBWclRFbHQremYrSC95eVdENXZSS3BvZTlDckRQUkpU?=
- =?utf-8?B?VGlTVkg2ek01U2ZOTldXMUkyZXgrMDFwSnJtbTcvbHgvTks1cnUrRWFNcnJE?=
- =?utf-8?B?anBmaU4yWnJ2MjFuOTF2V0twMm8rNCtLRjBsd3RKWWxKVWxYMDZaVVlhT0ln?=
- =?utf-8?B?ckhhNEVzR2VQdk5wT05MY1VWa2J2SUF4Z0g1QkdtR2wralkxV0VWb1NXWVJ1?=
- =?utf-8?B?UUpjbkZjL0w0bW5nWDExVGRTUU01WUNQcnF1eFczODBTcnVsRWZYRzNRYUN6?=
- =?utf-8?B?Rkk5S2NhcFpRMjRucTI5aHNqQ0xlcjJpY0VleDZoWHNPN3NpMVRaQ0pBR3JC?=
- =?utf-8?B?TkVMQVI2bnRnOGRHVkVOTXZYTURtbTBVTWpjbWFWb1lTV0Uxem00ME5XdnBv?=
- =?utf-8?B?U3pJWXFWR3ZWSHlXL2hYVy9VWXQ3dmt5cHhNeVkwbjJIN29neFJENzdLUFRr?=
- =?utf-8?B?bTNmQU5zVkpjclZGL0Rvam1BRnd1KzZjUHhlVVlYVFRrN2IyNVZqbU5WUXV1?=
- =?utf-8?B?WjFPRnE0dWdSNFpodVh5YndsVytmVDhBc2V4cFRSYUt5b3ByWDN2TnVlVE5F?=
- =?utf-8?B?R1dEc0RCOURaQzdiRGo1QU10dHpIckZHVTYxN1RUZTR1UlN3aThlSVpiYVI0?=
- =?utf-8?B?QTYvdldLeXg3YkZFSW5aWERTWTRuWVNsbXNrbEdGTE8xUFduNkNDMlZIYUdj?=
- =?utf-8?B?T2tWb05lSVhsTzhtbHdRM0JPRGYya0NCYmZ5Ulp1SjlSTEM1THYyMnRaTi9Z?=
- =?utf-8?B?d0tLT2d5VFZPUW9VSVFsdmJUTmNxK29XbEFOQkVrMXpiVExNdWRwYTZ1VHRF?=
- =?utf-8?B?MmROckk2R3RZOXR5Q2dMbEZoNmVGeDJaRW9KOHlRb0ZrODFCVHZjNlFtdDk3?=
- =?utf-8?B?b0c2Z3BmK25jQWhvVEc2ZzZFeno3S2tCVWFUV01SUGdkckNUcFZUNmpBeGNj?=
- =?utf-8?B?T2RrYjdCYjFkdnNwR1U2UnJVQ0tGMXBJcUhWbmNLUE5uUGxpRWVtRit3UDB3?=
- =?utf-8?B?elptRkw0bWhNR3BRKzhLaW5zaE15S29ZT2MrVXFTVi9VMlQxSTM2a0h6YXRs?=
- =?utf-8?B?UHNLTlUzYXJEVFZBRThGWTFkcW5LL3Z0SUpFQ29iOUMwTHlxemZ2ZjZmTjRi?=
- =?utf-8?B?OG5rMnNrejBzMFA4WHhhMlA1VEN1Q21LcXJWc1JMSkF0TlN0cU00K2JwNWxM?=
- =?utf-8?Q?x8O0Yg/CCnnthQtYGI6hnJyOcJJs75p57TR5jbpL5JMw=3D?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a3359615-52c7-4e0d-9600-08dbe7e77dd6
-X-MS-Exchange-CrossTenant-AuthSource: TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2023 03:36:04.4312
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY3P286MB2499
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231117-axi-spi-engine-series-1-v1-9-cc59db999b87@baylibre.com>
 
-On Fri, 17 Nov 2023 12:52:19 +0000, Lee Jones wrote:
+Hi David,
 
->On Tue, 31 Oct 2023, Shiji Yang wrote:
->
->> Hi!
->> 
->> This series patches add the missing LED color definitions and
->> introduces two widely used LED functions "internet" and "rssi".
->> 
->> Regards,
->> Shiji Yang
->> 
->> 
->> Changes in v2:
->> * Remove the LED name sorting patch as it changes the ABI
->> 
->> 
->> Shiji Yang (2):
->>   leds: core: add missing LED color strings
->>   dt-bindings: leds: add "internet" and "rssi" function definitions
->
->I don't see these patches attached to this cover letter.
->
->Did you send them all threaded? 
->
->-- 
->Lee Jones [李琼斯]
+kernel test robot noticed the following build warnings:
 
-Hi!
-Thanks for your review. Please ignore this patch. My git-email
-tool has some issues, so they have been separated[1]. The final
-v4 patch[2] has been sent some days ago.
+[auto build test WARNING on 6f9da18171889fae105e1413a825c53fa5aab40c]
 
-[1] https://lore.kernel.org/all/TYAP286MB03159A83A77E6FD59F271D9BBCA0A@TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM/
+url:    https://github.com/intel-lab-lkp/linux/commits/David-Lechner/dt-bindings-spi-axi-spi-engine-convert-to-yaml/20231118-041730
+base:   6f9da18171889fae105e1413a825c53fa5aab40c
+patch link:    https://lore.kernel.org/r/20231117-axi-spi-engine-series-1-v1-9-cc59db999b87%40baylibre.com
+patch subject: [PATCH 09/14] spi: axi-spi-engine: move msg state to new struct
+config: alpha-randconfig-r081-20231118 (https://download.01.org/0day-ci/archive/20231118/202311181130.WXViTdUs-lkp@intel.com/config)
+compiler: alpha-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231118/202311181130.WXViTdUs-lkp@intel.com/reproduce)
 
-[2] https://lore.kernel.org/all/TYAP286MB0315F4D71698370875F58F6EBCAAA@TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM/
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202311181130.WXViTdUs-lkp@intel.com/
 
-Regards,
-Shiji Yang
+All warnings (new ones prefixed by >>):
+
+>> drivers/spi/spi-axi-spi-engine.c:106: warning: Function parameter or member 'p' not described in 'spi_engine_message_state'
+>> drivers/spi/spi-axi-spi-engine.c:106: warning: Function parameter or member 'cmd_length' not described in 'spi_engine_message_state'
+>> drivers/spi/spi-axi-spi-engine.c:106: warning: Function parameter or member 'cmd_buf' not described in 'spi_engine_message_state'
+>> drivers/spi/spi-axi-spi-engine.c:106: warning: Function parameter or member 'tx_xfer' not described in 'spi_engine_message_state'
+>> drivers/spi/spi-axi-spi-engine.c:106: warning: Function parameter or member 'tx_length' not described in 'spi_engine_message_state'
+>> drivers/spi/spi-axi-spi-engine.c:106: warning: Function parameter or member 'tx_buf' not described in 'spi_engine_message_state'
+>> drivers/spi/spi-axi-spi-engine.c:106: warning: Function parameter or member 'rx_xfer' not described in 'spi_engine_message_state'
+>> drivers/spi/spi-axi-spi-engine.c:106: warning: Function parameter or member 'rx_length' not described in 'spi_engine_message_state'
+>> drivers/spi/spi-axi-spi-engine.c:106: warning: Function parameter or member 'rx_buf' not described in 'spi_engine_message_state'
+>> drivers/spi/spi-axi-spi-engine.c:106: warning: Function parameter or member 'sync_id' not described in 'spi_engine_message_state'
+
+
+vim +106 drivers/spi/spi-axi-spi-engine.c
+
+    81	
+    82	/**
+    83	 * struct spi_engine_message_state - SPI engine per-message state
+    84	 */
+    85	struct spi_engine_message_state {
+    86		/** Instructions for executing this message. */
+    87		struct spi_engine_program *p;
+    88		/** Number of elements in cmd_buf array. */
+    89		unsigned cmd_length;
+    90		/** Array of commands not yet written to CMD FIFO. */
+    91		const uint16_t *cmd_buf;
+    92		/** Next xfer with tx_buf not yet fully written to TX FIFO. */
+    93		struct spi_transfer *tx_xfer;
+    94		/** Size of tx_buf in bytes. */
+    95		unsigned int tx_length;
+    96		/** Bytes not yet written to TX FIFO. */
+    97		const uint8_t *tx_buf;
+    98		/** Next xfer with rx_buf not yet fully written to RX FIFO. */
+    99		struct spi_transfer *rx_xfer;
+   100		/** Size of tx_buf in bytes. */
+   101		unsigned int rx_length;
+   102		/** Bytes not yet written to the RX FIFO. */
+   103		uint8_t *rx_buf;
+   104		/** ID to correlate SYNC interrupts with this message. */
+   105		u8 sync_id;
+ > 106	};
+   107	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
