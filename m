@@ -1,338 +1,163 @@
-Return-Path: <devicetree+bounces-16817-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16818-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD2F97EFD22
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 03:27:26 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0663B7EFD75
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 04:36:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 02298B20A85
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 02:27:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3B7A0B20A12
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 03:36:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBAF95672;
-	Sat, 18 Nov 2023 02:27:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C84B74F893;
+	Sat, 18 Nov 2023 03:36:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="b8PF+6ix"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="uvlFMF+J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F37E10CE;
-	Fri, 17 Nov 2023 18:27:18 -0800 (PST)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AI1YfNf015220;
-	Sat, 18 Nov 2023 02:26:51 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=EBLwbQq9XUpnkFVoTrmt1IchJfwm5gg9Up4FkOyTlqQ=;
- b=b8PF+6ixskCD/a40fMj8rDGhEZMuaskDp1H4DqtEjooTITid1jPQlnvZhis5KFXBA5lR
- OMQ3+zxTSjvI6Av63WIKEd2vnnMleekXv9YF8MlCtBQoPx9JWEDFh4Bb/dy5ZbOnVXxn
- dIJX9m4V4BdcMnQTgwPSFrshdRdmZY8lk5zrSD3o/Z+7Cg2dxwbAKzfovGSKoOR9fXhp
- 9fM+IkUbjnBq6+AjGSF+feM/j+JnzfU3wtmcq9OfdijeeN8MrcNj0wjydRkWJoQ5WEYd
- fz3A5ZjRz7LAT0evGjBabSIK+7+Gd/IpmlRKqLbhZyU0ClFIQYz9p4WAAFetOXDsMduH vQ== 
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3udt8bu603-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 18 Nov 2023 02:26:51 +0000
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AI2QoG1005961
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 18 Nov 2023 02:26:50 GMT
-Received: from [10.251.44.35] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 17 Nov
- 2023 18:26:46 -0800
-Message-ID: <c1d7922e-cc94-4773-8ca7-de33d937d41e@quicinc.com>
-Date: Sat, 18 Nov 2023 04:26:43 +0200
+Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01olkn2055.outbound.protection.outlook.com [40.92.99.55])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16E49E0;
+	Fri, 17 Nov 2023 19:36:08 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=TBVyy7FK0waDOmE0QnmtwG7Rx9UXkOp17f9/a/OEX+arH0lFJ0nPe0ciFF7l/1sazA9+wAjYANlK+9jtOpt6J9lqHHr9CRtEeiqAzTSnMKj1nBmzmAoY/rr5xluxZ4otz/QGBLl5qTw17Cn6eSPp2Qkb617zUnsrXfRP1YWtI5eIu62BTobNxjjNQOtxaF88W4XrmRWoSTzYU+8EPkr1WJAAlzO8gW1h2g0fxgQIJcvjCKh3rmGJND2eZYh3obdILfm2gejALdQp+m5t7gT4hzT2S7Q2xAihUSSItTQWTi7uqk01gGTFihIQib8Qltsq5w5EYFHnjLaO17INxInJLw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=xbTJTqeR4IQH8jOE/fboA9WsMoMQ1UdKMiKkprcx+Vw=;
+ b=fhgLCZrQJHX7vUiDTM8xb4iy34Uic12CZxciAN5JCgBFnjXbo+T4/XDO926sskEH099Gy7LAjCwzyMa36wt2vcPyA9wpggMJPcVCmsrXD7TXkyjSd5cwTMSxn1xYV9p6Ia5VujfmtcFYy7d9SOuxsu1FTowhokrY6qGgzZn3yAIYPGkLn/B7oUxy5sdcvrc5Fq7W6JqvsuZiJv9NcU1ya5tgq/L7a8ujwSrJKX6qiJnm+hJiwPadFU1BrvxxR1LN702jUtrpcaVsQ/pWP96hwgROH+0KghrUDwsqhcX4Y8sZIhEzizAIK75Z6G/wePvnXboSLs2GzNk/gc1N9MrOaw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=xbTJTqeR4IQH8jOE/fboA9WsMoMQ1UdKMiKkprcx+Vw=;
+ b=uvlFMF+J8vkqV2uRO2BSeU1Tn49qwNnQuiCwNRd0nSZeuVPDvwnv2/GSotZ0EJqK4EkHTf2f4HhKpw3AzATT+kyloo55X9TbAVVI6nBpI4AfonuRvERpyzpiPD9SbzBjuBE0CI6o+TFGlNsBqylBfKqJdNJFVmMZZNo94fzSWwPQ/qKOoof+TPONlefsZTe235ZX1xipIsnHkRgz0y/Y72pkUmAD/nmBYsig8eGBSpDFZ6ftz8/ARCFzrH2WwpRxKIXQrw7zrie6xzvGLw79j2w5bUoyTnXyr4sjb9Uvp+q8YqSP/woCKDCGKnU61NMMAk6aeZ9qFi1cuGAB/vD6NA==
+Received: from TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM (2603:1096:404:8041::8)
+ by TY3P286MB2499.JPNP286.PROD.OUTLOOK.COM (2603:1096:400:228::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7002.25; Sat, 18 Nov
+ 2023 03:36:04 +0000
+Received: from TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM
+ ([fe80::b840:5197:9b15:ea2d]) by TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM
+ ([fe80::b840:5197:9b15:ea2d%6]) with mapi id 15.20.7002.025; Sat, 18 Nov 2023
+ 03:36:04 +0000
+From: Shiji Yang <yangshiji66@outlook.com>
+To: lee@kernel.org
+Cc: conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	linux-kernel@vger.kernel.org,
+	linux-leds@vger.kernel.org,
+	oliver@schinagl.nl,
+	pavel@ucw.cz,
+	robh+dt@kernel.org
+Subject: Re: [PATCH v2 0/2] leds: add more LED color and function definitions
+Date: Sat, 18 Nov 2023 11:35:50 +0800
+Message-ID:
+ <TYAP286MB03150903EBA3D5C4CE570952BCB6A@TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20231117125219.GB153049@google.com>
+References: <20231117125219.GB153049@google.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-TMN: [OF0diryouMZ8k2scxnIgjzv3OkdWVlqc]
+X-ClientProxiedBy: TYCP301CA0060.JPNP301.PROD.OUTLOOK.COM
+ (2603:1096:400:384::9) To TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:404:8041::8)
+X-Microsoft-Original-Message-ID:
+ <20231118033550.1064-1-yangshiji66@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/6] iommu/arm-smmu-qcom: Add Qualcomm TBU driver
-Content-Language: en-US
-To: Bjorn Andersson <andersson@kernel.org>
-CC: <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <will@kernel.org>, <robin.murphy@arm.com>,
-        <joro@8bytes.org>, <devicetree@vger.kernel.org>,
-        <konrad.dybcio@linaro.org>, <linux-arm-kernel@lists.infradead.org>,
-        <iommu@lists.linux.dev>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <quic_cgoldswo@quicinc.com>,
-        <quic_sukadev@quicinc.com>, <quic_pdaly@quicinc.com>,
-        <quic_sudaraja@quicinc.com>, <djakov@kernel.org>
-References: <20231019021923.13939-1-quic_c_gdjako@quicinc.com>
- <20231019021923.13939-4-quic_c_gdjako@quicinc.com>
- <ljbzuewnsi52qyolombjowuouiqmv5ybwbqf2z6ok34yuiacjc@7hwfysvidjqm>
-From: Georgi Djakov <quic_c_gdjako@quicinc.com>
-In-Reply-To: <ljbzuewnsi52qyolombjowuouiqmv5ybwbqf2z6ok34yuiacjc@7hwfysvidjqm>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: MlXcEeMHevVGwTZB6h-_0hknfY-tpv48
-X-Proofpoint-GUID: MlXcEeMHevVGwTZB6h-_0hknfY-tpv48
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-18_01,2023-11-17_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 impostorscore=0
- priorityscore=1501 suspectscore=0 mlxscore=0 mlxlogscore=999 adultscore=0
- bulkscore=0 malwarescore=0 spamscore=0 phishscore=0 lowpriorityscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2311060000
- definitions=main-2311180016
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYAP286MB0315:EE_|TY3P286MB2499:EE_
+X-MS-Office365-Filtering-Correlation-Id: a3359615-52c7-4e0d-9600-08dbe7e77dd6
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	w7k8+ybFieIRYEVzj4TxJ80h7AKTTXYa5bPBpWHVCQQQAFSdEjrcFBQ364cIFt8M6EI2hGiPUDQg0RaPS5mZqxPXMML91BHURALOyOgWgE5wEe5vtYaDy/n2Yyz9MPXZZayj0VBPGc+yQ495XJCRvWfzbGcEP3z9CUg+/PFcZY5VfF5gRqaDGtJ1e6ZiKvBloVDicPawu63tTeTElETkb0En2nMxS1lNY5GtnhEKVbRz/dPw89rSuGSU04LvYJI9HT6eR5bDOvG/L/2/i/7AnPqyZoDhWSRCoWaf/omK1IxvA0PzskMaXONxDQOe3In+9yzHOin1xqS++SqC7qzIIajydfRk39S8U88ZK3C/tY0yy4pDUib5e1ww4lUKm1aC77cXyj72GZNuTpyt0KaQDL0XdriaPM3dHK0ytx1RvGcb149l5FNSGo4G+lMB92NsX7u9dD+Lwp6qoR/i9amF55HzL8eTXGUESuvBzNrqEbQXt0bBUXW3cVG7LQjkMbzgv4rhe04kV7ze+c6OxPPF898Lyk40jcUjVrBQinFPUh1JOLOO1llz6Z3k/CR7XmIB6PEaqVjt0QXHdFD9HUx4WA==
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?YXFsYXA3R2RpL3cvQlRCbWhoTGo0c3lENFlWcWNpcDVVdnBYSFRrUzFpQmN2?=
+ =?utf-8?B?Vk5QSkIxL2MvMXBjcnR0UlA4Q1ZyTW40dUVQcmV2Z1ZMS1ZHa0JNWU1GOFNj?=
+ =?utf-8?B?ampEeWJCU2lHd3F5cTdtZ2w5Yk14NklBRlVQS3p1Si9UVm1lNjhtbktpWXNl?=
+ =?utf-8?B?OWdEMVJ3ZndYMVpqSlF3U3F4enl0OWZKa2tzUGtYZ3c3UUc4c2xtZ3MzNXdL?=
+ =?utf-8?B?clhTeHFXVE15UmYzQnA2azVXTGVPcjh4eXpURDdDUHdabm9GRTE1RjZvY1c5?=
+ =?utf-8?B?djdGQ1I4bWNSc0JMRmEzVkFUaElFRUE0d1gySHNUWXVmYk1CRXhBVTJ5UHlV?=
+ =?utf-8?B?UFVhWXlPOCt6MnV2S2tmUUM3dEtLMmdtUHJ1dzM2aytzcno5V1hSTGp2Z2ha?=
+ =?utf-8?B?SnpOVzZaMFZzYzVvMDBWclRFbHQremYrSC95eVdENXZSS3BvZTlDckRQUkpU?=
+ =?utf-8?B?VGlTVkg2ek01U2ZOTldXMUkyZXgrMDFwSnJtbTcvbHgvTks1cnUrRWFNcnJE?=
+ =?utf-8?B?anBmaU4yWnJ2MjFuOTF2V0twMm8rNCtLRjBsd3RKWWxKVWxYMDZaVVlhT0ln?=
+ =?utf-8?B?ckhhNEVzR2VQdk5wT05MY1VWa2J2SUF4Z0g1QkdtR2wralkxV0VWb1NXWVJ1?=
+ =?utf-8?B?UUpjbkZjL0w0bW5nWDExVGRTUU01WUNQcnF1eFczODBTcnVsRWZYRzNRYUN6?=
+ =?utf-8?B?Rkk5S2NhcFpRMjRucTI5aHNqQ0xlcjJpY0VleDZoWHNPN3NpMVRaQ0pBR3JC?=
+ =?utf-8?B?TkVMQVI2bnRnOGRHVkVOTXZYTURtbTBVTWpjbWFWb1lTV0Uxem00ME5XdnBv?=
+ =?utf-8?B?U3pJWXFWR3ZWSHlXL2hYVy9VWXQ3dmt5cHhNeVkwbjJIN29neFJENzdLUFRr?=
+ =?utf-8?B?bTNmQU5zVkpjclZGL0Rvam1BRnd1KzZjUHhlVVlYVFRrN2IyNVZqbU5WUXV1?=
+ =?utf-8?B?WjFPRnE0dWdSNFpodVh5YndsVytmVDhBc2V4cFRSYUt5b3ByWDN2TnVlVE5F?=
+ =?utf-8?B?R1dEc0RCOURaQzdiRGo1QU10dHpIckZHVTYxN1RUZTR1UlN3aThlSVpiYVI0?=
+ =?utf-8?B?QTYvdldLeXg3YkZFSW5aWERTWTRuWVNsbXNrbEdGTE8xUFduNkNDMlZIYUdj?=
+ =?utf-8?B?T2tWb05lSVhsTzhtbHdRM0JPRGYya0NCYmZ5Ulp1SjlSTEM1THYyMnRaTi9Z?=
+ =?utf-8?B?d0tLT2d5VFZPUW9VSVFsdmJUTmNxK29XbEFOQkVrMXpiVExNdWRwYTZ1VHRF?=
+ =?utf-8?B?MmROckk2R3RZOXR5Q2dMbEZoNmVGeDJaRW9KOHlRb0ZrODFCVHZjNlFtdDk3?=
+ =?utf-8?B?b0c2Z3BmK25jQWhvVEc2ZzZFeno3S2tCVWFUV01SUGdkckNUcFZUNmpBeGNj?=
+ =?utf-8?B?T2RrYjdCYjFkdnNwR1U2UnJVQ0tGMXBJcUhWbmNLUE5uUGxpRWVtRit3UDB3?=
+ =?utf-8?B?elptRkw0bWhNR3BRKzhLaW5zaE15S29ZT2MrVXFTVi9VMlQxSTM2a0h6YXRs?=
+ =?utf-8?B?UHNLTlUzYXJEVFZBRThGWTFkcW5LL3Z0SUpFQ29iOUMwTHlxemZ2ZjZmTjRi?=
+ =?utf-8?B?OG5rMnNrejBzMFA4WHhhMlA1VEN1Q21LcXJWc1JMSkF0TlN0cU00K2JwNWxM?=
+ =?utf-8?Q?x8O0Yg/CCnnthQtYGI6hnJyOcJJs75p57TR5jbpL5JMw=3D?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a3359615-52c7-4e0d-9600-08dbe7e77dd6
+X-MS-Exchange-CrossTenant-AuthSource: TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2023 03:36:04.4312
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY3P286MB2499
 
-On 10/22/2023 12:05 AM, Bjorn Andersson wrote:
-> On Wed, Oct 18, 2023 at 07:19:20PM -0700, Georgi Djakov wrote:
->> Add driver for the Qualcomm implementation of the ARM MMU-500 TBU.
->> The driver will enable the resources needed by the TBU and will
->> configure the registers for some debug features like checking if
->> there are any pending transactions, capturing transactions and
->> running ATOS (Address Translation Operations). ATOS/eCATS are used
->> to manually trigger an address translation of IOVA to physical
->> address by the SMMU hardware.
-> 
-> I still don't think this commit message clearly enough describe the
-> problem you're trying to solve.
-> 
-> Not until I had read the Kconfig help text did I pay attention to the
-> significance of the words "some debug features" in the middle of the
-> paragraph.
-> 
-> 
-> Please describe your changes in accordance with [1], i.e. clearly
-> describe the problem you're trying to solve, then discuss the technical
-> solution in the patch.
+On Fri, 17 Nov 2023 12:52:19 +0000, Lee Jones wrote:
 
-Thanks Bjorn, I'll try to improve it! 
+>On Tue, 31 Oct 2023, Shiji Yang wrote:
+>
+>> Hi!
+>> 
+>> This series patches add the missing LED color definitions and
+>> introduces two widely used LED functions "internet" and "rssi".
+>> 
+>> Regards,
+>> Shiji Yang
+>> 
+>> 
+>> Changes in v2:
+>> * Remove the LED name sorting patch as it changes the ABI
+>> 
+>> 
+>> Shiji Yang (2):
+>>   leds: core: add missing LED color strings
+>>   dt-bindings: leds: add "internet" and "rssi" function definitions
+>
+>I don't see these patches attached to this cover letter.
+>
+>Did you send them all threaded? 
+>
+>-- 
+>Lee Jones [李琼斯]
 
-> [1] https://docs.kernel.org/process/submitting-patches.html#describe-your-changes
-> 
-> [..]
->> diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-> [..]
->> +#ifdef CONFIG_ARM_SMMU_QCOM_TBU
->> +
->> +struct qsmmuv500_tbu {
->> +	struct device *dev;
->> +	struct arm_smmu_device *smmu;
->> +	u32 sid_range[2];
->> +	struct list_head list;
->> +	struct clk *clk;
->> +	struct icc_path	*path;
->> +	void __iomem *base;
->> +	spinlock_t halt_lock; /* protects halt count */
-> 
-> But in particular it makes sure that multiple halt or resume can't
-> execute concurrently.
+Hi!
+Thanks for your review. Please ignore this patch. My git-email
+tool has some issues, so they have been separated[1]. The final
+v4 patch[2] has been sent some days ago.
 
-Exactly. Will mention it. 
+[1] https://lore.kernel.org/all/TYAP286MB03159A83A77E6FD59F271D9BBCA0A@TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM/
 
->> +	int halt_count;
->> +};
->> +
->> +static DEFINE_SPINLOCK(ecats_lock);
->> +
->> +static struct qsmmuv500_tbu *qsmmuv500_find_tbu(struct qcom_smmu *qsmmu, u32 sid)
->> +{
->> +	struct qsmmuv500_tbu *tbu = NULL;
->> +	u32 start, end;
->> +
->> +	mutex_lock(&qsmmu->tbu_list_lock);
->> +
->> +	list_for_each_entry(tbu, &qsmmu->tbu_list, list) {
->> +		start = tbu->sid_range[0];
->> +		end = start + tbu->sid_range[1];
->> +
->> +		if (start <= sid && sid < end)
->> +			break;
->> +	}
->> +
->> +	mutex_unlock(&qsmmu->tbu_list_lock);
->> +
->> +	return tbu;
->> +}
->> +
->> +static int qsmmuv500_tbu_halt(struct qsmmuv500_tbu *tbu, struct arm_smmu_domain *smmu_domain)
->> +{
->> +	struct arm_smmu_device *smmu = smmu_domain->smmu;
->> +	int ret = 0, idx = smmu_domain->cfg.cbndx;
->> +	unsigned long flags;
->> +	u32 val, fsr, status;
->> +
->> +	spin_lock_irqsave(&tbu->halt_lock, flags);
-> 
-> Does this really need to run with interrupts disabled?
+[2] https://lore.kernel.org/all/TYAP286MB0315F4D71698370875F58F6EBCAAA@TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM/
 
-This is being executed in threaded irq context. 
-
->> +	if (tbu->halt_count) {
->> +		tbu->halt_count++;
->> +		goto out;
->> +	}
->> +
-> [..]
->> +static phys_addr_t qsmmuv500_iova_to_phys(struct arm_smmu_domain *smmu_domain,
->> +					  dma_addr_t iova, u32 sid)
->> +{
-> [..]
->> +	/* Only one concurrent atos operation */
->> +	spin_lock_irqsave(&ecats_lock, flags);
-> 
-> Does this require interrupts to be disabled?
-
-This also runs in the irq handler during context fault.
-
->> +
->> +	/*
->> +	 * After a failed translation, the next successful translation will
->> +	 * incorrectly be reported as a failure.
-> 
-> "So if the ECATS translation fails, attempt the lookup more time."
-> 
->> +	 */
->> +	do {
->> +		phys = qsmmuv500_tbu_trigger_atos(smmu_domain, tbu, iova, sid);
->> +
->> +		fsr = arm_smmu_cb_read(smmu, idx, ARM_SMMU_CB_FSR);
->> +		if (fsr & ARM_SMMU_FSR_FAULT) {
->> +			/* Clear pending interrupts */
->> +			arm_smmu_cb_write(smmu, idx, ARM_SMMU_CB_FSR, fsr);
->> +			/*
->> +			 * Barrier required to ensure that the FSR is cleared
->> +			 * before resuming SMMU operation.
->> +			 */
-> 
-> Better be clear on what this actually does, for future readers' sake:
-> 
-> 	 /* Ensure that FSR and RESUME operations aren't reordered. */
-> 
-> But is this really necessary, the two writes are for the same device,
-> can they still be reordered?
-
-Right, these are to the same endpoint. It can be dropped. 
-
->> +			wmb();
->> +
->> +			if (fsr & ARM_SMMU_FSR_SS)
->> +				arm_smmu_cb_write(smmu, idx, ARM_SMMU_CB_RESUME,
->> +						  ARM_SMMU_RESUME_TERMINATE);
->> +		}
->> +	} while (!phys && needs_redo++ < 2);
-> 
-> "needs_redo" sounds like a boolean to me. I think "attempt" would be a
-> better fit here.
-> 
-
-Ok.
-
->> +
->> +	arm_smmu_cb_write(smmu, idx, ARM_SMMU_CB_SCTLR, sctlr_orig);
->> +	spin_unlock_irqrestore(&ecats_lock, flags);
->> +	qsmmuv500_tbu_resume(tbu);
->> +
->> +	/* Read to complete prior write transcations */
->> +	readl_relaxed(tbu->base + DEBUG_SR_HALT_ACK_REG);
->> +
->> +	/* Wait for read to complete */
-> 
-> That's not what rmb() does. You don't need to do anything here,
-> readl_relaxed() returns when the read is done.
-
-Ack.
-
->> +	rmb();
->> +
->> +disable_clk:
->> +	clk_disable_unprepare(tbu->clk);
->> +disable_icc:
->> +	icc_set_bw(tbu->path, 0, 0);
->> +
->> +	return phys;
->> +}
->> +#endif
->> +
->>  static void qcom_smmu_tlb_sync(struct arm_smmu_device *smmu, int page,
->>  				int sync, int status)
->>  {
->> @@ -588,3 +895,80 @@ struct arm_smmu_device *qcom_smmu_impl_init(struct arm_smmu_device *smmu)
->>  
->>  	return smmu;
->>  }
->> +
->> +#ifdef CONFIG_ARM_SMMU_QCOM_TBU
->> +
->> +static const struct of_device_id qsmmuv500_tbu_of_match[] = {
->> +	{ .compatible = "qcom,qsmmuv500-tbu" },
->> +	{ }
->> +};
-> 
-> Place this below the remove function, as most other drivers do.
-
-Ack.
-
->> +
->> +static int qsmmuv500_tbu_probe(struct platform_device *pdev)
->> +{
-> [..]
->> +	mutex_lock(&qsmmu->tbu_list_lock);
->> +	list_add_tail(&tbu->list, &qsmmu->tbu_list);
-> 
-> "tbu" is devres allocated, but you don't pull it off the list (or
-> synchronize) during remove.
-
-Right, but I'll just make this a builtin.
-
->> +	mutex_unlock(&qsmmu->tbu_list_lock);
->> +
->> +	dev_set_drvdata(dev, tbu);
->> +
->> +	return 0;
->> +}
->> +
->> +static void qsmmuv500_tbu_remove(struct platform_device *pdev)
->> +{
->> +	struct qsmmuv500_tbu *tbu = dev_get_drvdata(&pdev->dev);
->> +
->> +	clk_disable_unprepare(tbu->clk);
-> 
-> This isn't balanced.
-> 
->> +	clk_put(tbu->clk);
->> +	icc_put(tbu->path);
->> +}
->> +
->> +static struct platform_driver qsmmuv500_tbu_driver = {
->> +	.driver = {
->> +		.name           = "qsmmuv500-tbu",
->> +		.of_match_table = of_match_ptr(qsmmuv500_tbu_of_match),
-> 
-> Won't of_match_ptr() result in a build warning if built without
-> CONFIG_OF?
-
-Will drop.
-
->> +	},
->> +	.probe  = qsmmuv500_tbu_probe,
->> +	.remove_new = qsmmuv500_tbu_remove,
->> +};
->> +module_platform_driver(qsmmuv500_tbu_driver);
-> 
-> This file acts as a library for the arm-smmu driver today, adding a
-> platform_driver here makes it look like this is a separate driver.
-> 
-> Which makes me wonder, why is this a separate driver? Why not just
-> loop over the subnodes and build the tbu_list in qcom_smmu_impl_init()?
-> 
-
-I am using the platform framework in order to get a more compact code
-for this optional driver, but it adds some overhead.. I'll start with
-moving all the TBU stuff into a separate file and will try meanwhile
-your suggestion..
-
-Thanks,
-Georgi 
+Regards,
+Shiji Yang
 
