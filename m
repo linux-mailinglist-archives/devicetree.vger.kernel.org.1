@@ -1,136 +1,110 @@
-Return-Path: <devicetree+bounces-16812-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16815-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75A797EFCDF
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 02:11:36 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4EF57EFD01
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 02:38:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 905371C2085A
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 01:11:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 57C96B20AAB
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 01:38:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7AF2EC9;
-	Sat, 18 Nov 2023 01:11:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BC02A38;
+	Sat, 18 Nov 2023 01:37:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="KkrwWqV5"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="UQ7jMs4e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12olkn2030.outbound.protection.outlook.com [40.92.21.30])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAD8BD6D;
-	Fri, 17 Nov 2023 17:11:29 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Vq1SXw+euepTop9tSZahioNjg3uUg3zTmVDKNkF4tqgcP5e1ddG1YVscfLu2mjz6uVg1CXcM/VyYtHeunkT55KTE8SuA+JthzMd0wOGTK+aUmW0m/Hr4B2pUs/4vN0sKtWIATZ4RIiNMXMrL/wvB+PJFL4HH4msuDlHw32vxr4toUA5XEqyR70pV6DnU6TRzjS3c0grXaXZ145Iw0O6llTyxwxh1RawD6+etX3eyRgwA6pFaCrxjz6sJv6bDo96aaNx8orURBCsjoOCl6u0DFFD1EPvxaD9xuFsZPBPu8fTnpnuAAToBaLxrhruSFm9puRxhelbflCVqdSbbDkazrA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5DmTJi34iK8HL+4QtFUrV4nOMjkffzblzpTD+rwDAt8=;
- b=Ye8eVuIvRdh+T6oJLI7NxpPBTO6ocvvUONDBWHPGKJKas8+vO6bZTe0kwBeI1KBtj3iACE7IyIhhHino9cRk+CpWS+q553H3rQXDcZQcb6PxgZ8/ywYxP9aXD+jBcX1+yRIKeshTjMNZDJZizqmMW+dSYPZpFRzvHnLzdD1O5V+s82hb2rfO5wF4OuSeo3Wu36oq+3DzSQjkdpKezgqaPiv4ai528lWQO+ixIwpXxKImufOKSmD5obVv6HItAWtT3iAh3o6Mls/hWOMlzzr0OmAuBEzGuR6Qrhr1pusFV6vjpy8zlAm5lK1X0QUkci3mcWuZUpWisBnmdTyr4jHu+w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5DmTJi34iK8HL+4QtFUrV4nOMjkffzblzpTD+rwDAt8=;
- b=KkrwWqV5DrMVeArAC9ufOoVq+oPeQvDzkVqxpTzrKchT9NNe2Nbs63tLIj3lcKKwcGmwioLT4R3nY1ou/r8mHX4hNvL4li8ZHBUvSfOHT2esvq0kHbbZGx2oGbHVPr9BDqeB0eb1vOb/aTqkJtUcHYhrB8d+M8r78VRen+LDC7I7eA9LwYgTDLaUjIGwJGiNWt8RKXMboHugtq7MAd+JD0jGmHbfG3kS+0lMzkdzOkmh01nMY8AMSMjOzv9kgdnE1g6YLWEt1QJmKJFG/o+W/+Z2+chsnompgGQNkjK6LC08MpE6syHwjlHs4FdJXUnQq8vIQmwKGbg2Gio9H9kMIQ==
-Received: from PH7PR20MB4962.namprd20.prod.outlook.com (2603:10b6:510:1fa::6)
- by DS7PR20MB3968.namprd20.prod.outlook.com (2603:10b6:5:3a9::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7002.23; Sat, 18 Nov
- 2023 01:11:28 +0000
-Received: from PH7PR20MB4962.namprd20.prod.outlook.com
- ([fe80::84ba:de35:b4b5:8eaf]) by PH7PR20MB4962.namprd20.prod.outlook.com
- ([fe80::84ba:de35:b4b5:8eaf%4]) with mapi id 15.20.7002.015; Sat, 18 Nov 2023
- 01:11:28 +0000
-From: Inochi Amaoto <inochiama@outlook.com>
-To: Conor.Dooley@microchip.com
-Cc: Inochi Amaoto <inochiama@outlook.com>,
-	Conor Dooley <conor@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Guo Ren <guoren@kernel.org>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: timer: thead,c900-aclint-mtimer: separate mtime and mtimecmp regs
-Date: Sat, 18 Nov 2023 09:12:04 +0800
-Message-ID:
- <IA1PR20MB4953EB3FABA3A0DDC6EC9D5DBBB6A@IA1PR20MB4953.namprd20.prod.outlook.com>
-X-Mailer: git-send-email 2.42.1
-In-Reply-To: <cd5e88b0-db70-663a-6436-e892f589e3a3@microchip.com>
-References: <cd5e88b0-db70-663a-6436-e892f589e3a3@microchip.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-TMN: [jr10hnC1yrr2CWTkE20zEeGusQKg/yl0kOlPzcXizW4=]
-X-ClientProxiedBy: TYCP286CA0168.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:400:3c6::18) To IA1PR20MB4953.namprd20.prod.outlook.com
- (2603:10b6:208:3af::19)
-X-Microsoft-Original-Message-ID:
- <20231118011205.67697-1-inochiama@outlook.com>
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB3F7D6D;
+	Fri, 17 Nov 2023 17:37:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1700271472; x=1731807472;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=pMYJRearNjtZkenGLNFLuV6YB4UiY53eVk4RlzqHmMA=;
+  b=UQ7jMs4eH7TOnR3JDpljTBRTJKn/FP/3v4XAZDw3kg1YH9YOIBKAhRNr
+   MGN59ibu4jq7sjuFlPjhoJo2WnkiJCvzv0uxYF6lkYZAg4Ww/z4unNvOV
+   RT2mI+iYPP/1PRdj+0OVu6cU1aBAy0yldU894mvhXpl5QLvjj9DMoNyWg
+   ILQ6DWWrnMNq91lxiRLXEjOzSoMH7kzl4TX2aef6xniY0Ier+SR6K+G4U
+   39zZnmUC0ur8Vt44KNqC0vlGhMK9N/PIRcMegDh+sJveO8LGxJ6FSiocn
+   I8ZvLUpbSTYjSSJDulhFLYfiSLyHYVcfcoyGeqjoFe2uQQx17DXueQo/7
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10897"; a="394247003"
+X-IronPort-AV: E=Sophos;i="6.04,206,1695711600"; 
+   d="scan'208";a="394247003"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Nov 2023 17:37:52 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10897"; a="1097265410"
+X-IronPort-AV: E=Sophos;i="6.04,206,1695711600"; 
+   d="scan'208";a="1097265410"
+Received: from lkp-server02.sh.intel.com (HELO b8de5498638e) ([10.239.97.151])
+  by fmsmga005.fm.intel.com with ESMTP; 17 Nov 2023 17:37:49 -0800
+Received: from kbuild by b8de5498638e with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1r4AHL-0003OZ-1R;
+	Sat, 18 Nov 2023 01:37:47 +0000
+Date: Sat, 18 Nov 2023 09:37:06 +0800
+From: kernel test robot <lkp@intel.com>
+To: James Tai <james.tai@realtek.com>, Thomas Gleixner <tglx@linutronix.de>,
+	Marc Zyngier <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/6] dt-bindings: interrupt-controller: Add support
+ for Realtek DHC SoCs
+Message-ID: <202311180921.ayKhiFHL-lkp@intel.com>
+References: <20231117162709.1096585-2-james.tai@realtek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR20MB4962:EE_|DS7PR20MB3968:EE_
-X-MS-Office365-Filtering-Correlation-Id: 04543c87-0bbe-4bd4-12ae-08dbe7d349b1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	UG/ZBHEo7RzxXLY1JI1TS5DP9VKTd4BHf8rczURAb+wZac/gXEsUGO5Pn66/Agm6hEF0+JlZl3/2EFomVexiIFhkb9HDJpap5ptykr1/VVIyJd2xX1xJ9ULQGwLAPOxQNP9C0jCFR0x1o7wukZ/jgsf1GmqYpYh9ygaaoXPp1i+8yetR8N61SVx8+cZfs+vTQGx9mGENifO8QNdgUPRABTNpbw2H0QGA4EbEg98uh3KnrLDKI75RfwJ29gX+qUXmhbhydMU3oUXNb/XPS8kWyQ31YTxg8ubj7zDfblab7V8IbBa2JGLxy8q/rDxkKQ3CHSuwk3PeGb8LN3/gFBe1lA0ZfS0Xx3F7DGrVcVZAdAZAV+jORjSX81yhr9TcfPV4kStnrFyD0ZPqs2rhu6MNDDsTVgh4s7sdzaDSHmAoiC5Zzlm9a1uGCZQdOuA2miHI743YVayrGv39Ab06DEowD/rJ8SCCbOAAmuNRcg/tIIjyyHCvN9O4Oe/w0R3DsivLkmPliwKiqKcjIculjQTAn6yi29JfLFIVmB0ZotBcJsKuZWD7tBRHsxS5/cU/EDEo3Gv8fD2ZthZlz9r2vIhSU0+8L7BQJ9MtWRUyN7lWT1PuR1CNMvSnv1h3jI1a+QM2
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?+ZI3f8mAD6oQjanObljGHaMbrdoKVrgtm/pS77l1dkvJOGCl9M9iq72sPUw3?=
- =?us-ascii?Q?hPexxIUEvhbge73lpieA18Crao0YNneb81EykBw8S86ZHZeSc+rsX7EU3/es?=
- =?us-ascii?Q?bIpOaGiZXnHkdlcfsN5s8cSsRJ4CZSpBdKl96zvXJyDB3J6MjD2jwyIwBSHK?=
- =?us-ascii?Q?732s8GBuKsM3ePDdmJ720pJu+NK0fJyy3SF/gedSy9nfVeQVxLX6x9ScYv8b?=
- =?us-ascii?Q?Ht3Ox4VrllVkPRJcfJDLh+sHjqtbBd6ZvroPHEIn7/T6a4X+nTXfQNcy8rGX?=
- =?us-ascii?Q?znGS01acPUBFoazkw5EcoSY0L7vX+ic6qiuDWlKTDKWd13EKl4ZK3LL04mOv?=
- =?us-ascii?Q?Y8Mo451VZyKD0mg17PnsxyG6O201/H6NaeVqTgWf1XyXnZ8q08ZiZXgFn152?=
- =?us-ascii?Q?4MzgwJG3oOum8pYZQIkS5VDh9j5N9H8TqbYunBEXHsFjWtuQaUEBEgnoJNQx?=
- =?us-ascii?Q?qPdNZFlzlCLu99awyGrIHvEP52BPNEIAFGefClRXiyprzN6Axfk7L91xUe56?=
- =?us-ascii?Q?FrGJ6H3IqSYbvYem56VeZrfuXXaKJdWg4Hpx2D0d+Q/+uhXXABkRNiyXBVcQ?=
- =?us-ascii?Q?qqmoQiswHevNjgrQSsPzblNMiEvOIspF5SecqD59k/NlX3Z+YpHyTyDBodl3?=
- =?us-ascii?Q?auXbTsuhHg5ySB+otRVHBHuyOFe/NVKxayp873MNyWpfxf7Mbazn4Cd+m/KT?=
- =?us-ascii?Q?YUb8KUgK+hpYsaVlZntH+Hb6sYWJWLa43CcLdWQN9ev9C2evvUYhcXXorpuv?=
- =?us-ascii?Q?jUj3IyoGI5jVlTwo30Ktl5ewIrAbOW+Un2Xmb4QXY41MY5/EhbFAQSfQemcR?=
- =?us-ascii?Q?O5UEEKb9kRtTZnJdWkgk8pW9lfl/o0mFXuaVdsy+LHj3Hu2g5JDqnSW40xFw?=
- =?us-ascii?Q?gtLw4AAjx0oIihMOxKZuEmzgizjLHLc5zA+JXVH7o3/vC7ScJ4gSEHtOXtsA?=
- =?us-ascii?Q?ztNNxXoJnBrHBlUlTFvgD71s3Qq3PF0YtFxlDMUArYpiBpfiNCb2pog/c45r?=
- =?us-ascii?Q?qG6pZknWiQOR9rxCJO6aqjLBcOVNSGrehENaNYi1NQ+3Xo28WVepiB7Z3EV6?=
- =?us-ascii?Q?DfhtPMn6NGbwtv/4jsq/V9Ugrr5oiR3OOrTQvb4Xo+UOTimQ96vw6ZesT6Ow?=
- =?us-ascii?Q?jDd6AQGfhHR7IRUSyc1ODQjesX+m7xq495R4gx/i/SXxA2Ugc58i0T1J1cCf?=
- =?us-ascii?Q?b/xpmliLuOLxLfLpKfriGqPs77vG3urHUIeriRnz5FGO3Zlup+sULp/MuXk?=
- =?us-ascii?Q?=3D?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 04543c87-0bbe-4bd4-12ae-08dbe7d349b1
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2023 01:11:28.1406
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR20MB3968
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231117162709.1096585-2-james.tai@realtek.com>
 
->> Thanks for your clarification. If I understand you correctly, the binding
->> should have all registers that ACLINT has. But for specific use case,
->> it should only contain supported registers and omit unsupported. Please
->> correct me if I misunderstood. Thanks.
->
->Yes.
->
+Hi James,
 
-Thanks, I will prepare a new binding for this.
+kernel test robot noticed the following build warnings:
+
+[auto build test WARNING on tip/irq/core]
+[also build test WARNING on robh/for-next linus/master v6.7-rc1 next-20231117]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/James-Tai/dt-bindings-interrupt-controller-Add-support-for-Realtek-DHC-SoCs/20231118-003036
+base:   tip/irq/core
+patch link:    https://lore.kernel.org/r/20231117162709.1096585-2-james.tai%40realtek.com
+patch subject: [PATCH v2 1/6] dt-bindings: interrupt-controller: Add support for Realtek DHC SoCs
+compiler: loongarch64-linux-gcc (GCC) 13.2.0
+reproduce: (https://download.01.org/0day-ci/archive/20231118/202311180921.ayKhiFHL-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202311180921.ayKhiFHL-lkp@intel.com/
+
+dtcheck warnings: (new ones prefixed by >>)
+>> Documentation/devicetree/bindings/interrupt-controller/realtek,rtd1619b-intc.yaml: title: 'Realtek DHC RTD1619B Interrupt Controller Device Tree Bindings' should not be valid under {'pattern': '([Bb]inding| [Ss]chema)'}
+   	hint: Everything is a binding/schema, no need to say it. Describe what hardware the binding is for.
+   	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
+>> Documentation/devicetree/bindings/interrupt-controller/realtek,rtd1319-intc.yaml: title: 'Realtek DHC RTD1319 Interrupt Controller Device Tree Bindings' should not be valid under {'pattern': '([Bb]inding| [Ss]chema)'}
+   	hint: Everything is a binding/schema, no need to say it. Describe what hardware the binding is for.
+   	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
+>> Documentation/devicetree/bindings/interrupt-controller/realtek,rtd1319d-intc.yaml: title: 'Realtek DHC RTD1319D Interrupt Controller Device Tree Bindings' should not be valid under {'pattern': '([Bb]inding| [Ss]chema)'}
+   	hint: Everything is a binding/schema, no need to say it. Describe what hardware the binding is for.
+   	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
+>> Documentation/devicetree/bindings/interrupt-controller/realtek,rtd1325-intc.yaml: title: 'Realtek DHC RTD1325 Interrupt Controller Device Tree Bindings' should not be valid under {'pattern': '([Bb]inding| [Ss]chema)'}
+   	hint: Everything is a binding/schema, no need to say it. Describe what hardware the binding is for.
+   	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
