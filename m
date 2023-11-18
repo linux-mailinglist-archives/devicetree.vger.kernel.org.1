@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-16793-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16794-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 168737EFC56
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 00:59:09 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1AD17EFC5E
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 01:01:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 14C431C208A8
-	for <lists+devicetree@lfdr.de>; Fri, 17 Nov 2023 23:59:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A40281F27BA7
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 00:01:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23A464777A;
-	Fri, 17 Nov 2023 23:59:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E084C110E;
+	Sat, 18 Nov 2023 00:01:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tcC96spM"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cbaxbOvs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29779D7E
-	for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 15:59:02 -0800 (PST)
-Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-53dd752685fso3714278a12.3
-        for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 15:59:02 -0800 (PST)
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB35910CE
+	for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 16:01:21 -0800 (PST)
+Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-507a62d4788so3689120e87.0
+        for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 16:01:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700265540; x=1700870340; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1700265680; x=1700870480; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=90S+FctmsIH1CZhlnHmkvpzo3zHDb7aedbpxPM+NXAc=;
-        b=tcC96spM8aIfnJysSZqn/5Hq4Nyjess+7p5JsPWIfoT9H9UcYxKurJvxuSlmb91W5S
-         yENiIzXrG8dgp2nmh60rC09TAVvkSQxFmxkuYTme6YpBz6dMAGyNEOa2CsriOveBgB+w
-         z7tVASm0A71UqtfUE/4d3a2EXiAyhDvjL+5r9qhP8boE4sIYLIHPcFU1F3g62qeqHhTm
-         j6oBiTySwSxPvvTh4vZ95Ivz9h8ajQwxEACoC/bvcMM0bz/bvsiisjqVFh4xiDroMrWf
-         q02p8ClMx0ySh40BEalVFgmIWOgrk/eczRQBNgLfCMvMqoKTBl1tUwxlWd59ak33YmSp
-         VcaA==
+        bh=TmdYVnabDczkPmlEpci5lqKCRm4aGlo0N/NrM1uCFSA=;
+        b=cbaxbOvsjKHEFf7v4C3FmwfsSPE3fe7N6eekAqbQVSBl19JlUQ5+hR9GhlCA+WnjdY
+         GInsGTU2V3Lez4O+2sWIZYKJWvQuN6Xo4yVzbfSGBKcqDANV8D99ryHozygDci3Xtz2N
+         JeTg5cn0K5IaDJQJ7GQerJfrEY4pqKSyTDc+vDrp0TIjUkOZPcW8/zJwrUxcYIMl6SJF
+         9c3+Vf31jIj5VquCdMGsIDK5c07tsTDxEoeUIq8OESnStS/Ue5kkQML1CnotE9EaL5NF
+         OBTW4nWOkCW6pWgHl93uItApBIEa7xBbPwRr8jO/r+hkpZalNzUqivTR/9QumNOuoeUY
+         QP4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700265540; x=1700870340;
+        d=1e100.net; s=20230601; t=1700265680; x=1700870480;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=90S+FctmsIH1CZhlnHmkvpzo3zHDb7aedbpxPM+NXAc=;
-        b=t28ZGFivLn7DMjouGBJbxD3Iyuri6ND40zXStnvw4Mnq18ECBZk2Yyiiwt/cceybV6
-         nPMcXtJWRzO7dLUYeYj2rAGruEM7PIBBisQrk9c3wGj6txY4WUYoPjb6rQwuzh4m9v2c
-         zwjxM6r7l5atOIKEOd8vR0vbtO77PITX+rw5qAP9yK4+VV8/uXvaQiWstnycmzKO66Ri
-         kKX1T9ecyGfMk7ONqWgusNOQ4Kct3TvvzbXCKra6PsAk7Gv2zLdwXFghM+o3uiyfskAm
-         h5AoKyGJJarlhPdRECzOPMtGVzdWyxbf1RmaZGKl09PgLoNN/11c2dEFrKTxChhXOin0
-         PKlQ==
-X-Gm-Message-State: AOJu0YxJ0r0pZ1kNNwOVzURgqH4H54sRiqdqAg/wTX2c7KCjh9Z+2wRU
-	NcJC7lEy8Q3DZIX6Az6cRPvqWepUm+UL+mEg9iw=
-X-Google-Smtp-Source: AGHT+IEAhRMwWSvo2YLQ3UGmmYqvA0N8tZxecfMuY9p/CF/biDutHkVtf71OKUpqMonbzKAr9J3usQ==
-X-Received: by 2002:a17:907:7658:b0:9e2:92b5:f234 with SMTP id kj24-20020a170907765800b009e292b5f234mr504651ejc.39.1700265540603;
-        Fri, 17 Nov 2023 15:59:00 -0800 (PST)
+        bh=TmdYVnabDczkPmlEpci5lqKCRm4aGlo0N/NrM1uCFSA=;
+        b=p71r6ai7Kj9yryFjpnddX1Vb4SBaDT1LFGNpbvzZ3mO1IdihMFAlgjDjws2CqkcMTz
+         SGZUPJEbKZU15bLkljRBarmhnMsXj/t6EWWiknxW8XbGugB9nx12PofoyQ0VjkCjZ6dq
+         kA/5xAIl1Ulkc4Iy6M5rxH/uc5bl2f+HXSAT5+UCEI6Y3pZTv1Il6C8q6uI/xVjf+vuC
+         WgFdKc7cimJdyJaNH9Xf3Shlpdn65Mzw8AfeBAlpY9Rt3i2zKq693WNXR679jRfAwyyR
+         Dso16JvsP/hAKzklGeJdjAU8mD9oJanqHTvTHzMqVfxeN/UijMPWylAYMPkd/okPAeNK
+         RytQ==
+X-Gm-Message-State: AOJu0YzatfpYE1Isvmn3jd1u54L3aTQOkQ3YBOIFodmOgWwi4Vtu533R
+	DU3eZWHUZ3VdMT5lj1fJ/0qseg==
+X-Google-Smtp-Source: AGHT+IG/gsUbmvwkJwzl1LYjmIcDG0B+kqiWMJxFy24Yv4JY8EI8QJKCJhTPM7igScF2UPvZaGl4Hw==
+X-Received: by 2002:ac2:532f:0:b0:50a:a337:1f42 with SMTP id f15-20020ac2532f000000b0050aa3371f42mr768384lfh.36.1700265680109;
+        Fri, 17 Nov 2023 16:01:20 -0800 (PST)
 Received: from [192.168.201.100] (178235187040.dynamic-4-waw-k-2-3-0.vectranet.pl. [178.235.187.40])
-        by smtp.gmail.com with ESMTPSA id j4-20020a170906410400b009de3fd8cbfasm1297980ejk.0.2023.11.17.15.58.58
+        by smtp.gmail.com with ESMTPSA id q11-20020ac2514b000000b004fe2f085d5csm390317lfd.299.2023.11.17.16.01.17
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Nov 2023 15:59:00 -0800 (PST)
-Message-ID: <7db84a5e-8d09-40de-8ddd-abb31a76a3d4@linaro.org>
-Date: Sat, 18 Nov 2023 00:58:57 +0100
+        Fri, 17 Nov 2023 16:01:19 -0800 (PST)
+Message-ID: <abf7da98-6213-42d8-a0ef-422ad111c6a9@linaro.org>
+Date: Sat, 18 Nov 2023 01:01:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,21 +62,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] docs: dt-bindings: add DTS Coding Style document
+Subject: Re: [PATCH V2 2/4] clk: qcom: Add Global Clock controller (GCC)
+ driver for X1E80100
 Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Arnd Bergmann <arnd@arndb.de>, Bjorn Andersson <andersson@kernel.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Heiko Stuebner <heiko@sntech.de>, Matthias Brugger <matthias.bgg@gmail.com>,
- Michal Simek <michal.simek@amd.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Nishanth Menon <nm@ti.com>,
- Olof Johansson <olof@lixom.net>
-References: <20231116181218.18886-1-krzysztof.kozlowski@linaro.org>
+To: Sibi Sankar <quic_sibis@quicinc.com>, andersson@kernel.org,
+ mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org
+Cc: agross@kernel.org, conor+dt@kernel.org, quic_tdas@quicinc.com,
+ quic_rjendra@quicinc.com, linux-arm-msm@vger.kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, neil.armstrong@linaro.org,
+ abel.vesa@linaro.org, quic_tsoni@quicinc.com
+References: <20231117092737.28362-1-quic_sibis@quicinc.com>
+ <20231117092737.28362-3-quic_sibis@quicinc.com>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -113,34 +111,23 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20231116181218.18886-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20231117092737.28362-3-quic_sibis@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 16.11.2023 19:12, Krzysztof Kozlowski wrote:
-> Document preferred coding style for Devicetree sources (DTS and DTSI),
-> to bring consistency among all (sub)architectures and ease in reviews.
+On 17.11.2023 10:27, Sibi Sankar wrote:
+> From: Rajendra Nayak <quic_rjendra@quicinc.com>
 > 
-> Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> Cc: Arnd Bergmann <arnd@arndb.de>
-> Cc: Bjorn Andersson <andersson@kernel.org>
-> Cc: Geert Uytterhoeven <geert+renesas@glider.be>
-> Cc: Heiko Stuebner <heiko@sntech.de>
-> Cc: Konrad Dybcio <konrad.dybcio@linaro.org>
-> Cc: Matthias Brugger <matthias.bgg@gmail.com>
-> Cc: Michal Simek <michal.simek@amd.com>
-> Cc: Neil Armstrong <neil.armstrong@linaro.org>
-> Cc: Nishanth Menon <nm@ti.com>
-> Cc: Olof Johansson <olof@lixom.net>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Add support for the global clock controller found on X1E80100
+> based devices.
 > 
+> Co-developed-by: Abel Vesa <abel.vesa@linaro.org>
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
+> Co-developed-by: Sibi Sankar <quic_sibis@quicinc.com>
+> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
 > ---
-Another thing that was suggested by at least one person to me is that
-with a formalized ordering system in place AND using dt-bindings,
-devicetrees could largely be reduced to a set of structs thrown into
-some sort of an ASLC-alike (meaning: you fill out structs with the
-necessary data, like reg, name etc. and the computer infers the rest
-and creates a nice & stylish output for you).
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
 
