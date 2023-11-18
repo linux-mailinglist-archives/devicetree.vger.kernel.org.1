@@ -1,151 +1,162 @@
-Return-Path: <devicetree+bounces-16841-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16842-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 071D27EFF25
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 12:03:15 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69B1D7EFF2A
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 12:10:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A7F601F22F36
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 11:03:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0B33E1F22F49
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 11:10:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8731A10975;
-	Sat, 18 Nov 2023 11:03:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88BCF107BF;
+	Sat, 18 Nov 2023 11:10:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PzYfbZ0T"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="OEdsLfjc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-x643.google.com (mail-pl1-x643.google.com [IPv6:2607:f8b0:4864:20::643])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AF471A1;
-	Sat, 18 Nov 2023 03:03:05 -0800 (PST)
-Received: by mail-pl1-x643.google.com with SMTP id d9443c01a7336-1ce5e65ba37so10204135ad.1;
-        Sat, 18 Nov 2023 03:03:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1700305385; x=1700910185; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=33F3e/iyMLXP9z/iwzkeKW7vsryEbJK7SpRBvKhRdAs=;
-        b=PzYfbZ0Tj9WQ9EqcRlkW2vGLw2Cy2f1saVmLswMk20jViM7j6v+LM3ODXkagtKm2uc
-         BreuXcttBEW/Dl3+IN8+MLthtAZ73EFSuB4+Uq03acj4mU6FjN3OE/eKWb6+x/g7SgYS
-         Cgn394aM79SAX1vc7f8+/ys/vQuOt8SgRoRPhb/bmFSN1FRGzfmOimOS9ZKpMfsNi+mJ
-         OvWARc2+r2qffX9ghnu/VwYAZ8doZsaAAAYkCxRvmZAhvUUhxDeF5bh05CHTE02SttlV
-         LriV2126KaiOAVBHmqRERQ9Sxtro+uQ0z9biVtu0ZBsNe8FsUteHmbB7/tF1q9R/35Ve
-         9ppA==
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 429E11A1
+	for <devicetree@vger.kernel.org>; Sat, 18 Nov 2023 03:10:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1700305849;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=zcW40Pm/C2VhC3hYpvH2rN7+M3PaPEN3Ao5G1XKi4yM=;
+	b=OEdsLfjcdDRwEE9Mxl7WQL713jqJ8J1PEqAukqrObtaRViHDxvqZakO2zBdtSq4NHDkDWD
+	pOQKDVIV8s8VrMpcAOncIZPxt2fcF8BIL8yzfoM138+esC+FZ/ZEsSWzQZY2ype6HR/oUW
+	IoXPXCjhaDuOyKt5Z7BXm+S8FDuxrOY=
+Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
+ [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-690-zeCH9CO3PnCP3GQDroSeSg-1; Sat, 18 Nov 2023 06:10:47 -0500
+X-MC-Unique: zeCH9CO3PnCP3GQDroSeSg-1
+Received: by mail-wm1-f71.google.com with SMTP id 5b1f17b1804b1-40a5290e259so2375495e9.2
+        for <devicetree@vger.kernel.org>; Sat, 18 Nov 2023 03:10:47 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700305385; x=1700910185;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=33F3e/iyMLXP9z/iwzkeKW7vsryEbJK7SpRBvKhRdAs=;
-        b=XlV4fTumU9S+tG2BVWw2JtxKo8AN+xM2tMikrJDWOWWvzlDsvtVR2iAU359KAOQPkg
-         qiEAITypkXmJztHrPE38siemEtlEdxTl7Xql3flX0nb6SaYXghBns1Hv30TVBWg+Vrw1
-         96cKJBPROFsCPuSxbUdJWy+ygAWcQg+T9UVWYh3t/nMnJ69ndAf65HBIY3cX+cVMrD8Q
-         WI/vft8FuqURjg4eId4MyF/PxiVt4JO9nZtgtnedWvRECuoHKihSnT6dnTCecdCE9ymf
-         QZCQWikUtRmXJTAFNbkL3aSV8DJSJHq6ciu4jzJqGo8GLqHkQjq+BEITdZz0Mlz/3kSa
-         QU4g==
-X-Gm-Message-State: AOJu0Yxbdm0VPmmygiv9DzW/yQiquwZZvOREADA5Vj0DVBQcMROMbOY0
-	ckD4JGUOhGbadpjK0LhAweE=
-X-Google-Smtp-Source: AGHT+IGWNcCR1XkzwNBZm/0EWKuZ5WVgg1zIEzj5xUQbNaO1v+mQwtwEGlEwzTIQEwgOewDcsPbutw==
-X-Received: by 2002:a17:902:d346:b0:1cc:6078:52ff with SMTP id l6-20020a170902d34600b001cc607852ffmr2422430plk.26.1700305384934;
-        Sat, 18 Nov 2023 03:03:04 -0800 (PST)
-Received: from dawn-virtual-machine.localdomain ([183.198.110.3])
-        by smtp.gmail.com with ESMTPSA id z13-20020a170903018d00b001b9e86e05b7sm2813018plg.0.2023.11.18.03.03.00
+        d=1e100.net; s=20230601; t=1700305846; x=1700910646;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zcW40Pm/C2VhC3hYpvH2rN7+M3PaPEN3Ao5G1XKi4yM=;
+        b=lztvthCHEdfQsBpv0MNqiSSJueaWOz6iitGXw2kClyA4QhKpqBNXDzo0/rYCuHWofc
+         cseAoWK/ErKKgbJySSnd/F3uMfPz2WNpjMRhk83ac9lo4+ue0uah1rRY3bHVegGT/YFY
+         JMQTid39IPcUvPBTKwg7zByMLQPgu6edHUmMVcKg9KAPcaKsY+auZvZ5GlAB2RJVB787
+         JUZX0JfD8nuHDghC94D05L0RIHNQwygpO+zeFzFJLBkSwSWDj/2GUwV2koC7RVY4qSEL
+         DixxpFUpPxkoQ0x83Dq/BHA0r4khBBbNmysgF0Ye9FTSYM8E1AvyunCe+FN8QeM5gs68
+         JXvg==
+X-Gm-Message-State: AOJu0YxBc6UpBpw6ydwoRUApCw/kLBUQr0VFMU20NbGCWd0ivtYI3yv3
+	9pnHPdweqQdPbfIU7TdaDU9QsY0vTNd6MumyPW7OHhXBdHFmYuFyegXH9UXtpVfCmL1f4QUr86o
+	aLenYKKaikp9Jq9If3l5sTQ==
+X-Received: by 2002:adf:ef92:0:b0:32d:9cdd:a23 with SMTP id d18-20020adfef92000000b0032d9cdd0a23mr1563664wro.25.1700305846404;
+        Sat, 18 Nov 2023 03:10:46 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IF5Qbad3a6WzEcATGME42HhfaqZx1bG/yleXweOgoccNqiDLr2I5NcRH9p1kx3aG3lak43/aA==
+X-Received: by 2002:adf:ef92:0:b0:32d:9cdd:a23 with SMTP id d18-20020adfef92000000b0032d9cdd0a23mr1563650wro.25.1700305845984;
+        Sat, 18 Nov 2023 03:10:45 -0800 (PST)
+Received: from localhost (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
+        by smtp.gmail.com with ESMTPSA id o6-20020a5d4086000000b003316e684c5esm2950657wrp.79.2023.11.18.03.10.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 18 Nov 2023 03:03:04 -0800 (PST)
-From: Li peiyu <579lpy@gmail.com>
-To: jic23@kernel.org,
-	lars@metafoo.de,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org
-Cc: linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Li peiyu <579lpy@gmail.com>
-Subject: [PATCH v2 2/2] dt-bindings: iio: humidity: Add TI HDC302x support
-Date: Sat, 18 Nov 2023 19:02:32 +0800
-Message-Id: <20231118110232.17261-1-579lpy@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231118105815.17171-1-579lpy@gmail.com>
-References: <20231118105815.17171-1-579lpy@gmail.com>
+        Sat, 18 Nov 2023 03:10:45 -0800 (PST)
+From: Javier Martinez Canillas <javierm@redhat.com>
+To: Ard Biesheuvel <ardb@kernel.org>, Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, Sergio Lopez <slp@redhat.com>, Sima Vetter
+ <daniel.vetter@ffwll.ch>, Hector Martin <marcan@marcan.st>, Andrew Worsley
+ <amworsley@gmail.com>, dri-devel@lists.freedesktop.org, Thomas Zimmermann
+ <tzimmermann@suse.de>, Frank Rowand <frowand.list@gmail.com>,
+ linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH] of/platform: Disable sysfb if a simple-framebuffer
+ node is found
+In-Reply-To: <CAMj1kXG7Xyk0ys9j-XRo7Rr8gYz1qJE8fFSixBOwVbm-pjeX+A@mail.gmail.com>
+References: <20231113085305.1823455-1-javierm@redhat.com>
+ <CAL_JsqKHTN5hfd4qpg5RXbmQLKZNVywDkSj9mxvfGmjrcChQQg@mail.gmail.com>
+ <87jzqi59bt.fsf@minerva.mail-host-address-is-not-set>
+ <CAL_JsqJM9+cbNviwuKGB5+3YbyAP3UH+TxCxsU5nUtX-iRGP2w@mail.gmail.com>
+ <CAMj1kXG7Xyk0ys9j-XRo7Rr8gYz1qJE8fFSixBOwVbm-pjeX+A@mail.gmail.com>
+Date: Sat, 18 Nov 2023 12:10:44 +0100
+Message-ID: <874jhj1fm3.fsf@minerva.mail-host-address-is-not-set>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-Add device tree bindings for HDC3020/HDC3021/HDC3022 humidity and
-temperature sensors.
+Ard Biesheuvel <ardb@kernel.org> writes:
 
-changes for v2:
-- change the maintainers to me.
-- hdc3020,hdc3021,hdc3022 are compatible,I've changed the dirver.
-- change the node name to humidity-sensor.
+Hello Ard,
 
-Signed-off-by: Li peiyu <579lpy@gmail.com>
----
- .../bindings/iio/humidity/ti,hdc3020.yaml     | 49 +++++++++++++++++++
- 1 file changed, 49 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/humidity/ti,hdc3020.yaml
+> On Fri, 17 Nov 2023 at 00:09, Rob Herring <robh@kernel.org> wrote:
 
-diff --git a/Documentation/devicetree/bindings/iio/humidity/ti,hdc3020.yaml b/Documentation/devicetree/bindings/iio/humidity/ti,hdc3020.yaml
-new file mode 100644
-index 000000000000..775da99c19ee
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/humidity/ti,hdc3020.yaml
-@@ -0,0 +1,49 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/humidity/ti,hdc3020.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: HDC3020/HDC3021/HDC3022 humidity and temperature iio sensors
-+
-+maintainers:
-+  - Li peiyu <579lpy@gmail.com>
-+
-+description:
-+  https://www.ti.com/lit/ds/symlink/hdc3020.pdf
-+
-+  The HDC302x is an integrated capacitive based relative humidity (RH)
-+  and temperature sensor.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,hdc3020
-+      - ti,hdc3021
-+      - ti,hdc3022
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  vdd-supply: true
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        humidity-sensor@47 {
-+            compatible = "ti,hdc3020";
-+            reg = <0x47>;
-+        };
-+    };
+[...]
+
+>> > >
+>> > > This could also lead to an interesting scenario. As simple-framebuffer
+>> > > can define its memory in a /reserved-memory node, but that is ignored
+>> > > in EFI boot. Probably would work, but only because EFI probably
+>> > > generates its memory map table from the /reserved-memory nodes.
+>> > >
+>> >
+>> > I see. So what would be the solution then? Ignoring creating a platform
+>> > device for "simple-framebuffer" if booted using EFI and have an EFI-GOP?
+>>
+>> Shrug. I don't really know anything more about EFI FB, but I would
+>> guess it can't support handling resources like clocks, power domains,
+>> regulators, etc. that simple-fb can. So if a platform needs those, do
+>> we say they should not setup EFI-GOP? Or is there a use case for
+>> having both? Clients that don't muck with resources can use EFI-GOP
+>> and those that do use simple-fb. For example, does/can grub use
+>> EFI-GOP, but not simple-fb?
+>>
+>
+> The EFI GOP is just a dumb framebuffer, and it is not even generally
+> possible to cross reference the GOP with a particular device in the
+> device hierarchy unless you e.g., compare the BARs of each device with
+> the region described by the GOP protocol.
+>
+> GRUB for EFI will use the GOP and nothing else, but only at boot time
+> (the GOP protocol is more than a magic linear memory region, it also
+> implements a Blt() abstraction that permits the use of framebuffers
+> that are not mapped linearly into the address space at all, and GRUB
+> makes use of this)
+>
+> The EFI stub will only expose GOPs to the kernel if they are in fact
+> linear framebuffers, but has zero insight into whether the hardware
+> needs clocks and regulators, and whether or not the framebuffer needs
+> IOMMU pass through (which might be the case if the scanout is using
+> DMA into system memory)
+>
+> So calling EFI GOP 'source of truth' is rather generous, and I think
+> it makes sense to prioritize more accurate descriptions of the
+> underlying framebuffer over EFI GOP.
+>
+
+That was my opinion as well and the reason why I called the DTB the
+single source of truth.
+
+> However, making 'simple-framebuffer' magic in this regard doesn't seem
+> like a great approach to me. Is there a better way we could get the
+> resource conflict to be decided in a way where the EFI GOP gets
+> superseded if its resources are claimed by another device?
+>
+
+There is an aperture [0] framework that is used by the fbdev and DRM
+subsystems to allow native drivers to remove any conflicting devices
+that share the same framebuffer aperture.
+
+But it only makes sense for native drivers to use that I think, but
+in this case is about two drivers that attempt to use the same frame
+buffer provided by the firmware but getting it from different places.
+
+I don't have a better idea than this patch but maybe Thomas or Sima do?
+
+[0]: https://elixir.bootlin.com/linux/latest/source/drivers/video/aperture.c
+
 -- 
-2.34.1
+Best regards,
+
+Javier Martinez Canillas
+Core Platforms
+Red Hat
 
 
