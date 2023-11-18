@@ -1,155 +1,161 @@
-Return-Path: <devicetree+bounces-16833-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16834-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 740487EFE19
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 07:29:20 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 406AE7EFE35
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 08:06:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A4D9B1C208A8
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 06:29:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 975742810F5
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 07:06:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BCC5101C3;
-	Sat, 18 Nov 2023 06:28:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B45E63D0;
+	Sat, 18 Nov 2023 07:06:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="LgskmfOH"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="XJSLDVvd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E0DB172C;
-	Fri, 17 Nov 2023 22:28:39 -0800 (PST)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AI6Fvig020523;
-	Sat, 18 Nov 2023 06:28:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=qcppdkim1;
- bh=uxMZ5i08IIj1P3XHjsuTSAB7PjcYnIlgE+t3bDDRN3U=;
- b=LgskmfOHbA7H5DmYYRviSSCoJuQsvUKymFqYty4LhrdQC8FYSPwT7IMabJ1DUbIaAJxj
- Emab7zapMpJ+NClQL+szlgr9VYB4KCeyThpGi2HlsAY0VN4JO6mNoH3sSTpE+VqSylxG
- in7WA8bG9QmmSxEAWUlC21QKpMVOLeHCBvfk7zNw0S7M1+RUcinRdU0aSpoNhhdTm7bB
- fOSht250S2MgWOvRxMz1vJYD5Y3a+8Rz4IzFtA7cEW8JTk0ZrecTAWuiplLwVnbtcqy9
- dEyoh3Sofeq3O++Hm6qqjLzUebhQrO0xookEiqS478kZZpkDiOGmDyEeC5Ej4/95kXWS Nw== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uengb85q7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 18 Nov 2023 06:28:28 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AI6SRjQ017424
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 18 Nov 2023 06:28:27 GMT
-Received: from akronite-sh-dev02.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Fri, 17 Nov 2023 22:28:24 -0800
-From: Luo Jie <quic_luoj@quicinc.com>
-To: <andrew@lunn.ch>, <davem@davemloft.net>, <edumazet@google.com>,
-        <kuba@kernel.org>, <pabeni@redhat.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <hkallweit1@gmail.com>, <linux@armlinux.org.uk>, <corbet@lwn.net>
-CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>
-Subject: [PATCH v5 6/6] net: phy: qca8084: add qca8084_link_change_notify
-Date: Sat, 18 Nov 2023 14:27:54 +0800
-Message-ID: <20231118062754.2453-7-quic_luoj@quicinc.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231118062754.2453-1-quic_luoj@quicinc.com>
-References: <20231118062754.2453-1-quic_luoj@quicinc.com>
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10olkn2014.outbound.protection.outlook.com [40.92.42.14])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C56F10C1;
+	Fri, 17 Nov 2023 23:06:46 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=WhMRhqlaVFj4vqW7JJfFX8Mi/fG+bRkpHxgUb46lPulDrWi90MJDWzAJ+wfLVOD/Eb9KO0a0I2cQN7Y87Ev5CaapG11qDcgSPLqwkH4gr43yHoEIwn89GU6Oa03kDx26SbJ0UO8L+PB+M5HcGT8TDq1ClTAaX+yMaqy05G0Amba7cqKXEZXsRWlh+5pjtJIvmfOn07P0rHWQtyMpwg3X9xgXTy8jBoDcimdcBRBBuD7ug/s7RN8TKzi1q9EeMyx8a+m6Onh5w5ZMKzx8dYsos0/EmJia+NC2wBOiz8Ij44nsvGjE5QqsirrG192bTc7jWz8+jLzQPTBeRrzaeJdwJA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Hlf8FnDWSTHfVTubIk7o87G5BEnajV8kZyL+pd1HgBU=;
+ b=NLyufc719oybi3mZpxUYjDyEOBNmI9V1brwUmkvm0oPbIBOZozpCfTIhul2eY33qSVrg8GlevK7X10jJKgsqbmZHyAXVbL+Kk1S/wMgxa1yIwyfFDP9s6LAI/SyfNIpqe7CMmOjSjcUNA5lRrL+QNjJ++l1RvsUIS2cRtfxyFIwcy+ygX2tHQMNsJvD7Gb4XCrnlSJwKUFElVqEFvYYyiRi66YUEkqS0suWoSXu4bsj8rDOlXFLGH4lCTOqrs1gigZZdlZUnrmKoJ7IIfGNjoHKz5JvaV0EQrFZg2icUBlE8vh1vmmLIyJ1raX5I7jsZblkg7AeOTgs/6WEJ5ucY7Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Hlf8FnDWSTHfVTubIk7o87G5BEnajV8kZyL+pd1HgBU=;
+ b=XJSLDVvdcTFVC3XqgaxMsPusNNkkIWnUU7bK6Uw5ZNZ1KxYSF8no0fSZXmwG/3HTJbR4OuudDAzb9Tln9d11AjWPsViRd3SmuwV9S+cbzGlbJP4dR10rjeKF2m8pxmTJWmnfWf00oz6dcz6qGgmdo2yfuKfUdUbVGwsLoFywDKjmhNVh2WGCEDcSg6on4fUiyiwFxqiio0HiRInRd3XUp5IhLqj31EsIvhj36GOP3rSqrWcCzA23JiKnUbZRLswzOcwKSK1ILYC22m5DnH3EuhqJ685+MWx4U/mAJXBtASyjsAs155ep2StoIDX99p+B8hin9n7Oe8KNVNWThaZQDA==
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
+ by DS0PR20MB5788.namprd20.prod.outlook.com (2603:10b6:8:148::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6977.29; Sat, 18 Nov
+ 2023 07:06:44 +0000
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::55b:c350:980:ad8]) by IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::55b:c350:980:ad8%6]) with mapi id 15.20.7002.025; Sat, 18 Nov 2023
+ 07:06:44 +0000
+From: Inochi Amaoto <inochiama@outlook.com>
+To: Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chao Wei <chao.wei@sophgo.com>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Xiaoguang Xing <xiaoguang.xing@sophgo.com>,
+	Guo Ren <guoren@kernel.org>
+Cc: Anup Patel <anup@brainfault.org>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: [PATCH v4 0/2] Change the sg2042 timer layout to fit aclint format
+Date: Sat, 18 Nov 2023 15:06:36 +0800
+Message-ID:
+ <IA1PR20MB4953C82499C5D81D2C6A020BBBB6A@IA1PR20MB4953.namprd20.prod.outlook.com>
+X-Mailer: git-send-email 2.42.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TMN: [Dz05Plhc5Z5eVXOB+AzIVt/VNzFMjl7zZlC2aPIOXww=]
+X-ClientProxiedBy: SI2PR06CA0011.apcprd06.prod.outlook.com
+ (2603:1096:4:186::16) To IA1PR20MB4953.namprd20.prod.outlook.com
+ (2603:10b6:208:3af::19)
+X-Microsoft-Original-Message-ID:
+ <20231118070639.244948-1-inochiama@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: EpS834BWoF9oLvU4AY5uaWjxyXYWes-w
-X-Proofpoint-ORIG-GUID: EpS834BWoF9oLvU4AY5uaWjxyXYWes-w
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-18_04,2023-11-17_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 adultscore=0
- lowpriorityscore=0 clxscore=1015 impostorscore=0 priorityscore=1501
- mlxlogscore=999 suspectscore=0 mlxscore=0 bulkscore=0 malwarescore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311060000 definitions=main-2311180045
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|DS0PR20MB5788:EE_
+X-MS-Office365-Filtering-Correlation-Id: 020369a9-a1f9-4be9-5591-08dbe804ebe7
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	XR7ek868x8iXNJxAMiuC0y/y5cBxTZe93iDV7OcJEr+ZKALyITe5Wt/Ln3QWA8KohA32DJ/psJAIIu5ssAdYvLvX2AaQAit7hpHNwFpOu2EC/wVs1ABVRxH+7PYWJO4PDj6N2R0Dffe9leG4FeYRKJJMF66Br5rqzF8fZ71NEuM+ckS44yMhfmKAyGXHR+uGUiKa9Lq0VQzBHplHDA6fJr3slYDQjMped4pnd67wIheV8xbeRCFxzmJyGlapIlsA7fnINPNCGJ0vad69yjk9LoSriUC1bgXn2GNuM2zcjPmLXTu+iHmx3A+1Y2GRxV88copOOGnuwkN9WNUMkXJ8zgiJJYzrHtafxQf5Y4I8sy+HFZ3vVxYfH8ZlYz5fpq2La/YuESjiJwensngDEi4/4vSE5nk48FvZaccLQkUOFyeNkIvSa9hxTrZCQPzhJfEzpJAmOGkJDHJ3ihC7354dd065ROsI94WxjRTwPhcHXctBBB13XIKeJGnB0n/osct1NocStehuCK/LYmsXmRnSQFnwqiUs7uny4Ym6k3wPe82upi8JcnF9iHXDsTbWbtW+Oag6A99SLkrXMLZJkHnqvE80pPCWF4+2qeIfDy0bYORr+zfNOr3YXEBpCbIa6QuOT4V6gUC07zZuBhKz0P8j59gFFAO7zUeeZTltXIqeSt0=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?1BpjE+QZL03cup0jw/cI40zcBR8DqkRhsJwX7qd1zycMS04vGIw82roTpNrN?=
+ =?us-ascii?Q?pUWVjPkuDW4XSeNzzqHYMsmqQW5OjP3EB148ZCW69RS4FkV4L+0uJEB1pcPH?=
+ =?us-ascii?Q?Sp8FaaNc1/omgUX5OgRzZm9hwmcZ/1D04x/eOjZic/3fvngAvcuxRR4lkfxO?=
+ =?us-ascii?Q?Sfs6ADDxSh9Z7YnZIL3WuxgxzAoPlh+Atm18Ukv/jNTT5n/swofsVrM5cGZb?=
+ =?us-ascii?Q?0dUAs7JqeqMBKlu4FNM8b7jHhuFSBGLOdn5JtS/Y8zemCwybMtT3jC5hSJ8N?=
+ =?us-ascii?Q?UlDP8MDKVTDrnQG3hak85oOkMYzNyMAJ2J/s36HyedHT4HNoW2d4lJ8vek2+?=
+ =?us-ascii?Q?nTVNWK3WI98M28K/uyAfnkc4cjARCpzJChuoC/6P+HffvMJYzi5x/w0HfW42?=
+ =?us-ascii?Q?Cqb1retmbzuBcMeFzqcu70NWPnNlxAt6Cw3zSwA6CRSkJfB+4xyxqFCaxuUe?=
+ =?us-ascii?Q?SSmZjzcHtJjNwwZN7ekGDrUNoeQQDXxNvKWatDGsXkR1tu3RESkr26XTlAeC?=
+ =?us-ascii?Q?3mrD7B0oPC6HqU6ZvbA/kWfJMWhpyZIeXKMPaupFYoxwJdkOlZrAvQg2/N2h?=
+ =?us-ascii?Q?T9ndCHJAvBuqGoZ4/VVt8T1VSsUE/I3UnTZC5ZtVvQaJhkI0yH+WHNa/pcAf?=
+ =?us-ascii?Q?n/9SZrL39py8Tn4t1ewRjuYWmSrr95rfcjIvJT0O5bu6SouVcdsfCNEFFG7E?=
+ =?us-ascii?Q?wDs5SM0l1sEFvESHPka30YKZTuKS6AeYzc+IfSNDTNQprlX/bIoPVG5+ecFa?=
+ =?us-ascii?Q?KCymn+MrAWcD4NbfbiSNHZ2QpNrFqguT90EdvRTVTJfMxadheVCecWdUVLmC?=
+ =?us-ascii?Q?mwCa1iWSsEtMvwLYk2BSI358XAtcGMJsJ+L1H45N17JSQSbMSpIWWqf9rBUC?=
+ =?us-ascii?Q?NJtmA4QGrw6t+WToZux4Rg/KrqXGPh6lnIZP5BPkKTnoFeYcE0OCX9pYtolH?=
+ =?us-ascii?Q?R2+8PKjR/VyjYnY2rWL5oMjvZSFcyYl16ajxFe8pdgWlaiDynh5w6ptThTt8?=
+ =?us-ascii?Q?BEFEWOQtldhVBu+4TKVwvHqANhhBq29j4E0/w6OlVoRB3lpWtadpoqxJfpCB?=
+ =?us-ascii?Q?oCylI2/JjED1+p94t3o63Cswuc/oMJIQXKwyRs0B7Co0PObkERWYYdeu7ud6?=
+ =?us-ascii?Q?AxPr0zMM5Tz4dSClWOYLhKOtX/jGOe1e04hnvkj8NMKTAyMvaslg4wnbpMyU?=
+ =?us-ascii?Q?dGkDDAfnqd5tPLB4JaI7dxeHYmZQYqju3NwlmsHrCUcbAcNosZdu9Qkw55Y?=
+ =?us-ascii?Q?=3D?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 020369a9-a1f9-4be9-5591-08dbe804ebe7
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2023 07:06:44.0845
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR20MB5788
 
-When the link is changed, qca8084 needs to do the fifo reset and
-adjust the IPG level for the qusgmii link speed 1000M.
+As the sg2042 uses different address for timer and mswi of its clint
+device, it should follow the aclint format. For the previous patchs,
+it only use only one address for both mtime and mtimer, this is can
+not be parsed by OpenSBI. To resolve this, separate these two registers
+in the dtb.
 
-Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
----
- drivers/net/phy/at803x.c | 37 +++++++++++++++++++++++++++++++++++++
- 1 file changed, 37 insertions(+)
+Link: https://lists.infradead.org/pipermail/opensbi/2023-October/005693.html
+Link: https://github.com/riscv/riscv-aclint/blob/main/riscv-aclint.adoc
 
-diff --git a/drivers/net/phy/at803x.c b/drivers/net/phy/at803x.c
-index 06a068ca5539..7267ce858937 100644
---- a/drivers/net/phy/at803x.c
-+++ b/drivers/net/phy/at803x.c
-@@ -289,6 +289,13 @@
- #define QCA8084_MSE_THRESHOLD			0x800a
- #define QCA8084_MSE_THRESHOLD_2P5G_VAL		0x51c6
- 
-+#define QCA8084_FIFO_CONTROL			0x19
-+#define QCA8084_FIFO_MAC_2_PHY			BIT(1)
-+#define QCA8084_FIFO_PHY_2_MAC			BIT(0)
-+
-+#define QCA8084_MMD7_IPG_OP			0x901d
-+#define QCA8084_IPG_10_TO_11_EN			BIT(0)
-+
- MODULE_DESCRIPTION("Qualcomm Atheros AR803x and QCA808X PHY driver");
- MODULE_AUTHOR("Matus Ujhelyi");
- MODULE_LICENSE("GPL");
-@@ -2109,6 +2116,35 @@ static int qca8084_config_init(struct phy_device *phydev)
- 			     QCA8084_MSE_THRESHOLD, QCA8084_MSE_THRESHOLD_2P5G_VAL);
- }
- 
-+static void qca8084_link_change_notify(struct phy_device *phydev)
-+{
-+	int ret;
-+
-+	ret = phy_modify(phydev, QCA8084_FIFO_CONTROL,
-+			 QCA8084_FIFO_MAC_2_PHY | QCA8084_FIFO_PHY_2_MAC,
-+			 0);
-+	if (ret)
-+		return;
-+
-+	/* If the PHY works on PHY_INTERFACE_MODE_10G_QXGMII mode, the fifo needs to
-+	 * be kept as reset state in link down status.
-+	 */
-+	if (phydev->interface != PHY_INTERFACE_MODE_10G_QXGMII || phydev->link) {
-+		msleep(50);
-+		ret = phy_modify(phydev, QCA8084_FIFO_CONTROL,
-+				 QCA8084_FIFO_MAC_2_PHY | QCA8084_FIFO_PHY_2_MAC,
-+				 QCA8084_FIFO_MAC_2_PHY | QCA8084_FIFO_PHY_2_MAC);
-+		if (ret)
-+			return;
-+	}
-+
-+	/* Enable IPG 10 to 11 tuning on link speed 1000M of QUSGMII mode. */
-+	if (phydev->interface == PHY_INTERFACE_MODE_10G_QXGMII)
-+		phy_modify_mmd(phydev, MDIO_MMD_AN, QCA8084_MMD7_IPG_OP,
-+			       QCA8084_IPG_10_TO_11_EN,
-+			       phydev->speed == SPEED_1000 ? QCA8084_IPG_10_TO_11_EN : 0);
-+}
-+
- static struct phy_driver at803x_driver[] = {
- {
- 	/* Qualcomm Atheros AR8035 */
-@@ -2307,6 +2343,7 @@ static struct phy_driver at803x_driver[] = {
- 	.cable_test_start	= qca808x_cable_test_start,
- 	.cable_test_get_status	= qca808x_cable_test_get_status,
- 	.config_init		= qca8084_config_init,
-+	.link_change_notify	= qca8084_link_change_notify,
- }, };
- 
- module_phy_driver(at803x_driver);
--- 
-2.42.0
+This patch can be tested with upstream SBI with the following patch:
+1. https://lists.infradead.org/pipermail/opensbi/2023-November/005926.html
+
+Changed from v3:
+1. add all register in the bindings
+
+Changed from v2:
+1. Use reg-names to map the registers.
+
+Changed from v1:
+1. change the commit to address the reason for ABI change.
+2. remove unnecessary link in the commit.
+
+Inochi Amaoto (2):
+  dt-bindings: timer: thead,c900-aclint-mtimer: separate mtime and
+    mtimecmp regs
+  riscv: dts: sophgo: separate sg2042 mtime and mtimecmp to fit aclint
+    format
+
+ .../timer/thead,c900-aclint-mtimer.yaml       | 42 +++++++++-
+ arch/riscv/boot/dts/sophgo/sg2042.dtsi        | 80 +++++++++++--------
+ 2 files changed, 89 insertions(+), 33 deletions(-)
+
+--
+2.42.1
 
 
