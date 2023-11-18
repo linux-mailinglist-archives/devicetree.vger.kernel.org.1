@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-16810-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16811-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D91F37EFCD9
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 02:07:36 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFDE07EFCDC
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 02:08:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 834EC1F2746E
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 01:07:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2D18C1C20946
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 01:08:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 631E8EC4;
-	Sat, 18 Nov 2023 01:07:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1046ED6;
+	Sat, 18 Nov 2023 01:08:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GEd7Nsh+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tTlx+NtZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C214DD6D
-	for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 17:07:26 -0800 (PST)
-Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2c8769edd9fso579571fa.0
-        for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 17:07:26 -0800 (PST)
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D884D75
+	for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 17:08:02 -0800 (PST)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-9c603e2354fso488459966b.1
+        for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 17:08:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700269645; x=1700874445; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1700269681; x=1700874481; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=JdkXxmC3JXgdJWEihy1a5SFP+Yy4fGv9Vmi897q/Gjs=;
-        b=GEd7Nsh+33gCAWnQG93f2Vk5MynHAGhFqBjpSnMUSI/keG5B3BLeRku/K9/h8FSQ4a
-         suDj4OdOwWwfWxO6HHqUGF71TygIdwoQu4gQ6WSSLAg1gisFDUxTgA2RCnn2sZutqGtf
-         8FZxja6RF9QR3voOXeLtOEOTtZHTAnWFkBQW9JzPgenCOtPCI19/K7hl8+BSq7/xoYrY
-         cRKJ4vNOQHF4zMPQw4/GymhYHCtjXoyo2hgN4fR6sXhRzJcToSKzZ5VK6LleDeNvsw6h
-         CFMy/VmcIVsE0RM8fnM00QueYY1qvVPA2/JIIErRVAGGt+uh8RAbFh96aBY2dzb1mOFp
-         D4sw==
+        bh=/w2dNhxptt00UyJYxsmM3CJJF2NzIAk4hqmNz7VaSoY=;
+        b=tTlx+NtZWvNL6PryRt56vFAgy4LpOKNKxcKSEfi7YKfZoUfLZFiH0RGtBzXr9iJQAa
+         cefHEUbzcIofbn1VR3OMmaaLyol/GADv+l7+h4X8NsS+kD3eW8sOCXvCTrxkW4YWXeLm
+         0EMHTpQ+/B7G2+Mc2+r1mZDsrD4vu2bB8ZYbeVgBJvfgEx2U9EU/Ff61NMKher4XniBM
+         kuJqTPLeQ+NFjGvyDquaOEX2jC1ko43tlKBJtHxBYP5wInYOxVpyuWoFmnSJE3v23X8/
+         8+qFHu6G4ttKWDTZG+Pj04xROjCGQskpwabasUfKPEUDeVN2yKZf4PJ/UnXzNcDlEYUm
+         h0WA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700269645; x=1700874445;
+        d=1e100.net; s=20230601; t=1700269681; x=1700874481;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JdkXxmC3JXgdJWEihy1a5SFP+Yy4fGv9Vmi897q/Gjs=;
-        b=nSfECwvaY6r5Sn4sNWMVThg4HTP188mUQezfQ0qckA/2NRlR4NnfKEQBqk3zREcEgi
-         BuD1iCqLF2vgSbO44Gf+qolM3d+gfEHNatXLT8eDmv7g9k+Yus46TigYNwamYj0Bfkuv
-         dYXRnnt3xuQogqMnB6SjLRaBqOunjWH7+hyj1zXkfr55f9bTJeiw/E+xSXkMfnIF+7Oz
-         NDGuJLTlPLeK4Tmvz+fD/2jSzTt1mOheDbNadDNxSejxCvfRjWh+uVOLY6bdAQp/sqGj
-         NiKfTgZpbJtSGevNAar0TE4XbcJR//GjRj8jC3TPK+DvU3s2QjqYA8D3AeZcjVQ6HT9i
-         QMbw==
-X-Gm-Message-State: AOJu0YxPenpeF0sdXZGuQWfastjZagqBdfdYdMeYuSXVUpAYvPSTvhQX
-	4jlwimltHKjMTioIVKvT/mkTIw==
-X-Google-Smtp-Source: AGHT+IHWtflvWWJVwwkbO0ydaMdcNZTiyhX4/wiWtw8eOAC2sPUiOzX2HNKEFBH6DoRQTZJe7DfjCQ==
-X-Received: by 2002:a05:651c:32d:b0:2c5:4e95:535a with SMTP id b13-20020a05651c032d00b002c54e95535amr905303ljp.20.1700269645003;
-        Fri, 17 Nov 2023 17:07:25 -0800 (PST)
+        bh=/w2dNhxptt00UyJYxsmM3CJJF2NzIAk4hqmNz7VaSoY=;
+        b=Wjmbhb4L9Dm85fJmIg2E0+dNY1BM6sBPNko5ToYCq1ZKxwVfGjf+bEATrHqabKVfcW
+         DvKwQS8oW0dWULQCx8sdwGIN4nyZXFN7GmxiTEiXK9QLFjYGV2aNe+uXLTeV8P3smCM1
+         IsXP8bbgc0jtT5MujmGlnQk+MSKWi4kBhFGT15uDxZaPuEAE8xPH9B4sKmN3OJjIme+w
+         kIFehoMrvOAxvTsBom/DhZL3mU9fL8vRw+MA8hIu9Mt7gKDxLm43wBM9ECTwDjH/QPVE
+         c4J8WYVhr3+jcgybiQDUu47CLIbFNvo3tNxUDa9eNaPW7v9ru7zzkkJYifMTXgGmjmzt
+         cC7Q==
+X-Gm-Message-State: AOJu0YwoJam8ZCWsDulUW/yX+t5oJ//PgUWroUAqldK5EgPSIXYaQg90
+	PxLCHlIffBcTj9E5WtfD+cTzIQ==
+X-Google-Smtp-Source: AGHT+IEbGV6iUJucloKhyrHRBZZEqVWRTg7PQimNFxgwJSyRhld4iR/eGiqHHroxm5v8Cq0QJqMWzQ==
+X-Received: by 2002:a17:906:3009:b0:9c3:97d7:2c67 with SMTP id 9-20020a170906300900b009c397d72c67mr693683ejz.25.1700269681121;
+        Fri, 17 Nov 2023 17:08:01 -0800 (PST)
 Received: from [192.168.201.100] (178235187040.dynamic-4-waw-k-2-3-0.vectranet.pl. [178.235.187.40])
-        by smtp.gmail.com with ESMTPSA id v12-20020a1709060b4c00b009b928eb8dd3sm1327704ejg.163.2023.11.17.17.07.22
+        by smtp.gmail.com with ESMTPSA id v12-20020a1709060b4c00b009b928eb8dd3sm1327704ejg.163.2023.11.17.17.07.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Nov 2023 17:07:24 -0800 (PST)
-Message-ID: <bded087f-6601-48d8-af7e-9120955127df@linaro.org>
-Date: Sat, 18 Nov 2023 02:07:22 +0100
+        Fri, 17 Nov 2023 17:08:00 -0800 (PST)
+Message-ID: <0c1ba8b7-7253-41d4-a024-5f7618f6485c@linaro.org>
+Date: Sat, 18 Nov 2023 02:07:59 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,21 +62,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 4/5] arm64: dts: qcom: x1e80100: Add Compute Reference
- Device
+Subject: Re: [PATCH v5 1/3] arm64: dts: qcom: Add interconnect nodes for SDX75
 Content-Language: en-US
-To: Sibi Sankar <quic_sibis@quicinc.com>, andersson@kernel.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- catalin.marinas@arm.com, ulf.hansson@linaro.org
-Cc: agross@kernel.org, conor+dt@kernel.org, ayan.kumar.halder@amd.com,
- j@jannau.net, dmitry.baryshkov@linaro.org, nfraprado@collabora.com,
- m.szyprowski@samsung.com, u-kumar1@ti.com, peng.fan@nxp.com,
- lpieralisi@kernel.org, quic_rjendra@quicinc.com, abel.vesa@linaro.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- quic_tsoni@quicinc.com, neil.armstrong@linaro.org
-References: <20231117113931.26660-1-quic_sibis@quicinc.com>
- <20231117113931.26660-5-quic_sibis@quicinc.com>
+To: Rohit Agarwal <quic_rohiagar@quicinc.com>, agross@kernel.org,
+ andersson@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20231117080737.606687-1-quic_rohiagar@quicinc.com>
+ <20231117080737.606687-2-quic_rohiagar@quicinc.com>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -113,22 +107,18 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20231117113931.26660-5-quic_sibis@quicinc.com>
+In-Reply-To: <20231117080737.606687-2-quic_rohiagar@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 17.11.2023 12:39, Sibi Sankar wrote:
-> Add basic support for X1E80100 CRD board dts, which allows it to boot
-> to a shell.
+On 17.11.2023 09:07, Rohit Agarwal wrote:
+> Add interconnect nodes to support interconnects on SDX75.
+> Also parallely add the interconnect property for UART required
+> so that the bootup to shell does not break with interconnects
+> in place.
 > 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
-> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
 > ---
-pretty much just the same question about pins <34 2> 
-
-otherwise 
-
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
