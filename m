@@ -1,33 +1,60 @@
-Return-Path: <devicetree+bounces-16803-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16804-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1628B7EFC92
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 01:32:49 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADE137EFCB1
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 01:44:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 46D3D1C20986
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 00:32:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 36CBBB20A85
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 00:44:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5761663F;
-	Sat, 18 Nov 2023 00:32:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84AF6A38;
+	Sat, 18 Nov 2023 00:44:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="IRHlWxk+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uxe7LHIC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m17224.xmail.ntesmail.com (mail-m17224.xmail.ntesmail.com [45.195.17.224])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E672AD7E;
-	Fri, 17 Nov 2023 16:32:40 -0800 (PST)
-DKIM-Signature: a=rsa-sha256;
-	b=IRHlWxk+YneotbWXXipjwIhyejvLSujGGzUjmaoSQDOlf8sxOUu7/H/unSobR+t0UoPdIhsE4NOqh9cXW/u3o2gYb+AiPFjoHhNtBRmQjrLGvCXaw+2eyO0+wTUhOln1Ussjm0scwf9wV7tVMBSnNbpL8pYsHlhTJ81HS2VSaXw=;
-	c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=2FUg8H3N8HYkU7jgnGugtAhzTBDLaBY11h61I6hIUnQ=;
-	h=date:mime-version:subject:message-id:from;
-Received: from [172.16.12.141] (unknown [58.22.7.114])
-	by mail-m12779.qiye.163.com (Hmail) with ESMTPA id 2A2BC780751;
-	Sat, 18 Nov 2023 08:31:56 +0800 (CST)
-Message-ID: <3cfcb1a3-bd47-49c4-9f3a-f34d8381ce51@rock-chips.com>
-Date: Sat, 18 Nov 2023 08:31:55 +0800
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A90F010C6
+	for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 16:44:34 -0800 (PST)
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-9fa2714e828so32041866b.1
+        for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 16:44:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1700268273; x=1700873073; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=i9rJR16RkZ8dqSqbIrxv13E+dc2kUVSfRUy+BwCEmHU=;
+        b=uxe7LHICRoIvaGJjRnpi8+cN/ArhNGMIqFVVjxVYbKxSaN/wH4NsWsCuLoKihKe58P
+         EDDLWWnsp0e1c0ZD4w5LmX82/yeKzB/NjQE/KDflfwMyyRRYSd3FOnZ6igFoIm/UW35O
+         BMRPpU/KkStuQByDAE7YSAlwUgkXezLDjA/na6UvjZM0bM7Vkpc4a8Bx7FXx8IZG1i11
+         HsVt+aKkFa2CSx/sOkptx6NbZu/F5Ie+m4JMpqCRLFkxN500eC2plFZBaJO3Iblm05IN
+         2sNfgeIvR2fbkEamhanX/L/W649PW99jxFGZPHzto6VUzl1KOG9o6A2wUGjPjsOAG+DY
+         D6ug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700268273; x=1700873073;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=i9rJR16RkZ8dqSqbIrxv13E+dc2kUVSfRUy+BwCEmHU=;
+        b=D8n/b5IBcDhmC5yEdW4TDhmDVWONPwvWmX+vKhJo/8JyEQeUDtWzpyZqjPRn/bmJwj
+         Gr2bSMZg5uKB0ciKCWNOKqqV0303Ke6tcXfJtLq7zgP4hedtnhhXTmVHWqNRNIZpM7M1
+         yDGq1fELq1pkDCau+EFHVSDIT9UlYtcgLKYhrllTeViN3o8v6p53d++mY3A8/B6P9KRa
+         3lWDBOBS1ENzEHurjBRlMWzDcLVbaNLHZ9Xm/ny/raMhFoBlf5wTJnyfelO3qKiBKKPl
+         T2wMtxQcR+MOz/LgeoLa1rbaPW6sG2wg7etBIbWrmKaaUpDY+U5sRbkLiovPayXtgC3F
+         bI/g==
+X-Gm-Message-State: AOJu0Yx/WlWQtpJzDatVGtF2QdcwZWuyDxHpqUNAuiQZQMeXonOjvFUC
+	iX7SFy+R6aC5VvJsGGUrga5AxA==
+X-Google-Smtp-Source: AGHT+IHpIEndtB19v83nxLDCvnS77zFBahMuwPUXSZFx1fF8SNOmyhrc5WBvrWmmWCGZhfYM7gmZ/w==
+X-Received: by 2002:a17:906:d151:b0:9e1:46a2:b827 with SMTP id br17-20020a170906d15100b009e146a2b827mr519042ejb.29.1700268273067;
+        Fri, 17 Nov 2023 16:44:33 -0800 (PST)
+Received: from [192.168.201.100] (178235187040.dynamic-4-waw-k-2-3-0.vectranet.pl. [178.235.187.40])
+        by smtp.gmail.com with ESMTPSA id mc16-20020a170906eb5000b009b2c9476726sm1327577ejb.21.2023.11.17.16.44.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 17 Nov 2023 16:44:32 -0800 (PST)
+Message-ID: <1636bfa0-c2a0-4c1a-bf4d-cad4cdf7b943@linaro.org>
+Date: Sat, 18 Nov 2023 01:44:30 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -35,115 +62,68 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 09/11] drm/rockchip: vop2: Add support for rk3588
+Subject: Re: [PATCH v6 3/6] arm64: dts: qcom: add uart console support for
+ SM4450
 Content-Language: en-US
-To: Jonas Karlman <jonas@kwiboo.se>, Andy Yan <andyshrk@163.com>,
- heiko@sntech.de
-Cc: devicetree@vger.kernel.org, s.hauer@pengutronix.de,
- chris.obbard@collabora.com, hjc@rock-chips.com,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- kever.yang@rock-chips.com, linux-rockchip@lists.infradead.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- sebastian.reichel@collabora.com
-References: <20231114112534.1770731-1-andyshrk@163.com>
- <20231114112855.1771372-1-andyshrk@163.com>
- <37348be2-c7c4-4eb6-8dd0-e6b18923a88e@kwiboo.se>
-From: Andy Yan <andy.yan@rock-chips.com>
-In-Reply-To: <37348be2-c7c4-4eb6-8dd0-e6b18923a88e@kwiboo.se>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To: Tengfei Fan <quic_tengfan@quicinc.com>, agross@kernel.org,
+ andersson@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, catalin.marinas@arm.com, will@kernel.org
+Cc: geert+renesas@glider.be, arnd@arndb.de, neil.armstrong@linaro.org,
+ dmitry.baryshkov@linaro.org, nfraprado@collabora.com,
+ m.szyprowski@samsung.com, u-kumar1@ti.com, peng.fan@nxp.com,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, quic_tsoni@quicinc.com,
+ quic_shashim@quicinc.com, quic_kaushalk@quicinc.com, quic_tdas@quicinc.com,
+ quic_tingweiz@quicinc.com, quic_aiquny@quicinc.com, kernel@quicinc.com
+References: <20231031075004.3850-1-quic_tengfan@quicinc.com>
+ <20231031075004.3850-4-quic_tengfan@quicinc.com>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20231031075004.3850-4-quic_tengfan@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQxgaHlZISEJMSkoZQxlOGktVEwETFh
-	oSFyQUDg9ZV1kYEgtZQVlOQ1VJSVVMVUpKT1lXWRYaDxIVHRRZQVlPS0hVSk1PSU5JVUpLS1VKQl
-	kG
-X-HM-Tid: 0a8bdfd7625bb24fkuuu2a2bc780751
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Kww6KSo4EDw8Dj8NThkRTEs*
-	Fz4KChBVSlVKTEtLSU1MTkpMS0JCVTMWGhIXVRoVHwJVAhoVOwkUGBBWGBMSCwhVGBQWRVlXWRIL
-	WUFZTkNVSUlVTFVKSk9ZV1kIAVlBT0NKSzcG
 
-Hi Jonas:
+On 31.10.2023 08:50, Tengfei Fan wrote:
+> Add base description of UART and TLMM nodes which helps SM4450
+> boot to shell with console on boards with this SoC.
+> 
+> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-On 11/18/23 07:46, Jonas Karlman wrote:
-> On 2023-11-14 12:28, Andy Yan wrote:
->> From: Andy Yan <andy.yan@rock-chips.com>
->>
->> VOP2 on rk3588:
->>
->> Four video ports:
->> VP0 Max 4096x2160
->> VP1 Max 4096x2160
->> VP2 Max 4096x2160
->> VP3 Max 2048x1080
->>
->> 4 4K Cluster windows with AFBC/line RGB and AFBC-only YUV support
->> 4 4K Esmart windows with line RGB/YUV support
->>
->> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
->> ---
->>
->>   drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 324 ++++++++++++++++++-
->>   drivers/gpu/drm/rockchip/rockchip_drm_vop2.h |  57 ++++
->>   drivers/gpu/drm/rockchip/rockchip_vop2_reg.c | 215 ++++++++++++
->>   include/dt-bindings/soc/rockchip,vop2.h      |   4 +
->>   4 files changed, 593 insertions(+), 7 deletions(-)
->>
-> [...]
->
->> diff --git a/drivers/gpu/drm/rockchip/rockchip_vop2_reg.c b/drivers/gpu/drm/rockchip/rockchip_vop2_reg.c
->> index 22288ad7f326..4745a9260cf8 100644
->> --- a/drivers/gpu/drm/rockchip/rockchip_vop2_reg.c
->> +++ b/drivers/gpu/drm/rockchip/rockchip_vop2_reg.c
->> @@ -34,6 +34,28 @@ static const uint32_t formats_cluster[] = {
->>   	DRM_FORMAT_Y210, /* yuv422_10bit non-Linear mode only */
->>   };
->>   
->> +static const uint32_t formats_esmart[] = {
->> +	DRM_FORMAT_XRGB8888,
->> +	DRM_FORMAT_ARGB8888,
->> +	DRM_FORMAT_XBGR8888,
->> +	DRM_FORMAT_ABGR8888,
->> +	DRM_FORMAT_RGB888,
->> +	DRM_FORMAT_BGR888,
->> +	DRM_FORMAT_RGB565,
->> +	DRM_FORMAT_BGR565,
->> +	DRM_FORMAT_NV12, /* yuv420_8bit linear mode, 2 plane */
->> +	DRM_FORMAT_NV21, /* yvu420_8bit linear mode, 2 plane */
->> +	DRM_FORMAT_NV16, /* yuv422_8bit linear mode, 2 plane */
->> +	DRM_FORMAT_NV61, /* yvu422_8bit linear mode, 2 plane */
->> +	DRM_FORMAT_NV24, /* yuv444_8bit linear mode, 2 plane */
->> +	DRM_FORMAT_NV42, /* yvu444_8bit linear mode, 2 plane */
->> +	DRM_FORMAT_NV15, /* yuv420_10bit linear mode, 2 plane, no padding */
-> NV20 and NV30 drm format have now been merged into mainline linux,
-> please add these missing formats. The patch below adds support for them
-> to rk356x part of vop2 driver.
-
-
-Thanks for your reminder and your efforts to make these formats land
-
-mainline. I will add it in the next version.
-
->
-> drm/rockchip: vop2: Add NV20 and NV30 support
-> https://lore.kernel.org/linux-rockchip/20231025213248.2641962-1-jonas@kwiboo.se/
->
-> NV15/NV20/NV30 formats can be tested using modetest from latest main
-> of libdrm.
->
-> modetest: add support for DRM_FORMAT_NV{15,20,30}
-> https://gitlab.freedesktop.org/mesa/drm/-/merge_requests/329
->
-> Regards,
-> Jonas
->
->> +	DRM_FORMAT_YVYU, /* yuv422_8bit[YVYU] linear mode */
->> +	DRM_FORMAT_VYUY, /* yuv422_8bit[VYUY] linear mode */
->> +	DRM_FORMAT_YUYV, /* yuv422_8bit[YUYV] linear mode */
->> +	DRM_FORMAT_UYVY, /* yuv422_8bit[UYVY] linear mode */
->> +};
->> +
->>   static const uint32_t formats_rk356x_esmart[] = {
->>   	DRM_FORMAT_XRGB8888,
->>   	DRM_FORMAT_ARGB8888,
-> [...]
+Konrad
 
