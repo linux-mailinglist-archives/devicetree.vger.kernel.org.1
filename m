@@ -1,335 +1,203 @@
-Return-Path: <devicetree+bounces-16836-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16837-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 234FC7EFE39
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 08:09:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E6E07EFE58
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 08:46:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C9FB428103D
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 07:09:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5DAA91C2037A
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 07:46:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A282DF65;
-	Sat, 18 Nov 2023 07:09:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B176423CA;
+	Sat, 18 Nov 2023 07:46:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="TG3xChjk"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="vhGEcGX6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10olkn2062.outbound.protection.outlook.com [40.92.40.62])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 522D710CE;
-	Fri, 17 Nov 2023 23:09:50 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IuPfV/eOMGUQonIPgpy5M1SqZc+iGIPP08PX3o32Jxu9kHn1TTM1uuN4EBMKM5DF2LesPmMgtNsBpk3p99TTEAv0X9T6EP0/HRcxoIDs/hmSWQSV0qykfQXcAsCYgrUcPOiAACIFskWcYIGp9DRWXaYdmFpBbQLz2qzOcIM+utvq90hzK+7xSan2ePDihWGRjuxAVVoV0t3x6oAcCZUPRlsARphzEuEjyLdDU5aabhls/1B6IxCKmKdiiAYnKgqppsXkaPiCb4wPRcDheY6/hDcNIvYXR3DGXGhkpa5PmjEGeV2AFdeSI7QzbXRN1NZKWxUi8tbr5gs2EwDD+U7iJA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kBBd0hiRl1kC/4CnV0dwx/zTn7/DG0Ghrwu95ZdJb3M=;
- b=lCvwJmex1yrl8pbyCpUuzqioZ2UUe5M0yq9JtxoBGAG8zyQ3gtEqK5klwcEgV6Az3Q6zuklQ/iFJIM0HQweFmGw1+vsxgUqqNLOnMGWcAo9u8ppQo6/qBy5DuZUpLczU2UUwFkZ4EldxTTGbQzNNBeKoLFrUOJMvkKusgSLmxYTUBiUy0LlG61QJtNmb1589oOJTV4W65mcz+8+r1KTswbRJu35/EoOsLKuwdL80g9ZfhrU521fubxjCFZQ/EFyHHUzR/+Q35FkOL1O9yxNClYpiQQuKCtubjYftj+LuHzqkPggiraOznfgZQ6lXk4YS1zX26gEI/5P5YwILoccbGw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kBBd0hiRl1kC/4CnV0dwx/zTn7/DG0Ghrwu95ZdJb3M=;
- b=TG3xChjkU8xbbB3Oj5C983C06uL6lTx6tHYlRqzcWs3UOIpYZEbsk6T+k3uYj+oOB9xD0ahOmBusUFRPSgdOvQ38w0+d/wvAksssMoHtBwRQWiU+duwOoRpRd4Hxl+UVQQ7IuG5+o8ClmoSWHUtUh53EC6m/twGzodfFX330ixo6lIK07mpyg0QXSyU2gC5BSqTXDAJ0imaKuXQxMucgt3+rK5Wip7D2O8XpSqjQ5FFD+xwaJD0dTojdCrslbMwYPnBrADLk6B73yiKgwFHxrwyGQ3wYDcmRIyPEKj7e3UV9Uv8jo37IgCC/Fn0sMxjPGTAuN6xotgaVnMAemoswJQ==
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
- by DS0PR20MB5788.namprd20.prod.outlook.com (2603:10b6:8:148::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6977.29; Sat, 18 Nov
- 2023 07:09:48 +0000
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::55b:c350:980:ad8]) by IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::55b:c350:980:ad8%6]) with mapi id 15.20.7002.025; Sat, 18 Nov 2023
- 07:09:48 +0000
-From: Inochi Amaoto <inochiama@outlook.com>
-To: Chao Wei <chao.wei@sophgo.com>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Conor Dooley <conor@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Xiaoguang Xing <xiaoguang.xing@sophgo.com>,
-	Guo Ren <guoren@kernel.org>
-Cc: Anup Patel <anup@brainfault.org>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v4 2/2] riscv: dts: sophgo: separate sg2042 mtime and mtimecmp to fit aclint format
-Date: Sat, 18 Nov 2023 15:10:27 +0800
-Message-ID:
- <IA1PR20MB4953C6D3C913E4D18B3E6344BBB6A@IA1PR20MB4953.namprd20.prod.outlook.com>
-X-Mailer: git-send-email 2.42.1
-In-Reply-To: <IA1PR20MB4953C82499C5D81D2C6A020BBBB6A@IA1PR20MB4953.namprd20.prod.outlook.com>
-References: <IA1PR20MB4953C82499C5D81D2C6A020BBBB6A@IA1PR20MB4953.namprd20.prod.outlook.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-TMN: [wuBQ/QR0YUDu4LA55bZmXDV/XV/X183yKeFnFCW3dOY=]
-X-ClientProxiedBy: BY5PR04CA0002.namprd04.prod.outlook.com
- (2603:10b6:a03:1d0::12) To IA1PR20MB4953.namprd20.prod.outlook.com
- (2603:10b6:208:3af::19)
-X-Microsoft-Original-Message-ID:
- <20231118071028.248483-2-inochiama@outlook.com>
+Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3A99D75
+	for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 23:46:18 -0800 (PST)
+Received: from epcas2p2.samsung.com (unknown [182.195.41.54])
+	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20231118074615epoutp042fc09076920a901ff443447d47db67a6~Yp-_gj-SO2331223312epoutp04Y
+	for <devicetree@vger.kernel.org>; Sat, 18 Nov 2023 07:46:15 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20231118074615epoutp042fc09076920a901ff443447d47db67a6~Yp-_gj-SO2331223312epoutp04Y
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1700293575;
+	bh=vxlFjRpQHG/9qO2SmYUUMv1L/YanqCR+lSiJehcyrD4=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=vhGEcGX6mcyzUnuY+s3bpRiVQ3+jHYQ0QNCIeNuXd77t2huVm+sHnFXZCVFejDYtT
+	 P4j9PjmbE40H4v9C05W4bivsVciGIKu6kOv55gixk28uhQhSKyxNQJRc3o3HO+CquL
+	 8FZrCVIQKcfrGEvRcre8+ImayGmPDVpimta5/nlc=
+Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
+	epcas2p1.samsung.com (KnoxPortal) with ESMTP id
+	20231118074614epcas2p151f840ee664d3130848da3fd7faf9105~Yp-9f4f6g3120531205epcas2p1L;
+	Sat, 18 Nov 2023 07:46:14 +0000 (GMT)
+Received: from epsmges2p2.samsung.com (unknown [182.195.36.91]) by
+	epsnrtp3.localdomain (Postfix) with ESMTP id 4SXQnL22K3z4x9Pr; Sat, 18 Nov
+	2023 07:46:14 +0000 (GMT)
+Received: from epcas2p3.samsung.com ( [182.195.41.55]) by
+	epsmges2p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+	D8.09.09622.6CB68556; Sat, 18 Nov 2023 16:46:14 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+	epcas2p4.samsung.com (KnoxPortal) with ESMTPA id
+	20231118074613epcas2p422f7c882546ce89461420d92a70f5ee3~Yp-8qrZNr1418714187epcas2p4R;
+	Sat, 18 Nov 2023 07:46:13 +0000 (GMT)
+Received: from epsmgmc1p1new.samsung.com (unknown [182.195.42.40]) by
+	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20231118074613epsmtrp282137b87c7e7ca89811fd3644159abc4~Yp-8pDwxC2675426754epsmtrp2J;
+	Sat, 18 Nov 2023 07:46:13 +0000 (GMT)
+X-AuditID: b6c32a46-fcdfd70000002596-c8-65586bc6b895
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+	epsmgmc1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	BF.C8.07368.5CB68556; Sat, 18 Nov 2023 16:46:13 +0900 (KST)
+Received: from [10.229.8.168] (unknown [10.229.8.168]) by
+	epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20231118074613epsmtip2454513e84a2a41152fd3a056707b3d5d~Yp-8PetGS1672716727epsmtip2N;
+	Sat, 18 Nov 2023 07:46:13 +0000 (GMT)
+Message-ID: <ab17d61e-f645-9b76-962c-4ba2849c5f42@samsung.com>
+Date: Sat, 18 Nov 2023 16:43:26 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|DS0PR20MB5788:EE_
-X-MS-Office365-Filtering-Correlation-Id: 749a449c-5e2d-4435-a1ac-08dbe805598a
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	MEFcn2Zl6n6v+1asEm54Bnp8IWfAx4XkBEx3RYsIS8oIThxfV2gdkVlXxZ7rZ1001eJh4C46xXBXXtSlgrHV4ZsRNo3ZnxEBZR0WiqKPnW0eJGOwlFqKChipQqFbdF1dsCnA3QMK5YfKiwWMEWknnAMvAx5YW5h0bytfTO8tuuqnZEMnwPi+XmbhtlnUlaoACE4sDKRypoCcF48eTEqyGMSUIRe8JelXQxF+GOFuNkQVj4v6002dM1/4rljAtpFCY5IiT9HuoNeJsTcxHgY928ZInd7sHptSEpuuJYTvf7ApZZAYbf50V3bIKCqpj2E3UDgz6RXAGlRs414x3ceGU8kECj3/OBErLQRgatcyYpdzV2L/jiI1N6XliIHki9nnAXikG1ozbkH32uPKFAjQ96n9KLWxo5beRuX2Xi3P3BUHjWBsiTIEXm71KVvRe2ytEH3XZ6x+LXbwhYQpDb77rsd1tldipqcd4K3EA4GdkHN52CbH5bi3vpPJwBtzf3BNGWj91NF8nX66talJ1nAidNNYIQGEDKlMe/kBXoGEfi7XLJyunkhMpeTPe6VmgMuj8t8vlywQQfz18fYGe7/5n9W84JKrheIjBd5iUTE6MhgeN2zQ0yu+Bz7b022n++dQ
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?0npT54EXViEZTFDzmDQwCYDiJUEgypjLttlE2FcPxpQlJFd9HIWfjVojU28w?=
- =?us-ascii?Q?7O+NxXFAtXlBAx6cznVFdsKOfWODUyd2vUMtGZYygPaX5a0uZYM7jg7CywzA?=
- =?us-ascii?Q?EpaAylYP3k9BWloQbbAIZltMK/xlP3cd5OoFXCACGBnHVNUCAph57YNTdB7j?=
- =?us-ascii?Q?A1B9EcPYKZhR2A5i7Io23yI3aPzxzKJ9u6HS4caEEoMDMeXGRCRbABX/N2g3?=
- =?us-ascii?Q?+JMenlMv+icrgnu18GglLBpgvVTiFLk3+iQWSUbEoTdH/eihpAeWS0+5Teq7?=
- =?us-ascii?Q?3s0oMIuO4lIXXPLqFWwQgDHvhEHyCG5ANM5BE+PhgV20aBQtaNR7IMdUs11K?=
- =?us-ascii?Q?dZQu6xwrSI63P7kotkyhlNDRgbMp58T1IRpt/fOh1BDjZ4q3Qp9B/AXHRye9?=
- =?us-ascii?Q?WHliGCJ/9D5JKaU0VnvzJ9tiKosphFVApGU5CFfrTn639DnsNJF2/p8qX0wK?=
- =?us-ascii?Q?i67W9awGApcUwg0hXyvKQ1Wg+IkKblNXVolBYix3/SIiql122R0Pg/bgkvuR?=
- =?us-ascii?Q?r0WSw13dSdRmKUD+UY49waoe+rkUFsH8oLPjR72BWaKv5+WEzR5Fe8MwCQNm?=
- =?us-ascii?Q?M5uRF9wdYtj8WeAc95aLmi6ZLz55jDCKgf8GABJe3gkHlPPzHFpsEbjABCCk?=
- =?us-ascii?Q?hQqbCw/A4quQIk0ZM0tXUbokQk1z1BSHt1+VgQbvmQ32c8XI3nst6IWh1zox?=
- =?us-ascii?Q?IcFoAdhEMFfCopv/v0aibgx1jLEh/rZ9hjTxfUpDZ2jqHhSqOVIEgBLlVY3q?=
- =?us-ascii?Q?lCu8NBg5kDfiBAgOkKiZWOuvbqsvq+aPlOGtm65W/S6/GvIRMQDdQS/H/McZ?=
- =?us-ascii?Q?7zE0PaF1Dh+7UtlG2V960CBpfMmwE77UA74xMMC2fusUwox1u7e4+q68bWZw?=
- =?us-ascii?Q?KqF1D3LMGgTUVq5QTcthCL/o4OVwg3CsVuKwX3LzOpL2kByBXLTRZtesA/8k?=
- =?us-ascii?Q?5K/IOmIwgFl6yzrfykVWdJmlvP78BnXTDMUsKxE5V0kLjzr9Q7AP3d/oCmkl?=
- =?us-ascii?Q?yR8Ehd7qPj3OVTtyJGrmAgFRQyHtr/LfQanGd/22++ifSSAr6yJCTA8ypQdb?=
- =?us-ascii?Q?m+GQDcz+sBcGcbylIjVxNTY2hRM56NiUZgKT5J0UH7pnz50qlrLVqkN334DC?=
- =?us-ascii?Q?D/dV0NbBTs3NwFGKGil/fldtLESMI0tjD2ln3h85W7ew+OqaHGFmQXGtQGd9?=
- =?us-ascii?Q?hJyAVFNiARIKDO4orqLKsMRveK0mz3izYXEkjKgk9AWNNqXJm97o2Z5AnvA?=
- =?us-ascii?Q?=3D?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 749a449c-5e2d-4435-a1ac-08dbe805598a
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2023 07:09:48.3195
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR20MB5788
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+	Thunderbird/102.11.0
+Subject: Re: [PATCH v2 10/12] pinctrl: samsung: add exynosautov920 pinctrl
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Alim Akhtar
+	<alim.akhtar@samsung.com>, Rob Herring <robh+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Tomasz Figa <tomasz.figa@gmail.com>, Sylwester
+	Nawrocki <s.nawrocki@samsung.com>, Linus Walleij <linus.walleij@linaro.org>,
+	Thierry Reding <thierry.reding@gmail.com>, Uwe Kleine-K?nig
+	<u.kleine-koenig@pengutronix.de>, Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
+	linux-serial@vger.kernel.org
+From: Jaewon Kim <jaewon02.kim@samsung.com>
+In-Reply-To: <0fdb7bec-9ea4-454f-a0fb-d450f27ebc6b@linaro.org>
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrNJsWRmVeSWpSXmKPExsWy7bCmue6x7IhUg4VP2C0ezNvGZrFm7zkm
+	i/lHzrFaNC9ez2bxbq6Mxd7XW9ktpvxZzmSx6fE1VovN8/8wWlzeNYfN4u7dVYwWM87vY7I4
+	s7iX3aJ17xF2i8Nv2lktfu6ax2KxahdQ3e2JkxkdhDx2zrrL7rFpVSebx51re9g89s9dw+6x
+	eUm9R/9fA4++LasYPT5vkgvgiMq2yUhNTEktUkjNS85PycxLt1XyDo53jjc1MzDUNbS0MFdS
+	yEvMTbVVcvEJ0HXLzAH6REmhLDGnFCgUkFhcrKRvZ1OUX1qSqpCRX1xiq5RakJJTYF6gV5yY
+	W1yal66Xl1piZWhgYGQKVJiQnfH+03+Wgn08FSvunmJqYLzM2cXIySEhYCJxe9cz1i5GLg4h
+	gR2MEpfebGGEcD4xSiz7+JkZwvnGKHG55QcrTEv3jbfsEIm9jBKTv99mgXBeM0qcmLCIGaSK
+	V8BO4tiKGewgNouAqsSJm39ZIOKCEidnPgGzRQWiJVqX3WcDsYUFvCRO7dwDtoFZQFzi1pP5
+	TCC2iMB9ZonXbdUgC5gFHjBKzD33lREkwSagLfF9/WKwBk6gZQePvGWGaJaXaN46G+xuCYE3
+	HBIXV05mg7jbReL7sU6oH4QlXh3fwg5hS0l8frcXqiZbon36H6iaComLG2ZDxY0lZj1rB1rM
+	AbRAU2L9Ln0QU0JAWeLILRaItXwSHYf/skOEeSU62oQgGtUk7k89BzVERmLSkZVMELaHRPPk
+	6WwTGBVnIYXKLCTfz0LyzCyEvQsYWVYxiqUWFOempxYbFRjBYzs5P3cTIziVa7ntYJzy9oPe
+	IUYmDsZDjBIczEoivN+EIlKFeFMSK6tSi/Lji0pzUosPMZoC42Yis5Rocj4wm+SVxBuaWBqY
+	mJkZmhuZGpgrifPea52bIiSQnliSmp2aWpBaBNPHxMEp1cBkdDZiq4kNR2FVr5x8VrAta79o
+	qdCW4kszNLY+/ruGjSG0aFnA/V/F2wTU74WJB31ZxG3rIBLDK7Vso+/0n8sdu7dFXtBX2xV9
+	VebS9zXTAh37GQ2eznqY9pp//p3aMu8w5kfC1UIfpy/MMJu2+FTCQuOwJ+G/Tr/gMI2pqMib
+	MeedhuvaEzOYY5jFTpQYL72T47D70BIv46x3Z5RiIr3j/ic7bF70vvzfXQ+DRec/yzgLerTy
+	5DlNvfR9h04nz3zr6w+/S/7+yhmqI+bac+7fmhqp9ovxt2VfPF7yL7BOe79Vb53u7cJVT4+w
+	Xzm7ct96BivljAKNoOu5Gj7b1zLtndx+/v6XU8uZjNdVfrqnxFKckWioxVxUnAgAduB9v24E
+	AAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrLIsWRmVeSWpSXmKPExsWy7bCSvO7R7IhUg9WT5C0ezNvGZrFm7zkm
+	i/lHzrFaNC9ez2bxbq6Mxd7XW9ktpvxZzmSx6fE1VovN8/8wWlzeNYfN4u7dVYwWM87vY7I4
+	s7iX3aJ17xF2i8Nv2lktfu6ax2KxahdQ3e2JkxkdhDx2zrrL7rFpVSebx51re9g89s9dw+6x
+	eUm9R/9fA4++LasYPT5vkgvgiOKySUnNySxLLdK3S+DKeP/pP0vBPp6KFXdPMTUwXubsYuTk
+	kBAwkei+8Za9i5GLQ0hgN6PEze5eRoiEjMTyZ31sELawxP2WI6wQRS8ZJS4tewpWxCtgJ3Fs
+	xQx2EJtFQFXixM2/LBBxQYmTM5+A2aIC0RKrP19gBbGFBbwkTu3cA2YzC4hL3HoynwlkqIjA
+	Y2aJh1P/M4M4zAIPGCWWT3oEte4Ms8TlG01g69gEtCW+r18M1s4JtPrgkbfMEKPMJLq2djFC
+	2PISzVtnM09gFJqF5JJZSDbOQtIyC0nLAkaWVYySqQXFuem5yYYFhnmp5XrFibnFpXnpesn5
+	uZsYwTGspbGD8d78f3qHGJk4GA8xSnAwK4nwfhOKSBXiTUmsrEotyo8vKs1JLT7EKM3BoiTO
+	azhjdoqQQHpiSWp2ampBahFMlomDU6qByY7ndO2ulclNgdJdMQli2j7tllfOP5slxmC4+mvp
+	5JTALTcmfGM2Oa6+c9LjQ7ETWmf5x7sZHUhve2TduL/o49K55+8etotP+um+oPyJmYqXc6eq
+	HqOO377zLxczcgRKsEgvkTycGGlj1j+F9Z071w3uiKr92mZsZe8vvrmu+7Kg9Y8Od9eSkumH
+	SssWNn6vzYkxb7A0at3mmqlgXXdZXT6T7eCUCY2sJWfqDySeWGQdLZ2pFp+3y4e16mBQxq+z
+	lVvXVlfpfs/2VWzezhqmvSV0vo3+lq8f2gX2GTZay7wS5w75Xvjz2oSzvSYFbEWrxcwseR94
+	fIiS75vifMaGMf3dLTZZzlnTd/+uPqrEUpyRaKjFXFScCAB1RboDUAMAAA==
+X-CMS-MailID: 20231118074613epcas2p422f7c882546ce89461420d92a70f5ee3
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20231115095856epcas2p1c3ee85750828bec2ee4ab0adeaeaff28
+References: <20231115095609.39883-1-jaewon02.kim@samsung.com>
+	<CGME20231115095856epcas2p1c3ee85750828bec2ee4ab0adeaeaff28@epcas2p1.samsung.com>
+	<20231115095609.39883-11-jaewon02.kim@samsung.com>
+	<62b7176d-f99c-49f6-a287-17a6b3604c1c@linaro.org>
+	<f0f6a7af-2170-89a2-1eea-dfb9d8440321@samsung.com>
+	<6a5610e0-e60d-4ab7-8708-6f77a38527b7@linaro.org>
+	<926ea5c5-20ac-5e63-16ea-6f0c20e2db0a@samsung.com>
+	<0fdb7bec-9ea4-454f-a0fb-d450f27ebc6b@linaro.org>
 
-Change the timer layout in the dtb to fit the format that needed by
-the SBI.
 
-Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
-Fixes: 967a94a92aaa ("riscv: dts: add initial Sophgo SG2042 SoC device tree")
----
- arch/riscv/boot/dts/sophgo/sg2042.dtsi | 80 +++++++++++++++-----------
- 1 file changed, 48 insertions(+), 32 deletions(-)
+On 23. 11. 17. 19:48, Krzysztof Kozlowski wrote:
+> On 17/11/2023 08:36, Jaewon Kim wrote:
+>>>> The reason why I chose variable name 'combine' is that EINT registers was
+>>>> separated from gpio control address. However, in exynosautov920 EINT
+>>>> registers combined with GPx group. So I chose "combine" word.
+>>> What does it mean "the GPx group"? Combined means the same place, the
+>>> same register. I could imagine offset is 0x4, what I wrote last time.
+>>>
+>>> Is the offset 0x4?
 
-diff --git a/arch/riscv/boot/dts/sophgo/sg2042.dtsi b/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-index 93256540d078..ead1cc35d88b 100644
---- a/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-+++ b/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-@@ -93,144 +93,160 @@ clint_mswi: interrupt-controller@7094000000 {
- 					      <&cpu63_intc 3>;
- 		};
+If you are asking about the offset of GPIO control register and EINT 
+control register, 0x4 is correct.
 
--		clint_mtimer0: timer@70ac000000 {
-+		clint_mtimer0: timer@70ac004000 {
- 			compatible = "sophgo,sg2042-aclint-mtimer", "thead,c900-aclint-mtimer";
--			reg = <0x00000070 0xac000000 0x00000000 0x00007ff8>;
-+			reg = <0x00000070 0xac004000 0x00000000 0x0000c000>;
-+			reg-names = "mtimecmp";
- 			interrupts-extended = <&cpu0_intc 7>,
- 					      <&cpu1_intc 7>,
- 					      <&cpu2_intc 7>,
- 					      <&cpu3_intc 7>;
- 		};
+There is no empty space between the two register.
 
--		clint_mtimer1: timer@70ac010000 {
-+		clint_mtimer1: timer@70ac014000 {
- 			compatible = "sophgo,sg2042-aclint-mtimer", "thead,c900-aclint-mtimer";
--			reg = <0x00000070 0xac010000 0x00000000 0x00007ff8>;
-+			reg = <0x00000070 0xac014000 0x00000000 0x0000c000>;
-+			reg-names = "mtimecmp";
- 			interrupts-extended = <&cpu4_intc 7>,
- 					      <&cpu5_intc 7>,
- 					      <&cpu6_intc 7>,
- 					      <&cpu7_intc 7>;
- 		};
 
--		clint_mtimer2: timer@70ac020000 {
-+		clint_mtimer2: timer@70ac024000 {
- 			compatible = "sophgo,sg2042-aclint-mtimer", "thead,c900-aclint-mtimer";
--			reg = <0x00000070 0xac020000 0x00000000 0x00007ff8>;
-+			reg = <0x00000070 0xac024000 0x00000000 0x0000c000>;
-+			reg-names = "mtimecmp";
- 			interrupts-extended = <&cpu8_intc 7>,
- 					      <&cpu9_intc 7>,
- 					      <&cpu10_intc 7>,
- 					      <&cpu11_intc 7>;
- 		};
+0x0 CON
 
--		clint_mtimer3: timer@70ac030000 {
-+		clint_mtimer3: timer@70ac034000 {
- 			compatible = "sophgo,sg2042-aclint-mtimer", "thead,c900-aclint-mtimer";
--			reg = <0x00000070 0xac030000 0x00000000 0x00007ff8>;
-+			reg = <0x00000070 0xac034000 0x00000000 0x0000c000>;
-+			reg-names = "mtimecmp";
- 			interrupts-extended = <&cpu12_intc 7>,
- 					      <&cpu13_intc 7>,
- 					      <&cpu14_intc 7>,
- 					      <&cpu15_intc 7>;
- 		};
+0x4 DAT
 
--		clint_mtimer4: timer@70ac040000 {
-+		clint_mtimer4: timer@70ac044000 {
- 			compatible = "sophgo,sg2042-aclint-mtimer", "thead,c900-aclint-mtimer";
--			reg = <0x00000070 0xac040000 0x00000000 0x00007ff8>;
-+			reg = <0x00000070 0xac044000 0x00000000 0x0000c000>;
-+			reg-names = "mtimecmp";
- 			interrupts-extended = <&cpu16_intc 7>,
- 					      <&cpu17_intc 7>,
- 					      <&cpu18_intc 7>,
- 					      <&cpu19_intc 7>;
- 		};
+0x8 PUD
 
--		clint_mtimer5: timer@70ac050000 {
-+		clint_mtimer5: timer@70ac054000 {
- 			compatible = "sophgo,sg2042-aclint-mtimer", "thead,c900-aclint-mtimer";
--			reg = <0x00000070 0xac050000 0x00000000 0x00007ff8>;
-+			reg = <0x00000070 0xac054000 0x00000000 0x0000c000>;
-+			reg-names = "mtimecmp";
- 			interrupts-extended = <&cpu20_intc 7>,
- 					      <&cpu21_intc 7>,
- 					      <&cpu22_intc 7>,
- 					      <&cpu23_intc 7>;
- 		};
+0xc DRV
 
--		clint_mtimer6: timer@70ac060000 {
-+		clint_mtimer6: timer@70ac064000 {
- 			compatible = "sophgo,sg2042-aclint-mtimer", "thead,c900-aclint-mtimer";
--			reg = <0x00000070 0xac060000 0x00000000 0x00007ff8>;
-+			reg = <0x00000070 0xac064000 0x00000000 0x0000c000>;
-+			reg-names = "mtimecmp";
- 			interrupts-extended = <&cpu24_intc 7>,
- 					      <&cpu25_intc 7>,
- 					      <&cpu26_intc 7>,
- 					      <&cpu27_intc 7>;
- 		};
+0x10 CONPDN
 
--		clint_mtimer7: timer@70ac070000 {
-+		clint_mtimer7: timer@70ac074000 {
- 			compatible = "sophgo,sg2042-aclint-mtimer", "thead,c900-aclint-mtimer";
--			reg = <0x00000070 0xac070000 0x00000000 0x00007ff8>;
-+			reg = <0x00000070 0xac074000 0x00000000 0x0000c000>;
-+			reg-names = "mtimecmp";
- 			interrupts-extended = <&cpu28_intc 7>,
- 					      <&cpu29_intc 7>,
- 					      <&cpu30_intc 7>,
- 					      <&cpu31_intc 7>;
- 		};
+0x14 PUDPDN
 
--		clint_mtimer8: timer@70ac080000 {
-+		clint_mtimer8: timer@70ac084000 {
- 			compatible = "sophgo,sg2042-aclint-mtimer", "thead,c900-aclint-mtimer";
--			reg = <0x00000070 0xac080000 0x00000000 0x00007ff8>;
-+			reg = <0x00000070 0xac084000 0x00000000 0x0000c000>;
-+			reg-names = "mtimecmp";
- 			interrupts-extended = <&cpu32_intc 7>,
- 					      <&cpu33_intc 7>,
- 					      <&cpu34_intc 7>,
- 					      <&cpu35_intc 7>;
- 		};
+0x18 EINT_CON
 
--		clint_mtimer9: timer@70ac090000 {
-+		clint_mtimer9: timer@70ac094000 {
- 			compatible = "sophgo,sg2042-aclint-mtimer", "thead,c900-aclint-mtimer";
--			reg = <0x00000070 0xac090000 0x00000000 0x00007ff8>;
-+			reg = <0x00000070 0xac094000 0x00000000 0x0000c000>;
-+			reg-names = "mtimecmp";
- 			interrupts-extended = <&cpu36_intc 7>,
- 					      <&cpu37_intc 7>,
- 					      <&cpu38_intc 7>,
- 					      <&cpu39_intc 7>;
- 		};
+0x1c EINT_FLTCON
 
--		clint_mtimer10: timer@70ac0a0000 {
-+		clint_mtimer10: timer@70ac0a4000 {
- 			compatible = "sophgo,sg2042-aclint-mtimer", "thead,c900-aclint-mtimer";
--			reg = <0x00000070 0xac0a0000 0x00000000 0x00007ff8>;
-+			reg = <0x00000070 0xac0a4000 0x00000000 0x0000c000>;
-+			reg-names = "mtimecmp";
- 			interrupts-extended = <&cpu40_intc 7>,
- 					      <&cpu41_intc 7>,
- 					      <&cpu42_intc 7>,
- 					      <&cpu43_intc 7>;
- 		};
+0x20 or 0x24 EINT_MASK (The size of FLTCON register depending on the 
+number of gpio)
 
--		clint_mtimer11: timer@70ac0b0000 {
-+		clint_mtimer11: timer@70ac0b4000 {
- 			compatible = "sophgo,sg2042-aclint-mtimer", "thead,c900-aclint-mtimer";
--			reg = <0x00000070 0xac0b0000 0x00000000 0x00007ff8>;
-+			reg = <0x00000070 0xac0b4000 0x00000000 0x0000c000>;
-+			reg-names = "mtimecmp";
- 			interrupts-extended = <&cpu44_intc 7>,
- 					      <&cpu45_intc 7>,
- 					      <&cpu46_intc 7>,
- 					      <&cpu47_intc 7>;
- 		};
+0x24 or 0x28 EINT_PEND
 
--		clint_mtimer12: timer@70ac0c0000 {
-+		clint_mtimer12: timer@70ac0c4000 {
- 			compatible = "sophgo,sg2042-aclint-mtimer", "thead,c900-aclint-mtimer";
--			reg = <0x00000070 0xac0c0000 0x00000000 0x00007ff8>;
-+			reg = <0x00000070 0xac0c4000 0x00000000 0x0000c000>;
-+			reg-names = "mtimecmp";
- 			interrupts-extended = <&cpu48_intc 7>,
- 					      <&cpu49_intc 7>,
- 					      <&cpu50_intc 7>,
- 					      <&cpu51_intc 7>;
- 		};
 
--		clint_mtimer13: timer@70ac0d0000 {
-+		clint_mtimer13: timer@70ac0d4000 {
- 			compatible = "sophgo,sg2042-aclint-mtimer", "thead,c900-aclint-mtimer";
--			reg = <0x00000070 0xac0d0000 0x00000000 0x00007ff8>;
-+			reg = <0x00000070 0xac0d4000 0x00000000 0x0000c000>;
-+			reg-names = "mtimecmp";
- 			interrupts-extended = <&cpu52_intc 7>,
- 					      <&cpu53_intc 7>,
- 					      <&cpu54_intc 7>,
- 					      <&cpu55_intc 7>;
- 		};
+>>>
+>>>
+>>>> Is another reasonable word, I will change it.
+>>> Why you cannot store the offset?
+>>>
+>>>> EINT registers related to the entire group(e.g SVC) were at the end of
+>>>> the GPIO block and are now moved to 0xf000.
+>>> So not in the same register, not combined?
+>>>
+>> Okay,
+>>
+>> Instead of the word combine, I will think of a better word in next version.
+> I want to know answer to:
+>
+> "Why you cannot store the offset?"
+>
+I did not understand exactly what you said, but if i guess,,
 
--		clint_mtimer14: timer@70ac0e0000 {
-+		clint_mtimer14: timer@70ac0e4000 {
- 			compatible = "sophgo,sg2042-aclint-mtimer", "thead,c900-aclint-mtimer";
--			reg = <0x00000070 0xac0e0000 0x00000000 0x00007ff8>;
-+			reg = <0x00000070 0xac0e4000 0x00000000 0x0000c000>;
-+			reg-names = "mtimecmp";
- 			interrupts-extended = <&cpu56_intc 7>,
- 					      <&cpu57_intc 7>,
- 					      <&cpu58_intc 7>,
- 					      <&cpu59_intc 7>;
- 		};
+you want to get rid of the offs because the value of the offs is always 
+the same?
 
--		clint_mtimer15: timer@70ac0f0000 {
-+		clint_mtimer15: timer@70ac0f4000 {
- 			compatible = "sophgo,sg2042-aclint-mtimer", "thead,c900-aclint-mtimer";
--			reg = <0x00000070 0xac0f0000 0x00000000 0x00007ff8>;
-+			reg = <0x00000070 0xac0f4000 0x00000000 0x0000c000>;
-+			reg-names = "mtimecmp";
- 			interrupts-extended = <&cpu60_intc 7>,
- 					      <&cpu61_intc 7>,
- 					      <&cpu62_intc 7>,
---
-2.42.1
+#define EXYNOSV920_PIN_BANK_EINTG(pins, reg, id, offs, mask_offs, pend_offs)
+
+
+Thanks
+
+Jaewon Kim
 
 
