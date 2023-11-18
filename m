@@ -1,138 +1,108 @@
-Return-Path: <devicetree+bounces-16849-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16850-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CE437EFF61
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 13:09:20 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 881227EFF83
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 13:32:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 44B5A280F92
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 12:09:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 36FFE280F72
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 12:32:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B63DB1078E;
-	Sat, 18 Nov 2023 12:09:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0C814F88F;
+	Sat, 18 Nov 2023 12:32:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="k1NekQyW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF12FD61
-	for <devicetree@vger.kernel.org>; Sat, 18 Nov 2023 04:09:09 -0800 (PST)
-Received: from i5e861935.versanet.de ([94.134.25.53] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1r4K8I-0000ix-Ta; Sat, 18 Nov 2023 13:09:06 +0100
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
- Tim Lunn <tim@feathertop.org>
-Cc: Jagan Teki <jagan@edgeble.ai>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Tim Lunn <tim@feathertop.org>, Rob Herring <robh+dt@kernel.org>,
- linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH 7/8] ARM: dts: Add Sonoff iHost Smart Home Hub
-Date: Sat, 18 Nov 2023 13:09:05 +0100
-Message-ID: <4921575.Y6S9NjorxK@diego>
-In-Reply-To: <20231113120705.1647498-8-tim@feathertop.org>
-References:
- <20231113120705.1647498-1-tim@feathertop.org>
- <20231113120705.1647498-8-tim@feathertop.org>
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC4FED61;
+	Sat, 18 Nov 2023 04:31:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+	s=s31663417; t=1700310696; x=1700915496; i=wahrenst@gmx.net;
+	bh=Z1OND/AiiDHMqRaOoZ7TJNhdG8OOj1E5sq3ErQeKSO0=;
+	h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:
+	 In-Reply-To;
+	b=k1NekQyWizA2ODr1KtmjCAGKbbLs1V4ug/lMHooAmxgUuOpEUAsrjekXYmKb21wC
+	 C8EAxesi36ldpP1OYOGBLZCrwwLvxn2t/X7cG1kEGLxTQWFQQWSFlcQtS2z9k2khl
+	 jSJ0oajxCaWYnQ80KZrtoadCxWsAZetmxcGlC/9YAJgewxmDAmwOvTo7gcBCDv6+x
+	 mnCsphtWhLscMhr41uThDeksq/gaY+f31TGjonCMuleN/1RCluUMVtn3GIaxPqCEx
+	 HBQc7P4rWjRCIiZqcT0FnalYqWYHeamE5FptGM0NhHmP7BPpSo69RFskl3d61oFTp
+	 BkhnPCpKohAzSrFi6w==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.129] ([37.4.248.43]) by mail.gmx.net (mrgmx104
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MdNY8-1rdOBc2fey-00ZMYB; Sat, 18
+ Nov 2023 13:31:36 +0100
+Message-ID: <4233bd69-e5e4-49e9-96d9-b52492061ef8@gmx.net>
+Date: Sat, 18 Nov 2023 13:31:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] leds: gpio: Add kernel log if devm_fwnode_gpiod_get
+ fails
+Content-Language: en-US
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>, Pavel Machek
+ <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+ bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-leds@vger.kernel.org
+References: <20231105154940.97688-1-wahrenst@gmx.net>
+ <20231105154940.97688-2-wahrenst@gmx.net>
+ <ZUjLuTPppvI9xlOD@smile.fi.intel.com>
+From: Stefan Wahren <wahrenst@gmx.net>
+In-Reply-To: <ZUjLuTPppvI9xlOD@smile.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:tj8WAVX5BKrSoeM5bVyEFlq5A0r+sg6RDDr6WZMNUQrbmFaAFZ0
+ Km3Og5Z/Y3OSr/nJ/xsP/euHSlOhbVpAl2ln2rcxSCVaSm6dI9ZL5d+SyFj4hSCBNOb7dC7
+ SlclEfIB9EVcjxo8VFKd7iu0otjtDV8DgdkbY/oS5hRS3bnSzb+5iJT43ViMbY9Yp7eUDj7
+ Lhnhwv50aQp/Pgn2/cLhw==
+UI-OutboundReport: notjunk:1;M01:P0:Fm6udvCQFgU=;b2G1j5SlSd9ehNQWxfvbL+M+Dtb
+ advx1UZUjtjRfxW90WZK/TYEg7OOqjUarYQ9WjNI3lVK62s6QvJ9zGQdwioRhY/K8WhrRyCrW
+ WgRAbHH/IQX+/Q9O4/xu0Q9bnKy83/kQAHsWZch7fjc5PeRJsKIVwZlwr1UE/kMcW6p88idiA
+ 3LORtsYrL24jbwgyMLQOzoE2AYVDx+IsXRgIYS7Gde4HClMUHn6PHMSOWuf0XIg8kudVnSUV5
+ dUYzMt8ssQYcHQq1BWw0uqM4zBweeCk+MfmXvBblApu8G5LzXD6FSnyPalsais/hcXTvnf9Gn
+ HDXfrzBPGR+T2l1mixPBoZqH++m/kcIiRrXRdI+clyIC4w0V8z6iLumfID6TgJWDizuUalowe
+ /luYD9nE3Yp/d9PNw4TZGQSiwmfCi1ffUS4TmOZj85GUs27jProqYVBNhNkI2tbGL87CQ+lCk
+ V4bn+3c5OQyTRL67vc3zC1e3eQF9LJFYe7h0NixBBGSQrhTLgOn6Q6SleP88fKWbj7BgEhgVc
+ krQgnfL6JrgBJAUuyHUIg6ySbD8r3YoGiHGVv74uvGVhFuVTeWr7pKYO1Nk7lSddl6bV+/9zM
+ ib3gHyK3i53lYlYPh95dr5rx09ykrfN7nX8aZ035OPX0QZqrkjJJ3rT3ZiUsZCK7jsfQMqM9l
+ rysdIRZB1AY/ZwZmHcszMuq6320Ad/1ifwV6HoVhdeG7XWcrahAq1Nm7yADgLgvNEvX3J0/25
+ 3T1JYzlCsUO4aBu1XXQRxmVjA8URY4Dh7i2ILkEOlruZwLqDLaXjUv4n6O4aX2RoS04/1HMlp
+ K+h0KziDusgH7Vpm0X8cWiiMPaKz0pxSEq6vR0qp8dGbfw43+UX5P7QPz3uZX8z9t9j8TleYH
+ B5GyTiTPb3WEp2klMwoPEdUUN1yu7MUqQoivcusBpQS9d2PtbmdX7vd2fJDGT4VRqR1gw6XEK
+ bWdaM5t5hmBcwjndfsPy3dM4Pao=
 
-Hi Tim,
+Hi Andy,
 
-Am Montag, 13. November 2023, 13:07:04 CET schrieb Tim Lunn:
-> Sonoff iHost is gateway device designed to provide a Smart Home Hub,
-> it is based on Rockchip RV1126. There is also a version with 2GB RAM
-> based off the RV1109 dual core SoC.
-> 
-> Features:
-> - Rockchip RV1126
-> - 4GB DDR4
-> - 8GB eMMC
-> - microSD slot
-> - RMII Ethernet PHY
-> - 1x USB 2.0 Host
-> - 1x USB 2.0 OTG
-> - Realtek RTL8723DS WiFi/BT
-> - EFR32MG21 Silabs Zigbee radio
-> - Speaker/Microphone
-> 
-> This patch adds the initial device tree for this device, it is largely
-> based off the device trees for mainline Edgeble Neu2 and downstream
-> Rockchip rv1126-evb-v13 configs. It has been adapted with relevant
-> peripheral and GPIO pins for the iHost.
-> 
-> Signed-off-by: Tim Lunn <tim@feathertop.org>
-
-
-> diff --git a/arch/arm/boot/dts/rockchip/rv1109.dtsi b/arch/arm/boot/dts/rockchip/rv1109.dtsi
-> new file mode 100644
-> index 000000000000..9cbaa08ab1b8
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/rockchip/rv1109.dtsi
-> @@ -0,0 +1,23 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2019 Fuzhou Rockchip Electronics Co., Ltd.
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "rv1126.dtsi"
-> +
-> +/ {
-> +	compatible = "rockchip,rv1109";
-> +
-> +	cpus {
-> +		/delete-node/ cpu@f02;
-> +		/delete-node/ cpu@f03;
-> +	};
-> +
-> +	arm-pmu {
-> +		interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI 124 IRQ_TYPE_LEVEL_HIGH>;
-> +		interrupt-affinity = <&cpu0>, <&cpu1>;
-> +	};
-> +};
-
-this definitly wants to be its own patch ;-) .
-
-I.e. you add support for the rv1109, which seems to be the same as rv1126, just
-with 2 instead of 4 cpu cores.
-
-
-
-
-> +&sdio {
-> +	bus-width = <4>;
-> +	cap-sd-highspeed;
-> +	cap-sdio-irq;
-> +	keep-power-in-suspend;
-> +	max-frequency = <100000000>;
-> +	mmc-pwrseq = <&sdio_pwrseq>;
-> +	non-removable;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&sdmmc1_clk &sdmmc1_cmd &sdmmc1_bus4>;
-> +	rockchip,default-sample-phase = <90>;
-> +	sd-uhs-sdr104;
-> +	vmmc-supply = <&vcc3v3_sys>;
-> +	vqmmc-supply = <&vcc_1v8>;
-> +	status = "okay";
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-
-I don't think the *-cells are needed here
-
-
-Thanks
-Heiko
-
+Am 06.11.23 um 12:19 schrieb Andy Shevchenko:
+> On Sun, Nov 05, 2023 at 04:49:39PM +0100, Stefan Wahren wrote:
+>> In case leds-gpio fails to get the GPIO from the DT (e.g. the GPIO is
+>> already requested) the driver doesn't provide any helpful error log:
+>>
+>>      leds-gpio: probe of leds failed with error -16
+>>
+>> So add a new error log in case devm_fwnode_gpiod_get() fails.
+> ...
+>
+>>   		led.gpiod =3D devm_fwnode_gpiod_get(dev, child, NULL, GPIOD_ASIS,
+>>   						  NULL);
+>>   		if (IS_ERR(led.gpiod)) {
+>> +			dev_err(dev, "Failed to get gpio '%pfw': %ld\n",
+>> +				child, PTR_ERR(led.gpiod));
+> Perhaps %pe ?
+i notice that i need to use dev_err_probe because of EPROBE_DEFER
+anyway. So i will drop the second parameter in the next version.
+>
+>>   			fwnode_handle_put(child);
+>>   			return ERR_CAST(led.gpiod);
+>>   		}
 
 
