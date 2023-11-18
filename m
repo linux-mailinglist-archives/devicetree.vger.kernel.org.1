@@ -1,56 +1,47 @@
-Return-Path: <devicetree+bounces-16861-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16862-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 216C27F0053
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 16:37:15 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BDC17F00A9
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 16:53:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD6FF1F22581
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 15:37:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4DDB41C209E6
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 15:53:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EFB1107A1;
-	Sat, 18 Nov 2023 15:37:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 683DB18E3A;
+	Sat, 18 Nov 2023 15:52:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Qj+1T3Y0"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="nm3gHz3a"
 X-Original-To: devicetree@vger.kernel.org
 Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32134196;
-	Sat, 18 Nov 2023 07:37:08 -0800 (PST)
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D86E71FF7;
+	Sat, 18 Nov 2023 07:51:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
 	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
 	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
 	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
 	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=lg2DVX+DTNx+HzFj1UmL3Pguh/3uet6WpCVMj8vb2sk=; b=Qj+1T3Y0gsC6Lx1YtsxOzYFsKq
-	RkuHUX2ZCDtfKVW5p4cohpAQv90TMMxhnHf12shcnTY0CihPZ4UELi1Ux2qlAMnofLRGs9YLHmhTw
-	rlUGKhsu3nCJCoC6hL72BUORx+Cb1d0a4/qA+tV/VXHQ1IWLxenrEtJpIo3swDfUCuNs=;
+	bh=1hYM5k/OHJIzmc6ChT9Yo9Kr+sThyS1yvMvl/d2IeDU=; b=nm3gHz3aDSLq2/llOzW0U+nuKn
+	o2SNCFi4rcF7TqLhPDzjkyCehL4mE51lMojstFVeXqTHRP1h2YOzZlP4cDCbn7xhn3a/9TEm6F5qJ
+	VkFlZJv8e8E0qeKWJv4aHmvgFm7K9F3EF8b7Lke2vIqCVMYsSOKockkdUeaeaVyIFRK4=;
 Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
 	(envelope-from <andrew@lunn.ch>)
-	id 1r4NNO-000Vqg-PS; Sat, 18 Nov 2023 16:36:54 +0100
-Date: Sat, 18 Nov 2023 16:36:54 +0100
+	id 1r4Nbi-000Vtr-FC; Sat, 18 Nov 2023 16:51:42 +0100
+Date: Sat, 18 Nov 2023 16:51:42 +0100
 From: Andrew Lunn <andrew@lunn.ch>
-To: Jie Luo <quic_luoj@quicinc.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, agross@kernel.org,
-	andersson@kernel.org, konrad.dybcio@linaro.org, davem@davemloft.net,
-	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, hkallweit1@gmail.com, linux@armlinux.org.uk,
-	robert.marko@sartura.hr, linux-arm-msm@vger.kernel.org,
+To: Luo Jie <quic_luoj@quicinc.com>
+Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	hkallweit1@gmail.com, linux@armlinux.org.uk, corbet@lwn.net,
 	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, quic_srichara@quicinc.com
-Subject: Re: [PATCH 9/9] dt-bindings: net: ipq4019-mdio: Document ipq5332
- platform
-Message-ID: <6e10604f-d463-499b-b00a-57ef22a936bb@lunn.ch>
-References: <20231115032515.4249-1-quic_luoj@quicinc.com>
- <20231115032515.4249-10-quic_luoj@quicinc.com>
- <834cbb58-3a88-4ba6-8db6-10440a4d0893@linaro.org>
- <76e081ba-9d5a-41df-9c1b-d782e5656973@quicinc.com>
- <2a9bb683-da73-47af-8800-f14a833e8ee4@linaro.org>
- <386fcee0-1eab-4c0b-8866-a67821a487ee@quicinc.com>
- <77a194cd-d6a4-4c9b-87f5-373ed335528f@linaro.org>
- <de4fa95e-4bc7-438a-94bb-4b31b1b89704@quicinc.com>
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+Subject: Re: [PATCH v5 3/6] net: phy: at803x: add QCA8084 ethernet phy support
+Message-ID: <1eb60a08-f095-421a-bec6-96f39db31c09@lunn.ch>
+References: <20231118062754.2453-1-quic_luoj@quicinc.com>
+ <20231118062754.2453-4-quic_luoj@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,44 +50,35 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <de4fa95e-4bc7-438a-94bb-4b31b1b89704@quicinc.com>
+In-Reply-To: <20231118062754.2453-4-quic_luoj@quicinc.com>
 
-> The clock arguments are provided in the later part as below. i will also
-> provide more detail clock names for the new added clocks for the ipq5332
-> platform in description.
+On Sat, Nov 18, 2023 at 02:27:51PM +0800, Luo Jie wrote:
+> Add qca8084 PHY support, which is four-port PHY with maximum
+> link capability 2.5G, the features of each port is almost same
+> as QCA8081 and slave seed config is not needed.
 > 
->   - if:
-> 
->       properties:
-> 
->         compatible:
-> 
->           contains:
-> 
->             enum:
-> 
->               - qcom,ipq5332-mdio
-> 
->     then:
-> 
->       properties:
-> 
->         clocks:
-> 
->           items:
-> 
->             - description: MDIO clock source frequency fixed to 100MHZ
-> 
->             - description: UNIPHY0 AHB clock source frequency fixed to
-> 100MHZ
->             - description: UNIPHY0 SYS clock source frequency fixed to 24MHZ
->             - description: UNIPHY1 AHB clock source frequency fixed to
-> 100MHZ
->             - description: UNIPHY1 SYS clock source frequency fixed to 24MHZ
+> Three kind of interface modes supported by qca8084.
+> PHY_INTERFACE_MODE_10G_QXGMII, PHY_INTERFACE_MODE_2500BASEX and
+> PHY_INTERFACE_MODE_SGMII.
 
-As i said before, the frequency of the clocks does not matter
-here. That appears to be the drivers problem. I assume every board
-design, with any sort of PHY, needs the same clock configuration?
+Sorry for joining the conversation late.
 
-      Andrew
+I'm trying to get my head around QXGMII. Let me describe what i think
+is happening, and then you can correct me....
+
+You have 4 MACs, probably in a switch. The MII interfaces from these
+MACs go into a multiplexer, and out comes QXGMII? You then have a
+SERDES interface out of the switch and into the PHY package. Inside
+the PHY package there is a demultiplexor, giving you four MII
+interfaces, one to each PHY in the package.
+
+If you have the PHY SERDES running in 2500BaseX, you have a single
+MAC, no mux/demux, and only one PHY is used? The other three are idle.
+Same from SGMII?
+
+So the interface mode QXGMII is a property of the package. It is not
+really a property of one PHY. Having one PHY using QXGMII and another
+SGMII does not work?
+
+     Andrew
 
