@@ -1,135 +1,652 @@
-Return-Path: <devicetree+bounces-16839-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16840-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC6647EFEF2
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 11:41:20 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B01F37EFF22
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 11:58:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E8A1B1C208B5
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 10:41:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5FF73280FBA
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 10:58:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00D6E10795;
-	Sat, 18 Nov 2023 10:41:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F094F101E0;
+	Sat, 18 Nov 2023 10:58:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eJpfNqUS"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KPddqsLy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D04FC107A5;
-	Sat, 18 Nov 2023 10:41:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55C91C433C8;
-	Sat, 18 Nov 2023 10:41:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700304074;
-	bh=IbhrKQIHbt867NOmvlXVQQ/KhWWhW4WnEbDhXB0zfMc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=eJpfNqUS/ufprXVU1rWDyuPlonh5+Ts3e9BtwgX66m32maoUHUJu3smuB7zBHdfe1
-	 d9SloI8FOsAAlx6nuDUi73c9w5lQSH5lbwYb2HQeFVRkS12sL9y6NyCB/uKm5ERIt2
-	 CtgrMt0Zc72Q/veFUMGfYyJGjRACEVOZ/oEWLvLoqhqLIwTZElQ4Uh0SbzeOC06jxA
-	 dkjlVqfjXCqwY+YFNgagFDD0YPQ21XbPbtT7/VHOdhCfYsXGOzqS/+HApU0NdB6p5K
-	 rqpuoTSxuStU93Vi/lLuW8x3KXfcITBuF3Ii1A1aoD3ALpwRuHKc+mzI3TcOVi/CgY
-	 1qVkxjuRGNZKQ==
-Message-ID: <6a8c44e1-d3a3-49ee-bfbc-8a994a6d4ff8@kernel.org>
-Date: Sat, 18 Nov 2023 12:41:07 +0200
+Received: from mail-pj1-x1041.google.com (mail-pj1-x1041.google.com [IPv6:2607:f8b0:4864:20::1041])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD9C0D6D;
+	Sat, 18 Nov 2023 02:58:42 -0800 (PST)
+Received: by mail-pj1-x1041.google.com with SMTP id 98e67ed59e1d1-27ff83feb29so2475530a91.3;
+        Sat, 18 Nov 2023 02:58:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1700305122; x=1700909922; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=1xGEZcbApPZSXD3KT1tMlVpDENRQrwYScTWDeSfgosk=;
+        b=KPddqsLyIYVfqYJfEV6kivled/LD7yYRFLBo6sMQOoxqC8xoq0FhZplhdtO2SiT5Bc
+         cAe+L/1788bmlXReFl98o7w0jL5lkR0+wJUmgAxhUrdi+2t8BlJ4r6xTRZpQ9UGLuycR
+         HvMHvW61/YxtgY/l+nEBihHas+6Yx/dSq+1WK2WLkq9eaUe4a6sT2gLgWUQHvL7ld1oF
+         2CXEnBjtpEMnBbIkwnSKZfQcPBu2i+OYVJbsniIQ6rNW0eReFwYn+xH2CLHB8hWHm6qf
+         cq03CA78iWnMC8cALrgScnb0WzIt2UmnM5uQnXSMa94HadJaHbONErVvFkSzziAVZ6BL
+         yV2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700305122; x=1700909922;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1xGEZcbApPZSXD3KT1tMlVpDENRQrwYScTWDeSfgosk=;
+        b=RpYpdoF1nO0bhPs41VbpIK5/7yTyOfFM9H0biHG+U5qAtpYNkGDwg5gYfI8qta77Nw
+         0pRQf8QmHbiajH+E3YcXn2M5C8EYUpooEIlQxptPzMOxk4jZar3W7YVoOFd8tzjqdByT
+         ZGTa1nAkTcL5DE3nkrdv1FkHjSZmZeHMzjMUNavBV1xkuqJfo0TOW37BbOzUz5rX0OuC
+         wlXzq7ipklFSFhkzInPheyJph0Ln80fwYVt+VhX7ElRvyFx+L8a1n81J1FmbFbrmVO7x
+         NzbIvboLBT6dhdQcemuwsWN22V5b1n7FTYS0WNYxaA4nGy/VYqQC+/CsUQyczc16Oivc
+         5/FQ==
+X-Gm-Message-State: AOJu0Yzifj9KktqZ9pvJwMTEsIxpt25ICEjDaNZ6aAn9dD777Xi6EBYD
+	AFMmNnZdc9mb1Sd5mO1crRAyB8poKhIGmFFF
+X-Google-Smtp-Source: AGHT+IHpeiU6PaQT6EXRIJ1rZkAAJRvMtsoGkdwOI2fDG2qhksYLwwuM+vVXdhR5Ij1KyYvVKrz+mQ==
+X-Received: by 2002:a17:90b:3809:b0:26b:4a9e:3c7e with SMTP id mq9-20020a17090b380900b0026b4a9e3c7emr2312615pjb.4.1700305122045;
+        Sat, 18 Nov 2023 02:58:42 -0800 (PST)
+Received: from dawn-virtual-machine.localdomain ([183.198.110.3])
+        by smtp.gmail.com with ESMTPSA id w22-20020a17090a029600b002804c91633dsm2990868pja.14.2023.11.18.02.58.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 18 Nov 2023 02:58:41 -0800 (PST)
+From: Li peiyu <579lpy@gmail.com>
+To: jic23@kernel.org,
+	lars@metafoo.de,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org
+Cc: linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Li peiyu <579lpy@gmail.com>
+Subject: [PATCH v2 1/2] iio: humidity: Add driver for ti HDC302x humidity sensors
+Date: Sat, 18 Nov 2023 18:58:15 +0800
+Message-Id: <20231118105815.17171-1-579lpy@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/6] usb: cdns3-ti: add suspend/resume procedures for
- J7200
-Content-Language: en-US
-To: =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Peter Chen <peter.chen@kernel.org>,
- Pawel Laszczak <pawell@cadence.com>, Nishanth Menon <nm@ti.com>,
- Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
- "Vardhan, Vibhore" <vibhore@ti.com>
-Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- =?UTF-8?Q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-References: <20231113-j7200-usb-suspend-v1-0-ad1ee714835c@bootlin.com>
- <20231113-j7200-usb-suspend-v1-3-ad1ee714835c@bootlin.com>
- <5080372b-1f48-4cbc-a6c4-8689c28983cb@kernel.org>
- <CWZH66HQZNYM.T623ZOEEE0BK@tleb-bootlin-xps13-01>
- <dad980f3-e032-41e4-a1e4-a16a7f45ff95@kernel.org>
- <CX0GOP07I40N.198G7LJ0HYDBG@tleb-bootlin-xps13-01>
- <bdea68ad-7523-4738-8fa1-b670d81a6b93@kernel.org>
- <CX10D9YX1O1C.30PF317AG065N@tleb-bootlin-xps13-01>
- <3e00b2ad-b58f-4b09-9230-683c58d3bb92@kernel.org>
- <CX15J7B8F8HH.1WZ10OOW31X1H@tleb-bootlin-xps13-01>
-From: Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <CX15J7B8F8HH.1WZ10OOW31X1H@tleb-bootlin-xps13-01>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
+Add support for HDC302x integrated capacitive based relative
+humidity (RH) and temperature sensor.
+This driver supports reading values, reading the maximum and
+minimum of values and controlling the integrated heater of
+the sensor.
 
+changes for v2:
+- Added static modification to global variables
+  | Reported-by: kernel test robot <lkp@intel.com>
+  | Closes: https://lore.kernel.org/oe-kbuild-all/202311171052.IjyxJMuw-lkp@intel.com/
+- change the methord to read peak value
 
-On 17/11/2023 16:20, Théo Lebrun wrote:
-> Hi Roger,
-> 
-> On Fri Nov 17, 2023 at 12:51 PM CET, Roger Quadros wrote:
->> On 17/11/2023 12:17, Théo Lebrun wrote:
->>> On Thu Nov 16, 2023 at 10:44 PM CET, Roger Quadros wrote:
->>>> On 16/11/2023 20:56, Théo Lebrun wrote:
->>>>> On Thu Nov 16, 2023 at 1:40 PM CET, Roger Quadros wrote:
->>>>>> On 15/11/2023 17:02, Théo Lebrun wrote:
->>>>>>> On Wed Nov 15, 2023 at 12:37 PM CET, Roger Quadros wrote:
->>>>>>>> You might want to check suspend/resume ops in cdns3-plat and
->>>>>>>> do something similar here.
->>>>>>>
->>>>>>> I'm unsure what you are referring to specifically in cdns3-plat?
->>>>>>
->>>>>> What I meant is, calling pm_runtime_get/put() from system suspend/resume
->>>>>> hooks doesn't seem right.
->>>>>>
->>>>>> How about using something like pm_runtime_forbid(dev) on devices which
->>>>>> loose USB context on runtime suspend e.g. J7200.
->>>>>> So at probe we can get rid of the pm_runtime_get_sync() call.
->>>>>
->>>>> What is the goal of enabling PM runtime to then block (ie forbid) it in
->>>>> its enabled state until system suspend?
->>>>
->>>> If USB controller retains context on runtime_suspend on some platforms
->>>> then we don't want to forbid PM runtime.
->>>
->>> What's the point of runtime PM if nothing is done based on it? This is
->>> the current behavior of the driver.
->>
->> Even if driver doesn't have runtime_suspend/resume hooks, wouldn't 
->> the USB Power domain turn off if we enable runtime PM and allow runtime
->> autosuspend and all children have runtime suspended?
-> 
-> That cannot be the currently desired behavior as it would require a
-> runtime_resume implementation that restores this wrapper to its desired
-> state.
-> 
-> It could however be something that could be implemented. It would be a
-> matter of enabling PM runtime and that is it in the probe. No need to
-> even init the hardware in the probe. Then the runtime_resume
-> implementation would call the new cdns_ti_init_hw.
-> 
-> This is what the cdns3-imx wrapper is doing in a way, though what they
-> need is clocks rather than some registers to be written.
-> 
-> That all feels like outside the scope of the current patch series
-> though.
-> 
-> My suggestion for V2 would still therefore be to remove all PM runtime
-> as it has no impact. It could be added later down the road if cutting
-> the power-domain is a goal of yours.
+Signed-off-by: Li peiyu <579lpy@gmail.com>
+---
+ drivers/iio/humidity/Kconfig   |  11 +
+ drivers/iio/humidity/Makefile  |   1 +
+ drivers/iio/humidity/hdc3020.c | 513 +++++++++++++++++++++++++++++++++
+ 3 files changed, 525 insertions(+)
+ create mode 100644 drivers/iio/humidity/hdc3020.c
 
-OK let's do this.
-
+diff --git a/drivers/iio/humidity/Kconfig b/drivers/iio/humidity/Kconfig
+index 2de5494e7c22..7b585bc7db9a 100644
+--- a/drivers/iio/humidity/Kconfig
++++ b/drivers/iio/humidity/Kconfig
+@@ -48,6 +48,17 @@ config HDC2010
+ 	  To compile this driver as a module, choose M here: the module
+ 	  will be called hdc2010.
+ 
++config HDC3020
++	tristate "TI HDC3020 relative humidity and temperature sensor"
++	depends on I2C
++	help
++	  Say yes here to build support for the Texas Instruments
++	  HDC3020,HDC3021 and HDC3022 relative humidity and temperature
++	  sensors.
++
++	  To compile this driver as a module, choose M here: the module
++	  will be called hdc3020.
++
+ config HID_SENSOR_HUMIDITY
+ 	tristate "HID Environmental humidity sensor"
+ 	depends on HID_SENSOR_HUB
+diff --git a/drivers/iio/humidity/Makefile b/drivers/iio/humidity/Makefile
+index f19ff3de97c5..5fbeef299f61 100644
+--- a/drivers/iio/humidity/Makefile
++++ b/drivers/iio/humidity/Makefile
+@@ -7,6 +7,7 @@ obj-$(CONFIG_AM2315) += am2315.o
+ obj-$(CONFIG_DHT11) += dht11.o
+ obj-$(CONFIG_HDC100X) += hdc100x.o
+ obj-$(CONFIG_HDC2010) += hdc2010.o
++obj-$(CONFIG_HDC3020) += hdc3020.o
+ obj-$(CONFIG_HID_SENSOR_HUMIDITY) += hid-sensor-humidity.o
+ 
+ hts221-y := hts221_core.o \
+diff --git a/drivers/iio/humidity/hdc3020.c b/drivers/iio/humidity/hdc3020.c
+new file mode 100644
+index 000000000000..e9df4ef4f02f
+--- /dev/null
++++ b/drivers/iio/humidity/hdc3020.c
+@@ -0,0 +1,513 @@
++// SPDX-License-Identifier: GPL-2.0+
++/*
++ * hdc3020.c - Support for the TI HDC3020,HDC3021 and HDC3022
++ * temperature + relative humidity sensors
++ *
++ * Copyright (C) 2023
++ *
++ * Datasheet: https://www.ti.com/lit/ds/symlink/hdc3020.pdf
++ */
++
++#include <linux/module.h>
++#include <linux/init.h>
++#include <linux/i2c.h>
++#include <linux/bitops.h>
++#include <linux/delay.h>
++
++#include <linux/iio/iio.h>
++#include <linux/iio/sysfs.h>
++
++#define READ_RETRY_TIMES 10
++#define BUSY_DELAY 10
++
++static const u8 HDC3020_S_AUTO_10HZ_MOD0[2] = { 0x27, 0x37 };
++
++static const u8 HDC3020_EXIT_AUTO[2] = { 0x30, 0x93 };
++
++static const u8 HDC3020_R_T_RH_AUTO[2] = { 0xE0, 0x00 };
++static const u8 HDC3020_R_T_LOW_AUTO[2] = { 0xE0, 0x02 };
++static const u8 HDC3020_R_T_HIGH_AUTO[2] = { 0xE0, 0x03 };
++static const u8 HDC3020_R_RH_LOW_AUTO[2] = { 0xE0, 0x04 };
++static const u8 HDC3020_R_RH_HIGH_AUTO[2] = { 0xE0, 0x05 };
++
++static const u8 HDC3020_ENABLE_HEATER[2] = { 0x30, 0x6D };
++static const u8 HDC3020_DISABLE_HEATER[2] = { 0x30, 0x66 };
++
++static const u8 HDC3020_HEATER_FULL[5] = { 0x30, 0x6E, 0x3F, 0xFF, 0x06 };
++static const u8 HDC3020_HEATER_HALF[5] = { 0x30, 0x6E, 0x03, 0xFF, 0x00 };
++static const u8 HDC3020_HEATER_QUARTER[5] = { 0x30, 0x6E, 0x00, 0x9F, 0x96 };
++
++struct hdc3020_data {
++	struct i2c_client *client;
++	struct mutex lock;
++
++	int temp;
++	int humidity;
++	int temp_high_peak;
++	int temp_low_peak;
++	int humidity_high_peak;
++	int humidity_low_peak;
++};
++
++/*
++ * For heater
++ * 0 -> turn off
++ * 1 -> 1/4 full power
++ * 2 -> 1/2 full power
++ * 3 -> full power
++ */
++static IIO_CONST_ATTR(out_current_heater_raw_available, "0 1 2 3");
++
++static struct attribute *hdc3020_attributes[] = {
++	&iio_const_attr_out_current_heater_raw_available.dev_attr.attr,
++	NULL
++};
++
++static const struct attribute_group hdc3020_attribute_group = {
++	.attrs = hdc3020_attributes,
++};
++
++static const struct iio_chan_spec hdc3020_channels[] = {
++	{
++	 .type = IIO_TEMP,
++	 .info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
++	 BIT(IIO_CHAN_INFO_SCALE),
++	  },
++	{
++	 .type = IIO_TEMP,
++	 .info_mask_separate = BIT(IIO_CHAN_INFO_PEAK),
++	 .extend_name = "high",
++	  },
++	{
++	 .type = IIO_TEMP,
++	 .info_mask_separate = BIT(IIO_CHAN_INFO_PEAK),
++	 .extend_name = "low",
++	  },
++	{
++	 .type = IIO_HUMIDITYRELATIVE,
++	 .info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
++	 BIT(IIO_CHAN_INFO_SCALE),
++	  },
++	{
++	 .type = IIO_HUMIDITYRELATIVE,
++	 .info_mask_separate = BIT(IIO_CHAN_INFO_PEAK),
++	 .extend_name = "high",
++	  },
++	{
++	 .type = IIO_HUMIDITYRELATIVE,
++	 .info_mask_separate = BIT(IIO_CHAN_INFO_PEAK),
++	 .extend_name = "low",
++	  },
++	{
++	 .type = IIO_CURRENT,
++	 .info_mask_separate = BIT(IIO_CHAN_INFO_RAW),
++	 .extend_name = "heater",
++	 .output = 1,
++	  },
++};
++
++static int hdc3020_write_bytes(struct hdc3020_data *data, const u8 *buf,
++			       u8 len)
++{
++	int ret, cnt;
++	struct i2c_msg msg;
++	struct i2c_client *client = data->client;
++
++	msg.addr = client->addr;
++	msg.flags = 0;
++	msg.buf = (char *)buf;
++	msg.len = len;
++
++	/*
++	 * During the measurement process, HDC3020 will not return data.
++	 * So wait for a while and try again
++	 */
++	ret = 0;
++	cnt = 0;
++
++	while (cnt < READ_RETRY_TIMES) {
++		ret = i2c_transfer(client->adapter, &msg, 1);
++		if (ret == 1) {
++			ret = 0;
++			break;
++		}
++
++		mdelay(BUSY_DELAY);
++		cnt++;
++	}
++	if (cnt == READ_RETRY_TIMES) {
++		dev_err(&client->dev, "Could not write sensor command\n");
++		ret = -EREMOTEIO;
++	}
++
++	return ret;
++}
++
++static int hdc3020_read_bytes(struct hdc3020_data *data, const u8 *buf,
++			      void *val, int len)
++{
++	int ret, cnt;
++	struct i2c_msg msg[2];
++	struct i2c_client *client = data->client;
++
++	msg[0].addr = client->addr;
++	msg[0].flags = 0;
++	msg[0].buf = (char *)buf;
++	msg[0].len = 2;
++
++	msg[1].addr = client->addr;
++	msg[1].flags = I2C_M_RD;
++	msg[1].buf = val;
++	msg[1].len = len;
++
++	/*
++	 * During the measurement process, HDC3020 will not return data.
++	 * So wait for a while and try again
++	 */
++	ret = 0;
++	cnt = 0;
++
++	while (cnt < READ_RETRY_TIMES) {
++		ret = i2c_transfer(client->adapter, msg, 2);
++		if (ret == 2) {
++			ret = 0;
++			break;
++		}
++		mdelay(BUSY_DELAY);
++		cnt++;
++	}
++
++	if (cnt == READ_RETRY_TIMES) {
++		dev_err(&client->dev, "Could not read sensor data\n");
++		ret = -EREMOTEIO;
++	}
++
++	return ret;
++}
++
++/*
++ * Returns temperature in DegC, resolution is 0.01 DegC.  Output value of
++ * "2608" equals 26.08 DegC.
++ * Returns humidity in percent, resolution is 0.1 percent. Output value of
++ * "323" represents 323/10 = 32.3 %RH.
++ */
++static int hdc3020_read_measurement(struct hdc3020_data *data)
++{
++	int ret;
++	u8 buf[6];
++
++	ret = hdc3020_read_bytes(data, HDC3020_R_T_RH_AUTO, (void *)buf, 6);
++	if (ret < 0)
++		return ret;
++	data->temp = (((int)buf[0] << 8) | buf[1]) * 100 * 175 / 65535 - 4500;
++	data->humidity = (((int)buf[3] << 8) | buf[4]) * 10 * 100 / 65535;
++	return 0;
++}
++
++/*
++ * After exiting the automatic measurement mode or resetting, the peak
++ * value will be reset to the default value
++ */
++static int hdc3020_read_high_peak_t(struct hdc3020_data *data)
++{
++	int ret;
++	u8 buf[3];
++
++	ret = hdc3020_read_bytes(data, HDC3020_R_T_HIGH_AUTO, (void *)buf, 3);
++	if (ret < 0)
++		return ret;
++	data->temp_high_peak =
++	    (((int)buf[0] << 8) | buf[1]) * 100 * 175 / 65535 - 4500;
++
++	return 0;
++}
++
++static int hdc3020_read_low_peak_t(struct hdc3020_data *data)
++{
++	int ret;
++	u8 buf[3];
++
++	ret = hdc3020_read_bytes(data, HDC3020_R_T_LOW_AUTO, (void *)buf, 3);
++	if (ret < 0)
++		return ret;
++	data->temp_low_peak =
++	    (((int)buf[0] << 8) | buf[1]) * 100 * 175 / 65535 - 4500;
++
++	return 0;
++}
++
++/*
++ * After exiting the automatic measurement mode or resetting, the peak
++ * value will be reset to the default value
++ */
++static int hdc3020_read_high_peak_rh(struct hdc3020_data *data)
++{
++	int ret;
++	u8 buf[3];
++
++	ret = hdc3020_read_bytes(data, HDC3020_R_RH_HIGH_AUTO, (void *)buf, 3);
++	if (ret < 0)
++		return ret;
++	data->humidity_high_peak =
++	    (((int)buf[0] << 8) | buf[1]) * 10 * 100 / 65535;
++
++	return 0;
++}
++
++static int hdc3020_read_low_peak_rh(struct hdc3020_data *data)
++{
++	int ret;
++	u8 buf[3];
++
++	ret = hdc3020_read_bytes(data, HDC3020_R_RH_LOW_AUTO, (void *)buf, 3);
++	if (ret < 0)
++		return ret;
++	data->humidity_low_peak =
++	    (((int)buf[0] << 8) | buf[1]) * 10 * 100 / 65535;
++
++	return 0;
++}
++
++static int hdc3020_read_raw(struct iio_dev *indio_dev,
++			    struct iio_chan_spec const *chan, int *val,
++			    int *val2, long mask)
++{
++	struct hdc3020_data *data = iio_priv(indio_dev);
++
++	switch (mask) {
++	case IIO_CHAN_INFO_RAW:{
++			int ret;
++
++			ret = iio_device_claim_direct_mode(indio_dev);
++
++			if (ret)
++				return ret;
++
++			mutex_lock(&data->lock);
++			ret = hdc3020_read_measurement(data);
++			mutex_unlock(&data->lock);
++			iio_device_release_direct_mode(indio_dev);
++
++			if (ret < 0)
++				return ret;
++			if (chan->type == IIO_TEMP)
++				*val = data->temp;
++			else if (chan->type == IIO_HUMIDITYRELATIVE)
++				*val = data->humidity;
++			return IIO_VAL_INT;
++		}
++	case IIO_CHAN_INFO_PEAK:{
++			int ret;
++
++			ret = iio_device_claim_direct_mode(indio_dev);
++
++			if (ret)
++				return ret;
++
++			if (chan->type == IIO_TEMP) {
++				if (strcmp(chan->extend_name, "high") == 0) {
++					mutex_lock(&data->lock);
++					ret = hdc3020_read_high_peak_t(data);
++					mutex_unlock(&data->lock);
++					if (ret < 0)
++						return ret;
++					*val = data->temp_high_peak;
++				} else if (strcmp(chan->extend_name, "low") ==
++					   0) {
++					mutex_lock(&data->lock);
++					ret = hdc3020_read_low_peak_t(data);
++					mutex_unlock(&data->lock);
++					if (ret < 0)
++						return ret;
++					*val = data->temp_low_peak;
++				}
++			} else if (chan->type == IIO_HUMIDITYRELATIVE) {
++				if (strcmp(chan->extend_name, "high") == 0) {
++					mutex_lock(&data->lock);
++					ret = hdc3020_read_high_peak_rh(data);
++					mutex_unlock(&data->lock);
++					if (ret < 0)
++						return ret;
++					*val = data->humidity_high_peak;
++				} else if (strcmp(chan->extend_name, "low") ==
++					   0) {
++					mutex_lock(&data->lock);
++					ret = hdc3020_read_low_peak_rh(data);
++					mutex_unlock(&data->lock);
++					if (ret < 0)
++						return ret;
++					*val = data->humidity_low_peak;
++				}
++			}
++			iio_device_release_direct_mode(indio_dev);
++			return IIO_VAL_INT;
++		}
++	case IIO_CHAN_INFO_SCALE:
++		*val2 = 65536;
++		if (chan->type == IIO_TEMP)
++			*val = 1750;
++		else
++			*val = 1000;
++		return IIO_VAL_FRACTIONAL;
++	default:
++		return -EINVAL;
++	}
++}
++
++static int hdc3020_write_raw(struct iio_dev *indio_dev,
++			     struct iio_chan_spec const *chan,
++			     int val, int val2, long mask)
++{
++	struct hdc3020_data *data = iio_priv(indio_dev);
++	int ret;
++
++	switch (mask) {
++	case IIO_CHAN_INFO_RAW:
++		if (chan->type != IIO_CURRENT || val2 != 0)
++			return -EINVAL;
++
++		switch (val) {
++		case 1:
++			mutex_lock(&data->lock);
++			ret =
++			    hdc3020_write_bytes(data, HDC3020_HEATER_QUARTER,
++						5);
++			mutex_unlock(&data->lock);
++			if (ret < 0)
++				return ret;
++			mutex_lock(&data->lock);
++			ret =
++			    hdc3020_write_bytes(data, HDC3020_ENABLE_HEATER, 2);
++			mutex_unlock(&data->lock);
++			if (ret < 0)
++				return ret;
++			break;
++		case 2:
++			mutex_lock(&data->lock);
++			ret = hdc3020_write_bytes(data, HDC3020_HEATER_HALF, 5);
++			mutex_unlock(&data->lock);
++			if (ret < 0)
++				return ret;
++			mutex_lock(&data->lock);
++			ret =
++			    hdc3020_write_bytes(data, HDC3020_ENABLE_HEATER, 2);
++			mutex_unlock(&data->lock);
++			if (ret < 0)
++				return ret;
++			break;
++		case 3:
++			mutex_lock(&data->lock);
++			ret = hdc3020_write_bytes(data, HDC3020_HEATER_FULL, 5);
++			mutex_unlock(&data->lock);
++			if (ret < 0)
++				return ret;
++			mutex_lock(&data->lock);
++			ret =
++			    hdc3020_write_bytes(data, HDC3020_ENABLE_HEATER, 2);
++			mutex_unlock(&data->lock);
++			if (ret < 0)
++				return ret;
++			break;
++		case 0:
++			mutex_lock(&data->lock);
++			ret =
++			    hdc3020_write_bytes(data, HDC3020_DISABLE_HEATER,
++						2);
++			mutex_unlock(&data->lock);
++			if (ret < 0)
++				return ret;
++			break;
++		default:
++			return -EINVAL;
++		}
++		return ret;
++	default:
++		return -EINVAL;
++	}
++}
++
++static const struct iio_info hdc3020_info = {
++	.read_raw = hdc3020_read_raw,
++	.write_raw = hdc3020_write_raw,
++	.attrs = &hdc3020_attribute_group,
++};
++
++static int hdc3020_probe(struct i2c_client *client)
++{
++	struct iio_dev *indio_dev;
++	struct hdc3020_data *data;
++	int ret;
++
++	if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C))
++		return -EOPNOTSUPP;
++	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*data));
++	if (!indio_dev)
++		return -ENOMEM;
++	data = iio_priv(indio_dev);
++	i2c_set_clientdata(client, indio_dev);
++	data->client = client;
++	mutex_init(&data->lock);
++
++	indio_dev->name = "hdc3020";
++	indio_dev->modes = INDIO_DIRECT_MODE;
++	indio_dev->info = &hdc3020_info;
++
++	indio_dev->channels = hdc3020_channels;
++	indio_dev->num_channels = ARRAY_SIZE(hdc3020_channels);
++
++	ret = hdc3020_write_bytes(data, HDC3020_S_AUTO_10HZ_MOD0, 2);
++	if (ret) {
++		dev_err(&client->dev, "Unable to set up measurement\n");
++		return ret;
++	}
++
++	return iio_device_register(indio_dev);
++}
++
++static void hdc3020_remove(struct i2c_client *client)
++{
++	int ret;
++	struct iio_dev *indio_dev = i2c_get_clientdata(client);
++	struct hdc3020_data *data = iio_priv(indio_dev);
++
++	iio_device_unregister(indio_dev);
++
++	/* Disable Automatic Measurement Mode */
++	ret = hdc3020_write_bytes(data, HDC3020_EXIT_AUTO, 2);
++	if (ret)
++		dev_err(&client->dev, "Unable to stop measurement\n");
++}
++
++static const struct i2c_device_id hdc3020_id[] = {
++	{ "hdc3020" },
++	{ "hdc3021" },
++	{ "hdc3022" },
++	{ }
++};
++
++MODULE_DEVICE_TABLE(i2c, hdc3020_id);
++
++static const struct of_device_id hdc3020_dt_ids[] = {
++	{.compatible = "ti,hdc3020" },
++	{.compatible = "ti,hdc3021", "ti,hdc3020" },
++	{.compatible = "ti,hdc3022", "ti,hdc3020" },
++	{ }
++};
++
++MODULE_DEVICE_TABLE(of, hdc3020_dt_ids);
++
++static struct i2c_driver hdc3020_driver = {
++	.driver = {
++		   .name = "hdc3020",
++		   .of_match_table = hdc3020_dt_ids,
++		    },
++	.probe = hdc3020_probe,
++	.remove = hdc3020_remove,
++	.id_table = hdc3020_id,
++};
++
++module_i2c_driver(hdc3020_driver);
++
++MODULE_AUTHOR("Li peiyu <579lpy@gmail.com>");
++MODULE_DESCRIPTION("TI HDC3020 humidity and temperature sensor driver");
++MODULE_LICENSE("GPL");
 -- 
-cheers,
--roger
+2.34.1
+
 
