@@ -1,56 +1,58 @@
-Return-Path: <devicetree+bounces-16867-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16868-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A76F27F021E
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 19:54:56 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA11A7F02AE
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 20:35:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D7FF7B209B3
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 18:54:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DA90A1C2090B
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 19:35:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBDB4199CD;
-	Sat, 18 Nov 2023 18:54:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 474B31DDDB;
+	Sat, 18 Nov 2023 19:35:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="e5wJMpE9"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="FfGMdm7P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACA65F2;
-	Sat, 18 Nov 2023 10:54:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=b5JCReSehGd9vgarmSFVhXVxVGPZtnscv9/0QR9Wvgw=; b=e5wJMpE9Tmh6r68FpqiceA9rhG
-	o8drF/CTrDqcdPP+9WDA8GtTxWn2jrpb8JnvRazj8r2N82ceUDUKs/OAzLaQUKuPN/tJlLWL2rGWE
-	V1FQTBvNdf4pxOm4+l0xWTTIVcLohoIHw8pYw/ObMlE7hadsh2IR/HcoAggBcZryJ9mI=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1r4QSc-000WY3-Ks; Sat, 18 Nov 2023 19:54:30 +0100
-Date: Sat, 18 Nov 2023 19:54:30 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Kory Maincent <kory.maincent@bootlin.com>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Luis Chamberlain <mcgrof@kernel.org>,
-	Russ Weight <russ.weight@linux.dev>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 9/9] net: pse-pd: Add PD692x0 PSE controller
- driver
-Message-ID: <45694d77-bcf8-4377-9aa0-046796de8d74@lunn.ch>
-References: <20231116-feature_poe-v1-0-be48044bf249@bootlin.com>
- <20231116-feature_poe-v1-9-be48044bf249@bootlin.com>
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECBB126A1;
+	Sat, 18 Nov 2023 11:33:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=k1aqD8s308HU/CtiyzCh6FFV6oCvcUqmf4QRDj/tSmU=; b=FfGMdm7P9JHeq7crmQS6ocDyYq
+	rR10RxYawbG2+cH5LYzCM47xsVZ6YLwEr5PZtrC22xvfLB/KVjUW6mOSDqINsbHd2JVfgCGP9er6o
+	V/GpwNX6GnlnX1kUTjAeZvw/crRzQtD0tPZd7cbLp2YtuSuGMkEbHCugn2Wh6rGN4V2H4iZaicUhW
+	b8zxwi3lEvgen7q6kaB2Y4qGMrGQVAPOFaGjIb4S/4jFt4aDiMcxdZF08zshRWFheZ3lir9oJzTnK
+	hIkx4wX4LmrIzTeAdzJCqgCo0GJw4fItZrHAnMjG+pbkVqmMxmPjxh2l6D47pSZU3sgCyoIVjEJHy
+	p6b3zy9Q==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:46872)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1r4R4W-0003vd-0d;
+	Sat, 18 Nov 2023 19:33:40 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1r4R4U-0001OK-SV; Sat, 18 Nov 2023 19:33:38 +0000
+Date: Sat, 18 Nov 2023 19:33:38 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Luo Jie <quic_luoj@quicinc.com>, davem@davemloft.net,
+	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, hkallweit1@gmail.com, corbet@lwn.net,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+Subject: Re: [PATCH v5 3/6] net: phy: at803x: add QCA8084 ethernet phy support
+Message-ID: <ZVkRkhMHWcAR37fW@shell.armlinux.org.uk>
+References: <20231118062754.2453-1-quic_luoj@quicinc.com>
+ <20231118062754.2453-4-quic_luoj@quicinc.com>
+ <1eb60a08-f095-421a-bec6-96f39db31c09@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,243 +61,61 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231116-feature_poe-v1-9-be48044bf249@bootlin.com>
+In-Reply-To: <1eb60a08-f095-421a-bec6-96f39db31c09@lunn.ch>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-> +struct pd692x0_priv {
-> +	struct i2c_client *client;
-> +	struct pse_controller_dev pcdev;
-> +
-> +	enum pd692x0_fw_state fw_state;
-> +	struct fw_upload *fwl;
-> +	bool cancel_request:1;
-> +
-> +	u8 msg_id;
-> +	bool last_cmd_key:1;
+On Sat, Nov 18, 2023 at 04:51:42PM +0100, Andrew Lunn wrote:
+> On Sat, Nov 18, 2023 at 02:27:51PM +0800, Luo Jie wrote:
+> > Add qca8084 PHY support, which is four-port PHY with maximum
+> > link capability 2.5G, the features of each port is almost same
+> > as QCA8081 and slave seed config is not needed.
+> > 
+> > Three kind of interface modes supported by qca8084.
+> > PHY_INTERFACE_MODE_10G_QXGMII, PHY_INTERFACE_MODE_2500BASEX and
+> > PHY_INTERFACE_MODE_SGMII.
+> 
+> Sorry for joining the conversation late.
+> 
+> I'm trying to get my head around QXGMII. Let me describe what i think
+> is happening, and then you can correct me....
+> 
+> You have 4 MACs, probably in a switch. The MII interfaces from these
+> MACs go into a multiplexer, and out comes QXGMII? You then have a
+> SERDES interface out of the switch and into the PHY package. Inside
+> the PHY package there is a demultiplexor, giving you four MII
+> interfaces, one to each PHY in the package.
+> 
+> If you have the PHY SERDES running in 2500BaseX, you have a single
+> MAC, no mux/demux, and only one PHY is used? The other three are idle.
+> Same from SGMII?
+> 
+> So the interface mode QXGMII is a property of the package. It is not
+> really a property of one PHY. Having one PHY using QXGMII and another
+> SGMII does not work?
 
-Does a bool bit field of size 1 make any sense?  I would also put the
-two bitfields next to each other, and the compiler might then pack
-them into the same word. The base type of a u8 would allow the compile
-to put it next to the msg_id without any padding.
+10G_QXGMII is defined in the Cisco USXGMII multi-port document as one
+of several possibilities for a USXGMII-M link. The Cisco document can
+be a little confusing beause it states that 10G_QXGMII supports 10M,
+100M, 1G and 2.5G, and then only talks about a 10G and 100M/1G MAC.
 
-> +	unsigned long last_cmd_key_time;
-> +
-> +	enum ethtool_pse_admin_state admin_state[PD692X0_MAX_LOGICAL_PORTS];
-> +};
-> +
-> +/* Template list of the fixed bytes of the communication messages */
-> +static const struct pd692x0_msg pd692x0_msg_template_list[PD692X0_MSG_CNT] = {
-> +	[PD692X0_MSG_RESET] = {
-> +		.content = {
-> +			.key = PD692X0_KEY_CMD,
-> +			.sub = {0x07, 0x55, 0x00},
-> +			.data = {0x55, 0x00, 0x55, 0x4e,
-> +				 0x4e, 0x4e, 0x4e, 0x4e},
-> +		},
-> +	},
+For 10G_QXGMII, there are 4 MAC interfaces. These are connected to a
+rate "adaption" through symbol replication block, and then on to a
+clause 49 PCS block.
 
-Is there any documentation about what all these magic number mean?
+There is then a port MUX and framing block, followed by the PMA
+serdes which communicates with the remote end over a single pair of
+transmit/receive serdes lines.
 
-> +/* Implementation of the i2c communication in particular when there is
-> + * a communication loss. See the "Synchronization During Communication Loss"
-> + * paragraph of the Communication Protocol document.
-> + */
+Each interface also has its own clause 37 autoneg block.
 
-Is this document public?
+So, for an interface to operate in SGMII mode, it would have to be
+muxed to a different path before being presented to the USXGMII-M
+block since each interface does not have its own external data lane
+- thus that's out of scope of USXGMII-M as documented by Cisco.
 
-> +static int pd692x0_recv_msg(struct pd692x0_priv *priv,
-> +			    struct pd692x0_msg *msg,
-> +			    struct pd692x0_msg_content *buf)
-> +{
-> +	const struct i2c_client *client = priv->client;
-> +	int ret;
-> +
-> +	memset(buf, 0, sizeof(*buf));
-> +	if (msg->delay_recv)
-> +		msleep(msg->delay_recv);
-> +	else
-> +		msleep(30);
-> +
-> +	i2c_master_recv(client, (u8 *)buf, sizeof(*buf));
-> +	if (buf->key)
-> +		goto out;
+Hope this helps.
 
-This is the first attempt to receive the message. I assume buf->key
-not being 0 indicates something has been received?
-
-> +
-> +	msleep(100);
-> +
-> +	i2c_master_recv(client, (u8 *)buf, sizeof(*buf));
-> +	if (buf->key)
-> +		goto out;
-
-So this is a second attempt. Should there be another memset? Could the
-first failed transfer fill the buffer with random junk in the higher
-bytes, and a successful read here could be a partial read and the end
-of the buffer still contains the junk.
-
-> +
-> +	ret = pd692x0_send_msg(priv, msg);
-> +	if (ret)
-> +		return ret;
-
-So now we are re-transmitting the request.
-
-> +
-> +	if (msg->delay_recv)
-> +		msleep(msg->delay_recv);
-> +	else
-> +		msleep(30);
-> +
-> +	i2c_master_recv(client, (u8 *)buf, sizeof(*buf));
-> +	if (buf->key)
-> +		goto out;
-> +
-> +	msleep(100);
-> +
-> +	i2c_master_recv(client, (u8 *)buf, sizeof(*buf));
-> +	if (buf->key)
-> +		goto out;
-> +
-> +	msleep(10000);
-
-And two more attemps to receive it.
-
-> +
-> +	ret = pd692x0_send_msg(priv, msg);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (msg->delay_recv)
-> +		msleep(msg->delay_recv);
-> +	else
-> +		msleep(30);
-> +
-> +	i2c_master_recv(client, (u8 *)buf, sizeof(*buf));
-> +	if (buf->key)
-> +		goto out;
-> +
-> +	msleep(100);
-> +
-> +	i2c_master_recv(client, (u8 *)buf, sizeof(*buf));
-> +	if (buf->key)
-> +		goto out;
-
-Another resend and two more attempts to receive.
-
-Is there a reason to not uses for loops here? And maybe put
-send/receive/receive into a helper? And maybe make the first send part
-of this, rather then separate? I think the code will be more readable
-when restructured.
-
-> +static int pd692x0_ethtool_set_config(struct pse_controller_dev *pcdev,
-> +				      unsigned long id,
-> +				      struct netlink_ext_ack *extack,
-> +				      const struct pse_control_config *config)
-> +{
-> +	struct pd692x0_priv *priv = to_pd692x0_priv(pcdev);
-> +	struct pd692x0_msg_content buf = {0};
-> +	struct pd692x0_msg msg;
-> +	int ret;
-> +
-> +	ret = pd692x0_fw_unavailable(priv);
-> +	if (ret)
-> +		return ret;
-
-It seems a bit late to check if the device has any firmware. I would
-of expected probe to check that, and maybe attempt to download
-firmware. If that fails, fail the probe, since the PSE is a brick.
-
-> +static struct pd692x0_msg_ver pd692x0_get_sw_version(struct pd692x0_priv *priv)
-> +{
-> +	struct pd692x0_msg msg = pd692x0_msg_template_list[PD692X0_MSG_GET_SW_VER];
-> +	struct device *dev = &priv->client->dev;
-> +	struct pd692x0_msg_content buf = {0};
-> +	struct pd692x0_msg_ver ver = {0};
-> +	int ret;
-> +
-> +	ret = pd692x0_sendrecv_msg(priv, &msg, &buf);
-> +	if (ret < 0) {
-> +		dev_err(dev, "Failed to get PSE version (%pe)\n", ERR_PTR(ret));
-> +		return ver;
-
-I _think_ that return is wrong ???
-
-> +static enum fw_upload_err pd692x0_fw_write(struct fw_upload *fwl,
-> +					   const u8 *data, u32 offset,
-> +					   u32 size, u32 *written)
-> +{
-> +	struct pd692x0_priv *priv = fwl->dd_handle;
-> +	char line[PD692X0_FW_LINE_MAX_SZ];
-> +	const struct i2c_client *client;
-> +	int ret, i;
-> +	char cmd;
-> +
-> +	client = priv->client;
-> +	priv->fw_state = PD692X0_FW_WRITE;
-> +
-> +	/* Erase */
-> +	cmd = 'E';
-> +	ret = i2c_master_send(client, &cmd, 1);
-> +	if (ret < 0) {
-> +		dev_err(&client->dev,
-> +			"Failed to boot programming mode (%pe)\n",
-> +			ERR_PTR(ret));
-> +		return FW_UPLOAD_ERR_RW_ERROR;
-> +	}
-> +
-> +	ret = pd692x0_fw_recv_resp(client, 100, "TOE\r\n", sizeof("TOE\r\n") - 1);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = pd692x0_fw_recv_resp(client, 5000, "TE\r\n", sizeof("TE\r\n") - 1);
-> +	if (ret)
-> +		dev_warn(&client->dev,
-> +			 "Failed to erase internal memory, however still try to write Firmware\n");
-> +
-> +	ret = pd692x0_fw_recv_resp(client, 100, "TPE\r\n", sizeof("TPE\r\n") - 1);
-> +	if (ret)
-> +		dev_warn(&client->dev,
-> +			 "Failed to erase internal memory, however still try to write Firmware\n");
-> +
-> +	if (priv->cancel_request)
-> +		return FW_UPLOAD_ERR_CANCELED;
-> +
-> +	/* Program */
-> +	cmd = 'P';
-> +	ret = i2c_master_send(client, &cmd, sizeof(char));
-> +	if (ret < 0) {
-> +		dev_err(&client->dev,
-> +			"Failed to boot programming mode (%pe)\n",
-> +			ERR_PTR(ret));
-> +		return ret;
-> +	}
-> +
-> +	ret = pd692x0_fw_recv_resp(client, 100, "TOP\r\n", sizeof("TOP\r\n") - 1);
-> +	if (ret)
-> +		return ret;
-> +
-> +	i = 0;
-> +	while (i < size) {
-> +		ret = pd692x0_fw_get_next_line(data, line, size - i);
-> +		if (!ret) {
-> +			ret = FW_UPLOAD_ERR_FW_INVALID;
-> +			goto err;
-> +		}
-> +
-> +		i += ret;
-> +		data += ret;
-> +		if (line[0] == 'S' && line[1] == '0') {
-> +			continue;
-> +		} else if (line[0] == 'S' && line[1] == '7') {
-> +			ret = pd692x0_fw_write_line(client, line, true);
-> +			if (ret)
-> +				goto err;
-
-Is the firmware in Motorola SREC format? I thought the kernel had a
-helper for that, but a quick search did not find it. So maybe i'm
-remembering wrongly. But it seems silly for every driver to implement
-an SREC parser.
-
-   Andrew
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
