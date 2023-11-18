@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-16813-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16814-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 633C97EFCE3
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 02:11:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA2707EFCE5
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 02:12:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 06DBA281423
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 01:11:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 741FB2813C2
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 01:12:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E93F10E1;
-	Sat, 18 Nov 2023 01:11:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5C3510E1;
+	Sat, 18 Nov 2023 01:12:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vL3zB8mq"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iXIx+jGM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C6EA10EC
-	for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 17:11:41 -0800 (PST)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-9db6cf8309cso345844266b.0
-        for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 17:11:40 -0800 (PST)
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B66910C6
+	for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 17:12:01 -0800 (PST)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-9becde9ea7bso733398066b.0
+        for <devicetree@vger.kernel.org>; Fri, 17 Nov 2023 17:12:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700269899; x=1700874699; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1700269920; x=1700874720; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=BbexD1T/FT/YPW6uGJXfL9w+KF6e3VpkGSJ4SDAyprU=;
-        b=vL3zB8mqDD8UoyHQJ+g3coOzfuJlztyjEMYx/YoY6YZxRiNcbAKyN6aDmrEipQ3X90
-         cASqkv6R1op5gVqVcs6pWGwvpW03fxJixJuFznlY2Ih4cfAq8mJ7tzxXFSPTr+2unnO5
-         KJX/6plaX457rx1JpB8NIgAMtc/JA5c24MkhtkCk0YeuC/jDItS+bGSy7G+1G9KPoaHt
-         3Ekzw0Qq/3MBfsgPBgutdV65Zkupd+nwkswuobmKHSSJPsm1oReI2J1XXNQr6m1NT62Y
-         xfz5ORvu4PF8cCoxnSO/wqtsAg4OhihqXMeSa0a7yTk9UymFXL+7BDa/HqzBy/ulggli
-         NPkA==
+        bh=kznQGdnKp7IkQ8MKOzkfhU/0N5qZreYJJbTGlRYKUQI=;
+        b=iXIx+jGMIYneeDk49eVZKdDH4no1TUnprGpktK/CDtwyZrf17oIL91K4jiAVLyxYZL
+         D6pF+Sa2aHI+VJ/nwz7ClLP6A99heICjAjG7dxjc4AnBFaXR4Br/6PtqQk+V4WJ95Gl8
+         1jdHh46UZGNx+DxUhOJJ6xPw76cGc+0nLgt3bmYXVGjM8xerb3M1A0OXcrfJbxVW3Kus
+         DSdKxDu411K3kzwFBDUBuMH7WYL0pxyx0B8dWsfUcAscm4blfChi5KtKT96V+xdKq+K9
+         VEQrg+zZnwL1ezPo+cSCkcpzdp76QUA1MGjqdqa2/eOxwRKqczrJ0fmuHhsrS+RjPdxO
+         NVHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700269899; x=1700874699;
+        d=1e100.net; s=20230601; t=1700269920; x=1700874720;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BbexD1T/FT/YPW6uGJXfL9w+KF6e3VpkGSJ4SDAyprU=;
-        b=MCNgkw4MlPBpNZV95g6/4nI4TY2Y84uL/GKomLU1ljExcvYFZ0W3BiPJToayYyL2Lh
-         gTB0trf5JLnZSdPWnUktIsyIELZqKcswmMjYRczQBs2sHYrBV6ovA5NRhwZJaNSN5mzi
-         Ay/W2Tn+07B2tqhi71gOu1XGFe1WygSKjDUhw64eY4kep9ymv3mItZ2UZAgorLipPkyi
-         dGdTph8lyaPjV6aDebNmXWAIn1YPL16jueGJ/8JB+kZqC9ox4LngZlmHQ8v6j3FMq7y/
-         siYGx8jwFzO56b8BVHupJrLKo0YNX6EAJNWLKuYlExq/UouzGSXHJN1UTj0Ujgld63sX
-         CGxA==
-X-Gm-Message-State: AOJu0Yw4wnRcQWFuwJrmru3wB72sDK5gNvGz3uaeanLXUGfCYv36443F
-	4MoVmNxJyykhYKzpaCt6UbPpnA==
-X-Google-Smtp-Source: AGHT+IEbTsd14CCKxvtEvWhgJLrppyyZ5FGn+Yw8aLmlFjkF2jC5FYxA2FEOmLSkZikSFXQFDvU/3w==
-X-Received: by 2002:a17:907:3e85:b0:9bf:b022:dc7 with SMTP id hs5-20020a1709073e8500b009bfb0220dc7mr825721ejc.48.1700269899558;
-        Fri, 17 Nov 2023 17:11:39 -0800 (PST)
+        bh=kznQGdnKp7IkQ8MKOzkfhU/0N5qZreYJJbTGlRYKUQI=;
+        b=YtCag7XydcsFp1iKOP46jLM1gnOLV1YA+8E+9l/xAufvovhWuvl/UkKGdifbcvyGlW
+         vjEM6AxGnaazN/sue7/D8Qp5NHlASLVMiyT5YSJ9L9HWE8zDJQAxAFqeFlJ96Nn+4943
+         VNj19R4rhdiGbVirgHzpv1XoRD7ZPhb5GBmZsLwRsG78vzig65noDdEAl2HwoXvSR8ms
+         0fTJfxQw5kzgsgr5DdyT/8nUiG5PhnKQ8lRClMSpkZFR7ijWBzKlsMRikuFFwsSmaFVM
+         8iAbTxowqZuS7thkLuwQXzWN+WVKu6UFERpRS++6/wkrrY9iUYDsKAipfiTzgY16lHiE
+         7WWg==
+X-Gm-Message-State: AOJu0Yz3vkyRd4HklAJ0zmg9s44hh+h2S6ZTUptU+TYh3wOB42+BHCpL
+	s1q8MjXO65kSMyf9cRcg4V1s4Q==
+X-Google-Smtp-Source: AGHT+IGUoSVDnk5HoyAi1k9WsQ4XSWw6+gRpaUWTU+8itDXK5E2kpT7IlrP5Kz6pLvuK/IM6lbbkWQ==
+X-Received: by 2002:a17:906:196:b0:9b2:be2f:e31a with SMTP id 22-20020a170906019600b009b2be2fe31amr772091ejb.31.1700269920001;
+        Fri, 17 Nov 2023 17:12:00 -0800 (PST)
 Received: from [192.168.201.100] (178235187040.dynamic-4-waw-k-2-3-0.vectranet.pl. [178.235.187.40])
-        by smtp.gmail.com with ESMTPSA id f12-20020a1709062c4c00b009ddcfbac9e7sm1344347ejh.84.2023.11.17.17.11.38
+        by smtp.gmail.com with ESMTPSA id f12-20020a1709062c4c00b009ddcfbac9e7sm1344347ejh.84.2023.11.17.17.11.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Nov 2023 17:11:39 -0800 (PST)
-Message-ID: <93c5d2ad-02b2-425b-877b-9576318fe51e@linaro.org>
-Date: Sat, 18 Nov 2023 02:11:37 +0100
+        Fri, 17 Nov 2023 17:11:59 -0800 (PST)
+Message-ID: <75d5a65f-4ab2-4bc8-a177-688b590f3bb8@linaro.org>
+Date: Sat, 18 Nov 2023 02:11:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,16 +62,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/3] arm64: dts: qcom: Add base qcm6490 idp board dts
+Subject: Re: [PATCH v4 3/3] arm64: dts: qcom: Add base qcs6490-rb3gen2 board
+ dts
 Content-Language: en-US
 To: Komal Bajaj <quic_kbajaj@quicinc.com>, Andy Gross <agross@kernel.org>,
  Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>
 Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
+ linux-kernel@vger.kernel.org, Naina Mehta <quic_nainmeht@quicinc.com>
 References: <20231117125056.32503-1-quic_kbajaj@quicinc.com>
- <20231117125056.32503-3-quic_kbajaj@quicinc.com>
+ <20231117125056.32503-4-quic_kbajaj@quicinc.com>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -108,26 +109,20 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20231117125056.32503-3-quic_kbajaj@quicinc.com>
+In-Reply-To: <20231117125056.32503-4-quic_kbajaj@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 17.11.2023 13:50, Komal Bajaj wrote:
-> Add DTS for Qualcomm IDP platform using QCM6490 SoC.
-> This adds debug uart, eMMC and usb support along with
-> regulators found on this board.
+> Add DTS for Qualcomm qcs6490-rb3gen2 board which uses
+> QCS6490 SoC. This adds debug uart and usb support along
+> with regulators found on this board.
 > 
+> Co-developed-by: Naina Mehta <quic_nainmeht@quicinc.com>
+> Signed-off-by: Naina Mehta <quic_nainmeht@quicinc.com>
 > Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
 > ---
-[...]
- 
-> +	gpio-reserved-ranges = <32 2>, <48 4>;
-Please describe what these pins are for, so e.g.:
-
-gpio-reserved-ranges = <32 2>, /* spaghetti cooker */
-		       <48 4>; /* fingerprint scanner */
-
-aside from that, LGTM
+same comment as p2
 
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
