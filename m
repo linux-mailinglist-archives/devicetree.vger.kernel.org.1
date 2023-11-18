@@ -1,150 +1,97 @@
-Return-Path: <devicetree+bounces-16855-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16856-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 910ED7EFFAA
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 13:40:57 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4014A7EFFAF
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 13:43:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 438771F230ED
-	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 12:40:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D9E38280E41
+	for <lists+devicetree@lfdr.de>; Sat, 18 Nov 2023 12:43:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BE6F11C97;
-	Sat, 18 Nov 2023 12:40:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFE7CF9E6;
+	Sat, 18 Nov 2023 12:43:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="QnWM9V1J"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="QuEWURhh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41DD710CF;
-	Sat, 18 Nov 2023 04:40:46 -0800 (PST)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AIC99Zu016888;
-	Sat, 18 Nov 2023 12:40:42 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=qcppdkim1;
- bh=SBpOQrbp7XlDO8T1tC3fI7fAzNuLm6Fu1U8IgPaTQ4w=;
- b=QnWM9V1JPb5YWCq2JxdpVbeoSYUjcnQ+n7fjzCP6rK5SVWNBY1V4fHyUp+1ymJipTdlE
- iGZvU6Pxga1+7j1btSYZ2+f0yM3Vd1e1viV28S+oT+lxEPf6aGMacuv60kkbw0Mu7Utz
- p3hcAzMx4YmzFYzO5r5U+eHa904tgYc1w6l+kFkX5+LYwxJIWB6AktAeDP5rWpRUKdrx
- LEMp805Hqo12VgelzNf0hPPRmHCzGBnvmDZ2DK8u5+YUwd36Ay+cCVqCENhDuvADGkfb
- zs0mkydMQc5UBjwKnb/cY3DaTKKnwI5fFGNCfE2tMGeKP6odTZVwEDDwKbcziJbieR/7 uQ== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uem9e8jy7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 18 Nov 2023 12:40:42 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AICeeH1005596
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 18 Nov 2023 12:40:41 GMT
-Received: from hu-skakitap-hyd.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Sat, 18 Nov 2023 04:40:36 -0800
-From: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
-To: Andy Gross <agross@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        "Satya
- Priya Kakitapalli" <quic_skakitap@quicinc.com>
-Subject: [PATCH V2 4/4] clk: qcom: videocc-sm8150: Add runtime PM support
-Date: Sat, 18 Nov 2023 18:09:44 +0530
-Message-ID: <20231118123944.2202630-5-quic_skakitap@quicinc.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231118123944.2202630-1-quic_skakitap@quicinc.com>
-References: <20231118123944.2202630-1-quic_skakitap@quicinc.com>
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 150F4A2;
+	Sat, 18 Nov 2023 04:43:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+	s=s31663417; t=1700311390; x=1700916190; i=wahrenst@gmx.net;
+	bh=eoy17ezwHzirLCmlfoGhUFFjmsZQ3ZrtrTWw+ETLhKM=;
+	h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
+	b=QuEWURhh1fDeMaeUtp5TglP2UHp0Q50+J7MbVgliBYld9kBBYmEsxoCWo76piNL7
+	 7QAwHb0JYdsOtW1W3575+XhPmZVcM7Rh71H+IOq+av1A0c+tmmkcRsviDMmAQmhJL
+	 MjumaslBmPxuHgegeL6Pn4C2ndmH3wh0iwZ8TuI3xviHjNycupAiOCzCtLlYwo7Ks
+	 CfWDDI1M+IYt16imtbbHE6a734lQFgqiH2CKGJFXPIS4qu02hllkxeotxfP50QqzS
+	 cRHRry0zZZNXIMw9WTg5PIMADZ2CNewTpLrsrPek/ztjUBoNGx2j4qTIvEAmsm/mH
+	 hd2Gq+vWxQaowvLf0Q==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from stefanw-SCHENKER ([37.4.248.43]) by mail.gmx.net (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MTiPv-1quknz02QP-00U2XV; Sat, 18
+ Nov 2023 13:43:10 +0100
+From: Stefan Wahren <wahrenst@gmx.net>
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Pavel Machek <pavel@ucw.cz>,
+	Lee Jones <lee@kernel.org>
+Cc: bcm-kernel-feedback-list@broadcom.com,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-leds@vger.kernel.org,
+	Stefan Wahren <wahrenst@gmx.net>
+Subject: [PATCH V2 0/2] ARM: dts: bcm2711-rpi-400: Fix delete-node of led_act
+Date: Sat, 18 Nov 2023 13:42:50 +0100
+Message-Id: <20231118124252.14838-1-wahrenst@gmx.net>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: qs6mAs21Uh2vJWaz5MJOdMNxICpF2ME8
-X-Proofpoint-GUID: qs6mAs21Uh2vJWaz5MJOdMNxICpF2ME8
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-18_11,2023-11-17_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 mlxscore=0
- clxscore=1015 priorityscore=1501 impostorscore=0 mlxlogscore=999
- lowpriorityscore=0 bulkscore=0 phishscore=0 suspectscore=0 adultscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311060000 definitions=main-2311180094
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:iFKgKJtus0q2PlxYmUiMpiHp3Aa6enwSlfpEim+lkvAhOoGmPCD
+ LoKJKupqhuzNjxut1Sbv8TnCuiscie3SmrvZBXtYCrMO/d8yzOJHopyKKVuoXuZfFp+tPVR
+ qb3ANwvSOQOiPpHlkq558YD9L17HjfixjGImeVZ7BUyMxf7EIxLvoccaX4AdbS37bQNKEaY
+ isxH3oAJeisx2B3xGQVwA==
+UI-OutboundReport: notjunk:1;M01:P0:fQNLhEMCBKw=;6Ehkxg0MhHeZisto8EljTxQywS9
+ AITD2+hOZWigIFPQsHtZdUTIPPtAt3ou3STbtpDtUSicumHGZfV/ggOY/EuaJmczPt2SM4xX1
+ LhnmiabTQnMIaeaXAvV8yvzD8vrh9kR7gxS62PXx9tO4UnSoQRZyqzNjVera5pF7QWiF3eLp8
+ dsyBEBDsh1/gNHp8FeQySo1UZmLzRSdPohE0G4a5Nr7C+an4JUDiaLbdQS0GXpkoSMmcBYpY+
+ L14u+Ohl7G5GP3m/LbJfU0lbiy8Jx1fbkOAN38WVJ5npWAQKnbEsfNp936t9d+MYvZwJ8I0mI
+ nM48dUdNzvKU8pfP+4CffJAWHeJPynJgaviFoMvoSpBs1XUPDCm6x8vXr+QomCVsItgTh7MJ9
+ TQjrATzxe8fXxfGRBiIrKA+L8qA/3vfFkGdypKBbvzHKwpRF2JeYMxqgFeJxRQoYfU0TKN6JV
+ 6J2o+DxlenlYQ950Tlj524O3Jwz/CGBCmbKd26uUzNfQ9Eg0MDVSCAETwi8gibMa3CkhFpgS0
+ 37U9jhGJlkypY90warjlkNO0pdCcMuk+EaeIe+kXnGCUyq8qiamsT52HXjjPFxwh3jOD4HWfA
+ pw1q1R8LAMiPqj+D5BlfRUjHsqUhzJOweVBN4jVOKPEuGNf5b1HsxPFoCaVZkj+9zL3OxWKME
+ 1y2/YWGSAN35dCS00s5PnE/SdM0lKsbM2Pxpo9k1lTa0T3BAjyww5fy0XPT/L+klhB4GNOvGm
+ e+yPI3sf0EjKDyRCKvQoGfOa/4gKgSNP0G3h4mZBQqRRbZELpj9vnaf4ExaitATj8gh/inUcj
+ 4TaNHbGTGULhfvTV1+A+yIPYp4tXc/oPkVlvdKc4i0XgX6e+/YRfvaGVnbGYgNXxjlVsACqHM
+ NtnEj3jWl6obLb3LV28AqNwfhjaG9NVzNFIdQtxtWXJ4Oug0fQxwgXui7R87UES+xjYNoWzjQ
+ d7Q8gA==
 
-Add runtime PM support to ensure the supply rails are enabled
-when necessary.
+This series fixes the probing of leds-gpio on the Raspberry Pi 400.
+Also try to improve the error logging of leds-gpio.
 
-Signed-off-by: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
----
-Changes since v1:
- - None.
+Changes in V2:
+- replace dev_err with dev_err_probe in patch 1 to handle EPROBE_DEFER
+  properly
 
- drivers/clk/qcom/videocc-sm8150.c | 20 ++++++++++++++++++--
- 1 file changed, 18 insertions(+), 2 deletions(-)
+Stefan Wahren (2):
+  leds: gpio: Add kernel log if devm_fwnode_gpiod_get fails
+  ARM: dts: bcm2711-rpi-400: Fix delete-node of led_act
 
-diff --git a/drivers/clk/qcom/videocc-sm8150.c b/drivers/clk/qcom/videocc-sm8150.c
-index 52a9a453a143..b57df5ff96c4 100644
---- a/drivers/clk/qcom/videocc-sm8150.c
-+++ b/drivers/clk/qcom/videocc-sm8150.c
-@@ -6,6 +6,7 @@
- #include <linux/clk-provider.h>
- #include <linux/module.h>
- #include <linux/platform_device.h>
-+#include <linux/pm_runtime.h>
- #include <linux/regmap.h>
- 
- #include <dt-bindings/clock/qcom,videocc-sm8150.h>
-@@ -240,17 +241,32 @@ MODULE_DEVICE_TABLE(of, video_cc_sm8150_match_table);
- static int video_cc_sm8150_probe(struct platform_device *pdev)
- {
- 	struct regmap *regmap;
-+	int ret;
-+
-+	ret = devm_pm_runtime_enable(&pdev->dev);
-+	if (ret)
-+		return ret;
-+
-+	ret = pm_runtime_resume_and_get(&pdev->dev);
-+	if (ret)
-+		return ret;
- 
- 	regmap = qcom_cc_map(pdev, &video_cc_sm8150_desc);
--	if (IS_ERR(regmap))
-+	if (IS_ERR(regmap)) {
-+		pm_runtime_put(&pdev->dev);
- 		return PTR_ERR(regmap);
-+	}
- 
- 	clk_trion_pll_configure(&video_pll0, regmap, &video_pll0_config);
- 
- 	/* Keep VIDEO_CC_XO_CLK ALWAYS-ON */
- 	regmap_update_bits(regmap, 0x984, 0x1, 0x1);
- 
--	return qcom_cc_really_probe(pdev, &video_cc_sm8150_desc, regmap);
-+	ret = qcom_cc_really_probe(pdev, &video_cc_sm8150_desc, regmap);
-+
-+	pm_runtime_put(&pdev->dev);
-+
-+	return ret;
- }
- 
- static struct platform_driver video_cc_sm8150_driver = {
--- 
-2.25.1
+ arch/arm/boot/dts/broadcom/bcm2711-rpi-400.dts | 4 +---
+ drivers/leds/leds-gpio.c                       | 2 ++
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+=2D-
+2.34.1
 
 
