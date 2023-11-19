@@ -1,74 +1,72 @@
-Return-Path: <devicetree+bounces-16906-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16907-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6D957F0648
-	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 14:05:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03EDD7F064C
+	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 14:06:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9D569280D67
-	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 13:05:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 34C681C20432
+	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 13:06:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0764610A20;
-	Sun, 19 Nov 2023 13:05:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 929AE6AB2;
+	Sun, 19 Nov 2023 13:06:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Q4akB+SC"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mDBIVVNK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A298FD45;
-	Sun, 19 Nov 2023 05:05:00 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-507a29c7eefso5041296e87.1;
-        Sun, 19 Nov 2023 05:05:00 -0800 (PST)
+Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD12E194;
+	Sun, 19 Nov 2023 05:05:58 -0800 (PST)
+Received: by mail-pf1-x432.google.com with SMTP id d2e1a72fcca58-6bbfb8f7ac4so992244b3a.0;
+        Sun, 19 Nov 2023 05:05:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1700399099; x=1701003899; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YZoMsaRCdrwzQIgA4pCYsDBIzIpTKt2NvoS4IbctX9k=;
-        b=Q4akB+SC1U1iozb3dRxWPAN7khvcifHhZBDZtquVT0TIacqI/SBjiq3n2t2i07Lghz
-         KrpEkcRmJ36yMTwSwo7SJhm6ZJB8NxmkaI8RGSP+I1YzN7CEnTQpq3SXxtv9ht0nmGBx
-         7stWpYiVdf2r8PWOsj1dOMN1A5W6Z8+UBHqp64OfRoGglbcSPPF18R1xmn7utL6nje4y
-         M7IrL5UYhdnd89QuamJUPgql+YW+OSRm5v3WrKHsmdCxG4OXWsfAwm9VxcS/ndSRGyTb
-         xj5AH/v4CUSXuxghWFEBsPGdiZDLag8QyFXsqDQnsgVXV76TProjc3KAxizpgPJDEyQL
-         1G/A==
+        d=gmail.com; s=20230601; t=1700399158; x=1701003958; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=yRMmV6zXIBxin2vWyb3fCap7O+hhrgMO3NT51kQpsnI=;
+        b=mDBIVVNKrR9k8vwM0FXck+Cwy4Y7dZq7W6iAEfe08luDOMpnMuRJhwmArsCruovXDo
+         and+yZjb4H39OR/zrJ/CRKcDEj0ZJheksV+AqCLm6+oFJcpmlxIuEt2TTqjLECE+raP8
+         xI5S8QrlFRh6HnBoo5v/a9oyelo3YDUdaaoIoaaTn0C9OGLyj7MbuxfOvxtBqxNf7vRV
+         +SrQsWV0454vfpit6YWUk/Kq6OOXIFqFfBgGnnSnvJ8VZ+7pA1I+p9dhWbyalWDD6jXf
+         7Im4ZI37qz786ZPL5lLSqdsIXnZ7/rEO5538ux/wZpS6scP+s2nhGhw28wL2Qumg5BAK
+         R2+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700399099; x=1701003899;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=YZoMsaRCdrwzQIgA4pCYsDBIzIpTKt2NvoS4IbctX9k=;
-        b=E7P9Dp411/QBDdJxTw8OFR2VEZIDxeYikxeVp5nX/4JwqmC/T+yYRHrvReUvwis6cB
-         EUEqM3mRJO+GXucfLgUt2ERvxFq+IcBxDt8bUNdSAU+ci+SE12KVXF4mBwH1OlYjcGJf
-         2BSDpr6dg3NanEDE72WDvGLsLaoMrsqkrTmCvwqX9XbBo1fUoX7cUvL2H0J7xwDgzm6E
-         u0j6v1sdHqvuMMCpXGVkmYDddImjpJUpumujMYutgx8O9gYW7xx6Wrbq1K4SQ5wX1h8X
-         55c7yr9jO8Y55lzh6w9cvzEDLJnq97tcfdJis0/HF+AjDxeaJiPGvOfpCjqK9vDKONJB
-         G9yA==
-X-Gm-Message-State: AOJu0Yyv4ZG0QGqLVKbh2rKcN+NZaKKl1+JF6PemM4iG3Py7o6K2iDF4
-	oK6kZdbMMdr5mVbWGftJNw==
-X-Google-Smtp-Source: AGHT+IFM7L62fT2HxJg7ttHyaEqv4FrEgsAF5QE/0DhVscMChbLCIWZlM9L3YQDBy86/KX2TgStsCw==
-X-Received: by 2002:ac2:5e81:0:b0:507:b14f:e3bc with SMTP id b1-20020ac25e81000000b00507b14fe3bcmr3437685lfq.33.1700399098722;
-        Sun, 19 Nov 2023 05:04:58 -0800 (PST)
-Received: from U4.lan ([2a02:810b:f40:4300:7017:f42c:e243:8c57])
-        by smtp.gmail.com with ESMTPSA id n8-20020a1709062bc800b009dd8473559dsm2827866ejg.110.2023.11.19.05.04.58
+        d=1e100.net; s=20230601; t=1700399158; x=1701003958;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yRMmV6zXIBxin2vWyb3fCap7O+hhrgMO3NT51kQpsnI=;
+        b=buB4GDyt6rahVZKWP3sn5Ln6deTt07+QftM4Xp2sFraGkGITfuo0VGwftaOkuL9w5H
+         wORNXzFpbH5/xVFdiN+2ufZuFn7APW9VCPDP5wxtAH4aqeey76yeIt9d0si9tv5qdF3G
+         aXBpnfUAmzzk4euTN7TnQPcGrcCsmCBq8LrsIYe4vlW1pa5dD32lYR2/to2dYwowjNEt
+         ZSm2PzujpHwWExquYVkHhdZE4XsbEGakGKK5JzEkMcmLgULQbEt1AfodB/tE/uu6O1FX
+         cnm/mpybye8M9E8ZoEzE79Kvdiwrat5D7oNtDaBUYnAW9hS22DsXz1l0ta01vOTPTGX3
+         +KKQ==
+X-Gm-Message-State: AOJu0YxvBRvk39+3/URFJx+0orNEND9wrp/TIQhi+ofT+Hft5jEh1A93
+	IAMYJ61Ia31YUuED/CR4ye4=
+X-Google-Smtp-Source: AGHT+IF4m/bfIYQpQZf9oFAinEAJ7s3bbuDzUSlve8kYx8ux9lus7RxdWF0dp8aC+Ku55+cxXCJOxg==
+X-Received: by 2002:a17:902:f688:b0:1c3:a4f2:7c99 with SMTP id l8-20020a170902f68800b001c3a4f27c99mr6505219plg.4.1700399158180;
+        Sun, 19 Nov 2023 05:05:58 -0800 (PST)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:8afe:6d39:e955:7d2a])
+        by smtp.gmail.com with ESMTPSA id ik14-20020a170902ab0e00b001bde65894c8sm4433696plb.268.2023.11.19.05.05.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 19 Nov 2023 05:04:58 -0800 (PST)
-From: Alex Bee <knaerzche@gmail.com>
-To: Heiko Stuebner <heiko@sntech.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Alex Bee <knaerzche@gmail.com>
-Subject: [PATCH v2 3/3] ARM: dts: Add Geniatech XPI-3128 RK3128 board
-Date: Sun, 19 Nov 2023 14:03:55 +0100
-Message-ID: <20231119130351.112261-8-knaerzche@gmail.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231119130351.112261-2-knaerzche@gmail.com>
-References: <20231119130351.112261-2-knaerzche@gmail.com>
+        Sun, 19 Nov 2023 05:05:57 -0800 (PST)
+From: Fabio Estevam <festevam@gmail.com>
+To: daniel.lezcano@linaro.org
+Cc: rafael@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	robh+dt@kernel.org,
+	conor+dt@kernel.org,
+	mazziesaccount@gmail.com,
+	linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Fabio Estevam <festevam@denx.de>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v11 1/4] dt-bindings: thermal-zones: Document critical-action
+Date: Sun, 19 Nov 2023 10:05:48 -0300
+Message-Id: <20231119130551.2416869-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,447 +75,65 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-XPI-3128 is RK3128 based SBC form Geniatec in RPi form factor
+From: Fabio Estevam <festevam@denx.de>
 
-Specs:
-- Rockchip RK3128
-- 512MB/1 GB DDR3 DRAM
-- 8/16 GB eMMC
-- TF card slot
-- 100 MBit ethernet / RJ45 (TI DP83848C phy)
-- optional Marvell 88W8897 (USB version)
-- 3 x USB host (onboard GL852G hub connected to SoC ehci host)
-- 1 x USB otg
-- 1 x Type-C (solely for powering the board)
-- HDMI 1.4 out
-- ADC button
-- IR receiver
-- Artasie AM1805 RTC
-- 40 pin header
+Document the critical-action property to describe the thermal action
+the OS should perform after the critical temperature is reached.
 
-Signed-off-by: Alex Bee <knaerzche@gmail.com>
+The possible values are "shutdown" and "reboot".
+
+The motivation for introducing the critical-action property is that
+different systems may need different thermal actions when the critical
+temperature is reached.
+
+For example, in a desktop PC, it is desired that a shutdown happens
+after the critical temperature is reached.
+
+However, in some embedded cases, such behavior does not suit well,
+as the board may be unattended in the field and rebooting may be a
+better approach.
+
+The bootloader may also benefit from this new property as it can check
+the SoC temperature and in case the temperature is above the critical
+point, it can trigger a shutdown or reboot accordingly.
+
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm/boot/dts/rockchip/Makefile           |   1 +
- .../arm/boot/dts/rockchip/rk3128-xpi-3128.dts | 397 ++++++++++++++++++
- 2 files changed, 398 insertions(+)
- create mode 100644 arch/arm/boot/dts/rockchip/rk3128-xpi-3128.dts
+Changes since v10:
+- None
 
-diff --git a/arch/arm/boot/dts/rockchip/Makefile b/arch/arm/boot/dts/rockchip/Makefile
-index 0f46e18fe275..58868cf0510b 100644
---- a/arch/arm/boot/dts/rockchip/Makefile
-+++ b/arch/arm/boot/dts/rockchip/Makefile
-@@ -10,6 +10,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += \
- 	rk3066a-mk808.dtb \
- 	rk3066a-rayeager.dtb \
- 	rk3128-evb.dtb \
-+	rk3128-xpi-3128.dtb \
- 	rk3188-bqedison2qc.dtb \
- 	rk3188-px3-evb.dtb \
- 	rk3188-radxarock.dtb \
-diff --git a/arch/arm/boot/dts/rockchip/rk3128-xpi-3128.dts b/arch/arm/boot/dts/rockchip/rk3128-xpi-3128.dts
-new file mode 100644
-index 000000000000..61b9f069c8a2
---- /dev/null
-+++ b/arch/arm/boot/dts/rockchip/rk3128-xpi-3128.dts
-@@ -0,0 +1,397 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+ .../bindings/thermal/thermal-zones.yaml          | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+index 4a8dabc48170..dbd52620d293 100644
+--- a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
++++ b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+@@ -75,6 +75,22 @@ patternProperties:
+           framework and assumes that the thermal sensors in this zone
+           support interrupts.
+ 
++      critical-action:
++        $ref: /schemas/types.yaml#/definitions/string
++        description: |
++          The action the OS should perform after the critical temperature is reached.
++          By default the system will shutdown as a safe action to prevent damage
++          to the hardware, if the property is not set.
++          The shutdown action should be always the default and preferred one.
++          Choose 'reboot' with care, as the hardware may be in thermal stress,
++          thus leading to infinite reboots that may cause damage to the hardware.
++          Make sure the firmware/bootloader will act as the last resort and take
++          over the thermal control.
 +
-+/dts-v1/;
++        enum:
++          - shutdown
++          - reboot
 +
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/leds/common.h>
-+#include "rk3128.dtsi"
-+
-+/ {
-+	model = "Geniatech XPI-3128";
-+	compatible = "geniatech,xpi-3128", "rockchip,rk3128";
-+
-+	aliases {
-+		gpio0 = &gpio0;
-+		gpio1 = &gpio1;
-+		gpio2 = &gpio2;
-+		gpio3 = &gpio3;
-+		mmc0 = &emmc;
-+		mmc1 = &sdmmc;
-+		serial0 = &uart1;
-+	};
-+
-+	memory@60000000 {
-+		device_type = "memory";
-+		reg = <0x60000000 0x40000000>;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	adc-keys {
-+		compatible = "adc-keys";
-+		io-channels = <&saradc 1>;
-+		io-channel-names = "buttons";
-+		keyup-threshold-microvolt = <3300000>;
-+
-+		button-recovery {
-+			label = "Recovery";
-+			linux,code = <KEY_VENDOR>;
-+			press-threshold-microvolt = <0>;
-+		};
-+	};
-+
-+	dc_5v: dc-5v-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "DC_5V";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	/*
-+	 * This is a vbus-supply, which also supplies the GL852G usb hub,
-+	 * thus has to be always-on
-+	 */
-+	host_pwr_5v: host-pwr-5v-regulator {
-+		compatible = "regulator-fixed";
-+		gpio = <&gpio3 RK_PC4 GPIO_ACTIVE_HIGH>;
-+		startup-delay-us = <1500>;
-+		regulator-name = "HOST_PWR_5V";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&dc_5v>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&host_drv>;
-+		enable-active-high;
-+		regulator-always-on;
-+	};
-+
-+	ir-receiver {
-+		compatible = "gpio-ir-receiver";
-+		gpios = <&gpio3 RK_PD2 GPIO_ACTIVE_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&ir_int>;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-power {
-+			gpios = <&gpio0 RK_PD2 GPIO_ACTIVE_HIGH>;
-+			function = LED_FUNCTION_POWER;
-+			color = <LED_COLOR_ID_BLUE>;
-+			default-state = "on";
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&power_led>;
-+		};
-+
-+		led-spd {
-+			gpios = <&gpio3 RK_PB3 GPIO_ACTIVE_LOW>;
-+			function = LED_FUNCTION_LAN;
-+			color = <LED_COLOR_ID_GREEN>;
-+			/*
-+			 * currently not allowed to be set as per
-+			 * https://www.kernel.org/doc/Documentation/devicetree/bindings/leds/common.yaml
-+			 * and needs to set in userspace:
-+			 *
-+			 * linux,default-trigger = "netdev";
-+			 */
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&spd_led>;
-+		};
-+	};
-+
-+	mcu3v3: mcu3v3-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "MCU3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vcc_io>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vcc_ddr: vcc-ddr-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC_DDR";
-+		regulator-min-microvolt = <1500000>;
-+		regulator-max-microvolt = <1500000>;
-+		vin-supply = <&vcc_sys>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vcc_io: vcc-io-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC_IO";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vcc_sys>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vcc_lan: vcc-lan-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC_LAN";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vcc_io>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vcc_sd: vcc-sd-regulator {
-+		compatible = "regulator-fixed";
-+		gpio = <&gpio1 RK_PB6 GPIO_ACTIVE_LOW>;
-+		startup-delay-us = <500>;
-+		regulator-name = "VCC_SD";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vcc_io>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&sdmmc_pwren>;
-+	};
-+
-+	vcc_sys: vcc-sys-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC_SYS";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&dc_5v>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vcc33_hdmi: vcc33-hdmi-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC33_HDMI";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vcca_33>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vcca_33: vcca-33-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCCA_33";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vcc_sys>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vdd_11: vdd-11-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDD_11";
-+		regulator-min-microvolt = <1100000>;
-+		regulator-max-microvolt = <1100000>;
-+		vin-supply = <&vcc_sys>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vdd11_hdmi: vdd11-hdmi-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDD11_HDMI";
-+		regulator-min-microvolt = <1100000>;
-+		regulator-max-microvolt = <1100000>;
-+		vin-supply = <&vdd_11>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vdd_arm: vdd-arm-regulator {
-+		compatible = "pwm-regulator";
-+		regulator-name = "VDD_ARM";
-+		pwms = <&pwm1 0 25000 1>;
-+		pwm-supply = <&vcc_sys>;
-+		regulator-min-microvolt = <900000>;
-+		regulator-max-microvolt = <1400000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	/*
-+	 * As per schematics vdd_log is minimum 900 mV, maximum 1400 mV.
-+	 * Since there are HW blocks in PD_LOGIC (which are all driven by
-+	 * this supply), that either do not have a driver at all or the
-+	 * driver does not implement regulator support we have to make
-+	 * sure here that the voltage never drops below 1050 mV.
-+	 */
-+	vdd_log: vdd-log-regulator {
-+		compatible = "pwm-regulator";
-+		regulator-name = "VDD_LOG";
-+		pwms = <&pwm2 0 25000 1>;
-+		pwm-dutycycle-range = <30 100>;
-+		pwm-supply = <&vcc_sys>;
-+		regulator-min-microvolt = <1050000>;
-+		regulator-max-microvolt = <1400000>;
-+		regulator-ramp-delay = <4000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+};
-+
-+&cpu0 {
-+	cpu-supply = <&vdd_arm>;
-+};
-+
-+&emmc {
-+	bus-width = <8>;
-+	vmmc-supply = <&vcc_io>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&emmc_clk &emmc_cmd &emmc_bus8>;
-+	cap-mmc-highspeed;
-+	mmc-ddr-3_3v;
-+	no-sd;
-+	no-sdio;
-+	status = "okay";
-+};
-+
-+&gpio0 {
-+	gpio-line-names = /* GPIO0 A0-A7 */
-+			  "", "", "HEADER_5", "HEADER_3",
-+			  "", "", "", "",
-+			  /* GPIO0 B0-B7 */
-+			  "HEADER_22", "HEADER_23", "", "HEADER_19",
-+			  "HEADER_26", "HEADER_21", "HEADER_24", "",
-+			  /* GPIO0 C0-C7 */
-+			  "", "HEADER_18", "", "",
-+			  "", "", "", "",
-+			  /* GPIO0 D0-D7 */
-+			  "HEADER_36", "", "", "",
-+			  "", "", "HEADER_13", "";
-+};
-+
-+&gpio1 {
-+	gpio-line-names = /* GPIO1 A0-A7 */
-+			  "HEADER_7", "HEADER_35", "HEADER_33", "HEADER_37",
-+			  "HEADER_40", "HEADER_38", "", "",
-+			  /* GPIO1 B0-B7 */
-+			  "HEADER_11", "", "", "HEADER_29",
-+			  "HEADER_31", "", "", "",
-+			  /* GPIO1 C0-C7 */
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  /* GPIO1 D0-D7 */
-+			  "", "", "", "",
-+			  "", "", "", "";
-+};
-+
-+&gpio2 {
-+	gpio-line-names = /* GPIO2 A0-A7 */
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  /* GPIO2 B0-B7 */
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  /* GPIO2 C0-C7 */
-+			  "", "", "", "",
-+			  "HEADER_27", "", "", "",
-+			  /* GPIO2 D0-D7 */
-+			  "", "", "HEADER_8", "HEADER_10",
-+			  "", "", "", "";
-+};
-+
-+&gpio3 {
-+	gpio-line-names = /* GPIO3 A0-A7 */
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  /* GPIO3 B0-B7 */
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  /* GPIO3 C0-C7 */
-+			  "", "HEADER_32", "", "",
-+			  "", "", "", "HEADER_12",
-+			  /* GPIO3 D0-D7 */
-+			  "", "", "", "HEADER_15",
-+			  "", "", "", "";
-+};
-+
-+&pinctrl {
-+	dp83848c {
-+		dp83848c_rst: dp83848c-rst {
-+			rockchip,pins = <2 RK_PD0 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	ir-receiver {
-+		ir_int: ir-int {
-+			rockchip,pins = <3 RK_PD2 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	leds {
-+		power_led: power-led {
-+			rockchip,pins = <0 RK_PD2 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		spd_led: spd-led {
-+			rockchip,pins = <3 RK_PB3 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	usb2 {
-+		host_drv: host-drv {
-+			rockchip,pins = <3 RK_PC4 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+};
-+
-+&pwm1 {
-+	status = "okay";
-+};
-+
-+&pwm2 {
-+	status = "okay";
-+};
-+
-+&saradc {
-+	vref-supply = <&vcc_io>;
-+	status = "okay";
-+};
-+
-+&sdmmc {
-+	bus-width = <4>;
-+	vmmc-supply = <&vcc_sd>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&sdmmc_bus4 &sdmmc_clk &sdmmc_cmd &sdmmc_det>;
-+	disable-wp;
-+	cap-sd-highspeed;
-+	no-mmc;
-+	no-sdio;
-+	status = "okay";
-+};
-+
-+&uart1 {
-+	status = "okay";
-+};
-+
-+&usb_host_ehci {
-+	status = "okay";
-+};
-+
-+&usb_otg {
-+	vusb_a-supply = <&vcc_io>;
-+	vusb_d-supply = <&vdd_11>;
-+	status = "okay";
-+};
-+
-+&usb2phy {
-+	status = "okay";
-+};
-+
-+&usb2phy_host {
-+	status = "okay";
-+};
-+
-+&usb2phy_otg {
-+	status = "okay";
-+};
+       thermal-sensors:
+         $ref: /schemas/types.yaml#/definitions/phandle-array
+         maxItems: 1
 -- 
-2.42.0
+2.34.1
 
 
