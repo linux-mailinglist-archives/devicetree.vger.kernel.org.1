@@ -1,83 +1,200 @@
-Return-Path: <devicetree+bounces-16924-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16925-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D10B7F0693
-	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 14:49:54 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 784097F06A0
+	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 14:58:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 01609B2097D
-	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 13:49:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2AE5A1F21BD7
+	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 13:58:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDAE210A22;
-	Sun, 19 Nov 2023 13:49:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13EA76FA0;
+	Sun, 19 Nov 2023 13:58:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NEQu5GXI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E8E0C4;
-	Sun, 19 Nov 2023 05:49:43 -0800 (PST)
-Received: by mail-oi1-f182.google.com with SMTP id 5614622812f47-3b6ce6fac81so2331799b6e.1;
-        Sun, 19 Nov 2023 05:49:43 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700401782; x=1701006582;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ea1nL2nPexAtRKPgqXuGpzPO5QHlIHi+M6o+KnmRKRU=;
-        b=tcALYVDifEX4gTM1hXLEcOsvOdsaPOvwuJXAPbZCoAQ5ies15q+gdll/NWCcMAsT7o
-         wRoYj9QtULjBN0myplDayp6m5XkoltMxj1aZhbB9acCE8STlL/YFWaB8NTZtl6nXnhqp
-         SiSgA9Gr8fPVpqSyHI03wE2TrLJuBNTd5JldvFEkGC8MtbcbzKjCsxrHc3BC6kczq2hQ
-         HRlDaZELzJ2+KHyfjc5KBTFSPmmYg7mPiG6ExZeD86vXj8DvDrSWyEpV7scOql03DEEa
-         50ZrbT9tg0Hfy5kr0XbiBsZ8z4DtvM+2g/23kyfxMqZVCF53UZStfbSIvnYAbvpNNeGf
-         RFyQ==
-X-Gm-Message-State: AOJu0YxlDFr1+Vypvi61sSy1++D3UUX9C3WwKtMIP0qdZkzj8KtuxO62
-	/TzUAMT1t8NvZTGdk1YJeA==
-X-Google-Smtp-Source: AGHT+IGxVkAxDv26Ud8aWhrf5vJNXccASuADchAxq+oMG+km9HHX6JHB8u48ZRVIHJQaYC1FS1BOuw==
-X-Received: by 2002:aca:1005:0:b0:3b3:e64e:e0a4 with SMTP id 5-20020aca1005000000b003b3e64ee0a4mr6236212oiq.54.1700401782352;
-        Sun, 19 Nov 2023 05:49:42 -0800 (PST)
-Received: from herring.priv ([2607:fb90:45e3:889f:15b4:1348:6d64:224b])
-        by smtp.gmail.com with ESMTPSA id z21-20020a544595000000b003a9ba396d62sm968588oib.36.2023.11.19.05.49.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 19 Nov 2023 05:49:41 -0800 (PST)
-Received: (nullmailer pid 9867 invoked by uid 1000);
-	Sun, 19 Nov 2023 13:49:39 -0000
-Date: Sun, 19 Nov 2023 07:49:39 -0600
-From: Rob Herring <robh@kernel.org>
-To: Petre Rodan <petre.rodan@subdimension.ro>
-Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-kernel-mentees@lists.linuxfoundation.org, Jonathan Cameron <jic23@kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: iio: pressure: add honeywell,hsc030
-Message-ID: <20231119134939.GA8784-robh@kernel.org>
-References: <20231117164232.8474-1-petre.rodan@subdimension.ro>
- <20231117192305.17612-1-petre.rodan@subdimension.ro>
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6911D525;
+	Sun, 19 Nov 2023 13:58:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C24E4C433C8;
+	Sun, 19 Nov 2023 13:58:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1700402284;
+	bh=GA3KZwIDCb9kgmSAqn+rUvlw/BkjxhX9ULd5EqH49ro=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=NEQu5GXIBH0dQxohxznCAQzyPcolkxa3kh62fMGO81WQ+qcG3Voqug/ZCrcLVaZUs
+	 K8/4UZdV8X5JfbgJHgiNc43KCxXPYOMlf35L97GHwo4hx0GCFEyJE6K7ZXS0yXhoLu
+	 bQmVYUV+CrLg2rEP7Dp08JWJsEZQCnfHmaSRtYZjhk0blu9s5AoCPN6XjsXoatPrD6
+	 nc9u8r7AOR6JeUrClFUTqDRYorsaZvpCpKaHtxmVlNtRQYMZvRg1dZ6W49GlyO8xmm
+	 qpiXeeWm7UpDGlf5/J6Kpxw+NdFnq5IUk9oYhaJPxTprkkMWSrjhzrVA4Xhp6kFDL9
+	 HiPjuMUbqxNfA==
+Date: Sun, 19 Nov 2023 13:58:00 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Anand Moon <linux.amoon@gmail.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Icenowy Zheng <uwu@icenowy.me>,
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: usb: Add the binding example for the
+ Genesys Logic GL3523 hub
+Message-ID: <20231119-phrasing-reverse-bbc1fde515d5@spud>
+References: <20231119023454.1591-1-linux.amoon@gmail.com>
+ <20231119023454.1591-2-linux.amoon@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="MdiojqQRKNqEOCzn"
+Content-Disposition: inline
+In-Reply-To: <20231119023454.1591-2-linux.amoon@gmail.com>
+
+
+--MdiojqQRKNqEOCzn
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231117192305.17612-1-petre.rodan@subdimension.ro>
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Nov 17, 2023 at 09:22:57PM +0200, Petre Rodan wrote:
-> Adds binding for digital Honeywell TruStability HSC and SSC series pressure 
-> and temperature sensors.
-> 
-> Datasheet:
->  [HSC] https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/products/sensors/pressure-sensors/board-mount-pressure-sensors/trustability-hsc-series/documents/sps-siot-trustability-hsc-series-high-accuracy-board-mount-pressure-sensors-50099148-a-en-ciid-151133.pdf
->  [SSC] https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/products/sensors/pressure-sensors/board-mount-pressure-sensors/trustability-ssc-series/documents/sps-siot-trustability-ssc-series-standard-accuracy-board-mount-pressure-sensors-50099533-a-en-ciid-151134.pdf
-> 
-> Signed-off-by: Petre Rodan <petre.rodan@subdimension.ro>
+On Sun, Nov 19, 2023 at 08:04:50AM +0530, Anand Moon wrote:
+> Add the binding example for the USB3.1 Genesys Logic GL3523
+> integrates with USB 3.1 Gen 1 Super Speed and USB 2.0 High-Speed
+> hub.
+
+But no comment in the commit message about the new property for the
+"peer hub". $subject saying "dt-bindings: usb: Add the binding example
+for the Genesys Logic GL3523 hub" is misleading when the meaningful
+parts of the patch are unrelated to the example.
+
+>=20
+> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
 > ---
-> 
-> Changes for v2:
-> - Removed redundant quotations reported by robh's bot
-> - Fixed yamllint warnings
-> 
-> I'm failing to run 'make DT_CHECKER_FLAGS=-m dt_binding_check' due to
-> python errors and exceptions
+> V3: fix the dt_binding_check error, added new example for Genesys GL3523
+> v2: added Genesys GL3523 binding
+> v1: none
+> ---
+>  .../bindings/usb/genesys,gl850g.yaml          | 63 +++++++++++++++++--
+>  1 file changed, 59 insertions(+), 4 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml b/=
+Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> index ee08b9c3721f..f8e88477fa11 100644
+> --- a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> +++ b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> @@ -9,9 +9,6 @@ title: Genesys Logic USB hub controller
+>  maintainers:
+>    - Icenowy Zheng <uwu@icenowy.me>
+> =20
+> -allOf:
+> -  - $ref: usb-device.yaml#
+> -
+>  properties:
+>    compatible:
+>      enum:
+> @@ -27,12 +24,44 @@ properties:
+> =20
+>    vdd-supply:
+>      description:
+> -      the regulator that provides 3.3V core power to the hub.
+> +      phandle to the regulator that provides power to the hub.
+> +
+> +  peer-hub:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      phandle to the peer hub on the controller.
 
-What exceptions?
+What is this, why is it needed? Please explain it in your commit
+message.
 
+Thanks,
+Conor.
+
+> =20
+>  required:
+>    - compatible
+>    - reg
+> =20
+> +allOf:
+> +  - $ref: usb-device.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - usb5e3,608
+> +    then:
+> +      properties:
+> +        peer-hub: false
+> +        vdd-supply: false
+> +        reset-gpios: true
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - usb5e3,610
+> +              - usb5e3,620
+> +    then:
+> +      properties:
+> +        peer-hub: true
+> +        vdd-supply: true
+> +        reset-gpios: true
+> +
+>  additionalProperties: false
+> =20
+>  examples:
+> @@ -49,3 +78,29 @@ examples:
+>              reset-gpios =3D <&pio 7 2 GPIO_ACTIVE_LOW>;
+>          };
+>      };
+> +
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    usb {
+> +        dr_mode =3D "host";
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        /* 2.0 hub on port 1 */
+> +        hub_2_0: hub@1 {
+> +            compatible =3D "usb5e3,610";
+> +            reg =3D <1>;
+> +            peer-hub =3D <&hub_3_0>;
+> +            reset-gpios =3D <&gpio 20 GPIO_ACTIVE_LOW>;
+> +            vdd-supply =3D <&vcc_5v>;
+> +        };
+> +
+> +        /* 3.1 hub on port 4 */
+> +        hub_3_0: hub@2 {
+> +            compatible =3D "usb5e3,620";
+> +            reg =3D <2>;
+> +            peer-hub =3D <&hub_2_0>;
+> +            reset-gpios =3D <&gpio 20 GPIO_ACTIVE_LOW>;
+> +            vdd-supply =3D <&vcc_5v>;
+> +        };
+> +    };
+> --=20
+> 2.42.0
+>=20
+
+--MdiojqQRKNqEOCzn
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZVoUaAAKCRB4tDGHoIJi
+0iqHAQCKhkBZCos0AsQrxs71ZfT1KMhFwjJGUUoqz02mNG1qhQEAoj2QVsdOyjw1
+wLv5XvOw4ZLu8eTGH5Q9fvXJoThMsA4=
+=EJLk
+-----END PGP SIGNATURE-----
+
+--MdiojqQRKNqEOCzn--
 
