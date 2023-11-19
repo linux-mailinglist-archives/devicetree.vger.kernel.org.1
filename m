@@ -1,200 +1,124 @@
-Return-Path: <devicetree+bounces-16954-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16955-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37E977F0920
-	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 22:24:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 956D07F0922
+	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 22:25:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EA8EE280D1D
-	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 21:24:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E950280D36
+	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 21:25:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C61821804D;
-	Sun, 19 Nov 2023 21:24:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B57C4134D9;
+	Sun, 19 Nov 2023 21:25:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UbNmbWdZ"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="e1Y+lVft"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F552E0;
-	Sun, 19 Nov 2023 13:24:28 -0800 (PST)
-Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-5435336ab0bso5470307a12.1;
-        Sun, 19 Nov 2023 13:24:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1700429066; x=1701033866; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=W5AoIs+Bdzh/tLCRglqGhx6SkCLVORYxH3ooAEqDulU=;
-        b=UbNmbWdZ5/HDnXL8BLR3I6EJmZvYTvRDBZ8YEV2sPCerADCndj2KI8lgUsjHGNui5E
-         JuhIC4BHXaYm3JYAbpse2wKzcuqFwZEVeCK+p+cv6xPzScQdlTORhyh5xWoOjQ4aVJwf
-         PIiB/CIIfNAsEmWRhf5iwOUvVUhmJ5ratxpHSfRCZVtLB0Ya1AqyWAZqzO27WQRN/bt4
-         pndvpoH/vfJ8v5GCDoDZnqPyTml5zypwDGwXTuaFEx0DGrQVmiwFSIvzdQQpWaT9kkvy
-         kc5b2Gttt55Q4c/6T/SYWNG7p2w2qPHZZrwFwljM/G+wSVwePnAQsLvAOAzEuiiblAlt
-         /PzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700429066; x=1701033866;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=W5AoIs+Bdzh/tLCRglqGhx6SkCLVORYxH3ooAEqDulU=;
-        b=tLcRPxeAq9RKnmxhjGPQa+STlvV8GMH7eGvOjTsbXT0YhQvXE8Fqh3Mz2JCRQ/AuEs
-         +X68PWyXjMKLudDFxLz7Sd374bxupufmXGpOMxV9W9Q14scbU8lKcBGRVb1a3MJoBV8b
-         oA2Hoyt7GJvldRTGSsAeiAP4GhB6K1mnpyjTQxB+3Z0DyMo+WyZOvmOjZqyDmkKgU60k
-         l6HRSLDnfuPx3bbLGIpkFK2ZIcDm5KVh1PJv/T0xntA/Lfd0kFcJ3t90lNKLHQ5hwolX
-         ZghCEi1mD6C4FRSAlwONZRgXbazm/4uoxWcd79mqd0H0KsRMTUJNLx537POygoxepOOU
-         NTOw==
-X-Gm-Message-State: AOJu0YwKVc5ZDW7rfg26cADn2bzdSFkhEpoGNRhVmhpiOgpPjGcAlhsE
-	8yMgQ+xilZoOVgKnv46R2xY=
-X-Google-Smtp-Source: AGHT+IFajiBloEjzAJqHhZtom0mUOzVwl1XuhnJGi5vMvt9BGAY/DoINKNGYdo4x5DnyARNgwq8GLQ==
-X-Received: by 2002:a17:906:c03:b0:9e2:bbc4:16cb with SMTP id s3-20020a1709060c0300b009e2bbc416cbmr4094055ejf.49.1700429066271;
-        Sun, 19 Nov 2023 13:24:26 -0800 (PST)
-Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.gmail.com with ESMTPSA id u19-20020a1709063b9300b009e5db336137sm3193340ejf.196.2023.11.19.13.24.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 19 Nov 2023 13:24:25 -0800 (PST)
-From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To: Matthias Brugger <matthias.bgg@gmail.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AB1DE0;
+	Sun, 19 Nov 2023 13:25:41 -0800 (PST)
+Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 1E63F874B1;
+	Sun, 19 Nov 2023 22:25:33 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1700429139;
+	bh=xHIV5AFjSASD1N18PsKCNrly4g0B33Dl0MBDPvLIDzQ=;
+	h=From:To:Cc:Subject:Date:From;
+	b=e1Y+lVftesxcD1nnK9btxSkwuJ6UZHik29zkF5IwxyLeN9f3x90cyGCJ01gM6jCmL
+	 +KIvte1ffxULA9/eL7KHuPJFyfpZUtCvcAzGDqsxDE3i9XMi5KzXOL7cbJ8r7/lUCi
+	 ZKxKaPtjTx8V7oLQHgiY1KySQVCgt34w9bL3VBgtXsYNAzAq1UQWE/Smz5ZfpkLCyK
+	 t0e1QhHwLlC8Yr/SUq8Uv1gsR3XzkOcu7hPtMkbr9/MGFWuGPJUpaoKUovcOU7Hi7/
+	 KyQ+SIKFDAJ6OS/15vZCFebiwrblwIay/l/YedKxAg34r2vb7Xf9TfWGHXvyWVeuRo
+	 dsZ9qwTiBl6+Q==
+From: Marek Vasut <marex@denx.de>
+To: linux-iio@vger.kernel.org
+Cc: Marek Vasut <marex@denx.de>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Andre Werner <andre.werner@systec-electronic.com>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Stephen Boyd <sboyd@kernel.org>
-Cc: Jianhui Zhao <zhaojh329@gmail.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	James Liao <jamesjj.liao@mediatek.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-clk@vger.kernel.org,
-	linux-mediatek@lists.infradead.org,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
-	Rob Herring <robh@kernel.org>
-Subject: [PATCH V2] dt-bindings: arm: mediatek: move ethsys controller & convert to DT schema
-Date: Sun, 19 Nov 2023 22:24:16 +0100
-Message-Id: <20231119212416.2682-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.35.3
+	Fabio Estevam <festevam@denx.de>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Mark Brown <broonie@kernel.org>,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	Naresh Solanki <naresh.solanki@9elements.com>,
+	Patrick Rudolph <patrick.rudolph@9elements.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
+	Vincent Tremblay <vincent@vtremblay.dev>,
+	devicetree@vger.kernel.org
+Subject: [PATCH v3 1/2] dt-bindings: iio: light: isl76682: Document ISL76682
+Date: Sun, 19 Nov 2023 22:24:34 +0100
+Message-ID: <20231119212515.54001-1-marex@denx.de>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-From: Rafał Miłecki <rafal@milecki.pl>
+The ISL76682 is very basic ALS which only supports ALS or IR mode
+in four ranges, 1k/4k/16k/64k LUX. There is no IRQ support or any
+other fancy functionality. Document it as trivial device.
 
-DT schema helps validating DTS files. Binding was moved to clock/ as
-this hardware is a clock provider. Example required a small fix for
-"reg" value (1 address cell + 1 size cell).
-
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: Marek Vasut <marex@denx.de>
 ---
-V2: Move binding to clock/ dir and document that in commit body
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Andre Werner <andre.werner@systec-electronic.com>
+Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Bjorn Helgaas <bhelgaas@google.com>
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Fabio Estevam <festevam@denx.de>
+Cc: Guenter Roeck <linux@roeck-us.net>
+Cc: Jonathan Cameron <jic23@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Lars-Peter Clausen <lars@metafoo.de>
+Cc: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Cc: Mark Brown <broonie@kernel.org>
+Cc: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Naresh Solanki <naresh.solanki@9elements.com>
+Cc: Patrick Rudolph <patrick.rudolph@9elements.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>
+Cc: Vincent Tremblay <vincent@vtremblay.dev>
+Cc: devicetree@vger.kernel.org
+Cc: linux-iio@vger.kernel.org
+---
+V2: Add AB from Conor
+V3: No change
+---
+ Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
- .../bindings/arm/mediatek/mediatek,ethsys.txt | 29 ----------
- .../bindings/clock/mediatek,ethsys.yaml       | 54 +++++++++++++++++++
- 2 files changed, 54 insertions(+), 29 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,ethsys.txt
- create mode 100644 Documentation/devicetree/bindings/clock/mediatek,ethsys.yaml
-
-diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,ethsys.txt b/Documentation/devicetree/bindings/arm/mediatek/mediatek,ethsys.txt
-deleted file mode 100644
-index eccd4b706a78..000000000000
---- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,ethsys.txt
-+++ /dev/null
-@@ -1,29 +0,0 @@
--Mediatek ethsys controller
--============================
--
--The Mediatek ethsys controller provides various clocks to the system.
--
--Required Properties:
--
--- compatible: Should be:
--	- "mediatek,mt2701-ethsys", "syscon"
--	- "mediatek,mt7622-ethsys", "syscon"
--	- "mediatek,mt7623-ethsys", "mediatek,mt2701-ethsys", "syscon"
--	- "mediatek,mt7629-ethsys", "syscon"
--	- "mediatek,mt7981-ethsys", "syscon"
--	- "mediatek,mt7986-ethsys", "syscon"
--- #clock-cells: Must be 1
--- #reset-cells: Must be 1
--
--The ethsys controller uses the common clk binding from
--Documentation/devicetree/bindings/clock/clock-bindings.txt
--The available clocks are defined in dt-bindings/clock/mt*-clk.h.
--
--Example:
--
--ethsys: clock-controller@1b000000 {
--	compatible = "mediatek,mt2701-ethsys", "syscon";
--	reg = <0 0x1b000000 0 0x1000>;
--	#clock-cells = <1>;
--	#reset-cells = <1>;
--};
-diff --git a/Documentation/devicetree/bindings/clock/mediatek,ethsys.yaml b/Documentation/devicetree/bindings/clock/mediatek,ethsys.yaml
-new file mode 100644
-index 000000000000..94d42c864777
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/mediatek,ethsys.yaml
-@@ -0,0 +1,54 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/mediatek,ethsys.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Mediatek ethsys controller
-+
-+description:
-+  The available clocks are defined in dt-bindings/clock/mt*-clk.h.
-+
-+maintainers:
-+  - James Liao <jamesjj.liao@mediatek.com>
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+          - enum:
-+              - mediatek,mt2701-ethsys
-+              - mediatek,mt7622-ethsys
-+              - mediatek,mt7629-ethsys
-+              - mediatek,mt7981-ethsys
-+              - mediatek,mt7986-ethsys
-+          - const: syscon
-+      - items:
-+          - const: mediatek,mt7623-ethsys
-+          - const: mediatek,mt2701-ethsys
-+          - const: syscon
-+
-+  reg:
-+    maxItems: 1
-+
-+  "#clock-cells":
-+    const: 1
-+
-+  "#reset-cells":
-+    const: 1
-+
-+required:
-+  - reg
-+  - "#clock-cells"
-+  - "#reset-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    clock-controller@1b000000 {
-+        compatible = "mediatek,mt2701-ethsys", "syscon";
-+        reg = <0x1b000000 0x1000>;
-+        #clock-cells = <1>;
-+        #reset-cells = <1>;
-+    };
+diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+index c3190f2a168a2..27164e9219276 100644
+--- a/Documentation/devicetree/bindings/trivial-devices.yaml
++++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+@@ -179,6 +179,8 @@ properties:
+           - isil,isl29030
+             # Intersil ISL68137 Digital Output Configurable PWM Controller
+           - isil,isl68137
++            # Intersil ISL76682 Ambient Light Sensor
++          - isil,isl76682
+             # Linear Technology LTC2488
+           - lineartechnology,ltc2488
+             # 5 Bit Programmable, Pulse-Width Modulator
 -- 
-2.35.3
+2.42.0
 
 
