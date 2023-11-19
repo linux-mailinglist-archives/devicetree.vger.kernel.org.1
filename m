@@ -1,56 +1,56 @@
-Return-Path: <devicetree+bounces-16932-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16933-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FA507F070D
-	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 16:10:33 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E3527F071A
+	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 16:16:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5936E280D22
-	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 15:10:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3C8BB280D87
+	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 15:16:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D8D9134C5;
-	Sun, 19 Nov 2023 15:10:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEA70125A5;
+	Sun, 19 Nov 2023 15:16:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f54.google.com (mail-oo1-f54.google.com [209.85.161.54])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43015126;
-	Sun, 19 Nov 2023 07:10:25 -0800 (PST)
-Received: by mail-oo1-f54.google.com with SMTP id 006d021491bc7-586a516755aso2294739eaf.0;
-        Sun, 19 Nov 2023 07:10:25 -0800 (PST)
+Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com [209.85.161.47])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 236C6C2;
+	Sun, 19 Nov 2023 07:16:50 -0800 (PST)
+Received: by mail-oo1-f47.google.com with SMTP id 006d021491bc7-5842a7fdc61so1889551eaf.3;
+        Sun, 19 Nov 2023 07:16:50 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700406624; x=1701011424;
+        d=1e100.net; s=20230601; t=1700407009; x=1701011809;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=+UIvR5MQTDyaoA0l7ADQGaaV9mvqedh+AvuYjdvmLpY=;
-        b=m7JztmLkFTijE0xXO+PJkmMC2FV8jeV1IzrRmwUwgutduUdK3J6sNMqyqF71UivZ1P
-         72g5pH5p43Sf5ASeitM0NIPvHAfncWPyhuiUm/ihKMjZ8LsWEqan5YEPtEc4p02rr7Kd
-         J1PyZF7HAh3udjcoFZx3rLOE0nD0l+VIyISuUDFgr/6oBOTMbVxVZ7SfDDFKYjekjNr4
-         dyKxN2qEYlGLXIudsfocjb2B/gwe5HD/7ag8RZvccm4xg5QrpcZ/UG4Lv7Iv5sjDtbq7
-         bMiDa+blMkZcC3CrqU7dy9uolBIpYfxNn0HIeVR+fPpr2HlqShqr0z/i4ahRBWZ7iZ7U
-         p64w==
-X-Gm-Message-State: AOJu0YzmQH6WQAf3A/MLDfYlWAzBhRTKso8ha7AsSgtZWasjUJDg7e2L
-	IPxvoyEmyXwu0OxmEfLCsA==
-X-Google-Smtp-Source: AGHT+IE54AGxoyNmjush3LIBd25JOSFJEyVezI5EOKIVvgtCLmSTCTzHFX2sqcg1lU5JohP7sA/wCw==
-X-Received: by 2002:a05:6870:568d:b0:1e9:d5ac:dc9b with SMTP id p13-20020a056870568d00b001e9d5acdc9bmr2296357oao.25.1700406624495;
-        Sun, 19 Nov 2023 07:10:24 -0800 (PST)
+        bh=dWEPk/3aAzX0I4fI4cuUC5y57V6oWUlKYqFVGCjXpJ4=;
+        b=jYdkgTQCJNpcIhYxrTjCuVXxg8j7bDaurJU0xschcM427IQCk8a5CGBzwTgHG+vSsJ
+         yyptBjjQJMihbcnTi0hgl9sIOPahzvofD2ZkmYnKCtdySFtWmyUx9InMhPnMtF744uWq
+         0SAtEr+gkYEBq0yG56Rt/61GE9ywlWqfxXdzbzWZ23DoePqulNHbZqe9VG2A794Jp61p
+         OFeX4f9S+V69LIbCVku0o/PW15w2zg9k/LFmPsjJioL7Zd6gxFZ8J7njqP/GnhF8A0DQ
+         432+1/gx8D9DEsqygWJ3AsnPFa7ZtRbzxOtsuvEKRnM9BgZCvUgCEflU+gUEr7RXmDdj
+         OqRw==
+X-Gm-Message-State: AOJu0Yz5Rcr/gEWmrXFGpUyknY38xrNNArWpSn3sh+4Z/4Zw5RWkRGbv
+	4Q83zngXKrpTddJzk2VD8Q==
+X-Google-Smtp-Source: AGHT+IFTumx8nyQQh6n2laOF1YkhSXqTh5bw2xAJK/w4wHOJAQlPpzBcTyUNnWCP6irMM3KxJR5Kug==
+X-Received: by 2002:a05:6820:1c84:b0:56c:cd0c:1d67 with SMTP id ct4-20020a0568201c8400b0056ccd0c1d67mr5808089oob.7.1700407009353;
+        Sun, 19 Nov 2023 07:16:49 -0800 (PST)
 Received: from herring.priv ([2607:fb90:45e3:889f:15b4:1348:6d64:224b])
-        by smtp.gmail.com with ESMTPSA id s40-20020a05687050e800b001f938e6d904sm39749oaf.44.2023.11.19.07.10.20
+        by smtp.gmail.com with ESMTPSA id w18-20020a4ae4d2000000b00581fc1af0a7sm1065154oov.28.2023.11.19.07.16.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 19 Nov 2023 07:10:23 -0800 (PST)
-Received: (nullmailer pid 208689 invoked by uid 1000);
-	Sun, 19 Nov 2023 15:10:19 -0000
-Date: Sun, 19 Nov 2023 09:10:19 -0600
+        Sun, 19 Nov 2023 07:16:48 -0800 (PST)
+Received: (nullmailer pid 215792 invoked by uid 1000);
+	Sun, 19 Nov 2023 15:16:43 -0000
+Date: Sun, 19 Nov 2023 09:16:43 -0600
 From: Rob Herring <robh@kernel.org>
-To: Jishnu Prakash <quic_jprakash@quicinc.com>
-Cc: conor+dt@kernel.org, luca@z3ntu.xyz, jic23@kernel.org, linux-iio@vger.kernel.org, linux-arm-msm-owner@vger.kernel.org, quic_kamalw@quicinc.com, andersson@kernel.org, andriy.shevchenko@linux.intel.com, sboyd@kernel.org, lee@kernel.org, cros-qcom-dts-watchers@chromium.org, linux-kernel@vger.kernel.org, quic_collinsd@quicinc.com, linux-arm-msm@vger.kernel.org, lars@metafoo.de, agross@kernel.org, rui.zhang@intel.com, devicetree@vger.kernel.org, linus.walleij@linaro.org, marijn.suijten@somainline.org, dmitry.baryshkov@linaro.org, linux-pm@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org, daniel.lezcano@linaro.org, quic_subbaram@quicinc.com, quic_amelende@quicinc.com, kernel@quicinc.com, konrad.dybcio@linaro.org, rafael@kernel.org, lukasz.luba@arm.com, robh+dt@kernel.org
-Subject: Re: [PATCH V2 3/3] dt-bindings: iio/adc: Move QCOM ADC bindings to
- iio/adc folder
-Message-ID: <170040661849.208630.9288743740827489507.robh@kernel.org>
-References: <20231116032644.753370-1-quic_jprakash@quicinc.com>
- <20231116032644.753370-2-quic_jprakash@quicinc.com>
+To: Yi-De Wu <yi-de.wu@mediatek.com>
+Cc: Yingshiuan Pan <yingshiuan.pan@mediatek.com>, Ze-Yu Wang <ze-yu.wang@mediatek.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Arnd Bergmann <arnd@arndb.de>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, David Bradil <dbrazdil@google.com>, Trilok Soni <quic_tsoni@quicinc.com>, Jade Shih <jades.shih@mediatek.com>, Ivan Tseng <ivan.tseng@mediatek.com>, My Chuang <my.chuang@mediatek.com>, Shawn Hsiao <shawn.hsiao@mediatek.com>, PeiLun Suei <peilun.suei@mediatek.com>, Liju Chen <liju-clr.chen@mediatek.com>, Willix Yeh <chi-shen.yeh@mediatek.com>, Kevenny Hsieh <kevenny.hsieh@mediatek.com>
+Subject: Re: [PATCH v7 02/16] dt-bindings: hypervisor: Add MediaTek GenieZone
+ hypervisor
+Message-ID: <20231119151643.GA213170-robh@kernel.org>
+References: <20231116152756.4250-1-yi-de.wu@mediatek.com>
+ <20231116152756.4250-3-yi-de.wu@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,74 +59,23 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231116032644.753370-2-quic_jprakash@quicinc.com>
+In-Reply-To: <20231116152756.4250-3-yi-de.wu@mediatek.com>
 
-
-On Thu, 16 Nov 2023 08:56:44 +0530, Jishnu Prakash wrote:
-> There are several files containing QCOM ADC macros for channel names
-> right now in the include/dt-bindings/iio folder. Since all of these
-> are specifically for adc, move the files to the
-> include/dt-bindings/iio/adc folder.
+On Thu, Nov 16, 2023 at 11:27:42PM +0800, Yi-De Wu wrote:
+> From: "Yingshiuan Pan" <yingshiuan.pan@mediatek.com>
 > 
-> Also update all affected devicetree and driver files to fix compilation
-> errors seen with this move and update documentation files to fix
-> dtbinding check errors for the same.
+> Add documentation for GenieZone(gzvm) node. This node informs gzvm
+> driver to start probing if geniezone hypervisor is available and
+> able to do virtual machine operations.
 > 
-> Signed-off-by: Jishnu Prakash <quic_jprakash@quicinc.com>
-> ---
->  .../devicetree/bindings/iio/adc/qcom,spmi-vadc.yaml       | 4 ++--
->  Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml | 2 +-
->  .../devicetree/bindings/thermal/qcom-spmi-adc-tm-hc.yaml  | 2 +-
->  .../devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml    | 6 +++---
->  arch/arm64/boot/dts/qcom/pm2250.dtsi                      | 2 +-
->  arch/arm64/boot/dts/qcom/pm6125.dtsi                      | 2 +-
->  arch/arm64/boot/dts/qcom/pm6150.dtsi                      | 2 +-
->  arch/arm64/boot/dts/qcom/pm6150l.dtsi                     | 2 +-
->  arch/arm64/boot/dts/qcom/pm660.dtsi                       | 2 +-
->  arch/arm64/boot/dts/qcom/pm660l.dtsi                      | 2 +-
->  arch/arm64/boot/dts/qcom/pm7250b.dtsi                     | 2 +-
->  arch/arm64/boot/dts/qcom/pm8150.dtsi                      | 2 +-
->  arch/arm64/boot/dts/qcom/pm8150b.dtsi                     | 2 +-
->  arch/arm64/boot/dts/qcom/pm8150l.dtsi                     | 2 +-
->  arch/arm64/boot/dts/qcom/pm8916.dtsi                      | 2 +-
->  arch/arm64/boot/dts/qcom/pm8950.dtsi                      | 2 +-
->  arch/arm64/boot/dts/qcom/pm8953.dtsi                      | 2 +-
->  arch/arm64/boot/dts/qcom/pm8994.dtsi                      | 2 +-
->  arch/arm64/boot/dts/qcom/pm8998.dtsi                      | 2 +-
->  arch/arm64/boot/dts/qcom/pmi632.dtsi                      | 2 +-
->  arch/arm64/boot/dts/qcom/pmi8950.dtsi                     | 2 +-
->  arch/arm64/boot/dts/qcom/pmm8155au_1.dtsi                 | 2 +-
->  arch/arm64/boot/dts/qcom/pmp8074.dtsi                     | 2 +-
->  arch/arm64/boot/dts/qcom/pms405.dtsi                      | 2 +-
->  arch/arm64/boot/dts/qcom/sc7280-idp.dts                   | 2 +-
->  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi                  | 2 +-
->  arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi                | 4 ++--
->  arch/arm64/boot/dts/qcom/sc8180x-pmics.dtsi               | 2 +-
->  .../arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts | 6 +++---
->  arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts         | 2 +-
->  arch/arm64/boot/dts/qcom/sm8450-hdk.dts                   | 8 ++++----
->  drivers/iio/adc/qcom-spmi-adc5-gen3.c                     | 2 +-
->  drivers/iio/adc/qcom-spmi-adc5.c                          | 2 +-
->  drivers/iio/adc/qcom-spmi-vadc.c                          | 2 +-
->  include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pm8550.h  | 2 +-
->  include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pm8550b.h | 2 +-
->  .../dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pm8550vx.h    | 2 +-
->  include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pmk8550.h | 2 +-
->  include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pm8350.h | 2 +-
->  .../dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pm8350b.h    | 2 +-
->  .../dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pmk8350.h    | 2 +-
->  .../dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pmr735a.h    | 2 +-
->  .../dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pmr735b.h    | 0
->  include/dt-bindings/iio/{ => adc}/qcom,spmi-vadc.h        | 0
->  44 files changed, 51 insertions(+), 51 deletions(-)
->  rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pm8350.h (98%)
->  rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pm8350b.h (99%)
->  rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pmk8350.h (97%)
->  rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pmr735a.h (95%)
->  rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pmr735b.h (100%)
->  rename include/dt-bindings/iio/{ => adc}/qcom,spmi-vadc.h (100%)
-> 
+> [Detail]
+> The debate of using dt or not remains intact, and gentle ping seems not
+> working on this issue. We'll keep this patch for further discussion and
+> move forward in order to rebase based on the latest rc release. For
+> previous discussion, please kindly refer to the following link.
 
-Acked-by: Rob Herring <robh@kernel.org>
+Please explain in the commit message why this needs to be in DT and is 
+not discoverable by some other means?
 
+Rob
 
