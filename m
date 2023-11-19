@@ -1,195 +1,115 @@
-Return-Path: <devicetree+bounces-16883-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16884-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F00F17F0425
-	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 04:05:41 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FD4A7F045E
+	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 05:58:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 60A1A1F220FD
-	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 03:05:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BF6EBB2098B
+	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 04:58:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0E351852;
-	Sun, 19 Nov 2023 03:05:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 842C81875;
+	Sun, 19 Nov 2023 04:58:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=feathertop.org header.i=@feathertop.org header.b="LExbs8DH";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="qSpOKIV1"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DKKICew2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from wout3-smtp.messagingengine.com (wout3-smtp.messagingengine.com [64.147.123.19])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 216F812B
-	for <devicetree@vger.kernel.org>; Sat, 18 Nov 2023 19:05:33 -0800 (PST)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-	by mailout.west.internal (Postfix) with ESMTP id 3C26F3200920;
-	Sat, 18 Nov 2023 22:05:29 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute3.internal (MEProxy); Sat, 18 Nov 2023 22:05:29 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=feathertop.org;
-	 h=cc:cc:content-transfer-encoding:content-type:content-type
-	:date:date:from:from:in-reply-to:in-reply-to:message-id
-	:mime-version:references:reply-to:sender:subject:subject:to:to;
-	 s=fm3; t=1700363128; x=1700449528; bh=PpsFfFSNPUPHay4RnH2xZcaes
-	VPMLMaNoafz7K2FrBQ=; b=LExbs8DHfGssoP+5hWg2b91HiWDGSS3DHejHEiBLJ
-	DA7trRJ1PXF0GwrRS760IY4GmL2xAqcDd22+ZNFVYVeBYXf4XlNN6VNn2IeEVrFR
-	uCOX5PcVo2m08YAn+sx0+TlH5DY/5jyndCZ9eHocORjDHD7TpsMrFpdXKpnvby4z
-	xIQoPjBmaFbStc4CEg2mdVVuYW+dGFBKV76MaXfWVCS/XLI4eO1J1OOVauNyB+TN
-	tmMb0iWkCeeoQ08wynoScGTBJutXplBDTSxA4wiQqpEaIO8tikefpLKQiaSfAwk9
-	Cd0Cp+ygXc0yCjEy17UL4XuDRfpghfkExSIuS6UKiRSGQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:sender:subject:subject:to:to:x-me-proxy
-	:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=
-	1700363128; x=1700449528; bh=PpsFfFSNPUPHay4RnH2xZcaesVPMLMaNoaf
-	z7K2FrBQ=; b=qSpOKIV1t4HgztMpj63aVmm48rAcmOu6hxpmm6YlWdN1v9/x0Cn
-	YFWIHuz8XNC4Ndseir/ZmFjitbhwFyakeRg4oCSXe5lgyoig/stAqgpRmeX3LNY3
-	zcZPtzrD+ge/JTowlAr7uEg8cFhxyxypFPjKbQ3cqsDtuak5DO5hu+kpiXaHxDC7
-	wzJbpl+PVutVrr72w4X9bkR5KG6wvz1/oyo8JZqeUZMH7PEpl8ccsqFmx1ped9pr
-	UDqWOfVTysmCeM3Wv0YK2ccNh7i98juwrwv2Th8UTCnsriKQeTW8rZD1kW3d8M8p
-	EPOi8FcLUCBJb+qsE6bXcYw4AnwaEiTd/tg==
-X-ME-Sender: <xms:eHtZZRVVavCGcAzA3yrnmSvd5xlC9OLAcdd3YSOhPKp00DpKuOv6Mg>
-    <xme:eHtZZRk0CdOp6JlaNbKlCsxHeChwJDhZ1y8DNsCdGown8lWCsmqW5iLiE_dSFFZxD
-    M2VSn06BA>
-X-ME-Received: <xmr:eHtZZdb8JcwarsuaVqYKCxdC6B9D2SqA70L78QYqr8ZAbMuv1-1A-pMktKTI5xZVUrgGmsSzQV6uOcQqqBw384ZvlGIpxn_viPGjJw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrudegfedgheehucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepkfffgggfuffvvehfhfgjtgfgsehtkeertddtvdejnecuhfhrohhmpefvihhm
-    ucfnuhhnnhcuoehtihhmsehfvggrthhhvghrthhophdrohhrgheqnecuggftrfgrthhtvg
-    hrnhepueegfefgveeuiedtheffgfefveejkeetiefhhfdvjeevlefhueekudeuleeghfek
-    necuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepthhimh
-    esfhgvrghthhgvrhhtohhprdhorhhg
-X-ME-Proxy: <xmx:eHtZZUVXgPt9tj8GWo_YhIBsso2-IFig548YteZUENSLaSCMOmUsSw>
-    <xmx:eHtZZbnq7OnwTg6ZNW0HyIc50BAZID-yP_aTFTeej3azsTgpa1CXOw>
-    <xmx:eHtZZRfDNMYMRYHXXeOVfGAduk8of-5pWrWMl58MLHnlSAt_REnd5A>
-    <xmx:eHtZZZYpm_iatg93-3TDGfPR9x4xm6ZBNkvOtTRZrfWqJyDwHp76Cg>
-Feedback-ID: i1f8241ce:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
- 18 Nov 2023 22:05:25 -0500 (EST)
-Message-ID: <38f2c4a8-2b80-44f1-b9a5-29c3e86be56f@feathertop.org>
-Date: Sun, 19 Nov 2023 14:05:20 +1100
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6DC1AA;
+	Sat, 18 Nov 2023 20:58:12 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-40859c464daso7603815e9.1;
+        Sat, 18 Nov 2023 20:58:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1700369891; x=1700974691; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=U1PTw7o6n++p2pe3+uDNhmt4e6YOBmzSfzozTRbXj6s=;
+        b=DKKICew2MXGcZ49HAdcc6o0ZmVQXzBLAOirik7sbg5J/33uv/h2sZODH2Wt6jwAW2j
+         Nycc/LjSn2RQ7gPOMb2NQkOgN10QELU+GV7X7O5o8CMoCLDjJ/42wscvmftHESMSHyHQ
+         AXUrapM/v/3tE+/dwEysaVjRMK4Yy6k/uVMOVEb9JxExVJIiUfCy9RdMlhSubV+M5rrV
+         CgR7nZhC3cdqgTzAuaOzEkUOdCHu/BgoNOiUmSipuxpoQfPnwYT9ol926A3RKT5B3pdx
+         qOxH7H6bdElH/+uoG0SKu1LEcZ3z78YRM9wdkE3hFoFRkymxmO9JdTTvdu4uben7glo9
+         c9qg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700369891; x=1700974691;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=U1PTw7o6n++p2pe3+uDNhmt4e6YOBmzSfzozTRbXj6s=;
+        b=TxD4X9WN9ifRXVTLmOydwh7OOx8tXytmiQJh2FThCdW+4DOlfGAXt8/D2uVIoDTnDR
+         hjzqz+67VLI/FSTi57+dJKmR7g00zixRenc19EBXiSxVmiC1EHjOD12+JuyhZdtKtpGQ
+         KcOJVpx0fWjyYFnXat8GX2pu2yPALGiMGrjSerSiEKD9cy21DgQ9tmBx9g2+Nddwjgk3
+         X8huJpD20y9HSIxfBdnudxYVhzapxTI8oNH64FytVzkAo0f+dnTbS42MHODVfkh6/D9a
+         PXGA86rzDoz4UBKLUo1zwpDkiVesYRQ0MzfGIdE03feMiT9Ryi+DJhjrbj2Hgk5PqhKx
+         VgBg==
+X-Gm-Message-State: AOJu0Yxuz1w+TxIFrvQqVIvfNsJq7XuAovxULJxK4pvjM4hU95L/h+gh
+	XVcYsM5Oc9vhPFx7Z3aEcF8=
+X-Google-Smtp-Source: AGHT+IGK2HFD07qQcC5gTuWG6Pz4nHtRACtxN+wG086X5yYjhy3me6IkMfCGn18OkNWuSNFFQjUehQ==
+X-Received: by 2002:a05:6000:186d:b0:32f:80cf:c3cd with SMTP id d13-20020a056000186d00b0032f80cfc3cdmr3150241wri.4.1700369891167;
+        Sat, 18 Nov 2023 20:58:11 -0800 (PST)
+Received: from [127.0.1.1] (2a02-8389-41cf-e200-9fcd-7897-f205-6e36.cable.dynamic.v6.surfer.at. [2a02:8389:41cf:e200:9fcd:7897:f205:6e36])
+        by smtp.gmail.com with ESMTPSA id q18-20020a1709060e5200b009f5b7b6f3c8sm2504220eji.56.2023.11.18.20.58.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 18 Nov 2023 20:58:10 -0800 (PST)
+From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+Subject: [PATCH 0/2] iio: light: add support for VEML6075 UVA and UVB light
+ sensor
+Date: Sun, 19 Nov 2023 05:58:02 +0100
+Message-Id: <20231110-veml6075-v1-0-354b3245e14a@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 7/8] ARM: dts: Add Sonoff iHost Smart Home Hub
-Content-Language: en-US
-To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
- linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
-Cc: Jagan Teki <jagan@edgeble.ai>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Rob Herring <robh+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANqVWWUC/x2M0QqDMAxFf0XybKGJ6HC/MnyINc5A7UaLZSD++
+ 4KP53LuOaFIVinwbE7IUrXoJxlg20DYOL3F6WIM5KlDRO+q7HHwj951hD1REA48gukzF3Fz5hQ
+ 2O6QjRhu/WVb93f3XdF1/p1U3hm8AAAA=
+To: Jonathan Cameron <jic23@kernel.org>, 
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
  Conor Dooley <conor+dt@kernel.org>
-References: <20231113120705.1647498-1-tim@feathertop.org>
- <20231113120705.1647498-8-tim@feathertop.org> <4921575.Y6S9NjorxK@diego>
-From: Tim Lunn <tim@feathertop.org>
-In-Reply-To: <4921575.Y6S9NjorxK@diego>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
+ devicetree@vger.kernel.org, 
+ Javier Carrasco <javier.carrasco.cruz@gmail.com>
+X-Mailer: b4 0.12.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1700369889; l=1062;
+ i=javier.carrasco.cruz@gmail.com; s=20230509; h=from:subject:message-id;
+ bh=V2/ZEhgll+UdHLoD4NiUDtqLeWeoBJkkmnvE6IbaxD8=;
+ b=o8z3uttBzv/qSqpOXKgErKg15ku3NmugreQmly9qW9umCTJi3IeqDq078C34Qp727OJdKDwQI
+ bjSiDVUR7xEAQTZeuyYJiekSBrjNnSpFmgmsmKwcvHlNxvNWcxyopw0
+X-Developer-Key: i=javier.carrasco.cruz@gmail.com; a=ed25519;
+ pk=tIGJV7M+tCizagNijF0eGMBGcOsPD+0cWGfKjl4h6K8=
 
-Hi Heiko,
+This series adds support for the Vishay VEML6075 ultraviolet sensor,
+which offers UVA and UVB measurement channels and I2C communication.
 
-On 11/18/23 23:09, Heiko Stübner wrote:
-> Hi Tim,
->
-> Am Montag, 13. November 2023, 13:07:04 CET schrieb Tim Lunn:
->> Sonoff iHost is gateway device designed to provide a Smart Home Hub,
->> it is based on Rockchip RV1126. There is also a version with 2GB RAM
->> based off the RV1109 dual core SoC.
->>
->> Features:
->> - Rockchip RV1126
->> - 4GB DDR4
->> - 8GB eMMC
->> - microSD slot
->> - RMII Ethernet PHY
->> - 1x USB 2.0 Host
->> - 1x USB 2.0 OTG
->> - Realtek RTL8723DS WiFi/BT
->> - EFR32MG21 Silabs Zigbee radio
->> - Speaker/Microphone
->>
->> This patch adds the initial device tree for this device, it is largely
->> based off the device trees for mainline Edgeble Neu2 and downstream
->> Rockchip rv1126-evb-v13 configs. It has been adapted with relevant
->> peripheral and GPIO pins for the iHost.
->>
->> Signed-off-by: Tim Lunn <tim@feathertop.org>
->
->> diff --git a/arch/arm/boot/dts/rockchip/rv1109.dtsi b/arch/arm/boot/dts/rockchip/rv1109.dtsi
->> new file mode 100644
->> index 000000000000..9cbaa08ab1b8
->> --- /dev/null
->> +++ b/arch/arm/boot/dts/rockchip/rv1109.dtsi
->> @@ -0,0 +1,23 @@
->> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->> +/*
->> + * Copyright (c) 2019 Fuzhou Rockchip Electronics Co., Ltd.
->> + */
->> +
->> +/dts-v1/;
->> +
->> +#include "rv1126.dtsi"
->> +
->> +/ {
->> +	compatible = "rockchip,rv1109";
->> +
->> +	cpus {
->> +		/delete-node/ cpu@f02;
->> +		/delete-node/ cpu@f03;
->> +	};
->> +
->> +	arm-pmu {
->> +		interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>,
->> +			     <GIC_SPI 124 IRQ_TYPE_LEVEL_HIGH>;
->> +		interrupt-affinity = <&cpu0>, <&cpu1>;
->> +	};
->> +};
-> this definitly wants to be its own patch ;-) .
->
-> I.e. you add support for the rv1109, which seems to be the same as rv1126, just
-> with 2 instead of 4 cpu cores.
-I will split this out. Yes, rv1109 is identical to the rv1126 apart from 
-the number of cores.
+The device bindings and a simple example are also provided.
 
-I initially hoped rv1109 could just use the same device tree, but having 
-the extra cores enabled ends
-up causing panics.
+This driver has been tested with a Gravity VEML6075 UV Sensor Module in
+open air conditions.
 
->
->
->
->> +&sdio {
->> +	bus-width = <4>;
->> +	cap-sd-highspeed;
->> +	cap-sdio-irq;
->> +	keep-power-in-suspend;
->> +	max-frequency = <100000000>;
->> +	mmc-pwrseq = <&sdio_pwrseq>;
->> +	non-removable;
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&sdmmc1_clk &sdmmc1_cmd &sdmmc1_bus4>;
->> +	rockchip,default-sample-phase = <90>;
->> +	sd-uhs-sdr104;
->> +	vmmc-supply = <&vcc3v3_sys>;
->> +	vqmmc-supply = <&vcc_1v8>;
->> +	status = "okay";
->> +	#address-cells = <1>;
->> +	#size-cells = <0>;
-> I don't think the *-cells are needed here
->
-Ok, i will check and remove.
+Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+---
+Javier Carrasco (2):
+      iio: light: add VEML6075 UVA and UVB light sensor driver
+      dt-bindings: iio: light: add support for Vishay VEML6075
 
-Regards
-    Tim
+ .../bindings/iio/light/vishay,veml6075.yaml        |  40 ++
+ MAINTAINERS                                        |   6 +
+ drivers/iio/light/Kconfig                          |  11 +
+ drivers/iio/light/Makefile                         |   1 +
+ drivers/iio/light/veml6075.c                       | 503 +++++++++++++++++++++
+ 5 files changed, 561 insertions(+)
+---
+base-commit: b85ea95d086471afb4ad062012a4d73cd328fa86
+change-id: 20231110-veml6075-321522ceaca9
 
->
-> Thanks
-> Heiko
->
->
+Best regards,
+-- 
+Javier Carrasco <javier.carrasco.cruz@gmail.com>
+
 
