@@ -1,60 +1,51 @@
-Return-Path: <devicetree+bounces-16922-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16923-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62CF07F068A
-	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 14:43:38 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A6C77F068D
+	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 14:47:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1923B1F2208C
-	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 13:43:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0C8001F2189D
+	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 13:47:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 415AA11CA1;
-	Sun, 19 Nov 2023 13:43:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74241DDB0;
+	Sun, 19 Nov 2023 13:47:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mBgH0TYw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pz/2EA2/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26EC210A22
-	for <devicetree@vger.kernel.org>; Sun, 19 Nov 2023 13:43:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21239C433C8;
-	Sun, 19 Nov 2023 13:43:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53A5A111A1;
+	Sun, 19 Nov 2023 13:47:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61880C433C7;
+	Sun, 19 Nov 2023 13:47:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700401415;
-	bh=Ykhh83S0xts5mnucfZ61RXaL6imVnzM3vTSGFUWTsa4=;
+	s=k20201202; t=1700401658;
+	bh=U1/crVe3cQalV1pEqgbYT0Du0EuyIuAjyAUdOqkkcSU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mBgH0TYwUMqPo6tZdkH+jYPvQ2mIcW8dvziUL8qxKahJ6syPgFV+fv+Rglv6l7Lcg
-	 S8WhxfhryWuSjM7vAWlGDZIai0LdYjdYO5g6o4q9PHSRVJmTwEL7znjOA6Vv8HVIXw
-	 3Tw7/Xa9DN4R7sjcGnFM79xx9QDeJsL6W256xcQ6PNXw1wt+8aSpfzf1guZ3xj3qiL
-	 wkxT9IGAsXD99aYfaterIoN5gZQAOMMK+pFXJOslpMCqhp6keXI3VbwXOYwqHvh0eZ
-	 oU94WN/djsPa8DX+Lg+/i/BAU4vfYM2tuG4MCjbuJH9/a++T95txhRmYUyxoMWjN/O
-	 RnipX/RgBAvqA==
-Date: Sun, 19 Nov 2023 13:43:29 +0000
+	b=pz/2EA2/Cop43Hoq7PHwPpLlcgrslPh04hOYxhAs11kufyTELWKXFkMo8AvH4cDDH
+	 WJPOcsDP7hbVp4OtC8fs4M8W/VC1lw1zEj8pqiaFnn/QCSbX7Fd0rAsAHffXiOMJWN
+	 q6AL8FuU3Wr7MacoKEjDIAhVy1ApfwiGvQkcVfImxgRzc4kV8wizDRSypZt1KiAaVh
+	 gnb5KZQYrcZkVrHfKvq4Y0BLy6xJcpfO9MnvZo2jtP+a59UHuQEls3MPECpfglat48
+	 tlY+BY0v05tiaEn5gvVfdajQWnPuVtMQ0liBXYHezZMJB9QfRQNbI6JC5C44Cd7B0G
+	 T7ay90OQDJVmw==
+Date: Sun, 19 Nov 2023 13:47:34 +0000
 From: Conor Dooley <conor@kernel.org>
-To: =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
+To: Anshul Dalal <anshulusr@gmail.com>
+Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	=?iso-8859-1?Q?N=EDcolas_F_=2E_R_=2E_A_=2E?= Prado <nfraprado@collabora.com>,
-	Macpaul Lin <macpaul.lin@mediatek.com>,
-	Bernhard =?iso-8859-1?Q?Rosenkr=E4nzer?= <bero@baylibre.com>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Chris Morgan <macromorgan@hotmail.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Subject: Re: [PATCH 2/3] dt-bindings: arm64: dts: mediatek: Add Acelink
- EW-7886CAX access point
-Message-ID: <20231119-jazz-wobble-6ff4985b1bf0@spud>
-References: <20231117104315.9718-2-zajec5@gmail.com>
+	linux-kernel-mentees@lists.linuxfoundation.org,
+	Jonathan Cameron <jic23@kernel.org>,
+	Shuah Khan <skhan@linuxfoundation.org>
+Subject: Re: [PATCH 1/2] dt-bindings: iio: dac: add MCP4821
+Message-ID: <20231119-surpass-cheer-9dc3838b766f@spud>
+References: <20231117073040.685860-1-anshulusr@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,59 +53,123 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="A6mvgtPE8mST9StS"
+	protocol="application/pgp-signature"; boundary="Xr+UPjWgGaRG4h0+"
 Content-Disposition: inline
-In-Reply-To: <20231117104315.9718-2-zajec5@gmail.com>
+In-Reply-To: <20231117073040.685860-1-anshulusr@gmail.com>
 
 
---A6mvgtPE8mST9StS
-Content-Type: text/plain; charset=utf-8
+--Xr+UPjWgGaRG4h0+
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Nov 17, 2023 at 11:43:14AM +0100, Rafa=C5=82 Mi=C5=82ecki wrote:
-> From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+On Fri, Nov 17, 2023 at 01:00:37PM +0530, Anshul Dalal wrote:
+> Adds support for MCP48xx series of DACs.
 >=20
-> Acelink EW-7886CAX is an MT7986A (AKA Filogic 830) based access point.
+> Datasheet:
+>   [MCP48x1] https://ww1.microchip.com/downloads/en/DeviceDoc/22244B.pdf
+>   [MCP48x2] https://ww1.microchip.com/downloads/en/DeviceDoc/20002249B.pdf
 >=20
-> Signed-off-by: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+> Signed-off-by: Anshul Dalal <anshulusr@gmail.com>
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
 Cheers,
 Conor.
 
 > ---
->  Documentation/devicetree/bindings/arm/mediatek.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  .../bindings/iio/dac/microchip,mcp4821.yaml   | 63 +++++++++++++++++++
+>  1 file changed, 63 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/dac/microchip,m=
+cp4821.yaml
 >=20
-> diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Docume=
-ntation/devicetree/bindings/arm/mediatek.yaml
-> index a5999b3afc35..cfdd3317edda 100644
-> --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
-> +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
-> @@ -84,6 +84,7 @@ properties:
->            - const: mediatek,mt7629
->        - items:
->            - enum:
-> +              - acelink,ew-7886cax
->                - bananapi,bpi-r3
->                - mediatek,mt7986a-rfb
->            - const: mediatek,mt7986a
+> diff --git a/Documentation/devicetree/bindings/iio/dac/microchip,mcp4821.=
+yaml b/Documentation/devicetree/bindings/iio/dac/microchip,mcp4821.yaml
+> new file mode 100644
+> index 000000000000..904de15300bd
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/dac/microchip,mcp4821.yaml
+> @@ -0,0 +1,63 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/dac/microchip,mcp4821.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Microchip MCP4821 and similar DACs
+> +
+> +description: |
+> +  Supports MCP48x1 (single channel) and MCP48x2 (dual channel) series of=
+ DACs.
+> +  Device supports simplex communication over SPI in Mode 0,1 and Mode 1,=
+1.
+> +
+> +  +---------+--------------+-------------+
+> +  | Device  |  Resolution  |   Channels  |
+> +  |---------|--------------|-------------|
+> +  | MCP4801 |     8-bit    |      1      |
+> +  | MCP4811 |    10-bit    |      1      |
+> +  | MCP4821 |    12-bit    |      1      |
+> +  | MCP4802 |     8-bit    |      2      |
+> +  | MCP4812 |    10-bit    |      2      |
+> +  | MCP4822 |    12-bit    |      2      |
+> +  +---------+--------------+-------------+
+> +
+> +  Datasheet:
+> +    MCP48x1: https://ww1.microchip.com/downloads/en/DeviceDoc/22244B.pdf
+> +    MCP48x2: https://ww1.microchip.com/downloads/en/DeviceDoc/20002249B.=
+pdf
+> +
+> +maintainers:
+> +  - Anshul Dalal <anshulusr@gmail.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - microchip,mcp4801
+> +      - microchip,mcp4811
+> +      - microchip,mcp4821
+> +      - microchip,mcp4802
+> +      - microchip,mcp4812
+> +      - microchip,mcp4822
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  vdd-supply: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    spi {
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        dac@0 {
+> +            compatible =3D "microchip,mcp4821";
+> +            reg =3D <0>;
+> +            vdd-supply =3D <&vdd_regulator>;
+> +        };
+> +    };
 > --=20
-> 2.35.3
+> 2.42.1
 >=20
 
---A6mvgtPE8mST9StS
+--Xr+UPjWgGaRG4h0+
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZVoRAQAKCRB4tDGHoIJi
-0qibAP4nkr3gB60ji3RyS1MslpWLnKXqtCKvKSqNZX/SAsFg+gD/fl+6b2xL4ByG
-u6k6OrAceh9G/2CLup3rwZX0wSf+5g4=
-=rrzj
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZVoR9QAKCRB4tDGHoIJi
+0p8QAQC38yhdhXb1PcvkIA/pVY7NY6OGkiJqdumywpDJyqsDRgD/XP0qyWMwaURl
+9zBPIfcRCjAD7KXqB6d6YTYsZ5L1Jg8=
+=VZnd
 -----END PGP SIGNATURE-----
 
---A6mvgtPE8mST9StS--
+--Xr+UPjWgGaRG4h0+--
 
