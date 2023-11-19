@@ -1,224 +1,95 @@
-Return-Path: <devicetree+bounces-16935-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16936-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC3D67F072B
-	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 16:27:54 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D630D7F0737
+	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 16:33:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 74E22280D8C
-	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 15:27:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A95CFB2096E
+	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 15:33:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1175B134B9;
-	Sun, 19 Nov 2023 15:27:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XKSNTmni"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E39B11CB1;
+	Sun, 19 Nov 2023 15:33:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-xc35.google.com (mail-oo1-xc35.google.com [IPv6:2607:f8b0:4864:20::c35])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0559C83;
-	Sun, 19 Nov 2023 07:27:46 -0800 (PST)
-Received: by mail-oo1-xc35.google.com with SMTP id 006d021491bc7-586ad15f9aaso1894288eaf.2;
-        Sun, 19 Nov 2023 07:27:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1700407665; x=1701012465; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=qVg6tuBAQxkmNGNJSWkr/sGMIKsv+ywhAtTchPGIaoE=;
-        b=XKSNTmnizcY8puqo2pBlx32MJgSXiqNk2VY3S2hbGdS/BQZRwEF1ICt+spRXDL3jpw
-         edodHW9r34zoDPtShNyzqFCrxTlaaiYklj34GbT3fEIQqEwtbN03cYQ9sRtomKHb9PP3
-         dv7TS0CckmvrQC0K1bYmSqixs+SUo+4M4wuJq/okqc5ljavgS+WqTyDApspBzTcsLmKB
-         gT0p/Pt1tlMiKvFx1qYW/wOn7I+k0SnZnpclOWTA8c9s2gMpzlQP29nsW7tuQ1244HX+
-         306jh038Bc3MMtq6T2mom5JzJ7Rg8hmWE8mSqVBGixuIgoue/Dg7sJ7/HGyFZ+9xhRkk
-         u6fw==
+Received: from mail-oo1-f42.google.com (mail-oo1-f42.google.com [209.85.161.42])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15F3E83;
+	Sun, 19 Nov 2023 07:33:06 -0800 (PST)
+Received: by mail-oo1-f42.google.com with SMTP id 006d021491bc7-58786e23d38so2270399eaf.3;
+        Sun, 19 Nov 2023 07:33:06 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700407665; x=1701012465;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=qVg6tuBAQxkmNGNJSWkr/sGMIKsv+ywhAtTchPGIaoE=;
-        b=VnaUBMxWxtRcSDft/eUMXh+DERBG/JucswCfrEokmmQ0Uzrh2LaVMXqsUi0Z7nHg3l
-         yaVojj9eDQJHDgREkiLtZIJ1uHL6gJ+3Ry9yC9wHTEbV5fKZ9tIhi/XDOmlPgU75EJGa
-         iax3tg1y67nOM0jOD66Y/NBgat5bXzsCOXv72DKtJ1uFfvTdaG1GvYmBPjAujVtBxeSh
-         e55sBoYt69kKHVVOnzVOCStnn2NiowS84oIBH/2o9OS/oZD0oENxDdmFn1EZ/2N0Xzt3
-         CAElh62rnmuDi0ez3cLUc3K3Z2OJ/u6QlDLOX4GmqBinY5NuaJIfJfbZka1idHN+NSV0
-         ao7g==
-X-Gm-Message-State: AOJu0YxxiLapdy5MK2c7kno/Z1jHxU/yqlx1KR2QpNjhnDXf/zG5aAsr
-	6XKdfoTnu6FaPr8SqCZh3gU4+6awbylmTgZZGK8=
-X-Google-Smtp-Source: AGHT+IGDUPNiW0ynsdFghY8VYMcG3VDos2+nvo5Hf4XCfQo6k9gL9MKK5TIEI1F5eoq7dOvaDOd3xqfD4v+xb1rBLnU=
-X-Received: by 2002:a05:6820:16ac:b0:58a:128:8ff0 with SMTP id
- bc44-20020a05682016ac00b0058a01288ff0mr4456393oob.5.1700407665238; Sun, 19
- Nov 2023 07:27:45 -0800 (PST)
+        d=1e100.net; s=20230601; t=1700407986; x=1701012786;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=kMU08ksxciypMg2cafusPvHmfZUM2THw/Wr0jFPWQkA=;
+        b=m3R3CVo/VRpsC52aMeSMA4tXDzlInPvituE/7Hl6R9xhhjEMzDwFOWa15VyUIvA+E8
+         1Q6kpo8lsZmUp9ktcYrtK1OmTCXbAB6fckzH4uo24nsv7gPtf1/0Nv8zn4gu+2xIZBcK
+         QUlpbu/ve0rV7epljz4XkYBzlhnF9c8fTiU4O3QWvsiybRZzNT+3nrE4lZN1IMCkyp1b
+         Vjy8ssaB2bXuMD3zL9Ko2zTPJWxcBINwd//Yy+rQTKe3Fv6VPQFgYVbSRnTgwqMZ324V
+         xZTt9Ph+4hgXwcM79AIIa3i+1V/7UHCRYLjrB3F1oo7jY9Q9XiRcgLsZOvwq7AbjM5uT
+         LWKg==
+X-Gm-Message-State: AOJu0Yw1f9ir+oFoInnWzy9YsFj9BPUWcKTMGuKgmeW7czXaikm9UsNt
+	Rj5i7Xyb9UUcW3eI0S8Brg==
+X-Google-Smtp-Source: AGHT+IExABufMmUJEvUlY0EWmwdDBQyAl3khdEyyRjfwJe6bame2wZuLIdHI94aTyaZhFmNMeo+0Cg==
+X-Received: by 2002:a05:6820:1502:b0:58a:231d:750d with SMTP id ay2-20020a056820150200b0058a231d750dmr5737572oob.9.1700407986253;
+        Sun, 19 Nov 2023 07:33:06 -0800 (PST)
+Received: from herring.priv ([2607:fb90:45e3:889f:15b4:1348:6d64:224b])
+        by smtp.gmail.com with ESMTPSA id u3-20020a4aae83000000b0057327cecdd8sm1052307oon.10.2023.11.19.07.33.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 19 Nov 2023 07:33:03 -0800 (PST)
+Received: (nullmailer pid 234287 invoked by uid 1000);
+	Sun, 19 Nov 2023 15:33:00 -0000
+Date: Sun, 19 Nov 2023 09:33:00 -0600
+From: Rob Herring <robh@kernel.org>
+To: =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>, Lukasz Luba <lukasz.luba@arm.com>, Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, linux-mediatek@lists.infradead.org, AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, linux-arm-kernel@lists.infradead.org, "Rafael J . Wysocki" <rafael@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, linux-kernel@vger.kernel.org, =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Sascha Hauer <s.hauer@pengutronix.de>
+Subject: Re: [PATCH V3] dt-bindings: thermal: convert Mediatek Thermal to the
+ json-schema
+Message-ID: <170040797960.234232.1151056488223755530.robh@kernel.org>
+References: <20231117052214.24554-1-zajec5@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231119023454.1591-1-linux.amoon@gmail.com> <20231119023454.1591-2-linux.amoon@gmail.com>
- <20231119-phrasing-reverse-bbc1fde515d5@spud>
-In-Reply-To: <20231119-phrasing-reverse-bbc1fde515d5@spud>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Sun, 19 Nov 2023 20:57:28 +0530
-Message-ID: <CANAwSgQ6H9FUEBKz7sCf4kUZSMnCfyXG-cpGTMZoT15W9187Kg@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: usb: Add the binding example for the
- Genesys Logic GL3523 hub
-To: Conor Dooley <conor@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Icenowy Zheng <uwu@icenowy.me>, linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20231117052214.24554-1-zajec5@gmail.com>
 
-Hi Conor,
 
-On Sun, 19 Nov 2023 at 19:28, Conor Dooley <conor@kernel.org> wrote:
->
-> On Sun, Nov 19, 2023 at 08:04:50AM +0530, Anand Moon wrote:
-> > Add the binding example for the USB3.1 Genesys Logic GL3523
-> > integrates with USB 3.1 Gen 1 Super Speed and USB 2.0 High-Speed
-> > hub.
->
-> But no comment in the commit message about the new property for the
-> "peer hub". $subject saying "dt-bindings: usb: Add the binding example
-> for the Genesys Logic GL3523 hub" is misleading when the meaningful
-> parts of the patch are unrelated to the example.
->
-> >
-> > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> > ---
-> > V3: fix the dt_binding_check error, added new example for Genesys GL3523
-> > v2: added Genesys GL3523 binding
-> > v1: none
-> > ---
-> >  .../bindings/usb/genesys,gl850g.yaml          | 63 +++++++++++++++++--
-> >  1 file changed, 59 insertions(+), 4 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-> > index ee08b9c3721f..f8e88477fa11 100644
-> > --- a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-> > +++ b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-> > @@ -9,9 +9,6 @@ title: Genesys Logic USB hub controller
-> >  maintainers:
-> >    - Icenowy Zheng <uwu@icenowy.me>
-> >
-> > -allOf:
-> > -  - $ref: usb-device.yaml#
-> > -
-> >  properties:
-> >    compatible:
-> >      enum:
-> > @@ -27,12 +24,44 @@ properties:
-> >
-> >    vdd-supply:
-> >      description:
-> > -      the regulator that provides 3.3V core power to the hub.
-> > +      phandle to the regulator that provides power to the hub.
-> > +
-> > +  peer-hub:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    description:
-> > +      phandle to the peer hub on the controller.
->
-> What is this, why is it needed? Please explain it in your commit
-> message.
->
-Ok, GL3523 integrates Genesys Logic self-developed USB 3.1 Gen 1
-Super Speed transmitter/receiver physical layer (PHY) and USB 2.0
-High-Speed PHY
+On Fri, 17 Nov 2023 06:22:14 +0100, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
+> 
+> This helps validating DTS files. Introduced changes:
+> 1. Improved title
+> 2. Simplified description (dropped "This describes the device tree...")
+> 3. Dropped undocumented "reset-names" from example
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> ---
+> V2: Add "maintainers"
+> V3: Introduce changes described in commit body
+>     Fix schema syntax
+>     Move unevaluatedProperties to the bottom
+>     Rename file to match compatible more closely
+> 
+> I'm totally sorry for sending broken schema patch yesterday. Brainfart.
+> There is no excuse for sth that doesn't even pass dt_binding_check.
+>   DTEX    Documentation/devicetree/bindings/thermal/mediatek,thermal.example.dts
+>   DTC_CHK Documentation/devicetree/bindings/thermal/mediatek,thermal.example.dtb
+> 
+>  .../bindings/thermal/mediatek,thermal.yaml    | 99 +++++++++++++++++++
+>  .../bindings/thermal/mediatek-thermal.txt     | 52 ----------
+>  2 files changed, 99 insertions(+), 52 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/thermal/mediatek,thermal.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/thermal/mediatek-thermal.txt
+> 
 
-peer-hub is used to cross-connect those phy nodes so that it can help
-hub power on/off simultaneously.
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-/:  Bus 001.Port 001: Dev 001, Class=root_hub, Driver=xhci-hcd/2p, 480M
-    ID 1d6b:0002 Linux Foundation 2.0 root hub
-    |__ Port 001: Dev 002, If 0, Class=Hub, Driver=hub/4p, 480M
-        ID 05e3:0610 Genesys Logic, Inc. Hub
-        |__ Port 003: Dev 004, If 0, Class=Vendor Specific Class,
-Driver=cp210x, 12M
-            ID 10c4:ea60 Silicon Labs CP210x UART Bridge
-/:  Bus 002.Port 001: Dev 001, Class=root_hub, Driver=xhci-hcd/1p, 5000M
-    ID 1d6b:0003 Linux Foundation 3.0 root hub
-    |__ Port 001: Dev 002, If 0, Class=Hub, Driver=hub/4p, 5000M
-        ID 05e3:0620 Genesys Logic, Inc. GL3523 Hub
-        |__ Port 001: Dev 003, If 0, Class=Mass Storage,
-Driver=usb-storage, 5000M
-            ID 174c:55aa ASMedia Technology Inc. ASM1051E SATA 6Gb/s
-bridge, ASM1053E SATA 6Gb/s bridge, ASM1153 SATA 3Gb/s bridge,
-ASM1153E SATA 6Gb/s bridge
-
-Thanks
--Anand
-
-> Thanks,
-> Conor.
->
-> >
-> >  required:
-> >    - compatible
-> >    - reg
-> >
-> > +allOf:
-> > +  - $ref: usb-device.yaml#
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - usb5e3,608
-> > +    then:
-> > +      properties:
-> > +        peer-hub: false
-> > +        vdd-supply: false
-> > +        reset-gpios: true
-> > +
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - usb5e3,610
-> > +              - usb5e3,620
-> > +    then:
-> > +      properties:
-> > +        peer-hub: true
-> > +        vdd-supply: true
-> > +        reset-gpios: true
-> > +
-> >  additionalProperties: false
-> >
-> >  examples:
-> > @@ -49,3 +78,29 @@ examples:
-> >              reset-gpios = <&pio 7 2 GPIO_ACTIVE_LOW>;
-> >          };
-> >      };
-> > +
-> > +  - |
-> > +    #include <dt-bindings/gpio/gpio.h>
-> > +    usb {
-> > +        dr_mode = "host";
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +
-> > +        /* 2.0 hub on port 1 */
-> > +        hub_2_0: hub@1 {
-> > +            compatible = "usb5e3,610";
-> > +            reg = <1>;
-> > +            peer-hub = <&hub_3_0>;
-> > +            reset-gpios = <&gpio 20 GPIO_ACTIVE_LOW>;
-> > +            vdd-supply = <&vcc_5v>;
-> > +        };
-> > +
-> > +        /* 3.1 hub on port 4 */
-> > +        hub_3_0: hub@2 {
-> > +            compatible = "usb5e3,620";
-> > +            reg = <2>;
-> > +            peer-hub = <&hub_2_0>;
-> > +            reset-gpios = <&gpio 20 GPIO_ACTIVE_LOW>;
-> > +            vdd-supply = <&vcc_5v>;
-> > +        };
-> > +    };
-> > --
-> > 2.42.0
-> >
 
