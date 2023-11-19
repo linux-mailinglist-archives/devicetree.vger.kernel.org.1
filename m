@@ -1,53 +1,47 @@
-Return-Path: <devicetree+bounces-16917-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16918-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8048E7F0673
-	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 14:37:41 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7031F7F067C
+	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 14:41:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 294EF280D98
-	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 13:37:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 29ACD280D87
+	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 13:41:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE420101D9;
-	Sun, 19 Nov 2023 13:37:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 712D9101D9;
+	Sun, 19 Nov 2023 13:41:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dojdJKck"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kTw5C7Bt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 862CEF4F5;
-	Sun, 19 Nov 2023 13:37:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13C3CC433C7;
-	Sun, 19 Nov 2023 13:37:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51845107B2;
+	Sun, 19 Nov 2023 13:41:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25A15C433C8;
+	Sun, 19 Nov 2023 13:41:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700401055;
-	bh=2fexIX8Wllal1qs9XQNtQXc+WrSDQ3whn+AUI85d1mc=;
+	s=k20201202; t=1700401308;
+	bh=uWZuKv5N4zUVwbNVNiCFzHxfITFcbhSnLaP4Ui5fFTA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dojdJKck+Y9O7k5rdfKnG08U6mBKW0yzAyatUWilOu1QJjyvkXsuWEupI2hp8nn1d
-	 ILSIVbXXXSDURd9yDkvbJ0jpPPfPjIOdO1Z/b4D4TtOxXlmNJMyqpp1CBECnyE9DNk
-	 bP2vP8DWGH1UBmdR/uwJ+sIXZ5w/2r5Z4SkHKpot8tiGD4ENOiKvcPU97OXJJEt7MC
-	 F9yNEqTW239br5FnQaCc9w5P3fLB9MD8UGRG/QzDoZL2vJv/5hztp0EToBADUcUEF3
-	 PUrkZOBbVHyniVmoYuNqJorvnpFZWKS83ynooRCViqs62zkJ/21SAjzik9nHy7BtEc
-	 2s7NkQPGEHiNA==
-Date: Sun, 19 Nov 2023 13:37:28 +0000
+	b=kTw5C7Btmzdmy+7BbWU6+iyapnk/QRva0iXhGjv1SRbl3UuTqNzkjm8FQ7x3j2py4
+	 ZA3HBrCyTcUasOvvLTgiPpNvTAYQ6hj+t9bgKU2dyw6rcXDQXPuc2NOsDop7KZr93H
+	 nWiIXnXXQxJPB/JD80JEAI/65/X69iE+kJkgbU8jkTZskA1bMtd62ZocLOblXSCgaX
+	 PgjY8DZWPNJ9W34vKOF3D9ML76MMJbUgLfvCz2oxXiNmMuXLwhZBAUHFVINRN/Iupy
+	 8o4METhrXn6Klwkm2izOjeG+f250xo5lrtvJdquQW9ITF4Ca+QG9SJPFh03GaLVHxV
+	 oYKVDO4YvYfiA==
+Date: Sun, 19 Nov 2023 13:41:44 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Srinivas Goud <srinivas.goud@amd.com>
-Cc: wg@grandegger.com, mkl@pengutronix.de, davem@davemloft.net,
-	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, p.zabel@pengutronix.de, git@amd.com,
-	michal.simek@xilinx.com, linux-can@vger.kernel.org,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	appana.durga.rao@xilinx.com, naga.sureshkumar.relli@xilinx.com
-Subject: Re: [PATCH v5 1/3] dt-bindings: can: xilinx_can: Add 'xlnx,has-ecc'
- optional property
-Message-ID: <20231119-dotted-feast-eb01cbebde42@spud>
-References: <1700213336-652-1-git-send-email-srinivas.goud@amd.com>
- <1700213336-652-2-git-send-email-srinivas.goud@amd.com>
+To: Li peiyu <579lpy@gmail.com>
+Cc: jic23@kernel.org, lars@metafoo.de, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] dt-bindings: iio: humidity: Add TI HDC302x support
+Message-ID: <20231119-donated-hypnotist-33529b63bee8@spud>
+References: <20231118105815.17171-1-579lpy@gmail.com>
+ <20231118110232.17261-1-579lpy@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,92 +49,44 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="8WwOMIKNYsPT2CWN"
+	protocol="application/pgp-signature"; boundary="Kk2ARJ5ujP5J6eF3"
 Content-Disposition: inline
-In-Reply-To: <1700213336-652-2-git-send-email-srinivas.goud@amd.com>
+In-Reply-To: <20231118110232.17261-1-579lpy@gmail.com>
 
 
---8WwOMIKNYsPT2CWN
+--Kk2ARJ5ujP5J6eF3
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Nov 17, 2023 at 02:58:54PM +0530, Srinivas Goud wrote:
-> ECC feature added to CAN TX_OL, TX_TL and RX FIFOs of
-> Xilinx AXI CAN Controller.
-> Part of this feature configuration and counter registers added in
+On Sat, Nov 18, 2023 at 07:02:32PM +0800, Li peiyu wrote:
+> Add device tree bindings for HDC3020/HDC3021/HDC3022 humidity and
+> temperature sensors.
+>=20
+> changes for v2:
 
-"ECC is an IP configuration option where counter registers are added..."
-The sentence is hard to parse for the important bit of information - the
-justification for this being a property rather than based on compatible
-or autodetectable based on some IP version etc.
+Changelog needs to be below the --- line so that it doesn't end up in
+the commit log.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> - change the maintainers to me.
+> - hdc3020,hdc3021,hdc3022 are compatible,I've changed the dirver.
+
+Does that even compile? It was the binding I wanted you to change, not
+the driver. Take a look at the example-schema for how to do this.
 
 Cheers,
 Conor.
 
-> IP for 1bit/2bit ECC errors.
->=20
-> 'xlnx,has-ecc' is optional property and added to Xilinx AXI CAN Controller
-> node if ECC block enabled in the HW
->=20
-> Signed-off-by: Srinivas Goud <srinivas.goud@amd.com>
-> ---
-> Changes in v5:
-> Update property description
->=20
-> Changes in v4:
-> Fix binding check warning
-> Update property description
->=20
-> Changes in v3:
-> Update commit description
-> =20
-> Changes in v2:
-> None
->=20
->  Documentation/devicetree/bindings/net/can/xilinx,can.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/net/can/xilinx,can.yaml b/=
-Documentation/devicetree/bindings/net/can/xilinx,can.yaml
-> index 64d57c3..8d4e5af 100644
-> --- a/Documentation/devicetree/bindings/net/can/xilinx,can.yaml
-> +++ b/Documentation/devicetree/bindings/net/can/xilinx,can.yaml
-> @@ -49,6 +49,10 @@ properties:
->    resets:
->      maxItems: 1
-> =20
-> +  xlnx,has-ecc:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description: CAN TX_OL, TX_TL and RX FIFOs have ECC support(AXI CAN)
-> +
->  required:
->    - compatible
->    - reg
-> @@ -137,6 +141,7 @@ examples:
->          interrupts =3D <GIC_SPI 59 IRQ_TYPE_EDGE_RISING>;
->          tx-fifo-depth =3D <0x40>;
->          rx-fifo-depth =3D <0x40>;
-> +        xlnx,has-ecc;
->      };
-> =20
->    - |
-> --=20
-> 2.1.1
->=20
-
---8WwOMIKNYsPT2CWN
+--Kk2ARJ5ujP5J6eF3
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZVoPmAAKCRB4tDGHoIJi
-0gIVAQCmItBnILexQiAoXNdAAsHy5rgfRr4rjnM34BOJAlWaNQEA92zmPiiA1wxS
-KxWwYSuiX1hAlANo8CLa5w7qWaHayQY=
-=jE3W
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZVoQmAAKCRB4tDGHoIJi
+0jSYAP41RGT8QYdUAb9zkFk3WzU+bpoKjRVX+lDgxqQ1kHAPAAEAm7GdkHDMyrOM
+V81WtgMCG0DbIBWu5DfC0BzSM6jBPw0=
+=L7gs
 -----END PGP SIGNATURE-----
 
---8WwOMIKNYsPT2CWN--
+--Kk2ARJ5ujP5J6eF3--
 
