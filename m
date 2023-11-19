@@ -1,137 +1,224 @@
-Return-Path: <devicetree+bounces-16934-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16935-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F7667F0729
-	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 16:24:10 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC3D67F072B
+	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 16:27:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BCF461C203DE
-	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 15:24:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 74E22280D8C
+	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 15:27:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5025613AD4;
-	Sun, 19 Nov 2023 15:24:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1175B134B9;
+	Sun, 19 Nov 2023 15:27:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XKSNTmni"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E221B5;
-	Sun, 19 Nov 2023 07:23:58 -0800 (PST)
-Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-1efa01323b4so2202768fac.3;
-        Sun, 19 Nov 2023 07:23:58 -0800 (PST)
+Received: from mail-oo1-xc35.google.com (mail-oo1-xc35.google.com [IPv6:2607:f8b0:4864:20::c35])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0559C83;
+	Sun, 19 Nov 2023 07:27:46 -0800 (PST)
+Received: by mail-oo1-xc35.google.com with SMTP id 006d021491bc7-586ad15f9aaso1894288eaf.2;
+        Sun, 19 Nov 2023 07:27:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1700407665; x=1701012465; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=qVg6tuBAQxkmNGNJSWkr/sGMIKsv+ywhAtTchPGIaoE=;
+        b=XKSNTmnizcY8puqo2pBlx32MJgSXiqNk2VY3S2hbGdS/BQZRwEF1ICt+spRXDL3jpw
+         edodHW9r34zoDPtShNyzqFCrxTlaaiYklj34GbT3fEIQqEwtbN03cYQ9sRtomKHb9PP3
+         dv7TS0CckmvrQC0K1bYmSqixs+SUo+4M4wuJq/okqc5ljavgS+WqTyDApspBzTcsLmKB
+         gT0p/Pt1tlMiKvFx1qYW/wOn7I+k0SnZnpclOWTA8c9s2gMpzlQP29nsW7tuQ1244HX+
+         306jh038Bc3MMtq6T2mom5JzJ7Rg8hmWE8mSqVBGixuIgoue/Dg7sJ7/HGyFZ+9xhRkk
+         u6fw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700407437; x=1701012237;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JvBH+EWY74pgOdnostfTvFXJoA0rOQwdXiujVZ07pTs=;
-        b=BgtnF7aRHB9UFtp4uF/p/XioDOed/vZySK1FS/I6vRDmgLf1vtMeG1MtWxkLH6Hvhk
-         3T9IDypWc+3A+4/50ZSPzpV++kFdMMfrnJKiuYZu4ED7Shi+bwoOtw9p36PK7nqoqJoQ
-         w/XjeWglXN9qtBrA4vwEOUhCRPDwiyJhO3VsaJehvpYNUA8T7LtG4RgHztgvO9ZK+oWX
-         8SzcvH9mlRV1NAq3e/WZhI+gS+Fk9MWTUm7at7AJfPmaoab/MFWOIglNyiDmAKBgtkiq
-         tCgvDpB0bKHbEBh8kvxUM7ZINcCPGVPlHiAywmR/nhLLBI2asjUtMfV9bpQut9NGi5n/
-         uA3Q==
-X-Gm-Message-State: AOJu0YxsiUUUmhFzon+u7CKbrY7kC2I4lHnOGVNZhsaZlWoDre5pNVkI
-	UGv82bCBDBPQ4MlixMefBOPKFA4S6Q==
-X-Google-Smtp-Source: AGHT+IGDY8KITDzwXPPX6dbv/Syq98ERWXvGlyDk+aFKC8MDHNnswIHQzkscF5GiPJ//Dn3zZ0QfQw==
-X-Received: by 2002:a05:6870:af05:b0:1f4:a48d:d32f with SMTP id ux5-20020a056870af0500b001f4a48dd32fmr5682063oab.25.1700407437363;
-        Sun, 19 Nov 2023 07:23:57 -0800 (PST)
-Received: from herring.priv ([2607:fb90:45e3:889f:15b4:1348:6d64:224b])
-        by smtp.gmail.com with ESMTPSA id v9-20020a056830090900b006d64f51a94bsm899932ott.34.2023.11.19.07.23.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 19 Nov 2023 07:23:56 -0800 (PST)
-Received: (nullmailer pid 223586 invoked by uid 1000);
-	Sun, 19 Nov 2023 15:23:54 -0000
-Date: Sun, 19 Nov 2023 09:23:54 -0600
-From: Rob Herring <robh@kernel.org>
-To: gabriel.fernandez@foss.st.com
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, Philipp Zabel <p.zabel@pengutronix.de>, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/5] dt-bindings: stm32: add clocks and reset binding
- for stm32mp25 platform
-Message-ID: <20231119152354.GA216405-robh@kernel.org>
-References: <20231116154952.1206705-1-gabriel.fernandez@foss.st.com>
- <20231116154952.1206705-4-gabriel.fernandez@foss.st.com>
+        d=1e100.net; s=20230601; t=1700407665; x=1701012465;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qVg6tuBAQxkmNGNJSWkr/sGMIKsv+ywhAtTchPGIaoE=;
+        b=VnaUBMxWxtRcSDft/eUMXh+DERBG/JucswCfrEokmmQ0Uzrh2LaVMXqsUi0Z7nHg3l
+         yaVojj9eDQJHDgREkiLtZIJ1uHL6gJ+3Ry9yC9wHTEbV5fKZ9tIhi/XDOmlPgU75EJGa
+         iax3tg1y67nOM0jOD66Y/NBgat5bXzsCOXv72DKtJ1uFfvTdaG1GvYmBPjAujVtBxeSh
+         e55sBoYt69kKHVVOnzVOCStnn2NiowS84oIBH/2o9OS/oZD0oENxDdmFn1EZ/2N0Xzt3
+         CAElh62rnmuDi0ez3cLUc3K3Z2OJ/u6QlDLOX4GmqBinY5NuaJIfJfbZka1idHN+NSV0
+         ao7g==
+X-Gm-Message-State: AOJu0YxxiLapdy5MK2c7kno/Z1jHxU/yqlx1KR2QpNjhnDXf/zG5aAsr
+	6XKdfoTnu6FaPr8SqCZh3gU4+6awbylmTgZZGK8=
+X-Google-Smtp-Source: AGHT+IGDUPNiW0ynsdFghY8VYMcG3VDos2+nvo5Hf4XCfQo6k9gL9MKK5TIEI1F5eoq7dOvaDOd3xqfD4v+xb1rBLnU=
+X-Received: by 2002:a05:6820:16ac:b0:58a:128:8ff0 with SMTP id
+ bc44-20020a05682016ac00b0058a01288ff0mr4456393oob.5.1700407665238; Sun, 19
+ Nov 2023 07:27:45 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231116154952.1206705-4-gabriel.fernandez@foss.st.com>
+References: <20231119023454.1591-1-linux.amoon@gmail.com> <20231119023454.1591-2-linux.amoon@gmail.com>
+ <20231119-phrasing-reverse-bbc1fde515d5@spud>
+In-Reply-To: <20231119-phrasing-reverse-bbc1fde515d5@spud>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Sun, 19 Nov 2023 20:57:28 +0530
+Message-ID: <CANAwSgQ6H9FUEBKz7sCf4kUZSMnCfyXG-cpGTMZoT15W9187Kg@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: usb: Add the binding example for the
+ Genesys Logic GL3523 hub
+To: Conor Dooley <conor@kernel.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Icenowy Zheng <uwu@icenowy.me>, linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Thu, Nov 16, 2023 at 04:49:50PM +0100, gabriel.fernandez@foss.st.com wrote:
-> From: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
-> 
-> Adds clock and reset binding entries for STM32MP25 SoC family
-> 
-> Signed-off-by: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
-> ---
->  .../bindings/clock/st,stm32mp25-rcc.yaml      |  72 +++
->  include/dt-bindings/clock/st,stm32mp25-rcc.h  | 492 ++++++++++++++++++
->  include/dt-bindings/reset/st,stm32mp25-rcc.h  | 165 ++++++
->  3 files changed, 729 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/st,stm32mp25-rcc.yaml
->  create mode 100644 include/dt-bindings/clock/st,stm32mp25-rcc.h
->  create mode 100644 include/dt-bindings/reset/st,stm32mp25-rcc.h
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/st,stm32mp25-rcc.yaml b/Documentation/devicetree/bindings/clock/st,stm32mp25-rcc.yaml
-> new file mode 100644
-> index 000000000000..1bdcfacd62d5
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/st,stm32mp25-rcc.yaml
-> @@ -0,0 +1,72 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/st,stm32mp25-rcc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: STM32MP25 Reset Clock Controller
-> +
-> +maintainers:
-> +  - Gabriel Fernandez <gabriel.fernandez@foss.st.com>
-> +
-> +description: |
-> +  The RCC hardware block is both a reset and a clock controller.
-> +  RCC makes also power management (resume/supend).
-> +
-> +  See also::
-> +    include/dt-bindings/clock/st,stm32mp25-rcc.h
-> +    include/dt-bindings/reset/st,stm32mp25-rcc.h
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - st,stm32mp25-rcc
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  '#clock-cells':
-> +    const: 1
-> +
-> +  '#reset-cells':
-> +    const: 1
-> +
-> +  clocks:
-> +    description: Specifies oscillators.
-> +    maxItems: 5
-> +
-> +  clock-names:
-> +    items:
-> +      - const: hse
-> +      - const: hsi
-> +      - const: msi
-> +      - const: lse
-> +      - const: lsi
+Hi Conor,
 
-No idea what these TLAs are... Define them in clocks:
+On Sun, 19 Nov 2023 at 19:28, Conor Dooley <conor@kernel.org> wrote:
+>
+> On Sun, Nov 19, 2023 at 08:04:50AM +0530, Anand Moon wrote:
+> > Add the binding example for the USB3.1 Genesys Logic GL3523
+> > integrates with USB 3.1 Gen 1 Super Speed and USB 2.0 High-Speed
+> > hub.
+>
+> But no comment in the commit message about the new property for the
+> "peer hub". $subject saying "dt-bindings: usb: Add the binding example
+> for the Genesys Logic GL3523 hub" is misleading when the meaningful
+> parts of the patch are unrelated to the example.
+>
+> >
+> > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> > ---
+> > V3: fix the dt_binding_check error, added new example for Genesys GL3523
+> > v2: added Genesys GL3523 binding
+> > v1: none
+> > ---
+> >  .../bindings/usb/genesys,gl850g.yaml          | 63 +++++++++++++++++--
+> >  1 file changed, 59 insertions(+), 4 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> > index ee08b9c3721f..f8e88477fa11 100644
+> > --- a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> > +++ b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> > @@ -9,9 +9,6 @@ title: Genesys Logic USB hub controller
+> >  maintainers:
+> >    - Icenowy Zheng <uwu@icenowy.me>
+> >
+> > -allOf:
+> > -  - $ref: usb-device.yaml#
+> > -
+> >  properties:
+> >    compatible:
+> >      enum:
+> > @@ -27,12 +24,44 @@ properties:
+> >
+> >    vdd-supply:
+> >      description:
+> > -      the regulator that provides 3.3V core power to the hub.
+> > +      phandle to the regulator that provides power to the hub.
+> > +
+> > +  peer-hub:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    description:
+> > +      phandle to the peer hub on the controller.
+>
+> What is this, why is it needed? Please explain it in your commit
+> message.
+>
+Ok, GL3523 integrates Genesys Logic self-developed USB 3.1 Gen 1
+Super Speed transmitter/receiver physical layer (PHY) and USB 2.0
+High-Speed PHY
 
-clocks:
-  items:
-    - description: what hse is
-    - ...
+peer-hub is used to cross-connect those phy nodes so that it can help
+hub power on/off simultaneously.
 
+/:  Bus 001.Port 001: Dev 001, Class=root_hub, Driver=xhci-hcd/2p, 480M
+    ID 1d6b:0002 Linux Foundation 2.0 root hub
+    |__ Port 001: Dev 002, If 0, Class=Hub, Driver=hub/4p, 480M
+        ID 05e3:0610 Genesys Logic, Inc. Hub
+        |__ Port 003: Dev 004, If 0, Class=Vendor Specific Class,
+Driver=cp210x, 12M
+            ID 10c4:ea60 Silicon Labs CP210x UART Bridge
+/:  Bus 002.Port 001: Dev 001, Class=root_hub, Driver=xhci-hcd/1p, 5000M
+    ID 1d6b:0003 Linux Foundation 3.0 root hub
+    |__ Port 001: Dev 002, If 0, Class=Hub, Driver=hub/4p, 5000M
+        ID 05e3:0620 Genesys Logic, Inc. GL3523 Hub
+        |__ Port 001: Dev 003, If 0, Class=Mass Storage,
+Driver=usb-storage, 5000M
+            ID 174c:55aa ASMedia Technology Inc. ASM1051E SATA 6Gb/s
+bridge, ASM1053E SATA 6Gb/s bridge, ASM1153 SATA 3Gb/s bridge,
+ASM1153E SATA 6Gb/s bridge
+
+Thanks
+-Anand
+
+> Thanks,
+> Conor.
+>
+> >
+> >  required:
+> >    - compatible
+> >    - reg
+> >
+> > +allOf:
+> > +  - $ref: usb-device.yaml#
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - usb5e3,608
+> > +    then:
+> > +      properties:
+> > +        peer-hub: false
+> > +        vdd-supply: false
+> > +        reset-gpios: true
+> > +
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - usb5e3,610
+> > +              - usb5e3,620
+> > +    then:
+> > +      properties:
+> > +        peer-hub: true
+> > +        vdd-supply: true
+> > +        reset-gpios: true
+> > +
+> >  additionalProperties: false
+> >
+> >  examples:
+> > @@ -49,3 +78,29 @@ examples:
+> >              reset-gpios = <&pio 7 2 GPIO_ACTIVE_LOW>;
+> >          };
+> >      };
+> > +
+> > +  - |
+> > +    #include <dt-bindings/gpio/gpio.h>
+> > +    usb {
+> > +        dr_mode = "host";
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +
+> > +        /* 2.0 hub on port 1 */
+> > +        hub_2_0: hub@1 {
+> > +            compatible = "usb5e3,610";
+> > +            reg = <1>;
+> > +            peer-hub = <&hub_3_0>;
+> > +            reset-gpios = <&gpio 20 GPIO_ACTIVE_LOW>;
+> > +            vdd-supply = <&vcc_5v>;
+> > +        };
+> > +
+> > +        /* 3.1 hub on port 4 */
+> > +        hub_3_0: hub@2 {
+> > +            compatible = "usb5e3,620";
+> > +            reg = <2>;
+> > +            peer-hub = <&hub_2_0>;
+> > +            reset-gpios = <&gpio 20 GPIO_ACTIVE_LOW>;
+> > +            vdd-supply = <&vcc_5v>;
+> > +        };
+> > +    };
+> > --
+> > 2.42.0
+> >
 
