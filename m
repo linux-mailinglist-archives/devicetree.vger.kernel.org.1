@@ -1,263 +1,121 @@
-Return-Path: <devicetree+bounces-16888-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16889-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41E0D7F04BF
-	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 09:16:47 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 330147F04C2
+	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 09:17:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6794A1C20845
-	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 08:16:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DB2461F21DFD
+	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 08:17:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BE6615A8;
-	Sun, 19 Nov 2023 08:16:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B5661C2E;
+	Sun, 19 Nov 2023 08:16:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=marcan.st header.i=@marcan.st header.b="fnmZORRU"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="GpW+3aUb"
 X-Original-To: devicetree@vger.kernel.org
-X-Greylist: delayed 345 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sun, 19 Nov 2023 00:16:36 PST
-Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F01312D;
-	Sun, 19 Nov 2023 00:16:35 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: marcan@marcan.st)
-	by mail.marcansoft.com (Postfix) with ESMTPSA id DD580447DB;
-	Sun, 19 Nov 2023 08:10:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=marcan.st; s=default;
-	t=1700381447; bh=GM+if5fLHpvJrFY5qSih6je/CvwvPPLKRrXfiPD5JZ0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=fnmZORRU99JAVouDyTggPcE3iI5afMoj+u2Q93VQ586jKo2M/q9GZEdwubNM4sfTG
-	 O/GNq8IBB2FxoNxqr+83D6QLnNoyRUshU83ipS6MAOREVA4UCBzzO13RzDdjxIUQMP
-	 eudSVW93AZc92wzpKNKzYiJbsCHq3HNLwf37Q4rYng+gvpQzwQv6Hir4FQs3pVEOHW
-	 PWvxNrEeCr6uJqj6WxIZxJOcGOrqTmHPOFdam47KxGPA3SBUOixBt51uEWtRaaJNpU
-	 +oztbcTSFkScA/2bBEJM1o2bzkZzy2rOmG6UsRBkmN8P7aMUR0GoioW59JerR3gTgu
-	 E9BI6sjTeb8xw==
-Message-ID: <20a7ef6d-a8ca-4bd8-ad7e-11856db617a2@marcan.st>
-Date: Sun, 19 Nov 2023 17:10:30 +0900
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F885182;
+	Sun, 19 Nov 2023 00:16:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1700381812; x=1731917812;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=0NkMhkkV+cUo97yEBokAzfARPMt+tQWy8S0Z8qalPik=;
+  b=GpW+3aUb1+wBDblfaP4e0dLVSh+j+HlTZHvg/g8HPQuIgys4HPJJjZAe
+   ir28FQ5aCfwetu3e/z2Ryoa3uhxbmjif01oe+/YjPjg7ljzVBUAZTIu30
+   J+0xsEROD7N11UPSgGLio5I/TIYJk5E0Jgn6U6R09japvimlbhG2/e97l
+   0N/C7JlILXH+m7nK0R7HR3JxhVDFZMkMc2HQzjuTHil2nafb5e7Boaufn
+   tqs4wD//olNFsPcVBURYkjVvCRmXeH/Zta92o8Ilohbr1ZbbbTTS752Qq
+   U9749+ew8+SSYDGmCZS1quoCplgsgJmM9Wb/B9QWeHTLDzke7PujTc8Kw
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10898"; a="381866511"
+X-IronPort-AV: E=Sophos;i="6.04,210,1695711600"; 
+   d="scan'208";a="381866511"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Nov 2023 00:16:51 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10898"; a="759536758"
+X-IronPort-AV: E=Sophos;i="6.04,210,1695711600"; 
+   d="scan'208";a="759536758"
+Received: from lkp-server02.sh.intel.com (HELO b8de5498638e) ([10.239.97.151])
+  by orsmga007.jf.intel.com with ESMTP; 19 Nov 2023 00:16:43 -0800
+Received: from kbuild by b8de5498638e with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1r4cyv-0004pL-1K;
+	Sun, 19 Nov 2023 08:16:41 +0000
+Date: Sun, 19 Nov 2023 16:16:33 +0800
+From: kernel test robot <lkp@intel.com>
+To: Herve Codina <herve.codina@bootlin.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Qiang Zhao <qiang.zhao@nxp.com>, Li Yang <leoyang.li@nxp.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>,
+	Shengjiu Wang <shengjiu.wang@gmail.com>,
+	Xiubo Li <Xiubo.Lee@gmail.com>, Fabio Estevam <festevam@gmail.com>,
+	Nicolin Chen <nicoleotsuka@gmail.com>,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	Randy Dunlap <rdunlap@infradead.org>
+Cc: Paul Gazzillo <paul@pgazz.com>,
+	Necip Fazil Yildiran <fazilyildiran@gmail.com>,
+	oe-kbuild-all@lists.linux.dev, netdev@vger.kernel.org,
+	linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org
+Subject: Re: [PATCH v9 23/27] net: wan: framer: Add support for the Lantiq
+ PEF2256 framer
+Message-ID: <202311191651.ayfggTMD-lkp@intel.com>
+References: <20231115144007.478111-24-herve.codina@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 06/17] iommu: Add iommu_fwspec_alloc/dealloc()
-Content-Language: en-US
-To: Jason Gunthorpe <jgg@nvidia.com>, acpica-devel@lists.linux.dev,
- Alyssa Rosenzweig <alyssa@rosenzweig.io>, Albert Ou <aou@eecs.berkeley.edu>,
- asahi@lists.linux.dev, Catalin Marinas <catalin.marinas@arm.com>,
- Dexuan Cui <decui@microsoft.com>, devicetree@vger.kernel.org,
- David Woodhouse <dwmw2@infradead.org>, Frank Rowand
- <frowand.list@gmail.com>, Hanjun Guo <guohanjun@huawei.com>,
- Haiyang Zhang <haiyangz@microsoft.com>, iommu@lists.linux.dev,
- Jean-Philippe Brucker <jean-philippe@linaro.org>,
- Jonathan Hunter <jonathanh@nvidia.com>, Joerg Roedel <joro@8bytes.org>,
- "K. Y. Srinivasan" <kys@microsoft.com>, Len Brown <lenb@kernel.org>,
- linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-hyperv@vger.kernel.org, linux-mips@vger.kernel.org,
- linux-riscv@lists.infradead.org, linux-snps-arc@lists.infradead.org,
- linux-tegra@vger.kernel.org, Russell King <linux@armlinux.org.uk>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, patches@lists.linux.dev,
- Paul Walmsley <paul.walmsley@sifive.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Robert Moore <robert.moore@intel.com>, Rob Herring <robh+dt@kernel.org>,
- Robin Murphy <robin.murphy@arm.com>, Sudeep Holla <sudeep.holla@arm.com>,
- Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
- Sven Peter <sven@svenpeter.dev>, Thierry Reding <thierry.reding@gmail.com>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Krishna Reddy <vdumpa@nvidia.com>, Vineet Gupta <vgupta@kernel.org>,
- virtualization@lists.linux.dev, Wei Liu <wei.liu@kernel.org>,
- Will Deacon <will@kernel.org>
-Cc: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- Lu Baolu <baolu.lu@linux.intel.com>, Christoph Hellwig <hch@lst.de>,
- Jerry Snitselaar <jsnitsel@redhat.com>, Moritz Fischer <mdf@kernel.org>,
- Zhenhua Huang <quic_zhenhuah@quicinc.com>,
- "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
- Rob Herring <robh@kernel.org>
-References: <6-v2-36a0088ecaa7+22c6e-iommu_fwspec_jgg@nvidia.com>
-From: Hector Martin <marcan@marcan.st>
-In-Reply-To: <6-v2-36a0088ecaa7+22c6e-iommu_fwspec_jgg@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231115144007.478111-24-herve.codina@bootlin.com>
 
-On 2023/11/15 23:05, Jason Gunthorpe wrote:
-> Allow fwspec to exist independently from the dev->iommu by providing
-> functions to allow allocating and freeing the raw struct iommu_fwspec.
-> 
-> Reflow the existing paths to call the new alloc/dealloc functions.
-> 
-> Reviewed-by: Jerry Snitselaar <jsnitsel@redhat.com>
-> Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
-> ---
->  drivers/iommu/iommu.c | 82 ++++++++++++++++++++++++++++++++-----------
->  include/linux/iommu.h | 11 +++++-
->  2 files changed, 72 insertions(+), 21 deletions(-)
-> 
-> diff --git a/drivers/iommu/iommu.c b/drivers/iommu/iommu.c
-> index 18a82a20934d53..86bbb9e75c7e03 100644
-> --- a/drivers/iommu/iommu.c
-> +++ b/drivers/iommu/iommu.c
-> @@ -361,10 +361,8 @@ static void dev_iommu_free(struct device *dev)
->  	struct dev_iommu *param = dev->iommu;
->  
->  	dev->iommu = NULL;
-> -	if (param->fwspec) {
-> -		fwnode_handle_put(param->fwspec->iommu_fwnode);
-> -		kfree(param->fwspec);
-> -	}
-> +	if (param->fwspec)
-> +		iommu_fwspec_dealloc(param->fwspec);
->  	kfree(param);
->  }
->  
-> @@ -2920,10 +2918,61 @@ const struct iommu_ops *iommu_ops_from_fwnode(struct fwnode_handle *fwnode)
->  	return ops;
->  }
->  
-> +static int iommu_fwspec_assign_iommu(struct iommu_fwspec *fwspec,
-> +				     struct device *dev,
-> +				     struct fwnode_handle *iommu_fwnode)
-> +{
-> +	const struct iommu_ops *ops;
-> +
-> +	if (fwspec->iommu_fwnode) {
-> +		/*
-> +		 * fwspec->iommu_fwnode is the first iommu's fwnode. In the rare
-> +		 * case of multiple iommus for one device they must point to the
-> +		 * same driver, checked via same ops.
-> +		 */
-> +		ops = iommu_ops_from_fwnode(iommu_fwnode);
+Hi Herve,
 
-This carries over a related bug from the original code: If a device has
-two IOMMUs and the first one probes but the second one defers, ops will
-be NULL here and the check will fail with EINVAL.
+kernel test robot noticed the following build warnings:
 
-Adding a check for that case here fixes it:
+[auto build test WARNING on broonie-sound/for-next]
+[also build test WARNING on linusw-pinctrl/devel linusw-pinctrl/for-next robh/for-next linus/master v6.7-rc1 next-20231117]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-		if (!ops)
-			return driver_deferred_probe_check_state(dev);
+url:    https://github.com/intel-lab-lkp/linux/commits/Herve-Codina/soc-fsl-cpm1-tsa-Fix-__iomem-addresses-declaration/20231115-224517
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+patch link:    https://lore.kernel.org/r/20231115144007.478111-24-herve.codina%40bootlin.com
+patch subject: [PATCH v9 23/27] net: wan: framer: Add support for the Lantiq PEF2256 framer
+config: s390-kismet-CONFIG_MFD_CORE-CONFIG_FRAMER_PEF2256-0-0 (https://download.01.org/0day-ci/archive/20231119/202311191651.ayfggTMD-lkp@intel.com/config)
+reproduce: (https://download.01.org/0day-ci/archive/20231119/202311191651.ayfggTMD-lkp@intel.com/reproduce)
 
-With that, for the whole series:
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202311191651.ayfggTMD-lkp@intel.com/
 
-Tested-by: Hector Martin <marcan@marcan.st>
+kismet warnings: (new ones prefixed by >>)
+>> kismet: WARNING: unmet direct dependencies detected for MFD_CORE when selected by FRAMER_PEF2256
+   
+   WARNING: unmet direct dependencies detected for MFD_CORE
+     Depends on [n]: HAS_IOMEM [=n]
+     Selected by [y]:
+     - FRAMER_PEF2256 [=y] && NETDEVICES [=y] && WAN [=y] && FRAMER [=y] && OF [=y]
 
-I can't specifically test for the probe races the series intends to fix
-though, since that bug we only hit extremely rarely. I'm just testing
-that nothing breaks.
-
-> +		if (fwspec->ops != ops)
-> +			return -EINVAL;
-> +		return 0;
-> +	}
-> +
-> +	if (!fwspec->ops) {
-> +		ops = iommu_ops_from_fwnode(iommu_fwnode);
-> +		if (!ops)
-> +			return driver_deferred_probe_check_state(dev);
-> +		fwspec->ops = ops;
-> +	}
-> +
-> +	of_node_get(to_of_node(iommu_fwnode));
-> +	fwspec->iommu_fwnode = iommu_fwnode;
-> +	return 0;
-> +}
-> +
-> +struct iommu_fwspec *iommu_fwspec_alloc(void)
-> +{
-> +	struct iommu_fwspec *fwspec;
-> +
-> +	fwspec = kzalloc(sizeof(*fwspec), GFP_KERNEL);
-> +	if (!fwspec)
-> +		return ERR_PTR(-ENOMEM);
-> +	return fwspec;
-> +}
-> +
-> +void iommu_fwspec_dealloc(struct iommu_fwspec *fwspec)
-> +{
-> +	if (!fwspec)
-> +		return;
-> +
-> +	if (fwspec->iommu_fwnode)
-> +		fwnode_handle_put(fwspec->iommu_fwnode);
-> +	kfree(fwspec);
-> +}
-> +
->  int iommu_fwspec_init(struct device *dev, struct fwnode_handle *iommu_fwnode,
->  		      const struct iommu_ops *ops)
->  {
->  	struct iommu_fwspec *fwspec = dev_iommu_fwspec_get(dev);
-> +	int ret;
->  
->  	if (fwspec)
->  		return ops == fwspec->ops ? 0 : -EINVAL;
-> @@ -2931,29 +2980,22 @@ int iommu_fwspec_init(struct device *dev, struct fwnode_handle *iommu_fwnode,
->  	if (!dev_iommu_get(dev))
->  		return -ENOMEM;
->  
-> -	fwspec = kzalloc(sizeof(*fwspec), GFP_KERNEL);
-> -	if (!fwspec)
-> -		return -ENOMEM;
-> +	fwspec = iommu_fwspec_alloc();
-> +	if (IS_ERR(fwspec))
-> +		return PTR_ERR(fwspec);
->  
-> -	of_node_get(to_of_node(iommu_fwnode));
-> -	fwspec->iommu_fwnode = iommu_fwnode;
->  	fwspec->ops = ops;
-> +	ret = iommu_fwspec_assign_iommu(fwspec, dev, iommu_fwnode);
-> +	if (ret) {
-> +		iommu_fwspec_dealloc(fwspec);
-> +		return ret;
-> +	}
-> +
->  	dev_iommu_fwspec_set(dev, fwspec);
->  	return 0;
->  }
->  EXPORT_SYMBOL_GPL(iommu_fwspec_init);
->  
-> -void iommu_fwspec_free(struct device *dev)
-> -{
-> -	struct iommu_fwspec *fwspec = dev_iommu_fwspec_get(dev);
-> -
-> -	if (fwspec) {
-> -		fwnode_handle_put(fwspec->iommu_fwnode);
-> -		kfree(fwspec);
-> -		dev_iommu_fwspec_set(dev, NULL);
-> -	}
-> -}
-> -EXPORT_SYMBOL_GPL(iommu_fwspec_free);
->  
->  int iommu_fwspec_add_ids(struct device *dev, u32 *ids, int num_ids)
->  {
-> diff --git a/include/linux/iommu.h b/include/linux/iommu.h
-> index e98a4ca8f536b7..c7c68cb59aa4dc 100644
-> --- a/include/linux/iommu.h
-> +++ b/include/linux/iommu.h
-> @@ -813,9 +813,18 @@ struct iommu_sva {
->  	struct iommu_domain		*domain;
->  };
->  
-> +struct iommu_fwspec *iommu_fwspec_alloc(void);
-> +void iommu_fwspec_dealloc(struct iommu_fwspec *fwspec);
-> +
->  int iommu_fwspec_init(struct device *dev, struct fwnode_handle *iommu_fwnode,
->  		      const struct iommu_ops *ops);
-> -void iommu_fwspec_free(struct device *dev);
-> +static inline void iommu_fwspec_free(struct device *dev)
-> +{
-> +	if (!dev->iommu)
-> +		return;
-> +	iommu_fwspec_dealloc(dev->iommu->fwspec);
-> +	dev->iommu->fwspec = NULL;
-> +}
->  int iommu_fwspec_add_ids(struct device *dev, u32 *ids, int num_ids);
->  const struct iommu_ops *iommu_ops_from_fwnode(struct fwnode_handle *fwnode);
->  
-
-- Hector
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
