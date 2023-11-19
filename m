@@ -1,164 +1,536 @@
-Return-Path: <devicetree+bounces-16929-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16930-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41A3C7F06E3
-	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 15:34:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E7E67F06FF
+	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 16:02:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4A5A31C2037A
-	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 14:34:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D78E3280CA6
+	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 15:02:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BDB41102;
-	Sun, 19 Nov 2023 14:34:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6796134A4;
+	Sun, 19 Nov 2023 15:02:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nn7WIHfw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f54.google.com (mail-oo1-f54.google.com [209.85.161.54])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99F6DBA;
-	Sun, 19 Nov 2023 06:34:47 -0800 (PST)
-Received: by mail-oo1-f54.google.com with SMTP id 006d021491bc7-5845213c583so2007482eaf.0;
-        Sun, 19 Nov 2023 06:34:47 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700404487; x=1701009287;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wbAOew7EQhvdTMrxu7VzSwL0APRrGG2LAuJjAHyG3Ic=;
-        b=lMHTbeIY3keviR+eGP7t/elfJXZo1af0Fe+0LhKk/NDFBV2f9uY8Q/mjU/h3wLrwBM
-         vFQC+5krCaiIKKp6QKREGlLewVS2whA90Ia9UWFwKW7bm2oPNauEnzVBea5QNa1mL9Pk
-         11w0OJHf5CxlrYcBz2kIayHKVcMYSUM0XhhGyv4YxHvbIXSdQnq2VcGOIx6KcxMzOCAd
-         NQ/KHqIHWOeaiT4EcW6ZuJ0NNSjhalYQ7ydT4vcGMUchfXdFSjQ/4E9nimBzzIVcdhn6
-         PT2UaD5LcCSHqEXQbEScfXjplqylU0AYPfaHKYns1KnKRnX0YwEZwoeMEJs9KNmQWv6+
-         Q2qA==
-X-Gm-Message-State: AOJu0YxDuZq7pJGqQ+U3jAMysBxKfPv0QmXKJ1TYSi8V4Z/7O/lJhpds
-	UNzvGMOquSlMbqxmidlKmg==
-X-Google-Smtp-Source: AGHT+IFb+T9RykUaRT49skiYcMHAWrA0Yrdg/vQdhUJcpftXjvADNdhiMeRf/RUyq/2tEoqOp1kpfg==
-X-Received: by 2002:a05:6820:2290:b0:57b:3b48:6f11 with SMTP id ck16-20020a056820229000b0057b3b486f11mr5163096oob.4.1700404486826;
-        Sun, 19 Nov 2023 06:34:46 -0800 (PST)
-Received: from herring.priv ([2607:fb90:45e3:889f:15b4:1348:6d64:224b])
-        by smtp.gmail.com with ESMTPSA id w18-20020a4ae4d2000000b00581fc1af0a7sm1055669oov.28.2023.11.19.06.34.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 19 Nov 2023 06:34:45 -0800 (PST)
-Received: (nullmailer pid 173773 invoked by uid 1000);
-	Sun, 19 Nov 2023 14:34:41 -0000
-Date: Sun, 19 Nov 2023 08:34:41 -0600
-From: Rob Herring <robh@kernel.org>
-To: Doug Anderson <dianders@chromium.org>
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Chen-Yu Tsai <wenst@chromium.org>, Frank Rowand <frowand.list@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, Hsin-Yi Wang <hsinyi@chromium.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, andriy.shevchenko@linux.intel.com, Jiri Kosina <jikos@kernel.org>, linus.walleij@linaro.org, broonie@kernel.org, gregkh@linuxfoundation.org, hdegoede@redhat.com, james.clark@arm.com, james@equiv.tech, keescook@chromium.org, petr.tesarik.ext@huawei.com, rafael@kernel.org, tglx@linutronix.de, Jeff LaBundy <jeff@labundy.com>, linux-input@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org, Johan Hovold <johan@kernel.org>
-Subject: Re: [RFC PATCH v2 0/7] of: Introduce hardware prober driver
-Message-ID: <20231119143441.GA157654-robh@kernel.org>
-References: <20231109100606.1245545-1-wenst@chromium.org>
- <859ac058-c50a-4eb8-99b6-3011ef4e7529@collabora.com>
- <CAL_JsqK64w3+r_LJZoh50PzAUcsvH6ahSDCqgSiKrD3LBAXE9g@mail.gmail.com>
- <CAD=FV=VUZy9DaZgKafSpXXopD5k8ExGSR97BjAqC5tupPoxNfQ@mail.gmail.com>
- <CAL_Jsq+puq20EWkQg1RTs2zfmh4DGbqz1krp+19c=wPXnLT5dA@mail.gmail.com>
- <CAD=FV=X-17COQ2-tycV1bSuCrGy7MJ88Un8nA-a-ODexvgi9TQ@mail.gmail.com>
- <CAL_JsqKR_YD6hm4Lv+OuCKms8Ha61BZRKUuiLYPgSkz3_3NCFA@mail.gmail.com>
- <CAD=FV=XO5VNuaVKwBHLQC1ukdpHQO0-XTaKnRM=rigbcdOytgQ@mail.gmail.com>
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB7A01171F;
+	Sun, 19 Nov 2023 15:02:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 146E5C433CA;
+	Sun, 19 Nov 2023 15:02:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1700406160;
+	bh=diJ6YDu9UXGGquL+z5uLmO5HkizQcp+FNce3fqbLgu4=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=nn7WIHfw2RVFIzlXcY6pmOfeHPqsUu4Vc5a5mhthoAsFlLYnxh4nevODIqBtQSXG5
+	 fluj/6mAQYnlVUvazQCMR5N6XVJV2wJw9kl6y8wy+VuZ32GsHcXkYmL5ZAfP3cTtwa
+	 xvSTMnFFXegtkQhFyZpC7a23kEzpxUQ0+zW88z17yaFdZ0LP630uU6l22fztIMcFOD
+	 usUBauQd1VK8AZcRd8L0MDgg9icFKfYXeiRqW0kdqYx6Jkg3T2kxaEulTu32LGqoa2
+	 LXJnjxhRkGI9EWMndJTzezCYXPOt91kf3Eei5w/WMQCrDE1uOs+hx2qhZQfy/XzrTl
+	 QfhcZpiT+/jTQ==
+Date: Sun, 19 Nov 2023 15:02:33 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] iio: light: add VEML6075 UVA and UVB light sensor
+ driver
+Message-ID: <20231119150233.10fdc66e@jic23-huawei>
+In-Reply-To: <20231110-veml6075-v1-1-354b3245e14a@gmail.com>
+References: <20231110-veml6075-v1-0-354b3245e14a@gmail.com>
+	<20231110-veml6075-v1-1-354b3245e14a@gmail.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAD=FV=XO5VNuaVKwBHLQC1ukdpHQO0-XTaKnRM=rigbcdOytgQ@mail.gmail.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Wed, Nov 15, 2023 at 05:13:50PM -0500, Doug Anderson wrote:
-> Hi,
+On Sun, 19 Nov 2023 05:58:03 +0100
+Javier Carrasco <javier.carrasco.cruz@gmail.com> wrote:
+
+> The Vishay VEMl6075 is a low power, 16-bit resolution UVA and UVB
+> light sensor with I2C interface and noise compensation (visible and
+> infrarred).
 > 
-> On Wed, Nov 15, 2023 at 4:35 PM Rob Herring <robh+dt@kernel.org> wrote:
-> >
-> > On Wed, Nov 15, 2023 at 2:45 PM Doug Anderson <dianders@chromium.org> wrote:
-> > >
-> > > Hi,
-> > >
-> > > On Wed, Nov 15, 2023 at 2:28 PM Rob Herring <robh+dt@kernel.org> wrote:
-> > > >
-> > > > > So if we're searching the whole device tree for "failed-needs-probe"
-> > > > > then we need to figure out which devices are related to each other. If
-> > > > > a given board has second sources for MIPI panels, touchscreens, and
-> > > > > trackpads then we need to know which of the "failed-needs-probe"
-> > > > > devices are trackpads, which are touchscreens, and which are MIPI
-> > > > > panels. Do you have any suggestions for how we should do that? Maybe
-> > > > > it was in some other thread that I missed? I guess we could have a
-> > > > > board-specific table mapping (compatible + node name + reg) to a
-> > > > > class, but that feels awkward.
-> > > >
-> > > > Node name is supposed to correspond to device class, so why not use
-> > > > that (no path or unit-address.) and nothing else (well, besides
-> > > > "status")?
-> > >
-> > > One problem is that I could imagine having two second source trackpads
-> > > that both have the same i2c address. That would give them the same
-> > > name, right? I guess you could maybe come up with some sort of suffix
-> > > rule? Like
-> > >
-> > > trackpad-1@10 {
-> > >   compatible = "elan,blah";
-> > >   ret = <0x10>;
-> > >   status = "failed-needs-probe";
-> > >   ...
-> > > }
-> > > trackpad-2@10 {
-> > >   compatible = "goodix,gt7375p";
-> > >   ret = <0x10>;
-> > >   status = "failed-needs-probe";
-> > >   ...
-> > > }
-> > >
-> > > Then I guess the class would be "trackpad"?
-> >
-> > That issue is somewhat orthogonal because it is not following the spec.
+> Every UV channel generates an output measured in counts per integration
+> period. Available integration times are 50 ms, 100 ms, 200 ms, 400 ms
+> and 800 ms,
 > 
-> I'm not sure why you say it's orthogonal. The whole reason why we get
-> into the situation above is that we could have two devices, only one
-> of which is present (hence the status of "failed-needs-probe"), that
-> are the same type and have the same "reg" address.
-
-I just mean that defining a node name for 2 devices of the same class 
-and at same address is separate problem from selecting which one to 
-enable.
-
+> This driver adds support for both UV channels and the ultraviolet
+> index (UVI) inferred from them according to the device application note
+> with open-air (no teflon) coefficients.
 > 
-> Essentially the whole "failed-needs-probe" is extending the spec,
-> right? While extending the spec, we also need to talk about what to do
-> if some of the devices that we need to probe have the same class and
-> the same "reg".
-> 
-> 
-> > I'm not sure mixing the 2 styles of node names is a good idea. While
-> > not used too much, matching by node name does ignore the unit-address,
-> > but I'm not sure we could ignore a '-N'.
-> >
-> > I think our options are either add something to the unit-address or
-> > use i2c-mux binding. Adding to the unit-address is not unprecedented.
-> > I did that for some of the register bit level bindings where you have
-> > a node for different bits at the same address. The downside is
-> > unit-address is bus specific, so we'd have to add that for multiple
-> > buses. For the i2c-mux, it's perhaps a bit complex and I'm not sure
-> > what if anything you'd have to do to manage the mux that's not really
-> > there.
-> 
-> Somehow it feels weird to use an i2c-mux because there's no real mux
-> present, right? ...so this would be a virtual (bogus) device that
-> doesn't really exist in hardware.
+> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
 
-Yes, shrug... 
+Hi Javier,
+
+Various comments inline, but all minor stuff. Looks good in general to me.
+
+Jonathan
+
+...
+
+> diff --git a/drivers/iio/light/Makefile b/drivers/iio/light/Makefile
+> index c0db4c4c36ec..c8289e24e3f6 100644
+> --- a/drivers/iio/light/Makefile
+> +++ b/drivers/iio/light/Makefile
+> @@ -60,5 +60,6 @@ obj-$(CONFIG_VCNL4000)		+= vcnl4000.o
+>  obj-$(CONFIG_VCNL4035)		+= vcnl4035.o
+>  obj-$(CONFIG_VEML6030)		+= veml6030.o
+>  obj-$(CONFIG_VEML6070)		+= veml6070.o
+> +obj-$(CONFIG_VEML6075)		+= veml6075.o
+>  obj-$(CONFIG_VL6180)		+= vl6180.o
+>  obj-$(CONFIG_ZOPT2201)		+= zopt2201.o
+> diff --git a/drivers/iio/light/veml6075.c b/drivers/iio/light/veml6075.c
+> new file mode 100644
+> index 000000000000..b7d9319c3906
+> --- /dev/null
+> +++ b/drivers/iio/light/veml6075.c
+> @@ -0,0 +1,503 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * veml6075.c - Support for Vishay VEML6075 UVA and UVB light sensor
+
+Little point in having the filename inside the file comments. Just makes it
+a pain to move if we ever do and adds little of use.
+Arguably "Support for" also a bit pointless.
+Vishay VEML... 
+is what Id' keep.
+
+> + *
+> + * Copyright 2023 Javier Carrasco <javier.carrasco.cruz@gmail.com>
+> + *
+> + * IIO driver for VEML6075 (7-bit I2C slave address 0x10)
+
+The IIO and driver bit is obvious from the file.  Fine to keep the address
+if you like.
+
+> + */
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/delay.h>
+> +#include <linux/err.h>
+> +#include <linux/i2c.h>
+> +#include <linux/module.h>
+> +#include <linux/mutex.h>
+> +#include <linux/regmap.h>
+> +
+> +#include <linux/iio/iio.h>
+> +#include <linux/iio/sysfs.h>
+
+You won't need sysfs.h after the changes suggested inline.
+Every time it is included, it's a signal to reviewers to take a close
+look at the ABI.  There are still reasons to use it but they normally
+mean there should be additional documentation as well in the patch.
+
+> +
+> +#define VEML6075_DRIVER_NAME "veml6075"
+
+As mentioned below, even though there are several uses of this I'd
+rather see the string inline than hidden behind a define.
+
+> +
+> +#define VEML6075_CMD_CONF	0x00 /* configuration register */
+> +#define VEML6075_CMD_UVA	0x07 /* UVA channel */
+> +#define VEML6075_CMD_UVB	0x09 /* UVB channel */
+> +#define VEML6075_CMD_COMP1	0x0A /* visible light compensation */
+> +#define VEML6075_CMD_COMP2	0x0B /* infrarred light compensation */
+> +#define VEML6075_CMD_ID		0x0C /* device ID */
+> +
+> +#define VEML6075_CONF_IT	GENMASK(6, 4) /* intregration time */
+> +#define VEML6075_CONF_HD	BIT(3) /* dynamic setting */
+> +#define VEML6075_CONF_TRIG	BIT(2) /* trigger */
+> +#define VEML6075_CONF_AF	BIT(1) /* active force enable */
+> +#define VEML6075_CONF_SD	BIT(0) /* shutdown */
+> +
+> +#define VEML6075_CONF_IT_50	0x00 /* integration time 50 ms */
+Rename them to _IT_50_MS etc and drop the comments as they only really
+tell us the unit.  The other part is fairly obvious.
+> +#define VEML6075_CONF_IT_100	0x01 /* integration time 100 ms */
+> +#define VEML6075_CONF_IT_200	0x02 /* integration time 200 ms */
+> +#define VEML6075_CONF_IT_400	0x03 /* integration time 400 ms */
+> +#define VEML6075_CONF_IT_800	0x04 /* integration time 800 ms */
+> +
+> +/* Open-air coefficients and responsivity */
+> +#define VEML6075_A_COEF		2220
+> +#define VEML6075_B_COEF		1330
+> +#define VEML6075_C_COEF		2950
+> +#define VEML6075_D_COEF		1740
+> +#define VEML6075_UVA_RESP	1461
+> +#define VEML6075_UVB_RESP	2591
+> +
+> +static const int veml6075_it_ms[] = { 50, 100, 200, 400, 800 };
+> +static const char veml6075_it_ms_avail[] = "50 100 200 400 800";
+
+A strong reason for using read_avail() is that you can just use the
+array of numbers. See below for more on this.
+
+> +
+> +struct veml6075_data {
+> +	struct i2c_client *client;
+> +	struct regmap *regmap;
+> +	struct mutex lock; /* register access lock */
+
+regmap provides register locking as typically does the bus lock, so good to
+say exactly what you mean here.  Is there a Read Modify Write cycle you need
+to protect for instance, or consistency across multiple register accesses?
+
+> +};
+
+> +
+> +static const struct iio_chan_spec veml6075_channels[] = {
+> +	{
+> +		.type = IIO_INTENSITY,
+> +		.channel = CH_UVA,
+> +		.modified = 1,
+> +		.channel2 = IIO_MOD_LIGHT_UV,
+> +		.extend_name = "UVA",
+> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
+> +			BIT(IIO_CHAN_INFO_SCALE),
+> +		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_INT_TIME),
+> +	},
+> +	{
+> +		.type = IIO_INTENSITY,
+> +		.channel = CH_UVB,
+> +		.modified = 1,
+> +		.channel2 = IIO_MOD_LIGHT_UV,
+> +		.extend_name = "UVB",
+
+Extent name is very rarely used any more.  It's a horrible userspace interface
+and an old design mistake. 
+Instead we use the channel label infrastructure.  Provide the read_label()
+callback to use that instead.
+
+I'm not sure this is a great solution here though.  For some similar cases
+such as visible light colours we've just added additional modifiers, but that
+doesn't really scale to lots of sensitive ranges.
+
+One thing we have talked about in the past, but I don't think we have done in
+a driver yet, is to provide actual characteristics of the sensitivity graph.
+Perhaps just a wavelength of maximum sensitivity?
+
+Visible light sensors often have hideous sensitivity curves, including sometimes
+have multiple peaks, but in this case they look pretty good.
+Do you think such an ABI would be more useful than A, B labelling?
 
 
-> ...though I guess if the "mux" type binding is OK then maybe we just
-> use that as the HW prober, at least for i2c devices...
 
-Except for any other case where it's different addresses or different 
-buses. Maybe different addresses could still use the same thing. I 
-suppose the same class of device is unlikely to be on a different bus.
+> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
+> +			BIT(IIO_CHAN_INFO_SCALE),
+> +		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_INT_TIME),
+> +	},
+> +	{
+> +		.type = IIO_UVINDEX,
+> +		.info_mask_separate = BIT(IIO_CHAN_INFO_PROCESSED),
+> +		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_INT_TIME),
+> +	},
+> +};
+> +
+> +static IIO_CONST_ATTR_INT_TIME_AVAIL(veml6075_it_ms_avail);
+> +
+> +static struct attribute *veml6075_attributes[] = {
+> +	&iio_const_attr_integration_time_available.dev_attr.attr,
+Use the core support for handling available callbacks.
+See read_avail() and the matching bit masks.
 
-An extension to the unit-address would be the simpler solution, so we 
-should explore that first I think.
+That makes this info accessible to in kernel consumers + is generally
+cleaner than hand rolling an attribute.  We have a lot of drivers
+that predate that core code existing and haven't yet converted them
+all over so you'll find plenty of code that looks like yours in the tree.
+It's just out of date style wise.
 
-Rob
+Note you won't need iio/sysfs.h after that change.
+
+> +	NULL,
+> +};
+
+...
+
+> +
+> +static int veml6075_read_uvb_count(struct veml6075_data *data, int *uvb)
+> +{
+> +	return regmap_read(data->regmap, VEML6075_CMD_UVB, uvb);
+
+Up to you, but to my mind wrappers that basically do nothing beyond calling
+regmap_read() don't aid code readability - so you might as well call the regmap_read
+inline.
+
+> +}
+> +
+> +static int veml6075_read_uv_direct(struct veml6075_data *data, int chan,
+> +				   int *val)
+> +{
+> +	int c1, c2, ret;
+> +
+> +	ret = veml6075_request_measurement(data);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret = veml6075_read_comp(data, &c1, &c2);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	switch (chan) {
+> +	case CH_UVA:
+> +		ret = veml6075_read_uva_count(data, val);
+> +		if (ret < 0)
+> +			return ret;
+> +
+> +		*val = veml6075_uva_comp(*val, c1, c2);
+> +		break;
+> +	case CH_UVB:
+> +		ret = veml6075_read_uvb_count(data, val);
+> +		if (ret < 0)
+> +			return ret;
+> +
+> +		*val = veml6075_uvb_comp(*val, c1, c2);
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	return IIO_VAL_INT;
+return directly above. Lets us see the type right next to the functions
+filling in val.
+
+> +}
+
+
+> +
+> +static int veml6075_read_responsivity(int chan, int *val, int *val2)
+> +{
+> +	/* scale = 1 / resp */
+> +	switch (chan) {
+> +	case CH_UVA:
+> +		/* resp = 0.93 c/uW/cm2: scale = 1.75268817 */
+> +		*val = 1;
+> +		*val2 = 75268817;
+> +		break;
+> +	case CH_UVB:
+> +		/* resp = 2.1 c/uW/cm2: scale = 0.476190476 */
+> +		*val = 0;
+> +		*val2 = 476190476;
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	return IIO_VAL_INT_PLUS_NANO;
+return instead of break above, so the formatting is right next to the values.
+
+> +}
+> +
+> +static int veml6075_read_raw(struct iio_dev *indio_dev,
+> +			     struct iio_chan_spec const *chan,
+> +			     int *val, int *val2, long mask)
+> +{
+> +	struct veml6075_data *data = iio_priv(indio_dev);
+> +	int ret;
+> +
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_RAW:
+> +		mutex_lock(&data->lock);
+> +		ret = veml6075_read_uv_direct(data, chan->channel, val);
+> +		break;
+> +	case IIO_CHAN_INFO_PROCESSED:
+> +		mutex_lock(&data->lock);
+
+Use guard(mutex)(&data->lock); and appropriate scope (add {})
+so you can return directly from each of these.
+Current scheme of unlocking is nasty.
+
+Note that if we didn't have those, just unlocking before break;
+in each of these would be better than what you currently have where
+the lock scope is hard to follow.
+
+> +		ret = veml6075_read_uvi(data, val, val2);
+> +		break;
+> +	case IIO_CHAN_INFO_INT_TIME:
+> +		mutex_lock(&data->lock);
+> +		ret = veml6075_read_int_time_ms(data, val);
+> +		break;
+> +	case IIO_CHAN_INFO_SCALE:
+> +		return veml6075_read_responsivity(chan->channel, val, val2);
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	mutex_unlock(&data->lock);
+> +
+> +	return ret;
+> +}
+> +
+> +static int veml6075_write_int_time_ms(struct veml6075_data *data, int val)
+> +{
+
+> +	int conf, i = ARRAY_SIZE(veml6075_it_ms);
+
+Don't combine variable declarations that set values with ones that don't.
+It's just a little bit hard to read, so better to use multiple lines if
+you are setting values.
+
+> +
+> +	while (i-- > 0) {
+> +		if (val == veml6075_it_ms[i])
+> +			break;
+> +	}
+> +	if (i < 0)
+> +		return -EINVAL;
+> +
+> +	conf = FIELD_PREP(VEML6075_CONF_IT, i);
+
+Put this conf inline in the call below.  Saves us a few lines and
+an unnecessary local variable.
+
+> +
+> +	return regmap_update_bits(data->regmap, VEML6075_CMD_CONF,
+> +				  VEML6075_CONF_IT, conf);
+> +}
+> +
+> +static int veml6075_write_raw(struct iio_dev *indio_dev,
+> +			      struct iio_chan_spec const *chan,
+> +			      int val, int val2, long mask)
+> +{
+> +	struct veml6075_data *data = iio_priv(indio_dev);
+> +	int ret;
+> +
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_INT_TIME:
+> +		mutex_lock(&data->lock);
+
+A nice place to use the new automated guard stuff.
+Cleanest here is probably scoped_guard.
+
+	case IIO_CHAN_INFO_INT_TIME: {
+		guard(mutex)(&data->lock);
+		return veml6075_write_int_time_ms(data, val);
+	}
+> +		ret = veml6075_write_int_time_ms(data, val);
+> +		mutex_unlock(&data->lock);
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+
+Then drop this return ret; Which incidentally can return uninitialized values
+in current code.  Also worth noting this would still be needed if you did a
+scoped_guard() above in order to squash a compiler warning.
+
+> +	return ret;
+> +}
+> +
+> +static const struct iio_info veml6075_info = {
+> +	.read_raw = veml6075_read_raw,
+> +	.write_raw = veml6075_write_raw,
+> +	.attrs = &veml6075_attribute_group,
+> +};
+...
+
+> +
+> +static int veml6075_probe(struct i2c_client *client)
+> +{
+> +	struct veml6075_data *data;
+> +	struct iio_dev *indio_dev;
+> +	struct regmap *regmap;
+> +	int config, ret;
+> +
+> +	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*data));
+> +	if (!indio_dev)
+> +		return -ENOMEM;
+> +
+> +	regmap = devm_regmap_init_i2c(client, &veml6075_regmap_config);
+> +	if (IS_ERR(regmap))
+> +		return PTR_ERR(regmap);
+> +
+> +	data = iio_priv(indio_dev);
+> +	i2c_set_clientdata(client, indio_dev);
+> +	data->client = client;
+> +	data->regmap = regmap;
+> +
+> +	mutex_init(&data->lock);
+> +
+> +	indio_dev->name = VEML6075_DRIVER_NAME;
+
+As below, I'd rather see the string here.
+
+> +	indio_dev->info = &veml6075_info;
+> +	indio_dev->channels = veml6075_channels;
+> +	indio_dev->num_channels = ARRAY_SIZE(veml6075_channels);
+> +	indio_dev->modes = INDIO_DIRECT_MODE;
+> +
+> +	ret = devm_regulator_get_enable_optional(&client->dev, "vdd");
+
+Main power supplies tend not to be optional... They may not have been specified
+if they are always on, but in that case the regulator framework will provide us
+with a fake regulator anyway so that's safe.  Hence just
+devm_regulator_get_enable()
+
+
+
+> +	if (ret < 0 && ret != -ENODEV)
+> +		return ret;
+> +
+> +	/* default: 100ms integration time, active force enable, shutdown */
+> +	config = FIELD_PREP(VEML6075_CONF_IT, VEML6075_CONF_IT_100) |
+> +		VEML6075_CONF_AF | VEML6075_CONF_SD;
+
+For consistency, use FIELD_PREP for all fields, even the single bit ones.
+
+> +	ret = regmap_write(data->regmap, VEML6075_CMD_CONF, config);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	return iio_device_register(indio_dev);
+> +}
+> +
+> +static void veml6075_remove(struct i2c_client *client)
+> +{
+> +	struct iio_dev *indio_dev = i2c_get_clientdata(client);
+> +
+> +	iio_device_unregister(indio_dev);
+
+Finding just a device unregister in here is odd...
+If you need to handle this manually as opposed to
+devm_iio_device_register() and automated cleanup, then there would need
+to be something else to do first.
+
+> +}
+> +
+> +static const struct i2c_device_id veml6075_id[] = {
+> +	{ "veml6075", 0 },
+
+The 0 isn't used so I wouldn't set it explicitly - it will be zeroed anyway
+due to how C handles this sort of initializer.
+
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(i2c, veml6075_id);
+> +
+> +static const struct of_device_id veml6075_of_match[] = {
+> +	{ .compatible = "vishay,veml6075" },
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(of, veml6075_of_match);
+> +
+> +static struct i2c_driver veml6075_driver = {
+> +	.driver = {
+> +		.name   = VEML6075_DRIVER_NAME,
+I'm not a fan of putting a string used as a device indentifier behind
+a define as I like to be able to quickly check what .name is set to.
+So I'd rather just see the string inline in all the places this is used.
+
+Jonathan
+
+
 
