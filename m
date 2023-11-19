@@ -1,153 +1,195 @@
-Return-Path: <devicetree+bounces-16882-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16883-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0499B7F0414
-	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 03:35:30 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F00F17F0425
+	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 04:05:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 58088B209B9
-	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 02:35:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 60A1A1F220FD
+	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 03:05:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FD8265F;
-	Sun, 19 Nov 2023 02:35:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0E351852;
+	Sun, 19 Nov 2023 03:05:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="darAMRyy"
+	dkim=pass (2048-bit key) header.d=feathertop.org header.i=@feathertop.org header.b="LExbs8DH";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="qSpOKIV1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 444BC93;
-	Sat, 18 Nov 2023 18:35:18 -0800 (PST)
-Received: by mail-pl1-x62d.google.com with SMTP id d9443c01a7336-1cc921a4632so29207335ad.1;
-        Sat, 18 Nov 2023 18:35:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1700361318; x=1700966118; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5I2bEA6cqofY2I8eKS0KNcDRLfU1oI5gxtSXCZkpuPA=;
-        b=darAMRyypCmCUy3BgZ09zDz78omS8B9+zznQLnHdUjZ46EPgtCFVDxhsgQopLpaM7h
-         IKGShJV76JSgVW5zhk2DAeTFhiJLMX9EJ33tdCboss/JjQiTvulqWRuGfd93jwExNF7u
-         uC9uIc/2TIgBWwXzevFc3Gj3WGF+OJLa28cNpi6xZV85d3v/GoNKWJZGLd1RzOHqV4RC
-         5RrtIBedJNyTmIVOgmkhEqxQ5e174+/+7gyWSOCq5hlHhae/aYzteob/wfuxHgiMEaB4
-         4Hfs0MF3eQlpNwVFg3ea8MAblV7Eop8h/xwXUfVXQe6RqTqGL12HPEbtPJW5aHwjfXBk
-         1FHQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700361318; x=1700966118;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=5I2bEA6cqofY2I8eKS0KNcDRLfU1oI5gxtSXCZkpuPA=;
-        b=EN2TevnmSL+AZ/AcUG/3sUCDQy1cGLXL2X064mRzA2lmq8JE4TRqGh8SHF1vy/ag6B
-         2038ksuHmTrNGdO7tfgf6gpCOx2+lHXYrkQqO798P6VRunIFU/I17UGemQIOmnSwJBr3
-         BsifEZV2cPUMg2w4jDFT1YBqtP4uDfh8KuywKyhWl7TB5ORZrJZ/1XtdOc9h6QrfTkml
-         28kKMDxArmLqEFoj6G/0zBdjCrUpvKvju/V/S59bWfacJPdmCQU2XWIIBrzvz3pfWZtW
-         G3gUIx745XJxyRhNz7WHj7F1SQA2gC/qx1EpI9w0NHFKKL4j9UpBOeyEgDqygqCP1DLv
-         fAUw==
-X-Gm-Message-State: AOJu0YwD/9+Ti+e5bvzeYXSwTD3bxKHRZXFRJaob+4vI+oMnLos4bubl
-	C6wENt5wVNQ28hdFXP3FQHY=
-X-Google-Smtp-Source: AGHT+IGvoNLZuLcgqp0tI86VONJQTmNikMKIsL2RDRu2+46Ky5lZx1dlKINhrxjnbjUZs+SPLvMGvw==
-X-Received: by 2002:a17:902:ec02:b0:1cc:4467:a563 with SMTP id l2-20020a170902ec0200b001cc4467a563mr4361440pld.3.1700361317659;
-        Sat, 18 Nov 2023 18:35:17 -0800 (PST)
-Received: from localhost.localdomain ([49.205.245.83])
-        by smtp.gmail.com with ESMTPSA id j8-20020a170902da8800b001cf53cd1508sm1526207plx.67.2023.11.18.18.35.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 18 Nov 2023 18:35:17 -0800 (PST)
-From: Anand Moon <linux.amoon@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Anand Moon <linux.amoon@gmail.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v3 2/2] arm64: dts: amlogic: Used onboard usb hub reset on odroid n2
-Date: Sun, 19 Nov 2023 08:04:51 +0530
-Message-ID: <20231119023454.1591-3-linux.amoon@gmail.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231119023454.1591-1-linux.amoon@gmail.com>
-References: <20231119023454.1591-1-linux.amoon@gmail.com>
+Received: from wout3-smtp.messagingengine.com (wout3-smtp.messagingengine.com [64.147.123.19])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 216F812B
+	for <devicetree@vger.kernel.org>; Sat, 18 Nov 2023 19:05:33 -0800 (PST)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+	by mailout.west.internal (Postfix) with ESMTP id 3C26F3200920;
+	Sat, 18 Nov 2023 22:05:29 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute3.internal (MEProxy); Sat, 18 Nov 2023 22:05:29 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=feathertop.org;
+	 h=cc:cc:content-transfer-encoding:content-type:content-type
+	:date:date:from:from:in-reply-to:in-reply-to:message-id
+	:mime-version:references:reply-to:sender:subject:subject:to:to;
+	 s=fm3; t=1700363128; x=1700449528; bh=PpsFfFSNPUPHay4RnH2xZcaes
+	VPMLMaNoafz7K2FrBQ=; b=LExbs8DHfGssoP+5hWg2b91HiWDGSS3DHejHEiBLJ
+	DA7trRJ1PXF0GwrRS760IY4GmL2xAqcDd22+ZNFVYVeBYXf4XlNN6VNn2IeEVrFR
+	uCOX5PcVo2m08YAn+sx0+TlH5DY/5jyndCZ9eHocORjDHD7TpsMrFpdXKpnvby4z
+	xIQoPjBmaFbStc4CEg2mdVVuYW+dGFBKV76MaXfWVCS/XLI4eO1J1OOVauNyB+TN
+	tmMb0iWkCeeoQ08wynoScGTBJutXplBDTSxA4wiQqpEaIO8tikefpLKQiaSfAwk9
+	Cd0Cp+ygXc0yCjEy17UL4XuDRfpghfkExSIuS6UKiRSGQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:sender:subject:subject:to:to:x-me-proxy
+	:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=
+	1700363128; x=1700449528; bh=PpsFfFSNPUPHay4RnH2xZcaesVPMLMaNoaf
+	z7K2FrBQ=; b=qSpOKIV1t4HgztMpj63aVmm48rAcmOu6hxpmm6YlWdN1v9/x0Cn
+	YFWIHuz8XNC4Ndseir/ZmFjitbhwFyakeRg4oCSXe5lgyoig/stAqgpRmeX3LNY3
+	zcZPtzrD+ge/JTowlAr7uEg8cFhxyxypFPjKbQ3cqsDtuak5DO5hu+kpiXaHxDC7
+	wzJbpl+PVutVrr72w4X9bkR5KG6wvz1/oyo8JZqeUZMH7PEpl8ccsqFmx1ped9pr
+	UDqWOfVTysmCeM3Wv0YK2ccNh7i98juwrwv2Th8UTCnsriKQeTW8rZD1kW3d8M8p
+	EPOi8FcLUCBJb+qsE6bXcYw4AnwaEiTd/tg==
+X-ME-Sender: <xms:eHtZZRVVavCGcAzA3yrnmSvd5xlC9OLAcdd3YSOhPKp00DpKuOv6Mg>
+    <xme:eHtZZRk0CdOp6JlaNbKlCsxHeChwJDhZ1y8DNsCdGown8lWCsmqW5iLiE_dSFFZxD
+    M2VSn06BA>
+X-ME-Received: <xmr:eHtZZdb8JcwarsuaVqYKCxdC6B9D2SqA70L78QYqr8ZAbMuv1-1A-pMktKTI5xZVUrgGmsSzQV6uOcQqqBw384ZvlGIpxn_viPGjJw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrudegfedgheehucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepkfffgggfuffvvehfhfgjtgfgsehtkeertddtvdejnecuhfhrohhmpefvihhm
+    ucfnuhhnnhcuoehtihhmsehfvggrthhhvghrthhophdrohhrgheqnecuggftrfgrthhtvg
+    hrnhepueegfefgveeuiedtheffgfefveejkeetiefhhfdvjeevlefhueekudeuleeghfek
+    necuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepthhimh
+    esfhgvrghthhgvrhhtohhprdhorhhg
+X-ME-Proxy: <xmx:eHtZZUVXgPt9tj8GWo_YhIBsso2-IFig548YteZUENSLaSCMOmUsSw>
+    <xmx:eHtZZbnq7OnwTg6ZNW0HyIc50BAZID-yP_aTFTeej3azsTgpa1CXOw>
+    <xmx:eHtZZRfDNMYMRYHXXeOVfGAduk8of-5pWrWMl58MLHnlSAt_REnd5A>
+    <xmx:eHtZZZYpm_iatg93-3TDGfPR9x4xm6ZBNkvOtTRZrfWqJyDwHp76Cg>
+Feedback-ID: i1f8241ce:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
+ 18 Nov 2023 22:05:25 -0500 (EST)
+Message-ID: <38f2c4a8-2b80-44f1-b9a5-29c3e86be56f@feathertop.org>
+Date: Sun, 19 Nov 2023 14:05:20 +1100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 7/8] ARM: dts: Add Sonoff iHost Smart Home Hub
+Content-Language: en-US
+To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+ linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
+Cc: Jagan Teki <jagan@edgeble.ai>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ Conor Dooley <conor+dt@kernel.org>
+References: <20231113120705.1647498-1-tim@feathertop.org>
+ <20231113120705.1647498-8-tim@feathertop.org> <4921575.Y6S9NjorxK@diego>
+From: Tim Lunn <tim@feathertop.org>
+In-Reply-To: <4921575.Y6S9NjorxK@diego>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-On Odroid n2/n2+ previously use gpio-hog to reset the usb hub,
-switch to used on-board usb hub reset to enable the usb hub
-and enable power to hub.
+Hi Heiko,
 
-Signed-off-by: Anand Moon <linux.amoon@gmail.com>
----
-v3: none
-v2: none
-v1: none
----
- .../dts/amlogic/meson-g12b-odroid-n2.dtsi     | 36 ++++++++++++-------
- 1 file changed, 24 insertions(+), 12 deletions(-)
+On 11/18/23 23:09, Heiko Stübner wrote:
+> Hi Tim,
+>
+> Am Montag, 13. November 2023, 13:07:04 CET schrieb Tim Lunn:
+>> Sonoff iHost is gateway device designed to provide a Smart Home Hub,
+>> it is based on Rockchip RV1126. There is also a version with 2GB RAM
+>> based off the RV1109 dual core SoC.
+>>
+>> Features:
+>> - Rockchip RV1126
+>> - 4GB DDR4
+>> - 8GB eMMC
+>> - microSD slot
+>> - RMII Ethernet PHY
+>> - 1x USB 2.0 Host
+>> - 1x USB 2.0 OTG
+>> - Realtek RTL8723DS WiFi/BT
+>> - EFR32MG21 Silabs Zigbee radio
+>> - Speaker/Microphone
+>>
+>> This patch adds the initial device tree for this device, it is largely
+>> based off the device trees for mainline Edgeble Neu2 and downstream
+>> Rockchip rv1126-evb-v13 configs. It has been adapted with relevant
+>> peripheral and GPIO pins for the iHost.
+>>
+>> Signed-off-by: Tim Lunn <tim@feathertop.org>
+>
+>> diff --git a/arch/arm/boot/dts/rockchip/rv1109.dtsi b/arch/arm/boot/dts/rockchip/rv1109.dtsi
+>> new file mode 100644
+>> index 000000000000..9cbaa08ab1b8
+>> --- /dev/null
+>> +++ b/arch/arm/boot/dts/rockchip/rv1109.dtsi
+>> @@ -0,0 +1,23 @@
+>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>> +/*
+>> + * Copyright (c) 2019 Fuzhou Rockchip Electronics Co., Ltd.
+>> + */
+>> +
+>> +/dts-v1/;
+>> +
+>> +#include "rv1126.dtsi"
+>> +
+>> +/ {
+>> +	compatible = "rockchip,rv1109";
+>> +
+>> +	cpus {
+>> +		/delete-node/ cpu@f02;
+>> +		/delete-node/ cpu@f03;
+>> +	};
+>> +
+>> +	arm-pmu {
+>> +		interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>,
+>> +			     <GIC_SPI 124 IRQ_TYPE_LEVEL_HIGH>;
+>> +		interrupt-affinity = <&cpu0>, <&cpu1>;
+>> +	};
+>> +};
+> this definitly wants to be its own patch ;-) .
+>
+> I.e. you add support for the rv1109, which seems to be the same as rv1126, just
+> with 2 instead of 4 cpu cores.
+I will split this out. Yes, rv1109 is identical to the rv1126 apart from 
+the number of cores.
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-index 91c9769fda20..9e671444eca6 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-@@ -31,6 +31,30 @@ hub_5v: regulator-hub_5v {
- 		enable-active-high;
- 	};
- 
-+	/* USB hub supports both USB 2.0 and USB 3.0 root hub */
-+	usb-hub {
-+		dr_mode = "host";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		/* 2.0 hub on port 1 */
-+		hub_2_0: hub@1 {
-+			compatible = "usb5e3,610";
-+			reg = <1>;
-+			peer-hub = <&hub_3_0>;
-+			vdd-supply = <&usb_pwr_en>;
-+		};
-+
-+		/* 3.0 hub on port 4 */
-+		hub_3_0: hub@2 {
-+			compatible = "usb5e3,620";
-+			reg = <2>;
-+			peer-hub = <&hub_2_0>;
-+			reset-gpios = <&gpio GPIOH_4 GPIO_ACTIVE_LOW>;
-+			vdd-supply = <&vcc_5v>;
-+		};
-+	};
-+
- 	sound {
- 		compatible = "amlogic,axg-sound-card";
- 		model = "ODROID-N2";
-@@ -234,18 +258,6 @@ &gpio {
- 		"PIN_3",  /* GPIOX_17 */
- 		"PIN_5",  /* GPIOX_18 */
- 		"PIN_36"; /* GPIOX_19 */
--	/*
--	 * WARNING: The USB Hub on the Odroid-N2 needs a reset signal
--	 * to be turned high in order to be detected by the USB Controller
--	 * This signal should be handled by a USB specific power sequence
--	 * in order to reset the Hub when USB bus is powered down.
--	 */
--	usb-hub-hog {
--		gpio-hog;
--		gpios = <GPIOH_4 GPIO_ACTIVE_HIGH>;
--		output-high;
--		line-name = "usb-hub-reset";
--	};
- };
- 
- &i2c3 {
--- 
-2.42.0
+I initially hoped rv1109 could just use the same device tree, but having 
+the extra cores enabled ends
+up causing panics.
 
+>
+>
+>
+>> +&sdio {
+>> +	bus-width = <4>;
+>> +	cap-sd-highspeed;
+>> +	cap-sdio-irq;
+>> +	keep-power-in-suspend;
+>> +	max-frequency = <100000000>;
+>> +	mmc-pwrseq = <&sdio_pwrseq>;
+>> +	non-removable;
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&sdmmc1_clk &sdmmc1_cmd &sdmmc1_bus4>;
+>> +	rockchip,default-sample-phase = <90>;
+>> +	sd-uhs-sdr104;
+>> +	vmmc-supply = <&vcc3v3_sys>;
+>> +	vqmmc-supply = <&vcc_1v8>;
+>> +	status = "okay";
+>> +	#address-cells = <1>;
+>> +	#size-cells = <0>;
+> I don't think the *-cells are needed here
+>
+Ok, i will check and remove.
+
+Regards
+    Tim
+
+>
+> Thanks
+> Heiko
+>
+>
 
