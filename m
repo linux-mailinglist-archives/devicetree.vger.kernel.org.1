@@ -1,161 +1,128 @@
-Return-Path: <devicetree+bounces-16949-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16950-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4270E7F082B
-	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 18:40:30 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD0E87F0835
+	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 18:59:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AF86F1F2243C
-	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 17:40:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 553FA1F21C75
+	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 17:59:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 378181428A;
-	Sun, 19 Nov 2023 17:40:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D23511C97;
+	Sun, 19 Nov 2023 17:59:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ixQBB7wC"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eLU3v7s1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8B3511D;
-	Sun, 19 Nov 2023 09:40:20 -0800 (PST)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-9fa45e75ed9so162406366b.1;
-        Sun, 19 Nov 2023 09:40:20 -0800 (PST)
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03EBE11A
+	for <devicetree@vger.kernel.org>; Sun, 19 Nov 2023 09:59:40 -0800 (PST)
+Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-40891d38e3fso8889135e9.1
+        for <devicetree@vger.kernel.org>; Sun, 19 Nov 2023 09:59:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1700415619; x=1701020419; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1700416778; x=1701021578; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=S9Hteg4XMK0Hthf2Z6YUi6WL0kiCnYnKAdT14d+QRy8=;
-        b=ixQBB7wCZJ8mrDG9P8cX3x5uuAt4larH9Rimg2hTttSG4vzZy2bqWxqds/0FMbve0n
-         PiD6R7NVStGBE0Km2Q89xX0aRMzDjV5v/MJ9aBEk0Gvva/DKySfXDbQh4e3/bhjaeNbW
-         WC+L9UaUxNro9a+K44s7on2q5i9wYGG+QCE9zGJgIS+bWUuroKEusZJxjnrXlC/sV5KL
-         9wTq7udsfybyX3XhvpjYwrzl05WsNrE6wMsrhl0Kd6pRDuJXm7iK/zUQGf5SrZe7ug5O
-         nTtLtAUeBVBija4ExiUaRXH2v5au45TWY6qGQtA+jOdeWeDfRJ6lNsKy/ypc3spu6jLm
-         hZWQ==
+        bh=qf+R7atLBnXoeb69e/M4yOdfux/rV2voS2Y05sz1Lqk=;
+        b=eLU3v7s1BLa6zpS7Qol3ays+kC5ZCNsVwg2qD2zBMpKquWv8grwabv3IUuoY84SRIg
+         vrAHep4GafFDllQxRpzU392KuxYPHFmP4bAkhDZwVGconOow2HNBbW9Utw9KqG9n27gu
+         T7Ueeeol74JYCp0GShqKSA/LTdiGh9mhG87fTysw7JhGAyAb7aS+eWDyXvJ82z4Ps7jB
+         uQ34l2FmsHNee+J7uVTd878cR+7+eswSg4V078Tj0Rk6JOzQBYipxUBYdhfjAP9CzCeg
+         jUPUz0ctp34KexXa8BTab4RcKdh2dGQqj7qHUA4vRAvegQRtgivfyfCaGRlx+WSp4x91
+         ZrHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700415619; x=1701020419;
+        d=1e100.net; s=20230601; t=1700416778; x=1701021578;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=S9Hteg4XMK0Hthf2Z6YUi6WL0kiCnYnKAdT14d+QRy8=;
-        b=MNQR7WCo+u5m37/hcqu2sRQ8+w+ikJcAfPgHuA15ITTtCR4DkgyI6Nup9vWOlnRjer
-         A+nM5PETlsxOqFyv2OciHULPpyBX0JTZNG2czguZq7qtwBivE/vBfS7PL+tTKUN6lgZe
-         SW1molhFn8LoGrlKUrpRLyx/eetLmsVGrx1C1VIcmMrukgfc/x1BRyilEBpaETxZ3Hia
-         3+z0H3Ie0in5nKyaCap7mqq4bomwsM2bjsg2l26yqhjm5Vg1KSxoXlw6SnhOHzMYTIL5
-         jGzjahq8TrCo/gNleO/MO5DBNmjRpVFNO6BjKiH3L9lv9dY4BAIy/q9HQdOoHauzDGC/
-         8euQ==
-X-Gm-Message-State: AOJu0YyajKZZQLksz3QgRNDDFR+Hx6h0Z1tf3xKEcb/TrRit5UJEKU1+
-	98Dq3PoALgysIVhztGHTF909973mHPfsaw==
-X-Google-Smtp-Source: AGHT+IHxkCcm1/ToZyIbojFo4fZZpb75XeQ3QjFH14Aghgv4d/B1c/UnXHjMoAal1El4IPtreQhnnQ==
-X-Received: by 2002:a17:907:a683:b0:9e7:3af8:1fcd with SMTP id vv3-20020a170907a68300b009e73af81fcdmr5413082ejc.76.1700415618858;
-        Sun, 19 Nov 2023 09:40:18 -0800 (PST)
-Received: from ?IPV6:2a02:8389:41cf:e200:d0f6:1482:ec53:c448? (2a02-8389-41cf-e200-d0f6-1482-ec53-c448.cable.dynamic.v6.surfer.at. [2a02:8389:41cf:e200:d0f6:1482:ec53:c448])
-        by smtp.gmail.com with ESMTPSA id b19-20020a170906709300b009e5eaf7a9b6sm3045266ejk.139.2023.11.19.09.40.17
+        bh=qf+R7atLBnXoeb69e/M4yOdfux/rV2voS2Y05sz1Lqk=;
+        b=SfhRxp4zeL+VVBA1xBVIHURTS+2PojypYchO3uPN8nnTwRWAOIGeOVu8mu+O8S0bu/
+         aX9efNbNiboYlYQBAzS3OQl7KVwrpHL1XLNUt21tdJkuLYScacyNmAKTYjQTbkYc7WsA
+         ux8xXPz2XDfiPU62OmbJm7TriCtl3gaQfD2dAJZ7TP98KHJgsVZ4bFpJY5M+66Zj3Zpi
+         0upIccdEWPfr7b7Az56N7xLZnXeYv/LoRshaMzu/rxe/mHyT6MHETOycxaLBr/CNU3NR
+         WYfpd71goc1NRahzdTjHtqFwtK6EL0vh1YAPsM3g78u82rOqsmuEpk28F6Q9WuaQg4gC
+         x+eA==
+X-Gm-Message-State: AOJu0YylP2DYAGyOFjBbyWO6pQcjIKncR+U2jLCe148fEFuakLXcDToP
+	yAD62bibGate9bP5stSWYyWT2v8V3Tw4sAVwGIxsX+P/
+X-Google-Smtp-Source: AGHT+IE8LzkXqUtq9mx4ztIGMkvVwAd4EVx58EUo8VA+tzgS1Yg5dCSSDh417mKg1YyXkewSEJnOFQ==
+X-Received: by 2002:a05:600c:5125:b0:40a:57b4:3d35 with SMTP id o37-20020a05600c512500b0040a57b43d35mr3800900wms.13.1700416778163;
+        Sun, 19 Nov 2023 09:59:38 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:203f:8c0f:b03c:8d45? ([2a01:e0a:982:cbb0:203f:8c0f:b03c:8d45])
+        by smtp.gmail.com with ESMTPSA id f11-20020a05600c4e8b00b0040535648639sm10774533wmq.36.2023.11.19.09.59.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 19 Nov 2023 09:40:18 -0800 (PST)
-Message-ID: <588dd3f4-bea5-4453-9ef6-f92fb42c7514@gmail.com>
-Date: Sun, 19 Nov 2023 18:40:16 +0100
+        Sun, 19 Nov 2023 09:59:37 -0800 (PST)
+Message-ID: <26df42ac-edb0-ac72-d5cb-4a4ae6819736@linaro.org>
+Date: Sun, 19 Nov 2023 18:59:36 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] iio: light: add VEML6075 UVA and UVB light sensor
- driver
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-References: <20231110-veml6075-v1-0-354b3245e14a@gmail.com>
- <20231110-veml6075-v1-1-354b3245e14a@gmail.com>
- <20231119150233.10fdc66e@jic23-huawei>
-Content-Language: en-US
-From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-In-Reply-To: <20231119150233.10fdc66e@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.15.1
+Subject: Re: [PATCH 07/16] arm64: dts: qcom: sm8550-aim300: add PCIe0
+To: Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Tengfei Fan <quic_tengfan@quicinc.com>, agross@kernel.org,
+ andersson@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, tglx@linutronix.de
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, -cc=kernel@quicinc.com
+References: <20231117101817.4401-1-quic_tengfan@quicinc.com>
+ <20231117101817.4401-8-quic_tengfan@quicinc.com>
+ <37a3a407-07e7-49d8-bbce-b1dac8cfcf5a@linaro.org>
+ <247f4654-ec65-4857-8b35-1a79088e8b87@linaro.org>
+ <1ae2da80-77e8-487a-a94d-b329e6f48360@linaro.org>
+Content-Language: en-GB
+From: Neil Armstrong <neil.armstrong@linaro.org>
+In-Reply-To: <1ae2da80-77e8-487a-a94d-b329e6f48360@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 19.11.23 16:02, Jonathan Cameron wrote:
->> +
->> +struct veml6075_data {
->> +	struct i2c_client *client;
->> +	struct regmap *regmap;
->> +	struct mutex lock; /* register access lock */
-> 
-> regmap provides register locking as typically does the bus lock, so good to
-> say exactly what you mean here.  Is there a Read Modify Write cycle you need
-> to protect for instance, or consistency across multiple register accesses?
-> 
-What I want to avoid with this lock is an access to the measurement
-trigger or an integration time modification from different places while
-there is a measurement reading going on. "register access lock" is
-probably not the best name I could have chosen though.
+Le 18/11/2023 à 01:08, Konrad Dybcio a écrit :
+> On 17.11.2023 11:41, neil.armstrong@linaro.org wrote:
+>> On 17/11/2023 11:29, Dmitry Baryshkov wrote:
+>>> On 17/11/2023 12:18, Tengfei Fan wrote:
+>>>> Add PCIe0 nodes used with WCN7851 device.  The PCIe1 is not connected,
+>>>> thus skip pcie_1_phy_aux_clk input clock to GCC.
+>>>>
+>>>> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+>>>> ---
+>>>>    arch/arm64/boot/dts/qcom/sm8550-aim300.dts | 32 ++++++++++++++++++++++
+>>>>    1 file changed, 32 insertions(+)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/qcom/sm8550-aim300.dts b/arch/arm64/boot/dts/qcom/sm8550-aim300.dts
+>>>> index 202b979da8ca..3aca0a433a00 100644
+>>>> --- a/arch/arm64/boot/dts/qcom/sm8550-aim300.dts
+>>>> +++ b/arch/arm64/boot/dts/qcom/sm8550-aim300.dts
+>>>> @@ -393,6 +393,38 @@
+>>>>        };
+>>>>    };
+>>>> +&gcc {
+>>>> +    clocks = <&bi_tcxo_div2>, <&sleep_clk>,
+>>>> +         <&pcie0_phy>,
+>>>> +         <&pcie1_phy>,
+>>>> +         <0>,
+>>>> +         <&ufs_mem_phy 0>,
+>>>> +         <&ufs_mem_phy 1>,
+>>>> +         <&ufs_mem_phy 2>,
+>>>> +         <&usb_dp_qmpphy QMP_USB43DP_USB3_PIPE_CLK>;
+>>>> +};
+>>>
+>>> NAK, this should go to sm8550.dtsi unless there is a good reason.
+>>
+>> Actually this is how QRD8550 was designed, so it's fine to mimic.
+> Does CCF not handle this gracefully?
 
-I was not aware of that guard(mutex) mechanism. I guess it is new
-because only one driver uses it in the iio subsystem (up to v6.7-rc1).
-I will have a look at it.
->> +};
-> 
->> +
->> +static const struct iio_chan_spec veml6075_channels[] = {
->> +	{
->> +		.type = IIO_INTENSITY,
->> +		.channel = CH_UVA,
->> +		.modified = 1,
->> +		.channel2 = IIO_MOD_LIGHT_UV,
->> +		.extend_name = "UVA",
->> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
->> +			BIT(IIO_CHAN_INFO_SCALE),
->> +		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_INT_TIME),
->> +	},
->> +	{
->> +		.type = IIO_INTENSITY,
->> +		.channel = CH_UVB,
->> +		.modified = 1,
->> +		.channel2 = IIO_MOD_LIGHT_UV,
->> +		.extend_name = "UVB",
-> 
-> Extent name is very rarely used any more.  It's a horrible userspace interface
-> and an old design mistake. 
-> Instead we use the channel label infrastructure.  Provide the read_label()
-> callback to use that instead.
-> 
-> I'm not sure this is a great solution here though.  For some similar cases
-> such as visible light colours we've just added additional modifiers, but that
-> doesn't really scale to lots of sensitive ranges.
-> 
-> One thing we have talked about in the past, but I don't think we have done in
-> a driver yet, is to provide actual characteristics of the sensitivity graph.
-> Perhaps just a wavelength of maximum sensitivity?
-> 
-> Visible light sensors often have hideous sensitivity curves, including sometimes
-> have multiple peaks, but in this case they look pretty good.
-> Do you think such an ABI would be more useful than A, B labelling?
-> 
-My first idea was adding new modifiers because I saw that
-IIO_MOD_LIGHT_UV and IIO_MOD_LIGHT_DUV coexist, but then I thought _UVA
-and _UVB might not be used very often (wrong assumption?) and opted for
-a local solution with extended names. But any cleaner solution would be
-welcome because the label attributes are redundant.
+CCF handles this very gracefully and it's a perfectly valid DT in regard
+to the bindings...
 
-Maybe adding UV-A, UV-B and UV-C modifiers is not a big deal as these
-are fairly common bands. Actually DUV is pretty much UV-C and could be
-left as it is.
+neil
 
-This sensor has a single peak per channel, but I do not know how I would
-provide that information to the core if that is better than adding UVA
-and UVB bands. Would that add attributes to sysfs for the wavelengths or
-extend the channel name? In that case two new modifiers might be a
-better  and more obvious solution.
-> Jonathan
 > 
-> 
-I will work on the other issues you pointed out. Thanks a lot for your
-review.
+> Konrad
 
-Best regards,
-Javier Carrasco
 
