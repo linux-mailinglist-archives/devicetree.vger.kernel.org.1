@@ -1,295 +1,158 @@
-Return-Path: <devicetree+bounces-16890-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16892-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1E057F04F7
-	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 10:20:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 553F27F0568
+	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 11:27:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E89411F2131F
-	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 09:20:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DFA59280D17
+	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 10:27:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E01116FBB;
-	Sun, 19 Nov 2023 09:20:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 697EE4A32;
+	Sun, 19 Nov 2023 10:27:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=marcan.st header.i=@marcan.st header.b="j5HQXu3N"
+	dkim=pass (2048-bit key) header.d=marvell.com header.i=@marvell.com header.b="k85KycBc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 151BCAF;
-	Sun, 19 Nov 2023 01:20:02 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: marcan@marcan.st)
-	by mail.marcansoft.com (Postfix) with ESMTPSA id F0C7145037;
-	Sun, 19 Nov 2023 09:19:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=marcan.st; s=default;
-	t=1700385600; bh=v2TCssYCBYtNkHs+VM+LpzhdZ1ldfOyFyouChbFTIb0=;
-	h=Date:Subject:From:To:References:In-Reply-To;
-	b=j5HQXu3NdqP3j4hmmEYGvyTELZstrnmLjBeVBgja8jWlFwAWbLAaxkb0IFb8dUFUK
-	 ylbXySSxV1rdJR+wJze95Qt90P0M7495kVU9Rclj09OlY/3gTapM6o+a7yMGquvDrj
-	 jogCad7hJ0YxEq2lCadFZuOqgnAHWGZqEPquhUD+tpGdDxlMyokgqWElnJKSqVGPuf
-	 7YKStcVS6Q1zhTQs2BqQ4oa9bPc/MaxwID8Uk1BvmlMaFcdD17R5kgVChd2mfuZNaS
-	 4UMOvg4Sv0ZGRmpiakFrt9NYotUw6oUoErgST5qhuAyBWf4sb+HUWpXpVBG4l+Bu9g
-	 UMaF8SjXVR4cA==
-Message-ID: <1eb12c35-e64e-4c32-af99-8743dc2ec266@marcan.st>
-Date: Sun, 19 Nov 2023 18:19:43 +0900
+Received: from mx0b-0016f401.pphosted.com (mx0b-0016f401.pphosted.com [67.231.156.173])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D116B6;
+	Sun, 19 Nov 2023 02:26:59 -0800 (PST)
+Received: from pps.filterd (m0045851.ppops.net [127.0.0.1])
+	by mx0b-0016f401.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AJ8kRCI015246;
+	Sun, 19 Nov 2023 02:26:46 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=pfpt0220; bh=TFf3PM2CIPhx5J9czvIrUslyI7HP4fasA/0RMKRXvjA=;
+ b=k85KycBc7TIsDeIUyJE6RqSxcskNYZr8+aHhbvJIXhzWWpnO7xtp2ivH+frooBUGInh3
+ YWjUb8sPqgladIov8RNXBtIbAdPUer56zQFy4mol1JqLXnSHiul0gXkK3qK3a+p74en8
+ 7jY+KTLBpCxLXeU5naq9FKS0Aai5Zvh0D1InbI1cP2+PkDKFeCqTmLWs21RhZEAW758p
+ nQw2Gc0HIODvefZKOASFB4YqaaQnCwBBHNoxiHIhGpHSGDFUc3ARMamarAmWg/WZCFVC
+ tolv2yKmlBOW7x8PpPapQmLj7ukoXal5Hwz6N7KXwn1rYxsSv/0nVxjdvh6cuo5K73Z1 +Q== 
+Received: from dc5-exch01.marvell.com ([199.233.59.181])
+	by mx0b-0016f401.pphosted.com (PPS) with ESMTPS id 3uewnvsnaj-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
+	Sun, 19 Nov 2023 02:26:46 -0800
+Received: from DC5-EXCH01.marvell.com (10.69.176.38) by DC5-EXCH01.marvell.com
+ (10.69.176.38) with Microsoft SMTP Server (TLS) id 15.0.1497.48; Sun, 19 Nov
+ 2023 02:26:44 -0800
+Received: from maili.marvell.com (10.69.176.80) by DC5-EXCH01.marvell.com
+ (10.69.176.38) with Microsoft SMTP Server id 15.0.1497.48 via Frontend
+ Transport; Sun, 19 Nov 2023 02:26:44 -0800
+Received: from dc3lp-swdev041.marvell.com (dc3lp-swdev041.marvell.com [10.6.60.191])
+	by maili.marvell.com (Postfix) with ESMTP id 90CAC3F704F;
+	Sun, 19 Nov 2023 02:26:40 -0800 (PST)
+From: Elad Nachman <enachman@marvell.com>
+To: <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <andrew@lunn.ch>, <gregory.clement@bootlin.com>,
+        <sebastian.hesselbarth@gmail.com>, <pali@kernel.org>,
+        <mrkiko.rs@gmail.com>, <chris.packham@alliedtelesis.co.nz>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+CC: <enachman@marvell.com>, <cyuval@marvell.com>
+Subject: [PATCH v5 0/3] arm64: dts: cn913x: add COM Express boards
+Date: Sun, 19 Nov 2023 12:26:35 +0200
+Message-ID: <20231119102638.1041978-1-enachman@marvell.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 06/17] iommu: Add iommu_fwspec_alloc/dealloc()
-Content-Language: en-US
-From: Hector Martin <marcan@marcan.st>
-To: Jason Gunthorpe <jgg@nvidia.com>, acpica-devel@lists.linux.dev,
- Alyssa Rosenzweig <alyssa@rosenzweig.io>, Albert Ou <aou@eecs.berkeley.edu>,
- asahi@lists.linux.dev, Catalin Marinas <catalin.marinas@arm.com>,
- Dexuan Cui <decui@microsoft.com>, devicetree@vger.kernel.org,
- David Woodhouse <dwmw2@infradead.org>, Frank Rowand
- <frowand.list@gmail.com>, Hanjun Guo <guohanjun@huawei.com>,
- Haiyang Zhang <haiyangz@microsoft.com>, iommu@lists.linux.dev,
- Jean-Philippe Brucker <jean-philippe@linaro.org>,
- Jonathan Hunter <jonathanh@nvidia.com>, Joerg Roedel <joro@8bytes.org>,
- "K. Y. Srinivasan" <kys@microsoft.com>, Len Brown <lenb@kernel.org>,
- linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-hyperv@vger.kernel.org, linux-mips@vger.kernel.org,
- linux-riscv@lists.infradead.org, linux-snps-arc@lists.infradead.org,
- linux-tegra@vger.kernel.org, Russell King <linux@armlinux.org.uk>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, patches@lists.linux.dev,
- Paul Walmsley <paul.walmsley@sifive.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Robert Moore <robert.moore@intel.com>, Rob Herring <robh+dt@kernel.org>,
- Robin Murphy <robin.murphy@arm.com>, Sudeep Holla <sudeep.holla@arm.com>,
- Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
- Sven Peter <sven@svenpeter.dev>, Thierry Reding <thierry.reding@gmail.com>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Krishna Reddy <vdumpa@nvidia.com>, Vineet Gupta <vgupta@kernel.org>,
- virtualization@lists.linux.dev, Wei Liu <wei.liu@kernel.org>,
- Will Deacon <will@kernel.org>
-References: <6-v2-36a0088ecaa7+22c6e-iommu_fwspec_jgg@nvidia.com>
- <20a7ef6d-a8ca-4bd8-ad7e-11856db617a2@marcan.st>
-In-Reply-To: <20a7ef6d-a8ca-4bd8-ad7e-11856db617a2@marcan.st>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Proofpoint-GUID: LTSJgWHh593xw11ggn3gtqmjcLGa_dHm
+X-Proofpoint-ORIG-GUID: LTSJgWHh593xw11ggn3gtqmjcLGa_dHm
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-19_09,2023-11-17_01,2023-05-22_02
 
+From: Elad Nachman <enachman@marvell.com>
 
+Add support for CN9130 and CN9131 COM Express Type 7 CPU
+module boards by Marvell.
+Add device tree bindings for this board.
+Define these COM Express CPU modules as dtsi, and
+provide a dtsi file for a carrier board (Marvell AC5X RD
+COM Express type 7 carrier board).
+This Carrier board only utilizes the PCIe link, hence no
+special device / driver support is provided by this dtsi file.
+Finally, add dts file for the combined carrier and CPU module.
 
-On 2023/11/19 17:10, Hector Martin wrote:
-> On 2023/11/15 23:05, Jason Gunthorpe wrote:
->> Allow fwspec to exist independently from the dev->iommu by providing
->> functions to allow allocating and freeing the raw struct iommu_fwspec.
->>
->> Reflow the existing paths to call the new alloc/dealloc functions.
->>
->> Reviewed-by: Jerry Snitselaar <jsnitsel@redhat.com>
->> Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
->> ---
->>  drivers/iommu/iommu.c | 82 ++++++++++++++++++++++++++++++++-----------
->>  include/linux/iommu.h | 11 +++++-
->>  2 files changed, 72 insertions(+), 21 deletions(-)
->>
->> diff --git a/drivers/iommu/iommu.c b/drivers/iommu/iommu.c
->> index 18a82a20934d53..86bbb9e75c7e03 100644
->> --- a/drivers/iommu/iommu.c
->> +++ b/drivers/iommu/iommu.c
->> @@ -361,10 +361,8 @@ static void dev_iommu_free(struct device *dev)
->>  	struct dev_iommu *param = dev->iommu;
->>  
->>  	dev->iommu = NULL;
->> -	if (param->fwspec) {
->> -		fwnode_handle_put(param->fwspec->iommu_fwnode);
->> -		kfree(param->fwspec);
->> -	}
->> +	if (param->fwspec)
->> +		iommu_fwspec_dealloc(param->fwspec);
->>  	kfree(param);
->>  }
->>  
->> @@ -2920,10 +2918,61 @@ const struct iommu_ops *iommu_ops_from_fwnode(struct fwnode_handle *fwnode)
->>  	return ops;
->>  }
->>  
->> +static int iommu_fwspec_assign_iommu(struct iommu_fwspec *fwspec,
->> +				     struct device *dev,
->> +				     struct fwnode_handle *iommu_fwnode)
->> +{
->> +	const struct iommu_ops *ops;
->> +
->> +	if (fwspec->iommu_fwnode) {
->> +		/*
->> +		 * fwspec->iommu_fwnode is the first iommu's fwnode. In the rare
->> +		 * case of multiple iommus for one device they must point to the
->> +		 * same driver, checked via same ops.
->> +		 */
->> +		ops = iommu_ops_from_fwnode(iommu_fwnode);
-> 
-> This carries over a related bug from the original code: If a device has
-> two IOMMUs and the first one probes but the second one defers, ops will
-> be NULL here and the check will fail with EINVAL.
-> 
-> Adding a check for that case here fixes it:
-> 
-> 		if (!ops)
-> 			return driver_deferred_probe_check_state(dev);
-> 
-> With that, for the whole series:
-> 
-> Tested-by: Hector Martin <marcan@marcan.st>
-> 
-> I can't specifically test for the probe races the series intends to fix
-> though, since that bug we only hit extremely rarely. I'm just testing
-> that nothing breaks.
+v5:
 
-Actually no, this fix is not sufficient. If the first IOMMU is ready
-then the xlate path allocates dev->iommu, which then
-__iommu_probe_device takes as a sign that all IOMMUs are ready and does
-the device init. Then when the xlate comes along again after suceeding
-with the second IOMMU, __iommu_probe_device sees the device is already
-in a group and never initializes the second IOMMU, leaving the device
-with only one IOMMU.
+   1) List only carrier compatibility on carrier dtsi
 
-This patch fixes it, but honestly, at this point I have no idea how to
-"properly" fix this. There is *way* too much subtlety in this whole
-codepath.
+   2) Fix dt_bindings_check warnings using latest yamllint/dtschema
 
-diff --git a/drivers/iommu/iommu.c b/drivers/iommu/iommu.c
-index 2477dec29740..2e4baf0572e7 100644
---- a/drivers/iommu/iommu.c
-+++ b/drivers/iommu/iommu.c
-@@ -2935,6 +2935,12 @@ int iommu_fwspec_of_xlate(struct iommu_fwspec
-*fwspec, struct device *dev,
- 	int ret;
+   3) Fix subject lines to remove unnecessary wordings.
 
- 	ret = iommu_fwspec_assign_iommu(fwspec, dev, iommu_fwnode);
-+	if (ret == -EPROBE_DEFER) {
-+		mutex_lock(&iommu_probe_device_lock);
-+		if (dev->iommu)
-+			dev_iommu_free(dev);
-+		mutex_unlock(&iommu_probe_device_lock);
-+	}
- 	if (ret)
- 		return ret;
+   4) Remove dt bindings for standalone CPU modules
 
-> 
->> +		if (fwspec->ops != ops)
->> +			return -EINVAL;
->> +		return 0;
->> +	}
->> +
->> +	if (!fwspec->ops) {
->> +		ops = iommu_ops_from_fwnode(iommu_fwnode);
->> +		if (!ops)
->> +			return driver_deferred_probe_check_state(dev);
->> +		fwspec->ops = ops;
->> +	}
->> +
->> +	of_node_get(to_of_node(iommu_fwnode));
->> +	fwspec->iommu_fwnode = iommu_fwnode;
->> +	return 0;
->> +}
->> +
->> +struct iommu_fwspec *iommu_fwspec_alloc(void)
->> +{
->> +	struct iommu_fwspec *fwspec;
->> +
->> +	fwspec = kzalloc(sizeof(*fwspec), GFP_KERNEL);
->> +	if (!fwspec)
->> +		return ERR_PTR(-ENOMEM);
->> +	return fwspec;
->> +}
->> +
->> +void iommu_fwspec_dealloc(struct iommu_fwspec *fwspec)
->> +{
->> +	if (!fwspec)
->> +		return;
->> +
->> +	if (fwspec->iommu_fwnode)
->> +		fwnode_handle_put(fwspec->iommu_fwnode);
->> +	kfree(fwspec);
->> +}
->> +
->>  int iommu_fwspec_init(struct device *dev, struct fwnode_handle *iommu_fwnode,
->>  		      const struct iommu_ops *ops)
->>  {
->>  	struct iommu_fwspec *fwspec = dev_iommu_fwspec_get(dev);
->> +	int ret;
->>  
->>  	if (fwspec)
->>  		return ops == fwspec->ops ? 0 : -EINVAL;
->> @@ -2931,29 +2980,22 @@ int iommu_fwspec_init(struct device *dev, struct fwnode_handle *iommu_fwnode,
->>  	if (!dev_iommu_get(dev))
->>  		return -ENOMEM;
->>  
->> -	fwspec = kzalloc(sizeof(*fwspec), GFP_KERNEL);
->> -	if (!fwspec)
->> -		return -ENOMEM;
->> +	fwspec = iommu_fwspec_alloc();
->> +	if (IS_ERR(fwspec))
->> +		return PTR_ERR(fwspec);
->>  
->> -	of_node_get(to_of_node(iommu_fwnode));
->> -	fwspec->iommu_fwnode = iommu_fwnode;
->>  	fwspec->ops = ops;
->> +	ret = iommu_fwspec_assign_iommu(fwspec, dev, iommu_fwnode);
->> +	if (ret) {
->> +		iommu_fwspec_dealloc(fwspec);
->> +		return ret;
->> +	}
->> +
->>  	dev_iommu_fwspec_set(dev, fwspec);
->>  	return 0;
->>  }
->>  EXPORT_SYMBOL_GPL(iommu_fwspec_init);
->>  
->> -void iommu_fwspec_free(struct device *dev)
->> -{
->> -	struct iommu_fwspec *fwspec = dev_iommu_fwspec_get(dev);
->> -
->> -	if (fwspec) {
->> -		fwnode_handle_put(fwspec->iommu_fwnode);
->> -		kfree(fwspec);
->> -		dev_iommu_fwspec_set(dev, NULL);
->> -	}
->> -}
->> -EXPORT_SYMBOL_GPL(iommu_fwspec_free);
->>  
->>  int iommu_fwspec_add_ids(struct device *dev, u32 *ids, int num_ids)
->>  {
->> diff --git a/include/linux/iommu.h b/include/linux/iommu.h
->> index e98a4ca8f536b7..c7c68cb59aa4dc 100644
->> --- a/include/linux/iommu.h
->> +++ b/include/linux/iommu.h
->> @@ -813,9 +813,18 @@ struct iommu_sva {
->>  	struct iommu_domain		*domain;
->>  };
->>  
->> +struct iommu_fwspec *iommu_fwspec_alloc(void);
->> +void iommu_fwspec_dealloc(struct iommu_fwspec *fwspec);
->> +
->>  int iommu_fwspec_init(struct device *dev, struct fwnode_handle *iommu_fwnode,
->>  		      const struct iommu_ops *ops);
->> -void iommu_fwspec_free(struct device *dev);
->> +static inline void iommu_fwspec_free(struct device *dev)
->> +{
->> +	if (!dev->iommu)
->> +		return;
->> +	iommu_fwspec_dealloc(dev->iommu->fwspec);
->> +	dev->iommu->fwspec = NULL;
->> +}
->>  int iommu_fwspec_add_ids(struct device *dev, u32 *ids, int num_ids);
->>  const struct iommu_ops *iommu_ops_from_fwnode(struct fwnode_handle *fwnode);
->>  
-> 
-> - Hector
-> 
-> 
+   5) Move CN913x dt bindings to A7K dt bindings file
 
-- Hector
+   6) Fix dtbs_check warnings for dtb and bindings,
+      using latest yamllint/dtschema.
+
+   7) Move memory definition to main dts file, as memory
+      is socket based.
+
+v4:
+   1) reorder patches - dt bindings before dts/dtsi files
+
+   2) correct description in dt bindings
+
+   3) separate dt bindings for CPU module, carrier and combination
+
+   4) make carrier board dts into dtsi, make dts for combination of
+      carrier and CPU module
+
+   5) correct compatibility strings and file names to use dashes
+      instead of underscores
+
+v3:
+   1) Remove acronym which creates warnings for checkpatch.pl
+
+   2) Correct compatibility string for ac5x rd board
+
+   3) Add above compatibility string to dt bindings
+
+   4) update MAINTAINERS file with ac5 series dts files
+
+   5) remove memory property from carrier dts
+
+   6) add comment explaining that OOB RGMII ethernet port
+      connector and PHY are both on CPU module
+
+v2:
+   1) add compatibility string for the board
+
+   2) remove unneeded hard-coded PHY LED blinking mode initialization
+
+   3) Split the CPU portion of the carrier board to 
+      dtsi files, and define a dts file for the AC5X RD
+      carrier board.
+
+Elad Nachman (3):
+  MAINTAINERS: add ac5 to list of maintained Marvell dts files
+  dt-bindings: arm64: add Marvell COM Express boards
+  arm64: dts: cn913x: add device trees for COM Express boards
+
+ .../bindings/arm/marvell/armada-7k-8k.yaml    |  12 ++
+ MAINTAINERS                                   |   1 +
+ arch/arm64/boot/dts/marvell/Makefile          |   1 +
+ .../marvell/ac5x-rd-carrier-with-cn9131.dts   |  25 ++++
+ .../boot/dts/marvell/ac5x-rd-carrier.dtsi     |  14 +++
+ .../dts/marvell/cn9130-db-comexpress.dtsi     |  96 ++++++++++++++++
+ .../dts/marvell/cn9131-db-comexpress.dtsi     | 108 ++++++++++++++++++
+ 7 files changed, 257 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/marvell/ac5x-rd-carrier-with-cn9131.dts
+ create mode 100644 arch/arm64/boot/dts/marvell/ac5x-rd-carrier.dtsi
+ create mode 100644 arch/arm64/boot/dts/marvell/cn9130-db-comexpress.dtsi
+ create mode 100644 arch/arm64/boot/dts/marvell/cn9131-db-comexpress.dtsi
+
+-- 
+2.25.1
+
 
