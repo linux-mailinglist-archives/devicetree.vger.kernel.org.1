@@ -1,96 +1,105 @@
-Return-Path: <devicetree+bounces-16920-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16921-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A8CF7F0685
-	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 14:43:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BABB37F0689
+	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 14:43:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9DC161C20456
-	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 13:43:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 29DDF280D92
+	for <lists+devicetree@lfdr.de>; Sun, 19 Nov 2023 13:43:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5566010A3F;
-	Sun, 19 Nov 2023 13:43:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GaqhXZw+"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D9E711C86;
+	Sun, 19 Nov 2023 13:43:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39FBD101D9
-	for <devicetree@vger.kernel.org>; Sun, 19 Nov 2023 13:43:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1EC65C433C7;
-	Sun, 19 Nov 2023 13:43:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700401391;
-	bh=h+24PDbQyReJox3hVnhzE8nhwGTA9mitLw0TMJ4Oh6w=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GaqhXZw+P8LWgmTqe49Eiwzlh98f9wG2kDTTfJ9BDrJxTUvNnsFeMvz8Kgt0UqgNq
-	 tye/7MbEQZAJtH6of0u/ktXRa1P23fvSQW3oqHeZkOC0S+JDXENK79OabujEvAAsBO
-	 inx+d5Dav4RYGuN9Rf1g1WMLchmncO4uSZk5SpM1LVX8gKgH13UrTiVl0wa34NXd2T
-	 VhWntESyWUIDP65gO+PQmyU54Xy/P7V4odUhSl4a7uA1e8ffSWu7mFfwYAEbgPN7I1
-	 Fog2Ymj5uFN+AwYW/CDjYZZejWSjbZDF+bt6h7AXAyfG05eZI0+RqpxULh4RTn9G0l
-	 b9Gk7MfK2L/+w==
-Date: Sun, 19 Nov 2023 13:43:05 +0000
-From: Conor Dooley <conor@kernel.org>
-To: =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	=?iso-8859-1?Q?N=EDcolas_F_=2E_R_=2E_A_=2E?= Prado <nfraprado@collabora.com>,
-	Macpaul Lin <macpaul.lin@mediatek.com>,
-	Bernhard =?iso-8859-1?Q?Rosenkr=E4nzer?= <bero@baylibre.com>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Chris Morgan <macromorgan@hotmail.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: add acelink
-Message-ID: <20231119-xbox-bankroll-8a5a4df56c22@spud>
-References: <20231117104101.9374-1-zajec5@gmail.com>
+Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B716E6;
+	Sun, 19 Nov 2023 05:43:29 -0800 (PST)
+Received: by mail-ot1-f43.google.com with SMTP id 46e09a7af769-6ce2cf67be2so2001887a34.2;
+        Sun, 19 Nov 2023 05:43:29 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700401408; x=1701006208;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=eC7R2aDGjcyaZieADea/5qgs9vEV8wCKAKof6xgBBlQ=;
+        b=ISt3yrEuH38JlRpCDCePXXFnhqj6aServYqF/XqY4SXa1grlhfimJFO8AvTudHN2kV
+         LWOY7/nXcZA0H/xVInONtie71NLQLisaiWt08W7mCEUtYKWJgXdBXE1xwO/aRAb/BbXy
+         j5GHoOv24httwwDVo7kuSbmL3VWzreO8yfJbCVOf5/fkYn4K96quS2Mf167grNl38Fyh
+         DSBT39I1osm1YjmD87Pzrlw+pBVkvGvLb4LetpRyUvnZuLzWBPJZIJ3A0G6wi/m/DJ52
+         rtrNv7Nns0mu8JiYpxth+0KddjgZYED6pHM6hcEZ2GdC8mMWQV6IZKPKbLbELCPdg9Jx
+         XboQ==
+X-Gm-Message-State: AOJu0YwmzREAiVN6NH5HgU+hC0JCVCuckAiivuFAFuzS9UF8uILhEFDw
+	P6G+kKJreMw3P6FVoZEdlw==
+X-Google-Smtp-Source: AGHT+IEjmOOgpm/LkHZKFHzuItqSpn8lyCN5G9GVSFuxVx3shNYIX91fj/expeuhfHS2bP+hrV2iNw==
+X-Received: by 2002:a05:6830:1d61:b0:6b7:52ce:ff38 with SMTP id l1-20020a0568301d6100b006b752ceff38mr6204255oti.16.1700401408681;
+        Sun, 19 Nov 2023 05:43:28 -0800 (PST)
+Received: from herring.priv ([2607:fb90:45e3:889f:15b4:1348:6d64:224b])
+        by smtp.gmail.com with ESMTPSA id bg21-20020a056830361500b006ce2cb3b959sm879328otb.52.2023.11.19.05.43.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 19 Nov 2023 05:43:28 -0800 (PST)
+Received: (nullmailer pid 3136 invoked by uid 1000);
+	Sun, 19 Nov 2023 13:43:26 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="M8VGEtr73EdlGVwV"
-Content-Disposition: inline
-In-Reply-To: <20231117104101.9374-1-zajec5@gmail.com>
+From: Rob Herring <robh@kernel.org>
+To: Elad Nachman <enachman@marvell.com>
+Cc: conor+dt@kernel.org, gregory.clement@bootlin.com, devicetree@vger.kernel.org, andrew@lunn.ch, krzysztof.kozlowski+dt@linaro.org, chris.packham@alliedtelesis.co.nz, cyuval@marvell.com, pali@kernel.org, sebastian.hesselbarth@gmail.com, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, robh+dt@kernel.org, mrkiko.rs@gmail.com
+In-Reply-To: <20231119102638.1041978-3-enachman@marvell.com>
+References: <20231119102638.1041978-1-enachman@marvell.com>
+ <20231119102638.1041978-3-enachman@marvell.com>
+Message-Id: <170040140652.3109.2493816352448660414.robh@kernel.org>
+Subject: Re: [PATCH v5 2/3] dt-bindings: arm64: add Marvell COM Express
+ boards
+Date: Sun, 19 Nov 2023 07:43:26 -0600
 
 
---M8VGEtr73EdlGVwV
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Sun, 19 Nov 2023 12:26:37 +0200, Elad Nachman wrote:
+> From: Elad Nachman <enachman@marvell.com>
+> 
+> Add dt bindings for:
+> CN9130 COM Express CPU module
+> CN9131 COM Express CPU module
+> AC5X RD COM Express Type 7 carrier board.
+> AC5X RD COM Express board with a CN9131 COM Express Type 7 CPU module.
+> 
+> Signed-off-by: Elad Nachman <enachman@marvell.com>
+> ---
+>  .../bindings/arm/marvell/armada-7k-8k.yaml           | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+> 
 
-On Fri, Nov 17, 2023 at 11:40:59AM +0100, Rafa=C5=82 Mi=C5=82ecki wrote:
-> From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
->=20
-> Acelink is a Taiwan company providing network products (routers, access
-> points, switches, cameras and more).
->=20
-> Signed-off-by: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/arm/marvell/armada-7k-8k.yaml:64:13: [warning] wrong indentation: expected 10 but found 12 (indentation)
 
---M8VGEtr73EdlGVwV
-Content-Type: application/pgp-signature; name="signature.asc"
+dtschema/dtc warnings/errors:
 
------BEGIN PGP SIGNATURE-----
+doc reference errors (make refcheckdocs):
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZVoQ6QAKCRB4tDGHoIJi
-0rWeAP0RMPHCOlPpt7wS1EalDQ8VSG9hV58amZaR2BBv52NTngEAvnoFHviuWvKs
-gnEInIscA65H/dYxOg5a2GFmJYo32Qk=
-=ohoI
------END PGP SIGNATURE-----
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231119102638.1041978-3-enachman@marvell.com
 
---M8VGEtr73EdlGVwV--
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
