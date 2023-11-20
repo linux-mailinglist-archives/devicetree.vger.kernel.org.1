@@ -1,107 +1,78 @@
-Return-Path: <devicetree+bounces-17088-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17089-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74BDF7F1260
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 12:48:05 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C08D07F1262
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 12:48:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F07F3B21719
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 11:48:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6B32F1F23536
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 11:48:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F68314271;
-	Mon, 20 Nov 2023 11:47:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2317918023;
+	Mon, 20 Nov 2023 11:48:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="dyYjdRth"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Kz/Brs50"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 447CB93;
-	Mon, 20 Nov 2023 03:47:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1700480876; x=1732016876;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=jbtw7pYryYp9+t0lLmAoefZD3Kt+UKSmDRWQZvGm1R8=;
-  b=dyYjdRthFGvE1pRAfNHln1Zc45ue8ieAlZx6Ab0tCgfUXZUp2O13eMBM
-   jBIkd+gLXKWdLZXaqgWT6Q+SC0esnAlKaElvepDFlIwpSfzGe8dIeuFeb
-   sBoaiO4aaiZUcaxjZRqKmSQJdC9ko+zdA0B0579Vg5E1b8hUxMzEvjHqp
-   OZ0NXveQU7aZlXvPMOptqajnwtW/ZsyemUWz2fO+sXygbpSvJUpQ1GCNy
-   +FOiGXRzqdhZPE9Ty1Q7bdLi/lMSLzsdNLUPsLWL1RuuGwAqhwE9WCH7M
-   Ofe8S+nDVxzjSK/a6kb8ts1iOpaRFp3/PFhYePeY+wyzkahnutbfcsgDP
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10899"; a="390461932"
-X-IronPort-AV: E=Sophos;i="6.04,213,1695711600"; 
-   d="scan'208";a="390461932"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Nov 2023 03:47:55 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10899"; a="716185590"
-X-IronPort-AV: E=Sophos;i="6.04,213,1695711600"; 
-   d="scan'208";a="716185590"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Nov 2023 03:47:52 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1r52kn-0000000FXRk-2wKz;
-	Mon, 20 Nov 2023 13:47:49 +0200
-Date: Mon, 20 Nov 2023 13:47:49 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Stefan Wahren <wahrenst@gmx.net>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
-	bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-leds@vger.kernel.org
-Subject: Re: [PATCH V2 1/2] leds: gpio: Add kernel log if
- devm_fwnode_gpiod_get fails
-Message-ID: <ZVtHZWYl2skpn1Bg@smile.fi.intel.com>
-References: <20231118124252.14838-1-wahrenst@gmx.net>
- <20231118124252.14838-2-wahrenst@gmx.net>
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEE2F14F82;
+	Mon, 20 Nov 2023 11:48:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9208C433C8;
+	Mon, 20 Nov 2023 11:48:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1700480906;
+	bh=UJCr0Qxyssxmu6qLQ79trNX/zz2V3o6aWjqu9Go9EGA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Kz/Brs50IcMgJfxqKA3Y45Qnhy8zmk2rLYiKRpB5gtTmmIT5c1FTOWLh9+v0r3E/f
+	 /F4UgkVSOXxaDkI65mOp8SyHQES4a3VHlPa3Bv+XolZFGSOrHlaeiEho+40GWOyrIK
+	 xMeB3zP2c+KKRrNcDFvO7eaHgu7l2y7Eq4lJ4vqsQV7DXhb7Uj4fb7dfirehA3r7V4
+	 aTng1b9w/0jH0cKHhSXP9YCUfDs2IinC0+wm3XsRgBm4nX018THuQXsDWM+c+OfD5e
+	 xPm9rJKN7dS26zFB4c9DIEuCP0COqiKjHOvBWZaOKX9ZByD7FXg9FbjP/q6zYvqEgq
+	 5pzIQbH37FRTg==
+Message-ID: <47925f9e-32aa-4762-a4ec-aa559e18ff12@kernel.org>
+Date: Mon, 20 Nov 2023 12:48:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231118124252.14838-2-wahrenst@gmx.net>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V2 0/4] Add runtime PM support for videocc on SM8150
+To: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
+ Andy Gross <agross@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ Bjorn Andersson <andersson@kernel.org>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+References: <20231118123944.2202630-1-quic_skakitap@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konradybcio@kernel.org>
+In-Reply-To: <20231118123944.2202630-1-quic_skakitap@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Sat, Nov 18, 2023 at 01:42:51PM +0100, Stefan Wahren wrote:
-> In case leds-gpio fails to get the GPIO from the DT (e.g. the GPIO is
-> already requested) the driver doesn't provide any helpful error log:
+On 18.11.2023 13:39, Satya Priya Kakitapalli wrote:
+> Add runtime support for videocc on SM8150 and update the resets
+> and video_pll0_config configuration.
 > 
->     leds-gpio: probe of leds failed with error -16
-> 
-> So add a new error log in case devm_fwnode_gpiod_get() fails.
+> Satya Priya Kakitapalli (4):
+>   dt-bindings: clock: Update the videocc resets for sm8150
+>   clk: qcom: videocc-sm8150: Update the videocc resets
+>   clk: qcom: videocc-sm8150: Add missing PLL config properties
+>   clk: qcom: videocc-sm8150: Add runtime PM support
+Hi, it's good practive to include a link to the previous revision
+and a summary of changes.
 
-...
+The b4 tool [1] does that for you, please consider using it.
 
->  		led.gpiod = devm_fwnode_gpiod_get(dev, child, NULL, GPIOD_ASIS,
->  						  NULL);
->  		if (IS_ERR(led.gpiod)) {
-> +			dev_err_probe(dev, PTR_ERR(led.gpiod), "Failed to get gpio '%pfw'\n",
-> +				      child);
->  			fwnode_handle_put(child);
->  			return ERR_CAST(led.gpiod);
->  		}
+Konrad
 
-Thinking more about it. GPIO library already issues bunch of messages.
-
-	"using DT ... for ... GPIO lookup"
-	"using lookup tables for GPIO lookup"
-	"No GPIO consumer ... found"
-
-Isn't it enough?
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+[1] https://b4.docs.kernel.org/en/latest/index.html
 
