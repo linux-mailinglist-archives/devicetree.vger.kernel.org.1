@@ -1,185 +1,197 @@
-Return-Path: <devicetree+bounces-17077-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17078-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34BF87F11C2
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 12:18:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 608777F11DB
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 12:20:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DD99C2825CD
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 11:18:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1526A2816B4
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 11:20:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E48214A87;
-	Mon, 20 Nov 2023 11:18:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 172D914267;
+	Mon, 20 Nov 2023 11:20:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="pOOKuEFp"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="ArxvSckE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06C291709
-	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 03:18:44 -0800 (PST)
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-40806e4106dso9608455e9.1
-        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 03:18:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1700479122; x=1701083922; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bGvXvdztvnU1Noz3qGE9zeJXlVtwjcExrfXoSufIG6g=;
-        b=pOOKuEFpUEgBmFpMI7RSjFsYDT8AECq+ge4189kqw49264Pci3accNK65X1Yf3aS/g
-         I4nxjk57NyAcOHvIE6fYwJZJdH8OYdnqhwhoDssmwhb9ZGhW54/HSRkY2pI2WIC7ODg9
-         2iMl2yVWw84bPANMe9c/KmT7g+QLk6fuTPKvQ8Z3V5vW78ia38oQB4mzk4UMx4jq/JyK
-         bj2LMa/CIff+KipplMElmGK6yz9cy5X2mAe6hhcQFzDwBmYoDPlQVi8+6VHyYVL8F0TX
-         lp6AfpK9LyGIXT2cRMe6vmLpw/ulYQ4xLuiygh1aKMC8Z8FiIS043M/6mtsd1c0zisbu
-         +I4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700479122; x=1701083922;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=bGvXvdztvnU1Noz3qGE9zeJXlVtwjcExrfXoSufIG6g=;
-        b=UbVm7p+WedC/ZO7AwcQMpc2+pj7H87RDQ9YgivfDDxYz8VF8YsPUuTGcfAYNTGDvK0
-         OYnVs7Wsc6Cv9P4Cz0G6Wr/I6/wuIK7UnnQnSdtMGp8I8Gfx7DHbkP9l/4MRGBxaArQQ
-         Xn5XxsHKHvI966nr9ds4UGpEZX7Kkfe+FiItLOQ+egACSdhhC7RrHJPubCNV1zSlX2tQ
-         Vu+UFCT5WqAZsvF80KNscsImjGEVIz7Xkpkn0fJOXEvoIX9vtwTfMVGyDPeI54RoN0hG
-         dh6cPKshJ4LYQ20QVrRxW/BRupXwkMzF5yqO745XHVuCyrIC7BMSYYGtlfGyrU8+U3Th
-         HAMg==
-X-Gm-Message-State: AOJu0Yw5E9X9pm+dUrNL/zk9Gw0z9o7sB34ZbVk6Myls889cmCQG3DF7
-	cOEvjfmKGaViyoyWcQHBe+NFPA==
-X-Google-Smtp-Source: AGHT+IFiqC0hAoROkF8bGe1DWe/xZ03qtfGR9V52jRRdovggVx9Iq3wYl/7ufgUAj6kVUgCoo0FR1g==
-X-Received: by 2002:a05:600c:358e:b0:409:6e0e:e95a with SMTP id p14-20020a05600c358e00b004096e0ee95amr5778715wmq.19.1700479122593;
-        Mon, 20 Nov 2023 03:18:42 -0800 (PST)
-Received: from claudiu-X670E-Pro-RS.. ([82.78.167.183])
-        by smtp.gmail.com with ESMTPSA id g6-20020a05600c310600b0040651505684sm13142676wmo.29.2023.11.20.03.18.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Nov 2023 03:18:42 -0800 (PST)
-From: Claudiu <claudiu.beznea@tuxon.dev>
-X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
-To: tglx@linutronix.de,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	geert+renesas@glider.be,
-	magnus.damm@gmail.com,
-	mturquette@baylibre.com,
-	sboyd@kernel.org,
-	prabhakar.mahadev-lad.rj@bp.renesas.com
-Cc: linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: [PATCH v3 9/9] arm64: dts: renesas: r9108g045: Add IA55 interrupt controller node
-Date: Mon, 20 Nov 2023 13:18:20 +0200
-Message-Id: <20231120111820.87398-10-claudiu.beznea.uj@bp.renesas.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20231120111820.87398-1-claudiu.beznea.uj@bp.renesas.com>
-References: <20231120111820.87398-1-claudiu.beznea.uj@bp.renesas.com>
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8E8B3265
+	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 03:20:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+	s=s31663417; t=1700479201; x=1701084001; i=wahrenst@gmx.net;
+	bh=Q2d29zfZ5pqA70+2OwecFS0OWjp1AlJekk8RMO2MaIA=;
+	h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:
+	 In-Reply-To;
+	b=ArxvSckEA342lHpCtKYBI0Ov6AhFSZcFhGrE84jYuO3vbHgRS4lKi/IYTRdBuLxC
+	 qofz3erkhbM2T3X6vWgnSme6Kf/BzGrTlUpgkVYdxvDAJRcZEX9t1Er/fFC3hggub
+	 p+KeF1ajNdkmK73bskzbdZtMpKStvhicGVtyIW/eEcnTfpFLlYGaBa3YTpLeHBBpD
+	 171psZImRmr9RJLsZyNHT9tHPXgjA6ijy9IUBN1q9gXSfXqFHTfJvflZD25tG7njR
+	 yhz6DUL8tw9cUqdHtHSAsaZWp/Yx6vuRrQuwuSuRmYTA5m7UgASxkTTZZ8dBxLDM5
+	 GmI4QpHcb4wJ6aBiNQ==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.129] ([37.4.248.43]) by mail.gmx.net (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1Mj8mV-1raoq42UXl-00fB5B; Mon, 20
+ Nov 2023 12:20:01 +0100
+Message-ID: <5ca78d6a-2795-4eba-ba11-12b3afbfb7e6@gmx.net>
+Date: Mon, 20 Nov 2023 12:20:00 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 0/2] ARM: dts: bcm2711-rpi-cm4-io: Add rtc on a
+ pinctrl-muxed i2c bus
+Content-Language: en-US
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>
+Cc: linux-arm-kernel@lists.infradead.org,
+ linux-rpi-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ bcm-kernel-feedback-list@broadcom.com,
+ Florian Fainelli <f.fainelli@gmail.com>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>,
+ Cyril Brulebois <kibi@debian.org>, Maxime Ripard <mripard@kernel.org>,
+ Nicolas Saenz Julienne <nsaenz@kernel.org>,
+ Umang Jain <umang.jain@ideasonboard.com>, Phil Elwell <phil@raspberrypi.com>
+References: <20230731215515.20682-1-laurent.pinchart@ideasonboard.com>
+ <CAPY8ntD07rCC5ttudKtbXkDcKFLJb5htRdawWR+S7p914ti4MA@mail.gmail.com>
+ <20230801144313.GB25590@pendragon.ideasonboard.com>
+ <20230801210502.GB8578@pendragon.ideasonboard.com>
+From: Stefan Wahren <wahrenst@gmx.net>
+In-Reply-To: <20230801210502.GB8578@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:UW2nyUpoXZKBabiJsjAJ5VslRChAz/9pOSp49EmJ/29yoAMpilb
+ 49xCFiLYucg0Fsa54P0aan2KnuSbdsGBsW2LuJK151UaLsib2BOsj+jerpYTf+e95ZzPten
+ NMUlvYO4pqvOrg9lLFuBLm8lT2dyGg5FwP1Zzml3arWtqZIZFePFiPPvad07VIaWi4jg3K4
+ Y7LSL1OrblJWTS6OebI8w==
+UI-OutboundReport: notjunk:1;M01:P0:Y37vhsH0i/Q=;/dcUIQ+GpvjtEcingejkfTbHk6R
+ j0SSm3Ky1dKVl+7F6T5seQYNfjYHBslAoRzHwfE2OPeR8Ec8sy3IRx3f+uzUCbOvx4/P38Kld
+ LpvnlOXOab+zxRjepSKOySt8jec2h7XRCyiGt5lKZnGc2WJw3h+abbQBbRolR2x2C9LIhqtAf
+ w5TYQKL10qga3iFi8GrEYRrRKJE8FARVDi/HBYzF8vOTlu9ZD4i7H09olGybSHAkAxZylwlN2
+ 6D2mSaDMgCvQsQ/87ZTAwbBl5qwrR9tKny93HhYQiyoZCInQ8OViTIONr1dQzbyoyCXMkGzDr
+ MXDM9gHwk6zgsdmak8hs1ySuzyuOD+V286njPBZ+rAvWewBD/Igz/KepSDVQ9svmHmbZvBYQ0
+ v8Xw1iHIx7GNheA9KF/N2BiOm4esdOqpgyLNLwiYtMSfZmxArhhz7z1SkLsASPWHwSV/GwCBe
+ /vqmgP5EYSMh43gjCXhz8KGwlyvKF3z1HxxQnk+W5MnMhPnQrIvLMs6Eyh/3mouTBq6RnUvJM
+ HfB3J4MbRM7sY/A8FHMUoe5C/Rzym2MO4Aas+wM9NrNTApGJNr8TizloUrQmxGA0IXWuQEwa9
+ eGeEr8tumpSKHbJStEZG46v6ISD8KV9KEqFkxc2EidpxQOBEu7DzYJqQLGTWHrtiZSQ9c5/jg
+ sWbMxhGzYW8WVRWfuj+mkfiCslbBb78p/yD7zaSPHzaJcpJtOL1e7SvvSJgHTM2yiAxly63eJ
+ FmqXgVjXE5pndNCRbgbM06b0+aMhZMCZYfgcUNy8uwN7pk6JjyMYi39frByiAzxpk/S5L29KM
+ 3tQM2jETHGst3B7tmMIRuegToczALE9Xp32ltme1Ea4G0dx6jt9ubqEFmswEHQlroPPCPZN23
+ bZHZT3MFE0sCvlb1Qs9bSVli18965oLqy0ikR57PWzPMp4DfpViW7AHKqYIP06Tawm0C3kqHg
+ w4qXvg==
 
-From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Hi Laurent,
 
-Add IA55 interrupt controller node and set it as interrupt parent for pin
-controller.
+Am 01.08.23 um 23:05 schrieb Laurent Pinchart:
+> On Tue, Aug 01, 2023 at 05:43:15PM +0300, Laurent Pinchart wrote:
+>> On Tue, Aug 01, 2023 at 03:22:17PM +0100, Dave Stevenson wrote:
+>>> On Mon, 31 Jul 2023 at 22:55, Laurent Pinchart wrote:
+>>>>
+>>>> Hello,
+>>>>
+>>>> This series is an attempt to revive support for pinmuxed I2C0 on the
+>>>> Raspberry Pi BCM2711-based board.
+>>>>
+>>>> On BCM2711-based boards, the I2C0 controller can be muxed between pin=
+s
+>>>> 0+1 or 44+45. The former is exposed through the 40-pins GPIO connecto=
+r,
+>>>> and the latter is used for the RTC on the CM4 I/O board, but also rou=
+ted
+>>>> to the display and camera connectors on the Raspberry Pi 4B board. Th=
+e
+>>>> other BCM2711-based board, the Raspberry Pi 400, does not expose or
+>>>> connect anything to pins 44+45.
+>>>>
+>>>> A previous version was posted ([1]) a year and a half ago by Uwe. It
+>>>> bundled the pinmuxing and RTC in a single patch, with the mux added t=
+o
+>>>> the CM4 I/O board device tree. This version splits this in two, and
+>>>> moves the pinumxing to the bcm2711-rpi.dtsi to also support the
+>>>> Raspberry Pi 4B.
+>>>>
+>>>> The Raspberry Pi downstream kernel has a more complex DT architecture=
+ in
+>>>> order to support different I2C0 pinmuxing for other boards. Two files=
+,
+>>>> bcm283x-rpi-i2c0mux_0_28.dtsi and bcm283x-rpi-i2c0mux_0_44.dtsi, defi=
+ne
+>>>> the two I2C0 pinxmuxing options (pins 0+1 and 28+29, or pins 0+1 and
+>>>> 44+45). Each board .dts then includes the appropriate file. I'm hopin=
+g
+>>>> to avoid this additional complexity for now, by addressing the I2C0
+>>>> pinmuxing for BCM2711-based boards only. If/when support for I2C0
+>>>> pinmuxing on boards will be needed, we can revisit this topic.
+>>>>
+>>>> Compared to the Raspberry Pi downstream kernel, the two muxed I2C bus=
+es
+>>>> are labelled i2c0_0 and i2c0_1 instead of i2c0 and i2c_csi_dsi. This
+>>>> change was made to keep the naming of the I2C controller labels
+>>>> consistent, avoiding renaming of the I2C0 controller's label from i2c=
+0
+>>>> to i2c0if.
+>>>>
+>>>> Dave, are you fine with the differences between this patch series and
+>>>> the downstream kernel, or do you expect them to cause issues ?
+>>>
+>>> I've checked with Phil. There's nothing too untoward that will cause
+>>> us any significant grief.
+>>
+>> Thanks for checking.
+>>
+>> In the meantime, I realized that the CM4S is 2711-based and, according
+>> to the downstream DT, multiplexes I2C0 on pins 28+29, not 44+45 :-(
+>> Umang and Kieran also told me that we want to test camera support on th=
+e
+>> Pi 3B. It looks like the only viable approach to support all that will
+>> be to include per-board I2C0 pinmux .dtsi as done in the downstream
+>> kernel. I'll send a v5.
+>
+> This I2C pin muxing is getting trickier than I initially thought :-S
+> Naming the child buses i2c0_0 and i2c0_1 means that boards exposing I2C0
+> on the 40-pins GPIO headers would have different labels for that I2C0
+> interface depending on whether they multiplex I2C0 on other pins (e.g.
+> on pins 44+45 for the camera connector of the Pi 4B) or not (e.g. the Pi
+> 400). Overlays would thus not be compatible, which I suppose would be
+> annoying for users.
+>
+> Before I send a new version of the series, I'd like to know what
+> direction I should take. Is overlay compatibility between the two cases
+> listed above important ? If so, I can imagine at least two solutions:
+>
+> - On boards that use I2C0 pinmuxing, we can rename the physical
+>    interface to i2c0if and name the two child buses i2c0 and i2c_csi_dsi=
+.
+>    This is the solution used in the downstream kernel. It is implemented
+>    with a crude (in my opinion) hack though: board files have constructs
+>    such as
+>
+>    #define i2c0 i2c0if
+>    #include "bcm2711.dtsi"
+>    #undef i2c0
+>
+> - Always mux the I2C0 bus, on pins 0+1 and 28+29 or 0+1 and 44+45,
+>    depending on the board. Boards that don't connect anything to the I2C
+>    bus on pins 28+29 or 44+45 would still pick one of the two options. A=
+s
+>    there will be no I2C device on the second bus, the corresponding
+>    pinctrl entry will never be selected, so this should be harmless. The
+>    downside is that there will be an I2C mux instantiated in the kernel,
+>    adding a level of indirection to the I2C operations.
+>
+> Other solutions may be possible.
+>
+> What would be everybody's favourite option ?
+>
 
-Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
----
- arch/arm64/boot/dts/renesas/r9a08g045.dtsi | 68 ++++++++++++++++++++++
- 1 file changed, 68 insertions(+)
+sorry that you didn't get a reply to this question so far. Yesterday i
+tried to get my official rpi touchscreen running and noticed those many
+missing puzzle pieces (like this one) in Mainline.
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a08g045.dtsi b/arch/arm64/boot/dts/renesas/r9a08g045.dtsi
-index 02a5dc9a0a3e..793512c4b31c 100644
---- a/arch/arm64/boot/dts/renesas/r9a08g045.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a08g045.dtsi
-@@ -101,6 +101,7 @@ pinctrl: pinctrl@11030000 {
- 			#gpio-cells = <2>;
- 			interrupt-controller;
- 			#interrupt-cells = <2>;
-+			interrupt-parent = <&irqc>;
- 			gpio-ranges = <&pinctrl 0 0 152>;
- 			clocks = <&cpg CPG_MOD R9A08G045_GPIO_HCLK>;
- 			power-domains = <&cpg>;
-@@ -109,6 +110,73 @@ pinctrl: pinctrl@11030000 {
- 				 <&cpg R9A08G045_GPIO_SPARE_RESETN>;
- 		};
- 
-+		irqc: interrupt-controller@11050000 {
-+			compatible = "renesas,r9a08g045-irqc", "renesas,rzg2l-irqc";
-+			#interrupt-cells = <2>;
-+			#address-cells = <0>;
-+			interrupt-controller;
-+			reg = <0 0x11050000 0 0x10000>;
-+			interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 429 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 430 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 431 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 432 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 433 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 434 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 435 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 436 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 437 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 438 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 439 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 440 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 441 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 442 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 443 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 444 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 445 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 446 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 447 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 448 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 449 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 450 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 451 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 452 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 453 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 454 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 455 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 456 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 457 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 458 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 459 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 460 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 29 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "nmi",
-+					  "irq0", "irq1", "irq2", "irq3",
-+					  "irq4", "irq5", "irq6", "irq7",
-+					  "tint0", "tint1", "tint2", "tint3",
-+					  "tint4", "tint5", "tint6", "tint7",
-+					  "tint8", "tint9", "tint10", "tint11",
-+					  "tint12", "tint13", "tint14", "tint15",
-+					  "tint16", "tint17", "tint18", "tint19",
-+					  "tint20", "tint21", "tint22", "tint23",
-+					  "tint24", "tint25", "tint26", "tint27",
-+					  "tint28", "tint29", "tint30", "tint31",
-+					  "bus-err";
-+			clocks = <&cpg CPG_MOD R9A08G045_IA55_CLK>,
-+				 <&cpg CPG_MOD R9A08G045_IA55_PCLK>;
-+			clock-names = "clk", "pclk";
-+			power-domains = <&cpg>;
-+			resets = <&cpg R9A08G045_IA55_RESETN>;
-+		};
-+
- 		sdhi0: mmc@11c00000  {
- 			compatible = "renesas,sdhi-r9a08g045", "renesas,rcar-gen3-sdhi";
- 			reg = <0x0 0x11c00000 0 0x10000>;
--- 
-2.39.2
+My gut feeling would tend to the second option.
 
+Best regards
 
