@@ -1,169 +1,100 @@
-Return-Path: <devicetree+bounces-17239-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17240-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E29E27F19DD
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 18:27:59 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1CD87F19E1
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 18:28:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 963C72818ED
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 17:27:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 52543B20F84
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 17:28:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98DC420B1B;
-	Mon, 20 Nov 2023 17:27:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ocJEyoL7"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CE57208BF;
+	Mon, 20 Nov 2023 17:28:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E4B7E3
-	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 09:27:52 -0800 (PST)
-Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-40806e4106dso12650345e9.1
-        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 09:27:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700501270; x=1701106070; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Dbp99EO1nCYm8hYFRfZK7t7+MT7LrrpJ9uCMQlSDqSE=;
-        b=ocJEyoL7/IIYa7qkBSBE4V2IQV/psllD/5sEmDXu8BlGfL3pv/G0a3mZrGKi1jVwHJ
-         V68DmFrFqRxzvAUMbNrmtPH/vq1mLgvrwAnJZiCwjkY9rIKOMt+iFQNOw6+uh//cE9k4
-         I2uWVPGxqjzPW870J60sFf65ETXOuL4bVdIcjQbpc0kUjeM263tHhAEgzqQfImtanQSz
-         YMLhJXQSZKTLojcfo+J0sK9bd8BbhB3/hMJPimBGd5dBp1uzOgO0dO1URud5W6fu9GjA
-         uz2/EB/KVuY5xNC0PY4a9zJg5VqrQMBrp5paFjxaG+06sogB+EU2U9XITjXNu6w5KWsd
-         Fr4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700501270; x=1701106070;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Dbp99EO1nCYm8hYFRfZK7t7+MT7LrrpJ9uCMQlSDqSE=;
-        b=arWvhZEqZyIqFboJO7we7MLO4wAGKXSID+QZEBWbl3YJ1TBUWYQFU2VbNCkaDDkGPC
-         7Kt4a4gs8+s8MdsRtYqFJSNNPe3lXZgjJu4wFTfyXQcC+dRgPyo2AohaTn6QqhpjFc1o
-         8jFgQd0sWSQLgmZZ1x6XppHe5deTgRG06nXAENxXQBGzIS0UwtFfP3LtYZP4qlsNOuqx
-         wNqDKqEjoVR+n3Vcxk1RZzUr1LQesdIeoDMFr+FXYbHp9YOsPz48UN8fx9IUMAOjlJrE
-         mtG0pQxJrsOIuDTgIt0k3alaeigg/QQ/TfdoTc3SMwTMVK75eeK7UNO/PJnWni6zlOdk
-         TJtw==
-X-Gm-Message-State: AOJu0YyY0/kAadfiLxVZpNF+JQFQhEmpBLHnp+BPU3IS+NCKGYm3SVDy
-	FE96ZsncySufa24eh34cYUC+8bSqrsuJdSwrWFM=
-X-Google-Smtp-Source: AGHT+IHYTOoFZdClK+006yEkt1ULbvHomDBQOGOS7mAcZ5Y1WlCRb56Y0mQ2bedb2VgFjSqyDbibRw==
-X-Received: by 2002:a1c:4c09:0:b0:407:73fc:6818 with SMTP id z9-20020a1c4c09000000b0040773fc6818mr153939wmf.2.1700501270354;
-        Mon, 20 Nov 2023 09:27:50 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.222.11])
-        by smtp.gmail.com with ESMTPSA id k21-20020a7bc415000000b004042dbb8925sm18262046wmi.38.2023.11.20.09.27.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Nov 2023 09:27:49 -0800 (PST)
-Message-ID: <e8670fdb-aa7d-4dc4-ba46-53967f1fe7fb@linaro.org>
-Date: Mon, 20 Nov 2023 18:27:47 +0100
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FD0D10F;
+	Mon, 20 Nov 2023 09:28:06 -0800 (PST)
+Received: from lhrpeml500005.china.huawei.com (unknown [172.18.147.207])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4SYvZB3s7mz6K9Kv;
+	Tue, 21 Nov 2023 01:26:42 +0800 (CST)
+Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
+ (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.31; Mon, 20 Nov
+ 2023 17:28:03 +0000
+Date: Mon, 20 Nov 2023 17:28:02 +0000
+From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To: Marek Vasut <marex@denx.de>
+CC: Jonathan Cameron <jic23@kernel.org>, <linux-iio@vger.kernel.org>, "Conor
+ Dooley" <conor.dooley@microchip.com>, Alexander Stein
+	<alexander.stein@ew.tq-group.com>, Andre Werner
+	<andre.werner@systec-electronic.com>, Andy Shevchenko
+	<andriy.shevchenko@linux.intel.com>, Bjorn Helgaas <bhelgaas@google.com>,
+	Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@denx.de>, Guenter
+ Roeck <linux@roeck-us.net>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Lars-Peter Clausen <lars@metafoo.de>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>, Mark Brown <broonie@kernel.org>,
+	Matti Vaittinen <mazziesaccount@gmail.com>, Naresh Solanki
+	<naresh.solanki@9elements.com>, Patrick Rudolph
+	<patrick.rudolph@9elements.com>, Rob Herring <robh+dt@kernel.org>, "Stefan
+ Windfeldt-Prytz" <stefan.windfeldt-prytz@axis.com>, Vincent Tremblay
+	<vincent@vtremblay.dev>, <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: light: isl76682: Document
+ ISL76682
+Message-ID: <20231120172802.00006f38@Huawei.com>
+In-Reply-To: <4fe94f10-ff06-417b-a6d5-433bfeeac641@denx.de>
+References: <20231118000614.186558-1-marex@denx.de>
+	<20231119150756.20a023b5@jic23-huawei>
+	<4fe94f10-ff06-417b-a6d5-433bfeeac641@denx.de>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/3] Implement vendor resets for PSCI SYSTEM_RESET2
-Content-Language: en-US
-To: Elliot Berman <quic_eberman@quicinc.com>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Mark Rutland <mark.rutland@arm.com>
-Cc: Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>,
- Melody Olvera <quic_molvera@quicinc.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Florian Fainelli <florian.fainelli@broadcom.com>
-References: <20231117-arm-psci-system_reset2-vendor-reboots-v1-0-03c4612153e2@quicinc.com>
- <417cb5cb-01f5-4d01-8bbe-aa2286fca43e@linaro.org>
- <39b694e9-3275-43b0-a1af-4e2ef7facda3@quicinc.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <39b694e9-3275-43b0-a1af-4e2ef7facda3@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="US-ASCII"
 Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.202.227.76]
+X-ClientProxiedBy: lhrpeml100003.china.huawei.com (7.191.160.210) To
+ lhrpeml500005.china.huawei.com (7.191.163.240)
+X-CFilter-Loop: Reflected
 
-On 20/11/2023 17:03, Elliot Berman wrote:
-> 
-> 
-> On 11/20/2023 2:55 AM, Krzysztof Kozlowski wrote:
->> On 17/11/2023 22:18, Elliot Berman wrote:
->>> The PSCI SYSTEM_RESET2 call allows vendor firmware to define additional
->>> reset types which could be mapped to the reboot argument.
->>>
->>> Setting up reboot on Qualcomm devices can be inconsistent from chipset
->>> to chipset.  Generally, there is a PMIC register that gets written to
->>> decide the reboot type. There is also sometimes a cookie that can be
->>> written to indicate that the bootloader should behave differently than a
->>> regular boot. These knobs evolve over product generations and require 
->>> more drivers. Qualcomm firmwares are beginning to expose vendor
->>> SYSTEM_RESET2 types to simplify driver requirements from Linux.
->>>
->>> Add support in PSCI to statically wire reboot mode commands from
->>> userspace to a vendor reset and cookie value using the device tree. The
->>> DT bindings are similar to reboot mode framework except that 2
->>> integers are accepted (the type and cookie). Also, reboot mode framework
->>> is intended to program, but not reboot, the host. PSCI SYSTEM_RESET2
->>> does both. I've not added support for reading ACPI tables since I don't
->>> have any device which provides them + firmware that supports vendor
->>> SYSTEM_RESET2 types.
->>>
->>> Previous discussions around SYSTEM_RESET2:
->>> - https://lore.kernel.org/lkml/20230724223057.1208122-2-quic_eberman@quicinc.com/T/
->>> - https://lore.kernel.org/all/4a679542-b48d-7e11-f33a-63535a5c68cb@quicinc.com/
->>
->> Please link here upstream DTS user for this.
-> 
-> The changes are applicable for SM8650, but hasn't yet landed in arm64/for-next/core.
-> 
-> I'll include it in the v2 with note.
+On Sun, 19 Nov 2023 19:08:45 +0100
+Marek Vasut <marex@denx.de> wrote:
 
-It's enough if you link to lore or any other upstream-oriented tree with
-that user. Does not have to be merged.
+> On 11/19/23 16:07, Jonathan Cameron wrote:
+> > On Sat, 18 Nov 2023 01:06:09 +0100
+> > Marek Vasut <marex@denx.de> wrote:
+> >   
+> >> The ISL76682 is very basic ALS which only supports ALS or IR mode
+> >> in four ranges, 1k/4k/16k/64k LUX. There is no IRQ support or any
+> >> other fancy functionality. Document it as trivial device.
+> >>
+> >> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> >> Signed-off-by: Marek Vasut <marex@denx.de>  
+> > 
+> > I'm always a bit in 2 minds about trivial-devices as it doesn't
+> > include a basic power supply.  In this case vdd which I'd prefer
+> > to see documented even on such a simple device as this.
+> > Not everyone is going to leave it powered up all the time!
+> > 
+> > Still I'm not that fussed. Maybe it's worth allowing vdd-supply in
+> > trivial-devices.yaml?  
+> 
+> The hardware I have is powered all the time, so I'd be adding completely 
+> untested code which is no less useless for me (at least right now). Lets 
+> postpone this until there is a need for it, can we ?
 
-Best regards,
-Krzysztof
+It's untested but trivial code (one call and an error code check) but fair enough.
+Previous experience says that we'll soon see it added... Its probably the most common
+follow up patch for a new driver.
+
+> 
+> I addressed all the other comments in 2/2.
+> 
 
 
