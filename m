@@ -1,134 +1,168 @@
-Return-Path: <devicetree+bounces-17092-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17094-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 809CE7F1284
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 12:55:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 831407F129D
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 13:02:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 320B428264E
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 11:55:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B3B721C2104A
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 12:02:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93D3F182BE;
-	Mon, 20 Nov 2023 11:55:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ByluDlkb"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 335F718E0E;
+	Mon, 20 Nov 2023 12:02:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6C0E8E
-	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 03:54:58 -0800 (PST)
-Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-548c548c40aso1268071a12.0
-        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 03:54:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700481297; x=1701086097; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=b8AWhfE2Dwm0+sDgL8vznseiQagZPvxsot2/ITuX5H8=;
-        b=ByluDlkbOBwkhYo1GxP0QM+b56eMpz+r/EIbFxjSCCLmGdeW1jLhob8FqnksXo1NyG
-         58GxcVgGcYnl0JnvuAd9AGMJR0jBdyjUn40SwrHtfGeVN9yL9od99tB3OrAKQfqYf9BK
-         HFZGxlQPHnicdvErJuPa9XKK89trRRqXkAmUEeDB1O0sTowYrJfXK3OTQVVlvJOeRM9l
-         3aeOhCCzOF3JmHmGd1YWacKnR3/X2N/QZW8xaadvT/a+vSzTUYckesAlfYtts2/2a/Up
-         I9XN7tFdulSKsZz2FWCDdtxwHOMIxiQoSdB8v08b6leyjovNE0PA52Ivbp6LWX5ZpIxA
-         Jacg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700481297; x=1701086097;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=b8AWhfE2Dwm0+sDgL8vznseiQagZPvxsot2/ITuX5H8=;
-        b=S5kilRfMdmDkSn32XMAMkc57wYYpOWoJGsLl1eUStaeNGYeKWTqOBS0dmOS1HyAZTa
-         HpJuPhudxBmZ+nDcw+8b7uB8mZ+7U0cxbaBd7L79kbCLLH+kVDLWp3bSDXKkuUooBJFa
-         MTBnWkZsbIK3NRCnSaTXAxOSXFTA3jb77xDZYqBa5dURD/Zm9zaZ+BcXaO4VITnU8sj1
-         PBFc5LwHzUGqeFJYitOVQrdWe3RZ1a3jj80ASGEEIXry+tpgjG1HTKPbHPwI1LZFh5vh
-         DB+SLg9RceZQE+lS43fYiC/ZpctSxitPNFoHe71gELgC4DpYI1ZvuK/v+YtvqoRT9GNN
-         duQA==
-X-Gm-Message-State: AOJu0YwC9Er1igt3svNgEajaBdFh2aazMOgnEA06uJxk1sZUSURDPfyB
-	VTbFDBps27O3ZqQgX6bud8kDsA==
-X-Google-Smtp-Source: AGHT+IEzLPWn2u7c9HHqsIH3EHpB9pMu/RGqFN3K+HoqrZsTn0D/IslSTkjemZgxB6Hyhsbz+7LzYw==
-X-Received: by 2002:a17:906:bc4f:b0:9da:de23:738e with SMTP id s15-20020a170906bc4f00b009dade23738emr1451191ejv.37.1700481297322;
-        Mon, 20 Nov 2023 03:54:57 -0800 (PST)
-Received: from [192.168.201.100] (178235187204.dynamic-4-waw-k-2-3-0.vectranet.pl. [178.235.187.204])
-        by smtp.gmail.com with ESMTPSA id a11-20020a1709066d4b00b009fd1a5fe9dcsm1497900ejt.86.2023.11.20.03.54.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Nov 2023 03:54:56 -0800 (PST)
-Message-ID: <ca66e0e6-2c24-4dce-9464-7d4464b6b8ef@linaro.org>
-Date: Mon, 20 Nov 2023 12:54:53 +0100
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA4DB8E;
+	Mon, 20 Nov 2023 04:02:31 -0800 (PST)
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 3AK6xSWn027130;
+	Mon, 20 Nov 2023 07:01:37 -0500
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3uer086uhk-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 20 Nov 2023 07:01:37 -0500 (EST)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 3AKC1Zkp030882
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 20 Nov 2023 07:01:35 -0500
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Mon, 20 Nov
+ 2023 07:01:34 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Mon, 20 Nov 2023 07:01:34 -0500
+Received: from amiclaus-VirtualBox.ad.analog.com (AMICLAUS-L02.ad.analog.com [10.48.65.183])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 3AKC1IZK027545;
+	Mon, 20 Nov 2023 07:01:20 -0500
+From: Antoniu Miclaus <antoniu.miclaus@analog.com>
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>,
+        Alessandro Zummo
+	<a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, Jean
+ Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>, <linux-rtc@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-hwmon@vger.kernel.org>
+CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v9 1/2] dt-bindings: rtc: max31335: add max31335 bindings
+Date: Mon, 20 Nov 2023 14:00:16 +0200
+Message-ID: <20231120120114.48657-1-antoniu.miclaus@analog.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 4/5] arm64: dts: qcom: x1e80100: Add Compute Reference
- Device
-Content-Language: en-US
-To: Sibi Sankar <quic_sibis@quicinc.com>, andersson@kernel.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- catalin.marinas@arm.com, ulf.hansson@linaro.org
-Cc: agross@kernel.org, conor+dt@kernel.org, ayan.kumar.halder@amd.com,
- j@jannau.net, dmitry.baryshkov@linaro.org, nfraprado@collabora.com,
- m.szyprowski@samsung.com, u-kumar1@ti.com, peng.fan@nxp.com,
- lpieralisi@kernel.org, quic_rjendra@quicinc.com, abel.vesa@linaro.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- quic_tsoni@quicinc.com, neil.armstrong@linaro.org
-References: <20231117113931.26660-1-quic_sibis@quicinc.com>
- <20231117113931.26660-5-quic_sibis@quicinc.com>
- <bded087f-6601-48d8-af7e-9120955127df@linaro.org>
- <3cb43c28-7333-936f-96d6-1c85aea46cfc@quicinc.com>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <3cb43c28-7333-936f-96d6-1c85aea46cfc@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-ORIG-GUID: ngGhBbcf9jRsfVmMgu7mQ_lz1Z5wXuyH
+X-Proofpoint-GUID: ngGhBbcf9jRsfVmMgu7mQ_lz1Z5wXuyH
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-20_10,2023-11-20_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
+ lowpriorityscore=0 adultscore=0 mlxscore=0 priorityscore=1501
+ mlxlogscore=999 spamscore=0 bulkscore=0 suspectscore=0 phishscore=0
+ clxscore=1015 impostorscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2311060001 definitions=main-2311200082
 
-On 20.11.2023 07:51, Sibi Sankar wrote:
-> Hey Konrad,
-> Thanks for taking time to review the series.
-While it's rude to complain about somebody saying kind things, I have to
-do it :D
+Document the Analog Devices MAX31335 device tree bindings.
 
-top-posting (replying at the beginning of email) is discouraged and will
-earn you grumpy replies, see the beginning of this message from GK-H:
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+---
+no changes in v9.
+ .../devicetree/bindings/rtc/adi,max31335.yaml | 70 +++++++++++++++++++
+ 1 file changed, 70 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/rtc/adi,max31335.yaml
 
-https://lore.kernel.org/linux-nfs/YH%2FfM%2FTsbmcZzwnX@kroah.com/
+diff --git a/Documentation/devicetree/bindings/rtc/adi,max31335.yaml b/Documentation/devicetree/bindings/rtc/adi,max31335.yaml
+new file mode 100644
+index 000000000000..0125cf6727cc
+--- /dev/null
++++ b/Documentation/devicetree/bindings/rtc/adi,max31335.yaml
+@@ -0,0 +1,70 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/rtc/adi,max31335.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Analog Devices MAX31335 RTC
++
++maintainers:
++  - Antoniu Miclaus <antoniu.miclaus@analog.com>
++
++description:
++  Analog Devices MAX31335 I2C RTC ±2ppm Automotive Real-Time Clock with
++  Integrated MEMS Resonator.
++
++allOf:
++  - $ref: rtc.yaml#
++
++properties:
++  compatible:
++    const: adi,max31335
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  "#clock-cells":
++    description:
++      RTC can be used as a clock source through its clock output pin.
++    const: 0
++
++  adi,tc-diode:
++    description:
++      Select the diode configuration for the trickle charger.
++      schottky - Schottky diode in series.
++      standard+schottky - standard diode + Schottky diode in series.
++    enum: [schottky, standard+schottky]
++
++  trickle-resistor-ohms:
++    description:
++      Selected resistor for trickle charger. Should be specified if trickle
++      charger should be enabled.
++    enum: [3000, 6000, 11000]
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        rtc@68 {
++            compatible = "adi,max31335";
++            reg = <0x68>;
++            pinctrl-0 = <&rtc_nint_pins>;
++            interrupts-extended = <&gpio1 16 IRQ_TYPE_LEVEL_HIGH>;
++            aux-voltage-chargeable = <1>;
++            trickle-resistor-ohms = <6000>;
++            adi,tc-diode = "schottky";
++        };
++    };
++...
+-- 
+2.42.0
 
-Konrad
 
