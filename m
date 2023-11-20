@@ -1,81 +1,109 @@
-Return-Path: <devicetree+bounces-17277-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17280-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94BED7F1E6F
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 21:58:53 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BAB47F1EA1
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 22:18:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3F01F1F261CD
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 20:58:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A75F9B20B8B
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 21:18:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CC02328DD;
-	Mon, 20 Nov 2023 20:58:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 230D437174;
+	Mon, 20 Nov 2023 21:18:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="HYWHvejA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66193D8;
-	Mon, 20 Nov 2023 12:58:41 -0800 (PST)
-Received: from francesco-nb.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id AB5B3207E9;
-	Mon, 20 Nov 2023 21:58:38 +0100 (CET)
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Rob Herring <robh+dt@kernel.org>,
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70BB3C4;
+	Mon, 20 Nov 2023 13:18:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1700515128; x=1732051128;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=xYtfmY3EVWUKUBltmFEPvtVvDbJhLP5vaAHjt99/IKw=;
+  b=HYWHvejAYsV4atKsHgJNalI0chJRRNs4nr51JtduVgoFnUFWl8zq3QtZ
+   5aR4hQbQhRbX2Lt/RsZG7PL0Q/9JAsVs1EL8T54ldteSzu+1y6REE6Q8p
+   ADmSz1dneJcPPUQzWOEoPLKcxJb1QpoxtMgJjb6j8vBKMZGZrJrdWfvTy
+   LNnqXQ/1VdTrhM4A6jmB4/cA/CdAovAO0u18LY0qySFykLrhbTbLf6h72
+   2E0R4/92GAEdDJfGoagSWClr0E+W5fUGPCtzcxI8qdcPDTts5484gFHko
+   JgrzM6r7GuisLAMXn1++sK5jZ9Ku2LDc24AWNtbHTGYm9yEwbMns0d3iR
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10900"; a="388860353"
+X-IronPort-AV: E=Sophos;i="6.04,214,1695711600"; 
+   d="scan'208";a="388860353"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Nov 2023 13:18:47 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10900"; a="716329079"
+X-IronPort-AV: E=Sophos;i="6.04,214,1695711600"; 
+   d="scan'208";a="716329079"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
+  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Nov 2023 13:18:42 -0800
+Received: from kekkonen.localdomain (localhost [127.0.0.1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id 423A911FAC4;
+	Mon, 20 Nov 2023 23:18:40 +0200 (EET)
+Date: Mon, 20 Nov 2023 21:18:40 +0000
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Alain Volmat <alain.volmat@foss.st.com>
+Cc: Hugues Fruchet <hugues.fruchet@foss.st.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>
-Cc: Hiago De Franco <hiago.franco@toradex.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Francesco Dolcini <francesco.dolcini@toradex.com>
-Subject: [PATCH v1 3/3] ARM: dts: imx7d-colibri-emmc: Add usdhc aliases
-Date: Mon, 20 Nov 2023 21:58:18 +0100
-Message-Id: <20231120205818.33120-4-francesco@dolcini.it>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231120205818.33120-1-francesco@dolcini.it>
-References: <20231120205818.33120-1-francesco@dolcini.it>
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Dan Scally <dan.scally@ideasonboard.com>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 0/5] Add support for DCMIPP camera interface of
+ STMicroelectronics STM32 SoC series
+Message-ID: <ZVvNMPfW7OhPByZk@kekkonen.localdomain>
+References: <20231120170809.728941-1-alain.volmat@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231120170809.728941-1-alain.volmat@foss.st.com>
 
-From: Hiago De Franco <hiago.franco@toradex.com>
+Hi Alain,
 
-Add mmc aliases to ensure a consistent mmc device naming across the
-Toradex SoM family, with this commit mmc0 is the on-module eMMC
-boot device and the not available mmc interfaces are removed.
+On Mon, Nov 20, 2023 at 06:07:56PM +0100, Alain Volmat wrote:
+> This patchset introduces support for Digital Camera Memory Interface
+> Pixel Processor (DCMIPP) of STMicroelectronics STM32 SoC series.
+> 
+> This initial support implements a single capture pipe
+> allowing RGB565, YUV, Y, RAW8 and JPEG capture with
+> frame skipping, prescaling and cropping.
+> 
+> DCMIPP is exposed through 3 subdevices:
+> - dcmipp_dump_parallel: parallel interface handling
+> - dcmipp_dump_postproc: frame skipping, prescaling and cropping control
+> - dcmipp_dump_capture: video device capture node
+> 
+> v7:
+>   - correct byteproc set_fmt handling and compose/crop/fmt handling
+>   - replace few v4l2_subdev_get_try_* into v4l2_subdev_get_pad_*
 
-Signed-off-by: Hiago De Franco <hiago.franco@toradex.com>
-Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
----
- arch/arm/boot/dts/nxp/imx/imx7d-colibri-emmc.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
+Can you rebase this on my my linuxtv.org tree master branch
+<URL:https://git.linuxtv.org/sailus/media_tree.git/log/>?
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx7d-colibri-emmc.dtsi b/arch/arm/boot/dts/nxp/imx/imx7d-colibri-emmc.dtsi
-index 3740e34ef99f..9670f45eab3b 100644
---- a/arch/arm/boot/dts/nxp/imx/imx7d-colibri-emmc.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx7d-colibri-emmc.dtsi
-@@ -11,6 +11,10 @@ aliases {
- 		/* Required to properly pass MAC addresses from bootloader. */
- 		ethernet0 = &fec1;
- 		ethernet1 = &fec2;
-+		mmc0 = &usdhc3; /* eMMC */
-+		mmc1 = &usdhc1; /* MMC/SD slot */
-+		/delete-property/ mmc2;
-+		/delete-property/ mmc3;
- 	};
- 
- 	memory@80000000 {
+These will be called v4l2_subdev_state_get_* now.
+
+Thanks.
+
 -- 
-2.25.1
+Regards,
 
+Sakari Ailus
 
