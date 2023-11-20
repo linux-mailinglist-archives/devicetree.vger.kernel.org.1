@@ -1,140 +1,109 @@
-Return-Path: <devicetree+bounces-17080-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17081-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D4127F11F8
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 12:29:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C48F97F1202
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 12:31:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E579DB21138
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 11:29:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 30A2FB21564
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 11:31:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1931E14A99;
-	Mon, 20 Nov 2023 11:29:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2841814AA8;
+	Mon, 20 Nov 2023 11:31:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="FwVSnWBP"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="LiqgaJ2m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18D3990;
-	Mon, 20 Nov 2023 03:29:31 -0800 (PST)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3AKBTEYE128584;
-	Mon, 20 Nov 2023 05:29:14 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1700479754;
-	bh=BLEDsm/tYWfhwzYZpH4LZ43y0iT2tVYZ/aiTuDK+wDw=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=FwVSnWBPoUq1E/t7aTdM1MsoYVnr+l73iEzilaZEK+KYW+Rzz0KSfYjDa8/Cfrc66
-	 6r8THDO5ztYsgm5M2ob3d8asWQ3ydvfMZOrj1CcbpZakIW05jm3kddubmdoufE9cx/
-	 mWDqzTop+eTBiDs1oyfx5QgK1MYGsvMu9zPwZ+4w=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3AKBTELw013637
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 20 Nov 2023 05:29:14 -0600
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 20
- Nov 2023 05:29:14 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 20 Nov 2023 05:29:14 -0600
-Received: from [10.24.69.31] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3AKBSIm7122511;
-	Mon, 20 Nov 2023 05:29:11 -0600
-Message-ID: <85ec4b6e-e3eb-4a19-aec4-82865a940cbf@ti.com>
-Date: Mon, 20 Nov 2023 16:59:10 +0530
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CE4190;
+	Mon, 20 Nov 2023 03:31:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1700479874; x=1732015874;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=M5VyfO4HyHA+7dmKhfXxCvmtDyHikTHOa2LFJQGtoFw=;
+  b=LiqgaJ2mh9t0Z9Y1moEBpuc1q+0/L2qhQX0GMcI5D1EBWMBL9U3/K+xy
+   yg+MGLhXGsJ2B5Rjtp2msbuIRyA7pfD/i8NSVxk9EX1eb/uQriOPEaZ+2
+   xcc8jsLLFeb89yWXgVei6n/kAt0K8dtGXdZ2PintVfdPNdiM1ByOZjRdz
+   utLgntNmXSO0R/hMMDSkqyzaHN0IM2FnL//zhOh7aHI5NpHI/cfnhRR1q
+   bc0KANT5sshzoGg4WUKc7/0/C6QBW3LdX2Zast+cZ3CPvbym0S7RP8WWO
+   oL4SQAmOQxbhBQFs8N5wRloDlELdfKPfe+PKOJMSUoYVE92BJmZWSxu6n
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10899"; a="458097875"
+X-IronPort-AV: E=Sophos;i="6.04,213,1695711600"; 
+   d="scan'208";a="458097875"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Nov 2023 03:31:13 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10899"; a="910079573"
+X-IronPort-AV: E=Sophos;i="6.04,213,1695711600"; 
+   d="scan'208";a="910079573"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Nov 2023 03:31:06 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.97)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1r52UZ-0000000FXEw-1BiL;
+	Mon, 20 Nov 2023 13:31:03 +0200
+Date: Mon, 20 Nov 2023 13:31:03 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Jishnu Prakash <quic_jprakash@quicinc.com>
+Cc: jic23@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, agross@kernel.org, andersson@kernel.org,
+	konrad.dybcio@linaro.org, daniel.lezcano@linaro.org,
+	dmitry.baryshkov@linaro.org, linus.walleij@linaro.org,
+	linux-arm-msm@vger.kernel.org, quic_subbaram@quicinc.com,
+	quic_collinsd@quicinc.com, quic_amelende@quicinc.com,
+	quic_kamalw@quicinc.com, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, marijn.suijten@somainline.org,
+	lars@metafoo.de, luca@z3ntu.xyz, linux-iio@vger.kernel.org,
+	lee@kernel.org, rafael@kernel.org, rui.zhang@intel.com,
+	lukasz.luba@arm.com, cros-qcom-dts-watchers@chromium.org,
+	sboyd@kernel.org, linux-pm@vger.kernel.org,
+	linux-arm-msm-owner@vger.kernel.org, kernel@quicinc.com
+Subject: Re: [PATCH V2 0/3] iio: adc: Add support for QCOM SPMI PMIC5 Gen3 ADC
+Message-ID: <ZVtDdySmDUmgUDlm@smile.fi.intel.com>
+References: <20231116032530.753192-1-quic_jprakash@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: ti: k3-am654-icssg2: Enable PHY interrupts
- for ICSSG2
-Content-Language: en-US
-To: Siddharth Vadapalli <s-vadapalli@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
-        <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <r-gunasekaran@ti.com>,
-        <srk@ti.com>
-References: <20231120063159.539306-1-s-vadapalli@ti.com>
-From: MD Danish Anwar <danishanwar@ti.com>
-In-Reply-To: <20231120063159.539306-1-s-vadapalli@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231116032530.753192-1-quic_jprakash@quicinc.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
+On Thu, Nov 16, 2023 at 08:55:27AM +0530, Jishnu Prakash wrote:
+> PMIC5 Gen3 has a similar ADC architecture to that on PMIC5 Gen2,
+> with all SW communication to ADC going through PMK8550 which
+> communicates with other PMICs through PBS. The major difference is
+> that the register interface used here is that of an SDAM present on
+> PMK8550, rather than a dedicated ADC peripheral. There may be more than one
+> SDAM used for ADC5 Gen3. Each ADC SDAM has eight channels, each of which may
+> be used for either immediate reads (same functionality as previous PMIC5 and
+> PMIC5 Gen2 ADC peripherals) or recurring measurements (same as PMIC5 and PMIC5
+> Gen2 ADC_TM functionality). In this case, we have VADC and ADC_TM functionality
+> combined into the same driver.
+> 
+> Patches 1 adds bindings for ADC5 Gen3 peripheral.
+> 
+> Patches 2 adds driver support for ADC5 Gen3.
+> 
+> Patch 3 is a cleanup, to move the QCOM ADC dt-bindings files from
+> dt-bindings/iio to dt-bindings/iio/adc folder, as they are
+> specifically for ADC devices. It also fixes all compilation errors
+> with this change in driver and devicetree files and similar errors
+> in documentation for dtbinding check.
 
-
-On 20/11/23 12:01 pm, Siddharth Vadapalli wrote:
-> Enable interrupt mode of operation of the DP83867 Ethernet PHY which is
-> used by ICSSG2. The DP83867 PHY driver already supports interrupt handling
-> for interrupts generated by the PHY. Thus, add the necessary device-tree
-> support to enable it.
-> 
-> Since the GPIO1_87 line is muxed with EXT_REFCLK1 and SYNC1_OUT, update
-> the pinmux to select GPIO1_87 for routing the interrupt.
-> 
-> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
-Reviewed-by: MD Danish Anwar <danishanwar@ti.com>
-
-> ---
-> 
-> This patch is based on linux-next tagged next-20231120.
-> 
-> Regards,
-> Siddharth.
-> 
->  arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso | 17 +++++++++++++++--
->  1 file changed, 15 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso b/arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso
-> index ec8cf20ca3ac..9f723592d0f4 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso
-> +++ b/arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso
-> @@ -124,21 +124,34 @@ AM65X_IOPAD(0x0088, PIN_INPUT, 2) /* (AG17) PRG2_PRU0_GPO4.PRG2_RGMII1_RX_CTL */
->  	};
->  };
->  
-> +&main_pmx1 {
-> +	/* Select GPIO1_87 for ICSSG2 PHY interrupt */
-> +	icssg2_phy_irq_pins_default: icssg2-phy-irq-default-pins {
-> +		pinctrl-single,pins = <
-> +			AM65X_IOPAD(0x0014, PIN_INPUT, 7) /* (A22) EXT_REFCLK1.GPIO1_87 */
-> +		>;
-> +	};
-> +};
-> +
->  &icssg2_mdio {
->  	status = "okay";
-> -	pinctrl-names = "default";
-> -	pinctrl-0 = <&icssg2_mdio_pins_default>;
-> +	pinctrl-names = "default", "icssg2-phy-irq";
-> +	pinctrl-0 = <&icssg2_mdio_pins_default>, <&icssg2_phy_irq_pins_default>;
->  	#address-cells = <1>;
->  	#size-cells = <0>;
->  
->  	icssg2_phy0: ethernet-phy@0 {
->  		reg = <0>;
-> +		interrupt-parent = <&main_gpio1>;
-> +		interrupts = <87 0x2>;
->  		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
->  		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
->  	};
->  
->  	icssg2_phy1: ethernet-phy@3 {
->  		reg = <3>;
-> +		interrupt-parent = <&main_gpio1>;
-> +		interrupts = <87 0x2>;
->  		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
->  		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
->  	};
+Something wrong with the email chaining.
+Please be sure you are using --thread when preparing emails.
 
 -- 
-Thanks and Regards,
-Danish
+With Best Regards,
+Andy Shevchenko
+
+
 
