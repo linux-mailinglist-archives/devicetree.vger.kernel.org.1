@@ -1,123 +1,157 @@
-Return-Path: <devicetree+bounces-17181-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17180-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 527557F17B6
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 16:45:50 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D32C7F17B5
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 16:45:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0D78D282799
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 15:45:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E79802826CB
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 15:45:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 000C61C29C;
-	Mon, 20 Nov 2023 15:45:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0623A1DA40;
+	Mon, 20 Nov 2023 15:45:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="o2t7qt5X"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jXuXXuoy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2D89124;
-	Mon, 20 Nov 2023 07:45:43 -0800 (PST)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AKDLsFf004570;
-	Mon, 20 Nov 2023 15:45:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=tMbiJn1665rv9zGgWLRfYM/xK3klBLtoSVU9vhIpy8g=;
- b=o2t7qt5X/ZKoz/wAt3dFEi9hhR3pQfgL3GXT37XnU7NER+iez0OTaMGy1i6KFGJGPD4G
- SuVzFcV9JxvHTtwnLwlTnkuSqBEqQ/TbGr/QIvvUEDH1OFoKG4vkkemMDrQRniBk3Njm
- SQ0zfGsEoGmpa5syhGao6kIAYcb0r3mfSJ6g7cxY7rM43w9nli8fhTzGyMCYrZLVCbIm
- BSJ5A1boic11W91aK1lmy+VKIX1h32BEXSUpeLaCSMZrCepOxLkZaM2/rRwzRB6zPwjU
- pWWMxqmDTaZIHof4oSyDJv+1BLZsUk9B2uOiPMtpjKqzFuu/JFjzNqDfMBKbnSKBD+pU wQ== 
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ug26ts8uj-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 20 Nov 2023 15:45:30 +0000
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AKFjTfI026470
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 20 Nov 2023 15:45:29 GMT
-Received: from [10.110.123.216] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 20 Nov
- 2023 07:45:29 -0800
-Message-ID: <51785de6-2a69-482d-b686-c3694f87e6b7@quicinc.com>
-Date: Mon, 20 Nov 2023 07:45:28 -0800
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7CB31C29C;
+	Mon, 20 Nov 2023 15:45:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 645AEC433C8;
+	Mon, 20 Nov 2023 15:45:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1700495143;
+	bh=Mf13kzSkExcyvPhnH9lBeXM+1UKNn14DDjcJ3StlIoc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jXuXXuoyJnfgUCQK1X12FP4JL1Y3eR9/BRp0/MUuTl3MhCF3KK0nFr3436r2pCKXb
+	 xkQX/ShmAMDV5lDZsBlsCsbVehE+uguaHwGEiArapYyz87IDl+gW3cbZdsfZfZfPx1
+	 ikbg4W0qxv0Bxvfze7lb/aH9l69mtk0wusvkpVpQcCB/Dg1oU38v5OHzFYgLAweCLS
+	 3eduYAQKOP/cWI3pb4RulPavh2uTpkHor16JLy2GQ34HS5fOqrMOZEXVUcX7ODvlCo
+	 0+rfXJJO94HQDKAiKWECUzw36pHa61BUAhuJublU3SeoSBqrWtzr8Xuo+/CvcqvOov
+	 2OC9I3utaCjQA==
+Date: Mon, 20 Nov 2023 15:45:39 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Anand Moon <linux.amoon@gmail.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Icenowy Zheng <uwu@icenowy.me>,
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: usb: Add the binding example for the
+ Genesys Logic GL3523 hub
+Message-ID: <20231120-grinch-upbeat-05f7a32a99fa@spud>
+References: <20231119023454.1591-1-linux.amoon@gmail.com>
+ <20231119023454.1591-2-linux.amoon@gmail.com>
+ <20231119-phrasing-reverse-bbc1fde515d5@spud>
+ <CANAwSgQ6H9FUEBKz7sCf4kUZSMnCfyXG-cpGTMZoT15W9187Kg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] dt-bindings: arm: Document reboot mode magic
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Mark Rutland
-	<mark.rutland@arm.com>
-CC: Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>,
-        Melody Olvera
-	<quic_molvera@quicinc.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Florian Fainelli <florian.fainelli@broadcom.com>
-References: <20231117-arm-psci-system_reset2-vendor-reboots-v1-0-03c4612153e2@quicinc.com>
- <20231117-arm-psci-system_reset2-vendor-reboots-v1-2-03c4612153e2@quicinc.com>
- <eb2d0992-4d9a-4f59-8e79-da277f39d2d9@linaro.org>
-From: Elliot Berman <quic_eberman@quicinc.com>
-In-Reply-To: <eb2d0992-4d9a-4f59-8e79-da277f39d2d9@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 4PiT0cZP_0z-TCuA6kMTc_Y1BkXDfpKv
-X-Proofpoint-GUID: 4PiT0cZP_0z-TCuA6kMTc_Y1BkXDfpKv
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-20_15,2023-11-20_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- malwarescore=0 mlxlogscore=999 priorityscore=1501 impostorscore=0
- suspectscore=0 clxscore=1015 bulkscore=0 spamscore=0 phishscore=0
- adultscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311060000 definitions=main-2311200110
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="i584DEwwEuaJNfQd"
+Content-Disposition: inline
+In-Reply-To: <CANAwSgQ6H9FUEBKz7sCf4kUZSMnCfyXG-cpGTMZoT15W9187Kg@mail.gmail.com>
 
 
+--i584DEwwEuaJNfQd
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 11/20/2023 2:56 AM, Krzysztof Kozlowski wrote:
-> On 17/11/2023 22:18, Elliot Berman wrote:
->> -
->> -additionalProperties: false
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            const: arm,psci-1.0
->> +    then:
->> +      $ref: /schemas/power/reset/reboot-mode.yaml#
->> +      properties:
->> +        # "mode-normal" is just SYSTEM_RESET
->> +        mode-normal: false
->> +      patternProperties:
->> +        "^mode-.*$":
->> +          maxItems: 2
-> 
-> And if you tested the patch, it would tell you it can be max 1 item.
+On Sun, Nov 19, 2023 at 08:57:28PM +0530, Anand Moon wrote:
+> Hi Conor,
+>=20
+> On Sun, 19 Nov 2023 at 19:28, Conor Dooley <conor@kernel.org> wrote:
+> >
+> > On Sun, Nov 19, 2023 at 08:04:50AM +0530, Anand Moon wrote:
+> > > Add the binding example for the USB3.1 Genesys Logic GL3523
+> > > integrates with USB 3.1 Gen 1 Super Speed and USB 2.0 High-Speed
+> > > hub.
+> >
+> > But no comment in the commit message about the new property for the
+> > "peer hub". $subject saying "dt-bindings: usb: Add the binding example
+> > for the Genesys Logic GL3523 hub" is misleading when the meaningful
+> > parts of the patch are unrelated to the example.
+> >
+> > >
+> > > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> > > ---
+> > > V3: fix the dt_binding_check error, added new example for Genesys GL3=
+523
+> > > v2: added Genesys GL3523 binding
+> > > v1: none
+> > > ---
+> > >  .../bindings/usb/genesys,gl850g.yaml          | 63 +++++++++++++++++=
+--
+> > >  1 file changed, 59 insertions(+), 4 deletions(-)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/usb/genesys,gl850g.yam=
+l b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> > > index ee08b9c3721f..f8e88477fa11 100644
+> > > --- a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> > > +++ b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> > > @@ -9,9 +9,6 @@ title: Genesys Logic USB hub controller
+> > >  maintainers:
+> > >    - Icenowy Zheng <uwu@icenowy.me>
+> > >
+> > > -allOf:
+> > > -  - $ref: usb-device.yaml#
+> > > -
+> > >  properties:
+> > >    compatible:
+> > >      enum:
+> > > @@ -27,12 +24,44 @@ properties:
+> > >
+> > >    vdd-supply:
+> > >      description:
+> > > -      the regulator that provides 3.3V core power to the hub.
+> > > +      phandle to the regulator that provides power to the hub.
+> > > +
+> > > +  peer-hub:
+> > > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > > +    description:
+> > > +      phandle to the peer hub on the controller.
+> >
+> > What is this, why is it needed? Please explain it in your commit
+> > message.
+> >
+> Ok, GL3523 integrates Genesys Logic self-developed USB 3.1 Gen 1
+> Super Speed transmitter/receiver physical layer (PHY) and USB 2.0
+> High-Speed PHY
+>=20
+> peer-hub is used to cross-connect those phy nodes so that it can help
+> hub power on/off simultaneously.
 
-make dt_binding_check DT_SCHEMA_FILES=arm/psci.yaml
+I said please explain it in your commit message, but on reflection I
+think that would be insufficient. Extending the description to explain
+what the peer-hub is would be great too. "peer hub on the controller"
+doesn't seem to make sense to me either, as the peer hub phandle is to
+another phy, not to the controller. I think that would probably also be
+resolved by explaining what the peer hub is in a more detailed manner.
 
-passes for me. Rob explained why it's working (and why it shouldn't), 
-so I'll fix it according to his recommendation in v2.
+If this is purely a genesys thing, the property should grow a genesys,
+prefix also.
 
-Thanks,
-Elliot
+Cheers,
+Conor.
+
+--i584DEwwEuaJNfQd
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZVt/IwAKCRB4tDGHoIJi
+0l7WAP4jO2VytV+gaR4Fr/4ZJpmrfQ2P5ysd6CPf71fn0gDBSgEA0EeG15JAP0T2
+UF4SNHfWgFn93keokaU5a5twE8yTlQA=
+=o5XT
+-----END PGP SIGNATURE-----
+
+--i584DEwwEuaJNfQd--
 
