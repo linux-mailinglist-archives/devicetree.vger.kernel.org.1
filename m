@@ -1,158 +1,362 @@
-Return-Path: <devicetree+bounces-17224-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17230-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A6187F196E
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 18:10:17 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BD7C7F19A3
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 18:19:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E1805281283
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 17:10:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 84F9BB20FAC
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 17:19:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C62D2200B6;
-	Mon, 20 Nov 2023 17:10:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="TJ34m5Vu"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5354E208B0;
+	Mon, 20 Nov 2023 17:19:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44F46D8;
-	Mon, 20 Nov 2023 09:10:09 -0800 (PST)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AKGcCAo011905;
-	Mon, 20 Nov 2023 17:09:57 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=rKRFbcoiJFnyC4kTtbuw38KkKTxXnsEOsT+x/71gpJU=;
- b=TJ34m5VuSY7JtCxQvOUwrBFEF/Mx/4c/wZejY9ck2JFWh8EzEGcqK6W0b3twx2F1Jt8/
- 4NbnMeAIstOP/kzO8t78CW7jo7Z4aHStvbV3CmLgAenz8rBqIc+7jquHrE5BZ6zU39U2
- NpH+sKZ8P8wvRO8oSttPCjMctm/9vsIMPyMCLl0lM4Yo3AEl2L4JD+gXQjJRqWQKiIpU
- 4o6XieRysHbQFMnV7USHlZNk/G9yXWNuzCIs4hw7/5POLDqb6NwKJly+pR+t4AFAl/aV
- RgORRJQztpMaU/xwFh6HYj2EoVXHix1l5F3hQKyDIckOR3hAv+3ZeA7St1YykcTrlWjG tQ== 
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uem9ecnpp-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 20 Nov 2023 17:09:57 +0000
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AKH9uK9009254
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 20 Nov 2023 17:09:56 GMT
-Received: from [10.110.123.216] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 20 Nov
- 2023 09:09:55 -0800
-Message-ID: <13a254af-415d-4fbe-9f4f-7984e064a880@quicinc.com>
-Date: Mon, 20 Nov 2023 09:09:54 -0800
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E34EBA;
+	Mon, 20 Nov 2023 09:19:09 -0800 (PST)
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.96.2)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1r57v3-0008KR-0A;
+	Mon, 20 Nov 2023 17:18:46 +0000
+Date: Mon, 20 Nov 2023 17:18:41 +0000
+From: Daniel Golle <daniel@makrotopia.org>
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Sabrina Dubroca <sd@queasysnail.net>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Jianhui Zhao <zhaojh329@gmail.com>,
+	Chen-Yu Tsai <wenst@chromium.org>,
+	"Garmin.Chang" <Garmin.Chang@mediatek.com>,
+	Edward-JW Yang <edward-jw.yang@mediatek.com>,
+	Johnson Wang <johnson.wang@mediatek.com>,
+	Sam Shih <sam.shih@mediatek.com>,
+	Frank Wunderlich <frank-w@public-files.de>,
+	Dan Carpenter <dan.carpenter@linaro.org>,
+	James Liao <jamesjj.liao@mediatek.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-clk@vger.kernel.org,
+	netdev@vger.kernel.org
+Subject: [PATCH v2 1/4] dt-bindings: clock: mediatek: add MT7988 clock IDs
+Message-ID: <b277c5f084ff35849efb8250510b2536053d1316.1700498124.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] dt-bindings: arm: Document reboot mode magic
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Mark Rutland
-	<mark.rutland@arm.com>
-CC: Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>,
-        Melody Olvera
-	<quic_molvera@quicinc.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Florian Fainelli <florian.fainelli@broadcom.com>
-References: <20231117-arm-psci-system_reset2-vendor-reboots-v1-0-03c4612153e2@quicinc.com>
- <20231117-arm-psci-system_reset2-vendor-reboots-v1-2-03c4612153e2@quicinc.com>
- <eb2d0992-4d9a-4f59-8e79-da277f39d2d9@linaro.org>
- <51785de6-2a69-482d-b686-c3694f87e6b7@quicinc.com>
- <2d8c7cc2-2c6c-4539-abf3-81700f27b1a7@linaro.org>
-From: Elliot Berman <quic_eberman@quicinc.com>
-In-Reply-To: <2d8c7cc2-2c6c-4539-abf3-81700f27b1a7@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: Bc3Gi-DKZNJM0qmHVq7a-POPw5mf2NT1
-X-Proofpoint-GUID: Bc3Gi-DKZNJM0qmHVq7a-POPw5mf2NT1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-20_17,2023-11-20_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 mlxscore=0
- clxscore=1015 priorityscore=1501 impostorscore=0 mlxlogscore=999
- lowpriorityscore=0 bulkscore=0 phishscore=0 suspectscore=0 adultscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311060000 definitions=main-2311200121
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
+Add MT7988 clock dt-bindings for topckgen, apmixedsys, infracfg,
+ethernet and xfipll subsystem clocks.
 
+Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+---
+v2: fix indentation
 
-On 11/20/2023 8:41 AM, Krzysztof Kozlowski wrote:
-> On 20/11/2023 16:45, Elliot Berman wrote:
->>
->>
->> On 11/20/2023 2:56 AM, Krzysztof Kozlowski wrote:
->>> On 17/11/2023 22:18, Elliot Berman wrote:
->>>> -
->>>> -additionalProperties: false
->>>> +  - if:
->>>> +      properties:
->>>> +        compatible:
->>>> +          contains:
->>>> +            const: arm,psci-1.0
->>>> +    then:
->>>> +      $ref: /schemas/power/reset/reboot-mode.yaml#
->>>> +      properties:
->>>> +        # "mode-normal" is just SYSTEM_RESET
->>>> +        mode-normal: false
->>>> +      patternProperties:
->>>> +        "^mode-.*$":
->>>> +          maxItems: 2
->>>
->>> And if you tested the patch, it would tell you it can be max 1 item.
->>
->> make dt_binding_check DT_SCHEMA_FILES=arm/psci.yaml
-> 
-> psci.example.dtb: psci: mode-edl: [[0]] is too short
-> psci.example.dtb: psci: mode-bootloader: [[1, 2]] is too short
-> 
-> psci.example.dtb: psci: Unevaluated properties are not allowed
-> ('mode-bootloader', 'mode-edl' were unexpected)
-> 
+ .../dt-bindings/clock/mediatek,mt7988-clk.h   | 280 ++++++++++++++++++
+ 1 file changed, 280 insertions(+)
+ create mode 100644 include/dt-bindings/clock/mediatek,mt7988-clk.h
 
-Ah, tip of tree for dt-schema doesn't seem to report the error.
-
-Doesn't report the error:
-dt-validate --version
-2023.10.dev17+g58feadb
-
-Reports the error:
-dt-validate --version
-2023.9
-
-Looks likely related to generated the processed-schema.json rather
-than dt-validate itself. The tip of tree dt-validate does report
-the error if processed-schema.json is generated by 2023.9 tool,
-but not if the schema was also generated by tip-of-tree mkschema.
-
-I'll try bisecting the error and report back.
-
->>
->> passes for me. Rob explained why it's working (and why it shouldn't), 
->> so I'll fix it according to his recommendation in v2.
-> 
-> Then you wanted uint32-matrix.
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
+diff --git a/include/dt-bindings/clock/mediatek,mt7988-clk.h b/include/dt-bindings/clock/mediatek,mt7988-clk.h
+new file mode 100644
+index 0000000000000..63376e40f14d2
+--- /dev/null
++++ b/include/dt-bindings/clock/mediatek,mt7988-clk.h
+@@ -0,0 +1,280 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
++/*
++ * Copyright (c) 2023 MediaTek Inc.
++ * Author: Sam Shih <sam.shih@mediatek.com>
++ * Author: Xiufeng Li <Xiufeng.Li@mediatek.com>
++ */
++
++#ifndef _DT_BINDINGS_CLK_MT7988_H
++#define _DT_BINDINGS_CLK_MT7988_H
++
++/* APMIXEDSYS */
++
++#define CLK_APMIXED_NETSYSPLL			0
++#define CLK_APMIXED_MPLL			1
++#define CLK_APMIXED_MMPLL			2
++#define CLK_APMIXED_APLL2			3
++#define CLK_APMIXED_NET1PLL			4
++#define CLK_APMIXED_NET2PLL			5
++#define CLK_APMIXED_WEDMCUPLL			6
++#define CLK_APMIXED_SGMPLL			7
++#define CLK_APMIXED_ARM_B			8
++#define CLK_APMIXED_CCIPLL2_B			9
++#define CLK_APMIXED_USXGMIIPLL			10
++#define CLK_APMIXED_MSDCPLL			11
++
++/* TOPCKGEN */
++
++#define CLK_TOP_XTAL				0
++#define CLK_TOP_XTAL_D2				1
++#define CLK_TOP_RTC_32K				2
++#define CLK_TOP_RTC_32P7K			3
++#define CLK_TOP_MPLL_D2				4
++#define CLK_TOP_MPLL_D3_D2			5
++#define CLK_TOP_MPLL_D4				6
++#define CLK_TOP_MPLL_D8				7
++#define CLK_TOP_MPLL_D8_D2			8
++#define CLK_TOP_MMPLL_D2			9
++#define CLK_TOP_MMPLL_D3_D5			10
++#define CLK_TOP_MMPLL_D4			11
++#define CLK_TOP_MMPLL_D6_D2			12
++#define CLK_TOP_MMPLL_D8			13
++#define CLK_TOP_APLL2_D4			14
++#define CLK_TOP_NET1PLL_D4			15
++#define CLK_TOP_NET1PLL_D5			16
++#define CLK_TOP_NET1PLL_D5_D2			17
++#define CLK_TOP_NET1PLL_D5_D4			18
++#define CLK_TOP_NET1PLL_D8			19
++#define CLK_TOP_NET1PLL_D8_D2			20
++#define CLK_TOP_NET1PLL_D8_D4			21
++#define CLK_TOP_NET1PLL_D8_D8			22
++#define CLK_TOP_NET1PLL_D8_D16			23
++#define CLK_TOP_NET2PLL_D2			24
++#define CLK_TOP_NET2PLL_D4			25
++#define CLK_TOP_NET2PLL_D4_D4			26
++#define CLK_TOP_NET2PLL_D4_D8			27
++#define CLK_TOP_NET2PLL_D6			28
++#define CLK_TOP_NET2PLL_D8			29
++#define CLK_TOP_NETSYS_SEL			30
++#define CLK_TOP_NETSYS_500M_SEL			31
++#define CLK_TOP_NETSYS_2X_SEL			32
++#define CLK_TOP_NETSYS_GSW_SEL			33
++#define CLK_TOP_ETH_GMII_SEL			34
++#define CLK_TOP_NETSYS_MCU_SEL			35
++#define CLK_TOP_NETSYS_PAO_2X_SEL		36
++#define CLK_TOP_EIP197_SEL			37
++#define CLK_TOP_AXI_INFRA_SEL			38
++#define CLK_TOP_UART_SEL			39
++#define CLK_TOP_EMMC_250M_SEL			40
++#define CLK_TOP_EMMC_400M_SEL			41
++#define CLK_TOP_SPI_SEL				42
++#define CLK_TOP_SPIM_MST_SEL			43
++#define CLK_TOP_NFI1X_SEL			44
++#define CLK_TOP_SPINFI_SEL			45
++#define CLK_TOP_PWM_SEL				46
++#define CLK_TOP_I2C_SEL				47
++#define CLK_TOP_PCIE_MBIST_250M_SEL		48
++#define CLK_TOP_PEXTP_TL_SEL			49
++#define CLK_TOP_PEXTP_TL_P1_SEL			50
++#define CLK_TOP_PEXTP_TL_P2_SEL			51
++#define CLK_TOP_PEXTP_TL_P3_SEL			52
++#define CLK_TOP_USB_SYS_SEL			53
++#define CLK_TOP_USB_SYS_P1_SEL			54
++#define CLK_TOP_USB_XHCI_SEL			55
++#define CLK_TOP_USB_XHCI_P1_SEL			56
++#define CLK_TOP_USB_FRMCNT_SEL			57
++#define CLK_TOP_USB_FRMCNT_P1_SEL		58
++#define CLK_TOP_AUD_SEL				59
++#define CLK_TOP_A1SYS_SEL			60
++#define CLK_TOP_AUD_L_SEL			61
++#define CLK_TOP_A_TUNER_SEL			62
++#define CLK_TOP_SSPXTP_SEL			63
++#define CLK_TOP_USB_PHY_SEL			64
++#define CLK_TOP_USXGMII_SBUS_0_SEL		65
++#define CLK_TOP_USXGMII_SBUS_1_SEL		66
++#define CLK_TOP_SGM_0_SEL			67
++#define CLK_TOP_SGM_SBUS_0_SEL			68
++#define CLK_TOP_SGM_1_SEL			69
++#define CLK_TOP_SGM_SBUS_1_SEL			70
++#define CLK_TOP_XFI_PHY_0_XTAL_SEL		71
++#define CLK_TOP_XFI_PHY_1_XTAL_SEL		72
++#define CLK_TOP_SYSAXI_SEL			73
++#define CLK_TOP_SYSAPB_SEL			74
++#define CLK_TOP_ETH_REFCK_50M_SEL		75
++#define CLK_TOP_ETH_SYS_200M_SEL		76
++#define CLK_TOP_ETH_SYS_SEL			77
++#define CLK_TOP_ETH_XGMII_SEL			78
++#define CLK_TOP_BUS_TOPS_SEL			79
++#define CLK_TOP_NPU_TOPS_SEL			80
++#define CLK_TOP_DRAMC_SEL			81
++#define CLK_TOP_DRAMC_MD32_SEL			82
++#define CLK_TOP_INFRA_F26M_SEL			83
++#define CLK_TOP_PEXTP_P0_SEL			84
++#define CLK_TOP_PEXTP_P1_SEL			85
++#define CLK_TOP_PEXTP_P2_SEL			86
++#define CLK_TOP_PEXTP_P3_SEL			87
++#define CLK_TOP_DA_XTP_GLB_P0_SEL		88
++#define CLK_TOP_DA_XTP_GLB_P1_SEL		89
++#define CLK_TOP_DA_XTP_GLB_P2_SEL		90
++#define CLK_TOP_DA_XTP_GLB_P3_SEL		91
++#define CLK_TOP_CKM_SEL				92
++#define CLK_TOP_DA_SEL				93
++#define CLK_TOP_PEXTP_SEL			94
++#define CLK_TOP_TOPS_P2_26M_SEL			95
++#define CLK_TOP_MCUSYS_BACKUP_625M_SEL		96
++#define CLK_TOP_NETSYS_SYNC_250M_SEL		97
++#define CLK_TOP_MACSEC_SEL			98
++#define CLK_TOP_NETSYS_TOPS_400M_SEL		99
++#define CLK_TOP_NETSYS_PPEFB_250M_SEL		100
++#define CLK_TOP_NETSYS_WARP_SEL			101
++#define CLK_TOP_ETH_MII_SEL			102
++#define CLK_TOP_NPU_SEL				103
++#define CLK_TOP_AUD_I2S_M			104
++
++/* MCUSYS */
++
++#define CLK_MCU_BUS_DIV_SEL			0
++#define CLK_MCU_ARM_DIV_SEL			1
++
++/* INFRACFG_AO */
++
++#define CLK_INFRA_MUX_UART0_SEL			0
++#define CLK_INFRA_MUX_UART1_SEL			1
++#define CLK_INFRA_MUX_UART2_SEL			2
++#define CLK_INFRA_MUX_SPI0_SEL			3
++#define CLK_INFRA_MUX_SPI1_SEL			4
++#define CLK_INFRA_MUX_SPI2_SEL			5
++#define CLK_INFRA_PWM_SEL			6
++#define CLK_INFRA_PWM_CK1_SEL			7
++#define CLK_INFRA_PWM_CK2_SEL			8
++#define CLK_INFRA_PWM_CK3_SEL			9
++#define CLK_INFRA_PWM_CK4_SEL			10
++#define CLK_INFRA_PWM_CK5_SEL			11
++#define CLK_INFRA_PWM_CK6_SEL			12
++#define CLK_INFRA_PWM_CK7_SEL			13
++#define CLK_INFRA_PWM_CK8_SEL			14
++#define CLK_INFRA_PCIE_GFMUX_TL_O_P0_SEL	15
++#define CLK_INFRA_PCIE_GFMUX_TL_O_P1_SEL	16
++#define CLK_INFRA_PCIE_GFMUX_TL_O_P2_SEL	17
++#define CLK_INFRA_PCIE_GFMUX_TL_O_P3_SEL	18
++
++/* INFRACFG */
++
++#define CLK_INFRA_PCIE_PERI_26M_CK_P0		19
++#define CLK_INFRA_PCIE_PERI_26M_CK_P1		20
++#define CLK_INFRA_PCIE_PERI_26M_CK_P2		21
++#define CLK_INFRA_PCIE_PERI_26M_CK_P3		22
++#define CLK_INFRA_66M_GPT_BCK			23
++#define CLK_INFRA_66M_PWM_HCK			24
++#define CLK_INFRA_66M_PWM_BCK			25
++#define CLK_INFRA_66M_PWM_CK1			26
++#define CLK_INFRA_66M_PWM_CK2			27
++#define CLK_INFRA_66M_PWM_CK3			28
++#define CLK_INFRA_66M_PWM_CK4			29
++#define CLK_INFRA_66M_PWM_CK5			30
++#define CLK_INFRA_66M_PWM_CK6			31
++#define CLK_INFRA_66M_PWM_CK7			32
++#define CLK_INFRA_66M_PWM_CK8			33
++#define CLK_INFRA_133M_CQDMA_BCK		34
++#define CLK_INFRA_66M_AUD_SLV_BCK		35
++#define CLK_INFRA_AUD_26M			36
++#define CLK_INFRA_AUD_L				37
++#define CLK_INFRA_AUD_AUD			38
++#define CLK_INFRA_AUD_EG2			39
++#define CLK_INFRA_DRAMC_F26M			40
++#define CLK_INFRA_133M_DBG_ACKM			41
++#define CLK_INFRA_66M_AP_DMA_BCK		42
++#define CLK_INFRA_66M_SEJ_BCK			43
++#define CLK_INFRA_PRE_CK_SEJ_F13M		44
++#define CLK_INFRA_26M_THERM_SYSTEM		45
++#define CLK_INFRA_I2C_BCK			46
++#define CLK_INFRA_52M_UART0_CK			47
++#define CLK_INFRA_52M_UART1_CK			48
++#define CLK_INFRA_52M_UART2_CK			49
++#define CLK_INFRA_NFI				50
++#define CLK_INFRA_SPINFI			51
++#define CLK_INFRA_66M_NFI_HCK			52
++#define CLK_INFRA_104M_SPI0			53
++#define CLK_INFRA_104M_SPI1			54
++#define CLK_INFRA_104M_SPI2_BCK			55
++#define CLK_INFRA_66M_SPI0_HCK			56
++#define CLK_INFRA_66M_SPI1_HCK			57
++#define CLK_INFRA_66M_SPI2_HCK			58
++#define CLK_INFRA_66M_FLASHIF_AXI		59
++#define CLK_INFRA_RTC				60
++#define CLK_INFRA_26M_ADC_BCK			61
++#define CLK_INFRA_RC_ADC			62
++#define CLK_INFRA_MSDC400			63
++#define CLK_INFRA_MSDC2_HCK			64
++#define CLK_INFRA_133M_MSDC_0_HCK		65
++#define CLK_INFRA_66M_MSDC_0_HCK		66
++#define CLK_INFRA_133M_CPUM_BCK			67
++#define CLK_INFRA_BIST2FPC			68
++#define CLK_INFRA_I2C_X16W_MCK_CK_P1		69
++#define CLK_INFRA_I2C_X16W_PCK_CK_P1		70
++#define CLK_INFRA_133M_USB_HCK			71
++#define CLK_INFRA_133M_USB_HCK_CK_P1		72
++#define CLK_INFRA_66M_USB_HCK			73
++#define CLK_INFRA_66M_USB_HCK_CK_P1		74
++#define CLK_INFRA_USB_SYS			75
++#define CLK_INFRA_USB_SYS_CK_P1			76
++#define CLK_INFRA_USB_REF			77
++#define CLK_INFRA_USB_CK_P1			78
++#define CLK_INFRA_USB_FRMCNT			79
++#define CLK_INFRA_USB_FRMCNT_CK_P1		80
++#define CLK_INFRA_USB_PIPE			81
++#define CLK_INFRA_USB_PIPE_CK_P1		82
++#define CLK_INFRA_USB_UTMI			83
++#define CLK_INFRA_USB_UTMI_CK_P1		84
++#define CLK_INFRA_USB_XHCI			85
++#define CLK_INFRA_USB_XHCI_CK_P1		86
++#define CLK_INFRA_PCIE_GFMUX_TL_P0		87
++#define CLK_INFRA_PCIE_GFMUX_TL_P1		88
++#define CLK_INFRA_PCIE_GFMUX_TL_P2		89
++#define CLK_INFRA_PCIE_GFMUX_TL_P3		90
++#define CLK_INFRA_PCIE_PIPE_P0			91
++#define CLK_INFRA_PCIE_PIPE_P1			92
++#define CLK_INFRA_PCIE_PIPE_P2			93
++#define CLK_INFRA_PCIE_PIPE_P3			94
++#define CLK_INFRA_133M_PCIE_CK_P0		95
++#define CLK_INFRA_133M_PCIE_CK_P1		96
++#define CLK_INFRA_133M_PCIE_CK_P2		97
++#define CLK_INFRA_133M_PCIE_CK_P3		98
++
++/* ETHDMA */
++
++#define CLK_ETHDMA_XGP1_EN			0
++#define CLK_ETHDMA_XGP2_EN			1
++#define CLK_ETHDMA_XGP3_EN			2
++#define CLK_ETHDMA_FE_EN			3
++#define CLK_ETHDMA_GP2_EN			4
++#define CLK_ETHDMA_GP1_EN			5
++#define CLK_ETHDMA_GP3_EN			6
++#define CLK_ETHDMA_ESW_EN			7
++#define CLK_ETHDMA_CRYPT0_EN			8
++#define CLK_ETHDMA_NR_CLK			9
++
++/* SGMIISYS_0 */
++
++#define CLK_SGM0_TX_EN				0
++#define CLK_SGM0_RX_EN				1
++#define CLK_SGMII0_NR_CLK			2
++
++/* SGMIISYS_1 */
++
++#define CLK_SGM1_TX_EN				0
++#define CLK_SGM1_RX_EN				1
++#define CLK_SGMII1_NR_CLK			2
++
++/* ETHWARP */
++
++#define CLK_ETHWARP_WOCPU2_EN			0
++#define CLK_ETHWARP_WOCPU1_EN			1
++#define CLK_ETHWARP_WOCPU0_EN			2
++#define CLK_ETHWARP_NR_CLK			3
++
++/* XFIPLL */
++#define CLK_XFIPLL_PLL				0
++#define CLK_XFIPLL_PLL_EN			1
++
++#endif /* _DT_BINDINGS_CLK_MT7988_H */
+-- 
+2.42.1
 
