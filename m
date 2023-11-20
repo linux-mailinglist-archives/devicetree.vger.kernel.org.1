@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-17061-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17062-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A68657F10D6
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 11:53:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 345E37F10EB
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 11:55:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D34511C20B12
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 10:53:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6546A1C20B0E
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 10:55:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8684820EE;
-	Mon, 20 Nov 2023 10:53:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 227EC79FE;
+	Mon, 20 Nov 2023 10:55:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MGtBrwdn"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lBfp7AjI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93DD89D
-	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 02:52:58 -0800 (PST)
-Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-5482df11e73so4160250a12.0
-        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 02:52:58 -0800 (PST)
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C316110
+	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 02:55:29 -0800 (PST)
+Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-32dff08bbdbso3280611f8f.2
+        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 02:55:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700477577; x=1701082377; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1700477728; x=1701082528; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=GVHz7iDj1twatMFKk7CmjoZLFR4dceEUmjEQmn4BDrg=;
-        b=MGtBrwdnfdDO2EXe7t66/oruQqsIU+U7e2E+PYFicUs7ENuSQTnwozZRTf6X1w9t71
-         zWItVA/xC7w0l8PoIa77vuig+f7tzGh2zFTQVPnow/bHGHzrQoDtwLof/ZeH1i5TrUce
-         Qi++1INH3iqXbodRhH9MMA+xZvuR7XuNBz7cedIwmsoLveml3Zw5R+qkRayBG13d/NHS
-         eKmhcVL5NOdK0wbkPbCH6u2CCdgNs4tCXSNfOqu521pCIu91i+9p/JhKjB7DTiZkq9+C
-         0Z2X6RZs7eaL4LXY454s+c17Z1VIIPJQWfE3zQlKo3IQWuken01k7+/eb3mi/zgWweSY
-         zZyQ==
+        bh=2Ydc3aPLrm+NIPOgY7lEV6d3p5Eng+CVEruaIut0/2k=;
+        b=lBfp7AjIpjYW8cacvFCHEpP3na5LgEPP2eSzMsggRhr98Zow2E0h+JC6Co9wsmfTOU
+         PRHgxw2m9mgNzQfpH7/RpuxdHxdVj435AjIfvRkamn0NGpWBWZUyny/Uz1xh2Jv2rpa1
+         ay5pvUALlNBSAIRiQLQyn4XrfRukWAXKm98G9QNyYUD69qfSpV+dak4YYwnyhFvl80ST
+         GBWu2RBw+DPeDUlACtQDi+XFPygLDPEfx57UtKA+iLaOV/LWsofTW7M0Y2hFO/RSnJYQ
+         deY/edSbnSMLzOIBgiK2lVD81TAw3RDl5D9P+R+htgBi9DjmYB3TwQUXk5TcpFa5QmDH
+         c5uA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700477577; x=1701082377;
+        d=1e100.net; s=20230601; t=1700477728; x=1701082528;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GVHz7iDj1twatMFKk7CmjoZLFR4dceEUmjEQmn4BDrg=;
-        b=pf8KM7hvmp6POzpJyO1GjGWlznNc6VccEk2BxKZnOV8GKwjC/9wGQriw3lHYEJV/AF
-         BE4vceuscE/rYmpN0w6LdiSQjNhMIdK4Bx4q+TlbqUkRFX93BZxXBvgWugue1viJ38Q5
-         0pU8n+ArBVmCGRmteb3l3KdTj0WGA5+gy9ZK3tf+N/GfGR1QiY/gi0YaZB3cnRF+2Fri
-         KxV2Ek7RL4Mlnl+vbXxgtr1Z2xVOZ3H60qHn7BMqvRp32XkYtTLczFnQ+71S/d0DUsIf
-         7fgbNrga++6Xz383HhQbGfLML3KHx4fwRWS1qjl/oK6+oPgNJ/E8AgTYrkyH7hf4tgoi
-         /qhA==
-X-Gm-Message-State: AOJu0Yx5cWzOwx/ZT+flEuHWIDJm5TFFYFdWsUeA9oNAhxuaynnP2G1A
-	i1prg3d1B7cynLOVhODUlBpx5o1dOvhUfCDKmKU=
-X-Google-Smtp-Source: AGHT+IFvg5D+LznvoBHAXQ384vKHBpCfdz2gkyLbpRrpXTMphOYllp+eOE6Gu1gTkRhhSPhXaKuOLg==
-X-Received: by 2002:a17:907:718e:b0:9e6:8bb5:8d65 with SMTP id zv14-20020a170907718e00b009e68bb58d65mr3767411ejb.61.1700477577055;
-        Mon, 20 Nov 2023 02:52:57 -0800 (PST)
+        bh=2Ydc3aPLrm+NIPOgY7lEV6d3p5Eng+CVEruaIut0/2k=;
+        b=EWEYG3dI/MPzoIvXecyOT1VIZTa/lMDvdj0JQliSyfMQpNVRB5DMjjymD48xJHHxGz
+         DRv89v3QZ9FGnMqqp1bmaOu3qxH16+QSCBphFyumcycj41YhQ4ume4tl9NRQXZ/kYYf+
+         gQHG6+VCMeeGRo2uwC+Xduns1eRtD9HQhlAsNyiofM7tsIscpZKMNieRaTTmBxHAL+x7
+         nixJOZNFTp7KdcDJv4jm8hVGiSk9meWvIcznvSXANAjKz9L9+adIEZ72ZNY3BayOzZ/L
+         9dbj95gJsX9gHsKHHjUPw4fPZPP3j3zTrG3lahKv1mlcxlMhoe8gV0g5ztkYEysFIB7W
+         bCNQ==
+X-Gm-Message-State: AOJu0Yzlr0fF27Uj5KkUIfH51dg6JxKuLiGRrPetPH9zb8sdLVMEcJqg
+	rZ/82cwALAwwNKnsh8XyzYM9B6AV9+n4qUihiIc=
+X-Google-Smtp-Source: AGHT+IH0Yi0BlnhP+AyCxkHR2ebZGUWO71heHD2OpxZtw/Tw1I2JqFXy12eaZFlwHzXQhyGcH1QIMw==
+X-Received: by 2002:adf:ec51:0:b0:31f:8999:c409 with SMTP id w17-20020adfec51000000b0031f8999c409mr4460011wrn.66.1700477727742;
+        Mon, 20 Nov 2023 02:55:27 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.11])
-        by smtp.gmail.com with ESMTPSA id h23-20020aa7c957000000b0053dff5568acsm3528018edt.58.2023.11.20.02.52.54
+        by smtp.gmail.com with ESMTPSA id dh18-20020a0560000a9200b00332cb1bcd01sm981198wrb.86.2023.11.20.02.55.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Nov 2023 02:52:56 -0800 (PST)
-Message-ID: <79d78b39-e537-4143-af2e-44539cc6448c@linaro.org>
-Date: Mon, 20 Nov 2023 11:52:53 +0100
+        Mon, 20 Nov 2023 02:55:26 -0800 (PST)
+Message-ID: <417cb5cb-01f5-4d01-8bbe-aa2286fca43e@linaro.org>
+Date: Mon, 20 Nov 2023 11:55:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,8 +62,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: power: reset: Convert mode-.* properties
- to array
+Subject: Re: [PATCH 0/3] Implement vendor resets for PSCI SYSTEM_RESET2
 Content-Language: en-US
 To: Elliot Berman <quic_eberman@quicinc.com>, Rob Herring
  <robh+dt@kernel.org>, Krzysztof Kozlowski
@@ -75,7 +74,6 @@ Cc: Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>,
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  Florian Fainelli <florian.fainelli@broadcom.com>
 References: <20231117-arm-psci-system_reset2-vendor-reboots-v1-0-03c4612153e2@quicinc.com>
- <20231117-arm-psci-system_reset2-vendor-reboots-v1-1-03c4612153e2@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -121,42 +119,36 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231117-arm-psci-system_reset2-vendor-reboots-v1-1-03c4612153e2@quicinc.com>
+In-Reply-To: <20231117-arm-psci-system_reset2-vendor-reboots-v1-0-03c4612153e2@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 17/11/2023 22:18, Elliot Berman wrote:
-> PSCI reboot mode will map a mode name to multiple magic values instead
-> of just one. Convert the mode-.* property to an array with default
-> number of items limited to 1.
+> The PSCI SYSTEM_RESET2 call allows vendor firmware to define additional
+> reset types which could be mapped to the reboot argument.
 > 
-> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
-> ---
->  Documentation/devicetree/bindings/power/reset/reboot-mode.yaml | 7 +++++--
->  1 file changed, 5 insertions(+), 2 deletions(-)
+> Setting up reboot on Qualcomm devices can be inconsistent from chipset
+> to chipset.  Generally, there is a PMIC register that gets written to
+> decide the reboot type. There is also sometimes a cookie that can be
+> written to indicate that the bootloader should behave differently than a
+> regular boot. These knobs evolve over product generations and require 
+> more drivers. Qualcomm firmwares are beginning to expose vendor
+> SYSTEM_RESET2 types to simplify driver requirements from Linux.
 > 
-> diff --git a/Documentation/devicetree/bindings/power/reset/reboot-mode.yaml b/Documentation/devicetree/bindings/power/reset/reboot-mode.yaml
-> index ad0a0b95cec1..2c786e783464 100644
-> --- a/Documentation/devicetree/bindings/power/reset/reboot-mode.yaml
-> +++ b/Documentation/devicetree/bindings/power/reset/reboot-mode.yaml
-> @@ -28,13 +28,16 @@ description: |
->  
->  properties:
->    mode-normal:
-> -    $ref: /schemas/types.yaml#/definitions/uint32
-> +    $ref: "#/patternProperties/^mode-.*$"
->      description:
->        Default value to set on a reboot if no command was provided.
->  
->  patternProperties:
->    "^mode-.*$":
-> -    $ref: /schemas/types.yaml#/definitions/uint32
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    # Default to one value. Bindings that reference this schema could override.
-> +    minItems: 1
-> +    maxItems: 1
+> Add support in PSCI to statically wire reboot mode commands from
+> userspace to a vendor reset and cookie value using the device tree. The
+> DT bindings are similar to reboot mode framework except that 2
+> integers are accepted (the type and cookie). Also, reboot mode framework
+> is intended to program, but not reboot, the host. PSCI SYSTEM_RESET2
+> does both. I've not added support for reading ACPI tables since I don't
+> have any device which provides them + firmware that supports vendor
+> SYSTEM_RESET2 types.
+> 
+> Previous discussions around SYSTEM_RESET2:
+> - https://lore.kernel.org/lkml/20230724223057.1208122-2-quic_eberman@quicinc.com/T/
+> - https://lore.kernel.org/all/4a679542-b48d-7e11-f33a-63535a5c68cb@quicinc.com/
 
-I don't understand. Array with one value is the same as uint32.
+Please link here upstream DTS user for this.
 
 Best regards,
 Krzysztof
