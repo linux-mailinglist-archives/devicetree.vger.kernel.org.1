@@ -1,179 +1,132 @@
-Return-Path: <devicetree+bounces-17155-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17158-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBD537F162C
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 15:48:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 238D27F1664
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 15:53:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 758951F24CF7
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 14:48:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 97C601F24DBD
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 14:53:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6347F13AC3;
-	Mon, 20 Nov 2023 14:48:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EF61199A2;
+	Mon, 20 Nov 2023 14:53:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EJkBVUr2"
+	dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b="TbJxU6Gu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D70183592
-	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 06:48:01 -0800 (PST)
-Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-32dc9ff4a8fso2854767f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 06:48:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700491680; x=1701096480; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=tJJwbkqvfCRGn7qw4NUfbsptbvx8KM0jIDYK6bPqbHI=;
-        b=EJkBVUr2+c3RAcw3VxduyTHIuIf1REIdnsgjfdk7u9UZ0PWKofiZsx2aypG+vLYMKC
-         mLx39ZH3p7Q+WkVjQZ0n2kA7JQFaKv68JvR9/ceABCzsIQa8qWEdukoyXdBtonlrinnx
-         MZTsPFhG77igmZLOI9Og1zd7SblfbOfPoSVuBf2SQX33rfveXiw9jX9AmEnr77X6Inb8
-         oEhBihbNzSa2G2sZcXLFs3zqC3qeTRvWT2onn9mVFz3Kbi7JYtcFD3PyqgS5RTt7V73d
-         hiPH1P617/9ILHoet9GDWOd9WjajxZvlpq63l7lx/UtSy1bSUm+LpTcAfTFHlIZEZFJJ
-         l06Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700491680; x=1701096480;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tJJwbkqvfCRGn7qw4NUfbsptbvx8KM0jIDYK6bPqbHI=;
-        b=UrpjMfBQQBLCW/IpjLunuV9hshD+yLf1NLeK4rLxH6YxR6k+BEP7nSg8/BjPjLmpDe
-         4ykkLoZ64h57wSPSTN9ke1ELeaYkqzzNuCpVBqwdoRz3rNvatNwaSjZXwndXq0R9M6gj
-         4/VwQPKdAftlN0jXTWKbiPJU2PxALb523lvBnL4xktTjCuLoOYSFFvZ961nigcGGLXPa
-         V5z1MYmO9yyqRF8lC+8+m+nog1/ZnRTdn2ydwZe/ULbrx4inP8zdhoOsR6Gr+Upzvl18
-         2uNBVpP6EZDOp0o54MISTU7p5zZp1LgdRTCg8s645slTVmWRgBafmWa2FXrAX30ckAN4
-         2GVQ==
-X-Gm-Message-State: AOJu0YzOTD2GqvjmEnuzq5tvSMGEw8aJLNKIY0bL4cXs/YwhqOQOseQE
-	SlWxBqCgHWDJv5JZ+/NkrOF2kA==
-X-Google-Smtp-Source: AGHT+IHn58Rb64JPIzwX0eVZAztbDRegFkKUvEvegsNvzVuqU2Md/M8OBOctHAEzcu9bHb7VRuEF9g==
-X-Received: by 2002:a05:6000:2c7:b0:32f:7cfd:4522 with SMTP id o7-20020a05600002c700b0032f7cfd4522mr4655078wry.70.1700491680256;
-        Mon, 20 Nov 2023 06:48:00 -0800 (PST)
-Received: from [192.168.1.7] ([79.79.179.141])
-        by smtp.gmail.com with ESMTPSA id j3-20020a056000124300b0032f7e832cabsm11385126wrx.90.2023.11.20.06.47.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Nov 2023 06:47:59 -0800 (PST)
-Message-ID: <70402702-84d3-4577-9fd2-9e87add4283b@linaro.org>
-Date: Mon, 20 Nov 2023 14:47:58 +0000
+Received: from EUR03-AM7-obe.outbound.protection.outlook.com (mail-am7eur03on2071.outbound.protection.outlook.com [40.107.105.71])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6324A1729;
+	Mon, 20 Nov 2023 06:53:19 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=HcP73maYdeNYE0lcazMMjNNRW9yvKtx8t2+yvK4VMyMxgeDuI/6UaEhK1S6CF/j0bfuJvm56PYzRnbNlXbdjzuRTBsgNwYjlcAVcC3kLAuhcTPEqH1+opaz+Udv/iIM/GNOvD7veqVT0TTILQOM6JV4RiA7ZzCaSChg+ZuN1QYR2ourynKCwj7IW6lGf8Fnh7lRUG9yvNk+eBxnM5+uQDD/ZGeXdFDNFd04tMJW7Z1fLoWh4VlYZeI431EHkvFmadN9FujZXDGmmoqLCH/1f9+0ECNSO0A6IhRUn4xtRKEjqVARk3bUMtz3bMkG4Z1Hmi5xtA/wy8lZb82z7Mj4SEw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Xb2RdeJklodRVFCPYxWUzIE3G/N8mBYCGxjgeGOZQYY=;
+ b=Gd47lQUzFsOtlhk9ySrIDhZpr2QgyeukxkT+LhAVvfMIOIerij/Pq2PITPw80uF09BbdpAJRZrvq6REo6dNNhI3J//TEdmmTb01nXI4XewrkhfVDcIq3OVGM3VVhlHD0BOq0OhBe8p325Fa4+VG/XcNLc+FYI4vE/vytht9JPMpV+t5n6/2s6TM9I3GfoqbhruydDLaIkUhjL91v5+gokQb59dPqS7GS7GB8TESGd56SgR4VOAVAzW/xAXUpfBjRgwa2cFdm1V5riJbDzq65UxVq1HNw0IpkM+h6CP7Jw6qZsYBluxCurL4UoZIu6D3gS5bkyFxZ+o0SgI8/2DMBYA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 195.60.68.100) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=axis.com;
+ dmarc=fail (p=none sp=none pct=100) action=none header.from=axis.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axis.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Xb2RdeJklodRVFCPYxWUzIE3G/N8mBYCGxjgeGOZQYY=;
+ b=TbJxU6GujvMlGxi9XU9J7xZM1UugGW6jQSaWfUdHDJWj5xeWlX9FlGMJgwK7i+KcZiWtD3LWZ9S9Cyz8N4AvbQt3Nnwm+IuSQBICSsMkjWvcy25VT31jNlAVNJ/9iPZaXLsbhQ3lQKFxShwjshFx/XqjTkMzPwC50TCn2gXldyk=
+Received: from AS9PR01CA0019.eurprd01.prod.exchangelabs.com
+ (2603:10a6:20b:540::21) by DU5PR02MB10583.eurprd02.prod.outlook.com
+ (2603:10a6:10:528::12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7002.26; Mon, 20 Nov
+ 2023 14:53:16 +0000
+Received: from AMS0EPF000001A4.eurprd05.prod.outlook.com
+ (2603:10a6:20b:540:cafe::54) by AS9PR01CA0019.outlook.office365.com
+ (2603:10a6:20b:540::21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7002.27 via Frontend
+ Transport; Mon, 20 Nov 2023 14:53:16 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 195.60.68.100)
+ smtp.mailfrom=axis.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=axis.com;
+Received-SPF: Fail (protection.outlook.com: domain of axis.com does not
+ designate 195.60.68.100 as permitted sender) receiver=protection.outlook.com;
+ client-ip=195.60.68.100; helo=mail.axis.com;
+Received: from mail.axis.com (195.60.68.100) by
+ AMS0EPF000001A4.mail.protection.outlook.com (10.167.16.229) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7025.12 via Frontend Transport; Mon, 20 Nov 2023 14:53:16 +0000
+Received: from pc52311-2249 (10.0.5.60) by se-mail01w.axis.com (10.20.40.7)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Mon, 20 Nov
+ 2023 15:53:16 +0100
+References: <cover.1700491765.git.waqar.hameed@axis.com>
+User-agent: a.out
+From: Waqar Hameed <waqar.hameed@axis.com>
+To: Alessandro Zummo <a.zummo@towertech.it>, Alexandre Belloni
+	<alexandre.belloni@bootlin.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+	<conor+dt@kernel.org>
+CC: <kernel@axis.com>, Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	<linux-rtc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+Subject: [PATCH v3 1/2] dt-bindings: rtc: Add Epson RX8111
+In-Reply-To: <cover.1700491765.git.waqar.hameed@axis.com>
+Date: Mon, 20 Nov 2023 15:49:25 +0100
+Message-ID: <4823f303ec8308762430f4f3aaa462be20baef54.1700491765.git.waqar.hameed@axis.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 3/3] arm64: dts: qcom: Add base qcs6490-rb3gen2 board
- dts
-Content-Language: en-US
-To: Komal Bajaj <quic_kbajaj@quicinc.com>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Naina Mehta <quic_nainmeht@quicinc.com>
-References: <20231120134754.9526-1-quic_kbajaj@quicinc.com>
- <20231120134754.9526-4-quic_kbajaj@quicinc.com>
-From: Caleb Connolly <caleb.connolly@linaro.org>
-In-Reply-To: <20231120134754.9526-4-quic_kbajaj@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-Originating-IP: [10.0.5.60]
+X-ClientProxiedBy: se-mail02w.axis.com (10.20.40.8) To se-mail01w.axis.com
+ (10.20.40.7)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AMS0EPF000001A4:EE_|DU5PR02MB10583:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2a6a850b-ca8e-4c19-5d84-08dbe9d86dd3
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	TNTyCwXgp86AYznd9kl+uQAz6SAazHxewMtCJYyhnIgXqEt4a32Z2++4GJG6bVLUBRKVfb6IKuxyDiSyO7jaaJC9y5+HLB5Eh4vAlt3HJAyBjRayw5P2GIbI4JjjdM9TN5fjzu67/LUZOI264+SRcow1GrJFVXypUx9qwx8zYiOcc0SoV/RrHgCtdR21k5i886qMHWECqWHWKA5QB8fjHYH6wwrnICmDs+5KfRREcyp7N+KVX6oA3mim1LKqXRG50H+tmgCL4xmRvJvy3od1J9b+Cq8Va+XMapdgSfoH0/vbeMvJVhBg1xh/fMhq7Ou4SAmsYwfrI4tMFf1f9SOt758IK7wjhVekg7mXJpgsRymTnxGjodvlZ87c7aHS5pwJCgVXUqlmhDAtv6/kPoUUHSOkFKoeaCoQtu+aCzH7438AgnGfQuFCJflBpIIP3KAWfJ4avXcwd/HAlkaQxXMIYvWLbMvQ5GuqkW9uS7nQ2w4DdE6/6bRZ8SGnnwHmZBPN6GCohyaA3IQE5JCtWqBJQgEZfLVlRB5aRZwzgJICoCPy34+XT/bIaR1oAHMW+lKc1eSG+RmLh3rbqjJ20PoRf41hnkA4x3rRdQZHN/+hZAX+1e2vuHS2OGHCc4V13XFILK98u/YTUX5xFz4YRSjLZYCxusCEyJQn2jYSIkN6W3tYIYsB5gJnZqRwWaNrLppvMCI3dVuukzfxJPVnALQvc1wdRTzinV7XwSp9JM6v/fm4pGd5ZumCqElR3ma8judNeE5D7YsR2aKsMbVDvjFHVA==
+X-Forefront-Antispam-Report:
+	CIP:195.60.68.100;CTRY:SE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.axis.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(396003)(346002)(39860400002)(136003)(376002)(230922051799003)(82310400011)(186009)(451199024)(64100799003)(1800799012)(46966006)(36840700001)(40470700004)(47076005)(81166007)(2616005)(356005)(40460700003)(36860700001)(41300700001)(426003)(336012)(83380400001)(16526019)(36756003)(26005)(82740400003)(44832011)(8936002)(4326008)(8676002)(40480700001)(4744005)(478600001)(5660300002)(86362001)(70206006)(6666004)(2906002)(70586007)(110136005)(316002)(54906003)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: axis.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2023 14:53:16.7364
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2a6a850b-ca8e-4c19-5d84-08dbe9d86dd3
+X-MS-Exchange-CrossTenant-Id: 78703d3c-b907-432f-b066-88f7af9ca3af
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=78703d3c-b907-432f-b066-88f7af9ca3af;Ip=[195.60.68.100];Helo=[mail.axis.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	AMS0EPF000001A4.eurprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU5PR02MB10583
 
+Epson RX8111 is an RTC with timestamp functionality. Add devicetree
+bindings requiring the compatible string and I2C slave address (reg)
+through `trivial-rtc.yaml`.
 
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Waqar Hameed <waqar.hameed@axis.com>
+---
+ Documentation/devicetree/bindings/rtc/trivial-rtc.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-On 20/11/2023 13:47, Komal Bajaj wrote:
-> Add DTS for Qualcomm qcs6490-rb3gen2 board which uses
-> QCS6490 SoC. This adds debug uart and usb support along
-> with regulators found on this board.
-
-Hi,
-
-I understand there was a lot of previous discussion around these two
-boards, sorry to be bringing it up again here, but I have a few more
-questions.
-
-How similar are these two boards in terms of design? If they're derived
-from the same reference schematic then I think this is a good
-justification to de-duplicate the common DTS parts.
-
-Dropping them in a diff tool [1] it seems as though the only changes are
-the modem reserved memory for the IDP board, some minor regulator
-changes, and the sdcard on the IDP board being enabled. However it's
-important to differentiate between these just, being the same, vs them
-being based on the same reference design.
-
-I left some comments on the parts that differ between the boards below,
-but basically my question is: do these boards share enough of the same
-*design* that it would make sense to have a "qcm6490-iot.dtsi" file with
-the common reserved memory and regulators?
-
-The IDP and rb3 boards would then inherit from there, avoiding a lot of
-duplication and weirdness where some boards have certain regulator
-properties that others don't with it being hard to tell if this is
-intentional or not (this is the case with a lot of the existing upstream
-devices).
-
-On a related note, should we further split the rb3 board into a
-qcs6490-whatever-som.dtsi file which may define the SoM specific parts?
-This would undoubtebly make it easier for other boards based on the same
-SoM to be bought up and kept up to date.
-
-[1]: https://quickdiff.net/?unique_id=630F6851-C750-839E-1651-4CA6D997A74D
-
-
-[...]
-
-> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-> new file mode 100644
-> index 000000000000..f023dcf768f1
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-> @@ -0,0 +1,410 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-[...]
-> +
-> +		vreg_l7b_2p952: ldo7 {
-
-The IDP board defined voltages here for the sdcard, does the rb3 board
-have an sdcard slot (if so which regulator does it use)?
-
-Is there a reason not to define the same voltage range for this board?
-> +			regulator-allow-set-load;
-
-This property is set for rb3 but not for the idp board, even though this
-regulator is unused, should this be set?
-> +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM RPMH_REGULATOR_MODE_HPM>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-[...]
-> +
-> +		vreg_l9b_1p2: ldo9 {
-Same question as above
-> +			regulator-allow-set-load;
-Same question
-> +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM RPMH_REGULATOR_MODE_HPM>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-[...]
-> +		vreg_l19b_1p8: ldo19 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <2000000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-The IDP board has the regulator-allow-set-load property here, as well as
-regulator-allowed-modes. This regulator is used for the sdcard on that
-board. Is it used for anything on rb3? Can these properties be the same?
-> +		};
-> +	};
-> +
-
-
-Thanks and regards,
+diff --git a/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml b/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
+index c9e3c5262c21..3d1bdddcd4d8 100644
+--- a/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
++++ b/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
+@@ -38,6 +38,7 @@ properties:
+       - epson,rx8025
+       - epson,rx8035
+       # I2C-BUS INTERFACE REAL TIME CLOCK MODULE with Battery Backed RAM
++      - epson,rx8111
+       - epson,rx8571
+       # I2C-BUS INTERFACE REAL TIME CLOCK MODULE
+       - epson,rx8581
 -- 
-// Caleb (they/them)
+2.30.2
+
 
