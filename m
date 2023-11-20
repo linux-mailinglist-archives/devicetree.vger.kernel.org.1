@@ -1,62 +1,60 @@
-Return-Path: <devicetree+bounces-17041-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17042-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82FB57F0F85
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 10:55:52 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93F177F0FA5
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 11:02:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2D1971F23193
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 09:55:52 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 23A7AB20F87
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 10:02:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C9CD11CA4;
-	Mon, 20 Nov 2023 09:55:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1F66125A7;
+	Mon, 20 Nov 2023 10:02:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AB0Iitxw"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oF9lpo+O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 209B194
-	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 01:55:45 -0800 (PST)
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-4084b0223ccso14325515e9.2
-        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 01:55:45 -0800 (PST)
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6998095
+	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 02:02:10 -0800 (PST)
+Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-33139ecdca7so2560406f8f.0
+        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 02:02:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700474143; x=1701078943; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=z/fgPwc0eJeHKzVZ0LNgK+ADmeLq8vaZ9kNwx7EAjKs=;
-        b=AB0Iitxw53fCH9ooiW/8SIFAIVxzKpYQOOZZMw20FcVtE5SwwNure6nZ/6H3U6C0xR
-         G2Y2GRsJLBonA1hoWzzOYuuqFDSN5WaiRDqfiJ8sLNoHJX2WDMq0IjFcji2THqTn4RNL
-         6ULKTgfhNYfA13qPutCOGRqySZiZwHmzRN5fY62UrJm8Y9AFRSM9jvP/gWityNeuNuIR
-         wY2d+5OtAXwaeMi9tfhaiFF6vianLD85eD7URuSWwNWPYcHA7la1ZRS8XRkUqq/0y5Mm
-         h0hpW9yxhP6BixjU6wSJP5HqS0BGB2iFfPnpLYocmgY/9F2RUZ8O/XrsfgpRHAr6Bbcn
-         A7Jg==
+        d=linaro.org; s=google; t=1700474529; x=1701079329; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vy8rMQtqsCk1GsACWhAOc0FlTKa9XwBaniO3wcGrbeE=;
+        b=oF9lpo+OJya2tu4Mk3qgT5eVUJdRIwPEEzzJNLza7ltMkChQEWBkV2t/+ryDyDMClQ
+         8qhFRz16ykUVJKqxcOBEap7woqz+COBmySBrG2rkMItvvpcBP/XeDjLSECSd0+3MbXcV
+         lPuhFo0QPkARMEwNLSMcfPnjgUOT0QIICG8WQMH18CH26EKDUOOz9+fE6gDcsIz90Ilr
+         YRZDyHSiIRP+dmVHhoBW5OWNogZ7jbUyKuRzoZbvFP+Gvc/FCrlRE90DlbqGfwI0UlwJ
+         9Uci2t55XCbu84Zxn/BqYQxYLRyIZDAqTWobB3HXIu9QSzAXLXtMZb8e9cT8n548O4hV
+         xSDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700474143; x=1701078943;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=z/fgPwc0eJeHKzVZ0LNgK+ADmeLq8vaZ9kNwx7EAjKs=;
-        b=SmWGgEDxFF1uc9yvBCqQ6MzDuAtdAbFWZypz1oOdfbqal+rmd6sK/JjkkSz+gK2Alg
-         VZlHXgeb3lBJE0oinJZPenbEHLgTHY8EhjU/NTPvF5d5052c/GJ1oXrFd/miz0kgX0Dw
-         51TSOQRz6HW4QEsHbfCeD3juvbImS5c6kfvRal7H3so9Cb6Plk0frq8BtKub+Rb3NJeS
-         rSagb4I3J6/3/nkrHBDFuBKwV1DUt9ArfS3I+Vq360uMizXWh3rReoN50UOjAqECZdwA
-         uzVcSvFlMs4F+OCDirq/y7MfesBO7R7MsGp9axpWj1uZpXI+gpyeAXNii5YefYxj/nsB
-         Bpsg==
-X-Gm-Message-State: AOJu0YzoEBdrT6Fs5oxBz8XHbItgI0lokyBXSSX2KaTACOFPVF8Dp3or
-	WdiFWiRJnrnmL5PwvJfZW28UAw==
-X-Google-Smtp-Source: AGHT+IFu375tvhXordR9b+2N0jAh7Rh1Ee35XAPBSYiGksbXeGO3wKimM4WedQWg6uHqfyibQIPx1A==
-X-Received: by 2002:a05:600c:4507:b0:408:55f8:7de with SMTP id t7-20020a05600c450700b0040855f807demr4971695wmo.28.1700474143458;
-        Mon, 20 Nov 2023 01:55:43 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:f04:f84b:d87d:1d06? ([2a01:e0a:982:cbb0:f04:f84b:d87d:1d06])
-        by smtp.gmail.com with ESMTPSA id t14-20020a05600c450e00b003fee567235bsm17489914wmo.1.2023.11.20.01.55.42
+        d=1e100.net; s=20230601; t=1700474529; x=1701079329;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vy8rMQtqsCk1GsACWhAOc0FlTKa9XwBaniO3wcGrbeE=;
+        b=tFI1hliDXq0OPFqy6bDvFWrVURa42P64hxKK+pilc1IlkFL17+84wqZCl4F+UxflV4
+         X2Cwn3Y6WdBfn9nEU6piiSmAQka+OAhKJVFE/dNBAd82wv0/b+5Si0vZBcU0BaE/lNdi
+         lnVoXmiRcoAfrGE/i7Uxh4TDp9N9fOr5oPpV8ECNPCEgcYlYKJUNLDYNsqJadI0zJFDE
+         nm437JATBucfkFXhYg6Pscr29kSGGEQqwxIvclmSXTKBi28PKTMes0kPs8LBBbGTY1Rx
+         Buf9iLIoMVfqeX4QF8f4I49Wx1qYa6l+biwKFeN61OOgHOMMC/tLLJ45YdW72N6qzhO0
+         cVEA==
+X-Gm-Message-State: AOJu0Yz9aiu3yDl8h+0y3Z7LyJj52h0N6MUMo4c22X76Pd9rORM96U6W
+	5rTtateFX+ZDyNw/hlbAFhBQbg==
+X-Google-Smtp-Source: AGHT+IE2ddZXAHZ+EtosCg35xyk2TmZZE0wleCg6iIlOBQInFGwfP73LXvoCuc7pVTQxp9U55RQpFw==
+X-Received: by 2002:adf:e103:0:b0:331:6a43:5a84 with SMTP id t3-20020adfe103000000b003316a435a84mr3553674wrz.42.1700474528864;
+        Mon, 20 Nov 2023 02:02:08 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.222.11])
+        by smtp.gmail.com with ESMTPSA id t8-20020a5d49c8000000b0031984b370f2sm10679075wrs.47.2023.11.20.02.02.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Nov 2023 01:55:43 -0800 (PST)
-Message-ID: <2e7a65da-5c1d-4dd4-ac69-7559a53afdf3@linaro.org>
-Date: Mon, 20 Nov 2023 10:55:41 +0100
+        Mon, 20 Nov 2023 02:02:08 -0800 (PST)
+Message-ID: <50062f55-e516-4bc6-bc06-ddb043532aa8@linaro.org>
+Date: Mon, 20 Nov 2023 11:02:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,139 +62,87 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v2 2/6] dt-bindings: pwm: amlogic: add new compatible for
- meson8 pwm type
-Content-Language: en-US, fr
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Rob Herring <robh@kernel.org>, JunYi Zhao <junyi.zhao@amlogic.com>,
- devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Thierry Reding <thierry.reding@gmail.com>, linux-kernel@vger.kernel.org,
- linux-pwm@vger.kernel.org, linux-amlogic@lists.infradead.org,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-References: <20231117125919.1696980-1-jbrunet@baylibre.com>
- <20231117125919.1696980-3-jbrunet@baylibre.com>
- <170040994064.269288.960284011884896046.robh@kernel.org>
- <4608012c-059f-4d6a-914b-e85ad0c32ff0@linaro.org>
- <1j5y1wg3sb.fsf@starbuckisacylon.baylibre.com>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <1j5y1wg3sb.fsf@starbuckisacylon.baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH V2 1/2] dt-bindings: cache: qcom,llcc: Add X1E80100
+ compatible
+Content-Language: en-US
+To: Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Sibi Sankar <quic_sibis@quicinc.com>, andersson@kernel.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc: agross@kernel.org, conor+dt@kernel.org, quic_rjendra@quicinc.com,
+ abel.vesa@linaro.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ quic_tsoni@quicinc.com, neil.armstrong@linaro.org
+References: <20231117095315.2087-1-quic_sibis@quicinc.com>
+ <20231117095315.2087-2-quic_sibis@quicinc.com>
+ <f3cd8531-faa8-4ec4-b1b8-ba327b7df5cd@linaro.org>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
+ m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
+ HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
+ XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
+ mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
+ v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
+ cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
+ rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
+ qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
+ aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
+ gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
+ dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
+ NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
+ hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
+ oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
+ H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
+ yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
+ 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
+ 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
+ +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
+ FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
+ 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
+ DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
+ oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
+ 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
+ Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
+ qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
+ /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
+ qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
+ EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
+ KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
+ fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <f3cd8531-faa8-4ec4-b1b8-ba327b7df5cd@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-Hi Jerome,
-
-On 20/11/2023 10:18, Jerome Brunet wrote:
-> 
-> On Mon 20 Nov 2023 at 09:27, Neil Armstrong <neil.armstrong@linaro.org> wrote:
-> 
->> Hi Rob,
+On 18/11/2023 00:37, Konrad Dybcio wrote:
+> On 17.11.2023 10:53, Sibi Sankar wrote:
+>> From: Rajendra Nayak <quic_rjendra@quicinc.com>
 >>
->> On 19/11/2023 17:05, Rob Herring wrote:
->>> On Fri, 17 Nov 2023 13:59:12 +0100, Jerome Brunet wrote:
->>>> Add a new compatible for the pwm found in the meson8 to sm1 Amlogic SoCs.
->>>>
->>>> The previous clock bindings for these SoCs described the driver and not the
->>>> HW itself. The clock provided was used to set the parent of the input clock
->>>> mux among the possible parents hard-coded in the driver.
->>>>
->>>> The new bindings allows to describe the actual clock inputs of the PWM in
->>>> DT, like most bindings do, instead of relying of hard-coded data.
->>>>
->>>> The new bindings make the old one deprecated.
->>>>
->>>> There is enough experience on this HW to know that the PWM is exactly the
->>>> same all the supported SoCs. There is no need for a per-SoC compatible.
->>>>
->>>> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
->>>> ---
->>>>    .../devicetree/bindings/pwm/pwm-amlogic.yaml  | 36 +++++++++++++++++--
->>>>    1 file changed, 34 insertions(+), 2 deletions(-)
->>>>
->>> Reviewed-by: Rob Herring <robh@kernel.org>
->>>
+>> Add the compatible for X1E80100 platforms.
 >>
->> I'm puzzled, isn't it recommended to have a per-soc compatible now ?
-> 
-> I have specifically addressed this matter in the description,
-> haven't I ? What good would it do in this case ?
+>> Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
+>> Co-developed-by: Sibi Sankar <quic_sibis@quicinc.com>
+>> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+> Unrelated to this patch alone, but I noticed that with this new naming
+> scheme, patterns in Documentation/devicetree/bindings/arm/qcom-soc.yaml will
+> require an update as well.
 
-Yes you did but I was asked for the last year+ that all new compatible
-should be soc specific (while imprecise, in our care soc family should be ok),
-with a possible semi-generic callback with an IP version or a first soc
-implementing the IP.
 
-> 
-> Plus the definition of a SoC is very vague. One could argue that
-> the content of the list bellow are vaguely defined families. Should we
-> add meson8b, gxl, gxm, sm1 ? ... or even the actual SoC reference ?
-> This list gets huge for no reason.
+I'll fix existing platforms.
 
-I think in our case soc family is reasonable since they share same silicon
-design.
-
-> 
-> We know all existing PWM of this type are the same. We have been using
-> them for years. It is not a new support we know nothing about.
-> 
->>
->> I thought something like:
->> - items:
->>      - enum:
->>          - amlogic,gxbb-pwm
->>          - amlogic,axg-pwm
->>          - amlogic,g12a-pwm
->>      - const: amlogic,pwm-v1
-> 
-> I'm not sure I understand what you are suggesting here.
-> Adding a "amlogic,pwm-v1" for the obsolete compatible ? No amlogic DT
-> has that and I'm working to remove this type, so I don't get the point.
-> 
->>
->> should be preferred instead of a single amlogic,meson8-pwm-v2 ?
-> 
-> This is named after the first SoC supporting the type.
-> 
-> Naming it amlogic,pwm-v2 would feel weird with the s4 coming after.
-> Plus the doc specifically advise against this type of names.
-
-The -v2 refers to a pure software/dt implementation versioning and not
-an HW version, so I'm puzzled and I requires DT maintainers advice here.
-
-Yes meson8b is the first "known" platform, even if I'm pretty sure meson6 has
-the same pwm architecture, this is why "amlogic,pwm-v1" as fallback seems more
-reasonable and s4 and later pwm could use the "amlogic,pwm-v2" fallback.
-
-Neil
-> 
->>
->> Neil
-> 
+Best regards,
+Krzysztof
 
 
