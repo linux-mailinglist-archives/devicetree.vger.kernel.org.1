@@ -1,116 +1,110 @@
-Return-Path: <devicetree+bounces-17301-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17304-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B628D7F1F25
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 22:25:41 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 835577F1FB7
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 22:48:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3E6B8B20E2E
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 21:25:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3AAAB281F73
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 21:48:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C86E374F9;
-	Mon, 20 Nov 2023 21:25:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CAA238FB3;
+	Mon, 20 Nov 2023 21:48:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="LxeEzEeS"
+	dkim=pass (2048-bit key) header.d=email.cz header.i=@email.cz header.b="KJ/6pVNO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD57C99;
-	Mon, 20 Nov 2023 13:25:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=vTiej26Yh66vUupMXOZ8FNGPsbQnKj9z0H8vgIBxYBg=; b=LxeEzEeSpN0Fpj0ZYVs+2MyM++
-	NMvgFyArPgGSngt3mWVaHMhRnEUzvoPGekmJsYhOZyMaSqYEdUzNiE0qlvMSpLwsU3d72pBf2863c
-	n3u2XkWDfI9BiRlKHJK2mD+1hPOzTWQhpTqTJCKOsLPUMEzkYu8wdHMC+pHcXfo+Udl0=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1r5BlW-000h20-H5; Mon, 20 Nov 2023 22:25:10 +0100
-Date: Mon, 20 Nov 2023 22:25:10 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Qingfang Deng <dqfext@gmail.com>,
-	SkyLake Huang <SkyLake.Huang@mediatek.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	David Epping <david.epping@missinglinkelectronics.com>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-	Harini Katakam <harini.katakam@amd.com>,
-	Simon Horman <horms@kernel.org>,
-	Robert Marko <robert.marko@sartura.hr>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [net-next RFC PATCH 03/14] dt-bindings: net: document ethernet
- PHY package nodes
-Message-ID: <45784368-93e0-4d57-bb0c-5730f53f5a08@lunn.ch>
-References: <20231120135041.15259-1-ansuelsmth@gmail.com>
- <20231120135041.15259-4-ansuelsmth@gmail.com>
- <c21ff90d-6e05-4afc-b39c-2c71d8976826@lunn.ch>
- <655bc8d6.050a0220.d22f2.315f@mx.google.com>
+X-Greylist: delayed 76 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 20 Nov 2023 13:47:04 PST
+Received: from mxe-2-51b.seznam.cz (mxe-2-51b.seznam.cz [IPv6:2a02:598:64:8a00::1000:51b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9530F1BF0;
+	Mon, 20 Nov 2023 13:47:04 -0800 (PST)
+Received: from email.seznam.cz
+	by smtpc-mxe-b7dc65f8c-qmjdq
+	(smtpc-mxe-b7dc65f8c-qmjdq [2a02:598:64:8a00::1000:51b])
+	id 32da761acc2ec4b03254f802;
+	Mon, 20 Nov 2023 22:46:52 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=email.cz;
+	s=szn20221014; t=1700516812;
+	bh=KOJZarIYC0hLYr1MwPUV/ajt9MnhOl+KmxMTugbvoGU=;
+	h=Received:From:To:Cc:Subject:Date:Message-Id:References:
+	 In-Reply-To:Mime-Version:X-Mailer:Content-Type:
+	 Content-Transfer-Encoding;
+	b=KJ/6pVNO1V+y0QqY9jKv6+XtzvHtQ+zC6vwIpPB2NsT1x45qIpKyEVoe5pYgi+Trt
+	 C9F4cZdgqcxr4n/Uu77DliKwtv/sAkUDR8x58a6evwEBoLF8ocVPyCkb6UKdMq1hTs
+	 KLM8/9okKP8E997qDKekMDF2HiJCi+bScRhd37Xv8mpFfm0DodVs4H4vXdwnx6zWwI
+	 8lCPOBXOuucauVcdVLna0FAyg7hapfs8qDl0jYUDd5g6Tfe3qYC0Rbnm3B4/9DhNhT
+	 ULEtboLukD3/2obT7fAqJU/lKikARYmIwH48WLt5o3EsgGzS3QDDxFAWHTcxmnoDds
+	 cVto6ht5VmSFQ==
+Received: from 184-143.gtt-net.cz (184-143.gtt-net.cz [82.144.143.184])
+	by email.seznam.cz (szn-UNKNOWN-unknown) with HTTP;
+	Mon, 20 Nov 2023 22:45:20 +0100 (CET)
+From: "Tomas Paukrt" <tomaspaukrt@email.cz>
+To: "Krzysztof Kozlowski" <krzk@kernel.org>,
+	"Rob Herring" <robh+dt@kernel.org>,
+	"Conor Dooley" <conor+dt@kernel.org>,
+	"Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+	"Jiri Slaby" <jirislaby@kernel.org>
+Cc: <linux-serial@vger.kernel.org>,
+	"Lino Sanfilippo" <LinoSanfilippo@gmx.de>,
+	<linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>
+Subject: =?utf-8?q?Re=3A_=5BPATCH_v3_1/2=5D_serial=3A_core=3A_Add_option_t?=
+	=?utf-8?q?o_enable_RS485_mode_via_GPIO_?=
+Date: Mon, 20 Nov 2023 22:45:20 +0100 (CET)
+Message-Id: <3Nj.ZZr}.5RaPRe7D8AB.1bMzDm@seznam.cz>
+References: <VY.ZZnz.2Km1cHBSh2}.1bLIJa@seznam.cz>
+	<476876ca-806f-a5ad-1eeb-435c8a3111a2@gmx.de>
+	<2cZ.ZZqF.1YADr1CLFoQ.1bMn3d@seznam.cz>
+	<5a0321ac-e1e6-45e9-9faf-153db8d34980@kernel.org>
+In-Reply-To: <5a0321ac-e1e6-45e9-9faf-153db8d34980@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <655bc8d6.050a0220.d22f2.315f@mx.google.com>
+Mime-Version: 1.0 (szn-mime-2.1.33)
+X-Mailer: szn-UNKNOWN-unknown
+Content-Type: text/plain;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-> A real DT that use this is (ipq807x):
-> 
-> &mdio {
-> 	status = "okay";
-> 	pinctrl-0 = <&mdio_pins>;
-> 	pinctrl-names = "default";
-> 	reset-gpios = <&tlmm 37 GPIO_ACTIVE_LOW>;
-> 
-> 	ethernet-phy-package {
-> 		compatible = "ethernet-phy-package";
-> 		phy-mode = "psgmii";
-> 
-> 		global-phys = <&qca8075_4>, <&qca8075_psgmii>;
-> 		global-phy-names = "combo", "analog_psgmii";
-> 
-> 		qca8075_0: ethernet-phy@0 {
-> 			compatible = "ethernet-phy-ieee802.3-c22";
-> 			reg = <0>;
-> 		};
+Add an option to enable the RS485 mode at boot time based on
+the state of a GPIO pin (DIP switch or configuration jumper).
+The GPIO is defined by the device tree property "rs485-mode-gpio".
 
-...
+Signed-off-by: Tomas Paukrt <tomaspaukrt@email.cz>
+---
+ drivers/tty/serial/serial_core.c | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-> 	};
-> 
-> 	qca8081: ethernet-phy@28 {
-> 		compatible = "ethernet-phy-id004d.d101";
-> 		reg = <28>;
-> 		reset-gpios = <&tlmm 31 GPIO_ACTIVE_LOW>;
-> 	};
+diff --git a/drivers/tty/serial/serial_core.c b/drivers/tty/serial/serial_=
+core.c
+index f1348a5..f1bf0b9 100644
+--- a/drivers/tty/serial/serial_core.c
++++ b/drivers/tty/serial/serial_core.c
+@@ -3603,6 +3603,18 @@ int uart_get_rs485_mode(struct uart_port *port)
+ 	}
+ 
+ 	/*
++	 * Enable the RS485 mode based on the state of a GPIO pin.
++	 */
++	desc =3D devm_gpiod_get_optional(dev, "rs485-mode", GPIOD_IN);
++	if (IS_ERR(desc))
++		return dev_err_probe(dev, PTR_ERR(desc), "Cannot get rs485-mode-gpio\n"=
+);
++	if (desc) {
++		if (gpiod_get_value(desc))
++			rs485conf->flags |=3D SER_RS485_ENABLED;
++		devm_gpiod_put(dev, desc);
++	}
++
++	/*
+ 	 * Disabling termination by default is the safe choice:  Else if many
+ 	 * bus participants enable it, no communication is possible at all.
+ 	 * Works fine for short cables and users may enable for longer cables.=
 
-I've no idea if DT allows this. The issue is that reg is the same for
-both nodes within the ethernet-phy-package container, and
-ethernet-phy@28. They are all addresses on the same MDIO bus.  We are
-parsing this bus structure ourselves in __of_mdiobus_register(), so we
-could make it work, but i don't know if we should make it work.
-
-      Andrew
-
+-- 
+2.7.4
+ 
 
