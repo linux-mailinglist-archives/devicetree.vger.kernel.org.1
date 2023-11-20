@@ -1,153 +1,380 @@
-Return-Path: <devicetree+bounces-17086-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17087-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F196D7F1227
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 12:35:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E912E7F125A
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 12:43:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9F0CC1F2309D
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 11:35:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 778161F23E0F
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 11:43:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6A2C1548B;
-	Mon, 20 Nov 2023 11:35:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 321BC15E8E;
+	Mon, 20 Nov 2023 11:43:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OkzZomg3"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="BnVe493h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 482DA10D1
-	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 03:35:09 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-507a3b8b113so6061306e87.0
-        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 03:35:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700480107; x=1701084907; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=FnHXXBG/PcSIOhkoJ9kEnpC6kzNN9AjZ6LY10zqo+h0=;
-        b=OkzZomg3mm3SnDgawRoHg0LjYZ65kjkK8Gq/OKkPk2jjp0DSrQ//u8NihcHHv22SR5
-         80l7VRiYkrFZmfc5RgF/kuJ47w+WIH0LEHrIz4JyhvnIzRlXIEoZ782D8Ik+roLoT4E7
-         JHc4IFUbJVMpIFnwycfVpqogMDNBmLSRlmIMv7lGDld1GKA/Sger4khVtAEy9DeGp9vg
-         aHdfXxSouKPyLsl4z3C473J2PQ3ShoJSPSo2SzRRnJi6xYKU+uKQs3HPV3c+rREZ584C
-         wlNiQa0dknIQD4Z82ceWkWx+ItjQjWKYxiaxpG/fF0JoJewmBUVXzjJ0Wp8Gy6DE6BGW
-         1w7g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700480107; x=1701084907;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=FnHXXBG/PcSIOhkoJ9kEnpC6kzNN9AjZ6LY10zqo+h0=;
-        b=PLBjoLpWTCTBE0IPvF/LGKEvtJ2IrJxFJsB7HEz/wfBW/VupA6wedN1EQLnodWiLZp
-         UyAYazqKUaPx4MZKNexPQSlH2wqCHguoGqGJKDvD0jFjHKZHlFzgmiVJhd7vqZ1brcAM
-         nnT/qOyi5PVCImwKWBmkBEQaLD92cXCOsl/FpFSucIpDovyyg96+ea3Y30hgk3H84jAf
-         cy9xxgBPnP/pFSj8lSrnbFVsSutK+57qOe4a3utzGkFhbH7gBAFCmE1snvUVGIOeTBJG
-         rLBgOoNtvNNApOCd436VT1GOttK0JUzn/hZ9UFTXuAcO9p8mMgYk1AK26dh6onRnJ8sr
-         g6KQ==
-X-Gm-Message-State: AOJu0Yz+xCGQK7RbzmcwT/RPoM/BfOMH7mpDcWRF75JoU+Sxp/QK2JMh
-	ZjZRrZx4jLSZOsdNn/DcfCZXgg==
-X-Google-Smtp-Source: AGHT+IE4p1HjJUlGRGxGDBmDUsbIOwoBbIXNzM2Hj8ktYhCtgv5uw2xJHZLQAN5AdJEy4CeFtILz0A==
-X-Received: by 2002:a05:6512:360e:b0:509:8e13:48e0 with SMTP id f14-20020a056512360e00b005098e1348e0mr4603700lfs.37.1700480107308;
-        Mon, 20 Nov 2023 03:35:07 -0800 (PST)
-Received: from localhost ([102.36.222.112])
-        by smtp.gmail.com with ESMTPSA id f19-20020a05600c4e9300b00405d9a950a2sm17666272wmq.28.2023.11.20.03.35.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Nov 2023 03:35:07 -0800 (PST)
-From: Dan Carpenter <dan.carpenter@linaro.org>
-X-Google-Original-From: Dan Carpenter <dan.carpenter@oracle.com>
-Date: Mon, 20 Nov 2023 06:35:04 -0500
-To: oe-kbuild@lists.linux.dev, Antoniu Miclaus <antoniu.miclaus@analog.com>,
-	Alessandro Zummo <a.zummo@towertech.it>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>, linux-rtc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-hwmon@vger.kernel.org
-Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH v7 2/2] rtc: max31335: add driver support
-Message-ID: <ad78bb08-d415-481d-8f26-0b0195a1ad9d@suswa.mountain>
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9BF783;
+	Mon, 20 Nov 2023 03:43:17 -0800 (PST)
+Received: from [100.107.97.3] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 271DA6601711;
+	Mon, 20 Nov 2023 11:43:15 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1700480596;
+	bh=x4MLXpWO/aV1ogNe5RsuKzP1dqnIZbDxe0lhCiPQNfs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=BnVe493hgYdndPFbDTUozDRDDmiAT45LJkGDzvbyox3bTl5POLPTy/r0MVZKhn15m
+	 gWoMCo+N6Pn+qwxRVI9ChGCwPaH8X0L4BQ05z4zMQmLzzbZVLy9u6SbxhKm2/lHQa9
+	 0ASp9J1xveFvuhX7Of2bTQbG5YpBpMzadwgmdNhx2OJGnFh4RZko+Ezqqb4KqFQttw
+	 eRCkKpc1+A3ZoD/1Qu14IUY8pJ1azwa/c3qwfw4PcZbCoDaHu6J6Wom0E0sq1MJUSS
+	 H46h6POobMJaxHwi/QDziqB5/neK5zIVcVRGshPzNNQ/5cIqiochdmK6Kf6H15Y50y
+	 QrgyVzhRUmKqg==
+Message-ID: <92cf3bcc-18e7-40ba-a082-1b8b6bea0dee@collabora.com>
+Date: Mon, 20 Nov 2023 12:43:12 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231109101449.8347-2-antoniu.miclaus@analog.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] docs: dt-bindings: add DTS Coding Style document
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+Cc: Andrew Davis <afd@ti.com>, Arnd Bergmann <arnd@arndb.de>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Heiko Stuebner <heiko@sntech.de>, Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Michal Simek <michal.simek@amd.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Nishanth Menon <nm@ti.com>,
+ Olof Johansson <olof@lixom.net>, linux-rockchip@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-arm-msm@vger.kernel.org
+References: <20231120084044.23838-1-krzysztof.kozlowski@linaro.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20231120084044.23838-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Antoniu,
+Il 20/11/23 09:40, Krzysztof Kozlowski ha scritto:
+> Document preferred coding style for Devicetree sources (DTS and DTSI),
+> to bring consistency among all (sub)architectures and ease in reviews.
+> 
+> Cc: Andrew Davis <afd@ti.com>
+> Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Cc: Arnd Bergmann <arnd@arndb.de>
+> Cc: Bjorn Andersson <andersson@kernel.org>
+> Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+> Cc: Heiko Stuebner <heiko@sntech.de>
+> Cc: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Cc: Matthias Brugger <matthias.bgg@gmail.com>
+> Cc: Michal Simek <michal.simek@amd.com>
+> Cc: Neil Armstrong <neil.armstrong@linaro.org>
+> Cc: Nishanth Menon <nm@ti.com>
+> Cc: Olof Johansson <olof@lixom.net>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> ---
+> 
+> Merging idea: Rob/DT bindings
+> 
+> Changes in v2
+> =============
+> 1. Hopefully incorporate entire feedback from comments:
+> a. Fix \ { => / { (Rob)
+> b. Name: dts-coding-style (Rob)
+> c. Exceptions for ordering nodes by name for Renesas and pinctrl (Geert,
+>     Konrad)
+> d. Ordering properties by common/vendor (Rob)
+> e. Array entries in <> (Rob)
+> 
+> 2. New chapter: Organizing DTSI and DTS
+> 
+> 3. Several grammar fixes (missing articles)
+> 
+> Cc: linux-rockchip@lists.infradead.org
+> Cc: linux-mediatek@lists.infradead.org
+> Cc: linux-samsung-soc@vger.kernel.org
+> Cc: linux-amlogic@lists.infradead.org
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-arm-msm@vger.kernel.org
+> ---
+>   .../devicetree/bindings/dts-coding-style.rst  | 163 ++++++++++++++++++
+>   Documentation/devicetree/bindings/index.rst   |   1 +
+>   2 files changed, 164 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/dts-coding-style.rst
+> 
+> diff --git a/Documentation/devicetree/bindings/dts-coding-style.rst b/Documentation/devicetree/bindings/dts-coding-style.rst
+> new file mode 100644
+> index 000000000000..cc7e3b4d1b92
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/dts-coding-style.rst
+> @@ -0,0 +1,163 @@
+> +.. SPDX-License-Identifier: GPL-2.0
+> +.. _dtscodingstyle:
+> +
+> +=====================================
+> +Devicetree Sources (DTS) Coding Style
+> +=====================================
+> +
+> +When writing Devicetree Sources (DTS) please observe below guidelines.  They
+> +should be considered complementary to any rules expressed already in Devicetree
+> +Specification and dtc compiler (including W=1 and W=2 builds).
+> +
+> +Individual architectures and sub-architectures can add additional rules, making
+> +the style stricter.
+> +
+> +Naming and Valid Characters
+> +---------------------------
+> +
+> +1. Node and property names are allowed to use only:
+> +
+> +   * lowercase characters: [a-z]
+> +   * digits: [0-9]
+> +   * dash: -
+> +
+> +2. Labels are allowed to use only:
+> +
+> +   * lowercase characters: [a-z]
+> +   * digits: [0-9]
+> +   * underscore: _
+> +
+> +3. Unit addresses should use lowercase hex, without leading zeros (padding).
 
-kernel test robot noticed the following build warnings:
+This is imperative, so: s/should/shall/g
 
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> +
+> +4. Hex values in properties, e.g. "reg", should use lowercase hex.  The address
+> +   part can be padded with leading zeros.
+> +
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Antoniu-Miclaus/rtc-max31335-add-driver-support/20231109-231755
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/abelloni/linux.git rtc-next
-patch link:    https://lore.kernel.org/r/20231109101449.8347-2-antoniu.miclaus%40analog.com
-patch subject: [PATCH v7 2/2] rtc: max31335: add driver support
-config: i386-randconfig-141-20231111 (https://download.01.org/0day-ci/archive/20231111/202311110943.V2lcrQlf-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce: (https://download.01.org/0day-ci/archive/20231111/202311110943.V2lcrQlf-lkp@intel.com/reproduce)
+Same here, I'd say.... :-)
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Reported-by: Dan Carpenter <error27@gmail.com>
-| Closes: https://lore.kernel.org/r/202311110943.V2lcrQlf-lkp@intel.com/
+> +Example::
+> +
+> +	gpi_dma2: dma-controller@800000 {
+> +		compatible = "qcom,sm8550-gpi-dma", "qcom,sm6350-gpi-dma";
+> +		reg = <0x0 0x00800000 0x0 0x60000>;
+> +	}
+> +
+> +Order of Nodes
+> +--------------
+> +
+> +1. Nodes within any bus, thus using unit addresses for children, shall be
+> +   ordered incrementally by unit address.
+> +   Alternatively for some sub-architectures, nodes of the same type can be
+> +   grouped together (e.g. all I2C controllers one after another even if this
+> +   breaks unit address ordering).
+> +
+> +2. Nodes without unit addresses should be ordered alpha-numerically by the node
+> +   name.  For a few types of nodes, they can be ordered by the main property
+> +   (e.g. pin configuration states ordered by value of "pins" property).
+> +
+> +3. When extending nodes in the board DTS via &label, the entries should be
+> +   ordered alpha-numerically.
+> +
+> +Example::
+> +
 
-smatch warnings:
-drivers/rtc/rtc-max31335.c:415 max31335_trickle_charger_setup() error: uninitialized symbol 'trickle_cfg'.
+Hmm, comments!
 
-vim +/trickle_cfg +415 drivers/rtc/rtc-max31335.c
+> +	// SoC DTSI
 
-d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  383  static int max31335_trickle_charger_setup(struct device *dev,
-d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  384  					  struct max31335_data *max31335)
-d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  385  {
-d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  386  	u32 ohms, chargeable;
-d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  387  	int i, trickle_cfg;
-d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  388  	const char *diode;
-d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  389  
-d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  390  	if (device_property_read_u32(dev, "aux-voltage-chargeable",
-d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  391  				     &chargeable))
-d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  392  		return 0;
-d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  393  
-d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  394  	if (device_property_read_u32(dev, "trickle-resistor-ohms", &ohms))
-d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  395  		return 0;
-d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  396  
-d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  397  	if (device_property_read_string(dev, "adi,tc-diode", &diode))
-d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  398  		return 0;
-d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  399  
-d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  400  	if (!strcmp(diode, "schottky"))
-d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  401  		trickle_cfg = MAX31335_TRICKLE_SCHOTTKY_DIODE;
-d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  402  	else if (!strcmp(diode, "standard+schottky"))
-d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  403  		trickle_cfg = MAX31335_TRICKLE_STANDARD_DIODE;
-d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  404  	else
-d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  405  		dev_err_probe(dev, -EINVAL, "Invalid tc-diode value: %s\n",
-d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  406  			      diode);
+....speaking of commenting, should we at least suggest to use C-style comments?
 
-Probably was intended to be return dev_err_probe();
+	/* SoC DTSI */
 
-d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  407  
-d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  408  	for (i = 0; i < ARRAY_SIZE(max31335_trickle_resistors); i++)
-d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  409  		if (ohms == max31335_trickle_resistors[i])
-d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  410  			break;
-d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  411  
-d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  412  	if (i >= ARRAY_SIZE(max31335_trickle_resistors))
-d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  413  		return 0;
-d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  414  
-d76a0d3a61615e5 Antoniu Miclaus 2023-11-09 @415  	i = i + trickle_cfg;
-d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  416  
-d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  417  	return regmap_write(max31335->regmap, MAX31335_TRICKLE_REG,
-d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  418  			    FIELD_PREP(MAX31335_TRICKLE_REG_TRICKLE, i) |
-d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  419  			    FIELD_PREP(MAX31335_TRICKLE_REG_EN_TRICKLE,
-d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  420  				       chargeable));
-d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  421  }
+> +
+> +	/ {
+> +		cpus {
+> +			// ...
+> +		};
+> +
+> +		psci {
+> +			// ...
+> +		};
+> +
+> +		soc@ {
+> +			dma: dma-controller@10000 {
+> +				// ...
+> +			};
+> +
+> +			clk: clock-controller@80000 {
+> +				// ...
+> +			};
+> +		};
+> +	};
+> +
+> +	// Board DTS
+> +
+> +	&clk {
+> +		// ...
+> +	};
+> +
+> +	&dma {
+> +		// ...
+> +	};
+> +
+> +
+> +Order of Properties in Device Node
+> +----------------------------------
+> +
+> +Following order of properties in device nodes is preferred:
+> +
+> +1. compatible
+> +2. reg
+> +3. ranges
+> +4. Standard/common properties (defined by common bindings, e.g. without
+> +   vendor-prefixes)
+> +5. Vendor-specific properties
+> +6. status (if applicable)
+> +7. Child nodes, where each node is preceded with a blank line
+> +
+> +The "status" property is by default "okay", thus it can be omitted.
+> +
+> +Example::
+> +
+> +	// SoC DTSI
+> +
+> +	usb_1_hsphy: phy@88e3000 {
+> +		compatible = "qcom,sm8550-snps-eusb2-phy";
+> +		reg = <0x0 0x088e3000 0x0 0x154>;
+> +		#phy-cells = <0>;
+> +		resets = <&gcc GCC_QUSB2PHY_PRIM_BCR>;
+> +		status = "disabled";
+> +	};
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Since this describes vendor-specific properties and vendor prefixes as well
+as standard properties, I think it would be clearer if we use something more
+complex that actually contains those as an example.
+
+There's a few. One is MediaTek:
+
+	vdo1_rdma0: dma-controller@1c104000 {
+		compatible = "mediatek,mt8195-vdo1-rdma";
+		reg = <0 0x1c104000 0 0x1000>;
+		#dma-cells = <1>;
+		clocks = <&vdosys1 CLK_VDO1_MDP_RDMA0>;
+		interrupts = <GIC_SPI 495 IRQ_TYPE_LEVEL_HIGH 0>;
+		iommus = <&iommu_vdo M4U_PORT_L2_MDP_RDMA0>;
+		power-domains = <&spm MT8195_POWER_DOMAIN_VDOSYS1>;
+		mediatek,gce-client-reg = <&gce0 SUBSYS_1c10XXXX 0x4000 0x1000>;
+	};
+
+...or other one can be nVidia:
+
+	mipi: mipi@700e3000 {
+		compatible = "nvidia,tegra210-mipi";
+		reg = <0x0 0x700e3000 0x0 0x100>;
+		clocks = <&tegra_car TEGRA210_CLK_MIPI_CAL>;
+		clock-names = "mipi-cal";
+		power-domains = <&pd_sor>;
+		#nvidia,mipi-calibrate-cells = <1>;
+	};
+
+...or we could make an example out of fantasy, which could work even better
+as far as describing goes.
+
+	/* SoC DTSI */
+
+	device_node: device-class@6789abc {
+		compatible = "vendor,device";
+		reg = <0 0x06789abc 0 0xa123>;
+		ranges = <0 0 0x6789abc 0x1000>;
+		#dma-cells = <1>;
+		clocks = <&clock_controller SOC_CLOCK>;
+		clock-names = "dev-clk";
+		#vendor,custom-cells = <2>;
+		status = "disabled";
+
+		child_node: child-class@100 {
+			reg = <0x100 0x200>;
+			/* ... */
+		};
+	};
+
+	/* Board DTS */
+
+	&device_node {
+		device-supply = <&board_vreg1>;
+		status = "okay";
+	}
+
+> +
+> +	// Board DTS
+> +
+> +	&usb_1_hsphy {
+> +		clocks = <&tcsr TCSR_USB2_CLKREF_EN>;
+> +		clock-names = "ref";
+> +		status = "okay";
+> +	};
+> +
+> +
+> +Indentation
+> +-----------
+> +
+> +1. Use indentation according to :ref:`codingstyle`.
+> +2. For arrays spanning across lines, it is preferred to align the continued
+> +   entries with opening < from the first line.
+> +3. Each entry in arrays with multiple cells (e.g. "reg" with two IO addresses)
+> +   should be enclosed in <>.
+> +
+> +Example::
+> +
+> +	thermal-sensor@c271000 {
+> +		compatible = "qcom,sm8550-tsens", "qcom,tsens-v2";
+> +		reg = <0x0 0x0c271000 0x0 0x1000>,
+> +		      <0x0 0x0c222000 0x0 0x1000>;
+> +	};
+> +
+> +Organizing DTSI and DTS
+> +-----------------------
+> +
+> +The DTSI and DTS files should be organized in a way representing the common
+> +(and re-usable) parts of the hardware.  Typically this means organizing DTSI
+
+                                         ^^^^
+There's a double space here, it was probably unintentional.
+
+
+Cheers,
+Angelo
+
+> +and DTS files into several files:
+> +
+> +1. DTSI with contents of the entire SoC (without nodes for hardware not present
+> +   on the SoC).
+> +2. If applicable: DTSI with common or re-usable parts of the hardware (e.g.
+> +   entire System-on-Module).
+> +3. DTS representing the board.
+> +
+> +Hardware components which are present on the board should be placed in the
+> +board DTS, not in the SoC or SoM DTSI.  A partial exception is a common
+> +external reference SoC-input clock, which could be coded as a fixed-clock in
+> +the SoC DTSI with its frequency provided by each board DTS.
+> diff --git a/Documentation/devicetree/bindings/index.rst b/Documentation/devicetree/bindings/index.rst
+> index d9002a3a0abb..cc1fbdc05657 100644
+> --- a/Documentation/devicetree/bindings/index.rst
+> +++ b/Documentation/devicetree/bindings/index.rst
+> @@ -4,6 +4,7 @@
+>      :maxdepth: 1
+>   
+>      ABI
+> +   dts-coding-style
+>      writing-bindings
+>      writing-schema
+>      submitting-patches
 
 
