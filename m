@@ -1,113 +1,130 @@
-Return-Path: <devicetree+bounces-17316-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17311-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8915B7F20AE
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 23:49:45 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E2947F2078
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 23:39:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D816FB217EE
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 22:49:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1A72B28282B
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 22:39:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F2DB3AC22;
-	Mon, 20 Nov 2023 22:49:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8377D3717D;
+	Mon, 20 Nov 2023 22:39:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="M4w6FHVX"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Kt0KD54q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4198A2
-	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 14:49:25 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-5098e423ba2so6869568e87.2
-        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 14:49:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700520564; x=1701125364; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7w3IPGNvRYti0737C04DV640y8lLrN0zZWGxZvPfBuQ=;
-        b=M4w6FHVX3LRUMRClON2OC7B5vpY/nKiTmNJrkxPFvvIBoz89qgubpOUxrk0oJgvSLu
-         VyJr2k/b7HlVaSOYMFwtGuwK1wLYbl7K3AsOXkAMeblID7QfTA/2QBCoxh8ABE0k22TS
-         MMYIaKOw1EsXEZZrM8YOwGzI2HyVk3qOxS5AtHZZcA1QssoJLboXBsxe9crtZWhD37UD
-         GUSDO4QJXumQWyv1bueA3fwR9lyOjamhjK8xFynenM+WUpuP2DsHICtExWD0l9JLoDGv
-         q+b3rJZihnY7M5Jbrk//Fj6bI1B+I4qQbc09ju7hzSH6ErMc6P0rkp9zdv3pP0l+lm9E
-         OZHg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700520564; x=1701125364;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7w3IPGNvRYti0737C04DV640y8lLrN0zZWGxZvPfBuQ=;
-        b=JgBjgZms3DdLWDhni/MtoCwNIzZrZYNpjtuxL6IfuZEU7WoPc0zHriVdVFR5FmQOYW
-         4KXBWeGqtdU3GepNqGVJ1+OC1KNlSafY5AC2CHmust9hyt0y9ylFWHDwcARoXPj1qodI
-         U9Eo+2WzBuaMA4x/lFNRX7SkUleKiV7T1WDo3TqoWaZMUwZ9yUqptfk8jN2hhaJKoWip
-         Nh+j1C9N+KTV2OnuCVXLQ6xGuAbvdxisRZWtLN0BdLEQ2Oyt2EedvCWQK4ZWu22rXoBs
-         /l+l79N35+MiopOBrljPbRakFRviRWekAnQ0MZZ6iW2JLLXmG96h44SAryUMCxmNMU3R
-         WYvQ==
-X-Gm-Message-State: AOJu0Yxo28EyBBTcjV5zEQreCg9VQfNCj9omiN4hOM1nU684LDiw2C2+
-	rpKVLXmyp++3nJmH7cX1mHnIvQ==
-X-Google-Smtp-Source: AGHT+IFD8UwHvlZIXLl531QOdo6XgS1ewvLFiSPtvmWi8CMmPCZ9J2HRygNxOeDgJlm3R/0ER3Qymw==
-X-Received: by 2002:ac2:549c:0:b0:509:46ff:6e57 with SMTP id t28-20020ac2549c000000b0050946ff6e57mr6342427lfk.8.1700520564046;
-        Mon, 20 Nov 2023 14:49:24 -0800 (PST)
-Received: from eriador.lan (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id c26-20020ac25f7a000000b00503189d8b8csm1297756lfc.198.2023.11.20.14.49.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Nov 2023 14:49:23 -0800 (PST)
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Hans de Goede <hdegoede@redhat.com>,
-	=?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	Mark Gross <markgross@kernel.org>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	platform-driver-x86@vger.kernel.org,
-	linux-usb@vger.kernel.org
-Subject: [PATCH v3 3/3] arm64: dts: qcom: qrb5165-rb5: use u16 for DP altmode svid
-Date: Tue, 21 Nov 2023 00:00:20 +0200
-Message-ID: <20231120224919.2293730-4-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231120224919.2293730-1-dmitry.baryshkov@linaro.org>
-References: <20231120224919.2293730-1-dmitry.baryshkov@linaro.org>
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E3B597;
+	Mon, 20 Nov 2023 14:39:50 -0800 (PST)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AKLvlTp007578;
+	Mon, 20 Nov 2023 22:39:35 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=f8L9nhtIuJda89+/HgbEISF8b2edhNC6k49x6R/K4ow=;
+ b=Kt0KD54qwEeAg33D+pcYQXBM9nr9fS2HzuCD7j8Wc5cTEsXT0E2S3vtYT6J7xU4qoPRD
+ NcEANm1ciEOwkPcUmAyv0DzYy3thSW2HuF4dk3W0TED8KK7SyJxwbdrqKQQclTJfPBBO
+ r64P5naM0sL5rfSEthp/OObOVkmpD99H4VW69UwVKUviMAYgD8UATehAgUY8HXrGVCsq
+ UIkmUupXSCT9X1FCSkBa12lhS2RQkHml4QewYSM3Nta+W0pigbS7JrM1Zdd1sS43XvRh
+ CnKZN+t/gNAja+Fo6XU2HESqu7LN5dQODArqVC7PTJc0j2rXI0zQyxcocsLLzYEHnq5D uQ== 
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ug37mj0nm-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 20 Nov 2023 22:39:35 +0000
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AKMdY6Q016666
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 20 Nov 2023 22:39:34 GMT
+Received: from [10.110.29.191] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 20 Nov
+ 2023 14:39:33 -0800
+Message-ID: <bf6c628d-132c-296b-b29a-dc7be4390578@quicinc.com>
+Date: Mon, 20 Nov 2023 14:39:33 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v1 2/2] dt-bindings: arm: Add remote etm driver
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Mao Jinlong
+	<quic_jinlmao@quicinc.com>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        "Mike
+ Leach" <mike.leach@linaro.org>,
+        James Clark <james.clark@arm.com>,
+        "Alexander
+ Shishkin" <alexander.shishkin@linux.intel.com>,
+        Andy Gross
+	<agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <linux-kernel@vger.kernel.org>, <coresight@lists.linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        "Tao Zhang" <quic_taozha@quicinc.com>
+References: <20231107060939.13449-1-quic_jinlmao@quicinc.com>
+ <20231107060939.13449-3-quic_jinlmao@quicinc.com>
+ <10afe65f-4e86-4127-9f8d-b4e3f5ee8a3a@linaro.org>
+Content-Language: en-US
+From: Trilok Soni <quic_tsoni@quicinc.com>
+In-Reply-To: <10afe65f-4e86-4127-9f8d-b4e3f5ee8a3a@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: M1hrlZSwaz4MWX8VnvJbfsHWvi3NLK-j
+X-Proofpoint-ORIG-GUID: M1hrlZSwaz4MWX8VnvJbfsHWvi3NLK-j
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-20_22,2023-11-20_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 suspectscore=0
+ spamscore=0 lowpriorityscore=0 priorityscore=1501 bulkscore=0 mlxscore=0
+ impostorscore=0 clxscore=1011 mlxlogscore=549 malwarescore=0 phishscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2311060000
+ definitions=main-2311200166
 
-Follow the bindings and use 16-bit value for AltMode SVID instead of
-using the full u32.
+On 11/16/2023 9:22 AM, Krzysztof Kozlowski wrote:
+> On 07/11/2023 07:09, Mao Jinlong wrote:
+>> Add new coresight-remote-etm.yaml file describing the bindings required
+>> to define coresight remote etm in the device trees.
+>>
+>> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
+> 
+> +Cc Trilok,
+> 
+> Several Qualcomm boards have warnings coming from Coresight bindings.
+> These are big, fat warnings coming usually from ARM bindings (e.g.
+> dynamic funnel, TMC). I don't know Coresight good enough to fix them by
+> myself.
+> 
+> I would prefer not to take any new Qualcomm specific Coresight bindings
+> and definitely no new Coresight device nodes in Qualcomm boards, before
+> these are fixed.
+> 
+> Therefore I kindly ask to fix all warnings in Qualcomm boards coming
+> from existing Coresight bindings.
 
-Fixes: b3dea914127e ("arm64: dts: qcom: qrb5165-rb5: enable DP altmode")
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-index c8cd40a462a3..88b37ceb13ed 100644
---- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-+++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-@@ -1425,7 +1425,7 @@ PDO_FIXED_USB_COMM |
+Thanks Krzysztof, we can look into it as first thing to fix. 
  
- 		altmodes {
- 			displayport {
--				svid = <0xff01>;
-+				svid = /bits/ 16 <0xff01>;
- 				vdo = <0x00001c46>;
- 			};
- 		};
 -- 
-2.42.0
+---Trilok Soni
 
 
