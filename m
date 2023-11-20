@@ -1,204 +1,167 @@
-Return-Path: <devicetree+bounces-17273-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17274-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A8C57F1E2F
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 21:51:05 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D11C47F1E37
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 21:53:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0F7731F258B8
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 20:51:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 71F93B211AC
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 20:53:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E81592232D;
-	Mon, 20 Nov 2023 20:51:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18C2E225CA;
+	Mon, 20 Nov 2023 20:53:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="e85fxMWv"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="iMZjJkdE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7C99DC
-	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 12:50:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1700513457;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=NCdqcULXYaAlWiWs9GD5NBT5ezqfDctqKAHvvwYWuQA=;
-	b=e85fxMWv2ml0hK2Qn6W/n2cCcVZSj22ObQIeaev5UIoY3pXYPFyIAxwfkCEHdfK9hvnNLV
-	UslHnJGaNJ0Uw4+ll6800HacHGGRP6yotlLSuoc6TqhJZGMYmTqthJMvANH2lKfPQgkCWZ
-	yht1BOwro/H86wUwP20tkJCTtoXkOHA=
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com
- [209.85.219.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-58-mTsFgdrcN3aYfI4fAKaxJg-1; Mon, 20 Nov 2023 15:50:55 -0500
-X-MC-Unique: mTsFgdrcN3aYfI4fAKaxJg-1
-Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-670b675b2c5so32482086d6.0
-        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 12:50:55 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700513455; x=1701118255;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NCdqcULXYaAlWiWs9GD5NBT5ezqfDctqKAHvvwYWuQA=;
-        b=VPmnagfn8x6Sm+v7nzyTnI7p5ot2hC/XootQKxFOzXPugcD3nbwmQsU8EMQFPLVqI2
-         DiUn2MZFl90DmAeGVBQwydE+7L3MkeO3qfeMeUEX5N9lqgfCocAg1wpd49W4HOkO9Lna
-         3js/kzNKof7pc4O49wKupVl4gJAo5o1nUrWy40zWKb93D+Fam5s/Y27tMeV19dr9U5WM
-         yTsm3NglsIa+6iRmJZXUV2TSGiCPKVGl9fm5hmsKfhCZysZgKdKyOR7aTD78JC+TBHds
-         ELnhR8ZBcpYWyjTbU/ldTNDa2yIiVUnmhkpA+76v91R/ZAviSmw+ciezS+tI4ZxVfE5o
-         Ph0Q==
-X-Gm-Message-State: AOJu0Yy6gELPUFLGUMP+xksBZn7bJvTbEw5r/GnCpNd/SHWhURMxkAhD
-	GHE6v9qoZX7sD4RgV1wrBS826XRqsrgensjEHleo3jxHdsM1MFQnP4iCFyHR/aVrZ5kgKe4jyEl
-	f76t7whhCjBWIjzJLqyRPBg==
-X-Received: by 2002:a05:6214:4113:b0:677:987e:87d with SMTP id kc19-20020a056214411300b00677987e087dmr11471417qvb.2.1700513455005;
-        Mon, 20 Nov 2023 12:50:55 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGtRRwGNlAO1HQ0kkAEKi4KQv7QcnNP8gXcJ/KT7pderSTsF9taEhMUrn0aqII8AFLOEpg+lQ==
-X-Received: by 2002:a05:6214:4113:b0:677:987e:87d with SMTP id kc19-20020a056214411300b00677987e087dmr11471400qvb.2.1700513454735;
-        Mon, 20 Nov 2023 12:50:54 -0800 (PST)
-Received: from fedora ([2600:1700:1ff0:d0e0::37])
-        by smtp.gmail.com with ESMTPSA id rv13-20020a05620a688d00b0077a7d02cffbsm2951878qkn.24.2023.11.20.12.50.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Nov 2023 12:50:54 -0800 (PST)
-Date: Mon, 20 Nov 2023 14:50:52 -0600
-From: Andrew Halaney <ahalaney@redhat.com>
-To: Johan Hovold <johan+linaro@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>, Wesley Cheng <quic_wcheng@quicinc.com>, 
-	Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>, linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Subject: Re: [PATCH 2/3] USB: dwc3: qcom: fix wakeup after probe deferral
-Message-ID: <3ff65t36p6n3k7faw2z75t2vfi6rb5p64x7wqosetsksbhhwli@5xaxnm7zz4tu>
-References: <20231120161607.7405-1-johan+linaro@kernel.org>
- <20231120161607.7405-3-johan+linaro@kernel.org>
- <pgmtla6j3dshuq5zdxstszbkkssxcthtzelv2etcbrlstdw4nu@wixz6v5dfpum>
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1818FCF;
+	Mon, 20 Nov 2023 12:53:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1700513591; x=1732049591;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=UDP0bVzD9bCOj+XxHq64z11eSV98vr4id9q9PwdgYhE=;
+  b=iMZjJkdEDuyYm1r0NGIR+H26ML4T82mRmfoWk6OuxIMGkwflhp5vckdr
+   bUnedjx28wr17IEuf5LkC7EW3CzB0DepXV8k1QfKSHKaE7U9+pgwxXAua
+   mR7XJDqQwSMhUYqk8hfRW9gIzl+z883IcfnIWonN+Eli0Qq0dNU04aLy3
+   1XckGrNuj6aLqthih4hmGKbWxRoNpj/MlqOTXujo5R4ojryAO5M6fcaYm
+   zup7ASf6ejayL77yShFYf9VzolYSTQUAWLaCma28LCNfqJsU9vF7i7PIL
+   aIzgfLNw82xxI66HGs4Y3iItYTyDYDNzIINhj5K2BlNtSA9poO/6zLoXD
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10900"; a="456040996"
+X-IronPort-AV: E=Sophos;i="6.04,214,1695711600"; 
+   d="scan'208";a="456040996"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Nov 2023 12:53:10 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10900"; a="832394115"
+X-IronPort-AV: E=Sophos;i="6.04,214,1695711600"; 
+   d="scan'208";a="832394115"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
+  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Nov 2023 12:53:08 -0800
+Received: from kekkonen.localdomain (localhost [127.0.0.1])
+	by kekkonen.fi.intel.com (Postfix) with ESMTP id 4C4EF11FAC4;
+	Mon, 20 Nov 2023 22:53:06 +0200 (EET)
+Date: Mon, 20 Nov 2023 20:53:06 +0000
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: "Rafael J. Wysocki" <rafael@kernel.org>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	linux-acpi@vger.kernel.org, linux-media@vger.kernel.org,
+	jacopo.mondi@ideasonboard.com, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 3/7] ACPI: Documentation: Document acpi_dev_state_d0()
+Message-ID: <ZVvHMhAuV76GjNZE@kekkonen.localdomain>
+References: <20231117111433.1561669-1-sakari.ailus@linux.intel.com>
+ <20231117111433.1561669-4-sakari.ailus@linux.intel.com>
+ <20231118185049.GH20846@pendragon.ideasonboard.com>
+ <ZVsnYjjWAiNPdHPG@kekkonen.localdomain>
+ <CAJZ5v0h+tP1=PW4C44LCfyJcDXhcUQ4+BHPP9vBM19rtfqukWA@mail.gmail.com>
+ <ZVu7iMimov2c5QFM@kekkonen.localdomain>
+ <CAJZ5v0iB5cRbDJGxOQeFW_r_jbKv70OgFPpQ-_5c38FJwQGOpw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <pgmtla6j3dshuq5zdxstszbkkssxcthtzelv2etcbrlstdw4nu@wixz6v5dfpum>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAJZ5v0iB5cRbDJGxOQeFW_r_jbKv70OgFPpQ-_5c38FJwQGOpw@mail.gmail.com>
 
-On Mon, Nov 20, 2023 at 11:39:07AM -0600, Andrew Halaney wrote:
-> On Mon, Nov 20, 2023 at 05:16:06PM +0100, Johan Hovold wrote:
-> > The Qualcomm glue driver is overriding the interrupt trigger types
-> > defined by firmware when requesting the wakeup interrupts during probe.
-> > 
-> > This can lead to a failure to map the DP/DM wakeup interrupts after a
-> > probe deferral as the firmware defined trigger types do not match the
-> > type used for the initial mapping:
-> > 
-> > 	irq: type mismatch, failed to map hwirq-14 for interrupt-controller@b220000!
-> > 	irq: type mismatch, failed to map hwirq-15 for interrupt-controller@b220000!
-> > 
-> > Fix this by not overriding the firmware provided trigger types when
-> > requesting the wakeup interrupts.
+Hi Rafael,
+
+On Mon, Nov 20, 2023 at 09:22:53PM +0100, Rafael J. Wysocki wrote:
+> Hi Sakari,
 > 
-> This series looks good to me and makes sense except for one point that
-> I'm struggling to understand. What exactly is the relationship with this
-> failure and probe deferral?
+> On Mon, Nov 20, 2023 at 9:03 PM Sakari Ailus
+> <sakari.ailus@linux.intel.com> wrote:
+> >
+> > Hi Rafael,
+> >
+> > On Mon, Nov 20, 2023 at 01:52:39PM +0100, Rafael J. Wysocki wrote:
+> > > On Mon, Nov 20, 2023 at 10:31 AM Sakari Ailus
+> > > <sakari.ailus@linux.intel.com> wrote:
+> > > >
+> > > > Hi Laurent,
+> > > >
+> > > > On Sat, Nov 18, 2023 at 08:50:49PM +0200, Laurent Pinchart wrote:
+> > > > > Hi Sakari,
+> > > > >
+> > > > > Thank you for the patch.
+> > > > >
+> > > > > On Fri, Nov 17, 2023 at 01:14:29PM +0200, Sakari Ailus wrote:
+> > > > > > Document that acpi_dev_state_d0() can be used to tell if the device was
+> > > > > > powered on for probe.
+> > > > > >
+> > > > > > Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
+> > > > > > ---
+> > > > > >  Documentation/firmware-guide/acpi/non-d0-probe.rst | 8 ++++++++
+> > > > > >  1 file changed, 8 insertions(+)
+> > > > > >
+> > > > > > diff --git a/Documentation/firmware-guide/acpi/non-d0-probe.rst b/Documentation/firmware-guide/acpi/non-d0-probe.rst
+> > > > > > index 7afd16701a02..815bcc8db69f 100644
+> > > > > > --- a/Documentation/firmware-guide/acpi/non-d0-probe.rst
+> > > > > > +++ b/Documentation/firmware-guide/acpi/non-d0-probe.rst
+> > > > > > @@ -24,6 +24,14 @@ there's a problem with the device, the driver likely probes just fine but the
+> > > > > >  first user will find out the device doesn't work, instead of a failure at probe
+> > > > > >  time. This feature should thus be used sparingly.
+> > > > > >
+> > > > > > +ACPI framework
+> > > > > > +--------------
+> > > > > > +
+> > > > > > +Use the Linux ACPI framework function :c:func:`acpi_dev_state_d0()` to tell
+> > > > > > +whether the device was powered on for probe. :c:func:`acpi_dev_state_d0()`
+> > > > > > +returns true if the device is powered on, false otherwise. For non-ACPI backed
+> > > > > > +devices it returns true always.
+> > > > > > +
+> > > > >
+> > > > > While this is true, I don't want to see drivers having to call
+> > > > > ACPI-specific functions, the same way you dislike OF-specific functions
+> > > > > in drivers. Please find a better way to handle this.
+> > > >
+> > > > The functionality is only available on ACPI and the function does the right
+> > > > thing on non-ACPI platforms. I don't see an issue here.
+> > >
+> > > The issue would be calling an ACPI-specific function from code that's
+> > > otherwise firmware-agnostic, AFAICS.
+> > >
+> > > It would be good to have a more generic way of checking whether or not
+> > > a device is operational.
+> >
+> > In DT case it's up to the driver to do that, so the device is powered off.
+> 
+> Unless the boot loader (or whatever happens to run before the kernel)
+> turns it on for some reason (whatever that may be).
 
-Eric Chanudet pointed out to me (thanks!) offlist that if you:
+There are probably some exceptions but they should be quite rare.
 
-    1. Probe
-    2. Grab the IRQ
-    3. Request it (and muck with the trigger from the firmware default)
-    4. Defer out
-    5. Reprobe
-    6. Grab the IRQ again
-
-You get that error, which I played with some this afternoon...
-and can confirm.
-
-It really seems like maybe we should consider reworking messing with the
-trigger type at all (which is done later for runtime/system suspend)
-in a follow-up series?
-
-As far as I can tell if you were to remove the driver and reprobe after
-a suspend you'd hit similar. I've been sitting here scratching my head a
-bit trying to reason out why keeping it as IRQ_TYPE_EDGE_BOTH isn't
-acceptable in dwc3_qcom_enable_interrupts()... Correct me if you think
-that playing with the trigger there is really ok, but it seems like you
-run the same risks if you do that and then modprobe -r dwc3-qcom.
-
-I get that dwc3_qcom_enable_interrupts() limits the scope of what wakes us
-up to what we expect given the current device (or lack thereof), but it
-doesn't seem like you're really meant to play with the IRQ triggers,
-or at least the warning you shared makes me think it is not a great idea
-if you plan to probe the device ever again in the future.
-
-I'll post the current comment in dwc3_qcom_enable_interrupts() to
-explain the "limits the scope of what wakes us up" a bit more clearly:
-
-	/*
-	 * Configure DP/DM line interrupts based on the USB2 device attached to
-	 * the root hub port. When HS/FS device is connected, configure the DP line
-	 * as falling edge to detect both disconnect and remote wakeup scenarios. When
-	 * LS device is connected, configure DM line as falling edge to detect both
-	 * disconnect and remote wakeup. When no device is connected, configure both
-	 * DP and DM lines as rising edge to detect HS/HS/LS device connect scenario.
-	 */
-
+If the boot loader already powered on the device, then it'd be no use
+avoiding accessing it. That doesn't mean the rest of the device shouldn't
+be accessed though.
 
 > 
-> Thanks,
-> Andrew
+> I guess the original point has been that in the ACPI case the generic
+> enumeration code may power up the device if not instructed otherwise
+> by the platform firmware, whereas in the DT case this is entirely up
+> to the driver, but I'm not sure if this really matters.
 > 
-> > 
-> > Fixes: a4333c3a6ba9 ("usb: dwc3: Add Qualcomm DWC3 glue driver")
-> > Cc: stable@vger.kernel.org      # 4.18
-> > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> > ---
-> >  drivers/usb/dwc3/dwc3-qcom.c | 8 ++++----
-> >  1 file changed, 4 insertions(+), 4 deletions(-)
-> > 
-> > diff --git a/drivers/usb/dwc3/dwc3-qcom.c b/drivers/usb/dwc3/dwc3-qcom.c
-> > index 10fb481d943b..82544374110b 100644
-> > --- a/drivers/usb/dwc3/dwc3-qcom.c
-> > +++ b/drivers/usb/dwc3/dwc3-qcom.c
-> > @@ -549,7 +549,7 @@ static int dwc3_qcom_setup_irq(struct platform_device *pdev)
-> >  		irq_set_status_flags(irq, IRQ_NOAUTOEN);
-> >  		ret = devm_request_threaded_irq(qcom->dev, irq, NULL,
-> >  					qcom_dwc3_resume_irq,
-> > -					IRQF_TRIGGER_HIGH | IRQF_ONESHOT,
-> > +					IRQF_ONESHOT,
-> >  					"qcom_dwc3 HS", qcom);
-> >  		if (ret) {
-> >  			dev_err(qcom->dev, "hs_phy_irq failed: %d\n", ret);
-> > @@ -564,7 +564,7 @@ static int dwc3_qcom_setup_irq(struct platform_device *pdev)
-> >  		irq_set_status_flags(irq, IRQ_NOAUTOEN);
-> >  		ret = devm_request_threaded_irq(qcom->dev, irq, NULL,
-> >  					qcom_dwc3_resume_irq,
-> > -					IRQF_TRIGGER_HIGH | IRQF_ONESHOT,
-> > +					IRQF_ONESHOT,
-> >  					"qcom_dwc3 DP_HS", qcom);
-> >  		if (ret) {
-> >  			dev_err(qcom->dev, "dp_hs_phy_irq failed: %d\n", ret);
-> > @@ -579,7 +579,7 @@ static int dwc3_qcom_setup_irq(struct platform_device *pdev)
-> >  		irq_set_status_flags(irq, IRQ_NOAUTOEN);
-> >  		ret = devm_request_threaded_irq(qcom->dev, irq, NULL,
-> >  					qcom_dwc3_resume_irq,
-> > -					IRQF_TRIGGER_HIGH | IRQF_ONESHOT,
-> > +					IRQF_ONESHOT,
-> >  					"qcom_dwc3 DM_HS", qcom);
-> >  		if (ret) {
-> >  			dev_err(qcom->dev, "dm_hs_phy_irq failed: %d\n", ret);
-> > @@ -594,7 +594,7 @@ static int dwc3_qcom_setup_irq(struct platform_device *pdev)
-> >  		irq_set_status_flags(irq, IRQ_NOAUTOEN);
-> >  		ret = devm_request_threaded_irq(qcom->dev, irq, NULL,
-> >  					qcom_dwc3_resume_irq,
-> > -					IRQF_TRIGGER_HIGH | IRQF_ONESHOT,
-> > +					IRQF_ONESHOT,
-> >  					"qcom_dwc3 SS", qcom);
-> >  		if (ret) {
-> >  			dev_err(qcom->dev, "ss_phy_irq failed: %d\n", ret);
-> > -- 
-> > 2.41.0
-> > 
-> > 
+> I would suggest adding a generic wrapper around acpi_dev_state_d0()
+> that will just always return true in the DT case, something like
+> device_is_accessible() or device_is_operational(), that can be invoked
+> from generic code without any visible ACPI connotations.
 
+The DT case may need a different API for that: telling whether the device
+should be powered on for probe (by the driver) rather what
+acpi_dev_state_d0() does.
+
+And on ACPI we've only needed this for I²C but likely I3C will follow. It
+appears to be lacking ACPI support at the moment.
+
+-- 
+Regards,
+
+Sakari Ailus
 
