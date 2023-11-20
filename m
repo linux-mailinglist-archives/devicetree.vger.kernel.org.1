@@ -1,226 +1,97 @@
-Return-Path: <devicetree+bounces-17187-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17191-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8FD87F182B
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 17:08:42 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4F1C7F1853
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 17:16:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9487C282312
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 16:08:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DA6C62827DE
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 16:16:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B89C1DFCF;
-	Mon, 20 Nov 2023 16:08:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2ECB61E534;
+	Mon, 20 Nov 2023 16:16:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ragnatech-se.20230601.gappssmtp.com header.i=@ragnatech-se.20230601.gappssmtp.com header.b="jDZ9tXbJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PQgenOGj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D593AF5
-	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 08:08:28 -0800 (PST)
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-407c3adef8eso20474085e9.2
-        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 08:08:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ragnatech-se.20230601.gappssmtp.com; s=20230601; t=1700496507; x=1701101307; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=rN7cv6tR5ORx4EtDkeIVWzgXGY477LbEUt3Uc2LZoqI=;
-        b=jDZ9tXbJ+blLD3uy9FaW4n9A2RxOlzXPh0ilRIJ7J5zmCzR4eKX/v14VnQ+1cGwi2r
-         HNdVFwloltkLs+CPqmvOcxoDa+K+FrllbQAnK4A+I57kH5avTyimcnlj9IOhmzHKsFUQ
-         Caq0SgiCgOZGK2focPpYeVmIEvLxIURyIFve3IzcfC7GhzeSpj+JJXGolGo3Phr9iT1S
-         IAGsrW7XwSERT+Igr8wsuqaG4oxGcbkxnvaaN7+5jMczhW1MTlcalC9QksaM/ku1djtW
-         ELK9k4x45SEBItrcgkAc1iMQZQZUiqTvop48lsBmWpNh62iUj370/EsxtVRWGdz8JvtA
-         Z3Cw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700496507; x=1701101307;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=rN7cv6tR5ORx4EtDkeIVWzgXGY477LbEUt3Uc2LZoqI=;
-        b=RPKsFY3ZpXipMyej4KTFfRp9JxKV1b/6k+2ZsK5Jn05jROQKb/djmMMFUBU6oFEOzL
-         CmyihR+HMfmPn2a1uuVWx3HlHUfflsVljQAVNqcDMHykaXrhKHkTMLYTgMvfIRbZ7Ylb
-         WCDCufKvtYt+Em1neHTI7dIJc1KaVPE9Zp2lXzT6p3iKMwtXqG7HyqjVjl3hzfyUAtFv
-         gBpHEbdoFuHpEqXbNYPhGp2iE8Q1464J3FXHazdPqQkoHRwOAnKx661d5ACFwJgzouVf
-         THz4fgu7y/HGd8jZeRY32uoQ+Sie21XEwO4O4XA7g2QxykFvYN79UmvU/rzh4WUqy99q
-         wkkg==
-X-Gm-Message-State: AOJu0YwQYoZyeLdXAgAfrU85cmYEYdOf4J0fiMR96n0GKHR9qhEvpdpP
-	rvZqz3IeLJedB0+FF1n0YAOPtQ==
-X-Google-Smtp-Source: AGHT+IE8rKJqTzJ2hEHRnM3XtzK/67dl+S7PmkbbX/LiIG1cZhbXQYpaU+QDcg9tYkevvwNDu4EEmA==
-X-Received: by 2002:a05:600c:350f:b0:402:ee71:29 with SMTP id h15-20020a05600c350f00b00402ee710029mr7985778wmq.10.1700496507310;
-        Mon, 20 Nov 2023 08:08:27 -0800 (PST)
-Received: from sleipner.berto.se (p4fcc8a96.dip0.t-ipconnect.de. [79.204.138.150])
-        by smtp.googlemail.com with ESMTPSA id x18-20020a05600c421200b00406443c8b4fsm17827301wmh.19.2023.11.20.08.08.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Nov 2023 08:08:26 -0800 (PST)
-From: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-To: Rob Herring <robh+dt@kernel.org>,
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3C121E527;
+	Mon, 20 Nov 2023 16:16:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33359C433CD;
+	Mon, 20 Nov 2023 16:16:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1700496979;
+	bh=RqLtxq3JS2WZJO5Z7BQnNMc6WxYyQfEIqiv4EGNlGr0=;
+	h=From:To:Cc:Subject:Date:From;
+	b=PQgenOGjN8Ejyic2TC8oSdPje9uSLE+ChZmT2IojOrV2JVwM4LY1pDg295rZaApGa
+	 SzQ8Sefrjlq8VNBv7cqNkR9BKfMkIEEuk8ij6oA/TCUv6Ol1EqZmmS9CfgyOkXqUBr
+	 ZXEEwuglqN7jLhqZwIKJO5YZWaKMTjiDe51JVoJR42gpqCGRG2OSMACDkVMBYU6RzU
+	 S14zyWE7s6d5v9MSwHIZuoWSuxa19ZcD4ABx07HqqnlRErdk9ZtwMrnORFyI1JGhQ9
+	 +lcO22aHCMjuOY27UG6Ek2JZZcse6tweWwcN/pWf+HAedtU3tN19QTeJ+wo/pcx8V/
+	 as+OyRmrB3XJQ==
+Received: from johan by xi.lan with local (Exim 4.96.2)
+	(envelope-from <johan+linaro@kernel.org>)
+	id 1r56wm-0001vk-1I;
+	Mon, 20 Nov 2023 17:16:28 +0100
+From: Johan Hovold <johan+linaro@kernel.org>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	devicetree@vger.kernel.org
-Cc: netdev@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	=?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Subject: [PATCH] dt-bindings: net: renesas,ethertsn: Add bindings for Ethernet TSN
-Date: Mon, 20 Nov 2023 17:07:40 +0100
-Message-ID: <20231120160740.3532848-1-niklas.soderlund+renesas@ragnatech.se>
-X-Mailer: git-send-email 2.42.1
+	Conor Dooley <conor+dt@kernel.org>,
+	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+	Wesley Cheng <quic_wcheng@quicinc.com>,
+	Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>,
+	linux-arm-msm@vger.kernel.org,
+	linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Johan Hovold <johan+linaro@kernel.org>
+Subject: [PATCH 0/3] USB: dwc3: qcom: fix wakeup after probe deferral
+Date: Mon, 20 Nov 2023 17:16:04 +0100
+Message-ID: <20231120161607.7405-1-johan+linaro@kernel.org>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Add bindings for Renesas R-Car Ethernet TSN End-station IP. The RTSN
-device provides Ethernet network.
+When testing a recent series that addresses resource leaks on probe
+deferral [1] I realised that probe deferral can break wakeup from
+suspend due to how the wakeup interrupts are currently requested.
 
-Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
----
- .../bindings/net/renesas,ethertsn.yaml        | 133 ++++++++++++++++++
- 1 file changed, 133 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/net/renesas,ethertsn.yaml
+I'll send a separate series for the Qualcomm devicetrees that used
+incorrect trigger types for the wakeup interrupts. Included here is just
+a patch fixing the binding example which hopefully will make it less
+likely that more of these gets introduced. Fortunately, there should be
+no dependency between this series and the devicetree one.
 
-diff --git a/Documentation/devicetree/bindings/net/renesas,ethertsn.yaml b/Documentation/devicetree/bindings/net/renesas,ethertsn.yaml
-new file mode 100644
-index 000000000000..255c8f3a5a3b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/renesas,ethertsn.yaml
-@@ -0,0 +1,133 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/renesas,ethertsn.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Renesas Ethernet TSN End-station
-+
-+maintainers:
-+  - Niklas Söderlund <niklas.soderlund@ragnatech.se>
-+
-+description:
-+  The RTSN device provides Ethernet network using a 10 Mbps, 100 Mbps, or 1
-+  Gbps full-duplex link via MII/GMII/RMII/RGMII. Depending on the connected PHY.
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+          - enum:
-+              - renesas,ethertsn-r8a779g0      # R-Car V4H
-+
-+  reg:
-+    items:
-+      - description: TSN End Station target
-+      - description: generalized Precision Time Protocol target
-+
-+  reg-names:
-+    items:
-+      - const: tsnes
-+      - const: gptp
-+
-+  interrupts:
-+    items:
-+      - description: TX data interrupt
-+      - description: RX data interrupt
-+
-+  interrupt-names:
-+    items:
-+      - const: tx_data
-+      - const: rx_data
-+
-+  clocks:
-+    maxItems: 1
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+  phy-mode:
-+    contains:
-+      enum:
-+        - mii
-+        - rgmii
-+
-+  phy-handle:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      Specifies a reference to a node representing a PHY device.
-+
-+  renesas,rx-internal-delay:
-+    type: boolean
-+    description:
-+      Enable internal Rx clock delay, typically 1.8ns.
-+
-+  renesas,tx-internal-delay:
-+    type: boolean
-+    description:
-+      Enable internal Tx clock delay, typically 2.0ns.
-+
-+  '#address-cells':
-+    const: 1
-+
-+  '#size-cells':
-+    const: 0
-+
-+patternProperties:
-+  "^ethernet-phy@[0-9a-f]$":
-+    type: object
-+    $ref: ethernet-phy.yaml#
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - interrupts
-+  - interrupt-names
-+  - clocks
-+  - power-domains
-+  - resets
-+  - phy-mode
-+  - phy-handle
-+  - '#address-cells'
-+  - '#size-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/r8a779g0-cpg-mssr.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/power/r8a779g0-sysc.h>
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    tsn0: ethernet@e6460000 {
-+        compatible = "renesas,ethertsn-r8a779g0";
-+        reg = <0xe6460000 0x7000>,
-+              <0xe6449000 0x500>;
-+        reg-names = "tsnes", "gptp";
-+        interrupts = <GIC_SPI 429 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 430 IRQ_TYPE_LEVEL_HIGH>;
-+        interrupt-names = "tx_data", "rx_data";
-+        clocks = <&cpg CPG_MOD 2723>;
-+        power-domains = <&sysc R8A779G0_PD_ALWAYS_ON>;
-+        resets = <&cpg 2723>;
-+
-+        phy-mode = "rgmii";
-+        renesas,tx-internal-delay;
-+        phy-handle = <&phy3>;
-+
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        phy3: ethernet-phy@3 {
-+            compatible = "ethernet-phy-ieee802.3-c45";
-+            reg = <0>;
-+            interrupt-parent = <&gpio4>;
-+            interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
-+            reset-gpios = <&gpio1 23 GPIO_ACTIVE_LOW>;
-+        };
-+    };
+Note also that I decided to include a related trivial cleanup patch.
+
+Johan
+
+
+[1] https://lore.kernel.org/lkml/20231117173650.21161-1-johan+linaro@kernel.org/
+
+
+Johan Hovold (3):
+  dt-bindings: usb: qcom,dwc3: fix example wakeup interrupt types
+  USB: dwc3: qcom: fix wakeup after probe deferral
+  USB: dwc3: qcom: simplify wakeup interrupt setup
+
+ Documentation/devicetree/bindings/usb/qcom,dwc3.yaml |  4 ++--
+ drivers/usb/dwc3/dwc3-qcom.c                         | 12 ++++--------
+ 2 files changed, 6 insertions(+), 10 deletions(-)
+
 -- 
-2.42.1
+2.41.0
 
 
