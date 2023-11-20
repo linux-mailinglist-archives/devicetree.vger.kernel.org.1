@@ -1,152 +1,104 @@
-Return-Path: <devicetree+bounces-16998-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16999-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2A5C7F0D85
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 09:27:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FBC87F0DB2
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 09:40:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9C8E11F21FD5
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 08:27:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BABF61C208DC
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 08:40:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D880BE57C;
-	Mon, 20 Nov 2023 08:27:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC4A94A2D;
+	Mon, 20 Nov 2023 08:40:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pvTkfhkR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mrvFOrFU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D2BEF0
-	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 00:27:48 -0800 (PST)
-Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2c8879a1570so82701fa.1
-        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 00:27:47 -0800 (PST)
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6F3A83
+	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 00:40:25 -0800 (PST)
+Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-4084de32db5so16526495e9.0
+        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 00:40:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700468866; x=1701073666; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3zUGH0c4GY6lD98Q6lqE8V3ux67qaNFVeyeN6TZqzhM=;
-        b=pvTkfhkRIe6IGoueGgn1c+GH1ywYThIZ1yDt8r+/UiBd3FRoh41iTPvtnXJIJCVlXi
-         dhQ01jfX6LaEuLcbA8yU4R+LS4AEEHwjF6iqnDFUP2Jr6JbY7gHcKTgbXh2sSY697CVN
-         kGDzMCIxs82dx8yjegUMBHO5bzayUhjJyniQ+X2D6vVpms90Y3oA6ws5n3Wawe3x65Nw
-         Jm3Mr9RnLVRKFblec9I6xxI1d4SGhZBEfXBrUd/dE0TWJRUWqrKB+F7ZTq4L3BS1DxIX
-         jYEkf19E7XRyQUh2YHoCuq7iSyclgkO/GgY27SLtNheHHmVgR6qLjgOzJEO12+B+UbZj
-         G4qA==
+        d=linaro.org; s=google; t=1700469624; x=1701074424; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ITTlts2FMAHsu8yiJvG2iiuD8q4hyDHNB8Yd0fE8j4A=;
+        b=mrvFOrFUs0r6qnHu8RWMIijDjaM9vzJO/swlWQCmNz9GtsN6U22eG6JNzIcFFsPfS6
+         6Era4BdBZSWdOWS7Zl8G1hgqQ0pBhLcIqkP3W7SjZRD9NJlgJsIuRvCItojNg5P8U1qC
+         /BV0K2ZWk+BUWgc17ACJBTqYjVK9Rvpiisv9w4ENud20rF9Sax3/qt7FRTzywEzU9Jfn
+         bUQpF8gDel0nZPO2B+oszQTCOeWZ/RHTLP8j6Dg6et63Ur8TZU0P7MOA6DHtM6yLOXPd
+         fVNpkYfupPRjnGV/ZALzftyp+r2RScwYPSJKPwJwZe40yK69E3HpnhbG/kGCilJN3bc8
+         NsdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700468866; x=1701073666;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=3zUGH0c4GY6lD98Q6lqE8V3ux67qaNFVeyeN6TZqzhM=;
-        b=r/32+bj1z78siJgO1XkG9FrN9ViMxwbkxw312sJq5x9h9O1UjRRaxBcgb/dUeRgu2t
-         cdeg7ppFiDA7JHjCjsgFKY+8vo9YB5388fRZBZWbXAH52yYE4zDQbCjh4JsBbTWYJZsn
-         3b/aLhTTGv/WHNZg816yuiqNfOQ7GR3ovRMk7Se8OOBoALc897XszopWljQNYP9p1Tnt
-         3O3pfI9LnaQ7Qf1jERo6F3k1hG++9KYUYa0QqejXtpt8W1dK2X7RBwk4Gqx3u72EVyJ7
-         RHrwz2/xUk7NWXMbTYsoPSLAaUsiFz7H5txXVeorC08YhrFJGq4YA9zNATC8WbMNLcuh
-         nOuw==
-X-Gm-Message-State: AOJu0YzccfwE/b9StX5F+Fcm14SRYvnk3JJqljNFsMcrvT9aOtPXKJKD
-	bANZrDBXt7VEwxMDGbC0LJxlCuph4175f+5aH7gFs3ba
-X-Google-Smtp-Source: AGHT+IEyiy5b3nZjrxUqCLi8UtuOkrr6suPn1vwp5RodoSz2UKg8GWMKoGwtKyNFwtH6O+JddbUpwQ==
-X-Received: by 2002:a2e:86d5:0:b0:2c5:183d:42bf with SMTP id n21-20020a2e86d5000000b002c5183d42bfmr3998771ljj.45.1700468866186;
-        Mon, 20 Nov 2023 00:27:46 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:f04:f84b:d87d:1d06? ([2a01:e0a:982:cbb0:f04:f84b:d87d:1d06])
-        by smtp.gmail.com with ESMTPSA id je12-20020a05600c1f8c00b0040839fcb217sm12641000wmb.8.2023.11.20.00.27.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Nov 2023 00:27:45 -0800 (PST)
-Message-ID: <4608012c-059f-4d6a-914b-e85ad0c32ff0@linaro.org>
-Date: Mon, 20 Nov 2023 09:27:42 +0100
+        d=1e100.net; s=20230601; t=1700469624; x=1701074424;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ITTlts2FMAHsu8yiJvG2iiuD8q4hyDHNB8Yd0fE8j4A=;
+        b=HZHyQjoou9wyZcpzz43yVKDUYVatu2VE4JjEnMHkUWFw2HpR6ooMtCw8ijeAZbHT5D
+         W4n1HNQWce7VFc6Ec31AiMxqloD1ylTAjMPT8d+Bie8D2m/QUscG7AenTMCbUnUVabyi
+         JNUPKkUlrIPlfa0dyuSyQnoUpYroJOmog/a3z3dgNxUERcTV/QijkM97RJIQRuW8wG2R
+         O9FsTs5mOj3E4Coc+TiHC5W9I2SQmZIPsVObw7InDqCXTNfkxx4EWnfjvXwt49d3LHTP
+         hC94Otbkt02/lzbvdOjRpziKuVAG0APdaIULf06HhjaJmxGpMl833tItHCljs0qbH8at
+         9P6w==
+X-Gm-Message-State: AOJu0YzfTfBwXoQZN+1OjAsYm++EiuMjDImtpXdDMnWG7Mo7Q7K2+S3h
+	5XWGQ5jXhrs6Ag9R5PfE+NxZcSeM+bbkfmerS2pk0Mf6
+X-Google-Smtp-Source: AGHT+IG//wixe+QsViWThUQ8nC1JWJAiQgbIKXGNz5qbnCz1AkTvk72ZCJXZVHyHW1cqX31G8TUDPw==
+X-Received: by 2002:a05:600c:3109:b0:40a:3e41:7df1 with SMTP id g9-20020a05600c310900b0040a3e417df1mr5565578wmo.37.1700469624315;
+        Mon, 20 Nov 2023 00:40:24 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id z16-20020a05600c221000b0040472ad9a3dsm12386618wml.14.2023.11.20.00.40.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Nov 2023 00:40:23 -0800 (PST)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+To: linux-rockchip@lists.infradead.org, 
+ Chris Morgan <macroalpha82@gmail.com>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ sebastian.reichel@collabora.com, daniel@ffwll.ch, airlied@gmail.com, 
+ sam@ravnborg.org, heiko@sntech.de, conor+dt@kernel.org, 
+ krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org, 
+ Chris Morgan <macromorgan@hotmail.com>
+In-Reply-To: <20231117202536.1387815-1-macroalpha82@gmail.com>
+References: <20231117202536.1387815-1-macroalpha82@gmail.com>
+Subject: Re: (subset) [PATCH V4 0/6] rockchip: Add Powkiddy RK2023
+Message-Id: <170046962348.1110472.9022953040371276101.b4-ty@linaro.org>
+Date: Mon, 20 Nov 2023 09:40:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v2 2/6] dt-bindings: pwm: amlogic: add new compatible for
- meson8 pwm type
-Content-Language: en-US, fr
-To: Rob Herring <robh@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>
-Cc: JunYi Zhao <junyi.zhao@amlogic.com>, devicetree@vger.kernel.org,
- Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Kevin Hilman <khilman@baylibre.com>,
- Thierry Reding <thierry.reding@gmail.com>, linux-kernel@vger.kernel.org,
- linux-pwm@vger.kernel.org, linux-amlogic@lists.infradead.org,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-References: <20231117125919.1696980-1-jbrunet@baylibre.com>
- <20231117125919.1696980-3-jbrunet@baylibre.com>
- <170040994064.269288.960284011884896046.robh@kernel.org>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <170040994064.269288.960284011884896046.robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.12.3
 
-Hi Rob,
+Hi,
 
-On 19/11/2023 17:05, Rob Herring wrote:
+On Fri, 17 Nov 2023 14:25:30 -0600, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
 > 
-> On Fri, 17 Nov 2023 13:59:12 +0100, Jerome Brunet wrote:
->> Add a new compatible for the pwm found in the meson8 to sm1 Amlogic SoCs.
->>
->> The previous clock bindings for these SoCs described the driver and not the
->> HW itself. The clock provided was used to set the parent of the input clock
->> mux among the possible parents hard-coded in the driver.
->>
->> The new bindings allows to describe the actual clock inputs of the PWM in
->> DT, like most bindings do, instead of relying of hard-coded data.
->>
->> The new bindings make the old one deprecated.
->>
->> There is enough experience on this HW to know that the PWM is exactly the
->> same all the supported SoCs. There is no need for a per-SoC compatible.
->>
->> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
->> ---
->>   .../devicetree/bindings/pwm/pwm-amlogic.yaml  | 36 +++++++++++++++++--
->>   1 file changed, 34 insertions(+), 2 deletions(-)
->>
+> Add support for the Powkiddy RK2023, which is extremely similar to
+> existing Powkiddy RGB30 device.
 > 
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> Changes since V3:
+>  - Corrected commit subject lines.
 > 
+> [...]
 
-I'm puzzled, isn't it recommended to have a per-soc compatible now ?
+Thanks, Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-next)
 
-I thought something like:
-- items:
-     - enum:
-         - amlogic,gxbb-pwm
-         - amlogic,axg-pwm
-         - amlogic,g12a-pwm
-     - const: amlogic,pwm-v1
+[1/6] dt-bindings: display: nv3051d: Update NewVision NV3051D compatibles
+      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=8bcac1be55e188e5bac3353b550c9cddb70fbbed
+[2/6] drm/panel: nv3051d: Hold panel in reset for unprepare
+      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=697ebc319b942403a6fee894607fd2cd47cca069
+[3/6] drm/panel: nv3051d: Add Powkiddy RK2023 Panel Support
+      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=0aa1cfa3d287930cbecc52cd2b38683a4bf98463
 
-should be preferred instead of a single amlogic,meson8-pwm-v2 ?
-
+-- 
 Neil
+
 
