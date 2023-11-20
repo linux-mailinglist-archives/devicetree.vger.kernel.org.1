@@ -1,201 +1,98 @@
-Return-Path: <devicetree+bounces-17312-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17317-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 664327F208D
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 23:46:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D0287F211F
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 00:01:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F028282375
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 22:46:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 053752823EE
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 23:01:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D447732187;
-	Mon, 20 Nov 2023 22:46:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6782738F88;
+	Mon, 20 Nov 2023 23:01:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Cf0r6khS"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="g+34F2Jh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-x729.google.com (mail-qk1-x729.google.com [IPv6:2607:f8b0:4864:20::729])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C27FCC8
-	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 14:46:09 -0800 (PST)
-Received: by mail-qk1-x729.google.com with SMTP id af79cd13be357-77bb668d941so313084085a.3
-        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 14:46:09 -0800 (PST)
+Received: from mail-oo1-xc30.google.com (mail-oo1-xc30.google.com [IPv6:2607:f8b0:4864:20::c30])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44A69A2
+	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 15:01:38 -0800 (PST)
+Received: by mail-oo1-xc30.google.com with SMTP id 006d021491bc7-5842ea6f4d5so3199836eaf.2
+        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 15:01:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700520369; x=1701125169; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=njoGUAO/aKU6y+B0kYXrWx9rr0gLschtaZIB6sJvVdU=;
-        b=Cf0r6khSUB9nvaHf3+ily/2Rp8cWMG0TRIv6aMoSEBXFCdaSl8WzpWnoUsvv0Lv8h8
-         NpVUd1YnZ0HDpnXRKVLLeh/IPV2/IJLJNoucia/xr9s0nb/Dg6BW6wrK1i0T3zKJ2Bmq
-         t1ooAhxtjKC5kwQyUayLVY1CoIL3Lt06p2NaX16HCfd+cGX32BFqEUcH8PNab/pRGaaM
-         jbVi/RBIhpMhN3gTKWbOX+YhHmVVs7EjGEI0zUpaKhtnk+PuOFH+Vq+Bo9hQtal5rHme
-         GaG5Qh2NcDlp1P9RtKSYA9pIPIs2tubVY6O01ZytGMSGYYLWKY86NtFaodeWfi2El788
-         ToXA==
+        d=gmail.com; s=20230601; t=1700521297; x=1701126097; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=5M7lYo4Yr50jb2FRZKTz2v0y4dLmO/a9d97S8ykJeVQ=;
+        b=g+34F2JhHzfojNf+y+KAzkcIGqE8jIUqkCpMpzgYcbCHQ4cVI/4sBCe3o+AQzcUoMk
+         evlQM1HRbSxhL12144pblkhqOwCIvWfGs1fGXBVUX4W2Sjor7+BJ9QCVWooS3Xnbu5XK
+         FB1qxT9rFpApyvVdxsekJvY4Ci6PnrcbR8z1Y2RuEjpkOoEqg6Y0iNDtk2yQo+WuP6Ys
+         FDJFznjxJAHt6tZSm4SmjJeL56re/5e5FdEROqNdcP/kLQUQcPiL/wn1ntWwcEyxFusf
+         rt1ciS/hV+kVvOHhJ5uiVMzskt58It3JnFu4UALMCuPjygbu/LnEDU9miu+/VoadQbIs
+         TkZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700520369; x=1701125169;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1700521297; x=1701126097;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=njoGUAO/aKU6y+B0kYXrWx9rr0gLschtaZIB6sJvVdU=;
-        b=YCbCW+9MdbIsNKwYnqJgm7oit74TTdykjlDD/7Pic8glCTYcQmBaBCgVmUSvwM6p0q
-         lbI/QjBvbNrR978eVqEK9oZL41PNWYzMn4hAtye9pGHhVe0IFAPGtlsH7I8ByZRtlncL
-         EQfZLfgAhksPu9ibfiNmt142SdR1sVi8dcFSSTzATnk/aNNvaL6BLfg+DoWBkLxla3MU
-         /XlSCeMSO4kEGnNAe4XlDTRP44cnBd0miLmmWYeo66cXXSn70a8Oh304LOntCgqj8nM9
-         4bdawZHc/5YHNPCf94s7AWbOpER5lCy+SHp1jS+l1VsKBPRT9F0phzJPypBFsjXfjzt4
-         1rvQ==
-X-Gm-Message-State: AOJu0Ywh2qOwiarzteLSKzKY3y88DxiW/Al9NEBG4LJ7FEkGN5Veyy4y
-	XJX76JtlVOyp0NWdFbV/pxXjIAFAz+CGdVNxAUtxqQ==
-X-Google-Smtp-Source: AGHT+IG/+m3xt7ccY8eDIleAiRsOAh79Ehhifx5D3WhBv4fQmrHh9AAauod19bUGyqw4eilwyZq13diIFEILCwXsTac=
-X-Received: by 2002:ad4:4ea9:0:b0:679:e195:b071 with SMTP id
- ed9-20020ad44ea9000000b00679e195b071mr3321524qvb.9.1700520368792; Mon, 20 Nov
- 2023 14:46:08 -0800 (PST)
+        bh=5M7lYo4Yr50jb2FRZKTz2v0y4dLmO/a9d97S8ykJeVQ=;
+        b=W5k2gzGnszadgFsXTAV0djytnoiUMjrKorjlHleaXo0pmZSjQvW49EFtaj/A8OGeXt
+         bqXYHajA2zouXeJRceJSn1TBj1vy+ra8F3eav6fkJTYEFMEdPeLjblBFQXKnx4MJcFUh
+         m661QAy0Dgdk30qZNFaEwrP1Ut5rG6vvRafuyt+MC3y0nZ1wPhCWcQq6A0BzDdg9+x6V
+         aXaJ1yaSd5nReTQfiWmfCxU28bVGrb7I9MaBGNinCSVA0CnUD6XhyYc2okFvdGQ+t2w7
+         Aau7ci8hLqSi80HpzahIa02IUXzYnvs+D57ZxnGf0NIXs93PXfM/2ZjNbQHi9Kl9ebAi
+         nJkA==
+X-Gm-Message-State: AOJu0YwOsL3a0w4TaNNFOY+CyujMCMp2cuPzSJsouHZpHCHwoUOekzcj
+	y4k7o3E98yp8tFD96OuMZ7K4lewrNro=
+X-Google-Smtp-Source: AGHT+IFAinXOF4aJTKmIDFsYA1QFr3uwwKqd2JUD66a3fihV7RqOl5glbl1pCVqe3tP02idp9PDdsw==
+X-Received: by 2002:a05:6820:2217:b0:581:e750:9995 with SMTP id cj23-20020a056820221700b00581e7509995mr10173747oob.3.1700521297284;
+        Mon, 20 Nov 2023 15:01:37 -0800 (PST)
+Received: from localhost.localdomain ([75.28.21.198])
+        by smtp.gmail.com with ESMTPSA id g10-20020a4ab04a000000b00587aaf6add7sm1545117oon.9.2023.11.20.15.01.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Nov 2023 15:01:36 -0800 (PST)
+From: Chris Morgan <macroalpha82@gmail.com>
+To: devicetree@vger.kernel.org
+Cc: linux-rockchip@lists.infradead.org,
+	maccraft123mc@gmail.com,
+	sebastian.reichel@collabora.com,
+	heiko@sntech.de,
+	conor+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	robh+dt@kernel.org,
+	Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH 0/3] Add Support for Anbernic RG351V
+Date: Mon, 20 Nov 2023 17:01:28 -0600
+Message-Id: <20231120230131.57705-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231120212037.911774-1-peter.griffin@linaro.org>
- <20231120212037.911774-16-peter.griffin@linaro.org> <5ee955e4-4c22-4696-8001-1e4f24952eeb@roeck-us.net>
-In-Reply-To: <5ee955e4-4c22-4696-8001-1e4f24952eeb@roeck-us.net>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Mon, 20 Nov 2023 22:45:57 +0000
-Message-ID: <CADrjBPoHYTZiMCFKBtdaT6hFp9QO=GMzn5yE2k3Dg_mcBhrvkA@mail.gmail.com>
-Subject: Re: [PATCH v4 15/19] watchdog: s3c2410_wdt: Add support for WTCON
- register DBGACK_MASK bit
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	mturquette@baylibre.com, conor+dt@kernel.org, sboyd@kernel.org, 
-	tomasz.figa@gmail.com, s.nawrocki@samsung.com, linus.walleij@linaro.org, 
-	wim@linux-watchdog.org, catalin.marinas@arm.com, will@kernel.org, 
-	arnd@arndb.de, olof@lixom.net, gregkh@linuxfoundation.org, 
-	jirislaby@kernel.org, cw00.choi@samsung.com, alim.akhtar@samsung.com, 
-	tudor.ambarus@linaro.org, andre.draszik@linaro.org, 
-	semen.protsenko@linaro.org, saravanak@google.com, willmcvicker@google.com, 
-	soc@kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	linux-watchdog@vger.kernel.org, kernel-team@android.com, 
-	linux-serial@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-Hi Guenter,
+From: Chris Morgan <macromorgan@hotmail.com>
 
-Thanks for the review.
+Add support for the Anbernic RG351V handheld gaming console.
 
-On Mon, 20 Nov 2023 at 22:00, Guenter Roeck <linux@roeck-us.net> wrote:
->
-> On 11/20/23 13:20, Peter Griffin wrote:
-> > The WDT uses the CPU core signal DBGACK to determine whether the SoC
-> > is running in debug mode or not. If the DBGACK signal is asserted and
-> > DBGACK_MASK is enabled, then WDT output and interrupt is masked.
-> >
-> > Presence of the DBGACK_MASK bit is determined by adding a new
-> > QUIRK_HAS_DBGACK_BIT quirk. Currently only gs101 SoC is known to have
-> > the DBGACK_MASK bit so add the quirk to drv_data_gs101_cl1 and
-> > drv_data_gs101_cl1 quirks.
-> >
-> > Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
-> > ---
-> >   drivers/watchdog/s3c2410_wdt.c | 32 +++++++++++++++++++++++++++-----
-> >   1 file changed, 27 insertions(+), 5 deletions(-)
-> >
-> > diff --git a/drivers/watchdog/s3c2410_wdt.c b/drivers/watchdog/s3c2410_wdt.c
-> > index 08b8c57dd812..ed561deeeed9 100644
-> > --- a/drivers/watchdog/s3c2410_wdt.c
-> > +++ b/drivers/watchdog/s3c2410_wdt.c
-> > @@ -34,9 +34,10 @@
-> >
-> >   #define S3C2410_WTCNT_MAXCNT        0xffff
-> >
-> > -#define S3C2410_WTCON_RSTEN  (1 << 0)
-> > -#define S3C2410_WTCON_INTEN  (1 << 2)
-> > -#define S3C2410_WTCON_ENABLE (1 << 5)
-> > +#define S3C2410_WTCON_RSTEN          (1 << 0)
-> > +#define S3C2410_WTCON_INTEN          (1 << 2)
-> > +#define S3C2410_WTCON_ENABLE         (1 << 5)
-> > +#define S3C2410_WTCON_DBGACK_MASK    (1 << 16)
-> >
-> >   #define S3C2410_WTCON_DIV16 (0 << 3)
-> >   #define S3C2410_WTCON_DIV32 (1 << 3)
-> > @@ -107,12 +108,16 @@
-> >    * %QUIRK_HAS_PMU_CNT_EN: PMU block has some register (e.g. CLUSTERx_NONCPU_OUT)
-> >    * with "watchdog counter enable" bit. That bit should be set to make watchdog
-> >    * counter running.
-> > + *
-> > + * %QUIRK_HAS_DBGACK_BIT: WTCON register has DBGACK_MASK bit. Enables masking
-> > + * WDT interrupt and reset request according to CPU core DBGACK signal.
->
-> This is a bit difficult to understand. I _think_ it means that the DBGACK_MASK bit
-> has to be set to be able to trigger interrupt and reset requests.
+Chris Morgan (3):
+  dt-bindings: arm: rockchip: Add Anbernic RG351V
+  arm64: dts: rockchip: Split RG351M from Odroid Go Advance
+  arm64: dts: rockchip: Add Anbernic RG351V
 
-Not quite, it is a bit that controls masking the watchdog outputs when the SoC
-is in debug mode.
+ .../devicetree/bindings/arm/rockchip.yaml     |   6 +-
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../dts/rockchip/rk3326-anbernic-rg351m.dts   |  18 +-
+ .../dts/rockchip/rk3326-anbernic-rg351m.dtsi  | 478 ++++++++++++++++++
+ .../dts/rockchip/rk3326-anbernic-rg351v.dts   |  44 ++
+ 5 files changed, 529 insertions(+), 18 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3326-anbernic-rg351m.dtsi
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3326-anbernic-rg351v.dts
 
-> "masking" normally refers to disabling something (at least in interrupt context).
-> "Enables masking WDT interrupt" sounds like the bit has to be set in order to
-> be able to disable interupts, and the code below suggests that the bit has to be
-> set for the driver to work. Is that the case ? It might make sense to explain this
-> a bit further.
+-- 
+2.34.1
 
-Maybe I explained it more clearly in the commit message than the comment
-
-"The WDT uses the CPU core signal DBGACK to determine whether the SoC
-is running in debug mode or not. If the DBGACK signal is asserted and
-DBGACK_MASK is enabled, then WDT output and interrupt is masked."
-
-Is that any clearer? Or maybe simpler again
-
-"Enabling DBGACK_MASK bit masks the watchdog outputs when the SoC is
-in debug mode. Debug mode is determined by the DBGACK CPU signal."
-
-Let me know what you think is the clearest and most succinct and I can
-update the comment.
-
->
-> >    */
-> >   #define QUIRK_HAS_WTCLRINT_REG                      (1 << 0)
-> >   #define QUIRK_HAS_PMU_MASK_RESET            (1 << 1)
-> >   #define QUIRK_HAS_PMU_RST_STAT                      (1 << 2)
-> >   #define QUIRK_HAS_PMU_AUTO_DISABLE          (1 << 3)
-> >   #define QUIRK_HAS_PMU_CNT_EN                        (1 << 4)
-> > +#define QUIRK_HAS_DBGACK_BIT                 (1 << 5)
-> >
-> >   /* These quirks require that we have a PMU register map */
-> >   #define QUIRKS_HAVE_PMUREG \
-> > @@ -279,7 +284,7 @@ static const struct s3c2410_wdt_variant drv_data_gs101_cl0 = {
-> >       .cnt_en_reg = GS_CLUSTER0_NONCPU_OUT,
-> >       .cnt_en_bit = 8,
-> >       .quirks = QUIRK_HAS_PMU_RST_STAT | QUIRK_HAS_PMU_MASK_RESET | QUIRK_HAS_PMU_CNT_EN |
-> > -               QUIRK_HAS_WTCLRINT_REG,
-> > +               QUIRK_HAS_WTCLRINT_REG | QUIRK_HAS_DBGACK_BIT,
-> >   };
-> >
-> >   static const struct s3c2410_wdt_variant drv_data_gs101_cl1 = {
-> > @@ -291,7 +296,7 @@ static const struct s3c2410_wdt_variant drv_data_gs101_cl1 = {
-> >       .cnt_en_reg = GS_CLUSTER1_NONCPU_OUT,
-> >       .cnt_en_bit = 7,
-> >       .quirks = QUIRK_HAS_PMU_RST_STAT | QUIRK_HAS_PMU_MASK_RESET | QUIRK_HAS_PMU_CNT_EN |
-> > -               QUIRK_HAS_WTCLRINT_REG,
-> > +               QUIRK_HAS_WTCLRINT_REG | QUIRK_HAS_DBGACK_BIT,
-> >   };
-> >
-> >   static const struct of_device_id s3c2410_wdt_match[] = {
-> > @@ -408,6 +413,21 @@ static int s3c2410wdt_enable(struct s3c2410_wdt *wdt, bool en)
-> >       return 0;
-> >   }
-> >
-> > +static void s3c2410wdt_mask_dbgack(struct s3c2410_wdt *wdt, bool mask)
->
-> I think I must be missing something. This is only ever called with mask==true,
-> meaning the bit, if present, is always set.
->
-> Why not call the function s3c2410wdt_set_dbgack() and drop the unnecessary
-> parameter ?
-
-I can update like you suggest, it would simplify the logic a little bit.
-
-regards,
-
-Peter.
 
