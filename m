@@ -1,62 +1,49 @@
-Return-Path: <devicetree+bounces-16996-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16997-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3FAB7F0D3E
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 09:12:59 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E118D7F0D67
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 09:21:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 00DF51C210C2
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 08:12:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 71B49B21061
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 08:21:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FC2CDDD0;
-	Mon, 20 Nov 2023 08:12:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F7A7E550;
+	Mon, 20 Nov 2023 08:21:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cBqgxhA9"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="SEjUIH9A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AAA4E3
-	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 00:12:53 -0800 (PST)
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-4084095722aso15582615e9.1
-        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 00:12:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700467972; x=1701072772; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=JhDE2L7lEf7iSrI5yGHsZcxUh03VSqymUutwpX7Pffk=;
-        b=cBqgxhA9sQEAskr3kHAocMz7SBrgnXarU+8VPRLcuMLPXWZxbWixRiANW81GcEitnB
-         fnddjIsokQmdPbSkoMUxSIzfjObQpu+6S5S1C820Q4fASVnTPIBCmqJzlfewLwv1kWj+
-         qQHDzEQSVPRnfBX6Eo+RVOMzOmFO0zeSslg0UEFie4K6fM+3KvZNBDwiluiRNo5Fenl8
-         Re3+WNaoElcIyNSkSZDaSZGTCafBEjcpog2QNP7hESdUhdtemujr4LROENvicLz7XGR4
-         pEAFPr7JM2HQMJP8jMQHn3NRQD68EMccfzmxh12pfV9Wz7/V36IjBr3jzxal0KlQ1H5P
-         emZw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700467972; x=1701072772;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=JhDE2L7lEf7iSrI5yGHsZcxUh03VSqymUutwpX7Pffk=;
-        b=ZE76aMG9kf79CmxeLPUt+JZkYJ5BtA0CVf06RO3Rd6sb98/3oxJC2WqL4ToHh5qCle
-         JcqgxEM7HEh+rfyMw6qTZk6vPOKD87W2KBmjSCpJDP5i0UCPowsrBmh9g5I7FP5YPH5g
-         4UrByggITBfTsrbDFrWCvTFUik7Q0bN2tAfJnwRFAu/s1Un3EqZOGra1AGP/aNq0HsPS
-         eDzboEBzbtz+9SyRnyP3bMlLr4xFzDsH0nUKSKUQT7Ly2NvBI+ImaS9H+ed8BbLuGNRN
-         5vTVwHcRKRfSZpotiOHF2mLcaoxQD6GFbmeXz624ba/4Ay9/56oSGp8FoVCTBtDVpsYQ
-         9UyA==
-X-Gm-Message-State: AOJu0Yxaq4ekF8LxLV9JRM6xAkFvybr+wDQFNygUt6yuRLM7t0IP0Q2b
-	aR3tS4TdW64UNNuI3ewjxeQT3w==
-X-Google-Smtp-Source: AGHT+IHrq0UjXRbJljBpwtb0lzEnceeWLnHCRAYZRW1u9snHLGAYKYqf2iuRy7o2NGzzgKNs7DQf4w==
-X-Received: by 2002:a05:600c:470a:b0:405:4a78:a892 with SMTP id v10-20020a05600c470a00b004054a78a892mr4497234wmo.9.1700467971857;
-        Mon, 20 Nov 2023 00:12:51 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:f04:f84b:d87d:1d06? ([2a01:e0a:982:cbb0:f04:f84b:d87d:1d06])
-        by smtp.gmail.com with ESMTPSA id p13-20020a05600c358d00b0040841e79715sm12714341wmq.27.2023.11.20.00.12.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Nov 2023 00:12:51 -0800 (PST)
-Message-ID: <46bcf9fe-d896-4a8d-90da-1f86711fd736@linaro.org>
-Date: Mon, 20 Nov 2023 09:12:49 +0100
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BE97B9;
+	Mon, 20 Nov 2023 00:20:57 -0800 (PST)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AK7Lvn3003771;
+	Mon, 20 Nov 2023 08:20:37 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=gba2Tcl2eMbmK/kLsFECV0armcjkhrFttLQIW9wsuXo=;
+ b=SEjUIH9AP531QvS27jtrUrKOEiN62KB4ujjYrcXzL+gsPHPbnUmXbp/g+4BsxBgP1VJO
+ /r5pOXHdHPqxM5z4FvPh0AqPjZlsZpr7B+h9OxUJxZTMM1A6GGsu+pQSHw6hgk2bZ8ZU
+ 51UZSv24m4pkbOzQRtX7cnApm42JqdqIQf9n7ZVh8Loa981roaNY8oCnxhksNUGMZomZ
+ rc6UrsgjN+1jw6k6qFNVknyQnAnzPVIb4cVovjOki/vwOcmTSJxqfsGwyUk7mOiCHdJM
+ xQ+E1TDFXE/IHqFUurcG/Lti3T4bqcffPHY8mnCEf6Zxgl85rnpLQz21JKBwCKy9+rDO lw== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ug30mg41t-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 20 Nov 2023 08:20:36 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AK8Kasq029827
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 20 Nov 2023 08:20:36 GMT
+Received: from [10.216.59.34] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 20 Nov
+ 2023 00:20:27 -0800
+Message-ID: <5ecab46b-3808-4e89-a5ac-3c13e0c0a216@quicinc.com>
+Date: Mon, 20 Nov 2023 13:50:23 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,134 +51,110 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v2 2/8] arm64: dts: qcom: add initial SM8650 dtsi
-Content-Language: en-US, fr
-To: Konrad Dybcio <konrad.dybcio@linaro.org>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20231106-topic-sm8650-upstream-dt-v2-0-44d6f9710fa7@linaro.org>
- <20231106-topic-sm8650-upstream-dt-v2-2-44d6f9710fa7@linaro.org>
- <5b1d2eff-d328-4bb2-b255-b5913e1700f5@linaro.org>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <5b1d2eff-d328-4bb2-b255-b5913e1700f5@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH 8/9] dt-bindings: reserved-memory: MediaTek: Add reserved
+ memory for SVP
+Content-Language: en-US
+To: =?UTF-8?B?WW9uZyBXdSAo5ZC05YuHKQ==?= <Yong.Wu@mediatek.com>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "christian.koenig@amd.com"
+	<christian.koenig@amd.com>,
+        "quic_vjitta@quicinc.com"
+	<quic_vjitta@quicinc.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "sumit.semwal@linaro.org" <sumit.semwal@linaro.org>
+CC: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+        "jstultz@google.com" <jstultz@google.com>,
+        "linaro-mm-sig@lists.linaro.org"
+	<linaro-mm-sig@lists.linaro.org>,
+        "linux-media@vger.kernel.org"
+	<linux-media@vger.kernel.org>,
+        "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>,
+        =?UTF-8?B?SmlhbmppYW8gWmVuZyAo5pu+5YGl5aejKQ==?=
+	<Jianjiao.Zeng@mediatek.com>,
+        =?UTF-8?B?S3VvaG9uZyBXYW5nICjnjovlnIvptLsp?=
+	<kuohong.wang@mediatek.com>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "Brian.Starkey@arm.com" <Brian.Starkey@arm.com>,
+        "benjamin.gaignard@collabora.com" <benjamin.gaignard@collabora.com>,
+        "tjmercier@google.com" <tjmercier@google.com>,
+        "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>,
+        "angelogioacchino.delregno@collabora.com"
+	<angelogioacchino.delregno@collabora.com>
+References: <20230911023038.30649-1-yong.wu@mediatek.com>
+ <20230911023038.30649-9-yong.wu@mediatek.com>
+ <d4d471e7-64cf-42bf-a061-82934c904691@quicinc.com>
+ <2c3ad77806df3ef23cb69336f2049821529e337b.camel@mediatek.com>
+ <a83b00c4-a33a-4687-b024-173c6c5a66a0@quicinc.com>
+ <8666e39c6b59322af6a9637121ed22f291830c46.camel@mediatek.com>
+From: Jaskaran Singh <quic_jasksing@quicinc.com>
+In-Reply-To: <8666e39c6b59322af6a9637121ed22f291830c46.camel@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: NFg0IuWqxZGtZ8GVXpsSQaeo7n2SJGkl
+X-Proofpoint-ORIG-GUID: NFg0IuWqxZGtZ8GVXpsSQaeo7n2SJGkl
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-20_06,2023-11-17_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 malwarescore=0
+ clxscore=1011 mlxlogscore=999 priorityscore=1501 lowpriorityscore=0
+ spamscore=0 phishscore=0 adultscore=0 bulkscore=0 suspectscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2311060000 definitions=main-2311200054
 
-On 18/11/2023 01:21, Konrad Dybcio wrote:
-> On 6.11.2023 09:39, Neil Armstrong wrote:
->> Add initial DTSI for the Qualcomm SM8650 platform,
->> only contains nodes which doesn't depend on interconnect.
+
+
+On 11/6/2023 11:26 AM, Yong Wu (吴勇) wrote:
+> On Wed, 2023-11-01 at 11:20 +0530, Jaskaran Singh wrote:
+>>  	 
+>> External email : Please do not click links or open attachments until
+>> you have verified the sender or the content.
+>>  On 10/20/2023 3:20 PM, Yong Wu (吴勇) wrote:
+>>> On Thu, 2023-10-19 at 10:16 +0530, Vijayanand Jitta wrote:
+>>>>   
+>>>> Instead of having a vendor specific binding for cma area, How
+>> about
+>>>> retrieving
+>>>>
+>>>
+>> https://lore.kernel.org/lkml/1594948208-4739-1-git-send-email-hayashi.kunihiko@socionext.com/
+>>>>  ?
+>>>> dma_heap_add_cma can just associate cma region and create a heap.
+>> So,
+>>>> we can reuse cma heap
+>>>> code for allocation instead of replicating that code here.
+>>>>
+>>>
+>>> Thanks for the reference. I guess we can't use it. There are two
+>>> reasons:
+>>>   
+>>> a) The secure heap driver is a pure software driver and we have no
+>>> device for it, therefore we cannot call dma_heap_add_cma.
+>>>   
 >>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
-> Just a couple nits
+>> Hi Yong,
+>>
+>> We're considering using struct cma as the function argument to
+>> dma_heap_add_cma() rather than struct device. Would this help
+>> resolve the problem of usage with dma_heap_add_cma()?
 > 
-> [...]
-> 
->> +		cpu2-bottom-thermal {
->> +			polling-delay-passive = <0>;
->> +			polling-delay = <0>;
->> +			thermal-sensors = <&tsens0 6>;
->> +
->> +			trips {
->> +				trip-point0 {
->> +					temperature = <90000>;
->> +					hysteresis = <2000>;
->> +					type = "passive";
->> +				};
->> +
->> +				trip-point1 {
->> +					temperature = <95000>;
->> +					hysteresis = <2000>;
->> +					type = "passive";
->> +				};
->> +
->> +				 cpu-critical {
-> indentation
-> 
->> +					temperature = <110000>;
->> +					hysteresis = <1000>;
->> +					type = "critical";
->> +				};
->> +			};
->> +		};
-> [...]
->> +
->> +		nsphmx-0-thermal {
->> +			polling-delay-passive = <10>;
->> +			polling-delay = <0>;
->> +			thermal-sensors = <&tsens2 8>;
->> +
->> +			trips {
->> +				thermal-engine-config {
->> +					temperature = <125000>;
->> +					hysteresis = <1000>;
->> +					type = "passive";
->> +				};
->> +
->> +				thermal-hal-config {
->> +					temperature = <125000>;
->> +					hysteresis = <1000>;
->> +					type = "passive";
->> +				};
-> The two above nodes (which are repeated under many tzones) sound made up
-> just to be consumed by a bunch of android binaries
-> 
-> Or at least the second one, maybe "thermal engine" is some hw/fw part?
-> 
->> +
->> +				reset-mon-config {
-> "reset mon" is not a very enticing name either..
-> 
->> +					temperature = <115000>;
->> +					hysteresis = <5000>;
->> +					type = "passive";
->> +				};
->> +
->> +				junction-config {
-> ...which leads me to believe only this one is meaningful
-> 
-> same goes for all tzones that have a similar mess :/
->> +					temperature = <95000>;
->> +					hysteresis = <5000>;
->> +					type = "passive";
->> +				};
+> Yes. If we use "struct cma", I guess it works.
+>
 
-I already did a big cleanep, will clean even further!
+Great; I've posted a v2[1] for the API incorporating this change.
 
-Thx,
-Neil
+Thanks,
+Jaskaran.
 
-> 
-> Konrad
-
+[1]
+https://lore.kernel.org/lkml/20231117100337.5215-1-quic_jasksing@quicinc.com/
 
