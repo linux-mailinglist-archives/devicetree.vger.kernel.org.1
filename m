@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-17151-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17152-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E91DA7F15B7
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 15:30:32 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69A097F15C1
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 15:33:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9FABB1F24735
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 14:30:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 24DB5282404
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 14:33:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F23941944E;
-	Mon, 20 Nov 2023 14:30:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8231199A6;
+	Mon, 20 Nov 2023 14:33:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="O3XXXkxJ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wLqIKqSc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 992DC10C
-	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 06:30:22 -0800 (PST)
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-a00a9d677fcso35844566b.0
-        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 06:30:22 -0800 (PST)
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0D4F10E
+	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 06:33:04 -0800 (PST)
+Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-53e751aeb3cso6405120a12.2
+        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 06:33:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700490621; x=1701095421; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1700490783; x=1701095583; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=O2HbC/VopNY1IV2jIP8X31m8Zh4hzxb9EKfxsgSbhlM=;
-        b=O3XXXkxJtHSw0yMX6SPYlBwc4kuj9H3yydGf+Xn2JjLTXWSWCIDxLdQRP149IzCsJH
-         DoVGDeO305GhGdcAtD2CdTC09kihU4UMJEO4WsmYndZTlRVUPxzuKU8+wN0tQF390m7L
-         A9zqA3lT4iTnXF2rNijBpTfEzL7Z8lFTk4hBVRFY2080IvUI5wS0vit/iLcctfKOsInL
-         AH7YEq92h4FOatEoeRSwDttzGrPjEi9m/p+TLis+xX3tJfwmvv5cISfug/t+D6fzp9HN
-         td4nsrAxMZNuRcp0fThiC1XAOeB+rerQ0xu+BZJKvQYz7QkjYC3JKIHlxYYHHX5owkJs
-         OJJQ==
+        bh=zoAiFNMN3MBx2kHhT1jADxR7MaRBLjkeeIjTHILsATg=;
+        b=wLqIKqScIYCcun3mCJz1P+jobA3v7+iwXVMhRayzBO2SdVveMDYpag2OG5YOPpPR7I
+         fAWz1F6oog/OuUn8hevDFJ1gkMJkCp/AlqFQQBfuGVD7ZGgqMurJvOErSkokwpU+Pdz3
+         wLICwLDuLHkGEsakeIAY3JUZzeAmVFId92byMfO5aC7RB/9gsN5ROoWdk/d5MUhRb3bA
+         wkPPlt/XDHEW3u64L8MHUoxobod4w0Lk8fQKQw8hkZFiQR4d35gLlxC5XVs6hEOatcdc
+         nrjvoQ9An1s45wa75Guuje7CdjuLJJpCX6OeAeirpi1tkPXxC2PiLkzwHUsWPtc+cWlL
+         CLRg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700490621; x=1701095421;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1700490783; x=1701095583;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=O2HbC/VopNY1IV2jIP8X31m8Zh4hzxb9EKfxsgSbhlM=;
-        b=mKpbk6Y2shd+Yyko7Bfw/SmuVGa0x4iJClCXr3wcMKINrSQtD3T0UJtrexqbRPG4NG
-         jyFMkz96DHMihwFtl1AhlBtGVHAPLYN+opym8MReFw5i3ccqDQulDMqMYEmJ1twlygim
-         ebakD6TWRQWBDOs+OtnkXh1oZgai65mVbZvw+Gvee2tY8cHxb+gCK2mu2rPiDhQnlrRs
-         /LFc51Xre9zaOmp/EvfBfsg3XGiEXcS4CeYMIyQuxYfmZEsMIcq7H18yBeNzBp49+dZw
-         aDVAe56fYh5dL5pBbg9+m71kF9vaDNxu0dn+eyw26iy2ZSmqSTKzp9J6y8++e5wNZd3O
-         KDSg==
-X-Gm-Message-State: AOJu0Yw5Kpw+4cXl/KIY620ErrX1Uw+dG+rkLNWpFDrbQE4rnW5fbF/Z
-	qaHLt6c+kG/Gw21uMELA/yIQ8P/GjVL/eiq8yoE=
-X-Google-Smtp-Source: AGHT+IGPNPjAufJGG7kQfgOTZQFzxxOpHHZaOICe6MzY0XqMW84/s3rZg46UYHp2NjPxxOTVWzW9ow==
-X-Received: by 2002:a17:906:8e:b0:9fb:248:2d4e with SMTP id 14-20020a170906008e00b009fb02482d4emr4627202ejc.12.1700490621091;
-        Mon, 20 Nov 2023 06:30:21 -0800 (PST)
+        bh=zoAiFNMN3MBx2kHhT1jADxR7MaRBLjkeeIjTHILsATg=;
+        b=Kt9QhG2GtA45xLTAZ8e915vaxmaXstrwi/Z+AgAgdTcNxLpjo8CJiQauMaUNGpd6z8
+         AqALml/xpvg6EoCFP/Pujo8ySQF8o21jWal8D6FsbBQMjuvdbP+LkLcTv2mVkfrm/V5h
+         12npgeO48Sup8F0Y5ydD/aarDe+YQkCJPckgsxvFIzpbMTP3tqFY/jAuxDOElDMYOga5
+         J2Z+a7sHr7HT8tWvoD9XXhHalQ9EeRzOQ9Y8ryyyR9uWCH98Rb9OdmGxrYKu7Uplz+BH
+         hJa9koRHGweflbcyxT+OdhZxYp8RCIsnxA5YkQjUgBjcOaaW8CAB5WLKBum2cmpEVFkb
+         3Osg==
+X-Gm-Message-State: AOJu0Ywb4y6UbDXTLzr+Gt8IPBeqpn6LmHH4vBZWrgB1pHbbB0ek0KLd
+	L2lRaF4Jo/7HwNanNjLad2rMhg==
+X-Google-Smtp-Source: AGHT+IFAMWl0QerxVsat39nC28l4EF18a1qHEyIom86ybr3an1vksCf9F2MVXxZmkPjLduswTGu+IQ==
+X-Received: by 2002:a17:906:2b56:b0:9d3:8d1e:cf0 with SMTP id b22-20020a1709062b5600b009d38d1e0cf0mr4432264ejg.54.1700490782974;
+        Mon, 20 Nov 2023 06:33:02 -0800 (PST)
 Received: from [192.168.201.100] (178235187204.dynamic-4-waw-k-2-3-0.vectranet.pl. [178.235.187.204])
-        by smtp.gmail.com with ESMTPSA id m8-20020a170906160800b009fad1dfe472sm2599927ejd.153.2023.11.20.06.30.18
+        by smtp.gmail.com with ESMTPSA id mf3-20020a170906cb8300b009f28db2b702sm3912586ejb.209.2023.11.20.06.33.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Nov 2023 06:30:20 -0800 (PST)
-Message-ID: <1ab4e5a0-dd6b-4b74-90ab-12e7a15153d7@linaro.org>
-Date: Mon, 20 Nov 2023 15:30:17 +0100
+        Mon, 20 Nov 2023 06:33:02 -0800 (PST)
+Message-ID: <2085c7a2-046a-4ef0-99b7-1beef0d8d2cb@linaro.org>
+Date: Mon, 20 Nov 2023 15:33:00 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,19 +62,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 2/2] arm64: dts: qcom: sm8250-xiaomi-pipa: Add initial
- device tree
+Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: Add device tree for Xiaomi Mi 11
+ Ultra
 Content-Language: en-US
-To: Luka Panio <lukapanio@gmail.com>, Andy Gross <agross@kernel.org>,
+To: wuxilin123@gmail.com, Andy Gross <agross@kernel.org>,
  Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>, Kees Cook <keescook@chromium.org>,
- Tony Luck <tony.luck@intel.com>, "Guilherme G . Piccoli"
- <gpiccoli@igalia.com>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-hardening@vger.kernel.org
-References: <20231024063740.4975-1-lukapanio@gmail.com>
- <20231024063740.4975-2-lukapanio@gmail.com>
+ Tony Luck <tony.luck@intel.com>, "Guilherme G. Piccoli" <gpiccoli@igalia.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-hardening@vger.kernel.org
+References: <20231021-sakuramist-mi11u-v2-0-fa82c91ecaf0@gmail.com>
+ <20231021-sakuramist-mi11u-v2-3-fa82c91ecaf0@gmail.com>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -111,30 +110,89 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20231024063740.4975-2-lukapanio@gmail.com>
+In-Reply-To: <20231021-sakuramist-mi11u-v2-3-fa82c91ecaf0@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 24.10.2023 08:37, Luka Panio wrote:
-> Initial support for Xiaomi Pad 6 tablet, that have sm8250 soc.
+On 21.10.2023 12:20, Xilin Wu via B4 Relay wrote:
+> From: Xilin Wu <wuxilin123@gmail.com>
 > 
-> Signed-off-by: Luka Panio <lukapanio@gmail.com>
+> Add support for Xiaomi Mi 11 Ultra. This commit brings support for:
+> * Front and rear display panels (initialized by bootloader)
+> * USB
+> * UFS
+> * PCIe0
+> * Thermistor sensors
+> * ADSP/CDSP/Modem/SLPI
+> * IR Transmitter
+> * RTC provided by PMK8350
+> * Buttons
+> 
+> To create a working boot image, you need to run:
+> cat arch/arm64/boot/Image.gz arch/arm64/boot/dts/qcom/sm8350-xiaomi-\
+> star.dtb > .Image.gz-dtb
+> 
+> mkbootimg \
+> --kernel .Image.gz-dtb \
+> --ramdisk some_initrd.img \
+> --pagesize 4096 \
+> --base 0x0 \
+> --kernel_offset 0x8000 \
+> --ramdisk_offset 0x1000000 \
+> --tags_offset 0x100 \
+> --cmdline "SOME_CMDLINE" \
+> --dtb_offset 0x1f00000 \
+> --header_version 1 \
+> --os_version 14.0.0 \
+> --os_patch_level 2099-12 \
+> -o boot.img-xiaomi-star
+> 
+> Then, you can flash it to slot b on the device:
+> 
+> // You have to either pull vbmeta{"","_system"} from
+> // /dev/block/bootdevice/by-name/ or build one as a part of AOSP build process
+> fastboot --disable-verity --disable-verification flash vbmeta_b vbmeta.img
+> fastboot --disable-verity --disable-verification flash vbmeta_system_b \
+> vbmeta_system.img
+> 
+> fastboot flash boot_b boot.img-xiaomi-star
+> fastboot erase dtbo_b
+> fastboot set_active b
+> fastboot reboot
+> 
+> Signed-off-by: Xilin Wu <wuxilin123@gmail.com>
 > ---
 [...]
 
-> +
-> +	gpio_keys: gpio-keys {
-> +		compatible = "gpio-keys";
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&vol_up_n>;
-property-n
-property-names
 
-other than that lgtm
+> +		pmr735a_s1: smps1 {
+> +			regulator-name = "pmr735a_s1";
+> +			regulator-min-microvolt = <1200000>;
+> +			regulator-max-microvolt = <1280000>;
+> +		};
+You probably want initial mode on this pmic too
 
-Acked-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+[...]
+
+> +
+> +&ufs_mem_hc {
+> +	reset-gpios = <&tlmm 203 GPIO_ACTIVE_LOW>;
+> +	vcc-supply = <&vreg_l7b_2p96>;
+> +	vcc-max-microamp = <800000>;
+> +	vccq-supply = <&vreg_l9b_1p2>;
+> +	vccq-max-microamp = <900000>;
+> +	vdd-hba-supply = <&vreg_l9b_1p2>;
+These regulators need regulator-allow-set-mode and allowed-modes
 
 Konrad
 
+[...]
+
+> \ No newline at end of file
+> 
+And this needs to be fixed
+
+looks good otherwise, I think!
+
+Konrad
 
