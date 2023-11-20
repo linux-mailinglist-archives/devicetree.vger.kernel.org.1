@@ -1,134 +1,117 @@
-Return-Path: <devicetree+bounces-17188-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17192-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4E4B7F1841
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 17:16:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BCF7C7F1865
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 17:18:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0990A1C21594
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 16:16:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ECA161C21828
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 16:18:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E12B51DFCF;
-	Mon, 20 Nov 2023 16:16:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37F271DFDE;
+	Mon, 20 Nov 2023 16:18:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pOZXQteg"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="sqnGbTdI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBF501DFC4;
-	Mon, 20 Nov 2023 16:16:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CC8FC433C8;
-	Mon, 20 Nov 2023 16:16:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700496979;
-	bh=cp9VBVhfKB1W6Ax326oY4P4qaJJhzvjhHmBuHx1mN3s=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=pOZXQtegp1iz8hawwcJUqLwUvss7v0jB4bYt2liRYvbs73NbGkLN7lGl7ot2Hx0xz
-	 YGfdqVAZ4QNU8a08GLx6DHxUd1nbYkmNjaaXhc2vWfZefNx3cGkVFSNa/PtEk8vkTR
-	 keCxY8TrkyjVCt3rlhTkyyIubDu9n6eGDrNKZynJYMHvdtbt3O4NTQsHkFauyb9egy
-	 ErbMrqLb8xiBUhBT8w9+EVdJ7HVtT5vvd6eKJ5fs0FuTCq2P3Zf6XOlyZkZ7oihlHD
-	 KcgK+2wCpKwRv7BdeQ4Yga3zbBt8LIcClKUQi0lJPgUIK6icBwnLt5t+IJcLlPzBTY
-	 9gvfh/VboAHxA==
-Received: from johan by xi.lan with local (Exim 4.96.2)
-	(envelope-from <johan+linaro@kernel.org>)
-	id 1r56wm-0001vq-2D;
-	Mon, 20 Nov 2023 17:16:28 +0100
-From: Johan Hovold <johan+linaro@kernel.org>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-	Wesley Cheng <quic_wcheng@quicinc.com>,
-	Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>,
-	linux-arm-msm@vger.kernel.org,
-	linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Johan Hovold <johan+linaro@kernel.org>
-Subject: [PATCH 3/3] USB: dwc3: qcom: simplify wakeup interrupt setup
-Date: Mon, 20 Nov 2023 17:16:07 +0100
-Message-ID: <20231120161607.7405-4-johan+linaro@kernel.org>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20231120161607.7405-1-johan+linaro@kernel.org>
-References: <20231120161607.7405-1-johan+linaro@kernel.org>
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 867E2F5;
+	Mon, 20 Nov 2023 08:18:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=6SCBZOZz6Qup6QX990ipAzjI1yY+8rbPKPGIJ6ySC0E=; b=sqnGbTdIP9eiY5KVdCOGH68mSL
+	OorK3g1mxqMHwNbBHJzmZcfhye06oLl9D7b2ucdzEubIu2uN7K/5btywoIHQon63OGbQX4+wib9Y0
+	r9zZuYEbWzRCNaP121etnyiXDueFvlXYvvlkeNTypWFZwyy8op+KMUUZngzSk1XGQ4IxW3ZeMthf8
+	5ixyIDuhokIU0GdZN3HQWBTnwNcHgBq2DUB4cg6QYKA60cU5qbduXITs9IXyoSTZKDlB6In1gUdX0
+	f5Z1V/OzX5wWjziNXN4L1CR1jORspQPJOx6eF2drxgSc3r6HJJ4aGkG8bunfLvS9YbYcUawr3B8ZP
+	5uoezByg==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:57710)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1r56yN-0005rP-1I;
+	Mon, 20 Nov 2023 16:18:07 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1r56yN-0003JU-GV; Mon, 20 Nov 2023 16:18:07 +0000
+Date: Mon, 20 Nov 2023 16:18:07 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Jie Luo <quic_luoj@quicinc.com>, davem@davemloft.net,
+	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, hkallweit1@gmail.com, corbet@lwn.net,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+Subject: Re: [PATCH v5 3/6] net: phy: at803x: add QCA8084 ethernet phy support
+Message-ID: <ZVuGv2005eaw+R6u@shell.armlinux.org.uk>
+References: <20231118062754.2453-1-quic_luoj@quicinc.com>
+ <20231118062754.2453-4-quic_luoj@quicinc.com>
+ <1eb60a08-f095-421a-bec6-96f39db31c09@lunn.ch>
+ <ZVkRkhMHWcAR37fW@shell.armlinux.org.uk>
+ <eee39816-b0b8-475c-aa4a-8500ba488a29@lunn.ch>
+ <fef2ab86-ccd7-4693-8a7e-2dac2c80fd53@quicinc.com>
+ <1d4d7761-6b42-48ec-af40-747cb4b84ca5@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1d4d7761-6b42-48ec-af40-747cb4b84ca5@lunn.ch>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-Use the IRQF_NO_AUTOEN irq flag when requesting the wakeup interrupts
-instead of setting it separately.
+On Mon, Nov 20, 2023 at 04:34:55PM +0100, Andrew Lunn wrote:
+> Are you saying there is a USXGMII-M level link change status? The link
+> between the SoC and the PHY package is up/down? If it is down, all
+> four MAC-PHY links are down. If it is up, it is possible to carry
+> frames between the SoC and the PHY package, but maybe the PHYs
+> themselves are down?
 
-No functional change intended.
+It shouldn't do. Each "channel" in the USXGMII-M link has its own
+autoneg block at both ends, each conveys link status independently.
 
-Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
----
- drivers/usb/dwc3/dwc3-qcom.c | 12 ++++--------
- 1 file changed, 4 insertions(+), 8 deletions(-)
+The MAC side structure is:
 
-diff --git a/drivers/usb/dwc3/dwc3-qcom.c b/drivers/usb/dwc3/dwc3-qcom.c
-index 82544374110b..fdf6d5d3c2ad 100644
---- a/drivers/usb/dwc3/dwc3-qcom.c
-+++ b/drivers/usb/dwc3/dwc3-qcom.c
-@@ -546,10 +546,9 @@ static int dwc3_qcom_setup_irq(struct platform_device *pdev)
- 				pdata ? pdata->hs_phy_irq_index : -1);
- 	if (irq > 0) {
- 		/* Keep wakeup interrupts disabled until suspend */
--		irq_set_status_flags(irq, IRQ_NOAUTOEN);
- 		ret = devm_request_threaded_irq(qcom->dev, irq, NULL,
- 					qcom_dwc3_resume_irq,
--					IRQF_ONESHOT,
-+					IRQF_ONESHOT | IRQF_NO_AUTOEN,
- 					"qcom_dwc3 HS", qcom);
- 		if (ret) {
- 			dev_err(qcom->dev, "hs_phy_irq failed: %d\n", ret);
-@@ -561,10 +560,9 @@ static int dwc3_qcom_setup_irq(struct platform_device *pdev)
- 	irq = dwc3_qcom_get_irq(pdev, "dp_hs_phy_irq",
- 				pdata ? pdata->dp_hs_phy_irq_index : -1);
- 	if (irq > 0) {
--		irq_set_status_flags(irq, IRQ_NOAUTOEN);
- 		ret = devm_request_threaded_irq(qcom->dev, irq, NULL,
- 					qcom_dwc3_resume_irq,
--					IRQF_ONESHOT,
-+					IRQF_ONESHOT | IRQF_NO_AUTOEN,
- 					"qcom_dwc3 DP_HS", qcom);
- 		if (ret) {
- 			dev_err(qcom->dev, "dp_hs_phy_irq failed: %d\n", ret);
-@@ -576,10 +574,9 @@ static int dwc3_qcom_setup_irq(struct platform_device *pdev)
- 	irq = dwc3_qcom_get_irq(pdev, "dm_hs_phy_irq",
- 				pdata ? pdata->dm_hs_phy_irq_index : -1);
- 	if (irq > 0) {
--		irq_set_status_flags(irq, IRQ_NOAUTOEN);
- 		ret = devm_request_threaded_irq(qcom->dev, irq, NULL,
- 					qcom_dwc3_resume_irq,
--					IRQF_ONESHOT,
-+					IRQF_ONESHOT | IRQF_NO_AUTOEN,
- 					"qcom_dwc3 DM_HS", qcom);
- 		if (ret) {
- 			dev_err(qcom->dev, "dm_hs_phy_irq failed: %d\n", ret);
-@@ -591,10 +588,9 @@ static int dwc3_qcom_setup_irq(struct platform_device *pdev)
- 	irq = dwc3_qcom_get_irq(pdev, "ss_phy_irq",
- 				pdata ? pdata->ss_phy_irq_index : -1);
- 	if (irq > 0) {
--		irq_set_status_flags(irq, IRQ_NOAUTOEN);
- 		ret = devm_request_threaded_irq(qcom->dev, irq, NULL,
- 					qcom_dwc3_resume_irq,
--					IRQF_ONESHOT,
-+					IRQF_ONESHOT | IRQF_NO_AUTOEN,
- 					"qcom_dwc3 SS", qcom);
- 		if (ret) {
- 			dev_err(qcom->dev, "ss_phy_irq failed: %d\n", ret);
+
+                            +----------+                +-----+
+                    .-XGMII-> Rate     |    PCS         |     |
+MAC1 <-MDI-> PHY <-+        | Adaption <--> Clause 49 <->     |
+                    `-GMII-->          |                |     |
+                            +-----^----+                |     |
+                                  |                     |     |
+                            +-----v---- +               |     |
+                            | Autoneg   |               |     |
+                            | Clause 37 |               |     |
+                            +-----------+               |     |
+                                                        | Mux <--> PMA <-->
+                                                        |     |
+                                                        .......     USXGMII-M
+
+<------------------------------------------------------>
+      These blocks are repeated for each channel
+
+The spec goes on to state that there must be a USXGMII enable bit that
+defaults to disabled and the PHY should assume normal XGMII/XFI
+operation. When enabled, autoneg follows a slight modification of
+clause 37-6.
+
+As far as the USXGMII-M link, I believe 2.7.8 in the USXGMII-M
+documentation covers this, which is "hardware autoneg programming
+sequence". It states that "if 10G link is lost or regained, the
+software is expected to disable autoneg and re-enable autoneg". I
+think "10G link" refers to the USXGMII-M connection, which means
+the loss of that link shold cause software to intervene in each
+of the PCS autoneg blocks. It is, however, rather unclear.
+
 -- 
-2.41.0
-
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
