@@ -1,129 +1,119 @@
-Return-Path: <devicetree+bounces-17251-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17252-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CA1B7F1BD9
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 19:00:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D5167F1BE9
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 19:05:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A12B8B21062
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 18:00:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 55B6E1F2091B
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 18:05:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92CE92F86F;
-	Mon, 20 Nov 2023 18:00:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26EBF249FE;
+	Mon, 20 Nov 2023 18:05:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="hjw7Emvb"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Upabyqmb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C40E92;
-	Mon, 20 Nov 2023 10:00:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=5wD7wBF+lHKdF+Dqen+lnC7hkw+eQyJUlyzbsg0+08c=; b=hjw7EmvbLqLK70QVQXYoHYyWgE
-	RaWMzEwXzQL+xor+owvdn5Wjz6Y5h8Epeo4tVEyFU0JK/NbxjR7oNneI5ZpBkBr4sh33W1orqVd2M
-	qpzH1sFnaWwBCtj6mv06ydHv1PZiHRm2u8s/SmRynOvHJesAIZyNGXRKzx5zDli7KgL8=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1r58Z1-000g3L-Tr; Mon, 20 Nov 2023 19:00:03 +0100
-Date: Mon, 20 Nov 2023 19:00:03 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-Cc: =?iso-8859-1?Q?K=F6ry?= Maincent <kory.maincent@bootlin.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Luis Chamberlain <mcgrof@kernel.org>,
-	Russ Weight <russ.weight@linux.dev>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 2/9] ethtool: Expand Ethernet Power Equipment
- with PoE alongside PoDL
-Message-ID: <2539b109-72ad-470a-9dae-9f53de4f64ec@lunn.ch>
-References: <20231116-feature_poe-v1-0-be48044bf249@bootlin.com>
- <20231116-feature_poe-v1-2-be48044bf249@bootlin.com>
- <04cb7d87-bb6b-4997-878d-490c17bfdfd0@lunn.ch>
- <20231120110944.66938859@kmaincent-XPS-13-7390>
- <20231120111008.GC590719@pengutronix.de>
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91A31AC
+	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 10:05:05 -0800 (PST)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-9de7a43bd1aso632854566b.3
+        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 10:05:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1700503502; x=1701108302; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zfQgWIiUL3Fow7Ad2MX3WF/O+vZdxL2eavqBiY3Rc9k=;
+        b=UpabyqmbB+ek2UGQg8lweA3q9EHnaRDqWa2EAjoloH8hoyUpsPI23OQT+LKIWJ+5qY
+         2Q1xz9twyYwE00H5FF+Hfwt//izPH6uSeK0et1VVh+WuGLWhz2SNO5No++wOa82+6ExA
+         Yni8FPpQSUFcHLADzSEeVv+rSc2SLVGH/TbAo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700503502; x=1701108302;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=zfQgWIiUL3Fow7Ad2MX3WF/O+vZdxL2eavqBiY3Rc9k=;
+        b=I9Zk/RLZcQcwwEQtK82v9bJRzWYO4JvYYpxwWLjJNXHjoikPoHdi3ZOMIyrBr47Mr9
+         yBuyz9yWASOZSqn4K5xO3x660Y2dOOg3Apj1sDpuExv4Me10XSQ3fmjq1T7Muy2v1ScT
+         ftPGC9BTutIDWVmlruaIFzvz+ZFnLz8I3EFvZzIuIiIIOEQBxN48vmDMjjR4fnHnYLLc
+         sUIJ2wjQFRRvBTYi6Jza1T46XXu/tDClzi/PaCgEvx4+Rfus4GsV6KkDBSlaZ6VXrcrI
+         /4Gqxde8kp5Xk84KDQNGUTLOt5gnBidZCpOr94pgSFVhcs5YUF+l8hzzv25MMf07X7BL
+         ZjbA==
+X-Gm-Message-State: AOJu0YxmLnecHubDUmMsmqDR77CG1zBOW2xtzySUDY+8n7VdzerjFRfH
+	EqDHFbwRiDetlR0xUQm7cMKt75E1dlJiRlVN+1lH4A==
+X-Google-Smtp-Source: AGHT+IEW4DEzF3zfMTGTfkDyWIqBpLdsBqpUGQ2t9kHTFITPql7QQHIHzYySnMNpN8xrmX4eOZKSwg==
+X-Received: by 2002:a17:906:4107:b0:a00:152a:1efa with SMTP id j7-20020a170906410700b00a00152a1efamr1585006ejk.3.1700503501719;
+        Mon, 20 Nov 2023 10:05:01 -0800 (PST)
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com. [209.85.128.42])
+        by smtp.gmail.com with ESMTPSA id p27-20020a1709060ddb00b009fc50ebb062sm2122265eji.4.2023.11.20.10.05.00
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 20 Nov 2023 10:05:01 -0800 (PST)
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-408c6ec1fd1so2615e9.1
+        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 10:05:00 -0800 (PST)
+X-Received: by 2002:a05:600c:3c8b:b0:3f7:3e85:36a with SMTP id
+ bg11-20020a05600c3c8b00b003f73e85036amr395736wmb.7.1700503500479; Mon, 20 Nov
+ 2023 10:05:00 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231120111008.GC590719@pengutronix.de>
+References: <20231117032500.2923624-1-yangcong5@huaqin.corp-partner.google.com>
+ <CAD=FV=WAPAhMfK5jgkMS=m3grxaUtrDoZnQs3rmbLpLX84+j1w@mail.gmail.com> <CAHwB_NLHqyP6mpQJHw86Hk-g3d8Q9xjRBde_YTTQiuLBwAhEKQ@mail.gmail.com>
+In-Reply-To: <CAHwB_NLHqyP6mpQJHw86Hk-g3d8Q9xjRBde_YTTQiuLBwAhEKQ@mail.gmail.com>
+From: Doug Anderson <dianders@chromium.org>
+Date: Mon, 20 Nov 2023 10:04:43 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=Vf0t_-t0CgLdGM2KMYtDcmf5sq4ej-G94ecKBxMO8K2w@mail.gmail.com>
+Message-ID: <CAD=FV=Vf0t_-t0CgLdGM2KMYtDcmf5sq4ej-G94ecKBxMO8K2w@mail.gmail.com>
+Subject: Re: [PATCH V2] drm/panel: boe-tv101wum-nl6: Fine tune Himax83102-j02
+ panel HFP and HBP
+To: cong yang <yangcong5@huaqin.corp-partner.google.com>
+Cc: Sam Ravnborg <sam@ravnborg.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Daniel Vetter <daniel@ffwll.ch>, Hsin-Yi Wang <hsinyi@google.com>, David Airlie <airlied@gmail.com>, 
+	zhouruihai@huaqin.com, dri-devel <dri-devel@lists.freedesktop.org>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-> > > >  struct pse_control_config {
-> > > >  	enum ethtool_podl_pse_admin_state podl_admin_control;
-> > > > +	enum ethtool_pse_admin_state admin_control;  
-> > > 
-> > > When i look at this, it seems to me admin_control should be generic
-> > > across all schemes which put power down the cable, and
-> > > podl_admin_control is specific to how PoDL puts power down the cable.
+Hi,
+
+On Sun, Nov 19, 2023 at 5:33=E2=80=AFPM cong yang
+<yangcong5@huaqin.corp-partner.google.com> wrote:
+>
+> Hi,
+>
+> On Sat, Nov 18, 2023 at 1:11=E2=80=AFAM Doug Anderson <dianders@chromium.=
+org> wrote:
+> >
+> > Hi,
+> >
+> > On Thu, Nov 16, 2023 at 7:25=E2=80=AFPM Cong Yang
+> > <yangcong5@huaqin.corp-partner.google.com> wrote:
 > > >
-> > > Since you appear to be adding support for a second way to put power
-> > > down the cable, i would expect something like poe_admin_control being
-> > > added here. But maybe that is in a later patch?
-> > 
-> > No as said above admin_control is for PoE and podl_admin_control is for PoDL.
-> > Maybe you prefer to use poe_admin_control, and add poe prefix in the poe
-> > variables. It will differ a bit from the IEEE standard naming but I agreed that
-> > it would be more understandable in the development part.
-> 
-> Official name for "PoE" is "Power via Media Dependent Interface". PoE is
-> not used in the IEEE 802.3-2018. Using names not used in the specification,
-> make development even harder :)
-> Especially since there are even more marketing names (names not used in the
-> specification) for different PoE variants:
-> - 802.3af (802.3at Type 1), PoE
-> - 802.3at Type 2, PoE+
-> - 802.3bt Type 3, 4PPoE or PoE++
-> - 802.3bt Type 4, 4PPoE or PoE++
+> > > The refresh reported by modetest is 60.46Hz, and the actual measureme=
+nt
+> > > is 60.01Hz, which is outside the expected tolerance.
+> >
+> > Presumably you've swapped the numbers above? The value reported by
+> > modetest is 60.01Hz and the actual measurement is 60.46Hz?
+>
+> No, the value reported by modetest is 60.46Hz.
 
-From the 2018 standard:
+Indeed. I somehow assumed that the old value of "clock / (htotal *
+vtotal)" would have been the one that was closer to 60 Hz, but doing
+the math I agree with you. Specifically:
 
-  1.4.407 Power Sourcing Equipment (PSE): A DTE or midspan device that
-  provides the power to a single link section. PSEs are defined for
-  use with two different types of balanced twisted-pair PHYs. When
-  used with 2 or 4 pair balanced twisted-pair (BASE-T) PHYs, (see IEEE
-  Std 802.3, Clause 33), DTE powering is intended to provide a single
-  10BASE-T, 100BASE-TX, or 1000BASE-T device with a unified interface
-  for both the data it requires and the power to process these
-  data. When used with single balanced twisted-pair (BASE-T1) PHYs
-  (see IEEE Std 802.3, Clause 104), DTE powering is intended to
-  provide a single 100BASE-T1 or 1000BASE-T1 device with a unified
-  interface for both the data it requires and the power to process
-  these data. A PSE used with balanced single twisted-pair PHYs is
-  also referred to as a PoDL PSE.
+>>> 161600000 / ((1200 + 40 + 20 + 40) * (1920 + 116 + 8 + 12))
+60.46093983837174
 
-So it seems like, anything not PoDL PSE does not have a name :-(
+>>> 162850000 / ((1200 + 50 + 20 + 50) * (1920 + 116 + 8 + 12))
+60.005453366348306
 
-However, everything not PoDL PSE seems to be clause 33. So how about:
+Thanks for correcting me!
 
-	enum ethtool_podl_pse_admin_state podl_admin_control;
-	enum ethtool_c33_pse_admin_state c33_admin_control;  
-
-At least inside the kernel we use c22, c45, c37 etc. I'm not sure they
-are visible to userspace, but if we don't have a better name, maybe we
-have to use c33 in userspace as well.
-
-I do think naming like this makes it clear we are talking about two
-parallel technologies, not a generic layer and then extensions for
-podl.
-
-What do you think?
-
-	Andrew
+-Doug
 
