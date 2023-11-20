@@ -1,62 +1,70 @@
-Return-Path: <devicetree+bounces-17192-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17193-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCF7C7F1865
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 17:18:26 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72FC67F1868
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 17:18:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ECA161C21828
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 16:18:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A40EC1C218AC
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 16:18:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37F271DFDE;
-	Mon, 20 Nov 2023 16:18:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDA2C1DFE9;
+	Mon, 20 Nov 2023 16:18:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="sqnGbTdI"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ovMlTmzu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 867E2F5;
-	Mon, 20 Nov 2023 08:18:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=6SCBZOZz6Qup6QX990ipAzjI1yY+8rbPKPGIJ6ySC0E=; b=sqnGbTdIP9eiY5KVdCOGH68mSL
-	OorK3g1mxqMHwNbBHJzmZcfhye06oLl9D7b2ucdzEubIu2uN7K/5btywoIHQon63OGbQX4+wib9Y0
-	r9zZuYEbWzRCNaP121etnyiXDueFvlXYvvlkeNTypWFZwyy8op+KMUUZngzSk1XGQ4IxW3ZeMthf8
-	5ixyIDuhokIU0GdZN3HQWBTnwNcHgBq2DUB4cg6QYKA60cU5qbduXITs9IXyoSTZKDlB6In1gUdX0
-	f5Z1V/OzX5wWjziNXN4L1CR1jORspQPJOx6eF2drxgSc3r6HJJ4aGkG8bunfLvS9YbYcUawr3B8ZP
-	5uoezByg==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:57710)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1r56yN-0005rP-1I;
-	Mon, 20 Nov 2023 16:18:07 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1r56yN-0003JU-GV; Mon, 20 Nov 2023 16:18:07 +0000
-Date: Mon, 20 Nov 2023 16:18:07 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Jie Luo <quic_luoj@quicinc.com>, davem@davemloft.net,
-	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, hkallweit1@gmail.com, corbet@lwn.net,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
-Subject: Re: [PATCH v5 3/6] net: phy: at803x: add QCA8084 ethernet phy support
-Message-ID: <ZVuGv2005eaw+R6u@shell.armlinux.org.uk>
-References: <20231118062754.2453-1-quic_luoj@quicinc.com>
- <20231118062754.2453-4-quic_luoj@quicinc.com>
- <1eb60a08-f095-421a-bec6-96f39db31c09@lunn.ch>
- <ZVkRkhMHWcAR37fW@shell.armlinux.org.uk>
- <eee39816-b0b8-475c-aa4a-8500ba488a29@lunn.ch>
- <fef2ab86-ccd7-4693-8a7e-2dac2c80fd53@quicinc.com>
- <1d4d7761-6b42-48ec-af40-747cb4b84ca5@lunn.ch>
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03EA5114
+	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 08:18:27 -0800 (PST)
+Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-407da05f05aso15493635e9.3
+        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 08:18:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1700497105; x=1701101905; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=s2521BguFPahNtQVt5gNlkIeY96EJfle3B8C9Si+c40=;
+        b=ovMlTmzuR/740WcGKp6rVYdUStEq4ceWXS3XexNEdiLHbHeXkoGwDoaHT3XcJxJozk
+         7FMeF8JIwZkCreSXixMR78JthdeXC798bv8tYo49f9kMyTmx0OEOHYISAZrOuMGmF4Tn
+         lPHoNHToJ/XHY3acf776yjyYgYQMOj3xjbBO4IWIJS65FZ3VMPbDnsEOM5U2vuAY4V8d
+         DnCOJ6Jp21fTnER/Ewk5LWcedLKDlSxltAcBFKOI+ZJp1P+bXqJvD9KyWmrqjwJhHz8A
+         cW3e9g+3TQZKHiYZQeIXDAeMGn2NMyJHvaX8PJu8scPQQmkMN2SVZ2fSTAXgpcdNnceX
+         aWyQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700497105; x=1701101905;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=s2521BguFPahNtQVt5gNlkIeY96EJfle3B8C9Si+c40=;
+        b=gmvUx1CiKlY6r+nzUUL84zAoZzmg6LH/OVH3L7l/ekwsVtmtwqlgjqQFDcqWEL8Hnl
+         cQYoAdhx/tAR2vK/C/KdhTODMJdf9cGZ8KIocy2IINR8ujCk2vUQ8vyz6jWsHOoxuv0B
+         fBhXGjOP322CclFWHVnvceOima442c0hAYBu4BxXBYTHmPQo9Zz7d4w204fgSKhaGSCN
+         sxFzYuNddOvomMc1ATV82GuqxBmyMQ8AtNW3VIhk6FLKubh9VO67x41Ir91/bFXDVQt7
+         k8Qk6BgPEKD4Y3TibKrZ3TeCdSh3XXZS2BVNVXa/cBl0MjPJPBsPTZx7SH5HkZsrE6Jy
+         dgsA==
+X-Gm-Message-State: AOJu0Yxq9wmSeyzCoF7kyDW0Gx0Ao1EZWwPsr38Cf039EzT0RjB8AKgj
+	E8EohFWkiShyADaI1vnsN8K2px8PveJjuwVbBwk=
+X-Google-Smtp-Source: AGHT+IHAsnwJrZVQ1CLosctT8NZ/oMBKh372TupzsBQCbJOFIiiLfuJ04UvThrOcL0L28mcMcWZTsg==
+X-Received: by 2002:a05:600c:3b9d:b0:40a:6235:e82d with SMTP id n29-20020a05600c3b9d00b0040a6235e82dmr5088555wms.15.1700497105146;
+        Mon, 20 Nov 2023 08:18:25 -0800 (PST)
+Received: from localhost ([102.36.222.112])
+        by smtp.gmail.com with ESMTPSA id 1-20020a05600c230100b003fefb94ccc9sm13665281wmo.11.2023.11.20.08.18.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Nov 2023 08:18:24 -0800 (PST)
+From: Dan Carpenter <dan.carpenter@linaro.org>
+X-Google-Original-From: Dan Carpenter <dan.carpenter@oracle.com>
+Date: Mon, 20 Nov 2023 11:18:21 -0500
+To: oe-kbuild@lists.linux.dev, James Tai <james.tai@realtek.com>,
+	Thomas Gleixner <tglx@linutronix.de>, Marc Zyngier <maz@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 3/6] irqchip: Introduce RTD1319 support using the
+ Realtek common interrupt controller driver
+Message-ID: <a045008a-5a97-4903-b5e4-a761f7e4c20a@suswa.mountain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,53 +73,76 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1d4d7761-6b42-48ec-af40-747cb4b84ca5@lunn.ch>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+In-Reply-To: <20231117162709.1096585-4-james.tai@realtek.com>
 
-On Mon, Nov 20, 2023 at 04:34:55PM +0100, Andrew Lunn wrote:
-> Are you saying there is a USXGMII-M level link change status? The link
-> between the SoC and the PHY package is up/down? If it is down, all
-> four MAC-PHY links are down. If it is up, it is possible to carry
-> frames between the SoC and the PHY package, but maybe the PHYs
-> themselves are down?
+Hi James,
 
-It shouldn't do. Each "channel" in the USXGMII-M link has its own
-autoneg block at both ends, each conveys link status independently.
+kernel test robot noticed the following build warnings:
 
-The MAC side structure is:
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
+url:    https://github.com/intel-lab-lkp/linux/commits/James-Tai/dt-bindings-interrupt-controller-Add-support-for-Realtek-DHC-SoCs/20231118-003036
+base:   tip/irq/core
+patch link:    https://lore.kernel.org/r/20231117162709.1096585-4-james.tai%40realtek.com
+patch subject: [PATCH v2 3/6] irqchip: Introduce RTD1319 support using the Realtek common interrupt controller driver
+config: nios2-randconfig-r081-20231120 (https://download.01.org/0day-ci/archive/20231120/202311201929.2FpvMRlg-lkp@intel.com/config)
+compiler: nios2-linux-gcc (GCC) 13.2.0
+reproduce: (https://download.01.org/0day-ci/archive/20231120/202311201929.2FpvMRlg-lkp@intel.com/reproduce)
 
-                            +----------+                +-----+
-                    .-XGMII-> Rate     |    PCS         |     |
-MAC1 <-MDI-> PHY <-+        | Adaption <--> Clause 49 <->     |
-                    `-GMII-->          |                |     |
-                            +-----^----+                |     |
-                                  |                     |     |
-                            +-----v---- +               |     |
-                            | Autoneg   |               |     |
-                            | Clause 37 |               |     |
-                            +-----------+               |     |
-                                                        | Mux <--> PMA <-->
-                                                        |     |
-                                                        .......     USXGMII-M
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Reported-by: Dan Carpenter <error27@gmail.com>
+| Closes: https://lore.kernel.org/r/202311201929.2FpvMRlg-lkp@intel.com/
 
-<------------------------------------------------------>
-      These blocks are repeated for each channel
+smatch warnings:
+drivers/irqchip/irq-realtek-intc-common.c:179 realtek_intc_probe() warn: ignoring unreachable code.
+drivers/irqchip/irq-realtek-intc-common.c:187 realtek_intc_probe() warn: 'data->base' from of_iomap() not released on lines: 176,182.
 
-The spec goes on to state that there must be a USXGMII enable bit that
-defaults to disabled and the PHY should assume normal XGMII/XFI
-operation. When enabled, autoneg follows a slight modification of
-clause 37-6.
+vim +179 drivers/irqchip/irq-realtek-intc-common.c
 
-As far as the USXGMII-M link, I believe 2.7.8 in the USXGMII-M
-documentation covers this, which is "hardware autoneg programming
-sequence". It states that "if 10G link is lost or regained, the
-software is expected to disable autoneg and re-enable autoneg". I
-think "10G link" refers to the USXGMII-M connection, which means
-the loss of that link shold cause software to intervene in each
-of the PCS autoneg blocks. It is, however, rather unclear.
+40e5ff4eaef72b James Tai 2023-11-18  155  int realtek_intc_probe(struct platform_device *pdev, const struct realtek_intc_info *info)
+40e5ff4eaef72b James Tai 2023-11-18  156  {
+40e5ff4eaef72b James Tai 2023-11-18  157  	struct realtek_intc_data *data;
+40e5ff4eaef72b James Tai 2023-11-18  158  	struct device *dev = &pdev->dev;
+40e5ff4eaef72b James Tai 2023-11-18  159  	struct device_node *node = dev->of_node;
+40e5ff4eaef72b James Tai 2023-11-18  160  	int ret, i;
+40e5ff4eaef72b James Tai 2023-11-18  161  
+40e5ff4eaef72b James Tai 2023-11-18  162  	data = devm_kzalloc(dev, struct_size(data, subset_data, info->cfg_num), GFP_KERNEL);
+40e5ff4eaef72b James Tai 2023-11-18  163  	if (!data)
+40e5ff4eaef72b James Tai 2023-11-18  164  		return -ENOMEM;
+40e5ff4eaef72b James Tai 2023-11-18  165  
+40e5ff4eaef72b James Tai 2023-11-18  166  	data->base = of_iomap(node, 0);
+40e5ff4eaef72b James Tai 2023-11-18  167  	if (!data->base)
+40e5ff4eaef72b James Tai 2023-11-18  168  		return -ENOMEM;
+40e5ff4eaef72b James Tai 2023-11-18  169  
+40e5ff4eaef72b James Tai 2023-11-18  170  	data->info = info;
+40e5ff4eaef72b James Tai 2023-11-18  171  
+40e5ff4eaef72b James Tai 2023-11-18  172  	raw_spin_lock_init(&data->lock);
+40e5ff4eaef72b James Tai 2023-11-18  173  
+40e5ff4eaef72b James Tai 2023-11-18  174  	data->domain = irq_domain_add_linear(node, 32, &realtek_intc_domain_ops, data);
+40e5ff4eaef72b James Tai 2023-11-18  175  	if (!data->domain)
+40e5ff4eaef72b James Tai 2023-11-18  176  		return -ENOMEM;
+40e5ff4eaef72b James Tai 2023-11-18  177  
+40e5ff4eaef72b James Tai 2023-11-18  178  	data->subset_data_num = info->cfg_num;
+40e5ff4eaef72b James Tai 2023-11-18 @179  	for (i = 0; i < info->cfg_num; i++) {
+40e5ff4eaef72b James Tai 2023-11-18  180  		ret = realtek_intc_subset(node, data, i);
+40e5ff4eaef72b James Tai 2023-11-18  181  		WARN(ret, "failed to init subset %d: %d", i, ret);
+40e5ff4eaef72b James Tai 2023-11-18  182  		return -ENOMEM;
+
+This loop just returns -ENOMEM.  Missing if statement?
+No clean up either.  Needs to release resources before returning.
+
+40e5ff4eaef72b James Tai 2023-11-18  183  	}
+40e5ff4eaef72b James Tai 2023-11-18  184  
+40e5ff4eaef72b James Tai 2023-11-18  185  	platform_set_drvdata(pdev, data);
+40e5ff4eaef72b James Tai 2023-11-18  186  
+40e5ff4eaef72b James Tai 2023-11-18 @187  	return 0;
+40e5ff4eaef72b James Tai 2023-11-18  188  }
+40e5ff4eaef72b James Tai 2023-11-18  189  EXPORT_SYMBOL(realtek_intc_probe);
 
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
+
 
