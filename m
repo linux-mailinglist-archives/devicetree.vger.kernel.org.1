@@ -1,307 +1,99 @@
-Return-Path: <devicetree+bounces-17064-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17065-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D209B7F110E
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 11:59:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70F157F1134
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 12:02:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7C8491F238E4
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 10:59:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A20D91C21531
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 11:02:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CA24D521;
-	Mon, 20 Nov 2023 10:58:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4C95125BB;
+	Mon, 20 Nov 2023 11:02:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="h5alUNaa"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="m/MfN+qU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A71529C;
-	Mon, 20 Nov 2023 02:58:54 -0800 (PST)
-Received: by mail-pg1-x52e.google.com with SMTP id 41be03b00d2f7-5bddf66ed63so2877690a12.1;
-        Mon, 20 Nov 2023 02:58:54 -0800 (PST)
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42507A0
+	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 03:02:11 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-32f78dcf036so3157547f8f.0
+        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 03:02:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1700477934; x=1701082734; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=hss0DScungQG3wuEN+tDn4zevM2VhdEJWx+ngv2QB2g=;
-        b=h5alUNaa6bBArrEjXy7zfYJ9s2J+tMGXyqjDyzHuPWqFJK4Dt/RXUtIGQyeS5S0sU6
-         FSqLZPUpyXNK1nWFqJb/G1hxBQOVIj9II/nOQE/Tgr8GHgWeZbcrNfQW8TsU24fIS2wL
-         hxTkVD8en2hMoLSk8xR6n7H6uT21hzwQzmS0sVxyuPOgbc61giqFLm5tesF1Sm8o5X8A
-         JYCEvP6c3RGsXTKdpk1k09R0Xl0u7vwZX/+MUFCf8O4XFA5X8MFK6ElFGWmd+wFyBqrK
-         HLMmZEP6Ip9cIu9vklH9FJdEm8I4bGz7NgHejFa5O1QzVBJlMmzjyhIXxMM/CTmwmaGV
-         KTow==
+        d=linaro.org; s=google; t=1700478130; x=1701082930; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=HytwA7HVysgBJScXXutqEK+0fdWB/b6Ao+3Wu2cMOOA=;
+        b=m/MfN+qUw+jY1BHl2iTTNPAMTu0rRc0v5pv/LSGhhCpeleb5remyCa3E4Ak/ehmbW0
+         yP9QC3LF96IhNCyt8ynBv41oF0Elwan441L/+nrUdPxB8B4sGF5aZDiqa1CxxcPk5s2y
+         XMTfY3Ujq++rkVrj5wnQ/mEbtE9LdkVojdpFqdYRqtx7axhkq/f0jQnu7fjIPFHsBUn2
+         rO729TEJnyeLxzZ0RODEADAzUhnSR50bQwHMukUm/vJlW2FVvBPqmXe2zdW8C7zHL9nv
+         2NO3afsY07pTOCtnoD/+lmocm+YULns9WCCW7hghto9DiCUGO4zvudknTqy329U/y9GU
+         vkEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700477934; x=1701082734;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hss0DScungQG3wuEN+tDn4zevM2VhdEJWx+ngv2QB2g=;
-        b=VsgoOMU+hxuyvKt3gGaMQgz05ChbYmyvbebv41ezDNDr18i64lOSSq1oVPvsn2/riv
-         aUjt5hi2RE03jICFRy/jXmneD1vxKsqxPj4CPHgruXXqhiOHXBhoTqUUeAOXBPHG4emG
-         UE/oPGcEkeYxiJApI9vUV2+1yIT6E8s30UBl2z/EHyL15x2xPd8S6Ktp8VWFooNawp1I
-         fw7fqbQnM3KzROJ7htg0RVhJYuhs6jcS7jhGzo+29yfHKxESibxRUkSCX68oXcruE1KR
-         vNYA8dxWfhKtrD6/fqwrjg/r6MY7FKX9oqLkpg6h+cAhPqan6FiU/G6LlDPdXKqt53VL
-         riog==
-X-Gm-Message-State: AOJu0YyaZyv7Rh4K1DanXgTeYd9JMiEa3SQJ9kCQEf+ObGxEWoXCSYGT
-	8Ja9klLM1epqptWLNYD+lUI=
-X-Google-Smtp-Source: AGHT+IE0ir36wseZ1ERuTn6WVBZ2hZ9lSDF8lyMELvj+kI6imXtdURMceGktUBcNOEOyuiWaZcapPg==
-X-Received: by 2002:a05:6a20:3d87:b0:187:2b7b:1b87 with SMTP id s7-20020a056a203d8700b001872b7b1b87mr9778084pzi.21.1700477933855;
-        Mon, 20 Nov 2023 02:58:53 -0800 (PST)
-Received: from archie.me ([103.131.18.64])
-        by smtp.gmail.com with ESMTPSA id v10-20020aa7850a000000b006be4bb0d2dcsm6010021pfn.149.2023.11.20.02.58.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Nov 2023 02:58:53 -0800 (PST)
-Received: by archie.me (Postfix, from userid 1000)
-	id 667ED101D8174; Mon, 20 Nov 2023 17:58:51 +0700 (WIB)
-Date: Mon, 20 Nov 2023 17:58:51 +0700
-From: Bagas Sanjaya <bagasdotme@gmail.com>
-To: Yi-De Wu <yi-de.wu@mediatek.com>,
-	Yingshiuan Pan <yingshiuan.pan@mediatek.com>,
-	Ze-Yu Wang <ze-yu.wang@mediatek.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Arnd Bergmann <arnd@arndb.de>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	David Bradil <dbrazdil@google.com>,
-	Trilok Soni <quic_tsoni@quicinc.com>,
-	Jade Shih <jades.shih@mediatek.com>,
-	Ivan Tseng <ivan.tseng@mediatek.com>,
-	My Chuang <my.chuang@mediatek.com>,
-	Shawn Hsiao <shawn.hsiao@mediatek.com>,
-	PeiLun Suei <peilun.suei@mediatek.com>,
-	Liju Chen <liju-clr.chen@mediatek.com>,
-	Willix Yeh <chi-shen.yeh@mediatek.com>,
-	Kevenny Hsieh <kevenny.hsieh@mediatek.com>
-Subject: Re: [PATCH v7 01/16] docs: geniezone: Introduce GenieZone hypervisor
-Message-ID: <ZVs760ggqT-erCji@archie.me>
-References: <20231116152756.4250-1-yi-de.wu@mediatek.com>
- <20231116152756.4250-2-yi-de.wu@mediatek.com>
+        d=1e100.net; s=20230601; t=1700478130; x=1701082930;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=HytwA7HVysgBJScXXutqEK+0fdWB/b6Ao+3Wu2cMOOA=;
+        b=Ha4i6m/VX+cAyJ7aaudMvSPeOPZT3yriydTnVFFLLoR8HS2E9aWsEdPirb0jk8bDWy
+         KCK5LNbfloHsx3MVFbM5qgcbdFFP3HRN0RokD5Gx3QkER2iGS4yCkNG8/uU0PT66DKOT
+         QSM7/14U6GSuYrMJJulnsE3HWO3WtwSyl/zgLN1s0nRLv+6fKP7ga/pOPsNzOJ1bxNNY
+         4tZ93Ns4saiCNKKGl9r6X5qE74gSDLC9EgJRcttH6IE0b0JiolZpZC6K6qFv2xfBkoDy
+         Rj/ttP680I1A2ODSo3E0+psBvCl2akvxS3YonOGxaIkfRjSwaeqf82nXdRkUaXxbbaIr
+         LDig==
+X-Gm-Message-State: AOJu0YznJ3BgYHFGWdZ38Ay8QJkQJ38grhAMzRVH0d9zIaFuMGfy5XI5
+	D+obax+BIJ2HWy2OQk0MTu8KHg==
+X-Google-Smtp-Source: AGHT+IFu3vVwHKbXDD1C9QxIgvpCTCFkU5meq1IURj2o2nkB8wQpPG9Pphbrie1MH1TmSnRBN58iLw==
+X-Received: by 2002:a5d:6d86:0:b0:32f:7a22:8b42 with SMTP id l6-20020a5d6d86000000b0032f7a228b42mr11134783wrs.23.1700478129621;
+        Mon, 20 Nov 2023 03:02:09 -0800 (PST)
+Received: from [192.168.100.102] ([37.228.218.3])
+        by smtp.gmail.com with ESMTPSA id b11-20020a05600010cb00b00332c0d256c5sm5916490wrx.80.2023.11.20.03.02.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 20 Nov 2023 03:02:08 -0800 (PST)
+Message-ID: <567a0eeb-3116-4103-b61f-5d8e7ab1f768@linaro.org>
+Date: Mon, 20 Nov 2023 11:02:07 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20231116152756.4250-2-yi-de.wu@mediatek.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V2 2/4] clk: qcom: Add Global Clock controller (GCC)
+ driver for X1E80100
+Content-Language: en-US
+To: Sibi Sankar <quic_sibis@quicinc.com>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, andersson@kernel.org,
+ mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: agross@kernel.org, conor+dt@kernel.org, quic_tdas@quicinc.com,
+ quic_rjendra@quicinc.com, linux-arm-msm@vger.kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, neil.armstrong@linaro.org,
+ abel.vesa@linaro.org, quic_tsoni@quicinc.com
+References: <20231117092737.28362-1-quic_sibis@quicinc.com>
+ <20231117092737.28362-3-quic_sibis@quicinc.com>
+ <ec9d03f7-7158-4309-9a04-b08c69b89f39@linaro.org>
+ <2e0d2c55-fb2f-4903-a555-f51019942c6e@linaro.org>
+ <c8cf229b-4d15-4eca-bc4b-61dc67d63e91@linaro.org>
+ <4af8e7a4-0506-a08c-f294-d055fb463af8@quicinc.com>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <4af8e7a4-0506-a08c-f294-d055fb463af8@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, Nov 16, 2023 at 11:27:41PM +0800, Yi-De Wu wrote:
-> diff --git a/Documentation/virt/geniezone/introduction.rst b/Documentation/virt/geniezone/introduction.rst
-> new file mode 100644
-> index 000000000000..fb9fa41bcfb8
-> --- /dev/null
-> +++ b/Documentation/virt/geniezone/introduction.rst
-> @@ -0,0 +1,86 @@
-> +.. SPDX-License-Identifier: GPL-2.0
-> +
-> +======================
-> +GenieZone Introduction
-> +======================
-> +
-> +Overview
-> +========
-> +GenieZone hypervisor(gzvm) is a type-1 hypervisor that supports various virtual
-"... hypervisor (gzvm) ..."
-> +machine types and provides security features such as TEE-like scenarios and
-> +secure boot. It can create guest VMs for security use cases and has
-> +virtualization capabilities for both platform and interrupt. Although the
-> +hypervisor can be booted independently, it requires the assistance of GenieZone
-> +hypervisor kernel driver(gzvm-ko) to leverage the ability of Linux kernel for
-"hypervisor kernel driver (also named gzvm) ..."
-> +vCPU scheduling, memory management, inter-VM communication and virtio backend
-> +support.
-> +
-> +Supported Architecture
-> +======================
-> +GenieZone now only supports MediaTek ARM64 SoC.
-> +
-> +Features
-> +========
-> +
-> +- vCPU Management
-> +
-> +VM manager aims to provide vCPUs on the basis of time sharing on physical CPUs.
-> +It requires Linux kernel in host VM for vCPU scheduling and VM power management.
-> +
-> +- Memory Management
-> +
-> +Direct use of physical memory from VMs is forbidden and designed to be dictated
-> +to the privilege models managed by GenieZone hypervisor for security reason.
-> +With the help of gzvm-ko, the hypervisor would be able to manipulate memory as
+On 20/11/2023 06:42, Sibi Sankar wrote:
+> Bryan,
+> 
+> 5e4b7e82d497 ("clk: qcom: gcc-sdm845: Use floor ops for sdcc clks")
+> 
+> The floor_ops was introduced in sdm845 ^^ and later propagated to all
+> other QC SoCs later on. It makes sense to do the same for sc8280xp as
+> well.
 
-s/gzvm-ko/gzvm module/g
-
-> +objects.
-> +
-> +- Virtual Platform
-> +
-> +We manage to emulate a virtual mobile platform for guest OS running on guest
-> +VM. The platform supports various architecture-defined devices, such as
-> +virtual arch timer, GIC, MMIO, PSCI, and exception watching...etc.
-> +
-> +- Inter-VM Communication
-> +
-> +Communication among guest VMs was provided mainly on RPC. More communication
-> +mechanisms were to be provided in the future based on VirtIO-vsock.
-> +
-> +- Device Virtualization
-> +
-> +The solution is provided using the well-known VirtIO. The gzvm-ko would
-> +redirect MMIO traps back to VMM where the virtual devices are mostly emulated.
-> +Ioeventfd is implemented using eventfd for signaling host VM that some IO
-> +events in guest VMs need to be processed.
-> +
-> +- Interrupt virtualization
-> +
-> +All Interrupts during some guest VMs running would be handled by GenieZone
-> +hypervisor with the help of gzvm-ko, both virtual and physical ones. In case
-> +there's no guest VM running out there, physical interrupts would be handled by
-> +host VM directly for performance reason. Irqfd is also implemented using
-> +eventfd for accepting vIRQ requests in gzvm-ko.
-> +
-> +Platform architecture component
-> +===============================
-> +
-> +- vm
-> +
-> +The vm component is responsible for setting up the capability and memory
-> +management for the protected VMs. The capability is mainly about the lifecycle
-> +control and boot context initialization. And the memory management is highly
-> +integrated with ARM 2-stage translation tables to convert VA to IPA to PA under
-> +proper security measures required by protected VMs.
-> +
-> +- vcpu
-> +
-> +The vcpu component is the core of virtualizing aarch64 physical CPU runnable,
-> +and it controls the vCPU lifecycle including creating, running and destroying.
-> +With self-defined exit handler, the vm component would be able to act
-> +accordingly before terminated.
-> +
-> +- vgic
-> +
-> +The vgic component exposes control interfaces to Linux kernel via irqchip, and
-> +we intend to support all SPI, PPI, and SGI. When it comes to virtual
-> +interrupts, the GenieZone hypervisor would write to list registers and trigger
-> +vIRQ injection in guest VMs via GIC.
-
-Descriptions for feature lists can be aligned:
-
----- >8 ----
-diff --git a/Documentation/virt/geniezone/introduction.rst b/Documentation/virt/geniezone/introduction.rst
-index fb9fa41bcfb8b3..f37ddf4e979992 100644
---- a/Documentation/virt/geniezone/introduction.rst
-+++ b/Documentation/virt/geniezone/introduction.rst
-@@ -24,63 +24,64 @@ Features
- 
- - vCPU Management
- 
--VM manager aims to provide vCPUs on the basis of time sharing on physical CPUs.
--It requires Linux kernel in host VM for vCPU scheduling and VM power management.
-+  VM manager aims to provide vCPUs on the basis of time sharing on physical
-+  CPUs. It requires Linux kernel in host VM for vCPU scheduling and VM power
-+  management.
- 
- - Memory Management
- 
--Direct use of physical memory from VMs is forbidden and designed to be dictated
--to the privilege models managed by GenieZone hypervisor for security reason.
--With the help of gzvm-ko, the hypervisor would be able to manipulate memory as
--objects.
-+  Direct use of physical memory from VMs is forbidden and designed to be
-+  dictated to the privilege models managed by GenieZone hypervisor for security
-+  reason. With the help of gzvm-ko, the hypervisor would be able to manipulate
-+  memory as objects.
- 
- - Virtual Platform
- 
--We manage to emulate a virtual mobile platform for guest OS running on guest
--VM. The platform supports various architecture-defined devices, such as
--virtual arch timer, GIC, MMIO, PSCI, and exception watching...etc.
-+  We manage to emulate a virtual mobile platform for guest OS running on guest
-+  VM. The platform supports various architecture-defined devices, such as
-+  virtual arch timer, GIC, MMIO, PSCI, and exception watching...etc.
- 
- - Inter-VM Communication
- 
--Communication among guest VMs was provided mainly on RPC. More communication
--mechanisms were to be provided in the future based on VirtIO-vsock.
-+  Communication among guest VMs was provided mainly on RPC. More communication
-+  mechanisms were to be provided in the future based on VirtIO-vsock.
- 
- - Device Virtualization
- 
--The solution is provided using the well-known VirtIO. The gzvm-ko would
--redirect MMIO traps back to VMM where the virtual devices are mostly emulated.
--Ioeventfd is implemented using eventfd for signaling host VM that some IO
--events in guest VMs need to be processed.
-+  The solution is provided using the well-known VirtIO. The gzvm-ko would
-+  redirect MMIO traps back to VMM where the virtual devices are mostly
-+  emulated. Ioeventfd is implemented using eventfd for signaling host VM that
-+  some IO events in guest VMs need to be processed.
- 
- - Interrupt virtualization
- 
--All Interrupts during some guest VMs running would be handled by GenieZone
--hypervisor with the help of gzvm-ko, both virtual and physical ones. In case
--there's no guest VM running out there, physical interrupts would be handled by
--host VM directly for performance reason. Irqfd is also implemented using
--eventfd for accepting vIRQ requests in gzvm-ko.
-+  All Interrupts during some guest VMs running would be handled by GenieZone
-+  hypervisor with the help of gzvm-ko, both virtual and physical ones. In case
-+  there's no guest VM running out there, physical interrupts would be handled
-+  by host VM directly for performance reason. Irqfd is also implemented using
-+  eventfd for accepting vIRQ requests in gzvm-ko.
- 
- Platform architecture component
- ===============================
- 
- - vm
- 
--The vm component is responsible for setting up the capability and memory
--management for the protected VMs. The capability is mainly about the lifecycle
--control and boot context initialization. And the memory management is highly
--integrated with ARM 2-stage translation tables to convert VA to IPA to PA under
--proper security measures required by protected VMs.
-+  The vm component is responsible for setting up the capability and memory
-+  management for the protected VMs. The capability is mainly about the
-+  lifecycle control and boot context initialization. And the memory management
-+  is highly integrated with ARM 2-stage translation tables to convert VA to IPA
-+  to PA under proper security measures required by protected VMs.
- 
- - vcpu
- 
--The vcpu component is the core of virtualizing aarch64 physical CPU runnable,
--and it controls the vCPU lifecycle including creating, running and destroying.
--With self-defined exit handler, the vm component would be able to act
--accordingly before terminated.
-+  The vcpu component is the core of virtualizing aarch64 physical CPU runnable,
-+  and it controls the vCPU lifecycle including creating, running and
-+  destroying. With self-defined exit handler, the vm component would be able to
-+  act accordingly before terminated.
- 
- - vgic
- 
--The vgic component exposes control interfaces to Linux kernel via irqchip, and
--we intend to support all SPI, PPI, and SGI. When it comes to virtual
--interrupts, the GenieZone hypervisor would write to list registers and trigger
--vIRQ injection in guest VMs via GIC.
-+  The vgic component exposes control interfaces to Linux kernel via irqchip,
-+  and we intend to support all SPI, PPI, and SGI. When it comes to virtual
-+  interrupts, the GenieZone hypervisor would write to list registers and
-+  trigger vIRQ injection in guest VMs via GIC.
-
-Thanks.
-
--- 
-An old man doll... just what I always wanted! - Clara
+OK good enough.
 
