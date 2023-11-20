@@ -1,129 +1,141 @@
-Return-Path: <devicetree+bounces-17182-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17183-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E132E7F17CC
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 16:50:34 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B32B7F17F0
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 16:55:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DC051B21061
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 15:50:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6E9C7B20FE5
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 15:55:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A14B1DA52;
-	Mon, 20 Nov 2023 15:50:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7943B1DA58;
+	Mon, 20 Nov 2023 15:55:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OuakXYfH"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ispji2Yt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 467BB1DA4B
-	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 15:50:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A91EC433C7;
-	Mon, 20 Nov 2023 15:50:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700495425;
-	bh=hwGdvTC30e2lqKVVWjBXy5T6ES/s37IXoRVGMd2+0pQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OuakXYfH2B3OCYrq02ImXPaLKHHgv1XoOxq2euxeIQWC0Crhms/GQfyHAERvfK69s
-	 DF1RBMamEUYPuaOfpnaQp1j+CNzucEdp1EpNAPN+hWMv57j1T/49wvYAu20TggHUvr
-	 9h9mFblafUh5Qh+JN7xv4j9enLyvvjGgt/YK2XvQvOmhX4pbud5Uo9wJI5ysIkZrNw
-	 BPWdpOl8U5S3cdCW/wUONBUm0CW8H5dyUUZJsDljmdbgfcn5XTMVRFnoX/B5WCXJTP
-	 PyXPoKPqTJYSNuJDOUBMqvy72xpUWxgQ/NsRdT6CL/dMnTLhYok/ymvlzSQA5CyIvF
-	 LZZLM4LJ/KWzQ==
-Date: Mon, 20 Nov 2023 15:50:20 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Javier Martinez Canillas <javierm@redhat.com>
-Cc: linux-kernel@vger.kernel.org, Sahaj Sarup <sahaj.sarup@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
-	David Airlie <airlied@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH 1/3] dt-bindings: display: ssd1307fb: Change
- "solomon,page-offset" default value
-Message-ID: <20231120-granola-sturdy-83d054f1b6fa@spud>
-References: <20231116180743.2763021-1-javierm@redhat.com>
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 889D7E3;
+	Mon, 20 Nov 2023 07:55:17 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-507a0907896so6400834e87.2;
+        Mon, 20 Nov 2023 07:55:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1700495716; x=1701100516; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=bmiqxT90YVFrOlPlqhujIZF2WAbgKxIymaxdbEcrsTk=;
+        b=Ispji2YtUWGY0fMQjhsXzUezOL18fprLv3zds3N0sqq53L6PV001ePiNvPozuMbWNv
+         +kpun5IkFDW4zQwGcGGsxKayWxyVEAau4rlo1reA0SKk2zBSxwzxT0yNvIrfOBZxLtMg
+         3ynH8IMVxJN/PRDBJgjfJlTHic1aUfbo7vHMP17vzxiDPM2tJngkCGUbDhbigJJvgkjT
+         Iy9/PHdbotLEa8imkZhho3OAqorzMZqYYhE57/mea/FS4rTo426S0aP6Ts54yfrboNFg
+         wrcMmZHQj9/BvCzrF9LviVHAxqX/4o6ha3kAR9ZCl5H/92pwi4J3a9/pETk6sxM75nWy
+         oYDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700495716; x=1701100516;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=bmiqxT90YVFrOlPlqhujIZF2WAbgKxIymaxdbEcrsTk=;
+        b=Chez6Byj8/5ido35unxZqxugWotLRkI0rBwmeg3pNBLjWu78BRmLihckSrFoRyGoAx
+         UJWMi0AUOQS5iEDKGm8KPu70Itq8BJCiTH5ElBqYzWKXvz7uDa6T0p0SWO8K7rYgXUNX
+         /q7H2b6ruWulNzx3rfCSor2RaU+CTiblFtv34MnOLgGjX5OrZXEqQBfdT+3LU2THNXnO
+         /PDeJDmqrPPhV7M9SUyOQhWL9fcoHe75HP/FKm6SwHfxS8LqZJyK54Qxh2ezDFPUBBlk
+         D7Ks/Y8DWjTfhcNm3evYBZ4gJY8zhdnjaSsCYjfAIwQvfFNhAOVZ8yIZxo8DxMJfui7Z
+         +jtw==
+X-Gm-Message-State: AOJu0YybfyPdaz5rp6rTlXrs195BfTGvWaMLaoUulIyVyEy1m+yPLxDO
+	ZWrsioGud9QjCNpu78t6fiwZua28kn8qfu0xiwY=
+X-Google-Smtp-Source: AGHT+IEGvqQr6cTOB2FCQA0WzT+rjb0MBN6QsjipE6JCfOsNlEFDX+m//iKUwZnUmucKMpMXjJ3kug==
+X-Received: by 2002:a19:5514:0:b0:509:4c8a:525d with SMTP id n20-20020a195514000000b005094c8a525dmr5251624lfe.35.1700495715385;
+        Mon, 20 Nov 2023 07:55:15 -0800 (PST)
+Received: from [172.25.98.130] ([5.2.194.157])
+        by smtp.gmail.com with ESMTPSA id a2-20020adffb82000000b0032dba85ea1bsm11629737wrr.75.2023.11.20.07.55.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 20 Nov 2023 07:55:14 -0800 (PST)
+Message-ID: <5cf3824f-6375-4c76-86ff-c5389ddf4196@gmail.com>
+Date: Mon, 20 Nov 2023 17:55:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="4bFoAD9+noYJcHZh"
-Content-Disposition: inline
-In-Reply-To: <20231116180743.2763021-1-javierm@redhat.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/2] iio: adc: ad7173: add AD7173 driver
+Content-Language: en-US
+To: Andy Shevchenko <andy@kernel.org>
+Cc: linus.walleij@linaro.org, brgl@bgdev.pl, linux-gpio@vger.kernel.org,
+ Lars-Peter Clausen <lars@metafoo.de>, Jonathan Cameron <jic23@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Michael Walle <michael@walle.cc>,
+ Arnd Bergmann <arnd@arndb.de>, ChiaEn Wu <chiaen_wu@richtek.com>,
+ Niklas Schnelle <schnelle@linux.ibm.com>,
+ =?UTF-8?Q?Leonard_G=C3=B6hrs?= <l.goehrs@pengutronix.de>,
+ Mike Looijmans <mike.looijmans@topic.nl>, Haibo Chen <haibo.chen@nxp.com>,
+ Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+ Ceclan Dumitru <dumitru.ceclan@analog.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231116134655.21052-1-user@HYB-hhAwRlzzMZb>
+ <20231116134655.21052-2-user@HYB-hhAwRlzzMZb>
+ <ZVtYeWZmcDZ_SMPo@smile.fi.intel.com>
+From: Ceclan Dumitru <mitrutzceclan@gmail.com>
+In-Reply-To: <ZVtYeWZmcDZ_SMPo@smile.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
 
---4bFoAD9+noYJcHZh
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 11/20/23 15:00, Andy Shevchenko wrote:
+> On Thu, Nov 16, 2023 at 03:46:55PM +0200, mitrutzceclan wrote:
+>> +struct ad7173_channel_config {
+>> +	bool live;
+>> +	u8 cfg_slot;
+>> +	/* Following fields are used to compare equality. Bipolar must be first */
+>> +	bool bipolar;
+>> +	bool input_buf;
+>> +	u8 odr;
+>> +	u8 ref_sel;
+> 
+> If you group better by types, it might save a few bytes on the architectures /
+> compilers where bool != byte.
+>
+Grouping by type will result in not being able to use memcmp() for
+comparing configs. But then there is the issue that I was under the
+assumption that bool=byte. If that is not the case, the config equality
+check might be comparing padding bytes.
 
-On Thu, Nov 16, 2023 at 07:07:37PM +0100, Javier Martinez Canillas wrote:
-> This is used to specify the page start address offset of the display RAM.
->=20
-> The value is used as offset when setting the page start address with the
-> SSD130X_SET_PAGE_RANGE command, and the driver currently sets its value to
-> 1 if the property is not present in the Device Tree.
->=20
-> But the datasheet mentions that the value on reset for the page start is a
-> 0, so it makes more sense to also have 0 as the default value for the page
-> offset if the property is not present.
->=20
-> In fact, using a default value of 1 leads to the display not working when
-> the fbdev is attached to the framebuffer console.
->=20
-> Reported-by: Sahaj Sarup <sahaj.sarup@linaro.org>
-> Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
-> ---
->=20
->  .../devicetree/bindings/display/solomon,ssd1307fb.yaml          | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/display/solomon,ssd1307fb.=
-yaml b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
-> index 3afbb52d1b7f..badd81459aaa 100644
-> --- a/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
-> +++ b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
-> @@ -35,7 +35,7 @@ properties:
-> =20
->    solomon,page-offset:
->      $ref: /schemas/types.yaml#/definitions/uint32
-> -    default: 1
-> +    default: 0
+In this case what do you suggest:
+- using the packed attribute
+- using only u8
+- drop memcmp, manually compare fields
 
-I think I saw it pointed out by Maxime elsewhere that this breaks the
-ABI. It would be nice if DT defaults matched the hardware's, but I don't
-really think it is worth breaking the ABI here. Expanding the property
-description to explain the impact of the particular values might help
-with incorrect usage.
+...
 
-Thanks,
-Conor.
+>> +	cmp_size = sizeof(*cfg) - offset;
+> 
+> sizeof_field() from the above mentioned header?
 
->      description:
->        Offset of pages (band of 8 pixels) that the screen is mapped to
-> =20
-> --=20
-> 2.41.0
->=20
+This computes the size of multiple fields, following cfg_slot. Better to
+group the fields that need to be compared into another struct then use
+sizeof_field()?
 
---4bFoAD9+noYJcHZh
-Content-Type: application/pgp-signature; name="signature.asc"
+...
 
------BEGIN PGP SIGNATURE-----
+> 
+>> +	return vref / (MICRO/MILLI);
+> 
+> What does the denominator mean and why you can't simply use MILL?
+>
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZVuAPAAKCRB4tDGHoIJi
-0rwwAQDwlz5bsqGXaRqTo+gxHO6qWygSskpfqHWje4LOQ/STSAEAjptBSDLIi9s1
-DjGRyqKsN280gvpMTdz7FUpAEO1gZwg=
-=pjLO
------END PGP SIGNATURE-----
+Original vref values are in micro, I considered that it was adequate to
+represent the conversion from MICRO to MILLI as a fraction.
 
---4bFoAD9+noYJcHZh--
+>> +		*val = st->info->sinc5_data_rates[reg] / (MICRO/MILLI);
+>> +		*val2 = (st->info->sinc5_data_rates[reg] % MILLI) * (MICRO/MILLI);
+> 
+> Same Q about denominator.
+> 
+Here, a misunderstanding on my part of a suggestion from Jonathan in V2,
+will be removed.
 
