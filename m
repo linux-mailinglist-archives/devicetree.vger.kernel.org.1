@@ -1,186 +1,132 @@
-Return-Path: <devicetree+bounces-17053-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17044-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D2AF7F1025
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 11:19:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C99A97F0FCC
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 11:06:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1603F1F233B4
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 10:19:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8317A2820C5
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 10:06:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2588112B94;
-	Mon, 20 Nov 2023 10:19:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A528212B6F;
+	Mon, 20 Nov 2023 10:06:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="m1yn9h/L"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="B/PEQ78m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A77C8F1
-	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 02:19:12 -0800 (PST)
-Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2c878e228b4so16564411fa.1
-        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 02:19:12 -0800 (PST)
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 606BF95
+	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 02:06:23 -0800 (PST)
+Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-9c603e2354fso787366066b.1
+        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 02:06:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1700475551; x=1701080351; darn=vger.kernel.org;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=m3PqdGd3hzZKCAL9p199LXfBSoxwo8nMT5FPvyOoA9c=;
-        b=m1yn9h/L+TwUamT9qs55AUfrl0KssNmjtZaRHujzEsxyXnNaFQwCqWRwgKAN2M/ssj
-         daMtsCYudJJHmliY2hlXybPPiQa1EF9ADslr9Yps+iwo/Dy2BmU5QCosLlqVaXPycqkj
-         fzS53CiLCqjR4QngzBzDxSL5U78DwQfSnrPtDqnRC4GZ/IHvWPpRCVLtL5u/1MVQy53N
-         ZEMiHAlN1mlccYNAZKeUH6tug9SIH11Du5dLF1fn7X6BlXDlTMeCzi2jIWuQlkckxE+W
-         kga2kOnMkQaMcLkz7QVyOBUtz0cf30C3y3TrogOythexiTrHKxigtsiqyQziR+//SIbN
-         y7MA==
+        d=linaro.org; s=google; t=1700474782; x=1701079582; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=BNQ2xPx++wH1nrxiKy++CwCgkNUnb0789llzrpG+llY=;
+        b=B/PEQ78mZuZ9GPtvo69D+zfDxtXZpG6/YYWVQDWwrR96Sizzr8tqpKqpw3norQCpuS
+         Woa7VCgJRDEMkNZOxA0K6nTp77oxLY9A2IRRHrPNR+g4aodiHNcTa4sWrKb3ylL6hlU+
+         vGBM1r4kFWThlbrIn1pWe26dkyssodLoi9+wQHzZj+atb9qmgXJ0ExbhoLMAEFL7mxNR
+         v8pmys9p5bW4ztMSDsyOszXBbCFTjp3gmrNW2cxYKEmZaMRQR4pENQRPGbR+H/2s7y1o
+         aHGmRnLPOQPqkJkL7Lg6bpW6skVFTElHsiYBDIJXXtlxTlk3vCFch0u0S9OzSaWx+KNp
+         SHOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700475551; x=1701080351;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=m3PqdGd3hzZKCAL9p199LXfBSoxwo8nMT5FPvyOoA9c=;
-        b=EFpO+WpFXj5TLZA1eAIqJmKx9/snzhPWLK5Ty7OFPpRcbDwvYNA6AKDTEIwZVqaXPM
-         Bhd1EzTy5icnT3n3xU9huruMYaykjO129i3zRi6qYHMS1nx9/6PducmlBAAUOwuug2++
-         RQyo5Ad1LbJAZ19elyYhb0HedZ+fFA/dAv4vcVHdTgXHelegmOmPjsKlZWNf9KeEuAFW
-         gEdDpjC9SmA9rehYnruCIod/ToBP16GFomiJuUuK/m1GuGqRKu7ig25YAS3eLDXf+Vgf
-         nMVQb0+OF7J/E3+wz/O3DaDwcn7Ft0IWUcZFSoHmLKRxswTPERC9y3vGO8cLAegAhrmp
-         QVbw==
-X-Gm-Message-State: AOJu0YwBCOVbO2RXJ2SDeu+6/IVlRvIE5zQi/T+QR3qn3cjJIREZ1+eX
-	qJtlsPblbfUewLCeApGD22+xkw==
-X-Google-Smtp-Source: AGHT+IEPX2G5aclVwRbVdhdVk6Qz+Wvs9j7cq77cqcIy9GhSHMtNLsN6GkXktc/8rAKZlPKJNJuIYw==
-X-Received: by 2002:a2e:a162:0:b0:2bb:b01a:9226 with SMTP id u2-20020a2ea162000000b002bbb01a9226mr4153302ljl.7.1700475550839;
-        Mon, 20 Nov 2023 02:19:10 -0800 (PST)
-Received: from localhost ([2a01:e0a:3c5:5fb1:36e8:9c14:4901:7aca])
-        by smtp.gmail.com with ESMTPSA id j32-20020a05600c1c2000b004094c5d929asm13027434wms.10.2023.11.20.02.19.10
+        d=1e100.net; s=20230601; t=1700474782; x=1701079582;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BNQ2xPx++wH1nrxiKy++CwCgkNUnb0789llzrpG+llY=;
+        b=bBHORJyZTuEvtqZxDFeK76mCuWiYxYx5TsSL+5YqXc5Y6WIsIsegzPVrOD0UuWo6sW
+         4ChssmGQT+g/k3t0fbGvClulOnkDgog3nMMTJpgCEtcD9I1DHu2XgrjWwIsJ/nfKazW0
+         lH3ARM6SAhtZerlPWqlinf/B2d9JloRWEDN/bdbIl+IAiKmWrHVkuror1z5CBtXEBG0Y
+         KemsSBlAwl3xa9OTWkXaODF4Nf0WDB6P075qTnPJu4oxeiaoMgoElvbgqQfl9/SxWKaf
+         GmYKH+YcLAmyJwxghBaXVvqseDgx1gTr7wORczPf9yDjBvtBeFswdjjAnxxZ+GopCl1h
+         xXNA==
+X-Gm-Message-State: AOJu0YxGMLFTIY5hG2Pa19+GhDt+yD8gbOND8VoHBqgabCQm31dbLPOp
+	n06HGfJHSk58QDbpVOKub39cKA==
+X-Google-Smtp-Source: AGHT+IHAYX5jbEOAAbb7JbyibH41NWLc5m7fX4drhHV55VH6R4hupBnKsasjqhtvfqGrVuuzbd1fDw==
+X-Received: by 2002:a17:906:74d1:b0:9c7:59ff:b7fd with SMTP id z17-20020a17090674d100b009c759ffb7fdmr1311917ejl.28.1700474781661;
+        Mon, 20 Nov 2023 02:06:21 -0800 (PST)
+Received: from krzk-bin.. ([178.197.222.11])
+        by smtp.gmail.com with ESMTPSA id f16-20020a170906391000b009fe16be6a65sm1075022eje.63.2023.11.20.02.06.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Nov 2023 02:19:10 -0800 (PST)
-References: <20231117125919.1696980-1-jbrunet@baylibre.com>
- <20231117125919.1696980-3-jbrunet@baylibre.com>
- <170040994064.269288.960284011884896046.robh@kernel.org>
- <4608012c-059f-4d6a-914b-e85ad0c32ff0@linaro.org>
- <1j5y1wg3sb.fsf@starbuckisacylon.baylibre.com>
- <2e7a65da-5c1d-4dd4-ac69-7559a53afdf3@linaro.org>
-User-agent: mu4e 1.10.7; emacs 29.1
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: neil.armstrong@linaro.org
-Cc: Jerome Brunet <jbrunet@baylibre.com>, Rob Herring <robh@kernel.org>,
- JunYi Zhao <junyi.zhao@amlogic.com>, devicetree@vger.kernel.org, Rob
- Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Kevin
- Hilman <khilman@baylibre.com>, Thierry Reding <thierry.reding@gmail.com>,
- linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
- linux-amlogic@lists.infradead.org, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH v2 2/6] dt-bindings: pwm: amlogic: add new compatible
- for meson8 pwm type
-Date: Mon, 20 Nov 2023 11:04:48 +0100
-In-reply-to: <2e7a65da-5c1d-4dd4-ac69-7559a53afdf3@linaro.org>
-Message-ID: <1j1qckg21u.fsf@starbuckisacylon.baylibre.com>
+        Mon, 20 Nov 2023 02:06:20 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Sibi Sankar <quic_sibis@quicinc.com>
+Subject: [PATCH] dt-bindings: arm: qcom-soc: extend pattern for matching existing SoCs
+Date: Mon, 20 Nov 2023 11:06:17 +0100
+Message-Id: <20231120100617.47156-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 
+Add missing QDU, QRU and SDA platform names to the pattern matching all
+Qualcomm compatibles.
 
-On Mon 20 Nov 2023 at 10:55, neil.armstrong@linaro.org wrote:
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-> Hi Jerome,
->
-> On 20/11/2023 10:18, Jerome Brunet wrote:
->> On Mon 20 Nov 2023 at 09:27, Neil Armstrong <neil.armstrong@linaro.org>
->> wrote:
->> 
->>> Hi Rob,
->>>
->>> On 19/11/2023 17:05, Rob Herring wrote:
->>>> On Fri, 17 Nov 2023 13:59:12 +0100, Jerome Brunet wrote:
->>>>> Add a new compatible for the pwm found in the meson8 to sm1 Amlogic SoCs.
->>>>>
->>>>> The previous clock bindings for these SoCs described the driver and not the
->>>>> HW itself. The clock provided was used to set the parent of the input clock
->>>>> mux among the possible parents hard-coded in the driver.
->>>>>
->>>>> The new bindings allows to describe the actual clock inputs of the PWM in
->>>>> DT, like most bindings do, instead of relying of hard-coded data.
->>>>>
->>>>> The new bindings make the old one deprecated.
->>>>>
->>>>> There is enough experience on this HW to know that the PWM is exactly the
->>>>> same all the supported SoCs. There is no need for a per-SoC compatible.
->>>>>
->>>>> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
->>>>> ---
->>>>>    .../devicetree/bindings/pwm/pwm-amlogic.yaml  | 36 +++++++++++++++++--
->>>>>    1 file changed, 34 insertions(+), 2 deletions(-)
->>>>>
->>>> Reviewed-by: Rob Herring <robh@kernel.org>
->>>>
->>>
->>> I'm puzzled, isn't it recommended to have a per-soc compatible now ?
->> I have specifically addressed this matter in the description,
->> haven't I ? What good would it do in this case ?
->
-> Yes you did but I was asked for the last year+ that all new compatible
-> should be soc specific (while imprecise, in our care soc family should be ok),
-> with a possible semi-generic callback with an IP version or a first soc
-> implementing the IP.
->
->> Plus the definition of a SoC is very vague. One could argue that
->> the content of the list bellow are vaguely defined families. Should we
->> add meson8b, gxl, gxm, sm1 ? ... or even the actual SoC reference ?
->> This list gets huge for no reason.
->
-> I think in our case soc family is reasonable since they share same silicon
-> design.
->
->> We know all existing PWM of this type are the same. We have been using
->> them for years. It is not a new support we know nothing about.
->> 
->>>
->>> I thought something like:
->>> - items:
->>>      - enum:
->>>          - amlogic,gxbb-pwm
->>>          - amlogic,axg-pwm
->>>          - amlogic,g12a-pwm
->>>      - const: amlogic,pwm-v1
->> I'm not sure I understand what you are suggesting here.
->> Adding a "amlogic,pwm-v1" for the obsolete compatible ? No amlogic DT
->> has that and I'm working to remove this type, so I don't get the point.
->> 
->>>
->>> should be preferred instead of a single amlogic,meson8-pwm-v2 ?
->> This is named after the first SoC supporting the type.
->> Naming it amlogic,pwm-v2 would feel weird with the s4 coming after.
->> Plus the doc specifically advise against this type of names.
->
-> The -v2 refers to a pure software/dt implementation versioning and not
-> an HW version, so I'm puzzled and I requires DT maintainers advice here.
->
-> Yes meson8b is the first "known" platform, even if I'm pretty sure meson6 has
+---
 
-This is not my point. I picked this name because I have to pick a
-specific device based one. Not because it is actually the first or
-not. I don't see a problem with meson6 being compatible with
-meson8-pwm-v2, if that ever comes along.
+Cc: Sibi Sankar <quic_sibis@quicinc.com>
+---
+ .../devicetree/bindings/arm/qcom-soc.yaml        | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 
-I think the binding here satisfy the rule that it should be specific,
-and the intent that goes with it:
-
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/writing-bindings.rst?h=v6.7-rc2#n42
-
-> the same pwm architecture, this is why "amlogic,pwm-v1" as fallback seems more
-> reasonable and s4 and later pwm could use the "amlogic,pwm-v2"
-> fallback.
-
-That is not how understand this:
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/writing-bindings.rst?h=v6.7-rc2#n82
-
->
-> Neil
->> 
->>>
->>> Neil
->> 
+diff --git a/Documentation/devicetree/bindings/arm/qcom-soc.yaml b/Documentation/devicetree/bindings/arm/qcom-soc.yaml
+index 97621c92a1ab..09db42456c12 100644
+--- a/Documentation/devicetree/bindings/arm/qcom-soc.yaml
++++ b/Documentation/devicetree/bindings/arm/qcom-soc.yaml
+@@ -23,7 +23,7 @@ description: |
+ select:
+   properties:
+     compatible:
+-      pattern: "^qcom,.*(apq|ipq|mdm|msm|qcm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$"
++      pattern: "^qcom,.*(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm)[0-9]+.*$"
+   required:
+     - compatible
+ 
+@@ -31,17 +31,17 @@ properties:
+   compatible:
+     oneOf:
+       # Preferred naming style for compatibles of SoC components:
+-      - pattern: "^qcom,(apq|ipq|mdm|msm|qcm|qcs|sa|sc|sdm|sdx|sm)[0-9]+(pro)?-.*$"
++      - pattern: "^qcom,(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm)[0-9]+(pro)?-.*$"
+       - pattern: "^qcom,(sa|sc)8[0-9]+[a-z][a-z]?-.*$"
+ 
+       # Legacy namings - variations of existing patterns/compatibles are OK,
+       # but do not add completely new entries to these:
+-      - pattern: "^qcom,[ak]pss-wdt-(apq|ipq|mdm|msm|qcm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$"
+-      - pattern: "^qcom,gcc-(apq|ipq|mdm|msm|qcm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$"
+-      - pattern: "^qcom,mmcc-(apq|ipq|mdm|msm|qcm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$"
+-      - pattern: "^qcom,pcie-(apq|ipq|mdm|msm|qcm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$"
+-      - pattern: "^qcom,rpm-(apq|ipq|mdm|msm|qcm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$"
+-      - pattern: "^qcom,scm-(apq|ipq|mdm|msm|qcm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$"
++      - pattern: "^qcom,[ak]pss-wdt-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm)[0-9]+.*$"
++      - pattern: "^qcom,gcc-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm)[0-9]+.*$"
++      - pattern: "^qcom,mmcc-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm)[0-9]+.*$"
++      - pattern: "^qcom,pcie-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm)[0-9]+.*$"
++      - pattern: "^qcom,rpm-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm)[0-9]+.*$"
++      - pattern: "^qcom,scm-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm)[0-9]+.*$"
+       - enum:
+           - qcom,dsi-ctrl-6g-qcm2290
+           - qcom,gpucc-sdm630
+-- 
+2.34.1
 
 
