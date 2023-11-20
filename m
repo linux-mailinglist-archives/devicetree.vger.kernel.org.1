@@ -1,135 +1,130 @@
-Return-Path: <devicetree+bounces-17098-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17099-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EA7B7F12DA
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 13:10:22 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE5457F12E3
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 13:13:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E6E211F23994
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 12:10:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1C0E71C20A74
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 12:13:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DEFB19444;
-	Mon, 20 Nov 2023 12:10:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1618A19442;
+	Mon, 20 Nov 2023 12:13:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NCuTRVCG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="y/LV3iFe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52865118
-	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 04:10:14 -0800 (PST)
-Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-3316bb1303bso1776548f8f.0
-        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 04:10:14 -0800 (PST)
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2305DB8
+	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 04:13:07 -0800 (PST)
+Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-548d4fc9579so864127a12.1
+        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 04:13:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700482213; x=1701087013; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=QS36oLotij0tVUHAFPCkN5+chgBCtn4SQxZS9m139l0=;
-        b=NCuTRVCGoerPqn/1EcxD1D0yS7i7kNMiElPUCpHgf3HTNX2+pUQJNXOvHKN+HRS4zl
-         +TQNuF2qXrpyFlz0CzxsqPLN+xDHToZD5l+/2lXN16E61vN+UD6m9ca9fKjbxhL7CRXO
-         /cUiuRcfYsTuhmShWIXIaCqxY0A4IKVoAq9eXOjUh8eSb4VAVHW0E5BNxGJYH6mzanAp
-         Tk14+2XVzBIaA0q14IyngVyoSQO4NqzvxlwIQ649Sp6osydhKVQWaxnrUsZ82kkRptMp
-         UChKkrB804jKfrNZf73PnBCAVdoiEw4fESvi1K0H6yBzMK4UQoRKMqayS3Z8gFPpJtLc
-         uiDg==
+        d=linaro.org; s=google; t=1700482385; x=1701087185; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=9gzY9FqizGaQnSZZhxsA0vWZnsDs08MMlwZNySIk8xQ=;
+        b=y/LV3iFe+7MjzLNneWb04NdfcRYsvSWDJFdFqQhL/qAzuWjbO15OZw2+/2hPj0SvGR
+         O9Ih6dkn11kHGbBsGRWhpXUSQBh2KN9YejQtPQaTg21595QVaLxX2Gmo6RnV0UiS/hw7
+         j04Bv2qG+xInMiccVc4cYX49KkeP266nEyLph/oeOuuvH8DWAf/znBPUWCNhzlgZ7kvW
+         YTTmDU2pOtcPPIG98/8Q1kSRRABvX2h0+LtHxp7kT5ARTE8JamSuEKqWdq5S+6yojQ0J
+         zmKTGKseAFuQvxERMmhfTPFSJUPCK+VTSu5/9jE/HvUz61qOvih1ox+vM1ogU9Snig7e
+         +YRQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700482213; x=1701087013;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1700482385; x=1701087185;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=QS36oLotij0tVUHAFPCkN5+chgBCtn4SQxZS9m139l0=;
-        b=ZHAYV1ZFS7aSGVDRfewgBq3JKagLnBClgEu5nCNSmgQBgwDs/hIVC/l0WT1gG0GFI4
-         YDM1Sml/NvqBmdYt9OCJtO/m9dZcP3qUXiEvo4AkyW8QlHz6NqMx7gD5H7L7QL2aeAYV
-         +SMcyTOcWkYMmmcUMZtuRibhNb3Hlr4aVb2iQdFJwr7+FvWaqjrlEhn8OmW9zl6EQDRB
-         WE1L1grSbFqRcGWBz0sKdZ5mRkPz+qc2SV898bX5PSkevKzud56WmAZJOxW6IrWUOUyw
-         bL1qnN/Kfcj/gOdEste8yTqNEBpIXi4QoTU+nbnvoQpJ/oRaI3u247ib1H9960SKvdEh
-         QSsg==
-X-Gm-Message-State: AOJu0Yyf6nrPyQwtKfuuQ8oFTNnjkMphilQqsnRFqIqjMSg/sDHYtqDS
-	4jt4IPJ8nCiwTyUPkMrmaAcmKQ==
-X-Google-Smtp-Source: AGHT+IEAc+7DnU+zQRiFX6lokbetp4JWQwWelJ6KkGXdipUCH1OQi/JBnWUP/lNPhPgciIgsW0sYsg==
-X-Received: by 2002:a5d:47ce:0:b0:332:c31b:249e with SMTP id o14-20020a5d47ce000000b00332c31b249emr2904421wrc.55.1700482212756;
-        Mon, 20 Nov 2023 04:10:12 -0800 (PST)
-Received: from localhost ([102.36.222.112])
-        by smtp.gmail.com with ESMTPSA id o13-20020a5d4a8d000000b00332cbd59f8bsm393192wrq.25.2023.11.20.04.10.11
+        bh=9gzY9FqizGaQnSZZhxsA0vWZnsDs08MMlwZNySIk8xQ=;
+        b=S8E/iYKf/3EnuzLbUU/jqlxxrun7RQF03Fv/kPFwz10uUK2W4uCXlnrywVIP0w5xUS
+         hEJQitpnYnxemhm/o6PH/tVLCBVAXwU9uGv95tcCVlDFV/fQxKMstOZmTk6fu9gPIs+m
+         3au0yUZk0j53DSjQzdeDWceq+LJE9XmzjTrGTsRyp4DI+iZaG2iDgvdni+7n0JpPvjt0
+         Dd3qLZ7NjzJF4zzgWmCfro+G7O5LE0hHpNrGSyJUkrlVL5SPWCmzwXL4wJrlIb3C+jRs
+         VLv7jF70L5YlfGe90EnmQ6oJ3KlWeJbSV1j8eEyC6wP9yl7Gb/zTnpq/uj831bHgXB2W
+         KHqA==
+X-Gm-Message-State: AOJu0YxaCxzUu1z//XslkkqAGv7F7xLGP/sEJKnI9SGap5NMK3wcSgLk
+	0Wszb5GkKjdiyQcvFc23JZ85AA==
+X-Google-Smtp-Source: AGHT+IFCcHlK6Uo5Dn5EOrxOYnCuxGsZot4TPy1ZycY8WEFLZMdX58P1HwLevCsuJ00GPYhXVUYKoQ==
+X-Received: by 2002:a05:6402:1605:b0:548:786b:b46c with SMTP id f5-20020a056402160500b00548786bb46cmr1568764edv.8.1700482385623;
+        Mon, 20 Nov 2023 04:13:05 -0800 (PST)
+Received: from [10.167.154.1] (178235187204.dynamic-4-waw-k-2-3-0.vectranet.pl. [178.235.187.204])
+        by smtp.gmail.com with ESMTPSA id i22-20020aa7c716000000b00548ac80f90csm1324584edq.40.2023.11.20.04.13.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Nov 2023 04:10:12 -0800 (PST)
-From: Dan Carpenter <dan.carpenter@linaro.org>
-X-Google-Original-From: Dan Carpenter <dan.carpenter@oracle.com>
-Date: Mon, 20 Nov 2023 07:10:09 -0500
-To: oe-kbuild@lists.linux.dev, Nuno Sa <nuno.sa@analog.com>,
-	linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Guenter Roeck <linux@roeck-us.net>, Nuno Sa <nuno.sa@analog.com>,
-	Rob Herring <robh+dt@kernel.org>, Andy Shevchenko <andy@kernel.org>,
-	Jean Delvare <jdelvare@suse.com>,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH 2/2] hwmon: ltc4282: add support for the LTC4282 chip
-Message-ID: <63effee3-359b-48a5-b5a4-36b0478f6045@suswa.mountain>
+        Mon, 20 Nov 2023 04:13:05 -0800 (PST)
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: [PATCH v2 0/4] Adreno 643 + fixes
+Date: Mon, 20 Nov 2023 13:12:51 +0100
+Message-Id: <20230926-topic-a643-v2-0-06fa3d899c0a@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231110151905.1659873-3-nuno.sa@analog.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAENNW2UC/22NQQ6CMBBFr0Jm7ZjSGhBX3sOwGOoAk5CWTJFoC
+ He3snb5XvL/2yCxCie4FRsor5Ikhgz2VIAfKQyM8swM1lhnGlvhEmfxSNXFIdXsGzJXclRCHnS
+ UGDul4Mc8Ca9pynJW7uV9FB5t5lHSEvVzBNfyZ/9+ryUarKmvGleTN+TukwTSeI46QLvv+xeMw
+ 7jOugAAAA==
+To: Rob Clark <robdclark@gmail.com>, 
+ Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>, 
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+ cros-qcom-dts-watchers@chromium.org, Andy Gross <agross@kernel.org>, 
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <swboyd@chromium.org>, 
+ Akhil P Oommen <quic_akhilpo@quicinc.com>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
+ Luca Weiss <luca.weiss@fairphone.com>, Rob Clark <robdclark@chromium.org>, 
+ linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, Konrad Dybcio <konrad.dybcio@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1700482383; l=1189;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=lzZGsaV15spB0k9fqGINqbiPXsC0S/Y51YP+msYyDY8=;
+ b=3uR6tatKteVbqY6ZWNDllqeKEl9etaE/psCLJlK0nI0YanFKwabwox0uOWwDwCRkXAa0Xp9UG
+ M3iGEBQ7KyEDee9gS4dvWGhxAeubkU9droGBpdntQ+uOaU4H6j19A4+
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 
-Hi Nuno,
+as it says on the can
 
-kernel test robot noticed the following build warnings:
+drm/msm patches for Rob
+arm64 patches for linux-arm-msm
 
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+for use with https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/25408
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Nuno-Sa/dt-bindings-hwmon-Add-LTC4282-bindings/20231110-232017
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git hwmon-next
-patch link:    https://lore.kernel.org/r/20231110151905.1659873-3-nuno.sa%40analog.com
-patch subject: [PATCH 2/2] hwmon: ltc4282: add support for the LTC4282 chip
-config: i386-randconfig-141-20231112 (https://download.01.org/0day-ci/archive/20231113/202311130219.YBiF8Xu3-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce: (https://download.01.org/0day-ci/archive/20231113/202311130219.YBiF8Xu3-lkp@intel.com/reproduce)
+tested on QCM6490 (SC7280-IOT) Fairphone FP5
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Reported-by: Dan Carpenter <error27@gmail.com>
-| Closes: https://lore.kernel.org/r/202311130219.YBiF8Xu3-lkp@intel.com/
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+Changes in v2:
+- Drop drm/msm patches (all applied)
+- Make the commit message of "Fix up GPU SIDs" clearer (Abhinav)
+- Drop unwanted firmware-name in "Add ZAP shader support" (self)
+- Pick up tags
+- Link to v1: https://lore.kernel.org/r/20230926-topic-a643-v1-0-7af6937ac0a3@linaro.org
 
-smatch warnings:
-drivers/hwmon/ltc4282.c:859 ltc4282_is_visible() warn: signedness bug returning '(-524)'
-drivers/hwmon/ltc4282.c:1143 ltc4282_gpio_setup() warn: passing zero to 'dev_err_probe'
+---
+Konrad Dybcio (4):
+      arm64: dts: qcom: sc7280: Add ZAP shader support
+      arm64: dts: qcom: sc7280: Fix up GPU SIDs
+      arm64: dts: qcom: sc7280: Mark Adreno SMMU as DMA coherent
+      arm64: dts: qcom: sc7280: Add 0xac Adreno speed bin
 
-vim +859 drivers/hwmon/ltc4282.c
+ arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi |  2 ++
+ arch/arm64/boot/dts/qcom/sc7280.dtsi               | 25 ++++++++++++++++------
+ 2 files changed, 20 insertions(+), 7 deletions(-)
+---
+base-commit: 5a82d69d48c82e89aef44483d2a129f869f3506a
+change-id: 20230926-topic-a643-a7ec9a08a3a1
 
-31ea069ddf481b Nuno Sa 2023-11-10  844  static umode_t ltc4282_is_visible(const void *data,
-31ea069ddf481b Nuno Sa 2023-11-10  845  				  enum hwmon_sensor_types type,
-31ea069ddf481b Nuno Sa 2023-11-10  846  				  u32 attr, int channel)
-31ea069ddf481b Nuno Sa 2023-11-10  847  {
-31ea069ddf481b Nuno Sa 2023-11-10  848  	switch (type) {
-31ea069ddf481b Nuno Sa 2023-11-10  849  	case hwmon_in:
-31ea069ddf481b Nuno Sa 2023-11-10  850  		return ltc4282_in_is_visible(data, attr);
-31ea069ddf481b Nuno Sa 2023-11-10  851  	case hwmon_curr:
-31ea069ddf481b Nuno Sa 2023-11-10  852  		return ltc4282_curr_is_visible(attr);
-31ea069ddf481b Nuno Sa 2023-11-10  853  	case hwmon_power:
-31ea069ddf481b Nuno Sa 2023-11-10  854  		return ltc4282_power_is_visible(attr);
-31ea069ddf481b Nuno Sa 2023-11-10  855  	case hwmon_energy:
-31ea069ddf481b Nuno Sa 2023-11-10  856  		/* hwmon_energy_enable */
-31ea069ddf481b Nuno Sa 2023-11-10  857  		return 0644;
-31ea069ddf481b Nuno Sa 2023-11-10  858  	default:
-31ea069ddf481b Nuno Sa 2023-11-10 @859  		return -ENOTSUPP;
-
-This function returns umode_t (which must be unsigned and smaller than
-int for this warning to trigger).
-
-31ea069ddf481b Nuno Sa 2023-11-10  860  	}
-31ea069ddf481b Nuno Sa 2023-11-10  861  }
-
+Best regards,
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Konrad Dybcio <konrad.dybcio@linaro.org>
 
 
