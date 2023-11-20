@@ -1,238 +1,349 @@
-Return-Path: <devicetree+bounces-17118-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17119-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0E667F13BC
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 13:48:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F01657F13DC
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 14:01:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 60546282059
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 12:48:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9CFDD282146
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 13:00:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1ABB13FE7;
-	Mon, 20 Nov 2023 12:48:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="C1ynnwVp"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C293179B5;
+	Mon, 20 Nov 2023 13:00:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4242DFF
-	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 04:48:20 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-4083dbc43cfso12842525e9.3
-        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 04:48:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1700484499; x=1701089299; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=iULhMJEvBuZulS3R6eM6+QPD3+upNpla2MgygEvT0Sk=;
-        b=C1ynnwVpv9QKeqo7ypFi+ma0xWO1X71e+fg5e8Nj9svQcgJCMvG+WyhmqaJpr2ppHG
-         tpntcl6jk7j0SRIqd8UG1x6GH7oNUJnNz4iagNBAcV08fRLbX1hlNtLYcjWy2+o8r0R7
-         bEHUiU0BLbr/Z5b/NXBREIFnqKPz3bYvQYLg8p9fYLnyzKpLTQmHx8YhwybHM/UkZFck
-         CuKi2ElsWxf1xWbNIP9UP0mNgOolppapN0GoHmCB0FoJpFTeLTOlJrrJpDyVgxbvwRHH
-         XhVZcbNhloRr+7J7VOd1rrG9dsmIkaUO61tJKptzp5nE2yyziXgG/9YTF88VZ+m4qn45
-         zhaw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700484499; x=1701089299;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=iULhMJEvBuZulS3R6eM6+QPD3+upNpla2MgygEvT0Sk=;
-        b=ZlFVYXLNr50qQ2Jt0Mm7vvzHQp5/3ZEjORmnGB7Y04IoW7Xkmrr4KkiIL+16tfsVz7
-         l8Z8owPlpJO49apYSfXpSMpurXMG3wyIYCRkT4NdIkfYEGxMwNAnSt6OHV+xG9wDJOuX
-         HI85iNyvOqyCbFXDfWrqQnae8zEL3FQuA5AOUPC8pZaETQ3LOqA4sdAm7D8BgGKWe47h
-         R2F42p4sNfzgsa4QxtiEJcqJdaLTx5XDoyU3jfX5wViqTc6urgRcB8Ef4IQpES63Mxm5
-         mawj2ksmBbV6jHS5PnLVQxTLBhKMH1bwgjqzd0WSZBDgqgFsTuJ934og5PuB0wGE7Euh
-         7GNA==
-X-Gm-Message-State: AOJu0YykUjaFMVUebQmN9oZygbVzMU5GK9nDKhx4XTd8bzcyV5iwK8qo
-	4NTdbtQgPsJLbZdspgMC/xWDWg==
-X-Google-Smtp-Source: AGHT+IEcj8eyEIw+EleLn28+Gu2Rxb9D5+njypV1+ljFqUelDha0PRwFdE+Tw+weAoFpUecO1dSWNA==
-X-Received: by 2002:a05:600c:354a:b0:40a:3e41:7d6f with SMTP id i10-20020a05600c354a00b0040a3e417d6fmr5908383wmq.32.1700484498651;
-        Mon, 20 Nov 2023 04:48:18 -0800 (PST)
-Received: from Red ([2a01:cb1d:3d5:a100:4a02:2aff:fe07:1efc])
-        by smtp.googlemail.com with ESMTPSA id je12-20020a05600c1f8c00b0040839fcb217sm13392102wmb.8.2023.11.20.04.48.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Nov 2023 04:48:18 -0800 (PST)
-Date: Mon, 20 Nov 2023 13:48:16 +0100
-From: Corentin LABBE <clabbe@baylibre.com>
-To: Frank Wunderlich <frank-w@public-files.de>
-Cc: davem@davemloft.net, heiko@sntech.de, herbert@gondor.apana.org.au,
-	krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
-	p.zabel@pengutronix.de, robh+dt@kernel.org, sboyd@kernel.org,
-	ricardo@pardini.net, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-	linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org
-Subject: Re: Aw: [PATCH 6/6] crypto: rockchip: add rk3588 driver
-Message-ID: <ZVtVkACNHTcCjqGp@Red>
-References: <20231107155532.3747113-1-clabbe@baylibre.com>
- <20231107155532.3747113-7-clabbe@baylibre.com>
- <trinity-a0ee3146-f23d-4f6c-b29c-5fe446c4d4ad-1699797868421@3c-app-gmx-bs50>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 282119C;
+	Mon, 20 Nov 2023 05:00:53 -0800 (PST)
+X-IronPort-AV: E=McAfee;i="6600,9927,10899"; a="4794400"
+X-IronPort-AV: E=Sophos;i="6.04,213,1695711600"; 
+   d="scan'208";a="4794400"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Nov 2023 05:00:53 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10899"; a="801163675"
+X-IronPort-AV: E=Sophos;i="6.04,213,1695711600"; 
+   d="scan'208";a="801163675"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Nov 2023 05:00:46 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.97)
+	(envelope-from <andy@kernel.org>)
+	id 1r53tK-0000000FYIP-0fKV;
+	Mon, 20 Nov 2023 15:00:42 +0200
+Date: Mon, 20 Nov 2023 15:00:41 +0200
+From: Andy Shevchenko <andy@kernel.org>
+To: mitrutzceclan <mitrutzceclan@gmail.com>
+Cc: linus.walleij@linaro.org, brgl@bgdev.pl, linux-gpio@vger.kernel.org,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Walle <michael@walle.cc>, Arnd Bergmann <arnd@arndb.de>,
+	ChiaEn Wu <chiaen_wu@richtek.com>,
+	Niklas Schnelle <schnelle@linux.ibm.com>,
+	Leonard =?iso-8859-1?Q?G=F6hrs?= <l.goehrs@pengutronix.de>,
+	Mike Looijmans <mike.looijmans@topic.nl>,
+	Haibo Chen <haibo.chen@nxp.com>,
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+	Ceclan Dumitru <dumitru.ceclan@analog.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/2] iio: adc: ad7173: add AD7173 driver
+Message-ID: <ZVtYeWZmcDZ_SMPo@smile.fi.intel.com>
+References: <20231116134655.21052-1-user@HYB-hhAwRlzzMZb>
+ <20231116134655.21052-2-user@HYB-hhAwRlzzMZb>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <trinity-a0ee3146-f23d-4f6c-b29c-5fe446c4d4ad-1699797868421@3c-app-gmx-bs50>
+In-Reply-To: <20231116134655.21052-2-user@HYB-hhAwRlzzMZb>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-Le Sun, Nov 12, 2023 at 03:04:28PM +0100, Frank Wunderlich a écrit :
-> Hi Corentin
+On Thu, Nov 16, 2023 at 03:46:55PM +0200, mitrutzceclan wrote:
+> From: Dumitru Ceclan <mitrutzceclan@gmail.com>
 > 
-> thanks for working on it
-> 
-> > Gesendet: Dienstag, 07. November 2023 um 16:55 Uhr
-> > Von: "Corentin Labbe" <clabbe@baylibre.com>
-> > An: davem@davemloft.net, heiko@sntech.de, herbert@gondor.apana.org.au, krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com, p.zabel@pengutronix.de, robh+dt@kernel.org, sboyd@kernel.org
-> > Cc: ricardo@pardini.net, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, "Corentin Labbe" <clabbe@baylibre.com>
-> > Betreff: [PATCH 6/6] crypto: rockchip: add rk3588 driver
-> >
-> > RK3588 have a new crypto IP, this patch adds basic support for it.
-> > Only hashes and cipher are handled for the moment.
-> >
-> > Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
-> > ---
-> >  drivers/crypto/Kconfig                        |  29 +
-> >  drivers/crypto/rockchip/Makefile              |   5 +
-> >  drivers/crypto/rockchip/rk2_crypto.c          | 739 ++++++++++++++++++
-> >  drivers/crypto/rockchip/rk2_crypto.h          | 246 ++++++
-> >  drivers/crypto/rockchip/rk2_crypto_ahash.c    | 344 ++++++++
-> >  drivers/crypto/rockchip/rk2_crypto_skcipher.c | 576 ++++++++++++++
-> >  6 files changed, 1939 insertions(+)
-> >  create mode 100644 drivers/crypto/rockchip/rk2_crypto.c
-> >  create mode 100644 drivers/crypto/rockchip/rk2_crypto.h
-> >  create mode 100644 drivers/crypto/rockchip/rk2_crypto_ahash.c
-> >  create mode 100644 drivers/crypto/rockchip/rk2_crypto_skcipher.c
-> >
-> > diff --git a/drivers/crypto/Kconfig b/drivers/crypto/Kconfig
-> > index 79c3bb9c99c3..b6a2027b1f9a 100644
-> > --- a/drivers/crypto/Kconfig
-> > +++ b/drivers/crypto/Kconfig
-> > @@ -660,6 +660,35 @@ config CRYPTO_DEV_ROCKCHIP_DEBUG
-> >  	  the number of requests per algorithm and other internal stats.
-> >
-> >
-> > +config CRYPTO_DEV_ROCKCHIP2
-> > +	tristate "Rockchip's cryptographic offloader V2"
-> > +	depends on OF && ARCH_ROCKCHIP
-> > +	depends on PM
-> 
-> it should depend on CONFIG_CRYPTO_DEV_ROCKCHIP as rockchip folder is not included without it
-> 
-> drivers/crypto/Makefile
-> obj-$(CONFIG_CRYPTO_DEV_ROCKCHIP) += rockchip/
-> 
+> The AD7173 family offer a complete integrated Sigma-Delta ADC solution
+> which can be used in high precision, low noise single channel
+> applications or higher speed multiplexed applications. The Sigma-Delta
+> ADC is intended primarily for measurement of signals close to DC but also
+> delivers outstanding performance with input bandwidths out to ~10kHz.
 
-Hello
+...
 
-I will move all rockchip kconfig in the rockchip directory like I did for Allwinner, this will fix this.
+> +	help
+> +	  Say yes here to build support for Analog Devices AD7173 and similar ADC
+> +	  (currently supported: AD7172-2, AD7173-8, AD7175-2, AD7176-2).
 
-> > +	select CRYPTO_ECB
-> > +	select CRYPTO_CBC
-> > +	select CRYPTO_AES
-> > +	select CRYPTO_MD5
-> > +	select CRYPTO_SHA1
-> > +	select CRYPTO_SHA256
-> > +	select CRYPTO_SHA512
-> > +	select CRYPTO_SM3_GENERIC
-> > +	select CRYPTO_HASH
-> > +	select CRYPTO_SKCIPHER
-> > +	select CRYPTO_ENGINE
-> > +
-> > +	help
-> > +	  This driver interfaces with the hardware crypto offloader present
-> > +	  on RK3566, RK3568 and RK3588.
-> > +
-> > +config CRYPTO_DEV_ROCKCHIP2_DEBUG
-> > +	bool "Enable Rockchip V2 crypto stats"
-> > +	depends on CRYPTO_DEV_ROCKCHIP2
-> > +	depends on DEBUG_FS
-> > +	help
-> > +	  Say y to enable Rockchip crypto debug stats.
-> > +	  This will create /sys/kernel/debug/rk3588_crypto/stats for displaying
-> > +	  the number of requests per algorithm and other internal stats.
-> > +
-> >  config CRYPTO_DEV_ZYNQMP_AES
-> >  	tristate "Support for Xilinx ZynqMP AES hw accelerator"
-> >  	depends on ZYNQMP_FIRMWARE || COMPILE_TEST
-> > diff --git a/drivers/crypto/rockchip/Makefile b/drivers/crypto/rockchip/Makefile
-> > index 785277aca71e..452a12ff6538 100644
-> 
-> else i did some tests, but it does not seem that the offloader is used (requests stay at initial value after the bootup test)
-> 
-> i wonder about the last 3 lines in dmesg (fallback), seems i miss something for these.
-> 
-> root@bpi-r2pro:~# dmesg | grep crypto
-> [    0.150643] alg: extra crypto tests enabled.  This is intended for developer use only.
-> [    2.718110] rk2-crypto fe380000.crypto: will run requests pump with realtime priority
-> [    2.720605] rk2-crypto fe380000.crypto: Registers crypto algos
-> [    2.721910] rk2-crypto fe380000.crypto: Register ecb(aes) as ecb-aes-rk2
-> [    2.724435] rk2-crypto fe380000.crypto: Register cbc(aes) as cbc-aes-rk2
-> [    2.725072] rk2-crypto fe380000.crypto: Register xts(aes) as xts-aes-rk2
-> [    2.725731] rk2-crypto fe380000.crypto: Register md5 as rk2-md5 3
-> [    2.726310] rk2-crypto fe380000.crypto: Register sha1 as rk2-sha1 4
-> [    2.726901] rk2-crypto fe380000.crypto: Register sha256 as rk2-sha256 5
-> [    2.727521] rk2-crypto fe380000.crypto: Register sha384 as rk2-sha384 6
-> [    2.728142] rk2-crypto fe380000.crypto: Register sha512 as rk2-sha512 7
-> [    2.728763] rk2-crypto fe380000.crypto: Register sm3 as rk2-sm3 8
-> [    3.502442] rk2-crypto fe380000.crypto: Fallback for xts-aes-rk2 is xts-aes-ce
-> [    3.770678] rk2-crypto fe380000.crypto: Fallback for cbc-aes-rk2 is cbc-aes-ce
-> [    3.939055] rk2-crypto fe380000.crypto: Fallback for ecb-aes-rk2 is ecb-aes-ce
-> 
-> root@bpi-r2pro:~# cat /sys/kernel/debug/rk2_crypto/stats
-> rk2-crypto fe380000.crypto requests: 581
-> ecb-aes-rk2 ecb(aes) reqs=132 fallback=1994
->         fallback due to length: 342
->         fallback due to alignment: 1648
->         fallback due to SGs: 0
-> cbc-aes-rk2 cbc(aes) reqs=156 fallback=2182
->         fallback due to length: 329
->         fallback due to alignment: 1841
->         fallback due to SGs: 6
-> xts-aes-rk2 xts(aes) reqs=137 fallback=2143
->         fallback due to length: 116
->         fallback due to alignment: 739
->         fallback due to SGs: 0
-> rk2-md5 md5 reqs=14 fallback=739
-> rk2-sha1 sha1 reqs=28 fallback=716
-> rk2-sha256 sha256 reqs=25 fallback=654
-> rk2-sha384 sha384 reqs=32 fallback=656
-> rk2-sha512 sha512 reqs=34 fallback=638
-> rk2-sm3 sm3 reqs=23 fallback=712
-> root@bpi-r2pro:~# kcapi-rng -b 512 > rng.bin
-> root@bpi-r2pro:~# cat /sys/kernel/debug/rk2_crypto/stats
-> rk2-crypto fe380000.crypto requests: 581
-> ecb-aes-rk2 ecb(aes) reqs=132 fallback=1994
->         fallback due to length: 342
->         fallback due to alignment: 1648
->         fallback due to SGs: 0
-> cbc-aes-rk2 cbc(aes) reqs=156 fallback=2182
->         fallback due to length: 329
->         fallback due to alignment: 1841
->         fallback due to SGs: 6
-> xts-aes-rk2 xts(aes) reqs=137 fallback=2143
->         fallback due to length: 116
->         fallback due to alignment: 739
->         fallback due to SGs: 0
-> rk2-md5 md5 reqs=14 fallback=739
-> rk2-sha1 sha1 reqs=28 fallback=716
-> rk2-sha256 sha256 reqs=25 fallback=654
-> rk2-sha384 sha384 reqs=32 fallback=656
-> rk2-sha512 sha512 reqs=34 fallback=638
-> rk2-sm3 sm3 reqs=23 fallback=712
-> root@bpi-r2pro:~#
-> 
-> if needed this is my current defconfig/tree:
-> 
-> https://github.com/frank-w/BPI-Router-Linux/blob/6.6-r2pro2/arch/arm64/configs/quartz64_defconfig#L924
-> 
+This is hard to maintain, list it one model per a single line.
 
-You are using kcapi-rng but the driver do not support RNG yet. (and probably never if I continue to fail having good results with it).
-So it is normal values does not change.
+> +	  To compile this driver as a module, choose M here: the module will be
+> +	  called ad7173.
 
-Thanks for your test
-Regards
+...
+
++ array_size.h
+
+> +#include <linux/bitfield.h>
+> +#include <linux/bitmap.h>
+
+> +#include <linux/bits.h>
+
+This is guaranteed to be included by one from the above (don't remember
+by heart which one or even both).
+
++ container_of.h
+
+> +#include <linux/delay.h>
+> +#include <linux/device.h>
+> +#include <linux/err.h>
+> +#include <linux/gpio/driver.h>
+> +#include <linux/interrupt.h>
+
+> +#include <linux/kernel.h>
+
+How is this being used (as not a proxy)?
+
+> +#include <linux/module.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/property.h>
+> +#include <linux/regmap.h>
+> +#include <linux/gpio/regmap.h>
+> +#include <linux/regulator/consumer.h>
+> +#include <linux/slab.h>
+> +#include <linux/spi/spi.h>
+> +#include <linux/units.h>
+
+...
+
+> +#define AD7173_CH_ADDRESS(pos, neg) \
+> +	(FIELD_PREP(AD7173_CH_SETUP_AINPOS_MASK, pos) |\
+
+Space before \ here and everywhere else in multi-line definitions.
+
+> +	 FIELD_PREP(AD7173_CH_SETUP_AINNEG_MASK, neg))
+
+...
+
+> +#define AD7173_VOLTAGE_INT_REF_MICROV	2500000
+
+MICROV --> uV (yes, with small letter), it's a common use for Amperes, Volts,
+etc.
+
+...
+
+> +struct ad7173_channel_config {
+> +	bool live;
+> +	u8 cfg_slot;
+> +	/* Following fields are used to compare equality. Bipolar must be first */
+> +	bool bipolar;
+> +	bool input_buf;
+> +	u8 odr;
+> +	u8 ref_sel;
+
+If you group better by types, it might save a few bytes on the architectures /
+compilers where bool != byte.
+
+> +};
+
+...
+
+> +	st->reg_gpiocon_regmap = devm_regmap_init_spi(st->sd.spi, &ad7173_regmap_config);
+> +	if (IS_ERR(st->reg_gpiocon_regmap)) {
+> +		return dev_err_probe(dev, PTR_ERR(st->reg_gpiocon_regmap),
+> +				     "Unable to init regmap\n");
+> +	}
+
+{} are not needed, can also be written as
+
+	st->reg_gpiocon_regmap = devm_regmap_init_spi(st->sd.spi, &ad7173_regmap_config);
+	ret = PTR_ERR_OR_ZERO(st->reg_gpiocon_regmap);
+	if (ret)
+		return dev_err_probe(dev, ret, "Unable to init regmap\n");
+
+...
+
+> +	st->gpio_regmap = devm_gpio_regmap_register(dev, &gpio_regmap);
+> +	if (IS_ERR(st->gpio_regmap)) {
+> +		return dev_err_probe(dev, PTR_ERR(st->gpio_regmap),
+> +				     "Unable to init gpio-regmap\n");
+> +	}
+
+Ditto.
+
+...
+
+> +static struct ad7173_channel_config *ad7173_find_live_config
+> +	(struct ad7173_state *st, struct ad7173_channel_config *cfg)
+
+This is strange indentation.
+
+Perhaps
+
+static struct ad7173_channel_config *
+ad7173_find_live_config(struct ad7173_state *st, struct ad7173_channel_config *cfg)
+
+?
+
+...
+
+> +	offset = offsetof(struct ad7173_channel_config, cfg_slot) +
+> +		 sizeof(cfg->cfg_slot);
+
+Isn't it a offsetofend() from stddef.h?
+
+> +	cmp_size = sizeof(*cfg) - offset;
+
+sizeof_field() from the above mentioned header?
+
+...
+
+> +	for (i = 0; i < st->num_channels; i++) {
+> +		cfg_aux = &st->channels[i].cfg;
+> +
+> +		if (cfg_aux->live && !memcmp(&cfg->bipolar, &cfg_aux->bipolar,
+> +					     cmp_size))
+
+I would split this on logic operator, it will be easier to read.
+
+> +			return cfg_aux;
+> +	}
+
+...
+
+> +	free_cfg_slot = find_first_zero_bit(st->cfg_slots_status,
+> +					    st->info->num_configs);
+> +	if (free_cfg_slot == st->info->num_configs)
+> +		free_cfg_slot = ad7173_free_config_slot_lru(st);
+> +
+> +	set_bit(free_cfg_slot, st->cfg_slots_status);
+> +	cfg->cfg_slot = free_cfg_slot;
+
+Looks like reinvention of IDA.
+
+...
+
+> +	struct ad7173_state *st = iio_priv(indio_dev);
+> +	unsigned int id;
+> +	u8 buf[AD7173_RESET_LENGTH];
+> +	int ret;
+
+Reversed xmas tree order?
+
+	struct ad7173_state *st = iio_priv(indio_dev);
+	u8 buf[AD7173_RESET_LENGTH];
+	unsigned int id;
+	int ret;
+
+...
+
+> +	return vref / (MICRO/MILLI);
+
+What does the denominator mean and why you can't simply use MILL?
+
+...
+
+> +			if (ch->cfg.bipolar)
+> +				/* (1<<31) is UB for a 32bit channel */
+> +				*val = (chan->scan_type.realbits == 32) ?
+> +					INT_MIN :
+> +					-(1 << (chan->scan_type.realbits - 1));
+
+So, what's the issue to use BIT() which has no such issue with UB?
+
+> +			else
+> +				*val = 0;
+
+...
+
+> +		*val = st->info->sinc5_data_rates[reg] / (MICRO/MILLI);
+> +		*val2 = (st->info->sinc5_data_rates[reg] % MILLI) * (MICRO/MILLI);
+
+Same Q about denominator.
+
+...
+
+> +	case IIO_CHAN_INFO_SAMP_FREQ:
+> +		freq = val * MILLI + val2 / MILLI;
+
+> +
+
+Unneeded blank line.
+
+> +		for (i = 0; i < st->info->num_sinc5_data_rates - 1; i++) {
+> +			if (freq >= st->info->sinc5_data_rates[i])
+> +				break;
+> +		}
+> +
+> +		cfg = &st->channels[chan->address].cfg;
+> +		cfg->odr = i;
+> +
+> +		if (!cfg->live)
+> +			break;
+> +
+> +		ret = ad_sd_read_reg(&st->sd, AD7173_REG_FILTER(cfg->cfg_slot), 2, &reg);
+> +		if (ret)
+> +			break;
+> +		reg &= ~AD7173_FILTER_ODR0_MASK;
+> +		reg |= FIELD_PREP(AD7173_FILTER_ODR0_MASK, i);
+> +		ret = ad_sd_write_reg(&st->sd, AD7173_REG_FILTER(cfg->cfg_slot), 2, reg);
+> +		break;
+
+...
+
+> +static int ad7173_update_scan_mode(struct iio_dev *indio_dev,
+> +				   const unsigned long *scan_mask)
+> +{
+> +	struct ad7173_state *st = iio_priv(indio_dev);
+
+> +	int i, ret = 0;
+
+Use the 0 directly...
+
+> +
+> +	for (i = 0; i < indio_dev->num_channels; i++) {
+> +		if (test_bit(i, scan_mask))
+> +			ret = ad7173_set_channel(&st->sd, i);
+> +		else
+> +			ret = ad_sd_write_reg(&st->sd, AD7173_REG_CH(i), 2, 0);
+> +
+> +		if (ret < 0)
+> +			return ret;
+> +	}
+> +
+> +	return ret;
+
+...here.
+
+> +}
+
+> +	chan_arr = devm_kcalloc(dev, sizeof(*chan_arr), num_channels,
+> +				GFP_KERNEL);
+
+One line.
+
+> +	if (!chan_arr)
+> +		return -ENOMEM;
+
+...
+
+> +		if (fwnode_property_read_u32(child, "adi,reference-select", &ref_sel))
+> +			ref_sel = AD7173_SETUP_REF_SEL_INT_REF;
+
+if is redundant.
+
+		ref_sel = AD7173_SETUP_REF_SEL_INT_REF;
+		fwnode_property_read_u32(child, "adi,reference-select", &ref_sel);
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
