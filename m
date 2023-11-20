@@ -1,47 +1,62 @@
-Return-Path: <devicetree+bounces-16994-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16995-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AED957F0CD9
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 08:28:59 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E4E67F0D38
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 09:11:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 710222816A3
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 07:28:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CDCD12818FE
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 08:11:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D755563C6;
-	Mon, 20 Nov 2023 07:28:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21C85D272;
+	Mon, 20 Nov 2023 08:11:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jrgTFYWH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF46AB4;
-	Sun, 19 Nov 2023 23:28:50 -0800 (PST)
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-407da05f05aso11642105e9.3;
-        Sun, 19 Nov 2023 23:28:50 -0800 (PST)
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0E9CB9
+	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 00:11:39 -0800 (PST)
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-408425c7c10so13798505e9.0
+        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 00:11:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1700467898; x=1701072698; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=fcUuuNi+u/xKZe4/lMw1EaVmTDsSwUBnZFGw/iTPhBg=;
+        b=jrgTFYWHZ3g5BZ98zz9W8lEUY41u9N5QUwsx2MfOQLzVJVTrWFnnfPSn808O2Vmjvb
+         kyjAoUuPWk9PiRMGtlz3GFXek51ZQ9SttIdg7fnqhrQaHGKsea9H3zuWt5ipp2U90CBl
+         Xwwd1E14bhuh3kEMg7iykHBEOdSG4O0rSiMqHeM4vGxfiVOw45dr9PCV+z/Ngbx9M0Fd
+         WTXXIC3Wk2IxJwd3XYtrOXMQyLz+lI9wPMSTHvyZvMTTxVCGoPOaeLGDTAXq09Xp2Pn2
+         eUVyvyLW2nbcFQaDbKYaVOHhs0tqsO637jaVDS5qSOlsUXkCkQyzHbfnyDjSX2HscFVx
+         LKlA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700465329; x=1701070129;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KZNqz+wBWBJJ12rVukCOXqUb3qX7quzJeNS99ufTTW4=;
-        b=BTXF+2XQOKkYRXjARokJdUPgC8Miu2a0FLSwJgySAzlM96kWdck0Eal6/7MyLysCkF
-         eE9OfPli31+S8+2W1krBlSVDFoJR5jWn3eJWdb309ztcs8pau1yrnaYzVhI9QB3PV5XH
-         dh19SdAyv53IziKQAsMscf92+uF/Q4Kvdv2R6vU7GgRwYgTsDT+JI94x66NoapZzJgY+
-         wNRZdv5KlXsk3yHVE8DsdjQ3UznfkNECB4UvJLtThrFsxv4VDdzJceqSPCuUcAl9+y4J
-         1mHCIJ8mhE6DPmZSQokZkvt3cx4mVFV/5/FDwxbybg4TVJDw8pBf+AVCORKigV+Yvq1z
-         aDsQ==
-X-Gm-Message-State: AOJu0YwlXnn6jXGM7etUiUezrvEqi5FlzfKZ1gkYQ3MH2MpW2gSGcK/e
-	NjmHF8WCuY6y8eWSKI26UFLoINLmihZDsEJX
-X-Google-Smtp-Source: AGHT+IEm6nqX7KtI9/Ld7FC7T839/2AIJXptQZ9wd5HFqWPONqmZl0yeYpuG/qJsv5VIPqcBNc7msQ==
-X-Received: by 2002:a05:600c:5251:b0:401:bd2e:49fc with SMTP id fc17-20020a05600c525100b00401bd2e49fcmr5075723wmb.24.1700465329018;
-        Sun, 19 Nov 2023 23:28:49 -0800 (PST)
-Received: from ?IPV6:2a0b:e7c0:0:107::aaaa:59? ([2a0b:e7c0:0:107::aaaa:59])
-        by smtp.gmail.com with ESMTPSA id x18-20020a05600c421200b00406443c8b4fsm16411683wmh.19.2023.11.19.23.28.48
+        d=1e100.net; s=20230601; t=1700467898; x=1701072698;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=fcUuuNi+u/xKZe4/lMw1EaVmTDsSwUBnZFGw/iTPhBg=;
+        b=Y4j/qFTxIh62y3cxI4nLYIRsV/4D4y1Af1IzQK1eTWejG/ozE5gTIPWvcqrru0ndFm
+         vmn/P7q699qSxM+SNgdg3miueJ6O1uyOwSJOjUkvATV6h22ADrSRM7MYw/4c29FNlBQN
+         SKxxy4PlCCH+/X7NhwIl2Cv78izfoh02ipVwvGFfpLF68556aeaTnN+wmPL+p9xLJqT9
+         Qm1PhwXbLgUD8ubr3+sz/cQUC6drPAR0DgT6YIbtxAeEFg2vTlHPG38ViUIkwhVqkEqU
+         Dvhj9Gu3JvnoGDP46BStREeTe19+PLcNjoaXGPho8uYfPD7HMt3Zt8b1ury7aAUOxZIz
+         W6aA==
+X-Gm-Message-State: AOJu0YzB8BgmyN4M70xcZEDhDCgU6clZL0czpyFDQ04l6JC9VBRsBpHD
+	RhcNtAiI+QO93lUBuMajNvgMmg==
+X-Google-Smtp-Source: AGHT+IFw7EeRhj7JxE3HkKK1fMaQo4ZJRm9ZMXgx89CxzuXxbSCE0/pSwxmZk/2IWdTiXV1kPh584Q==
+X-Received: by 2002:a05:600c:1f94:b0:401:b6f6:d8fd with SMTP id je20-20020a05600c1f9400b00401b6f6d8fdmr4575322wmb.6.1700467898303;
+        Mon, 20 Nov 2023 00:11:38 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:f04:f84b:d87d:1d06? ([2a01:e0a:982:cbb0:f04:f84b:d87d:1d06])
+        by smtp.gmail.com with ESMTPSA id p13-20020a05600c358d00b0040841e79715sm12714341wmq.27.2023.11.20.00.11.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 19 Nov 2023 23:28:48 -0800 (PST)
-Message-ID: <b4342c49-e1c4-459e-bbd0-fd63108a6754@kernel.org>
-Date: Mon, 20 Nov 2023 08:28:47 +0100
+        Mon, 20 Nov 2023 00:11:37 -0800 (PST)
+Message-ID: <5f18ab4a-e4b0-48ef-946e-524e8dadf7ce@linaro.org>
+Date: Mon, 20 Nov 2023 09:11:35 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -49,74 +64,94 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: serial: fsl-linflexuart: change the
- maintainer email address
-Content-Language: en-US
-To: Chester Lin <clin@suse.com>
-Cc: linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
- devicetree@vger.kernel.org, Chester Lin <chester62515@gmail.com>,
- NXP S32 Linux Team <s32@nxp.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh+dt@kernel.org>,
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v2 7/8] arm64: dts: qcom: sm8650-mtp: add interconnect
+ dependent device nodes
+Content-Language: en-US, fr
+To: Konrad Dybcio <konrad.dybcio@linaro.org>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-References: <20231115235732.13633-1-clin@suse.com>
-From: Jiri Slaby <jirislaby@kernel.org>
-Autocrypt: addr=jirislaby@kernel.org; keydata=
- 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
-In-Reply-To: <20231115235732.13633-1-clin@suse.com>
+ Conor Dooley <conor+dt@kernel.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20231106-topic-sm8650-upstream-dt-v2-0-44d6f9710fa7@linaro.org>
+ <20231106-topic-sm8650-upstream-dt-v2-7-44d6f9710fa7@linaro.org>
+ <3f3f7c21-0d03-4b59-b12c-a72e1d2b82af@linaro.org>
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro Developer Services
+In-Reply-To: <3f3f7c21-0d03-4b59-b12c-a72e1d2b82af@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 16. 11. 23, 0:57, Chester Lin wrote:
-> I am leaving SUSE so the current email address <clin@suse.com> will be
-> disabled soon. <chester62515@gmail.com> will be my new address for handling
-> emails, patches and pull requests from upstream and communities.
+On 18/11/2023 01:25, Konrad Dybcio wrote:
+> On 6.11.2023 09:39, Neil Armstrong wrote:
+>> Now interconnect dependent devices are added in sm8650 DTSI,
+>> now enable more devices for the Qualcomm SM8650 MTP board:
+>> - PCIe
+>> - Display
+>> - DSPs
+>> - SDCard
+>> - UFS
+>> - USB role switch with PMIC Glink
+>>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> ---
+> Little nits:
+> 
+> [...]
+> 
+>>   &tlmm {
+>>   	gpio-reserved-ranges = <32 8>;
+>> +
+>> +	sde_dsi_active: sde-dsi-active-state {
+> Dmitry voiced concerns about having the "SDE_" part here lately
+> is it part of the actual pin name (in the schematic)?
 
-Maybe add an entry to /.mailmap too?
+Indeed, names and DISP0_RESET_N and MDP_VSYNC, will rename.
 
--- 
-js
-suse labs
+> 
+> [...]
+> 
+>>   
+>>   &usb_1_dwc3 {
+>> -	dr_mode = "peripheral";
+>> +	dr_mode = "otg";
+> Isn't that the default?
+
+Without PMIC GLINK/UCSI, there's no mode switch source, so otg is not possible,
+and bootloader leaves the PMIC power state in peripheral mode.
+
+On the other side with the next patch, we add pmic-glink and we add
+"usb-role-switch" making it switchable.
+
+Neil
+
+> 
+> Konrad
 
 
