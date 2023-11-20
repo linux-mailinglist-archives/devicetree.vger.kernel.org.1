@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-16992-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16993-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1A797F0CAD
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 08:16:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B51767F0CBA
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 08:20:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6B6812817DA
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 07:16:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5F671281850
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 07:20:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D94863AD;
-	Mon, 20 Nov 2023 07:16:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 163C363B1;
+	Mon, 20 Nov 2023 07:19:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kC0ywsSX"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uMjtz1YC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E277CB3
-	for <devicetree@vger.kernel.org>; Sun, 19 Nov 2023 23:16:07 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-32dff08bbdbso3128879f8f.2
-        for <devicetree@vger.kernel.org>; Sun, 19 Nov 2023 23:16:07 -0800 (PST)
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 961C890
+	for <devicetree@vger.kernel.org>; Sun, 19 Nov 2023 23:19:53 -0800 (PST)
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-53e751aeb3cso5687430a12.2
+        for <devicetree@vger.kernel.org>; Sun, 19 Nov 2023 23:19:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700464566; x=1701069366; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1700464792; x=1701069592; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=B2FRcsl9ZgVg4pR687ErFOdA+tPdEC++9yiBYZ8sZ7g=;
-        b=kC0ywsSXSmSLnYrfJigSKE0mAsWUuKlO7kyFwG+1/X7ImcW19gnrz5II3I/jOMhMNx
-         EYazt17/zgPsQndo4pgkml/blyrM39Q5SdRX0emuam1IOhZaPNzKYojFqolobcBhYcyr
-         17NI14q8dRvf2ntP8gNMBYiJn5twmgO/z6CAC4QEnZxWAPukzcvzORi6rPpibY/mY4f5
-         zCqiN6JNXLLGfQgRD/oBgnGaga565/zFgtkEdjFfC7Ib+g/721bIRPZdvDxehsO9fnr/
-         dgdxiWx2M604d4DFOVG10f9ctzlGi3HKvFRPvp6w82k1u2zL1DsZ1viRQVEspGpHyAK4
-         BcUg==
+        bh=Hg+bpY74pcdJD4VqD9iJjZ8EPmhWBj00aMuwTv1+jZU=;
+        b=uMjtz1YCTUFyadjjBshiuxPOTSu9jA7z0rsCz3vWZsJeg9P1Vw6lYXBdB2O6Jorq6n
+         z23tQggDECSk4RB2jOEqL1LUd5L4CxsMa8u1mV7XvzVs0slVppBpxsrISR7ASHNyCqD8
+         mqsFMgsoG/ikUj4mcqrobIj3HOrRZyGoi/snCcwdx1/LmaFMAcwjQDT80M8rq9/9klzc
+         0ZDvXgSLReSMjXxE5lGZU7aHYzpK5hUj4tm5F0xfaPJE+KOI+Gn7ZkCec6kFHEwMkEbt
+         rMr43aB+MK8WNXD+xDhz33xxaV+O5ks7R5fb8JoJVbXrQ0VgpV4J1muvm4CGG6ZUEUxR
+         bAdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700464566; x=1701069366;
+        d=1e100.net; s=20230601; t=1700464792; x=1701069592;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=B2FRcsl9ZgVg4pR687ErFOdA+tPdEC++9yiBYZ8sZ7g=;
-        b=wPdGsCKqM3tEIZyVP1PNC/yVVzH4mmQMdkTDfs6m3Gmr4/IZxjVFz9kWGjKHFfiiRh
-         rQNZh+R3+u/Ebz8AzQ3//KIKsrqrW3AIpUQWvjqP+R/XeisA050/JiS4rvTWup1+9w3h
-         T1unet6zMZftvksO0rzr1b5uudUpfHQonOTlI/9RxMoI4HCKoVv8O/C/DETfw70Senum
-         zqrgNs0f4Myj6wuWLPdKuX0YBuzOG/xbNn3DKx5tDhuDk2Tzqyo7fKsZwGK0aQY6cIR7
-         wjyODvSYVzayjO2Xfex9rSACTm069BqR/fpdOZTJeSyIS0EaEyBHxycMIXzRRRHBI1Wl
-         ewnw==
-X-Gm-Message-State: AOJu0Yznpd/e7Uhun9o0zOs1Z0OB94S2RYr+ojV9EnqhjysGS9GUvqpa
-	KURA+k1ptizMAViq3on98AlZUw==
-X-Google-Smtp-Source: AGHT+IHsrXbpDST9Wk3VsESO3Vbf3C2Fmyt7Z77ayf1QduE0ionfBAmY+B4e3zZKTwy+qJzBiBwWQw==
-X-Received: by 2002:a05:6000:1acd:b0:32d:b906:40a7 with SMTP id i13-20020a0560001acd00b0032db90640a7mr4146114wry.1.1700464566293;
-        Sun, 19 Nov 2023 23:16:06 -0800 (PST)
+        bh=Hg+bpY74pcdJD4VqD9iJjZ8EPmhWBj00aMuwTv1+jZU=;
+        b=HSDWc1XwbejTDCgGk9Khl+STAOu9LYtQlNbXRMLiVreRtZRS2GgHNg9nnqwEfIpxLL
+         sn8jKqlW/WM+RFEu6H0MQ+vGMUpARzA5g2ZTt5kanK5s9q8nwDjwjIxcHkBRG/VSKGqf
+         l3RdcuWcujDmb+FN1I/5W0oZeq1vnnaZkgAhJb4Rw0tdsFAJtRmwCKSR9HTuObh8b2b/
+         IaL7jFWhHDSU0PDUD3rz4wKdICdIGSRqLDbfl8Y7MMS1VXxYduwpdJyP4x0D8iXHbIP7
+         uIRM2mI60apLju7i/vWsK5cqBITmLWuQZrFz6oQXMuAJ70ncyLOczt48dPxma1z/TZYe
+         TLvQ==
+X-Gm-Message-State: AOJu0Yw7yOiHrnUTxYtU05Yw6i48Mf06ecrF0xZnXgqh0b7GpWwGYtLd
+	EMAsfSi2b87UheOzJBZZpjrsxA==
+X-Google-Smtp-Source: AGHT+IEQODGwM8mZ2iNoyNdarB1zO6/0jkoy5Ew/n+x9SohD56JZb4gN0hKqkRFXByT2EFGXA9YJkw==
+X-Received: by 2002:aa7:d68f:0:b0:548:92fb:d3bd with SMTP id d15-20020aa7d68f000000b0054892fbd3bdmr3335621edr.16.1700464792056;
+        Sun, 19 Nov 2023 23:19:52 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.11])
-        by smtp.gmail.com with ESMTPSA id p6-20020a5d48c6000000b0032db8cccd3asm10166457wrs.114.2023.11.19.23.16.04
+        by smtp.gmail.com with ESMTPSA id s24-20020a056402165800b00548ab1abc75sm1120332edx.51.2023.11.19.23.19.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 19 Nov 2023 23:16:05 -0800 (PST)
-Message-ID: <9237db9f-0d80-4ae1-88e8-ea7c53bd0c8b@linaro.org>
-Date: Mon, 20 Nov 2023 08:16:04 +0100
+        Sun, 19 Nov 2023 23:19:50 -0800 (PST)
+Message-ID: <0080b7cb-c23a-48b1-8e5e-02c80baf00e7@linaro.org>
+Date: Mon, 20 Nov 2023 08:19:48 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,20 +64,20 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH] docs: dt-bindings: add DTS Coding Style document
 Content-Language: en-US
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To: Rob Herring <robh+dt@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org,
  AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
  Arnd Bergmann <arnd@arndb.de>, Bjorn Andersson <andersson@kernel.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
  Heiko Stuebner <heiko@sntech.de>, Konrad Dybcio <konrad.dybcio@linaro.org>,
  Matthias Brugger <matthias.bgg@gmail.com>,
  Michal Simek <michal.simek@amd.com>,
  Neil Armstrong <neil.armstrong@linaro.org>, Nishanth Menon <nm@ti.com>,
  Olof Johansson <olof@lixom.net>
 References: <20231116181218.18886-1-krzysztof.kozlowski@linaro.org>
- <CAMuHMdVvAN9YcS4XsyinC1+WfAt0YwdNjv_pCpnfBpmGFeXtRg@mail.gmail.com>
+ <CAL_JsqLxKWXVXp6+-yNxvHifZHEDvMdQChR7AHD9STJw_S9UiA@mail.gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -123,46 +123,149 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CAMuHMdVvAN9YcS4XsyinC1+WfAt0YwdNjv_pCpnfBpmGFeXtRg@mail.gmail.com>
+In-Reply-To: <CAL_JsqLxKWXVXp6+-yNxvHifZHEDvMdQChR7AHD9STJw_S9UiA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 16/11/2023 22:32, Geert Uytterhoeven wrote:
-> Hi Krzysztof,
+On 16/11/2023 21:44, Rob Herring wrote:
+>>
+>> Merging idea: Rob/DT bindings
+>> ---
+>>  Documentation/devicetree/bindings/index.rst   |   1 +
+>>  .../devicetree/bindings/writing-dts.rst       | 137 ++++++++++++++++++
+>>  2 files changed, 138 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/writing-dts.rst
 > 
-> On Thu, Nov 16, 2023 at 7:12 PM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote>
->> Document preferred coding style for Devicetree sources (DTS and DTSI),
->> to bring consistency among all (sub)architectures and ease in reviews.
+> Perhaps dts-coding-style.rst
+
+Ack
+
 > 
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> After adding writing-schema, I realized the difference between
+> writing-schema and writing-bindings isn't all that clear. I never got
+> around to renaming things.
 > 
-> Thanks for your patch!
-> 
+>>
+>> diff --git a/Documentation/devicetree/bindings/index.rst b/Documentation/devicetree/bindings/index.rst
+>> index d9002a3a0abb..975449be4862 100644
 >> --- a/Documentation/devicetree/bindings/index.rst
 >> +++ b/Documentation/devicetree/bindings/index.rst
+>> @@ -5,5 +5,6 @@
+>>
+>>     ABI
+>>     writing-bindings
+>> +   writing-dts
+>>     writing-schema
+>>     submitting-patches
+>> diff --git a/Documentation/devicetree/bindings/writing-dts.rst b/Documentation/devicetree/bindings/writing-dts.rst
+>> new file mode 100644
+>> index 000000000000..10c477ec1eed
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/writing-dts.rst
+>> @@ -0,0 +1,137 @@
+>> +.. SPDX-License-Identifier: GPL-2.0
+>> +.. _writingdts:
+>> +
+>> +===================================================
+>> +Writing Devicetree Sources (DTS) - DTS Coding Style
+>> +===================================================
+>> +
+>> +When writing Devicetree Sources (DTS) please observe below guidelines.  They
+>> +should be considered complementary to any rules expressed already in Devicetree
+>> +Specification and dtc compiler (including W=1 and W=2 builds).
+>> +
+>> +Individual architectures and sub-architectures can add additional rules, making
+>> +the style stricter.
+>> +
+>> +Naming and Valid Characters
+>> +---------------------------
+>> +
+>> +1. Node and property names are allowed to use only:
+>> +
+>> +   * lowercase characters:: [a-z]
+>> +   * digits:: [0-9]
+>> +   * dash:: -
+>> +
+>> +2. Labels are allowed to use only:
+>> +
+>> +   * lowercase characters:: [a-z]
+>> +   * digits:: [0-9]
+>> +   * underscore:: _
+>> +
+>> +3. Unit addresses should use lowercase hex, without leading zeros (padding).
 > 
+> Strictly speaking, the unit-address is whatever a bus defines, but
+> yes, by default, that is the format.
+> 
+>> +
+>> +4. Hex values in properties, e.g. "reg", should use lowercase hex.  Any address
+>> +   part can be padded with leading zeros.
+>> +
+>> +Example::
+>> +
+>> +       gpi_dma2: dma-controller@800000 {
+>> +               compatible = "qcom,sm8550-gpi-dma", "qcom,sm6350-gpi-dma";
+>> +               reg = <0x0 0x00800000 0x0 0x60000>;
+>> +       }
+>> +
 >> +Order of Nodes
 >> +--------------
 >> +
 >> +1. Nodes within any bus, thus using unit addresses for children, shall be
 >> +   ordered incrementally by unit address.
-> 
-> In Renesas DTS files, we have an (unwritten) additional rule: when there
-> are multiple nodes of the same type, they do not follow the global
-> ordering by unit-address, but are grouped together.
-> E.g. the second and any subsequent serial ports are always listed
-> immediately after the first serial port.
-
-OK, I'll add here some exception paragraph. pin-state nodes also need one.
-
-> 
+>> +
 >> +2. Nodes without unit addresses should be ordered alpha-numerically.
 >> +
 >> +3. When extending nodes in board DTS via &label, the entries should be ordered
 >> +   alpha-numerically.
 > 
+> Or matching the original node definition order?
+
+If there is any sub-arch using such style, then sure, why not. Otherwise
+if we do not have such examples, I find that a bit tricky to implement:
+for patches adding new board, one needs to check the original DTSI for
+order.
+
 > 
+>> +
+>> +Example::
+>> +
+>> +       // SoC DTSI
+>> +
+>> +       \ {
+> 
+> / {
+> 
+>> +               cpus {
+>> +                       // ...
+>> +               };
+>> +
+>> +               psci {
+>> +                       // ...
+>> +               };
+>> +
+>> +               soc@ {
+>> +                       dma: dma-controller@10000 {
+>> +                               // ...
+>> +                       };
+>> +
+>> +                       clk: clock-controller@80000 {
+>> +                               // ...
+>> +                       };
+>> +               };
+>> +       };
+>> +
+>> +       // Board DTS
+>> +
+>> +       &clk {
+>> +               // ...
+>> +       };
+>> +
+>> +       &dma {
+>> +               // ...
+>> +       };
+>> +
+>> +
 >> +Order of Properties in Device Node
 >> +----------------------------------
 >> +
@@ -171,20 +274,61 @@ OK, I'll add here some exception paragraph. pin-state nodes also need one.
 >> +1. compatible
 >> +2. reg
 >> +3. ranges
+> 
 >> +4. All properties with values
 >> +5. Boolean properties
+> 
+> I make this like schemas, standard/common properties first, then
+> vendor specific properties.
+
+Sure.
+
+> 
 >> +6. status (if applicable)
+>> +7. Child nodes
+>> +
+>> +The "status" property is by default "okay", thus it can be omitted.
+>> +
+>> +Example::
+>> +
+>> +       // SoC DTSI
+>> +
+>> +       usb_1_hsphy: phy@88e3000 {
+>> +               compatible = "qcom,sm8550-snps-eusb2-phy";
+>> +               reg = <0x0 0x088e3000 0x0 0x154>;
+>> +               #phy-cells = <0>;
+>> +               resets = <&gcc GCC_QUSB2PHY_PRIM_BCR>;
+>> +               status = "disabled";
+>> +       };
+>> +
+>> +       // Board DTS
+>> +
+>> +       &usb_1_hsphy {
+>> +               clocks = <&tcsr TCSR_USB2_CLKREF_EN>;
+>> +               clock-names = "ref";
+>> +               status = "okay";
+>> +       };
+>> +
+>> +
+>> +Indentation
+>> +-----------
+>> +
+>> +1. Use indentation according to :ref:`codingstyle`.
+>> +2. For arrays spanning across lines, preferred is to align the continued
+>> +   entries with opening < from first line.
+>> +
+>> +Example::
+>> +
+>> +       thermal-sensor@c271000 {
+>> +               compatible = "qcom,sm8550-tsens", "qcom,tsens-v2";
+>> +               reg = <0x0 0x0c271000 0x0 0x1000>,
+>> +                     <0x0 0x0c222000 0x0 0x1000>;
 > 
-> There must be a lank line between properties and child nodes?
+> You should cover the <> style too, meaning <> around each logical entry.
 
-+1
+Ack.
 
-> 
-> And once we have a documented coding style, the next long-standing item
-> from our wishlist would be a script to sort the contents of a DTS file
-> according to the rules ;-)
 
-Yeah...
 
 Best regards,
 Krzysztof
