@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-16989-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16990-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 310BE7F0CA0
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 08:13:13 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62CC57F0CA5
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 08:14:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DFBCD281860
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 07:13:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DAAF2B20F5B
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 07:14:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DF8F63C0;
-	Mon, 20 Nov 2023 07:13:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2987B539C;
+	Mon, 20 Nov 2023 07:14:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bdaiXygO"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AGbkdSDB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97E37BC
-	for <devicetree@vger.kernel.org>; Sun, 19 Nov 2023 23:13:02 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-5094727fa67so5572836e87.3
-        for <devicetree@vger.kernel.org>; Sun, 19 Nov 2023 23:13:02 -0800 (PST)
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01797AF
+	for <devicetree@vger.kernel.org>; Sun, 19 Nov 2023 23:14:41 -0800 (PST)
+Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-3316bb1303bso1592278f8f.0
+        for <devicetree@vger.kernel.org>; Sun, 19 Nov 2023 23:14:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700464381; x=1701069181; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1700464480; x=1701069280; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=DGS3LqpOXvMHWFZfngDkw3XYyRRmTs0hdbzdAVl4HKQ=;
-        b=bdaiXygOBgqqJ3t37wiVX1/eWgojwQ7eDs4EkkPOozzpsVXdbPTFMy+DeDZxQI+wTq
-         pQKUnNYaBcZVAb1XqTV8HunffJ2KPrrcYjURia9JmQzqYa/U+ApurpeASAwR2xdt99Rl
-         P4az+VBh/s3iqx/bqvIa82wXT7GWmarmEEcS+Up3ajhR721+rGwXtv2D55MQSDltS955
-         BQJpIQVjPAAAiyCU6Hsa7+4JFhEUkjijYoNVbGqxURQVjq8K/tTXhGK+F9jWIaKTItG3
-         XD85yGu+wScHhMhT6xxn/BdBoCOZ9PviH3+tMHU/tiPIqgGYKFX1mPZyI9zwdlZ29uM5
-         cpWQ==
+        bh=xTpzIo3f4o6eoy8MCq5hNlFomP7UrP22WFNPe/vFuOg=;
+        b=AGbkdSDB6vRw9sXilhd2oj8e9Vx9CB9Q4znRHwQGTtwKOk7k+sfE3Vrn3u3hxlX14Y
+         LeV2Gp4cnxl/sEFHLxjdZB5cFWzaS+BYcfppcDHyw/TV4/GOTs/M6oAt0pLmg4uKJq+Z
+         LJuFHqF/xByT8TzfTbe1G2YAn6v/hpo/aSUVDGZ3ZpCT7SunWM49OGsyZlf5eVf60dKW
+         m90TJNB1EwVhn77lYcEf/7m7lvLn9yOvh+YRTLGzU9+BwoIgTNWySQjaaaSCn/1y613h
+         NBzS3wFlKeIm3EJUWy068Wzb2vJzr5Ih12MyNi1FjLDAatSrz2P3AzwX7+q9pJpOYI7r
+         S8Lw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700464381; x=1701069181;
+        d=1e100.net; s=20230601; t=1700464480; x=1701069280;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DGS3LqpOXvMHWFZfngDkw3XYyRRmTs0hdbzdAVl4HKQ=;
-        b=a/hSOzgwZhubWpJWyi/YMsuNfuuJuGi0X4oTMs3vaw0jWM0Etl5Gej1aJ/Dz/H/BQ6
-         Fivy9/HU31oCE8jjvp8onlTjRwO75m856+aLquo2NggP6h+g+nUXw5Oq+e8EjIpdi026
-         U36nOqnGAEdPtQJyAxQLB7KL0vcdzlVpumd0BX8LhakVoZ5w8Q8U2AzKMp7msu8w/qdr
-         6N2nu8gcs7fqDgDQcJLcZfG6ImVovGogrlHYCAEwkFPm1a6gPFP55WrqQyc/bxBzigZC
-         Fvu9f7S7IM5jp0/gCHiOMgXsD/x4uxKQmPhbw0JXN1YYN0WCzFSaXxs0GOWcvgLQBaKU
-         UYzQ==
-X-Gm-Message-State: AOJu0YxPKaidN2op6doW7Mn5o+BJgvOf/ydG/NZSipaD1NsXl95UIreg
-	blT1flmFb2PQY+3X3ijieoz9jQ==
-X-Google-Smtp-Source: AGHT+IH8sGAfSfpsxitI4qviUODKu8mGIu277Y0nmf8tCnNCzyQivyiZEnHg3NpqlimZexz7mXJu3w==
-X-Received: by 2002:ac2:457c:0:b0:500:daf6:3898 with SMTP id k28-20020ac2457c000000b00500daf63898mr5110630lfm.26.1700464380779;
-        Sun, 19 Nov 2023 23:13:00 -0800 (PST)
+        bh=xTpzIo3f4o6eoy8MCq5hNlFomP7UrP22WFNPe/vFuOg=;
+        b=PVL971Fkuyaq/p/BwqfO7WmXNaSAm0eU2W8v4bxsrDNdhe7fJKjHRVQLVVIMCTvC0P
+         yHUrSZvwAlORHOOBA0KH+82f8zPTAg9wRKtF7EEtwc1WXpFXww3RbhExOPPLKmrtrNto
+         cFkHjRP5WL65+B3sFjlJK1DW5WHchHZza+z+QKLzq0dZdTIazMcKfLZ78EwqBIfNHHmK
+         vKdwI2KTtgGF6on83X1Yycyz4T52nehMIvQTbDvVSVnOEJtwH/aHaLrT7AwACwLf8Oqx
+         jX3bAgRmTgosOzc2EWZoyl4Rk7hO+g34FLM5kgRkj1uVUNo23EjOoyaA734jT8FJbRYX
+         9mDw==
+X-Gm-Message-State: AOJu0YySuco1j6r5NPUuWcY2Jwo6AzZfg2Jzv07a1/+PmTNNZvj7jI5A
+	2g+RezCz67/XUriSRu02ID68JQ==
+X-Google-Smtp-Source: AGHT+IGx79LnjMCzDDsSivZDPPruw3fTGNkmstT8z4UNLsUc2QXo/Hfngq3GET6wfCFWi0AwKFcAgA==
+X-Received: by 2002:a5d:59a9:0:b0:332:c2a0:c0d0 with SMTP id p9-20020a5d59a9000000b00332c2a0c0d0mr2886332wrr.46.1700464480440;
+        Sun, 19 Nov 2023 23:14:40 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.11])
-        by smtp.gmail.com with ESMTPSA id p6-20020a5d48c6000000b0032db8cccd3asm10166457wrs.114.2023.11.19.23.12.58
+        by smtp.gmail.com with ESMTPSA id p6-20020a5d48c6000000b0032db8cccd3asm10166457wrs.114.2023.11.19.23.14.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 19 Nov 2023 23:13:00 -0800 (PST)
-Message-ID: <b502d655-5b01-4e23-8100-237f3b38f94a@linaro.org>
-Date: Mon, 20 Nov 2023 08:12:58 +0100
+        Sun, 19 Nov 2023 23:14:39 -0800 (PST)
+Message-ID: <875fbdff-cb89-4431-8e5a-51aefaff0be9@linaro.org>
+Date: Mon, 20 Nov 2023 08:14:38 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,21 +64,21 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH] docs: dt-bindings: add DTS Coding Style document
 Content-Language: en-US
-To: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+To: Conor Dooley <conor@kernel.org>
+Cc: Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ linux-kernel@vger.kernel.org,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
  Arnd Bergmann <arnd@arndb.de>, Bjorn Andersson <andersson@kernel.org>,
  Geert Uytterhoeven <geert+renesas@glider.be>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Heiko Stuebner <heiko@sntech.de>, Konrad Dybcio <konrad.dybcio@linaro.org>,
  Matthias Brugger <matthias.bgg@gmail.com>,
  Michal Simek <michal.simek@amd.com>,
  Neil Armstrong <neil.armstrong@linaro.org>, Nishanth Menon <nm@ti.com>,
  Olof Johansson <olof@lixom.net>
 References: <20231116181218.18886-1-krzysztof.kozlowski@linaro.org>
- <3266223.44csPzL39Z@phil> <d8363bac-df41-416a-9043-f6212ad61e13@linaro.org>
- <7592981.EvYhyI6sBW@phil>
+ <20231116-sandblast-groggy-c35eb536c34d@squawk>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -124,47 +124,25 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <7592981.EvYhyI6sBW@phil>
+In-Reply-To: <20231116-sandblast-groggy-c35eb536c34d@squawk>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 16/11/2023 21:33, Heiko Stuebner wrote:
+On 16/11/2023 22:27, Conor Dooley wrote:
+> On Thu, Nov 16, 2023 at 07:12:18PM +0100, Krzysztof Kozlowski wrote:
+>> Document preferred coding style for Devicetree sources (DTS and DTSI),
+>> to bring consistency among all (sub)architectures and ease in reviews.
+> 
+> This is a good idea IMO, thanks for writing it.
+> 
+> Should we also mention in this about the expected breakdown of things
+> between $soc.dtsi and $soc-$board.dtsi? There's commonly confusion about
+> things like oscillators and where they belong - particularly when the
+> SoC mandates that these oscillators be of a single frequency.
+> It may seem obvious to us what goes where, but certainly contributors
+> frequently get this wrong.
 
->> 	regulator-state-mem {
->> 		regulator-off-in-suspend;
->> 	};
->>
->> What exactly would be here misordered?
-> 
-> going with the vcc5v0_host regulator of the rk3588-quartzpro64 and
-> 
-> +1. compatible
-> +2. reg
-> +3. ranges
-> +4. All properties with values
-> +5. Boolean properties
-> +6. status (if applicable)
-> +7. Child nodes
-> 
-> we'd end up with
-> 
->         vcc5v0_host: vcc5v0-host-regulator {
-> /* 1. */        compatible = "regulator-fixed";
-> /* 4. */        gpio = <&gpio4 RK_PB0 GPIO_ACTIVE_HIGH>;
->                 pinctrl-names = "default";
->                 pinctrl-0 = <&vcc5v0_host_en>;
->                 regulator-min-microvolt = <5000000>;
->                 regulator-max-microvolt = <5000000>;
->                 regulator-name = "vcc5v0_host";
->                 vin-supply = <&vcc5v0_usb>;
-> /* 5. */        enable-active-high;
->                 regulator-always-on;
->                 regulator-boot-on;
->         };      
-> 
-> which I find somewhat counter-intuitive ;-) .
-
-Yes, good point.
+Sure, I can add a chapter about DTS/DTSI split.
 
 Best regards,
 Krzysztof
