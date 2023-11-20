@@ -1,165 +1,129 @@
-Return-Path: <devicetree+bounces-16963-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16964-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D9387F0BD8
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 07:30:57 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E9AB7F0BDC
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 07:32:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C52321F2155A
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 06:30:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 32E331F21573
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 06:32:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87781627;
-	Mon, 20 Nov 2023 06:30:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8FE280A;
+	Mon, 20 Nov 2023 06:32:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="NP2pJE1O"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="QghNXANb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CEDBDB;
-	Sun, 19 Nov 2023 22:30:49 -0800 (PST)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AK4gZOn006619;
-	Mon, 20 Nov 2023 06:30:17 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=CGZmw3ytOPVedqQx5ULJZHM7lrN+SXFMFSXmJ04MZbM=;
- b=NP2pJE1O1x35xsRQ3EFCgBukE9fADn/yrxwXXbr/nMbT8lR5J7jWfJk42OyrDsxq2Ymn
- Valz7bbK+/whb9CJ/+cy9vIO59wy3IfZfY5eNExeMV/iyntvvlEBZjMU9YQ4tgoiUjZD
- smjqPI7cfABEve8ULgeUOJ2WJJiVNHFWH6wtM+eJPZq2QmcpBgJFoBHvs/hAm5Rc8yiA
- hTF1O884+uimnJREcDg6BkxgHCTtfPWPSnAhMEr+berE6qZFrGbl9d3rN8iNQwR+i0j3
- vRosMmIMDY9H2Cycy0cIxtXlE3Bp1YDFxTN2DfJn21es17pYQnsG04DkcagTjPGJRsN0 KQ== 
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uem80k75k-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 20 Nov 2023 06:30:17 +0000
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AK6UG2f028003
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 20 Nov 2023 06:30:16 GMT
-Received: from [10.216.31.13] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Sun, 19 Nov
- 2023 22:30:10 -0800
-Message-ID: <f1a1084f-ecf3-35dd-7822-a6b5931132a3@quicinc.com>
-Date: Mon, 20 Nov 2023 12:00:06 +0530
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B630D7;
+	Sun, 19 Nov 2023 22:32:22 -0800 (PST)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3AK6W4Qj073731;
+	Mon, 20 Nov 2023 00:32:04 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1700461924;
+	bh=yQ3hU54tqGWh+bOEfiNvlZ+MBk2NolkvtMHhi6QCw2g=;
+	h=From:To:CC:Subject:Date;
+	b=QghNXANbExbi2s6AZ73aUMIOX6rle8qDutPvS8YIhESHuvpmxirQvDzQGTcDEb9sz
+	 QVxFQ0gD5rmQ3Pc2yXgl+MUNtvYw92gIzQBKU9GKY7NUw9gqi69BS04meMxKwhwHYh
+	 xdIekGJZ6gkpBpur+eF/tb1nIDeUcYFBgaBtnCVE=
+Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3AK6W3m2080586
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 20 Nov 2023 00:32:04 -0600
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 20
+ Nov 2023 00:32:03 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 20 Nov 2023 00:32:03 -0600
+Received: from uda0492258.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3AK6VxGU074809;
+	Mon, 20 Nov 2023 00:32:00 -0600
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <danishanwar@ti.com>,
+        <r-gunasekaran@ti.com>, <srk@ti.com>, <s-vadapalli@ti.com>
+Subject: [PATCH] arm64: dts: ti: k3-am654-icssg2: Enable PHY interrupts for ICSSG2
+Date: Mon, 20 Nov 2023 12:01:59 +0530
+Message-ID: <20231120063159.539306-1-s-vadapalli@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [RFC PATCH 1/5] mtd: nand: ecc-qcom: Add support for ECC Engine
- Driver
-To: Miquel Raynal <miquel.raynal@bootlin.com>
-CC: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski@linaro.org>,
-        <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <conor+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <richard@nod.at>, <vigneshr@ti.com>, <broonie@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-mtd@lists.infradead.org>,
-        <linux-spi@vger.kernel.org>, <quic_srichara@quicinc.com>,
-        <qpic_varada@quicinc.com>
-References: <20231031120307.1600689-1-quic_mdalam@quicinc.com>
- <20231031120307.1600689-2-quic_mdalam@quicinc.com>
- <b9af01d2-1a86-4b41-9bd6-3bf7a0dde1c0@linaro.org>
- <553c1373-c9a0-b2af-2286-058824e31bad@quicinc.com>
- <CAA8EJpp-xsP1x==a5DH8pKpy7XH75UF-L8ewKWmeL8ePtxUq-A@mail.gmail.com>
- <4b911907-44b9-c164-9648-3d399e557672@quicinc.com>
- <20231103144639.6ff40ae2@xps-13>
-Content-Language: en-US
-From: Md Sadre Alam <quic_mdalam@quicinc.com>
-In-Reply-To: <20231103144639.6ff40ae2@xps-13>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: qZd_ZsaCS1A1-fsxbZp9ZkFvA2ac1FxR
-X-Proofpoint-ORIG-GUID: qZd_ZsaCS1A1-fsxbZp9ZkFvA2ac1FxR
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-20_03,2023-11-17_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 mlxlogscore=999
- adultscore=0 priorityscore=1501 phishscore=0 malwarescore=0
- impostorscore=0 lowpriorityscore=0 mlxscore=0 spamscore=0 bulkscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311060000 definitions=main-2311200039
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
+Enable interrupt mode of operation of the DP83867 Ethernet PHY which is
+used by ICSSG2. The DP83867 PHY driver already supports interrupt handling
+for interrupts generated by the PHY. Thus, add the necessary device-tree
+support to enable it.
 
+Since the GPIO1_87 line is muxed with EXT_REFCLK1 and SYNC1_OUT, update
+the pinmux to select GPIO1_87 for routing the interrupt.
 
-On 11/3/2023 7:16 PM, Miquel Raynal wrote:
-> Hello,
-> 
->> Based on below feedback [1] and NAK on the device node patch
->> got idea of having separate device node for ECC is not acceptable.
->> Could you please help to clarify that.
-> 
-> If I may try to compare with the Macronix situation, the ECC engine
-> was an independent hardware block, with its own mapping and its own
-> registers, so it was described as an independent node in the DT. The
-> type of ECC controller (pipelined or external) is described by the
-> nand-ecc-engine property which either points at the parent node
-> (pipelined) or an external node (external). The SPI host would itself
-> point at the external ECC engine node with its own nand-ecc-engine
-> property (see mtd/mxicy,nand-ecc-engine.yaml in the bindings).
+Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+---
 
-Sorry for late reply.
+This patch is based on linux-next tagged next-20231120.
 
-Since QPIC controller ECC engine is not a separate HW block. To control ECC
-functionality there is only one register 4-bytes long.As you suggested above,
-ECC controller described by the property nand-ecc-engine.I have checked
-mtd/mxicy,nand-ecc-engine.yaml file and got to know I can use like
-nand-ecc-engine = <&qpic_nand>; in dts.Now additional ECC node not needed
-in DTS. Will clean up everything in next patch.
+Regards,
+Siddharth.
 
-> 
->> Since ECC block is inlined with QPIC controller so is the below
->> device node acceptable ?
->>
->>      bch: qpic_ecc {
->>                             compatible = "qcom,ipq9574-ecc";
->>                             status = "ok";
->>                     };
-> 
-> If it does not has its own mapping and if you access the ECC engine
-> through the host registers then the controller should be part of the
-> host node, but I am not sure it really needs to be described
-> explicitly, most of them are not for historical reasons. Conceptually
-> there is a problem with subnodes of each of these controllers having
-> a signification already: SPI devices or NAND chips.
+ arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso | 17 +++++++++++++++--
+ 1 file changed, 15 insertions(+), 2 deletions(-)
 
-New device node for spi nand looks like as below.
+diff --git a/arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso b/arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso
+index ec8cf20ca3ac..9f723592d0f4 100644
+--- a/arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso
++++ b/arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso
+@@ -124,21 +124,34 @@ AM65X_IOPAD(0x0088, PIN_INPUT, 2) /* (AG17) PRG2_PRU0_GPO4.PRG2_RGMII1_RX_CTL */
+ 	};
+ };
+ 
++&main_pmx1 {
++	/* Select GPIO1_87 for ICSSG2 PHY interrupt */
++	icssg2_phy_irq_pins_default: icssg2-phy-irq-default-pins {
++		pinctrl-single,pins = <
++			AM65X_IOPAD(0x0014, PIN_INPUT, 7) /* (A22) EXT_REFCLK1.GPIO1_87 */
++		>;
++	};
++};
++
+ &icssg2_mdio {
+ 	status = "okay";
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&icssg2_mdio_pins_default>;
++	pinctrl-names = "default", "icssg2-phy-irq";
++	pinctrl-0 = <&icssg2_mdio_pins_default>, <&icssg2_phy_irq_pins_default>;
+ 	#address-cells = <1>;
+ 	#size-cells = <0>;
+ 
+ 	icssg2_phy0: ethernet-phy@0 {
+ 		reg = <0>;
++		interrupt-parent = <&main_gpio1>;
++		interrupts = <87 0x2>;
+ 		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
+ 		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
+ 	};
+ 
+ 	icssg2_phy1: ethernet-phy@3 {
+ 		reg = <3>;
++		interrupt-parent = <&main_gpio1>;
++		interrupts = <87 0x2>;
+ 		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
+ 		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
+ 	};
+-- 
+2.34.1
 
-&qpic_nand {
-          status = "okay";
-          pinctrl-0 = <&qspi_nand_pins>;
-          pinctrl-names = "default";
-          spi_nand: spi_nand@0 {
-                  compatible = "spi-nand";
-                  reg = <0>;
-                  #address-cells = <1>;
-                  #size-cells = <1>;
-                  nand-ecc-engine = <&qpic_nand>;
-                  nand-ecc-strength = <4>;
-                  nand-ecc-step-size = <512>;
-                  spi-max-frequency = <8000000>;
-          };
-};
-
-With the above device node I have tested the spi nand device enumeration
-its working fine. Will cleanup everything and post in next patch.
-
-
-> 
-> Thanks,
-> Miquèl
 
