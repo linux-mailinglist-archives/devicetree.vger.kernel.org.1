@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-17047-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17048-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A5DD7F0FE5
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 11:08:49 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82DF67F0FF1
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 11:09:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A8C1B1F232B2
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 10:08:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E322EB215EC
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 10:09:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E53912B7D;
-	Mon, 20 Nov 2023 10:08:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8379312B83;
+	Mon, 20 Nov 2023 10:09:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="te9rhoXd"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="K9PWmn2a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E1A0D7D
-	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 02:08:41 -0800 (PST)
-Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-9c41e95efcbso561028166b.3
-        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 02:08:41 -0800 (PST)
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C99EA7
+	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 02:09:44 -0800 (PST)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-9d10972e63eso561544366b.2
+        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 02:09:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700474919; x=1701079719; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1700474983; x=1701079783; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=wCLKc2oyn+GBNdn1gH6J3jerEIVp1fGU4r9ImpDODpM=;
-        b=te9rhoXdFj2ABRpIeubaK6sRQ+jJJVPdtCOyh7h3ZYgfUzkr/kL+pa0Iw842JmQEPN
-         Rezb8JD7Bvx6bYeqQw5yy1lF+njXIFt7IjplkPboMfhpgkhULl8FioVuIIi6asW+ujtB
-         5t43+kpPKUbCwLSASWIphTIZD6AbEWybI/tWkIZ7teLo4pOyKSQeJT0CJ9vFnVCqzUTV
-         bn0AySBMZ+u3PhAfGM4haQ5J8lRpLlhcmEcyC7N61W5v9KSQwboIinnmuZOQBuJ6Nkgj
-         i45dXqAAUkd6kQXc9lAtaiVuq11tRcxy6pZpUij3RhxMep3JwM2ikWn86Ys5+t4YEO7J
-         05cA==
+        bh=T8nD3WjfEER3VE0XMqJypI0JHyBxZJXe8U5XtUW0Co4=;
+        b=K9PWmn2akdMZZyz76G0/uE1xjEv7LkxXDmAuerSmnZm+WaRkIrzw4n3v6Bk0Vc1c+O
+         LFuvY3wZahbdqUC4VgixD+55KesgpOYbwYgW11cKzM98p/fFhvioY7cBqphZxPTy63tR
+         Sxf+LJ5Yx3seshH59Rgq4Kbf2LxQofeFRYg1HU557qDWdEd8BK1ImWPhj0EJVhZofQIR
+         WB+uI2+MUNvftwRl9y8OTbTerQWSluL9douGvpxYcnjmFFXPHdIHyHEndR8KAMsXCbaD
+         pjTgYo8V1eIpDTD7xN7rTk2KMwiy29Wpj33UTjwLQhgN/dBXILKFBzO03bqvZjzhdcm2
+         b2ww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700474919; x=1701079719;
+        d=1e100.net; s=20230601; t=1700474983; x=1701079783;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wCLKc2oyn+GBNdn1gH6J3jerEIVp1fGU4r9ImpDODpM=;
-        b=WOvHiMEM14zN20zQYfplwezuPbkQb0j1N0MnAHlTxQTrUHjbtUbCllvjC3co95/TYD
-         hG4RZelLsQ0ivLnl6sRzykA9jNbh7JfGbgxBOrjAceRxtJPg1kWOr0778leoTSNn5BJx
-         ov1bd+vZQhSallV88px6vqXHHpTMdbDA0l7f4yrtHgZN39ojT022bBdfhUOigiWoHTPb
-         BSQ5eqz+RtH2QbWjbfWCoKzk+39n93NKqxWiJqTwHVXcVftpSS2eOOqc7RB6rOf5Q1np
-         E5CSK4wMw+9POwhiRS7EFYzIz6DnZlu9jp4W8K4jgEYH/4s6oArXGOuLrP1JhpA6bcqV
-         0vSg==
-X-Gm-Message-State: AOJu0YxC7rIe3sztRwlb4BOWenbPIlAppQcsDTDQeKpSXzYUCvz9ZzkD
-	QoWDND0P2XJycUoskqwT5FRl+Q==
-X-Google-Smtp-Source: AGHT+IEnHs8MT1YeZZtFEgaaWyke26ndvpNnaVB6pOnOK2kk7TLqkhjyzKQMx4Nxibq9u6QEMAzdYg==
-X-Received: by 2002:a17:906:105d:b0:9dd:6d39:42b9 with SMTP id j29-20020a170906105d00b009dd6d3942b9mr4779587ejj.55.1700474919587;
-        Mon, 20 Nov 2023 02:08:39 -0800 (PST)
+        bh=T8nD3WjfEER3VE0XMqJypI0JHyBxZJXe8U5XtUW0Co4=;
+        b=uHzHdPid/4yDG2DjQR+smq71IMpJJ9PoyZvnj6mKKzKqDJW8YtNkQBS0G1/5yCfH1b
+         yq9ik5S9g36TMLFfTrlvUqY/t9o24tRq83OVEMETp7TqO7sUhngtKLVgJLisgqmHoyM8
+         y2pWMOKExDEPj3JvJMAmwV7CgLwumi6HjzmcIWEOk728fzR2YmJsh524c9ldn+jM1h0j
+         GqRIbRyB+8kDusffNyN8I2WVpjWb15pbC9XqudsNbCWMuty/dUam0T0c3KBqigFd4tsu
+         ZrhIqpEbAzmFasbalM31ReGKQq3MQMnspNy84xvR87uAEk9tkAuVzp7YROfZ8W5lvPou
+         E4Kw==
+X-Gm-Message-State: AOJu0Yw5EVKBz5x8/f29Vrx1fiQzdtiT4U7r3MUPuzwtJ+aLcwm3hdtz
+	vBkyjuIqktpe2VExEU1n/FIalQ==
+X-Google-Smtp-Source: AGHT+IG7U/IjtWsoxp6M4WG6CPk5ie4W/gni9z76WhOidNSaxxPBaHmFVGpdScIxS/qFiuOoIuiDRA==
+X-Received: by 2002:a17:906:748f:b0:9ad:f7e5:67d9 with SMTP id e15-20020a170906748f00b009adf7e567d9mr4579932ejl.4.1700474982758;
+        Mon, 20 Nov 2023 02:09:42 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.11])
-        by smtp.gmail.com with ESMTPSA id n12-20020a17090673cc00b009dd606ce80fsm3755198ejl.31.2023.11.20.02.08.37
+        by smtp.gmail.com with ESMTPSA id n12-20020a17090673cc00b009dd606ce80fsm3755198ejl.31.2023.11.20.02.09.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Nov 2023 02:08:38 -0800 (PST)
-Message-ID: <32f94711-e007-43bf-b919-a52267fa75d9@linaro.org>
-Date: Mon, 20 Nov 2023 11:08:36 +0100
+        Mon, 20 Nov 2023 02:09:41 -0800 (PST)
+Message-ID: <6bc4fa28-a98f-46c7-b315-7366307b5206@linaro.org>
+Date: Mon, 20 Nov 2023 11:09:40 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,25 +62,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 0/5] arm64: qcom: sa8775p: add support for EP PCIe
+Subject: Re: [PATCH v4] dt-bindings: arm: mediatek: mmsys: Add VPPSYS
+ compatible for MT8188
 Content-Language: en-US
-To: Mrinmay Sarkar <quic_msarkar@quicinc.com>, agross@kernel.org,
- andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, konrad.dybcio@linaro.org, mani@kernel.org,
- robh+dt@kernel.org
-Cc: quic_shazhuss@quicinc.com, quic_nitegupt@quicinc.com,
- quic_ramkri@quicinc.com, quic_nayiluri@quicinc.com,
- dmitry.baryshkov@linaro.org, robh@kernel.org, quic_krichai@quicinc.com,
- quic_vbadigan@quicinc.com, quic_parass@quicinc.com,
- quic_schintav@quicinc.com, quic_shijjose@quicinc.com,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- Bjorn Helgaas <bhelgaas@google.com>,
- Kishon Vijay Abraham I <kishon@kernel.org>, linux-pci@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, mhi@lists.linux.dev
-References: <1699669982-7691-1-git-send-email-quic_msarkar@quicinc.com>
- <5eae728f-f052-f2aa-7876-cb2421191fc9@quicinc.com>
+To: "yu-chang.lee" <yu-chang.lee@mediatek.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Garmin Chang <garmin.chang@mediatek.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20231120100258.3428-1-yu-chang.lee@mediatek.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -126,20 +122,29 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <5eae728f-f052-f2aa-7876-cb2421191fc9@quicinc.com>
+In-Reply-To: <20231120100258.3428-1-yu-chang.lee@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 20/11/2023 11:06, Mrinmay Sarkar wrote:
-> Some of the patches are reviewed. Please apply in linux-next.
+On 20/11/2023 11:02, yu-chang.lee wrote:
+> For MT8188, VPPSYS0 and VPPSYS1 are 2 display pipes with
+> hardware differences in power domains, clocks and subsystem counts,
+> which should be probed from mtk-mmsys driver to populate device by
+> platform_device_register_data then start its own clock driver.
+> 
+> Signed-off-by: yu-chang.lee <yu-chang.lee@mediatek.com>
+> ---
+> Change in v4:
+> - Squashed binding patches
+> - This patch is based on [1]
+> [1] soc: mediatek: mmsys: Add support for MT8188 VPPSYS
+>   - https://patchwork.kernel.org/project/linux-mediatek/patch/20231117054345.15859-1-yu-chang.lee@mediatek.com/
 > 
 
-1 week for a ping, which included widely-known conference, is not really
-enough.
+This probably should stay part of previous patchset. Why splitting it?
 
-Please relax, and help out by reviewing other patches on the mailing
-lists in order to relieve the burden of maintainers and move your
-patches higher up the list.
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
