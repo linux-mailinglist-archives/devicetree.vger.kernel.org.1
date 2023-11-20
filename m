@@ -1,151 +1,142 @@
-Return-Path: <devicetree+bounces-17302-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17264-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBA497F1F36
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 22:33:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B047F7F1D3A
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 20:19:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E05AFB210B9
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 21:33:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6EFC01F2576D
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 19:19:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEECB38DF5;
-	Mon, 20 Nov 2023 21:33:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Cluwzw5O"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C69834568;
+	Mon, 20 Nov 2023 19:19:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4712CA;
-	Mon, 20 Nov 2023 13:33:22 -0800 (PST)
-Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-3316c6e299eso2042547f8f.1;
-        Mon, 20 Nov 2023 13:33:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1700516001; x=1701120801; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=kWNfORC9WXph6KKDiI7YmzeaXM5cXoqqihKDnt/tg2s=;
-        b=Cluwzw5OFtzeiZoa68ubC9KWbv4ROMqa9blzQBwHsvEDrEvN0CU1dd4ICeMSk+XkUH
-         ZlgkJG61pC/3+inc6II4Ogugv9n3VswVti5+Tr0YQ6IyXK1DP1QfI5jQrJ4HBvOWezg4
-         thqAtBl2kvSuIGHtNg2zeyXBF/PrxfUKg8+lj0r5dtZm2KerDwoNpcdy59pftvBXmmF6
-         lDl4ofcqF8UMxEh+42PtZbzJDl97JM7sDo6aEVYzzIwd2PuCLxcFBse4wp4tNpyWGsQs
-         6Ye9SQDAImc9Q37bWqAJdkZeS3nCaew82u3xJYzeZMcZf4dOyTW7V1itijKrL2pt+Lpo
-         WQ6A==
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C692DC;
+	Mon, 20 Nov 2023 11:18:58 -0800 (PST)
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-5ca164bc0bbso16086097b3.3;
+        Mon, 20 Nov 2023 11:18:58 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700516001; x=1701120801;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kWNfORC9WXph6KKDiI7YmzeaXM5cXoqqihKDnt/tg2s=;
-        b=aQBzt8l4+ohJT9w3v1jYM0fgz+itU72O783xWfK2X+BqcVH/a6MR5o+l3fT/taeJeU
-         h0No/u8oO1wNCm6H3NOWQOLFBrJMP1H2qHXchpIuD1lTafgDe+KzHaa/VWuHBpfa58LE
-         MBhnQI4IJra1yYRWnztmLKCD4D8JgTqouWl+IT2gM+Mr+//fOCbUWXZ+F1JM7bWjUJ0r
-         z7UcESifa2QWyJtv4NNteigP/EmM49tZlUrLdrQO/t+oGeL+AOZpCyUfecmARg+St+wL
-         y0eBeg1A0jjjnjuauJvAfVSbUwT+xxnoSoXtd3TeBu2a8DNuJoN2WM/rXwl+Tzkc3ijW
-         7p3w==
-X-Gm-Message-State: AOJu0YzZKXbERaY6CR/xA0wmgJc+fprJvU4aXOXtH1tJ4qjvWT8QCvyt
-	HU9X2K+6xSvlFABbi3QSIuE=
-X-Google-Smtp-Source: AGHT+IGWWKqhNx6gXBkuFHcXHhfK1w8N/HKv9y2WoU75JVgzVFjqqAOeK/jHkG5ym9ne0q6hzaMShg==
-X-Received: by 2002:adf:9b89:0:b0:332:c4b0:6a19 with SMTP id d9-20020adf9b89000000b00332c4b06a19mr4949954wrc.59.1700516000813;
-        Mon, 20 Nov 2023 13:33:20 -0800 (PST)
-Received: from Ansuel-xps. (93-34-89-13.ip49.fastwebnet.it. [93.34.89.13])
-        by smtp.gmail.com with ESMTPSA id c15-20020adfe70f000000b0032da8fb0d05sm12257843wrm.110.2023.11.20.13.33.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Nov 2023 13:33:20 -0800 (PST)
-Message-ID: <655bd0a0.df0a0220.568c3.92d9@mx.google.com>
-X-Google-Original-Message-ID: <ZVupN1rFPGIPryuG@Ansuel-xps.>
-Date: Mon, 20 Nov 2023 19:45:11 +0100
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Qingfang Deng <dqfext@gmail.com>,
-	SkyLake Huang <SkyLake.Huang@mediatek.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	David Epping <david.epping@missinglinkelectronics.com>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-	Harini Katakam <harini.katakam@amd.com>,
-	Simon Horman <horms@kernel.org>,
-	Robert Marko <robert.marko@sartura.hr>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [net-next RFC PATCH 03/14] dt-bindings: net: document ethernet
- PHY package nodes
-References: <20231120135041.15259-1-ansuelsmth@gmail.com>
- <20231120135041.15259-4-ansuelsmth@gmail.com>
- <c21ff90d-6e05-4afc-b39c-2c71d8976826@lunn.ch>
- <655bc8d6.050a0220.d22f2.315f@mx.google.com>
- <45784368-93e0-4d57-bb0c-5730f53f5a08@lunn.ch>
+        d=1e100.net; s=20230601; t=1700507937; x=1701112737;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=GifO7/JOpk0NmY1mNUiYBsJ2MaEkt42xKaLVw+ulB/A=;
+        b=j/X/pu4PsJt1neN8AhYk+mvnpLy3S5NCW/fMYBYEGUGD6YwXWv0JdJLeDTXfgsWm8v
+         ZKO/l4rcY+DN9YWHyHiLBcNCTTI1Bst1+1H3UhJ7Kv2Ce/p2Qf5yTa9QQ/tO587789ni
+         m1s8wjINWe6tPNf/oY3F7jI+dQ2bpJKXGNgKRzqN0IgBMFsq69fs4TGHcVW5hsfvUUI6
+         kbKVSliKLR8ww+UIjErdUFxw4g2nhZjTkNx/KUBHsor1tqKQbmTLah50DyhcehcqL4pr
+         gw5BzyH2b6WhlT/8rO6aP/KmN05ZVGvdRHeJMjFy3LttoDxurc992p6AkQgFHZfFhtKF
+         TfbQ==
+X-Gm-Message-State: AOJu0YyJLL0KoJf3mIbDST8xun+fle994yo+g5jd4e9nIRYsLB16MCZ1
+	w6SHNpnv1AhI4TWwFtwYrkGuKlq7JucuXQ==
+X-Google-Smtp-Source: AGHT+IEKdxVslAs4lK2SU9f3DeKTzFiFHV1s9HlcTDGXfGnuFAe2XPArvKNPLD8UxlJgQor2VqYq8Q==
+X-Received: by 2002:a81:7e10:0:b0:5ca:67e8:4fab with SMTP id o16-20020a817e10000000b005ca67e84fabmr3717057ywn.8.1700507937165;
+        Mon, 20 Nov 2023 11:18:57 -0800 (PST)
+Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com. [209.85.219.182])
+        by smtp.gmail.com with ESMTPSA id z126-20020a816584000000b0059b50f126fbsm2527313ywb.114.2023.11.20.11.18.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 20 Nov 2023 11:18:55 -0800 (PST)
+Received: by mail-yb1-f182.google.com with SMTP id 3f1490d57ef6-d9a518d66a1so4334191276.0;
+        Mon, 20 Nov 2023 11:18:54 -0800 (PST)
+X-Received: by 2002:a5b:f4a:0:b0:da0:c49a:5103 with SMTP id
+ y10-20020a5b0f4a000000b00da0c49a5103mr7300082ybr.47.1700507934171; Mon, 20
+ Nov 2023 11:18:54 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <45784368-93e0-4d57-bb0c-5730f53f5a08@lunn.ch>
+References: <20231120084044.23838-1-krzysztof.kozlowski@linaro.org>
+ <19358871-009d-4498-9c13-90d5338b1e9f@amd.com> <76fa8f61-fe31-4040-a38d-cc05be3f4f17@linaro.org>
+In-Reply-To: <76fa8f61-fe31-4040-a38d-cc05be3f4f17@linaro.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 20 Nov 2023 20:18:42 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdW4WPJT0Km7w8RWrGJaztk6QDGoFAn0bdGbrEsw81R1FA@mail.gmail.com>
+Message-ID: <CAMuHMdW4WPJT0Km7w8RWrGJaztk6QDGoFAn0bdGbrEsw81R1FA@mail.gmail.com>
+Subject: Re: [PATCH v2] docs: dt-bindings: add DTS Coding Style document
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Michal Simek <michal.simek@amd.com>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, Andrew Davis <afd@ti.com>, 
+	Arnd Bergmann <arnd@arndb.de>, Bjorn Andersson <andersson@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Heiko Stuebner <heiko@sntech.de>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Nishanth Menon <nm@ti.com>, Olof Johansson <olof@lixom.net>, linux-rockchip@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+	linux-arm-msm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Nov 20, 2023 at 10:25:10PM +0100, Andrew Lunn wrote:
-> > A real DT that use this is (ipq807x):
-> > 
-> > &mdio {
-> > 	status = "okay";
-> > 	pinctrl-0 = <&mdio_pins>;
-> > 	pinctrl-names = "default";
-> > 	reset-gpios = <&tlmm 37 GPIO_ACTIVE_LOW>;
-> > 
-> > 	ethernet-phy-package {
-> > 		compatible = "ethernet-phy-package";
-> > 		phy-mode = "psgmii";
-> > 
-> > 		global-phys = <&qca8075_4>, <&qca8075_psgmii>;
-> > 		global-phy-names = "combo", "analog_psgmii";
-> > 
-> > 		qca8075_0: ethernet-phy@0 {
-> > 			compatible = "ethernet-phy-ieee802.3-c22";
-> > 			reg = <0>;
-> > 		};
-> 
-> ...
-> 
-> > 	};
-> > 
-> > 	qca8081: ethernet-phy@28 {
-> > 		compatible = "ethernet-phy-id004d.d101";
-> > 		reg = <28>;
-> > 		reset-gpios = <&tlmm 31 GPIO_ACTIVE_LOW>;
-> > 	};
-> 
-> I've no idea if DT allows this. The issue is that reg is the same for
-> both nodes within the ethernet-phy-package container, and
-> ethernet-phy@28. They are all addresses on the same MDIO bus.  We are
-> parsing this bus structure ourselves in __of_mdiobus_register(), so we
-> could make it work, but i don't know if we should make it work.
+Hi Krzysztof,
+
+On Mon, Nov 20, 2023 at 3:53=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+> On 20/11/2023 15:01, Michal Simek wrote:> >
+> > On 11/20/23 09:40, Krzysztof Kozlowski wrote:
+> >> Document preferred coding style for Devicetree sources (DTS and DTSI),
+> >> to bring consistency among all (sub)architectures and ease in reviews.
+
+> >> +Organizing DTSI and DTS
+> >> +-----------------------
+> >> +
+> >> +The DTSI and DTS files should be organized in a way representing the =
+common
+> >> +(and re-usable) parts of the hardware.  Typically this means organizi=
+ng DTSI
+> >> +and DTS files into several files:
+> >> +
+> >> +1. DTSI with contents of the entire SoC (without nodes for hardware n=
+ot present
+> >> +   on the SoC).
+> >> +2. If applicable: DTSI with common or re-usable parts of the hardware=
+ (e.g.
+> >> +   entire System-on-Module).
+> >
+> > DTS/DTSI - SOMs can actually run as they are that's why it is fair to s=
+ay that
+> > there doesn't need to be DTS representing the board.
 >
+> I have never seen a SoM which can run without elaborate hardware-hacking
+> (e.g. connecting multiple wires to the SoM pins). The definition of the
+> SoM is that it is a module. Module can be re-used, just like SoC.
 
-And that is why I have some reserve on the idea of defining a reg for
-ethernet-phy-package. Adding a reg would create some duplicate. Is it
-really a problem to have a node with no reg in the mdio node?
+/me looks at his board farm...
 
-(patch 04 of this series already updates the parsing function to check
-one level deeper in the presence of the ethernet-phy-compatible treating
-any node found as it was defined in the upper mdio node)
+The Renesas White-Hawk CPU board can be used standalone, and has a
+separate power input connector for this operation mode.  As it has RAM,
+Ethernet, serial console, eMMC, and even mini-DP, it can serve useful
+purposes on its own.
+I agree it's not a super-good example, as the board is not really a
+"SoM", and we currently don't have r8a779g0-white-hawk-cpu.dts, only
+r8a779g0-white-hawk-cpu.dtsi.
 
--- 
-	Ansuel
+The RZ/A2M CPU Board is a real SoM, which can be powered over USB.
+It has less standard connectors (microSD, USB, MIPI CSI-2), but still
+sufficient features to be usable on its own.
+Again, we're doing a bad job, as we only have a DTS for the full eval
+board (r7s9210-rza2mevb.dts).
+
+I guess there are (many) other examples...
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
