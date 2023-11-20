@@ -1,148 +1,138 @@
-Return-Path: <devicetree+bounces-17042-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17043-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93F177F0FA5
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 11:02:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B12B97F0FB0
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 11:03:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 23A7AB20F87
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 10:02:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6BA5F281AF2
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 10:03:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1F66125A7;
-	Mon, 20 Nov 2023 10:02:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E13A125C8;
+	Mon, 20 Nov 2023 10:03:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oF9lpo+O"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="fWek+mEM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6998095
-	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 02:02:10 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-33139ecdca7so2560406f8f.0
-        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 02:02:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700474529; x=1701079329; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=vy8rMQtqsCk1GsACWhAOc0FlTKa9XwBaniO3wcGrbeE=;
-        b=oF9lpo+OJya2tu4Mk3qgT5eVUJdRIwPEEzzJNLza7ltMkChQEWBkV2t/+ryDyDMClQ
-         8qhFRz16ykUVJKqxcOBEap7woqz+COBmySBrG2rkMItvvpcBP/XeDjLSECSd0+3MbXcV
-         lPuhFo0QPkARMEwNLSMcfPnjgUOT0QIICG8WQMH18CH26EKDUOOz9+fE6gDcsIz90Ilr
-         YRZDyHSiIRP+dmVHhoBW5OWNogZ7jbUyKuRzoZbvFP+Gvc/FCrlRE90DlbqGfwI0UlwJ
-         9Uci2t55XCbu84Zxn/BqYQxYLRyIZDAqTWobB3HXIu9QSzAXLXtMZb8e9cT8n548O4hV
-         xSDA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700474529; x=1701079329;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vy8rMQtqsCk1GsACWhAOc0FlTKa9XwBaniO3wcGrbeE=;
-        b=tFI1hliDXq0OPFqy6bDvFWrVURa42P64hxKK+pilc1IlkFL17+84wqZCl4F+UxflV4
-         X2Cwn3Y6WdBfn9nEU6piiSmAQka+OAhKJVFE/dNBAd82wv0/b+5Si0vZBcU0BaE/lNdi
-         lnVoXmiRcoAfrGE/i7Uxh4TDp9N9fOr5oPpV8ECNPCEgcYlYKJUNLDYNsqJadI0zJFDE
-         nm437JATBucfkFXhYg6Pscr29kSGGEQqwxIvclmSXTKBi28PKTMes0kPs8LBBbGTY1Rx
-         Buf9iLIoMVfqeX4QF8f4I49Wx1qYa6l+biwKFeN61OOgHOMMC/tLLJ45YdW72N6qzhO0
-         cVEA==
-X-Gm-Message-State: AOJu0Yz9aiu3yDl8h+0y3Z7LyJj52h0N6MUMo4c22X76Pd9rORM96U6W
-	5rTtateFX+ZDyNw/hlbAFhBQbg==
-X-Google-Smtp-Source: AGHT+IE2ddZXAHZ+EtosCg35xyk2TmZZE0wleCg6iIlOBQInFGwfP73LXvoCuc7pVTQxp9U55RQpFw==
-X-Received: by 2002:adf:e103:0:b0:331:6a43:5a84 with SMTP id t3-20020adfe103000000b003316a435a84mr3553674wrz.42.1700474528864;
-        Mon, 20 Nov 2023 02:02:08 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.222.11])
-        by smtp.gmail.com with ESMTPSA id t8-20020a5d49c8000000b0031984b370f2sm10679075wrs.47.2023.11.20.02.02.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Nov 2023 02:02:08 -0800 (PST)
-Message-ID: <50062f55-e516-4bc6-bc06-ddb043532aa8@linaro.org>
-Date: Mon, 20 Nov 2023 11:02:05 +0100
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E08ECD;
+	Mon, 20 Nov 2023 02:03:04 -0800 (PST)
+X-UUID: fcd11294878b11eea33bb35ae8d461a2-20231120
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=5cnBIGTFta30P7mscy72z68CYY3xkJ8c8wqppX2Iub8=;
+	b=fWek+mEMdXrrEXd3HldEsWJgUSIvoAoxTP1IPVAFgb3hNChyR5V42IjmDwbXYNYki83IT+m8SR9q/Ik8qUbHMhMpm8GaEpv2xGizTae0fUu+Qmz6KVK5p0nv500fMuZGsN5fFOGotLjOJUWpNesdsZLot78ydMN6UlUyozBqufI=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.33,REQID:9c4f0cf3-bb5c-470c-a8e5-754dc6da5237,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:364b77b,CLOUDID:b1d0da72-1bd3-4f48-b671-ada88705968c,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
+	DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
+X-UUID: fcd11294878b11eea33bb35ae8d461a2-20231120
+Received: from mtkmbs14n1.mediatek.inc [(172.21.101.75)] by mailgw01.mediatek.com
+	(envelope-from <yu-chang.lee@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 779686074; Mon, 20 Nov 2023 18:03:00 +0800
+Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
+ MTKMBS14N2.mediatek.inc (172.21.101.76) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Mon, 20 Nov 2023 18:02:59 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Mon, 20 Nov 2023 18:02:59 +0800
+From: yu-chang.lee <yu-chang.lee@mediatek.com>
+To: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>
+CC: Garmin Chang <garmin.chang@mediatek.com>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>, "yu-chang . lee"
+	<yu-chang.lee@mediatek.com>
+Subject: [PATCH v4] dt-bindings: arm: mediatek: mmsys: Add VPPSYS compatible for MT8188
+Date: Mon, 20 Nov 2023 18:02:58 +0800
+Message-ID: <20231120100258.3428-1-yu-chang.lee@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 1/2] dt-bindings: cache: qcom,llcc: Add X1E80100
- compatible
-Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
- Sibi Sankar <quic_sibis@quicinc.com>, andersson@kernel.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc: agross@kernel.org, conor+dt@kernel.org, quic_rjendra@quicinc.com,
- abel.vesa@linaro.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- quic_tsoni@quicinc.com, neil.armstrong@linaro.org
-References: <20231117095315.2087-1-quic_sibis@quicinc.com>
- <20231117095315.2087-2-quic_sibis@quicinc.com>
- <f3cd8531-faa8-4ec4-b1b8-ba327b7df5cd@linaro.org>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <f3cd8531-faa8-4ec4-b1b8-ba327b7df5cd@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-AS-Result: No-10--2.349200-8.000000
+X-TMASE-MatchedRID: BHLx0ZeYtM1eiY7hjuuIsm3NvezwBrVmCt59Uh3p/NVHZg0gWH5yUTP7
+	OSqW2R7sUYCBevv5+axRS7xjEb+dxB9J5bZqJbIJe8FaKRfM2oOy4iyjvVWToqdrpTvh7T6o88Q
+	4SiSCA0uVMlcqqHWd7fNdJKB44KmGkfRhdidsajMURSScn+QSXt0H8LFZNFG76sBnwpOylLOY9r
+	8YLxxS4dgS604jgwkFQVackz7nDBjHrR5lGQU4zkV0FoTjxQgL0J69tGon+X3UgUmiG7ib0MxU6
+	jcX1FK3fA2Q/royHVoXRoPmWO3jekxwdkPqCq7vDEyN+J8hd+jCS9WgDXVPCn7cGd19dSFd
+X-TM-AS-User-Approved-Sender: No
+X-TM-AS-User-Blocked-Sender: No
+X-TMASE-Result: 10--2.349200-8.000000
+X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-SNTS-SMTP:
+	A2E3637E6938936CF704E8E60C8754BE664BF24B380C333488BD6569875CF8BA2000:8
+X-MTK: N
 
-On 18/11/2023 00:37, Konrad Dybcio wrote:
-> On 17.11.2023 10:53, Sibi Sankar wrote:
->> From: Rajendra Nayak <quic_rjendra@quicinc.com>
->>
->> Add the compatible for X1E80100 platforms.
->>
->> Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
->> Co-developed-by: Sibi Sankar <quic_sibis@quicinc.com>
->> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
->> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
-> Unrelated to this patch alone, but I noticed that with this new naming
-> scheme, patterns in Documentation/devicetree/bindings/arm/qcom-soc.yaml will
-> require an update as well.
+For MT8188, VPPSYS0 and VPPSYS1 are 2 display pipes with
+hardware differences in power domains, clocks and subsystem counts,
+which should be probed from mtk-mmsys driver to populate device by
+platform_device_register_data then start its own clock driver.
 
+Signed-off-by: yu-chang.lee <yu-chang.lee@mediatek.com>
+---
+Change in v4:
+- Squashed binding patches
+- This patch is based on [1]
+[1] soc: mediatek: mmsys: Add support for MT8188 VPPSYS
+  - https://patchwork.kernel.org/project/linux-mediatek/patch/20231117054345.15859-1-yu-chang.lee@mediatek.com/
 
-I'll fix existing platforms.
+Changes in v3:
+- Separate binding patch from driver patch
 
-Best regards,
-Krzysztof
+Changes in v2:
+- Refine commit message
+- Refine commit title
+
+ .../devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml        | 2 ++
+ .../devicetree/bindings/clock/mediatek,mt8188-clock.yaml        | 2 --
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
+index 536f5a5ebd24..50324248b965 100644
+--- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
++++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
+@@ -32,6 +32,8 @@ properties:
+               - mediatek,mt8183-mmsys
+               - mediatek,mt8186-mmsys
+               - mediatek,mt8188-vdosys0
++              - mediatek,mt8188-vppsys0
++              - mediatek,mt8188-vppsys1
+               - mediatek,mt8192-mmsys
+               - mediatek,mt8195-vdosys1
+               - mediatek,mt8195-vppsys0
+diff --git a/Documentation/devicetree/bindings/clock/mediatek,mt8188-clock.yaml b/Documentation/devicetree/bindings/clock/mediatek,mt8188-clock.yaml
+index d7214d97b2ba..860570320545 100644
+--- a/Documentation/devicetree/bindings/clock/mediatek,mt8188-clock.yaml
++++ b/Documentation/devicetree/bindings/clock/mediatek,mt8188-clock.yaml
+@@ -43,8 +43,6 @@ properties:
+       - mediatek,mt8188-vdecsys
+       - mediatek,mt8188-vdecsys-soc
+       - mediatek,mt8188-vencsys
+-      - mediatek,mt8188-vppsys0
+-      - mediatek,mt8188-vppsys1
+       - mediatek,mt8188-wpesys
+       - mediatek,mt8188-wpesys-vpp0
+ 
+-- 
+2.18.0
 
 
