@@ -1,129 +1,118 @@
-Return-Path: <devicetree+bounces-16964-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16965-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E9AB7F0BDC
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 07:32:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DCD47F0BE1
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 07:35:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 32E331F21573
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 06:32:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 309F0280C1E
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 06:35:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8FE280A;
-	Mon, 20 Nov 2023 06:32:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E47E80A;
+	Mon, 20 Nov 2023 06:35:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="QghNXANb"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ntnX2OEm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B630D7;
-	Sun, 19 Nov 2023 22:32:22 -0800 (PST)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3AK6W4Qj073731;
-	Mon, 20 Nov 2023 00:32:04 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1700461924;
-	bh=yQ3hU54tqGWh+bOEfiNvlZ+MBk2NolkvtMHhi6QCw2g=;
-	h=From:To:CC:Subject:Date;
-	b=QghNXANbExbi2s6AZ73aUMIOX6rle8qDutPvS8YIhESHuvpmxirQvDzQGTcDEb9sz
-	 QVxFQ0gD5rmQ3Pc2yXgl+MUNtvYw92gIzQBKU9GKY7NUw9gqi69BS04meMxKwhwHYh
-	 xdIekGJZ6gkpBpur+eF/tb1nIDeUcYFBgaBtnCVE=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3AK6W3m2080586
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 20 Nov 2023 00:32:04 -0600
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 20
- Nov 2023 00:32:03 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 20 Nov 2023 00:32:03 -0600
-Received: from uda0492258.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3AK6VxGU074809;
-	Mon, 20 Nov 2023 00:32:00 -0600
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <danishanwar@ti.com>,
-        <r-gunasekaran@ti.com>, <srk@ti.com>, <s-vadapalli@ti.com>
-Subject: [PATCH] arm64: dts: ti: k3-am654-icssg2: Enable PHY interrupts for ICSSG2
-Date: Mon, 20 Nov 2023 12:01:59 +0530
-Message-ID: <20231120063159.539306-1-s-vadapalli@ti.com>
-X-Mailer: git-send-email 2.34.1
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6971D7;
+	Sun, 19 Nov 2023 22:35:19 -0800 (PST)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AK55xDL024798;
+	Mon, 20 Nov 2023 06:35:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=D5WmKHJFvxp5MEqkfEjkHwA3uy953aAUbqh6hRAe3Mg=;
+ b=ntnX2OEmo/9BDaPJoLtMMen0fue/MTtUcmJXDBhGi+qzHM8wfP+oeWtrptbWHCRDws7h
+ abLAlhVexFTBLmK8ApA1qO8uf+BGXEVShEzvH4+T/gjHRd5aqTE8t7yHjuSFlWuwEW7p
+ dbuwSofgoSHgiOlniAUl5Yi6fdqpq9yV3E42SYT3JDW9bOg1gKO6cKiKVRHYQoIob+sv
+ DucR7mb6PQsGzQFdNerTZnriqwfYar9WDA3l23mSHGoNG++do8tPLVchoXjtV/bA1wU+
+ /r6SEqxSqoj0mt5wxWFszBKqmmll4gzPMzD9VH7tavwu6DjgFYLzjqXEKSWT2xHHElpU GQ== 
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uepjhk2hq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 20 Nov 2023 06:35:10 +0000
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AK6Z9Z1005200
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 20 Nov 2023 06:35:09 GMT
+Received: from [10.216.31.13] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Sun, 19 Nov
+ 2023 22:35:03 -0800
+Message-ID: <4bf6e5c2-56ef-717b-88a8-db05b07a33ff@quicinc.com>
+Date: Mon, 20 Nov 2023 12:04:59 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [RFC PATCH 4/5] spi: qpic: Add support for qpic spi nand driver
+Content-Language: en-US
+To: Mark Brown <broonie@kernel.org>
+CC: <agross@kernel.org>, <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <robh+dt@kernel.org>, <conor+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <miquel.raynal@bootlin.com>,
+        <richard@nod.at>, <vigneshr@ti.com>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-mtd@lists.infradead.org>, <linux-spi@vger.kernel.org>,
+        <quic_srichara@quicinc.com>, <qpic_varada@quicinc.com>
+References: <20231031120307.1600689-1-quic_mdalam@quicinc.com>
+ <20231031120307.1600689-5-quic_mdalam@quicinc.com>
+ <a1270a88-49a9-4bdb-89a9-ce6929f2294d@sirena.org.uk>
+ <2b9e943a-198e-7999-b898-e7b2498a9ffa@quicinc.com>
+ <b35b4184-d456-46f3-9268-8f0af2fbb4eb@sirena.org.uk>
+From: Md Sadre Alam <quic_mdalam@quicinc.com>
+In-Reply-To: <b35b4184-d456-46f3-9268-8f0af2fbb4eb@sirena.org.uk>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: LNUnRR6UDD_bNfMDIGg3J71Zz2tsbqs0
+X-Proofpoint-GUID: LNUnRR6UDD_bNfMDIGg3J71Zz2tsbqs0
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-20_04,2023-11-17_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ bulkscore=0 mlxlogscore=626 clxscore=1015 suspectscore=0 impostorscore=0
+ adultscore=0 lowpriorityscore=0 spamscore=0 malwarescore=0 mlxscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2311060000 definitions=main-2311200041
 
-Enable interrupt mode of operation of the DP83867 Ethernet PHY which is
-used by ICSSG2. The DP83867 PHY driver already supports interrupt handling
-for interrupts generated by the PHY. Thus, add the necessary device-tree
-support to enable it.
 
-Since the GPIO1_87 line is muxed with EXT_REFCLK1 and SYNC1_OUT, update
-the pinmux to select GPIO1_87 for routing the interrupt.
 
-Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
----
+On 11/3/2023 6:17 PM, Mark Brown wrote:
+> On Fri, Nov 03, 2023 at 04:50:54PM +0530, Md Sadre Alam wrote:
+>> On 10/31/2023 7:53 PM, Mark Brown wrote:
+>>> On Tue, Oct 31, 2023 at 05:33:06PM +0530, Md Sadre Alam wrote:
+> 
+>>>> +	ret = submit_descs(snandc);
+>>>> +	if (ret)
+>>>> +		dev_err(snandc->dev, "failure in sbumitting spiinit descriptor\n");
+>>>> +
+>>>> +	free_descs(snandc);
+> 
+>>> This seems to be doing a bit more than I would expect an init function
+>>> to, and it's very surprising to see the descriptors freed immediately
+>>> after something called a submit (which suggests that the descriptors are
+>>> still in flight).
+> 
+>> Our controller supports only bam mode , that means for writing/reading even
+>> single register we have to use bam.
+>> submit_descs() is synchronous so I/O is complete when it returns.
+>> Hence freeing the descriptor after it.
+> 
+> That seems like the BAM API is very confusing and error prone.
 
-This patch is based on linux-next tagged next-20231120.
-
-Regards,
-Siddharth.
-
- arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso | 17 +++++++++++++++--
- 1 file changed, 15 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso b/arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso
-index ec8cf20ca3ac..9f723592d0f4 100644
---- a/arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso
-+++ b/arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso
-@@ -124,21 +124,34 @@ AM65X_IOPAD(0x0088, PIN_INPUT, 2) /* (AG17) PRG2_PRU0_GPO4.PRG2_RGMII1_RX_CTL */
- 	};
- };
- 
-+&main_pmx1 {
-+	/* Select GPIO1_87 for ICSSG2 PHY interrupt */
-+	icssg2_phy_irq_pins_default: icssg2-phy-irq-default-pins {
-+		pinctrl-single,pins = <
-+			AM65X_IOPAD(0x0014, PIN_INPUT, 7) /* (A22) EXT_REFCLK1.GPIO1_87 */
-+		>;
-+	};
-+};
-+
- &icssg2_mdio {
- 	status = "okay";
--	pinctrl-names = "default";
--	pinctrl-0 = <&icssg2_mdio_pins_default>;
-+	pinctrl-names = "default", "icssg2-phy-irq";
-+	pinctrl-0 = <&icssg2_mdio_pins_default>, <&icssg2_phy_irq_pins_default>;
- 	#address-cells = <1>;
- 	#size-cells = <0>;
- 
- 	icssg2_phy0: ethernet-phy@0 {
- 		reg = <0>;
-+		interrupt-parent = <&main_gpio1>;
-+		interrupts = <87 0x2>;
- 		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
- 		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
- 	};
- 
- 	icssg2_phy1: ethernet-phy@3 {
- 		reg = <3>;
-+		interrupt-parent = <&main_gpio1>;
-+		interrupts = <87 0x2>;
- 		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
- 		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
- 	};
--- 
-2.34.1
-
+Sorry for late reply
+Yeah, By HW itself its complex due to security reason. We are trying
+to write a BAM common API interface for all the driver which will use BAM.
 
