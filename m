@@ -1,140 +1,158 @@
-Return-Path: <devicetree+bounces-17194-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17195-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7361D7F187C
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 17:21:22 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 334D77F188B
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 17:22:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A44261C21572
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 16:21:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 643FC1C215A8
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 16:22:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACF021DFFB;
-	Mon, 20 Nov 2023 16:21:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17DB81E502;
+	Mon, 20 Nov 2023 16:22:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hUiq19g2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24979ED;
-	Mon, 20 Nov 2023 08:21:15 -0800 (PST)
-X-IronPort-AV: E=McAfee;i="6600,9927,10900"; a="371825473"
-X-IronPort-AV: E=Sophos;i="6.04,214,1695711600"; 
-   d="scan'208";a="371825473"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Nov 2023 08:21:14 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10900"; a="836767261"
-X-IronPort-AV: E=Sophos;i="6.04,214,1695711600"; 
-   d="scan'208";a="836767261"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Nov 2023 08:21:10 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andy@kernel.org>)
-	id 1r571G-0000000Fb43-06bt;
-	Mon, 20 Nov 2023 18:21:06 +0200
-Date: Mon, 20 Nov 2023 18:21:05 +0200
-From: Andy Shevchenko <andy@kernel.org>
-To: Ceclan Dumitru <mitrutzceclan@gmail.com>
-Cc: linus.walleij@linaro.org, brgl@bgdev.pl, linux-gpio@vger.kernel.org,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Jonathan Cameron <jic23@kernel.org>,
+Received: from mail-ot1-x32f.google.com (mail-ot1-x32f.google.com [IPv6:2607:f8b0:4864:20::32f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5003093;
+	Mon, 20 Nov 2023 08:22:50 -0800 (PST)
+Received: by mail-ot1-x32f.google.com with SMTP id 46e09a7af769-6ce2b6cb933so2725400a34.0;
+        Mon, 20 Nov 2023 08:22:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1700497368; x=1701102168; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=KX9CLwN26iToqKb73jn+BjvpZIdQqDvo/75oK/Q93bw=;
+        b=hUiq19g2vcufwo+VAhH/nWkhRNU/XPFIX8DAsnKXTfw/hKslGxiwRGE2Jh4J0ZxkUj
+         RCm5CpzjhBFHwzuoGuEfp9UhuPByDEssTz/lBv+UCbf4OYzc2R2zlf16mDDIHpulDWqh
+         WXBUVpgcUOSaRIaGsbLLtbPNJLJfo58f+NIWGU9YWxFcGSQkgT4I2E/OGtmuNjQarmVD
+         thdLTLus572TlnVcMkgWKoDW/FkPjeg3qibWNoUzL681l5gf2BSodUU3VmDblIWgBc2p
+         8BYbmxzmGrdiurKLJp9dGJQbnn6nA9NNDXmgXflt3RSYhsOyTL4eiR16bxD3IRK3nMxd
+         ULGg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700497368; x=1701102168;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=KX9CLwN26iToqKb73jn+BjvpZIdQqDvo/75oK/Q93bw=;
+        b=CB+7PM/7j2TdJVjk946AFnmMpy/glaInOQUqzhIcA5oX/2cK4aplf6Bnpk1XS96+eu
+         INZc3puqqN1nwG+QPDMZHlMvhgaJfkC3t/kJC3beeqwBuPOL9Q/KEPO7YlUPhvsOS3MP
+         +w8bmbEppdd15yTUdNak6KZnVoqqq8cudu7yxyWnskxL61TVF0GBauG6jN+AUpJFAdXY
+         sPvqlF4IBUX1rt3YujswJZURXmZCswuEf8n77dE2baNOEvHw/hZak4v6p9pyHSjiXcM+
+         NMyI6lrIy/qy1Cc1tzcVeRCJaSjFhhlEpH7pPPCk3wD37Sfk2JTOcPcnVNPJfTz5WB2A
+         2EXA==
+X-Gm-Message-State: AOJu0Yx23P+nX6hKk22YGIgUOzw8+MwE+NXwKIsLokDiT+BC05IW/vug
+	0tdRvDsmQzLGP4JUFi423Xq8KXD1vMk=
+X-Google-Smtp-Source: AGHT+IH/2OyWscjqAAksdhRQNOC4OIoyyN9RuP98a7Vj+dPJakNfOV1ajfMkDjXARNt4yZcnpyz/5Q==
+X-Received: by 2002:a05:6830:14c2:b0:6d6:53fe:2181 with SMTP id t2-20020a05683014c200b006d653fe2181mr8180371otq.26.1700497367786;
+        Mon, 20 Nov 2023 08:22:47 -0800 (PST)
+Received: from localhost.localdomain (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
+        by smtp.gmail.com with ESMTPSA id z13-20020a0cfc0d000000b00677fb605c8csm2549561qvo.55.2023.11.20.08.22.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Nov 2023 08:22:46 -0800 (PST)
+From: Trevor Woerner <twoerner@gmail.com>
+To: linux-kernel@vger.kernel.org,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Michael Walle <michael@walle.cc>, Arnd Bergmann <arnd@arndb.de>,
-	ChiaEn Wu <chiaen_wu@richtek.com>,
-	Niklas Schnelle <schnelle@linux.ibm.com>,
-	Leonard =?iso-8859-1?Q?G=F6hrs?= <l.goehrs@pengutronix.de>,
-	Mike Looijmans <mike.looijmans@topic.nl>,
-	Haibo Chen <haibo.chen@nxp.com>,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-	Ceclan Dumitru <dumitru.ceclan@analog.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/2] iio: adc: ad7173: add AD7173 driver
-Message-ID: <ZVuHcaUQL6xnchK-@smile.fi.intel.com>
-References: <20231116134655.21052-1-user@HYB-hhAwRlzzMZb>
- <20231116134655.21052-2-user@HYB-hhAwRlzzMZb>
- <ZVtYeWZmcDZ_SMPo@smile.fi.intel.com>
- <5cf3824f-6375-4c76-86ff-c5389ddf4196@gmail.com>
+	Heiko Stuebner <heiko@sntech.de>
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org
+Subject: [PATCH] arm64: rockchip: dts: rk3308-rock-pi-s add gpio-line-names
+Date: Mon, 20 Nov 2023 11:22:32 -0500
+Message-ID: <20231120162232.27653-1-twoerner@gmail.com>
+X-Mailer: git-send-email 2.41.0.327.gaa9166bcc0ba
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5cf3824f-6375-4c76-86ff-c5389ddf4196@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 
-On Mon, Nov 20, 2023 at 05:55:12PM +0200, Ceclan Dumitru wrote:
-> On 11/20/23 15:00, Andy Shevchenko wrote:
-> > On Thu, Nov 16, 2023 at 03:46:55PM +0200, mitrutzceclan wrote:
+Add names to the pins of the general-purpose expansion header as given in the
+Radxa GPIO page[1] following the conventions in the kernel documentation[2] to
+make it easier for users to correlate the pins with functions when using
+utilities such as gpioinfo.
 
-...
+[1] https://wiki.radxa.com/RockpiS/hardware/gpio
+[2] Documentation/devicetree/bindings/gpio/gpio.txt
 
-> >> +struct ad7173_channel_config {
-> >> +	bool live;
-> >> +	u8 cfg_slot;
-> >> +	/* Following fields are used to compare equality. Bipolar must be first */
-> >> +	bool bipolar;
-> >> +	bool input_buf;
-> >> +	u8 odr;
-> >> +	u8 ref_sel;
-> > 
-> > If you group better by types, it might save a few bytes on the architectures /
-> > compilers where bool != byte.
-> >
-> Grouping by type will result in not being able to use memcmp() for
-> comparing configs. But then there is the issue that I was under the
-> assumption that bool=byte. If that is not the case, the config equality
-> check might be comparing padding bytes.
+Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+---
+ .../boot/dts/rockchip/rk3308-rock-pi-s.dts    | 58 +++++++++++++++++++
+ 1 file changed, 58 insertions(+)
 
-It's most likely the case, BUT... it is not guaranteed by the C standard.
-
-> In this case what do you suggest:
-> - using the packed attribute
-> - using only u8
-> - drop memcmp, manually compare fields
-
-Use struct_group() to show explicitly the group of members. If it's not an ABI
-in any sense, then memcmp() is fine.
-
-...
-
-> >> +	cmp_size = sizeof(*cfg) - offset;
-> > 
-> > sizeof_field() from the above mentioned header?
-> 
-> This computes the size of multiple fields, following cfg_slot. Better to
-> group the fields that need to be compared into another struct then use
-> sizeof_field()?
-
-See above.
-
-...
-
-> >> +	return vref / (MICRO/MILLI);
-> > 
-> > What does the denominator mean and why you can't simply use MILL?
-> 
-> Original vref values are in micro, I considered that it was adequate to
-> represent the conversion from MICRO to MILLI as a fraction.
-> 
-> >> +		*val = st->info->sinc5_data_rates[reg] / (MICRO/MILLI);
-> >> +		*val2 = (st->info->sinc5_data_rates[reg] % MILLI) * (MICRO/MILLI);
-> > 
-> > Same Q about denominator.
-> > 
-> Here, a misunderstanding on my part of a suggestion from Jonathan in V2,
-> will be removed.
-
-You need to clarify with him that.
-
+diff --git a/arch/arm64/boot/dts/rockchip/rk3308-rock-pi-s.dts b/arch/arm64/boot/dts/rockchip/rk3308-rock-pi-s.dts
+index e9810d2f0407..f2d7251de298 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3308-rock-pi-s.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3308-rock-pi-s.dts
+@@ -250,3 +250,61 @@ &usb20_otg {
+ &wdt {
+ 	status = "okay";
+ };
++
++&gpio0 {
++	gpio-line-names =
++	/* GPIO0_A0 - A7 */
++	"", "", "", "", "", "", "", "",
++	/* GPIO0_B0 - B7 */
++	"", "", "", "header1-pin3 [GPIO0_B3]", "header1-pin5 [GPIO0_B4]",
++	"", "", "header1-pin11 [GPIO0_B7]",
++	/* GPIO0_C0 - C7 */
++	"header1-pin13 [GPIO0_C0]", "header1-pin15 [GPIO0_C1]", "", "", "",
++	"", "", "",
++	/* GPIO0_D0 - D8 */
++	"", "", "", "", "", "", "", "";
++};
++
++&gpio1 {
++	gpio-line-names =
++	/* GPIO1_A0 - A7 */
++	"", "", "", "", "", "", "", "",
++	/* GPIO1_B0 - B7 */
++	"", "", "", "", "", "", "", "",
++	/* GPIO1_C0 - C7 */
++	"", "", "", "", "", "", "header1-pin21 [GPIO1_C6]",
++	"header1-pin19 [GPIO1_C7]",
++	/* GPIO1_D0 - D8 */
++	"header1-pin23 [GPIO1_D0]", "header1-pin24 [GPIO1_D1]", "", "", "",
++	"", "", "";
++};
++
++&gpio2 {
++	gpio-line-names =
++	/* GPIO2_A0 - A7 */
++	"header1-pin10 [GPIO2_A0]", "header1-pin8 [GPIO2_A1]", "", "",
++	"header1-pin7 [GPIO2_A4]", "header1-pin12 [GPIO2_A5]",
++	"header2-pin46 [GPIO2_A6]", "header1-pin22 [GPIO1_A7]",
++	/* GPIO2_B0 - B7 */
++	"header2-pin45 [GPIO2_B0]", "header1-pin18 [GPIO2_B1]",
++	"header1-pin16 [GPIO2_B2]", "header2-pin44 [GPIO2_B3]",
++	"header2-pin43 [GPIO2_B4]", "header2-pin28 [GPIO2_B5]",
++	"header2-pin30 [GPIO2_B6]", "header2-pin32 [GPIO2_B7]",
++	/* GPIO2_C0 - C7 */
++	"header2-pin34 [GPIO2_C0]", "", "", "", "", "", "", "",
++	/* GPIO2_D0 - D8 */
++	"", "", "", "", "", "", "", "";
++};
++
++&gpio3 {
++	gpio-line-names =
++	/* GPIO3_A0 - A7 */
++	"", "", "", "", "", "", "", "",
++	/* GPIO3_B0 - B7 */
++	"", "", "header2-pin42 [GPIO3_B2]", "header2-pin41 [GPIO3_B3]",
++	"header2-pin40 [GPIO3_B4]", "header2-pin39 [GPIO3_B5]", "", "",
++	/* GPIO3_C0 - C7 */
++	"", "", "", "", "", "", "", "",
++	/* GPIO3_D0 - D8 */
++	"", "", "", "", "", "", "", "";
++};
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.41.0.327.gaa9166bcc0ba
 
 
