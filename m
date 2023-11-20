@@ -1,39 +1,39 @@
-Return-Path: <devicetree+bounces-17028-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17029-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4F3B7F0ECC
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 10:17:04 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADDF27F0ED8
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 10:18:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7F0C81F22BB4
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 09:17:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4D20FB215A0
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 09:18:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECD941097F;
-	Mon, 20 Nov 2023 09:17:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B760910A26;
+	Mon, 20 Nov 2023 09:18:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MxFhgeCt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UL/vDeVe"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0CFA10975
-	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 09:17:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62E1BC433C7;
-	Mon, 20 Nov 2023 09:16:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96FE810A21
+	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 09:18:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69D6CC433C8;
+	Mon, 20 Nov 2023 09:18:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700471820;
-	bh=5NNVMJym9r9JXdJ2wpkSuM4c0rvVueK/8Wt5MVc6K2I=;
+	s=k20201202; t=1700471913;
+	bh=O9QHIuSZXCgSZb0LaZ0KS3hdjKN2Br+khuPl6DbTHaE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=MxFhgeCtAnSY5kZqhicTC14T6vkK81TxaINIXaRUjaeknFSZOC5D43sKjlbPKUKc3
-	 /fet95R44pvwPqXR7ttiWczRD/FY0ALIFSmHQrgi93VORPvGjx2NqtGO/Ic49/NHRy
-	 01zw/5Ifer/W1DkqngboNhunJn+sXp/oV3k9QESxhRmRms+hbevVrRMvqTfyKu4vaC
-	 Htusl5IYEVm6k9o50F4ULGPHnsNkFg7v4noR6VguYu6Ip8oZovj44Td4zuhfOzFcjW
-	 6Gya3opkGpp4Vl34wZuOqRM/LagCSsXNf0HcTZzd8OiA+H+UHLwxkO06UqC9JiSh5N
-	 0dGXvVFEv2QhA==
-Message-ID: <d87bb48b-e04a-4ee4-86eb-d1533328cc74@kernel.org>
-Date: Mon, 20 Nov 2023 10:16:55 +0100
+	b=UL/vDeVeo5BroXDGFlY6S8W6du2lgVGzATKV3rUvG7DZm0fneaF/2ytdoRs2HzLTi
+	 0KEmdDgeIWfSbos5UlYkdq5uB5XxwYLH8yNGeOHIVx40vp+FkWfmp2Us4DgIEUR+Zu
+	 FsvVCAMkjN52WuNEdKot7o6qc7pM+LxwWF278pmESnafa1yWaFdtCF1Anv7Ek13wvY
+	 +zqpkqnHkCfunuWmic2Pl0yv9kJap5wUQrsWVSEIiQKZxwe2mo5Zv5oDkfJQN3OIgu
+	 ApNLDzoCu8jEi3GpKY0keC9/Z2cSPdVAauNcVLatddtQr1tHeF0ETco1R37tUElJX1
+	 hKfO6Du3Oq4Sg==
+Message-ID: <0294f35c-2408-40f9-86ac-aa855ad85b46@kernel.org>
+Date: Mon, 20 Nov 2023 10:18:30 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -41,14 +41,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] dt-bindings: arm: sunxi: Add Banana Pi P2 Zero v1.1
+Subject: Re: [PATCH 3/3] ARM: dts: sun8i: h2+: add support for Banana Pi P2
+ Zero board
 Content-Language: en-US
 To: =?UTF-8?Q?Pavel_L=C3=B6bl?= <pavel@loebl.cz>,
  Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
  Jernej Skrabec <jernej.skrabec@gmail.com>
 Cc: devicetree@vger.kernel.org
 References: <20231118111418.979681-1-pavel@loebl.cz>
- <20231118111418.979681-2-pavel@loebl.cz>
+ <20231118111418.979681-3-pavel@loebl.cz>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -93,39 +94,45 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20231118111418.979681-2-pavel@loebl.cz>
+In-Reply-To: <20231118111418.979681-3-pavel@loebl.cz>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
 On 18/11/2023 12:14, Pavel Löbl wrote:
-> Document binding for Banana Pi P2 Zero v1.1.
+> Banana Pi P2 Zero is H2+-based board by Sinovoip internally similar
+> to Banana Pi M2 Zero.
 > 
-> Signed-off-by: Pavel Löbl <pavel@loebl.cz>
-> ---
->  Documentation/devicetree/bindings/arm/sunxi.yaml | 6 ++++++
 
-Please use scripts/get_maintainers.pl to get a list of necessary people
-and lists to CC (and consider --no-git-fallback argument). It might
-happen, that command when run on an older kernel, gives you outdated
-entries. Therefore please be sure you base your patches on recent Linux
-kernel.
 
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
-> index 11c5ce941dd7..f3c0511cc133 100644
-> --- a/Documentation/devicetree/bindings/arm/sunxi.yaml
-> +++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
-> @@ -141,6 +141,12 @@ properties:
->            - const: sinovoip,bananapi-m64
->            - const: allwinner,sun50i-a64
->  
-> +      - description: BananaPi P2 Zero v1.1
-> +        items:
-> +          - const: sinovoip,bananapi-p2-zero-v1.1
-> +          - const: sinovoip,bananapi-p2-zero
+> diff --git a/arch/arm/boot/dts/allwinner/sun8i-h2-plus-bananapi-p2-zero-v1.1.dts b/arch/arm/boot/dts/allwinner/sun8i-h2-plus-bananapi-p2-zero-v1.1.dts
+> new file mode 100644
+> index 000000000000..f963051d8ff5
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/allwinner/sun8i-h2-plus-bananapi-p2-zero-v1.1.dts
+> @@ -0,0 +1,290 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
 
-That's not what your DTS is saying.
+Unusual license. We usually do not want GPL-v5.0. Does anything requires
+such licensing? If not, use 2.0 OR MIT
+
+
+> +/*
+> + * Copyright (C) 2023 Pavel Löbl <pavel@loebl.cz>
+> + *
+> + * Based on sun8i-h2-plus-bananapi-m2-zero.dts, which is:
+> + *   Copyright (C) 2017 Icenowy Zheng <icenowy@aosc.io>
+> + */
+> +
+> +/dts-v1/;
+> +#include "sun8i-h3.dtsi"
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/input/input.h>
+> +#include <dt-bindings/leds/common.h>
+> +
+> +/ {
+> +	model = "Banana Pi BPI-P2-Zero v1.1";
+> +	compatible = "sinovoip,bananapi-p2-zero-v1.1", "allwinner,sun8i-h2-plus";
 
 It does not look like you tested the DTS against bindings. Please run
 `make dtbs_check W=1` (see
@@ -133,6 +140,55 @@ Documentation/devicetree/bindings/writing-schema.rst or
 https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
 for instructions).
 
+> +
+> +	aliases {
+> +		serial0 = &uart0;
+> +		serial1 = &uart1;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	connector {
+> +		compatible = "hdmi-connector";
+> +		type = "c";
+> +
+> +		port {
+> +			hdmi_con_in: endpoint {
+> +				remote-endpoint = <&hdmi_out_con>;
+> +			};
+> +		};
+> +	};
+> +
+> +	leds {
+> +		compatible = "gpio-leds";
+> +
+> +		led {
+> +			function = LED_FUNCTION_POWER;
+> +			color = <LED_COLOR_ID_RED>;
+> +			gpios = <&r_pio 0 10 GPIO_ACTIVE_LOW>; /* PL10 */
+> +			default-state = "on";
+> +		};
+> +	};
+> +
+> +	gpio-keys {
+> +		compatible = "gpio-keys";
+> +
+> +		power {
+
+It does not look like you tested the DTS against bindings. Please run
+`make dtbs_check W=1` (see
+Documentation/devicetree/bindings/writing-schema.rst or
+https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+for instructions).
+
+> +			linux,code = <KEY_POWER>;
+> +			gpios = <&r_pio 0 3 GPIO_ACTIVE_LOW>; /* PL3 */
+> +			wakeup-source;
+> +		};
+> +	};
+> +
 
 
 Best regards,
