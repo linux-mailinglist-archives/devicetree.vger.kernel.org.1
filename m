@@ -1,127 +1,153 @@
-Return-Path: <devicetree+bounces-17085-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17086-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 019117F1216
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 12:33:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F196D7F1227
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 12:35:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 31BB61C216EB
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 11:33:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9F0CC1F2309D
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 11:35:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DA3814F61;
-	Mon, 20 Nov 2023 11:33:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6A2C1548B;
+	Mon, 20 Nov 2023 11:35:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OkzZomg3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id E7446A2;
-	Mon, 20 Nov 2023 03:33:25 -0800 (PST)
-X-IronPort-AV: E=Sophos;i="6.04,213,1695654000"; 
-   d="scan'208";a="183596152"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 20 Nov 2023 20:33:25 +0900
-Received: from localhost.localdomain (unknown [10.226.93.17])
-	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 7CE92400C446;
-	Mon, 20 Nov 2023 20:33:21 +0900 (JST)
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Thierry Reding <thierry.reding@gmail.com>,
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 482DA10D1
+	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 03:35:09 -0800 (PST)
+Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-507a3b8b113so6061306e87.0
+        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 03:35:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1700480107; x=1701084907; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=FnHXXBG/PcSIOhkoJ9kEnpC6kzNN9AjZ6LY10zqo+h0=;
+        b=OkzZomg3mm3SnDgawRoHg0LjYZ65kjkK8Gq/OKkPk2jjp0DSrQ//u8NihcHHv22SR5
+         80l7VRiYkrFZmfc5RgF/kuJ47w+WIH0LEHrIz4JyhvnIzRlXIEoZ782D8Ik+roLoT4E7
+         JHc4IFUbJVMpIFnwycfVpqogMDNBmLSRlmIMv7lGDld1GKA/Sger4khVtAEy9DeGp9vg
+         aHdfXxSouKPyLsl4z3C473J2PQ3ShoJSPSo2SzRRnJi6xYKU+uKQs3HPV3c+rREZ584C
+         wlNiQa0dknIQD4Z82ceWkWx+ItjQjWKYxiaxpG/fF0JoJewmBUVXzjJ0Wp8Gy6DE6BGW
+         1w7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700480107; x=1701084907;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=FnHXXBG/PcSIOhkoJ9kEnpC6kzNN9AjZ6LY10zqo+h0=;
+        b=PLBjoLpWTCTBE0IPvF/LGKEvtJ2IrJxFJsB7HEz/wfBW/VupA6wedN1EQLnodWiLZp
+         UyAYazqKUaPx4MZKNexPQSlH2wqCHguoGqGJKDvD0jFjHKZHlFzgmiVJhd7vqZ1brcAM
+         nnT/qOyi5PVCImwKWBmkBEQaLD92cXCOsl/FpFSucIpDovyyg96+ea3Y30hgk3H84jAf
+         cy9xxgBPnP/pFSj8lSrnbFVsSutK+57qOe4a3utzGkFhbH7gBAFCmE1snvUVGIOeTBJG
+         rLBgOoNtvNNApOCd436VT1GOttK0JUzn/hZ9UFTXuAcO9p8mMgYk1AK26dh6onRnJ8sr
+         g6KQ==
+X-Gm-Message-State: AOJu0Yz+xCGQK7RbzmcwT/RPoM/BfOMH7mpDcWRF75JoU+Sxp/QK2JMh
+	ZjZRrZx4jLSZOsdNn/DcfCZXgg==
+X-Google-Smtp-Source: AGHT+IE4p1HjJUlGRGxGDBmDUsbIOwoBbIXNzM2Hj8ktYhCtgv5uw2xJHZLQAN5AdJEy4CeFtILz0A==
+X-Received: by 2002:a05:6512:360e:b0:509:8e13:48e0 with SMTP id f14-20020a056512360e00b005098e1348e0mr4603700lfs.37.1700480107308;
+        Mon, 20 Nov 2023 03:35:07 -0800 (PST)
+Received: from localhost ([102.36.222.112])
+        by smtp.gmail.com with ESMTPSA id f19-20020a05600c4e9300b00405d9a950a2sm17666272wmq.28.2023.11.20.03.35.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Nov 2023 03:35:07 -0800 (PST)
+From: Dan Carpenter <dan.carpenter@linaro.org>
+X-Google-Original-From: Dan Carpenter <dan.carpenter@oracle.com>
+Date: Mon, 20 Nov 2023 06:35:04 -0500
+To: oe-kbuild@lists.linux.dev, Antoniu Miclaus <antoniu.miclaus@analog.com>,
+	Alessandro Zummo <a.zummo@towertech.it>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
 	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Rob Herring <robh@kernel.org>
-Subject: [PATCH v17 2/4] dt-bindings: pwm: rzg2l-gpt: Document renesas,poegs property
-Date: Mon, 20 Nov 2023 11:33:05 +0000
-Message-Id: <20231120113307.80710-3-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231120113307.80710-1-biju.das.jz@bp.renesas.com>
-References: <20231120113307.80710-1-biju.das.jz@bp.renesas.com>
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>, linux-rtc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-hwmon@vger.kernel.org
+Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev
+Subject: Re: [PATCH v7 2/2] rtc: max31335: add driver support
+Message-ID: <ad78bb08-d415-481d-8f26-0b0195a1ad9d@suswa.mountain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231109101449.8347-2-antoniu.miclaus@analog.com>
 
-RZ/G2L GPT IP supports output pin disable function by dead time
-error and detecting short-circuits between output pins.
+Hi Antoniu,
 
-Add documentation for the optional property renesas,poegs to
-link a pair of GPT IOs with POEG.
+kernel test robot noticed the following build warnings:
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
-v16->v17:
- * No change.
-v15->v16:
- * No change.
-v14->v15:
- * No change.
-v3->v14:
- * Add Rb tag from Rob.
- * Moved the patch from series[1] to here.
- [1] https://lore.kernel.org/linux-renesas-soc/20221215205843.4074504-1-biju.das.jz@bp.renesas.com/T/#t
-v2->v3:
- * Moved minItems/MaxItems one level up.
-v1->v2:
- * removed quotes from ref
- * Added maxItems and minItems for renesas,poegs property
- * Added enums for gpt index
----
- .../bindings/pwm/renesas,rzg2l-gpt.yaml       | 23 +++++++++++++++++++
- 1 file changed, 23 insertions(+)
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-diff --git a/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml b/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
-index 620d5ae4ae30..60170e0de3c6 100644
---- a/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
-+++ b/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
-@@ -245,6 +245,28 @@ properties:
-   resets:
-     maxItems: 1
- 
-+  renesas,poegs:
-+    minItems: 1
-+    maxItems: 8
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    items:
-+      items:
-+        - description: phandle to POEG instance that serves the output disable
-+        - enum: [ 0, 1, 2, 3, 4, 5, 6, 7 ]
-+          description: |
-+            An index identifying pair of GPT channels.
-+              <0> : GPT channels 0 and 1
-+              <1> : GPT channels 2 and 3
-+              <2> : GPT channels 4 and 5
-+              <3> : GPT channels 6 and 7
-+              <4> : GPT channels 8 and 9
-+              <5> : GPT channels 10 and 11
-+              <6> : GPT channels 12 and 13
-+              <7> : GPT channels 14 and 15
-+    description:
-+      A list of phandle and channel index pair tuples to the POEGs that handle the
-+      output disable for the GPT channels.
-+
- required:
-   - compatible
-   - reg
-@@ -375,4 +397,5 @@ examples:
-         power-domains = <&cpg>;
-         resets = <&cpg R9A07G044_GPT_RST_C>;
-         #pwm-cells = <2>;
-+        renesas,poegs = <&poeggd 4>;
-     };
+url:    https://github.com/intel-lab-lkp/linux/commits/Antoniu-Miclaus/rtc-max31335-add-driver-support/20231109-231755
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/abelloni/linux.git rtc-next
+patch link:    https://lore.kernel.org/r/20231109101449.8347-2-antoniu.miclaus%40analog.com
+patch subject: [PATCH v7 2/2] rtc: max31335: add driver support
+config: i386-randconfig-141-20231111 (https://download.01.org/0day-ci/archive/20231111/202311110943.V2lcrQlf-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce: (https://download.01.org/0day-ci/archive/20231111/202311110943.V2lcrQlf-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Reported-by: Dan Carpenter <error27@gmail.com>
+| Closes: https://lore.kernel.org/r/202311110943.V2lcrQlf-lkp@intel.com/
+
+smatch warnings:
+drivers/rtc/rtc-max31335.c:415 max31335_trickle_charger_setup() error: uninitialized symbol 'trickle_cfg'.
+
+vim +/trickle_cfg +415 drivers/rtc/rtc-max31335.c
+
+d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  383  static int max31335_trickle_charger_setup(struct device *dev,
+d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  384  					  struct max31335_data *max31335)
+d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  385  {
+d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  386  	u32 ohms, chargeable;
+d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  387  	int i, trickle_cfg;
+d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  388  	const char *diode;
+d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  389  
+d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  390  	if (device_property_read_u32(dev, "aux-voltage-chargeable",
+d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  391  				     &chargeable))
+d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  392  		return 0;
+d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  393  
+d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  394  	if (device_property_read_u32(dev, "trickle-resistor-ohms", &ohms))
+d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  395  		return 0;
+d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  396  
+d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  397  	if (device_property_read_string(dev, "adi,tc-diode", &diode))
+d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  398  		return 0;
+d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  399  
+d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  400  	if (!strcmp(diode, "schottky"))
+d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  401  		trickle_cfg = MAX31335_TRICKLE_SCHOTTKY_DIODE;
+d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  402  	else if (!strcmp(diode, "standard+schottky"))
+d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  403  		trickle_cfg = MAX31335_TRICKLE_STANDARD_DIODE;
+d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  404  	else
+d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  405  		dev_err_probe(dev, -EINVAL, "Invalid tc-diode value: %s\n",
+d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  406  			      diode);
+
+Probably was intended to be return dev_err_probe();
+
+d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  407  
+d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  408  	for (i = 0; i < ARRAY_SIZE(max31335_trickle_resistors); i++)
+d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  409  		if (ohms == max31335_trickle_resistors[i])
+d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  410  			break;
+d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  411  
+d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  412  	if (i >= ARRAY_SIZE(max31335_trickle_resistors))
+d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  413  		return 0;
+d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  414  
+d76a0d3a61615e5 Antoniu Miclaus 2023-11-09 @415  	i = i + trickle_cfg;
+d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  416  
+d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  417  	return regmap_write(max31335->regmap, MAX31335_TRICKLE_REG,
+d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  418  			    FIELD_PREP(MAX31335_TRICKLE_REG_TRICKLE, i) |
+d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  419  			    FIELD_PREP(MAX31335_TRICKLE_REG_EN_TRICKLE,
+d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  420  				       chargeable));
+d76a0d3a61615e5 Antoniu Miclaus 2023-11-09  421  }
+
 -- 
-2.25.1
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
 
