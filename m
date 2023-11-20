@@ -1,119 +1,116 @@
-Return-Path: <devicetree+bounces-17307-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17308-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA0F67F1FF6
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 23:07:28 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E8177F1FFD
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 23:11:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3E311B216C6
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 22:07:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B52ED1C211C9
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 22:11:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7A5938FB8;
-	Mon, 20 Nov 2023 22:07:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 948A238FBC;
+	Mon, 20 Nov 2023 22:10:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iU6FAGtP"
+	dkim=pass (2048-bit key) header.d=emailprofi.seznam.cz header.i=@emailprofi.seznam.cz header.b="ZMrU7H99"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A918038DF5
-	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 22:07:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C49FBC433C7;
-	Mon, 20 Nov 2023 22:07:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700518042;
-	bh=VgevGQRE0DkW5gNXBJLRH1C9nvApnpFXwehmDOXU/q8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iU6FAGtPzvf4n9aM9W0QY4oudQh44SjSKBAI7GZnP37lx9b4Ur3Mj65H4PbTVlJe1
-	 K830TcCwVhF4na4SXXAjtuai+L+A4G0Z1VWcmlq7Rf5al1z2bgJiwIVL70UoAy60JP
-	 woqqwzLVJtmflPxfvt8pEjG9+CU6dhobQk6kSlU/BwIslM2g2r0yTlNK+lMPACTjuE
-	 SMPQGHtftu7E7I7YS2d/topBuO0JD4U+ptQ0vcLMCJUPTkZd4ECtI99oWD5qN1mrOF
-	 Em6PZDSrO8QmYMfZ0HBjZs5I19UKiw24kyVI9YIuY/WfdXmp8xYZmKtlBXOW1J85vA
-	 e4Go+Gv3eNASg==
-Date: Mon, 20 Nov 2023 22:07:15 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Chancel Liu <chancel.liu@nxp.com>
-Cc: lgirdwood@gmail.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	shengjiu.wang@gmail.com, Xiubo.Lee@gmail.com, festevam@gmail.com,
-	nicoleotsuka@gmail.com, perex@perex.cz, tiwai@suse.com,
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-	alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
-	linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 2/2] ASoC: imx-rpmsg: Force codec power on in low
- power audio mode
-Message-ID: <edd348ea-ef95-453a-9838-636769ab569f@sirena.org.uk>
-References: <20231023020718.1276000-1-chancel.liu@nxp.com>
- <20231023020718.1276000-2-chancel.liu@nxp.com>
+Received: from mxb-1-390.seznam.cz (mxb-1-390.seznam.cz [IPv6:2a02:598:128:8a00::1000:390])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D2A295
+	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 14:10:52 -0800 (PST)
+Received: from email.seznam.cz
+	by smtpc-mxb-76bd9fc5fb-rdwgf
+	(smtpc-mxb-76bd9fc5fb-rdwgf [2a02:598:128:8a00::1000:390])
+	id 03e577931877fa470700ce11;
+	Mon, 20 Nov 2023 23:10:21 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=emailprofi.seznam.cz; s=szn20221014; t=1700518221;
+	bh=GxKicivXOwrxFLsB1AEW+vzht74xCat8MFgdq7O3bQY=;
+	h=Received:Date:From:To:Cc:Subject:Message-ID:In-Reply-To:
+	 References:X-Mailer:MIME-Version:Content-Type:
+	 Content-Transfer-Encoding;
+	b=ZMrU7H99ieeJ+M8h8GLKEGgxsi2bpXh2fB47FiyacA39af+bao66QhJ01EC+tuaFt
+	 +boTFf87rJQBf41E/0J8E73LoUJ1EKKfMzEy27S0AINOb5E9PN6nBay3XqCp1ujvEU
+	 9EPjCGyYICzQ3LvTEpECgHjUF0FSI0udMhFh4knAiE8RjwexV1S4XiG0qxWTsCFAEh
+	 oOgv14EybAK5lZ6QWdKKspfRtbYrJDk6t3WcDO7ym5gIhsgWx4n/RS0gQS8BjyCZLX
+	 8rTHp3McyjmwavoUh/DD/3+uI388KQ054vUZMOIlrntPQ5rgUy5rK8UZ69ndd3Vjlb
+	 wWvJrEqOfPx/Q==
+Received: from alena.lan (88.146.114.74.pe3ny.net [88.146.114.74])
+	by smtpd-relay-5846f595f5-k5nnq (smtpd/2.0.15) with ESMTPA
+	id ac801f9a-12d3-4f6c-ba56-9e521435f9b6;
+	Mon, 20 Nov 2023 23:10:18 +0100
+Date: Mon, 20 Nov 2023 23:10:17 +0100
+From: Pavel =?UTF-8?B?TMO2Ymw=?= <pavel@loebl.cz>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej
+ Skrabec <jernej.skrabec@gmail.com>, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/3] dt-bindings: arm: sunxi: Add Banana Pi P2 Zero v1.1
+Message-ID: <20231120231017.614b9d61@alena.lan>
+In-Reply-To: <d87bb48b-e04a-4ee4-86eb-d1533328cc74@kernel.org>
+References: <20231118111418.979681-1-pavel@loebl.cz>
+	<20231118111418.979681-2-pavel@loebl.cz>
+	<d87bb48b-e04a-4ee4-86eb-d1533328cc74@kernel.org>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ys7+XtCcLmb6Czww"
-Content-Disposition: inline
-In-Reply-To: <20231023020718.1276000-2-chancel.liu@nxp.com>
-X-Cookie: The meek don't want it.
-
-
---ys7+XtCcLmb6Czww
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Oct 23, 2023 at 10:07:18AM +0800, Chancel Liu wrote:
-> Low power audio mode requires binding codec still power on while Acore
-> enters into suspend so Mcore can continue playback music.
+On Mon, 20 Nov 2023 10:16:55 +0100
+Krzysztof Kozlowski <krzk@kernel.org> wrote:
+
+> On 18/11/2023 12:14, Pavel L=C3=B6bl wrote:
+> > Document binding for Banana Pi P2 Zero v1.1.
+> >=20
+> > Signed-off-by: Pavel L=C3=B6bl <pavel@loebl.cz>
+> > ---
+> >  Documentation/devicetree/bindings/arm/sunxi.yaml | 6 ++++++ =20
 >=20
-> ASoC machine driver acquires DAPM endpoints through reading
-> "ignore-suspend-widgets" property from DT and then forces the path
-> between these endpoints ignoring suspend.
+> Please use scripts/get_maintainers.pl to get a list of necessary
+> people and lists to CC (and consider --no-git-fallback argument). It
+> might happen, that command when run on an older kernel, gives you
+> outdated entries. Therefore please be sure you base your patches on
+> recent Linux kernel.
+That's what I did using next-20231117 kernel source, without
+--no-git-fallback argument though. The output seemed a bit long so I
+have not included every line in CC. So you are saying I should address
+more people next time?
 
-This breaks an x86 allmodconfig build:
+Also it's not clear to me what should go to Cc: and what should go to
+To: when submitting. Looking at the list there does not seem to be a
+rule.
 
-/build/stage/linux/sound/soc/fsl/imx-rpmsg.c: In function =E2=80=98imx_rpms=
-g_late_probe=E2=80=99
-:
-/build/stage/linux/sound/soc/fsl/imx-rpmsg.c:60:46: error: implicit declara=
-tion=20
-of function =E2=80=98of_find_device_by_node=E2=80=99; did you mean =E2=80=
-=98of_find_i2c_device_by_node=E2=80=99?
- [-Werror=3Dimplicit-function-declaration]
-   60 |                                 codec_pdev =3D of_find_device_by_no=
-de(code
-c_np);
-      |                                              ^~~~~~~~~~~~~~~~~~~~~~
-      |                                              of_find_i2c_device_by_=
-node
-/build/stage/linux/sound/soc/fsl/imx-rpmsg.c:60:44: error: assignment to =
-=E2=80=98struct
- platform_device *=E2=80=99 from =E2=80=98int=E2=80=99 makes pointer from i=
-nteger without a cast [-Werro
-r=3Dint-conversion]
-   60 |                                 codec_pdev =3D of_find_device_by_no=
-de(codec_np);
-      |                                            ^
-cc1: all warnings being treated as errors
+>=20
+> >  1 file changed, 6 insertions(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml
+> > b/Documentation/devicetree/bindings/arm/sunxi.yaml index
+> > 11c5ce941dd7..f3c0511cc133 100644 ---
+> > a/Documentation/devicetree/bindings/arm/sunxi.yaml +++
+> > b/Documentation/devicetree/bindings/arm/sunxi.yaml @@ -141,6
+> > +141,12 @@ properties:
+> >            - const: sinovoip,bananapi-m64
+> >            - const: allwinner,sun50i-a64
+> > =20
+> > +      - description: BananaPi P2 Zero v1.1
+> > +        items:
+> > +          - const: sinovoip,bananapi-p2-zero-v1.1
+> > +          - const: sinovoip,bananapi-p2-zero =20
+>=20
+> That's not what your DTS is saying.
+>=20
+> It does not look like you tested the DTS against bindings. Please run
+> `make dtbs_check W=3D1` (see
+> Documentation/devicetree/bindings/writing-schema.rst or
+> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sou=
+rces-with-the-devicetree-schema/
+> for instructions).
+You are right, didn't know about this. I've fixed that for v2 (and all
+the other issues reported).
 
---ys7+XtCcLmb6Czww
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmVb2JIACgkQJNaLcl1U
-h9D5Ygf/Ur0x116afGwToupSLPOlWheujkRjuYUrg95VQwQ3SkvnrgRzVCJ+GIst
-9GzXEnzHorx+Vw4NzSNtzA5TF94TOOf+9GuRz5LQrl5hUJFhOnF0lz+0FGrXbXNE
-yTD3a0tuYY7uSXyxFAZEszj3kHhUFZYg9SMAsJXVkpzej8rP7PiiJ2CyjnrkX0hY
-lt6a8UmWNeNDaxS/8PMAXsraltapBbMjgxKYUCrbRXG8eRwZuKM1FBUyTkk5rER3
-81ZfNxk2+8f5PDf9pX7mmjQXnPjDmumPU5HWn4Oz0cfEXeUG8xopxm50UwxLvhBk
-Jj4TQkMAEWCmlRaVVi8MKepQqzhNig==
-=sif7
------END PGP SIGNATURE-----
-
---ys7+XtCcLmb6Czww--
+Pavel
 
