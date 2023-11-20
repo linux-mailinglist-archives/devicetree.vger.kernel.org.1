@@ -1,118 +1,158 @@
-Return-Path: <devicetree+bounces-17228-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17224-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 596937F197A
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 18:11:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A6187F196E
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 18:10:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8A5CB1C2104D
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 17:11:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E1805281283
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 17:10:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA4211D541;
-	Mon, 20 Nov 2023 17:11:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C62D2200B6;
+	Mon, 20 Nov 2023 17:10:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="6R7v9OrA"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="TJ34m5Vu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82883CB;
-	Mon, 20 Nov 2023 09:11:13 -0800 (PST)
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 3AKFJn5q029650;
-	Mon, 20 Nov 2023 18:10:50 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding:content-type; s=
-	selector1; bh=11mGKtnf68sv5F45K9ozUTLxzWamUOebDrS0r3G08pY=; b=6R
-	7v9OrAebZyCOekgEqKTMI3D9VJ8OleLR3nvTBab3f3qAmZfmXJHTQhI39u+61+VM
-	h72Trmo6w8Qf+AUhnj9rHuyo2tkJc+meRa6Uphjb7h1NTM24A3E0LPPOMkv4+LzP
-	CDzMmMgR4DpgW+c+9lmr8Ix/aUASiPsQKjpI2EGbNFrTOa96PWqUkjB2O49Jkny2
-	tY/CTkVvrPAfjeRq68vtogDbVcTFvxL+8dgZTIdn5JCr41y4kJsauwk9TPaBVczR
-	9g/AM0tEHIwpjrUpVphYMIm9YCFj2CgC92WXWcVwPHzekrMrgTubH2A54crRsnye
-	xVKo30rza+9r2iEPsqRQ==
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3uekjkg1th-1
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44F46D8;
+	Mon, 20 Nov 2023 09:10:09 -0800 (PST)
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AKGcCAo011905;
+	Mon, 20 Nov 2023 17:09:57 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=rKRFbcoiJFnyC4kTtbuw38KkKTxXnsEOsT+x/71gpJU=;
+ b=TJ34m5VuSY7JtCxQvOUwrBFEF/Mx/4c/wZejY9ck2JFWh8EzEGcqK6W0b3twx2F1Jt8/
+ 4NbnMeAIstOP/kzO8t78CW7jo7Z4aHStvbV3CmLgAenz8rBqIc+7jquHrE5BZ6zU39U2
+ NpH+sKZ8P8wvRO8oSttPCjMctm/9vsIMPyMCLl0lM4Yo3AEl2L4JD+gXQjJRqWQKiIpU
+ 4o6XieRysHbQFMnV7USHlZNk/G9yXWNuzCIs4hw7/5POLDqb6NwKJly+pR+t4AFAl/aV
+ RgORRJQztpMaU/xwFh6HYj2EoVXHix1l5F3hQKyDIckOR3hAv+3ZeA7St1YykcTrlWjG tQ== 
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uem9ecnpp-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 20 Nov 2023 18:10:50 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 57F1710002A;
-	Mon, 20 Nov 2023 18:10:50 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 4D50F237D71;
-	Mon, 20 Nov 2023 18:10:50 +0100 (CET)
-Received: from localhost (10.129.178.213) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Mon, 20 Nov
- 2023 18:10:50 +0100
-From: Alain Volmat <alain.volmat@foss.st.com>
-To: Hugues Fruchet <hugues.fruchet@foss.st.com>,
-        Alain Volmat
-	<alain.volmat@foss.st.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob
- Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue
-	<alexandre.torgue@foss.st.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Philipp
- Zabel <p.zabel@pengutronix.de>
-CC: Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Laurent Pinchart
-	<laurent.pinchart@ideasonboard.com>,
-        Dan Scally
-	<dan.scally@ideasonboard.com>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v7 5/5] ARM: multi_v7_defconfig: enable STM32 DCMIPP media support
-Date: Mon, 20 Nov 2023 18:08:01 +0100
-Message-ID: <20231120170809.728941-6-alain.volmat@foss.st.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231120170809.728941-1-alain.volmat@foss.st.com>
-References: <20231120170809.728941-1-alain.volmat@foss.st.com>
+	Mon, 20 Nov 2023 17:09:57 +0000
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AKH9uK9009254
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 20 Nov 2023 17:09:56 GMT
+Received: from [10.110.123.216] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 20 Nov
+ 2023 09:09:55 -0800
+Message-ID: <13a254af-415d-4fbe-9f4f-7984e064a880@quicinc.com>
+Date: Mon, 20 Nov 2023 09:09:54 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.129.178.213]
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE1.st.com
- (10.75.129.69)
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] dt-bindings: arm: Document reboot mode magic
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Mark Rutland
+	<mark.rutland@arm.com>
+CC: Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>,
+        Melody Olvera
+	<quic_molvera@quicinc.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Florian Fainelli <florian.fainelli@broadcom.com>
+References: <20231117-arm-psci-system_reset2-vendor-reboots-v1-0-03c4612153e2@quicinc.com>
+ <20231117-arm-psci-system_reset2-vendor-reboots-v1-2-03c4612153e2@quicinc.com>
+ <eb2d0992-4d9a-4f59-8e79-da277f39d2d9@linaro.org>
+ <51785de6-2a69-482d-b686-c3694f87e6b7@quicinc.com>
+ <2d8c7cc2-2c6c-4539-abf3-81700f27b1a7@linaro.org>
+From: Elliot Berman <quic_eberman@quicinc.com>
+In-Reply-To: <2d8c7cc2-2c6c-4539-abf3-81700f27b1a7@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: Bc3Gi-DKZNJM0qmHVq7a-POPw5mf2NT1
+X-Proofpoint-GUID: Bc3Gi-DKZNJM0qmHVq7a-POPw5mf2NT1
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
  definitions=2023-11-20_17,2023-11-20_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 mlxscore=0
+ clxscore=1015 priorityscore=1501 impostorscore=0 mlxlogscore=999
+ lowpriorityscore=0 bulkscore=0 phishscore=0 suspectscore=0 adultscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2311060000 definitions=main-2311200121
 
-From: Hugues Fruchet <hugues.fruchet@foss.st.com>
 
-Enables support of STM32 DCMIPP V4L2 media driver.
 
-Signed-off-by: Hugues Fruchet <hugues.fruchet@foss.st.com>
-Signed-off-by: Alain Volmat <alain.volmat@foss.st.com>
----
- arch/arm/configs/multi_v7_defconfig | 1 +
- 1 file changed, 1 insertion(+)
+On 11/20/2023 8:41 AM, Krzysztof Kozlowski wrote:
+> On 20/11/2023 16:45, Elliot Berman wrote:
+>>
+>>
+>> On 11/20/2023 2:56 AM, Krzysztof Kozlowski wrote:
+>>> On 17/11/2023 22:18, Elliot Berman wrote:
+>>>> -
+>>>> -additionalProperties: false
+>>>> +  - if:
+>>>> +      properties:
+>>>> +        compatible:
+>>>> +          contains:
+>>>> +            const: arm,psci-1.0
+>>>> +    then:
+>>>> +      $ref: /schemas/power/reset/reboot-mode.yaml#
+>>>> +      properties:
+>>>> +        # "mode-normal" is just SYSTEM_RESET
+>>>> +        mode-normal: false
+>>>> +      patternProperties:
+>>>> +        "^mode-.*$":
+>>>> +          maxItems: 2
+>>>
+>>> And if you tested the patch, it would tell you it can be max 1 item.
+>>
+>> make dt_binding_check DT_SCHEMA_FILES=arm/psci.yaml
+> 
+> psci.example.dtb: psci: mode-edl: [[0]] is too short
+> psci.example.dtb: psci: mode-bootloader: [[1, 2]] is too short
+> 
+> psci.example.dtb: psci: Unevaluated properties are not allowed
+> ('mode-bootloader', 'mode-edl' were unexpected)
+> 
 
-diff --git a/arch/arm/configs/multi_v7_defconfig b/arch/arm/configs/multi_v7_defconfig
-index f08f39a3ed2b..86120e1c1503 100644
---- a/arch/arm/configs/multi_v7_defconfig
-+++ b/arch/arm/configs/multi_v7_defconfig
-@@ -690,6 +690,7 @@ CONFIG_VIDEO_STI_BDISP=m
- CONFIG_VIDEO_STI_DELTA=m
- CONFIG_VIDEO_STI_HVA=m
- CONFIG_VIDEO_STM32_DCMI=m
-+CONFIG_VIDEO_STM32_DCMIPP=m
- CONFIG_V4L_TEST_DRIVERS=y
- CONFIG_VIDEO_VIVID=m
- CONFIG_VIDEO_ADV7180=m
--- 
-2.25.1
+Ah, tip of tree for dt-schema doesn't seem to report the error.
 
+Doesn't report the error:
+dt-validate --version
+2023.10.dev17+g58feadb
+
+Reports the error:
+dt-validate --version
+2023.9
+
+Looks likely related to generated the processed-schema.json rather
+than dt-validate itself. The tip of tree dt-validate does report
+the error if processed-schema.json is generated by 2023.9 tool,
+but not if the schema was also generated by tip-of-tree mkschema.
+
+I'll try bisecting the error and report back.
+
+>>
+>> passes for me. Rob explained why it's working (and why it shouldn't), 
+>> so I'll fix it according to his recommendation in v2.
+> 
+> Then you wanted uint32-matrix.
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
 
