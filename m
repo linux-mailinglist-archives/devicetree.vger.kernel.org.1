@@ -1,125 +1,165 @@
-Return-Path: <devicetree+bounces-17002-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17003-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49B067F0DD6
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 09:44:39 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DEEF7F0E22
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 09:50:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D7E501F2231D
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 08:44:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9F7151C215AF
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 08:50:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B67747474;
-	Mon, 20 Nov 2023 08:44:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87EB3F500;
+	Mon, 20 Nov 2023 08:50:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="yJY4c/z4";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="QSLFSYbo"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="W/0pELhd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from new4-smtp.messagingengine.com (new4-smtp.messagingengine.com [66.111.4.230])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06C6CA2;
-	Mon, 20 Nov 2023 00:44:28 -0800 (PST)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-	by mailnew.nyi.internal (Postfix) with ESMTP id C93F55803A1;
-	Mon, 20 Nov 2023 03:44:25 -0500 (EST)
-Received: from imap51 ([10.202.2.101])
-  by compute5.internal (MEProxy); Mon, 20 Nov 2023 03:44:25 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:cc:content-type:content-type:date:date:from:from:in-reply-to
-	:in-reply-to:message-id:mime-version:references:reply-to:sender
-	:subject:subject:to:to; s=fm3; t=1700469865; x=1700477065; bh=gf
-	FgJZ50InRlxA1bXQ5aRh+dZLzQhN0FPLPbgFDX9v8=; b=yJY4c/z49wu6OVpuBT
-	3vrAuNBqGx/HJh0CxqiWKIthY1AlXlOQjAYzcts97tbP3Ex2GGPQQnXTtmrB5Vhz
-	woHAtqMnkGd4WiBPUTrulr/h+k4WVwA9z9/cKMcle0aiA/drai6rbsntsIHuR5Wn
-	1Ya7DsMYWbsHYCNlGVJfmyqxp1uQgRNmYfgmh9l8z0+5KjR8a2D7HJ1oNO4dMxgo
-	zhk79szjzuCFuW7X+x3WeeD/23HoubJcgAeEuR9VaST0H1/3oI+Fhqv05mU6nOyi
-	Q94vDFCnHNjpgnV2ODYbANb45IAexy3h2GuRXe9+WqFXcyjo4/bQ4yA0ABFK7UoM
-	p3Ag==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-type:content-type:date:date
-	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-	:message-id:mime-version:references:reply-to:sender:subject
-	:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-	:x-sasl-enc; s=fm1; t=1700469865; x=1700477065; bh=gfFgJZ50InRlx
-	A1bXQ5aRh+dZLzQhN0FPLPbgFDX9v8=; b=QSLFSYboW8mIu3dJ5DjlbwdMObuuN
-	kPd20GyFcMT9IcXzoaduqkfNG+IQWUeZXiPs+y6S2qDT6ob3ePqPvz/mMrwQ4ZbQ
-	FFbbbzHtjVRoD1c84wG2ErsQFxg5Ne3cfCE3O3rYyasOgF6fcG7LDMDm7W9jP1mn
-	bYFf6HyiS8d7s449+/4J4hD1SZT5CJqQNvJuP2gIs6fCyk+2lyvhXJ7kepp3hbPY
-	WNpYe70r/TKJyzsIkrfg7RkcN654pS/aUIb38XeR+BswLivSm6W4Ri3zBbSvJUtq
-	XeyCNBpFC6rzdYEjwQABacq7mB7MLA9jTr2nv8gov/MNdI7Joepn6xPIw==
-X-ME-Sender: <xms:ZxxbZSjBS8ra_sObY5jpHOgzkteFSOyuM5dj_Cv8PUZRLyRqjwyUmw>
-    <xme:ZxxbZTBKoTp0rH1NMZo4pfUDsV7YsaTm0JFXz4ZOMsofDPOEgKmK6_aqKyuG7NNxr
-    h7GEGQzOTIeP4Ugx90>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrudeghedguddvvdcutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdet
-    rhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrg
-    htthgvrhhnpeffheeugeetiefhgeethfejgfdtuefggeejleehjeeutefhfeeggefhkedt
-    keetffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    grrhhnugesrghrnhgusgdruggv
-X-ME-Proxy: <xmx:ZxxbZaEO9Np9FB7qMx9p2aGgFYghtTBdl6qb3umOSdjyh8o3z7CnPQ>
-    <xmx:ZxxbZbRMXt7VlWjH7F8ieB3Pg-61rVM08ZKBfsNCIwg5MGKQyoXfGw>
-    <xmx:ZxxbZfwkRHHzpjJjPJnLXY42gxyhTY4mWs8sp4iZW7920ijqVIwv0w>
-    <xmx:aRxbZY8Pfk7Y5L9tx8y9q5icA1GrErC01q3EpZ9X8WYKxu4Y42GBSQ>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id 1C2F9B60089; Mon, 20 Nov 2023 03:44:23 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-1108-g3a29173c6d-fm-20231031.005-g3a29173c
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F3959F;
+	Mon, 20 Nov 2023 00:50:25 -0800 (PST)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AK8SJYa027567;
+	Mon, 20 Nov 2023 08:50:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=bRhQqXUSR38rCMhKg6XOiQKLQfGqT2lEI3OV7JyNAio=;
+ b=W/0pELhd2F2GNjnzKaj86R7jYdEiIx2Q1qTpPrW7Js9iLIdCAbvpXwvdETx2Rvu8AUdR
+ 8DEsrXJWqzyn+fb4FAANiwk/lYKPnkptAC6TgErOw1GwUIHfeKnJUbcF/MU3UGtdxGgB
+ nfJPMouJQeLhD3C4W3sIAG1A7Wh6cvTO+AQGTMcey4G9jGaNFzL6kytHD2Pbf6TBLPds
+ Uke3a8OWOCVq07bL9kqV/yGT66v7bJrz9zr/Ai/hFixXYmKOlS1DP27zhDxSBISZ8rGP
+ l5K9zNPxu7e3Qb7aHkS0s83AvlSZpDpeJyTjiHU8dKN6zJNFcMvsNGZFRBugSPWXaDI4 YQ== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uem80kgkm-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 20 Nov 2023 08:50:06 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AK8o5EV001424
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 20 Nov 2023 08:50:05 GMT
+Received: from [10.253.8.221] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 20 Nov
+ 2023 00:50:01 -0800
+Message-ID: <fef2ab86-ccd7-4693-8a7e-2dac2c80fd53@quicinc.com>
+Date: Mon, 20 Nov 2023 16:49:59 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-Id: <bd25377b-b191-4d81-b144-2936cb5139d9@app.fastmail.com>
-In-Reply-To: <20231120070024.4079344-15-claudiu.beznea.uj@bp.renesas.com>
-References: <20231120070024.4079344-1-claudiu.beznea.uj@bp.renesas.com>
- <20231120070024.4079344-15-claudiu.beznea.uj@bp.renesas.com>
-Date: Mon, 20 Nov 2023 09:44:02 +0100
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Claudiu Beznea" <claudiu.beznea@tuxon.dev>,
- "Sergey Shtylyov" <s.shtylyov@omp.ru>,
- "David S . Miller" <davem@davemloft.net>,
- "Eric Dumazet" <edumazet@google.com>, "Jakub Kicinski" <kuba@kernel.org>,
- "Paolo Abeni" <pabeni@redhat.com>, "Rob Herring" <robh+dt@kernel.org>,
- krzysztof.kozlowski+dt@linaro.org, "Conor Dooley" <conor+dt@kernel.org>,
- "Russell King" <linux@armlinux.org.uk>,
- "Geert Uytterhoeven" <geert+renesas@glider.be>,
- "Magnus Damm" <magnus.damm@gmail.com>,
- "Michael Turquette" <mturquette@baylibre.com>,
- "Stephen Boyd" <sboyd@kernel.org>,
- "Linus Walleij" <linus.walleij@linaro.org>,
- "Philipp Zabel" <p.zabel@pengutronix.de>,
- "Marek Szyprowski" <m.szyprowski@samsung.com>,
- "Alexandre Torgue" <alexandre.torgue@foss.st.com>,
- "Andrew Davis" <afd@ti.com>, "Mark Brown" <broonie@kernel.org>,
- "Alexander Stein" <alexander.stein@ew.tq-group.com>,
- eugen.hristev@collabora.com, sergei.shtylyov@gmail.com, "Lad,
- Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>,
- "Biju Das" <biju.das.jz@bp.renesas.com>
-Cc: Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
- Netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-clk@vger.kernel.org,
- "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
- "Claudiu Beznea" <claudiu.beznea.uj@bp.renesas.com>
-Subject: Re: [PATCH 14/14] arm: multi_v7_defconfig: Enable CONFIG_RAVB
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 3/6] net: phy: at803x: add QCA8084 ethernet phy support
+To: Andrew Lunn <andrew@lunn.ch>,
+        "Russell King (Oracle)"
+	<linux@armlinux.org.uk>
+CC: <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+        <pabeni@redhat.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <hkallweit1@gmail.com>, <corbet@lwn.net>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>
+References: <20231118062754.2453-1-quic_luoj@quicinc.com>
+ <20231118062754.2453-4-quic_luoj@quicinc.com>
+ <1eb60a08-f095-421a-bec6-96f39db31c09@lunn.ch>
+ <ZVkRkhMHWcAR37fW@shell.armlinux.org.uk>
+ <eee39816-b0b8-475c-aa4a-8500ba488a29@lunn.ch>
+Content-Language: en-US
+From: Jie Luo <quic_luoj@quicinc.com>
+In-Reply-To: <eee39816-b0b8-475c-aa4a-8500ba488a29@lunn.ch>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: NaSybp2TbFDC43rnDagD-bOPEev2BA54
+X-Proofpoint-ORIG-GUID: NaSybp2TbFDC43rnDagD-bOPEev2BA54
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-20_06,2023-11-17_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxlogscore=999
+ adultscore=0 priorityscore=1501 phishscore=0 malwarescore=0
+ impostorscore=0 lowpriorityscore=0 mlxscore=0 spamscore=0 bulkscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2311060000 definitions=main-2311200058
 
-On Mon, Nov 20, 2023, at 08:00, Claudiu wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->
-> ravb driver is used by RZ/G1H. Enable it in multi_v7_defconfig.
->
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-We have a mix of =y and =m for ethernet drivers, and usually
-only have drivers built-in when they are frequently tested
-with NFS root booting.
 
-Do you need this as well, or could it be =m instead?
+On 11/19/2023 4:19 AM, Andrew Lunn wrote:
+>> 10G_QXGMII is defined in the Cisco USXGMII multi-port document as one
+>> of several possibilities for a USXGMII-M link. The Cisco document can
+>> be a little confusing beause it states that 10G_QXGMII supports 10M,
+>> 100M, 1G and 2.5G, and then only talks about a 10G and 100M/1G MAC.
+>>
+>> For 10G_QXGMII, there are 4 MAC interfaces. These are connected to a
+>> rate "adaption" through symbol replication block, and then on to a
+>> clause 49 PCS block.
+>>
+>> There is then a port MUX and framing block, followed by the PMA
+>> serdes which communicates with the remote end over a single pair of
+>> transmit/receive serdes lines.
+>>
+>> Each interface also has its own clause 37 autoneg block.
+>>
+>> So, for an interface to operate in SGMII mode, it would have to be
+>> muxed to a different path before being presented to the USXGMII-M
+>> block since each interface does not have its own external data lane
+>> - thus that's out of scope of USXGMII-M as documented by Cisco.
+> 
+> Hi Russell
+> 
+> I think it helps.
+> 
+> Where i'm having trouble is deciding if this is actually an interface
+> mode. Interface mode is a per PHY property. Where as it seems
+> 10G_QXGMII is a property of the USXGMII-M link? Should we be
+> representing the package with 4 PHYs in it, and specify the package
+> has a PMA which is using 10G_QXGMII over USXGMII-M? The PHY interface
+> mode is then internal? Its just the link between the PHY and the MUX?
+> 
+> By saying the interface mode is 10G_QXGMII and not describing the PMA
+> mode, are we setting ourselves up for problems in the future? Could
+> there be a PMA interface which could carry different PHY interface
+> modes?
+> 
+> If we decide we do want to use 10G_QXGMII as an interface made, i
+> think the driver should be doing some validation. If asked to do
+> anything else, it should return -EINVAL.
+> 
+> And i don't yet understand how it can also do 1000BaseX and 2500BaseX
+> and SGMII?
+> 
+>      Andrew
 
-    Arnd
+Hi Andrew,
+The interface mode 10G_QXGMII is a type of USXGMII-M, the other modes
+such as 20G-QXGMII, 20G-OXGMII...
+
+As for the interface mode 10G-QXGMII, there is a multiplexer for 4 PHYs,
+then do 66bit/68bit encode in xpcs and pass to PMA, the link topology:
+quad PHY --- multiplexer ---XPCS --- PMA.
+the 10G-QXGMII interface block includes multiplexer, XPCS and PMA.
+
+when the PHY works on SGMII mode, then there is no xpcs, the only fourth
+PHY of qca8084 can work on SGMII mode, the link topology:
+the fourth PHY --- PCS --- PMA, the SGMII block includes PCS and PMA.
+
+Either 10G-QXGMII or SGMII block of qca8084 connects with the interface
+block(10G-QXGMII or SGMII) in MAC side.
+
+Here is a problem as Russell mentioned earlier, we need to know which 
+PHY device is changing the link status when the 10G-QXGMII mode is used,
+since there are 4 PHYs, when one of them has the link change, there is 
+no PHY device information passed to the PHYLINK, so the PCS driver don't
+which PHY is changing link status and 10G-QXGMII mode don't know which
+channel(mapped to PHY) should be configured.
+
+would we add a field such as (int channel) in the struct phy_device?
+so we can pass this information to PCS driver when the PHY link changed.
+
+Thanks,
 
