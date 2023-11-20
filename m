@@ -1,58 +1,58 @@
-Return-Path: <devicetree+bounces-17071-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17069-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A06D77F11B2
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 12:18:43 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40DCA7F11AF
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 12:18:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5927C282488
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 11:18:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 617BF1C210E6
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 11:18:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78A531428C;
-	Mon, 20 Nov 2023 11:18:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F25D61426F;
+	Mon, 20 Nov 2023 11:18:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="Wd8lqIVa"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="dGPEuAMd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7591510E9
-	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 03:18:32 -0800 (PST)
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-40859c466efso14931295e9.3
-        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 03:18:32 -0800 (PST)
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCB4B10D4
+	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 03:18:33 -0800 (PST)
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-40842752c6eso15071385e9.1
+        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 03:18:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1700479111; x=1701083911; darn=vger.kernel.org;
+        d=tuxon.dev; s=google; t=1700479112; x=1701083912; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=C3zrIDT5N9p6eJitAm1oJTITcoW+HOP0VmG8nkt3FV0=;
-        b=Wd8lqIVaCz4zOdau+zWarXenNTr0tUgyzonJJQ849gD475OpVKsomkngmvhBQuCN+Z
-         ZL6CvCaK50rKULg6/fJwMU0vxQ/VzI5lEykagt7oCSfdpi9KxyOVZThKK0tITcp/WYkH
-         7RpFQqqZZ2NK1KQTkVljw6v6nX1NUOKryPZmg8XQJ2vVAiD0vQxLZTP11b2itz9o0CN4
-         gJwlYQ/PFGPHO3M/L14hCvDszgDeGkh3CD8JLrUpTqNwr8KV2XYN4MyIdMHPzBbWxdb1
-         L6MB9fYoMWn4doMIBAa7/9axCfCcZADr0FQXIr9d5RvjZepveFk3yjMpccU6WNiMckyO
-         IYgw==
+        bh=Gc8Hzq3Ts2nxCQ0omkudOSRnL/wtmp/FWmIm+F9jowA=;
+        b=dGPEuAMdFCV9NlctN9B0xXm/HSlHxfFOfN0H/zW3UBjkyNKFCvhJToet097rFn4HLL
+         z8jDAHwbWzJQJuyZA4euL5LrYl/R54C4NuBOdMzxLEG+3cFiZWLB5GihrHuSPA8yUThF
+         5spNYyVzf7NnjYLa2CvjqdEVDZnDy07WZ5CM8cEWQhpB/+c13zm/McKXC2GFXoLqJau5
+         7o+2SkudWUXZVxQfXaH0vMn7zYDLeZ4F2dD9jaK0vp5TOu8m+A9SYTb10fgqF2ttwq/f
+         NkBYu4wv3s7SV02UDS4plxGcDnucAh5HFOvu0/XH5H//Zkfdd3Pmft1m3hcDtSftv1dh
+         cEQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700479111; x=1701083911;
+        d=1e100.net; s=20230601; t=1700479112; x=1701083912;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=C3zrIDT5N9p6eJitAm1oJTITcoW+HOP0VmG8nkt3FV0=;
-        b=jE+C4y36MwZ82sIGjo/ybO92rPf83vvLfmdC7g71CGKc0GIYHoJP4UIxOtignVr0Al
-         CuRHMh94IDWt5L3OE61GlvwEW6mqk15JWTvoVhM0GxFShdmZVo2RZg+yiprPrOAZQD36
-         vJUlNElG83ZnXQ+NTFPa4f0WtbJgiQDkkUNTew+sffeD+hBc8YTF5Q2v6fDjBQci7nKx
-         lrJxUw5mfHZetJ1XT/PIGHp96z8Q38iWRv/Sb7Xfib7UquCXKU0XBFuQsWwX1ZUQTwSm
-         pjFVtZCBtwhi03NSETemPPWnGhAUUgqRB14jM6VPgkqtVI2mLsbeFWhaP6DE4Ma3mcwM
-         8QPQ==
-X-Gm-Message-State: AOJu0YwVdQ/sb8NUIW2CxEuaTdG9VPxPPFm1q1a7HTxWZWU/5JnLlHbv
-	NPu/B/N5yIypPFuPM9XAKJYlcg==
-X-Google-Smtp-Source: AGHT+IG7MVqf/6hNKYkRXglolSsIpyxst5mObigjMOwk+LzWWRY5k4ezPeeB8D9kioAMd9xaHO5xCw==
-X-Received: by 2002:a05:600c:510d:b0:408:3bbd:4a82 with SMTP id o13-20020a05600c510d00b004083bbd4a82mr4666391wms.15.1700479110864;
-        Mon, 20 Nov 2023 03:18:30 -0800 (PST)
+        bh=Gc8Hzq3Ts2nxCQ0omkudOSRnL/wtmp/FWmIm+F9jowA=;
+        b=X7ZyCR+C5NwETohnsxbIANl0C2zkIcdbHTzy+yL6I3d+5xvCcylI+PXqjITMaobu8G
+         1ErsOCSSYgBpnOCNDPpAHyJw2dY6gBmhsuhwAJ7uAcIEEm3uc3idD9B4mAbixx2QnPLf
+         pTIhl1gdbieKQTrUN779vFbsiHgl7igQKVM/gRJwEvEp9W6T2kw8DmkMAzyywXpCGzbI
+         ILKku66r1NIwFe4dN6qoM7FY/cSHMwQ4jfdlB5xvW5WyA/n2ZK8mUWN8tdsO9lGe2Jd6
+         ++ToSiFsGqD//cp6f0CUWRBvaqceca0IUeZXoH40r2rVqOpM7G0BbsbrMfXN5JxB1pSj
+         xG3w==
+X-Gm-Message-State: AOJu0YxULDltpYcnJP9P0v/fF7TGst3cssV03bN6bsTqqHZPsdaZXUq3
+	rkBnRDCOmjx2yDAoHwv1bNehPhB13mN9XBjW86U=
+X-Google-Smtp-Source: AGHT+IGR4NGMGQuVNYATIPlT42I33gdkgFm4f8WvykH8Sea8phFSl9bGFJL8tFMSI4OQOpZND0ITug==
+X-Received: by 2002:a05:600c:1c96:b0:405:336b:8307 with SMTP id k22-20020a05600c1c9600b00405336b8307mr5941605wms.7.1700479112208;
+        Mon, 20 Nov 2023 03:18:32 -0800 (PST)
 Received: from claudiu-X670E-Pro-RS.. ([82.78.167.183])
-        by smtp.gmail.com with ESMTPSA id g6-20020a05600c310600b0040651505684sm13142676wmo.29.2023.11.20.03.18.29
+        by smtp.gmail.com with ESMTPSA id g6-20020a05600c310600b0040651505684sm13142676wmo.29.2023.11.20.03.18.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Nov 2023 03:18:30 -0800 (PST)
+        Mon, 20 Nov 2023 03:18:31 -0800 (PST)
 From: Claudiu <claudiu.beznea@tuxon.dev>
 X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
 To: tglx@linutronix.de,
@@ -69,9 +69,9 @@ Cc: linux-kernel@vger.kernel.org,
 	linux-renesas-soc@vger.kernel.org,
 	linux-clk@vger.kernel.org,
 	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: [PATCH v3 1/9] clk: renesas: r9a08g045: Add IA55 pclk and its reset
-Date: Mon, 20 Nov 2023 13:18:12 +0200
-Message-Id: <20231120111820.87398-2-claudiu.beznea.uj@bp.renesas.com>
+Subject: [PATCH v3 2/9] irqchip/renesas-rzg2l: Use tabs instead of spaces
+Date: Mon, 20 Nov 2023 13:18:13 +0200
+Message-Id: <20231120111820.87398-3-claudiu.beznea.uj@bp.renesas.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20231120111820.87398-1-claudiu.beznea.uj@bp.renesas.com>
 References: <20231120111820.87398-1-claudiu.beznea.uj@bp.renesas.com>
@@ -85,42 +85,31 @@ Content-Transfer-Encoding: 8bit
 
 From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-IA55 interrupt controller is available on RZ/G3S SoC. Add IA55 pclk and
-its reset.
+Use tabs instead of spaces in definition of TINT_EXTRACT_HWIRQ()
+and TINT_EXTRACT_GPIOINT() macros to align with coding style
+requirements described in Documentation/process/coding-style.rst,
+"Indentation" chapter.
 
 Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 ---
- drivers/clk/renesas/r9a08g045-cpg.c | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/irqchip/irq-renesas-rzg2l.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/clk/renesas/r9a08g045-cpg.c b/drivers/clk/renesas/r9a08g045-cpg.c
-index 4394cb241d99..ea3beca8b4e0 100644
---- a/drivers/clk/renesas/r9a08g045-cpg.c
-+++ b/drivers/clk/renesas/r9a08g045-cpg.c
-@@ -188,6 +188,7 @@ static const struct cpg_core_clk r9a08g045_core_clks[] __initconst = {
+diff --git a/drivers/irqchip/irq-renesas-rzg2l.c b/drivers/irqchip/irq-renesas-rzg2l.c
+index fe8d516f3614..cc42cbd05762 100644
+--- a/drivers/irqchip/irq-renesas-rzg2l.c
++++ b/drivers/irqchip/irq-renesas-rzg2l.c
+@@ -53,8 +53,8 @@
+ #define IITSR_IITSEL_EDGE_BOTH		3
+ #define IITSR_IITSEL_MASK(n)		IITSR_IITSEL((n), 3)
  
- static const struct rzg2l_mod_clk r9a08g045_mod_clks[] = {
- 	DEF_MOD("gic_gicclk",		R9A08G045_GIC600_GICCLK, R9A08G045_CLK_P1, 0x514, 0),
-+	DEF_MOD("ia55_pclk",		R9A08G045_IA55_PCLK, R9A08G045_CLK_P2, 0x518, 0),
- 	DEF_MOD("ia55_clk",		R9A08G045_IA55_CLK, R9A08G045_CLK_P1, 0x518, 1),
- 	DEF_MOD("dmac_aclk",		R9A08G045_DMAC_ACLK, R9A08G045_CLK_P3, 0x52c, 0),
- 	DEF_MOD("sdhi0_imclk",		R9A08G045_SDHI0_IMCLK, CLK_SD0_DIV4, 0x554, 0),
-@@ -209,6 +210,7 @@ static const struct rzg2l_mod_clk r9a08g045_mod_clks[] = {
- static const struct rzg2l_reset r9a08g045_resets[] = {
- 	DEF_RST(R9A08G045_GIC600_GICRESET_N, 0x814, 0),
- 	DEF_RST(R9A08G045_GIC600_DBG_GICRESET_N, 0x814, 1),
-+	DEF_RST(R9A08G045_IA55_RESETN, 0x818, 0),
- 	DEF_RST(R9A08G045_SDHI0_IXRST, 0x854, 0),
- 	DEF_RST(R9A08G045_SDHI1_IXRST, 0x854, 1),
- 	DEF_RST(R9A08G045_SDHI2_IXRST, 0x854, 2),
-@@ -220,6 +222,7 @@ static const struct rzg2l_reset r9a08g045_resets[] = {
+-#define TINT_EXTRACT_HWIRQ(x)           FIELD_GET(GENMASK(15, 0), (x))
+-#define TINT_EXTRACT_GPIOINT(x)         FIELD_GET(GENMASK(31, 16), (x))
++#define TINT_EXTRACT_HWIRQ(x)		FIELD_GET(GENMASK(15, 0), (x))
++#define TINT_EXTRACT_GPIOINT(x)		FIELD_GET(GENMASK(31, 16), (x))
  
- static const unsigned int r9a08g045_crit_mod_clks[] __initconst = {
- 	MOD_CLK_BASE + R9A08G045_GIC600_GICCLK,
-+	MOD_CLK_BASE + R9A08G045_IA55_PCLK,
- 	MOD_CLK_BASE + R9A08G045_IA55_CLK,
- 	MOD_CLK_BASE + R9A08G045_DMAC_ACLK,
- };
+ struct rzg2l_irqc_priv {
+ 	void __iomem *base;
 -- 
 2.39.2
 
