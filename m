@@ -1,167 +1,144 @@
-Return-Path: <devicetree+bounces-17067-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17068-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C1557F1167
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 12:11:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D7357F11B0
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 12:18:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1B3E7B21056
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 11:10:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E17D0B2112A
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 11:18:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EC39134B1;
-	Mon, 20 Nov 2023 11:10:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F47014265;
+	Mon, 20 Nov 2023 11:18:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="T95/bxIE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37997199D
-	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 03:10:48 -0800 (PST)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1r52AM-000764-P7; Mon, 20 Nov 2023 12:10:10 +0100
-Received: from [2a0a:edc0:2:b01:1d::c0] (helo=ptx.whiteo.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ore@pengutronix.de>)
-	id 1r52AK-00AKxL-MV; Mon, 20 Nov 2023 12:10:08 +0100
-Received: from ore by ptx.whiteo.stw.pengutronix.de with local (Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1r52AK-002x1I-Iw; Mon, 20 Nov 2023 12:10:08 +0100
-Date: Mon, 20 Nov 2023 12:10:08 +0100
-From: Oleksij Rempel <o.rempel@pengutronix.de>
-To: =?utf-8?B?S8O2cnk=?= Maincent <kory.maincent@bootlin.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Luis Chamberlain <mcgrof@kernel.org>,
-	Russ Weight <russ.weight@linux.dev>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 2/9] ethtool: Expand Ethernet Power Equipment
- with PoE alongside PoDL
-Message-ID: <20231120111008.GC590719@pengutronix.de>
-References: <20231116-feature_poe-v1-0-be48044bf249@bootlin.com>
- <20231116-feature_poe-v1-2-be48044bf249@bootlin.com>
- <04cb7d87-bb6b-4997-878d-490c17bfdfd0@lunn.ch>
- <20231120110944.66938859@kmaincent-XPS-13-7390>
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F554D5D
+	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 03:18:31 -0800 (PST)
+Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2c503dbe50dso55651371fa.1
+        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 03:18:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1700479109; x=1701083909; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ta0MJxvruSCk3gKB4JBR+iRqy/ulUdX87ERHRuURIrE=;
+        b=T95/bxIEIYzwcKn9k5Xvx0XOEAZuAQl8l2iGsdoYPxHtn82HWEuWq4PqmNO2eGJVLz
+         peRHInLFxOjYY3lgpDoUGkTOLDR0zMB5bX02DzonwATt4T1GHqaiU4zR5ESQcqTTnhmB
+         844P0lLznVbS6Fu7pWH6DiUgbYH7I8L+E8tOTZShEU3eKwhD/NxmB4EGeapHywHh69cg
+         X5cLq+PdG3Lg8vZHnnKe+iKL3JwXHzz4mcs1dJOd+IzodJRFWtiRQgfmmiV6GAVzjjXz
+         EAxNIiHPmHvneVZso5w0sO7IT3v9njTXhiroLJpu0QQTwzFe330kTLomETzLub72olqD
+         etuw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700479109; x=1701083909;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Ta0MJxvruSCk3gKB4JBR+iRqy/ulUdX87ERHRuURIrE=;
+        b=qm7lDP/Mt+pkGYba8EIQzLKr5Is9meagkrZILbLS/rWPoJ5zje7iipu0X2D/6vgd8K
+         20du06CFER7TtHTr/thB4EdTj3vlUcLYCKidPejkMTIxSsEAdrXfSFVmy8XlyHV3KjYD
+         6clFczVBSYekHdGv57kZk68/Ku1tJ+1B583KREXAonwNhdkeBvuxQm4pUyDQNSJa150m
+         eaqigV159CUgyah2UiSuSTuNNq2IRNZRIQF7gYdHborCQ+czURHMWG1TdMG7X/d/oiBH
+         Fk1lVjH0SqS0qD5gmimgiqajknPLi+wr7EG7m2WVkAH2fGtceKfeftsizNs7iPmSZXap
+         19Mg==
+X-Gm-Message-State: AOJu0YxDQ9yrsHqoJiFWpQvfG0M/m4jcKT26n+lYUs0sPfMO4IikqdNE
+	/wUdVe9U5/vhwyy1wLFxKw0Uiw==
+X-Google-Smtp-Source: AGHT+IF5FLrdx0L0Gk97U8GMzPHq7HmzPfjAM7JslJn77Qof3Ur5QXy4PuCQ6cM1ZuCnRpy7lp15pA==
+X-Received: by 2002:a2e:9bd7:0:b0:2c8:84ff:4a25 with SMTP id w23-20020a2e9bd7000000b002c884ff4a25mr1146973ljj.5.1700479109421;
+        Mon, 20 Nov 2023 03:18:29 -0800 (PST)
+Received: from claudiu-X670E-Pro-RS.. ([82.78.167.183])
+        by smtp.gmail.com with ESMTPSA id g6-20020a05600c310600b0040651505684sm13142676wmo.29.2023.11.20.03.18.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Nov 2023 03:18:29 -0800 (PST)
+From: Claudiu <claudiu.beznea@tuxon.dev>
+X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
+To: tglx@linutronix.de,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	geert+renesas@glider.be,
+	magnus.damm@gmail.com,
+	mturquette@baylibre.com,
+	sboyd@kernel.org,
+	prabhakar.mahadev-lad.rj@bp.renesas.com
+Cc: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Subject: [PATCH v3 0/9] irqchip/renesas-rzg2l: add support for RZ/G3S SoC
+Date: Mon, 20 Nov 2023 13:18:11 +0200
+Message-Id: <20231120111820.87398-1-claudiu.beznea.uj@bp.renesas.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231120110944.66938859@kmaincent-XPS-13-7390>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Köry,
+From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-On Mon, Nov 20, 2023 at 11:09:44AM +0100, Köry Maincent wrote:
-> +Oleksij
-> 
-> Sorry forgot to CC you the series.
-> Maybe you should add yourself to the MAINTAINERS of pse-pd drivers subsystem?
+Hi,
 
-ack, i'll take a look at this.
+Series adds support for IA55 available on RZ/G3S SoC.
+Patches are split as follows:
+- 1/9 adds IA55 clock
+- 2-4/9 minor cleanups to align with the suggestions at [1] and
+  coding style recommendations
+- 5/9 implement restriction described in HW manual for ISCR register
+- 6/9 add a macro to retrieve TITSR base address based on it's index
+- 7/9 add suspend to RAM support
+- 8/9 updates documentation
+- 9/9 adds IA55 device tree node
 
-> On Sat, 18 Nov 2023 18:38:43 +0100
-> Andrew Lunn <andrew@lunn.ch> wrote:
-> 
-> > On Thu, Nov 16, 2023 at 03:01:34PM +0100, Kory Maincent wrote:
-> > > In the current PSE interface for Ethernet Power Equipment, support is
-> > > limited to PoDL. This patch extends the interface to accommodate the
-> > > objects specified in IEEE 802.3-2022 145.2 for Power sourcing
-> > > Equipment (PSE).  
-> > 
-> > Sorry for taking a while getting to these patches. Plumbers and other
-> > patches have been keeping me busy.
-> 
-> Don't worry you are doing a great job as a net maintainer and I won't raise any
-> remarks on delay considering how you are doing your job.
-> Thanks again for your review!!
-> 
-> > I'm trying to get my head around naming... Is there some sort of
-> > hierarchy? Is PSE the generic concept for putting power down the
-> > cable? Then you have the sub-type PoDL, and the sub-type PoE?
-> 
-> In fact as we discussed with Oleksij I decided to keep the naming as close as
-> possible to the IEEE 802.3 standard.
-> On the standard the PODL is naming like this aPoDLPSE* (ex: aPoDLPSEAdminState)
-> and the PSE is naming like this aPSE* (ex: aPSEAdminState) without any PoE
-> prefix. Maybe it is due to PoE being supported before PoDL and they didn't
-> expect the PoDL part.
+Thank you,
+Claudiu Beznea
 
-"PoE" (initially Power via MDI?) and PoDL have kind of different technologies.
-They use different negotiation and need different physical implementation.
-IEEE 802.3 standard is trying to be backwards and kind of forwards compatible
-for PoE. But not compatible between PoE and PoDL.
+[1] https://www.kernel.org/doc/html/latest/process/maintainer-tip.html#struct-declarations-and-initializers
 
-In general, it is not just about enabling or disabling power.
-"admin_state" == enable is other way to say - "do the right thing".
-And the "right thing" may include some kind of communication between PSE
-(Power Source Equipment) and PD (Powered Device).
+Changes in v3:
+- kept driver private data object as pointer
+- moved patch 1/9 from v2 (dt-bindings: interrupt-controller: renesas,rzg2l-irqc: Document RZ/G3S)
+  after IRQ controller driver feature patches
 
-Since, some variants of  Single Pair Ethernet (SPE) are using same
-auto negotiation protocol as not SPE variants. I can imagine, that some
-day we will see a hybrid (SPE+nonSPE) devices. Wich will need to
-support both: PoE and PoDL. I assume, in that case, we wont to be able
-to control both variants separately.
+Changes in v2:
+- collected Conor's tag
+- updated commit description according to code review comments
+- added patches 4, 5 according to review recommendations
+- updated patch 7/9 to retrieve only TITSR base address; dropped the rest
+  of the changes for the moment
+- in patch 8/9 use local variable in suspend/resume functions for controller's
+  base address, indent initialized structures members to tabs, updated
+  private driver data structure name
+- patch 3/7 from v1 was replaced by patch 7/9 in v2
+- patch 5/7 from v1 was renamed "Add support for suspend to RAM"
+- cleanup patches were kept at the beginning of the series and features at the end
 
-This is why I prefer to have mapping of IEEE 802.3 specification to the
-user space as close as possible.
+Claudiu Beznea (9):
+  clk: renesas: r9a08g045: Add IA55 pclk and its reset
+  irqchip/renesas-rzg2l: Use tabs instead of spaces
+  irqchip/renesas-rzg2l: Align struct member names to tabs
+  irqchip/renesas-rzg2l: Document structure members
+  irqchip/renesas-rzg2l: Implement restriction when writing ISCR
+    register
+  irqchip/renesas-rzg2l: Add macro to retrieve TITSR register offset
+    based on register's index
+  irqchip/renesas-rzg2l: Add support for suspend to RAM
+  dt-bindings: interrupt-controller: renesas,rzg2l-irqc: Document RZ/G3S
+  arm64: dts: renesas: r9108g045: Add IA55 interrupt controller node
 
-> > >  struct pse_control_config {
-> > >  	enum ethtool_podl_pse_admin_state podl_admin_control;
-> > > +	enum ethtool_pse_admin_state admin_control;  
-> > 
-> > When i look at this, it seems to me admin_control should be generic
-> > across all schemes which put power down the cable, and
-> > podl_admin_control is specific to how PoDL puts power down the cable.
-> >
-> > Since you appear to be adding support for a second way to put power
-> > down the cable, i would expect something like poe_admin_control being
-> > added here. But maybe that is in a later patch?
-> 
-> No as said above admin_control is for PoE and podl_admin_control is for PoDL.
-> Maybe you prefer to use poe_admin_control, and add poe prefix in the poe
-> variables. It will differ a bit from the IEEE standard naming but I agreed that
-> it would be more understandable in the development part.
+ .../renesas,rzg2l-irqc.yaml                   |   5 +-
+ arch/arm64/boot/dts/renesas/r9a08g045.dtsi    |  68 +++++++++++
+ drivers/clk/renesas/r9a08g045-cpg.c           |   3 +
+ drivers/irqchip/irq-renesas-rzg2l.c           | 110 +++++++++++++-----
+ 4 files changed, 158 insertions(+), 28 deletions(-)
 
-Official name for "PoE" is "Power via Media Dependent Interface". PoE is
-not used in the IEEE 802.3-2018. Using names not used in the specification,
-make development even harder :)
-Especially since there are even more marketing names (names not used in the
-specification) for different PoE variants:
-- 802.3af (802.3at Type 1), PoE
-- 802.3at Type 2, PoE+
-- 802.3bt Type 3, 4PPoE or PoE++
-- 802.3bt Type 4, 4PPoE or PoE++
-
-Regards,
-Oleksij
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+2.39.2
+
 
