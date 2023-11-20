@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-17058-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17059-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF19F7F1093
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 11:42:14 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00DF77F10C5
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 11:48:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D8A701C209F3
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 10:42:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 233371C203B0
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 10:48:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3242523A6;
-	Mon, 20 Nov 2023 10:42:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CA19612F;
+	Mon, 20 Nov 2023 10:48:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SoqcjvG3"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pOmr3z76"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6C8DC5
-	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 02:42:09 -0800 (PST)
-Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-548d1f8b388so676387a12.0
-        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 02:42:09 -0800 (PST)
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0B54D9
+	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 02:48:30 -0800 (PST)
+Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-5431614d90eso6039732a12.1
+        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 02:48:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700476928; x=1701081728; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1700477309; x=1701082109; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=zXef7q1NxndeoQGAm7hYwee9Pb6CdWeIDQttMrV03ZI=;
-        b=SoqcjvG3cCGjhKkBHSso+1usZoh/Y+rmCBbzbWDR2XDlW5dts2t/IWXk+ttMalWIXl
-         kkbpad+lsUYS0y4jumHAJdI+ClCHqSKtnAvOQsEkxDhbch00Nci5LptJSULEtF317SVz
-         ObEAm4J3oI7W00fxHI7hEEbSGMtzp9IikdFlB5eP2BNfGB9WzslELQYb6kpfICLbD7U3
-         FxDSY6ezBiGeN4mKnrCGb4BozjLYXG0NI7+LsT33pJtRaswoCjYubkcI6HRwmAkKoWch
-         WD1MzlbfYIwPQfJHGujyPXyh9Tk35apHMr0uiC1FyiI4w+dsX9zGB//Ch81nYfzaR3HE
-         QqKA==
+        bh=pKd0JlXz/CA7YawdIaY+0U6PgSjzMsRMpZKT4ssqCyI=;
+        b=pOmr3z760PAUUMarmXlUkudIyb2/46tJXJpOYjwYX5kBWs3LOP2Mhu0TYUO+Xn68mL
+         0K41jyEahEYNTkdJWq5sBik62l1A3xVdpfxz+g0+8IzwFtv+R9XrgHoGKV4U5Ne3rDi9
+         FCFb2H/GB0eUiIffPLihf6fNQq2dw0IYyvHzn6PHHYImxGt5tvCBebrLMgiAdM/E6FEk
+         YjQidKVt+ZIM9fsGTS/XaS/aNlv0ZLdTzwtfSqly7VBZmixZXNJ3OJVgicwCVtZkI4bg
+         5obsEtFonZzviKpYEYb5XG/Zc9gyi9mCXCWD2fuSwDt96Qr9nFMIMuNvONHi4FZg1bDO
+         LOOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700476928; x=1701081728;
+        d=1e100.net; s=20230601; t=1700477309; x=1701082109;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zXef7q1NxndeoQGAm7hYwee9Pb6CdWeIDQttMrV03ZI=;
-        b=YdfW6Deqm0FSa/JLNwPg9Rgxb1Gd4z8zSjscHiAKmsurqMkpF1kWzkRQCeECIC79E+
-         7k6bkjQ4DP7e+kiH2MwxaO5fo0VSrsG+FsEmi5GnUJvtfo5ZUjYvj0JoYLluwouVebWW
-         eE7lBFqJB8RoAA+qABDGVhQyQlmAz01hJlzUUY6mDt5fkTp6V/JixIw4RkJFcbqo7/aF
-         EV0Sg75GeiOW779JNYHPFZezpvUuyfW2CCoYzoP5xDGksYJbkwGYWV2xjgtPQvsoV5Cr
-         JAg9re6cDmuZHOmi9XR+c+fEmaQ0T5o3zIhp0baPXETW58zClPSTeUJy+uqef7b8istk
-         88/w==
-X-Gm-Message-State: AOJu0YxatpFq4cFvVHqFq5kpjGOr5HTsElUk9B60FBWP6wjbPYPbvnUq
-	ZGfrySbAtaIjugptBrR+R5QSQQ==
-X-Google-Smtp-Source: AGHT+IGs0lPfYBHdD9kSGPLvmqTBh0xUeXaLVSlbG8zkPgytF0vdFUzEWNIAfsAJd/aSrKsDDtdb0A==
-X-Received: by 2002:aa7:c6c5:0:b0:53f:ef96:b2ee with SMTP id b5-20020aa7c6c5000000b0053fef96b2eemr4791598eds.22.1700476928245;
-        Mon, 20 Nov 2023 02:42:08 -0800 (PST)
+        bh=pKd0JlXz/CA7YawdIaY+0U6PgSjzMsRMpZKT4ssqCyI=;
+        b=BCMx1oqTsBb6BofcxtqamI02FRQ5W9VQT6SaSqaeSNu197fKAIqT/Va4Q3GXTd3Yyi
+         bXO+2Rd3a9cN5BwLRm8M2O1IaKBz8BgKzsqgxI3lARTiNzpc/op2C0xgmJivvytzn27x
+         O3DMG5XoYgNhSKzktFXPeNjFqLn6litJ+EK8D0657ud1Rh0bcz8PZboEkD92SHqjxGpC
+         1Ir7Oi0k7Lb4/RHcIDKCx9kr4EaKOce1SIvKYeYDKxGMVPNcx7GL8D3ICp3uBWP/ZOYc
+         PTQ/bit9Xlle2GfwcJq+yJo5Z4gN919hdOPGKwNYSk+yFaNolDh7/t4lB1JIxdRvWQYJ
+         8hiA==
+X-Gm-Message-State: AOJu0YzPMnXpgB9g41QTRSLHN1rBfQr9ava5v01zpVkoyyq4wTRsdgVI
+	H3TGoFIPPrQtpqsEy1smWYKvOA==
+X-Google-Smtp-Source: AGHT+IF49ElFD5XKoAFDttYEKeEGOM6MahTXIZAynzWaLV8CQg9FIFMd/T2yV+BJ0X+ZP7wfEVNY8Q==
+X-Received: by 2002:aa7:d594:0:b0:548:89b7:f590 with SMTP id r20-20020aa7d594000000b0054889b7f590mr3888902edq.35.1700477309460;
+        Mon, 20 Nov 2023 02:48:29 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.11])
-        by smtp.gmail.com with ESMTPSA id y24-20020aa7d518000000b005402c456892sm3487604edq.33.2023.11.20.02.42.06
+        by smtp.gmail.com with ESMTPSA id u3-20020a05640207c300b00548851486d8sm1971782edy.44.2023.11.20.02.48.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Nov 2023 02:42:07 -0800 (PST)
-Message-ID: <d28f4e15-3e47-4d6a-91ee-660b786974b2@linaro.org>
-Date: Mon, 20 Nov 2023 11:42:05 +0100
+        Mon, 20 Nov 2023 02:48:28 -0800 (PST)
+Message-ID: <d2e4d7b0-39c9-4443-b0d3-774bdf79404b@linaro.org>
+Date: Mon, 20 Nov 2023 11:48:25 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,18 +62,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: nvmem: Add sophgo,efuses
+Subject: Re: [PATCH v2 2/2] dt-bindings: PCI: qcom: correct clocks for SC8180x
+ and SM8150
 Content-Language: en-US
-To: Jisheng Zhang <jszhang@kernel.org>,
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Rob Herring <robh+dt@kernel.org>,
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+ Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org, Chao Wei <chao.wei@sophgo.com>,
- Chen Wang <unicorn_wang@outlook.com>
-References: <20231119131332.999-1-jszhang@kernel.org>
- <20231119131332.999-2-jszhang@kernel.org>
+ Conor Dooley <conor+dt@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>,
+ linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+References: <20231120070910.16697-1-krzysztof.kozlowski@linaro.org>
+ <20231120070910.16697-2-krzysztof.kozlowski@linaro.org>
+ <CAA8EJpq6YOYGvxFwreNSoTShrKryqeEy79CTb0dFO-Dv8RNxZA@mail.gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -119,90 +124,31 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231119131332.999-2-jszhang@kernel.org>
+In-Reply-To: <CAA8EJpq6YOYGvxFwreNSoTShrKryqeEy79CTb0dFO-Dv8RNxZA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 19/11/2023 14:13, Jisheng Zhang wrote:
-> Sophgo SoCs such as CV1800B come with eFuses used to store
-> factory-programmed data such as calibration settings for the built-in
-> ethernet PHY.
+On 20/11/2023 11:11, Dmitry Baryshkov wrote:
+>> +    then:
+>> +      oneOf:
+>> +        - properties:
+>> +            clocks:
+>> +              minItems: 7
+>> +              maxItems: 7
+>> +            clock-names:
+>> +              items:
+>> +                - const: pipe # PIPE clock
+>> +                - const: aux # Auxiliary clock
+>> +                - const: cfg # Configuration clock
+>> +                - const: bus_master # Master AXI clock
+>> +                - const: bus_slave # Slave AXI clock
+>> +                - const: slave_q2a # Slave Q2A clock
 > 
-> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> Mani promised to check whether we should use the 'ref' clock for the
+> PCIe hosts or not.
+> I'd ask to delay this patch until we finish that investigation.
 
-Thank you for your patch. There is something to discuss/improve.
-
-
-> ---
->  .../bindings/nvmem/sophgo,efuse.yaml          | 54 +++++++++++++++++++
->  1 file changed, 54 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/nvmem/sophgo,efuse.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/nvmem/sophgo,efuse.yaml b/Documentation/devicetree/bindings/nvmem/sophgo,efuse.yaml
-> new file mode 100644
-> index 000000000000..e4ae81a1742a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/nvmem/sophgo,efuse.yaml
-
-Filename should match the compatible, unless you already have other
-devices coming.
-
-> @@ -0,0 +1,54 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/nvmem/sophgo,efuse.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Sophgo SoC eFuse-based NVMEM
-> +
-> +description: |
-
-Do not need '|' unless you need to preserve formatting.
-
-> +  Sophgo SoCs such as the CV1800B contain factory-programmed eFuses used to e.g. store
-
-Please wrap at Linux coding style (so 80).
-
-> +  calibration data for the built-in ethernet PHY.
-
-
-Blank line here.
-
-> +maintainers:
-> +  - Jisheng Zhang <jszhang@kernel.org>
-> +
-> +allOf:
-> +  - $ref: nvmem.yaml#
-> +  - $ref: nvmem-deprecated-cells.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    items:
-
-Drop items, we keep just enum directly for such cases.
-
-> +      - enum:
-> +          - sophgo,cv1800b-efuse
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    description:
-> +      eFuse clock id.
-
-Drop description, quite obvious.
-
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +
-> +unevaluatedProperties: false
-> +...
+Right. I thought that his Rb-tag solves it, but if not - let's wait.
 
 Best regards,
 Krzysztof
