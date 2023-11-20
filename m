@@ -1,59 +1,56 @@
-Return-Path: <devicetree+bounces-17260-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17261-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AE257F1C48
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 19:23:54 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7C3D7F1C51
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 19:25:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3B2481C20EC7
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 18:23:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D6D9DB20FD8
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 18:25:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27CDB30338;
-	Mon, 20 Nov 2023 18:23:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79E9030670;
+	Mon, 20 Nov 2023 18:25:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o6e+CUPF"
+	dkim=pass (1024-bit key) header.d=subdimension.ro header.i=@subdimension.ro header.b="morhvBQT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C63130326
-	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 18:23:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3CA3EC433C7;
-	Mon, 20 Nov 2023 18:23:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700504629;
-	bh=eglYaIQ/qtU51O7/Tl79eYRTbxeBJ9UX1J/7CgEKMp8=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=o6e+CUPFOXvGngNNWHM9X1PLe9PzMUguk0FCo6af1DPRNJ0p+OepiuLwS7AR5KlZ2
-	 eakxW+7UEsZuUod6rTu0DKOh7tcfLE6bXTYE1iw3n/kMBFk0UbajUZeu6GoDKN4M3t
-	 VKhbtXzLK8ghNFU2I80Ncclrv5FKPKqgNxX/uI8+GAcwxlrDTuCohrSL3cZXDsgQcM
-	 wfpZhvWCvQUwMyN5tVCbMHPHMO22NWWBh9SCrOW4Rm9IAgoZ21fzobRc2A7iGXkhlt
-	 Y8PjAxr6YZq527RKNFptB80cmQq4RqGgqe6c29UD1Rf03Dz1U8hq9rxNYpyS2+eb3Q
-	 eYQMD4+/wUcjg==
-Date: Mon, 20 Nov 2023 12:23:47 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Minda Chen <minda.chen@starfivetech.com>
-Cc: Conor Dooley <conor@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+Received: from mail.subdimension.ro (unknown [IPv6:2a01:7e01:e001:1d1::2])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA8E1C8;
+	Mon, 20 Nov 2023 10:25:11 -0800 (PST)
+Received: from sunspire (unknown [188.24.94.216])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by mail.subdimension.ro (Postfix) with ESMTPSA id 2E5CC28EE6F;
+	Mon, 20 Nov 2023 18:25:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=subdimension.ro;
+	s=skycaves; t=1700504710;
+	bh=TqPCYi/lfIqtwCO6M0vvyzzQcnlSevyzaWBJMKt67zI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=morhvBQTAbQh5MbTCeiLvnMOThf9SrBu76IjYpU/VGqvGd24SDnqdEqtQQaQ2hFa/
+	 1WdwaPW+9Yu7PczCiWz9tozCinhRSKceEkYghEO3wtCSk7fc/RtVnhLVAUiIFG8uh1
+	 F/irdTFARvvIzQ0nuW/UY/DlQAbrnMdzKlXufW5s=
+Date: Mon, 20 Nov 2023 20:25:08 +0200
+From: Petre Rodan <petre.rodan@subdimension.ro>
+To: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
 	Rob Herring <robh+dt@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-pci@vger.kernel.org,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Mason Huo <mason.huo@starfivetech.com>,
-	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-	Kevin Xie <kevin.xie@starfivetech.com>
-Subject: Re: [PATCH v11 19/20] PCI: starfive: Add JH7110 PCIe controller
-Message-ID: <20231120182347.GA207554@bhelgaas>
+	linux-kernel-mentees@lists.linuxfoundation.org,
+	Jonathan Cameron <jic23@kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: pressure: add honeywell,hsc030
+Message-ID: <ZVukhMcY8A3Crxc_@sunspire>
+References: <20231117164232.8474-1-petre.rodan@subdimension.ro>
+ <20231117192305.17612-1-petre.rodan@subdimension.ro>
+ <5b2e4b05-9408-48ea-92ac-15883e102013@linaro.org>
+ <ZVtiVM2Gm1x1j_G1@sunspire>
+ <8aa11758-5eee-427b-adcb-c3578a521daf@linaro.org>
+ <ZVtv8x8LqGMhCisw@sunspire>
+ <20231120173929.00006a6d@Huawei.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,41 +59,96 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <3c69c1b5-7183-4d34-9689-27cd126a4f4c@starfivetech.com>
+In-Reply-To: <20231120173929.00006a6d@Huawei.com>
 
-On Mon, Nov 20, 2023 at 06:07:31PM +0800, Minda Chen wrote:
-> On 2023/11/15 19:49, Minda Chen wrote:
-> > Add StarFive JH7110 SoC PCIe controller platform driver codes, JH7110
-> > with PLDA host PCIe core.
-> ...
 
-> > --- a/drivers/pci/pci.h
-> > +++ b/drivers/pci/pci.h
-> > @@ -22,6 +22,13 @@
-> >   */
-> >  #define PCIE_PME_TO_L2_TIMEOUT_US	10000
-> >  
-> > +/*
-> > + * PCIe r6.0, sec 6.6.1, <Conventional Reset>
-> > + * Requires a minimum waiting of 100ms before sending a configuration
-> > + * request to the device.
-> > + */
-> > +#define PCIE_BEFORE_CONFIG_REQUEST_WAIT_MS	100
-> > +
-> >  extern const unsigned char pcie_link_speed[];
-> >  extern bool pci_early_dump;
-> >  
-> Hi Bjorn
->   I have not checked this carefully.
->   I think the change of pci.h should be moved to a indepent patch.
->   Could you approve this? Kevin will commit a new patch for this.
->   Next version I will remove this change. 
+Hello!
 
-Yes, I think it makes sense to add that #define in a separate patch.
+On Mon, Nov 20, 2023 at 05:39:29PM +0000, Jonathan Cameron wrote:
+> On Mon, 20 Nov 2023 16:40:51 +0200
+> Petre Rodan <petre.rodan@subdimension.ro> wrote:
+> 
+> > Hello!
+> > 
+> > On Mon, Nov 20, 2023 at 03:04:07PM +0100, Krzysztof Kozlowski wrote:
+> > > On 20/11/2023 14:42, Petre Rodan wrote:
+> > >   
+> > > >>> +properties:
+> > > >>> +  compatible:
+> > > >>> +    enum:
+> > > >>> +      - honeywell,hsc  
+> > > >>
+> > > >> Way too generic  
+> > > > 
+> > > > I'm new to this, please excuse my ignorance.
+> > > > my driver covers all Honeywell pressure sensors under the "TruStability board mount HSC/SSC" moniker.  
+> > > 
+> > > We talk here about bindings, not driver. For the driver you can use
+> > > whatever name is approved by reviewers of your driver.
+> > >   
+> > > > that is why my intention was to provide a rather generic name for the driver itself.
+> > > > are you afraid that they will come up with a different device that they will call "hsc" in the future?
+> > > > in this case honeywell,trustability-hsc would be fine?
+> > > > 
+> > > > as I see you prefer to target a particular chip, but I am a bit afraid that the end-user will be confused by needing to set up something like
+> > > > 
+> > > > pressure@28 {
+> > > > 	compatible = "honeywell,hsc030pa";  
+> > > 
+> > > The compatible should be specific, thus for example match exact model
+> > > number.  
+> > 
+> > there are an infinite number of combinations of 4 transfer functions and 118 ranges + one custom range, so providing an array with all specific chips that could end up as compatible is out of the question.
+> > I was aiming at providing a generic name for the binding and get the transfer function and the pressure range as required parameters.
+> > 
+> > > If you can guarantee that all devices from given family are the same in
+> > > respect of programming model and hardware requirements (e.g. supplies),
+> > > then you could go with family name. However such guarantees are rarely
+> > > given.  
+> > 
+> > I see your point.
+> > 
+> > > Therefore for mprls0025pa I agreed for using one specific model
+> > > for entire family.
+> > > 
+> > > https://lore.kernel.org/all/d577bc44-780f-f25d-29c6-ed1d353b540c@linaro.org/
+> > > 
+> > >   
+> > > > 	reg = <0x28>;
+> > > > 	honeywell,transfer-function = <0>;
+> > > > 	honeywell,pressure-range = "250MD";
+> > > > };
+> > > > 
+> > > > ie. specifying "hsc030pa" as driver while his chip is not in the 030PA range, but 250MD.
+> > > > 
+> > > > so do you prefer
+> > > >  honeywell,trustability-hsc  OR
+> > > >  honeywell,hsc030pa  
+> > > 
+> > > I think the latter, just like we did for mprls0025pa. How many devices
+> > > do you have there?  
+> > 
+> > both hsc and ssc have 118 ranges, 4 transfer functions and both can be requested from the manufacturer with custom measurement ranges.
+> > 
+> > ok,I will rename hsc->hsc030pa in the code as you requested.
+> 
+> Where does pa come from? 
 
-Please trim out the unnecessary context; there's no need for readers
-to scroll through the entire driver to get to the useful part, which
-is just the last dozen lines or so.
+honeywell,hsc030pa was provided as an equivalent to honeywell,mprls0025pa (which is already in the repo).
 
-Bjorn
+'030PA' and '0025PA' define the pressure range (0-30, 0-25), the unit of measure (Psi) and the measurement type (Absolute) for a particular chip in the honeywell catalog. (please ignore the psi part, we convert everything to pascals).
+but both my driver and Andreas Klinger's mprls0025pa actually provide a generic abstraction layer for entire series of sensors.
+
+> If we are going generic, feels like trustability-ssc etc are more representative
+> and matches the datasheet cover page.
+
+Krzysztof voted for non-generic, honeywell,mprls0025pa is already set up non-generic, my intent was to go generic.
+
+I'll rewrite the code to whatever you guys feel is best.
+
+peter
+
+
+-- 
+petre rodan
 
