@@ -1,62 +1,103 @@
-Return-Path: <devicetree+bounces-17175-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17177-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5210C7F175B
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 16:32:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F9807F176D
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 16:35:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0DAF3282732
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 15:32:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DEBCD2814FB
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 15:35:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A3C21DA22;
-	Mon, 20 Nov 2023 15:32:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05C061D55D;
+	Mon, 20 Nov 2023 15:35:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="MZhPMwca"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D01E0B4
-	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 07:32:05 -0800 (PST)
-Received: from [194.95.143.137] (helo=phil.sntech)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1r56Fo-0008VB-6m; Mon, 20 Nov 2023 16:32:04 +0100
-From: Heiko Stuebner <heiko@sntech.de>
-To: shironeko <shironeko@tesaguri.club>,
-	devicetree@vger.kernel.org
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	robh+dt@kernel.org
-Subject: Re: [PATCH v2] arm64: dts: rockchip: add missing tx/rx-fifo-depth for rk3328 gmac
-Date: Mon, 20 Nov 2023 16:31:54 +0100
-Message-Id: <170049419906.1671702.15840758974556641867.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20231116214042.11134-2-shironeko@tesaguri.club>
-References: <20231116214042.11134-2-shironeko@tesaguri.club>
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89A4F9F;
+	Mon, 20 Nov 2023 07:35:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=o0mw2JgobxwE3CByukMe4G5waOUJCs1Oqg/+hT2lg0M=; b=MZhPMwcajRhLZ9BHsVAMYvESlP
+	unjmzfPzaUvwIeYdhuX++Sh2goFYq41AnneW4mEzZduSkQu0TCF5uFbT7UXMFxo0xAiQYrzZhZehi
+	HCwTGcu1aMnsiFKPW9OgnQBF7yiwyWyw28BTWjA4EUg0mVDZdAB5AevPSZjr8XkxnLus=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1r56IZ-000ewk-Vn; Mon, 20 Nov 2023 16:34:55 +0100
+Date: Mon, 20 Nov 2023 16:34:55 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Jie Luo <quic_luoj@quicinc.com>
+Cc: "Russell King (Oracle)" <linux@armlinux.org.uk>, davem@davemloft.net,
+	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, hkallweit1@gmail.com, corbet@lwn.net,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+Subject: Re: [PATCH v5 3/6] net: phy: at803x: add QCA8084 ethernet phy support
+Message-ID: <1d4d7761-6b42-48ec-af40-747cb4b84ca5@lunn.ch>
+References: <20231118062754.2453-1-quic_luoj@quicinc.com>
+ <20231118062754.2453-4-quic_luoj@quicinc.com>
+ <1eb60a08-f095-421a-bec6-96f39db31c09@lunn.ch>
+ <ZVkRkhMHWcAR37fW@shell.armlinux.org.uk>
+ <eee39816-b0b8-475c-aa4a-8500ba488a29@lunn.ch>
+ <fef2ab86-ccd7-4693-8a7e-2dac2c80fd53@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <fef2ab86-ccd7-4693-8a7e-2dac2c80fd53@quicinc.com>
 
-On Thu, 16 Nov 2023 16:40:43 -0500, shironeko wrote:
-> Without fifo depths attempting to change the MTU will fail. These values
-> are from the RK3328 Technical Reference Manual, gmac2io interface tested
-> with Rock64.
+> Hi Andrew,
+> The interface mode 10G_QXGMII is a type of USXGMII-M, the other modes
+> such as 20G-QXGMII, 20G-OXGMII...
 > 
+> As for the interface mode 10G-QXGMII, there is a multiplexer for 4 PHYs,
+> then do 66bit/68bit encode in xpcs and pass to PMA, the link topology:
+> quad PHY --- multiplexer ---XPCS --- PMA.
+> the 10G-QXGMII interface block includes multiplexer, XPCS and PMA.
 > 
+> when the PHY works on SGMII mode, then there is no xpcs, the only fourth
+> PHY of qca8084 can work on SGMII mode, the link topology:
+> the fourth PHY --- PCS --- PMA, the SGMII block includes PCS and PMA.
 
-Applied, thanks!
+What i missed is that you have two different PMA blocks. PHY4 can be
+muxed to either the QXGMII PMA or the 2500BaseX PMA. This is not clear
+in the commit message, and i think why you are getting questions about
+how 2500BaseX can work over QXGMII. Please expand you commit message
+to explain the architecture in more detail.
 
-[1/1] arm64: dts: rockchip: add missing tx/rx-fifo-depth for rk3328 gmac
-      commit: 0cd3a3f2e893f404f9566a3cb90b360f0d3e1b35
+So, next question. How do you control what PMA PHY4 is connected to?
+Is this going to be based on interface mode? QXGMII it is configured
+to use the QXGMII PMA? SGMII, 1000BaseX, and 2500BaseX it is
+configured to the other PMA?
 
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+> Here is a problem as Russell mentioned earlier, we need to know which PHY
+> device is changing the link status when the 10G-QXGMII mode is used,
+> since there are 4 PHYs, when one of them has the link change, there is no
+> PHY device information passed to the PHYLINK, so the PCS driver don't
+> which PHY is changing link status and 10G-QXGMII mode don't know which
+> channel(mapped to PHY) should be configured.
+
+This is the first time QXGMII has been seen in mainline, so its good
+to explain the background.
+
+Are you saying there is a USXGMII-M level link change status? The link
+between the SoC and the PHY package is up/down? If it is down, all
+four MAC-PHY links are down. If it is up, it is possible to carry
+frames between the SoC and the PHY package, but maybe the PHYs
+themselves are down?
+
+Withing the four multiplex streams, is there a per stream link change
+indication?
+
+	Andrew
 
