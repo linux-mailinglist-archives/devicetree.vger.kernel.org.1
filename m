@@ -1,197 +1,148 @@
-Return-Path: <devicetree+bounces-17029-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17039-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADDF27F0ED8
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 10:18:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 769DF7F0F41
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 10:41:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4D20FB215A0
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 09:18:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 16409B20FD1
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 09:41:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B760910A26;
-	Mon, 20 Nov 2023 09:18:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 502F61171D;
+	Mon, 20 Nov 2023 09:41:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UL/vDeVe"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="pHw/W39x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96FE810A21
-	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 09:18:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69D6CC433C8;
-	Mon, 20 Nov 2023 09:18:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700471913;
-	bh=O9QHIuSZXCgSZb0LaZ0KS3hdjKN2Br+khuPl6DbTHaE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=UL/vDeVeo5BroXDGFlY6S8W6du2lgVGzATKV3rUvG7DZm0fneaF/2ytdoRs2HzLTi
-	 0KEmdDgeIWfSbos5UlYkdq5uB5XxwYLH8yNGeOHIVx40vp+FkWfmp2Us4DgIEUR+Zu
-	 FsvVCAMkjN52WuNEdKot7o6qc7pM+LxwWF278pmESnafa1yWaFdtCF1Anv7Ek13wvY
-	 +zqpkqnHkCfunuWmic2Pl0yv9kJap5wUQrsWVSEIiQKZxwe2mo5Zv5oDkfJQN3OIgu
-	 ApNLDzoCu8jEi3GpKY0keC9/Z2cSPdVAauNcVLatddtQr1tHeF0ETco1R37tUElJX1
-	 hKfO6Du3Oq4Sg==
-Message-ID: <0294f35c-2408-40f9-86ac-aa855ad85b46@kernel.org>
-Date: Mon, 20 Nov 2023 10:18:30 +0100
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39A6EBA
+	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 01:41:43 -0800 (PST)
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-4083f613272so16903455e9.1
+        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 01:41:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1700473301; x=1701078101; darn=vger.kernel.org;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=u4ulDi1zHXqoku3tvf/oqVF4mugJudCNC02l68RjBP8=;
+        b=pHw/W39xVd3hrgEd1kBehowhl1F+WiDU3c4PJNJ8WRC16rtj+A8huty+ddBLJnT1Yd
+         mtZyJp+5SeKceUt6Kfs2lLeLid9C2EyGw8N3s9blbd6Y+glp1Y8wpJq9yWqLdqwknqx+
+         zhSJgDV3gWd3kkEP/egCY/ho2VVZVSCMMBxIr8rwuFEb5LaCFqFgCln5UEAzdliRyjOI
+         pcZWNmSHKXT3J48/t+gCyYhT0403Hn7rAa5Kwo4/pbiPV+0JgBBdSTFxujNSDLbsc0F0
+         D5nz0htDu4RJE5+iyBLIj3lSHFWkjmdqnxaQG4lYhat+jDfhudCR2FVgrjz7AUBpk1sz
+         kSOQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700473301; x=1701078101;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=u4ulDi1zHXqoku3tvf/oqVF4mugJudCNC02l68RjBP8=;
+        b=iufXQpBMpesC5Ar70oQVEqqJp2OuGwv6JGSlTjtZ+HXY6y5Ju+ZqqfY7k+Zp361EEf
+         zQQDHFT9BsgNhZBWzIKJDUyeh7hq5w5jdCpb4A0HVh1q6gafXzcnTTnRusXnjhTsW4+d
+         BW1neD3hY2tSiopmi9qc5X3sbr/SmDH68qY6UV36DXGZ2pyZaK2MjAI8fGNf2x/mjQE/
+         jB2XTy1mKTmXhIxBPldmGrjPo8d9f0veWWKJTnVZeMbRSSobHRzq3pDuhleix3dthf+8
+         d8yZQk4FZpR06gy3nFH6CeSdT38W4Sm+YtVqr0sTShWvzZ7r0zYOsM+/ASktmqcneUnD
+         4UTg==
+X-Gm-Message-State: AOJu0Yz5rN8JnrIGDhc2QM91QbQmYGXdsbPRzfXpy+RNmq2LJ050XMJN
+	1ZEJ5WVL/aZeip2q47yzTUcPJQ==
+X-Google-Smtp-Source: AGHT+IFWBpYs1rdj5ektHnIdcJ0DTx5BglePzoH5Vl8iaEVmWHT4d5KBd0tVA9bREgg+XhAIPJFg/A==
+X-Received: by 2002:a05:600c:a07:b0:405:3955:5872 with SMTP id z7-20020a05600c0a0700b0040539555872mr6074687wmp.18.1700473301399;
+        Mon, 20 Nov 2023 01:41:41 -0800 (PST)
+Received: from localhost ([2a01:e0a:3c5:5fb1:36e8:9c14:4901:7aca])
+        by smtp.gmail.com with ESMTPSA id m28-20020a05600c3b1c00b00401e32b25adsm12979612wms.4.2023.11.20.01.41.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Nov 2023 01:41:40 -0800 (PST)
+References: <20231117125919.1696980-1-jbrunet@baylibre.com>
+ <20231117125919.1696980-3-jbrunet@baylibre.com>
+ <170040994064.269288.960284011884896046.robh@kernel.org>
+ <4608012c-059f-4d6a-914b-e85ad0c32ff0@linaro.org>
+User-agent: mu4e 1.10.7; emacs 29.1
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: neil.armstrong@linaro.org
+Cc: Rob Herring <robh@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>,
+ JunYi Zhao <junyi.zhao@amlogic.com>, devicetree@vger.kernel.org, Rob
+ Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Kevin
+ Hilman <khilman@baylibre.com>, Thierry Reding <thierry.reding@gmail.com>,
+ linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH v2 2/6] dt-bindings: pwm: amlogic: add new compatible
+ for meson8 pwm type
+Date: Mon, 20 Nov 2023 10:18:49 +0100
+In-reply-to: <4608012c-059f-4d6a-914b-e85ad0c32ff0@linaro.org>
+Message-ID: <1j5y1wg3sb.fsf@starbuckisacylon.baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] ARM: dts: sun8i: h2+: add support for Banana Pi P2
- Zero board
-Content-Language: en-US
-To: =?UTF-8?Q?Pavel_L=C3=B6bl?= <pavel@loebl.cz>,
- Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc: devicetree@vger.kernel.org
-References: <20231118111418.979681-1-pavel@loebl.cz>
- <20231118111418.979681-3-pavel@loebl.cz>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20231118111418.979681-3-pavel@loebl.cz>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-
-On 18/11/2023 12:14, Pavel Löbl wrote:
-> Banana Pi P2 Zero is H2+-based board by Sinovoip internally similar
-> to Banana Pi M2 Zero.
-> 
+Content-Type: text/plain
 
 
-> diff --git a/arch/arm/boot/dts/allwinner/sun8i-h2-plus-bananapi-p2-zero-v1.1.dts b/arch/arm/boot/dts/allwinner/sun8i-h2-plus-bananapi-p2-zero-v1.1.dts
-> new file mode 100644
-> index 000000000000..f963051d8ff5
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/allwinner/sun8i-h2-plus-bananapi-p2-zero-v1.1.dts
-> @@ -0,0 +1,290 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+On Mon 20 Nov 2023 at 09:27, Neil Armstrong <neil.armstrong@linaro.org> wrote:
 
-Unusual license. We usually do not want GPL-v5.0. Does anything requires
-such licensing? If not, use 2.0 OR MIT
+> Hi Rob,
+>
+> On 19/11/2023 17:05, Rob Herring wrote:
+>> On Fri, 17 Nov 2023 13:59:12 +0100, Jerome Brunet wrote:
+>>> Add a new compatible for the pwm found in the meson8 to sm1 Amlogic SoCs.
+>>>
+>>> The previous clock bindings for these SoCs described the driver and not the
+>>> HW itself. The clock provided was used to set the parent of the input clock
+>>> mux among the possible parents hard-coded in the driver.
+>>>
+>>> The new bindings allows to describe the actual clock inputs of the PWM in
+>>> DT, like most bindings do, instead of relying of hard-coded data.
+>>>
+>>> The new bindings make the old one deprecated.
+>>>
+>>> There is enough experience on this HW to know that the PWM is exactly the
+>>> same all the supported SoCs. There is no need for a per-SoC compatible.
+>>>
+>>> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+>>> ---
+>>>   .../devicetree/bindings/pwm/pwm-amlogic.yaml  | 36 +++++++++++++++++--
+>>>   1 file changed, 34 insertions(+), 2 deletions(-)
+>>>
+>> Reviewed-by: Rob Herring <robh@kernel.org>
+>> 
+>
+> I'm puzzled, isn't it recommended to have a per-soc compatible now ?
 
+I have specifically addressed this matter in the description,
+haven't I ? What good would it do in this case ?
 
-> +/*
-> + * Copyright (C) 2023 Pavel Löbl <pavel@loebl.cz>
-> + *
-> + * Based on sun8i-h2-plus-bananapi-m2-zero.dts, which is:
-> + *   Copyright (C) 2017 Icenowy Zheng <icenowy@aosc.io>
-> + */
-> +
-> +/dts-v1/;
-> +#include "sun8i-h3.dtsi"
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/input/input.h>
-> +#include <dt-bindings/leds/common.h>
-> +
-> +/ {
-> +	model = "Banana Pi BPI-P2-Zero v1.1";
-> +	compatible = "sinovoip,bananapi-p2-zero-v1.1", "allwinner,sun8i-h2-plus";
+Plus the definition of a SoC is very vague. One could argue that
+the content of the list bellow are vaguely defined families. Should we
+add meson8b, gxl, gxm, sm1 ? ... or even the actual SoC reference ?
+This list gets huge for no reason.
 
-It does not look like you tested the DTS against bindings. Please run
-`make dtbs_check W=1` (see
-Documentation/devicetree/bindings/writing-schema.rst or
-https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
-for instructions).
+We know all existing PWM of this type are the same. We have been using
+them for years. It is not a new support we know nothing about.
 
-> +
-> +	aliases {
-> +		serial0 = &uart0;
-> +		serial1 = &uart1;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	connector {
-> +		compatible = "hdmi-connector";
-> +		type = "c";
-> +
-> +		port {
-> +			hdmi_con_in: endpoint {
-> +				remote-endpoint = <&hdmi_out_con>;
-> +			};
-> +		};
-> +	};
-> +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +
-> +		led {
-> +			function = LED_FUNCTION_POWER;
-> +			color = <LED_COLOR_ID_RED>;
-> +			gpios = <&r_pio 0 10 GPIO_ACTIVE_LOW>; /* PL10 */
-> +			default-state = "on";
-> +		};
-> +	};
-> +
-> +	gpio-keys {
-> +		compatible = "gpio-keys";
-> +
-> +		power {
+>
+> I thought something like:
+> - items:
+>     - enum:
+>         - amlogic,gxbb-pwm
+>         - amlogic,axg-pwm
+>         - amlogic,g12a-pwm
+>     - const: amlogic,pwm-v1
 
-It does not look like you tested the DTS against bindings. Please run
-`make dtbs_check W=1` (see
-Documentation/devicetree/bindings/writing-schema.rst or
-https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
-for instructions).
+I'm not sure I understand what you are suggesting here.
+Adding a "amlogic,pwm-v1" for the obsolete compatible ? No amlogic DT
+has that and I'm working to remove this type, so I don't get the point.
 
-> +			linux,code = <KEY_POWER>;
-> +			gpios = <&r_pio 0 3 GPIO_ACTIVE_LOW>; /* PL3 */
-> +			wakeup-source;
-> +		};
-> +	};
-> +
+>
+> should be preferred instead of a single amlogic,meson8-pwm-v2 ?
 
+This is named after the first SoC supporting the type.
 
-Best regards,
-Krzysztof
+Naming it amlogic,pwm-v2 would feel weird with the s4 coming after.
+Plus the doc specifically advise against this type of names.
+
+>
+> Neil
 
 
