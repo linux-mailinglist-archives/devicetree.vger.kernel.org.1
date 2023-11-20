@@ -1,100 +1,122 @@
-Return-Path: <devicetree+bounces-17310-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17313-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id F28527F2004
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 23:14:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A828D7F209E
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 23:49:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 81FB2B216C1
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 22:14:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 62C352827F4
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 22:49:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61FA739852;
-	Mon, 20 Nov 2023 22:14:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB7043A299;
+	Mon, 20 Nov 2023 22:49:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="b1KIjbTv"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="b3b9FYMu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94E3F97;
-	Mon, 20 Nov 2023 14:14:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-	In-Reply-To:References; bh=Oz1szRIZelgpWpLqYCUSXAM3v9p92mCuoFgS4JdSE8Q=; b=b1
-	KIjbTvMoM7PSdR5cFcjvUt8nXka1oMHQrGAooE3TCNJrlij2DWm/bbvwc1yTQZCE3vLUgKWkH8HLU
-	6ZehboeaBcDHgVK/JjO2MZKu1uGEX4ngJ+NC01qizzz4yoD5KWUEHy+kQLDkWLzfo7/CumDcEnvbC
-	6Js/xXq6gxq3eLU=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1r5CXI-000hFy-Dg; Mon, 20 Nov 2023 23:14:32 +0100
-Date: Mon, 20 Nov 2023 23:14:32 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-Cc: =?iso-8859-1?Q?K=F6ry?= Maincent <kory.maincent@bootlin.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Luis Chamberlain <mcgrof@kernel.org>,
-	Russ Weight <russ.weight@linux.dev>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06193C8
+	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 14:49:23 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-507bd64814fso6890348e87.1
+        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 14:49:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1700520561; x=1701125361; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=0SqPAnw0QpKcg0zC6uM3+YKsZ1Rv+zntSbyUGLhP8hE=;
+        b=b3b9FYMulndAe7UFDMMRx1bRJ8lKGoutoLhUCrx8feNQL0BB+KrI9YNB8YOtjJZ4OP
+         niLUXtIjy183SjsIV9OjMqRcCe2t23kIrygPlyFDH/FhIavLxO5wAwLehZB8QGGtib8V
+         LT8TyKX0XNdUsrn8ogjLvhIM1n2Z98vU7SMgLPRjbppsQHJRD4tCpVj/no/jgQxfSFF+
+         k6xcOxRVCWcY1rcbTvl+rTChngajAzMOHS35SOdZsV63eQX32mcPP59VHEKnGyedqn0s
+         qkZ0d2P4MWNtGqlSajecx1waC5DI+hdJdXFs1jM3+ye8riSGF/E7j1/dPOefktzu9gAx
+         Lasg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700520561; x=1701125361;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0SqPAnw0QpKcg0zC6uM3+YKsZ1Rv+zntSbyUGLhP8hE=;
+        b=RMJrI1QZHWkUlevrTFL7cq7PY0D59/aoIaJvOboYY23F8ol/BUgR2iPpHcotUgj8DW
+         kCoDb3rrHH6ReCvmDgZOKvBu0bHU/WlYyWOSRlSht6X/6luv5GskNmV8fQCuyD27ePX5
+         kDOhBpQGoezIh6svODEspf8QGKKAxlX4tQ3DBAktIeuhW7+f8fSBGkYw45mNj1oJy1J5
+         Xc6OOsOz4ofEQLtI8MZ3PeIgbRpKoBbqaUOfxDOhdtZPXqeKK4scdn2tAsKmvwf7rP8A
+         eaVUFEje55fzg10tQVhTf2mCD78jyRXZHPwNqEpIQF4OYj1IjrWtTsgSEVSUbW3qo78y
+         9JmA==
+X-Gm-Message-State: AOJu0YxvYIO5813kWel9o3WXgd7zbmTWfrGf2fBBTZiVtWEWvquPYGxz
+	IT6zZ8gtPvMNCBYQ6CJ+aYNM0w==
+X-Google-Smtp-Source: AGHT+IHTbjSayWigF0siBEmx2UcusxW01ObJc5vC7FIWm7CrcH6uqemKAgtjbHSoxxVi021tZT0VuQ==
+X-Received: by 2002:a05:6512:3b2a:b0:50a:aa7d:2c18 with SMTP id f42-20020a0565123b2a00b0050aaa7d2c18mr6095443lfv.61.1700520561236;
+        Mon, 20 Nov 2023 14:49:21 -0800 (PST)
+Received: from eriador.lan (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
+        by smtp.gmail.com with ESMTPSA id c26-20020ac25f7a000000b00503189d8b8csm1297756lfc.198.2023.11.20.14.49.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Nov 2023 14:49:20 -0800 (PST)
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 2/9] ethtool: Expand Ethernet Power Equipment
- with PoE alongside PoDL
-Message-ID: <887dbafe-def1-443f-8df2-b20b5ddc4db7@lunn.ch>
-References: <20231116-feature_poe-v1-0-be48044bf249@bootlin.com>
- <20231116-feature_poe-v1-2-be48044bf249@bootlin.com>
- <04cb7d87-bb6b-4997-878d-490c17bfdfd0@lunn.ch>
- <20231120110944.66938859@kmaincent-XPS-13-7390>
- <20231120111008.GC590719@pengutronix.de>
- <2539b109-72ad-470a-9dae-9f53de4f64ec@lunn.ch>
- <20231120204221.GD590719@pengutronix.de>
+	Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Hans de Goede <hdegoede@redhat.com>,
+	=?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+	Mark Gross <markgross@kernel.org>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	platform-driver-x86@vger.kernel.org,
+	linux-usb@vger.kernel.org
+Subject: [PATCH v3 0/3] dt-bindings: connector: usb: provide bindings for altmodes
+Date: Tue, 21 Nov 2023 00:00:17 +0200
+Message-ID: <20231120224919.2293730-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231120204221.GD590719@pengutronix.de>
 
-> > However, everything not PoDL PSE seems to be clause 33. So how about:
-> > 
-> > 	enum ethtool_podl_pse_admin_state podl_admin_control;
-> > 	enum ethtool_c33_pse_admin_state c33_admin_control;  
-> > 
-> > At least inside the kernel we use c22, c45, c37 etc. I'm not sure they
-> > are visible to userspace, but if we don't have a better name, maybe we
-> > have to use c33 in userspace as well.
-> > 
-> > I do think naming like this makes it clear we are talking about two
-> > parallel technologies, not a generic layer and then extensions for
-> > podl.
-> > 
-> > What do you think?
-> 
-> I'm OK with it.
+In some cases we need a way to specify USB-C AltModes that can be
+supportd on the particular USB-C connector. For example, x86 INT33FE
+driver does this by populating fwnode properties internally. For the
+Qualcomm Robotics RB5 platform (and several similar devices which use
+Qualcomm PMIC TCPM) we have to put this information to the DT.
 
-Great.
+Provide the DT bindings for this kind of information and while we are at
+it, change svid property to be 16-bit unsigned integer instead of a
+simple u32.
 
-> 
-> Köry, can you please include some kernel documentation in your patches?
-> Something like this. I hope it will help to clarify things :) :
+NOTE: usage of u16 is not compatible with the recenty extended
+qcom/qrb5165-rb5.dts DT file. I'm looking for the guidance from DT and
+USB maintainers whether to retain u32 usage or it's better to switch to
+u16.
 
-This is good. I'm just wondering where to put it. Ideally we want to
-cross reference to it in both this header file, and in the netlink
-UAPI.
+Changes since v2:
+- Inlined altmode definitions instead of having them under $defs (Rob)
+- Explicity list permitted AltMode names (currenty only displayport is
+  allowed) (Rob)
 
-	Andrew
+Changes since v1:
+- Added type:object and fixed 'description' string in the altmodes-list
+  definition.
+
+Dmitry Baryshkov (3):
+  dt-bindings: connector: usb: add altmodes description
+  usb: typec: change altmode SVID to u16 entry
+  arm64: dts: qcom: qrb5165-rb5: use u16 for DP altmode svid
+
+ .../bindings/connector/usb-connector.yaml     | 29 +++++++++++++++++++
+ arch/arm64/boot/dts/qcom/qrb5165-rb5.dts      |  2 +-
+ drivers/platform/x86/intel/chtwc_int33fe.c    |  2 +-
+ drivers/usb/typec/class.c                     |  5 ++--
+ 4 files changed, 34 insertions(+), 4 deletions(-)
+
+-- 
+2.42.0
+
 
