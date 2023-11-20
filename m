@@ -1,70 +1,74 @@
-Return-Path: <devicetree+bounces-17081-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17082-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C48F97F1202
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 12:31:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0BCF7F1208
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 12:32:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 30A2FB21564
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 11:31:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5A6EE282638
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 11:32:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2841814AA8;
-	Mon, 20 Nov 2023 11:31:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BBAE14F74;
+	Mon, 20 Nov 2023 11:32:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="LiqgaJ2m"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Kmd1eI65"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CE4190;
-	Mon, 20 Nov 2023 03:31:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1700479874; x=1732015874;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=M5VyfO4HyHA+7dmKhfXxCvmtDyHikTHOa2LFJQGtoFw=;
-  b=LiqgaJ2mh9t0Z9Y1moEBpuc1q+0/L2qhQX0GMcI5D1EBWMBL9U3/K+xy
-   yg+MGLhXGsJ2B5Rjtp2msbuIRyA7pfD/i8NSVxk9EX1eb/uQriOPEaZ+2
-   xcc8jsLLFeb89yWXgVei6n/kAt0K8dtGXdZ2PintVfdPNdiM1ByOZjRdz
-   utLgntNmXSO0R/hMMDSkqyzaHN0IM2FnL//zhOh7aHI5NpHI/cfnhRR1q
-   bc0KANT5sshzoGg4WUKc7/0/C6QBW3LdX2Zast+cZ3CPvbym0S7RP8WWO
-   oL4SQAmOQxbhBQFs8N5wRloDlELdfKPfe+PKOJMSUoYVE92BJmZWSxu6n
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10899"; a="458097875"
-X-IronPort-AV: E=Sophos;i="6.04,213,1695711600"; 
-   d="scan'208";a="458097875"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Nov 2023 03:31:13 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10899"; a="910079573"
-X-IronPort-AV: E=Sophos;i="6.04,213,1695711600"; 
-   d="scan'208";a="910079573"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Nov 2023 03:31:06 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1r52UZ-0000000FXEw-1BiL;
-	Mon, 20 Nov 2023 13:31:03 +0200
-Date: Mon, 20 Nov 2023 13:31:03 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Jishnu Prakash <quic_jprakash@quicinc.com>
-Cc: jic23@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, agross@kernel.org, andersson@kernel.org,
-	konrad.dybcio@linaro.org, daniel.lezcano@linaro.org,
-	dmitry.baryshkov@linaro.org, linus.walleij@linaro.org,
-	linux-arm-msm@vger.kernel.org, quic_subbaram@quicinc.com,
-	quic_collinsd@quicinc.com, quic_amelende@quicinc.com,
-	quic_kamalw@quicinc.com, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, marijn.suijten@somainline.org,
-	lars@metafoo.de, luca@z3ntu.xyz, linux-iio@vger.kernel.org,
-	lee@kernel.org, rafael@kernel.org, rui.zhang@intel.com,
-	lukasz.luba@arm.com, cros-qcom-dts-watchers@chromium.org,
-	sboyd@kernel.org, linux-pm@vger.kernel.org,
-	linux-arm-msm-owner@vger.kernel.org, kernel@quicinc.com
-Subject: Re: [PATCH V2 0/3] iio: adc: Add support for QCOM SPMI PMIC5 Gen3 ADC
-Message-ID: <ZVtDdySmDUmgUDlm@smile.fi.intel.com>
-References: <20231116032530.753192-1-quic_jprakash@quicinc.com>
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DD789D
+	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 03:32:30 -0800 (PST)
+Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-4081ccf69dcso9149885e9.0
+        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 03:32:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1700479949; x=1701084749; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=XXVT32YSTkc9p0bui0nEPJJcsWC+EUsD0PehXkWpJF8=;
+        b=Kmd1eI65vL21JQYNkHAil4vtKomtoJdipx4MGbQsDXY5KReFcsaYXZNoH+wnCydubf
+         h2FMj09plgfaERyrnAAUpmd5UZeYqK8CBGVYdDZQB1VAC8ecXt4MQZf6i413C6DY6oLY
+         AW+Ur6GCv1yhMh9+00AE/9CW/zCDmbg1vkDDdivD4xJHg6Bd2Kx1KiaFuZ2sBn9LxXSj
+         4fli8jfUBYyN3pfGqDd4ESCa7tuNqhGUVf+f00wwmKRgwNFUXkgqCUEbP/5hT9VxapRw
+         uQbgzZm8LGRXK+WeD5w0q7lAQc1byPz0ziV32y1FjT23VYOXIcfx62y2rci4CfqWjM40
+         N2lg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700479949; x=1701084749;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=XXVT32YSTkc9p0bui0nEPJJcsWC+EUsD0PehXkWpJF8=;
+        b=UlUIrWjWSBJ5ZMRL1b35zI5SXQV4xadGZ65hq/coy3wXYbIpPbG6dhwz3xhd6cnCsj
+         wMbkuSpMquWtnbZ5gTHKD+d6Sd+V4anjs43Q1juzX4OxKm2v04lcNOs+UuLTJWlgueuM
+         ytZbXakPeshjxipapEGqGr96RhBXh9jW3b0c7OmBHr3fbsGYjzySqMx2SY1thODCd3sm
+         XThMqItckzBcx2dy22pQxW6tJLNujxP+90Qxl2Dd6YI5sJ4+4JjFlIh9skfvAqnQRzIy
+         u4eoaOGk53RVkft6vzlH4T7Sw6K42kJ/qK0xqvp705216qHrXV6Pbu9kcTT4tCQb1rG/
+         IlfQ==
+X-Gm-Message-State: AOJu0YwHjvweXKj1mFpQ9rn7PAcfbS9ifUjLVjLVxMsVJ7f8KiIjtBbr
+	A76DRfe3pYVwGjxUt3LiKRGG+Q==
+X-Google-Smtp-Source: AGHT+IHE/r6wa4i0tM4JzmYm5czcbg+D4FtuHA+dE7ZuRPxMuI8ADXhGUe6YuFQfgszzzuXosNOoMw==
+X-Received: by 2002:a05:600c:4e42:b0:407:5de2:ea4d with SMTP id e2-20020a05600c4e4200b004075de2ea4dmr11044499wmq.13.1700479948775;
+        Mon, 20 Nov 2023 03:32:28 -0800 (PST)
+Received: from localhost ([102.36.222.112])
+        by smtp.gmail.com with ESMTPSA id m10-20020a7bce0a000000b004083a105f27sm17200901wmc.26.2023.11.20.03.32.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Nov 2023 03:32:28 -0800 (PST)
+From: Dan Carpenter <dan.carpenter@linaro.org>
+X-Google-Original-From: Dan Carpenter <dan.carpenter@oracle.com>
+Date: Mon, 20 Nov 2023 06:32:25 -0500
+To: oe-kbuild@lists.linux.dev, Mehdi Djait <mehdi.djait@bootlin.com>,
+	mchehab@kernel.org, heiko@sntech.de, hverkuil-cisco@xs4all.nl,
+	laurent.pinchart@ideasonboard.com,
+	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, thomas.petazzoni@bootlin.com,
+	alexandre.belloni@bootlin.com, maxime.chevallier@bootlin.com,
+	paul.kocialkowski@bootlin.com,
+	Mehdi Djait <mehdi.djait@bootlin.com>
+Subject: Re: [PATCH v8 3/3] media: i2c: Introduce a driver for the Techwell
+ TW9900 decoder
+Message-ID: <675bc18e-4a9c-4e3c-8ae5-bdb8a2d2cfbe@suswa.mountain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,37 +77,68 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231116032530.753192-1-quic_jprakash@quicinc.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <93354996c95926970684498f08061b60a52bb84c.1699449537.git.mehdi.djait@bootlin.com>
 
-On Thu, Nov 16, 2023 at 08:55:27AM +0530, Jishnu Prakash wrote:
-> PMIC5 Gen3 has a similar ADC architecture to that on PMIC5 Gen2,
-> with all SW communication to ADC going through PMK8550 which
-> communicates with other PMICs through PBS. The major difference is
-> that the register interface used here is that of an SDAM present on
-> PMK8550, rather than a dedicated ADC peripheral. There may be more than one
-> SDAM used for ADC5 Gen3. Each ADC SDAM has eight channels, each of which may
-> be used for either immediate reads (same functionality as previous PMIC5 and
-> PMIC5 Gen2 ADC peripherals) or recurring measurements (same as PMIC5 and PMIC5
-> Gen2 ADC_TM functionality). In this case, we have VADC and ADC_TM functionality
-> combined into the same driver.
-> 
-> Patches 1 adds bindings for ADC5 Gen3 peripheral.
-> 
-> Patches 2 adds driver support for ADC5 Gen3.
-> 
-> Patch 3 is a cleanup, to move the QCOM ADC dt-bindings files from
-> dt-bindings/iio to dt-bindings/iio/adc folder, as they are
-> specifically for ADC devices. It also fixes all compilation errors
-> with this change in driver and devicetree files and similar errors
-> in documentation for dtbinding check.
+Hi Mehdi,
 
-Something wrong with the email chaining.
-Please be sure you are using --thread when preparing emails.
+kernel test robot noticed the following build warnings:
+
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Mehdi-Djait/dt-bindings-vendor-prefixes-Add-techwell-vendor-prefix/20231109-042139
+base:   git://linuxtv.org/media_tree.git master
+patch link:    https://lore.kernel.org/r/93354996c95926970684498f08061b60a52bb84c.1699449537.git.mehdi.djait%40bootlin.com
+patch subject: [PATCH v8 3/3] media: i2c: Introduce a driver for the Techwell TW9900 decoder
+config: i386-randconfig-141-20231111 (https://download.01.org/0day-ci/archive/20231111/202311110759.PJpNGc2N-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce: (https://download.01.org/0day-ci/archive/20231111/202311110759.PJpNGc2N-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Reported-by: Dan Carpenter <error27@gmail.com>
+| Closes: https://lore.kernel.org/r/202311110759.PJpNGc2N-lkp@intel.com/
+
+smatch warnings:
+drivers/media/i2c/tw9900.c:398 tw9900_s_std() error: uninitialized symbol 'mode'.
+
+vim +/mode +398 drivers/media/i2c/tw9900.c
+
+4fa88742527a9a Mehdi Djait 2023-11-08  384  static int tw9900_s_std(struct v4l2_subdev *sd, v4l2_std_id std)
+4fa88742527a9a Mehdi Djait 2023-11-08  385  {
+4fa88742527a9a Mehdi Djait 2023-11-08  386  	struct tw9900 *tw9900 = to_tw9900(sd);
+4fa88742527a9a Mehdi Djait 2023-11-08  387  	const struct tw9900_mode *mode;
+
+This should be "const struct tw9900_mode *mode = NULL;"
+
+4fa88742527a9a Mehdi Djait 2023-11-08  388  	int i, ret = 0;
+4fa88742527a9a Mehdi Djait 2023-11-08  389  
+4fa88742527a9a Mehdi Djait 2023-11-08  390  	if (!(std & (V4L2_STD_NTSC | V4L2_STD_PAL)))
+4fa88742527a9a Mehdi Djait 2023-11-08  391  		return -EINVAL;
+4fa88742527a9a Mehdi Djait 2023-11-08  392  
+4fa88742527a9a Mehdi Djait 2023-11-08  393  	mutex_lock(&tw9900->mutex);
+4fa88742527a9a Mehdi Djait 2023-11-08  394  
+4fa88742527a9a Mehdi Djait 2023-11-08  395  	for (i = 0; i < ARRAY_SIZE(supported_modes); i++)
+4fa88742527a9a Mehdi Djait 2023-11-08  396  		if (supported_modes[i].std & std)
+4fa88742527a9a Mehdi Djait 2023-11-08  397  			mode = &supported_modes[i];
+4fa88742527a9a Mehdi Djait 2023-11-08 @398  	if (!mode) {
+                                                     ^^^^
+Either valid or uninitialized.
+
+4fa88742527a9a Mehdi Djait 2023-11-08  399  		ret = -EINVAL;
+4fa88742527a9a Mehdi Djait 2023-11-08  400  		goto out_unlock;
+4fa88742527a9a Mehdi Djait 2023-11-08  401  	}
+4fa88742527a9a Mehdi Djait 2023-11-08  402  
+4fa88742527a9a Mehdi Djait 2023-11-08  403  	tw9900->cur_mode = mode;
+4fa88742527a9a Mehdi Djait 2023-11-08  404  
+4fa88742527a9a Mehdi Djait 2023-11-08  405  out_unlock:
+4fa88742527a9a Mehdi Djait 2023-11-08  406  	mutex_unlock(&tw9900->mutex);
+4fa88742527a9a Mehdi Djait 2023-11-08  407  
+4fa88742527a9a Mehdi Djait 2023-11-08  408  	return ret;
+4fa88742527a9a Mehdi Djait 2023-11-08  409  }
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
 
