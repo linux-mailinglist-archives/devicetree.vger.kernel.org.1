@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-17099-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17100-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE5457F12E3
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 13:13:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C4997F12E9
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 13:13:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1C0E71C20A74
-	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 12:13:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D6F9F2813BD
+	for <lists+devicetree@lfdr.de>; Mon, 20 Nov 2023 12:13:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1618A19442;
-	Mon, 20 Nov 2023 12:13:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E9D519473;
+	Mon, 20 Nov 2023 12:13:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="y/LV3iFe"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BR/P1bMi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2305DB8
-	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 04:13:07 -0800 (PST)
-Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-548d4fc9579so864127a12.1
-        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 04:13:07 -0800 (PST)
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16BC0F0
+	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 04:13:10 -0800 (PST)
+Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-53e08e439c7so6196634a12.0
+        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 04:13:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700482385; x=1701087185; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=9gzY9FqizGaQnSZZhxsA0vWZnsDs08MMlwZNySIk8xQ=;
-        b=y/LV3iFe+7MjzLNneWb04NdfcRYsvSWDJFdFqQhL/qAzuWjbO15OZw2+/2hPj0SvGR
-         O9Ih6dkn11kHGbBsGRWhpXUSQBh2KN9YejQtPQaTg21595QVaLxX2Gmo6RnV0UiS/hw7
-         j04Bv2qG+xInMiccVc4cYX49KkeP266nEyLph/oeOuuvH8DWAf/znBPUWCNhzlgZ7kvW
-         YTTmDU2pOtcPPIG98/8Q1kSRRABvX2h0+LtHxp7kT5ARTE8JamSuEKqWdq5S+6yojQ0J
-         zmKTGKseAFuQvxERMmhfTPFSJUPCK+VTSu5/9jE/HvUz61qOvih1ox+vM1ogU9Snig7e
-         +YRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700482385; x=1701087185;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1700482388; x=1701087188; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=9gzY9FqizGaQnSZZhxsA0vWZnsDs08MMlwZNySIk8xQ=;
-        b=S8E/iYKf/3EnuzLbUU/jqlxxrun7RQF03Fv/kPFwz10uUK2W4uCXlnrywVIP0w5xUS
-         hEJQitpnYnxemhm/o6PH/tVLCBVAXwU9uGv95tcCVlDFV/fQxKMstOZmTk6fu9gPIs+m
-         3au0yUZk0j53DSjQzdeDWceq+LJE9XmzjTrGTsRyp4DI+iZaG2iDgvdni+7n0JpPvjt0
-         Dd3qLZ7NjzJF4zzgWmCfro+G7O5LE0hHpNrGSyJUkrlVL5SPWCmzwXL4wJrlIb3C+jRs
-         VLv7jF70L5YlfGe90EnmQ6oJ3KlWeJbSV1j8eEyC6wP9yl7Gb/zTnpq/uj831bHgXB2W
-         KHqA==
-X-Gm-Message-State: AOJu0YxaCxzUu1z//XslkkqAGv7F7xLGP/sEJKnI9SGap5NMK3wcSgLk
-	0Wszb5GkKjdiyQcvFc23JZ85AA==
-X-Google-Smtp-Source: AGHT+IFCcHlK6Uo5Dn5EOrxOYnCuxGsZot4TPy1ZycY8WEFLZMdX58P1HwLevCsuJ00GPYhXVUYKoQ==
-X-Received: by 2002:a05:6402:1605:b0:548:786b:b46c with SMTP id f5-20020a056402160500b00548786bb46cmr1568764edv.8.1700482385623;
-        Mon, 20 Nov 2023 04:13:05 -0800 (PST)
+        bh=y4obJbFuX32a51CPgRwasEGqIWFeGs2SFetYjrfd9IY=;
+        b=BR/P1bMiVUDoKw1BoecSGM4mIDLORYLlo7RbXSocFuXCQ1vmatjqkTtF6tc2iReXpT
+         r5nkkdBIF3RwqdtcP1BGb4TlVMTgbdZT7mW/ttw47RtlAXI8lREjm7SYfWPPFCJPLbY0
+         Hr5oiNlsR0aUcsWjfVE/ZjtOCHXkjef3gTGHf7wRF34m+pBtC+g2SVtAreugOqaoMIJq
+         nRExJfiPRZUp5I3GjbyxlWV5MXaTPTklBRuRUCTFxKqGFkjStPTqgj2Kluq0pW80hK0b
+         XHGCpzLqmv9OiIESmafW96cu8K3LWoLmDX7a48l9a1m00MEhNUAaoAwZ+gRcF8sls/x4
+         xalg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700482388; x=1701087188;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=y4obJbFuX32a51CPgRwasEGqIWFeGs2SFetYjrfd9IY=;
+        b=O2yB/c4WnbKkc1DpZRhMcL9lUV9XOdj5vNgo0/FyZ8+RatI209vrV8bFJ1aT9g2PpN
+         HFjLI8pYlJSk9Rm5NRTfHyHKA5WCd5D1G/pnVAM4GNq9K0m6GUjTRky1NWbZ5+vurJgY
+         bZDDWscNIIAoiv12St+QluNAZiOHDgMN7uB4w84l10gbIoaCk1zHC5vZ5nsYm1P6hnL+
+         LMsMZAlCytPCxcX5Balh/cddHpvmlQ72YeLfu4kwo/F151iMGiyfY6fVXDIYOYNDbgvu
+         U+CE/Ob10jFB4TzbuaHBUETH55skM7FJdH0vtKb6FyGHnoolFmYHroONX+L6tIXWClHj
+         XDSA==
+X-Gm-Message-State: AOJu0YzuUJbf4GUu2E6hLAY5VkwFegJimbm8lJt9ZOzW0CyWlkvXoUDF
+	XYJSsylh9y24TySdaMqYTcl5cg==
+X-Google-Smtp-Source: AGHT+IHvqKMeMD59wsOARYBHIOOtmh9DOb0vYqoILiQ4tuG247ufeLMp7wMGy+ZaKH140knr325lBg==
+X-Received: by 2002:a50:d7d4:0:b0:53f:2128:ff4f with SMTP id m20-20020a50d7d4000000b0053f2128ff4fmr4619581edj.17.1700482388356;
+        Mon, 20 Nov 2023 04:13:08 -0800 (PST)
 Received: from [10.167.154.1] (178235187204.dynamic-4-waw-k-2-3-0.vectranet.pl. [178.235.187.204])
-        by smtp.gmail.com with ESMTPSA id i22-20020aa7c716000000b00548ac80f90csm1324584edq.40.2023.11.20.04.13.03
+        by smtp.gmail.com with ESMTPSA id i22-20020aa7c716000000b00548ac80f90csm1324584edq.40.2023.11.20.04.13.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Nov 2023 04:13:05 -0800 (PST)
+        Mon, 20 Nov 2023 04:13:08 -0800 (PST)
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Subject: [PATCH v2 0/4] Adreno 643 + fixes
-Date: Mon, 20 Nov 2023 13:12:51 +0100
-Message-Id: <20230926-topic-a643-v2-0-06fa3d899c0a@linaro.org>
+Date: Mon, 20 Nov 2023 13:12:52 +0100
+Subject: [PATCH v2 1/4] arm64: dts: qcom: sc7280: Add ZAP shader support
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,10 +64,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAENNW2UC/22NQQ6CMBBFr0Jm7ZjSGhBX3sOwGOoAk5CWTJFoC
- He3snb5XvL/2yCxCie4FRsor5Ikhgz2VIAfKQyM8swM1lhnGlvhEmfxSNXFIdXsGzJXclRCHnS
- UGDul4Mc8Ca9pynJW7uV9FB5t5lHSEvVzBNfyZ/9+ryUarKmvGleTN+TukwTSeI46QLvv+xeMw
- 7jOugAAAA==
+Message-Id: <20230926-topic-a643-v2-1-06fa3d899c0a@linaro.org>
+References: <20230926-topic-a643-v2-0-06fa3d899c0a@linaro.org>
+In-Reply-To: <20230926-topic-a643-v2-0-06fa3d899c0a@linaro.org>
 To: Rob Clark <robdclark@gmail.com>, 
  Abhinav Kumar <quic_abhinavk@quicinc.com>, 
  Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>, 
@@ -83,48 +82,65 @@ Cc: Marijn Suijten <marijn.suijten@somainline.org>,
  freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
  devicetree@vger.kernel.org, Konrad Dybcio <konrad.dybcio@linaro.org>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1700482383; l=1189;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1700482383; l=1670;
  i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=lzZGsaV15spB0k9fqGINqbiPXsC0S/Y51YP+msYyDY8=;
- b=3uR6tatKteVbqY6ZWNDllqeKEl9etaE/psCLJlK0nI0YanFKwabwox0uOWwDwCRkXAa0Xp9UG
- M3iGEBQ7KyEDee9gS4dvWGhxAeubkU9droGBpdntQ+uOaU4H6j19A4+
+ bh=FO3D/4Lb+LmHq1IGkCnu/dhJPyd8/ht4WBGb18ODAj4=;
+ b=GDIoeoFFvlB60e66DCtoCtdYcFDJbtJgGMbZGN5KrIZ1iWjzao4lxLmmp21pEUKM97CcEFTle
+ lF26xtdb/VUC4IGtZsC0gvQrUiKc+np3MWMmV6N9bzHMdNmiX96otsu
 X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
  pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 
-as it says on the can
-
-drm/msm patches for Rob
-arm64 patches for linux-arm-msm
-
-for use with https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/25408
-
-tested on QCM6490 (SC7280-IOT) Fairphone FP5
+Non-Chrome SC7280-family platforms ship a ZAP shader with the Adreno GPU.
+Describe that and make sure it doesn't interfere with Chrome devices.
 
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
-Changes in v2:
-- Drop drm/msm patches (all applied)
-- Make the commit message of "Fix up GPU SIDs" clearer (Abhinav)
-- Drop unwanted firmware-name in "Add ZAP shader support" (self)
-- Pick up tags
-- Link to v1: https://lore.kernel.org/r/20230926-topic-a643-v1-0-7af6937ac0a3@linaro.org
+ arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi | 2 ++
+ arch/arm64/boot/dts/qcom/sc7280.dtsi               | 9 +++++++++
+ 2 files changed, 11 insertions(+)
 
----
-Konrad Dybcio (4):
-      arm64: dts: qcom: sc7280: Add ZAP shader support
-      arm64: dts: qcom: sc7280: Fix up GPU SIDs
-      arm64: dts: qcom: sc7280: Mark Adreno SMMU as DMA coherent
-      arm64: dts: qcom: sc7280: Add 0xac Adreno speed bin
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi b/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
+index 5d462ae14ba1..88fc67c3646e 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
+@@ -17,6 +17,8 @@
+  * required by the setup for Chrome boards.
+  */
+ 
++/delete-node/ &gpu_zap_mem;
++/delete-node/ &gpu_zap_shader;
+ /delete-node/ &hyp_mem;
+ /delete-node/ &xbl_mem;
+ /delete-node/ &reserved_xbl_uefi_log;
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index 04bf85b0399a..58563f8fdc16 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -152,6 +152,11 @@ ipa_fw_mem: memory@8b700000 {
+ 			no-map;
+ 		};
+ 
++		gpu_zap_mem: zap@8b71a000 {
++			reg = <0 0x8b71a000 0 0x2000>;
++			no-map;
++		};
++
+ 		rmtfs_mem: memory@9c900000 {
+ 			compatible = "qcom,rmtfs-mem";
+ 			reg = <0x0 0x9c900000 0x0 0x280000>;
+@@ -2613,6 +2618,10 @@ gpu: gpu@3d00000 {
+ 			nvmem-cells = <&gpu_speed_bin>;
+ 			nvmem-cell-names = "speed_bin";
+ 
++			gpu_zap_shader: zap-shader {
++				memory-region = <&gpu_zap_mem>;
++			};
++
+ 			gpu_opp_table: opp-table {
+ 				compatible = "operating-points-v2";
+ 
 
- arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi |  2 ++
- arch/arm64/boot/dts/qcom/sc7280.dtsi               | 25 ++++++++++++++++------
- 2 files changed, 20 insertions(+), 7 deletions(-)
----
-base-commit: 5a82d69d48c82e89aef44483d2a129f869f3506a
-change-id: 20230926-topic-a643-a7ec9a08a3a1
-
-Best regards,
 -- 
-Konrad Dybcio <konrad.dybcio@linaro.org>
+2.42.1
 
 
