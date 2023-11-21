@@ -1,114 +1,118 @@
-Return-Path: <devicetree+bounces-17446-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17447-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4B647F2938
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 10:47:04 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BE2F7F294D
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 10:49:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5E52628282C
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 09:47:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 154D028263B
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 09:49:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E92D33C07F;
-	Tue, 21 Nov 2023 09:47:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ilDL3Noe"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 976243C086;
+	Tue, 21 Nov 2023 09:49:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CAC4123;
-	Tue, 21 Nov 2023 01:46:58 -0800 (PST)
-Received: by mail-pl1-x632.google.com with SMTP id d9443c01a7336-1ce5e65ba37so27680095ad.1;
-        Tue, 21 Nov 2023 01:46:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1700560017; x=1701164817; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=BCAV9pEXZft0HS/dcoIHi8BP6UZFgoqvZCUuzN8un3k=;
-        b=ilDL3NoeQeHCe7CgIdO+3mjd+SoQY+G2vpGtLKcZ0lRIvj5TTWFmvgOOgDgq/0y+B+
-         7bs75TJAb9AUeER5kMmhsSrKiNgD0hIjVK9l+y1SXdF0tQT/Esg7I6+CILJAicBIVi/o
-         oP1eh9l60/fLwRnTqjguMCU7frEBlSBOLBQ0RabK8R3Ts3iUQCwK3080JlaNLSeUFNBX
-         oWMI6bvuONxqNvyI5duRAaYWDu6oz6JFZKUnzLGAkaxbjxgzpOcH2pwyCl2xkkM9E/Lm
-         I9/Mtfq7miDHzSZK1ihhYUmie31xeorTsGCbULJfHoCl+rvEyDbaogRxsLf5WHCzSRm7
-         kxfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700560017; x=1701164817;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=BCAV9pEXZft0HS/dcoIHi8BP6UZFgoqvZCUuzN8un3k=;
-        b=EGIpB2jeiI4TjLqqIAENXFbfWO0NkGactE1ye68ckVQqkC8GMKnv8sKm35deapP9y4
-         e9UJ4+ARij8aWMZ3TSeh74HckBajFw4U1JTzO6PgshMiXJn5lZPrjQ/cYgF4v1kl6eJ3
-         TZG+MF4ZDtAv9lz/fWLCKUENOsWW3A0H79QhCLVRR/Wk0pmx7an9jWiJ0NuLD7S2I1q9
-         awRkoFNHUvhBVcrBBVWgRwDp8340FHax2OlJO20uWmvknElumCYRVKs+Bxu/cfruSM1e
-         yb06mx3T6ZgREHIwaYy/3DE7njsnSoC6XSVu0Iacxat5ibDjCdscTgjQX0A5EqydMG+A
-         WH/A==
-X-Gm-Message-State: AOJu0YznzSSdwVoxlFDvcaQRR5dRKQpEKzeccovhkPmeloneUGeJDp1M
-	/IkZG1OTkIuMXZPIBFaxzws=
-X-Google-Smtp-Source: AGHT+IHdlkUMhUFMpTle56kIPqsDsXlE8rVKVKTjUSo8AGRFTrVPH41FJYsCpu8Ml6FZNJsPfC9DmA==
-X-Received: by 2002:a17:903:246:b0:1cc:6078:52ff with SMTP id j6-20020a170903024600b001cc607852ffmr2689886plh.26.1700560017496;
-        Tue, 21 Nov 2023 01:46:57 -0800 (PST)
-Received: from localhost ([2404:7ac0:4d26:224f:5ec1:6805:f429:17ba])
-        by smtp.gmail.com with ESMTPSA id u1-20020a170902b28100b001cf567252besm4903538plr.237.2023.11.21.01.46.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Nov 2023 01:46:57 -0800 (PST)
-From: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
-To: a.zummo@towertech.it,
-	alexandre.belloni@bootlin.com,
-	krzysztof.kozlowski+dt@linaro.org,
-	chao.wei@sophgo.com,
-	unicorn_wang@outlook.com,
-	conor+dt@kernel.org,
-	robh+dt@kernel.org,
-	conor@kernel.org,
-	paul.walmsley@sifive.com,
-	palmer@dabbelt.com,
-	aou@eecs.berkeley.edu
-Cc: linux-rtc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Jingbao Qiu <qiujingbao.dlmu@gmail.com>
-Subject: [PATCH 3/3] riscv: dts: sophgo: add rtc dt node for CV1800B
-Date: Tue, 21 Nov 2023 17:46:42 +0800
-Message-Id: <20231121094642.2973795-4-qiujingbao.dlmu@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231121094642.2973795-1-qiujingbao.dlmu@gmail.com>
-References: <20231121094642.2973795-1-qiujingbao.dlmu@gmail.com>
+Received: from bmailout1.hostsharing.net (bmailout1.hostsharing.net [IPv6:2a01:37:1000::53df:5f64:0])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D36C1705;
+	Tue, 21 Nov 2023 01:49:21 -0800 (PST)
+Received: from h08.hostsharing.net (h08.hostsharing.net [IPv6:2a01:37:1000::53df:5f1c:0])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256
+	 client-signature RSA-PSS (4096 bits) client-digest SHA256)
+	(Client CN "*.hostsharing.net", Issuer "RapidSSL Global TLS RSA4096 SHA256 2022 CA1" (verified OK))
+	by bmailout1.hostsharing.net (Postfix) with ESMTPS id 7BEEF30001180;
+	Tue, 21 Nov 2023 10:49:19 +0100 (CET)
+Received: by h08.hostsharing.net (Postfix, from userid 100393)
+	id 6FF1E35E2B; Tue, 21 Nov 2023 10:49:19 +0100 (CET)
+Message-Id: <cover.1700555862.git.lukas@wunner.de>
+From: Lukas Wunner <lukas@wunner.de>
+Date: Tue, 21 Nov 2023 10:48:40 +0100
+Subject: [PATCH 0/3] dt-bindings: tpm: Clean all the things
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+To: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-integrity@vger.kernel.org, Lino Sanfilippo <LinoSanfilippo@gmx.de>
 
-Add the rtc device tree node to CV1800B SoC.
+Rob asked me to consolidate and convert the TPM dt-bindings:
+https://lore.kernel.org/all/20230927115300.GA1587935-robh@kernel.org/
 
-Signed-off-by: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
----
- arch/riscv/boot/dts/sophgo/cv1800b.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+I came across several issues:
 
-diff --git a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
-index df40e87ee063..89411c75b89a 100644
---- a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
-+++ b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
-@@ -119,5 +119,13 @@ clint: timer@74000000 {
- 			reg = <0x74000000 0x10000>;
- 			interrupts-extended = <&cpu0_intc 3>, <&cpu0_intc 7>;
- 		};
-+
-+		rtc: rtc-controller@05026000 {
-+			compatible = "sophgo,cv800b-rtc";
-+			reg = <0x05026000 0x1000>;
-+			interrupts = <17 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-parent = <&plic>;
-+			clocks = <&osc>;
-+		};
- 	};
- };
+First, this pull request is needed to cope with ibm,#dma-address-cells
+and ibm,#dma-size-cells properties used in ibm,vtpm.yaml:
+
+  https://github.com/devicetree-org/dt-schema/pull/116
+
+Second, the compatible string "google,cr50" refers to a chip which has
+both an i2c and an spi interface (see drivers/char/tpm/tpm_tis_i2c_cr50.c
+as well as tpm_tis_spi_main.c)  This confuses the schema validator
+because it thinks that "google,cr50" may only use i2c properties but
+tcg,tpm_tis-spi.yaml contains an spi example, which causes some warnings.
+It seems deeper code changes to the schema validator are required to
+avoid them:
+
+  Documentation/devicetree/bindings/tpm/tcg,tpm_tis-spi.example.dtb: tpm@0: compatible:1: 'tcg,tpm-tis-i2c' was expected
+  from schema $id: http://devicetree.org/schemas/tpm/tcg,tpm-tis-i2c.yaml#
+  Documentation/devicetree/bindings/tpm/tcg,tpm_tis-spi.example.dtb: tpm@0: Unevaluated properties are not allowed ('compatible', 'spi-max-frequency' were unexpected)
+  from schema $id: http://devicetree.org/schemas/tpm/tcg,tpm-tis-i2c.yaml#
+
+Third, the schema validator raises warnings about three properties
+I've defined in tpm-common.yaml:  "linux,sml-base" and "linux,sml-size"
+are nested in a oneOf/allOf clause and "lpcpd-gpios" is nested in an
+allOf/if-then clause.  This seems to confuse the validator:
+
+  Documentation/devicetree/bindings/tpm/tcg,tpm-tis-i2c.example.dtb: tpm@57: Unevaluated properties are not allowed ('linux,sml-base', 'linux,sml-size' were unexpected)
+  from schema $id: http://devicetree.org/schemas/tpm/tcg,tpm-tis-i2c.yaml#
+  Documentation/devicetree/bindings/tpm/tcg,tpm-tis-i2c.example.dtb: tpm@13: Unevaluated properties are not allowed ('lpcpd-gpios' was unexpected)
+  from schema $id: http://devicetree.org/schemas/tpm/tcg,tpm-tis-i2c.yaml#
+
+I can get rid of those warnings by setting "unevaluatedProperties: true",
+but that doesn't seem to be desirable.
+
+
+Lukas Wunner (3):
+  dt-bindings: tpm: Consolidate TCG TIS bindings
+  dt-bindings: tpm: Convert IBM vTPM bindings to DT schema
+  dt-bindings: tpm: Document Microsoft fTPM bindings
+
+ .../bindings/security/tpm/google,cr50.txt     |  19 ----
+ .../bindings/security/tpm/ibmvtpm.txt         |  41 -------
+ .../bindings/security/tpm/st33zp24-i2c.txt    |  34 ------
+ .../bindings/security/tpm/st33zp24-spi.txt    |  32 ------
+ .../bindings/security/tpm/tpm-i2c.txt         |  26 -----
+ .../bindings/security/tpm/tpm_tis_mmio.txt    |  25 ----
+ .../bindings/security/tpm/tpm_tis_spi.txt     |  23 ----
+ .../devicetree/bindings/tpm/ibm,vtpm.yaml     | 101 +++++++++++++++++
+ .../bindings/tpm/microsoft,ftpm.yaml          |  48 ++++++++
+ .../bindings/tpm/tcg,tpm-tis-i2c.yaml         | 107 ++++++++++++++++++
+ .../bindings/tpm/tcg,tpm-tis-mmio.yaml        |  50 ++++++++
+ .../bindings/tpm/tcg,tpm_tis-spi.yaml         |  88 ++++++++++++++
+ .../devicetree/bindings/tpm/tpm-common.yaml   |  56 +++++++++
+ .../devicetree/bindings/trivial-devices.yaml  |  16 ---
+ 14 files changed, 450 insertions(+), 216 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/security/tpm/google,cr50.txt
+ delete mode 100644 Documentation/devicetree/bindings/security/tpm/ibmvtpm.txt
+ delete mode 100644 Documentation/devicetree/bindings/security/tpm/st33zp24-i2c.txt
+ delete mode 100644 Documentation/devicetree/bindings/security/tpm/st33zp24-spi.txt
+ delete mode 100644 Documentation/devicetree/bindings/security/tpm/tpm-i2c.txt
+ delete mode 100644 Documentation/devicetree/bindings/security/tpm/tpm_tis_mmio.txt
+ delete mode 100644 Documentation/devicetree/bindings/security/tpm/tpm_tis_spi.txt
+ create mode 100644 Documentation/devicetree/bindings/tpm/ibm,vtpm.yaml
+ create mode 100644 Documentation/devicetree/bindings/tpm/microsoft,ftpm.yaml
+ create mode 100644 Documentation/devicetree/bindings/tpm/tcg,tpm-tis-i2c.yaml
+ create mode 100644 Documentation/devicetree/bindings/tpm/tcg,tpm-tis-mmio.yaml
+ create mode 100644 Documentation/devicetree/bindings/tpm/tcg,tpm_tis-spi.yaml
+ create mode 100644 Documentation/devicetree/bindings/tpm/tpm-common.yaml
+
 -- 
-2.25.1
+2.40.1
 
 
