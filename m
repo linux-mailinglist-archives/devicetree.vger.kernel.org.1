@@ -1,39 +1,39 @@
-Return-Path: <devicetree+bounces-17392-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17393-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E15F97F2607
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 08:01:11 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F19547F2608
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 08:02:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9AB2428169A
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 07:01:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9AB9F1F23D2E
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 07:02:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA0ED1C280;
-	Tue, 21 Nov 2023 07:01:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3FC41C280;
+	Tue, 21 Nov 2023 07:02:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ISB+mcXZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gQ4kgbwx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBDCB1DA2B
-	for <devicetree@vger.kernel.org>; Tue, 21 Nov 2023 07:01:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 429E3C433C8;
-	Tue, 21 Nov 2023 07:01:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A45FB1CF9A
+	for <devicetree@vger.kernel.org>; Tue, 21 Nov 2023 07:02:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4BFE9C433C7;
+	Tue, 21 Nov 2023 07:01:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700550067;
-	bh=auzGi2YLvXWg8ORV/zDxJFzQeozF5F9N3R9ARnwhb/A=;
+	s=k20201202; t=1700550120;
+	bh=ldTiLlJvkF7OwnNp+F/8WU5xHdIsX44UNCheNvIuEDA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ISB+mcXZK88PSYCH8gUGZRvR4IE52Mokdy1WI50+AJbHJS2BMfrCLa4UtnHqrM6W+
-	 hARDxsDfVz+1Tx13GAfgGrZ4QBljzt8Okpv1U/smxWsZGAZQk4ijnYXlzwwNnFNb0A
-	 fw99CfBQXY7AYoMO7yNvozgcoR2DoquxRYxc8wpu9YVKIrNUseqhlt1S7J27i/usTo
-	 Sa8LNhQDgm4jLEd2Pq554thO6Ct4QJSF8q9bZX3ZKqQefYqmaAG9hsxOGDyz1M2B61
-	 FkEdPoMPVGBQ3D0L0r0fiHi5+eM2Z6FPPZIXB2pcfGhuNGde8mpAjf//AJXW2iJFuO
-	 i7jWuBvzCuPLw==
-Message-ID: <1b90b47b-03d2-4423-82d3-0e0a29b81a81@kernel.org>
-Date: Tue, 21 Nov 2023 08:01:01 +0100
+	b=gQ4kgbwx9RSe1itDXpmX/9Enpniy+75hBtZxj0ubtorzSEaEEryHbYLOb+6mDHbSS
+	 BCaBHtidNLM15kLEY2wgLBgxblVAWV8t+SYDej7DOBvsf46CpN1oMNZYpcrmTeJXtG
+	 CCOxGzakZx9SlIwmTKKU9/sqIMH531YtT106aO9O23xvY6w2gZDTKVMPCsV2CbPJRW
+	 AqJJUAvJ9kToU7/WoYXNXTAT/dd3L6wYUBrgKtll1HLeRMohdeKHUxqVUJo7Wnpyhh
+	 1SWweoWUIlsxfZcekgaS7G6lCWjmao7wYeq6hGgPzovgghRp61V+mHnFIOwiiRrEVS
+	 xiydyEsJ10Igw==
+Message-ID: <bb8a23be-529f-48b3-a050-c3e574330024@kernel.org>
+Date: Tue, 21 Nov 2023 08:01:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -41,15 +41,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] dt-bindings: arm: sunxi: Add Banana Pi P2 Zero v1.1
+Subject: Re: [PATCH 3/3] ARM: dts: sun8i: h2+: add support for Banana Pi P2
+ Zero board
+Content-Language: en-US
 To: =?UTF-8?Q?Pavel_L=C3=B6bl?= <pavel@loebl.cz>
 Cc: Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
  Jernej Skrabec <jernej.skrabec@gmail.com>, devicetree@vger.kernel.org
 References: <20231118111418.979681-1-pavel@loebl.cz>
- <20231118111418.979681-2-pavel@loebl.cz>
- <d87bb48b-e04a-4ee4-86eb-d1533328cc74@kernel.org>
- <20231120231017.614b9d61@alena.lan>
-Content-Language: en-US
+ <20231118111418.979681-3-pavel@loebl.cz>
+ <0294f35c-2408-40f9-86ac-aa855ad85b46@kernel.org>
+ <20231120231043.56af2ce6@alena.lan>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -94,39 +95,37 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20231120231017.614b9d61@alena.lan>
+In-Reply-To: <20231120231043.56af2ce6@alena.lan>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
 On 20/11/2023 23:10, Pavel Löbl wrote:
-> On Mon, 20 Nov 2023 10:16:55 +0100
+> On Mon, 20 Nov 2023 10:18:30 +0100
 > Krzysztof Kozlowski <krzk@kernel.org> wrote:
 > 
 >> On 18/11/2023 12:14, Pavel Löbl wrote:
->>> Document binding for Banana Pi P2 Zero v1.1.
->>>
->>> Signed-off-by: Pavel Löbl <pavel@loebl.cz>
->>> ---
->>>  Documentation/devicetree/bindings/arm/sunxi.yaml | 6 ++++++  
+>>> Banana Pi P2 Zero is H2+-based board by Sinovoip internally similar
+>>> to Banana Pi M2 Zero.
+>>>   
 >>
->> Please use scripts/get_maintainers.pl to get a list of necessary
->> people and lists to CC (and consider --no-git-fallback argument). It
->> might happen, that command when run on an older kernel, gives you
->> outdated entries. Therefore please be sure you base your patches on
->> recent Linux kernel.
-> That's what I did using next-20231117 kernel source, without
-> --no-git-fallback argument though. The output seemed a bit long so I
-> have not included every line in CC. So you are saying I should address
-> more people next time?
+>>
+>>> diff --git
+>>> a/arch/arm/boot/dts/allwinner/sun8i-h2-plus-bananapi-p2-zero-v1.1.dts
+>>> b/arch/arm/boot/dts/allwinner/sun8i-h2-plus-bananapi-p2-zero-v1.1.dts
+>>> new file mode 100644 index 000000000000..f963051d8ff5 --- /dev/null
+>>> +++
+>>> b/arch/arm/boot/dts/allwinner/sun8i-h2-plus-bananapi-p2-zero-v1.1.dts
+>>> @@ -0,0 +1,290 @@ +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)  
+>>
+>> Unusual license. We usually do not want GPL-v5.0. Does anything
+>> requires such licensing? If not, use 2.0 OR MIT
+> License was copied from sun8i-h2-plus-bananapi-m2-zero as it served as
+> base for this DT. It seems GPL-2.0+ identifier is deprecated. So I
+> should replace it with GPL-2.0-or-later, probably.
 
-Yes, because why do you decide to skip some maintainers?
+It's the same problem, we do not want "later", but if you copied code
+licensed that way, it's ok.
 
-> 
-> Also it's not clear to me what should go to Cc: and what should go to
-> To: when submitting. Looking at the list there does not seem to be a
-> rule.
-
-Doesn't matter.
 
 
 Best regards,
