@@ -1,451 +1,534 @@
-Return-Path: <devicetree+bounces-17634-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17635-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 064817F32C1
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 16:53:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5AD27F32DD
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 16:56:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5F299B21FED
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 15:53:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5A806281961
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 15:56:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7BDD5813A;
-	Tue, 21 Nov 2023 15:53:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b="M5NZu+4o"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A47C58136;
+	Tue, 21 Nov 2023 15:56:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2078.outbound.protection.outlook.com [40.107.21.78])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3211E139;
-	Tue, 21 Nov 2023 07:53:10 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XdjsCJxTP4E/TL3LolVPgePqaMuo/+t7c+Cf6br01B49Fs6Reg/2lA9ZhxJQmIC5Ns0OHW5ha4oaC29Vz1hXJBnVknmVKPhlG90vCT2kO3gPgjpbXRNkdxptti8GJ3VV1LnWe/RmTtUW90hT+5+JiCY20XMVI5sj/pmdU7peIee17/U3FodYaZBd6SRjlj6dDceb6Yh/1ed7QVh3ToISIzM2YjZG80vxoaq4UkmocYXNcvgawstchZl/L8SQxW6wr1wMCYIFRz8MrzlmExE+FmpTZdLRJK17+HPPq/zRni6mb4Ux1iv+m0+p2Knxv5Fs9jyS1VAltKNT3o/2jte/dw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kgb9ERxP5pyB7OPCkeicaVAird9kr1tXPuVPtKp3RGs=;
- b=bw0XIWO1PbTnOBvQ7wc5TOzPi9umui8Pje9JnUUf84c3MUgypSfV5Xfy5qoJ0ywAsQLF9nRwIgtmXyZorpk2+53x04TbEhk9nMl2d8gExJy1UgGNTqMh+fxWvA+g4Q3VtkiOnCWbZnwGYOcYY2MXRCKeLsOVEpFAIjM8nx+kbCAS/W/vKITiaCcR5cVu3qWj26a0t329dy2/CgZeaXg79hR7akHRhq+tQ7tiM3Q0KN0lsACxevwmIEUnrXWLZwnmE/M+KhZW247E4i1A6O3hiKLH3TDSlzx53lmShNRYRlS3Ktr5UFycq4YFAOlMD8xhkmyEV3y7t3NcokvNiX3wvw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 195.60.68.100) smtp.rcpttodomain=linaro.org smtp.mailfrom=2n.com; dmarc=fail
- (p=none sp=none pct=100) action=none header.from=axis.com; dkim=none (message
- not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axis.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kgb9ERxP5pyB7OPCkeicaVAird9kr1tXPuVPtKp3RGs=;
- b=M5NZu+4ofxBQP4izEJ2ctVo/Vb38O9nJPZijwsbVBJZ/FEDPcf9ggk9skizRlEknXk4Ec5Hn8/xWNCK0WNeJqwDQTUNoG4oxEz5XUocP5T9D/dMD+nXN7ISkiCFa3s1h1fHzggd2eJM/UenVcmgmAQdjfx8XMP/MGqRqqM7Rf+k=
-Received: from AS8P250CA0005.EURP250.PROD.OUTLOOK.COM (2603:10a6:20b:330::10)
- by DU0PR02MB9799.eurprd02.prod.outlook.com (2603:10a6:10:44c::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7002.27; Tue, 21 Nov
- 2023 15:53:07 +0000
-Received: from AM2PEPF0001C70A.eurprd05.prod.outlook.com
- (2603:10a6:20b:330:cafe::6b) by AS8P250CA0005.outlook.office365.com
- (2603:10a6:20b:330::10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7002.28 via Frontend
- Transport; Tue, 21 Nov 2023 15:53:06 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 195.60.68.100)
- smtp.mailfrom=2n.com; dkim=none (message not signed) header.d=none;dmarc=fail
- action=none header.from=axis.com;
-Received-SPF: Fail (protection.outlook.com: domain of 2n.com does not
- designate 195.60.68.100 as permitted sender) receiver=protection.outlook.com;
- client-ip=195.60.68.100; helo=mail.axis.com;
-Received: from mail.axis.com (195.60.68.100) by
- AM2PEPF0001C70A.mail.protection.outlook.com (10.167.16.198) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7025.13 via Frontend Transport; Tue, 21 Nov 2023 15:53:06 +0000
-Received: from lap5cg227217h.2n.cz.axis.com (10.0.5.60) by se-mail01w.axis.com
- (10.20.40.7) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Tue, 21 Nov
- 2023 16:53:05 +0100
-From: Jiri Valek - 2N <jiriv@axis.com>
-To: <krzysztof.kozlowski+dt@linaro.org>, <dmitry.torokhov@gmail.com>
-CC: <jiriv@axis.com>, <devicetree@vger.kernel.org>,
-	<linux-input@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<robh+dt@kernel.org>, <u.kleine-koenig@pengutronix.de>
-Subject: [PATCH v6 2/2] Input: cap11xx - add advanced sensitivity settings
-Date: Tue, 21 Nov 2023 16:52:50 +0100
-Message-ID: <20231121155250.613242-3-jiriv@axis.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231121155250.613242-1-jiriv@axis.com>
-References: <20231121155250.613242-1-jiriv@axis.com>
+Received: from mail-il1-f178.google.com (mail-il1-f178.google.com [209.85.166.178])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC867D45;
+	Tue, 21 Nov 2023 07:56:35 -0800 (PST)
+Received: by mail-il1-f178.google.com with SMTP id e9e14a558f8ab-35b03e9c08eso7623845ab.1;
+        Tue, 21 Nov 2023 07:56:35 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700582195; x=1701186995;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=e/ZFrhubPQ2bB2jHL69rP+ZIvxObAmZiGrmSV+P9FPY=;
+        b=BSLQO38jxGO0QzQaRrObq5vdTIfHwofC/47GvmN3fT0vohdr8386MmTP2ee6BaqbSf
+         80jJ30vuuYWjbhBUhthe3pg3s3SFs2MBftRl1Ta0G6+KbC6B+sRC7B4OcIB+PNhHLs46
+         RtVU0+ZAJAYDVpx+zkMitHeGA/8A1IPBNOKyGJglSv9o8kKaOTuw1i3pAAmtVoPv8gmk
+         ZcH5B5tU9EzqRSOzCPuWK7X0LIcqlzNvT0LsHrozg1CzecX85HJh7EoA122MZdKcL6J9
+         2aIeM90JGZsig8y4KEq7lHdo1TCCQlk8UTTSgg6TdxvfwrhBzDUFBfphUJqIT7t+gEPi
+         vDrQ==
+X-Gm-Message-State: AOJu0Yz0c3OtF8HWHVdyedfyJ5BGkO1lqWUW8nYomoEHrvZfcSK2D3bi
+	MG7q15Vjd22aDM3LSk5g5Q==
+X-Google-Smtp-Source: AGHT+IEpSJyKlmrCu5jbBpbHnpFFfFOnT7tTiX8pjydX97OMhg6NLP90Ox0t5t9d33v7VzQZ7x4jaQ==
+X-Received: by 2002:a92:d785:0:b0:359:417b:50de with SMTP id d5-20020a92d785000000b00359417b50demr5122619iln.15.1700582194870;
+        Tue, 21 Nov 2023 07:56:34 -0800 (PST)
+Received: from herring.priv ([64.188.179.252])
+        by smtp.gmail.com with ESMTPSA id cb9-20020a0566381b0900b0046467305620sm2611533jab.156.2023.11.21.07.56.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Nov 2023 07:56:34 -0800 (PST)
+Received: (nullmailer pid 1870678 invoked by uid 1000);
+	Tue, 21 Nov 2023 15:56:32 -0000
+Date: Tue, 21 Nov 2023 08:56:32 -0700
+From: Rob Herring <robh@kernel.org>
+To: Lukas Wunner <lukas@wunner.de>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, linux-integrity@vger.kernel.org, Lino Sanfilippo <LinoSanfilippo@gmx.de>
+Subject: Re: [PATCH 1/3] dt-bindings: tpm: Consolidate TCG TIS bindings
+Message-ID: <20231121155632.GB1845293-robh@kernel.org>
+References: <cover.1700555862.git.lukas@wunner.de>
+ <e83a43a67c96b4f2614f029666209cb408da8678.1700555862.git.lukas@wunner.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.0.5.60]
-X-ClientProxiedBy: se-mail01w.axis.com (10.20.40.7) To se-mail01w.axis.com
- (10.20.40.7)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM2PEPF0001C70A:EE_|DU0PR02MB9799:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6b780eb4-d8ec-491e-4651-08dbeaa9f425
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	D6mGowTlhgZ615gEjlbgmilYlsKFj77D+Q4iIw1KdVONlPh5tEeo77wNiXKp18Qesrkdmc1IR9BEHPzTKU7Esp8g6cld+ZkP0x6xSPw76G0slgfvZ5LBI539gz3dgnEHiBFeh1tc0oHqNYKeT8xVNkrzhfC43xNgRL63KGO7VPn/Q7LMKoUY3YiA0BQmXNNhVUS8ps7OgMLmog7gNOHTYwQObACmNLtP9guXvZiBCERDsz5YAH1sRjTVdS5wiwZpBSF4q7P167doc3W5BBEGCXcDmugdhujQFTmmMRX2PcUrpH2bXZfbYV4AVmIJZAg5iK7TgflXnwSQtMU1ahgalf+Wkq3eMxXS+65U6b+YRz+P5ZeHe9ociNuuOjFHWiWf9cGQLriVGQFBvUUQaCoe53Sa4doj+V8RU8m4VApAjD6N/u97WOiRLJC1lcbQjQprofFV7b17D/LJSniOSRA7wyKVRclexRsFIjPdSdVgzc4gEja/ov/iNCLeGGuioY7duSuxJpGlbhWoImK7MOi9m6QmwlZfJ1d1d0tMRuOg7YQizfNxuFGLU9whJZCGYg16zu7pK4bI3eGB/sd6iI5oMwPga6cAGSzXLUQ53glzgGAZlcwpBt4PaW+YZaAeEyHpD/RS5Z6iyyUr/lTUEUaEg6+8pln+Pdviy+QaduNu4eOTqleezJAo9/vOR0mZulO7b45HJRC0wsHYhIgUvXTPGBJHi6KB92NWSwafXhWqlsdMvXw0nsCW69fqTMtwgk3bwarFozlTDOCD4sGsC6dIRw==
-X-Forefront-Antispam-Report:
-	CIP:195.60.68.100;CTRY:SE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.axis.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(376002)(39860400002)(396003)(136003)(346002)(230922051799003)(1800799012)(82310400011)(451199024)(186009)(64100799003)(40470700004)(46966006)(36840700001)(7696005)(40480700001)(83380400001)(1076003)(2616005)(6666004)(478600001)(16526019)(54906003)(40460700003)(26005)(110136005)(316002)(70206006)(70586007)(336012)(426003)(42882007)(36860700001)(47076005)(2906002)(82740400003)(356005)(41300700001)(81166007)(83170400001)(5660300002)(8936002)(36756003)(8676002)(4326008)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: axis.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Nov 2023 15:53:06.9200
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6b780eb4-d8ec-491e-4651-08dbeaa9f425
-X-MS-Exchange-CrossTenant-Id: 78703d3c-b907-432f-b066-88f7af9ca3af
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=78703d3c-b907-432f-b066-88f7af9ca3af;Ip=[195.60.68.100];Helo=[mail.axis.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	AM2PEPF0001C70A.eurprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR02MB9799
+In-Reply-To: <e83a43a67c96b4f2614f029666209cb408da8678.1700555862.git.lukas@wunner.de>
 
-Add support for advanced sensitivity settings that allows more precise
-tunig of touch buttons. Input-treshold allows to set the sensitivity for
-each channel separately. Also add signal guard feature for CAP129x chips.
+On Tue, Nov 21, 2023 at 10:48:41AM +0100, Lukas Wunner wrote:
+> A significant number of Trusted Platform Modules conform to the "TIS"
+> specification published by the Trusted Computing Group ("TCG PC Client
+> Specific TPM Interface Specification").  These chips typically use an
+> SPI, I²C or LPC bus as transport (via MMIO in the latter case).  Some
+> of them even support multiple of those buses (selectable through a
+> config strap) or the same chip is available in multiple SKUs, each with
+> a different bus interface.
+> 
+> The devicetree bindings for these TPMs have not been converted to DT
+> schema yet and are spread out across 3 generic files and 3 chip-specific
+> files.  A few TPM compatible strings were added to trivial-devices.yaml
+> even though additional properties are documented in the plaintext
+> bindings.
 
-Signed-off-by: Jiri Valek - 2N <jiriv@axis.com>
----
- drivers/input/keyboard/cap11xx.c | 242 +++++++++++++++++++++++++------
- 1 file changed, 196 insertions(+), 46 deletions(-)
+Thanks for doing this. Looks pretty good.
 
-diff --git a/drivers/input/keyboard/cap11xx.c b/drivers/input/keyboard/cap11xx.c
-index 1b4937dce672..e6210f8b66ee 100644
---- a/drivers/input/keyboard/cap11xx.c
-+++ b/drivers/input/keyboard/cap11xx.c
-@@ -14,6 +14,7 @@
- #include <linux/regmap.h>
- #include <linux/i2c.h>
- #include <linux/gpio/consumer.h>
-+#include <linux/bitfield.h>
- 
- #define CAP11XX_REG_MAIN_CONTROL	0x00
- #define CAP11XX_REG_MAIN_CONTROL_GAIN_SHIFT	(6)
-@@ -24,6 +25,7 @@
- #define CAP11XX_REG_NOISE_FLAG_STATUS	0x0a
- #define CAP11XX_REG_SENOR_DELTA(X)	(0x10 + (X))
- #define CAP11XX_REG_SENSITIVITY_CONTROL	0x1f
-+#define CAP11XX_REG_SENSITIVITY_CONTROL_DELTA_SENSE_MASK	0x70
- #define CAP11XX_REG_CONFIG		0x20
- #define CAP11XX_REG_SENSOR_ENABLE	0x21
- #define CAP11XX_REG_SENSOR_CONFIG	0x22
-@@ -32,6 +34,7 @@
- #define CAP11XX_REG_CALIBRATION		0x26
- #define CAP11XX_REG_INT_ENABLE		0x27
- #define CAP11XX_REG_REPEAT_RATE		0x28
-+#define CAP11XX_REG_SIGNAL_GUARD_ENABLE	0x29
- #define CAP11XX_REG_MT_CONFIG		0x2a
- #define CAP11XX_REG_MT_PATTERN_CONFIG	0x2b
- #define CAP11XX_REG_MT_PATTERN		0x2d
-@@ -47,6 +50,8 @@
- #define CAP11XX_REG_SENSOR_BASE_CNT(X)	(0x50 + (X))
- #define CAP11XX_REG_LED_POLARITY	0x73
- #define CAP11XX_REG_LED_OUTPUT_CONTROL	0x74
-+#define CAP11XX_REG_CALIB_SENSITIVITY_CONFIG	0x80
-+#define CAP11XX_REG_CALIB_SENSITIVITY_CONFIG2	0x81
- 
- #define CAP11XX_REG_LED_DUTY_CYCLE_1	0x90
- #define CAP11XX_REG_LED_DUTY_CYCLE_2	0x91
-@@ -78,12 +83,20 @@ struct cap11xx_led {
- 
- struct cap11xx_priv {
- 	struct regmap *regmap;
-+	struct device *dev;
- 	struct input_dev *idev;
-+	const struct cap11xx_hw_model *model;
-+	u8 id;
- 
- 	struct cap11xx_led *leds;
- 	int num_leds;
- 
- 	/* config */
-+	u8 analog_gain;
-+	u8 sensitivity_delta_sense;
-+	u8 signal_guard_inputs_mask;
-+	u32 thresholds[8];
-+	u32 calib_sensitivities[8];
- 	u32 keycodes[];
- };
- 
-@@ -181,6 +194,178 @@ static const struct regmap_config cap11xx_regmap_config = {
- 	.volatile_reg = cap11xx_volatile_reg,
- };
- 
-+static int
-+cap11xx_write_calib_sens_config_1(struct cap11xx_priv *priv)
-+{
-+	return regmap_write(priv->regmap,
-+			CAP11XX_REG_CALIB_SENSITIVITY_CONFIG,
-+			(priv->calib_sensitivities[3] << 6) |
-+			(priv->calib_sensitivities[2] << 4) |
-+			(priv->calib_sensitivities[1] << 2) |
-+			priv->calib_sensitivities[0]);
-+}
-+
-+static int
-+cap11xx_write_calib_sens_config_2(struct cap11xx_priv *priv)
-+{
-+	return regmap_write(priv->regmap,
-+			CAP11XX_REG_CALIB_SENSITIVITY_CONFIG2,
-+			(priv->calib_sensitivities[7] << 6) |
-+			(priv->calib_sensitivities[6] << 4) |
-+			(priv->calib_sensitivities[5] << 2) |
-+			priv->calib_sensitivities[4]);
-+}
-+
-+static int
-+cap11xx_init_keys(struct cap11xx_priv *priv)
-+{
-+	struct device_node *node = priv->dev->of_node;
-+	struct device *dev = priv->dev;
-+	int i, error;
-+	u32 u32_val;
-+
-+	if (!node) {
-+		dev_err(dev, "Corresponding DT entry is not available\n");
-+		return -ENODEV;
-+	}
-+
-+	if (!of_property_read_u32(node, "microchip,sensor-gain", &u32_val)) {
-+		if (priv->model->no_gain) {
-+			dev_warn(dev,
-+				 "This model doesn't support 'sensor-gain'\n");
-+		} else if (is_power_of_2(u32_val) && u32_val <= 8) {
-+			priv->analog_gain = (u8)ilog2(u32_val);
-+
-+			error = regmap_update_bits(priv->regmap,
-+				CAP11XX_REG_MAIN_CONTROL,
-+				CAP11XX_REG_MAIN_CONTROL_GAIN_MASK,
-+				priv->analog_gain << CAP11XX_REG_MAIN_CONTROL_GAIN_SHIFT);
-+			if (error)
-+				return error;
-+		} else {
-+			dev_err(dev, "Invalid sensor-gain value %u\n", u32_val);
-+			return -EINVAL;
-+		}
-+	}
-+
-+	if (of_property_read_bool(node, "microchip,irq-active-high")) {
-+		if (priv->id == CAP1106 ||
-+		    priv->id == CAP1126 ||
-+		    priv->id == CAP1188) {
-+			error = regmap_update_bits(priv->regmap,
-+						   CAP11XX_REG_CONFIG2,
-+						   CAP11XX_REG_CONFIG2_ALT_POL,
-+						   0);
-+			if (error)
-+				return error;
-+		} else {
-+			dev_warn(dev,
-+				 "This model doesn't support 'irq-active-high'\n");
-+		}
-+	}
-+
-+	if (!of_property_read_u32(node,
-+				  "microchip,sensitivity-delta-sense", &u32_val)) {
-+		if (!is_power_of_2(u32_val) || u32_val > 128) {
-+			dev_err(dev, "Invalid sensitivity-delta-sense value %u\n", u32_val);
-+			return -EINVAL;
-+		}
-+
-+		priv->sensitivity_delta_sense = (u8)ilog2(u32_val);
-+		u32_val = ~(FIELD_PREP(CAP11XX_REG_SENSITIVITY_CONTROL_DELTA_SENSE_MASK,
-+					priv->sensitivity_delta_sense));
-+
-+		error = regmap_update_bits(priv->regmap,
-+					   CAP11XX_REG_SENSITIVITY_CONTROL,
-+					   CAP11XX_REG_SENSITIVITY_CONTROL_DELTA_SENSE_MASK,
-+					   u32_val);
-+		if (error)
-+			return error;
-+	}
-+
-+	if (!of_property_read_u32_array(node, "microchip,input-threshold",
-+					priv->thresholds, priv->model->num_channels)) {
-+		for (i = 0; i < priv->model->num_channels; i++) {
-+			if (priv->thresholds[i] > 127) {
-+				dev_err(dev, "Invalid input-threshold value %u\n",
-+					priv->thresholds[i]);
-+				return -EINVAL;
-+			}
-+
-+			error = regmap_write(priv->regmap,
-+					     CAP11XX_REG_SENSOR_THRESH(i),
-+					     priv->thresholds[i]);
-+			if (error)
-+				return error;
-+		}
-+	}
-+
-+	if (!of_property_read_u32_array(node, "microchip,calib-sensitivity",
-+					priv->calib_sensitivities, priv->model->num_channels)) {
-+		if (priv->id == CAP1293 || priv->id == CAP1298) {
-+			for (i = 0; i < priv->model->num_channels; i++) {
-+				if (!is_power_of_2(priv->calib_sensitivities[i]) ||
-+				    priv->calib_sensitivities[i] > 4) {
-+					dev_err(dev, "Invalid calib-sensitivity value %u\n",
-+						priv->calib_sensitivities[i]);
-+					return -EINVAL;
-+				}
-+				priv->calib_sensitivities[i] = ilog2(priv->calib_sensitivities[i]);
-+			}
-+
-+			error = cap11xx_write_calib_sens_config_1(priv);
-+			if (error)
-+				return error;
-+
-+			if (priv->id == CAP1298) {
-+				error = cap11xx_write_calib_sens_config_2(priv);
-+				if (error)
-+					return error;
-+			}
-+		} else {
-+			dev_warn(dev,
-+				 "This model doesn't support 'calib-sensitivity'\n");
-+		}
-+	}
-+
-+	for (i = 0; i < priv->model->num_channels; i++) {
-+		if (!of_property_read_u32_index(node, "microchip,signal-guard",
-+						i, &u32_val)) {
-+			if (u32_val > 1)
-+				return -EINVAL;
-+			if (u32_val)
-+				priv->signal_guard_inputs_mask |= 0x01 << i;
-+		}
-+	}
-+
-+	if (priv->signal_guard_inputs_mask) {
-+		if (priv->id == CAP1293 || priv->id == CAP1298) {
-+			error = regmap_write(priv->regmap,
-+					     CAP11XX_REG_SIGNAL_GUARD_ENABLE,
-+					     priv->signal_guard_inputs_mask);
-+			if (error)
-+				return error;
-+		} else {
-+			dev_warn(dev,
-+				 "This model doesn't support 'signal-guard'\n");
-+		}
-+	}
-+
-+	/* Provide some useful defaults */
-+	for (i = 0; i < priv->model->num_channels; i++)
-+		priv->keycodes[i] = KEY_A + i;
-+
-+	of_property_read_u32_array(node, "linux,keycodes",
-+				   priv->keycodes, priv->model->num_channels);
-+
-+	/* Disable autorepeat. The Linux input system has its own handling. */
-+	error = regmap_write(priv->regmap, CAP11XX_REG_REPEAT_RATE, 0);
-+	if (error)
-+		return error;
-+
-+	return 0;
-+}
-+
- static irqreturn_t cap11xx_thread_func(int irq_num, void *data)
- {
- 	struct cap11xx_priv *priv = data;
-@@ -332,11 +517,9 @@ static int cap11xx_i2c_probe(struct i2c_client *i2c_client)
- 	const struct i2c_device_id *id = i2c_client_get_device_id(i2c_client);
- 	struct device *dev = &i2c_client->dev;
- 	struct cap11xx_priv *priv;
--	struct device_node *node;
- 	const struct cap11xx_hw_model *cap;
--	int i, error, irq, gain = 0;
-+	int i, error, irq;
- 	unsigned int val, rev;
--	u32 gain32;
- 
- 	if (id->driver_data >= ARRAY_SIZE(cap11xx_devices)) {
- 		dev_err(dev, "Invalid device ID %lu\n", id->driver_data);
-@@ -355,6 +538,8 @@ static int cap11xx_i2c_probe(struct i2c_client *i2c_client)
- 	if (!priv)
- 		return -ENOMEM;
- 
-+	priv->dev = dev;
-+
- 	priv->regmap = devm_regmap_init_i2c(i2c_client, &cap11xx_regmap_config);
- 	if (IS_ERR(priv->regmap))
- 		return PTR_ERR(priv->regmap);
-@@ -384,50 +569,15 @@ static int cap11xx_i2c_probe(struct i2c_client *i2c_client)
- 		return error;
- 
- 	dev_info(dev, "CAP11XX detected, model %s, revision 0x%02x\n",
--		 id->name, rev);
--	node = dev->of_node;
--
--	if (!of_property_read_u32(node, "microchip,sensor-gain", &gain32)) {
--		if (cap->no_gain)
--			dev_warn(dev,
--				 "This version doesn't support sensor gain\n");
--		else if (is_power_of_2(gain32) && gain32 <= 8)
--			gain = ilog2(gain32);
--		else
--			dev_err(dev, "Invalid sensor-gain value %d\n", gain32);
--	}
-+			 id->name, rev);
- 
--	if (id->driver_data == CAP1106 ||
--	    id->driver_data == CAP1126 ||
--	    id->driver_data == CAP1188) {
--		if (of_property_read_bool(node, "microchip,irq-active-high")) {
--			error = regmap_update_bits(priv->regmap,
--						   CAP11XX_REG_CONFIG2,
--						   CAP11XX_REG_CONFIG2_ALT_POL,
--						   0);
--			if (error)
--				return error;
--		}
--	}
-+	priv->model = cap;
-+	priv->id = id->driver_data;
- 
--	/* Provide some useful defaults */
--	for (i = 0; i < cap->num_channels; i++)
--		priv->keycodes[i] = KEY_A + i;
--
--	of_property_read_u32_array(node, "linux,keycodes",
--				   priv->keycodes, cap->num_channels);
--
--	if (!cap->no_gain) {
--		error = regmap_update_bits(priv->regmap,
--				CAP11XX_REG_MAIN_CONTROL,
--				CAP11XX_REG_MAIN_CONTROL_GAIN_MASK,
--				gain << CAP11XX_REG_MAIN_CONTROL_GAIN_SHIFT);
--		if (error)
--			return error;
--	}
-+	dev_info(dev, "CAP11XX device detected, model %s, revision 0x%02x\n",
-+		 id->name, rev);
- 
--	/* Disable autorepeat. The Linux input system has its own handling. */
--	error = regmap_write(priv->regmap, CAP11XX_REG_REPEAT_RATE, 0);
-+	error = cap11xx_init_keys(priv);
- 	if (error)
- 		return error;
- 
-@@ -439,7 +589,7 @@ static int cap11xx_i2c_probe(struct i2c_client *i2c_client)
- 	priv->idev->id.bustype = BUS_I2C;
- 	priv->idev->evbit[0] = BIT_MASK(EV_KEY);
- 
--	if (of_property_read_bool(node, "autorepeat"))
-+	if (of_property_read_bool(dev->of_node, "autorepeat"))
- 		__set_bit(EV_REP, priv->idev->evbit);
- 
- 	for (i = 0; i < cap->num_channels; i++)
-@@ -474,7 +624,7 @@ static int cap11xx_i2c_probe(struct i2c_client *i2c_client)
- 	if (error)
- 		return error;
- 
--	irq = irq_of_parse_and_map(node, 0);
-+	irq = irq_of_parse_and_map(dev->of_node, 0);
- 	if (!irq) {
- 		dev_err(dev, "Unable to parse or map IRQ\n");
- 		return -ENXIO;
--- 
-2.25.1
+> 
+> Consolidate the devicetree bindings into 3 files, one per bus.
+> 
+> Move common properties to a separate tpm-common.yaml.
+> 
+> Document compatible strings which are supported by the TPM TIS driver
+> but were neglected to be added to the devicetree bindings.
+> 
+> Document the memory-region property recently introduced by commit
+> 1e2714bb83fc ("tpm: Add reserved memory event log").
+> 
+> Signed-off-by: Lukas Wunner <lukas@wunner.de>
+> ---
+>  .../bindings/security/tpm/google,cr50.txt     |  19 ----
+>  .../bindings/security/tpm/st33zp24-i2c.txt    |  34 ------
+>  .../bindings/security/tpm/st33zp24-spi.txt    |  32 ------
+>  .../bindings/security/tpm/tpm-i2c.txt         |  26 -----
+>  .../bindings/security/tpm/tpm_tis_mmio.txt    |  25 ----
+>  .../bindings/security/tpm/tpm_tis_spi.txt     |  23 ----
+>  .../bindings/tpm/tcg,tpm-tis-i2c.yaml         | 107 ++++++++++++++++++
+>  .../bindings/tpm/tcg,tpm-tis-mmio.yaml        |  50 ++++++++
+>  .../bindings/tpm/tcg,tpm_tis-spi.yaml         |  88 ++++++++++++++
+>  .../devicetree/bindings/tpm/tpm-common.yaml   |  56 +++++++++
+>  .../devicetree/bindings/trivial-devices.yaml  |  16 ---
+>  11 files changed, 301 insertions(+), 175 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/security/tpm/google,cr50.txt
+>  delete mode 100644 Documentation/devicetree/bindings/security/tpm/st33zp24-i2c.txt
+>  delete mode 100644 Documentation/devicetree/bindings/security/tpm/st33zp24-spi.txt
+>  delete mode 100644 Documentation/devicetree/bindings/security/tpm/tpm-i2c.txt
+>  delete mode 100644 Documentation/devicetree/bindings/security/tpm/tpm_tis_mmio.txt
+>  delete mode 100644 Documentation/devicetree/bindings/security/tpm/tpm_tis_spi.txt
+>  create mode 100644 Documentation/devicetree/bindings/tpm/tcg,tpm-tis-i2c.yaml
+>  create mode 100644 Documentation/devicetree/bindings/tpm/tcg,tpm-tis-mmio.yaml
+>  create mode 100644 Documentation/devicetree/bindings/tpm/tcg,tpm_tis-spi.yaml
+>  create mode 100644 Documentation/devicetree/bindings/tpm/tpm-common.yaml
 
+
+> diff --git a/Documentation/devicetree/bindings/tpm/tcg,tpm-tis-i2c.yaml b/Documentation/devicetree/bindings/tpm/tcg,tpm-tis-i2c.yaml
+> new file mode 100644
+> index 000000000000..2f95916046a1
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/tpm/tcg,tpm-tis-i2c.yaml
+> @@ -0,0 +1,107 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/tpm/tcg,tpm-tis-i2c.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: I²C-attached Trusted Platform Module conforming to TCG TIS specification
+> +
+> +maintainers:
+> +  - Lukas Wunner <lukas@wunner.de>
+> +
+> +description: |
+> +  The Trusted Computing Group (TCG) has defined a multi-vendor standard
+> +  for accessing a TPM chip.  It can be transported over various buses,
+> +  one of them being I²C.  The standard is named:
+> +  TCG PC Client Specific TPM Interface Specification (TIS)
+> +  https://trustedcomputinggroup.org/resource/pc-client-work-group-pc-client-specific-tpm-interface-specification-tis/
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - atmel,at97sc3204t
+> +          - google,cr50 # H1 Secure Microcontroller running Cr50 firmware
+> +          - infineon,slb9635tt
+> +          - infineon,slb9645tt
+> +          - infineon,slb9673
+> +          - infineon,tpm_i2c_infineon
+> +          - nuvoton,npct501
+> +          - nuvoton,npct601
+> +          - st,st33zp24-i2c
+> +          - winbond,wpct301
+> +      - const: tcg,tpm-tis-i2c
+> +
+> +  reg:
+> +    description: address of TPM on the I²C bus
+> +
+> +  clock-frequency:
+> +    description: clock frequency used to access TPM on the I²C bus
+> +
+> +allOf:
+> +  - $ref: tpm-common.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: at97sc3201
+> +    then:
+> +      properties:
+> +        $nodename:
+> +          pattern: "^tpm$"
+
+Devices on I2C bus have a unit address.
+
+
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: infineon,slb9635tt
+> +    then:
+> +      properties:
+> +        clock-frequency:
+> +          maximum: 100000
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: infineon,slb9645tt
+> +    then:
+> +      properties:
+> +        clock-frequency:
+> +          maximum: 400000
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        tpm@57 {
+> +            label = "tpm";
+> +            compatible = "nuvoton,npct601", "tcg,tpm-tis-i2c";
+> +            reg = <0x57>;
+> +            linux,sml-base = <0x7f 0xfd450000>;
+> +            linux,sml-size = <0x10000>;
+> +        };
+> +    };
+> +
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        tpm@13 {
+> +            reg = <0x13>;
+> +            compatible = "st,st33zp24-i2c", "tcg,tpm-tis-i2c";
+> +            clock-frequency = <400000>;
+> +            interrupt-parent = <&gpio5>;
+> +            interrupts = <7 IRQ_TYPE_LEVEL_HIGH>;
+> +            lpcpd-gpios = <&gpio5 15 GPIO_ACTIVE_HIGH>;
+> +        };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/tpm/tcg,tpm-tis-mmio.yaml b/Documentation/devicetree/bindings/tpm/tcg,tpm-tis-mmio.yaml
+> new file mode 100644
+> index 000000000000..ce578cf22079
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/tpm/tcg,tpm-tis-mmio.yaml
+> @@ -0,0 +1,50 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/tpm/tcg,tpm-tis-mmio.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MMIO-accessed Trusted Platform Module conforming to TCG TIS specification
+> +
+> +maintainers:
+> +  - Lukas Wunner <lukas@wunner.de>
+> +
+> +description: |
+> +  The Trusted Computing Group (TCG) has defined a multi-vendor standard
+> +  for accessing a TPM chip.  It can be transported over various buses,
+> +  one of them being LPC (via MMIO).  The standard is named:
+> +  TCG PC Client Specific TPM Interface Specification (TIS)
+> +  https://trustedcomputinggroup.org/resource/pc-client-work-group-pc-client-specific-tpm-interface-specification-tis/
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - at97sc3201
+> +          - atmel,at97sc3204
+> +          - nuvoton,npct650
+> +          - socionext,synquacer-tpm-mmio
+> +      - const: tcg,tpm-tis-mmio
+> +
+> +  reg:
+> +    description:
+> +      location and length of the MMIO registers, length should be
+> +      at least 0x5000 bytes
+> +
+> +allOf:
+> +  - $ref: tpm-common.yaml#
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    tpm@90000 {
+> +        compatible = "atmel,at97sc3204", "tcg,tpm-tis-mmio";
+> +        reg = <0x90000 0x5000>;
+> +        interrupt-parent = <&EIC0>;
+> +        interrupts = <1 2>;
+> +    };
+> diff --git a/Documentation/devicetree/bindings/tpm/tcg,tpm_tis-spi.yaml b/Documentation/devicetree/bindings/tpm/tcg,tpm_tis-spi.yaml
+> new file mode 100644
+> index 000000000000..2415839eda7f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/tpm/tcg,tpm_tis-spi.yaml
+> @@ -0,0 +1,88 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/tpm/tcg,tpm_tis-spi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: SPI-attached Trusted Platform Module conforming to TCG TIS specification
+> +
+> +maintainers:
+> +  - Lukas Wunner <lukas@wunner.de>
+> +
+> +description: |
+> +  The Trusted Computing Group (TCG) has defined a multi-vendor standard
+> +  for accessing a TPM chip.  It can be transported over various buses,
+> +  one of them being SPI.  The standard is named:
+> +  TCG PC Client Specific TPM Interface Specification (TIS)
+> +  https://trustedcomputinggroup.org/resource/pc-client-work-group-pc-client-specific-tpm-interface-specification-tis/
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - google,cr50 # H1 Secure Microcontroller running Cr50 firmware
+> +          - infineon,slb9670
+> +          - st,st33htpm-spi
+> +          - st,st33zp24-spi
+> +      - const: tcg,tpm_tis-spi
+> +
+> +allOf:
+> +  - $ref: tpm-common.yaml#
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: st,st33zp24-spi
+> +    then:
+> +      properties:
+> +        spi-max-frequency:
+> +          maximum: 10000000
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    spi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        tpm@0 {
+> +            reg = <0>;
+> +            compatible = "google,cr50", "tcg,tpm_tis-spi";
+> +            spi-max-frequency = <800000>;
+> +        };
+> +    };
+> +
+> +  - |
+> +    spi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        tpm@0 {
+> +            reg = <0>;
+> +            compatible = "infineon,slb9670", "tcg,tpm_tis-spi";
+> +            spi-max-frequency = <10000000>;
+> +        };
+> +    };
+
+Just a different compatible string and frequency doesn't really justify 
+an example.
+
+> +
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    spi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        tpm@0 {
+> +            reg = <0>;
+> +            compatible = "st,st33zp24-spi", "tcg,tpm_tis-spi";
+> +            spi-max-frequency = <10000000>;
+> +            interrupt-parent = <&gpio5>;
+> +            interrupts = <7 IRQ_TYPE_LEVEL_HIGH>;
+> +            lpcpd-gpios = <&gpio5 15 GPIO_ACTIVE_HIGH>;
+> +        };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/tpm/tpm-common.yaml b/Documentation/devicetree/bindings/tpm/tpm-common.yaml
+> new file mode 100644
+> index 000000000000..03569b74a318
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/tpm/tpm-common.yaml
+> @@ -0,0 +1,56 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/tpm/tpm-common.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Trusted Platform Module common properties
+> +
+> +maintainers:
+> +  - Lukas Wunner <lukas@wunner.de>
+> +
+> +properties:
+> +  interrupts:
+> +    description: indicates command completion
+> +    maxItems: 1
+> +
+> +  label:
+> +    description: human readable string describing the device, e.g. "tpm"
+> +
+> +  oneOf:
+
+This will be an error because 'oneOf' here is a DT property name.
+
+> +    - memory-region:
+> +        description: reserved memory allocated for firmware event log
+> +        maxItems: 1
+> +    - allOf:
+> +        - linux,sml-base:
+> +            description:
+> +              base address of reserved memory allocated for firmware event log
+> +            $ref: /schemas/types.yaml#/definitions/uint32-array
+> +            minItems: 2
+> +            maxItems: 2
+
+You can just define this as a uint64 instead. The source encoding 
+doesn't matter.
+
+> +        - linux,sml-size:
+> +            description:
+> +              size of reserved memory allocated for firmware event log
+> +            $ref: /schemas/types.yaml#/definitions/uint32
+
+What you need here is just define these properties and then add this:
+
+dependentRequired:
+  linux,sml-base: ['linux,sml-size']
+  linux,sml-size: ['linux,sml-base']
+
+dependentSchemas:
+  memory-region:
+    properties:
+      linux,sml-base: false
+  linux,sml-base:
+    properties:
+      memory-region: false
+
+> +
+> +  powered-while-suspended:
+> +    description:
+> +      present when the TPM is left powered on between suspend and resume
+> +      (makes the suspend/resume callbacks do nothing)
+
+Needs a type (type: boolean).
+
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: st,st33zp24
+> +    then:
+> +      properties:
+> +        lpcpd-gpios:
+> +          description:
+> +            Output GPIO pin used for ST33ZP24 power management of D1/D2 state.
+> +            If set, power must be present when the platform is going into
+> +            sleep/hibernate mode.
+> +          maxItems: 1
+> +
+> +additionalProperties: true
+> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+> index c3190f2a168a..29aed5ddba6b 100644
+> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+> @@ -49,8 +49,6 @@ properties:
+>            - ams,iaq-core
+>              # i2c serial eeprom (24cxx)
+>            - at,24c08
+> -            # i2c trusted platform module (TPM)
+> -          - atmel,at97sc3204t
+>              # ATSHA204 - i2c h/w symmetric crypto module
+>            - atmel,atsha204
+>              # ATSHA204A - i2c h/w symmetric crypto module
+> @@ -145,12 +143,6 @@ properties:
+>            - infineon,ir38263
+>              # Infineon IRPS5401 Voltage Regulator (PMIC)
+>            - infineon,irps5401
+> -            # Infineon SLB9635 (Soft-) I2C TPM (old protocol, max 100khz)
+> -          - infineon,slb9635tt
+> -            # Infineon SLB9645 I2C TPM (new protocol, max 400khz)
+> -          - infineon,slb9645tt
+> -            # Infineon SLB9673 I2C TPM 2.0
+> -          - infineon,slb9673
+>              # Infineon TLV493D-A1B6 I2C 3D Magnetic Sensor
+>            - infineon,tlv493d-a1b6
+>              # Infineon Multi-phase Digital VR Controller xdpe11280
+> @@ -301,10 +293,6 @@ properties:
+>            - national,lm85
+>              # I2C ±0.33°C Accurate, 12-Bit + Sign Temperature Sensor and Thermal Window Comparator
+>            - national,lm92
+> -            # i2c trusted platform module (TPM)
+> -          - nuvoton,npct501
+> -            # i2c trusted platform module (TPM2)
+> -          - nuvoton,npct601
+>              # Nuvoton Temperature Sensor
+>            - nuvoton,w83773g
+>              # OKI ML86V7667 video decoder
+> @@ -349,8 +337,6 @@ properties:
+>            - silabs,si7020
+>              # Skyworks SKY81452: Six-Channel White LED Driver with Touch Panel Bias Supply
+>            - skyworks,sky81452
+> -            # Socionext SynQuacer TPM MMIO module
+> -          - socionext,synquacer-tpm-mmio
+>              # SparkFun Qwiic Joystick (COM-15168) with i2c interface
+>            - sparkfun,qwiic-joystick
+>              # i2c serial eeprom (24cxx)
+> @@ -405,8 +391,6 @@ properties:
+>            - winbond,w83793
+>              # Vicor Corporation Digital Supervisor
+>            - vicor,pli1209bc
+> -            # i2c trusted platform module (TPM)
+> -          - winbond,wpct301
+>  
+>  required:
+>    - compatible
+> -- 
+> 2.40.1
+> 
 
