@@ -1,76 +1,52 @@
-Return-Path: <devicetree+bounces-17591-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17594-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61D967F302E
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 15:04:43 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 668FA7F303A
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 15:05:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 931141C21A53
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 14:04:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 21729282C22
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 14:05:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7390854F88;
-	Tue, 21 Nov 2023 14:04:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCE4B54F8F;
+	Tue, 21 Nov 2023 14:04:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="BH4Ws3hQ"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="shi+sqNb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14DC1D72
-	for <devicetree@vger.kernel.org>; Tue, 21 Nov 2023 06:04:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1700575475;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Lg4k/3dlZcCU56aN6iGyLYrEU5FjTnslfS62KZBVgEc=;
-	b=BH4Ws3hQSE9TwFsKj4MUeHe0/Kn2MTxsTeSHDLpwYP4rL2yR0cWHsM0Uob/ZU4P4wMU/E2
-	HxTsZbDGXi1r+6caEBDGkbv9awP/Y6YOyKx8RpJHmT3hLjm2zxqOrNb5p31SnZaZ38jH11
-	S/v9i8b+5ap1qE89SEYWNk5PjmIMf4E=
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
- [209.85.219.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-447-YxHWDTviPtG_C06TD0jeWw-1; Tue, 21 Nov 2023 09:04:32 -0500
-X-MC-Unique: YxHWDTviPtG_C06TD0jeWw-1
-Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-66fbd02d104so43465906d6.1
-        for <devicetree@vger.kernel.org>; Tue, 21 Nov 2023 06:04:19 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700575458; x=1701180258;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Lg4k/3dlZcCU56aN6iGyLYrEU5FjTnslfS62KZBVgEc=;
-        b=keywKh4JYHFnnsvQA1RSLDrbvvU6WTAVAID0Z+p5pbd6JtvxGy2In/oDdmDUQ7VGLb
-         TAPYs915hs68UAymshWp+rB/dx3O5hDYEwd6x87zj6L/Ey5xttdOdsuiZiPbeti1NRr6
-         ZdMUElLvrDVbr9S3Njip8bF0fc2rf+LT7I6xh0vxK794j2mTNi7Vwtj1CaRB369qklJF
-         LpY7BD6Qg5Hy37RD8t/US4bd+By1vEapzGFvlXbFxjOFmOYmQCaIHaH3zAnT4TX/beHU
-         YQ4szhLbO9n1fC4eUF2NjGFhkvKfv6QiRcSj5FyhIctMOjaQuVaaigksspCj09LzGnnP
-         tdiQ==
-X-Gm-Message-State: AOJu0Yxls871h6I3rv4xAh9Ks4zcnj92guwL25shHNOb1h6N9idLOT++
-	zTg5MQ/Dp9jIfZXU/I+Q0cqbdebLwZCtFOJLiceWgcV8KnYc83iswQHV09TijlImB2wGudIRXY/
-	tRpGdP2Isy8FKxtgGrgFteg==
-X-Received: by 2002:a05:6214:e4f:b0:679:d33e:352a with SMTP id o15-20020a0562140e4f00b00679d33e352amr8633036qvc.1.1700575458636;
-        Tue, 21 Nov 2023 06:04:18 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEnLik0eV74HqD/F8NKb24Z8lRgzXhSPmwf6CP38CjCe1HMvqTyw81qfCQiYOQyIHdj/5K0Rw==
-X-Received: by 2002:a05:6214:e4f:b0:679:d33e:352a with SMTP id o15-20020a0562140e4f00b00679d33e352amr8632999qvc.1.1700575458385;
-        Tue, 21 Nov 2023 06:04:18 -0800 (PST)
-Received: from fedora ([2600:1700:1ff0:d0e0::37])
-        by smtp.gmail.com with ESMTPSA id b9-20020a0cfe69000000b0065b0554ae78sm3930045qvv.100.2023.11.21.06.04.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Nov 2023 06:04:18 -0800 (PST)
-Date: Tue, 21 Nov 2023 08:04:15 -0600
-From: Andrew Halaney <ahalaney@redhat.com>
-To: Johan Hovold <johan+linaro@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>, Wesley Cheng <quic_wcheng@quicinc.com>, 
-	Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>, linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/3] USB: dwc3: qcom: fix wakeup after probe deferral
-Message-ID: <syszua6kmso3k4zfvwwsfjaq4ok6gkexhfli34r3dtjhn63vio@dwhhnn5b2s5b>
-References: <20231120161607.7405-1-johan+linaro@kernel.org>
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EB83D7E;
+	Tue, 21 Nov 2023 06:04:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=29QJI23zuhCjj0/UknYYHK8lNy2il3wd+lJeqLPpi2w=; b=shi+sqNbqcH0o1rxmet0wTEEeX
+	wnzv0o3AP9HgoYWF1/0yt6NcPNaBo9kG/9mdoHUxLZbJbAVts0CSEOivcXuIEIS7o+L7FquvEp5gX
+	azpqQFrrk4KtaNOnhTW/HuKsWqSV1gBL5j2/xVT0QZDOdUHEk06yUDbVsO7cQyL7DdGg=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1r5RMj-000lKe-Jg; Tue, 21 Nov 2023 15:04:37 +0100
+Date: Tue, 21 Nov 2023 15:04:37 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Jie Luo <quic_luoj@quicinc.com>
+Cc: Konrad Dybcio <konrad.dybcio@linaro.org>, agross@kernel.org,
+	andersson@kernel.org, davem@davemloft.net, edumazet@google.com,
+	kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	hkallweit1@gmail.com, linux@armlinux.org.uk,
+	robert.marko@sartura.hr, linux-arm-msm@vger.kernel.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, quic_srichara@quicinc.com
+Subject: Re: [PATCH 2/9] net: mdio: ipq4019: Enable the clocks for ipq5332
+ platform
+Message-ID: <187a148d-39af-4000-825d-63ca3e3a23b1@lunn.ch>
+References: <20231115032515.4249-1-quic_luoj@quicinc.com>
+ <20231115032515.4249-3-quic_luoj@quicinc.com>
+ <10dc0fff-fc00-4c1f-97cf-30c5e5e8f983@linaro.org>
+ <9acace07-d758-4d5d-8321-de75ee53355d@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,44 +55,43 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231120161607.7405-1-johan+linaro@kernel.org>
+In-Reply-To: <9acace07-d758-4d5d-8321-de75ee53355d@quicinc.com>
 
-On Mon, Nov 20, 2023 at 05:16:04PM +0100, Johan Hovold wrote:
-> When testing a recent series that addresses resource leaks on probe
-> deferral [1] I realised that probe deferral can break wakeup from
-> suspend due to how the wakeup interrupts are currently requested.
-> 
-> I'll send a separate series for the Qualcomm devicetrees that used
-> incorrect trigger types for the wakeup interrupts. Included here is just
-> a patch fixing the binding example which hopefully will make it less
-> likely that more of these gets introduced. Fortunately, there should be
-> no dependency between this series and the devicetree one.
-> 
-> Note also that I decided to include a related trivial cleanup patch.
-> 
-> Johan
+On Tue, Nov 21, 2023 at 06:28:54PM +0800, Jie Luo wrote:
 > 
 > 
-> [1] https://lore.kernel.org/lkml/20231117173650.21161-1-johan+linaro@kernel.org/
+> On 11/20/2023 10:22 PM, Konrad Dybcio wrote:
+> > On 15.11.2023 04:25, Luo Jie wrote:
+> > > For the platform ipq5332, the related GCC clocks need to be enabled
+> > > to make the GPIO reset of the MDIO slave devices taking effect.
+> > > 
+> > > Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
+> > [...]
+> > 
+> > >   static int ipq4019_mdio_wait_busy(struct mii_bus *bus)
+> > > @@ -212,6 +231,38 @@ static int ipq_mdio_reset(struct mii_bus *bus)
+> > >   	u32 val;
+> > >   	int ret;
+> > > +	/* For the platform ipq5332, there are two uniphy available to connect the
+> > > +	 * ethernet devices, the uniphy gcc clock should be enabled for resetting
+> > > +	 * the connected device such as qca8386 switch or qca8081 PHY effectively.
+> > > +	 */
+> > > +	if (of_device_is_compatible(bus->parent->of_node, "qcom,ipq5332-mdio")) {
+> > Would that not also be taken care of in the phy driver?
+> > 
+> > Konrad
 > 
-> 
-> Johan Hovold (3):
->   dt-bindings: usb: qcom,dwc3: fix example wakeup interrupt types
->   USB: dwc3: qcom: fix wakeup after probe deferral
->   USB: dwc3: qcom: simplify wakeup interrupt setup
+> Hi Konrad,
+> These clocks are the SOC clocks that is not related to the PHY type.
+> no matter what kind of PHY is connected, we also need to configure
+> these clocks.
 
-For the series:
+Hi Jie
 
-Reviewed-by: Andrew Halaney <ahalaney@redhat.com>
+You can avoid lots of these questions by making your commit message
+better. Assume the reader does not know the clock tree for this
+device. With a bit of experience, you can guess what reviewers are
+going to ask, and answer those questions in the commit message.
 
-> 
->  Documentation/devicetree/bindings/usb/qcom,dwc3.yaml |  4 ++--
->  drivers/usb/dwc3/dwc3-qcom.c                         | 12 ++++--------
->  2 files changed, 6 insertions(+), 10 deletions(-)
-> 
-> -- 
-> 2.41.0
-> 
-> 
-
+      Andrew
 
