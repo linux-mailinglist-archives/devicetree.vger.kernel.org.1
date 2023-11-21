@@ -1,139 +1,149 @@
-Return-Path: <devicetree+bounces-17415-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17416-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28A107F26DD
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 09:01:07 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0466F7F26F5
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 09:09:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 598731C20F7F
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 08:01:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 87670B2140C
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 08:09:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30F7738DC9;
-	Tue, 21 Nov 2023 08:01:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4529E38DCF;
+	Tue, 21 Nov 2023 08:08:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35D4BC8;
-	Tue, 21 Nov 2023 00:00:59 -0800 (PST)
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-50943ccbbaeso7399909e87.2;
-        Tue, 21 Nov 2023 00:00:59 -0800 (PST)
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4759FBB;
+	Tue, 21 Nov 2023 00:08:52 -0800 (PST)
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-507a55302e0so7610638e87.0;
+        Tue, 21 Nov 2023 00:08:52 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700553657; x=1701158457;
+        d=1e100.net; s=20230601; t=1700554126; x=1701158926;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=WAC7Wk7jAcTzX3Z+cItdgjy2XcXK1YIDP0sQ/+WmnbI=;
-        b=Am0V53ZajU3DfDYq06HQNkCrM3AGVGgNMYG9xpzbndrvBQilRTYJww5otVRybqEMm4
-         clXZkz/J6tMj6X5t58QhPZGk+loyJ9pmPQKZt2Tq+8bAdHS0h2JXsz6O/ORwcHvVbn0W
-         hPU/QtHZGGtnUGBLwOIlyjhd7Z6R2txZWC8RMv49QSh3UZQJXX9ZOBLBd9kjKkkGFnhp
-         2xCYgBccNMlnz6B3rzbwqTyMYS7qBP9sQebtAbM71tYm8CqG3bvwDPwk025wN1R1pLk7
-         G3NzDMJtgyw4eJE9umu7l6eGPXySbh1tidnTdoGQeG2aG7Sm/6MRzhWIqaHci2CgqZ2v
-         LfRQ==
-X-Gm-Message-State: AOJu0Yxj2Rqr/aQAJWP2mPpkGKK231wN8LJybHscF7XwPGx9vmQBaFqS
-	KRZriNVsuA7WO8v/7OvvKvIfRCFMbKr+lnra
-X-Google-Smtp-Source: AGHT+IEMKGgIaZuugrDMZDvV7GnJywK/Yx77z4jGc7Rwz9WNq4IzHq7tt5PQ58SgYfPSHkLLZyHueQ==
-X-Received: by 2002:a05:6512:983:b0:508:225e:e79f with SMTP id w3-20020a056512098300b00508225ee79fmr6014656lft.22.1700553656648;
-        Tue, 21 Nov 2023 00:00:56 -0800 (PST)
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com. [209.85.208.181])
-        by smtp.gmail.com with ESMTPSA id p15-20020a05651212cf00b0050810b0da0fsm1430948lfg.33.2023.11.21.00.00.56
+        bh=oeOErr72GGCTbFniaP00vmRzQcGaVer6knTx1tHa9Zo=;
+        b=gkkKTx/qmI/gQOtXrl3G7QAtgBsE7O+gmrBQpnp4ilsbufpkEl8b+3cjV+0MQKx4e2
+         enWwxcxCi3Jd36w6KUrOZhll2NL3hro62Xa/SUVvCmiFq31k7RQ1HHXObMIKmEYHqMJv
+         +6cQgIO+bwH6u2TL2TqZwO4c3z6aQ8aXvqJzNZsygRyrRYLsFyLO8Z6eoBNmkNuBrtDz
+         f0fG8GV0waZkx9UQpWNt3bbnkcXPAEbgDtFLBXVB1bvefdF06KPPTSNs31uuDXZSVGsJ
+         /fNZhyM2fOagdzh1ge+BpPMOxQ/3M96w6Cf8hkerZd+X+G48VpDnD8NX33sCejtNTe1X
+         hJ+A==
+X-Gm-Message-State: AOJu0YxW8D71LyI3Im6RlLeWNNaUEwqAch0s2gjNycKMP2M2aDm7UMuE
+	CxmucjQwnFt2E6dPwKu/Sf3DkYIHhifQZQKq
+X-Google-Smtp-Source: AGHT+IEVN6jgghK023lj1dADIueLibsq3V1q6B9ZoAcDCxCKfmhvd6C2PN+SCh/MFFH0Knt6dgBOIg==
+X-Received: by 2002:a19:8c57:0:b0:507:9777:7a7 with SMTP id i23-20020a198c57000000b00507977707a7mr6634310lfj.17.1700554125562;
+        Tue, 21 Nov 2023 00:08:45 -0800 (PST)
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com. [209.85.167.43])
+        by smtp.gmail.com with ESMTPSA id u23-20020a197917000000b00507a68e637bsm1430968lfc.205.2023.11.21.00.08.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Nov 2023 00:00:56 -0800 (PST)
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2c50fbc218bso65573181fa.3;
-        Tue, 21 Nov 2023 00:00:56 -0800 (PST)
-X-Received: by 2002:a05:651c:205e:b0:2c5:1075:5ec9 with SMTP id
- t30-20020a05651c205e00b002c510755ec9mr6793793ljo.13.1700553656042; Tue, 21
- Nov 2023 00:00:56 -0800 (PST)
+        Tue, 21 Nov 2023 00:08:45 -0800 (PST)
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-50970c2115eso7578843e87.1;
+        Tue, 21 Nov 2023 00:08:45 -0800 (PST)
+X-Received: by 2002:ac2:599b:0:b0:507:a5e7:724 with SMTP id
+ w27-20020ac2599b000000b00507a5e70724mr6535084lfn.38.1700554124979; Tue, 21
+ Nov 2023 00:08:44 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231120160740.3532848-1-niklas.soderlund+renesas@ragnatech.se> <2ab74479-f1fb-4faf-b223-ae750b4c08ce@linaro.org>
-In-Reply-To: <2ab74479-f1fb-4faf-b223-ae750b4c08ce@linaro.org>
+References: <20231120084044.23838-1-krzysztof.kozlowski@linaro.org>
+ <19358871-009d-4498-9c13-90d5338b1e9f@amd.com> <76fa8f61-fe31-4040-a38d-cc05be3f4f17@linaro.org>
+ <CAMuHMdW4WPJT0Km7w8RWrGJaztk6QDGoFAn0bdGbrEsw81R1FA@mail.gmail.com>
+ <acfdce81-f117-4a1a-a9fe-e2b4b8922adb@linaro.org> <bd49f17c-7ebf-4e19-b77b-b5ec95375f7d@amd.com>
+ <b48293f3-16e3-4980-b900-add0cb7d69f6@linaro.org>
+In-Reply-To: <b48293f3-16e3-4980-b900-add0cb7d69f6@linaro.org>
 From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 21 Nov 2023 09:00:41 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUkfyJ9f22joXpAW1Gwk+zE9cqx+hbFqeK7Xc7ZTW1Faw@mail.gmail.com>
-Message-ID: <CAMuHMdUkfyJ9f22joXpAW1Gwk+zE9cqx+hbFqeK7Xc7ZTW1Faw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: net: renesas,ethertsn: Add bindings for
- Ethernet TSN
+Date: Tue, 21 Nov 2023 09:08:26 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdV_gqmf2=cXmZmYgE3aLxvPBr1DVp0cz0C+YrfBVG-8mg@mail.gmail.com>
+Message-ID: <CAMuHMdV_gqmf2=cXmZmYgE3aLxvPBr1DVp0cz0C+YrfBVG-8mg@mail.gmail.com>
+Subject: Re: [PATCH v2] docs: dt-bindings: add DTS Coding Style document
 To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, devicetree@vger.kernel.org, 
-	netdev@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Cc: Michal Simek <michal.simek@amd.com>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, Andrew Davis <afd@ti.com>, 
+	Arnd Bergmann <arnd@arndb.de>, Bjorn Andersson <andersson@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Heiko Stuebner <heiko@sntech.de>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Nishanth Menon <nm@ti.com>, Olof Johansson <olof@lixom.net>, linux-rockchip@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+	linux-arm-msm@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Nov 21, 2023 at 8:45=E2=80=AFAM Krzysztof Kozlowski
+Hi Krzysztof,
+
+On Tue, Nov 21, 2023 at 8:47=E2=80=AFAM Krzysztof Kozlowski
 <krzysztof.kozlowski@linaro.org> wrote:
-> On 20/11/2023 17:07, Niklas S=C3=B6derlund wrote:
-> > Add bindings for Renesas R-Car Ethernet TSN End-station IP. The RTSN
-> > device provides Ethernet network.
+> On 21/11/2023 08:33, Michal Simek wrote:
+> > On 11/20/23 20:31, Krzysztof Kozlowski wrote:
+> >> On 20/11/2023 20:18, Geert Uytterhoeven wrote:
+> >>> On Mon, Nov 20, 2023 at 3:53=E2=80=AFPM Krzysztof Kozlowski
+> >>> <krzysztof.kozlowski@linaro.org> wrote:
+> >>>> On 20/11/2023 15:01, Michal Simek wrote:> >
+> >>>>> On 11/20/23 09:40, Krzysztof Kozlowski wrote:
+> >>>>>> Document preferred coding style for Devicetree sources (DTS and DT=
+SI),
+> >>>>>> to bring consistency among all (sub)architectures and ease in revi=
+ews.
+> >>>
+> >>>>>> +Organizing DTSI and DTS
+> >>>>>> +-----------------------
+> >>>>>> +
+> >>>>>> +The DTSI and DTS files should be organized in a way representing =
+the common
+> >>>>>> +(and re-usable) parts of the hardware.  Typically this means orga=
+nizing DTSI
+> >>>>>> +and DTS files into several files:
+> >>>>>> +
+> >>>>>> +1. DTSI with contents of the entire SoC (without nodes for hardwa=
+re not present
+> >>>>>> +   on the SoC).
+> >>>>>> +2. If applicable: DTSI with common or re-usable parts of the hard=
+ware (e.g.
+> >>>>>> +   entire System-on-Module).
+> >>>>>
+> >>>>> DTS/DTSI - SOMs can actually run as they are that's why it is fair =
+to say that
+> >>>>> there doesn't need to be DTS representing the board.
+> >>>>
+> >>>> I have never seen a SoM which can run without elaborate hardware-hac=
+king
+> >>>> (e.g. connecting multiple wires to the SoM pins). The definition of =
+the
+> >>>> SoM is that it is a module. Module can be re-used, just like SoC.
+> >>>
+> >>> /me looks at his board farm...
+
+> >>> I guess there are (many) other examples...
+> >>
+> >> OK, I never had such in my hands. Anyway, the SoM which can run
+> >> standalone  has a meaning of a board, so how exactly you want to
+> >> rephrase the paragraph?
 > >
-> > Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatec=
-h.se>
-
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/net/renesas,ethertsn.yaml
-> > @@ -0,0 +1,133 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/net/renesas,ethertsn.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Renesas Ethernet TSN End-station
-> > +
-> > +maintainers:
-> > +  - Niklas S=C3=B6derlund <niklas.soderlund@ragnatech.se>
-> > +
-> > +description:
-> > +  The RTSN device provides Ethernet network using a 10 Mbps, 100 Mbps,=
- or 1
-> > +  Gbps full-duplex link via MII/GMII/RMII/RGMII. Depending on the conn=
-ected PHY.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
-> > +      - items:
+> > What about?
+> >
+> > 2. If applicable: DTSI with common or re-usable parts of the hardware (=
+e.g.
+> > entire System-on-Module). DTS if runs standalone.
 >
-> Drop items.
->
-> I assume you have oneOf above because you predict this will grow with
-> entries with fallbacks? If not, drop.
->
-> > +          - enum:
-> > +              - renesas,ethertsn-r8a779g0      # R-Car V4H
+> OK, but then it's duplicating the option 3. It also suggests that SoM
+> should be a DTS, which is not what we want for such case. Such SoMs must
+> have DTSI+DTS.
 
-renesas,r8a779g0-ethertsn
-
-R-Car S4 also has EtherTSN.
-Is it identical, so it makes sense to add a renesas,rcar-gen4-ethertsn
-fallback?
-
-> > +  renesas,rx-internal-delay:
-> > +    type: boolean
-> > +    description:
-> > +      Enable internal Rx clock delay, typically 1.8ns.
->
-> Why this is bool, not delay in ns?
-> Why this is property of a board (not SoC)?
-
-Standard property is rx-internal-delay-ps.
-
-> > +
-> > +  renesas,tx-internal-delay:
-> > +    type: boolean
-> > +    description:
-> > +      Enable internal Tx clock delay, typically 2.0ns.
->
-> Same questions.
-
-Standard property is tx-internal-delay-ps.
+So you want us to have a one-line <SoM>.dts, which just includes <SoM>.dtsi=
+?
+IMHO that adds more files for no much gain.
+Users of a SoM can easily include <SoM>.dts.
+'git grep "#include .*dts\>"' tells you we have plenty of users of that sch=
+eme.
 
 Gr{oetje,eeting}s,
 
