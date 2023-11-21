@@ -1,215 +1,125 @@
-Return-Path: <devicetree+bounces-17368-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17369-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1FC87F2466
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 03:52:26 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA9377F2486
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 04:11:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9D1FF28263B
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 02:52:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7C0BFB21960
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 03:11:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3522311703;
-	Tue, 21 Nov 2023 02:52:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC09F156EC;
+	Tue, 21 Nov 2023 03:11:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="JqGRycEt"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="ojbLv3UL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20C76BC;
-	Mon, 20 Nov 2023 18:52:19 -0800 (PST)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AL2j2ns024613;
-	Tue, 21 Nov 2023 02:52:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=+nVNOvHCtkUHIbgX2CusJOA/8Vx1olNyNipis6Ay9HM=;
- b=JqGRycEtK+zLOPuISUoOiWm89mGjY1Kf/lm2AzEP/Y1jzsFfzCldME6SAeGRpoGNKIyy
- rM0oWUhnnpM4HDA63nEF4dsf2sKAPgaBJhRCW3HscBHGQWsRKfiSEYNB2AknZFPKp/y1
- H8951vdzyzbjyo0hArbOI1ltx/wCSTNTTaTCT8gc3EMp4kR6xPfe9g4csjFZFnJsYL3U
- Ei6sVd//61U6/RHUpwRP1q969hXwomDF9KcT1gHgTJnjM3jReXfaiiSIas4M/XDMm784
- g+H7LP5u5WuTduyOzpYCGEZ5vuOgdmFaMaaFM50opNJdt1PoAMqN1DiXoINypwRahpfK wQ== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uge000p0f-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 21 Nov 2023 02:52:11 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AL2qBID005840
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 21 Nov 2023 02:52:11 GMT
-Received: from [10.239.132.204] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 20 Nov
- 2023 18:52:07 -0800
-Message-ID: <b94312ed-4f6f-4eb0-a50f-6f28a25cc198@quicinc.com>
-Date: Tue, 21 Nov 2023 10:52:04 +0800
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C1FBBA;
+	Mon, 20 Nov 2023 19:11:08 -0800 (PST)
+Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id ADB76871E7;
+	Tue, 21 Nov 2023 04:11:04 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1700536266;
+	bh=uVQFloNWOKt2Yo2do1Js998QQbM758GtYC2PYjwS8Sg=;
+	h=From:To:Cc:Subject:Date:From;
+	b=ojbLv3ULCsqUgbwzM/0Ua0T1j900Hu4OLnNX9I2M0pK6iRYdMc94qF/QqHZVp9deK
+	 Qd1YU8gh4foRHawhs9wAm5cqNyCOucNsD1q1hiiJdQfc42nkrsJYWzp7jIl+0I0N99
+	 r/bb3WVe0y+JWpRwC4R+EReQ6OOB+dr8JVHTK/RTEwWTmpv1H9HHR/sQSE36hkqH93
+	 EBcDcFua/OCNnnYY5G8d5RswlLr3p+3k1mXlLe6+QXtALQH6lFITXZrjDtQl6FaL3T
+	 dPKW7SGu12jd7TWDcYgvcIf8TK0WS4vwdbJC15bZyiH+SX1bZ9cDpQVZ1avsepGAMR
+	 gwQ9U42gYyPrg==
+From: Marek Vasut <marex@denx.de>
+To: linux-iio@vger.kernel.org
+Cc: Marek Vasut <marex@denx.de>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Andre Werner <andre.werner@systec-electronic.com>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@denx.de>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Mark Brown <broonie@kernel.org>,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	Naresh Solanki <naresh.solanki@9elements.com>,
+	Patrick Rudolph <patrick.rudolph@9elements.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
+	Vincent Tremblay <vincent@vtremblay.dev>,
+	devicetree@vger.kernel.org
+Subject: [PATCH v4 1/2] dt-bindings: iio: light: isl76682: Document ISL76682
+Date: Tue, 21 Nov 2023 04:10:39 +0100
+Message-ID: <20231121031043.327614-1-marex@denx.de>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 06/16] arm64: dts: qcom: sm8550-aim300: add SM8550 AIM300
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, <agross@kernel.org>,
-        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <tglx@linutronix.de>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <-cc=kernel@quicinc.com>
-References: <20231117101817.4401-1-quic_tengfan@quicinc.com>
- <20231117101817.4401-7-quic_tengfan@quicinc.com>
- <aecb04cd-805d-4c2d-b6a7-67a47b963ee9@linaro.org>
-From: Tengfei Fan <quic_tengfan@quicinc.com>
-In-Reply-To: <aecb04cd-805d-4c2d-b6a7-67a47b963ee9@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: LLAtslFsFTtKSxvEniLiwnZ2z-j0jYrr
-X-Proofpoint-ORIG-GUID: LLAtslFsFTtKSxvEniLiwnZ2z-j0jYrr
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-20_22,2023-11-20_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 adultscore=0
- bulkscore=0 malwarescore=0 spamscore=0 clxscore=1015 mlxscore=0
- lowpriorityscore=0 mlxlogscore=999 impostorscore=0 priorityscore=1501
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311060000 definitions=main-2311210019
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
+The ISL76682 is very basic ALS which only supports ALS or IR mode
+in four ranges, 1k/4k/16k/64k LUX. There is no IRQ support or any
+other fancy functionality. Document it as trivial device.
 
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: Marek Vasut <marex@denx.de>
+---
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Andre Werner <andre.werner@systec-electronic.com>
+Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Bjorn Helgaas <bhelgaas@google.com>
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Fabio Estevam <festevam@denx.de>
+Cc: Guenter Roeck <linux@roeck-us.net>
+Cc: Jonathan Cameron <jic23@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Lars-Peter Clausen <lars@metafoo.de>
+Cc: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Cc: Mark Brown <broonie@kernel.org>
+Cc: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Naresh Solanki <naresh.solanki@9elements.com>
+Cc: Patrick Rudolph <patrick.rudolph@9elements.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>
+Cc: Vincent Tremblay <vincent@vtremblay.dev>
+Cc: devicetree@vger.kernel.org
+Cc: linux-iio@vger.kernel.org
+---
+V2: Add AB from Conor
+V3: No change
+V4: No change
+---
+ Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-在 11/17/2023 6:28 PM, Dmitry Baryshkov 写道:
-> On 17/11/2023 12:18, Tengfei Fan wrote:
->> Add a minimal DTS for the new QRD8550 board, serial, UFS and USB should
->> be working.
-> 
-> An explanation of what is AIM300 would be welcomed.
-> 
-Hi Dmitry,
-AIM means Artificial Intelligence Module. This hardware platform can be 
-used to develop AI related software based on Qualcomm chipset.
-I will also update the explanation of AIM to the new patch series.
-
->>
->> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/Makefile          |   1 +
->>   arch/arm64/boot/dts/qcom/sm8550-aim300.dts | 490 +++++++++++++++++++++
->>   2 files changed, 491 insertions(+)
->>   create mode 100644 arch/arm64/boot/dts/qcom/sm8550-aim300.dts
->>
->> diff --git a/arch/arm64/boot/dts/qcom/Makefile 
->> b/arch/arm64/boot/dts/qcom/Makefile
->> index d6cb840b7050..ea5d4a07671a 100644
->> --- a/arch/arm64/boot/dts/qcom/Makefile
->> +++ b/arch/arm64/boot/dts/qcom/Makefile
->> @@ -229,5 +229,6 @@ dtb-$(CONFIG_ARCH_QCOM)    += sm8450-hdk.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)    += sm8450-qrd.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)    += sm8450-sony-xperia-nagara-pdx223.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)    += sm8450-sony-xperia-nagara-pdx224.dtb
->> +dtb-$(CONFIG_ARCH_QCOM) += sm8550-aim300.dtb
-> 
-> My email client suggests that alignment is broken here.
-> 
->>   dtb-$(CONFIG_ARCH_QCOM)    += sm8550-mtp.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)    += sm8550-qrd.dtb
->> diff --git a/arch/arm64/boot/dts/qcom/sm8550-aim300.dts 
->> b/arch/arm64/boot/dts/qcom/sm8550-aim300.dts
->> new file mode 100644
->> index 000000000000..202b979da8ca
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/qcom/sm8550-aim300.dts
->> @@ -0,0 +1,490 @@
->> +// SPDX-License-Identifier: BSD-3-Clause
->> +/*
->> + * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights 
->> reserved.
->> + */
->> +
->> +/dts-v1/;
->> +
->> +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
->> +#include "sm8550.dtsi"
->> +#include "pm8010.dtsi"
->> +#include "pm8550.dtsi"
->> +#include "pm8550b.dtsi"
->> +#include "pm8550ve.dtsi"
->> +#include "pm8550vs.dtsi"
->> +#include "pmk8550.dtsi"
->> +#include "pmr735d_a.dtsi"
->> +#include "pmr735d_b.dtsi"
->> +
->> +/ {
->> +    model = "Qualcomm Technologies, Inc. SM8550 AIM300";
->> +    compatible = "qcom,sm8550-aim300", "qcom,sm8550";
->> +
->> +    aliases {
->> +        serial0 = &uart7;
->> +    };
->> +
->> +    chosen {
->> +        stdout-path = "serial0:115200n8";
->> +    };
->> +
->> +    pmic-glink {
->> +        compatible = "qcom,sm8550-pmic-glink", "qcom,pmic-glink";
->> +        #address-cells = <1>;
->> +        #size-cells = <0>;
->> +        orientation-gpios = <&tlmm 11 GPIO_ACTIVE_HIGH>;
->> +
->> +        connector@0 {
->> +            compatible = "usb-c-connector";
->> +            reg = <0>;
->> +            power-role = "dual";
->> +            data-role = "dual";
->> +
->> +            ports {
->> +                #address-cells = <1>;
->> +                #size-cells = <0>;
->> +
->> +                port@0 {
->> +                    reg = <0>;
->> +
->> +                    pmic_glink_hs_in: endpoint {
->> +                        remote-endpoint = <&usb_1_dwc3_hs>;
->> +                    };
->> +                };
->> +
->> +                port@1 {
->> +                    reg = <1>;
->> +
->> +                    pmic_glink_ss_in: endpoint {
->> +                        remote-endpoint = <&usb_1_dwc3_ss>;
->> +                    };
->> +                };
->> +            };
->> +        };
->> +    };
->> +
->> +    vph_pwr: vph-pwr-regulator {
-> 
-> It's not demanded, I think, but I'd suggest 'regulator-vph-pwr' to allow 
-> all regulators to be grouped together.
-> 
->> +        compatible = "regulator-fixed";
->> +        regulator-name = "vph_pwr";
->> +        regulator-min-microvolt = <3700000>;
->> +        regulator-max-microvolt = <3700000>;
->> +
->> +        regulator-always-on;
->> +        regulator-boot-on;
->> +    };
->> +};
-> 
-> Other than that looks good to me.
-> 
-
+diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+index c3190f2a168a2..27164e9219276 100644
+--- a/Documentation/devicetree/bindings/trivial-devices.yaml
++++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+@@ -179,6 +179,8 @@ properties:
+           - isil,isl29030
+             # Intersil ISL68137 Digital Output Configurable PWM Controller
+           - isil,isl68137
++            # Intersil ISL76682 Ambient Light Sensor
++          - isil,isl76682
+             # Linear Technology LTC2488
+           - lineartechnology,ltc2488
+             # 5 Bit Programmable, Pulse-Width Modulator
 -- 
-Thx and BRs,
-Tengfei Fan
+2.42.0
+
 
