@@ -1,566 +1,388 @@
-Return-Path: <devicetree+bounces-17478-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17485-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C62A7F2A0B
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 11:17:39 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C5B87F2A48
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 11:25:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BEF081C20E31
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 10:17:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2C38D1C20D67
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 10:25:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8595846525;
-	Tue, 21 Nov 2023 10:17:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D9C93DB9D;
+	Tue, 21 Nov 2023 10:25:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fwe9uYhz"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="WrcKpvdV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62CB9E8;
+	Tue, 21 Nov 2023 02:25:11 -0800 (PST)
+Received: from [100.107.97.3] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1629D3D964;
-	Tue, 21 Nov 2023 10:17:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id E4672C4166B;
-	Tue, 21 Nov 2023 10:17:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700561839;
-	bh=KodMV26ca7GEsuJL/H7lYOP+04Qx83r0peydFy3c6MQ=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=fwe9uYhzIqmrRqK9wt18UCOBkVNVij2q0PungQuybNWZZIZzyhYyoAf7TMLMrNJi/
-	 xm4gSEKxCPXrBZKIjzRpEov0/BGtCJnrq7IhqS1EraucS5kM8z2cetrnMnPwTHC1iE
-	 xwKUzQFF+w3khqGOewdieatwP0nKQEf4XcKoUoA5Gi5nIU1cvW7V3d1nYbm/7eaMej
-	 +pH9ESw63UqUKd0DCAWm+jbX8Bk6Z4QNCaVAr/bvqZ/88ZXOadGta/AlHJXCBl6Wx0
-	 2dKWXUUJKVB2I+UvJjoqmlS0vo2h66StZhQY9600j1R2iJMVQrY/iMIZbgdkHge5Xr
-	 b8mFo+8JLdMxw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D34AFC54FB9;
-	Tue, 21 Nov 2023 10:17:19 +0000 (UTC)
-From: Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org>
-Date: Tue, 21 Nov 2023 11:20:25 +0100
-Subject: [PATCH 12/12] iio: adc: adi-axi-adc: move to backend framework
+	(Authenticated sender: kholk11)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 4D2AB66072F1;
+	Tue, 21 Nov 2023 10:25:08 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1700562309;
+	bh=xTDhw6B0torqkaxxO598WkuvO21AtWGiswLnga/6zdw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=WrcKpvdVBH/n5k5OgsCeo8xOMDk8RIGxlRxe3NurIBFzCktrdr9D0jHmLSLYqoPD8
+	 1n0t/46YZw3z/j2hdIodpPo7n/pEoDNi6rWtNIWgEFG/eeZyk23AFE26M/oHyGlEXt
+	 am4BYfbfibdkv/pTSpuPiPYrvLydTv53JXxtTQGktdxpQm/Dv1oxRBTCPSCpDZX1WK
+	 CxCAROV+vBHAYaysnfp20LNugcx0Ta+gvlrjP4UdxXzd+LtJeoopGYJDP+889o29yR
+	 gJCLA5EJczarAQTH4PdHhzuVo6iyUiMQFtUamu2TUXpOTjcXGgDacTZwCkg4GYEaEN
+	 BIAX7PykJsh4A==
+Message-ID: <947c4a52-6688-46ef-9e37-087164971da5@collabora.com>
+Date: Tue, 21 Nov 2023 11:25:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] docs: dt-bindings: add DTS Coding Style document
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+Cc: Andrew Davis <afd@ti.com>, Arnd Bergmann <arnd@arndb.de>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Heiko Stuebner <heiko@sntech.de>, Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Michal Simek <michal.simek@amd.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Nishanth Menon <nm@ti.com>,
+ Olof Johansson <olof@lixom.net>, linux-rockchip@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-arm-msm@vger.kernel.org
+References: <20231120084044.23838-1-krzysztof.kozlowski@linaro.org>
+ <92cf3bcc-18e7-40ba-a082-1b8b6bea0dee@collabora.com>
+ <e8483375-cace-473c-aba7-1cd60feae242@linaro.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <e8483375-cace-473c-aba7-1cd60feae242@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20231121-dev-iio-backend-v1-12-6a3d542eba35@analog.com>
-References: <20231121-dev-iio-backend-v1-0-6a3d542eba35@analog.com>
-In-Reply-To: <20231121-dev-iio-backend-v1-0-6a3d542eba35@analog.com>
-To: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-iio@vger.kernel.org
-Cc: Olivier MOYSAN <olivier.moysan@foss.st.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
- Frank Rowand <frowand.list@gmail.com>, Jonathan Cameron <jic23@kernel.org>, 
- Lars-Peter Clausen <lars@metafoo.de>, 
- Michael Hennerich <Michael.Hennerich@analog.com>, 
- Nuno Sa <nuno.sa@analog.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1700562016; l=14337;
- i=nuno.sa@analog.com; s=20231116; h=from:subject:message-id;
- bh=+u9HWUghl/248aJnsS8FrYOYG77gZgAnQv1PFeCSO1s=;
- b=tbqLWeExJMbjJ/4v6zWrjsAg+GNKLGrbhle82T3llI4pz3kYW9UZcgrhxLSENOUaDU8Pte51H
- VjmpMCFmNUGCrZPHQUSqQiiq8POYbUf5lsNEjVz6alFQaRrCxEgcStS
-X-Developer-Key: i=nuno.sa@analog.com; a=ed25519;
- pk=3NQwYA013OUYZsmDFBf8rmyyr5iQlxV/9H4/Df83o1E=
-X-Endpoint-Received:
- by B4 Relay for nuno.sa@analog.com/20231116 with auth_id=100
-X-Original-From: Nuno Sa <nuno.sa@analog.com>
-Reply-To: <nuno.sa@analog.com>
 
-From: Nuno Sa <nuno.sa@analog.com>
+Il 20/11/23 15:57, Krzysztof Kozlowski ha scritto:
+> On 20/11/2023 12:43, AngeloGioacchino Del Regno wrote:
+>> Il 20/11/23 09:40, Krzysztof Kozlowski ha scritto:
+>>> Document preferred coding style for Devicetree sources (DTS and DTSI),
+>>> to bring consistency among all (sub)architectures and ease in reviews.
+>>>
+>>> Cc: Andrew Davis <afd@ti.com>
+>>> Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>>> Cc: Arnd Bergmann <arnd@arndb.de>
+>>> Cc: Bjorn Andersson <andersson@kernel.org>
+>>> Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+>>> Cc: Heiko Stuebner <heiko@sntech.de>
+>>> Cc: Konrad Dybcio <konrad.dybcio@linaro.org>
+>>> Cc: Matthias Brugger <matthias.bgg@gmail.com>
+>>> Cc: Michal Simek <michal.simek@amd.com>
+>>> Cc: Neil Armstrong <neil.armstrong@linaro.org>
+>>> Cc: Nishanth Menon <nm@ti.com>
+>>> Cc: Olof Johansson <olof@lixom.net>
+>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>
+>>> ---
+>>>
+>>> Merging idea: Rob/DT bindings
+>>>
+>>> Changes in v2
+>>> =============
+>>> 1. Hopefully incorporate entire feedback from comments:
+>>> a. Fix \ { => / { (Rob)
+>>> b. Name: dts-coding-style (Rob)
+>>> c. Exceptions for ordering nodes by name for Renesas and pinctrl (Geert,
+>>>      Konrad)
+>>> d. Ordering properties by common/vendor (Rob)
+>>> e. Array entries in <> (Rob)
+>>>
+>>> 2. New chapter: Organizing DTSI and DTS
+>>>
+>>> 3. Several grammar fixes (missing articles)
+>>>
+>>> Cc: linux-rockchip@lists.infradead.org
+>>> Cc: linux-mediatek@lists.infradead.org
+>>> Cc: linux-samsung-soc@vger.kernel.org
+>>> Cc: linux-amlogic@lists.infradead.org
+>>> Cc: linux-arm-kernel@lists.infradead.org
+>>> Cc: linux-arm-msm@vger.kernel.org
+>>> ---
+>>>    .../devicetree/bindings/dts-coding-style.rst  | 163 ++++++++++++++++++
+>>>    Documentation/devicetree/bindings/index.rst   |   1 +
+>>>    2 files changed, 164 insertions(+)
+>>>    create mode 100644 Documentation/devicetree/bindings/dts-coding-style.rst
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/dts-coding-style.rst b/Documentation/devicetree/bindings/dts-coding-style.rst
+>>> new file mode 100644
+>>> index 000000000000..cc7e3b4d1b92
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/dts-coding-style.rst
+>>> @@ -0,0 +1,163 @@
+>>> +.. SPDX-License-Identifier: GPL-2.0
+>>> +.. _dtscodingstyle:
+>>> +
+>>> +=====================================
+>>> +Devicetree Sources (DTS) Coding Style
+>>> +=====================================
+>>> +
+>>> +When writing Devicetree Sources (DTS) please observe below guidelines.  They
+>>> +should be considered complementary to any rules expressed already in Devicetree
+>>> +Specification and dtc compiler (including W=1 and W=2 builds).
+>>> +
+>>> +Individual architectures and sub-architectures can add additional rules, making
+>>> +the style stricter.
+>>> +
+>>> +Naming and Valid Characters
+>>> +---------------------------
+>>> +
+>>> +1. Node and property names are allowed to use only:
+>>> +
+>>> +   * lowercase characters: [a-z]
+>>> +   * digits: [0-9]
+>>> +   * dash: -
+>>> +
+>>> +2. Labels are allowed to use only:
+>>> +
+>>> +   * lowercase characters: [a-z]
+>>> +   * digits: [0-9]
+>>> +   * underscore: _
+>>> +
+>>> +3. Unit addresses should use lowercase hex, without leading zeros (padding).
+>>
+>> This is imperative, so: s/should/shall/g
+> 
+> Sure, fine.
+> 
+>>
+>>> +
+>>> +4. Hex values in properties, e.g. "reg", should use lowercase hex.  The address
+>>> +   part can be padded with leading zeros.
+>>> +
+>>
+>> Same here, I'd say.... :-)
+>>
+>>> +Example::
+>>> +
+>>> +	gpi_dma2: dma-controller@800000 {
+>>> +		compatible = "qcom,sm8550-gpi-dma", "qcom,sm6350-gpi-dma";
+>>> +		reg = <0x0 0x00800000 0x0 0x60000>;
+>>> +	}
+>>> +
+>>> +Order of Nodes
+>>> +--------------
+>>> +
+>>> +1. Nodes within any bus, thus using unit addresses for children, shall be
+>>> +   ordered incrementally by unit address.
+>>> +   Alternatively for some sub-architectures, nodes of the same type can be
+>>> +   grouped together (e.g. all I2C controllers one after another even if this
+>>> +   breaks unit address ordering).
+>>> +
+>>> +2. Nodes without unit addresses should be ordered alpha-numerically by the node
+>>> +   name.  For a few types of nodes, they can be ordered by the main property
+>>> +   (e.g. pin configuration states ordered by value of "pins" property).
+>>> +
+>>> +3. When extending nodes in the board DTS via &label, the entries should be
+>>> +   ordered alpha-numerically.
+>>> +
+>>> +Example::
+>>> +
+>>
+>> Hmm, comments!
+>>
+>>> +	// SoC DTSI
+>>
+>> ....speaking of commenting, should we at least suggest to use C-style comments?
+>>
+>> 	/* SoC DTSI */
+> 
+> I can switch it to C-style in the example, but we are going with Linux
+> Coding Style which soon will allow // judging by Linus' statements.
+> 
 
-Move to the IIO backend framework. Devices supported by adi-axi-adc now
-register themselves as backend devices.
+Right. That wasn't a strong opinion anyway, so it's totally okay as well.
 
-Signed-off-by: Nuno Sa <nuno.sa@analog.com>
----
- drivers/iio/adc/Kconfig       |   1 +
- drivers/iio/adc/adi-axi-adc.c | 364 ++++++++----------------------------------
- 2 files changed, 65 insertions(+), 300 deletions(-)
+>>
+>>> +
+>>> +	/ {
+>>> +		cpus {
+>>> +			// ...
+>>> +		};
+>>> +
+>>> +		psci {
+>>> +			// ...
+>>> +		};
+>>> +
+>>> +		soc@ {
+>>> +			dma: dma-controller@10000 {
+>>> +				// ...
+>>> +			};
+>>> +
+>>> +			clk: clock-controller@80000 {
+>>> +				// ...
+>>> +			};
+>>> +		};
+>>> +	};
+>>> +
+>>> +	// Board DTS
+>>> +
+>>> +	&clk {
+>>> +		// ...
+>>> +	};
+>>> +
+>>> +	&dma {
+>>> +		// ...
+>>> +	};
+>>> +
+>>> +
+>>> +Order of Properties in Device Node
+>>> +----------------------------------
+>>> +
+>>> +Following order of properties in device nodes is preferred:
+>>> +
+>>> +1. compatible
+>>> +2. reg
+>>> +3. ranges
+>>> +4. Standard/common properties (defined by common bindings, e.g. without
+>>> +   vendor-prefixes)
+>>> +5. Vendor-specific properties
+>>> +6. status (if applicable)
+>>> +7. Child nodes, where each node is preceded with a blank line
+>>> +
+>>> +The "status" property is by default "okay", thus it can be omitted.
+>>> +
+>>> +Example::
+>>> +
+>>> +	// SoC DTSI
+>>> +
+>>> +	usb_1_hsphy: phy@88e3000 {
+>>> +		compatible = "qcom,sm8550-snps-eusb2-phy";
+>>> +		reg = <0x0 0x088e3000 0x0 0x154>;
+>>> +		#phy-cells = <0>;
+>>> +		resets = <&gcc GCC_QUSB2PHY_PRIM_BCR>;
+>>> +		status = "disabled";
+>>> +	};
+>>
+>> Since this describes vendor-specific properties and vendor prefixes as well
+>> as standard properties, I think it would be clearer if we use something more
+>> complex that actually contains those as an example.
+>>
+>> There's a few. One is MediaTek:
+>>
+>> 	vdo1_rdma0: dma-controller@1c104000 {
+>> 		compatible = "mediatek,mt8195-vdo1-rdma";
+>> 		reg = <0 0x1c104000 0 0x1000>;
+>> 		#dma-cells = <1>;
+>> 		clocks = <&vdosys1 CLK_VDO1_MDP_RDMA0>;
+>> 		interrupts = <GIC_SPI 495 IRQ_TYPE_LEVEL_HIGH 0>;
+>> 		iommus = <&iommu_vdo M4U_PORT_L2_MDP_RDMA0>;
+>> 		power-domains = <&spm MT8195_POWER_DOMAIN_VDOSYS1>;
+>> 		mediatek,gce-client-reg = <&gce0 SUBSYS_1c10XXXX 0x4000 0x1000>;
+>> 	};
+>>
+>> ...or other one can be nVidia:
+>>
+>> 	mipi: mipi@700e3000 {
+>> 		compatible = "nvidia,tegra210-mipi";
+>> 		reg = <0x0 0x700e3000 0x0 0x100>;
+>> 		clocks = <&tegra_car TEGRA210_CLK_MIPI_CAL>;
+>> 		clock-names = "mipi-cal";
+>> 		power-domains = <&pd_sor>;
+>> 		#nvidia,mipi-calibrate-cells = <1>;
+>> 	};
+>>
+>> ...or we could make an example out of fantasy, which could work even better
+>> as far as describing goes.
+>>
+>> 	/* SoC DTSI */
+>>
+>> 	device_node: device-class@6789abc {
+>> 		compatible = "vendor,device";
+> 
+> Yep. I'll use this, unless checkpatch complains about undocumented
+> compatible. :) This allows to show the child node.
+> 
 
-diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
-index af56df63beff..cc42a3399c63 100644
---- a/drivers/iio/adc/Kconfig
-+++ b/drivers/iio/adc/Kconfig
-@@ -292,6 +292,7 @@ config ADI_AXI_ADC
- 	select IIO_BUFFER
- 	select IIO_BUFFER_HW_CONSUMER
- 	select IIO_BUFFER_DMAENGINE
-+	select IIO_BACKEND
- 	depends on HAS_IOMEM
- 	depends on OF
- 	help
-diff --git a/drivers/iio/adc/adi-axi-adc.c b/drivers/iio/adc/adi-axi-adc.c
-index c247ff1541d2..b2ab2c119efa 100644
---- a/drivers/iio/adc/adi-axi-adc.c
-+++ b/drivers/iio/adc/adi-axi-adc.c
-@@ -17,13 +17,9 @@
- #include <linux/regmap.h>
- #include <linux/slab.h>
- 
--#include <linux/iio/iio.h>
--#include <linux/iio/sysfs.h>
--#include <linux/iio/buffer.h>
--#include <linux/iio/buffer-dmaengine.h>
--
- #include <linux/fpga/adi-axi-common.h>
--#include <linux/iio/adc/adi-axi-adc.h>
-+#include <linux/iio/backend.h>
-+
- 
- /*
-  * Register definitions:
-@@ -44,6 +40,7 @@
- #define   ADI_AXI_REG_CHAN_CTRL_PN_SEL_OWR	BIT(10)
- #define   ADI_AXI_REG_CHAN_CTRL_IQCOR_EN	BIT(9)
- #define   ADI_AXI_REG_CHAN_CTRL_DCFILT_EN	BIT(8)
-+#define   ADI_AXI_REG_CHAN_CTRL_FMT_MASK	GENMASK(6, 4)
- #define   ADI_AXI_REG_CHAN_CTRL_FMT_SIGNEXT	BIT(6)
- #define   ADI_AXI_REG_CHAN_CTRL_FMT_TYPE	BIT(5)
- #define   ADI_AXI_REG_CHAN_CTRL_FMT_EN		BIT(4)
-@@ -55,286 +52,67 @@
- 	 ADI_AXI_REG_CHAN_CTRL_FMT_EN |		\
- 	 ADI_AXI_REG_CHAN_CTRL_ENABLE)
- 
--struct adi_axi_adc_core_info {
--	unsigned int				version;
--};
--
- struct adi_axi_adc_state {
--	struct mutex				lock;
--
--	struct adi_axi_adc_client		*client;
- 	struct regmap				*regmap;
- };
- 
--struct adi_axi_adc_client {
--	struct list_head			entry;
--	struct adi_axi_adc_conv			conv;
--	struct adi_axi_adc_state		*state;
--	struct device				*dev;
--	const struct adi_axi_adc_core_info	*info;
--};
--
--static LIST_HEAD(registered_clients);
--static DEFINE_MUTEX(registered_clients_lock);
--
--static struct adi_axi_adc_client *conv_to_client(struct adi_axi_adc_conv *conv)
--{
--	return container_of(conv, struct adi_axi_adc_client, conv);
--}
--
--void *adi_axi_adc_conv_priv(struct adi_axi_adc_conv *conv)
--{
--	struct adi_axi_adc_client *cl = conv_to_client(conv);
--
--	return (char *)cl + ALIGN(sizeof(struct adi_axi_adc_client),
--				  IIO_DMA_MINALIGN);
--}
--EXPORT_SYMBOL_NS_GPL(adi_axi_adc_conv_priv, IIO_ADI_AXI);
--
--static int adi_axi_adc_config_dma_buffer(struct device *dev,
--					 struct iio_dev *indio_dev)
--{
--	const char *dma_name;
--
--	if (!device_property_present(dev, "dmas"))
--		return 0;
--
--	if (device_property_read_string(dev, "dma-names", &dma_name))
--		dma_name = "rx";
--
--	return devm_iio_dmaengine_buffer_setup(indio_dev->dev.parent,
--					       indio_dev, dma_name);
--}
--
--static int adi_axi_adc_read_raw(struct iio_dev *indio_dev,
--				struct iio_chan_spec const *chan,
--				int *val, int *val2, long mask)
--{
--	struct adi_axi_adc_state *st = iio_priv(indio_dev);
--	struct adi_axi_adc_conv *conv = &st->client->conv;
--
--	if (!conv->read_raw)
--		return -EOPNOTSUPP;
--
--	return conv->read_raw(conv, chan, val, val2, mask);
--}
--
--static int adi_axi_adc_write_raw(struct iio_dev *indio_dev,
--				 struct iio_chan_spec const *chan,
--				 int val, int val2, long mask)
--{
--	struct adi_axi_adc_state *st = iio_priv(indio_dev);
--	struct adi_axi_adc_conv *conv = &st->client->conv;
--
--	if (!conv->write_raw)
--		return -EOPNOTSUPP;
--
--	return conv->write_raw(conv, chan, val, val2, mask);
--}
--
--static int adi_axi_adc_read_avail(struct iio_dev *indio_dev,
--				  struct iio_chan_spec const *chan,
--				  const int **vals, int *type, int *length,
--				  long mask)
--{
--	struct adi_axi_adc_state *st = iio_priv(indio_dev);
--	struct adi_axi_adc_conv *conv = &st->client->conv;
--
--	if (!conv->read_avail)
--		return -EOPNOTSUPP;
--
--	return conv->read_avail(conv, chan, vals, type, length, mask);
--}
--
--static int adi_axi_adc_update_scan_mode(struct iio_dev *indio_dev,
--					const unsigned long *scan_mask)
--{
--	struct adi_axi_adc_state *st = iio_priv(indio_dev);
--	struct adi_axi_adc_conv *conv = &st->client->conv;
--	unsigned int i;
--	int ret;
--
--	for (i = 0; i < conv->chip_info->num_channels; i++) {
--		if (test_bit(i, scan_mask))
--			ret = regmap_set_bits(st->regmap,
--					      ADI_AXI_REG_CHAN_CTRL(i),
--					      ADI_AXI_REG_CHAN_CTRL_ENABLE);
--		else
--			ret = regmap_clear_bits(st->regmap,
--						ADI_AXI_REG_CHAN_CTRL(i),
--						ADI_AXI_REG_CHAN_CTRL_ENABLE);
--		if (ret)
--			return ret;
--	}
--
--	return 0;
--}
--
--static struct adi_axi_adc_conv *adi_axi_adc_conv_register(struct device *dev,
--							  size_t sizeof_priv)
--{
--	struct adi_axi_adc_client *cl;
--	size_t alloc_size;
--
--	alloc_size = ALIGN(sizeof(struct adi_axi_adc_client), IIO_DMA_MINALIGN);
--	if (sizeof_priv)
--		alloc_size += ALIGN(sizeof_priv, IIO_DMA_MINALIGN);
--
--	cl = kzalloc(alloc_size, GFP_KERNEL);
--	if (!cl)
--		return ERR_PTR(-ENOMEM);
--
--	mutex_lock(&registered_clients_lock);
--
--	cl->dev = get_device(dev);
--
--	list_add_tail(&cl->entry, &registered_clients);
--
--	mutex_unlock(&registered_clients_lock);
--
--	return &cl->conv;
--}
--
--static void adi_axi_adc_conv_unregister(struct adi_axi_adc_conv *conv)
--{
--	struct adi_axi_adc_client *cl = conv_to_client(conv);
--
--	mutex_lock(&registered_clients_lock);
--
--	list_del(&cl->entry);
--	put_device(cl->dev);
--
--	mutex_unlock(&registered_clients_lock);
--
--	kfree(cl);
--}
--
--static void devm_adi_axi_adc_conv_release(void *conv)
--{
--	adi_axi_adc_conv_unregister(conv);
--}
--
--struct adi_axi_adc_conv *devm_adi_axi_adc_conv_register(struct device *dev,
--							size_t sizeof_priv)
-+static int axi_adc_enable(struct iio_backend *back)
- {
--	struct adi_axi_adc_conv *conv;
-+	struct adi_axi_adc_state *st = iio_backend_get_priv(back);
- 	int ret;
- 
--	conv = adi_axi_adc_conv_register(dev, sizeof_priv);
--	if (IS_ERR(conv))
--		return conv;
--
--	ret = devm_add_action_or_reset(dev, devm_adi_axi_adc_conv_release,
--				       conv);
-+	 ret = regmap_set_bits(st->regmap, ADI_AXI_REG_RSTN,
-+			       ADI_AXI_REG_RSTN_MMCM_RSTN);
- 	if (ret)
--		return ERR_PTR(ret);
-+		return ret;
- 
--	return conv;
-+	fsleep(10);
-+	return regmap_set_bits(st->regmap, ADI_AXI_REG_RSTN,
-+			       ADI_AXI_REG_RSTN_RSTN | ADI_AXI_REG_RSTN_MMCM_RSTN);
- }
--EXPORT_SYMBOL_NS_GPL(devm_adi_axi_adc_conv_register, IIO_ADI_AXI);
- 
--static const struct iio_info adi_axi_adc_info = {
--	.read_raw = &adi_axi_adc_read_raw,
--	.write_raw = &adi_axi_adc_write_raw,
--	.update_scan_mode = &adi_axi_adc_update_scan_mode,
--	.read_avail = &adi_axi_adc_read_avail,
--};
--
--static const struct adi_axi_adc_core_info adi_axi_adc_10_0_a_info = {
--	.version = ADI_AXI_PCORE_VER(10, 0, 'a'),
--};
--
--static struct adi_axi_adc_client *adi_axi_adc_attach_client(struct device *dev)
-+static void axi_adc_disable(struct iio_backend *back)
- {
--	const struct adi_axi_adc_core_info *info;
--	struct adi_axi_adc_client *cl;
--	struct device_node *cln;
--
--	info = of_device_get_match_data(dev);
--	if (!info)
--		return ERR_PTR(-ENODEV);
--
--	cln = of_parse_phandle(dev->of_node, "adi,adc-dev", 0);
--	if (!cln) {
--		dev_err(dev, "No 'adi,adc-dev' node defined\n");
--		return ERR_PTR(-ENODEV);
--	}
--
--	mutex_lock(&registered_clients_lock);
--
--	list_for_each_entry(cl, &registered_clients, entry) {
--		if (!cl->dev)
--			continue;
--
--		if (cl->dev->of_node != cln)
--			continue;
-+	struct adi_axi_adc_state *st = iio_backend_get_priv(back);
- 
--		if (!try_module_get(cl->dev->driver->owner)) {
--			mutex_unlock(&registered_clients_lock);
--			of_node_put(cln);
--			return ERR_PTR(-ENODEV);
--		}
--
--		get_device(cl->dev);
--		cl->info = info;
--		mutex_unlock(&registered_clients_lock);
--		of_node_put(cln);
--		return cl;
--	}
--
--	mutex_unlock(&registered_clients_lock);
--	of_node_put(cln);
--
--	return ERR_PTR(-EPROBE_DEFER);
-+	regmap_write(st->regmap, ADI_AXI_REG_RSTN, 0);
- }
- 
--static int adi_axi_adc_setup_channels(struct device *dev,
--				      struct adi_axi_adc_state *st)
-+static int axi_adc_data_format_set(struct iio_backend *back, unsigned int chan,
-+				   const struct iio_backend_data_fmt *data)
- {
--	struct adi_axi_adc_conv *conv = &st->client->conv;
--	int i, ret;
-+	struct adi_axi_adc_state *st = iio_backend_get_priv(back);
-+	u32 val;
- 
--	if (conv->preenable_setup) {
--		ret = conv->preenable_setup(conv);
--		if (ret)
--			return ret;
--	}
-+	if (!data->enable)
-+		return regmap_clear_bits(st->regmap,
-+					 ADI_AXI_REG_CHAN_CTRL(chan),
-+					 ADI_AXI_REG_CHAN_CTRL_FMT_EN);
- 
--	for (i = 0; i < conv->chip_info->num_channels; i++) {
--		ret = regmap_write(st->regmap, ADI_AXI_REG_CHAN_CTRL(i),
--				   ADI_AXI_REG_CHAN_CTRL_DEFAULTS);
--		if (ret)
--			return ret;
--	}
-+	val = FIELD_PREP(ADI_AXI_REG_CHAN_CTRL_FMT_EN, true);
-+	if (data->sign_extend)
-+		val |= FIELD_PREP(ADI_AXI_REG_CHAN_CTRL_FMT_SIGNEXT, true);
-+	if (data->type == IIO_BACKEND_OFFSET_BINARY)
-+		val |= FIELD_PREP(ADI_AXI_REG_CHAN_CTRL_FMT_TYPE, true);
- 
--	return 0;
-+	return regmap_update_bits(st->regmap, ADI_AXI_REG_CHAN_CTRL(chan),
-+				  ADI_AXI_REG_CHAN_CTRL_FMT_MASK, val);
- }
- 
--static int axi_adc_reset(struct adi_axi_adc_state *st)
-+static int axi_adc_chan_enable(struct iio_backend *back, unsigned int chan)
- {
--	int ret;
-+	struct adi_axi_adc_state *st = iio_backend_get_priv(back);
- 
--	ret = regmap_write(st->regmap, ADI_AXI_REG_RSTN, 0);
--	if (ret)
--		return ret;
--
--	mdelay(10);
--	ret = regmap_write(st->regmap, ADI_AXI_REG_RSTN,
--			   ADI_AXI_REG_RSTN_MMCM_RSTN);
--	if (ret)
--		return ret;
--
--	mdelay(10);
--	return regmap_write(st->regmap, ADI_AXI_REG_RSTN,
--			    ADI_AXI_REG_RSTN_RSTN | ADI_AXI_REG_RSTN_MMCM_RSTN);
-+	return regmap_set_bits(st->regmap, ADI_AXI_REG_CHAN_CTRL(chan),
-+			       ADI_AXI_REG_CHAN_CTRL_ENABLE);
- }
- 
--static void adi_axi_adc_cleanup(void *data)
-+static int axi_adc_chan_disable(struct iio_backend *back, unsigned int chan)
- {
--	struct adi_axi_adc_client *cl = data;
-+	struct adi_axi_adc_state *st = iio_backend_get_priv(back);
- 
--	put_device(cl->dev);
--	module_put(cl->dev->driver->owner);
-+	return regmap_clear_bits(st->regmap, ADI_AXI_REG_CHAN_CTRL(chan),
-+				 ADI_AXI_REG_CHAN_CTRL_ENABLE);
- }
- 
- static const struct regmap_config axi_adc_regmap_config = {
-@@ -344,33 +122,25 @@ static const struct regmap_config axi_adc_regmap_config = {
- 	.max_register = 0x0800,
- };
- 
-+static const struct iio_backend_ops adi_axi_adc_generic = {
-+	.enable = axi_adc_enable,
-+	.disable = axi_adc_disable,
-+	.data_format_set = axi_adc_data_format_set,
-+	.chan_enable = axi_adc_chan_enable,
-+	.chan_disable = axi_adc_chan_disable,
-+};
-+
- static int adi_axi_adc_probe(struct platform_device *pdev)
- {
--	struct adi_axi_adc_conv *conv;
--	struct iio_dev *indio_dev;
--	struct adi_axi_adc_client *cl;
- 	struct adi_axi_adc_state *st;
- 	void __iomem *base;
--	unsigned int ver;
-+	unsigned int ver, *expected_ver;
- 	int ret;
- 
--	cl = adi_axi_adc_attach_client(&pdev->dev);
--	if (IS_ERR(cl))
--		return PTR_ERR(cl);
--
--	ret = devm_add_action_or_reset(&pdev->dev, adi_axi_adc_cleanup, cl);
--	if (ret)
--		return ret;
--
--	indio_dev = devm_iio_device_alloc(&pdev->dev, sizeof(*st));
--	if (indio_dev == NULL)
-+	st = devm_kzalloc(&pdev->dev, sizeof(*st), GFP_KERNEL);
-+	if (!st)
- 		return -ENOMEM;
- 
--	st = iio_priv(indio_dev);
--	st->client = cl;
--	cl->state = st;
--	mutex_init(&st->lock);
--
- 	base = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(base))
- 		return PTR_ERR(base);
-@@ -380,9 +150,15 @@ static int adi_axi_adc_probe(struct platform_device *pdev)
- 	if (IS_ERR(st->regmap))
- 		return PTR_ERR(st->regmap);
- 
--	conv = &st->client->conv;
-+	expected_ver = (unsigned int *)device_get_match_data(&pdev->dev);
-+	if (!expected_ver)
-+		return -ENODEV;
- 
--	ret = axi_adc_reset(st);
-+	/*
-+	 * Force disable the core. Up to the frontend to enable us. And we can
-+	 * still read/write registers...
-+	 */
-+	ret = regmap_write(st->regmap, ADI_AXI_REG_RSTN, 0);
- 	if (ret)
- 		return ret;
- 
-@@ -390,37 +166,23 @@ static int adi_axi_adc_probe(struct platform_device *pdev)
- 	if (ret)
- 		return ret;
- 
--	if (cl->info->version > ver) {
-+	if (*expected_ver > ver) {
- 		dev_err(&pdev->dev,
- 			"IP core version is too old. Expected %d.%.2d.%c, Reported %d.%.2d.%c\n",
--			ADI_AXI_PCORE_VER_MAJOR(cl->info->version),
--			ADI_AXI_PCORE_VER_MINOR(cl->info->version),
--			ADI_AXI_PCORE_VER_PATCH(cl->info->version),
-+			ADI_AXI_PCORE_VER_MAJOR(*expected_ver),
-+			ADI_AXI_PCORE_VER_MINOR(*expected_ver),
-+			ADI_AXI_PCORE_VER_PATCH(*expected_ver),
- 			ADI_AXI_PCORE_VER_MAJOR(ver),
- 			ADI_AXI_PCORE_VER_MINOR(ver),
- 			ADI_AXI_PCORE_VER_PATCH(ver));
- 		return -ENODEV;
- 	}
- 
--	indio_dev->info = &adi_axi_adc_info;
--	indio_dev->name = "adi-axi-adc";
--	indio_dev->modes = INDIO_DIRECT_MODE;
--	indio_dev->num_channels = conv->chip_info->num_channels;
--	indio_dev->channels = conv->chip_info->channels;
--
--	ret = adi_axi_adc_config_dma_buffer(&pdev->dev, indio_dev);
-+	ret = devm_iio_backend_register(&pdev->dev, &adi_axi_adc_generic, st);
- 	if (ret)
- 		return ret;
- 
--	ret = adi_axi_adc_setup_channels(&pdev->dev, st);
--	if (ret)
--		return ret;
--
--	ret = devm_iio_device_register(&pdev->dev, indio_dev);
--	if (ret)
--		return ret;
--
--	dev_info(&pdev->dev, "AXI ADC IP core (%d.%.2d.%c) probed\n",
-+	dev_info(&pdev->dev, "AXI ADC IP core (%d.%.2d.%d) probed\n",
- 		 ADI_AXI_PCORE_VER_MAJOR(ver),
- 		 ADI_AXI_PCORE_VER_MINOR(ver),
- 		 ADI_AXI_PCORE_VER_PATCH(ver));
-@@ -428,6 +190,8 @@ static int adi_axi_adc_probe(struct platform_device *pdev)
- 	return 0;
- }
- 
-+static unsigned int adi_axi_adc_10_0_a_info = ADI_AXI_PCORE_VER(10, 0, 'a');
-+
- /* Match table for of_platform binding */
- static const struct of_device_id adi_axi_adc_of_match[] = {
- 	{ .compatible = "adi,axi-adc-10.0.a", .data = &adi_axi_adc_10_0_a_info },
+If checkpatch complains about undocumented compatible, could we perhaps use one
+that does actually exist, while still retaining the actual mockup examples?
 
--- 
-2.42.1
+I understand the eventual concern about somewhat wrongly documenting said device,
+but it's also true that this is documentation about something else that is not
+related to a specific device (so perhaps a "warning: this is for representation
+purposes only, and may contain properties that the devices pointed by the currently
+used compatible string may not accept" might work to avoid confusion?).
+
+>> 		reg = <0 0x06789abc 0 0xa123>;
+>> 		ranges = <0 0 0x6789abc 0x1000>;
+>> 		#dma-cells = <1>;
+>> 		clocks = <&clock_controller SOC_CLOCK>;
+>> 		clock-names = "dev-clk";
+>> 		#vendor,custom-cells = <2>;
+>> 		status = "disabled";
+>>
+>> 		child_node: child-class@100 {
+>> 			reg = <0x100 0x200>;
+>> 			/* ... */
+>> 		};
+>> 	};
+>>
+>> 	/* Board DTS */
+>>
+>> 	&device_node {
+>> 		device-supply = <&board_vreg1>;
+>> 		status = "okay";
+>> 	}
+>>
+>>> +
+>>> +	// Board DTS
+>>> +
+>>> +	&usb_1_hsphy {
+>>> +		clocks = <&tcsr TCSR_USB2_CLKREF_EN>;
+>>> +		clock-names = "ref";
+>>> +		status = "okay";
+>>> +	};
+>>> +
+>>> +
+>>> +Indentation
+>>> +-----------
+>>> +
+>>> +1. Use indentation according to :ref:`codingstyle`.
+>>> +2. For arrays spanning across lines, it is preferred to align the continued
+>>> +   entries with opening < from the first line.
+>>> +3. Each entry in arrays with multiple cells (e.g. "reg" with two IO addresses)
+>>> +   should be enclosed in <>.
+>>> +
+>>> +Example::
+>>> +
+>>> +	thermal-sensor@c271000 {
+>>> +		compatible = "qcom,sm8550-tsens", "qcom,tsens-v2";
+>>> +		reg = <0x0 0x0c271000 0x0 0x1000>,
+>>> +		      <0x0 0x0c222000 0x0 0x1000>;
+>>> +	};
+>>> +
+>>> +Organizing DTSI and DTSthat 
+>>> +-----------------------
+>>> +
+>>> +The DTSI and DTS files should be organized in a way representing the common
+>>> +(and re-usable) parts of the hardware.  Typically this means organizing DTSI
+>>
+>>                                           ^^^^
+>> There's a double space here, it was probably unintentional.
+> 
+> I think I used everywhere double-spaces. At least this was my intention,
+> so I will fix single-spaces :)
+> 
+
+Oh! Okay, yeah, that also works :-D
+
+Cheers,
+Angelo
 
 
