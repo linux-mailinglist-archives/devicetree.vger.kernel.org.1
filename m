@@ -1,152 +1,234 @@
-Return-Path: <devicetree+bounces-17581-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17582-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E53EB7F2DCD
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 13:56:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA1D37F2DE5
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 14:04:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 222CF1C216F8
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 12:56:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EAA3E1C20F7F
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 13:04:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79CD84776B;
-	Tue, 21 Nov 2023 12:55:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB35E4643D;
+	Tue, 21 Nov 2023 13:04:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="jtiMS4RH"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="T8W3wLrc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7925EA2;
-	Tue, 21 Nov 2023 04:55:55 -0800 (PST)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3ALA9glV006337;
-	Tue, 21 Nov 2023 12:55:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=oo/8E+Gw44yuR+d9JINVYw3emQyGUhU4h+anNeHC+3o=;
- b=jtiMS4RHnZsw/4afHOUMFex075JoXFsbz/UWxdCyRF2+u3GXU/KdWYjtlLWO5a3p3sKB
- 5bYkJu3w6f9DO/fotUu0KZ5/enXRswRNQ9iheeawQIb1Znof1IQcgZJLX8QRZhykmmVh
- yIWCmi7Oav3q8eJXOFClrJ5rOEHcCW5eP51XV+z5bx+yvrTYaisXZm1r2nOFXc1taadL
- gAGGkhc3Baf6RPMRYrV0X6bYbL+MJE16GEZXZXphLjFiIintJxgX/sNllEp7v9otml78
- ILX3r5Rr3vD8IYMzcM2yFG98cgHNnnWRlSvZxfuJxrAtPtzHHG9c+hnRuGHxEl1hDE3P eg== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ugge19whh-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 21 Nov 2023 12:55:48 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3ALCtl7P012651
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 21 Nov 2023 12:55:47 GMT
-Received: from [10.216.58.75] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 21 Nov
- 2023 04:55:41 -0800
-Message-ID: <0b627853-78fb-4320-84e4-f88695ac6a9e@quicinc.com>
-Date: Tue, 21 Nov 2023 18:25:37 +0530
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4DB2198;
+	Tue, 21 Nov 2023 05:04:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1700571853; x=1732107853;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=1njS1C34bEESwq6u9gdjSjWRen3a5LQ4SjPz74czID8=;
+  b=T8W3wLrc7PaC9xq3gpTqTXaS0cwOietZgKNjdc11CWExMpFOaErtqpcB
+   18BXjiZZb4FYj8qGdDwOVqBoF0JYt+3dpNRnVY3zPUME3Qn7Fk6s0+lgS
+   7SnUwKESgO7z00UkBChu0F8Ohqw3675zLoyVjCz6gwEPmc445RPZ8ah4P
+   HXUYsE88deBu/gDNOK4Aidv+9kB+41560JbpIysOnnjuGA60HJsMcSUrb
+   T93PlzPOpZ2STf4kYJj9aERLJ4W5xZ72Rmatp/XxInDkJJxhDbnNcUquX
+   MEXueHLJxZxFcA8ICRESaeOsY7R0ioo8GxwV6OKOgqODyNkNlWvpGzAXW
+   g==;
+X-CSE-ConnectionGUID: n5lORdHDSVi5fM04cW72JA==
+X-CSE-MsgGUID: EyPvwLNWTTii/cztB81BiQ==
+X-ThreatScanner-Verdict: Negative
+X-IronPort-AV: E=Sophos;i="6.04,215,1695711600"; 
+   d="asc'?scan'208";a="12315934"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 21 Nov 2023 06:04:01 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Tue, 21 Nov 2023 06:03:38 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex03.mchp-main.com (10.10.85.151)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Tue, 21 Nov 2023 06:03:35 -0700
+Date: Tue, 21 Nov 2023 13:03:07 +0000
+From: Conor Dooley <conor.dooley@microchip.com>
+To: Inochi Amaoto <inochiama@outlook.com>
+CC: Conor Dooley <conor@kernel.org>, Guo Ren <guoren@kernel.org>, Chen Wang
+	<unicorn_wang@outlook.com>, Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+	<conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, Palmer
+ Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Anup Patel
+	<anup@brainfault.org>, Samuel Holland <samuel.holland@sifive.com>, Jisheng
+ Zhang <jszhang@kernel.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>
+Subject: Re: [PATCH v4 1/2] dt-bindings: timer: thead,c900-aclint-mtimer:
+ separate mtime and mtimecmp regs
+Message-ID: <20231121-vocation-clunky-17e2c77e64fa@wendy>
+References: <20231120-banshee-traverse-554723cd9490@spud>
+ <IA1PR20MB4953D36ABE26822B62415500BBBBA@IA1PR20MB4953.namprd20.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] USB: dwc3: qcom: fix wakeup after probe deferral
-To: Johan Hovold <johan@kernel.org>, Andrew Halaney <ahalaney@redhat.com>
-CC: Johan Hovold <johan+linaro@kernel.org>,
-        Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Wesley Cheng
-	<quic_wcheng@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <stable@vger.kernel.org>
-References: <20231120161607.7405-1-johan+linaro@kernel.org>
- <20231120161607.7405-3-johan+linaro@kernel.org>
- <pgmtla6j3dshuq5zdxstszbkkssxcthtzelv2etcbrlstdw4nu@wixz6v5dfpum>
- <3ff65t36p6n3k7faw2z75t2vfi6rb5p64x7wqosetsksbhhwli@5xaxnm7zz4tu>
- <ZVx1wRefjNaN0byk@hovoldconsulting.com>
-Content-Language: en-US
-From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-In-Reply-To: <ZVx1wRefjNaN0byk@hovoldconsulting.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: yw1N5N56u4D570tpMa96h-cgcZ0q_GIE
-X-Proofpoint-ORIG-GUID: yw1N5N56u4D570tpMa96h-cgcZ0q_GIE
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-21_05,2023-11-21_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 impostorscore=0
- malwarescore=0 mlxscore=0 adultscore=0 mlxlogscore=479 phishscore=0
- priorityscore=1501 bulkscore=0 suspectscore=0 spamscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311060000 definitions=main-2311210100
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="L2eP2FSieLwYKUqy"
+Content-Disposition: inline
+In-Reply-To: <IA1PR20MB4953D36ABE26822B62415500BBBBA@IA1PR20MB4953.namprd20.prod.outlook.com>
 
-> 
->> I get that dwc3_qcom_enable_interrupts() limits the scope of what wakes us
->> up to what we expect given the current device (or lack thereof), but it
->> doesn't seem like you're really meant to play with the IRQ triggers,
->> or at least the warning you shared makes me think it is not a great idea
->> if you plan to probe the device ever again in the future.
->>
->> I'll post the current comment in dwc3_qcom_enable_interrupts() to
->> explain the "limits the scope of what wakes us up" a bit more clearly:
->>
->> 	/*
->> 	 * Configure DP/DM line interrupts based on the USB2 device attached to
->> 	 * the root hub port. When HS/FS device is connected, configure the DP line
->> 	 * as falling edge to detect both disconnect and remote wakeup scenarios. When
->> 	 * LS device is connected, configure DM line as falling edge to detect both
->> 	 * disconnect and remote wakeup. When no device is connected, configure both
->> 	 * DP and DM lines as rising edge to detect HS/HS/LS device connect scenario.
->> 	 */
-> 
-> Yes, that is how it is currently implemented and I intend to change that
-> shortly. I just wanted to get the fixes out first.
-> 
-> Specifically, I consider the current implementation to be broken in that
-> it generates wakeup events on disconnect which is generally not want you
-> want. Consider closing the lid of your laptop and disconnecting a USB
-> mouse before putting it in your backpack. Now it's no longer suspended
-> as you would expect it to be.
-> 
-> With the devictrees soon fixed, we could also do away with changing the
-> trigger type, but since this is how it was implemented initially we now
-> need to consider backward compatibility with the broken DTs. We've dealt
-> with that before, but yeah, getting things right from the start would
-> have been so much better.
-> 
+--L2eP2FSieLwYKUqy
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Hi Johan,
+On Tue, Nov 21, 2023 at 09:12:12AM +0800, Inochi Amaoto wrote:
+> >Yo,
+> >
+> >On Sat, Nov 18, 2023 at 03:10:26PM +0800, Inochi Amaoto wrote:
+> >> The timer registers of aclint don't follow the clint layout and can
+> >> be mapped on any different offset. As sg2042 uses separated timer
+> >> and mswi for its clint, it should follow the aclint spec and have
+> >> separated registers.
+> >>
+> >> The previous patch introduced a new type of T-HEAD aclint timer which
+> >> has clint timer layout. Although it has the clint timer layout, it
+> >> should follow the aclint spec and uses the separated mtime and mtimecmp
+> >> regs. So a ABI change is needed to make the timer fit the aclint spec.
+> >>
+> >> To make T-HEAD aclint timer more closer to the aclint spec, use
+> >> regs-names to represent the mtimecmp register, which can avoid hack
+> >> for unsupport mtime register of T-HEAD aclint timer.
+> >>
+> >> Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
+> >> Fixes: 4734449f7311 ("dt-bindings: timer: Add Sophgo sg2042 CLINT time=
+r")
+> >> Link: https://lists.infradead.org/pipermail/opensbi/2023-October/00569=
+3.html
+> >> Link: https://github.com/riscv/riscv-aclint/blob/main/riscv-aclint.adoc
+> >> ---
+> >>  .../timer/thead,c900-aclint-mtimer.yaml       | 42 ++++++++++++++++++-
+> >>  1 file changed, 41 insertions(+), 1 deletion(-)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/timer/thead,c900-aclint=
+-mtimer.yaml b/Documentation/devicetree/bindings/timer/thead,c900-aclint-mt=
+imer.yaml
+> >> index fbd235650e52..053488fb1286 100644
+> >> --- a/Documentation/devicetree/bindings/timer/thead,c900-aclint-mtimer=
+=2Eyaml
+> >> +++ b/Documentation/devicetree/bindings/timer/thead,c900-aclint-mtimer=
+=2Eyaml
+> >> @@ -17,7 +17,20 @@ properties:
+> >>        - const: thead,c900-aclint-mtimer
+> >>
+> >>    reg:
+> >> -    maxItems: 1
+> >> +    oneOf:
+> >> +      - items:
+> >> +          - description: MTIME Registers
+> >> +          - description: MTIMECMP Registers
+> >> +      - items:
+> >> +          - description: MTIMECMP Registers
+> >> +
+> >> +  reg-names:
+> >> +    oneOf:
+> >> +      - items:
+> >> +          - const: mtime
+> >> +          - const: mtimecmp
+> >> +      - items:
+> >> +          - const: mtimecmp
+> >>
+> >>    interrupts-extended:
+> >>      minItems: 1
+> >> @@ -28,8 +41,34 @@ additionalProperties: false
+> >>  required:
+> >>    - compatible
+> >>    - reg
+> >> +  - reg-names
+> >>    - interrupts-extended
+> >>
+> >> +allOf:
+> >> +  - if:
+> >> +      properties:
+> >> +        compatible:
+> >> +          contains:
+> >> +            const: thead,c900-aclint-mtimer
+> >
+> >Is this being the c900 compatible correct? You mention in your commit
+> >message that this split is done on the sg2042, but the rule is applied
+> >here for any c900 series "aclint". Do we know if this is a sophgo
+> >specific thing (or even sg2042 specific), or if it applies generally?
+> >
+>=20
+> This can be confirmed. The thead c900 series have no mtime support and
+> there is no evidence that they will implement it. So I think it is OK
+> to applied this restriction for the whole c900 series.
 
-  Just one query. Even if it wakes up after closing the lid and removing 
-the mouse, wouldn't pm suspend be triggered again later by the system 
-once it sees that usb is also good to be suspended again ? I presume a 
-laptop form factor would be having this facility of re-trigerring 
-suspend. Let me know if this is not the case.
+Okay, great.
 
-Also, the warning you are mentioning in [1] comes because this is a 
-laptop form factor and we have some firmware running (I don't know much 
-about ACPI and stuff) ?
+> >> +    then:
+> >> +      properties:
+> >> +        reg:
+> >> +          items:
+> >> +            - description: MTIMECMP Registers
+> >> +        reg-names:
+> >> +          items:
+> >> +            - const: mtimecmp
+> >
+> >> +    else:
+> >> +      properties:
+> >> +        reg:
+> >> +          items:
+> >> +            - description: MTIME Registers
+> >> +            - description: MTIMECMP Registers
+> >> +        reg-names:
+> >> +          items:
+> >> +            - const: mtime
+> >> +            - const: mtimecmp
+> >
+> >If it applies generally, I would probably just delete this, but unless
+> >someone can confirm this to be general, I'd probably leave the else
+> >clause and swap for the specific sg2042 compatible above.
+> >
+>=20
+> I suggest keeping this. By taking your advice, this binding has actually
+> become the binding for aclint draft.
 
-[1]: 
-https://lore.kernel.org/all/20231120161607.7405-3-johan+linaro@kernel.org/
+Right. It seemed to me from the reports (and the commit message) that this
+was a configuration choice made by sophgo for the IP.
 
-Regards,
-Krishna,
+> So I think it is better to preserve
+> this path, otherwise adding the mtime register seems meaningless.
+
+Yeah, I mistakenly thought that there were cases where we actually had
+systems with mtime and mtimecmp registers. I don't know if that was an
+assumption I made due to previous commit messages or from reading the
+opensbi threads, but clearly that is not the case.
+
+> But if
+> you think it is OK to add this when adding new compatible or converting it
+> to a generic binding.
+
+I'm a bit conflicted. Since this is c900 specific one part of me says
+leave it with only one "reg" entry as that is what the only hardware
+actually has & add "reg-names" to make lives easier when someone else
+implements the unratified spec (or it gets ratified for some reason).
+
+> Feel free to remove it.
+
+I might've applied the other binding as it was in a series adding
+initial support for the SoC, but usually these things go via the
+subsystem maintainers with a DT maintainer ack/review.
+
+--L2eP2FSieLwYKUqy
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZVyqiwAKCRB4tDGHoIJi
+0jluAP0fYsqgIge8uXa8G+bCn2bcUbFIsGX/HEtgQr05f7kUTgEA2P/xhfSpfcsh
+bBx01cguP1duoKHmUMurx4Wbd/lfXAU=
+=8YV4
+-----END PGP SIGNATURE-----
+
+--L2eP2FSieLwYKUqy--
 
