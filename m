@@ -1,338 +1,163 @@
-Return-Path: <devicetree+bounces-17378-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17384-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C71C37F253D
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 06:24:15 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 960F27F257A
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 06:47:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 251CEB21C28
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 05:24:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1857D1F250EA
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 05:47:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A405C18659;
-	Tue, 21 Nov 2023 05:24:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD154199D9;
+	Tue, 21 Nov 2023 05:47:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="fn5dq86g"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="W3U1NYMX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from IND01-MAX-obe.outbound.protection.outlook.com (mail-maxind01olkn2104.outbound.protection.outlook.com [40.92.102.104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE98CE8;
-	Mon, 20 Nov 2023 21:24:04 -0800 (PST)
+Received: from EUR01-VE1-obe.outbound.protection.outlook.com (mail-ve1eur01on2075.outbound.protection.outlook.com [40.107.14.75])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26619CA;
+	Mon, 20 Nov 2023 21:47:29 -0800 (PST)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=WSClK6lc4+ZyiQvhTiFhTnX/7Q8TSRLA8oqYi0krtMzPQb7qXoY+Z9ufegEg1AjJCzLaikxrBc8Y1Ht+qNeZRxc6sCxK88+8nRvBUQs+zwpyMcFYhkHKciP/4zjIDbbh4GvN5s5iqL6zjlT+xcmS7/ng/VnwTWx8vCItKMBkBqERRxliGxstpmfm4qfaxn8g6miRJV3q2VksQuYTv8JMF0WTQyWwtbgVSpC0SNpLGfDeDJPF49pzfOqMj+R41/unEAMMcwAml1vdgeErKkcr0mttGLZfbVXE5qJArJwsDAaps8ptsSj08pVNX7hbvyEwlnmBzCxzu1DPjUfc6Nh18A==
+ b=lT6k3yIG9uhzIVyJXhHWSEwj+6RiNGi1PZuLQoehLMAe3lBsFEwCkxqKVS9yf44ty+99iE+TjXosSnzMsMcdf/r/HWstOFvTSslrPdmYjNEXHF5FMIdBJQvPv3U0tWwZysXS0J9eYRiLCbFbrMnSO8KDyqyxmZ1Xzs0RpwxRcymYdjh+16PECB+BghwEBXO5rAWxtOdOZIissCdbQ/JLUEqy6oj2fU0kTryADqm4CgiwL8bJrt9juaoCailftYbt/N786gIRalUpaf9ziP9Dw8ZZ5TMK8WMPcKTiCiDyA/P4ALPZ8Sda1Y08HUOSSjViKcqBOMbDY8Zb8DyMDMyPOw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xb6IfHB18/0TQjWknL4Vp9aEMsi+NKpkMvIcgEzHEoE=;
- b=e75NvCMhhJkSgXdwEBkxUjGDGTRnbLLj/Dp/xvrBAbVcMbEe6mDpdWyAKkgfzvYY2xmYSXkfUff85IultuP4k3NK2/it8zxmuyUPsM6IDxzX5G6vfTJ9u8yJiQw9aPAPIi5OVLK2GHE4wZgUoUKm8j1LYsk9ysxhT9PA8ivr2shv+hSvhjZ7haqmrL1RzxmX3T98aIj++BbsCVsiNRW5k3Rodgvm5kSsexiJXHCjwKFqKitVIdZN8bJQKA3ublmuNBiQfBJrrmFk7SdbxTCN7gKW5mZS2cL+j8lI6XJ2oPFRBLyADg8RaF8ukC6+/zkHUVqWcN8UN3sF+ftDyth5Og==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
+ bh=oBxzKScwpsOqEpewethyKY1noRZAj5cDJaCj7/Qjc+g=;
+ b=HUsMBncYKC+tFEvJK07B0uClGCCaRKniLzaT4H+Nodzs04gUPnvL1gUWYsl4c7C8i+3v2Lz4z7e7RU3RWzV5HSeqpOCQrG2m5fs3HlumnwC1KOajqA4DO07uPHn8SVeWDJchosfQggEMtkIIJ6EeOk6cJZNZRHCmRHRu5t6JmswmtUba8aXllEo4Mjf85C9yfCBYAQTWo5PIHzr70uV9PRsDy24yiA5bPGBqYhJbMs5n2IRxr5+hMJLMVunhlSzXPxgnMRH3eNUqfsssK23DeA1AXGHX0OrDo4Dj8PFqk8MQO7FTAH70bRqu7z5OUiqqFHEQ6JrWi6qzAzouPbT4Yg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xb6IfHB18/0TQjWknL4Vp9aEMsi+NKpkMvIcgEzHEoE=;
- b=fn5dq86g16/Hng2LzhsdxXmYNPAZC5Gw+Ulkx/iq9QzlhXS5kmi83FepHtriqJnJbGn67rPcH2S4GdRytbMpMZdcL44uld1/d/gQUelDSwqUr3Qex4/bB7qAD84CQioFP1M7u5FSY6cqY/q7PEQwkPtlMb82mRFz8HA7ihhIMoYGkXfaoDZriyJb2f8SqJ9xR3revUa1X6gw/Zz7kQ9GVfy4X2iMtxrcPoayVoqBo6OBzhYpHfKVmZL8BjfnL09sOAJWydVtTg2emz9rhWJTy5dKgsJhqp1Fg+EMlz4b5D4lEcDB6noxnXCpGfqRPv3doxmz1bPpRpxTmeSbQbKosw==
-Received: from PN3P287MB0324.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:d6::7) by
- MA0P287MB1708.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:fe::10) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7002.28; Tue, 21 Nov 2023 05:23:55 +0000
-Received: from PN3P287MB0324.INDP287.PROD.OUTLOOK.COM
- ([fe80::5a24:3fd5:dd38:3ecd]) by PN3P287MB0324.INDP287.PROD.OUTLOOK.COM
- ([fe80::5a24:3fd5:dd38:3ecd%4]) with mapi id 15.20.7002.026; Tue, 21 Nov 2023
- 05:23:55 +0000
-Message-ID:
- <PN3P287MB0324E7BD72776FBBC79D2E4AFEBBA@PN3P287MB0324.INDP287.PROD.OUTLOOK.COM>
-Date: Tue, 21 Nov 2023 13:23:53 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/2] riscv: dts: sophgo: separate sg2042 mtime and
- mtimecmp to fit aclint format
-To: Inochi Amaoto <inochiama@outlook.com>, Chao Wei <chao.wei@sophgo.com>,
- Conor Dooley <conor@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Xiaoguang Xing <xiaoguang.xing@sophgo.com>, Guo Ren <guoren@kernel.org>
-Cc: Anup Patel <anup@brainfault.org>,
- Samuel Holland <samuel.holland@sifive.com>,
- Jisheng Zhang <jszhang@kernel.org>, linux-riscv@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <IA1PR20MB4953C82499C5D81D2C6A020BBBB6A@IA1PR20MB4953.namprd20.prod.outlook.com>
- <IA1PR20MB4953C6D3C913E4D18B3E6344BBB6A@IA1PR20MB4953.namprd20.prod.outlook.com>
-From: Chen Wang <unicorn_wang@outlook.com>
-In-Reply-To: <IA1PR20MB4953C6D3C913E4D18B3E6344BBB6A@IA1PR20MB4953.namprd20.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TMN: [PQWB9DaVwIWMLfRswRqUSmBcBVJ81czq]
-X-ClientProxiedBy: SG2PR04CA0213.apcprd04.prod.outlook.com
- (2603:1096:4:187::11) To PN3P287MB0324.INDP287.PROD.OUTLOOK.COM
- (2603:1096:c01:d6::7)
-X-Microsoft-Original-Message-ID:
- <3b6ac5a9-ecc5-490b-879b-fab564557922@outlook.com>
+ bh=oBxzKScwpsOqEpewethyKY1noRZAj5cDJaCj7/Qjc+g=;
+ b=W3U1NYMXKQ4cxccbk2U1OFQOtr93jkutSUV8PNsK3fdUkbHSvz42QCSsqfO1BQD9kTWs70f4vmXJWIC+5ZQdBbV1o/ClYWsRyejAeuhJwJMQVW6xh8eDrIXhC6dTYfntxCntdG2vaXq/GM+L9YsBY8zhG41vEqiq+0OzMKfeOcY=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DB9PR04MB9498.eurprd04.prod.outlook.com (2603:10a6:10:360::21)
+ by AM7PR04MB6885.eurprd04.prod.outlook.com (2603:10a6:20b:10d::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7025.17; Tue, 21 Nov
+ 2023 05:47:25 +0000
+Received: from DB9PR04MB9498.eurprd04.prod.outlook.com
+ ([fe80::dffc:1d:4398:7768]) by DB9PR04MB9498.eurprd04.prod.outlook.com
+ ([fe80::dffc:1d:4398:7768%6]) with mapi id 15.20.7025.015; Tue, 21 Nov 2023
+ 05:47:24 +0000
+From: Chancel Liu <chancel.liu@nxp.com>
+To: lgirdwood@gmail.com,
+	broonie@kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	shengjiu.wang@gmail.com,
+	Xiubo.Lee@gmail.com,
+	festevam@gmail.com,
+	nicoleotsuka@gmail.com,
+	perex@perex.cz,
+	tiwai@suse.com,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	alsa-devel@alsa-project.org,
+	linux-kernel@vger.kernel.org,
+	linuxppc-dev@lists.ozlabs.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Cc: Chancel Liu <chancel.liu@nxp.com>
+Subject: [PATCH v5 1/2] ASoC: dt-bindings: sound-card-common: List sound widgets ignoring system suspend
+Date: Tue, 21 Nov 2023 13:25:11 +0800
+Message-Id: <20231121052512.20235-1-chancel.liu@nxp.com>
+X-Mailer: git-send-email 2.17.1
+Content-Type: text/plain
+X-ClientProxiedBy: AM0P190CA0018.EURP190.PROD.OUTLOOK.COM
+ (2603:10a6:208:190::28) To DB9PR04MB9498.eurprd04.prod.outlook.com
+ (2603:10a6:10:360::21)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PN3P287MB0324:EE_|MA0P287MB1708:EE_
-X-MS-Office365-Filtering-Correlation-Id: 42b7283f-c936-4a55-fe81-08dbea520e4e
+X-MS-TrafficTypeDiagnostic: DB9PR04MB9498:EE_|AM7PR04MB6885:EE_
+X-MS-Office365-Filtering-Correlation-Id: 31d868bd-7698-4647-264b-08dbea555650
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info:
-	o/WBrUozWE1J0dLVXL1xTnYqKSYh2FIdipE8sQfXyQPEb2l90a++FRf0/kCgG6IWA1Hc66kVcM/wU4FDEGO8LgYOeZl7fLIGQ8FnA/L6InPfhrVlFVRjxTtCCiLEKI0KtnRhWyGlFmJyaEPsnXVRflSoABsX6HEwD6NCPe9e1J2SqCwYiQxeYzWooqq9ad6GQ4pZ7pEmRYXS5eYP28gWWJtTtL81WxjzysTIJeTozK6R0rgd7qxN+uN9PusJN7dRBqbsQqOJHrOFoEn7p0pTbiieUGcJ/0i8S8Dt71sjFXfcUiolm5W+jrMztZtRKFDaTSOwPHred90NnQ3AD6kMbBKFxLyqNiNsdwlFO0IruBUQBGRAl1lWBOoOk7FmpCO763qQqbw8Kb60V83QfQrdHCCBWe7jok//kpIK1IymrAPr2JXAX2tmQYUA1qlIA3A0xnJ7UCReFR4szgBwD1q99XHhSEVapbM02btVKtmnXfUP6fnvfHLwv3B9cIvmZSgr37jAJPWIpEQVw/JpYAAqB577Kga+1NrQxqrNMTz/1zX7S3G69qCf86Z0a5ahKPcC
+	B2zN5h7j1W2A7qjGRSArje5qKL9qwsET+wlseqX0YBM3u71i0bXWcNuxByE62zM9dil1ER0+Ol25MGgbQkF+7t1rCStQmKZJdHjV7/GAjq2VWVlLRlsNQvzSomyj8q5T1BpeI1QZWyNmLmXHsdz6357ecjvrsZSfiOauePoUaL27V/VkntYE7MyhJ9mw9XKEH/Aie0ONOT7H+Cvt0iPJlUb7R1kCcMRu0jc0M38bno5d5iHl3w63xYlrgr60nj+NOeHmqBKjbGFkamSmbQQ331M9YV3UrotXjatYAy72AeLet9ENpt4ULb5qhpFjMz+gcXamQGA7r3RNTsx8494vCaz3ADG+r5Z3rOAaCjH4Axt2g8dDWGK5bf4tM1OzM1zRewbcjP3JH5RWuQPQa1XYr6OotEQomofzpmaeZo2gx3D68D0ePwkPn3Vms32PTp5GSqCu7/SqNDuJps8Fd+KrMgqKStitrYMCp+ui/1RNthyKQN/mY75X94CiHFyiirL63hhA5L7ogt+MCmMB+TqKKTbyGjghz9rd2zZMzpdbnYUzlwPEbFhyuuDHqWMVTVhjveD2FiMpsXmKlJvdgt/L2CkXE/6z+N2AH9isDft+MO/NfbbNVbU33S2gvS1Gi74mdaaNIXz4WR5D9XEeaSKycw==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB9498.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(136003)(39860400002)(396003)(376002)(346002)(230922051799003)(64100799003)(451199024)(1800799012)(186009)(316002)(66946007)(66476007)(66556008)(6506007)(52116002)(36756003)(6512007)(6666004)(478600001)(2616005)(26005)(1076003)(6486002)(38350700005)(921008)(38100700002)(83380400001)(86362001)(44832011)(2906002)(15650500001)(5660300002)(7416002)(8936002)(41300700001)(4326008)(8676002);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?Z1k2aEUxZ2tMMjRiQXQrUVQ5dGFUY2tORE9NeUJvUVllTEtwN285dmtzWlBS?=
- =?utf-8?B?Rjh0L1Y1MWluOU9JNCtqSmZoZXBFdXRUdDFKVG9yRnNPQ2grOWFHOU1XTUNM?=
- =?utf-8?B?ZjJTMndiTUFyNmJaS2hmclprSUFjSUwyM3RsaXRSQTE3ZFJpdFYxVDNyUmtB?=
- =?utf-8?B?SEhNSXdKek9tcGlwbWVEYVZWNFZxRm1hMnJrL05CMVBwQUhwemV6VDQxRUpz?=
- =?utf-8?B?bzVnQVNJaVU1bldxcGdSV2FHdStPL0NoVkE2akF5cVpQaWJRTXJGZzR6SlNm?=
- =?utf-8?B?YitWbzhuYmFTUk01V2Z4VUFOYWVTYWZXckdXV3lHaStYMGNaOHpBVjQ1Sjhr?=
- =?utf-8?B?TXNKYWQ4SGxGNFdVU0pVQWZhR2lJMEQ5bzhiQzFBS0lsKzI4akR3MW1zMmlW?=
- =?utf-8?B?d2wyclptOVZkSkVPbTZ6UWF5UEMyY2wvUnJNTVY1ZlVaVFFDbGVMWnkzdjNp?=
- =?utf-8?B?VUtpejRUQXc3NGthWWhZS0hWbUl0ZnZWOW1ycGRvdllpVk5hcHFvV3ZadzZt?=
- =?utf-8?B?N2JMR1N4d1J1RlQzem9tR0RNWUlvdzF6b2wvR1JCcTJFVms4Y0FiRDY4M25t?=
- =?utf-8?B?bWxrZXVHbURBaXdzdkQrZGJ2MVNURG9LRDRDWVdqQktyL3EwRVhkb0hCVzlU?=
- =?utf-8?B?MG44ZnRFQWxGTHlRUVZ1bGpFbEp2ZWoxWm4rZnByNFh5MXlsSHdkMXdwL0dO?=
- =?utf-8?B?WGdLNEFzQkVPWXhaTllYM2xPWWpHRkNWbHN3bmp4WlpZamZoRHRqREJYKzNi?=
- =?utf-8?B?OTM5ZVFnSmRYVjduWnR2L205Sjhtc29DYVFWRE1NTDh2RXQvZFdhOHNqdmg5?=
- =?utf-8?B?UW1EL0pTNzFmN3JDUFVSbFErRmM4Tjl2M2ZvNUxjSHc0Z1kvUEpvWlZodkR6?=
- =?utf-8?B?MFU3Z0svbEJjcW9sR1U4QTZ1eUtMaEFXcU5nZUxwckNLNXhrVW9Pb1lJMDQz?=
- =?utf-8?B?MnZ2YnpabjhhamM0MFE2bWxOVldGd05lRGwxREFwbTgzT29JUFBtOE1UMkhs?=
- =?utf-8?B?VFlHMjRybmxKa3FkRDhoa3ZKdXNrNFVVRWFXWElKcWoxS2d3N3YyUnFGa1Rr?=
- =?utf-8?B?cUIzRklzMkdSSHBJZEFSQ2RLVjY0WUJCVGx6UlpDZUlyVlo3Tmk2MDZlTSts?=
- =?utf-8?B?QS9IZjVzeXk0RzVWN3NvZUJscUhaeUx4ZktxeDhZbjRyMmpvbW8wMzArYmt5?=
- =?utf-8?B?d3IyWVFLR3IvTERBQk1TenRQSHpaLysvd2hJSDZ4QTFVdmI5V0ptaWR3VGlH?=
- =?utf-8?B?U1lrMWtkVVdRa0d4eE5HL0lnVXhJZDBiNndMemhUZkhIMWpydVA3ZXF1NUNj?=
- =?utf-8?B?OHpid0ZMY0VEYThudUNjTzZ3My9ITHZBU1ZKZUJxQUVWTTFScXdSdHVBYTVp?=
- =?utf-8?B?dTNSdVFMZGZXYTB1ZXJBZHo4bnV3dDR6T1JybVFyZ0htVjNPR1FvRkZyTGJB?=
- =?utf-8?B?WVdtcmdrTXpLT3pySGJSVThYbzE0OStuV2xLeDlnaFIwZGhUdW1JWGRMOTlU?=
- =?utf-8?B?MkVrOEQvNTJneG5QZVFvbEtkeW1qYkRWOWlsOHd2dHZGVkZISW9zek9iZ3Vq?=
- =?utf-8?B?RnZTcUlxRzFsWmkrYTQzWDR4UDFRbTBybEF1eWJCK0VDWXg4dVdxaDVWR1ZE?=
- =?utf-8?Q?D0akhX1RFy+c7u12aqAswYB9vWTOf4yqcasvoK5LgyBE=3D?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 42b7283f-c936-4a55-fe81-08dbea520e4e
-X-MS-Exchange-CrossTenant-AuthSource: PN3P287MB0324.INDP287.PROD.OUTLOOK.COM
+	=?us-ascii?Q?Bf8CpCisnhkTYA+gr15i9TBvTfEz1V1CYS25bln0awEZlXvo0KFFhfHwygYI?=
+ =?us-ascii?Q?cupB89V/ieO3VO0jrMnnQXXr2cjdCo+dK198ahMNUEuGWbj7wLBhXjOnW/No?=
+ =?us-ascii?Q?adpSWHD9FKuhXfz/IASKvRRrHpxKwHs6fUR4HvvZcq2FU+mw600cJ14CBLTN?=
+ =?us-ascii?Q?Bb5MpCZx7zXilEK9dpQEO/P0M+Us5WUmflVLEKiF63iDVDgyejRUQrYafv/0?=
+ =?us-ascii?Q?htjJiTC6cnhVPnYOUaJILJWGoCcvQnwsCLtpib7BJPIaDO6LUIS0nNZV2uXP?=
+ =?us-ascii?Q?nmEcjmrK68pNDom/mDC1uiEK6d6sara9lBlQaThJvixt/hW/HHOy6GX/uWL6?=
+ =?us-ascii?Q?3QuB5DD2E6OXkqE30WAZloplfUmjRM9HuRKuBtfY5k9obwSt10xPSUyUMgCP?=
+ =?us-ascii?Q?rIxB+f0u8cJBus05vNXVUCeGvMjFs3IzBPMLNc8ISCiRVDi+gL9Td1anmsVL?=
+ =?us-ascii?Q?lZxLANBNYZjyjrrj1MQ/Z9X+v1rxvcyWkggE5rpo4Lq2tBOeUwxn1zvttyKc?=
+ =?us-ascii?Q?RafUsgwKsgUB3G4ifpe2dTEzip2r+J7zFXqDTZG6wshW6yT7OlAOqv+KMs4+?=
+ =?us-ascii?Q?uatB77/JhV0DY7YaiGArHFVLFcczQVpEfgnqIaT+JFqUKZ9i/4taIn0E7HLw?=
+ =?us-ascii?Q?SFTXNNdrf1XLwiJa1J0YYbdZCroAVYgEE8x8JkteEHtodNowO46tNy4pxfmG?=
+ =?us-ascii?Q?GJMEVhTTj9bumDXJSuXtr/zYVdDc3JgK5bZE70LEegDlw3S25NMDeSF5voAw?=
+ =?us-ascii?Q?WxPZAq8/oXkQes0KkdeF6o0zw83kRECUG/iCvcBZf0ID5QUXslqE/NdxwTJI?=
+ =?us-ascii?Q?5gBnyYAZZjDqvXJ7pruIyFm0m/+eJBNa0C9aoQspZgLsTJBR+ofzNQmYWFVj?=
+ =?us-ascii?Q?8LkeMCjGcUG/KpbE5UDkOspsaegeeBllIoBEhIm52GsYo18VRLH59Krx941k?=
+ =?us-ascii?Q?5dpViquBMEyp0OJXyP9UlGMsmFWCZmYSOCzq2ynmFq6yCL0US5WIbG/o+yDU?=
+ =?us-ascii?Q?F2NaC6J8ziIIOg0yxlq67fEibAIFg2+lS1OvhPLv8n/w7Wa5DyX8ax52DJBW?=
+ =?us-ascii?Q?ChMThdmnRcRkk9beFS9a7AVpjtecX1FeZxJCpTvLNRMQRg+pLTmhnJ8X+hq/?=
+ =?us-ascii?Q?LHTZVXaZP5svPo3O47XhgBYO+PpkqiZqzS3JDMnr9k1MnqZluuAGI7CpZtVp?=
+ =?us-ascii?Q?reF8zlhhy7EAYm5QNZ+Jw9Mq14B+PQeRwGTit8HGCyXarLeId8hSjLRPEIJD?=
+ =?us-ascii?Q?GAOuvIXueOYcpJQ4wlcFARQMkESnaQrbITaDwJrPLQuXA/7MoCq+HCf4joHK?=
+ =?us-ascii?Q?xbrRq+TWDo68GemKtmJ6GjRcWmzhdR+QidJS2jRWY7ff4mlDZSDiBPi/e3TD?=
+ =?us-ascii?Q?bcfuvvL1a4gzdFN8s1sIfh84XfVeIvtGiNIDmNyWf/ZPX00JI0XphUWRfOse?=
+ =?us-ascii?Q?taqi8gtzSPvIw5A5GQE+YjudOcN4gRfrF2amWY2fIh4nJJYziVBxOnIvOYcT?=
+ =?us-ascii?Q?2lIZtTq2P1qL7Vdta+jI/kPWZDzYwekGNk6CpJKvqKOan4HLAXmSlIYgSf1W?=
+ =?us-ascii?Q?i1byF//bqdr/yd47iENAiMultr8KYvQYPcSlUpO4?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 31d868bd-7698-4647-264b-08dbea555650
+X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9498.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Nov 2023 05:23:55.6377
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Nov 2023 05:47:24.9002
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MA0P287MB1708
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7oZFEkkm/FgAgevC/qpdsNG8GpfUkYqC+dVM2pZMQenv4OehKjNTOLVp2CpDJNuhWZXBzZFkZ1H8s8+zSwZBdQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR04MB6885
 
+Add a property to list audio sound widgets which are marked ignoring
+system suspend. Paths between these endpoints are still active over
+suspend of the main application processor that the current operating
+system is running.
 
-On 2023/11/18 15:10, Inochi Amaoto wrote:
-> Change the timer layout in the dtb to fit the format that needed by
-> the SBI.
->
-> Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
-> Fixes: 967a94a92aaa ("riscv: dts: add initial Sophgo SG2042 SoC device tree")
-> ---
->   arch/riscv/boot/dts/sophgo/sg2042.dtsi | 80 +++++++++++++++-----------
->   1 file changed, 48 insertions(+), 32 deletions(-)
->
-> diff --git a/arch/riscv/boot/dts/sophgo/sg2042.dtsi b/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-> index 93256540d078..ead1cc35d88b 100644
-> --- a/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-> +++ b/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-> @@ -93,144 +93,160 @@ clint_mswi: interrupt-controller@7094000000 {
->   					      <&cpu63_intc 3>;
->   		};
->
-> -		clint_mtimer0: timer@70ac000000 {
-> +		clint_mtimer0: timer@70ac004000 {
->   			compatible = "sophgo,sg2042-aclint-mtimer", "thead,c900-aclint-mtimer";
-> -			reg = <0x00000070 0xac000000 0x00000000 0x00007ff8>;
-> +			reg = <0x00000070 0xac004000 0x00000000 0x0000c000>;
-> +			reg-names = "mtimecmp";
->   			interrupts-extended = <&cpu0_intc 7>,
->   					      <&cpu1_intc 7>,
->   					      <&cpu2_intc 7>,
->   					      <&cpu3_intc 7>;
->   		};
->
-> -		clint_mtimer1: timer@70ac010000 {
-> +		clint_mtimer1: timer@70ac014000 {
->   			compatible = "sophgo,sg2042-aclint-mtimer", "thead,c900-aclint-mtimer";
-> -			reg = <0x00000070 0xac010000 0x00000000 0x00007ff8>;
-> +			reg = <0x00000070 0xac014000 0x00000000 0x0000c000>;
-> +			reg-names = "mtimecmp";
->   			interrupts-extended = <&cpu4_intc 7>,
->   					      <&cpu5_intc 7>,
->   					      <&cpu6_intc 7>,
->   					      <&cpu7_intc 7>;
->   		};
->
-> -		clint_mtimer2: timer@70ac020000 {
-> +		clint_mtimer2: timer@70ac024000 {
->   			compatible = "sophgo,sg2042-aclint-mtimer", "thead,c900-aclint-mtimer";
-> -			reg = <0x00000070 0xac020000 0x00000000 0x00007ff8>;
-> +			reg = <0x00000070 0xac024000 0x00000000 0x0000c000>;
-> +			reg-names = "mtimecmp";
->   			interrupts-extended = <&cpu8_intc 7>,
->   					      <&cpu9_intc 7>,
->   					      <&cpu10_intc 7>,
->   					      <&cpu11_intc 7>;
->   		};
->
-> -		clint_mtimer3: timer@70ac030000 {
-> +		clint_mtimer3: timer@70ac034000 {
->   			compatible = "sophgo,sg2042-aclint-mtimer", "thead,c900-aclint-mtimer";
-> -			reg = <0x00000070 0xac030000 0x00000000 0x00007ff8>;
-> +			reg = <0x00000070 0xac034000 0x00000000 0x0000c000>;
-> +			reg-names = "mtimecmp";
->   			interrupts-extended = <&cpu12_intc 7>,
->   					      <&cpu13_intc 7>,
->   					      <&cpu14_intc 7>,
->   					      <&cpu15_intc 7>;
->   		};
->
-> -		clint_mtimer4: timer@70ac040000 {
-> +		clint_mtimer4: timer@70ac044000 {
->   			compatible = "sophgo,sg2042-aclint-mtimer", "thead,c900-aclint-mtimer";
-> -			reg = <0x00000070 0xac040000 0x00000000 0x00007ff8>;
-> +			reg = <0x00000070 0xac044000 0x00000000 0x0000c000>;
-> +			reg-names = "mtimecmp";
->   			interrupts-extended = <&cpu16_intc 7>,
->   					      <&cpu17_intc 7>,
->   					      <&cpu18_intc 7>,
->   					      <&cpu19_intc 7>;
->   		};
->
-> -		clint_mtimer5: timer@70ac050000 {
-> +		clint_mtimer5: timer@70ac054000 {
->   			compatible = "sophgo,sg2042-aclint-mtimer", "thead,c900-aclint-mtimer";
-> -			reg = <0x00000070 0xac050000 0x00000000 0x00007ff8>;
-> +			reg = <0x00000070 0xac054000 0x00000000 0x0000c000>;
-> +			reg-names = "mtimecmp";
->   			interrupts-extended = <&cpu20_intc 7>,
->   					      <&cpu21_intc 7>,
->   					      <&cpu22_intc 7>,
->   					      <&cpu23_intc 7>;
->   		};
->
-> -		clint_mtimer6: timer@70ac060000 {
-> +		clint_mtimer6: timer@70ac064000 {
->   			compatible = "sophgo,sg2042-aclint-mtimer", "thead,c900-aclint-mtimer";
-> -			reg = <0x00000070 0xac060000 0x00000000 0x00007ff8>;
-> +			reg = <0x00000070 0xac064000 0x00000000 0x0000c000>;
-> +			reg-names = "mtimecmp";
->   			interrupts-extended = <&cpu24_intc 7>,
->   					      <&cpu25_intc 7>,
->   					      <&cpu26_intc 7>,
->   					      <&cpu27_intc 7>;
->   		};
->
-> -		clint_mtimer7: timer@70ac070000 {
-> +		clint_mtimer7: timer@70ac074000 {
->   			compatible = "sophgo,sg2042-aclint-mtimer", "thead,c900-aclint-mtimer";
-> -			reg = <0x00000070 0xac070000 0x00000000 0x00007ff8>;
-> +			reg = <0x00000070 0xac074000 0x00000000 0x0000c000>;
-> +			reg-names = "mtimecmp";
->   			interrupts-extended = <&cpu28_intc 7>,
->   					      <&cpu29_intc 7>,
->   					      <&cpu30_intc 7>,
->   					      <&cpu31_intc 7>;
->   		};
->
-> -		clint_mtimer8: timer@70ac080000 {
-> +		clint_mtimer8: timer@70ac084000 {
->   			compatible = "sophgo,sg2042-aclint-mtimer", "thead,c900-aclint-mtimer";
-> -			reg = <0x00000070 0xac080000 0x00000000 0x00007ff8>;
-> +			reg = <0x00000070 0xac084000 0x00000000 0x0000c000>;
-> +			reg-names = "mtimecmp";
->   			interrupts-extended = <&cpu32_intc 7>,
->   					      <&cpu33_intc 7>,
->   					      <&cpu34_intc 7>,
->   					      <&cpu35_intc 7>;
->   		};
->
-> -		clint_mtimer9: timer@70ac090000 {
-> +		clint_mtimer9: timer@70ac094000 {
->   			compatible = "sophgo,sg2042-aclint-mtimer", "thead,c900-aclint-mtimer";
-> -			reg = <0x00000070 0xac090000 0x00000000 0x00007ff8>;
-> +			reg = <0x00000070 0xac094000 0x00000000 0x0000c000>;
-> +			reg-names = "mtimecmp";
->   			interrupts-extended = <&cpu36_intc 7>,
->   					      <&cpu37_intc 7>,
->   					      <&cpu38_intc 7>,
->   					      <&cpu39_intc 7>;
->   		};
->
-> -		clint_mtimer10: timer@70ac0a0000 {
-> +		clint_mtimer10: timer@70ac0a4000 {
->   			compatible = "sophgo,sg2042-aclint-mtimer", "thead,c900-aclint-mtimer";
-> -			reg = <0x00000070 0xac0a0000 0x00000000 0x00007ff8>;
-> +			reg = <0x00000070 0xac0a4000 0x00000000 0x0000c000>;
-> +			reg-names = "mtimecmp";
->   			interrupts-extended = <&cpu40_intc 7>,
->   					      <&cpu41_intc 7>,
->   					      <&cpu42_intc 7>,
->   					      <&cpu43_intc 7>;
->   		};
->
-> -		clint_mtimer11: timer@70ac0b0000 {
-> +		clint_mtimer11: timer@70ac0b4000 {
->   			compatible = "sophgo,sg2042-aclint-mtimer", "thead,c900-aclint-mtimer";
-> -			reg = <0x00000070 0xac0b0000 0x00000000 0x00007ff8>;
-> +			reg = <0x00000070 0xac0b4000 0x00000000 0x0000c000>;
-> +			reg-names = "mtimecmp";
->   			interrupts-extended = <&cpu44_intc 7>,
->   					      <&cpu45_intc 7>,
->   					      <&cpu46_intc 7>,
->   					      <&cpu47_intc 7>;
->   		};
->
-> -		clint_mtimer12: timer@70ac0c0000 {
-> +		clint_mtimer12: timer@70ac0c4000 {
->   			compatible = "sophgo,sg2042-aclint-mtimer", "thead,c900-aclint-mtimer";
-> -			reg = <0x00000070 0xac0c0000 0x00000000 0x00007ff8>;
-> +			reg = <0x00000070 0xac0c4000 0x00000000 0x0000c000>;
-> +			reg-names = "mtimecmp";
->   			interrupts-extended = <&cpu48_intc 7>,
->   					      <&cpu49_intc 7>,
->   					      <&cpu50_intc 7>,
->   					      <&cpu51_intc 7>;
->   		};
->
-> -		clint_mtimer13: timer@70ac0d0000 {
-> +		clint_mtimer13: timer@70ac0d4000 {
->   			compatible = "sophgo,sg2042-aclint-mtimer", "thead,c900-aclint-mtimer";
-> -			reg = <0x00000070 0xac0d0000 0x00000000 0x00007ff8>;
-> +			reg = <0x00000070 0xac0d4000 0x00000000 0x0000c000>;
-> +			reg-names = "mtimecmp";
->   			interrupts-extended = <&cpu52_intc 7>,
->   					      <&cpu53_intc 7>,
->   					      <&cpu54_intc 7>,
->   					      <&cpu55_intc 7>;
->   		};
->
-> -		clint_mtimer14: timer@70ac0e0000 {
-> +		clint_mtimer14: timer@70ac0e4000 {
->   			compatible = "sophgo,sg2042-aclint-mtimer", "thead,c900-aclint-mtimer";
-> -			reg = <0x00000070 0xac0e0000 0x00000000 0x00007ff8>;
-> +			reg = <0x00000070 0xac0e4000 0x00000000 0x0000c000>;
-> +			reg-names = "mtimecmp";
->   			interrupts-extended = <&cpu56_intc 7>,
->   					      <&cpu57_intc 7>,
->   					      <&cpu58_intc 7>,
->   					      <&cpu59_intc 7>;
->   		};
->
-> -		clint_mtimer15: timer@70ac0f0000 {
-> +		clint_mtimer15: timer@70ac0f4000 {
->   			compatible = "sophgo,sg2042-aclint-mtimer", "thead,c900-aclint-mtimer";
-> -			reg = <0x00000070 0xac0f0000 0x00000000 0x00007ff8>;
-> +			reg = <0x00000070 0xac0f4000 0x00000000 0x0000c000>;
-> +			reg-names = "mtimecmp";
->   			interrupts-extended = <&cpu60_intc 7>,
->   					      <&cpu61_intc 7>,
->   					      <&cpu62_intc 7>,
-Reviewed-by: Chen Wang <unicorn_wang@outlook.com>
-> --
-> 2.42.1
->
+Signed-off-by: Chancel Liu <chancel.liu@nxp.com>
+---
+ .../devicetree/bindings/sound/sound-card-common.yaml       | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/sound/sound-card-common.yaml b/Documentation/devicetree/bindings/sound/sound-card-common.yaml
+index 3a941177f684..721950f65748 100644
+--- a/Documentation/devicetree/bindings/sound/sound-card-common.yaml
++++ b/Documentation/devicetree/bindings/sound/sound-card-common.yaml
+@@ -17,6 +17,13 @@ properties:
+       pair of strings, the first being the connection's sink, the second
+       being the connection's source.
+ 
++  ignore-suspend-widgets:
++    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
++    description: |
++      A list of audio sound widgets which are marked ignoring system suspend.
++      Paths between these endpoints are still active over suspend of the main
++      application processor that the current operating system is running.
++
+   model:
+     $ref: /schemas/types.yaml#/definitions/string
+     description: User specified audio sound card name
+-- 
+2.42.0
+
 
