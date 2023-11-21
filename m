@@ -1,123 +1,126 @@
-Return-Path: <devicetree+bounces-17493-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17494-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2661E7F2AD6
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 11:41:13 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA0367F2AE5
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 11:45:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A2535B21612
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 10:41:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 266CF1C20B9F
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 10:45:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF8D913AD4;
-	Tue, 21 Nov 2023 10:41:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D4vK5vs4"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC4C647788;
+	Tue, 21 Nov 2023 10:45:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF7DC3A26F;
-	Tue, 21 Nov 2023 10:41:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42018C433C8;
-	Tue, 21 Nov 2023 10:41:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700563268;
-	bh=6ssmz9Fzj5B5OmCb07mIm3SGwRw9YGJdqqjNOMzjqjI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=D4vK5vs4oL3icSXZydnqDM56wAeOdVXHDrdnc5HGhc07aObDsKuXDA6nPc9Kb/AjO
-	 tFTsFjQsYLFV6t2wKtWlJRyz8RSctyacMs0ecueARCS6ikBk4balsn1z9IN/cBBhf5
-	 b8a4mu42V8h2H1j9aw4XOLMiz4gg1lBZeQc8Rcqdpa7CAMwhGOZUPS43Aoercery22
-	 A+VWLfY9me9tZNzztinOEcud0MxToeqAgO3RzE+vgDoV0GfSa1VN6plMRXx4ONNNBw
-	 52A1UllKq6WlZhEA3yy3s6mPDMlPFWkKB4LuyaHcT/uK52CcIyMSq30d/3K552YJil
-	 8xS4+R7zYbMxg==
-Date: Tue, 21 Nov 2023 18:40:56 +0800
-From: Peter Chen <peter.chen@kernel.org>
-To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Roger Quadros <rogerq@kernel.org>,
-	Pawel Laszczak <pawell@cadence.com>, Nishanth Menon <nm@ti.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	ThomasPetazzonithomas.petazzoni@bootlin.com,
-	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>
-Subject: Re: [PATCH v2 5/7] usb: cdns3: add quirk to platform data for
- reset-on-resume
-Message-ID: <20231121104056.GA541474@nchen-desktop>
-References: <20231120-j7200-usb-suspend-v2-0-038c7e4a3df4@bootlin.com>
- <20231120-j7200-usb-suspend-v2-5-038c7e4a3df4@bootlin.com>
+Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CA5A123;
+	Tue, 21 Nov 2023 02:45:03 -0800 (PST)
+Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-dafe04717baso4940033276.1;
+        Tue, 21 Nov 2023 02:45:03 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700563502; x=1701168302;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=7GTzvHmKsk8zPbgSYaWyVwHOKd3D2neB7akSCl7L0f8=;
+        b=Q3WZBV6VPCIiY8uqNOoFIIj1JrcFcZ6WI+fdkIpqoU8ptT9cqoBZAye/v4PgKl6A33
+         1m6kFOIO0VRfYYL4rc14Tta7SFbeKKpofebpyOYzenSxQhGWjtn3lkH++HHO1HgvNqzs
+         AafPTIyNGYsmyEU2TJ2YEN7G4ZjqlJEDQ8jNvSa12XTzIoH33RoOj67ovNUqz/t5pAfX
+         uz3hq57rxDERSlVc8Rpy85S3CBggms+kBmKYzyHuusY59G382sx/rF8RDH7UcqIaicLf
+         89iFJKjdOgHm2jwPCRVPi2cnt/SdYkXzezoOMackfIfVYT0qWC2ziTSYtK7QwsFxDgO5
+         d9ww==
+X-Gm-Message-State: AOJu0Yxw7E+eHDNkDTeMRLgjn5A7QqQBKui4sPe1zL8Acbbdu5AaQubo
+	EO9PzgtzUPDoxXeesvfIssmaSD0A+aMkGJrj
+X-Google-Smtp-Source: AGHT+IH+wdoNWVetDizP2Zr204fx7+bVgu9Ha2R8h6hddA1YdzKRaO3oFwsRbpL7mfg8Lg+ubscvkA==
+X-Received: by 2002:a25:8d85:0:b0:daf:7718:62b8 with SMTP id o5-20020a258d85000000b00daf771862b8mr9091289ybl.65.1700563502339;
+        Tue, 21 Nov 2023 02:45:02 -0800 (PST)
+Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com. [209.85.219.180])
+        by smtp.gmail.com with ESMTPSA id m204-20020a2558d5000000b00da07d9e47b4sm617066ybb.55.2023.11.21.02.45.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 21 Nov 2023 02:45:00 -0800 (PST)
+Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-d9c66e70ebdso4939089276.2;
+        Tue, 21 Nov 2023 02:45:00 -0800 (PST)
+X-Received: by 2002:a25:4102:0:b0:d9c:aa50:2b5a with SMTP id
+ o2-20020a254102000000b00d9caa502b5amr9776928yba.53.1700563499776; Tue, 21 Nov
+ 2023 02:44:59 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231120-j7200-usb-suspend-v2-5-038c7e4a3df4@bootlin.com>
+References: <20231120111820.87398-1-claudiu.beznea.uj@bp.renesas.com> <20231120111820.87398-9-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20231120111820.87398-9-claudiu.beznea.uj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 21 Nov 2023 11:44:47 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdX88KRnvJchUwrWcgmPooAESOT2492Nr1Z_5UMng3q__Q@mail.gmail.com>
+Message-ID: <CAMuHMdX88KRnvJchUwrWcgmPooAESOT2492Nr1Z_5UMng3q__Q@mail.gmail.com>
+Subject: Re: [PATCH v3 8/9] dt-bindings: interrupt-controller:
+ renesas,rzg2l-irqc: Document RZ/G3S
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: tglx@linutronix.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	conor+dt@kernel.org, magnus.damm@gmail.com, mturquette@baylibre.com, 
+	sboyd@kernel.org, prabhakar.mahadev-lad.rj@bp.renesas.com, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, 
+	Conor Dooley <conor.dooley@microchip.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 23-11-20 18:06:05, Théo Lebrun wrote:
-> The cdns3 host role does not care about reset-on-resume. xHCI however
-> reconfigures itself in silence rather than printing a warning about a
-> resume error. Related warning example:
-> 
->   [   16.017462] xhci-hcd xhci-hcd.1.auto: xHC error in resume, USBSTS 0x401, Reinit
-> 
-> Allow passing a CDNS3_RESET_ON_RESUME quirk flag from cdns3 pdata down
-> to xHCI pdata. The goal is to allow signaling about reset-on-resume
-> behavior from platform wrapper drivers.
-> 
-> When used, remote wakeup is not expected to work.
-> 
-> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+On Tue, Nov 21, 2023 at 9:25=E2=80=AFAM Claudiu <claudiu.beznea@tuxon.dev> =
+wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>
+> Document RZ/G3S (R9108G045) interrupt controller. This has few extra
+> functionalities compared with RZ/G2UL but the already existing driver
+> could still be used.
+>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-Acked-by: Peter Chen <peter.chen@kernel.org>
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-> ---
->  drivers/usb/cdns3/core.h | 1 +
->  drivers/usb/cdns3/host.c | 3 +++
->  2 files changed, 4 insertions(+)
-> 
-> diff --git a/drivers/usb/cdns3/core.h b/drivers/usb/cdns3/core.h
-> index 81a9c9d6be08..7487067ba23f 100644
-> --- a/drivers/usb/cdns3/core.h
-> +++ b/drivers/usb/cdns3/core.h
-> @@ -44,6 +44,7 @@ struct cdns3_platform_data {
->  			bool suspend, bool wakeup);
->  	unsigned long quirks;
->  #define CDNS3_DEFAULT_PM_RUNTIME_ALLOW	BIT(0)
-> +#define CDNS3_RESET_ON_RESUME		BIT(1)
->  };
->  
->  /**
-> diff --git a/drivers/usb/cdns3/host.c b/drivers/usb/cdns3/host.c
-> index 6164fc4c96a4..28c4d1deb231 100644
-> --- a/drivers/usb/cdns3/host.c
-> +++ b/drivers/usb/cdns3/host.c
-> @@ -91,6 +91,9 @@ static int __cdns_host_init(struct cdns *cdns)
->  	if (cdns->pdata && (cdns->pdata->quirks & CDNS3_DEFAULT_PM_RUNTIME_ALLOW))
->  		cdns->xhci_plat_data->quirks |= XHCI_DEFAULT_PM_RUNTIME_ALLOW;
->  
-> +	if (cdns->pdata && (cdns->pdata->quirks & CDNS3_RESET_ON_RESUME))
-> +		cdns->xhci_plat_data->quirks |= XHCI_RESET_ON_RESUME;
-> +
->  	ret = platform_device_add_data(xhci, cdns->xhci_plat_data,
->  			sizeof(struct xhci_plat_priv));
->  	if (ret)
-> 
-> -- 
-> 2.42.0
-> 
+> --- a/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2=
+l-irqc.yaml
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2=
+l-irqc.yaml
+> @@ -26,6 +26,7 @@ properties:
+>            - renesas,r9a07g043u-irqc   # RZ/G2UL
+>            - renesas,r9a07g044-irqc    # RZ/G2{L,LC}
+>            - renesas,r9a07g054-irqc    # RZ/V2L
+> +          - renesas,r9a08g045-irqc    # RZ/G3S
+>        - const: renesas,rzg2l-irqc
+>
+>    '#interrupt-cells':
+> @@ -167,7 +168,9 @@ allOf:
+>        properties:
+>          compatible:
+>            contains:
+> -            const: renesas,r9a07g043u-irqc
+> +            enum:
+> +              - renesas,r9a07g043u-irqc
+> +              - renesas,r9a08g045-irqc
+>      then:
+>        properties:
+>          interrupts:
 
--- 
+Prabhakar: How come we thought RZ/G2L and RZ/V2L do not have the bus
+error interrupt? Looks like all the conditional handling can be removed.
 
-Thanks,
-Peter Chen
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
