@@ -1,248 +1,97 @@
-Return-Path: <devicetree+bounces-17385-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17379-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 908777F257F
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 06:47:54 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EC487F2548
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 06:35:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1CA96B21CC6
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 05:47:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C03B21C209E8
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 05:35:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBF0C1A29A;
-	Tue, 21 Nov 2023 05:47:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7FC218E2C;
+	Tue, 21 Nov 2023 05:35:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="roS91s+X"
+	dkim=pass (1024-bit key) header.d=riseup.net header.i=@riseup.net header.b="KC8dflPl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2066.outbound.protection.outlook.com [40.107.20.66])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79DD4110;
-	Mon, 20 Nov 2023 21:47:39 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=eW4DbDK/fk6UIN1u5dafg/2DSovJKGp8xcVNdb+bXOIF8bM0gD8QPGakqnAt0thvGY7abbue5k0bt8WwLjvWjqBOaFkevn0+MP6CtpSArBE7tCL7ka+ttuXPXGyZUi8q8x//rJ9NcmKcobcuRjoDthv6qKRxK8UT+RaIAPkqEvIDu59SYyyJS2k7BhU/cL9Ic6bh7mYtedgoCDLjeWZ557mVL9W8bxYWUCLlUzNzv4qPagGCaaosXS7NBRRaoNTKD4F/xmUDr/s6411FX8Chl7tZjUTIhl8FIA8R4hOIVMsnBFRJT8NDQHxErTGnspg0oe03d3IpERfz1QEZNq0a8A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=AvwdRZBZwFSH2Kq2WT0Bk4fl8JUFhpKoqGheMfEKxnc=;
- b=WbaFCg8bj9CjICJOPTDqsUe6NnRX9AyKORTjzA4tk3skPDaxZbcHevE74um8KlaNfQaW9r04Xy45VVMj8M2QIR7qjjgl/tpSFMkrdLZvb0TxdskdOkNy6l/bHzCfJXtMZTUbLWkR0Vsb7gCPDSl4pKbDz+1pbIzZfwCus7kkaSPsOO2N/rukyxp0PP7G1Uvsr9o3c2t1Ilk7ihOMsWDgOqdM6LRIoWpvJ4Eaefrkqv1/hekDrdzPSVZHNWPVUjlvcbIsxMW2CrYyIytkbRtg+NDjvzYrf6KVJ3doxYcaSln3qC0eycbUiZb6ng1rYHGfeAuoz3xIc12FKO/YgN6EcA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AvwdRZBZwFSH2Kq2WT0Bk4fl8JUFhpKoqGheMfEKxnc=;
- b=roS91s+Xkg01BnVFl9BnSunZo6KLqYaXavSH32PVM8ZI+WlILZ2PCMgIQRMY7i/ODR6XhY32+1+yyB+CTQzmSXNzGORkaiujOOE/WoKwhgIGQ8JF9clQaUS9UG1OOtzmaZlvlN/HTThpBwrynrcjWA32XoZYhS8kfsQMB00pzOM=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DB9PR04MB9498.eurprd04.prod.outlook.com (2603:10a6:10:360::21)
- by DBAPR04MB7270.eurprd04.prod.outlook.com (2603:10a6:10:1af::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7025.17; Tue, 21 Nov
- 2023 05:47:36 +0000
-Received: from DB9PR04MB9498.eurprd04.prod.outlook.com
- ([fe80::dffc:1d:4398:7768]) by DB9PR04MB9498.eurprd04.prod.outlook.com
- ([fe80::dffc:1d:4398:7768%6]) with mapi id 15.20.7025.015; Tue, 21 Nov 2023
- 05:47:36 +0000
-From: Chancel Liu <chancel.liu@nxp.com>
-To: lgirdwood@gmail.com,
-	broonie@kernel.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	shengjiu.wang@gmail.com,
-	Xiubo.Lee@gmail.com,
-	festevam@gmail.com,
-	nicoleotsuka@gmail.com,
-	perex@perex.cz,
-	tiwai@suse.com,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	alsa-devel@alsa-project.org,
-	linux-kernel@vger.kernel.org,
-	linuxppc-dev@lists.ozlabs.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Cc: Chancel Liu <chancel.liu@nxp.com>
-Subject: [PATCH v5 2/2] ASoC: imx-rpmsg: Force codec power on in low power audio mode
-Date: Tue, 21 Nov 2023 13:25:12 +0800
-Message-Id: <20231121052512.20235-2-chancel.liu@nxp.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20231121052512.20235-1-chancel.liu@nxp.com>
-References: <20231121052512.20235-1-chancel.liu@nxp.com>
-Content-Type: text/plain
-X-ClientProxiedBy: AM0P190CA0018.EURP190.PROD.OUTLOOK.COM
- (2603:10a6:208:190::28) To DB9PR04MB9498.eurprd04.prod.outlook.com
- (2603:10a6:10:360::21)
+Received: from mx1.riseup.net (mx1.riseup.net [198.252.153.129])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94A82ED;
+	Mon, 20 Nov 2023 21:35:52 -0800 (PST)
+Received: from fews02-sea.riseup.net (fews02-sea-pn.riseup.net [10.0.1.112])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx1.riseup.net (Postfix) with ESMTPS id 4SZClW3TvRzDqLd;
+	Tue, 21 Nov 2023 05:35:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=riseup.net; s=squak;
+	t=1700544951; bh=3aQiV0yYrXDyWJC58/jNq5YnuykrHIOH2V9AQg50cT4=;
+	h=From:Subject:Date:To:Cc:From;
+	b=KC8dflPloQ1Alr9DQLWVy1CbZxB8aafRpVwbfFWCHLo0uy791qwwTjNEaXqGBiRKU
+	 y7MFejJKdXSZMOMxYBnp92E/7o0ffxASEskeqasIazc8leW4TAxVIDv+J+lq1yk+r9
+	 UMhV7Sl98XNMwhjXkBOP6r7qTjp/vpTO+0BCiHH4=
+X-Riseup-User-ID: B606A694CE447639939588235BA6E43D296FDB1170058309B4A4D35D01B5EB12
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	 by fews02-sea.riseup.net (Postfix) with ESMTPSA id 4SZClR6RkszFrxv;
+	Tue, 21 Nov 2023 05:35:47 +0000 (UTC)
+From: Dang Huynh <danct12@riseup.net>
+Subject: [PATCH v2 0/4] Add PM8937 PMIC support
+Date: Tue, 21 Nov 2023 12:34:58 +0700
+Message-Id: <20231121-pm8937-v2-0-b0171ab62075@riseup.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB9PR04MB9498:EE_|DBAPR04MB7270:EE_
-X-MS-Office365-Filtering-Correlation-Id: ca0b9148-b1b3-4a34-791f-08dbea555d53
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	McUzxK5EFg/K0n5QUoLG7Cp6mlNTl5nlO8Ktf/XlrMjsYW2Uhf/D9I1w4Dz+eNHvyCrTK5NRKpjFJ7Q8yMEiY6xWP5v4MOyIx8YYkMfKQNxYMFPvUt/xjWGz+6J5qIh3jXqKfjnlTL2iGkdakwD5+2smLUwQLBlrH40ywY9B7qEzLyHWfAgKgDr3eMaVCI9CN2RwHNuxubIyTm0fzSAflJVWyI/akXY3gLtRfI8x7po/UrBRVV8CcfedoqFQ5lPoWHI2nGxkAtOxXf9mqBsWVMoRbab+ulqVwUnd9WRFdOFKp1GrathPh54bUmqvxPwl8MNE9bQMJtpZrjMEhkEKmgrfiHuRGEGNz9gayd9I4rd6vYPGXsnbKISEAVNHjseEFPCimklrR16JTBUNN27OdjxY9xjVdcxgVYSk8AWfbdRWQgCOaarmvKHqzIH7LqhelEa9KDPV3rOteiY1zKUX6K5F56/kMwVDXcfqkh2S3hsgGEwea/Wn54UiT5OlIDUM3uUnxMTVsE3vax/1HtQwDPJKw7ABnI5SIMQM03KIy87JcKUPcPNpujIRgpKlAuBkBX9tOoh25SjKCQPtBCuFn/wVbSIzaiR72AwHNW3+RcJJIZuk/P2EES+u38yPoLiNKgjQFosNix9Gd53MUhVUFPJXc4tEDqi6gPXipwNyhOk=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB9498.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(396003)(346002)(39860400002)(366004)(376002)(230922051799003)(451199024)(1800799012)(186009)(64100799003)(2906002)(5660300002)(7416002)(44832011)(2013699003)(41300700001)(8936002)(4326008)(8676002)(316002)(66476007)(66556008)(86362001)(1076003)(26005)(6486002)(478600001)(6512007)(6666004)(36756003)(52116002)(6506007)(2616005)(83380400001)(66946007)(38100700002)(38350700005)(921008);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?ACU7mDF+K8/AH3wWT8K/MOxx2JLqqMCElIuedtpRM0r3UkR6MsX89y/5fPaJ?=
- =?us-ascii?Q?usaU1NN8kJ5Ugu2PfyOruJan6nLTi4Zci1rNiWXA9UD84euoOjBuxuDmXnpk?=
- =?us-ascii?Q?fPOQsp4GTxq0uxwbdBP5C3XnW0hYRg05V6lHJnepXVRYTaq+yOwSQBoyh8Yw?=
- =?us-ascii?Q?vaYPdUgU35HpMyEsbqlID2jBCs/l1xX98l8afBVyxz3r51YIalqT+0Mb0Wam?=
- =?us-ascii?Q?Ad9WhAhlypL8E9XxvMrI1qdjYYOywJULJa6A0RYcIGbWreFR6Ke18Cx7+sXS?=
- =?us-ascii?Q?u19KRmeQiBEP0mo5nBAiarZzbshBVcXr6NcmEU6h5RS3wXqj5dLda94jlxMP?=
- =?us-ascii?Q?Ni/MyecRN/THAcg3unQLeaFm6rbOjywBgstJ0S53AFiqwERlNg1zuZF8qA9j?=
- =?us-ascii?Q?lcA9xeeaarKGK0PDkzGG6mK1atTEBhE7mVBH3CPE71/9IOJBcl5orypvqWsn?=
- =?us-ascii?Q?180eZFCaL3iwlSGigKPT90D4yE+pwGs0VrAMdTPGcw/jE0FXhpQURH0HuJ67?=
- =?us-ascii?Q?K8BJmn3eyCBqVzz/U0VZ50L9y5lSZDNDflp+d6yl3CZI8+NQ/sI43PgcVy0x?=
- =?us-ascii?Q?Z2iunphFAqCMWcFX87hqbaK8Cvq161/TtWNB82/+jusfFKNQVnL+mGAC8gPV?=
- =?us-ascii?Q?v9oERsZ2vljWkLq/NrP0LGwP5sCay0tpngFZGUJyb41hq5c8msv+LObs/n1v?=
- =?us-ascii?Q?aiZYGaopRlm+m7N0OxUc95kXz8E8MyInkdxJNStYnydvNXVE4VjBgVR7Qed3?=
- =?us-ascii?Q?eV4YND2FeffdZb3lWooLO5GIkgOB4GELT2tb5bvWr9yRyKuLZRwv5qwSeopR?=
- =?us-ascii?Q?vpXlpiSchgYHj/TP/AMHOyqkhI+8i9ZCV2Ua00NCFKGWgUaFArvD10FB9nR7?=
- =?us-ascii?Q?IqQyAUwRz0JAACMHNzZIp0ulSvSHFpy9dWB8Mf5S9fCnwQzreeqff1pjVKUt?=
- =?us-ascii?Q?bpOy13xSf1/NdmyUxSZHzUc/qsGwL1iSB+ONqlDwljgruxxzWi1tqxjpgcgR?=
- =?us-ascii?Q?Xzn6/xssBH/Lj5scU/g5X+9fDkdZRoyYXTwte45yYtTWWtf3PKo22rcsTNw/?=
- =?us-ascii?Q?ztTiv+Edv/pGb3/PwI/rrgOKJBT8J8xw3MHIWJZyNUmtq4+mCp7i1h8ea7db?=
- =?us-ascii?Q?RwaATmPIo3Wsi5xDK0HO2ZUfwgPe2/UM6VbGDTGahzcAteczGehnl0Lj6QeL?=
- =?us-ascii?Q?9eR9Lpf+R3yoZ/9atsyXFerNIDFt/KdYnckpJtRwHK31M2uKjCYaw9K/5tuy?=
- =?us-ascii?Q?/ighgG9caILmsbC++4I3zGSuRLTlnJ2IUw0qPa6qUePk9VnOYWEZN28dxp7p?=
- =?us-ascii?Q?m0weuQhRdCBBJRi5FN2fE5+O/vqcLjvAW14DzPRJtLTA12dbCG8lbLfp5ZKj?=
- =?us-ascii?Q?TOrkFmRV5BFZGPuyVtHiVzApEnPBD48WwR+8hpMASMzHd4Y4agKQdQ2Yxv4X?=
- =?us-ascii?Q?eDjG8s7yu3LDSC+GK4HjOwF7F3Duji3AJGSQJDZaPBjs4XPJCxckgyDwFG+h?=
- =?us-ascii?Q?LmyLQpvKu2n6ukMX7DMEWImwx2bakblcdC+kQIpInms+e58JADFfPRJwd+b0?=
- =?us-ascii?Q?mXBec5cw1asRaDRf9C2oZgSuVgzCiCbLORRa7qwz?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ca0b9148-b1b3-4a34-791f-08dbea555d53
-X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9498.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Nov 2023 05:47:36.6876
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: VOSh7/GLFUjSOzzWue1oUm26fGVcGrXcVYTHuw9QPUwW+WlNn58oN6ub9A06qO3pypR1+QvWOt9/IK/U8ZbGww==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBAPR04MB7270
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIJBXGUC/2WMQQ6CMBREr0L+2prfVkRYeQ/DAmGQv7A0LRIN6
+ d2tbF1N3uTlbRQRBJGaYqOAVaLMLoM5FNRPnXtAyZCZDBurNZ+Vf15qWylmxsnYrirHO2XZB4z
+ y3kO3NvMkcZnDZ++u+vf+JVatWKEv9VADee01SMTLHx0WalNKXwy+R5udAAAA
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Lee Jones <lee@kernel.org>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, Dang Huynh <danct12@riseup.net>, 
+ Caleb Connolly <caleb.connolly@linaro.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-Low power audio mode requires binding codec still power on while Acore
-enters into suspend so Mcore can continue playback music.
+PM8937 is a power management IC. It is used in various boards with
+MSM8917, MSM8937, MSM8940 and APQ variants.
 
-ASoC machine driver acquires DAPM endpoints through reading
-"ignore-suspend-widgets" property from DT and then forces the path
-between these endpoints ignoring suspend.
+This patchset has been tested on Xiaomi Redmi 4X (MSM8940).
 
-If the rpmsg sound card is in low power audio mode, the suspend/resume
-callback of binding codec is overridden to disable the suspend/resume.
-
-Signed-off-by: Chancel Liu <chancel.liu@nxp.com>
+Signed-off-by: Dang Huynh <danct12@riseup.net>
 ---
- sound/soc/fsl/imx-rpmsg.c | 61 +++++++++++++++++++++++++++++++++++++--
- 1 file changed, 59 insertions(+), 2 deletions(-)
+Changes in v2:
+- Remove PATCH 3-6 as it has been picked up.
+- Applied suggestions from reviewers.
+- Add VDD, GND to VADC.
+- Link to v1: https://lore.kernel.org/r/20231106-pm8937-v1-0-ec51d9eeec53@riseup.net
 
-diff --git a/sound/soc/fsl/imx-rpmsg.c b/sound/soc/fsl/imx-rpmsg.c
-index a0c5c35817dd..e5bd63dab10c 100644
---- a/sound/soc/fsl/imx-rpmsg.c
-+++ b/sound/soc/fsl/imx-rpmsg.c
-@@ -2,9 +2,8 @@
- // Copyright 2017-2020 NXP
- 
- #include <linux/module.h>
--#include <linux/of.h>
-+#include <linux/of_platform.h>
- #include <linux/of_reserved_mem.h>
--#include <linux/platform_device.h>
- #include <linux/i2c.h>
- #include <linux/of_gpio.h>
- #include <linux/slab.h>
-@@ -21,8 +20,11 @@ struct imx_rpmsg {
- 	struct snd_soc_dai_link dai;
- 	struct snd_soc_card card;
- 	unsigned long sysclk;
-+	bool lpa;
- };
- 
-+static struct dev_pm_ops lpa_pm;
-+
- static const struct snd_soc_dapm_widget imx_rpmsg_dapm_widgets[] = {
- 	SND_SOC_DAPM_HP("Headphone Jack", NULL),
- 	SND_SOC_DAPM_SPK("Ext Spk", NULL),
-@@ -39,6 +41,58 @@ static int imx_rpmsg_late_probe(struct snd_soc_card *card)
- 	struct device *dev = card->dev;
- 	int ret;
- 
-+	if (data->lpa) {
-+		struct snd_soc_component *codec_comp;
-+		struct device_node *codec_np;
-+		struct device_driver *codec_drv;
-+		struct device *codec_dev = NULL;
-+
-+		codec_np = data->dai.codecs->of_node;
-+		if (codec_np) {
-+			struct platform_device *codec_pdev;
-+			struct i2c_client *codec_i2c;
-+
-+			codec_i2c = of_find_i2c_device_by_node(codec_np);
-+			if (codec_i2c)
-+				codec_dev = &codec_i2c->dev;
-+			if (!codec_dev) {
-+				codec_pdev = of_find_device_by_node(codec_np);
-+				if (codec_pdev)
-+					codec_dev = &codec_pdev->dev;
-+			}
-+		}
-+		if (codec_dev) {
-+			codec_comp = snd_soc_lookup_component_nolocked(codec_dev, NULL);
-+			if (codec_comp) {
-+				int i, num_widgets;
-+				const char *widgets;
-+				struct snd_soc_dapm_context *dapm;
-+
-+				num_widgets = of_property_count_strings(data->card.dev->of_node,
-+									"ignore-suspend-widgets");
-+				for (i = 0; i < num_widgets; i++) {
-+					of_property_read_string_index(data->card.dev->of_node,
-+								      "ignore-suspend-widgets",
-+								      i, &widgets);
-+					dapm = snd_soc_component_get_dapm(codec_comp);
-+					snd_soc_dapm_ignore_suspend(dapm, widgets);
-+				}
-+			}
-+			codec_drv = codec_dev->driver;
-+			if (codec_drv->pm) {
-+				memcpy(&lpa_pm, codec_drv->pm, sizeof(lpa_pm));
-+				lpa_pm.suspend = NULL;
-+				lpa_pm.resume = NULL;
-+				lpa_pm.freeze = NULL;
-+				lpa_pm.thaw = NULL;
-+				lpa_pm.poweroff = NULL;
-+				lpa_pm.restore = NULL;
-+				codec_drv->pm = &lpa_pm;
-+			}
-+			put_device(codec_dev);
-+		}
-+	}
-+
- 	if (!data->sysclk)
- 		return 0;
- 
-@@ -138,6 +192,9 @@ static int imx_rpmsg_probe(struct platform_device *pdev)
- 		goto fail;
- 	}
- 
-+	if (of_property_read_bool(np, "fsl,enable-lpa"))
-+		data->lpa = true;
-+
- 	data->card.dev = &pdev->dev;
- 	data->card.owner = THIS_MODULE;
- 	data->card.dapm_widgets = imx_rpmsg_dapm_widgets;
+---
+Dang Huynh (4):
+      mfd: qcom-spmi-pmic: Add support for PM8937
+      dt-bindings: mfd: qcom-spmi-pmic: Document PM8937 PMIC
+      arm64: dts: qcom: Add PM8937 PMIC
+      soc: qcom: socinfo: Add PM8937 Power IC
+
+ .../devicetree/bindings/mfd/qcom,spmi-pmic.yaml    |   1 +
+ arch/arm64/boot/dts/qcom/pm8937.dtsi               | 216 +++++++++++++++++++++
+ drivers/mfd/qcom-spmi-pmic.c                       |   1 +
+ drivers/soc/qcom/socinfo.c                         |   2 +-
+ include/soc/qcom/qcom-spmi-pmic.h                  |   1 +
+ 5 files changed, 220 insertions(+), 1 deletion(-)
+---
+base-commit: 408a8e748eb5f10026ea9d87f8f218e759101c9a
+change-id: 20231106-pm8937-000e423a75fb
+
+Best regards,
 -- 
-2.42.0
+Dang Huynh <danct12@riseup.net>
 
 
