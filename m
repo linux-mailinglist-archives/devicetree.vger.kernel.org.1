@@ -1,173 +1,182 @@
-Return-Path: <devicetree+bounces-17388-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17390-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A4647F25B9
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 07:30:45 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5405B7F25ED
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 07:48:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4538F282393
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 06:30:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C93A5B216D2
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 06:48:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 683491F933;
-	Tue, 21 Nov 2023 06:30:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73A611A5B7;
+	Tue, 21 Nov 2023 06:48:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="M+IPTiWe"
+	dkim=pass (2048-bit key) header.d=marcan.st header.i=@marcan.st header.b="yBZ7Udel"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2043.outbound.protection.outlook.com [40.107.20.43])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AF1090;
-	Mon, 20 Nov 2023 22:30:38 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fQSBds08eTpCkvKEIsOPe4o9Kf31EFVU1n6JanFcp2DhLywmquB/3Rl7fE+mK27MR+RvJUc9au1xBT4MvSRQS83SiCW0NfnM7eB7V9BBOkrVL8RnUU3Jn6vbh6CL8FLY1YbQ2TFNy1ViDUe4CAguX+ZP0JvQBmzwMARdKX7uvYe4copOq3ZNc4itirp91d6agAmpXBOxKa2sQlbXCOmBTei7rstAKY4JddfGmaE/CSMKr/y62eZYry3n/K20l/O9Ce4PWpgHaCZ2vl0KdSqIiVMXm3eT0Z0EYN/y49oFZg8cwrEmcKIgi3nRmfCIz7FloPR+xybHQwpL5idKiINr5A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zw5vmyrFm8kuzrw8zK9QKKgxU+FQj1oWpv6V0SukcVo=;
- b=NyPqNxHvyDvm8IlqnEdTmDYqDNMjJ6CwVzz3W6/a0D5UjnJzLhw2TItQYli2V7Owbs1HnlO61IoJUMr6EzrVHwvFKt3weq3Mv6aIvp66sL38LfynRKP31OSnSAKPA/2JHgzpqqonVngVmYXHokPfIXIAfN3kS+hKFi2ZKlw2bdeekLA17U+xuUFnyTiO203Wqlo4aQIkmb8xB8G4PhF+iPxhKSjvMyzOtt7KzxE0KKDe4KW9TyM6GdJAi+288iW1dG9jxjJgrShnt5ZshPs4S7W0JhZvRpiyQdxVZ/OWE6u8Fw7Iavo9HtQaJOJcpGG3OZyh1Van9ZAxR5wfFihXrw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zw5vmyrFm8kuzrw8zK9QKKgxU+FQj1oWpv6V0SukcVo=;
- b=M+IPTiWezGDjjYIDN4ey8d6RNVnFcTGt8V1jKwvr5QQZUwq7BLmpBTP/Ft+Mi8I+7jsf8KXeZ9V7xo/OySLv3rxR4LYRf8hgnKI6BCktYLH7OXQRN5wKQYnHeg36gR2PSsIl8oOA2aOujcIHDmvUbny+B8vfBTAmSUFhkXlaDsg=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
- by DUZPR04MB9823.eurprd04.prod.outlook.com (2603:10a6:10:4d2::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7025.16; Tue, 21 Nov
- 2023 06:30:36 +0000
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::ff06:bbb2:c068:5fb3]) by DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::ff06:bbb2:c068:5fb3%7]) with mapi id 15.20.7025.015; Tue, 21 Nov 2023
- 06:30:36 +0000
-From: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-To: robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	sboyd@kernel.org,
-	abelvesa@kernel.org
-Cc: kernel@pengutronix.de,
-	festevam@gmail.com,
-	linux-imx@nxp.com,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Peng Fan <peng.fan@nxp.com>
-Subject: [PATCH V4 2/2] arm64: dts: imx93: update analog node
-Date: Tue, 21 Nov 2023 14:34:46 +0800
-Message-Id: <20231121063446.155300-2-peng.fan@oss.nxp.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20231121063446.155300-1-peng.fan@oss.nxp.com>
-References: <20231121063446.155300-1-peng.fan@oss.nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SI2P153CA0016.APCP153.PROD.OUTLOOK.COM
- (2603:1096:4:140::17) To DU0PR04MB9417.eurprd04.prod.outlook.com
- (2603:10a6:10:358::11)
+Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BEDF90;
+	Mon, 20 Nov 2023 22:48:03 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: marcan@marcan.st)
+	by mail.marcansoft.com (Postfix) with ESMTPSA id EDDAF42137;
+	Tue, 21 Nov 2023 06:47:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=marcan.st; s=default;
+	t=1700549281; bh=ujaYq3QQkb3U4N6JNFFQq4uH4QKQpO8RJp9aJVbB0w0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=yBZ7Udel893+M2pzDMgdTushmaUgXq0nIf/5xxASROF107adcyenfoQIJKpJop3QE
+	 1+yTIUhVbWxOP7swSXHE/1waIz+ytnfqIeOR+pXsrjnxJ9YDy9OcehudknnZZfDU0W
+	 yBoxtsLq/eITHB2A8C7zHMk/QpuQDhn54/ueeppNZr5bacp1NBly8id6vI/+HcZLF9
+	 Y3o89xan9Av9novKYwloiJeRxCXK4RdvbSm3KrREtUx62PnuC+h7WkJf1goRn4PDd/
+	 8BaauSYV42Ok4T8UBbrfnw8aItI789XfEb5enuqF6bZ2I7QNWWCAUkdCy2CTlvEfD+
+	 wJAB4I2ql495A==
+Message-ID: <90855bbf-e845-4e4d-a713-df71d1e477d2@marcan.st>
+Date: Tue, 21 Nov 2023 15:47:48 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU0PR04MB9417:EE_|DUZPR04MB9823:EE_
-X-MS-Office365-Filtering-Correlation-Id: e6fd6b55-ee66-4c7c-da45-08dbea5b5ecf
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	dx0x0s1zmRvfSu+KvtiHIS/ibx0Yt5SLo5eMcQ7bIqyxY87ypSObomyzvOBNG8+ZzX+sCFRIpgTmrTLSt3gpr7Iy2fSs/1jXzqgxDNjkioqr+IvvapWZ2/JEeushwud5cx/atJmRxnZCjqT+Nk+TC2rHFGzSJS1iACM104Rtm0pBgIqDr5nkAn3fLsLDWYeTjID7wYniV3uJwY7pWnSPeD83V4bCC8j6nBpboAVP1ULSbbutJPOlPxzXjYKgzGMW1WQTSCKgewOEN/gsdOCiNOxx7Dy+LtOgtJLoSvvGkNHwU8GjQxaVPBRtrA2gkiVVTACNqPj03QfRTE3+lnCghKRqOHf4wPtW6risz3jyDaW+d6kkC+gUATtWrnFI1npE6Or4fPRMbzqA+FLIOLLbojH82bozyIUBlXQTshz1VLcxZVqQNfLKguGDYF9+ekWAlBvV5ESiIHBWu7PZmwSxtn+u/4K6w2EOzRtHyosZmduJeKOC2ipTqd0Tv7Qt1k309TlQDdwMKamslayr9KqKa4slfTDO6rF9NjBoyCu6cTxM9Z1F+KPhZES+JQsZ1H0BlzNoSr51WjiyTFgkTXoisCLwdvXb9FnJ7P8knXkLs7b/K1j/cjCjcbIZFh2dw/Uc
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39860400002)(346002)(376002)(396003)(366004)(136003)(230922051799003)(1800799012)(186009)(451199024)(64100799003)(8676002)(4326008)(7416002)(8936002)(15650500001)(4744005)(26005)(38100700002)(6666004)(66946007)(2906002)(66476007)(66556008)(316002)(86362001)(478600001)(5660300002)(6486002)(52116002)(6506007)(2616005)(1076003)(38350700005)(83380400001)(41300700001)(6512007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?0AlIc/iW8y4C420ft9+SLBMgQVy/h1skQhKinOUqUzB0X/TuZ6kOK2bJWIVN?=
- =?us-ascii?Q?YgK8clbk2UKFBp6orgwtJxTYXNiTDd5asaNoHy7DX/U8eECX/1+pWJuYxUCQ?=
- =?us-ascii?Q?7JlJ71xT8t4bJetB143/dJKCRcNMmRx9mAqm+buhrndde+c6Ucz33CSikLI/?=
- =?us-ascii?Q?0IXh0O+qX4jh91XtOenAmfn1a6nP1z6LOWukNELRbBYxDE9O4fEM6sFWKytD?=
- =?us-ascii?Q?hAioV0w3kBYnNsfCMT2kAK0sRiqkKaBai9ehpVe5kvl6CEttkcPj2zOyiUSR?=
- =?us-ascii?Q?MziIGhBMd0gL16hC+FUy0wlL8GUsCP1uO138taUYQuWl09gGMOvo9yenPCfF?=
- =?us-ascii?Q?TKt2Sis4hHLe8rjbbvlvaE8f1A0wN7kpmrbqB+OthfmVMfFKxcr96ri/0BSZ?=
- =?us-ascii?Q?gkieq5iudTtKWYRYH6Du4BzyLUSNIypiwF80HKkT9FAZ4E4ePGrAoacAC11D?=
- =?us-ascii?Q?dYT1mmf6AY6C/Xp4j2CBipZQX0LR+OQgxrJcKDWIO5PL7EoLW4qH/kwas8aC?=
- =?us-ascii?Q?aT6wqQUio58fBV7WARBMbqKPkEs/JCq3ID8eNw5KeuydE4qI2P0nNdDKe2SE?=
- =?us-ascii?Q?+tl5Qa9ILIlwjIxwYMXYXdCjKKvsgUBMqDPwCJG6YvCgC1z+XBjU4TJgfzsD?=
- =?us-ascii?Q?XGODcjc1I7h15dN/Xf149HmRbfq9tyGLGKnDiCvnoLYeckpuy86WTW3VvrdN?=
- =?us-ascii?Q?/ZFmAYwVntGb2VdlFKhCysUc3bv4gJKaOaN6JvbEEwMG+DRcifbaQukIhXgx?=
- =?us-ascii?Q?tPsrDHtBQMcss0cadtsGAKgYMvkOa0Tl6wUEv82RRfplupXxhkjsGKwJNu8z?=
- =?us-ascii?Q?YxNwvByYHl2nDH4y6g88V7BBhAc2MUWZus1Jg6BcCbSS+RqV/qktbKg1kIC0?=
- =?us-ascii?Q?ds/A55RxDkn4nvfbvs4brFDAqE7XABj9CrSAaqaHnb3PeunOE0hcK0KqIc3+?=
- =?us-ascii?Q?nhrnom7dtFWmcI9XmiHhRHFH9V91wz2KPQMPTAMx/PsRr0ww/Z44087P9NXY?=
- =?us-ascii?Q?AATc+ndMvz4QsBclSpQtz87q9oGzWzPC6G8MJ+KZn7S3q8SmlkjlKIneI3jV?=
- =?us-ascii?Q?1xsdc7rLHTU+5bsD723Jkdg8siaXX9BrP41cEIywX+PuSQFHxA0joMKgsC0o?=
- =?us-ascii?Q?w7p+fPPoiOlkcv6bpcmDlI8/9TbYl0rE1h/2ZAsYx0ydjsbYW1R9jlJjFJ/R?=
- =?us-ascii?Q?58k4XmvL2w4xVJ4wqrjq1hMBbEBEEFWr2JBdTiqLsmarAiRzNTRsGsPjqRxS?=
- =?us-ascii?Q?KmPFJWpNHxZpYVpsFzls+VN/+UZwkf1Eoe12TTF2y7Zg23Dd083OHdjM4POw?=
- =?us-ascii?Q?gGAqu0k+G37uv4ibyj6iJAqvysHqRPBEEy+FAIb9Wf5ZNE5uMcedJNCXJw4i?=
- =?us-ascii?Q?5IuiT6lL4vlpXjL3pVtL6xPtUUQxOn4121aocV9vb8NFNMUUOgBdL7WHOlpO?=
- =?us-ascii?Q?h/jGQSrJyEIIBEt0ufTjF14ZKMqxwmP6JlfeiHVZ7m/ySSUBt90/9PjUXy6g?=
- =?us-ascii?Q?KHHOidv+2mCFSIfNejlBV9qVh/P2wnaexvzYcWaZG32RlgfT4fdCnt1FuWSw?=
- =?us-ascii?Q?y2VKXaPxmWbl8BbSV01rBOlDDDOw41HzyZ/oqAQG?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e6fd6b55-ee66-4c7c-da45-08dbea5b5ecf
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Nov 2023 06:30:35.9844
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 90hwD/M4Vp10xgpwFZLSFFLastIMXuvCoYBDKN4+Y82o05Ja3zCYA02TqdWfwu7kKTKKu2N3wo8VXVEo198vyg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DUZPR04MB9823
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 06/17] iommu: Add iommu_fwspec_alloc/dealloc()
+Content-Language: en-US
+To: Jason Gunthorpe <jgg@nvidia.com>
+Cc: acpica-devel@lists.linux.dev, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+ Albert Ou <aou@eecs.berkeley.edu>, asahi@lists.linux.dev,
+ Catalin Marinas <catalin.marinas@arm.com>, Dexuan Cui <decui@microsoft.com>,
+ devicetree@vger.kernel.org, David Woodhouse <dwmw2@infradead.org>,
+ Frank Rowand <frowand.list@gmail.com>, Hanjun Guo <guohanjun@huawei.com>,
+ Haiyang Zhang <haiyangz@microsoft.com>, iommu@lists.linux.dev,
+ Jean-Philippe Brucker <jean-philippe@linaro.org>,
+ Jonathan Hunter <jonathanh@nvidia.com>, Joerg Roedel <joro@8bytes.org>,
+ "K. Y. Srinivasan" <kys@microsoft.com>, Len Brown <lenb@kernel.org>,
+ linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-hyperv@vger.kernel.org, linux-mips@vger.kernel.org,
+ linux-riscv@lists.infradead.org, linux-snps-arc@lists.infradead.org,
+ linux-tegra@vger.kernel.org, Russell King <linux@armlinux.org.uk>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, patches@lists.linux.dev,
+ Paul Walmsley <paul.walmsley@sifive.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Robert Moore <robert.moore@intel.com>, Rob Herring <robh+dt@kernel.org>,
+ Robin Murphy <robin.murphy@arm.com>, Sudeep Holla <sudeep.holla@arm.com>,
+ Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
+ Sven Peter <sven@svenpeter.dev>, Thierry Reding <thierry.reding@gmail.com>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Krishna Reddy <vdumpa@nvidia.com>, Vineet Gupta <vgupta@kernel.org>,
+ virtualization@lists.linux.dev, Wei Liu <wei.liu@kernel.org>,
+ Will Deacon <will@kernel.org>
+References: <6-v2-36a0088ecaa7+22c6e-iommu_fwspec_jgg@nvidia.com>
+ <20a7ef6d-a8ca-4bd8-ad7e-11856db617a2@marcan.st>
+ <1eb12c35-e64e-4c32-af99-8743dc2ec266@marcan.st>
+ <20231119141329.GA6083@nvidia.com>
+From: Hector Martin <marcan@marcan.st>
+In-Reply-To: <20231119141329.GA6083@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Peng Fan <peng.fan@nxp.com>
 
-The analog module produces PLL and OSC for Clock Controller Module. Since
-the binding doc has been updated to clock-controller for this module,
-Let's also update the device tree node.
 
-Signed-off-by: Peng Fan <peng.fan@nxp.com>
----
+On 2023/11/19 23:13, Jason Gunthorpe wrote:
+> On Sun, Nov 19, 2023 at 06:19:43PM +0900, Hector Martin wrote:
+>>>> +static int iommu_fwspec_assign_iommu(struct iommu_fwspec *fwspec,
+>>>> +				     struct device *dev,
+>>>> +				     struct fwnode_handle *iommu_fwnode)
+>>>> +{
+>>>> +	const struct iommu_ops *ops;
+>>>> +
+>>>> +	if (fwspec->iommu_fwnode) {
+>>>> +		/*
+>>>> +		 * fwspec->iommu_fwnode is the first iommu's fwnode. In the rare
+>>>> +		 * case of multiple iommus for one device they must point to the
+>>>> +		 * same driver, checked via same ops.
+>>>> +		 */
+>>>> +		ops = iommu_ops_from_fwnode(iommu_fwnode);
+>>>
+>>> This carries over a related bug from the original code: If a device has
+>>> two IOMMUs and the first one probes but the second one defers, ops will
+>>> be NULL here and the check will fail with EINVAL.
+>>>
+>>> Adding a check for that case here fixes it:
+>>>
+>>> 		if (!ops)
+>>> 			return driver_deferred_probe_check_state(dev);
+> 
+> Yes!
+> 
+>>> With that, for the whole series:
+>>>
+>>> Tested-by: Hector Martin <marcan@marcan.st>
+>>>
+>>> I can't specifically test for the probe races the series intends to fix
+>>> though, since that bug we only hit extremely rarely. I'm just testing
+>>> that nothing breaks.
+>>
+>> Actually no, this fix is not sufficient. If the first IOMMU is ready
+>> then the xlate path allocates dev->iommu, which then
+>> __iommu_probe_device takes as a sign that all IOMMUs are ready and does
+>> the device init.
+> 
+> It doesn't.. The code there is:
+> 
+> 	if (!fwspec && dev->iommu)
+> 		fwspec = dev->iommu->fwspec;
+> 	if (fwspec)
+> 		ops = fwspec->ops;
+> 	else
+> 		ops = dev->bus->iommu_ops;
+> 	if (!ops) {
+> 		ret = -ENODEV;
+> 		goto out_unlock;
+> 	}
+> 
+> Which is sensitive only to !NULL fwspec, and if EPROBE_DEFER is
+> returned fwspec will be freed and dev->iommu->fwspec will be NULL
+> here.
+> 
+> In the NULL case it does a 'bus probe' with a NULL fwspec and all the
+> fwspec drivers return immediately from their probe functions.
+> 
+> Did I miss something?
 
-V4:
- None
-V3:
- None
-V2:
- Update subject/commit
- Drop node alias
+apple_dart is not a fwspec driver and doesn't do that :-)
 
- arch/arm64/boot/dts/freescale/imx93.dtsi | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+> 
+>> Then when the xlate comes along again after suceeding
+>> with the second IOMMU, __iommu_probe_device sees the device is already
+>> in a group and never initializes the second IOMMU, leaving the device
+>> with only one IOMMU.
+> 
+> This should be fixed by the first hunk to check every iommu and fail?
+> 
+> BTW, do you have a systems with same device attached to multiple
+> iommus?
 
-diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi b/arch/arm64/boot/dts/freescale/imx93.dtsi
-index ceccf4766440..235f1ae583e5 100644
---- a/arch/arm64/boot/dts/freescale/imx93.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
-@@ -422,9 +422,10 @@ mediamix: power-domain@44462400 {
- 				};
- 			};
- 
--			anatop: anatop@44480000 {
--				compatible = "fsl,imx93-anatop", "syscon";
-+			clock-controller@44480000 {
-+				compatible = "fsl,imx93-anatop";
- 				reg = <0x44480000 0x2000>;
-+				#clock-cells = <1>;
- 			};
- 
- 			tmu: tmu@44482000 {
--- 
-2.37.1
+Yes, Apple ARM64 machines all have multiple ganged IOMMUs for certain
+devices (USB and ISP). We also attach all display IOMMUs to the global
+virtual display-subsystem device to handle framebuffer mappings, instead
+of trying to dynamically map them to a bunch of individual display
+controllers (which is a lot more painful). That last one is what
+reliably reproduces this problem, display breaks without both previous
+patches ever since we started supporting more than one display output.
+The first one is not enough.
 
+> I've noticed another bug here, many drivers don't actually support
+> differing iommu instances and nothing seems to check it..
+
+apple-dart does (as long as all the IOMMUs are using that driver).
+
+> 
+> Thanks,
+> Jason
+> 
+> 
+
+- Hector
 
