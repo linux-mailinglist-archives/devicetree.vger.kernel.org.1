@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-17622-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17623-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9F337F31F0
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 16:06:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 378907F3203
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 16:12:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D8245B216A4
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 15:06:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E02512822BC
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 15:12:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEBF9487AC;
-	Tue, 21 Nov 2023 15:06:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 707D855C2B;
+	Tue, 21 Nov 2023 15:12:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Hy8aYddk"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AXQOzTkA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CC8A125
-	for <devicetree@vger.kernel.org>; Tue, 21 Nov 2023 07:06:20 -0800 (PST)
-Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2c5039d4e88so72835251fa.3
-        for <devicetree@vger.kernel.org>; Tue, 21 Nov 2023 07:06:20 -0800 (PST)
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2885EBB
+	for <devicetree@vger.kernel.org>; Tue, 21 Nov 2023 07:12:01 -0800 (PST)
+Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-9c41e95efcbso778881166b.3
+        for <devicetree@vger.kernel.org>; Tue, 21 Nov 2023 07:12:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700579178; x=1701183978; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1700579519; x=1701184319; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=q5hhhZRHfGe2KU1JRk5bNtC/vyWS7Y/hyQQ+jMEFV7c=;
-        b=Hy8aYddkZ/95OfYlHwCILXA+QWgUCK4fSs70Ig0QGyn1i5dqTEtobc2ybdjkDQJli4
-         vzE+O6K2tDC6bj+3kSyt97ZHOih2UIwduWHisNoRufWbaTv/hlkBKr/Vohd9As+knq8P
-         IGsMrEBAwR/Grf+7fekT+8yNL8FkhYAJMgKZl0CUBRek9B9pUsSswTtFMIw/HmGoAqsL
-         X+kCRWXyJ88Wi1pFoV+JYPpIgbe0Dmbjuk7fjtKNUGLfVyxi3R4Ln2T6okduvYtIb2la
-         l4yYF82cmXZZjb0UqV/CMmRqz18MGLkfsUe3MDFWL29qVB5VVEiIhqgsxLgh/oJSw+u5
-         AHQw==
+        bh=bsX+eO+Ogkr86jyvuNv6qELQRni+01OajEyrVAuovLE=;
+        b=AXQOzTkAe8MyJXdFHgMvuy4oFWnqHfFnwDXL46mIGt2Er1jOJJyeC6CIwcwdF4AeGh
+         HKDZy4vv75LxyjuBKHai57msrF9wYWSrMBtx/H7/PkEAmae14vLpootsQPw3MinUOV29
+         v036NYcfBLwgfvcY7RGJEQGuyGsKp6aNus4F7yWBNeZ0ckWISMNSt6fJ96NskcwsG0P7
+         2fYN/27DFihcYktTFDM9NykkFuZP9QxBT1AzLwRgC9bs2TWLBtlJsTvhbmB8EmcMvoTs
+         k7VJXj4JbtKukWFB7VwGkjZeUC+wwVbSzVCfxCnUqcANQXLNtyMM+6KVnTPMqIbpTKVX
+         zciQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700579178; x=1701183978;
+        d=1e100.net; s=20230601; t=1700579519; x=1701184319;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=q5hhhZRHfGe2KU1JRk5bNtC/vyWS7Y/hyQQ+jMEFV7c=;
-        b=rgUM9DZ0EFP+7oZSQowZ6jXK6w9kZGTPs5D+kIWKe3xVOSatbHNMTY0TN53hzt7WAn
-         Y/MfY0U1tX3dUT6qUpP3qIckEYva4tekZFPzBCoaQjJJrEuMekaBzi/q1bAC3wY2FpYv
-         8YKgQIPMafVPwx77g9yvbLBLpxosMjx/l5rS3fPiWryizwnziF/e9UtJgbkaREKdpQDy
-         wGaKdVY14JyE+SmyzsBH8APPsSDC3m8PFAg9ZSYSA8fxiR/UO5S4J8sEuP8PYdfMYY9a
-         wnyYoR9sp5iWhh05k09c3ccp59mr6gzyo0T2WXl+2WlLng/1IPDHM6yEhkjOr5KhSK8K
-         DIzw==
-X-Gm-Message-State: AOJu0YzERpAFOLG7NtP2NoEKVuPhZJEGKPv8HwnZ8yrgx59N1uXXiuJC
-	XiVvUi0R4dhHL26qkxoWtu4nDg==
-X-Google-Smtp-Source: AGHT+IH11H6TVmuZTvSyx5lJTpnIVh9+XzTwKDTT+YMmaikYP5vHaHgdagiNt1T+SvZomqdOy58u3w==
-X-Received: by 2002:a05:651c:228:b0:2c5:6cb:2e50 with SMTP id z8-20020a05651c022800b002c506cb2e50mr6756215ljn.27.1700579178502;
-        Tue, 21 Nov 2023 07:06:18 -0800 (PST)
+        bh=bsX+eO+Ogkr86jyvuNv6qELQRni+01OajEyrVAuovLE=;
+        b=hAJ4hNYGpr4h9ia10CwQtvJhP2mQnHk3gr0m+P4OkZ6zRlz5yDkwhR+h/X57AYKzBD
+         bHOKyRkkrQQvtwviwh3WOmbYY5GdbDsVU29eqqI9l0Y4VeIvNngynz9dPc2XnRK1WKMA
+         /rnAAMnoFmWRF1IlMg/+eGf/Sk5iKTVaA9L4LP7fDAqCOMp5Si97V9MBBUkm5d/ArTJ3
+         3gPeBxWT0rt61zDnuokpHO4wZBHEzSba77HKUWKclb082daWVAjoCQvUfEzlXowbHfKJ
+         r9VCksXLJBzTcVvagzpcX0IP9u8ZA0bplNqZc0GUv6fcJ3/OoyhidWiA7T8xAOSvJ2P2
+         bFrA==
+X-Gm-Message-State: AOJu0Yw3vyyxAMqxethbzrHCAFc7cSGH6LRUfj3Bul9HiwjBsvb3MC8N
+	vPv+S9FV/33aiqxHNXvCrrR+kg==
+X-Google-Smtp-Source: AGHT+IEcfPEYJa1Mrfsren6f3TBNqlmZPsAoz91zC7V9PmQGmkMltl/rVviZ3PQmo4mARJiFoEMxbg==
+X-Received: by 2002:a17:906:2a13:b0:9ff:9de7:126 with SMTP id j19-20020a1709062a1300b009ff9de70126mr3658001eje.70.1700579519575;
+        Tue, 21 Nov 2023 07:11:59 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.11])
-        by smtp.gmail.com with ESMTPSA id r12-20020adfda4c000000b003232380ffd7sm14596987wrl.102.2023.11.21.07.06.14
+        by smtp.gmail.com with ESMTPSA id f4-20020a170906560400b009ff10633221sm2285603ejq.128.2023.11.21.07.11.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Nov 2023 07:06:15 -0800 (PST)
-Message-ID: <43376552-7e79-4f34-94ca-63767a95564b@linaro.org>
-Date: Tue, 21 Nov 2023 16:06:13 +0100
+        Tue, 21 Nov 2023 07:11:59 -0800 (PST)
+Message-ID: <c6ed6ff6-5304-43e2-a434-bd024363da4e@linaro.org>
+Date: Tue, 21 Nov 2023 16:11:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,23 +62,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/9] dt-bindings: clock: ipq5332: drop the few nss
- clocks definition
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: frequency: add admfm2000
 Content-Language: en-US
-To: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>,
- Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+To: "Paller, Kim Seer" <KimSeer.Paller@analog.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen
+ <lars@metafoo.de>, "Hennerich, Michael" <Michael.Hennerich@analog.com>,
+ Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>,
- Richard Cochran <richardcochran@gmail.com>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20231121-ipq5332-nsscc-v2-0-a7ff61beab72@quicinc.com>
- <20231121-ipq5332-nsscc-v2-3-a7ff61beab72@quicinc.com>
+ "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20231121100012.112861-1-kimseer.paller@analog.com>
+ <c4f31613-8365-4d4d-a3ec-1b573f822968@linaro.org>
+ <PH0PR03MB7141E0B29DFEEE16C4A5D27FF9BBA@PH0PR03MB7141.namprd03.prod.outlook.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -124,23 +121,49 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231121-ipq5332-nsscc-v2-3-a7ff61beab72@quicinc.com>
+In-Reply-To: <PH0PR03MB7141E0B29DFEEE16C4A5D27FF9BBA@PH0PR03MB7141.namprd03.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 21/11/2023 15:30, Kathiravan Thirumoorthy wrote:
-> In commit 0dd3f263c810 ("clk: qcom: ipq5332: enable few nssnoc clocks in
+On 21/11/2023 15:47, Paller, Kim Seer wrote:
+> 
+> 
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Sent: Tuesday, November 21, 2023 9:05 PM
+>> To: Paller, Kim Seer <KimSeer.Paller@analog.com>
+>> Cc: Jonathan Cameron <jic23@kernel.org>; Lars-Peter Clausen
+>> <lars@metafoo.de>; Hennerich, Michael <Michael.Hennerich@analog.com>;
+>> Rob Herring <robh+dt@kernel.org>; Krzysztof Kozlowski
+>> <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley <conor+dt@kernel.org>;
+>> linux-iio@vger.kernel.org; devicetree@vger.kernel.org; linux-
+>> kernel@vger.kernel.org
+>> Subject: Re: [PATCH v2 1/2] dt-bindings: iio: frequency: add admfm2000
+>>
+>> [External]
+>>
+>> On 21/11/2023 11:00, Kim Seer Paller wrote:
+>>> Dual microwave down converter module with input RF and LO frequency
+>>> ranges from 0.5 to 32 GHz and an output IF frequency range from 0.1 to
+>>> 8 GHz. It consists of a LNA, mixer, IF filter, DSA, and IF amplifier
+>>> for each down conversion path.
+>>>
+>>> Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
+>>> ---
+>>> V1 -> V2: Removed '|' after description. Specified the pins connected to
+>>>           the GPIOs. Added additionalProperties: false. Changed node name to
+>> gpio.
+>>
+>> Why? Is this a GPIO? Your bindings title say this is a converter, not a
+>> GPIO.
+> 
+> I might have used an incorrect generic name, considering that it utilizes GPIOs 
+> for controlling both mode and attenuation. What would be the appropriate
+> name to use in this context?
 
-Where is this commit coming from?
+git grep @ -- Documentation/devictree/bindings/iio/frequency
 
-> driver probe"), gcc_snoc_nssnoc_clk, gcc_snoc_nssnoc_1_clk,
-> gcc_nssnoc_nsscc_clk are enabled in driver probe to keep it always-on.
-
-Implementation can change and for example bring back these clocks. Are
-you going to change bindings? No, drop the patch.
-
-Bindings should be dropped only in a few rare cases like clocks not
-available for OS or bugs.
+I would go with converter.
 
 Best regards,
 Krzysztof
