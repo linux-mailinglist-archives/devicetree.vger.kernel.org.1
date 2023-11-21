@@ -1,126 +1,145 @@
-Return-Path: <devicetree+bounces-17494-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17495-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA0367F2AE5
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 11:45:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 278D57F2AF8
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 11:49:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 266CF1C20B9F
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 10:45:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D60302825B4
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 10:49:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC4C647788;
-	Tue, 21 Nov 2023 10:45:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B8024778D;
+	Tue, 21 Nov 2023 10:49:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="maJE4LgW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CA5A123;
-	Tue, 21 Nov 2023 02:45:03 -0800 (PST)
-Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-dafe04717baso4940033276.1;
-        Tue, 21 Nov 2023 02:45:03 -0800 (PST)
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BDE7A2
+	for <devicetree@vger.kernel.org>; Tue, 21 Nov 2023 02:49:14 -0800 (PST)
+Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-40b26d6f7dbso6999635e9.2
+        for <devicetree@vger.kernel.org>; Tue, 21 Nov 2023 02:49:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1700563753; x=1701168553; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:message-id:subject:cc:to:date:from:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=vm1mzb+/0cWoJA6/opr6AD2njrHp+x6yQgd44ScRa7Q=;
+        b=maJE4LgWjFL+KeiRZ6vg9pOgRWKwPxl/xNcpc2iCEg7vc67AdD6ybldaBDT5xnQp/N
+         K3USUQo4VRlk/EzUAERX95T+61PPls9WF7+RVkwPG77lFcAhJ6xvHibwn174KVsuQsDw
+         0lezjF1uTaSzfy2ZsAuyDHogFrYWRN+rrm7JueF7R5vIIYmLuYmCETFZKFTdWo3VtlsB
+         rKC7dDwGwc7HuaOJ+It+GL395fqn87R/7MniyHu2ww5EoBnXpUTsquLUkDtjScUS9I59
+         7exr+S49aEDUFYPJblbnJJMePEW7RR7rXNexnng4X3fGsLbQjRjhhzuGDUfPJJlHY9VK
+         bCEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700563502; x=1701168302;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7GTzvHmKsk8zPbgSYaWyVwHOKd3D2neB7akSCl7L0f8=;
-        b=Q3WZBV6VPCIiY8uqNOoFIIj1JrcFcZ6WI+fdkIpqoU8ptT9cqoBZAye/v4PgKl6A33
-         1m6kFOIO0VRfYYL4rc14Tta7SFbeKKpofebpyOYzenSxQhGWjtn3lkH++HHO1HgvNqzs
-         AafPTIyNGYsmyEU2TJ2YEN7G4ZjqlJEDQ8jNvSa12XTzIoH33RoOj67ovNUqz/t5pAfX
-         uz3hq57rxDERSlVc8Rpy85S3CBggms+kBmKYzyHuusY59G382sx/rF8RDH7UcqIaicLf
-         89iFJKjdOgHm2jwPCRVPi2cnt/SdYkXzezoOMackfIfVYT0qWC2ziTSYtK7QwsFxDgO5
-         d9ww==
-X-Gm-Message-State: AOJu0Yxw7E+eHDNkDTeMRLgjn5A7QqQBKui4sPe1zL8Acbbdu5AaQubo
-	EO9PzgtzUPDoxXeesvfIssmaSD0A+aMkGJrj
-X-Google-Smtp-Source: AGHT+IH+wdoNWVetDizP2Zr204fx7+bVgu9Ha2R8h6hddA1YdzKRaO3oFwsRbpL7mfg8Lg+ubscvkA==
-X-Received: by 2002:a25:8d85:0:b0:daf:7718:62b8 with SMTP id o5-20020a258d85000000b00daf771862b8mr9091289ybl.65.1700563502339;
-        Tue, 21 Nov 2023 02:45:02 -0800 (PST)
-Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com. [209.85.219.180])
-        by smtp.gmail.com with ESMTPSA id m204-20020a2558d5000000b00da07d9e47b4sm617066ybb.55.2023.11.21.02.45.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Nov 2023 02:45:00 -0800 (PST)
-Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-d9c66e70ebdso4939089276.2;
-        Tue, 21 Nov 2023 02:45:00 -0800 (PST)
-X-Received: by 2002:a25:4102:0:b0:d9c:aa50:2b5a with SMTP id
- o2-20020a254102000000b00d9caa502b5amr9776928yba.53.1700563499776; Tue, 21 Nov
- 2023 02:44:59 -0800 (PST)
+        d=1e100.net; s=20230601; t=1700563753; x=1701168553;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:message-id:subject:cc:to:date:from:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vm1mzb+/0cWoJA6/opr6AD2njrHp+x6yQgd44ScRa7Q=;
+        b=Er+sX8Wxg9HtfMU8f/Zm7+MIShzvK2YN+LJObU/E0plOyPhuJ0KLHR1cX/9F2cxGAc
+         DEpabWewuDgbtzw8TBaXVhGOhxQ5IajuFpelZGpKC7NyJHuAKyJCov5qgT1zkAqqfEdK
+         mQnfuAItA6i4xgwiM91vgbPbq/bZW6xwgHCAQjRyLemuVA1wpsAdqk8aSgcN7/KwWSbV
+         6wxQPlz4kjgWO0prCQ+c1N9ejWCRf4mhwLuWR1p0aP4oQK67G/aG29ueF7KXyvzXTh4Y
+         6UXXmIsuGgNomboh1cTIzp1K70uw7uCYyn++h+r+3SqzNPXfQEOFoc7nNBJioG7wzwqk
+         y+WQ==
+X-Gm-Message-State: AOJu0YxCk+MFA/UnaASUmuiDvVkLTKavJjF2lKg5so0eZLlXmm9dHaym
+	dXejNutVK7PxaPsorDhD6OWj8apAAOjPSmbtAEU=
+X-Google-Smtp-Source: AGHT+IGdWxrYI1CbBcjMK9wdr9tOMsAMG0nGdMH6J9FvpnI0ugEyHONwgzuV9omZo0HEuwXox11j/A==
+X-Received: by 2002:a05:600c:3588:b0:40b:29f3:af02 with SMTP id p8-20020a05600c358800b0040b29f3af02mr1059939wmq.27.1700563752661;
+        Tue, 21 Nov 2023 02:49:12 -0800 (PST)
+Received: from localhost ([102.36.222.112])
+        by smtp.gmail.com with ESMTPSA id je12-20020a05600c1f8c00b0040839fcb217sm16689767wmb.8.2023.11.21.02.49.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Nov 2023 02:49:12 -0800 (PST)
+From: Dan Carpenter <dan.carpenter@linaro.org>
+X-Google-Original-From: Dan Carpenter <dan.carpenter@oracle.com>
+Date: Tue, 21 Nov 2023 05:49:09 -0500
+To: oe-kbuild@lists.linux.dev, Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>
+Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Lukas Wunner <lukas@wunner.de>,
+	Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org
+Subject: Re: [PATCH 2/2] serial: core: implement support for rs485-mux-gpios
+Message-ID: <ecdc16e5-18f8-4675-91a3-36a0371e1e8d@suswa.mountain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231120111820.87398-1-claudiu.beznea.uj@bp.renesas.com> <20231120111820.87398-9-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20231120111820.87398-9-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 21 Nov 2023 11:44:47 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdX88KRnvJchUwrWcgmPooAESOT2492Nr1Z_5UMng3q__Q@mail.gmail.com>
-Message-ID: <CAMuHMdX88KRnvJchUwrWcgmPooAESOT2492Nr1Z_5UMng3q__Q@mail.gmail.com>
-Subject: Re: [PATCH v3 8/9] dt-bindings: interrupt-controller:
- renesas,rzg2l-irqc: Document RZ/G3S
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: tglx@linutronix.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	conor+dt@kernel.org, magnus.damm@gmail.com, mturquette@baylibre.com, 
-	sboyd@kernel.org, prabhakar.mahadev-lad.rj@bp.renesas.com, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, 
-	Conor Dooley <conor.dooley@microchip.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20231120151056.148450-3-linux@rasmusvillemoes.dk>
 
-On Tue, Nov 21, 2023 at 9:25=E2=80=AFAM Claudiu <claudiu.beznea@tuxon.dev> =
-wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->
-> Document RZ/G3S (R9108G045) interrupt controller. This has few extra
-> functionalities compared with RZ/G2UL but the already existing driver
-> could still be used.
->
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Hi Rasmus,
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+kernel test robot noticed the following build warnings:
 
-> --- a/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2=
-l-irqc.yaml
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2=
-l-irqc.yaml
-> @@ -26,6 +26,7 @@ properties:
->            - renesas,r9a07g043u-irqc   # RZ/G2UL
->            - renesas,r9a07g044-irqc    # RZ/G2{L,LC}
->            - renesas,r9a07g054-irqc    # RZ/V2L
-> +          - renesas,r9a08g045-irqc    # RZ/G3S
->        - const: renesas,rzg2l-irqc
->
->    '#interrupt-cells':
-> @@ -167,7 +168,9 @@ allOf:
->        properties:
->          compatible:
->            contains:
-> -            const: renesas,r9a07g043u-irqc
-> +            enum:
-> +              - renesas,r9a07g043u-irqc
-> +              - renesas,r9a08g045-irqc
->      then:
->        properties:
->          interrupts:
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Prabhakar: How come we thought RZ/G2L and RZ/V2L do not have the bus
-error interrupt? Looks like all the conditional handling can be removed.
+url:    https://github.com/intel-lab-lkp/linux/commits/Rasmus-Villemoes/dt-bindings-serial-rs485-add-rs485-mux-gpios-binding/20231120-231551
+base:   v6.7-rc2
+patch link:    https://lore.kernel.org/r/20231120151056.148450-3-linux%40rasmusvillemoes.dk
+patch subject: [PATCH 2/2] serial: core: implement support for rs485-mux-gpios
+config: hexagon-randconfig-r071-20231121 (https://download.01.org/0day-ci/archive/20231121/202311211751.MgZLovko-lkp@intel.com/config)
+compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project.git 4a5ac14ee968ff0ad5d2cc1ffa0299048db4c88a)
+reproduce: (https://download.01.org/0day-ci/archive/20231121/202311211751.MgZLovko-lkp@intel.com/reproduce)
 
-Gr{oetje,eeting}s,
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Reported-by: Dan Carpenter <error27@gmail.com>
+| Closes: https://lore.kernel.org/r/202311211751.MgZLovko-lkp@intel.com/
 
-                        Geert
+New smatch warnings:
+drivers/tty/serial/serial_core.c:3651 uart_get_rs485_mode() warn: passing zero to 'PTR_ERR'
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+Old smatch warnings:
+drivers/tty/serial/serial_core.c:2996 iomem_base_show() warn: argument 3 to %lX specifier is cast from pointer
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+vim +/PTR_ERR +3651 drivers/tty/serial/serial_core.c
+
+d58a2df3d8877b Lukas Wunner          2020-05-18  3629  	/*
+d58a2df3d8877b Lukas Wunner          2020-05-18  3630  	 * Disabling termination by default is the safe choice:  Else if many
+d58a2df3d8877b Lukas Wunner          2020-05-18  3631  	 * bus participants enable it, no communication is possible at all.
+d58a2df3d8877b Lukas Wunner          2020-05-18  3632  	 * Works fine for short cables and users may enable for longer cables.
+d58a2df3d8877b Lukas Wunner          2020-05-18  3633  	 */
+7cda0b9eb6eb9e Andy Shevchenko       2023-10-03  3634  	desc = devm_gpiod_get_optional(dev, "rs485-term", GPIOD_OUT_LOW);
+7cda0b9eb6eb9e Andy Shevchenko       2023-10-03  3635  	if (IS_ERR(desc))
+7cda0b9eb6eb9e Andy Shevchenko       2023-10-03  3636  		return dev_err_probe(dev, PTR_ERR(desc), "Cannot get rs485-term-gpios\n");
+7cda0b9eb6eb9e Andy Shevchenko       2023-10-03  3637  	port->rs485_term_gpio = desc;
+8bec874f84d826 Ilpo Järvinen         2022-07-04  3638  	if (port->rs485_term_gpio)
+8bec874f84d826 Ilpo Järvinen         2022-07-04  3639  		port->rs485_supported.flags |= SER_RS485_TERMINATE_BUS;
+d58a2df3d8877b Lukas Wunner          2020-05-18  3640  
+7cda0b9eb6eb9e Andy Shevchenko       2023-10-03  3641  	dflags = (rs485conf->flags & SER_RS485_RX_DURING_TX) ?
+163f080eb717d2 Christoph Niedermaier 2022-12-02  3642  		 GPIOD_OUT_HIGH : GPIOD_OUT_LOW;
+7cda0b9eb6eb9e Andy Shevchenko       2023-10-03  3643  	desc = devm_gpiod_get_optional(dev, "rs485-rx-during-tx", dflags);
+7cda0b9eb6eb9e Andy Shevchenko       2023-10-03  3644  	if (IS_ERR(desc))
+7cda0b9eb6eb9e Andy Shevchenko       2023-10-03  3645  		return dev_err_probe(dev, PTR_ERR(desc), "Cannot get rs485-rx-during-tx-gpios\n");
+7cda0b9eb6eb9e Andy Shevchenko       2023-10-03  3646  	port->rs485_rx_during_tx_gpio = desc;
+163f080eb717d2 Christoph Niedermaier 2022-12-02  3647  
+da0ccd117da1e4 Rasmus Villemoes      2023-11-20  3648  	dflags = (rs485conf->flags & SER_RS485_ENABLED) ? GPIOD_OUT_HIGH : GPIOD_OUT_LOW;
+da0ccd117da1e4 Rasmus Villemoes      2023-11-20  3649  	desc = devm_gpiod_get_optional(dev, "rs485-mux", dflags);
+da0ccd117da1e4 Rasmus Villemoes      2023-11-20  3650  	if (IS_ERR(desc))
+da0ccd117da1e4 Rasmus Villemoes      2023-11-20 @3651  		return dev_err_probe(dev, PTR_ERR(port->rs485_mux_gpio),
+                                                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Should be PTR_ERR(desc).
+
+da0ccd117da1e4 Rasmus Villemoes      2023-11-20  3652  				     "Cannot get rs485-mux-gpios\n");
+da0ccd117da1e4 Rasmus Villemoes      2023-11-20  3653  	port->rs485_mux_gpio = desc;
+da0ccd117da1e4 Rasmus Villemoes      2023-11-20  3654  
+c150c0f362c1e5 Lukas Wunner          2020-05-12  3655  	return 0;
+ef838a81dd4de1 Uwe Kleine-König      2017-09-13  3656  }
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
+
 
