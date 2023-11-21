@@ -1,262 +1,164 @@
-Return-Path: <devicetree+bounces-17434-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17436-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC39B7F287A
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 10:13:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EE507F2889
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 10:17:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6C0E3B21620
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 09:13:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1A75A282421
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 09:17:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04A903218A;
-	Tue, 21 Nov 2023 09:13:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 558C6321A3;
+	Tue, 21 Nov 2023 09:17:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EY9G3e//"
 X-Original-To: devicetree@vger.kernel.org
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C56910E;
-	Tue, 21 Nov 2023 01:13:42 -0800 (PST)
-X-SpamFilter-By: ArmorX SpamTrap 5.78 with qID 3AL9CLOM01506726, This message is accepted by code: ctloc85258
-Received: from mail.realtek.com (rtexh36506.realtek.com.tw[172.21.6.27])
-	by rtits2.realtek.com.tw (8.15.2/2.95/5.92) with ESMTPS id 3AL9CLOM01506726
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Tue, 21 Nov 2023 17:12:21 +0800
-Received: from RTEXDAG01.realtek.com.tw (172.21.6.100) by
- RTEXH36506.realtek.com.tw (172.21.6.27) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.17; Tue, 21 Nov 2023 17:12:21 +0800
-Received: from RTEXH36506.realtek.com.tw (172.21.6.27) by
- RTEXDAG01.realtek.com.tw (172.21.6.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.7; Tue, 21 Nov 2023 17:12:19 +0800
-Received: from localhost.localdomain (172.21.252.101) by
- RTEXH36506.realtek.com.tw (172.21.6.27) with Microsoft SMTP Server id
- 15.1.2507.17 via Frontend Transport; Tue, 21 Nov 2023 17:12:19 +0800
-From: Jyan Chou <jyanchou@realtek.com>
-To: <ulf.hansson@linaro.org>, <adrian.hunter@intel.com>,
-        <jh80.chung@samsung.com>, <riteshh@codeaurora.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>
-CC: <conor+dt@kernel.org>, <asutoshd@codeaurora.org>, <p.zabel@pengutronix.de>,
-        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <arnd@arndb.de>,
-        <briannorris@chromium.org>, <doug@schmorgal.com>,
-        <tonyhuang.sunplus@gmail.com>, <abel.vesa@linaro.org>,
-        <william.qiu@starfivetech.com>, <jyanchou@realtek.com>
-Subject: [PATCH v7][4/4] dt-bindings: mmc: Add dt-bindings for realtek mmc driver
-Date: Tue, 21 Nov 2023 17:11:01 +0800
-Message-ID: <20231121091101.5540-5-jyanchou@realtek.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231121091101.5540-1-jyanchou@realtek.com>
-References: <20231121091101.5540-1-jyanchou@realtek.com>
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BE3930FA5;
+	Tue, 21 Nov 2023 09:17:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96403C433C7;
+	Tue, 21 Nov 2023 09:17:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1700558262;
+	bh=KiJ/ru65Ua8lo4s4fh4OjLQfr8e6MLSoBb/RDxWensY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=EY9G3e//vJF7k13VmW76Yg4tqo4bYwC2YfDojOjvxuSr9VIw4idRrZhBvYcNt5EFP
+	 SHaFaNcHn3iQA/LpGwavpXPMJMW19y14mBeHfC8DLz/r8WAZBA3w6hBwEMwd3H3qVh
+	 9ZKHx6kkjJ81fj5Dj5azu2nLiIaxaSeFlZWd9KFEosC8kjJPW6B3C9xuKYC8b3ETnh
+	 VcyG/gcTVUImvNkZpZx881dhtUmhnH6cnWL+a5f/U4Q6n0otk6WOinYAZyvLu79cqT
+	 +NdLMfiSgo7tuW7fllRQflnxVNvgMN2UX85GgfSolv6r7erH4kW+9Bux8cWc3ECHPp
+	 SjA5WXIvgy4LQ==
+Received: from johan by xi.lan with local (Exim 4.96.2)
+	(envelope-from <johan@kernel.org>)
+	id 1r5MtF-00047b-1C;
+	Tue, 21 Nov 2023 10:17:53 +0100
+Date: Tue, 21 Nov 2023 10:17:53 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Andrew Halaney <ahalaney@redhat.com>
+Cc: Johan Hovold <johan+linaro@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+	Wesley Cheng <quic_wcheng@quicinc.com>,
+	Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>,
+	linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Subject: Re: [PATCH 2/3] USB: dwc3: qcom: fix wakeup after probe deferral
+Message-ID: <ZVx1wRefjNaN0byk@hovoldconsulting.com>
+References: <20231120161607.7405-1-johan+linaro@kernel.org>
+ <20231120161607.7405-3-johan+linaro@kernel.org>
+ <pgmtla6j3dshuq5zdxstszbkkssxcthtzelv2etcbrlstdw4nu@wixz6v5dfpum>
+ <3ff65t36p6n3k7faw2z75t2vfi6rb5p64x7wqosetsksbhhwli@5xaxnm7zz4tu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-KSE-ServerInfo: RTEXDAG01.realtek.com.tw, 9
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-KSE-Antivirus-Interceptor-Info: fallback
-X-KSE-AntiSpam-Interceptor-Info: fallback
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3ff65t36p6n3k7faw2z75t2vfi6rb5p64x7wqosetsksbhhwli@5xaxnm7zz4tu>
 
-Document the device-tree bindings for Realtek SoCs mmc driver.
+On Mon, Nov 20, 2023 at 02:50:52PM -0600, Andrew Halaney wrote:
+> On Mon, Nov 20, 2023 at 11:39:07AM -0600, Andrew Halaney wrote:
+> > On Mon, Nov 20, 2023 at 05:16:06PM +0100, Johan Hovold wrote:
+> > > The Qualcomm glue driver is overriding the interrupt trigger types
+> > > defined by firmware when requesting the wakeup interrupts during probe.
+> > > 
+> > > This can lead to a failure to map the DP/DM wakeup interrupts after a
+> > > probe deferral as the firmware defined trigger types do not match the
+> > > type used for the initial mapping:
+> > > 
+> > > 	irq: type mismatch, failed to map hwirq-14 for interrupt-controller@b220000!
+> > > 	irq: type mismatch, failed to map hwirq-15 for interrupt-controller@b220000!
+> > > 
+> > > Fix this by not overriding the firmware provided trigger types when
+> > > requesting the wakeup interrupts.
+> > 
+> > This series looks good to me and makes sense except for one point that
+> > I'm struggling to understand. What exactly is the relationship with this
+> > failure and probe deferral?
+> 
+> Eric Chanudet pointed out to me (thanks!) offlist that if you:
+> 
+>     1. Probe
+>     2. Grab the IRQ
+>     3. Request it (and muck with the trigger from the firmware default)
+>     4. Defer out
+>     5. Reprobe
+>     6. Grab the IRQ again
+> 
+> You get that error, which I played with some this afternoon...
+> and can confirm.
+> 
+> It really seems like maybe we should consider reworking messing with the
+> trigger type at all (which is done later for runtime/system suspend)
+> in a follow-up series?
+> 
+> As far as I can tell if you were to remove the driver and reprobe after
+> a suspend you'd hit similar.
 
-Signed-off-by: Jyan Chou <jyanchou@realtek.com>
+Correct, but people don't go around unloading modules (unlike probe
+deferral which anyone can hit). It's a development (debugging) feature
+so there being some corner cases are not that big of a deal.
 
----
-v6 -> v7:
-- Drop reset-names and realtek,m2tmx since it is not needed in our driver.
+> I've been sitting here scratching my head a
+> bit trying to reason out why keeping it as IRQ_TYPE_EDGE_BOTH isn't
+> acceptable in dwc3_qcom_enable_interrupts()... Correct me if you think
+> that playing with the trigger there is really ok, but it seems like you
+> run the same risks if you do that and then modprobe -r dwc3-qcom.
 
-v5 -> v6:
-- Drop the incorrect, generic compatible and modify it to specific.
-- Drop useless properties.
-- Modify bindings to make DTS and driver match.
+Changing the trigger type during runtime depending on use-case should be
+fine. It just doesn't play well with the kernel's interrupt mapping
+code, which assumes that if an interrupt already has a mapping then it
+is a shared interrupt.
 
-v4 -> v5:
-- Remove unused property, e.g.,cqe, resets, clock-freq-min-max.
-- Fix indentation.
+I considered addressing that in the core code, but yeah, I don't want
+too much time since the remaining issue only affects module unload and
+there are other ways to avoid that issue too.
 
-v3 -> v4:
-- Describe the items to make properties and item easy to understand.
-- Fix examples' indentation and compiling error.
-- Drop useless properties.
+> I get that dwc3_qcom_enable_interrupts() limits the scope of what wakes us
+> up to what we expect given the current device (or lack thereof), but it
+> doesn't seem like you're really meant to play with the IRQ triggers,
+> or at least the warning you shared makes me think it is not a great idea
+> if you plan to probe the device ever again in the future.
+> 
+> I'll post the current comment in dwc3_qcom_enable_interrupts() to
+> explain the "limits the scope of what wakes us up" a bit more clearly:
+> 
+> 	/*
+> 	 * Configure DP/DM line interrupts based on the USB2 device attached to
+> 	 * the root hub port. When HS/FS device is connected, configure the DP line
+> 	 * as falling edge to detect both disconnect and remote wakeup scenarios. When
+> 	 * LS device is connected, configure DM line as falling edge to detect both
+> 	 * disconnect and remote wakeup. When no device is connected, configure both
+> 	 * DP and DM lines as rising edge to detect HS/HS/LS device connect scenario.
+> 	 */
 
-v2 -> v3:
-- Modify dt-bindings' content and description.
-- Fix coding style.
-- Update the list of maintainers.
+Yes, that is how it is currently implemented and I intend to change that
+shortly. I just wanted to get the fixes out first.
 
-v1 -> v2:
-- Add dt-bindings.
----
----
- .../bindings/mmc/realtek,rtd-dw-cqe-emmc.yaml | 153 ++++++++++++++++++
- 1 file changed, 153 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/mmc/realtek,rtd-dw-cqe-emmc.yaml
+Specifically, I consider the current implementation to be broken in that
+it generates wakeup events on disconnect which is generally not want you
+want. Consider closing the lid of your laptop and disconnecting a USB
+mouse before putting it in your backpack. Now it's no longer suspended
+as you would expect it to be.
 
-diff --git a/Documentation/devicetree/bindings/mmc/realtek,rtd-dw-cqe-emmc.yaml b/Documentation/devicetree/bindings/mmc/realtek,rtd-dw-cqe-emmc.yaml
-new file mode 100644
-index 000000000000..ae063fcae365
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mmc/realtek,rtd-dw-cqe-emmc.yaml
-@@ -0,0 +1,153 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mmc/realtek,rtd-dw-cqe-emmc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Realtek DesignWare mobile storage host controller
-+
-+description:
-+  Realtek uses the Synopsys DesignWare mobile storage host controller
-+  to interface a SoC with storage medium. This file documents the Realtek
-+  specific extensions.
-+
-+maintainers:
-+  - Jyan Chou <jyanchou@realtek.com>
-+
-+allOf:
-+  - $ref: synopsys-dw-mshc-common.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - realtek,rtd1325-dw-cqe-emmc
-+      - realtek,rtd1319-dw-cqe-emmc
-+      - realtek,rtd1315e-dw-cqe-emmc
-+      - realtek,rtd1619b-dw-cqe-emmc
-+
-+  reg:
-+    items:
-+      - description: emmc base address
-+      - description: cqhci base address
-+
-+  reg-names:
-+    items:
-+      - const: emmc
-+      - const: cqhci
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 4
-+
-+  clock-names:
-+    items:
-+      - const: biu
-+      - const: ciu
-+      - const: vp0
-+      - const: vp1
-+
-+  resets:
-+    maxItems: 1
-+
-+  pinctrl-0:
-+    description:
-+      should contain default/high speed pin ctrl.
-+    maxItems: 1
-+
-+  pinctrl-1:
-+    description:
-+      should contain sdr50 pin ctrl.
-+    maxItems: 1
-+
-+  pinctrl-2:
-+    description:
-+      should contain ddr50 mode pin ctrl.
-+    maxItems: 1
-+
-+  pinctrl-3:
-+    description:
-+      should contain hs200 speed pin ctrl.
-+    maxItems: 1
-+
-+  pinctrl-4:
-+    description:
-+      should contain hs400 speed pin ctrl.
-+    maxItems: 1
-+
-+  pinctrl-5:
-+    description:
-+      should contain tune0 pin ctrl.
-+    maxItems: 1
-+
-+  pinctrl-6:
-+    description:
-+      should contain tune1 pin ctrl.
-+    maxItems: 1
-+
-+  pinctrl-7:
-+    description:
-+      should contain tune2 pin ctrl.
-+    maxItems: 1
-+
-+  pinctrl-8:
-+    description:
-+      should contain tune3 pin ctrl.
-+    maxItems: 1
-+
-+  pinctrl-9:
-+    description:
-+      should contain tune4 pin ctrl.
-+    maxItems: 1
-+
-+  pinctrl-names:
-+    maxItems: 10
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - interrupts
-+  - clocks
-+  - clock-names
-+  - vmmc-supply
-+  - pinctrl-names
-+  - pinctrl-0
-+  - pinctrl-1
-+  - pinctrl-3
-+  - pinctrl-4
-+  - pinctrl-5
-+  - pinctrl-6
-+  - pinctrl-7
-+  - pinctrl-8
-+  - pinctrl-9
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    emmc: mmc@12000 {
-+      compatible = "realtek,rtd1315e-dw-cqe-emmc";
-+      reg = <0x00012000 0x00600>,
-+            <0x00012180 0x00060>;
-+      reg-names = "emmc", "cqhci";
-+      interrupts = <0 42 4>;
-+      clocks = <&cc 22>, <&cc 26>, <&cc 121>, <&cc 122>;
-+      clock-names = "biu", "ciu", "vp0", "vp1";
-+      resets = <&rst 20>;
-+      vmmc-supply = <&reg_vcc1v8>;
-+      pinctrl-names = "default", "sdr50", "ddr50", "hs200", "hs400",
-+                      "tune0","tune1", "tune2","tune3", "tune4";
-+      pinctrl-0 = <&emmc_pins_sdr50>;
-+      pinctrl-1 = <&emmc_pins_sdr50>;
-+      pinctrl-2 = <&emmc_pins_ddr50>;
-+      pinctrl-3 = <&emmc_pins_hs200>;
-+      pinctrl-4 = <&emmc_pins_hs400>;
-+      pinctrl-5 = <&emmc_pins_tune0>;
-+      pinctrl-6 = <&emmc_pins_tune1>;
-+      pinctrl-7 = <&emmc_pins_tune2>;
-+      pinctrl-8 = <&emmc_pins_tune3>;
-+      pinctrl-9 = <&emmc_pins_tune4>;
-+      supports-cqe;
-+    };
--- 
-2.42.0
+With the devictrees soon fixed, we could also do away with changing the
+trigger type, but since this is how it was implemented initially we now
+need to consider backward compatibility with the broken DTs. We've dealt
+with that before, but yeah, getting things right from the start would
+have been so much better.
 
+Johan
 
