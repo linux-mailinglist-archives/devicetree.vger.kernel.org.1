@@ -1,81 +1,57 @@
-Return-Path: <devicetree+bounces-17695-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17685-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A9197F376D
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 21:30:09 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CEA917F374A
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 21:29:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9ED36B21A30
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 20:30:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 66200282767
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 20:29:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BF4D7F8;
-	Tue, 21 Nov 2023 20:30:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C3CC5467C;
+	Tue, 21 Nov 2023 20:29:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fCCR6+pb"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="OOK5L/8p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B66E61FE2
-	for <devicetree@vger.kernel.org>; Tue, 21 Nov 2023 12:29:32 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-507a5f2193bso167913e87.1
-        for <devicetree@vger.kernel.org>; Tue, 21 Nov 2023 12:29:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700598569; x=1701203369; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=H6pUSylQ57QDAnOYu4uoAZWK5eAYHbB7ZTMJQDUS70M=;
-        b=fCCR6+pbo1xyY31e4mJ4cQXLs2L4HGXuHsCeD8RpJ4hj4cwx1nXW4hRhytYk81PBda
-         wfmGjdEilXAxS699atHxZIdWrI5R9sVkCOwQR1OrBdPFeFG+h6i7R1bJipwEl7VfJ94D
-         YTFykVcMwgeGntOEeCSW0Ktil4bI0i0o4PCYJz2hOpv36I+JVbro64MVO2Gf2E1+chth
-         rNf+Ri48jKkc+dfkZQL/JRg1wvo8meRfxNmEsig0u5h6OPs0DLUC164A7au+KP/3sZ1X
-         D9H8i07ZhFb5uGbRkM06vTp0MyEeBrW4pzBmr8DmFwSWUooIynKUnfZTzPNsRzGcEEUd
-         5ftg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700598569; x=1701203369;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=H6pUSylQ57QDAnOYu4uoAZWK5eAYHbB7ZTMJQDUS70M=;
-        b=jo4tRRnuBJUeAzCSTzNyDKQauwAGzCCv1MN1j4hP+5sFgCM/nsa71qhKFOUTTgOqSw
-         PDcwahZ0l2VVQBazBNmCOmkyp9eDfyvg56ik/7WxgDeEmLlo4a5J2S4IJNXN8IoW0QLR
-         nka0yhlr9hwKUmnuEQW26fphGpqWrEvjLmfHUy3wJdjxtYHUx4EuyAQOB98i9Q8ZLkcA
-         2MuLlghumLtRqIQYdnrIu1PLnip6nZWHy0cXdS/5m65Lj2ut0Rksbe7FzB2x033IFLDj
-         kfgTb3MOtTs1UiPPOv1ln+0ba1CtfiyuAfikSFzZ5R83343iU5WN9jN48Ls0hVhRKab/
-         favg==
-X-Gm-Message-State: AOJu0YyZWqUzyumftXIG17ANO3URyuZdEvKuvO6xyIQd5y3vovmIO/X1
-	/EqvrqaEonLPG2q2RU6k8arA1A==
-X-Google-Smtp-Source: AGHT+IH0jTRQM5w+kYWIMAHKUNTpVDgqlCy01ePT/kCx57Ft4PfLmDfBxK5KunZbk5hReZpNqqabLA==
-X-Received: by 2002:a05:6512:3708:b0:50a:6fb8:a0c0 with SMTP id z8-20020a056512370800b0050a6fb8a0c0mr114755lfr.19.1700598568810;
-        Tue, 21 Nov 2023 12:29:28 -0800 (PST)
-Received: from eriador.lan (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id h4-20020a056512350400b0050ab6112af2sm286287lfs.65.2023.11.21.12.29.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Nov 2023 12:29:28 -0800 (PST)
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Hans de Goede <hdegoede@redhat.com>,
-	=?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	Mark Gross <markgross@kernel.org>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	platform-driver-x86@vger.kernel.org,
-	linux-usb@vger.kernel.org
-Subject: [PATCH v2 2/2] usb: typec: tcpm: Parse Accessory Mode information
-Date: Tue, 21 Nov 2023 22:27:00 +0200
-Message-ID: <20231121202925.2481471-3-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231121202925.2481471-1-dmitry.baryshkov@linaro.org>
-References: <20231121202925.2481471-1-dmitry.baryshkov@linaro.org>
+Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A40871A3;
+	Tue, 21 Nov 2023 12:28:51 -0800 (PST)
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id DE1C912005B;
+	Tue, 21 Nov 2023 23:28:48 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru DE1C912005B
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1700598528;
+	bh=tXkfiDo5nH25tN3BRa0nuqNWCwi/ObmvTMsqxKwhc0w=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=OOK5L/8pgZNMxL3Eh03iMcpLcOm6iPHZLu/+qBxNd90v1Id9W0OCgnbdkCQGR+9tA
+	 w5JQiSGKsxcsi/S22602evQidM8Q0iTXmC2QsMEDGW/VVx+SXKPnqQLtIBLSEnF5o7
+	 J0iuHf/7sF2wEdF81UKKozuT1gLsFconNr7w0VMKbUvOAeOoIl8C/G45zRpqwNS3+L
+	 Lcr3EA2ib41M4/6UgNDGEbIooy4dlHx5ymfGVuO754oJBYjSinwtREVcuwndm62nOp
+	 8mMPFOwvM2qwUu1jKdHvW+x30yP/4xOQ9+1KpqW7vxFyrZTr73rOMDUs5Cn+o/xe7K
+	 hlVjcxnTbP5og==
+Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Tue, 21 Nov 2023 23:28:47 +0300 (MSK)
+Received: from localhost.localdomain (100.64.160.123) by
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Tue, 21 Nov 2023 23:28:47 +0300
+From: Dmitry Rokosov <ddrokosov@salutedevices.com>
+To: <lee@kernel.org>, <pavel@ucw.cz>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<andy.shevchenko@gmail.com>
+CC: <kernel@sberdevices.ru>, <rockosov@gmail.com>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-leds@vger.kernel.org>, Dmitry Rokosov <ddrokosov@salutedevices.com>
+Subject: [PATCH v4 00/11] leds: aw200xx: several driver updates
+Date: Tue, 21 Nov 2023 23:28:24 +0300
+Message-ID: <20231121202835.28152-1-ddrokosov@salutedevices.com>
+X-Mailer: git-send-email 2.36.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,44 +59,93 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 181514 [Nov 21 2023]
+X-KSMG-AntiSpam-Version: 6.0.0.2
+X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 3 0.3.3 e5c6a18a9a9bff0226d530c5b790210c0bd117c8, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, lore.kernel.org:7.1.1;100.64.160.123:7.1.2;127.0.0.199:7.1.2;p-i-exch-sc-m01.sberdevices.ru:5.0.1,7.1.1;salutedevices.com:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;doc.awinic.com:7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean, bases: 2023/11/21 19:45:00
+X-KSMG-LinksScanning: Clean, bases: 2023/11/21 19:46:00
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/11/21 17:47:00 #22495004
+X-KSMG-AntiVirus-Status: Clean, skipped
 
-Some of the boards supported by the TCPM drivers can support USB-C
-Accessory Modes (Analog Audio, Debug). Parse information about supported
-modes from the device tree.
+The following patch series includes several updates for the AW200XX LED
+driver:
+    - some small fixes and optimizations to the driver implementation:
+      delays, autodimming calculation, disable_locking regmap flag,
+      display_rows calculation in runtime;
+    - fix LED device tree node pattern to accept LED names counting not
+      only from 0 to f;
+    - add missing reg constraints;
+    - support HWEN hardware control, which allows enabling or disabling
+      AW200XX RTL logic from the main SoC using a GPIO pin;
+    - introduce the new AW20108 LED controller, the datasheet for this
+      controller can be found at [1].
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- drivers/usb/typec/tcpm/tcpm.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+Changes v4 since v3 at [4]
+    - properly handle max_source = 0 situations
+    - fix Rob's dt_binding_check alerts
 
-diff --git a/drivers/usb/typec/tcpm/tcpm.c b/drivers/usb/typec/tcpm/tcpm.c
-index 6e843c511b85..ba2926846269 100644
---- a/drivers/usb/typec/tcpm/tcpm.c
-+++ b/drivers/usb/typec/tcpm/tcpm.c
-@@ -6114,6 +6114,7 @@ static int tcpm_fw_get_caps(struct tcpm_port *port,
- {
- 	const char *opmode_str;
- 	int ret;
-+	int mode;
- 	u32 mw, frs_current;
- 
- 	if (!fwnode)
-@@ -6132,6 +6133,14 @@ static int tcpm_fw_get_caps(struct tcpm_port *port,
- 	if (ret < 0)
- 		return ret;
- 
-+	mode = 0;
-+
-+	if (fwnode_property_read_bool(fwnode, "accessory-mode-audio"))
-+		port->typec_caps.accessory[mode++] = TYPEC_ACCESSORY_AUDIO;
-+
-+	if (fwnode_property_read_bool(fwnode, "accessory-mode-debug"))
-+		port->typec_caps.accessory[mode++] = TYPEC_ACCESSORY_DEBUG;
-+
- 	port->port_type = port->typec_caps.type;
- 	port->pd_supported = !fwnode_property_read_bool(fwnode, "pd-disable");
- 
+Changes v3 since v2 at [3]:
+    - handle all cases during hwen gpio get routine execution
+    - rename 'hwen-gpios' to standard 'enable-gpios'
+    - properly handle aw200xx_probe_get_display_rows() ret values
+    - fix timestamp format in the comments and commit messages
+    - expand LEDS_AW200XX config and dt-bindings description
+    - describe reg constraints for all compatible variants
+    - add Conor's Acked-by tag
+
+Changes v2 since v1 at [2]:
+    - rebase on the latest aw200xx changes from lee/leds git repo
+    - some commit messages rewording
+    - replace legacy gpio_* API with gpiod_* and devm_gpiod_* API
+    - rename dt property awinic,hwen-gpio to hwen-gpios according to
+      gpiod API
+    - use fsleep() instead of usleep_range() per Andy's suggestion
+    - add max_brightness parameter to led cdev to restrict
+      set_brightness() overflow
+    - provide reg constraints as Rob suggested
+    - move hwen-gpios to proper dt node in the bindings example
+
+Links:
+    [1] https://doc.awinic.com/doc/20230609wm/8a9a9ac8-1d8f-4e75-bf7a-67a04465c153.pdf
+    [2] https://lore.kernel.org/all/20231006160437.15627-1-ddrokosov@salutedevices.com/
+    [3] https://lore.kernel.org/all/20231018182943.18700-1-ddrokosov@salutedevices.com/
+    [4] https://lore.kernel.org/all/20231101142445.8753-1-ddrokosov@salutedevices.com/
+
+Dmitry Rokosov (3):
+  leds: aw200xx: support HWEN hardware control
+  dt-bindings: leds: aw200xx: introduce optional enable-gpios property
+  dt-bindings: leds: aw200xx: fix led pattern and add reg constraints
+
+George Stark (7):
+  leds: aw200xx: calculate dts property display_rows in the driver
+  dt-bindings: leds: aw200xx: remove property "awinic,display-rows"
+  leds: aw200xx: add delay after software reset
+  leds: aw200xx: enable disable_locking flag in regmap config
+  leds: aw200xx: improve autodim calculation method
+  leds: aw200xx: add support for aw20108 device
+  dt-bindings: leds: awinic,aw200xx: add AW20108 device
+
+Martin Kurbanov (1):
+  leds: aw200xx: fix write to DIM parameter
+
+ .../bindings/leds/awinic,aw200xx.yaml         |  95 ++++++++++++-----
+ drivers/leds/Kconfig                          |  14 ++-
+ drivers/leds/leds-aw200xx.c                   | 100 +++++++++++++++---
+ 3 files changed, 163 insertions(+), 46 deletions(-)
+
 -- 
-2.42.0
+2.36.0
 
 
