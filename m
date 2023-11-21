@@ -1,79 +1,81 @@
-Return-Path: <devicetree+bounces-17646-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17647-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 927577F3389
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 17:21:14 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29C897F33AB
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 17:29:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F23FAB2186B
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 16:21:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 56B161C21905
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 16:29:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC4B55A0E1;
-	Tue, 21 Nov 2023 16:21:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E1635A10C;
+	Tue, 21 Nov 2023 16:29:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="akn0TQ1t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f182.google.com (mail-il1-f182.google.com [209.85.166.182])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0E70CB;
-	Tue, 21 Nov 2023 08:21:01 -0800 (PST)
-Received: by mail-il1-f182.google.com with SMTP id e9e14a558f8ab-359d559766cso20729055ab.1;
-        Tue, 21 Nov 2023 08:21:01 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700583661; x=1701188461;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NB25iOKb1NuNSINJ9ZLnwambMkrdew+0Vk7Thm3qC3I=;
-        b=BNCv/ou6MROn27hiDlLfEV0IK/DxsXbM/wIxCGhgyCjsk0DIayf4hpJ0h1r0fjxJPk
-         Dmu0Lxl+h8K8vfAC+qvqrGJOEg435opwgmpBGqsJ0sZFqATWDzbKrxpNiFkOWQv6yYmH
-         ti57V0TyOwwiIIk473I/uXuE/Lf/CE+ImX8JkokigbazHdToHvOmgOHI8PC/IE5uGX1+
-         A05u0RdxbFNigdwOSkU2uwBniZKwEwniYEBFzQrBwpOsArgovIRlCyw3WFmbe3QLIy44
-         zoYCxFGMqvLcDQqQ0IX8MqmicjUFYSSrjtuWL41tbUZpHddCwYms+lVuOzI1NVnVU46+
-         tdgg==
-X-Gm-Message-State: AOJu0YwuTPynq/wRFn31vDl2J5YKEmjjaYnMKoF4/TXTN3QcTosLRya0
-	wGl0jHaIC9EDAgDPqCcQjg==
-X-Google-Smtp-Source: AGHT+IHe3e6NMuL+N9QoPHujHjV51pxEWuFse8JjWEWJ9MLuc6C6kduDqvpv1Iy/feCZFdtvNvcHww==
-X-Received: by 2002:a05:6e02:922:b0:359:47b9:7bef with SMTP id o2-20020a056e02092200b0035947b97befmr11340168ilt.1.1700583660991;
-        Tue, 21 Nov 2023 08:21:00 -0800 (PST)
-Received: from herring.priv ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id bs18-20020a056638451200b0043167542398sm1373780jab.141.2023.11.21.08.20.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Nov 2023 08:21:00 -0800 (PST)
-Received: (nullmailer pid 2001832 invoked by uid 1000);
-	Tue, 21 Nov 2023 16:20:59 -0000
-Date: Tue, 21 Nov 2023 09:20:59 -0700
-From: Rob Herring <robh@kernel.org>
-To: Lukas Wunner <lukas@wunner.de>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, linux-integrity@vger.kernel.org, Lino Sanfilippo <LinoSanfilippo@gmx.de>
-Subject: Re: [PATCH 3/3] dt-bindings: tpm: Document Microsoft fTPM bindings
-Message-ID: <20231121162059.GE1845293-robh@kernel.org>
-References: <cover.1700555862.git.lukas@wunner.de>
- <ad4b484da8190c83902b2525823ceb3439a7576e.1700555862.git.lukas@wunner.de>
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7670A51C39;
+	Tue, 21 Nov 2023 16:29:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 914BEC433C7;
+	Tue, 21 Nov 2023 16:29:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1700584148;
+	bh=I7rTz58KR+S4gPSJUCHMuvvrAgbVHDd5w5snGcC6fmI=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=akn0TQ1tx9tIwVVjKiVUiShOxIyrgDS6HtWnmTgRUnnSklSjnfnhzl6+GuCsg5RjU
+	 9SptLlLrBWaCEUXZt0ADSJ8CEKkqk2wF9KzP8cpzH4Gx09Owg9SZqDfyLEIg5QoKtl
+	 yQghzy2Lc/VM67gqmGXGWcz4FaVbhGzQPssRmIrwgDrV26t4om/KFBJPyKHznpDeiP
+	 wuqu+EX+sVaxwVH4N3+S5L9cHSc3CZb/Ev9j42UeMW/BbZmfG/VtCndmMqUDv495E7
+	 YkCJYcWckqEaSJD5gcvnhn23OD3MEoSCXL9FZ8InCUW36S86FsgcPUYQUVaL1QHMTK
+	 eeh5PRJrW3VzQ==
+Date: Tue, 21 Nov 2023 08:29:06 -0800
+From: Jakub Kicinski <kuba@kernel.org>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Mark Brown <broonie@kernel.org>, Qiang Zhao <qiang.zhao@nxp.com>, Li
+ Yang <leoyang.li@nxp.com>, "David S. Miller" <davem@davemloft.net>, Eric
+ Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Andrew Lunn
+ <andrew@lunn.ch>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Lee Jones <lee@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, Liam
+ Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>, Takashi
+ Iwai <tiwai@suse.com>, Shengjiu Wang <shengjiu.wang@gmail.com>, Xiubo Li
+ <Xiubo.Lee@gmail.com>, Fabio Estevam <festevam@gmail.com>, Nicolin Chen
+ <nicoleotsuka@gmail.com>, Christophe Leroy <christophe.leroy@csgroup.eu>,
+ Randy Dunlap <rdunlap@infradead.org>, netdev@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org, Simon
+ Horman <horms@kernel.org>, Christophe JAILLET
+ <christophe.jaillet@wanadoo.fr>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v9 00/27] Add support for QMC HDLC, framer
+ infrastructure and PEF2256 framer
+Message-ID: <20231121082906.354c9a7e@kernel.org>
+In-Reply-To: <20231121084330.4064bf14@bootlin.com>
+References: <20231115144007.478111-1-herve.codina@bootlin.com>
+	<20231117164746.0589e955@kernel.org>
+	<573c9ca1-a560-4f7a-ba21-80673a2e162e@sirena.org.uk>
+	<20231121084330.4064bf14@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ad4b484da8190c83902b2525823ceb3439a7576e.1700555862.git.lukas@wunner.de>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Tue, Nov 21, 2023 at 10:48:43AM +0100, Lukas Wunner wrote:
-> A driver for Microsoft's firmware-based Trusted Platform Module (fTPM)
-> was merged with commit 09e574831b27 ("tpm/tpm_ftpm_tee: A driver for
-> firmware TPM running inside TEE"), but its devicetree bindings were not.
-> 
-> This is the only remaining undocumented compatible string for a TPM,
-> so add a DT schema based on the patch linked below.
-> 
-> Link: https://lore.kernel.org/all/20190409184958.7476-2-sashal@kernel.org/
-> Signed-off-by: Lukas Wunner <lukas@wunner.de>
-> ---
->  .../bindings/tpm/microsoft,ftpm.yaml          | 48 +++++++++++++++++++
->  1 file changed, 48 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/tpm/microsoft,ftpm.yaml
+On Tue, 21 Nov 2023 08:43:30 +0100 Herve Codina wrote:
+> I plan to send the v10 with the patch 23 fixed.
+> Based on that v10, some patches (21 to 25 at least) could be applied and
+> I will remove them for the future v11.
+> I think it will be easier to follow if I iterate on the series removing
+> patches as soon as they are applied.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+It'd be helpful if you only reposted the patches you expect
+to be applied, as a standalone series.
 
