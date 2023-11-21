@@ -1,104 +1,133 @@
-Return-Path: <devicetree+bounces-17618-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17619-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 177377F31B0
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 15:55:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F7ED7F31B9
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 15:57:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C8373282F68
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 14:55:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0A01E282F5D
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 14:57:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 934D751C31;
-	Tue, 21 Nov 2023 14:55:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43F52537EC;
+	Tue, 21 Nov 2023 14:56:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ohE6HsT9"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="hU4JPsdt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AEA52772A;
-	Tue, 21 Nov 2023 14:55:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE614C433C7;
-	Tue, 21 Nov 2023 14:55:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700578502;
-	bh=q975IMvHTp904h9O7b2W+x9yRvoCm+xt1tUto3RHfXU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ohE6HsT9sw+OZaAGQxe04Vqxub4vBcXHT/A0cMRrMvn03KPK1kbWQmE8jUXPb7gHV
-	 3TAKuiNmtTdqWNX+6FVBSOzIPAM+O+7UVApq3aXx96TFQkV/YjTRxHTuJA25HYtfHD
-	 /7VpleuYHdh+x8VYrdfAKBNbaQyEP8yB9VFayYdoNKlNMh+vsBs8tvdH2VoSPGuSjA
-	 A7hGhp+4SPYAhMvbdB4yL80v3shwE9gFqwL2KqWOO3NKqtEO1DINXEx1tMPciNhgYx
-	 CtNcLPCTpUVZbqLhhOaH37XV4al0dAjoR89oySpAF8mnlfdtZt7cDaaz1bu+lCaaXE
-	 iWkQfhtbU6B8Q==
-Received: from johan by xi.lan with local (Exim 4.96.2)
-	(envelope-from <johan@kernel.org>)
-	id 1r5S9h-0007vM-0T;
-	Tue, 21 Nov 2023 15:55:13 +0100
-Date: Tue, 21 Nov 2023 15:55:13 +0100
-From: Johan Hovold <johan@kernel.org>
-To: Mrinmay Sarkar <quic_msarkar@quicinc.com>
-Cc: agross@kernel.org, andersson@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	konrad.dybcio@linaro.org, mani@kernel.org, robh+dt@kernel.org,
-	quic_shazhuss@quicinc.com, quic_nitegupt@quicinc.com,
-	quic_ramkri@quicinc.com, quic_nayiluri@quicinc.com,
-	dmitry.baryshkov@linaro.org, robh@kernel.org,
-	quic_krichai@quicinc.com, quic_vbadigan@quicinc.com,
-	quic_parass@quicinc.com, quic_schintav@quicinc.com,
-	quic_shijjose@quicinc.com,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org
-Subject: Re: [PATCH v4 3/3] arm64: dts: qcom: sa8775p: Mark PCIe EP
- controller as cache coherent
-Message-ID: <ZVzE0c8UsW4HXV_u@hovoldconsulting.com>
-References: <1700577493-18538-1-git-send-email-quic_msarkar@quicinc.com>
- <1700577493-18538-4-git-send-email-quic_msarkar@quicinc.com>
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::228])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C66E012C;
+	Tue, 21 Nov 2023 06:56:54 -0800 (PST)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id AC6211BF211;
+	Tue, 21 Nov 2023 14:56:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1700578613;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=khxP4fXOUOIWA699Z/Zj5Syc66Lt+5ABqJOlzJsvRtk=;
+	b=hU4JPsdtnkyQxT0F1F4Q5i4r1EhdISiflUXXD+Zw5eUJr8WZIcQW19HeeaLH7/1JzDSjJ/
+	uYVtkf7/wrGLZEgPF3tsHEGkkY0oJUg99DV5oTPUKiAe1jBE6C2JbprD0TrXJnquTnbsQb
+	s6HBH5N/JeJ3Zf/JTqrKTbESTrtS/b3mlxmslNlvYglR6iOjgZuEdCM4cXX2Cn5359gzYD
+	BOLNGRlsvLYpfKbjSqtw3tAovnZxcIEpJrkwtjQeFA7M3i5umBvrKepydR9WMRKzke9d3n
+	j3b7NlNBxg/ZztRAjckYV9zWXd4Pr8LTyVXwPfDcSj9HAT0ODMcMSVYmyf0ooA==
+Date: Tue, 21 Nov 2023 15:56:50 +0100
+From: =?UTF-8?B?S8O2cnk=?= Maincent <kory.maincent@bootlin.com>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Oleksij Rempel <o.rempel@pengutronix.de>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+ <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Jonathan Corbet
+ <corbet@lwn.net>, Luis Chamberlain <mcgrof@kernel.org>, Russ Weight
+ <russ.weight@linux.dev>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-doc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 2/9] ethtool: Expand Ethernet Power Equipment
+ with PoE alongside PoDL
+Message-ID: <20231121155650.5c0d2f82@kmaincent-XPS-13-7390>
+In-Reply-To: <44cbe9d3-dbd2-438c-b413-af525426781a@lunn.ch>
+References: <20231116-feature_poe-v1-0-be48044bf249@bootlin.com>
+	<20231116-feature_poe-v1-2-be48044bf249@bootlin.com>
+	<04cb7d87-bb6b-4997-878d-490c17bfdfd0@lunn.ch>
+	<20231120110944.66938859@kmaincent-XPS-13-7390>
+	<20231120111008.GC590719@pengutronix.de>
+	<2539b109-72ad-470a-9dae-9f53de4f64ec@lunn.ch>
+	<20231121110215.07f61e55@kmaincent-XPS-13-7390>
+	<44cbe9d3-dbd2-438c-b413-af525426781a@lunn.ch>
+Organization: bootlin
+X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1700577493-18538-4-git-send-email-quic_msarkar@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: kory.maincent@bootlin.com
 
-On Tue, Nov 21, 2023 at 08:08:13PM +0530, Mrinmay Sarkar wrote:
-> The PCIe EP controller on SA8775P supports cache coherency, hence add
-> the "dma-coherent" property to mark it as such.
-> 
-> Signed-off-by: Mrinmay Sarkar <quic_msarkar@quicinc.com>
-> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/sa8775p.dtsi | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> index 7eab458..ab01efe 100644
-> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> @@ -3620,6 +3620,7 @@
->  				<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_PCIE_0 0>;
->  		interconnect-names = "pcie-mem", "cpu-pcie";
->  
-> +		dma-coherent;
->  		iommus = <&pcie_smmu 0x0000 0x7f>;
->  		resets = <&gcc GCC_PCIE_0_BCR>;
->  		reset-names = "core";
+On Tue, 21 Nov 2023 15:19:19 +0100
+Andrew Lunn <andrew@lunn.ch> wrote:
 
-What tree is this against? 
+> > > However, everything not PoDL PSE seems to be clause 33. So how about:
+> > >=20
+> > > 	enum ethtool_podl_pse_admin_state podl_admin_control;
+> > > 	enum ethtool_c33_pse_admin_state c33_admin_control; =20
+> > >=20
+> > > At least inside the kernel we use c22, c45, c37 etc. I'm not sure they
+> > > are visible to userspace, but if we don't have a better name, maybe we
+> > > have to use c33 in userspace as well.
+> > >=20
+> > > I do think naming like this makes it clear we are talking about two
+> > > parallel technologies, not a generic layer and then extensions for
+> > > podl.
+> > >=20
+> > > What do you think? =20
+> >=20
+> > If we decide to add a prefix, "c33" is precise but less easily
+> > understandable, why not using simply "poe" prefix? =20
+>=20
+> I suspect poe has the exact opposite problem, its too imprecise. Its
+> too much of a marketing name, with no clear meaning. It could even be
+> some people call podl poe.
+>=20
+> To some extent, this is a user space UX problem. We can be precises in
+> the kernel and the kAPI. What ethtool decides to show to the user
+> could be different. Although it basically is the same problem.
 
-Both controllers are already marked as dma-coherent in mainline so this
-patch makes no sense (and the context also looks wrong).
+Alright, thanks for your answer.
 
-It was even you added them apparently:
+> Do you have ethtool patches? What does the output look like?  Oleksij
+> did say a hybrid could be possible, so we probably want ethtool to
+> group these properties together and make it clear what is PoDL and
+> !PoDL.
 
-	489f14be0e0a ("arm64: dts: qcom: sa8775p: Add pcie0 and pcie1 nodes")
+No I don't, I am only using ynl for now.
+I would be similar to podl:
+https://kernel.googlesource.com/pub/scm/network/ethtool/ethtool/+/e6cc6807f=
+87c74d4e5b1f1e9d21d3a74e75a258b/netlink/pse-pd.c
 
-Johan
+Duplicating the PoDL part with c33. Using the same --set-pse and --show-pse
+options.
+
+> > Maybe as POE were originally PMDI you prefer to use c33 which won't cha=
+nge
+> > over time?=20
+> >=20
+> > Should I also modify the content of the enum?
+> > ETHTOOL_PSE_ADMIN_STATE_* to ETHTOOL_C33_PSE_ADMIN_*
+> > ETHTOOL_PSE_PW_D_STATUS_* to ETHTOOL_C33_PSE_PW_D_STATUS_* =20
+>=20
+> Yes. That will help avoid getting PODL and C33 properties missed up.
+
+Alright.
+
+Regards,
+--=20
+K=C3=B6ry Maincent, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
 
