@@ -1,115 +1,158 @@
-Return-Path: <devicetree+bounces-17349-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17350-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 123587F237A
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 03:02:01 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27D977F2387
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 03:05:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C0E902828C2
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 02:01:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 004991C2105A
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 02:05:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 356AC125C1;
-	Tue, 21 Nov 2023 02:01:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1411F1170B;
+	Tue, 21 Nov 2023 02:05:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Qo4VpbIx"
+	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="K/8ebF+o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-xf2a.google.com (mail-qv1-xf2a.google.com [IPv6:2607:f8b0:4864:20::f2a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A375100;
-	Mon, 20 Nov 2023 18:01:30 -0800 (PST)
-Received: by mail-qv1-xf2a.google.com with SMTP id 6a1803df08f44-66d0ceba445so13691316d6.0;
-        Mon, 20 Nov 2023 18:01:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1700532089; x=1701136889; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ud2wbnDHnTrARrEBLi1hXnjXYj97H/dIcLoVNVIK3P4=;
-        b=Qo4VpbIxb5wlMARFUrDm6Jg5qG2tQBDi1AeAMq0w8eOGKIMYH6E1Wcff6BjZOqQCpc
-         YvEoNoJc7F7PrQVWwhxVZrR8Zn0HHA6x7WPQp8orldqx37hMxJi7NTtDz8RXkU8N7dWx
-         gJZxN51eclznOBT63M9t84MmZ2MvyTWhXfnU3WUgv0jWHE3rdqt2qLIYQW0LswU5D1yl
-         xlyAeWL+7EqUF/7N+8w13MwBv4pWRnO4f4nsGuc0c+gDE8f1sc7mEbkgVV1U0Ub2HE0T
-         5HqmanDWxbKAtmslEo44uD6o0sHDfUe+xRe/HRE++LQn8SpQe88heFm1Qr5mm21pm4+8
-         n06Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700532089; x=1701136889;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ud2wbnDHnTrARrEBLi1hXnjXYj97H/dIcLoVNVIK3P4=;
-        b=Pm+Wl1RbEhQem8wpeYRqvmS+Ab9XLnU5GlKog2OdB7a14sc0nT+4xmWgwYfnP88WwW
-         9Co5gIinZ2ZeWKSlwVGu0UOGwsLcXV6OxLUrque83PKtYBI+fUJUpUJfUTHpnp/rRs3N
-         owCbRUkq61KcSSW5O75AXAHmaTMnNuyfoNrEjsTaG0buIJk2CJBIH3PMmLvPpGL551+b
-         y10UcdxzE4IMnqwQ3IL7/LpIPdtYOrDqJGNFo6v6mbXgOrOIM41/mDtiQbjSwWLR9wEe
-         XtuxQ6q+u9Ekjz9PjfCoarVzFfP81A/F10+cg9UmnXUVe4sctPLdAOIc5gwkcTBFPvy6
-         eE1w==
-X-Gm-Message-State: AOJu0YwqOz22mEMQlauggAwHjImx/HiEvV5r5uGlzTeFK8c2Le20DnKS
-	zu+LmQ6rgTpLS5J2q0jxFVcp4COdfs+Xuw==
-X-Google-Smtp-Source: AGHT+IG3r61SWPQbDOGF+sdTnp+vfRXsKvmLw2YQ3Rx/gPRU/Ji7LfmlJdQ1x8w81yw48pn4BL8QHA==
-X-Received: by 2002:a05:6214:2b0e:b0:677:f341:c5a1 with SMTP id jx14-20020a0562142b0e00b00677f341c5a1mr10715687qvb.30.1700532089431;
-        Mon, 20 Nov 2023 18:01:29 -0800 (PST)
-Received: from localhost ([2607:fea8:529e:7800::80ec])
-        by smtp.gmail.com with ESMTPSA id j16-20020a0cc350000000b0066cf2423c79sm3509228qvi.139.2023.11.20.18.01.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Nov 2023 18:01:28 -0800 (PST)
-Date: Mon, 20 Nov 2023 21:01:27 -0500
-From: Richard Acayan <mailingradian@gmail.com>
-To: Johan Hovold <johan+linaro@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Andy Gross <agross@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Subject: Re: [PATCH 07/11] arm64: dts: qcom: sdm670: fix USB wakeup interrupt
- types
-Message-ID: <ZVwPd8OmjwMjtB3k@radian>
-References: <20231120164331.8116-1-johan+linaro@kernel.org>
- <20231120164331.8116-8-johan+linaro@kernel.org>
+Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2090.outbound.protection.outlook.com [40.107.114.90])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B104383;
+	Mon, 20 Nov 2023 18:05:05 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=gtc3gtYI0i+7P4SVlJkFL+iLzDD8rpsxdMnK3o3NWx/xuUF1AVJ6Z31T390w1q+miW6eYfyb+MYL6Yb+C3QjS6ZJsby1rf2zO0eeLffwnXRhUYsyIklhWGT2CB/cYA5iE+EgmdLLmqD6+VUBjuHFtKIH4X3zgOSXwUqUPqguln1KTOiYMWLQj55WSThgarMgYnWWtXfQvMwxB1/VcQmCQIctdY8zro1w7lyWvm9AD3NOJAIpYBn1gfXxWBz3ZGnwvGAoj7IHEez8eq+2IxWeqTDPMn5QZCue+T11cHZkfKNyBNW1Un5HcetFHl6eUj9Y+jhHcwnkah6jqnG0tzwsNg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=e9cF5k+ezGCgOXvewInMKdzIE1SL2+jkFO2jtJ9iHrw=;
+ b=aOHfu1TWRvJghBla5DsJv+UrDBNkWpfF8vTCMwhqYXRrc1bJwVC3x4Y2iwJ9dAKRwGTPnf+ui/cXLVRay7uQLmst8xuWP8jvBT00ZWQ+S7TjWpFYWMlVnqNksFxkrabL3Yy99Kiie4kEvkNxwqEeO5bPZICkEag7a1b9zz9TVOGOJRdl9g9KOtRfbueGR3xTOoxylMcxPw9mAfxCQlyAPz1RGnYFLbyr/K0VBqb3G4e2JtasKHeW90jHtFBVWPScMssFyAtWZ0juyT6LQIHi5IJHId/jvHravaZMAYpHOXYqT2SP8gkphlf9iAky0u995yHWNSC2g01vS7pHXX8JcA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=e9cF5k+ezGCgOXvewInMKdzIE1SL2+jkFO2jtJ9iHrw=;
+ b=K/8ebF+oeVnwXf6bvdgMsVMApLTWUR/FsrjAKov3KUEZB+u/bcOl8ObF94gYWpV7CGosONrvbHECUXm3jlDP2Z6ydccx5cOxvUOylWLexwvrSwhemMUueDHM9g1Etq2aNgu4ixq2l0AKDeFylWbkIkiQWrXTe1Ktanb4zRsxbC4=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11) by OSZPR01MB8610.jpnprd01.prod.outlook.com
+ (2603:1096:604:18d::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7002.28; Tue, 21 Nov
+ 2023 02:05:01 +0000
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::16b3:a84d:faa6:4846]) by TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::16b3:a84d:faa6:4846%6]) with mapi id 15.20.7002.028; Tue, 21 Nov 2023
+ 02:05:01 +0000
+Message-ID: <87fs0zc14m.wl-kuninori.morimoto.gx@renesas.com>
+From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Subject: [PATCH v2 0/4] drivers: clk: renesas: ignore all clocks which is assinged to non Linux system
+User-Agent: Wanderlust/2.15.9 Emacs/27.1 Mule/6.0
+To: Frank Rowand <frowand.list@gmail.com>, Geert Uytterhoeven <geert+renesas@glider.be>, Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, linux-clk@vger.kernel.org, linux-renesas-soc@vger.kernel.org, Aymeric Aillet <aymeric.aillet@iot.bzh>, Yusuke Goda <yusuke.goda.sx@renesas.com>
+Content-Type: text/plain; charset=US-ASCII
+Date: Tue, 21 Nov 2023 02:05:00 +0000
+X-ClientProxiedBy: TYCP286CA0286.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:3c8::18) To TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231120164331.8116-8-johan+linaro@kernel.org>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYCPR01MB10914:EE_|OSZPR01MB8610:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1f41493b-847f-44d4-3a09-08dbea3644ee
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	FfGW7v6j4hohHV5u+CY478PXKkmbFXsMRUNB1z6IijPRPkVTJpEbICL+1kqCEFiIvrYyVp/9PYmsxHa0JI5vOjP0bpkxNdO/by7TRbVezukFetlk+lgM0oDKpnDFJbenne8/tklyfWKVC9N66iBK1HZffLLTlP7Mi7dO3TjaaZz/TlTmoJwoDKBQ4JSqr8QPFCQdb++Y+WTOhAL1mxwQRFSvDEhK99NkDYylUN3RK3kgRCejNZmt+veSYGeCWWmL674Krycm4T5Xoxaqty5hipN9L0MkWqaAYW3thwcZv1QbrJKwqjI0kzF3MzJGy34LuoBeLy451QLctg07bRBxOQmx6DSoqG5kdpkXMwQy4ww7VMg5M5Pktc2TmAV16oblt7n4SMMUX5j3Shc6zer5iVFLloyPM8J2CSdq9SQIz5Np3MKLJR1EUw1j3XJvehNkysHk+p6ncuAzVfQqr7oGMKcD13LaTJLylVo44rhmK0pig5axR8H0Wo3JvNmua7XwbzljsfPdWLlXQzrNJYEt+HfWuxanVsGf8m1p1br0kC4LKe8vFgyGH1kwJoOZXtsHXKXflLt/4oKRZIxLkUuXTvpAo88hS6QY4BA6qGrTgt0=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB10914.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(346002)(366004)(376002)(396003)(39860400002)(230922051799003)(64100799003)(451199024)(1800799012)(186009)(2906002)(4326008)(8676002)(8936002)(86362001)(7416002)(5660300002)(38350700005)(41300700001)(36756003)(26005)(83380400001)(52116002)(6512007)(6506007)(2616005)(107886003)(38100700002)(316002)(66476007)(54906003)(66556008)(66946007)(478600001)(110136005)(966005)(6486002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?WIZ1zz7ykBOyr2jaOhGhUCbxPiPjOE0MBtzn/Ur4C2Q3pwo4zabJ4TMF5B5f?=
+ =?us-ascii?Q?2jhwfCDor9D5unK4cswViZefyn7l5zC0Ddgii4SkT/B5JFMdH8d4TQpwFkWj?=
+ =?us-ascii?Q?jfbelrUbKqEPsOpjXzR8YzElvWv44gISOU+eIVhg+DRythg6dIuXSlcBkbdn?=
+ =?us-ascii?Q?fTIz8pQpLYUo1R4nrbpURmjEmhQneqSSn0Xf99F4PmfSYGN9kaf+kcob8Loi?=
+ =?us-ascii?Q?T8P54TPpqgm+wvHwogRSU+ujqIyIe1+sklhEZrUPa6FqscnuUzEdAAKDV3Eo?=
+ =?us-ascii?Q?d2vGeHrMpaA6xvgi4tOumhvL2FJKRgiHkZUlodLTnC++BjoxiUy5lJh1g5RE?=
+ =?us-ascii?Q?CC+iPkMLtcKrkBcO7PndIeRP1Wv6Q1WoB8Xm7itg6XN2R7GijG8hOld2TFaz?=
+ =?us-ascii?Q?48MoBO+Ftz9ziI5P2/WH0BOF3MvexcDcg/07vru6km9WozvNhXVWPkQ3AkGg?=
+ =?us-ascii?Q?+duSki3pv1S3WjIEnmHHUkXvS0UXHVouNzdyn0lLVQ7OitRSBniNMjDdTOEW?=
+ =?us-ascii?Q?t38+SQOWf9ybLMA+rfM5889CagrJ2pKzAHNcQsaVbSi/w/lyu597ByyFk3d5?=
+ =?us-ascii?Q?dphfgkfSjFqhHUevmkU2WoB40QgF2SfVApHetKs4G9IftfmGRVMDWlfTbABV?=
+ =?us-ascii?Q?hoskOZng7nGOji5y6rF/1jy7hiyQUCqUe4bNGM+JwYKQDAM+VJn6+SjHerBQ?=
+ =?us-ascii?Q?7zwbQ/IysWsKBzD8jGYyDzd1iPIPA+VD0xphNIDGxuCOopQYMb8gej+5lKBT?=
+ =?us-ascii?Q?FAAbX8l7Ey3y3K4JhfQqQZTghZiKb1tfNuxkpdFvo19/hsi+5wXn2zu6fEX7?=
+ =?us-ascii?Q?wkOVOdIddVkgslsVlIwEU6LVmfyLOFLvuR1XDwagXX0uzoIW4dsmdKbp6CRU?=
+ =?us-ascii?Q?rDpiFJgBFPMoAQW9jGbdI1ZqBEX2bpVczeQ5rzsZ8b+HHCe4xGgxWVGWWtBo?=
+ =?us-ascii?Q?fDWRC5Ogu7doEzlLsxWaAPLubhF00q6XyKM5ymNZmN1yqj60FlRVeQQt1SJr?=
+ =?us-ascii?Q?DBTe9dLZaEojr7QQfJ+ehfYiy6uJMMo4h8HPFe6Zr55atCyc+8OynwE5jp4Z?=
+ =?us-ascii?Q?PBFX10ftkWEowzj4ZVIz3gHTWFZMiiLmpBGr+cp+uXKs1x/EGaOuKksjTr4W?=
+ =?us-ascii?Q?0Cc7leifpd+quuKi1sculAGipO8i9y8ydlqKLgV/DI58D8nZNiF8Y51aICwi?=
+ =?us-ascii?Q?zOzT3hmN/g4VbSYjFQhsJs1od6xEOADvPoSf7o0siZLgE46vNslqssjrNsuy?=
+ =?us-ascii?Q?pJV+gRtAg2NirtNxljiVBY/JtW/i53LUnX6sTGiYfqkhbsaZH5fZusHsTP00?=
+ =?us-ascii?Q?xIy/64PczDUdcSGRdSbJ6H18fyMkJwoUgjgu+NbW4ltDfcKs2ekhkDt37axo?=
+ =?us-ascii?Q?ZzxcOO5JEIlbGCTodbrDLiBPhnoWoaAR+XCR9b1Cc8XbC39eQUjReP6Pw8ug?=
+ =?us-ascii?Q?wPVphj1LlYhGUhFNCOqsuHMGUGr8GiFRqFOEtcvWdGCq8uE+pZld3wnxptPE?=
+ =?us-ascii?Q?KX0COnwjQTJ7g3TJ/W0Tw+NM9JbAQxxevcA0FeU3w22wYpwgMccwKk/DtHiY?=
+ =?us-ascii?Q?ClLc2Lr/VKb1qyfSIHaaZD8cA7b0xdCvzxIgr00/ofqO+7RkIL55hYHmBLgT?=
+ =?us-ascii?Q?bFD6YLsWUyCi1DIUnJFwX5Y=3D?=
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1f41493b-847f-44d4-3a09-08dbea3644ee
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB10914.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Nov 2023 02:05:01.1074
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: CZnBYays8+gdJE+rifDFTjtprGz6wX7myGHc4RKlqk7ByUUcolFKracBjsiGvFoxtS99uvuvNoQIdeSYeTftz+rfDmAx7iul99aJv+LFjQCfSLHIeKaHkmy8glUBwzuA
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSZPR01MB8610
 
-On Mon, Nov 20, 2023 at 05:43:27PM +0100, Johan Hovold wrote:
-> The DP/DM wakeup interrupts are edge triggered and which edge to trigger
-> on depends on use-case and whether a Low speed or Full/High speed device
-> is connected.
->
-> Fixes: 07c8ded6e373 ("arm64: dts: qcom: add sdm670 and pixel 3a device trees")
-> Cc: stable@vger.kernel.org      # 6.2
-> Cc: Richard Acayan <mailingradian@gmail.com>
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> ---
 
-Acked-by: Richard Acayan <mailingradian@gmail.com>
+Hi Rob, Geert
+Cc Aymeric, Goda-san
 
->  arch/arm64/boot/dts/qcom/sdm670.dtsi | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sdm670.dtsi b/arch/arm64/boot/dts/qcom/sdm670.dtsi
-> index ba2043d67370..c873560ae9d5 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm670.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm670.dtsi
-> @@ -1297,8 +1297,8 @@ usb_1: usb@a6f8800 {
->  
->  			interrupts = <GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH>,
->  				     <GIC_SPI 486 IRQ_TYPE_LEVEL_HIGH>,
-> -				     <GIC_SPI 488 IRQ_TYPE_LEVEL_HIGH>,
-> -				     <GIC_SPI 489 IRQ_TYPE_LEVEL_HIGH>;
-> +				     <GIC_SPI 488 IRQ_TYPE_EDGE_BOTH>,
-> +				     <GIC_SPI 489 IRQ_TYPE_EDGE_BOTH>;
->  			interrupt-names = "hs_phy_irq", "ss_phy_irq",
->  					  "dm_hs_phy_irq", "dp_hs_phy_irq";
->  
-> -- 
-> 2.41.0
->
+This is v2 of ignoring non Linux system assinged device.
+
+Some board might use Linux and another OS in the same time. In such
+case, current Linux will stop necessary module clock when booting
+which is not used on Linux side, but is used on another OS side.
+
+To avoid such situation, this patch-set try to find status = "reserved"
+devices, and add CLK_IGNORE_UNUSED flag to its clock.
+
+Table 2.4: Values for status property
+https://github.com/devicetree-org/devicetree-specification/releases/download/v0.4/devicetree-specification-v0.4.pdf
+
+"reserved"
+	Indicates that the device is operational, but should not be
+	used. Typically this is used for devices that are controlled
+	by another software component, such as platform firmware.
+
+[1/4] - [3/4] : expand existing function for "reserved"
+[4/4]         : adjust to "reserved" device on Renesas CPG
+
+Kuninori Morimoto (4):
+  of: add __of_device_is_status() and makes more generic status check
+  of: add __of_get_next_status_child() and makes more generic of_get_next
+  of: add for_each_reserved_child_of_node()
+  drivers: clk: renesas: ignore all clocks which is assinged to non Linux system
+
+v1 -> v2
+	- remove "default_ret" from __of_device_is_status()
+	- add new parameter explanation on cpg_mssr_priv
+
+ drivers/clk/renesas/renesas-cpg-mssr.c | 118 +++++++++++++++++++++++--
+ drivers/of/base.c                      | 111 ++++++++++++++++-------
+ include/linux/of.h                     |  11 +++
+ 3 files changed, 201 insertions(+), 39 deletions(-)
+
+-- 
+2.25.1
+
 
