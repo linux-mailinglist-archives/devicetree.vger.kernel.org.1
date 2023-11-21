@@ -1,380 +1,169 @@
-Return-Path: <devicetree+bounces-17355-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17356-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 390E37F23AF
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 03:12:39 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5068C7F23C9
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 03:20:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B0EBF1F26611
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 02:12:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0695E2818C6
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 02:19:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EE1414A8F;
-	Tue, 21 Nov 2023 02:12:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D46614F63;
+	Tue, 21 Nov 2023 02:19:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="hI6HwzSJ"
+	dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b="n7oxoqSL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01865C8
-	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 18:12:29 -0800 (PST)
-Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-5480edd7026so6461460a12.0
-        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 18:12:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1700532747; x=1701137547; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9oErZSNPpRWj6cWya6fUNKL2baOOgkbfElqn5bDFEVg=;
-        b=hI6HwzSJqvv1l6eUOdiw8G6El52O7iwrLBNs5BCWCw3HIxV5qzXyVeLVA5LlP2vgKH
-         QJ2z29cqeoRZfx6ilVuPVWLtXoU8Tjcju0ns0MO3zONgI9Ae9PQw/pURSdi1mEaDchcL
-         JkHEClHRNOV3VFWcRzhFtiSQoZuzaPqKzTOsc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700532747; x=1701137547;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9oErZSNPpRWj6cWya6fUNKL2baOOgkbfElqn5bDFEVg=;
-        b=K9+YghxvCJQDApY4/aLd2sdVn26WoW03u81qJZUNxAbnNkvh+HEcwSyV+0Z5umXOST
-         nqN3jg15mMK1enJOLYLeDvAhTV/yGzJN5of+bbNvECneLYar7cq2o2AqW2Dtw2U23+ZA
-         wNoI2/apvOdLUy/bcgJTPoDT3g51B3y1bseEkxpn2uM1XlotzH34Q4g9GXiVlcfn/pAg
-         8uaz72vHKZgniNErZ5CDXGMG3bxmepeuqtpbnxaYDFg+Pl0QyIIKzV833DKW2BNZafA3
-         UdRKuug09anUlJ/slJx1ij1WsguQ5nKpwakmFlk6yvvAZ3lYzEBIUNtw/fI2GlbyEyri
-         3QUQ==
-X-Gm-Message-State: AOJu0YxoB2szRwnIwRDPVmV6LjRangJWhWZg8ZbUsjp7nxrvCdeSQs/E
-	0LvXeKioDc5GBriN/aAF0Yr4e2icFUH5en3X/dUMNA==
-X-Google-Smtp-Source: AGHT+IEzZ6s5vb8lIiHxjBh0g3WDopuC29/uf986diynE3D2QSfTI/OYBwO7jAdNcvlEjuiL/tfXN7R6J2D15fFjvM0=
-X-Received: by 2002:a17:906:224d:b0:9bf:2f84:5de7 with SMTP id
- 13-20020a170906224d00b009bf2f845de7mr6153971ejr.4.1700532747244; Mon, 20 Nov
- 2023 18:12:27 -0800 (PST)
+Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01on2061.outbound.protection.outlook.com [40.107.215.61])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73C97C8;
+	Mon, 20 Nov 2023 18:19:52 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=I0diTEKGYYOaMB5HvJra8jZkiGd64vfBw4b0t9idXl5J/asGr9lsJEwZGFy3ctOHdq3eNZwBRQz58lRM9LOTWuRLJLOEXFban2SEIWXkuGxVZJ39wC/HXzMuSfHL3V/IEnMJ4oHrdKdjuSb4DEVmkUCdlJ+PWWXRzkNo7H0zy7Oqleomv/cE6bmUloi5/9kRqoG2QCNRK0pfCn/12AB793euxcNqTpCs0I/+1ZFJiFu8aCncbNxNcK9RFMarHpFzQcUCn5UMjcFzaoQ5OsT81SYT8BKBnMpxx6QsRlt8QWgE0Lx5OH9IfqiZH/LJMXPRiAj7irYNatjpt3Pqf0DmGg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=88RUVHixzqq1/PAEeBvRhOUTNO2+77fztlVDdv7asII=;
+ b=V78udfpXvFOwSuC0Heoc7KOsVzEFkxLqc3it3QvadDclwanyPebBay6WfowjVCARHjIt95uVh3w8k81OPIhFsHIIwRoDJyjSDtd2vkg69TLGv+sH43nIfgqwo3NqW19gP6rlLY3Hffs4MFbSLqSb+lW2nhERBFnEpMs8dHakeACS/ASeJ+LVBoP8Lk+TxFb8nMO/zuQfEp8az7BJzayU0ivc0ysqjpN0EyTq7av3q7Kn0Znb5BtqGAoxKferAhlsskbdraDBfrUjC9RN/uGPo6nV85ejmimyVy3pjFfLA8RacBKHaSSGcELfp4iLGf/pRELOi31YMNXj2rb7h9WUmw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=wiwynn.com; dmarc=pass action=none header.from=wiwynn.com;
+ dkim=pass header.d=wiwynn.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wiwynn.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=88RUVHixzqq1/PAEeBvRhOUTNO2+77fztlVDdv7asII=;
+ b=n7oxoqSLcyKBdT2+bCHHd3mxOmCe4mfxljEp/C033DE9tKIOM07Y3w22zPW6c3LU8uwD5ewtsLs4iQOBnKPIv0dt4m93sLW3blGx0DxcB8xAnNPHcI8JI1pNGo7uiSHJ652s4nUesqVfTQZYLxmziPJhDe6a4q7g8FwO26TQpsyYy1CV1SH3c0JZD9/U4uGj4o/zM/EpUB8A9jgT/8DgeiSHncvEea9PKfyUOj5EtSM9pVlhv2NKZRfBEv5JE3GOx563tSRxYfd334HPpYYDVxgRxdPGovveyqpy5wvaPcIy6KqXaNvsCkBVbMOIpI2wwQw6UJ+NvZ4umkQqC1ly7w==
+Received: from SG2PR04MB5543.apcprd04.prod.outlook.com (2603:1096:4:172::14)
+ by SEZPR04MB6317.apcprd04.prod.outlook.com (2603:1096:101:a4::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7002.27; Tue, 21 Nov
+ 2023 02:19:45 +0000
+Received: from SG2PR04MB5543.apcprd04.prod.outlook.com
+ ([fe80::c980:d5d7:4099:fa07]) by SG2PR04MB5543.apcprd04.prod.outlook.com
+ ([fe80::c980:d5d7:4099:fa07%3]) with mapi id 15.20.7002.028; Tue, 21 Nov 2023
+ 02:19:45 +0000
+From: Delphine_CC_Chiu/WYHQ/Wiwynn <Delphine_CC_Chiu@wiwynn.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Delphine_CC_Chiu/WYHQ/Wiwynn <Delphine_CC_Chiu@wiwynn.com>,
+	"patrick@stwcx.xyz" <patrick@stwcx.xyz>, Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+	<conor+dt@kernel.org>
+CC: Jonathan Corbet <corbet@lwn.net>, "linux-i2c@vger.kernel.org"
+	<linux-i2c@vger.kernel.org>, "linux-hwmon@vger.kernel.org"
+	<linux-hwmon@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-doc@vger.kernel.org"
+	<linux-doc@vger.kernel.org>
+Subject: RE: [PATCH v5 1/2] dt-bindings: hwmon: Add lltc ltc4286 driver
+ bindings
+Thread-Topic: [PATCH v5 1/2] dt-bindings: hwmon: Add lltc ltc4286 driver
+ bindings
+Thread-Index: AQHaGDTpez1VD7NikEeX8eD9egCiarB83FYAgAc1cdA=
+Date: Tue, 21 Nov 2023 02:19:45 +0000
+Message-ID:
+ <SG2PR04MB554330329FBF9AC34F150908A1BBA@SG2PR04MB5543.apcprd04.prod.outlook.com>
+References: <20231116023027.24855-1-Delphine_CC_Chiu@Wiwynn.com>
+ <20231116023027.24855-2-Delphine_CC_Chiu@Wiwynn.com>
+ <caff5743-265f-43ac-83fb-4e0fb23a9ff4@linaro.org>
+In-Reply-To: <caff5743-265f-43ac-83fb-4e0fb23a9ff4@linaro.org>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=wiwynn.com;
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SG2PR04MB5543:EE_|SEZPR04MB6317:EE_
+x-ms-office365-filtering-correlation-id: e6c5869b-f8d2-40a4-38d7-08dbea385418
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ LSFI/dnYGiVuqQF0m3VfoJ88x0yN/bGulRtjPqvn+GfKiswBfMyTZ23oGO09+ltvYfqEjbhgKV9xP3JrH9PJ2mYPz0Tuk8nGimGsXclexx1Fw/XSs2wvEk9YfX0uS4aS89pvLIzOyE8e/jYQQ5BUhL7UmEX74/FmGm9zd8rLkO22SpvaIrQR7azC1iuRaUF9APQlnQMortFAckv0unIVRkm6berFNZ8SuhfCX4ydEXRDT5mnJc5MdNYr1BGP11u5iKX+wACOFBY1fJ8t+jNlsXwdgKCaLQ/oOVlfwiqEs99w0/LLJTrd0I+n4jzqk4I20fi6STm8lfsowNNaEVIqpTArRzMPtqrxBeKPrsn/ycVqk4HCKNrPYZFlbqV/zhM3QI9euwJdEjGW9Xu2GTTiCMhUrS85Np1jx+F+M5P7yRLAklzI2tpgYMk3M6+xcvBpsOUKYCsQRRnlu1OM1KvLUoqT+i5oLfWK5eGzlwUHivJAfVPrO1w3mh+DPpMGkxrFvqdMbAZPBI4589zpS2tnsQyJCZvLMQd7PQk/HdAPGqF/Ae2f+srXDHrKpKMSgCVB+YvU5smJW48bMfDtYH61K5xVU1lSvPVsH+YOiQxzWe9xze45OFl/xjIRb6tqpmd7lVxVYpw1mb8KNBEGTgSfumDSAzI8dnSaVBmNy27SJAY=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SG2PR04MB5543.apcprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(346002)(39860400002)(136003)(396003)(366004)(376002)(230922051799003)(230173577357003)(230273577357003)(186009)(64100799003)(1800799012)(451199024)(110136005)(76116006)(122000001)(66476007)(64756008)(54906003)(66446008)(66946007)(66556008)(316002)(478600001)(38070700009)(26005)(33656002)(83380400001)(53546011)(9686003)(71200400001)(7696005)(6506007)(38100700002)(86362001)(55016003)(2906002)(7416002)(5660300002)(8936002)(41300700001)(4326008)(8676002)(52536014);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?eTVJUUhTMDhOWWVUaDV3WDlrUmg2NWJZOGdyOUQ3bTByUzhvTy9UTEtja3N1?=
+ =?utf-8?B?dWRuYndiV2NQNFU2YSswZDVhZ1dSbDB1ZjZGS2tUbGRzNmd6eW5WS3pqdEJC?=
+ =?utf-8?B?eGx5SzN0L2puQXNZNkFtdWZhVTlScDVjNnJWVkp1aFhXa2p3eDRmTUFOdFV5?=
+ =?utf-8?B?bFJ0OWR4NzFXQ3J5MndmOHB1NkRKNHhGNFN5dDc2RUNtN3o2VTNZZUNRbmxG?=
+ =?utf-8?B?TWx2QzR6QUNPYmZUUjZndUF2czBCVGwxZ285VkhFalU2alRjdzh6VzZ3YTF0?=
+ =?utf-8?B?VnIzMVZaMHA1eEFCcXBGSXlTaVR3LzJHaS9XNjBQRkJ1UkI0Kzk0MVlxNG5r?=
+ =?utf-8?B?RSt2MVNUKytHdC9pZEhCbERqcEtWSGlLb3BJdE9CbFhNbjR3SXhTTEF2NXdu?=
+ =?utf-8?B?V1FkWjQvT3hFKy8rMXYwb0pPRTgyWGFMenFRZGZwc2RUdHUyV0JIL2xVWng3?=
+ =?utf-8?B?a29RUEtReENQam1YT3RtNk5QOStXTEFrZ0R4emxxZGVxN2wwRmtzb0hZUXpK?=
+ =?utf-8?B?MURWV0p1ckk1dEFEa3ZzMTlScW5BczAxaVUxMmR1L3Yrc3NiTCtUODhpck9I?=
+ =?utf-8?B?VjJ0UFdpTndQbVFESW5PdW05VFV6Rk5tc05UL2FQaFdmKzQzaGp4QXM2YjEy?=
+ =?utf-8?B?Rm1rNU9SdkNjSmtuNUdiZUpPblQ2M0poZEVHbDZObVF3eDQ3MjI2YmNyUGJ5?=
+ =?utf-8?B?RDZmWG10enRJNEZiSy82azhGMFZRMG5CNmR5bWR4ZHF3VEdGSVJmcE1kVkQv?=
+ =?utf-8?B?OE1BNjh2MDZCRXhLNlNMWjlNeUwrYklNQmdlRVlTT1RDdmVxYWg2YjFaYzhG?=
+ =?utf-8?B?US8vR0JadFdCcEgvN0NUeU1QZHNrNWwvaWxuM3lkcEdtcmpkVFJQRmdRWC9h?=
+ =?utf-8?B?QTFOL1ViNENnSTRneFpFRW5WSXc0aDdkK0JsWHBNWGpwa1NtVHk1dVQ1dkc0?=
+ =?utf-8?B?aDhUS1dXWDQ4Kys4MjRzV1M3VldDLzliRnh1R0gvMGhNSktVMTQrSEtXRkZq?=
+ =?utf-8?B?Zy92RkVaL0NjWVg5aTVXZVpxMXE3SVRrZTNVUzFCenNQUEFQTFdGdUNsa1A0?=
+ =?utf-8?B?YlFoT3BSU2hpVFcrSEdOUGxUQWRtUi83cHZUQkFlL1RZV21UbUlPWHk4QmJs?=
+ =?utf-8?B?a1QzeG9qUC9VK3VwaFNTQjBVUC95SkpES2JJemdvZEhnU0pqbjdSeDBTaEt2?=
+ =?utf-8?B?NWE5dFZRK1NIQXhEdTNQdjQ5dkljNkI2QTdVZHlBS08xekNyUVZIQml1NE1B?=
+ =?utf-8?B?ajRFa1F4bHZsdW82emRZR1dEa0hIR0NhQlhrUWhZU24vVWRqVGRxcTNuVzAv?=
+ =?utf-8?B?MkdlV2xRZGVmeVd5TzN5RFh0dWJmL2lHd1doUFF5VUVLNlA0NjQ0UnJWYVV4?=
+ =?utf-8?B?OWwzME9XdldXR09XWlNFZjUzTXpvMHpOTEQxc2hLVEw5WnpobEk1b1JwUitF?=
+ =?utf-8?B?VGRGVGRqendlbGFhdDhBWWxSb2JPcVlva1pxeGNvL2M3WVp1bDhyYVBTQ0tr?=
+ =?utf-8?B?QmlCcnVzcmIrUk9weGxOSjU1MG5vRW5uRWs0UWRWc2ptZDNCV2syVE85bFNY?=
+ =?utf-8?B?OWZISWN4bTVvZkM4dzZqRHdNT3lpeFBmaHk5TlRpTnhyWE5KV1AyQ0NFeEhP?=
+ =?utf-8?B?aHYrdStkZnc4TWZnUjlUTCs3VGNucCtSWkU0SVVzQXA5V1llMEtZNDhkMkMz?=
+ =?utf-8?B?YlFnMTh2b1VGSjcyeWFuQjdpWnQydUhJRHhIZkZ3ek40dnlJOVZ1cU1VMG1o?=
+ =?utf-8?B?TlJ6eGs4WHNsaG5qRS9tTXB0QlE1UEpVYytkTmpBUmlmdzlUZVp1RFR4djlt?=
+ =?utf-8?B?N0NHWlRHSzhqWmlUWEhpTzRxYVdkSkJ2WUh6MllOanh4Y2NYaDdqbVNCNTFh?=
+ =?utf-8?B?VFhEMGpJTkF5UXA2Q3gyd0Z2aWZ5RCtWdUpDRnZQc0JIVHRWZ3d2Ny9pTllz?=
+ =?utf-8?B?Sy9mZXNpT3NGNEE5UnpqT0M5bzdUM1NZOU9Jc1RFVTZNQmpzQ2hsbHJCbzhT?=
+ =?utf-8?B?Y05DNWhDUHQ3MFNLUWwzc0dQTkVoTlh1MEh6VDRVRjgvbkdCQW5hVEkvWUdZ?=
+ =?utf-8?B?Skl1NC82QzVxQ0Vydk92UWpzT0tQYnIvckxuMWtuYlVkUUVycmRwS1Z0R0xK?=
+ =?utf-8?Q?ykELjdVNBTL5Ku0giryFIuat/?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230926194242.2732127-1-sjg@chromium.org> <20230926194242.2732127-2-sjg@chromium.org>
- <BN9PR11MB5483FF3039913334C7EA83E1E6AEA@BN9PR11MB5483.namprd11.prod.outlook.com>
- <CAMj1kXFG92NpL7T7YocOup0xLKyopt3MnSCp0RL8cLzozzJz7A@mail.gmail.com> <BN9PR11MB548303B09536EB1577472029E6B3A@BN9PR11MB5483.namprd11.prod.outlook.com>
-In-Reply-To: <BN9PR11MB548303B09536EB1577472029E6B3A@BN9PR11MB5483.namprd11.prod.outlook.com>
-From: Simon Glass <sjg@chromium.org>
-Date: Mon, 20 Nov 2023 19:12:15 -0700
-Message-ID: <CAPnjgZ36t8g7E=0MSJyaV8-QKv9RVYe47Jd5E=NU-mFM4LWBQA@mail.gmail.com>
-Subject: Re: [PATCH v7 2/2] schemas: Add some common reserved-memory usages
-To: "Chiu, Chasel" <chasel.chiu@intel.com>
-Cc: Ard Biesheuvel <ardb@kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
-	Rob Herring <robh@kernel.org>, "Tan, Lean Sheng" <sheng.tan@9elements.com>, 
-	lkml <linux-kernel@vger.kernel.org>, Dhaval Sharma <dhaval@rivosinc.com>, 
-	"Brune, Maximilian" <maximilian.brune@9elements.com>, Yunhui Cui <cuiyunhui@bytedance.com>, 
-	"Dong, Guo" <guo.dong@intel.com>, Tom Rini <trini@konsulko.com>, 
-	ron minnich <rminnich@gmail.com>, "Guo, Gua" <gua.guo@intel.com>, 
-	"linux-acpi@vger.kernel.org" <linux-acpi@vger.kernel.org>, U-Boot Mailing List <u-boot@lists.denx.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-OriginatorOrg: wiwynn.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SG2PR04MB5543.apcprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e6c5869b-f8d2-40a4-38d7-08dbea385418
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Nov 2023 02:19:45.2845
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: da6e0628-fc83-4caf-9dd2-73061cbab167
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: idXmpLUaJGctNaivIl+M4DBUbKqGkItroE9xYaZfiSS4TaYF4cc2iB1z/whxUqzX8W5/CnNEm4Ahsx1QNgBpXw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR04MB6317
 
-Hi,
-
-On Mon, 13 Nov 2023 at 11:09, Chiu, Chasel <chasel.chiu@intel.com> wrote:
->
->
-> Hi Ard,
->
-> Please see my reply below inline.
->
-> Thanks,
-> Chasel
->
->
-> > -----Original Message-----
-> > From: Ard Biesheuvel <ardb@kernel.org>
-> > Sent: Saturday, November 11, 2023 3:04 AM
-> > To: Chiu, Chasel <chasel.chiu@intel.com>
-> > Cc: Simon Glass <sjg@chromium.org>; devicetree@vger.kernel.org; Mark Ru=
-tland
-> > <mark.rutland@arm.com>; Rob Herring <robh@kernel.org>; Tan, Lean Sheng
-> > <sheng.tan@9elements.com>; lkml <linux-kernel@vger.kernel.org>; Dhaval
-> > Sharma <dhaval@rivosinc.com>; Brune, Maximilian
-> > <maximilian.brune@9elements.com>; Yunhui Cui <cuiyunhui@bytedance.com>;
-> > Dong, Guo <guo.dong@intel.com>; Tom Rini <trini@konsulko.com>; ron minn=
-ich
-> > <rminnich@gmail.com>; Guo, Gua <gua.guo@intel.com>; linux-
-> > acpi@vger.kernel.org; U-Boot Mailing List <u-boot@lists.denx.de>
-> > Subject: Re: [PATCH v7 2/2] schemas: Add some common reserved-memory
-> > usages
-> >
-> > On Sat, 11 Nov 2023 at 04:20, Chiu, Chasel <chasel.chiu@intel.com> wrot=
-e:
-> > >
-> > >
-> > > Just sharing some usage examples from UEFI/EDK2 scenario.
-> > > To support ACPI S4/Hibernation, memory map must be consistent before
-> > > entering and after resuming from S4, in this case payload may need to
-> > > know previous memory map from bootloader (currently generic payload
-> > > cannot access platform/bootloader specific non-volatile data, thus
-> > > could not save/restore memory map information)
-> >
-> > So how would EDK2 reconstruct the entire EFI memory map from just these
-> > unannotated /reserved-memory nodes? The EFI memory map contains much
-> > more information than that, and all of it has to match the pre-hibernat=
-e situation,
-> > right? Can you given an example?
->
->
-> Here we listed only typically memory types that may change cross differen=
-t platforms.
-> Reserved memory type already can be handled by reserved-memory node, and =
-rest of the types usually no need to change cross platforms thus currently =
-we could rely on default in generic payload.
-> In the future if we see a need to add new memory types we will discuss an=
-d add it to FDT schema.
->
->
->
-> >
-> > > Another usage is to support binary model which generic payload is a p=
-rebuilt
-> > binary compatible for all platforms/configurations, however the payload=
- default
-> > memory map might not always work for all the configurations and we want=
- to
-> > allow bootloader to override payload default memory map without recompi=
-ling.
-> > >
-> >
-> > Agreed. But can you explain how a EDK2 payload might make meaningful us=
-e of
-> > 'runtime-code' regions provided via DT  by the non-EDK2 platform init? =
-Can you
-> > give an example?
->
->
-> Runtime-code/data is used by UEFI payload for booting UEFI OS which requi=
-red UEFI runtime services.
-> Platform Init will select some regions from the usable memory and assign =
-it to runtime-code/data for UPL to consume. Or assign same runtime-code/dat=
-a from previous boot.
-> If UEFI OS is not supported, PlatformInit may not need to provide runtime=
--code/data regions to payload. (always providing runtime-code/data should b=
-e supported too)
->
->
-> >
-> > > Under below assumption:
-> > >         FDT OS impact has been evaluated and taken care by relevant
-> > experts/stakeholders.
-> > > Reviewed-by: Chasel Chiu <chasel.chiu@intel.com>
-> > >
-> >
-> > I am sorry but I don't know what 'FDT OS impact' means. We are talking =
-about a
-> > firmware-to-firmware abstraction that has the potential to leak into th=
-e OS
-> > visible interface.
-> >
-> > I am a maintainer in the Tianocore project myself, so it would help if =
-you could
-> > explain who these relevant experts and stakeholders are. Was this discu=
-ssed on
-> > the edk2-devel mailing list? If so, apologies for missing it but I may =
-not have been
-> > cc'ed perhaps?
->
->
->
->
-> I'm not familiar with FDT OS, also I do not know if who from edk2-devel w=
-ere supporting FDT OS, I think Simon might be able to connect FDT OS expert=
-s/stakeholders.
-> We are mostly focusing on payload firmware phase implementation in edk2 (=
-and other payloads too), however, since we have aligned the payload FDT and=
- OS FDT months ago, I'm assuming FDT OS impact must be there and we need (o=
-r already done?) FDT OS experts to support it. (again, maybe Simon could sh=
-are more information about FDT OS)
->
-> In edk2 such FDT schema is UefiPayloadPkg internal usage only and payload=
- entry will convert FDT into HOB thus we expected the most of the edk2 gene=
-ric code are no-touch/no impact, that's why we only had small group (UefiPa=
-yloadPkg) discussion.
-> Ard, if you are aware of any edk2 code that's for supporting FDT OS, plea=
-se let us know and we can discuss if those code were impacted or not.
-
-We discussed this and just to clarify, 'FDT OS' is not a special OS,
-it is just Linux.
-
-So, with the above, are we all on the same page? Can the patch be
-applied, perhaps? If not, what other discussion is needed?
-
-Regards,
-Simon
-
->
->
->
->
-> >
-> >
-> > >
-> > > > -----Original Message-----
-> > > > From: Simon Glass <sjg@chromium.org>
-> > > > Sent: Tuesday, September 26, 2023 12:43 PM
-> > > > To: devicetree@vger.kernel.org
-> > > > Cc: Mark Rutland <mark.rutland@arm.com>; Rob Herring
-> > > > <robh@kernel.org>; Tan, Lean Sheng <sheng.tan@9elements.com>; lkml
-> > > > <linux- kernel@vger.kernel.org>; Dhaval Sharma
-> > > > <dhaval@rivosinc.com>; Brune, Maximilian
-> > > > <maximilian.brune@9elements.com>; Yunhui Cui
-> > > > <cuiyunhui@bytedance.com>; Dong, Guo <guo.dong@intel.com>; Tom Rini
-> > > > <trini@konsulko.com>; ron minnich <rminnich@gmail.com>; Guo, Gua
-> > > > <gua.guo@intel.com>; Chiu, Chasel <chasel.chiu@intel.com>; linux-
-> > > > acpi@vger.kernel.org; U-Boot Mailing List <u-boot@lists.denx.de>;
-> > > > Ard Biesheuvel <ardb@kernel.org>; Simon Glass <sjg@chromium.org>
-> > > > Subject: [PATCH v7 2/2] schemas: Add some common reserved-memory
-> > > > usages
-> > > >
-> > > > It is common to split firmware into 'Platform Init', which does the
-> > > > initial hardware setup and a "Payload" which selects the OS to be b=
-ooted.
-> > > > Thus an handover interface is required between these two pieces.
-> > > >
-> > > > Where UEFI boot-time services are not available, but UEFI firmware
-> > > > is present on either side of this interface, information about
-> > > > memory usage and attributes must be presented to the "Payload" in s=
-ome
-> > form.
-> > > >
-> > > > This aims to provide an small schema addition for the memory mappin=
-g
-> > > > needed to keep these two pieces working together well.
-> > > >
-> > > > Signed-off-by: Simon Glass <sjg@chromium.org>
-> > > > ---
-> > > >
-> > > > Changes in v7:
-> > > > - Rename acpi-reclaim to acpi
-> > > > - Drop individual mention of when memory can be reclaimed
-> > > > - Rewrite the item descriptions
-> > > > - Add back the UEFI text (with trepidation)
-> > > >
-> > > > Changes in v6:
-> > > > - Drop mention of UEFI
-> > > > - Use compatible strings instead of node names
-> > > >
-> > > > Changes in v5:
-> > > > - Drop the memory-map node (should have done that in v4)
-> > > > - Tidy up schema a bit
-> > > >
-> > > > Changes in v4:
-> > > > - Make use of the reserved-memory node instead of creating a new on=
-e
-> > > >
-> > > > Changes in v3:
-> > > > - Reword commit message again
-> > > > - cc a lot more people, from the FFI patch
-> > > > - Split out the attributes into the /memory nodes
-> > > >
-> > > > Changes in v2:
-> > > > - Reword commit message
-> > > >
-> > > >  .../reserved-memory/common-reserved.yaml      | 71 +++++++++++++++=
-++++
-> > > >  1 file changed, 71 insertions(+)
-> > > >  create mode 100644 dtschema/schemas/reserved-memory/common-
-> > > > reserved.yaml
-> > > >
-> > > > diff --git a/dtschema/schemas/reserved-memory/common-reserved.yaml
-> > > > b/dtschema/schemas/reserved-memory/common-reserved.yaml
-> > > > new file mode 100644
-> > > > index 0000000..f7fbdfd
-> > > > --- /dev/null
-> > > > +++ b/dtschema/schemas/reserved-memory/common-reserved.yaml
-> > > > @@ -0,0 +1,71 @@
-> > > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause %YAML 1.2
-> > > > +---
-> > > > +$id:
-> > > > +http://devicetree.org/schemas/reserved-memory/common-reserved.yaml=
-#
-> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > +
-> > > > +title: Common memory reservations
-> > > > +
-> > > > +description: |
-> > > > +  Specifies that the reserved memory region can be used for the
-> > > > +purpose
-> > > > +  indicated by its compatible string.
-> > > > +
-> > > > +  Clients may reuse this reserved memory if they understand what i=
-t
-> > > > + is for,  subject to the notes below.
-> > > > +
-> > > > +maintainers:
-> > > > +  - Simon Glass <sjg@chromium.org>
-> > > > +
-> > > > +allOf:
-> > > > +  - $ref: reserved-memory.yaml
-> > > > +
-> > > > +properties:
-> > > > +  compatible:
-> > > > +    description: |
-> > > > +      This describes some common memory reservations, with the com=
-patible
-> > > > +      string indicating what it is used for:
-> > > > +
-> > > > +         acpi: Advanced Configuration and Power Interface (ACPI) t=
-ables
-> > > > +         acpi-nvs: ACPI Non-Volatile-Sleeping Memory (NVS). This i=
-s reserved by
-> > > > +           the firmware for its use and is required to be saved an=
-d restored
-> > > > +           across an NVS sleep
-> > > > +         boot-code: Contains code used for booting which is not ne=
-eded by the
-> > OS
-> > > > +         boot-code: Contains data used for booting which is not ne=
-eded by the
-> > OS
-> > > > +         runtime-code: Contains code used for interacting with the=
- system when
-> > > > +           running the OS
-> > > > +         runtime-data: Contains data used for interacting with the=
- system when
-> > > > +           running the OS
-> > > > +
-> > > > +    enum:
-> > > > +      - acpi
-> > > > +      - acpi-nvs
-> > > > +      - boot-code
-> > > > +      - boot-data
-> > > > +      - runtime-code
-> > > > +      - runtime-data
-> > > > +
-> > > > +  reg:
-> > > > +    description: region of memory that is reserved for the purpose=
- indicated
-> > > > +      by the compatible string.
-> > > > +
-> > > > +required:
-> > > > +  - reg
-> > > > +
-> > > > +unevaluatedProperties: false
-> > > > +
-> > > > +examples:
-> > > > +  - |
-> > > > +    reserved-memory {
-> > > > +        #address-cells =3D <1>;
-> > > > +        #size-cells =3D <1>;
-> > > > +
-> > > > +        reserved@12340000 {
-> > > > +            compatible =3D "boot-code";
-> > > > +            reg =3D <0x12340000 0x00800000>;
-> > > > +        };
-> > > > +
-> > > > +        reserved@43210000 {
-> > > > +            compatible =3D "boot-data";
-> > > > +            reg =3D <0x43210000 0x00800000>;
-> > > > +        };
-> > > > +    };
-> > > > --
-> > > > 2.42.0.515.g380fc7ccd1-goog
-> > >
+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBLcnp5c3p0b2YgS296bG93c2tp
+IDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+DQo+IFNlbnQ6IFRodXJzZGF5LCBOb3Zl
+bWJlciAxNiwgMjAyMyA4OjE0IFBNDQo+IFRvOiBEZWxwaGluZV9DQ19DaGl1L1dZSFEvV2l3eW5u
+IDxEZWxwaGluZV9DQ19DaGl1QHdpd3lubi5jb20+Ow0KPiBwYXRyaWNrQHN0d2N4Lnh5ejsgSmVh
+biBEZWx2YXJlIDxqZGVsdmFyZUBzdXNlLmNvbT47IEd1ZW50ZXIgUm9lY2sNCj4gPGxpbnV4QHJv
+ZWNrLXVzLm5ldD47IFJvYiBIZXJyaW5nIDxyb2JoK2R0QGtlcm5lbC5vcmc+OyBLcnp5c3p0b2Yg
+S296bG93c2tpDQo+IDxrcnp5c3p0b2Yua296bG93c2tpK2R0QGxpbmFyby5vcmc+OyBDb25vciBE
+b29sZXkgPGNvbm9yK2R0QGtlcm5lbC5vcmc+DQo+IENjOiBKb25hdGhhbiBDb3JiZXQgPGNvcmJl
+dEBsd24ubmV0PjsgbGludXgtaTJjQHZnZXIua2VybmVsLm9yZzsNCj4gbGludXgtaHdtb25Admdl
+ci5rZXJuZWwub3JnOyBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZzsNCj4gbGludXgta2VybmVs
+QHZnZXIua2VybmVsLm9yZzsgbGludXgtZG9jQHZnZXIua2VybmVsLm9yZw0KPiBTdWJqZWN0OiBS
+ZTogW1BBVENIIHY1IDEvMl0gZHQtYmluZGluZ3M6IGh3bW9uOiBBZGQgbGx0YyBsdGM0Mjg2IGRy
+aXZlcg0KPiBiaW5kaW5ncw0KPiANCj4gICBTZWN1cml0eSBSZW1pbmRlcjogUGxlYXNlIGJlIGF3
+YXJlIHRoYXQgdGhpcyBlbWFpbCBpcyBzZW50IGJ5IGFuIGV4dGVybmFsDQo+IHNlbmRlci4NCj4g
+DQo+IE9uIDE2LzExLzIwMjMgMDM6MzAsIERlbHBoaW5lIENDIENoaXUgd3JvdGU6DQo+ID4gQWRk
+IGEgZGV2aWNlIHRyZWUgYmluZGluZ3MgZm9yIGx0YzQyODYgZGV2aWNlLg0KPiA+DQo+ID4gU2ln
+bmVkLW9mZi1ieTogRGVscGhpbmUgQ0MgQ2hpdSA8RGVscGhpbmVfQ0NfQ2hpdUBXaXd5bm4uY29t
+Pg0KPiA+DQo+ID4gLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLQ0KPiA+IENoYW5nZWxvZzoNCj4gPiAgIHY1IC0gQWRkIGh5cGhlbiB1
+bmRlciAiQ2hhbmdlbG9nIiBpbiBjb21taXQgbWVzc2FnZQ0KPiANCj4gQXBwbHkgeW91ciBwYXRj
+aCBmcm9tIHRoZSBsaXN0IGFuZCBjaGVjayB0aGUgcmVzdWx0Li4uIFlvdSBjYW4gZWFzaWx5IHNl
+ZSBpdCdzDQo+IGJyb2tlbi4gV2UgYXNrZWQgYWJvdXQgLS0tLiBQbGVhc2UgcmVhZCB0aGUgbWVz
+c2FnZSBjYXJlZnVsbHkuDQoNCldlIHdpbGwgYWRkIC0tLQ0KVGhhbmtzLg0KDQo+IA0KPiBCZXN0
+IHJlZ2FyZHMsDQo+IEtyenlzenRvZg0KDQo=
 
