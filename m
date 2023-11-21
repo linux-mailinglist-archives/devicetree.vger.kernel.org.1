@@ -1,62 +1,49 @@
-Return-Path: <devicetree+bounces-17514-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17515-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 697D47F2B6B
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 12:05:03 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C16DC7F2B7B
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 12:10:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0B1A0B21995
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 11:05:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DA05A1C216B9
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 11:10:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D08F482E7;
-	Tue, 21 Nov 2023 11:04:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 611A1482F3;
+	Tue, 21 Nov 2023 11:10:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kQlDTd/Z"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ZbfiNtiK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A63C83
-	for <devicetree@vger.kernel.org>; Tue, 21 Nov 2023 03:04:53 -0800 (PST)
-Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-332c7d4a6a7so1155262f8f.2
-        for <devicetree@vger.kernel.org>; Tue, 21 Nov 2023 03:04:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700564692; x=1701169492; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=kIK/f1U9gj42KtTbzVAHFRC1UQ6zgDgmA86Cyhg1HRw=;
-        b=kQlDTd/Z1AJlM/l+B45q6ErNGd/rYZQOTQ5dOlGkkZugjP8cBLgiaJrqB4q57eU2KC
-         SJOGj0HmVdbiJk+cg3twUUKrRSKFLgdeVveLTy4dBPLPUuDeydC4Nsqn2MdMoi9SdAoT
-         4DHnCRuKL346viW2l4WM0Vs5ac1MVZMsdGBeWD5T6i5uSGdXmcRMj1z00vOj+BfiPPhh
-         JAXDFHteJETn+tK3RmoVdCy0U+rqJo/q4qIGXrlVNubdYtlA3s0NIzXLT8LyAzutdFhj
-         6pcpnVwl1HaZYLsyzg2g77Rmei7CTgGfYaBsGbzXsM3H8Y9N/aqbdyVM/B0xoNMJR1hD
-         ZouQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700564692; x=1701169492;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=kIK/f1U9gj42KtTbzVAHFRC1UQ6zgDgmA86Cyhg1HRw=;
-        b=U6fVbhqeDEPr0h7M/w+sNURLvOm/N15oLXI+itv6ut1oilZsKELDUInYc2IuRxSobg
-         xe7Pj49C2k9fGE9sIKxXfUMr38O0OG72o5Nnc+X9QKZkM2SvLWNes7Qu4W/l+t6gBK6S
-         m36CSVDFg2MQy8qwnXwIjD+OpzbZBcTc6hKLdnpOJhxcxjYslpj6mEOBVZKzMAPH6sUA
-         6PZPV+82DYhcCEJnjhbme38E8XXeAWJOMZ0VLGrqe+vHu29XfP54anAsARWlqLB2d7TF
-         BkMFf0LwVy86b56JQpRDpl2FVGSH/n2nDn4UWmUR5LloxYDQKMZIO2XWJcksQ/3zehCg
-         jUfA==
-X-Gm-Message-State: AOJu0Yy75+2Xtg/nnXHH3D4eEllbPvNJ0FHNLvtbO9ZFC4IlT0XOixz2
-	nOMxjYl8R2/Ps8GJOvSnk17a5g==
-X-Google-Smtp-Source: AGHT+IHIYLaPdDRrbJE5uQgQlOj1dJoooND6JHpZCP3BrMLOAYeMAn/fpW4er0klLi7y3R6yE9dZMg==
-X-Received: by 2002:adf:f4cc:0:b0:332:cb97:2cb6 with SMTP id h12-20020adff4cc000000b00332cb972cb6mr2183534wrp.21.1700564691910;
-        Tue, 21 Nov 2023 03:04:51 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:2a39:bc19:20b6:16a? ([2a01:e0a:982:cbb0:2a39:bc19:20b6:16a])
-        by smtp.gmail.com with ESMTPSA id e1-20020adff341000000b0032f79e55eb8sm14010312wrp.16.2023.11.21.03.04.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Nov 2023 03:04:51 -0800 (PST)
-Message-ID: <a69e5dd0-8efe-4415-9747-0554f8370fcf@linaro.org>
-Date: Tue, 21 Nov 2023 12:04:49 +0100
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2964CA;
+	Tue, 21 Nov 2023 03:10:27 -0800 (PST)
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3ALA8dXl004669;
+	Tue, 21 Nov 2023 11:10:15 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=3jkvNomu/T+rw84AfhK9x8vxgbep/obiHslHag7pVzw=;
+ b=ZbfiNtiKqLpZB72rn5PMgIJXP29IFWS5oTLLk/EYxtlsLBsvIVAjupHcC72ui1t0+5jK
+ faGkvwA09LZJeRzjmBsLwIifytMbacI2p3wn44Ha07tYY3pOtAdmQI882pH7/nOWmvft
+ 7TD581A4cMzXhn7ThrYLzkD5hSgPimVuQSZtaUtDNqdXdga5rJWuFNxlIb89O0ugiFIy
+ JEtWIblwEL2ROWctx5n6IWjj33TdBqFEaxhvDGnD4aRZgk8g/3xWgzA3e2USLCB4BMi/
+ foH3he8OU01QgETG4uOllOLOIdJ7ed39aqpNyUMrn6+LgTTFqbRmgee+Q4DdjkGSPwhc ng== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ugge19ean-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 21 Nov 2023 11:10:15 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3ALBAEJP029315
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 21 Nov 2023 11:10:14 GMT
+Received: from [10.253.72.26] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 21 Nov
+ 2023 03:10:10 -0800
+Message-ID: <316fb626-4dc3-4540-9cc4-e45840e36f77@quicinc.com>
+Date: Tue, 21 Nov 2023 19:10:08 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,72 +51,128 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 2/2] pmdomain: amlogic: meson-ee-pwrc: add support for
- G12A ISP power domain
-Content-Language: en-US, fr
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>, Ulf Hansson <ulf.hansson@linaro.org>,
- Daniel Scally <dan.scally@ideasonboard.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-References: <20231114-topic-amlogic-upstream-isp-pmdomain-v1-0-f01e6fca67a0@linaro.org>
- <20231114-topic-amlogic-upstream-isp-pmdomain-v1-2-f01e6fca67a0@linaro.org>
- <CAFBinCDe3yoEBd6SzozNZtC=zGaUHt4VeO_uhV1s5XBaWp0w1Q@mail.gmail.com>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <CAFBinCDe3yoEBd6SzozNZtC=zGaUHt4VeO_uhV1s5XBaWp0w1Q@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v5 3/6] net: phy: at803x: add QCA8084 ethernet phy support
+Content-Language: en-US
+To: Andrew Lunn <andrew@lunn.ch>
+CC: "Russell King (Oracle)" <linux@armlinux.org.uk>, <davem@davemloft.net>,
+        <edumazet@google.com>, <kuba@kernel.org>, <pabeni@redhat.com>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <hkallweit1@gmail.com>, <corbet@lwn.net>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>
+References: <20231118062754.2453-1-quic_luoj@quicinc.com>
+ <20231118062754.2453-4-quic_luoj@quicinc.com>
+ <1eb60a08-f095-421a-bec6-96f39db31c09@lunn.ch>
+ <ZVkRkhMHWcAR37fW@shell.armlinux.org.uk>
+ <eee39816-b0b8-475c-aa4a-8500ba488a29@lunn.ch>
+ <fef2ab86-ccd7-4693-8a7e-2dac2c80fd53@quicinc.com>
+ <1d4d7761-6b42-48ec-af40-747cb4b84ca5@lunn.ch>
+From: Jie Luo <quic_luoj@quicinc.com>
+In-Reply-To: <1d4d7761-6b42-48ec-af40-747cb4b84ca5@lunn.ch>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: uyxGtoquF84BMYww-SOI5QCz__Kbc_ad
+X-Proofpoint-ORIG-GUID: uyxGtoquF84BMYww-SOI5QCz__Kbc_ad
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-21_04,2023-11-21_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 impostorscore=0
+ malwarescore=0 mlxscore=0 adultscore=0 mlxlogscore=999 phishscore=0
+ priorityscore=1501 bulkscore=0 suspectscore=0 spamscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2311060000 definitions=main-2311210086
 
-On 20/11/2023 21:15, Martin Blumenstingl wrote:
-> Hi Neil,
+
+
+On 11/20/2023 11:34 PM, Andrew Lunn wrote:
+>> Hi Andrew,
+>> The interface mode 10G_QXGMII is a type of USXGMII-M, the other modes
+>> such as 20G-QXGMII, 20G-OXGMII...
+>>
+>> As for the interface mode 10G-QXGMII, there is a multiplexer for 4 PHYs,
+>> then do 66bit/68bit encode in xpcs and pass to PMA, the link topology:
+>> quad PHY --- multiplexer ---XPCS --- PMA.
+>> the 10G-QXGMII interface block includes multiplexer, XPCS and PMA.
+>>
+>> when the PHY works on SGMII mode, then there is no xpcs, the only fourth
+>> PHY of qca8084 can work on SGMII mode, the link topology:
+>> the fourth PHY --- PCS --- PMA, the SGMII block includes PCS and PMA.
 > 
-> On Tue, Nov 14, 2023 at 11:19 AM Neil Armstrong
-> <neil.armstrong@linaro.org> wrote:
-> [...]
->> +static struct meson_ee_pwrc_mem_domain g12a_pwrc_mem_isp[] = {
->> +       { G12A_HHI_ISP_MEM_PD_REG0, GENMASK(31, 0) },
->> +       { G12A_HHI_ISP_MEM_PD_REG0, GENMASK(31, 0) },
-> I expected this second line to use G12A_HHI_ISP_MEM_PD_REG1 (note the
-> number at the end: 0 vs 1)
-> Is this correct?
+> What i missed is that you have two different PMA blocks. PHY4 can be
+> muxed to either the QXGMII PMA or the 2500BaseX PMA. This is not clear
+> in the commit message, and i think why you are getting questions about
+> how 2500BaseX can work over QXGMII. Please expand you commit message
+> to explain the architecture in more detail.
 
-Indeed you're right, let me fix it in a v2,
+Ok, Andrew, i will give more detail about the pcs utilized in the next
+patch set.
 
-Thanks,
-Neil
+when pcs is configured to QXGMII mode, quad phy can reach to maximum
+speed 2.5G, it is still in qxgmii mode.
+
+when pcs is configured to SGMII mode, the fourth PHY can reach to
+maximum speed 2.5G(2500BaseT) that is reached by increasing the clock
+rate to 312.5MHZ from 125MHZ of 1G speed, but there is no corresponding
+interface mode can be used to reflect this 2.5G speed mode(sgmii+), so
+i use 2500BaseX to reflect this 2.5G link speed, which is same as
+qca8081 PHY. Actually we should add a new interface mode such as sgmii+
+to reflect this 2.5G speed of sgmii, so that the PHYLINK can support
+all supported link speeds(10/100/1000/2500M) with the interface mode
+sgmii+, currently 2500BaseX only advertise 2.5G, sgmii advertise
+10/100/1000 in the PHYLINK framework. but actually qca808x supports
+10/100/1000/2500 speed. how do you think?
 
 > 
-> 
-> Best regards,
-> Martin
+> So, next question. How do you control what PMA PHY4 is connected to?
+> Is this going to be based on interface mode? QXGMII it is configured
+> to use the QXGMII PMA? SGMII, 1000BaseX, and 2500BaseX it is
+> configured to the other PMA?
 
+Yes, there are two different PCS to work on qxgmii and sgmii mode.
+one PCS can be connected with quad phy, another pcs can be connected
+with PHY4.
+
+> 
+>> Here is a problem as Russell mentioned earlier, we need to know which PHY
+>> device is changing the link status when the 10G-QXGMII mode is used,
+>> since there are 4 PHYs, when one of them has the link change, there is no
+>> PHY device information passed to the PHYLINK, so the PCS driver don't
+>> which PHY is changing link status and 10G-QXGMII mode don't know which
+>> channel(mapped to PHY) should be configured.
+> 
+> This is the first time QXGMII has been seen in mainline, so its good
+> to explain the background.
+
+ From PCS hardware perspective, there is only one QXGMII mode instance
+for 4 PHYs and MACs, and the each PHY is related with the channel of
+QXGMII.
+
+> 
+> Are you saying there is a USXGMII-M level link change status? The link
+> between the SoC and the PHY package is up/down? If it is down, all
+> four MAC-PHY links are down. If it is up, it is possible to carry
+> frames between the SoC and the PHY package, but maybe the PHYs
+> themselves are down?
+> 
+
+There is a per channel(for each PHY) configurations in XPCS XGMII mode,
+if one PHY has the link change, the related channel should be
+configured for this PHY, and multiplex is also used for the connected 4
+MACs, the link change on one phy does not effect the other PHYs.
+
+If the PHY is down, the pipeline of the related channel can't transfer
+data, the phy link status is reflected to XPCS.
+
+> Withing the four multiplex streams, is there a per stream link change
+> indication?
+
+Yes, it is per channel(for each PHY) link change indication in QXGMII.
+
+> 
+> 	Andrew
 
