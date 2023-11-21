@@ -1,40 +1,40 @@
-Return-Path: <devicetree+bounces-17538-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17540-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 197EE7F2C53
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 12:56:59 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E8687F2C56
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 12:57:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3C7B01C20B20
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 11:56:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DE3FE2819AB
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 11:56:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8D8348CED;
-	Tue, 21 Nov 2023 11:56:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00A6C495D7;
+	Tue, 21 Nov 2023 11:56:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="NQzzsLAP"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="GYYbo9Ql"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F09D125;
-	Tue, 21 Nov 2023 03:56:48 -0800 (PST)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84D6A1A2;
+	Tue, 21 Nov 2023 03:56:49 -0800 (PST)
 Received: from IcarusMOD.eternityproject.eu (cola.collaboradmins.com [195.201.22.229])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 7AA076607323;
-	Tue, 21 Nov 2023 11:56:46 +0000 (GMT)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 852916607324;
+	Tue, 21 Nov 2023 11:56:47 +0000 (GMT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1700567807;
-	bh=mvDbP9LsG0x+WjQA4KRWvixfVCE355+sCyiuJX+FpKc=;
+	s=mail; t=1700567808;
+	bh=XEVVBoXHkUpKz+mYu2BhuD+v7qTvXaba6bcEiQ5SYSg=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=NQzzsLAPLWVCrdYb1WdDBdgCttHjg+D0GSUKO8RjcPy/S1k2NgVgf3dkE+E0FXCdV
-	 W7rrIfGI8UW1pl/ucspvIOj8CKAZX1Em5cBzG54xGK+yDXik/0Ej6GAyFbVzX+MEXw
-	 /N533xEVo4QceCSm+oyT2e1aL8RdKexn5Mx4Y6V9L5igobnE3IJqHjkpGGZIFhSgDe
-	 EnEGPDuOMKWivrUJi+OfHz56fSte8UE+K7sJpVvHztWxKUff84obzi2lwfggeuy/JU
-	 2Iv13hIZftMUP85+47DDkz60ar/mP5ZhAuSk64Ci6MH4NuVW32zzvGlREIl+N5+Lb9
-	 fytD6j3AUfIsw==
+	b=GYYbo9QldXFXkudLNK5rBpyLOm3Syq0rkmS15Dw5elqhdCQEjLJ8kZzlIAH/9feSQ
+	 fKlAppZeczG0BvHBMcVMzFWOKlTqcdLR38gs+mDI8TFzbgqxnvL3+7ke7vlfaIarOE
+	 WD4+zgmW1iKsLDiocSUyAnRL7xZwxGw2tTmygpebAcSBxHok6hcBdGsl3UxPU4RhG9
+	 8XEQk0x8kv80N5b4iMA7KyObYnlaCUOR78JlP1dzoe2MuBlgaduv01uzC1TJkOv2/K
+	 NbRxwgmUpxDmArQm49ItmhnUMfHWIiHPkJZFJP92lDNXXN9DWJqILJhvwM+4X/RRD7
+	 +oX/uQYLfW/Jg==
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 To: matthias.bgg@gmail.com
 Cc: krzysztof.kozlowski+dt@linaro.org,
@@ -48,9 +48,9 @@ Cc: krzysztof.kozlowski+dt@linaro.org,
 	linux-mediatek@lists.infradead.org,
 	kernel@collabora.com,
 	wenst@chromium.org
-Subject: [PATCH v2 15/20] soc: mediatek: mtk-svs: Cleanup of svs_probe() function
-Date: Tue, 21 Nov 2023 12:56:19 +0100
-Message-ID: <20231121115624.56855-16-angelogioacchino.delregno@collabora.com>
+Subject: [PATCH v2 16/20] soc: mediatek: mtk-svs: Check if SVS mode is available in the beginning
+Date: Tue, 21 Nov 2023 12:56:20 +0100
+Message-ID: <20231121115624.56855-17-angelogioacchino.delregno@collabora.com>
 X-Mailer: git-send-email 2.42.0
 In-Reply-To: <20231121115624.56855-1-angelogioacchino.delregno@collabora.com>
 References: <20231121115624.56855-1-angelogioacchino.delregno@collabora.com>
@@ -62,109 +62,60 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Cleanup the svs_probe() function: use dev_err_probe() where possible,
-change some efuse read failure gotos and then remove now impossible
-IS_ERR_OR_NULL() checks (as they will never return true) for nvmem
-(efuse read) failures.
-Also remove some unnecessary blank lines.
+The svs_init01() and svs_init02() functions are already checking if the
+INIT01 and INIT02 modes are available - but that's done in for loops and
+for each SVS bank.
+
+Give those a shortcut to get out early if no SVS bank features the
+desired init mode: this is especially done to avoid some locking in
+the svs_init01(), but also to avoid multiple for loops to check the
+same, when no bank supports a specific mode.
 
 Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 ---
- drivers/soc/mediatek/mtk-svs.c | 32 +++++++++++---------------------
- 1 file changed, 11 insertions(+), 21 deletions(-)
+ drivers/soc/mediatek/mtk-svs.c | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
 
 diff --git a/drivers/soc/mediatek/mtk-svs.c b/drivers/soc/mediatek/mtk-svs.c
-index ac36c2efcafa..ae0cc22a2941 100644
+index ae0cc22a2941..16a16c5a3f24 100644
 --- a/drivers/soc/mediatek/mtk-svs.c
 +++ b/drivers/soc/mediatek/mtk-svs.c
-@@ -2775,14 +2775,13 @@ static int svs_probe(struct platform_device *pdev)
- 	}
- 
- 	if (!svsp_data->efuse_parsing(svsp, svsp_data)) {
--		dev_err(svsp->dev, "efuse data parsing failed\n");
--		ret = -EPERM;
-+		ret = dev_err_probe(svsp->dev, -EINVAL, "efuse data parsing failed\n");
- 		goto svs_probe_free_tefuse;
- 	}
- 
- 	ret = svs_bank_resource_setup(svsp);
- 	if (ret) {
--		dev_err(svsp->dev, "svs bank resource setup fail: %d\n", ret);
-+		dev_err_probe(svsp->dev, ret, "svs bank resource setup fail\n");
- 		goto svs_probe_free_tefuse;
- 	}
- 
-@@ -2794,43 +2793,40 @@ static int svs_probe(struct platform_device *pdev)
- 
- 	svsp->main_clk = devm_clk_get(svsp->dev, "main");
- 	if (IS_ERR(svsp->main_clk)) {
--		dev_err(svsp->dev, "failed to get clock: %ld\n",
--			PTR_ERR(svsp->main_clk));
--		ret = PTR_ERR(svsp->main_clk);
-+		ret = dev_err_probe(svsp->dev, PTR_ERR(svsp->main_clk),
-+				    "failed to get clock\n");
- 		goto svs_probe_free_tefuse;
- 	}
- 
- 	ret = clk_prepare_enable(svsp->main_clk);
- 	if (ret) {
--		dev_err(svsp->dev, "cannot enable main clk: %d\n", ret);
-+		dev_err_probe(svsp->dev, ret, "cannot enable main clk\n");
- 		goto svs_probe_free_tefuse;
- 	}
- 
- 	svsp->base = of_iomap(svsp->dev->of_node, 0);
- 	if (IS_ERR_OR_NULL(svsp->base)) {
--		dev_err(svsp->dev, "cannot find svs register base\n");
--		ret = -EINVAL;
-+		ret = dev_err_probe(svsp->dev, -EINVAL, "cannot find svs register base\n");
- 		goto svs_probe_clk_disable;
- 	}
- 
- 	ret = devm_request_threaded_irq(svsp->dev, svsp_irq, NULL, svs_isr,
- 					IRQF_ONESHOT, svsp_data->name, svsp);
- 	if (ret) {
--		dev_err(svsp->dev, "register irq(%d) failed: %d\n",
--			svsp_irq, ret);
-+		dev_err_probe(svsp->dev, ret, "register irq(%d) failed\n", svsp_irq);
- 		goto svs_probe_iounmap;
- 	}
- 
- 	ret = svs_start(svsp);
- 	if (ret) {
--		dev_err(svsp->dev, "svs start fail: %d\n", ret);
-+		dev_err_probe(svsp->dev, ret, "svs start fail\n");
- 		goto svs_probe_iounmap;
- 	}
- 
- #ifdef CONFIG_DEBUG_FS
- 	ret = svs_create_debug_cmds(svsp);
- 	if (ret) {
--		dev_err(svsp->dev, "svs create debug cmds fail: %d\n", ret);
-+		dev_err_probe(svsp->dev, ret, "svs create debug cmds fail\n");
- 		goto svs_probe_iounmap;
- 	}
- #endif
-@@ -2839,18 +2835,12 @@ static int svs_probe(struct platform_device *pdev)
- 
- svs_probe_iounmap:
- 	iounmap(svsp->base);
--
- svs_probe_clk_disable:
- 	clk_disable_unprepare(svsp->main_clk);
--
- svs_probe_free_tefuse:
--	if (!IS_ERR_OR_NULL(svsp->tefuse))
--		kfree(svsp->tefuse);
--
-+	kfree(svsp->tefuse);
- svs_probe_free_efuse:
--	if (!IS_ERR_OR_NULL(svsp->efuse))
--		kfree(svsp->efuse);
--
-+	kfree(svsp->efuse);
- 	return ret;
+@@ -1400,6 +1400,16 @@ static irqreturn_t svs_isr(int irq, void *data)
+ 	return IRQ_HANDLED;
  }
+ 
++static bool svs_mode_available(struct svs_platform *svsp, u8 mode)
++{
++	int i;
++
++	for (i = 0; i < svsp->bank_max; i++)
++		if (svsp->banks[i].mode_support & mode)
++			return true;
++	return false;
++}
++
+ static int svs_init01(struct svs_platform *svsp)
+ {
+ 	struct svs_bank *svsb;
+@@ -1408,6 +1418,9 @@ static int svs_init01(struct svs_platform *svsp)
+ 	int ret = 0, r;
+ 	u32 opp_freq, opp_vboot, buck_volt, idx, i;
+ 
++	if (!svs_mode_available(svsp, SVSB_MODE_INIT01))
++		return 0;
++
+ 	/* Keep CPUs' core power on for svs_init01 initialization */
+ 	cpuidle_pause_and_lock();
+ 
+@@ -1575,6 +1588,9 @@ static int svs_init02(struct svs_platform *svsp)
+ 	int ret;
+ 	u32 idx;
+ 
++	if (!svs_mode_available(svsp, SVSB_MODE_INIT02))
++		return 0;
++
+ 	for (idx = 0; idx < svsp->bank_max; idx++) {
+ 		svsb = &svsp->banks[idx];
  
 -- 
 2.42.0
