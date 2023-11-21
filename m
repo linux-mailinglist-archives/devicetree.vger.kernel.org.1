@@ -1,128 +1,166 @@
-Return-Path: <devicetree+bounces-17468-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17467-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE65A7F29E8
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 11:14:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E246B7F29E4
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 11:13:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 65695B21121
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 10:14:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9CEDD281A5F
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 10:13:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF32A3D384;
-	Tue, 21 Nov 2023 10:14:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 299F43D386;
+	Tue, 21 Nov 2023 10:13:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NnrlbR5r"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="c9ZypsVh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D688ABA;
-	Tue, 21 Nov 2023 02:14:02 -0800 (PST)
-Received: by mail-oi1-x22a.google.com with SMTP id 5614622812f47-3b3f6dd612cso3291374b6e.3;
-        Tue, 21 Nov 2023 02:14:02 -0800 (PST)
+Received: from mail-yw1-x1130.google.com (mail-yw1-x1130.google.com [IPv6:2607:f8b0:4864:20::1130])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7786095
+	for <devicetree@vger.kernel.org>; Tue, 21 Nov 2023 02:13:25 -0800 (PST)
+Received: by mail-yw1-x1130.google.com with SMTP id 00721157ae682-5a877e0f0d8so49421277b3.1
+        for <devicetree@vger.kernel.org>; Tue, 21 Nov 2023 02:13:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1700561642; x=1701166442; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2rBM84BPH3h1OTNeKF8gkahQrwyTUFEFO20bhp2Xhd8=;
-        b=NnrlbR5r2soU9t9TIxVn4YCusKvlrRaEi0T8vpS8rWNE+v5AsTWn9/BZRr0voePTJ5
-         QEHDRO4gXSuBe7Lv4RFCKHi29Z5vzwejmjSltA8PhW9+2wcK0PBxYM3pQ9Q5deSiWnSe
-         2rm7mEjEDuFUGgW2/psCCHo3+trO66a2MGh5zN8/WOs73A25an1jKkzfFKEJcVDR8hGS
-         ATkdtpwRIkdh4IGk+mRCKzB4VwcoBsDSz5c6B7AL3WRBfA4YAmTRJRfY9GfYFgCen6Xk
-         ataR/stE8KyTMbn0X5lY2pjHuXs2lyQZYfY/rJixs7ICYw0a0YowXHzDMuTjkfPX+Z+T
-         9uuA==
+        d=linaro.org; s=google; t=1700561604; x=1701166404; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vvvVHM7viL1Jmzkz/E4yhNDYNAPR+6Zga/hBjsBolp0=;
+        b=c9ZypsVhnRqU0Y4NFy0A2r1lwHD4nUnaUDssND9bcPtiXVBc+Imc1hiA3iT7UPSIvn
+         Jx56+XIoNqcLEzODhkGmvoe859RHsL9xJg/mliyXGv7wt84oiUV6v1t8MTZeqbZ5AiIy
+         OpF25nAH6QLDHMiuYHL7P1epee2FHGd0R9/44q/Y5vIIRfuqb8XrV1LGXSUKc+pH9jNO
+         Mq7YqUgUdLkSW/lre4BuR6Sqh3+3BDlwb9DaedfQqrCMGyjwZLr6Vp91G926JSHALDv9
+         vncpnOZlldAwxItDe0IgOYYHMqCphs3q6P4CExAdqnl3NLtaJgblWjjJMgrCFAsZFTWM
+         xreQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700561642; x=1701166442;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2rBM84BPH3h1OTNeKF8gkahQrwyTUFEFO20bhp2Xhd8=;
-        b=lyrUmH7F0xDY6rQw2zatLt4YtEUoB35hleeUWE/o1nC9kevJNk2aD38Xi5ucWSrHlj
-         ViF/vgq7YmyuFTVLp2D/Mm5v3ljqaAm4dfVLIIshRJbUV8U5GX9KBjS8NOLw9i68KUTk
-         /7i2Ce///a1Fha1IjHDCOrfcX7MeaL1lioXj6vxzEXlmrW5YN+HdXRdKW2bnW96NJyCq
-         jQHDkCd4AxkUa+y1Rv4DfeVkAwDYaJ28x63ANGovTsDY7TXpqBoL3eubfAuE/DFUEnPl
-         GkanEsWQbp1+mIVN/nbw0++5v4difDly7S2kZ4Zrj8LJWA3ePCVRLkQ2UwmbaaWlEUkv
-         BPkw==
-X-Gm-Message-State: AOJu0YxBGzATvMOISZ+kPK7dVUoKe/DO/7QFlSjfRcwkKkrbImRu/jJG
-	bjKTGblZ7xUy5Tj7jc5rQCMM3XEDqQbKsg==
-X-Google-Smtp-Source: AGHT+IGhEXVp30ly+W+J0Vq5BReMmqT7YvixSbVC5mluqZTiIrvaPLLb925ROrcuhxW/NFuCjXOCsQ==
-X-Received: by 2002:a05:6871:7b0c:b0:1f5:c7bb:8f2d with SMTP id pf12-20020a0568717b0c00b001f5c7bb8f2dmr12045321oac.35.1700561642127;
-        Tue, 21 Nov 2023 02:14:02 -0800 (PST)
-Received: from ?IPV6:2401:4900:2353:8963:b940:1ac0:2fbc:6b6? ([2401:4900:2353:8963:b940:1ac0:2fbc:6b6])
-        by smtp.gmail.com with ESMTPSA id f2-20020a056a0022c200b0064fd4a6b306sm7538948pfj.76.2023.11.21.02.13.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Nov 2023 02:14:01 -0800 (PST)
-Message-ID: <4eb9d00a-a672-40a8-a923-d728432b1250@gmail.com>
-Date: Tue, 21 Nov 2023 15:42:18 +0530
+        d=1e100.net; s=20230601; t=1700561604; x=1701166404;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=vvvVHM7viL1Jmzkz/E4yhNDYNAPR+6Zga/hBjsBolp0=;
+        b=Ze45ynmhbh4JInzFs9Er2Ks/Xnuh/qEWhAggV/tcJzglMQdExw46J/QLLvpQdhPD0q
+         q9OecQID1ng4eq60252HlD8DLpVvZCHNNd/+hR9fHhrkUGcOR3QmUM4tanvxJamrrV3h
+         +3mKA9AIPSWws8YwU5OpVY20lMgVliqQrmGYk/16rJAHWfVYMuPo5VW9DRy/BlPqJ8eg
+         HM5M5ynVOhyzn6fjwXb14Nv4wT7H7gbY+w5uAwcZAL80Dg9lGXDyv3KtpcoYxwhHVy4/
+         9FclcDjoj2RUIP/qmG3RAnoAPpq6XgiDYOLInxiCVMNlxOwsSrOiBnhduohl8pNfjyIZ
+         iW2w==
+X-Gm-Message-State: AOJu0Yy0Ez3b4NUbteFACvays+2EwXfhWtibRLKXogvsZafXAv0E1DLg
+	EfRHQwVLCrZPrjlUoaUSFREZMU5rPflFX6tf9jswcw==
+X-Google-Smtp-Source: AGHT+IGyl+3FXfVMW5/uo6prZ2T+50NtUsg/gYXLA7xT5MJNgeqZIoadaWE6u0rFfAURccalW4ny9xhVD7fTcYc7HiY=
+X-Received: by 2002:a25:6088:0:b0:d9a:5f53:1732 with SMTP id
+ u130-20020a256088000000b00d9a5f531732mr1584303ybb.18.1700561604504; Tue, 21
+ Nov 2023 02:13:24 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/3] dt-bindings: iio: chemical: add aosong,ags02ma
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org
-Cc: Conor Dooley <conor+dt@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- linux-kernel-mentees@lists.linuxfoundation.org,
- Jonathan Cameron <jic23@kernel.org>
-References: <20231121095800.2180870-1-anshulusr@gmail.com>
- <20231121095800.2180870-2-anshulusr@gmail.com>
- <81149957-0403-4e41-8405-77ef8bfa3c8c@linaro.org>
-Content-Language: en-US
-From: Anshul Dalal <anshulusr@gmail.com>
-In-Reply-To: <81149957-0403-4e41-8405-77ef8bfa3c8c@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20231120084044.23838-1-krzysztof.kozlowski@linaro.org>
+ <19358871-009d-4498-9c13-90d5338b1e9f@amd.com> <76fa8f61-fe31-4040-a38d-cc05be3f4f17@linaro.org>
+ <CAMuHMdW4WPJT0Km7w8RWrGJaztk6QDGoFAn0bdGbrEsw81R1FA@mail.gmail.com>
+ <acfdce81-f117-4a1a-a9fe-e2b4b8922adb@linaro.org> <bd49f17c-7ebf-4e19-b77b-b5ec95375f7d@amd.com>
+ <b48293f3-16e3-4980-b900-add0cb7d69f6@linaro.org> <CAMuHMdV_gqmf2=cXmZmYgE3aLxvPBr1DVp0cz0C+YrfBVG-8mg@mail.gmail.com>
+In-Reply-To: <CAMuHMdV_gqmf2=cXmZmYgE3aLxvPBr1DVp0cz0C+YrfBVG-8mg@mail.gmail.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Tue, 21 Nov 2023 12:13:13 +0200
+Message-ID: <CAA8EJpo6w9N_opJkfDaF-20zwZmn6JHrYYhakqzLFqVtgXaV=Q@mail.gmail.com>
+Subject: Re: [PATCH v2] docs: dt-bindings: add DTS Coding Style document
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Michal Simek <michal.simek@amd.com>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, Andrew Davis <afd@ti.com>, 
+	Arnd Bergmann <arnd@arndb.de>, Bjorn Andersson <andersson@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Heiko Stuebner <heiko@sntech.de>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Nishanth Menon <nm@ti.com>, Olof Johansson <olof@lixom.net>, linux-rockchip@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+	linux-arm-msm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+On Tue, 21 Nov 2023 at 10:09, Geert Uytterhoeven <geert@linux-m68k.org> wro=
+te:
+>
+> Hi Krzysztof,
+>
+> On Tue, Nov 21, 2023 at 8:47=E2=80=AFAM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+> > On 21/11/2023 08:33, Michal Simek wrote:
+> > > On 11/20/23 20:31, Krzysztof Kozlowski wrote:
+> > >> On 20/11/2023 20:18, Geert Uytterhoeven wrote:
+> > >>> On Mon, Nov 20, 2023 at 3:53=E2=80=AFPM Krzysztof Kozlowski
+> > >>> <krzysztof.kozlowski@linaro.org> wrote:
+> > >>>> On 20/11/2023 15:01, Michal Simek wrote:> >
+> > >>>>> On 11/20/23 09:40, Krzysztof Kozlowski wrote:
+> > >>>>>> Document preferred coding style for Devicetree sources (DTS and =
+DTSI),
+> > >>>>>> to bring consistency among all (sub)architectures and ease in re=
+views.
+> > >>>
+> > >>>>>> +Organizing DTSI and DTS
+> > >>>>>> +-----------------------
+> > >>>>>> +
+> > >>>>>> +The DTSI and DTS files should be organized in a way representin=
+g the common
+> > >>>>>> +(and re-usable) parts of the hardware.  Typically this means or=
+ganizing DTSI
+> > >>>>>> +and DTS files into several files:
+> > >>>>>> +
+> > >>>>>> +1. DTSI with contents of the entire SoC (without nodes for hard=
+ware not present
+> > >>>>>> +   on the SoC).
+> > >>>>>> +2. If applicable: DTSI with common or re-usable parts of the ha=
+rdware (e.g.
+> > >>>>>> +   entire System-on-Module).
+> > >>>>>
+> > >>>>> DTS/DTSI - SOMs can actually run as they are that's why it is fai=
+r to say that
+> > >>>>> there doesn't need to be DTS representing the board.
+> > >>>>
+> > >>>> I have never seen a SoM which can run without elaborate hardware-h=
+acking
+> > >>>> (e.g. connecting multiple wires to the SoM pins). The definition o=
+f the
+> > >>>> SoM is that it is a module. Module can be re-used, just like SoC.
+> > >>>
+> > >>> /me looks at his board farm...
+>
+> > >>> I guess there are (many) other examples...
+> > >>
+> > >> OK, I never had such in my hands. Anyway, the SoM which can run
+> > >> standalone  has a meaning of a board, so how exactly you want to
+> > >> rephrase the paragraph?
+> > >
+> > > What about?
+> > >
+> > > 2. If applicable: DTSI with common or re-usable parts of the hardware=
+ (e.g.
+> > > entire System-on-Module). DTS if runs standalone.
+> >
+> > OK, but then it's duplicating the option 3. It also suggests that SoM
+> > should be a DTS, which is not what we want for such case. Such SoMs mus=
+t
+> > have DTSI+DTS.
+>
+> So you want us to have a one-line <SoM>.dts, which just includes <SoM>.dt=
+si?
+
+Well, I think it is impossible to run SoM directly. There is a carrier
+board anyway, which includes at least regulators. So, I guess, the
+SoM.dts will not be a oneline file.
+
+> IMHO that adds more files for no much gain.
+> Users of a SoM can easily include <SoM>.dts.
+> 'git grep "#include .*dts\>"' tells you we have plenty of users of that s=
+cheme.
 
 
-
-On 11/21/23 15:33, Krzysztof Kozlowski wrote:
-> On 21/11/2023 10:57, Anshul Dalal wrote:
->> Add bindings for Aosong AGS02MA TVOC sensor.
->>
->> The sensor communicates over i2c with the default address 0x1a.
->> TVOC values can be read in the units of ppb and ug/m^3 at register 0x00.
->>
->> Datasheet:
->>   https://asairsensors.com/wp-content/uploads/2021/09/AGS02MA.pdf
->> Product-Page:
->>   http://www.aosong.com/m/en/products-33.html
->>
-> 
-> 
->> +---
->> +$id: http://devicetree.org/schemas/iio/chemical/aosong,ags02ma.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Aosong AGS02MA VOC Sensor
->> [..]
->> +examples:
->> +  - |
->> +    #include <dt-bindings/interrupt-controller/irq.h>
->> +    i2c {
->> +        #address-cells = <1>;
->> +        #size-cells = <0>;
->> +
->> +        light-sensor@1a {
-> 
-> 
-> You called it chemical, so why this is here light-sensor?
-
-I was working on a binding for a light sensor in parallel at that time,
-I probably forgot to change this when copying the example from the light
-sensor.
-
-Would be replaced by "voc-sensor" in the next revision, apologies for
-any inconvenience.
-
-Thanks for the review.
-
-Best Regards,
-Anshul
+--=20
+With best wishes
+Dmitry
 
