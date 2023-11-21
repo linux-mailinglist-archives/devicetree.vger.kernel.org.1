@@ -1,118 +1,155 @@
-Return-Path: <devicetree+bounces-17548-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17549-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E063D7F2CAD
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 13:13:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EBFA87F2CF6
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 13:19:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1DE6B1C21712
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 12:13:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 294B91C21117
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 12:19:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46B4B495F9;
-	Tue, 21 Nov 2023 12:13:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A11564A991;
+	Tue, 21 Nov 2023 12:19:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NuRnY3qE"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="dMcB1hlR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90FA512C;
-	Tue, 21 Nov 2023 04:13:40 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-507e85ebf50so7145080e87.1;
-        Tue, 21 Nov 2023 04:13:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1700568819; x=1701173619; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FT8P0ptxDfFA1jaqoqoVmTf0vYme8WIJol1hbSEtpiE=;
-        b=NuRnY3qExKGoYLEXU3eCO9AmnYTKtI8AdW2SmNkq1I3FMBLboDdTivqFCzBcrG0Iml
-         fyDnqZp1mh2KuEHWTqe9h4q0MndLBeOsMkRwnvyBMh7a2V1HWjd+dnkLTUkPQkHw+q3i
-         qcb1qs4+DbB8bDu6m3RGE28GzXPaXgA4ynYuygv09mqnZl/EwgdwYTRTaDOidcq1MNDA
-         Daxkhb1TgaiYUgCIQRT0Ym4ePYEQGv1/YZm6BznaoBbG/gYHZNlyGrZyZfCikpHXD8Hl
-         I9F644UR+jpi3xa/re+wTvHwY8youVQ6/5500uQ8RYzmhllsLq5cyGANmB/gCEKdBFCd
-         YudA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700568819; x=1701173619;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=FT8P0ptxDfFA1jaqoqoVmTf0vYme8WIJol1hbSEtpiE=;
-        b=eciPyrr+2rICO8dCs2R0vjq8FHBEaOtDJMwC8QwqpYK/Ys0027OHT8ld818tWYM0ie
-         fzuccnWdC76aRLbPIdDi6MBAdrqwy0q/4NJJFWlkz9iZaloFOGihcHS4rMaRS3Nqr8gu
-         dDeQnEzCUBGmpnRP7gvrSdRXnMeeVB1ayJiGGoX89aP/KwuQG9kd964dZk9UxGTAz1D1
-         sL7txMsmMf6ca4JKocqq/BhWunRgi1ZfRGZIBqmhmYdgTw9B/VS77Z6CjgrMXyOAKPcl
-         qoKHdj0DUHvA8qLn7LUO5kboiUoJ0II10JVHpBInOnWkOkKyICzHHRwEwmFIpa92mgAW
-         JkCQ==
-X-Gm-Message-State: AOJu0YyoRfMqW976HNEI0eW4csDSY7LXidxSh2/ZZAY4UKlhgi9Ky6EN
-	dTDSxB0H1/XVw22jzfP84sA=
-X-Google-Smtp-Source: AGHT+IGRDGRpooWpfMTQfoTFHeYEvbQA1dlXkU0dBS0AycHYD6Z7QkCqkv/RETvybZmXh2sZ46ttAA==
-X-Received: by 2002:ac2:5316:0:b0:50a:6fbe:fec4 with SMTP id c22-20020ac25316000000b0050a6fbefec4mr7464318lfh.33.1700568818526;
-        Tue, 21 Nov 2023 04:13:38 -0800 (PST)
-Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.gmail.com with ESMTPSA id z15-20020ac2418f000000b005079ff02b36sm1491509lfh.131.2023.11.21.04.13.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Nov 2023 04:13:38 -0800 (PST)
-From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To: Florian Fainelli <florian.fainelli@broadcom.com>,
-	William Zhang <william.zhang@broadcom.com>,
-	Anand Gore <anand.gore@broadcom.com>,
-	Kursad Oney <kursad.oney@broadcom.com>,
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18F0518A;
+	Tue, 21 Nov 2023 04:19:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1700569144; x=1732105144;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=TH4Q5+J9vXx35s84udmwuHt+PL6CcAyQU4u+aC3JSRs=;
+  b=dMcB1hlR1wJcjf/s8t4D3iymcM86Cr+D8/VwdhZaeM8L7vsUi5EqyK5l
+   1+FZqbpzCvE15GKfWI2vYJDmFIF2UcN18JD7IStsNRT7Q2YFfZYquh/ho
+   IVFlffXHjUUGZqy8Jzhtl11r+P+bzrK69+j84S+rQpBVPjnyH/oRAB+dW
+   ZtON1K+9g+5834pYEYCkj+vWfV0g6m+WGhgA3KnUT+w01kpzPVw9EL6Zq
+   9qftgb729h3NNTACEZHkEEfY3DaKFf3IP7XGfHLyIutThQZ3Hvygh/O1L
+   71vSREvIqxfGiLWF5Ps4S0jj0TN41RQ8TdpskHXUIG9XjEQOzWctcw4AQ
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10900"; a="458325779"
+X-IronPort-AV: E=Sophos;i="6.04,215,1695711600"; 
+   d="scan'208";a="458325779"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Nov 2023 04:19:03 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10900"; a="1098043400"
+X-IronPort-AV: E=Sophos;i="6.04,215,1695711600"; 
+   d="scan'208";a="1098043400"
+Received: from lkp-server02.sh.intel.com (HELO b8de5498638e) ([10.239.97.151])
+  by fmsmga005.fm.intel.com with ESMTP; 21 Nov 2023 04:18:57 -0800
+Received: from kbuild by b8de5498638e with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1r5PiP-0007mU-29;
+	Tue, 21 Nov 2023 12:18:54 +0000
+Date: Tue, 21 Nov 2023 20:18:01 +0800
+From: kernel test robot <lkp@intel.com>
+To: Romain Gantois <romain.gantois@bootlin.com>, davem@davemloft.net,
 	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Andre Przywara <andre.przywara@arm.com>,
-	Alexandre TORGUE <alexandre.torgue@st.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	linux-serial@vger.kernel.org,
-	devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzk@kernel.org>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	Romain Gantois <romain.gantois@bootlin.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
+	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, thomas.petazzoni@bootlin.com,
+	Andrew Lunn <andrew@lunn.ch>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
 	linux-arm-kernel@lists.infradead.org,
-	bcm-kernel-feedback-list@broadcom.com,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH 2/2] ARM: dts: broadcom: Add BCM63138's high speed UART
-Date: Tue, 21 Nov 2023 13:13:24 +0100
-Message-Id: <20231121121324.23268-2-zajec5@gmail.com>
-X-Mailer: git-send-email 2.35.3
-In-Reply-To: <20231121121324.23268-1-zajec5@gmail.com>
-References: <20231121121324.23268-1-zajec5@gmail.com>
+	Vladimir Oltean <vladimir.oltean@nxp.com>,
+	Luka Perkov <luka.perkov@sartura.hr>,
+	Robert Marko <robert.marko@sartura.hr>,
+	Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@somainline.org>
+Subject: Re: [PATCH net-next v3 4/8] net: qualcomm: ipqess: Add Ethtool ops
+ to IPQESS port netdevices
+Message-ID: <202311211930.FOMUSlbU-lkp@intel.com>
+References: <20231114105600.1012056-5-romain.gantois@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231114105600.1012056-5-romain.gantois@bootlin.com>
 
-From: Rafał Miłecki <rafal@milecki.pl>
+Hi Romain,
 
-It's designed for hardwiring Bluetooth devices to it.
+kernel test robot noticed the following build warnings:
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- arch/arm/boot/dts/broadcom/bcm63138.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
+[auto build test WARNING on net-next/main]
 
-diff --git a/arch/arm/boot/dts/broadcom/bcm63138.dtsi b/arch/arm/boot/dts/broadcom/bcm63138.dtsi
-index 93281c47c9ba..bf0538896f0e 100644
---- a/arch/arm/boot/dts/broadcom/bcm63138.dtsi
-+++ b/arch/arm/boot/dts/broadcom/bcm63138.dtsi
-@@ -232,6 +232,12 @@ nand_controller: nand-controller@2000 {
- 			interrupt-names = "nand";
- 		};
- 
-+		serial@4400 {
-+			compatible = "brcm,bcm63138-hs-uart";
-+			reg = <0x4400 0x1e0>;
-+			interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
-+		};
-+
- 		bootlut: bootlut@8000 {
- 			compatible = "brcm,bcm63138-bootlut";
- 			reg = <0x8000 0x50>;
+url:    https://github.com/intel-lab-lkp/linux/commits/Romain-Gantois/dt-bindings-net-Introduce-the-Qualcomm-IPQESS-Ethernet-switch/20231114-185953
+base:   net-next/main
+patch link:    https://lore.kernel.org/r/20231114105600.1012056-5-romain.gantois%40bootlin.com
+patch subject: [PATCH net-next v3 4/8] net: qualcomm: ipqess: Add Ethtool ops to IPQESS port netdevices
+config: arm64-allyesconfig (https://download.01.org/0day-ci/archive/20231121/202311211930.FOMUSlbU-lkp@intel.com/config)
+compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project.git 4a5ac14ee968ff0ad5d2cc1ffa0299048db4c88a)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231121/202311211930.FOMUSlbU-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202311211930.FOMUSlbU-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/net/ethernet/qualcomm/ipqess/ipqess_ethtool.c:165:10: warning: variable 'ret' is uninitialized when used here [-Wuninitialized]
+     165 |                 return ret;
+         |                        ^~~
+   drivers/net/ethernet/qualcomm/ipqess/ipqess_ethtool.c:152:9: note: initialize the variable 'ret' to silence this warning
+     152 |         int ret;
+         |                ^
+         |                 = 0
+   1 warning generated.
+
+
+vim +/ret +165 drivers/net/ethernet/qualcomm/ipqess/ipqess_ethtool.c
+
+   148	
+   149	static int ipqess_port_set_eee(struct net_device *dev, struct ethtool_eee *eee)
+   150	{
+   151		struct ipqess_port *port = netdev_priv(dev);
+   152		int ret;
+   153		u32 lpi_en = QCA8K_REG_EEE_CTRL_LPI_EN(port->index);
+   154		struct qca8k_priv *priv = port->sw->priv;
+   155		u32 lpi_ctl1;
+   156	
+   157		/* Port's PHY and MAC both need to be EEE capable */
+   158		if (!dev->phydev || !port->pl)
+   159			return -ENODEV;
+   160	
+   161		mutex_lock(&priv->reg_mutex);
+   162		lpi_ctl1 = qca8k_read(priv, QCA8K_REG_EEE_CTRL, &lpi_ctl1);
+   163		if (lpi_ctl1 < 0) {
+   164			mutex_unlock(&priv->reg_mutex);
+ > 165			return ret;
+   166		}
+   167	
+   168		if (eee->tx_lpi_enabled && eee->eee_enabled)
+   169			lpi_ctl1 |= lpi_en;
+   170		else
+   171			lpi_ctl1 &= ~lpi_en;
+   172		ret = qca8k_write(priv, QCA8K_REG_EEE_CTRL, lpi_ctl1);
+   173		mutex_unlock(&priv->reg_mutex);
+   174	
+   175		if (ret)
+   176			return ret;
+   177	
+   178		return phylink_ethtool_set_eee(port->pl, eee);
+   179	}
+   180	
+
 -- 
-2.35.3
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
