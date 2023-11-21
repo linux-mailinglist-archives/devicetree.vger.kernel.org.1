@@ -1,214 +1,106 @@
-Return-Path: <devicetree+bounces-17674-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17675-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 996137F3636
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 19:39:57 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75CBB7F363E
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 19:40:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 50B53282425
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 18:39:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A6C291C20A2D
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 18:40:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1F4F20DE0;
-	Tue, 21 Nov 2023 18:39:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB1B15103B;
+	Tue, 21 Nov 2023 18:40:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vhjcE2L7"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cXhcUJZT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEDE618C
-	for <devicetree@vger.kernel.org>; Tue, 21 Nov 2023 10:39:51 -0800 (PST)
-Received: by mail-pf1-x42d.google.com with SMTP id d2e1a72fcca58-6cbb71c3020so35221b3a.1
-        for <devicetree@vger.kernel.org>; Tue, 21 Nov 2023 10:39:51 -0800 (PST)
+Received: from mail-yw1-x112f.google.com (mail-yw1-x112f.google.com [IPv6:2607:f8b0:4864:20::112f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9011A191
+	for <devicetree@vger.kernel.org>; Tue, 21 Nov 2023 10:40:35 -0800 (PST)
+Received: by mail-yw1-x112f.google.com with SMTP id 00721157ae682-5cb4b4889e5so16258567b3.2
+        for <devicetree@vger.kernel.org>; Tue, 21 Nov 2023 10:40:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700591991; x=1701196791; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1700592035; x=1701196835; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=88OBIvtQUDQ1J1FmUcJfKPLmP+A7EipGuNLwHhkdaGU=;
-        b=vhjcE2L70b7fEIeQj3RFPAos3AZThXpuUpuMqlL0V3d824VIM7LzaLggbN+qNPIYLA
-         vaYV1ySV9Ia80oicki4TtcN8cAU7BBDHI9DNVvqcaLSjCxmCQUOrF0fAkfrENfLLZeDE
-         CuzwuqRUTmXUXG/9FgA1d3NFYIoMSq5H6+IZR8vlKK3W1c7a/XbwX5C2L2Wiq/bH7zM2
-         bwxhyOBY1DSN8nxlF79EmK23fMn7tGkI6g2UMENeHszNem6fSGrq9VQkfcRVwPdhgu0Z
-         445BfSMe/l4ogf2NJLWWfq682NL/Q76V+1BV85xpvS1sj/NxUmZcmFEHsu3xGac3l6bk
-         STeQ==
+        bh=VJi+hwHIFMEK75b+gn7N3ATHUD4KW+X7YkfL5jpJno0=;
+        b=cXhcUJZTKCTD2PUiQqhQpzfipK63CiaFl66vIaX3rmXkFkF2uAF8DZOoyKkBOZLWCH
+         FaGQpjN2wu0yT/z2lKDafU93ugCfQAbYwO+qJKiiEKE1oqnfwcu/v4V2w1HhTxI8lj8U
+         FpvwyLaBYxPJz5m05OFPuBoE2F+49sD7CDmXLXuTTovldn6cg6/zR9jFTh/QEdIelLYN
+         44lelPHSvpQxywhqq19CC1366XQU9uxjw6v2zSRHeTOiGcFs838UJsMq27oFjjy8LPQu
+         IPq8Lt8o0lGqWR5JsE2hTqXyNye0ScBoX+A7YSqgS1js9tG+USJGM0W9M2+DKMVuagmg
+         Ro7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700591991; x=1701196791;
+        d=1e100.net; s=20230601; t=1700592035; x=1701196835;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=88OBIvtQUDQ1J1FmUcJfKPLmP+A7EipGuNLwHhkdaGU=;
-        b=Ya9kpi2d9lUhlbh6zYfw6sLIvmXYzwjEPGdpiN6FJg7QHFPgxDgSPoY/keUqEgzjys
-         9xphKr4a7o2Yo+eY1qUTae9h1uwlPcqEq/k02RCDsiufEhAwBXIcplY8bq9g6b+nHtxx
-         1cZIzHDto1Si/gZFtqCPH2hKexh8I9gWZZ44y79lQSfG+IQeFGXIbjKolAp3LckmK4vh
-         DWYuDUCVg9GLg1tLTg1b9eCoujJaMg8f1L5fcFW3xvbwt6+3bIV0C5hsbTlu+aUWM0CE
-         cresnHL3+QvH/RCSpS7xILZY7OBMO39iFr+RK+AyOWPDUG6BdZCKWjez+sRAGGFnBYTU
-         xCyw==
-X-Gm-Message-State: AOJu0YyLFUsUwWxHeqPOsqovJpXg7tORBYWg/VA24zYl0sSsvBNiDuYP
-	3mVmrdIqR0l2KJ1JfT1Ac+z6Zce8Z0szmNnZhCu3DQ==
-X-Google-Smtp-Source: AGHT+IEhYaU4m2OTY3a0PI+MToJaIVcF/4UdYe32j14vCIjXKkqf40PVc53uZa36ibIBrkb58eNTKgucMjF0E4QOZMA=
-X-Received: by 2002:a17:90b:4a87:b0:280:204e:9121 with SMTP id
- lp7-20020a17090b4a8700b00280204e9121mr277345pjb.23.1700591991220; Tue, 21 Nov
- 2023 10:39:51 -0800 (PST)
+        bh=VJi+hwHIFMEK75b+gn7N3ATHUD4KW+X7YkfL5jpJno0=;
+        b=EhhbdwmFA7OsH8e/h+fEpr54MRc3tapJ24MPqrwDaLlCs8T7cPRA1TT/+UaPZDbWPu
+         WzJC9j/xWcFLu67+T3Iga2yz2nR2W9D1gx6c/FU6/pCPRPU+XkqUMm50Pnw/zVSXPTSy
+         WxClEVzEsRJP4vAL/LzWnB1CRPD2wXCiAffDBp34PE388F4X4D95ttOc9dRDbNsrP15b
+         SG5bL04rOIpQRVHtXZdUMhguFQhqDOuomUOiXcWTxhysav1NaqbCACymvWvdZFrw+BP8
+         /Lck5/DWpzQRdQa71bj/yt5sDEE0t1l319lPihy5Jy8AUBVVCKK9PSzRwkRUnloDReDP
+         iubQ==
+X-Gm-Message-State: AOJu0Yxz+7a/5feTcWjyxfWMFG24H3SxJllVWgzvfgLUfItAI9VcKe6X
+	qUdAzNTiTlqRkntOEwx/LuPgcH3CmjtbdaqFeDCmMQ==
+X-Google-Smtp-Source: AGHT+IGo9pi90+0YW1WgYDu2cpBw4ag/fwWszyzluW/acVk/pI4XfP2FVzn6cSZRSsVDe7lfiSGR4LwIsnI7Xd5IyxA=
+X-Received: by 2002:a0d:dc43:0:b0:59b:ec85:54ee with SMTP id
+ f64-20020a0ddc43000000b0059bec8554eemr13643015ywe.39.1700592034763; Tue, 21
+ Nov 2023 10:40:34 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231120212037.911774-1-peter.griffin@linaro.org> <20231120212037.911774-19-peter.griffin@linaro.org>
-In-Reply-To: <20231120212037.911774-19-peter.griffin@linaro.org>
-From: Sam Protsenko <semen.protsenko@linaro.org>
-Date: Tue, 21 Nov 2023 12:39:40 -0600
-Message-ID: <CAPLW+4k=M1q1thr2RXG4fGkvD51H7NxS1A3Ck+Up7W1nTcUPcw@mail.gmail.com>
-Subject: Re: [PATCH v4 18/19] arm64: dts: exynos: google: Add initial
- Oriole/pixel 6 board support
-To: Peter Griffin <peter.griffin@linaro.org>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	mturquette@baylibre.com, conor+dt@kernel.org, sboyd@kernel.org, 
-	tomasz.figa@gmail.com, s.nawrocki@samsung.com, linus.walleij@linaro.org, 
-	wim@linux-watchdog.org, linux@roeck-us.net, catalin.marinas@arm.com, 
-	will@kernel.org, arnd@arndb.de, olof@lixom.net, gregkh@linuxfoundation.org, 
-	jirislaby@kernel.org, cw00.choi@samsung.com, alim.akhtar@samsung.com, 
-	tudor.ambarus@linaro.org, andre.draszik@linaro.org, saravanak@google.com, 
-	willmcvicker@google.com, soc@kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	linux-watchdog@vger.kernel.org, kernel-team@android.com, 
-	linux-serial@vger.kernel.org
+References: <1700577493-18538-1-git-send-email-quic_msarkar@quicinc.com> <1700577493-18538-2-git-send-email-quic_msarkar@quicinc.com>
+In-Reply-To: <1700577493-18538-2-git-send-email-quic_msarkar@quicinc.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Tue, 21 Nov 2023 20:40:23 +0200
+Message-ID: <CAA8EJprOwxFUk_=uE+5788+N5bSKTMa1=t77nRWVu9M7xnjJ3w@mail.gmail.com>
+Subject: Re: [PATCH v4 1/3] PCI: qcom: Enable cache coherency for SA8775P RC
+To: Mrinmay Sarkar <quic_msarkar@quicinc.com>
+Cc: agross@kernel.org, andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	conor+dt@kernel.org, konrad.dybcio@linaro.org, mani@kernel.org, 
+	robh+dt@kernel.org, quic_shazhuss@quicinc.com, quic_nitegupt@quicinc.com, 
+	quic_ramkri@quicinc.com, quic_nayiluri@quicinc.com, robh@kernel.org, 
+	quic_krichai@quicinc.com, quic_vbadigan@quicinc.com, quic_parass@quicinc.com, 
+	quic_schintav@quicinc.com, quic_shijjose@quicinc.com, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
+	Bjorn Helgaas <bhelgaas@google.com>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pci@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Nov 20, 2023 at 3:21=E2=80=AFPM Peter Griffin <peter.griffin@linaro=
-.org> wrote:
+On Tue, 21 Nov 2023 at 16:38, Mrinmay Sarkar <quic_msarkar@quicinc.com> wro=
+te:
 >
-> Add initial board support for the Pixel 6 phone code named Oriole. This
-> has been tested with a minimal busybox initramfs and boots to a shell.
+> In a multiprocessor system cache snooping maintains the consistency
+> of caches. Snooping logic is disabled from HW on this platform.
+> Cache coherency doesn=E2=80=99t work without enabling this logic.
 >
-> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+> 8775 has IP version 1.34.0 so intruduce a new cfg(cfg_1_34_0) for this
+> platform. Assign no_snoop_override flag into struct qcom_pcie_cfg and
+> set it true in cfg_1_34_0 and enable cache snooping if this particular
+> flag is true.
+
+Thank you!
+
+>
+> Signed-off-by: Mrinmay Sarkar <quic_msarkar@quicinc.com>
 > ---
->  arch/arm64/boot/dts/exynos/Makefile           |  2 +
->  arch/arm64/boot/dts/exynos/google/Makefile    |  4 +
->  .../boot/dts/exynos/google/gs101-oriole.dts   | 79 +++++++++++++++++++
->  3 files changed, 85 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/exynos/google/Makefile
->  create mode 100644 arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
->
-> diff --git a/arch/arm64/boot/dts/exynos/Makefile b/arch/arm64/boot/dts/ex=
-ynos/Makefile
-> index 6e4ba69268e5..44c24a8ad9e1 100644
-> --- a/arch/arm64/boot/dts/exynos/Makefile
-> +++ b/arch/arm64/boot/dts/exynos/Makefile
-> @@ -1,4 +1,6 @@
->  # SPDX-License-Identifier: GPL-2.0
-> +subdir-y +=3D google
-> +
->  dtb-$(CONFIG_ARCH_EXYNOS) +=3D \
->         exynos5433-tm2.dtb              \
->         exynos5433-tm2e.dtb             \
-> diff --git a/arch/arm64/boot/dts/exynos/google/Makefile b/arch/arm64/boot=
-/dts/exynos/google/Makefile
-> new file mode 100644
-> index 000000000000..0a6d5e1fe4ee
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/exynos/google/Makefile
-> @@ -0,0 +1,4 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +
-> +dtb-$(CONFIG_ARCH_EXYNOS) +=3D \
-> +       gs101-oriole.dtb \
-> diff --git a/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts b/arch/ar=
-m64/boot/dts/exynos/google/gs101-oriole.dts
-> new file mode 100644
-> index 000000000000..111665490840
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
-> @@ -0,0 +1,79 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Oriole Device Tree
-> + *
-> + * Copyright 2021-2023 Google,LLC
-> + */
-> +
-> +/dts-v1/;
-> +/plugin/;
+>  drivers/pci/controller/dwc/pcie-qcom.c | 20 +++++++++++++++++++-
+>  1 file changed, 19 insertions(+), 1 deletion(-)
 
-Now that the dts is being built as a dtb (not dtbo), I don' think this
-/plugin/ bit is needed here?
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/input/input.h>
-> +#include "gs101-pinctrl.h"
-> +#include "gs101.dtsi"
-> +
-> +/ {
-> +       model =3D "Oriole";
-> +       compatible =3D "google,gs101-oriole", "google,gs101";
-> +
-> +       chosen {
-> +               bootargs =3D "earlycon=3Dexynos4210,mmio32,0x10A00000 con=
-sole=3DttySAC0";
-> +       };
-> +
-> +       gpio-keys {
-> +               compatible =3D "gpio-keys";
-> +               pinctrl-names =3D "default";
-> +               pinctrl-0 =3D <&key_voldown>, <&key_volup>, <&key_power>;
-> +
-> +               button-vol-down {
-> +                       label =3D "KEY_VOLUMEDOWN";
-> +                       linux,code =3D <KEY_VOLUMEDOWN>;
-> +                       gpios =3D <&gpa7 3 GPIO_ACTIVE_LOW>;
-> +                       wakeup-source;
-> +               };
-> +
-> +               button-vol-up {
-> +                       label =3D "KEY_VOLUMEUP";
-> +                       linux,code =3D <KEY_VOLUMEUP>;
-> +                       gpios =3D <&gpa8 1 GPIO_ACTIVE_LOW>;
-> +                       wakeup-source;
-> +               };
-> +
-> +               button-power {
-> +                       label =3D "KEY_POWER";
-> +                       linux,code =3D <KEY_POWER>;
-> +                       gpios =3D <&gpa10 1 GPIO_ACTIVE_LOW>;
-> +                       wakeup-source;
-> +               };
-> +       };
-> +};
-> +
-> +&pinctrl_1 {
-> +       key_voldown: key-voldown-pins {
-> +               samsung,pins =3D "gpa7-3";
-> +               samsung,pin-function =3D <0xf>;
-> +               samsung,pin-pud =3D <0>;
-> +               samsung,pin-drv =3D <GS101_PIN_DRV_2_5_MA>;
-> +       };
-> +
-> +       key_volup: key-volup-pins {
-> +               samsung,pins =3D "gpa8-1";
-> +               samsung,pin-function =3D <0xf>;
-> +               samsung,pin-pud =3D <0>;
-> +               samsung,pin-drv =3D <GS101_PIN_DRV_2_5_MA>;
-> +       };
-> +};
-> +
-> +&pinctrl_0 {
-> +       key_power: key-power-pins {
-> +               samsung,pins =3D "gpa10-1";
-> +               samsung,pin-function =3D <0xf>;
-> +               samsung,pin-pud =3D <0>;
-> +               samsung,pin-drv =3D <GS101_PIN_DRV_2_5_MA>;
-> +       };
-> +};
-> +
-> +&watchdog_cl0 {
-> +       timeout-sec =3D <30>;
-> +};
-> --
-> 2.43.0.rc1.413.gea7ed67945-goog
->
+
+
+--=20
+With best wishes
+Dmitry
 
