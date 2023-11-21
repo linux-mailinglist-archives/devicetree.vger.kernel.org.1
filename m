@@ -1,34 +1,74 @@
-Return-Path: <devicetree+bounces-17551-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17552-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 410F47F2D10
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 13:25:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B94087F2D4B
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 13:36:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BF2C8B2121C
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 12:25:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D6A771C218DE
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 12:36:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D5CB4A999;
-	Tue, 21 Nov 2023 12:25:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 228363C06C;
+	Tue, 21 Nov 2023 12:35:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="a6KmmP9O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from muru.com (muru.com [72.249.23.125])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 79980197
-	for <devicetree@vger.kernel.org>; Tue, 21 Nov 2023 04:24:59 -0800 (PST)
-Received: from hillo.muru.com (localhost [127.0.0.1])
-	by muru.com (Postfix) with ESMTP id 2811780CC;
-	Tue, 21 Nov 2023 12:24:57 +0000 (UTC)
-From: Tony Lindgren <tony@atomide.com>
-To: Nishanth Menon <nm@ti.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>
-Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Aswath Govindraju <a-govindraju@ti.com>
-Subject: [PATCH] arm64: dts: ti: k3-am625-sk: Add support for WL1837 module onboard
-Date: Tue, 21 Nov 2023 14:24:41 +0200
-Message-ID: <20231121122441.64385-1-tony@atomide.com>
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 356F512A;
+	Tue, 21 Nov 2023 04:35:56 -0800 (PST)
+Received: by mail-pl1-x62a.google.com with SMTP id d9443c01a7336-1ce5e65ba37so28759325ad.1;
+        Tue, 21 Nov 2023 04:35:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1700570155; x=1701174955; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=BVHOuGYwxoI/ien1Js+ADNjcb3WBPI5CxYXxkzPCUlo=;
+        b=a6KmmP9OdrIKK3rR/CY1kkomvfu79dXJMY6K/6ERD3gnXIx3W+o5OFrYEsUVN7+Bcj
+         3UEHtUTLnw8ISPMKyYgKE8CI6odRjWV/XhvTDakBtd68QOZjyfB+ZFDrPkuTKyU9c9Dk
+         Cy61jh7I36kA3ERmQKXIsE8XfJOwc6d19dM3gCTmONS6b6ttacL3ForcY2uF8ijdYfdc
+         Nzjk3s5yOuZKnPkXjOE+zjKnU/vpkBSxOpol4XjeFD8Ws3LpvgY0vlNMx9E1Y+jw/INp
+         vkLjgrXkAX+rB3XTuzyLt7lnFWjdSw91QPpVGWc7evJPur8LooEJ7bz7XQ+DS++7OJGO
+         oWWA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700570155; x=1701174955;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BVHOuGYwxoI/ien1Js+ADNjcb3WBPI5CxYXxkzPCUlo=;
+        b=GjIwDQN0I5DY1g2pjtAH2IpZhnJJOd/iDpojwVm4ov875XvJH2w5zcL19avXdByU4T
+         g4ruUknyeNJRFw/81QF/s/L/lf6TgKiJxLlPm43ago3SmSmKiRd/4avAuPXxcLoRcUza
+         1Hc4LMgam8DhB3eviYV3YbLxQ5taMRFFJgBlUN6OnfhGMdbshzbld/G/DjpiEbCKbsPW
+         nwhHrZP5k8glRnZI3J+mc2BUuBQza1s4cKH2bJexYTNWmAqDcX17HeW9IejBSox+cFIS
+         8hqd5SYYDtqxkWJ96oaAAwZ36d4whjkXQc+DIkUQYcXZHF/SIWTLiLxciC5M7IIaqt8T
+         v1Bw==
+X-Gm-Message-State: AOJu0YwAKearoa7QIECNXjSoFYWduhaY0LPN0naK/YpMpXD8r911hUXl
+	1vsKaisJWnhA/htBTFxQJowVG4f9Aft2p0ST
+X-Google-Smtp-Source: AGHT+IEfyBmj0fJQWwLMQun9Vu8GL+cZJg4GfHD8QDRj93peVGM3TZ0cfFQuRioVmCCdTQ+RAOYctw==
+X-Received: by 2002:a17:903:32c4:b0:1cc:36fb:22ae with SMTP id i4-20020a17090332c400b001cc36fb22aemr4178526plr.2.1700570155041;
+        Tue, 21 Nov 2023 04:35:55 -0800 (PST)
+Received: from archlinux.srmu.edu.in ([103.4.221.252])
+        by smtp.gmail.com with ESMTPSA id e8-20020a170902744800b001c3f7fd1ef7sm7846614plt.12.2023.11.21.04.35.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Nov 2023 04:35:54 -0800 (PST)
+From: Anshul Dalal <anshulusr@gmail.com>
+To: linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: Anshul Dalal <anshulusr@gmail.com>,
+	"Conor Dooley" <conor+dt@kernel.org>,
+	"Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
+	=?UTF-8?q?Thomas=20Wei=C3=9Fschuh?= <linux@weissschuh.net>,
+	linux-kernel@vger.kernel.org,
+	"Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
+	"Conor Dooley" <conor.dooley@microchip.com>,
+	"Rob Herring" <robh+dt@kernel.org>,
+	"Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+	"Jeff LaBundy" <jeff@labundy.com>,
+	linux-kernel-mentees@lists.linuxfoundation.org
+Subject: [PATCH v10 1/2] dt-bindings: input: bindings for Adafruit Seesaw Gamepad
+Date: Tue, 21 Nov 2023 18:04:07 +0530
+Message-ID: <20231121123409.2231115-1-anshulusr@gmail.com>
 X-Mailer: git-send-email 2.42.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -38,130 +78,149 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-From: Vignesh Raghavendra <vigneshr@ti.com>
+Adds bindings for the Adafruit Seesaw Gamepad.
 
-WL1837 WLAN card is present on the original AM625 SK board. It
-communicates with the SoC using 4 bit SDIO through the second instance of
-MMCSD.
+The gamepad functions as an i2c device with the default address of 0x50
+and has an IRQ pin that can be enabled in the driver to allow for a rising
+edge trigger on each button press or joystick movement.
 
-Starting with SK-AM62B, there is a M.2 WLAN device connector instead of
-the integrated WL1837 WLAN. The M.2 connector should be handled separately
-in the k3-am62a.dtsi and k3-am62b.dtsi files as needed.
+Product page:
+  https://www.adafruit.com/product/5743
+Arduino driver:
+  https://github.com/adafruit/Adafruit_Seesaw
 
-Note that WLAN currently needs fw_devlink=permissive set on the command
-line. Not sure what is missing here but that seems like a separate change.
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Anshul Dalal <anshulusr@gmail.com>
 
-Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
-Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
-[tony@atomide.com: updated for pinctrl, improved comments]
-Signed-off-by: Tony Lindgren <tony@atomide.com>
 ---
- arch/arm64/boot/dts/ti/k3-am625-sk.dts | 79 ++++++++++++++++++++++++++
- 1 file changed, 79 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am625-sk.dts b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
---- a/arch/arm64/boot/dts/ti/k3-am625-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
-@@ -103,6 +103,32 @@ vcc_1v8: regulator-5 {
- 		regulator-always-on;
- 		regulator-boot-on;
- 	};
+Changes for v10:
+- Added interrupt-controller/irq.h header
+
+v9: https://lore.kernel.org/lkml/20231121101751.2189965-1-anshulusr@gmail.com/
+
+Changes for v9:
+- Added interrupt in example
+
+v8: https://lore.kernel.org/lkml/20231108005337.45069-1-anshulusr@gmail.com/
+
+Changes for v8:
+- no updates
+
+v7: https://lore.kernel.org/lkml/20231106164134.114668-1-anshulusr@gmail.com/
+
+Changes for v7:
+- no updates
+
+v6: https://lore.kernel.org/lkml/20231027051819.81333-1-anshulusr@gmail.com/
+
+Changes for v6:
+- no updates
+
+v5: https://lore.kernel.org/lkml/20231017034356.1436677-1-anshulusr@gmail.com/
+
+Changes for v5:
+- Added link to the datasheet
+
+v4: https://lore.kernel.org/lkml/20231010184827.1213507-1-anshulusr@gmail.com/
+
+Changes for v4:
+- Fixed the URI for the id field
+- Added `interrupts` property
+
+v3: https://lore.kernel.org/linux-input/20231008185709.2448423-1-anshulusr@gmail.com/
+
+Changes for v3:
+- Updated id field to reflect updated file name from previous version
+- Added `reg` property
+
+v2: https://lore.kernel.org/linux-input/20231008172435.2391009-1-anshulusr@gmail.com/
+
+Changes for v2:
+- Renamed file to `adafruit,seesaw-gamepad.yaml`
+- Removed quotes for `$id` and `$schema`
+- Removed "Bindings for" from the description
+- Changed node name to the generic name "joystick"
+- Changed compatible to 'adafruit,seesaw-gamepad' instead of
+  'adafruit,seesaw_gamepad'
+
+v1: https://lore.kernel.org/linux-input/20231007144052.1535417-1-anshulusr@gmail.com/
+---
+ .../input/adafruit,seesaw-gamepad.yaml        | 63 +++++++++++++++++++
+ 1 file changed, 63 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/adafruit,seesaw-gamepad.yaml
+
+diff --git a/Documentation/devicetree/bindings/input/adafruit,seesaw-gamepad.yaml b/Documentation/devicetree/bindings/input/adafruit,seesaw-gamepad.yaml
+new file mode 100644
+index 000000000000..5e86f6de6978
+--- /dev/null
++++ b/Documentation/devicetree/bindings/input/adafruit,seesaw-gamepad.yaml
+@@ -0,0 +1,63 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/input/adafruit,seesaw-gamepad.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+	wlan_lten: regulator-6 {
-+		bootph-all;
-+		compatible = "regulator-fixed";
-+		regulator-name = "wlan_lten";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-always-on;
-+		vin-supply = <&vcc_3v3_sys>;
-+		gpios = <&exp1 11 GPIO_ACTIVE_LOW>;
-+	};
++title: Adafruit Mini I2C Gamepad with seesaw
 +
-+	wlan_en: regulator-7 {
-+		/* OUTPUT of SN74AVC2T244DQMR */
-+		bootph-all;
-+		compatible = "regulator-fixed";
-+		regulator-name = "wlan_en";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		enable-active-high;
-+		regulator-always-on;
-+		vin-supply = <&wlan_lten>;
-+		gpios = <&main_gpio0 71 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&wlan_en_default_pins>;
-+	};
- };
- 
- &main_pmx0 {
-@@ -154,6 +180,33 @@ main_gpio1_ioexp_intr_pins_default: main-gpio1-ioexp-intr-default-pins {
- 			AM62X_IOPAD(0x01d4, PIN_INPUT, 7) /* (B15) UART0_RTSn.GPIO1_23 */
- 		>;
- 	};
++maintainers:
++  - Anshul Dalal <anshulusr@gmail.com>
 +
-+	wlan_en_default_pins: wlan-en-default-pins {
-+		bootph-all;
-+		pinctrl-single,pins = <
-+			AM62X_IOPAD(0x124, PIN_OUTPUT, 7) /* (A23) MMC2_SDCD.GPIO0_71 */
-+		>;
-+	};
++description: |
++  Adafruit Mini I2C Gamepad
 +
-+	main_mmc2_default_pins: main-mmc2-default-pins {
-+		bootph-all;
-+		pinctrl-single,pins = <
-+			AM62X_IOPAD(0x120, PIN_INPUT, 0) /* (C24) MMC2_CMD */
-+			AM62X_IOPAD(0x118, PIN_INPUT, 0) /* (D25) MMC2_CLK */
-+			AM62X_IOPAD(0x114, PIN_INPUT, 0) /* (B24) MMC2_DAT0 */
-+			AM62X_IOPAD(0x110, PIN_INPUT, 0) /* (C25) MMC2_DAT1 */
-+			AM62X_IOPAD(0x10c, PIN_INPUT, 0) /* (E23) MMC2_DAT2 */
-+			AM62X_IOPAD(0x108, PIN_INPUT, 0) /* (D24) MMC2_DAT3 */
-+			AM62X_IOPAD(0x11c, PIN_INPUT, 0) /* (#N/A) MMC2_CLKB */
-+		>;
-+	};
++    +-----------------------------+
++    |   ___                       |
++    |  /   \               (X)    |
++    | |  S  |  __   __  (Y)   (A) |
++    |  \___/  |ST| |SE|    (B)    |
++    |                             |
++    +-----------------------------+
 +
-+	main_wlirq_default_pins: main-wlirq-default-pins {
-+		bootph-all;
-+		pinctrl-single,pins = <
-+			AM62X_IOPAD(0x128, PIN_INPUT, 7) /* (B23) MMC2_SDWP.GPIO0_72 */
-+		>;
-+	};
- };
- 
- &main_gpio0 {
-@@ -200,6 +253,32 @@ &sdhci1 {
- 	vqmmc-supply = <&vdd_sd_dv>;
- };
- 
-+&sdhci2 {
-+	status = "okay";
-+	vmmc-supply = <&wlan_en>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_mmc2_default_pins>;
-+	bus-width = <4>;
-+	non-removable;
-+	ti,fails-without-test-cd;
-+	cap-power-off-card;
-+	keep-power-in-suspend;
-+	ti,driver-strength-ohm = <50>;
-+	assigned-clocks = <&k3_clks 157 158>;
-+	assigned-clock-parents = <&k3_clks 157 160>;
-+	#address-cells = <1>;
-+	#size-cells = <0>;
++  S -> 10-bit precision bidirectional analog joystick
++  ST -> Start
++  SE -> Select
++  X, A, B, Y -> Digital action buttons
 +
-+	wlcore: wlcore@2 {
-+		compatible = "ti,wl1837";
-+		reg = <2>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&main_wlirq_default_pins>;
-+		interrupt-parent = <&main_gpio0>;
-+		interrupts = <72 IRQ_TYPE_EDGE_FALLING>;
-+	};
-+};
++  Datasheet: https://cdn-learn.adafruit.com/downloads/pdf/gamepad-qt.pdf
++  Product page: https://www.adafruit.com/product/5743
++  Arduino Driver: https://github.com/adafruit/Adafruit_Seesaw
 +
- &cpsw3g {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&main_rgmii1_pins_default>, <&main_rgmii2_pins_default>;
++properties:
++  compatible:
++    const: adafruit,seesaw-gamepad
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++    description:
++      The gamepad's IRQ pin triggers a rising edge if interrupts are enabled.
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        joystick@50 {
++            compatible = "adafruit,seesaw-gamepad";
++            interrupts = <18 IRQ_TYPE_EDGE_RISING>;
++            reg = <0x50>;
++        };
++    };
 -- 
 2.42.1
+
 
