@@ -1,105 +1,123 @@
-Return-Path: <devicetree+bounces-17492-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17493-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E9577F2AA8
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 11:37:42 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2661E7F2AD6
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 11:41:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BA4B82823CC
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 10:37:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A2535B21612
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 10:41:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DFFC3E47A;
-	Tue, 21 Nov 2023 10:37:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF8D913AD4;
+	Tue, 21 Nov 2023 10:41:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D4vK5vs4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f177.google.com (mail-il1-f177.google.com [209.85.166.177])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 897131BC3;
-	Tue, 21 Nov 2023 02:37:14 -0800 (PST)
-Received: by mail-il1-f177.google.com with SMTP id e9e14a558f8ab-35930447ae9so16775825ab.2;
-        Tue, 21 Nov 2023 02:37:14 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700563033; x=1701167833;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=K5hcXg4tX4WDk4gi5wFSZzrUcbYrCoXo++qInb7PH/U=;
-        b=nIIjwcH6Qj3lUbYegFJLremlXchaLquR2kqrWVt1l/GrkZss5KQqrBHpIfy69RtUNq
-         Q+R/wobTWC7zmjwcr/6VhKuHolTAsNB0GggqtQMgQ64fwdfr3y9gaExSLuSsk1FflM9u
-         nF1v1jv7h9nr6WAF8PPUGGVRx6rlcIyvBJ7oaAC813mAUy2am9mHTI7XZnzQt51Pva4k
-         Wio9YLrplGStY5RQIP91BPngvGcrq3KQBZU39dnQy/dFP6fTJw24N3OMSmCCGt3B78Ij
-         zEjTdSGYOfcYovpX2LQt63vrAkhmBQ7zXSHS6OPBW2JJFXL0jGvFhjzDPhLo+OMDTow8
-         c1Bw==
-X-Gm-Message-State: AOJu0YzQxegX5rFPBFo4GDyaQOCHl2aPZ8vwZtZmiowONklt8T1JRnSE
-	eirmsTnBfUcMLqTTsSVkrw==
-X-Google-Smtp-Source: AGHT+IGYWMbdoqySBq1BzJwKmwLC+er3ZxwZeNittN/rvc4kzxvciK4fzqI0WtdhViUE8CGSdJwCsg==
-X-Received: by 2002:a92:ca09:0:b0:359:9efa:3afc with SMTP id j9-20020a92ca09000000b003599efa3afcmr15686723ils.7.1700563033583;
-        Tue, 21 Nov 2023 02:37:13 -0800 (PST)
-Received: from herring.priv ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id c2-20020a92cf42000000b0035b08887987sm987002ilr.41.2023.11.21.02.37.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Nov 2023 02:37:12 -0800 (PST)
-Received: (nullmailer pid 1178554 invoked by uid 1000);
-	Tue, 21 Nov 2023 10:37:10 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF7DC3A26F;
+	Tue, 21 Nov 2023 10:41:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42018C433C8;
+	Tue, 21 Nov 2023 10:41:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1700563268;
+	bh=6ssmz9Fzj5B5OmCb07mIm3SGwRw9YGJdqqjNOMzjqjI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=D4vK5vs4oL3icSXZydnqDM56wAeOdVXHDrdnc5HGhc07aObDsKuXDA6nPc9Kb/AjO
+	 tFTsFjQsYLFV6t2wKtWlJRyz8RSctyacMs0ecueARCS6ikBk4balsn1z9IN/cBBhf5
+	 b8a4mu42V8h2H1j9aw4XOLMiz4gg1lBZeQc8Rcqdpa7CAMwhGOZUPS43Aoercery22
+	 A+VWLfY9me9tZNzztinOEcud0MxToeqAgO3RzE+vgDoV0GfSa1VN6plMRXx4ONNNBw
+	 52A1UllKq6WlZhEA3yy3s6mPDMlPFWkKB4LuyaHcT/uK52CcIyMSq30d/3K552YJil
+	 8xS4+R7zYbMxg==
+Date: Tue, 21 Nov 2023 18:40:56 +0800
+From: Peter Chen <peter.chen@kernel.org>
+To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Roger Quadros <rogerq@kernel.org>,
+	Pawel Laszczak <pawell@cadence.com>, Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	ThomasPetazzonithomas.petazzoni@bootlin.com,
+	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>
+Subject: Re: [PATCH v2 5/7] usb: cdns3: add quirk to platform data for
+ reset-on-resume
+Message-ID: <20231121104056.GA541474@nchen-desktop>
+References: <20231120-j7200-usb-suspend-v2-0-038c7e4a3df4@bootlin.com>
+ <20231120-j7200-usb-suspend-v2-5-038c7e4a3df4@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
-Cc: krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org, a.zummo@towertech.it, robh+dt@kernel.org, palmer@dabbelt.com, paul.walmsley@sifive.com, conor@kernel.org, unicorn_wang@outlook.com, devicetree@vger.kernel.org, alexandre.belloni@bootlin.com, aou@eecs.berkeley.edu, chao.wei@sophgo.com
-In-Reply-To: <20231121094642.2973795-2-qiujingbao.dlmu@gmail.com>
-References: <20231121094642.2973795-1-qiujingbao.dlmu@gmail.com>
- <20231121094642.2973795-2-qiujingbao.dlmu@gmail.com>
-Message-Id: <170056303072.1178458.6696948575673288527.robh@kernel.org>
-Subject: Re: [PATCH 1/3] dt-bindings: rtc: add binding for Sophgo CV1800B
- rtc controller
-Date: Tue, 21 Nov 2023 03:37:10 -0700
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20231120-j7200-usb-suspend-v2-5-038c7e4a3df4@bootlin.com>
 
-
-On Tue, 21 Nov 2023 17:46:40 +0800, Jingbao Qiu wrote:
-> Add devicetree binding for Sophgo CV1800B SoC rtc controller.
+On 23-11-20 18:06:05, Théo Lebrun wrote:
+> The cdns3 host role does not care about reset-on-resume. xHCI however
+> reconfigures itself in silence rather than printing a warning about a
+> resume error. Related warning example:
 > 
-> Signed-off-by: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
+>   [   16.017462] xhci-hcd xhci-hcd.1.auto: xHC error in resume, USBSTS 0x401, Reinit
+> 
+> Allow passing a CDNS3_RESET_ON_RESUME quirk flag from cdns3 pdata down
+> to xHCI pdata. The goal is to allow signaling about reset-on-resume
+> behavior from platform wrapper drivers.
+> 
+> When used, remote wakeup is not expected to work.
+> 
+> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+
+Acked-by: Peter Chen <peter.chen@kernel.org>
+
 > ---
->  .../bindings/rtc/sophgo,cv1800b-rtc.yaml      | 37 +++++++++++++++++++
->  1 file changed, 37 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/rtc/sophgo,cv1800b-rtc.yaml
+>  drivers/usb/cdns3/core.h | 1 +
+>  drivers/usb/cdns3/host.c | 3 +++
+>  2 files changed, 4 insertions(+)
+> 
+> diff --git a/drivers/usb/cdns3/core.h b/drivers/usb/cdns3/core.h
+> index 81a9c9d6be08..7487067ba23f 100644
+> --- a/drivers/usb/cdns3/core.h
+> +++ b/drivers/usb/cdns3/core.h
+> @@ -44,6 +44,7 @@ struct cdns3_platform_data {
+>  			bool suspend, bool wakeup);
+>  	unsigned long quirks;
+>  #define CDNS3_DEFAULT_PM_RUNTIME_ALLOW	BIT(0)
+> +#define CDNS3_RESET_ON_RESUME		BIT(1)
+>  };
+>  
+>  /**
+> diff --git a/drivers/usb/cdns3/host.c b/drivers/usb/cdns3/host.c
+> index 6164fc4c96a4..28c4d1deb231 100644
+> --- a/drivers/usb/cdns3/host.c
+> +++ b/drivers/usb/cdns3/host.c
+> @@ -91,6 +91,9 @@ static int __cdns_host_init(struct cdns *cdns)
+>  	if (cdns->pdata && (cdns->pdata->quirks & CDNS3_DEFAULT_PM_RUNTIME_ALLOW))
+>  		cdns->xhci_plat_data->quirks |= XHCI_DEFAULT_PM_RUNTIME_ALLOW;
+>  
+> +	if (cdns->pdata && (cdns->pdata->quirks & CDNS3_RESET_ON_RESUME))
+> +		cdns->xhci_plat_data->quirks |= XHCI_RESET_ON_RESUME;
+> +
+>  	ret = platform_device_add_data(xhci, cdns->xhci_plat_data,
+>  			sizeof(struct xhci_plat_priv));
+>  	if (ret)
+> 
+> -- 
+> 2.42.0
 > 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+-- 
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/rtc/sophgo,cv1800b-rtc.example.dts:27.28-29 syntax error
-FATAL ERROR: Unable to parse input tree
-make[2]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/rtc/sophgo,cv1800b-rtc.example.dtb] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1424: dt_binding_check] Error 2
-make: *** [Makefile:234: __sub-make] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231121094642.2973795-2-qiujingbao.dlmu@gmail.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Thanks,
+Peter Chen
 
