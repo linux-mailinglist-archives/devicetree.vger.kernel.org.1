@@ -1,118 +1,148 @@
-Return-Path: <devicetree+bounces-17624-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17626-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C20F57F321B
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 16:16:47 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CAB3D7F322B
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 16:17:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 794341F225D2
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 15:16:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EEBAD1C21BD8
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 15:17:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 723C05675D;
-	Tue, 21 Nov 2023 15:16:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D831156771;
+	Tue, 21 Nov 2023 15:17:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=nuvoton.onmicrosoft.com header.i=@nuvoton.onmicrosoft.com header.b="il94ztlx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f176.google.com (mail-il1-f176.google.com [209.85.166.176])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 642ABDD;
-	Tue, 21 Nov 2023 07:16:35 -0800 (PST)
-Received: by mail-il1-f176.google.com with SMTP id e9e14a558f8ab-359343e399fso15592825ab.0;
-        Tue, 21 Nov 2023 07:16:35 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700579794; x=1701184594;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MHBJbcTYAJFzd8BQozdA+OUJ8WFFDeZmUm9glBYXWMY=;
-        b=XMFfMNWGezswcSMFIRgJPHxeTNGDRVREXwioKmCOZ8Uv8cmK+eeL5p11X/TGPwzHLV
-         LsWq8njDA0khhQUO7BGMjPQBR+iBfwh5ZXdrep8yd+y5yIke9/Sf9PyY8ox4pBogimC6
-         rPUem/RO2jAlwICWzfg4MTqoJDEtpSgnoXVeVVxq4ICyD1p6HnpbuMYfvS2Ve0c4A0UD
-         0jv1PCU0pM3TfnTugL6PXbH9gCjhFcEjz/W/Jmh1keJfItofz3JmdeGF1NNI2/YhmXfB
-         M2m6hkUjYbqc2c2Jd8IgP9NrR3VrXOSuu4Gvyhrl+Q0sUTKD/E9/pYH9rKkn4Ahz/GpZ
-         ZBDw==
-X-Gm-Message-State: AOJu0Yx4K+G+7pVmdGGpkSl+2kTELWIw3aH9SJy19zk3gsOggsAzxRQ9
-	c7joqsBzdASgkUPPDyI7Jw==
-X-Google-Smtp-Source: AGHT+IGs+KFHExCqkcg3K0j2WE48eh5fwSy6aeVyBcCWydv816/PY/81hpz3b4X9rc/LANFLxc7uYA==
-X-Received: by 2002:a92:c90e:0:b0:35b:4b9:7883 with SMTP id t14-20020a92c90e000000b0035b04b97883mr6859544ilp.25.1700579794614;
-        Tue, 21 Nov 2023 07:16:34 -0800 (PST)
-Received: from herring.priv ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id s16-20020a02cf30000000b0046676167055sm170383jar.129.2023.11.21.07.16.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Nov 2023 07:16:33 -0800 (PST)
-Received: (nullmailer pid 1791730 invoked by uid 1000);
-	Tue, 21 Nov 2023 15:16:30 -0000
-Date: Tue, 21 Nov 2023 08:16:30 -0700
-From: Rob Herring <robh@kernel.org>
-To: Peter Griffin <peter.griffin@linaro.org>
-Cc: krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com, conor+dt@kernel.org, sboyd@kernel.org, tomasz.figa@gmail.com, s.nawrocki@samsung.com, linus.walleij@linaro.org, wim@linux-watchdog.org, linux@roeck-us.net, catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de, olof@lixom.net, gregkh@linuxfoundation.org, jirislaby@kernel.org, cw00.choi@samsung.com, alim.akhtar@samsung.com, tudor.ambarus@linaro.org, andre.draszik@linaro.org, semen.protsenko@linaro.org, saravanak@google.com, willmcvicker@google.com, soc@kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, linux-watchdog@vger.kernel.org, kernel-team@android.com, linux-serial@vger.kernel.org
-Subject: Re: [PATCH v4 09/19] dt-bindings: serial: samsung: Make
- samsung,uart-fifosize required property
-Message-ID: <20231121151630.GA1692178-robh@kernel.org>
-References: <20231120212037.911774-1-peter.griffin@linaro.org>
- <20231120212037.911774-10-peter.griffin@linaro.org>
+Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01on2056.outbound.protection.outlook.com [40.107.215.56])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBA99DD;
+	Tue, 21 Nov 2023 07:17:44 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=MG/fT2prN9jJxPdZ1JTgpR2BAxf7PtErlgiJptYaTdo7eO1M1W8La7vPCMAsjfE2hbpvRGQw7z3HGq1X8KhsglSnMTM3eVNV0eLZZSnHeIDZcVg+Q8zxly04zmW6IccDXlsQUnWQTiKMfHls48AYdaFtpgZzowE17uyqN3lL/pkanM1tv9YQwqdRHV8rfwljEaoTJOJbB7JyVJKWylIFKmi04/0lV0C5GT1/90gLSc5Z08x+lG+l2kjoJuw8rSgHmCHQ1yj+EJboWGQ1xa0Q5NqGK3GUvOlJ2NLtkGXwJ+ThP+CMJWj+mh3QFnKsD9hpE9BGByRzJboBn2h6okJ0nQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=HqtIbLGKY6xLG6kSTp6ZeqMWZrxoOSI/PJhQHp9YZNw=;
+ b=Qjl24P9zeTcXXd0e/y4vD+whyEAIlwEa/59llDvObULDSzxkjiDqT95XdAnMJGR1vAdBdYZ7YhUy5flbDKPcJ3Bc3N8v+nYS4chiOthnLqaOKEJtejDVk5lBAVUaVtjtUHNxAn4siM9f57a1uA55YOPWmRfmQRVXI23PVi/64Rp0qB0nBIwdNE4+/bwqk0c8pAfzHA6xyfI17xjS/6pNWLcCR1Cq31Hym6p60BKEo6csclCMa32jUF8IehU0PELCrxF1hSKqYHMvd3BnA8+HzCC1Gl82joVqOeIg5OR1zqyMBQSIUTp1B7y9z/XDLWdq257ZQHinMdTAO0+fccIvKA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 211.75.126.7) smtp.rcpttodomain=codeconstruct.com.au
+ smtp.mailfrom=nuvoton.com; dmarc=fail (p=none sp=quarantine pct=100)
+ action=none header.from=gmail.com; dkim=none (message not signed); arc=none
+ (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=nuvoton.onmicrosoft.com; s=selector2-nuvoton-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=HqtIbLGKY6xLG6kSTp6ZeqMWZrxoOSI/PJhQHp9YZNw=;
+ b=il94ztlxyIzEZwB/d+efFTJE8teWvSezWflKwk8fgf6LdRPsAB9GM6SINE98wCtqUXioT6G3XsViOoXX5AR18XwvRd/cv5OUxx6zAy9PpAHBA9woYpubqxISCLumejp/hnSpM61/5VL6FQJ03a4KtMESLFGp1B3m8DYfC3rVlBo=
+Received: from SG2PR04CA0200.apcprd04.prod.outlook.com (2603:1096:4:187::15)
+ by TYZPR03MB6917.apcprd03.prod.outlook.com (2603:1096:400:28a::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7002.28; Tue, 21 Nov
+ 2023 15:17:40 +0000
+Received: from SG2PEPF000B66CC.apcprd03.prod.outlook.com
+ (2603:1096:4:187:cafe::37) by SG2PR04CA0200.outlook.office365.com
+ (2603:1096:4:187::15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7002.28 via Frontend
+ Transport; Tue, 21 Nov 2023 15:17:40 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 211.75.126.7)
+ smtp.mailfrom=nuvoton.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=gmail.com;
+Received-SPF: Pass (protection.outlook.com: domain of nuvoton.com designates
+ 211.75.126.7 as permitted sender) receiver=protection.outlook.com;
+ client-ip=211.75.126.7; helo=NTHCCAS01.nuvoton.com; pr=C
+Received: from NTHCCAS01.nuvoton.com (211.75.126.7) by
+ SG2PEPF000B66CC.mail.protection.outlook.com (10.167.240.25) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7025.12 via Frontend Transport; Tue, 21 Nov 2023 15:17:39 +0000
+Received: from NTHCML01A.nuvoton.com (10.1.8.177) by NTHCCAS01.nuvoton.com
+ (10.1.8.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Tue, 21 Nov
+ 2023 23:17:38 +0800
+Received: from NTHCCAS01.nuvoton.com (10.1.8.28) by NTHCML01A.nuvoton.com
+ (10.1.8.177) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.14; Tue, 21 Nov
+ 2023 23:17:38 +0800
+Received: from taln58.nuvoton.co.il (10.191.1.178) by NTHCCAS01.nuvoton.com
+ (10.1.8.28) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
+ Transport; Tue, 21 Nov 2023 23:17:37 +0800
+Received: from taln60.nuvoton.co.il (taln60 [10.191.1.180])
+	by taln58.nuvoton.co.il (Postfix) with ESMTP id EF58B5F5BB;
+	Tue, 21 Nov 2023 17:17:35 +0200 (IST)
+Received: by taln60.nuvoton.co.il (Postfix, from userid 10070)
+	id B7443235CE25; Tue, 21 Nov 2023 17:17:35 +0200 (IST)
+From: Tomer Maimon <tmaimon77@gmail.com>
+To: <davem@davemloft.net>, <edumazet@google.com>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <alexandre.torgue@foss.st.com>,
+	<peppe.cavallaro@st.com>, <joabreu@synopsys.com>,
+	<mcoquelin.stm32@gmail.com>, <avifishman70@gmail.com>,
+	<tali.perry1@gmail.com>, <joel@jms.id.au>, <andrew@codeconstruct.com.au>,
+	<venture@google.com>, <yuenn@google.com>, <benjaminfair@google.com>,
+	<j.neuschaefer@gmx.net>
+CC: <openbmc@lists.ozlabs.org>, <netdev@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-stm32@st-md-mailman.stormreply.com>,
+	<linux-arm-kernel@lists.infradead.org>, Tomer Maimon <tmaimon77@gmail.com>
+Subject: [PATCH v1 0/2] net: stmmac: add NPCM dwmac support
+Date: Tue, 21 Nov 2023 17:17:31 +0200
+Message-ID: <20231121151733.2015384-1-tmaimon77@gmail.com>
+X-Mailer: git-send-email 2.33.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231120212037.911774-10-peter.griffin@linaro.org>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-NotSetDelaration: True
+X-EOPAttributedMessage: 0
+X-MS-Exchange-SkipListedInternetSender:
+ ip=[211.75.126.7];domain=NTHCCAS01.nuvoton.com
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SG2PEPF000B66CC:EE_|TYZPR03MB6917:EE_
+X-MS-Office365-Filtering-Correlation-Id: f0ab169c-37e7-4d59-a6d7-08dbeaa5001c
+X-MS-Exchange-SenderADCheck: 0
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	DgEccS5r0GAZ36rBapW52kBgjka35NqG4PBD0IAJo4d0oI06YyxNu4gCPI6Bz+IVXfFtip4e++Yh+FrD8t3sxwr2gu6CJSdaT8E0alOAgpEPdrhvHGe12ph+89bfW0ByJNA7k/YtNqozAc7ZQG98B/bzLS7iiZrAcB8xtu9XzeTEWsDyiUXuxhZv99DhTAImleHF2M/hbpX0ZXINM1zD1i9Zok6CvQAwBTcyFLJKjDXHBbqhAigLMykQvufrUpufLYLtnd6Dt1T8aBU+SWSUa6ade1flv6WpNyRZDPI0p8jL7Ldc/RaUf9CDznd5WyAIkwmdlVmVnvnBGH/okduLf8RAGFC2iofIKyPxlXFilwGuXZa8p+DyZX8kPmPCKP578bUvXBI9pMWHDpCCSDUECbOyyWYTaO91zx66VKYCnCRa+7l43OQFn3Rm2iFhnjop42aB7W/pHfkplt6A/jlMDpZ3DWrGUVgAnX+Y5whW0vDjTWOTmw9C2mLQ9H3cvH5gj1fqLIOsjPa3wsMPUZusZoDARMSszsLu5tnWJnW6ApvIWkLdtKi9pzuX3VHHUHsAsLj2du4OQl4W+Wco7trC+k9i4zZqQ9TJRkl3x8+VJkTf+/kYbBWqS5UCUh0OFxWdIUDVClmI7u8R/hg9EoDGvMTRZ5kwdKW88De5Wp6EJNN4X/OgndwYG2bJOVZBo0mXPPjL/M60gRJWs/22QIwS+ZgTSoAv0k+TohsHcU+62Bo9EAwY9eRaiX8zgZ3shtkK3xOj1XR85oKZU3HnPf+3GF/Ly3qXxfqsrOzVqgr+SG4Md/W6z+InLsYeM+RytUJS596yjhXo5Ztmih+uzSC0SrfJcLPywrE00pnArJ/3D+I=
+X-Forefront-Antispam-Report:
+	CIP:211.75.126.7;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:NTHCCAS01.nuvoton.com;PTR:211-75-126-7.hinet-ip.hinet.net;CAT:NONE;SFS:(13230031)(4636009)(39860400002)(376002)(346002)(136003)(396003)(230922051799003)(451199024)(48200799006)(82310400011)(64100799003)(61400799012)(186009)(36840700001)(46966006)(40470700004)(40460700003)(73392003)(42882007)(336012)(6266002)(921008)(82740400003)(36756003)(83170400001)(356005)(81166007)(55446002)(47076005)(36860700001)(110136005)(54906003)(42186006)(70586007)(70206006)(4326008)(8676002)(8936002)(41300700001)(316002)(76482006)(7416002)(5660300002)(4744005)(2906002)(2616005)(40480700001)(26005)(82202003)(1076003)(6666004)(478600001)(45356006)(35450700002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: nuvoton.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Nov 2023 15:17:39.4188
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f0ab169c-37e7-4d59-a6d7-08dbeaa5001c
+X-MS-Exchange-CrossTenant-Id: a3f24931-d403-4b4a-94f1-7d83ac638e07
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=a3f24931-d403-4b4a-94f1-7d83ac638e07;Ip=[211.75.126.7];Helo=[NTHCCAS01.nuvoton.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SG2PEPF000B66CC.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR03MB6917
 
-On Mon, Nov 20, 2023 at 09:20:27PM +0000, Peter Griffin wrote:
-> Specifying samsung,uart-fifosize in both DT and driver static data is error
-> prone and relies on driver probe order and dt aliases to be correct.
-> 
-> Additionally on many Exynos platforms these are (USI) universal serial
-> interfaces which can be uart, spi or i2c, so it can change per board.
-> 
-> For google,gs101-uart and exynosautov9-uart make samsung,uart-fifosize a
-> required property. For these platforms fifosize now *only* comes from DT.
-> 
-> It is hoped other Exynos platforms will also switch over time.
+This patch set add dwmac/stmmac for the NPCM Baseboard
+Management Controllers (BMC).
 
-Then allow the property on them.
+NPCM8xx driver is a part of glue logic dwmac driver to support sgmii.
 
-> 
-> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
-> ---
->  .../bindings/serial/samsung_uart.yaml           | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/serial/samsung_uart.yaml b/Documentation/devicetree/bindings/serial/samsung_uart.yaml
-> index ccc3626779d9..22a1edadc4fe 100644
-> --- a/Documentation/devicetree/bindings/serial/samsung_uart.yaml
-> +++ b/Documentation/devicetree/bindings/serial/samsung_uart.yaml
-> @@ -133,6 +133,23 @@ allOf:
->              - const: uart
->              - const: clk_uart_baud0
->  
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - google,gs101-uart
-> +              - samsung,exynosautov9-uart
-> +    then:
-> +      properties:
-> +        samsung,uart-fifosize:
-> +          description: The fifo size supported by the UART channel.
-> +          $ref: /schemas/types.yaml#/definitions/uint32
-> +          enum: [16, 64, 256]
+The NPCM dwmac was tested on NPCM845 evaluation board.
 
-We already have 'fifo-size' in several drivers. Use that. Please move 
-its type/description definitions to serial.yaml and make drivers just do 
-'fifo-size: true' if they use it.
+Tomer Maimon (2):
+  dt-bindings: net: Add support NPCM dwmac
+  net: stmmac: Add NPCM support
 
-> +
-> +      required:
-> +       - samsung,uart-fifosize
+ .../bindings/net/nuvoton,npcm8xx-sgmii.yaml   |  72 +++++++++++
+ .../devicetree/bindings/net/snps,dwmac.yaml   |   1 +
+ MAINTAINERS                                   |   1 +
+ drivers/net/ethernet/stmicro/stmmac/Kconfig   |   9 ++
+ drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
+ .../net/ethernet/stmicro/stmmac/dwmac-npcm.c  | 121 ++++++++++++++++++
+ 6 files changed, 205 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/nuvoton,npcm8xx-sgmii.yaml
+ create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-npcm.c
 
-A new required property is an ABI break. Please explain why that is okay 
-in the commit message.
+-- 
+2.33.0
 
-Rob
 
