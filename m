@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-17406-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17407-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 218907F267F
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 08:40:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ABF487F2685
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 08:40:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8BB4EB209B4
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 07:40:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4C439B214DE
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 07:40:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57AC030334;
-	Tue, 21 Nov 2023 07:40:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 929302E652;
+	Tue, 21 Nov 2023 07:40:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jqEEDPya"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xYR9KEFG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9047D131
-	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 23:39:59 -0800 (PST)
-Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-507b9408c61so7123062e87.0
-        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 23:39:59 -0800 (PST)
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D872DF5
+	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 23:40:41 -0800 (PST)
+Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-3316c6e299eso2247970f8f.1
+        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 23:40:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700552398; x=1701157198; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1700552440; x=1701157240; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=FdPdCCCHELZuZbE+Nx/X7BcWbDYhnSVo4Jlo0Z3ZPDU=;
-        b=jqEEDPyamswyc/BHS2vnewRBmTbPf5qDH1yNxTV0MjBtY6Lck/xjPwyNBkvwEI66vE
-         DlOGYqX5wmMf9P+xmhtZz8k+NvnyoPWmLdG0Oa/jW5VrU73kA9OC4qRv8xEVh5FXudkA
-         5mdzY+XrjDRESBnkBHLflBgA8QKPVq10Hvo3mgHXP7FkSxMWOgeQujOWv8VB/Cvyh5bO
-         Ij1f5FXG8MJCkQ9eL+Vew+nmukUxgWzZdLB2338wCgqy1nBQyeIOyxN3UuIj+CYTZY+v
-         8XlpWS8uykiGWtC7iwtbP5AorKwV1sV86k5bl8QRLV3fN1cowxRZQCEidCoLBOJW6v99
-         ChXg==
+        bh=eK+3IOuXvIBPUpzeqp773ca2focnQrWyos3TrAjH+mY=;
+        b=xYR9KEFGcF8GZESZNuCI9Impe6LYQZhiIlA0gapzCW6T+9SofB2npgDQlrZsBYgr9G
+         5jLBc8TMC63QaF05Qm5zR4vA1LKVyAU5KMjN5WoxcF5JKgtJcyJdwgy7+RREKtWog73c
+         C6aYu0gK79Ngb2B6edylqfGIOBerMLNwEOTGg2CWTEyvG8z+5+2B7PfbejO8Re+449tZ
+         +4Raz7qW9U5Dl19AUCY9b9psF5wYWZWavqWBeFULbhTbcO+WB6oTc1QP/xS5BuYniPRb
+         8P8JS2e2xn1a5LGR7tgBiaVrR7UeS8WtH6rZVDCNB7z1weuVHsRqI9x2s87hA8d+MWpg
+         6xPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700552398; x=1701157198;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1700552440; x=1701157240;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FdPdCCCHELZuZbE+Nx/X7BcWbDYhnSVo4Jlo0Z3ZPDU=;
-        b=s1amL5f8ge1W/96UIebMX0O2KbgZiGqeW37r/WSITrnEo1zkgnqX2mKGLWqGDjFl3O
-         Oc42olQ+jUYjhOg+Xu2MyrYq6/f/rgbTx5CzL+jDaa3il42oQ6tswzc+LPp16kQfLlVQ
-         8biMSHMj7L5uRrpo4z1k879D61cRpGbsaoE8j689Kdhhv/rH1eWY26lUM360SM1EwE9Y
-         m91RDEbYZjd+JYEQQsG2pNTY1wXBRzPjDNA82ASiXsCABMaOZ5pSBc/9gLG12i79c4IW
-         wz/unsrjzEZ7DZRNgCPTwnVc+1Eq0KkFevP1S4EVjLO2S8Ss474sG2MptNE/HPvTqCCx
-         aX3g==
-X-Gm-Message-State: AOJu0YyuBopEO7qodoXkKdYPwtBwI93rqgInr0wC7j+pkbRlbH3kJarc
-	6nfGx7+FF9S+4KZ2lLBbo4TvXw==
-X-Google-Smtp-Source: AGHT+IEPHsZObDjx4bw5s0XBThPc/nHG46dXuW4hQgzNxNLedU3lmi9/YgNLlDQD3OCIXzKLH04FHw==
-X-Received: by 2002:a05:6512:39c5:b0:50a:a940:2d81 with SMTP id k5-20020a05651239c500b0050aa9402d81mr7755021lfu.68.1700552397619;
-        Mon, 20 Nov 2023 23:39:57 -0800 (PST)
+        bh=eK+3IOuXvIBPUpzeqp773ca2focnQrWyos3TrAjH+mY=;
+        b=fVYZcPHh0EzFpDgASbQOETxuX5vGe7KMA+eeEbuV8jv3BX8f/ywww+aocKA8v3wz6O
+         LRvoBUqsA/a4K1Hs9qso6/zlsdGea4C0+4XmdYh1nW5kEttR08o2F44TQ9OpGcHNcKyO
+         92bcoNW/zw1RDktLKtwXxzOjMw7SQV0HUSlZtA3cHxQLagn1lXUvR1TonnaVIgPaG449
+         WKRn/x1MJqnbpouwD4oMLXYgI6sY4or5/mmDJeGsBXZcUj57GwW56RexL84JBaPHRxRh
+         ovMVdA4yNa4mzMiFLX22iViVDXG5KYB0ePhZQU7yyv81Pd8lPxjeQsh+/Bj5SjXJJtM5
+         ddeA==
+X-Gm-Message-State: AOJu0YxFJI5EXmcnMhXewf2UDDMhx+3LZzPlAYXpM8lf8bogqFWswd//
+	5P3ph4wClj1rAhgPXAh+ixA+1yXeT4tKJfwOAPI=
+X-Google-Smtp-Source: AGHT+IGh9yIHIMUeKeAQvi4jTNoOScw/FaB45VewXA2sBOmFhopvsaX7oVNX9cSBGz9I0jNUcYPXCg==
+X-Received: by 2002:adf:e692:0:b0:32f:7967:aa4d with SMTP id r18-20020adfe692000000b0032f7967aa4dmr6726692wrm.68.1700552440266;
+        Mon, 20 Nov 2023 23:40:40 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.11])
-        by smtp.gmail.com with ESMTPSA id b15-20020a056000054f00b0031980294e9fsm13563542wrf.116.2023.11.20.23.39.54
+        by smtp.gmail.com with ESMTPSA id b15-20020a056000054f00b0031980294e9fsm13563542wrf.116.2023.11.20.23.40.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Nov 2023 23:39:57 -0800 (PST)
-Message-ID: <c6e1461a-fd75-4525-8888-0ffef626b77e@linaro.org>
-Date: Tue, 21 Nov 2023 08:39:53 +0100
+        Mon, 20 Nov 2023 23:40:39 -0800 (PST)
+Message-ID: <e3859453-113a-4899-bb4a-86862797fb48@linaro.org>
+Date: Tue, 21 Nov 2023 08:40:38 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,30 +62,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/4] dt-bindings: clock: mediatek: add clock
- controllers of MT7988
+Subject: Re: [PATCH] dt-bindings: net: ethernet-controller: Fix formatting
+ error
 Content-Language: en-US
-To: Daniel Golle <daniel@makrotopia.org>, Rob Herring <robh+dt@kernel.org>,
+To: =?UTF-8?Q?Niklas_S=C3=B6derlund?=
+ <niklas.soderlund+renesas@ragnatech.se>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Sabrina Dubroca <sd@queasysnail.net>,
- Jianhui Zhao <zhaojh329@gmail.com>, Chen-Yu Tsai <wenst@chromium.org>,
- "Garmin.Chang" <Garmin.Chang@mediatek.com>,
- Edward-JW Yang <edward-jw.yang@mediatek.com>,
- Johnson Wang <johnson.wang@mediatek.com>, Sam Shih <sam.shih@mediatek.com>,
- Frank Wunderlich <frank-w@public-files.de>,
- Dan Carpenter <dan.carpenter@linaro.org>,
- James Liao <jamesjj.liao@mediatek.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-clk@vger.kernel.org,
- netdev@vger.kernel.org
-References: <b277c5f084ff35849efb8250510b2536053d1316.1700498124.git.daniel@makrotopia.org>
- <8a30ae45b55842bc04f57714c8e0a962f3288a67.1700498124.git.daniel@makrotopia.org>
+ Prasanna Vengateshan <prasanna.vengateshan@microchip.com>,
+ devicetree@vger.kernel.org
+Cc: netdev@vger.kernel.org
+References: <20231113164412.945365-1-niklas.soderlund+renesas@ragnatech.se>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -131,191 +117,18 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <8a30ae45b55842bc04f57714c8e0a962f3288a67.1700498124.git.daniel@makrotopia.org>
+In-Reply-To: <20231113164412.945365-1-niklas.soderlund+renesas@ragnatech.se>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 20/11/2023 18:18, Daniel Golle wrote:
-> Add various clock controllers found in the MT7988 SoC to existing
-> bindings (if applicable) and add files for the new ethwarp, mcusys
-> and xfi-pll clock controllers not previously present in any SoC.
+On 13/11/2023 17:44, Niklas Söderlund wrote:
+> When moving the *-internal-delay-ps properties to only apply for RGMII
+> interface modes there where a typo in the text formatting.
 > 
-> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
 > ---
-> v2:
->  * dropped unused labels
->  * add 'type: object' declaration for reset-controller found in new
->    ethwarp controller and represented as ti,syscon-reset
->  * rebase on top of
->    "dt-bindings: arm: mediatek: move ethsys controller & convert to DT schema"
-> 
->  .../arm/mediatek/mediatek,infracfg.yaml       |  1 +
->  .../arm/mediatek/mediatek,mt7988-ethwarp.yaml | 61 +++++++++++++++++++
->  .../arm/mediatek/mediatek,mt7988-mcusys.yaml  | 46 ++++++++++++++
->  .../arm/mediatek/mediatek,mt7988-xfi-pll.yaml | 49 +++++++++++++++
->  .../bindings/clock/mediatek,apmixedsys.yaml   |  1 +
->  .../bindings/clock/mediatek,ethsys.yaml       |  1 +
->  .../bindings/clock/mediatek,topckgen.yaml     |  1 +
->  .../bindings/net/pcs/mediatek,sgmiisys.yaml   |  2 +
->  8 files changed, 162 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7988-ethwarp.yaml
->  create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7988-mcusys.yaml
->  create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7988-xfi-pll.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,infracfg.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,infracfg.yaml
-> index ea98043c6ba3d..230b5188a88db 100644
-> --- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,infracfg.yaml
-> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,infracfg.yaml
-> @@ -30,6 +30,7 @@ properties:
->                - mediatek,mt7629-infracfg
->                - mediatek,mt7981-infracfg
->                - mediatek,mt7986-infracfg
-> +              - mediatek,mt7988-infracfg
->                - mediatek,mt8135-infracfg
->                - mediatek,mt8167-infracfg
->                - mediatek,mt8173-infracfg
-> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7988-ethwarp.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7988-ethwarp.yaml
-> new file mode 100644
-> index 0000000000000..5b988efe0cb74
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7988-ethwarp.yaml
-> @@ -0,0 +1,61 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/arm/mediatek/mediatek,mt7988-ethwarp.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek MT7988 ethwarp Controller
-> +
-> +maintainers:
-> +  - Daniel Golle <daniel@makrotopia.org>
-> +
-> +description:
-> +  The Mediatek MT7988 ethwarp controller provides clocks and resets for the
-> +  Ethernet related subsystems found the MT7988 SoC.
 
-Clock controller bindings should be placed in clocks. Definitely not in arm.
-
-> +  The reset-controller can be represented using the ti,syscon-reset bindings.
-
-? Why do you rely on TI properties? How is this relevant? Describe here
-hardware, not bindings.
-
-> +  The clock values can be found in <dt-bindings/clock/mt*-clk.h>.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: mediatek,mt7988-ethwarp
-> +      - const: syscon
-> +      - const: simple-mfd
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  reset-controller:
-> +    type: object
-
-Need $ref.
-
-> +
-> +  '#clock-cells':
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - '#clock-cells'
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/reset/ti-syscon.h>
-> +    soc {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        clock-controller@15031000 {
-> +            compatible = "mediatek,mt7988-ethwarp", "syscon", "simple-mfd";
-> +            reg = <0 0x15031000 0 0x1000>;
-> +            #clock-cells = <1>;
-> +
-> +            reset-controller {
-> +                compatible = "ti,syscon-reset";
-
-??? You do not have TI.
-
-> +                #reset-cells = <1>;
-> +                ti,reset-bits = <
-> +                    0x8 9 0x8 9 0 0 (ASSERT_SET | DEASSERT_CLEAR | STATUS_NONE)
-> +                >;
-> +            };
-> +        };
-> +    };
-> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7988-mcusys.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7988-mcusys.yaml
-> new file mode 100644
-> index 0000000000000..b30bd13616875
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7988-mcusys.yaml
-> @@ -0,0 +1,46 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/arm/mediatek/mediatek,mt7988-mcusys.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek MT7988 MCU System Clock Controller
-> +
-> +maintainers:
-> +  - Daniel Golle <daniel@makrotopia.org>
-> +
-> +description:
-> +  The Mediatek mcusys controller provides ARM and bus clocks to the system.
-> +  The clock values can be found in <dt-bindings/clock/mt*-clk.h>.
-
-This binding looks like several other Mediatek bindings. Add it to some
-existing binding instead.
-
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: mediatek,mt7988-mcusys
-> +      - const: syscon
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  '#clock-cells':
-> +    const: 1
-> +
-
-...
-
-
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #define MT7988_TOPRGU_XFI_PLL_GRST              16
-
-If you do not have header, use number directly.
-
-> +    soc {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +        clock-controller@11f40000 {
-> +            compatible = "mediatek,mt7988-xfi-pll";
-> +            reg = <0 0x11f40000 0 0x1000>;
-> +            resets = <&watchdog MT7988_TOPRGU_XFI_PLL_GRST>;
-> +            #clock-cells = <1>;
-> +        };
-> +    };
-
-
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
