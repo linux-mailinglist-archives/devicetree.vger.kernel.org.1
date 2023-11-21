@@ -1,73 +1,105 @@
-Return-Path: <devicetree+bounces-17491-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17492-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D24D77F2A7E
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 11:34:58 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E9577F2AA8
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 11:37:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 62E4BB21608
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 10:34:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BA4B82823CC
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 10:37:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3BCD38F90;
-	Tue, 21 Nov 2023 10:34:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Q9F9dqLS"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DFFC3E47A;
+	Tue, 21 Nov 2023 10:37:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68AADBA;
-	Tue, 21 Nov 2023 02:34:52 -0800 (PST)
-Received: from [100.107.97.3] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 5A27966072F1;
-	Tue, 21 Nov 2023 10:34:50 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1700562891;
-	bh=qGOFfzHTmwNO8RaarKDI1R8ZcBkTKNwdJlZZMnC9tRI=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=Q9F9dqLSfls32qYiEb/6t/KTwMWLSUbv+68gYPu2dFnWkfDDctkW6vo/ZdW0ZlTUI
-	 qxORoz/OpTPeH9gC/5pTn44Jop8VEogD2yaqTqx4cw4VPNDdlpwX1RvQpk8VBoufmC
-	 X/c0wIzux+HzAzFnTDUKY0WTR31p6nczGnHyacxzo6p/86eyyAl9bz1u78Bef885LQ
-	 /cTJFSJ64byVuIEQLNfxvK+JG+At7xN/gCtgMYC86zj3wm4NCYpusd2erhMFp5+eG1
-	 bwJU64PNkz+qRgIxdyBqgxhGJfjpp6Um+CunVgX2zuxYAe3lkY7ksdJ+xmZl7N4G07
-	 65H69uQ4DnLBQ==
-Message-ID: <88b34ca9-97e6-4a62-bcd8-19f3f3917d8d@collabora.com>
-Date: Tue, 21 Nov 2023 11:34:47 +0100
+Received: from mail-il1-f177.google.com (mail-il1-f177.google.com [209.85.166.177])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 897131BC3;
+	Tue, 21 Nov 2023 02:37:14 -0800 (PST)
+Received: by mail-il1-f177.google.com with SMTP id e9e14a558f8ab-35930447ae9so16775825ab.2;
+        Tue, 21 Nov 2023 02:37:14 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700563033; x=1701167833;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=K5hcXg4tX4WDk4gi5wFSZzrUcbYrCoXo++qInb7PH/U=;
+        b=nIIjwcH6Qj3lUbYegFJLremlXchaLquR2kqrWVt1l/GrkZss5KQqrBHpIfy69RtUNq
+         Q+R/wobTWC7zmjwcr/6VhKuHolTAsNB0GggqtQMgQ64fwdfr3y9gaExSLuSsk1FflM9u
+         nF1v1jv7h9nr6WAF8PPUGGVRx6rlcIyvBJ7oaAC813mAUy2am9mHTI7XZnzQt51Pva4k
+         Wio9YLrplGStY5RQIP91BPngvGcrq3KQBZU39dnQy/dFP6fTJw24N3OMSmCCGt3B78Ij
+         zEjTdSGYOfcYovpX2LQt63vrAkhmBQ7zXSHS6OPBW2JJFXL0jGvFhjzDPhLo+OMDTow8
+         c1Bw==
+X-Gm-Message-State: AOJu0YzQxegX5rFPBFo4GDyaQOCHl2aPZ8vwZtZmiowONklt8T1JRnSE
+	eirmsTnBfUcMLqTTsSVkrw==
+X-Google-Smtp-Source: AGHT+IGYWMbdoqySBq1BzJwKmwLC+er3ZxwZeNittN/rvc4kzxvciK4fzqI0WtdhViUE8CGSdJwCsg==
+X-Received: by 2002:a92:ca09:0:b0:359:9efa:3afc with SMTP id j9-20020a92ca09000000b003599efa3afcmr15686723ils.7.1700563033583;
+        Tue, 21 Nov 2023 02:37:13 -0800 (PST)
+Received: from herring.priv ([64.188.179.252])
+        by smtp.gmail.com with ESMTPSA id c2-20020a92cf42000000b0035b08887987sm987002ilr.41.2023.11.21.02.37.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Nov 2023 02:37:12 -0800 (PST)
+Received: (nullmailer pid 1178554 invoked by uid 1000);
+	Tue, 21 Nov 2023 10:37:10 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/2] watchdog: mediatek: mt7988: add wdt support
-Content-Language: en-US
-To: Daniel Golle <daniel@makrotopia.org>,
- Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
- <linux@roeck-us.net>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, linux-watchdog@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-References: <6478f8d2af59736d23a96b52891bb541de33870d.1700504385.git.daniel@makrotopia.org>
- <c0cf5f701801cce60470853fa15f1d9dced78c4f.1700504385.git.daniel@makrotopia.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <c0cf5f701801cce60470853fa15f1d9dced78c4f.1700504385.git.daniel@makrotopia.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From: Rob Herring <robh@kernel.org>
+To: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
+Cc: krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org, a.zummo@towertech.it, robh+dt@kernel.org, palmer@dabbelt.com, paul.walmsley@sifive.com, conor@kernel.org, unicorn_wang@outlook.com, devicetree@vger.kernel.org, alexandre.belloni@bootlin.com, aou@eecs.berkeley.edu, chao.wei@sophgo.com
+In-Reply-To: <20231121094642.2973795-2-qiujingbao.dlmu@gmail.com>
+References: <20231121094642.2973795-1-qiujingbao.dlmu@gmail.com>
+ <20231121094642.2973795-2-qiujingbao.dlmu@gmail.com>
+Message-Id: <170056303072.1178458.6696948575673288527.robh@kernel.org>
+Subject: Re: [PATCH 1/3] dt-bindings: rtc: add binding for Sophgo CV1800B
+ rtc controller
+Date: Tue, 21 Nov 2023 03:37:10 -0700
 
-Il 20/11/23 19:22, Daniel Golle ha scritto:
-> Add support for watchdog and reset generator unit of the MediaTek
-> MT7988 SoC.
+
+On Tue, 21 Nov 2023 17:46:40 +0800, Jingbao Qiu wrote:
+> Add devicetree binding for Sophgo CV1800B SoC rtc controller.
 > 
-> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> Signed-off-by: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
+> ---
+>  .../bindings/rtc/sophgo,cv1800b-rtc.yaml      | 37 +++++++++++++++++++
+>  1 file changed, 37 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/rtc/sophgo,cv1800b-rtc.yaml
+> 
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Error: Documentation/devicetree/bindings/rtc/sophgo,cv1800b-rtc.example.dts:27.28-29 syntax error
+FATAL ERROR: Unable to parse input tree
+make[2]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/rtc/sophgo,cv1800b-rtc.example.dtb] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1424: dt_binding_check] Error 2
+make: *** [Makefile:234: __sub-make] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231121094642.2973795-2-qiujingbao.dlmu@gmail.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
