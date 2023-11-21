@@ -1,49 +1,35 @@
-Return-Path: <devicetree+bounces-17335-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17336-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D30C7F2289
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 01:51:43 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC3837F2294
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 01:52:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BEB1D1C20E96
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 00:51:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C54E2B216E0
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 00:52:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F329A636;
-	Tue, 21 Nov 2023 00:51:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="CQ/Aoqau"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39FCA636;
+	Tue, 21 Nov 2023 00:52:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 629B491;
-	Mon, 20 Nov 2023 16:51:37 -0800 (PST)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AKNfrb8011022;
-	Tue, 21 Nov 2023 00:51:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=Uer5WtduZBBOF0bD4+5J1TW7TZH8v4HLbehG1UFqfUk=;
- b=CQ/Aoqaua5NvFpkJ0kYp0d84/kZgV3x+gD3FR2zpYqcAVqJLuAHvdL8Wicc13uRFRuOF
- P++UEsTdfMEPfweXuyUQo4q7qHDos54abpNjp8RRE/KU/5tMz2yhF3wu/xjDzJs+C/01
- iVL1hr1MtTq4Ve+xkSgEzwzD6TNC2hvlZDohpeMOQdwVSEnZ4tqYvyteg6i6D3CnU/Eo
- U2Prj3RtWv9mzJ4cUWIVcPUyrL2vxacbfSyFrHkwiCCDnWWs++iYoraxf/Rl4BdipMch
- PeyISnVWtkbPcOKRLFC/hVWMNPNwG4mMUSdIToW4mfXJSHygDQMhbPWk2u1mEvcvlqKR lA== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ugcqs0npe-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 21 Nov 2023 00:51:32 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AL0pVRf008762
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 21 Nov 2023 00:51:31 GMT
-Received: from [10.239.132.204] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 20 Nov
- 2023 16:51:28 -0800
-Message-ID: <732c55bb-e4a5-4a09-9b7b-0e615ddd580c@quicinc.com>
-Date: Tue, 21 Nov 2023 08:51:26 +0800
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 026611A2;
+	Mon, 20 Nov 2023 16:52:29 -0800 (PST)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+	by ex01.ufhost.com (Postfix) with ESMTP id 2A7FC24E203;
+	Tue, 21 Nov 2023 08:52:23 +0800 (CST)
+Received: from EXMBX171.cuchost.com (172.16.6.91) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 21 Nov
+ 2023 08:52:23 +0800
+Received: from [192.168.125.85] (183.27.97.46) by EXMBX171.cuchost.com
+ (172.16.6.91) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 21 Nov
+ 2023 08:52:21 +0800
+Message-ID: <ad43c202-3796-469c-b7fb-7591026e6888@starfivetech.com>
+Date: Tue, 21 Nov 2023 08:52:21 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -51,62 +37,72 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 07/16] arm64: dts: qcom: sm8550-aim300: add PCIe0
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, <agross@kernel.org>,
-        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <tglx@linutronix.de>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <-cc=kernel@quicinc.com>
-References: <20231117101817.4401-1-quic_tengfan@quicinc.com>
- <20231117101817.4401-8-quic_tengfan@quicinc.com>
- <61977f5a-fc04-4f85-8b18-a11df3a6b5ec@linaro.org>
-From: Tengfei Fan <quic_tengfan@quicinc.com>
-In-Reply-To: <61977f5a-fc04-4f85-8b18-a11df3a6b5ec@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: qRddRAiZwe3czk4xwVz1jbjPQ0wYJQWB
-X-Proofpoint-GUID: qRddRAiZwe3czk4xwVz1jbjPQ0wYJQWB
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-20_22,2023-11-20_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0
- priorityscore=1501 phishscore=0 bulkscore=0 clxscore=1015 mlxlogscore=751
- mlxscore=0 spamscore=0 lowpriorityscore=0 impostorscore=0 suspectscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311060000 definitions=main-2311210002
+Subject: Re: [PATCH v11 19/20] PCI: starfive: Add JH7110 PCIe controller
+Content-Language: en-US
+To: Bjorn Helgaas <helgaas@kernel.org>
+CC: Conor Dooley <conor@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?=
+	<kw@linux.com>, Rob Herring <robh+dt@kernel.org>, Bjorn Helgaas
+	<bhelgaas@google.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, "Daire
+ McNamara" <daire.mcnamara@microchip.com>, Emil Renner Berthing
+	<emil.renner.berthing@canonical.com>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+	<linux-pci@vger.kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
+	"Palmer Dabbelt" <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+	"Philipp Zabel" <p.zabel@pengutronix.de>, Mason Huo
+	<mason.huo@starfivetech.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+	Kevin Xie <kevin.xie@starfivetech.com>
+References: <20231120182347.GA207554@bhelgaas>
+From: Minda Chen <minda.chen@starfivetech.com>
+In-Reply-To: <20231120182347.GA207554@bhelgaas>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [183.27.97.46]
+X-ClientProxiedBy: EXCAS061.cuchost.com (172.16.6.21) To EXMBX171.cuchost.com
+ (172.16.6.91)
+X-YovoleRuleAgent: yovoleflag
 
 
 
-在 11/17/2023 6:30 PM, Krzysztof Kozlowski 写道:
-> On 17/11/2023 11:18, Tengfei Fan wrote:
->> Add PCIe0 nodes used with WCN7851 device.  The PCIe1 is not connected,
->> thus skip pcie_1_phy_aux_clk input clock to GCC.
->>
->> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+On 2023/11/21 2:23, Bjorn Helgaas wrote:
+> On Mon, Nov 20, 2023 at 06:07:31PM +0800, Minda Chen wrote:
+>> On 2023/11/15 19:49, Minda Chen wrote:
+>> > Add StarFive JH7110 SoC PCIe controller platform driver codes, JH7110
+>> > with PLDA host PCIe core.
+>> ...
 > 
-> You just added this board. Does it mean you added incomplete and wrong DTSU?
+>> > --- a/drivers/pci/pci.h
+>> > +++ b/drivers/pci/pci.h
+>> > @@ -22,6 +22,13 @@
+>> >   */
+>> >  #define PCIE_PME_TO_L2_TIMEOUT_US	10000
+>> >  
+>> > +/*
+>> > + * PCIe r6.0, sec 6.6.1, <Conventional Reset>
+>> > + * Requires a minimum waiting of 100ms before sending a configuration
+>> > + * request to the device.
+>> > + */
+>> > +#define PCIE_BEFORE_CONFIG_REQUEST_WAIT_MS	100
+>> > +
+>> >  extern const unsigned char pcie_link_speed[];
+>> >  extern bool pci_early_dump;
+>> >  
+>> Hi Bjorn
+>>   I have not checked this carefully.
+>>   I think the change of pci.h should be moved to a indepent patch.
+>>   Could you approve this? Kevin will commit a new patch for this.
+>>   Next version I will remove this change. 
 > 
-> Best regards,
-> Krzysztof
+> Yes, I think it makes sense to add that #define in a separate patch.
 > 
+> Please trim out the unnecessary context; there's no need for readers
+> to scroll through the entire driver to get to the useful part, which
+> is just the last dozen lines or so.
+> 
+> Bjorn
 
-Hi Krzysztof,
-I will drop PCIe1 setting in dts file because of PCIe1 still have not 
-enable in dts file.
-Another I understand what your comments means is I should combine all 
-the functions which should be implemented together and submit as a 
-complete patch, right?
-I will combine all the functions patch to a total patch when I do next 
-version patch series, because there is another your comments also want 
-to me do as so.
+Thanks. I will notice this next time. 
+Happy Thanksgiving! Wish you and Rob have a good holiday.
 
--- 
-Thx and BRs,
-Tengfei Fan
+BTW. Could you give any comments to Refactoring patches (patch 2 - patch 16)and PLDA patch(patch 17) next week?  Thanks.
 
