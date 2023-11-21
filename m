@@ -1,161 +1,128 @@
-Return-Path: <devicetree+bounces-17372-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17373-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E71B7F24C2
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 05:07:05 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 536E17F2509
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 06:08:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B8A73B219C4
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 04:07:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A2BF7B21394
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 05:08:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC156171D0;
-	Tue, 21 Nov 2023 04:06:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EEA9154BE;
+	Tue, 21 Nov 2023 05:08:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="l2/3XXJ6"
+	dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b="WjE+pQhm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-xc2a.google.com (mail-oo1-xc2a.google.com [IPv6:2607:f8b0:4864:20::c2a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8640EA2;
-	Mon, 20 Nov 2023 20:06:55 -0800 (PST)
-Received: by mail-oo1-xc2a.google.com with SMTP id 006d021491bc7-58ceab7daddso60477eaf.3;
-        Mon, 20 Nov 2023 20:06:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1700539615; x=1701144415; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=uED9ZdQGQxPCqmEiK0LJztM4vTL2jEnpVnm0DVEe5EM=;
-        b=l2/3XXJ6VOobGKLNZyAqFc3XQsgLYSvfTZFx43HWGXd0qtJjaXFAWyCNTdINb5/z/Z
-         GVgzhBfju1KDyQ1bnbSqLy2BX1lZzXPFxHLkToQFXhYqvZIOHglWYugV9SNml+8o9Ln7
-         DoMVsVZZvfwX0sJpE8225IFZYwQ3SnXB/qh7i2AHWiJSjuao6BjcNNuvbm7Z2l3HEvcw
-         cGQAlhltcY85XjE813lGZY7emnALapCsyPxUv4+ZDRC9n/cNXdj5tCHFG8pc52QaH0oI
-         0oBwdtKaRwI9TUS6DY7U7OJOwcdCSBMfKp3EMeDwQJFsM4nqiOoJ1kCT/UXo+Uegz809
-         WaOw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700539615; x=1701144415;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=uED9ZdQGQxPCqmEiK0LJztM4vTL2jEnpVnm0DVEe5EM=;
-        b=b6PUwn1obWB4GGu9KZ2rC2w9g4fhigqvlfUW/wAxwyt8dORdbS4UQtc6+/ItmWRbve
-         UnjG8ye8jXlBEDYZSSLjYrhxstQJNTg3SbmOEcpYj2UUaX1jbkrZYLfu1FVpcYCw3rTe
-         oojF+jP9LvOk2bK0S14xWLstafqtH1oYQwWl5ABk/aqGF+8mfhIzsKyBtslRH0i50doQ
-         /TK/FL81oGvEKJszNZ0DsJDlv0BJfJ+971EzzKldFPRriomY5gGxy4DnT1tlzMVZHwqx
-         qYfTzsIE3G4Vap13BLHf5+8Dsr38dVneInfrA11Gpqthb8lDgLVmNuimGxT4ypsuW8aU
-         Mz4Q==
-X-Gm-Message-State: AOJu0YzRWO937j1JiRDWy5B6sFVSNAGzr8Yuav/eu4buhxAV6EGvrufr
-	SBFuRIYIpc5h47dqdSsacQoZ83XcDsg7IcmKjwfOIOTzFtk=
-X-Google-Smtp-Source: AGHT+IGEd1ffV8b215+cvSBI4uGIXsdv+yw5uXnbrjp5GMhPt/B05vpdrYE051i9meuJRhoqbKeBVz4MuD9yHsOXuDk=
-X-Received: by 2002:a05:6820:1c85:b0:57b:86f5:701c with SMTP id
- ct5-20020a0568201c8500b0057b86f5701cmr8776555oob.4.1700539614644; Mon, 20 Nov
- 2023 20:06:54 -0800 (PST)
+Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01on2048.outbound.protection.outlook.com [40.107.117.48])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A61FC8;
+	Mon, 20 Nov 2023 21:08:10 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=hzomnzXK4s9lpUve09wNixiYUs+Rfrds0w9KSUW5gRvMIagCKQyDhZMUDQew77+f4o7yXnmU2Tef44kFfeAaum7DEtCQOrVGo5G+rd9c4Jru1Xt2oWNIF5fgVTbvMzkxfCYirbifATEHNHZZjYkpEF+83Mhan5qJhaUrdiTBSxo6vfUsArQ5kStN1JwTBXU6YPSdYVI0xVa940ISHa8mZHWCdrOdxt6zIl1DrM8QuaeRTZeatSIb2N/nDQi+kEFh2B25SNlNvkHbs5P9Zj+MgOFGF8KZ+o2Kd077aL8/+ujkcYB7sAUnqI/8V4oUceAbkEN+jSNTqE9VkMOAhbtU+A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=7cko7gleIL3yeWi8iBsGI1M2Fp3HUUBQnD5dun6i+ZQ=;
+ b=eylpOpH+YZpzP1TfWdRFVQhZbFC0E08nR9iqKTMB0LCrTIpQeSe25AunT+gsRe7fw/5Zxj++gCQqr0U6IgtthBc8KjQblDz9pKJaahuBt4Peng8YPkL8iLVIkYHpZUILCf88bSP8goRbnj4LB5gHi2AF2jiXPGOuoweoKwc0q21q3G3spK+uEq3owNClEVLj4Ofv9lYxgyNIzaeRpOVFz6DfVsuwUBnQlEXIdd40FW0xB0DJs4dgSYdt7i17wKcCam5KhL/rDTPBqk7RzTQ4jCYMmn2j0RZGwACLI1dmC5/qhULTGWiyGV7T84XxTnrekDyrr51hpOopvKBD0fmNUA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 211.20.1.79) smtp.rcpttodomain=stwcx.xyz smtp.mailfrom=wiwynn.com; dmarc=fail
+ (p=quarantine sp=quarantine pct=100) action=quarantine
+ header.from=wiwynn.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wiwynn.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=7cko7gleIL3yeWi8iBsGI1M2Fp3HUUBQnD5dun6i+ZQ=;
+ b=WjE+pQhmWXRImdtxjToYCdYWRmcyCRtRNLUXi4HoMmoibkHFE6M/Zu13AR0Cpp5sJjnvXAiLkcy/oqTRlO74J8QRWK0FQY68EUGMLkHhHzkIlB010AvSgjVYYbN8xWs8FIyqN692vccFEybepyrL0BumDZlfUuap6M45OgC6c+CIRuk7VFbE9kbRDzHQFTkTmVbVEn5rjWX7CbMndvHtLfaG/T6ONBrGepW1y7Gzc121e0RDzRYDb59VDAhlu7XjGCHtUzOoL7f/HlcSzTSdDwe+ZkHgPLxQPEmou2jUtqNbTC7TpnLa+yd4JO38KCgRc38+DBNhOfXf7D3ENWl6Cg==
+Received: from SG2PR01CA0109.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:40::13) by PUZPR04MB6158.apcprd04.prod.outlook.com
+ (2603:1096:301:e5::11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7002.28; Tue, 21 Nov
+ 2023 05:08:02 +0000
+Received: from SG2PEPF000B66CC.apcprd03.prod.outlook.com
+ (2603:1096:4:40:cafe::de) by SG2PR01CA0109.outlook.office365.com
+ (2603:1096:4:40::13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7002.28 via Frontend
+ Transport; Tue, 21 Nov 2023 05:08:01 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 211.20.1.79)
+ smtp.mailfrom=Wiwynn.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=Wiwynn.com;
+Received-SPF: Fail (protection.outlook.com: domain of Wiwynn.com does not
+ designate 211.20.1.79 as permitted sender) receiver=protection.outlook.com;
+ client-ip=211.20.1.79; helo=localhost.localdomain;
+Received: from localhost.localdomain (211.20.1.79) by
+ SG2PEPF000B66CC.mail.protection.outlook.com (10.167.240.25) with Microsoft
+ SMTP Server id 15.20.7025.12 via Frontend Transport; Tue, 21 Nov 2023
+ 05:07:59 +0000
+From: Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>
+To: patrick@stwcx.xyz
+Cc: Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>,
+	Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	linux-i2c@vger.kernel.org,
+	linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: [PATCH v6 0/2] LTC4286 and LTC4287 driver support
+Date: Tue, 21 Nov 2023 13:07:53 +0800
+Message-Id: <20231121050757.2108786-1-Delphine_CC_Chiu@Wiwynn.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231119023454.1591-1-linux.amoon@gmail.com> <20231119023454.1591-2-linux.amoon@gmail.com>
- <20231119-phrasing-reverse-bbc1fde515d5@spud> <CANAwSgQ6H9FUEBKz7sCf4kUZSMnCfyXG-cpGTMZoT15W9187Kg@mail.gmail.com>
- <20231120-grinch-upbeat-05f7a32a99fa@spud>
-In-Reply-To: <20231120-grinch-upbeat-05f7a32a99fa@spud>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Tue, 21 Nov 2023 09:36:37 +0530
-Message-ID: <CANAwSgQGhDMeHLFpe8gnM2c26CjqX8QHOL1GdHrZJSvnBj39bA@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: usb: Add the binding example for the
- Genesys Logic GL3523 hub
-To: Conor Dooley <conor@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Icenowy Zheng <uwu@icenowy.me>, linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SG2PEPF000B66CC:EE_|PUZPR04MB6158:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: 7fb05eb8-fe48-47c8-dca5-08dbea4fd583
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	SX/XLj9qesGDMn+iXa7Xd8rWK0PkMBnJDPH34dW+3cWHnkh88jTRuuVfqmDOqlnsEP7TbceeZAi6MVBayyb/X2m6BvNCgBraJgmJUUSgVokMH3JeCDZxSqqyHm6H4fQiDAKX4LpmP3BuY1GtZCjkLTY0hjFnsw/aPKbpY643VMbo51A9iW4YvS/sVYUpOM3meMa/yqSIusvrQ0zbOoxvPqx2zXk2YXL+OD3hl39wppNDF22bhBF1Ma9lNvZ9kqUIlcsWhm1yAY41/gcqGmQtFtNmPWogOdyVFKQteE2IWHj0uz6Twv5+AD5l+ngwVriVWIJATKLf7NFG7jjpEW93gNKl/FQztDgLqkXP9TeQEO64eFoOpiNgb+xOCF59JvE+JtSRdxNFhTB4I2+ziJb7E97NJvapz/PiCNkyfrj4TLvWUsvgEtoWqdOYgj1d2tZa8R6wa/FRIWCH4bN41TYM3MRpUxE/23tup5+Jn5xylDXS98zkSjg6Vhl40vW0kyqh/E/Mu05MfbTUGC17dU2jEQ58Q3DoDr/wDMIS4AmdqItp4x8mFq7ILpMM1TTvyH5xzMki9BeSylXw8dwOOQ0HTntYpsKF2Ulijl2n9hINvCJPiUyXUfRNQBsA79tanXOGQyS5Dt6+ZTnl3hQ5COzhXwTWkVVTzh+wlr2pj8tIr1U38VYnOX7wd70IJfQsbLZtrPXVflvVwe9WVQuJDB3gFQ==
+X-Forefront-Antispam-Report:
+	CIP:211.20.1.79;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:localhost.localdomain;PTR:211-20-1-79.hinet-ip.hinet.net;CAT:NONE;SFS:(13230031)(6069001)(4636009)(396003)(346002)(376002)(39860400002)(136003)(230922051799003)(64100799003)(451199024)(186009)(1800799012)(82310400011)(46966006)(36840700001)(2906002)(4744005)(7416002)(5660300002)(4326008)(8936002)(8676002)(36860700001)(9316004)(82740400003)(86362001)(36756003)(41300700001)(81166007)(356005)(54906003)(36736006)(70586007)(70206006)(478600001)(6916009)(316002)(40480700001)(1076003)(956004)(336012)(26005)(2616005)(6486002)(47076005)(6666004)(6506007)(6512007);DIR:OUT;SFP:1101;
+X-OriginatorOrg: wiwynn.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Nov 2023 05:07:59.9186
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7fb05eb8-fe48-47c8-dca5-08dbea4fd583
+X-MS-Exchange-CrossTenant-Id: da6e0628-fc83-4caf-9dd2-73061cbab167
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=da6e0628-fc83-4caf-9dd2-73061cbab167;Ip=[211.20.1.79];Helo=[localhost.localdomain]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SG2PEPF000B66CC.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PUZPR04MB6158
 
-Hi Conor,
+v6 - Add LTC4286 and LTC4287 binding document
+   - Add LTC4286 and LTC4287 driver
 
-On Mon, 20 Nov 2023 at 21:15, Conor Dooley <conor@kernel.org> wrote:
->
-> On Sun, Nov 19, 2023 at 08:57:28PM +0530, Anand Moon wrote:
-> > Hi Conor,
-> >
-> > On Sun, 19 Nov 2023 at 19:28, Conor Dooley <conor@kernel.org> wrote:
-> > >
-> > > On Sun, Nov 19, 2023 at 08:04:50AM +0530, Anand Moon wrote:
-> > > > Add the binding example for the USB3.1 Genesys Logic GL3523
-> > > > integrates with USB 3.1 Gen 1 Super Speed and USB 2.0 High-Speed
-> > > > hub.
-> > >
-> > > But no comment in the commit message about the new property for the
-> > > "peer hub". $subject saying "dt-bindings: usb: Add the binding example
-> > > for the Genesys Logic GL3523 hub" is misleading when the meaningful
-> > > parts of the patch are unrelated to the example.
-> > >
-> > > >
-> > > > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> > > > ---
-> > > > V3: fix the dt_binding_check error, added new example for Genesys GL3523
-> > > > v2: added Genesys GL3523 binding
-> > > > v1: none
-> > > > ---
-> > > >  .../bindings/usb/genesys,gl850g.yaml          | 63 +++++++++++++++++--
-> > > >  1 file changed, 59 insertions(+), 4 deletions(-)
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-> > > > index ee08b9c3721f..f8e88477fa11 100644
-> > > > --- a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-> > > > +++ b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-> > > > @@ -9,9 +9,6 @@ title: Genesys Logic USB hub controller
-> > > >  maintainers:
-> > > >    - Icenowy Zheng <uwu@icenowy.me>
-> > > >
-> > > > -allOf:
-> > > > -  - $ref: usb-device.yaml#
-> > > > -
-> > > >  properties:
-> > > >    compatible:
-> > > >      enum:
-> > > > @@ -27,12 +24,44 @@ properties:
-> > > >
-> > > >    vdd-supply:
-> > > >      description:
-> > > > -      the regulator that provides 3.3V core power to the hub.
-> > > > +      phandle to the regulator that provides power to the hub.
-> > > > +
-> > > > +  peer-hub:
-> > > > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > > > +    description:
-> > > > +      phandle to the peer hub on the controller.
-> > >
-> > > What is this, why is it needed? Please explain it in your commit
-> > > message.
-> > >
-> > Ok, GL3523 integrates Genesys Logic self-developed USB 3.1 Gen 1
-> > Super Speed transmitter/receiver physical layer (PHY) and USB 2.0
-> > High-Speed PHY
-> >
-> > peer-hub is used to cross-connect those phy nodes so that it can help
-> > hub power on/off simultaneously.
->
-> I said please explain it in your commit message, but on reflection I
-> think that would be insufficient. Extending the description to explain
-> what the peer-hub is would be great too. "peer hub on the controller"
-> doesn't seem to make sense to me either, as the peer hub phandle is to
-> another phy, not to the controller. I think that would probably also be
-> resolved by explaining what the peer hub is in a more detailed manner.
->
-> If this is purely a genesys thing, the property should grow a genesys,
-> prefix also.
->
-No, some USB Hub have combined phy for USB 3.x and USB 2.0 and have common
-reset-gpios and power supply, peer-hub node helps connect the USB controller and
-bring up the USB hub.
+Delphine CC Chiu (2):
+  dt-bindings: hwmon: Add lltc ltc4286 driver bindings
+  hwmon: pmbus: Add ltc4286 driver
 
-I was waiting for more feedback on these changes.
-Once it's ok I will update with proper the commit message in v4.
+ .../bindings/hwmon/lltc,ltc4286.yaml          |  50 +++++
+ Documentation/hwmon/index.rst                 |   1 +
+ Documentation/hwmon/ltc4286.rst               |  95 +++++++++
+ MAINTAINERS                                   |  10 +
+ drivers/hwmon/pmbus/Kconfig                   |  10 +
+ drivers/hwmon/pmbus/Makefile                  |   1 +
+ drivers/hwmon/pmbus/ltc4286.c                 | 183 ++++++++++++++++++
+ 7 files changed, 350 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/lltc,ltc4286.yaml
+ create mode 100644 Documentation/hwmon/ltc4286.rst
+ create mode 100644 drivers/hwmon/pmbus/ltc4286.c
 
-Thanks
--Anand
+-- 
+2.25.1
 
-> Cheers,
-> Conor.
 
