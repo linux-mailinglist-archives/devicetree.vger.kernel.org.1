@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-17409-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17410-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C12FA7F2695
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 08:45:43 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CFF77F269A
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 08:47:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B1CDEB21122
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 07:45:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CE11E1C20D42
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 07:47:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01CD2328D4;
-	Tue, 21 Nov 2023 07:45:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAC1A33993;
+	Tue, 21 Nov 2023 07:47:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sFxT/va/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="St5jGvHd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B536BE
-	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 23:45:33 -0800 (PST)
-Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-548c548c40aso3042631a12.0
-        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 23:45:33 -0800 (PST)
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD6B2BE
+	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 23:47:23 -0800 (PST)
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-a00b056ca38so141458966b.2
+        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 23:47:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700552732; x=1701157532; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1700552842; x=1701157642; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Tdu7V4JOtmo9UDSHdBAvY/BhBUGtCKj5m7xi64q+zFI=;
-        b=sFxT/va/FUtW8AF9O5VejYdKIKpIqvaOh+dFPnTQ/9xb/1mnYyMgbv07BOSRLHXDHz
-         VFc4jMG961ZaPQ0xJfUxgeuhaqHBbuIzyPGUp9s46/SkhZ8in1GzIGmh3hTCi1xk3CUK
-         AWScDF/B6xE9E+88iqwfjKLvktqY7WlbCxlTXpTdNIHS+gsm0l2UFbHlTcq4ybE3rgyK
-         Isk+NuCnbyFfI7zKu1W35csvjcdzoMANoGkuzb4/wklyHH+7Wo2jqFheeVatu04Gtu+d
-         xVzdq5KF8jjBoH+HiHi/yBcwRgPBlD05aQiq1TXdpwa9yn7k+URQJOgomYQQDjr3giws
-         M3oA==
+        bh=QqorQbljtFpA0x+MxGfUnzvUIXIXOJHNHwKUm5kHLXI=;
+        b=St5jGvHdWcPWCenXMqcYQsn/ukBgOEPfKOQw3TMnkLXbgqFJxtEtge4DjKR7W30y9G
+         X9lVlBMnkpFgp0JjXSWZwcCWgjthnOhJBVAlhkIX1+loiDYxqGeg0E4WtPOTqWF6W9NZ
+         9BOnb9/oWyWrsbk/QaHgtWKngUpaTbGeHj0ZJHjvvpSDKSBsNwhWnK31yk07kTWFF1dE
+         ZpH7GCj0/3NX06d80SgP99R0y1rP17AvjpW/M23c1XwysEHUDamQ7iic0IiqlREKWFMa
+         8aklk/6GNbTp/p9IoTu901v9nC/iJkxRBcyMgeFIuTvPMldnxw0+wALDQKW5HWTpvLxg
+         x+2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700552732; x=1701157532;
+        d=1e100.net; s=20230601; t=1700552842; x=1701157642;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Tdu7V4JOtmo9UDSHdBAvY/BhBUGtCKj5m7xi64q+zFI=;
-        b=VgIs1GhVZnoq/jmJm4Fmv2f5LVhIYGNN6E3d860l/vTB42AnbvAOpu78fphhvK5nB1
-         ZCmhbJ08jUF2QBaWipyZ2Lxm4xCgasCH84nWP6N5Ym2MPtm1a+tTHI3V/r4ItiJqhpIa
-         Y9bipuSiIN4pTHI9CtLXn5QYTthKXtH/Owu0A81VbF3CZsRWpJOWDt0aWS6QSSZqcXye
-         SnUBe8Rv1Oqm7YDXb4Imgjg7TvwS4qmpEKCiLzy3IhbJcX2D9EKCr7A5O692yANoMVPb
-         6VI4OdakoctbZ2X+e5h7Zr0kkGHpjk4VVJ7Gw8bKhevYns/r4xIhB5RfWZRSWkYNoq9s
-         gLkg==
-X-Gm-Message-State: AOJu0YwbzLb2izp8mYikscEwE4fV9S+BgyfHQYQg4IwPzSevWBtAke7k
-	sHAVUiZ1/SgmPl9W5AyApt+Gbg==
-X-Google-Smtp-Source: AGHT+IEaaVVkiALP/iu5RycIlbzt/jWJ9fZrCEMJ61A0CCjHf77UghSeJ1SCGdsObImZd5/QvF++OQ==
-X-Received: by 2002:a17:907:d27:b0:9ee:462c:7924 with SMTP id gn39-20020a1709070d2700b009ee462c7924mr2332688ejc.9.1700552731935;
-        Mon, 20 Nov 2023 23:45:31 -0800 (PST)
+        bh=QqorQbljtFpA0x+MxGfUnzvUIXIXOJHNHwKUm5kHLXI=;
+        b=NRiPuMAJu4J2gMQmrZ6TgkzgkzCSRMHVtOkqEag0574HgYYup5PjjwXLS5C510Al2D
+         vODleMspaArV41qwRkeU87z7sSWE10B+uCp2z676wQXoA0aO4eCkTZ8bTce/7gNu+TvX
+         XOhw7cG+OtZ6MWws5/hUnxdjYNomTkI+UtDcc4Ojy3Ws0Bi7NDWNE/4HOKxApAg+Nj9s
+         5DOithA6q8HyjJr5YvHO72NlG+Y4+ieNj5vYTv0Yg5bJsVFY+qqNczdSdyk792e07fZH
+         Sf7wFOMem9QKFsxccHGilpfk8DRDg9N+F9wnko9r/QWytk9pf/5GHd/7f1sCMdlX41j9
+         /KXw==
+X-Gm-Message-State: AOJu0Ywyy4x6Fx3ymCT/g2oFrDdT+0N2TvS9tZ9FXIwVrtRGpDrFFprF
+	H+HAhYW405KRn/GAsSZCKDDi0Q==
+X-Google-Smtp-Source: AGHT+IHueEI/LYzq8OnogdMBjjkgXmWFk8XwmxU9cgWy13QqTgMpQ8th6trg2y3LXbmauXNw3li19Q==
+X-Received: by 2002:a17:906:bc53:b0:9fe:6349:d8ba with SMTP id s19-20020a170906bc5300b009fe6349d8bamr3789712ejv.27.1700552842316;
+        Mon, 20 Nov 2023 23:47:22 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.11])
-        by smtp.gmail.com with ESMTPSA id q2-20020a170906b28200b009ad8acac02asm4919276ejz.172.2023.11.20.23.45.30
+        by smtp.gmail.com with ESMTPSA id n21-20020a1709062bd500b00a015eac52dcsm752988ejg.108.2023.11.20.23.47.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Nov 2023 23:45:31 -0800 (PST)
-Message-ID: <2ab74479-f1fb-4faf-b223-ae750b4c08ce@linaro.org>
-Date: Tue, 21 Nov 2023 08:45:29 +0100
+        Mon, 20 Nov 2023 23:47:21 -0800 (PST)
+Message-ID: <b48293f3-16e3-4980-b900-add0cb7d69f6@linaro.org>
+Date: Tue, 21 Nov 2023 08:47:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,15 +62,31 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: net: renesas,ethertsn: Add bindings for
- Ethernet TSN
+Subject: Re: [PATCH v2] docs: dt-bindings: add DTS Coding Style document
 Content-Language: en-US
-To: =?UTF-8?Q?Niklas_S=C3=B6derlund?=
- <niklas.soderlund+renesas@ragnatech.se>, Rob Herring <robh+dt@kernel.org>,
+To: Michal Simek <michal.simek@amd.com>,
+ Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- devicetree@vger.kernel.org
-Cc: netdev@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-References: <20231120160740.3532848-1-niklas.soderlund+renesas@ragnatech.se>
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ Andrew Davis <afd@ti.com>, Arnd Bergmann <arnd@arndb.de>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Heiko Stuebner <heiko@sntech.de>, Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Nishanth Menon <nm@ti.com>,
+ Olof Johansson <olof@lixom.net>, linux-rockchip@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-arm-msm@vger.kernel.org
+References: <20231120084044.23838-1-krzysztof.kozlowski@linaro.org>
+ <19358871-009d-4498-9c13-90d5338b1e9f@amd.com>
+ <76fa8f61-fe31-4040-a38d-cc05be3f4f17@linaro.org>
+ <CAMuHMdW4WPJT0Km7w8RWrGJaztk6QDGoFAn0bdGbrEsw81R1FA@mail.gmail.com>
+ <acfdce81-f117-4a1a-a9fe-e2b4b8922adb@linaro.org>
+ <bd49f17c-7ebf-4e19-b77b-b5ec95375f7d@amd.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -116,148 +132,73 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231120160740.3532848-1-niklas.soderlund+renesas@ragnatech.se>
+In-Reply-To: <bd49f17c-7ebf-4e19-b77b-b5ec95375f7d@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 20/11/2023 17:07, Niklas Söderlund wrote:
-> Add bindings for Renesas R-Car Ethernet TSN End-station IP. The RTSN
-> device provides Ethernet network.
+On 21/11/2023 08:33, Michal Simek wrote:
 > 
-> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-
-Please use scripts/get_maintainers.pl to get a list of necessary people
-and lists to CC (and consider --no-git-fallback argument). It might
-happen, that command when run on an older kernel, gives you outdated
-entries. Therefore please be sure you base your patches on recent Linux
-kernel.
-
-Why do you decide to skip some maintainers?
-
-> ---
->  .../bindings/net/renesas,ethertsn.yaml        | 133 ++++++++++++++++++
->  1 file changed, 133 insertions(+)
-
-A nit, subject: drop second/last, redundant "bindings for". The
-"dt-bindings" prefix is already stating that these are bindings.
-
->  create mode 100644 Documentation/devicetree/bindings/net/renesas,ethertsn.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/net/renesas,ethertsn.yaml b/Documentation/devicetree/bindings/net/renesas,ethertsn.yaml
-> new file mode 100644
-> index 000000000000..255c8f3a5a3b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/renesas,ethertsn.yaml
-> @@ -0,0 +1,133 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/renesas,ethertsn.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas Ethernet TSN End-station
-> +
-> +maintainers:
-> +  - Niklas Söderlund <niklas.soderlund@ragnatech.se>
-> +
-> +description:
-> +  The RTSN device provides Ethernet network using a 10 Mbps, 100 Mbps, or 1
-> +  Gbps full-duplex link via MII/GMII/RMII/RGMII. Depending on the connected PHY.
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
+> On 11/20/23 20:31, Krzysztof Kozlowski wrote:
+>> On 20/11/2023 20:18, Geert Uytterhoeven wrote:
+>>> Hi Krzysztof,
+>>>
+>>> On Mon, Nov 20, 2023 at 3:53 PM Krzysztof Kozlowski
+>>> <krzysztof.kozlowski@linaro.org> wrote:
+>>>> On 20/11/2023 15:01, Michal Simek wrote:> >
+>>>>> On 11/20/23 09:40, Krzysztof Kozlowski wrote:
+>>>>>> Document preferred coding style for Devicetree sources (DTS and DTSI),
+>>>>>> to bring consistency among all (sub)architectures and ease in reviews.
+>>>
+>>>>>> +Organizing DTSI and DTS
+>>>>>> +-----------------------
+>>>>>> +
+>>>>>> +The DTSI and DTS files should be organized in a way representing the common
+>>>>>> +(and re-usable) parts of the hardware.  Typically this means organizing DTSI
+>>>>>> +and DTS files into several files:
+>>>>>> +
+>>>>>> +1. DTSI with contents of the entire SoC (without nodes for hardware not present
+>>>>>> +   on the SoC).
+>>>>>> +2. If applicable: DTSI with common or re-usable parts of the hardware (e.g.
+>>>>>> +   entire System-on-Module).
+>>>>>
+>>>>> DTS/DTSI - SOMs can actually run as they are that's why it is fair to say that
+>>>>> there doesn't need to be DTS representing the board.
+>>>>
+>>>> I have never seen a SoM which can run without elaborate hardware-hacking
+>>>> (e.g. connecting multiple wires to the SoM pins). The definition of the
+>>>> SoM is that it is a module. Module can be re-used, just like SoC.
+>>>
+>>> /me looks at his board farm...
+>>>
+>>> The Renesas White-Hawk CPU board can be used standalone, and has a
+>>> separate power input connector for this operation mode.  As it has RAM,
+>>> Ethernet, serial console, eMMC, and even mini-DP, it can serve useful
+>>> purposes on its own.
+>>> I agree it's not a super-good example, as the board is not really a
+>>> "SoM", and we currently don't have r8a779g0-white-hawk-cpu.dts, only
+>>> r8a779g0-white-hawk-cpu.dtsi.
+>>>
+>>> The RZ/A2M CPU Board is a real SoM, which can be powered over USB.
+>>> It has less standard connectors (microSD, USB, MIPI CSI-2), but still
+>>> sufficient features to be usable on its own.
+>>> Again, we're doing a bad job, as we only have a DTS for the full eval
+>>> board (r7s9210-rza2mevb.dts).
+>>>
+>>> I guess there are (many) other examples...
+>>
+>> OK, I never had such in my hands. Anyway, the SoM which can run
+>> standalone  has a meaning of a board, so how exactly you want to
+>> rephrase the paragraph?
+> 
+> What about?
+> 
+> 2. If applicable: DTSI with common or re-usable parts of the hardware (e.g.
+> entire System-on-Module). DTS if runs standalone.
 
-Drop items.
-
-I assume you have oneOf above because you predict this will grow with
-entries with fallbacks? If not, drop.
-
-> +          - enum:
-> +              - renesas,ethertsn-r8a779g0      # R-Car V4H
-> +
-> +  reg:
-> +    items:
-> +      - description: TSN End Station target
-> +      - description: generalized Precision Time Protocol target
-> +
-> +  reg-names:
-> +    items:
-> +      - const: tsnes
-> +      - const: gptp
-> +
-> +  interrupts:
-> +    items:
-> +      - description: TX data interrupt
-> +      - description: RX data interrupt
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: tx_data
-
-tx
-
-> +      - const: rx_data
-
-rx
-
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  phy-mode:
-> +    contains:
-> +      enum:
-> +        - mii
-> +        - rgmii
-> +
-> +  phy-handle:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      Specifies a reference to a node representing a PHY device.
-
-You miss top-level $ref to ethernet controller
-
-> +
-> +  renesas,rx-internal-delay:
-> +    type: boolean
-> +    description:
-> +      Enable internal Rx clock delay, typically 1.8ns.
-
-Why this is bool, not delay in ns?
-Why this is property of a board (not SoC)?
-
-> +
-> +  renesas,tx-internal-delay:
-> +    type: boolean
-> +    description:
-> +      Enable internal Tx clock delay, typically 2.0ns.
-
-Same questions.
-
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
-> +
-> +patternProperties:
-> +  "^ethernet-phy@[0-9a-f]$":
-> +    type: object
-> +    $ref: ethernet-phy.yaml#
-
-Missing unevaluatedProperties. Open existing bindings and look how it is
-done there. Don't create something different.
-
-
+OK, but then it's duplicating the option 3. It also suggests that SoM
+should be a DTS, which is not what we want for such case. Such SoMs must
+have DTSI+DTS.
 
 Best regards,
 Krzysztof
