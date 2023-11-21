@@ -1,358 +1,380 @@
-Return-Path: <devicetree+bounces-17354-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17355-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D03107F2394
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 03:05:54 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 390E37F23AF
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 03:12:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 82EAA282882
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 02:05:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B0EBF1F26611
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 02:12:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05F4B134C7;
-	Tue, 21 Nov 2023 02:05:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EE1414A8F;
+	Tue, 21 Nov 2023 02:12:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="e+/RA8jH"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="hI6HwzSJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2136.outbound.protection.outlook.com [40.107.114.136])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D5E883;
-	Mon, 20 Nov 2023 18:05:46 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YdmW1o46K13M0L3n163vrAjqu7Il8wDCvyAhn746Yagc9P+1XWf8fSWe/J3y2ia5klt9EYwTkiMvMx+zI8L75/FFmxT0HuteTGSozMe0Xk62JXh93/LgBXLtnNLU2GFNRqx/kl7C1FoE7HVFJ1eehIy2VVcvxLf9cC4HW6N2orDcK8jHrPbzcOhB0tBjM9AklHLlJvl+izQz5AMPSSWxu7/q7vS22T25UuAS30ot0BE/awZNIoFlkAihyat7uqdifYI01xHJNJMjKZK/TyS7DVj3d66mtEetPpxS2dRGa27xHYtULwT85l6qla36rnQSy0ibLvNq/s0tJ4AbF7NDeA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=XTWnMTnCxeH1ufjME++NKJA16TJrDDuNLjYP9pYIRzE=;
- b=AbsdI8SSlM4cf/NO692uXi4TJxPr/im+sMQ1WoaKraDXN5cxnEpkmBqJYJyBC7GR+jhnEi5paFTTBw8Vfd7YoLVws0C290ZRySjILmrpeVlTFxOjSVSfgqJC03LFmsHrBrk6FBrQXbipmKOtHRV9YBAZg9qVV86CxVxqdPzymGw6GgoktzEr+lpNkXi0qnLgt52qAdLkfcl8MoR9/s4LPspy1DwhA3uBGbUgFApSBY/DoH3t1RyLVmdwNepUereurpAqQ8r0qb1zj/hrezEuKMifGPWvJgYmGoOev6870zrDzSdjjkh4+5bRsGRuzaEtMJF3e/QnRBg72aYY2edz8g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XTWnMTnCxeH1ufjME++NKJA16TJrDDuNLjYP9pYIRzE=;
- b=e+/RA8jHNa7fbUSKs+i1Ghtjfwj33tsbIdyz/enlB5Jy6dCHrOoJJC740sBaIpQckebJFe8//3vVv0ji+rKrocDH5ZI2DHVParSPpildh7ttC4ozsnPtwA6N1raoi1unfvaG/uLOoSQXp97JN2BxuV3PXvRgE5tbLvgI0j8GSOE=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
- (2603:1096:400:3a9::11) by OSZPR01MB8610.jpnprd01.prod.outlook.com
- (2603:1096:604:18d::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7002.28; Tue, 21 Nov
- 2023 02:05:43 +0000
-Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
- ([fe80::16b3:a84d:faa6:4846]) by TYCPR01MB10914.jpnprd01.prod.outlook.com
- ([fe80::16b3:a84d:faa6:4846%6]) with mapi id 15.20.7002.028; Tue, 21 Nov 2023
- 02:05:43 +0000
-Message-ID: <87a5r7c13d.wl-kuninori.morimoto.gx@renesas.com>
-From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Subject: [PATCH v2 4/4] drivers: clk: renesas: enable all clocks which is assinged to non Linux system
-User-Agent: Wanderlust/2.15.9 Emacs/27.1 Mule/6.0
-To: Frank Rowand <frowand.list@gmail.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Stephen Boyd <sboyd@kernel.org>
-Cc: Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Aymeric Aillet <aymeric.aillet@iot.bzh>,
-	Yusuke Goda <yusuke.goda.sx@renesas.com>
-In-Reply-To: <87fs0zc14m.wl-kuninori.morimoto.gx@renesas.com>
-References: <87fs0zc14m.wl-kuninori.morimoto.gx@renesas.com>
-Content-Type: text/plain; charset=US-ASCII
-Date: Tue, 21 Nov 2023 02:05:42 +0000
-X-ClientProxiedBy: TYCPR01CA0200.jpnprd01.prod.outlook.com
- (2603:1096:405:7a::7) To TYCPR01MB10914.jpnprd01.prod.outlook.com
- (2603:1096:400:3a9::11)
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01865C8
+	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 18:12:29 -0800 (PST)
+Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-5480edd7026so6461460a12.0
+        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 18:12:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1700532747; x=1701137547; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9oErZSNPpRWj6cWya6fUNKL2baOOgkbfElqn5bDFEVg=;
+        b=hI6HwzSJqvv1l6eUOdiw8G6El52O7iwrLBNs5BCWCw3HIxV5qzXyVeLVA5LlP2vgKH
+         QJ2z29cqeoRZfx6ilVuPVWLtXoU8Tjcju0ns0MO3zONgI9Ae9PQw/pURSdi1mEaDchcL
+         JkHEClHRNOV3VFWcRzhFtiSQoZuzaPqKzTOsc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700532747; x=1701137547;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=9oErZSNPpRWj6cWya6fUNKL2baOOgkbfElqn5bDFEVg=;
+        b=K9+YghxvCJQDApY4/aLd2sdVn26WoW03u81qJZUNxAbnNkvh+HEcwSyV+0Z5umXOST
+         nqN3jg15mMK1enJOLYLeDvAhTV/yGzJN5of+bbNvECneLYar7cq2o2AqW2Dtw2U23+ZA
+         wNoI2/apvOdLUy/bcgJTPoDT3g51B3y1bseEkxpn2uM1XlotzH34Q4g9GXiVlcfn/pAg
+         8uaz72vHKZgniNErZ5CDXGMG3bxmepeuqtpbnxaYDFg+Pl0QyIIKzV833DKW2BNZafA3
+         UdRKuug09anUlJ/slJx1ij1WsguQ5nKpwakmFlk6yvvAZ3lYzEBIUNtw/fI2GlbyEyri
+         3QUQ==
+X-Gm-Message-State: AOJu0YxoB2szRwnIwRDPVmV6LjRangJWhWZg8ZbUsjp7nxrvCdeSQs/E
+	0LvXeKioDc5GBriN/aAF0Yr4e2icFUH5en3X/dUMNA==
+X-Google-Smtp-Source: AGHT+IEzZ6s5vb8lIiHxjBh0g3WDopuC29/uf986diynE3D2QSfTI/OYBwO7jAdNcvlEjuiL/tfXN7R6J2D15fFjvM0=
+X-Received: by 2002:a17:906:224d:b0:9bf:2f84:5de7 with SMTP id
+ 13-20020a170906224d00b009bf2f845de7mr6153971ejr.4.1700532747244; Mon, 20 Nov
+ 2023 18:12:27 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYCPR01MB10914:EE_|OSZPR01MB8610:EE_
-X-MS-Office365-Filtering-Correlation-Id: ac762b7d-8caf-47c9-cabe-08dbea365e11
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	m5UGuOQ3u5JWetRggFK5+Ndj8LLY+JDB6KG7CQOIgAwek/z98nZZSBFC/L4BgbKeXx+3y1ZQ2q7JUPizr5Db1CAi2DySJ9oX84u3XBnSi14TlrEmgexhblKhn9FDJ9BemUxCxqBMJBexvBbSu7V9jOL7YidGMGHuecF85ahbKOesYHQ6uZJPLYrnLl6dzusqr8ehno8S3Kcg4GZRYxNQhAmVKVsVeNxwKmDmJCyy/DK5kGeYK6dc6gROsjjcaMpsbCF01/alT2epGJOzzwLU5VqoiKs0sWpZmSUQgD/u0X1K69hicaham0Xj2Mo0gYF3/DPbyE/se4vjEAFyd58GioNdYOPYSEqoNTQuNzueo07iFW0a3BNm1hNtoN661aHt1H2vRdD15h6GfPw7VSm1ErIXDuJorsu6r/tsP+Y6//IRzTR+Xo8gwk6kTH4+fW5Yl5fVl+/fG52rgO3PpiNLDzaewLFz/RsMuCxx9yNbRzW+b83TP6kSH3pBDJ9L92asJbUxe8Ngu4qM/8AJymRbUxE029GjS3mYVLzqMFSh17xfUCWe4yYC6WXyM/rAusBUkQJeB3n39abeBHyI77GcMQEwPlK3Q093DUaeXZVYzxa8TkEDeN9lxJykx1A/0Y0o
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB10914.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(346002)(366004)(376002)(396003)(39860400002)(230922051799003)(64100799003)(451199024)(1800799012)(186009)(2906002)(4326008)(8676002)(8936002)(86362001)(7416002)(5660300002)(38350700005)(41300700001)(36756003)(26005)(83380400001)(52116002)(6512007)(6506007)(2616005)(107886003)(38100700002)(316002)(66476007)(54906003)(66556008)(66946007)(478600001)(110136005)(966005)(6486002)(21314003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?0vDX296dsJtE75ntnKkks34P5hRBPuQkQoILKGQF6CtT1+kPjk/dvNizki5L?=
- =?us-ascii?Q?jzLgvGk9d7/AyxBapTNtnthYrCSWf3bo/IoKgHGdbri1hxgfhPn8bugWEtUF?=
- =?us-ascii?Q?nc97knSDrhaA6AO4MW330kiaiP06zGEIXIb9pS8l4xpns/Z/++hcKMXQYMo0?=
- =?us-ascii?Q?xufk8pFlk4mX/8N8Tb3h8dN8hs8sjV3ztO8aUde2S86aBsEtmT4V0wtGRVro?=
- =?us-ascii?Q?0ipaLFDZQj64vsKfHJ/cWSFb/h7Tpe5MT7R2/8d/prtwZVOTmSdkPRptaHZF?=
- =?us-ascii?Q?wr2nhx1moLzR8vc9cPEruItagcE8EsdyUmX5bizb4SeRtRQsH1V7LIh1/Oac?=
- =?us-ascii?Q?LnFwUw4nol3jNLJPynrEiM5BUh6e0bHAboNi2k8CDqo3hUTraAJZ8ZmAYbLU?=
- =?us-ascii?Q?k9UL/srIFIe/GtErQua93+mbcwkRQNhnek/2E/oMWlBf8UPkxOtfYffU0Lhn?=
- =?us-ascii?Q?VmLV8tcUZjnKejpqdjnoSCOJuKHglwckpnFJifxM+x1xHMUmAhgZWZZNLibg?=
- =?us-ascii?Q?6cP36uwVIawFmS8NXHfdPhJabpbb9N5qEXdQC5fEg0Hwcsqy9mL+yeFKY49F?=
- =?us-ascii?Q?7+Xp+ASQl/JVf9HHkAJEPVd3EJK0HwtM0CyKemghutanmukrgssXxjiaWugR?=
- =?us-ascii?Q?pU0q4VNUsmJy7GC90IzMXl4bUyqIklk3b92svfV/axjd6ECf+qnOn//mbN0P?=
- =?us-ascii?Q?tuIYzyAAXYvywXSUklNTqYtZjOpA7oo8x6riGY0w2PSdTQNJHbYUAdDv819u?=
- =?us-ascii?Q?BGRdOdGEWSmSAeb8ZJuha3FdQt1AqqGsiBv9MpTO/hfAG8DllcI/Sp63YIvF?=
- =?us-ascii?Q?VGwLiek8+ybPXcwUEa90Fi7/dYo9snlkgjRMYxhTUYfcTdMFTlEwgchthvi7?=
- =?us-ascii?Q?Nw5ALpl2sAy9gyUURSsNSE5q6yOC6/rJfJk5ur/TPlqH58QrqUc16ysY1cu5?=
- =?us-ascii?Q?PQeBnEJ5DISIvHslpwIaPavVz9+A6I8qRqRnOeLo3CvXaB2uTzJR78KOhiNR?=
- =?us-ascii?Q?zvVh6oxzwDdmoIFAWvv+PQHREAH9ZIm8AmXy/HWFl6ldAT5qsFM3ygf8gOYu?=
- =?us-ascii?Q?z4tRxgYz2S6kekWs019YzOngnYghpNV1x3CSsnIi5evBxUeemzKbpBDCILzh?=
- =?us-ascii?Q?ZgljW+YZbyVA5IhLPweZRSJvDzvj7yVSQ45arxPPPsrjhBs7PPCYxIQes9WM?=
- =?us-ascii?Q?i1i1yNUJ7ICRsub9ejhfNQMhHVkfpU13c3ok0D67hz/9vUN8TfXpS7B7X4GF?=
- =?us-ascii?Q?KmJkpNQ6qX8i1HTLi7xIiTY/hR03k+UJIb2t02/6qKBnVdbdRQgcNL4ydaFm?=
- =?us-ascii?Q?wFjdz0Xn1i03s3O7ae2J8603i6Ns188Fm2hrZ0HGo+5R4xaSlg41G+cTg519?=
- =?us-ascii?Q?KqphW4Qb1qrYn3qduN/C9DLeoUpk7mKptEyMHVFAxL9xXNOaKW/NVpAmaeT4?=
- =?us-ascii?Q?cAV1zNPYGZZ/HgNsIptrBrdFc8kkRxSHJDiPW6qhWcLE2K2+Vxkb9W5JzGt7?=
- =?us-ascii?Q?pZK+uBYlZ705dwV7KUhLL/fbFZqo+Yl/YIJaEPyU7ccTkubZdXqSWlaMmZ6i?=
- =?us-ascii?Q?If5XuHbc3Ui30TJvccX5Uv6Q9uVUZYOlMJymS73yUg5HMWw54UZFoGVNHEYX?=
- =?us-ascii?Q?CzK1+MegVdFqkwhAWCBXE7w=3D?=
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ac762b7d-8caf-47c9-cabe-08dbea365e11
-X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB10914.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Nov 2023 02:05:43.2218
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: fOkesvaM/yGBVlGGDtQS9Ufk+Zra039C4Gdpss0UtChRUR+8Z+VI8d5XR989vIEFRxfkb8bYfatplp3DBqMseIfzid/vM7GwqM1hv68W8rSSxWztx/JEzFXrxGXdLsr/
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSZPR01MB8610
+References: <20230926194242.2732127-1-sjg@chromium.org> <20230926194242.2732127-2-sjg@chromium.org>
+ <BN9PR11MB5483FF3039913334C7EA83E1E6AEA@BN9PR11MB5483.namprd11.prod.outlook.com>
+ <CAMj1kXFG92NpL7T7YocOup0xLKyopt3MnSCp0RL8cLzozzJz7A@mail.gmail.com> <BN9PR11MB548303B09536EB1577472029E6B3A@BN9PR11MB5483.namprd11.prod.outlook.com>
+In-Reply-To: <BN9PR11MB548303B09536EB1577472029E6B3A@BN9PR11MB5483.namprd11.prod.outlook.com>
+From: Simon Glass <sjg@chromium.org>
+Date: Mon, 20 Nov 2023 19:12:15 -0700
+Message-ID: <CAPnjgZ36t8g7E=0MSJyaV8-QKv9RVYe47Jd5E=NU-mFM4LWBQA@mail.gmail.com>
+Subject: Re: [PATCH v7 2/2] schemas: Add some common reserved-memory usages
+To: "Chiu, Chasel" <chasel.chiu@intel.com>
+Cc: Ard Biesheuvel <ardb@kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
+	Rob Herring <robh@kernel.org>, "Tan, Lean Sheng" <sheng.tan@9elements.com>, 
+	lkml <linux-kernel@vger.kernel.org>, Dhaval Sharma <dhaval@rivosinc.com>, 
+	"Brune, Maximilian" <maximilian.brune@9elements.com>, Yunhui Cui <cuiyunhui@bytedance.com>, 
+	"Dong, Guo" <guo.dong@intel.com>, Tom Rini <trini@konsulko.com>, 
+	ron minnich <rminnich@gmail.com>, "Guo, Gua" <gua.guo@intel.com>, 
+	"linux-acpi@vger.kernel.org" <linux-acpi@vger.kernel.org>, U-Boot Mailing List <u-boot@lists.denx.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Some board might use Linux and another OS in the same time. In such
-case, current Linux will stop necessary module clock when booting
-which is not used on Linux side, but is used on another OS side.
+Hi,
 
-To avoid such situation, renesas-cpg-mssr try to find
-status = "reserved" devices (A), and add CLK_IGNORE_UNUSED flag to its
-<&cgp CPG_MOD xxx> clock (B).
+On Mon, 13 Nov 2023 at 11:09, Chiu, Chasel <chasel.chiu@intel.com> wrote:
+>
+>
+> Hi Ard,
+>
+> Please see my reply below inline.
+>
+> Thanks,
+> Chasel
+>
+>
+> > -----Original Message-----
+> > From: Ard Biesheuvel <ardb@kernel.org>
+> > Sent: Saturday, November 11, 2023 3:04 AM
+> > To: Chiu, Chasel <chasel.chiu@intel.com>
+> > Cc: Simon Glass <sjg@chromium.org>; devicetree@vger.kernel.org; Mark Ru=
+tland
+> > <mark.rutland@arm.com>; Rob Herring <robh@kernel.org>; Tan, Lean Sheng
+> > <sheng.tan@9elements.com>; lkml <linux-kernel@vger.kernel.org>; Dhaval
+> > Sharma <dhaval@rivosinc.com>; Brune, Maximilian
+> > <maximilian.brune@9elements.com>; Yunhui Cui <cuiyunhui@bytedance.com>;
+> > Dong, Guo <guo.dong@intel.com>; Tom Rini <trini@konsulko.com>; ron minn=
+ich
+> > <rminnich@gmail.com>; Guo, Gua <gua.guo@intel.com>; linux-
+> > acpi@vger.kernel.org; U-Boot Mailing List <u-boot@lists.denx.de>
+> > Subject: Re: [PATCH v7 2/2] schemas: Add some common reserved-memory
+> > usages
+> >
+> > On Sat, 11 Nov 2023 at 04:20, Chiu, Chasel <chasel.chiu@intel.com> wrot=
+e:
+> > >
+> > >
+> > > Just sharing some usage examples from UEFI/EDK2 scenario.
+> > > To support ACPI S4/Hibernation, memory map must be consistent before
+> > > entering and after resuming from S4, in this case payload may need to
+> > > know previous memory map from bootloader (currently generic payload
+> > > cannot access platform/bootloader specific non-volatile data, thus
+> > > could not save/restore memory map information)
+> >
+> > So how would EDK2 reconstruct the entire EFI memory map from just these
+> > unannotated /reserved-memory nodes? The EFI memory map contains much
+> > more information than that, and all of it has to match the pre-hibernat=
+e situation,
+> > right? Can you given an example?
+>
+>
+> Here we listed only typically memory types that may change cross differen=
+t platforms.
+> Reserved memory type already can be handled by reserved-memory node, and =
+rest of the types usually no need to change cross platforms thus currently =
+we could rely on default in generic payload.
+> In the future if we see a need to add new memory types we will discuss an=
+d add it to FDT schema.
+>
+>
+>
+> >
+> > > Another usage is to support binary model which generic payload is a p=
+rebuilt
+> > binary compatible for all platforms/configurations, however the payload=
+ default
+> > memory map might not always work for all the configurations and we want=
+ to
+> > allow bootloader to override payload default memory map without recompi=
+ling.
+> > >
+> >
+> > Agreed. But can you explain how a EDK2 payload might make meaningful us=
+e of
+> > 'runtime-code' regions provided via DT  by the non-EDK2 platform init? =
+Can you
+> > give an example?
+>
+>
+> Runtime-code/data is used by UEFI payload for booting UEFI OS which requi=
+red UEFI runtime services.
+> Platform Init will select some regions from the usable memory and assign =
+it to runtime-code/data for UPL to consume. Or assign same runtime-code/dat=
+a from previous boot.
+> If UEFI OS is not supported, PlatformInit may not need to provide runtime=
+-code/data regions to payload. (always providing runtime-code/data should b=
+e supported too)
+>
+>
+> >
+> > > Under below assumption:
+> > >         FDT OS impact has been evaluated and taken care by relevant
+> > experts/stakeholders.
+> > > Reviewed-by: Chasel Chiu <chasel.chiu@intel.com>
+> > >
+> >
+> > I am sorry but I don't know what 'FDT OS impact' means. We are talking =
+about a
+> > firmware-to-firmware abstraction that has the potential to leak into th=
+e OS
+> > visible interface.
+> >
+> > I am a maintainer in the Tianocore project myself, so it would help if =
+you could
+> > explain who these relevant experts and stakeholders are. Was this discu=
+ssed on
+> > the edk2-devel mailing list? If so, apologies for missing it but I may =
+not have been
+> > cc'ed perhaps?
+>
+>
+>
+>
+> I'm not familiar with FDT OS, also I do not know if who from edk2-devel w=
+ere supporting FDT OS, I think Simon might be able to connect FDT OS expert=
+s/stakeholders.
+> We are mostly focusing on payload firmware phase implementation in edk2 (=
+and other payloads too), however, since we have aligned the payload FDT and=
+ OS FDT months ago, I'm assuming FDT OS impact must be there and we need (o=
+r already done?) FDT OS experts to support it. (again, maybe Simon could sh=
+are more information about FDT OS)
+>
+> In edk2 such FDT schema is UefiPayloadPkg internal usage only and payload=
+ entry will convert FDT into HOB thus we expected the most of the edk2 gene=
+ric code are no-touch/no impact, that's why we only had small group (UefiPa=
+yloadPkg) discussion.
+> Ard, if you are aware of any edk2 code that's for supporting FDT OS, plea=
+se let us know and we can discuss if those code were impacted or not.
 
-Table 2.4: Values for status property
-https://github.com/devicetree-org/devicetree-specification/releases/download/v0.4/devicetree-specification-v0.4.pdf
+We discussed this and just to clarify, 'FDT OS' is not a special OS,
+it is just Linux.
 
-"reserved"
-	Indicates that the device is operational, but should not be
-	used. Typically this is used for devices that are controlled
-	by another software component, such as platform firmware.
+So, with the above, are we all on the same page? Can the patch be
+applied, perhaps? If not, what other discussion is needed?
 
-ex)
-	scif5: serial@e6f30000 {
-		...
-(B)		clocks = <&cpg CPG_MOD 202>,
-			 <&cpg CPG_CORE R8A7795_CLK_S3D1>,
-			 <&scif_clk>;
-		...
-(A)		status = "reserved";
-	};
+Regards,
+Simon
 
-Cc: Aymeric Aillet <aymeric.aillet@iot.bzh>
-Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Tested-by: Yusuke Goda <yusuke.goda.sx@renesas.com>
----
- drivers/clk/renesas/renesas-cpg-mssr.c | 118 +++++++++++++++++++++++--
- 1 file changed, 109 insertions(+), 9 deletions(-)
-
-diff --git a/drivers/clk/renesas/renesas-cpg-mssr.c b/drivers/clk/renesas/renesas-cpg-mssr.c
-index cb80d1bf6c7c..26098b7f4323 100644
---- a/drivers/clk/renesas/renesas-cpg-mssr.c
-+++ b/drivers/clk/renesas/renesas-cpg-mssr.c
-@@ -142,6 +142,8 @@ static const u16 srstclr_for_gen4[] = {
-  * @reset_clear_regs:  Pointer to reset clearing registers array
-  * @smstpcr_saved: [].mask: Mask of SMSTPCR[] bits under our control
-  *                 [].val: Saved values of SMSTPCR[]
-+ * @reserved_ids: Temporary used, reserved id list
-+ * @num_reserved_ids: Temporary used, number of reserved id list
-  * @clks: Array containing all Core and Module Clocks
-  */
- struct cpg_mssr_priv {
-@@ -168,6 +170,9 @@ struct cpg_mssr_priv {
- 		u32 val;
- 	} smstpcr_saved[ARRAY_SIZE(mstpsr_for_gen4)];
- 
-+	unsigned int *reserved_ids;
-+	unsigned int num_reserved_ids;
-+
- 	struct clk *clks[];
- };
- 
-@@ -453,6 +458,19 @@ static void __init cpg_mssr_register_mod_clk(const struct mssr_mod_clk *mod,
- 			break;
- 		}
- 
-+	/*
-+	 * Ignore reserved device.
-+	 * see
-+	 *	cpg_mssr_reserved_init()
-+	 */
-+	for (i = 0; i < priv->num_reserved_ids; i++) {
-+		if (id == priv->reserved_ids[i]) {
-+			dev_info(dev, "Ignore Linux non-assigned mod (%s)\n", mod->name);
-+			init.flags |= CLK_IGNORE_UNUSED;
-+			break;
-+		}
-+	}
-+
- 	clk = clk_register(NULL, &clock->hw);
- 	if (IS_ERR(clk))
- 		goto fail;
-@@ -949,6 +967,75 @@ static const struct dev_pm_ops cpg_mssr_pm = {
- #define DEV_PM_OPS	NULL
- #endif /* CONFIG_PM_SLEEP && CONFIG_ARM_PSCI_FW */
- 
-+static void __init cpg_mssr_reserved_exit(struct cpg_mssr_priv *priv)
-+{
-+	kfree(priv->reserved_ids);
-+}
-+
-+static int __init cpg_mssr_reserved_init(struct cpg_mssr_priv *priv,
-+					 const struct cpg_mssr_info *info)
-+{
-+	struct device_node *root = of_find_node_by_path("/soc");
-+	struct device_node *node = NULL;
-+	struct of_phandle_args clkspec;
-+	unsigned int *ids = NULL;
-+	unsigned int num = 0;
-+
-+	/*
-+	 * Because cpg_mssr_info has .num_hw_mod_clks which indicates number of all Module Clocks,
-+	 * and clk_disable_unused() will disable all unused clocks, the device which is assigned to
-+	 * non-Linux system will be disabled when Linux was booted.
-+	 *
-+	 * To avoid such situation, renesas-cpg-mssr assumes the device which has
-+	 * status = "reserved" is assigned to non-Linux system, and add CLK_IGNORE_UNUSED flag
-+	 * to its clocks if it was CPG_MOD.
-+	 * see also
-+	 *	cpg_mssr_register_mod_clk()
-+	 *
-+	 *	scif5: serial@e6f30000 {
-+	 *		...
-+	 * =>		clocks = <&cpg CPG_MOD 202>,
-+	 *			 <&cpg CPG_CORE R8A7795_CLK_S3D1>,
-+	 *			 <&scif_clk>;
-+	 *			 ...
-+	 *		 status = "reserved";
-+	 *	};
-+	 */
-+	for_each_reserved_child_of_node(root, node) {
-+		unsigned int i = 0;
-+
-+		while (!of_parse_phandle_with_args(node, "clocks", "#clock-cells", i++, &clkspec)) {
-+
-+			of_node_put(clkspec.np);
-+
-+			if (clkspec.np == priv->dev->of_node &&
-+			    clkspec.args[0] == CPG_MOD) {
-+
-+				ids = krealloc_array(ids, (num + 1), sizeof(*ids), GFP_KERNEL);
-+				if (!ids)
-+					return -ENOMEM;
-+
-+				ids[num] = info->num_total_core_clks +
-+						MOD_CLK_PACK(clkspec.args[1]);
-+
-+				num++;
-+			}
-+		}
-+	}
-+
-+	priv->num_reserved_ids	= num;
-+	priv->reserved_ids	= ids;
-+
-+	return 0;
-+}
-+
-+static void __init cpg_mssr_common_exit(struct cpg_mssr_priv *priv)
-+{
-+	if (priv->base)
-+		iounmap(priv->base);
-+	kfree(priv);
-+}
-+
- static int __init cpg_mssr_common_init(struct device *dev,
- 				       struct device_node *np,
- 				       const struct cpg_mssr_info *info)
-@@ -1012,9 +1099,7 @@ static int __init cpg_mssr_common_init(struct device *dev,
- 	return 0;
- 
- out_err:
--	if (priv->base)
--		iounmap(priv->base);
--	kfree(priv);
-+	cpg_mssr_common_exit(priv);
- 
- 	return error;
- }
-@@ -1029,6 +1114,10 @@ void __init cpg_mssr_early_init(struct device_node *np,
- 	if (error)
- 		return;
- 
-+	error = cpg_mssr_reserved_init(cpg_mssr_priv, info);
-+	if (error)
-+		goto err;
-+
- 	for (i = 0; i < info->num_early_core_clks; i++)
- 		cpg_mssr_register_core_clk(&info->early_core_clks[i], info,
- 					   cpg_mssr_priv);
-@@ -1037,6 +1126,12 @@ void __init cpg_mssr_early_init(struct device_node *np,
- 		cpg_mssr_register_mod_clk(&info->early_mod_clks[i], info,
- 					  cpg_mssr_priv);
- 
-+	cpg_mssr_reserved_exit(cpg_mssr_priv);
-+
-+	return;
-+
-+err:
-+	cpg_mssr_common_exit(cpg_mssr_priv);
- }
- 
- static int __init cpg_mssr_probe(struct platform_device *pdev)
-@@ -1060,6 +1155,10 @@ static int __init cpg_mssr_probe(struct platform_device *pdev)
- 	priv->dev = dev;
- 	dev_set_drvdata(dev, priv);
- 
-+	error = cpg_mssr_reserved_init(priv, info);
-+	if (error)
-+		return error;
-+
- 	for (i = 0; i < info->num_core_clks; i++)
- 		cpg_mssr_register_core_clk(&info->core_clks[i], info, priv);
- 
-@@ -1070,22 +1169,23 @@ static int __init cpg_mssr_probe(struct platform_device *pdev)
- 					 cpg_mssr_del_clk_provider,
- 					 np);
- 	if (error)
--		return error;
-+		goto reserve_err;
- 
- 	error = cpg_mssr_add_clk_domain(dev, info->core_pm_clks,
- 					info->num_core_pm_clks);
- 	if (error)
--		return error;
-+		goto reserve_err;
- 
- 	/* Reset Controller not supported for Standby Control SoCs */
- 	if (priv->reg_layout == CLK_REG_LAYOUT_RZ_A)
--		return 0;
-+		goto reserve_err;
- 
- 	error = cpg_mssr_reset_controller_register(priv);
--	if (error)
--		return error;
- 
--	return 0;
-+reserve_err:
-+	cpg_mssr_reserved_exit(priv);
-+
-+	return error;
- }
- 
- static struct platform_driver cpg_mssr_driver = {
--- 
-2.25.1
-
+>
+>
+>
+>
+> >
+> >
+> > >
+> > > > -----Original Message-----
+> > > > From: Simon Glass <sjg@chromium.org>
+> > > > Sent: Tuesday, September 26, 2023 12:43 PM
+> > > > To: devicetree@vger.kernel.org
+> > > > Cc: Mark Rutland <mark.rutland@arm.com>; Rob Herring
+> > > > <robh@kernel.org>; Tan, Lean Sheng <sheng.tan@9elements.com>; lkml
+> > > > <linux- kernel@vger.kernel.org>; Dhaval Sharma
+> > > > <dhaval@rivosinc.com>; Brune, Maximilian
+> > > > <maximilian.brune@9elements.com>; Yunhui Cui
+> > > > <cuiyunhui@bytedance.com>; Dong, Guo <guo.dong@intel.com>; Tom Rini
+> > > > <trini@konsulko.com>; ron minnich <rminnich@gmail.com>; Guo, Gua
+> > > > <gua.guo@intel.com>; Chiu, Chasel <chasel.chiu@intel.com>; linux-
+> > > > acpi@vger.kernel.org; U-Boot Mailing List <u-boot@lists.denx.de>;
+> > > > Ard Biesheuvel <ardb@kernel.org>; Simon Glass <sjg@chromium.org>
+> > > > Subject: [PATCH v7 2/2] schemas: Add some common reserved-memory
+> > > > usages
+> > > >
+> > > > It is common to split firmware into 'Platform Init', which does the
+> > > > initial hardware setup and a "Payload" which selects the OS to be b=
+ooted.
+> > > > Thus an handover interface is required between these two pieces.
+> > > >
+> > > > Where UEFI boot-time services are not available, but UEFI firmware
+> > > > is present on either side of this interface, information about
+> > > > memory usage and attributes must be presented to the "Payload" in s=
+ome
+> > form.
+> > > >
+> > > > This aims to provide an small schema addition for the memory mappin=
+g
+> > > > needed to keep these two pieces working together well.
+> > > >
+> > > > Signed-off-by: Simon Glass <sjg@chromium.org>
+> > > > ---
+> > > >
+> > > > Changes in v7:
+> > > > - Rename acpi-reclaim to acpi
+> > > > - Drop individual mention of when memory can be reclaimed
+> > > > - Rewrite the item descriptions
+> > > > - Add back the UEFI text (with trepidation)
+> > > >
+> > > > Changes in v6:
+> > > > - Drop mention of UEFI
+> > > > - Use compatible strings instead of node names
+> > > >
+> > > > Changes in v5:
+> > > > - Drop the memory-map node (should have done that in v4)
+> > > > - Tidy up schema a bit
+> > > >
+> > > > Changes in v4:
+> > > > - Make use of the reserved-memory node instead of creating a new on=
+e
+> > > >
+> > > > Changes in v3:
+> > > > - Reword commit message again
+> > > > - cc a lot more people, from the FFI patch
+> > > > - Split out the attributes into the /memory nodes
+> > > >
+> > > > Changes in v2:
+> > > > - Reword commit message
+> > > >
+> > > >  .../reserved-memory/common-reserved.yaml      | 71 +++++++++++++++=
+++++
+> > > >  1 file changed, 71 insertions(+)
+> > > >  create mode 100644 dtschema/schemas/reserved-memory/common-
+> > > > reserved.yaml
+> > > >
+> > > > diff --git a/dtschema/schemas/reserved-memory/common-reserved.yaml
+> > > > b/dtschema/schemas/reserved-memory/common-reserved.yaml
+> > > > new file mode 100644
+> > > > index 0000000..f7fbdfd
+> > > > --- /dev/null
+> > > > +++ b/dtschema/schemas/reserved-memory/common-reserved.yaml
+> > > > @@ -0,0 +1,71 @@
+> > > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause %YAML 1.2
+> > > > +---
+> > > > +$id:
+> > > > +http://devicetree.org/schemas/reserved-memory/common-reserved.yaml=
+#
+> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > +
+> > > > +title: Common memory reservations
+> > > > +
+> > > > +description: |
+> > > > +  Specifies that the reserved memory region can be used for the
+> > > > +purpose
+> > > > +  indicated by its compatible string.
+> > > > +
+> > > > +  Clients may reuse this reserved memory if they understand what i=
+t
+> > > > + is for,  subject to the notes below.
+> > > > +
+> > > > +maintainers:
+> > > > +  - Simon Glass <sjg@chromium.org>
+> > > > +
+> > > > +allOf:
+> > > > +  - $ref: reserved-memory.yaml
+> > > > +
+> > > > +properties:
+> > > > +  compatible:
+> > > > +    description: |
+> > > > +      This describes some common memory reservations, with the com=
+patible
+> > > > +      string indicating what it is used for:
+> > > > +
+> > > > +         acpi: Advanced Configuration and Power Interface (ACPI) t=
+ables
+> > > > +         acpi-nvs: ACPI Non-Volatile-Sleeping Memory (NVS). This i=
+s reserved by
+> > > > +           the firmware for its use and is required to be saved an=
+d restored
+> > > > +           across an NVS sleep
+> > > > +         boot-code: Contains code used for booting which is not ne=
+eded by the
+> > OS
+> > > > +         boot-code: Contains data used for booting which is not ne=
+eded by the
+> > OS
+> > > > +         runtime-code: Contains code used for interacting with the=
+ system when
+> > > > +           running the OS
+> > > > +         runtime-data: Contains data used for interacting with the=
+ system when
+> > > > +           running the OS
+> > > > +
+> > > > +    enum:
+> > > > +      - acpi
+> > > > +      - acpi-nvs
+> > > > +      - boot-code
+> > > > +      - boot-data
+> > > > +      - runtime-code
+> > > > +      - runtime-data
+> > > > +
+> > > > +  reg:
+> > > > +    description: region of memory that is reserved for the purpose=
+ indicated
+> > > > +      by the compatible string.
+> > > > +
+> > > > +required:
+> > > > +  - reg
+> > > > +
+> > > > +unevaluatedProperties: false
+> > > > +
+> > > > +examples:
+> > > > +  - |
+> > > > +    reserved-memory {
+> > > > +        #address-cells =3D <1>;
+> > > > +        #size-cells =3D <1>;
+> > > > +
+> > > > +        reserved@12340000 {
+> > > > +            compatible =3D "boot-code";
+> > > > +            reg =3D <0x12340000 0x00800000>;
+> > > > +        };
+> > > > +
+> > > > +        reserved@43210000 {
+> > > > +            compatible =3D "boot-data";
+> > > > +            reg =3D <0x43210000 0x00800000>;
+> > > > +        };
+> > > > +    };
+> > > > --
+> > > > 2.42.0.515.g380fc7ccd1-goog
+> > >
 
