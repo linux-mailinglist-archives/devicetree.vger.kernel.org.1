@@ -1,171 +1,215 @@
-Return-Path: <devicetree+bounces-17649-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17650-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4DFB7F33C7
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 17:32:19 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF2277F3411
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 17:42:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 96B53282FC4
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 16:32:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 64011B21039
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 16:42:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 340F254F90;
-	Tue, 21 Nov 2023 16:32:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACF13495D2;
+	Tue, 21 Nov 2023 16:42:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ragnatech-se.20230601.gappssmtp.com header.i=@ragnatech-se.20230601.gappssmtp.com header.b="C/2B3Lml"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pe7fdDHC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CA9718C
-	for <devicetree@vger.kernel.org>; Tue, 21 Nov 2023 08:32:14 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-507a62d4788so8129431e87.0
-        for <devicetree@vger.kernel.org>; Tue, 21 Nov 2023 08:32:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ragnatech-se.20230601.gappssmtp.com; s=20230601; t=1700584332; x=1701189132; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=OwQRTXsCZ6W9EzEssWH2ys7zWoGL4d7d9Ovs4AO0xTI=;
-        b=C/2B3LmlKgzEv9QBPuUZgjfyR/sIijSow/WGnCfXT333ZMM6oexEJriLF37VlRMGeN
-         y3Q7xpitj9Zbh1K3l3D3j9M/BXPsUv8LLX0/aAFHPPTSz5Rc++IbF91fzuFO04DSOWV5
-         /zWFlsSKnadNTn681kpWxQdzcfMaLcpRORk7E0SasZFCa/s6dlZuUdM+eE5m1Qf0Nj7k
-         UTwE1rppoLT+ZU3zmvRIFrDWyNeRrTsMJ30GGzgricW3ZUc2UjisT9h+BQYaRSUQQL35
-         TOmjEB4RZ8qm73hoq9SQPynFrryvKQ6Wr3sMXsAqlo5O5+iDsy5ED3Z5D2Wtb0CbJAiZ
-         U2Qw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700584332; x=1701189132;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OwQRTXsCZ6W9EzEssWH2ys7zWoGL4d7d9Ovs4AO0xTI=;
-        b=QUPuoNSTOKBdvoOWHVIxXiF24a4mkNigKhx+kEMA3DeBy50gZxdw4qET3yK8/cZF0U
-         nbQ66VgPh7NIPebeQsN0CTp7JjwMdGZtKuHbqmR1Q406wYzWREKaKoglacaWqnOl/LMH
-         mEGjqEIuBoQ3T/RbZdVq5ZWBESULalHdfnPfKGBQcoyNLmWnbK94ijf7qc66XQaHN9Jg
-         szoJCSwOEz5VqVGrjVLg0ZSgJLwVQeqm1Pk6DKNy/1QGdzu6m4tLvPgitZKjulDKsUJv
-         8ZgXu3LQQNV/stbYey40zf4I/D3772hxrgfQJPtylwvXEm9mZM5d675ldp3XbtqM4eoT
-         lrww==
-X-Gm-Message-State: AOJu0YzLg0dfb0HJcQAvbhEgG94FU9Kl3BywMUmaZj8VlnkO4YEgAqNe
-	ZkSWFUatH/q9kAJU/yflZGxmMg==
-X-Google-Smtp-Source: AGHT+IGLJ/jbKWSuBrNEE7DXEF5uRL+d+0AaQDezH5w3UIwHZ92x/YHMQanCNLGUoQ8hMpm/jtfjTg==
-X-Received: by 2002:ac2:43b0:0:b0:4fa:f96c:745f with SMTP id t16-20020ac243b0000000b004faf96c745fmr7599826lfl.38.1700584332537;
-        Tue, 21 Nov 2023 08:32:12 -0800 (PST)
-Received: from localhost (h-46-59-36-206.A463.priv.bahnhof.se. [46.59.36.206])
-        by smtp.gmail.com with ESMTPSA id t13-20020a195f0d000000b0050919538b00sm1598348lfb.79.2023.11.21.08.32.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Nov 2023 08:32:11 -0800 (PST)
-Date: Tue, 21 Nov 2023 17:32:10 +0100
-From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	devicetree@vger.kernel.org, netdev@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: net: renesas,ethertsn: Add bindings for
- Ethernet TSN
-Message-ID: <ZVzbigCtv2q_2-Bx@oden.dyn.berto.se>
-References: <20231120160740.3532848-1-niklas.soderlund+renesas@ragnatech.se>
- <2ab74479-f1fb-4faf-b223-ae750b4c08ce@linaro.org>
- <ZVyeMKjVhjW2F2e0@oden.dyn.berto.se>
- <2ffb39c3-7939-46f2-8ca9-2b2cb44caaff@linaro.org>
- <ZVymJF2dd7XssGaQ@oden.dyn.berto.se>
- <CAMuHMdW3+YWuBefga9fXWxp6=yXoUPO9EK0nwEzHcbvsevx5Pg@mail.gmail.com>
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 868C6171C2;
+	Tue, 21 Nov 2023 16:42:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 000F9C433A9;
+	Tue, 21 Nov 2023 16:42:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1700584933;
+	bh=aFR/mFQKExXAv/nb9N19ON2XLkx59yXepa2exX1U6mQ=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=Pe7fdDHCYkc7KSUUeoKGd+0k8Upqv5tT863pJGU6nom4MjmioYRNKbeeU0LYigqZq
+	 mMoZQ3vR4gUYsV+BP9oBU4OcW/h49OyCHzx3buepvFUai6rwRi0xUoAubDBLKYTfiF
+	 x2sEZ4+vPSgTUkOumnqe4Clb6jiycxpkF9ZKDfBJhdSvdEzoEJR6iMuaMYN+nrphmO
+	 e4cyi62ZvttrtqkKx3rGbj0qL+rlTQXDv8NkAOoqv8abis72OenhUfPRZeO38ntXpw
+	 WEIoTkiwOhGFOwsZGqT0zIdnUwC23hQ0e2dmCHM3KERmpmJUJYHdfojukPCpmwdbJm
+	 cjJszLlSX6B5g==
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2c50fbc218bso72057671fa.3;
+        Tue, 21 Nov 2023 08:42:12 -0800 (PST)
+X-Gm-Message-State: AOJu0YzfltrG1BNxAEZMQuA8PWtOEFPjiUL4aGpQWKap8etok/rbE2G3
+	TQ/WgemQoVqc4YCRwmRVPWdzbKPiFoWqZh09Uis=
+X-Google-Smtp-Source: AGHT+IE1BtBBQXH8IhaD0lfThsj9OIMHKzDOIxlPBJGUB9DukWvY41yZhOqj18nk5W7PFyAXHxOdAkbW6vA0h7iKYww=
+X-Received: by 2002:a2e:8e63:0:b0:2bb:a28b:58e1 with SMTP id
+ t3-20020a2e8e63000000b002bba28b58e1mr7794383ljk.41.1700584931089; Tue, 21 Nov
+ 2023 08:42:11 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMuHMdW3+YWuBefga9fXWxp6=yXoUPO9EK0nwEzHcbvsevx5Pg@mail.gmail.com>
+References: <20230926194242.2732127-1-sjg@chromium.org> <20230926194242.2732127-2-sjg@chromium.org>
+ <BN9PR11MB5483FF3039913334C7EA83E1E6AEA@BN9PR11MB5483.namprd11.prod.outlook.com>
+ <CAMj1kXFG92NpL7T7YocOup0xLKyopt3MnSCp0RL8cLzozzJz7A@mail.gmail.com>
+ <BN9PR11MB548303B09536EB1577472029E6B3A@BN9PR11MB5483.namprd11.prod.outlook.com>
+ <CAPnjgZ36t8g7E=0MSJyaV8-QKv9RVYe47Jd5E=NU-mFM4LWBQA@mail.gmail.com>
+In-Reply-To: <CAPnjgZ36t8g7E=0MSJyaV8-QKv9RVYe47Jd5E=NU-mFM4LWBQA@mail.gmail.com>
+From: Ard Biesheuvel <ardb@kernel.org>
+Date: Tue, 21 Nov 2023 11:41:59 -0500
+X-Gmail-Original-Message-ID: <CAMj1kXHAEeK7x2f13k_JV3Xcw61nNLasyvXQf+mKwKekQ48EpQ@mail.gmail.com>
+Message-ID: <CAMj1kXHAEeK7x2f13k_JV3Xcw61nNLasyvXQf+mKwKekQ48EpQ@mail.gmail.com>
+Subject: Re: [PATCH v7 2/2] schemas: Add some common reserved-memory usages
+To: Simon Glass <sjg@chromium.org>
+Cc: "Chiu, Chasel" <chasel.chiu@intel.com>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
+	Rob Herring <robh@kernel.org>, "Tan, Lean Sheng" <sheng.tan@9elements.com>, 
+	lkml <linux-kernel@vger.kernel.org>, Dhaval Sharma <dhaval@rivosinc.com>, 
+	"Brune, Maximilian" <maximilian.brune@9elements.com>, Yunhui Cui <cuiyunhui@bytedance.com>, 
+	"Dong, Guo" <guo.dong@intel.com>, Tom Rini <trini@konsulko.com>, 
+	ron minnich <rminnich@gmail.com>, "Guo, Gua" <gua.guo@intel.com>, 
+	"linux-acpi@vger.kernel.org" <linux-acpi@vger.kernel.org>, U-Boot Mailing List <u-boot@lists.denx.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Geert,
-
-On 2023-11-21 17:11:52 +0100, Geert Uytterhoeven wrote:
-> Hi Niklas,
-> 
-> On Tue, Nov 21, 2023 at 1:44 PM Niklas Söderlund
-> <niklas.soderlund+renesas@ragnatech.se> wrote:
-> > On 2023-11-21 13:20:54 +0100, Krzysztof Kozlowski wrote:
-> > > On 21/11/2023 13:10, Niklas Söderlund wrote:
-> > > >>> +
-> > > >>> +  renesas,rx-internal-delay:
-> > > >>> +    type: boolean
-> > > >>> +    description:
-> > > >>> +      Enable internal Rx clock delay, typically 1.8ns.
-> > > >>
-> > > >> Why this is bool, not delay in ns?
-> > > >
-> > > > The TSN is only capable of enabling or disable internal delays, not set
-> > > > how long the delay is. The documentation states that the delay depends
-> > > > on the electronic characteristics of the particular board, but states
-> > > > that they typically are 1.8ns for Rx and 2.0ns for Tx.
+On Mon, 20 Nov 2023 at 21:12, Simon Glass <sjg@chromium.org> wrote:
+>
+> Hi,
+>
+> On Mon, 13 Nov 2023 at 11:09, Chiu, Chasel <chasel.chiu@intel.com> wrote:
+> >
+> >
+> > Hi Ard,
+> >
+> > Please see my reply below inline.
+> >
+> > Thanks,
+> > Chasel
+> >
+> >
+> > > -----Original Message-----
+> > > From: Ard Biesheuvel <ardb@kernel.org>
+> > > Sent: Saturday, November 11, 2023 3:04 AM
+> > > To: Chiu, Chasel <chasel.chiu@intel.com>
+> > > Cc: Simon Glass <sjg@chromium.org>; devicetree@vger.kernel.org; Mark =
+Rutland
+> > > <mark.rutland@arm.com>; Rob Herring <robh@kernel.org>; Tan, Lean Shen=
+g
+> > > <sheng.tan@9elements.com>; lkml <linux-kernel@vger.kernel.org>; Dhava=
+l
+> > > Sharma <dhaval@rivosinc.com>; Brune, Maximilian
+> > > <maximilian.brune@9elements.com>; Yunhui Cui <cuiyunhui@bytedance.com=
+>;
+> > > Dong, Guo <guo.dong@intel.com>; Tom Rini <trini@konsulko.com>; ron mi=
+nnich
+> > > <rminnich@gmail.com>; Guo, Gua <gua.guo@intel.com>; linux-
+> > > acpi@vger.kernel.org; U-Boot Mailing List <u-boot@lists.denx.de>
+> > > Subject: Re: [PATCH v7 2/2] schemas: Add some common reserved-memory
+> > > usages
 > > >
-> > > I don't understand that part. If you cannot configure the internal
-> > > delay, how could it depend on the board characteristics?
-> >
-> > Each of these two properties reflect a single bit in the device
-> > configuration space. If the bit is set the {Rx,Tx} delay mode is active
-> > or disabled. The documentation for the bit simply states,
-> >
-> >     Tx clock internal Delay Mode
-> >
-> >     This bit can add internal Tx clock delay typ 2.0ns*.
-> >
-> >     *Refer to Electrical Characteristics for details.
-> >
-> > Same paragraph for Rx but a typical 1.8ns delay.
-> >
-> > > > I looked at the generic properties {rx,tx}-internal-delay-ps but they
-> > > > are of int type. So I opted for a vendor specific bool property. Do you
-> > > > think a better route is to use the generic property and force the value
-> > > > to be either 0 or the typical delay?
-> 
-> This is not dissimilar from EtherAVB, where the hardware also supports
-> only a single bit, and whose DT bindings have:
-> 
->   rx-internal-delay-ps:
->     enum: [0, 1800]
-> 
->   tx-internal-delay-ps:
->     enum: [0, 2000]
-> 
-> (with additional restrictions depending on the SoC, as on some SoCs
->  the bits cannot be changed).
-
-That is a good point, I will switch to use the standard bindings for 
-delay in v2.
-
-> 
-> > > >> Why this is property of a board (not SoC)?
+> > > On Sat, 11 Nov 2023 at 04:20, Chiu, Chasel <chasel.chiu@intel.com> wr=
+ote:
 > > > >
-> > > > I'm sorry I don't understand this question.
+> > > >
+> > > > Just sharing some usage examples from UEFI/EDK2 scenario.
+> > > > To support ACPI S4/Hibernation, memory map must be consistent befor=
+e
+> > > > entering and after resuming from S4, in this case payload may need =
+to
+> > > > know previous memory map from bootloader (currently generic payload
+> > > > cannot access platform/bootloader specific non-volatile data, thus
+> > > > could not save/restore memory map information)
 > > >
-> > > Why setting internal delay is specific to a board, not to a SoC? Why
-> > > each board would need to configure it? On which parts of hardware on the
-> > > board does this depend?
+> > > So how would EDK2 reconstruct the entire EFI memory map from just the=
+se
+> > > unannotated /reserved-memory nodes? The EFI memory map contains much
+> > > more information than that, and all of it has to match the pre-hibern=
+ate situation,
+> > > right? Can you given an example?
 > >
-> > Ahh, I think I understand. It is per board as I understand the
-> > documentation. It depends on the electrical characteristics of the
-> > board.
-> 
-> Exactly. These bits (and also similar bits in the PHY) are used to
-> adapt signaling to the board trace lengths between MAC (on-SoC) and PHY.
-> 
-> Gr{oetje,eeting}s,
-> 
->                         Geert
-> 
-> -- 
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-> 
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
+> >
+> > Here we listed only typically memory types that may change cross differ=
+ent platforms.
+> > Reserved memory type already can be handled by reserved-memory node, an=
+d rest of the types usually no need to change cross platforms thus currentl=
+y we could rely on default in generic payload.
+> > In the future if we see a need to add new memory types we will discuss =
+and add it to FDT schema.
+> >
+> >
+> >
+> > >
+> > > > Another usage is to support binary model which generic payload is a=
+ prebuilt
+> > > binary compatible for all platforms/configurations, however the paylo=
+ad default
+> > > memory map might not always work for all the configurations and we wa=
+nt to
+> > > allow bootloader to override payload default memory map without recom=
+piling.
+> > > >
+> > >
+> > > Agreed. But can you explain how a EDK2 payload might make meaningful =
+use of
+> > > 'runtime-code' regions provided via DT  by the non-EDK2 platform init=
+? Can you
+> > > give an example?
+> >
+> >
+> > Runtime-code/data is used by UEFI payload for booting UEFI OS which req=
+uired UEFI runtime services.
+> > Platform Init will select some regions from the usable memory and assig=
+n it to runtime-code/data for UPL to consume. Or assign same runtime-code/d=
+ata from previous boot.
+> > If UEFI OS is not supported, PlatformInit may not need to provide runti=
+me-code/data regions to payload. (always providing runtime-code/data should=
+ be supported too)
+> >
+> >
+> > >
+> > > > Under below assumption:
+> > > >         FDT OS impact has been evaluated and taken care by relevant
+> > > experts/stakeholders.
+> > > > Reviewed-by: Chasel Chiu <chasel.chiu@intel.com>
+> > > >
+> > >
+> > > I am sorry but I don't know what 'FDT OS impact' means. We are talkin=
+g about a
+> > > firmware-to-firmware abstraction that has the potential to leak into =
+the OS
+> > > visible interface.
+> > >
+> > > I am a maintainer in the Tianocore project myself, so it would help i=
+f you could
+> > > explain who these relevant experts and stakeholders are. Was this dis=
+cussed on
+> > > the edk2-devel mailing list? If so, apologies for missing it but I ma=
+y not have been
+> > > cc'ed perhaps?
+> >
+> >
+> >
+> >
+> > I'm not familiar with FDT OS, also I do not know if who from edk2-devel=
+ were supporting FDT OS, I think Simon might be able to connect FDT OS expe=
+rts/stakeholders.
+> > We are mostly focusing on payload firmware phase implementation in edk2=
+ (and other payloads too), however, since we have aligned the payload FDT a=
+nd OS FDT months ago, I'm assuming FDT OS impact must be there and we need =
+(or already done?) FDT OS experts to support it. (again, maybe Simon could =
+share more information about FDT OS)
+> >
+> > In edk2 such FDT schema is UefiPayloadPkg internal usage only and paylo=
+ad entry will convert FDT into HOB thus we expected the most of the edk2 ge=
+neric code are no-touch/no impact, that's why we only had small group (Uefi=
+PayloadPkg) discussion.
+> > Ard, if you are aware of any edk2 code that's for supporting FDT OS, pl=
+ease let us know and we can discuss if those code were impacted or not.
+>
+> We discussed this and just to clarify, 'FDT OS' is not a special OS,
+> it is just Linux.
+>
+> So, with the above, are we all on the same page? Can the patch be
+> applied, perhaps? If not, what other discussion is needed?
+>
 
--- 
-Kind Regards,
-Niklas Söderlund
+An example of how a platform-init/payload combination would make
+meaningful use of such runtime-code/data regions.
 
