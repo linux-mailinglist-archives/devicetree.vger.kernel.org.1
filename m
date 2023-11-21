@@ -1,64 +1,69 @@
-Return-Path: <devicetree+bounces-17705-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17706-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E10E7F3985
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 23:52:43 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BDDA7F39AD
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 23:59:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9324BB218F9
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 22:52:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0175E2829D6
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 22:59:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F5AF54BC1;
-	Tue, 21 Nov 2023 22:52:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F5D154BEC;
+	Tue, 21 Nov 2023 22:59:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="FdMXFFYn"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Dd3zwPY1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9208AF4;
-	Tue, 21 Nov 2023 14:52:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1700607145; x=1732143145;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=4El9C1OtR2c7yuMuhHbcy9uKYS1ErYxb0i53zPctChc=;
-  b=FdMXFFYnvb3Ew7o/6oxGEcuehoh82ZXvG2FqVDj70u/Zss0kwLxuRi2E
-   btYrU9V6gE+qFmAMzCexgUhRVpl4bt3eWuKrZjgewnKODe1GQxiZHMtlP
-   YnAAp8SJjD1+h9BiBEJ/9BvlAvNzAV/9rIrd3EjRSl4NrTWY1tJ9cfqdO
-   dkpaeYXWCPwl8oiYibdaQz4kkN+HwH5+FfzpWse2fhwbNYMhWggFmkxBn
-   WywrVBnE/pcdcnAl7YiMoni39iam0Wxmd39+TldAero9aROXnuZhqr1q2
-   1tP9955ghxNb1/T+1k5se+hiTMZUb8RYcsaponn2AdhHx3Z/WdFYi4LVe
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10901"; a="395860403"
-X-IronPort-AV: E=Sophos;i="6.04,217,1695711600"; 
-   d="scan'208";a="395860403"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Nov 2023 14:52:24 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,217,1695711600"; 
-   d="scan'208";a="15045295"
-Received: from lkp-server02.sh.intel.com (HELO b8de5498638e) ([10.239.97.151])
-  by fmviesa001.fm.intel.com with ESMTP; 21 Nov 2023 14:52:20 -0800
-Received: from kbuild by b8de5498638e with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1r5ZbO-0008Mk-0R;
-	Tue, 21 Nov 2023 22:52:18 +0000
-Date: Wed, 22 Nov 2023 06:52:16 +0800
-From: kernel test robot <lkp@intel.com>
-To: Jingbao Qiu <qiujingbao.dlmu@gmail.com>, a.zummo@towertech.it,
-	alexandre.belloni@bootlin.com, krzysztof.kozlowski+dt@linaro.org,
-	chao.wei@sophgo.com, unicorn_wang@outlook.com, conor+dt@kernel.org,
-	robh+dt@kernel.org, conor@kernel.org, paul.walmsley@sifive.com,
-	palmer@dabbelt.com, aou@eecs.berkeley.edu
-Cc: oe-kbuild-all@lists.linux.dev, linux-rtc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Jingbao Qiu <qiujingbao.dlmu@gmail.com>
-Subject: Re: [PATCH 2/3] rtc: add rtc controller support for Sophgo CV1800B
- SoC
-Message-ID: <202311220645.2hOquYn6-lkp@intel.com>
-References: <20231121094642.2973795-3-qiujingbao.dlmu@gmail.com>
+Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE585D45
+	for <devicetree@vger.kernel.org>; Tue, 21 Nov 2023 14:59:14 -0800 (PST)
+Received: by mail-pf1-x42e.google.com with SMTP id d2e1a72fcca58-6be0277c05bso5519159b3a.0
+        for <devicetree@vger.kernel.org>; Tue, 21 Nov 2023 14:59:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1700607554; x=1701212354; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=bEHk2cOMKx9+evztUOD1qvJ0fw8cgg/nhY4zSI6PvLU=;
+        b=Dd3zwPY1Fpm5vID0VQkyKTeR+1ssJU6fP3kOQU3WUMhDwdA+gaBJotkz/DDroF9h+s
+         z+JEbCP6gk8TOtE2gGIRY+It3cxPrnnikstVwnA4C6UAB7tNT6O9KfXCSN4lgoimmBWy
+         Ew7RY0cm+wdgZ6b4ElEi2Y+hzXCWWf6XNz/UE7RnytpxkWDDFHdE8VrkyjH/uqj85+Ah
+         fF0w3gCg5mZdnI4WyZuZ7yvzDJWTg83Tkw9Mqqnz1Li6qdW2QmsEYdO1J9pK9QMkQeSc
+         JuFqr83KtC9Fz05ZeSIcEotEP/tUuwezDhatYEpeJPqnnHA57ksEhfwQCGHVpUIROzPT
+         cJPQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700607554; x=1701212354;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bEHk2cOMKx9+evztUOD1qvJ0fw8cgg/nhY4zSI6PvLU=;
+        b=fUVYFRhVgO8lNeqpapkJiioYotvpp5oQgyavPtFqeOhqtb8+yb1guO+e+BQC+6jw4V
+         Qagb4ntAO+MHTaYjz+TPDZ688IVC/UtI4ZY7Hsix9NTz/7bVPG8KENzEErNdr/R+PGE+
+         DqEfb5Uh1vo2Hk2/iNfuhF2KL67/GhENqiiAmHsaa0ePDhbxdFVuMKQ5ddVO9yraW2wi
+         bgaKoOxGQT8kLUng4hylTUtwVrKqVvKFbSknoqxMIFNVd6XA+/ELb7AUSFFudu+UPDa2
+         alyvCSxofPsBQi7EaRB6KCP7QF76q42OssZiL9RSiN2IXJChdZNUUcx2yZb599nAdyTg
+         6Fjg==
+X-Gm-Message-State: AOJu0Yx4k3piwGx61SGn13XSm6PwOI/uC9AIw/Ezq7aOQMU758vM8qlf
+	/PvpjbX4aIIZhxwjLK/XNmllPA==
+X-Google-Smtp-Source: AGHT+IGPBxYJBQXjFKfjEBs6oz5erv1g/GgywcQAuMM69rkzjZmlgx7NhmIqgbAtI4EWBbcKTkGcxw==
+X-Received: by 2002:a05:6a21:328a:b0:187:f7d3:fdd with SMTP id yt10-20020a056a21328a00b00187f7d30fddmr497990pzb.56.1700607554084;
+        Tue, 21 Nov 2023 14:59:14 -0800 (PST)
+Received: from p14s ([2604:3d09:148c:c800:e181:8f:af54:8e11])
+        by smtp.gmail.com with ESMTPSA id d8-20020a170902cec800b001bbd1562e75sm8458471plg.55.2023.11.21.14.59.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Nov 2023 14:59:13 -0800 (PST)
+Date: Tue, 21 Nov 2023 15:59:11 -0700
+From: Mathieu Poirier <mathieu.poirier@linaro.org>
+To: Tanmay Shah <tanmay.shah@amd.com>
+Cc: andersson@kernel.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	michal.simek@amd.com, ben.levinsky@amd.com,
+	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 3/4] remoteproc: zynqmp: add pm domains support
+Message-ID: <ZV02P3bHEhPLQHBo@p14s>
+References: <20231117174238.1876655-1-tanmay.shah@amd.com>
+ <20231117174238.1876655-4-tanmay.shah@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,134 +72,327 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231121094642.2973795-3-qiujingbao.dlmu@gmail.com>
+In-Reply-To: <20231117174238.1876655-4-tanmay.shah@amd.com>
 
-Hi Jingbao,
+Hi,
 
-kernel test robot noticed the following build errors:
+On Fri, Nov 17, 2023 at 09:42:37AM -0800, Tanmay Shah wrote:
+> Use TCM pm domains extracted from device-tree
+> to power on/off TCM using general pm domain framework.
+> 
+> Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
+> ---
+> 
+> Changes in v7:
+>   - %s/pm_dev1/pm_dev_core0/r
+>   - %s/pm_dev_link1/pm_dev_core0_link/r
+>   - %s/pm_dev2/pm_dev_core1/r
+>   - %s/pm_dev_link2/pm_dev_core1_link/r
+>   - remove pm_domain_id check to move next patch
+>   - add comment about how 1st entry in pm domain list is used
+>   - fix loop when jump to fail_add_pm_domains loop
+> 
+>  drivers/remoteproc/xlnx_r5_remoteproc.c | 215 +++++++++++++++++++++++-
+>  1 file changed, 212 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/remoteproc/xlnx_r5_remoteproc.c b/drivers/remoteproc/xlnx_r5_remoteproc.c
+> index 4395edea9a64..22bccc5075a0 100644
+> --- a/drivers/remoteproc/xlnx_r5_remoteproc.c
+> +++ b/drivers/remoteproc/xlnx_r5_remoteproc.c
+> @@ -16,6 +16,7 @@
+>  #include <linux/of_reserved_mem.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/remoteproc.h>
+> +#include <linux/pm_domain.h>
+>  
+>  #include "remoteproc_internal.h"
+>  
+> @@ -102,6 +103,12 @@ static const struct mem_bank_data zynqmp_tcm_banks_lockstep[] = {
+>   * @rproc: rproc handle
+>   * @pm_domain_id: RPU CPU power domain id
+>   * @ipi: pointer to mailbox information
+> + * @num_pm_dev: number of tcm pm domain devices for this core
+> + * @pm_dev_core0: pm domain virtual devices for power domain framework
+> + * @pm_dev_core0_link: pm domain device links after registration
+> + * @pm_dev_core1: used only in lockstep mode. second core's pm domain virtual devices
+> + * @pm_dev_core1_link: used only in lockstep mode. second core's pm device links after
+> + * registration
+>   */
+>  struct zynqmp_r5_core {
+>  	struct device *dev;
+> @@ -111,6 +118,11 @@ struct zynqmp_r5_core {
+>  	struct rproc *rproc;
+>  	u32 pm_domain_id;
+>  	struct mbox_info *ipi;
+> +	int num_pm_dev;
+> +	struct device **pm_dev_core0;
+> +	struct device_link **pm_dev_core0_link;
+> +	struct device **pm_dev_core1;
+> +	struct device_link **pm_dev_core1_link;
+>  };
+>  
+>  /**
+> @@ -651,7 +663,8 @@ static int add_tcm_carveout_lockstep_mode(struct rproc *rproc)
+>  					     ZYNQMP_PM_CAPABILITY_ACCESS, 0,
+>  					     ZYNQMP_PM_REQUEST_ACK_BLOCKING);
+>  		if (ret < 0) {
+> -			dev_err(dev, "failed to turn on TCM 0x%x", pm_domain_id);
+> +			dev_err(dev, "failed to turn on TCM 0x%x",
+> +				pm_domain_id);
 
-[auto build test ERROR on abelloni/rtc-next]
-[also build test ERROR on linus/master v6.7-rc2 next-20231121]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Spurious change, you should have caught that.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Jingbao-Qiu/dt-bindings-rtc-add-binding-for-Sophgo-CV1800B-rtc-controller/20231121-174927
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/abelloni/linux.git rtc-next
-patch link:    https://lore.kernel.org/r/20231121094642.2973795-3-qiujingbao.dlmu%40gmail.com
-patch subject: [PATCH 2/3] rtc: add rtc controller support for Sophgo CV1800B SoC
-config: sparc-allmodconfig (https://download.01.org/0day-ci/archive/20231122/202311220645.2hOquYn6-lkp@intel.com/config)
-compiler: sparc64-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231122/202311220645.2hOquYn6-lkp@intel.com/reproduce)
+>  			goto release_tcm_lockstep;
+>  		}
+>  
+> @@ -758,6 +771,189 @@ static int zynqmp_r5_parse_fw(struct rproc *rproc, const struct firmware *fw)
+>  	return ret;
+>  }
+>  
+> +static void zynqmp_r5_remove_pm_domains(struct rproc *rproc)
+> +{
+> +	struct zynqmp_r5_core *r5_core = rproc->priv;
+> +	struct device *dev = r5_core->dev;
+> +	struct zynqmp_r5_cluster *cluster;
+> +	int i;
+> +
+> +	cluster = platform_get_drvdata(to_platform_device(dev->parent));
+> +
+> +	for (i = 1; i < r5_core->num_pm_dev; i++) {
+> +		device_link_del(r5_core->pm_dev_core0_link[i]);
+> +		dev_pm_domain_detach(r5_core->pm_dev_core0[i], false);
+> +	}
+> +
+> +	kfree(r5_core->pm_dev_core0);
+> +	r5_core->pm_dev_core0 = NULL;
+> +	kfree(r5_core->pm_dev_core0_link);
+> +	r5_core->pm_dev_core0_link = NULL;
+> +
+> +	if (cluster->mode == SPLIT_MODE) {
+> +		r5_core->num_pm_dev = 0;
+> +		return;
+> +	}
+> +
+> +	for (i = 1; i < r5_core->num_pm_dev; i++) {
+> +		device_link_del(r5_core->pm_dev_core1_link[i]);
+> +		dev_pm_domain_detach(r5_core->pm_dev_core1[i], false);
+> +	}
+> +
+> +	kfree(r5_core->pm_dev_core1);
+> +	r5_core->pm_dev_core1 = NULL;
+> +	kfree(r5_core->pm_dev_core1_link);
+> +	r5_core->pm_dev_core1_link = NULL;
+> +	r5_core->num_pm_dev = 0;
+> +}
+> +
+> +static int zynqmp_r5_add_pm_domains(struct rproc *rproc)
+> +{
+> +	struct zynqmp_r5_core *r5_core = rproc->priv;
+> +	struct device *dev = r5_core->dev, *dev2;
+> +	struct zynqmp_r5_cluster *cluster;
+> +	struct platform_device *pdev;
+> +	struct device_node *np;
+> +	int i, j, num_pm_dev, ret;
+> +
+> +	cluster = dev_get_drvdata(dev->parent);
+> +
+> +	/* get number of power-domains */
+> +	num_pm_dev = of_count_phandle_with_args(r5_core->np, "power-domains",
+> +						"#power-domain-cells");
+> +
+> +	if (num_pm_dev <= 0)
+> +		return -EINVAL;
+> +
+> +	r5_core->pm_dev_core0 = kcalloc(num_pm_dev,
+> +					sizeof(struct device *),
+> +					GFP_KERNEL);
+> +	if (!r5_core->pm_dev_core0)
+> +		ret = -ENOMEM;
+> +
+> +	r5_core->pm_dev_core0_link = kcalloc(num_pm_dev,
+> +					     sizeof(struct device_link *),
+> +					     GFP_KERNEL);
+> +	if (!r5_core->pm_dev_core0_link) {
+> +		kfree(r5_core->pm_dev_core0);
+> +		r5_core->pm_dev_core0 = NULL;
+> +		return -ENOMEM;
+> +	}
+> +
+> +	r5_core->num_pm_dev = num_pm_dev;
+> +
+> +	/*
+> +	 * start from 2nd entry in power-domains property list as
+> +	 * for zynqmp we only add TCM power domains and not core's power domain.
+> +	 * 1st entry is used to configure r5 operation mode.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202311220645.2hOquYn6-lkp@intel.com/
+You are still not saying _where_ ->pm_dev_core0[0] gets added.
 
-All errors (new ones prefixed by >>):
+> +	 */
+> +	for (i = 1; i < r5_core->num_pm_dev; i++) {
+> +		r5_core->pm_dev_core0[i] = dev_pm_domain_attach_by_id(dev, i);
+> +		if (IS_ERR_OR_NULL(r5_core->pm_dev_core0[i])) {
 
-   drivers/rtc/rtc-cv1800b.c: In function 'cv1800b_rtc_alarm_irq_enable':
->> drivers/rtc/rtc-cv1800b.c:90:17: error: implicit declaration of function 'writel_relaxed' [-Werror=implicit-function-declaration]
-      90 |                 writel_relaxed(REG_ENABLE_FUN, data->core_map + RTC_ALARM_ENABLE);
-         |                 ^~~~~~~~~~~~~~
-   drivers/rtc/rtc-cv1800b.c: In function 'cv1800b_rtc_read_alarm':
->> drivers/rtc/rtc-cv1800b.c:115:21: error: implicit declaration of function 'readl' [-Werror=implicit-function-declaration]
-     115 |         alrm_time = readl(data->core_map + RTC_ALARM_TIME);
-         |                     ^~~~~
-   drivers/rtc/rtc-cv1800b.c: In function 'cv1800b_rtc_softinit':
->> drivers/rtc/rtc-cv1800b.c:128:9: error: implicit declaration of function 'writel' [-Werror=implicit-function-declaration]
-     128 |         writel(ACTIVATE_RTC_POR_DB_MAGIC_KEY,
-         |         ^~~~~~
-   drivers/rtc/rtc-cv1800b.c: In function 'cv1800b_rtc_read_time':
->> drivers/rtc/rtc-cv1800b.c:150:16: error: implicit declaration of function 'readl_relaxed' [-Werror=implicit-function-declaration]
-     150 |         time = readl_relaxed(data->core_map + RTC_SEC_CNTR_VALUE);
-         |                ^~~~~~~~~~~~~
-   drivers/rtc/rtc-cv1800b.c: In function 'cv1800b_rtc_probe':
-   drivers/rtc/rtc-cv1800b.c:246:16: error: implicit declaration of function 'rtc_register_device'; did you mean 'devm_rtc_register_device'? [-Werror=implicit-function-declaration]
-     246 |         return rtc_register_device(rtc->rtc_dev);
-         |                ^~~~~~~~~~~~~~~~~~~
-         |                devm_rtc_register_device
-   cc1: some warnings being treated as errors
+Here IS_ERR_OR_NULL() is used while two if conditions for NULL and an error
+code are used in the loop for the lockstep mode.  Please pick one heuristic and
+stick with it.  I have no preference on which one.
 
+> +			dev_dbg(dev, "failed to attach pm domain %d, ret=%ld\n", i,
+> +				PTR_ERR(r5_core->pm_dev_core0[i]));
+> +			ret = -EINVAL;
+> +			goto fail_add_pm_domains;
+> +		}
+> +		r5_core->pm_dev_core0_link[i] = device_link_add(dev,
+> +								r5_core->pm_dev_core0[i],
+> +								DL_FLAG_STATELESS |
+> +								DL_FLAG_RPM_ACTIVE |
+> +								DL_FLAG_PM_RUNTIME);
+> +		if (!r5_core->pm_dev_core0_link[i]) {
+> +			dev_pm_domain_detach(r5_core->pm_dev_core0[i], true);
+> +			r5_core->pm_dev_core0[i] = NULL;
+> +			ret = -EINVAL;
+> +			goto fail_add_pm_domains;
+> +		}
+> +	}
+> +
+> +	if (cluster->mode == SPLIT_MODE)
+> +		return 0;
+> +
+> +	r5_core->pm_dev_core1 = kcalloc(num_pm_dev,
+> +					sizeof(struct device *),
+> +					GFP_KERNEL);
+> +	if (!r5_core->pm_dev_core1) {
+> +		ret = -ENOMEM;
+> +		goto fail_add_pm_domains;
+> +	}
+> +
+> +	r5_core->pm_dev_core1_link = kcalloc(num_pm_dev,
+> +					     sizeof(struct device_link *),
+> +					     GFP_KERNEL);
+> +	if (!r5_core->pm_dev_core1_link) {
+> +		kfree(r5_core->pm_dev_core1);
+> +		r5_core->pm_dev_core1 = NULL;
+> +		ret = -ENOMEM;
+> +		goto fail_add_pm_domains;
+> +	}
+> +
+> +	/* get second core's device to detach its power-domains */
+> +	np = of_get_next_child(cluster->dev->of_node, of_node_get(dev->of_node));
+> +
+> +	pdev = of_find_device_by_node(np);
+> +	if (!pdev) {
+> +		dev_err(cluster->dev, "core1 platform device not available\n");
+> +		kfree(r5_core->pm_dev_core1);
+> +		kfree(r5_core->pm_dev_core1_link);
+> +		r5_core->pm_dev_core1 = NULL;
+> +		r5_core->pm_dev_core1_link = NULL;
+> +		ret = -EINVAL;
+> +		goto fail_add_pm_domains;
+> +	}
+> +
+> +	dev2 = &pdev->dev;
+> +
+> +	/* for zynqmp we only add TCM power domains and not core's power domain */
+> +	for (j = 1; j < r5_core->num_pm_dev; j++) {
+> +		r5_core->pm_dev_core1[j] = dev_pm_domain_attach_by_id(dev2, j);
+> +		if (!r5_core->pm_dev_core1[j]) {
+> +			dev_dbg(dev, "can't attach to pm domain %d\n", j);
+> +			ret = -EINVAL;
+> +			goto fail_add_pm_domains_lockstep;
+> +		} else if (IS_ERR(r5_core->pm_dev_core1[j])) {
+> +			dev_dbg(dev, "can't attach to pm domain %d\n", j);
+> +			ret = PTR_ERR(r5_core->pm_dev_core1[j]);
+> +			goto fail_add_pm_domains_lockstep;
+> +		}
+> +
+> +		r5_core->pm_dev_core1_link[j] = device_link_add(dev,
+> +								r5_core->pm_dev_core1[j],
+> +								DL_FLAG_STATELESS |
+> +								DL_FLAG_RPM_ACTIVE |
+> +								DL_FLAG_PM_RUNTIME);
+> +		if (!r5_core->pm_dev_core1_link[j]) {
+> +			dev_pm_domain_detach(r5_core->pm_dev_core1[j], true);
+> +			r5_core->pm_dev_core1[j] = NULL;
+> +			ret = -ENODEV;
+> +			goto fail_add_pm_domains_lockstep;
+> +		}
+> +	}
+> +
+> +fail_add_pm_domains_lockstep:
+> +	while (--j >= 0) {
+> +		device_link_del(r5_core->pm_dev_core1_link[j]);
+> +		dev_pm_domain_detach(r5_core->pm_dev_core1[j], true);
+> +	}
+> +	kfree(r5_core->pm_dev_core1);
+> +	r5_core->pm_dev_core1 = NULL;
+> +	kfree(r5_core->pm_dev_core1_link);
+> +	r5_core->pm_dev_core1_link = NULL;
+> +
+> +fail_add_pm_domains:
+> +	while (--i >= 0) {
+> +		device_link_del(r5_core->pm_dev_core0_link[i]);
+> +		dev_pm_domain_detach(r5_core->pm_dev_core0[i], true);
+> +	}
+> +	kfree(r5_core->pm_dev_core0);
+> +	r5_core->pm_dev_core0 = NULL;
+> +	kfree(r5_core->pm_dev_core0_link);
+> +	r5_core->pm_dev_core0_link = NULL;
+> +
 
-vim +/writel_relaxed +90 drivers/rtc/rtc-cv1800b.c
+The error path is much cleaner and readable now.
 
-    83	
-    84	static int cv1800b_rtc_alarm_irq_enable(struct device *dev,
-    85						unsigned int enabled)
-    86	{
-    87		struct cv1800b_rtc_priv *data = dev_get_drvdata(dev);
-    88	
-    89		if (enabled)
-  > 90			writel_relaxed(REG_ENABLE_FUN, data->core_map + RTC_ALARM_ENABLE);
-    91		else
-    92			writel_relaxed(REG_DISABLE_FUN,
-    93				       data->core_map + RTC_ALARM_ENABLE);
-    94	
-    95		return 0;
-    96	}
-    97	
-    98	static int cv1800b_rtc_set_alarm(struct device *dev, struct rtc_wkalrm *alrm)
-    99	{
-   100		struct cv1800b_rtc_priv *data = dev_get_drvdata(dev);
-   101		unsigned long time = rtc_tm_to_time64(&alrm->time);
-   102	
-   103		writel_relaxed(time, data->core_map + RTC_ALARM_TIME);
-   104	
-   105		cv1800b_rtc_alarm_irq_enable(dev, 1);
-   106	
-   107		return 0;
-   108	}
-   109	
-   110	static int cv1800b_rtc_read_alarm(struct device *dev, struct rtc_wkalrm *alrm)
-   111	{
-   112		u32 alrm_time, now_time;
-   113		struct cv1800b_rtc_priv *data = dev_get_drvdata(dev);
-   114	
- > 115		alrm_time = readl(data->core_map + RTC_ALARM_TIME);
-   116		now_time = readl(data->core_map + RTC_SEC_CNTR_VALUE);
-   117		rtc_time64_to_tm(alrm_time, &alrm->time);
-   118		alrm->pending = now_time > alrm_time ? 1 : 0;
-   119		alrm->enabled = readl(data->core_map + RTC_ALARM_ENABLE);
-   120	
-   121		return 0;
-   122	}
-   123	
-   124	static int cv1800b_rtc_softinit(struct cv1800b_rtc_priv *dev)
-   125	{
-   126		u32 timeout = 20;
-   127	
- > 128		writel(ACTIVATE_RTC_POR_DB_MAGIC_KEY,
-   129		       dev->core_map + RTC_POR_DB_MAGIC_KEY);
-   130		writel(INIT_LOAD_TIME, dev->core_map + RTC_SET_SEC_CNTR_VALUE);
-   131		writel(REG_DISABLE_FUN, dev->core_map + RTC_SET_SEC_CNTR_TRIG);
-   132	
-   133		while (readl(dev->core_map + RTC_SEC_CNTR_VALUE) == INIT_LOAD_TIME
-   134		       && timeout--)
-   135			udelay(5);
-   136	
-   137		if (!timeout)
-   138			return -1;
-   139		return 0;
-   140	}
-   141	
-   142	static int cv1800b_rtc_read_time(struct device *dev, struct rtc_time *tm)
-   143	{
-   144		struct cv1800b_rtc_priv *data = dev_get_drvdata(dev);
-   145		u32 time = 0;
-   146	
-   147		if (!data)
-   148			return -1;
-   149	
- > 150		time = readl_relaxed(data->core_map + RTC_SEC_CNTR_VALUE);
-   151		rtc_time64_to_tm(time, tm);
-   152	
-   153		return 0;
-   154	}
-   155	
+I will continue tomorrow.
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Mathieu
+
+> +	return ret;
+> +}
+> +
+>  /**
+>   * zynqmp_r5_rproc_prepare()
+>   * adds carveouts for TCM bank and reserved memory regions
+> @@ -770,19 +966,30 @@ static int zynqmp_r5_rproc_prepare(struct rproc *rproc)
+>  {
+>  	int ret;
+>  
+> +	ret = zynqmp_r5_add_pm_domains(rproc);
+> +	if (ret) {
+> +		dev_err(&rproc->dev, "failed to add pm domains\n");
+> +		return ret;
+> +	}
+> +
+>  	ret = add_tcm_banks(rproc);
+>  	if (ret) {
+>  		dev_err(&rproc->dev, "failed to get TCM banks, err %d\n", ret);
+> -		return ret;
+> +		goto fail_prepare;
+>  	}
+>  
+>  	ret = add_mem_regions_carveout(rproc);
+>  	if (ret) {
+>  		dev_err(&rproc->dev, "failed to get reserve mem regions %d\n", ret);
+> -		return ret;
+> +		goto fail_prepare;
+>  	}
+>  
+>  	return 0;
+> +
+> +fail_prepare:
+> +	zynqmp_r5_remove_pm_domains(rproc);
+> +
+> +	return ret;
+>  }
+>  
+>  /**
+> @@ -801,6 +1008,8 @@ static int zynqmp_r5_rproc_unprepare(struct rproc *rproc)
+>  
+>  	r5_core = rproc->priv;
+>  
+> +	zynqmp_r5_remove_pm_domains(rproc);
+> +
+>  	for (i = 0; i < r5_core->tcm_bank_count; i++) {
+>  		pm_domain_id = r5_core->tcm_banks[i]->pm_domain_id;
+>  		if (zynqmp_pm_release_node(pm_domain_id))
+> -- 
+> 2.25.1
+> 
 
