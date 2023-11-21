@@ -1,177 +1,222 @@
-Return-Path: <devicetree+bounces-17411-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17412-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80D9B7F269F
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 08:47:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22B8E7F26B0
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 08:52:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B204A1C20D80
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 07:47:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D0917282624
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 07:52:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37E05347B6;
-	Tue, 21 Nov 2023 07:47:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3503358A5;
+	Tue, 21 Nov 2023 07:52:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xxL10NUn"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="kEdVk6AZ";
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="Lvn+jTqe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92B1610F
-	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 23:47:49 -0800 (PST)
-Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-548f0b7ab9eso1041434a12.3
-        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 23:47:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700552868; x=1701157668; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=TmiocgWVUHJm0ZVecWFSig6IiGg3Msxyl8SKRRupJjA=;
-        b=xxL10NUnEyBCxd3mlcivlXeFVXVJ7EYT+NqDaiKDbfeDzrBqN36ZKMVMlZJwKkhuhA
-         A/8Y7qiObt9wuba+Whbs6UmTWh14TMNmZYqBHdVWEBW1otwqWL0DLSX/XZRPq+qd5rdw
-         fgF2JRXpBJBq4Np5/YAyeJ6FmOowK/U6wygktt7ZRKVA8yOL1J7Pfsro97GfU2TlnH6X
-         I0H8UEl7nZs3iPgs2a1XKbK6kz9mliYj5M1o1j+qRQx6mRbFqKM+KM91GEdyFJx5r7XZ
-         kf0m+mx1FAFOyJ3lmLaNogJDp1DiygDNmJ1RynxrKoCCDSVObsqzR4r/afxL6iV4VSqS
-         SwLA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700552868; x=1701157668;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TmiocgWVUHJm0ZVecWFSig6IiGg3Msxyl8SKRRupJjA=;
-        b=iYfxRvW9ey1J+FGbkA1gN4G1oOhloBen+UoMLnTA/bQmh+SqrojOTgZWDEkhVpmLuk
-         jVBnSjopu3qsDmUx0OGK7EFnq57AzCDexYuu73V/HNhIM/LDaW90xybU5Ft0MWfhLFG9
-         QzSA9jIgdS46RpvVlYkv09JsocaH1C+FeP8oSjYsxQaMvvUP1holcODw7WE1U13F+0Lu
-         P14aBfpvP2veHZq0GdKAnhVBZX4ZPUbosti4oynDifitHVQ2+y0+PZ6a0V0DSi/CEP+w
-         BG3YGtI5Vo15Mk8huXxEbb1tgbmPxZYrFcsGCdDNCYFoQfqQsIWYbrZ+vImcWYPtdnq1
-         jsZA==
-X-Gm-Message-State: AOJu0YwszfxQ6cA098xeHvRKqXg1SJihT6JXYummDkwfcT39dzhSqbTp
-	GmbalKBYjxPLyQ/n9AGvKOAFqQ==
-X-Google-Smtp-Source: AGHT+IE/ryIFFXRtcdPlnGO+HGiheve5UvNwXGz0AUkcFXfXA0zX6H0fGrp/KbgbJj9M5p0o6Usniw==
-X-Received: by 2002:a17:906:51d8:b0:a02:abc1:1911 with SMTP id v24-20020a17090651d800b00a02abc11911mr170546ejk.7.1700552868117;
-        Mon, 20 Nov 2023 23:47:48 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.222.11])
-        by smtp.gmail.com with ESMTPSA id n21-20020a1709062bd500b00a015eac52dcsm752988ejg.108.2023.11.20.23.47.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Nov 2023 23:47:47 -0800 (PST)
-Message-ID: <16cba31d-534a-4658-868a-c1ff3165cf11@linaro.org>
-Date: Tue, 21 Nov 2023 08:47:45 +0100
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A967210F;
+	Mon, 20 Nov 2023 23:52:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1700553152; x=1732089152;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-transfer-encoding:mime-version;
+  bh=0ZGF6D08zRB+LaUvIcVXzkLUOQm4Wx4EEjTg4IeXzCI=;
+  b=kEdVk6AZ75naw4DWcyv9aGYINASrN1jD7iJFMJxyjW5eOVREjsZ3sGKm
+   WIpF2z5X8j3/dlPPei6hc05QA2S7ob45luVljXpYlKqBDQPlnyfseh/G1
+   sVuLv2gBk/f0yFsfJGHKoAzCv0EPgbxm9Pwn0qS4dftFeVcA9IW/ITrIi
+   WwTzQJxuSOhCmUsP2NKr0fH1JcL+2vE+t3r6DA1qLfq4Wl2m+obfQ/vFs
+   lWw4CJ9w0FpbO50S3g6JUi4veef7ragvdQuTtj43hBXC3g59xSNj62jSA
+   wwFhYcFyT3KD+PRyaLYjfkykk1p9Lf1HtvRxHVVrdS+/mjGSwBsLkNkda
+   Q==;
+X-CSE-ConnectionGUID: K+dJqAMPQGiPKikBmoSrog==
+X-CSE-MsgGUID: 22K/txD4SWeDLKj2WTZ02g==
+X-ThreatScanner-Verdict: Negative
+X-IronPort-AV: E=Sophos;i="6.04,215,1695711600"; 
+   d="scan'208";a="242723296"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 21 Nov 2023 00:52:32 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Tue, 21 Nov 2023 00:52:06 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (10.10.215.250)
+ by email.microchip.com (10.10.87.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21 via Frontend Transport; Tue, 21 Nov 2023 00:52:06 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ZCaAffRZdOBXN5m46y+nY90QK6sPL9+5Cw1n1EsVsHNqc7ie90cHW0kzqrhdZUbRxfKYaLpkaInGtICulLEcCHhPqtTEcAERDZv/g19rq2ye/q8w3VFHk3Uwaow++X8ao5W4/Ll5vsYFcn/mvf9qYjf2o/1rmeGYwFFs0LkrSAXG5aPQatjAsMixiIwBvXrSpf94GSpWxJksfFX3CdjxqbYk2EBcuYoNSTvMBxtgRGwn9KbJndDQqlnAoSAlRg5P/zkp5L973hPPwWHaexIDfKhxQ6KRIMikXzCY9jxVfh1wtuZCLHuJZvV1+IaFiDRVrmaayzIuit0jdxlmdBYhow==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=EaQuHgmUliQ5qZmJaZOov74taB4TUSUKjYYQR4DEp+Q=;
+ b=mT+HXyUrv7sKtEF9BpT9qYEBIWLXKVDKFABlET1YqZ/k8c9hvsgsso0DwW9puoHZkOLLV59sYaL9r/l+B9k6TIJNvwTKgD8BqBjeAkDiDlNBfEn6AeR0epMEBo9+gE0vwlkHhZKbBVvG5ZhxqWTYsGFilvNQ9SLHZz5e7vobFNkNqrS00hrUjCAlzV1tE4hMBLr1RNtP0sczifT45e0N6NmJDz85MMLRcbw9O3G3XECmCoUPr6j+i+uis3y8my9uXZMIE9HxgFQgQ/HJ71eakIInHvH0NJJjnrAhcrthomXWlx99CeyYL7F6H6yrdWsK5jmyUM9+8h70lFw5cG07ww==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=microchip.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=EaQuHgmUliQ5qZmJaZOov74taB4TUSUKjYYQR4DEp+Q=;
+ b=Lvn+jTqekzM2zWpUasaZyERF8lXZurQ7lfH3PNh93SDi/5Ts1zP3AdQ6u5+UHWq5y38AWb2VGlkw4BvqjSytDFUEL9BtCjqQAJLk0Tn0b3QmeFZ8uQU6zCzPhoYvYO2C4NLODctWp1L4i2G6CJbzb42XgDiZFWSj79BD7yv4TtbfyAaS8LXJKPBjqTyZp5egW27ucaDiIBr3s8em0TtQra8EIMnaS5xYGDVPZutBwUYrBv014giR5s5qNtynqkt61xlx006ANUE3iClVjD1BbMCp3rezcHS7VGWho0sQHLwcplDyRqmvP3bDb8ZT2rtUebmUcckJMy+bbWY4QWwfmg==
+Received: from PH0PR11MB5611.namprd11.prod.outlook.com (2603:10b6:510:ed::9)
+ by DS0PR11MB7559.namprd11.prod.outlook.com (2603:10b6:8:146::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7002.21; Tue, 21 Nov
+ 2023 07:52:03 +0000
+Received: from PH0PR11MB5611.namprd11.prod.outlook.com
+ ([fe80::447:632:a9ce:152f]) by PH0PR11MB5611.namprd11.prod.outlook.com
+ ([fe80::447:632:a9ce:152f%4]) with mapi id 15.20.7002.027; Tue, 21 Nov 2023
+ 07:52:03 +0000
+From: <Shravan.Chippa@microchip.com>
+To: <green.wan@sifive.com>, <vkoul@kernel.org>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <palmer@dabbelt.com>,
+	<paul.walmsley@sifive.com>, <conor+dt@kernel.org>
+CC: <dmaengine@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<Nagasuresh.Relli@microchip.com>, <Praveen.Kumar@microchip.com>,
+	<Shravan.Chippa@microchip.com>
+Subject: RE: [PATCH v4 0/4] dma: sf-pdma: various sf-pdma updates for the mpfs
+ platform
+Thread-Topic: [PATCH v4 0/4] dma: sf-pdma: various sf-pdma updates for the
+ mpfs platform
+Thread-Index: AQHaC7ryo0Utpq8cYU+3kvUzBUAwAbCEh1Kw
+Date: Tue, 21 Nov 2023 07:52:03 +0000
+Message-ID: <PH0PR11MB5611FB5D700B2AE5B215D7C181BBA@PH0PR11MB5611.namprd11.prod.outlook.com>
+References: <20231031052753.3430169-1-shravan.chippa@microchip.com>
+In-Reply-To: <20231031052753.3430169-1-shravan.chippa@microchip.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=microchip.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PH0PR11MB5611:EE_|DS0PR11MB7559:EE_
+x-ms-office365-filtering-correlation-id: 4d37263b-56b5-43ff-e735-08dbea66bffb
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: rMVg4mxIA93pgkdXROMOt8IAx8GqTYDSrBzsKmg4rUUM9c6MSA4mUFnm7bFKnhFdvy31CUg1fIeFeDT28vHIHDZZLlnKDNpMv6IPv2Adc421zeUDJWoXtOswf86DyNvaCUzAXyzJ/FCUzIiM/qJk2FSWQXPD5vOUyzMXAc6LAUHWGvChvLdo4YT9bMc5Y5/tGLL5CQkOIw8l9IxkKT7xiPyY5Lo1qD+U5TuHbpKAbrxnnMWhcXoL2/h5KLhcItdkTZMbZ0ooQH4ERvYrmSWl7kJV4PM+5XuuMzLfh5t1MWqBoJh9xVPhFFKVaRRRBB0uTn5dwY1XYVrHPyai2OHAVqy3K15hMVnb4mVz9BzeUDVpJuUFAgeFnqklnJip/3SFDAcooRnnwbvUAI4ff5PSiLNzg1FO9wBJcSHVWcWXuSpW87616eba3op9rPIYwa+TwaVl5MktoxpEFIsospNXH8iKRDZhyELaFutdfgVA5yUKSFn8+1lEMaHU2JBid4u6xnoxmKBPoWXM1OupV7ZZMM1Vs8y18Du56+ae2SzMzslVBoyekW6IE/A4pCO4USca+sYDwbcgBpiPtXpRM+ip3WnIb0EB02t5Vxsvs+41Pi4fzXJl73Mnjsbuk90wpxsf
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR11MB5611.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(346002)(366004)(396003)(39860400002)(376002)(230922051799003)(451199024)(186009)(64100799003)(1800799012)(83380400001)(53546011)(26005)(9686003)(4326008)(8676002)(52536014)(8936002)(38100700002)(41300700001)(15650500001)(2906002)(7416002)(5660300002)(478600001)(6506007)(7696005)(71200400001)(110136005)(76116006)(64756008)(66446008)(66476007)(66556008)(66946007)(54906003)(316002)(33656002)(122000001)(86362001)(38070700009)(107886003)(55016003);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?M2sT1PTSQgSqqRjbEhTothOK1yu68rIJx6DScCCnx1g/py+O9o5UwAzdIODI?=
+ =?us-ascii?Q?y+yg+gekGF2KE/s46QTEr7pPWJeHlrEfr96DS7lyAZHALuNKnttalB+7WhgX?=
+ =?us-ascii?Q?Ba6DkvZIDIFk0gPI8G8WEL7hiPCryFt3jYk/xLEsI0ddycp+MANFEY3WbYWF?=
+ =?us-ascii?Q?Vr384GFaPTg1ISER4+4s57HSQuTLtHEvt38N6Pt++QEZDZFNV8op1S+mtfQY?=
+ =?us-ascii?Q?8D8pmqV623piM/UQphI5IQbl0eSdkhpf1v1GiZMrmBBMIPqfKfsAnKFJfJqJ?=
+ =?us-ascii?Q?WrA+d7v25A+zQDWmXdWmOX28APv2OeOiQ7brlrsL/CDrqjAylGTdYDPfkzm1?=
+ =?us-ascii?Q?z08/WyHX+gSNZg2M/hxKHq3iPnd/wDVHItxFAZ3wcvwhmCpSzm8Acuxch2X5?=
+ =?us-ascii?Q?U5hOqrGJqCBWFF4mmyf0WPC+6ZA4SjHvcuP5OKsReOuN5vLINkevV8alKmbH?=
+ =?us-ascii?Q?aQfQ3PhWmxokHNfpQZeyzKnRLlZNeUbyG09VhzRXBsQXe61BFG13QPQPblrr?=
+ =?us-ascii?Q?/s/M1puDBUxMEzir0CslPHL/S1v5szdXYavrNCJVZKT8wEjFNM8TObiYcsWL?=
+ =?us-ascii?Q?Ij47UmIlcRb1GvfZWtUML1u43FTQ5w+ev7B1VY7YgvZdmPxieuQXsanb1/rm?=
+ =?us-ascii?Q?kBHCc/Gc8RbaTdL3HPctwpM55D/4NpFaEs/s0WJOlXXoF0OTkq/PTDQvv8fC?=
+ =?us-ascii?Q?WFsy3KdeseRX0mdn8Tm2Ls1JnqnGpbOgOo+2z3hKoSO1aSzzk0k6h/htiBUm?=
+ =?us-ascii?Q?I9EhwncCjye3eBqUxKl5TZMHzcwWiJ8FvfbvrWbruUw/ijW2OrzpRDjpLmNe?=
+ =?us-ascii?Q?TKPbjPSyhHamBANkib/WS7MQdNos3H2GqZUtAwfdxwb5GFA5bm736LfMriKc?=
+ =?us-ascii?Q?Hh5DyXUueVbO6NFxCsI6RQA0P7Htsf+ZBH99lAM+VgcLJz2aQD3ugA3/VD9b?=
+ =?us-ascii?Q?mLt4tdJCcYZTZHELng8W9/SQpezZ+1DRC8lZOFFr7bLHKnjr9U67ZmkNsmeA?=
+ =?us-ascii?Q?pixOYYHAbUbbJszf+4EXwsgMYFYtDVUMoU+kjbqU2AP1UtckXT1j0nxj18X1?=
+ =?us-ascii?Q?6W9KJBz1jFJH10jkTndCmoHWs9ENxqtwo+ekdJm+KLFAOi2spo39wuq3hg84?=
+ =?us-ascii?Q?P7RfU4Zbo58HGJ6DYa2l2QCcQZMf/M5YEN6MLoAdw0xvfiQd5ehujN/GFje8?=
+ =?us-ascii?Q?GxNe4zQLDALBTgYi3h+WSAdG1ySfkU3pFeLUb5GmHQqTUzqjtSnuY+lrW/SX?=
+ =?us-ascii?Q?kuTuUlcIorrSph02w3WOfOeWXkInGA6i2LjC2kPvqbI0HzLSMK6n6Q1isChR?=
+ =?us-ascii?Q?JifNRM3fBfp/VGL/8bbGM0JrVXLJz4jBKUY5D8nl7Zf4r+4AwijLnmoD0X7P?=
+ =?us-ascii?Q?HySkSveIePAX8bHKMVYRV1xhrYozASqogPsBfjPOYz456hyZQDcvDrpVb1bU?=
+ =?us-ascii?Q?HrJ9RlbO1+luX9vHFrYD4mPwleVmsX8Gwa8CDTTVMaWLhw+zSkIFvAtvT5NA?=
+ =?us-ascii?Q?UmR3cv5tskY84ZNzlYbN9oMPdAy+te2tei/ka5NpeWXem9/WRmL7q77HfGsO?=
+ =?us-ascii?Q?B9F3i+XceT9WcQkBI9iHx6w5lTvepEi/DsvrlJ0idjHg0iSE6KPCfIFaA3js?=
+ =?us-ascii?Q?2w=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] docs: dt-bindings: add DTS Coding Style document
-Content-Language: en-US
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- Andrew Davis <afd@ti.com>, Arnd Bergmann <arnd@arndb.de>,
- Bjorn Andersson <andersson@kernel.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Heiko Stuebner <heiko@sntech.de>, Konrad Dybcio <konrad.dybcio@linaro.org>,
- Michal Simek <michal.simek@amd.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Nishanth Menon <nm@ti.com>,
- Olof Johansson <olof@lixom.net>, linux-rockchip@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-msm@vger.kernel.org
-References: <20231120084044.23838-1-krzysztof.kozlowski@linaro.org>
- <14c3900f-8f2e-4614-8317-f85763d1d953@lunn.ch>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <14c3900f-8f2e-4614-8317-f85763d1d953@lunn.ch>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PH0PR11MB5611.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4d37263b-56b5-43ff-e735-08dbea66bffb
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Nov 2023 07:52:03.1431
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Bg+N0fIwUua+Fiq3paCHHwr4ouSX9pRxZ64nM5vjoH1yRU4p+EKv2tkbgCDDEG7RfcNSiHiDT0+9sNgDAt17f0r02nlNETBojrIAM/H2ZwA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7559
 
-On 20/11/2023 21:15, Andrew Lunn wrote:
->> +Naming and Valid Characters
->> +---------------------------
->> +
->> +1. Node and property names are allowed to use only:
->> +
->> +   * lowercase characters: [a-z]
->> +   * digits: [0-9]
->> +   * dash: -
->> +
->> +2. Labels are allowed to use only:
->> +
->> +   * lowercase characters: [a-z]
->> +   * digits: [0-9]
->> +   * underscore: _
->> +
->> +3. Unit addresses should use lowercase hex, without leading zeros (padding).
->> +
->> +4. Hex values in properties, e.g. "reg", should use lowercase hex.  The address
->> +   part can be padded with leading zeros.
->> +
->> +Example::
->> +
->> +	gpi_dma2: dma-controller@800000 {
->> +		compatible = "qcom,sm8550-gpi-dma", "qcom,sm6350-gpi-dma";
->> +		reg = <0x0 0x00800000 0x0 0x60000>;
->> +	}
-> 
-> Hi Krzysztof
-> 
-> What i like about the Linux Coding Style is that most sections have a
-> Rationale. I like the way it explains the 'Why?'. It makes it feel
-> less arbitrary. When it does not seem arbitrary, but reasoned, i find
-> it easier to follow.
-> 
-> Could you add rationale like the Coding Style?
+Hi,
 
-I did not do it on purpose because it would grow too much.
+Gentle ping!
 
-Best regards,
-Krzysztof
+Thanks,
+Shravan
+
+> -----Original Message-----
+> From: shravan chippa <shravan.chippa@microchip.com>
+> Sent: Tuesday, October 31, 2023 10:58 AM
+> To: green.wan@sifive.com; vkoul@kernel.org; robh+dt@kernel.org;
+> krzysztof.kozlowski+dt@linaro.org; palmer@dabbelt.com;
+> paul.walmsley@sifive.com; conor+dt@kernel.org
+> Cc: dmaengine@vger.kernel.org; devicetree@vger.kernel.org; linux-
+> riscv@lists.infradead.org; linux-kernel@vger.kernel.org; Nagasuresh Relli=
+ -
+> I67208 <Nagasuresh.Relli@microchip.com>; Praveen Kumar - I30718
+> <Praveen.Kumar@microchip.com>; shravan Chippa - I35088
+> <Shravan.Chippa@microchip.com>
+> Subject: [PATCH v4 0/4] dma: sf-pdma: various sf-pdma updates for the mpf=
+s
+> platform
+>=20
+> From: Shravan Chippa <shravan.chippa@microchip.com>
+>=20
+> Changes from V3 -> V4:
+>=20
+> Removed unnecessary parentheses and extra space Added review tags
+>=20
+> Changes from V2 -> V3:
+>=20
+> Removed whitespace
+> Change naming convention of the macros (modified code as per new macros)
+> updated with new API device_get_match_data() modified dt-bindings as per
+> the commmets from v2 modified compatible name string for mpfs platform
+>=20
+> Changes from V1 -> V2:
+>=20
+> Removed internal review tags
+> Commit massages modified.
+> Added devicetree patch with new compatible name for mpfs platform Added
+> of_dma_controller_free() clenup call in sf_pdma_remove() function
+>=20
+> V1:
+>=20
+> This series does the following
+> 1. Adds a PolarFire SoC specific compatible and code to support for out-o=
+f-
+> order dma transfers
+>=20
+> 2. Adds generic device tree bindings support by using
+> of_dma_controller_register()
+>=20
+> Shravan Chippa (4):
+>   dmaengine: sf-pdma: Support of_dma_controller_register()
+>   dt-bindings: dma: sf-pdma: add new compatible name
+>   dmaengine: sf-pdma: add mpfs-pdma compatible name
+>   riscv: dts: microchip: add specific compatible for mpfs' pdma
+>=20
+>  .../bindings/dma/sifive,fu540-c000-pdma.yaml  |  1 +
+>  arch/riscv/boot/dts/microchip/mpfs.dtsi       |  2 +-
+>  drivers/dma/sf-pdma/sf-pdma.c                 | 71 ++++++++++++++++++-
+>  drivers/dma/sf-pdma/sf-pdma.h                 |  8 ++-
+>  4 files changed, 77 insertions(+), 5 deletions(-)
+>=20
+> --
+> 2.34.1
 
 
