@@ -1,133 +1,94 @@
-Return-Path: <devicetree+bounces-17619-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17620-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F7ED7F31B9
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 15:57:04 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06CBF7F31C0
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 15:58:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0A01E282F5D
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 14:57:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3763E1C218CE
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 14:58:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43F52537EC;
-	Tue, 21 Nov 2023 14:56:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6E4E53803;
+	Tue, 21 Nov 2023 14:58:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="hU4JPsdt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="krU/8KO4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::228])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C66E012C;
-	Tue, 21 Nov 2023 06:56:54 -0800 (PST)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id AC6211BF211;
-	Tue, 21 Nov 2023 14:56:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1700578613;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=khxP4fXOUOIWA699Z/Zj5Syc66Lt+5ABqJOlzJsvRtk=;
-	b=hU4JPsdtnkyQxT0F1F4Q5i4r1EhdISiflUXXD+Zw5eUJr8WZIcQW19HeeaLH7/1JzDSjJ/
-	uYVtkf7/wrGLZEgPF3tsHEGkkY0oJUg99DV5oTPUKiAe1jBE6C2JbprD0TrXJnquTnbsQb
-	s6HBH5N/JeJ3Zf/JTqrKTbESTrtS/b3mlxmslNlvYglR6iOjgZuEdCM4cXX2Cn5359gzYD
-	BOLNGRlsvLYpfKbjSqtw3tAovnZxcIEpJrkwtjQeFA7M3i5umBvrKepydR9WMRKzke9d3n
-	j3b7NlNBxg/ZztRAjckYV9zWXd4Pr8LTyVXwPfDcSj9HAT0ODMcMSVYmyf0ooA==
-Date: Tue, 21 Nov 2023 15:56:50 +0100
-From: =?UTF-8?B?S8O2cnk=?= Maincent <kory.maincent@bootlin.com>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Oleksij Rempel <o.rempel@pengutronix.de>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
- <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Jonathan Corbet
- <corbet@lwn.net>, Luis Chamberlain <mcgrof@kernel.org>, Russ Weight
- <russ.weight@linux.dev>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 2/9] ethtool: Expand Ethernet Power Equipment
- with PoE alongside PoDL
-Message-ID: <20231121155650.5c0d2f82@kmaincent-XPS-13-7390>
-In-Reply-To: <44cbe9d3-dbd2-438c-b413-af525426781a@lunn.ch>
-References: <20231116-feature_poe-v1-0-be48044bf249@bootlin.com>
-	<20231116-feature_poe-v1-2-be48044bf249@bootlin.com>
-	<04cb7d87-bb6b-4997-878d-490c17bfdfd0@lunn.ch>
-	<20231120110944.66938859@kmaincent-XPS-13-7390>
-	<20231120111008.GC590719@pengutronix.de>
-	<2539b109-72ad-470a-9dae-9f53de4f64ec@lunn.ch>
-	<20231121110215.07f61e55@kmaincent-XPS-13-7390>
-	<44cbe9d3-dbd2-438c-b413-af525426781a@lunn.ch>
-Organization: bootlin
-X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 881E22772A;
+	Tue, 21 Nov 2023 14:58:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F244DC433CC;
+	Tue, 21 Nov 2023 14:58:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1700578706;
+	bh=+gJV5Kq/zk7daeG5FUsmI0jNOy/xuAwkVf/f+7MLU5I=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=krU/8KO4ATWr4zxxJrfvksylFL5Le76um3CUG0EvTiIm3ljSQHX9LDTM68Loi9rXe
+	 Lc15EnK4Facj2erJIGoZHXmQOo/scEBf1NhxP2fBu3qAEk2sG2+zM39WUPIuZ03zsh
+	 zduzA0o5RhvuAy/Vsc2DuolS70GnfTGdhoAYPnp3+xqeW8hIqdS3LXCEDtxt5IUHoE
+	 NGAotlvjGIwRIBNZcleOeWep/c7BL6XVPgUVb1To3eBO2RI0iT/m5uP8xgtQia//Kn
+	 YUthVWnYrPL85KPpksW6K62+I2u9g1PZrxJzAbVvN9awyjyzSTEL3+SaOGWp4T3e9G
+	 x1sLIt2r9On5w==
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-507962561adso8243693e87.0;
+        Tue, 21 Nov 2023 06:58:25 -0800 (PST)
+X-Gm-Message-State: AOJu0Yz2AEoTPa91cTrntai2w7JVisMm3MrjRS8ort9V156hayecbqG4
+	cHGvtlyIKCiven82m1ULoiermthZ3CIrfBO/uA==
+X-Google-Smtp-Source: AGHT+IHBiGSizQyBkO4Q43LdN/hKHZvdOgdP/et2Xjgl2vIRMj51OZsWwcNiAsGaNW7Y23qV5f4kXncXYdheozxBgQo=
+X-Received: by 2002:a19:f010:0:b0:505:8075:7c10 with SMTP id
+ p16-20020a19f010000000b0050580757c10mr7788659lfc.25.1700578704209; Tue, 21
+ Nov 2023 06:58:24 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+References: <20231116211739.3228239-1-robh@kernel.org> <ee10e67b-6a2f-4ab5-91ef-e42d2f03a424@linaro.org>
+In-Reply-To: <ee10e67b-6a2f-4ab5-91ef-e42d2f03a424@linaro.org>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 21 Nov 2023 07:58:12 -0700
+X-Gmail-Original-Message-ID: <CAL_JsqJ67tZOmhTHQ7KqEbFuDjK8sKHR1FFtAFAaGjZ4uYi9Uw@mail.gmail.com>
+Message-ID: <CAL_JsqJ67tZOmhTHQ7KqEbFuDjK8sKHR1FFtAFAaGjZ4uYi9Uw@mail.gmail.com>
+Subject: Re: [PATCH] arm/arm64: samsung: Enable W=1 on dtbs by default
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Alim Akhtar <alim.akhtar@samsung.com>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: kory.maincent@bootlin.com
 
-On Tue, 21 Nov 2023 15:19:19 +0100
-Andrew Lunn <andrew@lunn.ch> wrote:
+On Fri, Nov 17, 2023 at 3:19=E2=80=AFAM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 16/11/2023 22:17, Rob Herring wrote:
+> > Samsung platforms are clean of W=3D1 dtc warnings, so enable the warnin=
+gs
+> > by default. This way submitters don't have to remember to run a W=3D1
+> > build of the .dts files and the grumpiness of the maintainers can be
+> > reduced.
+> >
+> > Signed-off-by: Rob Herring <robh@kernel.org>
+> > ---
+> > Well, there's a couple of warnings on 32-bit, but they look fixable to
+> > me.
+> >
+> > There's a few other platforms we could do this to. Sadly, they are stil=
+l
+> > the minority. Otherwise, we could change the default and add a flag to
+> > disable (I_STILL_HAVENT_FIXED_MY_PLATFORMS=3D1).
+>
+> 64-bit has still few warnings:
+> https://krzk.eu/#/builders/29/builds/3710/steps/26/logs/warnings__6_
 
-> > > However, everything not PoDL PSE seems to be clause 33. So how about:
-> > >=20
-> > > 	enum ethtool_podl_pse_admin_state podl_admin_control;
-> > > 	enum ethtool_c33_pse_admin_state c33_admin_control; =20
-> > >=20
-> > > At least inside the kernel we use c22, c45, c37 etc. I'm not sure they
-> > > are visible to userspace, but if we don't have a better name, maybe we
-> > > have to use c33 in userspace as well.
-> > >=20
-> > > I do think naming like this makes it clear we are talking about two
-> > > parallel technologies, not a generic layer and then extensions for
-> > > podl.
-> > >=20
-> > > What do you think? =20
-> >=20
-> > If we decide to add a prefix, "c33" is precise but less easily
-> > understandable, why not using simply "poe" prefix? =20
->=20
-> I suspect poe has the exact opposite problem, its too imprecise. Its
-> too much of a marketing name, with no clear meaning. It could even be
-> some people call podl poe.
->=20
-> To some extent, this is a user space UX problem. We can be precises in
-> the kernel and the kAPI. What ethtool decides to show to the user
-> could be different. Although it basically is the same problem.
+I may move that graph check to W=3D2. There's some cases where port@1 is
+optional and it doesn't really make sense to fix these.
 
-Alright, thanks for your answer.
+Also, Conor wants to do this for all of riscv, but this solution is
+per directory. So I need to rework it to use a different variable that
+can be per directory or global.
 
-> Do you have ethtool patches? What does the output look like?  Oleksij
-> did say a hybrid could be possible, so we probably want ethtool to
-> group these properties together and make it clear what is PoDL and
-> !PoDL.
-
-No I don't, I am only using ynl for now.
-I would be similar to podl:
-https://kernel.googlesource.com/pub/scm/network/ethtool/ethtool/+/e6cc6807f=
-87c74d4e5b1f1e9d21d3a74e75a258b/netlink/pse-pd.c
-
-Duplicating the PoDL part with c33. Using the same --set-pse and --show-pse
-options.
-
-> > Maybe as POE were originally PMDI you prefer to use c33 which won't cha=
-nge
-> > over time?=20
-> >=20
-> > Should I also modify the content of the enum?
-> > ETHTOOL_PSE_ADMIN_STATE_* to ETHTOOL_C33_PSE_ADMIN_*
-> > ETHTOOL_PSE_PW_D_STATUS_* to ETHTOOL_C33_PSE_PW_D_STATUS_* =20
->=20
-> Yes. That will help avoid getting PODL and C33 properties missed up.
-
-Alright.
-
-Regards,
---=20
-K=C3=B6ry Maincent, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+Rob
 
