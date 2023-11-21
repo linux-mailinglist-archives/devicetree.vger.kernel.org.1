@@ -1,136 +1,236 @@
-Return-Path: <devicetree+bounces-17640-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17641-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D70A7F331B
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 17:04:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C7EF7F3326
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 17:06:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D06B2B21E7B
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 16:04:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C602D2830A6
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 16:06:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B788C58135;
-	Tue, 21 Nov 2023 16:04:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MZVWmREB"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A44B05917D;
+	Tue, 21 Nov 2023 16:06:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BBF5126;
-	Tue, 21 Nov 2023 08:04:46 -0800 (PST)
-Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2c5087d19a6so69575781fa.0;
-        Tue, 21 Nov 2023 08:04:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1700582684; x=1701187484; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=RJ3d2ANI8NDUtqghMVJuMiZ8m+3a9HU7G6lTKGK0UKo=;
-        b=MZVWmREBOS1QVMi6BBVklGoA0oEMFnQsczrHxx29O8RbnxzScZo1UA2f1pghdFedNh
-         ZbXUNREwiw5Ozt9drMzQFbftdTgnF23TQnomZxjsSMZnDTn35hO2G0khcm7ZbDXWn4a0
-         ZmgvwoAOM4VeKylpvJIIVmcEU9WH932sgxf9rCkybLnElF04xDjb5FRD4AoizJsoDVlc
-         2RFIg2Q3ygsw11lLEu3VEhm+ORsW22RdV0x9aNHKfgtTeSa03fr2gvpodC6sWNOmQHph
-         fAjKAO7hVmOEQ94t4pLlC3ZmlxLdYPhQQmpM+JPa/Al88E3U+zm9d7Qq4CKHRSdDTyga
-         hSvw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700582684; x=1701187484;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=RJ3d2ANI8NDUtqghMVJuMiZ8m+3a9HU7G6lTKGK0UKo=;
-        b=FF95n3rEX22Nfhbd5czRGRzUdFTN0HvDVTe6YU91afeyZ8JpjTBHRlzLQx90Acgau2
-         OIq+XAgvp4eAlvFTQH84w78USgF88/doZDJCeglzo0exQcW23UtZXxakfWJhtqTv6BDE
-         IWyWjNJbNkZW8O6vB+/TulC73nckhO1ieqaS9ZdjAKDpTBrb1EfpaHMPQ7fDgbHGSkKS
-         j9vI46sHqJmKvN2rMd5wCg0yuwgDCjkluL6HHmMcg9RyuQalkZFoiLJX4yQUuUrio+iq
-         uz8WvlhYsNwrVzCXi6M9q2fa6N+k8qQBxpOsYkbpmRT2eXXB5kbZEi8xfjbt++qalq9t
-         agVQ==
-X-Gm-Message-State: AOJu0YyaHAx/OnipIKl4XQLdWwTjJ19CV5o5bfHp4qScJrDKVedef6gV
-	Sr0WUm7LqDx/GOmNQCnGoxSFYdhDiwY0zA==
-X-Google-Smtp-Source: AGHT+IHUv/PoN5clrABjdI1uGFmGETEFm7rLSANNnHvv9YiQLYZ4rBFRS0ALLN/lYjovrWbYPQSuog==
-X-Received: by 2002:a05:651c:10af:b0:2c5:6d8:8dfc with SMTP id k15-20020a05651c10af00b002c506d88dfcmr6991998ljn.13.1700582683745;
-        Tue, 21 Nov 2023 08:04:43 -0800 (PST)
-Received: from partp-nb.corp.toradex.com (31-10-206-125.static.upc.ch. [31.10.206.125])
-        by smtp.gmail.com with ESMTPSA id n23-20020a7bcbd7000000b004064ac107cfsm17316836wmi.39.2023.11.21.08.04.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Nov 2023 08:04:43 -0800 (PST)
-From: Parth Pancholi <parth105105@gmail.com>
-To: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Cc: Francesco Dolcini <francesco.dolcini@toradex.com>,
-	Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-	Parth Pancholi <parth.pancholi@toradex.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Nishanth Menon <nm@ti.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Tero Kristo <kristo@kernel.org>,
-	Vignesh Raghavendra <vigneshr@ti.com>
-Subject: [PATCH v1] arm64: dts: k3-am625-verdin: enable Verdin UART2
-Date: Tue, 21 Nov 2023 17:04:36 +0100
-Message-Id: <20231121160436.1032364-1-parth105105@gmail.com>
-X-Mailer: git-send-email 2.34.1
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 56D2E12E;
+	Tue, 21 Nov 2023 08:06:25 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B1B6B1FB;
+	Tue, 21 Nov 2023 08:07:11 -0800 (PST)
+Received: from [10.1.32.63] (010265703453.arm.com [10.1.32.63])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3BD693F6C4;
+	Tue, 21 Nov 2023 08:06:17 -0800 (PST)
+Message-ID: <e926d2d8-8209-4c0f-a0cb-dcea4edf839e@arm.com>
+Date: Tue, 21 Nov 2023 16:06:15 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 00/17] Solve iommu probe races around iommu_fwspec
+Content-Language: en-GB
+To: Jason Gunthorpe <jgg@nvidia.com>
+Cc: acpica-devel@lists.linux.dev, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+ Albert Ou <aou@eecs.berkeley.edu>, asahi@lists.linux.dev,
+ Catalin Marinas <catalin.marinas@arm.com>, Dexuan Cui <decui@microsoft.com>,
+ devicetree@vger.kernel.org, David Woodhouse <dwmw2@infradead.org>,
+ Frank Rowand <frowand.list@gmail.com>, Hanjun Guo <guohanjun@huawei.com>,
+ Haiyang Zhang <haiyangz@microsoft.com>, iommu@lists.linux.dev,
+ Jean-Philippe Brucker <jean-philippe@linaro.org>,
+ Jonathan Hunter <jonathanh@nvidia.com>, Joerg Roedel <joro@8bytes.org>,
+ "K. Y. Srinivasan" <kys@microsoft.com>, Len Brown <lenb@kernel.org>,
+ linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-hyperv@vger.kernel.org, linux-mips@vger.kernel.org,
+ linux-riscv@lists.infradead.org, linux-snps-arc@lists.infradead.org,
+ linux-tegra@vger.kernel.org, Russell King <linux@armlinux.org.uk>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Marek Szyprowski <m.szyprowski@samsung.com>, Hector Martin
+ <marcan@marcan.st>, Palmer Dabbelt <palmer@dabbelt.com>,
+ patches@lists.linux.dev, Paul Walmsley <paul.walmsley@sifive.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Robert Moore <robert.moore@intel.com>, Rob Herring <robh+dt@kernel.org>,
+ Sudeep Holla <sudeep.holla@arm.com>,
+ Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
+ Sven Peter <sven@svenpeter.dev>, Thierry Reding <thierry.reding@gmail.com>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Krishna Reddy <vdumpa@nvidia.com>, Vineet Gupta <vgupta@kernel.org>,
+ virtualization@lists.linux.dev, Wei Liu <wei.liu@kernel.org>,
+ Will Deacon <will@kernel.org>, =?UTF-8?Q?Andr=C3=A9_Draszik?=
+ <andre.draszik@linaro.org>, Lu Baolu <baolu.lu@linux.intel.com>,
+ Christoph Hellwig <hch@lst.de>, Jerry Snitselaar <jsnitsel@redhat.com>,
+ Moritz Fischer <mdf@kernel.org>, Zhenhua Huang <quic_zhenhuah@quicinc.com>,
+ "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
+ Rob Herring <robh@kernel.org>
+References: <0-v2-36a0088ecaa7+22c6e-iommu_fwspec_jgg@nvidia.com>
+ <1316b55e-8074-4b2f-99df-585df2f3dd06@arm.com> <ZVTlYqnnHQUKG6T8@nvidia.com>
+ <6442d24b-6352-46e9-89e0-72d4a493f77c@arm.com> <ZVWXvqQbZrwyEgrL@nvidia.com>
+From: Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <ZVWXvqQbZrwyEgrL@nvidia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Parth Pancholi <parth.pancholi@toradex.com>
+On 2023-11-16 4:17 am, Jason Gunthorpe wrote:
+> On Wed, Nov 15, 2023 at 08:23:54PM +0000, Robin Murphy wrote:
+>> On 2023-11-15 3:36 pm, Jason Gunthorpe wrote:
+>>> On Wed, Nov 15, 2023 at 03:22:09PM +0000, Robin Murphy wrote:
+>>>> On 2023-11-15 2:05 pm, Jason Gunthorpe wrote:
+>>>>> [Several people have tested this now, so it is something that should sit in
+>>>>> linux-next for a while]
+>>>>
+>>>> What's the aim here? This is obviously far, far too much for a
+>>>> stable fix,
+>>>
+>>> To fix the locking bug and ugly abuse of dev->iommu?
+>>
+>> Fixing the locking can be achieved by fixing the locking, as I have now
+>> demonstrated.
+> 
+> Obviously. I rejected that right away because of how incredibly
+> wrongly layered and hacky it is to do something like that.
 
-Enable UART2 for AM62 based SOM's Verdin carrier boards Dahlia,
-Development and Yavia.
-Earlier Verdin UART2 was reserved by R5 DM firmware which can be now
-configured using boardcfg during U-boot compilation in the latest TI
-SDKs. In a default config, no one writes to this UART.
+What, and dressing up the fundamental layering violation by baking it 
+even further into the API flow, while still not actually fixing it or 
+any of its *other* symptoms, is somehow better?
 
-Signed-off-by: Parth Pancholi <parth.pancholi@toradex.com>
+Ultimately, this series is still basically doing the same thing my patch 
+does - extending the scope of the existing iommu_probe_device_lock hack 
+to cover fwspec creation. A hack is a hack, so frankly I'd rather it be 
+simple and obvious and look like one, and being easy to remove again is 
+an obvious bonus too.
 
----
+>>> I haven't seen patches or an outline on what you have in mind though?
+>>>
+>>> In my view I would like to get rid of of_xlate(), at a minimum. It is
+>>> a micro-optimization I don't think we need. I see a pretty
+>>> straightforward path to get there from here.
+>>
+>> Micro-optimisation!? OK, I think I have to say it. Please stop trying to
+>> rewrite code you don't understand.
+> 
+> I understand it fine. The list of (fwnode_handle, of_phandle_args)
+> tuples doesn't change between when of_xlate is callled and when probe
+> is called. Probe can have the same list. As best I can tell the extra
+> ops avoids maybe some memory allocation, maybe an extra iteration.
+> 
+> What it does do is screw up alot of the drivers that seem to want to
+> allocate the per-device data in of_xlate and make it convoluted and
+> memory leaking buggy on error paths.
+> 
+> So, I would move toward having the driver's probe invoke a helper like:
+> 
+>     iommu_of_xlate(dev, fwspec, &per_fwnode_function, &args);
+> 
+> Which generates the same list of (fwnode_handle, of_phandle_args) that
+> was passed to of_xlate today, but is ordered sensibly within the
+> sequence of probe for what many drivers seem to want to do.
 
- arch/arm64/boot/dts/ti/k3-am62-verdin-dahlia.dtsi | 3 +--
- arch/arm64/boot/dts/ti/k3-am62-verdin-dev.dtsi    | 3 +--
- arch/arm64/boot/dts/ti/k3-am62-verdin-yavia.dtsi  | 3 +--
- 3 files changed, 3 insertions(+), 6 deletions(-)
+Grep for of_xlate. It is a standard and well-understood callback pattern 
+for a subsystem to parse a common DT binding and pass a driver-specific 
+specifier to a driver to interpret. Or maybe you just have a peculiar 
+definition of what you think "micro-optimisation" means? :/
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62-verdin-dahlia.dtsi b/arch/arm64/boot/dts/ti/k3-am62-verdin-dahlia.dtsi
-index 013357d17d48..bf6d27e70bc4 100644
---- a/arch/arm64/boot/dts/ti/k3-am62-verdin-dahlia.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62-verdin-dahlia.dtsi
-@@ -214,6 +214,5 @@ &verdin_gpio_keys {
- 
- /* Verdin UART_2 */
- &wkup_uart0 {
--	/* FIXME: WKUP UART0 is used by DM firmware */
--	status = "reserved";
-+	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/ti/k3-am62-verdin-dev.dtsi b/arch/arm64/boot/dts/ti/k3-am62-verdin-dev.dtsi
-index 6701cb8974bb..680071688dcb 100644
---- a/arch/arm64/boot/dts/ti/k3-am62-verdin-dev.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62-verdin-dev.dtsi
-@@ -235,6 +235,5 @@ &verdin_gpio_keys {
- 
- /* Verdin UART_2 */
- &wkup_uart0 {
--	/* FIXME: WKUP UART0 is used by DM firmware */
--	status = "reserved";
-+	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/ti/k3-am62-verdin-yavia.dtsi b/arch/arm64/boot/dts/ti/k3-am62-verdin-yavia.dtsi
-index c685df7deaee..997dfafd27eb 100644
---- a/arch/arm64/boot/dts/ti/k3-am62-verdin-yavia.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62-verdin-yavia.dtsi
-@@ -207,6 +207,5 @@ &verdin_gpio_keys {
- 
- /* Verdin UART_2 */
- &wkup_uart0 {
--	/* FIXME: WKUP UART0 is used by DM firmware */
--	status = "reserved";
-+	status = "okay";
- };
--- 
-2.34.1
+> So, it is not so much that that the idea of of_xlate goes away, but
+> the specific op->of_xlate does, it gets shifted into a helper that
+> invokes the same function in a more logical spot.
 
+I'm curious how you imagine an IOMMU driver's ->probe function could be 
+called *before* parsing the firmware to work out what, if any, IOMMU, 
+and thus driver, a device is associated with. Unless you think we should 
+have the horrible perf model of passing the device to *every* registered 
+->probe callback in turn until someone claims it. And then every driver 
+has to have identical boilerplate to go off and parse the generic 
+"iommus" binding... which is the whole damn reason for *not* going down 
+that route and instead using an of_xlate mechanism in the first place.
+
+> The per-device data can be allocated at the top of probe and passed
+> through args to fix the lifetime bugs.
+> 
+> It is pretty simple to do.
+
+I believe the kids these days would say "Say you don't understand the 
+code without saying you don't understand the code."
+
+>> Most of this series constitutes a giant sweeping redesign of a whole bunch
+>> of internal machinery to permit it to be used concurrently, where that
+>> concurrency should still not exist in the first place because the thing that
+>> allows it to happen also causes other problems like groups being broken.
+>> Once the real problem is fixed there will be no need for any of this, and at
+>> worst some of it will then actually get in the way.
+> 
+> Not quite. This decouples two unrelated things into seperate
+> concerns. It is not so much about the concurrency but removing the
+> abuse of dev->iommu by code that has no need to touch it at all.
+
+Sorry, the "abuse" of storing IOMMU-API-specific data in the place we 
+intentionally created to consolidate all the IOMMU-API-specific data 
+into? Yes, there is an issue with the circumstances in which this data 
+is sometimes accessed, but as I'm starting to tire of repeating, that 
+issue fundamentally dates back to 2017, and the implications were 
+unfortunately overlooked when dev->iommu was later introduced and fwspec 
+moved into it (since the non-DT probing paths still worked as originally 
+designed). Pretending that dev->iommu is the issue here is missing the 
+point.
+
+> Decoupling makes moving code around easier since the relationships are
+> easier to reason about.
+
+Again with the odd definitions of "easier". You know what I think is 
+easy? Having a thing be in the obvious place where it should be (but 
+used in the way that was intended). What I would consider objectively 
+less easy is having a thing sometimes be there but sometimes be 
+somewhere else with loads more API machinery to juggle between the two. 
+Especially when once again, that machinery is itself prone to new bugs.
+
+Once again you've got hung up on one particular detail of one symptom of 
+the *real* issue, so although I can see and follow your chain of 
+reasoning, the fact that it starts from the wrong place makes it not 
+particularly useful in the bigger picture.
+
+> You can still allocated a fwnode, populate it, and do the rest of the
+> flow under a probe function just fine.
+>   
+>> I feel like I've explained it many times already, but what needs to happen
+>> is for the firmware parsing and of_xlate stage to be initiated by
+>> __iommu_probe_device() itself.
+> 
+> Yes, OK I see. I don't see a problem, I think this still a good
+> improvement even in that world it is undesirable to use dev->iommu as
+> a temporary, even if the locking can work.
+> 
+>> ever allowed to get it landed...) which gets to the state of
+>> expecting to
+> 
+> Repost it? Rc1 is out and you need to add one hunk to the new user
+> domain creation in iommufd.
+
+Well yeah, I'm trying to get that rebase finished (hence why I'm finding 
+broken IOMMUFD selftests), but as always I'm also busy with a lot of 
+other non-upstream things, and every time I have managed to do it so far 
+this year it's ended up being blocked by conflicting changes, so I 
+reserve my optimism...
+
+>> start from a fwspec. Then it's a case of shuffling around what's currently
+>> in the bus_type dma_configure methods such that point is where the fwspec is
+>> created as well, and the driver-probe-time work is almost removed except for
+>> still deferring if a device is waiting for its IOMMU instance (since that
+>> instance turning up and registering will retrigger the rest itself). And
+>> there at last, a trivial lifecycle and access pattern for dev->iommu (with
+>> the overlapping bits of iommu_fwspec finally able to be squashed as well),
+>> and finally an end to 8 long and unfortunate years of calling things in the
+>> wrong order in ways they were never supposed to be.
+> 
+> Having just gone through this all in detail I don't think it is as
+> entirely straightforward as this, the open coded callers to
+> of_dma_configure() are not going to be so nice to unravel.
+
+I've only had this turning over in the back of my mind for about the 
+last 4 years now, so I think I have a good understanding of what to 
+expect, thanks.
+
+Robin.
 
