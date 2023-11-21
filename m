@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-17422-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17423-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD4C97F27A1
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 09:37:35 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DED367F27AB
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 09:40:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 42D4FB218F0
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 08:37:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 19C441C218BA
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 08:40:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 966941FA7;
-	Tue, 21 Nov 2023 08:37:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FF6619BCA;
+	Tue, 21 Nov 2023 08:40:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZAa0zWn9"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uSq3mAmW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5A4E100
-	for <devicetree@vger.kernel.org>; Tue, 21 Nov 2023 00:37:25 -0800 (PST)
-Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-3316a4bc37dso2580206f8f.2
-        for <devicetree@vger.kernel.org>; Tue, 21 Nov 2023 00:37:25 -0800 (PST)
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5C78AC
+	for <devicetree@vger.kernel.org>; Tue, 21 Nov 2023 00:40:45 -0800 (PST)
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-40b2a8c7ca9so1751225e9.2
+        for <devicetree@vger.kernel.org>; Tue, 21 Nov 2023 00:40:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700555844; x=1701160644; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1700556044; x=1701160844; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=z790m+3SwlbSCiaOH+BvTtx4PQ5yguF5fZQZ5wj8mgY=;
-        b=ZAa0zWn9SSq2EbOweeniQSF6gOCF1RRfI5MHCLpzNwMzAxMZ1Nn4qz00ae3SiCWkSP
-         tTn5bh91c9Pz83fAUXzrMCVelbMt4jK8oUFQUszOJrZBL8SSPkgkYv7dhUzEQkrI0dZh
-         o1RIK4GzMyf4cjKnZpyCEaTRBljzOZGLT57YitQP4GgK7mHJYFGYiDdnVHLvgXbkxZU/
-         uMushnVj9/POzAVdnkpa4hvJtGAQmXnpMfg4sKN2DOmE1v3PEvvezC7KzLngmzRwvYWA
-         0gitZC2Si7DQrvYAWywZKEWtQFKM89O8YgORZ001Qqe53o6rzsPCIEaV0nz/CO8Ad4BW
-         uAwQ==
+        bh=FsxD9BfYv48OQVamFFAxMDLyeOJr8bobuaBNTZuFtUs=;
+        b=uSq3mAmWPHCsxoKSm06sUIHDIP4Pqjh764++gjHWR/jaxUsUfM5pKSxp3yQ0hlHGrt
+         uwaX3gphrt9N+9sJRp95Xq9O1bbnA+umsiP7Mmd2k0Cugyt7f7NlcPAz0i5bCKpudnYY
+         YY1G50YC/G4w6xFJxCuyML40ZJXBqPHoEeHdXufPgmt64mpAcW9IO3rVVZEZ5UMez8zF
+         BvNomFyd6MbUqclqphpOzF8WoE4lSZetxMl9g9F6mH+jNiEK1e36HCOl2UJ7b/qpD57n
+         oE7fmq9vYc4oDuX72Rdv/VwFpf/u94IupAeYph94OnaOTMbkU5O0RbnVgeBI9XlL637c
+         0C1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700555844; x=1701160644;
+        d=1e100.net; s=20230601; t=1700556044; x=1701160844;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=z790m+3SwlbSCiaOH+BvTtx4PQ5yguF5fZQZ5wj8mgY=;
-        b=e3H6LW1oSzK/3k+PrBWHnsWQKI0Qtda2+TXpWKpa5ZFNImcGygRA3wOjq+wp+Jqtt+
-         kQ5nVLxFo7s97UvSurn/1g+QlKRdUynt0gOpRfkHuzT+MgwhqjG9K+wrdnwIcnb25AGM
-         BPqvcKQaFhcZdMy74X5uUqeUkzGMDVVGftCAPgseXcbg+UWdWD9WmaI3Q2uYrK1iZ+Jk
-         27ME0W/Be/DA2UoeoCTyVYD3wysithNhQTbR1IhgxCkJ6URQOIvANQG9dN9FxZwgBRir
-         jnAbhzNSAXWNpV/WGpz3q4BwrKzC/q1nLi8x7T8Gv7rSC04PYF+AJYx+0OAATsPZCCYo
-         7AgA==
-X-Gm-Message-State: AOJu0Yw8yqnZ+hUngXGBifBIWHCmVfmB7YzWLwcoBxevYd4OO5S7RcTM
-	w+7DuOh3sH8yFYHFaJLcSIQjtA==
-X-Google-Smtp-Source: AGHT+IGTBsd87x4sENU/2iwu6uDUJ+64QftToSw0vKAzDaIgWipBD48orJGrEkADIBRkLMNZ/WL5Yw==
-X-Received: by 2002:a05:6000:1566:b0:332:cfbc:cb56 with SMTP id 6-20020a056000156600b00332cfbccb56mr121185wrz.5.1700555844116;
-        Tue, 21 Nov 2023 00:37:24 -0800 (PST)
+        bh=FsxD9BfYv48OQVamFFAxMDLyeOJr8bobuaBNTZuFtUs=;
+        b=cKB6vBD3QhDaAH/SQHQHEW3Glsv76sLPTZlrlN6rPYHk1YuypzdnQpnBDxi55VaYHi
+         ElINqvQZxaOJoSLJ9Hw+P59M3ne632YF404iM84VZhExkUn+WV7xF+Ib8Wx8aPAHJlyY
+         V9OpC2ZYoJLRbEctOIgYgAjoSn7SECkvUupo4vgzcEBAIpuHMWYeyd5o6X1QM2r7Q0Bx
+         sz8wLYi0wyEZ4tNt3fFHt85OMOZJMKT5frnystdISsTeiywUv1jXsQdWjS2M0zxvkcdF
+         5KjvKwVLi/neUv879aZAoOFIdKruOzsezVG/4EcWAidjS16XCAhNHaJYa/8xMUm6VjZp
+         vm7Q==
+X-Gm-Message-State: AOJu0Yw1sadhVWCSPQwNFhXmc+EJ5WF68kdkvYum1R02xbg28R5fVJm5
+	Y5EcvtgzqMxat8KCLQLxKR3nZA==
+X-Google-Smtp-Source: AGHT+IEbRsvtuamm0plE03/8r7RAvIadbllOXNaZoqBXYOmNsD272i5eetmdMrGpwal+zKzs0TbZgg==
+X-Received: by 2002:adf:fd0c:0:b0:331:6ad1:81ec with SMTP id e12-20020adffd0c000000b003316ad181ecmr6463144wrr.25.1700556044155;
+        Tue, 21 Nov 2023 00:40:44 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.11])
-        by smtp.gmail.com with ESMTPSA id d19-20020adf9b93000000b003316eb9db40sm11535730wrc.51.2023.11.21.00.37.21
+        by smtp.gmail.com with ESMTPSA id a18-20020adfeed2000000b00327de0173f6sm13805773wrp.115.2023.11.21.00.40.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Nov 2023 00:37:23 -0800 (PST)
-Message-ID: <ec901578-95b6-4fcc-a8dd-e927b7f77ece@linaro.org>
-Date: Tue, 21 Nov 2023 09:37:21 +0100
+        Tue, 21 Nov 2023 00:40:43 -0800 (PST)
+Message-ID: <c187f8d6-6178-4ef2-958b-16e274a49b91@linaro.org>
+Date: Tue, 21 Nov 2023 09:40:42 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,32 +62,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] docs: dt-bindings: add DTS Coding Style document
+Subject: Re: [PATCH] dt-bindings: net: renesas,ethertsn: Add bindings for
+ Ethernet TSN
 Content-Language: en-US
 To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Michal Simek <michal.simek@amd.com>, Rob Herring <robh+dt@kernel.org>,
+Cc: =?UTF-8?Q?Niklas_S=C3=B6derlund?=
+ <niklas.soderlund+renesas@ragnatech.se>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- Andrew Davis <afd@ti.com>, Arnd Bergmann <arnd@arndb.de>,
- Bjorn Andersson <andersson@kernel.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Heiko Stuebner <heiko@sntech.de>, Konrad Dybcio <konrad.dybcio@linaro.org>,
- Neil Armstrong <neil.armstrong@linaro.org>, Nishanth Menon <nm@ti.com>,
- Olof Johansson <olof@lixom.net>, linux-rockchip@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-msm@vger.kernel.org
-References: <20231120084044.23838-1-krzysztof.kozlowski@linaro.org>
- <19358871-009d-4498-9c13-90d5338b1e9f@amd.com>
- <76fa8f61-fe31-4040-a38d-cc05be3f4f17@linaro.org>
- <CAMuHMdW4WPJT0Km7w8RWrGJaztk6QDGoFAn0bdGbrEsw81R1FA@mail.gmail.com>
- <acfdce81-f117-4a1a-a9fe-e2b4b8922adb@linaro.org>
- <bd49f17c-7ebf-4e19-b77b-b5ec95375f7d@amd.com>
- <b48293f3-16e3-4980-b900-add0cb7d69f6@linaro.org>
- <CAMuHMdV_gqmf2=cXmZmYgE3aLxvPBr1DVp0cz0C+YrfBVG-8mg@mail.gmail.com>
+ devicetree@vger.kernel.org, netdev@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org
+References: <20231120160740.3532848-1-niklas.soderlund+renesas@ragnatech.se>
+ <2ab74479-f1fb-4faf-b223-ae750b4c08ce@linaro.org>
+ <CAMuHMdUkfyJ9f22joXpAW1Gwk+zE9cqx+hbFqeK7Xc7ZTW1Faw@mail.gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -133,46 +119,72 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CAMuHMdV_gqmf2=cXmZmYgE3aLxvPBr1DVp0cz0C+YrfBVG-8mg@mail.gmail.com>
+In-Reply-To: <CAMuHMdUkfyJ9f22joXpAW1Gwk+zE9cqx+hbFqeK7Xc7ZTW1Faw@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 21/11/2023 09:08, Geert Uytterhoeven wrote:
->>>>> I guess there are (many) other examples...
->>>>
->>>> OK, I never had such in my hands. Anyway, the SoM which can run
->>>> standalone  has a meaning of a board, so how exactly you want to
->>>> rephrase the paragraph?
+On 21/11/2023 09:00, Geert Uytterhoeven wrote:
+> On Tue, Nov 21, 2023 at 8:45 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>> On 20/11/2023 17:07, Niklas Söderlund wrote:
+>>> Add bindings for Renesas R-Car Ethernet TSN End-station IP. The RTSN
+>>> device provides Ethernet network.
 >>>
->>> What about?
->>>
->>> 2. If applicable: DTSI with common or re-usable parts of the hardware (e.g.
->>> entire System-on-Module). DTS if runs standalone.
->>
->> OK, but then it's duplicating the option 3. It also suggests that SoM
->> should be a DTS, which is not what we want for such case. Such SoMs must
->> have DTSI+DTS.
+>>> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
 > 
-> So you want us to have a one-line <SoM>.dts, which just includes <SoM>.dtsi?
-> IMHO that adds more files for no much gain.
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/net/renesas,ethertsn.yaml
+>>> @@ -0,0 +1,133 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/net/renesas,ethertsn.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Renesas Ethernet TSN End-station
+>>> +
+>>> +maintainers:
+>>> +  - Niklas Söderlund <niklas.soderlund@ragnatech.se>
+>>> +
+>>> +description:
+>>> +  The RTSN device provides Ethernet network using a 10 Mbps, 100 Mbps, or 1
+>>> +  Gbps full-duplex link via MII/GMII/RMII/RGMII. Depending on the connected PHY.
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    oneOf:
+>>> +      - items:
+>>
+>> Drop items.
+>>
+>> I assume you have oneOf above because you predict this will grow with
+>> entries with fallbacks? If not, drop.
+>>
+>>> +          - enum:
+>>> +              - renesas,ethertsn-r8a779g0      # R-Car V4H
+> 
+> renesas,r8a779g0-ethertsn
 
-Yes, if this is a real SoM, then yes. There is much gain - it clearly
-represents the hardware like we in general expect. It allows re-usage by
-in- and out-tree users, while documenting this possibility.
+You can try to make a schema for this. See for examples:
+Documentation/devicetree/bindings/arm/qcom-soc.yaml
 
-We structure DTS according to main components of the hardware, which
-serves as self-documenting, re-usable and easy to grasp solution.
+> 
+> R-Car S4 also has EtherTSN.
+> Is it identical, so it makes sense to add a renesas,rcar-gen4-ethertsn
+> fallback?
+> 
+>>> +  renesas,rx-internal-delay:
+>>> +    type: boolean
+>>> +    description:
+>>> +      Enable internal Rx clock delay, typically 1.8ns.
+>>
+>> Why this is bool, not delay in ns?
+>> Why this is property of a board (not SoC)?
+> 
+> Standard property is rx-internal-delay-ps.
 
-> Users of a SoM can easily include <SoM>.dts.
+Thanks.
 
-Which is confusing during review and not a welcomed pattern.
-
-> 'git grep "#include .*dts\>"' tells you we have plenty of users of that scheme.
-
-Yeah, you can put C functions inside header (included only once). You
-can include C file in other C file. But just because you can do it, it
-does not mean you should do it. It's not the way we want to make code
-organized.
 
 
 Best regards,
