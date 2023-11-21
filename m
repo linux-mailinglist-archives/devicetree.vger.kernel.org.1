@@ -1,115 +1,161 @@
-Return-Path: <devicetree+bounces-17371-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17372-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBBB37F248D
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 04:15:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E71B7F24C2
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 05:07:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 74E7AB2190D
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 03:15:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B8A73B219C4
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 04:07:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2B6F154AB;
-	Tue, 21 Nov 2023 03:15:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC156171D0;
+	Tue, 21 Nov 2023 04:06:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="dzvku55x"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="l2/3XXJ6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A83FFCB;
-	Mon, 20 Nov 2023 19:14:57 -0800 (PST)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id B771887585;
-	Tue, 21 Nov 2023 04:14:54 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1700536495;
-	bh=66+J6N66ETQ2okClDx/UV5gWv1oaPwcXo9HXtkPLRnQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=dzvku55xt7NDZr0Enpc3WC63JucQdm1lQc/1DTeC+PKisS6XVECAesP9TXHIvw+Uf
-	 stSoDYublvLYIqnIcaj+mEb2AwFGFxX8lordeVDCU7V/KtifimLXVbKXidT3rYTSul
-	 5xVZ9gLkzDWdwYTgxW2FAF0OjHhQo39/klFHsMoozcDVJlOME3QAh0JVRGYeOy4oG9
-	 Wh3HxuSBMcz5awW37Fxu8hLzbfPgzWEKvsWRvh5IOw0JrG/y0RVRAQNxH/vzFVw+lb
-	 rdaLH5ms3+u5UZ1/m6J+oY/5Xs+QBrlJO+eg8So8QJYYE9inMRppdJC1xLi5W0bSAe
-	 XwLcCIWsDpcdA==
-Message-ID: <adb40cdd-c4c0-4564-99e5-aac25f5cd700@denx.de>
-Date: Tue, 21 Nov 2023 04:14:54 +0100
+Received: from mail-oo1-xc2a.google.com (mail-oo1-xc2a.google.com [IPv6:2607:f8b0:4864:20::c2a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8640EA2;
+	Mon, 20 Nov 2023 20:06:55 -0800 (PST)
+Received: by mail-oo1-xc2a.google.com with SMTP id 006d021491bc7-58ceab7daddso60477eaf.3;
+        Mon, 20 Nov 2023 20:06:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1700539615; x=1701144415; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=uED9ZdQGQxPCqmEiK0LJztM4vTL2jEnpVnm0DVEe5EM=;
+        b=l2/3XXJ6VOobGKLNZyAqFc3XQsgLYSvfTZFx43HWGXd0qtJjaXFAWyCNTdINb5/z/Z
+         GVgzhBfju1KDyQ1bnbSqLy2BX1lZzXPFxHLkToQFXhYqvZIOHglWYugV9SNml+8o9Ln7
+         DoMVsVZZvfwX0sJpE8225IFZYwQ3SnXB/qh7i2AHWiJSjuao6BjcNNuvbm7Z2l3HEvcw
+         cGQAlhltcY85XjE813lGZY7emnALapCsyPxUv4+ZDRC9n/cNXdj5tCHFG8pc52QaH0oI
+         0oBwdtKaRwI9TUS6DY7U7OJOwcdCSBMfKp3EMeDwQJFsM4nqiOoJ1kCT/UXo+Uegz809
+         WaOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700539615; x=1701144415;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=uED9ZdQGQxPCqmEiK0LJztM4vTL2jEnpVnm0DVEe5EM=;
+        b=b6PUwn1obWB4GGu9KZ2rC2w9g4fhigqvlfUW/wAxwyt8dORdbS4UQtc6+/ItmWRbve
+         UnjG8ye8jXlBEDYZSSLjYrhxstQJNTg3SbmOEcpYj2UUaX1jbkrZYLfu1FVpcYCw3rTe
+         oojF+jP9LvOk2bK0S14xWLstafqtH1oYQwWl5ABk/aqGF+8mfhIzsKyBtslRH0i50doQ
+         /TK/FL81oGvEKJszNZ0DsJDlv0BJfJ+971EzzKldFPRriomY5gGxy4DnT1tlzMVZHwqx
+         qYfTzsIE3G4Vap13BLHf5+8Dsr38dVneInfrA11Gpqthb8lDgLVmNuimGxT4ypsuW8aU
+         Mz4Q==
+X-Gm-Message-State: AOJu0YzRWO937j1JiRDWy5B6sFVSNAGzr8Yuav/eu4buhxAV6EGvrufr
+	SBFuRIYIpc5h47dqdSsacQoZ83XcDsg7IcmKjwfOIOTzFtk=
+X-Google-Smtp-Source: AGHT+IGEd1ffV8b215+cvSBI4uGIXsdv+yw5uXnbrjp5GMhPt/B05vpdrYE051i9meuJRhoqbKeBVz4MuD9yHsOXuDk=
+X-Received: by 2002:a05:6820:1c85:b0:57b:86f5:701c with SMTP id
+ ct5-20020a0568201c8500b0057b86f5701cmr8776555oob.4.1700539614644; Mon, 20 Nov
+ 2023 20:06:54 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] iio: light: isl76682: Add ISL76682 driver
-Content-Language: en-US
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: linux-iio@vger.kernel.org,
- Alexander Stein <alexander.stein@ew.tq-group.com>,
- Andre Werner <andre.werner@systec-electronic.com>,
- Bjorn Helgaas <bhelgaas@google.com>, Conor Dooley <conor+dt@kernel.org>,
- Fabio Estevam <festevam@denx.de>, Guenter Roeck <linux@roeck-us.net>,
- Jonathan Cameron <jic23@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Lars-Peter Clausen <lars@metafoo.de>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>, Mark Brown <broonie@kernel.org>,
- Matti Vaittinen <mazziesaccount@gmail.com>,
- Naresh Solanki <naresh.solanki@9elements.com>,
- Patrick Rudolph <patrick.rudolph@9elements.com>,
- Rob Herring <robh+dt@kernel.org>,
- Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
- Vincent Tremblay <vincent@vtremblay.dev>, devicetree@vger.kernel.org
-References: <20231119212515.54001-1-marex@denx.de>
- <20231119212515.54001-2-marex@denx.de> <ZVtKyPvYHgg61JFG@smile.fi.intel.com>
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <ZVtKyPvYHgg61JFG@smile.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+References: <20231119023454.1591-1-linux.amoon@gmail.com> <20231119023454.1591-2-linux.amoon@gmail.com>
+ <20231119-phrasing-reverse-bbc1fde515d5@spud> <CANAwSgQ6H9FUEBKz7sCf4kUZSMnCfyXG-cpGTMZoT15W9187Kg@mail.gmail.com>
+ <20231120-grinch-upbeat-05f7a32a99fa@spud>
+In-Reply-To: <20231120-grinch-upbeat-05f7a32a99fa@spud>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Tue, 21 Nov 2023 09:36:37 +0530
+Message-ID: <CANAwSgQGhDMeHLFpe8gnM2c26CjqX8QHOL1GdHrZJSvnBj39bA@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: usb: Add the binding example for the
+ Genesys Logic GL3523 hub
+To: Conor Dooley <conor@kernel.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Icenowy Zheng <uwu@icenowy.me>, linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 11/20/23 13:02, Andy Shevchenko wrote:
+Hi Conor,
 
-[...]
+On Mon, 20 Nov 2023 at 21:15, Conor Dooley <conor@kernel.org> wrote:
+>
+> On Sun, Nov 19, 2023 at 08:57:28PM +0530, Anand Moon wrote:
+> > Hi Conor,
+> >
+> > On Sun, 19 Nov 2023 at 19:28, Conor Dooley <conor@kernel.org> wrote:
+> > >
+> > > On Sun, Nov 19, 2023 at 08:04:50AM +0530, Anand Moon wrote:
+> > > > Add the binding example for the USB3.1 Genesys Logic GL3523
+> > > > integrates with USB 3.1 Gen 1 Super Speed and USB 2.0 High-Speed
+> > > > hub.
+> > >
+> > > But no comment in the commit message about the new property for the
+> > > "peer hub". $subject saying "dt-bindings: usb: Add the binding example
+> > > for the Genesys Logic GL3523 hub" is misleading when the meaningful
+> > > parts of the patch are unrelated to the example.
+> > >
+> > > >
+> > > > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> > > > ---
+> > > > V3: fix the dt_binding_check error, added new example for Genesys GL3523
+> > > > v2: added Genesys GL3523 binding
+> > > > v1: none
+> > > > ---
+> > > >  .../bindings/usb/genesys,gl850g.yaml          | 63 +++++++++++++++++--
+> > > >  1 file changed, 59 insertions(+), 4 deletions(-)
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> > > > index ee08b9c3721f..f8e88477fa11 100644
+> > > > --- a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> > > > +++ b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> > > > @@ -9,9 +9,6 @@ title: Genesys Logic USB hub controller
+> > > >  maintainers:
+> > > >    - Icenowy Zheng <uwu@icenowy.me>
+> > > >
+> > > > -allOf:
+> > > > -  - $ref: usb-device.yaml#
+> > > > -
+> > > >  properties:
+> > > >    compatible:
+> > > >      enum:
+> > > > @@ -27,12 +24,44 @@ properties:
+> > > >
+> > > >    vdd-supply:
+> > > >      description:
+> > > > -      the regulator that provides 3.3V core power to the hub.
+> > > > +      phandle to the regulator that provides power to the hub.
+> > > > +
+> > > > +  peer-hub:
+> > > > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > > > +    description:
+> > > > +      phandle to the peer hub on the controller.
+> > >
+> > > What is this, why is it needed? Please explain it in your commit
+> > > message.
+> > >
+> > Ok, GL3523 integrates Genesys Logic self-developed USB 3.1 Gen 1
+> > Super Speed transmitter/receiver physical layer (PHY) and USB 2.0
+> > High-Speed PHY
+> >
+> > peer-hub is used to cross-connect those phy nodes so that it can help
+> > hub power on/off simultaneously.
+>
+> I said please explain it in your commit message, but on reflection I
+> think that would be insufficient. Extending the description to explain
+> what the peer-hub is would be great too. "peer hub on the controller"
+> doesn't seem to make sense to me either, as the peer hub phandle is to
+> another phy, not to the controller. I think that would probably also be
+> resolved by explaining what the peer hub is in a more detailed manner.
+>
+> If this is purely a genesys thing, the property should grow a genesys,
+> prefix also.
+>
+No, some USB Hub have combined phy for USB 3.x and USB 2.0 and have common
+reset-gpios and power supply, peer-hub node helps connect the USB controller and
+bring up the USB hub.
 
->> +static int isl76682_clear_configure_reg(struct isl76682_chip *chip)
->> +{
->> +	struct device *dev = regmap_get_device(chip->regmap);
->> +	int ret;
->> +
->> +	ret = regmap_write(chip->regmap, ISL76682_REG_COMMAND, 0x0);
->> +	if (ret < 0)
->> +		dev_err(dev, "Error %d clearing the CONFIGURE register\n", ret);
-> 
->> +	chip->command = 0;
-> 
-> Even in an error case? Is it a problem?
+I was waiting for more feedback on these changes.
+Once it's ok I will update with proper the commit message in v4.
 
-I added a comment in V4, if the I2C communication fails, hopefully the 
-next time user reads data the command register will be rewritten again 
-and the communication would have succeeded by then (assuming this was 
-some weird glitch on the I2C bus). So this is best effort attempt to 
-recover from that.
+Thanks
+-Anand
 
->> +static const struct of_device_id isl76682_of_match[] = {
->> +	{ .compatible = "isil,isl76682", },
->> +	{ },
-> 
-> Remove comma from the terminator.
-> 
->> +};
-> 
-> ...
-> 
->> +
-> 
-> Redundant blank line.
-> 
->> +module_i2c_driver(isl76682_driver);
-
-That ^ newline is above the module_i2c_driver or below it ?
-
-I removed the one below .
+> Cheers,
+> Conor.
 
