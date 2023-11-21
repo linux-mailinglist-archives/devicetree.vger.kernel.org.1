@@ -1,149 +1,121 @@
-Return-Path: <devicetree+bounces-17396-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17397-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8130D7F2613
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 08:05:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 386E07F2622
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 08:07:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 364CF280F55
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 07:05:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E594428159E
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 07:07:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FEEF1DA36;
-	Tue, 21 Nov 2023 07:05:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b="eEKX1ACl"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AA731EA7B;
+	Tue, 21 Nov 2023 07:07:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-db3eur04on2046.outbound.protection.outlook.com [40.107.6.46])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A49CBC;
-	Mon, 20 Nov 2023 23:05:18 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hh9socSdin742ZggBlvIt1ikPUzZq2jR7IiUZ/kCoGapPxYlyQl6KkwL3Al6OrO2Ie+ZmM3aZ/vtpchWzs10vVTRCsuqOxUqQuTX3BOrNJ0YkB3IJ9NvbOrtpm/9F9feuRbub0xHHRcuBBmq9JHn3ARQDvY7p9gtUFAIBSRTlpiYQl9PhTdQ02iip3XZSITA0OOrj+MplxBHD98pPVFk770Re2EhjANXkoc029GjT6fPWRoLhseYl/NFgSFt/4J6ZDucmQHnujGlOQOPT5Gogx4pdB69Zx4c8DGCP+GXs6xPZ4rYBQqUqwwX57bfteih0xFD7waSI3m7a+3xjNoUlg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=97141ulRIXfjPLSYCfixVI8yid1sjARqDM3/8D4TL1s=;
- b=SPNHkcRDdhXWkLe4vyTbsFxWVBLJZZoZpDQBdWWmE5B41diEv61SuuacmHT5D2hmE3Fl2so0PEGqPjUaMLjx/9nPTqPc60STO8EFgniUkFKTd9kBDVSCfOGQ7yjVssH1xsQ0/4vcyST2mJA3ONOX851a5wrJn7C6LQHKJv3vJ12zmLcj+Ao8hXK44UEu7gV1zWk4pNmOi3MumIlMpZ/0sU+F/0jThENZozVujwB6hpaFjShacgVi2F4tEfPTZfiNC4xb6JtNGqaoqMQSDQi75DL/Jk0ndT9lmsxCKNd4Qz6EbSUgnDs8S/CrtGQJhWSaH/9DOX/DEY2WJ3l9ZW//nQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 195.60.68.100) smtp.rcpttodomain=kernel.org smtp.mailfrom=axis.com;
- dmarc=fail (p=none sp=none pct=100) action=none header.from=axis.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axis.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=97141ulRIXfjPLSYCfixVI8yid1sjARqDM3/8D4TL1s=;
- b=eEKX1AClU3++Q1VBj395nsUt0jko5KF8W2SBmzu6r+Q9kcvpy0PZPxxM89bqMcIuBbPgGsIlnaqW+K+/vUIEG2/CH4pvia5Uh47lsis+YCkIJ7SQeYle4AqcGfYviiMisLb4O4N2qxHKEH2XTDgRLi5IA+vkzKTjNmk9iSgmL68=
-Received: from DB8P191CA0007.EURP191.PROD.OUTLOOK.COM (2603:10a6:10:130::17)
- by DBBPR02MB10529.eurprd02.prod.outlook.com (2603:10a6:10:52c::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7002.27; Tue, 21 Nov
- 2023 07:05:15 +0000
-Received: from DU6PEPF0000B61C.eurprd02.prod.outlook.com
- (2603:10a6:10:130:cafe::d5) by DB8P191CA0007.outlook.office365.com
- (2603:10a6:10:130::17) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7002.27 via Frontend
- Transport; Tue, 21 Nov 2023 07:05:15 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 195.60.68.100)
- smtp.mailfrom=axis.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=none header.from=axis.com;
-Received-SPF: Fail (protection.outlook.com: domain of axis.com does not
- designate 195.60.68.100 as permitted sender) receiver=protection.outlook.com;
- client-ip=195.60.68.100; helo=mail.axis.com;
-Received: from mail.axis.com (195.60.68.100) by
- DU6PEPF0000B61C.mail.protection.outlook.com (10.167.8.135) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7025.12 via Frontend Transport; Tue, 21 Nov 2023 07:05:15 +0000
-Received: from se-mail01w.axis.com (10.20.40.7) by se-mail01w.axis.com
- (10.20.40.7) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Tue, 21 Nov
- 2023 08:05:15 +0100
-Received: from se-intmail01x.se.axis.com (10.0.5.60) by se-mail01w.axis.com
- (10.20.40.7) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
- Transport; Tue, 21 Nov 2023 08:05:15 +0100
-Received: from lnxchenhuiz2.sh.cn.axis.com (lnxchenhuiz2.sh.cn.axis.com [192.168.77.59])
-	by se-intmail01x.se.axis.com (Postfix) with ESMTP id B7341E4C8;
-	Tue, 21 Nov 2023 08:05:14 +0100 (CET)
-Received: from lnxchenhuiz2.sh.cn.axis.com (localhost [127.0.0.1])
-	by lnxchenhuiz2.sh.cn.axis.com (8.17.1.9/8.17.1.9/Debian-2) with ESMTP id 3AL75Cfa3061354;
-	Tue, 21 Nov 2023 15:05:12 +0800
-Received: (from chenhuiz@localhost)
-	by lnxchenhuiz2.sh.cn.axis.com (8.17.1.9/8.17.1.9/Submit) id 3AL75CF43061351;
-	Tue, 21 Nov 2023 15:05:12 +0800
-From: Hermes Zhang <Hermes.Zhang@axis.com>
-To: <sre@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-	<robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <kernel@axis.com>, Hermes Zhang
-	<chenhuiz@axis.com>, Conor Dooley <conor.dooley@microchip.com>,
-	<linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: [PATCH v3 1/2] dt-bindings: power: supply: bq24190: Add BQ24296 compatible
-Date: Tue, 21 Nov 2023 15:05:04 +0800
-Message-ID: <20231121070505.3061304-2-Hermes.Zhang@axis.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20231121070505.3061304-1-Hermes.Zhang@axis.com>
-References: <20231121070505.3061304-1-Hermes.Zhang@axis.com>
+Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C6CC18A;
+	Mon, 20 Nov 2023 23:07:15 -0800 (PST)
+X-SpamFilter-By: ArmorX SpamTrap 5.78 with qID 3AL774o441411189, This message is accepted by code: ctloc85258
+Received: from mail.realtek.com (rtexh36506.realtek.com.tw[172.21.6.27])
+	by rtits2.realtek.com.tw (8.15.2/2.95/5.92) with ESMTPS id 3AL774o441411189
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 21 Nov 2023 15:07:04 +0800
+Received: from RTEXDAG01.realtek.com.tw (172.21.6.100) by
+ RTEXH36506.realtek.com.tw (172.21.6.27) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.17; Tue, 21 Nov 2023 15:07:03 +0800
+Received: from RTEXMBS04.realtek.com.tw (172.21.6.97) by
+ RTEXDAG01.realtek.com.tw (172.21.6.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.7; Tue, 21 Nov 2023 15:07:03 +0800
+Received: from RTEXMBS04.realtek.com.tw ([fe80::40c2:6c24:2df4:e6c7]) by
+ RTEXMBS04.realtek.com.tw ([fe80::40c2:6c24:2df4:e6c7%5]) with mapi id
+ 15.01.2375.007; Tue, 21 Nov 2023 15:07:03 +0800
+From: =?utf-8?B?VFlfQ2hhbmdb5by15a2Q6YC4XQ==?= <tychang@realtek.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Linus Walleij
+	<linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        "Andy
+ Shevchenko" <andy@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH v2 1/2] dt-bindings: gpio: realtek: Add realtek,rtd-gpio
+Thread-Topic: [PATCH v2 1/2] dt-bindings: gpio: realtek: Add realtek,rtd-gpio
+Thread-Index: AQHaGH4czgOqCilFZUC7eWiqDX/CI7B8UiAAgAgI9oA=
+Date: Tue, 21 Nov 2023 07:07:03 +0000
+Message-ID: <b604280a26e94bcca139b74dfa2130eb@realtek.com>
+References: <20231116111441.2339-1-tychang@realtek.com>
+ <20231116111441.2339-2-tychang@realtek.com>
+ <87e9b938-bb72-41a1-a54d-deed543077eb@linaro.org>
+In-Reply-To: <87e9b938-bb72-41a1-a54d-deed543077eb@linaro.org>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+x-originating-ip: [172.21.181.166]
+x-kse-serverinfo: RTEXDAG01.realtek.com.tw, 9
+x-kse-antispam-interceptor-info: fallback
+x-kse-antivirus-interceptor-info: fallback
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU6PEPF0000B61C:EE_|DBBPR02MB10529:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1da6a01a-d20f-4eb9-4cc6-08dbea60369b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	Ict2WSFi+UqqYu95ta3DATwOECDUI5l5DL4ULtAuPkacsstbP4je2bD8jkSuEnVEA2pPNG8uDHoHmaIzSfc6yKFT/xjoYWxj3F1SLLpuoKoJZ8RQU8uUZpk4yFY1i9NhqrJbPPNxOgLaaimUClKzfgLbQvV6Y3AUBMSeemdK3+A2/T61i/cbNpi1gDx7lpvRS3189B43gNocanAdk6rchb+37CSjC9qOSXRSmLGWC9iASJleJJKvEKvW9nzSw788DUVU1t+VqUUZRxmg8qel/8KH+LspAOiG25EZinJprlzIahnDEs3AAjhoxFjhHX/U2VdxAVb81Y7MFbbun9FhOtWLOhXdCFp96Idgn6c5AHwrZVpswo1tda9jJs1ttc851AXSG5gHOY6IcS6tPIXf7s67oxYI+MiNLS+Ua7ZejG+en3aFsr/FlcCTMCDMu+hWcdrmnMIs8fM5gNWlr6lTdBW5XKKvCuF/sibYmZKcf0jvbWLrNK0Reew+4uk6+yqCSo8Ouc7oDYFyJRgBR4GBORbPe1N5LrBcRU+FcbilITyg0+L5sstWgA0C/0ClXGXYeafuXmft9jmUWL/Muk0q9mOvP/7LT301Yt6d0/D/qMWf/rJJ3Zd8hnZMmJJJXXenPoF19oV1kKkHWAK2SX9HKlwvFr97vl4gR3HMqbBjN6uNRmslmrEu3+Gn3999SA/uvPhUuFSU+eAz96buIv9Ta+cQyEzPGmg+1aZRu67wOwV5988Op0TfrPDD6lz5OrbNQEKDeeoLZcMs0x2k667EbQ==
-X-Forefront-Antispam-Report:
-	CIP:195.60.68.100;CTRY:SE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.axis.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(136003)(396003)(39860400002)(346002)(376002)(230922051799003)(451199024)(186009)(64100799003)(1800799012)(82310400011)(46966006)(40470700004)(36840700001)(40460700003)(426003)(336012)(83380400001)(82740400003)(86362001)(356005)(81166007)(36756003)(47076005)(36860700001)(41300700001)(70586007)(70206006)(110136005)(54906003)(42186006)(316002)(8676002)(8936002)(4326008)(5660300002)(4744005)(2906002)(1076003)(26005)(2616005)(40480700001)(6666004)(478600001)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: axis.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Nov 2023 07:05:15.6339
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1da6a01a-d20f-4eb9-4cc6-08dbea60369b
-X-MS-Exchange-CrossTenant-Id: 78703d3c-b907-432f-b066-88f7af9ca3af
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=78703d3c-b907-432f-b066-88f7af9ca3af;Ip=[195.60.68.100];Helo=[mail.axis.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	DU6PEPF0000B61C.eurprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR02MB10529
+X-KSE-AntiSpam-Interceptor-Info: fallback
 
-From: Hermes Zhang <chenhuiz@axis.com>
-
-The BQ24296 is most similar to the BQ24196, but the:
-1. OTG config is split from CHG config (REG01)
-2. ICHG (Fast Charge Current limit) range is smaller (<=3008mA)
-3. NTC fault is simplified to 2 bits
-
-Signed-off-by: Hermes Zhang <chenhuiz@axis.com>
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
----
-
-Notes:
-    v2: restructured the code to support bq24296 and add Acked-by tag
-        from Conor
-    v3: handle the match_info in the modern way
-
- Documentation/devicetree/bindings/power/supply/bq24190.yaml | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/Documentation/devicetree/bindings/power/supply/bq24190.yaml b/Documentation/devicetree/bindings/power/supply/bq24190.yaml
-index d3ebc9de8c0b..131b7e57d22f 100644
---- a/Documentation/devicetree/bindings/power/supply/bq24190.yaml
-+++ b/Documentation/devicetree/bindings/power/supply/bq24190.yaml
-@@ -20,6 +20,7 @@ properties:
-       - ti,bq24192
-       - ti,bq24192i
-       - ti,bq24196
-+      - ti,bq24296
- 
-   reg:
-     maxItems: 1
--- 
-2.39.2
-
+SGksIEtyenlzenRvZg0KDQo+T24gMTYvMTEvMjAyMyAxMjoxNCwgVHp1eWkgQ2hhbmcgd3JvdGU6
+DQo+PiBBZGQgdGhlIGRldmljZSB0cmVlIGJpbmRpbmdzIGZvciB0aGUgUmVhbHRlayBESEMoRGln
+aXRhbCBIb21lIENlbnRlcikNCj4+IFJURCBTb0NzIEdQSU8gY29udHJvbGxlcnMuDQo+Pg0KPj4g
+U2lnbmVkLW9mZi1ieTogVHp1eWkgQ2hhbmcgPHR5Y2hhbmdAcmVhbHRlay5jb20+DQo+PiAtLS0N
+Cj4+IHYxIHRvIHYyIGNoYW5nZToNCj4+ICAgICAxLiBBZGQgZGVzY3JpcHRpb24gZm9yIERIQyBS
+VEQgU29Dcy4NCj4+ICAgICAyLiBSZXZpc2UgdGhlIGNvbXBhdGlibGUgbmFtZXMuDQo+PiAgICAg
+My4gQWRkIGRlc2NyaXB0aW9ucyBmb3IgcmVnIGFuZCBpbnRlcnJ1cHRzIHByb3BlcnRpZXMuDQo+
+PiAtLS0NCj4+ICAuLi4vYmluZGluZ3MvZ3Bpby9yZWFsdGVrLHJ0ZC1ncGlvLnlhbWwgICAgICAg
+fCA3NCArKysrKysrKysrKysrKysrKysrDQo+PiAgMSBmaWxlIGNoYW5nZWQsIDc0IGluc2VydGlv
+bnMoKykNCj4+ICBjcmVhdGUgbW9kZSAxMDA2NDQNCj4+IERvY3VtZW50YXRpb24vZGV2aWNldHJl
+ZS9iaW5kaW5ncy9ncGlvL3JlYWx0ZWsscnRkLWdwaW8ueWFtbA0KPj4NCj4+IGRpZmYgLS1naXQN
+Cj4+IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2dwaW8vcmVhbHRlayxydGQt
+Z3Bpby55YW1sDQo+PiBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9ncGlvL3Jl
+YWx0ZWsscnRkLWdwaW8ueWFtbA0KPj4gbmV3IGZpbGUgbW9kZSAxMDA2NDQNCj4+IGluZGV4IDAw
+MDAwMDAwMDAwMC4uMTFjODI3ODgwMWMzDQo+PiAtLS0gL2Rldi9udWxsDQo+PiArKysgYi9Eb2N1
+bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZ3Bpby9yZWFsdGVrLHJ0ZC1ncGlvLnlhbWwN
+Cj4+IEBAIC0wLDAgKzEsNzQgQEANCj4+ICsjIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiAoR1BM
+LTIuMCBPUiBCU0QtMi1DbGF1c2UpICMgQ29weXJpZ2h0IDIwMjMNCj4+ICtSZWFsdGVrIFNlbWlj
+b25kdWN0b3IgQ29ycG9yYXRpb24gJVlBTUwgMS4yDQo+PiArLS0tDQo+PiArJGlkOiBodHRwOi8v
+ZGV2aWNldHJlZS5vcmcvc2NoZW1hcy9ncGlvL3JlYWx0ZWsscnRkLWdwaW8ueWFtbCMNCj4+ICsk
+c2NoZW1hOiBodHRwOi8vZGV2aWNldHJlZS5vcmcvbWV0YS1zY2hlbWFzL2NvcmUueWFtbCMNCj4+
+ICsNCj4+ICt0aXRsZTogUmVhbHRlayBESEMgR1BJTyBjb250cm9sbGVyDQo+PiArDQo+PiArbWFp
+bnRhaW5lcnM6DQo+PiArICAtIFR6dXlpIENoYW5nIDx0eWNoYW5nQHJlYWx0ZWsuY29tPg0KPj4g
+Kw0KPj4gK2Rlc2NyaXB0aW9uOg0KPj4gKyAgVGhlIEdQSU8gY29udHJvbGxlciBpcyBkZXNpZ25l
+ZCBmb3IgdGhlIFJlYWx0ZWsgREhDIChEaWdpdGFsIEhvbWUNCj4+ICtDZW50ZXIpDQo+PiArICBS
+VEQgU29DIGZhbWlseSwgd2hpY2ggYXJlIGhpZ2gtZGVmaW5pdGlvbiBtZWRpYSBwcm9jZXNzb3Ig
+U29Dcy4NCj4+ICsNCj4+ICtwcm9wZXJ0aWVzOg0KPj4gKyAgY29tcGF0aWJsZToNCj4+ICsgICAg
+b25lT2Y6DQo+PiArICAgICAgLSBpdGVtczoNCj4NCj5Ecm9wIGl0ZW1zLg0KPg0KPj4gKyAgICAg
+ICAgICAtIGVudW06DQo+PiArICAgICAgICAgICAgICAtIHJlYWx0ZWsscnRkMTI5NS1taXNjLWdw
+aW8NCj4+ICsgICAgICAgICAgICAgIC0gcmVhbHRlayxydGQxMjk1LWlzby1ncGlvDQo+PiArICAg
+ICAgICAgICAgICAtIHJlYWx0ZWsscnRkMTM5NS1pc28tZ3Bpbw0KPj4gKyAgICAgICAgICAgICAg
+LSByZWFsdGVrLHJ0ZDE2MTktaXNvLWdwaW8NCj4+ICsgICAgICAtIGl0ZW1zOg0KPj4gKyAgICAg
+ICAgICAtIGVudW06DQo+PiArICAgICAgICAgICAgICAtIHJlYWx0ZWsscnRkMTMxOS1pc28tZ3Bp
+bw0KPj4gKyAgICAgICAgICAgICAgLSByZWFsdGVrLHJ0ZDE2MTliLWlzby1ncGlvDQo+PiArICAg
+ICAgICAgICAgICAtIHJlYWx0ZWsscnRkMTMxOWQtaXNvLWdwaW8NCj4+ICsgICAgICAgICAgICAg
+IC0gcmVhbHRlayxydGQxMzE1ZS1pc28tZ3Bpbw0KPj4gKyAgICAgICAgICAtIGNvbnN0OiByZWFs
+dGVrLHJ0ZC1ncGlvDQo+DQo+RWl0aGVyIHlvdSB1c2UgZ2VuZXJpYyBjb21wYXRpYmxlIGZvciBl
+dmVyeXRoaW5nIG9yIG5vdC4gT3RoZXIgdmFyaWFudHMgZG8gbm90DQo+dXNlIGdlbmVyaWMgY29t
+cGF0aWJsZSwgc28gbmVpdGhlciBzaG91bGQgdGhlc2UuIFVzZSBTb0Mtc3BlY2lmaWMgY29tcGF0
+aWJsZSBhcw0KPmZhbGxiYWNrLg0KPg0KPkkgYXNrZWQgeW91IHRvIHRvIGRyb3AgdGhpcyBjb21w
+YXRpYmxlLiBJIGNvdWxkIG5vdCBiZSBtb3JlIHNwZWNpZmljLCBzbyB5b3UganVzdA0KPmlnbm9y
+ZWQgdGhpcyByZW1hcmsuDQo+DQo+U28gYWdhaW46IHdoYXQgaXMgInJ0ZCI/IFdoeSBpdCBkb2Vz
+IG5vdCBhcHBlYXIgYW55d2hlcmUgaW4gZGVzY3JpcHRpb24gb3IgdGl0bGU/DQo+Tm8sIGRyb3Ag
+aXQuDQo+DQoNCiJydGQiIGlzIHRoZSBwcm9kdWN0IHNlcmllcyBpZGVudGlmaWVyLiBJIHdpbGwg
+ZHJvcCB0aGlzIGdlbmVyaWMgY29tcGF0aWJsZSBhbmQgdXNlIFNvQy1zcGVjaWZpYyBjb21wYXRp
+YmxlIGluc3RlYWQuDQoNClRoYW5rcywNClR6dXlpIENoYW5nDQo=
 
