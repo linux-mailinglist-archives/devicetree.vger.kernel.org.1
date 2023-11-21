@@ -1,61 +1,60 @@
-Return-Path: <devicetree+bounces-17420-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17421-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 600E57F277E
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 09:31:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 344F97F278F
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 09:34:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BA58DB2189C
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 08:31:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E21FB2828B6
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 08:34:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 124E73B29A;
-	Tue, 21 Nov 2023 08:31:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FB4113AF7;
+	Tue, 21 Nov 2023 08:34:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cKWlwqg8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nldNHXPV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC954F4
-	for <devicetree@vger.kernel.org>; Tue, 21 Nov 2023 00:31:17 -0800 (PST)
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-40b2a8575d9so1568895e9.0
-        for <devicetree@vger.kernel.org>; Tue, 21 Nov 2023 00:31:17 -0800 (PST)
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4300210E
+	for <devicetree@vger.kernel.org>; Tue, 21 Nov 2023 00:34:06 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-50a6ff9881fso7692556e87.1
+        for <devicetree@vger.kernel.org>; Tue, 21 Nov 2023 00:34:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700555476; x=1701160276; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=V/QOtsmaqlzgGjCUu+xt1WANXOlyntzSOJlutnjqOuc=;
-        b=cKWlwqg8XjAaje5O5D9oU53QWxYiRkj5k3Z9M4Noc2gbNVhxPm5rQmEL3RpzA0rkxv
-         aramY2t05ikusdnq+23aZ57M+HBDD5u5s9+qv4DzLEQ9DO7WYHNprlwNi1Xf0Tw9djpT
-         kcbF9Bx0AfcAFUwIKi3pYvcChDnJHeglCzMASikdKGInzxHS6uqM5XJl0mIctNyvRTlx
-         GLDJ4+P4EEIgu1H6TKsO2Q1GbvKgt/BHdzvgTyOrt7nhewScuhuNzLd8XVMeDtYBzJPh
-         WZXaWf5na5sz5uZItFxfhFrSZ9UEnNBeOPFAsRj717uca9DarG/++6DHXildrBiZbgHU
-         gPKw==
+        d=linaro.org; s=google; t=1700555644; x=1701160444; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=KrMj19vsl0kSqsf6FPK0QmlAMs/Qdk3cNg78FESN9s8=;
+        b=nldNHXPVlEgsCL88QLbz9iLr8lqpgu9vdurQ/mzV3ZnnUKPFM/ireox792ET7G4NVH
+         nG+rsiIHdxbf4dVz8xboHkT2OLwcE/87AyEwEnUYvQjt07ns0XGZpnYpL10xpF+d2eSt
+         2mqt2NmAxU2fKx8MX9hr1qqJb5PPAAI1h+ATrK4Nme7Vb3nGYIPl1MBGErlxv1eY66Av
+         fllcP7upj5f137yS+bV5WWdzB4nHD1zmm/uOxaq1aFpe+A+7Zvjtp2NfRcmb+G8Khd1c
+         RShxRirTgCR1je5hsXL5i1KSTE65pOiyKKJsqJ7BHUaB6h07NuCJsYbXoLgJzGcfw2Gv
+         XGMQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700555476; x=1701160276;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=V/QOtsmaqlzgGjCUu+xt1WANXOlyntzSOJlutnjqOuc=;
-        b=naMpVBYJrJOp3ZCfpqj7ufAq7KlR2mqRqqH8xcgKwCfu/e4xKd3iEYlJn695gH51vt
-         eWz3Sx0bMizOLx12n0EsdJkGcRjM4gtnFI+X5kkFGGZ7oLAANtTtJoHv01kyQD0eTOcE
-         UX/QVFHHP7qt/UiOFOdprUDamIFNib9tBeBbjXXhx79gpWiYhMOk0YenvfmjWVdvtRdK
-         5MXk46WrA9cWtvnwa0ir5G6b6NiTgdzoKcUJ5d+4Q3XfAJcKH49k+iHCQfHXfJbpIreL
-         wNDRiX/v9McPfh4RDrkls2uTTgH4X6grjQtAhglU93YB56q0SRaGu+ZSeWeZWCAry3UB
-         UhwA==
-X-Gm-Message-State: AOJu0YwPigYttErhHuZ2On6k2IaGXD4vP7sb52sv0tRBm4xwo6gGDOcY
-	IegOHIt6zl3KgkiYEuKCPazeeQ==
-X-Google-Smtp-Source: AGHT+IHQPUosDvN3LpE4x8XFLUPSM7lD7RaiPCM/CQBqqYuteWIAVwvAlcpT9jXLdpFBcFVodCUr9g==
-X-Received: by 2002:a5d:61d2:0:b0:32f:7b99:2ed with SMTP id q18-20020a5d61d2000000b0032f7b9902edmr6971328wrv.22.1700555476083;
-        Tue, 21 Nov 2023 00:31:16 -0800 (PST)
+        d=1e100.net; s=20230601; t=1700555644; x=1701160444;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KrMj19vsl0kSqsf6FPK0QmlAMs/Qdk3cNg78FESN9s8=;
+        b=Wymo7DYAm1aHVYbvnuTCi3vuulheIK4gZ4GBRaZAOXUzmkVeBd9Ze5lVuBj6ULfQm2
+         zzssP7iV57EAGS3wspsIoY9cPo+AqsGerhz1ycfEsZ1zykk9hlW0P2MBZS1IhgcxBw4+
+         SIci3vEwNMbdW+Gvhw9Okq2Ij46y2/BZgXVflojpKd01uoLIrlQyNi1iGm3EhoLGagE2
+         +ouilU5/GIMfjqOEpQX+QIK0V0/ynuIPxwpPb6ho3x0DBa0ytjcOmtsQ6NWly3VPJGia
+         QQRxHri+sNJLRAVzK4FoJp21A67NBwS+uveeb8IeRVa7zwfID0C7bF0ysyzseTZgVcYn
+         3bXw==
+X-Gm-Message-State: AOJu0YzSdkN61+vfVliVJsuw5Td8FvenL/7kmPHErvpLJInXKGsIZGhn
+	fsDmEoKmzMGE4A3gXXHKLk2E1g==
+X-Google-Smtp-Source: AGHT+IEIxbZ/YPyBCox+qwkgZr1WWsLyitkFh3pS5SAxs6Wbu+mmxNIwPTZjSbrv0EipObyy/47hyw==
+X-Received: by 2002:a2e:3e17:0:b0:2c5:1bd3:5658 with SMTP id l23-20020a2e3e17000000b002c51bd35658mr7020225lja.28.1700555644416;
+        Tue, 21 Nov 2023 00:34:04 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.11])
-        by smtp.gmail.com with ESMTPSA id dh18-20020a0560000a9200b00332cb1bcd01sm3955187wrb.86.2023.11.21.00.31.14
+        by smtp.gmail.com with ESMTPSA id s5-20020a5d6a85000000b0032d9f32b96csm13765372wru.62.2023.11.21.00.34.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Nov 2023 00:31:15 -0800 (PST)
-Message-ID: <ac3f3304-6dcd-470a-907c-32a63d3c39cf@linaro.org>
-Date: Tue, 21 Nov 2023 09:31:13 +0100
+        Tue, 21 Nov 2023 00:34:03 -0800 (PST)
+Message-ID: <67a2cea0-f2de-4e7d-bc9d-ae29885f9210@linaro.org>
+Date: Tue, 21 Nov 2023 09:34:02 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,24 +62,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] dt-bindings: connector: usb: add altmodes
- description
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Hans de Goede
- <hdegoede@redhat.com>, =?UTF-8?Q?Ilpo_J=C3=A4rvinen?=
- <ilpo.jarvinen@linux.intel.com>, Mark Gross <markgross@kernel.org>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, platform-driver-x86@vger.kernel.org,
- linux-usb@vger.kernel.org
-References: <20231120224919.2293730-1-dmitry.baryshkov@linaro.org>
- <20231120224919.2293730-2-dmitry.baryshkov@linaro.org>
+Subject: Re: [PATCH 1/2] dt-bindings: serial: rs485: add rs485-mux-gpios
+ binding
 Content-Language: en-US
+To: Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Lukas Wunner <lukas@wunner.de>, Rob Herring <robh@kernel.org>,
+ linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org
+References: <20231120151056.148450-1-linux@rasmusvillemoes.dk>
+ <20231120151056.148450-2-linux@rasmusvillemoes.dk>
+ <fd5c7d9f-a52b-4abb-a0d4-f5bdf2a669de@linaro.org>
+ <1c016987-da88-47f2-bc1b-fcbe4c71a5c9@rasmusvillemoes.dk>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -126,42 +123,62 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231120224919.2293730-2-dmitry.baryshkov@linaro.org>
+In-Reply-To: <1c016987-da88-47f2-bc1b-fcbe4c71a5c9@rasmusvillemoes.dk>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 20/11/2023 23:00, Dmitry Baryshkov wrote:
-> Add description of the USB-C AltModes supported on the particular USB-C
-> connector. This is required for devices like Qualcomm Robotics RB5,
-> which have no other way to express alternative modes supported by the
-> hardware platform.
+On 21/11/2023 09:27, Rasmus Villemoes wrote:
+> On 21/11/2023 08.52, Krzysztof Kozlowski wrote:
+>> On 20/11/2023 16:10, Rasmus Villemoes wrote:
+>>> Some boards are capable of both rs232 and rs485, and control which
+>>> external terminals are active via a gpio-controlled mux. Allow
+>>> describing that gpio in DT so that the kernel can transparently handle
+>>> the proper setting when the uart is switched between rs232 and rs485
+>>> modes.
+>>>
+>>> Signed-off-by: Rasmus Villemoes <linux@rasmusvillemoes.dk>
+>>> ---
+>>>  Documentation/devicetree/bindings/serial/rs485.yaml | 5 +++++
+>>>  1 file changed, 5 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/serial/rs485.yaml b/Documentation/devicetree/bindings/serial/rs485.yaml
+>>> index 9418fd66a8e9..e8136c7d22ed 100644
+>>> --- a/Documentation/devicetree/bindings/serial/rs485.yaml
+>>> +++ b/Documentation/devicetree/bindings/serial/rs485.yaml
+>>> @@ -61,6 +61,11 @@ properties:
+>>>        the active state enables RX during TX.
+>>>      maxItems: 1
+>>>  
+>>> +  rs485-mux-gpios:
+>>> +    description: GPIO pin to control muxing of the SOC signals to the RS485
+>>> +      transceiver.
+>>> +    maxItems: 1
+>>
+>> Aren't you duplicating
+>> https://lore.kernel.org/all/3Nk.ZZrp.5w3Yn0Ecy5C.1bMzDp@seznam.cz/ ?
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  .../bindings/connector/usb-connector.yaml     | 29 +++++++++++++++++++
->  1 file changed, 29 insertions(+)
+> Hadn't seen that, but no, this is not at all the same. That patch seems
+> to define an input pin to tell whether to enable rs485 mode or not (sort
+> of early run-time version of the linux,rs485-enabled-at-boot-time).
 > 
-> diff --git a/Documentation/devicetree/bindings/connector/usb-connector.yaml b/Documentation/devicetree/bindings/connector/usb-connector.yaml
-> index 7c8a3e8430d3..c1aaac861d9d 100644
-> --- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
-> +++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
-> @@ -171,6 +171,28 @@ properties:
->        offer the power, Capability Mismatch is set. Required for power sink and
->        power dual role.
->  
-> +  altmodes:
-> +    type: object
-> +    description: List of Alternative Modes supported by the schematics on the
-> +      particular device. This is only necessary if there are no other means to
-> +      discover supported alternative modes (e.g. through the UCSI firmware
-> +      interface).
-> +
-> +    patternProperties:
-> +      "^(displayport)$":
+>> Anyway, similar comments: this does not look like generic RS485
+>> property. Are you saying that standard defines such GPIO?
+> 
+> No, I'm saying that several boards that exist in the wild have the
+> RX/TX/CTS etc. pins routed to a multiplexer, which in turn routes those
+> signals to either a rs485 transceiver or an rs232 driver (and those in
+> turn are connected to different screw terminals). So no, it's not a
+> property of the rs485 protocol itself, but very much related to making
+> use of rs485 (and rs232, though of course not simultaneously) on such
+> boards.
 
-This is just a property, so should be under "properties:".
+Which upstream boards use it? To me it looks like specific to each
+controller, not to RS485.
 
-The rest looks good to me, but I don't know USB that much to judge.
+> 
+> Would a link to a schematic help?
+
+Yes, always :)
 
 Best regards,
 Krzysztof
