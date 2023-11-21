@@ -1,234 +1,214 @@
-Return-Path: <devicetree+bounces-17582-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17583-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA1D37F2DE5
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 14:04:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA0D67F2DE9
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 14:04:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EAA3E1C20F7F
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 13:04:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8C18E282A24
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 13:04:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB35E4643D;
-	Tue, 21 Nov 2023 13:04:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B1B148799;
+	Tue, 21 Nov 2023 13:04:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="T8W3wLrc"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VVhleeve"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4DB2198;
-	Tue, 21 Nov 2023 05:04:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1700571853; x=1732107853;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=1njS1C34bEESwq6u9gdjSjWRen3a5LQ4SjPz74czID8=;
-  b=T8W3wLrc7PaC9xq3gpTqTXaS0cwOietZgKNjdc11CWExMpFOaErtqpcB
-   18BXjiZZb4FYj8qGdDwOVqBoF0JYt+3dpNRnVY3zPUME3Qn7Fk6s0+lgS
-   7SnUwKESgO7z00UkBChu0F8Ohqw3675zLoyVjCz6gwEPmc445RPZ8ah4P
-   HXUYsE88deBu/gDNOK4Aidv+9kB+41560JbpIysOnnjuGA60HJsMcSUrb
-   T93PlzPOpZ2STf4kYJj9aERLJ4W5xZ72Rmatp/XxInDkJJxhDbnNcUquX
-   MEXueHLJxZxFcA8ICRESaeOsY7R0ioo8GxwV6OKOgqODyNkNlWvpGzAXW
-   g==;
-X-CSE-ConnectionGUID: n5lORdHDSVi5fM04cW72JA==
-X-CSE-MsgGUID: EyPvwLNWTTii/cztB81BiQ==
-X-ThreatScanner-Verdict: Negative
-X-IronPort-AV: E=Sophos;i="6.04,215,1695711600"; 
-   d="asc'?scan'208";a="12315934"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 21 Nov 2023 06:04:01 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Tue, 21 Nov 2023 06:03:38 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex03.mchp-main.com (10.10.85.151)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Tue, 21 Nov 2023 06:03:35 -0700
-Date: Tue, 21 Nov 2023 13:03:07 +0000
-From: Conor Dooley <conor.dooley@microchip.com>
-To: Inochi Amaoto <inochiama@outlook.com>
-CC: Conor Dooley <conor@kernel.org>, Guo Ren <guoren@kernel.org>, Chen Wang
-	<unicorn_wang@outlook.com>, Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
-	<conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, Palmer
- Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Anup Patel
-	<anup@brainfault.org>, Samuel Holland <samuel.holland@sifive.com>, Jisheng
- Zhang <jszhang@kernel.org>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>
-Subject: Re: [PATCH v4 1/2] dt-bindings: timer: thead,c900-aclint-mtimer:
- separate mtime and mtimecmp regs
-Message-ID: <20231121-vocation-clunky-17e2c77e64fa@wendy>
-References: <20231120-banshee-traverse-554723cd9490@spud>
- <IA1PR20MB4953D36ABE26822B62415500BBBBA@IA1PR20MB4953.namprd20.prod.outlook.com>
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69365D5D
+	for <devicetree@vger.kernel.org>; Tue, 21 Nov 2023 05:04:47 -0800 (PST)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-9fcfd2a069aso327861666b.1
+        for <devicetree@vger.kernel.org>; Tue, 21 Nov 2023 05:04:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1700571886; x=1701176686; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=AJNLrkJhw983BGoRtAEsSHa8vmQeC8HVGtAZzgpBYJ4=;
+        b=VVhleeve4e+I5zhttk3EmolYX1IAJbAirCbs50Bi3jUQeHZw9XXA7kO+I6gVKnf3Zl
+         MT4/N8POYKQCurQs1LKaI5r52PuutcU9t8pFCo4/53ljyISh4DxCVjFW6L0sPkhGfwiI
+         oWdsmcsUk6PQaBEqX8fqZZxa5SC4AEFWtA9CSMMylgw/p6Xwvv8j45f1RRHlwQkqAk4V
+         wH+SSQ0dMfHXew4BjyRLzhSCnRnCu1stBrNIIdUCnZvdq1mxtpIyAdUWhHhqaUUODZlc
+         NruMfcQeU17GGpGe60UHeOTReCORD4igIydHsU+ElTv1IT/kg8Tae9nu1ntoyfwh2uhs
+         5ZBA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700571886; x=1701176686;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=AJNLrkJhw983BGoRtAEsSHa8vmQeC8HVGtAZzgpBYJ4=;
+        b=KH42rOmJ5cFf35ZsnPZ28eTT4YdrBSEjCPfqvGifxZeUN1bQGwXP8HWbPiYHFlIT7K
+         8Xh6J6Z1MoirOnLuXa8EA0shpj+d23FpeGLYGJ+BjTBygmVtrWPwoEec3u/8zPmrqWlv
+         Wpdeyveju1abNdeWHSSX3WTUWdSWdHkQj89FkvHxIlUFvFV6KT3IV9knG7E1vXsA57aQ
+         gYcZEudNecloFcQ7VNJqKhrfa3yBz1SxJaUMHSawqcbck/sPsAKBEsZhMYDiiXMzDi5a
+         tEvMIQYYnM8zWVUnECZud73+aAtjzE3gDv7Wrroqla9ga6R0pP17UN/Jk+ShUgnorYYP
+         rVQQ==
+X-Gm-Message-State: AOJu0Yxm6Pf4SkrvOqesaDD2UTJ43GAeu1FAgv8aDTXUVTUH51VHTgpn
+	n4AmavzZo60xQ5Ml2F0mdPJvEg==
+X-Google-Smtp-Source: AGHT+IGMCD22fRf/LICxTRr0ykRJ40IRgqPHAZTBDyvGyNr9RJYChvFNLUA+x2O3j6uqbusy8W9sPQ==
+X-Received: by 2002:a17:906:7d0:b0:9fe:458e:a813 with SMTP id m16-20020a17090607d000b009fe458ea813mr3966392ejc.73.1700571885883;
+        Tue, 21 Nov 2023 05:04:45 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.222.11])
+        by smtp.gmail.com with ESMTPSA id la5-20020a170906ad8500b009fc8f309183sm3152196ejb.51.2023.11.21.05.04.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 21 Nov 2023 05:04:45 -0800 (PST)
+Message-ID: <c4f31613-8365-4d4d-a3ec-1b573f822968@linaro.org>
+Date: Tue, 21 Nov 2023 14:04:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="L2eP2FSieLwYKUqy"
-Content-Disposition: inline
-In-Reply-To: <IA1PR20MB4953D36ABE26822B62415500BBBBA@IA1PR20MB4953.namprd20.prod.outlook.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: frequency: add admfm2000
+Content-Language: en-US
+To: Kim Seer Paller <kimseer.paller@analog.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen
+ <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231121100012.112861-1-kimseer.paller@analog.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231121100012.112861-1-kimseer.paller@analog.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
---L2eP2FSieLwYKUqy
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 21/11/2023 11:00, Kim Seer Paller wrote:
+> Dual microwave down converter module with input RF and LO frequency
+> ranges from 0.5 to 32 GHz and an output IF frequency range from 0.1 to
+> 8 GHz. It consists of a LNA, mixer, IF filter, DSA, and IF amplifier
+> for each down conversion path.
+> 
+> Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
+> ---
+> V1 -> V2: Removed '|' after description. Specified the pins connected to
+>           the GPIOs. Added additionalProperties: false. Changed node name to gpio.
 
-On Tue, Nov 21, 2023 at 09:12:12AM +0800, Inochi Amaoto wrote:
-> >Yo,
-> >
-> >On Sat, Nov 18, 2023 at 03:10:26PM +0800, Inochi Amaoto wrote:
-> >> The timer registers of aclint don't follow the clint layout and can
-> >> be mapped on any different offset. As sg2042 uses separated timer
-> >> and mswi for its clint, it should follow the aclint spec and have
-> >> separated registers.
-> >>
-> >> The previous patch introduced a new type of T-HEAD aclint timer which
-> >> has clint timer layout. Although it has the clint timer layout, it
-> >> should follow the aclint spec and uses the separated mtime and mtimecmp
-> >> regs. So a ABI change is needed to make the timer fit the aclint spec.
-> >>
-> >> To make T-HEAD aclint timer more closer to the aclint spec, use
-> >> regs-names to represent the mtimecmp register, which can avoid hack
-> >> for unsupport mtime register of T-HEAD aclint timer.
-> >>
-> >> Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
-> >> Fixes: 4734449f7311 ("dt-bindings: timer: Add Sophgo sg2042 CLINT time=
-r")
-> >> Link: https://lists.infradead.org/pipermail/opensbi/2023-October/00569=
-3.html
-> >> Link: https://github.com/riscv/riscv-aclint/blob/main/riscv-aclint.adoc
-> >> ---
-> >>  .../timer/thead,c900-aclint-mtimer.yaml       | 42 ++++++++++++++++++-
-> >>  1 file changed, 41 insertions(+), 1 deletion(-)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/timer/thead,c900-aclint=
--mtimer.yaml b/Documentation/devicetree/bindings/timer/thead,c900-aclint-mt=
-imer.yaml
-> >> index fbd235650e52..053488fb1286 100644
-> >> --- a/Documentation/devicetree/bindings/timer/thead,c900-aclint-mtimer=
-=2Eyaml
-> >> +++ b/Documentation/devicetree/bindings/timer/thead,c900-aclint-mtimer=
-=2Eyaml
-> >> @@ -17,7 +17,20 @@ properties:
-> >>        - const: thead,c900-aclint-mtimer
-> >>
-> >>    reg:
-> >> -    maxItems: 1
-> >> +    oneOf:
-> >> +      - items:
-> >> +          - description: MTIME Registers
-> >> +          - description: MTIMECMP Registers
-> >> +      - items:
-> >> +          - description: MTIMECMP Registers
-> >> +
-> >> +  reg-names:
-> >> +    oneOf:
-> >> +      - items:
-> >> +          - const: mtime
-> >> +          - const: mtimecmp
-> >> +      - items:
-> >> +          - const: mtimecmp
-> >>
-> >>    interrupts-extended:
-> >>      minItems: 1
-> >> @@ -28,8 +41,34 @@ additionalProperties: false
-> >>  required:
-> >>    - compatible
-> >>    - reg
-> >> +  - reg-names
-> >>    - interrupts-extended
-> >>
-> >> +allOf:
-> >> +  - if:
-> >> +      properties:
-> >> +        compatible:
-> >> +          contains:
-> >> +            const: thead,c900-aclint-mtimer
-> >
-> >Is this being the c900 compatible correct? You mention in your commit
-> >message that this split is done on the sg2042, but the rule is applied
-> >here for any c900 series "aclint". Do we know if this is a sophgo
-> >specific thing (or even sg2042 specific), or if it applies generally?
-> >
->=20
-> This can be confirmed. The thead c900 series have no mtime support and
-> there is no evidence that they will implement it. So I think it is OK
-> to applied this restriction for the whole c900 series.
+Why? Is this a GPIO? Your bindings title say this is a converter, not a
+GPIO.
 
-Okay, great.
+>           Aligned < syntax with the previous syntax in the examples.
+> 
+>  .../bindings/iio/frequency/adi,admfm2000.yaml | 130 ++++++++++++++++++
+>  MAINTAINERS                                   |   7 +
+>  2 files changed, 137 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/frequency/adi,admfm2000.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/frequency/adi,admfm2000.yaml b/Documentation/devicetree/bindings/iio/frequency/adi,admfm2000.yaml
+> new file mode 100644
+> index 000000000000..92a7736c6eeb
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/frequency/adi,admfm2000.yaml
+> @@ -0,0 +1,130 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright 2023 Analog Devices Inc.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/frequency/adi,admfm2000.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ADMFM2000 Dual Microwave Down Converter
+> +
+> +maintainers:
+> +  - Kim Seer Paller <kimseer.paller@analog.com>
+> +
+> +description:
+> +    Dual microwave down converter module with input RF and LO frequency ranges
+> +    from 0.5 to 32 GHz and an output IF frequency range from 0.1 to 8 GHz.
+> +    It consists of a LNA, mixer, IF filter, DSA, and IF amplifier for each down
+> +    conversion path.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,admfm2000
+> +
+> +  switch1-gpios:
+> +    description:
+> +      Must contain an array of 2 GPIO specifiers, referring to the GPIO pins
 
-> >> +    then:
-> >> +      properties:
-> >> +        reg:
-> >> +          items:
-> >> +            - description: MTIMECMP Registers
-> >> +        reg-names:
-> >> +          items:
-> >> +            - const: mtimecmp
-> >
-> >> +    else:
-> >> +      properties:
-> >> +        reg:
-> >> +          items:
-> >> +            - description: MTIME Registers
-> >> +            - description: MTIMECMP Registers
-> >> +        reg-names:
-> >> +          items:
-> >> +            - const: mtime
-> >> +            - const: mtimecmp
-> >
-> >If it applies generally, I would probably just delete this, but unless
-> >someone can confirm this to be general, I'd probably leave the else
-> >clause and swap for the specific sg2042 compatible above.
-> >
->=20
-> I suggest keeping this. By taking your advice, this binding has actually
-> become the binding for aclint draft.
+Not much improved here - you still repeat the constraints.
 
-Right. It seemed to me from the reports (and the commit message) that this
-was a configuration choice made by sophgo for the IP.
+> +      connected to the B15 and B16.
+> +    minItems: 2
+> +    maxItems: 2
 
-> So I think it is better to preserve
-> this path, otherwise adding the mtime register seems meaningless.
+Instead all this:
+  items:
+    - description: B15 GPIO something something doing something
+    - description: B16 GPIO something something doing some switching
 
-Yeah, I mistakenly thought that there were cases where we actually had
-systems with mtime and mtimecmp registers. I don't know if that was an
-assumption I made due to previous commit messages or from reading the
-opensbi threads, but clearly that is not the case.
+> +
+> +  switch2-gpios:
+> +    description:
+> +      Must contain an array of 2 GPIO specifiers, referring to the GPIO pins
+> +      connected to the L14 and K14.
+> +    minItems: 2
+> +    maxItems: 2
+> +
+> +  attenuation1-gpios:
+> +    description:
+> +      Must contain an array of 5 GPIO specifiers, referring to the GPIO pins
+> +      connected to the C14, C15, C16, D14, and D15.
+> +    minItems: 5
+> +    maxItems: 5
+> +
+> +  attenuation2-gpios:
+> +    description:
+> +      Must contain an array of 5 GPIO specifiers, referring to the GPIO pins
+> +      connected to the L15, L16, M14, M15, and M16.
+> +    minItems: 5
+> +    maxItems: 5
+> +
+Best regards,
+Krzysztof
 
-> But if
-> you think it is OK to add this when adding new compatible or converting it
-> to a generic binding.
-
-I'm a bit conflicted. Since this is c900 specific one part of me says
-leave it with only one "reg" entry as that is what the only hardware
-actually has & add "reg-names" to make lives easier when someone else
-implements the unratified spec (or it gets ratified for some reason).
-
-> Feel free to remove it.
-
-I might've applied the other binding as it was in a series adding
-initial support for the SoC, but usually these things go via the
-subsystem maintainers with a DT maintainer ack/review.
-
---L2eP2FSieLwYKUqy
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZVyqiwAKCRB4tDGHoIJi
-0jluAP0fYsqgIge8uXa8G+bCn2bcUbFIsGX/HEtgQr05f7kUTgEA2P/xhfSpfcsh
-bBx01cguP1duoKHmUMurx4Wbd/lfXAU=
-=8YV4
------END PGP SIGNATURE-----
-
---L2eP2FSieLwYKUqy--
 
