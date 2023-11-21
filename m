@@ -1,39 +1,39 @@
-Return-Path: <devicetree+bounces-17393-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17394-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F19547F2608
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 08:02:04 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83D757F260A
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 08:02:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9AB9F1F23D2E
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 07:02:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B3EE61C2099D
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 07:02:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3FC41C280;
-	Tue, 21 Nov 2023 07:02:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEA491DA22;
+	Tue, 21 Nov 2023 07:02:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gQ4kgbwx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="neyTmLY2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A45FB1CF9A
-	for <devicetree@vger.kernel.org>; Tue, 21 Nov 2023 07:02:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4BFE9C433C7;
-	Tue, 21 Nov 2023 07:01:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88B971CF9A;
+	Tue, 21 Nov 2023 07:02:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07AFFC433C8;
+	Tue, 21 Nov 2023 07:02:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700550120;
-	bh=ldTiLlJvkF7OwnNp+F/8WU5xHdIsX44UNCheNvIuEDA=;
+	s=k20201202; t=1700550154;
+	bh=KzNMS+B/zL6G8aJlSrl8TvD74+1Xw2w2vkLu6WarSNU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=gQ4kgbwx9RSe1itDXpmX/9Enpniy+75hBtZxj0ubtorzSEaEEryHbYLOb+6mDHbSS
-	 BCaBHtidNLM15kLEY2wgLBgxblVAWV8t+SYDej7DOBvsf46CpN1oMNZYpcrmTeJXtG
-	 CCOxGzakZx9SlIwmTKKU9/sqIMH531YtT106aO9O23xvY6w2gZDTKVMPCsV2CbPJRW
-	 AqJJUAvJ9kToU7/WoYXNXTAT/dd3L6wYUBrgKtll1HLeRMohdeKHUxqVUJo7Wnpyhh
-	 1SWweoWUIlsxfZcekgaS7G6lCWjmao7wYeq6hGgPzovgghRp61V+mHnFIOwiiRrEVS
-	 xiydyEsJ10Igw==
-Message-ID: <bb8a23be-529f-48b3-a050-c3e574330024@kernel.org>
-Date: Tue, 21 Nov 2023 08:01:58 +0100
+	b=neyTmLY20PIe8i2cb/MWH+xBF1sOshuSaYBN3QNZy0XF8yvwN9G3Rh0cGIDjDEx4S
+	 bZk4y6ggiZJrJItFVPaC4jIW2oM1EgdwEpdgigo15Qj9QMhXCHDrZWlgsc0cMvdnKk
+	 AtnAGjhfeckCVnDSvBjq65W36027ckrlUHSEo5RXy3TTHHo7e/MpW3eEqx+ZbsXrGR
+	 kg+uvllZvEr6UGSdTg2zNbQTnllLv8CB130qqQQR9zE5I5VVsY9x7E6uiPeHPHeUEl
+	 FGSIIc/S5mbU/nipV97ljo1HIQ1YmebQyYkAMISgAY35UOPuyRUJvUa4LchD/7MvRN
+	 YE6zPlnndM0vQ==
+Message-ID: <fbdcaca9-85c6-42e2-ac10-646a9ce51757@kernel.org>
+Date: Tue, 21 Nov 2023 08:02:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -41,16 +41,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] ARM: dts: sun8i: h2+: add support for Banana Pi P2
- Zero board
+Subject: Re: [PATCH v3 1/2] serial: core: Add option to enable RS485 mode via
+ GPIO
 Content-Language: en-US
-To: =?UTF-8?Q?Pavel_L=C3=B6bl?= <pavel@loebl.cz>
-Cc: Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, devicetree@vger.kernel.org
-References: <20231118111418.979681-1-pavel@loebl.cz>
- <20231118111418.979681-3-pavel@loebl.cz>
- <0294f35c-2408-40f9-86ac-aa855ad85b46@kernel.org>
- <20231120231043.56af2ce6@alena.lan>
+To: Tomas Paukrt <tomaspaukrt@email.cz>, Rob Herring <robh+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>
+Cc: linux-serial@vger.kernel.org, Lino Sanfilippo <LinoSanfilippo@gmx.de>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <VY.ZZnz.2Km1cHBSh2}.1bLIJa@seznam.cz>
+ <476876ca-806f-a5ad-1eeb-435c8a3111a2@gmx.de>
+ <2cZ.ZZqF.1YADr1CLFoQ.1bMn3d@seznam.cz>
+ <5a0321ac-e1e6-45e9-9faf-153db8d34980@kernel.org>
+ <3Nj.ZZr}.5RaPRe7D8AB.1bMzDm@seznam.cz>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -95,38 +99,20 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20231120231043.56af2ce6@alena.lan>
+In-Reply-To: <3Nj.ZZr}.5RaPRe7D8AB.1bMzDm@seznam.cz>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 20/11/2023 23:10, Pavel Löbl wrote:
-> On Mon, 20 Nov 2023 10:18:30 +0100
-> Krzysztof Kozlowski <krzk@kernel.org> wrote:
+On 20/11/2023 22:45, Tomas Paukrt wrote:
+> Add an option to enable the RS485 mode at boot time based on
+> the state of a GPIO pin (DIP switch or configuration jumper).
+> The GPIO is defined by the device tree property "rs485-mode-gpio".
 > 
->> On 18/11/2023 12:14, Pavel Löbl wrote:
->>> Banana Pi P2 Zero is H2+-based board by Sinovoip internally similar
->>> to Banana Pi M2 Zero.
->>>   
->>
->>
->>> diff --git
->>> a/arch/arm/boot/dts/allwinner/sun8i-h2-plus-bananapi-p2-zero-v1.1.dts
->>> b/arch/arm/boot/dts/allwinner/sun8i-h2-plus-bananapi-p2-zero-v1.1.dts
->>> new file mode 100644 index 000000000000..f963051d8ff5 --- /dev/null
->>> +++
->>> b/arch/arm/boot/dts/allwinner/sun8i-h2-plus-bananapi-p2-zero-v1.1.dts
->>> @@ -0,0 +1,290 @@ +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)  
->>
->> Unusual license. We usually do not want GPL-v5.0. Does anything
->> requires such licensing? If not, use 2.0 OR MIT
-> License was copied from sun8i-h2-plus-bananapi-m2-zero as it served as
-> base for this DT. It seems GPL-2.0+ identifier is deprecated. So I
-> should replace it with GPL-2.0-or-later, probably.
+> Signed-off-by: Tomas Paukrt <tomaspaukrt@email.cz>
+> ---
+>  drivers/tty/serial/serial_core.c | 12 ++++++++++++
 
-It's the same problem, we do not want "later", but if you copied code
-licensed that way, it's ok.
-
-
+Why the subject is "Re:"? Please send each patchset as independent thread.
 
 Best regards,
 Krzysztof
