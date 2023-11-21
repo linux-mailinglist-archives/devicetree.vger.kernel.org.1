@@ -1,142 +1,151 @@
-Return-Path: <devicetree+bounces-17414-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17415-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 319577F26C9
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 08:58:47 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28A107F26DD
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 09:01:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C258EB21360
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 07:58:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 598731C20F7F
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 08:01:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 992853717D;
-	Tue, 21 Nov 2023 07:58:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="t/FFsngs"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30F7738DC9;
+	Tue, 21 Nov 2023 08:01:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B234C3
-	for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 23:58:35 -0800 (PST)
-Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-4083f613272so26364565e9.1
-        for <devicetree@vger.kernel.org>; Mon, 20 Nov 2023 23:58:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700553514; x=1701158314; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=oJuNEGqlnS+pUr1m/+KruHzTMkQlpu3jVo3/XXLiyM0=;
-        b=t/FFsngsFnw184L/V3tn0tBMRcQ1tPrYapwE/JAyJTjTDnqwzRykSNKToUxfhyJ0E0
-         ZNFP7RREFUQdb4BgH7VoyHkT2M0+gPOQsvEDQ5Q3K5e8aRmOg12vGJGrsivM31Y2lZHo
-         11oll0pWrQHMnel+2lZtfITtJcrLmDP0TirO7LaxJ0Sq1yDQy4Qlusq8xA+StreMbD43
-         XdZsyeispGCliyotqkvWgo63Kk6uWmoCn3sGWL4m+KFePNdDOPGHgw8Wr+kG9ysCRo11
-         me7lRZGNNtIuGYkaOtykuNmNiFJgYrtUWguTCev3C6AbpbMQqXR1NLOTGcxcAmTiCBFU
-         ri6g==
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35D4BC8;
+	Tue, 21 Nov 2023 00:00:59 -0800 (PST)
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-50943ccbbaeso7399909e87.2;
+        Tue, 21 Nov 2023 00:00:59 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700553514; x=1701158314;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oJuNEGqlnS+pUr1m/+KruHzTMkQlpu3jVo3/XXLiyM0=;
-        b=tq1X769E5VYQjxqLMS9R/ncUiAtj7M3qjSRhMmNM7xNL5bu8YxoewjxPu9mo3f12Pn
-         gvJl6G/BLoy/IyNRQE/a96T4pASsDY81u2rluTyQ+0+3yTp7TIWhS7fD1l1JfdW/DJjJ
-         QPCThr8qZdCYwPE8iZL9KC0E3QHgfM/iP7eTFGoPCPHG4HJ13l1Mr9nsorNTpxifTl6V
-         X6eFV56+tr5nz/bb+YgiWRtD7dTKvK9Y9CBReYcd8XoJGp5QLGYitF5RPTMq9ztHYk8i
-         aOcZM1LHZ6G0mH71KEwVmGsk0hxbdSmg7r+EiSc+wJef5bBIxknQaesvG4T+0lkMuUOF
-         ot0A==
-X-Gm-Message-State: AOJu0YyP307EZMV6wYJt8kZCpA9sIiM+muLIwuxsYIjty38/J5d/qnX9
-	fxcRvnwBRdmZ8Y2Arz0Nd6NTTypGBX7xDgnUZ+c=
-X-Google-Smtp-Source: AGHT+IEc9ighI2jnXI3OONs+u5iK6kPWU973JWyjxNk8IREKkRgasteP2ZIJ6h7NyU4JNUzAPqf4sA==
-X-Received: by 2002:a05:6000:156c:b0:32d:9fc9:d14a with SMTP id 12-20020a056000156c00b0032d9fc9d14amr10272568wrz.12.1700553514083;
-        Mon, 20 Nov 2023 23:58:34 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.222.11])
-        by smtp.gmail.com with ESMTPSA id d8-20020adffbc8000000b003316aeb280esm12851648wrs.104.2023.11.20.23.58.32
+        d=1e100.net; s=20230601; t=1700553657; x=1701158457;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=WAC7Wk7jAcTzX3Z+cItdgjy2XcXK1YIDP0sQ/+WmnbI=;
+        b=Am0V53ZajU3DfDYq06HQNkCrM3AGVGgNMYG9xpzbndrvBQilRTYJww5otVRybqEMm4
+         clXZkz/J6tMj6X5t58QhPZGk+loyJ9pmPQKZt2Tq+8bAdHS0h2JXsz6O/ORwcHvVbn0W
+         hPU/QtHZGGtnUGBLwOIlyjhd7Z6R2txZWC8RMv49QSh3UZQJXX9ZOBLBd9kjKkkGFnhp
+         2xCYgBccNMlnz6B3rzbwqTyMYS7qBP9sQebtAbM71tYm8CqG3bvwDPwk025wN1R1pLk7
+         G3NzDMJtgyw4eJE9umu7l6eGPXySbh1tidnTdoGQeG2aG7Sm/6MRzhWIqaHci2CgqZ2v
+         LfRQ==
+X-Gm-Message-State: AOJu0Yxj2Rqr/aQAJWP2mPpkGKK231wN8LJybHscF7XwPGx9vmQBaFqS
+	KRZriNVsuA7WO8v/7OvvKvIfRCFMbKr+lnra
+X-Google-Smtp-Source: AGHT+IEMKGgIaZuugrDMZDvV7GnJywK/Yx77z4jGc7Rwz9WNq4IzHq7tt5PQ58SgYfPSHkLLZyHueQ==
+X-Received: by 2002:a05:6512:983:b0:508:225e:e79f with SMTP id w3-20020a056512098300b00508225ee79fmr6014656lft.22.1700553656648;
+        Tue, 21 Nov 2023 00:00:56 -0800 (PST)
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com. [209.85.208.181])
+        by smtp.gmail.com with ESMTPSA id p15-20020a05651212cf00b0050810b0da0fsm1430948lfg.33.2023.11.21.00.00.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Nov 2023 23:58:33 -0800 (PST)
-Message-ID: <6ecd783e-4c3c-4294-b55a-bec5015e7aec@linaro.org>
-Date: Tue, 21 Nov 2023 08:58:31 +0100
+        Tue, 21 Nov 2023 00:00:56 -0800 (PST)
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2c50fbc218bso65573181fa.3;
+        Tue, 21 Nov 2023 00:00:56 -0800 (PST)
+X-Received: by 2002:a05:651c:205e:b0:2c5:1075:5ec9 with SMTP id
+ t30-20020a05651c205e00b002c510755ec9mr6793793ljo.13.1700553656042; Tue, 21
+ Nov 2023 00:00:56 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/3] dt-bindings: mfd: qcom,spmi-pmic: Add pm8916
- vm-bms and lbc
-Content-Language: en-US
-To: Nikita Travkin <nikita@trvn.ru>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
- Stephen Boyd <sboyd@kernel.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231120-pm8916-dtsi-bms-lbc-v4-0-4f91056c8252@trvn.ru>
- <20231120-pm8916-dtsi-bms-lbc-v4-1-4f91056c8252@trvn.ru>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231120-pm8916-dtsi-bms-lbc-v4-1-4f91056c8252@trvn.ru>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20231120160740.3532848-1-niklas.soderlund+renesas@ragnatech.se> <2ab74479-f1fb-4faf-b223-ae750b4c08ce@linaro.org>
+In-Reply-To: <2ab74479-f1fb-4faf-b223-ae750b4c08ce@linaro.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 21 Nov 2023 09:00:41 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUkfyJ9f22joXpAW1Gwk+zE9cqx+hbFqeK7Xc7ZTW1Faw@mail.gmail.com>
+Message-ID: <CAMuHMdUkfyJ9f22joXpAW1Gwk+zE9cqx+hbFqeK7Xc7ZTW1Faw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: net: renesas,ethertsn: Add bindings for
+ Ethernet TSN
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, devicetree@vger.kernel.org, 
+	netdev@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 20/11/2023 15:03, Nikita Travkin wrote:
-> PM8916 (and probably some other similar pmics) have hardware blocks for
-> battery monitoring and charging. Add patterns for respecive nodes so the
-> devicetree for those blocks can be validated properly.
-> 
-> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
-> ---
->  Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
+On Tue, Nov 21, 2023 at 8:45=E2=80=AFAM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+> On 20/11/2023 17:07, Niklas S=C3=B6derlund wrote:
+> > Add bindings for Renesas R-Car Ethernet TSN End-station IP. The RTSN
+> > device provides Ethernet network.
+> >
+> > Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatec=
+h.se>
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/net/renesas,ethertsn.yaml
+> > @@ -0,0 +1,133 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/net/renesas,ethertsn.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Renesas Ethernet TSN End-station
+> > +
+> > +maintainers:
+> > +  - Niklas S=C3=B6derlund <niklas.soderlund@ragnatech.se>
+> > +
+> > +description:
+> > +  The RTSN device provides Ethernet network using a 10 Mbps, 100 Mbps,=
+ or 1
+> > +  Gbps full-duplex link via MII/GMII/RMII/RGMII. Depending on the conn=
+ected PHY.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    oneOf:
+> > +      - items:
+>
+> Drop items.
+>
+> I assume you have oneOf above because you predict this will grow with
+> entries with fallbacks? If not, drop.
+>
+> > +          - enum:
+> > +              - renesas,ethertsn-r8a779g0      # R-Car V4H
 
-Best regards,
-Krzysztof
+renesas,r8a779g0-ethertsn
 
+R-Car S4 also has EtherTSN.
+Is it identical, so it makes sense to add a renesas,rcar-gen4-ethertsn
+fallback?
+
+> > +  renesas,rx-internal-delay:
+> > +    type: boolean
+> > +    description:
+> > +      Enable internal Rx clock delay, typically 1.8ns.
+>
+> Why this is bool, not delay in ns?
+> Why this is property of a board (not SoC)?
+
+Standard property is rx-internal-delay-ps.
+
+> > +
+> > +  renesas,tx-internal-delay:
+> > +    type: boolean
+> > +    description:
+> > +      Enable internal Tx clock delay, typically 2.0ns.
+>
+> Same questions.
+
+Standard property is tx-internal-delay-ps.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
