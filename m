@@ -1,444 +1,176 @@
-Return-Path: <devicetree+bounces-17505-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17509-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69B9D7F2B32
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 12:00:30 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D67317F2B49
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 12:02:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8B7D81C210F1
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 11:00:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 65ED6B21878
+	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 11:02:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A26A7482D8;
-	Tue, 21 Nov 2023 11:00:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1616D482D7;
+	Tue, 21 Nov 2023 11:02:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KntxO/Um"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Gtp1Pjn8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8989F18C
-	for <devicetree@vger.kernel.org>; Tue, 21 Nov 2023 03:00:18 -0800 (PST)
-Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2c50fbc218bso67445621fa.3
-        for <devicetree@vger.kernel.org>; Tue, 21 Nov 2023 03:00:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700564416; x=1701169216; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=suXVDrXbdcl3hiQV4w7h/YnoQgstL3MlxG7ceiqyqWQ=;
-        b=KntxO/UmqoUUfAql8RWYqqOFJXgR3Ctgn5W1zM6X3kQb3psCgGSsv4jmGPwbQkdToD
-         0VxzQ9Y7X8SkqRTzz7+m0I1l9fn1IxbydhKwE/u5XLVlYKXU3VkTjY4FD++4SJUt5q+K
-         iUPPirAADcxY1RnY8ehfDUZhL6sR8dA3KFWYAYq2uhZM8KpcfQrv7+Rsi7aMw4Wzyllb
-         LR5V4F7Nix5+gyWOMN6GvoDgfw1jCtzVpiezInmbC4Vl/jQGHkRJ7+NLtsAfSgNMrPfo
-         Dgwa47Ip78ulePeq2xkK5+SyODEpJyFDy80e/h5/KE47Blv5JGt9e7wVqbUp0UIgcywe
-         XwnQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700564416; x=1701169216;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=suXVDrXbdcl3hiQV4w7h/YnoQgstL3MlxG7ceiqyqWQ=;
-        b=DyP6KPi5Y1xy1GykURg9zMISuOhDkPdPTlnUsJkLWaIZ/kfcLPUeYGBB5kQx4TtGiT
-         Irr+SidiW1IvTUaPa6rooCzshE/ja1LY9VYfX2WaRa71Ck6JzeN3M7ArsgG/ulqa9548
-         SqnrmKhp7XgKB4EkTDpx9yeBofTndmezD+Vts0dt3yvZ61xSbV15VTnhrYyTVvHemOQA
-         sLasKv1H+hQLzrG3XYf57HH+B/OdxZxbIvHXC/qCdV5khZENzeAzC23KuYHeDBOPDnKc
-         MCmtBuKHQvbeuCZZCGGwjst72Dfe65M3laVH7vTXRJUlj59RJA5XSvCSQS+YIIBtEere
-         L5aQ==
-X-Gm-Message-State: AOJu0YxQ7CaJaSKT1nU0wJT7Fgy80hb3PnbdPUn83QsRaxJG6E5m9AUP
-	Tvn6oyKJbqdE28W8eaBS/Q/zzA==
-X-Google-Smtp-Source: AGHT+IHkE3aact1VajDnjh/3Cd2q/pYbV92o62XndvugmT7qPquOCtPtJ6lE2pF7XNGAWlGKRk/kAQ==
-X-Received: by 2002:a05:651c:10c7:b0:2b9:f13b:6139 with SMTP id l7-20020a05651c10c700b002b9f13b6139mr7603030ljn.20.1700564416332;
-        Tue, 21 Nov 2023 03:00:16 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id f1-20020adff581000000b00332c0e934aasm9028500wro.44.2023.11.21.03.00.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Nov 2023 03:00:15 -0800 (PST)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Tue, 21 Nov 2023 12:00:07 +0100
-Subject: [PATCH v3 8/8] arm64: dts: qcom: sm8650-qrd: add interconnect
- dependent device nodes
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD66D10FA;
+	Tue, 21 Nov 2023 03:01:57 -0800 (PST)
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3ALA9geK006337;
+	Tue, 21 Nov 2023 11:01:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=vOWhqG9rjugWBRBwG5uUjztH4X9sdpkjoV0aEkoYeyY=;
+ b=Gtp1Pjn8rND6RE0GYpSP3EgyUA7aa+ktUeroUlCWwOYv+5u+LcVxZaBmcZQfMhxew1a3
+ MDMXXt6aRDE25pUUV2hUrdfuSiKf53s6ThnlmE86RqV/DcCzkdJcXKQYqeg7l8r5Avao
+ M4ic7yGJRAKdWfgK07VKA6JF+1xDCY+X99nOh6vvtz+W62naB9hCxk27QzodLrlSyoY2
+ WiH1TAc7Vh0wsMm6otN+0yj+TnZ5fLhJdpDI7QnPNlXYjlaDxcqVM3LJDM2B5X7JpQgI
+ Y2H/UwtA4uo73hhfnfyMg7PDZDevgp3UEds6U23H44cpK6aiSRtykb+ycGRxr+D+KA8k Zw== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ugge19d2x-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 21 Nov 2023 11:01:43 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3ALB18UT004551
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 21 Nov 2023 11:01:08 GMT
+Received: from [10.253.72.26] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 21 Nov
+ 2023 03:01:04 -0800
+Message-ID: <cde29373-b341-454a-867c-f6bed051ca95@quicinc.com>
+Date: Tue, 21 Nov 2023 19:01:02 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 3/6] net: phy: at803x: add QCA8084 ethernet phy support
+Content-Language: en-US
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>
+CC: Andrew Lunn <andrew@lunn.ch>, <davem@davemloft.net>, <edumazet@google.com>,
+        <kuba@kernel.org>, <pabeni@redhat.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <hkallweit1@gmail.com>, <corbet@lwn.net>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>
+References: <20231118062754.2453-1-quic_luoj@quicinc.com>
+ <20231118062754.2453-4-quic_luoj@quicinc.com>
+ <1eb60a08-f095-421a-bec6-96f39db31c09@lunn.ch>
+ <ZVkRkhMHWcAR37fW@shell.armlinux.org.uk>
+ <eee39816-b0b8-475c-aa4a-8500ba488a29@lunn.ch>
+ <fef2ab86-ccd7-4693-8a7e-2dac2c80fd53@quicinc.com>
+ <ZVsnFWzi6KMXpJOj@shell.armlinux.org.uk>
+From: Jie Luo <quic_luoj@quicinc.com>
+In-Reply-To: <ZVsnFWzi6KMXpJOj@shell.armlinux.org.uk>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20231121-topic-sm8650-upstream-dt-v3-8-db9d0507ffd3@linaro.org>
-References: <20231121-topic-sm8650-upstream-dt-v3-0-db9d0507ffd3@linaro.org>
-In-Reply-To: <20231121-topic-sm8650-upstream-dt-v3-0-db9d0507ffd3@linaro.org>
-To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=6618;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=s8Jug7UzjSJUjX2kmC+Rd7PGDEaDh2r9luvG/3xwuDc=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBlXI225/qNqRa1tRwBvsrBd156+1/PAKOh/xh3dSXG
- hj99OqeJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZVyNtgAKCRB33NvayMhJ0QP1EA
- CD6pxbPy3N48mjR3jozx39EyatDsoglotKsaAhtMYFHmTMdK+ivHH9+FBnJRDw3aQttHJhG7saPAZq
- KWbA27uolw8c6xv+GDZAlIP49zj30YY1NgGancLLgqE5b8Bbn5aWNk+fYAAMQ5UxKsv46ckQPcz4NT
- cWlhMXu4VIcaR8J4xFeqBnVOirzilbaekK+iwYMApCJRCoTtXkwi80NUPBkH5LJFL4+nqR9PyGoPSc
- Ry0pHZeA6z7cY736n5x4xp2KrDS1qHJ1qreDAYY8DD6fNqsoHy7eNKSvlH1fqMwmfi0TQ3aa9ffF4N
- bzxei7330NM678RWkcTvJEKqHd6KA2G4AZCwkrZ2XYz0rU2MM03eyDL7fddIAKvY18Vt5Vj7sysXHi
- 21UUHJVNtr9SV1vMumbnHa0y1vGRxdyJYdqqXVIxGlHbe2vICsSWehY3serx0k6Hr3FEz9owFERsBK
- /NXB5EzFHnvmj+4Ngi58DktdQry1ctLJAQO+kyooqpJLU4y/XDvoTikrTAZ4/hkhacgq/jCGfCj+KE
- kqL5l1rBUIPVDr7k/p12uYPQzkp7mp7jcAFEudkSEM2VRra2PE2wgwOlRYrSQ4+Sfeb/RDMQQlDdwl
- 1YVaZ+ZMjcWKo8ChOPmsHBpgDjo62AhXzn1Sb/hw2qzQEwei1nETcFAuAd0A==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: hFbGFThDHljuFobQ52L8YK5KPHMgYd9I
+X-Proofpoint-ORIG-GUID: hFbGFThDHljuFobQ52L8YK5KPHMgYd9I
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-21_04,2023-11-21_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 impostorscore=0
+ malwarescore=0 mlxscore=0 adultscore=0 mlxlogscore=999 phishscore=0
+ priorityscore=1501 bulkscore=0 suspectscore=0 spamscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2311060000 definitions=main-2311210086
 
-Now interconnect dependent devices are added in sm8650 DTSI,
-now enable more devices for the Qualcomm SM8650 QRD board:
-- PCIe
-- Display
-- DSPs
-- SDCard
-- UFS
-- USB role switch with PMIC Glink
-- Bluetooth
 
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8650-qrd.dts | 275 +++++++++++++++++++++++++++++++-
- 1 file changed, 274 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8650-qrd.dts b/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
-index f5ce4c889680..b41f90d817bb 100644
---- a/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
-@@ -23,6 +23,7 @@ / {
- 
- 	aliases {
- 		serial0 = &uart15;
-+		serial1 = &uart14;
- 	};
- 
- 	chosen {
-@@ -45,6 +46,44 @@ key-volume-up {
- 		};
- 	};
- 
-+	pmic-glink {
-+		compatible = "qcom,sm8650-pmic-glink",
-+			     "qcom,sm8550-pmic-glink",
-+			     "qcom,pmic-glink";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		orientation-gpios = <&tlmm 29 GPIO_ACTIVE_HIGH>;
-+
-+		connector@0 {
-+			compatible = "usb-c-connector";
-+			reg = <0>;
-+
-+			power-role = "dual";
-+			data-role = "dual";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+
-+					pmic_glink_hs_in: endpoint {
-+						remote-endpoint = <&usb_1_dwc3_hs>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+
-+					pmic_glink_ss_in: endpoint {
-+						remote-endpoint = <&usb_1_dwc3_ss>;
-+					};
-+				};
-+			};
-+		};
-+	};
-+
- 	vph_pwr: vph-pwr-regulator {
- 		compatible = "regulator-fixed";
- 
-@@ -399,6 +438,81 @@ vreg_l3i_1p2: ldo3 {
- 	};
- };
- 
-+&dispcc {
-+	status = "okay";
-+};
-+
-+&gpi_dma1 {
-+	status = "okay";
-+};
-+
-+&mdss {
-+	status = "okay";
-+};
-+
-+&mdss_dsi0 {
-+	vdda-supply = <&vreg_l3i_1p2>;
-+
-+	status = "okay";
-+
-+	panel@0 {
-+		compatible = "visionox,vtdr6130";
-+		reg = <0>;
-+
-+		reset-gpios = <&tlmm 133 GPIO_ACTIVE_LOW>;
-+
-+		vddio-supply = <&vreg_l12b_1p8>;
-+		vci-supply = <&vreg_l13b_3p0>;
-+		vdd-supply = <&vreg_l11b_1p2>;
-+
-+		pinctrl-0 = <&disp0_resetn_active>, <&mdp_vsync_active>;
-+		pinctrl-1 = <&disp0_resetn_suspend>, <&mdp_vsync_suspend>;
-+		pinctrl-names = "default", "sleep";
-+
-+		port {
-+			panel0_in: endpoint {
-+				remote-endpoint = <&mdss_dsi0_out>;
-+			};
-+		};
-+	};
-+};
-+
-+&mdss_dsi0_out {
-+	remote-endpoint = <&panel0_in>;
-+	data-lanes = <0 1 2 3>;
-+};
-+
-+&mdss_dsi0_phy {
-+	vdds-supply = <&vreg_l1i_0p88>;
-+
-+	status = "okay";
-+};
-+
-+&mdss_mdp {
-+	status = "okay";
-+};
-+
-+&pcie_1_phy_aux_clk {
-+	clock-frequency = <1000>;
-+};
-+
-+&pcie0 {
-+	wake-gpios = <&tlmm 96 GPIO_ACTIVE_HIGH>;
-+	perst-gpios = <&tlmm 94 GPIO_ACTIVE_LOW>;
-+
-+	pinctrl-0 = <&pcie0_default_state>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+};
-+
-+&pcie0_phy {
-+	vdda-phy-supply = <&vreg_l1i_0p88>;
-+	vdda-pll-supply = <&vreg_l3i_1p2>;
-+
-+	status = "okay";
-+};
-+
- &pon_pwrkey {
- 	status = "okay";
- };
-@@ -479,22 +593,172 @@ &pmk8550_rtc {
- 	status = "okay";
- };
- 
-+&qupv3_id_0 {
-+	status = "okay";
-+};
-+
- &qupv3_id_1 {
- 	status = "okay";
- };
- 
-+&remoteproc_adsp {
-+	firmware-name = "qcom/sm8650/adsp.mbn",
-+			"qcom/sm8650/adsp_dtb.mbn";
-+
-+	status = "okay";
-+};
-+
-+&remoteproc_cdsp {
-+	firmware-name = "qcom/sm8650/cdsp.mbn",
-+			"qcom/sm8650/cdsp_dtb.mbn";
-+
-+	status = "okay";
-+};
-+
-+&remoteproc_mpss {
-+	firmware-name = "qcom/sm8650/modem.mbn",
-+			"qcom/sm8650/modem_dtb.mbn";
-+
-+	status = "okay";
-+};
-+
- &sleep_clk {
- 	clock-frequency = <32000>;
- };
- 
-+&spi4 {
-+	status = "okay";
-+
-+	touchscreen@0 {
-+		compatible = "goodix,gt9916";
-+		reg = <0>;
-+
-+		interrupt-parent = <&tlmm>;
-+		interrupts = <162 IRQ_TYPE_LEVEL_LOW>;
-+
-+		reset-gpios = <&tlmm 161 GPIO_ACTIVE_LOW>;
-+
-+		avdd-supply = <&vreg_l14b_3p2>;
-+
-+		spi-max-frequency = <1000000>;
-+
-+		touchscreen-size-x = <1080>;
-+		touchscreen-size-y = <2400>;
-+
-+		pinctrl-0 = <&ts_irq>, <&ts_reset>;
-+		pinctrl-names = "default";
-+	};
-+};
-+
- &tlmm {
- 	gpio-reserved-ranges = <32 8>;
-+
-+	bt_default: bt-default-state {
-+		bt-en-pins {
-+			pins = "gpio17";
-+			function = "gpio";
-+			drive-strength = <16>;
-+			bias-disable;
-+		};
-+
-+		sw-ctrl-pins {
-+			pins = "gpio18";
-+			function = "gpio";
-+			bias-pull-down;
-+		};
-+	};
-+
-+	disp0_resetn_active: disp0-resetn-active-state {
-+		pins = "gpio133";
-+		function = "gpio";
-+		drive-strength = <8>;
-+		bias-disable;
-+	};
-+
-+	disp0_resetn_suspend: disp0-resetn-suspend-state {
-+		pins = "gpio133";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-down;
-+	};
-+
-+	mdp_vsync_active: mdp-vsync-active-state {
-+		pins = "gpio86";
-+		function = "mdp_vsync";
-+		drive-strength = <2>;
-+		bias-pull-down;
-+	};
-+
-+	mdp_vsync_suspend: mdp-vsync-suspend-state {
-+		pins = "gpio86";
-+		function = "mdp_vsync";
-+		drive-strength = <2>;
-+		bias-pull-down;
-+	};
-+
-+	ts_irq: ts-irq-state {
-+		pins = "gpio161";
-+		function = "gpio";
-+		drive-strength = <8>;
-+		bias-pull-up;
-+		output-disable;
-+	};
-+
-+	ts_reset: ts-reset-state {
-+		pins = "gpio162";
-+		function = "gpio";
-+		drive-strength = <8>;
-+		bias-pull-up;
-+	};
-+};
-+
-+&uart14 {
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "qcom,wcn7850-bt";
-+
-+		clocks = <&rpmhcc RPMH_RF_CLK1>;
-+
-+		vddio-supply = <&vreg_l3c_1p2>;
-+		vddaon-supply = <&vreg_l15b_1p8>;
-+		vdddig-supply = <&vreg_s3c_0p9>;
-+		vddrfa0p8-supply = <&vreg_s3c_0p9>;
-+		vddrfa1p2-supply = <&vreg_s1c_1p2>;
-+		vddrfa1p9-supply = <&vreg_s6c_1p8>;
-+
-+		max-speed = <3200000>;
-+
-+		enable-gpios = <&tlmm 17 GPIO_ACTIVE_HIGH>;
-+		swctrl-gpios = <&tlmm 18 GPIO_ACTIVE_HIGH>;
-+
-+		pinctrl-0 = <&bt_default>;
-+		pinctrl-names = "default";
-+	};
- };
- 
- &uart15 {
- 	status = "okay";
- };
- 
-+&ufs_mem_hc {
-+	reset-gpios = <&tlmm 210 GPIO_ACTIVE_LOW>;
-+
-+	vcc-supply = <&vreg_l17b_2p5>;
-+	vcc-max-microamp = <1300000>;
-+	vccq-supply = <&vreg_l1c_1p2>;
-+	vccq-max-microamp = <1200000>;
-+
-+	status = "okay";
-+};
-+
-+&ufs_mem_phy {
-+	vdda-phy-supply = <&vreg_l1d_0p88>;
-+	vdda-pll-supply = <&vreg_l3i_1p2>;
-+
-+	status = "okay";
-+};
-+
- /*
-  * DPAUX -> WCD9395 -> USB_SBU -> USB-C
-  * eUSB2 DP/DM -> PM85550HS -> eUSB2 DP/DM -> WCD9395 -> USB-C
-@@ -506,7 +770,16 @@ &usb_1 {
- };
- 
- &usb_1_dwc3 {
--	dr_mode = "peripheral";
-+	dr_mode = "otg";
-+	usb-role-switch;
-+};
-+
-+&usb_1_dwc3_hs {
-+	remote-endpoint = <&pmic_glink_hs_in>;
-+};
-+
-+&usb_1_dwc3_ss {
-+	remote-endpoint = <&pmic_glink_ss_in>;
- };
- 
- &usb_1_hsphy {
+On 11/20/2023 5:29 PM, Russell King (Oracle) wrote:
+> On Mon, Nov 20, 2023 at 04:49:59PM +0800, Jie Luo wrote:
+>>
+>>
+>> On 11/19/2023 4:19 AM, Andrew Lunn wrote:
+>>>> 10G_QXGMII is defined in the Cisco USXGMII multi-port document as one
+>>>> of several possibilities for a USXGMII-M link. The Cisco document can
+>>>> be a little confusing beause it states that 10G_QXGMII supports 10M,
+>>>> 100M, 1G and 2.5G, and then only talks about a 10G and 100M/1G MAC.
+>>>>
+>>>> For 10G_QXGMII, there are 4 MAC interfaces. These are connected to a
+>>>> rate "adaption" through symbol replication block, and then on to a
+>>>> clause 49 PCS block.
+>>>>
+>>>> There is then a port MUX and framing block, followed by the PMA
+>>>> serdes which communicates with the remote end over a single pair of
+>>>> transmit/receive serdes lines.
+>>>>
+>>>> Each interface also has its own clause 37 autoneg block.
+>>>>
+>>>> So, for an interface to operate in SGMII mode, it would have to be
+>>>> muxed to a different path before being presented to the USXGMII-M
+>>>> block since each interface does not have its own external data lane
+>>>> - thus that's out of scope of USXGMII-M as documented by Cisco.
+>>>
+>>> Hi Russell
+>>>
+>>> I think it helps.
+>>>
+>>> Where i'm having trouble is deciding if this is actually an interface
+>>> mode. Interface mode is a per PHY property. Where as it seems
+>>> 10G_QXGMII is a property of the USXGMII-M link? Should we be
+>>> representing the package with 4 PHYs in it, and specify the package
+>>> has a PMA which is using 10G_QXGMII over USXGMII-M? The PHY interface
+>>> mode is then internal? Its just the link between the PHY and the MUX?
+>>>
+>>> By saying the interface mode is 10G_QXGMII and not describing the PMA
+>>> mode, are we setting ourselves up for problems in the future? Could
+>>> there be a PMA interface which could carry different PHY interface
+>>> modes?
+>>>
+>>> If we decide we do want to use 10G_QXGMII as an interface made, i
+>>> think the driver should be doing some validation. If asked to do
+>>> anything else, it should return -EINVAL.
+>>>
+>>> And i don't yet understand how it can also do 1000BaseX and 2500BaseX
+>>> and SGMII?
+>>>
+>>>       Andrew
+>>
+>> Hi Andrew,
+>> The interface mode 10G_QXGMII is a type of USXGMII-M, the other modes
+>> such as 20G-QXGMII, 20G-OXGMII...
+>>
+>> As for the interface mode 10G-QXGMII, there is a multiplexer for 4 PHYs,
+>> then do 66bit/68bit encode in xpcs and pass to PMA, the link topology:
+>> quad PHY --- multiplexer ---XPCS --- PMA.
+>> the 10G-QXGMII interface block includes multiplexer, XPCS and PMA.
+> 
+> Note that phylink_pcs does *not* cover any PCS on the PHY device side
+> of the link. It only covers a PCS on the MAC side.
 
--- 
-2.34.1
+Ok, even there is only one XPCS multiplex with 4 MACs, we should create
+4 PCS instances for 4 MACs.
 
+> 
+>> Here is a problem as Russell mentioned earlier, we need to know which PHY
+>> device is changing the link status when the 10G-QXGMII mode is used,
+>> since there are 4 PHYs, when one of them has the link change, there is no
+>> PHY device information passed to the PHYLINK, so the PCS driver don't
+>> which PHY is changing link status and 10G-QXGMII mode don't know which
+>> channel(mapped to PHY) should be configured.
+>>
+>> would we add a field such as (int channel) in the struct phy_device?
+>> so we can pass this information to PCS driver when the PHY link changed.
+> 
+> Nothing in phylink nor phylib is setup to deal with "channels" within
+> a PHY. The model assumes that a network interface consists of exactly
+> one MAC associated with one active PHY.
+> 
+> As there are 4 PHYs, phylib will expect there to be four PHY devices,
+> and there will be expected to be four phylink instances.
+> 
+make sense, thanks Russell.
 
