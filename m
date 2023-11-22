@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-18052-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18053-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97AB67F4F28
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 19:18:35 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE0E57F4F55
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 19:22:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5B5E4281007
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 18:18:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4201CB20CC0
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 18:22:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E2044F5F1;
-	Wed, 22 Nov 2023 18:18:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFC775D495;
+	Wed, 22 Nov 2023 18:22:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lpb9202u"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UOHv2qNJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 727A7101
-	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 10:18:27 -0800 (PST)
-Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-332c0c32d19so3130277f8f.3
-        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 10:18:27 -0800 (PST)
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD268D5A
+	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 10:21:58 -0800 (PST)
+Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-54a94e68fb1so647015a12.0
+        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 10:21:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700677106; x=1701281906; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1700677310; x=1701282110; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=cHYnD0Po/dYKPMMF8EH1EryMVyB3OKYjMgkkFLJ9EPQ=;
-        b=lpb9202uA5jT7c7XbKb63Na4MwxnZ3t8dXHNhEadlEW+YIclMyBLm2viUOG2hMhDGM
-         lgWUET544pvlT0iBrSiOlmSU6PfmDhFV2QyE/BRDucLmypA17+4gW3pmEmOJQMFdQLv5
-         UOOJSlZudx03F6AbQziqEi1tuCVPIgmSBzGI98v8jwvIO+izFbvwx663YjQBZRQtjX8h
-         IByTDT+7u9RQoKmiTemxznwCiUGrtIIDo3LMR/YjnLSZw/K1K0szNTPk63v4QUDc27kC
-         urg4Py+oGNCJz1Snpwg1jKyZPuRU2lxkL89dY4h6ctZ8iIWndB9Xv8ld2a89rQ0ldJP5
-         GXbw==
+        bh=CgNxnWCFK7LbDPgvqYM6EDl4TckuHYK/tKTpgqZXlII=;
+        b=UOHv2qNJPdZg1dp0eiCTKpmQjMb9AeKf41kxBYDb1cFzSrJk7vNiQV7WVls0KFyMtS
+         OoSs9fd5oPZd0ZX1PEl5zfCMoNJlmTVDN2Qk61XdsPovtlYDqaiSdBGWho45jBdyUX5l
+         Y6uRA8/vvYnzO6CTLt+/XZc2wc7UDwb5TkVoYasm1I/zBy+6Ale1nm5LkFJEk6AFlezO
+         xWpLFydifcF3GbdesMJwz1U4C4eX81QNkYrcaX50dfGjVA+om8WpFc6B4OEFnNoF2okO
+         g8mtlUjqfLoP4o4sRflUpM+kBMPE1XTEv6jzOWvREzjWDk7ABXgq+vCl3jSzK5Q7s493
+         tB4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700677106; x=1701281906;
+        d=1e100.net; s=20230601; t=1700677310; x=1701282110;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cHYnD0Po/dYKPMMF8EH1EryMVyB3OKYjMgkkFLJ9EPQ=;
-        b=ewFxtx62fPxp0JmEJFpltMe7fVm/55xVKlT8yGYxjccZqExYPMhJuhxz+EKSQb8/Sb
-         UP8R3klk6iH1D5HcKS+WehzqfjBzHpluJ83Wx3sce+4L8udhg8MF0DEtEIpqMDw4WaDj
-         72GCoWaTzYh7fyeBJyjnVqLrbdUGhR43CWWhyRIVZCVAgH9H+OB+nvhvYFxIxBooA7kh
-         CW87NnOJp16rKKu/vB3uxlsZRk4vPy7YxKjoBFy+nF+WNvMLlNKGvJUNGJ5q5sbnzEY3
-         JBigajQ/IHPJmJpUzNY1ANk5I36+rFwH+/Z9SKIcSUSH2DGNFXofsT6G1tlV23t9qEE4
-         13RA==
-X-Gm-Message-State: AOJu0Yw+upWA9EG7Vs0y2oeP8NMiMc72GCxkCjTXXl45lkawFvlpDeSP
-	d24Z8cb1fTvzqUsVhhg5U2A/mw==
-X-Google-Smtp-Source: AGHT+IGPNGAtOAyMyTkybhU4HYxQ9iIarZYNk96gS0e95g7JSaZVC1yWxBkAafqoah00LLLxbio90w==
-X-Received: by 2002:a5d:6c69:0:b0:332:d33e:6584 with SMTP id r9-20020a5d6c69000000b00332d33e6584mr1939868wrz.45.1700677105921;
-        Wed, 22 Nov 2023 10:18:25 -0800 (PST)
+        bh=CgNxnWCFK7LbDPgvqYM6EDl4TckuHYK/tKTpgqZXlII=;
+        b=CmP9HSZ0EYV1hXeW0Z1T1tYIs4OQG9JkV+FlMJjpU5wbq3VayZ92wdaf01YLwUZaLQ
+         WzwwKgvVoy147AdIqB5E0U99VbyeMNBBVpQjnUTnh6Hs+NymQZB64M1LzlN1HkOpWmkA
+         6bOQoNR0GBJlxiKaEfKbpZfGQFJ5f0vShqARQ5aRkda72GT8MMUDExgr9kv8tjR4XZse
+         Z2atrhWp7RNjktbzYn4JUMOvI4H52rQTvWkVwUhXE10vQuBTja3Ku0RACyCIljNzIMox
+         QLH3XK6QDaICHxXH0dNq3280G/qxJHS+8K8DyGUpPZcrvBVIp3PjPKCH46lh4XDLbraR
+         0jzw==
+X-Gm-Message-State: AOJu0YzUO5x6a5c7xxaPY1QfiYBIo5gTIiGemK9TRNLNsgA84s0x5td0
+	gDUzClSCcZHn4NM0rV5BuRBv6w==
+X-Google-Smtp-Source: AGHT+IHwj4YeS2UkszT9f9ROk9RZwox26AcmC/4pSfte5XWMk3TqreyY/DG9kDsV3Wopnqo7zo61GQ==
+X-Received: by 2002:a17:907:7e94:b0:a04:472b:4912 with SMTP id qb20-20020a1709077e9400b00a04472b4912mr292565ejc.25.1700677310342;
+        Wed, 22 Nov 2023 10:21:50 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.100])
-        by smtp.gmail.com with ESMTPSA id q8-20020a05600000c800b00331698cb263sm7672wrx.103.2023.11.22.10.18.23
+        by smtp.gmail.com with ESMTPSA id j17-20020a1709064b5100b009fe3e9dee25sm57945ejv.61.2023.11.22.10.21.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Nov 2023 10:18:25 -0800 (PST)
-Message-ID: <26d9dcdf-d015-493e-b2b0-eeb538e7caf0@linaro.org>
-Date: Wed, 22 Nov 2023 19:18:23 +0100
+        Wed, 22 Nov 2023 10:21:49 -0800 (PST)
+Message-ID: <f66a3dc3-a0a5-457b-a68a-efd6577aa210@linaro.org>
+Date: Wed, 22 Nov 2023 19:21:48 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,20 +62,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/7] dt-bindings: leds: leds-qcom-lpg: Add support for
- LPG PPG
+Subject: Re: [PATCH v3 1/2] dt-bindings: iio: frequency: add admfm2000
 Content-Language: en-US
-To: Anjelique Melendez <quic_amelende@quicinc.com>, pavel@ucw.cz,
- lee@kernel.org, thierry.reding@gmail.com, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, agross@kernel.org,
- andersson@kernel.org
-Cc: luca.weiss@fairphone.com, konrad.dybcio@linaro.org,
- u.kleine-koenig@pengutronix.de, quic_subbaram@quicinc.com,
- quic_gurus@quicinc.com, linux-leds@vger.kernel.org,
+To: Kim Seer Paller <kimseer.paller@analog.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen
+ <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, linux-pwm@vger.kernel.org
-References: <20231020182218.22217-1-quic_amelende@quicinc.com>
- <20231020182218.22217-3-quic_amelende@quicinc.com>
+ kernel test robot <lkp@intel.com>
+References: <20231122105831.182570-1-kimseer.paller@analog.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -121,23 +118,60 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231020182218.22217-3-quic_amelende@quicinc.com>
+In-Reply-To: <20231122105831.182570-1-kimseer.paller@analog.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 20/10/2023 20:22, Anjelique Melendez wrote:
-> Update leds-qcom-lpg binding to support LPG PPG.
+On 22/11/2023 11:58, Kim Seer Paller wrote:
+> Dual microwave down converter module with input RF and LO frequency
+> ranges from 0.5 to 32 GHz and an output IF frequency range from 0.1 to
+> 8 GHz. It consists of a LNA, mixer, IF filter, DSA, and IF amplifier
+> for each down conversion path.
 > 
-> Signed-off-by: Anjelique Melendez <quic_amelende@quicinc.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
+> Reported-by: kernel test robot <lkp@intel.com>
+> Closes: https://lore.kernel.org/oe-kbuild-all/202311220624.J7Nqg5h1-lkp@intel.com/
+
+Drop these two tags. They are not valid.
+
 > ---
->  .../bindings/leds/leds-qcom-lpg.yaml          | 89 ++++++++++++++++++-
+> V2 -> V3: Adjusted indentation to resolve wrong indentation warning. 
+>           Changed node name to converter. Updated the descriptions to clarify
+>           the properties.
 
-This causes new warnings, for which fixes were not included here, not
-linked in cover letter, not linked in changelog.
 
-Please test the patches before sending and be sure no new warnings are
-introduced. I should not test it, it's your job.
+> +title: ADMFM2000 Dual Microwave Down Converter
+> +
+> +maintainers:
+> +  - Kim Seer Paller <kimseer.paller@analog.com>
+> +
+> +description:
+> +  Dual microwave down converter module with input RF and LO frequency ranges
+> +  from 0.5 to 32 GHz and an output IF frequency range from 0.1 to 8 GHz.
+> +  It consists of a LNA, mixer, IF filter, DSA, and IF amplifier for each down
+> +  conversion path.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,admfm2000
+> +
+> +  switch1-gpios:
+> +    items:
+> +      - description:
+> +          Setting B15 GPIO to high and B16 GPIO to low will result in channel 1
+> +          being in Direct IF mode.
+> +      - description:
+> +          Setting B15 GPIO to low and B16 GPIO to high will result in channel 1
+> +          being in Mixer mode.
+
+This still does not tell which one is B15 and which is B16. I am asking
+this for third time.
+
+items:
+  - description: B15 GPIO, when high (and B16 low) channel 1 is in
+Direct IF mode
+
 
 Best regards,
 Krzysztof
