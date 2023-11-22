@@ -1,668 +1,166 @@
-Return-Path: <devicetree+bounces-17861-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17862-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FAC67F4504
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 12:40:59 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D05B7F4525
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 12:53:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D9054281041
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 11:40:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 900FE1C208D4
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 11:53:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BEC11642F;
-	Wed, 22 Nov 2023 11:40:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02BE9C13C;
+	Wed, 22 Nov 2023 11:52:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=iki.fi header.i=@iki.fi header.b="LMBlE4eA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cy+B2N9/"
 X-Original-To: devicetree@vger.kernel.org
-X-Greylist: delayed 4762 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 22 Nov 2023 03:40:38 PST
-Received: from meesny.iki.fi (meesny.iki.fi [195.140.195.201])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED133D45;
-	Wed, 22 Nov 2023 03:40:37 -0800 (PST)
-Received: from hillosipuli.retiisi.eu (185-9-10-242.cust.suomicom.net [185.9.10.242])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	(Authenticated sender: sailus)
-	by meesny.iki.fi (Postfix) with ESMTPSA id 4SZznp5dMqzyNj;
-	Wed, 22 Nov 2023 13:40:28 +0200 (EET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
-	t=1700653235;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=uvJcqyOR5EnbfjXEpdgLxjwkUJXTqdOJ/WKwWuC/ppc=;
-	b=LMBlE4eAn9kgQQJP7+cMSeUxd8TF7kjztFIGbAFgskxI0We7jRqsbjwD6tW+uT/ys8nczR
-	1+4SCUyDILSOOYSCHYW7DTHZrBkXJLiQF1eIDsWp05Xxf2d9aOKKCW+e+ZdU9qbNjGHzJG
-	ba/atnJAR6Bthncv5cfUriQh0FBpiIA=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
-	s=meesny; t=1700653235;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=uvJcqyOR5EnbfjXEpdgLxjwkUJXTqdOJ/WKwWuC/ppc=;
-	b=tL+hfGFgRLJT+JWficVC1NFnQ9i+PbtIBSb+55uf+614oxD5DhVmDQjx1l1/bDU15mHtF3
-	tnXsMdZeBUWvfv02sBUpm+SkmWMyJ5VUCumgT9Wu1lHWCsxUIdILyFyNhKOcw2XuNNaibI
-	ak4vZ8caaZWSCrzG0ViVJY8YVPZMyE8=
-ARC-Authentication-Results: i=1;
-	ORIGINATING;
-	auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
-ARC-Seal: i=1; s=meesny; d=iki.fi; t=1700653235; a=rsa-sha256; cv=none;
-	b=jloBq7v86DZd4+EDbTazDKXyeK/qJXg8n4f9mu1u+YWLaP9wjrteEb500vyREbOHd93SGG
-	dQZ1OALKw9yP82DV5oamna19hfO/ZjR+k6cIdkAKtHFepCVaKNvLpNQiIUb9VOeUYLs18/
-	2c/0lHRfmZES2jKcKV4ieEBSvFIrnlg=
-Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by hillosipuli.retiisi.eu (Postfix) with ESMTPS id B7F9A634C93;
-	Wed, 22 Nov 2023 13:40:27 +0200 (EET)
-Date: Wed, 22 Nov 2023 11:40:27 +0000
-From: Sakari Ailus <sakari.ailus@iki.fi>
-To: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
-Cc: Hans Verkuil <hverkuil@xs4all.nl>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v9 4/5] documentation: media: add documentation for
- Toshiba Visconti Video Input Interface driver
-Message-ID: <ZV3oq0szH8JjSNsc@valkosipuli.retiisi.eu>
-References: <20231012071329.2542003-1-yuji2.ishikawa@toshiba.co.jp>
- <20231012071329.2542003-5-yuji2.ishikawa@toshiba.co.jp>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D582125741;
+	Wed, 22 Nov 2023 11:52:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3DF3C433C9;
+	Wed, 22 Nov 2023 11:52:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1700653976;
+	bh=cS+u+HSsc8fMMuph+matgkYWEhkv4bIh+ZWW1P6CAuE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=cy+B2N9/kHnw5+ZtCxPAoxynU5a0j0oMlQ01HCXIHC0Vyjpfp+C4Xo70ZHDG2iShT
+	 h1ssgpEUc+HQFenwAshD9EKct/qS8VTyLSCP9GdtyWkp14/F6DtRw9ReID8TBeWmEH
+	 nD/TRduRQ4B7MI2FXWWyaJVpLGyRtAuEkTo/+3bD9kyiGN+UXV1x5F6LDQOUtgARC2
+	 bEq2RPQC79kk70H4S4XBY+jvNncV+rfmCm87+01a2NJrc+NrD37jXPk1CDYB6gxklt
+	 +6K2srzJvefA72V5gh+jEJhbFHEJxb4gvt4hDn14aMzJ61Yn9F2sLGhLWdiUoP5hnf
+	 wY2XY3cuuRCKw==
+Message-ID: <99d1808a-da04-4bc1-a1f7-cbd269adbbf0@kernel.org>
+Date: Wed, 22 Nov 2023 12:52:49 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231012071329.2542003-5-yuji2.ishikawa@toshiba.co.jp>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] dt-bindings: iio: temperature: add MLX90635 device
+ bindings
+To: Crt Mori <cmo@melexis.com>, Jonathan Cameron <jic23@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>
+Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <cover.1700648164.git.cmo@melexis.com>
+ <2e8b4a7d3ef4bc1c53bd0a849e4c31eaf2477f6b.1700648165.git.cmo@melexis.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <2e8b4a7d3ef4bc1c53bd0a849e4c31eaf2477f6b.1700648165.git.cmo@melexis.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Yuji,
+On 22/11/2023 11:27, Crt Mori wrote:
+> Add device tree bindings for MLX90635 Infra Red contactless temperature
+> sensor.
 
-Thank you for the update and my apologies for not reviewing this properly
-earlier. Please see my commens below.
+Please use scripts/get_maintainers.pl to get a list of necessary people
+and lists to CC (and consider --no-git-fallback argument). It might
+happen, that command when run on an older kernel, gives you outdated
+entries. Therefore please be sure you base your patches on recent Linux
+kernel.
 
-On Thu, Oct 12, 2023 at 04:13:28PM +0900, Yuji Ishikawa wrote:
-> Added basic description of Video Input Interface driver of
-> Toshiba Visconti architecture.
-> It includes hardware organization, structure of the driver
-> and description of vendor specific V4L2 controls
-> to configure the embedded image signal processor.
+A nit, subject: drop second/last, redundant "bindings". The
+"dt-bindings" prefix is already stating that these are bindings.
+
 > 
-> Signed-off-by: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
+> Signed-off-by: Crt Mori <cmo@melexis.com>
 > ---
-> Changelog v3:
-> - Newly add documentation to describe SW and HW
+>  .../iio/temperature/melexis,mlx90635.yaml     | 60 +++++++++++++++++++
+>  1 file changed, 60 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/temperature/melexis,mlx90635.yaml
 > 
-> Changelog v4:
-> - no change
-> 
-> Changelog v5:
-> - no change
-> 
-> Changelog v6:
-> - add description of CSI2RX subdevice
-> - add ordering of ioctl(S_FMT) and ioctl(S_EXT_CTRLS)
-> 
-> Changelog v7:
-> - no change
-> 
-> Changelog v8:
-> - add usage of V4L2_CTRL_TYPE_VISCONTI_ISP
-> 
-> Changelog v9:
-> - fix warning: set reference target for keyword V4L2_CTRL_TYPE_VISCONTI_ISP
-> 
->  .../driver-api/media/drivers/index.rst        |   1 +
->  .../media/drivers/visconti-viif.rst           | 462 ++++++++++++++++++
->  .../media/v4l/vidioc-g-ext-ctrls.rst          |   4 +
->  .../media/v4l/vidioc-queryctrl.rst            |   5 +
->  .../media/videodev2.h.rst.exceptions          |   1 +
->  5 files changed, 473 insertions(+)
->  create mode 100644 Documentation/driver-api/media/drivers/visconti-viif.rst
-> 
-> diff --git a/Documentation/driver-api/media/drivers/index.rst b/Documentation/driver-api/media/drivers/index.rst
-> index c4123a16b5f9..5592bd99ae5c 100644
-> --- a/Documentation/driver-api/media/drivers/index.rst
-> +++ b/Documentation/driver-api/media/drivers/index.rst
-> @@ -24,6 +24,7 @@ Video4Linux (V4L) drivers
->  	sh_mobile_ceu_camera
->  	tuners
->  	vimc-devel
-> +	visconti-viif
->  	zoran
->  	ccs/ccs
->  
-> diff --git a/Documentation/driver-api/media/drivers/visconti-viif.rst b/Documentation/driver-api/media/drivers/visconti-viif.rst
+> diff --git a/Documentation/devicetree/bindings/iio/temperature/melexis,mlx90635.yaml b/Documentation/devicetree/bindings/iio/temperature/melexis,mlx90635.yaml
 > new file mode 100644
-> index 000000000000..fd2480cbde46
+> index 000000000000..96463121a806
 > --- /dev/null
-> +++ b/Documentation/driver-api/media/drivers/visconti-viif.rst
-> @@ -0,0 +1,462 @@
-> +.. SPDX-License-Identifier: GPL-2.0
+> +++ b/Documentation/devicetree/bindings/iio/temperature/melexis,mlx90635.yaml
+> @@ -0,0 +1,60 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/temperature/melexis,mlx90635.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +============================================
-> +Visconti Video Input Interface (VIIF) Driver
-> +============================================
+> +title: Melexis MLX90635 contactless Infra Red temperature sensor
 > +
-> +Overview
-> +========
+> +maintainers:
+> +  - Crt Mori <cmo@melexis.com>
 > +
-> +The Visconti VIIF Hardware
-> +--------------------------
+> +description: |
+> +  https://www.melexis.com/en/documents/documentation/datasheets/datasheet-mlx90635
 > +
-> +The Visconti Video Input Interface (VIIF) hardware is  a proprietary videocapture device of Toshiba.
-> +Following function modules are integrated:
+> +  There are various applications for the Infra Red contactless temperature
+> +  sensor and MLX90635 is most suitable for consumer applications where
+> +  measured object temperature is in range between -20 to 100 degrees
+> +  Celsius with relative error of measurement 2 degree Celsius in
+> +  object temperature range for industrial applications, while just 0.2
+> +  degree Celsius for human body measurement applications. Since it can
+> +  operate and measure ambient temperature in range of -20 to 85 degrees
+> +  Celsius it is suitable also for outdoor use.
 > +
-> +* MIPI CSI2 receiver (CSI2RX)
-> +* L1 Image Signal Processor (L1ISP)
+> +  Be aware that electronics surrounding the sensor can increase ambient
+> +  temperature. MLX90635 can be calibrated to reduce the housing effect via
+> +  already existing EEPROM parameters.
 > +
-> +  * Correction, enhancement, adjustment on RAW pictures.
+> +  Since measured object emissivity effects Infra Red energy emitted,
+> +  emissivity should be set before requesting the object temperature.
 > +
-> +* L2 Image Signal Processor (L2ISP)
-> +
-> +  * Lens distortion correction
-> +  * Scaling
-> +  * Cropping
-> +
-> +* Video DMAC
-> +
-> +  * format picture (RGB, YUV, Grayscale, ...)
-> +  * write picture into DRAM
-> +
-> +Visconti5 SoC has two VIIF hardware instances.
-> +
-> +software architecture
-> +---------------------
-> +
-> +The Visconti VIIF driver is composed of following components:
-> +
-> +* (image sensor driver)
-> +* MIPI CSI2 receiver subdevice driver
-> +
-> +  * corresponding to CSI2RX
-> +
-> +* Visconti ISP subdevice driver
-> +
-> +  * corresponding to L1ISP, L2ISP (Lens distortion correction, Scaling)
-> +
-> +* Visconti Capture V4L2 device driver
-> +
-> +  * corresponding to L2ISP (Cropping) and Video DMAC
-> +  * multiple output videobuf queues
-> +
-> +    * main path0 (RGB, YUV, Grayscale, ...)
-> +    * main path1 (RGB, YUV, Grayscale, ...)
-> +    * sub path (RAW picture)
-> +
-> +::
-> +
-> +  +-----------+      +-----------+     +----------------+       +-------------------------+
-> +  | Sensor    |      | CSI2RX    |     | ISP            |       | Capture MAIN PATH0      |
-> +  | subdevice | ---- | subdevice | --- | subdevice      | --+-- | V4L2 device             |
-> +  | (IMX219)  |      | (CSI2RX)  |     | (L1ISP, L2ISP) |   |   | (L2ISP crop, VideoDMAC) |
-> +  +-----------+      +-----------+     +----------------+   |   +-------------------------+
-> +                                                            |
-> +                                                            |   +-------------------------+
-> +                                                            |   | Capture MAIN PATH1      |
-> +                                                            +-- | V4L2 device             |
-> +                                                            |   | (L2ISP crop, VideoDMAC) |
-> +                                                            |   +-------------------------+
-> +                                                            |
-> +                                                            |   +-------------------------+
-> +                                                            |   | Capture SUB PATH        |
-> +                                                            +-- | V4L2 device             |
-> +                                                                | (VideoDMAC)             |
-> +                                                                +-------------------------+
-> +
-> +
-> +The VIIF driver provides following device nodes for Visconti5 SoC:
-> +
-> +* VIIF0
-> +
-> +  * /dev/media0
-> +  * /dev/video0 (main path0)
-> +  * /dev/video1 (main path1)
-> +  * /dev/video2 (sub path)
-> +
-> +* VIIF1
-> +
-> +  * /dev/media1
-> +  * /dev/video3 (main path0)
-> +  * /dev/video4 (main path1)
-> +  * /dev/video5 (sub path)
-> +
-> +Use of coherent memory
-> +----------------------
-> +
-> +Visconti5 SoC has two independent DDR SDRAM controllers.
-> +Each controller is mapped to 36bit address space.
-> +
-> +Accelerator bus masters have two paths to access memory;
-> +one is directly connected to SDRAM controller,
-> +the another is connected via a cache coherency bus
-> +which keeps coherency among CPUs.
-> +
-> +From acclerators and CPUs, the address map is following:
-> +
-> +* 0x0_8000_0000 DDR0 direct access
-> +* 0x4_8000_0000 DDR0 coherency bus
-> +* 0x8_8000_0000 DDR1 direct access
-> +* 0xC_8000_0000 DDR1 coherency bus
-> +
-> +The base address can be specified with "memory" and "reserved-memory" elements
-> +in a device tree description.
-> +It's not recommended to mix direct address and coherent address.
-> +
-> +The Visconti5 VIIF driver always use only direct address to configure Video DMACs of the hardware.
-> +This design is to avoid great performance loss at coherency bus caused by massive memory access.
-> +You should not put the dma_coherent attribute to viif element in device tree.
-> +Cache operations are done automatically by videobuf2 driver.
-> +
-> +Tested environment
-> +------------------
-> +
-> +The Visconti VIIF driver was tested with following items:
-> +
-> +* IMX219 image sensor
-> +* IMX335 image sensor
-> +
-> +IOCTLs
-> +======
-> +
-> +Following public IOCTLs are supported
-> +
-> +* VIDIOC_QUERYCAP
-> +* VIDIOC_ENUM_FMT
-> +* VIDIOC_TRY_FMT
-> +* VIDIOC_S_FMT
-> +* VIDIOC_G_FMT
-> +* VIDIOC_ENUM_FRAMESIZES
-> +* VIDIOC_G_EXT_CTRLS
-> +* VIDIOC_S_EXT_CTRLS
-> +* VIDIOC_REQBUFS
-> +* VIDIOC_QUERYBUF
-> +* VIDIOC_QBUF
-> +* VIDIOC_EXPBUF
-> +* VIDIOC_DQBUF
-> +* VIDIOC_CREATE_BUFS
-> +* VIDIOC_PREPARE_BUF
-> +* VIDIOC_STREAMON
-> +* VIDIOC_STREAMOFF
-> +
-> +Vendor specific v4l2 controls
-> +(except for V4L2_CID_VISCONTI_VIIF_MAIN_SET_RAWPACK_MODE and
-> +V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_INPUT_MODE) should be called
-> +after ioctl(S_FMT) because setting the frame format may affect
-> +valid range of parameters of the controls.
-> +
-> +Vendor specific v4l2 controls
-> +=============================
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_MAIN_SET_RAWPACK_MODE:
-> +
-> +V4L2_CID_VISCONTI_VIIF_MAIN_SET_RAWPACK_MODE
-> +--------------------------------------------
-> +
-> +This control sets the format to pack multiple RAW pixel values into a word.
-> +
-> +This control accepts a __u32 value defined as `enum viif_rawpack_mode`.
-> +
-> +This control should be set before ioctl(S_FMT) and should not be changed after that.
+> +properties:
+> +  compatible:
+> +    const: melexis,mlx90635
 
-Why do you need this? Doesn't the V4L2 pixelformat already explicitly
-define the format, including packing?
+It's the same as mlx90632. Add it there (as enum).
 
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_INPUT_MODE:
-> +
-> +V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_INPUT_MODE
-> +--------------------------------------------
-> +
-> +This control sets L1ISP preprocessing mode for RAW input images.
-> +
-> +This control accepts a `struct viif_l1_input_mode_config` instance.
-> +
-> +This control should be set before ioctl(S_FMT) and should not be changed after that.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_RGB_TO_Y_COEF:
-> +
-> +V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_RGB_TO_Y_COEF
-> +-----------------------------------------------
-> +
-> +This control sets parameters to yield Y value from RGB pixel values.
-> +
-> +This control accepts a `struct viif_l1_rgb_to_y_coef_config` instance.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_AG_MODE:
-> +
-> +V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_AG_MODE
-> +-----------------------------------------
-> +
-> +This control sets rules of generating analog gains for each feature in L1ISP.
-> +Related features are:
-> +
-> +* Optical Black Clamp Correction (OBCC)
-> +* Defect Pixel Correction (DPC)
-> +* RAW Color Noise Reduction (RCNR)
-> +* Lens Shading Correction (LSC)
-> +* Color matrix correction (MPRO)
-> +* Image quality adjustment (VPRO)
-> +
-> +The base gain is set with V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_AG control.
-> +
-> +This control accepts a `struct viif_l1_ag_mode_config` instance.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_AG:
-> +
-> +V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_AG
-> +------------------------------------
-> +
-> +This control sets base analog gain commonly used in L1ISP features.
-> +Analog gain for each L1ISP feature is generated
-> +from the base analog gain and a configuration via V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_AG_MODE control.
-> +
-> +This control accepts a `struct viif_l1_ag_config` instance.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_HDRE:
-> +
-> +V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_HDRE
-> +--------------------------------------
-> +
-> +This controls sets parameters for HDR Expansion feature.
-> +
-> +This control accepts a `struct viif_l1_hdre_config` instance.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_IMG_EXTRACTION:
-> +
-> +V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_IMG_EXTRACTION
-> +------------------------------------------------
-> +
-> +This control sets black level parameters for L1ISP inputs.
-> +
-> +This control accepts a `struct viif_l1_img_extraction_config` instance.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_DPC:
-> +
-> +V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_DPC
-> +-------------------------------------
-> +
-> +This control sets parameters for Defect Pixel Correction.
-> +
-> +This control accepts a `struct viif_l1_dpc_config` instance.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_PRESET_WHITE_BALANCE:
-> +
-> +V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_PRESET_WHITE_BALANCE
-> +------------------------------------------------------
-> +
-> +This control sets parameters for white balance.
-> +
-> +This control accepts a `struct viif_l1_preset_white_balance_config` instance.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_RAW_COLOR_NOISE_REDUCTION:
-> +
-> +V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_RAW_COLOR_NOISE_REDUCTION
-> +-----------------------------------------------------------
-> +
-> +This control sets parameters for RAW color noise reduction (RCNR) feature.
-> +
-> +This control accepts a `struct viif_l1_raw_color_noise_reduction_config` instance.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_HDRS:
-> +
-> +V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_HDRS
-> +--------------------------------------
-> +
-> +This control sets parameters for HDR synthesis.
-> +
-> +This control accepts a `struct viif_l1_hdrs_config` instance.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_BLACK_LEVEL_CORRECTION:
-> +
-> +V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_BLACK_LEVEL_CORRECTION
-> +--------------------------------------------------------
-> +
-> +This control sets parameters for black level correction feature.
-> +
-> +This control accepts a `struct viif_l1_black_level_correction_config` instance.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_LSC:
-> +
-> +V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_LSC
-> +-------------------------------------
-> +
-> +This control sets parameters for Lens Shading Correction feature.
-> +L1ISP supports 2 correction methods:
-> +
-> +* parabola shading
-> +* grid shading
-> +
-> +This control accepts a `struct viif_l1_lsc_config` instance.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_MAIN_PROCESS:
-> +
-> +V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_MAIN_PROCESS
-> +----------------------------------------------
-> +
-> +This controls sets parameter for the MAIN PROCESS feature which is composed of:
-> +
-> +* demosaic
-> +* color matrix correction
-> +
-> +This control accepts a `struct viif_l1_main_process_config` instance.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_AWB:
-> +
-> +V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_AWB
-> +-------------------------------------
-> +
-> +This control sets parameter for auto white balance feature.
-> +
-> +This control accepts a `struct viif_l1_awb_config` instance.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_ISP_L1_LOCK_AWB_GAIN:
-> +
-> +V4L2_CID_VISCONTI_VIIF_ISP_L1_LOCK_AWB_GAIN
-> +-------------------------------------------
-> +
-> +This control requests enable/disable of lock for AWB gain.
-> +
-> +This control accepts a u32 value; 0 for disable lock, 1 for enable lock.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_HDRC:
-> +
-> +V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_HDRC
-> +--------------------------------------
-> +
-> +This control sets parameter for HDR Compression feature.
-> +
-> +This control accepts a `struct viif_l1_hdrc_config` instance.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_HDRC_LTM:
-> +
-> +V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_HDRC_LTM
-> +------------------------------------------
-> +
-> +This control sets parameter for HDR Compression Local Tone Mapping feature.
-> +
-> +This control accepts a `struct viif_l1_hdrc_ltm_config` instance.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_GAMMA:
-> +
-> +V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_GAMMA
-> +---------------------------------------
-> +
-> +This control sets parameter for gamma correction at L1ISP.
-> +
-> +This control accepts a `struct viif_l1_gamma_config` instance.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_IMG_QUALITY_ADJUSTMENT:
-> +
-> +V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_IMG_QUALITY_ADJUSTMENT
-> +--------------------------------------------------------
-> +
-> +This control sets parameter for VPRO feature which is composed of:
-> +
-> +* luminance adjustment:
-> +
-> + * brightness adjustment
-> + * linear contrast adjusment
-> + * nonlinear contrast adjustment
-> + * luminance noise reduction
-> + * edge enhancement
-> +
-> +* chroma adjustment:
-> +
-> + * chroma suppression
-> + * color level adjustment
-> + * chroma noise reduction
-> + * coring suppression
-> + * edge chroma suppression
-> + * color noise reduction
-> +
-> +This control accepts a `struct viif_l1_img_quality_adjustment_config` instance.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_AVG_LUM_GENERATION:
-> +
-> +V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_AVG_LUM_GENERATION
-> +----------------------------------------------------
-> +
-> +This control sets parameter for average luminance statistics feature.
-> +
-> +This control accepts a `struct viif_l1_avg_lum_generation_config` instance.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_ISP_L2_SET_UNDIST:
-> +
-> +V4L2_CID_VISCONTI_VIIF_ISP_L2_SET_UNDIST
-> +----------------------------------------
-> +
-> +This control sets parameter for the lens undistortion feature of L2ISP.
-> +Lens undistortion parameters are defined as either or combination of polinomial parameter and grid table.
-> +
-> +This control accepts a `struct viif_l2_undist_config` instance.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_ISP_L2_SET_ROI:
-> +
-> +V4L2_CID_VISCONTI_VIIF_ISP_L2_SET_ROI
-> +-------------------------------------
-> +
-> +This control sets dimensions of intermediate images and scaling parameter of L2ISP.
-> +If you want to crop the output image,
-> +you should set crop parameter to the corresponding source pad of the ISP subdevice with media-ctl tool.
-> +
-> +This control accepts a `struct viif_l2_roi_config` instance.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_ISP_L2_SET_GAMMA:
-> +
-> +V4L2_CID_VISCONTI_VIIF_ISP_L2_SET_GAMMA
-> +---------------------------------------
-> +
-> +This control sets gamma parameter for L2ISP.
-> +
-> +This control accepts a `struct viif_l2_gamma_config` instance.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_CSI2RX_GET_CALIBRATION_STATUS:
-> +
-> +V4L2_CID_VISCONTI_VIIF_CSI2RX_GET_CALIBRATION_STATUS
-> +----------------------------------------------------
-> +
-> +This control provides CSI2 receiver calibration status.
-> +
-> +This control fills a `struct viif_csi2rx_cal_status` instance with current status.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_CSI2RX_GET_ERR_STATUS:
-> +
-> +V4L2_CID_VISCONTI_VIIF_CSI2RX_GET_ERR_STATUS
-> +--------------------------------------------
-> +
-> +This control provides CSI2 receiver error description.
-> +
-> +This control fills a `struct viif_csi2rx_err_status` instance with accumerated error status.
-> +Note that internal accumerated status is cleared after reading.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_GET_LAST_CAPTURE_STATUS:
-> +
-> +V4L2_CID_VISCONTI_VIIF_GET_LAST_CAPTURE_STATUS
-> +----------------------------------------------
-> +
-> +This control provides status information for the last captured frame.
-> +
-> +This control fills a `struct viif_l1_info` instance with current status.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_GET_REPORTED_ERRORS:
-> +
-> +V4L2_CID_VISCONTI_VIIF_GET_REPORTED_ERRORS
-> +------------------------------------------
-> +
-> +This control provides error information since the last read of this control.
-> +
-> +This control fills a `struct viif_reported_errors` instance with accumerated error status.
-> +Note that internal accumerated status is cleared after reading.
-> +
-> +Structures
-> +==========
-> +
-> +.. kernel-doc:: include/uapi/linux/visconti_viif.h
+Best regards,
+Krzysztof
 
-Instead of using controls, all ISP drivers merged within five or so years
-use a parameter buffer. This could be said as being the best known approach
-to pass the parameters to the ISP. Could you do the same here?
-
-> +
-> diff --git a/Documentation/userspace-api/media/v4l/vidioc-g-ext-ctrls.rst b/Documentation/userspace-api/media/v4l/vidioc-g-ext-ctrls.rst
-> index f9f73530a6be..2f0e4f955167 100644
-> --- a/Documentation/userspace-api/media/v4l/vidioc-g-ext-ctrls.rst
-> +++ b/Documentation/userspace-api/media/v4l/vidioc-g-ext-ctrls.rst
-> @@ -295,6 +295,10 @@ still cause this situation.
->        - ``p_av1_film_grain``
->        - A pointer to a struct :c:type:`v4l2_ctrl_av1_film_grain`. Valid if this control is
->          of type ``V4L2_CTRL_TYPE_AV1_FILM_GRAIN``.
-> +    * - void *
-> +      - ``ptr``
-> +      - A pointer to Visconti ISP control specific structure. Valid if this control is
-> +        of type ``V4L2_CTRL_TYPE_VISCONTI_ISP``
->      * - void *
->        - ``ptr``
->        - A pointer to a compound type which can be an N-dimensional array
-> diff --git a/Documentation/userspace-api/media/v4l/vidioc-queryctrl.rst b/Documentation/userspace-api/media/v4l/vidioc-queryctrl.rst
-> index 4d38acafe8e1..cd57fac8bbf9 100644
-> --- a/Documentation/userspace-api/media/v4l/vidioc-queryctrl.rst
-> +++ b/Documentation/userspace-api/media/v4l/vidioc-queryctrl.rst
-> @@ -549,6 +549,11 @@ See also the examples in :ref:`control`.
->        - n/a
->        - A struct :c:type:`v4l2_ctrl_av1_film_grain`, containing AV1 Film Grain
->          parameters for stateless video decoders.
-> +    * - ``V4L2_CTRL_TYPE_VISCONTI_ISP``
-> +      - n/a
-> +      - n/a
-> +      - n/a
-> +      - Structs specific for Visconti ISP configuration controls.
->  
->  .. raw:: latex
->  
-> diff --git a/Documentation/userspace-api/media/videodev2.h.rst.exceptions b/Documentation/userspace-api/media/videodev2.h.rst.exceptions
-> index 3e58aac4ef0b..dbab7527445e 100644
-> --- a/Documentation/userspace-api/media/videodev2.h.rst.exceptions
-> +++ b/Documentation/userspace-api/media/videodev2.h.rst.exceptions
-> @@ -165,6 +165,7 @@ replace symbol V4L2_CTRL_TYPE_AV1_SEQUENCE :c:type:`v4l2_ctrl_type`
->  replace symbol V4L2_CTRL_TYPE_AV1_TILE_GROUP_ENTRY :c:type:`v4l2_ctrl_type`
->  replace symbol V4L2_CTRL_TYPE_AV1_FRAME :c:type:`v4l2_ctrl_type`
->  replace symbol V4L2_CTRL_TYPE_AV1_FILM_GRAIN :c:type:`v4l2_ctrl_type`
-> +replace symbol V4L2_CTRL_TYPE_VISCONTI_ISP :c:type:`v4l2_ctrl_type`
->  
->  # V4L2 capability defines
->  replace define V4L2_CAP_VIDEO_CAPTURE device-capabilities
-
--- 
-Kind regards,
-
-Sakari Ailus
 
