@@ -1,61 +1,60 @@
-Return-Path: <devicetree+bounces-18049-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18050-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 392937F4EDC
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 19:01:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13CD17F4EF1
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 19:09:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CBE8BB20C8C
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 18:01:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BE6162812FC
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 18:09:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A19A58AB3;
-	Wed, 22 Nov 2023 18:01:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB08658ABA;
+	Wed, 22 Nov 2023 18:09:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VgXaZ4AA"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ud84wcr4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F8BE112
-	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 10:01:02 -0800 (PST)
-Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2c88750e7d1so520431fa.3
-        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 10:01:02 -0800 (PST)
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46FC21BE
+	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 10:09:04 -0800 (PST)
+Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-5094cb3a036so10098385e87.2
+        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 10:09:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700676060; x=1701280860; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=rlcXNO/YvL3pSI78Gj8bkvzKJ+5tSLbCTyvm7rSGCSA=;
-        b=VgXaZ4AAgj5ICQ1Lo3I12q/rmtBa0FRV0yTK9cnetVoCn1N5WY/+Ht5vZuAEYcVrYP
-         uKKU+ALCyYwNDd/SmZr8u2rUwXwnw+oADliMcHdRWeZYYYh+Eo3NshxI6W4+pc3Inzp8
-         PMDWxPXYOjO0RFwee0KK6n5hBZW006sRsAEW4AOrhIsXr5t2wlv0qEtwk1MnaQqO4gZQ
-         DBDR4q5hp4rDFwbQhR/cSZ9VRrC/+FdCUPdBxGpVjFD5jtPpCUnDvYcxZSyJpRBcZwbN
-         b7hU1O/T3lnDXuQRz1nm2kiWXgOHNVuAQHDZ2uZAo+nPW+ATtdDm6AT7Wp0sy1P97T4C
-         gfbw==
+        d=linaro.org; s=google; t=1700676542; x=1701281342; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=61r2bcwQoi4CJDk5SqSdw7/KG0QOUiAzIJy8fZUsQUM=;
+        b=ud84wcr4w3O7qiQz+BoF7yRVarxslbEBFkBm1oAaxRUNaPZtTD7WnwCRvilClcn2ke
+         MBaPfcuuNl57ycamBEEDpNQhxS5mY/+bHAs/C3GEaIfHkGO3Zd53Cqy8FJlebuWrk/44
+         Mr4S0Hle3eoDJdr57V6J+BkiUlkTg30NKr+pdA0IrSw9Lqf1rineDKJyZPfJCWJXnbqy
+         K4Ncd0rafuandQNUz7MdYPp/flnkMQJ98lCN+5ljWtRqEwHZRbCXN2o3Lsr1CKvXbnjG
+         MBbcr2Sb7VaV1FOTqi/1HTgJn8tZ13cEDT243A0hxw1XaQerXdzSr127zdX/53FOavPs
+         yg5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700676061; x=1701280861;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rlcXNO/YvL3pSI78Gj8bkvzKJ+5tSLbCTyvm7rSGCSA=;
-        b=oUBMfxOaKKr/tJ/AL5Xn/ixiGH/APH4EUDzvNwwUsr5yH52n8sDnKE0L85uLE+sml9
-         Dp4VjChNs62eIpuKDGDFXoFcTdm7aBHFj2wX/0iVEMOgSB0XQl0gBiypN6FHS9ZqP+WL
-         gTGxGv3JyIuacIvHEWM+h79T/6hCYRWgqCAj2DM2uI0toHEAjl/1CJWm5meccZ8ZxDMh
-         5qumzeKoX/YiLDRCvNB5W+pRV7MZ/f6uW/eKdnEnxqMDTmIDyc598nST9frf6HSiF/AD
-         LsGrTkgKUMzvJRVUPRDZvq+327MKlJR2Ib4nujCjKHnSyfxlXiarJZDouYHJknE9YVtT
-         LeVA==
-X-Gm-Message-State: AOJu0YxGllfFJkzcwVVw3sJooPj9PIAZwAfwCKHK04yJTBxT2ex6ZX/l
-	N0gGyGw2QbWZqc7sl4JyhF+OXbFLCOuo1Nr3zXg=
-X-Google-Smtp-Source: AGHT+IFbREYSh29YxeVAt614vvr3qCBOOQFTQ1/HhijMTVOznlhfY7VnGhWGWbXDpBW2boRSndVpsg==
-X-Received: by 2002:a2e:be09:0:b0:2c6:ed3a:73ee with SMTP id z9-20020a2ebe09000000b002c6ed3a73eemr2195620ljq.7.1700676058610;
-        Wed, 22 Nov 2023 10:00:58 -0800 (PST)
+        d=1e100.net; s=20230601; t=1700676542; x=1701281342;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=61r2bcwQoi4CJDk5SqSdw7/KG0QOUiAzIJy8fZUsQUM=;
+        b=KFVrCkLQ9PWwKmOGoT0XxAE6kGYbuV+gmZUdC8rQF7hjSjmGytYrVcKhNuZ/JPsZf6
+         K70yP/ZTXImd7rqvRh3lKDMVjL96q/j06V6xdpJvIjEFl3abftCz+273NVk2ULj8jsJ3
+         KiMQPbtwZea/DBCulp8BXTR0R05l2t0lUinOnJqDFdSNLyjM7PWvuh+QcbAxO9on9Jgc
+         OtNhi7BeTvIUQ4//reGJJPNNDjZo7U7lwD96LA577drL3NMwOfOr1kX7iN+tDuWRfe6B
+         Tl3H3HnB2FH9IFTJFM52y5sC7zm8cMaFsC3+ko+6rBTq2o8GEng6LErbeTZ1w2iJsOSk
+         eNIg==
+X-Gm-Message-State: AOJu0Yz61gHTP8eP3XPiE7G966P0tg2L+CNCk1l/veDXzuNcV7/FuE8e
+	pUPBj/QJJeNplAA8xsTkg03sUg==
+X-Google-Smtp-Source: AGHT+IGYAXrwm5o+Py9/GZEWr7OBAZ6fBZTpyw9LdLv4PV+mfsjraxUvZ5ekZ4luKxlBbWY1Xn5K/A==
+X-Received: by 2002:a19:6545:0:b0:50a:a95b:3c90 with SMTP id c5-20020a196545000000b0050aa95b3c90mr1875346lfj.47.1700676542402;
+        Wed, 22 Nov 2023 10:09:02 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.100])
-        by smtp.gmail.com with ESMTPSA id p5-20020a05600c468500b004063d8b43e7sm150990wmo.48.2023.11.22.10.00.56
+        by smtp.gmail.com with ESMTPSA id c23-20020aa7c757000000b00548a408f662sm52843eds.49.2023.11.22.10.09.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Nov 2023 10:00:57 -0800 (PST)
-Message-ID: <40afeed9-8780-47fa-ac20-6191dd05b239@linaro.org>
-Date: Wed, 22 Nov 2023 19:00:55 +0100
+        Wed, 22 Nov 2023 10:09:01 -0800 (PST)
+Message-ID: <5219b373-8b37-4f12-ad55-0984e3d84b62@linaro.org>
+Date: Wed, 22 Nov 2023 19:09:00 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,24 +62,30 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: serial: rs485: add rs485-mux-gpios
- binding
-To: Rasmus Villemoes <linux@rasmusvillemoes.dk>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Lukas Wunner <lukas@wunner.de>, Rob Herring <robh@kernel.org>,
- linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org
-References: <20231120151056.148450-1-linux@rasmusvillemoes.dk>
- <20231120151056.148450-2-linux@rasmusvillemoes.dk>
- <fd5c7d9f-a52b-4abb-a0d4-f5bdf2a669de@linaro.org>
- <1c016987-da88-47f2-bc1b-fcbe4c71a5c9@rasmusvillemoes.dk>
- <67a2cea0-f2de-4e7d-bc9d-ae29885f9210@linaro.org>
- <83eeb98d-ea56-4f7c-bed9-fe09aaa4cf7a@rasmusvillemoes.dk>
+Subject: Re: [PATCH v2 2/6] dt-bindings: pwm: amlogic: add new compatible for
+ meson8 pwm type
 Content-Language: en-US
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: neil.armstrong@linaro.org, Rob Herring <robh@kernel.org>,
+ JunYi Zhao <junyi.zhao@amlogic.com>, devicetree@vger.kernel.org,
+ Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Thierry Reding <thierry.reding@gmail.com>, linux-kernel@vger.kernel.org,
+ linux-pwm@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+References: <20231117125919.1696980-1-jbrunet@baylibre.com>
+ <20231117125919.1696980-3-jbrunet@baylibre.com>
+ <170040994064.269288.960284011884896046.robh@kernel.org>
+ <4608012c-059f-4d6a-914b-e85ad0c32ff0@linaro.org>
+ <1j5y1wg3sb.fsf@starbuckisacylon.baylibre.com>
+ <2e7a65da-5c1d-4dd4-ac69-7559a53afdf3@linaro.org>
+ <1j1qckg21u.fsf@starbuckisacylon.baylibre.com>
+ <94e69281-93e1-41cd-9cf5-81cbbc15572c@linaro.org>
+ <1jwmu9et6j.fsf@starbuckisacylon.baylibre.com>
+ <2bbc2031-89d7-42e9-828e-068fa06eabf4@linaro.org>
+ <1jo7flerag.fsf@starbuckisacylon.baylibre.com>
+ <2d9c4c93-6cea-4a44-9093-c1fd51d0a21c@linaro.org>
+ <1jjzq9emga.fsf@starbuckisacylon.baylibre.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -126,61 +131,113 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <83eeb98d-ea56-4f7c-bed9-fe09aaa4cf7a@rasmusvillemoes.dk>
+In-Reply-To: <1jjzq9emga.fsf@starbuckisacylon.baylibre.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 21/11/2023 10:28, Rasmus Villemoes wrote:
-> On 21/11/2023 09.34, Krzysztof Kozlowski wrote:
->> On 21/11/2023 09:27, Rasmus Villemoes wrote:
->>> On 21/11/2023 08.52, Krzysztof Kozlowski wrote:
+On 22/11/2023 17:14, Jerome Brunet wrote:
 > 
->>>> Anyway, similar comments: this does not look like generic RS485
->>>> property. Are you saying that standard defines such GPIO?
+> On Wed 22 Nov 2023 at 16:46, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+> 
+> 
+>>>>>>
+>>>>>> Again, where the "v2" is defined? Where is any document explaining the
+>>>>>> mapping between version blocks and SoC parts? Why do you list here only
+>>>>>> major version? Blocks almost always have also minor (e.g. v2.0).
+>>>>>
+>>>>> Again, v2 does has nothing to do with the HW. Never wrote it was.
+>>>>> The HW remains the same.
+>>>>
+>>>> Don't add compatibles which are not related to HW, but represent
+>>>> software versioning. Software does not matter for the bindings.
 >>>
->>> No, I'm saying that several boards that exist in the wild have the
->>> RX/TX/CTS etc. pins routed to a multiplexer, which in turn routes those
->>> signals to either a rs485 transceiver or an rs232 driver (and those in
->>> turn are connected to different screw terminals). So no, it's not a
->>> property of the rs485 protocol itself, but very much related to making
->>> use of rs485 (and rs232, though of course not simultaneously) on such
->>> boards.
+>>> What I did I explicitly what is recommended in Grant's presentation from
+>>> 2013. 10y old, but I assume slide 10 "Making an incompatible update" is
+>>> still valid.
+>>>
+>>> https://elinux.org/images/1/1e/DT_Binding_Process_glikely_ksummit_2013_10_28.pdf
+>>>
+>>> Breaking the ABI of the old compatible would break all boards which use
+>>> u-boot DT and pass it to the kernel, because the meaning of the clock
+>>> property would change.
 >>
->> Which upstream boards use it?
+>> You broke U-Boot now as well - it will get your new DTS from the kernel
+>> and stop working.
 > 
-> None, because the binding doesn't exist.
+> U-boot will continue to match the old compatible and work properly.
+> When the dts using the new compatible lands in u-boot, it won't
+> match until proper driver support is added. It is a lot better than
+> breaking the ABI, which would have silently broke u-boot.
 > 
->> To me it looks like specific to each controller, not to RS485.
+> I don't really see a way around that.
 > 
-> What do you mean "controller"? It's not specific to one particular
-> SOC/IP, any uart IP capable of both rs232 and rs485 could be wired to
-> circuitry like this.
+> If you have better way to fix a bad interface, feel free to share it.
 > 
->>> Would a link to a schematic help?
 >>
->> Yes, always :)
+>>>
+>>> Doing things has suggested in this slide, and this patch, allows every
+>>> device to continue to work properly, whether the DT given is the one
+>>> shipped with u-boot (using the old compatible for now) or the kernel.
+>>
+>> OK, that explains the reasons. I read your commit msg and nothing like
+>> this was mentioned there. What's more, you did not deprecate the old
+>> binding, thus the confusion - it looked like you add entirely new
+>> hardware (although you put "deprecated" but in some unrelated place, not
+>> next to the compatibles).
 > 
-> https://ibb.co/B3gzySt
+> The old interface being obsoleted by the new one is mentionned in the
+> commit description, the comments in the bindings and the bindings itself.
+> Thanks a lot for pointing out the placement mistake. I'll fix it.
 > 
-> The UART1.* signals on the right are from the SOC (in this case an
-> imx8mp, but I know of other boards e.g. based on powerpc that use a
-> similar scheme), and the COM1_Sel is just some gpio. The multiplexer is
-> roughly in the middle (U2103).
+> The commit description says:
+> * What the patch does
+> * Why it does it:
+>   * Why the old bindings is bad/broken
+>   * How the new ones fixes the problem
+> * Why a single compatible properly describes, IMO, all the related HW.
 > 
-> As you can see, if one wants to talk rs485, one must set COM1_Sel low
-> (and that works just fine by describing the rs485-mux-gpio as
-> ACTIVE_LOW), and if one wants to talk rs232, it must be set high. While
-> userspace could be tasked with knowing about and handling that gpio on
-> top of the ioctl() for switching mode, this really seems like the kind
-> of thing that DT is supposed to describe and the kernel is supposed to
-> handle.
+> This describes the entirety of what the change does.
+> That seemed clear enough for Rob. If that is not enough for you and you
+> would like it reworded, could please provide a few suggestions ?
 
-Yep, the trouble is only the placement. This GPIO mux is neither part of
-the UART controller nor connector. Usually such pins in static
-configuration are described either as GPIO hogs or as pinctrl. I guess
-this matches other GPIOs in that binding, so I think it is fine. You
-still though should answer to comments from other folks, including
-multiple-GPIO case and mux.
+You did not deprecate the compatibles, so this has to be fixed. You put
+the compatible in some other place, not really relevant.
+
+> 
+>>
+>> Anyway, the main point of Neil was that you started using generic
+>> compatible for all SoCs, which is wrong as well. I guess this was the
+>> original discussion.
+> 
+> The whole reason for this change is to properly describe the HW, which
+> is the 100% same on all the SoCs, or SoC families, concerned. The only
+
+You still need specific compatibles, because the hardware is not 100%
+the same. Programming model can, but hardware differs. Many times
+engineers thought that devices are 100% compatible and then turned out
+they are not. I am bored to repeat all this again and again.
+
+> reason there was a lot of old compatibles is because it was used to match
+> data in the driver (this is clearly wrong). This data would now be
+> passed through DT.
+> 
+> I have been clear about this in the change description.
+> 
+> So why is it wrong to have single compatible for a type of device that
+> is 100% the same HW ?
+
+Because it is generic, not specific (you match "foo" against "bar" SoC).
+The chapter from writing-bindings you referenced earlier mentioned this.
+You need ability to add quirks and customize for these minor hardware
+differences, even if programming model is the same.
+
+> 
+> It is lot a easier to apply a rule correctly when the intent is clear.
+> 
+>>
+>> Best regards,
+>> Krzysztof
+> 
 
 Best regards,
 Krzysztof
