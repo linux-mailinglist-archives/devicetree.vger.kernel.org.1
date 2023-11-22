@@ -1,67 +1,66 @@
-Return-Path: <devicetree+bounces-17804-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17805-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48EAF7F42B6
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 10:48:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24ED17F42B9
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 10:48:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 77D751C20A82
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 09:48:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D6318281950
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 09:48:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83847584DB;
-	Wed, 22 Nov 2023 09:48:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7CC65B1E9;
+	Wed, 22 Nov 2023 09:48:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gAfvNJSW"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZWgqgljS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2704A268F
-	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 01:48:38 -0800 (PST)
-Received: by mail-yb1-xb32.google.com with SMTP id 3f1490d57ef6-da7238b3eb4so6497505276.1
-        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 01:48:38 -0800 (PST)
+Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE3021BF4
+	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 01:48:40 -0800 (PST)
+Received: by mail-yb1-xb2c.google.com with SMTP id 3f1490d57ef6-db029574f13so6404982276.1
+        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 01:48:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700646517; x=1701251317; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1700646520; x=1701251320; darn=vger.kernel.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ygGpIikdffA3zI0CSmuuy6nPAmKVPCLvFv3JJHDPC+E=;
-        b=gAfvNJSWoLkbMqMzI/YXVFmLGb5aBqNH6/wkfVxdHTvi9hcIK/F9rdqB/q6iTEFDVi
-         eqgVotjwqGXVLOBCGGYNb2ICRJXFdAF4wvGY6Du8Tly4z5IGpTdt7BcBdkbwKtewpOfv
-         RQo5nURaG2j7XjpR9prVU13m8dveW+14a63hVBwlmPufLx6SvrpOWogFMox+QpfGCLCN
-         WD4nn9Hxy8IXzW9faZqs5cA03kazH4qsL2m0+FzraG/Lytyr1LLl+PlC6UNEj/nborJ0
-         S8U3Wgr7AAbFIXr2Ifsqi4zkCS6bdNZC6p8wmg3fwHRpRhXVKYS57I7I/DDqs656Mrdg
-         cN8w==
+        bh=OgOu9OX/gdDlTcObaS5UnH2tHRUs1zEOv8i4Nf8OEww=;
+        b=ZWgqgljSDZpiqAPRGgtQAGps5T2tAKFw1j7wikGqmpfBRLUIn4JcaVga8ysDzmVsHu
+         HCpXHykHcVyd0pz0rb1sLZXN2iBYVVLa7nDY6L9y7HVMV6uCAzKppxp5k9VsRkHWhj+9
+         6/i17+7go7L6/JM9vKXRtgVDIjKmNTi083XZExL2F1eC0JmTQtjNOMqDJI2g4g601njd
+         a84Flh3K+G3/ocHiO5vDSN0RcbD146Bl7ptn5EmCD+2r3O0rjhGUrWPgY2clmxCx7t+h
+         6oo3l5edJcINFVE6OZqAAGvSsMdhg5Do+Kx0AbvVLzxwkyhro9pxvyIK726u00JqRb8/
+         8UYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700646517; x=1701251317;
+        d=1e100.net; s=20230601; t=1700646520; x=1701251320;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=ygGpIikdffA3zI0CSmuuy6nPAmKVPCLvFv3JJHDPC+E=;
-        b=RB46kG8zVQhCeboVmu/ckst2wh4l+9L/fiLcy8/JogXXMee+eIhb/MyQHuhzr45XOX
-         M7fcc840VICYLEoxufPzud2jfV6D2QfoeMrD8q+/eHGA44DZ2r8+tboCPi3QTPniKwPB
-         1Dpsu7Ywidbd1uAgHwemI+66yYB/tiqXNSPc2pDvx6VydwBsVKkUL3YiwjpAX7FBKEJD
-         vSj8jBwNZq6PTWFYI9tchzfn3OzBFe2byJMVtAZD2ax2IAwXGjZH/OmSPifFDNHw/xtH
-         v+tTLr2HC8cyFE9aj5kKZN15n6YI3HpcbLaVJ39Yd9GTBFi8HF4ufhOyA+aOChwIZHhS
-         DcVg==
-X-Gm-Message-State: AOJu0Yw65g/JB0rNeN2zxsCULMeDAwaZyhLjlUDKPl7sXoFK7f4+KeeA
-	c01cJn5ehpCbPi2sQucAootG5gTDOXuSKgZlZE6sZg==
-X-Google-Smtp-Source: AGHT+IHg3xtWznL7RoXEO+Wk8qVQlDpVyn+jAxEz7GbXdU/LSx4+N+Ut3/07i5p33DnA24H7agc2O3KIwSPgMDwgTH4=
-X-Received: by 2002:a25:374c:0:b0:db0:6cde:3859 with SMTP id
- e73-20020a25374c000000b00db06cde3859mr1535108yba.41.1700646517145; Wed, 22
- Nov 2023 01:48:37 -0800 (PST)
+        bh=OgOu9OX/gdDlTcObaS5UnH2tHRUs1zEOv8i4Nf8OEww=;
+        b=IJSzuewawOYlwv+xZInokChlQP7AHSF75fnslHtl+xFUcLSvt1FzHcvRS0GtTzg8f9
+         I8Wwluu3kGmWRq1P021nEou0rEVMaPvjrEFMtpFjHzdq7FsIEFliq5YcVKpx/913tVYx
+         ACZknwvRzpBTlQVh9NOiL8GS5zn5HI/xfhnqKsDsEvJGU1+tpPiIFNPn+y0/SwSJopEu
+         WOIQioFLIJCyb2t7RxWlL+3LoK7pLZW6dWZIx/eS57aW8SuVJlnSUp3XCM3weR8pPSI6
+         VAIkUuMyQOdR8yVv0NXGTe83p8LeSiG8A70ynwODkqRomuC230vigtzWlJjL7iLkzgJc
+         3k1Q==
+X-Gm-Message-State: AOJu0YyGle9jwaxsTVUhIPPv8dKXeQhPTdwYz3S1twMt4wlrE8+JHzoB
+	x7Czat2CDv1HzBV7p2Fehkz1ExdSOnXVHlzE8I9KBQ==
+X-Google-Smtp-Source: AGHT+IGEx2UFEWBYXKoM1hxVrMkNovyA5JKzYrMvxDK90RIoFbZvnci5tNlT3RfwuPABorNkQoKIuBP1BwH2xgMp040=
+X-Received: by 2002:a25:e812:0:b0:daf:81e5:d2fa with SMTP id
+ k18-20020a25e812000000b00daf81e5d2famr1697557ybd.33.1700646520191; Wed, 22
+ Nov 2023 01:48:40 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231114-msm8909-cpufreq-v3-0-926097a6e5c1@kernkonzept.com> <20231114-msm8909-cpufreq-v3-2-926097a6e5c1@kernkonzept.com>
-In-Reply-To: <20231114-msm8909-cpufreq-v3-2-926097a6e5c1@kernkonzept.com>
+References: <20231114-msm8909-cpufreq-v3-0-926097a6e5c1@kernkonzept.com> <20231114-msm8909-cpufreq-v3-3-926097a6e5c1@kernkonzept.com>
+In-Reply-To: <20231114-msm8909-cpufreq-v3-3-926097a6e5c1@kernkonzept.com>
 From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Wed, 22 Nov 2023 10:48:01 +0100
-Message-ID: <CAPDyKFrwZn1Po+aWwPusjhfoxWoy5qJn4SBK1Csr=280_JPRkw@mail.gmail.com>
-Subject: Re: [PATCH v3 2/3] cpufreq: qcom-nvmem: Preserve PM domain votes in
- system suspend
+Date: Wed, 22 Nov 2023 10:48:04 +0100
+Message-ID: <CAPDyKFqQoq0DdsxdrKUW9awL1HOn3NCEgqpnzD+=S5fb0aJLEA@mail.gmail.com>
+Subject: Re: [PATCH v3 3/3] pmdomain: qcom: rpmpd: Set GENPD_FLAG_ACTIVE_WAKEUP
 To: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
 Cc: Viresh Kumar <viresh.kumar@linaro.org>, Andy Gross <agross@kernel.org>, 
 	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
@@ -76,37 +75,15 @@ Content-Type: text/plain; charset="UTF-8"
 On Tue, 14 Nov 2023 at 11:08, Stephan Gerhold
 <stephan.gerhold@kernkonzept.com> wrote:
 >
-> From the Linux point of view, the power domains used by the CPU must
-> stay always-on. This is because we still need the CPU to keep running
-> until the last instruction, which will typically be a firmware call that
-> shuts down the CPU cleanly.
+> Set GENPD_FLAG_ACTIVE_WAKEUP for all RPM power domains so that power
+> domains necessary for wakeup/"awake path" devices are kept on across
+> suspend.
 >
-> At the moment the power domain votes (enable + performance state) are
-> dropped during system suspend, which means the CPU could potentially
-> malfunction while entering suspend.
->
-> We need to distinguish between two different setups used with
-> qcom-cpufreq-nvmem:
->
->  1. CPR power domain: The backing regulator used by CPR should stay
->     always-on in Linux; it is typically disabled automatically by
->     hardware when the CPU enters a deep idle state. However, we
->     should pause the CPR state machine during system suspend.
->
->  2. RPMPD: The power domains used by the CPU should stay always-on
->     in Linux (also across system suspend). The CPU typically only
->     uses the *_AO ("active-only") variants of the power domains in
->     RPMPD. For those, the RPM firmware will automatically drop
->     the votes internally when the CPU enters a deep idle state.
->
-> Make this work correctly by calling device_set_awake_path() on the
-> virtual genpd devices, so that the votes are maintained across system
-> suspend. The power domain drivers need to set GENPD_FLAG_ACTIVE_WAKEUP
-> to opt into staying on during system suspend.
->
-> For now we only set this for the RPMPD case. For CPR, not setting it
-> will ensure the state machine is still paused during system suspend,
-> while the backing regulator will stay on with "regulator-always-on".
+> This is needed for example for the *_AO ("active-only") variants of the
+> RPMPDs used by the CPU. Those should maintain their votes also across
+> system suspend to ensure the CPU can keep running for the whole suspend
+> process (ending in a firmware call). When the RPM firmware detects that
+> the CPUs are in a deep idle state it will drop those votes automatically.
 >
 > Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
 
@@ -117,70 +94,21 @@ Uffe
 
 
 > ---
-> This patch can be merged independently from the pmdomain one for RPMPD.
-> Both are needed to actually preserve the votes during system suspend but
-> there is no compile-time dependency.
-> ---
->  drivers/cpufreq/qcom-cpufreq-nvmem.c | 27 +++++++++++++++++++++++++++
->  1 file changed, 27 insertions(+)
+>  drivers/pmdomain/qcom/rpmpd.c | 1 +
+>  1 file changed, 1 insertion(+)
 >
-> diff --git a/drivers/cpufreq/qcom-cpufreq-nvmem.c b/drivers/cpufreq/qcom-cpufreq-nvmem.c
-> index d239a45ed497..ea05d9d67490 100644
-> --- a/drivers/cpufreq/qcom-cpufreq-nvmem.c
-> +++ b/drivers/cpufreq/qcom-cpufreq-nvmem.c
-> @@ -23,6 +23,7 @@
->  #include <linux/nvmem-consumer.h>
->  #include <linux/of.h>
->  #include <linux/platform_device.h>
-> +#include <linux/pm.h>
->  #include <linux/pm_domain.h>
->  #include <linux/pm_opp.h>
->  #include <linux/pm_runtime.h>
-> @@ -426,6 +427,18 @@ static const struct qcom_cpufreq_match_data match_data_ipq8074 = {
->         .get_version = qcom_cpufreq_ipq8074_name_version,
->  };
+> diff --git a/drivers/pmdomain/qcom/rpmpd.c b/drivers/pmdomain/qcom/rpmpd.c
+> index 07590a3ef19c..7796d65f96e8 100644
+> --- a/drivers/pmdomain/qcom/rpmpd.c
+> +++ b/drivers/pmdomain/qcom/rpmpd.c
+> @@ -1044,6 +1044,7 @@ static int rpmpd_probe(struct platform_device *pdev)
+>                 rpmpds[i]->pd.power_off = rpmpd_power_off;
+>                 rpmpds[i]->pd.power_on = rpmpd_power_on;
+>                 rpmpds[i]->pd.set_performance_state = rpmpd_set_performance;
+> +               rpmpds[i]->pd.flags = GENPD_FLAG_ACTIVE_WAKEUP;
+>                 pm_genpd_init(&rpmpds[i]->pd, NULL, true);
 >
-> +static void qcom_cpufreq_suspend_virt_devs(struct qcom_cpufreq_drv *drv, unsigned int cpu)
-> +{
-> +       const char * const *name = drv->data->genpd_names;
-> +       int i;
-> +
-> +       if (!drv->cpus[cpu].virt_devs)
-> +               return;
-> +
-> +       for (i = 0; *name; i++, name++)
-> +               device_set_awake_path(drv->cpus[cpu].virt_devs[i]);
-> +}
-> +
->  static void qcom_cpufreq_put_virt_devs(struct qcom_cpufreq_drv *drv, unsigned int cpu)
->  {
->         const char * const *name = drv->data->genpd_names;
-> @@ -578,11 +591,25 @@ static void qcom_cpufreq_remove(struct platform_device *pdev)
->         }
->  }
->
-> +static int qcom_cpufreq_suspend(struct device *dev)
-> +{
-> +       struct qcom_cpufreq_drv *drv = dev_get_drvdata(dev);
-> +       unsigned int cpu;
-> +
-> +       for_each_possible_cpu(cpu)
-> +               qcom_cpufreq_suspend_virt_devs(drv, cpu);
-> +
-> +       return 0;
-> +}
-> +
-> +static DEFINE_SIMPLE_DEV_PM_OPS(qcom_cpufreq_pm_ops, qcom_cpufreq_suspend, NULL);
-> +
->  static struct platform_driver qcom_cpufreq_driver = {
->         .probe = qcom_cpufreq_probe,
->         .remove_new = qcom_cpufreq_remove,
->         .driver = {
->                 .name = "qcom-cpufreq-nvmem",
-> +               .pm = pm_sleep_ptr(&qcom_cpufreq_pm_ops),
->         },
->  };
->
+>                 data->domains[i] = &rpmpds[i]->pd;
 >
 > --
 > 2.39.2
