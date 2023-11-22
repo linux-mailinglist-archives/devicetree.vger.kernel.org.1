@@ -1,108 +1,136 @@
-Return-Path: <devicetree+bounces-18038-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18039-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FD8D7F4DFC
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 18:15:10 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6A857F4E0E
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 18:16:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CF2E9281428
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 17:15:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 12AE11C20AFC
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 17:16:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B59856B74;
-	Wed, 22 Nov 2023 17:15:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C3E75788B;
+	Wed, 22 Nov 2023 17:16:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="YPVFJTVF"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="KUA08b5U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E92583;
-	Wed, 22 Nov 2023 09:15:01 -0800 (PST)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id B547B40002;
-	Wed, 22 Nov 2023 17:14:57 +0000 (UTC)
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CA73191;
+	Wed, 22 Nov 2023 09:16:50 -0800 (PST)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id D9EEC60005;
+	Wed, 22 Nov 2023 17:16:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1700673299;
+	t=1700673409;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=AkVswiJ7VPVtZX+F/mFSJMy4cTc8YcymiMChgnVRYnw=;
-	b=YPVFJTVFZnnaVhBQtagXSCU0uOltCQ8PaBP/vpt0JIu2EA3Uh7BbmzW4752uw5vV6z0TFz
-	GPFuSXlnqFvHwTnUkGwF6GvkuVYCUkimS6hJXQyvgW51IApN8GrG4qbc1qEsPbnNYHgDzT
-	fC/ZhiN9fhu7k0o8ySDkh7StR8RvYOpsdZQYHpz1Bb+bE3+n5tqMa+9WOnYAYxqG4WaEow
-	oqq4vaW1FpXnNmXUk+j/1h2NdTYKvyu07xycfVkhZiKZ4TjTaJw0to5AhUyDFNBXzYaOHU
-	M+eVf7eoIgIEG1FErKH7Rb6n9jyj6QKr6euF3ha9qu/kUquevZlUKchwnhvXCw==
+	bh=96QYHoZIDIT+pxG6t2aqCRbFyqHy2hKopbA6OtGC0ug=;
+	b=KUA08b5UpgDVT1Kju2OmlHYuYPXgqPrvOrFBHuw1abLqkrs5cPxtdYXHtnbwYAM8lelA88
+	jm1PutjS30gkjtNygopDI5oZa0aJYFHh7SRzlVxIaoMc7obiW98oKo9db1aOdIPGCW+A+C
+	Ash1xYvo6E/RUmxVsIOS+G3F2KZajj+gPzSNz2utAQUa+X+rnPhvWsIVFLRCs4mq64rsBG
+	8B7O9KyJl52TiZ+/MIssxF4mxVn1/f9NlVuCbIJ2wlGym9utHkXm9tApy4zUQC6HIOOp86
+	x8o7ABaAu2TcLEwT2lNVvP6XDl3FtfSjSIZQbG8r9V97Vf2j85MUjhDjUTDdDQ==
+Date: Wed, 22 Nov 2023 18:16:47 +0100
+From: =?UTF-8?B?S8O2cnk=?= Maincent <kory.maincent@bootlin.com>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+ <pabeni@redhat.com>, Jonathan Corbet <corbet@lwn.net>, Luis Chamberlain
+ <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+ devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 9/9] net: pse-pd: Add PD692x0 PSE controller
+ driver
+Message-ID: <20231122181647.06d9c3c9@kmaincent-XPS-13-7390>
+In-Reply-To: <04f59e77-134b-45b2-8759-84b8e22c30d5@lunn.ch>
+References: <20231116-feature_poe-v1-0-be48044bf249@bootlin.com>
+	<20231116-feature_poe-v1-9-be48044bf249@bootlin.com>
+	<2ff8bea5-5972-4d1a-a692-34ad27b05446@lunn.ch>
+	<20231122171112.59370d21@kmaincent-XPS-13-7390>
+	<04f59e77-134b-45b2-8759-84b8e22c30d5@lunn.ch>
+Organization: bootlin
+X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Date: Wed, 22 Nov 2023 18:14:57 +0100
-Message-Id: <CX5IDB4IPK92.31F1ICOWQSL84@tleb-bootlin-xps13-01>
-Subject: Re: [PATCH v2 1/7] dt-bindings: usb: ti,j721e-usb: add ti,j7200-usb
- compatible
-Cc: <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, "Conor
- Dooley" <conor.dooley@microchip.com>
-To: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>, "Greg
- Kroah-Hartman" <gregkh@linuxfoundation.org>, "Rob Herring"
- <robh+dt@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Roger Quadros" <rogerq@kernel.org>, "Peter Chen" <peter.chen@kernel.org>,
- "Pawel Laszczak" <pawell@cadence.com>, "Nishanth Menon" <nm@ti.com>,
- "Vignesh Raghavendra" <vigneshr@ti.com>, "Tero Kristo" <kristo@kernel.org>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-X-Mailer: aerc 0.15.2
-References: <20231120-j7200-usb-suspend-v2-0-038c7e4a3df4@bootlin.com>
- <20231120-j7200-usb-suspend-v2-1-038c7e4a3df4@bootlin.com>
- <6f0da181-717c-4b14-ba3f-d287efe4105b@linaro.org>
- <CX4NADEZZEO1.3TXPVNOONKBCF@tleb-bootlin-xps13-01>
- <d0cc33d4-2b1a-43cd-8cd9-6b58d6c71c85@linaro.org>
- <CX5A3OSPKM1Q.1CPN17KI0PD7A@tleb-bootlin-xps13-01>
- <e91c2fa3-2cb4-44be-953f-2bfa26db2b4f@linaro.org>
-In-Reply-To: <e91c2fa3-2cb4-44be-953f-2bfa26db2b4f@linaro.org>
-X-GND-Sasl: theo.lebrun@bootlin.com
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: kory.maincent@bootlin.com
 
-Hello,
+On Wed, 22 Nov 2023 17:54:53 +0100
+Andrew Lunn <andrew@lunn.ch> wrote:
 
-On Wed Nov 22, 2023 at 1:00 PM CET, Krzysztof Kozlowski wrote:
-> On 22/11/2023 11:46, Th=C3=A9o Lebrun wrote:
-> >  - properties:
-> >    compatible:
-> >      oneOf:
-> >        - const: ti,j7200-usb
-> >        - items:
-> >            - const: ti,j721e-usb
-> >            - const: ti,am64-usb
+> > > > +static int pd692x0_sendrecv_msg(struct pd692x0_priv *priv,
+> > > > +				struct pd692x0_msg *msg,
+> > > > +				struct pd692x0_msg_content *buf)
+> > > > +{
+> > > > +	struct device *dev =3D &priv->client->dev;
+> > > > +	int ret;
+> > > > +
+> > > > +	ret =3D pd692x0_send_msg(priv, msg);
+> > > > +	if (ret)
+> > > > +		return ret;
+> > > > +
+> > > > +	ret =3D pd692x0_recv_msg(priv, msg, buf);   =20
+> > >=20
+> > > So this function takes at least 10 seconds? =20
 > >=20
-> >    J721E & AM64 are compatible, express that & update devicetrees.
+> > No, on normal communication it takes a bit more than 30ms. =20
+>=20
+> So i think the first step is to refactor this code to make it clear
+> what the normal path is, and what the exception path is, and the
+> timing of each.
+
+Ok I will try to refactor it to makes it more readable.
+
+> > > > +	msg.content.sub[2] =3D id;
+> > > > +	ret =3D pd692x0_sendrecv_msg(priv, &msg, &buf);   =20
+> > >=20
+> > > So this is also 10 seconds?=20
+> > >=20
+> > > Given its name, it looks like this is called via ethtool? Is the
+> > > ethtool core holding RTNL? It is generally considered bad to hold RTN=
+L for
+> > > that long. =20
 > >=20
-> > Option one is simpler & doesn't change devicetrees so I'd lean in that
-> > direction. What's your opinion?
->
-> This one should be for am64.
->
-> For your j7200, it depends whether the fallback to j721e makes sense,
-> IOW, if the Linux can use j721e compatible solely to use j7200 device.
+> > Yes it is holding RTNL lock. Should I consider another behavior in case=
+ of
+> > communication loss to not holding RTNL lock so long? =20
+>=20
+> How often does it happen? On the scale of its a theoretical
+> possibility, through to it happens every N calls? Also, does it happen
+> on cold boot and reboot?
+>=20
+> If its never supposed to happen, i would keep holding RTNL, and add a
+> pr_warn() that the PSE has crashed and burned, waiting for it to
+> reboot. If this is likely to happen on the first communication with
+> the device, we might want to do a dummy transfer during probe to get
+> is synchronized before we start using it with the RTNL held.
 
-All compatibles might be equivalent if the reset-on-resume behavior is
-observed on all three platforms. I don't have access to J721E or AM64
-to test that.
+I would say it never supposed to happen.
+I never faced the issue playing with the controller. The first communicatio=
+n is
+a simple i2c_master_recv of the controller status without entering the
+pd692x0_sendrecv_msg function, therefore it won't be an issue.
 
-@Roger Quadros: do you have any news if USB suspend/resume works on
-J721E and/or AM64? My testing on the J7200 EVM is (1) boot, (2) put
-the "USB2.0_MUX_SEL" GPIO high to have USB devices connected without
-plugging anything, then (3) trigger a s2idle. I get a memory bus
-exception on resume without my patches.
+Another solution could be to raise a flag if I enter in communication loss =
+and
+release the rtnlock. We would lock again the rtnl when the flags got disabl=
+ed.
+The controler won't be accessible until the flag is disabled.
 
 Regards,
-
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
+--=20
+K=C3=B6ry Maincent, Bootlin
+Embedded Linux and kernel engineering
 https://bootlin.com
 
