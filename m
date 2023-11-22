@@ -1,184 +1,223 @@
-Return-Path: <devicetree+bounces-18058-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18059-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FA337F4F92
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 19:32:33 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B00587F4FC3
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 19:40:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B15341F20D3C
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 18:32:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 90E181C20A0E
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 18:39:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEBAD5ABB6;
-	Wed, 22 Nov 2023 18:32:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C87B65CD13;
+	Wed, 22 Nov 2023 18:39:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EEk9gbLz"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="Z3HuXwjO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D97E8B2;
-	Wed, 22 Nov 2023 10:32:27 -0800 (PST)
-Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-32daeed7771so8935f8f.3;
-        Wed, 22 Nov 2023 10:32:27 -0800 (PST)
+Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23F3810CF
+	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 10:39:54 -0800 (PST)
+Received: by mail-oi1-x22a.google.com with SMTP id 5614622812f47-3b2ec9a79bdso82279b6e.3
+        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 10:39:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1700677946; x=1701282746; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=G82jl5R85KrKlIvXF944oRqyBdLM61l/27VAJKW7ibk=;
-        b=EEk9gbLz27lcdESPHQ/MA/b9inuVANaYxAqC5/a4f3278+XubpgeoqEEhwU45rlOg5
-         A+rt8/U46mbzJtZK7Phj9X4i0DrQgNdyZGodT3BXC7BH19POCwI6RmFNLVIgjUMY1t9d
-         JqUCS9h5f9gQhMrC9NHzeNeZHf/dsyr7z+13jOqECq28GaMW65fNBmsWk3nEDGaKeAGi
-         uJ+CrcYUi2Fve64BVS6EDTXNyeYWEUOjsL/sIrgdG5HBIvAmAgANqE1oAwM3FgfG0Qk5
-         Lcs6Y29+wwzhkhP/NTjYbVC7CjwuyNyHo3RoMzWJSwQzY6ZjXxFNvv1NtEtDAgdYC1Hn
-         t38A==
+        d=broadcom.com; s=google; t=1700678393; x=1701283193; darn=vger.kernel.org;
+        h=in-reply-to:mime-version:user-agent:date:message-id:from:references
+         :cc:to:subject:from:to:cc:subject:date:message-id:reply-to;
+        bh=QfgNb6r3yCZuHodNAIkEYGNH3ItwROCkHRPb0yvWRXg=;
+        b=Z3HuXwjOEgNE3IZhNZXGbwmF2GNC8N27qk/gHXfu0d9NOxO8KuKDHlRXZ0uTps2n1v
+         1si8Xw2BqXtK/QYwXgDArtIN3tnbNqD3AywHksBuYf2P/MM76lSqs6rXcRY1KCwSXVo+
+         S3DODqRKUExq5eiJXX3C6uTyV5+7A9Poh+glo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700677946; x=1701282746;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=G82jl5R85KrKlIvXF944oRqyBdLM61l/27VAJKW7ibk=;
-        b=CKWaAebzoOfANrwiyWoTFegAKJWkt1n1e6GW8rI8LPUuoaIoqSTj11M6+Tr08QQJb/
-         wZEf2TtfXY+X+wdTI/YshR5MghjvOU0Zd9v6yDOamRAyZhO9lCM0S3iw+uyan9+DNDdf
-         lT2QbmB5vHOptNLbUvy66Rk2JlxuIEJuBR9KdncDYfH5uuAUdJDYIvPS92OE/Ay/nW3t
-         H7aymzCTKJ3v3ioEctrnG44kXjVpVa1b9RJSQuR0edBYzqA7O/1g3wE8SYzRqK18arDH
-         hd2x0mVG7vfQ5XVwXRtgQd9hPYCai/SbkC8WE0OC81WpIWRoUiGsBFEZFxLvbGSPH07o
-         F81g==
-X-Gm-Message-State: AOJu0YxsUVVRdU/RIQCtk171IP+i017SN0XGDEOpc9Szz5q6mMbF9S1r
-	GEBItRQd5ksCGxBKTt+Lurk=
-X-Google-Smtp-Source: AGHT+IHBQ4JaBRS5h/zdVUY4AjeC4ynRiLMVSh0VKCAq2uaozmjgxsKD4sDol97YRrGQU4AgThlqjA==
-X-Received: by 2002:a5d:6985:0:b0:32d:9a20:c9e0 with SMTP id g5-20020a5d6985000000b0032d9a20c9e0mr2241676wru.61.1700677945993;
-        Wed, 22 Nov 2023 10:32:25 -0800 (PST)
-Received: from Ansuel-xps. (93-34-89-13.ip49.fastwebnet.it. [93.34.89.13])
-        by smtp.gmail.com with ESMTPSA id b17-20020a5d4b91000000b003316b3d69b3sm63435wrt.46.2023.11.22.10.32.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Nov 2023 10:32:25 -0800 (PST)
-Message-ID: <655e4939.5d0a0220.d9a9e.0491@mx.google.com>
-X-Google-Original-Message-ID: <ZV5JNmi5T7WKMq4t@Ansuel-xps.>
-Date: Wed, 22 Nov 2023 19:32:22 +0100
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Rob Herring <robh@kernel.org>, "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Qingfang Deng <dqfext@gmail.com>,
-	SkyLake Huang <SkyLake.Huang@mediatek.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	David Epping <david.epping@missinglinkelectronics.com>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-	Harini Katakam <harini.katakam@amd.com>,
-	Simon Horman <horms@kernel.org>,
-	Robert Marko <robert.marko@sartura.hr>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [net-next RFC PATCH 03/14] dt-bindings: net: document ethernet
- PHY package nodes
-References: <20231120135041.15259-1-ansuelsmth@gmail.com>
- <20231120135041.15259-4-ansuelsmth@gmail.com>
- <c21ff90d-6e05-4afc-b39c-2c71d8976826@lunn.ch>
- <20231121144244.GA1682395-robh@kernel.org>
- <a85d6d0a-1fc9-4c8e-9f91-5054ca902cd1@lunn.ch>
+        d=1e100.net; s=20230601; t=1700678393; x=1701283193;
+        h=in-reply-to:mime-version:user-agent:date:message-id:from:references
+         :cc:to:subject:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QfgNb6r3yCZuHodNAIkEYGNH3ItwROCkHRPb0yvWRXg=;
+        b=F5ZJvlPxok0mg1c9IpetZ85mvdBtixWLG2D0yTk48xWV0mkZDIVfZl8cNoNIGxMS4l
+         qT/qWGgGase9cvwGNfse2BXmiSmaZKZinSp1eogXuJ6Z/WeN0PJ7gWkh96gRXX4VWTLY
+         IfL66OEDn0MznnFQjto7vKWrO/6ctGzpckpGVJrGR1dKO6SG9VywUJAgH945w8nxjYXt
+         ozYgnqb2JRtL0SvxLWpV6pJADi5+l681A5hOyfcU5jFmD4r0hfnRf3ZjWOk9K5JZ1hFT
+         vXJ90vA/f4ETN05u9QimG9hTcwA5XcxRgKm333GPd2Ug2itGD4m9Qf8YEx6rmO7hGD1M
+         lpRQ==
+X-Gm-Message-State: AOJu0Yyf+DswHO8lxjhvlm2yV4oFJv1T8Rhxt63uxV424zeVyB8ud8nC
+	/zi3KC2HyF/nI9PPNZ5GY15Cow==
+X-Google-Smtp-Source: AGHT+IHKgnUv9QjJ6NQpacCUtyRg+SLAWNR+qtryK5pNnIJNZMEfQQUs2wDbKkfTHACnSHoPWJIUwA==
+X-Received: by 2002:a05:6358:998a:b0:16d:bb96:1c2b with SMTP id j10-20020a056358998a00b0016dbb961c2bmr4082002rwb.12.1700678393254;
+        Wed, 22 Nov 2023 10:39:53 -0800 (PST)
+Received: from bcacpedev-irv-3.lvn.broadcom.net ([192.19.161.250])
+        by smtp.gmail.com with ESMTPSA id m13-20020a05620a24cd00b0077407e3d68asm71778qkn.111.2023.11.22.10.39.50
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 22 Nov 2023 10:39:52 -0800 (PST)
+Subject: Re: [PATCH V2 1/2] dt-bindings: serial: add Broadcom's BCMBCA family
+ High Speed UART
+To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Anand Gore <anand.gore@broadcom.com>, Kursad Oney
+ <kursad.oney@broadcom.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Andre Przywara <andre.przywara@arm.com>,
+ Alexandre TORGUE <alexandre.torgue@st.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, linux-serial@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ bcm-kernel-feedback-list@broadcom.com, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
+ <rafal@milecki.pl>
+References: <20231122144208.21114-1-zajec5@gmail.com>
+ <66c4b54b-7631-484a-9f7d-31542284e620@linaro.org>
+ <08fcb328-fe4b-40c7-a01e-8a0b527b1c71@gmail.com>
+ <758114a7-0b18-44e8-b3d8-b5aabd244279@linaro.org>
+ <cac6aa8a-1515-4062-8922-4d1e31e9216e@gmail.com>
+ <ff32cd00-e26b-4ba6-bb08-a89c702895c9@linaro.org>
+ <57a77c9d-684e-4f5e-977a-4586e15f7c3e@gmail.com>
+ <141deca9-6017-4e3f-a237-8dacc67662de@linaro.org>
+ <03ad42c0-1648-43e1-bbd0-9ed02bdf4073@gmail.com>
+From: William Zhang <william.zhang@broadcom.com>
+Message-ID: <b1f06f81-9248-73f3-b586-24e29bb9ab32@broadcom.com>
+Date: Wed, 22 Nov 2023 10:39:50 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+ Thunderbird/52.4.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a85d6d0a-1fc9-4c8e-9f91-5054ca902cd1@lunn.ch>
+In-Reply-To: <03ad42c0-1648-43e1-bbd0-9ed02bdf4073@gmail.com>
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+	boundary="00000000000087fdf5060ac20b4d"
 
-On Tue, Nov 21, 2023 at 03:45:42PM +0100, Andrew Lunn wrote:
-> > > I do think we need somewhere to put package properties. But i don't
-> > > think phy-mode is such a property. At the moment, i don't have a good
-> > > example of a package property.
-> > 
-> > What about power supplies and reset/enable lines?
+--00000000000087fdf5060ac20b4d
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+
+Hi,
+
+On 11/22/2023 07:52 AM, Rafał Miłecki wrote:
+> On 22.11.2023 16:50, Krzysztof Kozlowski wrote:
+>> On 22/11/2023 16:49, Rafał Miłecki wrote:
+>>>>> For example a year ago I added binding for BCMBCA SoC timer without
+>>>>> actual driver, see e112f2de151b ("dt-bindings: timer: Add Broadcom's
+>>>>> BCMBCA timers").
+>>>>>
+>>>>> I'm not sure if we're going to agree on this, but personally I like
+>>>>> describing hardware as much as I can. So it's well documented /
+>>>>> understood and people may eventually write drivers for it. Maybe it's
+>>>>> partially because I come from Broadcom's world that isn't well known
+>>>>> for upstream efforts in general.
+>>>>
+>>>> The problem is that "brcm,bcmbca-hs-uart" is not describing 
+>>>> hardware. It
+>>>> is saying that all these devices have similar (compatible) programming
+>>>> model, so the OS can use just one compatible. This goes away from pure
+>>>> hardware description into interpretation.
+>>>>
+It is the same hardware IP block used in bcmbca SoCs.  To me, it 
+perfectly describe the hardware IP block and it does not need fallback 
+because there is no fallback.  We did that for SPI controller although 
+it has two revisions of that IP block so we have brcm,bcmbca-hsspi-v1.0 
+and 1.1
+
+>>>> Rob already commented on such non-SoC compatibles multiple times. I do
+>>>> not see any reason here to not use specific compatible as fallback.
+>>>
+Sorry I missed Rob's comments.  If we have any new rule or notes about 
+this, I would like to check it out.
+
+>>> Do I get it right we should rather have some base specific compatible
+>>> like: "brcm,bcm63138-hs-uart" and then if anything use fallback to it
+>>> like: "brcm,bcm4908-hs-uart", "brcm,bcm63138-hs-uart"; ?
+>>
+>> Yes, or the other way around, depends which is probably the oldest.
+If we absolutely can not use bcmbca-hs-uart, I would suggest to use 
+bcm63xx-hs-uart to be more soc specific and in fact the oldest SoC have 
+such IP is 63138.
+
 > 
-> Yes, good point. I can imagine some packages sharing regulators. Reset
-> might also be shared, but it makes things messy to handle.
->
+> Thank you for helping me on that!
 
-Sooooo.... Sorry if I insist but I would really love to have something
-""stable"" to move this further. (the changes are easy enough so it's
-really a matter of finding a good DT structure)
+--00000000000087fdf5060ac20b4d
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
 
-Maybe a good idea would be summarize the concern and see what solution
-was proposed:
-
-Concern list:
-1. ethernet-phy-package MUST be placed in mdio node (not in ethernet,
-   the example was wrong anyway) and MUST have an addr
-
-   Current example doesn't have an addr. I would prefer this way but
-   no problem in changing this.
-
-   Solution:
-     - Add reg to the ethernet-phy-package node with the base address of
-       the PHY package (base address = the first PHY address of the
-       package)
-
-       We will have a PHY node with the same address of the PHY package
-       node. Each PHY node in the PHY package node will have reg set to
-       the REAL address in the mdio bus.
-
-2. global-phys are redundant and can be dropped.
-
-   They are used to facilitate and make it less obscure how the PHY
-   package is described. Can totally be handled internally by the PHY
-   driver. Still I would prefer to keep them as is.
-
-   Solution:
-     - Drop the thing and leave the PHY driver handle it with hardcoded
-       values.
-       Due to point 1, the shared struct will have the base address of
-       the PHY package and will be handle to reference the global PHY at
-       an offset from the base address.
-
-3. phy-mode is problematic.
-
-   It's an optional value to enforce a specific mode for each PHY in the
-   package. For complex configuration the mode won't be defined.
-
-   Solution:
-    - Rename it to package-phy-mode to make it less confusing.
-
-    - Add an additional function that PHY package can use to make custom
-      validation on the mode for every PHY attached (in the PHY package).
-
-      Would make it less clear but more flexible for complex
-      configuration. Maybe both solution can be implemented and the
-      special function is used if the mode is not defined?
-
-4. Not finding a correct place to put PHY package info.
-
-   I'm still convinced the mdio node is the correct place.
-   - PHY package are PHY in bundle so they are actual PHY
-   - We already have in the mdio node special handling (every DSA switch
-     use custom compatible and PHY ID is not used to probe them
-     normally)
-   - Node this way won't be treated as PHY as they won't match the PHY
-     node name pattern and also won't have the compatible pattern for
-     PHY.
-
-   Solution:
-    - ethernet-phy-package node is OK given a reg is defined.
-
-These are the 4 concern we have currently, hoping I didn't miss any, I
-hope we can sort those so I can send a v2 and make some progress on
-this.
-
--- 
-	Ansuel
+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
+YDZuuBJwnyCzevMoPtVYPharioL5H3BRnQi8YoTXH7/uRo33dewYFm474yFjwwnt82TFtveVZkVq
+6h4WIQ4wTcwFfET8zMkELnGzS5SHCl8sPD+lNxxJ1JDZYwIDAQABo4IB2zCCAdcwDgYDVR0PAQH/
+BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3VyZS5nbG9i
+YWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEGCCsGAQUF
+BzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAy
+MDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xv
+YmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6hjhodHRw
+Oi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNybDAlBgNV
+HREEHjAcgRp3aWxsaWFtLnpoYW5nQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAf
+BgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUq65GzwZxydFHjjYEU/9h
+xHhPWlwwDQYJKoZIhvcNAQELBQADggEBAA2hGG3JPAdGPH0ZdohGUCIVjKz+U+EFuIDbS6A/5jqX
+VhYAxZlzj7tSjUIM7G7IhyfqPC46GKJ/4x+Amz1Z6YxNGy71L68kYD6hIbBcA5AM42QBUufly6Oa
+/ppSz3WoflVyFFQ5YXniZ+eU+2/cdnYZg4aVUnFjimOF5o3NfMLzOkhQNxbaDjFUfUYD8hKmU6v4
+0vUBj8KZ9Gi1LIagLKUREn8jku0lcLsRbnJ5Ey5ScajC/FESPyYWasOW8j8/1EoJksmhbYGKNS6C
+urb/KlmDGfVrIRYDbL0ckhGQIP5c6L+kSQZ2sHnQK0e0WgIaZYxaPYeY5u0GLCOze+3vyRMxggJt
+MIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYD
+VQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwxuh2XG3FXRL1W
+JOEwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIOw/woFzF/M5/3QLPYswyDEjMQKG
+aBEcgSR0cAxUDxt5MBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIz
+MTEyMjE4Mzk1M1owaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
+CWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFl
+AwQCATANBgkqhkiG9w0BAQEFAASCAQCLJXRNaFP05FtAHmhkHf1126eG9a5sOaFUaF4KNgfqbsoI
+UH8UXQwE13QgEcECu3ijYk8Nv8p3n3WGUTKnRfladx4cmxmxPcuclcGzF99rZWzw3mK3ZZQIoW81
+HjZaJvRq+Sd0q/gt1Z0I3wWceEXRseW5/zfepZ0B+k9pL99kNIVhoQEk1gplK0JNVGQL4V0oTgKj
+jzX1QCYALNU7E3M7OO7SRZCgP06OZAFyPkEQeMjNWHSbrAPaNcIEGKN/Cejyp2QWj5sUGTDsaWQQ
+6EWJ3qGGvWM4rMm4DPtIRSIVvDo8kGkSZZUJMPplvx8uwIQuWF+Kg5zeDvuZ1gdKGQOI
+--00000000000087fdf5060ac20b4d--
 
