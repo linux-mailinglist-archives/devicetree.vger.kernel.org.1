@@ -1,44 +1,41 @@
-Return-Path: <devicetree+bounces-17978-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17980-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50B8E7F49ED
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 16:10:28 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D3A47F4A09
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 16:15:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 85F19B21329
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 15:10:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C6E5D1C20B9E
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 15:15:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E98454E1C9;
-	Wed, 22 Nov 2023 15:10:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F1594EB26;
+	Wed, 22 Nov 2023 15:15:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from bmailout1.hostsharing.net (bmailout1.hostsharing.net [IPv6:2a01:37:1000::53df:5f64:0])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BBC792;
-	Wed, 22 Nov 2023 07:10:08 -0800 (PST)
-Received: from h08.hostsharing.net (h08.hostsharing.net [83.223.95.28])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256
-	 client-signature RSA-PSS (4096 bits) client-digest SHA256)
-	(Client CN "*.hostsharing.net", Issuer "RapidSSL Global TLS RSA4096 SHA256 2022 CA1" (verified OK))
-	by bmailout1.hostsharing.net (Postfix) with ESMTPS id BEDFA30000CF4;
-	Wed, 22 Nov 2023 16:10:06 +0100 (CET)
-Received: by h08.hostsharing.net (Postfix, from userid 100393)
-	id B3E17382C1; Wed, 22 Nov 2023 16:10:06 +0100 (CET)
-Date: Wed, 22 Nov 2023 16:10:06 +0100
-From: Lukas Wunner <lukas@wunner.de>
-To: Rasmus Villemoes <linux@rasmusvillemoes.dk>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>, devicetree@vger.kernel.org,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-	Lino Sanfilippo <LinoSanfilippo@gmx.de>,
-	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Subject: Re: [PATCH 2/2] serial: core: implement support for rs485-mux-gpios
-Message-ID: <20231122151006.GB18949@wunner.de>
-References: <20231120151056.148450-1-linux@rasmusvillemoes.dk>
- <20231120151056.148450-3-linux@rasmusvillemoes.dk>
+Received: from mail11.truemail.it (mail11.truemail.it [IPv6:2001:4b7e:0:8::81])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBE1419E;
+	Wed, 22 Nov 2023 07:15:26 -0800 (PST)
+Received: from francesco-nb.int.toradex.com (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id 007CD20618;
+	Wed, 22 Nov 2023 16:15:22 +0100 (CET)
+Date: Wed, 22 Nov 2023 16:15:18 +0100
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Lukas Wunner <lukas@wunner.de>
+Cc: Francesco Dolcini <francesco@dolcini.it>,
+	Lino Sanfilippo <l.sanfilippo@kunbus.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-integrity@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] reset: Add Infineon SLB9670 TPM reset driver
+Message-ID: <ZV4bBowT9ij+BQup@francesco-nb.int.toradex.com>
+References: <ae40859b82494d75e9ad7bf616b3264138ad1f6a.1695754856.git.lukas@wunner.de>
+ <75b775d0526e72f292e0546a306b37680714686c.1695754856.git.lukas@wunner.de>
+ <ZV0+Zk590YSsvhFo@francesco-nb.int.toradex.com>
+ <20231122112949.GA18812@wunner.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -47,52 +44,49 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231120151056.148450-3-linux@rasmusvillemoes.dk>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20231122112949.GA18812@wunner.de>
 
-On Mon, Nov 20, 2023 at 04:10:55PM +0100, Rasmus Villemoes wrote:
-> Add code for handling a rs485-mux-gpio specified in device tree.
+Hello Lukas,
 
-Hm, that's a bit terse as a commit message.
+On Wed, Nov 22, 2023 at 12:29:49PM +0100, Lukas Wunner wrote:
+> On Wed, Nov 22, 2023 at 12:33:58AM +0100, Francesco Dolcini wrote:
+> > On Tue, Sep 26, 2023 at 09:09:36PM +0200, Lukas Wunner wrote:
+> > > Normally the platform firmware is responsible for taking a Trusted
+> > > Platform Module out of reset on boot and storing measurements into it.
+> > > 
+> > > However if the platform firmware is incapable of doing that -- as is the
+> > > case on the Raspberry Pi -- then the onus is on the kernel to take the
+> > > TPM out of reset before trying to attach a driver to it.
+> > > 
+> > > Provide a reset driver for such platforms.
+> > > 
+> > > The Infineon SLB9670 TPM requires a specific reset sequence on its RST#
+> > > pin which is documented in sections 5.4 and 5.5 of the datasheet:
+> > 
+> > Are you really sure that this change is required?
+> > I have seen the RST# Timing diagram in the datasheet, however I wonder
+> > if a reset is required at all during power-up, for example.
+> 
+> If the RST# pin is not toggled at all upon a warm reset (reboot),
+> the TPM will remain in whatever state it was during the previous boot.
+...
+> Also, the pin controller connected to RST# might be reset upon a reboot
+> (think of a SoC internal pin controller setting all its registers to 0)
+> and RST# might be asserted as a result.  It is then necessary to take
+> the TPM out of reset.
 
+Toggled at boot is different from what you are doing here.
 
-> @@ -1457,6 +1466,14 @@ static int uart_set_rs485_config(struct tty_struct *tty, struct uart_port *port,
->  		return ret;
->  	uart_sanitize_serial_rs485(port, &rs485);
->  	uart_set_rs485_termination(port, &rs485);
-> +	/*
-> +	 * To avoid glitches on the transmit enable pin, the mux must
-> +	 * be set before calling the driver's ->rs485_config when
-> +	 * disabling rs485 mode, but after when enabling rs485
-> +	 * mode.
-> +	 */
-> +	if (!(rs485.flags & SER_RS485_ENABLED))
-> +		uart_set_rs485_mux(port, &rs485);
+> > Not to mention that I was able to see the driver probe succeed in a
+> > similar setup to the one you are describing in the commit message
+> > (different board, arm64, but nothing done by the platform firmware).
+> 
+> Hm, is the RST# pin even connected on that board?
 
-Can it happen that the UART's FIFO contains characters such that
-suddenly switching the mux causes some of them to appear on the
-RS-485 transceiver and some on the RS-232 driver?
+Yes, it's connected and it is asserted/de-asserted (aka toggled) during
+startup from the HW reset circuit. However this is not implementing the
+reset sequence you are implementing here.
 
-Shouldn't we wait for the FIFO to drain before making the switch?
-I think that would be closer to the behavior expected by user space.
+Francesco
 
-
-> --- a/include/linux/serial_core.h
-> +++ b/include/linux/serial_core.h
-> @@ -584,6 +584,7 @@ struct uart_port {
->  	struct serial_rs485	rs485_supported;	/* Supported mask for serial_rs485 */
->  	struct gpio_desc	*rs485_term_gpio;	/* enable RS485 bus termination */
->  	struct gpio_desc	*rs485_rx_during_tx_gpio; /* Output GPIO that sets the state of RS485 RX during TX */
-> +	struct gpio_desc	*rs485_mux_gpio;	/* gpio for selecting RS485 mode */
-
-Again, the code comment isn't really helpful as it doesn't add a whole
-lot of information to the variable name "rs485_mux_gpio".  How about:
-"select between RS-232 and RS-485 transceiver" ?
-
-(I realize I made a typo in my previous e-mail about the DT-binding,
-sorry about that: s/connect/connected/)
-
-Thanks,
-
-Lukas
 
