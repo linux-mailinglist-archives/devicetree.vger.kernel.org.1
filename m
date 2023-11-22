@@ -1,651 +1,211 @@
-Return-Path: <devicetree+bounces-18133-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18134-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 127D47F544A
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 00:09:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 841007F5482
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 00:28:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 875FD1F20D5A
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 23:09:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3FFF728135D
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 23:28:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC52C21A1D;
-	Wed, 22 Nov 2023 23:09:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9726B20B2C;
+	Wed, 22 Nov 2023 23:28:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wjl9wGd5"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="fm2OU8CB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-x130.google.com (mail-il1-x130.google.com [IPv6:2607:f8b0:4864:20::130])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C31B5D50
-	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 15:09:20 -0800 (PST)
-Received: by mail-il1-x130.google.com with SMTP id e9e14a558f8ab-3592fadbd7eso1023935ab.0
-        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 15:09:20 -0800 (PST)
+Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F172F199
+	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 15:27:58 -0800 (PST)
+Received: by mail-oi1-x22d.google.com with SMTP id 5614622812f47-3b837d974ecso219204b6e.2
+        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 15:27:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700694560; x=1701299360; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0edA2W8OPVHUseYwIjpZXpoIxZHEQrfzpABBu7++cOw=;
-        b=wjl9wGd5nvN8wGtMgSba2KpR2EXFy/7Gj6vGnu0YuUz0Hseklhct5pzy7a3MdeDmKF
-         UBs27jj6VzsSZJ00873O+5TUfXmjkTyUkWQKa7uWmkpiQl7vrq2rURNAxl9VbhRG0TKO
-         LxCBYKhXSQD2cTkDsvf1EHl+LwS3EVkok8IttEUHAIFrSNZiQ8I9CA1u/hHUnMhdnKtn
-         mIoIgnvUAYNX8qvvGieiYN4RlZrbZ6X0CBKXrfAqu1iehTx8I7Y/yI/aUSgpgDjc4zDu
-         bwrfULhH4ll/dZsBE0wKUb/B4Rd3GeRk7LoUSJxmnrik6U3qc95OlUaf8IbKjvA14T42
-         CSGw==
+        d=broadcom.com; s=google; t=1700695678; x=1701300478; darn=vger.kernel.org;
+        h=in-reply-to:autocrypt:from:references:cc:to:subject:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dnCmVg7kNBirt+5n+Gh9rlDEOBCZZoemAJ10ULl7mOY=;
+        b=fm2OU8CBeLAs3RcabcjXpsUKp0jNq/NmMf+DqnTiCDvxqXFqEGsE6/KzLMQaDwJwfg
+         V0GoTXAZfXZ57stCTpet0uOk23royqL0XWt1/IHrF6KdozX2qecjC4QIaTmgiYIPYIZ7
+         +IUzrOqNdRTjBR4a4eJD1v7pGPf/c85QXIZBw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700694560; x=1701299360;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=0edA2W8OPVHUseYwIjpZXpoIxZHEQrfzpABBu7++cOw=;
-        b=wwzH6vnb8ubaOVe7dbORnymyw420N3TtSY1egaCX1xjzEdUgbwj6yF06xDd8IAMCxV
-         BB1WBBMp3whNz9vQ2RlPu9UCCEPyMVwu25nOh4TdvOXzuGckhGn17VnfX//fjTfH6uzo
-         fUvxNbb530jP+D3r1EqtjDNVVWO8nai5lNasIUYZ/zv6ZJRXkNFR6OQkVnY8Ra/RLGJe
-         wJHMENC+2CpSXeX+Wgq3gu9GkU5OmRU66Vt4gIRkpQUyv0m8xKMjT46S2pOT6ls4gGFO
-         MlwRedjAMaqtXDOWorU8C1wi01o3RtjaB3hOlzGx7pwx1oaTtI0E/kEVLpKOTjRZ9Odg
-         77jg==
-X-Gm-Message-State: AOJu0YxPKFG5/yRHp57egZW2+2qGbRpPp4l+I36oLfHxKLPi7yV2az7x
-	Awr6mP+f73TzgLcpi95v9SH5qQ==
-X-Google-Smtp-Source: AGHT+IEamTDA56lJdliwOkPowtvOqQwJAuPSp0z+mCi3nOKYpaN/dLMMcHNyYd1Ko4ZD/DimAqEC+A==
-X-Received: by 2002:a05:6e02:240d:b0:35b:3481:879c with SMTP id bs13-20020a056e02240d00b0035b3481879cmr5043888ilb.31.1700694560086;
-        Wed, 22 Nov 2023 15:09:20 -0800 (PST)
-Received: from localhost.localdomain (c-98-61-227-136.hsd1.mn.comcast.net. [98.61.227.136])
-        by smtp.gmail.com with ESMTPSA id fm29-20020a0566382b1d00b0043a20ad93c8sm117754jab.41.2023.11.22.15.09.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Nov 2023 15:09:19 -0800 (PST)
-From: Alex Elder <elder@linaro.org>
-To: davem@davemloft.net,
-	edumazet@google.com,
-	kuba@kernel.org,
-	pabeni@redhat.com
-Cc: andersson@kernel.org,
-	konrad.dybcio@linaro.org,
-	agross@kernel.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	mka@chromium.org,
-	quic_cpratapa@quicinc.com,
-	quic_avuyyuru@quicinc.com,
-	quic_jponduru@quicinc.com,
-	quic_subashab@quicinc.com,
-	elder@kernel.org,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH net-next 5/5] net: ipa: add IPA v5.5 configuration data
-Date: Wed, 22 Nov 2023 17:09:09 -0600
-Message-Id: <20231122230909.895482-6-elder@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231122230909.895482-1-elder@linaro.org>
-References: <20231122230909.895482-1-elder@linaro.org>
+        d=1e100.net; s=20230601; t=1700695678; x=1701300478;
+        h=in-reply-to:autocrypt:from:references:cc:to:subject:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=dnCmVg7kNBirt+5n+Gh9rlDEOBCZZoemAJ10ULl7mOY=;
+        b=KTVu8wQIAyca1BOtagpzBXsva+5SPH1VE/Zy22a1BQp/DV/Oydc18CmVZYhdx6oq07
+         6/fd0wrJG/9z0zfPnLcO8D9uO96Ji1PQ0Rg+sJxu5Tt3fZZiGPGXm38Synv+9yYDZC5L
+         Zie34PNtih6SRGkCxNgr0WTUgbiMOWJ0DTxnVZwfA+Vggo+Otjg4tB0e3EYjY6ozLoWl
+         K86Y/ikXBninFtoAkpGgIwFhLWQ+Q97Vxh0q3qR/NC/ZG3cfjSJXR5XVK9HBL0wz/1d9
+         bvtSghz52sy3q+9k2Wiicv79Tzs0IABCSqMUDGOZFJLm75Ut0bvdeMrOHL4FF9Ebmf+c
+         vkZw==
+X-Gm-Message-State: AOJu0YwsodeMouNCWyeN0ZJ5eRhTZB6Gg0ohtJolNjo6q+uwKyTp0vyN
+	egX3ZFurNLngN0gdqKioE+/vRA==
+X-Google-Smtp-Source: AGHT+IEoPv2tGOEFGghvmL9Bv00nkPidl5Rl3bvypq2JNIV7xTa4zfG7CEJ1CBVaP//9cMRyEscmXw==
+X-Received: by 2002:aca:230b:0:b0:3b6:ccce:b20f with SMTP id e11-20020aca230b000000b003b6ccceb20fmr4256473oie.33.1700695678202;
+        Wed, 22 Nov 2023 15:27:58 -0800 (PST)
+Received: from [192.168.1.3] (ip72-194-116-95.oc.oc.cox.net. [72.194.116.95])
+        by smtp.gmail.com with ESMTPSA id qr17-20020a05620a391100b0077d60457d1fsm264154qkn.51.2023.11.22.15.27.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 Nov 2023 15:27:57 -0800 (PST)
+Message-ID: <9ab13e45-431d-4862-bb82-f7e001387a42@broadcom.com>
+Date: Wed, 22 Nov 2023 15:27:54 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: gpio: brcmstb: drop unneeded quotes
+To: Rob Herring <robh@kernel.org>, Doug Berger <opendmb@gmail.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski
+ <brgl@bgdev.pl>, Andy Shevchenko <andy@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20231122224424.2809523-1-robh@kernel.org>
+From: Florian Fainelli <florian.fainelli@broadcom.com>
+Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
+ 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
+In-Reply-To: <20231122224424.2809523-1-robh@kernel.org>
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+	boundary="000000000000ca3c3e060ac6115a"
 
-Add the configuration data required for IPA v5.5, which is used in
-the Qualcomm SM8550 SoC.  With that, the driver supports IPA v5.5.
+--000000000000ca3c3e060ac6115a
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Alex Elder <elder@linaro.org>
----
- drivers/net/ipa/Makefile             |   2 +-
- drivers/net/ipa/data/ipa_data-v5.5.c | 487 +++++++++++++++++++++++++++
- drivers/net/ipa/ipa_data.h           |   1 +
- drivers/net/ipa/ipa_main.c           |   4 +
- drivers/net/ipa/ipa_version.h        |   1 +
- 5 files changed, 494 insertions(+), 1 deletion(-)
- create mode 100644 drivers/net/ipa/data/ipa_data-v5.5.c
 
-diff --git a/drivers/net/ipa/Makefile b/drivers/net/ipa/Makefile
-index 9d2182068e1cd..d3abb38633e08 100644
---- a/drivers/net/ipa/Makefile
-+++ b/drivers/net/ipa/Makefile
-@@ -7,7 +7,7 @@ IPA_REG_VERSIONS	:=	3.1 3.5.1 4.2 4.5 4.7 4.9 4.11 5.0 5.5
- # Some IPA versions can reuse another set of GSI register definitions.
- GSI_REG_VERSIONS	:=	3.1 3.5.1 4.0 4.5 4.9 4.11 5.0
- 
--IPA_DATA_VERSIONS	:=	3.1 3.5.1 4.2 4.5 4.7 4.9 4.11 5.0
-+IPA_DATA_VERSIONS	:=	3.1 3.5.1 4.2 4.5 4.7 4.9 4.11 5.0 5.5
- 
- obj-$(CONFIG_QCOM_IPA)	+=	ipa.o
- 
-diff --git a/drivers/net/ipa/data/ipa_data-v5.5.c b/drivers/net/ipa/data/ipa_data-v5.5.c
-new file mode 100644
-index 0000000000000..2c6390f11354b
---- /dev/null
-+++ b/drivers/net/ipa/data/ipa_data-v5.5.c
-@@ -0,0 +1,487 @@
-+// SPDX-License-Identifier: GPL-2.0
-+
-+/* Copyright (C) 2023 Linaro Ltd. */
-+
-+#include <linux/kernel.h>
-+#include <linux/log2.h>
-+
-+#include "../ipa_data.h"
-+#include "../ipa_endpoint.h"
-+#include "../ipa_mem.h"
-+
-+/** enum ipa_resource_type - IPA resource types for an SoC having IPA v5.5 */
-+enum ipa_resource_type {
-+	/* Source resource types; first must have value 0 */
-+	IPA_RESOURCE_TYPE_SRC_PKT_CONTEXTS		= 0,
-+	IPA_RESOURCE_TYPE_SRC_DESCRIPTOR_LISTS,
-+	IPA_RESOURCE_TYPE_SRC_DESCRIPTOR_BUFF,
-+	IPA_RESOURCE_TYPE_SRC_HPS_DMARS,
-+	IPA_RESOURCE_TYPE_SRC_ACK_ENTRIES,
-+
-+	/* Destination resource types; first must have value 0 */
-+	IPA_RESOURCE_TYPE_DST_DATA_SECTORS		= 0,
-+	IPA_RESOURCE_TYPE_DST_DPS_DMARS,
-+	IPA_RESOURCE_TYPE_DST_ULSO_SEGMENTS,
-+};
-+
-+/* Resource groups used for an SoC having IPA v5.5 */
-+enum ipa_rsrc_group_id {
-+	/* Source resource group identifiers */
-+	IPA_RSRC_GROUP_SRC_UL				= 0,
-+	IPA_RSRC_GROUP_SRC_DL,
-+	IPA_RSRC_GROUP_SRC_UNUSED_2,
-+	IPA_RSRC_GROUP_SRC_UNUSED_3,
-+	IPA_RSRC_GROUP_SRC_URLLC,
-+	IPA_RSRC_GROUP_SRC_U_RX_QC,
-+	IPA_RSRC_GROUP_SRC_COUNT,	/* Last in set; not a source group */
-+
-+	/* Destination resource group identifiers */
-+	IPA_RSRC_GROUP_DST_UL				= 0,
-+	IPA_RSRC_GROUP_DST_DL,
-+	IPA_RSRC_GROUP_DST_UNUSED_2,
-+	IPA_RSRC_GROUP_DST_UNUSED_3,
-+	IPA_RSRC_GROUP_DST_UNUSED_4,
-+	IPA_RSRC_GROUP_DST_UC,
-+	IPA_RSRC_GROUP_DST_DRB_IP,
-+	IPA_RSRC_GROUP_DST_COUNT,	/* Last; not a destination group */
-+};
-+
-+/* QSB configuration data for an SoC having IPA v5.5 */
-+static const struct ipa_qsb_data ipa_qsb_data[] = {
-+	[IPA_QSB_MASTER_DDR] = {
-+		.max_writes		= 0,	/* Unlimited */
-+		.max_reads		= 12,
-+		.max_reads_beats	= 0,
-+	},
-+	[IPA_QSB_MASTER_PCIE] = {
-+		.max_writes		= 0,	/* Unlimited */
-+		.max_reads		= 8,
-+		.max_reads_beats	= 0,
-+	},
-+};
-+
-+/* Endpoint configuration data for an SoC having IPA v5.5 */
-+static const struct ipa_gsi_endpoint_data ipa_gsi_endpoint_data[] = {
-+	[IPA_ENDPOINT_AP_COMMAND_TX] = {
-+		.ee_id		= GSI_EE_AP,
-+		.channel_id	= 12,
-+		.endpoint_id	= 14,
-+		.toward_ipa	= true,
-+		.channel = {
-+			.tre_count	= 256,
-+			.event_count	= 256,
-+			.tlv_count	= 20,
-+		},
-+		.endpoint = {
-+			.config = {
-+				.resource_group	= IPA_RSRC_GROUP_SRC_UL,
-+				.dma_mode	= true,
-+				.dma_endpoint	= IPA_ENDPOINT_AP_LAN_RX,
-+				.tx = {
-+					.seq_type = IPA_SEQ_DMA,
-+				},
-+			},
-+		},
-+	},
-+	[IPA_ENDPOINT_AP_LAN_RX] = {
-+		.ee_id		= GSI_EE_AP,
-+		.channel_id	= 13,
-+		.endpoint_id	= 16,
-+		.toward_ipa	= false,
-+		.channel = {
-+			.tre_count	= 256,
-+			.event_count	= 256,
-+			.tlv_count	= 9,
-+		},
-+		.endpoint = {
-+			.config = {
-+				.resource_group	= IPA_RSRC_GROUP_DST_UL,
-+				.aggregation	= true,
-+				.status_enable	= true,
-+				.rx = {
-+					.buffer_size	= 8192,
-+					.pad_align	= ilog2(sizeof(u32)),
-+					.aggr_time_limit = 500,
-+				},
-+			},
-+		},
-+	},
-+	[IPA_ENDPOINT_AP_MODEM_TX] = {
-+		.ee_id		= GSI_EE_AP,
-+		.channel_id	= 11,
-+		.endpoint_id	= 2,
-+		.toward_ipa	= true,
-+		.channel = {
-+			.tre_count	= 512,
-+			.event_count	= 512,
-+			.tlv_count	= 25,
-+		},
-+		.endpoint = {
-+			.filter_support	= true,
-+			.config = {
-+				.resource_group	= IPA_RSRC_GROUP_SRC_UL,
-+				.checksum       = true,
-+				.qmap		= true,
-+				.status_enable	= true,
-+				.tx = {
-+					.seq_type = IPA_SEQ_2_PASS_SKIP_LAST_UC,
-+					.status_endpoint =
-+						IPA_ENDPOINT_MODEM_AP_RX,
-+				},
-+			},
-+		},
-+	},
-+	[IPA_ENDPOINT_AP_MODEM_RX] = {
-+		.ee_id		= GSI_EE_AP,
-+		.channel_id	= 1,
-+		.endpoint_id	= 23,
-+		.toward_ipa	= false,
-+		.channel = {
-+			.tre_count	= 256,
-+			.event_count	= 256,
-+			.tlv_count	= 9,
-+		},
-+		.endpoint = {
-+			.config = {
-+				.resource_group	= IPA_RSRC_GROUP_DST_DL,
-+				.checksum       = true,
-+				.qmap		= true,
-+				.aggregation	= true,
-+				.rx = {
-+					.buffer_size	= 8192,
-+					.aggr_time_limit = 500,
-+					.aggr_close_eof	= true,
-+				},
-+			},
-+		},
-+	},
-+	[IPA_ENDPOINT_MODEM_AP_TX] = {
-+		.ee_id		= GSI_EE_MODEM,
-+		.channel_id	= 0,
-+		.endpoint_id	= 12,
-+		.toward_ipa	= true,
-+		.endpoint = {
-+			.filter_support	= true,
-+		},
-+	},
-+	[IPA_ENDPOINT_MODEM_AP_RX] = {
-+		.ee_id		= GSI_EE_MODEM,
-+		.channel_id	= 7,
-+		.endpoint_id	= 21,
-+		.toward_ipa	= false,
-+	},
-+	[IPA_ENDPOINT_MODEM_DL_NLO_TX] = {
-+		.ee_id		= GSI_EE_MODEM,
-+		.channel_id	= 2,
-+		.endpoint_id	= 15,
-+		.toward_ipa	= true,
-+		.endpoint = {
-+			.filter_support	= true,
-+		},
-+	},
-+};
-+
-+/* Source resource configuration data for an SoC having IPA v5.5 */
-+static const struct ipa_resource ipa_resource_src[] = {
-+	[IPA_RESOURCE_TYPE_SRC_PKT_CONTEXTS] = {
-+		.limits[IPA_RSRC_GROUP_SRC_UL] = {
-+			.min = 3,	.max = 9,
-+		},
-+		.limits[IPA_RSRC_GROUP_SRC_DL] = {
-+			.min = 4,	.max = 10,
-+		},
-+		.limits[IPA_RSRC_GROUP_SRC_URLLC] = {
-+			.min = 1,	.max = 63,
-+		},
-+		.limits[IPA_RSRC_GROUP_SRC_U_RX_QC] = {
-+			.min = 0,	.max = 63,
-+		},
-+	},
-+	[IPA_RESOURCE_TYPE_SRC_DESCRIPTOR_LISTS] = {
-+		.limits[IPA_RSRC_GROUP_SRC_UL] = {
-+			.min = 9,	.max = 9,
-+		},
-+		.limits[IPA_RSRC_GROUP_SRC_DL] = {
-+			.min = 12,	.max = 12,
-+		},
-+		.limits[IPA_RSRC_GROUP_SRC_URLLC] = {
-+			.min = 10,	.max = 10,
-+		},
-+	},
-+	[IPA_RESOURCE_TYPE_SRC_DESCRIPTOR_BUFF] = {
-+		.limits[IPA_RSRC_GROUP_SRC_UL] = {
-+			.min = 9,	.max = 9,
-+		},
-+		.limits[IPA_RSRC_GROUP_SRC_DL] = {
-+			.min = 24,	.max = 24,
-+		},
-+		.limits[IPA_RSRC_GROUP_SRC_URLLC] = {
-+			.min = 20,	.max = 20,
-+		},
-+	},
-+	[IPA_RESOURCE_TYPE_SRC_HPS_DMARS] = {
-+		.limits[IPA_RSRC_GROUP_SRC_UL] = {
-+			.min = 0,	.max = 63,
-+		},
-+		.limits[IPA_RSRC_GROUP_SRC_DL] = {
-+			.min = 0,	.max = 63,
-+		},
-+		.limits[IPA_RSRC_GROUP_SRC_URLLC] = {
-+			.min = 1,	.max = 63,
-+		},
-+		.limits[IPA_RSRC_GROUP_SRC_U_RX_QC] = {
-+			.min = 0,	.max = 63,
-+		},
-+	},
-+	[IPA_RESOURCE_TYPE_SRC_ACK_ENTRIES] = {
-+		.limits[IPA_RSRC_GROUP_SRC_UL] = {
-+			.min = 22,	.max = 22,
-+		},
-+		.limits[IPA_RSRC_GROUP_SRC_DL] = {
-+			.min = 16,	.max = 16,
-+		},
-+		.limits[IPA_RSRC_GROUP_SRC_URLLC] = {
-+			.min = 16,	.max = 16,
-+		},
-+	},
-+};
-+
-+/* Destination resource configuration data for an SoC having IPA v5.5 */
-+static const struct ipa_resource ipa_resource_dst[] = {
-+	[IPA_RESOURCE_TYPE_DST_DATA_SECTORS] = {
-+		.limits[IPA_RSRC_GROUP_DST_UL] = {
-+			.min = 6,	.max = 6,
-+		},
-+		.limits[IPA_RSRC_GROUP_DST_DL] = {
-+			.min = 5,	.max = 5,
-+		},
-+		.limits[IPA_RSRC_GROUP_DST_DRB_IP] = {
-+			.min = 39,	.max = 39,
-+		},
-+	},
-+	[IPA_RESOURCE_TYPE_DST_DPS_DMARS] = {
-+		.limits[IPA_RSRC_GROUP_DST_UL] = {
-+			.min = 0,	.max = 3,
-+		},
-+		.limits[IPA_RSRC_GROUP_DST_DL] = {
-+			.min = 0,	.max = 3,
-+		},
-+	},
-+	[IPA_RESOURCE_TYPE_DST_ULSO_SEGMENTS] = {
-+		.limits[IPA_RSRC_GROUP_DST_UL] = {
-+			.min = 0,	.max = 63,
-+		},
-+		.limits[IPA_RSRC_GROUP_DST_DL] = {
-+			.min = 0,	.max = 63,
-+		},
-+	},
-+};
-+
-+/* Resource configuration data for an SoC having IPA v5.5 */
-+static const struct ipa_resource_data ipa_resource_data = {
-+	.rsrc_group_dst_count	= IPA_RSRC_GROUP_DST_COUNT,
-+	.rsrc_group_src_count	= IPA_RSRC_GROUP_SRC_COUNT,
-+	.resource_src_count	= ARRAY_SIZE(ipa_resource_src),
-+	.resource_src		= ipa_resource_src,
-+	.resource_dst_count	= ARRAY_SIZE(ipa_resource_dst),
-+	.resource_dst		= ipa_resource_dst,
-+};
-+
-+/* IPA-resident memory region data for an SoC having IPA v5.5 */
-+static const struct ipa_mem ipa_mem_local_data[] = {
-+	{
-+		.id		= IPA_MEM_UC_EVENT_RING,
-+		.offset		= 0x0000,
-+		.size		= 0x1000,
-+		.canary_count	= 0,
-+	},
-+	{
-+		.id		= IPA_MEM_UC_SHARED,
-+		.offset		= 0x1000,
-+		.size		= 0x0080,
-+		.canary_count	= 0,
-+	},
-+	{
-+		.id		= IPA_MEM_UC_INFO,
-+		.offset		= 0x1080,
-+		.size		= 0x0200,
-+		.canary_count	= 0,
-+	},
-+	{
-+		.id		= IPA_MEM_V4_FILTER_HASHED,
-+		.offset		= 0x1288,
-+		.size		= 0x0078,
-+		.canary_count	= 2,
-+	},
-+	{
-+		.id		= IPA_MEM_V4_FILTER,
-+		.offset		= 0x1308,
-+		.size		= 0x0078,
-+		.canary_count	= 2,
-+	},
-+	{
-+		.id		= IPA_MEM_V6_FILTER_HASHED,
-+		.offset		= 0x1388,
-+		.size		= 0x0078,
-+		.canary_count	= 2,
-+	},
-+	{
-+		.id		= IPA_MEM_V6_FILTER,
-+		.offset		= 0x1408,
-+		.size		= 0x0078,
-+		.canary_count	= 2,
-+	},
-+	{
-+		.id		= IPA_MEM_V4_ROUTE_HASHED,
-+		.offset		= 0x1488,
-+		.size		= 0x0098,
-+		.canary_count	= 2,
-+	},
-+	{
-+		.id		= IPA_MEM_V4_ROUTE,
-+		.offset		= 0x1528,
-+		.size		= 0x0098,
-+		.canary_count	= 2,
-+	},
-+	{
-+		.id		= IPA_MEM_V6_ROUTE_HASHED,
-+		.offset		= 0x15c8,
-+		.size		= 0x0098,
-+		.canary_count	= 2,
-+	},
-+	{
-+		.id		= IPA_MEM_V6_ROUTE,
-+		.offset		= 0x1668,
-+		.size		= 0x0098,
-+		.canary_count	= 2,
-+	},
-+	{
-+		.id		= IPA_MEM_MODEM_HEADER,
-+		.offset		= 0x1708,
-+		.size		= 0x0240,
-+		.canary_count	= 2,
-+	},
-+	{
-+		.id		= IPA_MEM_AP_HEADER,
-+		.offset		= 0x1948,
-+		.size		= 0x01e0,
-+		.canary_count	= 0,
-+	},
-+	{
-+		.id		= IPA_MEM_MODEM_PROC_CTX,
-+		.offset		= 0x1b40,
-+		.size		= 0x0b20,
-+		.canary_count	= 2,
-+	},
-+	{
-+		.id		= IPA_MEM_AP_PROC_CTX,
-+		.offset		= 0x2660,
-+		.size		= 0x0200,
-+		.canary_count	= 0,
-+	},
-+	{
-+		.id		= IPA_MEM_STATS_QUOTA_MODEM,
-+		.offset		= 0x2868,
-+		.size		= 0x0060,
-+		.canary_count	= 2,
-+	},
-+	{
-+		.id		= IPA_MEM_STATS_QUOTA_AP,
-+		.offset		= 0x28c8,
-+		.size		= 0x0048,
-+		.canary_count	= 0,
-+	},
-+	{
-+		.id		= IPA_MEM_STATS_TETHERING,
-+		.offset		= 0x2910,
-+		.size		= 0x03c0,
-+		.canary_count	= 0,
-+	},
-+	{
-+		.id		= IPA_MEM_AP_V4_FILTER,
-+		.offset		= 0x29b8,
-+		.size		= 0x0188,
-+		.canary_count	= 2,
-+	},
-+	{
-+		.id		= IPA_MEM_AP_V6_FILTER,
-+		.offset		= 0x2b40,
-+		.size		= 0x0228,
-+		.canary_count	= 0,
-+	},
-+	{
-+		.id		= IPA_MEM_STATS_FILTER_ROUTE,
-+		.offset		= 0x2cd0,
-+		.size		= 0x0ba0,
-+		.canary_count	= 2,
-+	},
-+	{
-+		.id		= IPA_MEM_STATS_DROP,
-+		.offset		= 0x3870,
-+		.size		= 0x0020,
-+		.canary_count	= 0,
-+	},
-+	{
-+		.id		= IPA_MEM_MODEM,
-+		.offset		= 0x3898,
-+		.size		= 0x0d48,
-+		.canary_count	= 2,
-+	},
-+	{
-+		.id		= IPA_MEM_NAT_TABLE,
-+		.offset		= 0x45e0,
-+		.size		= 0x0900,
-+		.canary_count	= 0,
-+	},
-+	{
-+		.id		= IPA_MEM_PDN_CONFIG,
-+		.offset		= 0x4ee8,
-+		.size		= 0x0100,
-+		.canary_count	= 2,
-+	},
-+};
-+
-+/* Memory configuration data for an SoC having IPA v5.5 */
-+static const struct ipa_mem_data ipa_mem_data = {
-+	.local_count	= ARRAY_SIZE(ipa_mem_local_data),
-+	.local		= ipa_mem_local_data,
-+	.imem_addr	= 0x14688000,
-+	.imem_size	= 0x00002000,
-+	.smem_id	= 497,
-+	.smem_size	= 0x0000b000,
-+};
-+
-+/* Interconnect rates are in 1000 byte/second units */
-+static const struct ipa_interconnect_data ipa_interconnect_data[] = {
-+	{
-+		.name			= "memory",
-+		.peak_bandwidth		= 1900000,	/* 1.9 GBps */
-+		.average_bandwidth	= 600000,	/* 600 MBps */
-+	},
-+	/* Average rate is unused for the next interconnect */
-+	{
-+		.name			= "config",
-+		.peak_bandwidth		= 76800,	/* 76.8 MBps */
-+		.average_bandwidth	= 0,		/* unused */
-+	},
-+};
-+
-+/* Clock and interconnect configuration data for an SoC having IPA v5.5 */
-+static const struct ipa_power_data ipa_power_data = {
-+	.core_clock_rate	= 120 * 1000 * 1000,	/* Hz */
-+	.interconnect_count	= ARRAY_SIZE(ipa_interconnect_data),
-+	.interconnect_data	= ipa_interconnect_data,
-+};
-+
-+/* Configuration data for an SoC having IPA v5.5. */
-+const struct ipa_data ipa_data_v5_5 = {
-+	.version		= IPA_VERSION_5_5,
-+	.qsb_count		= ARRAY_SIZE(ipa_qsb_data),
-+	.qsb_data		= ipa_qsb_data,
-+	.modem_route_count	= 11,
-+	.endpoint_count		= ARRAY_SIZE(ipa_gsi_endpoint_data),
-+	.endpoint_data		= ipa_gsi_endpoint_data,
-+	.resource_data		= &ipa_resource_data,
-+	.mem_data		= &ipa_mem_data,
-+	.power_data		= &ipa_power_data,
-+};
-diff --git a/drivers/net/ipa/ipa_data.h b/drivers/net/ipa/ipa_data.h
-index ce82b00fdc498..2a1605e67b65d 100644
---- a/drivers/net/ipa/ipa_data.h
-+++ b/drivers/net/ipa/ipa_data.h
-@@ -250,5 +250,6 @@ extern const struct ipa_data ipa_data_v4_7;
- extern const struct ipa_data ipa_data_v4_9;
- extern const struct ipa_data ipa_data_v4_11;
- extern const struct ipa_data ipa_data_v5_0;
-+extern const struct ipa_data ipa_data_v5_5;
- 
- #endif /* _IPA_DATA_H_ */
-diff --git a/drivers/net/ipa/ipa_main.c b/drivers/net/ipa/ipa_main.c
-index 8893290e132b4..86884c21e7922 100644
---- a/drivers/net/ipa/ipa_main.c
-+++ b/drivers/net/ipa/ipa_main.c
-@@ -691,6 +691,10 @@ static const struct of_device_id ipa_match[] = {
- 		.compatible	= "qcom,sdx65-ipa",
- 		.data		= &ipa_data_v5_0,
- 	},
-+	{
-+		.compatible	= "qcom,sm8550-ipa",
-+		.data		= &ipa_data_v5_5,
-+	},
- 	{ },
- };
- MODULE_DEVICE_TABLE(of, ipa_match);
-diff --git a/drivers/net/ipa/ipa_version.h b/drivers/net/ipa/ipa_version.h
-index 06e75b8ece7ee..38150345b607e 100644
---- a/drivers/net/ipa/ipa_version.h
-+++ b/drivers/net/ipa/ipa_version.h
-@@ -56,6 +56,7 @@ static inline bool ipa_version_supported(enum ipa_version version)
- 	case IPA_VERSION_4_9:
- 	case IPA_VERSION_4_11:
- 	case IPA_VERSION_5_0:
-+	case IPA_VERSION_5_5:
- 		return true;
- 	default:
- 		return false;
--- 
-2.34.1
 
+On 11/22/2023 2:44 PM, Rob Herring wrote:
+> Drop unneeded quotes over simple string values to fix a soon to be
+> enabled yamllint warning:
+> 
+>    [error] string value is redundantly quoted with any quotes (quoted-strings)
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
+
+Acked-by: Florian Fainelli <florian.fainelli@broadcom.com>
+--
+Florian
+
+--000000000000ca3c3e060ac6115a
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
+
+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
+riBJ/K1AFUjRAjFhGV64l++td7dkmnq/X8ET75ti+w1s4FRpFqkD2m7pg5NxdsZphYIXAgMBAAGj
+QjBAMA4GA1UdDwEB/wQEAwIBBjAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBSP8Et/qC5FJK5N
+UPpjmove4t0bvDANBgkqhkiG9w0BAQsFAAOCAQEAS0DbwFCq/sgM7/eWVEVJu5YACUGssxOGhigH
+M8pr5nS5ugAtrqQK0/Xx8Q+Kv3NnSoPHRHt44K9ubG8DKY4zOUXDjuS5V2yq/BKW7FPGLeQkbLmU
+Y/vcU2hnVj6DuM81IcPJaP7O2sJTqsyQiunwXUaMld16WCgaLx3ezQA3QY/tRG3XUyiXfvNnBB4V
+14qWtNPeTCekTBtzc3b0F5nCH3oO4y0IrQocLP88q1UOD5F+NuvDV0m+4S4tfGCLw0FREyOdzvcy
+a5QBqJnnLDMfOjsl0oZAzjsshnjJYS8Uuu7bVW/fhO4FCU29KNhyztNiUGUe65KXgzHZs7XKR1g/
+XzCCBVgwggRAoAMCAQICDBP8P9hKRVySg3Qv5DANBgkqhkiG9w0BAQsFADBbMQswCQYDVQQGEwJC
+RTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMg
+UGVyc29uYWxTaWduIDIgQ0EgMjAyMDAeFw0yMjA5MTAxMjE4MTFaFw0yNTA5MTAxMjE4MTFaMIGW
+MQswCQYDVQQGEwJJTjESMBAGA1UECBMJS2FybmF0YWthMRIwEAYDVQQHEwlCYW5nYWxvcmUxFjAU
+BgNVBAoTDUJyb2FkY29tIEluYy4xGTAXBgNVBAMTEEZsb3JpYW4gRmFpbmVsbGkxLDAqBgkqhkiG
+9w0BCQEWHWZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tMIIBIjANBgkqhkiG9w0BAQEFAAOC
+AQ8AMIIBCgKCAQEA+oi3jMmHltY4LMUy8Up5+1zjd1iSgUBXhwCJLj1GJQF+GwP8InemBbk5rjlC
+UwbQDeIlOfb8xGqHoQFGSW8p9V1XUw+cthISLkycex0AJ09ufePshLZygRLREU0H4ecNPMejxCte
+KdtB4COST4uhBkUCo9BSy1gkl8DJ8j/BQ1KNUx6oYe0CntRag+EnHv9TM9BeXBBLfmMRnWNhvOSk
+nSmRX0J3d9/G2A3FIC6WY2XnLW7eAZCQPa1Tz3n2B5BGOxwqhwKLGLNu2SRCPHwOdD6e0drURF7/
+Vax85/EqkVnFNlfxtZhS0ugx5gn2pta7bTdBm1IG4TX+A3B1G57rVwIDAQABo4IB3jCCAdowDgYD
+VR0PAQH/BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3Vy
+ZS5nbG9iYWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEG
+CCsGAQUFBzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWdu
+MmNhMjAyMDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93
+d3cuZ2xvYmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6
+hjhodHRwOi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNy
+bDAoBgNVHREEITAfgR1mbG9yaWFuLmZhaW5lbGxpQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggr
+BgEFBQcDBDAfBgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUUwwfJ6/F
+KL0fRdVROal/Lp4lAF0wDQYJKoZIhvcNAQELBQADggEBAKBgfteDc1mChZjKBY4xAplC6uXGyBrZ
+kNGap1mHJ+JngGzZCz+dDiHRQKGpXLxkHX0BvEDZLW6LGOJ83ImrW38YMOo3ZYnCYNHA9qDOakiw
+2s1RH00JOkO5SkYdwCHj4DB9B7KEnLatJtD8MBorvt+QxTuSh4ze96Jz3kEIoHMvwGFkgObWblsc
+3/YcLBmCgaWpZ3Ksev1vJPr5n8riG3/N4on8gO5qinmmr9Y7vGeuf5dmZrYMbnb+yCBalkUmZQwY
+NxADYvcRBA0ySL6sZpj8BIIhWiXiuusuBmt2Mak2eEv0xDbovE6Z6hYyl/ZnRadbgK/ClgbY3w+O
+AfUXEZ0xggJtMIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52
+LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwT
+/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIJ64S2B998PnnRdn
+d9+eanWcii5oCrhYS8drFo0DIHfDMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
+AQkFMQ8XDTIzMTEyMjIzMjc1OFowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
+AWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEH
+MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQAwYXbJlVHiwiF0GGT+dESjRz1Ihd5knsy9
+xdsi4sZRPYF1g2y5J/FM1co5iQedr2aUjar3xJ3J8wkpjS73TfDHdA4e2uiZ8tUEdubrR35WXtK0
+y4U1nFltFmDD76KFHsKj8k/FB/GVuCE7zImSaDXiJ9r9aSFaTTWCSJZLgd+WlJSBdGr0pAS5qVRa
+tmrF5npv5MvSnXUOgd4gpQVu1YsCShelqX9wE0DHAer8RYLuoPM5vogPbFSfni5wiN0HLGvdlff2
+/iDI+3vKh9Z3AaYeMy+D6qUL9yw871pRrLY/Hk4qlUz00oepKuOeYkjoSpkgku3Zp4nHIviSXKkM
+TMUa
+--000000000000ca3c3e060ac6115a--
 
