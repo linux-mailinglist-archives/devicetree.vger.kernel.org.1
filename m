@@ -1,92 +1,251 @@
-Return-Path: <devicetree+bounces-17980-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17983-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D3A47F4A09
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 16:15:40 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C4007F4A93
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 16:34:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C6E5D1C20B9E
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 15:15:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D63632812B7
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 15:34:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F1594EB26;
-	Wed, 22 Nov 2023 15:15:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D0D54CDF5;
+	Wed, 22 Nov 2023 15:34:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="M+fdnRMS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [IPv6:2001:4b7e:0:8::81])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBE1419E;
-	Wed, 22 Nov 2023 07:15:26 -0800 (PST)
-Received: from francesco-nb.int.toradex.com (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id 007CD20618;
-	Wed, 22 Nov 2023 16:15:22 +0100 (CET)
-Date: Wed, 22 Nov 2023 16:15:18 +0100
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Lukas Wunner <lukas@wunner.de>
-Cc: Francesco Dolcini <francesco@dolcini.it>,
-	Lino Sanfilippo <l.sanfilippo@kunbus.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-integrity@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] reset: Add Infineon SLB9670 TPM reset driver
-Message-ID: <ZV4bBowT9ij+BQup@francesco-nb.int.toradex.com>
-References: <ae40859b82494d75e9ad7bf616b3264138ad1f6a.1695754856.git.lukas@wunner.de>
- <75b775d0526e72f292e0546a306b37680714686c.1695754856.git.lukas@wunner.de>
- <ZV0+Zk590YSsvhFo@francesco-nb.int.toradex.com>
- <20231122112949.GA18812@wunner.de>
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 723A519BB
+	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 07:33:46 -0800 (PST)
+Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-40842752c6eso35551275e9.1
+        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 07:33:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1700667225; x=1701272025; darn=vger.kernel.org;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=UuQvOTpszbnl9xc14Mv8OCjwyDXBhMf4cf+TfzzFh8s=;
+        b=M+fdnRMSfbREYLsxZySK1YDhCykXVPOf34aVZwtskZQgVjM2SA57gTtv7dg2nbMgTE
+         9rqOEHr6tKLIaZndEXfdta+yvSqso1SlBaK5aZAbmARqUxBsqRUaCObXCKflb7jJsPEA
+         0O2t/7V5H/TR8KekQBkblQODbVxZqFxacTi5LfsSNA5JqtAfWqBfhlGLprgT7LuH9qDW
+         NKr2QISYzrRBxvCj2jLUT3WqZEFOGvjQdnpMezHMN6IoiEUCKATDGnqbiecDCpDjmJbl
+         fkF97B27Oecuk/q9JUbUDWj2N6TJaSOzsmBJE/BWebx2ttm3RRbsuVuE86CkVDfHx7QI
+         5cOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700667225; x=1701272025;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=UuQvOTpszbnl9xc14Mv8OCjwyDXBhMf4cf+TfzzFh8s=;
+        b=dOmjqk7pjVoZEJkF9WJyk1B497KGP92VeBwsaUQqtBRACO9wXJr3kKja89u2WfYeL8
+         VIn2GHP/k2Cmxr62Pjc9ixCTuD7jDAH5fJQWXbgYJW6RbQ7XVMnahCTPVcxJDOXjWU/S
+         GCiua1c0k2hMt+2zZEg5VZ2WVXjIJ9tEQw0BhzSMyDDtZVxtnQcsQWxdlsrO5+0EW7WC
+         1MPjAZtclStJa639auiF/NrWE9mJ0xINmoM7JoAX5ZHVdDgM5x8+7vrvQZ0e9FrQyCL5
+         bQXdP8BDCpW+gfX5OnSGh+SRDkMJlqeb/f+0IuIUptRYlVYXQX6gyQaFDXF2DeVyHODS
+         y7/Q==
+X-Gm-Message-State: AOJu0Yy9EZN52bPjGUmWWkUStV7GimxRsvkXjpyCYB+3RtUb4lkPHAFj
+	izSFzKN+kRSgt7dMSR5utWjxyA==
+X-Google-Smtp-Source: AGHT+IGRjDRpoRtRtIfGUdaJ+t+pi8yzkvfovHszDmXGHtyXVw/hFFAzNajS8qufz+N2FTEE3zfaGg==
+X-Received: by 2002:a5d:620c:0:b0:332:c2ae:ca1e with SMTP id y12-20020a5d620c000000b00332c2aeca1emr1673659wru.62.1700667224696;
+        Wed, 22 Nov 2023 07:33:44 -0800 (PST)
+Received: from localhost ([2a01:e0a:3c5:5fb1:d0a1:9a3c:4f4b:fa20])
+        by smtp.gmail.com with ESMTPSA id e16-20020a5d65d0000000b00332cc7c3aaasm5969561wrw.21.2023.11.22.07.33.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Nov 2023 07:33:44 -0800 (PST)
+References: <20231117125919.1696980-1-jbrunet@baylibre.com>
+ <20231117125919.1696980-3-jbrunet@baylibre.com>
+ <170040994064.269288.960284011884896046.robh@kernel.org>
+ <4608012c-059f-4d6a-914b-e85ad0c32ff0@linaro.org>
+ <1j5y1wg3sb.fsf@starbuckisacylon.baylibre.com>
+ <2e7a65da-5c1d-4dd4-ac69-7559a53afdf3@linaro.org>
+ <1j1qckg21u.fsf@starbuckisacylon.baylibre.com>
+ <94e69281-93e1-41cd-9cf5-81cbbc15572c@linaro.org>
+ <1jwmu9et6j.fsf@starbuckisacylon.baylibre.com>
+ <2bbc2031-89d7-42e9-828e-068fa06eabf4@linaro.org>
+User-agent: mu4e 1.10.7; emacs 29.1
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Jerome Brunet <jbrunet@baylibre.com>, neil.armstrong@linaro.org, Rob
+ Herring <robh@kernel.org>, JunYi Zhao <junyi.zhao@amlogic.com>,
+ devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, Thierry Reding
+ <thierry.reding@gmail.com>, linux-kernel@vger.kernel.org,
+ linux-pwm@vger.kernel.org, linux-amlogic@lists.infradead.org, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH v2 2/6] dt-bindings: pwm: amlogic: add new compatible
+ for meson8 pwm type
+Date: Wed, 22 Nov 2023 16:23:25 +0100
+In-reply-to: <2bbc2031-89d7-42e9-828e-068fa06eabf4@linaro.org>
+Message-ID: <1jo7flerag.fsf@starbuckisacylon.baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231122112949.GA18812@wunner.de>
+Content-Type: text/plain
 
-Hello Lukas,
 
-On Wed, Nov 22, 2023 at 12:29:49PM +0100, Lukas Wunner wrote:
-> On Wed, Nov 22, 2023 at 12:33:58AM +0100, Francesco Dolcini wrote:
-> > On Tue, Sep 26, 2023 at 09:09:36PM +0200, Lukas Wunner wrote:
-> > > Normally the platform firmware is responsible for taking a Trusted
-> > > Platform Module out of reset on boot and storing measurements into it.
-> > > 
-> > > However if the platform firmware is incapable of doing that -- as is the
-> > > case on the Raspberry Pi -- then the onus is on the kernel to take the
-> > > TPM out of reset before trying to attach a driver to it.
-> > > 
-> > > Provide a reset driver for such platforms.
-> > > 
-> > > The Infineon SLB9670 TPM requires a specific reset sequence on its RST#
-> > > pin which is documented in sections 5.4 and 5.5 of the datasheet:
-> > 
-> > Are you really sure that this change is required?
-> > I have seen the RST# Timing diagram in the datasheet, however I wonder
-> > if a reset is required at all during power-up, for example.
-> 
-> If the RST# pin is not toggled at all upon a warm reset (reboot),
-> the TPM will remain in whatever state it was during the previous boot.
-...
-> Also, the pin controller connected to RST# might be reset upon a reboot
-> (think of a SoC internal pin controller setting all its registers to 0)
-> and RST# might be asserted as a result.  It is then necessary to take
-> the TPM out of reset.
+On Wed 22 Nov 2023 at 16:04, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
-Toggled at boot is different from what you are doing here.
+> On 22/11/2023 15:34, Jerome Brunet wrote:
+>> 
+>> On Wed 22 Nov 2023 at 09:37, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+>> 
+>>> On 20/11/2023 11:04, Jerome Brunet wrote:
+>>>>>>>>>    .../devicetree/bindings/pwm/pwm-amlogic.yaml  | 36 +++++++++++++++++--
+>>>>>>>>>    1 file changed, 34 insertions(+), 2 deletions(-)
+>>>>>>>>>
+>>>>>>>> Reviewed-by: Rob Herring <robh@kernel.org>
+>>>>>>>>
+>>>>>>>
+>>>>>>> I'm puzzled, isn't it recommended to have a per-soc compatible now ?
+>>>
+>>> Yes, it is.
+>>>
+>>>>>> I have specifically addressed this matter in the description,
+>>>>>> haven't I ? What good would it do in this case ?
+>>>
+>>> There is nothing about compatible naming in commit msg.
+>> 
+>> Krzysztof, the whole commit desciption is explanation about why a new
+>> compatible is introduced. I don't understand this comment.
+>> 
+>>>
+>>>>>
+>>>>> Yes you did but I was asked for the last year+ that all new compatible
+>>>>> should be soc specific (while imprecise, in our care soc family should be ok),
+>>>>> with a possible semi-generic callback with an IP version or a first soc
+>>>>> implementing the IP.
+>>>>>
+>>>>>> Plus the definition of a SoC is very vague. One could argue that
+>>>>>> the content of the list bellow are vaguely defined families. Should we
+>>>>>> add meson8b, gxl, gxm, sm1 ? ... or even the actual SoC reference ?
+>>>>>> This list gets huge for no reason.
+>>>>>
+>>>>> I think in our case soc family is reasonable since they share same silicon
+>>>>> design.
+>>>>>
+>>>>>> We know all existing PWM of this type are the same. We have been using
+>>>>>> them for years. It is not a new support we know nothing about.
+>>>>>>
+>>>>>>>
+>>>>>>> I thought something like:
+>>>>>>> - items:
+>>>>>>>      - enum:
+>>>>>>>          - amlogic,gxbb-pwm
+>>>>>>>          - amlogic,axg-pwm
+>>>>>>>          - amlogic,g12a-pwm
+>>>>>>>      - const: amlogic,pwm-v1
+>>>>>> I'm not sure I understand what you are suggesting here.
+>>>>>> Adding a "amlogic,pwm-v1" for the obsolete compatible ? No amlogic DT
+>>>>>> has that and I'm working to remove this type, so I don't get the point.
+>>>>>>
+>>>>>>>
+>>>>>>> should be preferred instead of a single amlogic,meson8-pwm-v2 ?
+>>>>>> This is named after the first SoC supporting the type.
+>>>>>> Naming it amlogic,pwm-v2 would feel weird with the s4 coming after.
+>>>>>> Plus the doc specifically advise against this type of names.
+>>>>>
+>>>>> The -v2 refers to a pure software/dt implementation versioning and not
+>>>>> an HW version, so I'm puzzled and I requires DT maintainers advice here.
+>>>>>
+>>>>> Yes meson8b is the first "known" platform, even if I'm pretty sure meson6 has
+>>>
+>>> Yes, this should be SoC-based compatible, unless you have clear
+>>> versioning scheme by SoC/IP block vendor. You named it not a HW version,
+>>> which kind of answers to the "unless" case - that's not hardware version.
+>>>
+>> 
+>> This is specifically the point of the comment in commit description.
+>> We know all the PWMs compatible are the same HW (version) as one found
+>> in the meson8b.
+>> 
+>> It is certain that adding more compatible, listing all the SoC, will be
+>> useless. I can do it if you insist.
+>
+> The docs you references insist on that, so yeah, I insist as well.
+>
+>> 
+>>>>
+>>>> This is not my point. I picked this name because I have to pick a
+>>>> specific device based one. Not because it is actually the first or
+>>>> not. I don't see a problem with meson6 being compatible with
+>>>> meson8-pwm-v2, if that ever comes along.
+>>>
+>>> No, the point is not to use "v2". Use SoC compatibles.
+>> 
+>> It is a SoC compatible. The second one.
+>
+> "v2" is not the soc. I assume meson8 is one specific SoC, right? Because
+> elinux says it is a *family*:
+> https://elinux.org/Amlogic/SoCs
+>
 
-> > Not to mention that I was able to see the driver probe succeed in a
-> > similar setup to the one you are describing in the commit message
-> > (different board, arm64, but nothing done by the platform firmware).
-> 
-> Hm, is the RST# pin even connected on that board?
+It is a family. yes
 
-Yes, it's connected and it is asserted/de-asserted (aka toggled) during
-startup from the HW reset circuit. However this is not implementing the
-reset sequence you are implementing here.
+>
+>> 
+>> The first one, as explained in the description was describing the driver
+>> more that the HW.
+>> 
+>> Changing the way clock are passed from DT to the driver would be break
+>> user of the old compatible. So a new compatible is introduced. I believe
+>> this is recommended way to introduce incompatible binding changes.
+>
+> The way is not to introduce incompatible changes. Your way is also not
+> good as it breaks other users of DTS.
+>
+>> 
+>> v2 here denote a new interface version, nothing to do with HW
+>> versioning. I happy to pick something else to denote this.
+>
+> Sorry, then it is not a SoC-based compatible.
+>
+>> 
+>>>
+>>>>
+>>>> I think the binding here satisfy the rule that it should be specific,
+>>>> and the intent that goes with it:
+>>>>
+>>>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/writing-bindings.rst?h=v6.7-rc2#n42
+>>>>
+>>>>> the same pwm architecture, this is why "amlogic,pwm-v1" as fallback seems more
+>>>>> reasonable and s4 and later pwm could use the "amlogic,pwm-v2"
+>>>>> fallback.
+>>>>
+>>>> That is not how understand this:
+>>>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/writing-bindings.rst?h=v6.7-rc2#n82
+>>>>
+>>>
+>>> Again, where the "v2" is defined? Where is any document explaining the
+>>> mapping between version blocks and SoC parts? Why do you list here only
+>>> major version? Blocks almost always have also minor (e.g. v2.0).
+>> 
+>> Again, v2 does has nothing to do with the HW. Never wrote it was.
+>> The HW remains the same.
+>
+> Don't add compatibles which are not related to HW, but represent
+> software versioning. Software does not matter for the bindings.
 
-Francesco
+What I did I explicitly what is recommended in Grant's presentation from
+2013. 10y old, but I assume slide 10 "Making an incompatible update" is
+still valid.
+
+https://elinux.org/images/1/1e/DT_Binding_Process_glikely_ksummit_2013_10_28.pdf
+
+Breaking the ABI of the old compatible would break all boards which use
+u-boot DT and pass it to the kernel, because the meaning of the clock
+property would change.
+
+Doing things has suggested in this slide, and this patch, allows every
+device to continue to work properly, whether the DT given is the one
+shipped with u-boot (using the old compatible for now) or the kernel.
+
+>
+> That's a clear NAK.
+>
+> Best regards,
+> Krzysztof
 
 
