@@ -1,585 +1,272 @@
-Return-Path: <devicetree+bounces-17842-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17843-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A2D77F4464
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 11:56:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 830DC7F4479
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 11:59:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5038328148A
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 10:56:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 38B9528143B
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 10:59:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D496A1C2BA;
-	Wed, 22 Nov 2023 10:56:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WZtnSYLg"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC83C1DFE8;
+	Wed, 22 Nov 2023 10:59:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73959C1
-	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 02:56:03 -0800 (PST)
-Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-a0064353af8so142242166b.0
-        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 02:56:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700650562; x=1701255362; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=l8v79Ra7yNmy/zYFfkwbdCIxwjcgjrpT8Dlidgl8zj0=;
-        b=WZtnSYLgfzmraTKUyzfz1zLkJ5aESy0JiTvgXhA49dXQVt88jKWn6s4UNC1LFo/Nrg
-         4A7o9p5ymgpWSow8/taYzbxBOaHxf7nkKDrBu0Fq0qZbo9scBFuACNrtzbX264MpQGNb
-         ehJYIn+Slq/Doqi/SEwPtai1x5pDRLN0bV1QkCk8WUuLNfeZu28u+rNovxB2s8YFzdDB
-         1VLyaoqTms2xLUzmV3SYwonds7+M1jy6a7w8Iv5wdZli1PInw8Pmyc+K/jxYMlsPlA0m
-         GMoPWA8zB7CDXnZPZ9x+ycCGJ6Z4BKQj73L2Tl7+ku9W1S5170nb0/mfdGjxAxBHOqMs
-         9MmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700650562; x=1701255362;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=l8v79Ra7yNmy/zYFfkwbdCIxwjcgjrpT8Dlidgl8zj0=;
-        b=eXFZtuJh5b4ZOkeesRc+u0p0SWk8JM5tAG1IlNluybsPtHYn6CYlSyoc/MPd2Zocuk
-         j9XBOEfLuVsX5QYYJXvh79apZ05nJsrcaPDUg5i8JHa3xRTUtH67oLTNKRRLJcBXfTCZ
-         ZxgjreVlu83Vl84ZfsgUB7B++GgxS3xpx9SBJhfECnHSrlzlMBbXZ5+P+eoxS48WNFzf
-         +x9/ilqGze7Kk/uNoCY4q0rKSrTvQsxSPphsBDn0/cX/rWaMob6NnmJwQK0+8vgumQUG
-         RjlLUw8MVvQay9I+g1+whwYRBGGudcPCwKGtqPj0+OWilPfME5cHe1QJ9ci6efJh5pVp
-         G5mg==
-X-Gm-Message-State: AOJu0Yy8eKwo21r7xegL5gXy+aVVI5rt6uxbygJCkFAlS711HGuXYZZ/
-	ZaSWpLlKhVBkwbwL9/19dg0ayQ==
-X-Google-Smtp-Source: AGHT+IH/sPOmWIUic5UgiinTGkozW9ZSszQrI0Cw0BWB9rKtzpSRBnMVe3cR+88uU///kG4NC8Nrjg==
-X-Received: by 2002:a17:906:28d:b0:9ae:659f:4d2f with SMTP id 13-20020a170906028d00b009ae659f4d2fmr1385228ejf.26.1700650561969;
-        Wed, 22 Nov 2023 02:56:01 -0800 (PST)
-Received: from [127.0.1.1] ([86.123.99.122])
-        by smtp.gmail.com with ESMTPSA id mf3-20020a170906cb8300b009f28db2b702sm6423557ejb.209.2023.11.22.02.56.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Nov 2023 02:56:01 -0800 (PST)
-From: Abel Vesa <abel.vesa@linaro.org>
-Date: Wed, 22 Nov 2023 12:55:49 +0200
-Subject: [PATCH 2/2] phy: qcom: edp: Add X1E80100 eDP and DP PHYs
+Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1963C110;
+	Wed, 22 Nov 2023 02:59:13 -0800 (PST)
+Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
+	by mx0b-00128a01.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 3AM6qe0B014828;
+	Wed, 22 Nov 2023 05:58:58 -0500
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 3uhcrk0w78-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 22 Nov 2023 05:58:57 -0500 (EST)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 3AMAwuhx053161
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 22 Nov 2023 05:58:56 -0500
+Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
+ ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Wed, 22 Nov 2023 05:58:55 -0500
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
+ ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Wed, 22 Nov 2023 05:58:54 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Wed, 22 Nov 2023 05:58:54 -0500
+Received: from KPALLER2-L02.ad.analog.com (KPALLER2-L02.ad.analog.com [10.117.220.22])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 3AMAwbo3006221;
+	Wed, 22 Nov 2023 05:58:39 -0500
+From: Kim Seer Paller <kimseer.paller@analog.com>
+To: 
+CC: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Kim
+ Seer Paller" <kimseer.paller@analog.com>,
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, "kernel test
+ robot" <lkp@intel.com>
+Subject: [PATCH v3 1/2] dt-bindings: iio: frequency: add admfm2000
+Date: Wed, 22 Nov 2023 18:58:30 +0800
+Message-ID: <20231122105831.182570-1-kimseer.paller@analog.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231122-phy-qualcomm-edp-x1e80100-v1-2-a9938990edb3@linaro.org>
-References: <20231122-phy-qualcomm-edp-x1e80100-v1-0-a9938990edb3@linaro.org>
-In-Reply-To: <20231122-phy-qualcomm-edp-x1e80100-v1-0-a9938990edb3@linaro.org>
-To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Vinod Koul <vkoul@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Abhinav Kumar <quic_abhinavk@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Abel Vesa <abel.vesa@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=18444; i=abel.vesa@linaro.org;
- h=from:subject:message-id; bh=4YKbDtZQj3SgbS35Bun/mHMEGFn9U/6lt6EhrBBnQXc=;
- b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBlXd48t8DQXYXx9bRMWIiawcBiZKo4U4qtXSRiv
- FEoHgidtaOJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZV3ePAAKCRAbX0TJAJUV
- VoeGD/48JqTTxvCjYqRYnioUvjxe4YZc1T3PaPeRy2RRgzUOdsV1JyvEan6EfUUBtPon4LBo1Bn
- 3pDlxAOm2ERngGBILoi/CsBtj7qVo1XcUVJ4nCZHIq80XnFnYUXo1hG8O6hp/7HdL7zxEcvth7S
- 9gmu/rKwsMJp0BIT4kGjHPhzZB7kluEOYNWxBs+IbOnRkdvz0flGc/KeqGPTRxUjjWW4WDpDaDZ
- PxSbz6uAz6fS3do+bThsDvrs76rEKiiPeAPMdURFuFHz21k/0JgKT/s+h2BeDDRrSLv3WPGazep
- gefT96VCjvetR+YgHWyf2epWIW4XSMuOCyUojjrCAoWa9IcWT72wbznLZkAF5HRrOHyNOH/JS2v
- cPHZUEg/6Uv5tGKIKa5ZK4Mx5lrfFQV5rnCKLnU+lkA2MjmdhSVUOC/rh2ZDp4gMPbpg6GJRdBN
- CHlBG/qKaOEf8Lu2QSFYm1PAjk+vYtaCQY7kfXkr3cCV6Xe1dt4UDrD1WLr08fqHw0HA44qAIvT
- GD/RuaLJwwoWV3jlJ/EnCXkRJp5NYffLHKkU/TH6Qh0cIBuiZsGYw4xa1ar3kNB9zr3+AE5nvbS
- TinSm565e4DmZiTiWHZ06ez3tVGKGoNbtGFEQvxwT18LNXF7shV+NIQW4ZNwWUP8JXdfH09+hJN
- jz+/LWunEe9VcwA==
-X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
- fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-ORIG-GUID: WlcDQbU0T_OgMYQQ5EFuCpzMz_S-cxhE
+X-Proofpoint-GUID: WlcDQbU0T_OgMYQQ5EFuCpzMz_S-cxhE
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-22_06,2023-11-22_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ lowpriorityscore=0 adultscore=0 clxscore=1011 mlxlogscore=999 spamscore=0
+ bulkscore=0 priorityscore=1501 impostorscore=0 mlxscore=0 phishscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311060001 definitions=main-2311220076
 
-The Qualcomm X1E80100 platform has a number of eDP and DP PHY instances,
-add support for these.
+Dual microwave down converter module with input RF and LO frequency
+ranges from 0.5 to 32 GHz and an output IF frequency range from 0.1 to
+8 GHz. It consists of a LNA, mixer, IF filter, DSA, and IF amplifier
+for each down conversion path.
 
-Co-developed-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
-Signed-off-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
+Reported-by: kernel test robot <lkp@intel.com>
+Closes: https://lore.kernel.org/oe-kbuild-all/202311220624.J7Nqg5h1-lkp@intel.com/
 ---
- drivers/phy/qualcomm/phy-qcom-edp.c | 305 +++++++++++++++++++++++++++---------
- 1 file changed, 231 insertions(+), 74 deletions(-)
+V2 -> V3: Adjusted indentation to resolve wrong indentation warning. 
+          Changed node name to converter. Updated the descriptions to clarify
+          the properties.
+V1 -> V2: Removed '|' after description. Specified the pins connected to
+          the GPIOs. Added additionalProperties: false. Changed node name to gpio.
+          Aligned < syntax with the previous syntax in the examples.
 
-diff --git a/drivers/phy/qualcomm/phy-qcom-edp.c b/drivers/phy/qualcomm/phy-qcom-edp.c
-index 8e5078304646..9eca9a8f8824 100644
---- a/drivers/phy/qualcomm/phy-qcom-edp.c
-+++ b/drivers/phy/qualcomm/phy-qcom-edp.c
-@@ -23,6 +23,9 @@
- 
- #include "phy-qcom-qmp.h"
- 
-+#define QSERDES_V4	0
-+#define QSERDES_V6	1
-+
- /* EDP_PHY registers */
- #define DP_PHY_CFG                              0x0010
- #define DP_PHY_CFG_1                            0x0014
-@@ -70,6 +73,7 @@
- 
- struct qcom_edp_cfg {
- 	bool is_dp;
-+	int qserdes_version;
- 
- 	/* DP PHY swing and pre_emphasis tables */
- 	const u8 (*swing_hbr_rbr)[4][4];
-@@ -94,7 +98,7 @@ struct qcom_edp {
- 
- 	struct phy_configure_opts_dp dp_opts;
- 
--	struct clk_bulk_data clks[2];
-+	struct clk_bulk_data clks[3];
- 	struct regulator_bulk_data supplies[2];
- };
- 
-@@ -126,8 +130,18 @@ static const u8 dp_pre_emp_hbr2_hbr3[4][4] = {
- 	{ 0x04, 0xff, 0xff, 0xff }
- };
- 
--static const struct qcom_edp_cfg dp_phy_cfg = {
-+static const struct qcom_edp_cfg dp_v4_phy_cfg = {
- 	.is_dp = true,
-+	.qserdes_version = QSERDES_V4,
-+	.swing_hbr_rbr = &dp_swing_hbr_rbr,
-+	.swing_hbr3_hbr2 = &dp_swing_hbr2_hbr3,
-+	.pre_emphasis_hbr_rbr = &dp_pre_emp_hbr_rbr,
-+	.pre_emphasis_hbr3_hbr2 = &dp_pre_emp_hbr2_hbr3,
-+};
-+
-+static const struct qcom_edp_cfg dp_v6_phy_cfg = {
-+	.is_dp = true,
-+	.qserdes_version = QSERDES_V6,
- 	.swing_hbr_rbr = &dp_swing_hbr_rbr,
- 	.swing_hbr3_hbr2 = &dp_swing_hbr2_hbr3,
- 	.pre_emphasis_hbr_rbr = &dp_pre_emp_hbr_rbr,
-@@ -162,8 +176,18 @@ static const u8 edp_pre_emp_hbr2_hbr3[4][4] = {
- 	{ 0x00, 0xff, 0xff, 0xff }
- };
- 
--static const struct qcom_edp_cfg edp_phy_cfg = {
-+static const struct qcom_edp_cfg edp_v4_phy_cfg = {
-+	.is_dp = false,
-+	.qserdes_version = QSERDES_V4,
-+	.swing_hbr_rbr = &edp_swing_hbr_rbr,
-+	.swing_hbr3_hbr2 = &edp_swing_hbr2_hbr3,
-+	.pre_emphasis_hbr_rbr = &edp_pre_emp_hbr_rbr,
-+	.pre_emphasis_hbr3_hbr2 = &edp_pre_emp_hbr2_hbr3,
-+};
-+
-+static const struct qcom_edp_cfg edp_v6_phy_cfg = {
- 	.is_dp = false,
-+	.qserdes_version = QSERDES_V6,
- 	.swing_hbr_rbr = &edp_swing_hbr_rbr,
- 	.swing_hbr3_hbr2 = &edp_swing_hbr2_hbr3,
- 	.pre_emphasis_hbr_rbr = &edp_pre_emp_hbr_rbr,
-@@ -190,7 +214,10 @@ static int qcom_edp_phy_init(struct phy *phy)
- 	       edp->edp + DP_PHY_PD_CTL);
- 
- 	/* Turn on BIAS current for PHY/PLL */
--	writel(0x17, edp->pll + QSERDES_V4_COM_BIAS_EN_CLKBUFLR_EN);
-+	if (cfg->qserdes_version == QSERDES_V4)
-+		writel(0x17, edp->pll + QSERDES_V4_COM_BIAS_EN_CLKBUFLR_EN);
-+	else if (cfg->qserdes_version == QSERDES_V6)
-+		writel(0x1f, edp->pll + QSERDES_V6_COM_PLL_BIAS_EN_CLK_BUFLR_EN);
- 
- 	writel(DP_PHY_PD_CTL_PSR_PWRDN, edp->edp + DP_PHY_PD_CTL);
- 	msleep(20);
-@@ -205,6 +232,8 @@ static int qcom_edp_phy_init(struct phy *phy)
- 	else
- 		cfg8 = 0x37;
- 
-+	cfg8 = 0x37;
-+
- 	writel(0xfc, edp->edp + DP_PHY_MODE);
- 
- 	writel(0x00, edp->edp + DP_PHY_AUX_CFG0);
-@@ -261,7 +290,10 @@ static int qcom_edp_set_voltages(struct qcom_edp *edp, const struct phy_configur
- 	if (swing == 0xff || emph == 0xff)
- 		return -EINVAL;
- 
--	ldo_config = (cfg && cfg->is_dp) ? 0x1 : 0x0;
-+	if (cfg->qserdes_version == QSERDES_V4)
-+		ldo_config = (cfg && cfg->is_dp) ? 0x1 : 0x0;
-+	else if (cfg->qserdes_version == QSERDES_V6)
-+		ldo_config |= 0x91;
- 
- 	writel(ldo_config, edp->tx0 + TXn_LDO_CONFIG);
- 	writel(swing, edp->tx0 + TXn_TX_DRV_LVL);
-@@ -291,6 +323,7 @@ static int qcom_edp_phy_configure(struct phy *phy, union phy_configure_opts *opt
- static int qcom_edp_configure_ssc(const struct qcom_edp *edp)
- {
- 	const struct phy_configure_opts_dp *dp_opts = &edp->dp_opts;
-+	const struct qcom_edp_cfg *cfg = edp->cfg;
- 	u32 step1;
- 	u32 step2;
- 
-@@ -298,13 +331,24 @@ static int qcom_edp_configure_ssc(const struct qcom_edp *edp)
- 	case 1620:
- 	case 2700:
- 	case 8100:
--		step1 = 0x45;
--		step2 = 0x06;
-+		if (cfg->qserdes_version == QSERDES_V4) {
-+			step1 = 0x45;
-+			step2 = 0x06;
-+		} else if (cfg->qserdes_version == QSERDES_V6) {
-+			step1 = 0x92;
-+			step2 = 0x01;
-+		}
- 		break;
- 
- 	case 5400:
--		step1 = 0x5c;
--		step2 = 0x08;
-+		if (cfg->qserdes_version == QSERDES_V4) {
-+			step1 = 0x5c;
-+			step2 = 0x08;
-+		} else if (cfg->qserdes_version == QSERDES_V6) {
-+			step1 = 0x18;
-+			step2 = 0x02;
-+		}
-+
- 		break;
- 
- 	default:
-@@ -312,12 +356,21 @@ static int qcom_edp_configure_ssc(const struct qcom_edp *edp)
- 		return -EINVAL;
- 	}
- 
--	writel(0x01, edp->pll + QSERDES_V4_COM_SSC_EN_CENTER);
--	writel(0x00, edp->pll + QSERDES_V4_COM_SSC_ADJ_PER1);
--	writel(0x36, edp->pll + QSERDES_V4_COM_SSC_PER1);
--	writel(0x01, edp->pll + QSERDES_V4_COM_SSC_PER2);
--	writel(step1, edp->pll + QSERDES_V4_COM_SSC_STEP_SIZE1_MODE0);
--	writel(step2, edp->pll + QSERDES_V4_COM_SSC_STEP_SIZE2_MODE0);
-+	if (cfg->qserdes_version == QSERDES_V4) {
-+		writel(0x01, edp->pll + QSERDES_V4_COM_SSC_EN_CENTER);
-+		writel(0x00, edp->pll + QSERDES_V4_COM_SSC_ADJ_PER1);
-+		writel(0x36, edp->pll + QSERDES_V4_COM_SSC_PER1);
-+		writel(0x01, edp->pll + QSERDES_V4_COM_SSC_PER2);
-+		writel(step1, edp->pll + QSERDES_V4_COM_SSC_STEP_SIZE1_MODE0);
-+		writel(step2, edp->pll + QSERDES_V4_COM_SSC_STEP_SIZE2_MODE0);
-+	} else if (cfg->qserdes_version == QSERDES_V6) {
-+		writel(0x01, edp->pll + QSERDES_V6_COM_SSC_EN_CENTER);
-+		writel(0x00, edp->pll + QSERDES_V6_COM_SSC_ADJ_PER1);
-+		writel(0x6b, edp->pll + QSERDES_V6_COM_SSC_PER1);
-+		writel(0x02, edp->pll + QSERDES_V6_COM_SSC_PER2);
-+		writel(step1, edp->pll + QSERDES_V6_COM_SSC_STEP_SIZE1_MODE0);
-+		writel(step2, edp->pll + QSERDES_V6_COM_SSC_STEP_SIZE2_MODE0);
-+	}
- 
- 	return 0;
- }
-@@ -325,48 +378,99 @@ static int qcom_edp_configure_ssc(const struct qcom_edp *edp)
- static int qcom_edp_configure_pll(const struct qcom_edp *edp)
- {
- 	const struct phy_configure_opts_dp *dp_opts = &edp->dp_opts;
-+	const struct qcom_edp_cfg *cfg = edp->cfg;
- 	u32 div_frac_start2_mode0;
- 	u32 div_frac_start3_mode0;
- 	u32 dec_start_mode0;
- 	u32 lock_cmp1_mode0;
- 	u32 lock_cmp2_mode0;
-+	u32 code1_mode0;
-+	u32 code2_mode0;
- 	u32 hsclk_sel;
- 
- 	switch (dp_opts->link_rate) {
- 	case 1620:
- 		hsclk_sel = 0x5;
--		dec_start_mode0 = 0x69;
--		div_frac_start2_mode0 = 0x80;
--		div_frac_start3_mode0 = 0x07;
--		lock_cmp1_mode0 = 0x6f;
--		lock_cmp2_mode0 = 0x08;
-+
-+		if (cfg->qserdes_version == QSERDES_V4) {
-+			dec_start_mode0 = 0x69;
-+			div_frac_start2_mode0 = 0x80;
-+			div_frac_start3_mode0 = 0x07;
-+			lock_cmp1_mode0 = 0x6f;
-+			lock_cmp2_mode0 = 0x08;
-+		} else if (cfg->qserdes_version == QSERDES_V6) {
-+			dec_start_mode0 = 0x34;
-+			div_frac_start2_mode0 = 0xc0;
-+			div_frac_start3_mode0 = 0x0b;
-+			lock_cmp1_mode0 = 0x37;
-+			lock_cmp2_mode0 = 0x04;
-+			code1_mode0 = 0x71;
-+			code2_mode0 = 0x0C;
-+		}
-+
- 		break;
- 
- 	case 2700:
- 		hsclk_sel = 0x3;
--		dec_start_mode0 = 0x69;
--		div_frac_start2_mode0 = 0x80;
--		div_frac_start3_mode0 = 0x07;
--		lock_cmp1_mode0 = 0x0f;
--		lock_cmp2_mode0 = 0x0e;
-+
-+		if (cfg->qserdes_version == QSERDES_V4) {
-+			dec_start_mode0 = 0x69;
-+			div_frac_start2_mode0 = 0x80;
-+			div_frac_start3_mode0 = 0x07;
-+			lock_cmp1_mode0 = 0x0f;
-+			lock_cmp2_mode0 = 0x0e;
-+		} else if (cfg->qserdes_version == QSERDES_V6) {
-+			dec_start_mode0 = 0x34;
-+			div_frac_start2_mode0 = 0xc0;
-+			div_frac_start3_mode0 = 0x0b;
-+			lock_cmp1_mode0 = 0x07;
-+			lock_cmp2_mode0 = 0x07;
-+			code1_mode0 = 0x71;
-+			code2_mode0 = 0x0C;
-+		}
-+
- 		break;
- 
- 	case 5400:
- 		hsclk_sel = 0x1;
--		dec_start_mode0 = 0x8c;
--		div_frac_start2_mode0 = 0x00;
--		div_frac_start3_mode0 = 0x0a;
--		lock_cmp1_mode0 = 0x1f;
--		lock_cmp2_mode0 = 0x1c;
-+
-+		if (cfg->qserdes_version == QSERDES_V4) {
-+			dec_start_mode0 = 0x8c;
-+			div_frac_start2_mode0 = 0x00;
-+			div_frac_start3_mode0 = 0x0a;
-+			lock_cmp1_mode0 = 0x1f;
-+			lock_cmp2_mode0 = 0x1c;
-+		} else if (cfg->qserdes_version == QSERDES_V6) {
-+			dec_start_mode0 = 0x46;
-+			div_frac_start2_mode0 = 0x00;
-+			div_frac_start3_mode0 = 0x05;
-+			lock_cmp1_mode0 = 0x0f;
-+			lock_cmp2_mode0 = 0x0e;
-+			code1_mode0 = 0x97;
-+			code2_mode0 = 0x10;
-+		}
-+
- 		break;
- 
- 	case 8100:
- 		hsclk_sel = 0x0;
--		dec_start_mode0 = 0x69;
--		div_frac_start2_mode0 = 0x80;
--		div_frac_start3_mode0 = 0x07;
--		lock_cmp1_mode0 = 0x2f;
--		lock_cmp2_mode0 = 0x2a;
-+
-+		if (cfg->qserdes_version == QSERDES_V4) {
-+			dec_start_mode0 = 0x69;
-+			div_frac_start2_mode0 = 0x80;
-+			div_frac_start3_mode0 = 0x07;
-+			lock_cmp1_mode0 = 0x2f;
-+			lock_cmp2_mode0 = 0x2a;
-+		} else if (cfg->qserdes_version == QSERDES_V6) {
-+			dec_start_mode0 = 0x34;
-+			div_frac_start2_mode0 = 0xc0;
-+			div_frac_start3_mode0 = 0x0b;
-+			lock_cmp1_mode0 = 0x17;
-+			lock_cmp2_mode0 = 0x15;
-+			code1_mode0 = 0x71;
-+			code2_mode0 = 0x0C;
-+		}
-+
- 		break;
- 
- 	default:
-@@ -374,36 +478,70 @@ static int qcom_edp_configure_pll(const struct qcom_edp *edp)
- 		return -EINVAL;
- 	}
- 
--	writel(0x01, edp->pll + QSERDES_V4_COM_SVS_MODE_CLK_SEL);
--	writel(0x0b, edp->pll + QSERDES_V4_COM_SYSCLK_EN_SEL);
--	writel(0x02, edp->pll + QSERDES_V4_COM_SYS_CLK_CTRL);
--	writel(0x0c, edp->pll + QSERDES_V4_COM_CLK_ENABLE1);
--	writel(0x06, edp->pll + QSERDES_V4_COM_SYSCLK_BUF_ENABLE);
--	writel(0x30, edp->pll + QSERDES_V4_COM_CLK_SELECT);
--	writel(hsclk_sel, edp->pll + QSERDES_V4_COM_HSCLK_SEL);
--	writel(0x0f, edp->pll + QSERDES_V4_COM_PLL_IVCO);
--	writel(0x08, edp->pll + QSERDES_V4_COM_LOCK_CMP_EN);
--	writel(0x36, edp->pll + QSERDES_V4_COM_PLL_CCTRL_MODE0);
--	writel(0x16, edp->pll + QSERDES_V4_COM_PLL_RCTRL_MODE0);
--	writel(0x06, edp->pll + QSERDES_V4_COM_CP_CTRL_MODE0);
--	writel(dec_start_mode0, edp->pll + QSERDES_V4_COM_DEC_START_MODE0);
--	writel(0x00, edp->pll + QSERDES_V4_COM_DIV_FRAC_START1_MODE0);
--	writel(div_frac_start2_mode0, edp->pll + QSERDES_V4_COM_DIV_FRAC_START2_MODE0);
--	writel(div_frac_start3_mode0, edp->pll + QSERDES_V4_COM_DIV_FRAC_START3_MODE0);
--	writel(0x02, edp->pll + QSERDES_V4_COM_CMN_CONFIG);
--	writel(0x3f, edp->pll + QSERDES_V4_COM_INTEGLOOP_GAIN0_MODE0);
--	writel(0x00, edp->pll + QSERDES_V4_COM_INTEGLOOP_GAIN1_MODE0);
--	writel(0x00, edp->pll + QSERDES_V4_COM_VCO_TUNE_MAP);
--	writel(lock_cmp1_mode0, edp->pll + QSERDES_V4_COM_LOCK_CMP1_MODE0);
--	writel(lock_cmp2_mode0, edp->pll + QSERDES_V4_COM_LOCK_CMP2_MODE0);
--
--	writel(0x0a, edp->pll + QSERDES_V4_COM_BG_TIMER);
--	writel(0x14, edp->pll + QSERDES_V4_COM_CORECLK_DIV_MODE0);
--	writel(0x00, edp->pll + QSERDES_V4_COM_VCO_TUNE_CTRL);
--	writel(0x17, edp->pll + QSERDES_V4_COM_BIAS_EN_CLKBUFLR_EN);
--	writel(0x0f, edp->pll + QSERDES_V4_COM_CORE_CLK_EN);
--	writel(0xa0, edp->pll + QSERDES_V4_COM_VCO_TUNE1_MODE0);
--	writel(0x03, edp->pll + QSERDES_V4_COM_VCO_TUNE2_MODE0);
-+	if (cfg->qserdes_version == QSERDES_V4) {
-+		writel(0x01, edp->pll + QSERDES_V4_COM_SVS_MODE_CLK_SEL);
-+		writel(0x0b, edp->pll + QSERDES_V4_COM_SYSCLK_EN_SEL);
-+		writel(0x02, edp->pll + QSERDES_V4_COM_SYS_CLK_CTRL);
-+		writel(0x0c, edp->pll + QSERDES_V4_COM_CLK_ENABLE1);
-+		writel(0x06, edp->pll + QSERDES_V4_COM_SYSCLK_BUF_ENABLE);
-+		writel(0x30, edp->pll + QSERDES_V4_COM_CLK_SELECT);
-+		writel(hsclk_sel, edp->pll + QSERDES_V4_COM_HSCLK_SEL);
-+		writel(0x0f, edp->pll + QSERDES_V4_COM_PLL_IVCO);
-+		writel(0x08, edp->pll + QSERDES_V4_COM_LOCK_CMP_EN);
-+		writel(0x36, edp->pll + QSERDES_V4_COM_PLL_CCTRL_MODE0);
-+		writel(0x16, edp->pll + QSERDES_V4_COM_PLL_RCTRL_MODE0);
-+		writel(0x06, edp->pll + QSERDES_V4_COM_CP_CTRL_MODE0);
-+		writel(dec_start_mode0, edp->pll + QSERDES_V4_COM_DEC_START_MODE0);
-+		writel(0x00, edp->pll + QSERDES_V4_COM_DIV_FRAC_START1_MODE0);
-+		writel(div_frac_start2_mode0, edp->pll + QSERDES_V4_COM_DIV_FRAC_START2_MODE0);
-+		writel(div_frac_start3_mode0, edp->pll + QSERDES_V4_COM_DIV_FRAC_START3_MODE0);
-+		writel(0x02, edp->pll + QSERDES_V4_COM_CMN_CONFIG);
-+		writel(0x3f, edp->pll + QSERDES_V4_COM_INTEGLOOP_GAIN0_MODE0);
-+		writel(0x00, edp->pll + QSERDES_V4_COM_INTEGLOOP_GAIN1_MODE0);
-+		writel(0x00, edp->pll + QSERDES_V4_COM_VCO_TUNE_MAP);
-+		writel(lock_cmp1_mode0, edp->pll + QSERDES_V4_COM_LOCK_CMP1_MODE0);
-+		writel(lock_cmp2_mode0, edp->pll + QSERDES_V4_COM_LOCK_CMP2_MODE0);
-+
-+		writel(0x0a, edp->pll + QSERDES_V4_COM_BG_TIMER);
-+		writel(0x14, edp->pll + QSERDES_V4_COM_CORECLK_DIV_MODE0);
-+		writel(0x00, edp->pll + QSERDES_V4_COM_VCO_TUNE_CTRL);
-+		writel(0x17, edp->pll + QSERDES_V4_COM_BIAS_EN_CLKBUFLR_EN);
-+		writel(0x0f, edp->pll + QSERDES_V4_COM_CORE_CLK_EN);
-+		writel(0xa0, edp->pll + QSERDES_V4_COM_VCO_TUNE1_MODE0);
-+		writel(0x03, edp->pll + QSERDES_V4_COM_VCO_TUNE2_MODE0);
-+	} else if (cfg->qserdes_version == QSERDES_V6) {
-+		writel(0x01, edp->pll + QSERDES_V6_COM_SVS_MODE_CLK_SEL);
-+		writel(0x0b, edp->pll + QSERDES_V6_COM_SYSCLK_EN_SEL);
-+		writel(0x02, edp->pll + QSERDES_V6_COM_SYS_CLK_CTRL);
-+		writel(0x0c, edp->pll + QSERDES_V6_COM_CLK_ENABLE1);
-+		writel(0x06, edp->pll + QSERDES_V6_COM_SYSCLK_BUF_ENABLE);
-+		writel(0x30, edp->pll + QSERDES_V6_COM_CLK_SELECT);
-+		writel(hsclk_sel, edp->pll + QSERDES_V6_COM_HSCLK_SEL_1);
-+		writel(0x07, edp->pll + QSERDES_V6_COM_PLL_IVCO);
-+		writel(0x08, edp->pll + QSERDES_V6_COM_LOCK_CMP_EN);
-+		writel(0x36, edp->pll + QSERDES_V6_COM_PLL_CCTRL_MODE0);
-+		writel(0x16, edp->pll + QSERDES_V6_COM_PLL_RCTRL_MODE0);
-+		writel(0x6, edp->pll + QSERDES_V6_COM_CP_CTRL_MODE0);
-+		writel(dec_start_mode0, edp->pll + QSERDES_V6_COM_DEC_START_MODE0);
-+		writel(0x00, edp->pll + QSERDES_V6_COM_DIV_FRAC_START1_MODE0);
-+		writel(div_frac_start2_mode0, edp->pll + QSERDES_V6_COM_DIV_FRAC_START2_MODE0);
-+		writel(div_frac_start3_mode0, edp->pll + QSERDES_V6_COM_DIV_FRAC_START3_MODE0);
-+		writel(0x12, edp->pll + QSERDES_V6_COM_CMN_CONFIG_1);
-+		writel(0x3f, edp->pll + QSERDES_V6_COM_INTEGLOOP_GAIN0_MODE0);
-+		writel(0x00, edp->pll + QSERDES_V6_COM_INTEGLOOP_GAIN1_MODE0);
-+		writel(0x00, edp->pll + QSERDES_V6_COM_VCO_TUNE_MAP);
-+		writel(lock_cmp1_mode0, edp->pll + QSERDES_V6_COM_LOCK_CMP1_MODE0);
-+		writel(lock_cmp2_mode0, edp->pll + QSERDES_V6_COM_LOCK_CMP2_MODE0);
-+
-+		writel(0x0a, edp->pll + QSERDES_V6_COM_BG_TIMER);
-+		writel(0x14, edp->pll + QSERDES_V6_COM_PLL_CORE_CLK_DIV_MODE0);
-+		writel(0x00, edp->pll + QSERDES_V6_COM_VCO_TUNE_CTRL);
-+		writel(0x17, edp->pll + QSERDES_V6_COM_PLL_BIAS_EN_CLK_BUFLR_EN);
-+		writel(0x0f, edp->pll + QSERDES_V6_COM_CORE_CLK_EN);
-+
-+		writel(code1_mode0, edp->pll + QSERDES_V6_COM_BIN_VCOCAL_CMP_CODE1_MODE0);
-+		writel(code2_mode0, edp->pll + QSERDES_V6_COM_BIN_VCOCAL_CMP_CODE2_MODE0);
-+	}
- 
- 	return 0;
- }
-@@ -462,13 +600,21 @@ static int qcom_edp_phy_power_on(struct phy *phy)
- 	       edp->edp + DP_PHY_PD_CTL);
- 	writel(0xfc, edp->edp + DP_PHY_MODE);
- 
--	timeout = readl_poll_timeout(edp->pll + QSERDES_V4_COM_CMN_STATUS,
--				     val, val & BIT(7), 5, 200);
-+	if (cfg->qserdes_version == QSERDES_V4) {
-+		timeout = readl_poll_timeout(edp->pll + QSERDES_V4_COM_CMN_STATUS,
-+					     val, val & BIT(7), 5, 200);
-+	} else if (cfg->qserdes_version == QSERDES_V6) {
-+		timeout = readl_poll_timeout(edp->pll + QSERDES_V6_COM_CMN_STATUS,
-+					     val, val & BIT(7), 5, 200);
-+	}
- 	if (timeout)
- 		return timeout;
- 
- 
--	ldo_config = (cfg && cfg->is_dp) ? 0x1 : 0x0;
-+	if (cfg->qserdes_version == QSERDES_V4)
-+		ldo_config = (cfg && cfg->is_dp) ? 0x1 : 0x0;
-+	else if (cfg->qserdes_version == QSERDES_V6)
-+		ldo_config |= 0x91;
- 
- 	writel(ldo_config, edp->tx0 + TXn_LDO_CONFIG);
- 	writel(ldo_config, edp->tx1 + TXn_LDO_CONFIG);
-@@ -512,10 +658,18 @@ static int qcom_edp_phy_power_on(struct phy *phy)
- 	writel(0x01, edp->edp + DP_PHY_CFG);
- 	writel(0x09, edp->edp + DP_PHY_CFG);
- 
--	writel(0x20, edp->pll + QSERDES_V4_COM_RESETSM_CNTRL);
-+	if (cfg->qserdes_version == QSERDES_V4) {
-+		writel(0x20, edp->pll + QSERDES_V4_COM_RESETSM_CNTRL);
-+
-+		timeout = readl_poll_timeout(edp->pll + QSERDES_V4_COM_C_READY_STATUS,
-+					     val, val & BIT(0), 500, 10000);
-+	} else if (cfg->qserdes_version == QSERDES_V6) {
-+		writel(0x20, edp->pll + QSERDES_V6_COM_RESETSM_CNTRL);
-+
-+		timeout = readl_poll_timeout(edp->pll + QSERDES_V6_COM_C_READY_STATUS,
-+					     val, val & BIT(0), 500, 10000);
-+	}
- 
--	timeout = readl_poll_timeout(edp->pll + QSERDES_V4_COM_C_READY_STATUS,
--				     val, val & BIT(0), 500, 10000);
- 	if (timeout)
- 		return timeout;
- 
-@@ -744,7 +898,6 @@ static int qcom_edp_clks_register(struct qcom_edp *edp, struct device_node *np)
- 	data = devm_kzalloc(edp->dev, struct_size(data, hws, 2), GFP_KERNEL);
- 	if (!data)
- 		return -ENOMEM;
--	data->num = 2;
- 
- 	snprintf(name, sizeof(name), "%s::link_clk", dev_name(edp->dev));
- 	init.ops = &qcom_edp_dp_link_clk_ops;
-@@ -764,6 +917,7 @@ static int qcom_edp_clks_register(struct qcom_edp *edp, struct device_node *np)
- 
- 	data->hws[0] = &edp->dp_link_hw;
- 	data->hws[1] = &edp->dp_pixel_hw;
-+	data->num = 2;
- 
- 	return devm_of_clk_add_hw_provider(edp->dev, of_clk_hw_onecell_get, data);
- }
-@@ -806,6 +960,7 @@ static int qcom_edp_phy_probe(struct platform_device *pdev)
- 
- 	edp->supplies[0].supply = "vdda-phy";
- 	edp->supplies[1].supply = "vdda-pll";
-+	edp->clks[2].id = "tcsr";
- 	ret = devm_regulator_bulk_get(dev, ARRAY_SIZE(edp->supplies), edp->supplies);
- 	if (ret)
- 		return ret;
-@@ -841,8 +996,10 @@ static int qcom_edp_phy_probe(struct platform_device *pdev)
- static const struct of_device_id qcom_edp_phy_match_table[] = {
- 	{ .compatible = "qcom,sc7280-edp-phy" },
- 	{ .compatible = "qcom,sc8180x-edp-phy" },
--	{ .compatible = "qcom,sc8280xp-dp-phy", .data = &dp_phy_cfg },
--	{ .compatible = "qcom,sc8280xp-edp-phy", .data = &edp_phy_cfg },
-+	{ .compatible = "qcom,sc8280xp-dp-phy", .data = &dp_v4_phy_cfg },
-+	{ .compatible = "qcom,sc8280xp-edp-phy", .data = &edp_v4_phy_cfg },
-+	{ .compatible = "qcom,x1e80100-dp-phy", .data = &dp_v6_phy_cfg },
-+	{ .compatible = "qcom,x1e80100-edp-phy", .data = &edp_v6_phy_cfg },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, qcom_edp_phy_match_table);
+ .../bindings/iio/frequency/adi,admfm2000.yaml | 140 ++++++++++++++++++
+ MAINTAINERS                                   |   7 +
+ 2 files changed, 147 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/frequency/adi,admfm2000.yaml
 
+diff --git a/Documentation/devicetree/bindings/iio/frequency/adi,admfm2000.yaml b/Documentation/devicetree/bindings/iio/frequency/adi,admfm2000.yaml
+new file mode 100644
+index 000000000..57844c8b7
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/frequency/adi,admfm2000.yaml
+@@ -0,0 +1,140 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright 2023 Analog Devices Inc.
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/frequency/adi,admfm2000.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ADMFM2000 Dual Microwave Down Converter
++
++maintainers:
++  - Kim Seer Paller <kimseer.paller@analog.com>
++
++description:
++  Dual microwave down converter module with input RF and LO frequency ranges
++  from 0.5 to 32 GHz and an output IF frequency range from 0.1 to 8 GHz.
++  It consists of a LNA, mixer, IF filter, DSA, and IF amplifier for each down
++  conversion path.
++
++properties:
++  compatible:
++    enum:
++      - adi,admfm2000
++
++  switch1-gpios:
++    items:
++      - description:
++          Setting B15 GPIO to high and B16 GPIO to low will result in channel 1
++          being in Direct IF mode.
++      - description:
++          Setting B15 GPIO to low and B16 GPIO to high will result in channel 1
++          being in Mixer mode.
++
++  switch2-gpios:
++    items:
++      - description:
++          Setting K14 GPIO to high and L14 GPIO to low will result in channel 2
++          being in Mixer mode.
++      - description:
++          Setting K14 GPIO to low and L14 GPIO to high will result in channel 2
++          being in Direct IF mode.
++
++  attenuation1-gpios:
++    description:
++      Must contain an array of 5 GPIO specifiers, referring to the GPIO pins
++      connected to the C14, C15, C16, D14, and D15. The DSA attenuation control
++      is by the logic level of the GPIO pins. All high at the logic level on
++      the GPIO pins give the minimum attenuation, 0 dB and all low for the
++      maximum attenuation, at 31 dB.
++    minItems: 5
++    maxItems: 5
++
++  attenuation2-gpios:
++    description:
++      Must contain an array of 5 GPIO specifiers, referring to the GPIO pins
++      connected to the L15, L16, M14, M15, and M16. The DSA attenuation control
++      is by the logic level of the GPIO pins. All high at the logic level on
++      the GPIO pins give the minimum attenuation, 0 dB and all low for the
++      maximum attenuation, at 31 dB.
++    minItems: 5
++    maxItems: 5
++
++  '#address-cells':
++    const: 1
++
++  '#size-cells':
++    const: 0
++
++patternProperties:
++  "^channel@[0-1]$":
++    type: object
++    description: Represents a channel of the device.
++
++    additionalProperties: false
++
++    properties:
++      reg:
++        description:
++          The channel number.
++        minimum: 0
++        maximum: 1
++
++      adi,mode:
++        description:
++          RF path selected for the channel.
++            0 - Direct IF mode
++            1 - Mixer mode
++        $ref: /schemas/types.yaml#/definitions/uint32
++        enum: [0, 1]
++
++    required:
++      - reg
++      - adi,mode
++
++required:
++  - compatible
++  - switch1-gpios
++  - switch2-gpios
++  - attenuation1-gpios
++  - attenuation2-gpios
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    converter {
++      compatible = "adi,admfm2000";
++
++      switch1-gpios = <&gpio 1 GPIO_ACTIVE_LOW>,
++                      <&gpio 2 GPIO_ACTIVE_HIGH>;
++
++      switch2-gpios = <&gpio 3 GPIO_ACTIVE_LOW>,
++                      <&gpio 4 GPIO_ACTIVE_HIGH>;
++
++      attenuation1-gpios = <&gpio 17 GPIO_ACTIVE_LOW>,
++                           <&gpio 22 GPIO_ACTIVE_LOW>,
++                           <&gpio 23 GPIO_ACTIVE_LOW>,
++                           <&gpio 24 GPIO_ACTIVE_LOW>,
++                           <&gpio 25 GPIO_ACTIVE_LOW>;
++
++      attenuation2-gpios = <&gpio 0 GPIO_ACTIVE_LOW>,
++                           <&gpio 5 GPIO_ACTIVE_LOW>,
++                           <&gpio 6 GPIO_ACTIVE_LOW>,
++                           <&gpio 16 GPIO_ACTIVE_LOW>,
++                           <&gpio 26 GPIO_ACTIVE_LOW>;
++
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      channel@0 {
++        reg = <0>;
++        adi,mode = <1>;
++      };
++
++      channel@1 {
++        reg = <1>;
++        adi,mode = <1>;
++      };
++    };
++...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 0e79e24b6..f1692ec68 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -1247,6 +1247,13 @@ W:	https://ez.analog.com/linux-software-drivers
+ F:	Documentation/devicetree/bindings/hwmon/adi,adm1177.yaml
+ F:	drivers/hwmon/adm1177.c
+ 
++ANALOG DEVICES INC ADMFM2000 DRIVER
++M:	Kim Seer Paller <kimseer.paller@analog.com>
++L:	linux-iio@vger.kernel.org
++S:	Supported
++W:	https://ez.analog.com/linux-software-drivers
++F:	Documentation/devicetree/bindings/iio/frequency/adi,admfm2000.yaml
++
+ ANALOG DEVICES INC ADMV1013 DRIVER
+ M:	Antoniu Miclaus <antoniu.miclaus@analog.com>
+ L:	linux-iio@vger.kernel.org
+
+base-commit: c2d5304e6c648ebcf653bace7e51e0e6742e46c8
 -- 
 2.34.1
 
