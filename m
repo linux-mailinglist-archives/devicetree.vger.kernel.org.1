@@ -1,163 +1,110 @@
-Return-Path: <devicetree+bounces-18033-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18034-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE9297F4D3D
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 17:50:50 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B70F97F4D78
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 17:55:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 508A6280E81
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 16:50:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 57F24B20DD7
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 16:55:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94A902D60D;
-	Wed, 22 Nov 2023 16:50:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28D0D4D12E;
+	Wed, 22 Nov 2023 16:55:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eO3sCieP"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="T30IeF+h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FD874E62E;
-	Wed, 22 Nov 2023 16:50:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84E08C433C7;
-	Wed, 22 Nov 2023 16:50:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700671844;
-	bh=Gy6ICgLvnTaxWqv9MeYnCJN9AaV4Dv5/UPWRNSFp3n8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eO3sCiePyO9mju04v/x+bzylbjrmjfLSXFi24QPC7IrjsqVwpV345L93YY432JMAY
-	 4uUghDamU1fVxyA8H7hZowYS5tX2tm3CuVFdUh0AHKLs7oJeHO1pYVsAA6B59l8Fbb
-	 6VItSWg2kYQfm/gj4CHChRNtiWDr1geCJ3irm1Ag/gNeysgcYxvOO5PK9rPtKXjMmS
-	 LG7vfpuC9lwQQWv3uy6pk7gecJkI8sStxZWpXyaYwzXIvPaLEI0ZOvpQX8CI1g0NIi
-	 /VDKiflfgrmZM5Ufwn3KRAZec9J1OQE/dPpiyRrpp32w1/egGH1cLQanEsJTbJp5k+
-	 Z9AQdxDV0XPaQ==
-Date: Wed, 22 Nov 2023 16:50:37 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Nava kishore Manne <nava.kishore.manne@amd.com>
-Cc: mdf@kernel.org, hao.wu@intel.com, yilun.xu@intel.com, trix@redhat.com,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, michal.simek@amd.com,
-	mathieu.poirier@linaro.org, ben.levinsky@amd.com,
-	sai.krishna.potthuri@amd.com, tanmay.shah@amd.com,
-	dhaval.r.shah@amd.com, arnd@arndb.de, shubhrajyoti.datta@amd.com,
-	linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [RFC PATCH 1/3] dt-bindings: fpga: Add support for user-key
- encrypted bitstream loading
-Message-ID: <20231122-exert-gleeful-e4476851c489@spud>
-References: <20231122054404.3764288-1-nava.kishore.manne@amd.com>
- <20231122054404.3764288-2-nava.kishore.manne@amd.com>
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A0A9E7;
+	Wed, 22 Nov 2023 08:55:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=llPqWm50yG2G6d8aUjmsaKhLgZNwnadcU3ZGNPGP+lo=; b=T30IeF+h3xKqGorWcA2viEmJQI
+	cicKm1yi2ucxaziRj0Ucg4xy9HDqA2Keas9XgNJYNDZfYzbsBLGE04r2BSLEIY38Xsr3EbWMbAzZi
+	Y4OyAwvkCrakYn9aASb8tH1ZnqO54/zroCc4004ZgMLtj029Y24Tw/rTlsQfZEuHUils=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1r5qV3-000tR4-Uf; Wed, 22 Nov 2023 17:54:53 +0100
+Date: Wed, 22 Nov 2023 17:54:53 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: =?iso-8859-1?Q?K=F6ry?= Maincent <kory.maincent@bootlin.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Luis Chamberlain <mcgrof@kernel.org>,
+	Russ Weight <russ.weight@linux.dev>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 9/9] net: pse-pd: Add PD692x0 PSE controller
+ driver
+Message-ID: <04f59e77-134b-45b2-8759-84b8e22c30d5@lunn.ch>
+References: <20231116-feature_poe-v1-0-be48044bf249@bootlin.com>
+ <20231116-feature_poe-v1-9-be48044bf249@bootlin.com>
+ <2ff8bea5-5972-4d1a-a692-34ad27b05446@lunn.ch>
+ <20231122171112.59370d21@kmaincent-XPS-13-7390>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="fQgRGi9CRaM/leib"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231122054404.3764288-2-nava.kishore.manne@amd.com>
+In-Reply-To: <20231122171112.59370d21@kmaincent-XPS-13-7390>
 
+> > > +static int pd692x0_sendrecv_msg(struct pd692x0_priv *priv,
+> > > +				struct pd692x0_msg *msg,
+> > > +				struct pd692x0_msg_content *buf)
+> > > +{
+> > > +	struct device *dev = &priv->client->dev;
+> > > +	int ret;
+> > > +
+> > > +	ret = pd692x0_send_msg(priv, msg);
+> > > +	if (ret)
+> > > +		return ret;
+> > > +
+> > > +	ret = pd692x0_recv_msg(priv, msg, buf);  
+> > 
+> > So this function takes at least 10 seconds?
+> 
+> No, on normal communication it takes a bit more than 30ms.
 
---fQgRGi9CRaM/leib
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+So i think the first step is to refactor this code to make it clear
+what the normal path is, and what the exception path is, and the
+timing of each.
 
-On Wed, Nov 22, 2023 at 11:14:02AM +0530, Nava kishore Manne wrote:
-> Adds =E2=80=98encrypted-key-name=E2=80=99 property to support user-key en=
-crypted
-> bitstream loading use case.
->=20
-> Signed-off-by: Nava kishore Manne <nava.kishore.manne@amd.com>
-> ---
->  .../devicetree/bindings/fpga/fpga-region.txt  | 32 +++++++++++++++++++
+> > > +	msg.content.sub[2] = id;
+> > > +	ret = pd692x0_sendrecv_msg(priv, &msg, &buf);  
+> > 
+> > So this is also 10 seconds? 
+> > 
+> > Given its name, it looks like this is called via ethtool? Is the
+> > ethtool core holding RTNL? It is generally considered bad to hold RTNL for
+> > that long.
+> 
+> Yes it is holding RTNL lock. Should I consider another behavior in case of
+> communication loss to not holding RTNL lock so long?
 
-Is there a reason that this has not yet been converted to yaml?
+How often does it happen? On the scale of its a theoretical
+possibility, through to it happens every N calls? Also, does it happen
+on cold boot and reboot?
 
->  1 file changed, 32 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/fpga/fpga-region.txt b/Doc=
-umentation/devicetree/bindings/fpga/fpga-region.txt
-> index 528df8a0e6d8..309334558b3f 100644
-> --- a/Documentation/devicetree/bindings/fpga/fpga-region.txt
-> +++ b/Documentation/devicetree/bindings/fpga/fpga-region.txt
-> @@ -177,6 +177,9 @@ Optional properties:
->  	it indicates that the FPGA has already been programmed with this image.
->  	If this property is in an overlay targeting an FPGA region, it is a
->  	request to program the FPGA with that image.
-> +- encrypted-key-name : should contain the name of an encrypted key file =
-located
-> +	on the firmware search path. It will be used to decrypt the FPGA image
-> +	file with user-key.
+If its never supposed to happen, i would keep holding RTNL, and add a
+pr_warn() that the PSE has crashed and burned, waiting for it to
+reboot. If this is likely to happen on the first communication with
+the device, we might want to do a dummy transfer during probe to get
+is synchronized before we start using it with the RTNL held.
 
-I might be misreading things, but your driver code seems to assume that
-this is an aes key. Nothing here seems to document that this is supposed
-to be a key of a particular type.
-
-Cheers,
-Conor.
-
->  - fpga-bridges : should contain a list of phandles to FPGA Bridges that =
-must be
->  	controlled during FPGA programming along with the parent FPGA bridge.
->  	This property is optional if the FPGA Manager handles the bridges.
-> @@ -459,6 +462,35 @@ programming is the FPGA based bridge of fpga_region1.
->  	};
->  };
-> =20
-> +Device Tree Example: Configure/Reconfigure Encrypted Image With User Key
-> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> +
-> +Users can encrypt FPGA configuration Images with their own key. While de=
-crypting
-> +the configuration Image the user needs to provide the same key.
-> +"encrypted-key-name" Specifies the name of the FPGA image encrypted key =
-file on
-> +the firmware search path. The search path is described in the firmware c=
-lass
-> +documentation.
-> +
-> +/dts-v1/;
-> +/plugin/;
-> +
-> +&fpga_region0 {
-> +	#address-cells =3D <1>;
-> +	#size-cells =3D <1>;
-> +
-> +	firmware-name =3D "soc_image2.rbf";
-> +	encrypted-key-name =3D "key.nky";
-> +
-> +	gpio@10040 {
-> +		compatible =3D "altr,pio-1.0";
-> +		reg =3D <0x10040 0x20>;
-> +		clocks =3D <0x2>;
-> +		altr,ngpio =3D <0x4>;
-> +		#gpio-cells =3D <0x2>;
-> +		gpio-controller;
-> +	};
-> +};
-> +
->  Constraints
->  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> =20
-> --=20
-> 2.25.1
->=20
-
---fQgRGi9CRaM/leib
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZV4xXQAKCRB4tDGHoIJi
-0loFAP9yglWDOnl90C+JIFNKoS8fMwEsVxZA1KeM+gtNfT8IBAEAjdZP9R4ySbJQ
-anmnejBPkAFFim8ousuPXHi+3dEazAM=
-=4Jh2
------END PGP SIGNATURE-----
-
---fQgRGi9CRaM/leib--
+   Andrew
 
