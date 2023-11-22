@@ -1,228 +1,139 @@
-Return-Path: <devicetree+bounces-17910-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17911-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39FB57F46F5
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 13:51:48 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC22B7F46FC
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 13:54:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 04553B20BA1
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 12:51:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ED90D1C20924
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 12:54:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D01A3AC0F;
-	Wed, 22 Nov 2023 12:51:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67CFA4BA83;
+	Wed, 22 Nov 2023 12:54:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="N0vM4lp5"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="LTLhlE9R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A1CAD8;
-	Wed, 22 Nov 2023 04:51:35 -0800 (PST)
-Received: from [100.94.55.57] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: ehristev)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id BAAEB6607385;
-	Wed, 22 Nov 2023 12:51:33 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1700657494;
-	bh=QGbpV9TSQq+YNQYZPVEUDdzV7/4Ynd1Cx/uttXmt6d8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=N0vM4lp5V+/oUaENUvHCZCbatBCZbbKkV6RDZlhvjJoz0D4bfh+4MzCKY68B4yVI0
-	 OlN/PeZsh8Pzr/X7C35fAXUwF3HElVtYvTUrOxtUgV/DteilKjHstsK77fPVUh7G/a
-	 zcz58RhhKAY0VGifGC+YbUFFZ2dtgv2B2dacUlW+BM3kKcWuKEVB1PPBbecnULNpRp
-	 7QpXuT6nm8hcOMp5n60m9/5FzjvMVISPbwW5eruP8h/M1cQTMRPqCtPhe1VUqrqRJP
-	 Ja1hJ+Sk+bo2QCpUXY6oz6s448mUejAAZXCDkg0KGPuoI20lv+ftnwr/2jUHfw+hhT
-	 Z/J0B3+7c+roQ==
-Message-ID: <deff5728-4571-492d-bfb7-2666d0fa2557@collabora.com>
-Date: Wed, 22 Nov 2023 14:51:31 +0200
+Received: from m12.mail.163.com (m12.mail.163.com [220.181.12.197])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 93C6D97;
+	Wed, 22 Nov 2023 04:54:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=ilNby
+	/QAqRj73jJ/nJZxXwIxgE03/s4paCuCwX+Dnos=; b=LTLhlE9ReggCMZFRPUHJu
+	V194d46IlMwgwtO3gaDGksxSAQb2E1+uVdNa1Hj6voML6fE+BDI2pRRx/3AHyjls
+	X3tzBZv2YZQkgcCLd3aRqYYpj0I0QNXEU21odHVhdQ9PQOra/6KDuAXI1Hzbskgd
+	s5IncOYQ1SW8ec0GNHndM0=
+Received: from ProDesk.. (unknown [58.22.7.114])
+	by zwqz-smtp-mta-g5-0 (Coremail) with SMTP id _____wDXXym9+V1lS1OxCA--.53034S2;
+	Wed, 22 Nov 2023 20:53:23 +0800 (CST)
+From: Andy Yan <andyshrk@163.com>
+To: heiko@sntech.de
+Cc: hjc@rock-chips.com,
+	dri-devel@lists.freedesktop.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	robh+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	sebastian.reichel@collabora.com,
+	kever.yang@rock-chips.com,
+	chris.obbard@collabora.com,
+	s.hauer@pengutronix.de,
+	Andy Yan <andy.yan@rock-chips.com>
+Subject: [PATCH v2 00/12] Add VOP2 support on rk3588
+Date: Wed, 22 Nov 2023 20:53:16 +0800
+Message-Id: <20231122125316.3454268-1-andyshrk@163.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 09/20] soc: mediatek: mtk-svs: Move t-calibration-data
- retrieval to svs_probe()
-Content-Language: en-US
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- matthias.bgg@gmail.com
-Cc: krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- robh+dt@kernel.org, p.zabel@pengutronix.de, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, kernel@collabora.com, wenst@chromium.org
-References: <20231121125044.78642-1-angelogioacchino.delregno@collabora.com>
- <20231121125044.78642-10-angelogioacchino.delregno@collabora.com>
- <6018ec3f-d3e6-4fe0-b57f-9a7994f983a5@collabora.com>
- <43982a3c-eb10-442e-acca-fd4b944a7612@collabora.com>
-From: Eugen Hristev <eugen.hristev@collabora.com>
-In-Reply-To: <43982a3c-eb10-442e-acca-fd4b944a7612@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:_____wDXXym9+V1lS1OxCA--.53034S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxCrW7tr4UArW3uryDCrWxJFb_yoW5CrWkpw
+	s5Cry5ZrWxCFW2qrn3twn5CrWft3ZrAayfKws3GasIv3WfKF1UKwnxW3Z5Z3sxWw17ZFy2
+	kr4UJ347Gr42vr7anT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jrcTPUUUUU=
+X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/1tbiEAYwXl8YMqat1gAAsQ
 
-On 11/22/23 14:41, AngeloGioacchino Del Regno wrote:
-> Il 22/11/23 12:23, Eugen Hristev ha scritto:
->> On 11/21/23 14:50, AngeloGioacchino Del Regno wrote:
->>> The t-calibration-data (SVS-Thermal calibration data) shall exist for
->>> all SoCs or SVS won't work anyway: move it to the common svs_probe()
->>> function and remove it from all of the per-SoC efuse_parsing() probe
->>> callbacks.
->>>
->>> Signed-off-by: AngeloGioacchino Del Regno 
->>> <angelogioacchino.delregno@collabora.com>
->>> ---
->>>   drivers/soc/mediatek/mtk-svs.c | 32 ++++++--------------------------
->>>   1 file changed, 6 insertions(+), 26 deletions(-)
->>>
->>> diff --git a/drivers/soc/mediatek/mtk-svs.c 
->>> b/drivers/soc/mediatek/mtk-svs.c
->>> index ab564d48092b..1042af2aee3f 100644
->>> --- a/drivers/soc/mediatek/mtk-svs.c
->>> +++ b/drivers/soc/mediatek/mtk-svs.c
->>> @@ -1884,11 +1884,6 @@ static bool svs_mt8195_efuse_parsing(struct 
->>> svs_platform *svsp)
->>>           svsb->vmax += svsb->dvt_fixed;
->>>       }
->>> -    ret = svs_get_efuse_data(svsp, "t-calibration-data",
->>> -                 &svsp->tefuse, &svsp->tefuse_max);
->>> -    if (ret)
->>> -        return false;
->>> -
->>
->> Hello Angelo,
->>
->> if you removed the code using `ret` in this patch, it makes sense to 
->> also remove the variable here instead of doing it in patch 18.
->> It will avoid unused variable warnings for this patch.
->>
->>
-> 
-> Yes, though the comment is not for this function, but rather for 8183. 
-> Anyway, that
-> makes sense, but if it's the only change of this v3, it's something that 
-> I can fix
-> while applying instead of sending another 20 patches round. Thanks.
-> 
->>>       for (i = 0; i < svsp->tefuse_max; i++)
->>>           if (svsp->tefuse[i] != 0)
->>>               break;
->>> @@ -1949,11 +1944,6 @@ static bool svs_mt8192_efuse_parsing(struct 
->>> svs_platform *svsp)
->>>           svsb->vmax += svsb->dvt_fixed;
->>>       }
->>> -    ret = svs_get_efuse_data(svsp, "t-calibration-data",
->>> -                 &svsp->tefuse, &svsp->tefuse_max);
->>> -    if (ret)
->>> -        return false;
->>> -
->>>       for (i = 0; i < svsp->tefuse_max; i++)
->>>           if (svsp->tefuse[i] != 0)
->>>               break;
->>> @@ -2009,11 +1999,6 @@ static bool svs_mt8188_efuse_parsing(struct 
->>> svs_platform *svsp)
->>>           svsb->vmax += svsb->dvt_fixed;
->>>       }
->>> -    ret = svs_get_efuse_data(svsp, "t-calibration-data",
->>> -                 &svsp->tefuse, &svsp->tefuse_max);
->>> -    if (ret)
->>> -        return false;
->>> -
->>>       for (i = 0; i < svsp->tefuse_max; i++)
->>>           if (svsp->tefuse[i] != 0)
->>>               break;
->>> @@ -2097,11 +2082,6 @@ static bool svs_mt8186_efuse_parsing(struct 
->>> svs_platform *svsp)
->>>           svsb->vmax += svsb->dvt_fixed;
->>>       }
->>> -    ret = svs_get_efuse_data(svsp, "t-calibration-data",
->>> -                 &svsp->tefuse, &svsp->tefuse_max);
->>> -    if (ret)
->>> -        return false;
->>> -
->>>       golden_temp = (svsp->tefuse[0] >> 24) & GENMASK(7, 0);
->>>       if (!golden_temp)
->>>           golden_temp = 50;
->>> @@ -2198,11 +2178,6 @@ static bool svs_mt8183_efuse_parsing(struct 
->>> svs_platform *svsp)
->>>           }
->>>       }
->>> -    ret = svs_get_efuse_data(svsp, "t-calibration-data",
->>> -                 &svsp->tefuse, &svsp->tefuse_max);
->>> -    if (ret)
->>> -        return false;
->>> -
->>>       /* Thermal efuse parsing */
->>>       adc_ge_t = (svsp->tefuse[1] >> 22) & GENMASK(9, 0);
->>>       adc_oe_t = (svsp->tefuse[1] >> 12) & GENMASK(9, 0);
->>> @@ -3040,8 +3015,13 @@ static int svs_probe(struct platform_device 
->>> *pdev)
->>>       ret = svs_get_efuse_data(svsp, "svs-calibration-data",
->>>                    &svsp->efuse, &svsp->efuse_max);
->>> +    if (ret)
->>> +        return dev_err_probe(&pdev->dev, ret, "Cannot read SVS 
->>> calibration\n");
->>
->> With the previous code, if svs-calibration-data could not be read, the 
->> code would go to svs_probe_free_efuse. In your case, it returns directly.
->> I believe that svs_get_efuse_data using nvmem_cell_read does not 
->> allocate the buffer for the efuse , hence no more need to free it ? 
->> The exit code is checking if it's ERR or NULL, but still, if the 
->> buffer was not allocated, it doesn't make sense to jump there indeed.
->> In that case, you are also changing the behavior here , and your 
->> commit appears to do more than a simple move.
->>
-> 
-> I'm not changing the behavior: the previous behavior was to fail and 
-> free the efuse
-> variable if previously allocated, the current behavior is to fail and 
-> free the
-> efuse variable if previously allocated, and the tefuse variable if 
-> previously
-> allocated, which is a result of the actual move of the retrieval of the 
-> thermal
-> fuse calibration data.
-> 
-> I really don't see anything implicit here.
-> 
+From: Andy Yan <andy.yan@rock-chips.com>
 
-Previous behavior was
+This patch sets aims at enable the VOP2 support on rk3588.
 
+Main feature of VOP2 on rk3588:
+Four video ports:
+VP0 Max 4096x2160
+VP1 Max 4096x2160
+VP2 Max 4096x2160
+VP3 Max 2048x1080
 
-ret = svs_get_efuse_data (efuse)
+4 4K Cluster windows with AFBC/line RGB and AFBC-only YUV support
+4 4K Esmart windows with line RGB/YUV support
 
-if (ret) goto svs_probe_free_efuse
+The current version support all the 8 windows with all the suppported
+plane format.
 
+And we don't have a upstreamed encoder/connector(HDMI/DP) for rk3588
+yet, Cristian from collabora is working on adding upstream support for
+HDMI on rk3588.
 
-Now, you have it as
+My current test is runing with a HDMI driver pick from downstream bsp kernel.
 
-ret = svs_get_efuse_data (efuse)
+A branch based on linux-6.7 rc2 containing all the series and
+HDMI driver(not compatible with mainline rk3568 hdmi) picked from downstream bsp kernel
+is available [0].
 
-if (ret) return dev_err_probe...
+[0]https://github.com/andyshrk/linux/tree/rk3588-vop2-upstream-linux-6.7-rc2-2023-11-22
 
+Changes in v2:
+- fix errors when running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+- split dt-bindings form vop driver patch
+- add rk3588_ prefix for functions which are rk3588 only
+- make some calculation as fixed value and keep calculation formula as
+  comment
+- check return value for some cru calculation functions.
+- check return value for syscon_regmap_lookup_by_phandle
+- add NV20/NV30 for esmart plane
 
->>> +
->>> +    ret = svs_get_efuse_data(svsp, "t-calibration-data",
->>> +                 &svsp->tefuse, &svsp->tefuse_max);
->>>       if (ret) {
->>> -        ret = -EPERM;
->>> +        dev_err_probe(&pdev->dev, ret, "Cannot read SVS-Thermal 
->>> calibration\n");
->>>           goto svs_probe_free_efuse;
->>
->> again in this case the tefuse has not been allocated I assume.
->>
->> So previous code was a bit excessive in trying to free the efuse/tefuse ?
-> 
-> The previous code was performing an useless error check on something 
-> that was not
-> supposed to be allocated *yet*. Yes, it was wrong before.
-> 
-> Cheers,
-> Angelo
-> _______________________________________________
-> Kernel mailing list -- kernel@mailman.collabora.com
-> To unsubscribe send an email to kernel-leave@mailman.collabora.com
+Andy Yan (12):
+  drm/rockchip: move output interface related definition to
+    rockchip_drm_drv.h
+  Revert "drm/rockchip: vop2: Use regcache_sync() to fix suspend/resume"
+  drm/rockchip: vop2: set half_block_en bit in all mode
+  drm/rockchip: vop2: clear afbc en and transform bit for cluster window
+    at linear mode
+  drm/rockchip: vop2: Set YUV/RGB overlay mode
+  drm/rockchip: vop2: rename grf to sys_grf
+  dt-bindings: soc: rockchip: add rk3588 vop/vo syscon
+  dt-bindings: display: vop2: Add rk3588 support
+  dt-bindings: soc: vop2: Add more endpoint definition
+  drm/rockchip: vop2: Add support for rk3588
+  drm/rockchip: vop2: Add debugfs support
+  arm64: dts: rockchip: Add vop on rk3588
+
+ .../display/rockchip/rockchip-vop2.yaml       |  27 +
+ .../devicetree/bindings/soc/rockchip/grf.yaml |   2 +
+ arch/arm64/boot/dts/rockchip/rk3588s.dtsi     |  96 ++
+ .../gpu/drm/rockchip/analogix_dp-rockchip.c   |   1 -
+ drivers/gpu/drm/rockchip/cdn-dp-core.c        |   1 -
+ .../gpu/drm/rockchip/dw-mipi-dsi-rockchip.c   |   1 -
+ drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c   |   1 -
+ drivers/gpu/drm/rockchip/inno_hdmi.c          |   1 -
+ drivers/gpu/drm/rockchip/rk3066_hdmi.c        |   1 -
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.h   |  18 +
+ drivers/gpu/drm/rockchip/rockchip_drm_vop.h   |  12 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.c  | 845 +++++++++++++++++-
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.h  |  82 +-
+ drivers/gpu/drm/rockchip/rockchip_lvds.c      |   1 -
+ drivers/gpu/drm/rockchip/rockchip_rgb.c       |   1 -
+ drivers/gpu/drm/rockchip/rockchip_vop2_reg.c  | 221 +++++
+ include/dt-bindings/soc/rockchip,vop2.h       |   4 +
+ 17 files changed, 1257 insertions(+), 58 deletions(-)
+
+-- 
+2.34.1
 
 
