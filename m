@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-17872-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17873-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AF667F4573
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 13:11:13 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBDF77F457A
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 13:11:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E182AB21216
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 12:11:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 084511C208B8
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 12:11:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19D33250E6;
-	Wed, 22 Nov 2023 12:11:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59DF01842;
+	Wed, 22 Nov 2023 12:11:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nua6vtqc"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Da22KwKT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1ACAF1A8
-	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 04:11:00 -0800 (PST)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-a00ac0101d9so346640766b.0
-        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 04:10:59 -0800 (PST)
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42A321A8
+	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 04:11:47 -0800 (PST)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-a0064353af8so155455166b.0
+        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 04:11:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700655058; x=1701259858; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1700655106; x=1701259906; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=0gWytzWZiprdOyBf/AUmxGEuHaJwWmmvlOwhUmkAkGI=;
-        b=nua6vtqclQBO5Si6pUR2zoTM/ZhabewQVNNrW7UF6kEawhY1K7ZTLJbFv+8r4padFa
-         2RVJ/tq+V8kwYZJrEdYoI/YfncMI5WAn3NjBt4i5Wy0/GXXe1QIIg+h9j+PQs8kckiE2
-         85l7THxr8A79q2i+3zhnbI7MyNRH2eOCWj3OrRglvzSU1hx7bP935MVOsDq8pHKgOpgI
-         dIspJyQiqv277rYzLD4UdjYudPG7TDQvEac62zLzB2noGP89rA0F/q8chKwKvv0uQce3
-         6b352ohD9mg0TFoeQIVm4BwBc/YAk3dP/iBLwBCKW99jnJ4n48sJwEGLmIPkgbVxz8kn
-         ozJQ==
+        bh=csR90GlrIocky2q6GlwvcBvj8enmdxxAMUaz0kNbKOk=;
+        b=Da22KwKT+tGZ1s620efcgYsZXCVkaNulVEz+y5wNptMqMW/LaSh41yG9L+swWHJOMd
+         GU61CqB0h2Lec+yfxnPVKWd/BThGsNNCPsV/sadDRewHsmFXmpn09UoR7/F4cREkvczY
+         HxsYZ5QKwGnHQt5XVWsb4uGyVPFLeDAzTXC0GH0yIJ8WZGrOaOxpfawz2VKrWF9DVBxT
+         X6HHHUJ1xcZfxuSHJmY5wNbgqw+1irVXLasxCsfKmeYm4RrnvbDPBnTrg18PdomOIkBk
+         5YYDDrDz9NrrYSyyM1p8FvSoifg+ZuoxA/lufcq5YrH0uuklkMtGpUaTE78kB0w8Da3N
+         0rfw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700655058; x=1701259858;
+        d=1e100.net; s=20230601; t=1700655106; x=1701259906;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0gWytzWZiprdOyBf/AUmxGEuHaJwWmmvlOwhUmkAkGI=;
-        b=C7PUoodMWRgWpUHsLBi3tS7FbOJ73e1DJJvK3fHNlHJvT2l1gV1nhdp+VPOZJCJFm4
-         jpIkftiILFIHCjdz6KNagUqwfVHAI+ZM1D1HowkR5fb2SLjePj5aNs/++yG9740eIF/h
-         L3NwxuTjtJQZ5z0mjMYtHKYj0iBhdA+azf771etVf10Xq7xTyXqGkuotd4azW4EtrhJA
-         iItGzXoDTVOcru0qvbJB2DdcG9yi+WjW0mqJomZw7oP7dkDRGPZCJy37vV5Gqntj2hbu
-         oQ5Jc7SAfzxbp78C5cz5g0thKwT8JugpDowD3we56O6drAmOMiCMmgybQ0LAC2b5OL/Z
-         /uYg==
-X-Gm-Message-State: AOJu0Yze4F7u1/2TUlEWjsbDFWIbpkgGy19iCmCovV+n/2SYbp1wxgrr
-	NL9FbLTOBiOQV1EOw7DFo3Jz5g==
-X-Google-Smtp-Source: AGHT+IGWfpaKrqWdDoC4SudbpjPEmLxNb8/PcsUAF949UR7RGpdjXvGZbmTrcSuPhwyBbp/gnlKlfg==
-X-Received: by 2002:a17:906:9c56:b0:a03:90a3:b775 with SMTP id fg22-20020a1709069c5600b00a0390a3b775mr120334ejc.27.1700655058502;
-        Wed, 22 Nov 2023 04:10:58 -0800 (PST)
+        bh=csR90GlrIocky2q6GlwvcBvj8enmdxxAMUaz0kNbKOk=;
+        b=cL9Y4DVXrZ/gOk6pByxqZpVZLPQtrBx/mGkdNtP3lMo/vVI8UDCBfxPx9Ju87lf+mm
+         O7L8KJ/56yMtt5Xy99BYEBfmchb8GsrERSLNSZO16FDGbd+gJmcpypQQTdzCibpJm7i1
+         0bdkeOTDkyQuHmSci5SO1jZmv9QsgYRhbDGvI106tebWUU9a071D8K3rPskwavZ3oYDx
+         cdbFlfxJNrrSTiEP9oDxhvkH2TKQrGa7fQAuGmtsOF45WknuVvV8IKyyp5GhMgY3nacY
+         fbTtTiB8cPqzLYRds6Nq6TiDttjrhtam8w2Pmtfuc7XnDsVOGffuotp/eYGk6ZGqo2uj
+         71Rg==
+X-Gm-Message-State: AOJu0Yy42qdvq8sskN7irg/QtmjYCMvH03E+FLlXf+FIJJtxqTpDzquE
+	CWeBJagRL5bXAeHBpFIO4u4M3Q==
+X-Google-Smtp-Source: AGHT+IFEteAD2bbETQWPwl8qe97lcYmZQC/kcQM/EdLwVzwKDvbMvY1Q5YdFjlAnOg3WOGn+gAlr4Q==
+X-Received: by 2002:a17:906:20de:b0:a01:bd67:d2fb with SMTP id c30-20020a17090620de00b00a01bd67d2fbmr2050004ejc.0.1700655105667;
+        Wed, 22 Nov 2023 04:11:45 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.100])
-        by smtp.gmail.com with ESMTPSA id l20-20020a1709060e1400b009ff783d892esm3308741eji.146.2023.11.22.04.10.57
+        by smtp.gmail.com with ESMTPSA id l20-20020a1709060e1400b009ff783d892esm3308741eji.146.2023.11.22.04.11.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Nov 2023 04:10:58 -0800 (PST)
-Message-ID: <aa463adc-0c8d-48e6-b7a4-36096fabdd59@linaro.org>
-Date: Wed, 22 Nov 2023 13:10:57 +0100
+        Wed, 22 Nov 2023 04:11:45 -0800 (PST)
+Message-ID: <542eb8e1-e3ca-4ece-9f95-c513415031ca@linaro.org>
+Date: Wed, 22 Nov 2023 13:11:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,21 +62,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: phy: qcom: snps-eusb2: Document the
- X1E80100 compatible
+Subject: Re: [PATCH 1/2] dt-bindings: phy: qcom-edp: Add X1E80100 PHY
+ compatibles
 Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Abel Vesa <abel.vesa@linaro.org>
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+To: Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
  Konrad Dybcio <konrad.dybcio@linaro.org>, Vinod Koul <vkoul@kernel.org>,
  Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring
  <robh+dt@kernel.org>, Krzysztof Kozlowski
  <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231122-phy-qualcomm-eusb2-x1e80100-v1-0-ce0991161847@linaro.org>
- <20231122-phy-qualcomm-eusb2-x1e80100-v1-1-ce0991161847@linaro.org>
- <CAA8EJppov1ZtJvxyiXwik77bs5=dDfE_k_Wv8-DyzYtoEzvv4Q@mail.gmail.com>
+References: <20231122-phy-qualcomm-edp-x1e80100-v1-0-a9938990edb3@linaro.org>
+ <20231122-phy-qualcomm-edp-x1e80100-v1-1-a9938990edb3@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -122,32 +121,18 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CAA8EJppov1ZtJvxyiXwik77bs5=dDfE_k_Wv8-DyzYtoEzvv4Q@mail.gmail.com>
+In-Reply-To: <20231122-phy-qualcomm-edp-x1e80100-v1-1-a9938990edb3@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 22/11/2023 12:02, Dmitry Baryshkov wrote:
-> On Wed, 22 Nov 2023 at 12:28, Abel Vesa <abel.vesa@linaro.org> wrote:
->>
->> Add the X1E80100 compatible to the list of supported PHYs.
->>
->> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
->> ---
->>  Documentation/devicetree/bindings/phy/qcom,snps-eusb2-phy.yaml | 1 +
->>  1 file changed, 1 insertion(+)
->>
->> diff --git a/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-phy.yaml
->> index 8f5d7362046c..ea1809efbf56 100644
->> --- a/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-phy.yaml
->> +++ b/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-phy.yaml
->> @@ -21,6 +21,7 @@ properties:
->>                - qcom,sm8650-snps-eusb2-phy
->>            - const: qcom,sm8550-snps-eusb2-phy
+On 22/11/2023 11:55, Abel Vesa wrote:
+> The Qualcomm X1E80100 platform has both eDP and DP PHYs, add compatibles
+> for these.
 > 
-> Ah, I think this answers my question for patch2. Can we instead reuse
-> the existing compat string as it was done for sm8650?
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> ---
 
-If not, commit msg should explain why it cannot.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
