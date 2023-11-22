@@ -1,461 +1,379 @@
-Return-Path: <devicetree+bounces-17889-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17874-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC95F7F45BA
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 13:19:04 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DFD57F458E
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 13:18:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EFFAF1C209D5
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 12:19:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 94784281344
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 12:18:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 966A64C60D;
-	Wed, 22 Nov 2023 12:18:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6A5C22077;
+	Wed, 22 Nov 2023 12:17:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CA6Ym7OG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from Atcsqr.andestech.com (60-248-80-70.hinet-ip.hinet.net [60.248.80.70])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22F0C1724;
-	Wed, 22 Nov 2023 04:18:37 -0800 (PST)
-Received: from mail.andestech.com (ATCPCS16.andestech.com [10.0.1.222])
-	by Atcsqr.andestech.com with ESMTP id 3AMCH8YI025322;
-	Wed, 22 Nov 2023 20:17:08 +0800 (+08)
-	(envelope-from peterlin@andestech.com)
-Received: from swlinux02.andestech.com (10.0.15.183) by ATCPCS16.andestech.com
- (10.0.1.222) with Microsoft SMTP Server id 14.3.498.0; Wed, 22 Nov 2023
- 20:17:05 +0800
-From: Yu Chien Peter Lin <peterlin@andestech.com>
-To: <acme@kernel.org>, <adrian.hunter@intel.com>, <ajones@ventanamicro.com>,
-        <alexander.shishkin@linux.intel.com>, <andre.przywara@arm.com>,
-        <anup@brainfault.org>, <aou@eecs.berkeley.edu>,
-        <atishp@atishpatra.org>, <conor+dt@kernel.org>,
-        <conor.dooley@microchip.com>, <conor@kernel.org>,
-        <devicetree@vger.kernel.org>, <dminus@andestech.com>,
-        <evan@rivosinc.com>, <geert+renesas@glider.be>, <guoren@kernel.org>,
-        <heiko@sntech.de>, <irogers@google.com>, <jernej.skrabec@gmail.com>,
-        <jolsa@kernel.org>, <jszhang@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <linux-perf-users@vger.kernel.org>,
-        <linux-renesas-soc@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-        <linux-sunxi@lists.linux.dev>, <locus84@andestech.com>,
-        <magnus.damm@gmail.com>, <mark.rutland@arm.com>, <mingo@redhat.com>,
-        <n.shubin@yadro.com>, <namhyung@kernel.org>, <palmer@dabbelt.com>,
-        <paul.walmsley@sifive.com>, <peterlin@andestech.com>,
-        <peterz@infradead.org>, <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        <rdunlap@infradead.org>, <robh+dt@kernel.org>, <samuel@sholland.org>,
-        <sunilvl@ventanamicro.com>, <tglx@linutronix.de>,
-        <tim609@andestech.com>, <uwu@icenowy.me>, <wens@csie.org>,
-        <will@kernel.org>, <ycliang@andestech.com>, <inochiama@outlook.com>
-Subject: [PATCH v4 13/13] riscv: andes: Support symbolic FW and HW raw events
-Date: Wed, 22 Nov 2023 20:12:35 +0800
-Message-ID: <20231122121235.827122-14-peterlin@andestech.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231122121235.827122-1-peterlin@andestech.com>
-References: <20231122121235.827122-1-peterlin@andestech.com>
+Received: from mail-qt1-x82a.google.com (mail-qt1-x82a.google.com [IPv6:2607:f8b0:4864:20::82a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0962691;
+	Wed, 22 Nov 2023 04:17:53 -0800 (PST)
+Received: by mail-qt1-x82a.google.com with SMTP id d75a77b69052e-41cc537ed54so39961481cf.2;
+        Wed, 22 Nov 2023 04:17:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1700655472; x=1701260272; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=BJvIeAojLvASPqEpApm/YzJ1B5Zf+tRjMY5XMqeks+Q=;
+        b=CA6Ym7OGzx0GZuLyAMaioyR+E+W1HxWEtllCXIQnMAF9Xhj3NNznTkQDrpAMAbFnri
+         jAbx277hda5UhuXWGMrhvHPkM0Ml9C55ZU9NoEWgc882Lc7HNQ1/MpUy8IQM0zbSU9di
+         ufQfeRL+FmEQYHN7wxLsVxzGrfj6wyC7vHeaQe4++RT1+uX7zL2WcLbbjJLRqrPM/E5B
+         8bZ3DepY93XqcSxUFEuNNvPB6YSg+1Viwb9WOLZgX9yT3mhZzKC/iIMbrockujHqJN/a
+         PWyFPfUUbFAyIVhJskVk4FksCyeQ8iZRFFtg4VNyfVw0vNYnjDOxdRmAS3CDzM/4YbKk
+         KHrA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700655472; x=1701260272;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=BJvIeAojLvASPqEpApm/YzJ1B5Zf+tRjMY5XMqeks+Q=;
+        b=CYb6y9tyU06LKZZPRd9FB6ukfCSO84M7xyxc8g1D6zFpNBzGHIutDs5BFlmRfg/JPQ
+         O5lKcjg/B9V+I9p/Hj4zUdp7gM8m5qV8D+tK8cjRF9myamtANooG2/qpHtIQHk88x+Mv
+         9ikavNb/6aH0QuFEKvWUB8E+OJ28GLW60d8d5lxJ/fp4z/dNRKYMt4/305PTLqPacMpj
+         o78FYYORLsBE26Simd8Anc00X+lbFKWW1R15pa4vO34X1qRO6MgPttp0JgHZrdFlDLAU
+         mDkWx7WE1Jxg0ml+kRtzVn7IfBt6auxMcImvarMzdzL1zsLp9r2bGfttyors2FIF1VQF
+         JUJg==
+X-Gm-Message-State: AOJu0YwYZXY2drkYoHZIJuEhHZW9vqiuRwKl4cqiYH2tQoGlLq3G86+8
+	aE2PPhBsA8a459sE0fMaX/dsDB+RLjlCbw==
+X-Google-Smtp-Source: AGHT+IFPRTdXbPgxOFy8yRheECcUrenQgmKfTVQPPPUEO35BCmoSEc3Ic8e+1KCDiG3oeHnd1hsTMg==
+X-Received: by 2002:a05:622a:387:b0:41e:5ccd:a7a0 with SMTP id j7-20020a05622a038700b0041e5ccda7a0mr2467125qtx.44.1700655471919;
+        Wed, 22 Nov 2023 04:17:51 -0800 (PST)
+Received: from ?IPV6:2001:14ba:16f8:1500::2? (dc78bmyyyyyyyyyyyyyby-3.rev.dnainternet.fi. [2001:14ba:16f8:1500::2])
+        by smtp.gmail.com with ESMTPSA id y8-20020ac87088000000b004199c98f87dsm4360100qto.74.2023.11.22.04.17.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 Nov 2023 04:17:51 -0800 (PST)
+Message-ID: <8b865546-0e51-45ff-ab76-8189afaa9ad5@gmail.com>
+Date: Wed, 22 Nov 2023 14:17:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-DNSRBL: 
-X-SPAM-SOURCE-CHECK: pass
-X-MAIL:Atcsqr.andestech.com 3AMCH8YI025322
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/2] iio: light: isl76682: Add ISL76682 driver
+To: Marek Vasut <marex@denx.de>, linux-iio@vger.kernel.org
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+ Andre Werner <andre.werner@systec-electronic.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Bjorn Helgaas <bhelgaas@google.com>, Conor Dooley <conor+dt@kernel.org>,
+ Fabio Estevam <festevam@denx.de>, Guenter Roeck <linux@roeck-us.net>,
+ Jonathan Cameron <jic23@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Lars-Peter Clausen <lars@metafoo.de>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>, Mark Brown <broonie@kernel.org>,
+ Naresh Solanki <naresh.solanki@9elements.com>,
+ Patrick Rudolph <patrick.rudolph@9elements.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
+ Vincent Tremblay <vincent@vtremblay.dev>, devicetree@vger.kernel.org
+References: <20231121031043.327614-1-marex@denx.de>
+ <20231121031043.327614-2-marex@denx.de>
+Content-Language: en-US, en-GB
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <20231121031043.327614-2-marex@denx.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Locus Wei-Han Chen <locus84@andestech.com>
+On 11/21/23 05:10, Marek Vasut wrote:
+> The ISL76682 is very basic ALS which only supports ALS or IR mode
+> in four ranges, 1k/4k/16k/64k LUX. There is no IRQ support or any
+> other fancy functionality.
+> 
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> ---
+> Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Cc: Andre Werner <andre.werner@systec-electronic.com>
+> Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> Cc: Bjorn Helgaas <bhelgaas@google.com>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Fabio Estevam <festevam@denx.de>
+> Cc: Guenter Roeck <linux@roeck-us.net>
+> Cc: Jonathan Cameron <jic23@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Lars-Peter Clausen <lars@metafoo.de>
+> Cc: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> Cc: Mark Brown <broonie@kernel.org>
+> Cc: Matti Vaittinen <mazziesaccount@gmail.com>
+> Cc: Naresh Solanki <naresh.solanki@9elements.com>
+> Cc: Patrick Rudolph <patrick.rudolph@9elements.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>
+> Cc: Vincent Tremblay <vincent@vtremblay.dev>
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-iio@vger.kernel.org
+> ---
+> V2: - Overhaul the driver
+>      - Cache the entire 8-bit command register instead of parts of it
+>        and build up and rewrite the entire register if necessary
+>      - Fix illumination scale, add intensity scale, add integration time
+> V3: - Limit the read data to 16bit ADC range
+>      - Update Kconfig description
+>      - Update macros, drop bitshifts
+>      - Switch over to table lookup for lux ranges
+>      - Switch over to .read_avail instead of attributes
+>      - Use guard where applicable
+>      - Drop remove function in favor of reset action
+> V4: - Address feedback from Andy
+>      - Add missing includes
+>      - Change ISL76682_ADC_MAX to BIT(16) - 1
+>      - Drop initial ret assignment in isl76682_read_raw()
+>      - Move return -EINVAL to default: switch-case branch
+>      - Use switch-case consistenly instead of if/else
+>      - Drop trailing commas
+>      - Add comment to isl76682_clear_configure_reg on command zeroing on failure
+>      - Drop i2c_set_clientdata
+>      - Update devm_regmap_init_i2c return value handling
+> ---
+>   drivers/iio/light/Kconfig    |  15 ++
+>   drivers/iio/light/Makefile   |   1 +
+>   drivers/iio/light/isl76682.c | 364 +++++++++++++++++++++++++++++++++++
+>   3 files changed, 380 insertions(+)
+>   create mode 100644 drivers/iio/light/isl76682.c
+> 
+> diff --git a/drivers/iio/light/Kconfig b/drivers/iio/light/Kconfig
+> index 45edba797e4c7..9e8cdc091556d 100644
+> --- a/drivers/iio/light/Kconfig
+> +++ b/drivers/iio/light/Kconfig
+> @@ -252,6 +252,21 @@ config ISL29125
+>   	  To compile this driver as a module, choose M here: the module will be
+>   	  called isl29125.
+>   
+> +config ISL76682
+> +	tristate "Intersil ISL76682 Light Sensor"
+> +	depends on I2C
+> +	select REGMAP_I2C
+> +	help
+> +	  Say Y here if you want to build a driver for the Intersil ISL76682
+> +	  Ambient Light Sensor and IR Intensity sensor. This driver provides
+> +	  the readouts via standard IIO sysfs and device interface. Both ALS
+> +	  illuminance and IR illuminance are provided raw with separate scale
+> +	  setting which can be configured via sysfs, the default scale is 1000
+> +	  lux, other options are 4000/16000/64000 lux.
+> +
+> +	  To compile this driver as a module, choose M here: the module will be
+> +	  called isl76682.
+> +
+>   config HID_SENSOR_ALS
+>   	depends on HID_SENSOR_HUB
+>   	select IIO_BUFFER
+> diff --git a/drivers/iio/light/Makefile b/drivers/iio/light/Makefile
+> index c0db4c4c36ec9..09fa585f3109f 100644
+> --- a/drivers/iio/light/Makefile
+> +++ b/drivers/iio/light/Makefile
+> @@ -28,6 +28,7 @@ obj-$(CONFIG_IQS621_ALS)	+= iqs621-als.o
+>   obj-$(CONFIG_SENSORS_ISL29018)	+= isl29018.o
+>   obj-$(CONFIG_SENSORS_ISL29028)	+= isl29028.o
+>   obj-$(CONFIG_ISL29125)		+= isl29125.o
+> +obj-$(CONFIG_ISL76682)		+= isl76682.o
+>   obj-$(CONFIG_JSA1212)		+= jsa1212.o
+>   obj-$(CONFIG_SENSORS_LM3533)	+= lm3533-als.o
+>   obj-$(CONFIG_LTR501)		+= ltr501.o
+> diff --git a/drivers/iio/light/isl76682.c b/drivers/iio/light/isl76682.c
+> new file mode 100644
+> index 0000000000000..7f0ccd0d37539
+> --- /dev/null
+> +++ b/drivers/iio/light/isl76682.c
+> @@ -0,0 +1,364 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * IIO driver for the light sensor ISL76682.
+> + * ISL76682 is Ambient Light Sensor
+> + *
+> + * Copyright (c) 2023 Marek Vasut <marex@denx.de>
+> + */
+> +
+> +#include <linux/array_size.h>
+> +#include <linux/bits.h>
+> +#include <linux/cleanup.h>
+> +#include <linux/delay.h>
+> +#include <linux/err.h>
+> +#include <linux/i2c.h>
+> +#include <linux/module.h>
+> +#include <linux/mutex.h>
+> +#include <linux/regmap.h>
+> +#include <linux/types.h>
+> +
+> +#include <linux/iio/iio.h>
+> +
+> +#define ISL76682_REG_COMMAND			0x00
+> +
+> +#define ISL76682_COMMAND_EN			BIT(7)
+> +#define ISL76682_COMMAND_MODE_CONTINUOUS	BIT(6)
+> +#define ISL76682_COMMAND_LIGHT_IR		BIT(5)
+> +
+> +#define ISL76682_COMMAND_RANGE_LUX_1K		0x0
+> +#define ISL76682_COMMAND_RANGE_LUX_4K		0x1
+> +#define ISL76682_COMMAND_RANGE_LUX_16K		0x2
+> +#define ISL76682_COMMAND_RANGE_LUX_64K		0x3
+> +#define ISL76682_COMMAND_RANGE_LUX_MASK		GENMASK(1, 0)
+> +
+> +#define ISL76682_REG_ALSIR_L			0x01
+> +
+> +#define ISL76682_REG_ALSIR_U			0x02
+> +
+> +#define ISL76682_NUM_REGS			(ISL76682_REG_ALSIR_U + 1)
+> +
+> +#define ISL76682_CONV_TIME_MS			100
+> +#define ISL76682_INT_TIME_US			90000
+> +
+> +#define ISL76682_ADC_MAX			(BIT(16) - 1)
+> +
+> +struct isl76682_chip {
+> +	/*
+> +	 * Lock to synchronize access to device command register
+> +	 * and the content of range variable below.
+> +	 */
+> +	struct mutex			lock;
+> +	struct regmap			*regmap;
+> +	u8				range;
+> +	u8				command;
+> +};
+> +
+> +struct isl76682_range {
+> +	u8				range;
+> +	u32				als;
+> +	u32				ir;
+> +};
+> +
+> +static struct isl76682_range isl76682_range_table[] = {
+> +	{ ISL76682_COMMAND_RANGE_LUX_1K, 15000, 10500 },
+> +	{ ISL76682_COMMAND_RANGE_LUX_4K, 60000, 42000 },
+> +	{ ISL76682_COMMAND_RANGE_LUX_16K, 240000, 168000 },
+> +	{ ISL76682_COMMAND_RANGE_LUX_64K, 960000, 673000 }
+> +};
+> +
+> +static int isl76682_get(struct isl76682_chip *chip, bool mode_ir, int *data)
+> +{
+> +	u8 command;
+> +	int ret;
+> +
+> +	command = ISL76682_COMMAND_EN | ISL76682_COMMAND_MODE_CONTINUOUS |
+> +		  chip->range;
+> +
+> +	if (mode_ir)
+> +		command |= ISL76682_COMMAND_LIGHT_IR;
+> +
+> +	if (command != chip->command) {
+> +		ret = regmap_write(chip->regmap, ISL76682_REG_COMMAND, command);
+> +		if (ret)
+> +			return ret;
+> +
+> +		/* Need to wait for conversion time if ALS/IR mode enabled */
+> +		msleep(ISL76682_CONV_TIME_MS);
+> +
+> +		chip->command = command;
+> +	}
+> +
+> +	ret = regmap_bulk_read(chip->regmap, ISL76682_REG_ALSIR_L, data, 2);
+> +	*data &= ISL76682_ADC_MAX;
+> +	return ret;
+> +}
+> +
+> +static int isl76682_write_raw(struct iio_dev *indio_dev,
+> +			      struct iio_chan_spec const *chan,
+> +			      int val, int val2, long mask)
+> +{
+> +	struct isl76682_chip *chip = iio_priv(indio_dev);
+> +	int i;
+> +
+> +	if (chan->type != IIO_LIGHT && chan->type != IIO_INTENSITY)
+> +		return -EINVAL;
+> +
+> +	if (mask != IIO_CHAN_INFO_SCALE)
+> +		return -EINVAL;
+> +
+> +	if (val != 0)
+> +		return -EINVAL;
+> +
+> +	for (i = 0; i < ARRAY_SIZE(isl76682_range_table); i++) {
+> +		if (chan->type == IIO_LIGHT) {
+> +			if (val2 != isl76682_range_table[i].als)
+> +				continue;
+> +		} else if (chan->type == IIO_INTENSITY) {
+> +			if (val2 != isl76682_range_table[i].ir)
+> +				continue;
+> +		}
 
-This patch adds the Andes AX45 JSON files in the perf tool,
-allowing perf to be used with symbolic event names.
+I like this table-based look-up for write (and read) of scales. Looking 
+at this I see an analogy to some of the regulator stuff, like for 
+example the ramp-up values. What I do very much like in the regulator 
+subsystem is the drivers/regulator/helpers.c
 
-Signed-off-by: Locus Wei-Han Chen <locus84@andestech.com>
-Reviewed-by: Yu Chien Peter Lin <peterlin@andestech.com>
-Reviewed-by: Charles Ci-Jyun Wu <dminus@andestech.com>
-Reviewed-by: Leo Yu-Chi Liang <ycliang@andestech.com>
----
-Changes v1 -> v2:
-  - No change
-Changes v2 -> v3:
-  - No change
-Changes v3 -> v4:
-  - No change
----
- .../arch/riscv/andes/ax45/firmware.json       |  68 ++++++++++
- .../arch/riscv/andes/ax45/instructions.json   | 127 ++++++++++++++++++
- .../arch/riscv/andes/ax45/memory.json         |  57 ++++++++
- .../arch/riscv/andes/ax45/microarch.json      |  77 +++++++++++
- tools/perf/pmu-events/arch/riscv/mapfile.csv  |   1 +
- 5 files changed, 330 insertions(+)
- create mode 100644 tools/perf/pmu-events/arch/riscv/andes/ax45/firmware.json
- create mode 100644 tools/perf/pmu-events/arch/riscv/andes/ax45/instructions.json
- create mode 100644 tools/perf/pmu-events/arch/riscv/andes/ax45/memory.json
- create mode 100644 tools/perf/pmu-events/arch/riscv/andes/ax45/microarch.json
+I wonder if similar approach would be usable in IIO as well? I mean, 
+providing readily written iio_regmap_read/write_raw_<functionality>() 
+and iio_available_*() helpers for the simple devices where we just have 
+value-register mapping? I mean, driver would just populate something like:
 
-diff --git a/tools/perf/pmu-events/arch/riscv/andes/ax45/firmware.json b/tools/perf/pmu-events/arch/riscv/andes/ax45/firmware.json
-new file mode 100644
-index 000000000000..9b4a032186a7
---- /dev/null
-+++ b/tools/perf/pmu-events/arch/riscv/andes/ax45/firmware.json
-@@ -0,0 +1,68 @@
-+[
-+  {
-+    "ArchStdEvent": "FW_MISALIGNED_LOAD"
-+  },
-+  {
-+    "ArchStdEvent": "FW_MISALIGNED_STORE"
-+  },
-+  {
-+    "ArchStdEvent": "FW_ACCESS_LOAD"
-+  },
-+  {
-+    "ArchStdEvent": "FW_ACCESS_STORE"
-+  },
-+  {
-+    "ArchStdEvent": "FW_ILLEGAL_INSN"
-+  },
-+  {
-+    "ArchStdEvent": "FW_SET_TIMER"
-+  },
-+  {
-+    "ArchStdEvent": "FW_IPI_SENT"
-+  },
-+  {
-+    "ArchStdEvent": "FW_IPI_RECEIVED"
-+  },
-+  {
-+    "ArchStdEvent": "FW_FENCE_I_SENT"
-+  },
-+  {
-+    "ArchStdEvent": "FW_FENCE_I_RECEIVED"
-+  },
-+  {
-+    "ArchStdEvent": "FW_SFENCE_VMA_SENT"
-+  },
-+  {
-+    "ArchStdEvent": "FW_SFENCE_VMA_RECEIVED"
-+  },
-+  {
-+    "ArchStdEvent": "FW_SFENCE_VMA_RECEIVED"
-+  },
-+  {
-+    "ArchStdEvent": "FW_SFENCE_VMA_ASID_RECEIVED"
-+  },
-+  {
-+    "ArchStdEvent": "FW_HFENCE_GVMA_SENT"
-+  },
-+  {
-+    "ArchStdEvent": "FW_HFENCE_GVMA_RECEIVED"
-+  },
-+  {
-+    "ArchStdEvent": "FW_HFENCE_GVMA_VMID_SENT"
-+  },
-+  {
-+    "ArchStdEvent": "FW_HFENCE_GVMA_VMID_RECEIVED"
-+  },
-+  {
-+    "ArchStdEvent": "FW_HFENCE_VVMA_SENT"
-+  },
-+  {
-+    "ArchStdEvent": "FW_HFENCE_VVMA_RECEIVED"
-+  },
-+  {
-+    "ArchStdEvent": "FW_HFENCE_VVMA_ASID_SENT"
-+  },
-+  {
-+    "ArchStdEvent": "FW_HFENCE_VVMA_ASID_RECEIVED"
-+  }
-+]
-diff --git a/tools/perf/pmu-events/arch/riscv/andes/ax45/instructions.json b/tools/perf/pmu-events/arch/riscv/andes/ax45/instructions.json
-new file mode 100644
-index 000000000000..713a08c1a40f
---- /dev/null
-+++ b/tools/perf/pmu-events/arch/riscv/andes/ax45/instructions.json
-@@ -0,0 +1,127 @@
-+[
-+	{
-+		"EventCode": "0x10",
-+		"EventName": "cycle_count",
-+		"BriefDescription": "Cycle count"
-+	},
-+	{
-+		"EventCode": "0x20",
-+		"EventName": "inst_count",
-+		"BriefDescription": "Retired instruction count"
-+	},
-+	{
-+		"EventCode": "0x30",
-+		"EventName": "int_load_inst",
-+		"BriefDescription": "Integer load instruction count"
-+	},
-+	{
-+		"EventCode": "0x40",
-+		"EventName": "int_store_inst",
-+		"BriefDescription": "Integer store instruction count"
-+	},
-+	{
-+		"EventCode": "0x50",
-+		"EventName": "atomic_inst",
-+		"BriefDescription": "Atomic instruction count"
-+	},
-+	{
-+		"EventCode": "0x60",
-+		"EventName": "sys_inst",
-+		"BriefDescription": "System instruction count"
-+	},
-+	{
-+		"EventCode": "0x70",
-+		"EventName": "int_compute_inst",
-+		"BriefDescription": "Integer computational instruction count"
-+	},
-+	{
-+		"EventCode": "0x80",
-+		"EventName": "condition_br",
-+		"BriefDescription": "Conditional branch instruction count"
-+	},
-+	{
-+		"EventCode": "0x90",
-+		"EventName": "taken_condition_br",
-+		"BriefDescription": "Taken conditional branch instruction count"
-+	},
-+	{
-+		"EventCode": "0xA0",
-+		"EventName": "jal_inst",
-+		"BriefDescription": "JAL instruction count"
-+	},
-+	{
-+		"EventCode": "0xB0",
-+		"EventName": "jalr_inst",
-+		"BriefDescription": "JALR instruction count"
-+	},
-+	{
-+		"EventCode": "0xC0",
-+		"EventName": "ret_inst",
-+		"BriefDescription": "Return instruction count"
-+	},
-+	{
-+		"EventCode": "0xD0",
-+		"EventName": "control_trans_inst",
-+		"BriefDescription": "Control transfer instruction count"
-+	},
-+	{
-+		"EventCode": "0xE0",
-+		"EventName": "ex9_inst",
-+		"BriefDescription": "EXEC.IT instruction count"
-+	},
-+	{
-+		"EventCode": "0xF0",
-+		"EventName": "int_mul_inst",
-+		"BriefDescription": "Integer multiplication instruction count"
-+	},
-+	{
-+		"EventCode": "0x100",
-+		"EventName": "int_div_rem_inst",
-+		"BriefDescription": "Integer division/remainder instruction count"
-+	},
-+	{
-+		"EventCode": "0x110",
-+		"EventName": "float_load_inst",
-+		"BriefDescription": "Floating-point load instruction count"
-+	},
-+	{
-+		"EventCode": "0x120",
-+		"EventName": "float_store_inst",
-+		"BriefDescription": "Floating-point store instruction count"
-+	},
-+	{
-+		"EventCode": "0x130",
-+		"EventName": "float_add_sub_inst",
-+		"BriefDescription": "Floating-point addition/subtraction instruction count"
-+	},
-+	{
-+		"EventCode": "0x140",
-+		"EventName": "float_mul_inst",
-+		"BriefDescription": "Floating-point multiplication instruction count"
-+	},
-+	{
-+		"EventCode": "0x150",
-+		"EventName": "float_fused_muladd_inst",
-+		"BriefDescription": "Floating-point fused multiply-add instruction count"
-+	},
-+	{
-+		"EventCode": "0x160",
-+		"EventName": "float_div_sqrt_inst",
-+		"BriefDescription": "Floating-point division or square-root instruction count"
-+	},
-+	{
-+		"EventCode": "0x170",
-+		"EventName": "other_float_inst",
-+		"BriefDescription": "Other floating-point instruction count"
-+	},
-+	{
-+		"EventCode": "0x180",
-+		"EventName": "int_mul_add_sub_inst",
-+		"BriefDescription": "Integer multiplication and add/sub instruction count"
-+	},
-+	{
-+		"EventCode": "0x190",
-+		"EventName": "retired_ops",
-+		"BriefDescription": "Retired operation count"
-+	}
-+]
-diff --git a/tools/perf/pmu-events/arch/riscv/andes/ax45/memory.json b/tools/perf/pmu-events/arch/riscv/andes/ax45/memory.json
-new file mode 100644
-index 000000000000..c7401b526c77
---- /dev/null
-+++ b/tools/perf/pmu-events/arch/riscv/andes/ax45/memory.json
-@@ -0,0 +1,57 @@
-+[
-+	{
-+		"EventCode": "0x01",
-+		"EventName": "ilm_access",
-+		"BriefDescription": "ILM access"
-+	},
-+	{
-+		"EventCode": "0x11",
-+		"EventName": "dlm_access",
-+		"BriefDescription": "DLM access"
-+	},
-+	{
-+		"EventCode": "0x21",
-+		"EventName": "icache_access",
-+		"BriefDescription": "ICACHE access"
-+	},
-+	{
-+		"EventCode": "0x31",
-+		"EventName": "icache_miss",
-+		"BriefDescription": "ICACHE miss"
-+	},
-+	{
-+		"EventCode": "0x41",
-+		"EventName": "dcache_access",
-+		"BriefDescription": "DCACHE access"
-+	},
-+	{
-+		"EventCode": "0x51",
-+		"EventName": "dcache_miss",
-+		"BriefDescription": "DCACHE miss"
-+	},
-+	{
-+		"EventCode": "0x61",
-+		"EventName": "dcache_load_access",
-+		"BriefDescription": "DCACHE load access"
-+	},
-+	{
-+		"EventCode": "0x71",
-+		"EventName": "dcache_load_miss",
-+		"BriefDescription": "DCACHE load miss"
-+	},
-+	{
-+		"EventCode": "0x81",
-+		"EventName": "dcache_store_access",
-+		"BriefDescription": "DCACHE store access"
-+	},
-+	{
-+		"EventCode": "0x91",
-+		"EventName": "dcache_store_miss",
-+		"BriefDescription": "DCACHE store miss"
-+	},
-+	{
-+		"EventCode": "0xA1",
-+		"EventName": "dcache_wb",
-+		"BriefDescription": "DCACHE writeback"
-+	}
-+]
-diff --git a/tools/perf/pmu-events/arch/riscv/andes/ax45/microarch.json b/tools/perf/pmu-events/arch/riscv/andes/ax45/microarch.json
-new file mode 100644
-index 000000000000..a6d378cbaa74
---- /dev/null
-+++ b/tools/perf/pmu-events/arch/riscv/andes/ax45/microarch.json
-@@ -0,0 +1,77 @@
-+[
-+	{
-+		"EventCode": "0xB1",
-+		"EventName": "cycle_wait_icache_fill",
-+		"BriefDescription": "Cycles waiting for ICACHE fill data"
-+	},
-+	{
-+		"EventCode": "0xC1",
-+		"EventName": "cycle_wait_dcache_fill",
-+		"BriefDescription": "Cycles waiting for DCACHE fill data"
-+	},
-+	{
-+		"EventCode": "0xD1",
-+		"EventName": "uncached_ifetch_from_bus",
-+		"BriefDescription": "Uncached ifetch data access from bus"
-+	},
-+	{
-+		"EventCode": "0xE1",
-+		"EventName": "uncached_load_from_bus",
-+		"BriefDescription": "Uncached load data access from bus"
-+	},
-+	{
-+		"EventCode": "0xF1",
-+		"EventName": "cycle_wait_uncached_ifetch",
-+		"BriefDescription": "Cycles waiting for uncached ifetch data from bus"
-+	},
-+	{
-+		"EventCode": "0x101",
-+		"EventName": "cycle_wait_uncached_load",
-+		"BriefDescription": "Cycles waiting for uncached load data from bus"
-+	},
-+	{
-+		"EventCode": "0x111",
-+		"EventName": "main_itlb_access",
-+		"BriefDescription": "Main ITLB access"
-+	},
-+	{
-+		"EventCode": "0x121",
-+		"EventName": "main_itlb_miss",
-+		"BriefDescription": "Main ITLB miss"
-+	},
-+	{
-+		"EventCode": "0x131",
-+		"EventName": "main_dtlb_access",
-+		"BriefDescription": "Main DTLB access"
-+	},
-+	{
-+		"EventCode": "0x141",
-+		"EventName": "main_dtlb_miss",
-+		"BriefDescription": "Main DTLB miss"
-+	},
-+	{
-+		"EventCode": "0x151",
-+		"EventName": "cycle_wait_itlb_fill",
-+		"BriefDescription": "Cycles waiting for Main ITLB fill data"
-+	},
-+	{
-+		"EventCode": "0x161",
-+		"EventName": "pipe_stall_cycle_dtlb_miss",
-+		"BriefDescription": "Pipeline stall cycles caused by Main DTLB miss"
-+	},
-+	{
-+		"EventCode": "0x02",
-+		"EventName": "mispredict_condition_br",
-+		"BriefDescription": "Misprediction of conditional branches"
-+	},
-+	{
-+		"EventCode": "0x12",
-+		"EventName": "mispredict_take_condition_br",
-+		"BriefDescription": "Misprediction of taken conditional branches"
-+	},
-+	{
-+		"EventCode": "0x22",
-+		"EventName": "mispredict_target_ret_inst",
-+		"BriefDescription": "Misprediction of targets of Return instructions"
-+	}
-+]
-diff --git a/tools/perf/pmu-events/arch/riscv/mapfile.csv b/tools/perf/pmu-events/arch/riscv/mapfile.csv
-index c61b3d6ef616..5bf09af14c1b 100644
---- a/tools/perf/pmu-events/arch/riscv/mapfile.csv
-+++ b/tools/perf/pmu-events/arch/riscv/mapfile.csv
-@@ -15,3 +15,4 @@
- #
- #MVENDORID-MARCHID-MIMPID,Version,Filename,EventType
- 0x489-0x8000000000000007-0x[[:xdigit:]]+,v1,sifive/u74,core
-+0x31e-0x8000000000008a45-0x[[:xdigit:]]+,v1,andes/ax45,core
+struct iio_scale_desc {
+	int *scale_val_table;
+	int *scale_val2_table;
+	int num_scales;
+	int scale_reg_addr;
+	int scale_reg_mask;
+};
+
+and call helper like
+int iio_regmap_read_raw_scale(struct iio_dev *idev,
+			      struct iio_scale_desc *sd, int *val,
+			      int *val2)"
+provided by IIO framework.
+
+Similar helper for writing new scales and getting available scales.
+
+Later this could be expanded by allowing specifying the type of provided 
+values (in the example case, IIO_VAL_INT_PLUS_x - but maybe this would 
+be extensible (and worth) to support also the other options?)
+
+I know it's a bit much to be done in the context of this series. Hence I 
+am definitely not insisting this to be done here! OTOH, the embedded 
+Linux is not in EU next year so maybe Marek would forgive me before we 
+meet next time :pondering:
+
+Anyways - does this sound like a sensible thing to do? I guess it could 
+help simplifying some drivers a little.
+
+Oh. Only after writing of this I noticed the range is written in HW only 
+together with the 'start' command. I guess this is how the IC operates - 
+you need to write all configs together with starting the measurement? Or 
+is that just an optimization to avoid extra writes? If it's the first, 
+then a suggested iio_regmap_*() -helper wouldn't work here. I might've 
+added a comment explaining why range is written in isl76682_get() and 
+not here to the isl76682_get().
+
+Anyways - this driver looks good to me. (What a long way of saying that).
+
+Reviewed-by: Matti Vaittinen <mazziesaccount@gmail.com>
+
+> +
+> +		scoped_guard(mutex, &chip->lock)
+> +			chip->range = isl76682_range_table[i].range;
+> +		return 0;
+> +	}
+> +
+> +	return -EINVAL;
+> +}
+> +
+
+Yours,
+	-- Matti
+
 -- 
-2.34.1
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
+
+~~ When things go utterly wrong vim users can always type :help! ~~
 
 
