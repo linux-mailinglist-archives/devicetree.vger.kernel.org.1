@@ -1,104 +1,154 @@
-Return-Path: <devicetree+bounces-18041-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18042-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BD357F4E30
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 18:19:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FB887F4E41
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 18:23:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F1306B21AFD
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 17:19:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4BA6D2811EC
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 17:23:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53F3957891;
-	Wed, 22 Nov 2023 17:18:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B90A55B5B7;
+	Wed, 22 Nov 2023 17:23:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="S9t4hjh0"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dv+Hb9NF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 675BF1B1
-	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 09:18:49 -0800 (PST)
-Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-50970c2115eso10042584e87.1
-        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 09:18:49 -0800 (PST)
+Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A500F83;
+	Wed, 22 Nov 2023 09:23:40 -0800 (PST)
+Received: by mail-yb1-xb2d.google.com with SMTP id 3f1490d57ef6-da7ea62e76cso8553276.3;
+        Wed, 22 Nov 2023 09:23:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700673527; x=1701278327; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=qBb7uvDdpiPhPtfYhGAJokE68U5HdEwFTqReQh4emMQ=;
-        b=S9t4hjh0IGkvOECUN5WpW86UWyFg2iOL1PRLQZRAmsEGyRsDTjPQWlesYlhoxHKzml
-         BLyPCxoOGb00HQ+eQP6gxFNjEWph6CZurjyjZngR0Q8v84mQPzuiHxz4Ff1EOAcVI4yt
-         cvJ+NExGeOI9+tJNvvrO/GryWx8OVq0KSHTPuW17eSgFcRKixMr6tx917dI/pUuHFSwM
-         FE+ZMW7e4j6kV5Ky43Tegug2H6F6x1G+w7UARods5EwRPu7R+7/39CuZ/bFRMkbVhNNN
-         ttC//uNeXdLZbY0BHDg4QK/NifL+1bcn6LlNKsGVGdxqlu4MYEly+1Ca1WOaqoGfSXNb
-         YsEw==
+        d=gmail.com; s=20230601; t=1700673820; x=1701278620; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=NynfojDHOku/gIHF0Vtvo3+Mk/LM+8uGwtlY48AR6MM=;
+        b=dv+Hb9NFVteaY/vRglrdAUYLSLXPsyrJVgF9JnPXQvEfm2SlEIoV3Cjdb0jhSU7zbH
+         EMe3pZGSj8PezsOOH/uTGeeBBu5LA3JNxQ1Y+bVhTnFqNtLE/5nmgl4RZ1iFHEI1LCoT
+         5TbcbtE8KDWmSgrwbfW75JGKxHMddg142VC4L8nmIIwuuCIGZeUzzH+VjtDviNnOaVwb
+         GOiWhExqu+Dkib8akRA40YXsGhxZICdhrM2MAa7TRgfT4LTrnVICd+kWZTuhqGLM6Syg
+         Md3q6DM9WQepd1i9ZrcmfSNK+Ittxz8Q8vKToi4P/rH1wTSWjl8nm6UxYQdTrEau63zR
+         5cmw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700673527; x=1701278327;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qBb7uvDdpiPhPtfYhGAJokE68U5HdEwFTqReQh4emMQ=;
-        b=NPeYdCy5rBM9Kmpr+7x8coxzuAgLCT9YDke+uFJ7hGYXRFVfSaztDd3sj2XNfJtg/9
-         uJKVckLGCJdLCahJT95VBJRnHJ0fosQsCUD4HE1xw/74InPRjaxcadRIhaLnwG37wXCc
-         0ShUDm/jpd3+wxf2ANCbGI3iUG3UfI1hF0WVO2WdzngW1kIR28KEm2PIxFg02LC4l4iy
-         kx+i3Hh1cyy2XJLH7UO9J6lX+jCH1d/MByhxLM6N5SEujGjt3ClQp7Fsvxog10aTK+h2
-         Jh4T//dzHpOdFptZlANfP6VtIoBN8CzJr8jSfhGutWcOHUKr45E/2nTMerDMYPOzIyLR
-         JXmw==
-X-Gm-Message-State: AOJu0YxYLwhSQLhjYTz9FoShFTQd8We2fk9McZjCZO88UtF/6+0VndzS
-	BLUit2TFEyj2uqC8So5n+fGvcw==
-X-Google-Smtp-Source: AGHT+IE7Lpl8F22WVyua+nXBTNkuJNuj346aRbY/a56nH2yZhpl0Y/3GTRWDi4MXCF7jUctLK5UgqA==
-X-Received: by 2002:a19:4359:0:b0:508:11f5:8953 with SMTP id m25-20020a194359000000b0050811f58953mr2099727lfj.26.1700673527381;
-        Wed, 22 Nov 2023 09:18:47 -0800 (PST)
-Received: from [172.30.204.227] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
-        by smtp.gmail.com with ESMTPSA id a1-20020a19ca01000000b005091492ac3fsm1922005lfg.175.2023.11.22.09.18.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Nov 2023 09:18:46 -0800 (PST)
-Message-ID: <ebed123a-f952-4269-bf2c-0c0cd7d6e049@linaro.org>
-Date: Wed, 22 Nov 2023 18:18:44 +0100
+        d=1e100.net; s=20230601; t=1700673820; x=1701278620;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=NynfojDHOku/gIHF0Vtvo3+Mk/LM+8uGwtlY48AR6MM=;
+        b=p7UzkmWLM7ulzzCKqGFME5+zSN3n+0o9mJGfb5iSclhi6iYsPUcMwqU9BFJ9WK1GYM
+         ZUWtuLm0vdP5evOD22BFy+dNDZ8NbeHLbWlBj6bNnB/DliQrpjtsFyURqf9NaBHhmP5W
+         o4SqBb0sn3DeTQ2G6lyiFp5gBJxuN7NxXd/cpBzBCWDOSSCc+1sOQlCL528InELE9JDp
+         D9XoDxbRReIRod/CAMzQbSJbm8UU+ph0y4y9qfngXaM09fFJ6fkoIiAA1QMuUz7G93Ua
+         OnUSqtw/gC/UjbvCFRh29zxnYLlLDUzZGz7cwtBSL13VaCCcEHgUCV2eNRZwGXZMv35+
+         T+8Q==
+X-Gm-Message-State: AOJu0YwPUEQX+p7d8atOv6DSXMzAR2DikttHylEs0bz7SmSEBzeb1XVj
+	8xf+kIwh4Mpp9s7LYTlAet/SEWWrnoY9s+cfUTw=
+X-Google-Smtp-Source: AGHT+IHOpI5xPVk6Sar76TK2xFochhgo10/ziA9WnAM3iYe0K/JG8b7nGUI7tLK1eOpbXeUs9Wl63rjUYOi5f2szQMQ=
+X-Received: by 2002:a5b:1cb:0:b0:d91:fdb:afd4 with SMTP id f11-20020a5b01cb000000b00d910fdbafd4mr2751108ybp.16.1700673819823;
+ Wed, 22 Nov 2023 09:23:39 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/6] arm64: dts: qcom: sm6115: align mem timer size cells
- with bindings
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231111164229.63803-1-krzysztof.kozlowski@linaro.org>
- <20231111164229.63803-4-krzysztof.kozlowski@linaro.org>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20231111164229.63803-4-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Level: *
+References: <20231121151733.2015384-1-tmaimon77@gmail.com> <20231121151733.2015384-3-tmaimon77@gmail.com>
+ <ZVzQh9ykusyknGgP@shell.armlinux.org.uk>
+In-Reply-To: <ZVzQh9ykusyknGgP@shell.armlinux.org.uk>
+From: Tomer Maimon <tmaimon77@gmail.com>
+Date: Wed, 22 Nov 2023 19:23:28 +0200
+Message-ID: <CAP6Zq1gzAhp9BZNX1MOozUfQc82Vi_S==on5_nOfVfpvtgnN2g@mail.gmail.com>
+Subject: Re: [PATCH v1 2/2] net: stmmac: Add NPCM support
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc: davem@davemloft.net, edumazet@google.com, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, alexandre.torgue@foss.st.com, 
+	peppe.cavallaro@st.com, joabreu@synopsys.com, mcoquelin.stm32@gmail.com, 
+	avifishman70@gmail.com, tali.perry1@gmail.com, joel@jms.id.au, 
+	andrew@codeconstruct.com.au, venture@google.com, yuenn@google.com, 
+	benjaminfair@google.com, j.neuschaefer@gmx.net, openbmc@lists.ozlabs.org, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 
+Hi Russell,
 
+Thanks for your comments.
 
-On 11/11/23 17:42, Krzysztof Kozlowski wrote:
-> Commit 70d1e09ebf19 ("arm64: dts: qcom: sm6115: Use 64 bit addressing")
-> converted all addresses to 64-bit addressing, but the ARMv7 memory
-> mapped architected timer bindings expect sizes up to 32-bit.  Keep
-> 64-bit addressing but change size of memory mapping to 32-bit
-> (size-cells=1) and adjust the ranges to match this.
-> 
-> This fixes dtbs_check warnings like:
-> 
->    sm6115p-lenovo-j606f.dtb: timer@f120000: #size-cells:0:0: 1 was expected
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> ---
-> 
-> I hope I got the ranges right. Not tested on hardware.
-> ---
-Tested-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+On Tue, 21 Nov 2023 at 17:45, Russell King (Oracle)
+<linux@armlinux.org.uk> wrote:
+>
+> On Tue, Nov 21, 2023 at 05:17:33PM +0200, Tomer Maimon wrote:
+> > Add Nuvoton NPCM BMC SoCs support to STMMAC dwmac driver.
+> >
+> > And modify MAINTAINERS to add a new F: entry for this driver.
+> >
+> > Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+>
+> A few comments on this...
+>
+> > +#define IND_AC_BA_REG                0x1FE
+> > +#define SR_MII_CTRL          0x3E0000
+> > +
+> > +#define PCS_SR_MII_CTRL_REG  0x0
+> > +#define PCS_SPEED_SELECT6    BIT(6)
+> > +#define PCS_AN_ENABLE                BIT(12)
+> > +#define PCS_SPEED_SELECT13   BIT(13)
+> > +#define PCS_RST                      BIT(15)
+>
+> include/uapi/linux/mii.h:
+>
+> #define BMCR_SPEED1000          0x0040  /* MSB of Speed (1000)         */
+> #define BMCR_ANENABLE           0x1000  /* Enable auto negotiation     */
+> #define BMCR_SPEED100           0x2000  /* Select 100Mbps              */
+> #define BMCR_RESET              0x8000  /* Reset to default state      */
+>
+> Look familiar? Maybe use the standard definitions for a standardised
+> register?
+>
+> > +void npcm_dwmac_pcs_init(struct npcm_dwmac *dwmac, struct device *dev,
+> > +                      struct plat_stmmacenet_data *plat_dat)
+> > +{
+> > +     u16 val;
+> > +
+> > +     iowrite16((u16)(SR_MII_CTRL >> 9), dwmac->reg + IND_AC_BA_REG);
+> > +     val = ioread16(dwmac->reg + PCS_SR_MII_CTRL_REG);
+> > +     val |= PCS_RST;
+> > +     iowrite16(val, dwmac->reg + PCS_SR_MII_CTRL_REG);
+> > +
+> > +     while (val & PCS_RST)
+> > +             val = ioread16(dwmac->reg + PCS_SR_MII_CTRL_REG);
+>
+> What if the PCS never clears its reset bit? Maybe use
+> read_poll_timeout() ?
+>
+> > +
+> > +     val &= ~(PCS_AN_ENABLE);
+> > +     iowrite16(val, dwmac->reg + PCS_SR_MII_CTRL_REG);
+> > +}
+>
+> Also, maybe it's time to require new stmmac platform support to start
+> making use of the phylink PCS support rather than continuing to code its
+> own?
+>
+> I notice, however, that you always disable inband signalling - please
+> explain why. Also, what protocol does the PCS use when communicating
+> with the PHY?
+With disable inband signalling you mean disable auto negotiation? if
+yes it is because the PCS sgmii is connected to the external phy AN
+and is not working between the PCS and external phy.
+accessing the PCS registers is indirect. The top 13 bits (bits 21-9)
+of the offset have to be written to Indirect Access Base register
+bits 12:0 before indirectly accessing the target register with the
+offset of the bottom 9 bits (8:0) of the offset
+>
+> --
+> RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+> FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
-Konrad
+Thanks,
+
+Tomer
 
