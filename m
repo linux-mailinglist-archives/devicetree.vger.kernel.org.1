@@ -1,99 +1,158 @@
-Return-Path: <devicetree+bounces-17971-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17972-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EF8F7F4972
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 15:53:57 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32C307F4974
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 15:54:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 28CA3B20C89
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 14:53:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 640441C20503
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 14:54:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 680064EB3E;
-	Wed, 22 Nov 2023 14:53:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECA3A4EB42;
+	Wed, 22 Nov 2023 14:54:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xu7tEnP3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bmailout3.hostsharing.net (bmailout3.hostsharing.net [IPv6:2a01:4f8:150:2161:1:b009:f23e:0])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A5E3112;
-	Wed, 22 Nov 2023 06:53:46 -0800 (PST)
-Received: from h08.hostsharing.net (h08.hostsharing.net [IPv6:2a01:37:1000::53df:5f1c:0])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256
-	 client-signature RSA-PSS (4096 bits) client-digest SHA256)
-	(Client CN "*.hostsharing.net", Issuer "RapidSSL Global TLS RSA4096 SHA256 2022 CA1" (verified OK))
-	by bmailout3.hostsharing.net (Postfix) with ESMTPS id 7C520100DA1D6;
-	Wed, 22 Nov 2023 15:53:44 +0100 (CET)
-Received: by h08.hostsharing.net (Postfix, from userid 100393)
-	id 373E137FB2; Wed, 22 Nov 2023 15:53:44 +0100 (CET)
-Date: Wed, 22 Nov 2023 15:53:44 +0100
-From: Lukas Wunner <lukas@wunner.de>
-To: Rasmus Villemoes <linux@rasmusvillemoes.dk>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-	Crescent CY Hsieh <crescentcy.hsieh@moxa.com>,
-	Lino Sanfilippo <LinoSanfilippo@gmx.de>,
-	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Subject: Re: [PATCH 1/2] dt-bindings: serial: rs485: add rs485-mux-gpios
- binding
-Message-ID: <20231122145344.GA18949@wunner.de>
-References: <20231120151056.148450-1-linux@rasmusvillemoes.dk>
- <20231120151056.148450-2-linux@rasmusvillemoes.dk>
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 316BE1B1
+	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 06:53:59 -0800 (PST)
+Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-40b2979a74eso14338715e9.0
+        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 06:53:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1700664837; x=1701269637; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zDrnVkHL3XjkqzZIjwD+GV+RI21aur/ModllMWWqimE=;
+        b=xu7tEnP3GgbIH3a44ekDr1XLKC/WL0rBFSiNhG+qHB0lRt/i4bysn50KscNTaAM5Of
+         84ocBC/2GQyqMfgHfF7sjJyNhl5VYdsDzFBEQD6OyWRoxlCdVpJQTLvbbzG9CEgbHLxh
+         /U9l4dhCPZ0CYbsVPCWxIgPKq8JcSXk1d9K4VXoAqkcQl/jB2uGJ3yn9cM+mHqwE0HZk
+         x6T1RZFKRQpe0EJK2P2DnJ2TBe6uNTpBxAuDjqPzW5n8h1ebVwFyjsSmaIb2atIOhlVv
+         DTXwS/VRwjiFEu0vvHv5hIzS5g7caF+BX8xym2Qb3cj3wLFZ7EFIG4ZrIHLHcEJOOHY/
+         V7+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700664837; x=1701269637;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zDrnVkHL3XjkqzZIjwD+GV+RI21aur/ModllMWWqimE=;
+        b=kgtTCRdcMRPG3cdQgkRC/7HLukcV66w0iLvsD+TzZHzBdKoeP4SwUx2XtHvcLfcT3P
+         azBhVKkNbT6CWB/K4aqjwQq1svcM+2CEpHuyGRT7LH76BJisPEKV+Zq35Zm1/bk8Ek7V
+         p19JozCW7j32MJQPUKcprUBSA+R79bed6cwB936Aj+QaA5tSLqgwRFSQNuhZKaFlww8T
+         aZeIgSnpegSQmCwUZ9ZTMQFvqWSjRKh/Qtq8XNVOyMLuE1Am+4YIZYWn4+Oe6AnbwA7f
+         XeI0ryCRM98jcFm3iwXH6l1zu37jcIDkNqdPAPS1ogZEm996w/JMC06nveBK4ryrs2I1
+         cpxg==
+X-Gm-Message-State: AOJu0Ywm+lBme46qkrZ+if7znr9nQBy1wARSGTTaawiDGn1s3rGoXzic
+	uvJZMCyRid6JxmBlk6jh12dQqw==
+X-Google-Smtp-Source: AGHT+IEAYfOn7PMk/r54f1D/cQ7r6+iy76jvrGISpyHzLfVh9b7zGwDOYrKTNJfbcYZrIDlRaiEOpA==
+X-Received: by 2002:a05:600c:4f94:b0:406:8494:f684 with SMTP id n20-20020a05600c4f9400b004068494f684mr1886193wmq.23.1700664837484;
+        Wed, 22 Nov 2023 06:53:57 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.100])
+        by smtp.gmail.com with ESMTPSA id t20-20020a05600c451400b004060f0a0fdbsm2464441wmo.41.2023.11.22.06.53.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 Nov 2023 06:53:57 -0800 (PST)
+Message-ID: <6ca8f430-d0e9-4d30-afc6-0c9cb4bde563@linaro.org>
+Date: Wed, 22 Nov 2023 15:53:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231120151056.148450-2-linux@rasmusvillemoes.dk>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: clock: qcom: Document the X1E80100 TCSR
+ Clock Controller
+Content-Language: en-US
+To: Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Rajendra Nayak <quic_rjendra@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231122-x1e80100-clk-tcsrcc-v1-0-43078c6d6452@linaro.org>
+ <20231122-x1e80100-clk-tcsrcc-v1-1-43078c6d6452@linaro.org>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231122-x1e80100-clk-tcsrcc-v1-1-43078c6d6452@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Nov 20, 2023 at 04:10:54PM +0100, Rasmus Villemoes wrote:
-> Some boards are capable of both rs232 and rs485, and control which
-> external terminals are active via a gpio-controlled mux. Allow
-> describing that gpio in DT so that the kernel can transparently handle
-> the proper setting when the uart is switched between rs232 and rs485
-> modes.
-
-Crescent CY Hsieh (+cc) is in parallel trying to add an RS-422 mode bit
-to struct serial_rs485:
-
-https://lore.kernel.org/all/20231121095122.15948-1-crescentcy.hsieh@moxa.com/
-
-I don't know whether that makes sense at all (I had thought RS-422 is
-the same as RS-485 with full-duplex, i.e. SER_RS485_ENABLED plus
-SER_RS485_RX_DURING_TX).
-
-But if that patch gets accepted, we'd have *three* different modes:
-RS-232, RS-485, RS-422.  A single GPIO seems insufficient to handle that.
-You'd need at least two GPIOs.
+On 22/11/2023 14:42, Abel Vesa wrote:
+> Add bindings documentation for the X1E80100 TCSR Clock Controller.
+> 
+> Co-developed-by: Rajendra Nayak <quic_rjendra@quicinc.com>
+> Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 
 
-> --- a/Documentation/devicetree/bindings/serial/rs485.yaml
-> +++ b/Documentation/devicetree/bindings/serial/rs485.yaml
-> @@ -61,6 +61,11 @@ properties:
->        the active state enables RX during TX.
->      maxItems: 1
->  
-> +  rs485-mux-gpios:
-> +    description: GPIO pin to control muxing of the SOC signals to the RS485
-> +      transceiver.
-> +    maxItems: 1
+> +
+> +maintainers:
+> +  - Bjorn Andersson <andersson@kernel.org>
+> +
+> +description: |
+> +  Qualcomm TCSR clock control module provides the clocks, resets and
+> +  power domains on X1E80100
+> +
+> +  See also:: include/dt-bindings/clock/qcom,x1e80100-tcsr.h
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: qcom,x1e80100-tcsr
+> +      - const: syscon
 
-The description doesn't really add much to the name "rs485-mux-gpios".
+It's the same as sm8550, so I think it should be put there. Just like we
+do for sm8650.
 
-Suggestion:
+Best regards,
+Krzysztof
 
-    description: selects whether the UART is connect to an RS-232 driver (low)
-      or an RS-485 transceiver (high)
-
-Thanks,
-
-Lukas
 
