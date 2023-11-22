@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-17807-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17808-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 803C67F4335
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 11:06:38 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE5777F4338
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 11:06:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 28828281442
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 10:06:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1D3411C20843
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 10:06:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F7E11D52D;
-	Wed, 22 Nov 2023 10:06:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABAA32033F;
+	Wed, 22 Nov 2023 10:06:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sofV+i/t"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gWrQfrrY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5C9293
-	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 02:06:29 -0800 (PST)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-9fd0059a967so130372966b.1
-        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 02:06:29 -0800 (PST)
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3084412C
+	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 02:06:53 -0800 (PST)
+Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-548d311ea5fso3845284a12.1
+        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 02:06:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700647588; x=1701252388; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1700647611; x=1701252411; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=wqLfhkR8T6K8pQkiAI2WVwlKUEvVRxTxhEkDVcSmxA4=;
-        b=sofV+i/tnrM72qpQ6hgYw5BcAeViygt/ypHd+gl7qcX/DALDq88bulJA2Q5xDfNgYF
-         TpYtyuCC0hIROpj0XfUnURaumAubWhMCh28RcRyKAsPa43YdJr7NfW1pKl27EH1/LLDS
-         pLnv6l79enZLH8IsNxvLNPSYrbjBglSQH81KOkEByOaFsL+ZFQk38Zwx6ULf4vvHZUPz
-         9/88L0ZY4aLm/tDOO1JbaB+hRS/XTRpOzyzDpjty7ThwWQQ6Aqcrm5Dygo4Yi7mdEmQ5
-         cNQ/KOEg8fi3o1haTE+ImZfoPXwZ6BVR83TMAk1KiesWwDJXxkMiMWGPVI2uXbJYwJ0p
-         wNBg==
+        bh=RDybF7H85ktgdLWOM5SITKQqmOi7Rp9o86frBs4BerY=;
+        b=gWrQfrrYUstCsjizrUHYQo+35f57b7bGDATnWyXmOyl+IHEpcVPWJ2id2qDoC9YQFv
+         Kbcd5aBvbatJ2DiB797lJjEgBucjSMuZd/F9cOTvxf1tekoJl6JL+2hWsYszC0cPSRpH
+         CgvXooBdb/PAiszSWxmNr+mJgDiVqZ64lKKQ9191dqfWwCO4xwX3OrAyg9GKAlW0vmw1
+         w3JJIE6m7uISHbKF8BAXmqhIzg/TUPkFAW2oDCU99EE1rXeHaixfYTpbtYsOf5ugV9uL
+         GZyjfCWsgl0cLm33WKWn4vjCl+LqXSw3NrDtxUiQ2cqluQA6fUZTWygjNYMGv1aCMVE3
+         QRkA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700647588; x=1701252388;
+        d=1e100.net; s=20230601; t=1700647611; x=1701252411;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wqLfhkR8T6K8pQkiAI2WVwlKUEvVRxTxhEkDVcSmxA4=;
-        b=BsmyVfvsQa0OhzpUG+Wy2WN2B+0Dekv6ELiztKpeYtk7Kne9d/mUwih8OlKRf8rBr2
-         ROL5cOZCIboVxsXdciFKH3eAto1n0TENkLkEp/ga2cg9j7M8iv96l63QFPvHjB9PRnJE
-         GE4whvuN78mKdRY9UAFQsscvneS2vZOTCZUcCjwvco5BXegC0nVJWVKHdsETmpDJ9iVF
-         qAbM/sstRwTj8Ax/md0wPfJ8eOjhppd/XuZAsHFmJrcn+IqAPv0r4nui+xy6CDqw84hX
-         i8hJdVMwNMpQ8Dsu17hr2Z6y7D4vuHPRnVFExGg6wy6e5sQMuR+pOHoiAkkrOZmhAUsL
-         Cu4g==
-X-Gm-Message-State: AOJu0YzyFljrbTZ3JrkawJTSCf+eK3E+gEvB4RkInbH5eENU8P/LKYuU
-	vzzBlT8PQKpioKZP3GDufbcDqQ==
-X-Google-Smtp-Source: AGHT+IHXwtCZgUGaDEGHI5VvpONRm4aT5QWp/zsrgChgZ/oQIhX5QWV7xMV7DgHqP8VSjlfdpWtSqw==
-X-Received: by 2002:a17:906:51d5:b0:9ee:a767:12e7 with SMTP id v21-20020a17090651d500b009eea76712e7mr1338076ejk.6.1700647588221;
-        Wed, 22 Nov 2023 02:06:28 -0800 (PST)
+        bh=RDybF7H85ktgdLWOM5SITKQqmOi7Rp9o86frBs4BerY=;
+        b=bmmzHD4/UZsu+nnXnsMlY7CpPeZh17I9gL7GgJT3YP52zngGUOQ6Jn74HaVJ+ZBt2v
+         aWvAV6ZGim5d9dZV8Zq+7vlEd1fhL7TLxgT/umIfsuRqJC5bKSoVDFnBFjjbkNjUFh7V
+         6iCSohjeaEa5GElBV4xloaOtEDP3euNGyZJrPcUUyhvRsTtooB+EFy+9TQOQGr6CD/b+
+         7TEKjgY4A1mFl19pxB8vJpF+vLwcEfzd3RhnQr+lHaXd8uitzsXy9c0HyCQRqlHvLINn
+         aNgy+N0KAjU8WoaY4GM0MKFXM6RKijpM8QQkU8IeXaLcP0EZCCisBun/G7+aTfU/S0cK
+         YDLg==
+X-Gm-Message-State: AOJu0YxS3TTZK3A+OlqI5CbzwWTX7IApkqBAvO5PDYv8SjI1HVuTl7gj
+	FPFszs/NXClgFHXNOprb/KnRrw==
+X-Google-Smtp-Source: AGHT+IHMv1B21HvOTwEFuZG9k7XAkrg963vXhlx6EiG6C4hJ9QYcZlmYRx+osiWw5zqMy2htGLdygw==
+X-Received: by 2002:a17:906:5349:b0:a04:838d:f352 with SMTP id j9-20020a170906534900b00a04838df352mr987304ejo.23.1700647611672;
+        Wed, 22 Nov 2023 02:06:51 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.100])
-        by smtp.gmail.com with ESMTPSA id ka13-20020a170907990d00b009a9fbeb15f2sm6400135ejc.62.2023.11.22.02.06.26
+        by smtp.gmail.com with ESMTPSA id ka13-20020a170907990d00b009a9fbeb15f2sm6400135ejc.62.2023.11.22.02.06.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Nov 2023 02:06:27 -0800 (PST)
-Message-ID: <891349b7-f023-4c77-97fc-33cfd48eda23@linaro.org>
-Date: Wed, 22 Nov 2023 11:06:26 +0100
+        Wed, 22 Nov 2023 02:06:51 -0800 (PST)
+Message-ID: <71adf98a-1aaa-430f-96fc-be170ceacf78@linaro.org>
+Date: Wed, 22 Nov 2023 11:06:50 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,18 +62,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: soc: xilinx: Move xilinx.yaml from
- arm to soc
+Subject: Re: [PATCH v2 2/2] dt-bindings: soc: Add new board description for
+ MicroBlaze V
 Content-Language: en-US
 To: Michal Simek <michal.simek@amd.com>, conor@kernel.org,
  linux-kernel@vger.kernel.org, monstr@monstr.eu, michal.simek@xilinx.com,
  git@xilinx.com, robh@kernel.org
-Cc: Conor Dooley <conor+dt@kernel.org>, Damien Le Moal <dlemoal@kernel.org>,
- Guenter Roeck <linux@roeck-us.net>,
+Cc: Conor Dooley <conor+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Rob Herring <robh+dt@kernel.org>, Wolfram Sang <wsa@kernel.org>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+ Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
 References: <ef58475a717c62bc86aeea5148d5b88cdc0cc106.1700644418.git.michal.simek@amd.com>
+ <e7af81b1ef3f6b7a07f4f0691f5140156477e87e.1700644418.git.michal.simek@amd.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -119,27 +119,24 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <ef58475a717c62bc86aeea5148d5b88cdc0cc106.1700644418.git.michal.simek@amd.com>
+In-Reply-To: <e7af81b1ef3f6b7a07f4f0691f5140156477e87e.1700644418.git.michal.simek@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 22/11/2023 10:13, Michal Simek wrote:
-> All Xilinx boards can hosts also soft core CPUs like MicroBlaze or
-> MicroBlaze V (RISC-V ISA) that's why move boar description from arm folder
+> MicroBlaze V is new AMD/Xilinx soft-core 32bit RISC-V processor IP.
+> It is hardware compatible with classic MicroBlaze processor. Processor can
+> be used with standard AMD/Xilinx IPs including interrupt controller and
+> timer.
+> 
+> Signed-off-by: Michal Simek <michal.simek@amd.com>
+> ---
+> 
+> Changes in v2:
+> - Put MicroBlaze V description to xilinx.yaml
+> - Add qemu target platform as platform used for testing.
 
-Boards are cute, but boars are cutter :)
-
-s/boar/boards/
-
-> to soc folder.
-> Similar chagne was done for Renesas by commit c27ce08b806d ("dt-bindings:
-> soc: renesas: Move renesas.yaml from arm to soc").
-
-The reason for Renesas was that otherwise same compatible would be in
-two places: arm and riscv schema.
-
-Are you going to have the same case?
-
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
