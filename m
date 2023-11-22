@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-17751-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17753-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 404977F3F48
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 08:53:30 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E16837F3F5A
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 08:57:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E868F281F3E
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 07:53:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 659B4B20DF8
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 07:57:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A6E120B2C;
-	Wed, 22 Nov 2023 07:53:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F30A720B11;
+	Wed, 22 Nov 2023 07:57:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dTz1VLpD"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nKtZa+vN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 077D6D60
-	for <devicetree@vger.kernel.org>; Tue, 21 Nov 2023 23:53:18 -0800 (PST)
-Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-548c548c40aso1096415a12.0
-        for <devicetree@vger.kernel.org>; Tue, 21 Nov 2023 23:53:18 -0800 (PST)
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 323721A8
+	for <devicetree@vger.kernel.org>; Tue, 21 Nov 2023 23:57:03 -0800 (PST)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-9fa2714e828so552530366b.1
+        for <devicetree@vger.kernel.org>; Tue, 21 Nov 2023 23:57:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700639597; x=1701244397; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1700639821; x=1701244621; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=uThef1WxPEDqlE2dlu3T9tfZvC+NyeYpQGMsq2gPViQ=;
-        b=dTz1VLpDXWHXxRy459Xg/L9eooggvJx6cy9acL22CVRR+0lw3CCjTchnUDlfxjrsyo
-         /olk/YvA3vRMM9o9BgJ0B4q9o6vsJRHaLMO9qHnc7Zy1hI8V52/HcqoVppCAF6DmdpOp
-         3brsb0LCZQZUleJU5hhQ02H6HK2a2fBaAL8CNp8BBJVXenj/M4qJ2qj6oA7hinLSBtzG
-         qgzz1PMOHDqYzVDcX4/LmG6pXsXqHhrtnVctsfICjtklBZ9l2z47MxCuHTLZkSPV91iz
-         zKpricKAsZS6+3vmG0SoKwNitKrHWsLKuJiBf9ZSMjh/OgeLaPYn3ngtM7nsWYvKBOgu
-         d43g==
+        bh=WftksX8iij62yRvNUgSqyhcvJhOCWnCBDjpRS5WaNn8=;
+        b=nKtZa+vNeOCQ/m3BqNOXKp407CBiJ7RDMuMz18UQuhiY5IXGFvLyVf8ldDPnP7hT04
+         +zuqFoM8zi8nUz4u627P44s+NTmdy1WdI7nWX3R2Oj+GHsT6PtOFAVZyF8b89TkTNB+4
+         7PGI+HyYqfr18e9NoTbil8qk0yFfx3CmbcNHyjAwwVu83eVmwyuYx+eAItZHcEzvgvb5
+         ObTwtSe1N2/Pd6SeMdRhU3GDPLbnTXptV0/ZnQJ8NFKMEWj7tc9mtiHJuwu+AnQ4sSap
+         5kJ9kRWkErdfe5MjfOyjbK6cCfV4F6dqkKVdfo7F2fr3S3Ey9SwOpqf3eQmgigCEHez8
+         o/vA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700639597; x=1701244397;
+        d=1e100.net; s=20230601; t=1700639821; x=1701244621;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uThef1WxPEDqlE2dlu3T9tfZvC+NyeYpQGMsq2gPViQ=;
-        b=YS815/SGAe1kTuyKC/mqhHfyXp4o5wIWunFcHAAkk1OKhMEHVMoXQw8J0+ZyNemga/
-         xP6k2Y600jFjng8nuhLR01fj0EyhmPdqttPsSL/Omhvn4yf9Nmw9iqMZLbwm7KNfoKTd
-         Gkun0pBl/nCbD2fkXKIr59sZbMDhg5XEahaurYY+gbh0aBWfzRTBlFemPbUjurcku+X8
-         LZ+qm2LidpYMYt+MK3Q+ZNZno/RhMRtZ3SF6zcUX1HfjpOrJ3hZLZ697tefxgGf+lZ1I
-         cAv/IV/w0y1mQvCryEIJFbKHJCgdpVW62H1vPXxoP1/fPm/E93hE+/eN04haHLwnLk8y
-         8fVA==
-X-Gm-Message-State: AOJu0YwJY7CFXn+3dDRUpohiTQmhJ2NObWTXx9/HYvTN91MRq2zTGux6
-	waC54MPUgkJKSCxn1z2Q80kztQ==
-X-Google-Smtp-Source: AGHT+IHL0D0zzRlJcu1xm9LueMwGsSo3hmIlM64fIj5TvpsRuRtSV884uQI4WkFO4vsO/q8QKz9RCQ==
-X-Received: by 2002:a17:906:5346:b0:9ee:e5f1:fef2 with SMTP id j6-20020a170906534600b009eee5f1fef2mr1135997ejo.11.1700639597355;
-        Tue, 21 Nov 2023 23:53:17 -0800 (PST)
+        bh=WftksX8iij62yRvNUgSqyhcvJhOCWnCBDjpRS5WaNn8=;
+        b=HYcc7U0p86/p4ElMsQ3GmHk1C/O0b29LzbCGGmFemIS8Au2ODtzO8SWM9Nx2uE9TPU
+         pWR6EIoCGZh5P7F61R6YjtO9Nx6ErPp1VAvJIs1ogmzNir55k4JNwEwUIgrmVDiGAvKW
+         pXvXyNB3cQeE77j0LZbA7+xTqw1rGJf+AJoe70flDFYDjHwiW/O1PVmn1pozFwngZUPU
+         8j0OQMtim4Vs0L+i2V5/t6079/d8Sg+ZR6HoX5u0Qr9yHrohDkj6gmj3D4LpsA26tpjz
+         uNgivwrW59JatqtDU3LBeL/83W2L16oYrcZu9JO0ZPiD7GFL0ClWfrTuX0argOmfq/Fn
+         KlqA==
+X-Gm-Message-State: AOJu0Yz55rRRBOPmsL6oh8nXOJB+2yKsEgs3kVMztfvGW+2iAecZ+XRO
+	7cgyaiH+LwbFrx6Tlq7NzTgdqg==
+X-Google-Smtp-Source: AGHT+IG2zay7V/oyVCpbGgPYl9/Domr8MAUS17t0mjcbpWrFP2cQIhu5kA59t9/VsPmW5ndbnwiwHg==
+X-Received: by 2002:a17:906:3d2:b0:9bf:60f9:9b7c with SMTP id c18-20020a17090603d200b009bf60f99b7cmr918097eja.62.1700639821627;
+        Tue, 21 Nov 2023 23:57:01 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.100])
-        by smtp.gmail.com with ESMTPSA id d5-20020a170906344500b009ffb4af0505sm2916417ejb.104.2023.11.21.23.53.14
+        by smtp.gmail.com with ESMTPSA id lh25-20020a170906f8d900b009fd50aa6984sm3847814ejb.83.2023.11.21.23.57.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Nov 2023 23:53:16 -0800 (PST)
-Message-ID: <82df32ea-9ca9-44ac-b1ca-719f68d4f58b@linaro.org>
-Date: Wed, 22 Nov 2023 08:53:13 +0100
+        Tue, 21 Nov 2023 23:57:01 -0800 (PST)
+Message-ID: <7fe4ec90-5289-4ef4-872c-dc7f1c6b44e8@linaro.org>
+Date: Wed, 22 Nov 2023 08:56:59 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,28 +62,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 15/19] watchdog: s3c2410_wdt: Add support for WTCON
- register DBGACK_MASK bit
+Subject: Re: [PATCH v1 2/2] dt-bindings: hwmon: pmbus: Add adm1281 support
 Content-Language: en-US
-To: Guenter Roeck <linux@roeck-us.net>,
- Sam Protsenko <semen.protsenko@linaro.org>,
- Peter Griffin <peter.griffin@linaro.org>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- mturquette@baylibre.com, conor+dt@kernel.org, sboyd@kernel.org,
- tomasz.figa@gmail.com, s.nawrocki@samsung.com, linus.walleij@linaro.org,
- wim@linux-watchdog.org, catalin.marinas@arm.com, will@kernel.org,
- arnd@arndb.de, olof@lixom.net, gregkh@linuxfoundation.org,
- jirislaby@kernel.org, cw00.choi@samsung.com, alim.akhtar@samsung.com,
- tudor.ambarus@linaro.org, andre.draszik@linaro.org, saravanak@google.com,
- willmcvicker@google.com, soc@kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
- linux-watchdog@vger.kernel.org, kernel-team@android.com,
- linux-serial@vger.kernel.org
-References: <20231120212037.911774-1-peter.griffin@linaro.org>
- <20231120212037.911774-16-peter.griffin@linaro.org>
- <CAPLW+4m+vG62V++izkycRYEhcTpoT+G=g+3Y4j8vqEpeX2uEPw@mail.gmail.com>
- <8d838a0b-6a13-4538-8dd6-e044ebfabca7@roeck-us.net>
+To: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, patrick@stwcx.xyz,
+ Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Jonathan Corbet <corbet@lwn.net>, linux-hwmon@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-doc@vger.kernel.org
+References: <20231122032343.2794903-1-Delphine_CC_Chiu@wiwynn.com>
+ <20231122032343.2794903-3-Delphine_CC_Chiu@wiwynn.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -129,41 +119,17 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <8d838a0b-6a13-4538-8dd6-e044ebfabca7@roeck-us.net>
+In-Reply-To: <20231122032343.2794903-3-Delphine_CC_Chiu@wiwynn.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 21/11/2023 19:10, Guenter Roeck wrote:
-
->>>   static const struct s3c2410_wdt_variant drv_data_gs101_cl1 = {
->>> @@ -291,7 +296,7 @@ static const struct s3c2410_wdt_variant drv_data_gs101_cl1 = {
->>>          .cnt_en_reg = GS_CLUSTER1_NONCPU_OUT,
->>>          .cnt_en_bit = 7,
->>>          .quirks = QUIRK_HAS_PMU_RST_STAT | QUIRK_HAS_PMU_MASK_RESET | QUIRK_HAS_PMU_CNT_EN |
->>> -                 QUIRK_HAS_WTCLRINT_REG,
->>> +                 QUIRK_HAS_WTCLRINT_REG | QUIRK_HAS_DBGACK_BIT,
->>>   };
->>>
->>
->> This patch states it's adding the feature, but in fact it's also
->> enabling this feature for gs101. Suggest moving this patch before the
->> one enabling gs101 wdt. This way, one patch will only add the feature,
->> and another patch will enable gs101 entirely (with this feature used).
->> At least it seems like more atomic approach to me.
->>
+On 22/11/2023 04:23, Delphine CC Chiu wrote:
+> Add device type support for adm1281
 > 
-> Both approaches have their merits and their downsides. I for my part am not
-> even sure if DBGACK_MASK should be enabled unconditionally if supported.
-> With your approach, it would be impossible (or at least more difficult) to
-> revert if it turns out to be broken and/or have unexpected side effects.
-> That seems less desirable to me than the current approach.
+> Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+> ---
 
-Reversing the patches does not change this. It is enabled
-unconditionally in current order as well.
-
-Sam's idea is correct here - first you add support for new quirk, then
-you add new SoC which will use this quirk. Doing the other way - first
-SoC and then new quirk - looks like SoC was added incomplete.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
