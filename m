@@ -1,209 +1,193 @@
-Return-Path: <devicetree+bounces-17907-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17908-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0C0C7F466E
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 13:40:32 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDBB77F4672
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 13:41:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6C8D2280637
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 12:40:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8E602B20AC3
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 12:41:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CE421A5A1;
-	Wed, 22 Nov 2023 12:40:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D50FD20B28;
+	Wed, 22 Nov 2023 12:41:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K3C/Nawl"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="k2UOjMXZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18D12E7;
+	Wed, 22 Nov 2023 04:41:23 -0800 (PST)
+Received: from [100.107.97.3] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5197A4D11B;
-	Wed, 22 Nov 2023 12:40:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0C4FC433C7;
-	Wed, 22 Nov 2023 12:40:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700656829;
-	bh=tqEY6FGT5GYctEXe7gynUJuIohw71n++dptwt+BslSs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=K3C/NawlMCzIOcW/f3jz9KXaVJ0msjYd0OAfdl07Vp6wvx6hRWeIKT0SyvWUP4HNY
-	 XrSUvS46oni2kvurfTrjQal7GlOwQOEFaoeN0HuoMBjWIx6Bs0KvClfBFOKtfmnP+x
-	 B02ngziHfxHNKgX4xHya/4P+Zfl6WnLhSMcZ0OKVtpayRT94nF3cC2/MSNoIgySw0R
-	 2J6am9ButjfcBTx0DIMd0S4iv1DqLZWFN78B7m9Z3+V7F/VoYdkVCYZgLv+/rzc2dU
-	 nBBl6C34lwQ3jvEkN3jJZx7Ni8A53BMtv6V6tnzD9TET4qJTiyaXhe2dNaD3bDvMf6
-	 YhbFFkRQiQWqw==
-Received: from johan by xi.lan with local (Exim 4.96.2)
-	(envelope-from <johan@kernel.org>)
-	id 1r5mX5-0000GT-38;
-	Wed, 22 Nov 2023 13:40:44 +0100
-Date: Wed, 22 Nov 2023 13:40:43 +0100
-From: Johan Hovold <johan@kernel.org>
-To: Bjorn Andersson <quic_bjorande@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Wesley Cheng <quic_wcheng@quicinc.com>,
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-	Felipe Balbi <balbi@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-Subject: Re: [PATCH 10/12] dt-bindings: usb: qcom,dwc3: Introduce flattened
- qcom,dwc3 binding
-Message-ID: <ZV32ywdBsLXs2mn6@hovoldconsulting.com>
-References: <20231016-dwc3-refactor-v1-0-ab4a84165470@quicinc.com>
- <20231016-dwc3-refactor-v1-10-ab4a84165470@quicinc.com>
+	(Authenticated sender: kholk11)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 63FFF6607286;
+	Wed, 22 Nov 2023 12:41:20 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1700656881;
+	bh=S07GE5Evlp8wz8GDG6gCdX6gFUE//1gN9B0MVvjvdJo=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=k2UOjMXZUuaJpe6a/ieoqkAsnboxK4czoceIqJ/3TKI2LwE1POXpHmBtOIVzofmUQ
+	 USjmEG4I7ejnCm4+2Ovp/4EdcxRyfzbr+Vq9zslZmRvTPJEpAK7zu4ZXF1Ny1OYnjx
+	 0r4enlSxTcUC0uabr8pullCZ98p1x0YuvVQE4LVVgIhdsKiZLk3Qi5rRgh6SxYrX6G
+	 8gB8DBPxxTYXpIVdvZBZOxKa8pdrZLRTScp++nDMoBNcasoQatNSUeVpwSX4JL129d
+	 VoG5n7S/SS/5wGUGnWHgB4aSVj1Vcbp2cmqe6+9Q+E5IVSFlVwfBvZbgU2AzE9dY8U
+	 /ay4c6qg6e2MA==
+Message-ID: <43982a3c-eb10-442e-acca-fd4b944a7612@collabora.com>
+Date: Wed, 22 Nov 2023 13:41:17 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231016-dwc3-refactor-v1-10-ab4a84165470@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 09/20] soc: mediatek: mtk-svs: Move t-calibration-data
+ retrieval to svs_probe()
+Content-Language: en-US
+To: Eugen Hristev <eugen.hristev@collabora.com>, matthias.bgg@gmail.com
+Cc: krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ robh+dt@kernel.org, p.zabel@pengutronix.de, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, kernel@collabora.com, wenst@chromium.org
+References: <20231121125044.78642-1-angelogioacchino.delregno@collabora.com>
+ <20231121125044.78642-10-angelogioacchino.delregno@collabora.com>
+ <6018ec3f-d3e6-4fe0-b57f-9a7994f983a5@collabora.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <6018ec3f-d3e6-4fe0-b57f-9a7994f983a5@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Mon, Oct 16, 2023 at 08:11:18PM -0700, Bjorn Andersson wrote:
-> The Qualcomm USB block consists of three intertwined parts, the XHCI,
-> the DWC3 core and the Qualcomm DWC3 glue. The three parts can not be
-> operated independently, but the binding was for historical reasons split
-> to mimic the Linux driver implementation.
+Il 22/11/23 12:23, Eugen Hristev ha scritto:
+> On 11/21/23 14:50, AngeloGioacchino Del Regno wrote:
+>> The t-calibration-data (SVS-Thermal calibration data) shall exist for
+>> all SoCs or SVS won't work anyway: move it to the common svs_probe()
+>> function and remove it from all of the per-SoC efuse_parsing() probe
+>> callbacks.
+>>
+>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> ---
+>>   drivers/soc/mediatek/mtk-svs.c | 32 ++++++--------------------------
+>>   1 file changed, 6 insertions(+), 26 deletions(-)
+>>
+>> diff --git a/drivers/soc/mediatek/mtk-svs.c b/drivers/soc/mediatek/mtk-svs.c
+>> index ab564d48092b..1042af2aee3f 100644
+>> --- a/drivers/soc/mediatek/mtk-svs.c
+>> +++ b/drivers/soc/mediatek/mtk-svs.c
+>> @@ -1884,11 +1884,6 @@ static bool svs_mt8195_efuse_parsing(struct svs_platform 
+>> *svsp)
+>>           svsb->vmax += svsb->dvt_fixed;
+>>       }
+>> -    ret = svs_get_efuse_data(svsp, "t-calibration-data",
+>> -                 &svsp->tefuse, &svsp->tefuse_max);
+>> -    if (ret)
+>> -        return false;
+>> -
 > 
-> The split binding also makes it hard to alter the implementation, as
-> properties and resources are split between the two nodes, in some cases
-> with some duplication.
+> Hello Angelo,
 > 
-> Introduce a new binding, with a single representation of the whole USB
-> block in one node.
+> if you removed the code using `ret` in this patch, it makes sense to also remove 
+> the variable here instead of doing it in patch 18.
+> It will avoid unused variable warnings for this patch.
 > 
-> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+> 
 
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,sc8280xp-dwc3
-> +              - qcom,sc8280xp-dwc3-mp
+Yes, though the comment is not for this function, but rather for 8183. Anyway, that
+makes sense, but if it's the only change of this v3, it's something that I can fix
+while applying instead of sending another 20 patches round. Thanks.
 
-The multiport implementation is not ready yet and this part of the
-binding has been reverted (similar for the multiport interrupts below).
+>>       for (i = 0; i < svsp->tefuse_max; i++)
+>>           if (svsp->tefuse[i] != 0)
+>>               break;
+>> @@ -1949,11 +1944,6 @@ static bool svs_mt8192_efuse_parsing(struct svs_platform 
+>> *svsp)
+>>           svsb->vmax += svsb->dvt_fixed;
+>>       }
+>> -    ret = svs_get_efuse_data(svsp, "t-calibration-data",
+>> -                 &svsp->tefuse, &svsp->tefuse_max);
+>> -    if (ret)
+>> -        return false;
+>> -
+>>       for (i = 0; i < svsp->tefuse_max; i++)
+>>           if (svsp->tefuse[i] != 0)
+>>               break;
+>> @@ -2009,11 +1999,6 @@ static bool svs_mt8188_efuse_parsing(struct svs_platform 
+>> *svsp)
+>>           svsb->vmax += svsb->dvt_fixed;
+>>       }
+>> -    ret = svs_get_efuse_data(svsp, "t-calibration-data",
+>> -                 &svsp->tefuse, &svsp->tefuse_max);
+>> -    if (ret)
+>> -        return false;
+>> -
+>>       for (i = 0; i < svsp->tefuse_max; i++)
+>>           if (svsp->tefuse[i] != 0)
+>>               break;
+>> @@ -2097,11 +2082,6 @@ static bool svs_mt8186_efuse_parsing(struct svs_platform 
+>> *svsp)
+>>           svsb->vmax += svsb->dvt_fixed;
+>>       }
+>> -    ret = svs_get_efuse_data(svsp, "t-calibration-data",
+>> -                 &svsp->tefuse, &svsp->tefuse_max);
+>> -    if (ret)
+>> -        return false;
+>> -
+>>       golden_temp = (svsp->tefuse[0] >> 24) & GENMASK(7, 0);
+>>       if (!golden_temp)
+>>           golden_temp = 50;
+>> @@ -2198,11 +2178,6 @@ static bool svs_mt8183_efuse_parsing(struct svs_platform 
+>> *svsp)
+>>           }
+>>       }
+>> -    ret = svs_get_efuse_data(svsp, "t-calibration-data",
+>> -                 &svsp->tefuse, &svsp->tefuse_max);
+>> -    if (ret)
+>> -        return false;
+>> -
+>>       /* Thermal efuse parsing */
+>>       adc_ge_t = (svsp->tefuse[1] >> 22) & GENMASK(9, 0);
+>>       adc_oe_t = (svsp->tefuse[1] >> 12) & GENMASK(9, 0);
+>> @@ -3040,8 +3015,13 @@ static int svs_probe(struct platform_device *pdev)
+>>       ret = svs_get_efuse_data(svsp, "svs-calibration-data",
+>>                    &svsp->efuse, &svsp->efuse_max);
+>> +    if (ret)
+>> +        return dev_err_probe(&pdev->dev, ret, "Cannot read SVS calibration\n");
+> 
+> With the previous code, if svs-calibration-data could not be read, the code would 
+> go to svs_probe_free_efuse. In your case, it returns directly.
+> I believe that svs_get_efuse_data using nvmem_cell_read does not allocate the 
+> buffer for the efuse , hence no more need to free it ? The exit code is checking if 
+> it's ERR or NULL, but still, if the buffer was not allocated, it doesn't make sense 
+> to jump there indeed.
+> In that case, you are also changing the behavior here , and your commit appears to 
+> do more than a simple move.
+> 
 
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 9
-> +        clock-names:
-> +          items:
-> +            - const: cfg_noc
-> +            - const: core
-> +            - const: iface
-> +            - const: sleep
-> +            - const: mock_utmi
-> +            - const: noc_aggr
-> +            - const: noc_aggr_north
-> +            - const: noc_aggr_south
-> +            - const: noc_sys
+I'm not changing the behavior: the previous behavior was to fail and free the efuse
+variable if previously allocated, the current behavior is to fail and free the
+efuse variable if previously allocated, and the tefuse variable if previously
+allocated, which is a result of the actual move of the retrieval of the thermal
+fuse calibration data.
 
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,sc8280xp-dwc3-mp
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          maxItems: 14
-> +        interrupt-names:
-> +          items:
-> +            - const: pwr_event_1
-> +            - const: pwr_event_2
-> +            - const: pwr_event_3
-> +            - const: pwr_event_4
-> +            - const: dp_hs_phy_1
-> +            - const: dm_hs_phy_1
-> +            - const: dp_hs_phy_2
-> +            - const: dm_hs_phy_2
-> +            - const: dp_hs_phy_3
-> +            - const: dm_hs_phy_3
-> +            - const: dp_hs_phy_4
-> +            - const: dm_hs_phy_4
-> +            - const: ss_phy_1
-> +            - const: ss_phy_2
+I really don't see anything implicit here.
 
-So same here.
+>> +
+>> +    ret = svs_get_efuse_data(svsp, "t-calibration-data",
+>> +                 &svsp->tefuse, &svsp->tefuse_max);
+>>       if (ret) {
+>> -        ret = -EPERM;
+>> +        dev_err_probe(&pdev->dev, ret, "Cannot read SVS-Thermal calibration\n");
+>>           goto svs_probe_free_efuse;
+> 
+> again in this case the tefuse has not been allocated I assume.
+> 
+> So previous code was a bit excessive in trying to free the efuse/tefuse ?
 
-> +    else:
-> +      properties:
-> +        interrupts:
-> +          minItems: 1
-> +          items:
-> +            - description: Common DWC3 interrupt
-> +            - description: The interrupt that is asserted
-> +                when a wakeup event is received on USB2 bus.
-> +            - description: The interrupt that is asserted
-> +                when a wakeup event is received on USB3 bus.
-> +            - description: Wakeup event on DM line.
-> +            - description: Wakeup event on DP line.
+The previous code was performing an useless error check on something that was not
+supposed to be allocated *yet*. Yes, it was wrong before.
 
-I guess you may have copied this from the current binding but the
-descriptions here are not correct. The HS/SS interrupt comes from the
-PHYs in case the corresponding events have been enabled. I assume it can
-be used for connect/disconnect events as well as remote wakeup and
-whether to actually wake the system up on those is an implementation
-detail.
-
-Similar for DM/DP which represents the state of the data lines and that
-can be used to detect all sorts of events, not just remote wakeup.
-
-> +
-> +        interrupt-names:
-> +          minItems: 1
-> +          items:
-> +            - const: dwc_usb3
-> +            - const: hs_phy_irq
-> +            - const: ss_phy_irq
-> +            - const: dm_hs_phy_irq
-> +            - const: dp_hs_phy_irq
-
-And here you are now defining all of these interrupts for all the
-current SoCs it seems, despite not all of them actually having all of
-these at once. (The order also does not match the current devicetrees.)
-
-Some only have HS/SS, and it's not clear whether the HS interrupts are
-actually functional when a SoC is also using DP/DM.
-
-We're currently discussing this here:
-
-	https://lore.kernel.org/lkml/ZVYTFi3Jnnljl48L@hovoldconsulting.com/
-
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/qcom,gcc-sdm845.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    usb@a600000 {
-> +        compatible = "qcom,sdm845-dwc3", "qcom,dwc3", "snps,dwc3";
-> +        reg = <0x0a600000 0x200000>;
-
-> +        snps,dis_u2_susphy_quirk;
-> +        snps,dis_enblslpm_quirk;
-> +        phys = <&usb_1_hsphy>, <&usb_1_ssphy>;
-> +        phy-names = "usb2-phy", "usb3-phy";
-> +
-
-Stray newline.
-
-> +    };
-> +...
-
-Johan
+Cheers,
+Angelo
 
