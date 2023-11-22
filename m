@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-18096-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18097-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EB287F512B
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 21:06:42 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 960327F5143
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 21:10:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4818EB20C66
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 20:06:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C75021C20865
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 20:10:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B8A95D8E7;
-	Wed, 22 Nov 2023 20:06:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32BB75D8F6;
+	Wed, 22 Nov 2023 20:10:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JUDuD21v"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ewvz7udj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE4A810D8
-	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 12:06:29 -0800 (PST)
-Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-507a3b8b113so134420e87.0
-        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 12:06:29 -0800 (PST)
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 061141BD
+	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 12:10:00 -0800 (PST)
+Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-2c4fdf94666so2266171fa.2
+        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 12:09:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700683588; x=1701288388; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1700683798; x=1701288598; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=mSTS/9xb+I0FspOAfgVWZyVSS2kQhyQBTwt73Qi7TDs=;
-        b=JUDuD21vfzMptAc8ZAPrPVgxQsbgNLdIxu3mqrRdkT98HkoCO5/8vBsPDv4d+ZExGl
-         2Qf+6sMnjIocchzDOvihUT2Itwd7CZcVzRpf+LfAQgSA7p/E8pZ5dy9Zde8zKEJvQcBc
-         PKaOWgSoQgLkDmUQb8BRWoNSLPJJFAdLUlC1KuqRIWMaEx78KUd8DiHhbY96iyGuziBS
-         Xiro+A9VGL5Ee/k0wuPyDzxQoFtORzc9eGl5pttCCQhKfJDaY+zaMnqkrdByq0ftKP2h
-         W5Kvk3GnCUZVIDtMQKK3omIQH8qsXOXnk9Lw5d8RtcDHCi84EZK9HgrZIezPz+km9Oga
-         b28w==
+        bh=6oN/ChfT8e0nycA2Y45oH8F8aAL5FUndvODmKzayhWU=;
+        b=Ewvz7udjv2xjoBcffDVT43fZVbbNIRZdQB9wfpXvCspkBa2d3lATT9kZw/OIb4dutO
+         DllBaqmw8lCWEUxBvGRfqaSoXiGw4TgwDmbnZw6GJkmTxgdlnZztWtes9W6pv4wpcjtj
+         rjW+j+5p0xQRYkjsZ1VFIDPkwSdH2SI/MXcnqW230Ltx4+cSyWirKVr17faN2Yjd0IMX
+         SHhKuaec3PBwq7Vw1AGJbk5dOMw0pFBjmCExk+gXYJ5rH8klLwt03cHeY2HE6L8/c0tH
+         NYzRvd5Ou+n/fOOfamIFbXxN53j17DheG5VTfz6pFMIZ4qN9X/HC4jzHRQ9R+O1Wr1Sk
+         tkzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700683588; x=1701288388;
+        d=1e100.net; s=20230601; t=1700683798; x=1701288598;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mSTS/9xb+I0FspOAfgVWZyVSS2kQhyQBTwt73Qi7TDs=;
-        b=JF5vDh0YWM60ugkUrl2v8H5Nr6RYZoI8C0YNu6pXmdXMFIoC245XRSWJCCy5aaC3ye
-         XTO890TV10q9AbBvqDwjFKqfzmdVi5SEX5i4kRpA/z8SdHJSNwdrKjHuR/Eh2i04NAHm
-         CW2rTkaypUxEYoe7WBRMtpaIPrBbHjOHB2gcMIu8MjrD2HjF61yZf/Jz5ECaoeqLeekP
-         Yo9kDaj0rUJvFAtQWZiEZqJzxR7hbFndkuHtQoCM5n7NQPPsgX3/eppONKBTZge7QGgs
-         Q1ZgV3uoQtOMihy2SCNAbZBZeIeZonBuLAlSiC8n/LxRlKYikk8a5dynmHTkHy9d9cGx
-         bRmA==
-X-Gm-Message-State: AOJu0YxotoJuMZwk0SaczXAfD5Az8xinZk7ZKJEvg2K25mwIy14d1OBn
-	pPRlpaOvfzxkWEDZ1fMqgXDYHw==
-X-Google-Smtp-Source: AGHT+IEui1Ib5o4jG6u00MnB2oJZ7cQuP6xzqF57vg+KnJu4CfFoi5WxYD65RNNThB0hY1kwsq1OTg==
-X-Received: by 2002:a05:6512:60a:b0:503:9eb:47f0 with SMTP id b10-20020a056512060a00b0050309eb47f0mr2306037lfe.59.1700683587909;
-        Wed, 22 Nov 2023 12:06:27 -0800 (PST)
+        bh=6oN/ChfT8e0nycA2Y45oH8F8aAL5FUndvODmKzayhWU=;
+        b=sUjxU093/GMfcbEBNvFiV8IW0u17PL3NSJrwnb4Tr7INbXyhfykfRUud9kIErLLGYo
+         acE0N5xwRvc9SJjY8Zzm3BIXHYLldKfdJEg/FRvGWHVtO6HRFHGvxWfkyaNio04U5KGT
+         CfY2CGfgqD35kfewqI8AezDIxgKEkRlZ3I0rs1eKodWZSoftasMWhUL27ire0inDcBPi
+         +TmAphioayBzKQd+r+FYSmp6Ulf36BL4qTyxG1t6QOSZuKRN79Q8O8aV2GCXJircOBob
+         EbxZSJH2vG8eYwwUwj3se1qfj0t5SJgVHfIe17pGddvtS1IgPG4wyn3quTTNvSHQ25cx
+         Awlw==
+X-Gm-Message-State: AOJu0Ywj0PID8qkBdhlLUE/P2IT8mUSsGH8e6tIiSJSZ4b7MhSuUyF/V
+	JRxKk9OhaZPSwidWduJDot8BZQ==
+X-Google-Smtp-Source: AGHT+IE/Laar5BAe/Ut2eWzKinuOOq4h3ahqPOZfbrEwTg8LRJ8HKRRN3AqS36Kxn4ieIK8bY/3SVg==
+X-Received: by 2002:a2e:828d:0:b0:2c6:eb1c:10d1 with SMTP id y13-20020a2e828d000000b002c6eb1c10d1mr2244801ljg.25.1700683798165;
+        Wed, 22 Nov 2023 12:09:58 -0800 (PST)
 Received: from [172.30.204.74] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
-        by smtp.gmail.com with ESMTPSA id z15-20020ac2418f000000b005079ff02b36sm1932808lfh.131.2023.11.22.12.06.24
+        by smtp.gmail.com with ESMTPSA id q8-20020a2e9688000000b002bcdbfe36b9sm38083lji.111.2023.11.22.12.09.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Nov 2023 12:06:27 -0800 (PST)
-Message-ID: <fcf25047-0b2d-40ab-a45e-6f675cae4f11@linaro.org>
-Date: Wed, 22 Nov 2023 21:06:24 +0100
+        Wed, 22 Nov 2023 12:09:57 -0800 (PST)
+Message-ID: <90885d90-2e25-404b-b3a3-13d134801146@linaro.org>
+Date: Wed, 22 Nov 2023 21:09:54 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,44 +62,76 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 8/8] arm64: dts: qcom: Add support for Xiaomi Redmi
- Note 9S
+Subject: Re: [PATCH V4 2/4] clk: qcom: branch: Add mem ops support for branch2
+ clocks
 Content-Language: en-US
-To: David Wronek <davidwronek@gmail.com>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+To: Imran Shaik <quic_imrashai@quicinc.com>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Herbert Xu
- <herbert@gondor.apana.org.au>, "David S . Miller" <davem@davemloft.net>,
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Manivannan Sadhasivam <mani@kernel.org>,
- Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>,
- Bart Van Assche <bvanassche@acm.org>, Joe Mason <buddyjojo06@outlook.com>,
- hexdump0815@googlemail.com
-Cc: cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-crypto@vger.kernel.org, linux-phy@lists.infradead.org,
- linux-scsi@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
- phone-devel@vger.kernel.org
-References: <20231117201720.298422-1-davidwronek@gmail.com>
- <20231117201720.298422-9-davidwronek@gmail.com>
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Taniya Das <quic_tdas@quicinc.com>, linux-arm-msm@vger.kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+ Ajit Pandey <quic_ajipan@quicinc.com>,
+ Jagadeesh Kona <quic_jkona@quicinc.com>
+References: <20231117095558.3313877-1-quic_imrashai@quicinc.com>
+ <20231117095558.3313877-3-quic_imrashai@quicinc.com>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20231117201720.298422-9-davidwronek@gmail.com>
+In-Reply-To: <20231117095558.3313877-3-quic_imrashai@quicinc.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Level: *
 
 
 
-On 11/17/23 21:08, David Wronek wrote:
-> From: Joe Mason <buddyjojo06@outlook.com>
+On 11/17/23 10:55, Imran Shaik wrote:
+> From: Taniya Das <quic_tdas@quicinc.com>
 > 
-> Add a device tree for the Xiaomi Redmi Note 9S (curtana) phone, based on
-> sm7125-xiaomi-common.dtsi.
+> Add the support for mem ops implementation to handle the sequence of
+> enable/disable of the memories in ethernet PHY, prior to enable/disable
+> of the respective clocks, which helps retain the respecive block's
+> register contents.
 > 
-> Signed-off-by: Joe Mason <buddyjojo06@outlook.com>
-> Signed-off-by: David Wronek <davidwronek@gmail.com>
+> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+> Signed-off-by: Imran Shaik <quic_imrashai@quicinc.com>
 > ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>   drivers/clk/qcom/clk-branch.c | 39 +++++++++++++++++++++++++++++++++++
+>   drivers/clk/qcom/clk-branch.h | 21 +++++++++++++++++++
+>   2 files changed, 60 insertions(+)
+> 
+> diff --git a/drivers/clk/qcom/clk-branch.c b/drivers/clk/qcom/clk-branch.c
+> index fc4735f74f0f..61bdd2147bed 100644
+> --- a/drivers/clk/qcom/clk-branch.c
+> +++ b/drivers/clk/qcom/clk-branch.c
+> @@ -1,6 +1,7 @@
+>   // SPDX-License-Identifier: GPL-2.0
+>   /*
+>    * Copyright (c) 2013, The Linux Foundation. All rights reserved.
+> + * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
+>    */
+>   
+>   #include <linux/kernel.h>
+> @@ -134,6 +135,44 @@ static void clk_branch2_disable(struct clk_hw *hw)
+>   	clk_branch_toggle(hw, false, clk_branch2_check_halt);
+>   }
+>   
+> +static int clk_branch2_mem_enable(struct clk_hw *hw)
+> +{
+> +	struct clk_mem_branch *mem_br = to_clk_mem_branch(hw);
+> +	struct clk_branch branch = mem_br->branch;
+> +	const char *name = clk_hw_get_name(&branch.clkr.hw);
+Bit of a microoptimization, but adding this implicitly in the WARN
+would only execute clk_hw_get_name when necessary
+
+> +	u32 val;
+> +	int ret;
+> +
+> +	regmap_update_bits(branch.clkr.regmap, mem_br->mem_enable_reg,
+> +			mem_br->mem_enable_ack_mask, mem_br->mem_enable_ack_mask);
+It's quite a nit from me, but it would be nice to have the next line aligned
+with the opening brace (with a tab size of 8)
 
 Konrad
 
