@@ -1,91 +1,158 @@
-Return-Path: <devicetree+bounces-17868-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17871-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85BA97F455A
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 13:05:56 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 897067F4572
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 13:11:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B396C1C2095A
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 12:05:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C7A33B211D1
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 12:11:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CB285B1F9;
-	Wed, 22 Nov 2023 12:05:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20BE3208C9;
+	Wed, 22 Nov 2023 12:11:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IScqcdd4"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="amL0gLJp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAFA25577E;
-	Wed, 22 Nov 2023 12:05:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CCCB7C433C8;
-	Wed, 22 Nov 2023 12:05:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700654749;
-	bh=BWxKGy0JYbFu0lFpaQPRgtk6vaihyOBnyhYlcAebvYU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IScqcdd4IpevTMFCAAg6pYAaQPiWvU5+fOssMIpneCcjvBFLamopy2TKAXSmd8r+E
-	 lZ3SczlMbjPb1mF7lSPpRKxlPKyO44EsMylzl0GnQXhn3wjlFjCz735IFqLFQa6sfA
-	 UZu78hfdwEwhy8b1q5FCowwjsfurkNIO8pycbU/60ELqejNn3YIYxo4GYE7AYIo5+V
-	 8eqWfiUPsv4khjzdZpAOXOLNcj0FiL5j8iciOT50KUBi8zl3A68QEszz9JB6tGhduB
-	 zWoqzxRKEWTMerNS6lQFR1hVhHFDbtXh7juk3Kg50xn8hiBkoHl7IMuvGsqreVhlBp
-	 Zafda96WfvRXA==
-Date: Wed, 22 Nov 2023 12:05:44 +0000
-From: Mark Brown <broonie@kernel.org>
-To: nikita.shubin@maquefel.me
-Cc: Hartley Sweeten <hsweeten@visionengravers.com>,
-	Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 27/39] ASoC: dt-bindings: ep93xx: Document DMA support
-Message-ID: <ZV3umA6LtRi8iM0l@finisterre.sirena.org.uk>
-References: <20231122-ep93xx-v5-0-d59a76d5df29@maquefel.me>
- <20231122-ep93xx-v5-27-d59a76d5df29@maquefel.me>
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 327C9D66
+	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 04:10:39 -0800 (PST)
+Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-9fffa4c4f43so404985066b.3
+        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 04:10:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1700655037; x=1701259837; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=B8iwxPg3znTscDLFGjlHjf+9rnyamV4Zgb4qX6qI79I=;
+        b=amL0gLJpsqWSH9K4MYwMchpZAyz51Kx8sSgMdX32KDoMPDbkkr2LHn7Itnr+VTxy3A
+         9od98Kuoi8g8b9ZNTav9GnO3uRRsrFRKRTPvYjuI7R+o7jxxDtxtqQJNg4kbN2mHFl6p
+         u+BMb/vIx6eMg7GXpzkPSEFIRU5ksuV+mEZ942fXcL94YhkdukmZqj/Zp/hFfSM87mEf
+         bgUInhp7acJYQb/mLnMQ5TyVXE+ETpmIZMlhc7nRNUC6z91vZ++zPFBDdX/P2KudX5cq
+         2TBMw8r4fxA0lpt6XctlTWtM5ZXCc13P6TwQ5DGu/oqCcHrc+TEyHZVBHdwlwWsoG7mZ
+         pmLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700655037; x=1701259837;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=B8iwxPg3znTscDLFGjlHjf+9rnyamV4Zgb4qX6qI79I=;
+        b=K//43HtBF/WYU925b38zBnI3JnxWAm5oIiqkvmx/TtlDG14sYuGXYuJrNRLjOFL/pc
+         8GqjpQi/QQos8Xt0opGzPeTtRZZitA/CkS+id+75T4X8u8Sbabp5JFoWp/JxDb2Sd61s
+         /n8o34sXT/jcUT2YzrmCnFT6roewwdW99iOrm+nyfEfCoMXPnLTGwO8WHkW6zPfXC1oo
+         P+W0JfDu1na14SzQlkkiaaBo+/zJlPTiyo9aKtbbf1KJP1428STF0BYPL+Wum6jlTkQs
+         cFu6YKlXmDPXkYDC0j6IUqdcWGu8vFbwgmU8j05u4bSuXW8Mv7trHiC76ICCuCNeBuf9
+         TUtw==
+X-Gm-Message-State: AOJu0YzDbjSPYoviCsADSbmCw2XQRekMbxTotXqk5nXzgvokVPQgKFfY
+	jV8MZ7LebAdfs9k+4airaq5mbA==
+X-Google-Smtp-Source: AGHT+IE9WTiEGyg3Co+EiMJg7naWKTSSMWT6BQryE2x6FGaasebtTtvNZ2H1ju0WlmsTIm94y6Y0CA==
+X-Received: by 2002:a17:906:3ed4:b0:a03:9dfb:5298 with SMTP id d20-20020a1709063ed400b00a039dfb5298mr1456972ejj.57.1700655037669;
+        Wed, 22 Nov 2023 04:10:37 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.100])
+        by smtp.gmail.com with ESMTPSA id l20-20020a1709060e1400b009ff783d892esm3308741eji.146.2023.11.22.04.10.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 Nov 2023 04:10:37 -0800 (PST)
+Message-ID: <1d224284-7d8e-4f4e-a911-13fdfd54238b@linaro.org>
+Date: Wed, 22 Nov 2023 13:10:35 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="Oa8Rsb4gPpBrlFd1"
-Content-Disposition: inline
-In-Reply-To: <20231122-ep93xx-v5-27-d59a76d5df29@maquefel.me>
-X-Cookie: Slow day.  Practice crawling.
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] phy: qcom: snps-eusb2: Add X1E80100 Compatible
+Content-Language: en-US
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Abel Vesa <abel.vesa@linaro.org>
+Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231122-phy-qualcomm-eusb2-x1e80100-v1-0-ce0991161847@linaro.org>
+ <20231122-phy-qualcomm-eusb2-x1e80100-v1-2-ce0991161847@linaro.org>
+ <CAA8EJpoKEd8B7KTwVb0TEk+Yk3kRXfhvtcdk0QUirOOV4wnUYA@mail.gmail.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <CAA8EJpoKEd8B7KTwVb0TEk+Yk3kRXfhvtcdk0QUirOOV4wnUYA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+On 22/11/2023 12:01, Dmitry Baryshkov wrote:
+> On Wed, 22 Nov 2023 at 12:28, Abel Vesa <abel.vesa@linaro.org> wrote:
+>>
+>> Add the X1E80100 to the list of supported PHYs for eUSB2
+>> SNPS driver.
+>>
+>> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+>> ---
+>>  drivers/phy/qualcomm/phy-qcom-snps-eusb2.c | 1 +
+>>  1 file changed, 1 insertion(+)
+>>
+>> diff --git a/drivers/phy/qualcomm/phy-qcom-snps-eusb2.c b/drivers/phy/qualcomm/phy-qcom-snps-eusb2.c
+>> index 1484691a41d5..6420f342dc85 100644
+>> --- a/drivers/phy/qualcomm/phy-qcom-snps-eusb2.c
+>> +++ b/drivers/phy/qualcomm/phy-qcom-snps-eusb2.c
+>> @@ -425,6 +425,7 @@ static int qcom_snps_eusb2_hsphy_probe(struct platform_device *pdev)
+>>
+>>  static const struct of_device_id qcom_snps_eusb2_hsphy_of_match_table[] = {
+>>         { .compatible = "qcom,sm8550-snps-eusb2-phy", },
+>> +       { .compatible = "qcom,x1e80100-snps-eusb2-phy", },
+> 
+> Do we need a separate compatible string or is it fully compatible with
+> sm8550? If it is the same IP block, maybe you can use a fallback
+> compatible instead?
 
---Oa8Rsb4gPpBrlFd1
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Yep. This should use fallback.
 
-On Wed, Nov 22, 2023 at 12:00:05PM +0300, Nikita Shubin via B4 Relay wrote:
-> From: Nikita Shubin <nikita.shubin@maquefel.me>
->=20
-> Document DMA support in binding document.
+Best regards,
+Krzysztof
 
-Reviewed-by: Mark Brown <broonie@kernel.org>
-
---Oa8Rsb4gPpBrlFd1
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmVd7pgACgkQJNaLcl1U
-h9DDHwf+Jw49YSgLY5zSlUUq+e2R4saHl01nhLURYtXLW9GRibtpSlihER4twPZi
-YEgqo/Nql9q0raup07zwDd6uZeLXugfxGHuLlwLkzPmYs8bys5ZelLV8eKpfg8y4
-vwXXzPKTOfbyUfxdMJZwZ3OirpG+kdSrNCnvnS8mgJuEuZuiaIRxCGgXIkhfsYme
-nwc2vaSH43Ta4C088HugY84CgHaGt2lJHEt4CmntaSf4g8TMs0DPHfQGQz5gI8bJ
-0LRdQEWe7dY6f3DZl4qffcuk5bKJ3rurT2KqvB041PE+keJEseCf8vHii/OZ6lg2
-47i494uIA5HBENmTH7rjM5bUDAFZFQ==
-=Hyl7
------END PGP SIGNATURE-----
-
---Oa8Rsb4gPpBrlFd1--
 
