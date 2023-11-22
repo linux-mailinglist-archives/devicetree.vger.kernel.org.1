@@ -1,135 +1,130 @@
-Return-Path: <devicetree+bounces-17764-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17765-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CFDA7F4017
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 09:29:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E36B7F401B
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 09:29:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9E7631C20826
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 08:29:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CF5771C2074B
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 08:29:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0162F2D045;
-	Wed, 22 Nov 2023 08:29:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC84A2D618;
+	Wed, 22 Nov 2023 08:29:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FvB0jfrh"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="luqkiFNb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 601C593
-	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 00:29:35 -0800 (PST)
-Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-a02d91ab195so181031866b.3
-        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 00:29:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700641774; x=1701246574; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=speaxD7H2/c0nRHQSVKl38WMlwLGvLtI20MmEHBBlFQ=;
-        b=FvB0jfrh9wA0WEedPeLzptsyWrhydvtERWOikOIyZnbSQCxFtwpE+Q5SzxgozxU9Uj
-         BtjWNuAftyaoGePIoQ+7HFureF3lYzGhWCYS6JdoOrxG/6neEbVRrV8kypUT876M4KBC
-         wO+mMif/is+zTnN5j1odg5DWVuZ4g2ySjwoeOMujlhdIckzEvxCgkLp1JWZrp7OLYPYV
-         RC4DIfVYatjY6zRUNA7hkzytxZYEoybK1gYTJjhNtqpMaG7SRJwOMfGX2Mr7OvLm8rYg
-         slp2Neh6eqY0rkdnd3hr0Z8d+JFlBz5Ugzr2NvISqkq6KPSq04BmHrQT2uv8v0uWXHi5
-         qwJQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700641774; x=1701246574;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=speaxD7H2/c0nRHQSVKl38WMlwLGvLtI20MmEHBBlFQ=;
-        b=gIPFSrYqUUqlNoHbuB6bk+5tE07R5p76QpGz20w+zOnSzYdMJNTa3isYEhZUoAdN49
-         GW0uOk8CU8QWcXi/cQJbI48ceWB6PSGp3jreHKnO81fMoKUyyUofkQwgaP2udz0KPgl8
-         1kf1vwgjYUKNQrVVEPDV5xElGPFSwnC/ecnExPW4m5kFLW4MwOuGHMaFc7zUnfUPkTaE
-         eKKG/sOJJrlTn6Mca4ajq5lBCcz3dmKpWwZzJXEs4vIyVTHsXZ5vZ90W+BwZhqLg7go+
-         tYqCXKrnXgCMpK4MuHOjOI72WRjRsqhUh1VSY8mBp2ecD6BBEK5MFkKEgVqykNuY/Et7
-         YH1A==
-X-Gm-Message-State: AOJu0YyvalnMsAYg3opN1881H/n4L+j8VAhNIx31Fg3iSyKEu2Zlu6+/
-	YG5OeBuoo6rbx+16DDmqyihS9g==
-X-Google-Smtp-Source: AGHT+IFGwRG55dC/dOUdpqpr9ZVxiT3jaFVa27CQgi2NdJajNpNw4nzMAsZHLSNYzCox9SOpWg+EBA==
-X-Received: by 2002:a17:907:c002:b0:9fd:deec:a273 with SMTP id ss2-20020a170907c00200b009fddeeca273mr1124483ejc.25.1700641773828;
-        Wed, 22 Nov 2023 00:29:33 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.100])
-        by smtp.gmail.com with ESMTPSA id i14-20020a170906090e00b009ae57888718sm6255068ejd.207.2023.11.22.00.29.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Nov 2023 00:29:33 -0800 (PST)
-Message-ID: <27c2a99f-19f6-485d-a792-d47e2b3781db@linaro.org>
-Date: Wed, 22 Nov 2023 09:29:32 +0100
+Received: from mail.manjaro.org (mail.manjaro.org [IPv6:2a01:4f8:c0c:51f3::1])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 223A09A;
+	Wed, 22 Nov 2023 00:29:51 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/2] dt-bindings: input: microchip,cap11xx: add
- advanced sensitivity settings
-Content-Language: en-US
-To: Jiri Valek - 2N <jiriv@axis.com>, krzysztof.kozlowski+dt@linaro.org,
- dmitry.torokhov@gmail.com
-Cc: devicetree@vger.kernel.org, linux-input@vger.kernel.org,
- linux-kernel@vger.kernel.org, robh+dt@kernel.org,
- u.kleine-koenig@pengutronix.de
-References: <20231121155250.613242-1-jiriv@axis.com>
- <20231121155250.613242-2-jiriv@axis.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231121155250.613242-2-jiriv@axis.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1700641789;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=niGgf0XKP2t2Zirpm3py6uN4TsslbCqBZV8swChcUGg=;
+	b=luqkiFNbDd6RWusGME8U43GdpWQmVFH6uGh/SeA8mjPpqqWUZjiYyAvcSlh9sV5lce7/vO
+	IG7+5LekhVo61e4jR+mBvUp3MnXnsfUTKhsCcRxKG5DNecDwP4vMPtna+pTlfDgoXh6GqZ
+	KK4twF/6W9Y41udae9CkgIastHp8o5IeFZxhSkVqr8StItMw0G6CXgxd5HcXuGCCaxFhw+
+	K677kgapgPbS0Xm9zEfvJE0UxGKnth8RbWPlO1rCaMoqPP+/0+58Dyf2rVg9Ds6bTl3eQX
+	wR8zSKh//XY965zoutJqNqDYel2x3Zt5H0gDg3exzshfTMc1ZsMCJq6l7MBjIg==
+Date: Wed, 22 Nov 2023 09:29:49 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: wens@kernel.org, =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <zajec5@gmail.com>,
+ Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+ <angelogioacchino.delregno@collabora.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, Andrew Davis <afd@ti.com>, Arnd Bergmann
+ <arnd@arndb.de>, Bjorn Andersson <andersson@kernel.org>, Geert Uytterhoeven
+ <geert+renesas@glider.be>, Heiko Stuebner <heiko@sntech.de>, Konrad Dybcio
+ <konrad.dybcio@linaro.org>, Michal Simek <michal.simek@amd.com>, Neil
+ Armstrong <neil.armstrong@linaro.org>, Nishanth Menon <nm@ti.com>, Olof
+ Johansson <olof@lixom.net>, linux-rockchip@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v2] docs: dt-bindings: add DTS Coding Style document
+In-Reply-To: <7232a48b-b9ad-44b5-ae6a-d12dad70b3c4@linaro.org>
+References: <20231120084044.23838-1-krzysztof.kozlowski@linaro.org>
+ <6b288a2e-d147-4bd3-b1d4-daf56295d939@gmail.com>
+ <01f9ce3b-e6e5-4b05-bf7f-0b3a5f74910a@linaro.org>
+ <CAGb2v64Vf5dDwq=KTrxwc=+w+0KUD2KVPMjmHg68Y_yukES5dQ@mail.gmail.com>
+ <7232a48b-b9ad-44b5-ae6a-d12dad70b3c4@linaro.org>
+Message-ID: <58a9caacc1226c7c3a2bdfe73ef1791f@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-On 21/11/2023 16:52, Jiri Valek - 2N wrote:
-> Add support for advanced sensitivity settings and signal guard feature.
+On 2023-11-22 09:21, Krzysztof Kozlowski wrote:
+> On 22/11/2023 09:09, Chen-Yu Tsai wrote:
+>> On Wed, Nov 22, 2023 at 4:05 PM Krzysztof Kozlowski
+>> <krzysztof.kozlowski@linaro.org> wrote:
+>>> 
+>>> On 21/11/2023 14:50, Rafał Miłecki wrote:
+>>>>> +Order of Properties in Device Node
+>>>>> +----------------------------------
+>>>>> +
+>>>>> +Following order of properties in device nodes is preferred:
+>>>>> +
+>>>>> +1. compatible
+>>>>> +2. reg
+>>>>> +3. ranges
+>>>>> +4. Standard/common properties (defined by common bindings, e.g. 
+>>>>> without
+>>>>> +   vendor-prefixes)
+>>>>> +5. Vendor-specific properties
+>>>>> +6. status (if applicable)
+>>>>> +7. Child nodes, where each node is preceded with a blank line
+>>>>> +
+>>>>> +The "status" property is by default "okay", thus it can be 
+>>>>> omitted.
+>>>> 
+>>>> I think it would really help to include position of #address-cells 
+>>>> and
+>>>> #size-cells here. In some files I saw them above "compatible" that 
+>>>> seems
+>>>> unintuitive. Some prefer putting them at end which I think makes 
+>>>> sense
+>>>> as they affect children nodes.
+>>>> 
+>>>> Whatever you choose it'd be just nice to have things consistent.
+>>> 
+>>> This is a standard/common property, thus it goes to (4) above.
+>> 
+>> It's probably a mix, but AFAIK a lot of the device trees in tree have
+>> #*-cells after "status". In some cases they are added in the board
+>> .dts files, not the chip/module .dtsi files.
 > 
-> Signed-off-by: Jiri Valek - 2N <jiriv@axis.com>
-> ---
+> Existing DTS is not a good example :)
+> 
+>> 
+>> +1 that it makes sense at the end as they affect child nodes.
+> 
+> I still insist that status must be the last, because:
+> 1. Many SoC nodes have address/size cells but do not have any children
+> (I2C, SPI), so we put useless information at the end.
+> 2. Status should be the final information to say whether the node is
+> ready or is not. I read the node, check properties and then look at the 
+> end:
+> a. Lack of status means it is ready.
+> b. status=disabled means device still needs board 
+> resources/customization
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+I agree with the "status" belonging to the very end, because it's both 
+logical and much more readable.  Also, "status" is expected to be 
+modified in the dependent DT files, which makes it kind of volatile and 
+even more deserving to be placed last.
 
