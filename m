@@ -1,129 +1,164 @@
-Return-Path: <devicetree+bounces-17771-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17770-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 227D67F405C
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 09:40:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E1C37F4058
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 09:39:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D241D281128
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 08:40:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 29B2F28120B
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 08:39:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27B4515AE6;
-	Wed, 22 Nov 2023 08:40:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C04D618E1F;
+	Wed, 22 Nov 2023 08:39:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="T0U6T8uj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1FC8D50;
-	Wed, 22 Nov 2023 00:39:54 -0800 (PST)
-X-SpamFilter-By: ArmorX SpamTrap 5.78 with qID 3AM8dGP612151468, This message is accepted by code: ctloc85258
-Received: from mail.realtek.com (rtexh36505.realtek.com.tw[172.21.6.25])
-	by rtits2.realtek.com.tw (8.15.2/2.95/5.92) with ESMTPS id 3AM8dGP612151468
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 22 Nov 2023 16:39:16 +0800
-Received: from RTEXMBS03.realtek.com.tw (172.21.6.96) by
- RTEXH36505.realtek.com.tw (172.21.6.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.32; Wed, 22 Nov 2023 16:39:16 +0800
-Received: from RTEXMBS03.realtek.com.tw (172.21.6.96) by
- RTEXMBS03.realtek.com.tw (172.21.6.96) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.7; Wed, 22 Nov 2023 16:39:16 +0800
-Received: from RTEXMBS03.realtek.com.tw ([fe80::5510:ad08:5390:1ed3]) by
- RTEXMBS03.realtek.com.tw ([fe80::5510:ad08:5390:1ed3%2]) with mapi id
- 15.01.2375.007; Wed, 22 Nov 2023 16:39:16 +0800
-From: =?big5?B?SmFtZXMgVGFpIFvAuafTrnBd?= <james.tai@realtek.com>
-To: Dan Carpenter <dan.carpenter@linaro.org>,
-        "oe-kbuild@lists.linux.dev"
-	<oe-kbuild@lists.linux.dev>,
-        Thomas Gleixner <tglx@linutronix.de>, "Marc
- Zyngier" <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: "lkp@intel.com" <lkp@intel.com>,
-        "oe-kbuild-all@lists.linux.dev"
-	<oe-kbuild-all@lists.linux.dev>,
-        "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>
-Subject: RE: [PATCH v2 3/6] irqchip: Introduce RTD1319 support using the Realtek common interrupt controller driver
-Thread-Topic: [PATCH v2 3/6] irqchip: Introduce RTD1319 support using the
- Realtek common interrupt controller driver
-Thread-Index: AQHaGXMRAc9+C1rDtE6lI5Jgwdoqg7CC4VmAgAMpvDA=
-Date: Wed, 22 Nov 2023 08:39:16 +0000
-Message-ID: <e27e80181691451eba58ece50ea4de5e@realtek.com>
-References: <20231117162709.1096585-4-james.tai@realtek.com>
- <a045008a-5a97-4903-b5e4-a761f7e4c20a@suswa.mountain>
-In-Reply-To: <a045008a-5a97-4903-b5e4-a761f7e4c20a@suswa.mountain>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-x-kse-serverinfo: RTEXMBS03.realtek.com.tw, 9
-x-kse-antispam-interceptor-info: fallback
-x-kse-antivirus-interceptor-info: fallback
-Content-Type: text/plain; charset="big5"
-Content-Transfer-Encoding: base64
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36F0B1BB
+	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 00:39:43 -0800 (PST)
+Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-548d1f8b388so4053259a12.0
+        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 00:39:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1700642381; x=1701247181; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=aS+XXhwuzroVSKVuFdZ7dXAQSJNNm0caeZbcLLCsivU=;
+        b=T0U6T8ujw0DLzCZGRMMTAgWZ9GrwaYqhFi7XK8ftDSi6ncTbQldX+8kQ0o6qXaTO4O
+         Sj+tFmj40aGY9aS2Aml1hLz0UdzReRrxw27VDmwthiYaujBcp06hKlxj6vKHSHHgKi1H
+         1TTU0DPUGm3RZM3Axixfl6vwXGmCFdMqO849k2lcqoiSBkiae3Lk5+XDlUclnCNb1Az/
+         7XMVrNR9zYz8BUTPKDU8K4Zp4tMf661WWI3xYzr9wso5qzB/6uXVQ0xihy3x/ECbdJ5N
+         ugoHlulXUkN6Kbr13hTy2hJja11RYxjCOhWCzF6jl2dzUhfJ4EadWVS8SznHrspQne3P
+         AsYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700642381; x=1701247181;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=aS+XXhwuzroVSKVuFdZ7dXAQSJNNm0caeZbcLLCsivU=;
+        b=qv/0QE3VXDOD+xe28AXvW3bNCkw3BfRLjMnL67ECN6OY0PZHAhovFiK0YOdCposKgM
+         0i3Gy5/zisvRwbEWB8IicPhOU+cCM5fAc1Mc0Jgc1mS3Qe7Yl62Nif7wMs6ZJWBzqW4G
+         xnbWUWhtyyUwK2rtmMqgIcwY7QJOG+Bw7MyZkEaxLZqQmrG1nVDfKCeuyUJVDgrEVNtT
+         v2cVN23UgYG/1CBtN4+94X1CVdwHNo3KZeugovwn7zdhiAoalIXufFyDXSqGfwNYbBvZ
+         99qkDi6m2PaErmf793sbhv0gvlvXnomUyXSgE5G9w8ga3sKwzU+IuPT8WYZ+yx0ZwPd5
+         CLZA==
+X-Gm-Message-State: AOJu0YzHyXolnvuvrI6A0yUE4tAp+GPjj22jB8lfye/cRdqT3E+gtoQF
+	EqrRLulDdxj+/4zujM/Bczc1Cw==
+X-Google-Smtp-Source: AGHT+IF2CSCjDTEXm1SkcZqwuxmoDKpLN1XjBfvcVi12yyNS4bJa/vqnjuwCRcnZsj7/ysSkGHEnvA==
+X-Received: by 2002:a17:906:7105:b0:9c6:8190:359f with SMTP id x5-20020a170906710500b009c68190359fmr935327ejj.33.1700642381688;
+        Wed, 22 Nov 2023 00:39:41 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.100])
+        by smtp.gmail.com with ESMTPSA id a1-20020a170906190100b009a19701e7b5sm6321163eje.96.2023.11.22.00.39.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 Nov 2023 00:39:41 -0800 (PST)
+Message-ID: <f04d8ad1-4411-4334-8d22-0aa757bf227c@linaro.org>
+Date: Wed, 22 Nov 2023 09:39:39 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-KSE-ServerInfo: RTEXH36505.realtek.com.tw, 9
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-KSE-Antivirus-Interceptor-Info: fallback
-X-KSE-AntiSpam-Interceptor-Info: fallback
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 5/6] arm: dts: amlogic: migrate pwms to new meson8 v2
+ binding
+Content-Language: en-US
+To: Jerome Brunet <jbrunet@baylibre.com>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-pwm@vger.kernel.org, JunYi Zhao <junyi.zhao@amlogic.com>
+References: <20231117125919.1696980-1-jbrunet@baylibre.com>
+ <20231117125919.1696980-6-jbrunet@baylibre.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231117125919.1696980-6-jbrunet@baylibre.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-SGkgRGFuLA0KDQo+c21hdGNoIHdhcm5pbmdzOg0KPmRyaXZlcnMvaXJxY2hpcC9pcnEtcmVhbHRl
-ay1pbnRjLWNvbW1vbi5jOjE3OSByZWFsdGVrX2ludGNfcHJvYmUoKSB3YXJuOg0KPmlnbm9yaW5n
-IHVucmVhY2hhYmxlIGNvZGUuDQo+ZHJpdmVycy9pcnFjaGlwL2lycS1yZWFsdGVrLWludGMtY29t
-bW9uLmM6MTg3IHJlYWx0ZWtfaW50Y19wcm9iZSgpIHdhcm46DQo+J2RhdGEtPmJhc2UnIGZyb20g
-b2ZfaW9tYXAoKSBub3QgcmVsZWFzZWQgb24gbGluZXM6IDE3NiwxODIuDQo+DQo+dmltICsxNzkg
-ZHJpdmVycy9pcnFjaGlwL2lycS1yZWFsdGVrLWludGMtY29tbW9uLmMNCj4NCj40MGU1ZmY0ZWFl
-ZjcyYiBKYW1lcyBUYWkgMjAyMy0xMS0xOCAgMTU1ICBpbnQgcmVhbHRla19pbnRjX3Byb2JlKHN0
-cnVjdA0KPnBsYXRmb3JtX2RldmljZSAqcGRldiwgY29uc3Qgc3RydWN0IHJlYWx0ZWtfaW50Y19p
-bmZvICppbmZvKSA0MGU1ZmY0ZWFlZjcyYg0KPkphbWVzIFRhaSAyMDIzLTExLTE4ICAxNTYgIHsN
-Cj40MGU1ZmY0ZWFlZjcyYiBKYW1lcyBUYWkgMjAyMy0xMS0xOCAgMTU3ICAgICAgICBzdHJ1Y3Qg
-cmVhbHRla19pbnRjX2RhdGENCj4qZGF0YTsNCj40MGU1ZmY0ZWFlZjcyYiBKYW1lcyBUYWkgMjAy
-My0xMS0xOCAgMTU4ICAgICAgICBzdHJ1Y3QgZGV2aWNlICpkZXYgPQ0KPiZwZGV2LT5kZXY7DQo+
-NDBlNWZmNGVhZWY3MmIgSmFtZXMgVGFpIDIwMjMtMTEtMTggIDE1OSAgICAgICAgc3RydWN0IGRl
-dmljZV9ub2RlICpub2RlDQo+PSBkZXYtPm9mX25vZGU7DQo+NDBlNWZmNGVhZWY3MmIgSmFtZXMg
-VGFpIDIwMjMtMTEtMTggIDE2MCAgICAgICAgaW50IHJldCwgaTsNCj40MGU1ZmY0ZWFlZjcyYiBK
-YW1lcyBUYWkgMjAyMy0xMS0xOCAgMTYxDQo+NDBlNWZmNGVhZWY3MmIgSmFtZXMgVGFpIDIwMjMt
-MTEtMTggIDE2MiAgICAgICAgZGF0YSA9IGRldm1fa3phbGxvYyhkZXYsDQo+c3RydWN0X3NpemUo
-ZGF0YSwgc3Vic2V0X2RhdGEsIGluZm8tPmNmZ19udW0pLCBHRlBfS0VSTkVMKTsNCj40MGU1ZmY0
-ZWFlZjcyYiBKYW1lcyBUYWkgMjAyMy0xMS0xOCAgMTYzICAgICAgICBpZiAoIWRhdGEpDQo+NDBl
-NWZmNGVhZWY3MmIgSmFtZXMgVGFpIDIwMjMtMTEtMTggIDE2NCAgICAgICAgICAgICAgICByZXR1
-cm4NCj4tRU5PTUVNOw0KPjQwZTVmZjRlYWVmNzJiIEphbWVzIFRhaSAyMDIzLTExLTE4ICAxNjUN
-Cj40MGU1ZmY0ZWFlZjcyYiBKYW1lcyBUYWkgMjAyMy0xMS0xOCAgMTY2ICAgICAgICBkYXRhLT5i
-YXNlID0NCj5vZl9pb21hcChub2RlLCAwKTsNCj40MGU1ZmY0ZWFlZjcyYiBKYW1lcyBUYWkgMjAy
-My0xMS0xOCAgMTY3ICAgICAgICBpZiAoIWRhdGEtPmJhc2UpDQo+NDBlNWZmNGVhZWY3MmIgSmFt
-ZXMgVGFpIDIwMjMtMTEtMTggIDE2OCAgICAgICAgICAgICAgICByZXR1cm4NCj4tRU5PTUVNOw0K
-PjQwZTVmZjRlYWVmNzJiIEphbWVzIFRhaSAyMDIzLTExLTE4ICAxNjkNCj40MGU1ZmY0ZWFlZjcy
-YiBKYW1lcyBUYWkgMjAyMy0xMS0xOCAgMTcwICAgICAgICBkYXRhLT5pbmZvID0gaW5mbzsNCj40
-MGU1ZmY0ZWFlZjcyYiBKYW1lcyBUYWkgMjAyMy0xMS0xOCAgMTcxDQo+NDBlNWZmNGVhZWY3MmIg
-SmFtZXMgVGFpIDIwMjMtMTEtMTggIDE3Mg0KPnJhd19zcGluX2xvY2tfaW5pdCgmZGF0YS0+bG9j
-ayk7DQo+NDBlNWZmNGVhZWY3MmIgSmFtZXMgVGFpIDIwMjMtMTEtMTggIDE3Mw0KPjQwZTVmZjRl
-YWVmNzJiIEphbWVzIFRhaSAyMDIzLTExLTE4ICAxNzQgICAgICAgIGRhdGEtPmRvbWFpbiA9DQo+
-aXJxX2RvbWFpbl9hZGRfbGluZWFyKG5vZGUsIDMyLCAmcmVhbHRla19pbnRjX2RvbWFpbl9vcHMs
-IGRhdGEpOw0KPjQwZTVmZjRlYWVmNzJiIEphbWVzIFRhaSAyMDIzLTExLTE4ICAxNzUgICAgICAg
-IGlmICghZGF0YS0+ZG9tYWluKQ0KPjQwZTVmZjRlYWVmNzJiIEphbWVzIFRhaSAyMDIzLTExLTE4
-ICAxNzYgICAgICAgICAgICAgICAgcmV0dXJuDQo+LUVOT01FTTsNCj40MGU1ZmY0ZWFlZjcyYiBK
-YW1lcyBUYWkgMjAyMy0xMS0xOCAgMTc3DQo+NDBlNWZmNGVhZWY3MmIgSmFtZXMgVGFpIDIwMjMt
-MTEtMTggIDE3OCAgICAgICAgZGF0YS0+c3Vic2V0X2RhdGFfbnVtDQo+PSBpbmZvLT5jZmdfbnVt
-Ow0KPjQwZTVmZjRlYWVmNzJiIEphbWVzIFRhaSAyMDIzLTExLTE4IEAxNzkgICAgICAgIGZvciAo
-aSA9IDA7IGkgPA0KPmluZm8tPmNmZ19udW07IGkrKykgew0KPjQwZTVmZjRlYWVmNzJiIEphbWVz
-IFRhaSAyMDIzLTExLTE4ICAxODAgICAgICAgICAgICAgICAgcmV0ID0NCj5yZWFsdGVrX2ludGNf
-c3Vic2V0KG5vZGUsIGRhdGEsIGkpOw0KPjQwZTVmZjRlYWVmNzJiIEphbWVzIFRhaSAyMDIzLTEx
-LTE4ICAxODEgICAgICAgICAgICAgICAgV0FSTihyZXQsDQo+ImZhaWxlZCB0byBpbml0IHN1YnNl
-dCAlZDogJWQiLCBpLCByZXQpOw0KPjQwZTVmZjRlYWVmNzJiIEphbWVzIFRhaSAyMDIzLTExLTE4
-ICAxODIgICAgICAgICAgICAgICAgcmV0dXJuDQo+LUVOT01FTTsNCj4NCj5UaGlzIGxvb3AganVz
-dCByZXR1cm5zIC1FTk9NRU0uICBNaXNzaW5nIGlmIHN0YXRlbWVudD8NCj5ObyBjbGVhbiB1cCBl
-aXRoZXIuICBOZWVkcyB0byByZWxlYXNlIHJlc291cmNlcyBiZWZvcmUgcmV0dXJuaW5nLg0KDQpJ
-IHdpbGwgZml4IGl0IGluIG5leHQgcGF0Y2hlcy4NCg0KVGhhbmsgeW91IGZvciB5b3VyIGZlZWRi
-YWNrLg0KDQpSZWdhcmRzLA0KSmFtZXMNCg0KDQo=
+On 17/11/2023 13:59, Jerome Brunet wrote:
+> Update Amlogic based SoC PWMs to meson8-pwm-v2 compatible
+
+Why? Your commit msg must explain this. You break users of this DTS on
+older kernels and also this makes it impossible to apply via different
+branches in the same cycle. All this needs explanation and proper
+justification. Your message tells here nothing, because "what" is quite
+obvious.
+
+> 
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+>  arch/arm/boot/dts/amlogic/meson.dtsi           |  4 ++--
+>  arch/arm/boot/dts/amlogic/meson8.dtsi          | 16 +++++++++++++---
+>  arch/arm/boot/dts/amlogic/meson8b-ec100.dts    |  2 --
+>  arch/arm/boot/dts/amlogic/meson8b-mxq.dts      |  2 --
+>  arch/arm/boot/dts/amlogic/meson8b-odroidc1.dts |  2 --
+>  arch/arm/boot/dts/amlogic/meson8b.dtsi         | 16 +++++++++++++---
+>  6 files changed, 28 insertions(+), 14 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/amlogic/meson.dtsi b/arch/arm/boot/dts/amlogic/meson.dtsi
+> index 8e3860d5d916..80cc004ad5fe 100644
+> --- a/arch/arm/boot/dts/amlogic/meson.dtsi
+> +++ b/arch/arm/boot/dts/amlogic/meson.dtsi
+> @@ -83,14 +83,14 @@ i2c_A: i2c@8500 {
+>  			};
+>  
+>  			pwm_ab: pwm@8550 {
+> -				compatible = "amlogic,meson-pwm";
+> +				compatible = "amlogic,meson8-pwm-v2";
+
+That's breaking users of this DTS (old kernel, out of tree, other
+projects) for no real reasons without explanation.
+
+Best regards,
+Krzysztof
+
 
