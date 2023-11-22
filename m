@@ -1,133 +1,275 @@
-Return-Path: <devicetree+bounces-17711-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17712-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BE557F3ADE
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 01:55:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42C487F3B47
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 02:26:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 26E762829E9
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 00:55:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EC0082828EF
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 01:26:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58C5B10E5;
-	Wed, 22 Nov 2023 00:55:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 815A015C3;
+	Wed, 22 Nov 2023 01:26:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="DJ7tz2OK"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="T95augzt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1BE4112;
-	Tue, 21 Nov 2023 16:55:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1700614507; x=1732150507;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=5v2P07ds92gacwG7jBUufrR4IYudUYskFFuQRoGYaSA=;
-  b=DJ7tz2OK7o+95BYnKLB8wEGlrZ9zo8I9c95GTh8iG6bjytjbX2Gn1llN
-   e3cfTQmiauNEH0BXrkTbAIN1BDS7Rxuoihs87VFiJd0XfihLwNWjTMtQe
-   tCY7IgsuIpUIh07mJlgOSJD0gsQ6tXZcApOiai0103PQ++UUPayPM4izI
-   AO1f8YNu7qSCsVP8yswJPjnGQvrNo1FQZblyS1l5vI+iiC6ZxRQcDmAUi
-   YyLU4CysNRlhlqihS7Wx6+VsOuwi3J91rbjYsvqgDRW6mPewTd34jH5hP
-   tirCIp/nNibhoJUf3zUVkWAyqanSouuyZR2RHBWXyB1QVkBHGhVRpx3VI
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10901"; a="5088477"
-X-IronPort-AV: E=Sophos;i="6.04,217,1695711600"; 
-   d="scan'208";a="5088477"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Nov 2023 16:55:06 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10901"; a="716674287"
-X-IronPort-AV: E=Sophos;i="6.04,217,1695711600"; 
-   d="scan'208";a="716674287"
-Received: from lkp-server02.sh.intel.com (HELO b8de5498638e) ([10.239.97.151])
-  by orsmga003.jf.intel.com with ESMTP; 21 Nov 2023 16:55:02 -0800
-Received: from kbuild by b8de5498638e with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1r5bW8-0008T4-0d;
-	Wed, 22 Nov 2023 00:55:00 +0000
-Date: Wed, 22 Nov 2023 08:54:57 +0800
-From: kernel test robot <lkp@intel.com>
-To: Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-iio@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev,
-	Olivier MOYSAN <olivier.moysan@foss.st.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10olkn2073.outbound.protection.outlook.com [40.92.42.73])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 892CDBB;
+	Tue, 21 Nov 2023 17:26:47 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=jk3LrDlrPjYuqH4Knk9K7lG2BgLBmUi1Bo7PWgogAtSH5jTmwGoTU6hawtSeuEdM5zKPRl1MXBO0WQqo1ooPndOEGDA8NsC0pK21s0CxURi5KPEU39HJb7e8PLOkfdIZPOCiwvnsftlXfGIB44N6LWD6SY0Wkq0Tj8EbWWDIm+0nj4dvoBwmmmnzKe311MC0W7XV0FJdWpp2j1e6Hbgnv/IfPGRpE+mCleg0K1QwiMurWAedn411y0elPZprMvfnjcCyCbpOBg3nW4SxeC73TMNp9ydekrw+Wao47Dk5IFJ9j6G8lDuQ3HaSelF+b+/AjpTeOuX0d8Z33Luv/RkFew==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=5mV0PyFbgRSWX3sWUwxlLUmLdp7skid7mW1wblFed5s=;
+ b=bPPuAMKlL9AaRvY+pW1ZkPSJdsAhJMnkpCiGgzo3Vibc1FtWh6LYVC4SNbC9qI9IcmwLgP1gaXewKlETfvCytDMOrZP3I9qqVBXlDpGlXwAbD/s5MejWnMzxDda0YZvVnTgvFJ5fj/aEwnPQUd66Ndk/ZuJc3CHN9Mjiq5rryARHhyfLzn657LnwcRQhtiJJptW9+PS68/a5FuTxAJ0DK7lpQDTVoMmYpigp7pRdi/H+QA5y1rzKItFjffzheCMrVB9i39iviaFfxqDIqAKA427OUhkZNm79svIYd1M9psvjZ4P3PKAoUU3y0O9Vn6aaZjHS0Snsw41TMkm3oEw4FQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=5mV0PyFbgRSWX3sWUwxlLUmLdp7skid7mW1wblFed5s=;
+ b=T95augztlrUQw4bJ2ljXOKjYJ7dz5hoWe/zGzUrP9/K8USzOT5n2gM74dcnVVfHB6ZSqZzQYUwlK6Z+urZtjT5dMASkaa2aVd4Hu2aSKqMJyZKDNS6XtISPNHKUvqp3qy2PdMilHWjP4IV5LufCsmafFBQOnQ0OQ7kKcs3vdlRL4assXyc5TfRBcKjZ0id4zTysJkr8QvIa+peQK4eYfH5Vk5nCUaCnOuGfpx3aQ21D2gyTbBzif1cVBg1MoWMlVnGu1fae6HGbviE495TC0qk/N28CjsEuQ0cwjvbapMcDgnNYuO4lbcHzGPqCj8BK394OdtdHMhnPznlCxuoCBSg==
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
+ by DS0PR20MB4958.namprd20.prod.outlook.com (2603:10b6:8:ca::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7002.27; Wed, 22 Nov
+ 2023 01:26:45 +0000
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::55b:c350:980:ad8]) by IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::55b:c350:980:ad8%6]) with mapi id 15.20.7002.027; Wed, 22 Nov 2023
+ 01:26:45 +0000
+From: Inochi Amaoto <inochiama@outlook.com>
+To: Conor Dooley <conor.dooley@microchip.com>
+Cc: Inochi Amaoto <inochiama@outlook.com>,
+	Conor Dooley <conor@kernel.org>,
+	Guo Ren <guoren@kernel.org>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
 	Rob Herring <robh+dt@kernel.org>,
-	Frank Rowand <frowand.list@gmail.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Nuno Sa <nuno.sa@analog.com>
-Subject: Re: [PATCH 10/12] iio: adc: ad9467: convert to backend framework
-Message-ID: <202311220807.NUS4r7ML-lkp@intel.com>
-References: <20231121-dev-iio-backend-v1-10-6a3d542eba35@analog.com>
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Anup Patel <anup@brainfault.org>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v4 1/2] dt-bindings: timer: thead,c900-aclint-mtimer: separate mtime and mtimecmp regs
+Date: Wed, 22 Nov 2023 09:26:26 +0800
+Message-ID:
+ <IA1PR20MB4953840B83BA1F3675BF9A5BBBBAA@IA1PR20MB4953.namprd20.prod.outlook.com>
+X-Mailer: git-send-email 2.42.1
+In-Reply-To: <20231121-vocation-clunky-17e2c77e64fa@wendy>
+References: <20231121-vocation-clunky-17e2c77e64fa@wendy>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TMN: [Ey1hTHxgu8OTC0h7k6qgnjSkzc+DSqWAT37OEEZqbs4=]
+X-ClientProxiedBy: TYCP286CA0335.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:38e::13) To IA1PR20MB4953.namprd20.prod.outlook.com
+ (2603:10b6:208:3af::19)
+X-Microsoft-Original-Message-ID:
+ <20231122012627.115573-1-inochiama@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231121-dev-iio-backend-v1-10-6a3d542eba35@analog.com>
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|DS0PR20MB4958:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3605f1b2-594d-4d42-d64c-08dbeafa16e4
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	xYqDfgHpk73jOXEqltZAipY18PqaClWGCcMKDqlGRA/OkFmjr3gmalA7mJVa+Rrae9HC552Btv4Zipl8pekGDue/Ab2QYk8pHnk5+eS5/uoY8F852pcRKKD5lrFDR5+4BDrBXcnoRusREbivxWQ0+uQiA8dWaHGiDzoz+jHYKjr3oj6+tT+2ebWKGoqLIIVl5hQXSNW7fk/3bOXfeE77wR5qnY+H9QhxJ/Tuv1CVRF4gk2bgSDQbZBGLG3yq2fKp1JpA2cVURHK5a6XVXa8IyETyvPFshNGq2AIK71Th3y5C9FEkvnN4rOz8FT020saDn3hDtGhJBkZnGnRBXgW81QRgsOQzGpaBRx9vPwGIYA4WmqPERGUM0eljLcLpPj3R/taCJ6oCnpUhA4hpASZIcVrTo6JPAWh9hixXCkWjWjf/V5PNDIRrwrDQQi5clz9+mzc7Ys8834yx1ZdTagfASiAh1UDuHDih8nqmTMMAaieluOGDRBeZROaAxtKVh5GnVAG6z+gY24xOAe0b5pjDe8QUkK6n0RLjdQbaORnT3elo6B+dyqWFKFnqeKgBjbUD1ZLVNwVxGkkBuPsAw/Mg/egG+ktgL7LOKNLwuICp4TC0iB6ZySReHPzIA8i9OHjPs3rbcJSYdcSHO3KeuoX9T7HiDGLVO/mhxL4FJNwldls=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?F9V0VvXI0bvyjl81YRPq04bBqBFvv5tPnn7bnhGS7LpCZwx/gmt9mh4+ejKO?=
+ =?us-ascii?Q?KWYSozTW26Rh6AHFNm8PuS0hRYSsInS3Ap1LEampgc0PmwJ8nlgv0XGcaN7v?=
+ =?us-ascii?Q?h2QtXCtlzjrRxXyX02vOgf9yAB7N+hVt08ZIJ5ULktBkxcuF2kDGolfKtB5k?=
+ =?us-ascii?Q?V/8Zg/XP21uOM2xUVgkIY4Jwv/czXqWpCHCubpGH/0tFX6OIm1n1joy+j9P5?=
+ =?us-ascii?Q?Ns9EsmlMG2tTEWqoopbYZFpvj1wW5MhFO2INrpKeer2sY0VdOC4xUNHFWcAn?=
+ =?us-ascii?Q?6ogmebwohQ6Gh7icLlyuTiRc8ztrGR0nu4sTzyyfjECh+J02G75e3RSCMNsY?=
+ =?us-ascii?Q?GCZZJSe/SrEqVSyYxMkxBzHVPcIMcc0y1XxbyQqhJ/xXdaRAVOZkPxqdZV7i?=
+ =?us-ascii?Q?rhTGYgrQh7H2wMbE+6v9SElspunTwh+IlA/vu2VjLp2qQ/NaK0rbt8cF+K15?=
+ =?us-ascii?Q?FAYBj8i78LuwgI8ZUbqv8HjL2f13iZk8ha7k2R1XfPqsDvDqzK5Xw/7PL93I?=
+ =?us-ascii?Q?+1fSw+MoCj+gvQOAtR+Aopr+Smr65JtGepTJcNbhy4K69vhyvwcmyIqbQUFh?=
+ =?us-ascii?Q?PGQdWOguf1uPsPqU+hmj2y3v/ggQNTeJPgFSVjV1SPWMgJWeVbf5SOZeAwmx?=
+ =?us-ascii?Q?mmJqxxL93hbLtnyL7RB4PnfGAehyJFyvHRQ6H0WFP4QcZ5KGTeoUjVD2+C3G?=
+ =?us-ascii?Q?a4bsAVeU0yzdtmGL7JbRBhM3M1WarlETlnWepiXiN1RwT0rIvVmnPKjeY2t0?=
+ =?us-ascii?Q?dZOVcSmSq3UKoPE/LYvPOU7WFNKpykoZvfXPTb2rFBHBvtHeYu0uknpRgSzu?=
+ =?us-ascii?Q?4VEDON9/DIoFstlCO0Dy6bByCrdrUqkpvtLMmN75gTh8IN3edJTPs6vxyEAo?=
+ =?us-ascii?Q?sxfctgsYKpHONuIIHMKyCOcE+CRbkoau3p8U0u3VZvVJGRcYwwCHXu3RK8JM?=
+ =?us-ascii?Q?P1/u7SPQodkCLZOJfPLFmgJ31Ec7SsMZKVWTzmVStVYhSI2xfBbcxIW4Fhlo?=
+ =?us-ascii?Q?jgdOQc8llv09QKqzSlDjQ/rSsWxho9iEiaTm8354cg15YNHze33wNE06RKxS?=
+ =?us-ascii?Q?DpXXYqLi7QsTv661dDnxByus8Rxs5LnNBeB47Z/1YMjH0W4G7HwXlly1lWSy?=
+ =?us-ascii?Q?D0JBDI5k0XzymkqIbrthLxVUs8VYA7FfdshT2hpFyt3jTcZz3OGWn1BSva/K?=
+ =?us-ascii?Q?66LOCqeYoWWKuy5pd1Rjc3nkFyMdVQLxagKmwEapOfiPL/lvWjroMLNjgoE?=
+ =?us-ascii?Q?=3D?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3605f1b2-594d-4d42-d64c-08dbeafa16e4
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Nov 2023 01:26:45.3467
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR20MB4958
 
-Hi Nuno,
+>On Tue, Nov 21, 2023 at 09:12:12AM +0800, Inochi Amaoto wrote:
+>>> Yo,
+>>>
+>>> On Sat, Nov 18, 2023 at 03:10:26PM +0800, Inochi Amaoto wrote:
+>>>> The timer registers of aclint don't follow the clint layout and can
+>>>> be mapped on any different offset. As sg2042 uses separated timer
+>>>> and mswi for its clint, it should follow the aclint spec and have
+>>>> separated registers.
+>>>>
+>>>> The previous patch introduced a new type of T-HEAD aclint timer which
+>>>> has clint timer layout. Although it has the clint timer layout, it
+>>>> should follow the aclint spec and uses the separated mtime and mtimecmp
+>>>> regs. So a ABI change is needed to make the timer fit the aclint spec.
+>>>>
+>>>> To make T-HEAD aclint timer more closer to the aclint spec, use
+>>>> regs-names to represent the mtimecmp register, which can avoid hack
+>>>> for unsupport mtime register of T-HEAD aclint timer.
+>>>>
+>>>> Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
+>>>> Fixes: 4734449f7311 ("dt-bindings: timer: Add Sophgo sg2042 CLINT timer")
+>>>> Link: https://lists.infradead.org/pipermail/opensbi/2023-October/005693.html
+>>>> Link: https://github.com/riscv/riscv-aclint/blob/main/riscv-aclint.adoc
+>>>> ---
+>>>>  .../timer/thead,c900-aclint-mtimer.yaml       | 42 ++++++++++++++++++-
+>>>>  1 file changed, 41 insertions(+), 1 deletion(-)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/timer/thead,c900-aclint-mtimer.yaml b/Documentation/devicetree/bindings/timer/thead,c900-aclint-mtimer.yaml
+>>>> index fbd235650e52..053488fb1286 100644
+>>>> --- a/Documentation/devicetree/bindings/timer/thead,c900-aclint-mtimer.yaml
+>>>> +++ b/Documentation/devicetree/bindings/timer/thead,c900-aclint-mtimer.yaml
+>>>> @@ -17,7 +17,20 @@ properties:
+>>>>        - const: thead,c900-aclint-mtimer
+>>>>
+>>>>    reg:
+>>>> -    maxItems: 1
+>>>> +    oneOf:
+>>>> +      - items:
+>>>> +          - description: MTIME Registers
+>>>> +          - description: MTIMECMP Registers
+>>>> +      - items:
+>>>> +          - description: MTIMECMP Registers
+>>>> +
+>>>> +  reg-names:
+>>>> +    oneOf:
+>>>> +      - items:
+>>>> +          - const: mtime
+>>>> +          - const: mtimecmp
+>>>> +      - items:
+>>>> +          - const: mtimecmp
+>>>>
+>>>>    interrupts-extended:
+>>>>      minItems: 1
+>>>> @@ -28,8 +41,34 @@ additionalProperties: false
+>>>>  required:
+>>>>    - compatible
+>>>>    - reg
+>>>> +  - reg-names
+>>>>    - interrupts-extended
+>>>>
+>>>> +allOf:
+>>>> +  - if:
+>>>> +      properties:
+>>>> +        compatible:
+>>>> +          contains:
+>>>> +            const: thead,c900-aclint-mtimer
+>>>
+>>> Is this being the c900 compatible correct? You mention in your commit
+>>> message that this split is done on the sg2042, but the rule is applied
+>>> here for any c900 series "aclint". Do we know if this is a sophgo
+>>> specific thing (or even sg2042 specific), or if it applies generally?
+>>>
+>>
+>> This can be confirmed. The thead c900 series have no mtime support and
+>> there is no evidence that they will implement it. So I think it is OK
+>> to applied this restriction for the whole c900 series.
+>
+>Okay, great.
+>
+>>>> +    then:
+>>>> +      properties:
+>>>> +        reg:
+>>>> +          items:
+>>>> +            - description: MTIMECMP Registers
+>>>> +        reg-names:
+>>>> +          items:
+>>>> +            - const: mtimecmp
+>>>
+>>>> +    else:
+>>>> +      properties:
+>>>> +        reg:
+>>>> +          items:
+>>>> +            - description: MTIME Registers
+>>>> +            - description: MTIMECMP Registers
+>>>> +        reg-names:
+>>>> +          items:
+>>>> +            - const: mtime
+>>>> +            - const: mtimecmp
+>>>
+>>> If it applies generally, I would probably just delete this, but unless
+>>> someone can confirm this to be general, I'd probably leave the else
+>>> clause and swap for the specific sg2042 compatible above.
+>>>
+>>
+>> I suggest keeping this. By taking your advice, this binding has actually
+>> become the binding for aclint draft.
+>
+>Right. It seemed to me from the reports (and the commit message) that this
+>was a configuration choice made by sophgo for the IP.
+>
 
-kernel test robot noticed the following build warnings:
+Yes, that's true.
 
-[auto build test WARNING on jic23-iio/togreg]
-[also build test WARNING on driver-core/driver-core-testing driver-core/driver-core-next driver-core/driver-core-linus robh/for-next linus/master v6.7-rc2 next-20231121]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+>> So I think it is better to preserve
+>> this path, otherwise adding the mtime register seems meaningless.
+>
+>Yeah, I mistakenly thought that there were cases where we actually had
+>systems with mtime and mtimecmp registers. I don't know if that was an
+>assumption I made due to previous commit messages or from reading the
+>opensbi threads, but clearly that is not the case.
+>
+>> But if
+>> you think it is OK to add this when adding new compatible or converting it
+>> to a generic binding.
+>
+>I'm a bit conflicted. Since this is c900 specific one part of me says
+>leave it with only one "reg" entry as that is what the only hardware
+>actually has & add "reg-names" to make lives easier when someone else
+>implements the unratified spec (or it gets ratified for some reason).
+>
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Nuno-Sa-via-B4-Relay/driver-core-allow-modifying-device_links-flags/20231121-182010
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
-patch link:    https://lore.kernel.org/r/20231121-dev-iio-backend-v1-10-6a3d542eba35%40analog.com
-patch subject: [PATCH 10/12] iio: adc: ad9467: convert to backend framework
-config: powerpc-randconfig-r071-20231122 (https://download.01.org/0day-ci/archive/20231122/202311220807.NUS4r7ML-lkp@intel.com/config)
-compiler: powerpc-linux-gcc (GCC) 13.2.0
-reproduce: (https://download.01.org/0day-ci/archive/20231122/202311220807.NUS4r7ML-lkp@intel.com/reproduce)
+Adding "reg-names" is necessary and does make live easier. It gives a
+clear way to avoid hack on skipping mtime register in the ACLINT timer
+definition.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202311220807.NUS4r7ML-lkp@intel.com/
+Now I think the only problem is whether the "mtime" register should
+exist in this binding. IMHO, adding "mtime" seems to be too much to
+keep this binding vendor specific. It is better to remove it to achieve
+minimum change.
 
-smatch warnings:
-drivers/iio/adc/ad9467.c:276 ad9467_get_scale() warn: unsigned 'vref_val' is never less than zero.
+>> Feel free to remove it.
+>
+>I might've applied the other binding as it was in a series adding
+>initial support for the SoC, but usually these things go via the
+>subsystem maintainers with a DT maintainer ack/review.
+>
 
-vim +/vref_val +276 drivers/iio/adc/ad9467.c
-
-ad67971202381c Michael Hennerich  2020-03-24  270  
-a78b758afbce92 Nuno Sa            2023-11-21  271  static int ad9467_get_scale(struct ad9467_state *st, int *val, int *val2)
-ad67971202381c Michael Hennerich  2020-03-24  272  {
-337dbb6ec1acc2 Alexandru Ardelean 2020-09-24  273  	unsigned int i, vref_val;
-ad67971202381c Michael Hennerich  2020-03-24  274  
-ad67971202381c Michael Hennerich  2020-03-24  275  	vref_val = ad9467_spi_read(st->spi, AN877_ADC_REG_VREF);
-d1e957a3e7676f Nuno Sa            2023-11-21 @276  	if (vref_val < 0)
-d1e957a3e7676f Nuno Sa            2023-11-21  277  		return vref_val;
-ad67971202381c Michael Hennerich  2020-03-24  278  
-a78b758afbce92 Nuno Sa            2023-11-21  279  	vref_val &= st->info->vref_mask;
-ad67971202381c Michael Hennerich  2020-03-24  280  
-a78b758afbce92 Nuno Sa            2023-11-21  281  	for (i = 0; i < st->info->num_scales; i++) {
-a78b758afbce92 Nuno Sa            2023-11-21  282  		if (vref_val == st->info->scale_table[i][1])
-ad67971202381c Michael Hennerich  2020-03-24  283  			break;
-ad67971202381c Michael Hennerich  2020-03-24  284  	}
-ad67971202381c Michael Hennerich  2020-03-24  285  
-a78b758afbce92 Nuno Sa            2023-11-21  286  	if (i == st->info->num_scales)
-ad67971202381c Michael Hennerich  2020-03-24  287  		return -ERANGE;
-ad67971202381c Michael Hennerich  2020-03-24  288  
-a78b758afbce92 Nuno Sa            2023-11-21  289  	__ad9467_get_scale(st, i, val, val2);
-ad67971202381c Michael Hennerich  2020-03-24  290  
-ad67971202381c Michael Hennerich  2020-03-24  291  	return IIO_VAL_INT_PLUS_MICRO;
-ad67971202381c Michael Hennerich  2020-03-24  292  }
-ad67971202381c Michael Hennerich  2020-03-24  293  
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Thanks, I will also wait for feedback from the subsystem maintainers.
 
