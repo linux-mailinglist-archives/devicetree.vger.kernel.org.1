@@ -1,169 +1,149 @@
-Return-Path: <devicetree+bounces-18079-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18081-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id F309E7F506A
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 20:15:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 229607F506E
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 20:15:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 88F79B20E48
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 19:15:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B74C5B20D1B
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 19:15:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17B874EB57;
-	Wed, 22 Nov 2023 19:15:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E4315C91A;
+	Wed, 22 Nov 2023 19:15:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DcgD/LXX"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="QTpgUJPV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5713D48
-	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 11:15:05 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-507bd64814fso73183e87.1
-        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 11:15:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700680504; x=1701285304; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
-         :from:content-language:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=1f84WpdM/CjxjwlNo95/tVsIuMsst5GZtDL6YED4Mjo=;
-        b=DcgD/LXXITznKFuvUTm/43UFuQZx5pQrkvm+Jcldc/YkHtMmtgGdzqRdvU7ohy2Yv+
-         FdBuaWQ2pZnveG3E8uVh2yWgrnwZWGWqdF9G8hvE4d7uaL3ih7S9innX+O2xQ/VVAFOY
-         b7QmNQkNNwmJdQ12Jk8+MoXt28TAaU/rKi/NQL8BmBGhw6WW4fzGQc3DJAx73+wdIQGZ
-         KSbou+qoR4cQ5UzJuJdYlJE6B8sDR++2ExzWIKXqCF0Idtnyhuq/J6wOPOQiCGJbQSbu
-         dkpk8TqVMnZQmF57n+RxCbQaOAZFMbADIdGBisWDV0lEKZE1P/Vxu3/mWW1KF8SYv/Vk
-         Sd5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700680504; x=1701285304;
-        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
-         :from:content-language:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1f84WpdM/CjxjwlNo95/tVsIuMsst5GZtDL6YED4Mjo=;
-        b=tgnr8eHa+RsvuADDDcxMS0JgQyDIpuSXDqiILalDiAElIo93TMMWPPvjiGwy+XiPLp
-         ZhCaQ+LUZLi9k9pCW9kMTAuDcyeDHAbfY8/Jf6e15CKNffFkw+Ijo1nryf37u94w//Xs
-         4JJNhvMJitAkhLFeLi5qIwJv26snEpSHacX7waG8r1vrR/ky9ywgtIZxXvez1Kj3sKOo
-         AE3f48f4z+FHBch1GPf5LsqvtXKJoZnwzto+jbAhsdZlufRF4zkV9/N2C6Hweynglf/5
-         ccGl5guuSzPuMWPL8uEJU/SrzmaP0h6fq0jg9P3pTkv1t1B1lCnupNTuIYbonlFZsVzI
-         uCxQ==
-X-Gm-Message-State: AOJu0YyMoTnmFni6JU0Dzq7i5Je+tc2AI6mPIEBo78fv+MAqBeZ4bX4N
-	wISwACSMrHEl8HowSlwHdRPEqQ==
-X-Google-Smtp-Source: AGHT+IE5boTbHE+iPfZgyHgCfVrrZ1ZcsEDAON5unG7sQH/8wIEeyEeMZvULEKYtoUj00NoXjAvuxQ==
-X-Received: by 2002:ac2:5a11:0:b0:505:6cc7:e0f7 with SMTP id q17-20020ac25a11000000b005056cc7e0f7mr2063966lfn.44.1700680504111;
-        Wed, 22 Nov 2023 11:15:04 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.100])
-        by smtp.gmail.com with ESMTPSA id lt18-20020a170906fa9200b00a04431e5a44sm111730ejb.16.2023.11.22.11.15.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Nov 2023 11:15:03 -0800 (PST)
-Message-ID: <e98577e9-88c1-4715-82ce-d3eb0ad3b156@linaro.org>
-Date: Wed, 22 Nov 2023 20:15:01 +0100
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FD3211F;
+	Wed, 22 Nov 2023 11:15:26 -0800 (PST)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AMIORnc016747;
+	Wed, 22 Nov 2023 19:15:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=utClqEmr27MkAijHvuNBs9lgq/CJJo8GkpIWHdMoop0=;
+ b=QTpgUJPVAqFMK6y/0y48iLDPdHBYLFC1Oe53wJQ3mwNemJsse2aZTABE8Ruvyhv8kcq+
+ ygvNvb+Gej8YVk2d6BuRQuVD7AuVdrKqAdwPYflkMY2y4WX9sWqo1uFhXmXMQyDKPCC3
+ Cap4p0oFbZBHbE2St7Sw3Yt5JXkwRqc7N+WdDXC+tRs0+UnfbRkusAGI95ZRlfOkD+ST
+ arT9sNiL9cQpp1o5cEKtlqC0nYYX/7dA+vvCxQ39J5g7uh/y3PlJKUWrYL5EjUOFp6NG
+ 4BAeduL8v86qdMb01UqfdgkkczL0rK2uw8MWc/aYf/RVG7KT3j+a7tKYXNQ5ggclF0Zy XQ== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uhf669ctc-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 22 Nov 2023 19:15:22 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AMJFLjj008520
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 22 Nov 2023 19:15:21 GMT
+Received: from hu-kriskura-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Wed, 22 Nov 2023 11:15:17 -0800
+From: Krishna Kurapati <quic_kriskura@quicinc.com>
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_ppratap@quicinc.com>,
+        <quic_jackp@quicinc.com>, <quic_wcheng@quicinc.com>,
+        Krishna Kurapati
+	<quic_kriskura@quicinc.com>
+Subject: [PATCH 6/6] arm64: dts: qcom: Add missing interrupts for qcs404/ipq5332
+Date: Thu, 23 Nov 2023 00:45:08 +0530
+Message-ID: <20231122191508.5285-1-quic_kriskura@quicinc.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 07/19] dt-bindings: pinctrl: samsung: add
- gs101-wakeup-eint compatible
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Peter Griffin <peter.griffin@linaro.org>, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
- conor+dt@kernel.org, sboyd@kernel.org, tomasz.figa@gmail.com,
- s.nawrocki@samsung.com, linus.walleij@linaro.org, wim@linux-watchdog.org,
- linux@roeck-us.net, catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de,
- olof@lixom.net, gregkh@linuxfoundation.org, jirislaby@kernel.org,
- cw00.choi@samsung.com, alim.akhtar@samsung.com
-Cc: tudor.ambarus@linaro.org, andre.draszik@linaro.org,
- semen.protsenko@linaro.org, saravanak@google.com, willmcvicker@google.com,
- soc@kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
- linux-watchdog@vger.kernel.org, kernel-team@android.com,
- linux-serial@vger.kernel.org
-References: <20231120212037.911774-1-peter.griffin@linaro.org>
- <20231120212037.911774-8-peter.griffin@linaro.org>
- <21d1996d-de03-40b5-a6ca-74203c775f76@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <21d1996d-de03-40b5-a6ca-74203c775f76@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 7PLUPrz9BpFmJWeWRT2nkuwUMS41paEC
+X-Proofpoint-GUID: 7PLUPrz9BpFmJWeWRT2nkuwUMS41paEC
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-22_13,2023-11-22_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 adultscore=0
+ clxscore=1015 bulkscore=0 mlxlogscore=498 lowpriorityscore=0
+ priorityscore=1501 malwarescore=0 spamscore=0 suspectscore=0
+ impostorscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2311060000 definitions=main-2311220139
 
-On 22/11/2023 20:11, Krzysztof Kozlowski wrote:
-> On 20/11/2023 22:20, Peter Griffin wrote:
->> gs101 is similar to newer Exynos SoCs like Exynos850 and ExynosAutov9
->> where more than one pin controller can do external wake-up interrupt.
->> So add a dedicated compatible for it.
->>
->> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
->> ---
->>  .../bindings/pinctrl/samsung,pinctrl-wakeup-interrupt.yaml      | 2 ++
->>  1 file changed, 2 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl-wakeup-interrupt.yaml b/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl-wakeup-interrupt.yaml
->> index 1b75abebb953..41f3a2f2992e 100644
->> --- a/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl-wakeup-interrupt.yaml
->> +++ b/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl-wakeup-interrupt.yaml
->> @@ -30,6 +30,7 @@ properties:
->>    compatible:
->>      oneOf:
->>        - enum:
->> +          - google,gs101-wakeup-eint
->>            - samsung,s3c2410-wakeup-eint
->>            - samsung,s3c2412-wakeup-eint
->>            - samsung,s3c64xx-wakeup-eint
-> 
-> This looks compatible with Exynos7. If true, then please add it to
-> proper items few lines below. This part changed ~2 weeks ago.
+For qcs404 and ipq5332, certain interrupts are missing in DT.
+Add them to ensure they are in accordance to bindings.
 
-Ah, not entirely. Exynos7 still has multiplexed interrupts, but GS,
-Exynos850 and autov9 do not have, so the compatibility is a bit
-different. I'll send an idea.
+Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+---
+ arch/arm64/boot/dts/qcom/ipq5332.dtsi |  8 ++++++--
+ arch/arm64/boot/dts/qcom/qcs404.dtsi  | 16 ++++++++++++++++
+ 2 files changed, 22 insertions(+), 2 deletions(-)
 
-Best regards,
-Krzysztof
+diff --git a/arch/arm64/boot/dts/qcom/ipq5332.dtsi b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
+index 42e2e48b2bc3..79e0c763637f 100644
+--- a/arch/arm64/boot/dts/qcom/ipq5332.dtsi
++++ b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
+@@ -320,8 +320,12 @@ usb: usb@8af8800 {
+ 			compatible = "qcom,ipq5332-dwc3", "qcom,dwc3";
+ 			reg = <0x08af8800 0x400>;
+ 
+-			interrupts = <GIC_SPI 62 IRQ_TYPE_LEVEL_HIGH>;
+-			interrupt-names = "hs_phy_irq";
++			interrupts = <GIC_SPI 53 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 52 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 62 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "dp_hs_phy_irq",
++					  "dm_hs_phy_irq",
++					  "pwr_event";
+ 
+ 			clocks = <&gcc GCC_USB0_MASTER_CLK>,
+ 				 <&gcc GCC_SNOC_USB_CLK>,
+diff --git a/arch/arm64/boot/dts/qcom/qcs404.dtsi b/arch/arm64/boot/dts/qcom/qcs404.dtsi
+index 2721f32dfb71..20a5bc291a43 100644
+--- a/arch/arm64/boot/dts/qcom/qcs404.dtsi
++++ b/arch/arm64/boot/dts/qcom/qcs404.dtsi
+@@ -684,6 +684,14 @@ usb3: usb@7678800 {
+ 			assigned-clocks = <&gcc GCC_USB20_MOCK_UTMI_CLK>,
+ 					  <&gcc GCC_USB30_MASTER_CLK>;
+ 			assigned-clock-rates = <19200000>, <200000000>;
++
++			interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 319 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "hs_phy_irq",
++					  "pwr_event",
++					  "qusb2_phy";
++
+ 			status = "disabled";
+ 
+ 			usb3_dwc3: usb@7580000 {
+@@ -713,6 +721,14 @@ usb2: usb@79b8800 {
+ 			assigned-clocks = <&gcc GCC_USB20_MOCK_UTMI_CLK>,
+ 					  <&gcc GCC_USB_HS_SYSTEM_CLK>;
+ 			assigned-clock-rates = <19200000>, <133333333>;
++
++			interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 318 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "hs_phy_irq",
++					  "pwr_event",
++					  "qusb2_phy";
++
+ 			status = "disabled";
+ 
+ 			usb@78c0000 {
+-- 
+2.42.0
 
 
