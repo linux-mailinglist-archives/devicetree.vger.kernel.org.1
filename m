@@ -1,114 +1,156 @@
-Return-Path: <devicetree+bounces-17902-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17904-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 560117F461A
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 13:27:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 065A47F4639
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 13:30:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EA98DB20A0A
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 12:27:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9AA79B215BC
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 12:30:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B1764AF7D;
-	Wed, 22 Nov 2023 12:26:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D11C14D113;
+	Wed, 22 Nov 2023 12:29:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AhTOfsuJ"
+	dkim=pass (2048-bit key) header.d=melexis.com header.i=@melexis.com header.b="Va8Eg1CM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A867C1A58E;
-	Wed, 22 Nov 2023 12:26:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F08AC433C7;
-	Wed, 22 Nov 2023 12:26:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700656015;
-	bh=7C94KGgqCbAA+PUlPyfufke9xGPCyJuKoPOwMFmpILc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=AhTOfsuJH4uNL1dxrl8w5XllqdE/f5P54GaWxyRB4RLrlVOx4OyzJwbd6Gc4C0qoc
-	 2Xzg/stYnSjW+1yxZNxWDcAYThqfSNZGkvn072cy+9S7PCy1DxLfO5WnFrM4sglE4g
-	 EuZC1EWJwysoGdyUFGg5RLFi86qdKMxadsVE7CU1Jjc8qMWIzG4yHLhIuuE0rKZSQ7
-	 NqT314x2NNAPQt/bksxbzuhb5k9BmoxRKLTBS+b69yrPvvHLfymaaDCmqGBTY0NX4f
-	 cDXxKth36fatyNGSrEVz8QGzuXhCd95sNhXtTb/LABHPfeC2qDN6Jz2bV0b8GEMhAr
-	 ESh4d4/F0DKAg==
-Date: Wed, 22 Nov 2023 12:26:51 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>,
-	Yang Yingliang <yangyingliang@huawei.com>,
-	linux-mmc@vger.kernel.org, kernel@pengutronix.de,
-	Ye Bin <yebin10@huawei.com>, Heiner Kallweit <hkallweit1@gmail.com>,
-	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Naresh Solanki <naresh.solanki@9elements.com>,
-	zev@bewilderbeest.net, Sebastian Reichel <sre@kernel.org>,
-	linux-pm@vger.kernel.org,
-	=?iso-8859-1?Q?S=F8ren?= Andersen <san@skov.dk>
-Subject: Re: mmc: handling of Under-Voltage Events in eMMC
-Message-ID: <ZV3zi7jgkBa2W/Fc@finisterre.sirena.org.uk>
-References: <20230929130028.GB2825985@pengutronix.de>
- <CAPDyKFqUtNEbK2tzD+qOK+dFcDyBxvcNwOHWPJDLhTWGGkoHQw@mail.gmail.com>
- <20231122112212.GA783262@pengutronix.de>
+Received: from mail-oa1-x2a.google.com (mail-oa1-x2a.google.com [IPv6:2001:4860:4864:20::2a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B5C0A2
+	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 04:29:02 -0800 (PST)
+Received: by mail-oa1-x2a.google.com with SMTP id 586e51a60fabf-1f937a7b8aaso1783514fac.0
+        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 04:29:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=melexis.com; s=google; t=1700656142; x=1701260942; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=1NMtf5TNC4hWWw549jqhQu4xI8dAUFYNGtWt0AUtBAo=;
+        b=Va8Eg1CMUMgl9VcyHVf/u07WW3Wg5MlUSVd1r6f1Gwbli7OjTw5SW8eYJZAeD1BJNh
+         gOG+aBBR1nOdjJ4ngu52CgyLsgtxBSSyMJF3dr4gGDfgRRaD5GxVy9f+pdwShT/rrYcz
+         1lbgDigVEKu7N3RHA99kES49F7wa3NlkKoqk70OS8Tny8o816QntvI+jyYJE+p9WLV1b
+         La0iALB2Hnfy8gEEJOV3Q/lR1yPvI0cw748UDB2LXevKNYuGt6ElMOfQIDpWGVKAFIMY
+         p2+2v9Lo2so6j4c/T+tquQLEg2ZwiXfobhonVNeJveoXKZ/Z9jcZa/TN5SXYwOBynxys
+         9j6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700656142; x=1701260942;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1NMtf5TNC4hWWw549jqhQu4xI8dAUFYNGtWt0AUtBAo=;
+        b=DfY43fsoiJbC4bnHBFwkTrABzYjmYX+cw4zKRDUK+5TgTfUn/rtdpS+sZLP8TTtDaD
+         t9/v9Y+hFvHWw4DBfYZq0j67+xfEw+AlK42LgbJg86nFl25xpTYO7r1RxHzxY4BIXbOH
+         avxQl8LdeSpKa0LBzjeBGEPfl7DTOuUdaieWy7PiVec3lH4aaBIKMe5SWjZuUB9GwQhI
+         47xlyqNM+FLFOMoj4PHcEQ6CJDz0rbz8UAud8j5gbaQAaLlQpiLkAiWcpQEtkEGI/xPq
+         TuqbcDpQDoiczOUt0DrmaZTRssrOP0+8I5FNC6T1pZjW/lrCwIF6THckJst1yjWqeN5A
+         1FKQ==
+X-Gm-Message-State: AOJu0YxfbRrQDm3EjWMJyeP/aXhcncFv2qiL+97gbdBVDPlSjBy8mnkj
+	l60fuAccxBMNiKzXAiVKnKx3xvqL6WAiQpQGekcZJR6tGrUPQfZRE5xwzQ==
+X-Google-Smtp-Source: AGHT+IE4RhkDbuclMq9ltVuFBkZXZA8BM882FOXeUnb6DCxbwIotur+3+O8VDD4iyzzyKVOmUB7dBUVGZkG6Y+BhQW4=
+X-Received: by 2002:a05:6870:c98f:b0:1e1:e36a:fb74 with SMTP id
+ hi15-20020a056870c98f00b001e1e36afb74mr2997080oab.26.1700656141830; Wed, 22
+ Nov 2023 04:29:01 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="GytIA0m4jn6r4+oY"
-Content-Disposition: inline
-In-Reply-To: <20231122112212.GA783262@pengutronix.de>
-X-Cookie: Slow day.  Practice crawling.
+References: <cover.1700648164.git.cmo@melexis.com> <2e8b4a7d3ef4bc1c53bd0a849e4c31eaf2477f6b.1700648165.git.cmo@melexis.com>
+ <99d1808a-da04-4bc1-a1f7-cbd269adbbf0@kernel.org>
+In-Reply-To: <99d1808a-da04-4bc1-a1f7-cbd269adbbf0@kernel.org>
+From: Crt Mori <cmo@melexis.com>
+Date: Wed, 22 Nov 2023 13:28:25 +0100
+Message-ID: <CAKv63uv87srZ3gJxFASuGWV6cULXkN=gYi_L=BCcd3dgOFQEfw@mail.gmail.com>
+Subject: Re: [PATCH 2/2] dt-bindings: iio: temperature: add MLX90635 device bindings
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>, linux-iio@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
+On Wed, 22 Nov 2023 at 12:52, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>
+> On 22/11/2023 11:27, Crt Mori wrote:
+> > Add device tree bindings for MLX90635 Infra Red contactless temperature
+> > sensor.
+>
+> Please use scripts/get_maintainers.pl to get a list of necessary people
+> and lists to CC (and consider --no-git-fallback argument). It might
+> happen, that command when run on an older kernel, gives you outdated
+> entries. Therefore please be sure you base your patches on recent Linux
+> kernel.
+>
 
---GytIA0m4jn6r4+oY
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+OK, will put everyone in that list in next spin.
 
-On Wed, Nov 22, 2023 at 12:22:12PM +0100, Oleksij Rempel wrote:
+> A nit, subject: drop second/last, redundant "bindings". The
+> "dt-bindings" prefix is already stating that these are bindings.
+>
 
-> Some puzzle parts are now mainline, for example regulator framework
-> can be configured to detect under-voltage events and execute
-> hw_protection_shutdown(). So far it worked good enough to complete
-> mmc_poweroff_notify() withing 100ms window. The problem is, the chance to
-> execute mmc_poweroff_notify() depends on kernel configuration. If there are too
-> many drivers and devices, mmc_poweroff_notify() will be not executed in time.
+ Ok, will fix that in next version (probably main driver review will
+get some comments).
 
-> For now, I workaround it by registering a reboot notifier for mmc shutdown.
-> It works, because kernel_power_off() is executing all registered reboot
-> notifiers at first place and there are no other slow reboot notifiers.
-> But, it seems to be not reliable enough. Probably notifier prioritization
-> is needed to make it more predictable.
+> >
+> > Signed-off-by: Crt Mori <cmo@melexis.com>
+> > ---
+> >  .../iio/temperature/melexis,mlx90635.yaml     | 60 +++++++++++++++++++
+> >  1 file changed, 60 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/iio/temperature/melexis,mlx90635.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/iio/temperature/melexis,mlx90635.yaml b/Documentation/devicetree/bindings/iio/temperature/melexis,mlx90635.yaml
+> > new file mode 100644
+> > index 000000000000..96463121a806
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/iio/temperature/melexis,mlx90635.yaml
+> > @@ -0,0 +1,60 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/iio/temperature/melexis,mlx90635.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Melexis MLX90635 contactless Infra Red temperature sensor
+> > +
+> > +maintainers:
+> > +  - Crt Mori <cmo@melexis.com>
+> > +
+> > +description: |
+> > +  https://www.melexis.com/en/documents/documentation/datasheets/datasheet-mlx90635
+> > +
+> > +  There are various applications for the Infra Red contactless temperature
+> > +  sensor and MLX90635 is most suitable for consumer applications where
+> > +  measured object temperature is in range between -20 to 100 degrees
+> > +  Celsius with relative error of measurement 2 degree Celsius in
+> > +  object temperature range for industrial applications, while just 0.2
+> > +  degree Celsius for human body measurement applications. Since it can
+> > +  operate and measure ambient temperature in range of -20 to 85 degrees
+> > +  Celsius it is suitable also for outdoor use.
+> > +
+> > +  Be aware that electronics surrounding the sensor can increase ambient
+> > +  temperature. MLX90635 can be calibrated to reduce the housing effect via
+> > +  already existing EEPROM parameters.
+> > +
+> > +  Since measured object emissivity effects Infra Red energy emitted,
+> > +  emissivity should be set before requesting the object temperature.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: melexis,mlx90635
+>
+> It's the same as mlx90632. Add it there (as enum).
+>
 
-> So far, I have two variants to implement it in more predictable way:
-> variant 1 - forward the under-voltage notification to the mmc framework and
->   execute mmc_poweroff_notify() or bus shutdown.
-> variant 2 - use reboot notifier and introduce reboot notifier prioritization.
+Properties are the same, but then you can't have much differences for
+a temperature sensor. It has a bit worse relative measurement error
+outside of the human body range and overall different DSP, register
+map, even physical size - it's 1.8x1.8 mm compared to 90632 3x3 mm. I
+was not sure how it qualifies for adding it as another enum, but I
+went with the feeling that if it can reuse the driver, then it is an
+enum, otherwise it is a new file. And I could not reuse anything from
+90632.
 
-> Are there other options? What are your preferences?
-
-My instinct is that we want to have prioritisation scheme rather than
-something MMC specific, I'd guess that this issue applies in some way to
-at least most storage.  It's not a super strongly held opinion though.
-
---GytIA0m4jn6r4+oY
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmVd84sACgkQJNaLcl1U
-h9Bf8wf/R6d4p2XKeuQW+1xTu9FLSsr7+z0oM/onpGR9JY0w2ky0IFjZjmbxN9U8
-YMxvuqD/mgLNzjJe7arFUiIpbNe7VNVSM56znjxHg8UadfPHYW9ImNUO14OwkCZN
-qXzMYsNpQhrc5/kNxs2pNso4Cg0Emm/8Hnk97vqFpR1d5AV9hlxsd7xjUlJ5Ah67
-3n+VSty5DszMvSQfxW93Xihv4V3BwQ8dRyCIYac+BUG+sXCrDp/VV3t+2EorXL76
-JLZizRhRKta002htsgAlqRNRZZL1NwI6JGlHD6Rm2WSSAEMDjudiPjJn5KNsEjuP
-bhqR/YN5SXZsTjHC3y/qmZJrkoYWsw==
-=WFJZ
------END PGP SIGNATURE-----
-
---GytIA0m4jn6r4+oY--
+Thanks for quick feedback and best regards,
+Crt
+> Best regards,
+> Krzysztof
+>
 
