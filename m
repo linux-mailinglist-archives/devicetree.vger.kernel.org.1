@@ -1,136 +1,104 @@
-Return-Path: <devicetree+bounces-18039-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18041-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6A857F4E0E
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 18:16:59 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BD357F4E30
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 18:19:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 12AE11C20AFC
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 17:16:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F1306B21AFD
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 17:19:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C3E75788B;
-	Wed, 22 Nov 2023 17:16:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53F3957891;
+	Wed, 22 Nov 2023 17:18:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="KUA08b5U"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="S9t4hjh0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CA73191;
-	Wed, 22 Nov 2023 09:16:50 -0800 (PST)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id D9EEC60005;
-	Wed, 22 Nov 2023 17:16:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1700673409;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=96QYHoZIDIT+pxG6t2aqCRbFyqHy2hKopbA6OtGC0ug=;
-	b=KUA08b5UpgDVT1Kju2OmlHYuYPXgqPrvOrFBHuw1abLqkrs5cPxtdYXHtnbwYAM8lelA88
-	jm1PutjS30gkjtNygopDI5oZa0aJYFHh7SRzlVxIaoMc7obiW98oKo9db1aOdIPGCW+A+C
-	Ash1xYvo6E/RUmxVsIOS+G3F2KZajj+gPzSNz2utAQUa+X+rnPhvWsIVFLRCs4mq64rsBG
-	8B7O9KyJl52TiZ+/MIssxF4mxVn1/f9NlVuCbIJ2wlGym9utHkXm9tApy4zUQC6HIOOp86
-	x8o7ABaAu2TcLEwT2lNVvP6XDl3FtfSjSIZQbG8r9V97Vf2j85MUjhDjUTDdDQ==
-Date: Wed, 22 Nov 2023 18:16:47 +0100
-From: =?UTF-8?B?S8O2cnk=?= Maincent <kory.maincent@bootlin.com>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
- <pabeni@redhat.com>, Jonathan Corbet <corbet@lwn.net>, Luis Chamberlain
- <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
- devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 9/9] net: pse-pd: Add PD692x0 PSE controller
- driver
-Message-ID: <20231122181647.06d9c3c9@kmaincent-XPS-13-7390>
-In-Reply-To: <04f59e77-134b-45b2-8759-84b8e22c30d5@lunn.ch>
-References: <20231116-feature_poe-v1-0-be48044bf249@bootlin.com>
-	<20231116-feature_poe-v1-9-be48044bf249@bootlin.com>
-	<2ff8bea5-5972-4d1a-a692-34ad27b05446@lunn.ch>
-	<20231122171112.59370d21@kmaincent-XPS-13-7390>
-	<04f59e77-134b-45b2-8759-84b8e22c30d5@lunn.ch>
-Organization: bootlin
-X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 675BF1B1
+	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 09:18:49 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-50970c2115eso10042584e87.1
+        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 09:18:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1700673527; x=1701278327; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qBb7uvDdpiPhPtfYhGAJokE68U5HdEwFTqReQh4emMQ=;
+        b=S9t4hjh0IGkvOECUN5WpW86UWyFg2iOL1PRLQZRAmsEGyRsDTjPQWlesYlhoxHKzml
+         BLyPCxoOGb00HQ+eQP6gxFNjEWph6CZurjyjZngR0Q8v84mQPzuiHxz4Ff1EOAcVI4yt
+         cvJ+NExGeOI9+tJNvvrO/GryWx8OVq0KSHTPuW17eSgFcRKixMr6tx917dI/pUuHFSwM
+         FE+ZMW7e4j6kV5Ky43Tegug2H6F6x1G+w7UARods5EwRPu7R+7/39CuZ/bFRMkbVhNNN
+         ttC//uNeXdLZbY0BHDg4QK/NifL+1bcn6LlNKsGVGdxqlu4MYEly+1Ca1WOaqoGfSXNb
+         YsEw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700673527; x=1701278327;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qBb7uvDdpiPhPtfYhGAJokE68U5HdEwFTqReQh4emMQ=;
+        b=NPeYdCy5rBM9Kmpr+7x8coxzuAgLCT9YDke+uFJ7hGYXRFVfSaztDd3sj2XNfJtg/9
+         uJKVckLGCJdLCahJT95VBJRnHJ0fosQsCUD4HE1xw/74InPRjaxcadRIhaLnwG37wXCc
+         0ShUDm/jpd3+wxf2ANCbGI3iUG3UfI1hF0WVO2WdzngW1kIR28KEm2PIxFg02LC4l4iy
+         kx+i3Hh1cyy2XJLH7UO9J6lX+jCH1d/MByhxLM6N5SEujGjt3ClQp7Fsvxog10aTK+h2
+         Jh4T//dzHpOdFptZlANfP6VtIoBN8CzJr8jSfhGutWcOHUKr45E/2nTMerDMYPOzIyLR
+         JXmw==
+X-Gm-Message-State: AOJu0YxYLwhSQLhjYTz9FoShFTQd8We2fk9McZjCZO88UtF/6+0VndzS
+	BLUit2TFEyj2uqC8So5n+fGvcw==
+X-Google-Smtp-Source: AGHT+IE7Lpl8F22WVyua+nXBTNkuJNuj346aRbY/a56nH2yZhpl0Y/3GTRWDi4MXCF7jUctLK5UgqA==
+X-Received: by 2002:a19:4359:0:b0:508:11f5:8953 with SMTP id m25-20020a194359000000b0050811f58953mr2099727lfj.26.1700673527381;
+        Wed, 22 Nov 2023 09:18:47 -0800 (PST)
+Received: from [172.30.204.227] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
+        by smtp.gmail.com with ESMTPSA id a1-20020a19ca01000000b005091492ac3fsm1922005lfg.175.2023.11.22.09.18.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 Nov 2023 09:18:46 -0800 (PST)
+Message-ID: <ebed123a-f952-4269-bf2c-0c0cd7d6e049@linaro.org>
+Date: Wed, 22 Nov 2023 18:18:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: kory.maincent@bootlin.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/6] arm64: dts: qcom: sm6115: align mem timer size cells
+ with bindings
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231111164229.63803-1-krzysztof.kozlowski@linaro.org>
+ <20231111164229.63803-4-krzysztof.kozlowski@linaro.org>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20231111164229.63803-4-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Level: *
 
-On Wed, 22 Nov 2023 17:54:53 +0100
-Andrew Lunn <andrew@lunn.ch> wrote:
 
-> > > > +static int pd692x0_sendrecv_msg(struct pd692x0_priv *priv,
-> > > > +				struct pd692x0_msg *msg,
-> > > > +				struct pd692x0_msg_content *buf)
-> > > > +{
-> > > > +	struct device *dev =3D &priv->client->dev;
-> > > > +	int ret;
-> > > > +
-> > > > +	ret =3D pd692x0_send_msg(priv, msg);
-> > > > +	if (ret)
-> > > > +		return ret;
-> > > > +
-> > > > +	ret =3D pd692x0_recv_msg(priv, msg, buf);   =20
-> > >=20
-> > > So this function takes at least 10 seconds? =20
-> >=20
-> > No, on normal communication it takes a bit more than 30ms. =20
->=20
-> So i think the first step is to refactor this code to make it clear
-> what the normal path is, and what the exception path is, and the
-> timing of each.
 
-Ok I will try to refactor it to makes it more readable.
+On 11/11/23 17:42, Krzysztof Kozlowski wrote:
+> Commit 70d1e09ebf19 ("arm64: dts: qcom: sm6115: Use 64 bit addressing")
+> converted all addresses to 64-bit addressing, but the ARMv7 memory
+> mapped architected timer bindings expect sizes up to 32-bit.  Keep
+> 64-bit addressing but change size of memory mapping to 32-bit
+> (size-cells=1) and adjust the ranges to match this.
+> 
+> This fixes dtbs_check warnings like:
+> 
+>    sm6115p-lenovo-j606f.dtb: timer@f120000: #size-cells:0:0: 1 was expected
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> ---
+> 
+> I hope I got the ranges right. Not tested on hardware.
+> ---
+Tested-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-> > > > +	msg.content.sub[2] =3D id;
-> > > > +	ret =3D pd692x0_sendrecv_msg(priv, &msg, &buf);   =20
-> > >=20
-> > > So this is also 10 seconds?=20
-> > >=20
-> > > Given its name, it looks like this is called via ethtool? Is the
-> > > ethtool core holding RTNL? It is generally considered bad to hold RTN=
-L for
-> > > that long. =20
-> >=20
-> > Yes it is holding RTNL lock. Should I consider another behavior in case=
- of
-> > communication loss to not holding RTNL lock so long? =20
->=20
-> How often does it happen? On the scale of its a theoretical
-> possibility, through to it happens every N calls? Also, does it happen
-> on cold boot and reboot?
->=20
-> If its never supposed to happen, i would keep holding RTNL, and add a
-> pr_warn() that the PSE has crashed and burned, waiting for it to
-> reboot. If this is likely to happen on the first communication with
-> the device, we might want to do a dummy transfer during probe to get
-> is synchronized before we start using it with the RTNL held.
-
-I would say it never supposed to happen.
-I never faced the issue playing with the controller. The first communicatio=
-n is
-a simple i2c_master_recv of the controller status without entering the
-pd692x0_sendrecv_msg function, therefore it won't be an issue.
-
-Another solution could be to raise a flag if I enter in communication loss =
-and
-release the rtnlock. We would lock again the rtnl when the flags got disabl=
-ed.
-The controler won't be accessible until the flag is disabled.
-
-Regards,
---=20
-K=C3=B6ry Maincent, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+Konrad
 
