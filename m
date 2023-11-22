@@ -1,235 +1,148 @@
-Return-Path: <devicetree+bounces-17747-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17748-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94BA67F3F34
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 08:50:03 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0654A7F3F3C
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 08:52:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 994D7B20E30
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 07:50:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B4B33281F3D
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 07:52:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E9B020B15;
-	Wed, 22 Nov 2023 07:49:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A48920B0F;
+	Wed, 22 Nov 2023 07:52:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="d3X+8ThW"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="TrsM7SfF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 434FA112
-	for <devicetree@vger.kernel.org>; Tue, 21 Nov 2023 23:49:50 -0800 (PST)
-Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-5488bf9e193so5057571a12.2
-        for <devicetree@vger.kernel.org>; Tue, 21 Nov 2023 23:49:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700639389; x=1701244189; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=tA93eCFLSfnhMv8UdjAyC+zZ7+4dyfaA0Xw2zTteOig=;
-        b=d3X+8ThWFydM2AXS5hj/F+orhp0lU70Y5J+MNByVF53CfGZMmcNAUnwoa1Kx/yjNSS
-         bE5IG0mq+FAdd7PDkQayNyDo420urd9zlgyK68hSoxqkSH+XcEbfEgR5SwtmHCI5asRI
-         /sHNP2taQZxLUKlWN6Dw7iZ6ZNbefXwUamfG+IkNraW++8lV+tV8qgDJMLUY8/dxubI7
-         jYr02k2XBZFQFv297kaTl/OSkCChAqNsXJIOAMNkRMuKfUAshoBCyMDwas7WoAFtlejW
-         Qtu4rFfOff4aVDYsLjpKrH7bFPAaLtBVW43qdKFGfoff5SnvoS6oT4ITC8GRxVRF5OSK
-         /S4Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700639389; x=1701244189;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tA93eCFLSfnhMv8UdjAyC+zZ7+4dyfaA0Xw2zTteOig=;
-        b=Jae8mSh3OgEHRgi1857Wh65K/YZWm50GM6744EJlImClP+IDJjGLhAbj3LTh4r4w6V
-         hixXWkpPKTnQv6lRyE8PUe7HMFik/uK1K8HlAlda/38apXUxx4QnHWcXFxxykjYUvKa7
-         H/vPBeNL4e8CTBuTgTFg2XCa1hw7p+n8ukX4oGZgsM9I2X/JcLQHX41i2QQVcGA/tW3z
-         eEiJbZ71RK6fJG4Z5hQyp4ivkNVZZz9u2MFtdod+1Ae5+hZ6D5AlilRMpwhN37Xhp2o5
-         BgliR0nAZVb2vfb1chX9QtYJObT992QDS1LbAjO6D0SvoYhVa5JjElgQOPCIpCqn38X8
-         ea/Q==
-X-Gm-Message-State: AOJu0YzkrZ0Eao9VHgOvqzKo4QZwhhEo58TesqEDQw/yEQpTYVMB3NVl
-	RlQHArqQrETmpkNjY63Frt4vMw==
-X-Google-Smtp-Source: AGHT+IGLb9wZbJRJ1P2bvfJCf4gFjriONNwbkuU1fWwQ1XFrJzHgcrBULnkRPu2iTXoFZHalECh3dQ==
-X-Received: by 2002:a17:906:cc:b0:9fe:43a0:4ac0 with SMTP id 12-20020a17090600cc00b009fe43a04ac0mr836991eji.24.1700639388592;
-        Tue, 21 Nov 2023 23:49:48 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.100])
-        by smtp.gmail.com with ESMTPSA id i9-20020a170906250900b009ca522853ecsm6237228ejb.58.2023.11.21.23.49.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Nov 2023 23:49:48 -0800 (PST)
-Message-ID: <35990cd2-a4d3-473e-893e-aa16c1c63289@linaro.org>
-Date: Wed, 22 Nov 2023 08:49:44 +0100
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C56210E;
+	Tue, 21 Nov 2023 23:52:34 -0800 (PST)
+Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 3AM7eWqH015195;
+	Wed, 22 Nov 2023 08:52:23 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=selector1; bh=fPjoVWK
+	AOHk+Zx85zrTcGB3/yrl3T4i+z4waWY9BkaY=; b=TrsM7SfFoMO0rFWCIBrD63K
+	jtBb3YpN0SSqZ/F+4iCghP43GF2K0xmuMsoWrLOkLRbXbFRnFceWVIXaWC04REXw
+	HDb/iHn7cRS+AGyqvdQeX7qsxBFy4b+q30rtTv/H1evej2EIQNOkSw7OJLGCYpcm
+	QtkZPZABNJhI8RRuKtq80nrG7PxIq0I9rj+UW7taTUtcFvCPtf5deLEE3IfT0Tft
+	ZJCMd8wsTAB1zcGCSggtNJHoGTKNskQjU8Q02uMpWKUfOvgmOkdjqE5MPVuW3zno
+	ziJb6GhnEqQwethHVyT7nntKpc1JNDO6E9+iypmIdLb+KUxcK+tB77AdNcdUagg=
+	=
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3uf7q5hpbc-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 22 Nov 2023 08:52:23 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 4B30810002A;
+	Wed, 22 Nov 2023 08:52:22 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 426E62128AF;
+	Wed, 22 Nov 2023 08:52:22 +0100 (CET)
+Received: from localhost (10.129.178.213) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Wed, 22 Nov
+ 2023 08:52:22 +0100
+From: Alain Volmat <alain.volmat@foss.st.com>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Jacopo Mondi
+	<jacopo.mondi@ideasonboard.com>,
+        Kieran Bingham
+	<kieran.bingham@ideasonboard.com>,
+        Pavel Machek <pavel@ucw.cz>, Alain Volmat
+	<alain.volmat@foss.st.com>,
+        Rob Herring <robh@kernel.org>, <linux-media@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v5 0/3] media: i2c: gc2145: GC2145 sensor support
+Date: Wed, 22 Nov 2023 08:51:46 +0100
+Message-ID: <20231122075154.789431-1-alain.volmat@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 09/19] dt-bindings: serial: samsung: Make
- samsung,uart-fifosize required property
-Content-Language: en-US
-To: Peter Griffin <peter.griffin@linaro.org>, Rob Herring <robh@kernel.org>
-Cc: krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
- conor+dt@kernel.org, sboyd@kernel.org, tomasz.figa@gmail.com,
- s.nawrocki@samsung.com, linus.walleij@linaro.org, wim@linux-watchdog.org,
- linux@roeck-us.net, catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de,
- olof@lixom.net, gregkh@linuxfoundation.org, jirislaby@kernel.org,
- cw00.choi@samsung.com, alim.akhtar@samsung.com, tudor.ambarus@linaro.org,
- andre.draszik@linaro.org, semen.protsenko@linaro.org, saravanak@google.com,
- willmcvicker@google.com, soc@kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
- linux-watchdog@vger.kernel.org, kernel-team@android.com,
- linux-serial@vger.kernel.org
-References: <20231120212037.911774-1-peter.griffin@linaro.org>
- <20231120212037.911774-10-peter.griffin@linaro.org>
- <20231121151630.GA1692178-robh@kernel.org>
- <CADrjBPo4qw4eJLuGsv7aK4V7QjGR_n_MQ+W-Rrq92iATSLFHZQ@mail.gmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CADrjBPo4qw4eJLuGsv7aK4V7QjGR_n_MQ+W-Rrq92iATSLFHZQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-22_06,2023-11-21_01,2023-05-22_02
 
-On 21/11/2023 18:15, Peter Griffin wrote:
-> Hi Rob,
-> 
-> Thanks for your review.
-> 
-> On Tue, 21 Nov 2023 at 15:16, Rob Herring <robh@kernel.org> wrote:
->>
->> On Mon, Nov 20, 2023 at 09:20:27PM +0000, Peter Griffin wrote:
->>> Specifying samsung,uart-fifosize in both DT and driver static data is error
->>> prone and relies on driver probe order and dt aliases to be correct.
->>>
->>> Additionally on many Exynos platforms these are (USI) universal serial
->>> interfaces which can be uart, spi or i2c, so it can change per board.
->>>
->>> For google,gs101-uart and exynosautov9-uart make samsung,uart-fifosize a
->>> required property. For these platforms fifosize now *only* comes from DT.
->>>
->>> It is hoped other Exynos platforms will also switch over time.
->>
->> Then allow the property on them.
-> 
-> Not sure I fully understand your comment. Can you elaborate? Do you
-> mean leave the 'samsung,uart-fifosize' as an optional property like it
-> is currently even for the platforms that now require it to be present
-> to function correctly?
-> 
-> I deliberately restricted the yaml change to only require this
-> property for the SoCs that already set the 'samsung,uart-fifosize'  dt
-> property. As setting the property and having the driver use what is
-> specified in DT also requires a corresponding driver update (otherwise
-> fifosize gets overwritten by the driver static data, and then becomes
-> dependent on probe order, dt aliases etc). The rationale was drivers
-> 'opt in' and add themselves to the compatibles in this patch as they
-> migrate away from obtaining fifo size from driver static data to
-> obtaining it from DT.
+This serie adds support for the GalaxyCore GC2145 sensor.
+Initialization is based on scripts provided by GalaxyCore,
+allowing 3 fixed configurations supported for the time being.
 
-Your code diff looks like you are adding the property only to these models.
+Minimum controls have been added in order to allow it to
+be successfully used with libcamera and dcmipp driver (under
+review) on STM32MP13 platform.
 
-> 
->>
->>>
->>> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
->>> ---
->>>  .../bindings/serial/samsung_uart.yaml           | 17 +++++++++++++++++
->>>  1 file changed, 17 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/serial/samsung_uart.yaml b/Documentation/devicetree/bindings/serial/samsung_uart.yaml
->>> index ccc3626779d9..22a1edadc4fe 100644
->>> --- a/Documentation/devicetree/bindings/serial/samsung_uart.yaml
->>> +++ b/Documentation/devicetree/bindings/serial/samsung_uart.yaml
->>> @@ -133,6 +133,23 @@ allOf:
->>>              - const: uart
->>>              - const: clk_uart_baud0
->>>
->>> +  - if:
->>> +      properties:
->>> +        compatible:
->>> +          contains:
->>> +            enum:
->>> +              - google,gs101-uart
->>> +              - samsung,exynosautov9-uart
->>> +    then:
->>> +      properties:
->>> +        samsung,uart-fifosize:
->>> +          description: The fifo size supported by the UART channel.
->>> +          $ref: /schemas/types.yaml#/definitions/uint32
->>> +          enum: [16, 64, 256]
->>
->> We already have 'fifo-size' in several drivers. Use that. Please move
->> its type/description definitions to serial.yaml and make drivers just do
->> 'fifo-size: true' if they use it.
-> 
-> What do you suggest we do for the samsung,uart-fifosize property that
-> is being used upstream?
+The sensor also supports Bayer formats which will be added
+later on.
 
-Nothing, your diff is just wrong. Or at least nothing needed. Just drop
-all this properties: here and only make it required for Google GS101.
+v5: - serie rebased on top of master branch of tree sailus/media_tree.git
+      in order to use v4l2_subdev_state_* functions
 
+v4: - bindings: add link-frequencies & correct description
+    - driver: add link-frequency ctrl and fix pixelrate
+      and check for link-frequency dt properties
+    - driver: correct wording / email / add datasheet link
 
-> 
->>
->>> +
->>> +      required:
->>> +       - samsung,uart-fifosize
->>
->> A new required property is an ABI break. Please explain why that is okay
->> in the commit message.
->>
-> 
-> I can update the commit message to make clear there is an ABI break.
-> As mentioned above the platforms where this is now required are either
-> already setting the property or are new in this series. Is that
-> sufficient justification?
-Yes, but only first case. You need to order your patches correctly -
-first is ABI break expecting ExynopsAutov9 to provide FIFO size in DTS
-with its explanation. Second commit is adding GS101 where there is no
-ABI break.
+v3: - fix copyright year
+    - add more gc2145_ func or variable prefixes
+    - removal of colorspace within struct gc2145_format
+    - use 1X16 formats since driver is supporting CSI-2 interface only
+    - use msleep instead of usleep_range
+    - add pm_runtime_ last_busy & autosuspend handling
+    - only start streaming AFTER applying ctrls
+    - correct RGB565 format to generate _LE instead of _BE
+    - perform pm_runtime configuration prior to v4l2_async_register_subdev_sensor
+    - remove frame_interval handling and expose HBLANK/VBLANK ctrls
+      instead
 
-Best regards,
-Krzysztof
+v2: - split vendor-prefixes update into a separate commit
+    - correction into dt-bindings (description, const i2c address,
+      lowcase of supplies, node naming
+    - correct KConfig (avoid VIDEO_V4L2_SUBDEV_API, V4L2_FWNODE and add
+      V4L2_CCI_I2C)
+    - usage of v4l2-cci framework for accessing to device registers
+    - correction in power-on / power-off sequences and update
+      usleep_range delay
+    - detail MIPI configuration and stop register access to stop
+      streaming
+    - removal of SYSTEM_SLEEP_PM_OPS (and streaming variable)
+    - various small fixes, typo, oneline functions
+    - removal of useless HBLANK control considereing that RAW isn't
+      supported for the time being
+    - removal of RAW parts
+    - usage of dev_err_probe
+
+Alain Volmat (3):
+  dt-bindings: vendor-prefixes: Add prefix for GalaxyCore Inc.
+  dt-bindings: media: i2c: add galaxycore,gc2145 dt-bindings
+  media: i2c: gc2145: Galaxy Core GC2145 sensor support
+
+ .../bindings/media/i2c/galaxycore,gc2145.yaml |  113 ++
+ .../devicetree/bindings/vendor-prefixes.yaml  |    2 +
+ MAINTAINERS                                   |    8 +
+ drivers/media/i2c/Kconfig                     |   10 +
+ drivers/media/i2c/Makefile                    |    1 +
+ drivers/media/i2c/gc2145.c                    | 1446 +++++++++++++++++
+ 6 files changed, 1580 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/galaxycore,gc2145.yaml
+ create mode 100644 drivers/media/i2c/gc2145.c
+
+-- 
+2.25.1
 
 
