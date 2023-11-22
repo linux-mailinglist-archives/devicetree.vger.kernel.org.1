@@ -1,189 +1,171 @@
-Return-Path: <devicetree+bounces-17962-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17963-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F6AD7F490B
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 15:35:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D3667F4923
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 15:42:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E9D6E1F21AEB
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 14:35:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EF53428162D
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 14:42:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 244A54C3CF;
-	Wed, 22 Nov 2023 14:35:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 967373C685;
+	Wed, 22 Nov 2023 14:42:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dBFU2Dem"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="F+E65So8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F022A3D987;
-	Wed, 22 Nov 2023 14:35:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88B75C433C8;
-	Wed, 22 Nov 2023 14:35:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700663713;
-	bh=RtXHVojQdii9cypheSJBX00LBuWCbe8gFyZ642oQe6A=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=dBFU2Dem3EzGCXV3Q3tedWG2zrS20A/bGvbdoBmedPEANbbwkpNzyl/M4HioweVGb
-	 BZ3fnadm47uAvJY3apn3f989uSWYz5ONRfJ1zS+0gls0LHlGnFiJSqXSkPoPBYtg+F
-	 lWoW4L18wsGteiHC0Wr/scISvN7KVWVMMxPT/v1vjBH7G3Knl2QSRkRYbyiN3zVi+p
-	 fApO8YOj9xhU5chPpIASR5ijXN/I55LBw+v6S0lJ3o2wcnXinboeFMs+SkErTCpNri
-	 NglxMF0ZEATv4ho4vVWQTGGOToZKxW2gEZn+y/bvi6tY+VPWnPcKdl0sAZVpxKjRyP
-	 Lyz/wtrvTtYYQ==
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-507a62d4788so9689216e87.0;
-        Wed, 22 Nov 2023 06:35:13 -0800 (PST)
-X-Gm-Message-State: AOJu0YyFSrBT4Jg2PKqPlGk+YANH9sMuiP1rL2066+rtI8Djy+akMQpl
-	AGKkQSN5J/wpAM0/WQGAnEnttdKMIKteMmHWCA==
-X-Google-Smtp-Source: AGHT+IEQBg+DK/D3DTxQm+IxmEnOEyd8FYRneZs7dFyJFZUQ30Vu7QNpAPavUGMN4n7otiuBSo5YrTBJtBD/XnkZObs=
-X-Received: by 2002:a05:6512:3c8f:b0:509:2b81:fc40 with SMTP id
- h15-20020a0565123c8f00b005092b81fc40mr2616195lfv.9.1700663711762; Wed, 22 Nov
- 2023 06:35:11 -0800 (PST)
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDFF897;
+	Wed, 22 Nov 2023 06:42:25 -0800 (PST)
+Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-5484ef5e3d2so7581765a12.3;
+        Wed, 22 Nov 2023 06:42:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1700664144; x=1701268944; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=NUFxX9SRRRyGDoDMgzIpg9Kj0aIkUdbV6wP95me/PNw=;
+        b=F+E65So8EnLfusiHMdQAFbHsZmMI9Pv/fml6Xw/zZFp2d9cYxaVOqbgTBZ6qs7o+/t
+         XAa/+b6yfUiU9XwUDD8lRf7WWC9C/dfGnLbYBjJPtVo+oMReBvNRJkbBOTAS52Ug2XOl
+         fyOGMl67QjKoRZZifCdE7leh9s0JLJsFgbqt4UaYo57XefU4+1u7/7ht80pc5LB4FpuH
+         ey0v5/Ng+a1RWNSVk73iCQXd+/0dfvWt5z+ahuapaxiBhVZHpD8fGL5+6F2pkcYSqx0v
+         7pW/QMrrZ/chBZYYDhJIdLs3pZCcqoakaIdJ/zEiotzOWUt9iTqk1uZOIAY9618ITae6
+         Lknw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700664144; x=1701268944;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=NUFxX9SRRRyGDoDMgzIpg9Kj0aIkUdbV6wP95me/PNw=;
+        b=lMSP/WRVbhKrL3z4QOCLQ6QNROZhENOYBKQ1LJDESapGJcVqhA8L8QHeWPWodhLueS
+         eErYdoL71OdLy4pz6wj+WI4n39WYVxxs4qIWlyegkF84QlybDAX4nyoteEyo59o4p7Wg
+         ep88nw25egyW0UA0U6Y3iQc7G6cZ7SJ9KovKIZ7X6JKril4EeEnnfbrdSyIGQ2vq5Thr
+         6lfc+0sBqiXkIe6HfdS4uJZdVk3f1NjtBs7/LsNalzohn0pIVcEe3YeQAL+uzjpMB2aI
+         yJUmM9P5iEh6nYuMjngq8cJkE9EIaOASGZpTFbVtuoX5CHDr5Ehu+4XmZzskaQLAa33d
+         ToIg==
+X-Gm-Message-State: AOJu0Yyt5rYuYge1ZrZELD6yLDGKUxVc0KnFi29KcBj7yi/zF3l31vO4
+	cAwko9/hw6lL1mdzx+Rp7Qk=
+X-Google-Smtp-Source: AGHT+IFK5dXEW4ujsGpPqd7dGdQoi8bAvwXl2MRkh2CAniFxYCzAEJ5gLklZnE2yuRUSqPvKJOBsIw==
+X-Received: by 2002:a17:906:cb8d:b0:a00:7937:4460 with SMTP id mf13-20020a170906cb8d00b00a0079374460mr1511558ejb.25.1700664144080;
+        Wed, 22 Nov 2023 06:42:24 -0800 (PST)
+Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
+        by smtp.gmail.com with ESMTPSA id g26-20020a170906349a00b00a0451802b3csm941221ejb.4.2023.11.22.06.42.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Nov 2023 06:42:23 -0800 (PST)
+From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To: Florian Fainelli <florian.fainelli@broadcom.com>,
+	William Zhang <william.zhang@broadcom.com>,
+	Anand Gore <anand.gore@broadcom.com>,
+	Kursad Oney <kursad.oney@broadcom.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Andre Przywara <andre.przywara@arm.com>,
+	Alexandre TORGUE <alexandre.torgue@st.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	linux-serial@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	bcm-kernel-feedback-list@broadcom.com,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH V2 1/2] dt-bindings: serial: add Broadcom's BCMBCA family High Speed UART
+Date: Wed, 22 Nov 2023 15:42:07 +0100
+Message-Id: <20231122144208.21114-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.35.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231120084044.23838-1-krzysztof.kozlowski@linaro.org>
- <6b288a2e-d147-4bd3-b1d4-daf56295d939@gmail.com> <01f9ce3b-e6e5-4b05-bf7f-0b3a5f74910a@linaro.org>
- <CAGb2v64Vf5dDwq=KTrxwc=+w+0KUD2KVPMjmHg68Y_yukES5dQ@mail.gmail.com>
- <7232a48b-b9ad-44b5-ae6a-d12dad70b3c4@linaro.org> <58a9caacc1226c7c3a2bdfe73ef1791f@manjaro.org>
- <cc4c789c-b595-41eb-b543-9e03549c6e61@amd.com> <CAMuHMdWm-gRPHeHyuX3_eR+9chJEw3iiZwCNBnoiRPHzoMAs6w@mail.gmail.com>
- <808270d3-2274-4fb7-a397-38538503b67c@amd.com>
-In-Reply-To: <808270d3-2274-4fb7-a397-38538503b67c@amd.com>
-From: Rob Herring <robh+dt@kernel.org>
-Date: Wed, 22 Nov 2023 07:34:59 -0700
-X-Gmail-Original-Message-ID: <CAL_JsqKkOjBHrJ0WELq3JnJDqgtA=mdF+EtAxHSCGqZMQ9tuSQ@mail.gmail.com>
-Message-ID: <CAL_JsqKkOjBHrJ0WELq3JnJDqgtA=mdF+EtAxHSCGqZMQ9tuSQ@mail.gmail.com>
-Subject: Re: [PATCH v2] docs: dt-bindings: add DTS Coding Style document
-To: Michal Simek <michal.simek@amd.com>
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>, Dragan Simic <dsimic@manjaro.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, wens@kernel.org, 
-	=?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, Andrew Davis <afd@ti.com>, 
-	Arnd Bergmann <arnd@arndb.de>, Bjorn Andersson <andersson@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Nishanth Menon <nm@ti.com>, Olof Johansson <olof@lixom.net>, linux-rockchip@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org, linux-amlogic@lists.infradead.org, 
-	linux-arm-msm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Wed, Nov 22, 2023 at 1:57=E2=80=AFAM Michal Simek <michal.simek@amd.com>=
- wrote:
->
-> Hi Geert,
->
-> On 11/22/23 09:53, Geert Uytterhoeven wrote:
-> > Hi Michal,
-> >
-> > On Wed, Nov 22, 2023 at 9:50=E2=80=AFAM Michal Simek <michal.simek@amd.=
-com> wrote:
-> >> On 11/22/23 09:29, Dragan Simic wrote:
-> >>> On 2023-11-22 09:21, Krzysztof Kozlowski wrote:
-> >>>> On 22/11/2023 09:09, Chen-Yu Tsai wrote:
-> >>>>> On Wed, Nov 22, 2023 at 4:05=E2=80=AFPM Krzysztof Kozlowski
-> >>>>> <krzysztof.kozlowski@linaro.org> wrote:
-> >>>>>>
-> >>>>>> On 21/11/2023 14:50, Rafa=C5=82 Mi=C5=82ecki wrote:
-> >>>>>>>> +Order of Properties in Device Node
-> >>>>>>>> +----------------------------------
-> >>>>>>>> +
-> >>>>>>>> +Following order of properties in device nodes is preferred:
-> >>>>>>>> +
-> >>>>>>>> +1. compatible
-> >>>>>>>> +2. reg
-> >>>>>>>> +3. ranges
-> >>>>>>>> +4. Standard/common properties (defined by common bindings, e.g.=
- without
-> >>>>>>>> +   vendor-prefixes)
-> >>>>>>>> +5. Vendor-specific properties
-> >>>>>>>> +6. status (if applicable)
-> >>>>>>>> +7. Child nodes, where each node is preceded with a blank line
-> >>>>>>>> +
-> >>>>>>>> +The "status" property is by default "okay", thus it can be omit=
-ted.
-> >>>>>>>
-> >>>>>>> I think it would really help to include position of #address-cell=
-s and
-> >>>>>>> #size-cells here. In some files I saw them above "compatible" tha=
-t seems
-> >>>>>>> unintuitive. Some prefer putting them at end which I think makes =
-sense
-> >>>>>>> as they affect children nodes.
-> >>>>>>>
-> >>>>>>> Whatever you choose it'd be just nice to have things consistent.
-> >>>>>>
-> >>>>>> This is a standard/common property, thus it goes to (4) above.
-> >>>>>
-> >>>>> It's probably a mix, but AFAIK a lot of the device trees in tree ha=
-ve
-> >>>>> #*-cells after "status". In some cases they are added in the board
-> >>>>> .dts files, not the chip/module .dtsi files.
-> >>>>
-> >>>> Existing DTS is not a good example :)
-> >>>>
-> >>>>>
-> >>>>> +1 that it makes sense at the end as they affect child nodes.
-> >>>>
-> >>>> I still insist that status must be the last, because:
-> >>>> 1. Many SoC nodes have address/size cells but do not have any childr=
-en
-> >>>> (I2C, SPI), so we put useless information at the end.
-> >>>> 2. Status should be the final information to say whether the node is
-> >>>> ready or is not. I read the node, check properties and then look at =
-the end:
-> >>>> a. Lack of status means it is ready.
-> >>>> b. status=3Ddisabled means device still needs board resources/custom=
-ization
-> >>>
-> >>> I agree with the "status" belonging to the very end, because it's bot=
-h logical
-> >>> and much more readable.  Also, "status" is expected to be modified in=
- the
-> >>> dependent DT files, which makes it kind of volatile and even more des=
-erving to
-> >>> be placed last.
-> >>
-> >> I am just curious if having status property at the end won't affect
-> >> execution/boot up time. Not sure how it is done in Linux but in U-Boot=
- at least
-> >> (we want to have DTs in sync between Linux and U-Boot) of_find_propert=
-y is
-> >> pretty much big loop over all properties. And status property defined =
-at the end
-> >> means going over all of them to find it out to if device is present.
-> >> Not sure if Linux works in the same way but at least of_get_property i=
-s done in
-> >> the same way.
-> >
-> > As the default is "okay", you have to loop over all properties anyway.
->
-> No doubt if you don't define status property that you need to loop over a=
-ll of
-> them. We normally describe the whole SOC with pretty much all IPs status =
-=3D
-> disabled and then in board file we are changing it to okay based on what =
-it is
-> actually wired out.
-> It means on our systems all nodes have status properties. If you have it =
-at
-> first you don't need to go over all.
+From: Rafał Miłecki <rafal@milecki.pl>
 
-Order in the source and order in the OS are independent. If checking
-status needs to be optimized, then we could just put it first in the
-property list or make the state a field in struct device_node. But
-provide some data that it matters first.
+It's an UART controller that first appeared on BCM63138 SoC and then was
+reused on other bcmbca familiy chipsets.
 
-I've had this idea to randomize the order nodes are processed so
-there's no reliance on the DT order. Maybe I need the same on
-properties...
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+V2: Extend "compatible" and rename YAML file accordingly
 
-Rob
+Krzysztof: since I reworked "compatible" I didn't want to carry on your
+Reviewed in case there is sth wrong with the updated schema.
+
+ .../bindings/serial/brcm,bcmbca-hs-uart.yaml  | 60 +++++++++++++++++++
+ 1 file changed, 60 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/serial/brcm,bcmbca-hs-uart.yaml
+
+diff --git a/Documentation/devicetree/bindings/serial/brcm,bcmbca-hs-uart.yaml b/Documentation/devicetree/bindings/serial/brcm,bcmbca-hs-uart.yaml
+new file mode 100644
+index 000000000000..64ef9eee7be2
+--- /dev/null
++++ b/Documentation/devicetree/bindings/serial/brcm,bcmbca-hs-uart.yaml
+@@ -0,0 +1,60 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/serial/brcm,bcmbca-hs-uart.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Broadcom Broadband SoC High Speed UART
++
++description:
++  High speed serial port controller that was designed to handle Bluetooth
++  devices communication. It supports sending custom frames that need to be
++  processed by a host system.
++
++maintainers:
++  - Rafał Miłecki <rafal@milecki.pl>
++
++allOf:
++  - $ref: serial.yaml#
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - brcm,bcm4908-hs-uart
++          - brcm,bcm4912-hs-uart
++          - brcm,bcm6756-hs-uart
++          - brcm,bcm6813-hs-uart
++          - brcm,bcm6846-hs-uart
++          - brcm,bcm6855-hs-uart
++          - brcm,bcm6856-hs-uart
++          - brcm,bcm6858-hs-uart
++          - brcm,bcm6878-hs-uart
++          - brcm,bcm47622-hs-uart
++          - brcm,bcm63138-hs-uart
++          - brcm,bcm63146-hs-uart
++          - brcm,bcm63158-hs-uart
++          - brcm,bcm63178-hs-uart
++      - const: brcm,bcmbca-hs-uart
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++required:
++  - reg
++  - interrupts
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    serial@fffec400 {
++        compatible = "brcm,bcm63138-hs-uart", "brcm,bcmbca-hs-uart";
++        reg = <0xfffec400 0x1e0>;
++        interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
++    };
+-- 
+2.35.3
+
 
