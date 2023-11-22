@@ -1,60 +1,28 @@
-Return-Path: <devicetree+bounces-17985-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17986-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 137F17F4AEF
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 16:38:12 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C9A97F4B24
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 16:40:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 601E9B20CB4
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 15:38:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5310A281362
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 15:40:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D45084C3D0;
-	Wed, 22 Nov 2023 15:38:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GF17+Uxh"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C23154EB23;
+	Wed, 22 Nov 2023 15:40:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1A4A4C3C
-	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 07:37:39 -0800 (PST)
-Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2c4fdf94666so85681841fa.2
-        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 07:37:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700667458; x=1701272258; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=KIruWVCLW08kCmdc2JJdnr8xviqqWWOURPiSNoVbDyo=;
-        b=GF17+UxhEQvG0ErODEt9ds+yb+OhVlKUrxsVIsiD7vXbX6kUQuBU1P4GlpI5lZwgga
-         IzYKE1W5S+04WO1ACOI4Ou+cnAGOOMtKoXLt7R/Z/TFHClq2AmDfrFPAbiQQmuS1H9u/
-         KE+32CiMd4eEoX0iONKdXXaJE+XEo/sBbfxolqXJmuKzmDrEDMYrkHk3J6Y8cTIcLQnG
-         uOjDLC+LvEDmUgl+c4Sn83iumUWnp6L+aHhdH8vNkc0vqTyohpG1/32e/sX9k5wrMFfp
-         WKaxAG7Ijya2CyqGp5r5TzBjzJopkTKWnGzWP22+doFaw3q7atzsK5fWFpQeHIetseXX
-         vNOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700667458; x=1701272258;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KIruWVCLW08kCmdc2JJdnr8xviqqWWOURPiSNoVbDyo=;
-        b=QD8URXpETpMQaMX2m1CmloubA7ZRyRK0+ad0WHRWAA4abEmq42kGsxonJvskQi6VBY
-         EBigKTdevLy85WS8M7+pMUBlh80hPIZN5j9Coowb4BsHf5EzZrGA9+fpds+dRLJNbbV4
-         D4LjJ+4f0q3Lul8QlaopZIChhMOkmewzowRO3/qBjjA9dDwulGeLaquqNVZjvVo7t+Xt
-         HWyt+hwwvqwnxO4CtlibDprgvqRvqMvl+OKYQg+nuSLDNa/sc7BJI+cn5fj0QGbjfg3L
-         Ck+tXwZW5My92sWAE/6ttghHmkJbCynS2rxy2xI1rC4Afvu4H1syTD1NFzac6yo4gZFR
-         jLsw==
-X-Gm-Message-State: AOJu0YzbFQ2Qr1nlhtMyr27jw5IypFzW2bquz3DyIZEjV0qDALayS6sk
-	K+onE1+OfVAIn4LEZIoo14tngQ==
-X-Google-Smtp-Source: AGHT+IF4FVkD3Cj5xMZ6bQgUdM6mVHsHTU430ZlyujhIEcCHKOW0UP9aBB0zIJtCP/bxmBnfrPCulA==
-X-Received: by 2002:a2e:9842:0:b0:2c8:8025:1c8e with SMTP id e2-20020a2e9842000000b002c880251c8emr1792803ljj.17.1700667457874;
-        Wed, 22 Nov 2023 07:37:37 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.100])
-        by smtp.gmail.com with ESMTPSA id g8-20020a05600c310800b0040651505684sm2556620wmo.29.2023.11.22.07.37.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Nov 2023 07:37:37 -0800 (PST)
-Message-ID: <ff32cd00-e26b-4ba6-bb08-a89c702895c9@linaro.org>
-Date: Wed, 22 Nov 2023 16:37:35 +0100
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E3C31CAB3;
+	Wed, 22 Nov 2023 15:40:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63563C433C7;
+	Wed, 22 Nov 2023 15:40:39 +0000 (UTC)
+Message-ID: <9e6793e3-d824-4117-990d-924f8ad69d4e@xs4all.nl>
+Date: Wed, 22 Nov 2023 16:40:37 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,158 +30,800 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 1/2] dt-bindings: serial: add Broadcom's BCMBCA family
- High Speed UART
-Content-Language: en-US
-To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- William Zhang <william.zhang@broadcom.com>,
- Anand Gore <anand.gore@broadcom.com>, Kursad Oney
- <kursad.oney@broadcom.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Andre Przywara <andre.przywara@arm.com>,
- Alexandre TORGUE <alexandre.torgue@st.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, linux-serial@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- bcm-kernel-feedback-list@broadcom.com, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
- <rafal@milecki.pl>
-References: <20231122144208.21114-1-zajec5@gmail.com>
- <66c4b54b-7631-484a-9f7d-31542284e620@linaro.org>
- <08fcb328-fe4b-40c7-a01e-8a0b527b1c71@gmail.com>
- <758114a7-0b18-44e8-b3d8-b5aabd244279@linaro.org>
- <cac6aa8a-1515-4062-8922-4d1e31e9216e@gmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <cac6aa8a-1515-4062-8922-4d1e31e9216e@gmail.com>
+Subject: Re: [Patch v4 04/11] media: s5p-mfc: Add YV12 and I420 multiplanar
+ format support
+Content-Language: en-US, nl
+To: Aakarsh Jain <aakarsh.jain@samsung.com>,
+ linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc: m.szyprowski@samsung.com, andrzej.hajda@intel.com, mchehab@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, dillon.minfei@gmail.com,
+ david.plowman@raspberrypi.com, mark.rutland@arm.com, robh+dt@kernel.org,
+ conor+dt@kernel.org, linux-samsung-soc@vger.kernel.org, andi@etezian.org,
+ gost.dev@samsung.com, alim.akhtar@samsung.com, aswani.reddy@samsung.com,
+ pankaj.dubey@samsung.com, ajaykumar.rs@samsung.com, linux-fsd@tesla.com,
+ Smitha T Murthy <smithatmurthy@gmail.com>
+References: <20231025102216.50480-1-aakarsh.jain@samsung.com>
+ <CGME20231025102243epcas5p1cdd0eb385d2381943d6d194eec3a569d@epcas5p1.samsung.com>
+ <20231025102216.50480-5-aakarsh.jain@samsung.com>
+From: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+In-Reply-To: <20231025102216.50480-5-aakarsh.jain@samsung.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 22/11/2023 16:32, Rafał Miłecki wrote:
-> On 22.11.2023 16:00, Krzysztof Kozlowski wrote:
->> On 22/11/2023 15:52, Rafał Miłecki wrote:
->>>>> +maintainers:
->>>>> +  - Rafał Miłecki <rafal@milecki.pl>
->>>>> +
->>>>> +allOf:
->>>>> +  - $ref: serial.yaml#
->>>>> +
->>>>> +properties:
->>>>> +  compatible:
->>>>> +    items:
->>>>> +      - enum:
->>>>> +          - brcm,bcm4908-hs-uart
->>>>> +          - brcm,bcm4912-hs-uart
->>>>> +          - brcm,bcm6756-hs-uart
->>>>> +          - brcm,bcm6813-hs-uart
->>>>> +          - brcm,bcm6846-hs-uart
->>>>> +          - brcm,bcm6855-hs-uart
->>>>> +          - brcm,bcm6856-hs-uart
->>>>> +          - brcm,bcm6858-hs-uart
->>>>> +          - brcm,bcm6878-hs-uart
->>>>> +          - brcm,bcm47622-hs-uart
->>>>> +          - brcm,bcm63138-hs-uart
->>>>> +          - brcm,bcm63146-hs-uart
->>>>> +          - brcm,bcm63158-hs-uart
->>>>> +          - brcm,bcm63178-hs-uart
->>>>> +      - const: brcm,bcmbca-hs-uart
->>>>
->>>> git grep did not find driver for this compatible. Is it in separate
->>>> patchset?
->>>
->>> No. My project based on BCMBCA has been canceled and I don't work on it
->>> full time anymore. I just wanted to fill empty bits I can afford
->>> handling in my free time and complete hardware description in DTS.
->>>
->>> I may still work on some BCMBCA drivers from time to time but as a side
->>> project.
->>
->> This means we cannot use driver to verify whether the fallback is
->> actually suitable. Considering that existing UART bindings do not
->> fallback (brcm,bcm6345-uart, brcm,bcm7271-uart), I don't understand what
->> is the benefit here.
+On 25/10/2023 12:22, Aakarsh Jain wrote:
+> YV12 and I420 format (3-plane) support is added. Stride information is
+> added to all formats and planes since it is necessary for YV12/I420
+> which are different from width.
 > 
-> I believed the rule for maintaining bindings and DTS files was to
-> describe hardware no matter what/if system needs it.
+> Cc: linux-fsd@tesla.com
+> Signed-off-by: Smitha T Murthy <smithatmurthy@gmail.com>
+> Signed-off-by: Aakarsh Jain <aakarsh.jain@samsung.com>
+> ---
+>  .../platform/samsung/s5p-mfc/regs-mfc-v12.h   |   2 +
+>  .../platform/samsung/s5p-mfc/regs-mfc-v7.h    |   1 +
+>  .../platform/samsung/s5p-mfc/regs-mfc-v8.h    |   3 +
+>  .../platform/samsung/s5p-mfc/s5p_mfc_common.h |   4 +
+>  .../platform/samsung/s5p-mfc/s5p_mfc_dec.c    |  45 ++++-
+>  .../platform/samsung/s5p-mfc/s5p_mfc_enc.c    |  86 +++++++--
+>  .../platform/samsung/s5p-mfc/s5p_mfc_opr.h    |   6 +-
+>  .../platform/samsung/s5p-mfc/s5p_mfc_opr_v5.c |  12 +-
+>  .../platform/samsung/s5p-mfc/s5p_mfc_opr_v6.c | 168 +++++++++++++++---
+>  9 files changed, 281 insertions(+), 46 deletions(-)
 > 
-> For example a year ago I added binding for BCMBCA SoC timer without
-> actual driver, see e112f2de151b ("dt-bindings: timer: Add Broadcom's
-> BCMBCA timers").
-> 
-> I'm not sure if we're going to agree on this, but personally I like
-> describing hardware as much as I can. So it's well documented /
-> understood and people may eventually write drivers for it. Maybe it's
-> partially because I come from Broadcom's world that isn't well known
-> for upstream efforts in general.
+> diff --git a/drivers/media/platform/samsung/s5p-mfc/regs-mfc-v12.h b/drivers/media/platform/samsung/s5p-mfc/regs-mfc-v12.h
+> index 6c68a45082d0..70464f47c1f9 100644
+> --- a/drivers/media/platform/samsung/s5p-mfc/regs-mfc-v12.h
+> +++ b/drivers/media/platform/samsung/s5p-mfc/regs-mfc-v12.h
+> @@ -26,6 +26,8 @@
+>  #define MFC_VERSION_V12			0xC0
+>  #define MFC_NUM_PORTS_V12		1
+>  #define S5P_FIMV_CODEC_VP9_ENC		27
+> +#define MFC_CHROMA_PAD_BYTES_V12        256
+> +#define S5P_FIMV_D_ALIGN_PLANE_SIZE_V12 256
+>  
+>  /* Encoder buffer size for MFCv12 */
+>  #define ENC_V120_BASE_SIZE(x, y) \
+> diff --git a/drivers/media/platform/samsung/s5p-mfc/regs-mfc-v7.h b/drivers/media/platform/samsung/s5p-mfc/regs-mfc-v7.h
+> index 4a7adfdaa359..50f9bf0603c1 100644
+> --- a/drivers/media/platform/samsung/s5p-mfc/regs-mfc-v7.h
+> +++ b/drivers/media/platform/samsung/s5p-mfc/regs-mfc-v7.h
+> @@ -24,6 +24,7 @@
+>  
+>  #define S5P_FIMV_E_ENCODED_SOURCE_FIRST_ADDR_V7		0xfa70
+>  #define S5P_FIMV_E_ENCODED_SOURCE_SECOND_ADDR_V7	0xfa74
+> +#define S5P_FIMV_E_ENCODED_SOURCE_THIRD_ADDR_V7		0xfa78
+>  
+>  #define S5P_FIMV_E_VP8_OPTIONS_V7			0xfdb0
+>  #define S5P_FIMV_E_VP8_FILTER_OPTIONS_V7		0xfdb4
+> diff --git a/drivers/media/platform/samsung/s5p-mfc/regs-mfc-v8.h b/drivers/media/platform/samsung/s5p-mfc/regs-mfc-v8.h
+> index 162e3c7e920f..0ef9eb2dff22 100644
+> --- a/drivers/media/platform/samsung/s5p-mfc/regs-mfc-v8.h
+> +++ b/drivers/media/platform/samsung/s5p-mfc/regs-mfc-v8.h
+> @@ -17,13 +17,16 @@
+>  #define S5P_FIMV_D_MIN_SCRATCH_BUFFER_SIZE_V8	0xf108
+>  #define S5P_FIMV_D_FIRST_PLANE_DPB_SIZE_V8	0xf144
+>  #define S5P_FIMV_D_SECOND_PLANE_DPB_SIZE_V8	0xf148
+> +#define S5P_FIMV_D_THIRD_PLANE_DPB_SIZE_V8	0xf14C
+>  #define S5P_FIMV_D_MV_BUFFER_SIZE_V8		0xf150
+>  
+>  #define S5P_FIMV_D_FIRST_PLANE_DPB_STRIDE_SIZE_V8	0xf138
+>  #define S5P_FIMV_D_SECOND_PLANE_DPB_STRIDE_SIZE_V8	0xf13c
+> +#define S5P_FIMV_D_THIRD_PLANE_DPB_STRIDE_SIZE_V8	0xf140
+>  
+>  #define S5P_FIMV_D_FIRST_PLANE_DPB_V8		0xf160
+>  #define S5P_FIMV_D_SECOND_PLANE_DPB_V8		0xf260
+> +#define S5P_FIMV_D_THIRD_PLANE_DPB_V8		0xf360
+>  #define S5P_FIMV_D_MV_BUFFER_V8			0xf460
+>  
+>  #define S5P_FIMV_D_NUM_MV_V8			0xf134
+> diff --git a/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_common.h b/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_common.h
+> index dd2e9f7704ab..9a39cccfe002 100644
+> --- a/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_common.h
+> +++ b/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_common.h
+> @@ -56,6 +56,7 @@
+>  #define MFC_NO_INSTANCE_SET	-1
+>  #define MFC_ENC_CAP_PLANE_COUNT	1
+>  #define MFC_ENC_OUT_PLANE_COUNT	2
+> +#define VB2_MAX_PLANE_COUNT	3
+>  #define STUFF_BYTE		4
+>  #define MFC_MAX_CTRLS		128
+>  
+> @@ -181,6 +182,7 @@ struct s5p_mfc_buf {
+>  		struct {
+>  			size_t luma;
+>  			size_t chroma;
+> +			size_t chroma_1;
+>  		} raw;
+>  		size_t stream;
+>  	} cookie;
+> @@ -657,6 +659,7 @@ struct s5p_mfc_ctx {
+>  
+>  	int luma_size;
+>  	int chroma_size;
+> +	int chroma_size_1;
+>  	int mv_size;
+>  
+>  	unsigned long consumed_stream;
+> @@ -722,6 +725,7 @@ struct s5p_mfc_ctx {
+>  	size_t scratch_buf_size;
+>  	int is_10bit;
+>  	int is_422;
+> +	int stride[VB2_MAX_PLANE_COUNT];
+>  };
+>  
+>  /*
+> diff --git a/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_dec.c b/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_dec.c
+> index e219cbcd86d5..317f796fffa1 100644
+> --- a/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_dec.c
+> +++ b/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_dec.c
+> @@ -56,6 +56,20 @@ static struct s5p_mfc_fmt formats[] = {
+>  		.num_planes	= 2,
+>  		.versions	= MFC_V6PLUS_BITS,
+>  	},
+> +	{
+> +		.fourcc         = V4L2_PIX_FMT_YUV420M,
+> +		.codec_mode     = S5P_MFC_CODEC_NONE,
+> +		.type           = MFC_FMT_RAW,
+> +		.num_planes     = 3,
+> +		.versions       = MFC_V12_BIT,
+> +	},
+> +	{
+> +		.fourcc         = V4L2_PIX_FMT_YVU420M,
+> +		.codec_mode     = S5P_MFC_CODEC_NONE,
+> +		.type           = MFC_FMT_RAW,
+> +		.num_planes     = 3,
+> +		.versions       = MFC_V12_BIT
+> +	},
+>  	{
+>  		.fourcc		= V4L2_PIX_FMT_H264,
+>  		.codec_mode	= S5P_MFC_CODEC_H264_DEC,
+> @@ -359,10 +373,15 @@ static int vidioc_g_fmt(struct file *file, void *priv, struct v4l2_format *f)
+>  		/* Set pixelformat to the format in which MFC
+>  		   outputs the decoded frame */
+>  		pix_mp->pixelformat = ctx->dst_fmt->fourcc;
+> -		pix_mp->plane_fmt[0].bytesperline = ctx->buf_width;
+> +		pix_mp->plane_fmt[0].bytesperline = ctx->stride[0];
+>  		pix_mp->plane_fmt[0].sizeimage = ctx->luma_size;
+> -		pix_mp->plane_fmt[1].bytesperline = ctx->buf_width;
+> +		pix_mp->plane_fmt[1].bytesperline = ctx->stride[1];
+>  		pix_mp->plane_fmt[1].sizeimage = ctx->chroma_size;
+> +		if (ctx->dst_fmt->fourcc == V4L2_PIX_FMT_YUV420M ||
+> +				ctx->dst_fmt->fourcc == V4L2_PIX_FMT_YVU420M) {
+> +			pix_mp->plane_fmt[2].bytesperline = ctx->stride[2];
+> +			pix_mp->plane_fmt[2].sizeimage = ctx->chroma_size_1;
+> +		}
+>  	} else if (f->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE) {
+>  		/* This is run on OUTPUT
+>  		   The buffer contains compressed image
+> @@ -937,6 +956,9 @@ static int s5p_mfc_queue_setup(struct vb2_queue *vq,
+>  		   vq->type == V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE) {
+>  		/* Output plane count is 2 - one for Y and one for CbCr */
+>  		*plane_count = 2;
+> +		if (ctx->dst_fmt->fourcc == V4L2_PIX_FMT_YUV420M ||
+> +				ctx->dst_fmt->fourcc == V4L2_PIX_FMT_YVU420M)
 
-The problem is that "brcm,bcmbca-hs-uart" is not describing hardware. It
-is saying that all these devices have similar (compatible) programming
-model, so the OS can use just one compatible. This goes away from pure
-hardware description into interpretation.
+These misalignments produce a lot of checkpatch warnings.
 
-Rob already commented on such non-SoC compatibles multiple times. I do
-not see any reason here to not use specific compatible as fallback.
+Make sure you run your patch series through 'checkpatch.pl --strict'!
 
-> 
-> As for verifying this binding against actual driver I can definitely
-> understand your concerns. Hoping it may help I uploaded Broadcom's HS
-> UART driver extracted from the RAXE500-V1.0.8.70_2.0.36_gpl SDK/GPL
-> package: http://files.zajec.net/hs_uart/
-> 
-> Please note it's not much of a clean code and its design would not be
-> accepted upstream but hopefully you can glance at it to verify this
-> binding's compatibility.
-> 
-> Let me know if there is anything else (other than rewriting Broadcom's
-> downstream driver) I could do to get this binding accepted.
+Regards,
 
+	Hans
 
-
-Best regards,
-Krzysztof
+> +			*plane_count = 3;
+>  		/* Setup buffer count */
+>  		if (*buf_count < ctx->pb_count)
+>  			*buf_count = ctx->pb_count;
+> @@ -955,12 +977,17 @@ static int s5p_mfc_queue_setup(struct vb2_queue *vq,
+>  	    vq->type == V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE) {
+>  		psize[0] = ctx->luma_size;
+>  		psize[1] = ctx->chroma_size;
+> -
+> +		if (ctx->dst_fmt->fourcc == V4L2_PIX_FMT_YUV420M ||
+> +				ctx->dst_fmt->fourcc == V4L2_PIX_FMT_YVU420M)
+> +			psize[2] = ctx->chroma_size_1;
+>  		if (IS_MFCV6_PLUS(dev))
+>  			alloc_devs[0] = ctx->dev->mem_dev[BANK_L_CTX];
+>  		else
+>  			alloc_devs[0] = ctx->dev->mem_dev[BANK_R_CTX];
+>  		alloc_devs[1] = ctx->dev->mem_dev[BANK_L_CTX];
+> +		if (ctx->dst_fmt->fourcc == V4L2_PIX_FMT_YUV420M ||
+> +				ctx->dst_fmt->fourcc == V4L2_PIX_FMT_YVU420M)
+> +			alloc_devs[2] = ctx->dev->mem_dev[BANK_L_CTX];
+>  	} else if (vq->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE &&
+>  		   ctx->state == MFCINST_INIT) {
+>  		psize[0] = ctx->dec_src_buf_size;
+> @@ -994,12 +1021,24 @@ static int s5p_mfc_buf_init(struct vb2_buffer *vb)
+>  			mfc_err("Plane buffer (CAPTURE) is too small\n");
+>  			return -EINVAL;
+>  		}
+> +		if (ctx->dst_fmt->fourcc == V4L2_PIX_FMT_YUV420M ||
+> +				ctx->dst_fmt->fourcc == V4L2_PIX_FMT_YVU420M) {
+> +			if (vb2_plane_size(vb, 2) < ctx->chroma_size_1) {
+> +				mfc_err("Plane buffer (CAPTURE) is too small\n");
+> +				return -EINVAL;
+> +			}
+> +		}
+>  		i = vb->index;
+>  		ctx->dst_bufs[i].b = vbuf;
+>  		ctx->dst_bufs[i].cookie.raw.luma =
+>  					vb2_dma_contig_plane_dma_addr(vb, 0);
+>  		ctx->dst_bufs[i].cookie.raw.chroma =
+>  					vb2_dma_contig_plane_dma_addr(vb, 1);
+> +		if (ctx->dst_fmt->fourcc == V4L2_PIX_FMT_YUV420M ||
+> +				ctx->dst_fmt->fourcc == V4L2_PIX_FMT_YVU420M) {
+> +			ctx->dst_bufs[i].cookie.raw.chroma_1 =
+> +					vb2_dma_contig_plane_dma_addr(vb, 2);
+> +		}
+>  		ctx->dst_bufs_cnt++;
+>  	} else if (vq->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE) {
+>  		if (IS_ERR_OR_NULL(ERR_PTR(
+> diff --git a/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_enc.c b/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_enc.c
+> index e4d6e7c117b5..0eec04eb3ef3 100644
+> --- a/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_enc.c
+> +++ b/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_enc.c
+> @@ -59,6 +59,20 @@ static struct s5p_mfc_fmt formats[] = {
+>  		.num_planes	= 2,
+>  		.versions	= MFC_V6PLUS_BITS,
+>  	},
+> +	{
+> +		.fourcc         = V4L2_PIX_FMT_YUV420M,
+> +		.codec_mode     = S5P_MFC_CODEC_NONE,
+> +		.type           = MFC_FMT_RAW,
+> +		.num_planes     = 3,
+> +		.versions       = MFC_V12_BIT,
+> +	},
+> +	{
+> +		.fourcc         = V4L2_PIX_FMT_YVU420M,
+> +		.codec_mode     = S5P_MFC_CODEC_NONE,
+> +		.type           = MFC_FMT_RAW,
+> +		.num_planes     = 3,
+> +		.versions       = MFC_V12_BIT,
+> +	},
+>  	{
+>  		.fourcc		= V4L2_PIX_FMT_H264,
+>  		.codec_mode	= S5P_MFC_CODEC_H264_ENC,
+> @@ -1193,14 +1207,20 @@ static int enc_pre_frame_start(struct s5p_mfc_ctx *ctx)
+>  	struct s5p_mfc_dev *dev = ctx->dev;
+>  	struct s5p_mfc_buf *dst_mb;
+>  	struct s5p_mfc_buf *src_mb;
+> -	unsigned long src_y_addr, src_c_addr, dst_addr;
+> +	unsigned long src_y_addr, src_c_addr, src_c_1_addr, dst_addr;
+>  	unsigned int dst_size;
+>  
+>  	src_mb = list_entry(ctx->src_queue.next, struct s5p_mfc_buf, list);
+>  	src_y_addr = vb2_dma_contig_plane_dma_addr(&src_mb->b->vb2_buf, 0);
+>  	src_c_addr = vb2_dma_contig_plane_dma_addr(&src_mb->b->vb2_buf, 1);
+> +	if (ctx->src_fmt->fourcc == V4L2_PIX_FMT_YUV420M ||
+> +			ctx->src_fmt->fourcc == V4L2_PIX_FMT_YVU420M)
+> +		src_c_1_addr =
+> +			vb2_dma_contig_plane_dma_addr(&src_mb->b->vb2_buf, 2);
+> +	else
+> +		src_c_1_addr = 0;
+>  	s5p_mfc_hw_call(dev->mfc_ops, set_enc_frame_buffer, ctx,
+> -							src_y_addr, src_c_addr);
+> +					src_y_addr, src_c_addr, src_c_1_addr);
+>  
+>  	dst_mb = list_entry(ctx->dst_queue.next, struct s5p_mfc_buf, list);
+>  	dst_addr = vb2_dma_contig_plane_dma_addr(&dst_mb->b->vb2_buf, 0);
+> @@ -1215,8 +1235,8 @@ static int enc_post_frame_start(struct s5p_mfc_ctx *ctx)
+>  {
+>  	struct s5p_mfc_dev *dev = ctx->dev;
+>  	struct s5p_mfc_buf *mb_entry;
+> -	unsigned long enc_y_addr = 0, enc_c_addr = 0;
+> -	unsigned long mb_y_addr, mb_c_addr;
+> +	unsigned long enc_y_addr = 0, enc_c_addr = 0, enc_c_1_addr = 0;
+> +	unsigned long mb_y_addr, mb_c_addr, mb_c_1_addr;
+>  	int slice_type;
+>  	unsigned int strm_size;
+>  	bool src_ready;
+> @@ -1229,14 +1249,21 @@ static int enc_post_frame_start(struct s5p_mfc_ctx *ctx)
+>  		  mfc_read(dev, S5P_FIMV_ENC_SI_PIC_CNT));
+>  	if (slice_type >= 0) {
+>  		s5p_mfc_hw_call(dev->mfc_ops, get_enc_frame_buffer, ctx,
+> -				&enc_y_addr, &enc_c_addr);
+> +				&enc_y_addr, &enc_c_addr, &enc_c_1_addr);
+>  		list_for_each_entry(mb_entry, &ctx->src_queue, list) {
+>  			mb_y_addr = vb2_dma_contig_plane_dma_addr(
+>  					&mb_entry->b->vb2_buf, 0);
+>  			mb_c_addr = vb2_dma_contig_plane_dma_addr(
+>  					&mb_entry->b->vb2_buf, 1);
+> -			if ((enc_y_addr == mb_y_addr) &&
+> -						(enc_c_addr == mb_c_addr)) {
+> +			if (ctx->src_fmt->fourcc == V4L2_PIX_FMT_YUV420M ||
+> +				ctx->src_fmt->fourcc == V4L2_PIX_FMT_YVU420M)
+> +				mb_c_1_addr = vb2_dma_contig_plane_dma_addr
+> +						(&mb_entry->b->vb2_buf, 2);
+> +			else
+> +				mb_c_1_addr = 0;
+> +			if ((enc_y_addr == mb_y_addr)
+> +					&& (enc_c_addr == mb_c_addr)
+> +					&& (enc_c_1_addr == mb_c_1_addr)) {
+>  				list_del(&mb_entry->list);
+>  				ctx->src_queue_cnt--;
+>  				vb2_buffer_done(&mb_entry->b->vb2_buf,
+> @@ -1249,8 +1276,15 @@ static int enc_post_frame_start(struct s5p_mfc_ctx *ctx)
+>  					&mb_entry->b->vb2_buf, 0);
+>  			mb_c_addr = vb2_dma_contig_plane_dma_addr(
+>  					&mb_entry->b->vb2_buf, 1);
+> -			if ((enc_y_addr == mb_y_addr) &&
+> -						(enc_c_addr == mb_c_addr)) {
+> +			if (ctx->src_fmt->fourcc == V4L2_PIX_FMT_YUV420M ||
+> +				ctx->src_fmt->fourcc == V4L2_PIX_FMT_YVU420M)
+> +				mb_c_1_addr = vb2_dma_contig_plane_dma_addr(
+> +						&mb_entry->b->vb2_buf, 2);
+> +			else
+> +				mb_c_1_addr = 0;
+> +			if ((enc_y_addr == mb_y_addr)
+> +					&& (enc_c_addr == mb_c_addr)
+> +					&& (enc_c_1_addr == mb_c_1_addr)) {
+>  				list_del(&mb_entry->list);
+>  				ctx->ref_queue_cnt--;
+>  				vb2_buffer_done(&mb_entry->b->vb2_buf,
+> @@ -1381,10 +1415,15 @@ static int vidioc_g_fmt(struct file *file, void *priv, struct v4l2_format *f)
+>  		pix_fmt_mp->pixelformat = ctx->src_fmt->fourcc;
+>  		pix_fmt_mp->num_planes = ctx->src_fmt->num_planes;
+>  
+> -		pix_fmt_mp->plane_fmt[0].bytesperline = ctx->buf_width;
+> +		pix_fmt_mp->plane_fmt[0].bytesperline = ctx->stride[0];
+>  		pix_fmt_mp->plane_fmt[0].sizeimage = ctx->luma_size;
+> -		pix_fmt_mp->plane_fmt[1].bytesperline = ctx->buf_width;
+> +		pix_fmt_mp->plane_fmt[1].bytesperline = ctx->stride[1];
+>  		pix_fmt_mp->plane_fmt[1].sizeimage = ctx->chroma_size;
+> +		if (ctx->src_fmt->fourcc == V4L2_PIX_FMT_YUV420M ||
+> +				ctx->src_fmt->fourcc == V4L2_PIX_FMT_YVU420M) {
+> +			pix_fmt_mp->plane_fmt[2].bytesperline = ctx->stride[2];
+> +			pix_fmt_mp->plane_fmt[2].sizeimage = ctx->chroma_size_1;
+> +		}
+>  	} else {
+>  		mfc_err("invalid buf type\n");
+>  		return -EINVAL;
+> @@ -1468,9 +1507,14 @@ static int vidioc_s_fmt(struct file *file, void *priv, struct v4l2_format *f)
+>  
+>  		s5p_mfc_hw_call(dev->mfc_ops, enc_calc_src_size, ctx);
+>  		pix_fmt_mp->plane_fmt[0].sizeimage = ctx->luma_size;
+> -		pix_fmt_mp->plane_fmt[0].bytesperline = ctx->buf_width;
+> +		pix_fmt_mp->plane_fmt[0].bytesperline = ctx->stride[0];
+>  		pix_fmt_mp->plane_fmt[1].sizeimage = ctx->chroma_size;
+> -		pix_fmt_mp->plane_fmt[1].bytesperline = ctx->buf_width;
+> +		pix_fmt_mp->plane_fmt[1].bytesperline = ctx->stride[1];
+> +		if (ctx->src_fmt->fourcc == V4L2_PIX_FMT_YUV420M ||
+> +				ctx->src_fmt->fourcc == V4L2_PIX_FMT_YVU420M) {
+> +			pix_fmt_mp->plane_fmt[2].bytesperline = ctx->stride[2];
+> +			pix_fmt_mp->plane_fmt[2].sizeimage = ctx->chroma_size_1;
+> +		}
+>  
+>  		ctx->src_bufs_cnt = 0;
+>  		ctx->output_state = QUEUE_FREE;
+> @@ -2414,10 +2458,16 @@ static int s5p_mfc_queue_setup(struct vb2_queue *vq,
+>  
+>  		psize[0] = ctx->luma_size;
+>  		psize[1] = ctx->chroma_size;
+> +		if (ctx->src_fmt->fourcc == V4L2_PIX_FMT_YUV420M ||
+> +				ctx->src_fmt->fourcc == V4L2_PIX_FMT_YVU420M)
+> +			psize[2] = ctx->chroma_size_1;
+>  
+>  		if (IS_MFCV6_PLUS(dev)) {
+>  			alloc_devs[0] = ctx->dev->mem_dev[BANK_L_CTX];
+>  			alloc_devs[1] = ctx->dev->mem_dev[BANK_L_CTX];
+> +			if (ctx->src_fmt->fourcc == V4L2_PIX_FMT_YUV420M ||
+> +				ctx->src_fmt->fourcc == V4L2_PIX_FMT_YVU420M)
+> +				alloc_devs[2] = ctx->dev->mem_dev[BANK_L_CTX];
+>  		} else {
+>  			alloc_devs[0] = ctx->dev->mem_dev[BANK_R_CTX];
+>  			alloc_devs[1] = ctx->dev->mem_dev[BANK_R_CTX];
+> @@ -2456,6 +2506,10 @@ static int s5p_mfc_buf_init(struct vb2_buffer *vb)
+>  					vb2_dma_contig_plane_dma_addr(vb, 0);
+>  		ctx->src_bufs[i].cookie.raw.chroma =
+>  					vb2_dma_contig_plane_dma_addr(vb, 1);
+> +		if (ctx->src_fmt->fourcc == V4L2_PIX_FMT_YUV420M ||
+> +				ctx->src_fmt->fourcc == V4L2_PIX_FMT_YVU420M)
+> +			ctx->src_bufs[i].cookie.raw.chroma_1 =
+> +					vb2_dma_contig_plane_dma_addr(vb, 2);
+>  		ctx->src_bufs_cnt++;
+>  	} else {
+>  		mfc_err("invalid queue type: %d\n", vq->type);
+> @@ -2493,6 +2547,12 @@ static int s5p_mfc_buf_prepare(struct vb2_buffer *vb)
+>  			mfc_err("plane size is too small for output\n");
+>  			return -EINVAL;
+>  		}
+> +		if ((ctx->src_fmt->fourcc == V4L2_PIX_FMT_YUV420M ||
+> +		     ctx->src_fmt->fourcc == V4L2_PIX_FMT_YVU420M) &&
+> +		    (vb2_plane_size(vb, 2) < ctx->chroma_size_1)) {
+> +			mfc_err("plane size is too small for output\n");
+> +			return -EINVAL;
+> +		}
+>  	} else {
+>  		mfc_err("invalid queue type: %d\n", vq->type);
+>  		return -EINVAL;
+> diff --git a/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_opr.h b/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_opr.h
+> index 87ac56756a16..7c5e851c8191 100644
+> --- a/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_opr.h
+> +++ b/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_opr.h
+> @@ -293,9 +293,11 @@ struct s5p_mfc_hw_ops {
+>  	int (*set_enc_stream_buffer)(struct s5p_mfc_ctx *ctx,
+>  			unsigned long addr, unsigned int size);
+>  	void (*set_enc_frame_buffer)(struct s5p_mfc_ctx *ctx,
+> -			unsigned long y_addr, unsigned long c_addr);
+> +			unsigned long y_addr, unsigned long c_addr,
+> +			unsigned long c_1_addr);
+>  	void (*get_enc_frame_buffer)(struct s5p_mfc_ctx *ctx,
+> -			unsigned long *y_addr, unsigned long *c_addr);
+> +			unsigned long *y_addr, unsigned long *c_addr,
+> +			unsigned long *c_1_addr);
+>  	void (*try_run)(struct s5p_mfc_dev *dev);
+>  	void (*clear_int_flags)(struct s5p_mfc_dev *dev);
+>  	int (*get_dspl_y_adr)(struct s5p_mfc_dev *dev);
+> diff --git a/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_opr_v5.c b/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_opr_v5.c
+> index 28a06dc343fd..fcfaf125a5a1 100644
+> --- a/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_opr_v5.c
+> +++ b/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_opr_v5.c
+> @@ -516,7 +516,8 @@ static int s5p_mfc_set_enc_stream_buffer_v5(struct s5p_mfc_ctx *ctx,
+>  }
+>  
+>  static void s5p_mfc_set_enc_frame_buffer_v5(struct s5p_mfc_ctx *ctx,
+> -		unsigned long y_addr, unsigned long c_addr)
+> +		unsigned long y_addr, unsigned long c_addr,
+> +		unsigned long c_1_addr)
+>  {
+>  	struct s5p_mfc_dev *dev = ctx->dev;
+>  
+> @@ -525,7 +526,8 @@ static void s5p_mfc_set_enc_frame_buffer_v5(struct s5p_mfc_ctx *ctx,
+>  }
+>  
+>  static void s5p_mfc_get_enc_frame_buffer_v5(struct s5p_mfc_ctx *ctx,
+> -		unsigned long *y_addr, unsigned long *c_addr)
+> +		unsigned long *y_addr, unsigned long *c_addr,
+> +		unsigned long *c_1_addr)
+>  {
+>  	struct s5p_mfc_dev *dev = ctx->dev;
+>  
+> @@ -1210,7 +1212,7 @@ static int s5p_mfc_run_enc_frame(struct s5p_mfc_ctx *ctx)
+>  	if (list_empty(&ctx->src_queue)) {
+>  		/* send null frame */
+>  		s5p_mfc_set_enc_frame_buffer_v5(ctx, dev->dma_base[BANK_R_CTX],
+> -						dev->dma_base[BANK_R_CTX]);
+> +						dev->dma_base[BANK_R_CTX], 0);
+>  		src_mb = NULL;
+>  	} else {
+>  		src_mb = list_entry(ctx->src_queue.next, struct s5p_mfc_buf,
+> @@ -1220,7 +1222,7 @@ static int s5p_mfc_run_enc_frame(struct s5p_mfc_ctx *ctx)
+>  			/* send null frame */
+>  			s5p_mfc_set_enc_frame_buffer_v5(ctx,
+>  						dev->dma_base[BANK_R_CTX],
+> -						dev->dma_base[BANK_R_CTX]);
+> +						dev->dma_base[BANK_R_CTX], 0);
+>  			ctx->state = MFCINST_FINISHING;
+>  		} else {
+>  			src_y_addr = vb2_dma_contig_plane_dma_addr(
+> @@ -1228,7 +1230,7 @@ static int s5p_mfc_run_enc_frame(struct s5p_mfc_ctx *ctx)
+>  			src_c_addr = vb2_dma_contig_plane_dma_addr(
+>  					&src_mb->b->vb2_buf, 1);
+>  			s5p_mfc_set_enc_frame_buffer_v5(ctx, src_y_addr,
+> -								src_c_addr);
+> +								src_c_addr, 0);
+>  			if (src_mb->flags & MFC_BUF_FLAG_EOS)
+>  				ctx->state = MFCINST_FINISHING;
+>  		}
+> diff --git a/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_opr_v6.c b/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_opr_v6.c
+> index fb3f0718821d..e579c765e902 100644
+> --- a/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_opr_v6.c
+> +++ b/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_opr_v6.c
+> @@ -494,16 +494,43 @@ static void s5p_mfc_dec_calc_dpb_size_v6(struct s5p_mfc_ctx *ctx)
+>  	struct s5p_mfc_dev *dev = ctx->dev;
+>  	ctx->buf_width = ALIGN(ctx->img_width, S5P_FIMV_NV12MT_HALIGN_V6);
+>  	ctx->buf_height = ALIGN(ctx->img_height, S5P_FIMV_NV12MT_VALIGN_V6);
+> +	ctx->chroma_size_1 = 0;
+>  	mfc_debug(2, "SEQ Done: Movie dimensions %dx%d,\n"
+>  			"buffer dimensions: %dx%d\n", ctx->img_width,
+>  			ctx->img_height, ctx->buf_width, ctx->buf_height);
+>  
+> -	ctx->luma_size = calc_plane(ctx->img_width, ctx->img_height);
+> -	ctx->chroma_size = calc_plane(ctx->img_width, (ctx->img_height >> 1));
+> +	switch (ctx->dst_fmt->fourcc) {
+> +	case V4L2_PIX_FMT_NV12M:
+> +	case V4L2_PIX_FMT_NV21M:
+> +		ctx->stride[0] = ALIGN(ctx->img_width,
+> +					S5P_FIMV_NV12MT_HALIGN_V6);
+> +		ctx->stride[1] = ALIGN(ctx->img_width,
+> +					S5P_FIMV_NV12MT_HALIGN_V6);
+> +		ctx->luma_size = calc_plane(ctx->stride[0], ctx->img_height);
+> +		ctx->chroma_size = calc_plane(ctx->stride[1],
+> +					(ctx->img_height / 2));
+> +		break;
+> +	case V4L2_PIX_FMT_YUV420M:
+> +	case V4L2_PIX_FMT_YVU420M:
+> +		ctx->stride[0] = ALIGN(ctx->img_width,
+> +					S5P_FIMV_NV12MT_HALIGN_V6);
+> +		ctx->stride[1] = ALIGN(ctx->img_width / 2,
+> +					S5P_FIMV_NV12MT_HALIGN_V6);
+> +		ctx->stride[2] = ALIGN(ctx->img_width / 2,
+> +					S5P_FIMV_NV12MT_HALIGN_V6);
+> +		ctx->luma_size = calc_plane(ctx->stride[0], ctx->img_height);
+> +		ctx->chroma_size = calc_plane(ctx->stride[1],
+> +					(ctx->img_height / 2));
+> +		ctx->chroma_size_1 = calc_plane(ctx->stride[2],
+> +					(ctx->img_height / 2));
+> +		break;
+> +	}
+> +
+>  	if (IS_MFCV8_PLUS(ctx->dev)) {
+>  		/* MFCv8 needs additional 64 bytes for luma,chroma dpb*/
+>  		ctx->luma_size += S5P_FIMV_D_ALIGN_PLANE_SIZE_V8;
+>  		ctx->chroma_size += S5P_FIMV_D_ALIGN_PLANE_SIZE_V8;
+> +		ctx->chroma_size_1 += S5P_FIMV_D_ALIGN_PLANE_SIZE_V8;
+>  	}
+>  
+>  	if (ctx->codec_mode == S5P_MFC_CODEC_H264_DEC ||
+> @@ -534,15 +561,53 @@ static void s5p_mfc_enc_calc_src_size_v6(struct s5p_mfc_ctx *ctx)
+>  	mb_width = MB_WIDTH(ctx->img_width);
+>  	mb_height = MB_HEIGHT(ctx->img_height);
+>  
+> -	ctx->buf_width = ALIGN(ctx->img_width, S5P_FIMV_NV12M_HALIGN_V6);
+> -	ctx->luma_size = ALIGN((mb_width * mb_height) * 256, 256);
+> -	ctx->chroma_size = ALIGN((mb_width * mb_height) * 128, 256);
+> -
+> -	/* MFCv7 needs pad bytes for Luma and Chroma */
+> -	if (IS_MFCV7_PLUS(ctx->dev)) {
+> +	if (IS_MFCV12(ctx->dev)) {
+> +		switch (ctx->src_fmt->fourcc) {
+> +		case V4L2_PIX_FMT_NV12M:
+> +		case V4L2_PIX_FMT_NV21M:
+> +			ctx->stride[0] = ALIGN(ctx->img_width,
+> +						S5P_FIMV_NV12M_HALIGN_V6);
+> +			ctx->stride[1] = ALIGN(ctx->img_width,
+> +						S5P_FIMV_NV12M_HALIGN_V6);
+> +			ctx->luma_size = ctx->stride[0] *
+> +						ALIGN(ctx->img_height, 16);
+> +			ctx->chroma_size =  ctx->stride[0] *
+> +						ALIGN(ctx->img_height / 2, 16);
+> +			break;
+> +		case V4L2_PIX_FMT_YUV420M:
+> +		case V4L2_PIX_FMT_YVU420M:
+> +			ctx->stride[0] = ALIGN(ctx->img_width,
+> +						S5P_FIMV_NV12M_HALIGN_V6);
+> +			ctx->stride[1] = ALIGN(ctx->img_width / 2,
+> +						S5P_FIMV_NV12M_HALIGN_V6);
+> +			ctx->stride[2] = ALIGN(ctx->img_width / 2,
+> +						S5P_FIMV_NV12M_HALIGN_V6);
+> +			ctx->luma_size = ctx->stride[0] *
+> +						ALIGN(ctx->img_height, 16);
+> +			ctx->chroma_size =  ctx->stride[1] *
+> +						ALIGN(ctx->img_height / 2, 16);
+> +			ctx->chroma_size_1 =  ctx->stride[2] *
+> +						ALIGN(ctx->img_height / 2, 16);
+> +			break;
+> +		}
+>  		ctx->luma_size += MFC_LUMA_PAD_BYTES_V7;
+> -		ctx->chroma_size += MFC_CHROMA_PAD_BYTES_V7;
+> +		ctx->chroma_size += MFC_CHROMA_PAD_BYTES_V12;
+> +		ctx->chroma_size_1 += MFC_CHROMA_PAD_BYTES_V12;
+> +	} else {
+> +		ctx->buf_width = ALIGN(ctx->img_width,
+> +					S5P_FIMV_NV12M_HALIGN_V6);
+> +		ctx->stride[0] = ctx->buf_width;
+> +		ctx->stride[1] = ctx->buf_width;
+> +		ctx->luma_size = ALIGN((mb_width * mb_height) * 256, 256);
+> +		ctx->chroma_size = ALIGN((mb_width * mb_height) * 128, 256);
+> +		ctx->chroma_size_1 = 0;
+> +		/* MFCv7 needs pad bytes for Luma and Chroma */
+> +		if (IS_MFCV7_PLUS(ctx->dev)) {
+> +			ctx->luma_size += MFC_LUMA_PAD_BYTES_V7;
+> +			ctx->chroma_size += MFC_LUMA_PAD_BYTES_V7;
+> +		}
+>  	}
+> +
+>  }
+>  
+>  /* Set registers for decoding stream buffer */
+> @@ -588,15 +653,21 @@ static int s5p_mfc_set_dec_frame_buffer_v6(struct s5p_mfc_ctx *ctx)
+>  	writel(ctx->total_dpb_count, mfc_regs->d_num_dpb);
+>  	writel(ctx->luma_size, mfc_regs->d_first_plane_dpb_size);
+>  	writel(ctx->chroma_size, mfc_regs->d_second_plane_dpb_size);
+> -
+> +	if (ctx->dst_fmt->fourcc == V4L2_PIX_FMT_YUV420M ||
+> +			ctx->dst_fmt->fourcc == V4L2_PIX_FMT_YVU420M)
+> +		writel(ctx->chroma_size_1, mfc_regs->d_third_plane_dpb_size);
+>  	writel(buf_addr1, mfc_regs->d_scratch_buffer_addr);
+>  	writel(ctx->scratch_buf_size, mfc_regs->d_scratch_buffer_size);
+>  
+>  	if (IS_MFCV8_PLUS(dev)) {
+> -		writel(ctx->img_width,
+> +		writel(ctx->stride[0],
+>  			mfc_regs->d_first_plane_dpb_stride_size);
+> -		writel(ctx->img_width,
+> +		writel(ctx->stride[1],
+>  			mfc_regs->d_second_plane_dpb_stride_size);
+> +		if (ctx->dst_fmt->fourcc == V4L2_PIX_FMT_YUV420M ||
+> +				ctx->dst_fmt->fourcc == V4L2_PIX_FMT_YVU420M)
+> +			writel(ctx->stride[2],
+> +				mfc_regs->d_third_plane_dpb_stride_size);
+>  	}
+>  
+>  	buf_addr1 += ctx->scratch_buf_size;
+> @@ -625,6 +696,13 @@ static int s5p_mfc_set_dec_frame_buffer_v6(struct s5p_mfc_ctx *ctx)
+>  					ctx->dst_bufs[i].cookie.raw.chroma);
+>  		writel(ctx->dst_bufs[i].cookie.raw.chroma,
+>  				mfc_regs->d_second_plane_dpb + i * 4);
+> +		if (ctx->dst_fmt->fourcc == V4L2_PIX_FMT_YUV420M ||
+> +				ctx->dst_fmt->fourcc == V4L2_PIX_FMT_YVU420M) {
+> +			mfc_debug(2, "\tChroma_1 %d: %zx\n", i,
+> +					ctx->dst_bufs[i].cookie.raw.chroma_1);
+> +			writel(ctx->dst_bufs[i].cookie.raw.chroma_1,
+> +					mfc_regs->d_third_plane_dpb + i * 4);
+> +		}
+>  	}
+>  	if (ctx->codec_mode == S5P_MFC_CODEC_H264_DEC ||
+>  			ctx->codec_mode == S5P_MFC_CODEC_H264_MVC_DEC ||
+> @@ -683,20 +761,24 @@ static int s5p_mfc_set_enc_stream_buffer_v6(struct s5p_mfc_ctx *ctx,
+>  }
+>  
+>  static void s5p_mfc_set_enc_frame_buffer_v6(struct s5p_mfc_ctx *ctx,
+> -		unsigned long y_addr, unsigned long c_addr)
+> +		unsigned long y_addr, unsigned long c_addr,
+> +		unsigned long c_1_addr)
+>  {
+>  	struct s5p_mfc_dev *dev = ctx->dev;
+>  	const struct s5p_mfc_regs *mfc_regs = dev->mfc_regs;
+>  
+>  	writel(y_addr, mfc_regs->e_source_first_plane_addr);
+>  	writel(c_addr, mfc_regs->e_source_second_plane_addr);
+> +	writel(c_1_addr, mfc_regs->e_source_third_plane_addr);
+>  
+>  	mfc_debug(2, "enc src y buf addr: 0x%08lx\n", y_addr);
+>  	mfc_debug(2, "enc src c buf addr: 0x%08lx\n", c_addr);
+> +	mfc_debug(2, "enc src cr buf addr: 0x%08lx\n", c_1_addr);
+>  }
+>  
+>  static void s5p_mfc_get_enc_frame_buffer_v6(struct s5p_mfc_ctx *ctx,
+> -		unsigned long *y_addr, unsigned long *c_addr)
+> +		unsigned long *y_addr, unsigned long *c_addr,
+> +		unsigned long *c_1_addr)
+>  {
+>  	struct s5p_mfc_dev *dev = ctx->dev;
+>  	const struct s5p_mfc_regs *mfc_regs = dev->mfc_regs;
+> @@ -704,12 +786,17 @@ static void s5p_mfc_get_enc_frame_buffer_v6(struct s5p_mfc_ctx *ctx,
+>  
+>  	*y_addr = readl(mfc_regs->e_encoded_source_first_plane_addr);
+>  	*c_addr = readl(mfc_regs->e_encoded_source_second_plane_addr);
+> +	if (ctx->src_fmt->fourcc == V4L2_PIX_FMT_YUV420M ||
+> +			ctx->src_fmt->fourcc == V4L2_PIX_FMT_YVU420M)
+> +		*c_1_addr = readl(mfc_regs->e_encoded_source_third_plane_addr);
+> +	else
+> +		*c_1_addr = 0;
+>  
+>  	enc_recon_y_addr = readl(mfc_regs->e_recon_luma_dpb_addr);
+>  	enc_recon_c_addr = readl(mfc_regs->e_recon_chroma_dpb_addr);
+>  
+>  	mfc_debug(2, "recon y addr: 0x%08lx y_addr: 0x%08lx\n", enc_recon_y_addr, *y_addr);
+> -	mfc_debug(2, "recon c addr: 0x%08lx\n", enc_recon_c_addr);
+> +	mfc_debug(2, "recon c addr: 0x%08lx c_addr: 0x%08lx\n", enc_recon_c_addr, *c_addr);
+>  }
+>  
+>  /* Set encoding ref & codec buffer */
+> @@ -886,6 +973,20 @@ static int s5p_mfc_set_enc_params(struct s5p_mfc_ctx *ctx)
+>  		writel(reg, mfc_regs->e_enc_options);
+>  		/* 0: NV12(CbCr), 1: NV21(CrCb) */
+>  		writel(0x0, mfc_regs->pixel_format);
+> +	} else if (ctx->src_fmt->fourcc == V4L2_PIX_FMT_YVU420M) {
+> +		/* 0: Linear, 1: 2D tiled*/
+> +		reg = readl(mfc_regs->e_enc_options);
+> +		reg &= ~(0x1 << 7);
+> +		writel(reg, mfc_regs->e_enc_options);
+> +		/* 2: YV12(CrCb), 3: I420(CrCb) */
+> +		writel(0x2, mfc_regs->pixel_format);
+> +	} else if (ctx->src_fmt->fourcc == V4L2_PIX_FMT_YUV420M) {
+> +		/* 0: Linear, 1: 2D tiled*/
+> +		reg = readl(mfc_regs->e_enc_options);
+> +		reg &= ~(0x1 << 7);
+> +		writel(reg, mfc_regs->e_enc_options);
+> +		/* 2: YV12(CrCb), 3: I420(CrCb) */
+> +		writel(0x3, mfc_regs->pixel_format);
+>  	}
+>  
+>  	/* memory structure recon. frame */
+> @@ -1696,8 +1797,12 @@ static int s5p_mfc_init_decode_v6(struct s5p_mfc_ctx *ctx)
+>  	else
+>  		writel(reg, mfc_regs->d_dec_options);
+>  
+> -	/* 0: NV12(CbCr), 1: NV21(CrCb) */
+> -	if (ctx->dst_fmt->fourcc == V4L2_PIX_FMT_NV21M)
+> +	/* 0: NV12(CbCr), 1: NV21(CrCb), 2: YV12(CrCb), 3: I420(CbCr) */
+> +	if (ctx->dst_fmt->fourcc == V4L2_PIX_FMT_YUV420M)
+> +		writel(0x3, mfc_regs->pixel_format);
+> +	else if (ctx->dst_fmt->fourcc == V4L2_PIX_FMT_YVU420M)
+> +		writel(0x2, mfc_regs->pixel_format);
+> +	else if (ctx->dst_fmt->fourcc == V4L2_PIX_FMT_NV21M)
+>  		writel(0x1, mfc_regs->pixel_format);
+>  	else
+>  		writel(0x0, mfc_regs->pixel_format);
+> @@ -1781,8 +1886,12 @@ static int s5p_mfc_init_encode_v6(struct s5p_mfc_ctx *ctx)
+>  
+>  	/* Set stride lengths for v7 & above */
+>  	if (IS_MFCV7_PLUS(dev)) {
+> -		writel(ctx->img_width, mfc_regs->e_source_first_plane_stride);
+> -		writel(ctx->img_width, mfc_regs->e_source_second_plane_stride);
+> +		writel(ctx->stride[0], mfc_regs->e_source_first_plane_stride);
+> +		writel(ctx->stride[1], mfc_regs->e_source_second_plane_stride);
+> +		if (ctx->src_fmt->fourcc == V4L2_PIX_FMT_YUV420M ||
+> +				ctx->src_fmt->fourcc == V4L2_PIX_FMT_YVU420M)
+> +			writel(ctx->stride[2],
+> +					mfc_regs->e_source_third_plane_stride);
+>  	}
+>  
+>  	writel(ctx->inst_no, mfc_regs->instance_id);
+> @@ -1891,7 +2000,7 @@ static inline int s5p_mfc_run_enc_frame(struct s5p_mfc_ctx *ctx)
+>  	struct s5p_mfc_dev *dev = ctx->dev;
+>  	struct s5p_mfc_buf *dst_mb;
+>  	struct s5p_mfc_buf *src_mb;
+> -	unsigned long src_y_addr, src_c_addr, dst_addr;
+> +	unsigned long src_y_addr, src_c_addr, src_c_1_addr, dst_addr;
+>  	/*
+>  	unsigned int src_y_size, src_c_size;
+>  	*/
+> @@ -1909,22 +2018,29 @@ static inline int s5p_mfc_run_enc_frame(struct s5p_mfc_ctx *ctx)
+>  
+>  	if (list_empty(&ctx->src_queue)) {
+>  		/* send null frame */
+> -		s5p_mfc_set_enc_frame_buffer_v6(ctx, 0, 0);
+> +		s5p_mfc_set_enc_frame_buffer_v6(ctx, 0, 0, 0);
+>  		src_mb = NULL;
+>  	} else {
+>  		src_mb = list_entry(ctx->src_queue.next, struct s5p_mfc_buf, list);
+>  		src_mb->flags |= MFC_BUF_FLAG_USED;
+>  		if (src_mb->b->vb2_buf.planes[0].bytesused == 0) {
+> -			s5p_mfc_set_enc_frame_buffer_v6(ctx, 0, 0);
+> +			s5p_mfc_set_enc_frame_buffer_v6(ctx, 0, 0, 0);
+>  			ctx->state = MFCINST_FINISHING;
+>  		} else {
+>  			src_y_addr = vb2_dma_contig_plane_dma_addr(&src_mb->b->vb2_buf, 0);
+>  			src_c_addr = vb2_dma_contig_plane_dma_addr(&src_mb->b->vb2_buf, 1);
+> +			if (ctx->src_fmt->fourcc == V4L2_PIX_FMT_YUV420M ||
+> +				ctx->src_fmt->fourcc == V4L2_PIX_FMT_YVU420M)
+> +				src_c_1_addr = vb2_dma_contig_plane_dma_addr
+> +						(&src_mb->b->vb2_buf, 2);
+> +			else
+> +				src_c_1_addr = 0;
+>  
+>  			mfc_debug(2, "enc src y addr: 0x%08lx\n", src_y_addr);
+>  			mfc_debug(2, "enc src c addr: 0x%08lx\n", src_c_addr);
+>  
+> -			s5p_mfc_set_enc_frame_buffer_v6(ctx, src_y_addr, src_c_addr);
+> +			s5p_mfc_set_enc_frame_buffer_v6(ctx, src_y_addr,
+> +						src_c_addr, src_c_1_addr);
+>  			if (src_mb->flags & MFC_BUF_FLAG_EOS)
+>  				ctx->state = MFCINST_FINISHING;
+>  		}
+> @@ -2450,6 +2566,8 @@ const struct s5p_mfc_regs *s5p_mfc_init_regs_v6_plus(struct s5p_mfc_dev *dev)
+>  			S5P_FIMV_E_ENCODED_SOURCE_FIRST_ADDR_V7);
+>  	R(e_encoded_source_second_plane_addr,
+>  			S5P_FIMV_E_ENCODED_SOURCE_SECOND_ADDR_V7);
+> +	R(e_encoded_source_third_plane_addr,
+> +			S5P_FIMV_E_ENCODED_SOURCE_THIRD_ADDR_V7);
+>  	R(e_vp8_options, S5P_FIMV_E_VP8_OPTIONS_V7);
+>  
+>  	if (!IS_MFCV8_PLUS(dev))
+> @@ -2464,16 +2582,20 @@ const struct s5p_mfc_regs *s5p_mfc_init_regs_v6_plus(struct s5p_mfc_dev *dev)
+>  	R(d_cpb_buffer_offset, S5P_FIMV_D_CPB_BUFFER_OFFSET_V8);
+>  	R(d_first_plane_dpb_size, S5P_FIMV_D_FIRST_PLANE_DPB_SIZE_V8);
+>  	R(d_second_plane_dpb_size, S5P_FIMV_D_SECOND_PLANE_DPB_SIZE_V8);
+> +	R(d_third_plane_dpb_size, S5P_FIMV_D_THIRD_PLANE_DPB_SIZE_V8);
+>  	R(d_scratch_buffer_addr, S5P_FIMV_D_SCRATCH_BUFFER_ADDR_V8);
+>  	R(d_scratch_buffer_size, S5P_FIMV_D_SCRATCH_BUFFER_SIZE_V8);
+>  	R(d_first_plane_dpb_stride_size,
+>  			S5P_FIMV_D_FIRST_PLANE_DPB_STRIDE_SIZE_V8);
+>  	R(d_second_plane_dpb_stride_size,
+>  			S5P_FIMV_D_SECOND_PLANE_DPB_STRIDE_SIZE_V8);
+> +	R(d_third_plane_dpb_stride_size,
+> +			S5P_FIMV_D_THIRD_PLANE_DPB_STRIDE_SIZE_V8);
+>  	R(d_mv_buffer_size, S5P_FIMV_D_MV_BUFFER_SIZE_V8);
+>  	R(d_num_mv, S5P_FIMV_D_NUM_MV_V8);
+>  	R(d_first_plane_dpb, S5P_FIMV_D_FIRST_PLANE_DPB_V8);
+>  	R(d_second_plane_dpb, S5P_FIMV_D_SECOND_PLANE_DPB_V8);
+> +	R(d_third_plane_dpb, S5P_FIMV_D_THIRD_PLANE_DPB_V8);
+>  	R(d_mv_buffer, S5P_FIMV_D_MV_BUFFER_V8);
+>  	R(d_init_buffer_options, S5P_FIMV_D_INIT_BUFFER_OPTIONS_V8);
+>  	R(d_available_dpb_flag_lower, S5P_FIMV_D_AVAILABLE_DPB_FLAG_LOWER_V8);
 
 
