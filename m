@@ -1,176 +1,124 @@
-Return-Path: <devicetree+bounces-18040-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18035-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2095C7F4E20
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 18:18:59 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9762F7F4DBE
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 18:05:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 178961C20BAF
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 17:18:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 38F5BB20BBD
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 17:05:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB6DB5B5A8;
-	Wed, 22 Nov 2023 17:18:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 336DD51028;
+	Wed, 22 Nov 2023 17:04:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="TG61KYYx"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="HsqmTlLj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDAD1197
-	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 09:18:16 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-40891d38e3fso32346605e9.1
-        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 09:18:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1700673495; x=1701278295; darn=vger.kernel.org;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=EhO7+CVm1m1oUE9z/3Z07Nkno2ujdBPUPga6VKMIC2w=;
-        b=TG61KYYxYiZwFVhLw4zA98zhDdQXArTG98dhGxFPk4HoPJBs6obRLQe7VuxqadMPPO
-         eBuoZQJzoWtRBb+QrdgiUTgWx/uwlBOii4L2doWVCnyq0LaU0kZOn4OxP5YoEUReswZ/
-         MecotTcCxjzQdiFBk34/F4Q8R40jCF4ERuP8nC1nTOQRJKiyu+ivIANYVZPSL++sE/01
-         jNC8OuObEBaUzqV/Ni3frX/aR4r9BSBEDNe70liP5OgeqWYbusi3HdKo6DOUvVdauS/0
-         r9v7mzM0StyIFqLR0XQRVws90c2sEH1dD7F4mPpTlTpdm2sRuGtQ1x/yXkUrpEOyPCYv
-         0C/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700673495; x=1701278295;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EhO7+CVm1m1oUE9z/3Z07Nkno2ujdBPUPga6VKMIC2w=;
-        b=ljR6nrUV7R/SOgaVEL9G7ARpy++OLHkL49uXCtRRcatd1rf7YfLl8oGKoqNtUyhxIS
-         MlWApDKm0Wyu2B+yUR9VWvUjDrHkMXERVuhJD9bRty8WJiyhaBqQ3F/0r7n+NavgKU9X
-         r4xq8x8JvcwfzAq8BYkhWbzgv5ZHL8/QArZAbAtl7y3ssb/qW4ZeqizNSehLPeIrNhtk
-         FfoEbHJwxjamdtanufhAiEO33WA0SpbMHkRzEnYivHxJf2WGxmDiVR2QqShMW/Hl+8UX
-         SgXaXN8Ern3nvAKz3lQodiNYLHrHnLkD16h65X3zMSCAwiMD89Hz9GTWewbDWSJZxcXT
-         Z4bA==
-X-Gm-Message-State: AOJu0YwJbqWcfwr3rmxjO1aBDTIQqpmWbPhs+Ktfi92+GWyUP2JrKh+I
-	XhvHv3K0b4paM4aAXtl0578mLw==
-X-Google-Smtp-Source: AGHT+IFGdEFm+aNRJMiaufK8tp1EybalqBvtuMK496Fp/eAzQQiZ+CFnVm6AN+L996HflL2LKvAZfw==
-X-Received: by 2002:a05:600c:5102:b0:405:3455:e1a3 with SMTP id o2-20020a05600c510200b004053455e1a3mr2350009wms.17.1700673495188;
-        Wed, 22 Nov 2023 09:18:15 -0800 (PST)
-Received: from localhost ([2a01:e0a:3c5:5fb1:d0a1:9a3c:4f4b:fa20])
-        by smtp.gmail.com with ESMTPSA id n5-20020a7bc5c5000000b0040775501256sm8791wmk.16.2023.11.22.09.18.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Nov 2023 09:18:13 -0800 (PST)
-References: <20231117125919.1696980-1-jbrunet@baylibre.com>
- <20231117125919.1696980-3-jbrunet@baylibre.com>
- <170040994064.269288.960284011884896046.robh@kernel.org>
- <4608012c-059f-4d6a-914b-e85ad0c32ff0@linaro.org>
- <1j5y1wg3sb.fsf@starbuckisacylon.baylibre.com>
- <2e7a65da-5c1d-4dd4-ac69-7559a53afdf3@linaro.org>
- <1j1qckg21u.fsf@starbuckisacylon.baylibre.com>
- <94e69281-93e1-41cd-9cf5-81cbbc15572c@linaro.org>
- <1jwmu9et6j.fsf@starbuckisacylon.baylibre.com>
- <2bbc2031-89d7-42e9-828e-068fa06eabf4@linaro.org>
- <1jo7flerag.fsf@starbuckisacylon.baylibre.com>
- <2d9c4c93-6cea-4a44-9093-c1fd51d0a21c@linaro.org>
-User-agent: mu4e 1.10.7; emacs 29.1
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Jerome Brunet <jbrunet@baylibre.com>, neil.armstrong@linaro.org, Rob
- Herring <robh@kernel.org>, JunYi Zhao <junyi.zhao@amlogic.com>,
- devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, Thierry Reding
- <thierry.reding@gmail.com>, linux-kernel@vger.kernel.org,
- linux-pwm@vger.kernel.org, linux-amlogic@lists.infradead.org, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH v2 2/6] dt-bindings: pwm: amlogic: add new compatible
- for meson8 pwm type
-Date: Wed, 22 Nov 2023 17:14:56 +0100
-In-reply-to: <2d9c4c93-6cea-4a44-9093-c1fd51d0a21c@linaro.org>
-Message-ID: <1jjzq9emga.fsf@starbuckisacylon.baylibre.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DF9E11F;
+	Wed, 22 Nov 2023 09:04:53 -0800 (PST)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3AMH4ZQL112193;
+	Wed, 22 Nov 2023 11:04:35 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1700672675;
+	bh=Aux+7eojx+Fb63WPK91qxLrk6ZvM6nCAXtH2OgSbbbA=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=HsqmTlLjG9kom2HsRRQitcKY5oYlPJ1VUIycsyhPLYk9r5RcmKDCzasFmRlaNMVeL
+	 uAx70YOtoSZKwfes4SYuZx/2+LPfaaORvMBK8yPo25f4pqX8YkAVZpi5v499BPImnd
+	 ASP2xulKogf3wVHZb6H85w33L1OVcJHQdBGqzouM=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3AMH4ZPF006683
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 22 Nov 2023 11:04:35 -0600
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 22
+ Nov 2023 11:04:35 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 22 Nov 2023 11:04:35 -0600
+Received: from [172.24.227.94] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3AMH4Vqc124276;
+	Wed, 22 Nov 2023 11:04:32 -0600
+Message-ID: <522e57a5-20bb-48c4-ac55-15e92ad1a6e2@ti.com>
+Date: Wed, 22 Nov 2023 22:34:31 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/4] dt-bindings: dma: ti: k3-*: Add descriptions for
+ register regions
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Peter Ujfalusi
+	<peter.ujfalusi@gmail.com>,
+        Vinod Koul <vkoul@kernel.org>, Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <dmaengine@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+References: <20231122154238.815781-1-vigneshr@ti.com>
+ <20231122154238.815781-2-vigneshr@ti.com>
+ <ac4011c6-980f-483b-97e9-da0e1fd4ca61@linaro.org>
+Content-Language: en-US
+From: Vignesh Raghavendra <vigneshr@ti.com>
+In-Reply-To: <ac4011c6-980f-483b-97e9-da0e1fd4ca61@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
 
-On Wed 22 Nov 2023 at 16:46, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
+On 22/11/23 21:49, Krzysztof Kozlowski wrote:
+> On 22/11/2023 16:42, Vignesh Raghavendra wrote:
+>> In preparation for introducing more register regions, add description
+>> for existing register regions so that its easier to map reg-names to
+>> that of SoC Documentations/TRMs.
+>>
+>> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+>> ---
+>>  .../devicetree/bindings/dma/ti/k3-bcdma.yaml  | 26 +++++++++++--------
+>>  .../devicetree/bindings/dma/ti/k3-pktdma.yaml |  6 ++++-
+>>  .../devicetree/bindings/dma/ti/k3-udma.yaml   |  5 +++-
+>>  3 files changed, 24 insertions(+), 13 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml b/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml
+>> index 4ca300a42a99..b5444800b036 100644
+>> --- a/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml
+>> +++ b/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml
+>> @@ -35,14 +35,6 @@ properties:
+>>        - ti,am64-dmss-bcdma
+>>        - ti,j721s2-dmss-bcdma-csi
+>>  
+>> -  reg:
+>> -    minItems: 3
+>> -    maxItems: 5
+>> -
+>> -  reg-names:
+>> -    minItems: 3
+>> -    maxItems: 5
+> 
+> Why do you remove properties from top-level? You shouldn't. We expect
+> there to have widest constrains. This is not explained in commit msg and
+> really not justified looking at further diff hunks.
+> 
 
->>>>>
->>>>> Again, where the "v2" is defined? Where is any document explaining the
->>>>> mapping between version blocks and SoC parts? Why do you list here only
->>>>> major version? Blocks almost always have also minor (e.g. v2.0).
->>>>
->>>> Again, v2 does has nothing to do with the HW. Never wrote it was.
->>>> The HW remains the same.
->>>
->>> Don't add compatibles which are not related to HW, but represent
->>> software versioning. Software does not matter for the bindings.
->> 
->> What I did I explicitly what is recommended in Grant's presentation from
->> 2013. 10y old, but I assume slide 10 "Making an incompatible update" is
->> still valid.
->> 
->> https://elinux.org/images/1/1e/DT_Binding_Process_glikely_ksummit_2013_10_28.pdf
->> 
->> Breaking the ABI of the old compatible would break all boards which use
->> u-boot DT and pass it to the kernel, because the meaning of the clock
->> property would change.
->
-> You broke U-Boot now as well - it will get your new DTS from the kernel
-> and stop working.
+Sorry, I didn't realize having top-level constraints is a requirement
+and thought individual compatibles enforcing that actual constraints is
+sufficient. Will add these back in v3.
 
-U-boot will continue to match the old compatible and work properly.
-When the dts using the new compatible lands in u-boot, it won't
-match until proper driver support is added. It is a lot better than
-breaking the ABI, which would have silently broke u-boot.
-
-I don't really see a way around that.
-
-If you have better way to fix a bad interface, feel free to share it.
-
->
->> 
->> Doing things has suggested in this slide, and this patch, allows every
->> device to continue to work properly, whether the DT given is the one
->> shipped with u-boot (using the old compatible for now) or the kernel.
->
-> OK, that explains the reasons. I read your commit msg and nothing like
-> this was mentioned there. What's more, you did not deprecate the old
-> binding, thus the confusion - it looked like you add entirely new
-> hardware (although you put "deprecated" but in some unrelated place, not
-> next to the compatibles).
-
-The old interface being obsoleted by the new one is mentionned in the
-commit description, the comments in the bindings and the bindings itself.
-Thanks a lot for pointing out the placement mistake. I'll fix it.
-
-The commit description says:
-* What the patch does
-* Why it does it:
-  * Why the old bindings is bad/broken
-  * How the new ones fixes the problem
-* Why a single compatible properly describes, IMO, all the related HW.
-
-This describes the entirety of what the change does.
-That seemed clear enough for Rob. If that is not enough for you and you
-would like it reworded, could please provide a few suggestions ?
-
->
-> Anyway, the main point of Neil was that you started using generic
-> compatible for all SoCs, which is wrong as well. I guess this was the
-> original discussion.
-
-The whole reason for this change is to properly describe the HW, which
-is the 100% same on all the SoCs, or SoC families, concerned. The only
-reason there was a lot of old compatibles is because it was used to match
-data in the driver (this is clearly wrong). This data would now be
-passed through DT.
-
-I have been clear about this in the change description.
-
-So why is it wrong to have single compatible for a type of device that
-is 100% the same HW ?
-
-It is lot a easier to apply a rule correctly when the intent is clear.
-
->
 > Best regards,
 > Krzysztof
+> 
 
+-- 
+Regards
+Vignesh
 
