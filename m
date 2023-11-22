@@ -1,217 +1,163 @@
-Return-Path: <devicetree+bounces-18031-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18033-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A87A67F4D26
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 17:48:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE9297F4D3D
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 17:50:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6036D281392
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 16:48:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 508A6280E81
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 16:50:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2D161D53B;
-	Wed, 22 Nov 2023 16:48:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94A902D60D;
+	Wed, 22 Nov 2023 16:50:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="PiPnagN9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eO3sCieP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A2EA18E;
-	Wed, 22 Nov 2023 08:48:31 -0800 (PST)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 86218C0009;
-	Wed, 22 Nov 2023 16:48:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1700671710;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ajeauEZR8WppxNQT8eguJ25565qc08+DI61fuQmDdSw=;
-	b=PiPnagN9iA4MhaTLDc0PKQQxX7jexlIsRjYcnOgbXCiZ7lFZmSs3HYvO1oqFGQJNZ+OZtc
-	7llzyBJuhiaS6KK78ftrDv3r6SUHB+Cb7eL/SRe1WSpYsI746ct/ELMbb7X/t1hBFCJS4h
-	8Q/VGXKUbAqU1/IdEIJikgPyCUlltf9FXg23vlqMd7siaiPgxhNOapiSaYzyTEoM+ZfSrU
-	m7f+xt4301mwwpAuvl9VjrUQLXtVCFret7cQUG4iVqSRHzZHDUR1zADrUePzM5uy+uFULJ
-	2EMPOxfr0ZFkRdDNxnMJxeFQcJ13BCARG28OJjWx8VERkRno1n0o/PCou4C47Q==
-Date: Wed, 22 Nov 2023 17:48:28 +0100
-From: =?UTF-8?B?S8O2cnk=?= Maincent <kory.maincent@bootlin.com>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
- <pabeni@redhat.com>, Jonathan Corbet <corbet@lwn.net>, Luis Chamberlain
- <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
- devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 9/9] net: pse-pd: Add PD692x0 PSE controller
- driver
-Message-ID: <20231122174828.7625d7f4@kmaincent-XPS-13-7390>
-In-Reply-To: <45694d77-bcf8-4377-9aa0-046796de8d74@lunn.ch>
-References: <20231116-feature_poe-v1-0-be48044bf249@bootlin.com>
-	<20231116-feature_poe-v1-9-be48044bf249@bootlin.com>
-	<45694d77-bcf8-4377-9aa0-046796de8d74@lunn.ch>
-Organization: bootlin
-X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FD874E62E;
+	Wed, 22 Nov 2023 16:50:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84E08C433C7;
+	Wed, 22 Nov 2023 16:50:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1700671844;
+	bh=Gy6ICgLvnTaxWqv9MeYnCJN9AaV4Dv5/UPWRNSFp3n8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=eO3sCiePyO9mju04v/x+bzylbjrmjfLSXFi24QPC7IrjsqVwpV345L93YY432JMAY
+	 4uUghDamU1fVxyA8H7hZowYS5tX2tm3CuVFdUh0AHKLs7oJeHO1pYVsAA6B59l8Fbb
+	 6VItSWg2kYQfm/gj4CHChRNtiWDr1geCJ3irm1Ag/gNeysgcYxvOO5PK9rPtKXjMmS
+	 LG7vfpuC9lwQQWv3uy6pk7gecJkI8sStxZWpXyaYwzXIvPaLEI0ZOvpQX8CI1g0NIi
+	 /VDKiflfgrmZM5Ufwn3KRAZec9J1OQE/dPpiyRrpp32w1/egGH1cLQanEsJTbJp5k+
+	 Z9AQdxDV0XPaQ==
+Date: Wed, 22 Nov 2023 16:50:37 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Nava kishore Manne <nava.kishore.manne@amd.com>
+Cc: mdf@kernel.org, hao.wu@intel.com, yilun.xu@intel.com, trix@redhat.com,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, michal.simek@amd.com,
+	mathieu.poirier@linaro.org, ben.levinsky@amd.com,
+	sai.krishna.potthuri@amd.com, tanmay.shah@amd.com,
+	dhaval.r.shah@amd.com, arnd@arndb.de, shubhrajyoti.datta@amd.com,
+	linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [RFC PATCH 1/3] dt-bindings: fpga: Add support for user-key
+ encrypted bitstream loading
+Message-ID: <20231122-exert-gleeful-e4476851c489@spud>
+References: <20231122054404.3764288-1-nava.kishore.manne@amd.com>
+ <20231122054404.3764288-2-nava.kishore.manne@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="fQgRGi9CRaM/leib"
+Content-Disposition: inline
+In-Reply-To: <20231122054404.3764288-2-nava.kishore.manne@amd.com>
+
+
+--fQgRGi9CRaM/leib
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: kory.maincent@bootlin.com
 
-On Sat, 18 Nov 2023 19:54:30 +0100
-Andrew Lunn <andrew@lunn.ch> wrote:
-
+On Wed, Nov 22, 2023 at 11:14:02AM +0530, Nava kishore Manne wrote:
+> Adds =E2=80=98encrypted-key-name=E2=80=99 property to support user-key en=
+crypted
+> bitstream loading use case.
 >=20
-> > +	unsigned long last_cmd_key_time;
-> > +
-> > +	enum ethtool_pse_admin_state
-> > admin_state[PD692X0_MAX_LOGICAL_PORTS]; +};
-> > +
-> > +/* Template list of the fixed bytes of the communication messages */
-> > +static const struct pd692x0_msg pd692x0_msg_template_list[PD692X0_MSG_=
-CNT]
-> > =3D {
-> > +	[PD692X0_MSG_RESET] =3D {
-> > +		.content =3D {
-> > +			.key =3D PD692X0_KEY_CMD,
-> > +			.sub =3D {0x07, 0x55, 0x00},
-> > +			.data =3D {0x55, 0x00, 0x55, 0x4e,
-> > +				 0x4e, 0x4e, 0x4e, 0x4e},
-> > +		},
-> > +	}, =20
+> Signed-off-by: Nava kishore Manne <nava.kishore.manne@amd.com>
+> ---
+>  .../devicetree/bindings/fpga/fpga-region.txt  | 32 +++++++++++++++++++
+
+Is there a reason that this has not yet been converted to yaml?
+
+>  1 file changed, 32 insertions(+)
 >=20
-> Is there any documentation about what all these magic number mean?
+> diff --git a/Documentation/devicetree/bindings/fpga/fpga-region.txt b/Doc=
+umentation/devicetree/bindings/fpga/fpga-region.txt
+> index 528df8a0e6d8..309334558b3f 100644
+> --- a/Documentation/devicetree/bindings/fpga/fpga-region.txt
+> +++ b/Documentation/devicetree/bindings/fpga/fpga-region.txt
+> @@ -177,6 +177,9 @@ Optional properties:
+>  	it indicates that the FPGA has already been programmed with this image.
+>  	If this property is in an overlay targeting an FPGA region, it is a
+>  	request to program the FPGA with that image.
+> +- encrypted-key-name : should contain the name of an encrypted key file =
+located
+> +	on the firmware search path. It will be used to decrypt the FPGA image
+> +	file with user-key.
+
+I might be misreading things, but your driver code seems to assume that
+this is an aes key. Nothing here seems to document that this is supposed
+to be a key of a particular type.
+
+Cheers,
+Conor.
+
+>  - fpga-bridges : should contain a list of phandles to FPGA Bridges that =
+must be
+>  	controlled during FPGA programming along with the parent FPGA bridge.
+>  	This property is optional if the FPGA Manager handles the bridges.
+> @@ -459,6 +462,35 @@ programming is the FPGA based bridge of fpga_region1.
+>  	};
+>  };
+> =20
+> +Device Tree Example: Configure/Reconfigure Encrypted Image With User Key
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> +
+> +Users can encrypt FPGA configuration Images with their own key. While de=
+crypting
+> +the configuration Image the user needs to provide the same key.
+> +"encrypted-key-name" Specifies the name of the FPGA image encrypted key =
+file on
+> +the firmware search path. The search path is described in the firmware c=
+lass
+> +documentation.
+> +
+> +/dts-v1/;
+> +/plugin/;
+> +
+> +&fpga_region0 {
+> +	#address-cells =3D <1>;
+> +	#size-cells =3D <1>;
+> +
+> +	firmware-name =3D "soc_image2.rbf";
+> +	encrypted-key-name =3D "key.nky";
+> +
+> +	gpio@10040 {
+> +		compatible =3D "altr,pio-1.0";
+> +		reg =3D <0x10040 0x20>;
+> +		clocks =3D <0x2>;
+> +		altr,ngpio =3D <0x4>;
+> +		#gpio-cells =3D <0x2>;
+> +		gpio-controller;
+> +	};
+> +};
+> +
+>  Constraints
+>  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> =20
+> --=20
+> 2.25.1
 >=20
-> > +/* Implementation of the i2c communication in particular when there is
-> > + * a communication loss. See the "Synchronization During Communication
-> > Loss"
-> > + * paragraph of the Communication Protocol document.
-> > + */ =20
->=20
-> Is this document public?
 
-Yes:
-https://www.microchip.com/en-us/software-library/p3-55-firmware-for-pd69200=
--for-ieee802-3bt
+--fQgRGi9CRaM/leib
+Content-Type: application/pgp-signature; name="signature.asc"
 
->=20
-> > +static int pd692x0_recv_msg(struct pd692x0_priv *priv,
-> > +			    struct pd692x0_msg *msg,
-> > +			    struct pd692x0_msg_content *buf)
-> > +{
-> > +	const struct i2c_client *client =3D priv->client;
-> > +	int ret;
-> > +
-> > +	memset(buf, 0, sizeof(*buf));
-> > +	if (msg->delay_recv)
-> > +		msleep(msg->delay_recv);
-> > +	else
-> > +		msleep(30);
-> > +
-> > +	i2c_master_recv(client, (u8 *)buf, sizeof(*buf));
-> > +	if (buf->key)
-> > +		goto out; =20
->=20
-> This is the first attempt to receive the message. I assume buf->key
-> not being 0 indicates something has been received?
+-----BEGIN PGP SIGNATURE-----
 
-Yes,=20
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZV4xXQAKCRB4tDGHoIJi
+0loFAP9yglWDOnl90C+JIFNKoS8fMwEsVxZA1KeM+gtNfT8IBAEAjdZP9R4ySbJQ
+anmnejBPkAFFim8ousuPXHi+3dEazAM=
+=4Jh2
+-----END PGP SIGNATURE-----
 
->=20
-> > +
-> > +	msleep(100);
-> > +
-> > +	i2c_master_recv(client, (u8 *)buf, sizeof(*buf));
-> > +	if (buf->key)
-> > +		goto out; =20
->=20
-> So this is a second attempt. Should there be another memset? Could the
-> first failed transfer fill the buffer with random junk in the higher
-> bytes, and a successful read here could be a partial read and the end
-> of the buffer still contains the junk.
-
-Not sure. The message read should have the right size.
-I will maybe add the memset to prevent any weird behavior.
-
-> Another resend and two more attempts to receive.
->=20
-> Is there a reason to not uses for loops here? And maybe put
-> send/receive/receive into a helper? And maybe make the first send part
-> of this, rather then separate? I think the code will be more readable
-> when restructured.
-
-I have written it like that to describe literally the communication loss
-procedure. I may restructured it for better understanding.
-
-> > +static int pd692x0_ethtool_set_config(struct pse_controller_dev *pcdev,
-> > +				      unsigned long id,
-> > +				      struct netlink_ext_ack *extack,
-> > +				      const struct pse_control_config
-> > *config) +{
-> > +	struct pd692x0_priv *priv =3D to_pd692x0_priv(pcdev);
-> > +	struct pd692x0_msg_content buf =3D {0};
-> > +	struct pd692x0_msg msg;
-> > +	int ret;
-> > +
-> > +	ret =3D pd692x0_fw_unavailable(priv);
-> > +	if (ret)
-> > +		return ret; =20
->=20
-> It seems a bit late to check if the device has any firmware. I would
-> of expected probe to check that, and maybe attempt to download
-> firmware. If that fails, fail the probe, since the PSE is a brick.
-
-The PSE can still be flashed it never become an unusable brick.
-We can flash the wrong Firmware, or having issue in the flashing process. T=
-his
-way we could reflash the controller firmware several times.=20
-
-> > +static struct pd692x0_msg_ver pd692x0_get_sw_version(struct pd692x0_pr=
-iv
-> > *priv) +{
-> > +	struct pd692x0_msg msg =3D
-> > pd692x0_msg_template_list[PD692X0_MSG_GET_SW_VER];
-> > +	struct device *dev =3D &priv->client->dev;
-> > +	struct pd692x0_msg_content buf =3D {0};
-> > +	struct pd692x0_msg_ver ver =3D {0};
-> > +	int ret;
-> > +
-> > +	ret =3D pd692x0_sendrecv_msg(priv, &msg, &buf);
-> > +	if (ret < 0) {
-> > +		dev_err(dev, "Failed to get PSE version (%pe)\n",
-> > ERR_PTR(ret));
-> > +		return ver; =20
->=20
-> I _think_ that return is wrong ???
-
-No, this return will return an empty struct pd692x0_msg_ver.
-Which means the firmware has not any version.
-
-> Is the firmware in Motorola SREC format? I thought the kernel had a
-> helper for that, but a quick search did not find it. So maybe i'm
-> remembering wrongly. But it seems silly for every driver to implement
-> an SREC parser.
-
-Oh, I didn't know this format. The firmware seems indeed to match this form=
-at
-specification.
-I found two reference of this Firmware format in the kernel:
-https://elixir.bootlin.com/linux/v6.5.7/source/sound/soc/codecs/zl38060.c#L=
-178
-https://elixir.bootlin.com/linux/v6.5.7/source/drivers/staging/wlan-ng/pris=
-m2fw.c
-
-Any preference in the choice? The zl38060 fw usage is maybe the easiest.
-
-Regards,
---=20
-K=C3=B6ry Maincent, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+--fQgRGi9CRaM/leib--
 
