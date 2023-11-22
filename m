@@ -1,251 +1,158 @@
-Return-Path: <devicetree+bounces-17983-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17981-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C4007F4A93
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 16:34:28 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 091BD7F4A51
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 16:32:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D63632812B7
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 15:34:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 85FE4B20FD9
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 15:32:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D0D54CDF5;
-	Wed, 22 Nov 2023 15:34:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72CE955785;
+	Wed, 22 Nov 2023 15:32:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="M+fdnRMS"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VQvbJlNX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 723A519BB
-	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 07:33:46 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-40842752c6eso35551275e9.1
-        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 07:33:46 -0800 (PST)
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 919FA18D;
+	Wed, 22 Nov 2023 07:32:19 -0800 (PST)
+Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-5484ef5e3d2so7662602a12.3;
+        Wed, 22 Nov 2023 07:32:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1700667225; x=1701272025; darn=vger.kernel.org;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=UuQvOTpszbnl9xc14Mv8OCjwyDXBhMf4cf+TfzzFh8s=;
-        b=M+fdnRMSfbREYLsxZySK1YDhCykXVPOf34aVZwtskZQgVjM2SA57gTtv7dg2nbMgTE
-         9rqOEHr6tKLIaZndEXfdta+yvSqso1SlBaK5aZAbmARqUxBsqRUaCObXCKflb7jJsPEA
-         0O2t/7V5H/TR8KekQBkblQODbVxZqFxacTi5LfsSNA5JqtAfWqBfhlGLprgT7LuH9qDW
-         NKr2QISYzrRBxvCj2jLUT3WqZEFOGvjQdnpMezHMN6IoiEUCKATDGnqbiecDCpDjmJbl
-         fkF97B27Oecuk/q9JUbUDWj2N6TJaSOzsmBJE/BWebx2ttm3RRbsuVuE86CkVDfHx7QI
-         5cOA==
+        d=gmail.com; s=20230601; t=1700667138; x=1701271938; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=b0L4DobVapYjmv7NtguLjcox8D49s1eNFYKB/Iz6e+Q=;
+        b=VQvbJlNXuV2o6FLOS/jfILf6x5QnB7IIPHfissPjqP4avNTUeDB984YuZpJcNNl0Ex
+         sXcDSujP544LG6cv1RI17TKjQIK1i0WeQ00axMgAQ3Ye4nJ4yT5sjRbqm8/p3uZuYsuR
+         VssB1qsQE60b5YK4SAgv1u9OLOM+c08HzrYnm7/i6QCC7wsviltbgU9Y3ypnhO/+TWFk
+         cl+e/oW8gs6qJBL31dfZ5F+qjnU+qfmxaXSMlK1kUxEayNkGhJSjgS/BEAABVie6wbuA
+         tIAT7NoiQNz2sNQP6GVD5Y4njkNpKZbNNRripj1dZ7Dl263A/Rk4bgDFHnmegkUTty6n
+         DGiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700667225; x=1701272025;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UuQvOTpszbnl9xc14Mv8OCjwyDXBhMf4cf+TfzzFh8s=;
-        b=dOmjqk7pjVoZEJkF9WJyk1B497KGP92VeBwsaUQqtBRACO9wXJr3kKja89u2WfYeL8
-         VIn2GHP/k2Cmxr62Pjc9ixCTuD7jDAH5fJQWXbgYJW6RbQ7XVMnahCTPVcxJDOXjWU/S
-         GCiua1c0k2hMt+2zZEg5VZ2WVXjIJ9tEQw0BhzSMyDDtZVxtnQcsQWxdlsrO5+0EW7WC
-         1MPjAZtclStJa639auiF/NrWE9mJ0xINmoM7JoAX5ZHVdDgM5x8+7vrvQZ0e9FrQyCL5
-         bQXdP8BDCpW+gfX5OnSGh+SRDkMJlqeb/f+0IuIUptRYlVYXQX6gyQaFDXF2DeVyHODS
-         y7/Q==
-X-Gm-Message-State: AOJu0Yy9EZN52bPjGUmWWkUStV7GimxRsvkXjpyCYB+3RtUb4lkPHAFj
-	izSFzKN+kRSgt7dMSR5utWjxyA==
-X-Google-Smtp-Source: AGHT+IGRjDRpoRtRtIfGUdaJ+t+pi8yzkvfovHszDmXGHtyXVw/hFFAzNajS8qufz+N2FTEE3zfaGg==
-X-Received: by 2002:a5d:620c:0:b0:332:c2ae:ca1e with SMTP id y12-20020a5d620c000000b00332c2aeca1emr1673659wru.62.1700667224696;
-        Wed, 22 Nov 2023 07:33:44 -0800 (PST)
-Received: from localhost ([2a01:e0a:3c5:5fb1:d0a1:9a3c:4f4b:fa20])
-        by smtp.gmail.com with ESMTPSA id e16-20020a5d65d0000000b00332cc7c3aaasm5969561wrw.21.2023.11.22.07.33.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Nov 2023 07:33:44 -0800 (PST)
-References: <20231117125919.1696980-1-jbrunet@baylibre.com>
- <20231117125919.1696980-3-jbrunet@baylibre.com>
- <170040994064.269288.960284011884896046.robh@kernel.org>
- <4608012c-059f-4d6a-914b-e85ad0c32ff0@linaro.org>
- <1j5y1wg3sb.fsf@starbuckisacylon.baylibre.com>
- <2e7a65da-5c1d-4dd4-ac69-7559a53afdf3@linaro.org>
- <1j1qckg21u.fsf@starbuckisacylon.baylibre.com>
- <94e69281-93e1-41cd-9cf5-81cbbc15572c@linaro.org>
- <1jwmu9et6j.fsf@starbuckisacylon.baylibre.com>
- <2bbc2031-89d7-42e9-828e-068fa06eabf4@linaro.org>
-User-agent: mu4e 1.10.7; emacs 29.1
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Jerome Brunet <jbrunet@baylibre.com>, neil.armstrong@linaro.org, Rob
- Herring <robh@kernel.org>, JunYi Zhao <junyi.zhao@amlogic.com>,
- devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, Thierry Reding
- <thierry.reding@gmail.com>, linux-kernel@vger.kernel.org,
- linux-pwm@vger.kernel.org, linux-amlogic@lists.infradead.org, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH v2 2/6] dt-bindings: pwm: amlogic: add new compatible
- for meson8 pwm type
-Date: Wed, 22 Nov 2023 16:23:25 +0100
-In-reply-to: <2bbc2031-89d7-42e9-828e-068fa06eabf4@linaro.org>
-Message-ID: <1jo7flerag.fsf@starbuckisacylon.baylibre.com>
+        d=1e100.net; s=20230601; t=1700667138; x=1701271938;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=b0L4DobVapYjmv7NtguLjcox8D49s1eNFYKB/Iz6e+Q=;
+        b=NehcOGbIXDpBAXUW/l0pSgNy57AjGPvxiVcIrMs6CITTcQatewVgAZUPNBYcYhXPgo
+         CFELrc1c4Iwmicl6kQaJW+IRw8gmL+m+HRsKKo2RWXw8YWmSLwGivnTEMmyocuDqmBk8
+         1zXOCGOFcPRyYxP6ppg1rYzxgezTWT8JOKWEfBU3Tj5wQk7tbGOJuBAumDB5FTotOFgf
+         GYlRUqWARRHzD4YnSFX0wRjze7n1OVrO8qS8I4vcEyIvs9uePC8ym+9S9RtedjaoCvPG
+         HJDyvMg/6a/FtkMdLVPcltwNwMYcJIMmmCSYixPyDRl8hJa/gpEOzh6FAz15iGDU5WhQ
+         JyEw==
+X-Gm-Message-State: AOJu0Yw8CM/PPhs3RYod4g0AHgo3IY3H5wdh/6AyU6wwXwrIkSOQ97BT
+	OkloYKDjace6z03/74Vpv/8=
+X-Google-Smtp-Source: AGHT+IHxsaKyOX4NcRQJYF2qG8npzWHsk6/ukic10W3K5VlOhsmCRdrjJD9nPXNB4RXD8ePTWHsdzw==
+X-Received: by 2002:a17:906:109a:b0:9d5:ecf9:e6b5 with SMTP id u26-20020a170906109a00b009d5ecf9e6b5mr1609514eju.59.1700667137825;
+        Wed, 22 Nov 2023 07:32:17 -0800 (PST)
+Received: from [192.168.26.149] (031011218106.poznan.vectranet.pl. [31.11.218.106])
+        by smtp.googlemail.com with ESMTPSA id e4-20020a17090681c400b009be14e5cd54sm6788227ejx.57.2023.11.22.07.32.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 Nov 2023 07:32:17 -0800 (PST)
+Message-ID: <cac6aa8a-1515-4062-8922-4d1e31e9216e@gmail.com>
+Date: Wed, 22 Nov 2023 16:32:15 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V2 1/2] dt-bindings: serial: add Broadcom's BCMBCA family
+ High Speed UART
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ William Zhang <william.zhang@broadcom.com>,
+ Anand Gore <anand.gore@broadcom.com>, Kursad Oney
+ <kursad.oney@broadcom.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Andre Przywara <andre.przywara@arm.com>,
+ Alexandre TORGUE <alexandre.torgue@st.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, linux-serial@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ bcm-kernel-feedback-list@broadcom.com, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
+ <rafal@milecki.pl>
+References: <20231122144208.21114-1-zajec5@gmail.com>
+ <66c4b54b-7631-484a-9f7d-31542284e620@linaro.org>
+ <08fcb328-fe4b-40c7-a01e-8a0b527b1c71@gmail.com>
+ <758114a7-0b18-44e8-b3d8-b5aabd244279@linaro.org>
+Content-Language: en-US
+From: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+In-Reply-To: <758114a7-0b18-44e8-b3d8-b5aabd244279@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-
-On Wed 22 Nov 2023 at 16:04, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-
-> On 22/11/2023 15:34, Jerome Brunet wrote:
->> 
->> On Wed 22 Nov 2023 at 09:37, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
->> 
->>> On 20/11/2023 11:04, Jerome Brunet wrote:
->>>>>>>>>    .../devicetree/bindings/pwm/pwm-amlogic.yaml  | 36 +++++++++++++++++--
->>>>>>>>>    1 file changed, 34 insertions(+), 2 deletions(-)
->>>>>>>>>
->>>>>>>> Reviewed-by: Rob Herring <robh@kernel.org>
->>>>>>>>
->>>>>>>
->>>>>>> I'm puzzled, isn't it recommended to have a per-soc compatible now ?
+On 22.11.2023 16:00, Krzysztof Kozlowski wrote:
+> On 22/11/2023 15:52, Rafał Miłecki wrote:
+>>>> +maintainers:
+>>>> +  - Rafał Miłecki <rafal@milecki.pl>
+>>>> +
+>>>> +allOf:
+>>>> +  - $ref: serial.yaml#
+>>>> +
+>>>> +properties:
+>>>> +  compatible:
+>>>> +    items:
+>>>> +      - enum:
+>>>> +          - brcm,bcm4908-hs-uart
+>>>> +          - brcm,bcm4912-hs-uart
+>>>> +          - brcm,bcm6756-hs-uart
+>>>> +          - brcm,bcm6813-hs-uart
+>>>> +          - brcm,bcm6846-hs-uart
+>>>> +          - brcm,bcm6855-hs-uart
+>>>> +          - brcm,bcm6856-hs-uart
+>>>> +          - brcm,bcm6858-hs-uart
+>>>> +          - brcm,bcm6878-hs-uart
+>>>> +          - brcm,bcm47622-hs-uart
+>>>> +          - brcm,bcm63138-hs-uart
+>>>> +          - brcm,bcm63146-hs-uart
+>>>> +          - brcm,bcm63158-hs-uart
+>>>> +          - brcm,bcm63178-hs-uart
+>>>> +      - const: brcm,bcmbca-hs-uart
 >>>
->>> Yes, it is.
->>>
->>>>>> I have specifically addressed this matter in the description,
->>>>>> haven't I ? What good would it do in this case ?
->>>
->>> There is nothing about compatible naming in commit msg.
->> 
->> Krzysztof, the whole commit desciption is explanation about why a new
->> compatible is introduced. I don't understand this comment.
->> 
->>>
->>>>>
->>>>> Yes you did but I was asked for the last year+ that all new compatible
->>>>> should be soc specific (while imprecise, in our care soc family should be ok),
->>>>> with a possible semi-generic callback with an IP version or a first soc
->>>>> implementing the IP.
->>>>>
->>>>>> Plus the definition of a SoC is very vague. One could argue that
->>>>>> the content of the list bellow are vaguely defined families. Should we
->>>>>> add meson8b, gxl, gxm, sm1 ? ... or even the actual SoC reference ?
->>>>>> This list gets huge for no reason.
->>>>>
->>>>> I think in our case soc family is reasonable since they share same silicon
->>>>> design.
->>>>>
->>>>>> We know all existing PWM of this type are the same. We have been using
->>>>>> them for years. It is not a new support we know nothing about.
->>>>>>
->>>>>>>
->>>>>>> I thought something like:
->>>>>>> - items:
->>>>>>>      - enum:
->>>>>>>          - amlogic,gxbb-pwm
->>>>>>>          - amlogic,axg-pwm
->>>>>>>          - amlogic,g12a-pwm
->>>>>>>      - const: amlogic,pwm-v1
->>>>>> I'm not sure I understand what you are suggesting here.
->>>>>> Adding a "amlogic,pwm-v1" for the obsolete compatible ? No amlogic DT
->>>>>> has that and I'm working to remove this type, so I don't get the point.
->>>>>>
->>>>>>>
->>>>>>> should be preferred instead of a single amlogic,meson8-pwm-v2 ?
->>>>>> This is named after the first SoC supporting the type.
->>>>>> Naming it amlogic,pwm-v2 would feel weird with the s4 coming after.
->>>>>> Plus the doc specifically advise against this type of names.
->>>>>
->>>>> The -v2 refers to a pure software/dt implementation versioning and not
->>>>> an HW version, so I'm puzzled and I requires DT maintainers advice here.
->>>>>
->>>>> Yes meson8b is the first "known" platform, even if I'm pretty sure meson6 has
->>>
->>> Yes, this should be SoC-based compatible, unless you have clear
->>> versioning scheme by SoC/IP block vendor. You named it not a HW version,
->>> which kind of answers to the "unless" case - that's not hardware version.
->>>
->> 
->> This is specifically the point of the comment in commit description.
->> We know all the PWMs compatible are the same HW (version) as one found
->> in the meson8b.
->> 
->> It is certain that adding more compatible, listing all the SoC, will be
->> useless. I can do it if you insist.
->
-> The docs you references insist on that, so yeah, I insist as well.
->
->> 
->>>>
->>>> This is not my point. I picked this name because I have to pick a
->>>> specific device based one. Not because it is actually the first or
->>>> not. I don't see a problem with meson6 being compatible with
->>>> meson8-pwm-v2, if that ever comes along.
->>>
->>> No, the point is not to use "v2". Use SoC compatibles.
->> 
->> It is a SoC compatible. The second one.
->
-> "v2" is not the soc. I assume meson8 is one specific SoC, right? Because
-> elinux says it is a *family*:
-> https://elinux.org/Amlogic/SoCs
->
+>>> git grep did not find driver for this compatible. Is it in separate
+>>> patchset?
+>>
+>> No. My project based on BCMBCA has been canceled and I don't work on it
+>> full time anymore. I just wanted to fill empty bits I can afford
+>> handling in my free time and complete hardware description in DTS.
+>>
+>> I may still work on some BCMBCA drivers from time to time but as a side
+>> project.
+> 
+> This means we cannot use driver to verify whether the fallback is
+> actually suitable. Considering that existing UART bindings do not
+> fallback (brcm,bcm6345-uart, brcm,bcm7271-uart), I don't understand what
+> is the benefit here.
 
-It is a family. yes
+I believed the rule for maintaining bindings and DTS files was to
+describe hardware no matter what/if system needs it.
 
->
->> 
->> The first one, as explained in the description was describing the driver
->> more that the HW.
->> 
->> Changing the way clock are passed from DT to the driver would be break
->> user of the old compatible. So a new compatible is introduced. I believe
->> this is recommended way to introduce incompatible binding changes.
->
-> The way is not to introduce incompatible changes. Your way is also not
-> good as it breaks other users of DTS.
->
->> 
->> v2 here denote a new interface version, nothing to do with HW
->> versioning. I happy to pick something else to denote this.
->
-> Sorry, then it is not a SoC-based compatible.
->
->> 
->>>
->>>>
->>>> I think the binding here satisfy the rule that it should be specific,
->>>> and the intent that goes with it:
->>>>
->>>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/writing-bindings.rst?h=v6.7-rc2#n42
->>>>
->>>>> the same pwm architecture, this is why "amlogic,pwm-v1" as fallback seems more
->>>>> reasonable and s4 and later pwm could use the "amlogic,pwm-v2"
->>>>> fallback.
->>>>
->>>> That is not how understand this:
->>>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/writing-bindings.rst?h=v6.7-rc2#n82
->>>>
->>>
->>> Again, where the "v2" is defined? Where is any document explaining the
->>> mapping between version blocks and SoC parts? Why do you list here only
->>> major version? Blocks almost always have also minor (e.g. v2.0).
->> 
->> Again, v2 does has nothing to do with the HW. Never wrote it was.
->> The HW remains the same.
->
-> Don't add compatibles which are not related to HW, but represent
-> software versioning. Software does not matter for the bindings.
+For example a year ago I added binding for BCMBCA SoC timer without
+actual driver, see e112f2de151b ("dt-bindings: timer: Add Broadcom's
+BCMBCA timers").
 
-What I did I explicitly what is recommended in Grant's presentation from
-2013. 10y old, but I assume slide 10 "Making an incompatible update" is
-still valid.
+I'm not sure if we're going to agree on this, but personally I like
+describing hardware as much as I can. So it's well documented /
+understood and people may eventually write drivers for it. Maybe it's
+partially because I come from Broadcom's world that isn't well known
+for upstream efforts in general.
 
-https://elinux.org/images/1/1e/DT_Binding_Process_glikely_ksummit_2013_10_28.pdf
+As for verifying this binding against actual driver I can definitely
+understand your concerns. Hoping it may help I uploaded Broadcom's HS
+UART driver extracted from the RAXE500-V1.0.8.70_2.0.36_gpl SDK/GPL
+package: http://files.zajec.net/hs_uart/
 
-Breaking the ABI of the old compatible would break all boards which use
-u-boot DT and pass it to the kernel, because the meaning of the clock
-property would change.
+Please note it's not much of a clean code and its design would not be
+accepted upstream but hopefully you can glance at it to verify this
+binding's compatibility.
 
-Doing things has suggested in this slide, and this patch, allows every
-device to continue to work properly, whether the DT given is the one
-shipped with u-boot (using the old compatible for now) or the kernel.
-
->
-> That's a clear NAK.
->
-> Best regards,
-> Krzysztof
-
+Let me know if there is anything else (other than rewriting Broadcom's
+downstream driver) I could do to get this binding accepted.
 
