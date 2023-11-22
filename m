@@ -1,44 +1,44 @@
-Return-Path: <devicetree+bounces-17784-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17782-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2A707F40D5
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 10:01:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DBA027F40D1
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 10:01:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 003371C20930
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 09:01:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 18D471C2091E
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 09:01:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E39C3D387;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C81F3C6B7;
 	Wed, 22 Nov 2023 09:01:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qXCeJmnZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pn+E+X4F"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 415A63BB42;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FD603B2B5;
 	Wed, 22 Nov 2023 09:01:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id DBDBAC43140;
+Received: by smtp.kernel.org (Postfix) with ESMTPS id F117FC116A7;
 	Wed, 22 Nov 2023 09:01:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700643674;
-	bh=7ExsGWYEQIIInuR7uJ4VrJxxLfA/5YuhSMVK8oL9Zmk=;
+	s=k20201202; t=1700643675;
+	bh=ya3abGN6Ov58Dzali2bnHHbSY5Xv93VBv0s7x2OzZJc=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=qXCeJmnZk4G3H077Yk7ySck8gAXd9OL4saohW9QdaPkcPPDCvbaMArsBn+GAHfsWq
-	 g/kybOLY8PNVDc1lpo3687sO+KYFuI4j7PSKAftgxLhwMXjXXrhuPOuSTtYoeICo/A
-	 AEdw//yOSbQPymUyPM1pTH6l5H7kWxJwMHYCrVu0RB8XQF0oTLKAeb17JNicSaPjWX
-	 MmZVbsZQnuRdJsMfX4aXfBJWvpQserborXv+dQlL07T8Hl19OjTBPe7aRO8E5JoD5L
-	 HgGwobYUUdLhVdLALXRdsFt4UVn+5jVtTpiqhSIT4B0zk7rV/NUnUTtF6h4heZcNET
-	 BLprF0nDz4gJQ==
+	b=pn+E+X4F/gWl0BKCGIVBZhLAA6pvHI95uUT2jVDPvF2fVb4xTP+o2hZ7VcsuvSdr/
+	 PdP8k5RKiokPmd2881IzmmJ9pUfrizMSI9arOAZo1QKpLa+CsVMHtG6gZ+06WEhNWw
+	 EGP86xNlL88SmTa7TXTw9j+9H1zgaV3Igge5+aXEs0fTMGaGbRYaSjvQ/fnvjAT3g6
+	 ETS/9u+5Ib4+DyL97KHpRq9M8hwjpF5AMSO+4cMlJzyDx1A2/Sx0+ItoZUG9WQGwzT
+	 PEKQ6ILBj/y47Lzn60Volm2GmYHSqqOKV+5Cy7BfdExCXEGTE796BU1KJN1nqduaCo
+	 DSsIyzRL57w1w==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CACFDC61D92;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DFB28C61D9C;
 	Wed, 22 Nov 2023 09:01:14 +0000 (UTC)
 From:
  Nikita Shubin via B4 Relay <devnull+nikita.shubin.maquefel.me@kernel.org>
-Date: Wed, 22 Nov 2023 11:59:48 +0300
-Subject: [PATCH v5 10/39] dt-bindings: watchdog: Add Cirrus EP93x
+Date: Wed, 22 Nov 2023 11:59:50 +0300
+Subject: [PATCH v5 12/39] dt-bindings: pwm: Add Cirrus EP93xx
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -46,26 +46,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231122-ep93xx-v5-10-d59a76d5df29@maquefel.me>
+Content-Transfer-Encoding: 8bit
+Message-Id: <20231122-ep93xx-v5-12-d59a76d5df29@maquefel.me>
 References: <20231122-ep93xx-v5-0-d59a76d5df29@maquefel.me>
 In-Reply-To: <20231122-ep93xx-v5-0-d59a76d5df29@maquefel.me>
-To: Wim Van Sebroeck <wim@linux-watchdog.org>, 
- Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh+dt@kernel.org>, 
+To: Thierry Reding <thierry.reding@gmail.com>, 
+ =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
+ Rob Herring <robh+dt@kernel.org>, 
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
- Nikita Shubin <nikita.shubin@maquefel.me>, 
- Alexander Sverdlin <alexander.sverdlin@gmail.com>
-Cc: linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
  Alexander Sverdlin <alexander.sverdlin@gmail.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+ Nikita Shubin <nikita.shubin@maquefel.me>
+Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Alexander Sverdlin <alexander.sverdlin@gmail.com>
 X-Mailer: b4 0.13-dev-e3e53
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1700643671; l=1622;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1700643671; l=1779;
  i=nikita.shubin@maquefel.me; s=20230718; h=from:subject:message-id;
- bh=oi1524pxijJgURrfk58fykAJeXaA1N46ukZR7iTBG5Q=; =?utf-8?q?b=3D+ZA7S9wIL2z+?=
- =?utf-8?q?ZvrSnEgFty4KLBLwCRgl1SLL5iUtvwTyvxKmxrUM0DIOtAP0QlHAxq3lAZKAc0uG?=
- PpmSrA9KCm0f1hyblXQPLTEUPP8EHUZjf0bk3xjXKE9FQR8s7I32
+ bh=n/iurOkAjEQ/+YzqsiVn/lv9Zre1QQmi+ZiRYFjBUJE=; =?utf-8?q?b=3DawO7VKq6HcNF?=
+ =?utf-8?q?tziSa1/b9x2BY0UHBqV86l9Lq/SP0lbIEFjn17pz1M/A5wloaIKoEIHxHsJs/Lqy?=
+ Fwa0JXPXDPcuj2//gJp5rtPYFBXFiqjFCZ/y49FDp/u3KMt5MJiY
 X-Developer-Key: i=nikita.shubin@maquefel.me; a=ed25519;
  pk=vqf5YIUJ7BJv3EJFaNNxWZgGuMgDH6rwufTLflwU9ac=
 X-Endpoint-Received:
@@ -75,62 +75,72 @@ Reply-To: <nikita.shubin@maquefel.me>
 
 From: Nikita Shubin <nikita.shubin@maquefel.me>
 
-Add device tree bindings for the Cirrus Logic EP93xx watchdog block
-used in these SoCs.
+Add YAML bindings for ep93xx SoC PWM.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
+Acked-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
 ---
- .../bindings/watchdog/cirrus,ep9301-wdt.yaml       | 42 ++++++++++++++++++++++
- 1 file changed, 42 insertions(+)
+ .../devicetree/bindings/pwm/cirrus,ep9301-pwm.yaml | 53 ++++++++++++++++++++++
+ 1 file changed, 53 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/watchdog/cirrus,ep9301-wdt.yaml b/Documentation/devicetree/bindings/watchdog/cirrus,ep9301-wdt.yaml
+diff --git a/Documentation/devicetree/bindings/pwm/cirrus,ep9301-pwm.yaml b/Documentation/devicetree/bindings/pwm/cirrus,ep9301-pwm.yaml
 new file mode 100644
-index 000000000000..5dbe891c70c6
+index 000000000000..67b0ce01d1a0
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/watchdog/cirrus,ep9301-wdt.yaml
-@@ -0,0 +1,42 @@
++++ b/Documentation/devicetree/bindings/pwm/cirrus,ep9301-pwm.yaml
+@@ -0,0 +1,53 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/watchdog/cirrus,ep9301-wdt.yaml#
++$id: http://devicetree.org/schemas/pwm/cirrus,ep9301-pwm.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Cirrus Logic EP93xx Watchdog Timer
++title: Cirrus Logic ep93xx PWM controller
 +
 +maintainers:
-+  - Nikita Shubin <nikita.shubin@maquefel.me>
 +  - Alexander Sverdlin <alexander.sverdlin@gmail.com>
++  - Nikita Shubin <nikita.shubin@maquefel.me>
 +
 +allOf:
-+  - $ref: watchdog.yaml#
++  - $ref: pwm.yaml#
 +
 +properties:
 +  compatible:
 +    oneOf:
-+      - const: cirrus,ep9301-wdt
++      - const: cirrus,ep9301-pwm
 +      - items:
 +          - enum:
-+              - cirrus,ep9302-wdt
-+              - cirrus,ep9307-wdt
-+              - cirrus,ep9312-wdt
-+              - cirrus,ep9315-wdt
-+          - const: cirrus,ep9301-wdt
++              - cirrus,ep9302-pwm
++              - cirrus,ep9307-pwm
++              - cirrus,ep9312-pwm
++              - cirrus,ep9315-pwm
++          - const: cirrus,ep9301-pwm
 +
 +  reg:
 +    maxItems: 1
 +
++  clocks:
++    items:
++      - description: SoC PWM clock
++
++  "#pwm-cells":
++    const: 3
++
 +required:
 +  - compatible
 +  - reg
++  - clocks
 +
 +unevaluatedProperties: false
 +
 +examples:
 +  - |
-+    watchdog@80940000 {
-+        compatible = "cirrus,ep9301-wdt";
-+        reg = <0x80940000 0x08>;
++    #include <dt-bindings/soc/cirrus,ep9301-syscon.h>
++    pwm@80910000 {
++        compatible = "cirrus,ep9301-pwm";
++        reg = <0x80910000 0x10>;
++        clocks = <&syscon EP93XX_CLK_PWM>;
++        #pwm-cells = <3>;
 +    };
 
 -- 
