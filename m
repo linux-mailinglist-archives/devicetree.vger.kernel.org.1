@@ -1,95 +1,93 @@
-Return-Path: <devicetree+bounces-17993-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17994-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCD507F4B51
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 16:44:21 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A9327F4B55
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 16:44:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 781C928120D
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 15:44:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 872A3B20DFD
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 15:44:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 526C656B6E;
-	Wed, 22 Nov 2023 15:44:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1034A56B72;
+	Wed, 22 Nov 2023 15:44:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f51.google.com (mail-io1-f51.google.com [209.85.166.51])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B72F19B9;
-	Wed, 22 Nov 2023 07:44:14 -0800 (PST)
-Received: by mail-io1-f51.google.com with SMTP id ca18e2360f4ac-7a6907e9aa8so241885739f.1;
-        Wed, 22 Nov 2023 07:44:14 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700667853; x=1701272653;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/4dpS05p/mJ7BidAcig/071dpPmGFzFkosRDxb1BEXI=;
-        b=cmvAVTBaCabTtpTvTqLBgX6mlD08OCIZyZdOT6lfHc0bBvy89GI8ennHWNok9N46rw
-         WLOtNNTZD+0ATSCbZdJOW1GpnZpQcBFDMpTIj4tUMi0/DizokhwuU3ZnkP1xZj88ma42
-         cLHUeOJ8ppW8MFLM5xLOOyGOwoOcD+d4t+9Aq1+VbyqjzW/y7SaJjs5cxRo8lEL+6LkD
-         pfGOV9aKBAX8y2EMThec7BlcKXrmnq2yCMlOloeLJVf86sOpU6www4M8sB39ItG3zNOB
-         /ZQY5ptpRB47UCkvRHzrj8kCjtdFhiMr8DkHqD6n7NbRfz/gD/GU5QlX/rcWITEgetDJ
-         tSTg==
-X-Gm-Message-State: AOJu0YyhdVBbJP7C64YVHMwnvzn6iG2ElLEjQwbOkDD2p0OKkkinwLlz
-	Xljjl7gH0sJrwbCqkXoCdA==
-X-Google-Smtp-Source: AGHT+IFdvsmjGjiZbPH6hIOUd4lxrv5HA2eflYLz9TZQB1KYCeHxxAAixdP1WRqZ/Jf3MhCvgDT6JQ==
-X-Received: by 2002:a6b:7402:0:b0:792:9a1a:228b with SMTP id s2-20020a6b7402000000b007929a1a228bmr2457321iog.2.1700667853692;
-        Wed, 22 Nov 2023 07:44:13 -0800 (PST)
-Received: from herring.priv ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id bs18-20020a056638451200b0043167542398sm1925471jab.141.2023.11.22.07.44.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Nov 2023 07:44:13 -0800 (PST)
-Received: (nullmailer pid 1179989 invoked by uid 1000);
-	Wed, 22 Nov 2023 15:44:11 -0000
-Date: Wed, 22 Nov 2023 08:44:11 -0700
-From: Rob Herring <robh@kernel.org>
-To: Nikita Shubin <nikita.shubin@maquefel.me>
-Cc: Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-kernel@vger.kernel.org, Alexander Sverdlin <alexander.sverdlin@gmail.com>, dmaengine@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH v5 08/39] dt-bindings: dma: Add Cirrus EP93xx
-Message-ID: <20231122154411.GA1155942-robh@kernel.org>
-References: <20231122-ep93xx-v5-0-d59a76d5df29@maquefel.me>
- <20231122-ep93xx-v5-8-d59a76d5df29@maquefel.me>
- <170065093445.115883.17187140881548762663.robh@kernel.org>
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E31A114F69;
+	Wed, 22 Nov 2023 15:44:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D15B0C433C7;
+	Wed, 22 Nov 2023 15:44:26 +0000 (UTC)
+Message-ID: <2ecdfff5-501a-452f-af90-0806f463a51c@xs4all.nl>
+Date: Wed, 22 Nov 2023 16:44:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <170065093445.115883.17187140881548762663.robh@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [Patch v4 09/11] media: s5p-mfc: Load firmware for each run in
+ MFCv12.
+Content-Language: en-US, nl
+To: Aakarsh Jain <aakarsh.jain@samsung.com>,
+ linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc: m.szyprowski@samsung.com, andrzej.hajda@intel.com, mchehab@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, dillon.minfei@gmail.com,
+ david.plowman@raspberrypi.com, mark.rutland@arm.com, robh+dt@kernel.org,
+ conor+dt@kernel.org, linux-samsung-soc@vger.kernel.org, andi@etezian.org,
+ gost.dev@samsung.com, alim.akhtar@samsung.com, aswani.reddy@samsung.com,
+ pankaj.dubey@samsung.com, ajaykumar.rs@samsung.com, linux-fsd@tesla.com,
+ Smitha T Murthy <smithatmurthy@gmail.com>
+References: <20231025102216.50480-1-aakarsh.jain@samsung.com>
+ <CGME20231025102300epcas5p2c266a078b70614dc948b0e47cd5cf788@epcas5p2.samsung.com>
+ <20231025102216.50480-10-aakarsh.jain@samsung.com>
+From: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+In-Reply-To: <20231025102216.50480-10-aakarsh.jain@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, Nov 22, 2023 at 04:02:29AM -0700, Rob Herring wrote:
-> 
-> On Wed, 22 Nov 2023 11:59:46 +0300, Nikita Shubin wrote:
-> > Add YAML bindings for ep93xx SoC DMA.
-> > 
-> > Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
-> > ---
-> >  .../bindings/dma/cirrus,ep9301-dma-m2m.yaml        |  84 ++++++++++++
-> >  .../bindings/dma/cirrus,ep9301-dma-m2p.yaml        | 144 +++++++++++++++++++++
-> >  2 files changed, 228 insertions(+)
-> > 
-> 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> Documentation/devicetree/bindings/dma/cirrus,ep9301-dma-m2p.example.dts:24:18: fatal error: dt-bindings/soc/cirrus,ep9301-syscon.h: No such file or directory
->    24 |         #include <dt-bindings/soc/cirrus,ep9301-syscon.h>
->       |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> compilation terminated.
-> make[2]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/dma/cirrus,ep9301-dma-m2p.example.dtb] Error 1
-> make[2]: *** Waiting for unfinished jobs....
-> make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1424: dt_binding_check] Error 2
-> make: *** [Makefile:234: __sub-make] Error 2
+On 25/10/2023 12:22, Aakarsh Jain wrote:
+> In MFCv12, some section of firmware gets updated at each MFC run.
+> Hence we need to reload original firmware for each run at the start.
 
-These can be ignored. Looks like patch 6 got delayed or something and 
-didn't get applied with the series.
+Huh? This is very weird. This definitely deserves a comment in the actual
+code rather than just the commit log.
 
-Rob
+Do you know what is going on? What part is updated? Are you sure it isn't
+a driver bug somehow?
+
+Regards,
+
+	Hans
+
+> 
+> Cc: linux-fsd@tesla.com
+> Signed-off-by: Smitha T Murthy <smithatmurthy@gmail.com>
+> Signed-off-by: Aakarsh Jain <aakarsh.jain@samsung.com>
+> ---
+>  drivers/media/platform/samsung/s5p-mfc/s5p_mfc_ctrl.c | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_ctrl.c b/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_ctrl.c
+> index b49159142c53..057088b9d327 100644
+> --- a/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_ctrl.c
+> +++ b/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_ctrl.c
+> @@ -51,8 +51,9 @@ int s5p_mfc_load_firmware(struct s5p_mfc_dev *dev)
+>  	 * into kernel. */
+>  	mfc_debug_enter();
+>  
+> -	if (dev->fw_get_done)
+> -		return 0;
+> +	if (!IS_MFCV12(dev))
+> +		if (dev->fw_get_done)
+> +			return 0;
+>  
+>  	for (i = MFC_FW_MAX_VERSIONS - 1; i >= 0; i--) {
+>  		if (!dev->variant->fw_name[i])
+
 
