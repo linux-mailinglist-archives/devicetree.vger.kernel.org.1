@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-17753-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17754-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E16837F3F5A
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 08:57:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD1BE7F3F6B
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 09:01:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 659B4B20DF8
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 07:57:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 691B72821CE
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 08:01:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F30A720B11;
-	Wed, 22 Nov 2023 07:57:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4182E20B24;
+	Wed, 22 Nov 2023 08:01:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nKtZa+vN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dCVCKPOK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 323721A8
-	for <devicetree@vger.kernel.org>; Tue, 21 Nov 2023 23:57:03 -0800 (PST)
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-9fa2714e828so552530366b.1
-        for <devicetree@vger.kernel.org>; Tue, 21 Nov 2023 23:57:03 -0800 (PST)
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E3EB18E
+	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 00:01:38 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-332ca7f95e1so1737476f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 00:01:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700639821; x=1701244621; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1700640097; x=1701244897; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=WftksX8iij62yRvNUgSqyhcvJhOCWnCBDjpRS5WaNn8=;
-        b=nKtZa+vNeOCQ/m3BqNOXKp407CBiJ7RDMuMz18UQuhiY5IXGFvLyVf8ldDPnP7hT04
-         +zuqFoM8zi8nUz4u627P44s+NTmdy1WdI7nWX3R2Oj+GHsT6PtOFAVZyF8b89TkTNB+4
-         7PGI+HyYqfr18e9NoTbil8qk0yFfx3CmbcNHyjAwwVu83eVmwyuYx+eAItZHcEzvgvb5
-         ObTwtSe1N2/Pd6SeMdRhU3GDPLbnTXptV0/ZnQJ8NFKMEWj7tc9mtiHJuwu+AnQ4sSap
-         5kJ9kRWkErdfe5MjfOyjbK6cCfV4F6dqkKVdfo7F2fr3S3Ey9SwOpqf3eQmgigCEHez8
-         o/vA==
+        bh=vpRyQaYW4/vL4ShXm+d0nPFyBue7kCdABCWcnGkyFTo=;
+        b=dCVCKPOKqclHWJKPDpDBrQ/Run4cKTpWgwtGeaxlVk+988cbS4aQuMKunSfeG1Ick4
+         gE7kJVvcFQ0mf0knsmwDCHtSGK/1MvRxlyuxAi50Nafo4bqCwsQmGhKddMTsuNaJbYwf
+         A5xTBRXQVva1BUVt7N4yHKNZazABMAdpEr+/CqaTtozuCcv1zP/PBYy4JRFgUe8G8teI
+         +iWaj+xaFFaz+G2sAICws1YfxfstrBVtgfDyKmp6T5BablpI8AhJ950guAZrUwr9V3bO
+         r8Lx9ZPETXJvEOICDNVwMD0ZkdUU5MGhi4C1vMJPxv1VV5X8OnyKDpbnTB8E2LjFyk5Y
+         AnQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700639821; x=1701244621;
+        d=1e100.net; s=20230601; t=1700640097; x=1701244897;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WftksX8iij62yRvNUgSqyhcvJhOCWnCBDjpRS5WaNn8=;
-        b=HYcc7U0p86/p4ElMsQ3GmHk1C/O0b29LzbCGGmFemIS8Au2ODtzO8SWM9Nx2uE9TPU
-         pWR6EIoCGZh5P7F61R6YjtO9Nx6ErPp1VAvJIs1ogmzNir55k4JNwEwUIgrmVDiGAvKW
-         pXvXyNB3cQeE77j0LZbA7+xTqw1rGJf+AJoe70flDFYDjHwiW/O1PVmn1pozFwngZUPU
-         8j0OQMtim4Vs0L+i2V5/t6079/d8Sg+ZR6HoX5u0Qr9yHrohDkj6gmj3D4LpsA26tpjz
-         uNgivwrW59JatqtDU3LBeL/83W2L16oYrcZu9JO0ZPiD7GFL0ClWfrTuX0argOmfq/Fn
-         KlqA==
-X-Gm-Message-State: AOJu0Yz55rRRBOPmsL6oh8nXOJB+2yKsEgs3kVMztfvGW+2iAecZ+XRO
-	7cgyaiH+LwbFrx6Tlq7NzTgdqg==
-X-Google-Smtp-Source: AGHT+IG2zay7V/oyVCpbGgPYl9/Domr8MAUS17t0mjcbpWrFP2cQIhu5kA59t9/VsPmW5ndbnwiwHg==
-X-Received: by 2002:a17:906:3d2:b0:9bf:60f9:9b7c with SMTP id c18-20020a17090603d200b009bf60f99b7cmr918097eja.62.1700639821627;
-        Tue, 21 Nov 2023 23:57:01 -0800 (PST)
+        bh=vpRyQaYW4/vL4ShXm+d0nPFyBue7kCdABCWcnGkyFTo=;
+        b=DH34bPOBhu0sPUCdsF0y9eKR+AT1LobhoRIIRFjBtyrqlZxVdQxP4VrLdyKd9JH+fG
+         TA0d0wa7WBJCKoE+0xIhjC3KRxVN2MQZb1EMWLq5wLDW8LCVujFJhq/G0OTRPDxfHYQs
+         sLhMN6SKZY5cBP5HhAGfvTgzfogjxiReoQfkrpBzr3XQT9ZOY9AUIe18GbPr2Bn1wSXQ
+         o/EghuqwdG+y0JOi1XlpYMK5jWcklIe8qxbKkHHyJlWb6QL0XsFmaN3Pf3bGfdvhzh71
+         4lwPEAK/IUvNGy+iEOhRjhAOWes27UyfQytyphnli+iXG7IjNv0dmi8FboeYg2kaMv7j
+         Shtw==
+X-Gm-Message-State: AOJu0Yw6d6rXZETfNkvNi+GGbAZU+WteQjVNmWy5LanV5xxeZDwIkKTq
+	nLer+jXiRVgj9LHWveQci58c2A==
+X-Google-Smtp-Source: AGHT+IHBBXBgRDaK4VuhpKuYj7C0ExJ0pHqrpwD5pPYmWDdTv56w/nwhnJbUDu1/dAKqdyvyZV4g1Q==
+X-Received: by 2002:a05:6000:b87:b0:32d:89b5:7fd9 with SMTP id dl7-20020a0560000b8700b0032d89b57fd9mr977755wrb.56.1700640096302;
+        Wed, 22 Nov 2023 00:01:36 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.100])
-        by smtp.gmail.com with ESMTPSA id lh25-20020a170906f8d900b009fd50aa6984sm3847814ejb.83.2023.11.21.23.57.00
+        by smtp.gmail.com with ESMTPSA id n4-20020a5d4004000000b003316b3d69b3sm15605462wrp.46.2023.11.22.00.01.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Nov 2023 23:57:01 -0800 (PST)
-Message-ID: <7fe4ec90-5289-4ef4-872c-dc7f1c6b44e8@linaro.org>
-Date: Wed, 22 Nov 2023 08:56:59 +0100
+        Wed, 22 Nov 2023 00:01:35 -0800 (PST)
+Message-ID: <26b5fd29-fcd0-4c68-8bfe-a73a660fb2c9@linaro.org>
+Date: Wed, 22 Nov 2023 09:01:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,18 +62,30 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/2] dt-bindings: hwmon: pmbus: Add adm1281 support
+Subject: Re: [PATCH v2] docs: dt-bindings: add DTS Coding Style document
 Content-Language: en-US
-To: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, patrick@stwcx.xyz,
- Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
- Rob Herring <robh+dt@kernel.org>,
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Michal Simek <michal.simek@amd.com>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Jonathan Corbet <corbet@lwn.net>, linux-hwmon@vger.kernel.org,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org
-References: <20231122032343.2794903-1-Delphine_CC_Chiu@wiwynn.com>
- <20231122032343.2794903-3-Delphine_CC_Chiu@wiwynn.com>
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ Andrew Davis <afd@ti.com>, Arnd Bergmann <arnd@arndb.de>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Heiko Stuebner <heiko@sntech.de>, Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Nishanth Menon <nm@ti.com>,
+ Olof Johansson <olof@lixom.net>, linux-rockchip@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-arm-msm@vger.kernel.org
+References: <20231120084044.23838-1-krzysztof.kozlowski@linaro.org>
+ <19358871-009d-4498-9c13-90d5338b1e9f@amd.com>
+ <76fa8f61-fe31-4040-a38d-cc05be3f4f17@linaro.org>
+ <6c80a285-27fc-4d61-9eef-af4744a9decc@amd.com>
+ <cc57dcf1-3c32-426e-920c-6f0741027797@linaro.org>
+ <CAMuHMdVGyXizPw9Rggj8fQeNdbx3udRcsHFhz_sqYZzjN1CnZQ@mail.gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -119,17 +131,46 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231122032343.2794903-3-Delphine_CC_Chiu@wiwynn.com>
+In-Reply-To: <CAMuHMdVGyXizPw9Rggj8fQeNdbx3udRcsHFhz_sqYZzjN1CnZQ@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 22/11/2023 04:23, Delphine CC Chiu wrote:
-> Add device type support for adm1281
+On 21/11/2023 17:04, Geert Uytterhoeven wrote:
+> Hi Krzysztof,
 > 
-> Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
-> ---
+> On Tue, Nov 21, 2023 at 1:36 PM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>> On 21/11/2023 12:55, Michal Simek wrote:
+>>>>> device-tree specification v0.4. Chapter 2.2.1/Table 2.1 is describing much more
+>>>>> valid characters for node names.
+>>>>> It means above description is not accurate or DT spec should be updated.
+>>>>
+>>>> Spec allows way to much. dtc doesn't.
+>>>> One thing is the spec, second
+>>>> thing is coding style.
+>>>
+>>>  From my point of view spec is primary source of truth. If spec is saying name
+>>> can use upper case then I can use it. If upper case is not
+>>> recommended/deprecated because of whatever reason spec should be updated to
+>>> reflect it.
+>>> I know that DTC is reporting other issues but isn't it the right way to reflect
+>>> it back to the spec?
+>>
+>> Then why aren't you putting Linux Coding Style into C spec? I do not see
+>> any relation between specification of the language and the coding style
+>> chosen for given project.
+>>
+>> Zephyr can go with upper-case. Why it should be disallowed by the spec?
+> 
+> I thought there was only One DT to bind them all?
+> IMHO it would be better to align DT usage of Zephyr and Linux (and
+> anything else).
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+I actually don't know what Zephyr decides, but used it as example that
+it might want different coding style. Just like C standard allows to
+have all variables (including local ones) upper-case, we do not have
+such coding style. And no one proposes to update C spec to match Linux
+coding style. :)
 
 Best regards,
 Krzysztof
