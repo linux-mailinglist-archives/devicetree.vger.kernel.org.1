@@ -1,107 +1,151 @@
-Return-Path: <devicetree+bounces-17825-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17830-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84C8E7F441A
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 11:42:15 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C9027F442E
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 11:43:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B59421C20A51
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 10:42:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DFDC2B20ED3
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 10:43:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08CE24B5A7;
-	Wed, 22 Nov 2023 10:42:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 320FA2032F;
+	Wed, 22 Nov 2023 10:43:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IwTq2dcz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f179.google.com (mail-il1-f179.google.com [209.85.166.179])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 180A212A;
-	Wed, 22 Nov 2023 02:42:07 -0800 (PST)
-Received: by mail-il1-f179.google.com with SMTP id e9e14a558f8ab-35c18e55633so116995ab.2;
-        Wed, 22 Nov 2023 02:42:07 -0800 (PST)
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9675CB2
+	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 02:43:41 -0800 (PST)
+Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-3316d09c645so3292372f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 02:43:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1700649820; x=1701254620; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=RxvYEiAdK16hEUnfnJJGpW9bKts3DPTjhH3GkFHM2Cc=;
+        b=IwTq2dczAN+R0LMrB5fzJDFtr3VSHl4PUfLGEG0GhaJpPRK+3c3tM94q+ORw2OL9tr
+         0uyvXFO9OYLDJQH6hO990ohLkxuRNneXNhOoLY4+BCyclfHfQIAv1Xz5ofkRv1o8EQsj
+         AtZK1sSY99UfzlO4bF3F0bdfxrl2uhr9gHAdvnZmnVN6hkKexh7wqTCsexS/69FyIgzx
+         k4q/iY+rNTVNQFfMdGSOH9WXxuYRroGRpjcvtQ4YQOfwXLE3DVCTdRYgxjOeoq6v7+9Y
+         wS7WYz441iZl0dQpqrzFaocYiooaYUaKOVAB1HAa9jHPkTThfP8WSI1E+5NYuM3lTDxT
+         d/yQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700649726; x=1701254526;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=6HuamMXzkG3dBFbscYenhwBD+Wn3yIENDIYF/6YUDIE=;
-        b=d0BgLWdXy9nkiL2Aq6FoyerkUQmvODEJM57E0bqh9bxCeOUAlQ0UQjsmaZ6i9M36pi
-         MjYhQGVxXJEEwBEbS+Y1SchSYUJngM6kYbUaFUpAXwii7JCNtJlpYZjK97+mymSWe5R1
-         OoLsZxeorpKFuERjqGpF8pW1KiCEk8juKNz5iOAXA5DixnBT1jUCJm+i55xt3mLG93bg
-         JS9ieOf5cg50fN2Hx49uFQ/S10tjmeWVhePVaAk+Ktf3jRf95SIV3nopY+9cld2wCvyI
-         BUwHm3MH9UNobWZEiFHd/IGDWXLqBPrzQ670984QqpaZD5AyS79XdGDouQY8yIvia5GM
-         C8xg==
-X-Gm-Message-State: AOJu0YwgmRwJf15EAbHMA2DVr78AHIDhX6NauCcOR5bZk8e7ZQE30Qjw
-	XhW8yTnc+GT70UUWF1O2+Q==
-X-Google-Smtp-Source: AGHT+IHQ9FouN8UAMgPy7sryk0bXm9NzUT4rdOKn+H86a8Gao08y39jnZj5Pi/YGSftp/vt6Z2kxuw==
-X-Received: by 2002:a05:6e02:12a6:b0:35b:ce4:cb81 with SMTP id f6-20020a056e0212a600b0035b0ce4cb81mr1474242ilr.29.1700649726138;
-        Wed, 22 Nov 2023 02:42:06 -0800 (PST)
-Received: from herring.priv ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id bm3-20020a056e02330300b0035161817c37sm3830402ilb.1.2023.11.22.02.42.04
+        d=1e100.net; s=20230601; t=1700649820; x=1701254620;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=RxvYEiAdK16hEUnfnJJGpW9bKts3DPTjhH3GkFHM2Cc=;
+        b=Q3AYVzPtzHcc9GlR2h4eYu1WrU4r7ac7JgF7gcTrrqjPndKPpQDAn3Ym4acKW5tvRj
+         8oiR5MAxCie4Xcl/Qu+tsipLme9Mtv40sINuNF4riHEVT/J75hgF5x8/nhMt+7MzGrdA
+         iGcCwjBwY44q3bYAPrU0TvjG9Fs+3h4mqh6gYja9kO6RafTGbU4TZaWSMiMdV+0EbSiF
+         bxyq9XGhN1tbbl+AKN7QFr0W0QbkbHj83yM/M42yqn7M4EZaaJRWpzZKcwP0LDNWD3Fr
+         29GbDQPSBvH2vHWCBcnEoWnpucCOq8PF9ZD7zOLBTF5Fwn9Oye1Bzrkbvnxw/9tKMlbu
+         x2sQ==
+X-Gm-Message-State: AOJu0YzpYE/VVFF4GtuaO8RFhyMYUczEXap6h0P++XxUO0zLNoZA9pNV
+	za1gPmCVCPfw0vn0nStkVUpuqQ==
+X-Google-Smtp-Source: AGHT+IEDZxTP8EA5UdKKS6Vae+fmnJaRF9SBb9RgsfEGdz5fZObyG7C0joEJetvcV0BPBtBITg6AdA==
+X-Received: by 2002:a5d:6d8c:0:b0:332:c5f8:a082 with SMTP id l12-20020a5d6d8c000000b00332c5f8a082mr1469372wrs.13.1700649820030;
+        Wed, 22 Nov 2023 02:43:40 -0800 (PST)
+Received: from localhost ([102.36.222.112])
+        by smtp.gmail.com with ESMTPSA id t16-20020adff610000000b0032da4c98ab2sm16796346wrp.35.2023.11.22.02.43.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Nov 2023 02:42:05 -0800 (PST)
-Received: (nullmailer pid 87993 invoked by uid 1000);
-	Wed, 22 Nov 2023 10:42:03 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        Wed, 22 Nov 2023 02:43:39 -0800 (PST)
+From: Dan Carpenter <dan.carpenter@linaro.org>
+X-Google-Original-From: Dan Carpenter <dan.carpenter@oracle.com>
+Date: Wed, 22 Nov 2023 05:43:37 -0500
+To: oe-kbuild@lists.linux.dev, Mehdi Djait <mehdi.djait@bootlin.com>,
+	mchehab@kernel.org, heiko@sntech.de, hverkuil-cisco@xs4all.nl,
+	laurent.pinchart@ideasonboard.com,
+	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, thomas.petazzoni@bootlin.com,
+	alexandre.belloni@bootlin.com, maxime.chevallier@bootlin.com,
+	paul.kocialkowski@bootlin.com,
+	Mehdi Djait <mehdi.djait@bootlin.com>
+Subject: Re: [PATCH v9 3/3] media: i2c: Introduce a driver for the Techwell
+ TW9900 decoder
+Message-ID: <f39cdd12-4be4-4a9b-9ec6-3704c84e12da@suswa.mountain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Michal Simek <michal.simek@amd.com>
-Cc: monstr@monstr.eu, linux-arm-kernel@lists.infradead.org, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, conor@kernel.org, linux-kernel@vger.kernel.org, michal.simek@xilinx.com, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, git@xilinx.com
-In-Reply-To: <e7af81b1ef3f6b7a07f4f0691f5140156477e87e.1700644418.git.michal.simek@amd.com>
-References: <ef58475a717c62bc86aeea5148d5b88cdc0cc106.1700644418.git.michal.simek@amd.com>
- <e7af81b1ef3f6b7a07f4f0691f5140156477e87e.1700644418.git.michal.simek@amd.com>
-Message-Id: <170064972393.87962.206577065405754996.robh@kernel.org>
-Subject: Re: [PATCH v2 2/2] dt-bindings: soc: Add new board description for
- MicroBlaze V
-Date: Wed, 22 Nov 2023 03:42:03 -0700
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <dc65a89e7803782a75bf663158e031356ef7cb1a.1700235276.git.mehdi.djait@bootlin.com>
 
+Hi Mehdi,
 
-On Wed, 22 Nov 2023 10:13:51 +0100, Michal Simek wrote:
-> MicroBlaze V is new AMD/Xilinx soft-core 32bit RISC-V processor IP.
-> It is hardware compatible with classic MicroBlaze processor. Processor can
-> be used with standard AMD/Xilinx IPs including interrupt controller and
-> timer.
-> 
-> Signed-off-by: Michal Simek <michal.simek@amd.com>
-> ---
-> 
-> Changes in v2:
-> - Put MicroBlaze V description to xilinx.yaml
-> - Add qemu target platform as platform used for testing.
-> 
->  Documentation/devicetree/bindings/soc/xilinx/xilinx.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
+kernel test robot noticed the following build warnings:
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/arm/xilinx.yaml:137:10: [warning] wrong indentation: expected 10 but found 9 (indentation)
+url:    https://github.com/intel-lab-lkp/linux/commits/Mehdi-Djait/dt-bindings-vendor-prefixes-Add-techwell-vendor-prefix/20231117-234411
+base:   git://linuxtv.org/media_tree.git master
+patch link:    https://lore.kernel.org/r/dc65a89e7803782a75bf663158e031356ef7cb1a.1700235276.git.mehdi.djait%40bootlin.com
+patch subject: [PATCH v9 3/3] media: i2c: Introduce a driver for the Techwell TW9900 decoder
+config: powerpc-randconfig-r071-20231122 (https://download.01.org/0day-ci/archive/20231122/202311221134.0i9KavRs-lkp@intel.com/config)
+compiler: powerpc-linux-gcc (GCC) 13.2.0
+reproduce: (https://download.01.org/0day-ci/archive/20231122/202311221134.0i9KavRs-lkp@intel.com/reproduce)
 
-dtschema/dtc warnings/errors:
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Reported-by: Dan Carpenter <error27@gmail.com>
+| Closes: https://lore.kernel.org/r/202311221134.0i9KavRs-lkp@intel.com/
 
-doc reference errors (make refcheckdocs):
+New smatch warnings:
+drivers/media/i2c/tw9900.c:628 tw9900_runtime_resume() warn: inconsistent returns '&tw9900->mutex'.
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/e7af81b1ef3f6b7a07f4f0691f5140156477e87e.1700644418.git.michal.simek@amd.com
+Old smatch warnings:
+drivers/media/i2c/tw9900.c:348 tw9900_s_std() error: uninitialized symbol 'mode'.
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+vim +628 drivers/media/i2c/tw9900.c
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+cf24af11e0a74c Mehdi Djait 2023-11-17  597  static int tw9900_runtime_resume(struct device *dev)
+cf24af11e0a74c Mehdi Djait 2023-11-17  598  {
+cf24af11e0a74c Mehdi Djait 2023-11-17  599  	struct i2c_client *client = to_i2c_client(dev);
+cf24af11e0a74c Mehdi Djait 2023-11-17  600  	struct v4l2_subdev *sd = i2c_get_clientdata(client);
+cf24af11e0a74c Mehdi Djait 2023-11-17  601  	struct tw9900 *tw9900 = to_tw9900(sd);
+cf24af11e0a74c Mehdi Djait 2023-11-17  602  	int ret;
+cf24af11e0a74c Mehdi Djait 2023-11-17  603  
+cf24af11e0a74c Mehdi Djait 2023-11-17  604  	mutex_lock(&tw9900->mutex);
+cf24af11e0a74c Mehdi Djait 2023-11-17  605  
+cf24af11e0a74c Mehdi Djait 2023-11-17  606  	if (tw9900->reset_gpio)
+cf24af11e0a74c Mehdi Djait 2023-11-17  607  		gpiod_set_value_cansleep(tw9900->reset_gpio, 1);
+cf24af11e0a74c Mehdi Djait 2023-11-17  608  
+cf24af11e0a74c Mehdi Djait 2023-11-17  609  	ret = regulator_enable(tw9900->regulator);
+cf24af11e0a74c Mehdi Djait 2023-11-17  610  	if (ret < 0)
+cf24af11e0a74c Mehdi Djait 2023-11-17  611  		return ret;
 
-pip3 install dtschema --upgrade
+mutex_unlock(&tw9900->mutex) before returning.
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+cf24af11e0a74c Mehdi Djait 2023-11-17  612  
+cf24af11e0a74c Mehdi Djait 2023-11-17  613  	usleep_range(50000, 52000);
+cf24af11e0a74c Mehdi Djait 2023-11-17  614  
+cf24af11e0a74c Mehdi Djait 2023-11-17  615  	if (tw9900->reset_gpio)
+cf24af11e0a74c Mehdi Djait 2023-11-17  616  		gpiod_set_value_cansleep(tw9900->reset_gpio, 0);
+cf24af11e0a74c Mehdi Djait 2023-11-17  617  
+cf24af11e0a74c Mehdi Djait 2023-11-17  618  	usleep_range(1000, 2000);
+cf24af11e0a74c Mehdi Djait 2023-11-17  619  
+cf24af11e0a74c Mehdi Djait 2023-11-17  620  	ret = tw9900_write_array(tw9900->client, tw9900_init_regs,
+cf24af11e0a74c Mehdi Djait 2023-11-17  621  				 ARRAY_SIZE(tw9900_init_regs));
+cf24af11e0a74c Mehdi Djait 2023-11-17  622  
+cf24af11e0a74c Mehdi Djait 2023-11-17  623  	mutex_unlock(&tw9900->mutex);
+cf24af11e0a74c Mehdi Djait 2023-11-17  624  
+cf24af11e0a74c Mehdi Djait 2023-11-17  625  	/* This sleep is needed for the Horizontal Sync PLL to lock. */
+cf24af11e0a74c Mehdi Djait 2023-11-17  626  	msleep(300);
+cf24af11e0a74c Mehdi Djait 2023-11-17  627  
+cf24af11e0a74c Mehdi Djait 2023-11-17 @628  	return ret;
+cf24af11e0a74c Mehdi Djait 2023-11-17  629  }
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
 
