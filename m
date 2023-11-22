@@ -1,60 +1,62 @@
-Return-Path: <devicetree+bounces-17731-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17732-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 490307F3E04
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 07:17:55 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8B477F3E39
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 07:35:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7A89D1C20DED
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 06:17:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 40F821F22563
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 06:35:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DF21156F9;
-	Wed, 22 Nov 2023 06:17:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 998022BB0F;
+	Wed, 22 Nov 2023 06:35:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fcuML4ag"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NZgHBQmr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5ADD19E;
-	Tue, 21 Nov 2023 22:17:48 -0800 (PST)
-Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-a00d5b0ec44so295975066b.0;
-        Tue, 21 Nov 2023 22:17:48 -0800 (PST)
+Received: from mail-yw1-x112a.google.com (mail-yw1-x112a.google.com [IPv6:2607:f8b0:4864:20::112a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8B83B9;
+	Tue, 21 Nov 2023 22:35:23 -0800 (PST)
+Received: by mail-yw1-x112a.google.com with SMTP id 00721157ae682-5cca712b715so491847b3.1;
+        Tue, 21 Nov 2023 22:35:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1700633867; x=1701238667; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=rZWHrDJjBzioVxFvVfoOYSDud+iYI4PeTh/okXrEDYQ=;
-        b=fcuML4agBBAmp50EXoo3YItZA2E1kxRFpvPxnyhrVOhrQkTcWtIp7C0p0fUMQEnzr1
-         FnMtrZgJ//UQhJbsSoigS8lqZxpyI34G2mu1eEmoRat5rwDpd8zBYNfNktPsevxUijqF
-         NBTHL8FVk/KZFxvCNWnAtrP4SJl+ucIsNYDmxLddsTS4BXtg3AS0u7D6TBFprTX18eHK
-         O4d6mTxUFzQRtctHskvBPI4ZrXQIr404V+RH7wrll8fGfGf/WU0p6rXB4ZPmJBYWN3FI
-         cDxcZpQOmPpQEJPkzAt4IHaEh5z2YIFd3ZZ9fcf0XwacgTJEphAOLVw7/tf202P/b+x4
-         CpIQ==
+        d=gmail.com; s=20230601; t=1700634923; x=1701239723; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=2hd1Zq/k/Ryf9wFcKS5fdo6xT3mq9vfnmVd+Mv4TFts=;
+        b=NZgHBQmrBzZsEnpgDBh0poPGdJnQddYl7iddEI2YXgJSQFp5qf5kXmOmizc4+Me3HX
+         q/wjzmo2C7tD8BZruKjrAGQ4gIN5TPntq4Yw680KesdQswlK55bQPcRLTExHAbnRPgUr
+         VvNwR03/ipoTgQR3sSpVm7jvD/YvfUma0SeYTBCD756KMCYMqLmxpiGH9Y64KmIDd+ru
+         FiPD8lvldi2rVgq+vp8nsb8foYERarEoU0N+7zEYv3FKP02rNPTgwTyIve0NUeCUnRqr
+         vawE+rbfek8kk6A1O+SK0emlNlZcmXKN2FzSbfakn0VEthB0eyT0hRHwZsH6RtVt70Sb
+         LjYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700633867; x=1701238667;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rZWHrDJjBzioVxFvVfoOYSDud+iYI4PeTh/okXrEDYQ=;
-        b=OkzkXfL8ffx8rIbXYY9PF+GGgLy/QpQIX7lERSOVV2Y7Bu36D14HTDoKwh7zaSVSIZ
-         xaLEFIOCL/4slvYkNDooRXsOixtfBX2qg+Jrx0+SX9Qz3J27UzjW4tB8gZPK+gK78xKR
-         fAG2SWFKNVMmKR/AL1gIiCDoZFPeyRFHS++qmwT5aDbscww3cLNfhxXaZNhfcMrCMqKS
-         iRcSLjcz4Odl3DrT/fx0bauJ/GlUIhEaYqaHSdM/S762+QE7wXQvessqacpGRihEZj7D
-         qRKvufy6fJqhGMWq13Vj8AJudiZsRw43bui/gBhH/Osf1wtnFt28CPO1qDnCbh9BqC2D
-         YgiA==
-X-Gm-Message-State: AOJu0YxnyQe7hdi2J4/yESPKOs3pSEyxJDAD2wbQDoc8t8L7OqKKzvUz
-	CPV4ArT+arbw3HR7XS5Ny6g=
-X-Google-Smtp-Source: AGHT+IHpvXGS9IdYCdbZLW1SmZLzFO3i8foSwxeGk8BDZ1Smoa1wL9buHBST+Spf2HSZ+/fNH57xHg==
-X-Received: by 2002:a17:907:20d8:b0:a03:69e:f616 with SMTP id qq24-20020a17090720d800b00a03069ef616mr775457ejb.57.1700633867123;
-        Tue, 21 Nov 2023 22:17:47 -0800 (PST)
-Received: from [192.168.26.149] (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.googlemail.com with ESMTPSA id gx20-20020a170906f1d400b00a0290da4a50sm1451042ejb.186.2023.11.21.22.17.45
+        d=1e100.net; s=20230601; t=1700634923; x=1701239723;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2hd1Zq/k/Ryf9wFcKS5fdo6xT3mq9vfnmVd+Mv4TFts=;
+        b=F388FcAKEBNCuJ1sxEVFVrDvbZu2s03CqYdf4kLyiHkdkkG4bYTrcWnIxYAQCtDTdJ
+         HACmjj1lCDu2/nt2/91I+sby/F/fZLS62FZEWf13VgVJZf57M86W80Uz8WxO2E94eFPk
+         blh5dVmFkKxDcl/EdHfYRK4FHe+LbA2n/D7We/ZWWbk2wHpt/sN7dG9YPPFgFHDcu2ht
+         3a7+cpCAO5lcwogkNHoidEk1UTbyrWUYtvbjdxMHIOEyvgxVOukDMmGDVcAM38dCX3nX
+         MmGBXRsNikLNb7W7Cyqz1WKpSmUFP4gnvQiJR/bDkMA5TVPten2UWKDyULpnouF7WsnV
+         KXdA==
+X-Gm-Message-State: AOJu0Ywio/BOFEBtrEqky0UT0X7eiX/dv49h65gHYwv5E7Ag/dXYWjtu
+	H/tyigFwIVMi59I9avZdTQI=
+X-Google-Smtp-Source: AGHT+IHkQGhD2tzW6STYSWSP3lfwFAkGHoWOT84cZkqUrHPWgxtYXhS1Xsgol/4iG/PyhIytmp0hMg==
+X-Received: by 2002:a81:a091:0:b0:5c4:61b5:5ac6 with SMTP id x139-20020a81a091000000b005c461b55ac6mr1269540ywg.7.1700634922828;
+        Tue, 21 Nov 2023 22:35:22 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id x19-20020a0dd513000000b0059f4f30a32bsm3507691ywd.24.2023.11.21.22.35.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Nov 2023 22:17:46 -0800 (PST)
-Message-ID: <3a2880a4-cdf5-4032-9cae-be2916237d29@gmail.com>
-Date: Wed, 22 Nov 2023 07:17:44 +0100
+        Tue, 21 Nov 2023 22:35:22 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <d3790e91-d7c9-4b8d-9871-1765d693707e@roeck-us.net>
+Date: Tue, 21 Nov 2023 22:35:19 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,65 +64,127 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: serial: add Broadcom's BCM63138 High
- Speed UART
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- William Zhang <william.zhang@broadcom.com>,
- Anand Gore <anand.gore@broadcom.com>, Kursad Oney
- <kursad.oney@broadcom.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Andre Przywara <andre.przywara@arm.com>,
- Alexandre TORGUE <alexandre.torgue@st.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, linux-serial@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- bcm-kernel-feedback-list@broadcom.com, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
- <rafal@milecki.pl>
-References: <20231121121324.23268-1-zajec5@gmail.com>
- <26d71302-ebb0-4b2b-802e-0b3ebf75d68f@linaro.org>
+Subject: Re: [PATCH v1 1/2] hwmon: pmbus: Add adm1281 support
 Content-Language: en-US
-From: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-In-Reply-To: <26d71302-ebb0-4b2b-802e-0b3ebf75d68f@linaro.org>
+To: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, patrick@stwcx.xyz,
+ Jean Delvare <jdelvare@suse.com>, Jonathan Corbet <corbet@lwn.net>
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-hwmon@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-doc@vger.kernel.org
+References: <20231122032343.2794903-1-Delphine_CC_Chiu@wiwynn.com>
+ <20231122032343.2794903-2-Delphine_CC_Chiu@wiwynn.com>
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <20231122032343.2794903-2-Delphine_CC_Chiu@wiwynn.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 21.11.2023 23:38, Krzysztof Kozlowski wrote:
-> On 21/11/2023 13:13, Rafał Miłecki wrote:
->> From: Rafał Miłecki <rafal@milecki.pl>
->>
+On 11/21/23 19:23, Delphine CC Chiu wrote:
+> Add device type support for adm1281
 > 
-> Thank you for your patch. There is something to discuss/improve.
+
+s/device type/chip/
+
+> Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+> ---
+>   Documentation/hwmon/adm1275.rst | 8 ++++++++
+>   drivers/hwmon/pmbus/adm1275.c   | 8 ++++++--
+>   2 files changed, 14 insertions(+), 2 deletions(-)
 > 
->> +
->> +properties:
->> +  compatible:
->> +    const: brcm,bcm63138-hs-uart
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +required:
-> 
-> Missing compatible.
+> diff --git a/Documentation/hwmon/adm1275.rst b/Documentation/hwmon/adm1275.rst
+> index 804590eeabdc..47a13b56e086 100644
+> --- a/Documentation/hwmon/adm1275.rst
+> +++ b/Documentation/hwmon/adm1275.rst
+> @@ -43,6 +43,14 @@ Supported chips:
+>   
+>       Datasheet: www.analog.com/static/imported-files/data_sheets/ADM1278.pdf
+>   
+> +  * Analog Devices ADM1281
+> +
+> +    Prefix: 'adm1281'
+> +
+> +    Addresses scanned: -
+> +
+> +    Datasheet:
+> +
 
-I stopped putting "compatible" in "required" in schemas back in 2020 :O
+Another undocumented / unpublished chip ?
 
-Back then I received a comment from Rob [0] in discussion on
-[PATCH] dt-bindings: mtd: convert "fixed-partitions" to the json-schema
-telling to drop it:
+If so, at say something like "Not publicly available".
 
-On 10.12.2020 03:48, Rob Herring wrote:
- > And drop 'compatible' as required. It's redundant anyways because the
- > schema will only be applied if compatible matches.
+>     * Analog Devices ADM1293/ADM1294
+>   
+>       Prefix: 'adm1293', 'adm1294'
+> diff --git a/drivers/hwmon/pmbus/adm1275.c b/drivers/hwmon/pmbus/adm1275.c
+> index e2c61d6fa521..979474ba6bd3 100644
+> --- a/drivers/hwmon/pmbus/adm1275.c
+> +++ b/drivers/hwmon/pmbus/adm1275.c
+> @@ -18,7 +18,7 @@
+>   #include <linux/log2.h>
+>   #include "pmbus.h"
+>   
+> -enum chips { adm1075, adm1272, adm1275, adm1276, adm1278, adm1293, adm1294 };
+> +enum chips { adm1075, adm1272, adm1275, adm1276, adm1278, adm1281, adm1293, adm1294 };
+>   
+>   #define ADM1275_MFR_STATUS_IOUT_WARN2	BIT(0)
+>   #define ADM1293_MFR_STATUS_VAUX_UV_WARN	BIT(5)
+> @@ -362,6 +362,7 @@ static int adm1275_read_word_data(struct i2c_client *client, int page,
+>   		ret = -ENODATA;
+>   		break;
+>   	}
+> +
 
-So I'll need some help here please. Should I start including
-"compatible" in "required" after all? Or is that situation specific
-(could you explain what does it depend on)?
+Please refrain from making cosmetic changes like this.
 
-[0] https://lore.kernel.org/linux-devicetree/20201210024840.GA1510718@robh.at.kernel.org/
+Thanks,
+Guenter
+
+>   	return ret;
+>   }
+>   
+
 
