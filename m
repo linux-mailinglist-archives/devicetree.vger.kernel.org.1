@@ -1,166 +1,187 @@
-Return-Path: <devicetree+bounces-17862-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17863-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D05B7F4525
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 12:53:01 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EADA7F4538
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 12:57:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 900FE1C208D4
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 11:53:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4809B28138F
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 11:57:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02BE9C13C;
-	Wed, 22 Nov 2023 11:52:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 979CE4B5AE;
+	Wed, 22 Nov 2023 11:57:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cy+B2N9/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D0oGwxCj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D582125741;
-	Wed, 22 Nov 2023 11:52:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3DF3C433C9;
-	Wed, 22 Nov 2023 11:52:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 723ADC13F;
+	Wed, 22 Nov 2023 11:57:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E5C1C433C8;
+	Wed, 22 Nov 2023 11:57:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700653976;
-	bh=cS+u+HSsc8fMMuph+matgkYWEhkv4bIh+ZWW1P6CAuE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=cy+B2N9/kHnw5+ZtCxPAoxynU5a0j0oMlQ01HCXIHC0Vyjpfp+C4Xo70ZHDG2iShT
-	 h1ssgpEUc+HQFenwAshD9EKct/qS8VTyLSCP9GdtyWkp14/F6DtRw9ReID8TBeWmEH
-	 nD/TRduRQ4B7MI2FXWWyaJVpLGyRtAuEkTo/+3bD9kyiGN+UXV1x5F6LDQOUtgARC2
-	 bEq2RPQC79kk70H4S4XBY+jvNncV+rfmCm87+01a2NJrc+NrD37jXPk1CDYB6gxklt
-	 +6K2srzJvefA72V5gh+jEJhbFHEJxb4gvt4hDn14aMzJ61Yn9F2sLGhLWdiUoP5hnf
-	 wY2XY3cuuRCKw==
-Message-ID: <99d1808a-da04-4bc1-a1f7-cbd269adbbf0@kernel.org>
-Date: Wed, 22 Nov 2023 12:52:49 +0100
+	s=k20201202; t=1700654243;
+	bh=dhMFJjDMdHJmWFuL/Wz6Hy55a2bliAN+jn2DVLtt1l4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=D0oGwxCjLnODyhXiJsAd0pJ2Q3TpcD6IBQBoAwHKPP5g+eJZ09t6EC0LqE77xOwAf
+	 +64jj7gRMSYoTpdX0U0u3VFzdxFNYCifKB7ndtf9EBCHabveyDebo/9ITRbI3sXr/J
+	 VLV+Lq6LDBMOezWNmYXqVdZz3f4wfoY3d+GWLPOHWIWYNmXuOLFvn92pafASWgLWP2
+	 S8leQr7Mz7N3pFu8qI22CGtN1ODlhndDfPy2Trb3sFccW6FCjdV0BBae2ykfGQh0kX
+	 wPn1W/zXlvWfUAs5hMGSJWHPjlfNtfZid3T2NsvAiC9z6F33jtseZOX+YwD4gDBPUI
+	 I4MMpAxs/0aRg==
+Received: from johan by xi.lan with local (Exim 4.96.2)
+	(envelope-from <johan@kernel.org>)
+	id 1r5lrN-00005t-0A;
+	Wed, 22 Nov 2023 12:57:37 +0100
+Date: Wed, 22 Nov 2023 12:57:37 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Bjorn Andersson <quic_bjorande@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Wesley Cheng <quic_wcheng@quicinc.com>,
+	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+	Felipe Balbi <balbi@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+Subject: Re: [PATCH 04/12] usb: dwc3: Expose core driver as library
+Message-ID: <ZV3ssSP5dTwAs-e3@hovoldconsulting.com>
+References: <20231016-dwc3-refactor-v1-0-ab4a84165470@quicinc.com>
+ <20231016-dwc3-refactor-v1-4-ab4a84165470@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] dt-bindings: iio: temperature: add MLX90635 device
- bindings
-To: Crt Mori <cmo@melexis.com>, Jonathan Cameron <jic23@kernel.org>,
- Rob Herring <robh+dt@kernel.org>
-Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <cover.1700648164.git.cmo@melexis.com>
- <2e8b4a7d3ef4bc1c53bd0a849e4c31eaf2477f6b.1700648165.git.cmo@melexis.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <2e8b4a7d3ef4bc1c53bd0a849e4c31eaf2477f6b.1700648165.git.cmo@melexis.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231016-dwc3-refactor-v1-4-ab4a84165470@quicinc.com>
 
-On 22/11/2023 11:27, Crt Mori wrote:
-> Add device tree bindings for MLX90635 Infra Red contactless temperature
-> sensor.
-
-Please use scripts/get_maintainers.pl to get a list of necessary people
-and lists to CC (and consider --no-git-fallback argument). It might
-happen, that command when run on an older kernel, gives you outdated
-entries. Therefore please be sure you base your patches on recent Linux
-kernel.
-
-A nit, subject: drop second/last, redundant "bindings". The
-"dt-bindings" prefix is already stating that these are bindings.
-
+On Mon, Oct 16, 2023 at 08:11:12PM -0700, Bjorn Andersson wrote:
+> The DWC3 IP block is handled by three distinct device drivers: XHCI,
+> DWC3 core and a platform specific (optional) DWC3 glue driver.
 > 
-> Signed-off-by: Crt Mori <cmo@melexis.com>
+> This has resulted in, at least in the case of the Qualcomm glue, the
+> presence of a number of layering violations, where the glue code either
+> can't handle, or has to work around, the fact that core might not probe
+> deterministically.
+> 
+> An example of this is that the suspend path should operate slightly
+> different depending on the device operating in host or peripheral mode,
+> and the only way to determine the operating state is to peek into the
+> core's drvdata.
+> 
+> The Qualcomm glue driver is expected to make updates in the qscratch
+> register region (the "glue" region) during role switch events, but with
+> the glue and core split using the driver model, there is no reasonable
+> way to introduce listeners for mode changes.
+> 
+> Split the dwc3 core platfrom_driver callbacks and their implementation
+> and export the implementation, to make it possible to deterministically
+> instantiate the dwc3 core as part of the dwc3 glue drivers and to
+> allow flattening of the DeviceTree representation.
+> 
+> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
 > ---
->  .../iio/temperature/melexis,mlx90635.yaml     | 60 +++++++++++++++++++
->  1 file changed, 60 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/temperature/melexis,mlx90635.yaml
+>  drivers/usb/dwc3/core.c | 134 ++++++++++++++++++++++++++++++++----------------
+>  drivers/usb/dwc3/core.h |  10 ++++
+>  2 files changed, 100 insertions(+), 44 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/temperature/melexis,mlx90635.yaml b/Documentation/devicetree/bindings/iio/temperature/melexis,mlx90635.yaml
-> new file mode 100644
-> index 000000000000..96463121a806
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/temperature/melexis,mlx90635.yaml
-> @@ -0,0 +1,60 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/temperature/melexis,mlx90635.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Melexis MLX90635 contactless Infra Red temperature sensor
-> +
-> +maintainers:
-> +  - Crt Mori <cmo@melexis.com>
-> +
-> +description: |
-> +  https://www.melexis.com/en/documents/documentation/datasheets/datasheet-mlx90635
-> +
-> +  There are various applications for the Infra Red contactless temperature
-> +  sensor and MLX90635 is most suitable for consumer applications where
-> +  measured object temperature is in range between -20 to 100 degrees
-> +  Celsius with relative error of measurement 2 degree Celsius in
-> +  object temperature range for industrial applications, while just 0.2
-> +  degree Celsius for human body measurement applications. Since it can
-> +  operate and measure ambient temperature in range of -20 to 85 degrees
-> +  Celsius it is suitable also for outdoor use.
-> +
-> +  Be aware that electronics surrounding the sensor can increase ambient
-> +  temperature. MLX90635 can be calibrated to reduce the housing effect via
-> +  already existing EEPROM parameters.
-> +
-> +  Since measured object emissivity effects Infra Red energy emitted,
-> +  emissivity should be set before requesting the object temperature.
-> +
-> +properties:
-> +  compatible:
-> +    const: melexis,mlx90635
+> diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
+> index d25490965b27..71e376bebb16 100644
+> --- a/drivers/usb/dwc3/core.c
+> +++ b/drivers/usb/dwc3/core.c
+> @@ -1876,7 +1876,7 @@ static int dwc3_get_clocks(struct dwc3 *dwc)
+>  	return 0;
+>  }
+>  
+> -static int dwc3_probe(struct platform_device *pdev)
+> +struct dwc3 *dwc3_probe(struct platform_device *pdev)
 
-It's the same as mlx90632. Add it there (as enum).
+Perhaps you should move allocation of struct dwc3 to the caller as well
+as you are going to need some way to pass in callback to core which need
+to be set before you register the xhci platform device.
 
-Best regards,
-Krzysztof
+There could be other ways, like passing in a struct of callbacks, which
+can be added incrementally but it may be good think this through from
+the start.
 
+>  {
+>  	struct device		*dev = &pdev->dev;
+>  	struct resource		*res, dwc_res;
+> @@ -1886,14 +1886,14 @@ static int dwc3_probe(struct platform_device *pdev)
+>  
+>  	dwc = devm_kzalloc(dev, sizeof(*dwc), GFP_KERNEL);
+>  	if (!dwc)
+> -		return -ENOMEM;
+> +		return ERR_PTR(-ENOMEM);
+>  
+>  	dwc->dev = dev;
+>  
+>  	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+>  	if (!res) {
+>  		dev_err(dev, "missing memory resource\n");
+> -		return -ENODEV;
+> +		return ERR_PTR(-ENODEV);
+>  	}
+>  
+>  	dwc->xhci_resources[0].start = res->start;
+> @@ -1922,7 +1922,7 @@ static int dwc3_probe(struct platform_device *pdev)
+>  
+>  	regs = devm_ioremap_resource(dev, &dwc_res);
+>  	if (IS_ERR(regs))
+> -		return PTR_ERR(regs);
+> +		return ERR_CAST(regs);
+>  
+>  	dwc->regs	= regs;
+>  	dwc->regs_size	= resource_size(&dwc_res);
+> @@ -1953,7 +1953,6 @@ static int dwc3_probe(struct platform_device *pdev)
+>  		goto err_disable_clks;
+>  	}
+>  
+> -	platform_set_drvdata(pdev, dwc);
+
+This is broken however as the pm ops access the data driver data and can
+be called as soon as you call pm_runtime_put() below.
+
+>  	dwc3_cache_hwparams(dwc);
+>  
+>  	if (!dwc->sysdev_is_parent &&
+> @@ -2006,7 +2005,7 @@ static int dwc3_probe(struct platform_device *pdev)
+>  
+>  	pm_runtime_put(dev);
+
+That is here.
+
+> -	return 0;
+> +	return dwc;
+ 
+> -static void dwc3_remove(struct platform_device *pdev)
+> +static int dwc3_plat_probe(struct platform_device *pdev)
+>  {
+> -	struct dwc3	*dwc = platform_get_drvdata(pdev);
+> +	struct dwc3 *dwc;
+> +
+> +	dwc = dwc3_probe(pdev);
+> +	if (IS_ERR(dwc))
+> +		return PTR_ERR(dwc);
+
+And that leaves a window, for example, here where you can hit a NULL
+pointer dereference.
+
+> +	platform_set_drvdata(pdev, dwc);
+> +
+> +	return 0;
+> +}
+
+Johan
 
