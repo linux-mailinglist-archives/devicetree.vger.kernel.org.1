@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-18073-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18074-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D26DD7F5040
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 20:09:00 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A96A57F5049
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 20:11:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D8BF281666
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 19:08:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 49CBDB20D7B
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 19:11:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5A2C5C8F8;
-	Wed, 22 Nov 2023 19:08:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AAFD5C910;
+	Wed, 22 Nov 2023 19:11:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kPwqH6PN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lQPJpjka"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3848B93
-	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 11:08:54 -0800 (PST)
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-4094301d505so467925e9.2
-        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 11:08:54 -0800 (PST)
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8408411F
+	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 11:11:26 -0800 (PST)
+Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-40b2a8c7ca9so625225e9.2
+        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 11:11:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700680132; x=1701284932; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1700680285; x=1701285085; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=vUckrcTu5m9Wg1zRq0QHYNErM4ZStAgnbZyWBRGzPOs=;
-        b=kPwqH6PNHlrjOesxD5Hw+qy7L9drWUipMJeN6QhqEiNqVgyJknFR0NREd9OZourLiV
-         bFiztYBjMrLUlexKcnNUl/Q99mInAA7Jtg9CMhIu27FxkNsvfi6caJqiibO3bwAUEzYM
-         FlXJnmR+49VdQnYKcirmd5T6CfBr1PsUA8B4eKd2KZam3EIJHkoa7i85W9nrZ/EJJUUK
-         ei28YA71NEw/YPjbI2B8jT/Afe4lP0PkVMPJGGrZ5/iTyMKN4U0fg+O67SgU6DLKuMwW
-         agIlLYjOyKvUlAJjRcVAveRqUT17AdhxZz75B88TyDaFQR77BMYOOqlikPLdfMUxgihc
-         6JPQ==
+        bh=rS0IeuQymTPunLEjIK3ignhoNL0mPtFkpErGaI1EAfM=;
+        b=lQPJpjka0bo9Yo2snmMhpyXlsjg+hxPpl0K+aMsziib1KKYY0fbZsSC5i042VvVB0i
+         wbYWCfL5ek7PfL5haAOBThjcgMZfzCTMLFrmeAsrbUytWJtzNC60jp82okG4hddXfJuk
+         8KetAeZoX0RZwYIW3CRTI0F0I+/qxXqiIjbE4vFppNQ3I6i3MaBitdVKqEsfgESbF5Tr
+         QitxcbwtJ+Q/r7MHM7tRLSWcsMjPV14Y6wgUqv3CFSpBfNgP/iU9rJ9tC44q3IjZso6f
+         d3BgyWBJ6f+nC5tToI8xw1eaBVg/JyqYndk0w5gd246z0L3HVlQcc3p8fpSfZjaCKIfL
+         rh1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700680132; x=1701284932;
+        d=1e100.net; s=20230601; t=1700680285; x=1701285085;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vUckrcTu5m9Wg1zRq0QHYNErM4ZStAgnbZyWBRGzPOs=;
-        b=dMiI5GOafyq9OQyoM3MpdtbIlUTr55S0S1eJSGj7hK7/4FMtn9tm39n6P2i3/OCW7n
-         EDt1cRGD/+n6cL2QrmKOMEq5fXOWiMkmaYBW6soDiT+f1Qm1/YeET8tfm8mJ4DA/iY22
-         dSxdzlTrI8sv33nqox8TTgfKL8xK8mSYAIqB0Vgx7EbFaR/sbTEWaPkmY7WSgKFfugJG
-         v6TYcuu1ADo93rRmrDq6M5JcnUn4NvNfNFzTzqPJfpZhWFGKRmruk4uHsK7didHWirL5
-         l+0H8kwcjQAnRNFItPMyx5IGiin/e/y6eJlTXoxINh8uQCVApoCJC5k3m7EyK4bEFVwC
-         yTxA==
-X-Gm-Message-State: AOJu0Yxmz+v3ZdR2bKRX+TpZr9fJhVPqf/hijntheLM04eTQdnKsHE7a
-	YJ0TnOeq9XQQDsMTOKqfDIP4vQ==
-X-Google-Smtp-Source: AGHT+IH9jj+JYpXsKEgwtJxLZYqtCaXmOCQpITfCD9/OnmZeCd/rPcIHhpzRXF6IlilZwLn9zXfl5A==
-X-Received: by 2002:a05:600c:45d3:b0:408:5ba9:d707 with SMTP id s19-20020a05600c45d300b004085ba9d707mr2760138wmo.16.1700680132722;
-        Wed, 22 Nov 2023 11:08:52 -0800 (PST)
+        bh=rS0IeuQymTPunLEjIK3ignhoNL0mPtFkpErGaI1EAfM=;
+        b=SY1htPgfYQ5954vB+UidrgOUHS7kzSeGscC/L2aHnKJiBzei28CCXeruHBRJZiiIZX
+         +pnW1BxF4k2D+gGMn32ZlsteftvXkiXptHzAk21eROAGne8OC+iGo0Xj6VfwT6WB3zNz
+         Xi7HNoRwUyCI4afcDe8L3kumrwdUFG6BB7K7AGpi/vSFnbBr6Hr9OnWmlPHBbRDLre9j
+         qJZhppEj/+3qlbPjemsr4156GYhDxSoOGMVfcS57wWbKoWf98CaCANPFK2esPJaiq1RD
+         UidsNpZgszCO9fIbHcNiqMXp4wpWn5bfPXfMFF0jE7EUSol/WWPPkDeAtsxDGR5YzqDC
+         evSw==
+X-Gm-Message-State: AOJu0Yw3W/LGIMZXpwW4IUifAgVTzYvxT/6danOFqmAZxZxT66UjeFAF
+	jcS1dSqFUQO6Qzwj0EEpKxArXw==
+X-Google-Smtp-Source: AGHT+IESYOaIHBU6Qw/A8q5haZ+lQJXM4TMaa1eu5v2o7Pgh67SyojzHoOc1p/r3F+XRfAN4c+VwLQ==
+X-Received: by 2002:a05:600c:4ec8:b0:40b:26d9:2351 with SMTP id g8-20020a05600c4ec800b0040b26d92351mr1114997wmq.32.1700680284909;
+        Wed, 22 Nov 2023 11:11:24 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.100])
-        by smtp.gmail.com with ESMTPSA id hg15-20020a05600c538f00b0040849ce7116sm320957wmb.43.2023.11.22.11.08.50
+        by smtp.gmail.com with ESMTPSA id p34-20020a05600c1da200b00406408dc788sm335519wms.44.2023.11.22.11.11.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Nov 2023 11:08:52 -0800 (PST)
-Message-ID: <a812898a-f791-4983-b460-dafac70bec64@linaro.org>
-Date: Wed, 22 Nov 2023 20:08:50 +0100
+        Wed, 22 Nov 2023 11:11:24 -0800 (PST)
+Message-ID: <21d1996d-de03-40b5-a6ca-74203c775f76@linaro.org>
+Date: Wed, 22 Nov 2023 20:11:21 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,18 +62,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 09/12] dt-bindings: soc: vop2: Add more endpoint
- definition
+Subject: Re: [PATCH v4 07/19] dt-bindings: pinctrl: samsung: add
+ gs101-wakeup-eint compatible
 Content-Language: en-US
-To: Andy Yan <andyshrk@163.com>, heiko@sntech.de
-Cc: hjc@rock-chips.com, dri-devel@lists.freedesktop.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
- devicetree@vger.kernel.org, sebastian.reichel@collabora.com,
- kever.yang@rock-chips.com, chris.obbard@collabora.com,
- s.hauer@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>
-References: <20231122125316.3454268-1-andyshrk@163.com>
- <20231122125531.3454857-1-andyshrk@163.com>
+To: Peter Griffin <peter.griffin@linaro.org>, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
+ conor+dt@kernel.org, sboyd@kernel.org, tomasz.figa@gmail.com,
+ s.nawrocki@samsung.com, linus.walleij@linaro.org, wim@linux-watchdog.org,
+ linux@roeck-us.net, catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de,
+ olof@lixom.net, gregkh@linuxfoundation.org, jirislaby@kernel.org,
+ cw00.choi@samsung.com, alim.akhtar@samsung.com
+Cc: tudor.ambarus@linaro.org, andre.draszik@linaro.org,
+ semen.protsenko@linaro.org, saravanak@google.com, willmcvicker@google.com,
+ soc@kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+ linux-watchdog@vger.kernel.org, kernel-team@android.com,
+ linux-serial@vger.kernel.org
+References: <20231120212037.911774-1-peter.griffin@linaro.org>
+ <20231120212037.911774-8-peter.griffin@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -119,45 +126,35 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231122125531.3454857-1-andyshrk@163.com>
+In-Reply-To: <20231120212037.911774-8-peter.griffin@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 22/11/2023 13:55, Andy Yan wrote:
-> From: Andy Yan <andy.yan@rock-chips.com>
+On 20/11/2023 22:20, Peter Griffin wrote:
+> gs101 is similar to newer Exynos SoCs like Exynos850 and ExynosAutov9
+> where more than one pin controller can do external wake-up interrupt.
+> So add a dedicated compatible for it.
 > 
-> There are 2 HDMI, 2 DP, 2 eDP on rk3588, so add
-> corresponding endpoint definition for it.
+> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+> ---
+>  .../bindings/pinctrl/samsung,pinctrl-wakeup-interrupt.yaml      | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl-wakeup-interrupt.yaml b/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl-wakeup-interrupt.yaml
+> index 1b75abebb953..41f3a2f2992e 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl-wakeup-interrupt.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl-wakeup-interrupt.yaml
+> @@ -30,6 +30,7 @@ properties:
+>    compatible:
+>      oneOf:
+>        - enum:
+> +          - google,gs101-wakeup-eint
+>            - samsung,s3c2410-wakeup-eint
+>            - samsung,s3c2412-wakeup-eint
+>            - samsung,s3c64xx-wakeup-eint
 
-Please wrap commit message according to Linux coding style / submission
-process (neither too early nor over the limit):
-https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
-
-Subject:
-
-dt-bindings: soc: rockchip,vop2:
-or
-dt-bindings: rockchip,vop2:
-
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
----
-
-This is an automated instruction, just in case, because many review tags
-are being ignored. If you know the process, you can skip it (please do
-not feel offended by me posting it here - no bad intentions intended).
-If you do not know the process, here is a short explanation:
-
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions, under or above your Signed-off-by tag. Tag is "received", when
-provided in a message replied to you on the mailing list. Tools like b4
-can help here. However, there's no need to repost patches *only* to add
-the tags. The upstream maintainer will do that for tags received on the
-version they apply.
-
-https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
+This looks compatible with Exynos7. If true, then please add it to
+proper items few lines below. This part changed ~2 weeks ago.
 
 Best regards,
 Krzysztof
