@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-18070-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18071-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF8537F5022
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 20:04:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B72F97F5028
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 20:04:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8478A2815A9
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 19:04:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E82D21C20B6C
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 19:04:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C2FF5C8EF;
-	Wed, 22 Nov 2023 19:04:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D10125C8F5;
+	Wed, 22 Nov 2023 19:04:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="S1Jyexyr"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kMxSK21q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58103C1
-	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 11:04:02 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-507c5249d55so40264e87.3
-        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 11:04:02 -0800 (PST)
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 195D0C1
+	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 11:04:33 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-5079f6efd64so40151e87.2
+        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 11:04:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700679840; x=1701284640; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1700679871; x=1701284671; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=WeaG+b0rbUYhFaZ2y1herszVpRL6n64GLbmKdxYaZQc=;
-        b=S1Jyexyr4xxtEIyYTcFak3F67S0kQT5W5d+jH9xsObRNPFvY5YEIjVGuOaJ9BMGBkE
-         Sbs7cYYqTyqB3ce3DC/9ENw3JtZ3tJwcK3KYs9o4bNMZ3CXdRAEMIkbTEmg18O88pnxw
-         ppdEgklnHCJaeiUgOVHSTVlixbDPf31IPpWEoxhJSuSEVThqam0xd1sXxFsyVc8Ku+Iv
-         m3XWT8P5IQM28XPFtIhtFh74QTVpNZW27Xnv/HYVH/RpDTci6toDL52NK1qwwysDhRAS
-         tUGbto0E7KGcrb1JmJf8gR1ioUiWPq/lLZi3ZfwMQXwtwBq8xD0W0Ab1htlgAnK9zqnX
-         CjBw==
+        bh=mDDhK8NwHaScgAhdVIAmJvbkxF74MxYb5cAVng0GigE=;
+        b=kMxSK21qVh+6w4SIT+z9vIfdID6wImKRYiWntxAuX9SIB0vv3DmlGrvQ40rDku5mVC
+         IFeMNnZaPft/NSddUMDuGPBx+E/+lkHhMC36ORLgeqIsqMTXEtsTXfHb2ILsDvdMw9z3
+         454Fd30bFgl2LZiE/GJXcdWO5/rXevqFDiaNwmSG6fquTEIC54Il+8/IL1VZ7A8WTph+
+         ol2gGHOjLP4kUnVO9+W11kBMQL0y45t0QA9wa2dzqjKxgkXGvNqDwOc1cLbXRowoqkvC
+         I4LXZ9t92m+t7Q8mKOP8rHgaCjP+iTDcqiRfDTXX1pGoDUFrnGlqdf0/DAc3H30JC7uR
+         aEqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700679840; x=1701284640;
+        d=1e100.net; s=20230601; t=1700679871; x=1701284671;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WeaG+b0rbUYhFaZ2y1herszVpRL6n64GLbmKdxYaZQc=;
-        b=pxMQR/DSXh7tg1vcWk9WSDRd0INrQ2t61gwB0a0yBjHDw8ED5FXem6QF3QQ/GRpfdf
-         DkKUxP/Shuokj1/xlsugpNu4/zxC2AUJkwmACI+a7c7N10Zcz2ntw+Y5XHrXRb9gbz96
-         aZHALNOmVNexZYUARY4/ydOvQyJ/fRcCL80ekNr86Y3JKmllGbbWVPJhycfubcfBkm5j
-         6QSaOj1B2sKvB4rUa8fAhk6kVyVYEcOvj8hFYen/P3SlSQCqsqnh7fKkLMlok3xlpfqY
-         BCUG0779Fj89jupnhdWza3P7kOgypI+8jq8ZHLYJV/n0ighDUrXm78oH6l4HKSr/S78i
-         bXsw==
-X-Gm-Message-State: AOJu0YwPb48+6ielHMD9VN1KYzOGKDBI/mSBZIi4TggKj2xa3tLOKRKU
-	t5oyF7jE2dXFuv6dvucYMIzoWw==
-X-Google-Smtp-Source: AGHT+IF2aiLf0V6Jf13fm8pmWCHPn+SuYJBa3V5ieUq0HJBLwZQ6muJeRey0PrWdsVPVaUCWIJr8GQ==
-X-Received: by 2002:a05:6512:3083:b0:508:1470:6168 with SMTP id z3-20020a056512308300b0050814706168mr1188821lfd.57.1700679840507;
-        Wed, 22 Nov 2023 11:04:00 -0800 (PST)
+        bh=mDDhK8NwHaScgAhdVIAmJvbkxF74MxYb5cAVng0GigE=;
+        b=vweQq3AqbL/rTKiA1IKg94T6/I6MvhBojTzvHFToopoec2XYeGogVtdzmHPAZUE7Cz
+         A670A8BDLmSCSYRyk4S03u0xSbytIqfklSMnaxDRe5FTW2B1y1j5G8osQd1Rx2HaMRae
+         G6Ku/q+yR1avm7Vba+xY4jk0HjpY6djj9th/W5NapJ4nvIXOpyTPvmDdCyiYDxE5lh9c
+         ZS2omj8caAOktJ9fmY4pOalKGXx6FXyRqKwvAXdb/JZQiZ0JTclMmpHAiWJJ0rGYY35l
+         MJJaLBob4JuArVyFNqScYt5mVe4rk3WsGwKnFI0j4NfFtkVp7vh+3XAi9hjIWtvTJfru
+         D3yg==
+X-Gm-Message-State: AOJu0YzeT/866V1rDwd57/1/3ExeI8HdILxMRDO0NqN8KI7tW3FO35ZF
+	lsE/N8gN8G0KwSsUJdFLlPpCog==
+X-Google-Smtp-Source: AGHT+IH0E91uUpsUiPePrQXJg0q9kFQprqw+UWff34CYQcsuWVpZ7LVXswBYVxlXx3nBDNgofBCuUQ==
+X-Received: by 2002:a19:654b:0:b0:50a:9f42:9ceb with SMTP id c11-20020a19654b000000b0050a9f429cebmr2309411lfj.34.1700679871028;
+        Wed, 22 Nov 2023 11:04:31 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.100])
-        by smtp.gmail.com with ESMTPSA id d3-20020a170906174300b009fc3f347109sm89309eje.156.2023.11.22.11.03.58
+        by smtp.gmail.com with ESMTPSA id d3-20020a170906174300b009fc3f347109sm89309eje.156.2023.11.22.11.04.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Nov 2023 11:04:00 -0800 (PST)
-Message-ID: <90664758-9273-4ed7-b711-0abe45b4efed@linaro.org>
-Date: Wed, 22 Nov 2023 20:03:57 +0100
+        Wed, 22 Nov 2023 11:04:30 -0800 (PST)
+Message-ID: <4cd7ed6e-3b7c-4141-aba5-47f2d47b751c@linaro.org>
+Date: Wed, 22 Nov 2023 20:04:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,22 +62,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/5] dt-bindings: stm32: add clocks and reset binding
- for stm32mp25 platform
+Subject: Re: [PATCH 1/2] dt-bindings: phy: qcom,sc8280xp-qmp-usb3-uni: Add
+ X1E80100 USB PHY binding
 Content-Language: en-US
-To: gabriel.fernandez@foss.st.com, Michael Turquette
- <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20231122132156.158103-1-gabriel.fernandez@foss.st.com>
- <20231122132156.158103-4-gabriel.fernandez@foss.st.com>
+To: Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231122-phy-qualcomm-usb3-uniphy-x1e80100-v1-0-3f5bd223d5b4@linaro.org>
+ <20231122-phy-qualcomm-usb3-uniphy-x1e80100-v1-1-3f5bd223d5b4@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -123,103 +120,18 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231122132156.158103-4-gabriel.fernandez@foss.st.com>
+In-Reply-To: <20231122-phy-qualcomm-usb3-uniphy-x1e80100-v1-1-3f5bd223d5b4@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 22/11/2023 14:21, gabriel.fernandez@foss.st.com wrote:
-> From: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+On 22/11/2023 13:05, Abel Vesa wrote:
+> Add compatible string for Qualcomm QMP Super Speed (SS) UNI PHY found
+> in X1E80100.
 > 
-> Adds clock and reset binding entries for STM32MP25 SoC family
-> 
-> Signed-off-by: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 > ---
->  .../bindings/clock/st,stm32mp25-rcc.yaml      |  76 +++
->  include/dt-bindings/clock/st,stm32mp25-rcc.h  | 492 ++++++++++++++++++
->  include/dt-bindings/reset/st,stm32mp25-rcc.h  | 165 ++++++
->  3 files changed, 733 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/st,stm32mp25-rcc.yaml
->  create mode 100644 include/dt-bindings/clock/st,stm32mp25-rcc.h
->  create mode 100644 include/dt-bindings/reset/st,stm32mp25-rcc.h
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/st,stm32mp25-rcc.yaml b/Documentation/devicetree/bindings/clock/st,stm32mp25-rcc.yaml
-> new file mode 100644
-> index 000000000000..8697ab6bc22c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/st,stm32mp25-rcc.yaml
-> @@ -0,0 +1,76 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/st,stm32mp25-rcc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: STM32MP25 Reset Clock Controller
-> +
-> +maintainers:
-> +  - Gabriel Fernandez <gabriel.fernandez@foss.st.com>
-> +
-> +description: |
-> +  The RCC hardware block is both a reset and a clock controller.
-> +  RCC makes also power management (resume/supend).
-> +
-> +  See also::
-> +    include/dt-bindings/clock/st,stm32mp25-rcc.h
-> +    include/dt-bindings/reset/st,stm32mp25-rcc.h
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - st,stm32mp25-rcc
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  '#clock-cells':
-> +    const: 1
-> +
-> +  '#reset-cells':
-> +    const: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: CK_SCMI_HSE High Speed External oscillator (8 to 48 MHz)
-> +      - description: CK_SCMI_HSI High Speed Internal oscillator (~ 64 MHz)
-> +      - description: CK_SCMI_MSI Low Power Internal oscillator (~ 4 MHz or ~ 16 MHz)
-> +      - description: CK_SCMI_LSE Low Speed External oscillator (32 KHz)
-> +      - description: CK_SCMI_LSI Low Speed Internal oscillator (~ 32 KHz)
-> +
-> +  clock-names:
-> +    items:
-> +      - const: hse
-> +      - const: hsi
-> +      - const: msi
-> +      - const: lse
-> +      - const: lsi
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#clock-cells"
-> +  - "#reset-cells"
 
-If there is going to be respin, please use consistent quotes: either '
-or ", in each place. No need to respin only for this.
-
-...
-
-> diff --git a/include/dt-bindings/clock/st,stm32mp25-rcc.h b/include/dt-bindings/clock/st,stm32mp25-rcc.h
-> new file mode 100644
-> index 000000000000..9876ee0dd1e4
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/st,stm32mp25-rcc.h
-> @@ -0,0 +1,492 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-3-Clause */
-
-Any particular reason why do you need 3-clause BSD? Checkpatch asks for
-different one, because that one clause is just annoying.
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+You need entry in allOf section.
 
 Best regards,
 Krzysztof
