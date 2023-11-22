@@ -1,96 +1,157 @@
-Return-Path: <devicetree+bounces-17708-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17709-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06FBC7F3A4E
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 00:34:19 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8839B7F3A95
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 01:06:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 833F1B21273
-	for <lists+devicetree@lfdr.de>; Tue, 21 Nov 2023 23:34:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B897B1C20858
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 00:06:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A38B55C26;
-	Tue, 21 Nov 2023 23:34:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B95AA19A;
+	Wed, 22 Nov 2023 00:06:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="kad6Sj1X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [IPv6:2001:4b7e:0:8::81])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 125CF98;
-	Tue, 21 Nov 2023 15:34:07 -0800 (PST)
-Received: from francesco-nb.int.toradex.com (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id BA818201F1;
-	Wed, 22 Nov 2023 00:34:04 +0100 (CET)
-Date: Wed, 22 Nov 2023 00:33:58 +0100
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Lukas Wunner <lukas@wunner.de>,
-	Lino Sanfilippo <l.sanfilippo@kunbus.com>
-Cc: Philipp Zabel <p.zabel@pengutronix.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-integrity@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] reset: Add Infineon SLB9670 TPM reset driver
-Message-ID: <ZV0+Zk590YSsvhFo@francesco-nb.int.toradex.com>
-References: <ae40859b82494d75e9ad7bf616b3264138ad1f6a.1695754856.git.lukas@wunner.de>
- <75b775d0526e72f292e0546a306b37680714686c.1695754856.git.lukas@wunner.de>
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D980CB;
+	Tue, 21 Nov 2023 16:06:22 -0800 (PST)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id BEE79875C0;
+	Wed, 22 Nov 2023 01:06:18 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1700611580;
+	bh=XMMrwyKsBsycWwXnVlUDTKSykEZqCTTjiQUeNA+/Kxs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=kad6Sj1XqRR5KcdxrNjooyLuypfHLylc3M+ib6z9YYRef8fO8usVbl9pLCIS3JPE1
+	 I9beBh1Mo/3HQ1AfOi00srWtGLkDD6lg4pZQr3jr8Qol0S8mkxN8vGcnphIeCEMqlA
+	 ICRWSkz9mkk+0Ynkj/0t8SlC+zjxnacpYccIWhyxC4CIAOy6eDPs3zBPTl3LhPOoUV
+	 ZD42N2/lreOfrQoHE9w5Z3D/PzKJ+L8ZustoVFSTDIxEsaSlF5yAGbntuqZstpKNdt
+	 Dm6INqhtBWqD3ZlXxTpQ8S5Kavy7N1nl53L8yjxyMHjIox/+qib6SwGtzE0NeSmffN
+	 9LnndGhiowhbw==
+Message-ID: <d49858e2-b11a-44f3-9038-64ef2b7e8059@denx.de>
+Date: Wed, 22 Nov 2023 01:06:18 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <75b775d0526e72f292e0546a306b37680714686c.1695754856.git.lukas@wunner.de>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/2] iio: light: isl76682: Add ISL76682 driver
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: linux-iio@vger.kernel.org,
+ Alexander Stein <alexander.stein@ew.tq-group.com>,
+ Andre Werner <andre.werner@systec-electronic.com>,
+ Bjorn Helgaas <bhelgaas@google.com>, Conor Dooley <conor+dt@kernel.org>,
+ Fabio Estevam <festevam@denx.de>, Guenter Roeck <linux@roeck-us.net>,
+ Jonathan Cameron <jic23@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Lars-Peter Clausen <lars@metafoo.de>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>, Mark Brown <broonie@kernel.org>,
+ Matti Vaittinen <mazziesaccount@gmail.com>,
+ Naresh Solanki <naresh.solanki@9elements.com>,
+ Patrick Rudolph <patrick.rudolph@9elements.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
+ Vincent Tremblay <vincent@vtremblay.dev>, devicetree@vger.kernel.org
+References: <20231121031043.327614-1-marex@denx.de>
+ <20231121031043.327614-2-marex@denx.de> <ZVzyP0Oj1J0efmGO@smile.fi.intel.com>
+Content-Language: en-US
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <ZVzyP0Oj1J0efmGO@smile.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-Hello Lino, hello Lukas,
-
-On Tue, Sep 26, 2023 at 09:09:36PM +0200, Lukas Wunner wrote:
-> From: Lino Sanfilippo <l.sanfilippo@kunbus.com>
+On 11/21/23 19:09, Andy Shevchenko wrote:
+> On Tue, Nov 21, 2023 at 04:10:40AM +0100, Marek Vasut wrote:
+>> The ISL76682 is very basic ALS which only supports ALS or IR mode
+>> in four ranges, 1k/4k/16k/64k LUX. There is no IRQ support or any
+>> other fancy functionality.
 > 
-> Normally the platform firmware is responsible for taking a Trusted
-> Platform Module out of reset on boot and storing measurements into it.
+> ...
 > 
-> However if the platform firmware is incapable of doing that -- as is the
-> case on the Raspberry Pi -- then the onus is on the kernel to take the
-> TPM out of reset before trying to attach a driver to it.
+>> +	for (i = 0; i < ARRAY_SIZE(isl76682_range_table); i++) {
+>> +		if (chan->type == IIO_LIGHT) {
+>> +			if (val2 != isl76682_range_table[i].als)
+>> +				continue;
+>> +		} else if (chan->type == IIO_INTENSITY) {
+>> +			if (val2 != isl76682_range_table[i].ir)
+>> +				continue;
+>> +		}
 > 
-> Provide a reset driver for such platforms.
+> Redundant 'else' and you can combine if:s.
 > 
-> The Infineon SLB9670 TPM requires a specific reset sequence on its RST#
-> pin which is documented in sections 5.4 and 5.5 of the datasheet:
+> 		if (chan->type == IIO_LIGHT && val2 != isl76682_range_table[i].als)
+> 			continue;
+> 		if (chan->type == IIO_INTENSITY && val2 != isl76682_range_table[i].ir)
+> 			continue;
 > 
-> https://www.infineon.com/dgdl/Infineon-SLB%209670VQ2.0-DataSheet-v01_04-EN.pdf?fileId=5546d4626fc1ce0b016fc78270350cd6
+> But it's up to you and Jonathan.
 > 
-> The sequence with minimum wait intervals is as follows:
+>> +		scoped_guard(mutex, &chip->lock)
+>> +			chip->range = isl76682_range_table[i].range;
+>> +		return 0;
+>> +	}
+>> +
+>> +	return -EINVAL;
+>> +}
 > 
->   deassert RST#
->   wait at least 60 ms
->   assert RST#
->   wait at least 2 usecs
->   deassert RST#
->   wait at least 60 ms
->   assert RST#
->   wait at least 2 usecs
->   deassert RST#
->   wait at least 60 ms before issuing the first TPM command
+> ...
+> 
+>> +	case IIO_CHAN_INFO_RAW:
+>> +		switch (chan->type) {
+>> +		case IIO_LIGHT:
+>> +			ret = isl76682_get(chip, false, val);
+>> +			return (ret < 0) ? ret : IIO_VAL_INT;
+>> +		case IIO_INTENSITY:
+>> +			ret = isl76682_get(chip, true, val);
+>> +			return (ret < 0) ? ret : IIO_VAL_INT;
+> 
+>> +		default:
+>> +			break;
+>> +		}
+>> +
+>> +		return -EINVAL;
+> 
+> 		default:
+> 			return -EINVAL;
+> 
+> ...
+> 
+>> +static const struct of_device_id isl76682_of_match[] = {
+>> +	{ .compatible = "isil,isl76682", },
+> 
+> Inner comma is not needed.
+> 
+>> +	{ }
+>> +};
+> 
+> ...
+> 
+>> +
+>> +module_i2c_driver(isl76682_driver);
+>> +MODULE_DESCRIPTION("ISL76682 Ambient Light Sensor driver");
+> 
+> ...other way around:
+> 
+> };
+> module_i2c_driver(isl76682_driver);
+> 
+> MODULE_DESCRIPTION("ISL76682 Ambient Light Sensor driver");
+> 
+> ...
+> 
+> Assuming you address all these,
+> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 
-Are you really sure that this change is required?
-I have seen the RST# Timing diagram in the datasheet, however I wonder
-if a reset is required at all during power-up, for example.
-
-Not to mention that I would have expected some firmware to implement
-such reset timing and I was not able to find any (I looked at
-arm/arm64), if this is really required I the driver can work at all?
-Which platform firmware implements such reset sequence?
-
-Not to mention that I was able to see the driver probe succeed in a
-similar setup to the one you are describing in the commit message
-(different board, arm64, but nothing done by the platform firmware).
-
-What am I missing?
-
-Thanks,
-Francesco
-
+All that added to V5 , thanks.
+I'll still wait for a few days with sending that V5 though.
 
