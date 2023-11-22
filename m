@@ -1,143 +1,149 @@
-Return-Path: <devicetree+bounces-17812-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17826-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39AA07F4384
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 11:19:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B02B57F441E
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 11:42:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E8D9B281502
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 10:19:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 65B8D2815F4
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 10:42:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEA1E4A9A4;
-	Wed, 22 Nov 2023 10:19:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 038CB2511E;
+	Wed, 22 Nov 2023 10:42:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="L3k1/h+r"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="NyVmDO8j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D541ED5C;
-	Wed, 22 Nov 2023 02:19:09 -0800 (PST)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AM4gAAB005014;
-	Wed, 22 Nov 2023 10:18:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=71nQ+y0aV5G11ViRq/c8FveTleKgrOJIHMuQFrseOT0=;
- b=L3k1/h+rMQmkLKKTIK7qPA/JGmkQF62w02nI4TpsZupHcmjK+5NiqwTL4k9gKpPk9jIw
- RPl54ppi4gVMRDrmXqYNOFxQKvZAnvJDgqFLMuEldk/rsoKJDqtiBaEe9S1z4R4tRunH
- ZzlkkNxGWTVpRt6toO2r5rhJhDEcXY1gQ6q9f47/Knd2xc57O+hxOXy3+AxNSff+S/o2
- ajSsFfTki55tlZlCb3u31jZd4czPscA0RIOnhBRBubHyhnRMOHZ+5+iKkF8egltNoX4R
- w7QEploL6J0tM+ihQ6BXNOyU0I9AZWE851yCkEjgpgTZiboXlwKdTkLT7gDFlZycUN22 SQ== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uh0b4a6yf-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 22 Nov 2023 10:18:53 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AMAIqNn007616
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 22 Nov 2023 10:18:52 GMT
-Received: from [10.216.2.74] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 22 Nov
- 2023 02:18:45 -0800
-Message-ID: <2e357fcf-5348-4fb2-b693-2d6bb4d58b21@quicinc.com>
-Date: Wed, 22 Nov 2023 15:48:40 +0530
+Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-vi1eur04on2077.outbound.protection.outlook.com [40.107.8.77])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2C11D45;
+	Wed, 22 Nov 2023 02:42:15 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=i2jvSzonDyXhrRqiA+MuDdO7B38XlL+3aULOKI/kx1NqGN7FWR/l9DpxnTZ+Ouij71lfIcvfVxmbrBm0yVUMqc1sLaOUDVX3e5HMdkM4lX3doBfpCr1WMc/l/ThpOvPRxwX6UjAc3ySIDP/scWywD92TF85QipZHdNrdKFZbztp3gUfEj4Wdb9+N+/Hoc791jV4k5T+ixCt0MSHNsYiks6ICmnNVowW/PMcC+esWPlnzY+6R/5qIotgdDHr7aHwZ4/Ljp0Bmebj3cRvnsvBJql0d76F/fPoV2lITQ2j9EKwT7q8DfA3qqEj8Hn3s5zeR7egjVbty50dSOt08dRRz8g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=vLQ2D/cm34I9dF8w36I3wzb9U6Bs5fpsAZ8NcgBV4NQ=;
+ b=Becb9z6Fkhx2NgTKalZvmB2YTP49guLRKsGwu/9LQBJgfOhdQ66zqkc8bLbYeLV1iSsoXCHDgYMuQBoqTgLlstV7w22kJBSbylZH53TjQvalIKs1v5UMHqcpyGR+Vl4SdRk9odsfqzR3dd/Dm+ns43eEVEkFXRt+Z11f9ILdjWJaVPsl/E0Mk/+LqX4QMA+TUk4OQe9K/XIpj/qH+PCx1247sZYw9oV8NFdVfratAYylIeqvdi0+YoAVVBxb4Ne2O9WckGu4tAW28JHCZlwSLqcPasLbH8xlp2BHrBkoopZddT3/VtZCMW315kpzUJOvQLF0qpDxzNB8zayO8M85/w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=vLQ2D/cm34I9dF8w36I3wzb9U6Bs5fpsAZ8NcgBV4NQ=;
+ b=NyVmDO8jimZobOOPhtxKCQeEToxQEgnBXdkTZwVBggbprZEy460SBCSxbN1tp6S+CpjUc6YR03YTl1YG2umSuCJkisOqHFK80VFze1LPXmitbzibLz7XXWyCX99yk4oRoYHfhEQJfcuyqcRfFsD5iiH8R2QPjeDVp6K1HD43KtQ=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DB9PR04MB9498.eurprd04.prod.outlook.com (2603:10a6:10:360::21)
+ by PAXPR04MB9328.eurprd04.prod.outlook.com (2603:10a6:102:2b6::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7025.17; Wed, 22 Nov
+ 2023 10:42:11 +0000
+Received: from DB9PR04MB9498.eurprd04.prod.outlook.com
+ ([fe80::dffc:1d:4398:7768]) by DB9PR04MB9498.eurprd04.prod.outlook.com
+ ([fe80::dffc:1d:4398:7768%6]) with mapi id 15.20.7025.019; Wed, 22 Nov 2023
+ 10:42:11 +0000
+From: Chancel Liu <chancel.liu@nxp.com>
+To: lgirdwood@gmail.com,
+	broonie@kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com,
+	linux-imx@nxp.com,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	alsa-devel@alsa-project.org
+Cc: Chancel Liu <chancel.liu@nxp.com>
+Subject: [PATCH v3 0/3] Add audio device nodes for i.MX93 platform
+Date: Wed, 22 Nov 2023 18:19:56 +0800
+Message-Id: <20231122101959.30264-1-chancel.liu@nxp.com>
+X-Mailer: git-send-email 2.17.1
+Content-Type: text/plain
+X-ClientProxiedBy: AM0PR03CA0074.eurprd03.prod.outlook.com
+ (2603:10a6:208:69::15) To DB9PR04MB9498.eurprd04.prod.outlook.com
+ (2603:10a6:10:360::21)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/9] dt-bindings: clock: ipq5332: drop the few nss
- clocks definition
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross
-	<agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Catalin
- Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-References: <20231121-ipq5332-nsscc-v2-0-a7ff61beab72@quicinc.com>
- <20231121-ipq5332-nsscc-v2-3-a7ff61beab72@quicinc.com>
- <43376552-7e79-4f34-94ca-63767a95564b@linaro.org>
- <8bb79735-3b5d-4229-b0f4-bc50d61fdba1@quicinc.com>
- <d26eae8d-4968-4ab0-bd9b-696d7b3865ec@linaro.org>
-From: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
-In-Reply-To: <d26eae8d-4968-4ab0-bd9b-696d7b3865ec@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: WuwKox3A9KgeuJJ07yj-N41Z_moic0lQ
-X-Proofpoint-GUID: WuwKox3A9KgeuJJ07yj-N41Z_moic0lQ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-22_06,2023-11-22_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- mlxlogscore=509 malwarescore=0 bulkscore=0 clxscore=1015 phishscore=0
- spamscore=0 impostorscore=0 mlxscore=0 adultscore=0 priorityscore=1501
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311060000 definitions=main-2311220071
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB9PR04MB9498:EE_|PAXPR04MB9328:EE_
+X-MS-Office365-Filtering-Correlation-Id: 43fe542d-5cb3-42f1-2931-08dbeb47aeda
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	Xb1v0yUDH6spTZKusVd7RTLsAsQOcP7MpHnQWSYNFEZDqV09/s46BLQH4Ned91gbsFEWR6OmIh5JJmDIlf0wP6gm9OL5GqZP+PWPKtOwrOw2aGQVSa+GVx3fUu5XeEhdTtFKLcQkFjdg7Wd/bW5NWQhQv38KNQc4ZpyFOjVZMMYvmG8iuu/X/+3YD5BRuux9sxo55wlH+Jhd+9LmSedicIuaKXtK7/Bd25wXzxLkOQNnMTK/EmtqNj5VWoxmS7zJiAr6mGAl8wVOw9e/9u4m8lbGzMeK9NhSGJQel5ByVvrsPZDWnAtKY0rFTrRI3GaWNdTe96kmqlmnkxB6H+CJdChbnlg5M+JiBceM3iMhrTqbusZmoxtdV2MTX1NPxn7/QQdx/vXFfebFTj967RZADc0nGjUPQ7eWCcPkd6zbionhkTj2HXDlUfVbAGx3TUstCk1SHDrDQHNT/ZbZMHYdjYl2mKyE15Vg218L/gHOWwzCX2Wk9FHctsFF3bsAtoJM9JlyNlOTbxa/n1TnW0I3MWulpNwFkCiQlxcc2eavBQEZP78Q9v53SQ81JVED8/9ys6zGbiChzPnlNlKHNckN4+8bp5fONaDYdZwsZq2+kICzXgc72uKwganVcfR7cyqveZ99l3BpHLVLa72S+sdtAyiJJrSZSnTv2v8+aaarkvs=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB9498.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(136003)(346002)(396003)(366004)(39860400002)(230922051799003)(64100799003)(451199024)(1800799012)(186009)(83380400001)(6486002)(6506007)(478600001)(6512007)(26005)(6666004)(1076003)(52116002)(2616005)(38100700002)(66946007)(66476007)(316002)(66556008)(44832011)(86362001)(5660300002)(7416002)(2906002)(4744005)(2013699003)(921008)(38350700005)(41300700001)(8936002)(4326008)(8676002)(36756003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?rhVEe85yeM2i9OTM/eWhNJCTdM+iaRRQmTjk5USLq4az+ovrfvhgwJIGHWRt?=
+ =?us-ascii?Q?luupa4bioOTN55IPSM4YkZK6w/ueV9fCurw0gkF9qbh3Q2+sExv3ohSbSQA8?=
+ =?us-ascii?Q?j6YDivRiGMWgQ+JHpljHJtCZGdrDb9uQJ8bF+uD/hlykHEFW5Gzg3AvKJtlF?=
+ =?us-ascii?Q?OOjIWum27Eu/+hHDBmnpBW7e+10+1n7ZatzFUVwkYLIkyB+GVRCgFWYq8czU?=
+ =?us-ascii?Q?MOnRmRSDfIwffr0lphUQp8UHdTMGzorq6GFaqecb/rG+u4WyjnQvQvaPVLD9?=
+ =?us-ascii?Q?1bejM6lm/2jAMMXI33BRxI1663Kis8o/aKBpdjADMN925LVDGzowF3aezmVE?=
+ =?us-ascii?Q?7/3FUpBLv/S6hqBcfj5ZJsL/rsyZHbqxpkQKGjQYnypA0WyBKnAH1BN9ixbJ?=
+ =?us-ascii?Q?QmDfP4AWFZjoro/EHlCCY0J/++/EFBnYtzIbHO/QI6oOoToNMiUTxR4Q2yV8?=
+ =?us-ascii?Q?2Wx35I+hkiBdq/84i+dgmZDQ/f518TDLFkE7naCWwGvpnjYTgEjOEG3MtUyL?=
+ =?us-ascii?Q?vXoRdrpZgl/MfxCcpwrXSgq1ccwlINGeydqnbvLDVh1WKPZeY92jGIZOpR5t?=
+ =?us-ascii?Q?0YGxrjIl/i3O+d9udIVI4VbL5YPF/FsiOO0HJscN/3TK3toOFjk470WUWjmX?=
+ =?us-ascii?Q?CYL2wp81SgwnzdNv7zkAa9E9zhuh7hEntKlGzP5j0oUxJjo4m6hwsyCf/gGj?=
+ =?us-ascii?Q?/40X+QnYRaZtjo2LW5g/g8A4xV5C0jGT3BtUwVm38wvlTNitZAr7Z8Oqi9Nl?=
+ =?us-ascii?Q?5IqCHeMl9GyoAaWDgPQgqkgfmyGaIvLvdMVrDRkRsrNdDy/Qo2U8i6xio4/6?=
+ =?us-ascii?Q?kYKV9q7obY/F0sMI3aABWZeKV16Bl7zzPjGIvsDfrDELkAWbkEEgOMY0xCgw?=
+ =?us-ascii?Q?Sq1GEDke7G0JXPkliLtwx3Xy+Ic7rVnsEXIPFb4C5/rB1XkOYd4OTlcTsyw4?=
+ =?us-ascii?Q?FlI0et7A5qRiZwXM23Nauj/1eGw0gO6aKxMeG+2lOMf7ZbRwR6OHLIJX7wqV?=
+ =?us-ascii?Q?onAUDee1B7K2q4+MZ+FvVId4c2P728Fcck7L8nbXpiCE1/atr9N30GfqXmx0?=
+ =?us-ascii?Q?jGlDfKfK9iwY+ljvE1pHSkb73I+py2ETdqNxlHvEzNMpaXBdK4OWM4oeSyeO?=
+ =?us-ascii?Q?t7PHQkHzjEOgCU90KXvy9f0UnWljqWYnYK09/dvrYYS+3eInYGpz8vra2tfu?=
+ =?us-ascii?Q?eJVwyrst0dhHUESepn9JKGddlNEApSiBGbhvvfozSxmTlw4HlYlMrTXwB2/p?=
+ =?us-ascii?Q?Zf54Zhu5EBSN4YDT8a4lyFi74r44R40ZuXz39T3k+s+wByr6hY05hYOZuzZn?=
+ =?us-ascii?Q?DwxQDRB+NWpUfGpH1qzmhq9GNHtGAf0iErV+8q7cSYZJnItOT/VnddyCvUpL?=
+ =?us-ascii?Q?rnz9cqRYHucLn/Yp19rbqcM8UaGsq3G4T92J8Db+UEPTcw8ERt3VHrPv6QRI?=
+ =?us-ascii?Q?IutioL6Rw6lMFLCri2NZ3pIuzk06secW0PKrtMymnW/kclIfSNDQTrFsEplW?=
+ =?us-ascii?Q?j/6b/xfD6SN5vwPTBU5jBucPz5HSuUTU7VNibBIuyTLK/BunMg9P1CDY12hu?=
+ =?us-ascii?Q?E/FpzyoteHh4ecaVrnTWxUTpJAtMWg0IcURBzzno?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 43fe542d-5cb3-42f1-2931-08dbeb47aeda
+X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9498.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Nov 2023 10:42:11.5949
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: qCwJgeflJaLkO4AvC5YLSNfa4JaSiRlVBmqRPaBVrhkEaYPx/0w7GPbCeNfIyTJ5pOrtzKImQscatnInNXceFw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB9328
 
+changes in v3
+- drop unused compatible string in fsl,mqs.yaml
 
+changes in v2
+- Move MQS device node under "/" root node
+- Convert fsl,mqs.txt to yaml
 
-On 11/22/2023 3:42 PM, Krzysztof Kozlowski wrote:
-> On 22/11/2023 11:08, Kathiravan Thirumoorthy wrote:
->>
->>
->> On 11/21/2023 8:36 PM, Krzysztof Kozlowski wrote:
->>> On 21/11/2023 15:30, Kathiravan Thirumoorthy wrote:
->>>> In commit 0dd3f263c810 ("clk: qcom: ipq5332: enable few nssnoc clocks in
->>>
->>> Where is this commit coming from?
->>>
->>>> driver probe"), gcc_snoc_nssnoc_clk, gcc_snoc_nssnoc_1_clk,
->>>> gcc_nssnoc_nsscc_clk are enabled in driver probe to keep it always-on.
->>>
->>> Implementation can change and for example bring back these clocks. Are
->>> you going to change bindings? No, drop the patch.
->>>
->>> Bindings should be dropped only in a few rare cases like clocks not
->>> available for OS or bugs.
->>
->> Thanks Krzysztof. Will drop this patch in V3.
->>
->> One more question to understand further. In IPQ SoCs there are bunch of
->> coresight / QDSS clocks but coresight framework doesn't handle all
->> clocks. Those clocks are enabled in bootloader stage itself. In such
->> case, should I drop the clocks from both binding and driver or only from
->> driver?
-> 
-> That's not really the reason to drop them at all. Neither from driver,
-> nor from bindings. You should not rely on bootloader handling your clocks
+Chancel Liu (3):
+  arm64: dts: imx93: Add audio device nodes
+  arm64: dts: imx93: Configure clock rate for audio PLL
+  ASoC: dt-bindings: fsl,mqs: Convert format to json-schema
 
+ .../devicetree/bindings/sound/fsl,mqs.txt     |  36 ------
+ .../devicetree/bindings/sound/fsl,mqs.yaml    | 105 ++++++++++++++++++
+ arch/arm64/boot/dts/freescale/imx93.dtsi      |  89 +++++++++++++++
+ 3 files changed, 194 insertions(+), 36 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/fsl,mqs.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/fsl,mqs.yaml
 
-Thanks, lets say if those clocks are not needed at all by OS since QDSS 
-is not used and needed only for the boot loaders to access the 
-corresponding address space, in such case what can be done? I 
-understand, at first those clocks should not have been added to the driver.
+--
+2.42.0
 
-
-> 
-> Best regards,
-> Krzysztof
-> 
 
