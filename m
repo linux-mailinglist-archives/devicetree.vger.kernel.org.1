@@ -1,223 +1,178 @@
-Return-Path: <devicetree+bounces-18059-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18060-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B00587F4FC3
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 19:40:00 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2943D7F4FD8
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 19:45:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 90E181C20A0E
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 18:39:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D6E442815A9
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 18:45:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C87B65CD13;
-	Wed, 22 Nov 2023 18:39:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AD3A11700;
+	Wed, 22 Nov 2023 18:45:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="Z3HuXwjO"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="GbuXmbSa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23F3810CF
-	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 10:39:54 -0800 (PST)
-Received: by mail-oi1-x22a.google.com with SMTP id 5614622812f47-3b2ec9a79bdso82279b6e.3
-        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 10:39:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1700678393; x=1701283193; darn=vger.kernel.org;
-        h=in-reply-to:mime-version:user-agent:date:message-id:from:references
-         :cc:to:subject:from:to:cc:subject:date:message-id:reply-to;
-        bh=QfgNb6r3yCZuHodNAIkEYGNH3ItwROCkHRPb0yvWRXg=;
-        b=Z3HuXwjOEgNE3IZhNZXGbwmF2GNC8N27qk/gHXfu0d9NOxO8KuKDHlRXZ0uTps2n1v
-         1si8Xw2BqXtK/QYwXgDArtIN3tnbNqD3AywHksBuYf2P/MM76lSqs6rXcRY1KCwSXVo+
-         S3DODqRKUExq5eiJXX3C6uTyV5+7A9Poh+glo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700678393; x=1701283193;
-        h=in-reply-to:mime-version:user-agent:date:message-id:from:references
-         :cc:to:subject:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=QfgNb6r3yCZuHodNAIkEYGNH3ItwROCkHRPb0yvWRXg=;
-        b=F5ZJvlPxok0mg1c9IpetZ85mvdBtixWLG2D0yTk48xWV0mkZDIVfZl8cNoNIGxMS4l
-         qT/qWGgGase9cvwGNfse2BXmiSmaZKZinSp1eogXuJ6Z/WeN0PJ7gWkh96gRXX4VWTLY
-         IfL66OEDn0MznnFQjto7vKWrO/6ctGzpckpGVJrGR1dKO6SG9VywUJAgH945w8nxjYXt
-         ozYgnqb2JRtL0SvxLWpV6pJADi5+l681A5hOyfcU5jFmD4r0hfnRf3ZjWOk9K5JZ1hFT
-         vXJ90vA/f4ETN05u9QimG9hTcwA5XcxRgKm333GPd2Ug2itGD4m9Qf8YEx6rmO7hGD1M
-         lpRQ==
-X-Gm-Message-State: AOJu0Yyf+DswHO8lxjhvlm2yV4oFJv1T8Rhxt63uxV424zeVyB8ud8nC
-	/zi3KC2HyF/nI9PPNZ5GY15Cow==
-X-Google-Smtp-Source: AGHT+IHKgnUv9QjJ6NQpacCUtyRg+SLAWNR+qtryK5pNnIJNZMEfQQUs2wDbKkfTHACnSHoPWJIUwA==
-X-Received: by 2002:a05:6358:998a:b0:16d:bb96:1c2b with SMTP id j10-20020a056358998a00b0016dbb961c2bmr4082002rwb.12.1700678393254;
-        Wed, 22 Nov 2023 10:39:53 -0800 (PST)
-Received: from bcacpedev-irv-3.lvn.broadcom.net ([192.19.161.250])
-        by smtp.gmail.com with ESMTPSA id m13-20020a05620a24cd00b0077407e3d68asm71778qkn.111.2023.11.22.10.39.50
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 22 Nov 2023 10:39:52 -0800 (PST)
-Subject: Re: [PATCH V2 1/2] dt-bindings: serial: add Broadcom's BCMBCA family
- High Speed UART
-To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Anand Gore <anand.gore@broadcom.com>, Kursad Oney
- <kursad.oney@broadcom.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Andre Przywara <andre.przywara@arm.com>,
- Alexandre TORGUE <alexandre.torgue@st.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, linux-serial@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- bcm-kernel-feedback-list@broadcom.com, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
- <rafal@milecki.pl>
-References: <20231122144208.21114-1-zajec5@gmail.com>
- <66c4b54b-7631-484a-9f7d-31542284e620@linaro.org>
- <08fcb328-fe4b-40c7-a01e-8a0b527b1c71@gmail.com>
- <758114a7-0b18-44e8-b3d8-b5aabd244279@linaro.org>
- <cac6aa8a-1515-4062-8922-4d1e31e9216e@gmail.com>
- <ff32cd00-e26b-4ba6-bb08-a89c702895c9@linaro.org>
- <57a77c9d-684e-4f5e-977a-4586e15f7c3e@gmail.com>
- <141deca9-6017-4e3f-a237-8dacc67662de@linaro.org>
- <03ad42c0-1648-43e1-bbd0-9ed02bdf4073@gmail.com>
-From: William Zhang <william.zhang@broadcom.com>
-Message-ID: <b1f06f81-9248-73f3-b586-24e29bb9ab32@broadcom.com>
-Date: Wed, 22 Nov 2023 10:39:50 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
- Thunderbird/52.4.0
+Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F56A92;
+	Wed, 22 Nov 2023 10:45:09 -0800 (PST)
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 97D56120059;
+	Wed, 22 Nov 2023 21:45:07 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 97D56120059
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1700678707;
+	bh=ouwssWigHzD9ZWYCMHXO2ZFvdiQcVgz6nUBBI0g8ycU=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
+	b=GbuXmbSao/6h56W/EQ+mMC6rblliv5TV0Tr/Pi0M8VEDZx//QJsnQummWUKXRR94W
+	 R5oyDN92V2s6ZVZv9k/CJ86lKC++MKqen0+7YuT16DZGsY3rkdgm+6dH4lpVHoW2bi
+	 8uiG3jXzssmhFDFKfCbqZqx1dr4Ph0DHzdCmq+bL7dtPIm+OUcumHUwEwdnWroT1jC
+	 HHvvjImhtCjcvl9+5N9B6if/143dsA24gMKT1GbKas7lrCjbhYViAial87dvR44rrp
+	 QisOWdjMRrTEMCle12jV4GFhBcOrQ06b1eCaV/J9i8VTA0DOKq9El9M79Q6wiM1Q6G
+	 9FaazNaIFqA2g==
+Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Wed, 22 Nov 2023 21:45:07 +0300 (MSK)
+Received: from localhost (100.64.160.123) by p-i-exch-sc-m01.sberdevices.ru
+ (172.16.192.107) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 22 Nov
+ 2023 21:45:07 +0300
+Date: Wed, 22 Nov 2023 21:45:02 +0300
+From: Dmitry Rokosov <ddrokosov@salutedevices.com>
+To: Viacheslav Bocharov <adeep@lexina.in>
+CC: Neil Armstrong <neil.armstrong@linaro.org>, Jerome Brunet
+	<jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, Martin
+ Blumenstingl <martin.blumenstingl@googlemail.com>,
+	<linux-amlogic@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring
+	<robh+dt@kernel.org>
+Subject: Re: [DMARC error][DKIM error] [PATCH 5/5] arm64: dts: meson: add dts
+ links to secure-monitor for soc driver in a1, axg, gx, g12
+Message-ID: <20231122184502.x4rxzvgmoaxbmhlr@CAB-WSD-L081021>
+References: <20231122125643.1717160-1-adeep@lexina.in>
+ <20231122125643.1717160-6-adeep@lexina.in>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <03ad42c0-1648-43e1-bbd0-9ed02bdf4073@gmail.com>
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-	boundary="00000000000087fdf5060ac20b4d"
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20231122125643.1717160-6-adeep@lexina.in>
+User-Agent: NeoMutt/20220415
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 181545 [Nov 22 2023]
+X-KSMG-AntiSpam-Version: 6.0.0.2
+X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 3 0.3.3 e5c6a18a9a9bff0226d530c5b790210c0bd117c8, {Tracking_uf_ne_domains}, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, salutedevices.com:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;lists.infradead.org:7.1.1;p-i-exch-sc-m01.sberdevices.ru:5.0.1,7.1.1;127.0.0.199:7.1.2;100.64.160.123:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean, bases: 2023/11/22 18:12:00
+X-KSMG-LinksScanning: Clean, bases: 2023/11/22 18:12:00
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/11/22 11:24:00 #22501433
+X-KSMG-AntiVirus-Status: Clean, skipped
 
---00000000000087fdf5060ac20b4d
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Hello Viacheslav,
 
-Hi,
-
-On 11/22/2023 07:52 AM, Rafał Miłecki wrote:
-> On 22.11.2023 16:50, Krzysztof Kozlowski wrote:
->> On 22/11/2023 16:49, Rafał Miłecki wrote:
->>>>> For example a year ago I added binding for BCMBCA SoC timer without
->>>>> actual driver, see e112f2de151b ("dt-bindings: timer: Add Broadcom's
->>>>> BCMBCA timers").
->>>>>
->>>>> I'm not sure if we're going to agree on this, but personally I like
->>>>> describing hardware as much as I can. So it's well documented /
->>>>> understood and people may eventually write drivers for it. Maybe it's
->>>>> partially because I come from Broadcom's world that isn't well known
->>>>> for upstream efforts in general.
->>>>
->>>> The problem is that "brcm,bcmbca-hs-uart" is not describing 
->>>> hardware. It
->>>> is saying that all these devices have similar (compatible) programming
->>>> model, so the OS can use just one compatible. This goes away from pure
->>>> hardware description into interpretation.
->>>>
-It is the same hardware IP block used in bcmbca SoCs.  To me, it 
-perfectly describe the hardware IP block and it does not need fallback 
-because there is no fallback.  We did that for SPI controller although 
-it has two revisions of that IP block so we have brcm,bcmbca-hsspi-v1.0 
-and 1.1
-
->>>> Rob already commented on such non-SoC compatibles multiple times. I do
->>>> not see any reason here to not use specific compatible as fallback.
->>>
-Sorry I missed Rob's comments.  If we have any new rule or notes about 
-this, I would like to check it out.
-
->>> Do I get it right we should rather have some base specific compatible
->>> like: "brcm,bcm63138-hs-uart" and then if anything use fallback to it
->>> like: "brcm,bcm4908-hs-uart", "brcm,bcm63138-hs-uart"; ?
->>
->> Yes, or the other way around, depends which is probably the oldest.
-If we absolutely can not use bcmbca-hs-uart, I would suggest to use 
-bcm63xx-hs-uart to be more soc specific and in fact the oldest SoC have 
-such IP is 63138.
-
+On Wed, Nov 22, 2023 at 03:56:43PM +0300, Viacheslav Bocharov wrote:
+> Add links to secure-monitor in soc driver section for A1, AXG, GX, G12
+> Amlogic family.
 > 
-> Thank you for helping me on that!
+> Signed-off-by: Viacheslav Bocharov <adeep@lexina.in>
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-a1.dtsi         | 1 +
+>  arch/arm64/boot/dts/amlogic/meson-axg.dtsi        | 1 +
+>  arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 1 +
+>  arch/arm64/boot/dts/amlogic/meson-gx.dtsi         | 1 +
+>  4 files changed, 4 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+> index 648e7f49424f..449b328d62b1 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+> @@ -407,6 +407,7 @@ hwrng: rng@5118 {
+>  			sec_AO: ao-secure@5a20 {
+>  				compatible = "amlogic,meson-gx-ao-secure", "syscon";
+>  				reg = <0x0 0x5a20 0x0 0x140>;
+> +				secure-monitor = <&sm>;
 
---00000000000087fdf5060ac20b4d
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
+I suppose it's better and more consistent to use the same hierarchy
+pattern as Secure PWRC uses: to be a child of Secure Monitor.
 
-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
-YDZuuBJwnyCzevMoPtVYPharioL5H3BRnQi8YoTXH7/uRo33dewYFm474yFjwwnt82TFtveVZkVq
-6h4WIQ4wTcwFfET8zMkELnGzS5SHCl8sPD+lNxxJ1JDZYwIDAQABo4IB2zCCAdcwDgYDVR0PAQH/
-BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3VyZS5nbG9i
-YWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEGCCsGAQUF
-BzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAy
-MDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xv
-YmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6hjhodHRw
-Oi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNybDAlBgNV
-HREEHjAcgRp3aWxsaWFtLnpoYW5nQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAf
-BgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUq65GzwZxydFHjjYEU/9h
-xHhPWlwwDQYJKoZIhvcNAQELBQADggEBAA2hGG3JPAdGPH0ZdohGUCIVjKz+U+EFuIDbS6A/5jqX
-VhYAxZlzj7tSjUIM7G7IhyfqPC46GKJ/4x+Amz1Z6YxNGy71L68kYD6hIbBcA5AM42QBUufly6Oa
-/ppSz3WoflVyFFQ5YXniZ+eU+2/cdnYZg4aVUnFjimOF5o3NfMLzOkhQNxbaDjFUfUYD8hKmU6v4
-0vUBj8KZ9Gi1LIagLKUREn8jku0lcLsRbnJ5Ey5ScajC/FESPyYWasOW8j8/1EoJksmhbYGKNS6C
-urb/KlmDGfVrIRYDbL0ckhGQIP5c6L+kSQZ2sHnQK0e0WgIaZYxaPYeY5u0GLCOze+3vyRMxggJt
-MIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYD
-VQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwxuh2XG3FXRL1W
-JOEwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIOw/woFzF/M5/3QLPYswyDEjMQKG
-aBEcgSR0cAxUDxt5MBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIz
-MTEyMjE4Mzk1M1owaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
-CWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFl
-AwQCATANBgkqhkiG9w0BAQEFAASCAQCLJXRNaFP05FtAHmhkHf1126eG9a5sOaFUaF4KNgfqbsoI
-UH8UXQwE13QgEcECu3ijYk8Nv8p3n3WGUTKnRfladx4cmxmxPcuclcGzF99rZWzw3mK3ZZQIoW81
-HjZaJvRq+Sd0q/gt1Z0I3wWceEXRseW5/zfepZ0B+k9pL99kNIVhoQEk1gplK0JNVGQL4V0oTgKj
-jzX1QCYALNU7E3M7OO7SRZCgP06OZAFyPkEQeMjNWHSbrAPaNcIEGKN/Cejyp2QWj5sUGTDsaWQQ
-6EWJ3qGGvWM4rMm4DPtIRSIVvDo8kGkSZZUJMPplvx8uwIQuWF+Kg5zeDvuZ1gdKGQOI
---00000000000087fdf5060ac20b4d--
+Please see the example below from meson-a1.dtsi:
+
+
+	sm: secure-monitor {
+		compatible = "amlogic,meson-gxbb-sm";
+
+		pwrc: power-controller {
+			compatible = "amlogic,meson-a1-pwrc";
+			#power-domain-cells = <1>;
+		};
+	};
+
+>  				amlogic,has-chip-id;
+>  			};
+>  
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> index a49aa62e3f9f..6e80bdc525e5 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> @@ -1660,6 +1660,7 @@ mux {
+>  			sec_AO: ao-secure@140 {
+>  				compatible = "amlogic,meson-gx-ao-secure", "syscon";
+>  				reg = <0x0 0x140 0x0 0x140>;
+> +				secure-monitor = <&sm>;
+>  				amlogic,has-chip-id;
+>  			};
+>  
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> index ff68b911b729..0a6b703b0dc0 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> @@ -2026,6 +2026,7 @@ cec_AO: cec@100 {
+>  			sec_AO: ao-secure@140 {
+>  				compatible = "amlogic,meson-gx-ao-secure", "syscon";
+>  				reg = <0x0 0x140 0x0 0x140>;
+> +				secure-monitor = <&sm>;
+>  				amlogic,has-chip-id;
+>  			};
+>  
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+> index 2673f0dbafe7..656e08b3d872 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+> @@ -471,6 +471,7 @@ cec_AO: cec@100 {
+>  			sec_AO: ao-secure@140 {
+>  				compatible = "amlogic,meson-gx-ao-secure", "syscon";
+>  				reg = <0x0 0x140 0x0 0x140>;
+> +				secure-monitor = <&sm>;
+>  				amlogic,has-chip-id;
+>  			};
+>  
+> -- 
+> 2.34.1
+> 
+> 
+> _______________________________________________
+> linux-amlogic mailing list
+> linux-amlogic@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+-- 
+Thank you,
+Dmitry
 
