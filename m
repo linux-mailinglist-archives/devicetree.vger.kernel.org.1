@@ -1,120 +1,190 @@
-Return-Path: <devicetree+bounces-17756-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17758-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81AC57F3FA7
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 09:07:29 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A35BF7F3FB7
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 09:09:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 42D39282200
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 08:07:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 487B01F21DA6
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 08:09:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D57C246BD;
-	Wed, 22 Nov 2023 08:07:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8280B210FC;
+	Wed, 22 Nov 2023 08:09:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="OAlHcKef"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nbJ2SK6l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C620718E;
-	Wed, 22 Nov 2023 00:07:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1700640440; x=1732176440;
-  h=date:from:to:subject:message-id:references:mime-version:
-   in-reply-to;
-  bh=HzCmIqjiD/db2OVbbJ6fw6PB9pWnFmcUdmjHwNUjwaw=;
-  b=OAlHcKef/5awVohSEwnbUzrwn8UiUXJaV+oOQgkLCc5wIazlg/a3TCBy
-   Jw027fPq+iqzo7N3VPjSd7b3hJYx/bKE8qjFZHckSoZmC9SakW7+lePWe
-   hLU9BXbg2GfeSvHya+6ht/Np70eIo0D5yI4NKyqlRUSWZHT/7y990X+Ne
-   GNjmSymw6MWgFEjEG/Us0szn5Xjzc539Pqya16z3kwiK0tbXOU1ER2cm/
-   915R1xl0G4Xx9D/PaX/KELD5/RUe6TuSKfizIdoyFCydOmjTKYV4Zkr80
-   sji4P7dr69tgYanjtujn4oxkNvtKmRbquSj0JqDWYjgwwHNY7gZm22Vpq
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10901"; a="478214281"
-X-IronPort-AV: E=Sophos;i="6.04,218,1695711600"; 
-   d="scan'208";a="478214281"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Nov 2023 00:07:20 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10901"; a="832934951"
-X-IronPort-AV: E=Sophos;i="6.04,218,1695711600"; 
-   d="scan'208";a="832934951"
-Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
-  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Nov 2023 00:07:16 -0800
-Received: from kekkonen.localdomain (localhost [127.0.0.1])
-	by kekkonen.fi.intel.com (Postfix) with SMTP id 110AF1202B6;
-	Wed, 22 Nov 2023 10:07:14 +0200 (EET)
-Date: Wed, 22 Nov 2023 08:07:14 +0000
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Hugues Fruchet <hugues.fruchet@foss.st.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Dan Scally <dan.scally@ideasonboard.com>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 0/5] Add support for DCMIPP camera interface of
- STMicroelectronics STM32 SoC series
-Message-ID: <ZV22srRYwqKf3eKs@kekkonen.localdomain>
-References: <20231120170809.728941-1-alain.volmat@foss.st.com>
- <ZVvNMPfW7OhPByZk@kekkonen.localdomain>
- <20231122074404.GA787777@gnbcxd0016.gnb.st.com>
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EEAF20B22;
+	Wed, 22 Nov 2023 08:09:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF2F1C433D9;
+	Wed, 22 Nov 2023 08:09:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1700640552;
+	bh=PHQsh6F5XvgFUnaiWxcwLwUn3OBKs5yGFFQ41WrpYbs=;
+	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
+	b=nbJ2SK6lwZUEu6ZnwTSH+Oa/pBWa+sX/Htt/x2OReGd8JoH8z85C27DzRYTHJBlVi
+	 3wDe3x5yRyGX5qAMhcpfKXHDb9VRNeNThxVKhdlyx1h9TbC6wosV8PHWzu2uTL/7Am
+	 ZWlKfb6oi0Cn+Ic/KuwFQalQJhUOwrmMosWHgVwHC2Cz6C0mqCCOKTxXIRm3FodZqc
+	 a5DVliVMdZJxlKjgLRaCcUtozoEbeFe5NuT8tHE9n86xS+d7H2vfDsWjbaRg0Z56Vf
+	 5KU1r/sIqOWweRJ36Zhtl3j2xC4aB6yAvdaF7pTTjplwjMbpiRtNuVc7wneOEmh45p
+	 iqsEGA8VNAjSA==
+Received: by mail-pj1-f48.google.com with SMTP id 98e67ed59e1d1-28098ebd5aeso5197621a91.0;
+        Wed, 22 Nov 2023 00:09:12 -0800 (PST)
+X-Gm-Message-State: AOJu0Yx7odvUu4zERkyhQekrKqkBcCJ348m56meZ7iw4iXyhkBSdkk6f
+	8cpOzvOaK4gnHrY+fkTLZ8IxsErmbn8YrXs/sto=
+X-Google-Smtp-Source: AGHT+IEr9UvTFqYZYbRvMse6NIITfqbwjuUq1G6lDkVVXaxwMJVX1684jPAX+uFy+o0fSjl0iAD8WjSqBj6oqY9ODoU=
+X-Received: by 2002:a17:90b:1d92:b0:27f:ecd9:6d0e with SMTP id
+ pf18-20020a17090b1d9200b0027fecd96d0emr1639810pjb.34.1700640552241; Wed, 22
+ Nov 2023 00:09:12 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231122074404.GA787777@gnbcxd0016.gnb.st.com>
+References: <20231120084044.23838-1-krzysztof.kozlowski@linaro.org>
+ <6b288a2e-d147-4bd3-b1d4-daf56295d939@gmail.com> <01f9ce3b-e6e5-4b05-bf7f-0b3a5f74910a@linaro.org>
+In-Reply-To: <01f9ce3b-e6e5-4b05-bf7f-0b3a5f74910a@linaro.org>
+Reply-To: wens@kernel.org
+From: Chen-Yu Tsai <wens@kernel.org>
+Date: Wed, 22 Nov 2023 16:09:00 +0800
+X-Gmail-Original-Message-ID: <CAGb2v64Vf5dDwq=KTrxwc=+w+0KUD2KVPMjmHg68Y_yukES5dQ@mail.gmail.com>
+Message-ID: <CAGb2v64Vf5dDwq=KTrxwc=+w+0KUD2KVPMjmHg68Y_yukES5dQ@mail.gmail.com>
+Subject: Re: [PATCH v2] docs: dt-bindings: add DTS Coding Style document
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, Andrew Davis <afd@ti.com>, 
+	Arnd Bergmann <arnd@arndb.de>, Bjorn Andersson <andersson@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Heiko Stuebner <heiko@sntech.de>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Michal Simek <michal.simek@amd.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Nishanth Menon <nm@ti.com>, Olof Johansson <olof@lixom.net>, 
+	linux-rockchip@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	linux-amlogic@lists.infradead.org, linux-arm-msm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Alain,
+On Wed, Nov 22, 2023 at 4:05=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 21/11/2023 14:50, Rafa=C5=82 Mi=C5=82ecki wrote:
+> >> +Order of Nodes
+> >> +--------------
+> >> +
+> >> +1. Nodes within any bus, thus using unit addresses for children, shal=
+l be
+> >> +   ordered incrementally by unit address.
+> >> +   Alternatively for some sub-architectures, nodes of the same type c=
+an be
+> >> +   grouped together (e.g. all I2C controllers one after another even =
+if this
+> >> +   breaks unit address ordering).
+> >> +
+> >> +2. Nodes without unit addresses should be ordered alpha-numerically b=
+y the node
+> >> +   name.  For a few types of nodes, they can be ordered by the main p=
+roperty
+> >> +   (e.g. pin configuration states ordered by value of "pins" property=
+).
+> >> +
+> >> +3. When extending nodes in the board DTS via &label, the entries shou=
+ld be
+> >> +   ordered alpha-numerically.
+> >
+> > Just an idea. Would that make (more) sense to make &label-like entries
+> > match order of nodes in included .dts(i)?
+> >
+> > Adventages:
+> > 1. We keep unit address incremental order that is unlikely to change
+> >
+> > Disadventages:
+> > 1. More difficult to verify
+>
+> Rob also proposed this and I believe above disadvantage here is crucial.
+> If you add new SoC with board DTS you are fine. But if you add only new
+> board, the order of entries look random in the diff hunk. Reviewer must
+> open SoC DTSI to be able to review the patch with board DTS.
+>
+> If review is tricky and we do not have tool to perform it automatically,
+> I am sure submissions will have disordered board DTS.
+>
+> >
+> >
+> >> +Example::
+> >> +
+> >> +    // SoC DTSI
+> >> +
+> >> +    / {
+> >> +            cpus {
+> >> +                    // ...
+> >> +            };
+> >> +
+> >> +            psci {
+> >> +                    // ...
+> >> +            };
+> >> +
+> >> +            soc@ {
+> >> +                    dma: dma-controller@10000 {
+> >> +                            // ...
+> >> +                    };
+> >> +
+> >> +                    clk: clock-controller@80000 {
+> >> +                            // ...
+> >> +                    };
+> >> +            };
+> >> +    };
+> >> +
+> >> +    // Board DTS
+> >> +
+> >> +    &clk {
+> >> +            // ...
+> >> +    };
+> >> +
+> >> +    &dma {
+> >> +            // ...
+> >> +    };
+> >> +
+> >> +
+> >> +Order of Properties in Device Node
+> >> +----------------------------------
+> >> +
+> >> +Following order of properties in device nodes is preferred:
+> >> +
+> >> +1. compatible
+> >> +2. reg
+> >> +3. ranges
+> >> +4. Standard/common properties (defined by common bindings, e.g. witho=
+ut
+> >> +   vendor-prefixes)
+> >> +5. Vendor-specific properties
+> >> +6. status (if applicable)
+> >> +7. Child nodes, where each node is preceded with a blank line
+> >> +
+> >> +The "status" property is by default "okay", thus it can be omitted.
+> >
+> > I think it would really help to include position of #address-cells and
+> > #size-cells here. In some files I saw them above "compatible" that seem=
+s
+> > unintuitive. Some prefer putting them at end which I think makes sense
+> > as they affect children nodes.
+> >
+> > Whatever you choose it'd be just nice to have things consistent.
+>
+> This is a standard/common property, thus it goes to (4) above.
 
-On Wed, Nov 22, 2023 at 08:44:04AM +0100, Alain Volmat wrote:
-> Hi Sakari,
-> 
-> On Mon, Nov 20, 2023 at 09:18:40PM +0000, Sakari Ailus wrote:
-> > Hi Alain,
-> > 
-> > On Mon, Nov 20, 2023 at 06:07:56PM +0100, Alain Volmat wrote:
-> > > This patchset introduces support for Digital Camera Memory Interface
-> > > Pixel Processor (DCMIPP) of STMicroelectronics STM32 SoC series.
-> > > 
-> > > This initial support implements a single capture pipe
-> > > allowing RGB565, YUV, Y, RAW8 and JPEG capture with
-> > > frame skipping, prescaling and cropping.
-> > > 
-> > > DCMIPP is exposed through 3 subdevices:
-> > > - dcmipp_dump_parallel: parallel interface handling
-> > > - dcmipp_dump_postproc: frame skipping, prescaling and cropping control
-> > > - dcmipp_dump_capture: video device capture node
-> > > 
-> > > v7:
-> > >   - correct byteproc set_fmt handling and compose/crop/fmt handling
-> > >   - replace few v4l2_subdev_get_try_* into v4l2_subdev_get_pad_*
-> > 
-> > Can you rebase this on my my linuxtv.org tree master branch
-> > <URL:https://git.linuxtv.org/sailus/media_tree.git/log/>?
-> > 
-> > These will be called v4l2_subdev_state_get_* now.
-> 
-> Ok, serie v8 is now rebased on top of the master branch of your tree.
-> I'm going to push the rebased gc2145 sensor driver as well in a moment.
+It's probably a mix, but AFAIK a lot of the device trees in tree have
+#*-cells after "status". In some cases they are added in the board
+.dts files, not the chip/module .dtsi files.
 
-Thanks. Hans said he's going to merge the API change later this week (Mauro
-might do that earlier), I'll take these then.
++1 that it makes sense at the end as they affect child nodes.
 
--- 
-Regards,
-
-Sakari Ailus
+ChenYu
 
