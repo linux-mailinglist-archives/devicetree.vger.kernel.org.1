@@ -1,330 +1,92 @@
-Return-Path: <devicetree+bounces-18047-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18048-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B6167F4EBA
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 18:51:19 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D38C7F4EC7
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 18:54:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4FD15281453
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 17:51:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 363F0B20C84
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 17:54:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D80E58AA1;
-	Wed, 22 Nov 2023 17:51:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="k4VsDdu7"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71619584FC;
+	Wed, 22 Nov 2023 17:54:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C86A0D7D
-	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 09:51:11 -0800 (PST)
-Received: by mail-pg1-x532.google.com with SMTP id 41be03b00d2f7-5bd306f86a8so23693a12.0
-        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 09:51:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700675471; x=1701280271; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=XdeRY1HU0he8JLN2p85JAxLCvd0PpiNSQyQ1RY78xlk=;
-        b=k4VsDdu7NaCOagay7fWGYDl9qOxbXd/CzIz9TKkZOEf7n9/29VG32oW66Dw76D2kle
-         ffuZVuI2N9WYamVRGcVwMsXs7wRJRkppG4F+Tn4iJnkJPNpw44Nyr3LiBoKw+8DNjVmG
-         J79eeJlQkKt4zDg811fYXQTUGe1Y6HOBdvkrWPUyzzGVG3CrEzZDPM8uS78ycM/1taZ9
-         xJ5qBwHw90Ztw/w9bvi2ZpCEhp/mrme29XVk31agXY968vAI0Bv3Jguschh2BQ0HVp1I
-         iKkgvYKj4oy1zAOPrtN+059V9UBZUxbfQTXBUI5avmEGoSAFwrFa6R9aKRKzgf6pQOKx
-         qkfg==
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E47411B6;
+	Wed, 22 Nov 2023 09:53:58 -0800 (PST)
+Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-1ce627400f6so63195ad.2;
+        Wed, 22 Nov 2023 09:53:58 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700675471; x=1701280271;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XdeRY1HU0he8JLN2p85JAxLCvd0PpiNSQyQ1RY78xlk=;
-        b=QCx400qAnhKinVOK7qS5+ov/Yr7WTQV6EReVT7B5vJTQ62lqHOoflAz2yVwjdRa1i5
-         eobJrb9b7WA0ut7+Hk3+e0qpbTIiSdBI4qfJphAOi9B/gOCfxJQ7gf26QPxFW9K1UKfu
-         4avh8BOk1nRajIKU+XSvaUUGdNnuN+qCRM+vt0NIFXWNl/oI9alo6Brkg/o/dLutIoRW
-         3K+X+ZiLgMxi7JtTauer5jAeldFxqoupxyyu0KG3F5Q59UwcCtam/Qt5J9huLrrt92hG
-         fHGYxf82fEqLp7yMOnquplfadh4TVllnzwSp+wO/z90RetMToElXAVap6+C4qkMzhZfC
-         JNNg==
-X-Gm-Message-State: AOJu0Yyr3S0w4gVMQCUfi83Vd5DOs/a3uN7VISezK5jqAJ5l4BzQ62u3
-	46HTmr3xNsWiE3jB2WSetu4Hdg==
-X-Google-Smtp-Source: AGHT+IGOmJsp+VE8pTPzpczASjV96jP35mDzV5h8Bhcp3N3HpagQEURI1z12+//kLHTcf3rIVdRWWA==
-X-Received: by 2002:a05:6a20:440a:b0:186:de7:e803 with SMTP id ce10-20020a056a20440a00b001860de7e803mr3394379pzb.53.1700675471082;
-        Wed, 22 Nov 2023 09:51:11 -0800 (PST)
-Received: from p14s ([2604:3d09:148c:c800:178e:e668:ba84:1eed])
-        by smtp.gmail.com with ESMTPSA id g8-20020a056a00078800b006cb94e20014sm6684pfu.41.2023.11.22.09.51.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Nov 2023 09:51:10 -0800 (PST)
-Date: Wed, 22 Nov 2023 10:51:08 -0700
-From: Mathieu Poirier <mathieu.poirier@linaro.org>
-To: Tanmay Shah <tanmay.shah@amd.com>
-Cc: andersson@kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	michal.simek@amd.com, ben.levinsky@amd.com,
-	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 4/4] remoteproc: zynqmp: parse TCM from device tree
-Message-ID: <ZV4/jFwULdH67JYC@p14s>
-References: <20231117174238.1876655-1-tanmay.shah@amd.com>
- <20231117174238.1876655-5-tanmay.shah@amd.com>
+        d=1e100.net; s=20230601; t=1700675638; x=1701280438;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9x8CsMUGTdsi5KPdkfQH5uxztLGIUnhqBarImAkbXp0=;
+        b=Qc0qvrJzvtu8utNsWERjBxpNc1sQwAT2RF+RU6sfdeymVFRlf3Aq+FKUIdJkaLTadP
+         K9zOQoGK1l58YtcRbmPosCtLYZlB2Zam6j6IxOP3Mk9CnP8Yb70vEe3AZ6N1gl5eiutV
+         BzQk603SxVIcgqVt33BojJUGCAtC8z5kYVZ9R6ToDnpW5/w4N6IaZkrqwge9JkMg0QYs
+         Vt9A09nkV6Kpa4SvaYDqcWJ/COGTK0VOq0T3UZ3f8ZzpPdzoepdsGI9D9uqrSFs+kEM/
+         +rpv1LDCZd4F0baPeq6C+1Vf1Ke8rUFLzODbI4hl7mckec1coYufNpKW95HoRh1Z1ov1
+         NDjA==
+X-Gm-Message-State: AOJu0YxJj2xpW3xpUBAxsRKa5bA3Qe7E2DT/zPsETGBvKW1CV2Pt7RG7
+	rZfux5A8b0HvxxsO2qiGER3ZgzwlUyM=
+X-Google-Smtp-Source: AGHT+IFzb5usn0fE7Zv2UqxPoMh/a3YXsRf3gak5hOkukkrSoLaetesuiE4QV/VtqZawsfR8M9e50A==
+X-Received: by 2002:a17:902:8341:b0:1c3:1f0c:fb82 with SMTP id z1-20020a170902834100b001c31f0cfb82mr2563544pln.41.1700675638221;
+        Wed, 22 Nov 2023 09:53:58 -0800 (PST)
+Received: from ?IPV6:2620:0:1000:8411:9d34:90db:9557:9413? ([2620:0:1000:8411:9d34:90db:9557:9413])
+        by smtp.gmail.com with ESMTPSA id j3-20020a170902758300b001cc0d1af177sm10070853pll.229.2023.11.22.09.53.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 Nov 2023 09:53:57 -0800 (PST)
+Message-ID: <f9640827-4100-4ebf-8281-46f2d656540a@acm.org>
+Date: Wed, 22 Nov 2023 09:53:53 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231117174238.1876655-5-tanmay.shah@amd.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] dt-bindings: ufs: Add msi-parent for UFS MCQ
+Content-Language: en-US
+To: Ziqi Chen <quic_ziqichen@quicinc.com>, quic_asutoshd@quicinc.com,
+ quic_cang@quicinc.com, mani@kernel.org, stanley.chu@mediatek.com,
+ adrian.hunter@intel.com, beanhuo@micron.com, avri.altman@wdc.com,
+ junwoo80.lee@samsung.com, martin.petersen@oracle.com,
+ quic_nguyenb@quicinc.com, quic_nitirawa@quicinc.com
+Cc: linux-scsi@vger.kernel.org, Alim Akhtar <alim.akhtar@samsung.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Guenter Roeck <linux@roeck-us.net>,
+ Wolfram Sang <wsa@kernel.org>, Mark Brown <broonie@kernel.org>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
+References: <1700629624-23571-1-git-send-email-quic_ziqichen@quicinc.com>
+From: Bart Van Assche <bvanassche@acm.org>
+In-Reply-To: <1700629624-23571-1-git-send-email-quic_ziqichen@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Fri, Nov 17, 2023 at 09:42:38AM -0800, Tanmay Shah wrote:
-> ZynqMP TCM information is fixed in driver. Now ZynqMP TCM information
-> is available in device-tree. Parse TCM information in driver
-> as per new bindings.
-> 
-> Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
-> ---
-> 
-> Changes in v7:
->   - move checking of pm_domain_id from previous patch
->   - fix mem_bank_data memory allocation
-> 
->  drivers/remoteproc/xlnx_r5_remoteproc.c | 152 ++++++++++++++++++++----
->  1 file changed, 128 insertions(+), 24 deletions(-)
-> 
-> diff --git a/drivers/remoteproc/xlnx_r5_remoteproc.c b/drivers/remoteproc/xlnx_r5_remoteproc.c
-> index 22bccc5075a0..270af73344ef 100644
-> --- a/drivers/remoteproc/xlnx_r5_remoteproc.c
-> +++ b/drivers/remoteproc/xlnx_r5_remoteproc.c
-> @@ -75,8 +75,8 @@ struct mbox_info {
->  };
->  
->  /*
-> - * Hardcoded TCM bank values. This will be removed once TCM bindings are
-> - * accepted for system-dt specifications and upstreamed in linux kernel
-> + * Hardcoded TCM bank values. This will stay in driver to maintain backward
-> + * compatibility with device-tree that does not have TCM information.
->   */
->  static const struct mem_bank_data zynqmp_tcm_banks_split[] = {
->  	{0xffe00000UL, 0x0, 0x10000UL, PD_R5_0_ATCM, "atcm0"}, /* TCM 64KB each */
-> @@ -587,12 +587,21 @@ static int add_tcm_carveout_split_mode(struct rproc *rproc)
->  		bank_size = r5_core->tcm_banks[i]->size;
->  		pm_domain_id = r5_core->tcm_banks[i]->pm_domain_id;
->  
-> -		ret = zynqmp_pm_request_node(pm_domain_id,
-> -					     ZYNQMP_PM_CAPABILITY_ACCESS, 0,
-> -					     ZYNQMP_PM_REQUEST_ACK_BLOCKING);
-> -		if (ret < 0) {
-> -			dev_err(dev, "failed to turn on TCM 0x%x", pm_domain_id);
-> -			goto release_tcm_split;
-> +		/*
-> +		 * If TCM information is available in device-tree then
-> +		 * in that case, pm domain framework will power on/off TCM.
-> +		 * In that case pm_domain_id is set to 0. If hardcode
-> +		 * bindings from driver is used, then only this driver will
-> +		 * use pm_domain_id.
-> +		 */
-> +		if (pm_domain_id) {
-> +			ret = zynqmp_pm_request_node(pm_domain_id,
-> +						     ZYNQMP_PM_CAPABILITY_ACCESS, 0,
-> +						     ZYNQMP_PM_REQUEST_ACK_BLOCKING);
-> +			if (ret < 0) {
-> +				dev_err(dev, "failed to turn on TCM 0x%x", pm_domain_id);
-> +				goto release_tcm_split;
-> +			}
->  		}
->  
->  		dev_dbg(dev, "TCM carveout split mode %s addr=%llx, da=0x%x, size=0x%lx",
-> @@ -604,7 +613,8 @@ static int add_tcm_carveout_split_mode(struct rproc *rproc)
->  						 bank_name);
->  		if (!rproc_mem) {
->  			ret = -ENOMEM;
-> -			zynqmp_pm_release_node(pm_domain_id);
-> +			if (pm_domain_id)
-> +				zynqmp_pm_release_node(pm_domain_id);
->  			goto release_tcm_split;
->  		}
->  
-> @@ -617,7 +627,8 @@ static int add_tcm_carveout_split_mode(struct rproc *rproc)
->  	/* If failed, Turn off all TCM banks turned on before */
->  	for (i--; i >= 0; i--) {
->  		pm_domain_id = r5_core->tcm_banks[i]->pm_domain_id;
-> -		zynqmp_pm_release_node(pm_domain_id);
-> +		if (pm_domain_id)
-> +			zynqmp_pm_release_node(pm_domain_id);
->  	}
->  	return ret;
->  }
-> @@ -659,13 +670,16 @@ static int add_tcm_carveout_lockstep_mode(struct rproc *rproc)
->  		pm_domain_id = r5_core->tcm_banks[i]->pm_domain_id;
->  
->  		/* Turn on each TCM bank individually */
-> -		ret = zynqmp_pm_request_node(pm_domain_id,
-> -					     ZYNQMP_PM_CAPABILITY_ACCESS, 0,
-> -					     ZYNQMP_PM_REQUEST_ACK_BLOCKING);
-> -		if (ret < 0) {
-> -			dev_err(dev, "failed to turn on TCM 0x%x",
-> -				pm_domain_id);
-> -			goto release_tcm_lockstep;
+On 11/21/23 21:06, Ziqi Chen wrote:
+> diff --git a/Documentation/devicetree/bindings/ufs/ufs-common.yaml b/Documentation/devicetree/bindings/ufs/ufs-common.yaml
+> index 985ea8f..31fe7f3 100644
+> --- a/Documentation/devicetree/bindings/ufs/ufs-common.yaml
+> +++ b/Documentation/devicetree/bindings/ufs/ufs-common.yaml
+> @@ -87,6 +87,8 @@ properties:
+>       description:
+>         Specifies max. load that can be drawn from VCCQ2 supply.
+>   
+> +  msi-parent: true
 > +
-> +		if (pm_domain_id) {
-> +			ret = zynqmp_pm_request_node(pm_domain_id,
-> +						     ZYNQMP_PM_CAPABILITY_ACCESS, 0,
-> +						     ZYNQMP_PM_REQUEST_ACK_BLOCKING);
-> +			if (ret < 0) {
-> +				dev_err(dev, "failed to turn on TCM 0x%x",
-> +					pm_domain_id);
-> +				goto release_tcm_lockstep;
-> +			}
->  		}
->  
->  		bank_size = r5_core->tcm_banks[i]->size;
-> @@ -683,7 +697,8 @@ static int add_tcm_carveout_lockstep_mode(struct rproc *rproc)
->  						 bank_name);
->  		if (!rproc_mem) {
->  			ret = -ENOMEM;
-> -			zynqmp_pm_release_node(pm_domain_id);
-> +			if (pm_domain_id)
-> +				zynqmp_pm_release_node(pm_domain_id);
->  			goto release_tcm_lockstep;
->  		}
->  
-> @@ -700,7 +715,8 @@ static int add_tcm_carveout_lockstep_mode(struct rproc *rproc)
->  	/* If failed, Turn off all TCM banks turned on before */
->  	for (i--; i >= 0; i--) {
->  		pm_domain_id = r5_core->tcm_banks[i]->pm_domain_id;
-> -		zynqmp_pm_release_node(pm_domain_id);
-> +		if (pm_domain_id)
-> +			zynqmp_pm_release_node(pm_domain_id);
->  	}
->  	return ret;
->  }
-> @@ -931,6 +947,8 @@ static int zynqmp_r5_add_pm_domains(struct rproc *rproc)
->  		}
->  	}
->  
-> +	return 0;
-> +
->  fail_add_pm_domains_lockstep:
->  	while (--j >= 0) {
->  		device_link_del(r5_core->pm_dev_core1_link[j]);
-> @@ -1012,7 +1030,7 @@ static int zynqmp_r5_rproc_unprepare(struct rproc *rproc)
->  
->  	for (i = 0; i < r5_core->tcm_bank_count; i++) {
->  		pm_domain_id = r5_core->tcm_banks[i]->pm_domain_id;
-> -		if (zynqmp_pm_release_node(pm_domain_id))
-> +		if (pm_domain_id && zynqmp_pm_release_node(pm_domain_id))
->  			dev_warn(r5_core->dev,
->  				 "can't turn off TCM bank 0x%x", pm_domain_id);
->  	}
-> @@ -1087,6 +1105,83 @@ static struct zynqmp_r5_core *zynqmp_r5_add_rproc_core(struct device *cdev)
->  	return ERR_PTR(ret);
->  }
->  
-> +static int zynqmp_r5_get_tcm_node_from_dt(struct zynqmp_r5_cluster *cluster)
-> +{
-> +	struct zynqmp_r5_core *r5_core;
-> +	int i, j, tcm_bank_count, ret;
-> +	struct platform_device *cpdev;
-> +	struct mem_bank_data *tcm;
-> +	struct device_node *np;
-> +	struct resource *res;
-> +	u64 abs_addr, size;
-> +	struct device *dev;
-> +
-> +	for (i = 0; i < cluster->core_count; i++) {
-> +		r5_core = cluster->r5_cores[i];
-> +		dev = r5_core->dev;
-> +		np = dev_of_node(dev);
-> +
-> +		/* we have address cell 2 and size cell as 2 */
-> +		ret = of_property_count_elems_of_size(np, "reg",
-> +		if (ret <= 0) {
-> +			dev_err(dev, "can't get reg property err %d\n", ret);
-> +			return -EINVAL;
-> +		}
-> +
-> +		tcm_bank_count = ret;
+>   dependencies:
+>     freq-table-hz: [ clocks ]
+>     operating-points-v2: [ clocks, clock-names ]
 
-This is useless - please use @tcm_bank_count instead of @ret above.
+Does this patch break support for UFSHCI 4.0 controllers that do not support MSI?
 
-> +
-> +		r5_core->tcm_banks = devm_kcalloc(dev, tcm_bank_count,
-> +						  sizeof(struct mem_bank_data *),
-> +						  GFP_KERNEL);
-> +		if (!r5_core->tcm_banks)
-> +			ret = -ENOMEM;
-> +
-> +		r5_core->tcm_bank_count = tcm_bank_count;
-> +		for (j = 0; j < tcm_bank_count; j++) {
-> +			tcm = devm_kzalloc(dev, sizeof(struct mem_bank_data),
-> +					   GFP_KERNEL);
-> +			if (!tcm)
-> +				return -ENOMEM;
-> +
-> +			r5_core->tcm_banks[j] = tcm;
-> +
-> +			/* get tcm address without translation */
-> +			ret = of_property_read_reg(np, j, &abs_addr, &size);
-> +			if (ret) {
-> +				dev_err(dev, "failed to get reg property\n");
-> +				return ret;
-> +			}
-> +
-> +			/*
-> +			 * remote processor can address only 32 bits
-> +			 * so convert 64-bits into 32-bits. This will discard
-> +			 * any unwanted upper 32-bits.
-> +			 */
-> +			tcm->da = (u32)abs_addr;
-> +			tcm->size = (u32)size;
-> +
-> +			cpdev = to_platform_device(dev);
-> +			res = platform_get_resource(cpdev, IORESOURCE_MEM, j);
-> +			if (!res) {
-> +				dev_err(dev, "failed to get tcm resource\n");
-> +				return -EINVAL;
-> +			}
-> +
-> +			tcm->addr = (u32)res->start;
-> +			tcm->bank_name = (char *)res->name;
-> +			res = devm_request_mem_region(dev, tcm->addr, tcm->size,
-> +						      tcm->bank_name);
-> +			if (!res) {
-> +				dev_err(dev, "failed to request tcm resource\n");
-> +				return -EINVAL;
-> +			}
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  /**
->   * zynqmp_r5_get_tcm_node()
->   * Ideally this function should parse tcm node and store information
-> @@ -1165,10 +1260,19 @@ static int zynqmp_r5_core_init(struct zynqmp_r5_cluster *cluster,
->  	struct zynqmp_r5_core *r5_core;
->  	int ret, i;
->  
-> -	ret = zynqmp_r5_get_tcm_node(cluster);
-> -	if (ret < 0) {
-> -		dev_err(dev, "can't get tcm node, err %d\n", ret);
-> -		return ret;
-> +	r5_core = cluster->r5_cores[0];
-> +	if (of_find_property(r5_core->np, "reg", NULL)) {
-> +		ret = zynqmp_r5_get_tcm_node_from_dt(cluster);
-> +		if (ret) {
-> +			dev_err(dev, "can't get tcm node from dt, err %d\n", ret);
-> +			return ret;
-> +		}
-> +	} else {
-> +		ret = zynqmp_r5_get_tcm_node(cluster);
-> +		if (ret < 0) {
-> +			dev_err(dev, "can't get tcm node, err %d\n", ret);
-> +			return ret;
-> +		}
->  	}
->  
->  	for (i = 0; i < cluster->core_count; i++) {
-> -- 
-> 2.25.1
-> 
+Thanks,
+
+Bart.
 
