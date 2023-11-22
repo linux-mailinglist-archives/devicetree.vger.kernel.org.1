@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-17849-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17851-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA6A37F4494
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 12:02:40 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40FF67F4497
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 12:02:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 925BE2815D1
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 11:02:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7340B1C20A51
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 11:02:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0DF425578;
-	Wed, 22 Nov 2023 11:02:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5F0226292;
+	Wed, 22 Nov 2023 11:02:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f45.google.com (mail-io1-f45.google.com [209.85.166.45])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E99BCD8;
-	Wed, 22 Nov 2023 03:02:34 -0800 (PST)
-Received: by mail-io1-f45.google.com with SMTP id ca18e2360f4ac-7b34e7c829fso39853439f.2;
-        Wed, 22 Nov 2023 03:02:34 -0800 (PST)
+Received: from mail-il1-f182.google.com (mail-il1-f182.google.com [209.85.166.182])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7BA3198;
+	Wed, 22 Nov 2023 03:02:39 -0800 (PST)
+Received: by mail-il1-f182.google.com with SMTP id e9e14a558f8ab-359d559766cso23728325ab.1;
+        Wed, 22 Nov 2023 03:02:39 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700650954; x=1701255754;
+        d=1e100.net; s=20230601; t=1700650959; x=1701255759;
         h=date:subject:message-id:references:in-reply-to:cc:to:from
          :mime-version:content-transfer-encoding:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=eiBSC2kAnOrbX9wM+8OFXkbvY1npbxoCVLQe1hYRSgs=;
-        b=U24o8WImB9xwnOi7UfhTCvNIlXGMlNwhA6dBEI6MKteaNxESmGSw1gebmO6wYsg3MT
-         9PdENuqDkumHsOS2Jx0/B7UUxKfVqn6vmYiE9/5MruYrzSR5eIRE6mp08XLmZlt7FS9T
-         njd1TmyQ32NUCtIwROQ4Ub4vOAqYXtP3xdQQi9dOzpsOw9cs04Pa8EBbxgxjp6q6vFgR
-         zj2QOj28/5TOY1LLr37KWJgCBHRpwp3HbBonYv9xlox2wRAOTA6VlvgM4h+HNsnWZGyS
-         jnX4w9DN/GFFXg4SuhE0iYpBA+07taazmFSqKurKueMs+N9xYdD27rzC/BtnvsSKDpyC
-         y8Lw==
-X-Gm-Message-State: AOJu0YxnR1WYpid+nqw9tlZHt0Qc8/gruWgk/bCFJ3RGuhBrdErpQf1R
-	gjvVhquWfu401Fi9YobgNQ==
-X-Google-Smtp-Source: AGHT+IHd2RAZI4ut8gHQIsru4fuNJzM6M50xt76LRGT0qAPUuxj2gou5lr1wf2egkMC+53awGlvBxQ==
-X-Received: by 2002:a05:6602:370e:b0:792:6963:df30 with SMTP id bh14-20020a056602370e00b007926963df30mr2060536iob.0.1700650954135;
-        Wed, 22 Nov 2023 03:02:34 -0800 (PST)
+        bh=hysRT5p62CMdMmCQloI5SV6AT3d/MMAHRidqQnYCAwU=;
+        b=GXc+EMXGIh9rGz/+otSQnij1zQTbrUk8VO0MsQREG1UF9qjAIXnGZKAEEDG2H1FetB
+         F8eGgc5Hzpo2LnnGi7tjDcvuS14yCTbglsq82Ivds0Q83HCMMs0azMJ+PzRJaWsbIzen
+         z9mnwel431nbsh9qbvsZ088hHvJEHm623XDXsXQy27h2HXFqHhpZomW66Mm1PYvlLt1t
+         2p1/X3C/KbtljgCc4U9bh6B5TaDwqQVfx425A4v50wP8VjNHpH1L3J4QbNca55ESP9i1
+         5lI7N4y8Dxpmvveb3TNPAj65zVdTICsl+gFr7N2OTQxtRkpnobzARrHTYLqgT+b94Tl6
+         x17g==
+X-Gm-Message-State: AOJu0YyrVWmdwNl8KXaSqpSkmWEpqtYZo5ytZzc4YTdl/5XYakg2TcUv
+	wStM01eKNkFCHqRqutvBSty/ZgajZw==
+X-Google-Smtp-Source: AGHT+IGqcztZBkfnygd9n634B1WSm2HzbbRNzdj7N4qFsNXK5h5vKxiqUMmKY3wexuqXOCDWyvXczg==
+X-Received: by 2002:a92:760a:0:b0:359:38ab:5a55 with SMTP id r10-20020a92760a000000b0035938ab5a55mr1771540ilc.22.1700650959108;
+        Wed, 22 Nov 2023 03:02:39 -0800 (PST)
 Received: from herring.priv ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id ge23-20020a056638681700b0043978165d54sm3177120jab.104.2023.11.22.03.02.32
+        by smtp.gmail.com with ESMTPSA id u17-20020a92da91000000b0035b0ad262e2sm1590867iln.47.2023.11.22.03.02.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Nov 2023 03:02:33 -0800 (PST)
-Received: (nullmailer pid 116324 invoked by uid 1000);
+        Wed, 22 Nov 2023 03:02:38 -0800 (PST)
+Received: (nullmailer pid 116330 invoked by uid 1000);
 	Wed, 22 Nov 2023 11:02:29 -0000
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -52,23 +52,23 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: Rob Herring <robh@kernel.org>
 To: Nikita Shubin <nikita.shubin@maquefel.me>
-Cc: Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, linux-input@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, Alexander Sverdlin <alexander.sverdlin@gmail.com>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, devicetree@vger.kernel.org
-In-Reply-To: <20231122-ep93xx-v5-22-d59a76d5df29@maquefel.me>
+Cc: Hartley Sweeten <hsweeten@visionengravers.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org, linux-sound@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>, Alexander Sverdlin <alexander.sverdlin@gmail.com>, Conor Dooley <conor+dt@kernel.org>
+In-Reply-To: <20231122-ep93xx-v5-28-d59a76d5df29@maquefel.me>
 References: <20231122-ep93xx-v5-0-d59a76d5df29@maquefel.me>
- <20231122-ep93xx-v5-22-d59a76d5df29@maquefel.me>
-Message-Id: <170065094261.116114.9958175828656550459.robh@kernel.org>
-Subject: Re: [PATCH v5 22/39] dt-bindings: input: Add Cirrus EP93xx keypad
+ <20231122-ep93xx-v5-28-d59a76d5df29@maquefel.me>
+Message-Id: <170065094949.116273.16587209565152503484.robh@kernel.org>
+Subject: Re: [PATCH v5 28/39] ASoC: dt-bindings: ep93xx: Document Audio
+ Port support
 Date: Wed, 22 Nov 2023 04:02:29 -0700
 
 
-On Wed, 22 Nov 2023 12:00:00 +0300, Nikita Shubin wrote:
-> Add YAML bindings for ep93xx SoC keypad.
+On Wed, 22 Nov 2023 12:00:06 +0300, Nikita Shubin wrote:
+> Document Audio Graph Port support in binding document.
 > 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
 > ---
->  .../bindings/input/cirrus,ep9307-keypad.yaml       | 87 ++++++++++++++++++++++
->  1 file changed, 87 insertions(+)
+>  Documentation/devicetree/bindings/sound/cirrus,ep9301-i2s.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -77,12 +77,11 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/dma/cirrus,ep9301-dma-m2m.example.dts:24:18: fatal error: dt-bindings/soc/cirrus,ep9301-syscon.h: No such file or directory
-make[2]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/dma/cirrus,ep9301-dma-m2m.example.dtb] Error 1
+
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231122-ep93xx-v5-22-d59a76d5df29@maquefel.me
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231122-ep93xx-v5-28-d59a76d5df29@maquefel.me
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
