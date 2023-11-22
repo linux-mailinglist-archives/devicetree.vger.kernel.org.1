@@ -1,338 +1,193 @@
-Return-Path: <devicetree+bounces-18105-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18106-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82AF67F519B
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 21:27:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 970687F51DD
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 21:47:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9C07D1C20AC3
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 20:27:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BB1EE1C20B79
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 20:47:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5BF45D908;
-	Wed, 22 Nov 2023 20:27:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2CD7C8EC;
+	Wed, 22 Nov 2023 20:47:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OIBNi53o"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JTZKN5o8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B94F21B5
-	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 12:27:05 -0800 (PST)
-Received: by mail-pg1-x52d.google.com with SMTP id 41be03b00d2f7-5c1f8b0c149so113694a12.3
-        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 12:27:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700684825; x=1701289625; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=TBy3xGKxlkC1z2sWBe+pNLmOxRoFG7lvqR5IZu6tCeQ=;
-        b=OIBNi53o1SDVjsBA0qmBiTQJDOrQGmcB8F9zjvypHaiQ0xuF/XlT7rRP/lFhNzDbHJ
-         1Im6BVBURL4LMWkXHBvL2F1pTRmMSZkF6jit0B3VhAcp5vH3AzALbeDoMCl1rnNKkD8S
-         vW05uaEMGZiV6SyzDbXZCDoKcBPlYTiEUX0wNbmXC9m1L8CWEiIhQlEtGsHMAA4Uk3Pi
-         Aj/yHBrB5wZcq3d7rL9TGOsJn3t2iMTvTxnjaDmGH9xMaQVB7sRxkEmazwoCSc4s9JwA
-         LmtSE5pUBdIps0VGajA/LRcZ+cPyzC8TTihbAP+68SDtQiwYYgBEb3B8i9odpFVOW3xB
-         CuKQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700684825; x=1701289625;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TBy3xGKxlkC1z2sWBe+pNLmOxRoFG7lvqR5IZu6tCeQ=;
-        b=bHUzg2zNCIMCmJ4o6NsWu74XSseC+W3vjyqC1upwDDcUMuodlXKKMHPe3ZlGLrooMN
-         2b/bk6PeWAIYieQKaq1a7Y4A/x0zXwBGs4gJuF8wy+ExVMaoAu1PORp40VYNAOmeFEhW
-         mWk07Jdn+o7s6rvZGMaxswXeiHZv9XkletMD+D4sFiSIhhq3kOMRjs/aAE8zpIHLP9FE
-         nE/Hy++vSLOf6RORAbyJa7puiFcP3qFxHPjbl8IWsPQPbqavPkeD/qVZixex0PU7TdIY
-         PzAjl0eXalTxeR52RduNB4pC2rr8riSkrekmZFU2KpksPSFa9LbN7AkKHbW08EE67ktR
-         f4Vg==
-X-Gm-Message-State: AOJu0YxxyD+LF9OySMgXZnqzefnWVd6jxPCb/dY65pQtv2GtaHj8RXSe
-	Iy7/JOm2Vu7cxtVOIZSfWA4J7w==
-X-Google-Smtp-Source: AGHT+IE/kV6pzLlXs5i/gyxu13nVhalvqP73+0HqOoD4OksdoIF+3RWtoPt/dD3tWbTtELULOVkfZw==
-X-Received: by 2002:a17:90b:180f:b0:280:8356:10b2 with SMTP id lw15-20020a17090b180f00b00280835610b2mr3785292pjb.5.1700684825056;
-        Wed, 22 Nov 2023 12:27:05 -0800 (PST)
-Received: from p14s ([2604:3d09:148c:c800:178e:e668:ba84:1eed])
-        by smtp.gmail.com with ESMTPSA id gj14-20020a17090b108e00b00267b38f5e13sm164998pjb.2.2023.11.22.12.27.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Nov 2023 12:27:04 -0800 (PST)
-Date: Wed, 22 Nov 2023 13:27:01 -0700
-From: Mathieu Poirier <mathieu.poirier@linaro.org>
-To: Tanmay Shah <tanmay.shah@amd.com>
-Cc: andersson@kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	michal.simek@amd.com, ben.levinsky@amd.com,
-	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 4/4] remoteproc: zynqmp: parse TCM from device tree
-Message-ID: <ZV5kFVdNnwIX3AT/@p14s>
-References: <20231117174238.1876655-1-tanmay.shah@amd.com>
- <20231117174238.1876655-5-tanmay.shah@amd.com>
- <ZV4/jFwULdH67JYC@p14s>
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94F231A587;
+	Wed, 22 Nov 2023 20:47:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1FE42C433C7;
+	Wed, 22 Nov 2023 20:47:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1700686039;
+	bh=iOGqsjNrxAouz3AJJHZo7n5yudWeQ8nrq1vq3zxtsBE=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=JTZKN5o8vBbSuTJ3zDm40Y+bDC/o4pO62dv6Qdw7wjjfuIvXz850E2mN4N0glDyAQ
+	 I24R1FewFREzbe6rsAaoxOszJT3HRAS9FwQcOgcd7p5330hxLb25O+yIbsQjwCTtsn
+	 +UFBAeZhqin2ubNn0OiBQfTXJ3vuEL5ciC2berJUgxbcBx4Aia14ioQrjV7DiaUVSR
+	 st50n8JxEhvGIa27YvK0jqgESrKFfDzRghsbGqbgZ3ITGcJLSxCRtKlTKGWtCMUBqj
+	 XpnKWid20FYJZBoiCILBrxO3xwRpU60BIQ28102Xv1iodp9t4T9w+AQKOUaZTyPQCD
+	 Ac2OW6LMM00DQ==
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2c874286f4dso13653841fa.0;
+        Wed, 22 Nov 2023 12:47:19 -0800 (PST)
+X-Gm-Message-State: AOJu0YzNuFrwlviDvPvddGrRdGaDalVIHy/mfWHxVn2LmdnpHuqkbVYK
+	7/OccFJZzvNVT1vxx0DuCC4GpJp5X2i1XwC4KQ==
+X-Google-Smtp-Source: AGHT+IGTjq0mZD9i+eUzTXzP28Wi1Bo+2Bm1FI9n8vEQBS5kPkO5fcu9os4HymBwAvrwCsgVBASyxd59bRZr+JZsdyc=
+X-Received: by 2002:a05:6512:3e20:b0:509:4792:25eb with SMTP id
+ i32-20020a0565123e2000b00509479225ebmr249053lfv.17.1700686037339; Wed, 22 Nov
+ 2023 12:47:17 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZV4/jFwULdH67JYC@p14s>
+References: <20231107105025.1480561-1-billy_tsai@aspeedtech.com>
+ <20231107105025.1480561-3-billy_tsai@aspeedtech.com> <20231108182135.GA2698015-robh@kernel.org>
+ <SG2PR06MB33655734700697E8F6FD0D1B8BB2A@SG2PR06MB3365.apcprd06.prod.outlook.com>
+In-Reply-To: <SG2PR06MB33655734700697E8F6FD0D1B8BB2A@SG2PR06MB3365.apcprd06.prod.outlook.com>
+From: Rob Herring <robh@kernel.org>
+Date: Wed, 22 Nov 2023 13:47:04 -0700
+X-Gmail-Original-Message-ID: <CAL_JsqL=2-dD5yFWWDDHu1svcCF-EMZqcYz92Pr7L5ntppNQVA@mail.gmail.com>
+Message-ID: <CAL_JsqL=2-dD5yFWWDDHu1svcCF-EMZqcYz92Pr7L5ntppNQVA@mail.gmail.com>
+Subject: Re: [PATCH RESEND v10 2/3] dt-bindings: hwmon: Support Aspeed g6 PWM
+ TACH Control
+To: Billy Tsai <billy_tsai@aspeedtech.com>
+Cc: "jdelvare@suse.com" <jdelvare@suse.com>, "linux@roeck-us.net" <linux@roeck-us.net>, 
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>, "joel@jms.id.au" <joel@jms.id.au>, 
+	"andrew@aj.id.au" <andrew@aj.id.au>, "corbet@lwn.net" <corbet@lwn.net>, 
+	"thierry.reding@gmail.com" <thierry.reding@gmail.com>, 
+	"u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>, 
+	"p.zabel@pengutronix.de" <p.zabel@pengutronix.de>, 
+	"naresh.solanki@9elements.com" <naresh.solanki@9elements.com>, 
+	"linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
+	"linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>, 
+	"linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>, BMC-SW <BMC-SW@aspeedtech.com>, 
+	"patrick@stwcx.xyz" <patrick@stwcx.xyz>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Nov 22, 2023 at 10:51:08AM -0700, Mathieu Poirier wrote:
-> On Fri, Nov 17, 2023 at 09:42:38AM -0800, Tanmay Shah wrote:
-> > ZynqMP TCM information is fixed in driver. Now ZynqMP TCM information
-> > is available in device-tree. Parse TCM information in driver
-> > as per new bindings.
-> > 
-> > Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
-> > ---
-> > 
-> > Changes in v7:
-> >   - move checking of pm_domain_id from previous patch
-> >   - fix mem_bank_data memory allocation
-> > 
-> >  drivers/remoteproc/xlnx_r5_remoteproc.c | 152 ++++++++++++++++++++----
-> >  1 file changed, 128 insertions(+), 24 deletions(-)
-> > 
-> > diff --git a/drivers/remoteproc/xlnx_r5_remoteproc.c b/drivers/remoteproc/xlnx_r5_remoteproc.c
-> > index 22bccc5075a0..270af73344ef 100644
-> > --- a/drivers/remoteproc/xlnx_r5_remoteproc.c
-> > +++ b/drivers/remoteproc/xlnx_r5_remoteproc.c
-> > @@ -75,8 +75,8 @@ struct mbox_info {
-> >  };
-> >  
-> >  /*
-> > - * Hardcoded TCM bank values. This will be removed once TCM bindings are
-> > - * accepted for system-dt specifications and upstreamed in linux kernel
-> > + * Hardcoded TCM bank values. This will stay in driver to maintain backward
-> > + * compatibility with device-tree that does not have TCM information.
-> >   */
-> >  static const struct mem_bank_data zynqmp_tcm_banks_split[] = {
-> >  	{0xffe00000UL, 0x0, 0x10000UL, PD_R5_0_ATCM, "atcm0"}, /* TCM 64KB each */
-> > @@ -587,12 +587,21 @@ static int add_tcm_carveout_split_mode(struct rproc *rproc)
-> >  		bank_size = r5_core->tcm_banks[i]->size;
-> >  		pm_domain_id = r5_core->tcm_banks[i]->pm_domain_id;
-> >  
-> > -		ret = zynqmp_pm_request_node(pm_domain_id,
-> > -					     ZYNQMP_PM_CAPABILITY_ACCESS, 0,
-> > -					     ZYNQMP_PM_REQUEST_ACK_BLOCKING);
-> > -		if (ret < 0) {
-> > -			dev_err(dev, "failed to turn on TCM 0x%x", pm_domain_id);
-> > -			goto release_tcm_split;
-> > +		/*
-> > +		 * If TCM information is available in device-tree then
-> > +		 * in that case, pm domain framework will power on/off TCM.
-> > +		 * In that case pm_domain_id is set to 0. If hardcode
-> > +		 * bindings from driver is used, then only this driver will
-> > +		 * use pm_domain_id.
-> > +		 */
-> > +		if (pm_domain_id) {
-> > +			ret = zynqmp_pm_request_node(pm_domain_id,
-> > +						     ZYNQMP_PM_CAPABILITY_ACCESS, 0,
-> > +						     ZYNQMP_PM_REQUEST_ACK_BLOCKING);
-> > +			if (ret < 0) {
-> > +				dev_err(dev, "failed to turn on TCM 0x%x", pm_domain_id);
-> > +				goto release_tcm_split;
-> > +			}
-> >  		}
-> >  
-> >  		dev_dbg(dev, "TCM carveout split mode %s addr=%llx, da=0x%x, size=0x%lx",
-> > @@ -604,7 +613,8 @@ static int add_tcm_carveout_split_mode(struct rproc *rproc)
-> >  						 bank_name);
-> >  		if (!rproc_mem) {
-> >  			ret = -ENOMEM;
-> > -			zynqmp_pm_release_node(pm_domain_id);
-> > +			if (pm_domain_id)
-> > +				zynqmp_pm_release_node(pm_domain_id);
-> >  			goto release_tcm_split;
-> >  		}
-> >  
-> > @@ -617,7 +627,8 @@ static int add_tcm_carveout_split_mode(struct rproc *rproc)
-> >  	/* If failed, Turn off all TCM banks turned on before */
-> >  	for (i--; i >= 0; i--) {
-> >  		pm_domain_id = r5_core->tcm_banks[i]->pm_domain_id;
-> > -		zynqmp_pm_release_node(pm_domain_id);
-> > +		if (pm_domain_id)
-> > +			zynqmp_pm_release_node(pm_domain_id);
-> >  	}
-> >  	return ret;
-> >  }
-> > @@ -659,13 +670,16 @@ static int add_tcm_carveout_lockstep_mode(struct rproc *rproc)
-> >  		pm_domain_id = r5_core->tcm_banks[i]->pm_domain_id;
-> >  
-> >  		/* Turn on each TCM bank individually */
-> > -		ret = zynqmp_pm_request_node(pm_domain_id,
-> > -					     ZYNQMP_PM_CAPABILITY_ACCESS, 0,
-> > -					     ZYNQMP_PM_REQUEST_ACK_BLOCKING);
-> > -		if (ret < 0) {
-> > -			dev_err(dev, "failed to turn on TCM 0x%x",
-> > -				pm_domain_id);
-> > -			goto release_tcm_lockstep;
-> > +
-> > +		if (pm_domain_id) {
-> > +			ret = zynqmp_pm_request_node(pm_domain_id,
-> > +						     ZYNQMP_PM_CAPABILITY_ACCESS, 0,
-> > +						     ZYNQMP_PM_REQUEST_ACK_BLOCKING);
-> > +			if (ret < 0) {
-> > +				dev_err(dev, "failed to turn on TCM 0x%x",
-> > +					pm_domain_id);
-> > +				goto release_tcm_lockstep;
-> > +			}
-> >  		}
-> >  
-> >  		bank_size = r5_core->tcm_banks[i]->size;
-> > @@ -683,7 +697,8 @@ static int add_tcm_carveout_lockstep_mode(struct rproc *rproc)
-> >  						 bank_name);
-> >  		if (!rproc_mem) {
-> >  			ret = -ENOMEM;
-> > -			zynqmp_pm_release_node(pm_domain_id);
-> > +			if (pm_domain_id)
-> > +				zynqmp_pm_release_node(pm_domain_id);
-> >  			goto release_tcm_lockstep;
-> >  		}
-> >  
-> > @@ -700,7 +715,8 @@ static int add_tcm_carveout_lockstep_mode(struct rproc *rproc)
-> >  	/* If failed, Turn off all TCM banks turned on before */
-> >  	for (i--; i >= 0; i--) {
-> >  		pm_domain_id = r5_core->tcm_banks[i]->pm_domain_id;
-> > -		zynqmp_pm_release_node(pm_domain_id);
-> > +		if (pm_domain_id)
-> > +			zynqmp_pm_release_node(pm_domain_id);
-> >  	}
-> >  	return ret;
-> >  }
-> > @@ -931,6 +947,8 @@ static int zynqmp_r5_add_pm_domains(struct rproc *rproc)
-> >  		}
-> >  	}
-> >  
-> > +	return 0;
-> > +
-> >  fail_add_pm_domains_lockstep:
-> >  	while (--j >= 0) {
-> >  		device_link_del(r5_core->pm_dev_core1_link[j]);
-> > @@ -1012,7 +1030,7 @@ static int zynqmp_r5_rproc_unprepare(struct rproc *rproc)
-> >  
-> >  	for (i = 0; i < r5_core->tcm_bank_count; i++) {
-> >  		pm_domain_id = r5_core->tcm_banks[i]->pm_domain_id;
-> > -		if (zynqmp_pm_release_node(pm_domain_id))
-> > +		if (pm_domain_id && zynqmp_pm_release_node(pm_domain_id))
-> >  			dev_warn(r5_core->dev,
-> >  				 "can't turn off TCM bank 0x%x", pm_domain_id);
-> >  	}
-> > @@ -1087,6 +1105,83 @@ static struct zynqmp_r5_core *zynqmp_r5_add_rproc_core(struct device *cdev)
-> >  	return ERR_PTR(ret);
-> >  }
-> >  
-> > +static int zynqmp_r5_get_tcm_node_from_dt(struct zynqmp_r5_cluster *cluster)
-> > +{
-> > +	struct zynqmp_r5_core *r5_core;
-> > +	int i, j, tcm_bank_count, ret;
-> > +	struct platform_device *cpdev;
-> > +	struct mem_bank_data *tcm;
-> > +	struct device_node *np;
-> > +	struct resource *res;
-> > +	u64 abs_addr, size;
-> > +	struct device *dev;
-> > +
-> > +	for (i = 0; i < cluster->core_count; i++) {
-> > +		r5_core = cluster->r5_cores[i];
-> > +		dev = r5_core->dev;
-> > +		np = dev_of_node(dev);
-> > +
-> > +		/* we have address cell 2 and size cell as 2 */
-> > +		ret = of_property_count_elems_of_size(np, "reg",
-> > +		if (ret <= 0) {
-> > +			dev_err(dev, "can't get reg property err %d\n", ret);
-> > +			return -EINVAL;
-> > +		}
-> > +
-> > +		tcm_bank_count = ret;
-> 
-> This is useless - please use @tcm_bank_count instead of @ret above.
+On Mon, Nov 13, 2023 at 8:11=E2=80=AFPM Billy Tsai <billy_tsai@aspeedtech.c=
+om> wrote:
 >
+> > > Document the compatible for aspeed,ast2600-pwm-tach device, which can
+> > > support up to 16 PWM outputs and 16 fan tach input.
+> > >
+> > > Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
+> > > ---
+> > >  .../bindings/hwmon/aspeed,g6-pwm-tach.yaml    | 69 +++++++++++++++++=
+++
+> > >  1 file changed, 69 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/hwmon/aspeed,g6=
+-pwm-tach.yaml
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/hwmon/aspeed,g6-pwm-ta=
+ch.yaml b/Documentation/devicetree/bindings/hwmon/aspeed,g6-pwm-tach.yaml
+> > > new file mode 100644
+> > > index 000000000000..c615fb10705c
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/hwmon/aspeed,g6-pwm-tach.yaml
+> > > @@ -0,0 +1,69 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +# Copyright (C) 2023 Aspeed, Inc.
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/hwmon/aspeed,g6-pwm-tach.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: ASPEED G6 PWM and Fan Tach controller
+> > > +
+> > > +maintainers:
+> > > +  - Billy Tsai <billy_tsai@aspeedtech.com>
+> > > +
+> > > +description: |
+> > > +  The ASPEED PWM controller can support up to 16 PWM outputs.
+> > > +  The ASPEED Fan Tacho controller can support up to 16 fan tach inpu=
+t.
+> > > +  They are independent hardware blocks, which are different from the
+> > > +  previous version of the ASPEED chip.
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    enum:
+> > > +      - aspeed,ast2600-pwm-tach
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  clocks:
+> > > +    maxItems: 1
+> > > +
+> > > +  resets:
+> > > +    maxItems: 1
+> > > +
+> > > +  "#pwm-cells":
+> > > +    const: 3
+> > > +
+> > > +patternProperties:
+> > > +  "^fan-[0-9]+$":
+> > > +    $ref: fan-common.yaml#
+> > > +    unevaluatedProperties: false
+> > > +    required:
+> > > +      - tach-ch
+> > > +
+> > > +required:
+> > > +  - reg
+> > > +  - clocks
+> > > +  - resets
+> > > +  - "#pwm-cells"
+> > > +  - compatible
+> > > +
+> > > +additionalProperties: false
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    #include <dt-bindings/clock/aspeed-clock.h>
+> > > +    pwm_tach: pwm-tach-controller@1e610000 {
+> > > +      compatible =3D "aspeed,ast2600-pwm-tach";
+> > > +      reg =3D <0x1e610000 0x100>;
+> > > +      clocks =3D <&syscon ASPEED_CLK_AHB>;
+> > > +      resets =3D <&syscon ASPEED_RESET_PWM>;
+> > > +      #pwm-cells =3D <3>;
+> > > +
+> > > +      fan-0 {
+>
+> > I assume there's a PWM connection here? How do you know which PWM? You
+> > said the tach channel is independent, so it is not that.
+>
+> > It should not be 0 from 'fan-0' because that's just a meaningless index=
+.
+>
+> > You either need 'pwms' here or you can use 'reg' and the reg value is
+> > the PWM channel.
+>
+> Hi Rob, this binding is used to export the PWM provider and the Fan monit=
+or (i.e., Tach).
+> If the user wants to add the PWM connection for the fan, it can be done a=
+s follows:
+>
+> fan0: pwm-fan0 {
+>         compatible =3D "pwm-fan";
+>         pwms =3D <&pwm_tach 0 40000 0>;
+>         cooling-min-state =3D <0>;
+>         cooling-max-state =3D <3>;
+>         #cooling-cells =3D <2>;
+>         cooling-levels =3D <0 15 128 255>;
+> };
+>
+> This will reuse the existing PWM fan driver (e.g., pwm-fan.c).
 
-I am done reviewing this set.
+I'm confused now. So what are the child nodes you have? You are
+defining the fan in 2 places? The "pwm-fan" driver supports a tach via
+an interrupt, so how would this work in your case?
 
-Thanks,
-Mathieu
-
-> > +
-> > +		r5_core->tcm_banks = devm_kcalloc(dev, tcm_bank_count,
-> > +						  sizeof(struct mem_bank_data *),
-> > +						  GFP_KERNEL);
-> > +		if (!r5_core->tcm_banks)
-> > +			ret = -ENOMEM;
-> > +
-> > +		r5_core->tcm_bank_count = tcm_bank_count;
-> > +		for (j = 0; j < tcm_bank_count; j++) {
-> > +			tcm = devm_kzalloc(dev, sizeof(struct mem_bank_data),
-> > +					   GFP_KERNEL);
-> > +			if (!tcm)
-> > +				return -ENOMEM;
-> > +
-> > +			r5_core->tcm_banks[j] = tcm;
-> > +
-> > +			/* get tcm address without translation */
-> > +			ret = of_property_read_reg(np, j, &abs_addr, &size);
-> > +			if (ret) {
-> > +				dev_err(dev, "failed to get reg property\n");
-> > +				return ret;
-> > +			}
-> > +
-> > +			/*
-> > +			 * remote processor can address only 32 bits
-> > +			 * so convert 64-bits into 32-bits. This will discard
-> > +			 * any unwanted upper 32-bits.
-> > +			 */
-> > +			tcm->da = (u32)abs_addr;
-> > +			tcm->size = (u32)size;
-> > +
-> > +			cpdev = to_platform_device(dev);
-> > +			res = platform_get_resource(cpdev, IORESOURCE_MEM, j);
-> > +			if (!res) {
-> > +				dev_err(dev, "failed to get tcm resource\n");
-> > +				return -EINVAL;
-> > +			}
-> > +
-> > +			tcm->addr = (u32)res->start;
-> > +			tcm->bank_name = (char *)res->name;
-> > +			res = devm_request_mem_region(dev, tcm->addr, tcm->size,
-> > +						      tcm->bank_name);
-> > +			if (!res) {
-> > +				dev_err(dev, "failed to request tcm resource\n");
-> > +				return -EINVAL;
-> > +			}
-> > +		}
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> >  /**
-> >   * zynqmp_r5_get_tcm_node()
-> >   * Ideally this function should parse tcm node and store information
-> > @@ -1165,10 +1260,19 @@ static int zynqmp_r5_core_init(struct zynqmp_r5_cluster *cluster,
-> >  	struct zynqmp_r5_core *r5_core;
-> >  	int ret, i;
-> >  
-> > -	ret = zynqmp_r5_get_tcm_node(cluster);
-> > -	if (ret < 0) {
-> > -		dev_err(dev, "can't get tcm node, err %d\n", ret);
-> > -		return ret;
-> > +	r5_core = cluster->r5_cores[0];
-> > +	if (of_find_property(r5_core->np, "reg", NULL)) {
-> > +		ret = zynqmp_r5_get_tcm_node_from_dt(cluster);
-> > +		if (ret) {
-> > +			dev_err(dev, "can't get tcm node from dt, err %d\n", ret);
-> > +			return ret;
-> > +		}
-> > +	} else {
-> > +		ret = zynqmp_r5_get_tcm_node(cluster);
-> > +		if (ret < 0) {
-> > +			dev_err(dev, "can't get tcm node, err %d\n", ret);
-> > +			return ret;
-> > +		}
-> >  	}
-> >  
-> >  	for (i = 0; i < cluster->core_count; i++) {
-> > -- 
-> > 2.25.1
-> > 
+Rob
 
