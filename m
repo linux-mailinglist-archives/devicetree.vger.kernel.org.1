@@ -1,204 +1,206 @@
-Return-Path: <devicetree+bounces-17837-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17838-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67EDB7F4442
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 11:46:31 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 643567F4452
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 11:52:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 20C6B2814B4
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 10:46:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0300AB20F11
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 10:52:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B53934AF76;
-	Wed, 22 Nov 2023 10:46:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B54094AF85;
+	Wed, 22 Nov 2023 10:52:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="p3kX9wa7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="geQ+d6ci"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49784198;
-	Wed, 22 Nov 2023 02:46:21 -0800 (PST)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id E266360006;
-	Wed, 22 Nov 2023 10:46:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1700649980;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=wsLp5fNBZJG71eNfXxaG4gNoXfOWnqSgaEfLQGOpsAc=;
-	b=p3kX9wa7/tIpef5pLKlwC0v7uuLxigBoxCHcCocVKJbwnNnYmdVta1zjtahXDNpH5JwEa0
-	IbhMKmgT/20IyKNZZrTttEPhDmjjKjzOo/WrzehtlJsXyr+6B3kIiwQfbuMUXsJMPEq494
-	NEa54Gs0SxZWB1htKRCC2SlDXimQ0XpPlrik887YAEr5yP4W3fi8rN2zaZ5n2ciEW+11Af
-	vNqXerTqkB/LbdGhjTbYnhF0E5wMfjcz+7In3bA9vmOzc9IOLUlID1Ish3AM4wgMDZXprH
-	GN+46dEC/0GtdiQdB0kYCEZjuSou1yYkAZ3zmGt/szQXZudKCU8lZG6JB1K8Qg==
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B32225571;
+	Wed, 22 Nov 2023 10:52:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B3E9C433CA;
+	Wed, 22 Nov 2023 10:52:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1700650372;
+	bh=vg1uuwvQT2sKrRMAHrj+xxj4ykdnjZw0VMW21gcYvUY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=geQ+d6cieEbtA6MuRMTYcrI7LhaZsSiMpF6Z0EmxIjhHp2YFr4y5kS8qQGPHIReOx
+	 Gx/DQ3C+yWG1GL0GjjGldrto/KOVhyORCImcSSnYdzUxWs+Qm7t8ThARNQJtGM+ZJg
+	 +XqEQQ4vGjiD0TCYBukcu8HqtqO/OpbFWMV3SKenBjLcc1921paWbPMp51QrYNOdTi
+	 TAkG25biHSjNdtGJPixedr+oJQM/EI46CyD1CLw+EHpwBxyiVd9S3HLkAuxnLBccfN
+	 HBUxrr4qET/KN5se9nxEXapkamp5Gas3ngegBl2oENiIc1JZ9eccBVbxE9FimJYdrO
+	 +iuhip3TAaSAA==
+Date: Wed, 22 Nov 2023 10:52:43 +0000
+From: Simon Horman <horms@kernel.org>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Qingfang Deng <dqfext@gmail.com>,
+	SkyLake Huang <SkyLake.Huang@mediatek.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	David Epping <david.epping@missinglinkelectronics.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+	Harini Katakam <harini.katakam@amd.com>,
+	Robert Marko <robert.marko@sartura.hr>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [net-next RFC PATCH 04/14] net: phy: add initial support for PHY
+ package in DT
+Message-ID: <20231122105243.GB28959@kernel.org>
+References: <20231120135041.15259-1-ansuelsmth@gmail.com>
+ <20231120135041.15259-5-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 22 Nov 2023 11:46:14 +0100
-Message-Id: <CX5A3OSPKM1Q.1CPN17KI0PD7A@tleb-bootlin-xps13-01>
-Subject: Re: [PATCH v2 1/7] dt-bindings: usb: ti,j721e-usb: add ti,j7200-usb
- compatible
-Cc: <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, "Conor
- Dooley" <conor.dooley@microchip.com>
-To: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>, "Greg
- Kroah-Hartman" <gregkh@linuxfoundation.org>, "Rob Herring"
- <robh+dt@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Roger Quadros" <rogerq@kernel.org>, "Peter Chen" <peter.chen@kernel.org>,
- "Pawel Laszczak" <pawell@cadence.com>, "Nishanth Menon" <nm@ti.com>,
- "Vignesh Raghavendra" <vigneshr@ti.com>, "Tero Kristo" <kristo@kernel.org>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-X-Mailer: aerc 0.15.2
-References: <20231120-j7200-usb-suspend-v2-0-038c7e4a3df4@bootlin.com>
- <20231120-j7200-usb-suspend-v2-1-038c7e4a3df4@bootlin.com>
- <6f0da181-717c-4b14-ba3f-d287efe4105b@linaro.org>
- <CX4NADEZZEO1.3TXPVNOONKBCF@tleb-bootlin-xps13-01>
- <d0cc33d4-2b1a-43cd-8cd9-6b58d6c71c85@linaro.org>
-In-Reply-To: <d0cc33d4-2b1a-43cd-8cd9-6b58d6c71c85@linaro.org>
-X-GND-Sasl: theo.lebrun@bootlin.com
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231120135041.15259-5-ansuelsmth@gmail.com>
 
-Hello,
+On Mon, Nov 20, 2023 at 02:50:31PM +0100, Christian Marangi wrote:
+> Add initial support for PHY package in DT.
+> 
+> Make it easier to define PHY package and describe the global PHY
+> directly in DT by refereincing them by phandles instead of custom
+> functions in each PHY driver.
+> 
+> Each PHY in a package needs to be defined in a dedicated node in the
+> mdio node. This dedicated node needs to have the compatible set to
+> "ethernet-phy-package" and define "global-phys" and "#global-phy-cells"
+> respectively to a list of phandle to the global phy to define for the
+> PHY package and 0 for cells as the phandle won't take any args.
+> 
+> With this defined, the generic PHY probe will join each PHY in this
+> dedicated node to the package.
+> 
+> PHY driver MUST set the required global PHY count in
+> .phy_package_global_phy_num to correctly verify that DT define the
+> correct number of phandle to the required global PHY.
+> 
+> mdio_bus.c and of_mdio.c is updated to now support and parse also
+> PHY package subnote that have the compatible "phy-package".
+> 
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
 
-On Tue Nov 21, 2023 at 6:11 PM CET, Krzysztof Kozlowski wrote:
-> On 21/11/2023 17:53, Th=C3=A9o Lebrun wrote:
-> > On Mon Nov 20, 2023 at 6:32 PM CET, Krzysztof Kozlowski wrote:
-> >> On 20/11/2023 18:06, Th=C3=A9o Lebrun wrote:
-> >>> On this platform, the controller & its wrapper are reset on resume. T=
-his
-> >>> makes it have a different behavior from other platforms.
-> >>>
-> >>> We allow using the new compatible with a fallback onto the original
-> >>> ti,j721e-usb compatible. We therefore allow using an older kernel wit=
-h
-> >>
-> >> Where is fallback ti,j721e-usb used? Please point me to the code.
-> >=20
-> > No fallback is implemented in code. Using a kernel that doesn't have
-> > this patch series but a more recent devicetree: DT has both
-> > devicetrees & the kernel will know which driver to use.
->
-> I meant your bindings. You said - with fallback to ti,j721e-usb. I do
-> not see it. To me the commit description is not accurate.
+Hi Christian,
 
-I see your point, I'll remove that aspect.
+I was a little hasty in hitting send on my previous message.
+Please find some more minor feedback from my side below.
 
-> > That is opposed to having only compatible =3D "ti,j7200-usb". If using =
-an
-> > old kernel, it would not know what driver to match it to.
-> >=20
-> > [...]
-> >=20
-> >>> --- a/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
-> >>> +++ b/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
-> >>> @@ -12,11 +12,15 @@ maintainers:
-> >>>  properties:
-> >>>    compatible:
-> >>>      oneOf:
-> >>> +      - const: ti,j7200-usb
-> >>>        - const: ti,j721e-usb
-> >>>        - const: ti,am64-usb
-> >>>        - items:
-> >>>            - const: ti,j721e-usb
-> >>>            - const: ti,am64-usb
-> >>> +      - items:
-> >>> +          - const: ti,j721e-usb
-> >>
-> >> This makes little sense. It's already on the list. Twice! Don't add it
-> >> third time.
-> >>
-> >> I am sorry, but this binding makes no sense. I mean, existing binding
-> >> makes no sense, but your change is not making it anyhow better.
-> >=20
-> > The goal of the DT schema pre-patch was to allow all three:
-> >=20
-> >    compatible =3D "ti,j721e-usb";
-> >    compatible =3D "ti,am64-usb";
-> >    compatible =3D "ti,j721e-usb", "ti,am64-usb";
->
-> Which does not make sense.
->
-> How ti,j721e-usb can be and cannot be compatible with am64 in the same ti=
-me?
+...
 
-The code tells us that there is no difference between ti,j721e-usb &
-ti,am64-usb. And the commit adding the of_device_id entry agrees, see
-4f30b9d2315f (usb: cdns3: Add support for TI's AM64 SoC, 2021-01-19).
-Here is the entire patch because it is so small:
+> diff --git a/drivers/net/mdio/of_mdio.c b/drivers/net/mdio/of_mdio.c
+> index 64ebcb6d235c..bb910651118f 100644
+> --- a/drivers/net/mdio/of_mdio.c
+> +++ b/drivers/net/mdio/of_mdio.c
+> @@ -139,6 +139,44 @@ bool of_mdiobus_child_is_phy(struct device_node *child)
+>  }
+>  EXPORT_SYMBOL(of_mdiobus_child_is_phy);
+>  
+> +static int __of_mdiobus_parse_phys(struct mii_bus *mdio, struct device_node *np,
+> +				   bool *scanphys)
+> +{
+> +	struct device_node *child;
+> +	int addr, rc;
+> +
+> +	/* Loop over the child nodes and register a phy_device for each phy */
+> +	for_each_available_child_of_node(np, child) {
+> +		if (of_device_is_compatible(child, "ethernet-phy-package")) {
+> +			rc = __of_mdiobus_parse_phys(mdio, child, scanphys);
+> +			if (rc && rc != -ENODEV)
+> +				return rc;
 
-   diff --git a/drivers/usb/cdns3/cdns3-ti.c b/drivers/usb/cdns3/cdns3-ti.c
-   index 90e246601537..eccb1c766bba 100644
-   --- a/drivers/usb/cdns3/cdns3-ti.c
-   +++ b/drivers/usb/cdns3/cdns3-ti.c
-   @@ -214,6 +214,7 @@ static int cdns_ti_remove(struct platform_device *pd=
-ev)
+for_each_available_child_of_node() makes calls to of_node_get() and
+of_node_put(), so when jumping out of a loop it is necessary to call
+of_node_put(), in this case of_node_put(child).
 
-    static const struct of_device_id cdns_ti_of_match[] =3D {
-      { .compatible =3D "ti,j721e-usb", },
-   +  { .compatible =3D "ti,am64-usb", },
-      {},
-    };
-    MODULE_DEVICE_TABLE(of, cdns_ti_of_match);
+As flagged by Coccinelle.
 
-> > I've followed the same scheme & added both of those:
-> >=20
-> >    compatible =3D "ti,j7200-usb";
-> >    compatible =3D "ti,j7200-usb", "ti,j721e-usb";
-> >=20
-> > I messed up the ordering in the added 'items' options, but the logic
-> > seems right to me. And dtbs_check agrees. Am I missing something?
->
-> Logic is wrong. Device either is or is not compatible with something. At
-> least usually. We have some exceptions like SMMU for Adreno. Is this the
-> case? Why the device is and is not compatible with some other variant?
+Also flagged in of_mdiobus_find_phy() both before and after this patch.
 
-My understanding is this: j721e & am64 are strictly equivalent. On our
-j7200 we know we reset on resume. I see three ways forward:
+> +
+> +			continue;
+> +		}
+> +
+> +		addr = of_mdio_parse_addr(&mdio->dev, child);
+> +		if (addr < 0) {
+> +			*scanphys = true;
+> +			continue;
+> +		}
+> +
+> +		if (of_mdiobus_child_is_phy(child))
+> +			rc = of_mdiobus_register_phy(mdio, child, addr);
+> +		else
+> +			rc = of_mdiobus_register_device(mdio, child, addr);
+> +
+> +		if (rc == -ENODEV)
+> +			dev_err(&mdio->dev,
+> +				"MDIO device at address %d is missing.\n",
+> +				addr);
+> +		else if (rc)
+> +			return rc;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>  /**
+>   * __of_mdiobus_register - Register mii_bus and create PHYs from the device tree
+>   * @mdio: pointer to mii_bus structure
+> @@ -180,25 +218,9 @@ int __of_mdiobus_register(struct mii_bus *mdio, struct device_node *np,
+>  		return rc;
+>  
+>  	/* Loop over the child nodes and register a phy_device for each phy */
+> -	for_each_available_child_of_node(np, child) {
+> -		addr = of_mdio_parse_addr(&mdio->dev, child);
+> -		if (addr < 0) {
+> -			scanphys = true;
+> -			continue;
+> -		}
+> -
+> -		if (of_mdiobus_child_is_phy(child))
+> -			rc = of_mdiobus_register_phy(mdio, child, addr);
+> -		else
+> -			rc = of_mdiobus_register_device(mdio, child, addr);
+> -
+> -		if (rc == -ENODEV)
+> -			dev_err(&mdio->dev,
+> -				"MDIO device at address %d is missing.\n",
+> -				addr);
+> -		else if (rc)
+> -			goto unregister;
+> -	}
+> +	rc = __of_mdiobus_parse_phys(mdio, np, &scanphys);
+> +	if (rc)
+> +		goto unregister;
 
- - properties:
-     compatible:
-       oneOf:
-         - const: ti,j7200-usb
-         - const: ti,j721e-usb
-         - const: ti,am64-usb
+Jumping to unregister will call of_node_put(child),
+however child appears to be uninitialised here.
 
-   We keep both ti,j721e-usb & ti,am64-usb separate even though they are
-   compatible. It makes for simpler changes & it avoids touching
-   devicetrees.
+Flagged by clang-16 W=1 build, and Smatch.
 
- - properties:
-   compatible:
-     oneOf:
-       - const: ti,j7200-usb
-       - const: ti,j721e-usb
+>  
+>  	if (!scanphys)
+>  		return 0;
 
-   AM64 is a duplicate of J721E. Remove it and update upstream
-   devicetrees.
-
- - properties:
-   compatible:
-     oneOf:
-       - const: ti,j7200-usb
-       - items:
-           - const: ti,j721e-usb
-           - const: ti,am64-usb
-
-   J721E & AM64 are compatible, express that & update devicetrees.
-
-Option one is simpler & doesn't change devicetrees so I'd lean in that
-direction. What's your opinion?
-
-Regards,
-
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+...
 
