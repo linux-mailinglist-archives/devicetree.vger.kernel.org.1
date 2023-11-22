@@ -1,122 +1,136 @@
-Return-Path: <devicetree+bounces-17724-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17725-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 400B97F3D22
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 06:08:02 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A18177F3DB3
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 06:44:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ECA0728279C
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 05:08:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7CA10B2102E
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 05:44:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49D662BAEF;
-	Wed, 22 Nov 2023 05:07:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 102F411C9F;
+	Wed, 22 Nov 2023 05:44:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="IV4TqcQj"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="EeQwKh9K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4810391;
-	Tue, 21 Nov 2023 21:07:55 -0800 (PST)
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AM55rru029773;
-	Wed, 22 Nov 2023 05:07:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id; s=qcppdkim1;
- bh=+iKjVTLEXsD1yIA4BymXbnpVr4vVCZ7hyvrTEHT5zD4=;
- b=IV4TqcQjE0hKG9CKb+AnPiKfoT2sq6h5qGS1vL0MnEFAZRV9y/O+lVWwUuXHIow5aUDI
- GZWvdFS6utkFzEnPxgEX5NWs8oU1dl2QAoBMu81Y7lihn8ci6+HkA5EOVrI+YO3TI6Ze
- 2whWHgEumMODNGV4SrhzcWihAT+aFdp1a1hL2fQXNRsjNUZ8RQVM4RNk4yrkVcaI/CZh
- bsQoEk6ZOSqpJtq3XbQU5dTPdYx/RqUrZZL5CIJn0OPVII2ZEuLBO1sK3uU02BS5j+ON
- 7R9gjFYSKVcdbaYAMu9PZye1dB4oQ1nT/UF/U20ixO4PCC2q79AfVEmaD7dyBwgkz2h0 eQ== 
-Received: from aptaippmta01.qualcomm.com (tpe-colo-wan-fw-bordernet.qualcomm.com [103.229.16.4])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ug7eadcsh-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 22 Nov 2023 05:07:12 +0000
-Received: from pps.filterd (APTAIPPMTA01.qualcomm.com [127.0.0.1])
-	by APTAIPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 3AM5794t031639;
-	Wed, 22 Nov 2023 05:07:09 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APTAIPPMTA01.qualcomm.com (PPS) with ESMTP id 3uepbkjnta-1;
-	Wed, 22 Nov 2023 05:07:09 +0000
-Received: from APTAIPPMTA01.qualcomm.com (APTAIPPMTA01.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 3AM579Wu031634;
-	Wed, 22 Nov 2023 05:07:09 GMT
-Received: from cbsp-sh-gv.qualcomm.com (CBSP-SH-gv.ap.qualcomm.com [10.231.249.68])
-	by APTAIPPMTA01.qualcomm.com (PPS) with ESMTP id 3AM579df031633;
-	Wed, 22 Nov 2023 05:07:09 +0000
-Received: by cbsp-sh-gv.qualcomm.com (Postfix, from userid 393357)
-	id 7BFD85488; Wed, 22 Nov 2023 13:07:07 +0800 (CST)
-From: Ziqi Chen <quic_ziqichen@quicinc.com>
-To: quic_asutoshd@quicinc.com, quic_cang@quicinc.com, bvanassche@acm.org,
-        mani@kernel.org, stanley.chu@mediatek.com, adrian.hunter@intel.com,
-        beanhuo@micron.com, avri.altman@wdc.com, junwoo80.lee@samsung.com,
-        martin.petersen@oracle.com, quic_ziqichen@quicinc.com,
-        quic_nguyenb@quicinc.com, quic_nitirawa@quicinc.com
-Cc: linux-scsi@vger.kernel.org, Alim Akhtar <alim.akhtar@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Guenter Roeck <linux@roeck-us.net>,
-        Wolfram Sang <wsa@kernel.org>, Mark Brown <broonie@kernel.org>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-        linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v2] dt-bindings: ufs: Add msi-parent for UFS MCQ
-Date: Wed, 22 Nov 2023 13:06:52 +0800
-Message-Id: <1700629624-23571-1-git-send-email-quic_ziqichen@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: VYPR1uzVTSdy5uXqpBSIneMIl2St_z9c
-X-Proofpoint-ORIG-GUID: VYPR1uzVTSdy5uXqpBSIneMIl2St_z9c
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-22_02,2023-11-21_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 suspectscore=0
- phishscore=0 mlxscore=0 spamscore=0 malwarescore=0 priorityscore=1501
- mlxlogscore=954 bulkscore=0 impostorscore=0 adultscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311060000 definitions=main-2311220036
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2080.outbound.protection.outlook.com [40.107.244.80])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20D3B90;
+	Tue, 21 Nov 2023 21:44:11 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=dXuklrMiDG22t4rmsfeI2OEgDnQ4SIKW+Nlk8heW4IdWt8mIXtSovchOjPkEUZfpMExlVnViDciAWSNcHPrispaqJ1AvCUBXpF27mFlMJ60nf0z4uyXdQ/8qd6jRg3rfmc4YjOd8jKEiuI95o9ZjRozsJPX3zV7JckBbuOvYvxGzWYUHASIkh5Mbw9WnNWUmkCYyglBmHB2VvbjHst495CFdiOaDtYcOkAkd6/cJcD1czoXyTh1n2Byihzmt5BQXEf0XxM9G/BYthPDuUynBiUMgl97hHCC8TulqURsy0O1E2WKH1D4Q0YHBBa1eH3hmAzYQb8L0dPgO7hBuImMk0Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=xBEZ3OOURH6+pqT6ym6VnjOU8xSZA4K9FTxjOLlfsgA=;
+ b=jlmTl4+RyxXDH25dw/FlYyQ2xGRH25SsXrtHyKKfpGHPI5IE8rGDFYTPVNspzn7cP0R5UMzPjiz/h7R4TtJ/Zw9Ff7qVUIHfDxNsq8Hn9tsfUQrp3MX14zAXVzSvYnwffekg4W8rMKEYbapfG6lZzL02US+mziZR/S9sEeaWPIkZgU8ZjQJ6ksy2+oATptO3dIzE3IYvSJCTUfl7/HgM5Kdb+naGeFeNG/2+17NrAInDT8ylN/FdNRtWKS9FHpNzIHp6okLn/8Bp2/2P8EkAT+vyxaesTmUIoe+n2/uNRqxP+5jxnnFkmw2CYtFDYWUqBqPYM9MfIDx/WuCPD3udNw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=xBEZ3OOURH6+pqT6ym6VnjOU8xSZA4K9FTxjOLlfsgA=;
+ b=EeQwKh9Ks9xE3SGeuQjErld5UA6sKCBPXlkI7ga+brAy9rStLkD7HLC60y7JsTUoUPftWZh4Vb3vO0J6+pdHWUzD0WBamfMI/ZN1LPTeItQYJzE9lrntgyjhqGqTKDpJDWA5urvgxjo0+t7g7zaPZSAUT8zV4xiTE5tA/GnGUhI=
+Received: from BL1PR13CA0433.namprd13.prod.outlook.com (2603:10b6:208:2c3::18)
+ by CH2PR12MB5001.namprd12.prod.outlook.com (2603:10b6:610:61::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7002.28; Wed, 22 Nov
+ 2023 05:44:08 +0000
+Received: from BL02EPF0001A0FA.namprd03.prod.outlook.com
+ (2603:10b6:208:2c3:cafe::74) by BL1PR13CA0433.outlook.office365.com
+ (2603:10b6:208:2c3::18) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7025.18 via Frontend
+ Transport; Wed, 22 Nov 2023 05:44:08 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BL02EPF0001A0FA.mail.protection.outlook.com (10.167.242.101) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7025.12 via Frontend Transport; Wed, 22 Nov 2023 05:44:07 +0000
+Received: from localhost (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Tue, 21 Nov
+ 2023 23:44:06 -0600
+From: Nava kishore Manne <nava.kishore.manne@amd.com>
+To: <mdf@kernel.org>, <hao.wu@intel.com>, <yilun.xu@intel.com>,
+	<trix@redhat.com>, <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+	<conor+dt@kernel.org>, <michal.simek@amd.com>, <mathieu.poirier@linaro.org>,
+	<ben.levinsky@amd.com>, <sai.krishna.potthuri@amd.com>,
+	<tanmay.shah@amd.com>, <nava.kishore.manne@amd.com>, <dhaval.r.shah@amd.com>,
+	<arnd@arndb.de>, <shubhrajyoti.datta@amd.com>, <linux-fpga@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>
+Subject: [RFC PATCH 0/3]fpga: Add encrypted Bitstream loading support
+Date: Wed, 22 Nov 2023 11:14:01 +0530
+Message-ID: <20231122054404.3764288-1-nava.kishore.manne@amd.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="y"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL02EPF0001A0FA:EE_|CH2PR12MB5001:EE_
+X-MS-Office365-Filtering-Correlation-Id: 976e95e1-e707-4e04-e95f-08dbeb1e0ba7
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	V+LeO8nNw3fywuNb3gQLhscOK054CcP9y3TxFxQ0buXM4jyKsYKI/OdDarmwXNI57lRofSP1lcK4T+7NmK2QoVGWj20YbI8iHlVv6LqTTsUFR2W5zVfqgOSIe2xF7RbAuLNv6cixI7nTaF6a7bpx6/ReeSGLnGasy2Grsi36dDnuTPSXk3rcvapgCXjsYnXSVyBpEkiIHpf2F50XxAoFxrPJHW3lfGw9jQHmV32no17uK0mGJyqtyOZJzsFpW1eTeQpZT7aNDRUd3clTrXpBPQT4Qhf/XTYcgylkWzTf4QlhmGF9aAswjbEtUuyn6o9IdbfX6FCiA5ov/K8WCrDeRBY3OQ1+ebyKxR0SiaNUfC1nqC+Ant4voFHq5VyNxsW6e97xQQ6qo6Uw+jlzKrMlev77DoOQ4R/mPjE8yD76Wj9PLQKTjcAIkz3d8rhjpXtMHZWsQlsWTBbum6lZ0NLsIcSU23bQm1C8ngwV8XXt5d3UwjM20VJDItWcm6KWl+VL0eZwIsKSDzraFJCL9Dy61NEhv5lgSOquQKNopuZad3p6qfw1s8ikwOpFnhiz7rmbSW2IXPsZT1WJlkDL1IFOgTKp5494jv1V6dzR1Ktdw7WCCkfuyHpQO43ZwXACHS1OAuaRSBQcUrqL6E4QPoeWGI0FdETSg+Ii8aLhWkGdR3ANLp/pl/p+fmtOLdxqIafCmi+xBwvOakUciPkuCEkr3ueXQzNJbVNjMTget5KoRKEGMUVPrTN7fAQUnYs6uL1PoBUxVaJIZdXei92kdMemeYXYOa2QAEfrq5qQngIrDV8Zuaj5xOHFXFI/Hbpb6HFRGuujVqDTtti6avzoFGQOIA==
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(376002)(346002)(396003)(136003)(39860400002)(230922051799003)(451199024)(82310400011)(64100799003)(186009)(1800799012)(46966006)(40470700004)(36840700001)(70586007)(316002)(40460700003)(110136005)(70206006)(2616005)(6666004)(426003)(81166007)(336012)(16526019)(478600001)(1076003)(26005)(36860700001)(921008)(82740400003)(83380400001)(103116003)(356005)(86362001)(47076005)(36756003)(40480700001)(2906002)(7416002)(5660300002)(8936002)(8676002)(41300700001)(36900700001)(83996005)(2101003);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Nov 2023 05:44:07.9688
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 976e95e1-e707-4e04-e95f-08dbeb1e0ba7
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BL02EPF0001A0FA.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB5001
+X-Spam-Level: *
 
-The Message Signaled Interrupts (MSI) support has been
-introduced in UFSHCI version 4.0 (JESD223E). The MSI is
-the recommended interrupt approach for MCQ. If choose to
-use MSI, In UFS DT, we need to provide msi-parent property
-that point to the hardware entity which serves as the MSI
-controller for this UFS controller.
+For user-key encrypted bitstream loading use case, users can encrypt
+FPGA configuration Images with their own key.While decrypting the
+configuration Image the user needs to provide the same key.To support
+this use case with the existing FPGA manager framework is not possible
+because it doesn’t have a mechanism to get the required inputs from
+the user. So this patch series adds the required changes to the FPGA
+manager framework to support user-key encrypted bitstream image loading
+use case.
 
-Signed-off-by: Ziqi Chen <quic_ziqichen@quicinc.com>
+Please take a look at the changes and let us know if any improvements
+are required.
 
-Changes to v1:
+Nava kishore Manne (3):
+  dt-bindings: fpga: Add support for user-key encrypted bitstream
+    loading
+  drivers: fpga: Add user-key encrypted FPGA Image loading support
+  fpga: zynqmp: Add encrypted Bitstream loading support
 
-- Rebased on Linux 6.7-rc1.
+ .../devicetree/bindings/fpga/fpga-region.txt  | 32 +++++++
+ drivers/fpga/fpga-mgr.c                       | 86 +++++++++++++++++--
+ drivers/fpga/of-fpga-region.c                 | 10 +++
+ drivers/fpga/zynqmp-fpga.c                    | 53 +++++++++++-
+ include/linux/firmware/xlnx-zynqmp.h          |  2 +
+ include/linux/fpga/fpga-mgr.h                 |  8 ++
+ 6 files changed, 181 insertions(+), 10 deletions(-)
 
-- Updated the commit message to incorporate the details about
-  when MCQ/MSI got introduced.
----
- Documentation/devicetree/bindings/ufs/ufs-common.yaml | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/ufs/ufs-common.yaml b/Documentation/devicetree/bindings/ufs/ufs-common.yaml
-index 985ea8f..31fe7f3 100644
---- a/Documentation/devicetree/bindings/ufs/ufs-common.yaml
-+++ b/Documentation/devicetree/bindings/ufs/ufs-common.yaml
-@@ -87,6 +87,8 @@ properties:
-     description:
-       Specifies max. load that can be drawn from VCCQ2 supply.
- 
-+  msi-parent: true
-+
- dependencies:
-   freq-table-hz: [ clocks ]
-   operating-points-v2: [ clocks, clock-names ]
 -- 
-2.7.4
+2.25.1
 
 
