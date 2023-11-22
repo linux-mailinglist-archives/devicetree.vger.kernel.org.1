@@ -1,51 +1,55 @@
-Return-Path: <devicetree+bounces-17950-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17951-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B0A67F485E
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 14:57:27 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D52BB7F4871
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 15:02:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BC88EB20C99
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 13:57:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 123371C209F2
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 14:02:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A30764E63D;
-	Wed, 22 Nov 2023 13:57:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89AC03D3A9;
+	Wed, 22 Nov 2023 14:02:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="maDGtmiO"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="hXUBjRkC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2187197;
-	Wed, 22 Nov 2023 05:57:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=1wijzKURERLH5YMhL7NrTp/hCMnJxekCwGU9OnXsq2s=; b=maDGtmiOxWJKDfjBmAM+wHVdAR
-	75p7j+ULwccG19J/GkksVt/dv7oaEguHYrwurVYtzDFvUMbIONrGIQ573stnnbKBdogIdP99X/bcD
-	BpjfIhVs2VnDcWzUvfhk9OEH6OMVhJEeiMKg3S+Ng+GrJihi4k3xcbe+HT5KkUfPoXAg=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1r5nj0-000s1E-LH; Wed, 22 Nov 2023 14:57:06 +0100
-Date: Wed, 22 Nov 2023 14:57:06 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	devicetree@vger.kernel.org, netdev@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: net: renesas,ethertsn: Add bindings for
- Ethernet TSN
-Message-ID: <7fce3813-daa6-41ac-8167-21ccdd733fbc@lunn.ch>
-References: <20231120160740.3532848-1-niklas.soderlund+renesas@ragnatech.se>
- <2ab74479-f1fb-4faf-b223-ae750b4c08ce@linaro.org>
- <ZVyeMKjVhjW2F2e0@oden.dyn.berto.se>
- <badce6b1-c614-4fc2-b3a2-5b1b5c011a80@lunn.ch>
- <CAMuHMdWYFrx-CUapCQPX=hJtZBHycRTyN-dq8fXSXZwOiPJDMw@mail.gmail.com>
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::227])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B702101;
+	Wed, 22 Nov 2023 06:02:50 -0800 (PST)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 6A49C20011;
+	Wed, 22 Nov 2023 14:02:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1700661769;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=NWBqSZ0d2/YYtI3gI0JVxUXQAtOv2ZHu2s8DSzjbYUI=;
+	b=hXUBjRkC+zbu4gxz3FlLfskV2M9hDWhTvgbmgp50mfxfNrhQDvRlYkr+OiW5l0/723GtXS
+	FEyKOthGV8afYUqry2TW3eGXoj8CU1IMixeno1gM7TldbmwB+QSix7NKAZVMGhuL+0i4x2
+	rJQP01jVfEDSYgEHzm1bmgQe6vaYi6nGOO6r3bzp6OGteGB4Rrvblh8m8J4oXNdlua+fJR
+	RWrSFGZaXBLEAeYnQWVbe0tNlalWRR3WphnOJWtJENXKZE7/eU+n6fiFebwwJdrb237IQW
+	2fhWtssuFA5T7sYgaK4xORm5Bp1yZZJOj3isGKsnICAJHTdUBSrW+dnOSV0BWA==
+Date: Wed, 22 Nov 2023 15:02:47 +0100
+From: Mehdi Djait <mehdi.djait@bootlin.com>
+To: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Cc: Michael Riesch <michael.riesch@wolfvision.net>,
+	Tommaso Merciai <tomm.merciai@gmail.com>, mchehab@kernel.org,
+	heiko@sntech.de, hverkuil-cisco@xs4all.nl,
+	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+	conor+dt@kernel.org, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	thomas.petazzoni@bootlin.com, alexandre.belloni@bootlin.com,
+	maxime.chevallier@bootlin.com
+Subject: Re: [PATCH v11 2/3] media: rockchip: Add a driver for Rockchip's
+ camera interface
+Message-ID: <ZV4KB7/TO66if41o@pc-70.home>
+References: <cover.1700132457.git.mehdi.djait@bootlin.com>
+ <db605935ad21c4780b73db87605b52d30bc936a4.1700132457.git.mehdi.djait@bootlin.com>
+ <ZVz58b0r4gtxyVQy@tom-HP-ZBook-Fury-15-G7-Mobile-Workstation>
+ <9570dc1c-a437-46d4-95e7-1f3dd399e458@wolfvision.net>
+ <ZV3_xe6A0v7kKgmo@aptenodytes>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -54,23 +58,48 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAMuHMdWYFrx-CUapCQPX=hJtZBHycRTyN-dq8fXSXZwOiPJDMw@mail.gmail.com>
+In-Reply-To: <ZV3_xe6A0v7kKgmo@aptenodytes>
+X-GND-Sasl: mehdi.djait@bootlin.com
 
-> > In general, we try to have the PHY add the delay, not the MAC. So i
-> > would start with hard coding the delay to 0ns, and only implement
-> > these properties if you have a board where the PHY cannot add the
-> > delay.
+Hello everyone,
+
+> > >>  create mode 100644 drivers/media/platform/rockchip/cif/Kconfig
+> > >>  create mode 100644 drivers/media/platform/rockchip/cif/Makefile
+> > >>  create mode 100644 drivers/media/platform/rockchip/cif/capture.c
+> > >>  create mode 100644 drivers/media/platform/rockchip/cif/capture.h
+> > >>  create mode 100644 drivers/media/platform/rockchip/cif/common.h
+> > >>  create mode 100644 drivers/media/platform/rockchip/cif/dev.c
+> > >>  create mode 100644 drivers/media/platform/rockchip/cif/regs.h
+> > > 
+> > > Just a logigistic comment on my side for now, sorry :)
+> > > What about use cif-* prefix in front of driver files?
+> > > 
+> > > like:
+> > > 
+> > > cif-capture.c
+> > > cif-capture.h
+> > > cif-common.h
+> > > cif-dev.c
+> > > cif-regs.h
+> > 
+> > What would be the rationale here?
+> > 
+> > IMHO the files are in a folder named cif, so adding this prefix seems
+> > kind of redundant.
+> > 
+> > That said, if there is a good reason I could live with cif-*.{c,h} as
+> > well, of course. My only request would be to agree on something ASAP.
 > 
-> If I understand the KSZ9031 bindings correctly, that PHY is limited to
-> a skew of up to 960 ps, not 1800 or 2000 ps.
+> It's rather common to do that in Linux and one advantage is that it makes it
+> clear in your text editor which driver you are looking at when only the file
+> name is shown.
+> 
+> I don't have any strong opinion on this either though.
 
-Reading ksz9031_config_rgmii_delay(), it implements the four
-PHY_INTERFACE_MODE_RGMII* interface modes. So it should be able to
-provide the 2ns delay. Sometimes the tuning ability is relative to the
-base delay. So maybe it can do 2n +- 0.960/2 ?
+I see that the majority of the drivers are named like suggested. I will
+change the names in the V12.
 
-Anyway, try interface mode "rgmii_id" with the MAC not providing any
-delay.
-
-	Andrew
+--
+Kind Regards
+Mehdi Djait
 
