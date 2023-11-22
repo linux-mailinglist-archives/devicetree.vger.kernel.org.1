@@ -1,259 +1,219 @@
-Return-Path: <devicetree+bounces-17984-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17985-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BFC97F4ACD
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 16:36:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 137F17F4AEF
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 16:38:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 340C8B20DE5
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 15:36:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 601E9B20CB4
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 15:38:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A13E4CE11;
-	Wed, 22 Nov 2023 15:36:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D45084C3D0;
+	Wed, 22 Nov 2023 15:38:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mZPX+pE6"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GF17+Uxh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D94334CDFE;
-	Wed, 22 Nov 2023 15:36:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE038C433CD;
-	Wed, 22 Nov 2023 15:36:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700667393;
-	bh=OKh33AzVm9uxL93RkAbKxEVBTDGFce76r325kliI7Zw=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=mZPX+pE6BgQhCxnyvz2us7GgaC44S5Pm6jVPhcdDLXl90vZs0wDYN5mgcYmJS9oV3
-	 5Tb/Vq+g8RXzDFpRFiNg4Wtyzl8+l/BYT1etESchluIJmgYh1EmHDNbK1rU/R4Gmyi
-	 H0JnKPpKkFQ/VYScjMQqwZBecPdIQibiQ7bh0YkPhHwYVxVLQXFcITDcrqhUyNPdvY
-	 PTNzGNAxjIm3fKgEDJ2Vpb9Dw+R+kAzRJj/avhXp55kO85BQ43eL+DdLFN15trIPGK
-	 YUDtYXB+oHgIAzwu48xkIaDsbIcJCvOJnZMlfApmACGPwvFpnH/pFBao3qsnBe1xJj
-	 cKM8+EHFSbViQ==
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-507f1c29f25so9498010e87.1;
-        Wed, 22 Nov 2023 07:36:33 -0800 (PST)
-X-Gm-Message-State: AOJu0YyTLyZBgJbvGlNlGor8cbnopohkC3Gn2zrFk1g65U6T4gzjOuq0
-	vAdEA5oqmmOjB1XbyP5Fqk6AKQ71+f79qSSQkg==
-X-Google-Smtp-Source: AGHT+IE1SGDtuVjfqEZvGhD647pUyiDxFC2qDwkSydBk3Fmn9SBROP8ROhE5tj24cuC1kE1Iu0iZc4ZOeqnYn86teZs=
-X-Received: by 2002:a05:6512:158e:b0:507:a766:ad27 with SMTP id
- bp14-20020a056512158e00b00507a766ad27mr2845995lfb.16.1700667391875; Wed, 22
- Nov 2023 07:36:31 -0800 (PST)
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1A4A4C3C
+	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 07:37:39 -0800 (PST)
+Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2c4fdf94666so85681841fa.2
+        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 07:37:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1700667458; x=1701272258; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=KIruWVCLW08kCmdc2JJdnr8xviqqWWOURPiSNoVbDyo=;
+        b=GF17+UxhEQvG0ErODEt9ds+yb+OhVlKUrxsVIsiD7vXbX6kUQuBU1P4GlpI5lZwgga
+         IzYKE1W5S+04WO1ACOI4Ou+cnAGOOMtKoXLt7R/Z/TFHClq2AmDfrFPAbiQQmuS1H9u/
+         KE+32CiMd4eEoX0iONKdXXaJE+XEo/sBbfxolqXJmuKzmDrEDMYrkHk3J6Y8cTIcLQnG
+         uOjDLC+LvEDmUgl+c4Sn83iumUWnp6L+aHhdH8vNkc0vqTyohpG1/32e/sX9k5wrMFfp
+         WKaxAG7Ijya2CyqGp5r5TzBjzJopkTKWnGzWP22+doFaw3q7atzsK5fWFpQeHIetseXX
+         vNOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700667458; x=1701272258;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KIruWVCLW08kCmdc2JJdnr8xviqqWWOURPiSNoVbDyo=;
+        b=QD8URXpETpMQaMX2m1CmloubA7ZRyRK0+ad0WHRWAA4abEmq42kGsxonJvskQi6VBY
+         EBigKTdevLy85WS8M7+pMUBlh80hPIZN5j9Coowb4BsHf5EzZrGA9+fpds+dRLJNbbV4
+         D4LjJ+4f0q3Lul8QlaopZIChhMOkmewzowRO3/qBjjA9dDwulGeLaquqNVZjvVo7t+Xt
+         HWyt+hwwvqwnxO4CtlibDprgvqRvqMvl+OKYQg+nuSLDNa/sc7BJI+cn5fj0QGbjfg3L
+         Ck+tXwZW5My92sWAE/6ttghHmkJbCynS2rxy2xI1rC4Afvu4H1syTD1NFzac6yo4gZFR
+         jLsw==
+X-Gm-Message-State: AOJu0YzbFQ2Qr1nlhtMyr27jw5IypFzW2bquz3DyIZEjV0qDALayS6sk
+	K+onE1+OfVAIn4LEZIoo14tngQ==
+X-Google-Smtp-Source: AGHT+IF4FVkD3Cj5xMZ6bQgUdM6mVHsHTU430ZlyujhIEcCHKOW0UP9aBB0zIJtCP/bxmBnfrPCulA==
+X-Received: by 2002:a2e:9842:0:b0:2c8:8025:1c8e with SMTP id e2-20020a2e9842000000b002c880251c8emr1792803ljj.17.1700667457874;
+        Wed, 22 Nov 2023 07:37:37 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.100])
+        by smtp.gmail.com with ESMTPSA id g8-20020a05600c310800b0040651505684sm2556620wmo.29.2023.11.22.07.37.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 Nov 2023 07:37:37 -0800 (PST)
+Message-ID: <ff32cd00-e26b-4ba6-bb08-a89c702895c9@linaro.org>
+Date: Wed, 22 Nov 2023 16:37:35 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230807174159.1140957-1-kyletso@google.com> <20230807174159.1140957-2-kyletso@google.com>
- <20230821162517.GA1832382-robh@kernel.org> <CAGZ6i=0ey+94YYgc=os5iQ_pNmNVB=qZQD0=jB4fRTKggZPSWA@mail.gmail.com>
-In-Reply-To: <CAGZ6i=0ey+94YYgc=os5iQ_pNmNVB=qZQD0=jB4fRTKggZPSWA@mail.gmail.com>
-From: Rob Herring <robh@kernel.org>
-Date: Wed, 22 Nov 2023 08:36:19 -0700
-X-Gmail-Original-Message-ID: <CAL_JsqLjAooY27pG4GQHRdpiB_=0RCYrkKOjzAvmvz=5yU71Og@mail.gmail.com>
-Message-ID: <CAL_JsqLjAooY27pG4GQHRdpiB_=0RCYrkKOjzAvmvz=5yU71Og@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: connector: Add child nodes for
- multiple PD capabilities
-To: Kyle Tso <kyletso@google.com>
-Cc: krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, linux@roeck-us.net, 
-	heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org, 
-	badhri@google.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-usb@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V2 1/2] dt-bindings: serial: add Broadcom's BCMBCA family
+ High Speed UART
+Content-Language: en-US
+To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ William Zhang <william.zhang@broadcom.com>,
+ Anand Gore <anand.gore@broadcom.com>, Kursad Oney
+ <kursad.oney@broadcom.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Andre Przywara <andre.przywara@arm.com>,
+ Alexandre TORGUE <alexandre.torgue@st.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, linux-serial@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ bcm-kernel-feedback-list@broadcom.com, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
+ <rafal@milecki.pl>
+References: <20231122144208.21114-1-zajec5@gmail.com>
+ <66c4b54b-7631-484a-9f7d-31542284e620@linaro.org>
+ <08fcb328-fe4b-40c7-a01e-8a0b527b1c71@gmail.com>
+ <758114a7-0b18-44e8-b3d8-b5aabd244279@linaro.org>
+ <cac6aa8a-1515-4062-8922-4d1e31e9216e@gmail.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <cac6aa8a-1515-4062-8922-4d1e31e9216e@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Wed, Oct 18, 2023 at 12:19=E2=80=AFPM Kyle Tso <kyletso@google.com> wrot=
-e:
->
-> On Tue, Aug 22, 2023 at 12:25=E2=80=AFAM Rob Herring <robh@kernel.org> wr=
-ote:
-> >
->
-> Sorry for the late response...
->
-> > On Tue, Aug 08, 2023 at 01:41:58AM +0800, Kyle Tso wrote:
-> > > Define a new optional property "capabilities" which is a child node
-> > > under connector to contain multiple USB Power Delivery capabilities.
-> > >
-> > > Define a new property with pattern (e.g. caps-0, caps-1) which is a
-> >
-> > A property in json-schema terms, but for DT it's a node not a property.
-> > 'Define a child node ...' would be clearer.
-> >
->
-> Will do in the future patch
->
-> > > child node under "capabilities". Each node contains PDO data of a
-> > > selectable Power Delivery capability.
-> > >
-> > > Also define common properties for source-pdos, sink-pdos, and
-> > > op-sink-microwatt that can be referenced.
-> >
-> > Why do we need this? What issue does this solve? The commit message
-> > should answer those questions (always).
-> >
->
-> Will state the rationale in the future patch
->
-> > > Signed-off-by: Kyle Tso <kyletso@google.com>
-> > > ---
-> > > v1 -> v2:
-> > > - move source/sink-pdos to $defs and reference them in properties
-> > >
-> > >  .../bindings/connector/usb-connector.yaml     | 80 +++++++++++++----=
---
-> > >  1 file changed, 57 insertions(+), 23 deletions(-)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/connector/usb-connecto=
-r.yaml b/Documentation/devicetree/bindings/connector/usb-connector.yaml
-> > > index 1c4d3eb87763..c6b02dbda83f 100644
-> > > --- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
-> > > +++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
-> > > @@ -117,28 +117,10 @@ properties:
-> > >    # The following are optional properties for "usb-c-connector" with=
- power
-> > >    # delivery support.
-> > >    source-pdos:
-> > > -    description: An array of u32 with each entry providing supported=
- power
-> > > -      source data object(PDO), the detailed bit definitions of PDO c=
-an be found
-> > > -      in "Universal Serial Bus Power Delivery Specification" chapter=
- 6.4.1.2
-> > > -      Source_Capabilities Message, the order of each entry(PDO) shou=
-ld follow
-> > > -      the PD spec chapter 6.4.1. Required for power source and power=
- dual role.
-> > > -      User can specify the source PDO array via PDO_FIXED/BATT/VAR/P=
-PS_APDO()
-> > > -      defined in dt-bindings/usb/pd.h.
-> > > -    minItems: 1
-> > > -    maxItems: 7
-> > > -    $ref: /schemas/types.yaml#/definitions/uint32-array
-> > > +    $ref: "#/$defs/source-pdos"
-> > >
-> > >    sink-pdos:
-> > > -    description: An array of u32 with each entry providing supported=
- power sink
-> > > -      data object(PDO), the detailed bit definitions of PDO can be f=
-ound in
-> > > -      "Universal Serial Bus Power Delivery Specification" chapter 6.=
-4.1.3
-> > > -      Sink Capabilities Message, the order of each entry(PDO) should=
- follow the
-> > > -      PD spec chapter 6.4.1. Required for power sink and power dual =
-role. User
-> > > -      can specify the sink PDO array via PDO_FIXED/BATT/VAR/PPS_APDO=
-() defined
-> > > -      in dt-bindings/usb/pd.h.
-> > > -    minItems: 1
-> > > -    maxItems: 7
-> > > -    $ref: /schemas/types.yaml#/definitions/uint32-array
-> > > +    $ref: "#/$defs/sink-pdos"
-> > >
-> > >    sink-vdos:
-> > >      description: An array of u32 with each entry, a Vendor Defined M=
-essage Object (VDO),
-> > > @@ -164,9 +146,7 @@ properties:
-> > >      $ref: /schemas/types.yaml#/definitions/uint32-array
-> > >
-> > >    op-sink-microwatt:
-> > > -    description: Sink required operating power in microwatt, if sour=
-ce can't
-> > > -      offer the power, Capability Mismatch is set. Required for powe=
-r sink and
-> > > -      power dual role.
-> > > +    $ref: "#/$defs/op-sink-microwatt"
-> > >
-> > >    port:
-> > >      $ref: /schemas/graph.yaml#/properties/port
-> > > @@ -228,6 +208,30 @@ properties:
-> > >        SNK_READY for non-pd link.
-> > >      type: boolean
-> > >
-> > > +  capabilities:
-> > > +    description: A child node to contain all the selectable USB Powe=
-r Delivery capabilities.
-> > > +    type: object
-> > > +
-> > > +    patternProperties:
-> > > +      "^caps-[0-9]+$":
-> > > +        description: Child nodes under "capabilities" node. Each nod=
-e contains a selectable USB
-> > > +          Power Delivery capability.
-> > > +        type: object
-> > > +
-> > > +        properties:
-> > > +          source-pdos:
-> > > +            $ref: "#/$defs/source-pdos"
-> > > +
-> > > +          sink-pdos:
-> > > +            $ref: "#/$defs/sink-pdos"
-> > > +
-> > > +          op-sink-microwatt:
-> > > +            $ref: "#/$defs/op-sink-microwatt"
-> > > +
-> > > +        additionalProperties: false
-> > > +
-> > > +    additionalProperties: false
-> > > +
-> > >  dependencies:
-> > >    sink-vdos-v1: [ 'sink-vdos' ]
-> > >    sink-vdos: [ 'sink-vdos-v1' ]
-> > > @@ -235,6 +239,36 @@ dependencies:
-> > >  required:
-> > >    - compatible
-> > >
-> > > +$defs:
-> >
-> > Make this:
-> >
-> > $defs:
-> >   capabilities:
-> >     properties:
-> >       ...
-> >
-> > And then just reference "#/$defs/capabilities" at the top-level and in
-> > caps-[0-9] node schema.
-> >
-> > You'll need to use unevaluatedProperties instead of additionalPropertie=
-s
-> > as well.
-> >
->
-> I am sorry I don't understand this part. Could you explain more?
->
-> In $defs, define a whole structure of "capabilities" which has
-> patternProperties "caps-[0-9]+", and inside "caps-[0-9]+" there are
-> properties "source/sink-pdos" ?
+On 22/11/2023 16:32, Rafał Miłecki wrote:
+> On 22.11.2023 16:00, Krzysztof Kozlowski wrote:
+>> On 22/11/2023 15:52, Rafał Miłecki wrote:
+>>>>> +maintainers:
+>>>>> +  - Rafał Miłecki <rafal@milecki.pl>
+>>>>> +
+>>>>> +allOf:
+>>>>> +  - $ref: serial.yaml#
+>>>>> +
+>>>>> +properties:
+>>>>> +  compatible:
+>>>>> +    items:
+>>>>> +      - enum:
+>>>>> +          - brcm,bcm4908-hs-uart
+>>>>> +          - brcm,bcm4912-hs-uart
+>>>>> +          - brcm,bcm6756-hs-uart
+>>>>> +          - brcm,bcm6813-hs-uart
+>>>>> +          - brcm,bcm6846-hs-uart
+>>>>> +          - brcm,bcm6855-hs-uart
+>>>>> +          - brcm,bcm6856-hs-uart
+>>>>> +          - brcm,bcm6858-hs-uart
+>>>>> +          - brcm,bcm6878-hs-uart
+>>>>> +          - brcm,bcm47622-hs-uart
+>>>>> +          - brcm,bcm63138-hs-uart
+>>>>> +          - brcm,bcm63146-hs-uart
+>>>>> +          - brcm,bcm63158-hs-uart
+>>>>> +          - brcm,bcm63178-hs-uart
+>>>>> +      - const: brcm,bcmbca-hs-uart
+>>>>
+>>>> git grep did not find driver for this compatible. Is it in separate
+>>>> patchset?
+>>>
+>>> No. My project based on BCMBCA has been canceled and I don't work on it
+>>> full time anymore. I just wanted to fill empty bits I can afford
+>>> handling in my free time and complete hardware description in DTS.
+>>>
+>>> I may still work on some BCMBCA drivers from time to time but as a side
+>>> project.
+>>
+>> This means we cannot use driver to verify whether the fallback is
+>> actually suitable. Considering that existing UART bindings do not
+>> fallback (brcm,bcm6345-uart, brcm,bcm7271-uart), I don't understand what
+>> is the benefit here.
+> 
+> I believed the rule for maintaining bindings and DTS files was to
+> describe hardware no matter what/if system needs it.
+> 
+> For example a year ago I added binding for BCMBCA SoC timer without
+> actual driver, see e112f2de151b ("dt-bindings: timer: Add Broadcom's
+> BCMBCA timers").
+> 
+> I'm not sure if we're going to agree on this, but personally I like
+> describing hardware as much as I can. So it's well documented /
+> understood and people may eventually write drivers for it. Maybe it's
+> partially because I come from Broadcom's world that isn't well known
+> for upstream efforts in general.
 
-No, define a list of properties under a def. Here's a more complete example=
-:
+The problem is that "brcm,bcmbca-hs-uart" is not describing hardware. It
+is saying that all these devices have similar (compatible) programming
+model, so the OS can use just one compatible. This goes away from pure
+hardware description into interpretation.
 
-$defs:
-  capabilities:
-    properties:
-      source-pdos:
-        ...
+Rob already commented on such non-SoC compatibles multiple times. I do
+not see any reason here to not use specific compatible as fallback.
 
-      sink-pdos:
-        ...
+> 
+> As for verifying this binding against actual driver I can definitely
+> understand your concerns. Hoping it may help I uploaded Broadcom's HS
+> UART driver extracted from the RAXE500-V1.0.8.70_2.0.36_gpl SDK/GPL
+> package: http://files.zajec.net/hs_uart/
+> 
+> Please note it's not much of a clean code and its design would not be
+> accepted upstream but hopefully you can glance at it to verify this
+> binding's compatibility.
+> 
+> Let me know if there is anything else (other than rewriting Broadcom's
+> downstream driver) I could do to get this binding accepted.
 
-And then add "$ref: '#/$defs/capabilities'" at the top-level of this
-schema doc and under "caps-[0-9]+":
 
-    patternProperties:
-      "^caps-[0-9]+$":
-        description: Child nodes under "capabilities" node. Each node
-contains a selectable USB
-          Power Delivery capability.
-        type: object
-        $ref: "#/$defs/capabilities"
-        unevaluatedProperties: false
 
-unevaluatedProperties is needed because it can "see" properties
-defined in a $ref to get the full list of properties for a node.
+Best regards,
+Krzysztof
 
-Rob
 
