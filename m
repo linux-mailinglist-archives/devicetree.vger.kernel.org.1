@@ -1,230 +1,147 @@
-Return-Path: <devicetree+bounces-17796-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17797-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A4AC7F4142
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 10:09:28 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D571A7F4150
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 10:14:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 35B7F2817AE
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 09:09:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F07D2B20D4E
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 09:14:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A94FC3C6BD;
-	Wed, 22 Nov 2023 09:09:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B8383D3B3;
+	Wed, 22 Nov 2023 09:14:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tRkcgQZv"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="QtzD+1SS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AC5735B5
-	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 01:09:19 -0800 (PST)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-9c41e95efcbso895047066b.3
-        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 01:09:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700644157; x=1701248957; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=MDFjP3+fhsNw2akKUYyFDvgsffeDkDBRgEKMO0HpZCE=;
-        b=tRkcgQZvk4r3sZ43QvVIfizcm3DuRF7HkDVKfBUKzXwl/B3Qw+DdOBtJin+zCO0sTs
-         HvPNDyReX4Acrl35ufgk4ofX/C1lYp0AkRTtg+SWSTrD/kUqrNRPAT9HXBhiUCB4USHF
-         WAlhEcQme492Zmj0FxIfY6frjHrAOgCKW14MCl89wxlP4l7k+kZkN5TYOs0BMEBpAdjb
-         +jMNdU8yFf2ZCiaqBAW0VHSte/ohceNQyPSuP2RAC8qqmMBZ7XlxbL719SHxfrrjE26/
-         3pD9n0ZfGvs73ZrIqXLyEGKBCSqsC35SFVDBQLJEvxlxKWp7Sjb0+yu7k8NULi5rqYO9
-         9+FA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700644157; x=1701248957;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MDFjP3+fhsNw2akKUYyFDvgsffeDkDBRgEKMO0HpZCE=;
-        b=NrPHbVYJ1sTbhWxu5BnhJ1rjrPtuypfNCduwD7NweOGDf1whJx7fBlcVcAQiWmAnT0
-         /Oq9g2GekLVVDX1mvl1x1Puox9MRZFWdNd/jI9qvV5F60ktfhJI13JH7TB/XiBQj+g2u
-         /GI9LUyjwB654rr90E2M7pnHMGsfNq+/htJ3bM4wUmSjHDIGsV+jBM8tVqP9hQo1ZDb0
-         W2P0aW06J7amduMMffQx1WqboRay6Wo3rpl1AoCzu1eAkm0CTD+OSNB0yqUl4O7VBLwc
-         3zZ0hbvn7J8RTnv6erjDBBO4en2scUPtscDqZCxNPWIK7fvYG8sAD2gdVkjEvxt6pnP4
-         oW/w==
-X-Gm-Message-State: AOJu0Yy9X9HNhuCaGh5LF3BkKmXUY8ceWFVer4NM0NqLekvVNHooA2v9
-	PS13AsPdlQ0NsP3KpGuiZDaVCw==
-X-Google-Smtp-Source: AGHT+IFZl7wEgdnoEFdZt9B2cqKnVzkpgrZ9sNjK/LyuMgkAxnpNZnVfrON3J8adQtDbtSUeNatAmw==
-X-Received: by 2002:a17:906:f0c2:b0:9fc:1236:beff with SMTP id dk2-20020a170906f0c200b009fc1236beffmr1098949ejb.65.1700644157026;
-        Wed, 22 Nov 2023 01:09:17 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.100])
-        by smtp.gmail.com with ESMTPSA id o15-20020a17090637cf00b009fee12d0dcdsm3392502ejc.15.2023.11.22.01.09.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Nov 2023 01:09:16 -0800 (PST)
-Message-ID: <2ced2e38-e81d-4f9b-a6c0-6ac2d1a0fff9@linaro.org>
-Date: Wed, 22 Nov 2023 10:09:14 +0100
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on20601.outbound.protection.outlook.com [IPv6:2a01:111:f400:7e88::601])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F12EF83;
+	Wed, 22 Nov 2023 01:13:58 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Rp6FM0EGn+hWMyEmPMtQdrpn2C3BYvLDZMZ277DPc1QvvGGua1tBomeRpXij/X/j4Exc9jQy3iic9yF56b76I3LsJ0ZQhtq3UzoDuJqrIsHrveoLwXsjePI85cIPtLZ9r1WciAYLA2312JUPisWGqD0k9rND0FwT33kEwKJw2emmWN7JQ5wBIUtLzIawkgaKeVE3kJAW8F0fywMGns5j3JNMzdK0/NMPg4f4XH7950dkverA7dUMpC2KwSYpj64DjEpzBtF7Pe67OMC7xaGQKKHviEZvOr12RnLhxa/GM20qUzL2WVzhvO/0D7M/FnO6E8Gbh2IwcUyh7UFdQyxkSg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=oKReauIfj6MbVxEW3JpM4ioq0+LUx+yYx+r+DWbEtDg=;
+ b=dNyuCrYfnObEVWiGtkEq7Hoxx/wLk4IIJ/GUjOScXyxHBgN17LUSLjeaP6MTLNuVZ+5uEFOD7hcEOtKKNRwY/NeAWWk6EM6vJ9KiNeK0Tum/OuapuvbzkPc+x/5Bm5cn5KijxxO/x3exXIeV9C27YVAiu1A3v9z90qPTlnvHsE/W6jafm2Zs5bKQWkqnfRENE1Z51qTO0QgiiAT5+ybSR89zpB9Ja1JeyyxMYX3wepGNlD1WRSxVZC07LJfOBhWSPQDcDF+muxYG3S+n7FFReFql6V4a0blzR9himS0X5UvcUnfmvmn/8Tv1VcKXfylckcSzbv9b/ek8TjTqzYr22Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=oKReauIfj6MbVxEW3JpM4ioq0+LUx+yYx+r+DWbEtDg=;
+ b=QtzD+1SS2kK5QANPG+JJWVsKqKtkngHe/FGQHcyrwz6NCdDWBG63Wk5ehgNTGkQzMTxmOXOca1FfwVUtfArK6C+ceSypBhjBLy33yDwaAKN4FuceEsBwneY1vAc+kdilwpK/Au3q1TBkXtBihRJv2eKmOw2R9uy4ocr2CP0B4QQ=
+Received: from SA1PR03CA0014.namprd03.prod.outlook.com (2603:10b6:806:2d3::10)
+ by DM6PR12MB4371.namprd12.prod.outlook.com (2603:10b6:5:2a3::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7025.19; Wed, 22 Nov
+ 2023 09:13:55 +0000
+Received: from SN1PEPF0002636D.namprd02.prod.outlook.com
+ (2603:10b6:806:2d3:cafe::42) by SA1PR03CA0014.outlook.office365.com
+ (2603:10b6:806:2d3::10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7025.18 via Frontend
+ Transport; Wed, 22 Nov 2023 09:13:55 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ SN1PEPF0002636D.mail.protection.outlook.com (10.167.241.138) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7025.12 via Frontend Transport; Wed, 22 Nov 2023 09:13:55 +0000
+Received: from localhost (10.180.168.240) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Wed, 22 Nov
+ 2023 03:13:54 -0600
+From: Michal Simek <michal.simek@amd.com>
+To: <conor@kernel.org>, <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
+	<michal.simek@xilinx.com>, <git@xilinx.com>, <robh@kernel.org>
+CC: Conor Dooley <conor+dt@kernel.org>, Damien Le Moal <dlemoal@kernel.org>,
+	Guenter Roeck <linux@roeck-us.net>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+	Wolfram Sang <wsa@kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH v2 1/2] dt-bindings: soc: xilinx: Move xilinx.yaml from arm to soc
+Date: Wed, 22 Nov 2023 10:13:50 +0100
+Message-ID: <ef58475a717c62bc86aeea5148d5b88cdc0cc106.1700644418.git.michal.simek@amd.com>
+X-Mailer: git-send-email 2.36.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] docs: dt-bindings: add DTS Coding Style document
-Content-Language: en-US
-To: Michal Simek <michal.simek@amd.com>,
- Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Dragan Simic <dsimic@manjaro.org>, wens@kernel.org,
- =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- Andrew Davis <afd@ti.com>, Arnd Bergmann <arnd@arndb.de>,
- Bjorn Andersson <andersson@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Neil Armstrong <neil.armstrong@linaro.org>, Nishanth Menon <nm@ti.com>,
- Olof Johansson <olof@lixom.net>, linux-rockchip@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-msm@vger.kernel.org
-References: <20231120084044.23838-1-krzysztof.kozlowski@linaro.org>
- <6b288a2e-d147-4bd3-b1d4-daf56295d939@gmail.com>
- <01f9ce3b-e6e5-4b05-bf7f-0b3a5f74910a@linaro.org>
- <CAGb2v64Vf5dDwq=KTrxwc=+w+0KUD2KVPMjmHg68Y_yukES5dQ@mail.gmail.com>
- <7232a48b-b9ad-44b5-ae6a-d12dad70b3c4@linaro.org>
- <58a9caacc1226c7c3a2bdfe73ef1791f@manjaro.org>
- <cc4c789c-b595-41eb-b543-9e03549c6e61@amd.com>
- <CAMuHMdWm-gRPHeHyuX3_eR+9chJEw3iiZwCNBnoiRPHzoMAs6w@mail.gmail.com>
- <808270d3-2274-4fb7-a397-38538503b67c@amd.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <808270d3-2274-4fb7-a397-38538503b67c@amd.com>
-Content-Type: text/plain; charset=UTF-8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1677; i=michal.simek@amd.com; h=from:subject:message-id; bh=WvDO8CRV2FU0nbnpjmTh1AA/+K4uZD4u+ST838uMAwU=; b=owGbwMvMwCR4yjP1tKYXjyLjabUkhtTYY85qYdNZkuc6O9nO//u+ZWHunb8RWcVXI94v+Dt5R vHn1uo9HbEsDIJMDLJiiizSNlfO7K2cMUX44mE5mDmsTCBDGLg4BWAivC4MC2ZnKSTtvBE1w7Tt 7oO/j9cs7LGbrMAwP42tz2zxoXQby9AoK747Nz1svfrjAA==
+X-Developer-Key: i=michal.simek@amd.com; a=openpgp; fpr=67350C9BF5CCEE9B5364356A377C7F21FE3D1F91
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB03.amd.com
+ (10.181.40.144)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN1PEPF0002636D:EE_|DM6PR12MB4371:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5f4438c2-cfa9-4bf5-d626-08dbeb3b5a77
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	2dpgbWiWWcuEh0VjrhkzXS0M2cmazUbX4RlkaY3ophgKZ6g4cgKmqyMUlgx3zm8TL14MZWKa2FV9Xekmbu+nIczdAobVeQzjYVRmakNrTAVvvGvR+l575TqOKxK3Ww7AmYCA9baS9B/tZ5hLB5//GLA+e86ekGQMBU7bwd1S+KpMwJzVM67zFxSSAsO6Df1dd10X5qtRIVagK0F60bmbNRBK6E6PoGOy0i2zbLxW5joKa95TjEGHO01oszyxcA5CJpP5DzQwnZXp6AaLsGismCXDIHJ4Lh8zT5ry31Vz1UnFMTLkVfaDtDxGN05n/bIW7MDs5RLfFD4Hxar82QUlPLfSpbT4W5bmsUggM3xInW2JatreaAculKwfHVWguZDx6qEig+cPNtNfOtGGHaCy0oGthXWj9TLV93PBq5Iqd7RWidh3Op29cZEsBn5uOOXIfQDLG3NPSI1N4k0B9l1/K6XjF6VwGRhFPOhsIR/pXNjavafTWAdVhBjC8c/ca3WXJqc9oqckc8o72VEHsTwB8pA1/icWtyYx1dsOfPtQpe4jUAYX4uuaD/vqw8YIuc8iP5ViRJpjv2SIlsEmfUXHK9kF6UnKfFNtCsX5manpJkCmbdLYpC3x1hUmiKbVJjYR3cfYq4i/g/x7NshAjclhyD2EmTES1UiI77gYfK5TcJY+YK7l4riFoeigrzNqCHfRd+C1PiuCno6CtorIN9mGT0o+WoYjD0Jmv+kZ8nyXlqugBb2tSAegHBy/6U6TPwJb5U0o6KKfadFmhyi4VdpT5Q==
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(396003)(39860400002)(376002)(346002)(136003)(230922051799003)(64100799003)(451199024)(1800799012)(82310400011)(186009)(40470700004)(46966006)(36840700001)(2616005)(426003)(336012)(26005)(16526019)(36860700001)(81166007)(356005)(36756003)(86362001)(82740400003)(83380400001)(40460700003)(47076005)(54906003)(316002)(8676002)(8936002)(4326008)(110136005)(70586007)(70206006)(41300700001)(44832011)(5660300002)(7416002)(2906002)(6666004)(40480700001)(966005)(478600001)(2101003)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Nov 2023 09:13:55.5833
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5f4438c2-cfa9-4bf5-d626-08dbeb3b5a77
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SN1PEPF0002636D.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4371
 
-On 22/11/2023 09:57, Michal Simek wrote:
-> Hi Geert,
-> 
-> On 11/22/23 09:53, Geert Uytterhoeven wrote:
->> Hi Michal,
->>
->> On Wed, Nov 22, 2023 at 9:50 AM Michal Simek <michal.simek@amd.com> wrote:
->>> On 11/22/23 09:29, Dragan Simic wrote:
->>>> On 2023-11-22 09:21, Krzysztof Kozlowski wrote:
->>>>> On 22/11/2023 09:09, Chen-Yu Tsai wrote:
->>>>>> On Wed, Nov 22, 2023 at 4:05 PM Krzysztof Kozlowski
->>>>>> <krzysztof.kozlowski@linaro.org> wrote:
->>>>>>>
->>>>>>> On 21/11/2023 14:50, Rafał Miłecki wrote:
->>>>>>>>> +Order of Properties in Device Node
->>>>>>>>> +----------------------------------
->>>>>>>>> +
->>>>>>>>> +Following order of properties in device nodes is preferred:
->>>>>>>>> +
->>>>>>>>> +1. compatible
->>>>>>>>> +2. reg
->>>>>>>>> +3. ranges
->>>>>>>>> +4. Standard/common properties (defined by common bindings, e.g. without
->>>>>>>>> +   vendor-prefixes)
->>>>>>>>> +5. Vendor-specific properties
->>>>>>>>> +6. status (if applicable)
->>>>>>>>> +7. Child nodes, where each node is preceded with a blank line
->>>>>>>>> +
->>>>>>>>> +The "status" property is by default "okay", thus it can be omitted.
->>>>>>>>
->>>>>>>> I think it would really help to include position of #address-cells and
->>>>>>>> #size-cells here. In some files I saw them above "compatible" that seems
->>>>>>>> unintuitive. Some prefer putting them at end which I think makes sense
->>>>>>>> as they affect children nodes.
->>>>>>>>
->>>>>>>> Whatever you choose it'd be just nice to have things consistent.
->>>>>>>
->>>>>>> This is a standard/common property, thus it goes to (4) above.
->>>>>>
->>>>>> It's probably a mix, but AFAIK a lot of the device trees in tree have
->>>>>> #*-cells after "status". In some cases they are added in the board
->>>>>> .dts files, not the chip/module .dtsi files.
->>>>>
->>>>> Existing DTS is not a good example :)
->>>>>
->>>>>>
->>>>>> +1 that it makes sense at the end as they affect child nodes.
->>>>>
->>>>> I still insist that status must be the last, because:
->>>>> 1. Many SoC nodes have address/size cells but do not have any children
->>>>> (I2C, SPI), so we put useless information at the end.
->>>>> 2. Status should be the final information to say whether the node is
->>>>> ready or is not. I read the node, check properties and then look at the end:
->>>>> a. Lack of status means it is ready.
->>>>> b. status=disabled means device still needs board resources/customization
->>>>
->>>> I agree with the "status" belonging to the very end, because it's both logical
->>>> and much more readable.  Also, "status" is expected to be modified in the
->>>> dependent DT files, which makes it kind of volatile and even more deserving to
->>>> be placed last.
->>>
->>> I am just curious if having status property at the end won't affect
->>> execution/boot up time. Not sure how it is done in Linux but in U-Boot at least
->>> (we want to have DTs in sync between Linux and U-Boot) of_find_property is
->>> pretty much big loop over all properties. And status property defined at the end
->>> means going over all of them to find it out to if device is present.
->>> Not sure if Linux works in the same way but at least of_get_property is done in
->>> the same way.
->>
->> As the default is "okay", you have to loop over all properties anyway.
-> 
-> No doubt if you don't define status property that you need to loop over all of 
-> them. We normally describe the whole SOC with pretty much all IPs status = 
-> disabled and then in board file we are changing it to okay based on what it is 
-> actually wired out.
-> It means on our systems all nodes have status properties. If you have it at 
-> first you don't need to go over all.
+All Xilinx boards can hosts also soft core CPUs like MicroBlaze or
+MicroBlaze V (RISC-V ISA) that's why move boar description from arm folder
+to soc folder.
+Similar chagne was done for Renesas by commit c27ce08b806d ("dt-bindings:
+soc: renesas: Move renesas.yaml from arm to soc").
 
-We never sacrificed code readability in favor of code execution speed,
-so neither should we do it here.
+Signed-off-by: Michal Simek <michal.simek@amd.com>
+---
 
-If the speed is a problem, project can still add a flag to dtc to
-re-shuffle properties in FDT depending on its needs.
+Changes in v2:
+- New patch in the series
 
-Best regards,
-Krzysztof
+Based on discussion here.
+https://lore.kernel.org/r/20231108-copper-scoff-b4de5febb954@spud
+
+---
+ .../devicetree/bindings/{arm => soc/xilinx}/xilinx.yaml          | 0
+ MAINTAINERS                                                      | 1 +
+ 2 files changed, 1 insertion(+)
+ rename Documentation/devicetree/bindings/{arm => soc/xilinx}/xilinx.yaml (100%)
+
+diff --git a/Documentation/devicetree/bindings/arm/xilinx.yaml b/Documentation/devicetree/bindings/soc/xilinx/xilinx.yaml
+similarity index 100%
+rename from Documentation/devicetree/bindings/arm/xilinx.yaml
+rename to Documentation/devicetree/bindings/soc/xilinx/xilinx.yaml
+diff --git a/MAINTAINERS b/MAINTAINERS
+index ea790149af79..14ad00009a63 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -3020,6 +3020,7 @@ F:	Documentation/devicetree/bindings/i2c/cdns,i2c-r1p10.yaml
+ F:	Documentation/devicetree/bindings/i2c/xlnx,xps-iic-2.00.a.yaml
+ F:	Documentation/devicetree/bindings/memory-controllers/snps,dw-umctl2-ddrc.yaml
+ F:	Documentation/devicetree/bindings/memory-controllers/xlnx,zynq-ddrc-a05.yaml
++F:	Documentation/devicetree/bindings/soc/xilinx/xilinx.yaml
+ F:	Documentation/devicetree/bindings/spi/xlnx,zynq-qspi.yaml
+ F:	arch/arm/mach-zynq/
+ F:	drivers/clocksource/timer-cadence-ttc.c
+-- 
+2.36.1
 
 
