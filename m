@@ -1,111 +1,100 @@
-Return-Path: <devicetree+bounces-17847-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17849-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D35A87F448E
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 12:02:04 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA6A37F4494
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 12:02:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8BBBA281588
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 11:02:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 925BE2815D1
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 11:02:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F3502206C;
-	Wed, 22 Nov 2023 11:02:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VppQyigM"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0DF425578;
+	Wed, 22 Nov 2023 11:02:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-x36.google.com (mail-oa1-x36.google.com [IPv6:2001:4860:4864:20::36])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97F9812C
-	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 03:01:55 -0800 (PST)
-Received: by mail-oa1-x36.google.com with SMTP id 586e51a60fabf-1f066fc2a2aso3114143fac.0
-        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 03:01:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700650915; x=1701255715; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=PFE8V0akmDhV9uHSFYH1mN8FnS2rSR9n1F1LBeYJA20=;
-        b=VppQyigMPmmgIoYBSMyQSC6at4GaNvd3aLegkEeLdEcpHlarqTqS2vvsEd2R9szDMZ
-         BCqm4tEhgloIuj30LC7kXSuDR5sUCRHsSKRe8OPEoDd7OPYcEDdGqZbE/T+hnQ4SYmoT
-         QsjfPKvEzbMpipx0esTqlh7Sxagcn9wd04PPSQbF3qUHcuQ06EJUOvAuz/P7qOdtpZ/G
-         EuSh24fqxsXpzxaDz5mSq24foUE+vm1tpVDzpMIYczRrVPkFaaH4U5YXzALxdablWIxu
-         yHOizt4F2grISZrxt7XRgCDWQIIxKuqmA2jjBs9nkbbhaNE1uEnHPy8+Fifeo5ZX+8Bn
-         yCCA==
+Received: from mail-io1-f45.google.com (mail-io1-f45.google.com [209.85.166.45])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E99BCD8;
+	Wed, 22 Nov 2023 03:02:34 -0800 (PST)
+Received: by mail-io1-f45.google.com with SMTP id ca18e2360f4ac-7b34e7c829fso39853439f.2;
+        Wed, 22 Nov 2023 03:02:34 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700650915; x=1701255715;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=PFE8V0akmDhV9uHSFYH1mN8FnS2rSR9n1F1LBeYJA20=;
-        b=FnoEk/iqfcL220PSMGbS4enRKlNla72yIWjPsBa3TTsgdcJ2saz8rywqluSGEsJYio
-         W5lGyqRKE79RSdCKGRsv/tC1hB8o/NQ0U1Pn+B9baI2HV8hUxR5J3k3noVWATtbqfFwC
-         bPN6GYOpd794+wU1lfugvmDxxmnvGaO/2esafr36FNVJwDGPSx19AaGS8VINnHCGMOcg
-         qVfvKtzYfyQJfoaDECz2swO/jJJrJ+zsjSDpMXNnj+VjAXaVrH7i38Tpne6fjgALTy8h
-         IHmmA2lb8gf0lZDsknWXQm6GhZpMBm8KCSOMrdY8gVOvT5YlvF9BTGdiLOezuPiVAbJq
-         VyLg==
-X-Gm-Message-State: AOJu0YzuNiL+UN4DXxWG6G8JY8Nnom+vDYw1cufKhS0yXY9I6bEi875X
-	GYwC9LKnjEtiPrV5rGe7pkN877azcbdgP+hD0JvwAg==
-X-Google-Smtp-Source: AGHT+IFxH7sdOzJBY6zKxWc8FlDU8QSdgfsWOQ/oCSLnXUeoKO4tIZGuybTYw8pZH0Y0CYMbDI2kbVOkLaxffa86JNU=
-X-Received: by 2002:a05:6870:7e13:b0:1f4:ecdb:fb2 with SMTP id
- wx19-20020a0568707e1300b001f4ecdb0fb2mr2651247oab.54.1700650914865; Wed, 22
- Nov 2023 03:01:54 -0800 (PST)
+        d=1e100.net; s=20230601; t=1700650954; x=1701255754;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=eiBSC2kAnOrbX9wM+8OFXkbvY1npbxoCVLQe1hYRSgs=;
+        b=U24o8WImB9xwnOi7UfhTCvNIlXGMlNwhA6dBEI6MKteaNxESmGSw1gebmO6wYsg3MT
+         9PdENuqDkumHsOS2Jx0/B7UUxKfVqn6vmYiE9/5MruYrzSR5eIRE6mp08XLmZlt7FS9T
+         njd1TmyQ32NUCtIwROQ4Ub4vOAqYXtP3xdQQi9dOzpsOw9cs04Pa8EBbxgxjp6q6vFgR
+         zj2QOj28/5TOY1LLr37KWJgCBHRpwp3HbBonYv9xlox2wRAOTA6VlvgM4h+HNsnWZGyS
+         jnX4w9DN/GFFXg4SuhE0iYpBA+07taazmFSqKurKueMs+N9xYdD27rzC/BtnvsSKDpyC
+         y8Lw==
+X-Gm-Message-State: AOJu0YxnR1WYpid+nqw9tlZHt0Qc8/gruWgk/bCFJ3RGuhBrdErpQf1R
+	gjvVhquWfu401Fi9YobgNQ==
+X-Google-Smtp-Source: AGHT+IHd2RAZI4ut8gHQIsru4fuNJzM6M50xt76LRGT0qAPUuxj2gou5lr1wf2egkMC+53awGlvBxQ==
+X-Received: by 2002:a05:6602:370e:b0:792:6963:df30 with SMTP id bh14-20020a056602370e00b007926963df30mr2060536iob.0.1700650954135;
+        Wed, 22 Nov 2023 03:02:34 -0800 (PST)
+Received: from herring.priv ([64.188.179.252])
+        by smtp.gmail.com with ESMTPSA id ge23-20020a056638681700b0043978165d54sm3177120jab.104.2023.11.22.03.02.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Nov 2023 03:02:33 -0800 (PST)
+Received: (nullmailer pid 116324 invoked by uid 1000);
+	Wed, 22 Nov 2023 11:02:29 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231122-phy-qualcomm-eusb2-x1e80100-v1-0-ce0991161847@linaro.org>
- <20231122-phy-qualcomm-eusb2-x1e80100-v1-2-ce0991161847@linaro.org>
-In-Reply-To: <20231122-phy-qualcomm-eusb2-x1e80100-v1-2-ce0991161847@linaro.org>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Wed, 22 Nov 2023 13:01:44 +0200
-Message-ID: <CAA8EJpoKEd8B7KTwVb0TEk+Yk3kRXfhvtcdk0QUirOOV4wnUYA@mail.gmail.com>
-Subject: Re: [PATCH 2/2] phy: qcom: snps-eusb2: Add X1E80100 Compatible
-To: Abel Vesa <abel.vesa@linaro.org>
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Vinod Koul <vkoul@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+From: Rob Herring <robh@kernel.org>
+To: Nikita Shubin <nikita.shubin@maquefel.me>
+Cc: Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, linux-input@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, Alexander Sverdlin <alexander.sverdlin@gmail.com>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, devicetree@vger.kernel.org
+In-Reply-To: <20231122-ep93xx-v5-22-d59a76d5df29@maquefel.me>
+References: <20231122-ep93xx-v5-0-d59a76d5df29@maquefel.me>
+ <20231122-ep93xx-v5-22-d59a76d5df29@maquefel.me>
+Message-Id: <170065094261.116114.9958175828656550459.robh@kernel.org>
+Subject: Re: [PATCH v5 22/39] dt-bindings: input: Add Cirrus EP93xx keypad
+Date: Wed, 22 Nov 2023 04:02:29 -0700
 
-On Wed, 22 Nov 2023 at 12:28, Abel Vesa <abel.vesa@linaro.org> wrote:
->
-> Add the X1E80100 to the list of supported PHYs for eUSB2
-> SNPS driver.
->
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+
+On Wed, 22 Nov 2023 12:00:00 +0300, Nikita Shubin wrote:
+> Add YAML bindings for ep93xx SoC keypad.
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
 > ---
->  drivers/phy/qualcomm/phy-qcom-snps-eusb2.c | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/drivers/phy/qualcomm/phy-qcom-snps-eusb2.c b/drivers/phy/qualcomm/phy-qcom-snps-eusb2.c
-> index 1484691a41d5..6420f342dc85 100644
-> --- a/drivers/phy/qualcomm/phy-qcom-snps-eusb2.c
-> +++ b/drivers/phy/qualcomm/phy-qcom-snps-eusb2.c
-> @@ -425,6 +425,7 @@ static int qcom_snps_eusb2_hsphy_probe(struct platform_device *pdev)
->
->  static const struct of_device_id qcom_snps_eusb2_hsphy_of_match_table[] = {
->         { .compatible = "qcom,sm8550-snps-eusb2-phy", },
-> +       { .compatible = "qcom,x1e80100-snps-eusb2-phy", },
+>  .../bindings/input/cirrus,ep9307-keypad.yaml       | 87 ++++++++++++++++++++++
+>  1 file changed, 87 insertions(+)
+> 
 
-Do we need a separate compatible string or is it fully compatible with
-sm8550? If it is the same IP block, maybe you can use a fallback
-compatible instead?
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
->         { },
->  };
->  MODULE_DEVICE_TABLE(of, qcom_snps_eusb2_hsphy_of_match_table);
->
-> --
-> 2.34.1
->
->
+yamllint warnings/errors:
 
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/dma/cirrus,ep9301-dma-m2m.example.dts:24:18: fatal error: dt-bindings/soc/cirrus,ep9301-syscon.h: No such file or directory
+make[2]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/dma/cirrus,ep9301-dma-m2m.example.dtb] Error 1
 
--- 
-With best wishes
-Dmitry
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231122-ep93xx-v5-22-d59a76d5df29@maquefel.me
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
