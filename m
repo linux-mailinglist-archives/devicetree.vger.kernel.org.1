@@ -1,44 +1,45 @@
-Return-Path: <devicetree+bounces-17790-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17791-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DF0A7F40EC
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 10:01:53 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A34B47F40F0
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 10:01:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8EB9DB20F38
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 09:01:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 43D5DB2101E
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 09:01:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D76E3FB07;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CA243E49C;
 	Wed, 22 Nov 2023 09:01:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cON6WIuQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KWUAAVMs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E71693D98B;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE0B53D98D;
 	Wed, 22 Nov 2023 09:01:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id C5719C32777;
+Received: by smtp.kernel.org (Postfix) with ESMTPS id CE674C3277A;
 	Wed, 22 Nov 2023 09:01:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1700643675;
-	bh=/phMRAdLatcIBpxBkpvU88xEshVqV20kxEDwUF2WMsM=;
+	bh=2yB/95VY8csRcp3gwbGuay0GMA68pBrggdJGpb1nR7w=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=cON6WIuQa49uBYEB+oR3Kqjq5IG3n5SOObu05+KmIGMZPyZUitLAWlbBEiYJCPVVX
-	 jMeSnY5F95LHUz8xI7UEP880DsRjiuP1bARO+NcP6GsKw/NtktHwIg3kYKo+RCLwO8
-	 t6PtECjtgc8J1aEkNEhQQq0QCAQSecFHqMBcX6NQnq8ur0hCeqbfH72T3tezonV+bi
-	 PGy/HL+/64O5YKsF7Dhm93f7pNsyQg8u2LZRAB3ajL/iAxC519LFWuolfw/hPFjeu4
-	 ZmhNJcCFVr2YSFDhzqK3RVl05rsgQK98/LMVJxQuH/kKCaimkpv7uBi6+nStR34sYJ
-	 iWNZI0zlzOW+g==
+	b=KWUAAVMsRAVD0DA4AHIcmVwW6KCUBDimotQhmkr06mF949OELmFvNivMF10kZMJ/Z
+	 okCcV7DRE7pAuAV8NG29ysniXdcMBF+mBEdlYokaSC/W3yvlIK7PRsBSnFvESM+Ls4
+	 ygJS3OHbr8fnyax58iILqCGCw8pSbW4sfSFQ2rV2T3L8Hai18IKtJ3uT2/QQ8kDV7w
+	 q7zocSmRUFtUhzGgd/TvX2PeoE+UmSUw/hFQeh33ZWro4fvwQbhso1t3bsEL5Y8vEo
+	 gdff3KoDbh5kOsWeAfsb5Yj2eki6iiCWbKcHi69fQGoOp+3bVQ1yqTU8NNtdtsMevH
+	 fpVdfZfrzaVrA==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B3DB9C61D9B;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BE284C61DA7;
 	Wed, 22 Nov 2023 09:01:15 +0000 (UTC)
 From:
  Nikita Shubin via B4 Relay <devnull+nikita.shubin.maquefel.me@kernel.org>
-Date: Wed, 22 Nov 2023 12:00:05 +0300
-Subject: [PATCH v5 27/39] ASoC: dt-bindings: ep93xx: Document DMA support
+Date: Wed, 22 Nov 2023 12:00:06 +0300
+Subject: [PATCH v5 28/39] ASoC: dt-bindings: ep93xx: Document Audio Port
+ support
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -47,7 +48,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20231122-ep93xx-v5-27-d59a76d5df29@maquefel.me>
+Message-Id: <20231122-ep93xx-v5-28-d59a76d5df29@maquefel.me>
 References: <20231122-ep93xx-v5-0-d59a76d5df29@maquefel.me>
 In-Reply-To: <20231122-ep93xx-v5-0-d59a76d5df29@maquefel.me>
 To: Hartley Sweeten <hsweeten@visionengravers.com>, 
@@ -60,11 +61,11 @@ Cc: linux-arm-kernel@lists.infradead.org, linux-sound@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  Alexander Sverdlin <alexander.sverdlin@gmail.com>
 X-Mailer: b4 0.13-dev-e3e53
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1700643671; l=1111;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1700643671; l=781;
  i=nikita.shubin@maquefel.me; s=20230718; h=from:subject:message-id;
- bh=33ZOBSi7tKmUms2Z5bn+h/5Rtal4W/59/ftopAoDmGE=; =?utf-8?q?b=3DPDGP304YjveJ?=
- =?utf-8?q?dGqVG0yROoVEvjhioop0aEsk2Y2fbUX9RX1cDfdeDk6xJh+ZnuXTbh6djfTUbL3i?=
- afnCj/O9AJ5ijcCU4kuHcWYBLzY5O37yEQFkWI9UJwRzLM4eiQKx
+ bh=fQkTeXGg7TcwMQIX97nCBe2cVG8/7E1wIWiv9MYol48=; =?utf-8?q?b=3DrOtEsf68m2PM?=
+ =?utf-8?q?3FoJfLj4Nz3g7e0qBm867FCxZytcFiu2AQlnbYAU03C+R9Md3rRnAkbxgUhUhX3R?=
+ NACvJQAFAFJQqVqEOpZoCZDJuBogcODAtEBWfGAYwnZrwWXvyDy8
 X-Developer-Key: i=nikita.shubin@maquefel.me; a=ed25519;
  pk=vqf5YIUJ7BJv3EJFaNNxWZgGuMgDH6rwufTLflwU9ac=
 X-Endpoint-Received:
@@ -74,43 +75,28 @@ Reply-To: <nikita.shubin@maquefel.me>
 
 From: Nikita Shubin <nikita.shubin@maquefel.me>
 
-Document DMA support in binding document.
+Document Audio Graph Port support in binding document.
 
 Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
 ---
- .../devicetree/bindings/sound/cirrus,ep9301-i2s.yaml         | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ Documentation/devicetree/bindings/sound/cirrus,ep9301-i2s.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
 diff --git a/Documentation/devicetree/bindings/sound/cirrus,ep9301-i2s.yaml b/Documentation/devicetree/bindings/sound/cirrus,ep9301-i2s.yaml
-index 453d493c941f..36a320ddf534 100644
+index 36a320ddf534..4693e85aed37 100644
 --- a/Documentation/devicetree/bindings/sound/cirrus,ep9301-i2s.yaml
 +++ b/Documentation/devicetree/bindings/sound/cirrus,ep9301-i2s.yaml
-@@ -40,6 +40,16 @@ properties:
-       - const: sclk
-       - const: lrclk
+@@ -50,6 +50,10 @@ properties:
+       - const: tx
+       - const: rx
  
-+  dmas:
-+    items:
-+      - description: out DMA channel
-+      - description: in DMA channel
-+
-+  dma-names:
-+    items:
-+      - const: tx
-+      - const: rx
++  port:
++    $ref: audio-graph-port.yaml#
++    unevaluatedProperties: false
 +
  required:
    - compatible
    - '#sound-dai-cells'
-@@ -61,6 +71,8 @@ examples:
-                  <&syscon 30>,
-                  <&syscon 31>;
-         clock-names = "mclk", "sclk", "lrclk";
-+        dmas = <&dma0 0 1>, <&dma0 0 2>;
-+        dma-names = "tx", "rx";
-     };
- 
- ...
 
 -- 
 2.41.0
