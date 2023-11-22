@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-17924-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17927-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DA917F4736
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 13:57:10 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90EA87F473C
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 13:57:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D9CBE281179
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 12:57:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 14E78B20B11
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 12:57:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A7FF4C613;
-	Wed, 22 Nov 2023 12:57:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1B364C63A;
+	Wed, 22 Nov 2023 12:57:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lexina.in header.i=@lexina.in header.b="emeAcex7"
+	dkim=pass (2048-bit key) header.d=lexina.in header.i=@lexina.in header.b="mA/UeoFe"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx.msync.work (mx.msync.work [62.182.159.68])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37161D54;
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6249AD62;
 	Wed, 22 Nov 2023 04:56:56 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id BFAD0540A1;
-	Wed, 22 Nov 2023 12:56:53 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 79DD953ED8;
+	Wed, 22 Nov 2023 12:56:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lexina.in; s=dkim;
-	t=1700657813; h=from:subject:date:message-id:to:mime-version:
+	t=1700657814; h=from:subject:date:message-id:to:mime-version:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=wZJcknLSQE6kdQ1bjcwbk6f5DDGjp+KGewdb43Z6bVU=;
-	b=emeAcex7MTdNQYItOcD8oAXdXllmUPtwiSxVek/oU9dagw+hjG40EtoNTlqEiT7PBGGv5p
-	Tw4A+4EwhwpzNK1NR/cVAvuAupb1zlpevsD16mCUDfSv9ZVHyGUO18dFsA5DCQg1LAPI4I
-	NPRHb+VTA2Ny2NYi5koOIEOIkBIhdd1O/5t5Cc1riemheMwILWzeZiyZlCWf/5/RpWg/kF
-	WYQXLYhgeDqDKV5g09aPS0h1kkKUmqUWbJDEPU3fOwKwU7rNU8R5d+Mx+IUZXFgyfhILUA
-	2fuzAv46AropR7GHODaAOFlMsO9A/Bxinw1qPAO2ZJsrTWqVcNIfZgM1xmM2nw==
+	bh=TCt0JoZg+p6aWcClOSdNWHnx4AX17W2tb5XYFeiobmA=;
+	b=mA/UeoFeBoCs2qSwF7nxxjkUFaDJmKEQOU5Wa3EZR57SwbPJTyghxGJyrkaqLlt8artEKp
+	XetuKqfHJtF0FUusVm5MxTpbBorJ6XO4yi80Y7kkKVSgxqCsAFgHMeKkXHY7kl/1JKXOAT
+	3wPLJioi0l8r9tRD4y3K8w8M4TFym6Vpy7w3Hmsy366qrWz8KB1AxlhOZFmK/4LqYMOG8I
+	hxfRLPKqZyrMcGbFncrldnP0BQZFg9HX+CpDFkKMWYDG6sHM29vpnyPSAOTDVjvR1pDeb/
+	2kQxQdwn3GkaAdg0SZ3BjvPke9JVwMBaXzMDv741W7XbCIzRVhVnV5A6g2RVPQ==
 From: Viacheslav Bocharov <adeep@lexina.in>
 To: Neil Armstrong <neil.armstrong@linaro.org>,
 	Jerome Brunet <jbrunet@baylibre.com>,
@@ -38,9 +38,9 @@ To: Neil Armstrong <neil.armstrong@linaro.org>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org
-Subject: [PATCH 1/5] soc: amlogic: meson-gx-socinfo: move common code to header file
-Date: Wed, 22 Nov 2023 15:56:39 +0300
-Message-Id: <20231122125643.1717160-2-adeep@lexina.in>
+Subject: [PATCH 2/5] soc: amlogic: meson-gx-socinfo: move common code to exported function
+Date: Wed, 22 Nov 2023 15:56:40 +0300
+Message-Id: <20231122125643.1717160-3-adeep@lexina.in>
 In-Reply-To: <20231122125643.1717160-1-adeep@lexina.in>
 References: <20231122125643.1717160-1-adeep@lexina.in>
 Precedence: bulk
@@ -49,217 +49,77 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5915; h=from:subject; bh=5lDOXBX94eQyb3bj1qrCKOVZy2f8VFuTwJBZrTGTfS8=; b=owGbwMvMwCHmnhFhrJcZuJTxtFoSQ2rstyNT4n5meL12Twx8OXWtnueVUnEp3foo/U9SB7vuSBuU Rhh1lLIwiHEwyIopsoR1BE3d57H64sQFRgdg5rAygQxh4OIUgIn8DGZk+LejpoBpQ8nKiNOrzVZUpu b879gglvdhlYes3MZpbh65LYwM5w9JLb2bZGIlyvTLPu7tPHfFMEWpIMmF4Vx6TelTxNPZAQ==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2574; h=from:subject; bh=BnHHuUquDeW8vfYvoIWuzuZnrP1gP/Gae/DQ47jDLU8=; b=owGbwMvMwCHmnhFhrJcZuJTxtFoSQ2rstyP3FWz+1wqt///MM3F/QLJsm3D3Tg8PsXbvuoya5uoP 2tYdpSwMYhwMsmKKLGEdQVP3eay+OHGB0QGYOaxMIEMYuDgFYCInExkZjjtfuFXcoBVz8Iw/O9fm2t J7qisu61w0ZbuSXG3wg/9AAMN/j4jY8vh1NuZZeuEcnzYK/Vc+u6NVsUyGn//ftKlmJyQ5AQ==
 X-Developer-Key: i=adeep@lexina.in; a=openpgp; fpr=E2FA1A767ACB0716E02E3E7AEE36B110025A8DFA
 Content-Transfer-Encoding: 8bit
 X-Last-TLS-Session-Version: TLSv1.3
 
-Move common constants and inline functions from meson-gx-socinfo driver
-to header file
+Move common code fill soc_device_attribute to common function for
+later use
 
 Signed-off-by: Viacheslav Bocharov <adeep@lexina.in>
 ---
- .../soc/amlogic/meson-gx-socinfo-internal.h   | 99 +++++++++++++++++++
- drivers/soc/amlogic/meson-gx-socinfo.c        | 80 +--------------
- 2 files changed, 100 insertions(+), 79 deletions(-)
- create mode 100644 drivers/soc/amlogic/meson-gx-socinfo-internal.h
+ .../soc/amlogic/meson-gx-socinfo-internal.h   |  3 +++
+ drivers/soc/amlogic/meson-gx-socinfo.c        | 26 ++++++++++++-------
+ 2 files changed, 20 insertions(+), 9 deletions(-)
 
 diff --git a/drivers/soc/amlogic/meson-gx-socinfo-internal.h b/drivers/soc/amlogic/meson-gx-socinfo-internal.h
-new file mode 100644
-index 000000000000..884cf8fb580f
---- /dev/null
+index 884cf8fb580f..5a742cc16fc8 100644
+--- a/drivers/soc/amlogic/meson-gx-socinfo-internal.h
 +++ b/drivers/soc/amlogic/meson-gx-socinfo-internal.h
-@@ -0,0 +1,99 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
-+/*
-+ * Copyright (c) 2017 BayLibre, SAS
-+ * Copyright (C) 2023 JetHome
-+ *
-+ * Author: Neil Armstrong <narmstrong@baylibre.com>
-+ * Author: Viacheslav Bocharov <adeep@lexina.in>
-+ */
+@@ -95,5 +95,8 @@ static inline unsigned int socinfo_to_misc(u32 socinfo)
+ 	return FIELD_GET(SOCINFO_MISC, socinfo);
+ }
+ 
++int meson_gx_socinfo_prepare_soc_driver_attr(struct soc_device_attribute *soc_dev_attr,
++					     unsigned int socattr);
 +
-+#ifndef _MESON_GX_SOCINFO_INTERNAL_H_
-+#define _MESON_GX_SOCINFO_INTERNAL_H_
-+
-+#include <linux/bitfield.h>
-+
-+#define AO_SEC_SD_CFG8		0xe0
-+#define AO_SEC_SOCINFO_OFFSET	AO_SEC_SD_CFG8
-+
-+#define SOCINFO_MAJOR	GENMASK(31, 24)
-+#define SOCINFO_PACK	GENMASK(23, 16)
-+#define SOCINFO_MINOR	GENMASK(15, 8)
-+#define SOCINFO_MISC	GENMASK(7, 0)
-+
-+static const struct meson_gx_soc_id {
-+	const char *name;
-+	unsigned int id;
-+} soc_ids[] = {
-+	{ "GXBB", 0x1f },
-+	{ "GXTVBB", 0x20 },
-+	{ "GXL", 0x21 },
-+	{ "GXM", 0x22 },
-+	{ "TXL", 0x23 },
-+	{ "TXLX", 0x24 },
-+	{ "AXG", 0x25 },
-+	{ "GXLX", 0x26 },
-+	{ "TXHD", 0x27 },
-+	{ "G12A", 0x28 },
-+	{ "G12B", 0x29 },
-+	{ "SM1", 0x2b },
-+	{ "A1", 0x2c },
-+};
-+
-+
-+static const struct meson_gx_package_id {
-+	const char *name;
-+	unsigned int major_id;
-+	unsigned int pack_id;
-+	unsigned int pack_mask;
-+} soc_packages[] = {
-+	{ "S905", 0x1f, 0, 0x20 }, /* pack_id != 0x20 */
-+	{ "S905H", 0x1f, 0x3, 0xf }, /* pack_id & 0xf == 0x3 */
-+	{ "S905M", 0x1f, 0x20, 0xf0 }, /* pack_id == 0x20 */
-+	{ "S905D", 0x21, 0, 0xf0 },
-+	{ "S905X", 0x21, 0x80, 0xf0 },
-+	{ "S905W", 0x21, 0xa0, 0xf0 },
-+	{ "S905L", 0x21, 0xc0, 0xf0 },
-+	{ "S905M2", 0x21, 0xe0, 0xf0 },
-+	{ "S805X", 0x21, 0x30, 0xf0 },
-+	{ "S805Y", 0x21, 0xb0, 0xf0 },
-+	{ "S912", 0x22, 0, 0x0 }, /* Only S912 is known for GXM */
-+	{ "962X", 0x24, 0x10, 0xf0 },
-+	{ "962E", 0x24, 0x20, 0xf0 },
-+	{ "A113X", 0x25, 0x37, 0xff },
-+	{ "A113X", 0x25, 0x43, 0xff },
-+	{ "A113D", 0x25, 0x22, 0xff },
-+	{ "S905D2", 0x28, 0x10, 0xf0 },
-+	{ "S905Y2", 0x28, 0x30, 0xf0 },
-+	{ "S905X2", 0x28, 0x40, 0xf0 },
-+	{ "A311D", 0x29, 0x10, 0xf0 },
-+	{ "S922X", 0x29, 0x40, 0xf0 },
-+	{ "S905D3", 0x2b, 0x4, 0xf5 },
-+	{ "S905X3", 0x2b, 0x5, 0xf5 },
-+	{ "S905X3", 0x2b, 0x10, 0x3f },
-+	{ "S905D3", 0x2b, 0x30, 0x3f },
-+	{ "A113L", 0x2c, 0x0, 0xf8 },
-+};
-+
-+
-+static inline unsigned int socinfo_to_major(u32 socinfo)
-+{
-+	return FIELD_GET(SOCINFO_MAJOR, socinfo);
-+}
-+
-+static inline unsigned int socinfo_to_minor(u32 socinfo)
-+{
-+	return FIELD_GET(SOCINFO_MINOR, socinfo);
-+}
-+
-+static inline unsigned int socinfo_to_pack(u32 socinfo)
-+{
-+	return FIELD_GET(SOCINFO_PACK, socinfo);
-+}
-+
-+static inline unsigned int socinfo_to_misc(u32 socinfo)
-+{
-+	return FIELD_GET(SOCINFO_MISC, socinfo);
-+}
-+
-+#endif /* _MESON_GX_SOCINFO_INTERNAL_H_ */
-+
+ #endif /* _MESON_GX_SOCINFO_INTERNAL_H_ */
+ 
 diff --git a/drivers/soc/amlogic/meson-gx-socinfo.c b/drivers/soc/amlogic/meson-gx-socinfo.c
-index 6abb730344ab..9d7921c0fb91 100644
+index 9d7921c0fb91..8cf69dd238ee 100644
 --- a/drivers/soc/amlogic/meson-gx-socinfo.c
 +++ b/drivers/soc/amlogic/meson-gx-socinfo.c
-@@ -16,85 +16,7 @@
- #include <linux/regmap.h>
- #include <linux/mfd/syscon.h>
+@@ -47,6 +47,22 @@ static const char *socinfo_to_soc_id(u32 socinfo)
+ 	return "Unknown";
+ }
  
--#define AO_SEC_SD_CFG8		0xe0
--#define AO_SEC_SOCINFO_OFFSET	AO_SEC_SD_CFG8
--
--#define SOCINFO_MAJOR	GENMASK(31, 24)
--#define SOCINFO_PACK	GENMASK(23, 16)
--#define SOCINFO_MINOR	GENMASK(15, 8)
--#define SOCINFO_MISC	GENMASK(7, 0)
--
--static const struct meson_gx_soc_id {
--	const char *name;
--	unsigned int id;
--} soc_ids[] = {
--	{ "GXBB", 0x1f },
--	{ "GXTVBB", 0x20 },
--	{ "GXL", 0x21 },
--	{ "GXM", 0x22 },
--	{ "TXL", 0x23 },
--	{ "TXLX", 0x24 },
--	{ "AXG", 0x25 },
--	{ "GXLX", 0x26 },
--	{ "TXHD", 0x27 },
--	{ "G12A", 0x28 },
--	{ "G12B", 0x29 },
--	{ "SM1", 0x2b },
--	{ "A1", 0x2c },
--};
--
--static const struct meson_gx_package_id {
--	const char *name;
--	unsigned int major_id;
--	unsigned int pack_id;
--	unsigned int pack_mask;
--} soc_packages[] = {
--	{ "S905", 0x1f, 0, 0x20 }, /* pack_id != 0x20 */
--	{ "S905H", 0x1f, 0x3, 0xf }, /* pack_id & 0xf == 0x3 */
--	{ "S905M", 0x1f, 0x20, 0xf0 }, /* pack_id == 0x20 */
--	{ "S905D", 0x21, 0, 0xf0 },
--	{ "S905X", 0x21, 0x80, 0xf0 },
--	{ "S905W", 0x21, 0xa0, 0xf0 },
--	{ "S905L", 0x21, 0xc0, 0xf0 },
--	{ "S905M2", 0x21, 0xe0, 0xf0 },
--	{ "S805X", 0x21, 0x30, 0xf0 },
--	{ "S805Y", 0x21, 0xb0, 0xf0 },
--	{ "S912", 0x22, 0, 0x0 }, /* Only S912 is known for GXM */
--	{ "962X", 0x24, 0x10, 0xf0 },
--	{ "962E", 0x24, 0x20, 0xf0 },
--	{ "A113X", 0x25, 0x37, 0xff },
--	{ "A113D", 0x25, 0x22, 0xff },
--	{ "S905D2", 0x28, 0x10, 0xf0 },
--	{ "S905Y2", 0x28, 0x30, 0xf0 },
--	{ "S905X2", 0x28, 0x40, 0xf0 },
--	{ "A311D", 0x29, 0x10, 0xf0 },
--	{ "S922X", 0x29, 0x40, 0xf0 },
--	{ "S905D3", 0x2b, 0x4, 0xf5 },
--	{ "S905X3", 0x2b, 0x5, 0xf5 },
--	{ "S905X3", 0x2b, 0x10, 0x3f },
--	{ "S905D3", 0x2b, 0x30, 0x3f },
--	{ "A113L", 0x2c, 0x0, 0xf8 },
--};
--
--static inline unsigned int socinfo_to_major(u32 socinfo)
--{
--	return FIELD_GET(SOCINFO_MAJOR, socinfo);
--}
--
--static inline unsigned int socinfo_to_minor(u32 socinfo)
--{
--	return FIELD_GET(SOCINFO_MINOR, socinfo);
--}
--
--static inline unsigned int socinfo_to_pack(u32 socinfo)
--{
--	return FIELD_GET(SOCINFO_PACK, socinfo);
--}
--
--static inline unsigned int socinfo_to_misc(u32 socinfo)
--{
--	return FIELD_GET(SOCINFO_MISC, socinfo);
--}
-+#include "meson-gx-socinfo-internal.h"
- 
- static const char *socinfo_to_package_id(u32 socinfo)
++int meson_gx_socinfo_prepare_soc_driver_attr(struct soc_device_attribute *soc_dev_attr,
++					     unsigned int socattr)
++{
++	soc_dev_attr->family = "Amlogic Meson";
++	soc_dev_attr->revision = kasprintf(GFP_KERNEL, "%x:%x - %x:%x",
++					   socinfo_to_major(socattr),
++					   socinfo_to_minor(socattr),
++					   socinfo_to_pack(socattr),
++					   socinfo_to_misc(socattr));
++	soc_dev_attr->soc_id = kasprintf(GFP_KERNEL, "%s (%s)",
++					 socinfo_to_soc_id(socattr),
++					 socinfo_to_package_id(socattr));
++	return 0;
++}
++EXPORT_SYMBOL(meson_gx_socinfo_prepare_soc_driver_attr);
++
+ static int __init meson_gx_socinfo_init(void)
  {
+ 	struct soc_device_attribute *soc_dev_attr;
+@@ -95,15 +111,7 @@ static int __init meson_gx_socinfo_init(void)
+ 	if (!soc_dev_attr)
+ 		return -ENODEV;
+ 
+-	soc_dev_attr->family = "Amlogic Meson";
+-	soc_dev_attr->revision = kasprintf(GFP_KERNEL, "%x:%x - %x:%x",
+-					   socinfo_to_major(socinfo),
+-					   socinfo_to_minor(socinfo),
+-					   socinfo_to_pack(socinfo),
+-					   socinfo_to_misc(socinfo));
+-	soc_dev_attr->soc_id = kasprintf(GFP_KERNEL, "%s (%s)",
+-					 socinfo_to_soc_id(socinfo),
+-					 socinfo_to_package_id(socinfo));
++	meson_gx_socinfo_prepare_soc_driver_attr(soc_dev_attr, socinfo);
+ 
+ 	soc_dev = soc_device_register(soc_dev_attr);
+ 	if (IS_ERR(soc_dev)) {
 -- 
 2.34.1
 
