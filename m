@@ -1,459 +1,584 @@
-Return-Path: <devicetree+bounces-17844-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17845-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 489B47F447B
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 11:59:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7D077F4486
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 12:00:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6997B1C20984
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 10:59:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B8712814C4
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 11:00:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1068422314;
-	Wed, 22 Nov 2023 10:59:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86DB14B5A0;
+	Wed, 22 Nov 2023 11:00:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="v2M1fIhS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 192DCC1;
-	Wed, 22 Nov 2023 02:59:13 -0800 (PST)
-Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
-	by mx0a-00128a01.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 3AM7mqmp027043;
-	Wed, 22 Nov 2023 05:59:00 -0500
-Received: from nwd2mta3.analog.com ([137.71.173.56])
-	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3uer08gphs-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 22 Nov 2023 05:58:59 -0500 (EST)
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 3AMAwwqH053170
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 22 Nov 2023 05:58:58 -0500
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Wed, 22 Nov
- 2023 05:58:57 -0500
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
- Transport; Wed, 22 Nov 2023 05:58:57 -0500
-Received: from KPALLER2-L02.ad.analog.com (KPALLER2-L02.ad.analog.com [10.117.220.22])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 3AMAwbo4006221;
-	Wed, 22 Nov 2023 05:58:47 -0500
-From: Kim Seer Paller <kimseer.paller@analog.com>
-To: 
-CC: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Kim
- Seer Paller <kimseer.paller@analog.com>,
-        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v3 2/2] iio: frequency: admfm2000: New driver
-Date: Wed, 22 Nov 2023 18:58:31 +0800
-Message-ID: <20231122105831.182570-2-kimseer.paller@analog.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231122105831.182570-1-kimseer.paller@analog.com>
-References: <20231122105831.182570-1-kimseer.paller@analog.com>
+Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E9D219D
+	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 03:00:24 -0800 (PST)
+Received: by mail-yb1-xb2c.google.com with SMTP id 3f1490d57ef6-db35caa1749so4457897276.2
+        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 03:00:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1700650824; x=1701255624; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=kg8M6qjMh6qn9AeF+M9NmS2zY4r4lH0n+umvebz3HPE=;
+        b=v2M1fIhSBR8FwC/LW6/nlAjhoSrLrvlmSsfQatO6znLqXp4G+QSThckh9+aFgRY4av
+         B/b64s2qffjNcyS4escesKORHs7E/R49nBhqNGiHiJBInioxBjx3SmXSev9hKLOQLQjP
+         8BnoCK1Jv+Q7KzdIwFE/WjwMRlZjluM6YlM/BCHiJ7EopA4J5whob9SUR0tYHVjUp8vq
+         dcywNXhkIBcu4q33OnDwUIRnvYnjG/w0P7yGQ3Weh1YT3gifDbcg9+yElMD3F4lpfZaL
+         YXsjZXAunieYXqGVhaa8z5fnCrYTETXROeDLZrgxMBOcdCfHltyEmZZhhDcFCYV/O2t2
+         emYg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700650824; x=1701255624;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kg8M6qjMh6qn9AeF+M9NmS2zY4r4lH0n+umvebz3HPE=;
+        b=RLOyqvbH4FS5TngI9+MP/BFbvOrY9UmN30YKf+WEg0mL4NlWgaOABVG2VKVHWYpRim
+         bndjUxnuSvTXTluhC+uSnK3tA5zDAstzhlwLP+lbKYY0fHRe1amYgRhW60WpSABRMtvw
+         Czg77R4BFUudH3WRj6a804DURZUqAWFflRWFFo6VJHDXpzktHJR6ZReAcd0wUTgA47D+
+         6O/NilNPkS5UOsTJ643febNW7oJvg+r88F6tnD366MmDBdyPkmeWEjnNVlRW3QL16v75
+         CqvZMq5Ho8GzRR/rXNpNbuuSIM4Tf/Z0e4ltfOKfL+/IvLgaNJaHEAw3tmtQtRl+cS/1
+         8eVQ==
+X-Gm-Message-State: AOJu0Yx7zahSOK8z54x7ZWIErsrY52m7xGMgsTeCpTRjaXE0l49Ttv+E
+	92GWFsSsJA8fCAyb6Q2qbZ61fIfyyQZQkpUJuyZTXw==
+X-Google-Smtp-Source: AGHT+IHXe2nj9VIkkh1xrZL7Jcp8+62Q93ZaBQ3zsC7hcFjuW/C8MKcG9ffcvjbX6zeSnEZFPecf1WCLlN2FdmEu1Bg=
+X-Received: by 2002:a25:aac1:0:b0:da0:514a:8f42 with SMTP id
+ t59-20020a25aac1000000b00da0514a8f42mr1856386ybi.32.1700650823400; Wed, 22
+ Nov 2023 03:00:23 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-ORIG-GUID: UVPIEMEFa24XtoBSnOUFdg7z5w8lIqps
-X-Proofpoint-GUID: UVPIEMEFa24XtoBSnOUFdg7z5w8lIqps
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-22_06,2023-11-22_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
- lowpriorityscore=0 adultscore=0 mlxscore=0 priorityscore=1501
- mlxlogscore=999 spamscore=0 bulkscore=0 suspectscore=0 phishscore=0
- clxscore=1015 impostorscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2311060001 definitions=main-2311220076
+References: <20231122-phy-qualcomm-edp-x1e80100-v1-0-a9938990edb3@linaro.org> <20231122-phy-qualcomm-edp-x1e80100-v1-2-a9938990edb3@linaro.org>
+In-Reply-To: <20231122-phy-qualcomm-edp-x1e80100-v1-2-a9938990edb3@linaro.org>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Wed, 22 Nov 2023 13:00:12 +0200
+Message-ID: <CAA8EJppjqJPjUf-eWZjMeE6PKFH-F08eJqkhKAjZaYAONQ8znA@mail.gmail.com>
+Subject: Re: [PATCH 2/2] phy: qcom: edp: Add X1E80100 eDP and DP PHYs
+To: Abel Vesa <abel.vesa@linaro.org>
+Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Vinod Koul <vkoul@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Abhinav Kumar <quic_abhinavk@quicinc.com>, linux-arm-msm@vger.kernel.org, 
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-Dual microwave down converter module with input RF and LO frequency
-ranges from 0.5 to 32 GHz and an output IF frequency range from 0.1 to
-8 GHz. It consists of a LNA, mixer, IF filter, DSA, and IF amplifier
-for each down conversion path.
+On Wed, 22 Nov 2023 at 12:56, Abel Vesa <abel.vesa@linaro.org> wrote:
+>
+> The Qualcomm X1E80100 platform has a number of eDP and DP PHY instances,
+> add support for these.
+>
+> Co-developed-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
+> Signed-off-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> ---
+>  drivers/phy/qualcomm/phy-qcom-edp.c | 305 +++++++++++++++++++++++++++---------
+>  1 file changed, 231 insertions(+), 74 deletions(-)
+>
+> diff --git a/drivers/phy/qualcomm/phy-qcom-edp.c b/drivers/phy/qualcomm/phy-qcom-edp.c
+> index 8e5078304646..9eca9a8f8824 100644
+> --- a/drivers/phy/qualcomm/phy-qcom-edp.c
+> +++ b/drivers/phy/qualcomm/phy-qcom-edp.c
+> @@ -23,6 +23,9 @@
+>
+>  #include "phy-qcom-qmp.h"
+>
+> +#define QSERDES_V4     0
+> +#define QSERDES_V6     1
 
-Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
----
-V1 -> V3: No changes.
+enum ?
 
- MAINTAINERS                       |   1 +
- drivers/iio/frequency/Kconfig     |  10 +
- drivers/iio/frequency/Makefile    |   1 +
- drivers/iio/frequency/admfm2000.c | 309 ++++++++++++++++++++++++++++++
- 4 files changed, 321 insertions(+)
- create mode 100644 drivers/iio/frequency/admfm2000.c
+> +
+>  /* EDP_PHY registers */
+>  #define DP_PHY_CFG                              0x0010
+>  #define DP_PHY_CFG_1                            0x0014
+> @@ -70,6 +73,7 @@
+>
+>  struct qcom_edp_cfg {
+>         bool is_dp;
+> +       int qserdes_version;
+>
+>         /* DP PHY swing and pre_emphasis tables */
+>         const u8 (*swing_hbr_rbr)[4][4];
+> @@ -94,7 +98,7 @@ struct qcom_edp {
+>
+>         struct phy_configure_opts_dp dp_opts;
+>
+> -       struct clk_bulk_data clks[2];
+> +       struct clk_bulk_data clks[3];
+>         struct regulator_bulk_data supplies[2];
+>  };
+>
+> @@ -126,8 +130,18 @@ static const u8 dp_pre_emp_hbr2_hbr3[4][4] = {
+>         { 0x04, 0xff, 0xff, 0xff }
+>  };
+>
+> -static const struct qcom_edp_cfg dp_phy_cfg = {
+> +static const struct qcom_edp_cfg dp_v4_phy_cfg = {
+>         .is_dp = true,
+> +       .qserdes_version = QSERDES_V4,
+> +       .swing_hbr_rbr = &dp_swing_hbr_rbr,
+> +       .swing_hbr3_hbr2 = &dp_swing_hbr2_hbr3,
+> +       .pre_emphasis_hbr_rbr = &dp_pre_emp_hbr_rbr,
+> +       .pre_emphasis_hbr3_hbr2 = &dp_pre_emp_hbr2_hbr3,
+> +};
+> +
+> +static const struct qcom_edp_cfg dp_v6_phy_cfg = {
+> +       .is_dp = true,
+> +       .qserdes_version = QSERDES_V6,
+>         .swing_hbr_rbr = &dp_swing_hbr_rbr,
+>         .swing_hbr3_hbr2 = &dp_swing_hbr2_hbr3,
+>         .pre_emphasis_hbr_rbr = &dp_pre_emp_hbr_rbr,
+> @@ -162,8 +176,18 @@ static const u8 edp_pre_emp_hbr2_hbr3[4][4] = {
+>         { 0x00, 0xff, 0xff, 0xff }
+>  };
+>
+> -static const struct qcom_edp_cfg edp_phy_cfg = {
+> +static const struct qcom_edp_cfg edp_v4_phy_cfg = {
+> +       .is_dp = false,
+> +       .qserdes_version = QSERDES_V4,
+> +       .swing_hbr_rbr = &edp_swing_hbr_rbr,
+> +       .swing_hbr3_hbr2 = &edp_swing_hbr2_hbr3,
+> +       .pre_emphasis_hbr_rbr = &edp_pre_emp_hbr_rbr,
+> +       .pre_emphasis_hbr3_hbr2 = &edp_pre_emp_hbr2_hbr3,
+> +};
+> +
+> +static const struct qcom_edp_cfg edp_v6_phy_cfg = {
+>         .is_dp = false,
+> +       .qserdes_version = QSERDES_V6,
+>         .swing_hbr_rbr = &edp_swing_hbr_rbr,
+>         .swing_hbr3_hbr2 = &edp_swing_hbr2_hbr3,
+>         .pre_emphasis_hbr_rbr = &edp_pre_emp_hbr_rbr,
+> @@ -190,7 +214,10 @@ static int qcom_edp_phy_init(struct phy *phy)
+>                edp->edp + DP_PHY_PD_CTL);
+>
+>         /* Turn on BIAS current for PHY/PLL */
+> -       writel(0x17, edp->pll + QSERDES_V4_COM_BIAS_EN_CLKBUFLR_EN);
+> +       if (cfg->qserdes_version == QSERDES_V4)
+> +               writel(0x17, edp->pll + QSERDES_V4_COM_BIAS_EN_CLKBUFLR_EN);
+> +       else if (cfg->qserdes_version == QSERDES_V6)
+> +               writel(0x1f, edp->pll + QSERDES_V6_COM_PLL_BIAS_EN_CLK_BUFLR_EN);
+>
+>         writel(DP_PHY_PD_CTL_PSR_PWRDN, edp->edp + DP_PHY_PD_CTL);
+>         msleep(20);
+> @@ -205,6 +232,8 @@ static int qcom_edp_phy_init(struct phy *phy)
+>         else
+>                 cfg8 = 0x37;
+>
+> +       cfg8 = 0x37;
+> +
+>         writel(0xfc, edp->edp + DP_PHY_MODE);
+>
+>         writel(0x00, edp->edp + DP_PHY_AUX_CFG0);
+> @@ -261,7 +290,10 @@ static int qcom_edp_set_voltages(struct qcom_edp *edp, const struct phy_configur
+>         if (swing == 0xff || emph == 0xff)
+>                 return -EINVAL;
+>
+> -       ldo_config = (cfg && cfg->is_dp) ? 0x1 : 0x0;
+> +       if (cfg->qserdes_version == QSERDES_V4)
+> +               ldo_config = (cfg && cfg->is_dp) ? 0x1 : 0x0;
+> +       else if (cfg->qserdes_version == QSERDES_V6)
+> +               ldo_config |= 0x91;
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index f1692ec68..d8630e490 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1253,6 +1253,7 @@ L:	linux-iio@vger.kernel.org
- S:	Supported
- W:	https://ez.analog.com/linux-software-drivers
- F:	Documentation/devicetree/bindings/iio/frequency/adi,admfm2000.yaml
-+F:	drivers/iio/frequency/admfm2000.c
- 
- ANALOG DEVICES INC ADMV1013 DRIVER
- M:	Antoniu Miclaus <antoniu.miclaus@analog.com>
-diff --git a/drivers/iio/frequency/Kconfig b/drivers/iio/frequency/Kconfig
-index 9e85dfa58..c455be7d4 100644
---- a/drivers/iio/frequency/Kconfig
-+++ b/drivers/iio/frequency/Kconfig
-@@ -60,6 +60,16 @@ config ADF4377
- 	  To compile this driver as a module, choose M here: the
- 	  module will be called adf4377.
- 
-+config ADMFM2000
-+	tristate "Analog Devices ADMFM2000 Dual Microwave Down Converter"
-+	depends on GPIOLIB
-+	help
-+	  Say yes here to build support for Analog Devices ADMFM2000 Dual
-+	  Microwave Down Converter.
-+
-+	  To compile this driver as a module, choose M here: the
-+	  module will be called admfm2000.
-+
- config ADMV1013
- 	tristate "Analog Devices ADMV1013 Microwave Upconverter"
- 	depends on SPI && COMMON_CLK
-diff --git a/drivers/iio/frequency/Makefile b/drivers/iio/frequency/Makefile
-index b616c29b4..70d0e0b70 100644
---- a/drivers/iio/frequency/Makefile
-+++ b/drivers/iio/frequency/Makefile
-@@ -8,6 +8,7 @@ obj-$(CONFIG_AD9523) += ad9523.o
- obj-$(CONFIG_ADF4350) += adf4350.o
- obj-$(CONFIG_ADF4371) += adf4371.o
- obj-$(CONFIG_ADF4377) += adf4377.o
-+obj-$(CONFIG_ADMFM2000) += admfm2000.o
- obj-$(CONFIG_ADMV1013) += admv1013.o
- obj-$(CONFIG_ADMV1014) += admv1014.o
- obj-$(CONFIG_ADMV4420) += admv4420.o
-diff --git a/drivers/iio/frequency/admfm2000.c b/drivers/iio/frequency/admfm2000.c
-new file mode 100644
-index 000000000..e0b5edce7
---- /dev/null
-+++ b/drivers/iio/frequency/admfm2000.c
-@@ -0,0 +1,309 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * ADMFM2000 Dual Microwave Down Converter
-+ *
-+ * Copyright 2023 Analog Devices Inc.
-+ */
-+
-+#include <linux/device.h>
-+#include <linux/err.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/iio/iio.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/of_device.h>
-+#include <linux/platform_device.h>
-+#include <linux/regulator/consumer.h>
-+
-+#define ADMFM2000_MIXER_MODE		0
-+#define ADMFM2000_DIRECT_IF_MODE	1
-+#define ADMF20000_DSA_GPIOS		5
-+#define ADMF20000_MODE_GPIOS		2
-+#define ADMF20000_MAX_GAIN		0
-+#define ADMF20000_MIN_GAIN		-31000
-+#define ADMF20000_DEFAULT_GAIN		-0x20
-+
-+struct admfm2000_state {
-+	struct mutex			lock; /* protect sensor state */
-+	struct gpio_descs		*sw_ch[2];
-+	struct gpio_descs		*dsa_gpios[2];
-+	u32				gain[2];
-+};
-+
-+static int admfm2000_mode(struct iio_dev *indio_dev, u32 reg, u32 mode)
-+{
-+	struct admfm2000_state *st = iio_priv(indio_dev);
-+	DECLARE_BITMAP(values, 2);
-+
-+	switch (mode) {
-+	case ADMFM2000_MIXER_MODE:
-+		values[0] = (reg == 0) ? 1 : 2;
-+		gpiod_set_array_value_cansleep(st->sw_ch[reg]->ndescs,
-+					       st->sw_ch[reg]->desc,
-+					       NULL, values);
-+		break;
-+	case ADMFM2000_DIRECT_IF_MODE:
-+		values[0] = (reg == 0) ? 2 : 1;
-+		gpiod_set_array_value_cansleep(st->sw_ch[reg]->ndescs,
-+					       st->sw_ch[reg]->desc,
-+					       NULL, values);
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+static int admfm2000_attenuation(struct iio_dev *indio_dev, u32 chan,
-+				 u32 value)
-+{
-+	struct admfm2000_state *st = iio_priv(indio_dev);
-+	DECLARE_BITMAP(values, BITS_PER_TYPE(value));
-+
-+	values[0] = value;
-+
-+	gpiod_set_array_value_cansleep(st->dsa_gpios[chan]->ndescs,
-+				       st->dsa_gpios[chan]->desc,
-+				       NULL, values);
-+	return 0;
-+}
-+
-+static int admfm2000_read_raw(struct iio_dev *indio_dev,
-+			      struct iio_chan_spec const *chan, int *val,
-+			      int *val2, long mask)
-+{
-+	struct admfm2000_state *st = iio_priv(indio_dev);
-+	int gain;
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_HARDWAREGAIN:
-+		mutex_lock(&st->lock);
-+		gain = ~(st->gain[chan->channel]) * -1000;
-+		*val = gain / 1000;
-+		*val2 = (gain % 1000) * 1000;
-+		mutex_unlock(&st->lock);
-+
-+		return  IIO_VAL_INT_PLUS_MICRO_DB;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int admfm2000_write_raw(struct iio_dev *indio_dev,
-+			     struct iio_chan_spec const *chan, int val,
-+			     int val2, long mask)
-+{
-+	struct admfm2000_state *st = iio_priv(indio_dev);
-+	int gain, ret;
-+
-+	if (val < 0)
-+		gain = (val * 1000) - (val2 / 1000);
-+	else
-+		gain = (val * 1000) + (val2 / 1000);
-+
-+	if (gain > ADMF20000_MAX_GAIN || gain < ADMF20000_MIN_GAIN)
-+		return -EINVAL;
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_HARDWAREGAIN:
-+		mutex_lock(&st->lock);
-+		st->gain[chan->channel] = ~((abs(gain) / 1000) & 0x1F);
-+
-+		ret = admfm2000_attenuation(indio_dev, chan->channel,
-+					    st->gain[chan->channel]);
-+
-+		mutex_unlock(&st->lock);
-+		if (ret)
-+			return ret;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+static int admfm2000_write_raw_get_fmt(struct iio_dev *indio_dev,
-+				       struct iio_chan_spec const *chan,
-+				       long mask)
-+{
-+	switch (mask) {
-+	case IIO_CHAN_INFO_HARDWAREGAIN:
-+		return IIO_VAL_INT_PLUS_MICRO_DB;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static const struct iio_info admfm2000_info = {
-+	.read_raw = &admfm2000_read_raw,
-+	.write_raw = &admfm2000_write_raw,
-+	.write_raw_get_fmt = &admfm2000_write_raw_get_fmt,
-+};
-+
-+#define ADMFM2000_CHAN(_channel) {					\
-+	.type = IIO_VOLTAGE,						\
-+	.output = 1,							\
-+	.indexed = 1,							\
-+	.channel = _channel,						\
-+	.info_mask_separate = BIT(IIO_CHAN_INFO_HARDWAREGAIN),		\
-+}
-+
-+static const struct iio_chan_spec admfm2000_channels[] = {
-+	ADMFM2000_CHAN(0),
-+	ADMFM2000_CHAN(1),
-+};
-+
-+static int admfm2000_channel_config(struct admfm2000_state *st,
-+				    struct iio_dev *indio_dev)
-+{
-+	struct platform_device *pdev = to_platform_device(indio_dev->dev.parent);
-+	struct device *dev = &pdev->dev;
-+	struct fwnode_handle *child;
-+	u32 reg, mode;
-+	int ret;
-+
-+	device_for_each_child_node(dev, child) {
-+		ret = fwnode_property_read_u32(child, "reg", &reg);
-+		if (ret) {
-+			fwnode_handle_put(child);
-+			return dev_err_probe(dev, ret,
-+					     "Failed to get reg property\n");
-+		}
-+
-+		if (reg >= indio_dev->num_channels) {
-+			fwnode_handle_put(child);
-+			return dev_err_probe(dev, -EINVAL, "reg bigger than: %d\n",
-+					     indio_dev->num_channels);
-+		}
-+
-+		ret = fwnode_property_read_u32(child, "adi,mode", &mode);
-+		if (ret) {
-+			fwnode_handle_put(child);
-+			return dev_err_probe(dev, ret,
-+					     "Failed to get mode property\n");
-+		}
-+
-+		if (mode >= 2) {
-+			fwnode_handle_put(child);
-+			return dev_err_probe(dev, -EINVAL, "mode bigger than: 1\n");
-+		}
-+
-+		ret = admfm2000_mode(indio_dev, reg, mode);
-+		if (ret) {
-+			fwnode_handle_put(child);
-+			return ret;
-+		}
-+	}
-+
-+	return 0;
-+}
-+
-+static int admfm2000_setup(struct admfm2000_state *st,
-+			   struct iio_dev *indio_dev)
-+{
-+	struct platform_device *pdev = to_platform_device(indio_dev->dev.parent);
-+	struct device *dev = &pdev->dev;
-+
-+	st->sw_ch[0] = devm_gpiod_get_array(dev, "switch1", GPIOD_OUT_LOW);
-+	if (IS_ERR(st->sw_ch[0]))
-+		return dev_err_probe(dev, PTR_ERR(st->sw_ch[0]),
-+				     "Failed to get gpios\n");
-+
-+	if (st->sw_ch[0]->ndescs != ADMF20000_MODE_GPIOS) {
-+		dev_err_probe(dev, -ENODEV, "%d GPIOs needed to operate\n",
-+			      ADMF20000_MODE_GPIOS);
-+		return -ENODEV;
-+	}
-+
-+	st->sw_ch[1] = devm_gpiod_get_array(dev, "switch2", GPIOD_OUT_LOW);
-+	if (IS_ERR(st->sw_ch[1]))
-+		return dev_err_probe(dev, PTR_ERR(st->sw_ch[1]),
-+				     "Failed to get gpios\n");
-+
-+	if (st->sw_ch[1]->ndescs != ADMF20000_MODE_GPIOS) {
-+		dev_err_probe(dev, -ENODEV, "%d GPIOs needed to operate\n",
-+			      ADMF20000_MODE_GPIOS);
-+		return -ENODEV;
-+	}
-+
-+	st->dsa_gpios[0] = devm_gpiod_get_array(dev, "attenuation1",
-+						GPIOD_OUT_LOW);
-+	if (IS_ERR(st->dsa_gpios[0]))
-+		return dev_err_probe(dev, PTR_ERR(st->dsa_gpios[0]),
-+				     "Failed to get gpios\n");
-+
-+	if (st->dsa_gpios[0]->ndescs != ADMF20000_DSA_GPIOS) {
-+		dev_err_probe(dev, -ENODEV, "%d GPIOs needed to operate\n",
-+			      ADMF20000_DSA_GPIOS);
-+		return -ENODEV;
-+	}
-+
-+	st->dsa_gpios[1] = devm_gpiod_get_array(dev, "attenuation2",
-+						GPIOD_OUT_LOW);
-+	if (IS_ERR(st->dsa_gpios[1]))
-+		return dev_err_probe(dev, PTR_ERR(st->dsa_gpios[1]),
-+				     "Failed to get gpios\n");
-+
-+	if (st->dsa_gpios[1]->ndescs != ADMF20000_DSA_GPIOS) {
-+		dev_err_probe(dev, -ENODEV, "%d GPIOs needed to operate\n",
-+			      ADMF20000_DSA_GPIOS);
-+	}
-+
-+	return 0;
-+}
-+
-+static int admfm2000_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct iio_dev *indio_dev;
-+	struct admfm2000_state *st;
-+	int ret;
-+
-+	indio_dev = devm_iio_device_alloc(dev, sizeof(*st));
-+	if (!indio_dev)
-+		return -ENOMEM;
-+
-+	st = iio_priv(indio_dev);
-+
-+	indio_dev->name = "admfm2000";
-+	indio_dev->num_channels = ARRAY_SIZE(admfm2000_channels);
-+	indio_dev->channels = admfm2000_channels;
-+	indio_dev->info = &admfm2000_info;
-+	indio_dev->modes = INDIO_DIRECT_MODE;
-+
-+	st->gain[0] = ADMF20000_DEFAULT_GAIN;
-+	st->gain[1] = ADMF20000_DEFAULT_GAIN;
-+
-+	mutex_init(&st->lock);
-+
-+	ret = admfm2000_setup(st, indio_dev);
-+	if (ret)
-+		return ret;
-+
-+	ret = admfm2000_channel_config(st, indio_dev);
-+	if (ret)
-+		return ret;
-+
-+	return devm_iio_device_register(dev, indio_dev);
-+}
-+
-+static const struct of_device_id admfm2000_of_match[] = {
-+	{ .compatible = "adi,admfm2000" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, admfm2000_of_match);
-+
-+static struct platform_driver admfm2000_driver = {
-+	.driver = {
-+		.name = "admfm2000",
-+		.of_match_table = admfm2000_of_match,
-+	},
-+	.probe = admfm2000_probe,
-+};
-+module_platform_driver(admfm2000_driver);
-+
-+MODULE_AUTHOR("Kim Seer Paller <kimseer.paller@analog.com>");
-+MODULE_DESCRIPTION("ADMFM2000 Dual Microwave Down Converter");
-+MODULE_LICENSE("GPL");
+If you are using or here, what is the default value?
+
+>
+>         writel(ldo_config, edp->tx0 + TXn_LDO_CONFIG);
+>         writel(swing, edp->tx0 + TXn_TX_DRV_LVL);
+> @@ -291,6 +323,7 @@ static int qcom_edp_phy_configure(struct phy *phy, union phy_configure_opts *opt
+>  static int qcom_edp_configure_ssc(const struct qcom_edp *edp)
+>  {
+>         const struct phy_configure_opts_dp *dp_opts = &edp->dp_opts;
+> +       const struct qcom_edp_cfg *cfg = edp->cfg;
+>         u32 step1;
+>         u32 step2;
+>
+> @@ -298,13 +331,24 @@ static int qcom_edp_configure_ssc(const struct qcom_edp *edp)
+>         case 1620:
+>         case 2700:
+>         case 8100:
+> -               step1 = 0x45;
+> -               step2 = 0x06;
+> +               if (cfg->qserdes_version == QSERDES_V4) {
+> +                       step1 = 0x45;
+> +                       step2 = 0x06;
+> +               } else if (cfg->qserdes_version == QSERDES_V6) {
+> +                       step1 = 0x92;
+> +                       step2 = 0x01;
+
+Ugh. This looks like a bad idea. Maybe switching the order of
+conditions will help? Like having separate functions for qserdes
+version?
+
+> +               }
+>                 break;
+>
+>         case 5400:
+> -               step1 = 0x5c;
+> -               step2 = 0x08;
+> +               if (cfg->qserdes_version == QSERDES_V4) {
+> +                       step1 = 0x5c;
+> +                       step2 = 0x08;
+> +               } else if (cfg->qserdes_version == QSERDES_V6) {
+> +                       step1 = 0x18;
+> +                       step2 = 0x02;
+> +               }
+> +
+>                 break;
+>
+>         default:
+> @@ -312,12 +356,21 @@ static int qcom_edp_configure_ssc(const struct qcom_edp *edp)
+>                 return -EINVAL;
+>         }
+>
+> -       writel(0x01, edp->pll + QSERDES_V4_COM_SSC_EN_CENTER);
+> -       writel(0x00, edp->pll + QSERDES_V4_COM_SSC_ADJ_PER1);
+> -       writel(0x36, edp->pll + QSERDES_V4_COM_SSC_PER1);
+> -       writel(0x01, edp->pll + QSERDES_V4_COM_SSC_PER2);
+> -       writel(step1, edp->pll + QSERDES_V4_COM_SSC_STEP_SIZE1_MODE0);
+> -       writel(step2, edp->pll + QSERDES_V4_COM_SSC_STEP_SIZE2_MODE0);
+> +       if (cfg->qserdes_version == QSERDES_V4) {
+> +               writel(0x01, edp->pll + QSERDES_V4_COM_SSC_EN_CENTER);
+> +               writel(0x00, edp->pll + QSERDES_V4_COM_SSC_ADJ_PER1);
+> +               writel(0x36, edp->pll + QSERDES_V4_COM_SSC_PER1);
+> +               writel(0x01, edp->pll + QSERDES_V4_COM_SSC_PER2);
+> +               writel(step1, edp->pll + QSERDES_V4_COM_SSC_STEP_SIZE1_MODE0);
+> +               writel(step2, edp->pll + QSERDES_V4_COM_SSC_STEP_SIZE2_MODE0);
+> +       } else if (cfg->qserdes_version == QSERDES_V6) {
+> +               writel(0x01, edp->pll + QSERDES_V6_COM_SSC_EN_CENTER);
+> +               writel(0x00, edp->pll + QSERDES_V6_COM_SSC_ADJ_PER1);
+> +               writel(0x6b, edp->pll + QSERDES_V6_COM_SSC_PER1);
+> +               writel(0x02, edp->pll + QSERDES_V6_COM_SSC_PER2);
+> +               writel(step1, edp->pll + QSERDES_V6_COM_SSC_STEP_SIZE1_MODE0);
+> +               writel(step2, edp->pll + QSERDES_V6_COM_SSC_STEP_SIZE2_MODE0);
+> +       }
+
+Definitely a strong NAK.
+
+>
+>         return 0;
+>  }
+> @@ -325,48 +378,99 @@ static int qcom_edp_configure_ssc(const struct qcom_edp *edp)
+>  static int qcom_edp_configure_pll(const struct qcom_edp *edp)
+>  {
+>         const struct phy_configure_opts_dp *dp_opts = &edp->dp_opts;
+> +       const struct qcom_edp_cfg *cfg = edp->cfg;
+>         u32 div_frac_start2_mode0;
+>         u32 div_frac_start3_mode0;
+>         u32 dec_start_mode0;
+>         u32 lock_cmp1_mode0;
+>         u32 lock_cmp2_mode0;
+> +       u32 code1_mode0;
+> +       u32 code2_mode0;
+>         u32 hsclk_sel;
+>
+>         switch (dp_opts->link_rate) {
+>         case 1620:
+>                 hsclk_sel = 0x5;
+> -               dec_start_mode0 = 0x69;
+> -               div_frac_start2_mode0 = 0x80;
+> -               div_frac_start3_mode0 = 0x07;
+> -               lock_cmp1_mode0 = 0x6f;
+> -               lock_cmp2_mode0 = 0x08;
+> +
+> +               if (cfg->qserdes_version == QSERDES_V4) {
+> +                       dec_start_mode0 = 0x69;
+> +                       div_frac_start2_mode0 = 0x80;
+> +                       div_frac_start3_mode0 = 0x07;
+> +                       lock_cmp1_mode0 = 0x6f;
+> +                       lock_cmp2_mode0 = 0x08;
+> +               } else if (cfg->qserdes_version == QSERDES_V6) {
+> +                       dec_start_mode0 = 0x34;
+> +                       div_frac_start2_mode0 = 0xc0;
+> +                       div_frac_start3_mode0 = 0x0b;
+> +                       lock_cmp1_mode0 = 0x37;
+> +                       lock_cmp2_mode0 = 0x04;
+> +                       code1_mode0 = 0x71;
+> +                       code2_mode0 = 0x0C;
+> +               }
+> +
+>                 break;
+>
+>         case 2700:
+>                 hsclk_sel = 0x3;
+> -               dec_start_mode0 = 0x69;
+> -               div_frac_start2_mode0 = 0x80;
+> -               div_frac_start3_mode0 = 0x07;
+> -               lock_cmp1_mode0 = 0x0f;
+> -               lock_cmp2_mode0 = 0x0e;
+> +
+> +               if (cfg->qserdes_version == QSERDES_V4) {
+> +                       dec_start_mode0 = 0x69;
+> +                       div_frac_start2_mode0 = 0x80;
+> +                       div_frac_start3_mode0 = 0x07;
+> +                       lock_cmp1_mode0 = 0x0f;
+> +                       lock_cmp2_mode0 = 0x0e;
+> +               } else if (cfg->qserdes_version == QSERDES_V6) {
+> +                       dec_start_mode0 = 0x34;
+> +                       div_frac_start2_mode0 = 0xc0;
+> +                       div_frac_start3_mode0 = 0x0b;
+> +                       lock_cmp1_mode0 = 0x07;
+> +                       lock_cmp2_mode0 = 0x07;
+> +                       code1_mode0 = 0x71;
+> +                       code2_mode0 = 0x0C;
+> +               }
+> +
+>                 break;
+>
+>         case 5400:
+>                 hsclk_sel = 0x1;
+> -               dec_start_mode0 = 0x8c;
+> -               div_frac_start2_mode0 = 0x00;
+> -               div_frac_start3_mode0 = 0x0a;
+> -               lock_cmp1_mode0 = 0x1f;
+> -               lock_cmp2_mode0 = 0x1c;
+> +
+> +               if (cfg->qserdes_version == QSERDES_V4) {
+> +                       dec_start_mode0 = 0x8c;
+> +                       div_frac_start2_mode0 = 0x00;
+> +                       div_frac_start3_mode0 = 0x0a;
+> +                       lock_cmp1_mode0 = 0x1f;
+> +                       lock_cmp2_mode0 = 0x1c;
+> +               } else if (cfg->qserdes_version == QSERDES_V6) {
+> +                       dec_start_mode0 = 0x46;
+> +                       div_frac_start2_mode0 = 0x00;
+> +                       div_frac_start3_mode0 = 0x05;
+> +                       lock_cmp1_mode0 = 0x0f;
+> +                       lock_cmp2_mode0 = 0x0e;
+> +                       code1_mode0 = 0x97;
+> +                       code2_mode0 = 0x10;
+> +               }
+> +
+>                 break;
+>
+>         case 8100:
+>                 hsclk_sel = 0x0;
+> -               dec_start_mode0 = 0x69;
+> -               div_frac_start2_mode0 = 0x80;
+> -               div_frac_start3_mode0 = 0x07;
+> -               lock_cmp1_mode0 = 0x2f;
+> -               lock_cmp2_mode0 = 0x2a;
+> +
+> +               if (cfg->qserdes_version == QSERDES_V4) {
+> +                       dec_start_mode0 = 0x69;
+> +                       div_frac_start2_mode0 = 0x80;
+> +                       div_frac_start3_mode0 = 0x07;
+> +                       lock_cmp1_mode0 = 0x2f;
+> +                       lock_cmp2_mode0 = 0x2a;
+> +               } else if (cfg->qserdes_version == QSERDES_V6) {
+> +                       dec_start_mode0 = 0x34;
+> +                       div_frac_start2_mode0 = 0xc0;
+> +                       div_frac_start3_mode0 = 0x0b;
+> +                       lock_cmp1_mode0 = 0x17;
+> +                       lock_cmp2_mode0 = 0x15;
+> +                       code1_mode0 = 0x71;
+> +                       code2_mode0 = 0x0C;
+> +               }
+> +
+>                 break;
+>
+>         default:
+> @@ -374,36 +478,70 @@ static int qcom_edp_configure_pll(const struct qcom_edp *edp)
+>                 return -EINVAL;
+>         }
+>
+> -       writel(0x01, edp->pll + QSERDES_V4_COM_SVS_MODE_CLK_SEL);
+> -       writel(0x0b, edp->pll + QSERDES_V4_COM_SYSCLK_EN_SEL);
+> -       writel(0x02, edp->pll + QSERDES_V4_COM_SYS_CLK_CTRL);
+> -       writel(0x0c, edp->pll + QSERDES_V4_COM_CLK_ENABLE1);
+> -       writel(0x06, edp->pll + QSERDES_V4_COM_SYSCLK_BUF_ENABLE);
+> -       writel(0x30, edp->pll + QSERDES_V4_COM_CLK_SELECT);
+> -       writel(hsclk_sel, edp->pll + QSERDES_V4_COM_HSCLK_SEL);
+> -       writel(0x0f, edp->pll + QSERDES_V4_COM_PLL_IVCO);
+> -       writel(0x08, edp->pll + QSERDES_V4_COM_LOCK_CMP_EN);
+> -       writel(0x36, edp->pll + QSERDES_V4_COM_PLL_CCTRL_MODE0);
+> -       writel(0x16, edp->pll + QSERDES_V4_COM_PLL_RCTRL_MODE0);
+> -       writel(0x06, edp->pll + QSERDES_V4_COM_CP_CTRL_MODE0);
+> -       writel(dec_start_mode0, edp->pll + QSERDES_V4_COM_DEC_START_MODE0);
+> -       writel(0x00, edp->pll + QSERDES_V4_COM_DIV_FRAC_START1_MODE0);
+> -       writel(div_frac_start2_mode0, edp->pll + QSERDES_V4_COM_DIV_FRAC_START2_MODE0);
+> -       writel(div_frac_start3_mode0, edp->pll + QSERDES_V4_COM_DIV_FRAC_START3_MODE0);
+> -       writel(0x02, edp->pll + QSERDES_V4_COM_CMN_CONFIG);
+> -       writel(0x3f, edp->pll + QSERDES_V4_COM_INTEGLOOP_GAIN0_MODE0);
+> -       writel(0x00, edp->pll + QSERDES_V4_COM_INTEGLOOP_GAIN1_MODE0);
+> -       writel(0x00, edp->pll + QSERDES_V4_COM_VCO_TUNE_MAP);
+> -       writel(lock_cmp1_mode0, edp->pll + QSERDES_V4_COM_LOCK_CMP1_MODE0);
+> -       writel(lock_cmp2_mode0, edp->pll + QSERDES_V4_COM_LOCK_CMP2_MODE0);
+> -
+> -       writel(0x0a, edp->pll + QSERDES_V4_COM_BG_TIMER);
+> -       writel(0x14, edp->pll + QSERDES_V4_COM_CORECLK_DIV_MODE0);
+> -       writel(0x00, edp->pll + QSERDES_V4_COM_VCO_TUNE_CTRL);
+> -       writel(0x17, edp->pll + QSERDES_V4_COM_BIAS_EN_CLKBUFLR_EN);
+> -       writel(0x0f, edp->pll + QSERDES_V4_COM_CORE_CLK_EN);
+> -       writel(0xa0, edp->pll + QSERDES_V4_COM_VCO_TUNE1_MODE0);
+> -       writel(0x03, edp->pll + QSERDES_V4_COM_VCO_TUNE2_MODE0);
+> +       if (cfg->qserdes_version == QSERDES_V4) {
+> +               writel(0x01, edp->pll + QSERDES_V4_COM_SVS_MODE_CLK_SEL);
+> +               writel(0x0b, edp->pll + QSERDES_V4_COM_SYSCLK_EN_SEL);
+> +               writel(0x02, edp->pll + QSERDES_V4_COM_SYS_CLK_CTRL);
+> +               writel(0x0c, edp->pll + QSERDES_V4_COM_CLK_ENABLE1);
+> +               writel(0x06, edp->pll + QSERDES_V4_COM_SYSCLK_BUF_ENABLE);
+> +               writel(0x30, edp->pll + QSERDES_V4_COM_CLK_SELECT);
+> +               writel(hsclk_sel, edp->pll + QSERDES_V4_COM_HSCLK_SEL);
+> +               writel(0x0f, edp->pll + QSERDES_V4_COM_PLL_IVCO);
+> +               writel(0x08, edp->pll + QSERDES_V4_COM_LOCK_CMP_EN);
+> +               writel(0x36, edp->pll + QSERDES_V4_COM_PLL_CCTRL_MODE0);
+> +               writel(0x16, edp->pll + QSERDES_V4_COM_PLL_RCTRL_MODE0);
+> +               writel(0x06, edp->pll + QSERDES_V4_COM_CP_CTRL_MODE0);
+> +               writel(dec_start_mode0, edp->pll + QSERDES_V4_COM_DEC_START_MODE0);
+> +               writel(0x00, edp->pll + QSERDES_V4_COM_DIV_FRAC_START1_MODE0);
+> +               writel(div_frac_start2_mode0, edp->pll + QSERDES_V4_COM_DIV_FRAC_START2_MODE0);
+> +               writel(div_frac_start3_mode0, edp->pll + QSERDES_V4_COM_DIV_FRAC_START3_MODE0);
+> +               writel(0x02, edp->pll + QSERDES_V4_COM_CMN_CONFIG);
+> +               writel(0x3f, edp->pll + QSERDES_V4_COM_INTEGLOOP_GAIN0_MODE0);
+> +               writel(0x00, edp->pll + QSERDES_V4_COM_INTEGLOOP_GAIN1_MODE0);
+> +               writel(0x00, edp->pll + QSERDES_V4_COM_VCO_TUNE_MAP);
+> +               writel(lock_cmp1_mode0, edp->pll + QSERDES_V4_COM_LOCK_CMP1_MODE0);
+> +               writel(lock_cmp2_mode0, edp->pll + QSERDES_V4_COM_LOCK_CMP2_MODE0);
+> +
+> +               writel(0x0a, edp->pll + QSERDES_V4_COM_BG_TIMER);
+> +               writel(0x14, edp->pll + QSERDES_V4_COM_CORECLK_DIV_MODE0);
+> +               writel(0x00, edp->pll + QSERDES_V4_COM_VCO_TUNE_CTRL);
+> +               writel(0x17, edp->pll + QSERDES_V4_COM_BIAS_EN_CLKBUFLR_EN);
+> +               writel(0x0f, edp->pll + QSERDES_V4_COM_CORE_CLK_EN);
+> +               writel(0xa0, edp->pll + QSERDES_V4_COM_VCO_TUNE1_MODE0);
+> +               writel(0x03, edp->pll + QSERDES_V4_COM_VCO_TUNE2_MODE0);
+> +       } else if (cfg->qserdes_version == QSERDES_V6) {
+> +               writel(0x01, edp->pll + QSERDES_V6_COM_SVS_MODE_CLK_SEL);
+> +               writel(0x0b, edp->pll + QSERDES_V6_COM_SYSCLK_EN_SEL);
+> +               writel(0x02, edp->pll + QSERDES_V6_COM_SYS_CLK_CTRL);
+> +               writel(0x0c, edp->pll + QSERDES_V6_COM_CLK_ENABLE1);
+> +               writel(0x06, edp->pll + QSERDES_V6_COM_SYSCLK_BUF_ENABLE);
+> +               writel(0x30, edp->pll + QSERDES_V6_COM_CLK_SELECT);
+> +               writel(hsclk_sel, edp->pll + QSERDES_V6_COM_HSCLK_SEL_1);
+> +               writel(0x07, edp->pll + QSERDES_V6_COM_PLL_IVCO);
+> +               writel(0x08, edp->pll + QSERDES_V6_COM_LOCK_CMP_EN);
+> +               writel(0x36, edp->pll + QSERDES_V6_COM_PLL_CCTRL_MODE0);
+> +               writel(0x16, edp->pll + QSERDES_V6_COM_PLL_RCTRL_MODE0);
+> +               writel(0x6, edp->pll + QSERDES_V6_COM_CP_CTRL_MODE0);
+> +               writel(dec_start_mode0, edp->pll + QSERDES_V6_COM_DEC_START_MODE0);
+> +               writel(0x00, edp->pll + QSERDES_V6_COM_DIV_FRAC_START1_MODE0);
+> +               writel(div_frac_start2_mode0, edp->pll + QSERDES_V6_COM_DIV_FRAC_START2_MODE0);
+> +               writel(div_frac_start3_mode0, edp->pll + QSERDES_V6_COM_DIV_FRAC_START3_MODE0);
+> +               writel(0x12, edp->pll + QSERDES_V6_COM_CMN_CONFIG_1);
+> +               writel(0x3f, edp->pll + QSERDES_V6_COM_INTEGLOOP_GAIN0_MODE0);
+> +               writel(0x00, edp->pll + QSERDES_V6_COM_INTEGLOOP_GAIN1_MODE0);
+> +               writel(0x00, edp->pll + QSERDES_V6_COM_VCO_TUNE_MAP);
+> +               writel(lock_cmp1_mode0, edp->pll + QSERDES_V6_COM_LOCK_CMP1_MODE0);
+> +               writel(lock_cmp2_mode0, edp->pll + QSERDES_V6_COM_LOCK_CMP2_MODE0);
+> +
+> +               writel(0x0a, edp->pll + QSERDES_V6_COM_BG_TIMER);
+> +               writel(0x14, edp->pll + QSERDES_V6_COM_PLL_CORE_CLK_DIV_MODE0);
+> +               writel(0x00, edp->pll + QSERDES_V6_COM_VCO_TUNE_CTRL);
+> +               writel(0x17, edp->pll + QSERDES_V6_COM_PLL_BIAS_EN_CLK_BUFLR_EN);
+> +               writel(0x0f, edp->pll + QSERDES_V6_COM_CORE_CLK_EN);
+> +
+> +               writel(code1_mode0, edp->pll + QSERDES_V6_COM_BIN_VCOCAL_CMP_CODE1_MODE0);
+> +               writel(code2_mode0, edp->pll + QSERDES_V6_COM_BIN_VCOCAL_CMP_CODE2_MODE0);
+> +       }
+>
+>         return 0;
+>  }
+> @@ -462,13 +600,21 @@ static int qcom_edp_phy_power_on(struct phy *phy)
+>                edp->edp + DP_PHY_PD_CTL);
+>         writel(0xfc, edp->edp + DP_PHY_MODE);
+>
+> -       timeout = readl_poll_timeout(edp->pll + QSERDES_V4_COM_CMN_STATUS,
+> -                                    val, val & BIT(7), 5, 200);
+> +       if (cfg->qserdes_version == QSERDES_V4) {
+> +               timeout = readl_poll_timeout(edp->pll + QSERDES_V4_COM_CMN_STATUS,
+> +                                            val, val & BIT(7), 5, 200);
+> +       } else if (cfg->qserdes_version == QSERDES_V6) {
+> +               timeout = readl_poll_timeout(edp->pll + QSERDES_V6_COM_CMN_STATUS,
+> +                                            val, val & BIT(7), 5, 200);
+> +       }
+>         if (timeout)
+>                 return timeout;
+>
+>
+> -       ldo_config = (cfg && cfg->is_dp) ? 0x1 : 0x0;
+> +       if (cfg->qserdes_version == QSERDES_V4)
+> +               ldo_config = (cfg && cfg->is_dp) ? 0x1 : 0x0;
+> +       else if (cfg->qserdes_version == QSERDES_V6)
+> +               ldo_config |= 0x91;
+>
+>         writel(ldo_config, edp->tx0 + TXn_LDO_CONFIG);
+>         writel(ldo_config, edp->tx1 + TXn_LDO_CONFIG);
+> @@ -512,10 +658,18 @@ static int qcom_edp_phy_power_on(struct phy *phy)
+>         writel(0x01, edp->edp + DP_PHY_CFG);
+>         writel(0x09, edp->edp + DP_PHY_CFG);
+>
+> -       writel(0x20, edp->pll + QSERDES_V4_COM_RESETSM_CNTRL);
+> +       if (cfg->qserdes_version == QSERDES_V4) {
+> +               writel(0x20, edp->pll + QSERDES_V4_COM_RESETSM_CNTRL);
+> +
+> +               timeout = readl_poll_timeout(edp->pll + QSERDES_V4_COM_C_READY_STATUS,
+> +                                            val, val & BIT(0), 500, 10000);
+> +       } else if (cfg->qserdes_version == QSERDES_V6) {
+> +               writel(0x20, edp->pll + QSERDES_V6_COM_RESETSM_CNTRL);
+> +
+> +               timeout = readl_poll_timeout(edp->pll + QSERDES_V6_COM_C_READY_STATUS,
+> +                                            val, val & BIT(0), 500, 10000);
+> +       }
+>
+> -       timeout = readl_poll_timeout(edp->pll + QSERDES_V4_COM_C_READY_STATUS,
+> -                                    val, val & BIT(0), 500, 10000);
+>         if (timeout)
+>                 return timeout;
+>
+> @@ -744,7 +898,6 @@ static int qcom_edp_clks_register(struct qcom_edp *edp, struct device_node *np)
+>         data = devm_kzalloc(edp->dev, struct_size(data, hws, 2), GFP_KERNEL);
+>         if (!data)
+>                 return -ENOMEM;
+> -       data->num = 2;
+>
+>         snprintf(name, sizeof(name), "%s::link_clk", dev_name(edp->dev));
+>         init.ops = &qcom_edp_dp_link_clk_ops;
+> @@ -764,6 +917,7 @@ static int qcom_edp_clks_register(struct qcom_edp *edp, struct device_node *np)
+>
+>         data->hws[0] = &edp->dp_link_hw;
+>         data->hws[1] = &edp->dp_pixel_hw;
+> +       data->num = 2;
+>
+>         return devm_of_clk_add_hw_provider(edp->dev, of_clk_hw_onecell_get, data);
+>  }
+> @@ -806,6 +960,7 @@ static int qcom_edp_phy_probe(struct platform_device *pdev)
+>
+>         edp->supplies[0].supply = "vdda-phy";
+>         edp->supplies[1].supply = "vdda-pll";
+> +       edp->clks[2].id = "tcsr";
+>         ret = devm_regulator_bulk_get(dev, ARRAY_SIZE(edp->supplies), edp->supplies);
+>         if (ret)
+>                 return ret;
+> @@ -841,8 +996,10 @@ static int qcom_edp_phy_probe(struct platform_device *pdev)
+>  static const struct of_device_id qcom_edp_phy_match_table[] = {
+>         { .compatible = "qcom,sc7280-edp-phy" },
+>         { .compatible = "qcom,sc8180x-edp-phy" },
+> -       { .compatible = "qcom,sc8280xp-dp-phy", .data = &dp_phy_cfg },
+> -       { .compatible = "qcom,sc8280xp-edp-phy", .data = &edp_phy_cfg },
+> +       { .compatible = "qcom,sc8280xp-dp-phy", .data = &dp_v4_phy_cfg },
+> +       { .compatible = "qcom,sc8280xp-edp-phy", .data = &edp_v4_phy_cfg },
+> +       { .compatible = "qcom,x1e80100-dp-phy", .data = &dp_v6_phy_cfg },
+> +       { .compatible = "qcom,x1e80100-edp-phy", .data = &edp_v6_phy_cfg },
+>         { }
+>  };
+>  MODULE_DEVICE_TABLE(of, qcom_edp_phy_match_table);
+>
+> --
+> 2.34.1
+>
+>
+
+
 -- 
-2.34.1
-
+With best wishes
+Dmitry
 
