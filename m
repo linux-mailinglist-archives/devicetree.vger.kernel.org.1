@@ -1,61 +1,60 @@
-Return-Path: <devicetree+bounces-17734-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17735-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5A6F7F3EE9
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 08:34:59 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78A7F7F3EF1
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 08:37:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DE5F41C20AF0
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 07:34:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 230A2281C4E
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 07:37:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 898A91DA4F;
-	Wed, 22 Nov 2023 07:34:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E811A1D545;
+	Wed, 22 Nov 2023 07:36:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ybvChfhS"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WuppHkmO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29DEFF4
-	for <devicetree@vger.kernel.org>; Tue, 21 Nov 2023 23:34:51 -0800 (PST)
-Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-32d895584f1so4545775f8f.1
-        for <devicetree@vger.kernel.org>; Tue, 21 Nov 2023 23:34:51 -0800 (PST)
+Received: from mail-qv1-xf36.google.com (mail-qv1-xf36.google.com [IPv6:2607:f8b0:4864:20::f36])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06BE718E
+	for <devicetree@vger.kernel.org>; Tue, 21 Nov 2023 23:36:46 -0800 (PST)
+Received: by mail-qv1-xf36.google.com with SMTP id 6a1803df08f44-677a12f1362so24868296d6.1
+        for <devicetree@vger.kernel.org>; Tue, 21 Nov 2023 23:36:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700638489; x=1701243289; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=f1h80CGPKrDQq5rFp5ac2oBphZJJPyKf+WLAj1BFynE=;
-        b=ybvChfhSkSGQMBxAfRjt90/iPEjHop3wTk0fuCH8emYHfcBUaOBgMGD8IiEQK/MiY/
-         CXJ/vBY5uhThX4VcnrI5rO4y1GyPGSaTb6jmwsT3aJX6hBBppAQAoUseJl7A+1fhvJtg
-         Umgjcc3tH7FCM48gV/ETq889mwLsE6v+ZXF26zxSBqSy6/I3szVNqPThKAxPnR6U1UYd
-         hiYjk/Vnp3vdTiNPhTG7hvUKtmoHdf2+yMIOSmtqDBymmhv3G69eip4LVXk3uBoszTnd
-         libEhQyq1iQzSo2IggkT2UdaLBm8fm33I3CuFkcpG7j7xrwW0lcuyL3H/3DhI6SmXZua
-         fSMQ==
+        d=linaro.org; s=google; t=1700638605; x=1701243405; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/4FkWvOl76S7qOAOJv7GYF1hOVM6Zlb4I3TSfbbznis=;
+        b=WuppHkmOakdSzbeMW9zZiw5G63m7/I0dOLRqlZxxnc71DL0w/9T1Ad3JZWKjnPLmMA
+         ho3J5dNypHm9fkLJD5dqAqG6TSanRbzjn9plUUloDddaztYqcw4p7Nl6ITz/L67Z7b+C
+         8y+SB8zQdGfUwquA8ESJoOyA5mryJi9nzZQaJtIenqbELZ7t80A8gEdWBldMNJjeb93y
+         wEUVvfMfOQITtWY4sHDRUYIU/bYQqd192xt9XXF6wLZG9lvU3TmsZfrDE8hOfkAbs0ln
+         fhAdc7oC5hbbN27AX94iIhqmBOhTB1mf937a1iuuNMRuDO6075PSfUzdIcAGEDnk1ZL8
+         W3Nw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700638489; x=1701243289;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=f1h80CGPKrDQq5rFp5ac2oBphZJJPyKf+WLAj1BFynE=;
-        b=oRQ/TzAlSPz5WbB1Et2NIDgEkI3y2ovvp8hnrE0hk8lhieaTah07AxoKFCW1l142fS
-         n/6VGpxO4xJrmZiNrb8P/eieN2DcLqIX9p9aGVBYvYxLuVjjUqSy/sl8LzCM9XbclU8r
-         eOkwD/0xcAwZxy+zRCVRIdmx79xXpkx7I2kZgHS6X8ogK1RL3HDEG5BES+pA83jwDqen
-         ZcgD5LsB9ei19SYhj2D3isRMR6FodtMg4asOfIxeaIO+7zVArh4w93/DfpAbGU+nZC3P
-         xAoJmZEBf7hgoCOyL7Cppt5mO6hnSbTrMzQO0PrVJ+cD1kbLHsyvftvH9ITOkaVi9gdY
-         KcmA==
-X-Gm-Message-State: AOJu0YxpX5ckkEsFVbeFQGBV+5vRMjnf3MmTw7H3m8wghxPeMnLBcfu0
-	iJFW0XyfOQe9qW6jzRbtebxLqw==
-X-Google-Smtp-Source: AGHT+IFO7dGrKxtb8U6dS+BfA9ffwC4jo62Kn1tRQjcrAiGIq5GpA99Ixasgf220mTXCRsQBaABWlQ==
-X-Received: by 2002:adf:ee8b:0:b0:331:3426:4c2c with SMTP id b11-20020adfee8b000000b0033134264c2cmr1058141wro.41.1700638489584;
-        Tue, 21 Nov 2023 23:34:49 -0800 (PST)
+        d=1e100.net; s=20230601; t=1700638605; x=1701243405;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/4FkWvOl76S7qOAOJv7GYF1hOVM6Zlb4I3TSfbbznis=;
+        b=c6gk9T8sGBoPk9I0655VdinYPGZ4lbnWAWnYHIRAM6R6cQTFgn9x/UPovHXLIQxEvS
+         o0vmskv+z68hXC4FQ8VpKZZjmoGPHcJyzjmlrosb+KKLEZTlqhHxthT2oH/qzgoWq5df
+         NzC+rUskAGTvgKOMe7NMCMq1hW4q932zBbk1PVOlgoytufFiG70g4qk7ksk70G8AE/O9
+         IAzwPEkq2Cp5C7iyCxb//PZ4Ww4ll/FjzWH7Tdsx5MbeblU3c+eZqMb93KPLOI8345g4
+         6aqt0sWQbEHeLpPRC8W0LAk1gFSZloyMgmDo1jsCbo8oX68ztuFVD18IqgUeGxvPjS7j
+         NRZw==
+X-Gm-Message-State: AOJu0Ywp0niIQWGIYAeUHTb9G4Hw7tuj2LS2OKYkoexWBl16HQetJuK+
+	M6FqDuTRv7u4INJVKfsOBjWg9g==
+X-Google-Smtp-Source: AGHT+IHqt5MtPq5BF4HeyXtvMq3XmavfQldmIocCWUY/busQ5IHmUuDJBFXLw3mtgk6eBHUCdaFobg==
+X-Received: by 2002:ad4:5dcd:0:b0:656:51b9:990e with SMTP id m13-20020ad45dcd000000b0065651b9990emr1650928qvh.57.1700638605105;
+        Tue, 21 Nov 2023 23:36:45 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.100])
-        by smtp.gmail.com with ESMTPSA id m3-20020adffa03000000b00323293bd023sm16362096wrr.6.2023.11.21.23.34.47
+        by smtp.gmail.com with ESMTPSA id o21-20020a05620a131500b0077d63639011sm421824qkj.112.2023.11.21.23.36.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Nov 2023 23:34:49 -0800 (PST)
-Message-ID: <069a904d-08db-425c-88fc-3b7e8f4f713c@linaro.org>
-Date: Wed, 22 Nov 2023 08:34:47 +0100
+        Tue, 21 Nov 2023 23:36:44 -0800 (PST)
+Message-ID: <31927a2b-4b14-406b-8db0-511ec4779d4f@linaro.org>
+Date: Wed, 22 Nov 2023 08:36:40 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,26 +62,32 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: serial: add Broadcom's BCM63138 High
- Speed UART
-To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- William Zhang <william.zhang@broadcom.com>,
- Anand Gore <anand.gore@broadcom.com>, Kursad Oney
- <kursad.oney@broadcom.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Andre Przywara <andre.przywara@arm.com>,
- Alexandre TORGUE <alexandre.torgue@st.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, linux-serial@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- bcm-kernel-feedback-list@broadcom.com, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
- <rafal@milecki.pl>
-References: <20231121121324.23268-1-zajec5@gmail.com>
- <26d71302-ebb0-4b2b-802e-0b3ebf75d68f@linaro.org>
- <3a2880a4-cdf5-4032-9cae-be2916237d29@gmail.com>
+Subject: Re: [PATCH v7][4/4] dt-bindings: mmc: Add dt-bindings for realtek mmc
+ driver
 Content-Language: en-US
+To: =?UTF-8?B?SnlhbiBDaG91IFvlkajoirflrold?= <jyanchou@realtek.com>,
+ "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
+ "adrian.hunter@intel.com" <adrian.hunter@intel.com>,
+ "jh80.chung@samsung.com" <jh80.chung@samsung.com>,
+ "riteshh@codeaurora.org" <riteshh@codeaurora.org>,
+ "robh+dt@kernel.org" <robh+dt@kernel.org>,
+ "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>
+Cc: "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "asutoshd@codeaurora.org" <asutoshd@codeaurora.org>,
+ "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+ "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "arnd@arndb.de" <arnd@arndb.de>,
+ "briannorris@chromium.org" <briannorris@chromium.org>,
+ "doug@schmorgal.com" <doug@schmorgal.com>,
+ "tonyhuang.sunplus@gmail.com" <tonyhuang.sunplus@gmail.com>,
+ "abel.vesa@linaro.org" <abel.vesa@linaro.org>,
+ "william.qiu@starfivetech.com" <william.qiu@starfivetech.com>
+References: <20231121091101.5540-1-jyanchou@realtek.com>
+ <20231121091101.5540-5-jyanchou@realtek.com>
+ <dde59498-440d-4faf-b878-2090342b52da@linaro.org>
+ <4551fbf03e3349eb8eaa336d505a5384@realtek.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -128,51 +133,35 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <3a2880a4-cdf5-4032-9cae-be2916237d29@gmail.com>
+In-Reply-To: <4551fbf03e3349eb8eaa336d505a5384@realtek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 22/11/2023 07:17, Rafał Miłecki wrote:
-> On 21.11.2023 23:38, Krzysztof Kozlowski wrote:
->> On 21/11/2023 13:13, Rafał Miłecki wrote:
->>> From: Rafał Miłecki <rafal@milecki.pl>
+On 22/11/2023 03:54, Jyan Chou [周芷安] wrote:
+>> +      clocks = <&cc 22>, <&cc 26>, <&cc 121>, <&cc 122>;
+>> +      clock-names = "biu", "ciu", "vp0", "vp1";
+> 
+>> Where is the DTS implementing this binding?
+> 
+>> I said it once:
+> 
+>>> I asked you to test the bindings. This also means that you must test 
+>>> your DTS against bindings. Your bindings, DTS and driver do not match, 
+>>> therefore let's be a bit more clear:
 >>>
->>
->> Thank you for your patch. There is something to discuss/improve.
->>
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: brcm,bcm63138-hs-uart
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  interrupts:
->>> +    maxItems: 1
->>> +
->>> +required:
->>
->> Missing compatible.
+>>> NAK, till you upstream your DTS.
 > 
-> I stopped putting "compatible" in "required" in schemas back in 2020 :O
+>> I still do not see DTS anywhere. Please link it.
 > 
-> Back then I received a comment from Rob [0] in discussion on
-> [PATCH] dt-bindings: mtd: convert "fixed-partitions" to the json-schema
-> telling to drop it:
+> Sorry for asking. Which dts do we need to link it? The device tree we use for our SOC?
 > 
-> On 10.12.2020 03:48, Rob Herring wrote:
->  > And drop 'compatible' as required. It's redundant anyways because the
->  > schema will only be applied if compatible matches.
-> 
-> So I'll need some help here please. Should I start including
-> "compatible" in "required" after all? Or is that situation specific
-> (could you explain what does it depend on)?
+> or realtek,rtd-dw-cqe-emmc.example.dts?  Thanks.
 
-Hm, it is redundant, true, although I always preferred it listed to be
-explicit. But in such case no problem:
+The patch adding this device node to any upstream DTS. I am not speaking
+about example, but about upstream DTS using this MMC.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+As I wrote last time, I don't believe you test bindings and DTS and I
+had proofs of that. Therefore I expect you to upstream DTS of your product.
 
 Best regards,
 Krzysztof
