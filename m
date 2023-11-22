@@ -1,176 +1,130 @@
-Return-Path: <devicetree+bounces-17938-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17939-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 507087F4794
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 14:19:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69F657F47A7
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 14:22:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 82B58B20CB6
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 13:19:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 23D7128117E
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 13:22:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07A1F51004;
-	Wed, 22 Nov 2023 13:19:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0E3F54BC4;
+	Wed, 22 Nov 2023 13:22:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ncO63D4Q"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="hkvQ1PSj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 245A3A4;
-	Wed, 22 Nov 2023 05:19:04 -0800 (PST)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 86DDE20013;
-	Wed, 22 Nov 2023 13:19:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1700659143;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=fnxrWPQ64G+VTGUNFQzAHED8SWzP50c4bWCwKUpHX3Y=;
-	b=ncO63D4Q/gteYlaYLUwuOzp4pinF9I0sKcymptWV8MtSM5tMHslOLOH7AiVQ4uIcwnMamn
-	aDNt0MRI3UMSkRLVCk33hUpTrCskhJ1/jAxiGMKKQSXr4wpsnod5prNFv4H9FD6Q8LuMKc
-	EtfEBrF8+hSeSmzA7wCO9h3UOdnls1UH7D079lcwrLWTt3fmxgk6EIfs2KRmNep3j97oxx
-	Sxp2jy3iHTt6Zn9r50ozxl7wDnRjbunxNUEtY4K26zJgBxD9pGj/7JaX5+KbJY8UtwkXP3
-	p++4Z+9QDXuT+xNRIDy1ZFDS22VUrnvWCfjhyzG7khTIwfaMU7JKJ0fq9cjKkg==
-Date: Wed, 22 Nov 2023 14:19:01 +0100
-From: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-To: Michael Riesch <michael.riesch@wolfvision.net>
-Cc: Tommaso Merciai <tomm.merciai@gmail.com>,
-	Mehdi Djait <mehdi.djait@bootlin.com>, mchehab@kernel.org,
-	heiko@sntech.de, hverkuil-cisco@xs4all.nl,
-	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-	conor+dt@kernel.org, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	thomas.petazzoni@bootlin.com, alexandre.belloni@bootlin.com,
-	maxime.chevallier@bootlin.com
-Subject: Re: [PATCH v11 2/3] media: rockchip: Add a driver for Rockchip's
- camera interface
-Message-ID: <ZV3_xe6A0v7kKgmo@aptenodytes>
-References: <cover.1700132457.git.mehdi.djait@bootlin.com>
- <db605935ad21c4780b73db87605b52d30bc936a4.1700132457.git.mehdi.djait@bootlin.com>
- <ZVz58b0r4gtxyVQy@tom-HP-ZBook-Fury-15-G7-Mobile-Workstation>
- <9570dc1c-a437-46d4-95e7-1f3dd399e458@wolfvision.net>
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3C8C1A8;
+	Wed, 22 Nov 2023 05:22:40 -0800 (PST)
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 3AMD1JP9025028;
+	Wed, 22 Nov 2023 14:22:26 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=selector1; bh=+8et82r
+	Zp9iBNT80Xn81VQ4KpX7W59VuOEHler+hGgY=; b=hkvQ1PSjvn0BQLyVXHo8g/p
+	02LFgdp43zO9tJ74nQwyeDnKp9312KKEc0dUZqOUkAf6RPE5sbizl3OWK/ByLehb
+	KhwFMaGTEQFDkFI+B3qYqljTned/UevanF1UP+DMYuXqnPFQ2Ae6aHF137ITZN11
+	kPnttt0Hk1U2jlHF7FfV/lh12Z9UxlJbJQS8OjEZlz8SkSIApd07h5oztos6h9W/
+	WFfrKDgAuhWlGO04p+mKSoIxwok1eU/PTkp520o29TeGZzOSaCOqWtBDqry2KXxu
+	Tw/gdaTaCcBPQBglM7zYEqYRdsmj1FBM8UWc0Ks8DQ/KC3fiZhRILELcIkEFM4w=
+	=
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3uen1pf3m2-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 22 Nov 2023 14:22:26 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 390E410004B;
+	Wed, 22 Nov 2023 14:22:26 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 2E5EB22A6C3;
+	Wed, 22 Nov 2023 14:22:26 +0100 (CET)
+Received: from localhost (10.201.21.240) by SHFDAG1NODE1.st.com (10.75.129.69)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Wed, 22 Nov
+ 2023 14:22:25 +0100
+From: <gabriel.fernandez@foss.st.com>
+To: Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd
+	<sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+CC: <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v3 0/5] Introduce STM32MP257 clock driver
+Date: Wed, 22 Nov 2023 14:21:51 +0100
+Message-ID: <20231122132156.158103-1-gabriel.fernandez@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="QupFpwrHhFERsze/"
-Content-Disposition: inline
-In-Reply-To: <9570dc1c-a437-46d4-95e7-1f3dd399e458@wolfvision.net>
-X-GND-Sasl: paul.kocialkowski@bootlin.com
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-22_09,2023-11-22_01,2023-05-22_02
 
+From: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
 
---QupFpwrHhFERsze/
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This patch-set introduces clock driver for STM32MP257 based on Arm Cortex-35.
+It creates also a menuconfig for all STM32MP clock drivers.
+The STM32MP1 and STM32MP13 are now in same stm32 directory
 
-Hi Michael,
+v3:
+  - fix remark from Rob Herring in YAML documentation
+v2:
+  - rework reset binding (use ID witch start from 0)
+  - rework reset driver to manage STM32MP13 / STM32MP15 / STM32MP25
+  - rework YAML documentation
 
-On Wed 22 Nov 23, 13:42, Michael Riesch wrote:
-> Hi Tommaso,
->=20
-> On 11/21/23 19:41, Tommaso Merciai wrote:
-> > Hi Mehdi,
-> >=20
-> > On Thu, Nov 16, 2023 at 12:04:39PM +0100, Mehdi Djait wrote:
-> >> This introduces a V4L2 driver for the Rockchip CIF video capture contr=
-oller.
-> >>
-> >> This controller supports multiple parallel interfaces, but for now onl=
-y the
-> >> BT.656 interface could be tested, hence it's the only one that's suppo=
-rted
-> >> in the first version of this driver.
-> >>
-> >> This controller can be found on RK3066, PX30, RK1808, RK3128 and RK328=
-8,
-> >> but for now it's only been tested on the PX30.
-> >>
-> >> CIF is implemented as a video node-centric driver.
-> >>
-> >> Most of this driver was written following the BSP driver from rockchip,
-> >> removing the parts that either didn't fit correctly the guidelines, or=
- that
-> >> couldn't be tested.
-> >>
-> >> This basic version doesn't support cropping nor scaling and is only
-> >> designed with one SDTV video decoder being attached to it at any time.
-> >>
-> >> This version uses the "pingpong" mode of the controller, which is a
-> >> double-buffering mechanism.
-> >>
-> >> Signed-off-by: Mehdi Djait <mehdi.djait@bootlin.com>
-> >> ---
-> >>  MAINTAINERS                                   |    7 +
-> >>  drivers/media/platform/rockchip/Kconfig       |    1 +
-> >>  drivers/media/platform/rockchip/Makefile      |    1 +
-> >>  drivers/media/platform/rockchip/cif/Kconfig   |   13 +
-> >>  drivers/media/platform/rockchip/cif/Makefile  |    3 +
-> >>  drivers/media/platform/rockchip/cif/capture.c | 1120 +++++++++++++++++
-> >>  drivers/media/platform/rockchip/cif/capture.h |   21 +
-> >>  drivers/media/platform/rockchip/cif/common.h  |  129 ++
-> >>  drivers/media/platform/rockchip/cif/dev.c     |  302 +++++
-> >>  drivers/media/platform/rockchip/cif/regs.h    |  127 ++
-> >>  10 files changed, 1724 insertions(+)
-> >>  create mode 100644 drivers/media/platform/rockchip/cif/Kconfig
-> >>  create mode 100644 drivers/media/platform/rockchip/cif/Makefile
-> >>  create mode 100644 drivers/media/platform/rockchip/cif/capture.c
-> >>  create mode 100644 drivers/media/platform/rockchip/cif/capture.h
-> >>  create mode 100644 drivers/media/platform/rockchip/cif/common.h
-> >>  create mode 100644 drivers/media/platform/rockchip/cif/dev.c
-> >>  create mode 100644 drivers/media/platform/rockchip/cif/regs.h
-> >=20
-> > Just a logigistic comment on my side for now, sorry :)
-> > What about use cif-* prefix in front of driver files?
-> >=20
-> > like:
-> >=20
-> > cif-capture.c
-> > cif-capture.h
-> > cif-common.h
-> > cif-dev.c
-> > cif-regs.h
->=20
-> What would be the rationale here?
->=20
-> IMHO the files are in a folder named cif, so adding this prefix seems
-> kind of redundant.
->=20
-> That said, if there is a good reason I could live with cif-*.{c,h} as
-> well, of course. My only request would be to agree on something ASAP.
+Gabriel Fernandez (5):
+  clk: stm32mp1: move stm32mp1 clock driver into stm32 directory
+  clk: stm32mp1: use stm32mp13 reset driver
+  dt-bindings: stm32: add clocks and reset binding for stm32mp25
+    platform
+  clk: stm32: introduce clocks for STM32MP257 platform
+  arm64: dts: st: add rcc support in stm32mp251
 
-It's rather common to do that in Linux and one advantage is that it makes it
-clear in your text editor which driver you are looking at when only the file
-name is shown.
+ .../bindings/clock/st,stm32mp25-rcc.yaml      |   76 +
+ arch/arm64/boot/dts/st/stm32mp251.dtsi        |   59 +-
+ drivers/clk/Kconfig                           |   11 +-
+ drivers/clk/Makefile                          |    1 -
+ drivers/clk/stm32/Kconfig                     |   36 +
+ drivers/clk/stm32/Makefile                    |    2 +
+ drivers/clk/stm32/clk-stm32-core.c            |    5 +-
+ drivers/clk/stm32/clk-stm32-core.h            |    5 +-
+ drivers/clk/{ => stm32}/clk-stm32mp1.c        |  127 +-
+ drivers/clk/stm32/clk-stm32mp13.c             |    9 +-
+ drivers/clk/stm32/clk-stm32mp25.c             | 1125 ++++
+ drivers/clk/stm32/reset-stm32.c               |   76 +-
+ drivers/clk/stm32/reset-stm32.h               |   15 +-
+ drivers/clk/stm32/stm32mp25_rcc.h             | 4977 +++++++++++++++++
+ include/dt-bindings/clock/st,stm32mp25-rcc.h  |  492 ++
+ include/dt-bindings/reset/st,stm32mp25-rcc.h  |  165 +
+ 16 files changed, 7000 insertions(+), 181 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/st,stm32mp25-rcc.yaml
+ create mode 100644 drivers/clk/stm32/Kconfig
+ rename drivers/clk/{ => stm32}/clk-stm32mp1.c (95%)
+ create mode 100644 drivers/clk/stm32/clk-stm32mp25.c
+ create mode 100644 drivers/clk/stm32/stm32mp25_rcc.h
+ create mode 100644 include/dt-bindings/clock/st,stm32mp25-rcc.h
+ create mode 100644 include/dt-bindings/reset/st,stm32mp25-rcc.h
 
-I don't have any strong opinion on this either though.
+-- 
+2.25.1
 
-Cheers,
-
-Paul
-
---=20
-Paul Kocialkowski, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
-
---QupFpwrHhFERsze/
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAmVd/8UACgkQ3cLmz3+f
-v9ERgggAlGFeYIALRi2unibzWF/Kw1uv29RulA7nx3yFQuPAvkgq8posHx2e2E6Y
-smNvcTOfiSyhtgmzvY8z6p0lMsQ6DtAg6KMrQ491mSEfPNocw5QouLIgFtsTDvCV
-BJg4aSOlBFaEERlgUOpLJBykVuFiod3qhf4bJbW+2IEAOfwycDrSYi/YOL6u9QfU
-nEuJlCQ1t3vfRiooxDnlZVr7fC6gfVW6CLKQPEa6+Pd/Nv6FSlmk37BcQD3QzlFc
-pKyw/n1NVmr26TXCQzyszTP4w38vuyIE8GrupXttgXkd7GzdDowku7vAyrVF1oMq
-AUGHco5aawKc3ei0C9e7mpW45jHnVA==
-=fucA
------END PGP SIGNATURE-----
-
---QupFpwrHhFERsze/--
 
