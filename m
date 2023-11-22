@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-17851-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17852-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40FF67F4497
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 12:02:45 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D2F67F449C
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 12:02:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7340B1C20A51
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 11:02:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E238DB20ED3
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 11:02:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5F0226292;
-	Wed, 22 Nov 2023 11:02:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B9491C2BA;
+	Wed, 22 Nov 2023 11:02:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-il1-f182.google.com (mail-il1-f182.google.com [209.85.166.182])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7BA3198;
-	Wed, 22 Nov 2023 03:02:39 -0800 (PST)
-Received: by mail-il1-f182.google.com with SMTP id e9e14a558f8ab-359d559766cso23728325ab.1;
-        Wed, 22 Nov 2023 03:02:39 -0800 (PST)
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 197701BC;
+	Wed, 22 Nov 2023 03:02:42 -0800 (PST)
+Received: by mail-il1-f182.google.com with SMTP id e9e14a558f8ab-35af64a180eso12470775ab.1;
+        Wed, 22 Nov 2023 03:02:42 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700650959; x=1701255759;
+        d=1e100.net; s=20230601; t=1700650961; x=1701255761;
         h=date:subject:message-id:references:in-reply-to:cc:to:from
          :mime-version:content-transfer-encoding:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=hysRT5p62CMdMmCQloI5SV6AT3d/MMAHRidqQnYCAwU=;
-        b=GXc+EMXGIh9rGz/+otSQnij1zQTbrUk8VO0MsQREG1UF9qjAIXnGZKAEEDG2H1FetB
-         F8eGgc5Hzpo2LnnGi7tjDcvuS14yCTbglsq82Ivds0Q83HCMMs0azMJ+PzRJaWsbIzen
-         z9mnwel431nbsh9qbvsZ088hHvJEHm623XDXsXQy27h2HXFqHhpZomW66Mm1PYvlLt1t
-         2p1/X3C/KbtljgCc4U9bh6B5TaDwqQVfx425A4v50wP8VjNHpH1L3J4QbNca55ESP9i1
-         5lI7N4y8Dxpmvveb3TNPAj65zVdTICsl+gFr7N2OTQxtRkpnobzARrHTYLqgT+b94Tl6
-         x17g==
-X-Gm-Message-State: AOJu0YyrVWmdwNl8KXaSqpSkmWEpqtYZo5ytZzc4YTdl/5XYakg2TcUv
-	wStM01eKNkFCHqRqutvBSty/ZgajZw==
-X-Google-Smtp-Source: AGHT+IGqcztZBkfnygd9n634B1WSm2HzbbRNzdj7N4qFsNXK5h5vKxiqUMmKY3wexuqXOCDWyvXczg==
-X-Received: by 2002:a92:760a:0:b0:359:38ab:5a55 with SMTP id r10-20020a92760a000000b0035938ab5a55mr1771540ilc.22.1700650959108;
-        Wed, 22 Nov 2023 03:02:39 -0800 (PST)
+        bh=37b50Ev+C321yHURRCxSYatL1XpG82qMnHWxKFeqz/s=;
+        b=V9gg+DWH+UALwDhLexAIu2u3laaZFByY91pxPH2DESRn+hRrvEq9xvaFx2a8+SxsSm
+         qiUEjOlp5BiDJj3L31b9YrSYmuhW05Z21uE98a+CGgMwrzvqm37Y9k/05iTaUDmmKimC
+         K2dbrGFhdDOald90xhvWBfm1+KAmj4OOd0fmI4wu+1mWAHIVQM1FYoJyw08tqPYhRnc2
+         Q9bYsMqjbOD0geWkRhKipqWnkrR6wQRlWHZ02zw0xVysM5pqv1URooNalH3X9WKF/ZG5
+         0WQAXRFTfhfqq9X9a8Cm8FqiBLxfM/nBGZGKwkykHK5d2A8NGA8L9BUogxPKBMrfhbug
+         gPpw==
+X-Gm-Message-State: AOJu0Yz6OQ9RNHz8JWCiQtCKtcMH69wrlaKSk9bmhNSn3sjP25mf89X9
+	1HnKnFVEszxDX+LuBo+J+Q==
+X-Google-Smtp-Source: AGHT+IH6ogt517iqYk9AZoAU+//31SbIw+1vYBRUiEwIBYneASGtzIQRQL3D6XoUTRBzx+i5pSFJbQ==
+X-Received: by 2002:a92:d48f:0:b0:35b:ac:51d3 with SMTP id p15-20020a92d48f000000b0035b00ac51d3mr1730631ilg.0.1700650961322;
+        Wed, 22 Nov 2023 03:02:41 -0800 (PST)
 Received: from herring.priv ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id u17-20020a92da91000000b0035b0ad262e2sm1590867iln.47.2023.11.22.03.02.37
+        by smtp.gmail.com with ESMTPSA id s16-20020a02cf30000000b0046676167055sm636827jar.129.2023.11.22.03.02.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Nov 2023 03:02:38 -0800 (PST)
-Received: (nullmailer pid 116330 invoked by uid 1000);
+        Wed, 22 Nov 2023 03:02:40 -0800 (PST)
+Received: (nullmailer pid 116322 invoked by uid 1000);
 	Wed, 22 Nov 2023 11:02:29 -0000
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -52,23 +52,24 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: Rob Herring <robh@kernel.org>
 To: Nikita Shubin <nikita.shubin@maquefel.me>
-Cc: Hartley Sweeten <hsweeten@visionengravers.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org, linux-sound@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>, Alexander Sverdlin <alexander.sverdlin@gmail.com>, Conor Dooley <conor+dt@kernel.org>
-In-Reply-To: <20231122-ep93xx-v5-28-d59a76d5df29@maquefel.me>
+Cc: Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Alexander Sverdlin <alexander.sverdlin@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-ide@vger.kernel.org, Damien Le Moal <dlemoal@kernel.org>, devicetree@vger.kernel.org
+In-Reply-To: <20231122-ep93xx-v5-20-d59a76d5df29@maquefel.me>
 References: <20231122-ep93xx-v5-0-d59a76d5df29@maquefel.me>
- <20231122-ep93xx-v5-28-d59a76d5df29@maquefel.me>
-Message-Id: <170065094949.116273.16587209565152503484.robh@kernel.org>
-Subject: Re: [PATCH v5 28/39] ASoC: dt-bindings: ep93xx: Document Audio
- Port support
+ <20231122-ep93xx-v5-20-d59a76d5df29@maquefel.me>
+Message-Id: <170065094061.116059.15829335537567838120.robh@kernel.org>
+Subject: Re: [PATCH v5 20/39] dt-bindings: ata: Add Cirrus EP93xx
 Date: Wed, 22 Nov 2023 04:02:29 -0700
 
 
-On Wed, 22 Nov 2023 12:00:06 +0300, Nikita Shubin wrote:
-> Document Audio Graph Port support in binding document.
+On Wed, 22 Nov 2023 11:59:58 +0300, Nikita Shubin wrote:
+> Add YAML bindings for ep93xx SoC PATA.
 > 
+> Acked-by: Damien Le Moal <dlemoal@kernel.org>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
 > ---
->  Documentation/devicetree/bindings/sound/cirrus,ep9301-i2s.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
+>  .../bindings/ata/cirrus,ep9312-pata.yaml           | 42 ++++++++++++++++++++++
+>  1 file changed, 42 insertions(+)
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -81,7 +82,7 @@ dtschema/dtc warnings/errors:
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231122-ep93xx-v5-28-d59a76d5df29@maquefel.me
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231122-ep93xx-v5-20-d59a76d5df29@maquefel.me
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
