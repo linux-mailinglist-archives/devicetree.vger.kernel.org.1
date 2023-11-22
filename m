@@ -1,114 +1,104 @@
-Return-Path: <devicetree+bounces-17987-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17988-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18DA97F4B35
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 16:42:02 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 856077F4B3F
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 16:43:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4AF371C20AB4
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 15:42:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B7B611C20B10
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 15:43:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5989056454;
-	Wed, 22 Nov 2023 15:41:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24E584EB4E;
+	Wed, 22 Nov 2023 15:42:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="mji1BkSe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0516C2705;
-	Wed, 22 Nov 2023 07:41:53 -0800 (PST)
-Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-5cce5075bd6so2134947b3.0;
-        Wed, 22 Nov 2023 07:41:53 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700667713; x=1701272513;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=QFZqsVfgRqiOD91xrpniJbD3hy+jg6Mb4nasXbDgGQI=;
-        b=hL8USkXMMoGl/BNsfRPmuiSb5X37/LrA2kS1qgxDme4yDih5kP7vpR6wpsedlL57Fw
-         5UR4wEzTKaJZbG++rKyXl2Rm71ZoZFkqLyk907NnTxwVQmoqSgQYSi46FskQIyyU0cJo
-         RcVA11Cz8vtL/zjeuw9B61gCnV7X11s6OJPW/H0mhn1SoVfSiXbUbayxu83BWhedp4yr
-         2yUzz0tSwwvHV0Sosk/pM+2CaiIDdUOJnFrdFUfbzlnHRP2NTC/1X+jHmvSTk/cnSNGW
-         qd3Js8fKE1+ilTCWzBoEPTYaxMWnE7KmmIDDAdQbtgljjR2ZVR1vsPNxN3PquD3CwU/S
-         zd+Q==
-X-Gm-Message-State: AOJu0YytUfbbnlWAq0BtmQtKsD+Iof55Bq5qA70DLYmXbnqvT+DIxHb/
-	K0ibS96lTrbRogyzjrF5FvvF+Q3xz1123w==
-X-Google-Smtp-Source: AGHT+IG/goYMXuUzgOytIxNuIDF0icJenMbqSH9fsdEuUXJt+OEKtqLJ8myE9MZf+UJCffzDczhPAA==
-X-Received: by 2002:a81:6c06:0:b0:5ca:4b7d:87e3 with SMTP id h6-20020a816c06000000b005ca4b7d87e3mr2258761ywc.3.1700667712806;
-        Wed, 22 Nov 2023 07:41:52 -0800 (PST)
-Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com. [209.85.128.179])
-        by smtp.gmail.com with ESMTPSA id t19-20020a817813000000b005cb63f630bcsm1331801ywc.31.2023.11.22.07.41.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Nov 2023 07:41:50 -0800 (PST)
-Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-5ccf64439bdso1064937b3.0;
-        Wed, 22 Nov 2023 07:41:50 -0800 (PST)
-X-Received: by 2002:a0d:d6cb:0:b0:5c9:b020:71b3 with SMTP id
- y194-20020a0dd6cb000000b005c9b02071b3mr2165932ywd.11.1700667710443; Wed, 22
- Nov 2023 07:41:50 -0800 (PST)
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD1FF1722;
+	Wed, 22 Nov 2023 07:42:53 -0800 (PST)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3AMFgkoF031020;
+	Wed, 22 Nov 2023 09:42:46 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1700667766;
+	bh=DLJe1Pv87UHy4+v/+5Kl00sc0UqsngVKRFxbrZDoRBc=;
+	h=From:To:CC:Subject:Date;
+	b=mji1BkSeSk8jptEDhZpS9TG7R2mKKMR2VLHw0WFskUBSkNtKuiospkQSzYFuezXWv
+	 maYIxJIFzleiV9fuBCC5pEkWrgABRPWkz6qWW7MOcMzn2iRLlZjOJzd3PQs+mA3VPR
+	 7xjLF7FsySaoedySQEEVOP/Dizw3LS6+/GpDLbk8=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3AMFgkMn011949
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 22 Nov 2023 09:42:46 -0600
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 22
+ Nov 2023 09:42:45 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 22 Nov 2023 09:42:45 -0600
+Received: from uda0132425.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3AMFggJl046973;
+	Wed, 22 Nov 2023 09:42:43 -0600
+From: Vignesh Raghavendra <vigneshr@ti.com>
+To: Peter Ujfalusi <peter.ujfalusi@gmail.com>, Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <dmaengine@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH v2 0/4] dt-bindings: dma: ti: k3*: Update optional reg regions
+Date: Wed, 22 Nov 2023 21:12:34 +0530
+Message-ID: <20231122154238.815781-1-vigneshr@ti.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231120160740.3532848-1-niklas.soderlund+renesas@ragnatech.se>
- <2ab74479-f1fb-4faf-b223-ae750b4c08ce@linaro.org> <ZVyeMKjVhjW2F2e0@oden.dyn.berto.se>
- <badce6b1-c614-4fc2-b3a2-5b1b5c011a80@lunn.ch> <CAMuHMdWYFrx-CUapCQPX=hJtZBHycRTyN-dq8fXSXZwOiPJDMw@mail.gmail.com>
- <7fce3813-daa6-41ac-8167-21ccdd733fbc@lunn.ch>
-In-Reply-To: <7fce3813-daa6-41ac-8167-21ccdd733fbc@lunn.ch>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 22 Nov 2023 16:41:37 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXTKoewsQaw2o5oqE3BfjCAYNxYNoNX9ujhOSSyR+W7fQ@mail.gmail.com>
-Message-ID: <CAMuHMdXTKoewsQaw2o5oqE3BfjCAYNxYNoNX9ujhOSSyR+W7fQ@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: net: renesas,ethertsn: Add bindings for
- Ethernet TSN
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, devicetree@vger.kernel.org, 
-	netdev@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi Andrew,
+DMAs on TI K3 SoCs have channel configuration registers region which are
+usually hidden from Linux and configured via Device Manager Firmware
+APIs. But certain early SWs like bootloader which run before Device
+Manager is fully up would need to directly configure these registers and
+thus require to be in DT description.
 
-On Wed, Nov 22, 2023 at 2:57=E2=80=AFPM Andrew Lunn <andrew@lunn.ch> wrote:
-> > > In general, we try to have the PHY add the delay, not the MAC. So i
-> > > would start with hard coding the delay to 0ns, and only implement
-> > > these properties if you have a board where the PHY cannot add the
-> > > delay.
-> >
-> > If I understand the KSZ9031 bindings correctly, that PHY is limited to
-> > a skew of up to 960 ps, not 1800 or 2000 ps.
->
-> Reading ksz9031_config_rgmii_delay(), it implements the four
-> PHY_INTERFACE_MODE_RGMII* interface modes. So it should be able to
-> provide the 2ns delay. Sometimes the tuning ability is relative to the
-> base delay. So maybe it can do 2n +- 0.960/2 ?
+This add bindings for such configuration regions. Backward
+compatibility is maintained to existing DT by only mandating existing
+regions to be present and this new region as optional.
 
-Oh, I do remember the regressions when the KSZ9031 driver started
-implementing that :-(  See commit a6f51f2efa742df0 ("ravb: Add support
-for explicit internal clock delay configuration") and the commits it
-links to.
+This update is mainly to aid SPL/U-Boot to reuse kernel DT as is. And is
+applicable to entire K3 family of SoCs.
 
-> Anyway, try interface mode "rgmii_id" with the MAC not providing any
-> delay.
+v2:
+Fix issues pointed out by Conor and Peter
+* Add new patch 1/4 to describe existing register regions
+* Rename cfg region as ring
+* Add bchan register space for bcdma
+* Include descriptions for new registers
+v1: https://lore.kernel.org/all/20230810174356.3322583-1-vigneshr@ti.com/
 
-That's more or less what we had before, cfr. commit 9b81018185965a30
-("arm64: dts: renesas: rcar-gen3: Convert EtherAVB to explicit delay
-handling")...
+Vignesh Raghavendra (4):
+  dt-bindings: dma: ti: k3-*: Add descriptions for register regions
+  dt-bindings: dma: ti: k3-bcdma: Describe cfg register regions
+  dt-bindings: dma: ti: k3-pktdma: Describe cfg register regions
+  dt-bindings: dma: ti: k3-udma: Describe cfg register regions
 
-Gr{oetje,eeting}s,
+ .../devicetree/bindings/dma/ti/k3-bcdma.yaml  | 43 +++++++++++++------
+ .../devicetree/bindings/dma/ti/k3-pktdma.yaml | 26 +++++++++--
+ .../devicetree/bindings/dma/ti/k3-udma.yaml   | 20 +++++++--
+ 3 files changed, 71 insertions(+), 18 deletions(-)
 
-                        Geert
+-- 
+2.42.0
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
