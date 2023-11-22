@@ -1,149 +1,139 @@
-Return-Path: <devicetree+bounces-18055-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18056-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7DE77F4F65
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 19:24:37 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82D327F4F81
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 19:26:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 763471F20F0B
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 18:24:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B3BB51C20A75
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 18:26:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 633745D4A7;
-	Wed, 22 Nov 2023 18:24:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A9DE4F615;
+	Wed, 22 Nov 2023 18:26:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OoU9CU73"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DbWvSawq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2514DA4;
-	Wed, 22 Nov 2023 10:24:29 -0800 (PST)
-Received: by mail-pj1-x102c.google.com with SMTP id 98e67ed59e1d1-280109daaaaso84811a91.3;
-        Wed, 22 Nov 2023 10:24:29 -0800 (PST)
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D3C335A6
+	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 10:26:33 -0800 (PST)
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-a0064353af8so231623866b.0
+        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 10:26:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1700677468; x=1701282268; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+t8tXe6ccmmDxngyTtST79lozTn11v8rTEVF91HUREg=;
-        b=OoU9CU73x5gtbHjAjtnaLA8Nw3NOWKjoDTkewGBvnj4+yz59NBJBlo0XpEXwV2Azy/
-         My2AysBgqmkmG7lsXJHhLUvJfj43znaOpxKufL2DLfstc4cMbopaJSqQoehlmrL33yTD
-         yjovi0RfG3aGmw8KbXsLGdD8g6shQV8fn7+pLK17ZKgzsNULk6VJcY0uv/pC/GNe7B6V
-         yI5r6SqIyBgdMfffFxB5+bnmfORwFySxA0RUMC/yNs9dQKFyy654F1QyYRRFhkNeAfAH
-         be7bjfRwGMZKVhPMVgX8JixzuU7J5yS3/7D48FctJ43TLp1hcb+3lQce6OAF5sMgK8gx
-         PR5A==
+        d=linaro.org; s=google; t=1700677591; x=1701282391; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=OiLR+rs0nNSbtMnisqs3nyj0wylcnvVL0KvgsQyvHBk=;
+        b=DbWvSawqBdVwf/NkPAIUShEQlA6mE02rHpqVfDeL1RxXTDt9SAvNoFI58oONb0csEO
+         0kS1XjXhADv39WvHSJhSz/7yvXDoRpbh6gSiX11kfegNXS3QCd9hocPDzhzZBj8PsWTR
+         pzJelYQ+iuYWDZLC2A6YqLbdHCeBPyytdj8P+ssLAVUZ+gCdNwlxdn2TBLrR7NbRsA75
+         6oZ30tymWtLD1Bb5K+dyGui05m7JmCr4zTK82L+SJW0BrkzdWqyIguvfnRORnhGGKCp4
+         ki202KDYYkTWFbN4WEH5RhCsOvqxdOoNAou7qFKLIGTICUwmHjqXJQYO1UJIgNrcg2On
+         ramA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700677468; x=1701282268;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+t8tXe6ccmmDxngyTtST79lozTn11v8rTEVF91HUREg=;
-        b=fgTLNHIbia+IWsKrtLFWHmXi4/PTFPTMq9TNxIYBx6IWFUJuDFPwrRBte+yMLTmM0A
-         4qZkJ/fpNAWSk7VezDqVzG3EI3RUPI61N7SxN7Vvnr9MaqbkYFdimCfOdGMx4uMVzxzi
-         Z7T2hGGm9uMXFmZ2BL69j3CKDr5gIPGMTr5vXDfXeZvWHaDQHvtjSGbTzBn+LPKYhDAM
-         wZNNTDNZlo7OyVLRe7rr4/+0dhQDwv5VjM5CD7q0YxLg7YyQOhYL28BRv8V/c9MsDzE3
-         dgrYDjNCXlZLSz9WCZdv6Aaflf549GQ2wvDk8AVdZpNcdOafFFIMeo6yC8MbwLT4IMW2
-         Rw4g==
-X-Gm-Message-State: AOJu0Yy+RU9eN5eFVxPwmXpUHxVVwmnNeN5LgmBLI5/HRFxAYt0+v9XO
-	3exx6KLmAWbk72RkWgk3imsMP6RoUY/bCw==
-X-Google-Smtp-Source: AGHT+IGS5KHFHXp/nc7YRlM8IKWltPPLo1UGYoMF2bslfzaQEcSItYt8gU4/7NQrm6qWPl4N2oI9Jg==
-X-Received: by 2002:a17:90b:4d0e:b0:27f:f7e9:cad9 with SMTP id mw14-20020a17090b4d0e00b0027ff7e9cad9mr3347137pjb.36.1700677468567;
-        Wed, 22 Nov 2023 10:24:28 -0800 (PST)
-Received: from localhost.localdomain ([49.205.245.83])
-        by smtp.gmail.com with ESMTPSA id x17-20020a170902ea9100b001cf6783fd41sm4897980plb.17.2023.11.22.10.24.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Nov 2023 10:24:28 -0800 (PST)
-From: Anand Moon <linux.amoon@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Anand Moon <linux.amoon@gmail.com>,
-	linux-amlogic@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v4 2/2] arm64: dts: amlogic: Used onboard usb hub reset on odroid n2
-Date: Wed, 22 Nov 2023 23:53:47 +0530
-Message-ID: <20231122182351.63214-3-linux.amoon@gmail.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231122182351.63214-1-linux.amoon@gmail.com>
-References: <20231122182351.63214-1-linux.amoon@gmail.com>
+        d=1e100.net; s=20230601; t=1700677591; x=1701282391;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=OiLR+rs0nNSbtMnisqs3nyj0wylcnvVL0KvgsQyvHBk=;
+        b=JFgK+Opmp81wfalx8yWyft3DJqF7ghuPqy20oZoWJFUWlJS95FvAmmscgrzy1w8zni
+         WOoE18xRw5JesIu00+G6OrXebPT8QBNdKI3RGvDkyhej73tWMyWmTL+SONHYPOtMHkDm
+         vYwtLpHxUOgu6wC+/GGA0bMH8lSK4DYtki1EV5yS5oVpxlTO0XL3+qlw0FJT8Zioo0Ag
+         8+TfLjhG6f0HzTi/u+mLQ572nyd2QSBmWpdIgGgeThUrqOloeGQaiU/GJn+lWTekLPz4
+         qIRkr8CRj6eDyAbnMBK37bMT3aix45RR4lhk0rZlxgeO+CkdG/Q/apYi2hYiENRKbf8Q
+         uFKg==
+X-Gm-Message-State: AOJu0YwiCkJAquBzXLsBo8zo64XKtCG0TJ7Rk3RyASghhT0i8LqmtEru
+	8bUVy7ZLDipkDWKsFXriMQwyIg==
+X-Google-Smtp-Source: AGHT+IH6q3jg2sWGzrLRpGFpQLuMHyJ2QfSMIKd/LeAX9I+3/S5nrA7l9NU5KLO8EnqTOU5RHkb+Ig==
+X-Received: by 2002:a17:907:6d01:b0:9ae:614e:4560 with SMTP id sa1-20020a1709076d0100b009ae614e4560mr366120ejc.29.1700677591683;
+        Wed, 22 Nov 2023 10:26:31 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.100])
+        by smtp.gmail.com with ESMTPSA id v15-20020a1709064e8f00b009928b4e3b9fsm55929eju.114.2023.11.22.10.26.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 Nov 2023 10:26:31 -0800 (PST)
+Message-ID: <16e57d64-4c8c-49cf-a9d7-6cdf27ace3c2@linaro.org>
+Date: Wed, 22 Nov 2023 19:26:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 08/39] dt-bindings: dma: Add Cirrus EP93xx
+Content-Language: en-US
+To: nikita.shubin@maquefel.me, Vinod Koul <vkoul@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Alexander Sverdlin <alexander.sverdlin@gmail.com>
+Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20231122-ep93xx-v5-0-d59a76d5df29@maquefel.me>
+ <20231122-ep93xx-v5-8-d59a76d5df29@maquefel.me>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231122-ep93xx-v5-8-d59a76d5df29@maquefel.me>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Odroid n2/n2+ previously use gpio-hog to reset the usb hub,
-switch to used on-board usb hub reset to enable the usb hub
-and enable power to hub.
+On 22/11/2023 09:59, Nikita Shubin via B4 Relay wrote:
+> From: Nikita Shubin <nikita.shubin@maquefel.me>
+> 
+> Add YAML bindings for ep93xx SoC DMA.
+> 
+> Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
+> ---
 
-Signed-off-by: Anand Moon <linux.amoon@gmail.com>
----
- .../dts/amlogic/meson-g12b-odroid-n2.dtsi     | 36 ++++++++++++-------
- 1 file changed, 24 insertions(+), 12 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-index 91c9769fda20..9e671444eca6 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-@@ -31,6 +31,30 @@ hub_5v: regulator-hub_5v {
- 		enable-active-high;
- 	};
- 
-+	/* USB hub supports both USB 2.0 and USB 3.0 root hub */
-+	usb-hub {
-+		dr_mode = "host";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		/* 2.0 hub on port 1 */
-+		hub_2_0: hub@1 {
-+			compatible = "usb5e3,610";
-+			reg = <1>;
-+			peer-hub = <&hub_3_0>;
-+			vdd-supply = <&usb_pwr_en>;
-+		};
-+
-+		/* 3.0 hub on port 4 */
-+		hub_3_0: hub@2 {
-+			compatible = "usb5e3,620";
-+			reg = <2>;
-+			peer-hub = <&hub_2_0>;
-+			reset-gpios = <&gpio GPIOH_4 GPIO_ACTIVE_LOW>;
-+			vdd-supply = <&vcc_5v>;
-+		};
-+	};
-+
- 	sound {
- 		compatible = "amlogic,axg-sound-card";
- 		model = "ODROID-N2";
-@@ -234,18 +258,6 @@ &gpio {
- 		"PIN_3",  /* GPIOX_17 */
- 		"PIN_5",  /* GPIOX_18 */
- 		"PIN_36"; /* GPIOX_19 */
--	/*
--	 * WARNING: The USB Hub on the Odroid-N2 needs a reset signal
--	 * to be turned high in order to be detected by the USB Controller
--	 * This signal should be handled by a USB specific power sequence
--	 * in order to reset the Hub when USB bus is powered down.
--	 */
--	usb-hub-hog {
--		gpio-hog;
--		gpios = <GPIOH_4 GPIO_ACTIVE_HIGH>;
--		output-high;
--		line-name = "usb-hub-reset";
--	};
- };
- 
- &i2c3 {
--- 
-2.42.0
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
 
 
