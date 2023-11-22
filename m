@@ -1,60 +1,39 @@
-Return-Path: <devicetree+bounces-17905-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17906-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 330147F4641
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 13:30:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B37B7F465B
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 13:35:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7BF2CB21727
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 12:30:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 44E40280F32
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 12:35:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49C5B4D12D;
-	Wed, 22 Nov 2023 12:29:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2DAF4D116;
+	Wed, 22 Nov 2023 12:35:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rXnivQSO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AmzKg1O3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D163EBD
-	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 04:29:49 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-32d9d8284abso4457040f8f.3
-        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 04:29:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700656188; x=1701260988; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=D7/IEsPSoqcbCGnjQk9n9ACFMykT4O66DCufcUuNtlQ=;
-        b=rXnivQSOZZkPfam0K2GQU4IMIT9gkSfzKBo6VZI2NicCs2XNo0WCkxO2XAG2oKKAj0
-         X896Tp5bOny8kmXJJpLrPQzUr8I4A2tFNg+h5TPem98geRoviq8nL0PmE/7gDfFsA8jq
-         /ETvlu1JfmQ9uwF5VqZLfcKNndl/iXBPlGaNqOZrtw6tu559mHq7RYMAtIvFYXhi/IUj
-         VO7lqmRC+/u889EnJQBb2igR3nt51C4837row7IfnaqDLVSfenriuNYU4s9/+yNlr9r/
-         zM/BkomEwGvoGyJau1gyaRHsA/eqDI7KPr6jF/9ObhZEQjLRFT1ie7X8z5tVpShQOPK0
-         Sr9w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700656188; x=1701260988;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=D7/IEsPSoqcbCGnjQk9n9ACFMykT4O66DCufcUuNtlQ=;
-        b=Ghd15gw9Fte6/13yjX6p2RipDDZCXNxrc5Q9jbbSWdO+YJ8JUIu2m1Wj5Aa/Mpn7Ri
-         L9igRcVK8676yoirmwU1En7kifLXuiI2YCO6vxsp7ppaFMShONUvcQrLc4bgGgHTwbtl
-         QZ22Kitzo5J5sOI5SpEWBbm/mIsucng7PiXz4lN1MuexyAWxNbT9l/41U8uL+AEAKeBU
-         JKOVJJCo/N3HM3RLSnEAUjndfsLpWow7lgPFOh2mSz6FeGjuuO6QoQbWcvUalnZQeeXt
-         OH4/wakBW+DUaJJ0IxrMz/lDbRfA0oHEiHJzX+b4RbyO+nHS08VuuQFIkNxZXi1UNWSB
-         Kp8w==
-X-Gm-Message-State: AOJu0YxajiaWi4uwtHxrGQu0uaUaDijQwhN0V2oNlGHpr+AWvRK0hks5
-	DQRwCxUsrSytCFmCZRS+hu756A==
-X-Google-Smtp-Source: AGHT+IHs+meqzVlrmHKTG91H+oZKP2cIaVi+IZTEjDwyYx+4zyzoSIJ9b16okQ4DpiF+VXH7aqKSzg==
-X-Received: by 2002:adf:fece:0:b0:31f:d2dc:df26 with SMTP id q14-20020adffece000000b0031fd2dcdf26mr1261052wrs.28.1700656188295;
-        Wed, 22 Nov 2023 04:29:48 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.100])
-        by smtp.gmail.com with ESMTPSA id x5-20020adfffc5000000b0032fb17c65desm17017156wrs.19.2023.11.22.04.29.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Nov 2023 04:29:47 -0800 (PST)
-Message-ID: <813224c2-398d-4c2d-8909-1839ce63be60@linaro.org>
-Date: Wed, 22 Nov 2023 13:29:47 +0100
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AADCA18B08;
+	Wed, 22 Nov 2023 12:35:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0685BC433C8;
+	Wed, 22 Nov 2023 12:35:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1700656525;
+	bh=1Ar0GKfipyRpyKssaDDz4nM10Fr0fuJQJLvwdTfE8yg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=AmzKg1O3K1rzLkH4aWS3nsfilpzZbpomRyyGlZ/CTQEpBpTWX6u2TsffsgMK0Rf1J
+	 41y6A2v2IxxsGu8ApVABHIiaEy9BRqPTagY9r71obCwfdOm2Yg5pI9b11mPdTIZu5v
+	 HclpKS5qWPQfozmDte3yQ8C1d184e9TCw8CMSQ12gWvizrxrRoLfhQKFY9NHlxBAzM
+	 6c7qVJvm4Zk3/jIa4CGlRPuU82VIUUzaDmUDiERfgFL1HTxNIGg6l54497QJUB4Vrt
+	 R9MTIXAeiz8mTI9nj7X+YTURDl2+KGeJlijEiLg868ahemoyTgIwZSx59Bb7KfV7u6
+	 pMVlbl6lFuTyQ==
+Message-ID: <ea997987-6a84-445c-a806-527d766569b1@kernel.org>
+Date: Wed, 22 Nov 2023 13:35:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,18 +41,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/9] ARM: dts: rockchip: rv1126: Add i2c2 nodes
+Subject: Re: [PATCH 2/2] dt-bindings: iio: temperature: add MLX90635 device
+ bindings
 Content-Language: en-US
-To: Tim Lunn <tim@feathertop.org>, linux-rockchip@lists.infradead.org,
+To: Crt Mori <cmo@melexis.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
  devicetree@vger.kernel.org
-Cc: Jagan Teki <jagan@edgeble.ai>, Rob Herring <robh+dt@kernel.org>,
- linux-arm-kernel@lists.infradead.org, Heiko Stuebner <heiko@sntech.de>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-References: <20231122122232.952696-1-tim@feathertop.org>
- <20231122122232.952696-5-tim@feathertop.org>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+References: <cover.1700648164.git.cmo@melexis.com>
+ <2e8b4a7d3ef4bc1c53bd0a849e4c31eaf2477f6b.1700648165.git.cmo@melexis.com>
+ <99d1808a-da04-4bc1-a1f7-cbd269adbbf0@kernel.org>
+ <CAKv63uv87srZ3gJxFASuGWV6cULXkN=gYi_L=BCcd3dgOFQEfw@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
  JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
@@ -83,90 +63,67 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  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
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231122122232.952696-5-tim@feathertop.org>
+ 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 fv0=
+In-Reply-To: <CAKv63uv87srZ3gJxFASuGWV6cULXkN=gYi_L=BCcd3dgOFQEfw@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 22/11/2023 13:22, Tim Lunn wrote:
-> Add i2c2 node and i2c2_xfer pinctrl for Rockchip RV1126
+On 22/11/2023 13:28, Crt Mori wrote:
+>>> +  Since measured object emissivity effects Infra Red energy emitted,
+>>> +  emissivity should be set before requesting the object temperature.
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: melexis,mlx90635
+>>
+>> It's the same as mlx90632. Add it there (as enum).
+>>
 > 
-> Signed-off-by: Tim Lunn <tim@feathertop.org>
-> ---
+> Properties are the same, but then you can't have much differences for
+> a temperature sensor. It has a bit worse relative measurement error
+> outside of the human body range and overall different DSP, register
+> map, even physical size - it's 1.8x1.8 mm compared to 90632 3x3 mm. I
+> was not sure how it qualifies for adding it as another enum, but I
+> went with the feeling that if it can reuse the driver, then it is an
+> enum, otherwise it is a new file. And I could not reuse anything from
+> 90632.
 > 
-> (no changes since v1)
-> 
->  arch/arm/boot/dts/rockchip/rv1126-pinctrl.dtsi | 10 ++++++++++
->  arch/arm/boot/dts/rockchip/rv1126.dtsi         | 15 +++++++++++++++
->  2 files changed, 25 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/rockchip/rv1126-pinctrl.dtsi b/arch/arm/boot/dts/rockchip/rv1126-pinctrl.dtsi
-> index 4f85b7b3fc4c..167a48afa3a4 100644
-> --- a/arch/arm/boot/dts/rockchip/rv1126-pinctrl.dtsi
-> +++ b/arch/arm/boot/dts/rockchip/rv1126-pinctrl.dtsi
-> @@ -87,6 +87,16 @@ i2c0_xfer: i2c0-xfer {
->  				<0 RK_PB5 1 &pcfg_pull_none_drv_level_0_smt>;
->  		};
->  	};
-> +	i2c2 {
-> +		/omit-if-no-ref/
-> +		i2c2_xfer: i2c2-xfer {
-> +			rockchip,pins =
-> +				/* i2c2_scl */
-> +				<0 RK_PC2 1 &pcfg_pull_none_drv_level_0_smt>,
-> +				/* i2c2_sda */
-> +				<0 RK_PC3 1 &pcfg_pull_none_drv_level_0_smt>;
-> +		};
-> +	};
->  	pwm2 {
->  		/omit-if-no-ref/
->  		pwm2m0_pins: pwm2m0-pins {
-> diff --git a/arch/arm/boot/dts/rockchip/rv1126.dtsi b/arch/arm/boot/dts/rockchip/rv1126.dtsi
-> index 6c5c928f06c7..cf1df75df418 100644
-> --- a/arch/arm/boot/dts/rockchip/rv1126.dtsi
-> +++ b/arch/arm/boot/dts/rockchip/rv1126.dtsi
-> @@ -21,6 +21,7 @@ / {
->  
->  	aliases {
->  		i2c0 = &i2c0;
-> +		i2c2 = &i2c2;
+> Thanks for quick feedback and best regards,
 
-No, this should be per-board to match board labeling/schematics.
-
-
+Driver is independent choice. There is no need for new binding file if
+everything is the same from bindings point of view.
 
 Best regards,
 Krzysztof
