@@ -1,57 +1,60 @@
-Return-Path: <devicetree+bounces-18082-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18083-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC3637F508D
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 20:28:20 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2514C7F5093
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 20:31:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1B3871C209E4
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 19:28:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C1747B20D90
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 19:31:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0F9D5E0B0;
-	Wed, 22 Nov 2023 19:28:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7FC05E0C4;
+	Wed, 22 Nov 2023 19:31:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="C/nsfLUd"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nkGHURid"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34B9D18E
-	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 11:28:14 -0800 (PST)
-Received: by mail-pf1-x435.google.com with SMTP id d2e1a72fcca58-6bd0e1b1890so149823b3a.3
-        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 11:28:14 -0800 (PST)
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5B381A4
+	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 11:31:22 -0800 (PST)
+Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-5094727fa67so81513e87.3
+        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 11:31:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1700681293; x=1701286093; darn=vger.kernel.org;
-        h=in-reply-to:autocrypt:from:references:cc:to:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=j1PSixXrtKFfudUgwWIO858hfs17GV++d4KVgCJiyWQ=;
-        b=C/nsfLUdGX96NfesCcT74pnEd7dqlttqh1R4D4/7p+CeyPLENjcSj+kvlfhos9j0sB
-         lGZXrX5RaMTyS8JMzq4C0ciGJcXWrNibjYlMmKDIiOzPvsIc5PSSphlS+ZNVIR37vrAm
-         +krDBpkKLDJcfKNeBQJrpCCfmWp9bKaN39fh4=
+        d=linaro.org; s=google; t=1700681481; x=1701286281; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/3Hb4WPhSaSPAUoOT6lB75q1bgT44dZFwIpXm+KkGko=;
+        b=nkGHURidAIDei8O3E5usUyMd4izr+Y45af4dYisXNK5Ucfn1/gj6m+kdZVLFBqLXWe
+         5F6EZVtNzFR7Q8QeYQ/vSBLeWGv6rhy+C4DPUdL6VEqi/QKyQ4MKO1fcDsOTPCuTf866
+         hJHkBREZxUS68gI+vKa9XtEeVPuRjt7B6qBmoECCD3Zg3i3i3arYJ+hbo7+ilGWu07s6
+         7YomS69xxuAa9u+YWGY9wTze5n35lwPRo/jhZg27Dr806SafNOGSG+DEXpf0rcCnZoGU
+         Y8S1zBSyhuyd9KA/+FjyggmHwgk3VF/kEFbwmvuHWFRE6D1ctZZkEEpE/7AvVedZEDng
+         mLmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700681293; x=1701286093;
-        h=in-reply-to:autocrypt:from:references:cc:to:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=j1PSixXrtKFfudUgwWIO858hfs17GV++d4KVgCJiyWQ=;
-        b=OjRmqLunKdJr42EDDGCRW2sSPBbzlqou0Rpk3SsFu9p/btA56GDgBg6dK+8opH/mFy
-         QZ3cJsfbeWdrHADozkFTToCUx7Y99dxKDzY+1ozLqur/KU53MEI9pTJBfOP7z8WXKTr1
-         LpxY9tCgvYmj46gEVFhVrsyYEchQoleRkFOaTcC+8jqJC2w8qDulEuw8lqgQCOQQX8MC
-         e2BKJxINmx6Zot7UelMHtjmI+v1nzL5W2GqPHbJq8PRhzKfRXiMXF7C/AdRnP4kArAGg
-         cgemifRHUrRf+PKQfeAZECxg+voUz/+wEVXByV9yRikASP9oVpddyVG/AfR8bouzEuTZ
-         0Xug==
-X-Gm-Message-State: AOJu0YwpH8/u6qNDvu+kBC8PbZ+G78NBUO9O4LanxPim2hLMl7WyZ23v
-	LbN5r+JLjsDANVLLQO/eEwtCsA==
-X-Google-Smtp-Source: AGHT+IH8baR03SIdksiKZEv2X9ioblPBb8qgzeSHzNezSYiNBMbfh7BOqFzBLueJLHyxrkk1TVT1MA==
-X-Received: by 2002:a05:6a20:779e:b0:187:845c:fcc0 with SMTP id c30-20020a056a20779e00b00187845cfcc0mr2765540pzg.22.1700681293520;
-        Wed, 22 Nov 2023 11:28:13 -0800 (PST)
-Received: from [192.168.1.3] (ip72-194-116-95.oc.oc.cox.net. [72.194.116.95])
-        by smtp.gmail.com with ESMTPSA id d21-20020a656b95000000b0059ce3d1def5sm40730pgw.45.2023.11.22.11.28.10
+        d=1e100.net; s=20230601; t=1700681481; x=1701286281;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/3Hb4WPhSaSPAUoOT6lB75q1bgT44dZFwIpXm+KkGko=;
+        b=Fr1TZy4T1/LzMtmmOygjNdXV5bmoLSxvjh5FmY9Cf9IOFljmSLuFeTuciJ2r+eaqBn
+         cS3kP5enc+T/V1JRGtdmewEjwQ5Js/LvsbQJAX3Mnp2/3LlFQdQ9NkigCekDJohCHe9v
+         ++ooZkzI1IZIG6olbEHb6vNZZ3dw6zTY7e22z7ZFIBaVvbGu0egZToqI0ci517QjL493
+         IN1ETBDlrHGE7TxZgwTZKkmzehNocLYyWBmdCldyhIZwebr9i3SXBhpc5x3bLYPs/aUN
+         8zmpvSI6RXX5luDecAVflptAyMIn8VuxudV+wNISCZRzmDUhJ9h5yvo3AlCdjzpk6U7b
+         TVkA==
+X-Gm-Message-State: AOJu0Yw6WbDMcekBYvUDsQzZrKWJ2fwg4C1oAixQrUohmDyV7/KqXpjM
+	xfR9P7s2kH/2JQq5a9QT/E/VQ1E2KSWdgwxzcYZy6yCV
+X-Google-Smtp-Source: AGHT+IG9PnDXoY4hN8COg/8KM91F4QysmaB1ycYccER3JxluzECblJt0qpgWnFM6mx7ZjbgcZ5+Ohg==
+X-Received: by 2002:a05:6512:3b9c:b0:503:261d:eab8 with SMTP id g28-20020a0565123b9c00b00503261deab8mr2918554lfv.28.1700681481136;
+        Wed, 22 Nov 2023 11:31:21 -0800 (PST)
+Received: from [172.30.204.74] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
+        by smtp.gmail.com with ESMTPSA id i4-20020a056512318400b005007e7211f7sm1938041lfe.21.2023.11.22.11.31.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Nov 2023 11:28:11 -0800 (PST)
-Message-ID: <fa527716-fe92-4fbd-a00a-9526d9cdc0ae@broadcom.com>
-Date: Wed, 22 Nov 2023 11:28:10 -0800
+        Wed, 22 Nov 2023 11:31:20 -0800 (PST)
+Message-ID: <675bce4e-1270-4e9e-b520-f3f4c1c5ee8a@linaro.org>
+Date: Wed, 22 Nov 2023 20:31:17 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,221 +62,37 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 1/2] dt-bindings: serial: add Broadcom's BCMBCA family
- High Speed UART
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- William Zhang <william.zhang@broadcom.com>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
- <zajec5@gmail.com>, Anand Gore <anand.gore@broadcom.com>,
- Kursad Oney <kursad.oney@broadcom.com>, Rob Herring <robh+dt@kernel.org>,
+Subject: Re: [PATCH v4 2/3] arm64: dts: qcom: pm8916: Add BMS and charger
+To: Nikita Travkin <nikita@trvn.ru>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Andre Przywara <andre.przywara@arm.com>,
- Alexandre TORGUE <alexandre.torgue@st.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, linux-serial@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- bcm-kernel-feedback-list@broadcom.com, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
- <rafal@milecki.pl>
-References: <20231122144208.21114-1-zajec5@gmail.com>
- <66c4b54b-7631-484a-9f7d-31542284e620@linaro.org>
- <08fcb328-fe4b-40c7-a01e-8a0b527b1c71@gmail.com>
- <758114a7-0b18-44e8-b3d8-b5aabd244279@linaro.org>
- <cac6aa8a-1515-4062-8922-4d1e31e9216e@gmail.com>
- <ff32cd00-e26b-4ba6-bb08-a89c702895c9@linaro.org>
- <57a77c9d-684e-4f5e-977a-4586e15f7c3e@gmail.com>
- <141deca9-6017-4e3f-a237-8dacc67662de@linaro.org>
- <03ad42c0-1648-43e1-bbd0-9ed02bdf4073@gmail.com>
- <b1f06f81-9248-73f3-b586-24e29bb9ab32@broadcom.com>
- <525384ca-f84e-471c-bc82-0029db6ccb77@linaro.org>
- <0321dad4-e94c-4eb8-96ae-4eaae62b3b29@linaro.org>
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
- 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
-In-Reply-To: <0321dad4-e94c-4eb8-96ae-4eaae62b3b29@linaro.org>
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-	boundary="00000000000066aea8060ac2b83a"
-
---00000000000066aea8060ac2b83a
+ Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+ Stephen Boyd <sboyd@kernel.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231120-pm8916-dtsi-bms-lbc-v4-0-4f91056c8252@trvn.ru>
+ <20231120-pm8916-dtsi-bms-lbc-v4-2-4f91056c8252@trvn.ru>
 Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20231120-pm8916-dtsi-bms-lbc-v4-2-4f91056c8252@trvn.ru>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-Spam-Level: *
 
-Howdy,
 
-On 11/22/2023 10:56 AM, Krzysztof Kozlowski wrote:
->>
->> What is xx? Wildcard? I mean... ehhh...
+
+On 11/20/23 15:03, Nikita Travkin wrote:
+> pm8916 contains some hardware blocks for battery powered devices:
 > 
-> OK, it's not worth my time. Neither Rafał's.
-
-Let me start of that I do get your point, but I also get William's.
-
-If you are going to use this email thread as proof that people should 
-not use wildcards or families in compatible strings, this is very much 
-worth everyone's time so we can actually detail better why that is an 
-issue. So far it has been described as an inadequate description of the 
-hardware which is somewhat fair, but subjective as well.
-
-The point of the fallback is precisely to express that the various HW IP 
-versions have a similar programming model and that unless specified 
-otherwise by a more descriptive compatible string, the driver can make 
-that assumption. This is entirely within the spirit of the DT spec:
-
-"""
-The compatible property value consists of one or more strings that 
-define the specific programming model for
-the device. This list of strings should be used by a client program for 
-device driver selection. The property
-value consists of a concatenated list of null terminated strings, from 
-most specific to most general. They allow
-a device to express its compatibility with a family of similar devices, 
-potentially allowing a single device driver
-to match against several devices
-"""
-
-we simply differ from the recommendation, which is a recommendation, 
-meaning deviation is allowed, and even that is entirely subjective:
-
-"""
-The recommended format is "manufacturer,model", where manufacturer is a 
-string describing the name
-of the manufacturer (such as a stock ticker symbol), and model specifies 
-the model number.
-""
-
-that kind of fits in. I suppose that if we like to paint ourselves in a 
-corner that allows us to simplify the logistics of maintaining our 
-platforms' DTS and drivers without bending the specification we should 
-be allowed to. How does that make your job as a DT maintainer any harder?
-
-I do not disagree that identifying the oldest SoC that featured the 
-specific block is best, but it may not always be that simple or that 
-descriptive either.
-
-There are a lot more properties and compatibles that are IMHO bending 
-the Device Tree to describe how they *intend* to get the HW configured 
-by the client program, and fall backs are really not amongst them IMHO.
-
-Anyway.
-
+> - VM-BMS: Battery voltage monitoring block.
+> - LBC: Linear battery charger.
 > 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Add them to the pmic dtsi so the devices that make use of those blocks
+> can enable them.
 > 
+> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
+> ---
+Acked-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Thanks.
--- 
-Florian
-
---00000000000066aea8060ac2b83a
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
-
-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
-riBJ/K1AFUjRAjFhGV64l++td7dkmnq/X8ET75ti+w1s4FRpFqkD2m7pg5NxdsZphYIXAgMBAAGj
-QjBAMA4GA1UdDwEB/wQEAwIBBjAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBSP8Et/qC5FJK5N
-UPpjmove4t0bvDANBgkqhkiG9w0BAQsFAAOCAQEAS0DbwFCq/sgM7/eWVEVJu5YACUGssxOGhigH
-M8pr5nS5ugAtrqQK0/Xx8Q+Kv3NnSoPHRHt44K9ubG8DKY4zOUXDjuS5V2yq/BKW7FPGLeQkbLmU
-Y/vcU2hnVj6DuM81IcPJaP7O2sJTqsyQiunwXUaMld16WCgaLx3ezQA3QY/tRG3XUyiXfvNnBB4V
-14qWtNPeTCekTBtzc3b0F5nCH3oO4y0IrQocLP88q1UOD5F+NuvDV0m+4S4tfGCLw0FREyOdzvcy
-a5QBqJnnLDMfOjsl0oZAzjsshnjJYS8Uuu7bVW/fhO4FCU29KNhyztNiUGUe65KXgzHZs7XKR1g/
-XzCCBVgwggRAoAMCAQICDBP8P9hKRVySg3Qv5DANBgkqhkiG9w0BAQsFADBbMQswCQYDVQQGEwJC
-RTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMg
-UGVyc29uYWxTaWduIDIgQ0EgMjAyMDAeFw0yMjA5MTAxMjE4MTFaFw0yNTA5MTAxMjE4MTFaMIGW
-MQswCQYDVQQGEwJJTjESMBAGA1UECBMJS2FybmF0YWthMRIwEAYDVQQHEwlCYW5nYWxvcmUxFjAU
-BgNVBAoTDUJyb2FkY29tIEluYy4xGTAXBgNVBAMTEEZsb3JpYW4gRmFpbmVsbGkxLDAqBgkqhkiG
-9w0BCQEWHWZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tMIIBIjANBgkqhkiG9w0BAQEFAAOC
-AQ8AMIIBCgKCAQEA+oi3jMmHltY4LMUy8Up5+1zjd1iSgUBXhwCJLj1GJQF+GwP8InemBbk5rjlC
-UwbQDeIlOfb8xGqHoQFGSW8p9V1XUw+cthISLkycex0AJ09ufePshLZygRLREU0H4ecNPMejxCte
-KdtB4COST4uhBkUCo9BSy1gkl8DJ8j/BQ1KNUx6oYe0CntRag+EnHv9TM9BeXBBLfmMRnWNhvOSk
-nSmRX0J3d9/G2A3FIC6WY2XnLW7eAZCQPa1Tz3n2B5BGOxwqhwKLGLNu2SRCPHwOdD6e0drURF7/
-Vax85/EqkVnFNlfxtZhS0ugx5gn2pta7bTdBm1IG4TX+A3B1G57rVwIDAQABo4IB3jCCAdowDgYD
-VR0PAQH/BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3Vy
-ZS5nbG9iYWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEG
-CCsGAQUFBzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWdu
-MmNhMjAyMDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93
-d3cuZ2xvYmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6
-hjhodHRwOi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNy
-bDAoBgNVHREEITAfgR1mbG9yaWFuLmZhaW5lbGxpQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggr
-BgEFBQcDBDAfBgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUUwwfJ6/F
-KL0fRdVROal/Lp4lAF0wDQYJKoZIhvcNAQELBQADggEBAKBgfteDc1mChZjKBY4xAplC6uXGyBrZ
-kNGap1mHJ+JngGzZCz+dDiHRQKGpXLxkHX0BvEDZLW6LGOJ83ImrW38YMOo3ZYnCYNHA9qDOakiw
-2s1RH00JOkO5SkYdwCHj4DB9B7KEnLatJtD8MBorvt+QxTuSh4ze96Jz3kEIoHMvwGFkgObWblsc
-3/YcLBmCgaWpZ3Ksev1vJPr5n8riG3/N4on8gO5qinmmr9Y7vGeuf5dmZrYMbnb+yCBalkUmZQwY
-NxADYvcRBA0ySL6sZpj8BIIhWiXiuusuBmt2Mak2eEv0xDbovE6Z6hYyl/ZnRadbgK/ClgbY3w+O
-AfUXEZ0xggJtMIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52
-LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwT
-/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIAvKXAJCq3vxx3iF
-Nv14scmY02SW7c/XArE/rftzS3YnMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
-AQkFMQ8XDTIzMTEyMjE5MjgxM1owaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
-AWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEH
-MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQBeiOFZHFjWmtzmt1ehwUTi2OB85YTe6I2T
-JIxwifGzH8bQO70+c0vEy3lVnICD5+ZtQOOe3xNGJ20xXHFk6VSQiXsRJPdJ7faLFaCjZLVKV7TD
-ujHsolDwR7YXu8npGT69fHQi2N5qrlvrXRzVSCYqNY6f8uIXNrXw2m97D1W/2uh3ssxZdvpbeqCn
-P4jOd6tSRQ65EJgQzOfOmQCWcXAkOgzSScoyPZYwTBdATWsX9TNU/+SInFETuzzpCYr7VBHYQdXq
-poarO0uZHIIqEMih5x9MG061QekVNlaZzIajSd89IisbguTFGN3bHoTd+7IiWUU8rY5p+Rmpic+9
-zVTp
---00000000000066aea8060ac2b83a--
+Konrad
 
