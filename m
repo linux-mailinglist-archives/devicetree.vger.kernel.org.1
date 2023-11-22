@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-17871-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17872-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 897067F4572
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 13:11:12 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AF667F4573
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 13:11:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C7A33B211D1
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 12:11:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E182AB21216
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 12:11:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20BE3208C9;
-	Wed, 22 Nov 2023 12:11:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19D33250E6;
+	Wed, 22 Nov 2023 12:11:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="amL0gLJp"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nua6vtqc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 327C9D66
-	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 04:10:39 -0800 (PST)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-9fffa4c4f43so404985066b.3
-        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 04:10:39 -0800 (PST)
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1ACAF1A8
+	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 04:11:00 -0800 (PST)
+Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-a00ac0101d9so346640766b.0
+        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 04:10:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700655037; x=1701259837; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1700655058; x=1701259858; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=B8iwxPg3znTscDLFGjlHjf+9rnyamV4Zgb4qX6qI79I=;
-        b=amL0gLJpsqWSH9K4MYwMchpZAyz51Kx8sSgMdX32KDoMPDbkkr2LHn7Itnr+VTxy3A
-         9od98Kuoi8g8b9ZNTav9GnO3uRRsrFRKRTPvYjuI7R+o7jxxDtxtqQJNg4kbN2mHFl6p
-         u+BMb/vIx6eMg7GXpzkPSEFIRU5ksuV+mEZ942fXcL94YhkdukmZqj/Zp/hFfSM87mEf
-         bgUInhp7acJYQb/mLnMQ5TyVXE+ETpmIZMlhc7nRNUC6z91vZ++zPFBDdX/P2KudX5cq
-         2TBMw8r4fxA0lpt6XctlTWtM5ZXCc13P6TwQ5DGu/oqCcHrc+TEyHZVBHdwlwWsoG7mZ
-         pmLQ==
+        bh=0gWytzWZiprdOyBf/AUmxGEuHaJwWmmvlOwhUmkAkGI=;
+        b=nua6vtqclQBO5Si6pUR2zoTM/ZhabewQVNNrW7UF6kEawhY1K7ZTLJbFv+8r4padFa
+         2RVJ/tq+V8kwYZJrEdYoI/YfncMI5WAn3NjBt4i5Wy0/GXXe1QIIg+h9j+PQs8kckiE2
+         85l7THxr8A79q2i+3zhnbI7MyNRH2eOCWj3OrRglvzSU1hx7bP935MVOsDq8pHKgOpgI
+         dIspJyQiqv277rYzLD4UdjYudPG7TDQvEac62zLzB2noGP89rA0F/q8chKwKvv0uQce3
+         6b352ohD9mg0TFoeQIVm4BwBc/YAk3dP/iBLwBCKW99jnJ4n48sJwEGLmIPkgbVxz8kn
+         ozJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700655037; x=1701259837;
+        d=1e100.net; s=20230601; t=1700655058; x=1701259858;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=B8iwxPg3znTscDLFGjlHjf+9rnyamV4Zgb4qX6qI79I=;
-        b=K//43HtBF/WYU925b38zBnI3JnxWAm5oIiqkvmx/TtlDG14sYuGXYuJrNRLjOFL/pc
-         8GqjpQi/QQos8Xt0opGzPeTtRZZitA/CkS+id+75T4X8u8Sbabp5JFoWp/JxDb2Sd61s
-         /n8o34sXT/jcUT2YzrmCnFT6roewwdW99iOrm+nyfEfCoMXPnLTGwO8WHkW6zPfXC1oo
-         P+W0JfDu1na14SzQlkkiaaBo+/zJlPTiyo9aKtbbf1KJP1428STF0BYPL+Wum6jlTkQs
-         cFu6YKlXmDPXkYDC0j6IUqdcWGu8vFbwgmU8j05u4bSuXW8Mv7trHiC76ICCuCNeBuf9
-         TUtw==
-X-Gm-Message-State: AOJu0YzDbjSPYoviCsADSbmCw2XQRekMbxTotXqk5nXzgvokVPQgKFfY
-	jV8MZ7LebAdfs9k+4airaq5mbA==
-X-Google-Smtp-Source: AGHT+IE9WTiEGyg3Co+EiMJg7naWKTSSMWT6BQryE2x6FGaasebtTtvNZ2H1ju0WlmsTIm94y6Y0CA==
-X-Received: by 2002:a17:906:3ed4:b0:a03:9dfb:5298 with SMTP id d20-20020a1709063ed400b00a039dfb5298mr1456972ejj.57.1700655037669;
-        Wed, 22 Nov 2023 04:10:37 -0800 (PST)
+        bh=0gWytzWZiprdOyBf/AUmxGEuHaJwWmmvlOwhUmkAkGI=;
+        b=C7PUoodMWRgWpUHsLBi3tS7FbOJ73e1DJJvK3fHNlHJvT2l1gV1nhdp+VPOZJCJFm4
+         jpIkftiILFIHCjdz6KNagUqwfVHAI+ZM1D1HowkR5fb2SLjePj5aNs/++yG9740eIF/h
+         L3NwxuTjtJQZ5z0mjMYtHKYj0iBhdA+azf771etVf10Xq7xTyXqGkuotd4azW4EtrhJA
+         iItGzXoDTVOcru0qvbJB2DdcG9yi+WjW0mqJomZw7oP7dkDRGPZCJy37vV5Gqntj2hbu
+         oQ5Jc7SAfzxbp78C5cz5g0thKwT8JugpDowD3we56O6drAmOMiCMmgybQ0LAC2b5OL/Z
+         /uYg==
+X-Gm-Message-State: AOJu0Yze4F7u1/2TUlEWjsbDFWIbpkgGy19iCmCovV+n/2SYbp1wxgrr
+	NL9FbLTOBiOQV1EOw7DFo3Jz5g==
+X-Google-Smtp-Source: AGHT+IGWfpaKrqWdDoC4SudbpjPEmLxNb8/PcsUAF949UR7RGpdjXvGZbmTrcSuPhwyBbp/gnlKlfg==
+X-Received: by 2002:a17:906:9c56:b0:a03:90a3:b775 with SMTP id fg22-20020a1709069c5600b00a0390a3b775mr120334ejc.27.1700655058502;
+        Wed, 22 Nov 2023 04:10:58 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.100])
-        by smtp.gmail.com with ESMTPSA id l20-20020a1709060e1400b009ff783d892esm3308741eji.146.2023.11.22.04.10.36
+        by smtp.gmail.com with ESMTPSA id l20-20020a1709060e1400b009ff783d892esm3308741eji.146.2023.11.22.04.10.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Nov 2023 04:10:37 -0800 (PST)
-Message-ID: <1d224284-7d8e-4f4e-a911-13fdfd54238b@linaro.org>
-Date: Wed, 22 Nov 2023 13:10:35 +0100
+        Wed, 22 Nov 2023 04:10:58 -0800 (PST)
+Message-ID: <aa463adc-0c8d-48e6-b7a4-36096fabdd59@linaro.org>
+Date: Wed, 22 Nov 2023 13:10:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,7 +62,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] phy: qcom: snps-eusb2: Add X1E80100 Compatible
+Subject: Re: [PATCH 1/2] dt-bindings: phy: qcom: snps-eusb2: Document the
+ X1E80100 compatible
 Content-Language: en-US
 To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
  Abel Vesa <abel.vesa@linaro.org>
@@ -74,8 +75,8 @@ Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
  linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20231122-phy-qualcomm-eusb2-x1e80100-v1-0-ce0991161847@linaro.org>
- <20231122-phy-qualcomm-eusb2-x1e80100-v1-2-ce0991161847@linaro.org>
- <CAA8EJpoKEd8B7KTwVb0TEk+Yk3kRXfhvtcdk0QUirOOV4wnUYA@mail.gmail.com>
+ <20231122-phy-qualcomm-eusb2-x1e80100-v1-1-ce0991161847@linaro.org>
+ <CAA8EJppov1ZtJvxyiXwik77bs5=dDfE_k_Wv8-DyzYtoEzvv4Q@mail.gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -121,36 +122,32 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CAA8EJpoKEd8B7KTwVb0TEk+Yk3kRXfhvtcdk0QUirOOV4wnUYA@mail.gmail.com>
+In-Reply-To: <CAA8EJppov1ZtJvxyiXwik77bs5=dDfE_k_Wv8-DyzYtoEzvv4Q@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 22/11/2023 12:01, Dmitry Baryshkov wrote:
+On 22/11/2023 12:02, Dmitry Baryshkov wrote:
 > On Wed, 22 Nov 2023 at 12:28, Abel Vesa <abel.vesa@linaro.org> wrote:
 >>
->> Add the X1E80100 to the list of supported PHYs for eUSB2
->> SNPS driver.
+>> Add the X1E80100 compatible to the list of supported PHYs.
 >>
 >> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 >> ---
->>  drivers/phy/qualcomm/phy-qcom-snps-eusb2.c | 1 +
+>>  Documentation/devicetree/bindings/phy/qcom,snps-eusb2-phy.yaml | 1 +
 >>  1 file changed, 1 insertion(+)
 >>
->> diff --git a/drivers/phy/qualcomm/phy-qcom-snps-eusb2.c b/drivers/phy/qualcomm/phy-qcom-snps-eusb2.c
->> index 1484691a41d5..6420f342dc85 100644
->> --- a/drivers/phy/qualcomm/phy-qcom-snps-eusb2.c
->> +++ b/drivers/phy/qualcomm/phy-qcom-snps-eusb2.c
->> @@ -425,6 +425,7 @@ static int qcom_snps_eusb2_hsphy_probe(struct platform_device *pdev)
->>
->>  static const struct of_device_id qcom_snps_eusb2_hsphy_of_match_table[] = {
->>         { .compatible = "qcom,sm8550-snps-eusb2-phy", },
->> +       { .compatible = "qcom,x1e80100-snps-eusb2-phy", },
+>> diff --git a/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-phy.yaml
+>> index 8f5d7362046c..ea1809efbf56 100644
+>> --- a/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-phy.yaml
+>> +++ b/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-phy.yaml
+>> @@ -21,6 +21,7 @@ properties:
+>>                - qcom,sm8650-snps-eusb2-phy
+>>            - const: qcom,sm8550-snps-eusb2-phy
 > 
-> Do we need a separate compatible string or is it fully compatible with
-> sm8550? If it is the same IP block, maybe you can use a fallback
-> compatible instead?
+> Ah, I think this answers my question for patch2. Can we instead reuse
+> the existing compat string as it was done for sm8650?
 
-Yep. This should use fallback.
+If not, commit msg should explain why it cannot.
 
 Best regards,
 Krzysztof
