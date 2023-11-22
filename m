@@ -1,109 +1,120 @@
-Return-Path: <devicetree+bounces-17757-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17756-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C86547F3FA8
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 09:07:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 81AC57F3FA7
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 09:07:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 83F852823B3
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 08:07:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 42D39282200
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 08:07:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22C4E210F6;
-	Wed, 22 Nov 2023 08:07:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D57C246BD;
+	Wed, 22 Nov 2023 08:07:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="XMm1SaV0"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="OAlHcKef"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDC5B1713;
-	Wed, 22 Nov 2023 00:07:17 -0800 (PST)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AM4gH27012024;
-	Wed, 22 Nov 2023 08:07:15 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=WaNSKnnyasR/yJdql1T0OrXObeKM0bmpGF0qzsXFcIg=;
- b=XMm1SaV0nWHIXXfs5zNpr9zUOW92c02kWjocaNOVxfFDAZrJyINTZMbBAeTfEWvduHN4
- 8e+X3Pw3Rr2XYhHlH/mOzqIRJcLEwGIClsmv+on2syXjPejFvtxYsBvEpAMgiVV/tfIf
- K4U2Kp1/Euj0jxZQUDa+cctDzVC+6ZfU4c2ak1pIjdfCzyGHQo3yHetitgB+L6R9AiBG
- ZxTnvodl/cVGnO3yRlZxzIs9B0/jTjJD6f1rIchVEOGBZAGYYUJnxLYG2Kix0nHhCj2D
- LlbPd9RldiVg9AYOh+BdSMFDg9DNnHihRAvUWroYklh1LSwUgzHIjr5aqPdF8dPVwbug rA== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ugssku8ku-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 22 Nov 2023 08:07:14 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AM87E9R000728
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 22 Nov 2023 08:07:14 GMT
-Received: from [10.216.60.121] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 22 Nov
- 2023 00:07:10 -0800
-Message-ID: <dbf10516-d927-4665-8471-c3126c72454e@quicinc.com>
-Date: Wed, 22 Nov 2023 13:37:07 +0530
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C620718E;
+	Wed, 22 Nov 2023 00:07:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1700640440; x=1732176440;
+  h=date:from:to:subject:message-id:references:mime-version:
+   in-reply-to;
+  bh=HzCmIqjiD/db2OVbbJ6fw6PB9pWnFmcUdmjHwNUjwaw=;
+  b=OAlHcKef/5awVohSEwnbUzrwn8UiUXJaV+oOQgkLCc5wIazlg/a3TCBy
+   Jw027fPq+iqzo7N3VPjSd7b3hJYx/bKE8qjFZHckSoZmC9SakW7+lePWe
+   hLU9BXbg2GfeSvHya+6ht/Np70eIo0D5yI4NKyqlRUSWZHT/7y990X+Ne
+   GNjmSymw6MWgFEjEG/Us0szn5Xjzc539Pqya16z3kwiK0tbXOU1ER2cm/
+   915R1xl0G4Xx9D/PaX/KELD5/RUe6TuSKfizIdoyFCydOmjTKYV4Zkr80
+   sji4P7dr69tgYanjtujn4oxkNvtKmRbquSj0JqDWYjgwwHNY7gZm22Vpq
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10901"; a="478214281"
+X-IronPort-AV: E=Sophos;i="6.04,218,1695711600"; 
+   d="scan'208";a="478214281"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Nov 2023 00:07:20 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10901"; a="832934951"
+X-IronPort-AV: E=Sophos;i="6.04,218,1695711600"; 
+   d="scan'208";a="832934951"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
+  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Nov 2023 00:07:16 -0800
+Received: from kekkonen.localdomain (localhost [127.0.0.1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id 110AF1202B6;
+	Wed, 22 Nov 2023 10:07:14 +0200 (EET)
+Date: Wed, 22 Nov 2023 08:07:14 +0000
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Hugues Fruchet <hugues.fruchet@foss.st.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Dan Scally <dan.scally@ideasonboard.com>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 0/5] Add support for DCMIPP camera interface of
+ STMicroelectronics STM32 SoC series
+Message-ID: <ZV22srRYwqKf3eKs@kekkonen.localdomain>
+References: <20231120170809.728941-1-alain.volmat@foss.st.com>
+ <ZVvNMPfW7OhPByZk@kekkonen.localdomain>
+ <20231122074404.GA787777@gnbcxd0016.gnb.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/8] arm64: dts: qcom: add initial SM8650 dtsi
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Andy Gross
-	<agross@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-References: <20231121-topic-sm8650-upstream-dt-v3-0-db9d0507ffd3@linaro.org>
- <20231121-topic-sm8650-upstream-dt-v3-2-db9d0507ffd3@linaro.org>
-Content-Language: en-US
-From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-In-Reply-To: <20231121-topic-sm8650-upstream-dt-v3-2-db9d0507ffd3@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: nCkv5VVtUwksutUDMYtlRJALYNA061nj
-X-Proofpoint-ORIG-GUID: nCkv5VVtUwksutUDMYtlRJALYNA061nj
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-22_06,2023-11-21_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 adultscore=0
- mlxscore=0 spamscore=0 clxscore=1011 malwarescore=0 mlxlogscore=347
- priorityscore=1501 impostorscore=0 lowpriorityscore=0 suspectscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311060000 definitions=main-2311220057
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231122074404.GA787777@gnbcxd0016.gnb.st.com>
 
-> +
-> +		usb_1: usb@a6f8800 {
-> +			compatible = "qcom,sm8650-dwc3", "qcom,dwc3";
-> +			reg = <0 0x0a6f8800 0 0x400>;
-> +
-> +			interrupts-extended = <&intc GIC_SPI 130 IRQ_TYPE_LEVEL_HIGH>,
-> +					      <&pdc 17 IRQ_TYPE_LEVEL_HIGH>,
-> +					      <&pdc 15 IRQ_TYPE_EDGE_RISING>,
-> +					      <&pdc 14 IRQ_TYPE_EDGE_RISING>;
-> +			interrupt-names = "hs_phy_irq",
+Hi Alain,
 
-Hi Neil,
+On Wed, Nov 22, 2023 at 08:44:04AM +0100, Alain Volmat wrote:
+> Hi Sakari,
+> 
+> On Mon, Nov 20, 2023 at 09:18:40PM +0000, Sakari Ailus wrote:
+> > Hi Alain,
+> > 
+> > On Mon, Nov 20, 2023 at 06:07:56PM +0100, Alain Volmat wrote:
+> > > This patchset introduces support for Digital Camera Memory Interface
+> > > Pixel Processor (DCMIPP) of STMicroelectronics STM32 SoC series.
+> > > 
+> > > This initial support implements a single capture pipe
+> > > allowing RGB565, YUV, Y, RAW8 and JPEG capture with
+> > > frame skipping, prescaling and cropping.
+> > > 
+> > > DCMIPP is exposed through 3 subdevices:
+> > > - dcmipp_dump_parallel: parallel interface handling
+> > > - dcmipp_dump_postproc: frame skipping, prescaling and cropping control
+> > > - dcmipp_dump_capture: video device capture node
+> > > 
+> > > v7:
+> > >   - correct byteproc set_fmt handling and compose/crop/fmt handling
+> > >   - replace few v4l2_subdev_get_try_* into v4l2_subdev_get_pad_*
+> > 
+> > Can you rebase this on my my linuxtv.org tree master branch
+> > <URL:https://git.linuxtv.org/sailus/media_tree.git/log/>?
+> > 
+> > These will be called v4l2_subdev_state_get_* now.
+> 
+> Ok, serie v8 is now rebased on top of the master branch of your tree.
+> I'm going to push the rebased gc2145 sensor driver as well in a moment.
 
-  This GIC_SPI 130 is actually pwr_event IRQ, not hs_phy_irq.
+Thanks. Hans said he's going to merge the API change later this week (Mauro
+might do that earlier), I'll take these then.
 
-> +					  "ss_phy_irq",
-> +					  "dm_hs_phy_irq",
-> +					  "dp_hs_phy_irq";
-> +
-
+-- 
 Regards,
-Krishna,
+
+Sakari Ailus
 
