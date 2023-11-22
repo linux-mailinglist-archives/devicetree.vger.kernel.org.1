@@ -1,60 +1,39 @@
-Return-Path: <devicetree+bounces-17968-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17969-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 019D37F4967
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 15:52:37 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AB197F496A
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 15:52:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 331F31C20B3F
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 14:52:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 240BD2815AD
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 14:52:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BA434EB39;
-	Wed, 22 Nov 2023 14:52:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 369844EB3C;
+	Wed, 22 Nov 2023 14:52:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="h0SAMHP3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H2nLHfrl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BFAF19E;
-	Wed, 22 Nov 2023 06:52:30 -0800 (PST)
-Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-a00b01955acso398133066b.1;
-        Wed, 22 Nov 2023 06:52:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1700664749; x=1701269549; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=mjduiYvtWvj6YfqCLtNYU3x26czSa8Mvw7FpNlOUzfw=;
-        b=h0SAMHP3E/5ZfoEz181XTbv0Upspdw5XLZDk19crcyTYpBz3nWG2t5xDnO9KsoHDhl
-         xdsSRyBQLbYwRJVObqUzASqGSM7xf8zz5K6KJS5IfSTBx+ZK9VSroESLUcflp4BJydH9
-         ZzGSSY3dGnMrpmCO5MiweWztV2lqxZXfh2P0YGEPyLQhKQuYfvYjgOzghCOzfv1lLtBK
-         sMdM2D4GUm0CXhTOluR6ISybGhd4xDuOPiZZZn3QI1Q8kt4q9tUAd9h9bkb0kdmdVQB7
-         sujU08MBbPZ+rGJ2GmOfDGm8kNJxOTqao5sVcO5ZDecNQddexqedkc/RmLbYlnkhKHzc
-         EAsg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700664749; x=1701269549;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mjduiYvtWvj6YfqCLtNYU3x26czSa8Mvw7FpNlOUzfw=;
-        b=mehQsga2FhfhlmlGazd5+hwiec55f+7/AczLN4cOIYkJ3ooqGgyPxKrN0SvhxJCono
-         F/JNhn3IHYRORXxab9JUAYXnCQKP7P7n19vHKBDfeff5OjXEPsfaZjdrCN6aXcdIIEcO
-         8196R6rBVmN6A5NKFu1bqrRRP+uuk4An1eHJCkjPEr0KZdmQA87DTaCytYYXtzfTaIjL
-         UxLBVp7pUSnvyZozm77AXg3LixvlAilKumpULDm5hTRV0wMlOXzcwwizOKVe8xZcGcRb
-         nR+wtAwF8iCx4dMr2ohkooE9yD2dZsny3quAKIQ+KL1/N5/531Jc1kWZS/mWAvR5IW6b
-         mP4Q==
-X-Gm-Message-State: AOJu0YytWv0DDYUI57q33p47qvsZYoXbU24XD9uxHdHALaolXamI69u1
-	+3YZfkTUsJpPRi7gaXOUl84=
-X-Google-Smtp-Source: AGHT+IEMqcQRUFdGWkrI5L/etTet6J5g1onGDwU5S0VBdtp9imvnm61FdFt01Jydi1cxH7hImfxeCQ==
-X-Received: by 2002:a17:906:4e90:b0:9fa:caf3:fb17 with SMTP id v16-20020a1709064e9000b009facaf3fb17mr2097185eju.51.1700664748743;
-        Wed, 22 Nov 2023 06:52:28 -0800 (PST)
-Received: from [192.168.26.149] (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.googlemail.com with ESMTPSA id u19-20020a1709063b9300b009e5db336137sm6724182ejf.196.2023.11.22.06.52.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Nov 2023 06:52:28 -0800 (PST)
-Message-ID: <08fcb328-fe4b-40c7-a01e-8a0b527b1c71@gmail.com>
-Date: Wed, 22 Nov 2023 15:52:27 +0100
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F7F04EB33;
+	Wed, 22 Nov 2023 14:52:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3537C433C8;
+	Wed, 22 Nov 2023 14:52:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1700664760;
+	bh=sAcyOaQD3H8yNNyICEEcQesIVItkS+W3nQU7LOMsA5Q=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=H2nLHfrlVrecaRMxljeGrGPPA1/Bs/RYZ9Ev2x/KsNSFbFCgd/Qa2eOI1Ow7fQDFv
+	 2HslTgqlcfn1snthG3a2Yd2eXCyOo8jw02pp3VrnMIvRNPuZovk5YjLdStnmd6c/TT
+	 02mXMVlEVH055S1KG/3Yrj+Mk47dUePHMWbXZka/pWJULz2U5vPAfQveM9rBrtOBNg
+	 zegujGhydRKuiORCgoNcobzs4mvum0pUjynIpc8upA+9Zpr+Qon06kn69aswrJSbxg
+	 vFmyNhsFD/hQvgpXgVGthf+Vk+si05oI3aSM0UGm118ezb3EP3NoEa35IX9IMdU9eM
+	 YWRLWvt1a1G7A==
+Message-ID: <77f39971-6d8a-4e1a-b7e6-bffb5fbf74db@kernel.org>
+Date: Wed, 22 Nov 2023 16:52:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,83 +41,83 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 1/2] dt-bindings: serial: add Broadcom's BCMBCA family
- High Speed UART
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- William Zhang <william.zhang@broadcom.com>,
- Anand Gore <anand.gore@broadcom.com>, Kursad Oney
- <kursad.oney@broadcom.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Andre Przywara <andre.przywara@arm.com>,
- Alexandre TORGUE <alexandre.torgue@st.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, linux-serial@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- bcm-kernel-feedback-list@broadcom.com, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
- <rafal@milecki.pl>
-References: <20231122144208.21114-1-zajec5@gmail.com>
- <66c4b54b-7631-484a-9f7d-31542284e620@linaro.org>
+Subject: Re: [PATCH V2 1/2] dt-bindings: interconnect: Add Qualcomm X1E80100
+ SoC
 Content-Language: en-US
-From: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-In-Reply-To: <66c4b54b-7631-484a-9f7d-31542284e620@linaro.org>
+To: Sibi Sankar <quic_sibis@quicinc.com>, andersson@kernel.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc: agross@kernel.org, conor+dt@kernel.org, quic_rjendra@quicinc.com,
+ abel.vesa@linaro.org, linux-arm-msm@vger.kernel.org,
+ linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, quic_tsoni@quicinc.com,
+ neil.armstrong@linaro.org
+References: <20231117103035.25848-1-quic_sibis@quicinc.com>
+ <20231117103035.25848-2-quic_sibis@quicinc.com>
+From: Georgi Djakov <djakov@kernel.org>
+In-Reply-To: <20231117103035.25848-2-quic_sibis@quicinc.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 22.11.2023 15:46, Krzysztof Kozlowski wrote:
-> On 22/11/2023 15:42, Rafał Miłecki wrote:
->> From: Rafał Miłecki <rafal@milecki.pl>
->>
->> It's an UART controller that first appeared on BCM63138 SoC and then was
->> reused on other bcmbca familiy chipsets.
-> 
-> If there is going to be a new version, typo: family
-> 
->>
->> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
->> ---
->> V2: Extend "compatible" and rename YAML file accordingly
->>
->> Krzysztof: since I reworked "compatible" I didn't want to carry on your
->> Reviewed in case there is sth wrong with the updated schema.
-> 
-> Thanks for letting me know.
-> 
->> +
->> +maintainers:
->> +  - Rafał Miłecki <rafal@milecki.pl>
->> +
->> +allOf:
->> +  - $ref: serial.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    items:
->> +      - enum:
->> +          - brcm,bcm4908-hs-uart
->> +          - brcm,bcm4912-hs-uart
->> +          - brcm,bcm6756-hs-uart
->> +          - brcm,bcm6813-hs-uart
->> +          - brcm,bcm6846-hs-uart
->> +          - brcm,bcm6855-hs-uart
->> +          - brcm,bcm6856-hs-uart
->> +          - brcm,bcm6858-hs-uart
->> +          - brcm,bcm6878-hs-uart
->> +          - brcm,bcm47622-hs-uart
->> +          - brcm,bcm63138-hs-uart
->> +          - brcm,bcm63146-hs-uart
->> +          - brcm,bcm63158-hs-uart
->> +          - brcm,bcm63178-hs-uart
->> +      - const: brcm,bcmbca-hs-uart
-> 
-> git grep did not find driver for this compatible. Is it in separate
-> patchset?
+Hi Sibi,
 
-No. My project based on BCMBCA has been canceled and I don't work on it
-full time anymore. I just wanted to fill empty bits I can afford
-handling in my free time and complete hardware description in DTS.
+On 17.11.23 12:30, Sibi Sankar wrote:
+> From: Rajendra Nayak <quic_rjendra@quicinc.com>
+> 
+> The Qualcomm X1E80100 SoC has several bus fabrics that could be controlled
+> and tuned dynamically according to the bandwidth demand.
+> 
+> Co-developed-by: Abel Vesa <abel.vesa@linaro.org>
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
+> Co-developed-by: Sibi Sankar <quic_sibis@quicinc.com>
+> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+> 
+> v2:
+> * Update the part number from sc8380xp to x1e80100.
+> * Fixup required property ordering [Krzysztof]
+> * Pickup Rbs.
+> 
+>   .../interconnect/qcom,x1e80100-rpmh.yaml      |  83 +++++++
+>   .../interconnect/qcom,x1e80100-rpmh.h         | 207 ++++++++++++++++++
+>   2 files changed, 290 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/interconnect/qcom,x1e80100-rpmh.yaml
+>   create mode 100644 include/dt-bindings/interconnect/qcom,x1e80100-rpmh.h
 
-I may still work on some BCMBCA drivers from time to time but as a side
-project.
+[..]
+
+> +#define MASTER_AV1_ENC				0
+> +#define MASTER_CAMNOC_HF			1
+> +#define MASTER_CAMNOC_ICP			2
+> +#define MASTER_CAMNOC_SF			3
+> +#define MASTER_EVA				4
+> +#define MASTER_MDP				5
+> +#define MASTER_VIDEO				6
+> +#define MASTER_VIDEO_CV_PROC			7
+> +#define MASTER_VIDEO_V_PROC			8
+> +#define MASTER_CNOC_MNOC_CFG			9
+> +#define SLAVE_MNOC_HF_MEM_NOC			10
+> +#define SLAVE_MNOC_SF_MEM_NOC			11
+> +#define SLAVE_SERVICE_MNOC			12
+> +#define MASTER_MDP_DISP				13
+> +#define SLAVE_MNOC_HF_MEM_NOC_DISP		14
+> +
+> +#define MASTER_CDSP_PROC			0
+> +#define SLAVE_CDSP_MEM_NOC			1
+> +
+> +#define MASTER_PCIE_NORTH			0
+> +#define MASTER_PCIE_SOUTH			0
+
+This duplicate index looks like a typo?
+
+> +#define SLAVE_ANOC_PCIE_GEM_NOC			3
+> +#define MASTER_PCIE_NORTH_PCIE			4
+> +#define MASTER_PCIE_SOUTH_PCIE			5
+> +#define SLAVE_ANOC_PCIE_GEM_NOC_PCIE		6
+[..]
+
+Thanks,
+Georgi
+
 
