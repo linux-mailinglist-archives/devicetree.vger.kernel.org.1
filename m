@@ -1,32 +1,32 @@
-Return-Path: <devicetree+bounces-17917-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17918-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2A757F4722
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 13:55:50 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B02D97F4725
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 13:56:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 57B1F1F21DF9
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 12:55:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 37EDCB20B0C
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 12:56:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 857BA4C60A;
-	Wed, 22 Nov 2023 12:55:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 176864C608;
+	Wed, 22 Nov 2023 12:55:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="AMCnMtE3"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="hudgzrCb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m12.mail.163.com (m12.mail.163.com [220.181.12.216])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 9178DD52;
-	Wed, 22 Nov 2023 04:55:42 -0800 (PST)
+Received: from m15.mail.163.com (m15.mail.163.com [45.254.50.219])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id CE079112;
+	Wed, 22 Nov 2023 04:55:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=9FUUT
-	l4mJHWZBHX/cW0HDYACz3sr1ZV23gb+QcGkUx4=; b=AMCnMtE3M5wFJN0ElxJfi
-	zHxWoXcEDgR4XJVB9J502TY0/vUDC/a/UvSkb1GHWXBkJFDBEUt4r5/+xvvyGSXd
-	ESpoB7OKAWh6gh3CVccMmqfJB75PwLzRYE+yc1qvFjz+Z32V5TB3zTFyU7ipJGYb
-	jLgqjMNNGi7sHNmBBKXTzI=
+	s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=xHZcH
+	nUWCgGoIT8dFdu6cImkI1GzZO+m/2tSo8tzkIM=; b=hudgzrCbZuT2bhueDLOxH
+	hbJC4zhzUFXT/ZvxfvOjQtoFJB6ZIcdNOQKV0tfCfxaM4A5T5O4bHAT6hQR7iImm
+	lua2NeP7JjZBNoS7F0xcX3Y9/NDYW9mYY8KAABrcsT1SA7P6zLoMdmkTMDoKClWd
+	JrJOtbzP4hAyKEstE284/Q=
 Received: from ProDesk.. (unknown [58.22.7.114])
-	by zwqz-smtp-mta-g3-4 (Coremail) with SMTP id _____wD3H9cf+l1ltCoCAw--.31562S2;
-	Wed, 22 Nov 2023 20:54:58 +0800 (CST)
+	by zwqz-smtp-mta-g2-1 (Coremail) with SMTP id _____wC3P7s3+l1l+dXuDg--.53227S2;
+	Wed, 22 Nov 2023 20:55:23 +0800 (CST)
 From: Andy Yan <andyshrk@163.com>
 To: heiko@sntech.de
 Cc: hjc@rock-chips.com,
@@ -41,9 +41,9 @@ Cc: hjc@rock-chips.com,
 	chris.obbard@collabora.com,
 	s.hauer@pengutronix.de,
 	Andy Yan <andy.yan@rock-chips.com>
-Subject: [PATCH v2 06/12] drm/rockchip: vop2: rename grf to sys_grf
-Date: Wed, 22 Nov 2023 20:54:54 +0800
-Message-Id: <20231122125454.3454671-1-andyshrk@163.com>
+Subject: [PATCH v2 08/12] dt-bindings: display: vop2: Add rk3588 support
+Date: Wed, 22 Nov 2023 20:55:18 +0800
+Message-Id: <20231122125518.3454796-1-andyshrk@163.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231122125316.3454268-1-andyshrk@163.com>
 References: <20231122125316.3454268-1-andyshrk@163.com>
@@ -54,62 +54,101 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wD3H9cf+l1ltCoCAw--.31562S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW7AFW7tFy3Ar18ur4xKr4kWFg_yoW8CFyUpa
-	sxAFW2gr4xKrZFq3WvkFs8uFWakwn7CayIk3WIk3ZI9347tryDKFs8W3W5JrW3JrnruF4a
-	qayqyry3Cay7Ar7anT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jSOJnUUUUU=
-X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/1tbiEAYwXl8YMqa0nQAAsC
+X-CM-TRANSID:_____wC3P7s3+l1l+dXuDg--.53227S2
+X-Coremail-Antispam: 1Uf129KBjvJXoW7uFW3uw15XFy7JrWfArW7twb_yoW8Kw43pa
+	s3C3W8JryfGry7Xr1ktwn5Cw4agF1kuw4UtrsrXrZxta4aqw40qF4akwn8WayUGFn7Za42
+	9FWUua4xGF17Zr7anT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jzBTOUUUUU=
+X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/1tbiEB4wXl8YMqa2bQAAso
 
 From: Andy Yan <andy.yan@rock-chips.com>
 
-The vop2 need to reference more grf(system grf, vop grf, vo0/1 grf,etc)
-in the upcoming rk3588.
-
-So we rename the current system grf to sys_grf.
+The vop2 on rk3588 is similar to which on rk356x
+but with 4 video ports and need to reference
+more grf modules.
 
 Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+
 ---
 
-(no changes since v1)
+Changes in v2:
+- fix errors when running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
 
- drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ .../display/rockchip/rockchip-vop2.yaml       | 27 +++++++++++++++++++
+ 1 file changed, 27 insertions(+)
 
-diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-index b32a291c5caa..4bcc405bcf11 100644
---- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-+++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-@@ -190,7 +190,7 @@ struct vop2 {
- 	void __iomem *regs;
- 	struct regmap *map;
+diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
+index b60b90472d42..24148d9b3b14 100644
+--- a/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
++++ b/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
+@@ -20,6 +20,7 @@ properties:
+     enum:
+       - rockchip,rk3566-vop
+       - rockchip,rk3568-vop
++      - rockchip,rk3588-vop
  
--	struct regmap *grf;
-+	struct regmap *sys_grf;
+   reg:
+     items:
+@@ -42,26 +43,47 @@ properties:
+       frame start (VSYNC), line flag and other status interrupts.
  
- 	/* physical map length of vop2 register */
- 	u32 len;
-@@ -1503,9 +1503,9 @@ static void rk3568_set_intf_mux(struct vop2_video_port *vp, int id,
- 		dip &= ~RK3568_DSP_IF_POL__RGB_LVDS_PIN_POL;
- 		dip |= FIELD_PREP(RK3568_DSP_IF_POL__RGB_LVDS_PIN_POL, polflags);
- 		if (polflags & POLFLAG_DCLK_INV)
--			regmap_write(vop2->grf, RK3568_GRF_VO_CON1, BIT(3 + 16) | BIT(3));
-+			regmap_write(vop2->sys_grf, RK3568_GRF_VO_CON1, BIT(3 + 16) | BIT(3));
- 		else
--			regmap_write(vop2->grf, RK3568_GRF_VO_CON1, BIT(3 + 16));
-+			regmap_write(vop2->sys_grf, RK3568_GRF_VO_CON1, BIT(3 + 16));
- 		break;
- 	case ROCKCHIP_VOP2_EP_HDMI0:
- 		die &= ~RK3568_SYS_DSP_INFACE_EN_HDMI_MUX;
-@@ -2764,7 +2764,7 @@ static int vop2_bind(struct device *dev, struct device *master, void *data)
- 			return PTR_ERR(vop2->lut_regs);
- 	}
+   clocks:
++    minItems: 3
+     items:
+       - description: Clock for ddr buffer transfer.
+       - description: Clock for the ahb bus to R/W the phy regs.
+       - description: Pixel clock for video port 0.
+       - description: Pixel clock for video port 1.
+       - description: Pixel clock for video port 2.
++      - description: Pixel clock for video port 4.
++      - description: Peripheral clock for vop on rk3588.
  
--	vop2->grf = syscon_regmap_lookup_by_phandle(dev->of_node, "rockchip,grf");
-+	vop2->sys_grf = syscon_regmap_lookup_by_phandle(dev->of_node, "rockchip,grf");
+   clock-names:
++    minItems: 3
+     items:
+       - const: aclk
+       - const: hclk
+       - const: dclk_vp0
+       - const: dclk_vp1
+       - const: dclk_vp2
++      - const: dclk_vp3
++      - const: pclk_vop
  
- 	vop2->hclk = devm_clk_get(vop2->dev, "hclk");
- 	if (IS_ERR(vop2->hclk)) {
+   rockchip,grf:
+     $ref: /schemas/types.yaml#/definitions/phandle
+     description:
+       Phandle to GRF regs used for misc control
+ 
++  rockchip,vo-grf:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description:
++      Phandle to VO GRF regs used for misc control, required for rk3588
++
++  rockchip,vop-grf:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description:
++      Phandle to VOP GRF regs used for misc control, required for rk3588
++
++  rockchip,pmu:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description:
++      Phandle to PMU regs used for misc control, required for rk3588
++
+   ports:
+     $ref: /schemas/graph.yaml#/properties/ports
+ 
+@@ -81,6 +103,11 @@ properties:
+         description:
+           Output endpoint of VP2
+ 
++      port@3:
++        $ref: /schemas/graph.yaml#/properties/port
++        description:
++          Output endpoint of VP3
++
+   iommus:
+     maxItems: 1
+ 
 -- 
 2.34.1
 
