@@ -1,140 +1,123 @@
-Return-Path: <devicetree+bounces-17839-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17840-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14DBB7F4454
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 11:53:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6690C7F445F
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 11:56:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4567D1C209E6
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 10:53:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 20E8B28143B
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 10:56:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 798114AF9C;
-	Wed, 22 Nov 2023 10:53:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3A104AF80;
+	Wed, 22 Nov 2023 10:56:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="pGJH4qjN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dETIR1Xk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-x92e.google.com (mail-ua1-x92e.google.com [IPv6:2607:f8b0:4864:20::92e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0C8D18C
-	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 02:53:10 -0800 (PST)
-Received: by mail-ua1-x92e.google.com with SMTP id a1e0cc1a2514c-7c3e29fb777so1277036241.3
-        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 02:53:10 -0800 (PST)
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FA6D19D
+	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 02:56:00 -0800 (PST)
+Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-54553e4888bso9273163a12.2
+        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 02:56:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1700650389; x=1701255189; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GY/bD1zv5fBxrgEs0eGY+QzOkiSJamFow82Mh0ii4pY=;
-        b=pGJH4qjNGy8tzarESB9kqaX+JODPjVDPAwqFrhYOm1QjIThTfZtUQfhJrTRSaSypb6
-         PDZIKzjHIluy+rVmq6aHmM01H3O1LC2HUK3R4H2Uy/AjM6gkHEFpyviII2h+91Ncuua7
-         yE0fqt7zUcR8DM4oqIrSA0fC4Sz6DHbWwOngHEXdfxpAVmMtFi50ENW+DIZOinyaCy/o
-         8iCvqvtLwMwx3pNaw+cscMOpSEGxSBSbJl5jm+yyF++ahIu4NLbF6BSR5xlop76f68cM
-         C/LXdcwWj4Py6xnwP7QOsJ6HtHPamHcyLkb0AT423DEjqslpGXtXMphFooW6gcXR5QVS
-         kSJw==
+        d=linaro.org; s=google; t=1700650559; x=1701255359; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=HLDI3wzMix+NWssn2rikTDQZvDop8e4c6V7Woh1WHUU=;
+        b=dETIR1Xk1vCA+X7O0cD8zhvZrLymwmDJqT0DygyAdlfieR4z721NSIQ8pzf+ozIIIw
+         BqjrQ0EvtEMRPFA6IdLbKOeMT5sU6/FayyVzWh7/Mb4Dmrx+vr8QN8b/+iWijTMS2nOR
+         ZVKmzn3XA8OaiPMGB5vNxoUurhWSbExEhH+mfrXtgZoQHVC8GunuleznSQUKdN6497yZ
+         w/t3hgmdZeAy/TyRJjqWdXLXLe5PXoLYHM79XAH+0QBNaLB8ZKc+zpEMmBUm/Vbh2dF9
+         8/5w7mMjNTTpJjNrwJ5KBFGc4s8kTK7CJ5qIxaWnDTAq+vf94k9N4JyvxoIcw2RYK1RZ
+         CT7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700650389; x=1701255189;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=GY/bD1zv5fBxrgEs0eGY+QzOkiSJamFow82Mh0ii4pY=;
-        b=CQJk89ZebbPedRr+DYPjhudYl0GJdmiGoltlMV515FAhczt4xP+qMJrSToLh13QkRu
-         FzOmNDANGNbKMW0c4hGv8RtpFESgO/Blct7ioOQ+l87ABtGsjc0vZuBSV7UA0r8/TX86
-         pJVncQKqiyKaUtqxoMOPImcoJxizNa7FOvEHPSoGvVdgztJkCKLVEunQRp/iUxjYtIBU
-         gM53+HGz+gTjYT6h23AacQUjRE4jGo/2Cr1eS3IeTTCUbdQjYjs1a2QkyZSm6dOMtNf7
-         GA5pFXEoy5Bj7hN8dBj813OBhdH+5uAW/xfjvEs20u/GTDUEVUzT2AtS/BezgSbVLZ/d
-         +8Aw==
-X-Gm-Message-State: AOJu0YxBzndTAkjL/zwCdlVeAtiwTxuGp1RHndmEo1iRw2/YJx2zwNIs
-	d09e7RdTMsCi8EmJTy03i+PU4MPmdlsg4p7ZrVSkAQ==
-X-Google-Smtp-Source: AGHT+IFrGwDqG3W/gOl3K6hItbrKeM3qSDO4HmAniT5FrTtOn6+XNuiLQkTNPhkh9WZT/WBnFYSQqwhC2drSjGagJZQ=
-X-Received: by 2002:a67:ec45:0:b0:45f:654a:f3b with SMTP id
- z5-20020a67ec45000000b0045f654a0f3bmr2028426vso.19.1700650389731; Wed, 22 Nov
- 2023 02:53:09 -0800 (PST)
+        d=1e100.net; s=20230601; t=1700650559; x=1701255359;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HLDI3wzMix+NWssn2rikTDQZvDop8e4c6V7Woh1WHUU=;
+        b=DaPwbGMUoybD68AVqtrnP7j/TRn9lW/bcCBCKjqTpinaI5U2qAMZkJvuYjjhYbm5Tt
+         3qkM+zboq5jCLJp4fBFGxeeqQSZQFERAFn0EDL/8g1dOpikmIjFnhBgGIII4C952kjBt
+         /Y1vjCklUXYRsNh/YrT1+ZoqDuQE3AiqXuN1iZ1aF5UBxYWfmpKw5hFSPcPMgbshag/+
+         b47Q0gBmNI7NlcwSmOCSXdDXAr2thZMjkVHXzo4K4n+J5dOQwsMKsvrd/W75euhpAph/
+         RKVMEx7oHZwU7WAHrvZOfqVnbhoKAtrvNOgve6NaMOE0O6lKSntFQcSY68KI2st9Y3CX
+         lL5w==
+X-Gm-Message-State: AOJu0YxphiEFbYUIc0H+1NUkMYpjAyW4DonGYP4OiDfNbfIM8XK/v6V0
+	qF3XsRy6K8LeRARLaVNwiGdogw==
+X-Google-Smtp-Source: AGHT+IEcUs2DzE0DCcfF/Zqi+FS19jJkgid6BYQFfSIGdYh4e0kqwIWPHfhZgF/ve8h/TZgtEuuWDQ==
+X-Received: by 2002:a17:906:2d4:b0:a04:d5e8:cd84 with SMTP id 20-20020a17090602d400b00a04d5e8cd84mr539404ejk.56.1700650558988;
+        Wed, 22 Nov 2023 02:55:58 -0800 (PST)
+Received: from [127.0.1.1] ([86.123.99.122])
+        by smtp.gmail.com with ESMTPSA id mf3-20020a170906cb8300b009f28db2b702sm6423557ejb.209.2023.11.22.02.55.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Nov 2023 02:55:58 -0800 (PST)
+From: Abel Vesa <abel.vesa@linaro.org>
+Subject: [PATCH 0/2] phy: qcom: edp: Add support for X1E80100
+Date: Wed, 22 Nov 2023 12:55:47 +0200
+Message-Id: <20231122-phy-qualcomm-edp-x1e80100-v1-0-a9938990edb3@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231118124252.14838-1-wahrenst@gmx.net> <20231118124252.14838-2-wahrenst@gmx.net>
- <ZVtHZWYl2skpn1Bg@smile.fi.intel.com> <9a9486bb-e737-4384-a581-76880b709758@gmx.net>
- <ZVtS4phUMmDD9ztz@smile.fi.intel.com>
-In-Reply-To: <ZVtS4phUMmDD9ztz@smile.fi.intel.com>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Wed, 22 Nov 2023 11:52:58 +0100
-Message-ID: <CAMRc=MdpegfNrjWkeGSh8NhT_Go+q5MxueASxrLo18XBJaBsjA@mail.gmail.com>
-Subject: Re: [PATCH V2 1/2] leds: gpio: Add kernel log if devm_fwnode_gpiod_get
- fails
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
-	Linus Walleij <linus.walleij@linaro.org>
-Cc: Stefan Wahren <wahrenst@gmx.net>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Florian Fainelli <florian.fainelli@broadcom.com>, Pavel Machek <pavel@ucw.cz>, 
-	"open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>, Lee Jones <lee@kernel.org>, 
-	bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-leds@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADPeXWUC/x2NQQrCMBBFr1Jm7UBmSlG8irhI0okZSNOYUKmU3
+ t3g8n14/x3QpKo0uA8HVPlo0zV3oMsAPtr8EtS5M7DhkYgZS/zie7PJr8uCMhfcSW6GjEE7XT1
+ NIYSRHXTf2Sboqs0+9oe8pdTHUiXo/g8+nuf5A6sW876AAAAA
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Vinod Koul <vkoul@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Abhinav Kumar <quic_abhinavk@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Abel Vesa <abel.vesa@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=866; i=abel.vesa@linaro.org;
+ h=from:subject:message-id; bh=6Qe8P7OumubbvMZ9Ocse/XGaxEKzcj9WjK3I0PgWsKE=;
+ b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBlXd42TNpKNmMaTa4qcGZmrA2jYc/smPgdRuMrW
+ v60cO4OVtyJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZV3eNgAKCRAbX0TJAJUV
+ VhmdD/oD6CPBHJwtRsdfJJ7iQXCg85N3wd7U3WD4obqKy6M5x+kTlVi1uW67vDAKI9vFoVMFnBi
+ u5mSHcHcxVzRfvsizSZ0kkLhUTU0iEISy/WCJBr23Uzx/u5C0Ew/4wRwj/LA+nekqZlqmXh+slK
+ Oq0cjxfuAFmlqGBfMLxsPVrtHebmSk3qSetoA9p4x0Djv7bdqhaupitLw1/yGMeIv4zlPxeG9I5
+ 3RxOlffUk3N2ahtdMlnJt6x0LaWtOtBdpZppBTUJ3G/7z5zadLv9o8nxihIOU55BizsM5v0qUcs
+ w0HevtuJEQmy4xdOw/oSsOoBX4F/3843czrKYMEmeYd2AUVQaioZfpxLYREha4bJtGSqZctqqGm
+ 5mmDeH5pWa/TnKDjb9mRemQ7fo/sJR31ROhV2DXub8YnbW+CvGhe7vW+THCyWwiJ/TKdwWLYEn+
+ zvS+lb8Jy4qvgHfn09pTqnUKI6Dkw0VEYFKFoSmUJ+PInsTTMXS3+aHHY1DIeyQza196qWA9XDA
+ CjM+E4RDxU1CBBdBnQalmSt62yldlGHd9KBK3joRkFxZWnPcgbRVV/Ny6QvlIl+YuxQaLnKIKQB
+ J0/uQxM+RiUM9yMzJpA24UzJCIvaGiXr0QHyy0YM/xrjyVkuVRswuQyG5zSo7EgAi9oEVDLCkwr
+ 6vYaEBJmnvim1KA==
+X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
+ fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
 
-On Mon, Nov 20, 2023 at 1:36=E2=80=AFPM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
->
-> On Mon, Nov 20, 2023 at 01:02:55PM +0100, Stefan Wahren wrote:
-> > Am 20.11.23 um 12:47 schrieb Andy Shevchenko:
-> > > On Sat, Nov 18, 2023 at 01:42:51PM +0100, Stefan Wahren wrote:
-> > > > In case leds-gpio fails to get the GPIO from the DT (e.g. the GPIO =
-is
-> > > > already requested) the driver doesn't provide any helpful error log=
-:
-> > > >
-> > > >      leds-gpio: probe of leds failed with error -16
-> > > >
-> > > > So add a new error log in case devm_fwnode_gpiod_get() fails.
->
-> ...
->
-> > > >                   led.gpiod =3D devm_fwnode_gpiod_get(dev, child, N=
-ULL, GPIOD_ASIS,
-> > > >                                                     NULL);
-> > > >                   if (IS_ERR(led.gpiod)) {
-> > > > +                 dev_err_probe(dev, PTR_ERR(led.gpiod), "Failed to=
- get gpio '%pfw'\n",
-> > > > +                               child);
-> > > >                           fwnode_handle_put(child);
-> > > >                           return ERR_CAST(led.gpiod);
-> > > >                   }
-> > > Thinking more about it. GPIO library already issues bunch of messages=
-.
-> > >
-> > >     "using DT ... for ... GPIO lookup"
-> > >     "using lookup tables for GPIO lookup"
-> > >     "No GPIO consumer ... found"
-> > are these errors or debug messages?
->
-> Indeed they are on debug level.
->
-> > I cannot remember that i saw any of them on info level in my case of an
-> > already allocated pin (see patch 2).
-> >
-> > I'm open to place the log within gpiolib, if this a better place.
->
-> I'm not sure, let's hear GPIO maintainers for that.
->
+This patchset adds support for the X1E80100 eDP/DP PHY and documents its
+compatible.
 
-Hard to tell which method is preferred among all the subsystems.
-Personally I'm more inclined towards letting drivers decide whether to
-emit an error message and only emit our own when an error cannot be
-propagated down the stack.
+This patchset depends on the QSERDES_V6_COM_SSC_ADJ_PER1 register offset
+added by the following patchset:
 
-Linus: Any thoughts?
+https://lore.kernel.org/all/20231122-phy-qualcomm-v6-v6-20-v7-new-offsets-v1-0-d9340d362664@linaro.org/
 
-Bart
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+---
+Abel Vesa (2):
+      dt-bindings: phy: qcom-edp: Add X1E80100 PHY compatibles
+      phy: qcom: edp: Add X1E80100 eDP and DP PHYs
 
-> > > Isn't it enough?
->
-> --
-> With Best Regards,
-> Andy Shevchenko
->
->
+ .../devicetree/bindings/phy/qcom,edp-phy.yaml      |   2 +
+ drivers/phy/qualcomm/phy-qcom-edp.c                | 305 ++++++++++++++++-----
+ 2 files changed, 233 insertions(+), 74 deletions(-)
+---
+base-commit: 07b677953b9dca02928be323e2db853511305fa9
+change-id: 20231122-phy-qualcomm-edp-x1e80100-a57c15fff32b
+
+Best regards,
+-- 
+Abel Vesa <abel.vesa@linaro.org>
+
 
