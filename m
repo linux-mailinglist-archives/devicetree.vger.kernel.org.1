@@ -1,131 +1,209 @@
-Return-Path: <devicetree+bounces-17906-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17907-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B37B7F465B
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 13:35:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0C0C7F466E
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 13:40:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 44E40280F32
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 12:35:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6C8D2280637
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 12:40:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2DAF4D116;
-	Wed, 22 Nov 2023 12:35:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CE421A5A1;
+	Wed, 22 Nov 2023 12:40:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AmzKg1O3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K3C/Nawl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AADCA18B08;
-	Wed, 22 Nov 2023 12:35:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0685BC433C8;
-	Wed, 22 Nov 2023 12:35:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5197A4D11B;
+	Wed, 22 Nov 2023 12:40:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0C4FC433C7;
+	Wed, 22 Nov 2023 12:40:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700656525;
-	bh=1Ar0GKfipyRpyKssaDDz4nM10Fr0fuJQJLvwdTfE8yg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=AmzKg1O3K1rzLkH4aWS3nsfilpzZbpomRyyGlZ/CTQEpBpTWX6u2TsffsgMK0Rf1J
-	 41y6A2v2IxxsGu8ApVABHIiaEy9BRqPTagY9r71obCwfdOm2Yg5pI9b11mPdTIZu5v
-	 HclpKS5qWPQfozmDte3yQ8C1d184e9TCw8CMSQ12gWvizrxrRoLfhQKFY9NHlxBAzM
-	 6c7qVJvm4Zk3/jIa4CGlRPuU82VIUUzaDmUDiERfgFL1HTxNIGg6l54497QJUB4Vrt
-	 R9MTIXAeiz8mTI9nj7X+YTURDl2+KGeJlijEiLg868ahemoyTgIwZSx59Bb7KfV7u6
-	 pMVlbl6lFuTyQ==
-Message-ID: <ea997987-6a84-445c-a806-527d766569b1@kernel.org>
-Date: Wed, 22 Nov 2023 13:35:19 +0100
+	s=k20201202; t=1700656829;
+	bh=tqEY6FGT5GYctEXe7gynUJuIohw71n++dptwt+BslSs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=K3C/NawlMCzIOcW/f3jz9KXaVJ0msjYd0OAfdl07Vp6wvx6hRWeIKT0SyvWUP4HNY
+	 XrSUvS46oni2kvurfTrjQal7GlOwQOEFaoeN0HuoMBjWIx6Bs0KvClfBFOKtfmnP+x
+	 B02ngziHfxHNKgX4xHya/4P+Zfl6WnLhSMcZ0OKVtpayRT94nF3cC2/MSNoIgySw0R
+	 2J6am9ButjfcBTx0DIMd0S4iv1DqLZWFN78B7m9Z3+V7F/VoYdkVCYZgLv+/rzc2dU
+	 nBBl6C34lwQ3jvEkN3jJZx7Ni8A53BMtv6V6tnzD9TET4qJTiyaXhe2dNaD3bDvMf6
+	 YhbFFkRQiQWqw==
+Received: from johan by xi.lan with local (Exim 4.96.2)
+	(envelope-from <johan@kernel.org>)
+	id 1r5mX5-0000GT-38;
+	Wed, 22 Nov 2023 13:40:44 +0100
+Date: Wed, 22 Nov 2023 13:40:43 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Bjorn Andersson <quic_bjorande@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Wesley Cheng <quic_wcheng@quicinc.com>,
+	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+	Felipe Balbi <balbi@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+Subject: Re: [PATCH 10/12] dt-bindings: usb: qcom,dwc3: Introduce flattened
+ qcom,dwc3 binding
+Message-ID: <ZV32ywdBsLXs2mn6@hovoldconsulting.com>
+References: <20231016-dwc3-refactor-v1-0-ab4a84165470@quicinc.com>
+ <20231016-dwc3-refactor-v1-10-ab4a84165470@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] dt-bindings: iio: temperature: add MLX90635 device
- bindings
-Content-Language: en-US
-To: Crt Mori <cmo@melexis.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <cover.1700648164.git.cmo@melexis.com>
- <2e8b4a7d3ef4bc1c53bd0a849e4c31eaf2477f6b.1700648165.git.cmo@melexis.com>
- <99d1808a-da04-4bc1-a1f7-cbd269adbbf0@kernel.org>
- <CAKv63uv87srZ3gJxFASuGWV6cULXkN=gYi_L=BCcd3dgOFQEfw@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <CAKv63uv87srZ3gJxFASuGWV6cULXkN=gYi_L=BCcd3dgOFQEfw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231016-dwc3-refactor-v1-10-ab4a84165470@quicinc.com>
 
-On 22/11/2023 13:28, Crt Mori wrote:
->>> +  Since measured object emissivity effects Infra Red energy emitted,
->>> +  emissivity should be set before requesting the object temperature.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: melexis,mlx90635
->>
->> It's the same as mlx90632. Add it there (as enum).
->>
+On Mon, Oct 16, 2023 at 08:11:18PM -0700, Bjorn Andersson wrote:
+> The Qualcomm USB block consists of three intertwined parts, the XHCI,
+> the DWC3 core and the Qualcomm DWC3 glue. The three parts can not be
+> operated independently, but the binding was for historical reasons split
+> to mimic the Linux driver implementation.
 > 
-> Properties are the same, but then you can't have much differences for
-> a temperature sensor. It has a bit worse relative measurement error
-> outside of the human body range and overall different DSP, register
-> map, even physical size - it's 1.8x1.8 mm compared to 90632 3x3 mm. I
-> was not sure how it qualifies for adding it as another enum, but I
-> went with the feeling that if it can reuse the driver, then it is an
-> enum, otherwise it is a new file. And I could not reuse anything from
-> 90632.
+> The split binding also makes it hard to alter the implementation, as
+> properties and resources are split between the two nodes, in some cases
+> with some duplication.
 > 
-> Thanks for quick feedback and best regards,
+> Introduce a new binding, with a single representation of the whole USB
+> block in one node.
+> 
+> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
 
-Driver is independent choice. There is no need for new binding file if
-everything is the same from bindings point of view.
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - qcom,sc8280xp-dwc3
+> +              - qcom,sc8280xp-dwc3-mp
 
-Best regards,
-Krzysztof
+The multiport implementation is not ready yet and this part of the
+binding has been reverted (similar for the multiport interrupts below).
 
+> +    then:
+> +      properties:
+> +        clocks:
+> +          maxItems: 9
+> +        clock-names:
+> +          items:
+> +            - const: cfg_noc
+> +            - const: core
+> +            - const: iface
+> +            - const: sleep
+> +            - const: mock_utmi
+> +            - const: noc_aggr
+> +            - const: noc_aggr_north
+> +            - const: noc_aggr_south
+> +            - const: noc_sys
+
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - qcom,sc8280xp-dwc3-mp
+> +    then:
+> +      properties:
+> +        interrupts:
+> +          maxItems: 14
+> +        interrupt-names:
+> +          items:
+> +            - const: pwr_event_1
+> +            - const: pwr_event_2
+> +            - const: pwr_event_3
+> +            - const: pwr_event_4
+> +            - const: dp_hs_phy_1
+> +            - const: dm_hs_phy_1
+> +            - const: dp_hs_phy_2
+> +            - const: dm_hs_phy_2
+> +            - const: dp_hs_phy_3
+> +            - const: dm_hs_phy_3
+> +            - const: dp_hs_phy_4
+> +            - const: dm_hs_phy_4
+> +            - const: ss_phy_1
+> +            - const: ss_phy_2
+
+So same here.
+
+> +    else:
+> +      properties:
+> +        interrupts:
+> +          minItems: 1
+> +          items:
+> +            - description: Common DWC3 interrupt
+> +            - description: The interrupt that is asserted
+> +                when a wakeup event is received on USB2 bus.
+> +            - description: The interrupt that is asserted
+> +                when a wakeup event is received on USB3 bus.
+> +            - description: Wakeup event on DM line.
+> +            - description: Wakeup event on DP line.
+
+I guess you may have copied this from the current binding but the
+descriptions here are not correct. The HS/SS interrupt comes from the
+PHYs in case the corresponding events have been enabled. I assume it can
+be used for connect/disconnect events as well as remote wakeup and
+whether to actually wake the system up on those is an implementation
+detail.
+
+Similar for DM/DP which represents the state of the data lines and that
+can be used to detect all sorts of events, not just remote wakeup.
+
+> +
+> +        interrupt-names:
+> +          minItems: 1
+> +          items:
+> +            - const: dwc_usb3
+> +            - const: hs_phy_irq
+> +            - const: ss_phy_irq
+> +            - const: dm_hs_phy_irq
+> +            - const: dp_hs_phy_irq
+
+And here you are now defining all of these interrupts for all the
+current SoCs it seems, despite not all of them actually having all of
+these at once. (The order also does not match the current devicetrees.)
+
+Some only have HS/SS, and it's not clear whether the HS interrupts are
+actually functional when a SoC is also using DP/DM.
+
+We're currently discussing this here:
+
+	https://lore.kernel.org/lkml/ZVYTFi3Jnnljl48L@hovoldconsulting.com/
+
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/qcom,gcc-sdm845.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    usb@a600000 {
+> +        compatible = "qcom,sdm845-dwc3", "qcom,dwc3", "snps,dwc3";
+> +        reg = <0x0a600000 0x200000>;
+
+> +        snps,dis_u2_susphy_quirk;
+> +        snps,dis_enblslpm_quirk;
+> +        phys = <&usb_1_hsphy>, <&usb_1_ssphy>;
+> +        phy-names = "usb2-phy", "usb3-phy";
+> +
+
+Stray newline.
+
+> +    };
+> +...
+
+Johan
 
