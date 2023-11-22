@@ -1,110 +1,129 @@
-Return-Path: <devicetree+bounces-17856-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17858-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A70CE7F44A3
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 12:03:07 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C98A7F44D8
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 12:22:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 475ABB20E5E
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 11:03:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5DDEC1C20A42
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 11:22:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 157A83D989;
-	Wed, 22 Nov 2023 11:03:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SrQwfrir"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B69E256441;
+	Wed, 22 Nov 2023 11:22:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-x112c.google.com (mail-yw1-x112c.google.com [IPv6:2607:f8b0:4864:20::112c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CB40112
-	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 03:02:56 -0800 (PST)
-Received: by mail-yw1-x112c.google.com with SMTP id 00721157ae682-5caf387f2aaso27881697b3.3
-        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 03:02:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700650975; x=1701255775; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=judoGuVj96yz0cfO1+LrQgdiCfR9oKHOka9ldKzU/iQ=;
-        b=SrQwfrirV/5VWQilXkyfyRtt5jvd+FoLmuNpVWivxbn5oUnX+jRa2MOecV/oU9La3v
-         ZYH3iVBOSwd9FwY+YKEPqVMEUmxNF/GnAmWAsDKXDDwaNg6Wq8KO9yeIB4xqR1UnTmtI
-         qeHFlJmciGDxuNA9QIN3z6uAQ01dbiT7dF2/ILFTee76YpuZMFdn/cW2uTxyfY13LZrx
-         i+M9OAegEWqsVY/mULJWzRt9Qv8qOlbI9MNoAGxB2ZnsG/eayPJhGb8sUyJG/DiqG3Wb
-         EEq2G+u8yh6yu6QTI6YKdnQqNhw9NkNsm29/ccsyPGqxBC/JHEyN5Uzg2DYSuL8Fkjl3
-         gMRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700650975; x=1701255775;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=judoGuVj96yz0cfO1+LrQgdiCfR9oKHOka9ldKzU/iQ=;
-        b=UwHFHQZ4w1BqIQOjUNmN6VWCQEd93WfLiMjd5JgptHHfa03AOXRSIYyJDpgwBJAfFq
-         Yi6jCKE8xY/Zpiq/yxhNzxaUaYp9ANNe5vrU+b7kooaSg0q14qyLcZLNTTF0v3rIGimV
-         6e034XKO5CEgZ/sPJnQ9itYcSNOEemr9hMgjQ1GnmnTOIk9dGIvmPSX+K6Lb8xlTC5Y8
-         FbiS7xZmDAk/wctHYIubMwRT5F0lHEEU/crgwlU/db/YEih1gtAzlnHYyzkfBim2bTA2
-         gmIwizxpVbtOAwezt7lNEbvALur8AlNuVE4G0+iUXe6XHD3bqfo/Gjg8/RbpsYS09wj3
-         76nQ==
-X-Gm-Message-State: AOJu0YyO3M6rwm6R25R/Gx+wp9mhZ4pTKvCQ+eSOk2Lu5ibd2dE5zXkP
-	424uFOE8NQ7v+o7LfEOpP3G5fYMtofRa9F+ww3023A==
-X-Google-Smtp-Source: AGHT+IG7QtdXMD/IbuQvfyaSezE4/wn9Rzi9wEyWCao4R2S63hXyZv7aDlf2lJ46E658E4CV4osFbPqMxC2QwFZs1R8=
-X-Received: by 2002:a81:93c4:0:b0:5a8:2037:36d9 with SMTP id
- k187-20020a8193c4000000b005a8203736d9mr1961750ywg.25.1700650975747; Wed, 22
- Nov 2023 03:02:55 -0800 (PST)
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16C0E18D
+	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 03:22:39 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1r5lJ7-0007CM-Sz; Wed, 22 Nov 2023 12:22:13 +0100
+Received: from [2a0a:edc0:2:b01:1d::c0] (helo=ptx.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ore@pengutronix.de>)
+	id 1r5lJ7-00AnbT-0P; Wed, 22 Nov 2023 12:22:13 +0100
+Received: from ore by ptx.whiteo.stw.pengutronix.de with local (Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1r5lJ6-003I31-Ta; Wed, 22 Nov 2023 12:22:12 +0100
+Date: Wed, 22 Nov 2023 12:22:12 +0100
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Ulf Hansson <ulf.hansson@linaro.org>, Mark Brown <broonie@kernel.org>
+Cc: Yang Yingliang <yangyingliang@huawei.com>, linux-mmc@vger.kernel.org,
+	kernel@pengutronix.de, Ye Bin <yebin10@huawei.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Naresh Solanki <naresh.solanki@9elements.com>,
+	zev@bewilderbeest.net, Sebastian Reichel <sre@kernel.org>,
+	linux-pm@vger.kernel.org,
+	=?utf-8?B?U8O4cmVu?= Andersen <san@skov.dk>
+Subject: Re: mmc: handling of Under-Voltage Events in eMMC
+Message-ID: <20231122112212.GA783262@pengutronix.de>
+References: <20230929130028.GB2825985@pengutronix.de>
+ <CAPDyKFqUtNEbK2tzD+qOK+dFcDyBxvcNwOHWPJDLhTWGGkoHQw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231122-phy-qualcomm-eusb2-x1e80100-v1-0-ce0991161847@linaro.org>
- <20231122-phy-qualcomm-eusb2-x1e80100-v1-1-ce0991161847@linaro.org>
-In-Reply-To: <20231122-phy-qualcomm-eusb2-x1e80100-v1-1-ce0991161847@linaro.org>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Wed, 22 Nov 2023 13:02:44 +0200
-Message-ID: <CAA8EJppov1ZtJvxyiXwik77bs5=dDfE_k_Wv8-DyzYtoEzvv4Q@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: phy: qcom: snps-eusb2: Document the
- X1E80100 compatible
-To: Abel Vesa <abel.vesa@linaro.org>
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Vinod Koul <vkoul@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CAPDyKFqUtNEbK2tzD+qOK+dFcDyBxvcNwOHWPJDLhTWGGkoHQw@mail.gmail.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Wed, 22 Nov 2023 at 12:28, Abel Vesa <abel.vesa@linaro.org> wrote:
->
-> Add the X1E80100 compatible to the list of supported PHYs.
->
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> ---
->  Documentation/devicetree/bindings/phy/qcom,snps-eusb2-phy.yaml | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-phy.yaml
-> index 8f5d7362046c..ea1809efbf56 100644
-> --- a/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-phy.yaml
-> @@ -21,6 +21,7 @@ properties:
->                - qcom,sm8650-snps-eusb2-phy
->            - const: qcom,sm8550-snps-eusb2-phy
+Hi Ulf, Hi Mark,
 
-Ah, I think this answers my question for patch2. Can we instead reuse
-the existing compat string as it was done for sm8650?
+On Tue, Oct 10, 2023 at 04:48:24PM +0200, Ulf Hansson wrote:
+> On Fri, 29 Sept 2023 at 15:00, Oleksij Rempel <o.rempel@pengutronix.de> wrote:
+> >
+> > Hi,
+> >
+> > I'm working on a project aiming to protect eMMC during power loss. Our
+> > hardware setup includes an under-voltage detector, circuits to disable
+> > non-critical components, and enough capacitance to allow the CPU to run
+> > for 100ms.
+> >
+> > I've added an interrupt handler to the fixed regulator to emit
+> > REGULATOR_EVENT_UNDER_VOLTAGE events, and modified
+> > drivers/mmc/host/sdhci.c to receive these events. Currently, the handler
+> > only produces debug output.
+> >
+> > What is the recommended approach for handling under-voltage situations?
+> > Should the driver finish ongoing write commands, block new ones, and
+> > shut down the eMMC? I'm looking for direction here.
+> 
+> That's indeed a very good question. From a general point of view, I
+> think the best we can do is to stop any new I/O requests from being
+> managed - and try to complete only the last ongoing one, if any.
+> Exactly how to do that can be a bit tricky though.
+> 
+> Beyond that, we should probably try to send the eMMC specific commands
+> that allow us to inform the eMMC that it's about to be powered-off.
+> Although, I am not sure that we actually will be able to complete
+> these operations within 100ms, so maybe it's not really worth trying?
+> See mmc_poweroff_notify(), for example.
 
->        - const: qcom,sm8550-snps-eusb2-phy
-> +      - const: qcom,x1e80100-snps-eusb2-phy
->
->    reg:
->      maxItems: 1
->
-> --
-> 2.34.1
->
->
+Some puzzle parts are now mainline, for example regulator framework
+can be configured to detect under-voltage events and execute
+hw_protection_shutdown(). So far it worked good enough to complete
+mmc_poweroff_notify() withing 100ms window. The problem is, the chance to
+execute mmc_poweroff_notify() depends on kernel configuration. If there are too
+many drivers and devices, mmc_poweroff_notify() will be not executed in time.
 
+For now, I workaround it by registering a reboot notifier for mmc shutdown.
+It works, because kernel_power_off() is executing all registered reboot
+notifiers at first place and there are no other slow reboot notifiers.
+But, it seems to be not reliable enough. Probably notifier prioritization
+is needed to make it more predictable.
 
+So far, I have two variants to implement it in more predictable way:
+variant 1 - forward the under-voltage notification to the mmc framework and
+  execute mmc_poweroff_notify() or bus shutdown.
+variant 2 - use reboot notifier and introduce reboot notifier prioritization.
+
+Are there other options? What are your preferences?
+
+Regards,
+Oleksij
 -- 
-With best wishes
-Dmitry
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
