@@ -1,94 +1,152 @@
-Return-Path: <devicetree+bounces-17932-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-17931-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7B3A7F4764
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 14:10:52 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 001187F4762
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 14:10:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 61D2F2810DC
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 13:10:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ADD72281140
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 13:10:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 060314C60D;
-	Wed, 22 Nov 2023 13:10:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C8C24C623;
+	Wed, 22 Nov 2023 13:09:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="au2PgyJL"
+	dkim=pass (2048-bit key) header.d=feathertop.org header.i=@feathertop.org header.b="wEXHfJxm";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="hyHO2FVM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m12.mail.163.com (m12.mail.163.com [220.181.12.197])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 6E43510C;
-	Wed, 22 Nov 2023 05:10:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=4hIly
-	MNzL863/Hk1Ll2QKnKQl9tBh0XjMWCIZh2OIFg=; b=au2PgyJL/bjGttIJMD62T
-	RHAv/C7HQl34bh4ztAGqzKKk6ULmy5SAzPS/vNNRKQwJzkcKMxoiiuxJYb6Zil9V
-	wS+eR8GXHhA3ioDva3GwNHwRPrTVAavHqEAoQ01whsASEfno4OhamLf2DEqviTKJ
-	6pG79E9YFBNusM4Bj4lYgU=
-Received: from ProDesk.. (unknown [58.22.7.114])
-	by zwqz-smtp-mta-g3-0 (Coremail) with SMTP id _____wAnLJsr+l1llBLPDg--.52769S2;
-	Wed, 22 Nov 2023 20:55:11 +0800 (CST)
-From: Andy Yan <andyshrk@163.com>
-To: heiko@sntech.de
-Cc: hjc@rock-chips.com,
-	dri-devel@lists.freedesktop.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	robh+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	sebastian.reichel@collabora.com,
-	kever.yang@rock-chips.com,
-	chris.obbard@collabora.com,
-	s.hauer@pengutronix.de,
-	Andy Yan <andy.yan@rock-chips.com>,
-	Rob Herring <robh@kernel.org>
-Subject: [PATCH v2 07/12] dt-bindings: soc: rockchip: add rk3588 vop/vo syscon
-Date: Wed, 22 Nov 2023 20:55:06 +0800
-Message-Id: <20231122125506.3454736-1-andyshrk@163.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231122125316.3454268-1-andyshrk@163.com>
-References: <20231122125316.3454268-1-andyshrk@163.com>
+Received: from wout2-smtp.messagingengine.com (wout2-smtp.messagingengine.com [64.147.123.25])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2A0510C
+	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 05:09:55 -0800 (PST)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+	by mailout.west.internal (Postfix) with ESMTP id 702F33200AFD;
+	Wed, 22 Nov 2023 08:09:54 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute2.internal (MEProxy); Wed, 22 Nov 2023 08:09:55 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=feathertop.org;
+	 h=cc:cc:content-transfer-encoding:content-type:content-type
+	:date:date:from:from:in-reply-to:in-reply-to:message-id
+	:mime-version:references:reply-to:sender:subject:subject:to:to;
+	 s=fm3; t=1700658593; x=1700744993; bh=8JYFkWpBAJZ7oAK7axaEz4qpz
+	7gfYd54GwE6wk4IGMM=; b=wEXHfJxmZpXxMt+bflkLpJuZXa2+w5392/GKS3bK9
+	qzFFhucVp97QXwNuc2j59OCRTXBjK3+S22A6b7xJJUV0pXCV77/wo71QD9feJLK/
+	+FmdIw7/60gMCwrxc/WQHIVUjUgCfFkmjzJ57TRSBe4uXdrAZbWb/7JemNd5XOcd
+	jWfyK5UHMoWj3bZHb+AtnexbzfLmxm9AUyU14XbL2DKyi9vx9HAEdPRNTKRiOj1O
+	W8dkPF2KIMHnFbI3oP6dwW6RWHOrXC0xSNfSQstrg1GJumsE9fDyjpIoQXwSfM62
+	kn8OxAi+4CxFxP9JZ52o4dH3q6R4YcqKxAk6nBb5YKmeQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:sender:subject:subject:to:to:x-me-proxy
+	:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=
+	1700658593; x=1700744993; bh=8JYFkWpBAJZ7oAK7axaEz4qpz7gfYd54GwE
+	6wk4IGMM=; b=hyHO2FVMSr3vLZOUPe7MO844IQ9H+/AqUAgvMS/rFjKAdn0KRau
+	oT2iW6iCqG+IslrvikVk8cq5d2aO3SmgGO0XTGdG0X/OOAv0d+5Of4J5ReUS2Qkr
+	/SvmcuTXpK0s7SOTFoGEuhDCrlc5VLF50qWusxpfFbfeJKUzLntFewWnivFQoIat
+	rqKUm0O+6M/KkrvLF+q4YLy9wwA/CF9jzo+lENfDswPs6XBn3rAl6oStWkF59uJT
+	asC94VYaJUFpo8vHy1pXlBgF0H4CvvvA7Lh130fAXOG4jFkbCEgbUzS9t3ZzrXFY
+	MGx7dAbBcCOm2T+wRstAluOXBKiCGUeOmhQ==
+X-ME-Sender: <xms:of1dZfGp4OxSZRv144xAfk8iTdZwVrjsmdhgiMENcr0G08RXRBkFTA>
+    <xme:of1dZcX9eKQSxXpHjqeMllCc0S60ACylKRCgd8NzRzpPh5IeOkjCj3C9dGIhZLQQB
+    un6EYSXKg>
+X-ME-Received: <xmr:of1dZRJjf3oXH7c29mwGKAIHvihOSuvSnkwvV4F_P2sD2VmY1W96A7gTutcSVAVxER_lpjE2LvYg0E5gypLSW2lcfQtA38_vk4kW3Q>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrudehuddggeelucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepkfffgggfuffvvehfhfgjtgfgsehtkeertddtvdejnecuhfhrohhmpefvihhm
+    ucfnuhhnnhcuoehtihhmsehfvggrthhhvghrthhophdrohhrgheqnecuggftrfgrthhtvg
+    hrnhepueegfefgveeuiedtheffgfefveejkeetiefhhfdvjeevlefhueekudeuleeghfek
+    necuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepthhimh
+    esfhgvrghthhgvrhhtohhprdhorhhg
+X-ME-Proxy: <xmx:of1dZdHGutAX9pizXGlIA9_q9c_ZU0HSFxAitli6NEpWMo7gC0bgUg>
+    <xmx:of1dZVUxFnEGDViaGbxM2xlfa7-XuR_R8lg0autLWBfavbd0yITeyg>
+    <xmx:of1dZYP7B8i5-0hmGtbmPJqDvDSN_SPYDpjXMrbr4nLW3-evqI0FIg>
+    <xmx:of1dZUGDYYQYxYZ0spK83MoEU0sLlORAPmJ_ZZAzAOlE8k8FPnSpUQ>
+Feedback-ID: i1f8241ce:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 22 Nov 2023 08:09:49 -0500 (EST)
+Message-ID: <4baa862c-3e05-46f4-a70e-aaa50ecd424a@feathertop.org>
+Date: Thu, 23 Nov 2023 00:09:46 +1100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 4/9] ARM: dts: rockchip: rv1126: Add i2c2 nodes
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
+Cc: Jagan Teki <jagan@edgeble.ai>, Rob Herring <robh+dt@kernel.org>,
+ linux-arm-kernel@lists.infradead.org, Heiko Stuebner <heiko@sntech.de>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+References: <20231122122232.952696-1-tim@feathertop.org>
+ <20231122122232.952696-5-tim@feathertop.org>
+ <813224c2-398d-4c2d-8909-1839ce63be60@linaro.org>
+From: Tim Lunn <tim@feathertop.org>
+In-Reply-To: <813224c2-398d-4c2d-8909-1839ce63be60@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wAnLJsr+l1llBLPDg--.52769S2
-X-Coremail-Antispam: 1Uf129KBjvdXoW7XF13Ar4UKr17uw1Utw47urg_yoWfCFgE9a
-	4xZ3WUuFW8GryFgw1qyayIk3Z8A3Z2kFykCa1jyF4kCaykZrWDKF95tw1Svr15u3Wfuwn3
-	GFn5WrWUGFnxGjkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU8dwI3UUUUU==
-X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/1tbiFhAwXl44X9n0EwAAsv
 
-From: Andy Yan <andy.yan@rock-chips.com>
+Hi Krzysztof
 
-Add VOP and VO GRF syscon compatibles for RK3588
+On 11/22/23 23:29, Krzysztof Kozlowski wrote:
+> On 22/11/2023 13:22, Tim Lunn wrote:
+>> Add i2c2 node and i2c2_xfer pinctrl for Rockchip RV1126
+>>
+>> Signed-off-by: Tim Lunn <tim@feathertop.org>
+>> ---
+>>
+>> (no changes since v1)
+>>
+>>   arch/arm/boot/dts/rockchip/rv1126-pinctrl.dtsi | 10 ++++++++++
+>>   arch/arm/boot/dts/rockchip/rv1126.dtsi         | 15 +++++++++++++++
+>>   2 files changed, 25 insertions(+)
+>>
+>> diff --git a/arch/arm/boot/dts/rockchip/rv1126-pinctrl.dtsi b/arch/arm/boot/dts/rockchip/rv1126-pinctrl.dtsi
+>> index 4f85b7b3fc4c..167a48afa3a4 100644
+>> --- a/arch/arm/boot/dts/rockchip/rv1126-pinctrl.dtsi
+>> +++ b/arch/arm/boot/dts/rockchip/rv1126-pinctrl.dtsi
+>> @@ -87,6 +87,16 @@ i2c0_xfer: i2c0-xfer {
+>>   				<0 RK_PB5 1 &pcfg_pull_none_drv_level_0_smt>;
+>>   		};
+>>   	};
+>> +	i2c2 {
+>> +		/omit-if-no-ref/
+>> +		i2c2_xfer: i2c2-xfer {
+>> +			rockchip,pins =
+>> +				/* i2c2_scl */
+>> +				<0 RK_PC2 1 &pcfg_pull_none_drv_level_0_smt>,
+>> +				/* i2c2_sda */
+>> +				<0 RK_PC3 1 &pcfg_pull_none_drv_level_0_smt>;
+>> +		};
+>> +	};
+>>   	pwm2 {
+>>   		/omit-if-no-ref/
+>>   		pwm2m0_pins: pwm2m0-pins {
+>> diff --git a/arch/arm/boot/dts/rockchip/rv1126.dtsi b/arch/arm/boot/dts/rockchip/rv1126.dtsi
+>> index 6c5c928f06c7..cf1df75df418 100644
+>> --- a/arch/arm/boot/dts/rockchip/rv1126.dtsi
+>> +++ b/arch/arm/boot/dts/rockchip/rv1126.dtsi
+>> @@ -21,6 +21,7 @@ / {
+>>   
+>>   	aliases {
+>>   		i2c0 = &i2c0;
+>> +		i2c2 = &i2c2;
+> No, this should be per-board to match board labeling/schematics.
+>
+I was just following what seemed to be done in some other Rockchip 
+<SoC>.dtsi files. I will move this alias
+and the other ones for serial and ethernet into the board file instead then.
 
-Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
-Acked-by: Rob Herring <robh@kernel.org>
----
-
-(no changes since v1)
-
- Documentation/devicetree/bindings/soc/rockchip/grf.yaml | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-index e4fa6a07b4fa..26db4f48ff62 100644
---- a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-+++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-@@ -28,6 +28,8 @@ properties:
-               - rockchip,rk3588-sys-grf
-               - rockchip,rk3588-pcie3-phy-grf
-               - rockchip,rk3588-pcie3-pipe-grf
-+              - rockchip,rk3588-vo-grf
-+              - rockchip,rk3588-vop-grf
-               - rockchip,rv1108-usbgrf
-           - const: syscon
-       - items:
--- 
-2.34.1
-
+Regards
+   Tim
+>
+> Best regards,
+> Krzysztof
+>
 
