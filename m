@@ -1,256 +1,126 @@
-Return-Path: <devicetree+bounces-18127-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18128-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 177987F53A5
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 23:46:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DBC37F5433
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 00:09:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8BD7C2811F9
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 22:46:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2D2E0281297
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 23:09:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5643D1D52B;
-	Wed, 22 Nov 2023 22:46:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B30971D559;
+	Wed, 22 Nov 2023 23:09:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jdDYayGd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D336A4
-	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 14:45:56 -0800 (PST)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1r5vyj-0007xT-Si; Wed, 22 Nov 2023 23:45:53 +0100
-Received: from [2a0a:edc0:2:b01:1d::c0] (helo=ptx.whiteo.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1r5vyj-00AuMF-4Q; Wed, 22 Nov 2023 23:45:53 +0100
-Received: from mfe by ptx.whiteo.stw.pengutronix.de with local (Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1r5vyj-003Mus-1S; Wed, 22 Nov 2023 23:45:53 +0100
-Date: Wed, 22 Nov 2023 23:45:53 +0100
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: Miquel Raynal <miquel.raynal@bootlin.com>
-Cc: devicetree@vger.kernel.org, Luka Perkov <luka.perkov@sartura.hr>,
-	kernel@pengutronix.de,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Randy Dunlap <rdunlap@infradead.org>, linux-kernel@vger.kernel.org,
-	Daniel Golle <daniel@makrotopia.org>,
-	Michael Walle <michael@walle.cc>, Rob Herring <robh+dt@kernel.org>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Chen-Yu Tsai <wenst@chromium.org>,
-	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-	Robert Marko <robert.marko@sartura.hr>,
-	Frank Rowand <frowand.list@gmail.com>
-Subject: Re: [PATCH v13 4/6] nvmem: core: Rework layouts to become regular
- devices
-Message-ID: <20231122224553.cfklcv6rew6ktixj@pengutronix.de>
-References: <20231011111529.86440-1-miquel.raynal@bootlin.com>
- <20231011111529.86440-5-miquel.raynal@bootlin.com>
- <20231122220240.4jg245vblnh6d5zy@pengutronix.de>
+Received: from mail-io1-xd2e.google.com (mail-io1-xd2e.google.com [IPv6:2607:f8b0:4864:20::d2e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 007E2D8
+	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 15:09:13 -0800 (PST)
+Received: by mail-io1-xd2e.google.com with SMTP id ca18e2360f4ac-7a689bd4928so34494939f.0
+        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 15:09:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1700694553; x=1701299353; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=+zZ8JfNM2OMcgGqYzXA4poHKbJA5XfysSinrC2/AyhA=;
+        b=jdDYayGdZgMUaezeNXDhadUTmPAgbIyiPX1K/D8ryz/xR2RSW2+Y4P8E3DGCAwNjaN
+         rqxRV5EM1dx1ad9o71rpzRW3kGNQ/9E3jenb5pYu5VjpWrSaC8kcsJhBK9DmplaMi9l9
+         Vutvfn+yIVigWCmzLsXMzy6NksTE4jIRcPWRJTIEA9Gv/yk+YxqJ25cs4ZrUOBq9gp8t
+         2SBT3jPONXVuPcQAkoYPyE2rHh9cnGZe7NZp39kTeprt2czeXbgzWph8A5KEEjdPJXhh
+         9WcJn2l3DZrZBcrAeWP3ngwsVJs5sTHjGWCEO/KrnfKIz6LLAS1oPDU3wHaoL+bZT8tc
+         8etg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700694553; x=1701299353;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+zZ8JfNM2OMcgGqYzXA4poHKbJA5XfysSinrC2/AyhA=;
+        b=uuLJxajD7NuNLRiZEMW1KtN8SuCWdA1BCs7Uj0K2VuaVB4I/bLGTzZCt+4aQ63od9A
+         trEe5qrgFZLlmvObUEGb5ZKgyry0ic9sZDla9A+g9ObJBOuKTvtOhs4IOtf6i1KHVb8h
+         iPItaRpeqwQ7Q0tRJoMZgZ46plenX/BhiE5ZvmvBUbYf/xGn4qQVuX5WbxzwrpWhdDgX
+         ZWupyUpe88rjxCq3qG7JyDY+6k3BsJ5UqW6rnnL284JKqkkFKAbA6vKXPGWcC9JyHWjx
+         lsjqQwF4ATeFdMB5Nn+E1kEIvOcHV126rHRJ9lAWrp9GeIBbYWxW6GPOUu6Omv2CR/A+
+         i4VA==
+X-Gm-Message-State: AOJu0YzIJ/KvI3YIq2wk+0WDIraBayEwiuI07mUWb1v/PgtmkVFjN4KS
+	dt1HmECp0fyDKXfN1gT594K1wQ==
+X-Google-Smtp-Source: AGHT+IGfvFvNtX9o31O98ivh6qmCBRyGBdUZt6yHaaXOlhuOzKQhxaFCldwPqv8IM4y4OZJkMkipuQ==
+X-Received: by 2002:a05:6602:4f03:b0:79d:1b4e:fb8a with SMTP id gl3-20020a0566024f0300b0079d1b4efb8amr813367iob.9.1700694553309;
+        Wed, 22 Nov 2023 15:09:13 -0800 (PST)
+Received: from localhost.localdomain (c-98-61-227-136.hsd1.mn.comcast.net. [98.61.227.136])
+        by smtp.gmail.com with ESMTPSA id fm29-20020a0566382b1d00b0043a20ad93c8sm117754jab.41.2023.11.22.15.09.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Nov 2023 15:09:12 -0800 (PST)
+From: Alex Elder <elder@linaro.org>
+To: davem@davemloft.net,
+	edumazet@google.com,
+	kuba@kernel.org,
+	pabeni@redhat.com
+Cc: andersson@kernel.org,
+	konrad.dybcio@linaro.org,
+	agross@kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	mka@chromium.org,
+	quic_cpratapa@quicinc.com,
+	quic_avuyyuru@quicinc.com,
+	quic_jponduru@quicinc.com,
+	quic_subashab@quicinc.com,
+	elder@kernel.org,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH net-next 0/5] net: ipa: add IPA v5.5 support
+Date: Wed, 22 Nov 2023 17:09:04 -0600
+Message-Id: <20231122230909.895482-1-elder@linaro.org>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231122220240.4jg245vblnh6d5zy@pengutronix.de>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Hi Miquel,
+This series adds IPA support for the Qualcomm SM8550 SoC, which uses
+IPA v5.5.
 
-sorry for answering to my own mail, I forgot something I noticed later.
+The first patch adds a new compatible string for the SM8550.  The
+second cleans up "ipa_reg.h" a bit for consistency.  The third patch
+adds definitions and some minor code changes related to IPA v5.5.
+The fourth defines IPA register offsets and fields used for IPA
+v5.0; most--but not all--register definitions are the same as used
+in IPA v5.0.  The final patch adds configuration data used for IPA
+v5.5 (here again this mostly duplicates IPA v5.0 definitions).
 
-On 23-11-22, Marco Felsch wrote:
-> Hi Miquel,
-> 
-> thanks a lot for your effort on this. Please see my comments inline.
-> 
-> On 23-10-11, Miquel Raynal wrote:
-> > Current layout support was initially written without modules support in
-> > mind. When the requirement for module support rose, the existing base
-> > was improved to adopt modularization support, but kind of a design flaw
-> > was introduced. With the existing implementation, when a storage device
-> > registers into NVMEM, the core tries to hook a layout (if any) and
-> > populates its cells immediately. This means, if the hardware description
-> > expects a layout to be hooked up, but no driver was provided for that,
-> > the storage medium will fail to probe and try later from
-> > scratch. Even if we consider that the hardware description shall be
-> > correct, we could still probe the storage device (especially if it
-> > contains the rootfs).
-> > 
-> > One way to overcome this situation is to consider the layouts as
-> > devices, and leverage the existing notifier mechanism. When a new NVMEM
-> > device is registered, we can:
-> > - populate its nvmem-layout child, if any
-> > - try to modprobe the relevant driver, if relevant
+					-Alex
 
-I'm not sure why we call of_request_module() the driver framework should
-handle that right?
+Alex Elder (5):
+  dt-bindings: net: qcom,ipa: add SM8550 compatible
+  net: ipa: update IPA version comments in "ipa_reg.h"
+  net: ipa: prepare for IPA v5.5
+  net: ipa: add IPA v5.5 register definitions
+  net: ipa: add IPA v5.5 configuration data
 
-> > - try to hook the NVMEM device with a layout in the notifier
+ .../devicetree/bindings/net/qcom,ipa.yaml     |   1 +
+ drivers/net/ipa/Makefile                      |   4 +-
+ drivers/net/ipa/data/ipa_data-v5.5.c          | 487 +++++++++++++++
+ drivers/net/ipa/gsi_reg.c                     |   1 +
+ drivers/net/ipa/ipa_data.h                    |   1 +
+ drivers/net/ipa/ipa_main.c                    |  13 +-
+ drivers/net/ipa/ipa_mem.c                     |   2 +-
+ drivers/net/ipa/ipa_reg.c                     |   6 +-
+ drivers/net/ipa/ipa_reg.h                     | 111 ++--
+ drivers/net/ipa/ipa_version.h                 |   1 +
+ drivers/net/ipa/reg/ipa_reg-v5.5.c            | 565 ++++++++++++++++++
+ 11 files changed, 1130 insertions(+), 62 deletions(-)
+ create mode 100644 drivers/net/ipa/data/ipa_data-v5.5.c
+ create mode 100644 drivers/net/ipa/reg/ipa_reg-v5.5.c
 
-The last part is no longer true since you don't use the notifier
-anymore.
+-- 
+2.34.1
 
-> > And when a new layout is registered:
-> > - try to hook all the existing NVMEM devices which are not yet hooked to
-> >   a layout with the new layout
-> > This way, there is no strong order to enforce, any NVMEM device creation
-> > or NVMEM layout driver insertion will be observed as a new event which
-> > may lead to the creation of additional cells, without disturbing the
-> > probes with costly (and sometimes endless) deferrals.
-> > 
-> > In order to achieve that goal we need:
-> > * To keep track of all nvmem devices
-> > * To create a new bus for the nvmem-layouts with minimal logic to match
-> >   nvmem-layout devices with nvmem-layout drivers.
-> > All this infrastructure code is created in the layouts.c file.
-> > 
-> > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> > Tested-by: Rafał Miłecki <rafal@milecki.pl>
-
-...
-
-> > @@ -944,19 +872,6 @@ struct nvmem_device *nvmem_register(const struct nvmem_config *config)
-> >  			goto err_put_device;
-> >  	}
-> >  
-> > -	/*
-> > -	 * If the driver supplied a layout by config->layout, the module
-> > -	 * pointer will be NULL and nvmem_layout_put() will be a noop.
-> > -	 */
-> > -	nvmem->layout = config->layout ?: nvmem_layout_get(nvmem);
-> > -	if (IS_ERR(nvmem->layout)) {
-> > -		rval = PTR_ERR(nvmem->layout);
-> > -		nvmem->layout = NULL;
-> > -
-> > -		if (rval == -EPROBE_DEFER)
-> > -			goto err_teardown_compat;
-> > -	}
-
-Since this logic will be gone and the layout became a device the fixup
-hook for the layout is more than confusing. E.g. the imx-ocotp driver
-uses the layout to register a fixup for a cell which is fine but the
-hook should be moved from the layout[-dev] to the config. Please see
-below.
-
-> > -
-> >  	if (config->cells) {
-> >  		rval = nvmem_add_cells(nvmem, config->cells, config->ncells);
-> >  		if (rval)
-> > @@ -975,7 +890,7 @@ struct nvmem_device *nvmem_register(const struct nvmem_config *config)
-> >  	if (rval)
-> >  		goto err_remove_cells;
-> >  
-> > -	rval = nvmem_add_cells_from_layout(nvmem);
-> > +	rval = nvmem_populate_layout(nvmem);
-> >  	if (rval)
-> >  		goto err_remove_cells;
-
-Also why do we populate the nvmem-layout device infront of the nvmem
-device?
-
-> >  
-> > @@ -983,16 +898,17 @@ struct nvmem_device *nvmem_register(const struct nvmem_config *config)
-> >  
-> >  	rval = device_add(&nvmem->dev);
-> >  	if (rval)
-> > -		goto err_remove_cells;
-> > +		goto err_destroy_layout;
-> > +
-> >  
-> >  	blocking_notifier_call_chain(&nvmem_notifier, NVMEM_ADD, nvmem);
-> >  
-> >  	return nvmem;
-> >  
-> > +err_destroy_layout:
-> > +	nvmem_destroy_layout(nvmem);
-> >  err_remove_cells:
-> >  	nvmem_device_remove_all_cells(nvmem);
-> > -	nvmem_layout_put(nvmem->layout);
-> > -err_teardown_compat:
-> >  	if (config->compat)
-> >  		nvmem_sysfs_remove_compat(nvmem, config);
-> >  err_put_device:
-> > @@ -1014,7 +930,7 @@ static void nvmem_device_release(struct kref *kref)
-> >  		device_remove_bin_file(nvmem->base_dev, &nvmem->eeprom);
-> >  
-> >  	nvmem_device_remove_all_cells(nvmem);
-> > -	nvmem_layout_put(nvmem->layout);
-> > +	nvmem_destroy_layout(nvmem);
-> >  	device_unregister(&nvmem->dev);
-> >  }
-> >  
-
-...
-
-> > diff --git a/include/linux/nvmem-provider.h b/include/linux/nvmem-provider.h
-> > index 2905f9e6fc2a..a0ea8326605a 100644
-> > --- a/include/linux/nvmem-provider.h
-> > +++ b/include/linux/nvmem-provider.h
-> > @@ -9,6 +9,7 @@
-> >  #ifndef _LINUX_NVMEM_PROVIDER_H
-> >  #define _LINUX_NVMEM_PROVIDER_H
-> >  
-> > +#include <linux/device.h>
-> >  #include <linux/device/driver.h>
-> >  #include <linux/err.h>
-> >  #include <linux/errno.h>
-> > @@ -154,15 +155,13 @@ struct nvmem_cell_table {
-> >  /**
-> >   * struct nvmem_layout - NVMEM layout definitions
-> >   *
-> > - * @name:		Layout name.
-> > - * @of_match_table:	Open firmware match table.
-> > + * @dev:		Device-model layout device.
-> > + * @nvmem:		The underlying NVMEM device
-> >   * @add_cells:		Will be called if a nvmem device is found which
-> >   *			has this layout. The function will add layout
-> >   *			specific cells with nvmem_add_one_cell().
-> >   * @fixup_cell_info:	Will be called before a cell is added. Can be
-> >   *			used to modify the nvmem_cell_info.
-> > - * @owner:		Pointer to struct module.
-> > - * @node:		List node.
-> >   *
-> >   * A nvmem device can hold a well defined structure which can just be
-> >   * evaluated during runtime. For example a TLV list, or a list of "name=val"
-> > @@ -170,17 +169,19 @@ struct nvmem_cell_table {
-> >   * cells.
-> >   */
-> >  struct nvmem_layout {
-> 
-> Since this became a device now should we refelct this within the struct
-> name, e.g. nvmem_layout_dev, nvmem_ldev, nvm_ldev?
-> 
-> Regards,
->   Marco
-> 
-> > -	const char *name;
-> > -	const struct of_device_id *of_match_table;
-> > +	struct device dev;
-> > +	struct nvmem_device *nvmem;
-> >  	int (*add_cells)(struct device *dev, struct nvmem_device *nvmem,
-> >  			 struct nvmem_layout *layout);
-> >  	void (*fixup_cell_info)(struct nvmem_device *nvmem,
-> >  				struct nvmem_layout *layout,
-> >  				struct nvmem_cell_info *cell);
-
-I speak about this hook. This should be moved into the config, maybe
-also renamed to fixup_dt_cell_info() or so to not confuse the users. If
-we move that hook and remove the add_cells hook there are only two
-members left for the cross-link.
-
-Regards,
-  Marco
 
