@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-18097-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18098-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 960327F5143
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 21:10:07 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6D277F5157
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 21:13:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C75021C20865
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 20:10:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E765F1C209EF
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 20:13:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32BB75D8F6;
-	Wed, 22 Nov 2023 20:10:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DAB75D909;
+	Wed, 22 Nov 2023 20:13:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ewvz7udj"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DsY91Iqb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 061141BD
-	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 12:10:00 -0800 (PST)
-Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-2c4fdf94666so2266171fa.2
-        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 12:09:59 -0800 (PST)
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D36341B3
+	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 12:13:36 -0800 (PST)
+Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-50aaaf6e58fso145501e87.2
+        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 12:13:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700683798; x=1701288598; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1700684015; x=1701288815; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=6oN/ChfT8e0nycA2Y45oH8F8aAL5FUndvODmKzayhWU=;
-        b=Ewvz7udjv2xjoBcffDVT43fZVbbNIRZdQB9wfpXvCspkBa2d3lATT9kZw/OIb4dutO
-         DllBaqmw8lCWEUxBvGRfqaSoXiGw4TgwDmbnZw6GJkmTxgdlnZztWtes9W6pv4wpcjtj
-         rjW+j+5p0xQRYkjsZ1VFIDPkwSdH2SI/MXcnqW230Ltx4+cSyWirKVr17faN2Yjd0IMX
-         SHhKuaec3PBwq7Vw1AGJbk5dOMw0pFBjmCExk+gXYJ5rH8klLwt03cHeY2HE6L8/c0tH
-         NYzRvd5Ou+n/fOOfamIFbXxN53j17DheG5VTfz6pFMIZ4qN9X/HC4jzHRQ9R+O1Wr1Sk
-         tkzg==
+        bh=QxaMqeODr1UhKHrPKp0+oaZPp53OiEhtu1sJuNSc+9o=;
+        b=DsY91IqbuCILFJuyZrfwaWpvN/IiB9efZcvPU0TnRIPRak9x+mOBAseKx4pW9fZtZ2
+         eg22yOHd6yGPlumGa9U2Lnq2ciWQqp0ODRrNJVVL//SUP1mzrBvMtwPUqxNwPezmngNT
+         14c8R62QoudWXg8NtDVV1Et08HwUOPIC+i6gVVfKwaz2TjPpKLCQsS2JPDd/dxTO81xF
+         46KNI7cmlv3+zzZSAe1jzVXXZAKQLEv4WkwM7vNq+44xtD6eg2L1NeISH2W8w5sr3usu
+         b97HB4OBy3n+hw9XwTe2ARVGNlDTTnZcRL3oEeyPv1LqBstZqUVffOMnY6TLO9/BXz8Q
+         3BiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700683798; x=1701288598;
+        d=1e100.net; s=20230601; t=1700684015; x=1701288815;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6oN/ChfT8e0nycA2Y45oH8F8aAL5FUndvODmKzayhWU=;
-        b=sUjxU093/GMfcbEBNvFiV8IW0u17PL3NSJrwnb4Tr7INbXyhfykfRUud9kIErLLGYo
-         acE0N5xwRvc9SJjY8Zzm3BIXHYLldKfdJEg/FRvGWHVtO6HRFHGvxWfkyaNio04U5KGT
-         CfY2CGfgqD35kfewqI8AezDIxgKEkRlZ3I0rs1eKodWZSoftasMWhUL27ire0inDcBPi
-         +TmAphioayBzKQd+r+FYSmp6Ulf36BL4qTyxG1t6QOSZuKRN79Q8O8aV2GCXJircOBob
-         EbxZSJH2vG8eYwwUwj3se1qfj0t5SJgVHfIe17pGddvtS1IgPG4wyn3quTTNvSHQ25cx
-         Awlw==
-X-Gm-Message-State: AOJu0Ywj0PID8qkBdhlLUE/P2IT8mUSsGH8e6tIiSJSZ4b7MhSuUyF/V
-	JRxKk9OhaZPSwidWduJDot8BZQ==
-X-Google-Smtp-Source: AGHT+IE/Laar5BAe/Ut2eWzKinuOOq4h3ahqPOZfbrEwTg8LRJ8HKRRN3AqS36Kxn4ieIK8bY/3SVg==
-X-Received: by 2002:a2e:828d:0:b0:2c6:eb1c:10d1 with SMTP id y13-20020a2e828d000000b002c6eb1c10d1mr2244801ljg.25.1700683798165;
-        Wed, 22 Nov 2023 12:09:58 -0800 (PST)
+        bh=QxaMqeODr1UhKHrPKp0+oaZPp53OiEhtu1sJuNSc+9o=;
+        b=GdGN4CeQBwCpNRrn4kjWeFdKE/xJkNjt8NJiE+JOfJJZy52CF2ESVWdYBvIboHe+Gx
+         XCEFP0RKPOmo0+OQK7a949rvFErSWeHnxbu/qEI/cSusXieTs6URLD6nE17rh9kl4Giy
+         Poqyx8TUsFYO8XTiIyE7y/u5t+wxVY0zzLcW5jEYY0p7Xt8HMo2nXcMqE21FvBfTbWl0
+         VnkaeKyWpawmh1JiDIieMfVl9XLL2I877KoJfnjF+o5fkOSRBfJpB6eOoONEoJzyybcF
+         rBYPbCB4qLJNN65lr85l2wwXnEh7pPSD5FwZI2/YKw2tTM1XastHANyp+srLX3k9wkgQ
+         bvyA==
+X-Gm-Message-State: AOJu0YyktHmUa617HSJO0KSShoEiUzS72qgASZxcxs91PnxfCb52C7zq
+	KaRO6CnxoHTW8Ot+bEqdqiUSQQnZY56a580mpjteXdTU
+X-Google-Smtp-Source: AGHT+IEHZowoNQL9s85M08y91XIFjWkmGnKTVbKCkQbqr9w1y6hTUUfsnrS1vUjvGlgkfj2MbCWmRg==
+X-Received: by 2002:a05:6512:ac3:b0:507:9640:f256 with SMTP id n3-20020a0565120ac300b005079640f256mr1193823lfu.36.1700684014991;
+        Wed, 22 Nov 2023 12:13:34 -0800 (PST)
 Received: from [172.30.204.74] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
-        by smtp.gmail.com with ESMTPSA id q8-20020a2e9688000000b002bcdbfe36b9sm38083lji.111.2023.11.22.12.09.55
+        by smtp.gmail.com with ESMTPSA id w8-20020a197b08000000b005048f11892dsm1911889lfc.171.2023.11.22.12.13.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Nov 2023 12:09:57 -0800 (PST)
-Message-ID: <90885d90-2e25-404b-b3a3-13d134801146@linaro.org>
-Date: Wed, 22 Nov 2023 21:09:54 +0100
+        Wed, 22 Nov 2023 12:13:34 -0800 (PST)
+Message-ID: <35ca2ef2-7613-4ddb-b863-2e429337fee3@linaro.org>
+Date: Wed, 22 Nov 2023 21:13:28 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,76 +62,81 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V4 2/4] clk: qcom: branch: Add mem ops support for branch2
- clocks
+Subject: Re: [PATCH 1/1] arm64: dts: qcom: sc7280: add slimbus DT node
 Content-Language: en-US
-To: Imran Shaik <quic_imrashai@quicinc.com>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Taniya Das <quic_tdas@quicinc.com>, linux-arm-msm@vger.kernel.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
- Ajit Pandey <quic_ajipan@quicinc.com>,
- Jagadeesh Kona <quic_jkona@quicinc.com>
-References: <20231117095558.3313877-1-quic_imrashai@quicinc.com>
- <20231117095558.3313877-3-quic_imrashai@quicinc.com>
+To: Viken Dadhaniya <quic_vdadhani@quicinc.com>, andersson@kernel.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ linux-arm-sm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Cc: vnivarth@quicinc.com, msavaliy@quicinc.com, vtanuku@quicinc.com,
+ cchiluve@quicinc.com, dkammath@quicinc.com
+References: <20231116183909.32179-1-quic_vdadhani@quicinc.com>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20231117095558.3313877-3-quic_imrashai@quicinc.com>
+In-Reply-To: <20231116183909.32179-1-quic_vdadhani@quicinc.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Level: *
 
 
 
-On 11/17/23 10:55, Imran Shaik wrote:
-> From: Taniya Das <quic_tdas@quicinc.com>
+On 11/16/23 19:39, Viken Dadhaniya wrote:
+> Add slimbus DT node to enable slimbus usecase on Bluetooth
+> for audio streaming and playback.
+How can I test this?
+
 > 
-> Add the support for mem ops implementation to handle the sequence of
-> enable/disable of the memories in ethernet PHY, prior to enable/disable
-> of the respective clocks, which helps retain the respecive block's
-> register contents.
+> Based on requirement, client team can enable slimbus node
+> on target specific dt file.
+You can even enable it if you're not part of the client team!
+This paragraph is a bit obvious for what it describes
+
 > 
-> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
-> Signed-off-by: Imran Shaik <quic_imrashai@quicinc.com>
+> Signed-off-by: Viken Dadhaniya <quic_vdadhani@quicinc.com>
 > ---
->   drivers/clk/qcom/clk-branch.c | 39 +++++++++++++++++++++++++++++++++++
->   drivers/clk/qcom/clk-branch.h | 21 +++++++++++++++++++
->   2 files changed, 60 insertions(+)
+>   arch/arm64/boot/dts/qcom/sc7280.dtsi | 25 +++++++++++++++++++++++++
+>   1 file changed, 25 insertions(+)
 > 
-> diff --git a/drivers/clk/qcom/clk-branch.c b/drivers/clk/qcom/clk-branch.c
-> index fc4735f74f0f..61bdd2147bed 100644
-> --- a/drivers/clk/qcom/clk-branch.c
-> +++ b/drivers/clk/qcom/clk-branch.c
-> @@ -1,6 +1,7 @@
->   // SPDX-License-Identifier: GPL-2.0
->   /*
->    * Copyright (c) 2013, The Linux Foundation. All rights reserved.
-> + * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
->    */
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> index 04bf85b0399a..fba352504f3f 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> @@ -2528,6 +2528,31 @@
+>   			status = "disabled";
+>   		};
 >   
->   #include <linux/kernel.h>
-> @@ -134,6 +135,44 @@ static void clk_branch2_disable(struct clk_hw *hw)
->   	clk_branch_toggle(hw, false, clk_branch2_check_halt);
->   }
->   
-> +static int clk_branch2_mem_enable(struct clk_hw *hw)
-> +{
-> +	struct clk_mem_branch *mem_br = to_clk_mem_branch(hw);
-> +	struct clk_branch branch = mem_br->branch;
-> +	const char *name = clk_hw_get_name(&branch.clkr.hw);
-Bit of a microoptimization, but adding this implicitly in the WARN
-would only execute clk_hw_get_name when necessary
+> +		slimbam: dma-controller@3a84000 {
+> +			compatible = "qcom,bam-v1.7.0";
+> +			reg = <0x0 0x03a84000 0x0 0x20000>;
+0x0 -> 0 to be consistent with other nodes
 
-> +	u32 val;
-> +	int ret;
+> +			#dma-cells = <1>;
+> +			interrupts = <GIC_SPI 164 IRQ_TYPE_LEVEL_HIGH>;
+interrupts should come after reg
+
+> +			qcom,controlled-remotely;
+> +			num-channels  = <31>;
+> +			qcom,ee = <1>;
+> +			qcom,num-ees = <2>;
+> +			iommus = <&apps_smmu 0x1826 0x0>;
+> +			status = "disabled";
+> +		};
 > +
-> +	regmap_update_bits(branch.clkr.regmap, mem_br->mem_enable_reg,
-> +			mem_br->mem_enable_ack_mask, mem_br->mem_enable_ack_mask);
-It's quite a nit from me, but it would be nice to have the next line aligned
-with the opening brace (with a tab size of 8)
+> +		slim_msm: slim-ngd@3ac0000 {
+slim_msm -> slim
 
+> +			compatible = "qcom,slim-ngd-v1.5.0";
+> +			reg = <0x0 0x03ac0000 0x0 0x2c000>;
+ditto
+
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+these two properties should go before the status property
+
+> +			interrupts = <GIC_SPI 163 IRQ_TYPE_LEVEL_HIGH>;
+> +			dmas = <&slimbam 3>, <&slimbam 4>;
+> +			dma-names = "rx", "tx";
+> +			iommus = <&apps_smmu 0x1826 0x0>;
+> +			status = "disabled";
+> +		};
 Konrad
 
