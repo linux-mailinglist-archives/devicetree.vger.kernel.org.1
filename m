@@ -1,102 +1,106 @@
-Return-Path: <devicetree+bounces-18006-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18007-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5384E7F4C70
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 17:32:37 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D03757F4C77
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 17:34:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6D56A1C20A06
-	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 16:32:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8A4E32812D3
+	for <lists+devicetree@lfdr.de>; Wed, 22 Nov 2023 16:34:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7AAA4CDFA;
-	Wed, 22 Nov 2023 16:32:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ujriAYPH"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BAE524B43;
+	Wed, 22 Nov 2023 16:34:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B033710CE
-	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 08:32:32 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-507a29c7eefso9785123e87.1
-        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 08:32:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700670751; x=1701275551; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Q3CpM5/THx6+8DnjFCPVffJyK/2ER98rSKDWGZl4fAA=;
-        b=ujriAYPHAWMdIq41fFWFPjbVdohxhz86pE6yoc/Rf2qou/o+M+Rn45lYhjnZ4Zi0dU
-         sGPFIltMxXIO3RJeR0kNKpFjZHUCRKlwRgRCzRbCGdCpCFpU78pVukFYNZ9wQKwA8Mp9
-         qZBBe8YnmR9zMilQrt8qh3JRPq6AcY3U8yFDqOQS+jBv56WTmp4QveWUXUvp7iKfhHEJ
-         wEqWtltKiNbYpVbOC2H1NfoJlzKUu8Ly3OGBQpa0VlY+MIv5E5nDbi/gEchoFAp+OI8z
-         DIXKj9iVM+CKgSsiOpVIDicb78xvXYPJgMudmEnBkAb8EWeCL7kUij7z4zPicFtzbgU3
-         m42A==
+Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3621D101;
+	Wed, 22 Nov 2023 08:34:31 -0800 (PST)
+Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-5cc62cca0efso9551077b3.2;
+        Wed, 22 Nov 2023 08:34:31 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700670751; x=1701275551;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Q3CpM5/THx6+8DnjFCPVffJyK/2ER98rSKDWGZl4fAA=;
-        b=WmfaEyLlAHxel+9RAuHxAKHdob4suaCA2gskF5yi+ulRHmacIsXwOXqqS4si4VE8Js
-         cvVV+JZv5RkwUI84Tdn8olSC1t1Ai/mNjrzGD6RKwHTvcBR3HbrCH48zgEGXkE6+0vNl
-         NNW4N7ONvprzHI6h+rw360RjHK0j5M+YWWC9pUZRZHmd4ynZsCGMc79qFJvsiC1H9JZW
-         rK3SG3VHvRXVpOJ7f58PVLgGqZQoTIeXS4T23FSh3SPl9aSYgKwlM9DOaf3ceEIT9MvC
-         FDcitA+rPteKp69PXs+m61VmdLGTsgFRvy2vKFnEFXKgta14QbSA/1QRL/7pSuB/Em+P
-         iqJQ==
-X-Gm-Message-State: AOJu0YzlV5ajs4yUqjWM5XRQPXxFORD+xb8vMCMqSlak5OWzPy49YXi9
-	Si2SnmmFiec2Bx7CGPbgETvjzw==
-X-Google-Smtp-Source: AGHT+IEswAuYBltyPm+uze537OkFpnHIvLyX+dTfkYTTj3/W/ds74UqBcuP0IiPRNjnnsPDDUNv/dA==
-X-Received: by 2002:a19:5514:0:b0:50a:a6c3:4b21 with SMTP id n20-20020a195514000000b0050aa6c34b21mr1976243lfe.32.1700670750880;
-        Wed, 22 Nov 2023 08:32:30 -0800 (PST)
-Received: from [172.30.204.227] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
-        by smtp.gmail.com with ESMTPSA id k7-20020a05651210c700b0050a6fd7ec34sm1886640lfg.191.2023.11.22.08.32.25
+        d=1e100.net; s=20230601; t=1700670870; x=1701275670;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ophsLbscDpT/fxf0eBhWE8ZK8OIp8kFL24DJaRjaQW8=;
+        b=XlNhJpVG0IUme74oamEOlp1oUOtTcL7W5kJvyLDl0PmqzoDk0Je2TG3lHI+VrQvE5U
+         2oVgtZHl3dZRh2dBDSrTzYM4cPmyAkOhnkb+8F7BCTFMKFc9NJLzzyAkc4vAHdZv+1vz
+         AMSsg6e/2h2Gp8yIKxPCSFVE9925W4Kf5fU30Lse82MeGTOJUwWvgwvDNQvlP5jqNA9V
+         n01VvGeCNC1fvLE1doTAFzGBUc98jPGh+fIygZQ+mMdqztX+Faplk23Cs+HxCZyN8/6C
+         Ok4/aBaZVJ+eSZmldyXFfRGUsX+tqXuvrYEvLP1zS6e5aTQXHj7iDkZNXwV/NiHB8bb0
+         7RNw==
+X-Gm-Message-State: AOJu0YzeJJzYJKDuafmswgauEFJ0D1CDiiZKbMOZpna0wxtyvGx1d3wh
+	8gw9Z8GYAQeK0uNY0uoHmZ2V1/42ojGUsw==
+X-Google-Smtp-Source: AGHT+IGxOwoBoFb6bhUx/nujYr41iMhIuJe5EFQCCe+cDSqkpRY/GmB9x2NxAdNR7LXbeaEU2UaUwQ==
+X-Received: by 2002:a0d:e695:0:b0:5c9:70b9:84d5 with SMTP id p143-20020a0de695000000b005c970b984d5mr2828263ywe.8.1700670869750;
+        Wed, 22 Nov 2023 08:34:29 -0800 (PST)
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com. [209.85.128.176])
+        by smtp.gmail.com with ESMTPSA id p13-20020a81ca0d000000b005cb994c12f6sm1153749ywi.115.2023.11.22.08.34.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Nov 2023 08:32:30 -0800 (PST)
-Message-ID: <a27e1190-69c2-4879-9917-b9545bb6a118@linaro.org>
-Date: Wed, 22 Nov 2023 17:32:25 +0100
+        Wed, 22 Nov 2023 08:34:29 -0800 (PST)
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-5ca9114e0e2so35656247b3.3;
+        Wed, 22 Nov 2023 08:34:29 -0800 (PST)
+X-Received: by 2002:a0d:cb58:0:b0:5cb:576a:ec1c with SMTP id
+ n85-20020a0dcb58000000b005cb576aec1cmr2804676ywd.9.1700670868874; Wed, 22 Nov
+ 2023 08:34:28 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/9] clk: qcom: ipq5332: enable few nssnoc clocks in
- driver probe
-Content-Language: en-US
-To: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>,
- Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Richard Cochran <richardcochran@gmail.com>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20231121-ipq5332-nsscc-v2-0-a7ff61beab72@quicinc.com>
- <20231121-ipq5332-nsscc-v2-2-a7ff61beab72@quicinc.com>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20231121-ipq5332-nsscc-v2-2-a7ff61beab72@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Level: *
+References: <20231122121235.827122-1-peterlin@andestech.com> <20231122121235.827122-13-peterlin@andestech.com>
+In-Reply-To: <20231122121235.827122-13-peterlin@andestech.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 22 Nov 2023 17:34:14 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWHx6FoTCZZqaUAES5wJ=JBu7iLvVtNdBZAHB9mgBX4Gg@mail.gmail.com>
+Message-ID: <CAMuHMdWHx6FoTCZZqaUAES5wJ=JBu7iLvVtNdBZAHB9mgBX4Gg@mail.gmail.com>
+Subject: Re: [PATCH v4 12/13] riscv: dts: renesas: Add Andes PMU extension
+To: Yu Chien Peter Lin <peterlin@andestech.com>
+Cc: acme@kernel.org, adrian.hunter@intel.com, ajones@ventanamicro.com, 
+	alexander.shishkin@linux.intel.com, andre.przywara@arm.com, 
+	anup@brainfault.org, aou@eecs.berkeley.edu, atishp@atishpatra.org, 
+	conor+dt@kernel.org, conor.dooley@microchip.com, conor@kernel.org, 
+	devicetree@vger.kernel.org, dminus@andestech.com, evan@rivosinc.com, 
+	geert+renesas@glider.be, guoren@kernel.org, heiko@sntech.de, 
+	irogers@google.com, jernej.skrabec@gmail.com, jolsa@kernel.org, 
+	jszhang@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-perf-users@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+	locus84@andestech.com, magnus.damm@gmail.com, mark.rutland@arm.com, 
+	mingo@redhat.com, n.shubin@yadro.com, namhyung@kernel.org, palmer@dabbelt.com, 
+	paul.walmsley@sifive.com, peterz@infradead.org, 
+	prabhakar.mahadev-lad.rj@bp.renesas.com, rdunlap@infradead.org, 
+	robh+dt@kernel.org, samuel@sholland.org, sunilvl@ventanamicro.com, 
+	tglx@linutronix.de, tim609@andestech.com, uwu@icenowy.me, wens@csie.org, 
+	will@kernel.org, ycliang@andestech.com, inochiama@outlook.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Wed, Nov 22, 2023 at 1:17=E2=80=AFPM Yu Chien Peter Lin
+<peterlin@andestech.com> wrote:
+> xandespmu stands for Andes Performance Monitor Unit extension.
+> Based on the added Andes PMU ISA string, the SBI PMU driver
+> will make use of the non-standard irq source.
+>
+> Signed-off-by: Yu Chien Peter Lin <peterlin@andestech.com>
 
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-On 11/21/23 15:30, Kathiravan Thirumoorthy wrote:
-> gcc_snoc_nssnoc_clk, gcc_snoc_nssnoc_1_clk, gcc_nssnoc_nsscc_clk are
-> enabled by default and it's RCG is properly configured by bootloader.
-> 
-> Some of the NSS clocks needs these clocks to be enabled. To avoid
-> these clocks being disabled by clock framework, drop these entries
-> from the clock table and enable it in the driver probe itself.
-> 
-> Signed-off-by: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
-> ---
-Acked-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Gr{oetje,eeting}s,
 
-Konrad
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
