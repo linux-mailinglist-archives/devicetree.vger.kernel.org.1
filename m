@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-18232-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18233-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A10A57F5C1E
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 11:18:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 50D447F5C22
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 11:18:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0D3A1B2113A
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 10:18:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E5115B20F95
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 10:18:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CC67224EC;
-	Thu, 23 Nov 2023 10:18:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16ABE224E5;
+	Thu, 23 Nov 2023 10:18:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="n2/O/6qn"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XZAptvyM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7669992
-	for <devicetree@vger.kernel.org>; Thu, 23 Nov 2023 02:18:25 -0800 (PST)
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-a00b01955acso95256166b.1
-        for <devicetree@vger.kernel.org>; Thu, 23 Nov 2023 02:18:25 -0800 (PST)
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34E63D4A
+	for <devicetree@vger.kernel.org>; Thu, 23 Nov 2023 02:18:37 -0800 (PST)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-a00a9c6f283so92113966b.0
+        for <devicetree@vger.kernel.org>; Thu, 23 Nov 2023 02:18:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700734704; x=1701339504; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1700734715; x=1701339515; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=LLz+eXFvdBSP66/4L8S/wevUKHOd2GFn01wW2gEAwt0=;
-        b=n2/O/6qnVrDT/Qku04tnpQIcoq0geY/zkgqo4RJ2Et0WuNXPPrdubNCryiAklAVN1E
-         ijW3/xUS+7pLAk5V6mzw2pmLFk8LaOvWW4PTwaaG7qWuKOgu1UTN3YjFMJyZa5rTNCVL
-         qbr1Ukml+V3kLWVdaLRUZxPQckLH6qmMr8DHJTRclY3wfnAjRV2AHHg+PjXTTAOylr47
-         DJxEJU4t0FuvYR1ZRTi8zvU0A6kwL2hCl2McmiVloce2TesMWZ4527R/980jfGxgQwmF
-         1svYGTHEqzlnQRQk9ev4kfI/TmvAe7rfsL1J489Bmo/v6Ct/ac10j5TKGiYnBWvB7BWV
-         P2rg==
+        bh=tD6cnu/Tbhiq7OwR3HjHHzQEAqnphevbVrGdzjNr66U=;
+        b=XZAptvyMCbo/B5yLxy3Caz+HbmYz4pYmrStbfOT+ieCz6UCxvSjhaAaHtBs13X/lOy
+         q2Uy+6TWvrr8yFadkso2XaNyccIEv4rLMVx6E/alNpShwadGSpmABX6NrBd+xHvB34Pg
+         KS2K6bva/V+teUISG2i1FOMrqsSoS16+CmKmgEumlOrn9Sl8HOXllF76qLdTgW51w/xT
+         YbTVmypmOd1PHtXdo9YYmwI+PCmrzFAX3UJR3ONDRmnJnVDbcjkdDWF6JTU0GBTdRTJj
+         ApbjVs5io09K2TOB+9be5OL6Jmdy5Pg0dq8TTFjsgb8eCMsq/r9vAESodfSw4TXrd8Pe
+         qxWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700734704; x=1701339504;
+        d=1e100.net; s=20230601; t=1700734715; x=1701339515;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LLz+eXFvdBSP66/4L8S/wevUKHOd2GFn01wW2gEAwt0=;
-        b=Ehu28uwNEMzo3PdsZv3gWHgqSyzl2KHfbK4/Onp+bTVcEFh0mB7QLKIxz77ne+Vd4o
-         3/+L2DtlE6WZt/L8sj/MCR5JV+BZiE3rrNY+7HNmgNNa4Anlr/iUM9u/q1SNTx3oObjt
-         fHWmYxNEn2IyMCb6vHBqc8srkFxZHgRiSLy0IwJRgXmjPCInpeMDSQGSLGOwGcH8yJVX
-         /eXeQw9YLJSSRstD+vMXT924wsqJW/J2YDiKQ2U1061QKdI9JfK/6xqpdebaAU+1sAMg
-         Kecj5rhSC8WQii8Wmo1EiYVkcsq2peAn+F7jWNvc9RMyuVkqLUhPdww7hm776rXDdo1g
-         DHGA==
-X-Gm-Message-State: AOJu0YwPXJInz1Y+v6qTxdy3Pk7H3mFxEkkN+66ituOGgQgCkgP9Kdta
-	MxUoCHTFhhfOBHMZuRIj+D3ZeA==
-X-Google-Smtp-Source: AGHT+IESU/oAkOLhBfnH/5FmEgzFitN9JhHbiWKKhc0xNyAX2FXpGjC+JLQhjp23jzbLECMdf6FCHA==
-X-Received: by 2002:a17:906:4ed2:b0:9fa:a075:c329 with SMTP id i18-20020a1709064ed200b009faa075c329mr3581304ejv.61.1700734703943;
-        Thu, 23 Nov 2023 02:18:23 -0800 (PST)
+        bh=tD6cnu/Tbhiq7OwR3HjHHzQEAqnphevbVrGdzjNr66U=;
+        b=ftpICqFwnSP4wzNqVzL6aoDJj5erbR3TuT/pSj4I32CpwJbq1COf885LTE4g2G0hKo
+         S7B3Gn88dSwIQk1BuyGr7OYmGsw938rppQ9WmRu9FvELeqpZENuR8a6wAp6L/dwOGuT4
+         Q44g4BZoj13naP5dRrtk8MrOTailOeZExJrkfgjqudnuD31JFf+wAvgfYeGrCDmuLK5Y
+         XWDRBq6UYIiWTpLq4YsvCz3UtRjFdQsXyTaZnhCXix5H2mJEvdltoJolO4AxJVm9IH3H
+         3KNkMKVgqe+nlP36KgiIsv88VpuoJgZKUyIA1pVx9kusjVTUH2oRXVAQcJEtAKYa5hY4
+         194A==
+X-Gm-Message-State: AOJu0Yyw/OKtoTUr1Jlqn8QV9kBhLB05YekCF/iItUP8lOx5BwmyzvxA
+	o2+7IfuXptDZQa/B+Okm+7uvkg==
+X-Google-Smtp-Source: AGHT+IGWr14jJRH2TD3w+CzjzXD5jr2Eo9t5b+VUzZnh++Ja/mJQv938XgbVOT5+iMQ8rp0K+z7gCw==
+X-Received: by 2002:a17:906:3f14:b0:9fe:81a:c258 with SMTP id c20-20020a1709063f1400b009fe081ac258mr3077895ejj.26.1700734715813;
+        Thu, 23 Nov 2023 02:18:35 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.100])
-        by smtp.gmail.com with ESMTPSA id u17-20020a170906069100b00992ea405a79sm588755ejb.166.2023.11.23.02.18.22
+        by smtp.gmail.com with ESMTPSA id u17-20020a170906069100b00992ea405a79sm588755ejb.166.2023.11.23.02.18.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 Nov 2023 02:18:23 -0800 (PST)
-Message-ID: <e5a58915-73de-425f-9f04-ed305a674990@linaro.org>
-Date: Thu, 23 Nov 2023 11:18:21 +0100
+        Thu, 23 Nov 2023 02:18:35 -0800 (PST)
+Message-ID: <d5d5b72d-14e1-4c77-9ed6-57a7edf71a1e@linaro.org>
+Date: Thu, 23 Nov 2023 11:18:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,7 +62,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 1/2] dt-bindings: power: rpmpd: Update part number to
+Subject: Re: [PATCH V2 2/2] pmdomain: qcom: rpmhpd: Update part number to
  X1E80100
 Content-Language: en-US
 To: Sibi Sankar <quic_sibis@quicinc.com>, andersson@kernel.org,
@@ -73,7 +73,7 @@ Cc: agross@kernel.org, conor+dt@kernel.org, quic_rjendra@quicinc.com,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-pm@vger.kernel.org, quic_tsoni@quicinc.com, neil.armstrong@linaro.org
 References: <20231123100021.10918-1-quic_sibis@quicinc.com>
- <20231123100021.10918-2-quic_sibis@quicinc.com>
+ <20231123100021.10918-3-quic_sibis@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -119,19 +119,18 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231123100021.10918-2-quic_sibis@quicinc.com>
+In-Reply-To: <20231123100021.10918-3-quic_sibis@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 23/11/2023 11:00, Sibi Sankar wrote:
 > There was a recent part number update from SC8380XP to X1E80100 and as
-> a result of which the SC8380xp rpmpd bindings introduced is no longer
-> correct. Given that it currently has no users, it was agreed that it
-> can be updated to the correct part number (X1E80100) without causing
-> any binding breakage.
+> a result of which SC8380xp prefix introduced in the rpmhpd driver is no
+> longer correct. Update it to X1E80100, to reflect the bindings change.
 > 
 > Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
 > ---
+> 
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
