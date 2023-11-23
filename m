@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-18200-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18201-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 663137F5A0D
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 09:32:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C2177F5A6A
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 09:47:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F237281820
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 08:32:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 268C02815F8
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 08:47:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8C6C1A584;
-	Thu, 23 Nov 2023 08:32:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BE7618E17;
+	Thu, 23 Nov 2023 08:47:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JnH/542M"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="p6yJUkGg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74E72BC
-	for <devicetree@vger.kernel.org>; Thu, 23 Nov 2023 00:32:31 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-507a62d4788so849954e87.0
-        for <devicetree@vger.kernel.org>; Thu, 23 Nov 2023 00:32:31 -0800 (PST)
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84123172E
+	for <devicetree@vger.kernel.org>; Thu, 23 Nov 2023 00:47:46 -0800 (PST)
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-9fd0059a967so332465066b.1
+        for <devicetree@vger.kernel.org>; Thu, 23 Nov 2023 00:47:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700728349; x=1701333149; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1700729265; x=1701334065; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=jlYleCUbscKdDdnnMAHQnWsVkkYIN7F0a9Yqa91mdgE=;
-        b=JnH/542MmT+brz3oHmgAGIc3FV2Bh94PQZbfABJZ1owtNUusgyMH8Qj8PbPmgxQ71E
-         T0tHHv2i0jd4ZQQK6EOjshtVLebps/XqJe4+1sYRa0FPz5hm8SgwlTRI+uhefO/qjz27
-         0rfXwi/YlWV3AaNWBoxYfgSRIweGR1c4CJz5FbbrYz4zJxQSaQo4FS+rZqW56bCDlEGA
-         uwpNQmokyUFU/uu3eOPaN2ldObL+l9/sTrVAiqwu/G2WAhA/W1yippVsGaeKQH2Ie6ar
-         MKJjQmfBSwDO6XutkRis868Ni3/1jiX5HKTOiRWqOv7YFvvC95OYlYwSxGANedkqKyX4
-         YtCg==
+        bh=kgvXBNohR8MD/S64tYYRwwaWovhCkn1lBTqKUGMvwT8=;
+        b=p6yJUkGghSevE8GJiFI0gCj8jtpLNnHrt3pv+WsgCPIyZHRBj//7Jf0Zkqx1vtvv6y
+         ZHEKRqFAu5kLSXDijvdrcC4jU4H4fNPmwiay//6mAT2laIw4EfbQl5euVVHoWB8xhZBA
+         kLJqFE6Bk9wcGs9atS3VbOVVRj26vY17q54Z9hvlA2eoARFaOs/zCKp7Xq1+ozY0N08c
+         0Tncc/0T/tJQICqDIyDHitQdUu3dDbxjGKRg/MUUId3FQFuJ55xcM8uBoymiAJDxWHyg
+         KUsNptkgppDtdKNnHne9fDRfmsJEmKyn64izT9KuwJgfuR0g2xWybmEDZ0J9C7p9VQez
+         PfVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700728349; x=1701333149;
+        d=1e100.net; s=20230601; t=1700729265; x=1701334065;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jlYleCUbscKdDdnnMAHQnWsVkkYIN7F0a9Yqa91mdgE=;
-        b=B2tNwmptTar6QH4tlJcRfWovDixkPSuaByVRMSXvLY8b4bliIWqBzNkLVKZxex75nQ
-         dPru7MZn/Va8SlKY7X913BswtlwkRwxkv+s1LueeSyk+Pg+xY/9c0py3F2GoK8P+GHfB
-         mzj/HUQ+3VfkgWP/moVEgS3FSeYdbzFPuiaQadWq7bpMZXuzvaYm+2nPUFLOAmjdqS6g
-         9WQqt2wcNk8b0UjRAeQseoWA6+fqGW87ZF82iQQw/gXN3Ej9D+Kua9YyrssuzjED0hPC
-         2Z6s96NBX8DU0noGb/xcSFuY4ERNeYiOFgPmz/fmbwNfp6Hk9deWqu7h/xwamYhN4Nli
-         4rBg==
-X-Gm-Message-State: AOJu0YzF12asUgU4GIUJ07bTBtuTi3tV81YP1OMp09Pm6jKmjIaZKP2j
-	ZUR/udzR7Yh1SSKly8moGmUfQQ==
-X-Google-Smtp-Source: AGHT+IEMLcSclJXjnmDcDPwnayzHcPPha1SXaYOgEy4h8+M0inonES2xe68uywSRcppy1nnKTtb1eA==
-X-Received: by 2002:a05:6512:21c3:b0:509:47ba:3160 with SMTP id d3-20020a05651221c300b0050947ba3160mr2802134lft.56.1700728349492;
-        Thu, 23 Nov 2023 00:32:29 -0800 (PST)
+        bh=kgvXBNohR8MD/S64tYYRwwaWovhCkn1lBTqKUGMvwT8=;
+        b=QEIw4eto7I4bFgDanrkRpQa/8HNvjw7c7si7/WGnqteEpJ6/crE5no2TZXBPNZ1Xcz
+         TzH/Msz+xIi72D91k752gw9IqXkD9Le37+JytYGp73WP3g08Szsko12BoaKhAS+CH7be
+         DpsWM4zClA4RLCayk2fdkhT2Pw0bbFYe1sYsd1Q4XJyi1NYl9Klc8xO58dXn3AZhoidA
+         IKetEm5rzT+2cFKyq237EKViNCv1/0FOQscZjfzoYCb/DKMrysBd30UaAubjPTSrLHSG
+         UR35HsXPPWtzkaf0CkKJQTJ2eA1Dy2psr9NSyE2i7xhRJqATV+FNyWeVnXT51cXz98cL
+         ZPtg==
+X-Gm-Message-State: AOJu0YyDL+5k1fTNmqD3q6T1Q09hubv20oCz9r3y8mXUacAZNwwALPbN
+	kJA9KmBN6VFWfCFrYm2E3585Jg==
+X-Google-Smtp-Source: AGHT+IH/TpDLMfIuYCjdF/xV5MPUOMkhlXyJNnCT4DypQWHwYqDuOY2wYqAFogeXO9Ur37DdEmf+Pw==
+X-Received: by 2002:a17:906:100e:b0:9f2:8220:3f57 with SMTP id 14-20020a170906100e00b009f282203f57mr1438798ejm.8.1700729264695;
+        Thu, 23 Nov 2023 00:47:44 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.100])
-        by smtp.gmail.com with ESMTPSA id bg11-20020a05600c3c8b00b0040b2c195523sm1851461wmb.31.2023.11.23.00.32.27
+        by smtp.gmail.com with ESMTPSA id bk21-20020a170906b0d500b00a0451802b3csm496740ejb.4.2023.11.23.00.47.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 Nov 2023 00:32:29 -0800 (PST)
-Message-ID: <7fb62b63-25d5-42f2-9803-61e813003fd5@linaro.org>
-Date: Thu, 23 Nov 2023 09:32:27 +0100
+        Thu, 23 Nov 2023 00:47:44 -0800 (PST)
+Message-ID: <476f71f3-7f52-410c-8a96-3a2431e53893@linaro.org>
+Date: Thu, 23 Nov 2023 09:47:42 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,23 +62,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: iio: frequency: add admfm2000
+Subject: Re: [PATCH] dt-bindings: gpio: brcmstb: drop unneeded quotes
 Content-Language: en-US
-To: "Paller, Kim Seer" <KimSeer.Paller@analog.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen
- <lars@metafoo.de>, "Hennerich, Michael" <Michael.Hennerich@analog.com>,
- Rob Herring <robh+dt@kernel.org>,
+To: Rob Herring <robh@kernel.org>, Doug Berger <opendmb@gmail.com>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski
+ <brgl@bgdev.pl>, Andy Shevchenko <andy@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- kernel test robot <lkp@intel.com>
-References: <20231122105831.182570-1-kimseer.paller@analog.com>
- <f66a3dc3-a0a5-457b-a68a-efd6577aa210@linaro.org>
- <PH0PR03MB7141C58C008920173B3AE998F9B9A@PH0PR03MB7141.namprd03.prod.outlook.com>
- <676c55c7-1477-4c59-a1fe-2b50e37018a0@linaro.org>
- <PH0PR03MB7141957ABE612DB1275B1309F9B9A@PH0PR03MB7141.namprd03.prod.outlook.com>
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20231122224424.2809523-1-robh@kernel.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -124,92 +120,19 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <PH0PR03MB7141957ABE612DB1275B1309F9B9A@PH0PR03MB7141.namprd03.prod.outlook.com>
+In-Reply-To: <20231122224424.2809523-1-robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 23/11/2023 09:24, Paller, Kim Seer wrote:
->>>>> ---
->>>>> V2 -> V3: Adjusted indentation to resolve wrong indentation warning.
->>>>>           Changed node name to converter. Updated the descriptions to clarify
->>>>>           the properties.
->>>>
->>>>
->>>>> +title: ADMFM2000 Dual Microwave Down Converter
->>>>> +
->>>>> +maintainers:
->>>>> +  - Kim Seer Paller <kimseer.paller@analog.com>
->>>>> +
->>>>> +description:
->>>>> +  Dual microwave down converter module with input RF and LO frequency
->>>> ranges
->>>>> +  from 0.5 to 32 GHz and an output IF frequency range from 0.1 to 8 GHz.
->>>>> +  It consists of a LNA, mixer, IF filter, DSA, and IF amplifier for each down
->>>>> +  conversion path.
->>>>> +
->>>>> +properties:
->>>>> +  compatible:
->>>>> +    enum:
->>>>> +      - adi,admfm2000
->>>>> +
->>>>> +  switch1-gpios:
->>>>> +    items:
->>>>> +      - description:
->>>>> +          Setting B15 GPIO to high and B16 GPIO to low will result in channel
->> 1
->>>>> +          being in Direct IF mode.
->>>>> +      - description:
->>>>> +          Setting B15 GPIO to low and B16 GPIO to high will result in channel
->> 1
->>>>> +          being in Mixer mode.
->>>>
->>>> This still does not tell which one is B15 and which is B16. I am asking
->>>> this for third time.
->>>>
->>>> items:
->>>>   - description: B15 GPIO, when high (and B16 low) channel 1 is in
->>>> Direct IF mode
->>>
->>> I understand now, thank you. I was also wondering if this applies to the
->>> attenuation-gpios, or if I should keep it as is?
->>
->> Yes, something like this applies to all your properties with multiple
->> entries. You need to define the order.
+On 22/11/2023 23:44, Rob Herring wrote:
+> Drop unneeded quotes over simple string values to fix a soon to be
+> enabled yamllint warning:
 > 
-> Before I send a new patch/commit, could you please check this one if it is 
-> properly defined?
+>   [error] string value is redundantly quoted with any quotes (quoted-strings)
 > 
->   attenuation1-gpios:
->     items:
->       - description: C14 GPIO, when low (and C15, C16, D14, D15 high)
->           channel 1 attenuation is 1 dB.
->       - description: C15 GPIO, when low (and C14, C16, D14, D15 high)
->           channel 1 attenuation is 2 dB.
->       - description: C16 GPIO, when low (and C14, C15, D14, D15 high)
->           channel 1 attenuation is 4 dB.
->       - description: D14 GPIO, when low (and C14, C15, C16, D15 high)
->           channel 1 attenuation is 8 dB.
->       - description: D15 GPIO, when low (and C14, C15, C16, D14 high)
->           channel 1 attenuation is 16 dB.
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-This actually could be written in easier way like:
-
-  attenuation1-gpios:
-    description: |
-      Choice of attenuation:
-      C14 C15   ......
-      1    0   0   0   - 1 dB
-      0    1   0   0   - 2 dB
-      ...
-    items:
-      - description: C14 GPIO
-      - description: C15 GPIO
-      - description: C16 GPIO
-      - description: D14 GPIO
-      - description: D15 GPIO
-
-or whatever is easy to understand. The point is that you must define the
-order of GPIOs and explain their meaning.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
