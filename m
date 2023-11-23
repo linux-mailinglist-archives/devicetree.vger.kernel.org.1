@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-18193-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18194-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE07F7F5976
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 08:41:26 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29A077F5981
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 08:42:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 298AB1C20C8D
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 07:41:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D64C42816B4
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 07:42:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A826018620;
-	Thu, 23 Nov 2023 07:41:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D168182BA;
+	Thu, 23 Nov 2023 07:42:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LJUCAMCe"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Y2O7RPbP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F7CA1AE
-	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 23:41:18 -0800 (PST)
-Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-a04196fc957so67692866b.2
-        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 23:41:18 -0800 (PST)
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0C911B3
+	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 23:42:23 -0800 (PST)
+Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-548d67d30bbso837346a12.1
+        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 23:42:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700725276; x=1701330076; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1700725342; x=1701330142; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=pu4pmAHgJPBVOBioOYzuInX3aUbWF8xNZZE3RdB7wYM=;
-        b=LJUCAMCeKtK1JDlhLiD54gFZ4Mu3iwl6fGjPM3/KZsZMJXtS6xD+8mJqSbZABmbQOG
-         VT66hTcCqQBk79VWlwHL8721JQAmMjChi43qCE3BYAB+qf9KINb2WK/TYWlSpc1y0YSl
-         9y4beiYWWlWrn2IfJY+uw89y1Y4vL2QrrUvBK6pJs2fFZPWkFmmD1ger3AGF/R5/Q22a
-         NNvDB9LRI8LKjx8HOOliUKNXhWDueT1z26nXh9/lgVauppHcC8JJOcL+5NA9SrXEyTFc
-         /T+wjoy9j+Tv4LJQQXEPG5oYG70JQX9T7Eb+vYITK9vXxbOpkqs1ha6TcGrfYifPkOYD
-         Dl4w==
+        bh=dwpcXYxSVrGyAlXoeBjjozRXi85KGEsQR33hq+/m4Go=;
+        b=Y2O7RPbPUkcPTK1m1cu8RccxFEZu3SjT2ueZz7OrVUsbt/AMzZ1jchwyDFLo4kCATr
+         V6KI7c2cCKaa9FudmY1epCxpkaYZN8kbJQOspQo55PuDED8W+pZTZzAfqXn+C924bs6t
+         9qbkqnGIvHHoN8u1gM8ZMaArzkm3zBi85OOq8icrWmd22kf4tWuYo0Lyh3kierdEnKHW
+         v1n8jsvLMFYJKxj4sVRBTvNPDFZSuYbWzOeDF2UHDkAMT7JZ0ArTD98YDWomqFbjspTr
+         xLdglBO3eCcpCwj0ZSNl/qEl7J9ksebjt8c1Zr1VloosGCjm5LjEjtmrpfU1syAPwVBT
+         VsLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700725276; x=1701330076;
+        d=1e100.net; s=20230601; t=1700725342; x=1701330142;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pu4pmAHgJPBVOBioOYzuInX3aUbWF8xNZZE3RdB7wYM=;
-        b=aDF0v+LB7ZEeI2JH70oriILSfsAsnTJgiy9mZIMSHBkKyRds7HUTXRtcTsj8XVk9+C
-         dT8uBgtIqK38mSUHIZ9h9l5AXR0q4hysks40x5bnEjNyIeKKsMgWqiRrSffTh2nI2e3e
-         1IW9M16kVwdjoLoQ56TpJLIikNknJIxtZpQBtyv7KZbkrhwtTRHdqqWiU47KgN3LLKiZ
-         +2F8zU5Qfeb8UN1myRMea9GFDEPUf6/qBmuGfIwkxA5+D/IoCyUx3wjYsPHWGeqT8tHR
-         TSKlkb8CTgy7sWfALY589qBkEYhi2LsEq8B8kfxCYjWOWtxOQCs3n1309dgaZ++8f7Kf
-         pmCQ==
-X-Gm-Message-State: AOJu0YwDhOuhdrs6i6lnSQWEcnZQUjaPO0zrM5MmhRzsHBoqerm3+77D
-	CKPRYyY90aM7Uz7svC1dUYDzcw==
-X-Google-Smtp-Source: AGHT+IEmkqoomKDfBhZcm2g7LpGTDt+JCHx22fAOBnzKYq4LKaKsqoKAMJM4+cPDNv9pCJARXx82lw==
-X-Received: by 2002:a17:906:535b:b0:9b7:37de:601a with SMTP id j27-20020a170906535b00b009b737de601amr3391976ejo.49.1700725276554;
-        Wed, 22 Nov 2023 23:41:16 -0800 (PST)
+        bh=dwpcXYxSVrGyAlXoeBjjozRXi85KGEsQR33hq+/m4Go=;
+        b=uWphpq4QeIHtIsCQN20gKcHIqLF4K62EbsCdbufNgqs5kPRwNMwSYWEVxJoQEWaLiR
+         OS5xEBk7/taZqnxeE0ZUfp5lQ18eDiv4FGVXeJ6TiDKjyuOzHJ7iPfF5BeQrBIv8dndK
+         uEvdcpSTaz/tAnaLE/KXMy5Jbp5wLM0z8zSLDzhXh7QDwTRzIQQl2GYM3U78zDdvwh8r
+         Bq9ME6vKc60LO3ZzzDQRua0Gi0FUlhaiyOZXENwIhNYozW9RDiYTTBtNtHw9h4AVngzt
+         JHziAVzDsq5CtMe1ES/XrRxORCfZ77eqMEyxjSreVNrCyvZWkoYCzunNOoU9S0LsBFUP
+         fa4g==
+X-Gm-Message-State: AOJu0YxFFxpXR1jbvWyApMfGlSsmQIIy6aiNu7AikwXPPFN3CXNXtFOW
+	EJf7kfbufvALQnP1b/bvnUvncQ==
+X-Google-Smtp-Source: AGHT+IHaJPeIMzwcXlXhRnhEtGgrsYvJEgEcYjyqsmlk2jKlYF4oOe0qn1SPQXRUQsav7P52Cx0U4A==
+X-Received: by 2002:a17:906:4bd7:b0:a01:1cee:53cc with SMTP id x23-20020a1709064bd700b00a011cee53ccmr2811813ejv.66.1700725342161;
+        Wed, 22 Nov 2023 23:42:22 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.100])
-        by smtp.gmail.com with ESMTPSA id pw10-20020a17090720aa00b0099cce6f7d50sm433194ejb.64.2023.11.22.23.41.14
+        by smtp.gmail.com with ESMTPSA id pw10-20020a17090720aa00b0099cce6f7d50sm433194ejb.64.2023.11.22.23.42.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Nov 2023 23:41:16 -0800 (PST)
-Message-ID: <4c323ab5-579f-41f5-ab77-c087136e4058@linaro.org>
-Date: Thu, 23 Nov 2023 08:41:13 +0100
+        Wed, 22 Nov 2023 23:42:21 -0800 (PST)
+Message-ID: <af4fe6e9-b965-4811-84dc-2a45a322782e@linaro.org>
+Date: Thu, 23 Nov 2023 08:42:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,20 +62,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/6] dt-bindings: usb: dwc3: Clean up hs_phy_irq in
- bindings
+Subject: Re: [PATCH] dt-bindings: leds: Fix JSON pointer in max-brightness
 Content-Language: en-US
-To: Krishna Kurapati <quic_kriskura@quicinc.com>,
- Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh+dt@kernel.org>,
+To: Rob Herring <robh@kernel.org>, Pavel Machek <pavel@ucw.cz>,
+ Lee Jones <lee@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, quic_wcheng@quicinc.com
-Cc: linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- quic_ppratap@quicinc.com, quic_jackp@quicinc.com
-References: <20231122191335.3058-1-quic_kriskura@quicinc.com>
+ Conor Dooley <conor+dt@kernel.org>,
+ Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20231122205418.2482076-1-robh@kernel.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -121,72 +117,17 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231122191335.3058-1-quic_kriskura@quicinc.com>
+In-Reply-To: <20231122205418.2482076-1-robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 22/11/2023 20:13, Krishna Kurapati wrote:
-> The high speed related interrupts present on QC targets are as follows:
+On 22/11/2023 21:54, Rob Herring wrote:
+> A valid JSON pointer should begin with a '/'. The json-schema package is
+> lax on this allowing either form, but that's changing in new versions.
 > 
-> dp/dm Irq's
-> These IRQ's directly reflect changes on the DP/DM pads of the SoC. These
-> are used as wakeup interrupts only on SoCs with non-QUSBb2 targets with
-> exception of SDM670/SDM845/SM6350.
-> 
-> qusb2_phy irq
-> SoCs with QUSB2 PHY do not have separate DP/DM IRQs and expose only a
-> single IRQ whose behavior can be modified by the QUSB2PHY_INTR_CTRL
-> register. The required DPSE/DMSE configuration is done in
-> QUSB2PHY_INTR_CTRL register of phy address space.
-> 
-> hs_phy_irq
-> This is completely different from the above two and is present on all
-> targets with exception of a few IPQ ones. The interrupt is not enabled by
-> default and its functionality is mutually exclusive of qusb2_phy on QUSB
-> targets and DP/DM on femto phy targets.
-> 
-> The DTs of several QUSB2 PHY based SoCs incorrectly define "hs_phy_irq"
-> when they should have been "qusb2_phy_irq". On Femto phy targets, the
-> "hs_phy_irq" mentioned is either the actual "hs_phy_irq" or "pwr_event",
-> neither of which would never be triggered directly are non-functional
-> currently. The implementation tries to clean up this issue by addressing
-> the discrepencies involved and fixing the hs_phy_irq's in respective DT's.
-> 
-> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
-> ---
->  .../devicetree/bindings/usb/qcom,dwc3.yaml    | 125 ++++++++++--------
->  1 file changed, 69 insertions(+), 56 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> index e889158ca205..4a46346e2ead 100644
-> --- a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> +++ b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> @@ -17,20 +17,25 @@ properties:
->            - qcom,ipq5018-dwc3
->            - qcom,ipq5332-dwc3
->            - qcom,ipq6018-dwc3
-> +          - qcom,ipq6018-dwc3-sec
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-I could not understand from commit msg why you are adding new compatible
-and what it is supposed to fix.
-
-The entire diff is huge thus difficult to review. Why fixing hs_phy_irq
-causes three new interrupts being added?
->            - qcom,ipq8064-dwc3
->            - qcom,ipq8074-dwc3
->            - qcom,ipq9574-dwc3
->            - qcom,msm8953-dwc3
->            - qcom,msm8994-dwc3
->            - qcom,msm8996-dwc3
-> +          - qcom,msm8996-dwc3-sec
->            - qcom,msm8998-dwc3
->            - qcom,qcm2290-dwc3
->            - qcom,qcs404-dwc3
->            - qcom,sa8775p-dwc3
-> +          - qcom,sa8775p-dwc3-ter
-
-Ter?
-
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
