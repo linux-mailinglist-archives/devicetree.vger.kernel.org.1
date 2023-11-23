@@ -1,160 +1,217 @@
-Return-Path: <devicetree+bounces-18306-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18307-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 503287F6119
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 15:10:29 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86B307F613A
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 15:16:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0BC91281DE6
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 14:10:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7CF65B213F8
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 14:16:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7A252E85F;
-	Thu, 23 Nov 2023 14:10:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3238425565;
+	Thu, 23 Nov 2023 14:16:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jmJclWsN"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="mqaDA+Hi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E2AE25574;
-	Thu, 23 Nov 2023 14:10:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB586C433C8;
-	Thu, 23 Nov 2023 14:10:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700748624;
-	bh=/bWFQ4N/SZVD3lkJ8hFU61wZaZzFy0Eh+DF7PZpyN60=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jmJclWsNN8+MbXNXEpB/y3Ja7MjWIPlJnhva92TOcXsIjY5RXgFUIFpSu0rk5/wxx
-	 zSVWMn9rOuDzq5VNDFoP+AMh4wPYnAUD1AYyqKyL8UeRhPECBB3Iy0UfB8xUEY0BGq
-	 hXf4U1selniFGco61iHTJM+Q784IIjXFQ4RjHmKXqQc6TV52mi/7N3zH9+AQDRg7YZ
-	 M+4wfkiGwoEeSZdIxcgQsJw50nelrsEqIQJqL68f7rbnJSoTH5iEoq2n1msiZFOCd7
-	 3Ug3diljOuFHP0Bz4nwqhA725R6t29m2pc1KKv57dfloIDzyneT8j1JttmAyu3NWNL
-	 CVjRoQ4+yhs8Q==
-Received: from johan by xi.lan with local (Exim 4.96.2)
-	(envelope-from <johan@kernel.org>)
-	id 1r6APi-000555-0P;
-	Thu, 23 Nov 2023 15:10:42 +0100
-Date: Thu, 23 Nov 2023 15:10:42 +0100
-From: Johan Hovold <johan@kernel.org>
-To: Krishna Kurapati <quic_kriskura@quicinc.com>
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, quic_wcheng@quicinc.com,
-	linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	quic_ppratap@quicinc.com, quic_jackp@quicinc.com
-Subject: Re: [PATCH 1/6] dt-bindings: usb: dwc3: Clean up hs_phy_irq in
- bindings
-Message-ID: <ZV9dYpTYRXn63tXe@hovoldconsulting.com>
-References: <20231122191335.3058-1-quic_kriskura@quicinc.com>
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50F39D40;
+	Thu, 23 Nov 2023 06:16:33 -0800 (PST)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3ANCZU3o021136;
+	Thu, 23 Nov 2023 14:16:30 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=rIZzymLS3Ylg8j6esSrxq5S21SMx81sxQPWuNmJzoJ0=;
+ b=mqaDA+HiacW0dFoqvU1vZaLbJL0GJtXtSvq6iqyiBSqams6lfY1r6Xu4D/EjARz5hMIs
+ bIW5hLRWk1bqPKErhr5M0dgy+Jr3606WVLq2QsgIP4dxAZuRWgukOwcEtaPDdDWYqya4
+ rN5XQKZZd597HiQ2qqo6XvvMcohVJXggJT3/C/jiT5UtnlFo0luSsWgQuymNK0vzca5M
+ R+mPTJcyjqFIVWzHLuiRUfjA7MK1SNsYU7YJFrvoltmuoS2FrdYLPgoEUPDlfpubAV3s
+ QoOueExg8ttZPnogsor6Lbxw5LI2QfbhxMudMs0Nq0cmBWa6m4PKJo0nTtGYsDaFZwL2 xg== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uj6emr7nb-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 23 Nov 2023 14:16:29 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3ANEGTZP006361
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 23 Nov 2023 14:16:29 GMT
+Received: from [10.214.67.128] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 23 Nov
+ 2023 06:16:25 -0800
+Message-ID: <9f0d2e6b-2648-083d-955c-484e9d899924@quicinc.com>
+Date: Thu, 23 Nov 2023 19:46:22 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231122191335.3058-1-quic_kriskura@quicinc.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH v5 3/3] arm64: dts: qcom: Add base qcs6490-rb3gen2 board
+ dts
+Content-Language: en-US
+To: Caleb Connolly <caleb.connolly@linaro.org>,
+        Andy Gross
+	<agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Naina Mehta <quic_nainmeht@quicinc.com>
+References: <20231120134754.9526-1-quic_kbajaj@quicinc.com>
+ <20231120134754.9526-4-quic_kbajaj@quicinc.com>
+ <70402702-84d3-4577-9fd2-9e87add4283b@linaro.org>
+From: Komal Bajaj <quic_kbajaj@quicinc.com>
+In-Reply-To: <70402702-84d3-4577-9fd2-9e87add4283b@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: rWCSSSuUSpCKSNL32kasGDwHHIMIsfZI
+X-Proofpoint-GUID: rWCSSSuUSpCKSNL32kasGDwHHIMIsfZI
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-23_12,2023-11-22_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 clxscore=1015
+ spamscore=0 bulkscore=0 priorityscore=1501 impostorscore=0 suspectscore=0
+ phishscore=0 lowpriorityscore=0 mlxscore=0 mlxlogscore=999 malwarescore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2311060000
+ definitions=main-2311230103
 
-On Thu, Nov 23, 2023 at 12:43:35AM +0530, Krishna Kurapati wrote:
-> The high speed related interrupts present on QC targets are as follows:
+Please ignore if received twice.
+
+On 11/20/2023 8:17 PM, Caleb Connolly wrote:
 > 
-> dp/dm Irq's
-> These IRQ's directly reflect changes on the DP/DM pads of the SoC. These
-> are used as wakeup interrupts only on SoCs with non-QUSBb2 targets with
-> exception of SDM670/SDM845/SM6350.
 > 
-> qusb2_phy irq
-> SoCs with QUSB2 PHY do not have separate DP/DM IRQs and expose only a
-> single IRQ whose behavior can be modified by the QUSB2PHY_INTR_CTRL
-> register. The required DPSE/DMSE configuration is done in
-> QUSB2PHY_INTR_CTRL register of phy address space.
+> On 20/11/2023 13:47, Komal Bajaj wrote:
+>> Add DTS for Qualcomm qcs6490-rb3gen2 board which uses
+>> QCS6490 SoC. This adds debug uart and usb support along
+>> with regulators found on this board.
 > 
-> hs_phy_irq
-> This is completely different from the above two and is present on all
-> targets with exception of a few IPQ ones. The interrupt is not enabled by
-> default and its functionality is mutually exclusive of qusb2_phy on QUSB
-> targets and DP/DM on femto phy targets.
+> Hi,
 > 
-> The DTs of several QUSB2 PHY based SoCs incorrectly define "hs_phy_irq"
-> when they should have been "qusb2_phy_irq". On Femto phy targets, the
-> "hs_phy_irq" mentioned is either the actual "hs_phy_irq" or "pwr_event",
-> neither of which would never be triggered directly are non-functional
-> currently. The implementation tries to clean up this issue by addressing
-> the discrepencies involved and fixing the hs_phy_irq's in respective DT's.
+> I understand there was a lot of previous discussion around these two
+> boards, sorry to be bringing it up again here, but I have a few more
+> questions.
+> 
+> How similar are these two boards in terms of design? If they're derived
+> from the same reference schematic then I think this is a good
+> justification to de-duplicate the common DTS parts.
 
-Thanks for sorting this out.
+These two are different boards and they don't follow same schema.
 
-It seems like we have a few combinations of these interrupts and we
-should probably try to define the order for these once and for all and
-update the current devicetrees to match (even if it means adding new
-interrupts in the middle).
+> 
+> Dropping them in a diff tool [1] it seems as though the only changes are
+> the modem reserved memory for the IDP board, some minor regulator
+> changes, and the sdcard on the IDP board being enabled. However it's
+> important to differentiate between these just, being the same, vs them
+> being based on the same reference design.
 
-Instead of adding separate compatibles for the controllers without SS
-support, I suggest keeping that interrupt last as an optional one.
+As I said in the other thread[1], the only difference between these two
+boards is just the memory map, we can always comeback and do refactor if
+there will be more common things to share between these IOT family
+platforms.
 
-But IIUC we essentially have something like:
+[1]https://lore.kernel.org/linux-arm-msm/3d8a8943-af70-c291-d2d8-41067d8404f2@quicinc.com/
 
-qusb2-:
+> 
+> I left some comments on the parts that differ between the boards below,
+> but basically my question is: do these boards share enough of the same
+> *design* that it would make sense to have a "qcm6490-iot.dtsi" file with
+> the common reserved memory and regulators?
+> 
+> The IDP and rb3 boards would then inherit from there, avoiding a lot of
+> duplication and weirdness where some boards have certain regulator
+> properties that others don't with it being hard to tell if this is
+> intentional or not (this is the case with a lot of the existing upstream
+> devices).
+> 
+> On a related note, should we further split the rb3 board into a
+> qcs6490-whatever-som.dtsi file which may define the SoM specific parts?
+> This would undoubtebly make it easier for other boards based on the same
+> SoM to be bought up and kept up to date.
+> 
+> [1]: https://quickdiff.net/?unique_id=630F6851-C750-839E-1651-4CA6D997A74D
+> 
+> 
 
-	- const: qusb2_phy
-	- const: pwr_event
-	- const: ss_phy_irq	(optional)
+I agree with your comment to have a common qcs6490-som.dtsi, but will do
+this once we upstream the other rb boards based this SoM.
 
-qusb2:
+> [...]
+> 
+>> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+>> new file mode 100644
+>> index 000000000000..f023dcf768f1
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+>> @@ -0,0 +1,410 @@
+>> +// SPDX-License-Identifier: BSD-3-Clause
+>> +/*
+>> + * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+>> + */
+>> +
+> [...]
+>> +
+>> +		vreg_l7b_2p952: ldo7 {
+> 
+> The IDP board defined voltages here for the sdcard, does the rb3 board
+> have an sdcard slot (if so which regulator does it use)?
+> 
+> Is there a reason not to define the same voltage range for this board?
 
-	- const: hs_phy_irq
-	- const: qusb2_phy
-	- const: pwr_event
-	- const: ss_phy_irq	(optional)
+This regulator in IDP board is used for mmc (sdhc_1) and rb3 does not
+have it. Although both have sdcard and I have not pushed the support for
+it yet. Will add the voltage ranges here as it was a mistake.
 
-qusb2+:
+>> +			regulator-allow-set-load;
+> 
+> This property is set for rb3 but not for the idp board, even though this
+> regulator is unused, should this be set?
 
-	- const: hs_phy_irq
-	- const: qusb2_phy
-	- const: dp_hs_phy_irq
-	- const: dm_hs_phy_irq
-	- const: pwr_event
-	- const: ss_phy_irq	(optional)
+Again this was some downstream hack that got copied. Sorry for this.
+Will remove it.
 
-femto-:
-	- const: dp_hs_phy_irq
-	- const: dm_hs_phy_irq
-	- const: pwr_event
-	- const: ss_phy_irq	(optional)
+>> +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM RPMH_REGULATOR_MODE_HPM>;
+>> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>> +		};
+>> +
+> [...]
+>> +
+>> +		vreg_l9b_1p2: ldo9 {
+> Same question as above
+>> +			regulator-allow-set-load;
+> Same question
+>> +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM RPMH_REGULATOR_MODE_HPM>;
+>> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>> +		};
+>> +
+> [...]
+>> +		vreg_l19b_1p8: ldo19 {
+>> +			regulator-min-microvolt = <1800000>;
+>> +			regulator-max-microvolt = <2000000>;
+>> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> The IDP board has the regulator-allow-set-load property here, as well as
+> regulator-allowed-modes. This regulator is used for the sdcard on that
+> board. Is it used for anything on rb3? Can these properties be the same?
 
-femto:
-	- const: hs_phy_irq
-	- const: dp_hs_phy_irq
-	- const: dm_hs_phy_irq
-	- const: pwr_event
-	- const: ss_phy_irq	(optional)
+As explained above, this property is used for mmc and not sdcard. As of
+now, not used.
 
-Does this look like it would cover all of our currents SoCs?
+Thanks,
+Komal.
 
-Do all of them have the pwr_event interrupt?
-
-Note that DP comes before DM above as that seems like the natural order
-of these (plus before minus).
-
-Now if the HS interrupt is truly unusable, I guess we can consider
-dropping it throughout and the above becomes just three permutations
-instead, which can even be expressed along the lines of:
-
-	- anyOf:
-	  - items:
-	    - const: qusb2_phy
-	  - items:
-	    - const: dp_hs_phy_irq
-	    - const: dm_hs_phy_irq
-	- const: pwr_event
-	- const: ss_phy_irq	(optional)
-
-Johan
 
