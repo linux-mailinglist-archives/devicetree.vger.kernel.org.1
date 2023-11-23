@@ -1,124 +1,93 @@
-Return-Path: <devicetree+bounces-18314-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18315-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 881187F61DD
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 15:47:33 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 321EE7F61E1
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 15:47:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9966B1C21148
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 14:47:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E19E8281F4D
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 14:47:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1A552E843;
-	Thu, 23 Nov 2023 14:47:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8015824B5B;
+	Thu, 23 Nov 2023 14:47:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="sDY2cKHY"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="TcENdRs3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E04DAD40;
-	Thu, 23 Nov 2023 06:47:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1700750848; x=1732286848;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=MUsg89fQ9NBzKyUbXc1Aej1I5ZOvhdvSHAYt6cV/nr8=;
-  b=sDY2cKHYA7Ur/S9Ne2KmDFGXmc/SWRnf2vwqOYIdtA3mKzlp8VomzHiQ
-   18n7DDHm3LOoA0H0lDy42kcXyM5/LZM42fbGuXBLDxXONG1Y71C8ed383
-   TJyQf/FtGxStkWmJUb3TlQUSdq6xLhOXcelC7fj3QUgFtz7NnoHiel7IU
-   4/hPCg0I97YTMwOklmlqvQUPDXZbytrTzzGMvPv6wFoQlRaobD5tKqc72
-   M2jRMn4lPbVU55Fv9eeTeE6VueHdmDuNOORF6CjtAdrbi4/ZKJqvIJDfB
-   dn1lOFYQM9G3kV1IlhsuWu8oTGW/G6QMdXQFamcUDC0+vVFTk4qWGEkLq
-   w==;
-X-CSE-ConnectionGUID: BE0Y80HqR8yoj+GuwVwALQ==
-X-CSE-MsgGUID: b3thrMNzRuC8XgsnWxRyVw==
-X-ThreatScanner-Verdict: Negative
-X-IronPort-AV: E=Sophos;i="6.04,222,1695711600"; 
-   d="asc'?scan'208";a="12195934"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 23 Nov 2023 07:47:26 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Thu, 23 Nov 2023 07:46:36 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex03.mchp-main.com (10.10.85.151)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Thu, 23 Nov 2023 07:46:27 -0700
-Date: Thu, 23 Nov 2023 14:45:59 +0000
-From: Conor Dooley <conor.dooley@microchip.com>
-To: Yu Chien Peter Lin <peterlin@andestech.com>
-CC: <acme@kernel.org>, <adrian.hunter@intel.com>, <ajones@ventanamicro.com>,
-	<alexander.shishkin@linux.intel.com>, <andre.przywara@arm.com>,
-	<anup@brainfault.org>, <aou@eecs.berkeley.edu>, <atishp@atishpatra.org>,
-	<conor+dt@kernel.org>, <conor@kernel.org>, <devicetree@vger.kernel.org>,
-	<dminus@andestech.com>, <evan@rivosinc.com>, <geert+renesas@glider.be>,
-	<guoren@kernel.org>, <heiko@sntech.de>, <irogers@google.com>,
-	<jernej.skrabec@gmail.com>, <jolsa@kernel.org>, <jszhang@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <linux-perf-users@vger.kernel.org>,
-	<linux-renesas-soc@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-	<linux-sunxi@lists.linux.dev>, <locus84@andestech.com>,
-	<magnus.damm@gmail.com>, <mark.rutland@arm.com>, <mingo@redhat.com>,
-	<n.shubin@yadro.com>, <namhyung@kernel.org>, <palmer@dabbelt.com>,
-	<paul.walmsley@sifive.com>, <peterz@infradead.org>,
-	<prabhakar.mahadev-lad.rj@bp.renesas.com>, <rdunlap@infradead.org>,
-	<robh+dt@kernel.org>, <samuel@sholland.org>, <sunilvl@ventanamicro.com>,
-	<tglx@linutronix.de>, <tim609@andestech.com>, <uwu@icenowy.me>,
-	<wens@csie.org>, <will@kernel.org>, <ycliang@andestech.com>,
-	<inochiama@outlook.com>
-Subject: Re: [PATCH v4 07/13] RISC-V: Move T-Head PMU to CPU feature
- alternative framework
-Message-ID: <20231123-snub-headdress-23a80f001ccd@wendy>
-References: <20231122121235.827122-1-peterlin@andestech.com>
- <20231122121235.827122-8-peterlin@andestech.com>
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::224])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3AF3D4A;
+	Thu, 23 Nov 2023 06:47:45 -0800 (PST)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 2CEEAE0002;
+	Thu, 23 Nov 2023 14:47:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1700750864;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=MZPJxfvoysVpxIWKBdmpAvA0+UBzj52BEZXDkonKlNQ=;
+	b=TcENdRs3kz8fi6vTvuiHsyqu9OJv6uHiR+bRPRhy8PQDSLgM2G0CWPJNjDggo9N67ByqMp
+	KUcURLficapDrJ+MR6fO0R6raSrIkzwIbKKpzLy83l44CYmItZTfHz8lefwAtq+5U30oQv
+	llDWdphYiFVsHbPtO84+JgZDJlFbGZ/hqIKwUM02DG0I7Car4ma43yF2tdTCPxGT52jQpe
+	pf2dMrOQdC6mozfR1EIeBIdxnroShqdZ+3+q2oLB7MWLxJH7BRlY8n0nDzwQY0Pka3AueG
+	d8xSZQvcZox56d4/r3djwELkwtb9f4RKaav38RqfGD4LUNbgR86+TPUm/UmApQ==
+From: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Date: Thu, 23 Nov 2023 15:47:18 +0100
+Subject: [PATCH] of: dynamic: Fix of_reconfig_get_state_change() return
+ value documentation
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="u2td/6ehnVJK/j3z"
-Content-Disposition: inline
-In-Reply-To: <20231122121235.827122-8-peterlin@andestech.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20231123-fix-of_reconfig_get_state_change-docs-v1-1-f51892050ff9@bootlin.com>
+X-B4-Tracking: v=1; b=H4sIAPVlX2UC/y2NywrDIBBFf0VmXcFHAm1+pRQJzmhmo8GREgj59
+ 0jp8sA995wg1JgEFnVCoy8L1zLAPhTEbS2ZNONgcMZ5a53XiQ9dU2gUa0mcQ6YepK+dwn+PNYp
+ G88RpRovTy8P42hsN8dd5f67rBmhAxBN3AAAA
+To: Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>, 
+ Grant Likely <grant.likely@linaro.org>, 
+ Pantelis Antoniou <pantelis.antoniou@konsulko.com>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Luca Ceresoli <luca.ceresoli@bootlin.com>
+X-Mailer: b4 0.12.3
+X-GND-Sasl: luca.ceresoli@bootlin.com
 
---u2td/6ehnVJK/j3z
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+The documented numeric return values do not match the actual returned
+values. Fix them by using the enum names instead of raw numbers.
 
+Fixes: b53a2340d0d3 ("of/reconfig: Add of_reconfig_get_state_change() of notifier helper.")
+Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+---
+ drivers/of/dynamic.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
->  drivers/perf/riscv_pmu_sbi.c         | 19 ++++++++++++++-----
+diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
+index 0a3483e247a8..a5afe14eef28 100644
+--- a/drivers/of/dynamic.c
++++ b/drivers/of/dynamic.c
+@@ -98,8 +98,9 @@ int of_reconfig_notify(unsigned long action, struct of_reconfig_data *p)
+  *
+  * Returns the new state of a device based on the notifier used.
+  *
+- * Return: 0 on device going from enabled to disabled, 1 on device
+- * going from disabled to enabled and -1 on no change.
++ * Return: OF_RECONFIG_CHANGE_REMOVE on device going from enabled to
++ * disabled, OF_RECONFIG_CHANGE_ADD on device going from disabled to
++ * enabled and OF_RECONFIG_NO_CHANGE on no change.
+  */
+ int of_reconfig_get_state_change(unsigned long action, struct of_reconfig_data *pr)
+ {
 
-> +config THEAD_CUSTOM_PMU
-> +	bool "T-Head custom PMU support"
-> +	depends on RISCV_ALTERNATIVE && RISCV_PMU_SBI
-> +	default y
-> +	help
-> +	  The T-Head C9xx cores implement a PMU overflow extension very
-> +	  similar to the core SSCOFPMF extension.
-> +
-> +	  This will patch the overflow CSR and handle the non-standard
-> +	  behaviour via the regular SBI PMU driver and interface.
-> +
-> +	  If you don't know what to do here, say "Y".
+---
+base-commit: f364a65e37ec9e57809642b00b39e7a530d9cbde
+change-id: 20231123-fix-of_reconfig_get_state_change-docs-d08d45d1d493
 
-This is a < 20 line diff to the pmu driver, is it really worth adding
-having config options for these two non standard PMU implementations?
+Best regards,
+-- 
+Luca Ceresoli <luca.ceresoli@bootlin.com>
 
---u2td/6ehnVJK/j3z
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZV9lpwAKCRB4tDGHoIJi
-0p2/AP44N1mho7QcO/007yqDwBgkqYEOvZh2Uuy27l3ZNMV4CwD7BXD0U3yWECON
-6d7xv7JjsIfKlCFpYK59CusQR3peRg0=
-=tcdb
------END PGP SIGNATURE-----
-
---u2td/6ehnVJK/j3z--
 
