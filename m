@@ -1,157 +1,217 @@
-Return-Path: <devicetree+bounces-18159-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18161-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A672B7F5817
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 07:21:25 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D68CB7F582E
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 07:25:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5DE9D1F20D5A
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 06:21:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 766C0B20C37
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 06:25:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBA4FD30B;
-	Thu, 23 Nov 2023 06:21:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF517E54D;
+	Thu, 23 Nov 2023 06:25:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="U3e/GsCZ"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="Ht+Cbf1i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C618110;
-	Wed, 22 Nov 2023 22:21:18 -0800 (PST)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AN3OtEl031046;
-	Thu, 23 Nov 2023 06:21:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=dTy++ncCkASmzMy2lPTP9AkYMPYSGftpH1MuX9Vynvc=;
- b=U3e/GsCZ7x7ASxdMfY6xKnb1ghlazriKa/4ovcB8ZnclBcouSflZk+jdn9bqVkXuAb10
- WfuDg35u6cd/OJ97NOwtfnwfjSX6lp6x4xX1sAktlGBb/gY9iawGbl5A9HoS8Gblc6BS
- zoqwYIrbS/KXe81+jEAHZ41xEKIBR6BKhAQtpb62NnlYQqh7FdffLkebmeWPT30vjU9R
- vmw9cVw4NoCeBlyUgnt/7EVxe5s0xOrwOgcAp5TIPFxN7fgjqHzBjdPskMZH+87EVLEJ
- +vqnFa/wfjLORnKD7wS16oLQyuwNWCuFaxyVjVaGV7afOcvV+6QcXQVzpjg/sti6GKyD vw== 
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uhguda4gd-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 23 Nov 2023 06:21:14 +0000
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AN6LDW2002723
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 23 Nov 2023 06:21:13 GMT
-Received: from [10.216.46.160] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 22 Nov
- 2023 22:21:07 -0800
-Message-ID: <6f7ee679-38be-abfd-a71c-d33e15c79c7d@quicinc.com>
-Date: Thu, 23 Nov 2023 11:50:59 +0530
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C8DF1BF
+	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 22:25:38 -0800 (PST)
+Received: from epcas2p2.samsung.com (unknown [182.195.41.54])
+	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20231123062535epoutp02a0aa5f6f6a4b0f06d009c3a9f577acc4~aLH_CGUR12550825508epoutp02r
+	for <devicetree@vger.kernel.org>; Thu, 23 Nov 2023 06:25:35 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20231123062535epoutp02a0aa5f6f6a4b0f06d009c3a9f577acc4~aLH_CGUR12550825508epoutp02r
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1700720735;
+	bh=GJrAs6iFIsJav6Xylce3kT+oM93Qos0V4uOMkTsSCdA=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=Ht+Cbf1iKdsmQaLbD7RXNn7W3cUgIasWpnot6p4mxK/5oc18Og0YWHb8YfQdZgTiN
+	 XpbGr8J9bJ4Rs5bMZJsqajLY8weB7WMP78YNHHzg5Gjq0KbuLXKeAQs2cQLWB5MgGt
+	 CY9jbr+WvrpMoXPIU3j7DY1HfSI3mJ5QCUp2Tw48=
+Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
+	epcas2p4.samsung.com (KnoxPortal) with ESMTP id
+	20231123062534epcas2p422dbbbed9578619788f36e5a0efffc59~aLH9bCXFg2378423784epcas2p4o;
+	Thu, 23 Nov 2023 06:25:34 +0000 (GMT)
+Received: from epsmges2p1.samsung.com (unknown [182.195.36.88]) by
+	epsnrtp4.localdomain (Postfix) with ESMTP id 4SbSly3PCKz4x9QD; Thu, 23 Nov
+	2023 06:25:34 +0000 (GMT)
+Received: from epcas2p3.samsung.com ( [182.195.41.55]) by
+	epsmges2p1.samsung.com (Symantec Messaging Gateway) with SMTP id
+	5C.BB.10006.E50FE556; Thu, 23 Nov 2023 15:25:34 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+	epcas2p3.samsung.com (KnoxPortal) with ESMTPA id
+	20231123062533epcas2p3e00ede8234985d615fce4f8b45885baa~aLH8l9aD80915409154epcas2p34;
+	Thu, 23 Nov 2023 06:25:33 +0000 (GMT)
+Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
+	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20231123062533epsmtrp1928ccc5fd83dee38d191caa3ab27b711~aLH8k5CLi3275132751epsmtrp1n;
+	Thu, 23 Nov 2023 06:25:33 +0000 (GMT)
+X-AuditID: b6c32a45-179ff70000002716-ee-655ef05eed1a
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+	epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	0E.33.08817.D50FE556; Thu, 23 Nov 2023 15:25:33 +0900 (KST)
+Received: from [10.229.8.168] (unknown [10.229.8.168]) by
+	epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20231123062533epsmtip160917009d955fe1deb7cb493968c99e3~aLH8PutH70841408414epsmtip15;
+	Thu, 23 Nov 2023 06:25:33 +0000 (GMT)
+Message-ID: <f49b77f8-a30d-0923-feba-07c8945f334e@samsung.com>
+Date: Thu, 23 Nov 2023 15:22:45 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH V4 2/4] clk: qcom: branch: Add mem ops support for branch2
- clocks
-To: Konrad Dybcio <konrad.dybcio@linaro.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette
-	<mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: Taniya Das <quic_tdas@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>,
-        Ajit Pandey
-	<quic_ajipan@quicinc.com>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>
-References: <20231117095558.3313877-1-quic_imrashai@quicinc.com>
- <20231117095558.3313877-3-quic_imrashai@quicinc.com>
- <90885d90-2e25-404b-b3a3-13d134801146@linaro.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+	Thunderbird/102.11.0
+Subject: Re: [PATCH v2 10/12] pinctrl: samsung: add exynosautov920 pinctrl
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Alim Akhtar
+	<alim.akhtar@samsung.com>, Rob Herring <robh+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Tomasz Figa <tomasz.figa@gmail.com>, Sylwester
+	Nawrocki <s.nawrocki@samsung.com>, Linus Walleij <linus.walleij@linaro.org>,
+	Thierry Reding <thierry.reding@gmail.com>, Uwe Kleine-K?nig
+	<u.kleine-koenig@pengutronix.de>, Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
+	linux-serial@vger.kernel.org
 Content-Language: en-US
-From: Imran Shaik <quic_imrashai@quicinc.com>
-In-Reply-To: <90885d90-2e25-404b-b3a3-13d134801146@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From: Jaewon Kim <jaewon02.kim@samsung.com>
+In-Reply-To: <8d4e3fcb-2e4a-4580-9aa2-5acbed961c3f@linaro.org>
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 7nV9iKCq3kAFyatrqrTlwW4dlkqjIfG_
-X-Proofpoint-ORIG-GUID: 7nV9iKCq3kAFyatrqrTlwW4dlkqjIfG_
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-23_03,2023-11-22_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- spamscore=0 mlxlogscore=999 impostorscore=0 malwarescore=0
- priorityscore=1501 clxscore=1015 mlxscore=0 adultscore=0 bulkscore=0
- suspectscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2311060000 definitions=main-2311230043
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrFJsWRmVeSWpSXmKPExsWy7bCmuW7ch7hUgyc9EhYP5m1js1iz9xyT
+	xfwj51gtmhevZ7N4N1fGYu/rrewWU/4sZ7LY9Pgaq8Xm+X8YLS7vmsNmcffuKkaLGef3MVmc
+	WdzLbtG69wi7xeE37awWP3fNY7FYtQuo7vbEyYwOQh47Z91l99i0qpPN4861PWwe++euYffY
+	vKTeo/+vgUffllWMHp83yQVwRGXbZKQmpqQWKaTmJeenZOal2yp5B8c7x5uaGRjqGlpamCsp
+	5CXmptoqufgE6Lpl5gB9oqRQlphTChQKSCwuVtK3synKLy1JVcjILy6xVUotSMkpMC/QK07M
+	LS7NS9fLSy2xMjQwMDIFKkzIzti0+x57wT6BinvzH7I0MH7i6WLk5JAQMJHYMnsfWxcjF4eQ
+	wA5Giearr5kgnE+MEu3nrkI53xglns1fwAzT0rjlGTtEYi+jxOKNB5khnNeMEj3vehlBqngF
+	7CQufQCZxcnBIqAqsWfLLmaIuKDEyZlPWEBsUYFoidZl99lAbGEBL4lTO/ewgtgiAveZJV63
+	VYMMZRZ4wCgx99xXsKHMAuISt57MBxvKJqAt8X39YqAGDg5OoGU3pthBlMhLNG+dDXaQhMAb
+	Doknj26yQ5ztIrFl83kmCFtY4tXxLVBxKYmX/W1QdrZE+/Q/rBB2hcTFDbPZIGxjiVnP2hlB
+	djELaEqs36UPYkoIKEscucUCsZZPouPwX3aIMK9ER5sQRKOaxP2p56CGyEhMOrIS6gAPiebJ
+	09kmMCrOQgqUWUh+nIXkmVkIexcwsqxiFEstKM5NTy02KjCER3Zyfu4mRnAi13LdwTj57Qe9
+	Q4xMHIyHGCU4mJVEeLewx6QK8aYkVlalFuXHF5XmpBYfYjQFRs1EZinR5HxgLskriTc0sTQw
+	MTMzNDcyNTBXEue91zo3RUggPbEkNTs1tSC1CKaPiYNTqoEpptzhwovlbj8NQ78VvpjVwG7i
+	/H6hqfyvZVMC2DZe/Xj7gU8Dcwh/87pY523P/9W58vJVLmzecE9C5ZSna8Chiv0tQTxeM84p
+	97+Ovnhy0waHHOEHZsqBbfXqsbx+Fkqf/0W6+e/5dGBOqXmk+MG/B2ex109VlnZ+9CD/3oLT
+	UTGbLp/mub46pviL1WuuTftcN+y+yliQ2p3Unn/c1DHJ2cV5l++k/v/HtuoVXpDynbL26OZF
+	28o2rZ7j3mm9fpN1IVe5x0+Vkp+MDzoyOK3d+Ar31St9YFzHc7RrR5HwyQUvPl185Oe69/Ws
+	OI7rpefDjzzdF5Vn+sbbv7nzvuivcxrzU1zmPhGeMv3/u8/rlFiKMxINtZiLihMBr0wwjW0E
+	AAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrDIsWRmVeSWpSXmKPExsWy7bCSnG7sh7hUg+7fuhYP5m1js1iz9xyT
+	xfwj51gtmhevZ7N4N1fGYu/rrewWU/4sZ7LY9Pgaq8Xm+X8YLS7vmsNmcffuKkaLGef3MVmc
+	WdzLbtG69wi7xeE37awWP3fNY7FYtQuo7vbEyYwOQh47Z91l99i0qpPN4861PWwe++euYffY
+	vKTeo/+vgUffllWMHp83yQVwRHHZpKTmZJalFunbJXBlbNp9j71gn0DFvfkPWRoYP/F0MXJy
+	SAiYSDRuecbexcjFISSwm1Hi6owzjBAJGYnlz/rYIGxhifstR1ghil4yShxYf4gFJMErYCdx
+	6cNrJhCbRUBVYs+WXcwQcUGJkzOfgNWICkRLrP58gRXEFhbwkji1cw/YIBGBx8wSD6f+ZwZx
+	mAUeMEosn/QIasVWFonJF7aD3cEsIC5x68l8sBVsAtoS39cvBiri4OAEWn1jih1EiZlE19Yu
+	qHJ5ieats5knMArNQnLILCSTZiFpmYWkZQEjyypGydSC4tz03GLDAqO81HK94sTc4tK8dL3k
+	/NxNjOAI1tLawbhn1Qe9Q4xMHIyHGCU4mJVEeLewx6QK8aYkVlalFuXHF5XmpBYfYpTmYFES
+	5/32ujdFSCA9sSQ1OzW1ILUIJsvEwSnVwOTAzLfy2O0zdnNtn1efzJtzzkLIb4WN9x+5Aw2f
+	r3N/S1v94B5v+aHtH/8d9swVPnmm3lrxxqUtdzwtqxmP1VtFlIbGe2+8YixjIzp9261N+pNf
+	Off4q+1eH71ptdDSPAcBN+mHH45MiukSyd5aMJ/dRih/5+VJz7VeO9We0vPi2vZgitWf7zPz
+	y9TXqjD/nCy576njcfGjYisnqXNzhi91r7Sw14rsZPFkyl3588a6sFMqsXsVUn0qijJY9Wdd
+	kX298CH//b6VFTWZHP3pBauNJOJ9tKZ4rq3RYNLx5Jv42DhZrSRgmt3jzoqJ9v5zhb6wr+L4
+	IHLszo3E/r8Mpe29xwTr7Fekp90/uepBthJLcUaioRZzUXEiACeeSixPAwAA
+X-CMS-MailID: 20231123062533epcas2p3e00ede8234985d615fce4f8b45885baa
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20231115095856epcas2p1c3ee85750828bec2ee4ab0adeaeaff28
+References: <20231115095609.39883-1-jaewon02.kim@samsung.com>
+	<CGME20231115095856epcas2p1c3ee85750828bec2ee4ab0adeaeaff28@epcas2p1.samsung.com>
+	<20231115095609.39883-11-jaewon02.kim@samsung.com>
+	<62b7176d-f99c-49f6-a287-17a6b3604c1c@linaro.org>
+	<f0f6a7af-2170-89a2-1eea-dfb9d8440321@samsung.com>
+	<6a5610e0-e60d-4ab7-8708-6f77a38527b7@linaro.org>
+	<926ea5c5-20ac-5e63-16ea-6f0c20e2db0a@samsung.com>
+	<0fdb7bec-9ea4-454f-a0fb-d450f27ebc6b@linaro.org>
+	<ab17d61e-f645-9b76-962c-4ba2849c5f42@samsung.com>
+	<8d4e3fcb-2e4a-4580-9aa2-5acbed961c3f@linaro.org>
 
 
-
-On 11/23/2023 1:39 AM, Konrad Dybcio wrote:
-> 
-> 
-> On 11/17/23 10:55, Imran Shaik wrote:
->> From: Taniya Das <quic_tdas@quicinc.com>
+On 23. 11. 21. 22:51, Krzysztof Kozlowski wrote:
+> On 18/11/2023 08:43, Jaewon Kim wrote:
+>> On 23. 11. 17. 19:48, Krzysztof Kozlowski wrote:
+>>> On 17/11/2023 08:36, Jaewon Kim wrote:
+>>>>>> The reason why I chose variable name 'combine' is that EINT registers was
+>>>>>> separated from gpio control address. However, in exynosautov920 EINT
+>>>>>> registers combined with GPx group. So I chose "combine" word.
+>>>>> What does it mean "the GPx group"? Combined means the same place, the
+>>>>> same register. I could imagine offset is 0x4, what I wrote last time.
+>>>>>
+>>>>> Is the offset 0x4?
+>> If you are asking about the offset of GPIO control register and EINT
+>> control register, 0x4 is correct.
 >>
->> Add the support for mem ops implementation to handle the sequence of
->> enable/disable of the memories in ethernet PHY, prior to enable/disable
->> of the respective clocks, which helps retain the respecive block's
->> register contents.
+>> There is no empty space between the two register.
 >>
->> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
->> Signed-off-by: Imran Shaik <quic_imrashai@quicinc.com>
->> ---
->>   drivers/clk/qcom/clk-branch.c | 39 +++++++++++++++++++++++++++++++++++
->>   drivers/clk/qcom/clk-branch.h | 21 +++++++++++++++++++
->>   2 files changed, 60 insertions(+)
 >>
->> diff --git a/drivers/clk/qcom/clk-branch.c 
->> b/drivers/clk/qcom/clk-branch.c
->> index fc4735f74f0f..61bdd2147bed 100644
->> --- a/drivers/clk/qcom/clk-branch.c
->> +++ b/drivers/clk/qcom/clk-branch.c
->> @@ -1,6 +1,7 @@
->>   // SPDX-License-Identifier: GPL-2.0
->>   /*
->>    * Copyright (c) 2013, The Linux Foundation. All rights reserved.
->> + * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights 
->> reserved.
->>    */
->>   #include <linux/kernel.h>
->> @@ -134,6 +135,44 @@ static void clk_branch2_disable(struct clk_hw *hw)
->>       clk_branch_toggle(hw, false, clk_branch2_check_halt);
->>   }
->> +static int clk_branch2_mem_enable(struct clk_hw *hw)
->> +{
->> +    struct clk_mem_branch *mem_br = to_clk_mem_branch(hw);
->> +    struct clk_branch branch = mem_br->branch;
->> +    const char *name = clk_hw_get_name(&branch.clkr.hw);
-> Bit of a microoptimization, but adding this implicitly in the WARN
-> would only execute clk_hw_get_name when necessary
-> 
+>> 0x0 CON
+>>
+>> 0x4 DAT
+>>
+>> 0x8 PUD
+>>
+>> 0xc DRV
+>>
+>> 0x10 CONPDN
+>>
+>> 0x14 PUDPDN
+>>
+>> 0x18 EINT_CON
+>>
+>> 0x1c EINT_FLTCON
+>>
+>> 0x20 or 0x24 EINT_MASK (The size of FLTCON register depending on the
+>> number of gpio)
+>>
+>> 0x24 or 0x28 EINT_PEND
+>>
+>>
+>>>>>
+>>>>>> Is another reasonable word, I will change it.
+>>>>> Why you cannot store the offset?
+>>>>>
+>>>>>> EINT registers related to the entire group(e.g SVC) were at the end of
+>>>>>> the GPIO block and are now moved to 0xf000.
+>>>>> So not in the same register, not combined?
+>>>>>
+>>>> Okay,
+>>>>
+>>>> Instead of the word combine, I will think of a better word in next version.
+>>> I want to know answer to:
+>>>
+>>> "Why you cannot store the offset?"
+>>>
+>> I did not understand exactly what you said, but if i guess,,
+>>
+>> you want to get rid of the offs because the value of the offs is always
+>> the same?
+>>
+>> #define EXYNOSV920_PIN_BANK_EINTG(pins, reg, id, offs, mask_offs, pend_offs)
+> I meant that it looks possible to store the offset and use it directly,
+> instead of storing bool telling that offset is different.
 
-Sure, will remove this line and use the clk_hw_get_name implicitly in WARN.
+Thanks for your feedback. We can use offset instead of bool.
 
->> +    u32 val;
->> +    int ret;
->> +
->> +    regmap_update_bits(branch.clkr.regmap, mem_br->mem_enable_reg,
->> +            mem_br->mem_enable_ack_mask, mem_br->mem_enable_ack_mask);
-> It's quite a nit from me, but it would be nice to have the next line 
-> aligned
-> with the opening brace (with a tab size of 8)
-> 
-> Konrad
+I will make v3 patch using new variable 'eint_con_offset' instead of 
+'combine'.
 
-Sure, will align the lines and post another series.
 
-Thanks,
-Imran
+Thanks
+
+Jaewon Kim
+
+
+
+
+
+
 
