@@ -1,85 +1,114 @@
-Return-Path: <devicetree+bounces-18323-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18324-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B4337F621D
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 15:54:54 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21FF57F6227
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 15:58:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C961D281F09
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 14:54:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 52AF01C2113F
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 14:58:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAE3026AF1;
-	Thu, 23 Nov 2023 14:54:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45A542E843;
+	Thu, 23 Nov 2023 14:58:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UI1vN4bX"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Y/2HyafF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4467250EB;
-	Thu, 23 Nov 2023 14:54:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8D66C433C8;
-	Thu, 23 Nov 2023 14:54:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700751289;
-	bh=WVecSFWfBVZt7eHFDKvJJUv63uzdwj5MUayfwitPJng=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=UI1vN4bXnDluSjqdzluU7xIHm1q2q0PduZMPaBxZJNaJFOJ8QeiJY2xs9hZwjej8A
-	 +PbvFS5rsJlmivgH6c6kLlwfzU6HhVXxgudulfWfC2pJDrSa30qmQ831rZziWqvWTX
-	 0ZTeDoyQb73HrG4lHjq1NZh6KXTWZMBa2cm9AhRBC4zXO5gZahAWOjQPKE5H3gS61W
-	 4M+KsuvhlrywqvebBe9DXy3Z1A021BSGy9Gacewbag8698aktWkWy1RXzeOHVrcVDM
-	 dadaNEHK6UkxJZAFziVEce8EvU2ezt2howCEwqd9Y5gCbiOKkE+yo7VgBYK2nGyQ22
-	 sQUNpIgoP94DA==
-From: Lee Jones <lee@kernel.org>
-To: Lee Jones <lee@kernel.org>, 
- Daniel Thompson <daniel.thompson@linaro.org>, 
- Jingoo Han <jingoohan1@gmail.com>, Helge Deller <deller@gmx.de>, 
- Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Flavio Suligoi <f.suligoi@asem.it>
-Cc: dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-fbdev@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20231116105319.957600-1-f.suligoi@asem.it>
-References: <20231116105319.957600-1-f.suligoi@asem.it>
-Subject: Re: [PATCH v7 0/2] backlight: mp3309c: Add support for MPS MP3309C
-Message-Id: <170075128649.1369133.8551722036774346120.b4-ty@kernel.org>
-Date: Thu, 23 Nov 2023 14:54:46 +0000
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81903A4;
+	Thu, 23 Nov 2023 06:58:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=kfGgqTUyQW3nytRqECKvTmNuGYaEc5iawnb0wTmFF4A=; b=Y/2HyafF1/CBVlx6o7AHGy62st
+	Gm9gu1nVAEutBUdDIjHMwfkLNLqbI1m1VHolp8rQW+6gOHdjpnNNuGyYCG8HuIBzE4tOLIju+dUfs
+	0WMLyF7NHK2zIwS60kgXpFYwVnCE6tvex1Kf1Sxx7/N19xriJ+1Ewj/Y6SQgBieBOK8c=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1r6B9S-0010J5-97; Thu, 23 Nov 2023 15:57:58 +0100
+Date: Thu, 23 Nov 2023 15:57:58 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>,
+	Jie Luo <quic_luoj@quicinc.com>
+Cc: Christian Marangi <ansuelsmth@gmail.com>, Rob Herring <robh@kernel.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Qingfang Deng <dqfext@gmail.com>,
+	SkyLake Huang <SkyLake.Huang@mediatek.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	David Epping <david.epping@missinglinkelectronics.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	Harini Katakam <harini.katakam@amd.com>,
+	Simon Horman <horms@kernel.org>,
+	Robert Marko <robert.marko@sartura.hr>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [net-next RFC PATCH 03/14] dt-bindings: net: document ethernet
+ PHY package nodes
+Message-ID: <e32d5c84-7a88-4d9f-868f-98514deae6e9@lunn.ch>
+References: <20231120135041.15259-1-ansuelsmth@gmail.com>
+ <20231120135041.15259-4-ansuelsmth@gmail.com>
+ <c21ff90d-6e05-4afc-b39c-2c71d8976826@lunn.ch>
+ <20231121144244.GA1682395-robh@kernel.org>
+ <a85d6d0a-1fc9-4c8e-9f91-5054ca902cd1@lunn.ch>
+ <655e4939.5d0a0220.d9a9e.0491@mx.google.com>
+ <6a030399-b8ed-4e2c-899f-d82eb437aafa@lunn.ch>
+ <655f2ba9.5d0a0220.294f3.38d8@mx.google.com>
+ <c697488a-d34c-4c98-b4c7-64aef2fe583f@lunn.ch>
+ <ZV9jM7ve3Kl6ZxSl@shell.armlinux.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.12.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZV9jM7ve3Kl6ZxSl@shell.armlinux.org.uk>
 
-On Thu, 16 Nov 2023 11:53:17 +0100, Flavio Suligoi wrote:
-> This patchset (rebased on v6.7.0-rc1 kernel version):
+On Thu, Nov 23, 2023 at 02:35:31PM +0000, Russell King (Oracle) wrote:
+> On Thu, Nov 23, 2023 at 03:27:05PM +0100, Andrew Lunn wrote:
+> > > Just to be more precise qca807x can operate in 3 different mode:
+> > > (this is controlled by the MODE_CFG bits)
+> > 
+> > > - QSGMII: 5 copper port
+> > 
+> > 4 slots over QSGMII, plus the second SERDES is connected to the MAC
+> > using SGMII/1000BaseX?
+> > 
+> > > - PSGMII: 5 copper port
+> > 
+> > 5 slots over QSGMII, the second SERDES is idle?
+> > 
+> > > - PSGMII: 4 copper port + 1 combo (that can be both fiber or copper)
+> > 
+> > 5 slots over QSGMII, with the second SERDES connected to an SFP cage.
+> > 
+> > Are ports 1-4 always connected to the P/Q SGMII. Its only port 5 which
+> > can use the second SERDES?
 > 
-> - includes and updates the mps,mp3309c.yaml dt bindings file:
->     - Documentation/devicetree/bindings/leds/backlight/mps,mp3309c.yaml
->     Note: the patch related to this file was previously a separate patch
->           and sent in two versions (v1 and v2).
->           It has now been included in this patchset, starting with the
->           version v6.
-> - adds the related device driver to support the MPS MP3309C backlight chip
-> - adds missed history of previous versions
-> - adds missed "Acked-by" and "Reviewed-by" added in previous versions
-> 
-> [...]
+> I think what would really help here is if there was an ascii table to
+> describe the configurations, rather than trying to put it into words.
 
-Applied, thanks!
+Yes.
 
-[1/2] dt-bindings: backlight: mp3309c: remove two required properties
-      commit: 87f33a1b8f7e3d223fc331fe54fd8ec337dc9cb9
-[2/2] backlight: mp3309c: Add support for MPS MP3309C
-      commit: 2e914516a58cf86bd0e42c7d3e25c81d44ec2ab8
+And also for ipq4019. We need to merge these two threads of
+conversation, since in the end they are probably the same driver, same
+device tree etc.
 
---
-Lee Jones [李琼斯]
-
+       Andrew
 
