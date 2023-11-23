@@ -1,88 +1,76 @@
-Return-Path: <devicetree+bounces-18244-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18245-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FE1C7F5D05
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 11:55:15 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8354E7F5D0C
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 11:56:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BA349281A50
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 10:55:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 08352B20F7C
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 10:56:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 777C4224FB;
-	Thu, 23 Nov 2023 10:55:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DQDoVQ79"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7584224F5;
+	Thu, 23 Nov 2023 10:56:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52C3E224E1;
-	Thu, 23 Nov 2023 10:55:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9429DC433C8;
-	Thu, 23 Nov 2023 10:55:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700736910;
-	bh=NGJuny/T+fyg0bzZg8rPSHmJVa/rpExZEmSSYXneMOg=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=DQDoVQ795iRe1AeJ0JE0DdQLKCHM4AMUcZd6QEjh2vi6f+YXd2u3WvyvdLBl0Oi0P
-	 huPpFsn58tBf+keKnxM0QvYeQXJDLg1+bnXHmslVns0T5uATrg/W5BeMXPacUQksxj
-	 TRX/HuQccMzyCcCuUbVBb88ETEpQCnFMJiDRMIOuwoLgjUCAmzBjr68DW2m60YNLp0
-	 SO+n86vKNJ40PV39QkNDdKAoiv+iNoSgf5IBk+YP95bZL2k6SWKIK3IxGnIvxBTV8p
-	 t50AMXEu4iRdmzdvehN7QV4rvKlI6Kry/UO1BFpc4qIaQJ60NQi/30PJI8dvsIMKij
-	 ptAf+w0t6mdsg==
-From: Lee Jones <lee@kernel.org>
-To: Pavel Machek <pavel@ucw.cz>, linux-leds@vger.kernel.org, 
- Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>
-Cc: Andre Przywara <andre.przywara@arm.com>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, 
- Guo Ren <guoren@kernel.org>, Jisheng Zhang <jszhang@kernel.org>, 
- John Watts <contact@jookia.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Maksim Kiselev <bigunclemax@gmail.com>, 
- Marc Kleine-Budde <mkl@pengutronix.de>, Palmer Dabbelt <palmer@dabbelt.com>, 
- Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh+dt@kernel.org>, 
- Trevor Woerner <twoerner@gmail.com>, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-riscv@lists.infradead.org, linux-sunxi@lists.linux.dev
-In-Reply-To: <20231029212738.7871-1-samuel@sholland.org>
-References: <20231029212738.7871-1-samuel@sholland.org>
-Subject: Re: (subset) [PATCH v8 0/5] leds: Allwinner A100 LED controller
- support
-Message-Id: <170073690632.1239913.13249026950783494795.b4-ty@kernel.org>
-Date: Thu, 23 Nov 2023 10:55:06 +0000
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF4321B2;
+	Thu, 23 Nov 2023 02:56:44 -0800 (PST)
+Received: from francesco-nb.int.toradex.com (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id 058661F8DC;
+	Thu, 23 Nov 2023 11:56:43 +0100 (CET)
+Date: Thu, 23 Nov 2023 11:56:39 +0100
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Fabio Estevam <festevam@gmail.com>, Shawn Guo <shawnguo@kernel.org>
+Cc: Francesco Dolcini <francesco@dolcini.it>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Stefan Eichenberger <stefan.eichenberger@toradex.com>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Francesco Dolcini <francesco.dolcini@toradex.com>
+Subject: Re: [PATCH v1] arm64: dts: imx8-apalis: set wifi regulator to
+ always-on
+Message-ID: <ZV8v5zd8G6f7BdN9@francesco-nb.int.toradex.com>
+References: <20231123104812.13906-1-francesco@dolcini.it>
+ <CAOMZO5A53XFbRBp6QXWoDVBr=J347_riO1wWgPLxczT3JcuwQA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.12.3
+In-Reply-To: <CAOMZO5A53XFbRBp6QXWoDVBr=J347_riO1wWgPLxczT3JcuwQA@mail.gmail.com>
 
-On Sun, 29 Oct 2023 16:26:54 -0500, Samuel Holland wrote:
-> This series adds bindings and a driver for the RGB LED controller found
-> in some Allwinner SoCs, starting with A100. The hardware in the R329 and
-> D1 SoCs appears to be identical.
+Hello Fabio,
+
+On Thu, Nov 23, 2023 at 07:52:27AM -0300, Fabio Estevam wrote:
+> On Thu, Nov 23, 2023 at 7:48 AM Francesco Dolcini <francesco@dolcini.it> wrote:
+> >
+> > From: Stefan Eichenberger <stefan.eichenberger@toradex.com>
+> >
+> > Make sure that the wifi regulator is always on. The wifi driver itself
+> > puts the wifi module into suspend mode. If we cut the power the driver
+> > will crash when resuming from suspend.
+> >
+> > Signed-off-by: Stefan Eichenberger <stefan.eichenberger@toradex.com>
+> > Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
 > 
-> This series was tested on the Nezha board (one onboard LED) and the
-> Dongshan Nezha STU board (with an external strip of 16/32/48 LEDs, also
-> with gaps in the LED addresses).
-> 
-> [...]
+> I think this one deserves a Fixes tag.
 
-Applied, thanks!
+Fixes: ad0de4ceb706 ("arm64: dts: freescale: add initial apalis imx8 aka quadmax module support")
 
-[1/5] dt-bindings: leds: Add Allwinner A100 LED controller
-      commit: 57ef666e1586823adc1b7909ed3472dec117df1f
-[2/5] leds: sun50i-a100: New driver for the A100 LED controller
-      commit: 090a25ad97983720f52b11d9c5a8d1a446217c1d
+Shawn, I assume you could just pick the Fixes tag without me sending a
+v2, if you disagree just speak-up.
 
---
-Lee Jones [李琼斯]
+Francesco
 
 
