@@ -1,113 +1,154 @@
-Return-Path: <devicetree+bounces-18386-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18387-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DD667F644D
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 17:43:46 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 465D07F6450
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 17:44:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ECF6E281AC1
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 16:43:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 00488281AB8
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 16:44:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 492CB2E82F;
-	Thu, 23 Nov 2023 16:43:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68C4D3E479;
+	Thu, 23 Nov 2023 16:44:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SBV3OZST"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6CA19E;
-	Thu, 23 Nov 2023 08:43:38 -0800 (PST)
-Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
-	by mx0a-00128a01.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 3ANFk7bq030777;
-	Thu, 23 Nov 2023 11:43:25 -0500
-Received: from nwd2mta3.analog.com ([137.71.173.56])
-	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3uhxk5thbh-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 23 Nov 2023 11:43:24 -0500 (EST)
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 3ANGhN5c054371
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 23 Nov 2023 11:43:23 -0500
-Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
- ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.14; Thu, 23 Nov 2023 11:43:22 -0500
-Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
- ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.14; Thu, 23 Nov 2023 11:43:22 -0500
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
- Transport; Thu, 23 Nov 2023 11:43:22 -0500
-Received: from work.ad.analog.com (HYB-hERzalRezfV.ad.analog.com [10.65.205.129])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 3ANGh7Fl019854;
-	Thu, 23 Nov 2023 11:43:10 -0500
-From: Marcelo Schmitt <marcelo.schmitt@analog.com>
-To: <paul.cercueil@analog.com>, <Michael.Hennerich@analog.com>,
-        <lars@metafoo.de>, <jic23@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <marcelo.schmitt1@gmail.com>
-CC: Marcelo Schmitt <marcelo.schmitt@analog.com>, <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 7/7] iio: adc: ad7091r-base: Add debugfs reg access
-Date: Thu, 23 Nov 2023 13:43:06 -0300
-Message-ID: <271203e245d324f94678d212e4daf13386bee463.1700751907.git.marcelo.schmitt1@gmail.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <cover.1700751907.git.marcelo.schmitt1@gmail.com>
-References: <cover.1700751907.git.marcelo.schmitt1@gmail.com>
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D1B02231F;
+	Thu, 23 Nov 2023 16:44:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08106C433CA;
+	Thu, 23 Nov 2023 16:44:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1700757856;
+	bh=ImzGxZz1+Yd4REFJZFfP68zE0RJ1ASyKw9Dfn46Maeo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=SBV3OZSTJqqlNvEf9jzb2k5QPIVDS9Cs8eEQptrt7GUDdhm55g4HJVfxT3jAyRD7/
+	 onfX3wRrayYUJ/LabVoFD9KpSr+05r3BmB3cqZRUV5BGozw9spXtwOJcWp5x9E7ADt
+	 /+f9XCSsnWzNVJbRAhRXruo4S442qNLuNt3HW1fxOZAL+lb47k7UPD6tj9cSBd99aa
+	 A3aqRCFO2b4sSxV5Dn7zMwe82l3IvcyCaAbLiqAu1aOrDZPwgMxOhdfU1LfkFUqvCC
+	 55u84UNwDsFH2qCqo/fqrV1GLruPpdcyt0mtVPu9wiC2Pv+1TLj34cdv8H/iweCk+3
+	 zvNAfAIRc5WCg==
+Date: Thu, 23 Nov 2023 16:44:10 +0000
+From: Lee Jones <lee@kernel.org>
+To: Dmitry Rokosov <ddrokosov@salutedevices.com>
+Cc: pavel@ucw.cz, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, andy.shevchenko@gmail.com,
+	kernel@sberdevices.ru, rockosov@gmail.com,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-leds@vger.kernel.org,
+	George Stark <gnstark@salutedevices.com>
+Subject: Re: [PATCH v4 09/11] leds: aw200xx: add support for aw20108 device
+Message-ID: <20231123164410.GH1354538@google.com>
+References: <20231121202835.28152-1-ddrokosov@salutedevices.com>
+ <20231121202835.28152-10-ddrokosov@salutedevices.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-GUID: OQCKt7W2B-OVfZ353XB2MY1EGmA9gPOl
-X-Proofpoint-ORIG-GUID: OQCKt7W2B-OVfZ353XB2MY1EGmA9gPOl
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-23_12,2023-11-22_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 impostorscore=0
- priorityscore=1501 malwarescore=0 spamscore=0 phishscore=0 mlxlogscore=999
- mlxscore=0 adultscore=0 lowpriorityscore=0 suspectscore=0 bulkscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2311060001
- definitions=main-2311230122
+In-Reply-To: <20231121202835.28152-10-ddrokosov@salutedevices.com>
 
-Add direct register access support for AD7091R-2/-4/-5/-8 ADCs.
+On Tue, 21 Nov 2023, Dmitry Rokosov wrote:
 
-Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
----
- drivers/iio/adc/ad7091r-base.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+> From: George Stark <gnstark@salutedevices.com>
+> 
+> Add support for Awinic aw20108 device from the same LED drivers family.
+> New device supports 108 LEDs using a matrix of 12x9 outputs.
+> 
+> Signed-off-by: George Stark <gnstark@salutedevices.com>
+> Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
+> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+> ---
+>  drivers/leds/Kconfig        | 14 +++++++++-----
+>  drivers/leds/leds-aw200xx.c | 10 +++++++++-
+>  2 files changed, 18 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
+> index 6046dfeca16f..a879628e985c 100644
+> --- a/drivers/leds/Kconfig
+> +++ b/drivers/leds/Kconfig
+> @@ -95,14 +95,18 @@ config LEDS_ARIEL
+>  	  Say Y to if your machine is a Dell Wyse 3020 thin client.
+>  
+>  config LEDS_AW200XX
+> -	tristate "LED support for Awinic AW20036/AW20054/AW20072"
+> +	tristate "LED support for Awinic AW20036/AW20054/AW20072/AW20108"
+>  	depends on LEDS_CLASS
+>  	depends on I2C
+>  	help
+> -	  This option enables support for the AW20036/AW20054/AW20072 LED driver.
+> -	  It is a 3x12/6x9/6x12 matrix LED driver programmed via
+> -	  an I2C interface, up to 36/54/72 LEDs or 12/18/24 RGBs,
+> -	  3 pattern controllers for auto breathing or group dimming control.
+> +	  This option enables support for Awinic AW200XX LED controller.
 
-diff --git a/drivers/iio/adc/ad7091r-base.c b/drivers/iio/adc/ad7091r-base.c
-index dbc60ea1bafc..4d5051316428 100644
---- a/drivers/iio/adc/ad7091r-base.c
-+++ b/drivers/iio/adc/ad7091r-base.c
-@@ -177,8 +177,20 @@ static int ad7091r_read_raw(struct iio_dev *iio_dev,
- 	return ret;
- }
- 
-+static int ad7091r_reg_access(struct iio_dev *indio_dev, unsigned int reg,
-+			      unsigned int writeval, unsigned int *readval)
-+{
-+	struct ad7091r_state *st  = iio_priv(indio_dev);
-+
-+	if (readval)
-+		return regmap_read(st->map, reg, readval);
-+
-+	return regmap_write(st->map, reg, writeval);
-+}
-+
- static const struct iio_info ad7091r_info = {
- 	.read_raw = ad7091r_read_raw,
-+	.debugfs_reg_access = &ad7091r_reg_access,
- };
- 
- static irqreturn_t ad7091r_event_handler(int irq, void *private)
+"for ..." THE or AN.
+
+Or put an 's' at the end of "controller".
+
+> +	  It is a matrix LED driver programmed via an I2C interface. Devices have
+> +	  a set of individually controlled leds and support 3 pattern controllers
+
+LEDs
+
+> +	  for auto breathing or group dimming control. Supported devices:
+> +	    - AW20036 (3x12) 36 LEDs
+> +	    - AW20054 (6x9)  54 LEDs
+> +	    - AW20072 (6x12) 72 LEDs
+> +	    - AW20108 (9x12) 108 LEDs
+>  
+>  	  To compile this driver as a module, choose M here: the module
+>  	  will be called leds-aw200xx.
+> diff --git a/drivers/leds/leds-aw200xx.c b/drivers/leds/leds-aw200xx.c
+> index c48aa11fd411..4b5036360887 100644
+> --- a/drivers/leds/leds-aw200xx.c
+> +++ b/drivers/leds/leds-aw200xx.c
+> @@ -1,6 +1,6 @@
+>  // SPDX-License-Identifier: GPL-2.0
+>  /*
+> - * Awinic AW20036/AW20054/AW20072 LED driver
+> + * Awinic AW20036/AW20054/AW20072/AW20108 LED driver
+>   *
+>   * Copyright (c) 2023, SberDevices. All Rights Reserved.
+>   *
+> @@ -620,10 +620,17 @@ static const struct aw200xx_chipdef aw20072_cdef = {
+>  	.display_size_columns = 12,
+>  };
+>  
+> +static const struct aw200xx_chipdef aw20108_cdef = {
+> +	.channels = 108,
+> +	.display_size_rows_max = 9,
+> +	.display_size_columns = 12,
+> +};
+> +
+>  static const struct i2c_device_id aw200xx_id[] = {
+>  	{ "aw20036" },
+>  	{ "aw20054" },
+>  	{ "aw20072" },
+> +	{ "aw20108" },
+>  	{}
+>  };
+>  MODULE_DEVICE_TABLE(i2c, aw200xx_id);
+> @@ -632,6 +639,7 @@ static const struct of_device_id aw200xx_match_table[] = {
+>  	{ .compatible = "awinic,aw20036", .data = &aw20036_cdef, },
+>  	{ .compatible = "awinic,aw20054", .data = &aw20054_cdef, },
+>  	{ .compatible = "awinic,aw20072", .data = &aw20072_cdef, },
+> +	{ .compatible = "awinic,aw20108", .data = &aw20108_cdef, },
+>  	{}
+>  };
+>  MODULE_DEVICE_TABLE(of, aw200xx_match_table);
+> -- 
+> 2.36.0
+> 
+
 -- 
-2.42.0
-
+Lee Jones [李琼斯]
 
