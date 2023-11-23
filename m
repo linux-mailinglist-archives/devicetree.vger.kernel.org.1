@@ -1,141 +1,125 @@
-Return-Path: <devicetree+bounces-18373-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18374-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49FC27F63CD
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 17:19:49 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 971EC7F63ED
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 17:29:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7B31E1C20B0F
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 16:19:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C8CCF1C20B53
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 16:29:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D25183E49E;
-	Thu, 23 Nov 2023 16:19:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xr+SvMiW"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E22AA3FB17;
+	Thu, 23 Nov 2023 16:29:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D549D43
-	for <devicetree@vger.kernel.org>; Thu, 23 Nov 2023 08:19:40 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-332c46d5988so662296f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 23 Nov 2023 08:19:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700756378; x=1701361178; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=kFib22uBVjZl/F9aPk76OV4H7hn/DOMh18iJcGB0mUg=;
-        b=xr+SvMiWkoQKhrhCKRAZJBFJsAPSV9UrtazIl6y+6DrY6q7tRZQrYyOW9bNUaQph2b
-         /SwS8YIR4RldFY3TmPJXEAuFeUOB6t4rgL0kTYiYGTJJqxGLWuQzkb7f2LT+dMYLfUoI
-         F1e31KOO7TZbWDeAEo83x8rVXWBBFcC5dDR3agHy4cOd6syw6QxR/sY2oaI1vSv6vvkh
-         3sZutglx1qQBvpyG56rP5+fbKdyXnE4T4fAso2EddO7b9nMbU05sadhN3vtFewwn97iU
-         TldWSp3WP4LT0lYw7+P29AKoJSSuq4+VkcUUYX/zK9v7aY5POva3DM5so3yEJ6CV2xcG
-         Jgyg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700756378; x=1701361178;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=kFib22uBVjZl/F9aPk76OV4H7hn/DOMh18iJcGB0mUg=;
-        b=haEv9LBGJbfjCK/owZPGafl9nqHhsyWdte0CDVZALbTTPaBVuVuUWeOS2+hKMFbfQZ
-         uSzoCDpKewB8gVBPgbkIUmgdhMXnNmh54PehA+j+3nQcHtLwTJD5bnMaPjqkSMkwBAGB
-         JkDrR47laZ7aXOcmXzI5K3V6wmK0ONMA4HcaS4ZRBdecajYXpCseKfh0I5i7ges0GQvB
-         tbu1GMiFccX8BEoSwlnXICLCQXk6NErvVhZ2G548RvN075q0DTIhQeQiVQoivZLihjVw
-         xobuhth8Xgx2msKL/L8JIXgWXD5sqts7GLRAs4xr6Y0m+C2e1PpXuAcSlkx3xw8hqvTP
-         RiYw==
-X-Gm-Message-State: AOJu0YxdxjefTptXRp983GQmU71JGcyFKfFC5BOsaYpcn7B5WKZiTxkJ
-	YpcnIVVDNJBdu59ZuFTcKXTvfA==
-X-Google-Smtp-Source: AGHT+IHMw3+2jNOgA+734otOpWfY2vuzMRBbfign+rWcFlx1PV+Buo7Mm4lDlK2VT1yXzL5+sl8dLA==
-X-Received: by 2002:a5d:584e:0:b0:331:6c3b:4f1e with SMTP id i14-20020a5d584e000000b003316c3b4f1emr4595043wrf.56.1700756378356;
-        Thu, 23 Nov 2023 08:19:38 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:89c5:1f48:b86f:30ba? ([2a01:e0a:982:cbb0:89c5:1f48:b86f:30ba])
-        by smtp.gmail.com with ESMTPSA id j7-20020adfb307000000b00332e7f9e2a8sm45074wrd.68.2023.11.23.08.19.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 Nov 2023 08:19:37 -0800 (PST)
-Message-ID: <20dee547-8358-4af4-ba90-c5e9a7367c48@linaro.org>
-Date: Thu, 23 Nov 2023 17:19:36 +0100
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A93910CF;
+	Thu, 23 Nov 2023 08:29:46 -0800 (PST)
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 3ANFk7a3030777;
+	Thu, 23 Nov 2023 11:29:32 -0500
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3uhxk5tg30-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 23 Nov 2023 11:29:31 -0500 (EST)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 3ANGTUwf045614
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 23 Nov 2023 11:29:30 -0500
+Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
+ ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Thu, 23 Nov 2023 11:29:29 -0500
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
+ ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Thu, 23 Nov 2023 11:29:29 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Thu, 23 Nov 2023 11:29:29 -0500
+Received: from work.ad.analog.com (HYB-hERzalRezfV.ad.analog.com [10.65.205.129])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 3ANGTEJK019364;
+	Thu, 23 Nov 2023 11:29:17 -0500
+From: Marcelo Schmitt <marcelo.schmitt@analog.com>
+To: <beniamin.bia@analog.com>, <paul.cercueil@analog.com>,
+        <Michael.Hennerich@analog.com>, <lars@metafoo.de>, <jic23@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <marcelo.schmitt1@gmail.com>
+CC: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 0/7] Add support for AD7091R-2/-4/-8
+Date: Thu, 23 Nov 2023 13:29:12 -0300
+Message-ID: <cover.1700751907.git.marcelo.schmitt1@gmail.com>
+X-Mailer: git-send-email 2.30.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: power: meson-g12a-power: document ISP
- power domain
-To: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Ulf Hansson <ulf.hansson@linaro.org>
-Cc: Daniel Scally <dan.scally@ideasonboard.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-References: <20231123-topic-amlogic-upstream-isp-pmdomain-v2-0-61f2fcf709e5@linaro.org>
- <20231123-topic-amlogic-upstream-isp-pmdomain-v2-1-61f2fcf709e5@linaro.org>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <20231123-topic-amlogic-upstream-isp-pmdomain-v2-1-61f2fcf709e5@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: er7PkQiZ7KzDAh-QEj3JkAQIeXeO2wxd
+X-Proofpoint-ORIG-GUID: er7PkQiZ7KzDAh-QEj3JkAQIeXeO2wxd
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-23_12,2023-11-22_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 impostorscore=0
+ priorityscore=1501 malwarescore=0 spamscore=0 phishscore=0 mlxlogscore=999
+ mlxscore=0 adultscore=0 lowpriorityscore=0 suspectscore=0 bulkscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2311060001
+ definitions=main-2311230120
 
-On 23/11/2023 17:17, Neil Armstrong wrote:
-> Add MIPI ISP power domain ID to the G12A Power domains bindings header
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->   include/dt-bindings/power/meson-g12a-power.h | 1 +
->   1 file changed, 1 insertion(+)
-> 
-> diff --git a/include/dt-bindings/power/meson-g12a-power.h b/include/dt-bindings/power/meson-g12a-power.h
-> index 44ec0c50e340..01fd0ac4dd08 100644
-> --- a/include/dt-bindings/power/meson-g12a-power.h
-> +++ b/include/dt-bindings/power/meson-g12a-power.h
-> @@ -10,5 +10,6 @@
->   #define PWRC_G12A_VPU_ID		0
->   #define PWRC_G12A_ETH_ID		1
->   #define PWRC_G12A_NNA_ID		2
-> +#define PWRC_G12A_ISP_ID		3
->   
->   #endif
-> 
+From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
 
-I forgot:
-Reviewed-by: Daniel Scally <dan.scally@ideasonboard.com>
-Tested-by: Daniel Scally <dan.scally@ideasonboard.com>
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+This series adds support for AD7091R-2/-4/-8 ADCs which can do single shot
+or sequenced readings. Threshold events are also supported.
+Overall, AD7091R-2/-4/-8 are very similar to AD7091R-5 except they use SPI interface.
 
-If needed I can send a v4 with those added...
+This has been tested with raspberrypi and eval board on kernel 6.1 from ADI fork.
+Link: https://wiki.analog.com/resources/tools-software/linux-drivers/iio-adc/ad7091r8
 
-Neil
+I ran get_maintainers on driver files but completely forgot to run it on the
+yaml doc, my bad.
+I made the changes requested so far.
+For v2, I also ran dt_binding_check on iio testing branch to check out for any
+additional dt-schema issues. None reported.
+Didn't see any other warn after running Sparse, Smatch, and Coccicheck.
+I get a warn from checkpatch about IIO_DMA_MINALIGN which I don't know how to fix :(
+
+Change log v1 -> v2:
+- Added device tree related To/Cc recipients.
+- Removed extra print of error code
+- $ref: "adc.yaml" -> $ref: adc.yaml
+- Fixed defined but not used build warn
+- Moved dt documentation of required properties to after patternProperties.
+- Removed incorrect return before regmap_update_bits().
+
+Marcelo Schmitt (7):
+  iio: adc: ad7091r-base: Set alert config and drvdata
+  MAINTAINERS: Add MAINTAINERS entry for AD7091R
+  iio: adc: ad7091r: Move defines to header file
+  iio: adc: ad7091r: Alloc IIO device before generic probe
+  dt-bindings: iio: Add binding documentation for AD7091R-8
+  iio: adc: Add support for AD7091R-8
+  iio: adc: ad7091r-base: Add debugfs reg access
+
+ .../bindings/iio/adc/adi,ad7091r8.yaml        | 101 +++++++
+ MAINTAINERS                                   |  12 +
+ drivers/iio/adc/Kconfig                       |  16 ++
+ drivers/iio/adc/Makefile                      |   4 +-
+ drivers/iio/adc/ad7091r-base.c                | 114 +++++---
+ drivers/iio/adc/ad7091r-base.h                |  64 ++++-
+ drivers/iio/adc/ad7091r5.c                    |  55 ++--
+ drivers/iio/adc/ad7091r8.c                    | 270 ++++++++++++++++++
+ 8 files changed, 549 insertions(+), 87 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7091r8.yaml
+ create mode 100644 drivers/iio/adc/ad7091r8.c
+
+-- 
+2.42.0
+
 
