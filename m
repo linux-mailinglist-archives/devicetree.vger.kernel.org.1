@@ -1,219 +1,142 @@
-Return-Path: <devicetree+bounces-18163-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18164-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 340827F586D
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 07:39:37 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F46E7F588A
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 07:48:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8DCFFB20E66
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 06:39:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B4DD61C20C78
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 06:48:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C945FBF9;
-	Thu, 23 Nov 2023 06:39:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6652011CAB;
+	Thu, 23 Nov 2023 06:48:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=csgroup.eu header.i=@csgroup.eu header.b="nfWuviEq"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Tq1TMn0t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from FRA01-PR2-obe.outbound.protection.outlook.com (mail-pr2fra01on2041.outbound.protection.outlook.com [40.107.12.41])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6206EDD;
-	Wed, 22 Nov 2023 22:39:26 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IogbFmDTkQQJQ/jiv2Tq3K7gDvuwzxwqI6X2nVA0ql+3hH6bPawUVsIM1j4D4Ui6HUhQUAKs9nSo5Vf/mNPYiHXHjZgAAK1Y1zbqzjqyRubjcYY7t/jNDudhj00a4f6pt97HJ3FBPkV+bzA99+vTLR3rHzapdielWfnFzq5w9hpyrDMFxtj/I0+NfYxNnaFWadx64fNWAyFT1473UIEM/qPnwLDJ32pgblJFdjVNhc/M33fESk2kK7zqMQcPRGvAscSME659xa3d1TbA7Lk1XHlJgr4DMjjAiYLQUj29Gbgf3X7wERuTGopj/XGpin+8bsPdcCx3yEBzwzoH3ZGV7w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UutUUN8AzAyI3z3nKT6yEjmdSvlk5zAyXrsBDLdlwdM=;
- b=dgi9oXWcIcNsl7PvfzDx1ZORI7oTLl1c1MqJ9IzWzNtWqjpSgEunw+yjYkxYrZKTt24noG1WXtGRFOkPMBQsnUaIe2OlArJ9rL6RNrzBwRcLN8WyQ+8z7stNPsZNYJsKYWGmW78BjfBlH43arLXvfUMlDlbq45sMDnSgObjtjLxmCg1JY4sKu08sy4OccbiJ8HqtVEhZSZHjFKyL0Zv8wxQaHvYWvbjly1KACIwHjoM8YnzP1L7hS24MlWoAWj1hO5eZ+lPmDKamShHbBb8N3nEVYs5laoeEmFzFs3+dTslnUBsTis0j0+608m5+EIPikFMQPhKW25Usr/e+vJotCw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=csgroup.eu; dmarc=pass action=none header.from=csgroup.eu;
- dkim=pass header.d=csgroup.eu; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=csgroup.eu;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UutUUN8AzAyI3z3nKT6yEjmdSvlk5zAyXrsBDLdlwdM=;
- b=nfWuviEqe4iTXgZBf8A5L1npGhCcOigiIoTqPpOaMnSEx+IgssmI32owW03YieU+slqfBBIXVrXSRtifxnDljW/7Iu+WVdLQ7Imvdw9QccVeGg9aSYBqzixrKiXoGb4RuWms2eye68880yIiKYaG/6Sgc4TUbWxqYMeevPJOJg31SMh4TLgdakgLOkwrFiP0jb5/UELdk6CsgVEKtfJf/BybRAFRolooryAuMPOzP2ffphpbqlz9uyYkQbHYigU3nxRpD/x9U6+zDulrCo9ZSe2fnXBCfY614lgHuNfE5OadpzUe0BOE6Tk/CLNC5vDhnAWiUEEp26K/N0GMx/sZyA==
-Received: from MRZP264MB2988.FRAP264.PROD.OUTLOOK.COM (2603:10a6:501:31::15)
- by MRZP264MB1542.FRAP264.PROD.OUTLOOK.COM (2603:10a6:501:b::6) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7046.12; Thu, 23 Nov 2023 06:39:23 +0000
-Received: from MRZP264MB2988.FRAP264.PROD.OUTLOOK.COM
- ([fe80::5bfe:e2f2:6d89:8d97]) by MRZP264MB2988.FRAP264.PROD.OUTLOOK.COM
- ([fe80::5bfe:e2f2:6d89:8d97%3]) with mapi id 15.20.7046.012; Thu, 23 Nov 2023
- 06:39:23 +0000
-From: Christophe Leroy <christophe.leroy@csgroup.eu>
-To: Daniel Walker <danielwa@cisco.com>, Will Deacon <will@kernel.org>, Rob
- Herring <robh@kernel.org>, Daniel Gimpelevich
-	<daniel@gimpelevich.san-francisco.ca.us>, Andrew Morton
-	<akpm@linux-foundation.org>, Pratyush Brahma <quic_pbrahma@quicinc.com>,
-	Tomas Mudrunka <tomas.mudrunka@gmail.com>, Sean Anderson
-	<sean.anderson@seco.com>, "x86@kernel.org" <x86@kernel.org>,
-	"linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
-	"linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>, Rob Herring
-	<robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>
-CC: "xe-linux-external@cisco.com" <xe-linux-external@cisco.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 7/8] of: replace command line handling
-Thread-Topic: [PATCH 7/8] of: replace command line handling
-Thread-Index: AQHaE3ahtJVZ4EJB/0ejXwsHWvYB8LCHiKgA
-Date: Thu, 23 Nov 2023 06:39:23 +0000
-Message-ID: <4fa98c8f-076f-4503-b46d-515b8c56bb6d@csgroup.eu>
-References: <20231110013817.2378507-1-danielwa@cisco.com>
- <20231110013817.2378507-8-danielwa@cisco.com>
-In-Reply-To: <20231110013817.2378507-8-danielwa@cisco.com>
-Accept-Language: fr-FR, en-US
-Content-Language: fr-FR
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-user-agent: Mozilla Thunderbird
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=csgroup.eu;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: MRZP264MB2988:EE_|MRZP264MB1542:EE_
-x-ms-office365-filtering-correlation-id: 1d70d028-ede6-48d1-8145-08dbebeeee48
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- lDcVI4i+1OTQ2J9yZa1Ckp/gm8g3WicB0h/Ml9xi4gQA3rDDRASM3vuw+QWwGUtq3uISJh/RSkukNLp+5qwG+dj+7g8/9MY6Rkr2eE8PejmSETOZZ0w2ZcMdjCARSlURMGDagxQxSO91+hxcOSntX3Yr//Z1zaGIhYmfDuka6I2OoTRYgCCJ7fYSQjCDmrFZBdGH02HRP9E35Zl+2z0erFcVqq8oRAsdCudupiLmApjBTO91TYCINFr07MIWdn0bgV+7eyre+7nu7XHIPT9xfLVE/mkZFP8Psf8pQe2Zn138a3k4f0vQfVeiE6pFwzBmrNtN3NUQDUzwAxCjbrix6VoefWGseUomArIYOn9rGR9AyGqZ+TCotDM6pVThZSBZtR6GNqogNbMYobFoavsiF19PWIk/lbgzmocHyBjMmH49v0ws348XM+YM/HpIWFQQGt+5DZSl4tiDW6hr3HX0CiG9cIJxiM0Odv7Hk/wLIoW5QJBrllufxvwJrq326XatzyGbYdtJmAMVDDVqo6ghOQV9vwj0ldM2viV0LdderAxmO7JD0Y/mWaqQ2mZ2fsZMqon/YCEbcRoihw1v6PHxEVBJdWgDrobxaS811KEWTpB3EUgZgrzuynIs2RCczwJHuA3aCQzmsd+4eKmCQBPYsrnN4752XZVQFSnIYX06t6j2S3wdfHlZmhF2UzgbfqlkcopKfEFvxeULlaHHVvmpfMsMJH6wJjUKGnimsphopgvVsbMh0jeDvXN2CblYrSZo
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MRZP264MB2988.FRAP264.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230031)(376002)(346002)(136003)(396003)(366004)(39860400002)(230173577357003)(230273577357003)(230922051799003)(186009)(1800799012)(64100799003)(451199024)(31686004)(921008)(38070700009)(66946007)(66556008)(76116006)(66476007)(66446008)(64756008)(54906003)(91956017)(110136005)(38100700002)(36756003)(122000001)(31696002)(86362001)(83380400001)(66574015)(26005)(6506007)(6512007)(2616005)(6486002)(2906002)(7416002)(316002)(478600001)(8676002)(5660300002)(4326008)(44832011)(71200400001)(41300700001)(8936002)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?aERhdlVhaXNVMXdKNFR5bUxYbS9hZFFiSFZzd2dCN2FOeHpMUDdLSlBCSzFi?=
- =?utf-8?B?VWs0OE5zM3ZFNFQybUFza2NQMmF3MUN6NnNaVXhzdnVFYXR3TlI4cWRTQnpN?=
- =?utf-8?B?TTFJTk5GZlFGbWdQcUdPMmdOQS9VenN0TjcwWUtaVU55TFV6OGtTZ3N0THlm?=
- =?utf-8?B?aFk4enBpeWRGOFdhbDJYc01ManJrdmFaMXUzWEZTOVlTNExYVDU0LzEwWWRL?=
- =?utf-8?B?aEU0cG5YbjlOSEVBL2p6SFl2c0xBTzZwZWtsQUtNM1RMNXk0TCtyd3BJVGY0?=
- =?utf-8?B?TVlCYmQwTWw0Zm95LzJEVzI0cGtETDN6aUhFWXNybjZkYW11N1VFUGtBcU55?=
- =?utf-8?B?aU03Z0UxYU5qMmhGdXQ2YmlZV2hmMENSc2hod1dUa2drMStBSUtxZmh6U1RY?=
- =?utf-8?B?K0dIZGtRZ2Jhb1BpcTY3SVFMSHRKRlNNZGIwaEFQRU9CQlZpbHUxMm9WOE5V?=
- =?utf-8?B?c2o0MzR4N2YwSnpCWVNUUXZKQVZCaTM0UkNweGovUGNzMTJsYy80SDQzVXB1?=
- =?utf-8?B?dUxOK0ViNVlyT1l2VmZPVGhuRmtQWEMxd0JyNjF4cVdXN3p3Yzlnb0VWZ1JH?=
- =?utf-8?B?RE14UEs0QXRPZEVqV3BkZEN0RmxGcGZYVTFJdW9FdDBxaXJlLzg0ZWxmekFY?=
- =?utf-8?B?QlhobXBTclVSV0xCYWcrWi80ZEk4V0J3TjRyQ3JlZ0xTYUs4WUo3K2ozUWVx?=
- =?utf-8?B?aHZWSGkrWmVTSkdDUDNENG16d2xBdjFxMGh3L1JxbGpiTlpwTzE4RmhqQnFC?=
- =?utf-8?B?NWM5d1pGZC92U2pBZFRLMERIWjdJZnRmU3ZHTGVqMVlzMytwOHdLNUwyZXdO?=
- =?utf-8?B?Mms5THRxZGM4SUR1d1pwcSt2SjZuSHVuWVk5VTdWZW0rSkZwTGloVVIrR2Fo?=
- =?utf-8?B?b3ViV21SbzFzOXpaem1BNVdFTk9NcHVNNE1KTVhtai9rdDhNeGZJMDgvUmRC?=
- =?utf-8?B?dXpJRGcwaHhSSDcvU0pEc2E0V3JmV0JxTXJ6cTFGQS9TK2xHbnRHWWZVQjVv?=
- =?utf-8?B?d2ZHQUZDZENhUG4zaU5QNXpMOVl3ZGo2TXpqN0svTnFTSkQzdlpWbzBXckov?=
- =?utf-8?B?OTRDbFgyUHNVYjRlMGJUbmtXOVR5L2l0bGZKb2Q0cGI5VHVzRm5wUkd5cFlt?=
- =?utf-8?B?R0J6eWRwZUZXOEhmLzFjb3NDOTNiREtBendzeE56ejgrNDhQVkJ5M1ZUeWpk?=
- =?utf-8?B?WEhOWC9HUHV2ZUZJbzNpa2xQcUNWS1RNSjB5eWlTNHh4Z2hvTldadGQzQlZp?=
- =?utf-8?B?Wm13RWxyU2JpTklWTEJDczQrSUt2SWYrMkZ1Z3BUYTAxOGN1bHB5blBETk81?=
- =?utf-8?B?VWpYeThmdWVXeU5SYlJIRUYyUEp4c2pSaWN6Rk5RMVQ0c1dNa1A0akZwL1Ar?=
- =?utf-8?B?cHM0MG1yQjF2ajFqQ1haOWVQMURqZ29mQzk0dGI2WjBUZEZYU2JzTVlweDU1?=
- =?utf-8?B?dVMrbWQzemNQVjJyQ1BsczZSemRLQVdqVlJxeVF3VFJVd2locGJWSC9CaWtT?=
- =?utf-8?B?WlM2dkRMRWR2SHlxUWxJQjdZN2x4UGZwcmhsRXlqbWJpODhoZUtUU2UwSllN?=
- =?utf-8?B?M3FkZnRpUHNBYVlNNmlKY0t4SThwSUVnOVNUbmk4VWFXQWJXUWg5Q3J3RWQv?=
- =?utf-8?B?Z21rMUVWNG1zWUpORlhzNHJQQVhLZ2NpYmZENkMyM3ZXeXp5U0FjbVVsZUtV?=
- =?utf-8?B?dUtNM05wb05RQTdtQWIxNGFFWWNuNkcyaThldm1BM1RjdkYxYllvYWJ1a0x2?=
- =?utf-8?B?Rnl1dmpnSTFDM3JtYitWRXErZUVvR1VWMGw2OWhkQXZzK3RKZkM2K0hySWI1?=
- =?utf-8?B?elNialJ4OU5VeDRHMHZDdU53YnBGanJGNkh2U1h0N3FRUzZSbFVlaXhUTnVD?=
- =?utf-8?B?QTNHZlpRU1V6cktGUkFPM1JROWhYcTllRFUyTGRySW0vT2ZINjBiWUtVL3Vz?=
- =?utf-8?B?eGI0bzA3MUh5OEtPa0M1aFVGVDh5ZGo1UWhuL29Oc3dlSU8vbnhhZzBZNG9u?=
- =?utf-8?B?OVFNdTkxd3hBaDgwbzlicXZsMm01djBwMUxGeXJFUjNSbU1wNmJBZ3VVRGV2?=
- =?utf-8?B?WDI1Z3FJUXRUL05leUxjSWJxcVpVQSsrQ3AwVW0vMkhmbE1OcWdOYTg0M3FM?=
- =?utf-8?Q?ZQ8nSrpMwjxCaSgMcp0lEl5X4?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <A8A140911D8BBE489C8452051E720E28@FRAP264.PROD.OUTLOOK.COM>
-Content-Transfer-Encoding: base64
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB7E5AD;
+	Wed, 22 Nov 2023 22:48:31 -0800 (PST)
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AN19fC4027423;
+	Thu, 23 Nov 2023 06:48:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=RYOEdN/p5Ny3t5mDHy6Fv03Bj+dIJIXS9d6jKHwYuqY=;
+ b=Tq1TMn0tAb1/wM81xxvkoPCTk74j2UJ1bdlsEIiAREd6cFkhgCtEilYmRnrbeuPdu8/f
+ A5Y5YAP3TCm6fQahsUuysposhF3et9Eo6uFWQOBvRkQ3ZBgWhpaCqxriR1ifrlEI+W7N
+ 95DPdpqp2rZ+4x8prXS+sdsTbAToBOIXMMdr4BUT2JIQ9DYPfbrN6w+Yto8etKQLKE99
+ SxSl/vI+3+aJb7lSUq6d+XVmLc8BQAEk+3VAhIVgy3KtAIrixwdSxBI3C94muHdqOCDs
+ 5kWli6h7qqNZHXpj25g3bvX0sUTe8x0VSazjm/xIora+l6qCfbJQbScrjLAU391bO7sp zA== 
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uhey5aj4a-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 23 Nov 2023 06:48:21 +0000
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AN6mK0I011791
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 23 Nov 2023 06:48:20 GMT
+Received: from hu-imrashai-hyd.qualcomm.com (10.80.80.8) by
+ nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Wed, 22 Nov 2023 22:48:15 -0800
+From: Imran Shaik <quic_imrashai@quicinc.com>
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Michael Turquette
+	<mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: Taniya Das <quic_tdas@quicinc.com>,
+        Imran Shaik
+	<quic_imrashai@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <netdev@vger.kernel.org>, Ajit Pandey
+	<quic_ajipan@quicinc.com>,
+        Jagadeesh Kona <quic_jkona@quicinc.com>
+Subject: [PATCH V5 0/4] Add support for Qualcomm ECPRI clock controller
+Date: Thu, 23 Nov 2023 12:17:31 +0530
+Message-ID: <20231123064735.2979802-1-quic_imrashai@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: csgroup.eu
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MRZP264MB2988.FRAP264.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1d70d028-ede6-48d1-8145-08dbebeeee48
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Nov 2023 06:39:23.5265
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 9914def7-b676-4fda-8815-5d49fb3b45c8
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 3kOhXNvUg1imBzlJd6vz7GKcgOgnJkPPxFEHy8A4TgKny5i+DqXFIvRu5MFMrzluSHUSpiPPh0nn8j17VTN3bQcCYKLOIO8sUATvJFIcof8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MRZP264MB1542
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: YglHcXbqRHdIyLPCxtFIwgvGeSAOSRWo
+X-Proofpoint-GUID: YglHcXbqRHdIyLPCxtFIwgvGeSAOSRWo
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-23_04,2023-11-22_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=875
+ lowpriorityscore=0 spamscore=0 impostorscore=0 suspectscore=0
+ priorityscore=1501 mlxscore=0 malwarescore=0 clxscore=1015 phishscore=0
+ bulkscore=0 adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2311060000 definitions=main-2311230045
 
-DQoNCkxlIDEwLzExLzIwMjMgw6AgMDI6MzgsIERhbmllbCBXYWxrZXIgYSDDqWNyaXTCoDoNCj4g
-Um9iIEhlcnJpbmcgaGFzIGNvbXBsYWluZWQgYWJvdXQgdGhpcyBzZWN0aW9uIG9mIGNvZGUuIEkg
-cmVtb3ZlZCB0aGUNCg0KVGhpcyBraW5kIG9mIGNvbnNpZGVyYXRpb25zIHNob3VsZG4ndCBhcHBl
-YXIgaW4gdGhlIGNvbW1pdCBtZXNzYWdlLCBpdCANCm1heSBhcHBlYXIgYWZ0ZXIgdGhlIC0tLSBz
-byB0aGF0IGl0IGdldHMgZHJvcHBlZCB3aGVuIGFwcGx5aW5nLg0KDQo+IGNvbW1hbmQgbGluZSBo
-YW5kbGluZyBjb2RlIHRvIHRoZSBjbWRsaW5lLmggaGVhZGVyLiBUaGlzIGhvcGVmdWxseSBtYWtl
-cw0KPiBpdCBlYXNpZXIgZm9yIFJvYiB0byBtYWludGFpbiBpdCAoYXQgbGVhc3QgaGUgZG9lc24n
-dCBoYXZlIHRvIGxvb2sgYXQgaXQNCj4gZGlyZWN0bHkgYW55bW9yZSkuIEkgd291bGQgbGlrZSB0
-byBhZGQgYSBLY29uZmlnIG9wdGlvbiBjYWxsZWQNCj4gT0ZfREVQUkVDQVRFRF9DTURMSU5FIHdo
-aWNoIGFuIGFyY2hpdGVjdHVyZSB3b3VsZCBzZXQgaWYgaXQgdXNlcyB0aGlzIGNvZGUuDQoNCk5v
-dCBzdXJlIHRvIHVuZGVyc3RhbmQgd2hhdCB5b3Ugd2FudCB0byBkbyBhbmQgd2h5IHRoYXQgaXMg
-bmVlZGVkLiBXaHkgDQpjYW4ndCB0aGF0IHdvcmsgZm9yIGV2ZXJ5b25lID8gQXZvaWQgdW5uZWNl
-c3Nhcnkgb3B0aW9ucy4NCg0KPiBUaGlzIHdvdWxkIGFsbG93IGEgcGxhdGZvcm0gdG8gdXNlIHRo
-ZSBjbWRsaW5lLmggYW5kIHRoZSBhZGRlZCBmdW5jdGlvbg0KPiBkaXJlY3RseSBhbmQgcmVtb3Zl
-IHRoZSBLY29uZmlnIG9wdGlvbi4gVGhpcyBjaGFuZ2Ugd291bGQgYmUgaW4gYSBzdWJzZXF1ZW50
-DQo+IHBhdGNoLg0KDQp3b3VsZCBvciB3aWxsID8gTm90IHN1cmUgaXQgaXMgd29ydGggbWVudGlv
-bmluZyBpZiBpdCB3b24ndC4NCg0KPiANCj4gVGhpcyBjb2RlIHdhcyBib290IHRlc3RlZCBvbiBw
-b3dlcnBjIDMyYml0LCBwb3dlcnBjIDY0Yml0IHdpdGhvdXQNCj4gYW55IGdlbmVyaWMgY29tbWFu
-ZCBsaW5lIGNvbnZlcnNpb24uDQo+IA0KPiBDYzogeGUtbGludXgtZXh0ZXJuYWxAY2lzY28uY29t
-DQo+IFNpZ25lZC1vZmYtYnk6IERhbmllbCBXYWxrZXIgPGRhbmllbHdhQGNpc2NvLmNvbT4NCj4g
-LS0tDQo+ICAgZHJpdmVycy9vZi9mZHQuYyAgICAgICAgfCAyMiArKystLS0tLS0tLS0tLS0tLS0t
-LS0tDQo+ICAgaW5jbHVkZS9saW51eC9jbWRsaW5lLmggfCAzMSArKysrKysrKysrKysrKysrKysr
-KysrKysrKysrKysrDQo+ICAgMiBmaWxlcyBjaGFuZ2VkLCAzNCBpbnNlcnRpb25zKCspLCAxOSBk
-ZWxldGlvbnMoLSkNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL29mL2ZkdC5jIGIvZHJpdmVy
-cy9vZi9mZHQuYw0KPiBpbmRleCBiZjUwMmJhOGRhOTUuLjFmYzFiMTdkMDRkYyAxMDA2NDQNCj4g
-LS0tIGEvZHJpdmVycy9vZi9mZHQuYw0KPiArKysgYi9kcml2ZXJzL29mL2ZkdC5jDQo+IEBAIC0y
-Niw2ICsyNiw3IEBADQo+ICAgI2luY2x1ZGUgPGxpbnV4L3NlcmlhbF9jb3JlLmg+DQo+ICAgI2lu
-Y2x1ZGUgPGxpbnV4L3N5c2ZzLmg+DQo+ICAgI2luY2x1ZGUgPGxpbnV4L3JhbmRvbS5oPg0KPiAr
-I2luY2x1ZGUgPGxpbnV4L2NtZGxpbmUuaD4NCj4gICANCj4gICAjaW5jbHVkZSA8YXNtL3NldHVw
-Lmg+ICAvKiBmb3IgQ09NTUFORF9MSU5FX1NJWkUgKi8NCj4gICAjaW5jbHVkZSA8YXNtL3BhZ2Uu
-aD4NCj4gQEAgLTExODMsMjcgKzExODQsMTAgQEAgaW50IF9faW5pdCBlYXJseV9pbml0X2R0X3Nj
-YW5fY2hvc2VuKGNoYXIgKmNtZGxpbmUpDQo+ICAgDQo+ICAgCS8qIFJldHJpZXZlIGNvbW1hbmQg
-bGluZSAqLw0KPiAgIAlwID0gb2ZfZ2V0X2ZsYXRfZHRfcHJvcChub2RlLCAiYm9vdGFyZ3MiLCAm
-bCk7DQo+IC0JaWYgKHAgIT0gTlVMTCAmJiBsID4gMCkNCj4gLQkJc3Ryc2NweShjbWRsaW5lLCBw
-LCBtaW4obCwgQ09NTUFORF9MSU5FX1NJWkUpKTsNCj4gICANCj4gICBoYW5kbGVfY21kbGluZToN
-Cj4gLQkvKg0KPiAtCSAqIENPTkZJR19DTURMSU5FIGlzIG1lYW50IHRvIGJlIGEgZGVmYXVsdCBp
-biBjYXNlIG5vdGhpbmcgZWxzZQ0KPiAtCSAqIG1hbmFnZWQgdG8gc2V0IHRoZSBjb21tYW5kIGxp
-bmUsIHVubGVzcyBDT05GSUdfQ01ETElORV9GT1JDRQ0KPiAtCSAqIGlzIHNldCBpbiB3aGljaCBj
-YXNlIHdlIG92ZXJyaWRlIHdoYXRldmVyIHdhcyBmb3VuZCBlYXJsaWVyLg0KPiAtCSAqLw0KPiAt
-I2lmZGVmIENPTkZJR19DTURMSU5FDQo+IC0jaWYgZGVmaW5lZChDT05GSUdfQ01ETElORV9FWFRF
-TkQpDQo+IC0Jc3RybGNhdChjbWRsaW5lLCAiICIsIENPTU1BTkRfTElORV9TSVpFKTsNCj4gLQlz
-dHJsY2F0KGNtZGxpbmUsIENPTkZJR19DTURMSU5FLCBDT01NQU5EX0xJTkVfU0laRSk7DQo+IC0j
-ZWxpZiBkZWZpbmVkKENPTkZJR19DTURMSU5FX0ZPUkNFKQ0KPiAtCXN0cnNjcHkoY21kbGluZSwg
-Q09ORklHX0NNRExJTkUsIENPTU1BTkRfTElORV9TSVpFKTsNCj4gLSNlbHNlDQo+IC0JLyogTm8g
-YXJndW1lbnRzIGZyb20gYm9vdCBsb2FkZXIsIHVzZSBrZXJuZWwncyAgY21kbCovDQo+IC0JaWYg
-KCEoKGNoYXIgKiljbWRsaW5lKVswXSkNCj4gLQkJc3Ryc2NweShjbWRsaW5lLCBDT05GSUdfQ01E
-TElORSwgQ09NTUFORF9MSU5FX1NJWkUpOw0KPiAtI2VuZGlmDQo+IC0jZW5kaWYgLyogQ09ORklH
-X0NNRExJTkUgKi8NCj4gKw0KPiArCW9mX2RlcHJlY2F0ZWRfY21kbGluZV91cGRhdGUoY21kbGlu
-ZSwgcCwgbCk7DQo+ICAgDQo+ICAgCXByX2RlYnVnKCJDb21tYW5kIGxpbmUgaXM6ICVzXG4iLCAo
-Y2hhciAqKWNtZGxpbmUpOw0KPiAgIA0KPiBkaWZmIC0tZ2l0IGEvaW5jbHVkZS9saW51eC9jbWRs
-aW5lLmggYi9pbmNsdWRlL2xpbnV4L2NtZGxpbmUuaA0KPiBpbmRleCBhOTQ3NThhMGYyNTcuLmM3
-NzJhZmI3MzQwZiAxMDA2NDQNCj4gLS0tIGEvaW5jbHVkZS9saW51eC9jbWRsaW5lLmgNCj4gKysr
-IGIvaW5jbHVkZS9saW51eC9jbWRsaW5lLmgNCj4gQEAgLTEwMyw0ICsxMDMsMzUgQEAgX19jbWRs
-aW5lX2FkZF9idWlsdGluKA0KPiAgIA0KPiAgICNkZWZpbmUgY21kbGluZV9nZXRfc3RhdGljX2J1
-aWx0aW4oZGVzdCkgXA0KPiAgIAkoQ01ETElORV9TVEFUSUNfUFJFUEVORCBDTURMSU5FX1NUQVRJ
-Q19BUFBFTkQpDQo+ICsNCj4gKyNpZm5kZWYgQ09ORklHX0dFTkVSSUNfQ01ETElORQ0KPiArc3Rh
-dGljIGlubGluZSBib29sIG9mX2RlcHJlY2F0ZWRfY21kbGluZV91cGRhdGUoY2hhciAqY21kbGlu
-ZSwgY29uc3QgY2hhciAqZHRfYm9vdGFyZ3MsIGludCBsZW5ndGgpDQoNCkFkZCBhIGNvbW1lbnQg
-ZXhwbGFpbmluZyB3aHkgaXQgaXMgZGVwcmVjYXRlZC4NCg0KPiArew0KPiArCWlmIChkdF9ib290
-YXJncyAhPSBOVUxMICYmIGxlbmd0aCA+IDApDQo+ICsJCXN0cmxjcHkoY21kbGluZSwgZHRfYm9v
-dGFyZ3MsIG1pbihsZW5ndGgsIENPTU1BTkRfTElORV9TSVpFKSk7DQo+ICsJLyoNCj4gKwkgKiBD
-T05GSUdfQ01ETElORSBpcyBtZWFudCB0byBiZSBhIGRlZmF1bHQgaW4gY2FzZSBub3RoaW5nIGVs
-c2UNCj4gKwkgKiBtYW5hZ2VkIHRvIHNldCB0aGUgY29tbWFuZCBsaW5lLCB1bmxlc3MgQ09ORklH
-X0NNRExJTkVfRk9SQ0UNCj4gKwkgKiBpcyBzZXQgaW4gd2hpY2ggY2FzZSB3ZSBvdmVycmlkZSB3
-aGF0ZXZlciB3YXMgZm91bmQgZWFybGllci4NCj4gKwkgKi8NCj4gKw0KPiArI2lmZGVmIENPTkZJ
-R19DTURMSU5FDQo+ICsjaWYgZGVmaW5lZChDT05GSUdfQ01ETElORV9FWFRFTkQpDQo+ICsJc3Ry
-bGNhdChjbWRsaW5lLCAiICIsIENPTU1BTkRfTElORV9TSVpFKTsNCj4gKwlzdHJsY2F0KGNtZGxp
-bmUsIENPTkZJR19DTURMSU5FLCBDT01NQU5EX0xJTkVfU0laRSk7DQo+ICsjZWxpZiBkZWZpbmVk
-KENPTkZJR19DTURMSU5FX0ZPUkNFKQ0KPiArCXN0cnNjcHkoY21kbGluZSwgQ09ORklHX0NNRExJ
-TkUsIENPTU1BTkRfTElORV9TSVpFKTsNCj4gKyNlbHNlDQo+ICsJLyogTm8gYXJndW1lbnRzIGZy
-b20gYm9vdCBsb2FkZXIsIHVzZSBrZXJuZWwncyAgY21kbCovDQo+ICsJaWYgKCEoKGNoYXIgKilj
-bWRsaW5lKVswXSkNCj4gKwkJc3Ryc2NweShjbWRsaW5lLCBDT05GSUdfQ01ETElORSwgQ09NTUFO
-RF9MSU5FX1NJWkUpOw0KPiAgICNlbmRpZg0KPiArI2VuZGlmIC8qIENPTkZJR19DTURMSU5FICov
-DQo+ICsJcmV0dXJuIHRydWU7DQo+ICt9DQo+ICsjZWxzZQ0KPiArc3RhdGljIGlubGluZSBib29s
-IG9mX2RlcHJlY2F0ZWRfY21kbGluZV91cGRhdGUoY2hhciAqY21kbGluZSwgY29uc3QgY2hhciAq
-ZHRfYm9vdGFyZ3MsIGludCBsZW5ndGgpIHsgcmV0dXJuIGZhbHNlOyB9DQo+ICsjZW5kaWYgLyog
-Q09ORklHX0dFTkVSSUNfQ01ETElORSAqLw0KPiArDQo+ICsNCj4gKyNlbmRpZiAvKiBfTElOVVhf
-Q01ETElORV9IICovDQo=
+The ECPRI clock controller support for QDU1000 and QRU1000. The clock
+controller has a special branch which requires an additional memory to
+be enabled/disabled before the branch ops.
+
+Changes since v4:
+ - Aligned the lines as per the review comments
+ - Used the clk_hw_get_name implicitly in WARN as per the review comments
+
+Changes since v3:
+ - Updated the bindings description as per the review comments
+ - Updated mem ops and ecpricc driver patches as per the review comments
+
+Changes since v2:
+ - Updated the mem ops implementation as per the latest review comments
+ - Updated the ecpricc driver as per the review comments
+
+Changes since v1:
+ - Updated the dt-bindings
+ - Modified mem ops logic as per the review comments
+ - Update all the hex values to lowercase
+ - Aligned the clock entries in DT as per the review comment
+
+Previous series:
+v4 - https://lore.kernel.org/linux-arm-msm/20231117095558.3313877-1-quic_imrashai@quicinc.com/
+v3 - https://lore.kernel.org/linux-arm-msm/20231106103027.3988871-1-quic_imrashai@quicinc.com/
+v2 - https://lore.kernel.org/linux-arm-msm/20231011090028.1706653-1-quic_imrashai@quicinc.com/
+v1 - https://lore.kernel.org/linux-arm-msm/20230808051407.647395-1-quic_imrashai@quicinc.com/
+
+Imran Shaik (3):
+  dt-bindings: clock: qcom: Add ECPRICC clocks for QDU1000 and QRU1000
+  clk: qcom: Add ECPRICC driver support for QDU1000 and QRU1000
+  arm64: dts: qcom: qdu1000: Add ECPRI clock controller
+
+Taniya Das (1):
+  clk: qcom: branch: Add mem ops support for branch2 clocks
+
+ .../bindings/clock/qcom,qdu1000-ecpricc.yaml  |   68 +
+ arch/arm64/boot/dts/qcom/qdu1000.dtsi         |   14 +
+ drivers/clk/qcom/Kconfig                      |    9 +
+ drivers/clk/qcom/Makefile                     |    1 +
+ drivers/clk/qcom/clk-branch.c                 |   38 +
+ drivers/clk/qcom/clk-branch.h                 |   21 +
+ drivers/clk/qcom/ecpricc-qdu1000.c            | 2456 +++++++++++++++++
+ .../dt-bindings/clock/qcom,qdu1000-ecpricc.h  |  147 +
+ 8 files changed, 2754 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,qdu1000-ecpricc.yaml
+ create mode 100644 drivers/clk/qcom/ecpricc-qdu1000.c
+ create mode 100644 include/dt-bindings/clock/qcom,qdu1000-ecpricc.h
+
+-- 
+2.25.1
+
 
