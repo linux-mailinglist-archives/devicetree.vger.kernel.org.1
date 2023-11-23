@@ -1,131 +1,145 @@
-Return-Path: <devicetree+bounces-18408-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18410-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D98617F6566
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 18:28:42 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 907227F6577
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 18:32:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 71FEF281D4C
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 17:28:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4C7A02819CE
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 17:32:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95F06405D2;
-	Thu, 23 Nov 2023 17:28:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2BEC3FB2E;
+	Thu, 23 Nov 2023 17:32:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b="gcuciQNH";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="kv69WDjo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 900521B3
-	for <devicetree@vger.kernel.org>; Thu, 23 Nov 2023 09:28:34 -0800 (PST)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1r6DV3-0006fo-MD; Thu, 23 Nov 2023 18:28:25 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1r6DV1-00B5Zc-Nb; Thu, 23 Nov 2023 18:28:23 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1r6DV1-006qI9-E4; Thu, 23 Nov 2023 18:28:23 +0100
-Date: Thu, 23 Nov 2023 18:28:23 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Michael Walle <mwalle@kernel.org>, Jitao Shi <jitao.shi@mediatek.com>
-Cc: Thierry Reding <thierry.reding@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	Xinlei Lee <xinlei.lee@mediatek.com>
-Subject: Re: [PATCH] dt-bindings: pwm: remove Xinlei's mail
-Message-ID: <20231123172823.4offrr7w4tsrhl4y@pengutronix.de>
-References: <20231123134716.2033769-1-mwalle@kernel.org>
+Received: from wout2-smtp.messagingengine.com (wout2-smtp.messagingengine.com [64.147.123.25])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39B78D44;
+	Thu, 23 Nov 2023 09:31:59 -0800 (PST)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+	by mailout.west.internal (Postfix) with ESMTP id 051533200A0C;
+	Thu, 23 Nov 2023 12:31:54 -0500 (EST)
+Received: from imap44 ([10.202.2.94])
+  by compute3.internal (MEProxy); Thu, 23 Nov 2023 12:31:56 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:sender:subject:subject:to:to; s=fm2; t=
+	1700760714; x=1700847114; bh=r7YWHIfKs1lRtQljNoq9n0N8njCRxKVxB0j
+	/oEqFGJ8=; b=gcuciQNHPyLhNrt9hMusqeRhRHncBl86lxovPoBIi0uz5ETFy35
+	sy26tYy2lcezp4at8sXuI+gxGYBpZmL0463jgrb4tmk1Pc+ZU1nInpXvNbuOjFGW
+	ZvHwdiu9HmlPH+FxyQOU+RKAWmgnqxwRZYRsADYnGR1AJvGcgoCw51rgIKtVXEei
+	tV7LX/kHuvfNU0Jr/pTcJWPYPS9/UJdPFgL3F3SOeYfTUgoDFncfyU/oCu7or3VJ
+	H5Sq+h4N5U/Vlb6rTUL34x5kXeLlMabxOZJ0qrUfLIWkxFN4gspnyNUMvW57Tcoy
+	75UKOblrACO/yOiHnAQJm+i4DJr6OwU1Log==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:sender:subject:subject:to:to:x-me-proxy
+	:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=
+	1700760714; x=1700847114; bh=r7YWHIfKs1lRtQljNoq9n0N8njCRxKVxB0j
+	/oEqFGJ8=; b=kv69WDjo+qyKK7pmC0j7JuBlJFHfQw3agKWMBEE9Sfc4gMBXits
+	bUB7y2f+s3m5leDUyYdRYSZ+UAYkCUB6YZZoUj7W8s7KEgw8J5rq1mY43enhdCVc
+	6KJQLsBFLtUnUVR7KQZYmzXaNWe36bsCFX3l5vcYYni5n97sGESyyDP7Z8SXQWo/
+	BvAKYZlkJN/GSBbzkJTU7IIemoAjwNZDuNDP4c5jxhQo7pqNDaEpb1XEETLTsTFb
+	sHFhlkD7FKtOTCzILVXKwpVybK8D06hu+2rzNwUvI4dVM1eLdiOtaDKG4NE1aQEr
+	Il7an2b45E1XkS+dKAGNNXF0UQkLUjMu00w==
+X-ME-Sender: <xms:ioxfZTUuN9wJnwXh8PAnpluylHi_g4qSH9Fdpolif4Y4jZeYg6lnYA>
+    <xme:ioxfZblm1C3UZdBSumou4iztnFohGLw0cx3KiaE_-9hb3LmvRMQPxtNIWDKDxvw0f
+    pbzzZ0bRxVgc5wFg6I>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrudehfedguddttdcutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpefofgggkfgjfhffhffvvefutgfgsehtqhertderreejnecuhfhrohhmpedf
+    lfhirgiguhhnucgjrghnghdfuceojhhirgiguhhnrdihrghnghesfhhlhihgohgrthdrtg
+    homheqnecuggftrfgrthhtvghrnhepkeelveffhedtiefgkeefhffftdduffdvueevtdff
+    teehueeihffgteelkeelkeejnecuffhomhgrihhnpehkvghrnhgvlhdrohhrghenucevlh
+    hushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehjihgrgihunhdr
+    higrnhhgsehflhihghhorghtrdgtohhm
+X-ME-Proxy: <xmx:ioxfZfZKpm9WG62x6XNl1UWP2qr5lcr1QtT92BuNuoO-Qqb-i5ZlPg>
+    <xmx:ioxfZeVa0qQisTL-4f-tC7bBbij3kZAoyudiuXLVOe0wPGP2JoBP_A>
+    <xmx:ioxfZdk1msiY1Zi3OOVhgAsMEEmfjTpZg2GwF8KXW8rr780ltNRAmw>
+    <xmx:ioxfZWfwTXpAIux1XSpGVByRIFugkV9VmG8RJSs0osSGcR8tbk_C0w>
+Feedback-ID: ifd894703:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id 04C4E36A0075; Thu, 23 Nov 2023 12:31:54 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-1234-gac66594aae-fm-20231122.001-gac66594a
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="f2xwjnd6lnhuiwuu"
-Content-Disposition: inline
-In-Reply-To: <20231123134716.2033769-1-mwalle@kernel.org>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-
-
---f2xwjnd6lnhuiwuu
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Message-Id: <32db8a76-7842-4d04-94f1-67e3984cb349@app.fastmail.com>
+In-Reply-To: <20231123152639.561231-1-gregory.clement@bootlin.com>
+References: <20231123152639.561231-1-gregory.clement@bootlin.com>
+Date: Thu, 23 Nov 2023 17:31:33 +0000
+From: "Jiaxun Yang" <jiaxun.yang@flygoat.com>
+To: "Gregory CLEMENT" <gregory.clement@bootlin.com>,
+ "paulburton@kernel.org" <paulburton@kernel.org>,
+ "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
+ "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
+ "Rob Herring" <robh+dt@kernel.org>,
+ "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: "Vladimir Kondratiev" <vladimir.kondratiev@mobileye.com>,
+ "Tawfik Bayouk" <tawfik.bayouk@mobileye.com>,
+ "Alexandre Belloni" <alexandre.belloni@bootlin.com>,
+ =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
+ "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 00/21] Add support for the Mobileye EyeQ5 SoC
+Content-Type: text/plain;charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Nov 23, 2023 at 02:47:16PM +0100, Michael Walle wrote:
-> Xinlei Lee's mail is bouncing:
->=20
-> <xinlei.lee@mediatek.com>: host mailgw02.mediatek.com[216.200.240.185] sa=
-id:
->     550 Relaying mail to xinlei.lee@mediatek.com is not allowed (in reply=
- to
->     RCPT TO command)
->=20
-> Remove it.
->=20
-> Signed-off-by: Michael Walle <mwalle@kernel.org>
-> ---
->  Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml | 1 -
->  1 file changed, 1 deletion(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml=
- b/Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml
-> index 153e146df7d4..afcdeed4e88a 100644
-> --- a/Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml
-> +++ b/Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml
-> @@ -8,7 +8,6 @@ title: MediaTek DISP_PWM Controller
-> =20
->  maintainers:
->    - Jitao Shi <jitao.shi@mediatek.com>
-> -  - Xinlei Lee <xinlei.lee@mediatek.com>
 
-Xinlei is also listed as maintainer in
-Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.yaml.
 
-Other than that:
+=E5=9C=A82023=E5=B9=B411=E6=9C=8823=E6=97=A5=E5=8D=81=E4=B8=80=E6=9C=88 =
+=E4=B8=8B=E5=8D=883:26=EF=BC=8CGregory CLEMENT=E5=86=99=E9=81=93=EF=BC=9A
+> Hello,
+>
+> The EyeQ5 SoC from Mobileye is based on the MIPS I6500 architecture
+> and features multiple controllers such as the classic UART, I2C, SPI,
+> as well as CAN-FD, PCIe, Octal/Quad SPI Flash interface, Gigabit
+> Ethernet, MIPI CSI-2, and eMMC 5.1. It also includes a Hardware
+> Security Module, Functional Safety Hardware, and MJPEG encoder.
+>
+> One peculiarity of this SoC is that the physical address of the DDDR
+> exceeds 32 bits. Given that the architecture is 64 bits, this is not
+> an issue, but it requires some changes in how the mips64 is currently
+> managed during boot.
+>
+> This second version comes a few weeks after the first one, because
+> there several iteration to support having kernel code outside kseg.
+>
+> To build and test the
+> kernel, we need to run the following commands:
+>
+> make 64r6el_defconfig BOARDS=3Deyeq5
+> make vmlinuz.itb
+>
+> In order to get ride of the aliasing patch I got, I followed Jiaxun
+> Yang suggestion by splitting the memory in 2 part: low part under
+> 512MB and high part beyond the 4GB. It allows to boot and run Linux on
+> the platform however as a side effect the number of pages used for
+> memmap passed from 512 to 8672 which is a huge consumption of
+> pages. Do you know if there is a way to reduce it ?
 
-Acked-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+The best workaround is to enable SPARSEMEM, that's why I sent[1] :-)
 
-because the address failed for me before, too.
+I'm going to reversion my XKPHYS work to fix some other issues I found.
 
-A confirmation by Jitao Shi would be nice ...
-
-Best regards
-Uwe
-
+[1]: https://lore.kernel.org/linux-mips/20231028-mm-v1-0-45377cd158cf@fl=
+ygoat.com/
+>
+> I also noticed that if the kernel can't be in kseg0 at all by using
+> low memory at 0x40000000, then I got the following message during
+> boot:
+>
 --=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---f2xwjnd6lnhuiwuu
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmVfi7YACgkQj4D7WH0S
-/k5yMwf+IRIOP4q0ZLwdNez1e51AqVrao/6E0dqPhU7Cq9ka5Y8zr4Xx9wW3jz2d
-QPab0hcPzDgVd64whCgXEbclBDZOKPaURAWxWxprmyt2g4cAtuT4BfSlJ6bgG0Fd
-GJu9xpHiwJDPFaheBWM25hBmwYTie/j+ARN0OY+O9feJDUl3df06YJ1+s1M7euB2
-IGpslcBOi1TRE83Ll9y6nyUMTHYEyq5ZnIgm7zT2SoAjvmsI5qcE3SmiNJJsig07
-nl5nLTnjWfDYGfqKDixCOOokSSqW50Y42b5uX+iCxEMKmHtjKRhLrYbKkAvJVoYo
-/Wl2zfP2UdZo4ZP6rHVTRel63p12lg==
-=d7mx
------END PGP SIGNATURE-----
-
---f2xwjnd6lnhuiwuu--
+- Jiaxun
 
