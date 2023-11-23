@@ -1,57 +1,60 @@
-Return-Path: <devicetree+bounces-18419-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18420-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2313C7F65D7
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 18:58:31 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEE917F65E5
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 19:03:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 540911C20C5F
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 17:58:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 86FFCB20EB1
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 18:03:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7280E49F81;
-	Thu, 23 Nov 2023 17:58:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78AE04AF8D;
+	Thu, 23 Nov 2023 18:03:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bpctfeS9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PJ61VMyv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57DB24777C
-	for <devicetree@vger.kernel.org>; Thu, 23 Nov 2023 17:58:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8BCABC433C7;
-	Thu, 23 Nov 2023 17:58:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E7354AF76;
+	Thu, 23 Nov 2023 18:03:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBCA9C433C8;
+	Thu, 23 Nov 2023 18:03:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700762305;
-	bh=CdkOgAhi6Qq7XsTQoNuQykYy+5qMsC9bpVDo0+HhVbE=;
+	s=k20201202; t=1700762585;
+	bh=nuppog5gHM5PDdmOf0v6VeS1jwQuAhpresQvggmV4bQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bpctfeS934De2qrTgc70kNtdR1pySjxVIyIzRZheu5z6vRJYfKnExafV35mIzkBxH
-	 1+YBgrKmrvaBzLzWwUTYaa9VXs8U6kIaE8CCKELK7kibLFZQs+/8lzUp49mBaVQd/2
-	 i8i1RmPaiN+Sm5o7t6tQLI1+9BMJ8AWUBZB4fBl3X48a0qZ5xhZYgzV3P5wetPIXZM
-	 bnKH38/zANHbTfTffAKRyPCU6eHqUQSeEgNy8DvWZf603i+medwJkqfaFTopl9ci/x
-	 dOKVVLgM9RYvUw68ta/YGkNc0xmO1atfyx88NklO9NeExxPR8Z+omnBE8TrrsHBKSU
-	 mReTgJd/JJUUw==
-Date: Thu, 23 Nov 2023 17:58:20 +0000
+	b=PJ61VMyvko7QS9/SGSXmW+7k2SIUFTWVAOhWXRnNDB29CULQ3Sl73hQSpDFcm/HU4
+	 dLIeOY6KaNugid4myURGXb8kVIoELKiWeY8W/wUAYTZLBK7PBSfo98/bObspjxb/U0
+	 UdIbyLVQN0fBW25Ekbn9YfA8t6lSAAl2wabSHpth68uRqfw+nB0cpRO1r/IoRPKKh2
+	 MHAhtYfYFFTSGa8PrgdvL1kfpopFX1ZvTEDG5ql2g3+sjl9zpsDs1IeDjmUc8mrwMt
+	 rbziIftMB094bNgVretH/dzHYVgAKDxl+gQ/F/rAuctAfrHgDuUGKKSNV5ZYl0Q4Pk
+	 1zCMY7vqNE8yQ==
+Date: Thu, 23 Nov 2023 18:02:58 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Philipp Zabel <p.zabel@pengutronix.de>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	Sam Ravnborg <sam@ravnborg.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+To: mitrutzceclan <mitrutzceclan@gmail.com>
+Cc: linus.walleij@linaro.org, brgl@bgdev.pl, andy@kernel.org,
+	linux-gpio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
+	Jonathan Cameron <jic23@kernel.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Marco Felsch <m.felsch@pengutronix.de>, kernel@pengutronix.de
-Subject: Re: [PATCH 2/3] dt-bindings: ili9881c: Add Ampire AM8001280G LCD
- panel
-Message-ID: <20231123-civic-monoxide-ca1d06a02df3@spud>
-References: <20231123-drm-panel-ili9881c-am8001280g-v1-0-fdf4d624c211@pengutronix.de>
- <20231123-drm-panel-ili9881c-am8001280g-v1-2-fdf4d624c211@pengutronix.de>
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Walle <michael@walle.cc>,
+	Andy Shevchenko <andy.shevchenko@gmail.com>,
+	Arnd Bergmann <arnd@arndb.de>, ChiaEn Wu <chiaen_wu@richtek.com>,
+	Niklas Schnelle <schnelle@linux.ibm.com>,
+	Leonard =?iso-8859-1?Q?G=F6hrs?= <l.goehrs@pengutronix.de>,
+	Mike Looijmans <mike.looijmans@topic.nl>,
+	Haibo Chen <haibo.chen@nxp.com>,
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+	Ceclan Dumitru <dumitru.ceclan@analog.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 1/2] dt-bindings: adc: add AD7173
+Message-ID: <20231123-ninth-joylessly-89e8531cf756@spud>
+References: <20231123152331.5751-1-user@HYB-hhAwRlzzMZb>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,60 +62,67 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="3USh3Aw49Tg1AKz5"
+	protocol="application/pgp-signature"; boundary="K9w0PSfQdN+TWI+G"
 Content-Disposition: inline
-In-Reply-To: <20231123-drm-panel-ili9881c-am8001280g-v1-2-fdf4d624c211@pengutronix.de>
+In-Reply-To: <20231123152331.5751-1-user@HYB-hhAwRlzzMZb>
 
 
---3USh3Aw49Tg1AKz5
+--K9w0PSfQdN+TWI+G
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Nov 23, 2023 at 06:08:05PM +0100, Philipp Zabel wrote:
-> Document the compatible value for Ampire AM8001280G LCD panels.
->=20
-> Signed-off-by: Philipp Zabel <p.zabel@pengutronix.de>
+Yo,
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+This looks a lot better IMO, thanks.
+
+On Thu, Nov 23, 2023 at 05:23:21PM +0200, mitrutzceclan wrote:
+> +patternProperties:
+> +  "^channel@[0-9a-f]$":
+> +    type: object
+> +    $ref: adc.yaml
+> +    unevaluatedProperties: false
+
+> +      bipolar:
+> +        type: boolean
+
+This should be defined in adc.yaml, so duping it here is not needed?
+
+> +allOf:
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          not:
+> +            contains:
+> +              const: adi,ad7173-8
+> +    then:
+> +      properties:
+> +        refin2-supply: false
+> +      patternProperties:
+> +        "^channel@[0-9a-f]$":
+> +          properties:
+> +            adi,reference-select:
+> +              enum:
+> +                - refin
+> +                - refout-avss
+> +                - avdd
+
+I assume you tested that this restriction works as intended?
 
 Cheers,
 Conor.
 
-> ---
->  Documentation/devicetree/bindings/display/panel/ilitek,ili9881c.yaml | 1=
- +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/display/panel/ilitek,ili98=
-81c.yaml b/Documentation/devicetree/bindings/display/panel/ilitek,ili9881c.=
-yaml
-> index e7ab6224b52e..b1e624be3e33 100644
-> --- a/Documentation/devicetree/bindings/display/panel/ilitek,ili9881c.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/ilitek,ili9881c.yaml
-> @@ -16,6 +16,7 @@ properties:
->    compatible:
->      items:
->        - enum:
-> +          - ampire,am8001280g
->            - bananapi,lhr050h41
->            - feixin,k101-im2byl02
->            - tdo,tl050hdv35
->=20
-> --=20
-> 2.39.2
->=20
-
---3USh3Aw49Tg1AKz5
+--K9w0PSfQdN+TWI+G
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZV+SvAAKCRB4tDGHoIJi
-0qeaAQCjWZTzaBOgpkzNDPLNrEqSsvJFC3A59Kabqueyk4FabwEAra+EwipZjA+v
-uFx8gvNb+kSnNnuv71U0VaHhuVwSBg0=
-=iB4D
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZV+T0gAKCRB4tDGHoIJi
+0ps9AP9/++/sCN1dTPtbBoPrxYvOvaRbVFVVoZdi0QouNZ+uQQEAqTtA7VnxEYk0
+sIL+bDAZpJIzJU7lUWDbroIR91pOjAU=
+=Re9o
 -----END PGP SIGNATURE-----
 
---3USh3Aw49Tg1AKz5--
+--K9w0PSfQdN+TWI+G--
 
