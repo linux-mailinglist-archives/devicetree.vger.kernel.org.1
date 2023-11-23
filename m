@@ -1,160 +1,116 @@
-Return-Path: <devicetree+bounces-18368-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18369-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 911047F6395
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 17:07:26 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 873577F63B8
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 17:14:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8518D1C20DA8
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 16:07:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DCECBB211D3
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 16:14:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E3263E490;
-	Thu, 23 Nov 2023 16:07:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66B383E49B;
+	Thu, 23 Nov 2023 16:14:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="YGLyWM1F"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TB1au32u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2071.outbound.protection.outlook.com [40.107.20.71])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 970EC10C2;
-	Thu, 23 Nov 2023 08:07:18 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Rq8x+Unnp0IYi15mT9qwLPcVQgEU6Td9SJWyoauqOZUqKcp8U8HhUzmYO17ZV0hbMxFbpIoUM78nmBF4/tRn4lOgsJcxmvuRyVnPBtE2UyVU9ocGT+mzb/dN4WY/hSoJrqJ10Ngar1i9+jghOxcr4bQBLrO8S1GIXkA0GEtfbeTSzh3ExcXyskyHQvJgvLGP31Z6Ux58oAgLBSLPsiU3qx4d26oz3Lnk/FyOEIAYCUSl2GD3qhpKJRW+LGlNA7ePFoDJXFWxvH5LEehcmcgFUWoM+bMTaJvJqxyGlH0aghPQ68ptIAswmhtVG9nRW5bqxaMX+R2hDT2A+qYHV8L9qg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dm2FDg0t+Tna5IV6r/T026XdzCOt13LyOTVstv9GeGg=;
- b=PfPdUsn3h5HsF0VbBxiBCt9vzlzn89M3XgySCa1VM8edKuKEGvCtnux+eIXaN+APVvbUKDauCKhCCZjomHGML2PC97orOkV3DLaUSl7psodBPJHNzoNbJP4pwKeO2Y1YBkd+cyqNQdbLPmOoN504bH+stzG3PUtMOgXalp2GCKBZecg4+fqzRUnVIZxmOPXxUGa68VEpV/Q5Jft29AjQoJRhWJ2QU7Sj7ERuQ83xIHeS4EhKHGAHBFR6B3Xvv12dHFaAMVOnizgssKJQXXsvPprf59lk/H7BY2edzuCsByg3fZp1eEsPpYK9ZrmrlIY9ukjdvSgtXt8oXghDRZ4zTg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dm2FDg0t+Tna5IV6r/T026XdzCOt13LyOTVstv9GeGg=;
- b=YGLyWM1FfwH6B35G6Z0pqPuWV33s4RotuUPXuj+o1BCSHOBdoemhGHbYUVeYT6JQp1Hz2nVACoroqfF3YYDazzrnOVRuGZQbOJVrSZbbIob1PMkSBsH9VY8E3wYlusfOFcMQOSxr2HT+jqgwFPkfoVJCEUeWf/pQYEs1eUW68Lg=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from VI1PR04MB5151.eurprd04.prod.outlook.com (2603:10a6:803:61::28)
- by PAXPR04MB9399.eurprd04.prod.outlook.com (2603:10a6:102:2b3::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.12; Thu, 23 Nov
- 2023 16:07:16 +0000
-Received: from VI1PR04MB5151.eurprd04.prod.outlook.com
- ([fe80::c688:1f14:2ab1:c78a]) by VI1PR04MB5151.eurprd04.prod.outlook.com
- ([fe80::c688:1f14:2ab1:c78a%4]) with mapi id 15.20.7025.019; Thu, 23 Nov 2023
- 16:07:15 +0000
-From: Daniel Baluta <daniel.baluta@oss.nxp.com>
-To: broonie@kernel.org,
-	linux-kernel@vger.kernel.org,
-	alsa-devel@alsa-project.org
-Cc: linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	kuninori.morimoto.gx@renesas.com,
-	daniel.baluta@gmail.com,
-	robh+dt@kernel.org,
-	iuliana.prodan@nxp.com,
-	shengjiu.wang@nxp.com,
-	linux-imx@nxp.com
-Subject: [PATCH v3 2/2] ASoC: dt-bindings: audio-graph-port: Document new DAI link flags playback-only/capture-only
-Date: Thu, 23 Nov 2023 18:06:55 +0200
-Message-Id: <20231123160655.188428-3-daniel.baluta@oss.nxp.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231123160655.188428-1-daniel.baluta@oss.nxp.com>
-References: <20231123160655.188428-1-daniel.baluta@oss.nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: MR1P264CA0146.FRAP264.PROD.OUTLOOK.COM
- (2603:10a6:501:54::7) To VI1PR04MB5151.eurprd04.prod.outlook.com
- (2603:10a6:803:61::28)
+Received: from mail-yw1-x1136.google.com (mail-yw1-x1136.google.com [IPv6:2607:f8b0:4864:20::1136])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AE2310C6
+	for <devicetree@vger.kernel.org>; Thu, 23 Nov 2023 08:14:37 -0800 (PST)
+Received: by mail-yw1-x1136.google.com with SMTP id 00721157ae682-5ac376d311aso10106367b3.1
+        for <devicetree@vger.kernel.org>; Thu, 23 Nov 2023 08:14:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1700756077; x=1701360877; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=ipzMNGrGtolaTuN+LIIgKEncct0aftDF2s8V+J8A68E=;
+        b=TB1au32u8m8eCO3UzV/gibdFPsdh5WsVOoeM3EqADr21c22opVoMNQkCvOooM127Wl
+         G2PJ0otm4EnQfy67H383gMAr32cNWvbLl/3MRk4APIVR1FMIIHaW1kFVbtM/ZcUXv/ly
+         h9SYLETXEGUx6WsYR0JhLnky5U+FlS1h6cyS6bEHtoQGxrqPxukBk44oWX59lQw1Bt7I
+         nrnZ++FSyM8TCdYoM3u0bBFrekieYqQ7RlbejqgHKprziT3+EBV5YAecmZndOhXeZu1m
+         xxMRujogWdPBWjC9Zjjale10DjBU9NtADu1hE39BWJkrOc/ioNJsXoEQ4wWbXu0lp/C6
+         Y4gA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700756077; x=1701360877;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ipzMNGrGtolaTuN+LIIgKEncct0aftDF2s8V+J8A68E=;
+        b=qjLdpoWFZebt/gWn85JcClLjIyWWTetK1+WpeWGpdXJgOOAvzJUwQqEwjTj3KtytOS
+         blsqM2uIUINWzzq8o6toRPAB45tJ6zAfvcUGeoYHTaQ4GOObWue8l9mcI3Viu8Qr/TXZ
+         QsV5/Soy2X61Zw5yDzrvQ/fIcj3QrlvI6x2WgnnJIljei+nX4cKUSTS7/T8W+X/JD5rQ
+         nN2cw4zaqMO95N76WQqtfS6E3pFXXplb142IRoHVVoHKeCOHOKsMdifKXNowi8FByJBL
+         CrgjNVe1i5oIp9XDxuQOAMvbg+GbBQCU+lmxWfTUY2qFC7LFocEdGy77uiWIgGn7nU+G
+         TcHg==
+X-Gm-Message-State: AOJu0YzMibVCnehTfWzBw1LdQLCzQHRZxqeiU0H4prl/tnsYWKmlLHmg
+	caHGuIPDiRKkxypGBBLrtMk9X3krQ5EomGWcoea32g==
+X-Google-Smtp-Source: AGHT+IGVXCCNObF5Fssf2rOst5kdMHeHaWlMqNi98aNmC9WRf3QJ62k48s/V/HjbQ+uLlCBO8r4oX3qbTumAUwJj8zw=
+X-Received: by 2002:a05:690c:2891:b0:5cd:6004:3549 with SMTP id
+ ee17-20020a05690c289100b005cd60043549mr1455172ywb.27.1700756076780; Thu, 23
+ Nov 2023 08:14:36 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: VI1PR04MB5151:EE_|PAXPR04MB9399:EE_
-X-MS-Office365-Filtering-Correlation-Id: ab27261a-3d8c-431c-80b7-08dbec3e42d8
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	nSmR/Np0XEuhSUssyP2BekUNLGFXwrKeQDkWa+54cbiTdnFoGbV2CA+M1Jpzd2VCo1O5spcP1gT/Abw4uMfE+oEINCM5z8N7i57v7ZorW3kGsros4KmQnslzHfyJxZXHg4w5sYTydh9Fg99r7Xc06XNMuoM20UAyas4PCC6j3MscyfmlTwN3YQ969t1nBvGjzjXSz70UW7ABNMLtZAge0tKERrdCrhv9vy8c6TYhNr+gcvqaO51IGxAJ8rHA74H0tJBMs4Wo91BemVrlozeRB0gawH3YvPvQK+dX83d3Vq81YPe2lslqXtK2AhVkk6QngEYFKit4DGc+htK7VK/UC+Wl/dyVzQ5g7ElUvtiDZizmLKZqXb0BhHJMWQx+SA218WNj15gm4bhiGEqtrkfve3qOlitoXCtQaV6obEvOhV+asBA97HNxchuGmL5MxBgU6IKksAHIRqf5Bx4P1AhX42pTJLlvEYmd+fqcM0wMHr9YRrKDNxgpgDm1TbSYzBo+YBqVv+0PPDdUoCh/NHKhX39ZXNRHkP7mm4OgyVs/Jhsw5FvERgFxpYNi36C4qxtqfH8VsTjzHMaOTAR2kmPjjp9y3i611RMXQi8C6QE+ZHBC04fkC1VU5Ltie0SyY3/WzqDL+5YyY9OoPriNXH3qJA==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5151.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39860400002)(346002)(376002)(136003)(366004)(396003)(230922051799003)(186009)(1800799012)(64100799003)(451199024)(86362001)(44832011)(5660300002)(38100700002)(1076003)(26005)(6666004)(6506007)(316002)(52116002)(6512007)(2616005)(4326008)(66476007)(66556008)(66946007)(8676002)(8936002)(38350700005)(41300700001)(2013699003)(6486002)(478600001)(2906002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?3g5oI7KdzI8xW/bxkkYUuUqP3HMJ2lj/W7bkvjBQRIC96fC4Ym01USr44eoZ?=
- =?us-ascii?Q?r8sVdScE19dO/OoAOYgASUskYEolu9xSrVVcOMubUS3dhdhINsOyrVkaSAGm?=
- =?us-ascii?Q?Vq6Da2+wSZP9D49vrxuPGCSsU+sRe1V/TylRwqZAZjyb2IgrEk+2ayKGrRO2?=
- =?us-ascii?Q?vGJutLugge27DTKPRY7U3zJ4SnFTQk0BnJ6Tog/vyvBnFxiQ4t1eYxUXUBpe?=
- =?us-ascii?Q?KBEBBbtlqTw+4Z5A3Z9h5JGhNKwyybzn3cCjvd/lzgf0BwhUyJaK/pLkHBR3?=
- =?us-ascii?Q?v73OaQJm4DYudNpWd66HREKdThHSRaxvcDAY2WJBg4bNyF9OnRrEgWsY4s5i?=
- =?us-ascii?Q?BWlHeH1hZLm5cQsJQmfnBstIGRlUSjPzsFZpINMOZVPAbeT9EBHMrXC49wJT?=
- =?us-ascii?Q?rb33V+HZGlI64uEgvylh/C2QX7xheMpBsLVGmWpA1cWZPVi1KjZL8MbI750y?=
- =?us-ascii?Q?GiW9loTHQ8Ri/dFpCfvgN94hzhkIcIIRrwlRPDDy0GaXEtSnxjkbRPijjAXa?=
- =?us-ascii?Q?JSNnZ1Nzkx555TEARgsf7fXt9A52r0NMzTwcu47EWbKt4DnuCppu2cAZTkln?=
- =?us-ascii?Q?ow7ePk91p6WHH0Wuk20L8IEX6xqJBu2Ou0YEbkI15dO9OCAFwJYtpEJslrda?=
- =?us-ascii?Q?vTZo79VK7OEzNfik0wBPJHumqbqMOwfsmrAB/+/X/nwgLTrY74L7fW3RQrM9?=
- =?us-ascii?Q?Gq6o597D6pFKWMiPKkQTQyipSRM1N3L4Ku9ivFRQNPXhx4jqISfqT21oezr3?=
- =?us-ascii?Q?9IwGK8fzlkf4JqKeGeh1rwlh0x6a+CE5KfXaOH4ZKMDsRDE4TLWC5Faz1WW4?=
- =?us-ascii?Q?x8kUuB8Zo6kd4xSTYaZDEwa1Sasiy0PLp9v+2Y2zp/Mu6BzTMzqD2zJhcLHY?=
- =?us-ascii?Q?z+XSiTTSxIQGms8Lu28RbVme19WqwSpkIZ+0c/5u9wStd3bWo+0PjSd3bbH8?=
- =?us-ascii?Q?LD5YOKlV0tFSd07JMV4IAnC9TMqqZ2Q40RXB0M9pZD7a+wYtyVDz5rWBrHXw?=
- =?us-ascii?Q?q0rRrlhqvDhnx6ZBzYk5v5NkLsv5MHb6p/NVbUzxyf4TMjsY6odmtbJmYGQV?=
- =?us-ascii?Q?zn5bRJT5RKFnAajqE1ocvbZLewdagZGiu2Zg/+CEld0zqu2YDbki0f8/4KuZ?=
- =?us-ascii?Q?zJzFDtAoanbOVgYLl1RCvKZJOjwRLiWArrkEgHEdiDnTcMWTttCgwNGt89fB?=
- =?us-ascii?Q?LfpiGM9Lv1W22XYPIePtabXQD9D61gUo8FiIswV4XgVHAuN1Xhtopv6scXZM?=
- =?us-ascii?Q?LAOhhGs5pchLF/48Fh/MUkDhUmSpFiC693TBesh5HUf0FK6y1sJbz0ENF20D?=
- =?us-ascii?Q?NxrxxAc8RQEMxJ2Yla+2B93QbjRO3p1y3uGSn/xLpcHqf9j8EQpya1lvVz+R?=
- =?us-ascii?Q?7vCd8lT3tGBO+7qMe/rDUdMAEU41aWiTVdx8Q7CfishKGBVTldShBSb/2zP4?=
- =?us-ascii?Q?irP9QLZnHUZ0po3SW1qqq6YOuTPVnvQlEPnGebo1pHp7ry1FsYw2lc3cjiaX?=
- =?us-ascii?Q?w8wJqwnYHzyJsNo14B7dCxRSGqls8t7AIeWwYYjl15SdwU8mtHEUHm2k2pSu?=
- =?us-ascii?Q?wk+iIJj1hBB80aSSd2dt/ov0m231chj4/lTUFkp7?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ab27261a-3d8c-431c-80b7-08dbec3e42d8
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5151.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Nov 2023 16:07:15.9216
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: XPpmTALa1bryTHXdj1rcazCFLwZ1iBTth8tbvPCGCxlByXm5v1MEKr/yqDMI9r8i5ToucLvd7J/T+3XbkMAKZw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB9399
+References: <20231114-msm8909-cpufreq-v3-0-926097a6e5c1@kernkonzept.com> <20231123073901.meb7p4yzueg2lkou@vireshk-i7>
+In-Reply-To: <20231123073901.meb7p4yzueg2lkou@vireshk-i7>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Thu, 23 Nov 2023 17:14:00 +0100
+Message-ID: <CAPDyKFrst+j89nPsrfAmkzGBLAwZ86WWQ_agnd6MHCfR+7FeFw@mail.gmail.com>
+Subject: Re: [PATCH v3 0/3] cpufreq: qcom-nvmem: Fix power domain scaling
+To: Viresh Kumar <viresh.kumar@linaro.org>
+Cc: Stephan Gerhold <stephan.gerhold@kernkonzept.com>, Andy Gross <agross@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Ilia Lin <ilia.lin@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	Stephan Gerhold <stephan@gerhold.net>, stable@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-From: Daniel Baluta <daniel.baluta@nxp.com>
+On Thu, 23 Nov 2023 at 08:39, Viresh Kumar <viresh.kumar@linaro.org> wrote:
+>
+> On 14-11-23, 11:07, Stephan Gerhold wrote:
+> > The power domain scaling setup for QCS404 and MSM8909 in
+> > cpufreq-com-nvmem does not work correctly at the moment because the
+> > genpd core ignores all the performance state votes that are specified in
+> > the CPU OPP table. This happens because nothing in the driver makes the
+> > genpd core aware that the power domains are actively being consumed by
+> > the CPU.
+> >
+> > Fix this by marking the devices as runtime active. Also mark the devices
+> > to be in the "awake path" during system suspend so that performance
+> > state votes necessary for the CPU are preserved during system suspend.
+> >
+> > While all the patches in this series are needed for full functionality,
+> > the cpufreq and pmdomain patches can be merged independently. There is
+> > no compile-time dependency between those two.
+> >
+> > Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+> > ---
+> > Changes in v3:
+> > - Drop patches with MSM8909 definitions that were applied already
+> > - Add extra patch to fix system suspend properly by using
+> >   device_set_awake_path() instead of dev_pm_syscore_device()
+> > - Set GENPD_FLAG_ACTIVE_WAKEUP for rpmpd so that performance state votes
+> >   needed by the CPU are preserved during suspend
+> > - Link to v2: https://lore.kernel.org/r/20231018-msm8909-cpufreq-v2-0-0962df95f654@kernkonzept.com
+>
+> Applied. Thanks.
+>
+> I picked the pmdomain patch too, lemme know if that needs to go via
+> some other tree.
 
-Document new playback-only and capture-only flags which can be used
-when dai link can only support just one direction: playback or capture
-but not both.
+Usually I should pick the pmdomain patches. Although, I thought it may
+be better to keep this series together.
 
-Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
----
- .../devicetree/bindings/sound/audio-graph-port.yaml         | 6 ++++++
- 1 file changed, 6 insertions(+)
+Assuming you are going to send these as fixes for 6.7-rc[n]? In that
+case, I can just rebase my tree on a later rc if I find any problems.
 
-diff --git a/Documentation/devicetree/bindings/sound/audio-graph-port.yaml b/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
-index 60b5e3fd1115..b13c08de505e 100644
---- a/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
-+++ b/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
-@@ -19,6 +19,12 @@ definitions:
-     properties:
-       mclk-fs:
-         $ref: simple-card.yaml#/definitions/mclk-fs
-+      playback-only:
-+        description: port connection used only for playback
-+        $ref: /schemas/types.yaml#/definitions/flag
-+      capture-only:
-+        description: port connection used only for capture
-+        $ref: /schemas/types.yaml#/definitions/flag
- 
-   endpoint-base:
-     allOf:
--- 
-2.25.1
-
+Kind regards
+Uffe
 
