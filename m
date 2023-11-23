@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-18184-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18185-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F88B7F5948
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 08:33:59 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22C3B7F5949
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 08:34:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B2926B20E38
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 07:33:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 54C1E1C208ED
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 07:34:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9D73168D7;
-	Thu, 23 Nov 2023 07:33:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF5AD168D7;
+	Thu, 23 Nov 2023 07:34:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="axc1djUy"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JtZ7AGLP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F39F11F
-	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 23:33:48 -0800 (PST)
-Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-4083f61322fso4047925e9.1
-        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 23:33:48 -0800 (PST)
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FF6D10E
+	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 23:33:58 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-507a29c7eefso668858e87.1
+        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 23:33:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700724827; x=1701329627; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1700724837; x=1701329637; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=+TTfN9bAtlKsP3TW9IyrlMffcAKSHql3YK8jNHi2wag=;
-        b=axc1djUyS1iPjJR8DRAZd3atzp7sWKBJ6HhN4IkvEUKZJD2yWu5zplTq6kTiM2HPu2
-         tSnr0Xc5TB78A+iIz+t+l43wIYhl318H0qpgy5S1kwa/d3nvi/Cd+3CjwZdrcaWPPPfG
-         u2OoxBTjKFoHsR2bxwiu8nJ1f4u7xqCo4uiG8Q7AzD59IaMlloNRql84uDEArxmJd3J4
-         ZPnW0Tk+iWtWA5Fwr+O90j20LYBKJy/yHnB+DROFGAo5FMnH9jV1fCZNvtbbi3j6wXo5
-         QSwzY1cMw6OnK0Hq7/8q2h/hHo78RPURydLwzeJKknqTZU1aE81EuWscreA9pBXrJlbb
-         mbFw==
+        bh=kgvXBNohR8MD/S64tYYRwwaWovhCkn1lBTqKUGMvwT8=;
+        b=JtZ7AGLPSZtkNCnQXCTy9DViYFX47u/BLcF4I4r/rXtV2IAE8+vnhytOlOCmjjWGYV
+         DRPJVjy206APXBZgyxOW+skqoPcI3ESO6hp4Xq2EHTzynQU4tv62FWNDeUj8tVKwwCKw
+         SpnzAuG+v+Go+DjXHzMgTerBMSyHvVil2dAChD0/LJwlMVeTjE26QlDWGe1LZaPT4c20
+         7IWmM3cPgqrjALql8tRUKsgXJZf3p2EZjIjhytlXUpIJl96kGLDtUBhDKyA3flXOJo7S
+         pcCH9UYUpbDD04RQVeMjoD5dlO7JyfzuzRhFDVHu7y18tbXGYWhI65pEXQuK7R4Q+Fu7
+         Cctw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700724827; x=1701329627;
+        d=1e100.net; s=20230601; t=1700724837; x=1701329637;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+TTfN9bAtlKsP3TW9IyrlMffcAKSHql3YK8jNHi2wag=;
-        b=kzbMLw9fwvDxpr8gjpNseFBhlgCOC8hA1gL2Hy36O5ZPqgwqibjTN7rQV90bnibwTk
-         qduTNtRr81+4PacIBYKxljAQqQ3widoxyS4PI26V1lHW1r0q1DcMsz+OMNBDgU0QQYyK
-         nn2/dCrZVQmcdr+q5a7So6ZNGfl4hpFb5lw/BNUfq5/OXMzAVPijvRkt/mgjShmurphw
-         JxHhpZz/i+SbTEv/QR/WrVsu74zpM5yM06cgfBBsaomyy2tQsRTpQkTvw+AlPc83EKoj
-         +13tM/OzAlDCNoP4zN/1GpjQEgXNWXUe4S60SlHzfuKoE3kRTMIencPpJzfFVsx47iky
-         +cAg==
-X-Gm-Message-State: AOJu0YwJbXBS7FNTX0T2DX/dlChwAaXT+D/ebJZm9HLXSSkUY57UXaDf
-	FyhNQvIdeAe8JFrFX6iH+dWhlg==
-X-Google-Smtp-Source: AGHT+IGfe7SHylgAjsIsVSPpdK8iRSyq6xn9vEa2+jFpaXUanSgPkq8ux+rptnZVS1yOzUdX0iyKBg==
-X-Received: by 2002:adf:e98b:0:b0:332:c80c:495a with SMTP id h11-20020adfe98b000000b00332c80c495amr3118185wrm.20.1700724826768;
-        Wed, 22 Nov 2023 23:33:46 -0800 (PST)
+        bh=kgvXBNohR8MD/S64tYYRwwaWovhCkn1lBTqKUGMvwT8=;
+        b=Dky46k1IclYVIv6SMFz+Hin/54TDm3Z8/MrrLh/qy3o4+XUw8n+F3ikg+yjvab8blM
+         kRXXR6Bqg/36DOnSJ38hSN4wFhB2v1pScbxyy3ajst4Cb64RcdLVQQHUfC0PspHG/+4Z
+         mpbfC2xdnUzf7APeImjUPiY7xEyxJ76SB9/WcPJgMfXy3lk5t/tVYcHdv37ZEck4nnmL
+         hOHqatotqoTmsl3/TDtYUUr7My9cnV5rleJb/3w9gXygIiSESv60b7u/0aSzeeSyLxtM
+         QBUfrgHRlClhOI9oaL8DgtqgFgHOMNusUtZ9Ktl04thtZQPPBwBvwzAWznps52rMrhlA
+         lhkA==
+X-Gm-Message-State: AOJu0YySZLhVK5/TpseJxWlzhkdW7vlZNX06PFbRWJLlPAH3+8M0XRYM
+	DD/nH+7iYwqoQ9ijhLessEj+Wg==
+X-Google-Smtp-Source: AGHT+IF9Bd1OF8yDR5vrntG+MsfNOhRw5LLZYWxEOZmarqJZqBKYGlMa/2cSF5ZsYBZ8onZ8B0Y3nQ==
+X-Received: by 2002:a05:6512:4007:b0:502:fdca:2eaa with SMTP id br7-20020a056512400700b00502fdca2eaamr4058963lfb.52.1700724836680;
+        Wed, 22 Nov 2023 23:33:56 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.100])
-        by smtp.gmail.com with ESMTPSA id d11-20020adfa40b000000b003142e438e8csm816828wra.26.2023.11.22.23.33.45
+        by smtp.gmail.com with ESMTPSA id d11-20020adfa40b000000b003142e438e8csm816828wra.26.2023.11.22.23.33.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Nov 2023 23:33:46 -0800 (PST)
-Message-ID: <71236a2d-52cd-4545-8737-4bb5070beb7c@linaro.org>
-Date: Thu, 23 Nov 2023 08:33:44 +0100
+        Wed, 22 Nov 2023 23:33:56 -0800 (PST)
+Message-ID: <1b28be25-83b2-4ad4-aafd-7a7e3fa2b586@linaro.org>
+Date: Thu, 23 Nov 2023 08:33:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,16 +62,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: pinctrl: renesas: drop unneeded quotes
+Subject: Re: [PATCH] dt-bindings: perf: riscv,pmu: drop unneeded quotes
 Content-Language: en-US
-To: Rob Herring <robh@kernel.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Linus Walleij <linus.walleij@linaro.org>,
+To: Rob Herring <robh@kernel.org>, Will Deacon <will@kernel.org>,
+ Mark Rutland <mark.rutland@arm.com>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>
-Cc: linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231122224409.2808999-1-robh@kernel.org>
+ Conor Dooley <conor+dt@kernel.org>, Paul Walmsley
+ <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Albert Ou <aou@eecs.berkeley.edu>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20231122224414.2809184-1-robh@kernel.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -117,7 +118,7 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231122224409.2808999-1-robh@kernel.org>
+In-Reply-To: <20231122224414.2809184-1-robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
@@ -128,8 +129,6 @@ On 22/11/2023 23:44, Rob Herring wrote:
 >   [error] string value is redundantly quoted with any quotes (quoted-strings)
 > 
 > Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
-
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
