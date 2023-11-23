@@ -1,60 +1,50 @@
-Return-Path: <devicetree+bounces-18182-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18183-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0498C7F5931
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 08:27:00 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 448A77F593C
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 08:30:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 353611C20503
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 07:26:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D8BF4B20B63
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 07:30:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32530168A4;
-	Thu, 23 Nov 2023 07:26:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41BA2168B2;
+	Thu, 23 Nov 2023 07:29:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="c9RXM3TF"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="D1gRKmlA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 716B4C1
-	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 23:26:53 -0800 (PST)
-Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-5441ba3e53cso733395a12.1
-        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 23:26:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700724412; x=1701329212; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=IR5Pb4R0ZpJxM7jtpRKa68+kYvaHgfQPCk6lS1mGwP4=;
-        b=c9RXM3TF3TNA38eQah9hJ1bfORgebg5Dy/ijhGHoa/57+dtcxjwrCb+efR1UICQCr/
-         QDj5MtxCmUpiHW0dRyuhvIufQMHtZ8TuGHHyC10UXD6x985kN5hZl3jmeKVDag3rAJn6
-         1WhOFZwFsdvBl7QTnYh64u1LHzbJ8O3i/aq5B41/zhM7L0jK61coWt+ntTfe0IS038sD
-         9CDm5F82FlusESVo7I7WblS6Zez8ZvE6Hex5yshwUN5bbrIu1re3GJN25c7U9Jhj7OTJ
-         Aq+f9GrS+M3N3jdxx+iCzccwd4cPe7dOk0FqPwFiFLkOyixsu+/HW+PGLAzAild2331H
-         FRDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700724412; x=1701329212;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IR5Pb4R0ZpJxM7jtpRKa68+kYvaHgfQPCk6lS1mGwP4=;
-        b=pO5Y+iPv5Vg53oVhNOZN0WyYv8AORKb/98DCR+XDRoA/wm0R7qeGs4as/1q3i+4E4q
-         vKqjLypgFHAmIUBARbUOCpMSlkX0yOqc3zmFEKejg+6yhYcQLaVraJY6M3be+yvqb3Kn
-         WDThixhMLq+G9GrVz6SH2NREIw4FH7kEG/rKZro85BvL3ZPb6c3vp0kF5WKtbER4fnzT
-         onHivQyQsLHuNSiGwPEyzXigyCI302VI+u3jvrK6yUYtbBLbB1TDX4+qfzQlnBBRsu/E
-         M6875QP32Up+NXJl5HsoO9wHyupjRjgNOb6huwifGukSVkQNr0lXFcGQ1AhCZzktVxIb
-         l8DA==
-X-Gm-Message-State: AOJu0YzKxXeZqN2948v0MwXwuBEHY92JgXUiRJKpQxVRKBSHPHrDYhen
-	voGjEd+uHd8oHjvyLxciiyAOUdL4iA2whw1b7ws=
-X-Google-Smtp-Source: AGHT+IHQM29Ga2lstm5x19iz2fE3aLtB46YBXC9GEmluKKS+DzzuFFTTqcn3couR98dpv1TzEb4e9Q==
-X-Received: by 2002:a17:907:d38a:b0:a00:a591:929 with SMTP id vh10-20020a170907d38a00b00a00a5910929mr3778307ejc.24.1700724411912;
-        Wed, 22 Nov 2023 23:26:51 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.100])
-        by smtp.gmail.com with ESMTPSA id m7-20020a17090607c700b00a02b519232bsm409837ejc.208.2023.11.22.23.26.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Nov 2023 23:26:51 -0800 (PST)
-Message-ID: <4be5eb97-b9a4-43f3-843c-c8601b0f6b1b@linaro.org>
-Date: Thu, 23 Nov 2023 08:26:50 +0100
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4DD8109;
+	Wed, 22 Nov 2023 23:29:53 -0800 (PST)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3AN7Tjf3065713;
+	Thu, 23 Nov 2023 01:29:45 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1700724585;
+	bh=wy+AArczhqD2eJgxhDaS70CmHp/SA4oujPEr8UXrRwk=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=D1gRKmlAmIWn6tHkQ6PCEtbmo09lqJdHBzevP5EQvYCimfGvmA18lOaCTyI/BLP5y
+	 onM9FweYP1kfYvgvA7T2w9lZPlPOx5CVZbRmrxTndG7+UU5HjrmU4pOAvYfoIo34M0
+	 Sqz9JrhFDDYJavlqj49gruzYRLQ4/xGpqh0z96U4=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3AN7Tj1w031488
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 23 Nov 2023 01:29:45 -0600
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 23
+ Nov 2023 01:29:45 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 23 Nov 2023 01:29:45 -0600
+Received: from [172.24.227.36] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3AN7Td5q114800;
+	Thu, 23 Nov 2023 01:29:40 -0600
+Message-ID: <42054d03-e1fe-4f57-a74d-9338dadb5e43@ti.com>
+Date: Thu, 23 Nov 2023 12:59:39 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,82 +52,74 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: reset: imx-src: Simplify compatible schema
- and drop unneeded quotes
+Subject: Re: [PATCH v7 0/4] Add TPS6594 PMIC support on several boards
+To: Nishanth Menon <nm@ti.com>
+CC: <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <a-nandan@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <eblanc@baylibre.com>, <jneanne@baylibre.com>,
+        <aseketeli@baylibre.com>, <jpanis@baylibre.com>, <u-kumar1@ti.com>,
+        <j-luthra@ti.com>, <vaishnav.a@ti.com>, <hnagalla@ti.com>,
+        <devarsht@ti.com>
+References: <20231122104513.2335757-1-n-francis@ti.com>
+ <20231123072402.2pscgotxhc6mffe2@carnivore>
 Content-Language: en-US
-To: Rob Herring <robh@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20231122224404.2808838-1-robh@kernel.org>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231122224404.2808838-1-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+From: Neha Malcom Francis <n-francis@ti.com>
+In-Reply-To: <20231123072402.2pscgotxhc6mffe2@carnivore>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On 22/11/2023 23:44, Rob Herring wrote:
-> The compatible schema can be simplified to a single enum for all the cases
-> with "fsl,imx51-src" fallback compatible.
+Hi Nishanth,
+
+On 23/11/23 12:54, Nishanth Menon wrote:
+> On 16:15-20231122, Neha Malcom Francis wrote:
+>> TPS6594 is a Power Management IC which provides regulators and others
+>> features like GPIOs, RTC, watchdog, ESMs (Error Signal Monitor), and
+>> PFSM (Pre-configurable Finite State Machine). The SoC and the PMIC can
+>> communicate through the I2C or SPI interfaces.
+>> TPS6594 is the super-set device while TPS6593 and LP8764 are derivatives.
+>>
+>> This series adds device tree nodes for TI TPS6594 PMICs found in the
+>> following boards:
+>> - J721EXSOMXEVM:
+>>    Link: https://www.ti.com/tool/J721EXSOMXEVM
+>> - J721S2XSOMXEVM:
+>>    Link: https://www.ti.com/tool/J721S2XSOMXEVM
+>> - J7200XSOMXEVM:
+>>    Link: https://www.ti.com/tool/J7200XSOMXEVM
+>> - J784S4XEVM
+>>    Link: https://www.ti.com/tool/J784S4XEVM
+>>
+>> Boot Logs:
+>> https://gist.github.com/nehamalcom/384cf594e37739a34f8a08664830e37a
+>>
+>> ---
+>> Changes from v6:
+>> https://lore.kernel.org/all/20230810-tps6594-v6-0-2b2e2399e2ef@ti.com/
+>> - Modify patch series to include only patches not merged (J7)
+>> - Add boot logs for all affected boards
 > 
-> In addition, the compatible strings are redundantly quoted. Drop unneeded
-> quotes over simple string values to fix a soon to be enabled yamllint
-> warning:
+> So what changed for j721s2?
+> https://lore.kernel.org/all/20230810024700.4qhgygd6mma4sw2u@kobold/
 > 
->   [error] string value is redundantly quoted with any quotes (quoted-strings)
+> And, there is no defconfig patch? Then how did the test work? if you
+> have done local .config changes, that should have been defconfig patch.
+
+Sorry about that... sending a next version with the defconfig patch.
+
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> Also did you audit the SKs to make sure they don't need this?
+> 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+I did a test run across all SKs (although I didn't add that in the cover-letter) 
+but didn't double-check whether they need it, I'll do that too, thanks for 
+reviewing!
 
-Best regards,
-Krzysztof
+> 
 
+-- 
+Thanking You
+Neha Malcom Francis
 
