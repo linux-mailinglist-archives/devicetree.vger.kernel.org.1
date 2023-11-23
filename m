@@ -1,94 +1,102 @@
-Return-Path: <devicetree+bounces-18329-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18330-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7BAB7F6240
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 16:02:16 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8B807F624D
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 16:07:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 023E61C20D97
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 15:02:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 069501C20D97
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 15:07:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5080033CD3;
-	Thu, 23 Nov 2023 15:02:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 984AC2A1D2;
+	Thu, 23 Nov 2023 15:07:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tjM/+7QH"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="ljBTLiaf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com [IPv6:2607:f8b0:4864:20::22c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F461D41
-	for <devicetree@vger.kernel.org>; Thu, 23 Nov 2023 07:02:10 -0800 (PST)
-Received: by mail-oi1-x22c.google.com with SMTP id 5614622812f47-3b84e328327so242692b6e.2
-        for <devicetree@vger.kernel.org>; Thu, 23 Nov 2023 07:02:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700751729; x=1701356529; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mEar30uGhaLDv42Tg2oK/HJ39S4ZlMcOxp8lB7y+TU4=;
-        b=tjM/+7QHkQHxSS+7QWM/SyS2UD2UsZfYMW2+MTTG8vAPqHctw0kcurybYJLVN4rB8q
-         Af2TK8hIJDtSgZPv6WQ6khWKlFTWqg5R59800A9cSGrG2nwd8RdAXKiC3pv2CEKIJyj1
-         4CFDO+sCVpjM6os7WQeKUUVRX2JYQl+9k7c9REygCByUasup8JYd0MeUmOIzMobT7bBw
-         kAQK+CRNdgArNAlM71DrFyF0ceKx/tBzrWA0v83NVDxIeL2ki2KLLeuRuZG8hdz8+OE8
-         wrYafSgYDOw226nuVtzFnaT0Ywf7RX1p4tDLdUDey21JGzY2AeF+ufwDl7ct3yV/CLKE
-         Tk4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700751729; x=1701356529;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mEar30uGhaLDv42Tg2oK/HJ39S4ZlMcOxp8lB7y+TU4=;
-        b=SNrPPCfrxNBp1OOfNrvtsGb9el3Ql44/MPFB77UQxw7ORybFqkmpLnb+SRt5t0LhWv
-         xPr1pp3CMMOGHWp+EfRVyjlCNtvEcEIK0OBmIgHaOhul2aq0KzeUifsDFefrzq1AXBzd
-         QEzOzBvNUsgPQlxikY8igrkqOPMP7kSU/GR1XJNUElggbu+mwDpddrgT0mweauFsQr/L
-         HOGytC3sV19e4i65z6AhG1NpvYIBxSRJNAJIuFhh8yPeupDBhWpSiLlR38BsWsSg6hdV
-         e4lRYQWHCktc6Pns+a/nov26qoJuMixLc9tWCjj3CGlDA5WitXJ48tfmje8kcv7TmqMY
-         x34w==
-X-Gm-Message-State: AOJu0YyVO+WyCJRGSZs7qUdZITN7YiX0bNTKTsCMbpDTKqtCfR3/qL92
-	dJG46msPR9bhLHheZoBQtSMahl1T6pUSFwWMYCYNgg==
-X-Google-Smtp-Source: AGHT+IEPs85TdkXFOx395LjHkoWLEotqTEDJgWg3E9vX18ND53JbjdHMu/2FDtEoR/uEbkEfShXDjs81ygSKZRO/XFs=
-X-Received: by 2002:a05:6808:d48:b0:3b8:43b6:1e34 with SMTP id
- w8-20020a0568080d4800b003b843b61e34mr5319331oik.30.1700751729501; Thu, 23 Nov
- 2023 07:02:09 -0800 (PST)
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EE43D41;
+	Thu, 23 Nov 2023 07:07:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=9Ianm+oK/3Nrdav46TrJiBmP/52mNqCzayho+jiWIkU=; b=ljBTLiaf1hJ76JNKk8LoCzMwbV
+	ZcJZ6xDa65NxGWrtUcU+4hzgpRmHVIZ6Fceuf3Ba86xE0awdKaDt9XttJ7Q5OMuZ6zw8weIkusY+o
+	ZacLC42AjFuLQvez3RIj8MXx51Ugy6QIp0O9ZhH0Rw5N/CQ74oOBupwnOruQ313iegow=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1r6BIQ-0010N2-G5; Thu, 23 Nov 2023 16:07:14 +0100
+Date: Thu, 23 Nov 2023 16:07:14 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Qingfang Deng <dqfext@gmail.com>,
+	SkyLake Huang <SkyLake.Huang@mediatek.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	David Epping <david.epping@missinglinkelectronics.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+	Harini Katakam <harini.katakam@amd.com>,
+	Simon Horman <horms@kernel.org>,
+	Robert Marko <robert.marko@sartura.hr>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [net-next RFC PATCH 03/14] dt-bindings: net: document ethernet
+ PHY package nodes
+Message-ID: <6eb2e061-5fcb-434a-ad43-370788075597@lunn.ch>
+References: <20231120135041.15259-1-ansuelsmth@gmail.com>
+ <20231120135041.15259-4-ansuelsmth@gmail.com>
+ <c21ff90d-6e05-4afc-b39c-2c71d8976826@lunn.ch>
+ <20231121144244.GA1682395-robh@kernel.org>
+ <a85d6d0a-1fc9-4c8e-9f91-5054ca902cd1@lunn.ch>
+ <655e4939.5d0a0220.d9a9e.0491@mx.google.com>
+ <6a030399-b8ed-4e2c-899f-d82eb437aafa@lunn.ch>
+ <655f2ba9.5d0a0220.294f3.38d8@mx.google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231120070024.4079344-1-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20231120070024.4079344-1-claudiu.beznea.uj@bp.renesas.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Thu, 23 Nov 2023 16:01:58 +0100
-Message-ID: <CACRpkdYr6+1hYnGUStTjG6BjEXXbtAAZMSkcOeuBZ3hF6Fn81w@mail.gmail.com>
-Subject: Re: [PATCH 00/14] renesas: rzg3s: Add support for Ethernet
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: s.shtylyov@omp.ru, davem@davemloft.net, edumazet@google.com, 
-	kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, linux@armlinux.org.uk, 
-	geert+renesas@glider.be, magnus.damm@gmail.com, mturquette@baylibre.com, 
-	sboyd@kernel.org, p.zabel@pengutronix.de, arnd@arndb.de, 
-	m.szyprowski@samsung.com, alexandre.torgue@foss.st.com, afd@ti.com, 
-	broonie@kernel.org, alexander.stein@ew.tq-group.com, 
-	eugen.hristev@collabora.com, sergei.shtylyov@gmail.com, 
-	prabhakar.mahadev-lad.rj@bp.renesas.com, biju.das.jz@bp.renesas.com, 
-	linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <655f2ba9.5d0a0220.294f3.38d8@mx.google.com>
 
-On Mon, Nov 20, 2023 at 8:00=E2=80=AFAM Claudiu <claudiu.beznea@tuxon.dev> =
-wrote:
+> compatible = "ethernet-phy-package", "qca807x-phy-package";
+> 
+> With "ethernet-phy-package" a must and "qca807x-phy-package" used only
+> if additional property are used.
+> 
+> My current idea was to use select and base everything on the possible
+> PHY compatible (and it does work, tested by adding bloat in the DT
+> example and seeing if the schema was rejected). Had this idea since the
+> compatible would never be used.
 
-> Patches 5-8 are pinctrl specific.
+The DT people are unhappy with PHYs don't use compatibles, so
+validation does not work. It probably too late to add compatibles to
+very PHY driver. But this is new development work, we don't have any
+history. So we can add a compatible per package to make the validation
+tools work.
 
-I expect Geert to pick these once he's happy with them and merge them
-into his tree for pull request to my pinctrl tree.
+So for parsing the tree in the kernel we look for
+'ethernet-phy-package'. For validating the tree using the yaml tools
+we use the 'qca807x-phy-package'.
 
-If you want some other merging approach then inform us!
-
-Yours,
-Linus Walleij
+	   Andrew
 
