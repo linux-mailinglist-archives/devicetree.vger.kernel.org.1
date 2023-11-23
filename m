@@ -1,160 +1,94 @@
-Return-Path: <devicetree+bounces-18328-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18329-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 731ED7F6233
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 16:01:00 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7BAB7F6240
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 16:02:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EDFB3B215F2
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 15:00:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 023E61C20D97
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 15:02:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3B1F33CF3;
-	Thu, 23 Nov 2023 15:00:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5080033CD3;
+	Thu, 23 Nov 2023 15:02:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="ZeCD2b8x"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tjM/+7QH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR03-AM7-obe.outbound.protection.outlook.com (mail-am7eur03on2075.outbound.protection.outlook.com [40.107.105.75])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40E46D44;
-	Thu, 23 Nov 2023 07:00:51 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YlZxVaWZrhiKYk6zOr2HCTbjLG4wl4J+dxzrOFkI6DPn9BxGOyP17QjxeukF2OsHFMGtsqiYdSOHRWbvs5RvX0m14CD+yAseNPi9s80G8sdB1Qv6hQQGzwKbj/u09Dqr3+Yc63rPnWEyImHkaRIQrsarFAA9nB3cLkWxuk9tPb+CBp0MkK7cUtaWEnkHZ5CuDcSblXF9cSEgBFTIZxUPK7LwqWV7dFd2n41sVAqyakGw7OFkeo4g7Jm3oN5aw1GAg2/87Jc1vlhMsPVDOh+i6bznWkscHT2JZ33l4BW8RM8HauGQUYv/IFcLqZyMcY/unNdd74hKQCwiSj33qOjztA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TCm3q2drwKhwlAFBL5YS4ZiycujkfAP2/lk4sC0Sq4A=;
- b=Llv+RVU2Hdq8cAIwKvrltG4MZ+RWC99Iq/UVeGYRKRJ0VzoThcjJbZSi8eCsEnBJVcnpT2e7yLfYbZ4zpvO0KjKqzlO1Tw48xWStZIuPzK5IwffRMoX+NDwDq8lseNf9beMt4M8pkKcrC5V8Z2owoKsowmjGQ3zx4TPNjmWUrlzZg8yqMwXR5uvBySD3Gl+M6FC35kmXThjpo0se35OdAj7UGp8p/ONyRhVJlyeRM87xF056xOkE5b9NdmqGyHakpuQ0LT9x4yIEtyqDA21wTAaNcD4cEZX4Nb1fue8E/5d0Wsm4icaUinWPoB5evl5atX/xJZRyKORAStIYk2Q+Tw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TCm3q2drwKhwlAFBL5YS4ZiycujkfAP2/lk4sC0Sq4A=;
- b=ZeCD2b8xX0fauMvPi9O+0jpwpS1xGdITu4RnT8pkmpNH8DCJrGVkhxP1s+NiHlCA9JZ9UNSKZfbHBB/R39rDi4Snir/3DycZJIS3PKrv9dcq3EBRMUN8Z2MMknPM1GmIhzRb831BLGYDUxS2g7TKcEPQZnCU32XXhSQ4tJ+bH5M=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from VI1PR04MB5151.eurprd04.prod.outlook.com (2603:10a6:803:61::28)
- by AS4PR04MB9435.eurprd04.prod.outlook.com (2603:10a6:20b:4eb::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7025.18; Thu, 23 Nov
- 2023 15:00:47 +0000
-Received: from VI1PR04MB5151.eurprd04.prod.outlook.com
- ([fe80::c688:1f14:2ab1:c78a]) by VI1PR04MB5151.eurprd04.prod.outlook.com
- ([fe80::c688:1f14:2ab1:c78a%4]) with mapi id 15.20.7025.019; Thu, 23 Nov 2023
- 15:00:47 +0000
-From: Daniel Baluta <daniel.baluta@oss.nxp.com>
-To: broonie@kernel.org,
-	linux-kernel@vger.kernel.org,
-	alsa-devel@alsa-project.org
-Cc: linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	kuninori.morimoto.gx@renesas.com,
-	daniel.baluta@gmail.com,
-	robh+dt@kernel.org,
-	iuliana.prodan@nxp.com,
-	shengjiu.wang@nxp.com,
-	linux-imx@nxp.com
-Subject: [PATCH v2 2/2] ASoC: dt-bindings: audio-graph-port: Document new DAI link flags playback-only/capture-only
-Date: Thu, 23 Nov 2023 17:00:12 +0200
-Message-Id: <20231123150012.154096-3-daniel.baluta@oss.nxp.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231123150012.154096-1-daniel.baluta@oss.nxp.com>
-References: <20231123150012.154096-1-daniel.baluta@oss.nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: ZR0P278CA0135.CHEP278.PROD.OUTLOOK.COM
- (2603:10a6:910:40::14) To VI1PR04MB5151.eurprd04.prod.outlook.com
- (2603:10a6:803:61::28)
+Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com [IPv6:2607:f8b0:4864:20::22c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F461D41
+	for <devicetree@vger.kernel.org>; Thu, 23 Nov 2023 07:02:10 -0800 (PST)
+Received: by mail-oi1-x22c.google.com with SMTP id 5614622812f47-3b84e328327so242692b6e.2
+        for <devicetree@vger.kernel.org>; Thu, 23 Nov 2023 07:02:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1700751729; x=1701356529; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mEar30uGhaLDv42Tg2oK/HJ39S4ZlMcOxp8lB7y+TU4=;
+        b=tjM/+7QHkQHxSS+7QWM/SyS2UD2UsZfYMW2+MTTG8vAPqHctw0kcurybYJLVN4rB8q
+         Af2TK8hIJDtSgZPv6WQ6khWKlFTWqg5R59800A9cSGrG2nwd8RdAXKiC3pv2CEKIJyj1
+         4CFDO+sCVpjM6os7WQeKUUVRX2JYQl+9k7c9REygCByUasup8JYd0MeUmOIzMobT7bBw
+         kAQK+CRNdgArNAlM71DrFyF0ceKx/tBzrWA0v83NVDxIeL2ki2KLLeuRuZG8hdz8+OE8
+         wrYafSgYDOw226nuVtzFnaT0Ywf7RX1p4tDLdUDey21JGzY2AeF+ufwDl7ct3yV/CLKE
+         Tk4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700751729; x=1701356529;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=mEar30uGhaLDv42Tg2oK/HJ39S4ZlMcOxp8lB7y+TU4=;
+        b=SNrPPCfrxNBp1OOfNrvtsGb9el3Ql44/MPFB77UQxw7ORybFqkmpLnb+SRt5t0LhWv
+         xPr1pp3CMMOGHWp+EfRVyjlCNtvEcEIK0OBmIgHaOhul2aq0KzeUifsDFefrzq1AXBzd
+         QEzOzBvNUsgPQlxikY8igrkqOPMP7kSU/GR1XJNUElggbu+mwDpddrgT0mweauFsQr/L
+         HOGytC3sV19e4i65z6AhG1NpvYIBxSRJNAJIuFhh8yPeupDBhWpSiLlR38BsWsSg6hdV
+         e4lRYQWHCktc6Pns+a/nov26qoJuMixLc9tWCjj3CGlDA5WitXJ48tfmje8kcv7TmqMY
+         x34w==
+X-Gm-Message-State: AOJu0YyVO+WyCJRGSZs7qUdZITN7YiX0bNTKTsCMbpDTKqtCfR3/qL92
+	dJG46msPR9bhLHheZoBQtSMahl1T6pUSFwWMYCYNgg==
+X-Google-Smtp-Source: AGHT+IEPs85TdkXFOx395LjHkoWLEotqTEDJgWg3E9vX18ND53JbjdHMu/2FDtEoR/uEbkEfShXDjs81ygSKZRO/XFs=
+X-Received: by 2002:a05:6808:d48:b0:3b8:43b6:1e34 with SMTP id
+ w8-20020a0568080d4800b003b843b61e34mr5319331oik.30.1700751729501; Thu, 23 Nov
+ 2023 07:02:09 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: VI1PR04MB5151:EE_|AS4PR04MB9435:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7968fd9c-7869-4137-45b7-08dbec34f9b7
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	tmO90KCnK52pNy7ekDWX4WXsg2Fd+rKbTS+bGQ5W4Cgq4CzOUl1nenEyHECrojb+jIjtmhrxwKsU2h15I8cTkrQmauovNiICLOlIShgidq3x1Qskf7CiLA6X3ZsLhk/pJ98mDU5toFw+6Dz3Tp7iXyvXu+RFCh9dOMHCdHBKDTe9xHaXl70tPHp2jciiyZq+KLQOgC2005nGHukBgETqSQ8kCgWCFVwu9QE5Oeo+V7fBJFS9URA2n831yfr56bvvnx/VTwGr37Ebi71WEmjKo71Er0kKKDW7W3LFwiY6pCA7u+VHirCQinolYQgflG2GptckIfRKJEz83L+LIIGyfodhqEpj0tthPDMdG4asPxAj0OJIlSnwvPfX6AkBpyC96K51W8Qvhx/wuzAj8rJALaqiNGg71Oga+DUMA61uwsbM3iNfQ0mutf47iPNQRITO6Mq0IgA/Fhx2arlmp9P1Hum5rIpLbm5VkFCksxK3nqUykAGuVoMS9ipZTAbUJ2ahplmZMFAL7ttgWg5WQjrOGvHSuYcdxNR/wSDdVVazq2jGqYht6QDULwWk1+2J5ntiha0GG8hy5hfguPzt/Vy0gyPfogmUsozQhH2Ao0zgJtkNXseYEyaN2IT1WTVqFkYk3JhqJj+Xd3QTBSqebXJzQw==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5151.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(396003)(346002)(366004)(39860400002)(136003)(230922051799003)(64100799003)(1800799012)(186009)(451199024)(38100700002)(38350700005)(2013699003)(2906002)(5660300002)(86362001)(2616005)(1076003)(26005)(66946007)(316002)(66556008)(66476007)(44832011)(478600001)(52116002)(6506007)(41300700001)(6666004)(4326008)(6512007)(8676002)(8936002)(6486002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?mW4EUh6PU4IDGW7obQVn8GE1l4EKq6j+vt5NZH6uRiGD6R81CWn4Uo94CUID?=
- =?us-ascii?Q?TfTfjZxelYM9I1HomKfzMHgUJ7d9ONqJoW4nB1LMRZ9anbwiImZgP63PpPg9?=
- =?us-ascii?Q?hSURCXFx7i8LTcsQ6K1NXPb9OdvhGR3WjIkwo6BKT43UdC8/MBP1y3e5Vs2C?=
- =?us-ascii?Q?1YkEeQORNix5yvrkxncSGT/FLqHX1Ju+ofYi5hMX3SIK+p8PjLxwBzFe3ppJ?=
- =?us-ascii?Q?Dr3Vp3EtZ6C4aCrlZWLNm2ktO36OrSk2HqntdmHafqGp/gxLYFeRg+ymVmdz?=
- =?us-ascii?Q?y0SHBifBWNjPAQ+EFVZMYeT/puksV1mNrS02cpiv0lJyxF9K4c+Wz2+glim/?=
- =?us-ascii?Q?hBt2Ng2jbcMCvSNuApxKSoSYCg5FzCrsBvWyMxThlT4C7DtjVe065WMNhG5P?=
- =?us-ascii?Q?zsMnxnvhi0BHd1UA2rdNg5e8hs7pYQNOYscWlfipNPWd51gbQN4Cb/GnRfrP?=
- =?us-ascii?Q?fimlVmQHF0trDgHq3u9vszZolY5pfjKjBC0WR/SvFzYLa8pkxymBnJM9s8Xw?=
- =?us-ascii?Q?BVt0TWasgBh1/r5H9kW3hld+zQ6wJokjI4ylZJYufMVnsdzJpVNH4SH+A5SB?=
- =?us-ascii?Q?eFCAbX4aZzwzmAJ7E4sFM4kW7DSdTAqx+z4rd2jVtJ/4IXADWMN1VzveP3A6?=
- =?us-ascii?Q?be9GDyPHDeSuAQM6Qch3VXPjWUdc3UoTvsiIywkJchE/Ur4q2pLMpmPKJ48f?=
- =?us-ascii?Q?M89542f7fAYvVucdUl2xOKWihdPKgLsShKI/NTCa3GbjipCMZQ62b0InfN10?=
- =?us-ascii?Q?4cW0Mx+9CuSODZ1C2Z5UGmRvlIVE2nroVRL1vGg+CCeGF7xWtCyOj/JNtcCF?=
- =?us-ascii?Q?U5iuLSfsA4v0e5gqDg784o07BVFJunrUJxr7XjzG4GeQio1swEXa7EY071i/?=
- =?us-ascii?Q?NbdwSHbF4iTLqQJrO/MkbRB1icD92PsOpKM/i5hAm8RlzFJjK06WccPdoaoB?=
- =?us-ascii?Q?nweZtWOIM1LDumNyzWQFbQkioF1LG3jCol7nrtT9ysCL6sDzMVc0BNPHDSLj?=
- =?us-ascii?Q?bwV3ZnA7qvqeA2vxeSh5djCfsp5ICxr+9m6Xnu5/ROOQf8bw1JuH9buExci3?=
- =?us-ascii?Q?8JJ4VxuzBzXPhVkeGnDI8PhBJ4yAHK8YzJQdmsQnHIyGy4+gdaIGbS8UrJuj?=
- =?us-ascii?Q?IKe1RNstzuPfqjwj5ceMvq4xULYguD7ef88HRy8U5Ykr+8QjozdS1+XuIeqf?=
- =?us-ascii?Q?LbNARf8Azfi/00iaeA9nSrvrO/i9BvY5MwbrLfq4e9YWYhmRPAwPL6/dhVz6?=
- =?us-ascii?Q?53CHBY7N+mjqSm0/pzMTJChKbUALEEVQ4Sj1Zc/AEqexdNJUMl9DKskEKqbB?=
- =?us-ascii?Q?MOI8Lfx5x433Gqp3luVAX79azeKum2cFhWCtAA7gZfP2nxjE6iq1LnkorGet?=
- =?us-ascii?Q?2WAETqMJJ1InoP1BXvQ7zv8bK6+jmD5l208fMk/3TI3KDfuYOgFCf8LqYk1t?=
- =?us-ascii?Q?qf79addKi5cXmiKme939LX5IpLMD1A2z0NhdBM4KBowlahcSGZSFXp8wLOT2?=
- =?us-ascii?Q?bto00lx1icMRVjJUCK1s6kNjP6PVhK/ug6iEvoSZ48/hpSy7+EhLZ0eIEf0q?=
- =?us-ascii?Q?n37+JWoYTj0izj5pUfiqfSiuce6ZdGI6h0mtOT17?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7968fd9c-7869-4137-45b7-08dbec34f9b7
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5151.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Nov 2023 15:00:47.7229
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: +ntI2ajVCZwqI0jVU2X3cEjd3oFIEQOh+GOvN1kR47Jfu1v11YrzD/4pbfcqwuNzzN7+/Nk72F4IQeF1vzYZdA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS4PR04MB9435
+References: <20231120070024.4079344-1-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20231120070024.4079344-1-claudiu.beznea.uj@bp.renesas.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Thu, 23 Nov 2023 16:01:58 +0100
+Message-ID: <CACRpkdYr6+1hYnGUStTjG6BjEXXbtAAZMSkcOeuBZ3hF6Fn81w@mail.gmail.com>
+Subject: Re: [PATCH 00/14] renesas: rzg3s: Add support for Ethernet
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: s.shtylyov@omp.ru, davem@davemloft.net, edumazet@google.com, 
+	kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, linux@armlinux.org.uk, 
+	geert+renesas@glider.be, magnus.damm@gmail.com, mturquette@baylibre.com, 
+	sboyd@kernel.org, p.zabel@pengutronix.de, arnd@arndb.de, 
+	m.szyprowski@samsung.com, alexandre.torgue@foss.st.com, afd@ti.com, 
+	broonie@kernel.org, alexander.stein@ew.tq-group.com, 
+	eugen.hristev@collabora.com, sergei.shtylyov@gmail.com, 
+	prabhakar.mahadev-lad.rj@bp.renesas.com, biju.das.jz@bp.renesas.com, 
+	linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Daniel Baluta <daniel.baluta@nxp.com>
+On Mon, Nov 20, 2023 at 8:00=E2=80=AFAM Claudiu <claudiu.beznea@tuxon.dev> =
+wrote:
 
-Document new playback-only and capture-only flags which can be used
-when dai link can only support just one direction: playback or capture
-but not both.
+> Patches 5-8 are pinctrl specific.
 
-Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
----
- .../devicetree/bindings/sound/audio-graph-port.yaml         | 6 ++++++
- 1 file changed, 6 insertions(+)
+I expect Geert to pick these once he's happy with them and merge them
+into his tree for pull request to my pinctrl tree.
 
-diff --git a/Documentation/devicetree/bindings/sound/audio-graph-port.yaml b/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
-index 60b5e3fd1115..0aaa8a29fce2 100644
---- a/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
-+++ b/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
-@@ -19,6 +19,12 @@ definitions:
-     properties:
-       mclk-fs:
-         $ref: simple-card.yaml#/definitions/mclk-fs
-+     playback-only:
-+        description: port connection used only for playback
-+        $ref: /schemas/types.yaml#/definitions/flag
-+     capture-only:
-+        description: port connection used only for capture
-+        $ref: /schemas/types.yaml#/definitions/flag
- 
-   endpoint-base:
-     allOf:
--- 
-2.25.1
+If you want some other merging approach then inform us!
 
+Yours,
+Linus Walleij
 
