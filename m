@@ -1,645 +1,167 @@
-Return-Path: <devicetree+bounces-18156-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18157-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC0237F57A1
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 06:06:33 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BD097F57CD
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 06:34:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7DC76281689
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 05:06:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BE27328170D
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 05:34:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 908C35D8F2;
-	Thu, 23 Nov 2023 05:06:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAF19B650;
+	Thu, 23 Nov 2023 05:34:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="g0IJW45W"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="XSN0bs5/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C04DFA3;
-	Wed, 22 Nov 2023 21:06:25 -0800 (PST)
-Received: by mail-pj1-x1029.google.com with SMTP id 98e67ed59e1d1-2839cf9ea95so391581a91.1;
-        Wed, 22 Nov 2023 21:06:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1700715985; x=1701320785; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=s69JY8t6Z6pBEhXPT1HQeTEBldC2p/abrDng+V6T/94=;
-        b=g0IJW45WoaAF6UCX+zU8po4N3WpkgrHyyc3xN4yVmZiGtBqjec3QfTYRWHmHM/wAUX
-         KO92kkawSm00Trgwv0hrPbb3nqEY16XjUh/RPAc9Q2xvNxa548Ayws7rg669zxTXHxGy
-         JDm0K8g4n+GWdcxpMdmhZWvZUR/5EoelJONRU78OgTf4oTK8uvczepBa5fFRJYsmUG+R
-         gDZEyNOc+9n3ZhGw+ttx2TGKdwDeuS0cPiZhWd/HIBffuZsvWyLpRP46Ul58u/vj8r23
-         S24tp4JeVxzyMA66YvA6BDjNs+lyJvHdrgRpJnnz9x1WmZCw8FzrYsr5vXamdZzupJcs
-         miqw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700715985; x=1701320785;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=s69JY8t6Z6pBEhXPT1HQeTEBldC2p/abrDng+V6T/94=;
-        b=MTyAX06I1oBSNy1/6Tfj+y2ruuxAYaYd5fH4uOxtdiUX2Y+3Zm4PqIQecpZYCsffFj
-         DBPxhCkBlRDWshT8GrqeUy3BPVnH6M7ciPCnUwPBsNv0jAvFzW1wBpN2kW8sUzrwK4rV
-         /nr+71gy32zuLUO8EEwfRy7llXqsC3E44KBz0PDvaBh8V0AZaQilcyMYTkHYsuFF4RGz
-         eAoSA9tLzp4qcMb7wylNnhPvLvTUrLQ84i1ZddzTfC9FL96gs0YC6ELQJnsg1pKtpjic
-         ou/64FAVfDgWTzg/CoCDtmAVuO0eYX/TPTXlptycTGqRH2GnHn/eYHfIgRAo7Cq+SHGC
-         Zyfg==
-X-Gm-Message-State: AOJu0YyP5O/ZAl/eULiBO5FPnGpwBM6DTqi57Mh18WJb0yLUFtSpilv2
-	Hun2hAStnWTw+trTFvUCMvM=
-X-Google-Smtp-Source: AGHT+IF/CaLkZKuHtJ8ekuASPfghum8rB+sGuJPTBdzEtrSiJ92mOn3kxXGSgd9GnAoohlhqmmDy6w==
-X-Received: by 2002:a17:90b:2245:b0:27f:fc2f:4831 with SMTP id hk5-20020a17090b224500b0027ffc2f4831mr4611571pjb.13.1700715985141;
-        Wed, 22 Nov 2023 21:06:25 -0800 (PST)
-Received: from peter-bmc.dhcpserver.bu9bmc.local (1-34-21-66.hinet-ip.hinet.net. [1.34.21.66])
-        by smtp.gmail.com with ESMTPSA id 4-20020a17090a1a0400b0027b168cb011sm413101pjk.56.2023.11.22.21.06.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Nov 2023 21:06:24 -0800 (PST)
-From: Peter Yin <peteryin.openbmc@gmail.com>
-To: patrick@stwcx.xyz,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@aj.id.au>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v3 2/2] ARM: dts: aspeed: Minerva Harma: Add Facebook Minerva Harma (AST2600) BMC
-Date: Thu, 23 Nov 2023 13:04:15 +0800
-Message-Id: <20231123050415.3441429-3-peteryin.openbmc@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231123050415.3441429-1-peteryin.openbmc@gmail.com>
-References: <20231123050415.3441429-1-peteryin.openbmc@gmail.com>
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com (mail-dm6nam04on2059.outbound.protection.outlook.com [40.107.102.59])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B242CB;
+	Wed, 22 Nov 2023 21:34:17 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Lx6OkiT6SK3JgSL3/47sjXjkmoawNtUcoxZ6ILXrfSAouFiRmdth5SI2dx2LD9gaPgcYbOyWs1PhIPnnWpzZQTUJWAa+PVo8Kf+dVoLqF++rbMfedqDqI+ijSBeJ9w380NmRqdqqN9zMw7/9JjY5gK+nON46s8RtSOXbsrLTQBsBUcPDToGIfWJCYLkbHCFXYEx48Wv+L5PhllP9juAcslTme2MmSAMn5W4b/tB3urj6lkrbQnZE2Yos+cP1GYZk3Y/SVFB2SRdnQu2nrps3p4a6FMh+Pfy+7F67Kg1Otiegfe8klfthE76Fn1unFye67Mpz07pXqM7hrWEB2CKE0w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=GDFVe9469SI4hiXRWFHtnIlLXHlts3fYpeCuTCmMrE8=;
+ b=WUaFDxtBt4wr03EIVVRZ9Gl1gpR3RwtvvHskhE45xKUHgp8BBUup2P0sqOSpQWnATPFFvXKpqWb+OjPPQaSiMQs5eY/qNDCoL6RJNTui6KnGd4DbggnvXyFWPtfThLcXxgZh4fzkYD+pRneiQWV7k0VCrZaq3X4MzYF6k6bGtSO4hn0bY/ckBb69Lxy+Rt/xCJcL0JQnlSRTtW5a5NhG6H/j2x0hXf2yYvpGfqOkdAuqVAEn7VON6xJsSsAaypim5sKVEwPBJjhd2F2UXrEp98T4GK3ksa8RzAQ6TZZQX3JkIykAjj8J29ZPTStBh3NkxsFqvSr1vZUkQV1xJzYMng==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GDFVe9469SI4hiXRWFHtnIlLXHlts3fYpeCuTCmMrE8=;
+ b=XSN0bs5/pqYxEq3NKCuF75MnNg0fvktj+UKBcRFK+D0Dl2sk4wgkYiGtMZUb9BAKdLgncXtPCYZCKi8nzVSjZnwLlnNky6N2jDUvwYRRqmP4YYZlZ8Sm4M+hy8VdIXyQX7Xx6Azjr4qIpU5BacvqcXEfxi9fqDxdom7F0KQPSA0=
+Received: from BL1PR13CA0027.namprd13.prod.outlook.com (2603:10b6:208:256::32)
+ by IA1PR12MB6434.namprd12.prod.outlook.com (2603:10b6:208:3ae::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7025.18; Thu, 23 Nov
+ 2023 05:34:13 +0000
+Received: from MN1PEPF0000F0DE.namprd04.prod.outlook.com
+ (2603:10b6:208:256:cafe::1a) by BL1PR13CA0027.outlook.office365.com
+ (2603:10b6:208:256::32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7025.19 via Frontend
+ Transport; Thu, 23 Nov 2023 05:34:13 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ MN1PEPF0000F0DE.mail.protection.outlook.com (10.167.242.36) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7025.12 via Frontend Transport; Thu, 23 Nov 2023 05:34:13 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Wed, 22 Nov
+ 2023 23:34:12 -0600
+Received: from xhdshubhraj40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.34 via Frontend
+ Transport; Wed, 22 Nov 2023 23:34:10 -0600
+From: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+To: <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC: <git@amd.com>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
+	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+	<conor+dt@kernel.org>, <michal.simek@amd.com>
+Subject: [PATCH] dt-bindings: clock: versal: Make alt_ref optional
+Date: Thu, 23 Nov 2023 11:04:09 +0530
+Message-ID: <20231123053409.10192-1-shubhrajyoti.datta@amd.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN1PEPF0000F0DE:EE_|IA1PR12MB6434:EE_
+X-MS-Office365-Filtering-Correlation-Id: a909022e-e9b6-44bd-2c9b-08dbebe5d3f2
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	A2aGreOaQvGARLiVx5W84eknzRmVtlEscHXUpGcMNuqw7WbO7Q2re9n3PVZikO2I5ssjbpVZFkwhz0ImawFrKCmLs3Fq3JMAaYX85eBGs6S1XpRJo6w/NN2L4uGk4kuDqmLE7tjR4yzfmX5nHKMAbNrLBGzlcpwIjV1I+8uzH33VBfNUokGFeVIrMf1S/CxLVMq/tuQ7UkTH5J6YeUbE/mwRVWgpcmeDBm+ADjkRQa2JczVtme5b98Wi16YrFAjdwup7kpA5vHDWVHKScb/lCMJi0LJL8+HNBZbrTTevsv7vgpdbeOiiPKunjWXb8HYIimX3Ii3id+NS3jiHzOLHeGdC6NPa5CkbThz5miUm21vQXBpeUZUe/iAIbXIduZGcfVB9qWA+6Z9lXWLCUsS7wXYxOqqJf+li/14ZLe4YC0kLaYRxMHK2VSjzw2C+5dobm13IKhYNFip4xmtyjGLmQ17lScVdHBqKb5+sVlnXHP/ENg0v/a5YqKiIAj55XbIvpNJ/6r+CJOEVjeRyvT9dxBEYr87GgqGoBAjdaiBTQUSMYNCDtH+yjSNxAfvPfx07DZWFx0pUgxA8Mqk2qwjTst2qfHTrXHYOxGxM9QXbZkhJXCvwPJDVkawIWnUDMzTrL+3uMwM+zKdiRQtvUR5BWHXueuP9Co1JR5ZnZW0QdaQVDuJp4P8qyQg5FepCyK8qZD8S3LznroiS8BiRYOx9zz39rK+Q7gxhZPRUrxJYX96S5RIW3RI56qIkPNCLvVQcAsrpziXteIbDGX5hAgvUjTsmvIlyu/rrlpfP3WMd56kNjkSWLV4Ar8NqDqEnoHyu
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(346002)(396003)(136003)(39860400002)(376002)(230173577357003)(230273577357003)(230922051799003)(451199024)(186009)(64100799003)(82310400011)(1800799012)(36840700001)(46966006)(40470700004)(40460700003)(5660300002)(41300700001)(44832011)(2906002)(8676002)(356005)(426003)(336012)(81166007)(82740400003)(26005)(86362001)(36756003)(83380400001)(2616005)(1076003)(478600001)(36860700001)(47076005)(8936002)(4326008)(70586007)(110136005)(70206006)(54906003)(316002)(40480700001)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Nov 2023 05:34:13.7240
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a909022e-e9b6-44bd-2c9b-08dbebe5d3f2
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	MN1PEPF0000F0DE.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6434
 
-Add linux device tree entry related to
-Minerva Harma specific devices connected to BMC SoC.
+The alt_ref is present only in Versal-net devices.
+Other versal devices do not have it so lets make alt_ref optional.
+Changing the order of the clock items to have the optional ones at
+the end.
 
-Signed-off-by: Peter Yin <peteryin.openbmc@gmail.com>
+Fixes: 352546805a44 ("dt-bindings: clock: Add bindings for versal clock driver")
+Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
 ---
- arch/arm/boot/dts/aspeed/Makefile             |   1 +
- .../aspeed-bmc-facebook-minerva-harma.dts     | 533 ++++++++++++++++++
- 2 files changed, 534 insertions(+)
- create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerva-harma.dts
 
-diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed/Makefile
-index 23cbc7203a8e..dfb4905cb14d 100644
---- a/arch/arm/boot/dts/aspeed/Makefile
-+++ b/arch/arm/boot/dts/aspeed/Makefile
-@@ -19,6 +19,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
- 	aspeed-bmc-facebook-fuji.dtb \
- 	aspeed-bmc-facebook-galaxy100.dtb \
- 	aspeed-bmc-facebook-greatlakes.dtb \
-+	aspeed-bmc-facebook-minerva-harma.dtb \
- 	aspeed-bmc-facebook-minipack.dtb \
- 	aspeed-bmc-facebook-tiogapass.dtb \
- 	aspeed-bmc-facebook-wedge40.dtb \
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerva-harma.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerva-harma.dts
-new file mode 100644
-index 000000000000..73b391d462fa
---- /dev/null
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerva-harma.dts
-@@ -0,0 +1,533 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+// Copyright 2023 Facebook Inc.
-+
-+/dts-v1/;
-+#include "aspeed-g6.dtsi"
-+#include <dt-bindings/gpio/aspeed-gpio.h>
-+#include <dt-bindings/i2c/i2c.h>
-+
-+/ {
-+	model = "Facebook Minerva Harma";
-+	compatible = "facebook,minerva-harma", "aspeed,ast2600";
-+
-+	aliases {
-+		serial0 = &uart1;
-+		serial1 = &uart6;
-+		serial2 = &uart2;
-+		serial4 = &uart5;
-+
-+		i2c20 = &imux20;
-+		i2c21 = &imux21;
-+		i2c22 = &imux22;
-+		i2c23 = &imux23;
-+		i2c24 = &imux24;
-+		i2c25 = &imux25;
-+		i2c26 = &imux26;
-+		i2c27 = &imux27;
-+		i2c28 = &imux28;
-+		i2c29 = &imux29;
-+		i2c30 = &imux30;
-+		i2c31 = &imux31;
-+	};
-+
-+	chosen {
-+		stdout-path = &uart5;
-+	};
-+
-+	memory@80000000 {
-+		device_type = "memory";
-+		reg = <0x80000000 0x80000000>;
-+	};
-+
-+	iio-hwmon {
-+		compatible = "iio-hwmon";
-+		io-channels = <&adc0 0>, <&adc0 1>, <&adc0 2>, <&adc0 3>,
-+			      <&adc0 4>, <&adc0 5>, <&adc0 6>, <&adc0 7>,
-+			      <&adc1 2>;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-0 {
-+			label = "bmc_heartbeat_amber";
-+			gpios = <&gpio0 ASPEED_GPIO(P, 7) GPIO_ACTIVE_LOW>;
-+			linux,default-trigger = "heartbeat";
-+		};
-+
-+		led-1 {
-+			label = "fp_id_amber ";
-+			default-state = "off";
-+			gpios = <&gpio0 13 GPIO_ACTIVE_HIGH>;
-+		};
-+	};
-+};
-+
-+// HOST BIOS Debug
-+&uart1 {
-+	status = "okay";
-+};
-+
-+// SOL Host Console
-+&uart2 {
-+	status = "okay";
-+	pinctrl-0 = <>;
-+};
-+
-+// SOL BMC Console
-+&uart4 {
-+	status = "okay";
-+	pinctrl-0 = <>;
-+};
-+
-+// BMC Debug Console
-+&uart5 {
-+	status = "okay";
-+};
-+
-+// MTIA
-+&uart6 {
-+	status = "okay";
-+};
-+
-+&uart_routing {
-+	status = "okay";
-+};
-+
-+&vuart1 {
-+	status = "okay";
-+	virtual;
-+	port=<0x3e8>;
-+	sirq = <7>;
-+	sirq-polarity = <0>;
-+	dma-mode;
-+	dma-channel = <12>;
-+};
-+
-+&wdt1 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_wdtrst1_default>;
-+	aspeed,reset-type = "soc";
-+	aspeed,external-signal;
-+	aspeed,ext-push-pull;
-+	aspeed,ext-active-high;
-+	aspeed,ext-pulse-duration = <256>;
-+};
-+
-+&mac3 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_rmii4_default>;
-+	no-hw-checksum;
-+	use-ncsi;
-+	ncsi-ctrl,start-redo-probe;
-+	ncsi-ctrl,no-channel-monitor;
-+	mlx,multi-host;
-+	ncsi-package = <1>;
-+	ncsi-channel = <1>;
-+	ncsi-rexmit = <1>;
-+	ncsi-timeout = <2>;
-+};
-+
-+&rtc {
-+	status = "okay";
-+};
-+
-+&fmc {
-+	status = "okay";
-+
-+	flash@0 {
-+		status = "okay";
-+		m25p,fast-read;
-+		label = "bmc";
-+		spi-max-frequency = <50000000>;
-+#include "openbmc-flash-layout-128.dtsi"
-+	};
-+
-+	flash@1 {
-+		status = "okay";
-+		m25p,fast-read;
-+		label = "alt-bmc";
-+		spi-max-frequency = <50000000>;
-+	};
-+};
-+
-+// BIOS Flash
-+&spi2 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_spi2_default>;
-+
-+	flash@0 {
-+		status = "okay";
-+		m25p,fast-read;
-+		label = "pnor";
-+		spi-max-frequency = <12000000>;
-+		spi-tx-bus-width = <2>;
-+		spi-rx-bus-width = <2>;
-+	};
-+};
-+
-+&kcs2 {
-+	status = "okay";
-+	aspeed,lpc-io-reg = <0xca8>;
-+};
-+
-+&kcs3 {
-+	status = "okay";
-+	aspeed,lpc-io-reg = <0xca2>;
-+};
-+
-+&i2c0 {
-+	status = "okay";
-+
-+	max31790@30{
-+		compatible = "max31790";
-+		reg = <0x30>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+};
-+
-+&i2c1 {
-+	status = "okay";
-+
-+	tmp75@4b {
-+		compatible = "ti,tmp75";
-+		reg = <0x4b>;
-+	};
-+};
-+
-+&i2c2 {
-+	status = "okay";
-+
-+	max31790@30{
-+		compatible = "max31790";
-+		reg = <0x30>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+};
-+
-+&i2c3 {
-+	status = "okay";
-+
-+	i2c-mux@70 {
-+		compatible = "nxp,pca9543";
-+		reg = <0x70>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		imux20: i2c@0 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0>;
-+		};
-+		imux21: i2c@1 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <1>;
-+		};
-+	};
-+};
-+
-+&i2c4 {
-+	status = "okay";
-+	// PDB FRU
-+	eeprom@52 {
-+		compatible = "atmel,24c64";
-+		reg = <0x52>;
-+	};
-+
-+	delta_brick@69 {
-+		compatible = "pmbus";
-+		reg = <0x69>;
-+	};
-+};
-+
-+&i2c5 {
-+	status = "okay";
-+};
-+
-+&i2c6 {
-+	status = "okay";
-+
-+	i2c-mux@70 {
-+		compatible = "nxp,pca9543";
-+		reg = <0x70>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		imux22: i2c@0 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0>;
-+		};
-+		imux23: i2c@1 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <1>;
-+		};
-+	};
-+};
-+
-+&i2c7 {
-+	status = "okay";
-+};
-+
-+&i2c8 {
-+	status = "okay";
-+};
-+
-+&i2c9 {
-+	status = "okay";
-+
-+	gpio@30 {
-+		compatible = "nxp,pca9555";
-+		reg = <0x30>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+	};
-+	gpio@31 {
-+		compatible = "nxp,pca9555";
-+		reg = <0x31>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+	};
-+
-+	i2c-mux@71 {
-+		compatible = "nxp,pca9546";
-+		reg = <0x71>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		imux24: i2c@0 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0>;
-+		};
-+		imux25: i2c@1 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <1>;
-+		};
-+		imux26: i2c@2 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <2>;
-+		};
-+		imux27: i2c@3 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <3>;
-+		};
-+	};
-+	// PTTV FRU
-+	eeprom@52 {
-+		compatible = "atmel,24c64";
-+		reg = <0x52>;
-+	};
-+};
-+
-+&i2c11 {
-+	status = "okay";
-+};
-+
-+&i2c12 {
-+	status = "okay";
-+};
-+
-+&i2c13 {
-+	status = "okay";
-+
-+	i2c-mux@70 {
-+		compatible = "nxp,pca9545";
-+		reg = <0x70>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		imux28: i2c@0 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0>;
-+		};
-+		imux29: i2c@1 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <1>;
-+			//MB FRU
-+			eeprom@54 {
-+				compatible = "atmel,24c64";
-+				reg = <0x54>;
-+			};
-+		};
-+		imux30: i2c@2 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <2>;
-+		};
-+		imux31: i2c@3 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <3>;
-+		};
-+	};
-+};
-+
-+// To Debug card
-+&i2c14 {
-+	status = "okay";
-+	multi-master;
-+
-+	ipmb@10 {
-+		compatible = "ipmb-dev";
-+		reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
-+		i2c-protocol;
-+	};
-+};
-+
-+&i2c15 {
-+	status = "okay";
-+
-+	// SCM FRU
-+	eeprom@50 {
-+		compatible = "atmel,24c64";
-+		reg = <0x50>;
-+	};
-+
-+	// BSM FRU
-+	eeprom@56 {
-+		compatible = "atmel,24c64";
-+		reg = <0x56>;
-+	};
-+};
-+
-+&adc0 {
-+	aspeed,int-vref-microvolt = <2500000>;
-+	status = "okay";
-+	pinctrl-0 = <&pinctrl_adc0_default &pinctrl_adc1_default
-+		&pinctrl_adc2_default &pinctrl_adc3_default
-+		&pinctrl_adc4_default &pinctrl_adc5_default
-+		&pinctrl_adc6_default &pinctrl_adc7_default>;
-+};
-+
-+&adc1 {
-+	aspeed,int-vref-microvolt = <2500000>;
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_adc10_default>;
-+};
-+
-+&ehci0 {
-+	status = "okay";
-+};
-+
-+&gpio0 {
-+	pinctrl-names = "default";
-+	gpio-line-names =
-+	/*A0-A7*/	"","","","","","","","",
-+	/*B0-B7*/	"","","","",
-+			"FM_BMC_MUX_CS_SPI_SEL_0","FM_ID_LED_N","","",
-+	/*C0-C7*/	"","","","","","","","",
-+	/*D0-D7*/	"","","SOL_UART_SET","","","","","",
-+	/*E0-E7*/	"","","","","","","","",
-+	/*F0-F7*/	"","","","","","","","",
-+	/*G0-G7*/	"","","","","","","","",
-+	/*H0-H7*/	"","","","","","","","",
-+	/*I0-I7*/	"","","","","","","","",
-+	/*J0-J7*/	"","","","","","","","",
-+	/*K0-K7*/	"","","","","","","","",
-+	/*L0-L7*/	"","","","","","","","",
-+	/*M0-M7*/	"","","","","","","","",
-+	/*N0-N7*/	"LED_POSTCODE_0","LED_POSTCODE_1",
-+			"LED_POSTCODE_2","LED_POSTCODE_3",
-+			"LED_POSTCODE_4","LED_POSTCODE_5",
-+			"LED_POSTCODE_6","LED_POSTCODE_7",
-+	/*O0-O7*/	"","","","","","","","",
-+	/*P0-P7*/	"FP_SYS_PWRBTN_IN_N","BMC_SYS_PWRBTN_OUT_N",
-+			"FP_RST_BTN_IN_N","","","","","",
-+	/*Q0-Q7*/	"","","","","","","","",
-+	/*R0-R7*/	"","","","","","","","",
-+	/*S0-S7*/	"","","","","","","","",
-+	/*T0-T7*/	"","","","","","","","",
-+	/*U0-U7*/	"","","","","","","","",
-+	/*V0-V7*/	"","","","","BAT_DETECT","","","",
-+	/*W0-W7*/	"","","","","","","","",
-+	/*X0-X7*/	"","","","","","","","",
-+	/*Y0-Y7*/	"","","","","","","","",
-+	/*Z0-Z7*/	"","","","","","","","";
-+};
-+
-+&sgpiom0 {
-+	status = "okay";
-+	max-ngpios = <128>;
-+	ngpios = <128>;
-+	bus-frequency = <2000000>;
-+	gpio-line-names =
-+	/*in - out - in - out */
-+	/*A0-A3 line 0-7*/
-+	"","","","","","","","",
-+	/*A4-A7 line 8-15*/
-+	"","","","","","","","",
-+	/*B0-B3 line 16-23*/
-+	"","","","","","FM_ID_LED_N","","",
-+	/*B4-B7 line 24-31*/
-+	"","","","","","","","",
-+	/*C0-C3 line 32-39*/
-+	"","","","","","","","",
-+	/*C4-C7 line 40-47*/
-+	"","","","","","","","",
-+	/*D0-D3 line 48-55*/
-+	"","","","","","","","",
-+	/*D4-D7 line 56-63*/
-+	"","","","","PLD_SYS_POWER_GOOD","","","",
-+	/*E0-E3 line 64-71*/
-+	"","","PLD_BIOS_POST_CMPLT_N","","","","","BMC_RST_BTN_OUT_N",
-+	/*E4-E7 line 72-79*/
-+	"","RST_CPU_KBRST_N","","","","","","",
-+	/*F0-F3 line 80-87*/
-+	"","","","BMC_READY","","SGPIO_READY","","",
-+	/*F4-F7 line 88-95*/
-+	"","","","","","","","",
-+	/*G0-G3 line 96-103*/
-+	"","","","","","","","",
-+	/*G4-G7 line 104-111*/
-+	"","","","","","","","",
-+	/*H0-H3 line 112-119*/
-+	"","","","","","","","",
-+	/*H4-H7 line 120-127*/
-+	"","","","","","","","",
-+	/*I0-I3 line 128-135*/
-+	"","","","","","","","",
-+	/*I4-I7 line 136-143*/
-+	"","","","","","","","",
-+	/*J0-J3 line 144-151*/
-+	"","","","","","","","",
-+	/*J4-J7 line 152-159*/
-+	"","","","","","","","",
-+	/*K0-K3 line 160-167*/
-+	"","","","","","","","",
-+	/*K4-K7 line 168-175*/
-+	"","","","","","","","",
-+	/*L0-L3 line 176-183*/
-+	"","","","","","","","",
-+	/*L4-L7 line 184-191*/
-+	"","","","","","","","",
-+	/*M0-M3 line 192-199*/
-+	"","","","","","","","",
-+	/*M4-M7 line 200-207*/
-+	"","","","","","","","",
-+	/*N0-N3 line 208-215*/
-+	"","","","","","","","",
-+	/*N4-N7 line 216-223*/
-+	"","","","","","","","",
-+	/*O0-O3 line 224-231*/
-+	"","","","","","","","",
-+	/*O4-O7 line 232-239*/
-+	"","","","","","","","",
-+	/*P0-P3 line 240-247*/
-+	"","","","","","","","",
-+	/*P4-P7 line 248-255*/
-+	"","","","","","","","";
-+};
+ .../devicetree/bindings/clock/xlnx,versal-clk.yaml | 14 ++++++++------
+ 1 file changed, 8 insertions(+), 6 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml b/Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml
+index 1ba687d433b1..746e49383074 100644
+--- a/Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml
++++ b/Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml
+@@ -31,11 +31,11 @@ properties:
+   clocks:
+     description: List of clock specifiers which are external input
+       clocks to the given clock controller.
+-    minItems: 3
++    minItems: 2
+     maxItems: 8
+ 
+   clock-names:
+-    minItems: 3
++    minItems: 2
+     maxItems: 8
+ 
+ required:
+@@ -57,16 +57,18 @@ allOf:
+     then:
+       properties:
+         clocks:
++          minItems: 2
+           items:
+             - description: reference clock
+-            - description: alternate reference clock
+             - description: alternate reference clock for programmable logic
++            - description: alternate reference clock
+ 
+         clock-names:
++          minItems: 2
+           items:
+             - const: ref
+-            - const: alt_ref
+             - const: pl_alt_ref
++            - const: alt_ref
+ 
+   - if:
+       properties:
+@@ -110,8 +112,8 @@ examples:
+         versal_clk: clock-controller {
+           #clock-cells = <1>;
+           compatible = "xlnx,versal-clk";
+-          clocks = <&ref>, <&alt_ref>, <&pl_alt_ref>;
+-          clock-names = "ref", "alt_ref", "pl_alt_ref";
++          clocks = <&ref>,  <&pl_alt_ref>;
++          clock-names = "ref", "pl_alt_ref";
+         };
+       };
+     };
 -- 
-2.25.1
+2.17.1
 
 
