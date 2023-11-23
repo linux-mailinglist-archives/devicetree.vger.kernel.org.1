@@ -1,142 +1,145 @@
-Return-Path: <devicetree+bounces-18229-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18230-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0322C7F5BD2
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 11:01:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D10137F5BEA
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 11:07:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9798EB20EF8
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 10:01:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 71807B20F5D
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 10:07:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91F3B22337;
-	Thu, 23 Nov 2023 10:01:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91161224C9;
+	Thu, 23 Nov 2023 10:07:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="LrHfQCbw"
+	dkim=pass (1024-bit key) header.d=rasmusvillemoes.dk header.i=@rasmusvillemoes.dk header.b="iwnceLNn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E7D01A4;
-	Thu, 23 Nov 2023 02:01:28 -0800 (PST)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AN6J7Uw012365;
-	Thu, 23 Nov 2023 10:01:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=x2VHDcxFejIyKJ8k3+tPniadkU0vP7hUQoICBOL2JoY=;
- b=LrHfQCbwhbvhA/234A0y8EvJrOyWLrxi0sOKKBFIOR8SnNjKWMrtg4kzkE2TzdG1uGCb
- msHhVWg7rUepI9GewV6P8NWcxVc1y0Iwoj1QNvVRBe3S4n0sDTaofLa2y8/MBxOjujub
- 27L+9LmGW9miHgHANEgwIjUJqR/j9Zn7uXzvEDGfLdHCKe1k1hi9m61byjqYVRz98krL
- pINZAYbjY3GEggpgSfJT+eqdhSYHY/GZ2UD/0/gZO08gY5EYEBZVJY44tAuw66As30UV
- U7ZcFA0HobxfLmHYLtaUtQPaekGvl/98Z3m5EFDGXnY+VeQFXFdG3J9ZF21qmuv6ULUN YA== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uhkfnt9mx-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 23 Nov 2023 10:01:23 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3ANA0uTS016116
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 23 Nov 2023 10:00:56 GMT
-Received: from blr-ubuntu-253.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Thu, 23 Nov 2023 02:00:51 -0800
-From: Sibi Sankar <quic_sibis@quicinc.com>
-To: <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <ulf.hansson@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>
-CC: <agross@kernel.org>, <conor+dt@kernel.org>, <quic_rjendra@quicinc.com>,
-        <abel.vesa@linaro.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, <quic_tsoni@quicinc.com>,
-        <neil.armstrong@linaro.org>, Sibi Sankar <quic_sibis@quicinc.com>
-Subject: [PATCH V2 2/2] pmdomain: qcom: rpmhpd: Update part number to X1E80100
-Date: Thu, 23 Nov 2023 15:30:21 +0530
-Message-ID: <20231123100021.10918-3-quic_sibis@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20231123100021.10918-1-quic_sibis@quicinc.com>
-References: <20231123100021.10918-1-quic_sibis@quicinc.com>
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0526910CE
+	for <devicetree@vger.kernel.org>; Thu, 23 Nov 2023 02:07:21 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-507962561adso974622e87.0
+        for <devicetree@vger.kernel.org>; Thu, 23 Nov 2023 02:07:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rasmusvillemoes.dk; s=google; t=1700734039; x=1701338839; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=SmXvLPzPw+DEwAZx7VriDTykjMFvpksI53NUtYqCnkc=;
+        b=iwnceLNnY/+gvIFj4IJ4gzgyXO1+KoTx7bQXYQOgXIfd3D+240n9InocZrpWqgqmCQ
+         UYAGhy/4pa7FeS1qGQc8nAXySdP5QeWK/uecfFwsMXfEFDbvGvzVNYVV6102XV/jLl6Q
+         H+6yoLHF2C2TVZ9fimeOR5g8cXJX76fVwKpn8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700734039; x=1701338839;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=SmXvLPzPw+DEwAZx7VriDTykjMFvpksI53NUtYqCnkc=;
+        b=iB3M4FI/1UcsehNlzXk/PEy+rMIctgi/GUv9FrMDLU0tGH2pLKPkh6PoyL1q6kvJV0
+         ChO1yn8m4CGwpWr4fTkxEz0PaIA8qkWBQQVS425Uv5QjgITzxmk3fb9p+2KtRk5IQPEX
+         ceohacqKtFj6wzZUc/2VFPwf756+Rraf5HPrczogvDE6M6u7YdDWQtAg7QJc1Z1Ns7Zm
+         aMWDRNkjt0/5QBaZEExDi5SsBNPGn/jDQwBGf2nZA6bG7HbybktLdsLFEqsOgAIG+oqA
+         ATOf0REOR0ZVvsOieQW0NwiuW+MWMbl+Yi3KlufKztXT7X8DmqohwzCrxUKX+eC/rr0R
+         gULA==
+X-Gm-Message-State: AOJu0Yx+w2fdhQs/zyYVxh7O6FDSp7IRIP3sscmUAnPfMZQ6TMfAOSx9
+	Xn1Ofvihp7+qgNkWQE213NQjLw==
+X-Google-Smtp-Source: AGHT+IFP1CDX33ugDyxbihJtdfr48gqh31qpKq2fPD9a+2KIHJNpdkp3yd0K2LQKWo1VGhaYFEBEOw==
+X-Received: by 2002:a05:6512:2385:b0:504:3c1f:cbd1 with SMTP id c5-20020a056512238500b005043c1fcbd1mr2496310lfv.12.1700734039096;
+        Thu, 23 Nov 2023 02:07:19 -0800 (PST)
+Received: from [172.16.11.116] ([81.216.59.226])
+        by smtp.gmail.com with ESMTPSA id e6-20020a196906000000b0050a5f6b5b46sm146397lfc.225.2023.11.23.02.07.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 23 Nov 2023 02:07:18 -0800 (PST)
+Message-ID: <e731c0a9-7a5c-41c3-87aa-d6937b99d01a@rasmusvillemoes.dk>
+Date: Thu, 23 Nov 2023 11:07:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 0QBcPCXLdPuLFpi7PdASVLmfDxUWKCBY
-X-Proofpoint-ORIG-GUID: 0QBcPCXLdPuLFpi7PdASVLmfDxUWKCBY
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-23_06,2023-11-22_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 impostorscore=0
- mlxscore=0 clxscore=1015 spamscore=0 lowpriorityscore=0 adultscore=0
- bulkscore=0 suspectscore=0 malwarescore=0 mlxlogscore=999
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311060000 definitions=main-2311230071
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: serial: rs485: add rs485-mux-gpios
+ binding
+Content-Language: en-US, da
+To: Lukas Wunner <lukas@wunner.de>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+ Crescent CY Hsieh <crescentcy.hsieh@moxa.com>,
+ Lino Sanfilippo <LinoSanfilippo@gmx.de>,
+ =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+References: <20231120151056.148450-1-linux@rasmusvillemoes.dk>
+ <20231120151056.148450-2-linux@rasmusvillemoes.dk>
+ <20231122145344.GA18949@wunner.de>
+From: Rasmus Villemoes <linux@rasmusvillemoes.dk>
+In-Reply-To: <20231122145344.GA18949@wunner.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-There was a recent part number update from SC8380XP to X1E80100 and as
-a result of which SC8380xp prefix introduced in the rpmhpd driver is no
-longer correct. Update it to X1E80100, to reflect the bindings change.
+On 22/11/2023 15.53, Lukas Wunner wrote:
+> On Mon, Nov 20, 2023 at 04:10:54PM +0100, Rasmus Villemoes wrote:
+>> Some boards are capable of both rs232 and rs485, and control which
+>> external terminals are active via a gpio-controlled mux. Allow
+>> describing that gpio in DT so that the kernel can transparently handle
+>> the proper setting when the uart is switched between rs232 and rs485
+>> modes.
+> 
+> Crescent CY Hsieh (+cc) is in parallel trying to add an RS-422 mode bit
+> to struct serial_rs485:
+> 
+> https://lore.kernel.org/all/20231121095122.15948-1-crescentcy.hsieh@moxa.com/
+> 
+> I don't know whether that makes sense at all (I had thought RS-422 is
+> the same as RS-485 with full-duplex, i.e. SER_RS485_ENABLED plus
+> SER_RS485_RX_DURING_TX).
 
-Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
----
+No, that latter case is as I understand it usually called "4-wire
+rs485", while rs-422 is an entirely different animal, and the wiring is
+in some sense actually closer to rs-232. rs-422 is full-duplex, with all
+the slave device's tx-lines connected to the master's rx, and the
+master's tx connected to the slaves' rx (ok, it uses differential
+signalling, so there are four wires involved and not two as in rs-232).
+But I'm no expert, and there doesn't seem to be entirely consistent
+terminology.
 
-v2:
-* Add more details to the commit message. [Krzysztof/Konrad]
+> 
+> But if that patch gets accepted, we'd have *three* different modes:
+> RS-232, RS-485, RS-422.  A single GPIO seems insufficient to handle that.
+> You'd need at least two GPIOs.
 
- drivers/pmdomain/qcom/rpmhpd.c | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+I don't see Crescent introducing any new gpio that needs to be handled.
+In fact, I can't even see why from the perspective of the software that
+rs422 isn't just rs232; there's no transmit enable pin that needs to be
+handled. But maybe the uart driver does something different in rs422
+mode; I assume he must have some update of some driver, since otherwise
+the new rs422 bit should be rejected by the core. So I can't really see
+the whole picture of that rs422 story.
 
-diff --git a/drivers/pmdomain/qcom/rpmhpd.c b/drivers/pmdomain/qcom/rpmhpd.c
-index f2e64324deb8..3078896b1300 100644
---- a/drivers/pmdomain/qcom/rpmhpd.c
-+++ b/drivers/pmdomain/qcom/rpmhpd.c
-@@ -598,8 +598,8 @@ static const struct rpmhpd_desc sc8280xp_desc = {
- 	.num_pds = ARRAY_SIZE(sc8280xp_rpmhpds),
- };
- 
--/* SC8380xp RPMH powerdomains */
--static struct rpmhpd *sc8380xp_rpmhpds[] = {
-+/* X1E80100 RPMH powerdomains */
-+static struct rpmhpd *x1e80100_rpmhpds[] = {
- 	[RPMHPD_CX] = &cx,
- 	[RPMHPD_CX_AO] = &cx_ao,
- 	[RPMHPD_EBI] = &ebi,
-@@ -615,9 +615,9 @@ static struct rpmhpd *sc8380xp_rpmhpds[] = {
- 	[RPMHPD_GMXC] = &gmxc,
- };
- 
--static const struct rpmhpd_desc sc8380xp_desc = {
--	.rpmhpds = sc8380xp_rpmhpds,
--	.num_pds = ARRAY_SIZE(sc8380xp_rpmhpds),
-+static const struct rpmhpd_desc x1e80100_desc = {
-+	.rpmhpds = x1e80100_rpmhpds,
-+	.num_pds = ARRAY_SIZE(x1e80100_rpmhpds),
- };
- 
- static const struct of_device_id rpmhpd_match_table[] = {
-@@ -629,7 +629,6 @@ static const struct of_device_id rpmhpd_match_table[] = {
- 	{ .compatible = "qcom,sc7280-rpmhpd", .data = &sc7280_desc },
- 	{ .compatible = "qcom,sc8180x-rpmhpd", .data = &sc8180x_desc },
- 	{ .compatible = "qcom,sc8280xp-rpmhpd", .data = &sc8280xp_desc },
--	{ .compatible = "qcom,sc8380xp-rpmhpd", .data = &sc8380xp_desc },
- 	{ .compatible = "qcom,sdm670-rpmhpd", .data = &sdm670_desc },
- 	{ .compatible = "qcom,sdm845-rpmhpd", .data = &sdm845_desc },
- 	{ .compatible = "qcom,sdx55-rpmhpd", .data = &sdx55_desc},
-@@ -643,6 +642,7 @@ static const struct of_device_id rpmhpd_match_table[] = {
- 	{ .compatible = "qcom,sm8450-rpmhpd", .data = &sm8450_desc },
- 	{ .compatible = "qcom,sm8550-rpmhpd", .data = &sm8550_desc },
- 	{ .compatible = "qcom,sm8650-rpmhpd", .data = &sm8650_desc },
-+	{ .compatible = "qcom,x1e80100-rpmhpd", .data = &x1e80100_desc },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, rpmhpd_match_table);
--- 
-2.17.1
+>> --- a/Documentation/devicetree/bindings/serial/rs485.yaml
+>> +++ b/Documentation/devicetree/bindings/serial/rs485.yaml
+>> @@ -61,6 +61,11 @@ properties:
+>>        the active state enables RX during TX.
+>>      maxItems: 1
+>>  
+>> +  rs485-mux-gpios:
+>> +    description: GPIO pin to control muxing of the SOC signals to the RS485
+>> +      transceiver.
+>> +    maxItems: 1
+> 
+> The description doesn't really add much to the name "rs485-mux-gpios".
+> 
+> Suggestion:
+> 
+>     description: selects whether the UART is connect to an RS-232 driver (low)
+>       or an RS-485 transceiver (high)
+
+Indeed, I wasn't really able to come up with a good description. Thanks,
+that's much better.
+
+Rasmus
 
 
