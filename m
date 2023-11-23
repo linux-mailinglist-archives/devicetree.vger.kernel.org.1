@@ -1,158 +1,114 @@
-Return-Path: <devicetree+bounces-18274-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18275-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E0CE7F5EAF
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 13:04:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 727F77F5ED1
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 13:13:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7E854B213D8
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 12:04:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 12F9EB212CB
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 12:13:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B9DE24201;
-	Thu, 23 Nov 2023 12:04:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE302241E5;
+	Thu, 23 Nov 2023 12:13:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="VmqBmSAX"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LtfsVzEL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3100B0;
-	Thu, 23 Nov 2023 04:04:37 -0800 (PST)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AN4cOUq014422;
-	Thu, 23 Nov 2023 12:04:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=mM8Bjpkm0Igg82YtDU28k9o+BPgvFhrCWPwlePqNs7Y=;
- b=VmqBmSAXvYiSqb+dQnhY5XfTnP6+Y3Q7cQbU7dIyWDIiFs/vof4hr2Peyf3QROWxpL76
- +O12bO68tqs71TzjMmLJVwZGZybrFnxphVz4Nq2tZDJRT65TFiAi3Rl7SAsBGLDzndaP
- W6fK1a8V508fXsHzCnxzOGAYn69OPUsgyseX3HnXYPU2eXNmMRMBIac5CC2ODoQXGlwC
- t/5eFSPIugrcxv+8eCdZPA/WYvLRpXy7VWVSKTAOyp1WtCsZYOdDeCKDY7snLPf36B2K
- jVuoGPcH6FEO+NlnmFQ+B5jkLkqzJq6m0VmobGd+DbeGnmqsYt3kVrkp8AEOPRCSy+MN tg== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uhey5b6r6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 23 Nov 2023 12:04:24 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3ANC4NP9006336
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 23 Nov 2023 12:04:23 GMT
-Received: from [10.216.9.56] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 23 Nov
- 2023 04:04:12 -0800
-Message-ID: <55b46fef-6bfa-42da-b101-e338bfc93a66@quicinc.com>
-Date: Thu, 23 Nov 2023 17:34:07 +0530
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E92FC11F;
+	Thu, 23 Nov 2023 04:13:29 -0800 (PST)
+Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-548f74348f7so1150907a12.2;
+        Thu, 23 Nov 2023 04:13:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1700741608; x=1701346408; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=lEDS1xDbHv2bX/Af0XP8lgFHd9wrBccG/R9qGzxmb30=;
+        b=LtfsVzEL+U6XXigthT3aNp6Dgr7jKM8OB7M4GTmpLZ8Z9FdKdDFEJsvbQ3ZEtnGVBS
+         mbK72HEKfwgpOkcfF6CI8UlMcjhEar4lu+7KhNQI8p3sa0whF74adPNFqF7aBk9ZnIRT
+         xahxzEcInPRjNtIE+gQ3X47gsQ4d4iAkV158wLJ7A+laPHZ+OXTwU1o6kmC3gwf6VLZE
+         xeUJjbne6lwbcIQTuLreoXEAsNl82zhlckgGQQ1s2RGWYtTURg/42oRD6izDRY0F0m96
+         WPguEbNk78vmNc8dBdXRJK3XiUBZRrc29vuGgnCAqMTttsF1/N9zpW52c5HT4Y6uuvew
+         Ipxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700741608; x=1701346408;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lEDS1xDbHv2bX/Af0XP8lgFHd9wrBccG/R9qGzxmb30=;
+        b=Qzg/6IUz2Ot3g8hoLeNguvPX+meoRJghFxbEhhcgw8FC6XB+j+5PMEGZ+wGMttm4VC
+         Q00Krtuv4kOiPabBtCIHJrC+qedZbM3bTouRQ/N5hZ3yR9Mv0InEfLN5CVnLViv3uFMG
+         XzsTpffeqBHLBpfx+4VPWe+n9TnK4pbO6OJKnBDyJp2UV2N77fE7kqoUGp20bmg2rrBn
+         2pNMVCuPN04CsvVrWbK+NoUVEceptFux8k04X4UUJRCq4gCJLCMk9bTNw2Y99NL3GxK9
+         /1qADfAad84Ut+OT5Emg0T4lPDyJpGI7dnBESWL3MVc1Y4MFvT3Wx5iGqm3ZVk/5SeyG
+         wOFw==
+X-Gm-Message-State: AOJu0YxwxjyRRDn7WJoA7aWrw0aj7ICcwdEHU/MCVE3QZl0y93h5qhGr
+	aKAr5KZ+3UfC8dJE4g2nHoTRAPcMtMM=
+X-Google-Smtp-Source: AGHT+IFU08KnhdZcRouB/Uhp9IfkcPQcB/iEiRn39XYcoO3ubI7l6bxVHt4kxeSzgbITJsxT8WP31Q==
+X-Received: by 2002:aa7:d9d5:0:b0:548:89b7:f590 with SMTP id v21-20020aa7d9d5000000b0054889b7f590mr4373603eds.35.1700741608161;
+        Thu, 23 Nov 2023 04:13:28 -0800 (PST)
+Received: from fedora.. (dh207-99-119.xnet.hr. [88.207.99.119])
+        by smtp.googlemail.com with ESMTPSA id by10-20020a0564021b0a00b0054868b36118sm580678edb.32.2023.11.23.04.13.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 23 Nov 2023 04:13:27 -0800 (PST)
+From: Robert Marko <robimarko@gmail.com>
+To: agross@kernel.org,
+	andersson@kernel.org,
+	konrad.dybcio@linaro.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Robert Marko <robimarko@gmail.com>
+Subject: [PATCH] arm64: dts: qcom: ipq8074: Add QUP4 SPI node
+Date: Thu, 23 Nov 2023 13:12:54 +0100
+Message-ID: <20231123121324.1046164-1-robimarko@gmail.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v3 1/3] dt-bindings: net: qcom,ethqos: add
- binding doc for fault IRQ for sa8775p
-Content-Language: en-US
-To: Vinod Koul <vkoul@kernel.org>, Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "David S. Miller"
-	<davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski
-	<kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu
-	<joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>, <netdev@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Prasad Sodagudi
-	<psodagud@quicinc.com>,
-        Andrew Halaney <ahalaney@redhat.com>
-CC: <kernel@quicinc.com>
-References: <cover.1700737841.git.quic_jsuraj@quicinc.com>
- <ff458955a24c0cb4ba41158b8b53fbef00c8237d.1700737841.git.quic_jsuraj@quicinc.com>
-From: Suraj Jaiswal <quic_jsuraj@quicinc.com>
-In-Reply-To: <ff458955a24c0cb4ba41158b8b53fbef00c8237d.1700737841.git.quic_jsuraj@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: frO3nQXIW7342wIkeKI8wcv6sdrqgqpB
-X-Proofpoint-GUID: frO3nQXIW7342wIkeKI8wcv6sdrqgqpB
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-23_10,2023-11-22_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=998
- lowpriorityscore=0 spamscore=0 impostorscore=0 suspectscore=0
- priorityscore=1501 mlxscore=0 malwarescore=0 clxscore=1015 phishscore=0
- bulkscore=0 adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311060000 definitions=main-2311230085
+Content-Transfer-Encoding: 8bit
 
-@Andrew getting warning as part of below check . Need to explore more why this is coming .
-below warning is coming becuase of " interrupt-names = "macirq", "eth_lpi", "safety";" safety added here . If I remove safety they warning gone.
-Looks like we have to define property "safety" somewhere else as well . I have already added safety in "interrupt-names:" list but still no help .
+Add node to support the QUP4 SPI controller inside of IPQ8074.
+Some devices use this bus to communicate to a Bluetooth controller.
 
+Signed-off-by: Robert Marko <robimarko@gmail.com>
+---
+ arch/arm64/boot/dts/qcom/ipq8074.dtsi | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
-# make DT_CHECKER_FLAGS=-m DT_SCHEMA_FILES=net/qcom,ethqos.yaml dt_binding_check
-  LINT    Documentation/devicetree/bindings
-invalid config: unknown option "required" for rule "quoted-strings"
-xargs: /usr/bin/yamllint: exited with status 255; aborting
-  CHKDT   Documentation/devicetree/bindings/processed-schema.json
-  SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-  DTEX    Documentation/devicetree/bindings/net/qcom,ethqos.example.dts
-  DTC_CHK Documentation/devicetree/bindings/net/qcom,ethqos.example.dtb
-/local/mnt/workspace/andrew/linux-next/Documentation/devicetree/bindings/net/qcom,ethqos.example.dtb: ethernet@7a80000: interrupt-names:2: 'eth_lpi' was expected
-        from schema $id: http://devicetree.org/schemas/net/qcom,ethqos.yaml#
-/local/mnt/workspace/andrew/linux-next/Documentation/devicetree/bindings/net/qcom,ethqos.example.dtb: ethernet@7a80000: Unevaluated properties are not allowed ('mdio', 'phy-handle', 'phy-mode', 'rx-fifo-depth', 'snps,reset-active-low', 'snps,reset-delays-us', 'snps,reset-gpio', 'snps,tso', 'tx-fifo-depth' were unexpected)
-        from schema $id: http://devicetree.org/schemas/net/qcom,ethqos.yaml#
+diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+index d8e8a5cded64..1b9e50edc892 100644
+--- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
++++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+@@ -744,6 +744,20 @@ blsp1_i2c3: i2c@78b7000 {
+ 			status = "disabled";
+ 		};
+ 
++		blsp1_spi4: spi@78b8000 {
++			compatible = "qcom,spi-qup-v2.2.1";
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <0x78b8000 0x600>;
++			interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&gcc GCC_BLSP1_QUP4_SPI_APPS_CLK>,
++				 <&gcc GCC_BLSP1_AHB_CLK>;
++			clock-names = "core", "iface";
++			dmas = <&blsp_dma 18>, <&blsp_dma 19>;
++			dma-names = "tx", "rx";
++			status = "disabled";
++		};
++
+ 		blsp1_i2c5: i2c@78b9000 {
+ 			compatible = "qcom,i2c-qup-v2.2.1";
+ 			#address-cells = <1>;
+-- 
+2.42.0
 
-On 11/23/2023 5:23 PM, Suraj Jaiswal wrote:
-> Add binding doc for fault IRQ. The fault IRQ will be
-> triggered for ECC, DPP, FSM error.
-> 
-> Signed-off-by: Suraj Jaiswal <quic_jsuraj@quicinc.com>
-> ---
->  Documentation/devicetree/bindings/net/qcom,ethqos.yaml | 7 +++++--
->  1 file changed, 5 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/qcom,ethqos.yaml b/Documentation/devicetree/bindings/net/qcom,ethqos.yaml
-> index 7bdb412a0185..e013cb51fb07 100644
-> --- a/Documentation/devicetree/bindings/net/qcom,ethqos.yaml
-> +++ b/Documentation/devicetree/bindings/net/qcom,ethqos.yaml
-> @@ -37,12 +37,14 @@ properties:
->      items:
->        - description: Combined signal for various interrupt events
->        - description: The interrupt that occurs when Rx exits the LPI state
-> +      - description: The interrupt that occurs when HW fault occurs
->  
->    interrupt-names:
->      minItems: 1
->      items:
->        - const: macirq
->        - const: eth_lpi
-> +      - const: safety
->  
->    clocks:
->      maxItems: 4
-> @@ -89,8 +91,9 @@ examples:
->                 <&gcc GCC_ETH_PTP_CLK>,
->                 <&gcc GCC_ETH_RGMII_CLK>;
->        interrupts = <GIC_SPI 56 IRQ_TYPE_LEVEL_HIGH>,
-> -                   <GIC_SPI 55 IRQ_TYPE_LEVEL_HIGH>;
-> -      interrupt-names = "macirq", "eth_lpi";
-> +                   <GIC_SPI 55 IRQ_TYPE_LEVEL_HIGH>,
-> +                   <GIC_SPI 782 IRQ_TYPE_LEVEL_HIGH>;
-> +      interrupt-names = "macirq", "eth_lpi", "safety";
->  
->        rx-fifo-depth = <4096>;
->        tx-fifo-depth = <4096>;
 
