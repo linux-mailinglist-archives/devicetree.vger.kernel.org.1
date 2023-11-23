@@ -1,116 +1,125 @@
-Return-Path: <devicetree+bounces-18369-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18370-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 873577F63B8
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 17:14:48 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F16C7F63C1
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 17:17:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DCECBB211D3
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 16:14:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 411F31C20AE1
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 16:17:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66B383E49B;
-	Thu, 23 Nov 2023 16:14:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1158A35F0F;
+	Thu, 23 Nov 2023 16:17:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TB1au32u"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CS7ce4ml"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-x1136.google.com (mail-yw1-x1136.google.com [IPv6:2607:f8b0:4864:20::1136])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AE2310C6
-	for <devicetree@vger.kernel.org>; Thu, 23 Nov 2023 08:14:37 -0800 (PST)
-Received: by mail-yw1-x1136.google.com with SMTP id 00721157ae682-5ac376d311aso10106367b3.1
-        for <devicetree@vger.kernel.org>; Thu, 23 Nov 2023 08:14:37 -0800 (PST)
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 134C61A8
+	for <devicetree@vger.kernel.org>; Thu, 23 Nov 2023 08:17:46 -0800 (PST)
+Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-50aab3bf71fso1323522e87.3
+        for <devicetree@vger.kernel.org>; Thu, 23 Nov 2023 08:17:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700756077; x=1701360877; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ipzMNGrGtolaTuN+LIIgKEncct0aftDF2s8V+J8A68E=;
-        b=TB1au32u8m8eCO3UzV/gibdFPsdh5WsVOoeM3EqADr21c22opVoMNQkCvOooM127Wl
-         G2PJ0otm4EnQfy67H383gMAr32cNWvbLl/3MRk4APIVR1FMIIHaW1kFVbtM/ZcUXv/ly
-         h9SYLETXEGUx6WsYR0JhLnky5U+FlS1h6cyS6bEHtoQGxrqPxukBk44oWX59lQw1Bt7I
-         nrnZ++FSyM8TCdYoM3u0bBFrekieYqQ7RlbejqgHKprziT3+EBV5YAecmZndOhXeZu1m
-         xxMRujogWdPBWjC9Zjjale10DjBU9NtADu1hE39BWJkrOc/ioNJsXoEQ4wWbXu0lp/C6
-         Y4gA==
+        d=linaro.org; s=google; t=1700756264; x=1701361064; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=pujVRWSCfIATffTNycbDYi4i1pCGIH+ZOcX0lBAR6Ok=;
+        b=CS7ce4mlmIaA8YC/wHCs93tq1z0fvAvB948jEuWdpMEDpM1smUbrh+PAqaruWID40I
+         3jxcPNuuuOKcku6edHIueEZR+Dh+DEi7X+eeQaU1BK7mPe36xZmSrTwbEZJgq1XniapC
+         X+tzUumdRYMtLk4NVUs1g7XfS8B7NvJbPkBvemUDPZWV57wkR8w3AMtS0g/7RnrWHaQm
+         nU7HR8O0lWmgkBPi8nVFcd3zBQ3w8ToEG19BFWVfjL5qFAzomutVVZ7cKag7dREwRYyC
+         ELjYWMR4ohgWyZGTh9BkBxqFL5RfLYRAdzjv3gGF1DkwfjJpAC1Ujks/3ByvxTMG/loZ
+         M5CQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700756077; x=1701360877;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1700756264; x=1701361064;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=ipzMNGrGtolaTuN+LIIgKEncct0aftDF2s8V+J8A68E=;
-        b=qjLdpoWFZebt/gWn85JcClLjIyWWTetK1+WpeWGpdXJgOOAvzJUwQqEwjTj3KtytOS
-         blsqM2uIUINWzzq8o6toRPAB45tJ6zAfvcUGeoYHTaQ4GOObWue8l9mcI3Viu8Qr/TXZ
-         QsV5/Soy2X61Zw5yDzrvQ/fIcj3QrlvI6x2WgnnJIljei+nX4cKUSTS7/T8W+X/JD5rQ
-         nN2cw4zaqMO95N76WQqtfS6E3pFXXplb142IRoHVVoHKeCOHOKsMdifKXNowi8FByJBL
-         CrgjNVe1i5oIp9XDxuQOAMvbg+GbBQCU+lmxWfTUY2qFC7LFocEdGy77uiWIgGn7nU+G
-         TcHg==
-X-Gm-Message-State: AOJu0YzMibVCnehTfWzBw1LdQLCzQHRZxqeiU0H4prl/tnsYWKmlLHmg
-	caHGuIPDiRKkxypGBBLrtMk9X3krQ5EomGWcoea32g==
-X-Google-Smtp-Source: AGHT+IGVXCCNObF5Fssf2rOst5kdMHeHaWlMqNi98aNmC9WRf3QJ62k48s/V/HjbQ+uLlCBO8r4oX3qbTumAUwJj8zw=
-X-Received: by 2002:a05:690c:2891:b0:5cd:6004:3549 with SMTP id
- ee17-20020a05690c289100b005cd60043549mr1455172ywb.27.1700756076780; Thu, 23
- Nov 2023 08:14:36 -0800 (PST)
+        bh=pujVRWSCfIATffTNycbDYi4i1pCGIH+ZOcX0lBAR6Ok=;
+        b=hsabnbwuVor3RQ/Q1OSgyJ0mSNfdK0q2maNy/jHYD7d2LWq/TyUzRV/lbzvR3Ik6do
+         AQmjWhdJ7QU/V1dkrXpNQ1T516HkqM1tZnKcygQe9SVCyqkG74a6Nl3ZtZSiUAZ4zDin
+         bCdonph5ajFWUiCnBA7Pn7NJetYO5wKZyFLGBNZlisw+dAmPigbu7KguDV6i8QBGrj7I
+         Ut6WV2mqmsSHuWjaUuDtsPAtyxiWE7S3oa6IEVyhDQSaVaEZMdzxIDxn0H6Bj786EJCq
+         sPYr75laEcMkHnChxUR+pltDbDxTinmYuKKhM8uc3rAyxai/9ogBaA/jQeSgGwCxJDK9
+         XQ+w==
+X-Gm-Message-State: AOJu0Yxzu5Rd154bDfonBy0sGNKxbmVeE7kfw+HQXAnXMSONhlZWG4Pf
+	k8Zn1uR/8Mdvvq2GCkXMAqv1xA==
+X-Google-Smtp-Source: AGHT+IGgruZuQVFa5oEJQDX8aqb5/Ot/vkkklZXcQPqwbozIu7QKs3JXX4OMcsRDkgheysPCEwBdhA==
+X-Received: by 2002:a05:6512:15a3:b0:507:b0a1:6088 with SMTP id bp35-20020a05651215a300b00507b0a16088mr5413280lfb.46.1700756264200;
+        Thu, 23 Nov 2023 08:17:44 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id y3-20020adfee03000000b0032f7e832cabsm2052748wrn.90.2023.11.23.08.17.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 23 Nov 2023 08:17:43 -0800 (PST)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH v2 0/2] pmdomain: amlogic: meson-ee-pwrc: add ISP power
+ domain
+Date: Thu, 23 Nov 2023 17:17:40 +0100
+Message-Id: <20231123-topic-amlogic-upstream-isp-pmdomain-v2-0-61f2fcf709e5@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231114-msm8909-cpufreq-v3-0-926097a6e5c1@kernkonzept.com> <20231123073901.meb7p4yzueg2lkou@vireshk-i7>
-In-Reply-To: <20231123073901.meb7p4yzueg2lkou@vireshk-i7>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Thu, 23 Nov 2023 17:14:00 +0100
-Message-ID: <CAPDyKFrst+j89nPsrfAmkzGBLAwZ86WWQ_agnd6MHCfR+7FeFw@mail.gmail.com>
-Subject: Re: [PATCH v3 0/3] cpufreq: qcom-nvmem: Fix power domain scaling
-To: Viresh Kumar <viresh.kumar@linaro.org>
-Cc: Stephan Gerhold <stephan.gerhold@kernkonzept.com>, Andy Gross <agross@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Ilia Lin <ilia.lin@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	Stephan Gerhold <stephan@gerhold.net>, stable@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACR7X2UC/5WNTQ6CMBBGr0Jm7ZhOFYiuvIdhMYEWJqE/aZFoC
+ He3cgNXX963eG+DbJKYDPdqg2RWyRJ8AX2qoJ/YjwZlKAxa6QsRXXEJUXpkN4ex7CvmJRl2KDl
+ idENwLB5tWytdN2RvRFBMMRkr76Py7ApPkpeQPkd0pd/7n38lVGgVmcb23LSsHrN4TuEc0gjdv
+ u9fF1HfkNcAAAA=
+To: Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Ulf Hansson <ulf.hansson@linaro.org>
+Cc: Daniel Scally <dan.scally@ideasonboard.com>, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=893;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=9FcVA9H1qv0poQwZkxkRJQ5+OyLnOc8rdQ539wz0wiQ=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBlX3sl/oeVw69IbWwEg0CwIM/8QW1I7Km1XZjYjaJs
+ bkGoziKJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZV97JQAKCRB33NvayMhJ0Y8cD/
+ 4lM8bue7qAIylsKEW9oZVV638spFcUpbyNzb1mU3hwuhKS9H2tJVvNeqbWSK3gXoR14OIMAxjRL5ro
+ 3aDOtyBlDlfkspncumv3v460IQSN8/Ca+KWTfmGF7HdkPrnI9YTk5jdOShA3wttqCMQC8vDRpmMq7A
+ BQT1iBkgocNOI/dQ8jPvM1M4Na8iBagMStLM/Hnqjc6Z69if+XeSfK1JkVerOXpktYcsQxGaf188YH
+ 0MCV5LB7Wf+0xBcIjD6pJyIUF5SQqiK2votYzKla8leOogRV5+HdypCumad35KB+swbARwQvaPg10J
+ GasOhGWPphHFACyKC/742I2VDmG8r3A2WR3H7LkghU5IBL7G80qec3xPvF+n7WgktqGLg4iJVa4gF0
+ zFKxRmz+l6oyL+2tPHLwHYBS717ZKB+I/GG98L2Eq3zWoP7skXpp3NcZ0RnTeiTmwBs21F2ARKsXzV
+ 4TJ2LNjG29zao96AcwlpqavGjdGx+McxTOMRgb5XvQWEvr+JW5IPe1+Jyfj7nY6xBrAtCwRFjID6Dr
+ U/M63T6Zcn+CD+BIVZ6h3HizfnRFFUgrE1aP3HmPalq/MmJ7Ms+xYTttPPuowFyr3tf4T4cxth93VA
+ ahFw30yjwMrXgh4XcmrQjx41X5c9H8srGZ8F6AFAJFgK6d1+RWdCOAdMEsig==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-On Thu, 23 Nov 2023 at 08:39, Viresh Kumar <viresh.kumar@linaro.org> wrote:
->
-> On 14-11-23, 11:07, Stephan Gerhold wrote:
-> > The power domain scaling setup for QCS404 and MSM8909 in
-> > cpufreq-com-nvmem does not work correctly at the moment because the
-> > genpd core ignores all the performance state votes that are specified in
-> > the CPU OPP table. This happens because nothing in the driver makes the
-> > genpd core aware that the power domains are actively being consumed by
-> > the CPU.
-> >
-> > Fix this by marking the devices as runtime active. Also mark the devices
-> > to be in the "awake path" during system suspend so that performance
-> > state votes necessary for the CPU are preserved during system suspend.
-> >
-> > While all the patches in this series are needed for full functionality,
-> > the cpufreq and pmdomain patches can be merged independently. There is
-> > no compile-time dependency between those two.
-> >
-> > Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
-> > ---
-> > Changes in v3:
-> > - Drop patches with MSM8909 definitions that were applied already
-> > - Add extra patch to fix system suspend properly by using
-> >   device_set_awake_path() instead of dev_pm_syscore_device()
-> > - Set GENPD_FLAG_ACTIVE_WAKEUP for rpmpd so that performance state votes
-> >   needed by the CPU are preserved during suspend
-> > - Link to v2: https://lore.kernel.org/r/20231018-msm8909-cpufreq-v2-0-0962df95f654@kernkonzept.com
->
-> Applied. Thanks.
->
-> I picked the pmdomain patch too, lemme know if that needs to go via
-> some other tree.
+Add MIPI ISP power domain bindings and entries for the ISP power domain
+found in the Amlogic G12B SoC.
 
-Usually I should pick the pmdomain patches. Although, I thought it may
-be better to keep this series together.
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Changes in v2:
+- Correctly use REG1 for second g12a_pwrc_mem_isp cell
+- Link to v1: https://lore.kernel.org/r/20231114-topic-amlogic-upstream-isp-pmdomain-v1-0-f01e6fca67a0@linaro.org
 
-Assuming you are going to send these as fixes for 6.7-rc[n]? In that
-case, I can just rebase my tree on a later rc if I find any problems.
+---
+Neil Armstrong (2):
+      dt-bindings: power: meson-g12a-power: document ISP power domain
+      pmdomain: amlogic: meson-ee-pwrc: add support for G12A ISP power domain
 
-Kind regards
-Uffe
+ drivers/pmdomain/amlogic/meson-ee-pwrc.c     | 16 ++++++++++++++++
+ include/dt-bindings/power/meson-g12a-power.h |  1 +
+ 2 files changed, 17 insertions(+)
+---
+base-commit: 5cd631a52568a18b12fd2563418985c8cb63e4b0
+change-id: 20231114-topic-amlogic-upstream-isp-pmdomain-f7502561f911
+
+Best regards,
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
+
 
