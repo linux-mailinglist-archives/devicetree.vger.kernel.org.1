@@ -1,24 +1,24 @@
-Return-Path: <devicetree+bounces-18252-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18254-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 857E67F5DD2
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C89D7F5DD1
 	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 12:28:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 24B6EB212E2
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB681281BB4
 	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 11:28:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EE6D23749;
-	Thu, 23 Nov 2023 11:28:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A16BA23754;
+	Thu, 23 Nov 2023 11:28:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FB7519D;
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2ED31BD;
 	Thu, 23 Nov 2023 03:28:37 -0800 (PST)
 Received: from francesco-nb.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id 6B44E206FC;
+	by mail11.truemail.it (Postfix) with ESMTPA id E2B652070A;
 	Thu, 23 Nov 2023 12:28:35 +0100 (CET)
 From: Francesco Dolcini <francesco@dolcini.it>
 To: Nishanth Menon <nm@ti.com>,
@@ -32,9 +32,9 @@ Cc: Joao Paulo Goncalves <joao.goncalves@toradex.com>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Francesco Dolcini <francesco.dolcini@toradex.com>
-Subject: [PATCH v1 1/3] arm64: dts: ti: verdin-am62: improve spi1 chip-select pinctrl
-Date: Thu, 23 Nov 2023 12:28:24 +0100
-Message-Id: <20231123112826.16549-2-francesco@dolcini.it>
+Subject: [PATCH v1 2/3] dt-bindings: arm: ti: add verdin am62 mallow board
+Date: Thu, 23 Nov 2023 12:28:25 +0100
+Message-Id: <20231123112826.16549-3-francesco@dolcini.it>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20231123112826.16549-1-francesco@dolcini.it>
 References: <20231123112826.16549-1-francesco@dolcini.it>
@@ -48,68 +48,39 @@ Content-Transfer-Encoding: 8bit
 
 From: Joao Paulo Goncalves <joao.goncalves@toradex.com>
 
-Verdin SPI_1 interface has a dedicated hardware controlled chip select
-that is currently configured in the same pinctrl group as MISO/MOSI/CLK,
-however it is possible that it can be used only as a standard GPIO be it
-a chip select or not.
+Add Mallow carrier board for wifi and nonwifi variants of Toradex Verdin
+AM62 SoM. Mallow is a low-cost carrier board in the Verdin family with
+a small form factor and build for volume production making it ideal for
+industrial and embedded applications.
 
-To maximize flexibility and avoid duplication in the carrier board dts
-files move the SPI_1 CS in a dedicated pinctrl and also adds an
-additional pinctrl to simplify using SPI_1 CS as a GPIO.
+https://www.toradex.com/products/carrier-board/mallow-carrier-board
 
 Signed-off-by: Joao Paulo Goncalves <joao.goncalves@toradex.com>
 Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
 ---
- arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi | 17 +++++++++++++++--
- 1 file changed, 15 insertions(+), 2 deletions(-)
+ Documentation/devicetree/bindings/arm/ti/k3.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi b/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
-index 5db52f237253..6a06724b6d16 100644
---- a/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
-@@ -233,6 +233,13 @@ AM62X_IOPAD(0x0018, PIN_INPUT, 7) /* (F24) OSPI0_D3.GPIO0_6 */ /* SODIMM 62 */
- 		>;
- 	};
- 
-+	/* Verdin SPI_1 CS as GPIO */
-+	pinctrl_qspi1_io4_gpio: main-gpio0-7-default-pins {
-+		pinctrl-single,pins = <
-+			AM62X_IOPAD(0x001c, PIN_INPUT, 7) /* (J23) OSPI0_D4.GPIO0_7 */ /* SODIMM 202 */
-+		>;
-+	};
-+
- 	/* Verdin QSPI_1_CS# as GPIO (conflict with Verdin QSPI_1 interface) */
- 	pinctrl_qspi1_cs_gpio: main-gpio0-11-default-pins {
- 		pinctrl-single,pins = <
-@@ -599,12 +606,18 @@ AM62X_IOPAD(0x164, PIN_OUTPUT, 0) /* (AA19) RGMII2_TX_CTL */ /* SODIMM 211 */
- 	pinctrl_spi1: main-spi1-default-pins {
- 		pinctrl-single,pins = <
- 			AM62X_IOPAD(0x0020, PIN_INPUT, 1) /* (J25) OSPI0_D5.SPI1_CLK */ /* SODIMM 196 */
--			AM62X_IOPAD(0x001c, PIN_INPUT, 1) /* (J23) OSPI0_D4.SPI1_CS0 */ /* SODIMM 202 */
- 			AM62X_IOPAD(0x0024, PIN_INPUT, 1) /* (H25) OSPI0_D6.SPI1_D0  */ /* SODIMM 200 */
- 			AM62X_IOPAD(0x0028, PIN_INPUT, 1) /* (J22) OSPI0_D7.SPI1_D1  */ /* SODIMM 198 */
- 		>;
- 	};
- 
-+	/* Verdin SPI_1 CS */
-+	pinctrl_spi1_cs0: main-spi1-cs0-default-pins {
-+		pinctrl-single,pins = <
-+			AM62X_IOPAD(0x001c, PIN_INPUT, 1) /* (J23) OSPI0_D4.SPI1_CS0 */ /* SODIMM 202 */
-+		>;
-+	};
-+
- 	/* ETH_25MHz_CLK */
- 	pinctrl_eth_clock: main-system-clkout0-default-pins {
- 		pinctrl-single,pins = <
-@@ -1278,7 +1291,7 @@ &main_mcan0 {
- /* Verdin SPI_1 */
- &main_spi1 {
- 	pinctrl-names = "default";
--	pinctrl-0 = <&pinctrl_spi1>;
-+	pinctrl-0 = <&pinctrl_spi1>, <&pinctrl_spi1_cs0>;
- 	ti,pindir-d0-out-d1-in;
- 	status = "disabled";
- };
+diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+index 03d2a0d79fb0..c6506bccfe88 100644
+--- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
++++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+@@ -50,6 +50,7 @@ properties:
+           - enum:
+               - toradex,verdin-am62-nonwifi-dahlia # Verdin AM62 Module on Dahlia
+               - toradex,verdin-am62-nonwifi-dev    # Verdin AM62 Module on Verdin Development Board
++              - toradex,verdin-am62-nonwifi-mallow # Verdin AM62 Module on Mallow
+               - toradex,verdin-am62-nonwifi-yavia  # Verdin AM62 Module on Yavia
+           - const: toradex,verdin-am62-nonwifi     # Verdin AM62 Module without Wi-Fi / BT
+           - const: toradex,verdin-am62             # Verdin AM62 Module
+@@ -60,6 +61,7 @@ properties:
+           - enum:
+               - toradex,verdin-am62-wifi-dahlia # Verdin AM62 Wi-Fi / BT Module on Dahlia
+               - toradex,verdin-am62-wifi-dev    # Verdin AM62 Wi-Fi / BT M. on Verdin Development B.
++              - toradex,verdin-am62-wifi-mallow # Verdin AM62 Wi-Fi / BT Module on Mallow
+               - toradex,verdin-am62-wifi-yavia  # Verdin AM62 Wi-Fi / BT Module on Yavia
+           - const: toradex,verdin-am62-wifi     # Verdin AM62 Wi-Fi / BT Module
+           - const: toradex,verdin-am62          # Verdin AM62 Module
 -- 
 2.25.1
 
