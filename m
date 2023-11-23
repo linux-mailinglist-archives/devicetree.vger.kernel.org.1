@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-18181-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18182-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFA647F592B
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 08:25:12 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0498C7F5931
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 08:27:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1D5B4B20FF8
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 07:25:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 353611C20503
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 07:26:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9694168B3;
-	Thu, 23 Nov 2023 07:25:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32530168A4;
+	Thu, 23 Nov 2023 07:26:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fcsO+WsT"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="c9RXM3TF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 105E6D48
-	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 23:25:04 -0800 (PST)
-Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-548ce39b101so720182a12.2
-        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 23:25:03 -0800 (PST)
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 716B4C1
+	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 23:26:53 -0800 (PST)
+Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-5441ba3e53cso733395a12.1
+        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 23:26:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700724302; x=1701329102; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1700724412; x=1701329212; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Gw62yjHSiGL2fsBUgIhe9PelYcyS7tKpyEbrKlOiKA4=;
-        b=fcsO+WsTwWTFu03pZnW6ge4jVaXsyyarMqn6Tzdt+BB3oQtn04rVmq/7ogiBoxv6OZ
-         Xyiq8j0lar5GF/EjAp0I42NAEk9v5i2C56PB17zZh3C/pfPfK1Y6Jf5H5swvnzKMLWtp
-         cwMAaeZNh6tXmWxRgo96R+U3YGkfyNjnDE8aeYg+6j86V/cksskC0Go4Af/wdLHu07AT
-         nqmj1UYnRWWmkzhpTIFJt6n9QDWctZyitt89OnCVY2p3cxeq4SRGp/eIaKmVX33ArK0U
-         ne9N+ZePP/xCUkDrRAbfYk9mGq1wqZz9OZi2dOaKm26zMHGchXsYbpyRWB0TFJ3USYc4
-         dIPA==
+        bh=IR5Pb4R0ZpJxM7jtpRKa68+kYvaHgfQPCk6lS1mGwP4=;
+        b=c9RXM3TF3TNA38eQah9hJ1bfORgebg5Dy/ijhGHoa/57+dtcxjwrCb+efR1UICQCr/
+         QDj5MtxCmUpiHW0dRyuhvIufQMHtZ8TuGHHyC10UXD6x985kN5hZl3jmeKVDag3rAJn6
+         1WhOFZwFsdvBl7QTnYh64u1LHzbJ8O3i/aq5B41/zhM7L0jK61coWt+ntTfe0IS038sD
+         9CDm5F82FlusESVo7I7WblS6Zez8ZvE6Hex5yshwUN5bbrIu1re3GJN25c7U9Jhj7OTJ
+         Aq+f9GrS+M3N3jdxx+iCzccwd4cPe7dOk0FqPwFiFLkOyixsu+/HW+PGLAzAild2331H
+         FRDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700724302; x=1701329102;
+        d=1e100.net; s=20230601; t=1700724412; x=1701329212;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Gw62yjHSiGL2fsBUgIhe9PelYcyS7tKpyEbrKlOiKA4=;
-        b=KxgL4Ig56EqezQhrm98/v0dk4fb6w3A79PKvr37OuxkVY72OXMDy+Q+5WDULpMYFuq
-         u5fySr+5Qojg/M62E4vWWxWml8ZOaGHpUy3YoLDORYg7mB3wogeEcNEsBphiuHTowQFU
-         SdVQDzC6I/qQLVAVCtgS2h937iXqqEOJJFUG1q5yu1nWPV8HcldXqrrQOW52fXS3kQzX
-         WLELK9dBjNoi9ox6h3aj2NF0L2YC9AI9/iliER3jdOsnk4RKifB5zSETZOxxSNDRlUF7
-         oOMMo99lTXEDsJ2Rz5PX67g4qXI5w9DjqV1ks4BHTLQ2zQ4Jd/MntYy+sS2MmHCw6rq8
-         SuYg==
-X-Gm-Message-State: AOJu0YxAwML90HT9Nc5sohz/t/Pe4DDniq/nKWo3EuXbM7BrayfZ/LGZ
-	ixAsYi1RoiDr2d7mg1Hy9HL7fA==
-X-Google-Smtp-Source: AGHT+IHxfTzX1sEzr0T32GQGZVn6jrz6YXuzzA9Thq/Ta7v95XOHj/mdQYgujEd4Vwu5vSRUW4yAWQ==
-X-Received: by 2002:a17:906:ac8:b0:a01:a56f:f882 with SMTP id z8-20020a1709060ac800b00a01a56ff882mr3074924ejf.34.1700724302533;
-        Wed, 22 Nov 2023 23:25:02 -0800 (PST)
+        bh=IR5Pb4R0ZpJxM7jtpRKa68+kYvaHgfQPCk6lS1mGwP4=;
+        b=pO5Y+iPv5Vg53oVhNOZN0WyYv8AORKb/98DCR+XDRoA/wm0R7qeGs4as/1q3i+4E4q
+         vKqjLypgFHAmIUBARbUOCpMSlkX0yOqc3zmFEKejg+6yhYcQLaVraJY6M3be+yvqb3Kn
+         WDThixhMLq+G9GrVz6SH2NREIw4FH7kEG/rKZro85BvL3ZPb6c3vp0kF5WKtbER4fnzT
+         onHivQyQsLHuNSiGwPEyzXigyCI302VI+u3jvrK6yUYtbBLbB1TDX4+qfzQlnBBRsu/E
+         M6875QP32Up+NXJl5HsoO9wHyupjRjgNOb6huwifGukSVkQNr0lXFcGQ1AhCZzktVxIb
+         l8DA==
+X-Gm-Message-State: AOJu0YzKxXeZqN2948v0MwXwuBEHY92JgXUiRJKpQxVRKBSHPHrDYhen
+	voGjEd+uHd8oHjvyLxciiyAOUdL4iA2whw1b7ws=
+X-Google-Smtp-Source: AGHT+IHQM29Ga2lstm5x19iz2fE3aLtB46YBXC9GEmluKKS+DzzuFFTTqcn3couR98dpv1TzEb4e9Q==
+X-Received: by 2002:a17:907:d38a:b0:a00:a591:929 with SMTP id vh10-20020a170907d38a00b00a00a5910929mr3778307ejc.24.1700724411912;
+        Wed, 22 Nov 2023 23:26:51 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.100])
-        by smtp.gmail.com with ESMTPSA id u20-20020a170906c41400b0099b7276235esm417600ejz.93.2023.11.22.23.25.01
+        by smtp.gmail.com with ESMTPSA id m7-20020a17090607c700b00a02b519232bsm409837ejc.208.2023.11.22.23.26.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Nov 2023 23:25:02 -0800 (PST)
-Message-ID: <51b96130-0539-491a-9f19-f404e0ae3c89@linaro.org>
-Date: Thu, 23 Nov 2023 08:25:00 +0100
+        Wed, 22 Nov 2023 23:26:51 -0800 (PST)
+Message-ID: <4be5eb97-b9a4-43f3-843c-c8601b0f6b1b@linaro.org>
+Date: Thu, 23 Nov 2023 08:26:50 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,17 +62,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: reset: qcom: drop unneeded quotes
+Subject: Re: [PATCH] dt-bindings: reset: imx-src: Simplify compatible schema
+ and drop unneeded quotes
 Content-Language: en-US
-To: Rob Herring <robh@kernel.org>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Philipp Zabel <p.zabel@pengutronix.de>,
+To: Rob Herring <robh@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-kernel@vger.kernel.org
-References: <20231122224352.2808435-1-robh@kernel.org>
+References: <20231122224404.2808838-1-robh@kernel.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -118,14 +119,21 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231122224352.2808435-1-robh@kernel.org>
+In-Reply-To: <20231122224404.2808838-1-robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 22/11/2023 23:43, Rob Herring wrote:
-> Drop unneeded quotes over simple string values to fix a soon to be
-> enabled yamllint warning:
+On 22/11/2023 23:44, Rob Herring wrote:
+> The compatible schema can be simplified to a single enum for all the cases
+> with "fsl,imx51-src" fallback compatible.
 > 
+> In addition, the compatible strings are redundantly quoted. Drop unneeded
+> quotes over simple string values to fix a soon to be enabled yamllint
+> warning:
+> 
+>   [error] string value is redundantly quoted with any quotes (quoted-strings)
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
