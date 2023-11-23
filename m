@@ -1,126 +1,179 @@
-Return-Path: <devicetree+bounces-18424-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18425-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23B0F7F66F7
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 20:09:56 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93A137F671D
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 20:28:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A7B0FB212A4
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 19:09:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B60681C21010
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 19:28:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4000D4B5CF;
-	Thu, 23 Nov 2023 19:09:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF9CA4C3A7;
+	Thu, 23 Nov 2023 19:28:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cDfcvTch"
+	dkim=pass (1024-bit key) header.d=wolfvision.net header.i=@wolfvision.net header.b="M/9q6RA+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09FB63210;
-	Thu, 23 Nov 2023 19:09:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C706C433C7;
-	Thu, 23 Nov 2023 19:09:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700766588;
-	bh=H31tYMRMi9KqwFq+p39ksYkA9U91as7rK22EFXyG874=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=cDfcvTch5RfNfxfF5D79XFdoatrLc/szYurTXztwWV/Dqw2WfIvQRbT1ly1TJRkr1
-	 JdnTlb4EQGY1DiK2wriv9OEDl28V0vdl7Dtcbl3phz7B9SzdMCTD9ePpKgjNPVah4c
-	 J7EkAjCek5sBU/ZDkej90SIeovaVGGEpOIBo4NfyAJHgVqVjkdMP/gla45kzs7imCv
-	 z5TGPafyWpBEln7Ci39ksTkqTtO1jWWOQFRlmIh9BT7ntLm7JigCIZN/E04Y3wN2eq
-	 v3f6L4nGQ2mtNfDRqsaYJtCDCEoKOqE5udKhRbKrXsyvn4yCz8FWKHHacSNJMpo/CN
-	 9yf6M2Tk+P45g==
-Date: Thu, 23 Nov 2023 19:09:36 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Andy Shevchenko <andy@kernel.org>
-Cc: mitrutzceclan <mitrutzceclan@gmail.com>, linus.walleij@linaro.org,
- brgl@bgdev.pl, linux-gpio@vger.kernel.org, Lars-Peter Clausen
- <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Michael Walle <michael@walle.cc>, Arnd Bergmann <arnd@arndb.de>, ChiaEn Wu
- <chiaen_wu@richtek.com>, Niklas Schnelle <schnelle@linux.ibm.com>, Leonard
- =?UTF-8?B?R8O2aHJz?= <l.goehrs@pengutronix.de>, Mike Looijmans
- <mike.looijmans@topic.nl>, Haibo Chen <haibo.chen@nxp.com>, Hugo Villeneuve
- <hvilleneuve@dimonoff.com>, Ceclan Dumitru <dumitru.ceclan@analog.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 2/2] iio: adc: ad7173: add AD7173 driver
-Message-ID: <20231123190936.51f61b8d@jic23-huawei>
-In-Reply-To: <ZV-CHima8bpXcopc@smile.fi.intel.com>
-References: <20231123152331.5751-1-user@HYB-hhAwRlzzMZb>
-	<20231123152331.5751-2-user@HYB-hhAwRlzzMZb>
-	<ZV-CHima8bpXcopc@smile.fi.intel.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-he1eur04on2071.outbound.protection.outlook.com [40.107.7.71])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2619B9A;
+	Thu, 23 Nov 2023 11:28:20 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=JdsR6jhWykZgQW3VOsmMtTVJlInTZbzVBZK01g4ZMNHyPLCn2P+sSHapHgj6pBqPGpwx0y99LLGREVDbhgZqh94729tee4hcvCh4Osc1lrMmLx9psqYh7I7kme5FmyP2hNDNbslrAtkJFGp0jX6ruwAt98BQn3T9fbY5YiH2g1V7cmAaaj76/KNvFCtGrS55TyqneZ0EouZjnkHxDcTTk4VBznAviSeLeQNJtZFgGrSq8X0pMEdIOoxq/+GO7nZs8CD0kMWUV6QJ9RTpvvcESDIoM7q5l6btz8WT1cys8sVu6EpoT5C7eAuLD9DFZ3kS8FORjJj1NQYNiDXAFYVbvg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=mHK91HqO9Ev3CGROgDgTIvNKku4PPIyzSNhyCBFrvXo=;
+ b=CBjRrxA2TK6BrOjOmxhoOsh6ULA5JM/ZpoXJI3AhlyaYQMVx1YxXs9YuRp5feHsfQrHQOy7oXVY4m8sI9e2WFzmBzkCctBQotQINUA9gILKL93c6I7c+ufk6WQxN/N0XLX+1AD8/YKbe9kd2KhnP5jHTtRol6VLfhRmCbGaRIrRRPbvBC+XR9FBaTFSWMsMS+eVntkrd5imnSAQ6I1IGlJEg3onEhrWahJaODZs+6d14eNGVpkH/mkcZ1ULSUpuMorWkPE30CqAXP/6jtIUw2JVmxlvkva0riyh94CsZmRc2v9v9oi0HxI9KaNZXQPPfnKoDE7gPv7vAPsGYLX8Krg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=wolfvision.net; dmarc=pass action=none
+ header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=mHK91HqO9Ev3CGROgDgTIvNKku4PPIyzSNhyCBFrvXo=;
+ b=M/9q6RA+v9ZMke6jf9j/6I/1OnkgWbXu2yWm2jjWBi7r13I4SniyWVe6pbOPLLHVUCBfocJpL9eMF5WZateZHX53dN/qszRNb4I5BaWBDoj8GnpHTvRudSqGDoVczwDKC0lEFRYsUGQQtd1e8ItNiUXoYqtcWcbWB5R0tLRSQN8=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=wolfvision.net;
+Received: from VE1PR08MB4974.eurprd08.prod.outlook.com (2603:10a6:803:111::15)
+ by GV2PR08MB9422.eurprd08.prod.outlook.com (2603:10a6:150:dd::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7025.18; Thu, 23 Nov
+ 2023 19:28:14 +0000
+Received: from VE1PR08MB4974.eurprd08.prod.outlook.com
+ ([fe80::6b40:1e6f:7c94:71dc]) by VE1PR08MB4974.eurprd08.prod.outlook.com
+ ([fe80::6b40:1e6f:7c94:71dc%4]) with mapi id 15.20.7025.020; Thu, 23 Nov 2023
+ 19:28:14 +0000
+Message-ID: <4816cf48-ac89-4ed3-85f2-b69d37566052@wolfvision.net>
+Date: Thu, 23 Nov 2023 20:28:09 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC WIP 0/2] net: stmmac: dwmac-rk: add support for PHY
+ wake on LAN
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ David Wu <david.wu@rock-chips.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Jose Abreu <joabreu@synopsys.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com
+References: <20231123-dwmac-rk_phy_wol-v1-0-bf4e718081b9@wolfvision.net>
+ <f023fbf0-3669-4617-bb60-77fde3255dc0@lunn.ch>
+Content-Language: en-US
+From: Javier Carrasco <javier.carrasco@wolfvision.net>
+In-Reply-To: <f023fbf0-3669-4617-bb60-77fde3255dc0@lunn.ch>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: FR4P281CA0251.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:f5::12) To VE1PR08MB4974.eurprd08.prod.outlook.com
+ (2603:10a6:803:111::15)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: VE1PR08MB4974:EE_|GV2PR08MB9422:EE_
+X-MS-Office365-Filtering-Correlation-Id: ef6d3176-bccb-4fe5-098f-08dbec5a560a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	oM4eRpz1alO0y2y+ruxqybY1gft0Moyw6Ob861KdEWgdynMmNAr6TRtUqJP2buaHsIUVgTpNgGgGeGgSRO3WOuwLL5Z7Lw+cujFnDHSaCF5HDpOGnqzf/r7LGZhmCZP1dnqB3QxZqPTKnj4ffboImbMamTs97jk8XOZ4CPjj7CKikDfgGs/ttWZt1N/BU7jduEwEfvq5O7wbEc34TXovm5FlGcRwYL1t4F4uDAGrqh0XDhoWJ2Wll+HqRdqs9C1/pagN6P8J+ssRKmzP+cW9I416HyhGAn3K5XPiQFmv9I+DyX6Wu27DxFlF2ZpCX/pSBi6GOTEEIa007Hr1d46Qg1NRa3Xjq9NzQER5qv9aGS45oDC0yixs7HDcgGkxO19W77FV9EhbNcZGmxrBnNzAGMf8Ssy+7jdeeYoBKjYnU13cx0o0sryhmhB1BKh6ZFptGcJ8dv4+XpOY7FPif2KF23npt8XLduqU59n5FFWqhWtiGJDErSyvv7liNxgUz0OkfXxBogpIOeK9AirJ8M5fuW3DV6GlAKHFZn33Of/UKukNa2seZQdJDYze/iwBTmg9JsOgkXcTrYBNWcF9Zk9kIMXYFiL+cIIKrC3TvIchWQpu/tJ8+op1r9ZXqCuHqIlEdCEOsUiPWF3Hi5XYoK63xQ==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR08MB4974.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(346002)(366004)(376002)(136003)(396003)(39850400004)(230922051799003)(451199024)(1800799012)(64100799003)(186009)(38100700002)(478600001)(5660300002)(7416002)(31696002)(36756003)(86362001)(6486002)(2906002)(6666004)(4326008)(8676002)(2616005)(6512007)(8936002)(6506007)(53546011)(31686004)(316002)(6916009)(66476007)(66556008)(66946007)(54906003)(83380400001)(44832011)(41300700001)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?WGJ4VlNWNkhuWFlBc29GUFBuMmJ0bzBjT3gzVW1NVC80OThGR2Q3cXg2cElz?=
+ =?utf-8?B?QWVjNEViUElibTNRMkcrSWo3cXFmKy9ZWHh0cFhpcm1IWDRtd2VET2xybWdF?=
+ =?utf-8?B?cFpscm1wMHJFbGRRTlB4VjE3V1JWQUxXYjgzUTIwSzdJWWk5MHdGRWJ0K0ZH?=
+ =?utf-8?B?a2k0T1k3VG4yb0o5aGxrZTRLaVZ3bDUzc0VYemlCRDRpTmpWYkNMalVQSXJo?=
+ =?utf-8?B?WFJteS9WdnB0QWVISVFqNFQ3c25DODhZMVcvZDBOOTJIQUtxaUZTU3NnQ3RD?=
+ =?utf-8?B?WUdpc21DWGtwWDlzK2lCQ2IrRjZ0WGlYZGFnWlJuMHk1Q0hsaE9pWnVGRHoy?=
+ =?utf-8?B?YXZjMVBPMy9xWmNyWHNNRUVtL3J2OE5ieVBha0cwV3BwQmNqOVRhSGVKZmIw?=
+ =?utf-8?B?QUlaZHFXdFlyekRKZ0hxM1hqaVd2Z1ppcExueWpCdjc2d2p2djl3dnV3QTgy?=
+ =?utf-8?B?a0VKUC9yTjhsMHIxWTJDcUduYWx3aUNqS0NXREtlYnJMZTJ2VE9KSXpJbDNV?=
+ =?utf-8?B?dEptcTdwS3g1ZFdEUWJqeVh4aFZtV2c2Yk4zYXhkNGdDL0k5OUxZM2d2UjN3?=
+ =?utf-8?B?dG9oTnFZS015ZlJiZGJvSHk0YnNJUlp1Mi9JaWdSQUJTK0pRdlkxbWJNRklW?=
+ =?utf-8?B?TWhtaGtSbm5lTHNpdmhhNy96aUVsNlZQQzVURlR0U2tFTnJ6MUFXd1ZkUDE3?=
+ =?utf-8?B?V1Y1VGlCdFlKK0RoK0NDTlVCTFFGdlJhTGdHYWxScmU1ZHMzZFUxcGJQM3Ni?=
+ =?utf-8?B?N0ZibmN2UVZ0NUZYZTdOS3VSUWRlZHFFUWpoZm9tSTIza09zck9JMGZqd01T?=
+ =?utf-8?B?VnhFeERqS2FLTTN6OTlybGoxTm1PVHE2TzAzTFhvbEdXdC9odUJsWVBDZm1i?=
+ =?utf-8?B?YjZoT1Azb2FNaDhPemJieG8rYll1Qk5SZVFLVWtsU2prWlRBZnBYdnhON3JI?=
+ =?utf-8?B?a3VuY3hkRlRPVnpJL1krS09mZHd2anB5bzFpK0I3OHZBWFU4NC9ncEhVS212?=
+ =?utf-8?B?bk9jUkthSGtSa05GdXFzMFlJUVFyVzdHUVBhMnVQaW9oYk5PWHpDbkwxL1NV?=
+ =?utf-8?B?NVhrenhuMnpNdmZwNUhNN2gxQURNUlZ6cVJkcFVOU21mWDNiV0xxTzBZV095?=
+ =?utf-8?B?eWZxS2lQOXJFdml1MG10LzlWdWlzOTVmVi9MN1FPd0h3Zlg5MTZDRjI4VGFM?=
+ =?utf-8?B?RkxEaHprblFVdkhMR0FJalpoZDRNYm1OZjdoZHVCcDgyVGhMTlQ4bm1PZzdV?=
+ =?utf-8?B?T0NLWXRVOVNLZnBwbU1CR1NhY0Q1UXBLc0gyR0RIOElUd1VYZVIzKzZ4ZFA0?=
+ =?utf-8?B?WU8vMWlYRFNJVXpUWFg4dUd6aE04VlQreFh2ZzhRaENDSy9Gelg3eUdUNUh1?=
+ =?utf-8?B?UDJvQ2ZpRkFOVTQ3K3FLeG1oVll4VmQ4bDMrc0VubStjUitrQkNJRDQ3RkhU?=
+ =?utf-8?B?SE05eGYxWmNKdWorR21MdTN3Q1RsK0JoMm9XREZCZDZKWDZYQVlkNndmaWpF?=
+ =?utf-8?B?dUxCMjA1NTQ4V3QxaTRtYmZUdjBKaGVHbyszSUJtKzVjbW5yKzBkWGEwRk1z?=
+ =?utf-8?B?aXBDRzN5YWh6Y1ZnRHg4cUFDVE5PTjlvUFBLMTlWTGFQOTJMcnI2Qi9qbGN6?=
+ =?utf-8?B?TElrU3VHOWczaEZRWWRIZ2MreUJYandJMkZQMDZOT3dib1E1U2NkK3BnK2w2?=
+ =?utf-8?B?b1B1azI1TkxqNVhmaGxFZnhSWWdaNkFJZWxrMnd0RlpzV1hLZTNsTUlUc1Y1?=
+ =?utf-8?B?RjRCM3RYMjVFRmhHNlpyb2dBQkpMRmpOWVcxd0dlYVNCN096MHVuYzBFMEJs?=
+ =?utf-8?B?bzFwbFpZNUI5UVg5VjA1cGZIYVRVb1Zkd3p5cHNrU1hVU1YvZ3ZTNXNzVm9R?=
+ =?utf-8?B?RENTSHgyTXAvVmNCMnRRMTd3dFJFR2ZaMnJvUlVheTNzazZZR2VHbDBGblo4?=
+ =?utf-8?B?ZFExcEs5NDZkdi8xdllWamVqQUxIRTRMaVpMNU9hRURWVDFsRjJyQ0hUN0pi?=
+ =?utf-8?B?QVN0alNHbTdKS3NvVnAzWGtNeXZPQml6T0dkMmJFY3JLTjhFUG8zU1FqS1Iw?=
+ =?utf-8?B?OW1FRThqcUoyemVxQkwzVGo5ZHNJNFA3N3FHMUdqcVhGR3hPZEZKcTBndXR6?=
+ =?utf-8?B?VXpBUjdpclVEdVJaMmt3NW5WUHdMd3ZIRDRzTlR0eUFnNjZrMHpST3R0RElx?=
+ =?utf-8?B?dVRoRnhPYVNRSUhSNnlESlZGSmtnK2ZoWnh4SjlXa1RKbEUwbTdIRnM5dFcx?=
+ =?utf-8?Q?PeoyP+3tmJvrMgFA7dD5/yDhChUVJl8I73fq/XTvEg=3D?=
+X-OriginatorOrg: wolfvision.net
+X-MS-Exchange-CrossTenant-Network-Message-Id: ef6d3176-bccb-4fe5-098f-08dbec5a560a
+X-MS-Exchange-CrossTenant-AuthSource: VE1PR08MB4974.eurprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Nov 2023 19:28:14.0176
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Yrjq/bgjU03yT1o/ttlB2anpywtPldOLT4dX7eXU9oGSFm1WAcaNcMoV0CaMW+SFljszgyn4GpabM5U2TBi+yzUFEhmPKMbXipwGO2dLKZU=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV2PR08MB9422
 
+Hi Andrew,
 
+On 23.11.23 20:04, Andrew Lunn wrote:
+>> Setting the USE_PHY_WOL flag configures the PHY as expected (its driver
+>> writes the MAC address and the interrupt configuration into the PHY
+>> registers) and an interrupt is generated with every magic packet,
+>> but only during normal operation i.e. there is no interrupt generation
+>> in suspend-to-RAM.
 > 
-> ...
+> Do you have a logic analyser connected? Can you see if the PHY is
+> toggling its output pin? We then know if its a PHY problem, or a SoC
+> problem.
 > 
-> > +	return vref / (MICRO/MILLI);  
+what I meant by no interrupt generation was not even physical interrupt
+generation i.e. the signal does not toggle in suspend-to-RAM, but it
+does during normal operation.
+>> A (probably naive) wakeup-source property in the dt node does not help.
+>> So now I am trying to find out why the PHY does not react in suspend and
+>> why its interrupt is ignored in freeze mode, but I might be overlooking
+>> some other important point to consider.
 > 
-> Wouldn't MILLI in the denominator just suffice?
+> What is the clock setup? Sometimes the MAC gives a clock to the
+> PHY. Sometimes the PHY gives a lock to the MAC. If its MAC->PHY, and
+> this clock is getting turned off, that might cause a problem.
+> 
+>      Andrew
+Thank you for your feedback, I will analyze the clocks carefully.
 
-Just a quick comment here. Given this is converting from micro to milli units
-I'd consider the maths here be acting as documentation of that which would be lost if
-/MILLI only used.  Need spaces around the / though
+Primarily I would like to know if my approach makes sense in the first
+place even if there is no clock dependency. Two dwmacs (realtek and
+intel) make use of the USE_PHY_WOL flag, but I could not find any dts
+where the mac-wol property is used to check if the MAC power source is
+off in suspend.
 
-
-> 
-> ...
-> 
-> > +	case IIO_CHAN_INFO_SAMP_FREQ:
-> > +		reg = st->channels[chan->address].cfg.odr;
-> > +
-> > +		*val = st->info->sinc5_data_rates[reg] / MILLI;
-> > +		*val2 = (st->info->sinc5_data_rates[reg] % MILLI) * (MICRO/MILLI);
-> > +
-> > +		return IIO_VAL_INT_PLUS_MICRO;
-> > +	}  
-> 
-> > +		ret = fwnode_property_read_string(child, "adi,reference-select", &ref_label);
-> > +		if (!ret) {
-> > +			for (i = 0; i < ARRAY_SIZE(ad7173_ref_sel_str); i++)
-> > +				if (strcmp(ref_label, ad7173_ref_sel_str[i]) == 0) {
-> > +					ref_sel = i;
-> > +					break;
-> > +				}  
-> 
-> > +			if (i == ARRAY_SIZE(ad7173_ref_sel_str))
-> > +				return dev_err_probe(dev, -EINVAL, "Invalid channel reference name %s", ref_label);  
-> 
-> Too long line.
-> 
-> > +		} else if (ret != -EINVAL) {
-> > +			return dev_err_probe(dev, ret, "Invalid channel reference value");
-> > +		}  
-> 
-> 
-> Use standard pattern and it will be easier to see that 'else' is redundant.
-> 
-> 		if (ret == -EINVAL) // However I don't like this handling of
-> 				    // properties, but up to you and maintainer
-
-Personally I'd check for existence of property first and only try reading if it
-exists.  Avoid dance with resetting ret to 0.
-
-> 			ret = 0;
-> 		if (ret)
-> 			return dev_err_probe(...);
-> 
-> 
-> BUT. Isn't it a home grown variant of fwnode_property_match_property_string()?
-
-true enough...  I'd still add an existence check first given this one is optional.
-
-Jonathan
+Best regards,
+Javier Carrasco
 
