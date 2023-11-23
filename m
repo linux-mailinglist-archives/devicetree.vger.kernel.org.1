@@ -1,68 +1,70 @@
-Return-Path: <devicetree+bounces-18149-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18151-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D04EB7F56B0
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 04:02:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CBAC37F56FB
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 04:17:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5AC71B20BE2
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 03:02:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 41746B20EFD
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 03:17:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FE715D90A;
-	Thu, 23 Nov 2023 03:01:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3BA88BFC;
+	Thu, 23 Nov 2023 03:17:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="rUhUJQzT"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="RxIWG4AP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88D3C191;
-	Wed, 22 Nov 2023 19:01:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=Xptzas81N17YCuuLxBooSV9D0A5Kbw2K/uN1U+PXfjw=; b=rUhUJQzTP+xMnrOSIku0+NXS9e
-	Vwx/yg9ArH/c7A/Hi97odu9Rty203sOPxQXXqHB8k+uJkoz6Jn6LRa5jL/aFAHtZpFI2e2AtHZ2Cb
-	+WS/q/1vBCfgD+sp4sQuD362kTCVDKhoe31BMaeB8SMr1rrcM6TlTkqzK85s7wAbgJ4Q=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1r5zyH-000w18-Cr; Thu, 23 Nov 2023 04:01:41 +0100
-Date: Thu, 23 Nov 2023 04:01:41 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 184CF1B6;
+	Wed, 22 Nov 2023 19:17:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1700709439; x=1732245439;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=1c3Mf56cspS0rK0V+e9p5p1VgJgFuCb7pZFxscw0f/Q=;
+  b=RxIWG4AP5nErNZ3whJsyLAYUN2FOpCs//PJq0eGYe9nX/XiR2ALvXf3I
+   BKaQMnd4ei3NPlvXDPIHb9xa2RwkxVm3yyJE5ZrLlhvUg755jevHK4h4w
+   R1d3O5Wyh/AHQ+EOg74bgOHLZAPV/BESrKmf+nPLyHFvF3n0D9FkVgu2W
+   x49ISnbwRBTTDSWHKfTh9VFt/se5laj7Tv8Fn/Ciq5c7wZ8VNfkSg9ZUR
+   XC+Pn1Y3c13/8n1B5dNsFGvy7I95QblrJxF5e1GAz8V7fR4xcr3gWqKig
+   Nk1GT3QVZR+KYo9BNdRihjjLOBCjo9UbNXfGG5aNLlQzEL130aq9a6TAH
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="5380205"
+X-IronPort-AV: E=Sophos;i="6.04,220,1695711600"; 
+   d="scan'208";a="5380205"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Nov 2023 19:17:19 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="767083290"
+X-IronPort-AV: E=Sophos;i="6.04,220,1695711600"; 
+   d="scan'208";a="767083290"
+Received: from lkp-server01.sh.intel.com (HELO d584ee6ebdcc) ([10.239.97.150])
+  by orsmga002.jf.intel.com with ESMTP; 22 Nov 2023 19:17:14 -0800
+Received: from kbuild by d584ee6ebdcc with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1r60DI-0001Ag-0H;
+	Thu, 23 Nov 2023 03:17:12 +0000
+Date: Thu, 23 Nov 2023 11:16:43 +0800
+From: kernel test robot <lkp@intel.com>
+To: Alain Volmat <alain.volmat@foss.st.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
 	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Qingfang Deng <dqfext@gmail.com>,
-	SkyLake Huang <SkyLake.Huang@mediatek.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	David Epping <david.epping@missinglinkelectronics.com>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-	Harini Katakam <harini.katakam@amd.com>,
-	Simon Horman <horms@kernel.org>,
-	Robert Marko <robert.marko@sartura.hr>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [net-next RFC PATCH 11/14] dt-bindings: net: add QCA807x PHY
- defines
-Message-ID: <e2e74e27-eb55-408e-8d0d-7fb15ebd13f9@lunn.ch>
-References: <20231120135041.15259-1-ansuelsmth@gmail.com>
- <20231120135041.15259-12-ansuelsmth@gmail.com>
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	linux-media@vger.kernel.org,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+	Kieran Bingham <kieran.bingham@ideasonboard.com>,
+	Pavel Machek <pavel@ucw.cz>,
+	Alain Volmat <alain.volmat@foss.st.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 3/3] media: i2c: gc2145: Galaxy Core GC2145 sensor
+ support
+Message-ID: <202311231047.GzLUXA47-lkp@intel.com>
+References: <20231122075154.789431-4-alain.volmat@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,58 +73,97 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231120135041.15259-12-ansuelsmth@gmail.com>
+In-Reply-To: <20231122075154.789431-4-alain.volmat@foss.st.com>
 
-On Mon, Nov 20, 2023 at 02:50:38PM +0100, Christian Marangi wrote:
-> From: Robert Marko <robert.marko@sartura.hr>
-> 
-> Add DT bindings defined for Qualcomm QCA807x PHY series related to
-> calibration and DAC settings.
-> 
-> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> ---
->  include/dt-bindings/net/qcom-qca807x.h | 45 ++++++++++++++++++++++++++
->  1 file changed, 45 insertions(+)
->  create mode 100644 include/dt-bindings/net/qcom-qca807x.h
-> 
-> diff --git a/include/dt-bindings/net/qcom-qca807x.h b/include/dt-bindings/net/qcom-qca807x.h
-> new file mode 100644
-> index 000000000000..42c45c7d5210
-> --- /dev/null
-> +++ b/include/dt-bindings/net/qcom-qca807x.h
-> @@ -0,0 +1,45 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only OR MIT */
-> +/*
-> + * Device Tree constants for the Qualcomm QCA807X PHYs
-> + */
-> +
-> +#ifndef _DT_BINDINGS_QCOM_QCA807X_H
-> +#define _DT_BINDINGS_QCOM_QCA807X_H
-> +
-> +#define PSGMII_QSGMII_TX_DRIVER_140MV	0
-> +#define PSGMII_QSGMII_TX_DRIVER_160MV	1
-> +#define PSGMII_QSGMII_TX_DRIVER_180MV	2
-> +#define PSGMII_QSGMII_TX_DRIVER_200MV	3
-> +#define PSGMII_QSGMII_TX_DRIVER_220MV	4
-> +#define PSGMII_QSGMII_TX_DRIVER_240MV	5
-> +#define PSGMII_QSGMII_TX_DRIVER_260MV	6
-> +#define PSGMII_QSGMII_TX_DRIVER_280MV	7
-> +#define PSGMII_QSGMII_TX_DRIVER_300MV	8
-> +#define PSGMII_QSGMII_TX_DRIVER_320MV	9
-> +#define PSGMII_QSGMII_TX_DRIVER_400MV	10
-> +#define PSGMII_QSGMII_TX_DRIVER_500MV	11
-> +/* Default value */
-> +#define PSGMII_QSGMII_TX_DRIVER_600MV	12
+Hi Alain,
 
-Its not clear what these are used for. I think these are actually
-package properties, so having the correctly documented in the binding
-would help a lot understand why we need package properties.
+kernel test robot noticed the following build errors:
 
-Actually using #define like this is probably wrong. You should just
-have a u32 tx_driver_mv property, and list [140, 160, 180, 200,
-... 600] as valid values. The driver should then convert to whatever
-value it should write into the register.
+[auto build test ERROR on linuxtv-media-stage/master]
+[also build test ERROR on linus/master v6.7-rc2 next-20231122]
+[cannot apply to media-tree/master robh/for-next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-      Andrew
+url:    https://github.com/intel-lab-lkp/linux/commits/Alain-Volmat/dt-bindings-vendor-prefixes-Add-prefix-for-GalaxyCore-Inc/20231122-155443
+base:   https://git.linuxtv.org/media_stage.git master
+patch link:    https://lore.kernel.org/r/20231122075154.789431-4-alain.volmat%40foss.st.com
+patch subject: [PATCH v5 3/3] media: i2c: gc2145: Galaxy Core GC2145 sensor support
+config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/20231123/202311231047.GzLUXA47-lkp@intel.com/config)
+compiler: clang version 16.0.4 (https://github.com/llvm/llvm-project.git ae42196bc493ffe877a7e3dff8be32035dea4d07)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231123/202311231047.GzLUXA47-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202311231047.GzLUXA47-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/media/i2c/gc2145.c:664:11: error: call to undeclared function 'v4l2_subdev_state_get_format'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+           format = v4l2_subdev_state_get_format(state, 0);
+                    ^
+   drivers/media/i2c/gc2145.c:664:9: error: incompatible integer to pointer conversion assigning to 'struct v4l2_mbus_framefmt *' from 'int' [-Wint-conversion]
+           format = v4l2_subdev_state_get_format(state, 0);
+                  ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>> drivers/media/i2c/gc2145.c:669:9: error: call to undeclared function 'v4l2_subdev_state_get_crop'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+           crop = v4l2_subdev_state_get_crop(state, 0);
+                  ^
+   drivers/media/i2c/gc2145.c:669:7: error: incompatible integer to pointer conversion assigning to 'struct v4l2_rect *' from 'int' [-Wint-conversion]
+           crop = v4l2_subdev_state_get_crop(state, 0);
+                ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/media/i2c/gc2145.c:681:13: error: call to undeclared function 'v4l2_subdev_state_get_crop'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+                   sel->r = *v4l2_subdev_state_get_crop(sd_state, 0);
+                             ^
+   drivers/media/i2c/gc2145.c:681:12: error: indirection requires pointer operand ('int' invalid)
+                   sel->r = *v4l2_subdev_state_get_crop(sd_state, 0);
+                            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/media/i2c/gc2145.c:758:13: error: call to undeclared function 'v4l2_subdev_state_get_format'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+           framefmt = v4l2_subdev_state_get_format(sd_state, fmt->pad);
+                      ^
+   drivers/media/i2c/gc2145.c:758:11: error: incompatible integer to pointer conversion assigning to 'struct v4l2_mbus_framefmt *' from 'int' [-Wint-conversion]
+           framefmt = v4l2_subdev_state_get_format(sd_state, fmt->pad);
+                    ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/media/i2c/gc2145.c:770:9: error: call to undeclared function 'v4l2_subdev_state_get_crop'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+           crop = v4l2_subdev_state_get_crop(sd_state, fmt->pad);
+                  ^
+   drivers/media/i2c/gc2145.c:770:7: error: incompatible integer to pointer conversion assigning to 'struct v4l2_rect *' from 'int' [-Wint-conversion]
+           crop = v4l2_subdev_state_get_crop(sd_state, fmt->pad);
+                ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/media/i2c/gc2145.c:874:8: error: call to undeclared function 'v4l2_subdev_state_get_format'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+           fmt = v4l2_subdev_state_get_format(state, 0);
+                 ^
+   drivers/media/i2c/gc2145.c:874:6: error: incompatible integer to pointer conversion assigning to 'struct v4l2_mbus_framefmt *' from 'int' [-Wint-conversion]
+           fmt = v4l2_subdev_state_get_format(state, 0);
+               ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   12 errors generated.
+
+
+vim +/v4l2_subdev_state_get_format +664 drivers/media/i2c/gc2145.c
+
+   655	
+   656	static int gc2145_init_cfg(struct v4l2_subdev *sd,
+   657				   struct v4l2_subdev_state *state)
+   658	{
+   659		struct gc2145 *gc2145 = to_gc2145(sd);
+   660		struct v4l2_mbus_framefmt *format;
+   661		struct v4l2_rect *crop;
+   662	
+   663		/* Initialize pad format */
+ > 664		format = v4l2_subdev_state_get_format(state, 0);
+   665		gc2145_update_pad_format(gc2145, &supported_modes[0], format,
+   666					 MEDIA_BUS_FMT_RGB565_1X16);
+   667	
+   668		/* Initialize crop rectangle. */
+ > 669		crop = v4l2_subdev_state_get_crop(state, 0);
+   670		*crop = supported_modes[0].crop;
+   671	
+   672		return 0;
+   673	}
+   674	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
