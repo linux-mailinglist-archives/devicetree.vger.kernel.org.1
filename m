@@ -1,98 +1,108 @@
-Return-Path: <devicetree+bounces-18414-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18415-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D95037F6599
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 18:38:28 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 178447F65A5
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 18:42:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9246E281CC7
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 17:38:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 48F021C20EA1
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 17:42:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9094F405F0;
-	Thu, 23 Nov 2023 17:38:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB582405F7;
+	Thu, 23 Nov 2023 17:42:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S3dFS4mk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SdLGsha9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D1D733CF7;
-	Thu, 23 Nov 2023 17:38:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32238C433D9;
-	Thu, 23 Nov 2023 17:38:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96B95405F3;
+	Thu, 23 Nov 2023 17:42:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C9AFC433C8;
+	Thu, 23 Nov 2023 17:42:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700761104;
-	bh=Yw6Y36ErXAJIavqLBexXl3lguY2vTWpO+ADAlK9isC4=;
+	s=k20201202; t=1700761343;
+	bh=mnNDN6CYqckEVI/ixOmZ/CDaSGqUiwp2ZxM10WlAlTc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=S3dFS4mk9+zqoMSDzNRYX4a7q0zN2SB+nJXO53+w3a+g9Hjmc5PF3JytQHH+okqDe
-	 OKdoDF2lSatcZdn4fOZom7H2C/OJ6jpgoWOYexLTXRt2iYpdU2kyt0OgJyECkY5EB3
-	 1QUubQpzlv5VJu/Tdqdtbk7+e/4PJAZzUU4b4Zo1cKPTnGJB/3SXrnPnEjLAlghs/3
-	 btsfc3dxxGMxsQLEJ8Pj7dG74en7eo7GTTGmP3tg7hxuTLWgfDErgFGy0MAZMOUa2K
-	 sE5bJRtTerrBgxq/PWfZSfFON6od6oWddYy9kxyonTBoAP4hiqt2BQz0CXLogFZAUx
-	 W3qlONMHoBSJQ==
-Date: Thu, 23 Nov 2023 17:38:21 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Banajit Goswami <bgoswami@quicinc.com>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
+	b=SdLGsha9Z3ZYeiXs3nNe1pXNrngi9T51dttbfioVnWqXhZ0wCnD7lMr2Kr5+JdKPq
+	 v8Pm+dpyadazac8WxzdDQLqjEjwEBduOTyD5G/+OVFiJau8Yde78785cojbRtP4Ubi
+	 TG3ulvTP6VP6CzgHki9hFAZNPSVELzO08XEFFGv2YuL6gOtCeAJnXYjUrSSsnDqakM
+	 z1GurtZnkWZSx3leWQOZSxudwEivBQxW3R9QvGuRv/JSIdEtksyQ3KJap37AR6XYdP
+	 TTUPhwHvziKRz5/4DwUq/XUkOhf31WTZPDCDCK/qiDQ1jQauQEQGhfHGSsLNjzeB5y
+	 cvoiNiFvdCRKw==
+Date: Thu, 23 Nov 2023 17:42:18 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Tomasz Figa <tomasz.figa@gmail.com>,
+	Sylwester Nawrocki <s.nawrocki@samsung.com>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
 	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/5] ASoC: codec: wcd-mbhc-v2: add support when connected
- behind an USB-C audio mux
-Message-ID: <ZV+ODbskjFe5louc@finisterre.sirena.org.uk>
-References: <20231123-topic-sm8650-upstream-wcd939x-codec-v1-0-21d4ad9276de@linaro.org>
- <20231123-topic-sm8650-upstream-wcd939x-codec-v1-3-21d4ad9276de@linaro.org>
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Peter Griffin <peter.griffin@linaro.org>,
+	semen.protsenko@linaro.org, Jaewon Kim <jaewon02.kim@samsung.com>
+Subject: Re: [PATCH 1/3] dt-bindings: pinctrl: samsung: use Exynos7 fallbacks
+ for newer wake-up controllers
+Message-ID: <20231123-matador-purifier-282af21fa605@spud>
+References: <20231122200407.423264-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="zYYvbpAWCNy9mneV"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="82fCaaroElEuq5wK"
 Content-Disposition: inline
-In-Reply-To: <20231123-topic-sm8650-upstream-wcd939x-codec-v1-3-21d4ad9276de@linaro.org>
-X-Cookie: Slow day.  Practice crawling.
+In-Reply-To: <20231122200407.423264-1-krzysztof.kozlowski@linaro.org>
 
 
---zYYvbpAWCNy9mneV
+--82fCaaroElEuq5wK
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Nov 23, 2023 at 03:49:13PM +0100, Neil Armstrong wrote:
+On Wed, Nov 22, 2023 at 09:04:05PM +0100, Krzysztof Kozlowski wrote:
+> Older ARM8 SoCs like Exynos5433, Exynos7 and Exynos7885 have the pin
+> controller with wake-up interrupts muxed, thus the wake-up interrupt
+> controller device node has interrupts property, while its pin banks
+> might not (because they are muxed by the wake-up controller).
+>=20
+> Newer SoCs like Exynos850 and ExynosAutov9 do not used muxed wake-up
+> interrupts:
+> 1. Wake-up interrupt controller device node has no interrupts,
+> 2. Its pin banks have interrupts (since there is no muxing).
+>=20
+> Their programming interface is however still compatible with Exynos7,
+> thus change the bindings to express this: retain compatibility with
+> Exynos7 and add new compatibility fallback of Exynos850 in newer
+> designs.
+>=20
+> No driver changes are needed.  This is necessary only to properly
+> describe DTS.
+>=20
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL(wcd_mbhc_typec_report_unplug);
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-ASoC is generally EXPORT_SYMBOL_GPL.
+Cheers,
+Conor.
 
---zYYvbpAWCNy9mneV
+--82fCaaroElEuq5wK
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmVfjgwACgkQJNaLcl1U
-h9Borgf/WCcOu17PlfQEP8LcwwF7WliMIbDFpt7Sn3t6UjtZ4dG8lxo/wdWm3/zC
-9a4IqCgD7yJT+N6iGTEzfXw4G9ql6x0QKA3eJhLPlcDHPUhm7K0Hk0NJZUltNSve
-FScbROkncl72dzXhp3xmED1Xx+S+9lcLgQBE+LS8cYH6ifUPIe2zY2PLdzw1XQT7
-jajx1PGVE7trmzx9cymbbNAGbL2At5yqdR/biX3O6ckzY3kkNThWIwAdPedZdn/S
-kr/daf4kTS0ciuGI2RdeI6ZxhXt+BDEeW3Nf2pOF1ezaSnPm89GeoufjrkE3uIQm
-XvoszEBrtSkSv7oM0ASB2XyrRjkH1w==
-=aPTl
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZV+O+gAKCRB4tDGHoIJi
+0sYPAP9S2c9HnHdR7ZzPqfIZ5CHHzWUQV1qnq1mzNcTcecSR0AD/QMDe/sPPOH49
+h8Cm2Kf0XSlSjwBeb59N0W7HWXxi+AM=
+=QhNP
 -----END PGP SIGNATURE-----
 
---zYYvbpAWCNy9mneV--
+--82fCaaroElEuq5wK--
 
