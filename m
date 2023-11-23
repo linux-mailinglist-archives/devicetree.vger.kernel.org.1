@@ -1,122 +1,151 @@
-Return-Path: <devicetree+bounces-18325-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18326-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 753DE7F622E
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 15:59:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C12867F6231
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 16:00:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9A0FFB21586
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 14:59:52 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4B043B21149
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 15:00:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0ED902FC53;
-	Thu, 23 Nov 2023 14:59:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E4CA33CC8;
+	Thu, 23 Nov 2023 15:00:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="obSJa5Vo"
+	dkim=pass (1024-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="ZO3hUeOg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5391ED41;
-	Thu, 23 Nov 2023 06:59:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1700751584; x=1732287584;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=EbumtQAp61xxtl1wFucMhCk0s7eSuM0PDcdqsk0vVXY=;
-  b=obSJa5VoOIud2t1a1f3MKpv08+Ly8SjUSJ8d2VAfEy46y7XRUHkXzfz4
-   hj1UwfrsUHyue0awmNsN8V3mnG2SCv27GCKA8zCZsGuAZGwMjcyoX++Uw
-   pf/PAkEpruBu4XJbCgZdv3Q4a5zHSfLimE923xQQbkdEeUfyyjj0Kf+6z
-   Ve2i4I5DqQ6OHlNykkAHgad7c3dnutImNvimxUwM5g+fgVtkoO43Vlro0
-   KCrgf2WKuNqxDMZm0k07/39It7BEpR2Uec3n/xic/qXeZ28OMXxbu/bpg
-   RFMjk/959mBSZ+HSfDfy71yUOmwRJqnNjx0DGXB99AUKb+USkV9leEMmm
-   g==;
-X-CSE-ConnectionGUID: dphmfmJ6QC2EtHTlf6BQfw==
-X-CSE-MsgGUID: yYZjdC/+SzKEzWIlmXahFg==
-X-ThreatScanner-Verdict: Negative
-X-IronPort-AV: E=Sophos;i="6.04,222,1695711600"; 
-   d="asc'?scan'208";a="12119561"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 23 Nov 2023 07:59:43 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
- chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Thu, 23 Nov 2023 07:59:31 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex02.mchp-main.com (10.10.85.144)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Thu, 23 Nov 2023 07:59:23 -0700
-Date: Thu, 23 Nov 2023 14:58:55 +0000
-From: Conor Dooley <conor.dooley@microchip.com>
-To: Yu Chien Peter Lin <peterlin@andestech.com>
-CC: <acme@kernel.org>, <adrian.hunter@intel.com>, <ajones@ventanamicro.com>,
-	<alexander.shishkin@linux.intel.com>, <andre.przywara@arm.com>,
-	<anup@brainfault.org>, <aou@eecs.berkeley.edu>, <atishp@atishpatra.org>,
-	<conor+dt@kernel.org>, <conor@kernel.org>, <devicetree@vger.kernel.org>,
-	<dminus@andestech.com>, <evan@rivosinc.com>, <geert+renesas@glider.be>,
-	<guoren@kernel.org>, <heiko@sntech.de>, <irogers@google.com>,
-	<jernej.skrabec@gmail.com>, <jolsa@kernel.org>, <jszhang@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <linux-perf-users@vger.kernel.org>,
-	<linux-renesas-soc@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-	<linux-sunxi@lists.linux.dev>, <locus84@andestech.com>,
-	<magnus.damm@gmail.com>, <mark.rutland@arm.com>, <mingo@redhat.com>,
-	<n.shubin@yadro.com>, <namhyung@kernel.org>, <palmer@dabbelt.com>,
-	<paul.walmsley@sifive.com>, <peterz@infradead.org>,
-	<prabhakar.mahadev-lad.rj@bp.renesas.com>, <rdunlap@infradead.org>,
-	<robh+dt@kernel.org>, <samuel@sholland.org>, <sunilvl@ventanamicro.com>,
-	<tglx@linutronix.de>, <tim609@andestech.com>, <uwu@icenowy.me>,
-	<wens@csie.org>, <will@kernel.org>, <ycliang@andestech.com>,
-	<inochiama@outlook.com>
-Subject: Re: [PATCH v4 11/13] riscv: dts: allwinner: Add T-Head PMU extension
-Message-ID: <20231123-coping-revenue-be284a351c9d@wendy>
-References: <20231122121235.827122-1-peterlin@andestech.com>
- <20231122121235.827122-12-peterlin@andestech.com>
+Received: from EUR01-DB5-obe.outbound.protection.outlook.com (mail-db5eur01on2047.outbound.protection.outlook.com [40.107.15.47])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0A73A4;
+	Thu, 23 Nov 2023 07:00:47 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=fbB6TfSMBEUXaaI0BJnPFf/qErN2BIRn/Mq8E26TNq/oBejEBwd6HkbWKElajri4UqX9RvTwZg6fLBzdpEffrX+3wRLhQvQvYzfxDu8ZBMqPIo8GNINAuAiwzjTWQXabxcA/RjhySw60hbb+j4eJRIuoouyX76eKeOkZuxMOya+NlKf5IyQuZU+h8z3J8Mq2pWFTuhJ3sya/mZwcOsCSSUI5z0rCRozK6k8lWe1WwNJTMA0d7Ks19JaJ4eljDu8PdnXWcTypqcK+zZJDzWDzhv+O/vA2gk/Hiigz9/ZyEReSoClJfq0isxdp7sdkfrqrOEbGK16Y1V+5JPSt8GWJUw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=piInE089yVllZdOKd0m0VLSO2hbslUGk0OHC228YHrw=;
+ b=jA7wLnxuRQE2kVdXQHFW4vcZ4+xjyf7ek98010t+owu72WO9qBz2pcjAfQOpCVJ8Dj9PxWNaxkfcORAxu9Uu73W9l8u32wka/LsE/LGMrZt6frWQddT/I2uB6rBb+EdqKj1HmlEb1CJafZelxh6PNssdLRux1AJtaTkKD1j9LhYYILBXfNNb9xugfuRl+aryEhe+7iwI6VDWaZ35dMprOfXHMQiV9W3y3zLq1IZdhWeaYzEW159pOExjIFIe/RWamY1FfHKNRhxgwf0POze8ZMOWedUkHTOUZy8399iACp/b7z/y3VH/aVyHDsUTEPRfg7jSrhP2+MPRHxNaiEZZaw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=piInE089yVllZdOKd0m0VLSO2hbslUGk0OHC228YHrw=;
+ b=ZO3hUeOgj6Qt/f1zlzIvQnD47IcBO+tnu/WvZqkUqCfzRpUo7fiyT5cvUNkGxm1VSHzHEOqTa1keTszb+xVXWJT7ZD2wSlYgypzEjNe+dp4DHwEZ+Z5pxtVCvNtKNd8ibeRdr5tcqCZy+iAcQyw1lXMDyDaxiwTwSbOB8qmeG8g=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from VI1PR04MB5151.eurprd04.prod.outlook.com (2603:10a6:803:61::28)
+ by PAXPR04MB9424.eurprd04.prod.outlook.com (2603:10a6:102:2b2::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7025.18; Thu, 23 Nov
+ 2023 15:00:44 +0000
+Received: from VI1PR04MB5151.eurprd04.prod.outlook.com
+ ([fe80::c688:1f14:2ab1:c78a]) by VI1PR04MB5151.eurprd04.prod.outlook.com
+ ([fe80::c688:1f14:2ab1:c78a%4]) with mapi id 15.20.7025.019; Thu, 23 Nov 2023
+ 15:00:44 +0000
+From: Daniel Baluta <daniel.baluta@oss.nxp.com>
+To: broonie@kernel.org,
+	linux-kernel@vger.kernel.org,
+	alsa-devel@alsa-project.org
+Cc: linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	kuninori.morimoto.gx@renesas.com,
+	daniel.baluta@gmail.com,
+	robh+dt@kernel.org,
+	iuliana.prodan@nxp.com,
+	shengjiu.wang@nxp.com,
+	linux-imx@nxp.com
+Subject: [PATCH v2 0/2] Introduce playback-only/capture-only DAI link
+Date: Thu, 23 Nov 2023 17:00:10 +0200
+Message-Id: <20231123150012.154096-1-daniel.baluta@oss.nxp.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: ZR0P278CA0135.CHEP278.PROD.OUTLOOK.COM
+ (2603:10a6:910:40::14) To VI1PR04MB5151.eurprd04.prod.outlook.com
+ (2603:10a6:803:61::28)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="/5s3BqTCv3O//+Ke"
-Content-Disposition: inline
-In-Reply-To: <20231122121235.827122-12-peterlin@andestech.com>
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: VI1PR04MB5151:EE_|PAXPR04MB9424:EE_
+X-MS-Office365-Filtering-Correlation-Id: a26895dc-427d-4f8d-0f82-08dbec34f5f4
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	MkebQSbs0HBhUPLCZR9ffckFkYkX0hf9EhRoCJJbGcvthSxHIZt+9csopf1DPQ/lzt7IKwv5VHb8Zk30nPLyxM3PqqgMrmvWLJZUDGYhqd+Nqc4EFJfBXj7OrjrRE2xOcgIrLnUcX8qFtDP3XN0nrn+ZIPYC4UL6qXgwVwL72kqvX5K+rvlqhlGzkAdvMShqCQE5F0MB1jY21tXCn2/GyG1X6i8dUkN3w8hf9xUrn5X7Zb7ugP6EfTFF/+ZG2xbUb+VRLIfzyhsYdoIgxXuBeRBqFMl5qJJxzazwAiIurAMoPlOGq1Om7ZZeESfu38Wab7+fOGGiY1F72b2W6PUHrfwNYFy8AWKeB88tgF0ZfQiNM4SPmplyhQ80jqdCDfYvzydMHC8FJA0+UvPsH5F9BblXF/Y1QzP4PHkpb+PkEz/BEw53xyCSu5qhyL+TkHu9hhgImmKKQ4bKoRUPlv988tx/vTmHAUmoOZ525dN7DZZK9e4hSOgmvg8oHkp/8q5hu+Acz2WrHriP8fiETo0COS73MVEl8pEO80v4DFvoZrhioGSa65pl4aoqfP1eGVA68zmT5O4aB1AfsXnvzZ3QePcnpbZ7m3iEN8iPPlcViME=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5151.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(346002)(376002)(39860400002)(396003)(366004)(136003)(230922051799003)(186009)(451199024)(64100799003)(1800799012)(44832011)(1076003)(2616005)(5660300002)(8676002)(6512007)(52116002)(4744005)(6506007)(4326008)(8936002)(2906002)(26005)(66946007)(66476007)(66556008)(966005)(6486002)(316002)(6666004)(478600001)(38350700005)(41300700001)(38100700002)(86362001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?gU77x0FoCnxK5d337W9Ceghzn4V7yjxrDedMX7KyPP8iEkDmRSztZGMJRqTx?=
+ =?us-ascii?Q?72vQW7jFigvxcIbIdL/3P4ljUTvWmsrYx2RTDmhXXQw3uSG+w9KrMlWe98tB?=
+ =?us-ascii?Q?RVUDSOmYR841ktlnhkQKj2Qg28WmNNiC0IK00CnZyvPLkReggGD1PRjV5tbc?=
+ =?us-ascii?Q?thBRIGjJuAF3+ZcwNGLoYCYgMS3n53qyMiQXllRjDBthiqbI6IqmMl7yqh7q?=
+ =?us-ascii?Q?+f/N3KhKEk5m1LEHMZsEYCWvcOk6hMjRUNnXvGiUeK9ubzdBKZSXShiYKpaV?=
+ =?us-ascii?Q?2tAkcMYtX3P0PhgKtgW2JVO57SCbZ/w2vP9gtJH3iv2nmyrd9K+KoDl+m3wC?=
+ =?us-ascii?Q?LQBddsUTCtJ28fjFHtXHZapg6HpXKyrgJDz+K1AFQNFWjBB39EJTz5h6xFLc?=
+ =?us-ascii?Q?JatQSqCyIYgPJDnUnlUKvpC3Ne/KagzCJVB929dRBXSyrwDfdyIcdWVrFBpL?=
+ =?us-ascii?Q?wrLuIuOofSirwi2yub9+rO6OfaBq4VEG81iNtc2IP91ycwS2PwvO1vYB75+p?=
+ =?us-ascii?Q?AucnkDe2CBk5B5su7iG35Cg5NELrtBRTWzqOjlZLZb1AZM7SldIbkm2vZK+P?=
+ =?us-ascii?Q?JMwNt3ns/BkqaHt6XhAQPm9MmEKU9psgYE0Grxi6bx97DQQtj7HkwbGucVUf?=
+ =?us-ascii?Q?F6Ha1KEYu/ABxmo1bx5pS+YWYw1p7aiZcEJOT5G1qo6WApP4HPxkYcRSc2kX?=
+ =?us-ascii?Q?9s74dVTYwgmT/lF+Nzp90kG6e2m1rgaMg2OYLymld67C4sPpxfRMk1gQKAaM?=
+ =?us-ascii?Q?1cKUjXnz5gIBxDZFLMv3r5Ch75vU3fXT2ZNmwGmK8QrvIgOKmSb8G7OmbnT0?=
+ =?us-ascii?Q?MtWc+GY+Kav9nu0tPUWBa8J3mYqz7O2qCFgjaeD/TsN1BZa1k44mx5fEF/cx?=
+ =?us-ascii?Q?gHdtDxFMPIfx5duAH5HqpP0QHonEubENiKWiAKo12G7EC53FMh3GrcEO8PT3?=
+ =?us-ascii?Q?jPbfBzml3if9tjBcu7PrOpnVIvoX/z9TFrLykBgn7NXT/d1dc1NWX95rVY1p?=
+ =?us-ascii?Q?1k7QaQSZydWLv2Y7UqXJgCwPpp5Cffk0lKN9ZiusWwHwkgRrHzO5bD+cyKAT?=
+ =?us-ascii?Q?aZAg1En9tRSPWcPygVuPq27IecIxXS3Ub/9sX3jt5NoOiSn/L51lqy3xFvU7?=
+ =?us-ascii?Q?f2FV0oorvXcYUwbYNnOx3ddMXWGUC6TMxuhhF3i+Wj+c0YzevqvSxnd705y3?=
+ =?us-ascii?Q?NVTGNDB7fssPUHN1hXj8qxWNE+m/zZ2gJmFLsIvietq1Yi8dxEC2qp3GtchQ?=
+ =?us-ascii?Q?lD8NB9FuAMYoDYGW0c1yXnj3uPcUu/PU84GwtQg8sQW3ZmTAAl8qt2C3j1AU?=
+ =?us-ascii?Q?0RgftuyEiMaoTBa0NxtaZTzmXbHaEHt7J09B1E/Eb3R/JFbIs3PL5YmCOwar?=
+ =?us-ascii?Q?WSQR0bax8Eg3lJBdb/cCWPnI99g81g7B8kWqM71chTul8vBUQHofEi8QvoZt?=
+ =?us-ascii?Q?Kmy5iRrWEg7IIQOWlvj2oh5GhPt76tIwsruxoP6CxYiu66KBoEA3GQhHMZjP?=
+ =?us-ascii?Q?93BNR5WEK2xBRPUGQxtfKa/9muJ/C5puaZ0uu7OyhWGSPOeqvZndSRt9tPzW?=
+ =?us-ascii?Q?suzhtH+oAJGiHzcqcAK/mFEMAMVua547FEZi5/hM?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a26895dc-427d-4f8d-0f82-08dbec34f5f4
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5151.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Nov 2023 15:00:44.2489
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: wHbYls/2/JQrUxHdJDHCrACTblfv1PbGvqf80oWMHKcZNuZQpjKDdboAF9NjdYvXLoZKEUW2e4mtSgTC3G7ULg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB9424
 
---/5s3BqTCv3O//+Ke
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+From: Daniel Baluta <daniel.baluta@nxp.com>
 
-On Wed, Nov 22, 2023 at 08:12:33PM +0800, Yu Chien Peter Lin wrote:
-> xtheadpmu stands for T-Head Performance Monitor Unit extension.
-> Based on the added T-Head PMU ISA string, the SBI PMU driver
-> will make use of the non-standard irq source.
+This patchseries allows users to specify a link only direction with
+audio-graph-card2.
 
-Allwinner aren't the only ones using T-Head CPUs that the previous
-m*id pmu detection code would have matched on. I think the first three
-files below will also need to be updated:
+Changes since v1 - https://lore.kernel.org/lkml/20230801082433.548206-1-daniel.baluta@oss.nxp.com/T/
+	- used audio-graph-card2 instead of simple-card as we are
+	  deprecting simple-card.
 
-rg -l "thead,c[0-9]*\b[^-]" arch/riscv/boot/dts/
-arch/riscv/boot/dts/sophgo/sg2042-cpus.dtsi
-arch/riscv/boot/dts/sophgo/cv1800b.dtsi
-arch/riscv/boot/dts/thead/th1520.dtsi
-arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
+Daniel Baluta (2):
+  ASoC: audio-graph-card2: Introduce playback-only/capture only DAI link
+    flags
+  ASoC: dt-bindings: audio-graph-port: Document new DAI link flags
+    playback-only/capture-only
 
-Cheers,
-Conor.
+ .../bindings/sound/audio-graph-port.yaml      |  6 ++++++
+ include/sound/simple_card_utils.h             |  3 +++
+ sound/soc/generic/audio-graph-card2.c         |  6 ++++++
+ sound/soc/generic/simple-card-utils.c         | 19 +++++++++++++++++++
+ 4 files changed, 34 insertions(+)
 
---/5s3BqTCv3O//+Ke
-Content-Type: application/pgp-signature; name="signature.asc"
+-- 
+2.25.1
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZV9orwAKCRB4tDGHoIJi
-0mywAQDLiZ7Dv/EbYy9xnbLn22k0W8jszlQjb/0c3Uj362SnMAD+NfU0XmNTf1e8
-tbN33jbWPlia/s7ecfUt/OgqNf7XxAY=
-=CJRs
------END PGP SIGNATURE-----
-
---/5s3BqTCv3O//+Ke--
 
