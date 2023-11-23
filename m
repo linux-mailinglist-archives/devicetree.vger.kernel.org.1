@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-18187-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18188-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E67A07F594E
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 08:34:17 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8869F7F5950
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 08:34:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9ACDB281701
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 07:34:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B99B01C204FC
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 07:34:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37955168C6;
-	Thu, 23 Nov 2023 07:34:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0E2C168D3;
+	Thu, 23 Nov 2023 07:34:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XHLaq7j+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HsPNdAsy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23426D40
-	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 23:34:13 -0800 (PST)
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-4083ac51d8aso3137435e9.2
-        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 23:34:13 -0800 (PST)
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFB9910D2
+	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 23:34:35 -0800 (PST)
+Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-507cee17b00so692837e87.2
+        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 23:34:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700724851; x=1701329651; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1700724874; x=1701329674; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=GycfUxmsWxEQHMGxrB0nw0NoITcbH1GszGOy1Y8OPKQ=;
-        b=XHLaq7j+vgeKbJ40CaJAvJg3cfWeA18bggoniQe+qILezzbvVA8Di5zKfPC5u3BKHy
-         76iBkDXRsb/A3c4G8k4N1+Ya+OA9fX86I6nBnlVlot0DjTmytXJwx/RWY0h5JXvPkeDH
-         sSjXKiKzwRuzbeNiNsAZPWbDHTqcaPKASA74b9lHXvtxEMc2fdWEzZITM3Do0Tm6ME1z
-         E6tn6AUarQQUSLXZd29lz+db7eqkda2N0Yw7g2SqBCvTK/ztx8qvjVReBqXAwJcFVPSd
-         jztzK6qMEwPNw2RHfiDK9V2zSvDljW68I+/tx41b0RnD/ytlNxKsVDrgERScP/apmPl+
-         AYCA==
+        bh=3JH+03ERdFU24BU5LeW5MTH8ZXebolsQqtSjYJ5C4k0=;
+        b=HsPNdAsytDDxrHPSrQtzAjEoz0KDkOlkMUn9nAVEb4p6rWaVpztHigD1VsOQBH/CDh
+         ZeIP30w0Hm4ea4LSB5EjXgBV6Qr08lHzZOSJn+C0GqSRUH+ZpBgmrqDCKzQaivJ00VGr
+         DG1VK5wPoxH/4DmTUKxApfbVZpWQwxJTezgT5JEbS5cY0EFIMYJGQUtdmI1+6OxjZSSI
+         rGlzhLNlo7pd74BvhK0t9nu5b56syqupkrVhIOvr46QaS3KHe+3bGYPbpA0yTS0D3e4B
+         RL+sHIGKHMkZ40roc5wJdBDGBGv7J+p852a4pmtb86CPnpfkknCr3dNP7m+m0CjrYh6R
+         GjmQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700724851; x=1701329651;
+        d=1e100.net; s=20230601; t=1700724874; x=1701329674;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GycfUxmsWxEQHMGxrB0nw0NoITcbH1GszGOy1Y8OPKQ=;
-        b=VauZlTQanylQ5Mlv+zEYeHwUPevMfBFJAVjIqbw8RzaDENJDIJQy7cVaBbaE0UAPMH
-         Hgj2C7CmYfYhgpMb5WbxjCiwwer+6feQi4WDar/v8nrooS5xs7doE2MMOSq/ooEZmqNG
-         cfpLtOXToCYDJOJPH4BHeIpvTn6PH4MNVNQLFFUKmY52PBL87RwfM8H11uUr0lZg8mPO
-         f7CXS1zIXF6SjX+100k99A048xQZJy+tE1XTiMVc2OiwXShBKpvaBF0ojHdu7nMDcnBN
-         3abJPyWI5xA8xus8wJaDu+neL96Dcb9JBw5c2yBqEaybs1pngC/Q/8Mo/enC6oxpJvbw
-         hAKg==
-X-Gm-Message-State: AOJu0YyTdDdEErYKYE+Y2MQEGJgKgGZ+PJWcS3l3YMNaNekWikJcEpJS
-	VOxxQbWn1EoaLh1GhCfBHCeNXwau9U/7437rA4Y=
-X-Google-Smtp-Source: AGHT+IE+Hbk7KZVhdGbVKH2AES00sJ5pPyspPwos4+g+YCgNsBk2ubiQc+k0isjGVQjVYetrx1lp3Q==
-X-Received: by 2002:a05:600c:3b16:b0:40b:3441:37 with SMTP id m22-20020a05600c3b1600b0040b34410037mr1920102wms.30.1700724851723;
-        Wed, 22 Nov 2023 23:34:11 -0800 (PST)
+        bh=3JH+03ERdFU24BU5LeW5MTH8ZXebolsQqtSjYJ5C4k0=;
+        b=uBqLuG83/3amsB84JJnHEKJPICP7NEpjXt1PlIl5D7LWb0NG8+v3hha+gDybHTPor8
+         racjzz7k4MyyogwF7V5cDsy05xih+ZoU2LuMsY6Cu2MAVvCc+UUDimwn81UULQ1Tgn3R
+         qDPTxqfASo3ByPQHgPVdWz8qWt+7Pi4pGiOm/I7qLJGgH7B2A+LWQ6euMukvW2CL5XUZ
+         4iqCwAGLjR1ZljzrmXR99SKbsKBqYLdzlMzzWPqV5fWugl9UZOEAGNbTGwpp80BVN5hX
+         g0utYzIB7ySc3m0dMbRSHjdv+q42+Rdb04iIPF0Y5oBrQ/0M2CuLN5IheXYQAfo8UpLr
+         vGvQ==
+X-Gm-Message-State: AOJu0YzYGMXXndgp8X0CH5so58QmGAicf61CdyP9TeG3dPHIdS2m/jBF
+	3JJcSX5XFclMVEbNpFCbmU1iJA==
+X-Google-Smtp-Source: AGHT+IEcO36CRri24VcZjqmy+YCmrML21Y3CcbZ/l7itgXf4c/TFNArwVyJYTntbioFKBIoYB4ba2A==
+X-Received: by 2002:ac2:5e84:0:b0:50a:73a8:ae4f with SMTP id b4-20020ac25e84000000b0050a73a8ae4fmr3277674lfq.29.1700724873996;
+        Wed, 22 Nov 2023 23:34:33 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.100])
-        by smtp.gmail.com with ESMTPSA id d11-20020adfa40b000000b003142e438e8csm816828wra.26.2023.11.22.23.34.10
+        by smtp.gmail.com with ESMTPSA id d11-20020adfa40b000000b003142e438e8csm816828wra.26.2023.11.22.23.34.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Nov 2023 23:34:11 -0800 (PST)
-Message-ID: <dc031b13-0e02-4ac6-a0ce-f90bb6b92d60@linaro.org>
-Date: Thu, 23 Nov 2023 08:34:10 +0100
+        Wed, 22 Nov 2023 23:34:33 -0800 (PST)
+Message-ID: <1f5357b6-5d14-4ed2-966e-b023c4b2afaf@linaro.org>
+Date: Thu, 23 Nov 2023 08:34:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,13 +62,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: arm/calxeda: drop unneeded quotes
+Subject: Re: [PATCH] dt-bindings: hisilicon: Merge hi3620-clock into
+ hisilicon,sysctrl binding
 Content-Language: en-US
 To: Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231122224432.2809781-1-robh@kernel.org>
+ Conor Dooley <conor+dt@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Wei Xu <xuwei5@hisilicon.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-clk@vger.kernel.org
+References: <20231122235059.2966532-1-robh@kernel.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -114,15 +118,14 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231122224432.2809781-1-robh@kernel.org>
+In-Reply-To: <20231122235059.2966532-1-robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 22/11/2023 23:44, Rob Herring wrote:
-> Drop unneeded quotes over simple string values to fix a soon to be
-> enabled yamllint warning:
-> 
->   [error] string value is redundantly quoted with any quotes (quoted-strings)
+On 23/11/2023 00:50, Rob Herring wrote:
+> The hi3620-clock binding is simple and always a child of the
+> "hisilicon,sysctrl" node, so just add it into the hisilicon,sysctrl
+> binding and drop the old txt binding.
 > 
 > Signed-off-by: Rob Herring <robh@kernel.org>
 > ---
