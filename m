@@ -1,77 +1,70 @@
-Return-Path: <devicetree+bounces-18238-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18239-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12BF67F5C52
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 11:31:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40A927F5C5E
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 11:33:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 962CB2818CD
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 10:31:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EED3B28193B
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 10:33:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1450F1C28C;
-	Thu, 23 Nov 2023 10:31:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E1DF224D8;
+	Thu, 23 Nov 2023 10:33:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="LYKDYOkD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BjVlla1U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BCC6A2;
-	Thu, 23 Nov 2023 02:31:49 -0800 (PST)
-Received: from [100.107.97.3] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id A24EB6607377;
-	Thu, 23 Nov 2023 10:31:47 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1700735508;
-	bh=6hK8m7VIhmrU2OJGm7DqqR0J2A9CMw+Ic7fnXiQSnqM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=LYKDYOkDauP1JSYgbl4YafxYdpJ870lv3Xs+zMWVmSRBND7/sSmsl6L3MPq7A32fv
-	 g7zYQOcdij5icyna5gCARfz2BSqtuVoH9xNvRyaYJvfCXX/uR6g6JxlI1bAthCbUPQ
-	 +l4VNw6mts1Dve+cIpUBpHVL7N72Hs2QcElCptL/xu7arF6U+iEhafiXnnGPQqvU4i
-	 LywVjxC+k6EPu6I1Bb6Xy3zsI/o+Ff9aBRnlT6pZS/tJ5P0BVc4zGhxG6U9m/tkCi2
-	 /lFLTtqIriQv4vqmbXdY9uWapWu1cBI8ygQKR91AHOVH7Dvz273ZnpDfBy1VeYxYBH
-	 grvObbhwTJXqg==
-Message-ID: <5560ba13-e09c-4751-87f7-845d82199b45@collabora.com>
-Date: Thu, 23 Nov 2023 11:31:44 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D7A522EF4;
+	Thu, 23 Nov 2023 10:33:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00F56C433C8;
+	Thu, 23 Nov 2023 10:33:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1700735601;
+	bh=TNV0MOl+Kv5Rz74vl7zwedVQV2taOHqLyWjOkSFHbWM=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=BjVlla1UM55SAtrua1lvBQhE9mHUmsjNDz8b//iAYFTi/EbHIQDsjwgjWUi24xkBB
+	 7eJT0JlWxwfG2KDo/0srVFcWADZm1Spc++jCEuh6xrSbVsQf8+/a7if9SBOks4zvrP
+	 PawUHN2As03Vg+cAC3tkOo5jazp/5gO5MIMEOJSPh7sigL9n100xSjozgAeEwGBPse
+	 OOWv8/H7KVjropdbsDEQznxNj9MBlnQHwI+3KEB+k0TwrrIupDSarcnYP4uUce5Ckv
+	 upyhJB3Aj4m6O/rYxHCimZgOhb+a/0Z4ve+KDWH9lN+pgK91iVMXXgrxBl5ec91J1u
+	 FltIwtlgA0bMA==
+From: Lee Jones <lee@kernel.org>
+To: agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org, 
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+ Mukesh Ojha <quic_mojha@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <1698253601-11957-1-git-send-email-quic_mojha@quicinc.com>
+References: <1698253601-11957-1-git-send-email-quic_mojha@quicinc.com>
+Subject: Re: (subset) [PATCH v2 1/4] dt-bindings: mfd: qcom,tcsr: Add
+ compatible for sm8250/sm8350
+Message-Id: <170073559969.1231386.13642170765193211646.b4-ty@kernel.org>
+Date: Thu, 23 Nov 2023 10:33:19 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: mediatek: mt8183-kukui-jacuzzi: fix dsi
- unnecessary cells properties
-Content-Language: en-US
-To: Eugen Hristev <eugen.hristev@collabora.com>,
- linux-mediatek@lists.infradead.org
-Cc: krzysztof.kozlowski+dt@linaro.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- matthias.bgg@gmail.com, kernel@collabora.com, hsinyi@chromium.org
-References: <20230814071053.5459-1-eugen.hristev@collabora.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230814071053.5459-1-eugen.hristev@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.12.3
 
-Il 14/08/23 09:10, Eugen Hristev ha scritto:
-> dtbs_check throws a warning at the dsi node:
-> Warning (avoid_unnecessary_addr_size): /soc/dsi@14014000: unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
+On Wed, 25 Oct 2023 22:36:38 +0530, Mukesh Ojha wrote:
+> Document the compatible for both sm8250 and sm8350 SoCs.
 > 
-> Other DTS have a panel child node with a reg, so the parent dtsi
-> must have the address-cells and size-cells, however this specific DT
-> has the panel removed, but not the cells, hence the warning above.
 > 
-> If panel is deleted then the cells must also be deleted since they are
-> tied together, as the child node in this DT does not have a reg.
-> 
-> Fixes: cabc71b08eb5 ("arm64: dts: mt8183: Add kukui-jacuzzi-damu board")
-> Signed-off-by: Eugen Hristev <eugen.hristev@collabora.com>
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Applied, thanks!
+
+[1/4] dt-bindings: mfd: qcom,tcsr: Add compatible for sm8250/sm8350
+      commit: a88f80580a1a076e69c4fecdf6d6441fac24e8c1
+
+--
+Lee Jones [李琼斯]
 
 
