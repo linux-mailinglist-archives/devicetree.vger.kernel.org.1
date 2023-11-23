@@ -1,93 +1,87 @@
-Return-Path: <devicetree+bounces-18391-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18393-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35B407F64D8
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 18:06:38 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B1397F64DF
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 18:08:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E61E6281B6A
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 17:06:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6CC2D1C20DEE
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 17:08:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 600D13FB3D;
-	Thu, 23 Nov 2023 17:06:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB11D3FE2C;
+	Thu, 23 Nov 2023 17:08:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1C931BE;
-	Thu, 23 Nov 2023 09:06:33 -0800 (PST)
-X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="389448692"
-X-IronPort-AV: E=Sophos;i="6.04,222,1695711600"; 
-   d="scan'208";a="389448692"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Nov 2023 09:06:32 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="796376621"
-X-IronPort-AV: E=Sophos;i="6.04,222,1695711600"; 
-   d="scan'208";a="796376621"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Nov 2023 09:06:27 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andy@kernel.org>)
-	id 1r6D9j-0000000GQ9P-1JPi;
-	Thu, 23 Nov 2023 19:06:23 +0200
-Date: Thu, 23 Nov 2023 19:06:23 +0200
-From: Andy Shevchenko <andy@kernel.org>
-To: mitrutzceclan <mitrutzceclan@gmail.com>
-Cc: linus.walleij@linaro.org, brgl@bgdev.pl, linux-gpio@vger.kernel.org,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michael Walle <michael@walle.cc>, Arnd Bergmann <arnd@arndb.de>,
-	ChiaEn Wu <chiaen_wu@richtek.com>,
-	Niklas Schnelle <schnelle@linux.ibm.com>,
-	Leonard =?iso-8859-1?Q?G=F6hrs?= <l.goehrs@pengutronix.de>,
-	Mike Looijmans <mike.looijmans@topic.nl>,
-	Haibo Chen <haibo.chen@nxp.com>,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-	Ceclan Dumitru <dumitru.ceclan@analog.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 2/2] iio: adc: ad7173: add AD7173 driver
-Message-ID: <ZV-Gj3boJ1LPYj5T@smile.fi.intel.com>
-References: <20231123152331.5751-1-user@HYB-hhAwRlzzMZb>
- <20231123152331.5751-2-user@HYB-hhAwRlzzMZb>
- <ZV-CHima8bpXcopc@smile.fi.intel.com>
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37428C1
+	for <devicetree@vger.kernel.org>; Thu, 23 Nov 2023 09:08:12 -0800 (PST)
+Received: from dude05.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::54])
+	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1r6DBR-0001A4-UT; Thu, 23 Nov 2023 18:08:09 +0100
+From: Philipp Zabel <p.zabel@pengutronix.de>
+Date: Thu, 23 Nov 2023 18:08:04 +0100
+Subject:
+ [PATCH 1/3] drm/panel: ilitek-ili9881c: make use of prepare_prev_first
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZV-CHima8bpXcopc@smile.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id:
+ <20231123-drm-panel-ili9881c-am8001280g-v1-1-fdf4d624c211@pengutronix.de>
+References:
+ <20231123-drm-panel-ili9881c-am8001280g-v1-0-fdf4d624c211@pengutronix.de>
+In-Reply-To:
+ <20231123-drm-panel-ili9881c-am8001280g-v1-0-fdf4d624c211@pengutronix.de>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Marco Felsch <m.felsch@pengutronix.de>,
+ kernel@pengutronix.de, Philipp Zabel <p.zabel@pengutronix.de>
+X-Mailer: b4 0.12-dev-aab37
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::54
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Thu, Nov 23, 2023 at 06:47:26PM +0200, Andy Shevchenko wrote:
-> On Thu, Nov 23, 2023 at 05:23:22PM +0200, mitrutzceclan wrote:
+From: Marco Felsch <m.felsch@pengutronix.de>
 
-...
+The panel.prepare() call requires an initialized MIPI-DSI host, so set
+the prepare_prev_first flag to indicate that the host must be
+initialized first.
 
-> > +static int ad7173_free_config_slot_lru(struct ad7173_state *st)
-> 
-> > +static int ad7173_load_config(struct ad7173_state *st,
-> > +			      struct ad7173_channel_config *cfg)
-> 
-> Have you checked, btw, list_lru.h? Maybe all this can be simply changed by
-> using existing library?
+Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+Signed-off-by: Philipp Zabel <p.zabel@pengutronix.de>
+---
+ drivers/gpu/drm/panel/panel-ilitek-ili9881c.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Okay, it seems specific to MM, but maybe there something similar done which
-can be split into generic LRU library? In any case it seems too much for this
-nice series, so can you just add a comment on top of these functions to
-mention that it may be switched to a generic LRU implementation if one exists?
+diff --git a/drivers/gpu/drm/panel/panel-ilitek-ili9881c.c b/drivers/gpu/drm/panel/panel-ilitek-ili9881c.c
+index 7838947a1bf3..0c911ed9141b 100644
+--- a/drivers/gpu/drm/panel/panel-ilitek-ili9881c.c
++++ b/drivers/gpu/drm/panel/panel-ilitek-ili9881c.c
+@@ -1094,6 +1094,8 @@ static int ili9881c_dsi_probe(struct mipi_dsi_device *dsi)
+ 		return ret;
+ 	}
+ 
++	ctx->panel.prepare_prev_first = true;
++
+ 	ret = drm_panel_of_backlight(&ctx->panel);
+ 	if (ret)
+ 		return ret;
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+2.39.2
 
