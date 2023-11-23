@@ -1,118 +1,101 @@
-Return-Path: <devicetree+bounces-18411-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18412-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8433B7F657D
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 18:33:24 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF8137F6586
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 18:35:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E4402B20E22
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 17:33:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 79FCB281284
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 17:35:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1CC1405D2;
-	Thu, 23 Nov 2023 17:33:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03C0B405DA;
+	Thu, 23 Nov 2023 17:35:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pgk6DEGH"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fIjCa7H8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6B513FE34
-	for <devicetree@vger.kernel.org>; Thu, 23 Nov 2023 17:33:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13EBEC433C7;
-	Thu, 23 Nov 2023 17:33:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700760797;
-	bh=woLJ62RYkt7tapNnqeAjaKeIkpTolDbLBY64GCRJz2A=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Pgk6DEGHDHMD30MyZKcpHBIj2e4NiqNJ1+dNjOijT3YblPQbz8okp0NQtHY+MsU5R
-	 np1mse6z03lV4GlFofmHqkfRwFbF0JxdyaFfmNSwnrA3lTvkqn9b/OBB7zWU1+Bval
-	 LUAiz9hQO3g4erc5WkUpHpmyHdipBNAkEBUO6WcGj3AtiAOXtAMqGnm6/ldnMlaZVD
-	 tsnFBJ3XG1tpeBlXpzSJGnnA2ELEtFrwkLjKNFRanWSbInsgGy0d1i1aY9LwA4vang
-	 ppAnkWikW2OPCEHJiKOJ711+eyMFszHSdwr8hlPOkaKOLGPuS+g1FJ7AXL/XMAmBxG
-	 dxbDoNUx5LDLw==
-Date: Thu, 23 Nov 2023 17:33:11 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Michael Walle <mwalle@kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	Sam Ravnborg <sam@ravnborg.org>, David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: display: simple: add Evervision
- VGG644804 panel
-Message-ID: <20231123-demote-landscape-4f49eea6f274@spud>
-References: <20231123102404.2022201-1-mwalle@kernel.org>
+Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 486699E
+	for <devicetree@vger.kernel.org>; Thu, 23 Nov 2023 09:35:13 -0800 (PST)
+Received: by mail-pl1-x634.google.com with SMTP id d9443c01a7336-1cf876eab03so2272385ad.0
+        for <devicetree@vger.kernel.org>; Thu, 23 Nov 2023 09:35:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1700760913; x=1701365713; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=38QmMR5qWUUF3d4ez46gu28mY2bkSgtw/0YEKPuilA0=;
+        b=fIjCa7H8Rm7zu7pXKnLJk3bVazP3yMCK9lHXtfDZwVtmPQmOUjay+Kv4Z0xaDamWel
+         exE6HFc56JaRJmiPt2BDg5JA2HhDzy5yDf+2xtDvSCxSEzLHHU7EoRBUL+iCPQQSrnvf
+         cHoTPIetKpgRDE5RvFj3b2hzUzdKdz1KFIbZaSB8dgKZO2LTgAVu70Y2AhZOrPxSo+rP
+         XBRv/8UOGHBoyqMCJpnYLK9/8UvaTEWcv3RnjkT7Rk2fiAjMOCc62XIhpRYTUXM34RNT
+         EoBdNVcLuokHML9nf5v2C3dnVeHW3mGuFv4OR+tKXSxyAP7SZipZE5T8dUgkB7eK3cCI
+         pn8A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700760913; x=1701365713;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=38QmMR5qWUUF3d4ez46gu28mY2bkSgtw/0YEKPuilA0=;
+        b=PQp4ccr/s9PkpL3oQ/cUOxzb68OZKSYopzVxrdqBzF879dc79Yidg0vF9FwXUlxeST
+         xH1OQdk8fn0U7vFno0N6veimN7qstdy5boR1eiwyu5a+i1cYmnavOFUPuWS7li/e5JeP
+         kal3lTMn999gC+lnTCkS/Qh3AQiTiw0PmxYNf0Vwwek6AB7iLHeahhZdho/lxqGoegvV
+         1523tzswm3lXdn4NP4F5eHWl5CBhJN0w98LnaqAeAijqKttlGjG/BVbJv0uynyEFiMdH
+         joaTYqS3WZoWGzI2P1RQ4DW24seJRpVmVdx/jFbKC8MPHjvd+Ht2UmRZO7W1LmO8KVW3
+         gACA==
+X-Gm-Message-State: AOJu0YxQQCNFeT6vBkL9BSEjq0ECokKAxD0leYW7Fuqf9EoMjqaIL6j9
+	jsQd8gquoGdNcVODIhzfH8fowCHFAGWeRd7hviQztEcR
+X-Google-Smtp-Source: AGHT+IFGW/2gXJJfrwZoVQS9zLQTzpLwxsQQ8h9r+ECWZJzpIxMh+72P7SUi8H0TFJLCoVsNpbxuqQEjZn/Ptw0QR0Y=
+X-Received: by 2002:a17:90b:85:b0:285:8609:4974 with SMTP id
+ bb5-20020a17090b008500b0028586094974mr130618pjb.4.1700760912639; Thu, 23 Nov
+ 2023 09:35:12 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="v/MTmL7bd4PQXEjS"
-Content-Disposition: inline
-In-Reply-To: <20231123102404.2022201-1-mwalle@kernel.org>
-
-
---v/MTmL7bd4PQXEjS
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20230928125536.1782715-1-l.stach@pengutronix.de> <20230928125536.1782715-2-l.stach@pengutronix.de>
+In-Reply-To: <20230928125536.1782715-2-l.stach@pengutronix.de>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Thu, 23 Nov 2023 14:34:59 -0300
+Message-ID: <CAOMZO5CYX8ihTQ87zi3maARWzz+PmLKYBBJGVn69Xig2nAwqug@mail.gmail.com>
+Subject: Re: [PATCH v4 2/2] drm/bridge: imx: add driver for HDMI TX Parallel
+ Video Interface
+To: Lucas Stach <l.stach@pengutronix.de>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Liu Ying <victor.liu@nxp.com>, Andrzej Hajda <andrzej.hajda@intel.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, devicetree@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, patchwork-lst@pengutronix.de, 
+	NXP Linux Team <linux-imx@nxp.com>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Nov 23, 2023 at 11:24:03AM +0100, Michael Walle wrote:
-> Add Evervision VGG644804 5.7" 640x480 LVDS panel compatible string.
->=20
-> Signed-off-by: Michael Walle <mwalle@kernel.org>
+Hi Lucas,
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+On Thu, Sep 28, 2023 at 9:56=E2=80=AFAM Lucas Stach <l.stach@pengutronix.de=
+> wrote:
+>
+> This IP block is found in the HDMI subsystem of the i.MX8MP SoC. It has a
+> full timing generator and can switch between different video sources. On
+> the i.MX8MP however the only supported source is the LCDIF. The block
+> just needs to be powered up and told about the polarity of the video
+> sync signals to act in bypass mode.
+>
+> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com> (v2)
+> Tested-by: Marek Vasut <marex@denx.de> (v1)
+> Tested-by: Luca Ceresoli <luca.ceresoli@bootlin.com> (v2)
+> Tested-by: Richard Leitner <richard.leitner@skidata.com> (v2)
+> Tested-by: Frieder Schrempf <frieder.schrempf@kontron.de> (v2)
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com> (v3)
 
-Cheers,
-Conor.
+Tested-by: Fabio Estevam <festevam@gmail.com>
 
-> ---
->  .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
->  1 file changed, 2 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple=
-=2Eyaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-> index 3ec9ee95045f..2471c99a0c96 100644
-> --- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-> @@ -144,6 +144,8 @@ properties:
->        - edt,etmv570g2dhu
->          # E Ink VB3300-KCA
->        - eink,vb3300-kca
-> +        # Evervision Electronics Co. Ltd. VGG644804 5.7" VGA TFT LCD Pan=
-el
-> +      - evervision,vgg644804
->          # Evervision Electronics Co. Ltd. VGG804821 5.0" WVGA TFT LCD Pa=
-nel
->        - evervision,vgg804821
->          # Foxlink Group 5" WVGA TFT LCD panel
-> --=20
-> 2.39.2
->=20
-
---v/MTmL7bd4PQXEjS
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHQEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZV+M1wAKCRB4tDGHoIJi
-0g5bAP4msuYt8MvmnmtOl4e/iBRX83HejY8bhwJ5ev0kBk7raQD40yYCRbaIBDL3
-5u/TjYow9B+aexy90tzKAP86TVJqDA==
-=OH5m
------END PGP SIGNATURE-----
-
---v/MTmL7bd4PQXEjS--
+Could someone apply this series, please?
 
