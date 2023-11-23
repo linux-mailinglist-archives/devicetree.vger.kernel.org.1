@@ -1,224 +1,132 @@
-Return-Path: <devicetree+bounces-18172-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18173-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97F597F58E1
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 08:09:03 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4EDC7F58E5
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 08:10:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B2F1E1C20CC7
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 07:09:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 451F3B20D26
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 07:10:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4107E1427D;
-	Thu, 23 Nov 2023 07:09:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B39931549E;
+	Thu, 23 Nov 2023 07:10:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="DbrZOEfw"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="dSNMgfTw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40E74100
-	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 23:08:54 -0800 (PST)
-Received: from epcas2p3.samsung.com (unknown [182.195.41.55])
-	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20231123070850epoutp04f45db3873abb83074d52b2d2c3061786~aLtu1f83e1327013270epoutp04U
-	for <devicetree@vger.kernel.org>; Thu, 23 Nov 2023 07:08:50 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20231123070850epoutp04f45db3873abb83074d52b2d2c3061786~aLtu1f83e1327013270epoutp04U
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1700723330;
-	bh=UlOYtqsg8VMxZjHuFShtASMAUieEGsDmiXuu5nvaCBE=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=DbrZOEfwVXiW3t8kiHJ0Ir3nOvhOgGfsOrPRAk3MGgchpoEuXwrSwUstvflCFNzDH
-	 eCn/tT4vNC5XpdqWPXdyivQ3zYDIRpS30dNB/DhFvM0rgh8tW3bryCPo+iN4gk1B6T
-	 DMDrXEwImF4jsXJqbiEQJpJ+e9MERIe6bjCG0Hos=
-Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
-	epcas2p4.samsung.com (KnoxPortal) with ESMTP id
-	20231123070849epcas2p4e8ae1cbfb86050455bc92f169aa21d64~aLtuOFxJw2905729057epcas2p4G;
-	Thu, 23 Nov 2023 07:08:49 +0000 (GMT)
-Received: from epsmges2p1.samsung.com (unknown [182.195.36.100]) by
-	epsnrtp2.localdomain (Postfix) with ESMTP id 4SbTjs2Kyzz4x9Pw; Thu, 23 Nov
-	2023 07:08:49 +0000 (GMT)
-Received: from epcas2p1.samsung.com ( [182.195.41.53]) by
-	epsmges2p1.samsung.com (Symantec Messaging Gateway) with SMTP id
-	6B.F2.10006.18AFE556; Thu, 23 Nov 2023 16:08:49 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-	epcas2p1.samsung.com (KnoxPortal) with ESMTPA id
-	20231123070848epcas2p13b713349f30d3cfe72b3e343ab8cc90b~aLttLcVqm0047900479epcas2p1O;
-	Thu, 23 Nov 2023 07:08:48 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-	20231123070848epsmtrp1a819f9d784eb01230de11b0b817e7cab~aLttKZ7vZ2630226302epsmtrp1S;
-	Thu, 23 Nov 2023 07:08:48 +0000 (GMT)
-X-AuditID: b6c32a45-179ff70000002716-05-655efa81e90a
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-	epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	D1.8C.08755.08AFE556; Thu, 23 Nov 2023 16:08:48 +0900 (KST)
-Received: from [10.229.8.168] (unknown [10.229.8.168]) by
-	epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20231123070848epsmtip22a7d454dc0fdf545d76c49c97aca6629~aLts8Nhwj1175411754epsmtip2S;
-	Thu, 23 Nov 2023 07:08:48 +0000 (GMT)
-Message-ID: <45b0f9e2-f97a-1b60-b40f-d84831027d00@samsung.com>
-Date: Thu, 23 Nov 2023 16:06:00 +0900
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80CD1C1
+	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 23:10:28 -0800 (PST)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3AN7AG9q011543;
+	Thu, 23 Nov 2023 01:10:16 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1700723416;
+	bh=GwxTwpHzcWwrbydIP+gMj88rn44tgH+cJJWxr9f1eYE=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=dSNMgfTwCd4l2sv29c33i/sg50NrLEjgS71yW6R7tLGoGONnv8HfDdW91yKNyvmHs
+	 /hdMVyoIdkC0PiHwYC4P7RHVAN37Ps4rrkkBC9kYt28EKyG9MPlC53fo11cYqugaGJ
+	 UucQJDcM53b6iLvXzbQuBo6Pp7u2zu4UBwJIQdbY=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3AN7AGGw019352
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 23 Nov 2023 01:10:16 -0600
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 23
+ Nov 2023 01:10:16 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 23 Nov 2023 01:10:16 -0600
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3AN7AFH8030988;
+	Thu, 23 Nov 2023 01:10:15 -0600
+Date: Thu, 23 Nov 2023 01:10:15 -0600
+From: Nishanth Menon <nm@ti.com>
+To: Tony Lindgren <tony@atomide.com>
+CC: Vignesh Raghavendra <vigneshr@ti.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        sukrut bellary
+	<sukrut.bellary@gmail.com>
+Subject: Re: [PATCH] arm64: dts: ti: k3-am625-sk: Add support for WL1837
+ module onboard
+Message-ID: <20231123071015.is4sffvdkunko5ws@radar>
+References: <20231121122441.64385-1-tony@atomide.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
-	Thunderbird/102.11.0
-Subject: Re: [PATCH 1/3] dt-bindings: pinctrl: samsung: use Exynos7
- fallbacks for newer wake-up controllers
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Tomasz Figa
-	<tomasz.figa@gmail.com>, Sylwester Nawrocki <s.nawrocki@samsung.com>, Alim
-	Akhtar <alim.akhtar@samsung.com>, Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Peter Griffin <peter.griffin@linaro.org>, semen.protsenko@linaro.org
-From: Jaewon Kim <jaewon02.kim@samsung.com>
-In-Reply-To: <20231122200407.423264-1-krzysztof.kozlowski@linaro.org>
-Content-Transfer-Encoding: 7bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrHJsWRmVeSWpSXmKPExsWy7bCmqW7jr7hUg0s3OS0ezNvGZrFm7zkm
-	i/lHzrFa7H29ld1iyp/lTBabHl9jtdg8/w+jxeVdc9gsZpzfx2SxYcY/FovWvUfYLQ6/aWe1
-	eN4HFFu16w+jA5/Hzll32T02repk87hzbQ+bx+Yl9R59W1YxenzeJBfAFpVtk5GamJJapJCa
-	l5yfkpmXbqvkHRzvHG9qZmCoa2hpYa6kkJeYm2qr5OIToOuWmQN0rZJCWWJOKVAoILG4WEnf
-	zqYov7QkVSEjv7jEVim1ICWnwLxArzgxt7g0L10vL7XEytDAwMgUqDAhO+Psun62gmMyFXMb
-	ljM2ML4Q6WLk5JAQMJHo/dTF3MXIxSEksINRYtf9VUwQzidGiUkbnkBlvjFKTJx/jLGLkQOs
-	5c4cqPheRolLCx+zQDivGSVWPH/BBDKXV8BO4tPKecwgNouAqsTurU8ZIeKCEidnPmEBsUUF
-	oiVal91nA7GFBXIlls1rB6thFhCXuPVkPtgZIgJnmCVmrbsNlfCQWPWmF8xmE9CW+L5+MSuI
-	zSngKrGl/ywTRI28xPa3EOdJCJzgkHi65QUjxKcuEhd/zYeyhSVeHd/CDmFLSbzsb4OysyXa
-	p/9hhbArJC5umM0GYRtLzHrWDvY+s4CmxPpd+pCQUJY4cosFYi2fRMfhv+wQYV6JjjYhiEY1
-	iftTz0ENkZGYdGQlE4TtITHv4GK2CYyKs5BCZRaS72cheWYWwt4FjCyrGMVSC4pz01OLjQoM
-	4ZGdnJ+7iRGckLVcdzBOfvtB7xAjEwfjIUYJDmYlEd4t7DGpQrwpiZVVqUX58UWlOanFhxhN
-	gXEzkVlKNDkfmBPySuINTSwNTMzMDM2NTA3MlcR577XOTRESSE8sSc1OTS1ILYLpY+LglGpg
-	YtgzY9dFp75IqRpWxjyThs1HPxbU/PIPWaWl4TqhxZ1ZefkWUxkfL5mWecfV5xedmfor1SD7
-	vULIxf5WLqk3JyWf36qfVCJSsnzHsrlW05n0tH4X2hkuqk/8dej1jzl2x63ut1pcMLnwd/ZU
-	yTqZI5JWAidFqk5Nev+dJelfTlC1bFuWp33qI96NBQ59aSe79CJuM80UalD2vFB0XXOOr8yL
-	yNL9nDf7pR8d2vYmyTRX/xBzdpWPJ6O1Cqtk5SqWLNXABT6qnIxis6s2vTgV8Wf21pf68zYf
-	NX+oLL9V8dD+m23iOdsPbOPf+KLt2qoJTSHPFjV5H7N6vLJ1+qq+wt3z+lZzHtnusSw2Kfus
-	EktxRqKhFnNRcSIAKo57nlEEAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprPIsWRmVeSWpSXmKPExsWy7bCSvG7Dr7hUg0VNqhYP5m1js1iz9xyT
-	xfwj51gt9r7eym4x5c9yJotNj6+xWmye/4fR4vKuOWwWM87vY7LYMOMfi0Xr3iPsFofftLNa
-	PO8Diq3a9YfRgc9j56y77B6bVnWyedy5tofNY/OSeo++LasYPT5vkgtgi+KySUnNySxLLdK3
-	S+DKOLuun63gmEzF3IbljA2ML0S6GDk4JARMJO7MYe5i5OIQEtjNKLHkQiNbFyMnUFxGYvmz
-	PihbWOJ+yxFWiKKXjBJXtj5nAknwCthJfFo5jxnEZhFQldi99SkjRFxQ4uTMJywgtqhAtMTq
-	zxdYQWxhgVyJp+3dYPXMAuISt57MZwIZKiJwjlli+4Qv7BAJD4lVb3oZIbbNYJRYMeUcWAeb
-	gLbE9/WLwSZxCrhKbOk/ywTRYCbRtbWLEcKWl9j+dg7zBEahWUgOmYVk4SwkLbOQtCxgZFnF
-	KJlaUJybnltsWGCYl1quV5yYW1yal66XnJ+7iREch1qaOxi3r/qgd4iRiYPxEKMEB7OSCO8W
-	9phUId6UxMqq1KL8+KLSnNTiQ4zSHCxK4rziL3pThATSE0tSs1NTC1KLYLJMHJxSDUzzTQzf
-	/5MT9zgduOCdSiT7uRVHzQOtDm5dcaBqlvH79EMqDfNeLjpTwWc3vfbL20Os2RZrane82rgk
-	vf+l14KyyacaZm3U2vbS/W6RgZh/25pew3ANGfaQHYe6nrddvrFQ5paFTFTdtY2bH/TPD1Rr
-	7HFos3z/ccaKGUV7784+7OS6gKk+9tnMm6pPVi+Zpb3QUXrK/Pk73LndhU74fxV43XZht5yG
-	d/XyHZ/Dwi9ttA30dI5+/C3UzutR/bKnh0oXGZ2YfrQrXUZH53LfKwnNdKbEA9ElEtcsqw5M
-	MDF2eeT9Q0delvNe2ZSH10Ji/1esD+Jb6B1hZCn8MnN+8qx9Ypt3HLJUm1c153l9R4OJEktx
-	RqKhFnNRcSIA16p7uTIDAAA=
-X-CMS-MailID: 20231123070848epcas2p13b713349f30d3cfe72b3e343ab8cc90b
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20231122200609epcas2p1da5f138359da3a0be4af4fbc25f2a8f5
-References: <CGME20231122200609epcas2p1da5f138359da3a0be4af4fbc25f2a8f5@epcas2p1.samsung.com>
-	<20231122200407.423264-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20231121122441.64385-1-tony@atomide.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
+On 14:24-20231121, Tony Lindgren wrote:
+> From: Vignesh Raghavendra <vigneshr@ti.com>
+> 
+> WL1837 WLAN card is present on the original AM625 SK board. It
+> communicates with the SoC using 4 bit SDIO through the second instance of
+> MMCSD.
+> 
+> Starting with SK-AM62B, there is a M.2 WLAN device connector instead of
 
-On 23. 11. 23. 05:04, Krzysztof Kozlowski wrote:
-> Older ARM8 SoCs like Exynos5433, Exynos7 and Exynos7885 have the pin
-> controller with wake-up interrupts muxed, thus the wake-up interrupt
-> controller device node has interrupts property, while its pin banks
-> might not (because they are muxed by the wake-up controller).
->
-> Newer SoCs like Exynos850 and ExynosAutov9 do not used muxed wake-up
-> interrupts:
-> 1. Wake-up interrupt controller device node has no interrupts,
-> 2. Its pin banks have interrupts (since there is no muxing).
->
-> Their programming interface is however still compatible with Exynos7,
-> thus change the bindings to express this: retain compatibility with
-> Exynos7 and add new compatibility fallback of Exynos850 in newer
-> designs.
->
-> No driver changes are needed.  This is necessary only to properly
-> describe DTS.
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+We support AM62B-SK.
 
-Acked-by: Jaewon Kim <jaewon02.kim@samsung.com>
+> the integrated WL1837 WLAN. The M.2 connector should be handled separately
+> in the k3-am62a.dtsi and k3-am62b.dtsi files as needed.
 
+Should this rather be an overlay instead of integrated dts fixup? M2
+connector allows for various options including the newer 33xx family[2].
 
-I will also apply it to ExynosAutov920 DT patch.
+It makes sense for the regulator etc to be on the main dts file, but I
+am not convinced about it being integrated as part of the dts.
 
-
-Thanks
-
-Jaewon Kim
-
-
->
+> 
+> Note that WLAN currently needs fw_devlink=permissive set on the command
+> line. Not sure what is missing here but that seems like a separate change.
+> 
+> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+> [tony@atomide.com: updated for pinctrl, improved comments]
+> Signed-off-by: Tony Lindgren <tony@atomide.com>
 > ---
->
-> Cc: Peter Griffin <peter.griffin@linaro.org>
-> Cc: semen.protsenko@linaro.org
-> Cc: Jaewon Kim <jaewon02.kim@samsung.com>
-> ---
->   .../samsung,pinctrl-wakeup-interrupt.yaml     | 25 +++++++++++--------
->   1 file changed, 15 insertions(+), 10 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl-wakeup-interrupt.yaml b/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl-wakeup-interrupt.yaml
-> index 1b75abebb953..2bafa867aea2 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl-wakeup-interrupt.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl-wakeup-interrupt.yaml
-> @@ -36,13 +36,17 @@ properties:
->             - samsung,s5pv210-wakeup-eint
->             - samsung,exynos4210-wakeup-eint
->             - samsung,exynos7-wakeup-eint
-> -          - samsung,exynos850-wakeup-eint
-> -          - samsung,exynosautov9-wakeup-eint
-> -          - samsung,exynosautov920-wakeup-eint
->         - items:
->             - enum:
->                 - samsung,exynos5433-wakeup-eint
->                 - samsung,exynos7885-wakeup-eint
-> +              - samsung,exynos850-wakeup-eint
-> +          - const: samsung,exynos7-wakeup-eint
-> +      - items:
-> +          - enum:
-> +              - samsung,exynosautov9-wakeup-eint
-> +              - samsung,exynosautov920-wakeup-eint
-> +          - const: samsung,exynos850-wakeup-eint
->             - const: samsung,exynos7-wakeup-eint
->   
->     interrupts:
-> @@ -86,11 +90,14 @@ allOf:
->     - if:
->         properties:
->           compatible:
-> -          contains:
-> -            enum:
-> -              - samsung,s5pv210-wakeup-eint
-> -              - samsung,exynos4210-wakeup-eint
-> -              - samsung,exynos7-wakeup-eint
-> +          # Match without "contains", to skip newer variants which are still
-> +          # compatible with samsung,exynos7-wakeup-eint
-> +          enum:
-> +            - samsung,s5pv210-wakeup-eint
-> +            - samsung,exynos4210-wakeup-eint
-> +            - samsung,exynos5433-wakeup-eint
-> +            - samsung,exynos7-wakeup-eint
-> +            - samsung,exynos7885-wakeup-eint
->       then:
->         properties:
->           interrupts:
-> @@ -105,8 +112,6 @@ allOf:
->             contains:
->               enum:
->                 - samsung,exynos850-wakeup-eint
-> -              - samsung,exynosautov9-wakeup-eint
-> -              - samsung,exynosautov920-wakeup-eint
->       then:
->         properties:
->           interrupts: false
+>  arch/arm64/boot/dts/ti/k3-am625-sk.dts | 79 ++++++++++++++++++++++++++
+>  1 file changed, 79 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am625-sk.dts b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
+> --- a/arch/arm64/boot/dts/ti/k3-am625-sk.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
+> @@ -103,6 +103,32 @@ vcc_1v8: regulator-5 {
+	[...]
+
+> +	};
+>  };
+>  
+>  &main_gpio0 {
+> @@ -200,6 +253,32 @@ &sdhci1 {
+>  	vqmmc-supply = <&vdd_sd_dv>;
+>  };
+>  
+> +&sdhci2 {
+> +	status = "okay";
+> +	vmmc-supply = <&wlan_en>;
+
+Should we use mmc-pwrseq ?
+Looks like we have run into an issue in BeaglePlay with wlan_en
+being always on for loading firmware. so is there a need to keep the
+wlan on while suspended?
+
+[1] https://sukrutb.github.io/s2d_TI_am625-BeaglePlay/ (see towards the
+end)
+[2] https://www.ti.com/tool/M2-CC3301
+
+
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
