@@ -1,149 +1,129 @@
-Return-Path: <devicetree+bounces-18416-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18417-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28E037F65AB
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 18:43:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F7997F65BC
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 18:46:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 590741C20EA4
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 17:43:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3A728281C51
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 17:46:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75201405FD;
-	Thu, 23 Nov 2023 17:43:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76B7A3FE37;
+	Thu, 23 Nov 2023 17:46:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EUK/QVte"
+	dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b="Av9IVz9u";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="LHAbkZsE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F3F4405FB;
-	Thu, 23 Nov 2023 17:43:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8729C433C8;
-	Thu, 23 Nov 2023 17:43:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700761427;
-	bh=1GRk6pF6ONArbuEDYzf53o3CAsRNhMgYXX01fUitKEQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EUK/QVte4vbuMVsB7J0ZDQXQPfx5ZzqhBZOhhYXYl+f0qLTL1oOdCbPQ8soI+D9Ee
-	 lLr90oOKzn2mI92pdKjbW39eFkQ0GSOJjcyT6adnMdiDnhRB3xMjBD5TgAH4bV6NWh
-	 zUYM5BmACPrvUX0Thlj/wUOp31f3cOuJrbJejyUoKR2etkkH1ile+WN036EMVW2DqT
-	 u6oOAbS5e4UkOdxtE5rqKgQ0AqfTWN7qYbgnZsGCaXYUVB0crrskCXVWkx/q9UsmMf
-	 cZPM91apJKntl3C6x/aRusganoJT+ab/o4O+hbp3yxgKP8ous4VJPWd+HHW8z9aZlX
-	 c6tMeQ7jEcPyQ==
-Date: Thu, 23 Nov 2023 17:43:43 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Banajit Goswami <bgoswami@quicinc.com>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 4/5] ASoC: codecs: Add WCD939x Soundwire slave driver
-Message-ID: <ZV+PTynfbRmF0trU@finisterre.sirena.org.uk>
-References: <20231123-topic-sm8650-upstream-wcd939x-codec-v1-0-21d4ad9276de@linaro.org>
- <20231123-topic-sm8650-upstream-wcd939x-codec-v1-4-21d4ad9276de@linaro.org>
+Received: from wout2-smtp.messagingengine.com (wout2-smtp.messagingengine.com [64.147.123.25])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6AF710DA;
+	Thu, 23 Nov 2023 09:46:44 -0800 (PST)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+	by mailout.west.internal (Postfix) with ESMTP id 5D2893200A92;
+	Thu, 23 Nov 2023 12:46:43 -0500 (EST)
+Received: from imap44 ([10.202.2.94])
+  by compute3.internal (MEProxy); Thu, 23 Nov 2023 12:46:44 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:sender:subject:subject:to:to; s=fm2; t=
+	1700761602; x=1700848002; bh=JdVkYHyZCwkaqqs8iJxKPLWNDNKV1uUX4zd
+	6JLzaduk=; b=Av9IVz9upWizEgMWXliaWlxTB2n29cXJjymrRgPOhNTeuolTl80
+	qtPWMlJ4KacVpv5o4Yxod+BZtSojlcNJ2d+KsIULxhSKyDwSZR98i9dGaJbM8GOo
+	aZn1xiYh0OCzjBO0RMoDLLDZabAT5q0eldp0Rl5rNkLGqGHWus2l9DbHi2Bev5EI
+	ZFrYlbt2ykoVbfvrbGA+CqlR5shfrrsUp5OQmHP/edRoPTCTds3uhggp8LcNjiRC
+	KBkAPi4aH023MLVv+QLvu3IiOxf1kYMcC9UqtGdC7+TiZZ126AcTiB389G4tLbPb
+	Eidu+yMF+hrgGBbWnTaq2JMkHjsqlj3RAXw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:sender:subject:subject:to:to:x-me-proxy
+	:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=
+	1700761602; x=1700848002; bh=JdVkYHyZCwkaqqs8iJxKPLWNDNKV1uUX4zd
+	6JLzaduk=; b=LHAbkZsEk5baSGX4tj3aOonz7W4kleGgb/h86/BbL2AR9+F/6R7
+	NeX9uB8FIpgahkQVIpI1VwSL+8j3YZCfYLiym4p0zRZWvLd0AzkHPFowbW3Bo5/d
+	ACbo1IDy0xvSVcK4Tzfr0dBkiDGTtzy1vSzK8iLpXtJ7eBfzPg8ROIPZPEbgn21X
+	/wuiXJrlo9sjANfBqEmO9y4wPjwk4bQ5zSFequ8Nl2481aPrnEVPLB9SaWpts77q
+	/P9wI9PCJpwoOhEKhgD15sD2ait/jUyVnvzKZj+SYyJ9fPsMO//u7/WxzgT7F+8j
+	VUC0vBdvCKVpPUYRdI2e/KYLIGrFOU35fNQ==
+X-ME-Sender: <xms:ApBfZYWSeq5YcSACIiu9Ny592KVe02DhqgN9AxKCD-QjHkst-67DOw>
+    <xme:ApBfZcn8ZRo7OH9Y0YWJ7A4_kPsnhLgW-MLUrWjLwDqFp8f_vSFn6fTUYox9w3t7E
+    3q-Z4yhsaaorUG5olI>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrudehfedguddtvdcutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpefofgggkfgjfhffhffvvefutgfgsehtqhertderreejnecuhfhrohhmpedf
+    lfhirgiguhhnucgjrghnghdfuceojhhirgiguhhnrdihrghnghesfhhlhihgohgrthdrtg
+    homheqnecuggftrfgrthhtvghrnhepudefgeeftedugeehffdtheefgfevffelfefghefh
+    jeeugeevtefhudduvdeihefgnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpe
+    hmrghilhhfrhhomhepjhhirgiguhhnrdihrghnghesfhhlhihgohgrthdrtghomh
+X-ME-Proxy: <xmx:ApBfZcaPNS2qOqi6-NIEobQrkLF8d-Baf0jUAo-7DwiuhusYtkMkig>
+    <xmx:ApBfZXWHZeJYLPxL-Wmc2yx8yhT1iW8EBwUK7TzcCHs4EDXglH343Q>
+    <xmx:ApBfZSmPDS-kACi1pAJm-cVih3X2OzAXexYukiz_F-pugmdqbNUEfw>
+    <xmx:ApBfZbc9itzmhbm4YqjXDjn87OwcdTRS-9i_JwGS0cx8AGsFph8JiA>
+Feedback-ID: ifd894703:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id 604E436A0075; Thu, 23 Nov 2023 12:46:42 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-1234-gac66594aae-fm-20231122.001-gac66594a
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="42Lt/E9P87lWIhco"
-Content-Disposition: inline
-In-Reply-To: <20231123-topic-sm8650-upstream-wcd939x-codec-v1-4-21d4ad9276de@linaro.org>
-X-Cookie: Slow day.  Practice crawling.
+Message-Id: <db993514-7daa-41cb-8e6e-179305c16e24@app.fastmail.com>
+In-Reply-To: <20231123152639.561231-21-gregory.clement@bootlin.com>
+References: <20231123152639.561231-1-gregory.clement@bootlin.com>
+ <20231123152639.561231-21-gregory.clement@bootlin.com>
+Date: Thu, 23 Nov 2023 17:46:19 +0000
+From: "Jiaxun Yang" <jiaxun.yang@flygoat.com>
+To: "Gregory CLEMENT" <gregory.clement@bootlin.com>,
+ "paulburton@kernel.org" <paulburton@kernel.org>,
+ "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
+ "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
+ "Rob Herring" <robh+dt@kernel.org>,
+ "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: "Vladimir Kondratiev" <vladimir.kondratiev@mobileye.com>,
+ "Tawfik Bayouk" <tawfik.bayouk@mobileye.com>,
+ "Alexandre Belloni" <alexandre.belloni@bootlin.com>,
+ =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
+ "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 20/21] MIPS: generic: Add support for Mobileye EyeQ5
+Content-Type: text/plain;charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
 
---42Lt/E9P87lWIhco
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 
-On Thu, Nov 23, 2023 at 03:49:14PM +0100, Neil Armstrong wrote:
-> Add Soundwire Slave driver for the WCD9390/WCD9395 Audio Codec.
+=E5=9C=A82023=E5=B9=B411=E6=9C=8823=E6=97=A5=E5=8D=81=E4=B8=80=E6=9C=88 =
+=E4=B8=8B=E5=8D=883:26=EF=BC=8CGregory CLEMENT=E5=86=99=E9=81=93=EF=BC=9A
+> Introduce support for the MIPS based Mobileye EyeQ5 SoCs.
+>
+> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+> ---
+[...]
+> diff --git a/arch/mips/generic/Kconfig b/arch/mips/generic/Kconfig
+> index 7dc5b3821cc6e..04e1fc6f789b5 100644
+> --- a/arch/mips/generic/Kconfig
+> +++ b/arch/mips/generic/Kconfig
+> @@ -48,6 +48,13 @@ config SOC_VCOREIII
+>  config MSCC_OCELOT
+>  	bool
+>=20
+> +config SOC_EYEQ5
+> +	select ARM_AMBA
+> +	select WEAK_ORDERING
+> +	select WEAK_REORDERING_BEYOND_LLSC
+> +	select PHYSICAL_START_BOOL
+> +	bool
 
-> The WCD9390/WCD9395 Soundwire Slaves will be used by the
-
-Please avoid using outdated terminology, "device" is probably a good
-alternative here.  There are some usages in APIs that need to be updated
-but still, good to avoid where possible.
-
-> +static struct wcd939x_sdw_ch_info wcd939x_sdw_tx_ch_info[] = {
-> +	WCD_SDW_CH(WCD939X_ADC1, WCD939X_ADC_1_4_PORT, BIT(0)),
-> +	WCD_SDW_CH(WCD939X_ADC2, WCD939X_ADC_1_4_PORT, BIT(1)),
-> +	WCD_SDW_CH(WCD939X_ADC3, WCD939X_ADC_1_4_PORT, BIT(2)),
-> +	WCD_SDW_CH(WCD939X_ADC4, WCD939X_ADC_1_4_PORT, BIT(3)),
-> +	// TOFIX support ADC3/4 & DMIC0/1 on port 2
-> +	//WCD_SDW_CH(WCD939X_ADC3, WCD939X_ADC_DMIC_1_2_PORT, BIT(0)),
-> +	//WCD_SDW_CH(WCD939X_ADC4, WCD939X_ADC_DMIC_1_2_PORT, BIT(1)),
-> +	//WCD_SDW_CH(WCD939X_DMIC0, WCD939X_ADC_DMIC_1_2_PORT, BIT(2)),
-> +	//WCD_SDW_CH(WCD939X_DMIC1, WCD939X_ADC_DMIC_1_2_PORT, BIT(3)),
-
-Why are these commented out?
-
-> +static int wcd9390_interrupt_callback(struct sdw_slave *slave,
-> +				      struct sdw_slave_intr_status *status)
-> +{
-> +	struct wcd939x_sdw_priv *wcd = dev_get_drvdata(&slave->dev);
-> +	struct irq_domain *slave_irq = wcd->slave_irq;
-> +	u32 sts1, sts2, sts3;
-> +
-> +	do {
-> +		handle_nested_irq(irq_find_mapping(slave_irq, 0));
-> +		regmap_read(wcd->regmap, WCD939X_DIGITAL_INTR_STATUS_0, &sts1);
-> +		regmap_read(wcd->regmap, WCD939X_DIGITAL_INTR_STATUS_1, &sts2);
-> +		regmap_read(wcd->regmap, WCD939X_DIGITAL_INTR_STATUS_2, &sts3);
-> +
-> +	} while (sts1 || sts2 || sts3);
-> +
-> +	return IRQ_HANDLED;
-> +}
-
-We do this in the other Qualcomm drivers but it doesn't seem ideal to
-just ignore the interrupts.
-
-> +static int wcd939x_sdw_component_bind(struct device *dev, struct device *master,
-> +				      void *data)
-> +{
-> +	return 0;
-> +}
-> +
-> +static void wcd939x_sdw_component_unbind(struct device *dev,
-> +					 struct device *master, void *data)
-> +{
-> +}
-> +
-> +static const struct component_ops wcd939x_sdw_component_ops = {
-> +	.bind = wcd939x_sdw_component_bind,
-> +	.unbind = wcd939x_sdw_component_unbind,
-> +};
-
-Do these need to be provided if they can legitimately be empty?
-
---42Lt/E9P87lWIhco
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmVfj08ACgkQJNaLcl1U
-h9AbPQf9HwduNNNq58Fi9Zk4pDIkhiO6nVd+QB5hkOPoAqoUexbSojnNREgdQUy/
-S5Ek1XNG04jXfE7MYvLpIEO6bhwa6uv/Zn7UM3i0EDIzd2qXT4vH6Ce4/pl2+IsK
-3bcbiKFHCpSQRCbzay9Fm4DUdMXbEIpBeZmMznljBtZmF7UIj1xVLJQEsEiwWJ7G
-8NTb1aJ9QauPhZgkcuizCmNrZkQseSioyDmFZPZlD6TmofHqz2A8MiI5oLQVQr7s
-zvFENMqhOHPxwb9b/orlGQqf0tKdoZZDO66P0b3g242Z2KItP/Aasq4FiQTJ24LP
-/69tGglcrDDBrHEBUmmx6ULgLVUoCw==
-=YBBq
------END PGP SIGNATURE-----
-
---42Lt/E9P87lWIhco--
+^ I believe WEAK_ORDERING is already selected by MIPS_CPS,
+and WEAK_REORDERING_BEYOND_LLSC should be selected by MIPS_CPS as well.
+=20
+Thanks
+--=20
+- Jiaxun
 
