@@ -1,266 +1,205 @@
-Return-Path: <devicetree+bounces-18202-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18213-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9DD97F5AB8
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 10:05:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BBF57F5AD7
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 10:09:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9A4DDB20D93
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 08:49:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2C772B20D8A
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 09:09:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 851668BE3;
-	Thu, 23 Nov 2023 08:49:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AAFA1DFD1;
+	Thu, 23 Nov 2023 09:09:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="mRsjvH/w";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="B40nm2Ju"
+	dkim=pass (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.b="U2QzPYso";
+	dkim=permerror (0-bit key) header.d=goldelico.com header.i=@goldelico.com header.b="/G3NJ9Vm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [IPv6:2001:67c:2178:6::1d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1594FB9;
-	Thu, 23 Nov 2023 00:49:40 -0800 (PST)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-	(No client certificate requested)
-	by smtp-out2.suse.de (Postfix) with ESMTPS id 7ACEE1F388;
-	Thu, 23 Nov 2023 08:49:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1700729378; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=JxFberQ404wgbXqZV/76fL0sp1boZWf40NtPUUoR4vU=;
-	b=mRsjvH/w9RZbrlpkS+RxDbXn+bGv0t0H1tz3LUmguqi59SOJ/e9O0i+YGMZsw2zVsNOLOl
-	DxAxRL8zVV1MeFjPfTsQlOAQDGTl68RkI/s9FP7opxVZENQiIm0Q1/0rCeaxYRPeqg4G2O
-	jat8iKae1rLIvMcDSWofniRyp5os3pM=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1700729378;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=JxFberQ404wgbXqZV/76fL0sp1boZWf40NtPUUoR4vU=;
-	b=B40nm2JuBhSbeRf7B/NW/MeSHCzKXwicV2PV2Bc/5dTw18Iq+mtNyiUHbH8gtJHDlMzEaa
-	1SYoSoNmHzluOyBA==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-	(No client certificate requested)
-	by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 4A541133B6;
-	Thu, 23 Nov 2023 08:49:38 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
-	by imap2.suse-dmz.suse.de with ESMTPSA
-	id XisoESISX2X9CQAAMHmgww
-	(envelope-from <tzimmermann@suse.de>); Thu, 23 Nov 2023 08:49:38 +0000
-Message-ID: <58672ab8-99bf-4a2a-af79-031d1e8fcba0@suse.de>
-Date: Thu, 23 Nov 2023 09:49:37 +0100
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [81.169.146.167])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5F941A4;
+	Thu, 23 Nov 2023 01:09:02 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1700730295; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=LHp2cbonTmPWq3yzdJRpVSb2c5jnbOAAOh/OJOzzmcQgLMPoucR/L1eLLDbWeVuinc
+    rQM5QMhkpKO0WuQI4pg/FWbEDszKpMpEky4Xg7i153ixuo86wUKDvORow2d5k17QNloV
+    SiY885/O0UhwPHBkDBtaCmH+16vFOdSpPDClnK/apD3etF9Eqw9lJPJmdn2H5ZXPVu8C
+    8Zt4xTCCom+++G3P/ZnFLZUol+igO1S1RDu4pxUgrYVnVMTBHOebG+xrUH5QU2w4GMy3
+    8c26wBo6mHoIBydZMy2OJfF4avAkG8RVQq8jlNj+gZ9eeovaWa0Te0HxfkxT6BeTiucV
+    l4+Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1700730295;
+    s=strato-dkim-0002; d=strato.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=nNzQepdNAiibjyoRsdDNPpF5A3KPnlNrpzPamrJ6O6k=;
+    b=o+sw8qeV76ZfPK8zRhqa70h/4k6+zRAxh4kYuRiIIzgxdn2axVpTbgV6p63pQ7XR7+
+    YLE8JnDzTDBnFgLBlmQP8jjMeER7MofmD9qxm2hk82Mxy3pinVLQaoJNxxpC+FzZfB9b
+    rJiwRuR9Y0h04i7jC+bzrMmIiXVYZNd47ObSRWqzwqVvNJxkHliGM/KKTQDurrE7Ej13
+    PDAjqsl4md6j9OhQeUV3GZWmIXxAXnSBgwXXPF9IddBoaRLBfMaCl1FtMIajPq3y7o6b
+    /UESB8QHcXqC2HYU61y9U9qJv8uc4SjCH+GFDL7CAZvOCkkUn1zswwUlCiMKsQpgB2KT
+    XfTw==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1700730295;
+    s=strato-dkim-0002; d=goldelico.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=nNzQepdNAiibjyoRsdDNPpF5A3KPnlNrpzPamrJ6O6k=;
+    b=U2QzPYsoe/zMuR/GuenD3GD091175MxH8cbVbY+G9U75mtTl9ZzO58KCnHSP9PQDoa
+    LRvEOyvicJfImOGBwupknGcOf38NXj6nisyUyrtYWv0WW6GCbHk7r8EWFsGPYmz4Gb+/
+    80QqNvJFPT718oOA3JUmWQY6ASWDG6Sb+pXDozZeyRRL9Ne4evpk6XaTkG3y1AdtfkmV
+    und6fVTTIDit0NCJbhsfd3Kq+yuGC49DetYHfJZOE3ynXe12TaVCzDSOdrXq3jkGg6+Z
+    lQ1PVuWu1TyfbKpUunt8GSxlkVCSv9pxT6TQ02Wn3n8uIgh4DPdcW6perX3rvJO9QKVk
+    kDDw==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1700730295;
+    s=strato-dkim-0003; d=goldelico.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=nNzQepdNAiibjyoRsdDNPpF5A3KPnlNrpzPamrJ6O6k=;
+    b=/G3NJ9VmY5w1Zao2l6XzOxP7VH1FP5BT0nviqU8UU7sR5ZBbpwmgz7yM7+/AbtSmuI
+    bTtEqAAwBwanCgoc1kDQ==
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBp5hRw/qviAxtjc3+nQmK9mGUJvNRIFjU/rZXA1cPerj45fcwi7w=="
+Received: from smtpclient.apple
+    by smtp.strato.de (RZmta 49.9.1 AUTH)
+    with ESMTPSA id 42749ezAN94rARP
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
+	(Client did not present a certificate);
+    Thu, 23 Nov 2023 10:04:53 +0100 (CET)
+Content-Type: text/plain;
+	charset=us-ascii
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH] of/platform: Disable sysfb if a simple-framebuffer
- node is found
-Content-Language: en-US
-To: Javier Martinez Canillas <javierm@redhat.com>,
- Ard Biesheuvel <ardb@kernel.org>, Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, Sergio Lopez <slp@redhat.com>,
- Sima Vetter <daniel.vetter@ffwll.ch>, Hector Martin <marcan@marcan.st>,
- Andrew Worsley <amworsley@gmail.com>, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>
-References: <20231113085305.1823455-1-javierm@redhat.com>
- <CAL_JsqKHTN5hfd4qpg5RXbmQLKZNVywDkSj9mxvfGmjrcChQQg@mail.gmail.com>
- <87jzqi59bt.fsf@minerva.mail-host-address-is-not-set>
- <CAL_JsqJM9+cbNviwuKGB5+3YbyAP3UH+TxCxsU5nUtX-iRGP2w@mail.gmail.com>
- <CAMj1kXG7Xyk0ys9j-XRo7Rr8gYz1qJE8fFSixBOwVbm-pjeX+A@mail.gmail.com>
- <874jhj1fm3.fsf@minerva.mail-host-address-is-not-set>
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <874jhj1fm3.fsf@minerva.mail-host-address-is-not-set>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------upfV0WxZzdwoKclRKhpPZ3IP"
-Authentication-Results: smtp-out2.suse.de;
-	none
-X-Spam-Score: 3.90
-X-Spamd-Result: default: False [3.90 / 50.00];
-	 RCVD_VIA_SMTP_AUTH(0.00)[];
-	 XM_UA_NO_VERSION(0.01)[];
-	 TO_DN_SOME(0.00)[];
-	 HAS_ATTACHMENT(0.00)[];
-	 MIME_BASE64_TEXT_BOGUS(1.00)[];
-	 MIME_BASE64_TEXT(0.10)[];
-	 RCPT_COUNT_SEVEN(0.00)[11];
-	 SIGNED_PGP(-2.00)[];
-	 FROM_EQ_ENVFROM(0.00)[];
-	 MIME_TRACE(0.00)[0:+,1:+,2:+,3:~];
-	 MID_RHS_MATCH_FROM(0.00)[];
-	 BAYES_HAM(-3.00)[100.00%];
-	 ARC_NA(0.00)[];
-	 FROM_HAS_DN(0.00)[];
-	 FREEMAIL_ENVRCPT(0.00)[gmail.com];
-	 TO_MATCH_ENVRCPT_ALL(0.00)[];
-	 TAGGED_RCPT(0.00)[];
-	 MIME_GOOD(-0.20)[multipart/signed,multipart/mixed,text/plain];
-	 NEURAL_SPAM_SHORT(2.99)[0.995];
-	 DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	 NEURAL_SPAM_LONG(3.50)[1.000];
-	 FUZZY_BLOCKED(0.00)[rspamd.com];
-	 RCVD_COUNT_TWO(0.00)[2];
-	 RCVD_TLS_ALL(0.00)[];
-	 SUSPICIOUS_RECIPS(1.50)[];
-	 FREEMAIL_CC(0.00)[vger.kernel.org,redhat.com,ffwll.ch,marcan.st,gmail.com,lists.freedesktop.org]
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3774.200.91.1.1\))
+Subject: Re: [PATCH v9 00/20] Imagination Technologies PowerVR DRM driver
+From: "H. Nikolaus Schaller" <hns@goldelico.com>
+In-Reply-To: <jl4igixnszibpq5hindyjvrh6eten7mjr6hj32fst4irjbg2t6@gdks4ydvhshw>
+Date: Thu, 23 Nov 2023 10:04:42 +0100
+Cc: boris.brezillon@collabora.com,
+ faith.ekstrand@collabora.com,
+ airlied@gmail.com,
+ daniel@ffwll.ch,
+ maarten.lankhorst@linux.intel.com,
+ tzimmermann@suse.de,
+ afd@ti.com,
+ matthew.brost@intel.com,
+ christian.koenig@amd.com,
+ luben.tuikov@amd.com,
+ dakr@redhat.com,
+ linux-kernel@vger.kernel.org,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ devicetree@vger.kernel.org,
+ corbet@lwn.net,
+ linux-doc@vger.kernel.org,
+ Maxime Ripard <mripard@kernel.org>,
+ Tony Lindgren <tony@atomide.com>,
+ dri-devel@lists.freedesktop.org,
+ openpvrsgx-devgroup@letux.org,
+ kernel@pyra-handheld.com
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <F774B5D6-BC66-414A-B3E2-DED68FB59644@goldelico.com>
+References: <cover.1700668843.git.donald.robson@imgtec.com>
+ <jl4igixnszibpq5hindyjvrh6eten7mjr6hj32fst4irjbg2t6@gdks4ydvhshw>
+To: frank.binns@imgtec.com,
+ matt.coster@imgtec.com,
+ Donald Robson <donald.robson@imgtec.com>
+X-Mailer: Apple Mail (2.3774.200.91.1.1)
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------upfV0WxZzdwoKclRKhpPZ3IP
-Content-Type: multipart/mixed; boundary="------------Fc0X8xpFsmPbPYAsU52D33hX";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Javier Martinez Canillas <javierm@redhat.com>,
- Ard Biesheuvel <ardb@kernel.org>, Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, Sergio Lopez <slp@redhat.com>,
- Sima Vetter <daniel.vetter@ffwll.ch>, Hector Martin <marcan@marcan.st>,
- Andrew Worsley <amworsley@gmail.com>, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>
-Message-ID: <58672ab8-99bf-4a2a-af79-031d1e8fcba0@suse.de>
-Subject: Re: [RFC PATCH] of/platform: Disable sysfb if a simple-framebuffer
- node is found
-References: <20231113085305.1823455-1-javierm@redhat.com>
- <CAL_JsqKHTN5hfd4qpg5RXbmQLKZNVywDkSj9mxvfGmjrcChQQg@mail.gmail.com>
- <87jzqi59bt.fsf@minerva.mail-host-address-is-not-set>
- <CAL_JsqJM9+cbNviwuKGB5+3YbyAP3UH+TxCxsU5nUtX-iRGP2w@mail.gmail.com>
- <CAMj1kXG7Xyk0ys9j-XRo7Rr8gYz1qJE8fFSixBOwVbm-pjeX+A@mail.gmail.com>
- <874jhj1fm3.fsf@minerva.mail-host-address-is-not-set>
-In-Reply-To: <874jhj1fm3.fsf@minerva.mail-host-address-is-not-set>
 
---------------Fc0X8xpFsmPbPYAsU52D33hX
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
 
-SGkNCg0KQW0gMTguMTEuMjMgdW0gMTI6MTAgc2NocmllYiBKYXZpZXIgTWFydGluZXogQ2Fu
-aWxsYXM6DQo+IEFyZCBCaWVzaGV1dmVsIDxhcmRiQGtlcm5lbC5vcmc+IHdyaXRlczoNCj4g
-DQo+IEhlbGxvIEFyZCwNCj4gDQo+PiBPbiBGcmksIDE3IE5vdiAyMDIzIGF0IDAwOjA5LCBS
-b2IgSGVycmluZyA8cm9iaEBrZXJuZWwub3JnPiB3cm90ZToNCj4gDQo+IFsuLi5dDQo+IA0K
-Pj4+Pj4NCj4+Pj4+IFRoaXMgY291bGQgYWxzbyBsZWFkIHRvIGFuIGludGVyZXN0aW5nIHNj
-ZW5hcmlvLiBBcyBzaW1wbGUtZnJhbWVidWZmZXINCj4+Pj4+IGNhbiBkZWZpbmUgaXRzIG1l
-bW9yeSBpbiBhIC9yZXNlcnZlZC1tZW1vcnkgbm9kZSwgYnV0IHRoYXQgaXMgaWdub3JlZA0K
-Pj4+Pj4gaW4gRUZJIGJvb3QuIFByb2JhYmx5IHdvdWxkIHdvcmssIGJ1dCBvbmx5IGJlY2F1
-c2UgRUZJIHByb2JhYmx5DQo+Pj4+PiBnZW5lcmF0ZXMgaXRzIG1lbW9yeSBtYXAgdGFibGUg
-ZnJvbSB0aGUgL3Jlc2VydmVkLW1lbW9yeSBub2Rlcy4NCj4+Pj4+DQo+Pj4+DQo+Pj4+IEkg
-c2VlLiBTbyB3aGF0IHdvdWxkIGJlIHRoZSBzb2x1dGlvbiB0aGVuPyBJZ25vcmluZyBjcmVh
-dGluZyBhIHBsYXRmb3JtDQo+Pj4+IGRldmljZSBmb3IgInNpbXBsZS1mcmFtZWJ1ZmZlciIg
-aWYgYm9vdGVkIHVzaW5nIEVGSSBhbmQgaGF2ZSBhbiBFRkktR09QPw0KPj4+DQo+Pj4gU2hy
-dWcuIEkgZG9uJ3QgcmVhbGx5IGtub3cgYW55dGhpbmcgbW9yZSBhYm91dCBFRkkgRkIsIGJ1
-dCBJIHdvdWxkDQo+Pj4gZ3Vlc3MgaXQgY2FuJ3Qgc3VwcG9ydCBoYW5kbGluZyByZXNvdXJj
-ZXMgbGlrZSBjbG9ja3MsIHBvd2VyIGRvbWFpbnMsDQo+Pj4gcmVndWxhdG9ycywgZXRjLiB0
-aGF0IHNpbXBsZS1mYiBjYW4uIFNvIGlmIGEgcGxhdGZvcm0gbmVlZHMgdGhvc2UsIGRvDQo+
-Pj4gd2Ugc2F5IHRoZXkgc2hvdWxkIG5vdCBzZXR1cCBFRkktR09QPyBPciBpcyB0aGVyZSBh
-IHVzZSBjYXNlIGZvcg0KPj4+IGhhdmluZyBib3RoPyBDbGllbnRzIHRoYXQgZG9uJ3QgbXVj
-ayB3aXRoIHJlc291cmNlcyBjYW4gdXNlIEVGSS1HT1ANCj4+PiBhbmQgdGhvc2UgdGhhdCBk
-byB1c2Ugc2ltcGxlLWZiLiBGb3IgZXhhbXBsZSwgZG9lcy9jYW4gZ3J1YiB1c2UNCj4+PiBF
-RkktR09QLCBidXQgbm90IHNpbXBsZS1mYj8NCj4+Pg0KPj4NCj4+IFRoZSBFRkkgR09QIGlz
-IGp1c3QgYSBkdW1iIGZyYW1lYnVmZmVyLCBhbmQgaXQgaXMgbm90IGV2ZW4gZ2VuZXJhbGx5
-DQo+PiBwb3NzaWJsZSB0byBjcm9zcyByZWZlcmVuY2UgdGhlIEdPUCB3aXRoIGEgcGFydGlj
-dWxhciBkZXZpY2UgaW4gdGhlDQo+PiBkZXZpY2UgaGllcmFyY2h5IHVubGVzcyB5b3UgZS5n
-LiwgY29tcGFyZSB0aGUgQkFScyBvZiBlYWNoIGRldmljZSB3aXRoDQo+PiB0aGUgcmVnaW9u
-IGRlc2NyaWJlZCBieSB0aGUgR09QIHByb3RvY29sLg0KPj4NCj4+IEdSVUIgZm9yIEVGSSB3
-aWxsIHVzZSB0aGUgR09QIGFuZCBub3RoaW5nIGVsc2UsIGJ1dCBvbmx5IGF0IGJvb3QgdGlt
-ZQ0KPj4gKHRoZSBHT1AgcHJvdG9jb2wgaXMgbW9yZSB0aGFuIGEgbWFnaWMgbGluZWFyIG1l
-bW9yeSByZWdpb24sIGl0IGFsc28NCj4+IGltcGxlbWVudHMgYSBCbHQoKSBhYnN0cmFjdGlv
-biB0aGF0IHBlcm1pdHMgdGhlIHVzZSBvZiBmcmFtZWJ1ZmZlcnMNCj4+IHRoYXQgYXJlIG5v
-dCBtYXBwZWQgbGluZWFybHkgaW50byB0aGUgYWRkcmVzcyBzcGFjZSBhdCBhbGwsIGFuZCBH
-UlVCDQo+PiBtYWtlcyB1c2Ugb2YgdGhpcykNCj4+DQo+PiBUaGUgRUZJIHN0dWIgd2lsbCBv
-bmx5IGV4cG9zZSBHT1BzIHRvIHRoZSBrZXJuZWwgaWYgdGhleSBhcmUgaW4gZmFjdA0KPj4g
-bGluZWFyIGZyYW1lYnVmZmVycywgYnV0IGhhcyB6ZXJvIGluc2lnaHQgaW50byB3aGV0aGVy
-IHRoZSBoYXJkd2FyZQ0KPj4gbmVlZHMgY2xvY2tzIGFuZCByZWd1bGF0b3JzLCBhbmQgd2hl
-dGhlciBvciBub3QgdGhlIGZyYW1lYnVmZmVyIG5lZWRzDQo+PiBJT01NVSBwYXNzIHRocm91
-Z2ggKHdoaWNoIG1pZ2h0IGJlIHRoZSBjYXNlIGlmIHRoZSBzY2Fub3V0IGlzIHVzaW5nDQo+
-PiBETUEgaW50byBzeXN0ZW0gbWVtb3J5KQ0KPj4NCj4+IFNvIGNhbGxpbmcgRUZJIEdPUCAn
-c291cmNlIG9mIHRydXRoJyBpcyByYXRoZXIgZ2VuZXJvdXMsIGFuZCBJIHRoaW5rDQo+PiBp
-dCBtYWtlcyBzZW5zZSB0byBwcmlvcml0aXplIG1vcmUgYWNjdXJhdGUgZGVzY3JpcHRpb25z
-IG9mIHRoZQ0KPj4gdW5kZXJseWluZyBmcmFtZWJ1ZmZlciBvdmVyIEVGSSBHT1AuDQo+Pg0K
-PiANCj4gVGhhdCB3YXMgbXkgb3BpbmlvbiBhcyB3ZWxsIGFuZCB0aGUgcmVhc29uIHdoeSBJ
-IGNhbGxlZCB0aGUgRFRCIHRoZQ0KPiBzaW5nbGUgc291cmNlIG9mIHRydXRoLg0KPiANCj4+
-IEhvd2V2ZXIsIG1ha2luZyAnc2ltcGxlLWZyYW1lYnVmZmVyJyBtYWdpYyBpbiB0aGlzIHJl
-Z2FyZCBkb2Vzbid0IHNlZW0NCj4+IGxpa2UgYSBncmVhdCBhcHByb2FjaCB0byBtZS4gSXMg
-dGhlcmUgYSBiZXR0ZXIgd2F5IHdlIGNvdWxkIGdldCB0aGUNCj4+IHJlc291cmNlIGNvbmZs
-aWN0IHRvIGJlIGRlY2lkZWQgaW4gYSB3YXkgd2hlcmUgdGhlIEVGSSBHT1AgZ2V0cw0KPj4g
-c3VwZXJzZWRlZCBpZiBpdHMgcmVzb3VyY2VzIGFyZSBjbGFpbWVkIGJ5IGFub3RoZXIgZGV2
-aWNlPw0KPj4NCj4gDQo+IFRoZXJlIGlzIGFuIGFwZXJ0dXJlIFswXSBmcmFtZXdvcmsgdGhh
-dCBpcyB1c2VkIGJ5IHRoZSBmYmRldiBhbmQgRFJNDQo+IHN1YnN5c3RlbXMgdG8gYWxsb3cg
-bmF0aXZlIGRyaXZlcnMgdG8gcmVtb3ZlIGFueSBjb25mbGljdGluZyBkZXZpY2VzDQo+IHRo
-YXQgc2hhcmUgdGhlIHNhbWUgZnJhbWVidWZmZXIgYXBlcnR1cmUuDQo+IA0KPiBCdXQgaXQg
-b25seSBtYWtlcyBzZW5zZSBmb3IgbmF0aXZlIGRyaXZlcnMgdG8gdXNlIHRoYXQgSSB0aGlu
-aywgYnV0DQo+IGluIHRoaXMgY2FzZSBpcyBhYm91dCB0d28gZHJpdmVycyB0aGF0IGF0dGVt
-cHQgdG8gdXNlIHRoZSBzYW1lIGZyYW1lDQo+IGJ1ZmZlciBwcm92aWRlZCBieSB0aGUgZmly
-bXdhcmUgYnV0IGdldHRpbmcgaXQgZnJvbSBkaWZmZXJlbnQgcGxhY2VzLg0KPiANCj4gSSBk
-b24ndCBoYXZlIGEgYmV0dGVyIGlkZWEgdGhhbiB0aGlzIHBhdGNoIGJ1dCBtYXliZSBUaG9t
-YXMgb3IgU2ltYSBkbz8NCg0KQXQgU1VTRSwgd2UndmUgY2FycmllZCBzdWNoIGEgcGF0Y2gg
-aW4gb3VyIHJlcG9zIGZvciBzb21lIHRpbWUuIEl0IHdvcmtzIA0KYXJvdW5kIHRoZSBkb3Vi
-bGUtZnJhbWVidWZmZXIgcHJvYmxlbSBpbiBhIHNpbWlsYXIgd2F5LiBbMV0NCg0KQXMgSmF2
-aWVyIG1lbnRpb25lZCwgd2UgZG8gdHJhY2sgdGhlIGZyYW1lYnVmZmVyIHJhbmdlcyBmb3Ig
-RUZJL1ZFU0EvT0YgDQpmcmFtZWJ1ZmZlcnMgaW4gdGhlIGdyYXBoaWNzIGFwZXJ0dXJlIGhl
-bHBlcnMuIEZiZGV2IGhhcyBkb25lIHRoaXMgZm9yIA0KZGVjYWRlcywgYW5kIHRoZSBjdXJy
-ZW50IGNvZGViYXNlIGV4dGVuZHMgYW5kIGhhcm1vbml6ZXMgdGhpcyANCmZ1bmN0aW9uYWxp
-dHkgYW1vbmcgZmJkZXYgYW5kIERSTSBkcml2ZXJzLg0KDQpXUlQgRFQgdnMgRUZJOiBBRkFJ
-SyB0aGUgRUZJIHN1cHBvcnQgb24gYWZmZWN0ZWQgcGxhdGZvcm1zIGxvb2tzIGF0IHRoZSAN
-CkRUIHRvIHNldCB1cCB0aGUgRUZJIGZyYW1lYnVmZmVyLiBTbyBJTUhPIHRoZSBEVCBpcyB0
-aGUgYXV0aG9yaXRhdGl2ZSANCnNvdXJjZSBvbiB0aGUgZnJhbWVidWZmZXIuDQoNCkJlc3Qg
-cmVnYXJkcw0KVGhvbWFzDQoNClsxXSBodHRwczovL2J1Z3ppbGxhLnN1c2UuY29tL3Nob3df
-YnVnLmNnaT9pZD0xMjA0MzE1DQoNCj4gDQo+IFswXTogaHR0cHM6Ly9lbGl4aXIuYm9vdGxp
-bi5jb20vbGludXgvbGF0ZXN0L3NvdXJjZS9kcml2ZXJzL3ZpZGVvL2FwZXJ0dXJlLmMNCj4g
-DQoNCi0tIA0KVGhvbWFzIFppbW1lcm1hbm4NCkdyYXBoaWNzIERyaXZlciBEZXZlbG9wZXIN
-ClNVU0UgU29mdHdhcmUgU29sdXRpb25zIEdlcm1hbnkgR21iSA0KRnJhbmtlbnN0cmFzc2Ug
-MTQ2LCA5MDQ2MSBOdWVybmJlcmcsIEdlcm1hbnkNCkdGOiBJdm8gVG90ZXYsIEFuZHJldyBN
-eWVycywgQW5kcmV3IE1jRG9uYWxkLCBCb3VkaWVuIE1vZXJtYW4NCkhSQiAzNjgwOSAoQUcg
-TnVlcm5iZXJnKQ0K
+> Am 22.11.2023 um 20:34 schrieb Maxime Ripard <mripard@kernel.org>:
+>=20
+> Hi,
+>=20
+> On Wed, Nov 22, 2023 at 04:34:21PM +0000, Donald Robson wrote:
+>> This patch series adds the initial DRM driver for Imagination =
+Technologies PowerVR
+>> GPUs, starting with those based on our Rogue architecture. It's worth =
+pointing
+>> out that this is a new driver, written from the ground up, rather =
+than a
+>> refactored version of our existing downstream driver (pvrsrvkm).
+>>=20
+>> This new DRM driver supports:
+>> - GEM shmem allocations
+>> - dma-buf / PRIME
+>> - Per-context userspace managed virtual address space
+>> - DRM sync objects (binary and timeline)
+>> - Power management suspend / resume
+>> - GPU job submission (geometry, fragment, compute, transfer)
+>> - META firmware processor
+>> - MIPS firmware processor
+>> - GPU hang detection and recovery
+>>=20
+>> Currently our main focus is on the AXE-1-16M GPU. Testing so far has =
+been done
+>> using a TI SK-AM62 board (AXE-1-16M GPU). The driver has also been =
+confirmed to
+>> work on the BeaglePlay board. Firmware for the AXE-1-16M can be found =
+here:
+>> =
+https://gitlab.freedesktop.org/frankbinns/linux-firmware/-/tree/powervr
+>>=20
+>> A Vulkan driver that works with our downstream kernel driver has =
+already been
+>> merged into Mesa [1][2]. Support for this new DRM driver is being =
+maintained in
+>> a merge request [3], with the branch located here:
+>> https://gitlab.freedesktop.org/frankbinns/mesa/-/tree/powervr-winsys
+>>=20
+>> Vulkan driver links referred to above:
+>> [1] https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/15243
+>> [2] =
+https://gitlab.freedesktop.org/mesa/mesa/-/tree/main/src/imagination/vulka=
+n
+>> [3] https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/15507
+>>=20
+>> Job stream formats are documented at:
+>> =
+https://gitlab.freedesktop.org/mesa/mesa/-/blob/f8d2b42ae65c2f16f36a43e0ae=
+39d288431e4263/src/imagination/csbgen/rogue_kmd_stream.xml
+>>=20
+>> The Vulkan driver is progressing towards Vulkan 1.0. The current =
+combination of this
+>> kernel driver with the Mesa Vulkan driver (powervr-mesa-next branch) =
+successfully
+>> completes Vulkan CTS 1.3.4.1 in our local runs. The driver is =
+expected to pass the
+>> Khronos Conformance Process once the submission is made.
+>>=20
+>> The code in this patch series, along with the needed dts changes can =
+be found here:
+>> https://gitlab.freedesktop.org/frankbinns/powervr/-/tree/dev/v9_dts
+>> The full development history can be found here:
+>> https://gitlab.freedesktop.org/frankbinns/powervr/-/tree/powervr-next
+>=20
+> I just merged all the patches to drm-misc-next.
+>=20
+> Congrats :)
 
---------------Fc0X8xpFsmPbPYAsU52D33hX--
+A big applause to the team that accomplished this!
 
---------------upfV0WxZzdwoKclRKhpPZ3IP
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature.asc"
+Let me take this opportunity to ask if there could be a similar effort =
+supported by imgtec
+for the SGX drivers? There are still a lot of devices using this version =
+of PVR in the wild,
+like OpenPandora or Pyra Handheld, that are stuck with older Linux =
+kernels (which are now
+unmaintained) because there are no compatible SGX drivers for modern =
+kernels.
 
------BEGIN PGP SIGNATURE-----
+And we have the openpvrsgx community that can definitely help with =
+debugging (we all own
+various OMAP and jz4780 devices), but we lack the documentation to =
+actually develop and
+upstream such a driver (and user-space code) ourselves.
 
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmVfEiEFAwAAAAAACgkQlh/E3EQov+D/
-Rg/+JCMxA/Ek5qzn6qh51bQExv5ChLesYcAAlKDmzW7Aav+4VfC9QeV5hyEpa1lWyE5zofL8E2bO
-W+atZEFH/qBsDC85l7rP/fZ+zV3ygaAmnNvvrkXVxF5d9ULOxWfpB7ZZ7IkEmdQiUUJGxKE0FGL4
-9PIf4v+0Qk4jJ9beRqke4+KgCfgKhRkhLuHmeo61ZlvWmP4v+1oj9gZbmTE3NXJmmbgpOmY5km6d
-g8RgQcl3mZChCPv5ZtQR9sK+0/Tmq4sA9lnH5GcvfFKfAhI1p+se6LlCvMVgyVTN+3sALkquZnE8
-sC0cmhdzCzYW8ldR573ni92BbGYn6ONYQUHgBOb/Y9pZA/y04/3Ttfjih5Bv+lL/lRO6dDP0+xzX
-y4EAgoa+NkhuPwuvzLSXEk37Qjx+lgiCGciDnWEq+AIZJXsRcZsU2HmQ9zvCA6Iak69ONNvGZTsP
-v0lzvHFYqE6JBu0S4vZNZUZoZIcg2o+fgtKav1UA6ctwk8bGqpYLGpxt56zsxZuaC/KC3BGTAP46
-bX78pvCP8b6CX5v4MTW1EDkP2cDDn2kKsRqyXaP/Rf1ICKJk9BMGRbJ+VLEvWg5V9TwAglPmGMpu
-akfOva5dZx6QQmC4UIxBgCSNdgiSa0BnKtE78QNUCy/GxPBEjFM0toP0rVDSqAjt7FtM9h17NTYk
-mPQ=
-=dVik
------END PGP SIGNATURE-----
+Nikolaus
 
---------------upfV0WxZzdwoKclRKhpPZ3IP--
 
