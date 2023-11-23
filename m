@@ -1,65 +1,71 @@
-Return-Path: <devicetree+bounces-18150-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18153-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7981E7F56FA
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 04:17:29 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AAD297F570B
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 04:31:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 099AFB21230
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 03:17:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7BCB1B20ECF
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 03:31:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4A528F71;
-	Thu, 23 Nov 2023 03:17:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9103C7493;
+	Thu, 23 Nov 2023 03:31:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="c1EATnyC"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="41r6vZ8a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A2901B2;
-	Wed, 22 Nov 2023 19:17:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1700709438; x=1732245438;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=iAcQ4HN8CRNfclzvo2vl89aCCXDlyLDgI/O6GQnrGRM=;
-  b=c1EATnyCrAyNUnUUQ+415OOMHpNoQ/KrF4HtMOO9WnQNT8gEf5VJXUvE
-   0qMZhWMYu8t9fTxblzvhlsqHTq2GshbZBL78vBTdvXVyS8Ue3xld2PlrE
-   iVFtZ9DiGEMahT7p78Wiji9vde6oIPct90dwHKuzOpWnqbQh9xbnIEdlh
-   o8LLwGgf+5Dl8bD4nVVm+z6EM/1gTSZX+tM2IUlmK30jtdkw8EmnwsyEC
-   kLyxnfrr/I010RTspgeffigDNm7Z9zRpq9c/AYxUYj3iYQ1UM3vgofAgE
-   F9fpLW4+3gwLqqeEzGdz0rHTbuYmPeWibAkn7N2igf4XACD+AHElDh9Kt
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="372348547"
-X-IronPort-AV: E=Sophos;i="6.04,220,1695711600"; 
-   d="scan'208";a="372348547"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Nov 2023 19:17:18 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,220,1695711600"; 
-   d="scan'208";a="8521855"
-Received: from lkp-server01.sh.intel.com (HELO d584ee6ebdcc) ([10.239.97.150])
-  by orviesa002.jf.intel.com with ESMTP; 22 Nov 2023 19:17:15 -0800
-Received: from kbuild by d584ee6ebdcc with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1r60DI-0001As-0h;
-	Thu, 23 Nov 2023 03:17:12 +0000
-Date: Thu, 23 Nov 2023 11:17:03 +0800
-From: kernel test robot <lkp@intel.com>
-To: Michal Simek <monstr@monstr.eu>, conor@kernel.org,
-	linux-kernel@vger.kernel.org, michal.simek@xilinx.com,
-	git@xilinx.com, robh@kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Damien Le Moal <dlemoal@kernel.org>,
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: soc: xilinx: Move xilinx.yaml from
- arm to soc
-Message-ID: <202311231036.ZQvuqOs2-lkp@intel.com>
-References: <281ed28bccc14e7006caf17d6cfeb2a679b0e255.1700648588.git.michal.simek@amd.com>
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 770611AB;
+	Wed, 22 Nov 2023 19:31:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=R2W1eIGoN44WfeZqoSJKCknBFLhg1MSvdghZBej8Tto=; b=41r6vZ8a0N5C3aFfaYIGG3Nt0+
+	w3Wk45OWIBchNx7QWgxcgGk46uyazknOwo6LSarraXU0NkFLrQhUmbSFQejl4OYdVtn+LZGZlV1Zk
+	r/YlMNC4pQdIepOfwnD2IWi1WitSCbjq3+02JW0KXua8igRoE0YY8hYTujInIJaLRFC8=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1r60QS-000wAv-CM; Thu, 23 Nov 2023 04:30:48 +0100
+Date: Thu, 23 Nov 2023 04:30:48 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Qingfang Deng <dqfext@gmail.com>,
+	SkyLake Huang <SkyLake.Huang@mediatek.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	David Epping <david.epping@missinglinkelectronics.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+	Harini Katakam <harini.katakam@amd.com>,
+	Simon Horman <horms@kernel.org>,
+	Robert Marko <robert.marko@sartura.hr>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [net-next RFC PATCH 03/14] dt-bindings: net: document ethernet
+ PHY package nodes
+Message-ID: <6a030399-b8ed-4e2c-899f-d82eb437aafa@lunn.ch>
+References: <20231120135041.15259-1-ansuelsmth@gmail.com>
+ <20231120135041.15259-4-ansuelsmth@gmail.com>
+ <c21ff90d-6e05-4afc-b39c-2c71d8976826@lunn.ch>
+ <20231121144244.GA1682395-robh@kernel.org>
+ <a85d6d0a-1fc9-4c8e-9f91-5054ca902cd1@lunn.ch>
+ <655e4939.5d0a0220.d9a9e.0491@mx.google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,36 +74,100 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <281ed28bccc14e7006caf17d6cfeb2a679b0e255.1700648588.git.michal.simek@amd.com>
+In-Reply-To: <655e4939.5d0a0220.d9a9e.0491@mx.google.com>
 
-Hi Michal,
+On Wed, Nov 22, 2023 at 07:32:22PM +0100, Christian Marangi wrote:
+> On Tue, Nov 21, 2023 at 03:45:42PM +0100, Andrew Lunn wrote:
+> > > > I do think we need somewhere to put package properties. But i don't
+> > > > think phy-mode is such a property. At the moment, i don't have a good
+> > > > example of a package property.
+> > > 
+> > > What about power supplies and reset/enable lines?
+> > 
+> > Yes, good point. I can imagine some packages sharing regulators. Reset
+> > might also be shared, but it makes things messy to handle.
+> >
+> 
+> Sooooo.... Sorry if I insist but I would really love to have something
+> ""stable"" to move this further. (the changes are easy enough so it's
+> really a matter of finding a good DT structure)
+> 
+> Maybe a good idea would be summarize the concern and see what solution
+> was proposed:
+> 
+> Concern list:
+> 1. ethernet-phy-package MUST be placed in mdio node (not in ethernet,
+>    the example was wrong anyway) and MUST have an addr
+> 
+>    Current example doesn't have an addr. I would prefer this way but
+>    no problem in changing this.
+> 
+>    Solution:
+>      - Add reg to the ethernet-phy-package node with the base address of
+>        the PHY package (base address = the first PHY address of the
+>        package)
 
-kernel test robot noticed the following build warnings:
+Yes.
 
-[auto build test WARNING on linus/master]
-[also build test WARNING on v6.7-rc2 next-20231122]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+>        We will have a PHY node with the same address of the PHY package
+>        node. Each PHY node in the PHY package node will have reg set to
+>        the REAL address in the mdio bus.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Michal-Simek/dt-bindings-soc-Add-new-board-description-for-MicroBlaze-V/20231122-234634
-base:   linus/master
-patch link:    https://lore.kernel.org/r/281ed28bccc14e7006caf17d6cfeb2a679b0e255.1700648588.git.michal.simek%40amd.com
-patch subject: [PATCH v3 1/2] dt-bindings: soc: xilinx: Move xilinx.yaml from arm to soc
-compiler: loongarch64-linux-gcc (GCC) 13.2.0
-reproduce: (https://download.01.org/0day-ci/archive/20231123/202311231036.ZQvuqOs2-lkp@intel.com/reproduce)
+Basically Yes. I actually think the first sentence is not 100%
+correct. It could be all the package configuration registers are in
+the base address, without an actual PHY. The PHYs then follow at
+addresses above it. I can also imagine a case where the first PHY in
+the package is not used, so its not listed at all. So i think it
+should be "We often have a PHY node with the same address of the PHY
+package node."
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202311231036.ZQvuqOs2-lkp@intel.com/
+> 3. phy-mode is problematic.
+> 
+>    It's an optional value to enforce a specific mode for each PHY in the
+>    package. For complex configuration the mode won't be defined.
+> 
+>    Solution:
+>     - Rename it to package-phy-mode to make it less confusing.
+> 
+>     - Add an additional function that PHY package can use to make custom
+>       validation on the mode for every PHY attached (in the PHY package).
+> 
+>       Would make it less clear but more flexible for complex
+>       configuration. Maybe both solution can be implemented and the
+>       special function is used if the mode is not defined?
 
-dtcheck warnings: (new ones prefixed by >>)
->> Documentation/devicetree/bindings/soc/xilinx/xilinx.yaml: $id: Cannot determine base path from $id, relative path/filename doesn't match actual path or filename
-    	 $id: http://devicetree.org/schemas/arm/xilinx.yaml
-    	file: Documentation/devicetree/bindings/soc/xilinx/xilinx.yaml
+The description you give is that there are two SERDES, and both could
+be connected to a MAC. What does package-phy-mode represent then? 
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Luo Jie patch for the qca8084 seems to have the same issue. It has two
+SERDES/PMA, and both could be connected to the MACs. So it seems like
+QCA devices don't actually fit this model. If we want to describe the
+package link mode, we probably need to list each PMA, and have a
+property in the PMA node indicating what link mode the PMA is
+operating at.
+
+At least for the moment, its not clear we actually need this at
+all. It seems like the phy-mode is all we need. The PHY driver should
+know what values are valid per port, and so can validate the value.
+
+> 4. Not finding a correct place to put PHY package info.
+> 
+>    I'm still convinced the mdio node is the correct place.
+>    - PHY package are PHY in bundle so they are actual PHY
+>    - We already have in the mdio node special handling (every DSA switch
+>      use custom compatible and PHY ID is not used to probe them
+>      normally)
+>    - Node this way won't be treated as PHY as they won't match the PHY
+>      node name pattern and also won't have the compatible pattern for
+>      PHY.
+
+We do need a compatible for the package. The kernel is unlikely to use
+it, but the validation tools will. Each package can have its own DT
+properties, so we need a .yaml to describe those properties. So i
+would expect to have a "qca807x-package" compatible, which then lists
+the tx driver strength etc. The PHYs within the package don't need
+compatible, they are just linux PHYs, probed using the same code as
+PHYs outside of a package.
+
+    Andrew
 
