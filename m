@@ -1,61 +1,60 @@
-Return-Path: <devicetree+bounces-18177-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18178-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0446C7F5905
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 08:19:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C080C7F5913
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 08:20:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 83C0BB20D93
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 07:19:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 608BAB209D7
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 07:20:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9720B15AD0;
-	Thu, 23 Nov 2023 07:18:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9499615AF6;
+	Thu, 23 Nov 2023 07:20:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bWfH9seG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cVh74tts"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6CB91BE
-	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 23:18:55 -0800 (PST)
-Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2c88750e7d1so6467191fa.3
-        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 23:18:55 -0800 (PST)
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B7B5171D
+	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 23:20:29 -0800 (PST)
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-409299277bbso3452295e9.2
+        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 23:20:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700723934; x=1701328734; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=/zN1f8mHuRgR0xbSE05GehVTx8BDM5eVzWwQe7s41xY=;
-        b=bWfH9seGHgj7lSbS2RmSksVuD31wIi/c4F1mn/C2b5BZmnlBlDAA/On2gNSGetTnzx
-         SmDnID3Va1Y3vftCehXarbGi6bvwp8AVxP+2ylF/PwvFYvxfsBE35Muljw1/u6Xy4v4L
-         1b93epigKDGyQNBYxfiU80EwisqQwPDjtxuQMEPqKmv9kXeknpRChYGaTO/Qn/d5xk0l
-         N6jtsResj8nR3xQm14XECwXXnHFoeH2C36EIHyHYWDTAc4iGnaLSWgbZSO2hYvUuKwb1
-         1xxiNVd0asLmfj0RYnQe4ZP0yqSkwfd2MsSyIVUC6UCOphc2TwDMnkjAFh+Qhmvnxeda
-         jj4w==
+        d=linaro.org; s=google; t=1700724027; x=1701328827; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=z4T8F7vjEdeMqW7ASaJxIgH7EDAw211WQ1EYU717TyE=;
+        b=cVh74ttsn1VRCM02Ukp5p0Lbge552O1uLyzwLNtBf9g+nOHR6GErWiqfGMDMinLHQC
+         F+TOrhLok+9ZC13xLq2uFpy0Nbeb6y94BuEtZD7YAYayht4dixhCfZNlOIx6+D5eFiv/
+         E8hwOKeM4RlvIv80XKVQTkgLSdOm+rCeK4gzbxP5i6sUHlv/sFpNVNVzBH7gNjA4/NLu
+         SJViid5wWMwxWEV/CC4poIIRc+MjMXrjT0W0z3pZPC9rMsDPOY/XQvysCguxveGmSc+K
+         nnxkwxTl3aXrMP4MLukND5xud4nyRZpwzgYuoIa16jb8pXZh7j92TVjiwEuDI+4big9z
+         U/+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700723934; x=1701328734;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/zN1f8mHuRgR0xbSE05GehVTx8BDM5eVzWwQe7s41xY=;
-        b=LX1If46R2OziHQMKtHSqLeiDVobzD3+fNBpGWLDlDoMfUpKS8CLaokTKKbAYfTqxw9
-         mbCBgErUOMEfH07GIw7/jUq36jWa60p3i5AzUHhbOJauBOrvbC9byAietGugwikHoWCx
-         mUfur0hcwzh7o8ibOYTH2JGVGAa6fjN8baUZ3DeVIW4yFadG+U09FegNxUQlulXOikKW
-         Qr5pcdtOhErU5ghiIOIzpzwMZlagm3G/BnAyEOXY5FwSF5MwGUIcL0rdhiIEI5XhN8ix
-         5xyGqBt8Wt0bRQRRdCorR1E4n2e7AZ56GvmsJc4yK/X6tNmoZQ/WKpQ1Iqcp9/+23aC0
-         iwIw==
-X-Gm-Message-State: AOJu0Yy0QDd2psWfl6PIXqlZugu2qmTvf4OqFPtZvPH757qvu0tR2xEE
-	5cj2H6B6BXH7e95btQE2joud+A==
-X-Google-Smtp-Source: AGHT+IGgwdLEcXT+v++no2gePCVPhRPAgYg3NEpUWiOM5aoV+DL4Ae0sQbJbqB1R1qFCRHHqFRMAdg==
-X-Received: by 2002:a2e:a99e:0:b0:2c8:3613:d07c with SMTP id x30-20020a2ea99e000000b002c83613d07cmr3597127ljq.12.1700723933904;
-        Wed, 22 Nov 2023 23:18:53 -0800 (PST)
+        d=1e100.net; s=20230601; t=1700724027; x=1701328827;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=z4T8F7vjEdeMqW7ASaJxIgH7EDAw211WQ1EYU717TyE=;
+        b=pZ5dUdpfQGdfwH0tuXT3ct4Yns0vWmRhAZXFmgDB4rza56yetLKYSe+l2mh8YlrXH+
+         4/Bmr45KhPPz8dnOvm4F2Z9l7EAIuef1zU405lKj57o+iwBCQqsmIO2z2XNW5WAKt5AJ
+         5+UBjusKjaGA0oIKMisGL16W9lcwlkLRdXV7ysTRT8mbzzutV3wSPofX+ORZPVup57Ho
+         /TxV9Jvt1Ie5c6ezcHnQHTfM2GSA1m89AZ/glgGjYAiS+ptI3TLC9lBtJcxz86Qpq5X2
+         fdRk/NljxhTvXLW8g43F8lSjnJsk2wrbuXSv7B/JkoVCu6mRJqJ2J2JCPL7mtijpBNpd
+         3QQA==
+X-Gm-Message-State: AOJu0Yx8W7tWaRNKA/d0gHBsqutWEfrsHQAPoWDRfHvHcvrpE5gqocqb
+	3X/bAT/ze1llWDA8l3fcPMCZ7w==
+X-Google-Smtp-Source: AGHT+IH4NrnmA8Wx5jaPwGNF1y+QpyiGKoDY7aRrl9GEdkWplXqFNvJW/YwFFfCGgPw7D8U8q83KVA==
+X-Received: by 2002:a05:600c:5102:b0:405:3455:e1a3 with SMTP id o2-20020a05600c510200b004053455e1a3mr3400452wms.17.1700724027479;
+        Wed, 22 Nov 2023 23:20:27 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.100])
-        by smtp.gmail.com with ESMTPSA id az15-20020a05600c600f00b0040b2b9bf321sm1697573wmb.9.2023.11.22.23.18.52
+        by smtp.gmail.com with ESMTPSA id az15-20020a05600c600f00b0040b2b9bf321sm1697573wmb.9.2023.11.22.23.20.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Nov 2023 23:18:53 -0800 (PST)
-Message-ID: <0eb12623-22b2-4edf-8ef7-14382a250e74@linaro.org>
-Date: Thu, 23 Nov 2023 08:18:50 +0100
+        Wed, 22 Nov 2023 23:20:27 -0800 (PST)
+Message-ID: <676c55c7-1477-4c59-a1fe-2b50e37018a0@linaro.org>
+Date: Thu, 23 Nov 2023 08:20:25 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,23 +62,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/4] arm/arm64: dts: samsung: Always enable extra W=1
- warnings
-To: Rob Herring <robh@kernel.org>, Masahiro Yamada <masahiroy@kernel.org>,
- Nathan Chancellor <nathan@kernel.org>,
- Nick Desaulniers <ndesaulniers@google.com>,
- Nicolas Schier <nicolas@fjasle.eu>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Paul Walmsley
- <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>, Alim Akhtar <alim.akhtar@samsung.com>,
- Conor Dooley <conor@kernel.org>
-Cc: linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
-References: <20231122-dtc-warnings-v2-0-bd4087325392@kernel.org>
- <20231122-dtc-warnings-v2-4-bd4087325392@kernel.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: iio: frequency: add admfm2000
 Content-Language: en-US
+To: "Paller, Kim Seer" <KimSeer.Paller@analog.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen
+ <lars@metafoo.de>, "Hennerich, Michael" <Michael.Hennerich@analog.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ kernel test robot <lkp@intel.com>
+References: <20231122105831.182570-1-kimseer.paller@analog.com>
+ <f66a3dc3-a0a5-457b-a68a-efd6577aa210@linaro.org>
+ <PH0PR03MB7141C58C008920173B3AE998F9B9A@PH0PR03MB7141.namprd03.prod.outlook.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -125,19 +122,55 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231122-dtc-warnings-v2-4-bd4087325392@kernel.org>
+In-Reply-To: <PH0PR03MB7141C58C008920173B3AE998F9B9A@PH0PR03MB7141.namprd03.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 22/11/2023 23:12, Rob Herring wrote:
-> Samsung platforms are clean of W=1 dtc warnings, so enable the warnings
-> by default. This way submitters don't have to remember to run a W=1
-> build of the .dts files and the grumpiness of the maintainers can be
-> reduced.
+On 23/11/2023 07:13, Paller, Kim Seer wrote:
+>>> ---
+>>> V2 -> V3: Adjusted indentation to resolve wrong indentation warning.
+>>>           Changed node name to converter. Updated the descriptions to clarify
+>>>           the properties.
+>>
+>>
+>>> +title: ADMFM2000 Dual Microwave Down Converter
+>>> +
+>>> +maintainers:
+>>> +  - Kim Seer Paller <kimseer.paller@analog.com>
+>>> +
+>>> +description:
+>>> +  Dual microwave down converter module with input RF and LO frequency
+>> ranges
+>>> +  from 0.5 to 32 GHz and an output IF frequency range from 0.1 to 8 GHz.
+>>> +  It consists of a LNA, mixer, IF filter, DSA, and IF amplifier for each down
+>>> +  conversion path.
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    enum:
+>>> +      - adi,admfm2000
+>>> +
+>>> +  switch1-gpios:
+>>> +    items:
+>>> +      - description:
+>>> +          Setting B15 GPIO to high and B16 GPIO to low will result in channel 1
+>>> +          being in Direct IF mode.
+>>> +      - description:
+>>> +          Setting B15 GPIO to low and B16 GPIO to high will result in channel 1
+>>> +          being in Mixer mode.
+>>
+>> This still does not tell which one is B15 and which is B16. I am asking
+>> this for third time.
+>>
+>> items:
+>>   - description: B15 GPIO, when high (and B16 low) channel 1 is in
+>> Direct IF mode
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> I understand now, thank you. I was also wondering if this applies to the 
+> attenuation-gpios, or if I should keep it as is?
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Yes, something like this applies to all your properties with multiple
+entries. You need to define the order.
 
 Best regards,
 Krzysztof
