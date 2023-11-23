@@ -1,129 +1,225 @@
-Return-Path: <devicetree+bounces-18417-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18418-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F7997F65BC
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 18:46:50 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3335F7F65D4
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 18:56:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3A728281C51
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 17:46:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 91916B20EB0
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 17:56:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76B7A3FE37;
-	Thu, 23 Nov 2023 17:46:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A98C3405E8;
+	Thu, 23 Nov 2023 17:56:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b="Av9IVz9u";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="LHAbkZsE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O/B7Gq1P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from wout2-smtp.messagingengine.com (wout2-smtp.messagingengine.com [64.147.123.25])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6AF710DA;
-	Thu, 23 Nov 2023 09:46:44 -0800 (PST)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-	by mailout.west.internal (Postfix) with ESMTP id 5D2893200A92;
-	Thu, 23 Nov 2023 12:46:43 -0500 (EST)
-Received: from imap44 ([10.202.2.94])
-  by compute3.internal (MEProxy); Thu, 23 Nov 2023 12:46:44 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:sender:subject:subject:to:to; s=fm2; t=
-	1700761602; x=1700848002; bh=JdVkYHyZCwkaqqs8iJxKPLWNDNKV1uUX4zd
-	6JLzaduk=; b=Av9IVz9upWizEgMWXliaWlxTB2n29cXJjymrRgPOhNTeuolTl80
-	qtPWMlJ4KacVpv5o4Yxod+BZtSojlcNJ2d+KsIULxhSKyDwSZR98i9dGaJbM8GOo
-	aZn1xiYh0OCzjBO0RMoDLLDZabAT5q0eldp0Rl5rNkLGqGHWus2l9DbHi2Bev5EI
-	ZFrYlbt2ykoVbfvrbGA+CqlR5shfrrsUp5OQmHP/edRoPTCTds3uhggp8LcNjiRC
-	KBkAPi4aH023MLVv+QLvu3IiOxf1kYMcC9UqtGdC7+TiZZ126AcTiB389G4tLbPb
-	Eidu+yMF+hrgGBbWnTaq2JMkHjsqlj3RAXw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:sender:subject:subject:to:to:x-me-proxy
-	:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=
-	1700761602; x=1700848002; bh=JdVkYHyZCwkaqqs8iJxKPLWNDNKV1uUX4zd
-	6JLzaduk=; b=LHAbkZsEk5baSGX4tj3aOonz7W4kleGgb/h86/BbL2AR9+F/6R7
-	NeX9uB8FIpgahkQVIpI1VwSL+8j3YZCfYLiym4p0zRZWvLd0AzkHPFowbW3Bo5/d
-	ACbo1IDy0xvSVcK4Tzfr0dBkiDGTtzy1vSzK8iLpXtJ7eBfzPg8ROIPZPEbgn21X
-	/wuiXJrlo9sjANfBqEmO9y4wPjwk4bQ5zSFequ8Nl2481aPrnEVPLB9SaWpts77q
-	/P9wI9PCJpwoOhEKhgD15sD2ait/jUyVnvzKZj+SYyJ9fPsMO//u7/WxzgT7F+8j
-	VUC0vBdvCKVpPUYRdI2e/KYLIGrFOU35fNQ==
-X-ME-Sender: <xms:ApBfZYWSeq5YcSACIiu9Ny592KVe02DhqgN9AxKCD-QjHkst-67DOw>
-    <xme:ApBfZcn8ZRo7OH9Y0YWJ7A4_kPsnhLgW-MLUrWjLwDqFp8f_vSFn6fTUYox9w3t7E
-    3q-Z4yhsaaorUG5olI>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrudehfedguddtvdcutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpefofgggkfgjfhffhffvvefutgfgsehtqhertderreejnecuhfhrohhmpedf
-    lfhirgiguhhnucgjrghnghdfuceojhhirgiguhhnrdihrghnghesfhhlhihgohgrthdrtg
-    homheqnecuggftrfgrthhtvghrnhepudefgeeftedugeehffdtheefgfevffelfefghefh
-    jeeugeevtefhudduvdeihefgnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpe
-    hmrghilhhfrhhomhepjhhirgiguhhnrdihrghnghesfhhlhihgohgrthdrtghomh
-X-ME-Proxy: <xmx:ApBfZcaPNS2qOqi6-NIEobQrkLF8d-Baf0jUAo-7DwiuhusYtkMkig>
-    <xmx:ApBfZXWHZeJYLPxL-Wmc2yx8yhT1iW8EBwUK7TzcCHs4EDXglH343Q>
-    <xmx:ApBfZSmPDS-kACi1pAJm-cVih3X2OzAXexYukiz_F-pugmdqbNUEfw>
-    <xmx:ApBfZbc9itzmhbm4YqjXDjn87OwcdTRS-9i_JwGS0cx8AGsFph8JiA>
-Feedback-ID: ifd894703:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id 604E436A0075; Thu, 23 Nov 2023 12:46:42 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-1234-gac66594aae-fm-20231122.001-gac66594a
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88B134AF6F;
+	Thu, 23 Nov 2023 17:56:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18489C433C7;
+	Thu, 23 Nov 2023 17:56:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1700762195;
+	bh=lC5W7+Qr59rnhc4Jd20Dtf/HPxOyflR9v5IaOt+MbeI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=O/B7Gq1PllfFYKi98tzgiIqm+eO8BZesekeW8ePGYfCsbyloLFTgwLYSMxT0530wP
+	 H+Ssfwp7bfx7zSXZXctFO9WA2fgL4RZtdO4hwFVdj1iS8t0ocJK8PDzdsrSGx/UgGg
+	 +uYFgEbpmzyah8WMmmzafyGLP5qVL3SLqobMJT9e+1kRv6bo9A45xCVRvSEEiclAEu
+	 rgTVTc4Gk3NQXt2cdrah+ibIjM9o1cXXnbOc6LDcLWz4fbWs8vbR/bdsCe2gUDlLkY
+	 rIPZ5h3uIJyKH1ayQ8BjtoS0oOo4Oq1n8NhuKi8G2pctnkhgv86pASLLIBJc6sL1ds
+	 iftxVyWj3Dl2Q==
+Date: Thu, 23 Nov 2023 17:56:30 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Anand Moon <linux.amoon@gmail.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Icenowy Zheng <uwu@icenowy.me>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	linux-amlogic@lists.infradead.org, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/2] dt-bindings: usb: Add the binding example for the
+ Genesys Logic GL3523 hub
+Message-ID: <20231123-skeletal-smirk-390543e2d6ab@spud>
+References: <20231122182351.63214-1-linux.amoon@gmail.com>
+ <20231122182351.63214-2-linux.amoon@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-Id: <db993514-7daa-41cb-8e6e-179305c16e24@app.fastmail.com>
-In-Reply-To: <20231123152639.561231-21-gregory.clement@bootlin.com>
-References: <20231123152639.561231-1-gregory.clement@bootlin.com>
- <20231123152639.561231-21-gregory.clement@bootlin.com>
-Date: Thu, 23 Nov 2023 17:46:19 +0000
-From: "Jiaxun Yang" <jiaxun.yang@flygoat.com>
-To: "Gregory CLEMENT" <gregory.clement@bootlin.com>,
- "paulburton@kernel.org" <paulburton@kernel.org>,
- "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
- "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
- "Rob Herring" <robh+dt@kernel.org>,
- "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: "Vladimir Kondratiev" <vladimir.kondratiev@mobileye.com>,
- "Tawfik Bayouk" <tawfik.bayouk@mobileye.com>,
- "Alexandre Belloni" <alexandre.belloni@bootlin.com>,
- =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
- "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 20/21] MIPS: generic: Add support for Mobileye EyeQ5
-Content-Type: text/plain;charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="V1sQe/A91J5XE2J3"
+Content-Disposition: inline
+In-Reply-To: <20231122182351.63214-2-linux.amoon@gmail.com>
+
+
+--V1sQe/A91J5XE2J3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-
-
-=E5=9C=A82023=E5=B9=B411=E6=9C=8823=E6=97=A5=E5=8D=81=E4=B8=80=E6=9C=88 =
-=E4=B8=8B=E5=8D=883:26=EF=BC=8CGregory CLEMENT=E5=86=99=E9=81=93=EF=BC=9A
-> Introduce support for the MIPS based Mobileye EyeQ5 SoCs.
->
-> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
-> ---
-[...]
-> diff --git a/arch/mips/generic/Kconfig b/arch/mips/generic/Kconfig
-> index 7dc5b3821cc6e..04e1fc6f789b5 100644
-> --- a/arch/mips/generic/Kconfig
-> +++ b/arch/mips/generic/Kconfig
-> @@ -48,6 +48,13 @@ config SOC_VCOREIII
->  config MSCC_OCELOT
->  	bool
+On Wed, Nov 22, 2023 at 11:53:46PM +0530, Anand Moon wrote:
+> Add the binding example for the USB3.1 Genesys Logic GL3523
+> integrates with USB 3.1 Gen 1 Super Speed and USB 2.0 High-Speed
+> hub.
 >=20
-> +config SOC_EYEQ5
-> +	select ARM_AMBA
-> +	select WEAK_ORDERING
-> +	select WEAK_REORDERING_BEYOND_LLSC
-> +	select PHYSICAL_START_BOOL
-> +	bool
+> Onboard USB hub supports USB 3.x and USB 2.0 peer controllers.
+> which has a common reset pin and power supply.
+> peer-hub phandle each peer controller with proper gpio reset
+> and help each peer power on during initialization
+> and power off during suspend.
+>=20
+> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> ---
+> v4: Fix the description of peer-hub and update the commit message.
+> Schematics of the Odroid N2+
+> https://dn.odroid.com/S922X/ODROID-N2/Schematic/odroid-n2_rev0.6_20210121=
+=2Epdf
+> V3: fix the dt_binding_check error, added new example for Genesys GL3523
+> v2: added Genesys GL3523 binding
+> v1: none
+> ---
+>  .../bindings/usb/genesys,gl850g.yaml          | 67 +++++++++++++++++--
+>  1 file changed, 63 insertions(+), 4 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml b/=
+Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> index ee08b9c3721f..bc3b3f4c8473 100644
+> --- a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> +++ b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> @@ -9,9 +9,6 @@ title: Genesys Logic USB hub controller
+>  maintainers:
+>    - Icenowy Zheng <uwu@icenowy.me>
+> =20
+> -allOf:
+> -  - $ref: usb-device.yaml#
+> -
+>  properties:
+>    compatible:
+>      enum:
+> @@ -27,12 +24,48 @@ properties:
+> =20
+>    vdd-supply:
+>      description:
+> -      the regulator that provides 3.3V core power to the hub.
+> +      phandle to the regulator that provides power to the hub.
+> +
+> +  peer-hub:
 
-^ I believe WEAK_ORDERING is already selected by MIPS_CPS,
-and WEAK_REORDERING_BEYOND_LLSC should be selected by MIPS_CPS as well.
-=20
-Thanks
---=20
-- Jiaxun
+Should the property not be "peer-controller"? Your description refers to
+them as such.
+
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      onboard USB hub supports USB 3.x and USB 2.0 peer controllers.
+
+
+> +      which has a common reset pin and power supply.
+> +      peer-hub phandle each peer controller with proper gpio reset
+> +      and help each peer power on during initialization
+> +      and power off during suspend.
+
+I generally hate to talk about non-native speakers grammar etc, but what
+you have here is in need of a lot of improvement. The below is my
+attempt to understand what you are trying to say:
+
+"For onboard hubs that support USB 3.x and USB 2.0 controllers with
+shared resets and power supplies, this property is used to identify
+the controllers with which these are shared."
+
+Also - this is one particular system, what prevents there being a hub
+that has more than 2 controllers? Also, as you insist that this is
+generic, and not just for genesys, should this not be defined in a
+common location?
+
+Cheers,
+Conor.
+
+> =20
+>  required:
+>    - compatible
+>    - reg
+> =20
+> +allOf:
+> +  - $ref: usb-device.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - usb5e3,608
+> +    then:
+> +      properties:
+> +        peer-hub: false
+> +        vdd-supply: false
+> +        reset-gpios: true
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - usb5e3,610
+> +              - usb5e3,620
+> +    then:
+> +      properties:
+> +        peer-hub: true
+> +        vdd-supply: true
+> +        reset-gpios: true
+> +
+>  additionalProperties: false
+> =20
+>  examples:
+> @@ -49,3 +82,29 @@ examples:
+>              reset-gpios =3D <&pio 7 2 GPIO_ACTIVE_LOW>;
+>          };
+>      };
+> +
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    usb {
+> +        dr_mode =3D "host";
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        /* 2.0 hub on port 1 */
+> +        hub_2_0: hub@1 {
+> +            compatible =3D "usb5e3,610";
+> +            reg =3D <1>;
+> +            peer-hub =3D <&hub_3_0>;
+> +            reset-gpios =3D <&gpio 20 GPIO_ACTIVE_LOW>;
+> +            vdd-supply =3D <&vcc_5v>;
+> +        };
+> +
+> +        /* 3.1 hub on port 4 */
+> +        hub_3_0: hub@2 {
+> +            compatible =3D "usb5e3,620";
+> +            reg =3D <2>;
+> +            peer-hub =3D <&hub_2_0>;
+> +            reset-gpios =3D <&gpio 20 GPIO_ACTIVE_LOW>;
+> +            vdd-supply =3D <&vcc_5v>;
+> +        };
+> +    };
+> --=20
+> 2.42.0
+>=20
+
+--V1sQe/A91J5XE2J3
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZV+STgAKCRB4tDGHoIJi
+0mwwAP9s9qmiSd8TgU4ApJa6D+1a7mUjwbwVn5y9j9brD7RfmgD/bZI//2gN6ZT9
+CAdWofSmLE0P+12w0jvV05yM8LwnvQE=
+=yviR
+-----END PGP SIGNATURE-----
+
+--V1sQe/A91J5XE2J3--
 
