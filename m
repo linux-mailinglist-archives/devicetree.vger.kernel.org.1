@@ -1,142 +1,95 @@
-Return-Path: <devicetree+bounces-18296-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18297-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 351577F60BF
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 14:49:04 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E3FA7F60C5
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 14:49:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E3E44281EDE
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 13:49:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B1A78B20F33
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 13:49:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF96E2575B;
-	Thu, 23 Nov 2023 13:48:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAED62575A;
+	Thu, 23 Nov 2023 13:49:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rasmusvillemoes.dk header.i=@rasmusvillemoes.dk header.b="cuNGAaXJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dfs5dufT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D562DD40
-	for <devicetree@vger.kernel.org>; Thu, 23 Nov 2023 05:48:55 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-50aa8c0af41so2035547e87.1
-        for <devicetree@vger.kernel.org>; Thu, 23 Nov 2023 05:48:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rasmusvillemoes.dk; s=google; t=1700747334; x=1701352134; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=wYJ9RINpWO/etmrdmn1FP6FlQ9EPAx5C4AtYkJeamEI=;
-        b=cuNGAaXJmWlRWqjJena6EFfVjKGaTvWz50yhLoPjEGVBOVDyrKuDtQAO2HT57j7tHQ
-         KnbtiC8F+y86KMXPGZ5Vz6Eoiee/j0izmlHp/DrfhkIZt/C+oCqtBUnsyWaiazNB7vaB
-         GDhgUMMzUIG+wmW+QS0seAE97+h3JBUuvBJP0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700747334; x=1701352134;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wYJ9RINpWO/etmrdmn1FP6FlQ9EPAx5C4AtYkJeamEI=;
-        b=XkkqlR8bDBd5sHfWg7bilPLj9PlBqpDV31WcLRZthaCgdULfp5pkhl0SWiHaQ4+Vdd
-         oSsKJ7UN5F555oXDL/cX945QK2JPZbRxNER33w28MvMKd6fzeFtLT2I6fSI17TlnXyLd
-         7CW5Iz0ftcoeOZWdUZnCcpQYtSIHv3OoCCvbABe4+9t945R6I4w/NKCVqIh8CYPGMHzO
-         gIg5kiHcwESkiMR5pTfFfy1X8Z48bYPqqLvRMTSWN5DSqkc7LCYRvPIqEFdwNQw3AM/o
-         sSQrho3flVCxUEDjmJUf7R5C6oCc68b8MK8O3xGCdqohPfijyykevySU3a38HvWpPYmR
-         HiSQ==
-X-Gm-Message-State: AOJu0YwMh/LNZ1k1581XAvLWos2GqD0CMfs74IgLNXBJaRdi0r20LqRv
-	r8CfsTW+EEjbGQjjskgATBmwnA==
-X-Google-Smtp-Source: AGHT+IG4CVoPRUAn77ky2ffnCHCPrIVvxiwyxMrF5VOgYS9HaFefUSItqzrdzQkf09aJ01Bo2N1g3g==
-X-Received: by 2002:a19:7512:0:b0:50a:a31c:39b1 with SMTP id y18-20020a197512000000b0050aa31c39b1mr865785lfe.9.1700747333878;
-        Thu, 23 Nov 2023 05:48:53 -0800 (PST)
-Received: from [172.16.11.116] ([81.216.59.226])
-        by smtp.gmail.com with ESMTPSA id t6-20020a056512068600b005094486b705sm199933lfe.16.2023.11.23.05.48.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 Nov 2023 05:48:53 -0800 (PST)
-Message-ID: <b8df5f0c-a3cd-4cad-b1c6-db89686464fc@rasmusvillemoes.dk>
-Date: Thu, 23 Nov 2023 14:48:52 +0100
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E5C722307
+	for <devicetree@vger.kernel.org>; Thu, 23 Nov 2023 13:49:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55D77C433C8;
+	Thu, 23 Nov 2023 13:49:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1700747391;
+	bh=Ran+HOMzMulZc35R1BVI8jtdePgjE69xnnBf17aaGis=;
+	h=From:To:Cc:Subject:Date:From;
+	b=dfs5dufT0A6i43Pq8Ams02vvkPNKqgEAwDU8PicNGDsRwqNvJU/WmQaQgLBcU2Pqz
+	 +qP+JikYVTz8YFKtsGdE0CR6CYmsEntuHy8jCTCRsOGLE1WfYJcpuZbg4qoczBAAln
+	 QymN3/qmMpw1liIoINoi1iUtHyqAHaWTI0rZwshr3cC1Y6huoTg7sPJg6UicQKJ+iG
+	 Y5b4YmlcpH1ciq2nCl5/z7DSjQUT1iMhPO0M4klutAI8syKBOSmWLca87JtZfgFqHs
+	 2NA4eFEVpRh3/h50P7nK1XkzGySPdVXCNezLny/gOePAPkeWmuqualXIA6iN8VMpEu
+	 /ClSGPDj3ZX+w==
+From: Michael Walle <mwalle@kernel.org>
+To: Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Jitao Shi <jitao.shi@mediatek.com>
+Cc: dri-devel@lists.freedesktop.org,
+	linux-mediatek@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Michael Walle <mwalle@kernel.org>
+Subject: [PATCH] dt-bindings: display: mediatek: dsi: remove Xinlei's mail
+Date: Thu, 23 Nov 2023 14:49:27 +0100
+Message-Id: <20231123134927.2034024-1-mwalle@kernel.org>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: serial: rs485: add rs485-mux-gpios
- binding
-Content-Language: en-US, da
-To: Lukas Wunner <lukas@wunner.de>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
- Crescent CY Hsieh <crescentcy.hsieh@moxa.com>,
- Lino Sanfilippo <LinoSanfilippo@gmx.de>,
- =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- Peter Rosin <peda@axentia.se>
-References: <20231120151056.148450-1-linux@rasmusvillemoes.dk>
- <20231120151056.148450-2-linux@rasmusvillemoes.dk>
- <20231122145344.GA18949@wunner.de>
- <e731c0a9-7a5c-41c3-87aa-d6937b99d01a@rasmusvillemoes.dk>
- <20231123103802.GA30056@wunner.de>
-From: Rasmus Villemoes <linux@rasmusvillemoes.dk>
-In-Reply-To: <20231123103802.GA30056@wunner.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 23/11/2023 11.38, Lukas Wunner wrote:
-> On Thu, Nov 23, 2023 at 11:07:16AM +0100, Rasmus Villemoes wrote:
->> On 22/11/2023 15.53, Lukas Wunner wrote:
->>> But if that patch gets accepted, we'd have *three* different modes:
->>> RS-232, RS-485, RS-422.  A single GPIO seems insufficient to handle that.
->>> You'd need at least two GPIOs.
->>
->> I don't see Crescent introducing any new gpio that needs to be handled.
->> In fact, I can't even see why from the perspective of the software that
->> rs422 isn't just rs232; there's no transmit enable pin that needs to be
->> handled. But maybe the uart driver does something different in rs422
->> mode; I assume he must have some update of some driver, since otherwise
->> the new rs422 bit should be rejected by the core. So I can't really see
->> the whole picture of that rs422 story.
-> 
-> The question is, could we conceivably have the need to support
-> switching between the three modes RS-232, RS-485, RS-422.
-> If yes, then the GPIO mux interface should probably allow for that.
-> 
-> As a case in point, the Siemens IOT 2040 has two serial ports
-> which can be set to either of those three modes.  The signals
-> are routed to the same D-sub socket, but the pins used are
-> different.  See page 46 and 47 of this document:
-> 
-> https://cache.industry.siemens.com/dl/files/658/109741658/att_899623/v1/iot2000_operating_instructions_enUS_en-US.pdf
-> 
-> The driver for this product is 8250_exar.c.  It's an Intel-based
-> product, so no devicetree, but it shows that such use cases exist.
+Xinlei Lee's mail is bouncing:
 
-OK. I did look at the mux-controller/mux-consumer bindings, but couldn't
-really make heads or tails of it, and there aren't a whole lot of
-examples in-tree. Also, the C API seems ... not quite what is needed
-here. I realize that's not really anything to do with the best way to
-describe the hardware, but that, plus the fact that the serial core
-already handles a number of gpios controlling circuitry related to
-rs485, was what made me go for one extra gpio.
+<xinlei.lee@mediatek.com>: host mailgw02.mediatek.com[216.200.240.185] said:
+    550 Relaying mail to xinlei.lee@mediatek.com is not allowed (in reply to
+    RCPT TO command)
 
-How would a mux-consumer description look?
+Remove it.
 
-  mux-states = <&mux 0>, <&mux 1>;
-  mux-state-names = "rs485", "rs232";
+Signed-off-by: Michael Walle <mwalle@kernel.org>
+---
+ .../devicetree/bindings/display/mediatek/mediatek,dsi.yaml       | 1 -
+ 1 file changed, 1 deletion(-)
 
-or should that be mux-controls? Would that be enough so that we're sure
-that if and when a rs422 state is needed that could easily be
-represented here?
-
-Now implementation-wise, there's the complication that switching the mux
-to/from rs485 mode must be done after/before the driver's ->rs485_config
-is called, to avoid the transceiver temporarily being activated (thus
-blocking/disturbing other traffic). That plus the need to mux_*_deselect
-the old mode means the consumer (serial core in this case) ends up with
-quite a lot of bookkeeping, and even more so taking error path into
-consideration.
-
-Rasmus
+diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.yaml
+index 4a7a9ff21996..8611319bed2e 100644
+--- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.yaml
++++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.yaml
+@@ -10,7 +10,6 @@ maintainers:
+   - Chun-Kuang Hu <chunkuang.hu@kernel.org>
+   - Philipp Zabel <p.zabel@pengutronix.de>
+   - Jitao Shi <jitao.shi@mediatek.com>
+-  - Xinlei Lee <xinlei.lee@mediatek.com>
+ 
+ description: |
+   The MediaTek DSI function block is a sink of the display subsystem and can
+-- 
+2.39.2
 
 
