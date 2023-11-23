@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-18196-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18197-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAC7F7F5988
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 08:46:11 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93DE67F599A
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 08:50:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DA7911C20B83
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 07:46:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EC46CB20C64
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 07:50:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0BFC18624;
-	Thu, 23 Nov 2023 07:46:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A1861865D;
+	Thu, 23 Nov 2023 07:50:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UaI3s6nC"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Nr5SIsnV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AFEC19D
-	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 23:46:04 -0800 (PST)
-Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-54917ef6c05so750113a12.1
-        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 23:46:04 -0800 (PST)
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A5CE191
+	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 23:50:16 -0800 (PST)
+Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-548f74348f7so786508a12.2
+        for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 23:50:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700725562; x=1701330362; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1700725814; x=1701330614; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=MPDmtK6S1zORaSjdr1XRX6hDDuSPjRoXGNzUDRQooDY=;
-        b=UaI3s6nCrImb0Ukto3x9L/oneZEV/lVVBFWlFA0BvRf42TwJqOm6LQ1iDBhQGcvwDg
-         fBPYiX6HeZAbouzAgadfBssMGNz9jqtGlKrhS1dfYfFAptTNvrxCAiQdRZWP//0/PrsA
-         81wT1kx8A5cbkQHwVd5k1IMJgw5oSHJcXI4HwbvZ0N7kEdm6QfUvJpsQfmCIFA4hX9DT
-         3mnOTusw5DnM2FHnVOqiQ16qSREUE261HwcNXOAyn4Fosv+gvOOlcpnCX4L+08QO1Osu
-         XaTVrHdK7eCZE/XokUGL+be59kvGLO8MK3dV1R+zjAhKOW0ip6/+tNbme19iaGugYz70
-         JAJg==
+        bh=wIAjb98REr6rdhtsiSzATNTDYndhqLZwKGASgxrUl4s=;
+        b=Nr5SIsnV4YGnGDpGuKGZUQErvQDfs+1y+s+Zh677WfzHR+Q7HkUxjN/T5XvDsI3WXm
+         LvmqgBIGbPRd/7oC3FzyA0yQEeuXhVf9WEohADFC051yU8VMK2GZTc96sNYl71l/qyN4
+         n8ZCZPqoQqhLxxA2QT8q225OsDWIw4b/rBmbPalCpm6iIN/Q2DpvAnbKcsAchym6hSqI
+         9CgQp1gLVn7Sa1DLBPvZKUSISLmM+GCqFvGN30J9gC4Q25/eUteZGx0pMkoFoT3lo4L7
+         Gqd38DILznFCeyKhnNu2Tu9LcKl+4Jy5AfJwfJZ9R7KZ4Fxg7EUuZIEFrVhtEJyST1RE
+         doYQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700725562; x=1701330362;
+        d=1e100.net; s=20230601; t=1700725814; x=1701330614;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MPDmtK6S1zORaSjdr1XRX6hDDuSPjRoXGNzUDRQooDY=;
-        b=eeyUNDC+MqQf/IyqugaJrHPIUedASkhYfeFFWccJrGlY02veCMSGHOQ1BMucSqu+rF
-         0IGLLXYhK/BiU1qIGkRJuwQQLhkGknD3wzDsTXEst8NwFTbz2NsDMsluRNzbVJv773/5
-         GKoLQXcNNo3Soj8A2T/7ExBhELtY1GXP+TxTkzCk8nmlui+ZZQEcGabUj7qBnJhSQuYx
-         8evb5ym8xfDNgY//ZYPiitfj8YVsQpdmh8kdH1JEVfn6uKSV0jc0LDB6aRT0pzgz77th
-         wH1Z87V24vfkHKG8+bEvE7bMiPrPRFjogKoC5aAQVp2dpa5fFicspcq2fyxahbKWLFXi
-         8Fgg==
-X-Gm-Message-State: AOJu0Yw/aJnn389CAXkXQwkwYDjR+wyCZDjaJjRfp4fZYlT6P/4AuzqM
-	R+Qd5cQgv9fm2bpTjpqY2ApMXseCnpDDtVAjxvM=
-X-Google-Smtp-Source: AGHT+IHi4dveGYoXJQ4mSc04/b7VUTzasiuAkV2QiB+Tm2Q4gZeuR3jwcWQccQlQDlJdgpj285r/hw==
-X-Received: by 2002:aa7:c0ce:0:b0:53e:81f6:8060 with SMTP id j14-20020aa7c0ce000000b0053e81f68060mr3549924edp.14.1700725562615;
-        Wed, 22 Nov 2023 23:46:02 -0800 (PST)
+        bh=wIAjb98REr6rdhtsiSzATNTDYndhqLZwKGASgxrUl4s=;
+        b=diJpPjaIuJiSte4sRcxdn4KMJMOvjNMCYDrdS653rizadA6P9r29K3drYeZCwL22FF
+         vNcetfYc/1C6nZfBOWwOQQiqaQOu+wYHC/9ulSnfCJKaovrwhMr+L6a7pYbgzKfslqJb
+         Fr5IckUo5Bk3L3GB8Lq54NT9UN1KMjvPpfZ39TWn5EYA+PaOaKon58i28XP93V6pAwRU
+         FT0IvCCfZty2zDt3bnQKlJiFrU4xdmfJ7LEQ/ZM9bTjn1upH3MHlPbWjSTPSM9iNEyYp
+         ATrhJh6HLBejkDHiaDhwchlrbxW0r5VTIiFj7S2KFiHOSHYx/bHv/mguC8b3euChIHPb
+         AZDA==
+X-Gm-Message-State: AOJu0YzC2kLNtSIIp7EItQjg7fc1OmW0UWc6dA7SbtQOzim5fyA7BZ50
+	AUs4KrqKRjOLIUVmgHHGGJFBcA==
+X-Google-Smtp-Source: AGHT+IHZ9C/PdXjwZUm6CkTX/Ohh+d7rOCRL7PNbOGdfFDoAojkO7C+pXGLKVqUBJeygz0nrL0eqoA==
+X-Received: by 2002:a17:906:28d:b0:a00:131c:bc3e with SMTP id 13-20020a170906028d00b00a00131cbc3emr3113517ejf.11.1700725814473;
+        Wed, 22 Nov 2023 23:50:14 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.100])
-        by smtp.gmail.com with ESMTPSA id l1-20020a056402230100b00548ab6c9f12sm354224eda.54.2023.11.22.23.46.01
+        by smtp.gmail.com with ESMTPSA id g10-20020a170906348a00b009fb1c3ce877sm432203ejb.76.2023.11.22.23.50.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Nov 2023 23:46:02 -0800 (PST)
-Message-ID: <cad5b418-0906-44fe-b345-a5b0342caf3e@linaro.org>
-Date: Thu, 23 Nov 2023 08:46:00 +0100
+        Wed, 22 Nov 2023 23:50:14 -0800 (PST)
+Message-ID: <7f4d20fd-b975-47ab-8dfb-2a0eb3db04fc@linaro.org>
+Date: Thu, 23 Nov 2023 08:50:11 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,14 +62,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: clock: versal: Make alt_ref optional
+Subject: Re: [PATCH 1/6] dt-bindings: usb: dwc3: Clean up hs_phy_irq in
+ bindings
 Content-Language: en-US
-To: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org
-Cc: git@amd.com, mturquette@baylibre.com, sboyd@kernel.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- michal.simek@amd.com
-References: <20231123053409.10192-1-shubhrajyoti.datta@amd.com>
+To: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+ Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Konrad Dybcio <konrad.dybcio@linaro.org>,
+ quic_wcheng@quicinc.com, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ quic_ppratap@quicinc.com, quic_jackp@quicinc.com,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+References: <20231122191335.3058-1-quic_kriskura@quicinc.com>
+ <4c323ab5-579f-41f5-ab77-c087136e4058@linaro.org>
+ <ab2952ea-1917-4b58-a0cf-64f3eba0b7c9@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -115,18 +122,74 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231123053409.10192-1-shubhrajyoti.datta@amd.com>
+In-Reply-To: <ab2952ea-1917-4b58-a0cf-64f3eba0b7c9@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 23/11/2023 06:34, Shubhrajyoti Datta wrote:
-> The alt_ref is present only in Versal-net devices.
-> Other versal devices do not have it so lets make alt_ref optional.
-> Changing the order of the clock items to have the optional ones at
-> the end.
+On 23/11/2023 08:44, Krishna Kurapati PSSNV wrote:
+> 
+> 
+> On 11/23/2023 1:11 PM, Krzysztof Kozlowski wrote:
+>> On 22/11/2023 20:13, Krishna Kurapati wrote:
+>>> The high speed related interrupts present on QC targets are as follows:
+>>>
+>>> dp/dm Irq's
+>>> These IRQ's directly reflect changes on the DP/DM pads of the SoC. These
+>>> are used as wakeup interrupts only on SoCs with non-QUSBb2 targets with
+>>> exception of SDM670/SDM845/SM6350.
+>>>
+>>> qusb2_phy irq
+>>> SoCs with QUSB2 PHY do not have separate DP/DM IRQs and expose only a
+>>> single IRQ whose behavior can be modified by the QUSB2PHY_INTR_CTRL
+>>> register. The required DPSE/DMSE configuration is done in
+>>> QUSB2PHY_INTR_CTRL register of phy address space.
+>>>
+>>> hs_phy_irq
+>>> This is completely different from the above two and is present on all
+>>> targets with exception of a few IPQ ones. The interrupt is not enabled by
+>>> default and its functionality is mutually exclusive of qusb2_phy on QUSB
+>>> targets and DP/DM on femto phy targets.
+>>>
+>>> The DTs of several QUSB2 PHY based SoCs incorrectly define "hs_phy_irq"
+>>> when they should have been "qusb2_phy_irq". On Femto phy targets, the
+>>> "hs_phy_irq" mentioned is either the actual "hs_phy_irq" or "pwr_event",
+>>> neither of which would never be triggered directly are non-functional
+>>> currently. The implementation tries to clean up this issue by addressing
+>>> the discrepencies involved and fixing the hs_phy_irq's in respective DT's.
+>>>
+>>> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+>>> ---
+>>>   .../devicetree/bindings/usb/qcom,dwc3.yaml    | 125 ++++++++++--------
+>>>   1 file changed, 69 insertions(+), 56 deletions(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+>>> index e889158ca205..4a46346e2ead 100644
+>>> --- a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+>>> +++ b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+>>> @@ -17,20 +17,25 @@ properties:
+>>>             - qcom,ipq5018-dwc3
+>>>             - qcom,ipq5332-dwc3
+>>>             - qcom,ipq6018-dwc3
+>>> +          - qcom,ipq6018-dwc3-sec
+>>
+>> I could not understand from commit msg why you are adding new compatible
+>> and what it is supposed to fix.
+>>
+>> The entire diff is huge thus difficult to review. Why fixing hs_phy_irq
+>> causes three new interrupts being added?
+> 
+> Some targets have two controllers where the second one is only HS 
+> capable and doesn't have ss_phy_irq. In such cases to make it clear in 
+> bindings, I added a suffix "-sec" and accordingly changed in DT as well. 
+> Should've put this in commit text.
 
-One device has clock, other not, so you re-order the clocks? No, that's
-not the reason to re-order clocks. Add proper constraints for your variant.
+Where did you explain it in the commit msg? Why adding new compatibles
+is squashed to this patch?
+
+You need separate commit with its own justification. I am not sure if
+calling things secondary and tertiary scales. Please describe all the
+differences and come with some reason for the naming.
+
 
 Best regards,
 Krzysztof
