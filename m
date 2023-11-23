@@ -1,138 +1,74 @@
-Return-Path: <devicetree+bounces-18250-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18251-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72F517F5DC1
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 12:25:53 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20ECD7F5DCF
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 12:28:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A459A1C20EAE
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 11:25:52 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B55ADB21240
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 11:28:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8322122F0C;
-	Thu, 23 Nov 2023 11:25:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qKN5IfJO"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13C2222F1A;
+	Thu, 23 Nov 2023 11:28:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B0281E539;
-	Thu, 23 Nov 2023 11:25:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79D26C433C8;
-	Thu, 23 Nov 2023 11:25:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700738748;
-	bh=d2fQ5OUt37NZjXyFL/AztRcqGEHUeRQlVmUFvl3AmKE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qKN5IfJOAUuRmyDj7z/eZH7XCdF2ILc6caa6Ssp+CAb/4p8gvvIIC1Y8qU2oie668
-	 S9f57o1peTZBF13xbfqRin0CBh3TaESNBhcdXlo/qDUVHQ8QB9MzCJgbSrGICSGdHn
-	 RP/0/kIgeEtktseQyMAlVvLvlxJLuFutekQJZvr0fkLFJYDQBoHgYPdAtuByCtgbT8
-	 mPgryIzc6IsxqgGE629So+6RrORm+ufHhzMejpTYpjDpFrMEHZP+tPkMqyfPhbf2vh
-	 r2Bohiiip/bWnG+Bfew7B+g6tRyD74Ds92ZGixObxR+DXlQGfMWPVTnFYQbA3dV+C2
-	 dBd3I6XyPC0EA==
-Date: Thu, 23 Nov 2023 11:25:43 +0000
-From: Lee Jones <lee@kernel.org>
-To: Shiji Yang <yangshiji66@outlook.com>, Andrew Lunn <andrew@lunn.ch>,
-	Florian Fainelli <f.fainelli@gmail.com>
-Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-	Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF3BED8;
+	Thu, 23 Nov 2023 03:28:36 -0800 (PST)
+Received: from francesco-nb.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id E990B1F8DC;
+	Thu, 23 Nov 2023 12:28:34 +0100 (CET)
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jisheng Zhang <jszhang@kernel.org>, linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org
-Subject: Re: [PATCH v4] dt-bindings: leds: add 'internet' and 'signal'
- function definitions
-Message-ID: <20231123112543.GD1243364@google.com>
-References: <TYAP286MB0315F4D71698370875F58F6EBCAAA@TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM>
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Francesco Dolcini <francesco.dolcini@toradex.com>,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1 0/3] arm64: dts: ti: add verdin am62 mallow board
+Date: Thu, 23 Nov 2023 12:28:23 +0100
+Message-Id: <20231123112826.16549-1-francesco@dolcini.it>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <TYAP286MB0315F4D71698370875F58F6EBCAAA@TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM>
 
-Andrew, Florian,
+From: Francesco Dolcini <francesco.dolcini@toradex.com>
 
-Thoughts?
+Add Toradex Verdin AM62 Mallow carrier board support. Mallow is a
+low-cost carrier board in the Verdin family with a small form factor and
+build for volume production making it ideal for industrial and embedded
+applications.
 
-On Mon, 06 Nov 2023, Shiji Yang wrote:
+https://www.toradex.com/products/carrier-board/mallow-carrier-board
 
-> These two types of LEDs are widely used in routers and NICs.
-> 
-> The 'signal' LED is used to display the wireless signal strength.
-> Usually, there are 3~4 LEDs in one group to indicate the signal
-> strength, similar to the signal icon on a mobile phone.
-> 
-> The 'internet' LED can indicate whether the device can access a
-> specific server. It's different from 'wan'. 'wan' usually indicates
-> whether the WAN port is connected to the modem (internet services
-> may still be unavailable). But the 'internet' shows if the device
-> can successfully ping servers such as 8.8.8.8 to detect the internet
-> connection status. When the router is running in AP only mode, we
-> can even connect LAN port to the AC/modem to connect to the internet.
-> In this case, the 'internet' LED should be on. On some routers, both
-> 'internet' and 'wan' are available and can be controlled separately.
-> 
-> Signed-off-by: Shiji Yang <yangshiji66@outlook.com>
-> ---
-> 
-> Changes in v2:
-> * Remove the LED name sorting patch as it changes the ABI.
-> * Add "devicetree@vger.kernel.org" to '--to' list.
->   Thanks to Rob Herring and Krzysztof Kozlowski for letting me know I
->   can send patch to multiple mailing list at once.
-> 
-> Changes in v3:
-> * Add more information about the new added LEDs.
-> * Remove the missing LED fix as Jisheng Zhang has already sent a
->   similar one. I should search the mailing list first...
-> 
-> Changes in v4:
-> * Rename 'rssi' LED to more generic name 'signal'. I forgot to update
->   the source file in v3.
-> 
-> v1:
-> https://lore.kernel.org/all/TYAP286MB0315FE921FF113BF76F7B700BCA0A@TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM/
-> 
-> v2:
-> https://lore.kernel.org/all/TYAP286MB03159A83A77E6FD59F271D9BBCA0A@TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM/
-> 
-> v3:
-> https://lore.kernel.org/all/TYAP286MB0315AE8F62E6AB48E3F9A0DDBCA5A@TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM/
-> 
->  include/dt-bindings/leds/common.h | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/include/dt-bindings/leds/common.h b/include/dt-bindings/leds/common.h
-> index 9a0d33d02..f831c5dba 100644
-> --- a/include/dt-bindings/leds/common.h
-> +++ b/include/dt-bindings/leds/common.h
-> @@ -88,6 +88,7 @@
->  #define LED_FUNCTION_FLASH "flash"
->  #define LED_FUNCTION_HEARTBEAT "heartbeat"
->  #define LED_FUNCTION_INDICATOR "indicator"
-> +#define LED_FUNCTION_INTERNET "internet"
->  #define LED_FUNCTION_LAN "lan"
->  #define LED_FUNCTION_MAIL "mail"
->  #define LED_FUNCTION_MTD "mtd"
-> @@ -95,6 +96,7 @@
->  #define LED_FUNCTION_PROGRAMMING "programming"
->  #define LED_FUNCTION_RX "rx"
->  #define LED_FUNCTION_SD "sd"
-> +#define LED_FUNCTION_SIGNAL "signal"
->  #define LED_FUNCTION_STANDBY "standby"
->  #define LED_FUNCTION_TORCH "torch"
->  #define LED_FUNCTION_TX "tx"
-> -- 
-> 2.39.2
-> 
+Joao Paulo Goncalves (3):
+  arm64: dts: ti: verdin-am62: improve spi1 chip-select pinctrl
+  dt-bindings: arm: ti: add verdin am62 mallow board
+  arm64: dts: ti: add verdin am62 mallow board
+
+ .../devicetree/bindings/arm/ti/k3.yaml        |   2 +
+ arch/arm64/boot/dts/ti/Makefile               |   2 +
+ .../boot/dts/ti/k3-am62-verdin-mallow.dtsi    | 198 ++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi    |  17 +-
+ .../dts/ti/k3-am625-verdin-nonwifi-mallow.dts |  22 ++
+ .../dts/ti/k3-am625-verdin-wifi-mallow.dts    |  22 ++
+ 6 files changed, 261 insertions(+), 2 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am62-verdin-mallow.dtsi
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am625-verdin-nonwifi-mallow.dts
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am625-verdin-wifi-mallow.dts
 
 -- 
-Lee Jones [李琼斯]
+2.25.1
+
 
