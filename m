@@ -1,149 +1,224 @@
-Return-Path: <devicetree+bounces-18171-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18172-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D31997F58CC
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 08:03:26 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97F597F58E1
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 08:09:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B7752817AD
-	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 07:03:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B2F1E1C20CC7
+	for <lists+devicetree@lfdr.de>; Thu, 23 Nov 2023 07:09:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4149013FF5;
-	Thu, 23 Nov 2023 07:03:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4107E1427D;
+	Thu, 23 Nov 2023 07:09:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="qaWtcyuA"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="DbrZOEfw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2041.outbound.protection.outlook.com [40.107.236.41])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1805FC1;
-	Wed, 22 Nov 2023 23:03:20 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nAc5hSIPwXo1YR2M7FOd0Awuj6XHpOY6ArAqsIgPbzAYwvmnsCgBA9dXaaElIyyrRwq5iRiIpvCt2HUGCBvEwy3/MgobI2Vcv5GgrOQd4fYKAb/2l6ugAYTS1xMKkEGbzfBus9ReLBAkTCeMXOJMuicySTXUG8Z+eL9gpUNX62pZCD7vynoj8XNQYNdrsU/UOTNKvUn+mR6yqmS1AIv9B0GWkDlRIbpnh1ZWOvNQwOlfoP+xWEGii+xLasnvzAVe1PNS5ul8rpmxdJznR4GsMZ5wPjqFGMU8GMycHa6wpvP3zGH4UVYdVng4Z6mew2dCMOCu5TRdVmlYxu9N2ZPx2w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mD+c2Ch50FwLD1kt0lw6hqy1p2hDSJAyZc2eIOD8w70=;
- b=UfmMC3XM1cjOBEfVMrHMFzK58fY1lEhPMvLaCs2C9EalEVPslqwsjgAYWeuhAvqRijrgPvYhFf57RRV3ddvTjZdGk/tP468wW1ha4gzcRscqMu9ixiGbe+yP5MQzRjPqDDIRlDPnR+Val7rkWKh3khmSJolOrbTE2WRSY7t/IC+KACmGNYUvyRjnixe8Tw+gebHRcR30puuTmVxQFsRpotkDMLAW/oML/RolGgt5IXEZU84816EbifTGS5Rc5hoh2fs6pTqS++K0/yCtewjlUpsxnLFDRmsZDm+H1dyldQ1f6cVxE4KAi/b3YoCOMF8dURsgGItWSR2crS+XiiFw+Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mD+c2Ch50FwLD1kt0lw6hqy1p2hDSJAyZc2eIOD8w70=;
- b=qaWtcyuAj4iGvYERN7ETsPvmAlT+ywgbxO0HQl8U+LzKtyqUEV0OOt3N6YQGu2adPujGNMu2FghoEHG+DUprgMMrfDh2JTcp72MxNME0JPWgyMswShME0FPmeBrUFSL7gUb5fujgqFyaerjw/HN8DYI+W9qaS9WDjdzV3YE84Yo=
-Received: from CY5PR15CA0206.namprd15.prod.outlook.com (2603:10b6:930:82::20)
- by DM4PR12MB6063.namprd12.prod.outlook.com (2603:10b6:8:b1::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7025.19; Thu, 23 Nov
- 2023 07:03:18 +0000
-Received: from CY4PEPF0000EDD6.namprd03.prod.outlook.com
- (2603:10b6:930:82:cafe::16) by CY5PR15CA0206.outlook.office365.com
- (2603:10b6:930:82::20) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7025.19 via Frontend
- Transport; Thu, 23 Nov 2023 07:03:17 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CY4PEPF0000EDD6.mail.protection.outlook.com (10.167.241.210) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7025.20 via Frontend Transport; Thu, 23 Nov 2023 07:03:17 +0000
-Received: from localhost (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Thu, 23 Nov
- 2023 01:03:11 -0600
-From: Michal Simek <michal.simek@amd.com>
-To: <conor@kernel.org>, <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
-	<michal.simek@xilinx.com>, <git@xilinx.com>, <robh@kernel.org>
-CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Conor Dooley
-	<conor+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-Subject: [PATCH v4 2/2] dt-bindings: soc: Add new board description for MicroBlaze V
-Date: Thu, 23 Nov 2023 08:02:28 +0100
-Message-ID: <69670e5a46c98a2eb73d4f2e2d571a27c46b4640.1700722941.git.michal.simek@amd.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <9653338d293c25ff0e591213698d59ac55cf5c27.1700722941.git.michal.simek@amd.com>
-References: <9653338d293c25ff0e591213698d59ac55cf5c27.1700722941.git.michal.simek@amd.com>
+Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40E74100
+	for <devicetree@vger.kernel.org>; Wed, 22 Nov 2023 23:08:54 -0800 (PST)
+Received: from epcas2p3.samsung.com (unknown [182.195.41.55])
+	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20231123070850epoutp04f45db3873abb83074d52b2d2c3061786~aLtu1f83e1327013270epoutp04U
+	for <devicetree@vger.kernel.org>; Thu, 23 Nov 2023 07:08:50 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20231123070850epoutp04f45db3873abb83074d52b2d2c3061786~aLtu1f83e1327013270epoutp04U
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1700723330;
+	bh=UlOYtqsg8VMxZjHuFShtASMAUieEGsDmiXuu5nvaCBE=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=DbrZOEfwVXiW3t8kiHJ0Ir3nOvhOgGfsOrPRAk3MGgchpoEuXwrSwUstvflCFNzDH
+	 eCn/tT4vNC5XpdqWPXdyivQ3zYDIRpS30dNB/DhFvM0rgh8tW3bryCPo+iN4gk1B6T
+	 DMDrXEwImF4jsXJqbiEQJpJ+e9MERIe6bjCG0Hos=
+Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
+	epcas2p4.samsung.com (KnoxPortal) with ESMTP id
+	20231123070849epcas2p4e8ae1cbfb86050455bc92f169aa21d64~aLtuOFxJw2905729057epcas2p4G;
+	Thu, 23 Nov 2023 07:08:49 +0000 (GMT)
+Received: from epsmges2p1.samsung.com (unknown [182.195.36.100]) by
+	epsnrtp2.localdomain (Postfix) with ESMTP id 4SbTjs2Kyzz4x9Pw; Thu, 23 Nov
+	2023 07:08:49 +0000 (GMT)
+Received: from epcas2p1.samsung.com ( [182.195.41.53]) by
+	epsmges2p1.samsung.com (Symantec Messaging Gateway) with SMTP id
+	6B.F2.10006.18AFE556; Thu, 23 Nov 2023 16:08:49 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+	epcas2p1.samsung.com (KnoxPortal) with ESMTPA id
+	20231123070848epcas2p13b713349f30d3cfe72b3e343ab8cc90b~aLttLcVqm0047900479epcas2p1O;
+	Thu, 23 Nov 2023 07:08:48 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20231123070848epsmtrp1a819f9d784eb01230de11b0b817e7cab~aLttKZ7vZ2630226302epsmtrp1S;
+	Thu, 23 Nov 2023 07:08:48 +0000 (GMT)
+X-AuditID: b6c32a45-179ff70000002716-05-655efa81e90a
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+	epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	D1.8C.08755.08AFE556; Thu, 23 Nov 2023 16:08:48 +0900 (KST)
+Received: from [10.229.8.168] (unknown [10.229.8.168]) by
+	epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20231123070848epsmtip22a7d454dc0fdf545d76c49c97aca6629~aLts8Nhwj1175411754epsmtip2S;
+	Thu, 23 Nov 2023 07:08:48 +0000 (GMT)
+Message-ID: <45b0f9e2-f97a-1b60-b40f-d84831027d00@samsung.com>
+Date: Thu, 23 Nov 2023 16:06:00 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1260; i=michal.simek@amd.com; h=from:subject:message-id; bh=ZUJXyA8pnCzU4wI4oYH4NfAEvlZCkCgurxhZDI6ia6U=; b=owGbwMvMwCR4yjP1tKYXjyLjabUkhtS4n0yXfXzEki7H26uu+sdy/bbBiQPvHUsfSKcbB5lbc 0b+esvREcvCIMjEICumyCJtc+XM3soZU4QvHpaDmcPKBDKEgYtTACZyzJ9hJqPK2klMi8M3/WNq 6ZtkVJsv9GWBIsOCvghnLusyNd9JC6zEj803tBTwc8gFAA==
-X-Developer-Key: i=michal.simek@amd.com; a=openpgp; fpr=67350C9BF5CCEE9B5364356A377C7F21FE3D1F91
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000EDD6:EE_|DM4PR12MB6063:EE_
-X-MS-Office365-Filtering-Correlation-Id: 818b2fa0-ca49-461c-09e0-08dbebf2452b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	Q8VrEwLa/gUJmBviQpvYGHZXh1oJye3BVlb9hQKXOGYeCnn0gls/K1oc8S5kRWoR4sE7S9eH16KOT3K8HpwuYFB1zsgHZfeiweIxTKQoB6RxOv/FMuvZAHV/3Fc0+dgIcdQFkn1HsvbMsawW+HI8mPY76w26AszZu7a2KgnPAYpIR4iXIcKOGX51ADPWZTZq2B5bVTvAaYmuqqnueXbJKoSS4bBXAOMu+ib0sDVx28WvCw5VinQafciiPnOEG8X2CuxtTsgjUFWuzoYPo4yw2xbslqFuxAyjxOMb0fZYLt/EPSvDJi5ek53EAHBadH9PXT8Lq/90C+pZWUPl73LRXhz/Ag7XkjwPcYIHnFPHWsNnKEj1cfPA9wMWWAAq4Hfn189nZEXbnxtMD30Qn0C0Wv2mgL/wkHV2Gx1RPOAQjOK7QyWN46PeB77YFaD5WaG9+lvuXrNUBSSd+cVV41UZOSMGDspLlRLRoWoHulF2Mk6afa1hCJiK4kQpdAXA/+wadIvoUOIQmYfnx977+GA+9Vbn2j9/axzgKSMGd/6WeiTFmz2YIjM5xzFRSftAxJN3rcYmn8Hy6TqACsWszJ5TeJ02Accou/OjyNznTYQQZKmgqiUSz8jqIIklW0pZfHsCgpkMLxy6stdmowgC7UeNTJN4JN7UFVyG32y2d6Vz5opSSqYr9hiAkHrrsPC4PHTeqvP9IIgffFT+aSPd48dVfmCz7z36j9Qucpo6EOp+tH0IwSO3erxru/ivawbd//+ALYTWKhdQFL+gRmmcu2S8w47ZfanKemt+XIeLG8vIvHc=
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(396003)(39860400002)(136003)(376002)(346002)(230922051799003)(1800799012)(82310400011)(64100799003)(186009)(451199024)(40470700004)(36840700001)(46966006)(40480700001)(16526019)(40460700003)(70206006)(54906003)(110136005)(70586007)(82740400003)(36756003)(356005)(81166007)(86362001)(36860700001)(47076005)(2616005)(336012)(6666004)(2906002)(7416002)(26005)(426003)(316002)(478600001)(4326008)(41300700001)(8936002)(44832011)(8676002)(5660300002)(2101003)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Nov 2023 07:03:17.6399
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 818b2fa0-ca49-461c-09e0-08dbebf2452b
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CY4PEPF0000EDD6.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6063
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+	Thunderbird/102.11.0
+Subject: Re: [PATCH 1/3] dt-bindings: pinctrl: samsung: use Exynos7
+ fallbacks for newer wake-up controllers
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Tomasz Figa
+	<tomasz.figa@gmail.com>, Sylwester Nawrocki <s.nawrocki@samsung.com>, Alim
+	Akhtar <alim.akhtar@samsung.com>, Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Peter Griffin <peter.griffin@linaro.org>, semen.protsenko@linaro.org
+From: Jaewon Kim <jaewon02.kim@samsung.com>
+In-Reply-To: <20231122200407.423264-1-krzysztof.kozlowski@linaro.org>
+Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrHJsWRmVeSWpSXmKPExsWy7bCmqW7jr7hUg0s3OS0ezNvGZrFm7zkm
+	i/lHzrFa7H29ld1iyp/lTBabHl9jtdg8/w+jxeVdc9gsZpzfx2SxYcY/FovWvUfYLQ6/aWe1
+	eN4HFFu16w+jA5/Hzll32T02repk87hzbQ+bx+Yl9R59W1YxenzeJBfAFpVtk5GamJJapJCa
+	l5yfkpmXbqvkHRzvHG9qZmCoa2hpYa6kkJeYm2qr5OIToOuWmQN0rZJCWWJOKVAoILG4WEnf
+	zqYov7QkVSEjv7jEVim1ICWnwLxArzgxt7g0L10vL7XEytDAwMgUqDAhO+Psun62gmMyFXMb
+	ljM2ML4Q6WLk5JAQMJHo/dTF3MXIxSEksINRYtf9VUwQzidGiUkbnkBlvjFKTJx/jLGLkQOs
+	5c4cqPheRolLCx+zQDivGSVWPH/BBDKXV8BO4tPKecwgNouAqsTurU8ZIeKCEidnPmEBsUUF
+	oiVal91nA7GFBXIlls1rB6thFhCXuPVkPtgZIgJnmCVmrbsNlfCQWPWmF8xmE9CW+L5+MSuI
+	zSngKrGl/ywTRI28xPa3EOdJCJzgkHi65QUjxKcuEhd/zYeyhSVeHd/CDmFLSbzsb4OysyXa
+	p/9hhbArJC5umM0GYRtLzHrWDvY+s4CmxPpd+pCQUJY4cosFYi2fRMfhv+wQYV6JjjYhiEY1
+	iftTz0ENkZGYdGQlE4TtITHv4GK2CYyKs5BCZRaS72cheWYWwt4FjCyrGMVSC4pz01OLjQoM
+	4ZGdnJ+7iRGckLVcdzBOfvtB7xAjEwfjIUYJDmYlEd4t7DGpQrwpiZVVqUX58UWlOanFhxhN
+	gXEzkVlKNDkfmBPySuINTSwNTMzMDM2NTA3MlcR577XOTRESSE8sSc1OTS1ILYLpY+LglGpg
+	YtgzY9dFp75IqRpWxjyThs1HPxbU/PIPWaWl4TqhxZ1ZefkWUxkfL5mWecfV5xedmfor1SD7
+	vULIxf5WLqk3JyWf36qfVCJSsnzHsrlW05n0tH4X2hkuqk/8dej1jzl2x63ut1pcMLnwd/ZU
+	yTqZI5JWAidFqk5Nev+dJelfTlC1bFuWp33qI96NBQ59aSe79CJuM80UalD2vFB0XXOOr8yL
+	yNL9nDf7pR8d2vYmyTRX/xBzdpWPJ6O1Cqtk5SqWLNXABT6qnIxis6s2vTgV8Wf21pf68zYf
+	NX+oLL9V8dD+m23iOdsPbOPf+KLt2qoJTSHPFjV5H7N6vLJ1+qq+wt3z+lZzHtnusSw2Kfus
+	EktxRqKhFnNRcSIAKo57nlEEAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprPIsWRmVeSWpSXmKPExsWy7bCSvG7Dr7hUg0VNqhYP5m1js1iz9xyT
+	xfwj51gt9r7eym4x5c9yJotNj6+xWmye/4fR4vKuOWwWM87vY7LYMOMfi0Xr3iPsFofftLNa
+	PO8Diq3a9YfRgc9j56y77B6bVnWyedy5tofNY/OSeo++LasYPT5vkgtgi+KySUnNySxLLdK3
+	S+DKOLuun63gmEzF3IbljA2ML0S6GDk4JARMJO7MYe5i5OIQEtjNKLHkQiNbFyMnUFxGYvmz
+	PihbWOJ+yxFWiKKXjBJXtj5nAknwCthJfFo5jxnEZhFQldi99SkjRFxQ4uTMJywgtqhAtMTq
+	zxdYQWxhgVyJp+3dYPXMAuISt57MZwIZKiJwjlli+4Qv7BAJD4lVb3oZIbbNYJRYMeUcWAeb
+	gLbE9/WLwSZxCrhKbOk/ywTRYCbRtbWLEcKWl9j+dg7zBEahWUgOmYVk4SwkLbOQtCxgZFnF
+	KJlaUJybnltsWGCYl1quV5yYW1yal66XnJ+7iREch1qaOxi3r/qgd4iRiYPxEKMEB7OSCO8W
+	9phUId6UxMqq1KL8+KLSnNTiQ4zSHCxK4rziL3pThATSE0tSs1NTC1KLYLJMHJxSDUzzTQzf
+	/5MT9zgduOCdSiT7uRVHzQOtDm5dcaBqlvH79EMqDfNeLjpTwWc3vfbL20Os2RZrane82rgk
+	vf+l14KyyacaZm3U2vbS/W6RgZh/25pew3ANGfaQHYe6nrddvrFQ5paFTFTdtY2bH/TPD1Rr
+	7HFos3z/ccaKGUV7784+7OS6gKk+9tnMm6pPVi+Zpb3QUXrK/Pk73LndhU74fxV43XZht5yG
+	d/XyHZ/Dwi9ttA30dI5+/C3UzutR/bKnh0oXGZ2YfrQrXUZH53LfKwnNdKbEA9ElEtcsqw5M
+	MDF2eeT9Q0delvNe2ZSH10Ji/1esD+Jb6B1hZCn8MnN+8qx9Ypt3HLJUm1c153l9R4OJEktx
+	RqKhFnNRcSIA16p7uTIDAAA=
+X-CMS-MailID: 20231123070848epcas2p13b713349f30d3cfe72b3e343ab8cc90b
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20231122200609epcas2p1da5f138359da3a0be4af4fbc25f2a8f5
+References: <CGME20231122200609epcas2p1da5f138359da3a0be4af4fbc25f2a8f5@epcas2p1.samsung.com>
+	<20231122200407.423264-1-krzysztof.kozlowski@linaro.org>
 
-MicroBlaze V is new AMD/Xilinx soft-core 32bit RISC-V processor IP.
-It is hardware compatible with classic MicroBlaze processor. Processor can
-be used with standard AMD/Xilinx IPs including interrupt controller and
-timer.
 
-Signed-off-by: Michal Simek <michal.simek@amd.com>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
+On 23. 11. 23. 05:04, Krzysztof Kozlowski wrote:
+> Older ARM8 SoCs like Exynos5433, Exynos7 and Exynos7885 have the pin
+> controller with wake-up interrupts muxed, thus the wake-up interrupt
+> controller device node has interrupts property, while its pin banks
+> might not (because they are muxed by the wake-up controller).
+>
+> Newer SoCs like Exynos850 and ExynosAutov9 do not used muxed wake-up
+> interrupts:
+> 1. Wake-up interrupt controller device node has no interrupts,
+> 2. Its pin banks have interrupts (since there is no muxing).
+>
+> Their programming interface is however still compatible with Exynos7,
+> thus change the bindings to express this: retain compatibility with
+> Exynos7 and add new compatibility fallback of Exynos850 in newer
+> designs.
+>
+> No driver changes are needed.  This is necessary only to properly
+> describe DTS.
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Changes in v4:
-- Fix indentation reported by bot
+Acked-by: Jaewon Kim <jaewon02.kim@samsung.com>
 
-Changes in v3:
-- Add Krzysztof's ACK
 
-Changes in v2:
-- Put MicroBlaze V description to xilinx.yaml
-- Add qemu target platform as platform used for testing.
+I will also apply it to ExynosAutov920 DT patch.
 
- Documentation/devicetree/bindings/soc/xilinx/xilinx.yaml | 5 +++++
- 1 file changed, 5 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/soc/xilinx/xilinx.yaml b/Documentation/devicetree/bindings/soc/xilinx/xilinx.yaml
-index 95758deca325..d4c0fe1fe435 100644
---- a/Documentation/devicetree/bindings/soc/xilinx/xilinx.yaml
-+++ b/Documentation/devicetree/bindings/soc/xilinx/xilinx.yaml
-@@ -132,6 +132,11 @@ properties:
-           - const: xlnx,zynqmp-smk-k26
-           - const: xlnx,zynqmp
- 
-+      - description: AMD MicroBlaze V (QEMU)
-+        items:
-+          - const: qemu,mbv
-+          - const: amd,mbv
-+
- additionalProperties: true
- 
- ...
--- 
-2.36.1
+Thanks
 
+Jaewon Kim
+
+
+>
+> ---
+>
+> Cc: Peter Griffin <peter.griffin@linaro.org>
+> Cc: semen.protsenko@linaro.org
+> Cc: Jaewon Kim <jaewon02.kim@samsung.com>
+> ---
+>   .../samsung,pinctrl-wakeup-interrupt.yaml     | 25 +++++++++++--------
+>   1 file changed, 15 insertions(+), 10 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl-wakeup-interrupt.yaml b/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl-wakeup-interrupt.yaml
+> index 1b75abebb953..2bafa867aea2 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl-wakeup-interrupt.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl-wakeup-interrupt.yaml
+> @@ -36,13 +36,17 @@ properties:
+>             - samsung,s5pv210-wakeup-eint
+>             - samsung,exynos4210-wakeup-eint
+>             - samsung,exynos7-wakeup-eint
+> -          - samsung,exynos850-wakeup-eint
+> -          - samsung,exynosautov9-wakeup-eint
+> -          - samsung,exynosautov920-wakeup-eint
+>         - items:
+>             - enum:
+>                 - samsung,exynos5433-wakeup-eint
+>                 - samsung,exynos7885-wakeup-eint
+> +              - samsung,exynos850-wakeup-eint
+> +          - const: samsung,exynos7-wakeup-eint
+> +      - items:
+> +          - enum:
+> +              - samsung,exynosautov9-wakeup-eint
+> +              - samsung,exynosautov920-wakeup-eint
+> +          - const: samsung,exynos850-wakeup-eint
+>             - const: samsung,exynos7-wakeup-eint
+>   
+>     interrupts:
+> @@ -86,11 +90,14 @@ allOf:
+>     - if:
+>         properties:
+>           compatible:
+> -          contains:
+> -            enum:
+> -              - samsung,s5pv210-wakeup-eint
+> -              - samsung,exynos4210-wakeup-eint
+> -              - samsung,exynos7-wakeup-eint
+> +          # Match without "contains", to skip newer variants which are still
+> +          # compatible with samsung,exynos7-wakeup-eint
+> +          enum:
+> +            - samsung,s5pv210-wakeup-eint
+> +            - samsung,exynos4210-wakeup-eint
+> +            - samsung,exynos5433-wakeup-eint
+> +            - samsung,exynos7-wakeup-eint
+> +            - samsung,exynos7885-wakeup-eint
+>       then:
+>         properties:
+>           interrupts:
+> @@ -105,8 +112,6 @@ allOf:
+>             contains:
+>               enum:
+>                 - samsung,exynos850-wakeup-eint
+> -              - samsung,exynosautov9-wakeup-eint
+> -              - samsung,exynosautov920-wakeup-eint
+>       then:
+>         properties:
+>           interrupts: false
 
