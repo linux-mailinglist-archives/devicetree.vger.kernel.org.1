@@ -1,151 +1,372 @@
-Return-Path: <devicetree+bounces-18627-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18635-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6ACF7F75F9
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 15:08:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 118B57F768F
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 15:40:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5E88E2811AC
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 14:08:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BAF722823FB
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 14:40:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F06792C854;
-	Fri, 24 Nov 2023 14:08:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45C122D61D;
+	Fri, 24 Nov 2023 14:40:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Tup9k2Ft"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="B23ymKye"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFAD32C84C
-	for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 14:08:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31DABC433C8;
-	Fri, 24 Nov 2023 14:08:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700834892;
-	bh=gCNNSLuNTNgJRezDOscqJbufDhCORYGxigIFY01Gdeo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Tup9k2Ft33wTnh6RS3H3hryJ0gV/v7LapkgD0de9xKgsL2ZH13Qqm/RwwIktk+2lN
-	 uMrxmpcYKvJD++LQdgxN9oxjolbP7JkX/1cFyrD2rdEp8CHy/ymRViFW+l5wR0aNgL
-	 8CLv/GMg900O9kAFH8kzB7mYDR7UQY0O0Wz36khdu6qvqahYQXlb6Mu1LTrapvLD0N
-	 8YNtF6ssJFQJP+iHA5qysff59STyHraLrvM48XCTTr4O+Z9fJ9QHu5D7rpQhJ9itO+
-	 OyIDuKP3MNDlabwDIaxiVCRtJZb8/AS7Ve6Yd7x7+OE4tCQkKS2Obn3CXoce2P/gCn
-	 B242ivNLykdLw==
-Date: Fri, 24 Nov 2023 14:08:07 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Chen-Yu Tsai <wenst@chromium.org>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/9] dt-bindings: arm: mediatek: Add MT8186 Tentacruel /
- Tentacool Chromebooks
-Message-ID: <20231124-old-each-230d55963934@spud>
-References: <20231012230237.2676469-1-wenst@chromium.org>
- <20231012230237.2676469-3-wenst@chromium.org>
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9A641BE4
+	for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 06:40:26 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-40b27726369so14033695e9.0
+        for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 06:40:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1700836825; x=1701441625; darn=vger.kernel.org;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=NIiwAxdmzOkDiTxrhYUc4Y3MMadBDgLLDbQxBLZ1bpU=;
+        b=B23ymKyeOMoQfMmBJiBfVhOb52IL0ZLjj3Rhfo7XFc2SppD7BQHnMjX9i8n5Vyn+Ag
+         eLs1QKdZp14wKZwTIoi6IbCkXX7WvgJjorXXFHHjR8MIACOQdctTFrflzjwF8eg4oj0X
+         nBITj5dZ/Xy19Sqa4nX5q7m579VCNDMjfJ0pz3IG6aRfBM4Xmhq7u0Ezh7ow+a3WUNCB
+         bgWbeR/01PnR7LSyghrz+PDMpdmUMEPhE9YgqnE+BW5qpzhVXFmSc+Qxe+MUSUlNTWB9
+         byMfBcyMS//c/tHsGO9JFbQFMVl3jUavx7QABh9vmhM47pNlkHfZbw/77s6e0CsKvIbj
+         Q9IA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700836825; x=1701441625;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=NIiwAxdmzOkDiTxrhYUc4Y3MMadBDgLLDbQxBLZ1bpU=;
+        b=FsWgRCuZxMPbRO5YiDwnoVpX651dBub/tLaHg3UTsGAhZYnG/WMUXMTPtWVr+vo8vC
+         aJwzQ+SC+DfJIGMsEyde+aAwPPmzj/j3jtcNzwCvBBKgIwuvZoWUr9XM/MO9q2Getsf+
+         jt7+hngCKKyeDo5JxMN2kftPIJTfY4J1KViux7QCy3EQMY6mbcrQinxLLuGUqiP6SFiq
+         QkEqtlOhCNleW1g3aV0+5pJpZ82/lo89lkXDiubR7ttY7DgVL1gVw/aLEaZDdTzui1jI
+         z7uGlVRyP2CEe9wS9ETcuOTaKPbJHFqg/zl3sEeF2zHURWJEk8TXQttGFoT+YdErdDQD
+         nyOA==
+X-Gm-Message-State: AOJu0Yw57EoGx/ifvxaXMAbnDAi2AV9ueOX171IpLkevdQy230+0SYYc
+	o1j0QJ5E7NDKjrONhVlnxaV3Lg==
+X-Google-Smtp-Source: AGHT+IHzzbRCPSKjkI9QlpIzhC8HlPiBgBVnia+Dbm7E/Rv/wiz9vBCUYYDhElu81nWxgMuUVurIgQ==
+X-Received: by 2002:a5d:4b88:0:b0:32d:87c8:b548 with SMTP id b8-20020a5d4b88000000b0032d87c8b548mr2321540wrt.21.1700836825270;
+        Fri, 24 Nov 2023 06:40:25 -0800 (PST)
+Received: from localhost ([2a01:e0a:3c5:5fb1:1243:6910:fe68:2de5])
+        by smtp.gmail.com with ESMTPSA id dm16-20020a0560000bd000b0032d09f7a713sm4500582wrb.18.2023.11.24.06.40.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 24 Nov 2023 06:40:24 -0800 (PST)
+References: <20231124-amlogic-v6-4-upstream-dsi-ccf-vim3-v9-0-95256ed139e6@linaro.org>
+ <20231124-amlogic-v6-4-upstream-dsi-ccf-vim3-v9-8-95256ed139e6@linaro.org>
+User-agent: mu4e 1.10.7; emacs 29.1
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Jerome Brunet <jbrunet@baylibre.com>, Michael Turquette
+ <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Kevin Hilman <khilman@baylibre.com>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Jagan Teki <jagan@amarulasolutions.com>,
+ Nicolas Belin <nbelin@baylibre.com>, Vinod Koul <vkoul@kernel.org>, Kishon
+ Vijay Abraham I <kishon@kernel.org>, Remi Pommarel <repk@triplefau.lt>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org,
+ linux-phy@lists.infradead.org, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v9 08/12] clk: meson: g12a: make VCLK2 and ENCL clock
+ path configurable by CCF
+Date: Fri, 24 Nov 2023 15:12:53 +0100
+In-reply-to: <20231124-amlogic-v6-4-upstream-dsi-ccf-vim3-v9-8-95256ed139e6@linaro.org>
+Message-ID: <1jbkbjdxk8.fsf@starbuckisacylon.baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="k22Pzja/5vzpnLDi"
-Content-Disposition: inline
-In-Reply-To: <20231012230237.2676469-3-wenst@chromium.org>
+Content-Type: text/plain
 
 
---k22Pzja/5vzpnLDi
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Fri 24 Nov 2023 at 09:41, Neil Armstrong <neil.armstrong@linaro.org> wrote:
 
-On Fri, Oct 13, 2023 at 07:02:28AM +0800, Chen-Yu Tsai wrote:
-> Add entries for MT8186 based Tentacruel / Tentacool Chromebooks. The two
-> are based on the same board design: the former is a convertible device
-> with a touchscreen, stylus, and some extra buttons; the latter is a
-> clamshell device and lacks these additional features.
->=20
-> The two devices both have two variants. The difference is a second
-> source touchpad controller that shares the same address as the original,
-> but is incompatible.
->=20
-> The extra SKU IDs for the Tentacruel devices map to different sensor
-> components attached to the Embedded Controller. These are not visible
-> to the main processor.
->=20
-> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+> In order to setup the DSI clock, let's make the unused VCLK2 clock path
+> configuration via CCF.
+>
+> The nocache option is removed from following clocks:
+> - vclk2_sel
+> - vclk2_input
+> - vclk2_div
+> - vclk2
+> - vclk_div1
+> - vclk2_div2_en
+> - vclk2_div4_en
+> - vclk2_div6_en
+> - vclk2_div12_en
+> - vclk2_div2
+> - vclk2_div4
+> - vclk2_div6
+> - vclk2_div12
+> - cts_encl_sel
+>
+> vclk2 and vclk2_div uses the newly introduced vclk regmap driver
+> to handle the enable and reset bits.
+>
+> In order to set a rate on cts_encl via the vclk2 clock path,
+> the NO_REPARENT flag is set on cts_encl_sel & vclk2_sel in order
+> to keep CCF from selection a parent.
+> The parents of cts_encl_sel & vclk2_sel are expected to be defined
+> in DT.
+>
+> The following clock scheme is to be used for DSI:
+>
+> xtal
+> \_ gp0_pll_dco
+>    \_ gp0_pll
+>       |- vclk2_sel
+>       |  \_ vclk2_input
+>       |     \_ vclk2_div
+>       |        \_ vclk2
+>       |           \_ vclk2_div1
+>       |              \_ cts_encl_sel
+>       |                 \_ cts_encl	-> to VPU LCD Encoder
+>       |- mipi_dsi_pxclk_sel
+>       \_ mipi_dsi_pxclk_div
+>          \_ mipi_dsi_pxclk		-> to DSI controller
+>
+> The mipi_dsi_pxclk_div is set as RO in order to use the same GP0
+> for mipi_dsi_pxclk and vclk2_input.
 
-I had a chat with Doug at Plumbers about the limitations of your
-firmware. As a result, I am fine with acking this if you switch the
-order of the sku compatibles to be in descending order.
-The firmware can handle that, right?
+Could you explain a bit more this part of about the RO ops ?
+Maybe I'm missing something.
 
-Cheers,
-Conor.
+You would be relying on the reset being always the way it. It is
+probable but not safe.
 
+A way to deal with the shared GP0 would be to:
+* cut rate propagation at mipi_dsi_pxclk_sel (already done) and
+  (vclk2_sel - TBD) ... 
+* Set GP0 base rate through assigned-clock-rate (which you already in
+  patch 11)
+
+With this, I'm not sure anything needs to be RO for the rates to be set
+properly for each subtree.
+
+Also, with the subtree above and your example in patch 11, it looks odd that
+PXCLK is manually set through DT while ENCL is not. Both are input of
+dsi driver.
+
+>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 > ---
->  .../devicetree/bindings/arm/mediatek.yaml     | 26 +++++++++++++++++++
->  1 file changed, 26 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Docume=
-ntation/devicetree/bindings/arm/mediatek.yaml
-> index 60337b439744..aa7e6734b336 100644
-> --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
-> +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
-> @@ -206,6 +206,32 @@ properties:
->            - enum:
->                - mediatek,mt8183-pumpkin
->            - const: mediatek,mt8183
-> +      - description: Google Tentacruel (ASUS Chromebook CM14 Flip CM1402=
-F)
-> +        items:
-> +          - const: google,tentacruel-sku262144
-> +          - const: google,tentacruel-sku262145
-> +          - const: google,tentacruel-sku262146
-> +          - const: google,tentacruel-sku262147
-> +          - const: google,tentacruel
-> +          - const: mediatek,mt8186
-> +      - description: Google Tentacruel (ASUS Chromebook CM14 Flip CM1402=
-F)
-> +        items:
-> +          - const: google,tentacruel-sku262148
-> +          - const: google,tentacruel-sku262149
-> +          - const: google,tentacruel-sku262150
-> +          - const: google,tentacruel-sku262151
-> +          - const: google,tentacruel
-> +          - const: mediatek,mt8186
-> +      - description: Google Tentacool (ASUS Chromebook CM14 CM1402C)
-> +        items:
-> +          - const: google,tentacruel-sku327681
-> +          - const: google,tentacruel
-> +          - const: mediatek,mt8186
-> +      - description: Google Tentacool (ASUS Chromebook CM14 CM1402C)
-> +        items:
-> +          - const: google,tentacruel-sku327683
-> +          - const: google,tentacruel
-> +          - const: mediatek,mt8186
->        - items:
->            - enum:
->                - mediatek,mt8186-evb
-> --=20
-> 2.42.0.655.g421f12c284-goog
->=20
+>  drivers/clk/meson/g12a.c | 68 +++++++++++++++++++++++++++++++++---------------
+>  1 file changed, 47 insertions(+), 21 deletions(-)
+>
+> diff --git a/drivers/clk/meson/g12a.c b/drivers/clk/meson/g12a.c
+> index cadd824336ad..fb3d9196a1fd 100644
+> --- a/drivers/clk/meson/g12a.c
+> +++ b/drivers/clk/meson/g12a.c
+> @@ -22,6 +22,7 @@
+>  #include "clk-regmap.h"
+>  #include "clk-cpu-dyndiv.h"
+>  #include "vid-pll-div.h"
+> +#include "vclk.h"
+>  #include "meson-eeclk.h"
+>  #include "g12a.h"
+>  
+> @@ -3165,7 +3166,7 @@ static struct clk_regmap g12a_vclk2_sel = {
+>  		.ops = &clk_regmap_mux_ops,
+>  		.parent_hws = g12a_vclk_parent_hws,
+>  		.num_parents = ARRAY_SIZE(g12a_vclk_parent_hws),
+> -		.flags = CLK_SET_RATE_NO_REPARENT | CLK_GET_RATE_NOCACHE,
+> +		.flags = CLK_SET_RATE_PARENT | CLK_SET_RATE_NO_REPARENT,
 
---k22Pzja/5vzpnLDi
-Content-Type: application/pgp-signature; name="signature.asc"
+No sure CLK_SET_RATE_PARENT is wise here.
+What you manually set in DT for the GP0, is likely to change because of
+this, isn't it ?
 
------BEGIN PGP SIGNATURE-----
+>  	},
+>  };
+>  
+> @@ -3193,7 +3194,7 @@ static struct clk_regmap g12a_vclk2_input = {
+>  		.ops = &clk_regmap_gate_ops,
+>  		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2_sel.hw },
+>  		.num_parents = 1,
+> -		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+> +		.flags = CLK_SET_RATE_PARENT,
+>  	},
+>  };
+>  
+> @@ -3215,19 +3216,32 @@ static struct clk_regmap g12a_vclk_div = {
+>  };
+>  
+>  static struct clk_regmap g12a_vclk2_div = {
+> -	.data = &(struct clk_regmap_div_data){
+> -		.offset = HHI_VIID_CLK_DIV,
+> -		.shift = 0,
+> -		.width = 8,
+> +	.data = &(struct clk_regmap_vclk_div_data){
+> +		.div = {
+> +			.reg_off = HHI_VIID_CLK_DIV,
+> +			.shift   = 0,
+> +			.width   = 8,
+> +		},
+> +		.enable = {
+> +			.reg_off = HHI_VIID_CLK_DIV,
+> +			.shift   = 16,
+> +			.width   = 1,
+> +		},
+> +		.reset = {
+> +			.reg_off = HHI_VIID_CLK_DIV,
+> +			.shift   = 17,
+> +			.width   = 1,
+> +		},
+> +		.flags = CLK_DIVIDER_ROUND_CLOSEST,
+>  	},
+>  	.hw.init = &(struct clk_init_data){
+>  		.name = "vclk2_div",
+> -		.ops = &clk_regmap_divider_ops,
+> +		.ops = &clk_regmap_vclk_div_ops,
+>  		.parent_hws = (const struct clk_hw *[]) {
+>  			&g12a_vclk2_input.hw
+>  		},
+>  		.num_parents = 1,
+> -		.flags = CLK_GET_RATE_NOCACHE,
+> +		.flags = CLK_SET_RATE_PARENT | CLK_SET_RATE_GATE,
+>  	},
+>  };
+>  
+> @@ -3246,16 +3260,24 @@ static struct clk_regmap g12a_vclk = {
+>  };
+>  
+>  static struct clk_regmap g12a_vclk2 = {
+> -	.data = &(struct clk_regmap_gate_data){
+> -		.offset = HHI_VIID_CLK_CNTL,
+> -		.bit_idx = 19,
+> +	.data = &(struct clk_regmap_vclk_data){
+> +		.enable = {
+> +			.reg_off = HHI_VIID_CLK_CNTL,
+> +			.shift   = 19,
+> +			.width   = 1,
+> +		},
+> +		.reset = {
+> +			.reg_off = HHI_VIID_CLK_CNTL,
+> +			.shift   = 15,
+> +			.width   = 1,
+> +		},
+>  	},
+>  	.hw.init = &(struct clk_init_data) {
+>  		.name = "vclk2",
+> -		.ops = &clk_regmap_gate_ops,
+> +		.ops = &clk_regmap_vclk_ops,
+>  		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2_div.hw },
+>  		.num_parents = 1,
+> -		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+> +		.flags = CLK_SET_RATE_PARENT | CLK_SET_RATE_GATE,
+>  	},
+>  };
+>  
+> @@ -3339,7 +3361,7 @@ static struct clk_regmap g12a_vclk2_div1 = {
+>  		.ops = &clk_regmap_gate_ops,
+>  		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2.hw },
+>  		.num_parents = 1,
+> -		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+> +		.flags = CLK_SET_RATE_PARENT,
+>  	},
+>  };
+>  
+> @@ -3353,7 +3375,7 @@ static struct clk_regmap g12a_vclk2_div2_en = {
+>  		.ops = &clk_regmap_gate_ops,
+>  		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2.hw },
+>  		.num_parents = 1,
+> -		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+> +		.flags = CLK_SET_RATE_PARENT,
+>  	},
+>  };
+>  
+> @@ -3367,7 +3389,7 @@ static struct clk_regmap g12a_vclk2_div4_en = {
+>  		.ops = &clk_regmap_gate_ops,
+>  		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2.hw },
+>  		.num_parents = 1,
+> -		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+> +		.flags = CLK_SET_RATE_PARENT,
+>  	},
+>  };
+>  
+> @@ -3381,7 +3403,7 @@ static struct clk_regmap g12a_vclk2_div6_en = {
+>  		.ops = &clk_regmap_gate_ops,
+>  		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2.hw },
+>  		.num_parents = 1,
+> -		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+> +		.flags = CLK_SET_RATE_PARENT,
+>  	},
+>  };
+>  
+> @@ -3395,7 +3417,7 @@ static struct clk_regmap g12a_vclk2_div12_en = {
+>  		.ops = &clk_regmap_gate_ops,
+>  		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2.hw },
+>  		.num_parents = 1,
+> -		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+> +		.flags = CLK_SET_RATE_PARENT,
+>  	},
+>  };
+>  
+> @@ -3461,6 +3483,7 @@ static struct clk_fixed_factor g12a_vclk2_div2 = {
+>  			&g12a_vclk2_div2_en.hw
+>  		},
+>  		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+>  	},
+>  };
+>  
+> @@ -3474,6 +3497,7 @@ static struct clk_fixed_factor g12a_vclk2_div4 = {
+>  			&g12a_vclk2_div4_en.hw
+>  		},
+>  		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+>  	},
+>  };
+>  
+> @@ -3487,6 +3511,7 @@ static struct clk_fixed_factor g12a_vclk2_div6 = {
+>  			&g12a_vclk2_div6_en.hw
+>  		},
+>  		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+>  	},
+>  };
+>  
+> @@ -3500,6 +3525,7 @@ static struct clk_fixed_factor g12a_vclk2_div12 = {
+>  			&g12a_vclk2_div12_en.hw
+>  		},
+>  		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+>  	},
+>  };
+>  
+> @@ -3561,7 +3587,7 @@ static struct clk_regmap g12a_cts_encl_sel = {
+>  		.ops = &clk_regmap_mux_ops,
+>  		.parent_hws = g12a_cts_parent_hws,
+>  		.num_parents = ARRAY_SIZE(g12a_cts_parent_hws),
+> -		.flags = CLK_SET_RATE_NO_REPARENT | CLK_GET_RATE_NOCACHE,
+> +		.flags = CLK_SET_RATE_PARENT | CLK_SET_RATE_NO_REPARENT,
+>  	},
+>  };
+>  
+> @@ -3717,7 +3743,7 @@ static struct clk_regmap g12a_mipi_dsi_pxclk_sel = {
+>  		.ops = &clk_regmap_mux_ops,
+>  		.parent_hws = g12a_mipi_dsi_pxclk_parent_hws,
+>  		.num_parents = ARRAY_SIZE(g12a_mipi_dsi_pxclk_parent_hws),
+> -		.flags = CLK_SET_RATE_NO_REPARENT,
+> +		.flags = CLK_SET_RATE_PARENT | CLK_SET_RATE_NO_REPARENT,
+>  	},
+>  };
+>  
+> @@ -3729,7 +3755,7 @@ static struct clk_regmap g12a_mipi_dsi_pxclk_div = {
+>  	},
+>  	.hw.init = &(struct clk_init_data){
+>  		.name = "mipi_dsi_pxclk_div",
+> -		.ops = &clk_regmap_divider_ops,
+> +		.ops = &clk_regmap_divider_ro_ops,
+>  		.parent_hws = (const struct clk_hw *[]) {
+>  			&g12a_mipi_dsi_pxclk_sel.hw
+>  		},
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZWCuLQAKCRB4tDGHoIJi
-0vvFAQDqLdZ9fSLKLXtTwd018oBmapd8qz3y/vFHemYVSnYu3wEA6OPpzezOmyyj
-BIxI0dbI2gD0r5mVOmRPaFRmc56q+Q8=
-=B7KU
------END PGP SIGNATURE-----
-
---k22Pzja/5vzpnLDi--
 
