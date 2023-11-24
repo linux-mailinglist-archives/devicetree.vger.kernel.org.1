@@ -1,58 +1,68 @@
-Return-Path: <devicetree+bounces-18697-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18698-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DAE37F86AD
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 00:26:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC1467F86D7
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 00:40:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 086A5B21347
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 23:26:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 683F1282277
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 23:40:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3C8A3C482;
-	Fri, 24 Nov 2023 23:26:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DC513DB86;
+	Fri, 24 Nov 2023 23:40:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="uGtbsMYs"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="UJk7n/+f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD5E91990;
-	Fri, 24 Nov 2023 15:26:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=ZEmM+x5c4j9E2iYripoWJxHgYv7R98NUEa31meAyb3E=; b=uGtbsMYszf8pdWOAfR2MhpRlqV
-	24g92f2VFULf7WTq8BWo5l/3XruHQvZr13mP5OFmGelaM3YxeSSS2yBBygiKA74EJKa+qbEbmA040
-	u+t3KbeEDYIYMnJpUxJM0BZ6o/TFnIExVIRCdKpQOVZq3vDeASDU6zGVIgO/6OMynBis=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1r6fYP-0018wU-SA; Sat, 25 Nov 2023 00:25:45 +0100
-Date: Sat, 25 Nov 2023 00:25:45 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Conor Dooley <conor@kernel.org>
-Cc: Javier Carrasco <javier.carrasco@wolfvision.net>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA68D1990;
+	Fri, 24 Nov 2023 15:40:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1700869203; x=1732405203;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=BBPN3UdJMvFNoexMmj/RYUS6v8k8qPrmPLFVGwaOepI=;
+  b=UJk7n/+f5b+UTAUf2I/XlwEN2dUoBSinbIEBrxCI2e/cxO3wPuvk2Erx
+   arhXGtMQ0s9sXKbuFEGtp/bmX9khVPuuado/PC6/WqoEmS3w5IOTBzOG1
+   B9Psm0XgNeilbLhhOuBVgJ4Wsc6UFzonLp6GDMgx/Nf1+7U72WBXLLrww
+   FQnOSKG+vYQS1gLxcBC6hCipkzLaNrZU5LR5HyUE9p5UzznHKf+iESkxZ
+   ZReLv4X60bIn3vJ5zuzjrzDFHi+0w8Gzzh9kDMrIQx6R2LLOH5MelmLkN
+   /UPKijKvkgcY/9KEhimaQ1AExec3Y2Y9UBJyjQYrkLza4howUxI4by6hw
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10904"; a="396383137"
+X-IronPort-AV: E=Sophos;i="6.04,224,1695711600"; 
+   d="scan'208";a="396383137"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Nov 2023 15:40:03 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10904"; a="1015007948"
+X-IronPort-AV: E=Sophos;i="6.04,224,1695711600"; 
+   d="scan'208";a="1015007948"
+Received: from lkp-server01.sh.intel.com (HELO d584ee6ebdcc) ([10.239.97.150])
+  by fmsmga006.fm.intel.com with ESMTP; 24 Nov 2023 15:39:59 -0800
+Received: from kbuild by d584ee6ebdcc with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1r6fm9-0003OE-10;
+	Fri, 24 Nov 2023 23:39:57 +0000
+Date: Sat, 25 Nov 2023 07:39:07 +0800
+From: kernel test robot <lkp@intel.com>
+To: Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org>,
+	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>,
 	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	David Wu <david.wu@rock-chips.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH RFC WIP 1/2] dt-bindings: net: rockchip-dwmac: add
- rockchip,phy-wol property
-Message-ID: <42c5c174-e7f2-4323-8db0-0db1ede39ec5@lunn.ch>
-References: <20231123-dwmac-rk_phy_wol-v1-0-bf4e718081b9@wolfvision.net>
- <20231123-dwmac-rk_phy_wol-v1-1-bf4e718081b9@wolfvision.net>
- <20231123-operable-frustrate-6c71ab0dafbf@spud>
+	Jonathan Corbet <corbet@lwn.net>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Andy Shevchenko <andy@kernel.org>
+Subject: Re: [PATCH v2 2/2] hwmon: ltc4282: add support for the LTC4282 chip
+Message-ID: <202311250548.lUn3bm1A-lkp@intel.com>
+References: <20231124-ltc4282-support-v2-2-952bf926f83c@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,48 +71,75 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231123-operable-frustrate-6c71ab0dafbf@spud>
+In-Reply-To: <20231124-ltc4282-support-v2-2-952bf926f83c@analog.com>
 
-On Thu, Nov 23, 2023 at 05:20:48PM +0000, Conor Dooley wrote:
-> On Thu, Nov 23, 2023 at 01:14:13PM +0100, Javier Carrasco wrote:
-> > This property defines if PHY WOL is preferred. If it is not defined, MAC
-> > WOL will be preferred instead.
-> > 
-> > Signed-off-by: Javier Carrasco <javier.carrasco@wolfvision.net>
-> > ---
-> >  Documentation/devicetree/bindings/net/rockchip-dwmac.yaml | 6 ++++++
-> >  1 file changed, 6 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml b/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
-> > index 70bbc4220e2a..fc4b02a5a375 100644
-> > --- a/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
-> > +++ b/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
-> > @@ -91,6 +91,12 @@ properties:
-> >        The phandle of the syscon node for the peripheral general register file.
-> >      $ref: /schemas/types.yaml#/definitions/phandle
-> >  
-> > +  rockchip,phy-wol:
-> > +    type: boolean
-> > +    description:
-> > +      If present, indicates that PHY WOL is preferred. MAC WOL is preferred
-> > +      otherwise.
-> 
-> Although I suspect this isn't, it sounds like software policy. What
-> attribute of the hardware determines which is preferred?
+Hi Nuno,
 
-I tend to agree, its a software policy. Doing WoL in the PHY should be
-the preferred solution, because it allows the MAC to be powered off,
-saving more power. If the PHY does not implement it, then the MAC
-should be used.
+kernel test robot noticed the following build warnings:
 
-It should be possible for the MAC driver to pass the WoL settings to
-the PHY, and if it returns EOPNOTSUPP, or maybe EINVAL, implement the
-WoL in the MAC.
+[auto build test WARNING on groeck-staging/hwmon-next]
+[also build test WARNING on linus/master v6.7-rc2 next-20231124]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-This might be a behaviour change, depending on the MAC driver. So i
-could imaging a less risk tolerant developers wanting a knob to enable
-this. However, if done correctly, using the PHY instead of the MAC
-should not be visible from the users perspective.
+url:    https://github.com/intel-lab-lkp/linux/commits/Nuno-Sa-via-B4-Relay/hwmon-ltc4282-add-support-for-the-LTC4282-chip/20231124-231842
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git hwmon-next
+patch link:    https://lore.kernel.org/r/20231124-ltc4282-support-v2-2-952bf926f83c%40analog.com
+patch subject: [PATCH v2 2/2] hwmon: ltc4282: add support for the LTC4282 chip
+config: x86_64-randconfig-161-20231125 (https://download.01.org/0day-ci/archive/20231125/202311250548.lUn3bm1A-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231125/202311250548.lUn3bm1A-lkp@intel.com/reproduce)
 
-    Andrew
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202311250548.lUn3bm1A-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/hwmon/ltc4282.c:347:6: warning: no previous prototype for 'ltc4282_round_rate' [-Wmissing-prototypes]
+     347 | long ltc4282_round_rate(struct clk_hw *hw, unsigned long rate,
+         |      ^~~~~~~~~~~~~~~~~~
+>> drivers/hwmon/ltc4282.c:356:15: warning: no previous prototype for 'ltc4282_recalc_rate' [-Wmissing-prototypes]
+     356 | unsigned long ltc4282_recalc_rate(struct clk_hw *hw, unsigned long parent)
+         |               ^~~~~~~~~~~~~~~~~~~
+
+
+vim +/ltc4282_round_rate +347 drivers/hwmon/ltc4282.c
+
+   346	
+ > 347	long ltc4282_round_rate(struct clk_hw *hw, unsigned long rate,
+   348				unsigned long *parent_rate)
+   349	{
+   350		int idx = find_closest(rate, ltc4282_out_rates,
+   351				       ARRAY_SIZE(ltc4282_out_rates));
+   352	
+   353		return ltc4282_out_rates[idx];
+   354	}
+   355	
+ > 356	unsigned long ltc4282_recalc_rate(struct clk_hw *hw, unsigned long parent)
+   357	{
+   358		struct ltc4282_state *st = container_of(hw, struct ltc4282_state,
+   359							clk_hw);
+   360		u32 clkdiv;
+   361		int ret;
+   362	
+   363		ret = regmap_read(st->map, LTC4282_CLK_DIV, &clkdiv);
+   364		if (ret)
+   365			return 0;
+   366	
+   367		clkdiv = FIELD_GET(LTC4282_CLKOUT_MASK, clkdiv);
+   368		if (!clkdiv)
+   369			return 0;
+   370		if (clkdiv == LTC4282_CLKOUT_INT)
+   371			return LTC4282_CLKOUT_SYSTEM;
+   372	
+   373		return LTC4282_CLKOUT_CNV;
+   374	}
+   375	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
