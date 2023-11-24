@@ -1,86 +1,88 @@
-Return-Path: <devicetree+bounces-18609-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18616-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC85B7F74BC
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 14:20:27 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51EEB7F7533
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 14:33:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9659C2810E3
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 13:20:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 830A11C20A04
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 13:33:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E345D28DA1;
-	Fri, 24 Nov 2023 13:20:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A9E028DDA;
+	Fri, 24 Nov 2023 13:33:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LwZ1dc09"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Fg+blA2Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-x1129.google.com (mail-yw1-x1129.google.com [IPv6:2607:f8b0:4864:20::1129])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8EE510FF
-	for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 05:20:18 -0800 (PST)
-Received: by mail-yw1-x1129.google.com with SMTP id 00721157ae682-5c8c8f731aaso19126057b3.0
-        for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 05:20:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700832018; x=1701436818; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=duwkvZHrBkTaBuc8LOMphh5Uy/87rU9msacGlhDLoFw=;
-        b=LwZ1dc09aQrh9Yf2fNtFfuaYH/YIP9rA4/XT12K0+39JaMepF6sQfaUxllhH7EPRMQ
-         U5uXHiM6YqyL0Ze+niVd0R8pfOVeDMhXeUHjhTraSGkFnV7foXhE1042thfu/npo7DAl
-         2we+fgEHJXbCOq3zW3rf7VpFLd+WwM+3zMd9ahgf6JKeA14jAxoe2w1yw5DBbfUjWwT7
-         3Gdfe6HwA4mfQRp9KwhzglzxzRBDMX6PypfjkIpQ9cH51oh8u4Mw9d4SBACUSahQ8HnC
-         qPa1KC/dl7fFOzeEUcez5I/HX2dQRAT6ly1ILu9hvNIuzNi2cz4vxwu8fEVpvKWIQs8t
-         yPEg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700832018; x=1701436818;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=duwkvZHrBkTaBuc8LOMphh5Uy/87rU9msacGlhDLoFw=;
-        b=wSncmoT4PBmI8GVQPhzCec38X7A1tKooOSweOzr9/SbrcwhWozdNdweLtl/hYO1Txu
-         oiFTNkUQWq6i27jGl68dEaZrPeZqNLv1N5DjzA0E1RbUj38T4TiFc14UppzLSeLxjaSP
-         RK0nQIqGb4b2RhxQ7cvzyBbmOxgh3BJkUAt6CFJ6uDcDGAnsq1yrE3sR5sFHqehuxvAv
-         X21yJNiHNRF5C6/fsntBifyTNHs0tjYUuiuhAzgT3N7WNeS7aa+sWhy81Zi+ylsP47r8
-         LLu1w5b+3KIQLknJZy0hVFJeYqXBAGq19V71f7YIMPXgE0ftT+DGD2WQX/nxrSgbh3fU
-         yMTA==
-X-Gm-Message-State: AOJu0YzeOi/uJVrRc6gnZ3qLnCd8QdIY/9lDbbFprSgQR5lvjbOSizf5
-	gTs2Fjdys2zQJb7NixFs6fx1z74CFou/Fws5yKU1XQ==
-X-Google-Smtp-Source: AGHT+IGTMWDoubenznwguJuKisn/kdH02n6RmrB+3SpiznhGgPENvFvkg5/wCeChRLDXvMftBTinfn7BhYh8JQE6sQE=
-X-Received: by 2002:a0d:ead1:0:b0:5cb:464c:ad23 with SMTP id
- t200-20020a0dead1000000b005cb464cad23mr2791623ywe.42.1700832017875; Fri, 24
- Nov 2023 05:20:17 -0800 (PST)
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7927028DCC;
+	Fri, 24 Nov 2023 13:33:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7878C433C8;
+	Fri, 24 Nov 2023 13:33:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1700832784;
+	bh=x6EgV44Z6FrkG3KgbOyNataJpEq/Te/FIziLy6Xf0mc=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=Fg+blA2YXdffBOsaH0+xQ+JG3CIJqzwezMCXY3atR5ZNmrj/cV8acUH8wdadnuHt4
+	 CjHQ6KhlwVRBRVEL6sblpll66f9sH4Ry6Qr9KR+YeOrsFqaaqyiiy9vkBopexkm6G1
+	 ysZ+/phg3V0JKHM652e1AZx6pjBCdZiDm5emkO28oOSjK7AKUn/BPWNa2Q0r29UoD1
+	 NTEV2m45c/QLTOWBuwuT4yqaFcB0RQDBuFrSGff1ivBXkqHutSlLdxoiD6PazX+yRu
+	 PWaJm5Q8G5z9Wm/kA9Ig/Jz+rM0iCE/8OC3t1l0vKzJgDSX7wWbITIwTJBbfunOn5N
+	 dwD5NUGEF0WnQ==
+From: Vinod Koul <vkoul@kernel.org>
+To: Peter Ujfalusi <peter.ujfalusi@gmail.com>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>
+Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+In-Reply-To: <20231124045722.191817-1-vigneshr@ti.com>
+References: <20231124045722.191817-1-vigneshr@ti.com>
+Subject: Re: [PATCH v3 0/4] dt-bindings: dma: ti: k3*: Update optional reg
+ regions
+Message-Id: <170083278148.771517.1841889156174413563.b4-ty@kernel.org>
+Date: Fri, 24 Nov 2023 19:03:01 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231124121305.1954-1-quic_kbajaj@quicinc.com> <20231124121305.1954-4-quic_kbajaj@quicinc.com>
-In-Reply-To: <20231124121305.1954-4-quic_kbajaj@quicinc.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Fri, 24 Nov 2023 15:20:07 +0200
-Message-ID: <CAA8EJpruXcpLX=c9o27rqHuh3u_ktqp_a+PN=DcCbq8sWW612w@mail.gmail.com>
-Subject: Re: [PATCH v6 3/3] arm64: dts: qcom: Add base qcs6490-rb3gen2 board dts
-To: Komal Bajaj <quic_kbajaj@quicinc.com>
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Naina Mehta <quic_nainmeht@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.12.3
 
-On Fri, 24 Nov 2023 at 14:14, Komal Bajaj <quic_kbajaj@quicinc.com> wrote:
 
-[skipped]
+On Fri, 24 Nov 2023 10:27:18 +0530, Vignesh Raghavendra wrote:
+> DMAs on TI K3 SoCs have channel configuration registers region which are
+> usually hidden from Linux and configured via Device Manager Firmware
+> APIs. But certain early SWs like bootloader which run before Device
+> Manager is fully up would need to directly configure these registers and
+> thus require to be in DT description.
+> 
+> This add bindings for such configuration regions.  Backward
+> compatibility is maintained to existing DT by only mandating existing
+> regions to be present and this new region as optional.
+> 
+> [...]
 
-> +&wifi {
-> +       memory-region = <&wlan_fw_mem>;
+Applied, thanks!
 
-qcom,ath11k-calibration-variant = "Thundercomm_RB3gen2"
+[1/4] dt-bindings: dma: ti: k3-*: Add descriptions for register regions
+      commit: aaf7b392347bc4b32ffcab11c414d983a782e651
+[2/4] dt-bindings: dma: ti: k3-bcdma: Describe cfg register regions
+      commit: f04470678132c2d044b92befab39a933ac4d106c
+[3/4] dt-bindings: dma: ti: k3-pktdma: Describe cfg register regions
+      commit: 8d75e0e5eed23e4f8ced5eacae3255e498a1c304
+[4/4] dt-bindings: dma: ti: k3-udma: Describe cfg register regions
+      commit: d7aaccd3beb1ec34b04b13fa236f50efb77c8d6c
 
-Also please cc ath11k mailing list on your next submission.
-
+Best regards,
 -- 
-With best wishes
-Dmitry
+~Vinod
+
+
 
