@@ -1,95 +1,140 @@
-Return-Path: <devicetree+bounces-18645-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18646-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C43F7F7733
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 16:05:43 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FAE27F7738
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 16:06:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8D4E91C20B0A
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 15:05:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 14A9E1F20F06
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 15:06:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF4DA2E629;
-	Fri, 24 Nov 2023 15:05:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B7AD2E631;
+	Fri, 24 Nov 2023 15:05:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="PvbSTSIB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uaoFZYrB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB29519BD;
-	Fri, 24 Nov 2023 07:05:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=public-files.de;
-	s=s31663417; t=1700838301; x=1701443101; i=frank-w@public-files.de;
-	bh=Ix7kpbSVl/E0T/0d1Pht1rYCZKqw3dVgDyb07vLVcGc=;
-	h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:
-	 References;
-	b=PvbSTSIB4lffJljSG4x3vZo9axQe2k91WFc0HvK06Uksi2okqG7+tSkyoV+MGlHi
-	 qB+NxwOL5rjz/C1NKlxPEBU4JtSY+l6QEUeNAiFun+qWx+A/C6a8HpCi9Yve0BCkW
-	 FRd62tCPZrx93DokOlSHqhy5/ghscbSYDPq/uvmJC0jc5BRS15u4KvDi/Q2drr1kk
-	 qvgomya4GLFbA+omT80QTN7MyzCXaa5gH4g7zjoGEDnBn8qgzpwXV6+j5/wjRHqDN
-	 PHZDE/aS5AcUn7qvi7qsL/5CNZ1vlzAGWFMCx9aDGUmRaQTKTU7GgDTztTGjpnvG/
-	 BR/ekAfiQ+xol7YibA==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [80.245.79.113] ([80.245.79.113]) by web-mail.gmx.net
- (3c-app-gmx-bs48.server.lan [172.19.170.101]) (via HTTP); Fri, 24 Nov 2023
- 16:05:01 +0100
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F2892D7B5;
+	Fri, 24 Nov 2023 15:05:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE7D9C43395;
+	Fri, 24 Nov 2023 15:05:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1700838357;
+	bh=W6AcqzGG834X7Fnc1UesSToakM1vJZCmLFY+BobYw5g=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=uaoFZYrBiO3kZphuGBjihIKIKUCMOApnXvYR1zIFol9BJfuQ28O9efIrmvj1Za6xd
+	 quIZitQbBWw78wUv4dr5ZBdM1Pje08v9/aB/8V1Zo/vGxwLXCffJvfPF5rYQl//gam
+	 aGhwDvxGAHY5LeSGttX3wCaWMipeJw6Ic/4qTHiSWl9csFx95vPcmItREKo1sIG+gA
+	 nxcaIJHRPj37fGKOWCYJTWo9w+M/75RLhPgY6VOXE4VwnhYZH0U/D/XwaWfc0ItpzY
+	 qJg3IjdIlPczQ0fd24mFKl6lqGX2T211GbkYIVM8OSOV1T0aENh3kvVjX6jYo6FQ5e
+	 XmuGmH5A1SJlg==
+Date: Fri, 24 Nov 2023 15:05:46 +0000
+From: Conor Dooley <conor@kernel.org>
+To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc: Yu Chien Peter Lin <peterlin@andestech.com>, acme@kernel.org,
+	adrian.hunter@intel.com, ajones@ventanamicro.com,
+	alexander.shishkin@linux.intel.com, andre.przywara@arm.com,
+	anup@brainfault.org, aou@eecs.berkeley.edu, atishp@atishpatra.org,
+	conor+dt@kernel.org, conor.dooley@microchip.com,
+	devicetree@vger.kernel.org, dminus@andestech.com, evan@rivosinc.com,
+	geert+renesas@glider.be, guoren@kernel.org, heiko@sntech.de,
+	irogers@google.com, jernej.skrabec@gmail.com, jolsa@kernel.org,
+	jszhang@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-perf-users@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	locus84@andestech.com, magnus.damm@gmail.com, mark.rutland@arm.com,
+	mingo@redhat.com, n.shubin@yadro.com, namhyung@kernel.org,
+	palmer@dabbelt.com, paul.walmsley@sifive.com, peterz@infradead.org,
+	prabhakar.mahadev-lad.rj@bp.renesas.com, rdunlap@infradead.org,
+	robh+dt@kernel.org, samuel@sholland.org, sunilvl@ventanamicro.com,
+	tglx@linutronix.de, tim609@andestech.com, uwu@icenowy.me,
+	wens@csie.org, will@kernel.org, ycliang@andestech.com,
+	inochiama@outlook.com
+Subject: Re: [PATCH v4 04/13] dt-bindings: riscv: Add Andes interrupt
+ controller compatible string
+Message-ID: <20231124-nemesis-vanity-a92814b5c3a3@spud>
+References: <20231122121235.827122-1-peterlin@andestech.com>
+ <20231122121235.827122-5-peterlin@andestech.com>
+ <CA+V-a8t+vgrwDe9OxqMNHdcVX+qq76DuskF0ETCri4VeP-FAbg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <trinity-a9a71294-1396-43e4-9ed5-9ee2914ef093-1700838301802@3c-app-gmx-bs48>
-From: Frank Wunderlich <frank-w@public-files.de>
-To: Corentin LABBE <clabbe@baylibre.com>
-Cc: davem@davemloft.net, heiko@sntech.de, herbert@gondor.apana.org.au,
- krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
- p.zabel@pengutronix.de, robh+dt@kernel.org, sboyd@kernel.org,
- ricardo@pardini.net, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
- linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org
-Subject: Aw: Re:  [PATCH 6/6] crypto: rockchip: add rk3588 driver
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 24 Nov 2023 16:05:01 +0100
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <ZVtVkACNHTcCjqGp@Red>
-References: <20231107155532.3747113-1-clabbe@baylibre.com>
- <20231107155532.3747113-7-clabbe@baylibre.com>
- <trinity-a0ee3146-f23d-4f6c-b29c-5fe446c4d4ad-1699797868421@3c-app-gmx-bs50>
- <ZVtVkACNHTcCjqGp@Red>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:KZY66OmMPVZRMlmi74pw8ADByftw6rLqB4krhDPt1n6lm6PqszSx4cKvc4cZjMaxiCH9q
- 9l76vJDnRyCKy+eXbolThC+wwdw4dv1bdU4iTgErQSSMfaGhXdFf9Hw8m2d54Obzs6CpDsrq/18q
- TEe0LEFYkOe/u47SsG/Cz/fazr5GJSKcscqOCYKIKUI5ZS4Qz2H5T/mWYX/BAwcWhjtWXQ3IyITK
- gWvtkulcLy4Ksr8Efpa7xkFttn5SYux8Z7cGFDgcF33skBoacgmIdOyvNt6ysMKaEToS9LDLnTZO
- zw=
-UI-OutboundReport: notjunk:1;M01:P0:nU8MkRQpVF4=;cW5EMDZ6CBFw9FyqPe6KBZB/V18
- K6E987HH1iAQnNOcy5ZBHGefyE25N6rxX+3pirLkOnU/zCkzodgk9FOxD9Cr1RQOJ9kCBB5OU
- jUboXEL0DRyXxqDsfqi+UATzF3N2/tp/G4gWip+pFqinf6NKT2XWejdO50yHxVXgc0Af3J+F1
- Yyz8h5CY0RZKPd0b5Gd23VSlmq+/Widrj5RK8DDKMX3Ak3oAFl2MGRuaFGFbPG+eE8UB3exU/
- J5W38CPcFE84FhhfxqzfTTr0LrEezSrHh5LDp93NU1UK4ECk6y0qJ+f0iaBMTkv3kIHI+Ohhf
- XoOWmrQcoaXHHv8IDCUz5B2NhyK1EiUtuK4DEHcksp3BynkMeM2/ymRpEIKNY0ulRuyzJRPm3
- +orjVtzoZWjdd2CkjhJfF2ah+uPoDp2pd1Z16SvQwmR5SfJMcvgt53OVp+jtSBC8rD314ggIe
- 902t/NJ/xbV+W/bATfBPqX7Cx6WRmBvHwOng3dgR5Rv0TwPBwhGVzR57K9ZiGspS0M4liI+Q6
- QSIIBMjJBkamkRUnn3O+G06PooaSgO+99XkvoWNuE6Jv8W/tggIVAanoHtTD8Xy7G9M4ha71F
- sLwihv1Y8dsoJNQNwXtvU5jsUM4GpCu5fJCT6sGXsVdiVlD/bpKhgyViHDS0jQQmgqklkrrp0
- 5lRwUv//M/OuJEbtmb5K01CzVlpVt/ik0vohNwuLlOfjMtRiU+Yd5AP5tLXBnrHcWy35cO6yb
- ItPBMt4lQN8fZGopD7NmXSoIQbY0GHqO8OzCdo6IPY5G1Q0n9QR7v9LEVt6g3JsDKOL/yg8qQ
- cQQlCI0IDm0t3wNCSzVHhNIA==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="cF2+7KTXsnpo6E+a"
+Content-Disposition: inline
+In-Reply-To: <CA+V-a8t+vgrwDe9OxqMNHdcVX+qq76DuskF0ETCri4VeP-FAbg@mail.gmail.com>
 
-Hi
 
-> Gesendet: Montag, 20. November 2023 um 13:48 Uhr
-> Von: "Corentin LABBE" <clabbe@baylibre.com>
+--cF2+7KTXsnpo6E+a
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> You are using kcapi-rng but the driver do not support RNG yet. (and probably never if I continue to fail having good results with it).
-> So it is normal values does not change.
+On Fri, Nov 24, 2023 at 03:03:51PM +0000, Lad, Prabhakar wrote:
+> On Wed, Nov 22, 2023 at 12:18=E2=80=AFPM Yu Chien Peter Lin
+> <peterlin@andestech.com> wrote:
+> >
+> > Add "andestech,cpu-intc" compatible string to indicate that
+> > Andes specific local interrupt is supported on the core,
+> > e.g. AX45MP cores have 3 types of non-standard local interrupt
+> > can be handled in supervisor mode:
+> >
+> > - Slave port ECC error interrupt
+> > - Bus write transaction error interrupt
+> > - Performance monitor overflow interrupt
+> >
+> > These interrupts are enabled/disabled via a custom register
+> > SLIE instead of the standard interrupt enable register SIE.
+> >
+> > Signed-off-by: Yu Chien Peter Lin <peterlin@andestech.com>
+> > ---
+> > Changes v1 -> v2:
+> >   - New patch
+> > Changes v2 -> v3:
+> >   - Updated commit message
+> >   - Fixed possible compatibles for Andes INTC
+> > Changes v3 -> v4:
+> >   - Add const entry instead of enum (Suggested by Conor)
+> > ---
+> >  Documentation/devicetree/bindings/riscv/cpus.yaml | 6 +++++-
+> >  1 file changed, 5 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Docume=
+ntation/devicetree/bindings/riscv/cpus.yaml
+> > index f392e367d673..50307554478f 100644
+> > --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
+> > +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
+> > @@ -100,7 +100,11 @@ properties:
+> >          const: 1
+> >
+> >        compatible:
+> > -        const: riscv,cpu-intc
+> > +        oneOf:
+> > +          - items:
+> > +              - const: andestech,cpu-intc
+> given that the first patch renames andestech -> andes, do you want to
+> follow the same here?
 
-which functions does the driver support atm? or how can i test correctly
-(and which kernel options i need for this)?
+No, that's their vendor prefix, they're stuck with it.
 
-regards Frank
+--cF2+7KTXsnpo6E+a
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZWC7ygAKCRB4tDGHoIJi
+0skKAQDHe25no3r1QiuhIMPJ/3Knjbs0n62oqRjWcYDWRV8dMAEA1nbRbhQHzGem
+C4VGWHQ58F49vu2OigDkep60E3k4tQs=
+=9K1r
+-----END PGP SIGNATURE-----
+
+--cF2+7KTXsnpo6E+a--
 
