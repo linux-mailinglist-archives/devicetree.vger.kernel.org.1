@@ -1,519 +1,438 @@
-Return-Path: <devicetree+bounces-18650-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18651-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 931997F774E
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 16:08:59 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3ECDC7F776A
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 16:16:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CE249B213CF
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 15:08:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 98C6CB21430
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 15:16:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9F912E64B;
-	Fri, 24 Nov 2023 15:08:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8EDD2E821;
+	Fri, 24 Nov 2023 15:16:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FRHSU6UA"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XFV8iSKi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-xc2a.google.com (mail-oo1-xc2a.google.com [IPv6:2607:f8b0:4864:20::c2a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 086F819B1;
-	Fri, 24 Nov 2023 07:08:48 -0800 (PST)
-Received: by mail-oo1-xc2a.google.com with SMTP id 006d021491bc7-58d4968c362so121702eaf.0;
-        Fri, 24 Nov 2023 07:08:48 -0800 (PST)
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DED61727
+	for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 07:16:00 -0800 (PST)
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-40b34563987so11885995e9.1
+        for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 07:16:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1700838527; x=1701443327; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bOCl1swrFbW/7sFUtbSrbFab89YweYfN5WTmXg3TDK4=;
-        b=FRHSU6UAFdebVwiSN2e7gRICCVSa6Jik2v5Bw6jbd0SH/HW99FY679X5pbpg1BQA5H
-         ILxhNuPmgIpGXExubW897LHTrXiBIXsrUMrJqaQSg5aHRWkGBlubm04jag7vdYL5ha5E
-         qwBHygZH+/5lY5QZN9D5mThX87CNeNA1S0ze5vlJ58NVXQTt3O9ABLjEPv5k2TzZsoV1
-         cknGV/F31lYMV8+LQwlZUSAbId+9E6APpGvnF/g/FBnbr6m7+YuD1tEFbP6HKymo1HZ+
-         2vwQISs7+hnTVaSV11z2HmsK8AlqTJoGrnOVk10fY2ZX2epIIqQ6jRQEqAYBWUwrb3hU
-         LT1g==
+        d=linaro.org; s=google; t=1700838959; x=1701443759; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=b3FZREx2BZNVqj15NXNN0T9enYqTvSeqoFYdQsoNXPc=;
+        b=XFV8iSKiAHVzQ9XTyThyqdh3iX/zUVKr7gqYU9kJS761EbSUGGxs1tTbqFeQfKeMCU
+         rT4tFffL6v+Gkf0v8Vc9IjXmnz1kFXYrWeTGn07tT4XaGIgyIxh4516gSCA3y/BJDRV8
+         fY0YI+dbCiPRk8twlD5MWts6AtzS4tusKOMn2z8KxwacO2kKMBk2V5TzSFNJH4DsLvTb
+         gLzf5EtYQgtn9tUCdvE/LT3pqAPs0HifHdtExErNFLxLEqVJJdusgPp+A/+hwtK7nagx
+         o4om6WgXeXmHGF0tIZv1P0HJ7ptvKmVW2PJf5Y+1u4DMdM50sk9M4FDQody/d/b/VP0a
+         XUGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700838527; x=1701443327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=bOCl1swrFbW/7sFUtbSrbFab89YweYfN5WTmXg3TDK4=;
-        b=rvxgUDRRwWcX84685q/9iwiFVZiF42KgaC5urIo9T6LufdUOHUsZ1pxG4k9tFc/SA+
-         4nx/1oThOOk9ig17IInPWw7z7YqCbF8LC5+Ra6HFARZgMYqrijZNnDbNvqKj5sA70f+x
-         e8ctIrbGDhLCd8Y3mhXCXrdwkVjL9rnSs044unpeV8qcorTPjNpfJQDutQMxw47vVvoD
-         3yixRUDrrO+96QE3ISHzZon3MsPM7ORIb1mod3J6fwBHKLB/AgJ1G+gwEdXK0PwHVWRK
-         jnCK+8V/bE5lIyJD2vRpNWDJ+QZonql7f7lWHY49v0oW5N4YHjRfWWFBK9Rtfl4biCP/
-         9mLg==
-X-Gm-Message-State: AOJu0YyRxAEi4oAXpfNXwXi5j3U6oxuLCIrsbNyPM5+MKTr7XW6xF/oI
-	lsRphLmNfc/hRcMxOCh6KKAI+CX+UEppU/xjJeg=
-X-Google-Smtp-Source: AGHT+IHbug40/QYz+/7p5JxTk4BbKhmH+Y2/rax9GKSlZ7ONB0Q5R/TbT3m8srbn2jl1Ir5SdK3oYg2mW7a0rR13vWY=
-X-Received: by 2002:a05:6358:611e:b0:16e:29eb:98c8 with SMTP id
- 30-20020a056358611e00b0016e29eb98c8mr676506rws.30.1700838527192; Fri, 24 Nov
- 2023 07:08:47 -0800 (PST)
+        d=1e100.net; s=20230601; t=1700838959; x=1701443759;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=b3FZREx2BZNVqj15NXNN0T9enYqTvSeqoFYdQsoNXPc=;
+        b=dFw29EU4mYnl8aO9O49RYJlWc9vNZr1gVonv3qqQRNfRv+6x47u1REXLr5f7o4EEN0
+         JLGtn/kEtmH/YTg0dfo2QRHOExVj5eTYUFRhAxV3W0GpmIDJWKmq4XfmZlIoc8WoGlDG
+         KZjBYj1C6D65U6fzZAP8KCdxKNbIpjBSVFc5PJiqPnpRA4+6N8Ym0R3WIrUAmwz1KJSg
+         elISgnnPDsLBpcpvW666eo4LvXTSnBwvbWjHjStz5AWPT1IUXq8t30IYVqIu3aqQ+hZS
+         gy0+DsQO51M/kL/DuNQZUH+3LhKBqBRcXkzGQgrWjL4rvw8SKJvZdjiy0/TDYwp2bRIB
+         RIpg==
+X-Gm-Message-State: AOJu0YyUthople9t0jlO+fi6YWdIG00uUFPWXeZU7ecFMzrp8mxhlJzK
+	4mDWd4BGAIEbx4HnmafOuUYJ2Q==
+X-Google-Smtp-Source: AGHT+IFy4zoLnW8IDSAUwcxPVTaYHMaCnZ7f3dp7AjkbVDA4NQn9/9L26LPxjAx9VQTzljR/jxevUg==
+X-Received: by 2002:a05:600c:3b8b:b0:401:c8b9:4b86 with SMTP id n11-20020a05600c3b8b00b00401c8b94b86mr2955643wms.9.1700838958236;
+        Fri, 24 Nov 2023 07:15:58 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:4611:6dae:b5a3:b6a4? ([2a01:e0a:982:cbb0:4611:6dae:b5a3:b6a4])
+        by smtp.gmail.com with ESMTPSA id v17-20020a05600c445100b0040b3d33ab55sm1188300wmn.47.2023.11.24.07.15.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 24 Nov 2023 07:15:57 -0800 (PST)
+Message-ID: <b23ddc3b-d995-4cd6-91f2-3efa59d345a5@linaro.org>
+Date: Fri, 24 Nov 2023 16:15:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231122121235.827122-1-peterlin@andestech.com> <20231122121235.827122-14-peterlin@andestech.com>
-In-Reply-To: <20231122121235.827122-14-peterlin@andestech.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Fri, 24 Nov 2023 15:08:21 +0000
-Message-ID: <CA+V-a8tozeqAN=R1UHciT=hOCcnSRack=h3gpb3=pytQY9TpAQ@mail.gmail.com>
-Subject: Re: [PATCH v4 13/13] riscv: andes: Support symbolic FW and HW raw events
-To: Yu Chien Peter Lin <peterlin@andestech.com>
-Cc: acme@kernel.org, adrian.hunter@intel.com, ajones@ventanamicro.com, 
-	alexander.shishkin@linux.intel.com, andre.przywara@arm.com, 
-	anup@brainfault.org, aou@eecs.berkeley.edu, atishp@atishpatra.org, 
-	conor+dt@kernel.org, conor.dooley@microchip.com, conor@kernel.org, 
-	devicetree@vger.kernel.org, dminus@andestech.com, evan@rivosinc.com, 
-	geert+renesas@glider.be, guoren@kernel.org, heiko@sntech.de, 
-	irogers@google.com, jernej.skrabec@gmail.com, jolsa@kernel.org, 
-	jszhang@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-perf-users@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-sunxi@lists.linux.dev, 
-	locus84@andestech.com, magnus.damm@gmail.com, mark.rutland@arm.com, 
-	mingo@redhat.com, n.shubin@yadro.com, namhyung@kernel.org, palmer@dabbelt.com, 
-	paul.walmsley@sifive.com, peterz@infradead.org, 
-	prabhakar.mahadev-lad.rj@bp.renesas.com, rdunlap@infradead.org, 
-	robh+dt@kernel.org, samuel@sholland.org, sunilvl@ventanamicro.com, 
-	tglx@linutronix.de, tim609@andestech.com, uwu@icenowy.me, wens@csie.org, 
-	will@kernel.org, ycliang@andestech.com, inochiama@outlook.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v9 08/12] clk: meson: g12a: make VCLK2 and ENCL clock path
+ configurable by CCF
+Content-Language: en-US, fr
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Jagan Teki <jagan@amarulasolutions.com>, Nicolas Belin
+ <nbelin@baylibre.com>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Remi Pommarel
+ <repk@triplefau.lt>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org,
+ linux-phy@lists.infradead.org, Rob Herring <robh@kernel.org>
+References: <20231124-amlogic-v6-4-upstream-dsi-ccf-vim3-v9-0-95256ed139e6@linaro.org>
+ <20231124-amlogic-v6-4-upstream-dsi-ccf-vim3-v9-8-95256ed139e6@linaro.org>
+ <1jbkbjdxk8.fsf@starbuckisacylon.baylibre.com>
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro Developer Services
+In-Reply-To: <1jbkbjdxk8.fsf@starbuckisacylon.baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Nov 22, 2023 at 12:19=E2=80=AFPM Yu Chien Peter Lin
-<peterlin@andestech.com> wrote:
->
-> From: Locus Wei-Han Chen <locus84@andestech.com>
->
-> This patch adds the Andes AX45 JSON files in the perf tool,
-> allowing perf to be used with symbolic event names.
->
-> Signed-off-by: Locus Wei-Han Chen <locus84@andestech.com>
-> Reviewed-by: Yu Chien Peter Lin <peterlin@andestech.com>
-> Reviewed-by: Charles Ci-Jyun Wu <dminus@andestech.com>
-> Reviewed-by: Leo Yu-Chi Liang <ycliang@andestech.com>
-> ---
-> Changes v1 -> v2:
->   - No change
-> Changes v2 -> v3:
->   - No change
-> Changes v3 -> v4:
->   - No change
-> ---
->  .../arch/riscv/andes/ax45/firmware.json       |  68 ++++++++++
->  .../arch/riscv/andes/ax45/instructions.json   | 127 ++++++++++++++++++
->  .../arch/riscv/andes/ax45/memory.json         |  57 ++++++++
->  .../arch/riscv/andes/ax45/microarch.json      |  77 +++++++++++
->  tools/perf/pmu-events/arch/riscv/mapfile.csv  |   1 +
->  5 files changed, 330 insertions(+)
->  create mode 100644 tools/perf/pmu-events/arch/riscv/andes/ax45/firmware.=
-json
->  create mode 100644 tools/perf/pmu-events/arch/riscv/andes/ax45/instructi=
-ons.json
->  create mode 100644 tools/perf/pmu-events/arch/riscv/andes/ax45/memory.js=
-on
->  create mode 100644 tools/perf/pmu-events/arch/riscv/andes/ax45/microarch=
-.json
->
-Tested-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On 24/11/2023 15:12, Jerome Brunet wrote:
+> 
+> On Fri 24 Nov 2023 at 09:41, Neil Armstrong <neil.armstrong@linaro.org> wrote:
+> 
+>> In order to setup the DSI clock, let's make the unused VCLK2 clock path
+>> configuration via CCF.
+>>
+>> The nocache option is removed from following clocks:
+>> - vclk2_sel
+>> - vclk2_input
+>> - vclk2_div
+>> - vclk2
+>> - vclk_div1
+>> - vclk2_div2_en
+>> - vclk2_div4_en
+>> - vclk2_div6_en
+>> - vclk2_div12_en
+>> - vclk2_div2
+>> - vclk2_div4
+>> - vclk2_div6
+>> - vclk2_div12
+>> - cts_encl_sel
+>>
+>> vclk2 and vclk2_div uses the newly introduced vclk regmap driver
+>> to handle the enable and reset bits.
+>>
+>> In order to set a rate on cts_encl via the vclk2 clock path,
+>> the NO_REPARENT flag is set on cts_encl_sel & vclk2_sel in order
+>> to keep CCF from selection a parent.
+>> The parents of cts_encl_sel & vclk2_sel are expected to be defined
+>> in DT.
+>>
+>> The following clock scheme is to be used for DSI:
+>>
+>> xtal
+>> \_ gp0_pll_dco
+>>     \_ gp0_pll
+>>        |- vclk2_sel
+>>        |  \_ vclk2_input
+>>        |     \_ vclk2_div
+>>        |        \_ vclk2
+>>        |           \_ vclk2_div1
+>>        |              \_ cts_encl_sel
+>>        |                 \_ cts_encl	-> to VPU LCD Encoder
+>>        |- mipi_dsi_pxclk_sel
+>>        \_ mipi_dsi_pxclk_div
+>>           \_ mipi_dsi_pxclk		-> to DSI controller
+>>
+>> The mipi_dsi_pxclk_div is set as RO in order to use the same GP0
+>> for mipi_dsi_pxclk and vclk2_input.
+> 
+> Could you explain a bit more this part of about the RO ops ?
+> Maybe I'm missing something.
+> 
+> You would be relying on the reset being always the way it. It is
+> probable but not safe.
+> 
+> A way to deal with the shared GP0 would be to:
+> * cut rate propagation at mipi_dsi_pxclk_sel (already done) and
+>    (vclk2_sel - TBD) ...
+> * Set GP0 base rate through assigned-clock-rate (which you already in
+>    patch 11)
+> 
+> With this, I'm not sure anything needs to be RO for the rates to be set
+> properly for each subtree.
+> 
+> Also, with the subtree above and your example in patch 11, it looks odd that
+> PXCLK is manually set through DT while ENCL is not. Both are input of
+> dsi driver.
 
-Cheers,
-Prabhakar
+So the deal is about dynamic setup of clocks for DSI bridges, not really
+for panels where we can probably know in advance the clock setup.
 
-> diff --git a/tools/perf/pmu-events/arch/riscv/andes/ax45/firmware.json b/=
-tools/perf/pmu-events/arch/riscv/andes/ax45/firmware.json
-> new file mode 100644
-> index 000000000000..9b4a032186a7
-> --- /dev/null
-> +++ b/tools/perf/pmu-events/arch/riscv/andes/ax45/firmware.json
-> @@ -0,0 +1,68 @@
-> +[
-> +  {
-> +    "ArchStdEvent": "FW_MISALIGNED_LOAD"
-> +  },
-> +  {
-> +    "ArchStdEvent": "FW_MISALIGNED_STORE"
-> +  },
-> +  {
-> +    "ArchStdEvent": "FW_ACCESS_LOAD"
-> +  },
-> +  {
-> +    "ArchStdEvent": "FW_ACCESS_STORE"
-> +  },
-> +  {
-> +    "ArchStdEvent": "FW_ILLEGAL_INSN"
-> +  },
-> +  {
-> +    "ArchStdEvent": "FW_SET_TIMER"
-> +  },
-> +  {
-> +    "ArchStdEvent": "FW_IPI_SENT"
-> +  },
-> +  {
-> +    "ArchStdEvent": "FW_IPI_RECEIVED"
-> +  },
-> +  {
-> +    "ArchStdEvent": "FW_FENCE_I_SENT"
-> +  },
-> +  {
-> +    "ArchStdEvent": "FW_FENCE_I_RECEIVED"
-> +  },
-> +  {
-> +    "ArchStdEvent": "FW_SFENCE_VMA_SENT"
-> +  },
-> +  {
-> +    "ArchStdEvent": "FW_SFENCE_VMA_RECEIVED"
-> +  },
-> +  {
-> +    "ArchStdEvent": "FW_SFENCE_VMA_RECEIVED"
-> +  },
-> +  {
-> +    "ArchStdEvent": "FW_SFENCE_VMA_ASID_RECEIVED"
-> +  },
-> +  {
-> +    "ArchStdEvent": "FW_HFENCE_GVMA_SENT"
-> +  },
-> +  {
-> +    "ArchStdEvent": "FW_HFENCE_GVMA_RECEIVED"
-> +  },
-> +  {
-> +    "ArchStdEvent": "FW_HFENCE_GVMA_VMID_SENT"
-> +  },
-> +  {
-> +    "ArchStdEvent": "FW_HFENCE_GVMA_VMID_RECEIVED"
-> +  },
-> +  {
-> +    "ArchStdEvent": "FW_HFENCE_VVMA_SENT"
-> +  },
-> +  {
-> +    "ArchStdEvent": "FW_HFENCE_VVMA_RECEIVED"
-> +  },
-> +  {
-> +    "ArchStdEvent": "FW_HFENCE_VVMA_ASID_SENT"
-> +  },
-> +  {
-> +    "ArchStdEvent": "FW_HFENCE_VVMA_ASID_RECEIVED"
-> +  }
-> +]
-> diff --git a/tools/perf/pmu-events/arch/riscv/andes/ax45/instructions.jso=
-n b/tools/perf/pmu-events/arch/riscv/andes/ax45/instructions.json
-> new file mode 100644
-> index 000000000000..713a08c1a40f
-> --- /dev/null
-> +++ b/tools/perf/pmu-events/arch/riscv/andes/ax45/instructions.json
-> @@ -0,0 +1,127 @@
-> +[
-> +       {
-> +               "EventCode": "0x10",
-> +               "EventName": "cycle_count",
-> +               "BriefDescription": "Cycle count"
-> +       },
-> +       {
-> +               "EventCode": "0x20",
-> +               "EventName": "inst_count",
-> +               "BriefDescription": "Retired instruction count"
-> +       },
-> +       {
-> +               "EventCode": "0x30",
-> +               "EventName": "int_load_inst",
-> +               "BriefDescription": "Integer load instruction count"
-> +       },
-> +       {
-> +               "EventCode": "0x40",
-> +               "EventName": "int_store_inst",
-> +               "BriefDescription": "Integer store instruction count"
-> +       },
-> +       {
-> +               "EventCode": "0x50",
-> +               "EventName": "atomic_inst",
-> +               "BriefDescription": "Atomic instruction count"
-> +       },
-> +       {
-> +               "EventCode": "0x60",
-> +               "EventName": "sys_inst",
-> +               "BriefDescription": "System instruction count"
-> +       },
-> +       {
-> +               "EventCode": "0x70",
-> +               "EventName": "int_compute_inst",
-> +               "BriefDescription": "Integer computational instruction co=
-unt"
-> +       },
-> +       {
-> +               "EventCode": "0x80",
-> +               "EventName": "condition_br",
-> +               "BriefDescription": "Conditional branch instruction count=
-"
-> +       },
-> +       {
-> +               "EventCode": "0x90",
-> +               "EventName": "taken_condition_br",
-> +               "BriefDescription": "Taken conditional branch instruction=
- count"
-> +       },
-> +       {
-> +               "EventCode": "0xA0",
-> +               "EventName": "jal_inst",
-> +               "BriefDescription": "JAL instruction count"
-> +       },
-> +       {
-> +               "EventCode": "0xB0",
-> +               "EventName": "jalr_inst",
-> +               "BriefDescription": "JALR instruction count"
-> +       },
-> +       {
-> +               "EventCode": "0xC0",
-> +               "EventName": "ret_inst",
-> +               "BriefDescription": "Return instruction count"
-> +       },
-> +       {
-> +               "EventCode": "0xD0",
-> +               "EventName": "control_trans_inst",
-> +               "BriefDescription": "Control transfer instruction count"
-> +       },
-> +       {
-> +               "EventCode": "0xE0",
-> +               "EventName": "ex9_inst",
-> +               "BriefDescription": "EXEC.IT instruction count"
-> +       },
-> +       {
-> +               "EventCode": "0xF0",
-> +               "EventName": "int_mul_inst",
-> +               "BriefDescription": "Integer multiplication instruction c=
-ount"
-> +       },
-> +       {
-> +               "EventCode": "0x100",
-> +               "EventName": "int_div_rem_inst",
-> +               "BriefDescription": "Integer division/remainder instructi=
-on count"
-> +       },
-> +       {
-> +               "EventCode": "0x110",
-> +               "EventName": "float_load_inst",
-> +               "BriefDescription": "Floating-point load instruction coun=
-t"
-> +       },
-> +       {
-> +               "EventCode": "0x120",
-> +               "EventName": "float_store_inst",
-> +               "BriefDescription": "Floating-point store instruction cou=
-nt"
-> +       },
-> +       {
-> +               "EventCode": "0x130",
-> +               "EventName": "float_add_sub_inst",
-> +               "BriefDescription": "Floating-point addition/subtraction =
-instruction count"
-> +       },
-> +       {
-> +               "EventCode": "0x140",
-> +               "EventName": "float_mul_inst",
-> +               "BriefDescription": "Floating-point multiplication instru=
-ction count"
-> +       },
-> +       {
-> +               "EventCode": "0x150",
-> +               "EventName": "float_fused_muladd_inst",
-> +               "BriefDescription": "Floating-point fused multiply-add in=
-struction count"
-> +       },
-> +       {
-> +               "EventCode": "0x160",
-> +               "EventName": "float_div_sqrt_inst",
-> +               "BriefDescription": "Floating-point division or square-ro=
-ot instruction count"
-> +       },
-> +       {
-> +               "EventCode": "0x170",
-> +               "EventName": "other_float_inst",
-> +               "BriefDescription": "Other floating-point instruction cou=
-nt"
-> +       },
-> +       {
-> +               "EventCode": "0x180",
-> +               "EventName": "int_mul_add_sub_inst",
-> +               "BriefDescription": "Integer multiplication and add/sub i=
-nstruction count"
-> +       },
-> +       {
-> +               "EventCode": "0x190",
-> +               "EventName": "retired_ops",
-> +               "BriefDescription": "Retired operation count"
-> +       }
-> +]
-> diff --git a/tools/perf/pmu-events/arch/riscv/andes/ax45/memory.json b/to=
-ols/perf/pmu-events/arch/riscv/andes/ax45/memory.json
-> new file mode 100644
-> index 000000000000..c7401b526c77
-> --- /dev/null
-> +++ b/tools/perf/pmu-events/arch/riscv/andes/ax45/memory.json
-> @@ -0,0 +1,57 @@
-> +[
-> +       {
-> +               "EventCode": "0x01",
-> +               "EventName": "ilm_access",
-> +               "BriefDescription": "ILM access"
-> +       },
-> +       {
-> +               "EventCode": "0x11",
-> +               "EventName": "dlm_access",
-> +               "BriefDescription": "DLM access"
-> +       },
-> +       {
-> +               "EventCode": "0x21",
-> +               "EventName": "icache_access",
-> +               "BriefDescription": "ICACHE access"
-> +       },
-> +       {
-> +               "EventCode": "0x31",
-> +               "EventName": "icache_miss",
-> +               "BriefDescription": "ICACHE miss"
-> +       },
-> +       {
-> +               "EventCode": "0x41",
-> +               "EventName": "dcache_access",
-> +               "BriefDescription": "DCACHE access"
-> +       },
-> +       {
-> +               "EventCode": "0x51",
-> +               "EventName": "dcache_miss",
-> +               "BriefDescription": "DCACHE miss"
-> +       },
-> +       {
-> +               "EventCode": "0x61",
-> +               "EventName": "dcache_load_access",
-> +               "BriefDescription": "DCACHE load access"
-> +       },
-> +       {
-> +               "EventCode": "0x71",
-> +               "EventName": "dcache_load_miss",
-> +               "BriefDescription": "DCACHE load miss"
-> +       },
-> +       {
-> +               "EventCode": "0x81",
-> +               "EventName": "dcache_store_access",
-> +               "BriefDescription": "DCACHE store access"
-> +       },
-> +       {
-> +               "EventCode": "0x91",
-> +               "EventName": "dcache_store_miss",
-> +               "BriefDescription": "DCACHE store miss"
-> +       },
-> +       {
-> +               "EventCode": "0xA1",
-> +               "EventName": "dcache_wb",
-> +               "BriefDescription": "DCACHE writeback"
-> +       }
-> +]
-> diff --git a/tools/perf/pmu-events/arch/riscv/andes/ax45/microarch.json b=
-/tools/perf/pmu-events/arch/riscv/andes/ax45/microarch.json
-> new file mode 100644
-> index 000000000000..a6d378cbaa74
-> --- /dev/null
-> +++ b/tools/perf/pmu-events/arch/riscv/andes/ax45/microarch.json
-> @@ -0,0 +1,77 @@
-> +[
-> +       {
-> +               "EventCode": "0xB1",
-> +               "EventName": "cycle_wait_icache_fill",
-> +               "BriefDescription": "Cycles waiting for ICACHE fill data"
-> +       },
-> +       {
-> +               "EventCode": "0xC1",
-> +               "EventName": "cycle_wait_dcache_fill",
-> +               "BriefDescription": "Cycles waiting for DCACHE fill data"
-> +       },
-> +       {
-> +               "EventCode": "0xD1",
-> +               "EventName": "uncached_ifetch_from_bus",
-> +               "BriefDescription": "Uncached ifetch data access from bus=
-"
-> +       },
-> +       {
-> +               "EventCode": "0xE1",
-> +               "EventName": "uncached_load_from_bus",
-> +               "BriefDescription": "Uncached load data access from bus"
-> +       },
-> +       {
-> +               "EventCode": "0xF1",
-> +               "EventName": "cycle_wait_uncached_ifetch",
-> +               "BriefDescription": "Cycles waiting for uncached ifetch d=
-ata from bus"
-> +       },
-> +       {
-> +               "EventCode": "0x101",
-> +               "EventName": "cycle_wait_uncached_load",
-> +               "BriefDescription": "Cycles waiting for uncached load dat=
-a from bus"
-> +       },
-> +       {
-> +               "EventCode": "0x111",
-> +               "EventName": "main_itlb_access",
-> +               "BriefDescription": "Main ITLB access"
-> +       },
-> +       {
-> +               "EventCode": "0x121",
-> +               "EventName": "main_itlb_miss",
-> +               "BriefDescription": "Main ITLB miss"
-> +       },
-> +       {
-> +               "EventCode": "0x131",
-> +               "EventName": "main_dtlb_access",
-> +               "BriefDescription": "Main DTLB access"
-> +       },
-> +       {
-> +               "EventCode": "0x141",
-> +               "EventName": "main_dtlb_miss",
-> +               "BriefDescription": "Main DTLB miss"
-> +       },
-> +       {
-> +               "EventCode": "0x151",
-> +               "EventName": "cycle_wait_itlb_fill",
-> +               "BriefDescription": "Cycles waiting for Main ITLB fill da=
-ta"
-> +       },
-> +       {
-> +               "EventCode": "0x161",
-> +               "EventName": "pipe_stall_cycle_dtlb_miss",
-> +               "BriefDescription": "Pipeline stall cycles caused by Main=
- DTLB miss"
-> +       },
-> +       {
-> +               "EventCode": "0x02",
-> +               "EventName": "mispredict_condition_br",
-> +               "BriefDescription": "Misprediction of conditional branche=
-s"
-> +       },
-> +       {
-> +               "EventCode": "0x12",
-> +               "EventName": "mispredict_take_condition_br",
-> +               "BriefDescription": "Misprediction of taken conditional b=
-ranches"
-> +       },
-> +       {
-> +               "EventCode": "0x22",
-> +               "EventName": "mispredict_target_ret_inst",
-> +               "BriefDescription": "Misprediction of targets of Return i=
-nstructions"
-> +       }
-> +]
-> diff --git a/tools/perf/pmu-events/arch/riscv/mapfile.csv b/tools/perf/pm=
-u-events/arch/riscv/mapfile.csv
-> index c61b3d6ef616..5bf09af14c1b 100644
-> --- a/tools/perf/pmu-events/arch/riscv/mapfile.csv
-> +++ b/tools/perf/pmu-events/arch/riscv/mapfile.csv
-> @@ -15,3 +15,4 @@
->  #
->  #MVENDORID-MARCHID-MIMPID,Version,Filename,EventType
->  0x489-0x8000000000000007-0x[[:xdigit:]]+,v1,sifive/u74,core
-> +0x31e-0x8000000000008a45-0x[[:xdigit:]]+,v1,andes/ax45,core
-> --
-> 2.34.1
->
->
+In this particular case, we need to keep a ratio between the vclk and the
+DSI bitclk, the DSI bitclk is taken from mipi_dsi_pxclk and vclk is derived
+from gp0 via vclk2.
+
+If we set the bitclk rate via mipi_dsi_pxclk, CCF will try to use mipi_dsi_pxclk_div
+to achieve the rate, and it does it everytime I tried, breaking the vclk/bitclk ratio,
+and we have no way to know the gp0 rate in this case.
+
+I suspect mipi_dsi_pxclk_div was added to achieve fractional vclk/bitclk ratios,
+since it doesn't exist on AXG. Not sure we would ever need it... and none
+of the other upstream DSI drivers supports such setups.
+
+The main reasons I set only mipi_dsi_pxclk in DT is because :
+1) the DSI controller requires a bitclk to respond, pclk is not enough
+2) GP0 is disabled with an invalid config at cold boot, thus we cannot
+rely on a default/safe rate on an initial prepare_enable().
+This permits setting initial valid state for the DSI controller, while
+the actual bitclk and vclk are calculated dynamically with panel/bridge
+runtime parameters.
+
+For the record, the samsung-dsim used fixed rate set from DT, and they moved
+from that in order to support more panel and bridges.
+
+But they're quite lucky because usually the DSI PLL is included in the PHY,
+this makes the Amlogic design quite unusual (like most multimedia stuf...).
+
+Neil
+
+> 
+>>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> ---
+>>   drivers/clk/meson/g12a.c | 68 +++++++++++++++++++++++++++++++++---------------
+>>   1 file changed, 47 insertions(+), 21 deletions(-)
+>>
+>> diff --git a/drivers/clk/meson/g12a.c b/drivers/clk/meson/g12a.c
+>> index cadd824336ad..fb3d9196a1fd 100644
+>> --- a/drivers/clk/meson/g12a.c
+>> +++ b/drivers/clk/meson/g12a.c
+>> @@ -22,6 +22,7 @@
+>>   #include "clk-regmap.h"
+>>   #include "clk-cpu-dyndiv.h"
+>>   #include "vid-pll-div.h"
+>> +#include "vclk.h"
+>>   #include "meson-eeclk.h"
+>>   #include "g12a.h"
+>>   
+>> @@ -3165,7 +3166,7 @@ static struct clk_regmap g12a_vclk2_sel = {
+>>   		.ops = &clk_regmap_mux_ops,
+>>   		.parent_hws = g12a_vclk_parent_hws,
+>>   		.num_parents = ARRAY_SIZE(g12a_vclk_parent_hws),
+>> -		.flags = CLK_SET_RATE_NO_REPARENT | CLK_GET_RATE_NOCACHE,
+>> +		.flags = CLK_SET_RATE_PARENT | CLK_SET_RATE_NO_REPARENT,
+> 
+> No sure CLK_SET_RATE_PARENT is wise here.
+> What you manually set in DT for the GP0, is likely to change because of
+> this, isn't it ?
+> 
+>>   	},
+>>   };
+>>   
+>> @@ -3193,7 +3194,7 @@ static struct clk_regmap g12a_vclk2_input = {
+>>   		.ops = &clk_regmap_gate_ops,
+>>   		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2_sel.hw },
+>>   		.num_parents = 1,
+>> -		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+>> +		.flags = CLK_SET_RATE_PARENT,
+>>   	},
+>>   };
+>>   
+>> @@ -3215,19 +3216,32 @@ static struct clk_regmap g12a_vclk_div = {
+>>   };
+>>   
+>>   static struct clk_regmap g12a_vclk2_div = {
+>> -	.data = &(struct clk_regmap_div_data){
+>> -		.offset = HHI_VIID_CLK_DIV,
+>> -		.shift = 0,
+>> -		.width = 8,
+>> +	.data = &(struct clk_regmap_vclk_div_data){
+>> +		.div = {
+>> +			.reg_off = HHI_VIID_CLK_DIV,
+>> +			.shift   = 0,
+>> +			.width   = 8,
+>> +		},
+>> +		.enable = {
+>> +			.reg_off = HHI_VIID_CLK_DIV,
+>> +			.shift   = 16,
+>> +			.width   = 1,
+>> +		},
+>> +		.reset = {
+>> +			.reg_off = HHI_VIID_CLK_DIV,
+>> +			.shift   = 17,
+>> +			.width   = 1,
+>> +		},
+>> +		.flags = CLK_DIVIDER_ROUND_CLOSEST,
+>>   	},
+>>   	.hw.init = &(struct clk_init_data){
+>>   		.name = "vclk2_div",
+>> -		.ops = &clk_regmap_divider_ops,
+>> +		.ops = &clk_regmap_vclk_div_ops,
+>>   		.parent_hws = (const struct clk_hw *[]) {
+>>   			&g12a_vclk2_input.hw
+>>   		},
+>>   		.num_parents = 1,
+>> -		.flags = CLK_GET_RATE_NOCACHE,
+>> +		.flags = CLK_SET_RATE_PARENT | CLK_SET_RATE_GATE,
+>>   	},
+>>   };
+>>   
+>> @@ -3246,16 +3260,24 @@ static struct clk_regmap g12a_vclk = {
+>>   };
+>>   
+>>   static struct clk_regmap g12a_vclk2 = {
+>> -	.data = &(struct clk_regmap_gate_data){
+>> -		.offset = HHI_VIID_CLK_CNTL,
+>> -		.bit_idx = 19,
+>> +	.data = &(struct clk_regmap_vclk_data){
+>> +		.enable = {
+>> +			.reg_off = HHI_VIID_CLK_CNTL,
+>> +			.shift   = 19,
+>> +			.width   = 1,
+>> +		},
+>> +		.reset = {
+>> +			.reg_off = HHI_VIID_CLK_CNTL,
+>> +			.shift   = 15,
+>> +			.width   = 1,
+>> +		},
+>>   	},
+>>   	.hw.init = &(struct clk_init_data) {
+>>   		.name = "vclk2",
+>> -		.ops = &clk_regmap_gate_ops,
+>> +		.ops = &clk_regmap_vclk_ops,
+>>   		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2_div.hw },
+>>   		.num_parents = 1,
+>> -		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+>> +		.flags = CLK_SET_RATE_PARENT | CLK_SET_RATE_GATE,
+>>   	},
+>>   };
+>>   
+>> @@ -3339,7 +3361,7 @@ static struct clk_regmap g12a_vclk2_div1 = {
+>>   		.ops = &clk_regmap_gate_ops,
+>>   		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2.hw },
+>>   		.num_parents = 1,
+>> -		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+>> +		.flags = CLK_SET_RATE_PARENT,
+>>   	},
+>>   };
+>>   
+>> @@ -3353,7 +3375,7 @@ static struct clk_regmap g12a_vclk2_div2_en = {
+>>   		.ops = &clk_regmap_gate_ops,
+>>   		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2.hw },
+>>   		.num_parents = 1,
+>> -		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+>> +		.flags = CLK_SET_RATE_PARENT,
+>>   	},
+>>   };
+>>   
+>> @@ -3367,7 +3389,7 @@ static struct clk_regmap g12a_vclk2_div4_en = {
+>>   		.ops = &clk_regmap_gate_ops,
+>>   		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2.hw },
+>>   		.num_parents = 1,
+>> -		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+>> +		.flags = CLK_SET_RATE_PARENT,
+>>   	},
+>>   };
+>>   
+>> @@ -3381,7 +3403,7 @@ static struct clk_regmap g12a_vclk2_div6_en = {
+>>   		.ops = &clk_regmap_gate_ops,
+>>   		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2.hw },
+>>   		.num_parents = 1,
+>> -		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+>> +		.flags = CLK_SET_RATE_PARENT,
+>>   	},
+>>   };
+>>   
+>> @@ -3395,7 +3417,7 @@ static struct clk_regmap g12a_vclk2_div12_en = {
+>>   		.ops = &clk_regmap_gate_ops,
+>>   		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2.hw },
+>>   		.num_parents = 1,
+>> -		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+>> +		.flags = CLK_SET_RATE_PARENT,
+>>   	},
+>>   };
+>>   
+>> @@ -3461,6 +3483,7 @@ static struct clk_fixed_factor g12a_vclk2_div2 = {
+>>   			&g12a_vclk2_div2_en.hw
+>>   		},
+>>   		.num_parents = 1,
+>> +		.flags = CLK_SET_RATE_PARENT,
+>>   	},
+>>   };
+>>   
+>> @@ -3474,6 +3497,7 @@ static struct clk_fixed_factor g12a_vclk2_div4 = {
+>>   			&g12a_vclk2_div4_en.hw
+>>   		},
+>>   		.num_parents = 1,
+>> +		.flags = CLK_SET_RATE_PARENT,
+>>   	},
+>>   };
+>>   
+>> @@ -3487,6 +3511,7 @@ static struct clk_fixed_factor g12a_vclk2_div6 = {
+>>   			&g12a_vclk2_div6_en.hw
+>>   		},
+>>   		.num_parents = 1,
+>> +		.flags = CLK_SET_RATE_PARENT,
+>>   	},
+>>   };
+>>   
+>> @@ -3500,6 +3525,7 @@ static struct clk_fixed_factor g12a_vclk2_div12 = {
+>>   			&g12a_vclk2_div12_en.hw
+>>   		},
+>>   		.num_parents = 1,
+>> +		.flags = CLK_SET_RATE_PARENT,
+>>   	},
+>>   };
+>>   
+>> @@ -3561,7 +3587,7 @@ static struct clk_regmap g12a_cts_encl_sel = {
+>>   		.ops = &clk_regmap_mux_ops,
+>>   		.parent_hws = g12a_cts_parent_hws,
+>>   		.num_parents = ARRAY_SIZE(g12a_cts_parent_hws),
+>> -		.flags = CLK_SET_RATE_NO_REPARENT | CLK_GET_RATE_NOCACHE,
+>> +		.flags = CLK_SET_RATE_PARENT | CLK_SET_RATE_NO_REPARENT,
+>>   	},
+>>   };
+>>   
+>> @@ -3717,7 +3743,7 @@ static struct clk_regmap g12a_mipi_dsi_pxclk_sel = {
+>>   		.ops = &clk_regmap_mux_ops,
+>>   		.parent_hws = g12a_mipi_dsi_pxclk_parent_hws,
+>>   		.num_parents = ARRAY_SIZE(g12a_mipi_dsi_pxclk_parent_hws),
+>> -		.flags = CLK_SET_RATE_NO_REPARENT,
+>> +		.flags = CLK_SET_RATE_PARENT | CLK_SET_RATE_NO_REPARENT,
+>>   	},
+>>   };
+>>   
+>> @@ -3729,7 +3755,7 @@ static struct clk_regmap g12a_mipi_dsi_pxclk_div = {
+>>   	},
+>>   	.hw.init = &(struct clk_init_data){
+>>   		.name = "mipi_dsi_pxclk_div",
+>> -		.ops = &clk_regmap_divider_ops,
+>> +		.ops = &clk_regmap_divider_ro_ops,
+>>   		.parent_hws = (const struct clk_hw *[]) {
+>>   			&g12a_mipi_dsi_pxclk_sel.hw
+>>   		},
+> 
+
 
