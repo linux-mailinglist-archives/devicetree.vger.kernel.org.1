@@ -1,182 +1,229 @@
-Return-Path: <devicetree+bounces-18669-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18670-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A35A7F78EF
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 17:29:15 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B4C87F78FD
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 17:31:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E897AB20E43
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 16:29:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4C67B1C20924
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 16:31:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D40431720;
-	Fri, 24 Nov 2023 16:29:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A33F21342;
+	Fri, 24 Nov 2023 16:31:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LQdDPWki"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qpW2GhNg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A53D019BB
-	for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 08:29:05 -0800 (PST)
-Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-54b0073d50fso886436a12.2
-        for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 08:29:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700843344; x=1701448144; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
-         :from:content-language:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=m59lGOjhmNFmUbmnXXYOyMU0r5AKqEjyJwepUZSyZQs=;
-        b=LQdDPWkisiaDFG9+ozXNaMU5eaJY5JJMKszxbOueRWIgfMDUliQMh42l6WiddSw98/
-         gLBTjL+YHpU2jz84qMak0+ksBg9UcR5S4GTPcxco9BJt7Xz3ze2VwMQ3sxOKbe7r5yPV
-         vQEA3VNcP1rwVgy3pDL8Fy0HR7r+tq7yaGoLxfk8wudR1v+bF7Nl0Gej23LaRGuaGV11
-         ZwQLyQfgwHyefU+ZR9egKhSuNI/BiI1/vH02qwzJEmRYKvqavyc+Ika2mKGZtjYE0FJt
-         FvkI5ul0LB63wgsEab8a59SXCO6IS8jiB5BrfLIHmjm7v5nqm4/wDlKW88gm/W95ewVw
-         D2eg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700843344; x=1701448144;
-        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
-         :from:content-language:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=m59lGOjhmNFmUbmnXXYOyMU0r5AKqEjyJwepUZSyZQs=;
-        b=OrxBZcxt3hv8JePKt9EURvz2r5vjApi5lw28XSCb9FoTMJPLTFft3+PkJMI+QOjo7a
-         TPdYiLbY0JxH8OMk2oXvb26i0h4Wm1nVNpGo2H3M4iMmZ555o4kOUWZNmbzi16+SIZ2K
-         uh0m9xoifLXxvDD657SPJ7yHXWntuM46MeoRbKQvXkqMTVzcrWSfLL2I3kkSVScgKFGl
-         Cdcrke89+QNnMxRqgJdEs7mcPIfb1nwK/VfHhBlTEdyGCb47LUtRdqGEn+KRyG6OmwR6
-         aLYzAaptsSp7fvifQbD7toY+yv4kmgvMQp3pz54Xwl328eGV9XWu3ki77myVDAxHWswJ
-         p4ww==
-X-Gm-Message-State: AOJu0YyqUXBD0LRufEaromboqE7s+Zksva7/5AQpMQLW8t7nfDtkVsGD
-	rqhWhzy32T7RLfSGZ3pUXsMuGg==
-X-Google-Smtp-Source: AGHT+IHmw2v9akiv8lLwobosBbnycWxS+mTHFNHjdgc73oGvRIXlhS7yygAOU243HPtOYOWLXofSgQ==
-X-Received: by 2002:a50:f699:0:b0:540:12fc:ed1d with SMTP id d25-20020a50f699000000b0054012fced1dmr2691693edn.12.1700843344125;
-        Fri, 24 Nov 2023 08:29:04 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.100])
-        by smtp.gmail.com with ESMTPSA id n21-20020aa7c455000000b00548c945bac0sm1943343edr.45.2023.11.24.08.29.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Nov 2023 08:29:03 -0800 (PST)
-Message-ID: <850b0eec-c991-40b6-92e1-2bc46eecdae5@linaro.org>
-Date: Fri, 24 Nov 2023 17:29:02 +0100
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4046235F0D;
+	Fri, 24 Nov 2023 16:31:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4DCD0C433C7;
+	Fri, 24 Nov 2023 16:30:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1700843460;
+	bh=0m2/cMBcTydjmRWM2kg9Xg3sXuhlmH0zFa0ospNDRBM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qpW2GhNg4EblHnxfauyUbT06NCJY/KQePisvrxpj3Bb0hqiZ9OQAqj2ZX10vIPnm/
+	 7fV725jNxjWCkDAK8WFoBG2ZCuoLURtPDbWYV97BoU1PL61sGBZ/Npasvffl+In+Bo
+	 53GGEWDwJjZVJFpoiPVZv99XLTZtb9VXFJATxD5/+ufBGwCkrH8PJOnUYqsXWHvwEQ
+	 aOjF8HzHhMyBjUAosqaZ+rK96Mif55NMadoGV/ppGVZfcd/VN/XVDEMQdulju5PSGu
+	 9/Mmq2SqYGQpY1LOEM4kFJaw1p6TBIUSEgQv7RpwNNv1Vkw1BzUGU5D362A/BvomHp
+	 7v/HdYqIjRx3Q==
+Date: Fri, 24 Nov 2023 16:30:54 +0000
+From: Simon Horman <horms@kernel.org>
+To: Kory Maincent <kory.maincent@bootlin.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Luis Chamberlain <mcgrof@kernel.org>,
+	Russ Weight <russ.weight@linux.dev>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 9/9] net: pse-pd: Add PD692x0 PSE controller
+ driver
+Message-ID: <20231124163054.GQ50352@kernel.org>
+References: <20231116-feature_poe-v1-0-be48044bf249@bootlin.com>
+ <20231116-feature_poe-v1-9-be48044bf249@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [LINUX PATCH v2 1/3] clocksource: timer-cadence-ttc: Do not probe
- TTC device configured as PWM
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: "Sayyed, Mubin" <mubin.sayyed@amd.com>
-Cc: "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
- "git (AMD-Xilinx)" <git@amd.com>, "mubin10@gmail.com" <mubin10@gmail.com>,
- "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
- "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
- "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
- "robh+dt@kernel.org" <robh+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "tglx@linutronix.de" <tglx@linutronix.de>,
- "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
- "Simek, Michal" <michal.simek@amd.com>
-References: <20231114124748.581850-1-mubin.sayyed@amd.com>
- <20231114124748.581850-2-mubin.sayyed@amd.com>
- <d37db10b-f9fa-49b0-8b1e-36e20acbcfd6@linaro.org>
- <DM4PR12MB593888B73B65D25E42490EF29DB1A@DM4PR12MB5938.namprd12.prod.outlook.com>
- <e0f28ec5-b980-490b-a857-5218fe521381@linaro.org>
- <DM4PR12MB5938CB10059DF7E39A2A0E239DB8A@DM4PR12MB5938.namprd12.prod.outlook.com>
- <a701ba6e-ae4e-4c4d-9d93-c54e56c3348e@linaro.org>
- <DM4PR12MB5938256CC0E50256004ED6B19DB8A@DM4PR12MB5938.namprd12.prod.outlook.com>
- <9fb984b3-331b-45ce-8f82-03bc476acd3c@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <9fb984b3-331b-45ce-8f82-03bc476acd3c@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231116-feature_poe-v1-9-be48044bf249@bootlin.com>
 
-On 24/11/2023 17:24, Krzysztof Kozlowski wrote:
->>>>> So again, one driver binding.
->>>> [Mubin]: I will explore whether mfd framework can be used to handle this.
->>>
->>> You do not need MFD for this, because you do not have a really MFD. This is just
->>> one device, so I expect here one driver. Why do you need multiple drivers (which
->>> also would solve that problem but why?)?
->> Cadence TTC IP can be used as timer(clocksource/clockevent) and PWM device.
->> We have drivers/clocksource/timer-cadence-ttc.c for clocksource/clockevent functionality. 
->> New driver for PWM functionality will be added to drivers/pwm/pwm-cadence.c (3/3 of this
->> Series).  In given SoC,  multiple instances of TTC IP are possible(ZynqMP  Ultrscale SoC has 4
->> Instances), few of them could be configured as clocksource/clockevent devices and others
->> as PWM ones. So,  cloksource as well as PWM drivers for cadence TTC IP would be enabled in 
->> the kernel. 
->>
->> Now in this scenario, each TTC device would be matching with 2 drivers, clocksource and PWM, since
->> compatible string is same.  If I don’t add #pwm-cells checking in clocksource driver and return 
->> -ENODEV based on that, each device would always bind with clocksource driver. PWM driver 
->> would never probe since clocksource driver probes ahead of PWM one in probing order.
+On Thu, Nov 16, 2023 at 03:01:41PM +0100, Kory Maincent wrote:
+> Add a new driver for the PD692x0 I2C Power Sourcing Equipment controller.
+> This driver only support i2c communication for now.
 > 
-> None of these above explain why you need two drivers.
+> Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
 
-And please do not answer to this with again: "I have two drivers...".
+Hi Kory,
 
-> 
->>
->> I am exploring mfd to deal with said scenario. Do you see any better way to handle this? 
-> 
-> You basically repeated previous sentence about MFD without answering.
-> Yeah, better way could be to have one driver. Why you cannot have it
-> that way?
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
+some minor feedback from my side.
 
-Best regards,
-Krzysztof
+...
 
+> diff --git a/drivers/net/pse-pd/pd692x0.c b/drivers/net/pse-pd/pd692x0.c
+
+...
+
+> +static int
+> +pd692x0_get_of_matrix(struct device *dev,
+> +		      struct matrix port_matrix[PD692X0_MAX_LOGICAL_PORTS])
+> +{
+> +	int ret, i, ports_matrix_size;
+> +	u32 val[PD692X0_MAX_LOGICAL_PORTS * 3];
+
+nit: reverse xmas tree please.
+
+...
+
+> +static int pd692x0_fw_write_line(const struct i2c_client *client,
+> +				 const char line[PD692X0_FW_LINE_MAX_SZ],
+> +				 const bool last_line)
+> +{
+> +	int ret;
+> +
+> +	while (*line != 0) {
+> +		ret = i2c_master_send(client, line, 1);
+> +		if (ret < 0)
+> +			return FW_UPLOAD_ERR_RW_ERROR;
+> +		line++;
+> +	}
+> +
+> +	if (last_line) {
+> +		ret = pd692x0_fw_recv_resp(client, 100, "TP\r\n",
+> +					   sizeof("TP\r\n") - 1);
+> +		if (ret)
+> +			return ret;
+> +	} else {
+> +		ret = pd692x0_fw_recv_resp(client, 100, "T*\r\n",
+> +					   sizeof("T*\r\n") - 1);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	return FW_UPLOAD_ERR_NONE;
+> +}
+
+...
+
+> +static enum fw_upload_err pd692x0_fw_write(struct fw_upload *fwl,
+> +					   const u8 *data, u32 offset,
+> +					   u32 size, u32 *written)
+> +{
+> +	struct pd692x0_priv *priv = fwl->dd_handle;
+> +	char line[PD692X0_FW_LINE_MAX_SZ];
+> +	const struct i2c_client *client;
+> +	int ret, i;
+> +	char cmd;
+> +
+> +	client = priv->client;
+> +	priv->fw_state = PD692X0_FW_WRITE;
+> +
+> +	/* Erase */
+> +	cmd = 'E';
+> +	ret = i2c_master_send(client, &cmd, 1);
+> +	if (ret < 0) {
+> +		dev_err(&client->dev,
+> +			"Failed to boot programming mode (%pe)\n",
+> +			ERR_PTR(ret));
+> +		return FW_UPLOAD_ERR_RW_ERROR;
+> +	}
+> +
+> +	ret = pd692x0_fw_recv_resp(client, 100, "TOE\r\n", sizeof("TOE\r\n") - 1);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = pd692x0_fw_recv_resp(client, 5000, "TE\r\n", sizeof("TE\r\n") - 1);
+> +	if (ret)
+> +		dev_warn(&client->dev,
+> +			 "Failed to erase internal memory, however still try to write Firmware\n");
+> +
+> +	ret = pd692x0_fw_recv_resp(client, 100, "TPE\r\n", sizeof("TPE\r\n") - 1);
+> +	if (ret)
+> +		dev_warn(&client->dev,
+> +			 "Failed to erase internal memory, however still try to write Firmware\n");
+> +
+> +	if (priv->cancel_request)
+> +		return FW_UPLOAD_ERR_CANCELED;
+> +
+> +	/* Program */
+> +	cmd = 'P';
+> +	ret = i2c_master_send(client, &cmd, sizeof(char));
+> +	if (ret < 0) {
+> +		dev_err(&client->dev,
+> +			"Failed to boot programming mode (%pe)\n",
+> +			ERR_PTR(ret));
+> +		return ret;
+> +	}
+> +
+> +	ret = pd692x0_fw_recv_resp(client, 100, "TOP\r\n", sizeof("TOP\r\n") - 1);
+> +	if (ret)
+> +		return ret;
+> +
+> +	i = 0;
+> +	while (i < size) {
+> +		ret = pd692x0_fw_get_next_line(data, line, size - i);
+> +		if (!ret) {
+> +			ret = FW_UPLOAD_ERR_FW_INVALID;
+> +			goto err;
+> +		}
+> +
+> +		i += ret;
+> +		data += ret;
+> +		if (line[0] == 'S' && line[1] == '0') {
+> +			continue;
+> +		} else if (line[0] == 'S' && line[1] == '7') {
+> +			ret = pd692x0_fw_write_line(client, line, true);
+> +			if (ret)
+> +				goto err;
+> +		} else {
+> +			ret = pd692x0_fw_write_line(client, line, false);
+> +			if (ret)
+> +				goto err;
+> +		}
+> +
+> +		if (priv->cancel_request) {
+> +			ret = FW_UPLOAD_ERR_CANCELED;
+> +			goto err;
+> +		}
+> +	}
+> +	*written = i;
+> +
+> +	msleep(400);
+> +
+> +	return FW_UPLOAD_ERR_NONE;
+> +
+> +err:
+> +	pd692x0_fw_write_line(client, "S7\r\n", true);
+
+gcc-13 (W=1) seems a bit upset about this.
+
+ drivers/net/pse-pd/pd692x0.c: In function 'pd692x0_fw_write':
+ drivers/net/pse-pd/pd692x0.c:861:9: warning: 'pd692x0_fw_write_line' reading 128 bytes from a region of size 5 [-Wstringop-overread]
+   861 |         pd692x0_fw_write_line(client, "S7\r\n", true);
+       |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ drivers/net/pse-pd/pd692x0.c:861:9: note: referencing argument 2 of type 'const char[128]'
+ drivers/net/pse-pd/pd692x0.c:642:12: note: in a call to function 'pd692x0_fw_write_line'
+   642 | static int pd692x0_fw_write_line(const struct i2c_client *client,
+       |            ^~~~~~~~~~~~~~~~~~~~~
+
+> +	return ret;
+> +}
+
+...
 
