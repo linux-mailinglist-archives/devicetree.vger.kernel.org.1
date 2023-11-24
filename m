@@ -1,200 +1,197 @@
-Return-Path: <devicetree+bounces-18447-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18448-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 004007F6C55
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 07:35:30 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF5867F6C5D
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 07:39:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A4D2A1F20F23
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 06:35:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2AF641C20A77
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 06:39:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEF659477;
-	Fri, 24 Nov 2023 06:35:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61C287F7;
+	Fri, 24 Nov 2023 06:39:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="rfZCn7Ca"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="h0fdekOx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2053.outbound.protection.outlook.com [40.107.243.53])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D1F0B0;
-	Thu, 23 Nov 2023 22:35:24 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Gq7QYuxaFDuZ7AJ6zk1EIOcWNS+E3i6kmh8LPI2AsKBTqAh8lsmWOo5FDQl2lyMM8Vd9Q4P6FjvCaPz0rOm6kzX8qTWK6dLaFtD7PoEwpP1VpCFJPjd7y5USc9oXROrEUAJvLQZCyV5HpDAbEhV44ITy7A/lUnqnXUWjvdeQHMb9KBpVE1owh0SUTAl1wd8hXHLAp7wpBLnGdMRmYBgw4/UysyFLT/qk7DxOqtAVhtWMn/m54KY92NdxtTVIj7o4Ixy3D88ulOmT9gY6hoFMYa36t5BZdsl1Q7eqtJPjijww8Fj1RkZ3dvsvXA+amh4wkx7oOrmqGC/WJ42B/z2Jpg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3MoBSCkKTywvQ8o4Hh3/8hti2am3zM/KoOwKHCTFJXM=;
- b=D+zp2vnrvzoeeZT6BVdA1IfMFGDVh3EdDwImA86WU8Iw/KZ8cQNCesv6R/E1H+3hEJH9Re1cDHjpTzeEGSoQ6xhXw2eCBvhntn2UDDanp/EAXnMg+/7VT75KCuw1osWlVr+WWmpLpMQe/OM7sBeEEoc9qZZWEivu9YYCAbpNiaRVxV6dY8fQ4ZLtNnAcNv+s8t9J4zNI2DE6yLKp2NvcEqJTZ6ZurXqIlAXxC2AuNq/0PPVcme8qo7eLurLeuNbnL/yFmf7c3svTXdF2bFhJ4Z/YtlctW0ovWuVp/kHuUwkXZ9y6B8njF0hrNhhV/0L4b+i0e59EQ7daumOxouQ5EQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3MoBSCkKTywvQ8o4Hh3/8hti2am3zM/KoOwKHCTFJXM=;
- b=rfZCn7CadHm1a4yDgGVRd1L+rnWZi3FEaw5eAvv5P0dUdXklXaa1+/5AmKK8K1fiChqL7vtsCtW6g/LlOSDXNl5k/pci9FZISmD13Hs56axBGyxGS/obEo8G6l03E5WkGSxMVbAogo1EwaAVeRSEjUylA66U3Wpvq7we+1t1zTQ=
-Received: from DM6PR12MB3993.namprd12.prod.outlook.com (2603:10b6:5:1c5::29)
- by LV8PR12MB9358.namprd12.prod.outlook.com (2603:10b6:408:201::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7025.20; Fri, 24 Nov
- 2023 06:35:21 +0000
-Received: from DM6PR12MB3993.namprd12.prod.outlook.com
- ([fe80::84b0:e6f4:7a63:a7d0]) by DM6PR12MB3993.namprd12.prod.outlook.com
- ([fe80::84b0:e6f4:7a63:a7d0%6]) with mapi id 15.20.7025.021; Fri, 24 Nov 2023
- 06:35:21 +0000
-From: "Manne, Nava kishore" <nava.kishore.manne@amd.com>
-To: Conor Dooley <conor@kernel.org>
-CC: "mdf@kernel.org" <mdf@kernel.org>, "hao.wu@intel.com" <hao.wu@intel.com>,
-	"yilun.xu@intel.com" <yilun.xu@intel.com>, "trix@redhat.com"
-	<trix@redhat.com>, "robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "Simek, Michal"
-	<michal.simek@amd.com>, "mathieu.poirier@linaro.org"
-	<mathieu.poirier@linaro.org>, "Levinsky, Ben" <ben.levinsky@amd.com>,
-	"Potthuri, Sai Krishna" <sai.krishna.potthuri@amd.com>, "Shah, Tanmay"
-	<tanmay.shah@amd.com>, "dhaval.r.shah@amd.com" <dhaval.r.shah@amd.com>,
-	"arnd@arndb.de" <arnd@arndb.de>, "Datta, Shubhrajyoti"
-	<shubhrajyoti.datta@amd.com>, "linux-fpga@vger.kernel.org"
-	<linux-fpga@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>
-Subject: RE: [RFC PATCH 1/3] dt-bindings: fpga: Add support for user-key
- encrypted bitstream loading
-Thread-Topic: [RFC PATCH 1/3] dt-bindings: fpga: Add support for user-key
- encrypted bitstream loading
-Thread-Index: AQHaHQbtT53kdGnijEqYhh3CEPIjE7CGjfuAgAJ15QA=
-Date: Fri, 24 Nov 2023 06:35:19 +0000
-Message-ID:
- <DM6PR12MB3993F0EC4930E68C54299B36CDB8A@DM6PR12MB3993.namprd12.prod.outlook.com>
-References: <20231122054404.3764288-1-nava.kishore.manne@amd.com>
- <20231122054404.3764288-2-nava.kishore.manne@amd.com>
- <20231122-exert-gleeful-e4476851c489@spud>
-In-Reply-To: <20231122-exert-gleeful-e4476851c489@spud>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM6PR12MB3993:EE_|LV8PR12MB9358:EE_
-x-ms-office365-filtering-correlation-id: f55a6893-d655-4508-7cbe-08dbecb7875d
-x-ld-processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- 8iiYXFxwzJYR/2oVt9fGeyifw1UM5n2OL1JRvv7j4XBt7kIoxl/E36nm/Yk5Ta00PoTwBQO7NH7t+MW4/yKHXv4DW2BV2VqkaO+CBEo7dJqXv9/LWvROBawhPwGJqZTut3ntJh2/yf/ckhnj45O9BX6u3g9dq5/vD+maQP9j7An4RnaLxQrGyoMV0W5S8H73zsnbRHyg6CBAz0AYj2oEUcxt5n26+3Fcjdk+aDJPX9HxDYliliqHvz+ApFIWBhHqrRAdW7Zxezt7jR9TgU/aIBQ9XsXgKxkb4qLzcDKtaHgvOCA0CJdSr+gobtDpn6wCWdW4IqiqmLpc2266CAgkUUgGUiwrvILQef2+0E++sEHsd7+3T23+H9LKddtNTgB2Ij9n35KJi/Mj3rHDtGTmJEXHeT0/bzGYgpUfzMIj7nM23L9O/aVjqY3bOXTcdEt2Poxk6SIg9352CfQ5QcHXnKSzk/vdJHtuWe8f4fOYrFcwVyomEk76CkAA9e8UvOZTieWsGYIvfLDIscLnLqSl8IIBbevhM9xxXsU2XUQQNhj3ECw02CK7ykAqBSdL6pO8iXox9IkMOEgy4ExJDi/v5MDxf44N3hSPHypmMTeWAy1i1Zby9y/Xwfv+949nmfPE
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR12MB3993.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(376002)(366004)(346002)(396003)(39860400002)(230922051799003)(1800799012)(186009)(451199024)(64100799003)(83380400001)(38100700002)(86362001)(33656002)(38070700009)(122000001)(316002)(6916009)(8676002)(8936002)(54906003)(76116006)(4326008)(64756008)(66446008)(41300700001)(66946007)(66476007)(66556008)(55016003)(5660300002)(52536014)(2906002)(7416002)(26005)(53546011)(9686003)(478600001)(71200400001)(6506007)(7696005);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?bk91VjNENTJ3TFkzS3FQQ0NVWGplc0NYNzJ3bGlqN0VaaHB6TnUyMWZ5TURa?=
- =?utf-8?B?cXF3ZWlTSG43VGpYSWxxRExvcGE3VFNEaFJRNXNSMWF1bW9Cd1RPZG5icVBM?=
- =?utf-8?B?eUFDSlF5U3B6cXNTaWNoNCtyNEx6bGUxNU9oN2U2c0NsN2lLNWlhaTNjL1dQ?=
- =?utf-8?B?bkRRNEdsTm1CRUtweVoyY3BvS012b2dUdDlnak1mS040c3dWWmF2TlZtN1Q5?=
- =?utf-8?B?RDAzTElnbElNY291cXU4TnpIQ2FNTHdNMGxOREx4Wjkra0p3RzdIeE9WREl0?=
- =?utf-8?B?WkFYVXJld1l0VlpHc2Rmd0R6NytPbFJnb2xnODBPaVQ1Q3lXNTVEY1RDSnZB?=
- =?utf-8?B?VElQSTVuUGU0WEhNUDJONFpnZ1ZGWWZib0lBMmRvNmRtaXpRQXRKZWRPVWlD?=
- =?utf-8?B?L0UzQWJMc200UGZWa1VXS08wYTl5VTI4dU9CL3JGQkVtYWw2SU1YY25rRjdN?=
- =?utf-8?B?c04xUjBlb3VWUlY0L1JIT29wNWhWYW1SdXJqbkFQcWpmdDdxQzFsNXNscTgw?=
- =?utf-8?B?ajNCanFLNkZIQXBmQzVuTlZ1RjBVVGZSTE9pd3ZiMDBuMG51N1ZOaUg1L2hS?=
- =?utf-8?B?Q3RlSFF3dEpkbVF4cWRtS3IxbU95MStEb2dkbzVFcVdodUhteWRlenRpZlVD?=
- =?utf-8?B?OXdEOS8ySkdVdE5PRDh0YTU3K1I5NHQ5NVhWVGxmSUN2MlluZzI5RmYrbTZX?=
- =?utf-8?B?YkpHQWZqNHlmOXlCbjBvOVZ5bkF6ZzJtSUVub0R0RnlhWnNrUGlScGl4UEdY?=
- =?utf-8?B?V1VzUmp1d2ZnZk1yOUxTOHJMT1QzNHJIT3M0dGxUYTlYQmdzNUxSbWRzTzlm?=
- =?utf-8?B?YnMwc1hhMHJ0R0IwM1N3R253ZEZycEwvcExFcHRVeUVZeitNSDVCOEZpRUxL?=
- =?utf-8?B?RG9FSEd2TVNXS09IWnQxVjMzUUV2NjNMV3FUR2RxaU1nUWZSRVRWWjlKRUpR?=
- =?utf-8?B?dGRpSEN0TmJvQzlmUjBkNGt3OGRxMGhQYXZNUkVPUnJUcDYrQkZRaStGZGFJ?=
- =?utf-8?B?SHU4SVlWTUJ5b2JmT3BrNDhaVDV5TmFqNlVTWWxHdlFFcDRoc05yRkhMMEtX?=
- =?utf-8?B?dFp5RVFxdzE1Q2NuTzF4SmtleWQyeENCNElZOVdsL0kvcVBmVGdWbUgwb2oz?=
- =?utf-8?B?VGZtTW9UcGY1VVl3NEZHZkVTaDE1UEtSTWZDdEZVem5QNmpTUWpOdHU0bmdY?=
- =?utf-8?B?TExTMGJjL2dtbThEWnFoaXgyc1lxVVdlYzcwUUg4ZElEcHBDWXFXbEVocElj?=
- =?utf-8?B?TCtsaEl5SHhyRWpLVWV4ZlFMWklFSWZVRW02RG91OWh0ZkgrYTd3QnI3QkVP?=
- =?utf-8?B?cHA4RzdRbm9TK0JHdkVBc3lDeVlzdnAvTWpBR0VGRFhUam10cTE4K2tjdzdy?=
- =?utf-8?B?MkJRanI4U2RQcHlHZmREOGE3ZUtEd0JYa3hvZk5PV2hrVXRSalNubk9SSjh0?=
- =?utf-8?B?bFN1M0FoUDVRa09LQ041TFN2SVd4RW9JbEZ4bGJYcDVkbFlrMGYzZlN1UUE0?=
- =?utf-8?B?dGI5Q3kzZXZYQWN4dTc3VXErRkpJVkFDbnBjYXVTVHpMYlVoZFRsQTZSa2h6?=
- =?utf-8?B?QlQ0a1JQdU4xZnU0RWk5VkdiVTFkVGN3U0M0VjN4YXhXUkQwMXRDMTdMMzZz?=
- =?utf-8?B?QThrbENhaFBDblpxUXMxODlRbGs5UGliVFdITCtrL0o5SUFsVWVySlZPMitG?=
- =?utf-8?B?SDNSTzRKTDc1UGR3UTgzN0FvZW9Yd2Jhc08rWkNLRzVkZS90T0FJdVdpZ29O?=
- =?utf-8?B?RklCNElyY0NRR1pCVk5DYUpMUnpKVGJEa2UvOUFsN0VyeUswWG1QcFVQcWho?=
- =?utf-8?B?eFVjVldkTUdQR1pPTXYvVXc0dElraVJwSTFhRVpGRkxRNjNQM1cxdW4rODhM?=
- =?utf-8?B?Tmk5ZDB1L1BFTlNtQmZabGhWNUd0ZTJRU2h6WTd4allpemlwRkQ0OUJyZndN?=
- =?utf-8?B?UTRMWm9QWHJEMmtKVVdLQkpTcHJkWmRpOEVob1duZHNNTEd5YmhaeGFqSHlW?=
- =?utf-8?B?QmM2Lzk4dmdUQkllVkptZ3puOXlDdmpyajhxdUdMbmcwNGVoc2NNUjE4TTNi?=
- =?utf-8?B?RDM3aUt3ZjZLWUxmbWlKMlg2aXdibTNZUTlxTHNJNDFjek9xQThuWkRTb1lw?=
- =?utf-8?Q?Y7hM=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1935FD46;
+	Thu, 23 Nov 2023 22:39:15 -0800 (PST)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AO5IuF2010656;
+	Fri, 24 Nov 2023 06:39:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=XJfK9r4difAVXV2U8xd6TIUL/J9MDrHGpJaRZDcJCwI=;
+ b=h0fdekOxqWrWsryVRzqxaaHAQbLQjrwxHHlkirtJc59pqArq9WjoC4Vou5OLdRI3tJnX
+ eWXLumG5capce5VZlagy3M0IH5VNCr8I7Ld+ukz8Zw7BlTWobW7viWs7jI2DFkIkBADu
+ OUytbTh+kL0U/pT7UvJaB8u9SU2oTTb4HGZYKOSwova8fLkdjfQVDe+qyoeQ3iYsMPly
+ pBgMEiGFFgrNOxzYvxCOA+ub3GNDBwJKzL6f/3xIrJ15Th5bkVq/QIVP5xEuVsoXsagr
+ BfAveWxBo+FbBHsoWzZq3W/GETbe3tqrsw58UP/2dbI9NH69QFU21VqUETG5GMf5c4VM XQ== 
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uj4hwhw4x-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 24 Nov 2023 06:39:09 +0000
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AO6d8Su006461
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 24 Nov 2023 06:39:08 GMT
+Received: from [10.216.35.253] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 23 Nov
+ 2023 22:39:02 -0800
+Message-ID: <ff021f49-f81b-0fd1-bd2c-895dbbb03d56@quicinc.com>
+Date: Fri, 24 Nov 2023 12:08:59 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3993.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f55a6893-d655-4508-7cbe-08dbecb7875d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Nov 2023 06:35:19.7010
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: XYKkmT2XFFbY+NBPUiiNi0Xd2byMdwcEyhI9V89FnAjAFmvVEayOVGtbOuuaVbbn
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR12MB9358
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v2 2/3] arm64: dts: qcom: sc7280: Move video-firmware to
+ chrome-common
+Content-Language: en-US
+To: Luca Weiss <luca.weiss@fairphone.com>,
+        Stanimir Varbanov
+	<stanimir.k.varbanov@gmail.com>,
+        Bryan O'Donoghue
+	<bryan.odonoghue@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Mauro
+ Carvalho Chehab <mchehab@kernel.org>,
+        <cros-qcom-dts-watchers@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
+        <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+References: <20231002-sc7280-venus-pas-v2-0-bd2408891317@fairphone.com>
+ <20231002-sc7280-venus-pas-v2-2-bd2408891317@fairphone.com>
+ <4cfad910-1821-3a31-c372-3f6b199e8f71@quicinc.com>
+ <CX5ENKY70B5J.2D6DXKGI4EGX3@fairphone.com>
+From: Vikash Garodia <quic_vgarodia@quicinc.com>
+In-Reply-To: <CX5ENKY70B5J.2D6DXKGI4EGX3@fairphone.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: _2PehKUl5y5-OQPPRjcBhX25pqjQpTVO
+X-Proofpoint-ORIG-GUID: _2PehKUl5y5-OQPPRjcBhX25pqjQpTVO
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-23_15,2023-11-22_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ malwarescore=0 priorityscore=1501 bulkscore=0 mlxscore=0 mlxlogscore=999
+ suspectscore=0 phishscore=0 spamscore=0 lowpriorityscore=0 clxscore=1015
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2311060000 definitions=main-2311240049
 
-SGkgQ29ub3IsDQoNCglUaGFua3MgZm9yIHByb3ZpZGluZyB0aGUgcmV2aWV3IGNvbW1lbnRzLg0K
-UGxlYXNlIGZpbmQgbXkgcmVzcG9uc2UgaW5saW5lLg0KDQo+IC0tLS0tT3JpZ2luYWwgTWVzc2Fn
-ZS0tLS0tDQo+IEZyb206IENvbm9yIERvb2xleSA8Y29ub3JAa2VybmVsLm9yZz4NCj4gU2VudDog
-V2VkbmVzZGF5LCBOb3ZlbWJlciAyMiwgMjAyMyAxMDoyMSBQTQ0KPiBUbzogTWFubmUsIE5hdmEg
-a2lzaG9yZSA8bmF2YS5raXNob3JlLm1hbm5lQGFtZC5jb20+DQo+IENjOiBtZGZAa2VybmVsLm9y
-ZzsgaGFvLnd1QGludGVsLmNvbTsgeWlsdW4ueHVAaW50ZWwuY29tOw0KPiB0cml4QHJlZGhhdC5j
-b207IHJvYmgrZHRAa2VybmVsLm9yZzsga3J6eXN6dG9mLmtvemxvd3NraStkdEBsaW5hcm8ub3Jn
-Ow0KPiBjb25vcitkdEBrZXJuZWwub3JnOyBTaW1laywgTWljaGFsIDxtaWNoYWwuc2ltZWtAYW1k
-LmNvbT47DQo+IG1hdGhpZXUucG9pcmllckBsaW5hcm8ub3JnOyBMZXZpbnNreSwgQmVuIDxiZW4u
-bGV2aW5za3lAYW1kLmNvbT47DQo+IFBvdHRodXJpLCBTYWkgS3Jpc2huYSA8c2FpLmtyaXNobmEu
-cG90dGh1cmlAYW1kLmNvbT47IFNoYWgsIFRhbm1heQ0KPiA8dGFubWF5LnNoYWhAYW1kLmNvbT47
-IGRoYXZhbC5yLnNoYWhAYW1kLmNvbTsgYXJuZEBhcm5kYi5kZTsNCj4gRGF0dGEsIFNodWJocmFq
-eW90aSA8c2h1YmhyYWp5b3RpLmRhdHRhQGFtZC5jb20+OyBsaW51eC0NCj4gZnBnYUB2Z2VyLmtl
-cm5lbC5vcmc7IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnOyBsaW51eC0NCj4ga2VybmVsQHZn
-ZXIua2VybmVsLm9yZzsgbGludXgtYXJtLWtlcm5lbEBsaXN0cy5pbmZyYWRlYWQub3JnDQo+IFN1
-YmplY3Q6IFJlOiBbUkZDIFBBVENIIDEvM10gZHQtYmluZGluZ3M6IGZwZ2E6IEFkZCBzdXBwb3J0
-IGZvciB1c2VyLWtleQ0KPiBlbmNyeXB0ZWQgYml0c3RyZWFtIGxvYWRpbmcNCj4gDQo+IE9uIFdl
-ZCwgTm92IDIyLCAyMDIzIGF0IDExOjE0OjAyQU0gKzA1MzAsIE5hdmEga2lzaG9yZSBNYW5uZSB3
-cm90ZToNCj4gPiBBZGRzIOKAmGVuY3J5cHRlZC1rZXktbmFtZeKAmSBwcm9wZXJ0eSB0byBzdXBw
-b3J0IHVzZXIta2V5IGVuY3J5cHRlZA0KPiA+IGJpdHN0cmVhbSBsb2FkaW5nIHVzZSBjYXNlLg0K
-PiA+DQo+ID4gU2lnbmVkLW9mZi1ieTogTmF2YSBraXNob3JlIE1hbm5lIDxuYXZhLmtpc2hvcmUu
-bWFubmVAYW1kLmNvbT4NCj4gPiAtLS0NCj4gPiAgLi4uL2RldmljZXRyZWUvYmluZGluZ3MvZnBn
-YS9mcGdhLXJlZ2lvbi50eHQgIHwgMzINCj4gPiArKysrKysrKysrKysrKysrKysrDQo+IA0KPiBJ
-cyB0aGVyZSBhIHJlYXNvbiB0aGF0IHRoaXMgaGFzIG5vdCB5ZXQgYmVlbiBjb252ZXJ0ZWQgdG8g
-eWFtbD8NCj4gDQpJIGFtIG5vdCBzdXJlIGFib3V0IHRoZSBjb21wbGljYXRpb24gaW52b2x2ZWQg
-aGVyZSB3aHkgaXQncyBub3QgY29udmVydGVkIHRvIHlhbWwgZm9ybWF0Lg0KRHVlIHRvIHRpbWUg
-Y29uc3RyYWludHMsIEkgY291bGRu4oCZdCBzcGVuZCBtdWNoIHRpbWUgc28gSSBoYXZlIHVzZWQg
-dGhpcyBleGlzdGluZyBsZWdhY3kgZm9ybWF0DQp0byBhZGQgbXkgY2hhbmdlcy4NCg0KPiA+ICAx
-IGZpbGUgY2hhbmdlZCwgMzIgaW5zZXJ0aW9ucygrKQ0KPiA+DQo+ID4gZGlmZiAtLWdpdCBhL0Rv
-Y3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9mcGdhL2ZwZ2EtcmVnaW9uLnR4dA0KPiA+
-IGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2ZwZ2EvZnBnYS1yZWdpb24udHh0
-DQo+ID4gaW5kZXggNTI4ZGY4YTBlNmQ4Li4zMDkzMzQ1NThiM2YgMTAwNjQ0DQo+ID4gLS0tIGEv
-RG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2ZwZ2EvZnBnYS1yZWdpb24udHh0DQo+
-ID4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2ZwZ2EvZnBnYS1yZWdp
-b24udHh0DQo+ID4gQEAgLTE3Nyw2ICsxNzcsOSBAQCBPcHRpb25hbCBwcm9wZXJ0aWVzOg0KPiA+
-ICAJaXQgaW5kaWNhdGVzIHRoYXQgdGhlIEZQR0EgaGFzIGFscmVhZHkgYmVlbiBwcm9ncmFtbWVk
-IHdpdGggdGhpcw0KPiBpbWFnZS4NCj4gPiAgCUlmIHRoaXMgcHJvcGVydHkgaXMgaW4gYW4gb3Zl
-cmxheSB0YXJnZXRpbmcgYW4gRlBHQSByZWdpb24sIGl0IGlzIGENCj4gPiAgCXJlcXVlc3QgdG8g
-cHJvZ3JhbSB0aGUgRlBHQSB3aXRoIHRoYXQgaW1hZ2UuDQo+ID4gKy0gZW5jcnlwdGVkLWtleS1u
-YW1lIDogc2hvdWxkIGNvbnRhaW4gdGhlIG5hbWUgb2YgYW4gZW5jcnlwdGVkIGtleSBmaWxlDQo+
-IGxvY2F0ZWQNCj4gPiArCW9uIHRoZSBmaXJtd2FyZSBzZWFyY2ggcGF0aC4gSXQgd2lsbCBiZSB1
-c2VkIHRvIGRlY3J5cHQgdGhlIEZQR0ENCj4gaW1hZ2UNCj4gPiArCWZpbGUgd2l0aCB1c2VyLWtl
-eS4NCj4gDQo+IEkgbWlnaHQgYmUgbWlzcmVhZGluZyB0aGluZ3MsIGJ1dCB5b3VyIGRyaXZlciBj
-b2RlIHNlZW1zIHRvIGFzc3VtZSB0aGF0IHRoaXMNCj4gaXMgYW4gYWVzIGtleS4gTm90aGluZyBo
-ZXJlIHNlZW1zIHRvIGRvY3VtZW50IHRoYXQgdGhpcyBpcyBzdXBwb3NlZCB0byBiZSBhDQo+IGtl
-eSBvZiBhIHBhcnRpY3VsYXIgdHlwZS4NCj4gDQoNClllcywgdGhlc2UgY2hhbmdlcyBhcmUgaW50
-ZW5kZWQgdG8gYWRkIHRoZSBzdXBwb3J0IGZvciBBZXMgdXNlci1rZXkgZW5jcnlwdGVkIGJpdHN0
-cmVhbSBsb2FkaW5nIHVzZSBjYXNlLg0KV2lsbCBmaXggaXQgaW4gdjIsIHNvbWV0aGluZyBsaWtl
-IGJlbG93Lg0KYWVzLWtleS1maWxlLW5hbWUgOiBTaG91bGQgY29udGFpbiB0aGUgQUVTIGtleSBm
-aWxlIG5hbWUgb24gdGhlIGZpcm13YXJlIHNlYXJjaCBwYXRoLg0KCQkgICAgICBUaGUga2V5IGZp
-bGUgY29udGFpbnMgdGhlIEFFUyBrZXkgYW5kIGl0IHdpbGwgYmUgdXNlZCB0byBkZWNyeXB0IHRo
-ZSBGUEdBIGltYWdlLg0KDQpSZWdhcmRzLA0KTmF2YWtpc2hvcmUuDQo=
+
+On 11/22/2023 7:50 PM, Luca Weiss wrote:
+> On Wed Nov 22, 2023 at 2:17 PM CET, Vikash Garodia wrote:
+>>
+>> On 10/2/2023 7:50 PM, Luca Weiss wrote:
+>>> If the video-firmware node is present, the venus driver assumes we're on
+>>> a system that doesn't use TZ for starting venus, like on ChromeOS
+>>> devices.
+>>>
+>>> Move the video-firmware node to chrome-common.dtsi so we can use venus
+>>> on a non-ChromeOS devices.
+>>>
+>>> At the same time also disable the venus node by default in the dtsi,
+>>> like it's done on other SoCs.
+>>>
+>>> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+>>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+>>> ---
+>>>  arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi | 8 ++++++++
+>>>  arch/arm64/boot/dts/qcom/sc7280.dtsi               | 6 ++----
+>>>  2 files changed, 10 insertions(+), 4 deletions(-)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi b/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
+>>> index 5d462ae14ba1..cd491e46666d 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
+>>> @@ -104,6 +104,14 @@ &scm {
+>>>  	dma-coherent;
+>>>  };
+>>>  
+>>> +&venus {
+>>> +	status = "okay";
+>>> +
+>>> +	video-firmware {
+>>> +		iommus = <&apps_smmu 0x21a2 0x0>;
+>>> +	};
+>>> +};
+>>> +
+>>>  &watchdog {
+>>>  	status = "okay";
+>>>  };
+>>> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>>> index 66f1eb83cca7..fa53f54d4675 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>>> @@ -3740,6 +3740,8 @@ venus: video-codec@aa00000 {
+>>>  				 <&apps_smmu 0x2184 0x20>;
+0x2184 is a secure SID. I think qcm6490-fairphone-fp5.dts needs to override the
+iommus property as well to retain only the non secure SID i.e 0x2180 ? I am
+seeing below crash
+
+Call trace:
+[   47.663593]  qcom_smmu_write_s2cr+0x64/0xa4
+[   47.663616]  arm_smmu_attach_dev+0x120/0x284
+[   47.663647]  __iommu_attach_device+0x24/0xf8
+[   47.676845]  __iommu_device_set_domain+0x70/0xd0
+[   47.681632]  __iommu_group_set_domain_internal+0x60/0x1b4
+[   47.687218]  iommu_setup_default_domain+0x358/0x418
+[   47.692258]  __iommu_probe_device+0x3e4/0x404
+
+Could you please reconfirm if Video SID 0x2184 (and mask) is allowed by the
+qcm6490-fairphone-fp5 hardware having TZ ?
+
+>>>  			memory-region = <&video_mem>;
+>>>  
+>>> +			status = "disabled";
+>>> +
+>>>  			video-decoder {
+>>>  				compatible = "venus-decoder";
+>>>  			};
+>>> @@ -3748,10 +3750,6 @@ video-encoder {
+>>>  				compatible = "venus-encoder";
+>>>  			};
+>>>  
+>>> -			video-firmware {
+>>> -				iommus = <&apps_smmu 0x21a2 0x0>;
+>>> -			};
+>>> -
+>>>  			venus_opp_table: opp-table {
+>>>  				compatible = "operating-points-v2";
+>>>  
+>>>
+>> Changes look good. Is this tested on SC7280 ?
+> 
+> Hi Vikash,
+> 
+> I didn't test it myself on sc7280 (just qcm6490-fp5) but dtx_diff
+> reports no differences except for status = okay property being added, so
+> there should be no change on those boards. See below.
+> 
+> Regards
+> Luca
+
+I tested on SC7280 (herobrine) and all good.
+
+Regards,
+Vikash
 
