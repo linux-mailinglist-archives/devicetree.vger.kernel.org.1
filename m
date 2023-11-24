@@ -1,71 +1,75 @@
-Return-Path: <devicetree+bounces-18576-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18577-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 035957F728A
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 12:19:08 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81BC47F72A1
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 12:24:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8D09EB20FD2
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 11:19:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BD0051C20A2C
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 11:24:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 332071C6B0;
-	Fri, 24 Nov 2023 11:19:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2053E1A712;
+	Fri, 24 Nov 2023 11:24:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b1kwtZdH"
+	dkim=pass (1024-bit key) header.d=iki.fi header.i=@iki.fi header.b="bdT73Uya"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from meesny.iki.fi (meesny.iki.fi [195.140.195.201])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82AE910EB;
+	Fri, 24 Nov 2023 03:24:29 -0800 (PST)
+Received: from hillosipuli.retiisi.eu (2a00-1190-d1dd-0-c641-1eff-feae-163c.v6.cust.suomicom.net [IPv6:2a00:1190:d1dd:0:c641:1eff:feae:163c])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F332E1CABB;
-	Fri, 24 Nov 2023 11:19:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60889C433C7;
-	Fri, 24 Nov 2023 11:19:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700824740;
-	bh=uv+M2uJcD6nigmAsYgStYTAS4i8Dzh4L8oQ+du2M+04=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=b1kwtZdHvVApDv9ZwK757wpvC8opAjMwEYhUCtu0QD1AA28B2iOvULCtCs35iBLxK
-	 apNIF3jq+X9ShikKZUo5wDmh69E+fGkD6p7M0azQ50mrxaZjno9+fHPWVdrDfh55F4
-	 EoytZBi1YzuDbemZQAeqtuGZM16oOsxm3OX01w5ZQoUyE7SSbGXEsvubh4MviR3pdS
-	 bQoHeEgEmnXX0Fs2EMJTwain5VcYSk8u9CMaQBH+uGh6fdPs+sqSu3zBGoM3QJ+zH1
-	 ZRYV50EKf55OpnFw873K+WYNBlQlZgfQaTAZvz1hUSfl1HkRC4V9jZPVSQW3IjC3mP
-	 qT3G34/O/wMvA==
-Received: from johan by xi.lan with local (Exim 4.96.2)
-	(envelope-from <johan@kernel.org>)
-	id 1r6UDQ-0000cA-0j;
-	Fri, 24 Nov 2023 12:19:20 +0100
-Date: Fri, 24 Nov 2023 12:19:20 +0100
-From: Johan Hovold <johan@kernel.org>
-To: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-Cc: Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	(Authenticated sender: sailus)
+	by meesny.iki.fi (Postfix) with ESMTPSA id 4ScCLK45YLzySy;
+	Fri, 24 Nov 2023 13:24:22 +0200 (EET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
+	t=1700825066;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=4HYZA0J4KQ7QUzTmkn08hgDrWms9zYebzose47qF6ys=;
+	b=bdT73UyaM43US7lT95gmMyRSURsEo0y0B/VDZdb3FRFSIylAxTdbAbSlmUBiFkhcF85V8u
+	b4wwWm0cRw76HJCAUMlAwm7d5Xxg/ciIZkHKLakqt8Otw+Zk9VIyPonLmzHPEpnl6yYTPs
+	mCaPqH1Q7DKppHdQ3HLkm8KuxGDmKcA=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
+	s=meesny; t=1700825066;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=4HYZA0J4KQ7QUzTmkn08hgDrWms9zYebzose47qF6ys=;
+	b=gt81+2kmTfRWj89+d+m/yqW+5yosKPG8/aja5RYkdcJQD6KhWORNZoiBCyCDif4yGMVrYw
+	MxgXrEJMZfaJ52QrA0UGbF1ORIdrSHldP3qu2zfNVBWW+WZv/TtNweBt1FuLwYUG+skj9i
+	89mFhpdQW4XWAn3CIlNQUKpLHwvvUKc=
+ARC-Authentication-Results: i=1;
+	ORIGINATING;
+	auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
+ARC-Seal: i=1; s=meesny; d=iki.fi; t=1700825066; a=rsa-sha256; cv=none;
+	b=bzLKCnugxYFOsFYYMdKfaUnzxlQboycZqzFZDwedICvgAF+AxTukH+Dcz3ufqGiSnU00B1
+	I7OqWxkqUGAq23lrj73bTLDo/jl2irxfgN82ObKLfksLka1DeAc5mSmf5p11rHL5b7WLk2
+	+ks8c1qZz9RG8H8UlREkpFXkf9Xec8Y=
+Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 4CE50634C93;
+	Fri, 24 Nov 2023 13:24:21 +0200 (EET)
+Date: Fri, 24 Nov 2023 11:24:21 +0000
+From: Sakari Ailus <sakari.ailus@iki.fi>
+To: Sebastian Reichel <sre@kernel.org>
+Cc: Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+	Alain Volmat <alain.volmat@foss.st.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Felipe Balbi <balbi@kernel.org>,
-	Wesley Cheng <quic_wcheng@quicinc.com>, linux-usb@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, quic_pkondeti@quicinc.com,
-	quic_ppratap@quicinc.com, quic_jackp@quicinc.com,
-	ahalaney@redhat.com, quic_shazhuss@quicinc.com
-Subject: Re: [PATCH v13 05/10] usb: dwc3: qcom: Refactor IRQ handling in QCOM
- Glue driver
-Message-ID: <ZWCGuDTBMBYHSZSB@hovoldconsulting.com>
-References: <ZTdqnSHq_Jo8AuPW@hovoldconsulting.com>
- <04615205-e380-4719-aff1-f32c26004b14@quicinc.com>
- <ZUz4RD3MjnLlPn6V@hovoldconsulting.com>
- <6d4d959c-b155-471b-b13d-f6fda557cfe0@quicinc.com>
- <ZVYTFi3Jnnljl48L@hovoldconsulting.com>
- <e0789695-43ee-4285-95e9-4cdee24d6ffe@quicinc.com>
- <ZV9XTU-q038BaWn3@hovoldconsulting.com>
- <4fc27dbb-b0aa-437a-a48c-9deea236282d@quicinc.com>
- <ZWB3SWJWXwj0atdH@hovoldconsulting.com>
- <b3919f6a-80ef-4743-b28b-991e93328a19@quicinc.com>
+	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 0/6] GC0308 Camera Sensor
+Message-ID: <ZWCH5cT51XGky6d9@valkosipuli.retiisi.eu>
+References: <20231113230421.226808-1-sre@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,41 +78,39 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <b3919f6a-80ef-4743-b28b-991e93328a19@quicinc.com>
+In-Reply-To: <20231113230421.226808-1-sre@kernel.org>
 
-On Fri, Nov 24, 2023 at 04:08:42PM +0530, Krishna Kurapati PSSNV wrote:
-> On 11/24/2023 3:43 PM, Johan Hovold wrote:
+Hi Sebastian,
 
-> > I'd suggest that you just send two separate series, one with binding and
-> > driver updates, which will eventually be merged by Greg, and one with
-> > the devicetree changes, which goes through Bjorn's tree.
-> > 
-> > It's good if you could add a link to the binding series in the cover
-> > letter of the devicetree changes as they are of course going to be quite
-> > closely related and need to be reviewed in parallel.
+On Mon, Nov 13, 2023 at 11:57:19PM +0100, Sebastian Reichel wrote:
+> Hi,
 > 
-> Thanks for this pointer. So for Multiport, can I do it this way:
+> I did the following tests on an i.MX6ULL based system [0]:
 > 
-> 1. Core bindings and Core driver changes in one series. Now that we 
-> finalized we don't be adding the ctrl_irq[1] as discussed on:
-> https://lore.kernel.org/all/ZU33uWpStIobzyd6@hovoldconsulting.com/.
-> 
-> 2. QC bindings and QC driver changes for Multiport to be pushed after we 
-> clean up the current driver and DT's (an effort which is going on 
-> currently).
+>  * v4l2-compliance -u /dev/v4l-subdev1
+>    - v4l2-compliance 1.24.1, 32 bits, 32-bit time_t
+>      (from Debian testing)
+>    - Total for device /dev/v4l-subdev1: 44, Succeeded: 44
+>  * Using gstreamer + v4l2-ctl
+>    - Tried 640x480, 320x240, 160x120 YUYV8_2X8 formats
+>    - Tested effect of all exposed user controls
+>  * checkpatch does not report any driver issues
+>  * dt_binding_check does not report anything
+>  * rebinding driver works
 
-No, I was just referring to how to handle binding/driver vs devicetree
-patches for USB where we send them separately (unlike for most other
-subsystems).
+I forgot to ask this earlier --- the sub-device state information access
+functions have been reworked and that resulted in renaming the functions
+this driver uses. Could you rebase this on the current stage tree?
 
-The dwc3 core and Qualcomm glue parts should still go in the same series
-for multiport support.
+The commit doing this for all merged drivers was
+bc0e8d91feec72b19199298dca470c5816a52105 .
 
-Whether to do the irq cleanup before or after adding multiport support
-is a different question, but, yeah, it is probably best to do it before.
+Could you also add Cc: stable for the v4l2-async list fix?
 
-The question of whether we can drop ACPI support should also be
-considered as that should also simplify your multiport series.
+Thanks.
 
-Johan
+-- 
+Kind regards,
+
+Sakari Ailus
 
