@@ -1,126 +1,186 @@
-Return-Path: <devicetree+bounces-18667-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18668-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57FA57F78B0
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 17:11:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 37FF27F78D9
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 17:24:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ECCBEB210FA
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 16:11:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B3265B20E3B
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 16:24:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9CC033CDF;
-	Fri, 24 Nov 2023 16:11:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8ADA33CFE;
+	Fri, 24 Nov 2023 16:24:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="huFi1LIG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ddB19PCG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D51119AB;
-	Fri, 24 Nov 2023 08:11:49 -0800 (PST)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-a03a900956dso398610166b.1;
-        Fri, 24 Nov 2023 08:11:49 -0800 (PST)
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26248199A
+	for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 08:24:09 -0800 (PST)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-a00a9d677fcso290846266b.0
+        for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 08:24:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1700842308; x=1701447108; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=I35NveYhkoZ28DMqDop9zJmkqxtTHkbKlKYsYxwRQuE=;
-        b=huFi1LIGb+FA19Pp5QUqdux4rLG4jOmab9aAEmc2lFcqUWvO0jo7QIjgj0ptLgbM5E
-         +AMxlu0YqhxoJuuv4Ma1j/xglUIRfR2aVnbw+pKvjwrNjTR8u5IfIBz9IUlHH8q0dFgG
-         2khzNu4MwiAitKWPIVkyrVG1TRqno4Sd7kEj7YfWNp3CxeCz3zNFqSSEtEjjpKPp+x8N
-         5Fd+Tk+xs5oTvlFcCdb5fSjOKEzM31Y1enALCfy84tocIcO8NRqF7Ccoths/+Dc+VuFC
-         9nBxzwxu/hKabMRZKycsdB4mzl50EkegasLM7PdA8+m/id3h5FiMjeXzwWW8+omX42eM
-         CgoA==
+        d=linaro.org; s=google; t=1700843047; x=1701447847; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=x4Ai1u86sLDHXuJmf3sDrBBCF8Xvj7MvGhsc5FZvOYY=;
+        b=ddB19PCG6LTXsDnyKJR9wLlyQ7aQcbWLtW42mWDx12BF8ygi6bTq+lY9Iu79oghKn4
+         NHKbLwGTrPHarBbbXWxpBCpid9+ZeUAlGMSqQzD8ysiJSmE8nT/H3UcQlKLKQoMZ33S8
+         1ksljaPLLbZm0KDBKeByWtIggIoGyL1nF/oG1az6yuasEPTVZ4yPtGITEQeqZAMTViVF
+         pu0kRRwG5ePZqsOstlqAy4hQET6ij59Y8xC9GR3VyB/tbzUUTtARek10bdx1Wv7YFqHH
+         i4gYrp9Z3xDAiwiy0lBNzssq9644WvJa+mhZ81047pBUwgKOhzhtPp0ZcSoHv/dTJ+zD
+         DGXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700842308; x=1701447108;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=I35NveYhkoZ28DMqDop9zJmkqxtTHkbKlKYsYxwRQuE=;
-        b=O9vVlHjaA2n00va5feBvhGRCsjFLguDiUwvoCIrBMN9KwLwcZ7oNKx/y1VFV62+sHg
-         IyxcznYE8zjo9Xx66VAkVHm/H3q7bFSEgEkfG6wisrHWzzrtNeHHUEL0uuKv7I9sn5Qi
-         8iiLmwHuSMHC0+4k8Xlkhfj0YlG+UnlmFPGJagxbUWDdVuMzOaRJX8H9nkvn9vm0LTPB
-         3nBehCb9+wu5MXRGsDML8xfeGBFjVWSOCAg6Etl5yTxuKvhm6BP6V1ECl1PaclaBF/37
-         40UDiYZ5Qpy0if6DPKPl0Cemf/PQ2NJxw5K3FaM1MELeejYteNHfz0KYX6U9lhTqvraq
-         Wh2A==
-X-Gm-Message-State: AOJu0Yxdnkjoa3srSy3MIC9O5qWOCn1csxgwFWoVCZDDoSoAqiFbnx+w
-	5mcAqVgDs9b3cLarXv/HOmM=
-X-Google-Smtp-Source: AGHT+IGtJ3UGtPKqhJP4J6tZy5FGZu9hyca3DpcSgvFJPVdTvOhpNj9dj0Jf+zI1m+YQ7QJao754aw==
-X-Received: by 2002:a17:906:7494:b0:a01:d701:2f1d with SMTP id e20-20020a170906749400b00a01d7012f1dmr3109574ejl.14.1700842307727;
-        Fri, 24 Nov 2023 08:11:47 -0800 (PST)
-Received: from skbuf ([188.26.185.12])
-        by smtp.gmail.com with ESMTPSA id n20-20020a170906119400b009fbdacf9363sm2211170eja.21.2023.11.24.08.11.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Nov 2023 08:11:47 -0800 (PST)
-Date: Fri, 24 Nov 2023 18:11:45 +0200
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Ante Knezic <ante.knezic@helmholz.de>
-Cc: netdev@vger.kernel.org, woojung.huh@microchip.com, andrew@lunn.ch,
-	f.fainelli@gmail.com, davem@davemloft.net, edumazet@google.com,
-	kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	marex@denx.de, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v5 2/2] net: dsa: microchip: add property to
- select internal RMII reference clock
-Message-ID: <20231124161145.q4zww6m5hi3ccqzk@skbuf>
-References: <cover.1700841353.git.ante.knezic@helmholz.de>
- <4e62cff653c7845bb848de5af44abe7e5578f624.1700841353.git.ante.knezic@helmholz.de>
+        d=1e100.net; s=20230601; t=1700843047; x=1701447847;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=x4Ai1u86sLDHXuJmf3sDrBBCF8Xvj7MvGhsc5FZvOYY=;
+        b=jb9mPrFmrCsiF6bZrYbo7Zh4ktHfsUNxtTcsKyxtRdbQccHutU7VFkr1/FAcy6mL3y
+         pOQYuT4zA10aSHUmAzOgk2Ds0pt2zJkbqk1yDzq7ENP500ntj97cQJ8asG3XisBhA0/q
+         Z6cCoi/g5/5vy0nOLJN+D/JNDYWNMWieAiBAJ0PMJlBCUNPb8Ykf6h9aHCwEypd6lsfu
+         Gw5gacfzqXGagfVqhtRAuMHG+3O2IczvJgc7zE+c25CeW/koMjwPYRTcTx5wUx4/TcVl
+         stnc4k6L6f3n9sqDlfKJ8QkXwdV6vDREsfG16kcHjwH0lW6Su11CdOInAe1OwKe0/mZq
+         EeOA==
+X-Gm-Message-State: AOJu0YyB4reyVqCtDuKvlyE0d817Hr6Kr5zwldyzX3132EuJ5qVXSjrW
+	IYb1g3TINe5AHoOnoqvKy2xjFg==
+X-Google-Smtp-Source: AGHT+IGpUrlqBCDFO/+in9UzwxMOck6elIWNtkLnslhRBLK/Fke0Z04KesDOFXDdUf8z09gcfH2Uuw==
+X-Received: by 2002:a17:906:7741:b0:a01:ae9a:d376 with SMTP id o1-20020a170906774100b00a01ae9ad376mr2609002ejn.64.1700843047351;
+        Fri, 24 Nov 2023 08:24:07 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.100])
+        by smtp.gmail.com with ESMTPSA id t24-20020a17090616d800b009ffb4af0505sm2238854ejd.104.2023.11.24.08.24.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 24 Nov 2023 08:24:06 -0800 (PST)
+Message-ID: <9fb984b3-331b-45ce-8f82-03bc476acd3c@linaro.org>
+Date: Fri, 24 Nov 2023 17:24:04 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <4e62cff653c7845bb848de5af44abe7e5578f624.1700841353.git.ante.knezic@helmholz.de>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [LINUX PATCH v2 1/3] clocksource: timer-cadence-ttc: Do not probe
+ TTC device configured as PWM
+Content-Language: en-US
+To: "Sayyed, Mubin" <mubin.sayyed@amd.com>
+Cc: "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
+ "git (AMD-Xilinx)" <git@amd.com>, "mubin10@gmail.com" <mubin10@gmail.com>,
+ "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+ "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
+ "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+ "robh+dt@kernel.org" <robh+dt@kernel.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "tglx@linutronix.de" <tglx@linutronix.de>,
+ "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
+ "Simek, Michal" <michal.simek@amd.com>
+References: <20231114124748.581850-1-mubin.sayyed@amd.com>
+ <20231114124748.581850-2-mubin.sayyed@amd.com>
+ <d37db10b-f9fa-49b0-8b1e-36e20acbcfd6@linaro.org>
+ <DM4PR12MB593888B73B65D25E42490EF29DB1A@DM4PR12MB5938.namprd12.prod.outlook.com>
+ <e0f28ec5-b980-490b-a857-5218fe521381@linaro.org>
+ <DM4PR12MB5938CB10059DF7E39A2A0E239DB8A@DM4PR12MB5938.namprd12.prod.outlook.com>
+ <a701ba6e-ae4e-4c4d-9d93-c54e56c3348e@linaro.org>
+ <DM4PR12MB5938256CC0E50256004ED6B19DB8A@DM4PR12MB5938.namprd12.prod.outlook.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <DM4PR12MB5938256CC0E50256004ED6B19DB8A@DM4PR12MB5938.namprd12.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Fri, Nov 24, 2023 at 05:01:48PM +0100, Ante Knezic wrote:
-> +static int ksz88x3_config_rmii_clk(struct ksz_device *dev, int cpu_port)
-> +{
-> +	struct device_node *ports, *port, *cpu_node;
-> +	bool rmii_clk_internal;
-> +
-> +	if (!ksz_is_ksz88x3(dev))
-> +		return 0;
-> +
-> +	cpu_node = NULL;
-> +
-> +	ports = of_get_child_by_name(dev->dev->of_node, "ports");
-> +	if (!ports)
-> +		ports = of_get_child_by_name(dev->dev->of_node,
-> +					     "ethernet-ports");
-> +	if (!ports)
-> +		return -ENODEV;
-> +
-> +	for_each_available_child_of_node(ports, port) {
-> +		u32 index;
-> +
-> +		if (of_property_read_u32(port, "reg", &index) < 0)
-> +			return -ENODEV;
-> +
-> +		if (index == cpu_port) {
-> +			cpu_node = port;
-> +			break;
-> +		}
-> +	}
-> +
-> +	if (!cpu_node)
-> +		return -ENODEV;
+On 24/11/2023 13:07, Sayyed, Mubin wrote:
 
-Too much code. Assuming you have struct dsa_port *cpu_dp, you can access
-cpu_dp->dn instead of re-parsing the device tree.
+>>>>>> This does not look right. What you want is to bind one device
+>>>>>> driver and choose different functionality based on properties.
+>>>>> [Mubin]:  I am doing it based on earlier discussion related to AXI
+>>>>> Timer PWM
+>>>> driver.  It was suggested to use #pwm-cells property for identifying
+>>>> role of
+>>>> device(PWM/clocksource) https://lore.kernel.org/linux-
+>>>> devicetree/20210513021631.GA878860@robh.at.kernel.org/.
+>>>>
+>>>> You are mixing bindings with driver. I said here about driver and yes
+>>>> - you must use pwm-cells to differentiate that. It's obvious.
+>>>>
+>>>> So again, one driver binding.
+>>> [Mubin]: I will explore whether mfd framework can be used to handle this.
+>>
+>> You do not need MFD for this, because you do not have a really MFD. This is just
+>> one device, so I expect here one driver. Why do you need multiple drivers (which
+>> also would solve that problem but why?)?
+> Cadence TTC IP can be used as timer(clocksource/clockevent) and PWM device.
+> We have drivers/clocksource/timer-cadence-ttc.c for clocksource/clockevent functionality. 
+> New driver for PWM functionality will be added to drivers/pwm/pwm-cadence.c (3/3 of this
+> Series).  In given SoC,  multiple instances of TTC IP are possible(ZynqMP  Ultrscale SoC has 4
+> Instances), few of them could be configured as clocksource/clockevent devices and others
+> as PWM ones. So,  cloksource as well as PWM drivers for cadence TTC IP would be enabled in 
+> the kernel. 
+> 
+> Now in this scenario, each TTC device would be matching with 2 drivers, clocksource and PWM, since
+> compatible string is same.  If I don’t add #pwm-cells checking in clocksource driver and return 
+> -ENODEV based on that, each device would always bind with clocksource driver. PWM driver 
+> would never probe since clocksource driver probes ahead of PWM one in probing order.
 
-> +
-> +	rmii_clk_internal = of_property_read_bool(cpu_node,
-> +						  "microchip,rmii-clk-internal");
-> +
-> +	ksz_cfg(dev, KSZ88X3_REG_FVID_AND_HOST_MODE,
-> +		KSZ88X3_PORT3_RMII_CLK_INTERNAL, rmii_clk_internal);
-> +
-> +	return 0;
-> +}
+None of these above explain why you need two drivers.
 
-Please wait for 24 hours before reposting, maybe you get more feedback.
+> 
+> I am exploring mfd to deal with said scenario. Do you see any better way to handle this? 
+
+You basically repeated previous sentence about MFD without answering.
+Yeah, better way could be to have one driver. Why you cannot have it
+that way?
+
+
+Best regards,
+Krzysztof
+
 
