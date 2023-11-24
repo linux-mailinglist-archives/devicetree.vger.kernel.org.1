@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-18659-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18660-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D1877F781B
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 16:49:21 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60E057F785C
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 16:54:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3F7111C20A3E
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 15:49:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B845DB211A5
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 15:54:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 336813173C;
-	Fri, 24 Nov 2023 15:49:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D32A2FE25;
+	Fri, 24 Nov 2023 15:54:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Lgvtqm2v"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tzVOIZeK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 929B21998
-	for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 07:49:11 -0800 (PST)
-Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-5441305cbd1so2775687a12.2
-        for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 07:49:11 -0800 (PST)
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D363619B7
+	for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 07:54:23 -0800 (PST)
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-a02d12a2444so306065766b.3
+        for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 07:54:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700840950; x=1701445750; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1700841262; x=1701446062; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=0K2EXE8gQExfH+IDrBMFiSFCOrHiT67rlvW6OkLmIQc=;
-        b=Lgvtqm2vdgbIyRYi0mXRPmujODsHOI9R0lt5uWHM6uqaH29oavWLw4gR6gFvif/kKk
-         SEPwKtQnhasHtEuxUDbptLOk51p9CUY9JJNV5m+criervnkUV/l8Bg+uqriNSbukuL6g
-         f0k15OIUzJpyHf4ItUHLlgaUOuvDlDFom6eKx1XdjF/3Wt7K89g74KA0VmlVbHgKQ6Lw
-         YYr9Okc+9VLLQJ/tJNK9MAqOSQwDZRz5w7+NFONf6+hRAogY5TuWHqCaB1u/ucHF9LYs
-         o1Fh/0Z4+DfUcw7jcY+3O27fpZSjU3vBK4Qa+hshSzgWPskhcwFoVtUrDg9KIxd5iIcw
-         xfrg==
+        bh=q6zdIV3P/oUPSovR+NhGfJJ7zXCyuBKxOwWKblAxbsI=;
+        b=tzVOIZeKawvbqPV9O8CvubJJsg+wpPddI8Nem9EU41jplHDrel9CnLYf18cGrdr7Xk
+         6rn+dr+DtdYAgyokrG7/ALuZfRCbja9HEU6xx+QKc6JlNHLE8c55VECX393i8xPlQoOG
+         lgRwWGkZw9i6CPZPQ9RcxlO3dqnZTJbQPrBQM+mavq9xYmQhrtQtUa+fiztRk5wgsZu/
+         JItcXAJecmmR90Lep2Tgw4ClH87BPtGUgMDvnf/YEQx2EYONNM8lSOu+71lpO8zt2pu4
+         U1jCFxKSmpVUJWrAUV4hwI6sy7YMxOvmPdWYQ/LvjCqEnHiToi6leEal+Bbo6uZnKIT9
+         H6nA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700840950; x=1701445750;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1700841262; x=1701446062;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0K2EXE8gQExfH+IDrBMFiSFCOrHiT67rlvW6OkLmIQc=;
-        b=TkUxHQpVHrmB+JvtqGVmbwV2WQ/q5D1V1GiQ0AKg5idjQVgok4UgXAiplorvLjazyB
-         PyiabwoCHLhoYQ1Jph+DDpVZdFlJqsWPwLhelF9AzTcuX387qtTkGwCIfYZSyF8FjSAD
-         ugrZ8nJNyGm/KPv7xkThhg2IB1CRqvSDUjqNNGB7EeH4FcXNV955p1eezKZJu9PR5Kgp
-         cHJWd9u8xMpVEUv+50/tEFEG/ARgPAq2zjsOxa5k1DSAe+HlC7ltASO6pwkBf1ZQixpI
-         P+1w+8mptNk7Yu2h9o6X8wCRJvBYinfJFmmAoxAKg/kpYrFvbP+ts7EncHt0AQpOoxs3
-         Wk+A==
-X-Gm-Message-State: AOJu0Yw9jXYmKL34eh5xHXAzcoyLFAEsSzrcL71LulNcG41PqqUoZ8z0
-	KT3l0Yz0M9MbV/l9wYo0k1ygvw==
-X-Google-Smtp-Source: AGHT+IE6JEZIq2K7IIOxSgnJ5L7np3XYKNvUoPeNTphLa0M1kNcmMvyILOwbtufQRuoKg4a056MbiA==
-X-Received: by 2002:a50:9e0f:0:b0:547:b96:1172 with SMTP id z15-20020a509e0f000000b005470b961172mr2620072ede.28.1700840950070;
-        Fri, 24 Nov 2023 07:49:10 -0800 (PST)
+        bh=q6zdIV3P/oUPSovR+NhGfJJ7zXCyuBKxOwWKblAxbsI=;
+        b=faiv7STeq4ZKejM2MM5RyWtramYHCF7fNm+X0XBA6Y/f9FARNN61fSKzuzyvKwnRz2
+         dKCMc0Re/SA22vKNEdT8YrJCAXF6M3AHSHm8J0PvgZ/uLco4jDLwnWuSmLxevvkukx0s
+         RI9oyUUtMwOZC0nUVJ1d5M8r+vXnz1v+tazAuGVLHauj23MpmGsqWX7DKjdPa/czrVkm
+         FSJk1WH3GRnQEmCR75SOxrgNUrGHdEK7bAbCzgmk9r0p6l0szv+h2AHrCvQ2tE5NcxV9
+         +9HMiMZWYwPmJGZT7M+ttNeT0NqJkChmPADTL69X7Di53bAxjW+P/nsSGPCubmp41aNk
+         t0PA==
+X-Gm-Message-State: AOJu0YyUqtrGXxhTvcAGOwWlGCxshGdRV8KKNLM3D/7CoXAKHy0d/byP
+	yL6NW+nNtM20WpNFoNyIIU1t9j7z1aUvqf577Qg=
+X-Google-Smtp-Source: AGHT+IHgAAznBIJ0pbN2tfwJr+McdSSdCWVtJ0j0xD/jPnhNIZxResuzgWPkQk6gR7YvV5NtY7RvXg==
+X-Received: by 2002:a17:906:1281:b0:9dd:7133:881 with SMTP id k1-20020a170906128100b009dd71330881mr2448412ejb.40.1700841262362;
+        Fri, 24 Nov 2023 07:54:22 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.100])
-        by smtp.gmail.com with ESMTPSA id m6-20020a056402430600b0054af73f3c72sm762887edc.11.2023.11.24.07.49.08
+        by smtp.gmail.com with ESMTPSA id o12-20020a1709064f8c00b00a01892903d6sm2191782eju.47.2023.11.24.07.54.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Nov 2023 07:49:09 -0800 (PST)
-Message-ID: <c2f9d247-752f-429d-8c20-e105b1117be2@linaro.org>
-Date: Fri, 24 Nov 2023 16:49:07 +0100
+        Fri, 24 Nov 2023 07:54:21 -0800 (PST)
+Message-ID: <4011c83f-6f3f-426b-9bfc-d0d8f6b01ac0@linaro.org>
+Date: Fri, 24 Nov 2023 16:54:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,17 +62,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 0/3]fpga: Add encrypted Bitstream loading support
+Subject: Re: [PATCH 2/3] arm64: dts: qcom: sm8250-xiaomi-elish: Sort ufs node
 Content-Language: en-US
-To: Nava kishore Manne <nava.kishore.manne@amd.com>, mdf@kernel.org,
- hao.wu@intel.com, yilun.xu@intel.com, trix@redhat.com, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- michal.simek@amd.com, mathieu.poirier@linaro.org, ben.levinsky@amd.com,
- sai.krishna.potthuri@amd.com, tanmay.shah@amd.com, dhaval.r.shah@amd.com,
- arnd@arndb.de, shubhrajyoti.datta@amd.com, linux-fpga@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20231122054404.3764288-1-nava.kishore.manne@amd.com>
+To: Jianhua Lu <lujianhua000@gmail.com>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ phone-devel@vger.kernel.org
+References: <20231124135713.5610-1-lujianhua000@gmail.com>
+ <20231124135713.5610-2-lujianhua000@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -118,27 +119,17 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231122054404.3764288-1-nava.kishore.manne@amd.com>
+In-Reply-To: <20231124135713.5610-2-lujianhua000@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 22/11/2023 06:44, Nava kishore Manne wrote:
-> For user-key encrypted bitstream loading use case, users can encrypt
-> FPGA configuration Images with their own key.While decrypting the
-> configuration Image the user needs to provide the same key.To support
-> this use case with the existing FPGA manager framework is not possible
-> because it doesn’t have a mechanism to get the required inputs from
-> the user. So this patch series adds the required changes to the FPGA
-> manager framework to support user-key encrypted bitstream image loading
+On 24/11/2023 14:57, Jianhua Lu wrote:
+> ufs node isn't in a right place, 'f' is front of 's', so move it to
+> above usb node.
 
-Wasn't the entire point of encrypted FPGA bistreams that the key is
-fused into the FPGA and the FPGA does the decrypting? Otherwise it's
-like security through obscurity - the only trouble for attacker is to
-decode DTB to find the filename of key, so actually not even really
-obscure. Then the attacker retrieves the key and bitstream from
-filesystem (by taking out the Zynq-based SoM out or booting from own
-system or just accessing storage pins directly) and voila: encrypted key
-is available.
+Please not.
+
+If we change the order to match DTSI, then this patch would be wrong.
 
 Best regards,
 Krzysztof
