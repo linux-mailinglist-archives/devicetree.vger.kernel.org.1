@@ -1,177 +1,190 @@
-Return-Path: <devicetree+bounces-18621-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18623-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF0BD7F756E
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 14:45:45 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C50697F7593
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 14:51:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1B60A1C20F6A
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 13:45:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E72CB1C20F08
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 13:51:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CFE228E26;
-	Fri, 24 Nov 2023 13:45:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD7AD2C1B8;
+	Fri, 24 Nov 2023 13:51:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o9CzBtB2"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SXfobGd6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43019286B9;
-	Fri, 24 Nov 2023 13:45:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C789FC433C7;
-	Fri, 24 Nov 2023 13:45:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700833541;
-	bh=EzqT4v8vZXGnSVX9M8qsp06zVhLbFhH0kYlZVwhXdTc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=o9CzBtB2XVBvWvf4qEK3/cdglI9Ej7m5YdPkCvTE+vmSq5ifMZ2s4WhZWi1FX+EXn
-	 TRyZ00bY4BMjVSHD4o4EYG5nFg6paKOdsFYqoXpj0ZYYd/4/m6FZN03E28fvxwYaa0
-	 g217e4oJwaTF2ou1LKMh5Fyn0oVi8xOHeExMJ3HE2SKEFeCuj/E/syDZMFAHBvC74o
-	 w3qn/gPd+hCVGb4mXNnmDwlHA4rSNFL5BAY+onlyPUL9JrJp3IbyKG5IMZ7VknUqRe
-	 mi9L9uzoAZY9rvSSx6sh1Nttv1AWD+eMAnnA3MsIXVqT64ts57gqtq0fSmqvnbGmV9
-	 yECsf5Sc3zlRw==
-Received: from johan by xi.lan with local (Exim 4.96.2)
-	(envelope-from <johan@kernel.org>)
-	id 1r6WVN-0000to-1Y;
-	Fri, 24 Nov 2023 14:46:02 +0100
-Date: Fri, 24 Nov 2023 14:46:01 +0100
-From: Johan Hovold <johan@kernel.org>
-To: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, quic_wcheng@quicinc.com,
-	linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	quic_ppratap@quicinc.com, quic_jackp@quicinc.com
-Subject: Re: [PATCH 1/6] dt-bindings: usb: dwc3: Clean up hs_phy_irq in
- bindings
-Message-ID: <ZWCpGdJRexnk98IN@hovoldconsulting.com>
-References: <20231122191335.3058-1-quic_kriskura@quicinc.com>
- <ZV9dYpTYRXn63tXe@hovoldconsulting.com>
- <1192d91f-11bf-44af-953a-14e08e2b6ca8@quicinc.com>
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 443D3D41
+	for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 05:51:07 -0800 (PST)
+Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-40a4848c6e1so13313115e9.1
+        for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 05:51:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1700833866; x=1701438666; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VxCC2Aq/t8/Q52ovrlgjo6dDEhp//mxj0rpaMToUQEw=;
+        b=SXfobGd6xu1kNerihSTVM0fMjoMTJepJn9SsiYzapAkDo0XFBARSRvGY62PxolvLKj
+         JjSevhAYIvUwpQziHEuaAWdG32cn+I0ptzdvEd+M7ds3RPTyuhki4t53aNvmbHb26/ZS
+         z5Vocy8OJLrcQav69jovpTqmA7q/hAqmLKumgh6gI6FWstaA08ec9pnLP+WdXtEvb0y9
+         sldxK3q5W12sG1l9NugJLJaTunpbTFGjCsuAgpUE02YtA8m+iyeVgpAtiyLJ15n2iMtw
+         BXa0eAFUUTBpaDP8551hnjXS1FetYS68ahIr3vFudi9QY4JOWf24CUL+5OfWkAAUWLUX
+         6qew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700833866; x=1701438666;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=VxCC2Aq/t8/Q52ovrlgjo6dDEhp//mxj0rpaMToUQEw=;
+        b=tMybY4flJwrN+ErMBGHvXBcIfJK8LcBeoeffTX/Qwd05i9QGGYbfT7G5DLnFjO8rQt
+         1b14VzUwjJiHRpHvGlSFgDld36L8PN5EBIOouXZLfwHu3ikMB7kNP0nZxAqNXk764DXD
+         QdB8EffoaimywExJnYL29dC+tDINarhK71YfOaDUY2plNXQ4NvrCc4mp5xbrn7bism3C
+         oT2MsXb0SEEk2O68PPUB35BXRtW6IioedXUqPI8jWSlfz9oz0g2IZgcbM/JDQSA8dgRG
+         mOqRxvWulnW5HqCNwVLQV1tafk/mIFInHwK1IcUnGQ1EB9fkOjgnbOAJYJGyTWCFcfYk
+         XBMA==
+X-Gm-Message-State: AOJu0YxzaaPo3BY9XRmFekC66SEwvb9tOWTAvZkA+33PevhonpanRFWU
+	bLIxqzWlYH/2oU6ZMQNWRQ1sAw==
+X-Google-Smtp-Source: AGHT+IEEAJHJwIQiERlLA4dW2jNyNyW36yyG+T8pNRKwyFVm+lg97DXezz9uNgCZRLAAjUfPmw5KOA==
+X-Received: by 2002:a05:600c:4f4b:b0:40b:36e9:bf4b with SMTP id m11-20020a05600c4f4b00b0040b36e9bf4bmr2821370wmq.41.1700833865591;
+        Fri, 24 Nov 2023 05:51:05 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:4611:6dae:b5a3:b6a4? ([2a01:e0a:982:cbb0:4611:6dae:b5a3:b6a4])
+        by smtp.gmail.com with ESMTPSA id fj13-20020a05600c0c8d00b00407b93d8085sm5856582wmb.27.2023.11.24.05.50.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 24 Nov 2023 05:51:05 -0800 (PST)
+Message-ID: <c3a07912-07da-4965-94b8-3c0d8889ddc4@linaro.org>
+Date: Fri, 24 Nov 2023 14:50:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1192d91f-11bf-44af-953a-14e08e2b6ca8@quicinc.com>
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v9 04/12] dt-bindings: phy: amlogic,g12a-mipi-dphy-analog:
+ drop unneeded reg property and example
+Content-Language: en-US, fr
+To: Conor Dooley <conor@kernel.org>
+Cc: Jerome Brunet <jbrunet@baylibre.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Jagan Teki <jagan@amarulasolutions.com>, Nicolas Belin
+ <nbelin@baylibre.com>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Remi Pommarel
+ <repk@triplefau.lt>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org,
+ linux-phy@lists.infradead.org, Rob Herring <robh@kernel.org>
+References: <20231124-amlogic-v6-4-upstream-dsi-ccf-vim3-v9-0-95256ed139e6@linaro.org>
+ <20231124-amlogic-v6-4-upstream-dsi-ccf-vim3-v9-4-95256ed139e6@linaro.org>
+ <20231124-felt-tip-everybody-f2a6836e52af@spud>
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro Developer Services
+In-Reply-To: <20231124-felt-tip-everybody-f2a6836e52af@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Fri, Nov 24, 2023 at 05:32:37PM +0530, Krishna Kurapati PSSNV wrote:
-> > 
-> > Thanks for sorting this out.
-> > 
-> > It seems like we have a few combinations of these interrupts and we
-> > should probably try to define the order for these once and for all and
-> > update the current devicetrees to match (even if it means adding new
-> > interrupts in the middle).
-> > 
-> > Instead of adding separate compatibles for the controllers without SS
-> > support, I suggest keeping that interrupt last as an optional one.
-> > 
-> > But IIUC we essentially have something like:
-> > 
-> > qusb2-:
-> > 
-> > 	- const: qusb2_phy
-> > 	- const: pwr_event
-> > 	- const: ss_phy_irq	(optional)
-> > 
-> > qusb2:
-> > 
-> > 	- const: hs_phy_irq
-> > 	- const: qusb2_phy
-> > 	- const: pwr_event
-> > 	- const: ss_phy_irq	(optional)
-> > 
-> > qusb2+:
-> > 
-> > 	- const: hs_phy_irq
-> > 	- const: qusb2_phy
-> > 	- const: dp_hs_phy_irq
-> > 	- const: dm_hs_phy_irq
-> > 	- const: pwr_event
-> > 	- const: ss_phy_irq	(optional)
-> > 
+Hi Conor,
+
+On 24/11/2023 13:36, Conor Dooley wrote:
+> On Fri, Nov 24, 2023 at 09:41:15AM +0100, Neil Armstrong wrote:
+>> The amlogic,g12a-mipi-dphy-analog is a feature of the simple-mfd
+>> amlogic,meson-axg-hhi-sysctrl system control register zone which is an
+>> intermixed registers zone, thus it's very hard to define clear ranges for
+>> each SoC controlled features even if possible.
+>>
+>> The amlogic,g12a-mipi-dphy-analog was wrongly documented as an independent
+>> register range, which is not the reality, thus fix the bindings by dropping
+>> the reg property now it's referred from amlogic,meson-gx-hhi-sysctrl.yaml
+>> and documented as a subnode of amlogic,meson-axg-hhi-sysctrl.
+>>
+>> Also drop the unnecessary example, the top level bindings example should
+>> be enough.
+>>
+>> Fixes: 76ab79f9726c ("dt-bindings: phy: add Amlogic G12A Analog MIPI D-PHY bindings")
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 > 
-> This combination doesn't exist. So we can skip this one.
+> I feel like I left a tag on this one before, but I can't remember.
+> Perhaps I missed the conclusion to the discussion to the discussion with
+> Rob about whether having "reg" was desirable that lead to a tag being
+> dropped?
 
-Ok, good. I thought you said some QUSB2 platforms used DP/DM, but I guess
-that means they don't have the qusb2_phy interrupt then.
- 
-> > femto-:
-> > 	- const: dp_hs_phy_irq
-> > 	- const: dm_hs_phy_irq
-> > 	- const: pwr_event
-> > 	- const: ss_phy_irq	(optional)
-> > 
-> > femto:
-> > 	- const: hs_phy_irq
-> > 	- const: dp_hs_phy_irq
-> > 	- const: dm_hs_phy_irq
-> > 	- const: pwr_event
-> > 	- const: ss_phy_irq	(optional)
-> > 
-> > Does this look like it would cover all of our currents SoCs?
-> > 
-> > Do all of them have the pwr_event interrupt?
+I checked again and nope, not tag, but Rob's question was legitimate and I reworded
+and clarified the commit message following your reviews.
+On the other side you suggested a Fixes tag, which I added.
+
+The rewording is about why reg doesn't make sense on the nature of the memory
+region and it doesn't make sense here like other similar nodes.
+
+Neil
+
 > 
-> Yes. From whatever targets I was able to find, only one of them didn't 
-> have the power_event irq. Rest all of them had. I will recheck that 
-> particular one again.
+>> ---
+>>   .../bindings/phy/amlogic,g12a-mipi-dphy-analog.yaml          | 12 ------------
+>>   1 file changed, 12 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/phy/amlogic,g12a-mipi-dphy-analog.yaml b/Documentation/devicetree/bindings/phy/amlogic,g12a-mipi-dphy-analog.yaml
+>> index c8c83acfb871..81c2654b7e57 100644
+>> --- a/Documentation/devicetree/bindings/phy/amlogic,g12a-mipi-dphy-analog.yaml
+>> +++ b/Documentation/devicetree/bindings/phy/amlogic,g12a-mipi-dphy-analog.yaml
+>> @@ -16,20 +16,8 @@ properties:
+>>     "#phy-cells":
+>>       const: 0
+>>   
+>> -  reg:
+>> -    maxItems: 1
+>> -
+>>   required:
+>>     - compatible
+>> -  - reg
+>>     - "#phy-cells"
+>>   
+>>   additionalProperties: false
+>> -
+>> -examples:
+>> -  - |
+>> -    phy@0 {
+>> -          compatible = "amlogic,g12a-mipi-dphy-analog";
+>> -          reg = <0x0 0xc>;
+>> -          #phy-cells = <0>;
+>> -    };
+>>
+>> -- 
+>> 2.34.1
+>>
 
-Please do. The driver polls the corresponding status register on all
-platforms currently, and perhaps this interrupt can one day be used to
-get rid of the polling.
- 
-> > Note that DP comes before DM above as that seems like the natural order
-> > of these (plus before minus).
-> > 
-> > Now if the HS interrupt is truly unusable, I guess we can consider
-> > dropping it throughout and the above becomes just three permutations
-> > instead, which can even be expressed along the lines of:
-> 
-> Infact, I wanted to do this but since you mentioned before that if HW 
-> has it, we must describe it, I kept it in. But since this functionality 
-> is confirmed to be mutually exclusive of qusb2/{dp/dm}, I am aligned to 
-> skip it in bindings and drop it in DT.
-
-As I mentioned elsewhere, it depends on whether it can be used at all.
-Not simply whether there is some other mechanism that can be used in its
-stead. Such a decision should be left up to the implementation.
-
-That's why I said "truly unusable" above. It's still not clear to me
-whether that is the case or not.
-
-> > 	- anyOf:
-> > 	  - items:
-> > 	    - const: qusb2_phy
-> > 	  - items:
-> > 	    - const: dp_hs_phy_irq
-> > 	    - const: dm_hs_phy_irq
-> > 	- const: pwr_event
-> > 	- const: ss_phy_irq	(optional)
-> > 
-> 
-> This must cover all cases AFAIK. How about we keep pwr_event also 
-> optional for time being. The ones I am not able to find also would come 
-> up under still binding block.
-
-No, we should avoid that if we can as with two many optional things,
-these quickly gets messy (one optional interrupt at the end is fine and
-can be expressed using min/maxItems).
-
-If the "qusb2+" combination above isn't needed, then we're down to four
-permutations, which is few enough to be spelled out explicitly even if
-we decide that the hs_phy_irq should be kept in. Without hs_phy_irq, it
-seems there's really only two permutations.
-
-Johan
 
