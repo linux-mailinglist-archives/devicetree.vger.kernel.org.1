@@ -1,211 +1,147 @@
-Return-Path: <devicetree+bounces-18687-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18688-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56D327F84B4
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 20:30:40 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6E887F84D2
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 20:40:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 022FC285ECF
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 19:30:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 346C5B22383
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 19:40:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2219139FFF;
-	Fri, 24 Nov 2023 19:30:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FCC7364D5;
+	Fri, 24 Nov 2023 19:40:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="efr+Q17d"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jnEfe2+V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::222])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 496C52D4E;
-	Fri, 24 Nov 2023 11:25:14 -0800 (PST)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id BC79A40003;
-	Fri, 24 Nov 2023 19:25:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1700853912;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=N0CyzQpV4Tyz2xY0O2TZItXXhN4Ys6YBAT2N8EGMIrM=;
-	b=efr+Q17dRJ0Y2etkZfLFho/qiX0F5TpoxJh45ARs1YK5SJ7RQNcHwDOlm63CEkPRe483QS
-	dQ/cHDfkQjXOQAS99yW//xyxCEcCwSbjduiZ97rvD2K7WRp9snjh/VPNuaWsAxz7HxfkbO
-	Wyfu/jSfRXtPpA19gk21doMdg5EFqa6ibhDxCRlDn/L7b1ZG4RFVY3lNF2zWz903xVVtWE
-	aQlhKotHb0CT+kdtLVP6KLqPUT+wsmGNGDya5sqTLD0/L+PUEAiVqmuaNT56h5Fg760hAK
-	MFbCEdHidB8vpMyCkH72HqEJEy/NIWMP83+y8ybr6HXaS6u74LrtqagFP7LBzg==
-Date: Fri, 24 Nov 2023 20:25:08 +0100
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Marco Felsch <m.felsch@pengutronix.de>
-Cc: devicetree@vger.kernel.org, Luka Perkov <luka.perkov@sartura.hr>,
- kernel@pengutronix.de, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Randy Dunlap <rdunlap@infradead.org>, linux-kernel@vger.kernel.org, Daniel
- Golle <daniel@makrotopia.org>, Michael Walle <michael@walle.cc>, Rob
- Herring <robh+dt@kernel.org>, Srinivas Kandagatla
- <srinivas.kandagatla@linaro.org>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, Chen-Yu Tsai <wenst@chromium.org>,
- =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, Robert Marko
- <robert.marko@sartura.hr>, Frank Rowand <frowand.list@gmail.com>
-Subject: Re: [PATCH v13 4/6] nvmem: core: Rework layouts to become regular
- devices
-Message-ID: <20231124202508.48a00fc5@xps-13>
-In-Reply-To: <20231122224553.cfklcv6rew6ktixj@pengutronix.de>
-References: <20231011111529.86440-1-miquel.raynal@bootlin.com>
-	<20231011111529.86440-5-miquel.raynal@bootlin.com>
-	<20231122220240.4jg245vblnh6d5zy@pengutronix.de>
-	<20231122224553.cfklcv6rew6ktixj@pengutronix.de>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D13B98;
+	Fri, 24 Nov 2023 11:40:21 -0800 (PST)
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-54afd43c83cso1166628a12.0;
+        Fri, 24 Nov 2023 11:40:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1700854820; x=1701459620; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=DKrRg2snxExqJdFGigUYh7T7Fc6aEzueP8JRF0HCrTo=;
+        b=jnEfe2+VbZBpN2wMsD3w96vpmbBE2wc2X/QwHv7yt0dtmByK91FIHcgt82ldqDrPrh
+         27bh8nXMj2zU6XTUipw9OiB/9PmqewQNYwSqscxSgwPEswURcJkPuhTtWmgMOAtxb9jN
+         OnH8pL94RXFUb0lc1KPjO+oamHC5n/XrL6mIsvmZ8rLGsN52PSddrj/r3HlQvt+VLg5J
+         xyw8ZvvhrHIzUswjeuEn8A163s4X8JrmG1jHN34/sAbVnx8CGSxwDl32yRaPgrYTSWLS
+         f2S68tS1TdoMfzDLjyXRwrM1UEutnFoCXswaAE+UaPifHNnYGUIMGmwqF+u6wN7CYI0X
+         GbPA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700854820; x=1701459620;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=DKrRg2snxExqJdFGigUYh7T7Fc6aEzueP8JRF0HCrTo=;
+        b=LJs8oVlIGs2PGAv9zlxz/hlgpEn+5hyUL5tXmQyt9zsOoWJSk80bEOV5oASbvwRaRv
+         YY58JPGqhSB3YJsHwNlfkONjAABZaD3Na99IvRCIX1vB4fojkoudDOqm2mvOoyO7x24g
+         5uyVT9l9ZZ8gNWM6pAR4Z+8JcM9pDtTRw1hTvQLogcIQe7wKqz004/3u0mwcTUPDPME2
+         ytnDtbbi3gRmEny5lmvqyrv7QvTSdg5NGD5JXMZwkkvsp0KcS0LioYuLegRawkpaYVnA
+         99i2JiIsO4nQqLlcKMijedOfcZN5DYk4aW+QNIHsopPMK7gP4KO6exWxo7N+Yu6umTXi
+         Mmng==
+X-Gm-Message-State: AOJu0YyhosQWHaPAKACqVnkqYKyf4EypDkQ8KReeR75lQPxjcIPEewSF
+	TiQ9X6F2xfj769T6sRcIHq8=
+X-Google-Smtp-Source: AGHT+IGItN29AlffdfAFP+pdBb+pUmXR0qRXvVcejscZr6unZPC/VQI53oWhDMvt4V3MPYz/KIrdxQ==
+X-Received: by 2002:a17:906:f1d4:b0:9fb:f99c:3ea with SMTP id gx20-20020a170906f1d400b009fbf99c03eamr2802823ejb.52.1700854819659;
+        Fri, 24 Nov 2023 11:40:19 -0800 (PST)
+Received: from skbuf ([188.26.185.12])
+        by smtp.gmail.com with ESMTPSA id h25-20020a170906111900b00a0435148ed7sm2464856eja.17.2023.11.24.11.40.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 24 Nov 2023 11:40:19 -0800 (PST)
+Date: Fri, 24 Nov 2023 21:40:16 +0200
+From: Vladimir Oltean <olteanv@gmail.com>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Christian Marangi <ansuelsmth@gmail.com>, Rob Herring <robh@kernel.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Qingfang Deng <dqfext@gmail.com>,
+	SkyLake Huang <SkyLake.Huang@mediatek.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	David Epping <david.epping@missinglinkelectronics.com>,
+	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+	Harini Katakam <harini.katakam@amd.com>,
+	Simon Horman <horms@kernel.org>,
+	Robert Marko <robert.marko@sartura.hr>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [net-next RFC PATCH 03/14] dt-bindings: net: document ethernet
+ PHY package nodes
+Message-ID: <20231124194016.tcmu4w2r7jrnv6mo@skbuf>
+References: <20231120135041.15259-1-ansuelsmth@gmail.com>
+ <20231120135041.15259-4-ansuelsmth@gmail.com>
+ <c21ff90d-6e05-4afc-b39c-2c71d8976826@lunn.ch>
+ <20231121144244.GA1682395-robh@kernel.org>
+ <a85d6d0a-1fc9-4c8e-9f91-5054ca902cd1@lunn.ch>
+ <655e4939.5d0a0220.d9a9e.0491@mx.google.com>
+ <20231124165923.p2iozsrnwlogjzua@skbuf>
+ <b8981dc4-5db0-4418-b47d-3e763e20beac@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: miquel.raynal@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <b8981dc4-5db0-4418-b47d-3e763e20beac@lunn.ch>
 
-Hi Marco,
+On Fri, Nov 24, 2023 at 07:35:35PM +0100, Andrew Lunn wrote:
+> > I think you are hitting some of the same points I have hit with DSA.
+> > The PHY package could be considered an SoC with lots of peripherals on
+> > it, for which you'd want separate drivers.
+> 
+> At least at the moment, this is not true. The package does just
+> contain PHYs. But it also has some properties which are shared across
+> those PHYs, e.g. reset. 
+> 
+> What you describe might become true in the future. e.g. The LED/GPIO
+> controller is currently part of the PHY, and each PHY has its own. I
+> could however imagine that becomes a block of its own, outside of the
+> PHY address space, and maybe it might want its own class LED
+> driver. Some PHYs have temperature sensors, which could be a package
+> sensor, so could in theory be an individual hwmon driver. However,
+> i've not yet seen such a package.
+> 
+> Do we consider this now? At the moment i don't see an MFD style system
+> is required. We could crystal ball gaze and come up with some
+> requirements, but i would prefer to have some real devices and
+> datasheets. Without them, we will get the requirements wrong.
+> 
+> I also think we are not that far away from it, in terms of DT, if you
+> consider the later comments. I suggested we need a phy package
+> specific compatible. At the moment, it will be ignored by the kernel,
+> the kernel does not need it, it probes the PHYs in the current way,
+> using the ID registers. But it could in future be used to probe a real
+> driver, which could be an MFD style driver. We need to see updated DT
+> binding examples, but i don't see why we cannot slot it in at a later
+> date.
 
-m.felsch@pengutronix.de wrote on Wed, 22 Nov 2023 23:45:53 +0100:
+I'm not suggesting to go for MFD right away. Just with a structure that
+is extensible to possibly cover that. For now, a package node with a
+Qualcomm compatible, with the most minimal driver that forwards MDIO
+access to PHY children.
 
-> Hi Miquel,
->=20
-> sorry for answering to my own mail, I forgot something I noticed later.
-
-No problem :)
-
-> On 23-11-22, Marco Felsch wrote:
-> > Hi Miquel,
-> >=20
-> > thanks a lot for your effort on this. Please see my comments inline.
-> >=20
-> > On 23-10-11, Miquel Raynal wrote: =20
-> > > Current layout support was initially written without modules support =
-in
-> > > mind. When the requirement for module support rose, the existing base
-> > > was improved to adopt modularization support, but kind of a design fl=
-aw
-> > > was introduced. With the existing implementation, when a storage devi=
-ce
-> > > registers into NVMEM, the core tries to hook a layout (if any) and
-> > > populates its cells immediately. This means, if the hardware descript=
-ion
-> > > expects a layout to be hooked up, but no driver was provided for that,
-> > > the storage medium will fail to probe and try later from
-> > > scratch. Even if we consider that the hardware description shall be
-> > > correct, we could still probe the storage device (especially if it
-> > > contains the rootfs).
-> > >=20
-> > > One way to overcome this situation is to consider the layouts as
-> > > devices, and leverage the existing notifier mechanism. When a new NVM=
-EM
-> > > device is registered, we can:
-> > > - populate its nvmem-layout child, if any
-> > > - try to modprobe the relevant driver, if relevant =20
->=20
-> I'm not sure why we call of_request_module() the driver framework should
-> handle that right?
-
-Actually that's right, it is no longer needed, we would expect udev to
-do that now. Thanks for the pointer.
-
-> > > - try to hook the NVMEM device with a layout in the notifier =20
->=20
-> The last part is no longer true since you don't use the notifier
-> anymore.
-
-True, I've re-written this part.
-
-> > > And when a new layout is registered:
-> > > - try to hook all the existing NVMEM devices which are not yet hooked=
- to
-> > >   a layout with the new layout
-> > > This way, there is no strong order to enforce, any NVMEM device creat=
-ion
-> > > or NVMEM layout driver insertion will be observed as a new event which
-> > > may lead to the creation of additional cells, without disturbing the
-> > > probes with costly (and sometimes endless) deferrals.
-> > >=20
-> > > In order to achieve that goal we need:
-> > > * To keep track of all nvmem devices
-> > > * To create a new bus for the nvmem-layouts with minimal logic to mat=
-ch
-> > >   nvmem-layout devices with nvmem-layout drivers.
-> > > All this infrastructure code is created in the layouts.c file.
-> > >=20
-> > > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> > > Tested-by: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl> =20
->=20
-> ...
->=20
-> > > @@ -944,19 +872,6 @@ struct nvmem_device *nvmem_register(const struct=
- nvmem_config *config)
-> > >  			goto err_put_device;
-> > >  	}
-> > > =20
-> > > -	/*
-> > > -	 * If the driver supplied a layout by config->layout, the module
-> > > -	 * pointer will be NULL and nvmem_layout_put() will be a noop.
-> > > -	 */
-> > > -	nvmem->layout =3D config->layout ?: nvmem_layout_get(nvmem);
-> > > -	if (IS_ERR(nvmem->layout)) {
-> > > -		rval =3D PTR_ERR(nvmem->layout);
-> > > -		nvmem->layout =3D NULL;
-> > > -
-> > > -		if (rval =3D=3D -EPROBE_DEFER)
-> > > -			goto err_teardown_compat;
-> > > -	} =20
->=20
-> Since this logic will be gone and the layout became a device the fixup
-> hook for the layout is more than confusing. E.g. the imx-ocotp driver
-> uses the layout to register a fixup for a cell which is fine but the
-> hook should be moved from the layout[-dev] to the config. Please see
-> below.
-
-That is true.
-
->=20
-> > > -
-> > >  	if (config->cells) {
-> > >  		rval =3D nvmem_add_cells(nvmem, config->cells, config->ncells);
-> > >  		if (rval)
-> > > @@ -975,7 +890,7 @@ struct nvmem_device *nvmem_register(const struct =
-nvmem_config *config)
-> > >  	if (rval)
-> > >  		goto err_remove_cells;
-> > > =20
-> > > -	rval =3D nvmem_add_cells_from_layout(nvmem);
-> > > +	rval =3D nvmem_populate_layout(nvmem);
-> > >  	if (rval)
-> > >  		goto err_remove_cells; =20
->=20
-> Also why do we populate the nvmem-layout device infront of the nvmem
-> device?
-
-I'm not sure I get the question, there is nothing abnormal that stands
-out to my eyes.
-
-...
-
-> >  =20
-> > > -	const char *name;
-> > > -	const struct of_device_id *of_match_table;
-> > > +	struct device dev;
-> > > +	struct nvmem_device *nvmem;
-> > >  	int (*add_cells)(struct device *dev, struct nvmem_device *nvmem,
-> > >  			 struct nvmem_layout *layout);
-> > >  	void (*fixup_cell_info)(struct nvmem_device *nvmem,
-> > >  				struct nvmem_layout *layout,
-> > >  				struct nvmem_cell_info *cell); =20
->=20
-> I speak about this hook. This should be moved into the config, maybe
-> also renamed to fixup_dt_cell_info() or so to not confuse the users. If
-> we move that hook and remove the add_cells hook there are only two
-> members left for the cross-link.
-
-It's not a bad idea, I've included this change in my series (for v14,
-sic). I like your rename as well. Thanks for the hint.
-
-Thanks,
-Miqu=C3=A8l
+I can't speak for the future of PHY drivers, since I don't know enough
+about PHYs. I'm just coming from the DSA background where I really wish
+we had this sort of infrastructure earlier. Now I have the SJA1110 which
+still lacks support for the interrupt controller for its integrated
+PHYs, and a bunch of other IP blocks in the package, because it's so
+incredibly hard to make the driver support the old-style and the
+new-style device trees.
 
