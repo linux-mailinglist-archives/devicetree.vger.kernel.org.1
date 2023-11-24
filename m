@@ -1,116 +1,87 @@
-Return-Path: <devicetree+bounces-18584-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18585-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C311B7F72DC
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 12:37:35 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2542E7F72E2
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 12:39:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F3E431C20C99
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 11:37:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 781522817BA
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 11:39:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B18C1DA23;
-	Fri, 24 Nov 2023 11:37:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4B161DDD7;
+	Fri, 24 Nov 2023 11:39:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fc5CkFx9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="B0X2Fgzt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D90F010D7;
-	Fri, 24 Nov 2023 03:37:28 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-507b9408c61so2507466e87.0;
-        Fri, 24 Nov 2023 03:37:28 -0800 (PST)
+Received: from mail-yw1-x1143.google.com (mail-yw1-x1143.google.com [IPv6:2607:f8b0:4864:20::1143])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0602D5A;
+	Fri, 24 Nov 2023 03:39:29 -0800 (PST)
+Received: by mail-yw1-x1143.google.com with SMTP id 00721157ae682-5cce3010367so16905597b3.0;
+        Fri, 24 Nov 2023 03:39:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1700825847; x=1701430647; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=Kv/qXR6TzzcEWtIi+A5KCJiV+bM8ZlUGTUU+Iv9EyTo=;
-        b=fc5CkFx9UQ3cf4ZHffc9bUMYhpyJVM1xuH4y7qDpkTPW+br0vu+RZb8P+eqVL5yxK/
-         Nvbj+mbw5PsknZJAejaR7iTSRgQaA+JcEoeYOaDSWYAT1TGtQn18+4UtkD3VHdNkda3R
-         H1EkwePcmMuv9KKiF8BPWcw+udNPR62viMIFJ3IuHy6yNw++cZH2ylnxZfeJtCmmvJ2m
-         qZS88kVer7N9OZtCY/sd2biVdNaw6nZ2C6kRBGQc1idtNnNAEeClmhwSdazFRQCLJeku
-         1M0SOyNMISdlvbVZtMa4VLKhr4eQ3Co5oHZo7mDhXbmy7gS3nbnMO9KPFJmtrYl0QPtG
-         W2cQ==
+        d=gmail.com; s=20230601; t=1700825969; x=1701430769; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zb10WU8tv9EHtRhhETzeYrXTjtAxyQNnbRx/PI9eif4=;
+        b=B0X2FgztqDFY4cOMMaQiFtEqKgUMtuo+605cSAA+dooJlw8tG9hMS6rvecF6LZR2fX
+         dB4srRw7X4x2E0k/Su3mI/MKoX+g02plTaNOuZ9DfPaTR6dnpvglNAgF5It7B+HaZqiU
+         5nxVu80ck3zhcDTqtjHNCwgyZa/G3L2+PwpPskfjkRpLiq3niLKJeYRnoreI0dCiubis
+         +Tx2TxIaQ01WvJJWLsdo3hGetHvk0OZ/MOnVVhDKoNx/3O1HDl0BPA8ZsT03bta52+hE
+         Z/PAn1j8GsjmKcptKQlCjHfX2aqmDP7f6qC/NwIWHTa35qpeTwuOgxmjCR4JubJ6X3Tu
+         jUsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700825847; x=1701430647;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Kv/qXR6TzzcEWtIi+A5KCJiV+bM8ZlUGTUU+Iv9EyTo=;
-        b=SYigrvjjnh3dJ22vI94KrhP9TI1rK8/ufIv9oK+NHhC3dRN5UN5nljQgQcudRcs0Pu
-         m6N0Bxaj5+qVmLBqTivj0iaHylX8PyvKChORvqj5PxsxNvNvAiTSfGgoOSFAF69mAeaY
-         IeUwJEJXHEjCI05nrw3mw6zr08lTENPMQi6nug96qB2s0WTAf/91CMt4CV0w4hSt0Jb8
-         iZMe22/UN5QzxuqA7dhe02uZs2VXPUDD5VhhU+suGrI1EOS4modrINUXfjCCzXvzzGFJ
-         QfPIXcethy460evZGIWIo53Ni43+skaBdI01Gm2h2QL8YYOBYUrVNO9fHVQNQwgoq5ZF
-         5Ugw==
-X-Gm-Message-State: AOJu0YzUmtDvUrGl6h6OwUigFVyRizOgfV+dkowRatDOK8QuqWN6LW15
-	AQIsPqMAoIz/QoqAvNtLEXI=
-X-Google-Smtp-Source: AGHT+IEzCZWJ3hXJoDSdyRqwBjzazZDlJEfxOI7PQcJ8htEj/5PKeCWhdKuf36Vqxu84m72Y3Ksg9A==
-X-Received: by 2002:ac2:4904:0:b0:50b:a33f:548d with SMTP id n4-20020ac24904000000b0050ba33f548dmr1711746lfi.22.1700825846888;
-        Fri, 24 Nov 2023 03:37:26 -0800 (PST)
-Received: from mobilestation ([178.176.56.174])
-        by smtp.gmail.com with ESMTPSA id h14-20020ac24dae000000b0050aa76b984esm478169lfe.264.2023.11.24.03.37.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Nov 2023 03:37:26 -0800 (PST)
-Date: Fri, 24 Nov 2023 14:37:24 +0300
-From: Serge Semin <fancer.lancer@gmail.com>
-To: Gregory CLEMENT <gregory.clement@bootlin.com>
-Cc: Paul Burton <paulburton@kernel.org>, 
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, linux-mips@vger.kernel.org, 
-	Jiaxun Yang <jiaxun.yang@flygoat.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, Tawfik Bayouk <tawfik.bayouk@mobileye.com>, 
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, =?utf-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Arnd Bergmann <arnd@arndb.de>, 
-	Philippe =?utf-8?Q?Mathieu-Daud=C3=A9?= <philmd@linaro.org>
-Subject: Re: [PATCH v2 15/21] dt-bindings: mips: cpu: Add I-Class I6500
- Multiprocessor Core
-Message-ID: <e6fjuaya7ghhapefthc5aj47qyarw7ankb7jexvhem3m37llfn@up55fhhqo2bm>
-References: <20231123152639.561231-1-gregory.clement@bootlin.com>
- <20231123152639.561231-16-gregory.clement@bootlin.com>
+        d=1e100.net; s=20230601; t=1700825969; x=1701430769;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=zb10WU8tv9EHtRhhETzeYrXTjtAxyQNnbRx/PI9eif4=;
+        b=TqT/HkDlA12T/RDv+vEe950HA0cta23P/7LhWbax/P9xOMCkqr48bDx6vQf+3Pr3Vg
+         oh2lJKY4IxrXkLbcaFNHvhjqDI0nzjEaPm79vobj+3CpE/QlFvqijlJ2Ab1bB5Bst2Pp
+         NsmTYYXSBHVNES6bGe77e7jlgIhKNKxbbiA6wQ0VlEY/A8fnj5fZFrRVLO1N3b2jP857
+         +fU8oSWN1HwdBnR/LoCr2rAZDi/WZeJkbflARzVFGi/xfUNqf4eYqosIVWK8dLPOqKfQ
+         KZ27n4tINlxqbq63Upy2gfhWXZqWPyqufKFbAWbRAdHtT1835ZQf1g5+h3dfgudBe6XG
+         fV2g==
+X-Gm-Message-State: AOJu0YwwPkHkVqkf2mF7w8cXgb66oiMCoP3cQjNdkbJC/WTQNDqo1xE8
+	qeH4Re0ivG4tl3u6X8g4xOx/ExfitrpDnswPLDPtUhiNJJxk4g==
+X-Google-Smtp-Source: AGHT+IFlgdpvIKIPHZcqtrrFQ+m65hOVgTUW/zmNJlDs8CCf1nV9Q6cL/Zmdm2kSYp2dC3KLqGXCd1Fr33dz632JH38=
+X-Received: by 2002:a81:4981:0:b0:5a7:c8a9:79e8 with SMTP id
+ w123-20020a814981000000b005a7c8a979e8mr2362179ywa.4.1700825968843; Fri, 24
+ Nov 2023 03:39:28 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231123152639.561231-16-gregory.clement@bootlin.com>
+References: <20231118105815.17171-1-579lpy@gmail.com> <20231118110232.17261-1-579lpy@gmail.com>
+ <20231119-donated-hypnotist-33529b63bee8@spud>
+In-Reply-To: <20231119-donated-hypnotist-33529b63bee8@spud>
+From: peiyu li <579lpy@gmail.com>
+Date: Fri, 24 Nov 2023 19:38:52 +0800
+Message-ID: <CAELPsEaQZ1a-JO2Vne_MZXWN+nVh7LEw1z_wbHVjiLrKPtd_rQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] dt-bindings: iio: humidity: Add TI HDC302x support
+To: conor@kernel.org
+Cc: jic23@kernel.org, lars@metafoo.de, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Nov 23, 2023 at 04:26:32PM +0100, Gregory CLEMENT wrote:
-> The MIPS Warrior I-class I6500 was announced by Imagination
-> Technologies in 2016 and is used in the Mobileye SoC EyeQ5.
-> 
-> Acked-by: Arnd Bergmann <arnd@arndb.de>
-> Reviewed-by: Philippe Mathieu-Daudé <philmd@linaro.org>
-> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
-
-One more time:
-Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
-
--Serge(y)
-
-> ---
->  Documentation/devicetree/bindings/mips/cpus.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/mips/cpus.yaml b/Documentation/devicetree/bindings/mips/cpus.yaml
-> index cf382dea3922c..b5165cf103e94 100644
-> --- a/Documentation/devicetree/bindings/mips/cpus.yaml
-> +++ b/Documentation/devicetree/bindings/mips/cpus.yaml
-> @@ -39,6 +39,7 @@ properties:
->        - mti,mips24KEc
->        - mti,mips14KEc
->        - mti,mips14Kc
-> +      - img,i6500
->  
->    reg:
->      maxItems: 1
-> -- 
-> 2.42.0
-> 
-> 
+On Sun, Nov 19, 2023 at 21:41, Conor Dooley wrote=EF=BC=9A
+...
+> > - change the maintainers to me.
+> > - hdc3020,hdc3021,hdc3022 are compatible,I've changed the dirver.
+>
+> Does that even compile? It was the binding I wanted you to change, not
+> the driver. Take a look at the example-schema for how to do this.
+In example-schema.yaml, I did not see another way of writing "compatible".
+So does this mean I need to add an example contains
+compatible =3D "ti,hdc3021", "ti,hdc3020";
+> Cheers,
+> Conor.
+Thanks,
+Li peiyu.
 
