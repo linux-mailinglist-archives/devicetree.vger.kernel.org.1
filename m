@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-18471-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18472-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAF337F6DDD
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 09:16:45 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0670B7F6DE8
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 09:18:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 185CA1C20D29
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 08:16:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7E5D5B20A89
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 08:18:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FD158F67;
-	Fri, 24 Nov 2023 08:16:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFAB09464;
+	Fri, 24 Nov 2023 08:18:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VO4X5Myp"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GBTNUlzl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48810D67
-	for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 00:16:38 -0800 (PST)
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-9fa45e75ed9so228397966b.1
-        for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 00:16:38 -0800 (PST)
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE36D1BD
+	for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 00:18:23 -0800 (PST)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-a011e9bf336so225516266b.3
+        for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 00:18:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700813796; x=1701418596; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1700813902; x=1701418702; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=zIWG3YzrIVIqhqQJnKaM2e5naBD6/ub+8w2rt6aGVRs=;
-        b=VO4X5Mypc/vAY4dYHCtFeR2tV8K1yStpscfZOCwfpcG+GF53fz07pcGyw0tuSW5bjc
-         Plvyv3sMhXTwNOAZSq8CPhFFyMnpepj7gl+4/ofSmsuDsFqq4TpuANtPrh/IqMeGyUNz
-         jkgVVSQXE7ArJmQPbxUM83YtZ8olmzeHLpZzw6jN1/hGpGSH+kHhnf7RMx9Qp3ZyV5XC
-         e+UEsWiPz/Ib5Fl1dO9VwVZTKoSh/ExMMTLkJEYi28YCeObxFI87oJb9cBH9waX3dQO4
-         PhAi3vMu67xJ5fRS6g5XBaMtBHBd99oXOZy8Uu4PcUMhEntf79l2XkzoE5zENSua6ZoP
-         rRuw==
+        bh=RXYsI3U3Cf5rOwPR0MYwUlHIIqZZ1jITVSihrQ3lNMg=;
+        b=GBTNUlzlaukflyfmJgOtG0uyN0NQDh8smopKmvnQKRjppSXS7G4QAKD4oaH/T4WSOI
+         gPqcg2txQ9w+kW6w1OanNdPmPklUuUifB79te5QgcImFJa+ypM00HgklUbwj16FdILde
+         xzJd/pB4KhkfZE1GrX9ml6EhHg3Jle9Yan+i5U5cYkvupKYMQrmY5yrF5f1QI5Yx+jYi
+         KoxfG2A1NvaoHoIm7OGYiXPYRmtPYnsgE5gGb6dB41lCSJiaSblM+2jpOaEquC8NxZPS
+         MqRHdFA17wu3d8QtNT5H2qG/UkNrBgqrZnqfOTnKfuEH+Ao4lrJ3RUiUNJ3ALWMTTth7
+         qTGw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700813797; x=1701418597;
+        d=1e100.net; s=20230601; t=1700813902; x=1701418702;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zIWG3YzrIVIqhqQJnKaM2e5naBD6/ub+8w2rt6aGVRs=;
-        b=O0UPDXilUAlXhANS3Tb5Lqg4uElPrTrnmQofZ+ZqBDljk+tIwZwUOj8JrR1dRkaKMI
-         ehiwInYthNwiqNZJSHljIpaT6Yhv3FzPbUlajep4lHL2X+1tP+cu41mGL8vQ9UIRSbrC
-         rQCVta3b57a/hK1Zg0ab/qytFhmIBreRx6VaXuM4LA8u71e2Mgui7sIWoMu9i1ao/eVa
-         m62zBS9s5Kzu/IIWzU6typ9QseA8SpIoTAThxz6stj9B/To7uES30cxqL+42vwHhdqXv
-         VBA/quVtmVHEEBi0JPa/PpSb+gvLmvA4Zxa0W7zAmlikAxMMS4mu4oLhcILMtTL2Cnez
-         gInw==
-X-Gm-Message-State: AOJu0Yz3SscdXJWK0w2CaCKRYw78Eexsq1oI0CeoCsPKagmfkOPvis5V
-	iEKt7zF1NDLeicT0VqynGswI3w==
-X-Google-Smtp-Source: AGHT+IGA78Tc9gn9lEPXuo+VO2FtN6jJHFT9KXc9y85/am8r9tLR2gw4uvdeONq3tQ+rJyCcGZTKNA==
-X-Received: by 2002:a17:906:b882:b0:9e7:3af8:1fcd with SMTP id hb2-20020a170906b88200b009e73af81fcdmr1235076ejb.76.1700813796623;
-        Fri, 24 Nov 2023 00:16:36 -0800 (PST)
+        bh=RXYsI3U3Cf5rOwPR0MYwUlHIIqZZ1jITVSihrQ3lNMg=;
+        b=DC0T0asz44a20kN83h7yEp6KFfZkn0xVwR6EFBVZv4bClgu+YhnRToi4pGuiW8WSaK
+         Uw9Gs+uYhSLSt/EaMkOdWz8MoNH+hZYl8JBntf1LZPO1CB0/wT8SuWspAlspdrBmC23J
+         1KkcJhmoKU/08oXMR66oi99SlynFgGpIhMKrAwuHk+oDRPSW2FbZeG3C8UdG714HXG27
+         g3B2XUjhaRFnmczxoMQT9fD4Pvlr3205RXCNBC4CLHIrDImSkfWpVAatQcuJOumSytDh
+         g31ZFjyl29KPLyfUwAcB+vmUX9SdL2U4RtxSrVqu9irRmUjhxBwGltx+u8/OcQURA8k9
+         xJ/Q==
+X-Gm-Message-State: AOJu0Ywc611CJS3Xp+rbla4HLVzlNkH7S8FwBfjvpCshwo3fdKC2U2dO
+	RzW1cXZrvtRarFco23X8BvDnYw==
+X-Google-Smtp-Source: AGHT+IGi4yefRTEuIbnEmqG6dM6wTx+vJA+iEtdev0YV97uzl13vTqwoGOjEmHrWZnWIvheKEYrdFA==
+X-Received: by 2002:a17:906:c411:b0:a04:e1e7:cce4 with SMTP id u17-20020a170906c41100b00a04e1e7cce4mr1288174ejz.51.1700813902283;
+        Fri, 24 Nov 2023 00:18:22 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.100])
-        by smtp.gmail.com with ESMTPSA id x22-20020a1709060a5600b009c3827134e5sm1749428ejf.117.2023.11.24.00.16.35
+        by smtp.gmail.com with ESMTPSA id cf16-20020a170906b2d000b0099bd7b26639sm1761699ejb.6.2023.11.24.00.18.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Nov 2023 00:16:36 -0800 (PST)
-Message-ID: <8495eeb4-20c3-47bb-9016-aa34aecfee89@linaro.org>
-Date: Fri, 24 Nov 2023 09:16:35 +0100
+        Fri, 24 Nov 2023 00:18:21 -0800 (PST)
+Message-ID: <7c9135e0-da6e-4e1a-b673-af6c73d8ee45@linaro.org>
+Date: Fri, 24 Nov 2023 09:18:18 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,18 +62,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/4] dt-bindings: dma: ti: k3-udma: Describe cfg
- register regions
+Subject: Re: [PATCH net-next v3 1/3] dt-bindings: net: qcom,ethqos: add
+ binding doc for fault IRQ for sa8775p
 Content-Language: en-US
-To: Vignesh Raghavendra <vigneshr@ti.com>,
- Peter Ujfalusi <peter.ujfalusi@gmail.com>, Vinod Koul <vkoul@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
+To: Suraj Jaiswal <quic_jsuraj@quicinc.com>, Vinod Koul <vkoul@kernel.org>,
+ Bhupesh Sharma <bhupesh.sharma@linaro.org>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20231124045722.191817-1-vigneshr@ti.com>
- <20231124045722.191817-5-vigneshr@ti.com>
+ Conor Dooley <conor+dt@kernel.org>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Jose Abreu <joabreu@synopsys.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, netdev@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ Prasad Sodagudi <psodagud@quicinc.com>, Andrew Halaney <ahalaney@redhat.com>
+Cc: kernel@quicinc.com
+References: <cover.1700737841.git.quic_jsuraj@quicinc.com>
+ <ff458955a24c0cb4ba41158b8b53fbef00c8237d.1700737841.git.quic_jsuraj@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -119,21 +127,35 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231124045722.191817-5-vigneshr@ti.com>
+In-Reply-To: <ff458955a24c0cb4ba41158b8b53fbef00c8237d.1700737841.git.quic_jsuraj@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 24/11/2023 05:57, Vignesh Raghavendra wrote:
-> Unified DMA (UDMA) module on K3 SoCs have TX and RX channel cfg and RX
-> flow cfg register regions which are usually configured by a Device
-> Management firmware. But certain entities such as bootloader (like
-> U-Boot) may have to access them directly. Describe this region in the
-> binding documentation for completeness of module description.
+On 23/11/2023 12:38, Suraj Jaiswal wrote:
+> Add binding doc for fault IRQ. The fault IRQ will be
+> trigger for ECC,DPP,FSM error.
 > 
-> Keep the binding compatible with existing DTS files by requiring first
-> four regions to be present at least.
+> Signed-off-by: Suraj Jaiswal <quic_jsuraj@quicinc.com>
+> ---
+>  Documentation/devicetree/bindings/net/qcom,ethqos.yaml | 7 +++++--
+>  1 file changed, 5 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/qcom,ethqos.yaml b/Documentation/devicetree/bindings/net/qcom,ethqos.yaml
+> index 7bdb412a0185..e013cb51fb07 100644
+> --- a/Documentation/devicetree/bindings/net/qcom,ethqos.yaml
+> +++ b/Documentation/devicetree/bindings/net/qcom,ethqos.yaml
+> @@ -37,12 +37,14 @@ properties:
+>      items:
+>        - description: Combined signal for various interrupt events
+>        - description: The interrupt that occurs when Rx exits the LPI state
+> +      - description: The interrupt that occurs when HW fault occurs
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Adding required items is breaking the ABI and introducing new dtbs_check
+warnings. I don't see rationale for this in the commit msg.
+
+I don't see any fixes for the warnings, either. I am quite picky on this
+part, so to avoid wasting my time - are you 100% sure you do not
+introduce any new warning?
 
 Best regards,
 Krzysztof
