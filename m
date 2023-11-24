@@ -1,147 +1,209 @@
-Return-Path: <devicetree+bounces-18641-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18642-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9086A7F7701
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 15:55:33 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9186C7F770B
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 15:57:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4CC72281819
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 14:55:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7F2DDB212B7
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 14:57:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D40292D632;
-	Fri, 24 Nov 2023 14:55:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 076FB1CFB7;
+	Fri, 24 Nov 2023 14:57:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="QG3pg+mD"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iYAgDlSt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CBFE19A8;
-	Fri, 24 Nov 2023 06:55:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-	s=s31663417; t=1700837675; x=1701442475; i=wahrenst@gmx.net;
-	bh=MGJoLdIJ4b3gS02fNyae9jTdxCk07HvijAvt2pTRhQ4=;
-	h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:
-	 In-Reply-To;
-	b=QG3pg+mDJJ0hhMk/UZ/jr73ct86jleYBys0UoOtGR7/xQlFmGat8nFEHKxf0x4gU
-	 g9U/3K7fWZbo32IEOcqeaAoJ6byPn1kGfNiMc1jXg291cHUNblWt/oapim4PwYfug
-	 M8AA0ZFOAMsCfTD+nKiTDRt9snwwPPMD/O2imJhHAR8ttlrVoR8oShC9RgQurwBHb
-	 VgEEemMrQ9GhdfkvHaqANL48IMiE0xxq2gIeAvyuFuLfG1H4zHW+quMcxYqdi0u93
-	 Qyk+Scc5VHff0RnWglhL4kMJYem2MkBOaD4Pno0RN7hTZhjnNEx6tP2/cTNYNEft/
-	 5wfCJhIcfiKIQLqOOg==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.1.129] ([37.4.248.43]) by mail.gmx.net (mrgmx104
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1ML9uU-1qpYxF1cyg-00IBn6; Fri, 24
- Nov 2023 15:54:35 +0100
-Message-ID: <dab03c60-caa9-47e3-9dac-fa499227b67b@gmx.net>
-Date: Fri, 24 Nov 2023 15:54:32 +0100
+Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B909AD72;
+	Fri, 24 Nov 2023 06:57:41 -0800 (PST)
+Received: by mail-oi1-x22d.google.com with SMTP id 5614622812f47-3b83c4c5aefso1200748b6e.1;
+        Fri, 24 Nov 2023 06:57:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1700837861; x=1701442661; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=McONVnnVXBzrRAKYWOt6koN2Gq2PdEQz7Bj2evyzgvA=;
+        b=iYAgDlStmihvaAAHvkuY517osyQUEeXuPRxlxbpuIx6Jqc6qzTOBdMbBNgMAgOokDQ
+         bE9+1Wba+KgixwrhJoeDGs7r3OSjA1J7UCR2seVBEW18VAO0CJmGLXhOuNwg/FwJdys6
+         69tl+lx9LSSeVTSfhMAxUBc5SgWA+FzGj/yVuKXc/HDtGA84O5GrWpKXD54CTY2C8RPX
+         wRjvzbhmiNXUcB1og0gspWRAC2u/8cxBk01zwLDxdOdauM/8+vtE4f6u+vi5TAzRHJrU
+         RbbOqKRHLXN9HV7F+BAOBD/NHLA528OFGGhJHc2ngJn/kE9mlT2/Qmfknb2z0LLCsHy7
+         QDjw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700837861; x=1701442661;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=McONVnnVXBzrRAKYWOt6koN2Gq2PdEQz7Bj2evyzgvA=;
+        b=UU0rRCrWkd9sPgFQvwfCrMMDUsmJOBRr7C6Tt7SEVqNm/Tq23QwGOmzKkAGqgkwoPa
+         X7SualHbi94NeifXcDg0sp6blzlPz9fgMs3NBJfOxEBGgj+37CtJAT3jBkmAAc/e0gw7
+         6t2ACvNtxB5paXzYCZStksIc1lGdJR9SqTy5Yd8GbFfW3tQMcTtVb1TggZweRSfi90+K
+         qZfupPcUkQmUlbrQK/G1SVxUdK5McCE2OaWP64E4eNYcFJzc1r4L9HzHMsh1ldjMlLcC
+         YnibFP1/enM+w/z7hKFG34TQf+6OxfNszE6WDzl4Dfh9fDHCTA2uayrtGRlokruUZLGi
+         v2Vg==
+X-Gm-Message-State: AOJu0Yx3q8Iv0+reFcNMUQjWY87i6mZAV5848CCYvn0LouamtYVcGFfW
+	OSdBTPZLWApjBOBOMZBk7cDITbca2dwnO3okxBs=
+X-Google-Smtp-Source: AGHT+IFyw54KdvX5NZtpjxNOebZ/DdQWx5nul4bTgzQLtaMiqrgW8bakiEzPtq/Ulcd5S/faM446P2Jo1/UeRTY/fHI=
+X-Received: by 2002:a05:6358:9198:b0:16d:f02d:d394 with SMTP id
+ j24-20020a056358919800b0016df02dd394mr2754632rwa.14.1700837860947; Fri, 24
+ Nov 2023 06:57:40 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 0/2] Add waveshare 7inch touchscreen panel support
-Content-Language: en-US
-To: Shengyang Chen <shengyang.chen@starfivetech.com>,
- devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
-Cc: neil.armstrong@linaro.org, quic_jesszhan@quicinc.com, sam@ravnborg.org,
- airlied@gmail.com, daniel@ffwll.ch, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, tzimmermann@suse.de, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- florian.fainelli@broadcom.com, bcm-kernel-feedback-list@broadcom.com,
- emma@anholt.net, thierry.reding@gmail.com,
- changhuang.liang@starfivetech.com, keith.zhao@starfivetech.com,
- jack.zhu@starfivetech.com, linux-rpi-kernel@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20231124104451.44271-1-shengyang.chen@starfivetech.com>
-From: Stefan Wahren <wahrenst@gmx.net>
-In-Reply-To: <20231124104451.44271-1-shengyang.chen@starfivetech.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+References: <20231122121235.827122-1-peterlin@andestech.com> <20231122121235.827122-2-peterlin@andestech.com>
+In-Reply-To: <20231122121235.827122-2-peterlin@andestech.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Fri, 24 Nov 2023 14:57:15 +0000
+Message-ID: <CA+V-a8tS0hE_aDEk6RwhhjjEPP-OQpg1zuRbFrK7JdHtLCUTYA@mail.gmail.com>
+Subject: Re: [PATCH v4 01/13] riscv: errata: Rename defines for Andes
+To: Yu Chien Peter Lin <peterlin@andestech.com>
+Cc: acme@kernel.org, adrian.hunter@intel.com, ajones@ventanamicro.com, 
+	alexander.shishkin@linux.intel.com, andre.przywara@arm.com, 
+	anup@brainfault.org, aou@eecs.berkeley.edu, atishp@atishpatra.org, 
+	conor+dt@kernel.org, conor.dooley@microchip.com, conor@kernel.org, 
+	devicetree@vger.kernel.org, dminus@andestech.com, evan@rivosinc.com, 
+	geert+renesas@glider.be, guoren@kernel.org, heiko@sntech.de, 
+	irogers@google.com, jernej.skrabec@gmail.com, jolsa@kernel.org, 
+	jszhang@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-perf-users@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+	locus84@andestech.com, magnus.damm@gmail.com, mark.rutland@arm.com, 
+	mingo@redhat.com, n.shubin@yadro.com, namhyung@kernel.org, palmer@dabbelt.com, 
+	paul.walmsley@sifive.com, peterz@infradead.org, 
+	prabhakar.mahadev-lad.rj@bp.renesas.com, rdunlap@infradead.org, 
+	robh+dt@kernel.org, samuel@sholland.org, sunilvl@ventanamicro.com, 
+	tglx@linutronix.de, tim609@andestech.com, uwu@icenowy.me, wens@csie.org, 
+	will@kernel.org, ycliang@andestech.com, inochiama@outlook.com
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:XPJgdC3RB9K5a7xfMbmwhaguntSiG+JsdR8ThSlBVnEdHH7OlZ6
- GzgaDPFE6LuPGjCIfCnR7UC1WzYCxsice4aPbTwtl4G03axlVTqyJzMMi8gxsFKB93KKgOp
- RX3V7WhFXT1fnfBg/V8IOqPDWlcXnEbOQFOa2tNHhyyr6Za9Phr9eMsq8k7eBK1btzjz+Xb
- XG0HXHVFeOUMidjfTSswA==
-UI-OutboundReport: notjunk:1;M01:P0:LI0QlHMq6gM=;oyJjU91oOyd7xgd5qFErx8TshFT
- ztHgVOIYU1vKyGT3iwOQeRs7HJ3sKMkQ73MI20LG5PbQnm6G3YxiT6kbcebUyaFmxNDdPJ0+W
- VgaAgYGh4c1xzC61nk9wnyQQz6sJCuR4ngabq93YBibu/BxZMjbeB14VJ4Lt5aLRrUxuRA8ss
- mEnF/on9k5HKX6ujWOg7tjBHt1pDnwxKEBg6NCkE117lrpTruB+3zEf2XXM2oyg3VKwdCdqgh
- GENA3RCUAGgeV83dE+Skb2DczjdfpAjrZpAw9puoiJk5i0wQ6zV21TtViOq9s+9m9YPRaCtnx
- kixBm65R3gH5+/8Fe5J5OjLcBiwVdWnJ9Z9KtIzLw7J9Ub2HCqiSshq4fM3g9fe0VdqdOgwYJ
- lrbbeT2GfHwu/CvzBX30S8xxRYkCTTY/6EoCEVNfNe49XUVIzcSHjayjiMctFyx8TRP8YCJGX
- Pq8pv/Yg2AXhHOhsDQc8QnU4Y48z+nRskdJljEQy+SMu5Kl4Di2ROFOo7mNW67XZ7l7XK4SxI
- 1Pm0YIrfFJtW8LbfCooqU3YTEJpCwhAGO5MWgWHCNkX5Hpw6ZDjYoFCrvon52PzbUdYBuMDdk
- rJYmrmsXMFEagU3rrLRf8lcTLuvAB5x/eh7BNjH/hoXH8t/x9HAn8H10QAGwlHystVdMc13xf
- q/QzpNszQk26xt3Mm5lEKmq8DVlLpU9250UVSgJT3f/fYKaGqhgx82pFAw5n1SR9puPgqJ99K
- UZ7n8ixP0SOEgEXkNfLJ1LEHSfFuZUfcBoF5srTvrhlhqnSjYGlDvUeM3mIio8RAXbrAiwrTW
- hdmGl5zSjwyBuiC1AP+HSmiB6nJqkNoxni9dWrDQtR5eezTmpcBss63BQJBR5kDOo4oyUEDbH
- 0zWMgk9AlQOXpa4ZVM6TC/xtchjD3/HyenYj9H2YedeBxmXEaxPI+68T0MES7ufIY3gCsKj9Q
- v9UL6A==
 
-Hi Shengyang,
-
-[fix address of Emma]
-
-Am 24.11.23 um 11:44 schrieb Shengyang Chen:
-> This patchset adds waveshare 7inch touchscreen panel support
-> for the StarFive JH7110 SoC.
+On Wed, Nov 22, 2023 at 12:18=E2=80=AFPM Yu Chien Peter Lin
+<peterlin@andestech.com> wrote:
 >
-> Patch 1 add new compatible for the raspberrypi panel driver and its dt-b=
-inding.
-> Patch 2 add new display mode and new probing process for raspberrypi pan=
-el driver.
+> Using "ANDES" rather than "ANDESTECH" to unify the naming
+> convention with directory, file names, Kconfig options
+> and other definitions.
 >
-> Waveshare 7inch touchscreen panel is a kind of raspberrypi panel
-> which can be drived by raspberrypi panel driver.
+> Signed-off-by: Yu Chien Peter Lin <peterlin@andestech.com>
+> Reviewed-by: Charles Ci-Jyun Wu <dminus@andestech.com>
+> Reviewed-by: Leo Yu-Chi Liang <ycliang@andestech.com>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+> Changes v1 -> v2:
+>   - No change
+> Changes v2 -> v3:
+>   - Rewrote commit message (suggested by Conor)
+> Changes v3 -> v4:
+>   - Include Conor's Acked-by tag
+> ---
+>  arch/riscv/errata/andes/errata.c       | 10 +++++-----
+>  arch/riscv/include/asm/errata_list.h   |  4 ++--
+>  arch/riscv/include/asm/vendorid_list.h |  2 +-
+>  arch/riscv/kernel/alternative.c        |  2 +-
+>  4 files changed, 9 insertions(+), 9 deletions(-)
 >
-> The series has been tested on the VisionFive 2 board.
-surprisingly i was recently working on the official Raspberry Pi
-touchscreen and was able to get it running the new way.
+Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-What do i mean with the new way. There is almost nothing special to the
-Raspberry Pi touchscreen, so we should try to use/extend existing
-components like:
+Cheers,
+Prabhakar
 
-CONFIG_DRM_PANEL_SIMPLE
-CONFIG_TOUCHSCREEN_EDT_FT5X06
-CONFIG_DRM_TOSHIBA_TC358762
-
-The only special part is the Attiny on the connector PCB which requires:
-
-CONFIG_REGULATOR_RASPBERRYPI_TOUCHSCREEN_ATTINY
-
-So the whole point is to avoid writing monolitic drivers for simple
-panel like that.
-
-There is a WIP branch based on top of Linux 6.7-rcX, which should
-demonstrate this approach [1]. Unfortunately it is not ready for
-upstreaming, but it has been tested on a Raspberry Pi 3 B Plus. Maybe
-this is helpful for your case.
-
-Actually i consider panel-raspberrypi-touchscreen.c as a dead end, which
-shouldn't be extended.
-
-Btw there are already DT overlays in mainline which seems to use the
-Raspberry Pi 7inch panel (without touch function yet) [2].
-
-[1] - https://github.com/lategoodbye/rpi-zero/commits/v6.7-7inch-ts
-[2] -
-https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/commit/ar=
-ch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx-0x-rpidsi.dtso?h=3Dv6.6.2=
-&id=3D6b4da1354fd81adace0cda448c77d8f2a47d8474
-
+> diff --git a/arch/riscv/errata/andes/errata.c b/arch/riscv/errata/andes/e=
+rrata.c
+> index 197db68cc8da..d2e1abcac967 100644
+> --- a/arch/riscv/errata/andes/errata.c
+> +++ b/arch/riscv/errata/andes/errata.c
+> @@ -18,9 +18,9 @@
+>  #include <asm/sbi.h>
+>  #include <asm/vendorid_list.h>
 >
-> Shengyang Chen (2):
->    dt-bindings: display: panel: raspberrypi: Add compatible property for
->      waveshare 7inch touchscreen panel
->    gpu: drm: panel: raspberrypi: add new display mode and new probing
->      process
+> -#define ANDESTECH_AX45MP_MARCHID       0x8000000000008a45UL
+> -#define ANDESTECH_AX45MP_MIMPID                0x500UL
+> -#define ANDESTECH_SBI_EXT_ANDES                0x0900031E
+> +#define ANDES_AX45MP_MARCHID           0x8000000000008a45UL
+> +#define ANDES_AX45MP_MIMPID            0x500UL
+> +#define ANDES_SBI_EXT_ANDES            0x0900031E
 >
->   .../panel/raspberrypi,7inch-touchscreen.yaml  |  4 +-
->   .../drm/panel/panel-raspberrypi-touchscreen.c | 99 ++++++++++++++++---
->   2 files changed, 91 insertions(+), 12 deletions(-)
+>  #define ANDES_SBI_EXT_IOCP_SW_WORKAROUND       1
 >
-
+> @@ -32,7 +32,7 @@ static long ax45mp_iocp_sw_workaround(void)
+>          * ANDES_SBI_EXT_IOCP_SW_WORKAROUND SBI EXT checks if the IOCP is=
+ missing and
+>          * cache is controllable only then CMO will be applied to the pla=
+tform.
+>          */
+> -       ret =3D sbi_ecall(ANDESTECH_SBI_EXT_ANDES, ANDES_SBI_EXT_IOCP_SW_=
+WORKAROUND,
+> +       ret =3D sbi_ecall(ANDES_SBI_EXT_ANDES, ANDES_SBI_EXT_IOCP_SW_WORK=
+AROUND,
+>                         0, 0, 0, 0, 0, 0);
+>
+>         return ret.error ? 0 : ret.value;
+> @@ -43,7 +43,7 @@ static bool errata_probe_iocp(unsigned int stage, unsig=
+ned long arch_id, unsigne
+>         if (!IS_ENABLED(CONFIG_ERRATA_ANDES_CMO))
+>                 return false;
+>
+> -       if (arch_id !=3D ANDESTECH_AX45MP_MARCHID || impid !=3D ANDESTECH=
+_AX45MP_MIMPID)
+> +       if (arch_id !=3D ANDES_AX45MP_MARCHID || impid !=3D ANDES_AX45MP_=
+MIMPID)
+>                 return false;
+>
+>         if (!ax45mp_iocp_sw_workaround())
+> diff --git a/arch/riscv/include/asm/errata_list.h b/arch/riscv/include/as=
+m/errata_list.h
+> index 83ed25e43553..4ed21a62158c 100644
+> --- a/arch/riscv/include/asm/errata_list.h
+> +++ b/arch/riscv/include/asm/errata_list.h
+> @@ -12,8 +12,8 @@
+>  #include <asm/vendorid_list.h>
+>
+>  #ifdef CONFIG_ERRATA_ANDES
+> -#define ERRATA_ANDESTECH_NO_IOCP       0
+> -#define ERRATA_ANDESTECH_NUMBER                1
+> +#define ERRATA_ANDES_NO_IOCP 0
+> +#define ERRATA_ANDES_NUMBER 1
+>  #endif
+>
+>  #ifdef CONFIG_ERRATA_SIFIVE
+> diff --git a/arch/riscv/include/asm/vendorid_list.h b/arch/riscv/include/=
+asm/vendorid_list.h
+> index e55407ace0c3..2f2bb0c84f9a 100644
+> --- a/arch/riscv/include/asm/vendorid_list.h
+> +++ b/arch/riscv/include/asm/vendorid_list.h
+> @@ -5,7 +5,7 @@
+>  #ifndef ASM_VENDOR_LIST_H
+>  #define ASM_VENDOR_LIST_H
+>
+> -#define ANDESTECH_VENDOR_ID    0x31e
+> +#define ANDES_VENDOR_ID                0x31e
+>  #define SIFIVE_VENDOR_ID       0x489
+>  #define THEAD_VENDOR_ID                0x5b7
+>
+> diff --git a/arch/riscv/kernel/alternative.c b/arch/riscv/kernel/alternat=
+ive.c
+> index 319a1da0358b..0128b161bfda 100644
+> --- a/arch/riscv/kernel/alternative.c
+> +++ b/arch/riscv/kernel/alternative.c
+> @@ -43,7 +43,7 @@ static void riscv_fill_cpu_mfr_info(struct cpu_manufact=
+urer_info_t *cpu_mfr_info
+>
+>         switch (cpu_mfr_info->vendor_id) {
+>  #ifdef CONFIG_ERRATA_ANDES
+> -       case ANDESTECH_VENDOR_ID:
+> +       case ANDES_VENDOR_ID:
+>                 cpu_mfr_info->patch_func =3D andes_errata_patch_func;
+>                 break;
+>  #endif
+> --
+> 2.34.1
+>
+>
 
