@@ -1,241 +1,94 @@
-Return-Path: <devicetree+bounces-18677-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18676-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECAD77F7A4D
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 18:25:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E47B07F7A46
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 18:20:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 37FD2B20FB9
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 17:25:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F8951C20A39
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 17:20:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 896B7364CF;
-	Fri, 24 Nov 2023 17:24:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 378A0364CC;
+	Fri, 24 Nov 2023 17:20:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YGURQQx5"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="e8z7WlIn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F14CE1733;
-	Fri, 24 Nov 2023 09:24:55 -0800 (PST)
-Received: by mail-lj1-x22d.google.com with SMTP id 38308e7fff4ca-2c5b7764016so24449651fa.1;
-        Fri, 24 Nov 2023 09:24:55 -0800 (PST)
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B27871733
+	for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 09:20:00 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-40b27b498c3so15974625e9.0
+        for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 09:20:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1700846694; x=1701451494; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=86tKz1Q4LYdvZSL821UYqvZ1E+Vs2suOjdSlFDKg1/8=;
-        b=YGURQQx5Ck9nKf2Loip//EUw+TE1pEq6eT7Hdv6mm9CawXCBMoLWU6Djajo1lDX5ya
-         42gUmhtgwub3uzNbjoUhm5B4NvvZoOUszIiy84ImgmdOHrphYBL21vRznc4ltrf2NPuk
-         TeLYV3SdE6L/lgzNqUAsT4EFnCQKkXaztv/ZmmoImxG6Bys3ymD3AllVtypwu+9GwU2w
-         og0WeoDnTvT/IasDV7SxOjNUSJnkcyEaSrRaBze5zB0+0KitY/ZvtvTGib7qHRrbEf8i
-         byr5ojhlhThXura+dsX0oVRUpVLD/Fc1S3ocDm2sjpMxK+6pNJNEvJAbxJdVAj+bx4JP
-         tlVA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700846694; x=1701451494;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1700846399; x=1701451199; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=86tKz1Q4LYdvZSL821UYqvZ1E+Vs2suOjdSlFDKg1/8=;
-        b=oF9bDfafRDKIAjITzP5oPCUVtG8RZSKtLdgo0f9sj03r2/kt7eaKBhALXdzablxMB4
-         xWFhR1+tiu1fziwg+p18PNuaJOnvgQMNYVtWP/LoBIqpUzXrgZn4xbJDBTyH/nLFnKRS
-         rX8DkH4BqafjAoZvvXnPisS/C4LPnNbXrsq0sFzSQaZGIPzmtbpWs/+EhpgDYjxc6kNQ
-         HDN6IT/t1+Bl62CEV2XlwlLOCVIxZ5yGsFGN9sggB8nFy+wC9ljikMwZXoNXXRlklRoV
-         12P1CK87P1kPVnnDGZvpK7Machrlf8WkqdZCGMRl5P2WVy0mD+5bBUohm/HfDw1POy8T
-         O1Hg==
-X-Gm-Message-State: AOJu0Yx0YBru3Azm3k5TKGaJ2/xt0DPQVTNgyjjvWIIjtxGPk4bnEbpJ
-	sVolskVVRR/x5huIye0T0Fg=
-X-Google-Smtp-Source: AGHT+IEopNg1bkDdaMgE8n5KVyqBjO4Si81wIjY+cipwPm3gPod9pAi90+vjNlfX53s+A7JfV68zWg==
-X-Received: by 2002:a05:651c:1045:b0:2c8:8b61:ea13 with SMTP id x5-20020a05651c104500b002c88b61ea13mr3169138ljm.18.1700846693798;
-        Fri, 24 Nov 2023 09:24:53 -0800 (PST)
-Received: from Ansuel-xps. (93-34-89-13.ip49.fastwebnet.it. [93.34.89.13])
-        by smtp.gmail.com with ESMTPSA id q19-20020a05600c46d300b004064e3b94afsm6382196wmo.4.2023.11.24.09.24.52
+        bh=2d1leqtXuRjh3vDQD1vENVeJ67TD/CQIGzFzr3jZ/Rw=;
+        b=e8z7WlInALi26lTFnVyEdD4XPSgTi+7R4sktHk5KQ6OOaAiDLr/hVDMz77d7A3uyB9
+         qMIZZF9fnlw6dKHWi/2iB9nlkBUmLBM0g5eZH5qITaR8m7HnieRR6YiTcGhypMrRVnQw
+         D8yYKP/68QBQPhHlhFJQ8ogpCcS2+2CgjBhHBpcs3orvqWYf6H9ay61Vnzer/9sAd710
+         f4yBQJTo32R3iansQKw4aC7jXKmQFIv0xwqcoa45+k8GAlzYDFmpRBiOe/0UZpRQ7hqt
+         0scuwRfgBhGHt642452YAn+HmJPOyZcjpuiUvexMGDXU3xAbB1MHIR52E8s4hAVAhAi0
+         mTZg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700846399; x=1701451199;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2d1leqtXuRjh3vDQD1vENVeJ67TD/CQIGzFzr3jZ/Rw=;
+        b=HFJqMjXfhoZ3oxorArOsYb5XL4eP6Pda/rGX+rN230by1gkrfchzi/SKEgPIiQippv
+         xKFL/KohwQ981f6YrbNSbEXUpDAts1g0EoslkNaI80R4yPTku9wx2mSatUGL6h8lu4TE
+         S712ctLahEfLxqMn4c8FIuefkuZCrg70+9jWZ6ZB0QFZkFy3JTnHvDSJ0fmtCv15r/cp
+         Qd/D6Xon3y/HDmAOYFgNxsjpNUi/d2v/wW6wYf6fWXsLHCsVDvJgJbbPOavOvSxoOEqj
+         cxy34CDeYuADxXkNvXOy1mj01YKPkK4xWrvaT0PgjEsOBfshBoS5EkYTiFBmMeAP/Dg8
+         uO2A==
+X-Gm-Message-State: AOJu0YxAJzHMd7CcKEmZF3HH8MHJ3OxrrMc5GkSopcgtjICC6aHZFs6s
+	RTEyqaoas4PolV8z3BD35aZOAw==
+X-Google-Smtp-Source: AGHT+IGof/O1OGnHaLOZnn6ikBllpdYsJKE4lZGWZe1M6TLjaYOYsj7vsLD/q57/Kn0PjoMIKgomtQ==
+X-Received: by 2002:a05:600c:450b:b0:408:3f61:cb4f with SMTP id t11-20020a05600c450b00b004083f61cb4fmr2927268wmo.23.1700846399037;
+        Fri, 24 Nov 2023 09:19:59 -0800 (PST)
+Received: from toaster.baylibre.com ([2a01:e0a:3c5:5fb1:1243:6910:fe68:2de5])
+        by smtp.googlemail.com with ESMTPSA id o18-20020adf8b92000000b00332e8dd713fsm2547663wra.74.2023.11.24.09.19.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Nov 2023 09:24:53 -0800 (PST)
-Message-ID: <6560dc65.050a0220.182b5.650c@mx.google.com>
-X-Google-Original-Message-ID: <ZWDObJsELmCs9G8o@Ansuel-xps.>
-Date: Fri, 24 Nov 2023 17:25:16 +0100
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Vladimir Oltean <olteanv@gmail.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Qingfang Deng <dqfext@gmail.com>,
-	SkyLake Huang <SkyLake.Huang@mediatek.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	David Epping <david.epping@missinglinkelectronics.com>,
-	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-	Harini Katakam <harini.katakam@amd.com>,
-	Simon Horman <horms@kernel.org>,
-	Robert Marko <robert.marko@sartura.hr>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [net-next RFC PATCH 03/14] dt-bindings: net: document ethernet
- PHY package nodes
-References: <20231120135041.15259-1-ansuelsmth@gmail.com>
- <20231120135041.15259-4-ansuelsmth@gmail.com>
- <c21ff90d-6e05-4afc-b39c-2c71d8976826@lunn.ch>
- <20231121144244.GA1682395-robh@kernel.org>
- <a85d6d0a-1fc9-4c8e-9f91-5054ca902cd1@lunn.ch>
- <655e4939.5d0a0220.d9a9e.0491@mx.google.com>
- <20231124165923.p2iozsrnwlogjzua@skbuf>
+        Fri, 24 Nov 2023 09:19:58 -0800 (PST)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Daniel Scally <dan.scally@ideasonboard.com>, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+In-Reply-To: <20231114-topic-amlogic-upstream-isp-clocks-v1-0-223958791501@linaro.org>
+References: <20231114-topic-amlogic-upstream-isp-clocks-v1-0-223958791501@linaro.org>
+Subject: Re: [PATCH 0/3] clk: meson: add MIPI ISP & CSI PHY clocks
+Message-Id: <170084639792.2638113.9821910765744986123.b4-ty@baylibre.com>
+Date: Fri, 24 Nov 2023 18:19:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231124165923.p2iozsrnwlogjzua@skbuf>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.12.4
 
-On Fri, Nov 24, 2023 at 06:59:23PM +0200, Vladimir Oltean wrote:
-> On Wed, Nov 22, 2023 at 07:32:22PM +0100, Christian Marangi wrote:
-> > Sooooo.... Sorry if I insist but I would really love to have something
-> > ""stable"" to move this further. (the changes are easy enough so it's
-> > really a matter of finding a good DT structure)
-> > 
-> > Maybe a good idea would be summarize the concern and see what solution
-> > was proposed:
-> 
-> Sorry, I didn't follow the entire discussion. I hope I'm not too far off
-> with my understanding of your problems.
-> 
-> I think you are hitting some of the same points I have hit with DSA.
-> The PHY package could be considered an SoC with lots of peripherals on
-> it, for which you'd want separate drivers. Just like a DSA switch would.
-> I don't think it's exactly phylib's place to deal with that, just like
-> it's not DSA's place to deal with complex SoCs, just with the switching
-> IP (like the Ethernet PHY IP for phylib).
-> https://lore.kernel.org/lkml/20221222134844.lbzyx5hz7z5n763n@skbuf/
-> 
-> Why does the ethernet-phy-package DT binding attempt to be so grand and
-> generic? I would expect the 180 degree opposite. Make it have a _single_
-> compatible of "qcom,qca807x" (but don't use an "x" wildcard, do specify
-> the full package name).
-> 
-> Make it have a "reg" property which is the base MDIO address of the package.
-> 
-> Write an mdio_device driver that probes on that. The PHY core already
-> knows that if a child on the MDIO bus has a compatible string of the
-> normal form (not like "ethernet-phy-id004d.d0b2"), then it's looking at
-> an mdio_device.
-> 
-> Make the OF node of the package have an "mdio" child with its own
-> compatible string, which represents the place where PHYs are. The driver
-> for the "mdio" child has a very simple implementation of the mii_bus
-> ops, which just calls into the device parent (it can assume a certain
-> parent implementation and private data structures).
-> 
-> Lateral to the "mdio" child node of the "qcom,qca807x" package node, you
-> could put any other device tree properties that you want.
-> 
-> Make the mdio_device driver for "qcom,qca807x" use shared code if you
-> want - but keep the device tree structure hardware-specific. Look at the
-> compatible strings that e.g. the drivers/mfd/simple-mfd-i2c.c driver
-> probes on. You could always change the driver implementation for a
-> certain compatible string, but you'll be stuck with the ultra-generic
-> compatible = "ethernet-phy-package", which has the problems that you
-> mention.
->
+Applied to clk-meson (v6.8/drivers), thanks!
 
-The main reason is the fact that PHY package are already a thing and API
-are already there (phy_package_join/leave...) so we just lack any way to
-support this in DT without using specialized code in the PHY driver.
+[1/3] dt-bindings: clock: g12a-clkc: add MIPI ISP & CSI PHY clock ids
+      https://github.com/BayLibre/clk-meson/commit/439d3404addf
+[2/3] clk: meson: g12a: add MIPI ISP clocks
+      https://github.com/BayLibre/clk-meson/commit/773e4e987308
+[3/3] clk: meson: g12a: add CSI & ISP gates clocks
+      https://github.com/BayLibre/clk-meson/commit/5205628ab0bf
 
-This is really completing the feature.
+Best regards,
+--
+Jerome
 
-The only reason for the generic "ethernet-phy-package" compatible is to
-have a solid detection of the node in PHY core. (I assume parsing the
-node name might be problematic? Or maybe not now that we require adding
-a reg to it)
-
-Also I don't expect tons of special properties for PHY package, with the
-current probe/config implementation, a PHY driver have lots of
-flexibility in all kind of validation.
-
-Consider that the additional global-phys and global-phy-names are
-already expected to be dropped.
-(we know the PHY package base address and we can calculate the offset of
-the global phy from there in the PHY package probe)
-
-And even the phy-mode has been scrapped for more specific solution...
-(some assumption can be done on probe by checking the PHY mode and set
-stuff accordingly or even do parsing in the PHY package node as we pass
-the OF node of the phy package)
-
-The PHY package node would be reduced to a simple compatible (and even
-this can be dropped) and a reg.
-
-I feel there is a big chance here to generalize it and prevent any kind
-of mess with all kind of similar/equal code that just do the same thing.
-(and we already have an example with the PHY package API usage with
-every PHY having the same exact pattern for probe/config and nothing
-describing that the PHY are actually a package in DT)
-
-Hope it all makes sense to you.
-
-> > 
-> > Concern list:
-> > 1. ethernet-phy-package MUST be placed in mdio node (not in ethernet,
-> >    the example was wrong anyway) and MUST have an addr
-> > 
-> >    Current example doesn't have an addr. I would prefer this way but
-> >    no problem in changing this.
-> > 
-> >    Solution:
-> >      - Add reg to the ethernet-phy-package node with the base address of
-> >        the PHY package (base address = the first PHY address of the
-> >        package)
-> 
-> Correct, what I'm saying is compatible with this.
-> 
-> > 
-> >        We will have a PHY node with the same address of the PHY package
-> >        node. Each PHY node in the PHY package node will have reg set to
-> >        the REAL address in the mdio bus.
-> 
-> If the real PHY IPs are children of the package rather than on the same
-> level with it, I don't think this will be a problem. I wonder if some
-> address translation could be done with the "ranges" device tree property.
-> I've never seen this with MDIO though.
-> 
-
-I can check it, I would love some way to describe the address used by
-the PHY package. (since everything will be handled internally with
-offsets, would be good to define in DT that (for example) addrs from 0
-to 5 are used). Some PHY might be not attached but still used for global
-configuration of the PHY package.
-
-> > 4. Not finding a correct place to put PHY package info.
-> > 
-> >    I'm still convinced the mdio node is the correct place.
-> >    - PHY package are PHY in bundle so they are actual PHY
-> >    - We already have in the mdio node special handling (every DSA switch
-> >      use custom compatible and PHY ID is not used to probe them
-> >      normally)
-> >    - Node this way won't be treated as PHY as they won't match the PHY
-> >      node name pattern and also won't have the compatible pattern for
-> >      PHY.
-> > 
-> >    Solution:
-> >     - ethernet-phy-package node is OK given a reg is defined.
-> 
-> I agree that it should sit under the MDIO node. I disagree with the idea
-> of a standardized binding for PHY packages.
-
--- 
-	Ansuel
 
