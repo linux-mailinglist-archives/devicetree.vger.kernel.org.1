@@ -1,218 +1,128 @@
-Return-Path: <devicetree+bounces-18606-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18613-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29AC57F7454
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 13:53:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D50C97F74F6
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 14:27:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5A62E1C2098C
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 12:53:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8BC22281445
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 13:27:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43332241FF;
-	Fri, 24 Nov 2023 12:53:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9305728DDA;
+	Fri, 24 Nov 2023 13:27:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Qczjxkkd"
+	dkim=pass (2048-bit key) header.d=pqrs.dk header.i=@pqrs.dk header.b="jXzO0DrL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0231D72
-	for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 04:53:30 -0800 (PST)
-Received: by mail-yb1-xb2a.google.com with SMTP id 3f1490d57ef6-d9b9adaf291so1774545276.1
-        for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 04:53:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700830410; x=1701435210; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=HTgTZleeDU2G7HfMpR6mP5ubFLWz0FBut+wr32KncSQ=;
-        b=Qczjxkkdia9Ftmim+3rrN2TIIDT03r11LNoeL3wQcU1ia0qewKiGCAltehJ9bl8skO
-         S2/Lq9dHhXiRzqIQw/c1o7ZW2H/y1IYRWlnBTuP9KkD0qL3YQ6OhzoLI3apUsvdJPPYk
-         hOebeBCrQ3P+SLuTB7sRCd5nTsB6PtA/l0OMYgewTm12mDO/x9gfJwbYvCM1Q4UAvTxz
-         33qZcZG2G7qFzxaOLTnn8QIeGu4+JPQqH/sDjbGt+FVav/v652myvyuOy+QnPgO9msVl
-         e2uTvHW8PCbGOr3gpj0YU7S722NCQZdpL34NGgFlVM55DUkPPDyUgtx8F+eEU/8LV8Bw
-         jBTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700830410; x=1701435210;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=HTgTZleeDU2G7HfMpR6mP5ubFLWz0FBut+wr32KncSQ=;
-        b=dnbKXhibeZ8ZxvZ19cPIplGgbGe+YBfvp7bCziPKJkZ+Q9w9xN4Bjw60xes4lJeVuA
-         AzwylLx5/HxoN+9bDvDGoo7b5AG4tb1VayAR704Vhk1VJ6E7JniRnY9B7TrzQOfwzBk0
-         2dCJ61OOplAx2ywYJHn3UIYp4pPMZKDfnBzlUvag51bfk+Bs0kFCEqb++/W4jbdfKBsh
-         2AE/O6qddKk6ff8ML+5JVQbbkQfTBAvmYIidPZ/hiOw18/23F3G84nHDnhZ3ZSvPZ9+7
-         SQlB5jn8xV2PlJlZoq+4HrwaZIcCx0vlwoLgVvsLUWopZd8s/qze0inSr17fjFC0WSHu
-         anXw==
-X-Gm-Message-State: AOJu0YzeYKWVb3FIaoE5vhrgCB0Xrr8kI6DNgBT6GOwkcU/PwH2ukrFr
-	2YO4uW0QhqbQBHotcfogEsZKfi9Ok9GwDGLREpaUUqcJ5GCFbngx
-X-Google-Smtp-Source: AGHT+IHJGOTFidjATlrN1/BR2tUS7l0tUenCtw7UUh4SwCf7GRjYKWq3dqaPn+NEdGb+2zEkqKNPlG8TTnq5A9Shfe8=
-X-Received: by 2002:a25:e305:0:b0:da0:3d48:aa68 with SMTP id
- z5-20020a25e305000000b00da03d48aa68mr2189648ybd.50.1700830409952; Fri, 24 Nov
- 2023 04:53:29 -0800 (PST)
+X-Greylist: delayed 565 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 24 Nov 2023 05:27:34 PST
+Received: from out-174.mta0.migadu.com (out-174.mta0.migadu.com [91.218.175.174])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CD962107
+	for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 05:27:32 -0800 (PST)
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pqrs.dk; s=key1;
+	t=1700831882;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=ZABsrju+3feVMwii1H8J45xoKumLKlmUGlla0b8ba5E=;
+	b=jXzO0DrLUL7ua5QX/TEPywrG29VAR2py2fqQDxTQGtaD20peAMnLCYPNFuAObVRJ9HJ2c0
+	AWN6s9cSudgJtfBr/T8uOXmKVwnSDZvw76ufPgrlcrC9U6RnTd3agHRxehNBWezIsCsmTR
+	PRNVRd+SUmOPj08liTSTt5qyiY2KL1zPIcaBZDaqo2QnsPjUkVoWx39t18K0xx5sgIxhAC
+	31bGgwBxjtNSMBWmCcgOSlVgVNgZpJ1itm3nlQEisRWPk7VzTGuVkugmYBJSe3jsmM1an8
+	r8M6HNmJe5LfSXytw4PhrH4W5vAAWqArUIJTkxmSVCcaxX5HqMzk1aXSFW+FpA==
+From: =?utf-8?q?Alvin_=C5=A0ipraga?= <alvin@pqrs.dk>
+Subject: [PATCH v6 0/3] clk: si5351: add option to adjust PLL without
+ glitches
+Date: Fri, 24 Nov 2023 14:17:41 +0100
+Message-Id: <20231124-alvin-clk-si5351-no-pll-reset-v6-0-69b82311cb90@bang-olufsen.dk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231002-sc7280-venus-pas-v2-0-bd2408891317@fairphone.com>
- <20231002-sc7280-venus-pas-v2-2-bd2408891317@fairphone.com>
- <4cfad910-1821-3a31-c372-3f6b199e8f71@quicinc.com> <CX5ENKY70B5J.2D6DXKGI4EGX3@fairphone.com>
- <ff021f49-f81b-0fd1-bd2c-895dbbb03d56@quicinc.com> <CX70EBXCOB66.3998C482R86CN@fairphone.com>
- <a29123a3-afe1-8f92-ff6c-835926d411af@quicinc.com>
-In-Reply-To: <a29123a3-afe1-8f92-ff6c-835926d411af@quicinc.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Fri, 24 Nov 2023 14:53:19 +0200
-Message-ID: <CAA8EJppkjpMmcHCvxomgUMPxGpf77iN9roRvb=NEcxdk237-UA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] arm64: dts: qcom: sc7280: Move video-firmware to chrome-common
-To: Vikash Garodia <quic_vgarodia@quicinc.com>
-Cc: Luca Weiss <luca.weiss@fairphone.com>, 
-	Stanimir Varbanov <stanimir.k.varbanov@gmail.com>, 
-	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>, Andy Gross <agross@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, cros-qcom-dts-watchers@chromium.org, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
-	linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAHWiYGUC/4XPwW7CMAwG4FdBOWNkJ3FbOPEeaIeQJiMiSkvCo
+ k2o777ApglpB46/JX+/fRPF5eCK2K1uIrsaSphSC916JezJpHcHYWxZSJSKkDSYWEMCG89QAis
+ mSBPMMUJ2xV3BWW8smo4ZrWjGnJ0Pnw//8NbyKZTrlL8edZXu018ZByJSUm94kLxloJ+i/XzJZ
+ TOexX256qeFl6dUDQhGcdej1Ij9uD+2f2CKH7649GfykynxlcnN9GjpaFj1fhj+m8uyfAP54jg
+ xVQEAAA==
+To: Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ =?utf-8?q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>
+Cc: Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, 
+ Rabeeh Khoury <rabeeh@solid-run.com>, 
+ Jacob Siverskog <jacob@teenage.engineering>, 
+ Sergej Sawazki <sergej@taudac.com>, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Rob Herring <robh@kernel.org>
+X-Migadu-Flow: FLOW_OUT
 
-On Fri, 24 Nov 2023 at 14:30, Vikash Garodia <quic_vgarodia@quicinc.com> wrote:
->
-> On 11/24/2023 5:05 PM, Luca Weiss wrote:
-> > On Fri Nov 24, 2023 at 7:38 AM CET, Vikash Garodia wrote:
-> >>
-> >> On 11/22/2023 7:50 PM, Luca Weiss wrote:
-> >>> On Wed Nov 22, 2023 at 2:17 PM CET, Vikash Garodia wrote:
-> >>>>
-> >>>> On 10/2/2023 7:50 PM, Luca Weiss wrote:
-> >>>>> If the video-firmware node is present, the venus driver assumes we're on
-> >>>>> a system that doesn't use TZ for starting venus, like on ChromeOS
-> >>>>> devices.
-> >>>>>
-> >>>>> Move the video-firmware node to chrome-common.dtsi so we can use venus
-> >>>>> on a non-ChromeOS devices.
-> >>>>>
-> >>>>> At the same time also disable the venus node by default in the dtsi,
-> >>>>> like it's done on other SoCs.
-> >>>>>
-> >>>>> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> >>>>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> >>>>> ---
-> >>>>>  arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi | 8 ++++++++
-> >>>>>  arch/arm64/boot/dts/qcom/sc7280.dtsi               | 6 ++----
-> >>>>>  2 files changed, 10 insertions(+), 4 deletions(-)
-> >>>>>
-> >>>>> diff --git a/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi b/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
-> >>>>> index 5d462ae14ba1..cd491e46666d 100644
-> >>>>> --- a/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
-> >>>>> +++ b/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
-> >>>>> @@ -104,6 +104,14 @@ &scm {
-> >>>>>   dma-coherent;
-> >>>>>  };
-> >>>>>
-> >>>>> +&venus {
-> >>>>> + status = "okay";
-> >>>>> +
-> >>>>> + video-firmware {
-> >>>>> +         iommus = <&apps_smmu 0x21a2 0x0>;
-> >>>>> + };
-> >>>>> +};
-> >>>>> +
-> >>>>>  &watchdog {
-> >>>>>   status = "okay";
-> >>>>>  };
-> >>>>> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> >>>>> index 66f1eb83cca7..fa53f54d4675 100644
-> >>>>> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> >>>>> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> >>>>> @@ -3740,6 +3740,8 @@ venus: video-codec@aa00000 {
-> >>>>>                            <&apps_smmu 0x2184 0x20>;
-> >> 0x2184 is a secure SID. I think qcm6490-fairphone-fp5.dts needs to override the
-> >> iommus property as well to retain only the non secure SID i.e 0x2180 ? I am
-> >> seeing below crash
-> >>
-> >> Call trace:
-> >> [   47.663593]  qcom_smmu_write_s2cr+0x64/0xa4
-> >> [   47.663616]  arm_smmu_attach_dev+0x120/0x284
-> >> [   47.663647]  __iommu_attach_device+0x24/0xf8
-> >> [   47.676845]  __iommu_device_set_domain+0x70/0xd0
-> >> [   47.681632]  __iommu_group_set_domain_internal+0x60/0x1b4
-> >> [   47.687218]  iommu_setup_default_domain+0x358/0x418
-> >> [   47.692258]  __iommu_probe_device+0x3e4/0x404
-> >>
-> >> Could you please reconfirm if Video SID 0x2184 (and mask) is allowed by the
-> >> qcm6490-fairphone-fp5 hardware having TZ ?
-> >
-> > Hi,
-> >
-> > On FP5 it seems it's no problem to have both SIDs in there, probe and
-> > using venus appears to work fine.
-> >
-> > Are you using different firmware than QCM6490.LA.3.0 on the device where
-> > you tested this?
-> I was testing this on RB3 board which uses firmware [1].
+This series intends to address a problem I had when using the Si5351A as
+a runtime adjustable audio bit clock. The basic issue is that the driver
+in its current form unconditionally resets the PLL whenever adjusting
+its rate. But this reset causes an unwanted ~1.4 ms LOW signal glitch in
+the clock output.
 
-There is something wrong here.
+As a remedy, a new property is added to control the reset behaviour of
+the PLLs more precisely. In the process I also converted the bindings to
+YAML.
 
-RB3 board uses venus-5.2
-RB5 board uses vpu-1.0
-Only sc7280 uses vpu-2.0
+Changes:
 
->
-> Regards,
-> Vikash
->
-> [1]
-> https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/qcom/vpu-2.0
->
-> >>
-> >>>>>                   memory-region = <&video_mem>;
-> >>>>>
-> >>>>> +                 status = "disabled";
-> >>>>> +
-> >>>>>                   video-decoder {
-> >>>>>                           compatible = "venus-decoder";
-> >>>>>                   };
-> >>>>> @@ -3748,10 +3750,6 @@ video-encoder {
-> >>>>>                           compatible = "venus-encoder";
-> >>>>>                   };
-> >>>>>
-> >>>>> -                 video-firmware {
-> >>>>> -                         iommus = <&apps_smmu 0x21a2 0x0>;
-> >>>>> -                 };
-> >>>>> -
-> >>>>>                   venus_opp_table: opp-table {
-> >>>>>                           compatible = "operating-points-v2";
-> >>>>>
-> >>>>>
-> >>>> Changes look good. Is this tested on SC7280 ?
-> >>>
-> >>> Hi Vikash,
-> >>>
-> >>> I didn't test it myself on sc7280 (just qcm6490-fp5) but dtx_diff
-> >>> reports no differences except for status = okay property being added, so
-> >>> there should be no change on those boards. See below.
-> >>>
-> >>> Regards
-> >>> Luca
-> >>
-> >> I tested on SC7280 (herobrine) and all good.
-> >
-> > Great, thanks!
-> >
-> > Regards
-> > Luca
-> >
-> >>
-> >> Regards,
-> >> Vikash
-> >
->
+v5 -> v6: 
+- collect Rob's Reviewed-bys
+- no further changes, resend only
 
+v4 -> v5:
+- address Rob's comments:
+    - min/maxItems on top-level clocks:
+    - remove unnecessary else:
+    - remove spurious |
 
--- 
-With best wishes
-Dmitry
+v3 -> v4:
+
+- remove spurious | per Rob's suggestion
+- simplify conditional clocks/clock-names per Rob's suggestion
+- remove mention of clkout[0-7] still being admissible in the commit
+  body of patch 1 - while the Linux driver still tolerates this, the
+  new dt-bindings do not
+
+v2 -> v3:
+
+- address further comments from Rob:
+  - drop unnecessary refs and minItems
+  - simplify if conditions for chip variants
+  - ignore his comment about dropping '|', as line would be >80 columns
+  - move additionalProperties: false close to type: object
+  - define clocks/clock-names at top-level
+- drop patch to dove-cubox dts per Krzysztof's comment - will send
+  separately
+- collect Sebastian's Acked-by
+
+v1 -> v2:
+
+- address Rob's comments on the two dt-bindings patches
+- new patch to correct the clock node names in the only upstream device
+  tree using si5351
+
+---
+Alvin Šipraga (3):
+      dt-bindings: clock: si5351: convert to yaml
+      dt-bindings: clock: si5351: add PLL reset mode property
+      clk: si5351: allow PLLs to be adjusted without reset
+
+ .../devicetree/bindings/clock/silabs,si5351.txt    | 126 ----------
+ .../devicetree/bindings/clock/silabs,si5351.yaml   | 265 +++++++++++++++++++++
+ drivers/clk/clk-si5351.c                           |  47 +++-
+ include/linux/platform_data/si5351.h               |   2 +
+ 4 files changed, 311 insertions(+), 129 deletions(-)
+---
+base-commit: f6abdcb2444f6ebe06e19cd9eee767c7c46612ae
+change-id: 20231014-alvin-clk-si5351-no-pll-reset-ecfac0a6550c
+
 
