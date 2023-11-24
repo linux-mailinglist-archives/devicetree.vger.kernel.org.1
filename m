@@ -1,189 +1,159 @@
-Return-Path: <devicetree+bounces-18665-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18666-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3087B7F7881
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 17:03:37 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0B1E7F7889
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 17:05:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 309441C20AFB
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 16:03:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 210341C20921
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 16:05:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 804AD3309A;
-	Fri, 24 Nov 2023 16:03:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B49533CC1;
+	Fri, 24 Nov 2023 16:05:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=helmholz.de header.i=@helmholz.de header.b="TcAwrpSz"
+	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="qVmcs9xi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.helmholz.de (mail.helmholz.de [217.6.86.34])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F06E619A9
-	for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 08:03:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=helmholz.de
-	; s=dkim1; h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:CC:To:From:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=0w6aQuUscuVPAHgE+2Is92gYWkxyPcZB0ubkTwnN32s=; b=TcAwrpSzHO/N4liCJppiA97OP/
-	EvpaE6Hd356lEc8HixRnGxhw89aoQIrL10GqooXOkfC2VtsPJybz8qcP53FOMMQq62N/jig4bcMgq
-	F1cViEZI9Qxdx7T8dGt6Y3q1SIfeZe4tv9qB6Py1k5dSvhLtTw56L+Z17HzhCl+fWyQaHK2jF3fYW
-	A4cEY5mCpIB6uKwOuh/WQrebpPRB0CERpys4N9sVqIUMrtOXUzr0zlrOV028bYRk8hecrL4Mzu0va
-	mTzpzs8cWipBlw5tUkWg/Mrq8skEW36bpFWK1IFNi/i8LvAJElJdAf9iggXgTVzk4UiLn/LaCVIWz
-	Klk3oG9g==;
-Received: from [192.168.1.4] (port=8305 helo=SH-EX2013.helmholz.local)
-	by mail.helmholz.de with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384
-	(Exim 4.96)
-	(envelope-from <Ante.Knezic@helmholz.de>)
-	id 1r6Ycy-0004bc-17;
-	Fri, 24 Nov 2023 17:02:00 +0100
-Received: from linuxdev.helmholz.local (192.168.6.7) by
- SH-EX2013.helmholz.local (192.168.1.4) with Microsoft SMTP Server (TLS) id
- 15.0.1497.48; Fri, 24 Nov 2023 17:01:59 +0100
-From: Ante Knezic <ante.knezic@helmholz.de>
-To: <netdev@vger.kernel.org>
-CC: <woojung.huh@microchip.com>, <andrew@lunn.ch>, <f.fainelli@gmail.com>,
-	<olteanv@gmail.com>, <davem@davemloft.net>, <edumazet@google.com>,
-	<kuba@kernel.org>, <pabeni@redhat.com>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>, <marex@denx.de>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, Ante Knezic
-	<ante.knezic@helmholz.de>
-Subject: [PATCH net-next v5 2/2] net: dsa: microchip: add property to select internal RMII reference clock
-Date: Fri, 24 Nov 2023 17:01:48 +0100
-Message-ID: <4e62cff653c7845bb848de5af44abe7e5578f624.1700841353.git.ante.knezic@helmholz.de>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <cover.1700841353.git.ante.knezic@helmholz.de>
-References: <cover.1700841353.git.ante.knezic@helmholz.de>
+Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD45819A5
+	for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 08:05:04 -0800 (PST)
+Received: by mail-yb1-xb2d.google.com with SMTP id 3f1490d57ef6-da077db5145so1900271276.0
+        for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 08:05:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=raspberrypi.com; s=google; t=1700841904; x=1701446704; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=FGMFcjXzbEdk+Sse8VkaimKNQr0g8bw7uTtgiPTBa4Y=;
+        b=qVmcs9xiioqxNCrBHmhMK3Y9pEMN/uCvw0r/CD+fTQXAeLtKHHqGiLVQ0DWTofHlA2
+         csK/pKPkcfiRPbwq50ZBZzrvMNd3BG0HPyRkVg6FaHSoEnp2GTZT0Kfp6ZkHorCPjY1I
+         K914M1AL/Dizr56uVnpXYp4jxfiHJCgCeoazky8IyFHrhvog0MQCaXR3nYLzX6gk+kc7
+         XGxEDVZ3FnTpLM2UTLTn2xMYZMhfekbwwSIgonrSOO4gh3ZqbRl72jzkeHS1pl52bX75
+         UIATDjGesE4TAJrhvNClNKeBo3NK/HovlKuZvlH2pFRlV+gEtrMN/CLamTW6bctb5fjn
+         dlMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700841904; x=1701446704;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=FGMFcjXzbEdk+Sse8VkaimKNQr0g8bw7uTtgiPTBa4Y=;
+        b=oM6Cqo+tCfDiXysWl1a860lO25GeCJ2jVjP4uy+MSdjN+WEANzS6kaWLXayCAWDebQ
+         1fDXfOc/ef83T/L9Pgf3OpttCxUHJ38+ZUQAW3D3eAdB41uD0uhzNI/Jr1JAW3cw/5oJ
+         TdhMcb3gm0cS8dl1OKnEGa/N8mCC92mDHIQ5yFD+eywgZb05fTxZRmkU2ckJRMsL7YhN
+         WooPEydio8ojJUP+DPvbAgJpdpbMEym4mUSdKc43TP/mtAokQcRfT3X35G7G5S+DEk53
+         UTAetbn05AEuWhPD2RMiiklSa2oqZF9CmfcDY5eDJNMaSgB4BestFZ+NZBmUipY5xNeb
+         zJCg==
+X-Gm-Message-State: AOJu0YzsCI45tfgazDdlGGBFTKS16U9erDrCI27hFLhdHxNSRsJw3xC4
+	/LyDDE8C6TOq80/lg3hRbtV5PhlPI7Qwm7IEKn7W7Zu8jw7kWCUcxP0=
+X-Google-Smtp-Source: AGHT+IHDgEc5/d/bHS+/3bhvmbDKVLXNvruKPPtv9g7wbHtBvMJ6nCQ5UHivqzqIt+ZGbt+K3E1Ap3ZKIgfp0CQUNE8=
+X-Received: by 2002:a25:8e0a:0:b0:da0:5ba2:6275 with SMTP id
+ p10-20020a258e0a000000b00da05ba26275mr2764586ybl.34.1700841904036; Fri, 24
+ Nov 2023 08:05:04 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-ClientProxiedBy: SH-EX2013.helmholz.local (192.168.1.4) To
- SH-EX2013.helmholz.local (192.168.1.4)
-X-EXCLAIMER-MD-CONFIG: 2ae5875c-d7e5-4d7e-baa3-654d37918933
+References: <20231124104451.44271-1-shengyang.chen@starfivetech.com> <dab03c60-caa9-47e3-9dac-fa499227b67b@gmx.net>
+In-Reply-To: <dab03c60-caa9-47e3-9dac-fa499227b67b@gmx.net>
+From: Dave Stevenson <dave.stevenson@raspberrypi.com>
+Date: Fri, 24 Nov 2023 16:04:47 +0000
+Message-ID: <CAPY8ntAXYVTTfXL5HX-14t-VDe63eFgRBNKA0aG3RamKepxwDQ@mail.gmail.com>
+Subject: Re: [PATCH v1 0/2] Add waveshare 7inch touchscreen panel support
+To: Stefan Wahren <wahrenst@gmx.net>
+Cc: Shengyang Chen <shengyang.chen@starfivetech.com>, devicetree@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, thierry.reding@gmail.com, 
+	neil.armstrong@linaro.org, conor+dt@kernel.org, keith.zhao@starfivetech.com, 
+	tzimmermann@suse.de, krzysztof.kozlowski+dt@linaro.org, sam@ravnborg.org, 
+	linux-kernel@vger.kernel.org, mripard@kernel.org, jack.zhu@starfivetech.com, 
+	robh+dt@kernel.org, bcm-kernel-feedback-list@broadcom.com, 
+	linux-rpi-kernel@lists.infradead.org, florian.fainelli@broadcom.com, 
+	quic_jesszhan@quicinc.com, changhuang.liang@starfivetech.com, 
+	linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 
-Microchip KSZ8863/KSZ8873 have the ability to select between internal
-and external RMII reference clock. By default, reference clock
-needs to be provided via REFCLKI_3 pin. If required, device can be
-setup to provide RMII clock internally so that REFCLKI_3 pin can be
-left unconnected.
-Add a new "microchip,rmii-clk-internal" property which will set
-RMII clock reference to internal. If property is not set, reference
-clock needs to be provided externally.
+On Fri, 24 Nov 2023 at 15:00, Stefan Wahren <wahrenst@gmx.net> wrote:
+>
+> Hi Shengyang,
+>
+> [fix address of Emma]
 
-While at it, move the ksz8795_cpu_interface_select() to
-ksz8_config_cpu_port() to get a cleaner call path for cpu port.
+Not merged to master yet, but Emma has stepped back from maintenance.
+https://lists.freedesktop.org/archives/dri-devel/2023-October/428829.html
+Dropped from the cc.
 
-Signed-off-by: Ante Knezic <ante.knezic@helmholz.de>
----
- drivers/net/dsa/microchip/ksz8795.c     | 56 +++++++++++++++++++++++++++++----
- drivers/net/dsa/microchip/ksz8795_reg.h |  3 ++
- 2 files changed, 53 insertions(+), 6 deletions(-)
+> Am 24.11.23 um 11:44 schrieb Shengyang Chen:
+> > This patchset adds waveshare 7inch touchscreen panel support
+> > for the StarFive JH7110 SoC.
+> >
+> > Patch 1 add new compatible for the raspberrypi panel driver and its dt-binding.
+> > Patch 2 add new display mode and new probing process for raspberrypi panel driver.
+> >
+> > Waveshare 7inch touchscreen panel is a kind of raspberrypi panel
+> > which can be drived by raspberrypi panel driver.
+> >
+> > The series has been tested on the VisionFive 2 board.
+> surprisingly i was recently working on the official Raspberry Pi
+> touchscreen and was able to get it running the new way.
+>
+> What do i mean with the new way. There is almost nothing special to the
+> Raspberry Pi touchscreen, so we should try to use/extend existing
+> components like:
+>
+> CONFIG_DRM_PANEL_SIMPLE
+> CONFIG_TOUCHSCREEN_EDT_FT5X06
+> CONFIG_DRM_TOSHIBA_TC358762
+>
+> The only special part is the Attiny on the connector PCB which requires:
+>
+> CONFIG_REGULATOR_RASPBERRYPI_TOUCHSCREEN_ATTINY
+>
+> So the whole point is to avoid writing monolitic drivers for simple
+> panel like that.
+>
+> There is a WIP branch based on top of Linux 6.7-rcX, which should
+> demonstrate this approach [1]. Unfortunately it is not ready for
+> upstreaming, but it has been tested on a Raspberry Pi 3 B Plus. Maybe
+> this is helpful for your case.
+>
+> Actually i consider panel-raspberrypi-touchscreen.c as a dead end, which
+> shouldn't be extended.
 
-diff --git a/drivers/net/dsa/microchip/ksz8795.c b/drivers/net/dsa/microchip/ksz8795.c
-index 4bf4d67557dc..a749a4a970ec 100644
---- a/drivers/net/dsa/microchip/ksz8795.c
-+++ b/drivers/net/dsa/microchip/ksz8795.c
-@@ -1358,6 +1358,9 @@ static void ksz8795_cpu_interface_select(struct ksz_device *dev, int port)
- {
- 	struct ksz_port *p = &dev->ports[port];
- 
-+	if (!ksz_is_ksz87xx(dev))
-+		return;
-+
- 	if (!p->interface && dev->compat_interface) {
- 		dev_warn(dev->dev,
- 			 "Using legacy switch \"phy-mode\" property, because it is missing on port %d node. "
-@@ -1391,18 +1394,55 @@ void ksz8_port_setup(struct ksz_device *dev, int port, bool cpu_port)
- 	/* enable 802.1p priority */
- 	ksz_port_cfg(dev, port, P_PRIO_CTRL, PORT_802_1P_ENABLE, true);
- 
--	if (cpu_port) {
--		if (!ksz_is_ksz88x3(dev))
--			ksz8795_cpu_interface_select(dev, port);
--
-+	if (cpu_port)
- 		member = dsa_user_ports(ds);
--	} else {
-+	else
- 		member = BIT(dsa_upstream_port(ds, port));
--	}
- 
- 	ksz8_cfg_port_member(dev, port, member);
- }
- 
-+static int ksz88x3_config_rmii_clk(struct ksz_device *dev, int cpu_port)
-+{
-+	struct device_node *ports, *port, *cpu_node;
-+	bool rmii_clk_internal;
-+
-+	if (!ksz_is_ksz88x3(dev))
-+		return 0;
-+
-+	cpu_node = NULL;
-+
-+	ports = of_get_child_by_name(dev->dev->of_node, "ports");
-+	if (!ports)
-+		ports = of_get_child_by_name(dev->dev->of_node,
-+					     "ethernet-ports");
-+	if (!ports)
-+		return -ENODEV;
-+
-+	for_each_available_child_of_node(ports, port) {
-+		u32 index;
-+
-+		if (of_property_read_u32(port, "reg", &index) < 0)
-+			return -ENODEV;
-+
-+		if (index == cpu_port) {
-+			cpu_node = port;
-+			break;
-+		}
-+	}
-+
-+	if (!cpu_node)
-+		return -ENODEV;
-+
-+	rmii_clk_internal = of_property_read_bool(cpu_node,
-+						  "microchip,rmii-clk-internal");
-+
-+	ksz_cfg(dev, KSZ88X3_REG_FVID_AND_HOST_MODE,
-+		KSZ88X3_PORT3_RMII_CLK_INTERNAL, rmii_clk_internal);
-+
-+	return 0;
-+}
-+
- void ksz8_config_cpu_port(struct dsa_switch *ds)
- {
- 	struct ksz_device *dev = ds->priv;
-@@ -1419,6 +1459,10 @@ void ksz8_config_cpu_port(struct dsa_switch *ds)
- 
- 	ksz8_port_setup(dev, dev->cpu_port, true);
- 
-+	ksz8795_cpu_interface_select(dev, dev->cpu_port);
-+	if (ksz88x3_config_rmii_clk(dev, dev->cpu_port))
-+		dev_err(dev->dev, "Failed to set rmii reference clock source mode");
-+
- 	for (i = 0; i < dev->phy_port_cnt; i++) {
- 		ksz_port_stp_state_set(ds, i, BR_STATE_DISABLED);
- 	}
-diff --git a/drivers/net/dsa/microchip/ksz8795_reg.h b/drivers/net/dsa/microchip/ksz8795_reg.h
-index 3c9dae53e4d8..beca974e0171 100644
---- a/drivers/net/dsa/microchip/ksz8795_reg.h
-+++ b/drivers/net/dsa/microchip/ksz8795_reg.h
-@@ -22,6 +22,9 @@
- #define KSZ8863_GLOBAL_SOFTWARE_RESET	BIT(4)
- #define KSZ8863_PCS_RESET		BIT(0)
- 
-+#define KSZ88X3_REG_FVID_AND_HOST_MODE  0xC6
-+#define KSZ88X3_PORT3_RMII_CLK_INTERNAL BIT(3)
-+
- #define REG_SW_CTRL_0			0x02
- 
- #define SW_NEW_BACKOFF			BIT(7)
--- 
-2.11.0
+Agreed.
 
+The panel control being bound in with the Atmel control has no hook
+for the EDT5x06 touch driver to hook in and keep the power to the
+touch controller active. When the panel disable gets called, bye bye
+touch overlay :-(
+
+And I'm reading the driver change as more of a hack to get it to work
+on your platform, not as adding support for the Waveshare panel
+variant.
+Waveshare deliberately cloned the behaviour of the Pi 7" panel in
+order to make it work with the old Pi firmware drivers, so it
+shouldn't need any significant changes. Where did the new timings come
+from?
+
+  Dave
+
+> Btw there are already DT overlays in mainline which seems to use the
+> Raspberry Pi 7inch panel (without touch function yet) [2].
+>
+> [1] - https://github.com/lategoodbye/rpi-zero/commits/v6.7-7inch-ts
+> [2] -
+> https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/commit/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx-0x-rpidsi.dtso?h=v6.6.2&id=6b4da1354fd81adace0cda448c77d8f2a47d8474
+>
+> >
+> > Shengyang Chen (2):
+> >    dt-bindings: display: panel: raspberrypi: Add compatible property for
+> >      waveshare 7inch touchscreen panel
+> >    gpu: drm: panel: raspberrypi: add new display mode and new probing
+> >      process
+> >
+> >   .../panel/raspberrypi,7inch-touchscreen.yaml  |  4 +-
+> >   .../drm/panel/panel-raspberrypi-touchscreen.c | 99 ++++++++++++++++---
+> >   2 files changed, 91 insertions(+), 12 deletions(-)
+> >
+>
 
