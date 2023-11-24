@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-18474-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18475-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC5B57F6DF6
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 09:20:13 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 980AB7F6E02
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 09:24:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 96B0028124F
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 08:20:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C9C701C20D7E
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 08:24:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0369A4699;
-	Fri, 24 Nov 2023 08:20:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61BBC9453;
+	Fri, 24 Nov 2023 08:24:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MzWYidsy"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Wq6GcR3Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56D0711F
-	for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 00:20:07 -0800 (PST)
-Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-54af2498e85so496416a12.0
-        for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 00:20:07 -0800 (PST)
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 522ECD53
+	for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 00:24:20 -0800 (PST)
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-548a2c20f50so2219711a12.1
+        for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 00:24:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700814006; x=1701418806; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1700814259; x=1701419059; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=LkVn7M+eAmMguDWpgjWJriPty1JjutndIswZF8OoUS4=;
-        b=MzWYidsym6ZxnnIHcoGrIWBJsJ+MjLGcyyXpw+zh783ZQwiP4+t7iISun4avFwBQWs
-         HPxAwHqGBNGC9fxwYRhRZl1OeT9eQC5btVPpls0jPiqpf9rwgdJC5eAkb4Y3vrcTDkjl
-         GP0TQh/OYOjWnaB83EaV1zDwECnFrqHqxz9bZdUeDdktvEZ9fGrtuGUXN5zeZts/Eauj
-         tlkAq7CIna/nSvG9BkMGUVUgfHOoaHDk2jzg0kBeTIqKtlNtQsSkNif1kP5JIkOmXcAd
-         cjNT8RozznLV6itV//RdkhjYDkv9tWQLL26WJ5987KidtP7ISMQzCpWXEBpEe8CubvhQ
-         G1/Q==
+        bh=hoSKzu7DQcGOUwvzPYoeXKGNiw1KdwY6pBIA3ZrdaU4=;
+        b=Wq6GcR3Ydc6s++gtWyQadtaLhfgFuJ1Ux954S6V4aYxmkOYBnTdpczz4a98sb5rWPf
+         fOg0Qf3CIMcN7cN0KLuAZ7TXW/YgNjEsgPM0/NOKeUkoiq72cjoaoHvoFNJ+AhnzxHDZ
+         xlE6jhYyZ0iZWN9lm9afv70S3y4aeBu6KxaP3K+aq1iTJbhsdYf5gHcBQwNFDAqAmq5L
+         DE5jKF07OvYaa3m41RxZXYx8Hl6Sy6LsU0lIqvmmC2HcPrzhmBaEP+/quz9viiThTD2A
+         pJX/9NbTR02SBq43XBhr4NPBfj+Dma/lpnJgMuzBIEB0J9UuEf8ntDYiuIGK6TlfNEHH
+         yrvw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700814006; x=1701418806;
+        d=1e100.net; s=20230601; t=1700814259; x=1701419059;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LkVn7M+eAmMguDWpgjWJriPty1JjutndIswZF8OoUS4=;
-        b=MQ7wcUhtArSc0Wg+n2+a2yKQdC4r/pymNgfcdUi3kGBOvv4ozWBW3Zewd4VSoHFb+R
-         j8flAE+nD/uW+pAs5qHCMS0/uy42Wn2GmhoA9ffGERifhb5l978CcTNcw4OSgyo8XsVr
-         1o4X7joPulypHMWnVWbRtcZHfvpGIRtRU0z0xusegWDsFyK91LX6DfP+ASn2+RU/Hi2o
-         Uxtwy1EwQgKdRKVLzDEnqW/8aQPHEc3JoJJGMdXlMtIJaD6eJB6Maw1jCtdfJ9daQrga
-         lVDiziRTEtbhLMfPkfhh7KtpQTMelXJQ/iQvhl7o3kJHGZl1ErkxJ1O0uo+5x1deB3aW
-         wQ5A==
-X-Gm-Message-State: AOJu0YzDasiw+Dg1zHpzVKrOpxi6NZZEQ3ufowy+o6cj8aufLlspXO5D
-	xR1YalEIhRG2xax9nrDD3wU7Rg==
-X-Google-Smtp-Source: AGHT+IHYTXuH5CEbAHeUCGEkj7ANC7TqgHM9TiqlhjcBuMnOJ4FT8HzQouom2k5x36GuHFG/BnO2LA==
-X-Received: by 2002:a17:906:5299:b0:a00:8706:c82e with SMTP id c25-20020a170906529900b00a008706c82emr1555608ejm.18.1700814005818;
-        Fri, 24 Nov 2023 00:20:05 -0800 (PST)
+        bh=hoSKzu7DQcGOUwvzPYoeXKGNiw1KdwY6pBIA3ZrdaU4=;
+        b=imYDLHUehpDeGp5WNenJEbj/P1yDV4XewgrVWLwIymu7KybhIOUs19w8Nk1j/N18tr
+         IePLhdx8yFurrjo/+V9+7M/aVU3sJfYrtef3MI7gr8QbGHkpkUTNEmRECK8lO7L/9+C8
+         UT5HBVz3fs7f+hImCL2v53P/SA9/fJYvey6VSMQz+nVuGS9/hWR4CRsx/yzjKi2zbfd0
+         hWrnJqyKvv41r3QDaockP1XEwtzwelpKlNRfFRdX2TIRtqiiF+qxrOmXo8PugyyBwaj2
+         XFPl+2d47uaQ1YK0E6T2IrjvFrGlPyX1IZn+V5jOoG+ky6/i0YsxFaya7gxVdcyNFMwR
+         sGFQ==
+X-Gm-Message-State: AOJu0YzS49gwXbo0Zk5+Fjr1jZ90/oFd/ydx6RF32+DBvYm9YxafxVYZ
+	XM7I1/1g0Be71U53EYv7N7cYAg==
+X-Google-Smtp-Source: AGHT+IEn7JaN98CYK9SV6hIU5p5BxrRW8xnUspUlu6ZiHyKfMk5N7uSzv5UmJLQHRMFtJaUeVdsUMA==
+X-Received: by 2002:a17:907:2da9:b0:9fe:38b7:4278 with SMTP id gt41-20020a1709072da900b009fe38b74278mr1798138ejc.16.1700814258755;
+        Fri, 24 Nov 2023 00:24:18 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.100])
-        by smtp.gmail.com with ESMTPSA id cf16-20020a170906b2d000b0099bd7b26639sm1761699ejb.6.2023.11.24.00.20.03
+        by smtp.gmail.com with ESMTPSA id ay14-20020a170906d28e00b009fad1dfe472sm1770936ejb.153.2023.11.24.00.24.17
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Nov 2023 00:20:05 -0800 (PST)
-Message-ID: <e416ab6b-af0a-46d4-ac1f-f78b449e8071@linaro.org>
-Date: Fri, 24 Nov 2023 09:20:03 +0100
+        Fri, 24 Nov 2023 00:24:18 -0800 (PST)
+Message-ID: <8dd46bcd-c1fa-4876-b4d9-e4bb91ce5de9@linaro.org>
+Date: Fri, 24 Nov 2023 09:24:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,26 +62,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v3 2/3] arm64: dts: qcom: sa8775p: enable Fault
- IRQ
+Subject: Re: [PATCH v1 2/2] dt-bindings: mmc: mtk-sd: add 64-steps tuning
+ related property
 Content-Language: en-US
-To: Suraj Jaiswal <quic_jsuraj@quicinc.com>, Vinod Koul <vkoul@kernel.org>,
- Bhupesh Sharma <bhupesh.sharma@linaro.org>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+To: Axe Yang <axe.yang@mediatek.com>,
+ Chaotian Jing <chaotian.jing@mediatek.com>,
+ Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Jose Abreu <joabreu@synopsys.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, netdev@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- Prasad Sodagudi <psodagud@quicinc.com>, Andrew Halaney <ahalaney@redhat.com>
-Cc: kernel@quicinc.com
-References: <cover.1700737841.git.quic_jsuraj@quicinc.com>
- <66690488f08912698301a2c203d7c562798806a2.1700737841.git.quic_jsuraj@quicinc.com>
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Wenbin Mei <wenbin.mei@mediatek.com>
+Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org,
+ Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20231124070839.12484-1-axe.yang@mediatek.com>
+ <20231124070839.12484-3-axe.yang@mediatek.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -127,18 +124,41 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <66690488f08912698301a2c203d7c562798806a2.1700737841.git.quic_jsuraj@quicinc.com>
+In-Reply-To: <20231124070839.12484-3-axe.yang@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 23/11/2023 12:53, Suraj Jaiswal wrote:
-> Add changes to support fault IRQ Handling
-> Support for ethernet.
-> 
-You duplicated all the patches. I already responded to previous
-duplicates set, so also here:
+On 24/11/2023 08:08, Axe Yang wrote:
+> Add 'mediatek,tune-64-steps' option. This property will give MSDC
+> a chance to achieve a more optimal calibration result, thus avoiding
+> potential CRC issues.
 
-NAK, you did not test your patchset.
+Documentation goes before users.
+
+> 
+> Signed-off-by: Axe Yang <axe.yang@mediatek.com>
+> ---
+>  Documentation/devicetree/bindings/mmc/mtk-sd.yaml | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> index 3fffa467e4e1..c33301e2ea33 100644
+> --- a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> @@ -145,6 +145,14 @@ properties:
+>      minimum: 0
+>      maximum: 7
+>  
+> +  mediatek,tune-64-steps:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      Some Soc need enable 64-steps tuning for better delay value to avoid CRC issue.
+
+This scales poorly. Instead should be enum with number of tuning steps.
+
+> +      If present, tune 64 steps to cover a complete clock cycle.
+> +      If not present, tune only 32 steps. For eMMC and SD, this can also yield
+> +      satisfactory calibration results in most cases.
 
 Best regards,
 Krzysztof
