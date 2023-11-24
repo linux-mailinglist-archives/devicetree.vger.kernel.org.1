@@ -1,120 +1,94 @@
-Return-Path: <devicetree+bounces-18516-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18520-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC6717F6FDF
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 10:32:04 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADD2F7F6FFE
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 10:35:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3941FB21152
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 09:32:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DDEB31C209EC
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 09:35:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AA5C15AC8;
-	Fri, 24 Nov 2023 09:31:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C2AE5676;
+	Fri, 24 Nov 2023 09:35:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Y+qRxnI1"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="v0zx82z7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A41AED46;
-	Fri, 24 Nov 2023 01:31:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1700818314; x=1732354314;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=//oUXD9WMGcG6hQPFhgCT7QH/7I5uRzXFCu5VGSZo3M=;
-  b=Y+qRxnI1e3hbthuxPdrdGhCO5b660cGM7iGuFz0QjxMtLJ4Lst5o/+qj
-   X/pLjuEb3vWqEm1ItAAcclisJePmsMYm46VHKPCu3n3azf51bWqQydKqB
-   E0aaFxZAM1JYro3258mFR3Pc7bKoPiKm7G9k37O+y95jqWZox6pY3qEBo
-   LA5CxSGDluZGlIFkDS7d6v2Y79e7B+tZP5dHhbK1KsqaF48xtkwrSU6yD
-   Tv5uyvQPPijsYbTTbASjd6c4YpdO1UUVIhLKpXU2MMUbZ5TGJmKXFFtZ5
-   0Esjab3yhmL6G2pNDAClWuJtn5bUdaAsNUPwCKU/JhCyhzJnbVYoRP4M2
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="371749822"
-X-IronPort-AV: E=Sophos;i="6.04,223,1695711600"; 
-   d="scan'208";a="371749822"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Nov 2023 01:31:54 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="838034977"
-X-IronPort-AV: E=Sophos;i="6.04,223,1695711600"; 
-   d="scan'208";a="838034977"
-Received: from kuha.fi.intel.com ([10.237.72.185])
-  by fmsmga004.fm.intel.com with SMTP; 24 Nov 2023 01:31:49 -0800
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Fri, 24 Nov 2023 11:31:48 +0200
-Date: Fri, 24 Nov 2023 11:31:48 +0200
-From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Hans de Goede <hdegoede@redhat.com>,
-	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	Mark Gross <markgross@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, platform-driver-x86@vger.kernel.org,
-	linux-usb@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] usb: typec: tcpm: Parse Accessory Mode information
-Message-ID: <ZWBthDmFIKK3IvGq@kuha.fi.intel.com>
-References: <20231121202925.2481471-1-dmitry.baryshkov@linaro.org>
- <20231121202925.2481471-3-dmitry.baryshkov@linaro.org>
+Received: from mail-yw1-x1135.google.com (mail-yw1-x1135.google.com [IPv6:2607:f8b0:4864:20::1135])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88669D46
+	for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 01:35:07 -0800 (PST)
+Received: by mail-yw1-x1135.google.com with SMTP id 00721157ae682-5cca8b559b3so16387937b3.0
+        for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 01:35:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1700818507; x=1701423307; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3SHecEy2reWyVq6gokigk87oNgyZXlFO8Jl47Eo+PHk=;
+        b=v0zx82z7YJrkPOY4HIQGap6kLX1rd/6+3BHMsh9fmv+TYO6HR5ylybSrKziMknJQ4V
+         RLWvCdH7h0IJ78paYFtSLkqz1VcFSvMDqzxP/yOU93WkTYoIPg+ZUKpxrKxXNxbsvvpD
+         Z3B4WdWYjS182xJY+BlfsJFLwYZTkRITmkyBRy4+MkrFCG1SrmQ9O74OGvk7/hZlH7p9
+         ICqIee1v/3xAwYB/fy+sgJHtffKHqRnGyLIeuZ2HKKKsnRjjKs2EIofHH+IcTPvX8yKF
+         iC36dMNL5042RhZS1awQVZIhzwWr6+qGhI+QPXhHhFu93CXCU1/6atlXVcD0BWZNvO37
+         PZbQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700818507; x=1701423307;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=3SHecEy2reWyVq6gokigk87oNgyZXlFO8Jl47Eo+PHk=;
+        b=Z4wVcRXLe8/zydUKDLTQ6A3oEDxHR1bxjvI/xmW8Cu5aMz3jolRYHJ/afklXoQSMYi
+         AknqHqC1EA4G/9Mb8UZmu5gkBsL3pytNwCY3w5QgRDGpQkiEH1gmIRJ3wTJ2tufM0Lyy
+         LVT74BM5Zr3KXozy8kSbWa8iviuDa/lRyllt9IvRQqweWasZM4ZAuSuYmn5t/y8gWI+k
+         FjTu2NaPIZggYPbk6LJLKeoyxqneKSGX6FWZYr0DxzWWcI/Gozocgg/AT3syCMyyu5mU
+         +SllRXNtU/V4FqIXS7NpakASPTG9pW7LBEpJ+BVm4a/UTGk42EdKo74pZ5wtY96YEOoy
+         a4bA==
+X-Gm-Message-State: AOJu0Yx1Ui9SttLjqAk3qmylWMmp+/N70UXQhX9HmjX8tqN97kktKsvR
+	dBlm4l8jpIBMKKLv2ZdZIUppCcwiMA74AjRslNPtAg==
+X-Google-Smtp-Source: AGHT+IHTnq655PO1TC9AIlExkPFnCObiXs+7CC9ZqZj6DdVgSgoNeNgxfsrG5JakHQ6ZBLG9MPDRP/p+13LbIsix33c=
+X-Received: by 2002:a81:728a:0:b0:5ca:d5b9:9da3 with SMTP id
+ n132-20020a81728a000000b005cad5b99da3mr1868805ywc.41.1700818506693; Fri, 24
+ Nov 2023 01:35:06 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231121202925.2481471-3-dmitry.baryshkov@linaro.org>
+References: <20231116001913.16121-1-clin@suse.com>
+In-Reply-To: <20231116001913.16121-1-clin@suse.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Fri, 24 Nov 2023 10:34:55 +0100
+Message-ID: <CACRpkdb_1GLcusRbC6RtprDMu=Sxci9e-ew3gKUcsQQRxT65Fw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: pinctrl: s32g2: change a maintainer email address
+To: Chester Lin <clin@suse.com>
+Cc: Ghennadi.Procopciuc@oss.nxp.com, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, Chester Lin <chester62515@gmail.com>, 
+	NXP S32 Linux Team <s32@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Nov 21, 2023 at 10:27:00PM +0200, Dmitry Baryshkov wrote:
-> Some of the boards supported by the TCPM drivers can support USB-C
-> Accessory Modes (Analog Audio, Debug). Parse information about supported
-> modes from the device tree.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+On Thu, Nov 16, 2023 at 1:19=E2=80=AFAM Chester Lin <clin@suse.com> wrote:
 
-Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+> I am leaving SUSE so the current email address <clin@suse.com> will be
+> disabled soon. <chester62515@gmail.com> will be my new address for handli=
+ng
+> emails, patches and pull requests from upstream and communities.
+>
+> Cc: Chester Lin <chester62515@gmail.com>
+> Cc: NXP S32 Linux Team <s32@nxp.com>
+> Cc: Ghennadi Procopciuc <Ghennadi.Procopciuc@oss.nxp.com>
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Signed-off-by: Chester Lin <clin@suse.com>
 
-> ---
->  drivers/usb/typec/tcpm/tcpm.c | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
-> diff --git a/drivers/usb/typec/tcpm/tcpm.c b/drivers/usb/typec/tcpm/tcpm.c
-> index 6e843c511b85..ba2926846269 100644
-> --- a/drivers/usb/typec/tcpm/tcpm.c
-> +++ b/drivers/usb/typec/tcpm/tcpm.c
-> @@ -6114,6 +6114,7 @@ static int tcpm_fw_get_caps(struct tcpm_port *port,
->  {
->  	const char *opmode_str;
->  	int ret;
-> +	int mode;
->  	u32 mw, frs_current;
->  
->  	if (!fwnode)
-> @@ -6132,6 +6133,14 @@ static int tcpm_fw_get_caps(struct tcpm_port *port,
->  	if (ret < 0)
->  		return ret;
->  
-> +	mode = 0;
-> +
-> +	if (fwnode_property_read_bool(fwnode, "accessory-mode-audio"))
-> +		port->typec_caps.accessory[mode++] = TYPEC_ACCESSORY_AUDIO;
-> +
-> +	if (fwnode_property_read_bool(fwnode, "accessory-mode-debug"))
-> +		port->typec_caps.accessory[mode++] = TYPEC_ACCESSORY_DEBUG;
-> +
->  	port->port_type = port->typec_caps.type;
->  	port->pd_supported = !fwnode_property_read_bool(fwnode, "pd-disable");
->  
-> -- 
-> 2.42.0
+Patch applied.
 
--- 
-heikki
+Yours,
+Linus Walleij
 
