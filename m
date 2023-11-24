@@ -1,249 +1,178 @@
-Return-Path: <devicetree+bounces-18569-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18570-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A34437F71EE
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 11:45:21 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B91D7F71FE
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 11:48:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 09335B212C6
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 10:45:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CC8B2B20F35
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 10:48:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41E0E3C1E;
-	Fri, 24 Nov 2023 10:45:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 269051642E;
+	Fri, 24 Nov 2023 10:48:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MbD/CW6n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A00E810FA;
-	Fri, 24 Nov 2023 02:45:01 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-	by ex01.ufhost.com (Postfix) with ESMTP id 1D0B124E2EE;
-	Fri, 24 Nov 2023 18:44:55 +0800 (CST)
-Received: from EXMBX171.cuchost.com (172.16.6.91) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 24 Nov
- 2023 18:44:55 +0800
-Received: from yang-virtual-machine.localdomain (113.72.144.198) by
- EXMBX171.cuchost.com (172.16.6.91) with Microsoft SMTP Server (TLS) id
- 15.0.1497.42; Fri, 24 Nov 2023 18:44:53 +0800
-From: Shengyang Chen <shengyang.chen@starfivetech.com>
-To: <devicetree@vger.kernel.org>, <dri-devel@lists.freedesktop.org>
-CC: <neil.armstrong@linaro.org>, <quic_jesszhan@quicinc.com>,
-	<sam@ravnborg.org>, <airlied@gmail.com>, <daniel@ffwll.ch>,
-	<maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
-	<tzimmermann@suse.de>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-	<florian.fainelli@broadcom.com>, <bcm-kernel-feedback-list@broadcom.com>,
-	<eric@anholt.net>, <thierry.reding@gmail.com>,
-	<changhuang.liang@starfivetech.com>, <keith.zhao@starfivetech.com>,
-	<shengyang.chen@starfivetech.com>, <jack.zhu@starfivetech.com>,
-	<linux-rpi-kernel@lists.infradead.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v1 2/2] gpu: drm: panel: raspberrypi: add new display mode and new probing process
-Date: Fri, 24 Nov 2023 18:44:51 +0800
-Message-ID: <20231124104451.44271-3-shengyang.chen@starfivetech.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20231124104451.44271-1-shengyang.chen@starfivetech.com>
-References: <20231124104451.44271-1-shengyang.chen@starfivetech.com>
+Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09EDB92;
+	Fri, 24 Nov 2023 02:48:40 -0800 (PST)
+Received: by mail-oi1-x234.google.com with SMTP id 5614622812f47-3b843b61d8aso1044590b6e.0;
+        Fri, 24 Nov 2023 02:48:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1700822919; x=1701427719; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=JSUEAKedcFlvjkIzN6LzNXLF8ZLIJ83SRbS1kwzATO0=;
+        b=MbD/CW6nfK6nqn0J496x4uzqaxSn9ZC5LItkOPJOrECSsjMW06vzsdW3y2inl4Iq9K
+         crdAa4/CBU4kpQDIlnG7JZqi25wzny9Bb2wkCHAA1n2X80yoX1kHJrsiZ2Icl++m+AQc
+         9tU1y3bZpctBrkHG8M/Cvu3K/JZqrgp7y3ng4lGt78rbgVC7iqkgJIZid6HUdlqG2mMf
+         VFY/ES07LpxKxLLdFs3m6MCJHJR+cymQlPXO/LaPNXSZFTin1P5QzHtEaz30b0npkEbg
+         kFKtBSMu9nbo9se4364p9nyp90c3XwKzx70Hvj2DSvYJdBmO+Y6tblu7Vwp2XhHiqIC+
+         W70g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700822919; x=1701427719;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JSUEAKedcFlvjkIzN6LzNXLF8ZLIJ83SRbS1kwzATO0=;
+        b=wb3ByAJi9iVURYnT6keF4HLMcaChGw5I0aTsWuzws8rCAcBSYO6nG7FkKoUg+FoAOY
+         K28lHt2rBQ4G+ta9KW6ypogxBle5H69rzVGAove5krslu6YLD9UtoMwJQyxa7/rj1hKp
+         7UNTDnyY5E3zcorK5SQH5tL73+hdySKzpVhQaJ8kdCeEO7GSR6dlsz4/JS7MO2Q0cXVr
+         rN9cj8BXcHaSr7hOh08MKqALTr+HZp7YvbAh3UCZ8D+gJuibmsSy9jJmPLC9L//a+3kG
+         8guavZkdFjyvQXHIejoSWO/mAICqL+fgOnlAOzV3BtYzP7VmGm1CMn1HxtVJpqBY00Jt
+         Q1Sg==
+X-Gm-Message-State: AOJu0Yztqg3d+SMF1XRR+LR8+s2cloAABwAYKcyL196SHXI6y/0KDtQm
+	aKofMZfe2BSoSI8z25eVYbnnYe+kZI1WQT+TUz8=
+X-Google-Smtp-Source: AGHT+IH2TyCtkFLMnAO/yClVYDhq70yZy6EcVUl/P6ZwWvgPzvLcjJQMd6c3yTIRYwm7OY8ExvVm49pGjrDQTZCwM54=
+X-Received: by 2002:a05:6870:9f8b:b0:1e9:c7cc:df9a with SMTP id
+ xm11-20020a0568709f8b00b001e9c7ccdf9amr3508073oab.11.1700822919197; Fri, 24
+ Nov 2023 02:48:39 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX171.cuchost.com
- (172.16.6.91)
-X-YovoleRuleAgent: yovoleflag
+References: <20231122182351.63214-1-linux.amoon@gmail.com> <20231122182351.63214-2-linux.amoon@gmail.com>
+ <20231123-skeletal-smirk-390543e2d6ab@spud>
+In-Reply-To: <20231123-skeletal-smirk-390543e2d6ab@spud>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Fri, 24 Nov 2023 16:18:23 +0530
+Message-ID: <CANAwSgQCOw_CY_Yy7zYHdme92O=O35Ev=MqHcznYnR=ycaxdPg@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: usb: Add the binding example for the
+ Genesys Logic GL3523 hub
+To: Conor Dooley <conor@kernel.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Icenowy Zheng <uwu@icenowy.me>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	linux-amlogic@lists.infradead.org, linux-usb@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-The waveshare 7inch touchscreen panel is a kind of raspberrypi
-pi panel and it can be drived by panel-raspberrypi-touchscreen.c.
-Add new display mode for it.
+Hi Conor
 
-In order to fit CDNS DSI driver which used by StarFive SoCs like JH7110,
-add new probing process for it. The compatible is used to distinguishing.
+On Thu, 23 Nov 2023 at 23:26, Conor Dooley <conor@kernel.org> wrote:
+>
+> On Wed, Nov 22, 2023 at 11:53:46PM +0530, Anand Moon wrote:
+> > Add the binding example for the USB3.1 Genesys Logic GL3523
+> > integrates with USB 3.1 Gen 1 Super Speed and USB 2.0 High-Speed
+> > hub.
+> >
+> > Onboard USB hub supports USB 3.x and USB 2.0 peer controllers.
+> > which has a common reset pin and power supply.
+> > peer-hub phandle each peer controller with proper gpio reset
+> > and help each peer power on during initialization
+> > and power off during suspend.
+> >
+> > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> > ---
+> > v4: Fix the description of peer-hub and update the commit message.
+> > Schematics of the Odroid N2+
+> > https://dn.odroid.com/S922X/ODROID-N2/Schematic/odroid-n2_rev0.6_20210121.pdf
+> > V3: fix the dt_binding_check error, added new example for Genesys GL3523
+> > v2: added Genesys GL3523 binding
+> > v1: none
+> > ---
+> >  .../bindings/usb/genesys,gl850g.yaml          | 67 +++++++++++++++++--
+> >  1 file changed, 63 insertions(+), 4 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> > index ee08b9c3721f..bc3b3f4c8473 100644
+> > --- a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> > +++ b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> > @@ -9,9 +9,6 @@ title: Genesys Logic USB hub controller
+> >  maintainers:
+> >    - Icenowy Zheng <uwu@icenowy.me>
+> >
+> > -allOf:
+> > -  - $ref: usb-device.yaml#
+> > -
+> >  properties:
+> >    compatible:
+> >      enum:
+> > @@ -27,12 +24,48 @@ properties:
+> >
+> >    vdd-supply:
+> >      description:
+> > -      the regulator that provides 3.3V core power to the hub.
+> > +      phandle to the regulator that provides power to the hub.
+> > +
+> > +  peer-hub:
+>
+> Should the property not be "peer-controller"? Your description refers to
+> them as such.
 
-Signed-off-by: Keith Zhao <keith.zhao@starfivetech.com>
-Signed-off-by: Shengyang Chen <shengyang.chen@starfivetech.com>
----
- .../drm/panel/panel-raspberrypi-touchscreen.c | 99 ++++++++++++++++---
- 1 file changed, 88 insertions(+), 11 deletions(-)
+No, as per my understanding, peer-hub represents a complete USB hub.
+See the lock diagram in the below link.
 
-diff --git a/drivers/gpu/drm/panel/panel-raspberrypi-touchscreen.c b/drivers/gpu/drm/panel/panel-raspberrypi-touchscreen.c
-index 4618c892cdd6..4478f1568205 100644
---- a/drivers/gpu/drm/panel/panel-raspberrypi-touchscreen.c
-+++ b/drivers/gpu/drm/panel/panel-raspberrypi-touchscreen.c
-@@ -194,6 +194,13 @@ struct rpi_touchscreen {
- 	struct i2c_client *i2c;
- };
- 
-+struct touchscreen_info {
-+	const struct drm_display_mode *display_mode;
-+	u32 display_mode_size;
-+	int (*touchscreen_post_probe)(struct rpi_touchscreen *ts, struct mipi_dsi_host *host,
-+				      struct mipi_dsi_device_info *info);
-+};
-+
- static const struct drm_display_mode rpi_touchscreen_modes[] = {
- 	{
- 		/* Modeline comes from the Raspberry Pi firmware, with HFP=1
-@@ -211,6 +218,20 @@ static const struct drm_display_mode rpi_touchscreen_modes[] = {
- 	},
- };
- 
-+static const struct drm_display_mode ws_touchscreen_modes[] = {
-+	{
-+		.clock = 29700000 / 1000,
-+		.hdisplay = 800,
-+		.hsync_start = 800 + 90,
-+		.hsync_end = 800 + 90 + 5,
-+		.htotal = 800 + 90 + 5 + 5,
-+		.vdisplay = 480,
-+		.vsync_start = 480 + 60,
-+		.vsync_end = 480 + 60 + 5,
-+		.vtotal = 480 + 60 + 5 + 5,
-+	},
-+};
-+
- static struct rpi_touchscreen *panel_to_ts(struct drm_panel *panel)
- {
- 	return container_of(panel, struct rpi_touchscreen, base);
-@@ -319,9 +340,13 @@ static int rpi_touchscreen_get_modes(struct drm_panel *panel,
- {
- 	unsigned int i, num = 0;
- 	static const u32 bus_format = MEDIA_BUS_FMT_RGB888_1X24;
-+	const struct touchscreen_info *screen_info;
-+
-+	screen_info = of_device_get_match_data(panel->dev);
-+
-+	for (i = 0; i < screen_info->display_mode_size; i++) {
-+		const struct drm_display_mode *m = &screen_info->display_mode[i];
- 
--	for (i = 0; i < ARRAY_SIZE(rpi_touchscreen_modes); i++) {
--		const struct drm_display_mode *m = &rpi_touchscreen_modes[i];
- 		struct drm_display_mode *mode;
- 
- 		mode = drm_mode_duplicate(connector->dev, m);
-@@ -360,12 +385,13 @@ static const struct drm_panel_funcs rpi_touchscreen_funcs = {
- 	.get_modes = rpi_touchscreen_get_modes,
- };
- 
--static int rpi_touchscreen_probe(struct i2c_client *i2c)
-+static int touchscreen_probe(struct i2c_client *i2c)
- {
- 	struct device *dev = &i2c->dev;
- 	struct rpi_touchscreen *ts;
- 	struct device_node *endpoint, *dsi_host_node;
- 	struct mipi_dsi_host *host;
-+	const struct touchscreen_info *screen_info;
- 	int ver;
- 	struct mipi_dsi_device_info info = {
- 		.type = RPI_DSI_DRIVER_NAME,
-@@ -421,14 +447,29 @@ static int rpi_touchscreen_probe(struct i2c_client *i2c)
- 
- 	of_node_put(endpoint);
- 
--	ts->dsi = mipi_dsi_device_register_full(host, &info);
-+	screen_info = of_device_get_match_data(&i2c->dev);
-+	if (!screen_info->touchscreen_post_probe)
-+		return -ENODEV;
-+
-+	return screen_info->touchscreen_post_probe(ts, host, &info);
-+
-+error:
-+	of_node_put(endpoint);
-+
-+	return -ENODEV;
-+}
-+
-+static int rpi_touchscreen_probe(struct rpi_touchscreen *ts, struct mipi_dsi_host *host,
-+				 struct mipi_dsi_device_info *info)
-+{
-+	ts->dsi = mipi_dsi_device_register_full(host, info);
- 	if (IS_ERR(ts->dsi)) {
--		dev_err(dev, "DSI device registration failed: %ld\n",
-+		dev_err(&ts->i2c->dev, "DSI device registration failed: %ld\n",
- 			PTR_ERR(ts->dsi));
- 		return PTR_ERR(ts->dsi);
- 	}
- 
--	drm_panel_init(&ts->base, dev, &rpi_touchscreen_funcs,
-+	drm_panel_init(&ts->base, &ts->i2c->dev, &rpi_touchscreen_funcs,
- 		       DRM_MODE_CONNECTOR_DSI);
- 
- 	/* This appears last, as it's what will unblock the DSI host
-@@ -437,10 +478,33 @@ static int rpi_touchscreen_probe(struct i2c_client *i2c)
- 	drm_panel_add(&ts->base);
- 
- 	return 0;
-+}
- 
--error:
--	of_node_put(endpoint);
--	return -ENODEV;
-+static int ws_touchscreen_probe(struct rpi_touchscreen *ts, struct mipi_dsi_host *host,
-+				struct mipi_dsi_device_info *info)
-+
-+{
-+	/* in order to match CDNS DSI driver , it is nessary
-+	 * to ensure drm_panel_init() & drm_panel_add() before
-+	 * mipi_dsi_device_register_full()
-+	 *
-+	 * after mipi_dsi_device_register_full finished , it will
-+	 * run rpi_touchscreen_dsi_probe -> mipi_dsi_attach()
-+	 * the CDNS DSI attach helper fun need to find the panel by
-+	 * of_drm_find_panel( ). so need add panel before the register.
-+	 */
-+	drm_panel_init(&ts->base, &ts->i2c->dev, &rpi_touchscreen_funcs,
-+		       DRM_MODE_CONNECTOR_DSI);
-+	drm_panel_add(&ts->base);
-+
-+	ts->dsi = mipi_dsi_device_register_full(host, info);
-+	if (IS_ERR(ts->dsi)) {
-+		dev_err(&ts->i2c->dev, "DSI device registration failed: %ld\n",
-+			PTR_ERR(ts->dsi));
-+		return PTR_ERR(ts->dsi);
-+	}
-+
-+	return 0;
- }
- 
- static void rpi_touchscreen_remove(struct i2c_client *i2c)
-@@ -477,8 +541,21 @@ static struct mipi_dsi_driver rpi_touchscreen_dsi_driver = {
- 	.probe = rpi_touchscreen_dsi_probe,
- };
- 
-+static const struct touchscreen_info rpi_touchscreen_info = {
-+	.display_mode = rpi_touchscreen_modes,
-+	.display_mode_size = ARRAY_SIZE(rpi_touchscreen_modes),
-+	.touchscreen_post_probe = rpi_touchscreen_probe,
-+};
-+
-+static const struct touchscreen_info ws_touchscreen_info = {
-+	.display_mode = ws_touchscreen_modes,
-+	.display_mode_size = ARRAY_SIZE(ws_touchscreen_modes),
-+	.touchscreen_post_probe = ws_touchscreen_probe,
-+};
-+
- static const struct of_device_id rpi_touchscreen_of_ids[] = {
--	{ .compatible = "raspberrypi,7inch-touchscreen-panel" },
-+	{ .compatible = "raspberrypi,7inch-touchscreen-panel", .data = &rpi_touchscreen_info,},
-+	{ .compatible = "waveshare,7inch-touchscreen-panel", .data = &ws_touchscreen_info,},
- 	{ } /* sentinel */
- };
- MODULE_DEVICE_TABLE(of, rpi_touchscreen_of_ids);
-@@ -488,7 +565,7 @@ static struct i2c_driver rpi_touchscreen_driver = {
- 		.name = "rpi_touchscreen",
- 		.of_match_table = rpi_touchscreen_of_ids,
- 	},
--	.probe = rpi_touchscreen_probe,
-+	.probe = touchscreen_probe,
- 	.remove = rpi_touchscreen_remove,
- };
- 
--- 
-2.17.1
+>
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    description:
+> > +      onboard USB hub supports USB 3.x and USB 2.0 peer controllers.
+>
+>
+> > +      which has a common reset pin and power supply.
+> > +      peer-hub phandle each peer controller with proper gpio reset
+> > +      and help each peer power on during initialization
+> > +      and power off during suspend.
+>
+> I generally hate to talk about non-native speakers grammar etc, but what
+> you have here is in need of a lot of improvement. The below is my
+> attempt to understand what you are trying to say:
+>
+> "For onboard hubs that support USB 3.x and USB 2.0 controllers with
+> shared resets and power supplies, this property is used to identify
+> the controllers with which these are shared."
+>
 
+Sorry for the poor grammar, I will update this in the next v5.
+
+> Also - this is one particular system, what prevents there being a hub
+> that has more than 2 controllers? Also, as you insist that this is
+> generic, and not just for genesys, should this not be defined in a
+> common location?
+
+Here is the block diagram of the Genesys GL3523 hub.
+[0] https://www.genesyslogic.com.tw/en/product_view.php?show=67 [Block Diagram]
+
+It has two USB 2.0 and USB 3.1 controllers, so using peer-hub node
+the onboard hub module will bring up this hub.
+
+There are many examples that use similar properties hence it is generic.
+
+# Documentation/devicetree/bindings/usb/cypress,hx3.yaml
+# Documentation/devicetree/bindings/usb/microchip,usb5744.yaml
+# Documentation/devicetree/bindings/usb/realtek,rts5411.yaml
+# Documentation/devicetree/bindings/usb/ti,usb8041.yaml
+# Documentation/devicetree/bindings/usb/vialab,vl817.yaml
+
+>
+> Cheers,
+> Conor.
+>
+
+Thanks
+-Anand
 
