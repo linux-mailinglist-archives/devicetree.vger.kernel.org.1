@@ -1,65 +1,66 @@
-Return-Path: <devicetree+bounces-18604-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18605-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0ECBB7F7419
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 13:44:34 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32EFE7F7434
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 13:49:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 403351C20B3A
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 12:44:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C78C7B20B8D
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 12:49:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EAC221101;
-	Fri, 24 Nov 2023 12:44:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7ADB182AA;
+	Fri, 24 Nov 2023 12:49:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tu77iqqk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LpqsmpXj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B89A91D55E;
-	Fri, 24 Nov 2023 12:44:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E744BC433C7;
-	Fri, 24 Nov 2023 12:44:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A71D61799E;
+	Fri, 24 Nov 2023 12:49:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97706C433C8;
+	Fri, 24 Nov 2023 12:49:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700829867;
-	bh=eKoPXmjt1vLT0zHIRWJlxGg5yDvAkaj76XFVfYVmlUI=;
+	s=k20201202; t=1700830145;
+	bh=0/fjlCNQfvRSIG2DQIR0FRU4Xx3x1rDhMmjCSc2dHTE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tu77iqqkan/0awoezxvxgdZ58rXcwbBQbr9BDkPshaN/6k2A/ZSrJ2pivmd9lOFY+
-	 NREejYYTNhP/hctnKVNlW9xxR9lOl+AAm7HvNldBpZvBaPQMEigjoRdtwfXxrXh301
-	 xcE5cM2cmXq5hf51Kdghxsk63Sag2CqgUuB6yNEq28E8L65Oyjl9MWvH7nxnqjZ6ZV
-	 bPoST1WHx4nvffOJs/rEx7CMwjv5E2tG76Wfga3NEm1722XSU7nPTOoqxy2VuICMy3
-	 CAFsSJdA9pNu8oGTQE5EueslGQ1+Qg0gTqOWNKkRhpsXFw6yEa3xfrggB19O6t3xdL
-	 6jFiujCW9LqYA==
-Date: Fri, 24 Nov 2023 12:44:21 +0000
+	b=LpqsmpXjNkQvLIxL/ylXUZ91zdM7G+iqppgN2q7cz2T4+sGCGpPVZdZYRXvKojtif
+	 JM1HZFTmyyVMXmO/BbzyQ1IraS78klmcvBQdJCm1GsPKnnbzwQ+818lecrSVzitWTN
+	 2uhykAVa1811461fU36jc0eW6sVL+OaFoRntPPbx75HzI5hNu740qxbX+QZUh3lY1J
+	 VPs1Xa0LdBXirImjN7pSx+f9R0UyAq/8sI8izlhzDjvfjHVL5qpzznGNeczlnflsk7
+	 CQa9N7TiTQfB5l9jnLNPWdF0A2GJAarSigH0aXAUHITc9K1pmVrwOwcXyzQA8RvTJ4
+	 wsrCRFJonRdIA==
+Date: Fri, 24 Nov 2023 12:48:59 +0000
 From: Conor Dooley <conor@kernel.org>
-To: William Qiu <william.qiu@starfivetech.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-pwm@vger.kernel.org,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Rob Herring <robh+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
-	Hal Feng <hal.feng@starfivetech.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>
-Subject: Re: [PATCH v7 1/4] dt-bindings: pwm: Add OpenCores PWM module
-Message-ID: <20231124-bankbook-scorecard-708d355643c4@spud>
-References: <20231110062039.103339-1-william.qiu@starfivetech.com>
- <20231110062039.103339-2-william.qiu@starfivetech.com>
- <afce202d-6234-4c5f-9018-facd9a56b5eb@linaro.org>
- <f4551a7a-61e6-4d97-94c2-da2e4e9e8cb3@starfivetech.com>
- <824cee7b-e4d3-461a-8bfb-4ad095c240fd@linaro.org>
- <20231113-sprung-tantrum-94659009b9d4@squawk>
- <1ba3e8d1-ed89-4aab-ae27-d8d31ee2f150@starfivetech.com>
- <20231122-jokester-reapply-eb000d976d56@spud>
- <701877bd-313f-4604-a398-76a143f009d6@starfivetech.com>
+To: "Manne, Nava kishore" <nava.kishore.manne@amd.com>
+Cc: "mdf@kernel.org" <mdf@kernel.org>,
+	"hao.wu@intel.com" <hao.wu@intel.com>,
+	"yilun.xu@intel.com" <yilun.xu@intel.com>,
+	"trix@redhat.com" <trix@redhat.com>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"Simek, Michal" <michal.simek@amd.com>,
+	"mathieu.poirier@linaro.org" <mathieu.poirier@linaro.org>,
+	"Levinsky, Ben" <ben.levinsky@amd.com>,
+	"Potthuri, Sai Krishna" <sai.krishna.potthuri@amd.com>,
+	"Shah, Tanmay" <tanmay.shah@amd.com>,
+	"dhaval.r.shah@amd.com" <dhaval.r.shah@amd.com>,
+	"arnd@arndb.de" <arnd@arndb.de>,
+	"Datta, Shubhrajyoti" <shubhrajyoti.datta@amd.com>,
+	"linux-fpga@vger.kernel.org" <linux-fpga@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [RFC PATCH 1/3] dt-bindings: fpga: Add support for user-key
+ encrypted bitstream loading
+Message-ID: <20231124-tweezers-slug-0349a2188802@spud>
+References: <20231122054404.3764288-1-nava.kishore.manne@amd.com>
+ <20231122054404.3764288-2-nava.kishore.manne@amd.com>
+ <20231122-exert-gleeful-e4476851c489@spud>
+ <DM6PR12MB3993F0EC4930E68C54299B36CDB8A@DM6PR12MB3993.namprd12.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,108 +68,105 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="NUcpPRTAaFfrbmlx"
+	protocol="application/pgp-signature"; boundary="i9ugnADt+2no1y19"
 Content-Disposition: inline
-In-Reply-To: <701877bd-313f-4604-a398-76a143f009d6@starfivetech.com>
+In-Reply-To: <DM6PR12MB3993F0EC4930E68C54299B36CDB8A@DM6PR12MB3993.namprd12.prod.outlook.com>
 
 
---NUcpPRTAaFfrbmlx
-Content-Type: text/plain; charset=us-ascii
+--i9ugnADt+2no1y19
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Nov 24, 2023 at 03:38:41PM +0800, William Qiu wrote:
+On Fri, Nov 24, 2023 at 06:35:19AM +0000, Manne, Nava kishore wrote:
+> Hi Conor,
 >=20
+> 	Thanks for providing the review comments.
+> Please find my response inline.
 >=20
-> On 2023/11/23 1:36, Conor Dooley wrote:
-> > On Wed, Nov 22, 2023 at 03:03:36PM +0800, William Qiu wrote:
-> >>=20
-> >>=20
-> >> On 2023/11/14 4:17, Conor Dooley wrote:
-> >> > On Mon, Nov 13, 2023 at 09:07:15PM +0100, Krzysztof Kozlowski wrote:
-> >> >> On 13/11/2023 10:42, William Qiu wrote:
-> >> >> > Will update.
-> >> >> >>> +
-> >> >> >>> +allOf:
-> >> >> >>> +  - $ref: pwm.yaml#
-> >> >> >>> +
-> >> >> >>> +properties:
-> >> >> >>> +  compatible:
-> >> >> >>> +    oneOf:
-> >> >> >>> +      - items:
-> >> >> >>> +          - enum:
-> >> >> >>> +              - starfive,jh7100-pwm
-> >> >> >>> +              - starfive,jh7110-pwm
-> >> >> >>> +          - const: opencores,pwm
-> >> >> >>
-> >> >> >> That's a very, very generic compatible. Are you sure, 100% sure,=
- that
-> >> >> >> all designs from OpenCores from now till next 100 years will be =
-100%
-> >> >> >> compatible?
-> >> >> >>
-> >> >> > My description is not accurate enough, this is OpenCores PTC IP, =
-and PWM
-> >> >> > is one of those modes, so it might be better to replace compatibl=
-e with
-> >> >> > "opencores, ptc-pwm"
-> >> >> >=20
-> >> >> > What do you think?
-> >> >>=20
-> >> >> Sorry, maybe this answers maybe doesn't. What is "PTC"?
-> >> >=20
-> >> > "pwm timer counter". AFAIU, the IP can be configured to provide all =
-3.
-> >> > I think that William pointed out on an earlier revision that they ha=
-ve
-> >> > only implemented the pwm on their hardware.
-> >> > I don't think putting in "ptc" is a sufficient differentiator though=
-, as
-> >> > clearly there could be several different versions of "ptc-pwm" that =
-have
-> >> > the same concern about "all designs from OpenCores for now till the =
-next
-> >> > 100 years" being compatible.
+> > -----Original Message-----
+> > From: Conor Dooley <conor@kernel.org>
+> > Sent: Wednesday, November 22, 2023 10:21 PM
+> > To: Manne, Nava kishore <nava.kishore.manne@amd.com>
+> > Cc: mdf@kernel.org; hao.wu@intel.com; yilun.xu@intel.com;
+> > trix@redhat.com; robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org;
+> > conor+dt@kernel.org; Simek, Michal <michal.simek@amd.com>;
+> > mathieu.poirier@linaro.org; Levinsky, Ben <ben.levinsky@amd.com>;
+> > Potthuri, Sai Krishna <sai.krishna.potthuri@amd.com>; Shah, Tanmay
+> > <tanmay.shah@amd.com>; dhaval.r.shah@amd.com; arnd@arndb.de;
+> > Datta, Shubhrajyoti <shubhrajyoti.datta@amd.com>; linux-
+> > fpga@vger.kernel.org; devicetree@vger.kernel.org; linux-
+> > kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org
+> > Subject: Re: [RFC PATCH 1/3] dt-bindings: fpga: Add support for user-key
+> > encrypted bitstream loading
 > >=20
-> > Perhaps noting what "ptc" stands for in the description field would be a
-> > good idea.
+> > On Wed, Nov 22, 2023 at 11:14:02AM +0530, Nava kishore Manne wrote:
+> > > Adds =E2=80=98encrypted-key-name=E2=80=99 property to support user-ke=
+y encrypted
+> > > bitstream loading use case.
+> > >
+> > > Signed-off-by: Nava kishore Manne <nava.kishore.manne@amd.com>
+> > > ---
+> > >  .../devicetree/bindings/fpga/fpga-region.txt  | 32
+> > > +++++++++++++++++++
 > >=20
-> I will add.
-> >> After discussion and review of materials, we plan to use "opencores,pt=
-c-pwm-v1"
-> >> as this version of compatible, so that it can also be compatible in th=
-e future.
-> >>=20
-> >> What do you think?
+> > Is there a reason that this has not yet been converted to yaml?
 > >=20
-> > Do we know that it is actually "v1" of the IP? I would suggest using the
-> > version that actually matches the version of the IP that you are using
-> > in your SoC.
-> >=20
-> > Thanks,
-> > Conor.
+> I am not sure about the complication involved here why it's not converted=
+ to yaml format.
+> Due to time constraints, I couldn=E2=80=99t spend much time so I have use=
+d this existing legacy format
+> to add my changes.
 >=20
-> There is no version list on their official website, so it is not certain =
-whether
-> it is v1, but at least the driver is the first version.
+> > >  1 file changed, 32 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/fpga/fpga-region.txt
+> > > b/Documentation/devicetree/bindings/fpga/fpga-region.txt
+> > > index 528df8a0e6d8..309334558b3f 100644
+> > > --- a/Documentation/devicetree/bindings/fpga/fpga-region.txt
+> > > +++ b/Documentation/devicetree/bindings/fpga/fpga-region.txt
+> > > @@ -177,6 +177,9 @@ Optional properties:
+> > >  	it indicates that the FPGA has already been programmed with this
+> > image.
+> > >  	If this property is in an overlay targeting an FPGA region, it is a
+> > >  	request to program the FPGA with that image.
+> > > +- encrypted-key-name : should contain the name of an encrypted key f=
+ile
+> > located
+> > > +	on the firmware search path. It will be used to decrypt the FPGA
+> > image
+> > > +	file with user-key.
+> >=20
+> > I might be misreading things, but your driver code seems to assume that=
+ this
+> > is an aes key. Nothing here seems to document that this is supposed to =
+be a
+> > key of a particular type.
+> >=20
 >=20
-> What do you think is the best way?
+> Yes, these changes are intended to add the support for Aes user-key encry=
+pted bitstream loading use case.
+> Will fix it in v2, something like below.
+> aes-key-file-name : Should contain the AES key file name on the firmware =
+search path.
+> 		      The key file contains the AES key and it will be used to decrypt =
+the FPGA image.
 
-I don't have an account, so I cannot open the "ptc_spec.pdf at this link:
-https://opencores.org/projects/ptc/downloads
-but I would take whatever documentation you have for the spec and see
-what it says as the revision on the front cover.
+Then when someone comes along looking for a different type of encryption
+we will end up with national-pride-foo-file-name etc. I think I'd rather
+have a second property that notes what type of cipher is being used and
+if that property is not present default to AES.
 
---NUcpPRTAaFfrbmlx
+--i9ugnADt+2no1y19
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZWCapQAKCRB4tDGHoIJi
-0t1NAP9EALyfolLJbgjNd+FQ5ayCKSfM6FNoKDfvCNoJQ6STLAEA57A7SXLsPypf
-UjTGFuAn6UApcIFw5kzOzYqTjcaCzAM=
-=oIwa
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZWCbuwAKCRB4tDGHoIJi
+0vV7AQCqNqM2cmGU/BCfxWj5TJvLx3rZlbmMCQx94IZ0wEBgcgD/SwPOUEDaTgm7
+9HEV331ZuK9GycuqRUL7gyLlrRb7Fgw=
+=n0AP
 -----END PGP SIGNATURE-----
 
---NUcpPRTAaFfrbmlx--
+--i9ugnADt+2no1y19--
 
