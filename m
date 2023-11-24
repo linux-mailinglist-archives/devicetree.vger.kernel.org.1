@@ -1,57 +1,58 @@
-Return-Path: <devicetree+bounces-18536-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18537-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E1537F7072
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 10:50:12 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC4D87F7074
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 10:50:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 42C46281695
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 09:50:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 18601B20E55
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 09:50:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42D9A1772D;
-	Fri, 24 Nov 2023 09:50:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1936717751;
+	Fri, 24 Nov 2023 09:50:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="P28ZUuDA"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YqYHg7Rx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEA1E10E4
-	for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 01:50:05 -0800 (PST)
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-a03a9009572so231052666b.3
-        for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 01:50:05 -0800 (PST)
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50AC210F1
+	for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 01:50:07 -0800 (PST)
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-a00cbb83c82so245831166b.2
+        for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 01:50:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700819404; x=1701424204; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=TpyMkj9rIOxFufcTixULVIGcsYSV0aiDmd49Bw6R3/g=;
-        b=P28ZUuDABaWgCVP8QMll4OdkFrI8nCp71hECCok2McoozZh8oTTolyYkhl3KejoGv9
-         Mn00wiBZrCzHKtzvXXcX0Z8PofJTXFjuWb4B49XOvK6CH+5If5IKPQpcbhsAxhNZby0w
-         Bbqch2DYmU60zNNAOPxllcsgFK5eA9TwDpbb7y22I4qPeVtaLwovVvEqLYBZ8h35KgWN
-         5vtefFlouicLgKTrcvsCkhpuk3vgLrTeJqGgIVb4C6o54X0WeLaCKbCWcK+lTJMgRP3+
-         st+3DqZcAxToajvvA2Lr3P+0fMLB2Ee4r5fI6f1EFdzbuR7esyaLu7d2MzC+BX1fqqIq
-         6BBw==
+        d=linaro.org; s=google; t=1700819406; x=1701424206; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9+ThUuyBMc8tE0TTrcKzb0NqRa+0wf0OPRYLrcEY5ZA=;
+        b=YqYHg7Rxa9F7UGL0wuq5+JB/3WC8qAQlQRtD5GpoZaMZoeTUSmYZBpEVlC9Fg0rVVL
+         wxC1MqjS5bYXTYPlWiswpUkVDMUdS0YatrTz+Tqvu//fS1ZEK+pXhe0kYeXleAVzl5U0
+         sGgDyBh+xGag+PY2UHbaAU/3HSJ2hfs6TBefgfLXprYZ63H02EdeIYBaHK+dwuLhOdf3
+         1F2n4id2Ld0vwTHmKpiBT+Oz0542ziicOcKTZgJzkqV53owXkSVpfiWww0jVWBzfJwu0
+         gEgc/4TzxJ4dbrEZhvu0F6yZXY7uUrw/IZglmL1ldvWJLAQdOHvaMyHEiJkgfHygOJKA
+         d9Hw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700819404; x=1701424204;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=TpyMkj9rIOxFufcTixULVIGcsYSV0aiDmd49Bw6R3/g=;
-        b=MyFA7LzSvf1GMXGoB3SKySiC5OSmBxl128FFDAa25Kw6TcT3sJgkhUGx5avAlSvSwR
-         kbzR2QLfSKJ5OIeNxK5Vu7nG1HHOmgTWojNoss2D6tp2wHL5j6yzon01Y1UWjNXalO9H
-         /7wvVJZ2XjlQ9CF6gMAnrT2YrcH1TOEEmES7zU4Q2V8neTquaqznUDoX2F43o4txL4TX
-         OsaETRDfq6B/ZklYgvOiaUHoz3TOp9CdfloB8U4nCosZ2qQt1jbQmLZtLy3kyaDUFIwD
-         YA/ulYRhid3zB0g8wj11tQrB+7t/ha4w5aQC2+q65DKiyxlMfnWV3DmRiufP93slP1aj
-         9vpA==
-X-Gm-Message-State: AOJu0YxuoNdeh9vp0IKr4wdUz9RuYdQml5Xa4PeruGFjvvDuiQFTN40h
-	8163sixFKq4nqSKbSVfEcMB0QQ==
-X-Google-Smtp-Source: AGHT+IE44CvRd7huP5K1kbKioWOYzZq53bZNxLqU10LfWLL1Nl2hIXqt10gjOxDR28df2LaDRVHVkg==
-X-Received: by 2002:a17:907:2993:b0:a00:185a:a150 with SMTP id eu19-20020a170907299300b00a00185aa150mr1074654ejc.38.1700819404352;
-        Fri, 24 Nov 2023 01:50:04 -0800 (PST)
+        d=1e100.net; s=20230601; t=1700819406; x=1701424206;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=9+ThUuyBMc8tE0TTrcKzb0NqRa+0wf0OPRYLrcEY5ZA=;
+        b=FEeB4jbtgyagdb+qbwkrQ4EEbdjnSGurs/iwuq7HDAyxfXET2jX/naUaYUsG0rI2z7
+         /VlpEXTcSxGfYvihCt5oxRMwIUNmjzjqibsRvjuXX3wwINEeVL5O9DEK03bCfdtckLwe
+         GYuThdcijGQcwhI3hbTcBC8a/ltwRlVBANAz35rYmJw/NTd1xAknwVN4uXzBnXCNCppe
+         JRIDwslHGAnXueGVgC4fX31AP/ZYUZoZFdsOjNKoNf6GD+jlpaMGnWKz5/Tlpe4+LlvI
+         7TeRfOxeIoO1kQ9q7CnnxAGMaKXcrpeMEWYVQtodjuNYXrt6u22rYBLrqXUsyfQtwNWq
+         CZXg==
+X-Gm-Message-State: AOJu0YxFo2na1aGt98l9PXsPKdPsYUVEpfp0Is62vDZlzLfh65Pqxk0U
+	kFUVwzXnLLOEQYEWUsomF4XQPw==
+X-Google-Smtp-Source: AGHT+IEMLYuBQprXx6furIjSydQTpd2dYUw25t53EyujGSlUTPIszuYrOq7XHBbcwqek1qk4573viA==
+X-Received: by 2002:a17:906:39d9:b0:a04:9608:3c89 with SMTP id i25-20020a17090639d900b00a0496083c89mr1486389eje.75.1700819405717;
+        Fri, 24 Nov 2023 01:50:05 -0800 (PST)
 Received: from krzk-bin.. ([178.197.218.100])
-        by smtp.gmail.com with ESMTPSA id t27-20020a1709063e5b00b009fd727116b4sm1839941eji.129.2023.11.24.01.50.03
+        by smtp.gmail.com with ESMTPSA id t27-20020a1709063e5b00b009fd727116b4sm1839941eji.129.2023.11.24.01.50.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Nov 2023 01:50:03 -0800 (PST)
+        Fri, 24 Nov 2023 01:50:05 -0800 (PST)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: Nishanth Menon <nm@ti.com>,
 	Santosh Shilimkar <ssantosh@kernel.org>,
@@ -64,10 +65,12 @@ To: Nishanth Menon <nm@ti.com>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 1/2] ARM: dts: ti: keystone: minor whitespace cleanup around '='
-Date: Fri, 24 Nov 2023 10:49:59 +0100
-Message-Id: <20231124095000.58487-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 2/2] arm64: dts: ti: minor whitespace cleanup around '='
+Date: Fri, 24 Nov 2023 10:50:00 +0100
+Message-Id: <20231124095000.58487-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20231124095000.58487-1-krzysztof.kozlowski@linaro.org>
+References: <20231124095000.58487-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,108 +84,22 @@ sign.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm/boot/dts/ti/keystone/keystone-k2e-netcp.dtsi  | 6 +++---
- arch/arm/boot/dts/ti/keystone/keystone-k2g-evm.dts     | 2 +-
- arch/arm/boot/dts/ti/keystone/keystone-k2g-netcp.dtsi  | 6 +++---
- arch/arm/boot/dts/ti/keystone/keystone-k2hk-evm.dts    | 2 +-
- arch/arm/boot/dts/ti/keystone/keystone-k2hk-netcp.dtsi | 6 +++---
- arch/arm/boot/dts/ti/keystone/keystone-k2l-netcp.dtsi  | 6 +++---
- 6 files changed, 14 insertions(+), 14 deletions(-)
+ arch/arm64/boot/dts/ti/k3-am69-sk.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/ti/keystone/keystone-k2e-netcp.dtsi b/arch/arm/boot/dts/ti/keystone/keystone-k2e-netcp.dtsi
-index bff73a0ed10b..5c88a90903b8 100644
---- a/arch/arm/boot/dts/ti/keystone/keystone-k2e-netcp.dtsi
-+++ b/arch/arm/boot/dts/ti/keystone/keystone-k2e-netcp.dtsi
-@@ -36,9 +36,9 @@ queue-pools {
- 		qpend {
- 			qpend-0 {
- 				qrange = <658 8>;
--				interrupts =<0 40 0xf04 0 41 0xf04 0 42 0xf04
--					     0 43 0xf04 0 44 0xf04 0 45 0xf04
--					     0 46 0xf04 0 47 0xf04>;
-+				interrupts = <0 40 0xf04 0 41 0xf04 0 42 0xf04
-+					      0 43 0xf04 0 44 0xf04 0 45 0xf04
-+					      0 46 0xf04 0 47 0xf04>;
- 			};
- 			qpend-1 {
- 				qrange = <528 16>;
-diff --git a/arch/arm/boot/dts/ti/keystone/keystone-k2g-evm.dts b/arch/arm/boot/dts/ti/keystone/keystone-k2g-evm.dts
-index 7bfc80f1af26..f0ddbbcdc972 100644
---- a/arch/arm/boot/dts/ti/keystone/keystone-k2g-evm.dts
-+++ b/arch/arm/boot/dts/ti/keystone/keystone-k2g-evm.dts
-@@ -9,7 +9,7 @@
- #include "keystone-k2g.dtsi"
- 
- / {
--	compatible =  "ti,k2g-evm", "ti,k2g", "ti,keystone";
-+	compatible = "ti,k2g-evm", "ti,k2g", "ti,keystone";
- 	model = "Texas Instruments K2G General Purpose EVM";
- 
- 	memory@800000000 {
-diff --git a/arch/arm/boot/dts/ti/keystone/keystone-k2g-netcp.dtsi b/arch/arm/boot/dts/ti/keystone/keystone-k2g-netcp.dtsi
-index f6306933ff42..7109ca031617 100644
---- a/arch/arm/boot/dts/ti/keystone/keystone-k2g-netcp.dtsi
-+++ b/arch/arm/boot/dts/ti/keystone/keystone-k2g-netcp.dtsi
-@@ -37,9 +37,9 @@ queue-pools {
- 		qpend {
- 			qpend-0 {
- 				qrange = <77 8>;
--				interrupts =<0 308 0xf04 0 309 0xf04 0 310 0xf04
--					     0 311 0xf04 0 312 0xf04 0 313 0xf04
--					     0 314 0xf04 0 315 0xf04>;
-+				interrupts = <0 308 0xf04 0 309 0xf04 0 310 0xf04
-+					      0 311 0xf04 0 312 0xf04 0 313 0xf04
-+					      0 314 0xf04 0 315 0xf04>;
- 				qalloc-by-id;
- 			};
- 		};
-diff --git a/arch/arm/boot/dts/ti/keystone/keystone-k2hk-evm.dts b/arch/arm/boot/dts/ti/keystone/keystone-k2hk-evm.dts
-index 206df8a8d9dd..8dfb54295027 100644
---- a/arch/arm/boot/dts/ti/keystone/keystone-k2hk-evm.dts
-+++ b/arch/arm/boot/dts/ti/keystone/keystone-k2hk-evm.dts
-@@ -10,7 +10,7 @@
- #include "keystone-k2hk.dtsi"
- 
- / {
--	compatible =  "ti,k2hk-evm", "ti,k2hk", "ti,keystone";
-+	compatible = "ti,k2hk-evm", "ti,k2hk", "ti,keystone";
- 	model = "Texas Instruments Keystone 2 Kepler/Hawking EVM";
- 
- 	reserved-memory {
-diff --git a/arch/arm/boot/dts/ti/keystone/keystone-k2hk-netcp.dtsi b/arch/arm/boot/dts/ti/keystone/keystone-k2hk-netcp.dtsi
-index 8a421c65f920..c2ee775eab6a 100644
---- a/arch/arm/boot/dts/ti/keystone/keystone-k2hk-netcp.dtsi
-+++ b/arch/arm/boot/dts/ti/keystone/keystone-k2hk-netcp.dtsi
-@@ -49,9 +49,9 @@ queue-pools {
- 		qpend {
- 			qpend-0 {
- 				qrange = <658 8>;
--				interrupts =<0 40 0xf04 0 41 0xf04 0 42 0xf04
--					     0 43 0xf04 0 44 0xf04 0 45 0xf04
--					     0 46 0xf04 0 47 0xf04>;
-+				interrupts = <0 40 0xf04 0 41 0xf04 0 42 0xf04
-+					      0 43 0xf04 0 44 0xf04 0 45 0xf04
-+					      0 46 0xf04 0 47 0xf04>;
- 			};
- 			qpend-1 {
- 				qrange = <8704 16>;
-diff --git a/arch/arm/boot/dts/ti/keystone/keystone-k2l-netcp.dtsi b/arch/arm/boot/dts/ti/keystone/keystone-k2l-netcp.dtsi
-index 5ec6680a533d..1afebd7458c1 100644
---- a/arch/arm/boot/dts/ti/keystone/keystone-k2l-netcp.dtsi
-+++ b/arch/arm/boot/dts/ti/keystone/keystone-k2l-netcp.dtsi
-@@ -36,9 +36,9 @@ queue-pools {
- 		qpend {
- 			qpend-0 {
- 				qrange = <658 8>;
--				interrupts =<0 40 0xf04 0 41 0xf04 0 42 0xf04
--					     0 43 0xf04 0 44 0xf04 0 45 0xf04
--					     0 46 0xf04 0 47 0xf04>;
-+				interrupts = <0 40 0xf04 0 41 0xf04 0 42 0xf04
-+					      0 43 0xf04 0 44 0xf04 0 45 0xf04
-+					      0 46 0xf04 0 47 0xf04>;
- 			};
- 			qpend-1 {
- 				qrange = <528 16>;
+diff --git a/arch/arm64/boot/dts/ti/k3-am69-sk.dts b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
+index 9868c7049bfb..d6a7ae086244 100644
+--- a/arch/arm64/boot/dts/ti/k3-am69-sk.dts
++++ b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
+@@ -671,7 +671,7 @@ exp1: gpio@21 {
+ 		reg = <0x21>;
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
+-		gpio-line-names	= "BOARDID_EEPROM_WP", "CAN_STB", "GPIO_uSD_PWR_EN",
++		gpio-line-names = "BOARDID_EEPROM_WP", "CAN_STB", "GPIO_uSD_PWR_EN",
+ 				"IO_EXP_MCU_RGMII_RST#", "IO_EXP_PCIe0_4L_PERST#",
+ 				"IO_EXP_PCIe1_M.2_RTSz", "IO_EXP_PCIe3_M.2_RTSz",
+ 				"PM_INA_BUS_EN", "ENET1_EXP_PWRDN", "EXP1_ENET_RSTz",
 -- 
 2.34.1
 
