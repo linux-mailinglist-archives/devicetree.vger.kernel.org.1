@@ -1,145 +1,220 @@
-Return-Path: <devicetree+bounces-18463-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18461-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2020C7F6D4C
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 08:58:01 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CC977F6D30
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 08:51:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BFC951F20EE2
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 07:57:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9FF901C20DD3
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 07:50:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D3148F67;
-	Fri, 24 Nov 2023 07:57:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D36998C01;
+	Fri, 24 Nov 2023 07:50:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="k2BcO7Ne"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LLLUza2m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA3D5D6E;
-	Thu, 23 Nov 2023 23:57:39 -0800 (PST)
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id A27ED12000B;
-	Fri, 24 Nov 2023 10:57:36 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru A27ED12000B
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1700812656;
-	bh=eovQphhknaFdWN35GgzeRZhVAOA267j1X4AIB10IlfA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
-	b=k2BcO7Ne28C9V5QLAYOx5F2ADGA7qVygXgyCeIgm8rPIhOYcZ2g8Yg7u+4oApIpaH
-	 cPbfv+iBpuyCgcUgGWGImXDhPdwbbsJEYgMVtqyxGjpsT+JESVRgA/v8V8Tiq64KiC
-	 KD/2/ROvifrYQcwU3IeL8QqAMpn9OEZHEW9L6NsQW1QO95yTqc1b2VlflOy9rWWFNL
-	 0IuxC2vXpKCZ6AIqF+tllrPeAneHffSd3QzuKUAOTK1CCyvXj4P+GDeZl/Y2jCWXvq
-	 ydZeKKYC5Lka2UebPCLk/iUolcpmHPQFIJVTH+pMHDj0XJ/gBNQ9DeX0J5T8vI0JLt
-	 l2uqLO2rHylCA==
-Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Fri, 24 Nov 2023 10:57:36 +0300 (MSK)
-Received: from [192.168.0.106] (100.64.160.123) by
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Fri, 24 Nov 2023 10:57:35 +0300
-Message-ID: <7614600c-afa8-4691-3276-2f47d00e7068@salutedevices.com>
-Date: Fri, 24 Nov 2023 10:49:48 +0300
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DF80D44
+	for <devicetree@vger.kernel.org>; Thu, 23 Nov 2023 23:50:54 -0800 (PST)
+Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-54917ef6c05so2168757a12.1
+        for <devicetree@vger.kernel.org>; Thu, 23 Nov 2023 23:50:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1700812252; x=1701417052; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=t72f4wPL/KQKtbypIvo76yycy/dSaAM33evdOmYUjh8=;
+        b=LLLUza2mP3dr986i9/QUFzxT0Jfof+0DXPbY3p8t47XB4S94UdXhSF+H0Xo09lXKoY
+         jaddfP8eWJPXMrsloOaZVoA0yZlLyBqTmQHYLnX9hNNuuPtljpkYi6TNiYbQwLNAIt81
+         Av8RxEnIRWfmvbRbTDlc/7uhxLJ0EOxdfOGBW2G9IrJWjbK+TvIDF12DdGLdNytujpUI
+         y8FtdKTfNSNI8k2wd1CVjTizSOXTrMpSqRt7xpggzAUjzXZCqqqsgmlMJA+zc9NveX1n
+         +IHDeVV77bKVffMxr+sTuPNiR8reUcbQoN8mCU+Y3hAkV8WMu/vquwI4JL07IZU78dEh
+         gO8g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700812252; x=1701417052;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=t72f4wPL/KQKtbypIvo76yycy/dSaAM33evdOmYUjh8=;
+        b=vRCIGeHbwl/1iTqYlJIGznIUHMOCJgDegMlgNqVVlKELXxtXIdKjOlOeHAEnj7UadE
+         wO1us4gImtTJE2S+yaMjyJrWsFIAhpGlgep1Jhxflpjj6pIL+H90/cnrUhb/PbP9m3kb
+         Ksc26bnfd1+NYtxENMVCYgiLa+ph2XCObfMZELwNTxR+fGsPB089sH8o2LX0W8UNxnZv
+         g5YCiE0c4bt/ebzlHl90tNRNQwIFBf0BJgRg1DONQeCnckVgpZWuhwcErgrTnUNIW+s7
+         C0sCKgc758+A6gidHP9NkXfjDziJ1mrsQqgJT0ORwfq14tvwWq8oRyVoKHJWeENhj8nO
+         xUdA==
+X-Gm-Message-State: AOJu0Yxo16XoPd2cP2ZZ4FZLv5F+JN1qSlNlmCtqfUmb5W9OdN1+X7br
+	j5nN8JYIkuf7oQpIlxJKR6M3Uw==
+X-Google-Smtp-Source: AGHT+IFTS3GA2nqCP5ApuCMI7aWQTy4ZEQZBx6Y0ZVQJDa4emFpcGOdRBVkg08GRDVlg+VnubJJbrw==
+X-Received: by 2002:aa7:da57:0:b0:54a:f72d:38bc with SMTP id w23-20020aa7da57000000b0054af72d38bcmr816993eds.1.1700812252445;
+        Thu, 23 Nov 2023 23:50:52 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.100])
+        by smtp.gmail.com with ESMTPSA id i1-20020aa7dd01000000b00548657c5efdsm1483540edv.10.2023.11.23.23.50.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 23 Nov 2023 23:50:52 -0800 (PST)
+Message-ID: <47406b19-811f-47ab-8c08-dd8c4cc5d8bd@linaro.org>
+Date: Fri, 24 Nov 2023 08:50:49 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v2] arm64: dts: amlogic: meson-axg: pinctrl node for NAND
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: Fix the warnings from coresight
+ bindings
 Content-Language: en-US
-To: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Neil
- Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
-	<martin.blumenstingl@googlemail.com>
-CC: <oxffffaa@gmail.com>, <kernel@sberdevices.ru>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>
-References: <20231109094504.131265-1-avkrasnov@salutedevices.com>
-From: Arseniy Krasnov <avkrasnov@salutedevices.com>
-In-Reply-To: <20231109094504.131265-1-avkrasnov@salutedevices.com>
-Content-Type: text/plain; charset="UTF-8"
+To: Mao Jinlong <quic_jinlmao@quicinc.com>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Tingwei Zhang <quic_tingweiz@quicinc.com>,
+ Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+ Tao Zhang <quic_taozha@quicinc.com>
+References: <20231124061739.2816-1-quic_jinlmao@quicinc.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231124061739.2816-1-quic_jinlmao@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 181570 [Nov 24 2023]
-X-KSMG-AntiSpam-Version: 6.0.0.2
-X-KSMG-AntiSpam-Envelope-From: avkrasnov@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 4 0.3.4 720d3c21819df9b72e78f051e300e232316d302a, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;100.64.160.123:7.1.2;p-i-exch-sc-m01.sberdevices.ru:5.0.1,7.1.1;salutedevices.com:7.1.1;127.0.0.199:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/11/24 06:01:00 #22520095
-X-KSMG-AntiVirus-Status: Clean, skipped
 
-Hello all, 2 weeks from 9.11, please ping
+On 24/11/2023 07:17, Mao Jinlong wrote:
+> Fix all warnings in Qualcomm boards coming from Coresight bindings.
 
-Thanks, Arseniy
+One logical thing, one patch. That applies not only to Linux kernel, but
+to all software projects.
 
-On 09.11.2023 12:45, Arseniy Krasnov wrote:
-> Add pinctrl node for the Meson NAND controller.
 > 
-> Signed-off-by: Arseniy Krasnov <avkrasnov@salutedevices.com>
+> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
 > ---
->  Changelog:                                                             
->  v1 -> v2:                                                              
->   * Rename node name 'nand_all_pins' -> 'nand-all-pins'.                       
+>  arch/arm64/boot/dts/qcom/msm8996.dtsi | 26 ----------------------
+>  arch/arm64/boot/dts/qcom/msm8998.dtsi | 32 +++++++++++++++++----------
+>  arch/arm64/boot/dts/qcom/sdm845.dtsi  |  5 +----
+>  arch/arm64/boot/dts/qcom/sm8150.dtsi  |  5 +----
+>  arch/arm64/boot/dts/qcom/sm8250.dtsi  | 24 ++++----------------
+>  5 files changed, 26 insertions(+), 66 deletions(-)
 > 
->  arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 23 ++++++++++++++++++++++
->  1 file changed, 23 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> index a49aa62e3f9f..7e5ac9db93f8 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> @@ -432,6 +432,27 @@ mux-1 {
+> diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> index 6ba9da9e6a8b..e42c22b26adc 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> @@ -2637,24 +2637,6 @@ funnel1_out: endpoint {
+>  			};
+>  		};
+>  
+> -		funnel@3023000 {
+> -			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
+> -			reg = <0x3023000 0x1000>;
+> -
+> -			clocks = <&rpmcc RPM_QDSS_CLK>, <&rpmcc RPM_QDSS_A_CLK>;
+> -			clock-names = "apb_pclk", "atclk";
+> -
+> -
+> -			out-ports {
+> -				port {
+> -					funnel2_out: endpoint {
+> -						remote-endpoint =
+> -						  <&merge_funnel_in2>;
+> -					};
+> -				};
+> -			};
+> -		};
+
+Why do you remove nodes? How is this anyhow related to commit msg?
+Nothing here is explained.
+
+> -
+>  		funnel@3025000 {
+>  			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
+>  			reg = <0x3025000 0x1000>;
+> @@ -2681,14 +2663,6 @@ merge_funnel_in1: endpoint {
+>  						  <&funnel1_out>;
 >  					};
 >  				};
+> -
+> -				port@2 {
+> -					reg = <2>;
+> -					merge_funnel_in2: endpoint {
+> -						remote-endpoint =
+> -						  <&funnel2_out>;
+> -					};
+
+Why?
+
+> -				};
+>  			};
 >  
-> +				nand_all_pins: nand-all-pins {
-> +					mux {
-> +						groups = "emmc_nand_d0",
-> +							 "emmc_nand_d1",
-> +							 "emmc_nand_d2",
-> +							 "emmc_nand_d3",
-> +							 "emmc_nand_d4",
-> +							 "emmc_nand_d5",
-> +							 "emmc_nand_d6",
-> +							 "emmc_nand_d7",
-> +							 "nand_ce0",
-> +							 "nand_ale",
-> +							 "nand_cle",
-> +							 "nand_wen_clk",
-> +							 "nand_ren_wr";
-> +						function = "nand";
-> +						input-enable;
-> +						bias-pull-up;
+>  			out-ports {
+> diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+> index b485bf925ce6..ebc5ba1b369e 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+> @@ -2031,9 +2031,11 @@ etm5: etm@7c40000 {
+>  
+>  			cpu = <&CPU4>;
+>  
+> -			port {
+> -				etm4_out: endpoint {
+> -					remote-endpoint = <&apss_funnel_in4>;
+> +			out-ports {
+> +				port {
+
+So you want to say out-ports is missing? Commit msg is really not
+explaining anything.
+
+> +					etm4_out: endpoint {
+> +						remote-endpoint = <&apss_funnel_in4>;
 > +					};
-> +				};
-> +
->  				emmc_ds_pins: emmc_ds {
->  					mux {
->  						groups = "emmc_ds";
-> @@ -1913,6 +1934,8 @@ nfc: nand-controller@7800 {
->  				reg = <0x0 0x7800 0x0 0x100>,
->  				      <0x0 0x7000 0x0 0x800>;
->  				reg-names = "nfc", "emmc";
-> +				pinctrl-0 = <&nand_all_pins>;
-> +				pinctrl-names = "default";
->  				#address-cells = <1>;
->  				#size-cells = <0>;
->  				interrupts = <GIC_SPI 34 IRQ_TYPE_EDGE_RISING>;
+>  				};
+
+
+Best regards,
+Krzysztof
+
 
