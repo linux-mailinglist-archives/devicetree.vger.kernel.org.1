@@ -1,94 +1,143 @@
-Return-Path: <devicetree+bounces-18520-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18521-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADD2F7F6FFE
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 10:35:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 59E8C7F700C
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 10:37:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DDEB31C209EC
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 09:35:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 762E91C20EC7
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 09:37:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C2AE5676;
-	Fri, 24 Nov 2023 09:35:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD0CB15AD5;
+	Fri, 24 Nov 2023 09:37:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="v0zx82z7"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="knUtII84"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-x1135.google.com (mail-yw1-x1135.google.com [IPv6:2607:f8b0:4864:20::1135])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88669D46
-	for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 01:35:07 -0800 (PST)
-Received: by mail-yw1-x1135.google.com with SMTP id 00721157ae682-5cca8b559b3so16387937b3.0
-        for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 01:35:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700818507; x=1701423307; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3SHecEy2reWyVq6gokigk87oNgyZXlFO8Jl47Eo+PHk=;
-        b=v0zx82z7YJrkPOY4HIQGap6kLX1rd/6+3BHMsh9fmv+TYO6HR5ylybSrKziMknJQ4V
-         RLWvCdH7h0IJ78paYFtSLkqz1VcFSvMDqzxP/yOU93WkTYoIPg+ZUKpxrKxXNxbsvvpD
-         Z3B4WdWYjS182xJY+BlfsJFLwYZTkRITmkyBRy4+MkrFCG1SrmQ9O74OGvk7/hZlH7p9
-         ICqIee1v/3xAwYB/fy+sgJHtffKHqRnGyLIeuZ2HKKKsnRjjKs2EIofHH+IcTPvX8yKF
-         iC36dMNL5042RhZS1awQVZIhzwWr6+qGhI+QPXhHhFu93CXCU1/6atlXVcD0BWZNvO37
-         PZbQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700818507; x=1701423307;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3SHecEy2reWyVq6gokigk87oNgyZXlFO8Jl47Eo+PHk=;
-        b=Z4wVcRXLe8/zydUKDLTQ6A3oEDxHR1bxjvI/xmW8Cu5aMz3jolRYHJ/afklXoQSMYi
-         AknqHqC1EA4G/9Mb8UZmu5gkBsL3pytNwCY3w5QgRDGpQkiEH1gmIRJ3wTJ2tufM0Lyy
-         LVT74BM5Zr3KXozy8kSbWa8iviuDa/lRyllt9IvRQqweWasZM4ZAuSuYmn5t/y8gWI+k
-         FjTu2NaPIZggYPbk6LJLKeoyxqneKSGX6FWZYr0DxzWWcI/Gozocgg/AT3syCMyyu5mU
-         +SllRXNtU/V4FqIXS7NpakASPTG9pW7LBEpJ+BVm4a/UTGk42EdKo74pZ5wtY96YEOoy
-         a4bA==
-X-Gm-Message-State: AOJu0Yx1Ui9SttLjqAk3qmylWMmp+/N70UXQhX9HmjX8tqN97kktKsvR
-	dBlm4l8jpIBMKKLv2ZdZIUppCcwiMA74AjRslNPtAg==
-X-Google-Smtp-Source: AGHT+IHTnq655PO1TC9AIlExkPFnCObiXs+7CC9ZqZj6DdVgSgoNeNgxfsrG5JakHQ6ZBLG9MPDRP/p+13LbIsix33c=
-X-Received: by 2002:a81:728a:0:b0:5ca:d5b9:9da3 with SMTP id
- n132-20020a81728a000000b005cad5b99da3mr1868805ywc.41.1700818506693; Fri, 24
- Nov 2023 01:35:06 -0800 (PST)
+Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C0C5130;
+	Fri, 24 Nov 2023 01:37:32 -0800 (PST)
+Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 2D6EC100004;
+	Fri, 24 Nov 2023 12:37:29 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 2D6EC100004
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1700818649;
+	bh=dtiyxtmPH0TSIzM6r3/YxZhPNjL7NhlWfSbuYozZXDg=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
+	b=knUtII8402sq5S9M2saPnvqSLQWFwuniAHU6Qb2h4yy5xKY8YSQ3zgf5pjqg1b4zq
+	 WE7JSQOf7Pl6/GR8Ro1tE8EQrHOfDm8jA71/ZrN8kSwoxXbtdJOmAVy5sm0g7oLmBF
+	 5OjKj0VpWMEzBSaCX5dDSKlClr9e+yE30stS54XS3K2gYg2CJ13+S76wl37YhOzIKY
+	 A4CxfmVDcxXu5NGAofjvxkXccYvCp6QCbsbBhBmQquj8hxfdtizXadFlQ7H65qA/np
+	 BL0ZG54bB30vFecbi5mypxCjFRSoL4KiSffnwPcWn74vBAQcLwz90kkjd6HsLAMC5h
+	 OEMDGpHneAa3g==
+Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Fri, 24 Nov 2023 12:37:28 +0300 (MSK)
+Received: from localhost (100.64.160.123) by p-i-exch-sc-m01.sberdevices.ru
+ (172.16.192.107) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 24 Nov
+ 2023 12:37:28 +0300
+Date: Fri, 24 Nov 2023 12:37:22 +0300
+From: Dmitry Rokosov <ddrokosov@salutedevices.com>
+To: Lee Jones <lee@kernel.org>
+CC: <pavel@ucw.cz>, <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+	<conor+dt@kernel.org>, <andy.shevchenko@gmail.com>, <kernel@sberdevices.ru>,
+	<rockosov@gmail.com>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-leds@vger.kernel.org>, George Stark
+	<gnstark@salutedevices.com>
+Subject: Re: [PATCH v4 06/11] leds: aw200xx: add delay after software reset
+Message-ID: <20231124093722.picykrqaewxlxa7h@CAB-WSD-L081021>
+References: <20231121202835.28152-1-ddrokosov@salutedevices.com>
+ <20231121202835.28152-7-ddrokosov@salutedevices.com>
+ <20231123163816.GG1354538@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231116001913.16121-1-clin@suse.com>
-In-Reply-To: <20231116001913.16121-1-clin@suse.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Fri, 24 Nov 2023 10:34:55 +0100
-Message-ID: <CACRpkdb_1GLcusRbC6RtprDMu=Sxci9e-ew3gKUcsQQRxT65Fw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: pinctrl: s32g2: change a maintainer email address
-To: Chester Lin <clin@suse.com>
-Cc: Ghennadi.Procopciuc@oss.nxp.com, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, Chester Lin <chester62515@gmail.com>, 
-	NXP S32 Linux Team <s32@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20231123163816.GG1354538@google.com>
+User-Agent: NeoMutt/20220415
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 181570 [Nov 24 2023]
+X-KSMG-AntiSpam-Version: 6.0.0.2
+X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 4 0.3.4 720d3c21819df9b72e78f051e300e232316d302a, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, salutedevices.com:7.1.1;p-i-exch-sc-m01.sberdevices.ru:7.1.1,5.0.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;100.64.160.123:7.1.2, FromAlignment: s, {Track_Chinese_Simplified, text}, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/11/24 06:01:00 #22520095
+X-KSMG-AntiVirus-Status: Clean, skipped
 
-On Thu, Nov 16, 2023 at 1:19=E2=80=AFAM Chester Lin <clin@suse.com> wrote:
+Hello Lee,
 
-> I am leaving SUSE so the current email address <clin@suse.com> will be
-> disabled soon. <chester62515@gmail.com> will be my new address for handli=
-ng
-> emails, patches and pull requests from upstream and communities.
->
-> Cc: Chester Lin <chester62515@gmail.com>
-> Cc: NXP S32 Linux Team <s32@nxp.com>
-> Cc: Ghennadi Procopciuc <Ghennadi.Procopciuc@oss.nxp.com>
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Signed-off-by: Chester Lin <clin@suse.com>
+Thank you for the detailed review!
 
-Patch applied.
+Please find my answer below.
 
-Yours,
-Linus Walleij
+On Thu, Nov 23, 2023 at 04:38:16PM +0000, Lee Jones wrote:
+> On Tue, 21 Nov 2023, Dmitry Rokosov wrote:
+> 
+> > From: George Stark <gnstark@salutedevices.com>
+> > 
+> > According to datasheets of aw200xx devices software reset takes at
+> > least 1ms so add delay after reset before issuing commands to device.
+> 
+> Are you able to use an auto-correct tool to sharpen the grammar a little?
+> 
+> > Signed-off-by: George Stark <gnstark@salutedevices.com>
+> > Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
+> > Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+> > ---
+> >  drivers/leds/leds-aw200xx.c | 3 +++
+> >  1 file changed, 3 insertions(+)
+> > 
+> > diff --git a/drivers/leds/leds-aw200xx.c b/drivers/leds/leds-aw200xx.c
+> > index 4bce5e7381c0..bb17e48b3e2a 100644
+> > --- a/drivers/leds/leds-aw200xx.c
+> > +++ b/drivers/leds/leds-aw200xx.c
+> > @@ -321,6 +321,9 @@ static int aw200xx_chip_reset(const struct aw200xx *const chip)
+> >  	if (ret)
+> >  		return ret;
+> >  
+> > +	/* according to datasheet software reset takes at least 1ms */
+> 
+> Please start sentences with an uppercase char.
+> 
+> "According to the datasheet, software resets take at least 1ms"
+>               ^                            ^     ^
+> 
+
+Here it's only one 'software reset' mentioned.
+
+> > +	fsleep(1000);
+> > +
+> >  	regcache_mark_dirty(chip->regmap);
+> >  	return regmap_write(chip->regmap, AW200XX_REG_FCD, AW200XX_FCD_CLEAR);
+> >  }
+> > -- 
+> > 2.36.0
+> > 
+> 
+> -- 
+> Lee Jones [李琼斯]
+
+-- 
+Thank you,
+Dmitry
 
