@@ -1,91 +1,98 @@
-Return-Path: <devicetree+bounces-18437-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18438-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDC107F6B03
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 04:44:27 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBD177F6B79
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 05:50:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 68409281329
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 03:44:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5D094B20B94
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 04:50:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C35E51367;
-	Fri, 24 Nov 2023 03:44:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BC91291D;
+	Fri, 24 Nov 2023 04:50:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="NVYiUHSd"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="G3v09qh4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E4EB10E4
-	for <devicetree@vger.kernel.org>; Thu, 23 Nov 2023 19:44:20 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-50797cf5b69so2045994e87.2
-        for <devicetree@vger.kernel.org>; Thu, 23 Nov 2023 19:44:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1700797459; x=1701402259; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=RcJej9WUdZZWtLL0jZR7KWhn0SxMMquSiq9yLi1GeNc=;
-        b=NVYiUHSdceY35BhmGqSbztoEpyzoDR+SJSappsLbeB1ZGPoGIMuFmgxESiy4A9btL3
-         vYFvgGvDP9V+E1aJx2n6cQPTmN9fbLAK7blJFTC/wD8zoL60woQTHaUCkq4oaAeCW5dw
-         Qlf7M3YsiQhftuFnEWpb/1R/VtMS4gPVYuTN0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700797459; x=1701402259;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=RcJej9WUdZZWtLL0jZR7KWhn0SxMMquSiq9yLi1GeNc=;
-        b=HUmk4ecMZKkmSM41o/ObGl33ZwG8w/nbAG9mZDcxUPPF5eNMyUePEg025RnT8jodSR
-         sX/h5BG2wMSwiZD32GTf1J7OLEPfQr32ojiG7JIgH574uqreUqYURDTOj6zdayMP/V/m
-         cCnBNyxkIwX8CMu1QnNPe4wqZK2Er8jEUk9He6VI1fCRVcN3OpCWgaubXRLXuhcDdTNJ
-         8xz9EaIV3yzsyqOSvvkA/MZ1nUhB4ZfaTJyIyCLwYwJjF14g+U/M0/HqeYMw9329zcX7
-         utP/fXAU6QDzyWXhPhyOOorEorVbvmdqROMwIesJz8R+TaW3E6NL2NoGIcVH/uF5hXUL
-         mFRQ==
-X-Gm-Message-State: AOJu0YxurQfGsuUXfO4ga6kbgWUfmAwDSTF+Sx07tvbOLX0Fa2i93ySF
-	N3YWu1KIr7YUNklfk322te9WHeunOEOr/3lHa78KEA==
-X-Google-Smtp-Source: AGHT+IH7191VcJzspX2lbzBmIE7QpGIGT/USZRwoE7pZJ5nRJbeokYOjJ7hZq8T0ALMqi3yp2bhgV8yGSW2RcGOPhbU=
-X-Received: by 2002:ac2:5dc8:0:b0:50a:a9e1:6c58 with SMTP id
- x8-20020ac25dc8000000b0050aa9e16c58mr703080lfq.32.1700797458184; Thu, 23 Nov
- 2023 19:44:18 -0800 (PST)
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC823D5A;
+	Thu, 23 Nov 2023 20:50:47 -0800 (PST)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3AO4oVfX042017;
+	Thu, 23 Nov 2023 22:50:31 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1700801431;
+	bh=Y66vY2X0FSoszZvFJCIRRlSjk/xOWDd0eO4EuPQA1fE=;
+	h=From:To:CC:Subject:Date;
+	b=G3v09qh4GAxcVpiZWzpz50NXRPFzI4iSePPjyjzYtJeL1xVj/q6QIMEXJ+sEDoRTh
+	 bGe488vofkX9RFxpf9bugr5Lk0nPyUZhKAfJXC1ADH1yjPWDAha5dh2tB2lD6ZVFwB
+	 mAKVQHlc7jcCbcxi6h0YeSC7ddBNA+Ck8p1N96rE=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3AO4oVcX077165
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 23 Nov 2023 22:50:31 -0600
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 23
+ Nov 2023 22:50:31 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 23 Nov 2023 22:50:31 -0600
+Received: from santhoshkumark.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3AO4oSji035953;
+	Thu, 23 Nov 2023 22:50:29 -0600
+From: Santhosh Kumar K <s-k6@ti.com>
+To: <lee@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <miquel.raynal@bootlin.com>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH v2] dt-bindings: mfd: ti,am3359-tscadc: Allow dmas property to be optional
+Date: Fri, 24 Nov 2023 10:20:19 +0530
+Message-ID: <20231124045019.21003-1-s-k6@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231123133749.2030661-1-mwalle@kernel.org> <20231123133749.2030661-4-mwalle@kernel.org>
-In-Reply-To: <20231123133749.2030661-4-mwalle@kernel.org>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Fri, 24 Nov 2023 11:44:07 +0800
-Message-ID: <CAGXv+5EcT3OjyaW6LkARugWZN2AE5TWRx=Bh5TqfVBG2tcs5Ew@mail.gmail.com>
-Subject: Re: [PATCH 3/4] arm64: dts: mediatek: mt8195: add DSI and MIPI DPHY nodes
-To: Michael Walle <mwalle@kernel.org>
-Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Jitao Shi <jitao.shi@mediatek.com>, Xinlei Lee <xinlei.lee@mediatek.com>, 
-	dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Thu, Nov 23, 2023 at 9:38=E2=80=AFPM Michael Walle <mwalle@kernel.org> w=
-rote:
->
-> Add the two DSI controller node and the associated DPHY nodes.
-> Individual boards have to enable them in the board device tree.
->
-> Signed-off-by: Michael Walle <mwalle@kernel.org>
+ADC module can function without DMA, so there may not be dma channel
+always associated with device. Hence, remove "dmas", "dma-names" from list
+of required properties.
 
-Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+Signed-off-by: Santhosh Kumar K <s-k6@ti.com>
+Reviewed-by: Miquel Raynal <miquel.raynal@bootlin.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+---
+v2: Change the file prefix in $subject
+    Collected the tags
 
-I checked all the address ranges and interrupt values and they are all
-correct. The other bits seem to be correct, extrapolating from previous
-chips such as MT8183 and MT8192.
+v1: https://lore.kernel.org/linux-arm-kernel/20231122094747.34db981c@xps-13/T/#t
+
+ Documentation/devicetree/bindings/mfd/ti,am3359-tscadc.yaml | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/mfd/ti,am3359-tscadc.yaml b/Documentation/devicetree/bindings/mfd/ti,am3359-tscadc.yaml
+index 23a63265be3c..70b5dfce07d2 100644
+--- a/Documentation/devicetree/bindings/mfd/ti,am3359-tscadc.yaml
++++ b/Documentation/devicetree/bindings/mfd/ti,am3359-tscadc.yaml
+@@ -61,8 +61,6 @@ required:
+   - interrupts
+   - clocks
+   - clock-names
+-  - dmas
+-  - dma-names
+ 
+ additionalProperties: false
+ 
+-- 
+2.34.1
+
 
