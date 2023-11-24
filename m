@@ -1,163 +1,145 @@
-Return-Path: <devicetree+bounces-18460-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18463-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 107607F6D18
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 08:47:22 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2020C7F6D4C
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 08:58:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 347951C20D88
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 07:47:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BFC951F20EE2
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 07:57:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E81023D9;
-	Fri, 24 Nov 2023 07:47:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D3148F67;
+	Fri, 24 Nov 2023 07:57:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vZwESXh0"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="k2BcO7Ne"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60730D5E
-	for <devicetree@vger.kernel.org>; Thu, 23 Nov 2023 23:47:14 -0800 (PST)
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-a00f67f120aso214110566b.2
-        for <devicetree@vger.kernel.org>; Thu, 23 Nov 2023 23:47:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700812033; x=1701416833; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=c1oqGOV3sK0okfh0VYo3enK5A8g5yVob7aq+ycBKw3E=;
-        b=vZwESXh0SGoCOt7XwVDjQl3MyOIhkys8HCwqpFBWdaaHISoNTgBI8oXNYs+q9JQNUo
-         2WFoOKFmSgBGfdCAmvKDLR0FejAxM+R6GZoJNKKPw0mEnChrXgeMWZHaJ11Cq8Df7IUB
-         KmbIcMq3V+lIkY+y4oaanuBjaYa0Uh1jE6uhaLaM6ydmXd1x3UIwkN383atVWVsVgbJ/
-         eJV9LGTOWulcg8MvlKYaTAYPy+IphT6oN7UvLb3a/Tw3BEkjqW4mgFccXDnRGGdgotqR
-         l9nm6/4dZSS0vhuwtblQJXTQxueyRjE+YCOtZMcXRlFcag9N3oZ+H5AQrQdUH6HDZ3Jx
-         Q2Bw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700812033; x=1701416833;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=c1oqGOV3sK0okfh0VYo3enK5A8g5yVob7aq+ycBKw3E=;
-        b=G+y9v2sGnaHrcE1jVQS7PbWVkAii7eF2BO2d1FCNlbHEqGw4DrKaTBXyawJ43jjGoA
-         slCVSpL7lqRMy7fGbEdkPxP5lN+uOBMlSIIox4UOHEXa0VLDSUFi9s4k+JuE2JfXFF6C
-         s/IpyrEm7Q4Q5A5XgP3PQffVtRcSn+Ulxf+Gw9FvCkqctvxiv6ZwBqHqTU8uMd0/xu4p
-         IHm8hHKXt5LEuCn/VnzNdijBhq/rwfPeSXIa0R2vCTIa5jW9bbtqTDH2NGNG/0FoK/xC
-         RBLz15n/FEgUcY6QkMyatUnKLUAC7W0aUnq8hDKykKDSC901Yk4evZr0W/PV9WEKJC+r
-         fi7A==
-X-Gm-Message-State: AOJu0YzmtnQ5pRf1amnoqOkg1ML605aykXOGzFY47ORcUyzw98OdcOGQ
-	Eptj5dwWzHoixeHzPTCMpWhwAg==
-X-Google-Smtp-Source: AGHT+IHB0ylzHTxA7oYKFiO9BheP45s0Ym7Jjc6lo6e9mfiC6QJvD0TsCwZZgTdOtm1RQCL0L3oeKg==
-X-Received: by 2002:a17:906:209e:b0:a02:bc2d:e026 with SMTP id 30-20020a170906209e00b00a02bc2de026mr1352363ejq.46.1700812032887;
-        Thu, 23 Nov 2023 23:47:12 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.100])
-        by smtp.gmail.com with ESMTPSA id z2-20020a170906434200b009ad7fc17b2asm1724771ejm.224.2023.11.23.23.47.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 Nov 2023 23:47:12 -0800 (PST)
-Message-ID: <6221657b-0c01-44cf-817c-a54bd2cede07@linaro.org>
-Date: Fri, 24 Nov 2023 08:47:08 +0100
+Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA3D5D6E;
+	Thu, 23 Nov 2023 23:57:39 -0800 (PST)
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id A27ED12000B;
+	Fri, 24 Nov 2023 10:57:36 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru A27ED12000B
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1700812656;
+	bh=eovQphhknaFdWN35GgzeRZhVAOA267j1X4AIB10IlfA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
+	b=k2BcO7Ne28C9V5QLAYOx5F2ADGA7qVygXgyCeIgm8rPIhOYcZ2g8Yg7u+4oApIpaH
+	 cPbfv+iBpuyCgcUgGWGImXDhPdwbbsJEYgMVtqyxGjpsT+JESVRgA/v8V8Tiq64KiC
+	 KD/2/ROvifrYQcwU3IeL8QqAMpn9OEZHEW9L6NsQW1QO95yTqc1b2VlflOy9rWWFNL
+	 0IuxC2vXpKCZ6AIqF+tllrPeAneHffSd3QzuKUAOTK1CCyvXj4P+GDeZl/Y2jCWXvq
+	 ydZeKKYC5Lka2UebPCLk/iUolcpmHPQFIJVTH+pMHDj0XJ/gBNQ9DeX0J5T8vI0JLt
+	 l2uqLO2rHylCA==
+Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Fri, 24 Nov 2023 10:57:36 +0300 (MSK)
+Received: from [192.168.0.106] (100.64.160.123) by
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Fri, 24 Nov 2023 10:57:35 +0300
+Message-ID: <7614600c-afa8-4691-3276-2f47d00e7068@salutedevices.com>
+Date: Fri, 24 Nov 2023 10:49:48 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 01/16] dt-bindings: arm: qcom: add SM8550 AIM300
-To: Tengfei Fan <quic_tengfan@quicinc.com>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, agross@kernel.org,
- andersson@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, tglx@linutronix.de
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, kernel@quicinc.com
-References: <20231117101817.4401-1-quic_tengfan@quicinc.com>
- <20231117101817.4401-2-quic_tengfan@quicinc.com>
- <519b89a2-550e-44a2-bff0-a6a86c50d073@linaro.org>
- <54b68923-f670-482b-b4a2-ff5f5c867a91@linaro.org>
- <7bf18b1e-463d-4030-99cd-4fcf2126fda2@quicinc.com>
- <4eb76d38-93b5-424b-adce-3cc296fa03fb@linaro.org>
- <6e399854-40a2-412b-8c41-4f9e6b17e38b@linaro.org>
- <35dba126-0a0c-4f27-8b49-39de4d2cb797@quicinc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v2] arm64: dts: amlogic: meson-axg: pinctrl node for NAND
 Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <35dba126-0a0c-4f27-8b49-39de4d2cb797@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+To: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Neil
+ Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
+	<martin.blumenstingl@googlemail.com>
+CC: <oxffffaa@gmail.com>, <kernel@sberdevices.ru>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>
+References: <20231109094504.131265-1-avkrasnov@salutedevices.com>
+From: Arseniy Krasnov <avkrasnov@salutedevices.com>
+In-Reply-To: <20231109094504.131265-1-avkrasnov@salutedevices.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 181570 [Nov 24 2023]
+X-KSMG-AntiSpam-Version: 6.0.0.2
+X-KSMG-AntiSpam-Envelope-From: avkrasnov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 4 0.3.4 720d3c21819df9b72e78f051e300e232316d302a, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;100.64.160.123:7.1.2;p-i-exch-sc-m01.sberdevices.ru:5.0.1,7.1.1;salutedevices.com:7.1.1;127.0.0.199:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/11/24 06:01:00 #22520095
+X-KSMG-AntiVirus-Status: Clean, skipped
 
-On 24/11/2023 03:31, Tengfei Fan wrote:
+Hello all, 2 weeks from 9.11, please ping
 
->>>> AIM (Artificial Intelligence Module). This hardware platform can be used
->>>> to develop AI related software based on Qualcomm chipset. I also will
->>>> update this message to patch commit message.
->>>
->>> Does "Module" means it is physical module?
-> Yes, AIM300 is a physical module.
+Thanks, Arseniy
+
+On 09.11.2023 12:45, Arseniy Krasnov wrote:
+> Add pinctrl node for the Meson NAND controller.
 > 
->> Moreover, does it have anything specific that makes it different from
->> a MTP/QRD/regular 8550 SoM?
->> In general, you can develop AI software on any computer, there are no
->> runtime checks for "AI" presence in the naming ;)
->>
->> Or is it perhaps like QRB5165N [1], a base soc with what seems to
->> be a fat AI accelerator connected to it?
+> Signed-off-by: Arseniy Krasnov <avkrasnov@salutedevices.com>
+> ---
+>  Changelog:                                                             
+>  v1 -> v2:                                                              
+>   * Rename node name 'nand_all_pins' -> 'nand-all-pins'.                       
 > 
-> AIM300 is something like C5165N SOM.
-> AIM300 Series is a highly optimized family of modules designed to 
-> support AIoT applications, intergrated with qualcomm qcs8550 SOC inside. 
-> The Module is mounted onto Qualcomm AIoT carrier board to support 
-> verification, evaluation and development.
-
-Then you send patches for wrong board. AIM is not a board.
+>  arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 23 ++++++++++++++++++++++
+>  1 file changed, 23 insertions(+)
 > 
-> In next patch series, AIM300 AIoT carrier board will be a DTS, AIM300 
-> will be a DTSI, qcs8550 will be a DTSI.
-
-
-Best regards,
-Krzysztof
-
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> index a49aa62e3f9f..7e5ac9db93f8 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> @@ -432,6 +432,27 @@ mux-1 {
+>  					};
+>  				};
+>  
+> +				nand_all_pins: nand-all-pins {
+> +					mux {
+> +						groups = "emmc_nand_d0",
+> +							 "emmc_nand_d1",
+> +							 "emmc_nand_d2",
+> +							 "emmc_nand_d3",
+> +							 "emmc_nand_d4",
+> +							 "emmc_nand_d5",
+> +							 "emmc_nand_d6",
+> +							 "emmc_nand_d7",
+> +							 "nand_ce0",
+> +							 "nand_ale",
+> +							 "nand_cle",
+> +							 "nand_wen_clk",
+> +							 "nand_ren_wr";
+> +						function = "nand";
+> +						input-enable;
+> +						bias-pull-up;
+> +					};
+> +				};
+> +
+>  				emmc_ds_pins: emmc_ds {
+>  					mux {
+>  						groups = "emmc_ds";
+> @@ -1913,6 +1934,8 @@ nfc: nand-controller@7800 {
+>  				reg = <0x0 0x7800 0x0 0x100>,
+>  				      <0x0 0x7000 0x0 0x800>;
+>  				reg-names = "nfc", "emmc";
+> +				pinctrl-0 = <&nand_all_pins>;
+> +				pinctrl-names = "default";
+>  				#address-cells = <1>;
+>  				#size-cells = <0>;
+>  				interrupts = <GIC_SPI 34 IRQ_TYPE_EDGE_RISING>;
 
