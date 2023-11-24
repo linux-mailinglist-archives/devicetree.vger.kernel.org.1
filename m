@@ -1,62 +1,40 @@
-Return-Path: <devicetree+bounces-18639-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18641-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B07D7F76CD
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 15:45:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9086A7F7701
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 15:55:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9BED41C21134
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 14:45:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4CC72281819
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 14:55:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65EA72C1BC;
-	Fri, 24 Nov 2023 14:45:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D40292D632;
+	Fri, 24 Nov 2023 14:55:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LA4TZeH2"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="QG3pg+mD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 936961AE
-	for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 06:45:43 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-332ca7f95e1so1294116f8f.0
-        for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 06:45:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700837142; x=1701441942; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+rlwjJ/KXwyxOs4bJrCX4J/yUIaSw0CZF6vSsHNTewU=;
-        b=LA4TZeH2ZekqFR9xp+Ge5LPFqY1KWarHQh6cEOwpHiUSEnHvOBCY1qy7xeH6/RW41Y
-         4P7br1STCpb9+maz+9buOMXSCuA9uaxOc3vH9muFU7piQ9GOF+FqoLcMKzkq6GK+XzPL
-         JuYP5ijTFReTYGV77f4xfXQWtZTkXcPXBSi4cSGY2bYMgjA3RQoVDkowERuRZYUSmRoF
-         iEeD4HSPcJJOROYpIo/pOQUf6hhJ18UDqEy8SE20NG9dS2ShbihCtU5GvLRzBZrbMBUv
-         fVDTCRa0sIliFqDOLw41UUc3kbW2SH3gV+HXhbE+E2HUFOZxjzoDO7apcUe6q0X9TMhx
-         iqLA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700837142; x=1701441942;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=+rlwjJ/KXwyxOs4bJrCX4J/yUIaSw0CZF6vSsHNTewU=;
-        b=OWqRtNoyZvpsXMYkY52Rc82sGG20IK16pujDI4YTIxu0qti5IcqgbPa9CEbeTfXkuP
-         QvJu1tAg854VgGfrxwql/LU0uNz/BaCGPA6cKa6jjsQwogxkpJyuPhzF7VxIR6okf8Ou
-         kX+HELMA8F3IUUNqbSJOaZxxTau7GcBOezJ2iPl+kCnLEYJS4fpO7gmZv6vmAIRhK14Z
-         dnpmExZztpL9UYnUuBYzzcSGXBY5+KMNgP7dYtMpeRZNrVymc2cVGreM2BHdcfWw/LdQ
-         KFKK7ZwdX/vGN0/UzBnm4Z0IhSZJt1Y287n92Od99Bhxwf7SMtPGVfSfgZFywF4JJsUJ
-         Es0w==
-X-Gm-Message-State: AOJu0YwuCpAJ0oCXYNrYWo8xvn8wifb+eONSySNzpoZxDT5i58UpyS1e
-	NcWRQatRvIXlVsIgS6ln0f3lWg==
-X-Google-Smtp-Source: AGHT+IGlqE3ztd4VccZrqzlaEyl8+aN4JopsoscrrQaRhl6IxnBq4wdAmomOGsmqb5zRiPTC+v5Seg==
-X-Received: by 2002:a05:6000:b4c:b0:332:ca0b:578e with SMTP id dk12-20020a0560000b4c00b00332ca0b578emr2125621wrb.27.1700837141963;
-        Fri, 24 Nov 2023 06:45:41 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:4611:6dae:b5a3:b6a4? ([2a01:e0a:982:cbb0:4611:6dae:b5a3:b6a4])
-        by smtp.gmail.com with ESMTPSA id i2-20020adffc02000000b00327de0173f6sm4511051wrr.115.2023.11.24.06.45.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Nov 2023 06:45:41 -0800 (PST)
-Message-ID: <5e1479e7-a353-4ccb-93eb-a74efc4bdb17@linaro.org>
-Date: Fri, 24 Nov 2023 15:45:40 +0100
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CBFE19A8;
+	Fri, 24 Nov 2023 06:55:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+	s=s31663417; t=1700837675; x=1701442475; i=wahrenst@gmx.net;
+	bh=MGJoLdIJ4b3gS02fNyae9jTdxCk07HvijAvt2pTRhQ4=;
+	h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:
+	 In-Reply-To;
+	b=QG3pg+mDJJ0hhMk/UZ/jr73ct86jleYBys0UoOtGR7/xQlFmGat8nFEHKxf0x4gU
+	 g9U/3K7fWZbo32IEOcqeaAoJ6byPn1kGfNiMc1jXg291cHUNblWt/oapim4PwYfug
+	 M8AA0ZFOAMsCfTD+nKiTDRt9snwwPPMD/O2imJhHAR8ttlrVoR8oShC9RgQurwBHb
+	 VgEEemMrQ9GhdfkvHaqANL48IMiE0xxq2gIeAvyuFuLfG1H4zHW+quMcxYqdi0u93
+	 Qyk+Scc5VHff0RnWglhL4kMJYem2MkBOaD4Pno0RN7hTZhjnNEx6tP2/cTNYNEft/
+	 5wfCJhIcfiKIQLqOOg==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.129] ([37.4.248.43]) by mail.gmx.net (mrgmx104
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1ML9uU-1qpYxF1cyg-00IBn6; Fri, 24
+ Nov 2023 15:54:35 +0100
+Message-ID: <dab03c60-caa9-47e3-9dac-fa499227b67b@gmx.net>
+Date: Fri, 24 Nov 2023 15:54:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,87 +42,106 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v9 11/12] DONOTMERGE: arm64: meson: khadas-vim3l: add DSI
- panel
-Content-Language: en-US, fr
-To: Maxime Ripard <mripard@kernel.org>
-Cc: Jerome Brunet <jbrunet@baylibre.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Jagan Teki <jagan@amarulasolutions.com>, Nicolas Belin
- <nbelin@baylibre.com>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Remi Pommarel
- <repk@triplefau.lt>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- dri-devel@lists.freedesktop.org, linux-phy@lists.infradead.org,
- Rob Herring <robh@kernel.org>
-References: <20231124-amlogic-v6-4-upstream-dsi-ccf-vim3-v9-0-95256ed139e6@linaro.org>
- <20231124-amlogic-v6-4-upstream-dsi-ccf-vim3-v9-11-95256ed139e6@linaro.org>
- <bn5tpzvohmgac4m46fruxbi6quja624tm2fefyj7f3ngo3enno@2ueiodd6qxbd>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <bn5tpzvohmgac4m46fruxbi6quja624tm2fefyj7f3ngo3enno@2ueiodd6qxbd>
+Subject: Re: [PATCH v1 0/2] Add waveshare 7inch touchscreen panel support
+Content-Language: en-US
+To: Shengyang Chen <shengyang.chen@starfivetech.com>,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
+Cc: neil.armstrong@linaro.org, quic_jesszhan@quicinc.com, sam@ravnborg.org,
+ airlied@gmail.com, daniel@ffwll.ch, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, tzimmermann@suse.de, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ florian.fainelli@broadcom.com, bcm-kernel-feedback-list@broadcom.com,
+ emma@anholt.net, thierry.reding@gmail.com,
+ changhuang.liang@starfivetech.com, keith.zhao@starfivetech.com,
+ jack.zhu@starfivetech.com, linux-rpi-kernel@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20231124104451.44271-1-shengyang.chen@starfivetech.com>
+From: Stefan Wahren <wahrenst@gmx.net>
+In-Reply-To: <20231124104451.44271-1-shengyang.chen@starfivetech.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:XPJgdC3RB9K5a7xfMbmwhaguntSiG+JsdR8ThSlBVnEdHH7OlZ6
+ GzgaDPFE6LuPGjCIfCnR7UC1WzYCxsice4aPbTwtl4G03axlVTqyJzMMi8gxsFKB93KKgOp
+ RX3V7WhFXT1fnfBg/V8IOqPDWlcXnEbOQFOa2tNHhyyr6Za9Phr9eMsq8k7eBK1btzjz+Xb
+ XG0HXHVFeOUMidjfTSswA==
+UI-OutboundReport: notjunk:1;M01:P0:LI0QlHMq6gM=;oyJjU91oOyd7xgd5qFErx8TshFT
+ ztHgVOIYU1vKyGT3iwOQeRs7HJ3sKMkQ73MI20LG5PbQnm6G3YxiT6kbcebUyaFmxNDdPJ0+W
+ VgaAgYGh4c1xzC61nk9wnyQQz6sJCuR4ngabq93YBibu/BxZMjbeB14VJ4Lt5aLRrUxuRA8ss
+ mEnF/on9k5HKX6ujWOg7tjBHt1pDnwxKEBg6NCkE117lrpTruB+3zEf2XXM2oyg3VKwdCdqgh
+ GENA3RCUAGgeV83dE+Skb2DczjdfpAjrZpAw9puoiJk5i0wQ6zV21TtViOq9s+9m9YPRaCtnx
+ kixBm65R3gH5+/8Fe5J5OjLcBiwVdWnJ9Z9KtIzLw7J9Ub2HCqiSshq4fM3g9fe0VdqdOgwYJ
+ lrbbeT2GfHwu/CvzBX30S8xxRYkCTTY/6EoCEVNfNe49XUVIzcSHjayjiMctFyx8TRP8YCJGX
+ Pq8pv/Yg2AXhHOhsDQc8QnU4Y48z+nRskdJljEQy+SMu5Kl4Di2ROFOo7mNW67XZ7l7XK4SxI
+ 1Pm0YIrfFJtW8LbfCooqU3YTEJpCwhAGO5MWgWHCNkX5Hpw6ZDjYoFCrvon52PzbUdYBuMDdk
+ rJYmrmsXMFEagU3rrLRf8lcTLuvAB5x/eh7BNjH/hoXH8t/x9HAn8H10QAGwlHystVdMc13xf
+ q/QzpNszQk26xt3Mm5lEKmq8DVlLpU9250UVSgJT3f/fYKaGqhgx82pFAw5n1SR9puPgqJ99K
+ UZ7n8ixP0SOEgEXkNfLJ1LEHSfFuZUfcBoF5srTvrhlhqnSjYGlDvUeM3mIio8RAXbrAiwrTW
+ hdmGl5zSjwyBuiC1AP+HSmiB6nJqkNoxni9dWrDQtR5eezTmpcBss63BQJBR5kDOo4oyUEDbH
+ 0zWMgk9AlQOXpa4ZVM6TC/xtchjD3/HyenYj9H2YedeBxmXEaxPI+68T0MES7ufIY3gCsKj9Q
+ v9UL6A==
 
-Hi,
+Hi Shengyang,
 
-On 24/11/2023 11:52, Maxime Ripard wrote:
-> Hi,
-> 
-> On Fri, Nov 24, 2023 at 09:41:22AM +0100, Neil Armstrong wrote:
->> This add nodes to support the Khadas TS050 panel on the
->> Khadas VIM3 & VIM3L boards.
->>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
->>   .../boot/dts/amlogic/meson-g12b-khadas-vim3.dtsi   |  2 +-
->>   arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi | 74 ++++++++++++++++++++++
->>   .../boot/dts/amlogic/meson-sm1-khadas-vim3l.dts    |  2 +-
->>   3 files changed, 76 insertions(+), 2 deletions(-)
-> 
-> Generally, those kind of patches still have value. Now that we are
-> accepting overlays, could this be converted to one and merged maybe?
+[fix address of Emma]
 
-Yep I was thinking about that, I'll probably do that,
-some new boards will also need overlays for DSI panels.
+Am 24.11.23 um 11:44 schrieb Shengyang Chen:
+> This patchset adds waveshare 7inch touchscreen panel support
+> for the StarFive JH7110 SoC.
+>
+> Patch 1 add new compatible for the raspberrypi panel driver and its dt-b=
+inding.
+> Patch 2 add new display mode and new probing process for raspberrypi pan=
+el driver.
+>
+> Waveshare 7inch touchscreen panel is a kind of raspberrypi panel
+> which can be drived by raspberrypi panel driver.
+>
+> The series has been tested on the VisionFive 2 board.
+surprisingly i was recently working on the official Raspberry Pi
+touchscreen and was able to get it running the new way.
 
-I'll probably switch to an overlay on v10.
+What do i mean with the new way. There is almost nothing special to the
+Raspberry Pi touchscreen, so we should try to use/extend existing
+components like:
 
-Neil
+CONFIG_DRM_PANEL_SIMPLE
+CONFIG_TOUCHSCREEN_EDT_FT5X06
+CONFIG_DRM_TOSHIBA_TC358762
 
-> 
-> Maxime
+The only special part is the Attiny on the connector PCB which requires:
+
+CONFIG_REGULATOR_RASPBERRYPI_TOUCHSCREEN_ATTINY
+
+So the whole point is to avoid writing monolitic drivers for simple
+panel like that.
+
+There is a WIP branch based on top of Linux 6.7-rcX, which should
+demonstrate this approach [1]. Unfortunately it is not ready for
+upstreaming, but it has been tested on a Raspberry Pi 3 B Plus. Maybe
+this is helpful for your case.
+
+Actually i consider panel-raspberrypi-touchscreen.c as a dead end, which
+shouldn't be extended.
+
+Btw there are already DT overlays in mainline which seems to use the
+Raspberry Pi 7inch panel (without touch function yet) [2].
+
+[1] - https://github.com/lategoodbye/rpi-zero/commits/v6.7-7inch-ts
+[2] -
+https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/commit/ar=
+ch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx-0x-rpidsi.dtso?h=3Dv6.6.2=
+&id=3D6b4da1354fd81adace0cda448c77d8f2a47d8474
+
+>
+> Shengyang Chen (2):
+>    dt-bindings: display: panel: raspberrypi: Add compatible property for
+>      waveshare 7inch touchscreen panel
+>    gpu: drm: panel: raspberrypi: add new display mode and new probing
+>      process
+>
+>   .../panel/raspberrypi,7inch-touchscreen.yaml  |  4 +-
+>   .../drm/panel/panel-raspberrypi-touchscreen.c | 99 ++++++++++++++++---
+>   2 files changed, 91 insertions(+), 12 deletions(-)
+>
 
 
