@@ -1,44 +1,77 @@
-Return-Path: <devicetree+bounces-18679-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18680-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C68007F7C06
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 19:11:02 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 524EC7F7CC8
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 19:18:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 81FF4281E1D
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 18:11:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D94FDB213FB
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 18:18:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C7B6381D5;
-	Fri, 24 Nov 2023 18:11:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31EA33A8C6;
+	Fri, 24 Nov 2023 18:18:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fpvJBbKC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3ADB819AD;
-	Fri, 24 Nov 2023 10:10:09 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2CC141007;
-	Fri, 24 Nov 2023 10:10:55 -0800 (PST)
-Received: from e121345-lin.cambridge.arm.com (e121345-lin.cambridge.arm.com [10.1.196.40])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 800793F73F;
-	Fri, 24 Nov 2023 10:10:07 -0800 (PST)
-From: Robin Murphy <robin.murphy@arm.com>
-To: hch@lst.de
-Cc: rafael@kernel.org,
-	lenb@kernel.org,
-	robh+dt@kernel.org,
-	frowand.list@gmail.com,
-	m.szyprowski@samsung.com,
-	james.quinlan@broadcom.com,
-	iommu@lists.linux.dev,
-	linux-acpi@vger.kernel.org,
+Received: from mail-io1-xd2a.google.com (mail-io1-xd2a.google.com [IPv6:2607:f8b0:4864:20::d2a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 903631BDA
+	for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 10:17:22 -0800 (PST)
+Received: by mail-io1-xd2a.google.com with SMTP id ca18e2360f4ac-7afff3ea94dso71322339f.3
+        for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 10:17:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1700849842; x=1701454642; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZLADupMmiOI/CuFkP9Hg2IYkHX7ypUPKgw9zZKAkI2A=;
+        b=fpvJBbKCHlHCjgDxug3KzmpK54wUIavyxF/EenC9iU7ATUZI1Zd5FMaUNne1s+2GP5
+         8SUuebjzGSeK66Mt6vbrGhWg1miFT84FjcCPzW16oO3bPhhZo7EQjycAePsUawRagCx4
+         TMekY+kPnraeE0gxcA4m0rRVhLShUpfCLZDyN8kxXFqlq0P6A8FBW59eYIZvV9pgp+gL
+         MtjwAItv+7iiC+5QfgsdQZSDq76llxohmD1LYH9E7hJGDq5kAWPAcku1MiSyutcwlsto
+         RBS9xxcTIm5OsK/YoEZK8nHJkW8ZWhRWtlx1nHkp0i+lfymTdG/Or2TnTdTXmqkZq4uH
+         kXRA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700849842; x=1701454642;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ZLADupMmiOI/CuFkP9Hg2IYkHX7ypUPKgw9zZKAkI2A=;
+        b=mY6d/cSPnlxmvdVLNwS0pqJ3XIKN4OhKSBXXzomFMJC2qqafrq04nGmoItl4BWmHx3
+         VlxkO4nQLF4S+MVG8FbVUMa5iHqJk+tZlSVsrlaDFj8J6wfraIxAiVB2zVzEfk68n2Tg
+         Wxi+29Lrdji72LIj6kuWxnO+s+z4kvFKYhTlgmiIUGXpUQEMpT03kjnr2HJME3o1q7RS
+         4czUgfIAyIlmkktPsCjGTAtASy8XMyNkjvUI/n4slksdOupY8w0bjBWZn6ipdorSzn+i
+         l+5/cj38S5507Xp/vhREIceb1HTS9UCBplmqUhZ2s8A2i1qOKBE46gylaMuy4r95mKzK
+         LA+A==
+X-Gm-Message-State: AOJu0YzX/qWto7px6sM0hD8gqpnrC17DFt046d6PpJn8xfaXgQK11LcN
+	JsnwwAX9Y2qW3u56OgBA6b/Mlg==
+X-Google-Smtp-Source: AGHT+IE8paLRQ1z+VbJS//0j9s8uSZfLnbn4pb5jVt8VW26qZ7k45wdDaW9nQ3lb5QTLl6q1IH2Alw==
+X-Received: by 2002:a05:6602:3351:b0:7b0:2027:efda with SMTP id c17-20020a056602335100b007b02027efdamr4350310ioz.5.1700849841819;
+        Fri, 24 Nov 2023 10:17:21 -0800 (PST)
+Received: from localhost.localdomain (c-98-61-227-136.hsd1.mn.comcast.net. [98.61.227.136])
+        by smtp.gmail.com with ESMTPSA id et21-20020a0566382a1500b004665cf3e94dsm937031jab.2.2023.11.24.10.17.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 24 Nov 2023 10:17:21 -0800 (PST)
+From: Alex Elder <elder@linaro.org>
+To: robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	andersson@kernel.org,
+	konrad.dybcio@linaro.org,
+	agross@kernel.org
+Cc: mka@chromium.org,
+	quic_cpratapa@quicinc.com,
+	quic_avuyyuru@quicinc.com,
+	quic_jponduru@quicinc.com,
+	quic_subashab@quicinc.com,
+	elder@kernel.org,
 	devicetree@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH] dma-mapping: Don't store redundant offsets
-Date: Fri, 24 Nov 2023 18:10:03 +0000
-Message-Id: <94e0cec15546ef2be61d90869e499e40e2a55308.1700849106.git.robin.murphy@arm.com>
-X-Mailer: git-send-email 2.39.2.101.g768bb238c484.dirty
+Subject: [PATCH 0/2] arm64: dts: qcom: enable IPA on sm8550
+Date: Fri, 24 Nov 2023 12:17:16 -0600
+Message-Id: <20231124181718.915208-1-elder@linaro.org>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -47,98 +80,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-A bus_dma_region necessarily stores both CPU and DMA base addresses for
-a range, so there's no need to also store the difference between them.
+Add the basic DTS information for supporting IPA on the Qualcomm
+SM8550 SoC.  Enable IPA on the SM8550 QRD platform; GSI firmware is
+loaded by the AP in this case.
 
-Signed-off-by: Robin Murphy <robin.murphy@arm.com>
----
- drivers/acpi/scan.c        |  1 -
- drivers/of/address.c       |  1 -
- include/linux/dma-direct.h | 19 ++++++++++++-------
- kernel/dma/direct.c        |  1 -
- 4 files changed, 12 insertions(+), 10 deletions(-)
+					-Alex
 
-diff --git a/drivers/acpi/scan.c b/drivers/acpi/scan.c
-index 026130b37967..c72155606550 100644
---- a/drivers/acpi/scan.c
-+++ b/drivers/acpi/scan.c
-@@ -1532,7 +1532,6 @@ int acpi_dma_get_range(struct device *dev, const struct bus_dma_region **map)
- 			r->cpu_start = rentry->res->start;
- 			r->dma_start = rentry->res->start - rentry->offset;
- 			r->size = resource_size(rentry->res);
--			r->offset = rentry->offset;
- 			r++;
- 		}
- 	}
-diff --git a/drivers/of/address.c b/drivers/of/address.c
-index b59956310f66..ae46a3605904 100644
---- a/drivers/of/address.c
-+++ b/drivers/of/address.c
-@@ -955,7 +955,6 @@ int of_dma_get_range(struct device_node *np, const struct bus_dma_region **map)
- 		r->cpu_start = range.cpu_addr;
- 		r->dma_start = range.bus_addr;
- 		r->size = range.size;
--		r->offset = range.cpu_addr - range.bus_addr;
- 		r++;
- 	}
- out:
-diff --git a/include/linux/dma-direct.h b/include/linux/dma-direct.h
-index 18aade195884..3eb3589ff43e 100644
---- a/include/linux/dma-direct.h
-+++ b/include/linux/dma-direct.h
-@@ -21,7 +21,6 @@ struct bus_dma_region {
- 	phys_addr_t	cpu_start;
- 	dma_addr_t	dma_start;
- 	u64		size;
--	u64		offset;
- };
- 
- static inline dma_addr_t translate_phys_to_dma(struct device *dev,
-@@ -29,9 +28,12 @@ static inline dma_addr_t translate_phys_to_dma(struct device *dev,
- {
- 	const struct bus_dma_region *m;
- 
--	for (m = dev->dma_range_map; m->size; m++)
--		if (paddr >= m->cpu_start && paddr - m->cpu_start < m->size)
--			return (dma_addr_t)paddr - m->offset;
-+	for (m = dev->dma_range_map; m->size; m++) {
-+		u64 offset = paddr - m->cpu_start;
-+
-+		if (paddr >= m->cpu_start && offset < m->size)
-+			return m->dma_start + offset;
-+	}
- 
- 	/* make sure dma_capable fails when no translation is available */
- 	return DMA_MAPPING_ERROR;
-@@ -42,9 +44,12 @@ static inline phys_addr_t translate_dma_to_phys(struct device *dev,
- {
- 	const struct bus_dma_region *m;
- 
--	for (m = dev->dma_range_map; m->size; m++)
--		if (dma_addr >= m->dma_start && dma_addr - m->dma_start < m->size)
--			return (phys_addr_t)dma_addr + m->offset;
-+	for (m = dev->dma_range_map; m->size; m++) {
-+		u64 offset = dma_addr - m->dma_start;
-+
-+		if (dma_addr >= m->dma_start && offset < m->size)
-+			return m->cpu_start + offset;
-+	}
- 
- 	return (phys_addr_t)-1;
- }
-diff --git a/kernel/dma/direct.c b/kernel/dma/direct.c
-index 73c95815789a..98b2e192fd69 100644
---- a/kernel/dma/direct.c
-+++ b/kernel/dma/direct.c
-@@ -677,7 +677,6 @@ int dma_direct_set_offset(struct device *dev, phys_addr_t cpu_start,
- 		return -ENOMEM;
- 	map[0].cpu_start = cpu_start;
- 	map[0].dma_start = dma_start;
--	map[0].offset = offset;
- 	map[0].size = size;
- 	dev->dma_range_map = map;
- 	return 0;
+Alex Elder (2):
+  arm64: dts: qcom: sm8550: add IPA information
+  arm64: dts: qcom: sm8550-qrd: enable IPA
+
+ arch/arm64/boot/dts/qcom/sm8550-qrd.dts |  7 +++++
+ arch/arm64/boot/dts/qcom/sm8550.dtsi    | 39 +++++++++++++++++++++++++
+ 2 files changed, 46 insertions(+)
+
 -- 
-2.39.2.101.g768bb238c484.dirty
-
+2.34.1
 
