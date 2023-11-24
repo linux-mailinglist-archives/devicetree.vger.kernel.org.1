@@ -1,170 +1,96 @@
-Return-Path: <devicetree+bounces-18637-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18638-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F36197F76C7
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 15:44:10 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47B297F76CA
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 15:44:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2E4511C21279
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 14:44:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 79B3E1C21299
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 14:44:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEB9B28DBE;
-	Fri, 24 Nov 2023 14:44:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60AA728382;
+	Fri, 24 Nov 2023 14:44:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yEcPWal4"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="qYad0eqS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13F9E19A2
-	for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 06:44:02 -0800 (PST)
-Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-332cb136335so1311722f8f.0
-        for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 06:44:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700837040; x=1701441840; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=JUgLL7DRnYWbwIfG5gCXLaKp2PO1r1BS/La7eMtACoY=;
-        b=yEcPWal4YZmTPlELF1bbroRFrISzda2TvPNA8gcVEV+MQeQhsInkpXkCYYjP5eyV0W
-         uSNeF6gNYYPpaGr9jjFLbrw5eR98h2fAk3VnMWYzbN4GsrBoYmM6pBTfeh4WzqkM3hQ/
-         5LulF/d514+ln7tvxJWrmLVEorD+zKKsI0ZQof34SqF3HosGxPGdWWBWu5YKcJ7mg0S0
-         9Z3TY2m8UqXmnICYfJNPq581vzk1+GkLhLycia8TjMmPvagKGV0PDjhGxrtbjvRS46NT
-         QSd1VcaUNwc/UxK7J3v+Skn7OvUi3C1ZS9ALcThC2GGzbRnE9JyqM5DDSWth7yZAUzwz
-         9ONg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700837040; x=1701441840;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=JUgLL7DRnYWbwIfG5gCXLaKp2PO1r1BS/La7eMtACoY=;
-        b=IVs27Bpw5T1t1dtHWNUEhk5Og9rdXiMtyqy6OUnEDR23pNnFB+3ae4QPTaSio1AyID
-         WkRCVmxzypAO1fteakOVzQwhoD1qM3/l7/a5sgx12IfCwxzZcsHfXcssCQB2etAXIRvi
-         pBKGkT5yEDXYVnDzmfXu2mZmCS7xD+AqGE3l0DXB0Dk/+JtFOpqy91No3aMvflexpR/o
-         CAa6SSk6zugsRs2kF0D0mjwTQ3tHC9YpNBI67FV5LgHXPGpvqlAdvnP82GwSupgXgea7
-         BHb6V0u3HlJMNLk9moZQxiA63fyXQ2rYtLJ7U1/McoW+gElYBiE2K9ch3ydeMZPCq409
-         ep1Q==
-X-Gm-Message-State: AOJu0YxZNkzsKHJPGoP2C1Kwypo3JG+gWQFTLf8FsIMjIIjIOr3wmplJ
-	vqP5PPehBLIjLuX9d/NQ7crxpA==
-X-Google-Smtp-Source: AGHT+IG4lHpHegujO0VJykD6EDhiniG+n+uhhSQbk7AaE6VVt77PJjj8KwqZ9FApeIjXsVryvPNchA==
-X-Received: by 2002:a5d:6a42:0:b0:32f:8a7f:f00f with SMTP id t2-20020a5d6a42000000b0032f8a7ff00fmr2494855wrw.60.1700837040476;
-        Fri, 24 Nov 2023 06:44:00 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:4611:6dae:b5a3:b6a4? ([2a01:e0a:982:cbb0:4611:6dae:b5a3:b6a4])
-        by smtp.gmail.com with ESMTPSA id i2-20020adffc02000000b00327de0173f6sm4511051wrr.115.2023.11.24.06.43.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Nov 2023 06:44:00 -0800 (PST)
-Message-ID: <eb099811-8505-44c6-834a-2997c797ae13@linaro.org>
-Date: Fri, 24 Nov 2023 15:43:58 +0100
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B28410CA;
+	Fri, 24 Nov 2023 06:44:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=17Pp2N2Up3k+QE70L37qHUzPWH5WYqD3Q42//rZDh9U=; b=qYad0eqSn0G/bC3dntMLicuVFB
+	vGi9j2aVKb5NCY59SLtxyrgxVYuLQUfoq3apeOZrJH9blV05Rcvgao/CpTScaHzEPMAulyBZl5qc1
+	aAuY03oNkK6gfz34+0GeSGJHI/tY8ro0Dy9Xq2P/R+pJmXF44pZMZ62fm9HemnnLU/lk=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1r6XPo-0016Vl-Cc; Fri, 24 Nov 2023 15:44:20 +0100
+Date: Fri, 24 Nov 2023 15:44:20 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc: Jie Luo <quic_luoj@quicinc.com>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Qingfang Deng <dqfext@gmail.com>,
+	SkyLake Huang <SkyLake.Huang@mediatek.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	David Epping <david.epping@missinglinkelectronics.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	Harini Katakam <harini.katakam@amd.com>,
+	Simon Horman <horms@kernel.org>,
+	Robert Marko <robert.marko@sartura.hr>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [net-next RFC PATCH 03/14] dt-bindings: net: document ethernet
+ PHY package nodes
+Message-ID: <4d159a99-f602-424e-a3c1-259c52e4d543@lunn.ch>
+References: <a85d6d0a-1fc9-4c8e-9f91-5054ca902cd1@lunn.ch>
+ <655e4939.5d0a0220.d9a9e.0491@mx.google.com>
+ <6a030399-b8ed-4e2c-899f-d82eb437aafa@lunn.ch>
+ <655f2ba9.5d0a0220.294f3.38d8@mx.google.com>
+ <c697488a-d34c-4c98-b4c7-64aef2fe583f@lunn.ch>
+ <ZV9jM7ve3Kl6ZxSl@shell.armlinux.org.uk>
+ <e32d5c84-7a88-4d9f-868f-98514deae6e9@lunn.ch>
+ <655fa905.df0a0220.49d9b.7afd@mx.google.com>
+ <367c0aea-b110-4e3f-a161-59d27db11188@quicinc.com>
+ <ZWCQv9oaACowJck0@shell.armlinux.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v9 04/12] dt-bindings: phy: amlogic,g12a-mipi-dphy-analog:
- drop unneeded reg property and example
-Content-Language: en-US, fr
-To: Conor Dooley <conor@kernel.org>
-Cc: Jerome Brunet <jbrunet@baylibre.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Jagan Teki <jagan@amarulasolutions.com>, Nicolas Belin
- <nbelin@baylibre.com>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Remi Pommarel
- <repk@triplefau.lt>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org,
- linux-phy@lists.infradead.org, Rob Herring <robh@kernel.org>
-References: <20231124-amlogic-v6-4-upstream-dsi-ccf-vim3-v9-0-95256ed139e6@linaro.org>
- <20231124-amlogic-v6-4-upstream-dsi-ccf-vim3-v9-4-95256ed139e6@linaro.org>
- <20231124-felt-tip-everybody-f2a6836e52af@spud>
- <c3a07912-07da-4965-94b8-3c0d8889ddc4@linaro.org>
- <20231124-vowel-reversing-619f7c4e5060@spud>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <20231124-vowel-reversing-619f7c4e5060@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZWCQv9oaACowJck0@shell.armlinux.org.uk>
 
-On 24/11/2023 15:41, Conor Dooley wrote:
-> On Fri, Nov 24, 2023 at 02:50:58PM +0100, Neil Armstrong wrote:
->> Hi Conor,
->>
->> On 24/11/2023 13:36, Conor Dooley wrote:
->>> On Fri, Nov 24, 2023 at 09:41:15AM +0100, Neil Armstrong wrote:
->>>> The amlogic,g12a-mipi-dphy-analog is a feature of the simple-mfd
->>>> amlogic,meson-axg-hhi-sysctrl system control register zone which is an
->>>> intermixed registers zone, thus it's very hard to define clear ranges for
->>>> each SoC controlled features even if possible.
->>>>
->>>> The amlogic,g12a-mipi-dphy-analog was wrongly documented as an independent
->>>> register range, which is not the reality, thus fix the bindings by dropping
->>>> the reg property now it's referred from amlogic,meson-gx-hhi-sysctrl.yaml
->>>> and documented as a subnode of amlogic,meson-axg-hhi-sysctrl.
->>>>
->>>> Also drop the unnecessary example, the top level bindings example should
->>>> be enough.
->>>>
->>>> Fixes: 76ab79f9726c ("dt-bindings: phy: add Amlogic G12A Analog MIPI D-PHY bindings")
->>>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->>>
->>> I feel like I left a tag on this one before, but I can't remember.
->>> Perhaps I missed the conclusion to the discussion to the discussion with
->>> Rob about whether having "reg" was desirable that lead to a tag being
->>> dropped?
->>
->> I checked again and nope, not tag, but Rob's question was legitimate and I reworded
->> and clarified the commit message following your reviews.
->> On the other side you suggested a Fixes tag, which I added.
->>
->> The rewording is about why reg doesn't make sense on the nature of the memory
->> region and it doesn't make sense here like other similar nodes.
-> 
-> Okay, I thought that I had given you one. Perhaps I forgot to send, or
-> Rob's message came in between me asking about the Fixes tag & replying
-> with an Ack. Sorry about that,
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> 		First Serdes mode	Second Serdes mode
+> Option 1	PSGMII for copper	Disabled
+> 		ports 0-4
+> Option 2	PSGMII for copper	1000BASE-X / 100BASE-FX
+> 		ports 0-4
+> Option 3	QSGMII for copper	SGMII for
+> 		ports 0-3		copper port 4
 
-No problem thanks for your review.
+With option 2, can the second SERDES also do SGMII? You are likely to
+need that when a Copper SFP module is inserted into the cage.
 
-Neil
-
-> 
-> Cheers,
-> Conor.
-
+     Andrew
 
