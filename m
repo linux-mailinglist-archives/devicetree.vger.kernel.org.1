@@ -1,458 +1,114 @@
-Return-Path: <devicetree+bounces-18575-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18576-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C3DB7F726C
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 12:08:31 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 035957F728A
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 12:19:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BED201C20A6A
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 11:08:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8D09EB20FD2
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 11:19:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83DB91B271;
-	Fri, 24 Nov 2023 11:08:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 332071C6B0;
+	Fri, 24 Nov 2023 11:19:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=melexis.com header.i=@melexis.com header.b="bg06DIJR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b1kwtZdH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-x35.google.com (mail-oa1-x35.google.com [IPv6:2001:4860:4864:20::35])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86776D64
-	for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 03:08:24 -0800 (PST)
-Received: by mail-oa1-x35.google.com with SMTP id 586e51a60fabf-1f94b07b6b3so1111657fac.2
-        for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 03:08:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=melexis.com; s=google; t=1700824103; x=1701428903; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=NWJZ8vONLcSAJ3G4cErxj72gCXIFVoONPFfM9X+giv8=;
-        b=bg06DIJRs8OJFLQeDDm1KKvYhiuGEKjFZG6DVle/1pjcVbFUpcSepTptSNrX/ignLf
-         +vL+2P4ZG3jEhvSPpwChVO/AbQTR6JP2t2Xql3Xaz5oc8Ve8Ji46WaxInTKNFkJWM2qw
-         QpQvR0Dx1Tax2cid8Ka2i4PyXgfJTUjopNQqgrfZrt1L3YfKgGQOUt5C8RiU0de4+eEt
-         F+Og8Sjx9CE2qFaYewYTiKQgxFmFM/i3lcreurxLPvkYdSJXZKmcK7PFvFFYdq3V93aM
-         EKHh4TaXY01xzrkgF8IZTxRLW86T5YjKezGDCZzcqjeFa9e1zISROxKiDhSYpR2vqyrr
-         bLNg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700824103; x=1701428903;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=NWJZ8vONLcSAJ3G4cErxj72gCXIFVoONPFfM9X+giv8=;
-        b=kzk0sslVH040phUt+RzPL2ps0v3yUeSI0kRvd+nELG4/AevH0nLzY+e0G8jNytUgqL
-         XUJBvk9zbt1DGbcYFiHeCtjuPjz9MDd/YhcSzShMzrIKU3ZD8zVwOcWMN88m0NfhA0lf
-         324T3H72woCXPu8JyqTdid2Yi/qlErwot2fJU6NqI9wIOIXU+Gr4+zDWJLvBeP9CgRn/
-         IXl+mL5Qq9yX/OSN1vt3D4lU5CacVnohzSeL0JQVyePsEN8FCn5vNTJQJSmyYZGUi4Pt
-         kQuVTGf2lX+ptBlRGvrzjQFlGbQjy9H2/BLfMpsMpblHKEul/bgwzJHk5XFNe/ExzF25
-         3NCA==
-X-Gm-Message-State: AOJu0YyFN6Z73vslw8R2a0w8PPEDDfEUc4XHCaMFsyGUzT4Tfkz8pn9R
-	OeQAw9zKK3O9AFQUxILiJ6HMHl5GNqZ4506iKiqkMA==
-X-Google-Smtp-Source: AGHT+IGtDqJ8WmNg2weOU2NYFLICDF2tpOxqSCwpYNUOyngyl0wOFncI2eFNajZioTs0xDKrsG4mgcONeZpdX2IheCc=
-X-Received: by 2002:a05:6871:7292:b0:1fa:cbf:88a3 with SMTP id
- mm18-20020a056871729200b001fa0cbf88a3mr355910oac.26.1700824103535; Fri, 24
- Nov 2023 03:08:23 -0800 (PST)
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F332E1CABB;
+	Fri, 24 Nov 2023 11:19:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60889C433C7;
+	Fri, 24 Nov 2023 11:19:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1700824740;
+	bh=uv+M2uJcD6nigmAsYgStYTAS4i8Dzh4L8oQ+du2M+04=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=b1kwtZdHvVApDv9ZwK757wpvC8opAjMwEYhUCtu0QD1AA28B2iOvULCtCs35iBLxK
+	 apNIF3jq+X9ShikKZUo5wDmh69E+fGkD6p7M0azQ50mrxaZjno9+fHPWVdrDfh55F4
+	 EoytZBi1YzuDbemZQAeqtuGZM16oOsxm3OX01w5ZQoUyE7SSbGXEsvubh4MviR3pdS
+	 bQoHeEgEmnXX0Fs2EMJTwain5VcYSk8u9CMaQBH+uGh6fdPs+sqSu3zBGoM3QJ+zH1
+	 ZRYV50EKf55OpnFw873K+WYNBlQlZgfQaTAZvz1hUSfl1HkRC4V9jZPVSQW3IjC3mP
+	 qT3G34/O/wMvA==
+Received: from johan by xi.lan with local (Exim 4.96.2)
+	(envelope-from <johan@kernel.org>)
+	id 1r6UDQ-0000cA-0j;
+	Fri, 24 Nov 2023 12:19:20 +0100
+Date: Fri, 24 Nov 2023 12:19:20 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+Cc: Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Felipe Balbi <balbi@kernel.org>,
+	Wesley Cheng <quic_wcheng@quicinc.com>, linux-usb@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, quic_pkondeti@quicinc.com,
+	quic_ppratap@quicinc.com, quic_jackp@quicinc.com,
+	ahalaney@redhat.com, quic_shazhuss@quicinc.com
+Subject: Re: [PATCH v13 05/10] usb: dwc3: qcom: Refactor IRQ handling in QCOM
+ Glue driver
+Message-ID: <ZWCGuDTBMBYHSZSB@hovoldconsulting.com>
+References: <ZTdqnSHq_Jo8AuPW@hovoldconsulting.com>
+ <04615205-e380-4719-aff1-f32c26004b14@quicinc.com>
+ <ZUz4RD3MjnLlPn6V@hovoldconsulting.com>
+ <6d4d959c-b155-471b-b13d-f6fda557cfe0@quicinc.com>
+ <ZVYTFi3Jnnljl48L@hovoldconsulting.com>
+ <e0789695-43ee-4285-95e9-4cdee24d6ffe@quicinc.com>
+ <ZV9XTU-q038BaWn3@hovoldconsulting.com>
+ <4fc27dbb-b0aa-437a-a48c-9deea236282d@quicinc.com>
+ <ZWB3SWJWXwj0atdH@hovoldconsulting.com>
+ <b3919f6a-80ef-4743-b28b-991e93328a19@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231124105116.5764-1-kimseer.paller@analog.com> <20231124105116.5764-2-kimseer.paller@analog.com>
-In-Reply-To: <20231124105116.5764-2-kimseer.paller@analog.com>
-From: Crt Mori <cmo@melexis.com>
-Date: Fri, 24 Nov 2023 12:07:47 +0100
-Message-ID: <CAKv63us8-R4ezWQMCobOshhDepsMRs-59th2ohkTdt2jcAaZBw@mail.gmail.com>
-Subject: Re: [PATCH v5 2/2] iio: frequency: admfm2000: New driver
-To: Kim Seer Paller <kimseer.paller@analog.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
-	Michael Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <b3919f6a-80ef-4743-b28b-991e93328a19@quicinc.com>
 
-Acked-by: Crt Mori<cmo@melexis.com>
+On Fri, Nov 24, 2023 at 04:08:42PM +0530, Krishna Kurapati PSSNV wrote:
+> On 11/24/2023 3:43 PM, Johan Hovold wrote:
 
-On Fri, 24 Nov 2023 at 11:51, Kim Seer Paller <kimseer.paller@analog.com> wrote:
->
-> Dual microwave down converter module with input RF and LO frequency
-> ranges from 0.5 to 32 GHz and an output IF frequency range from 0.1 to
-> 8 GHz. It consists of a LNA, mixer, IF filter, DSA, and IF amplifier
-> for each down conversion path.
->
-> Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
-> ---
-> V4 -> V5: Added missing return -ENODEV in setup function. Reordered variable
->           declarations in probe function.
-> V1 -> V4: No changes.
->
->  MAINTAINERS                       |   1 +
->  drivers/iio/frequency/Kconfig     |  10 +
->  drivers/iio/frequency/Makefile    |   1 +
->  drivers/iio/frequency/admfm2000.c | 310 ++++++++++++++++++++++++++++++
->  4 files changed, 322 insertions(+)
->  create mode 100644 drivers/iio/frequency/admfm2000.c
->
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index f1692ec68..d8630e490 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -1253,6 +1253,7 @@ L:        linux-iio@vger.kernel.org
->  S:     Supported
->  W:     https://ez.analog.com/linux-software-drivers
->  F:     Documentation/devicetree/bindings/iio/frequency/adi,admfm2000.yaml
-> +F:     drivers/iio/frequency/admfm2000.c
->
->  ANALOG DEVICES INC ADMV1013 DRIVER
->  M:     Antoniu Miclaus <antoniu.miclaus@analog.com>
-> diff --git a/drivers/iio/frequency/Kconfig b/drivers/iio/frequency/Kconfig
-> index 9e85dfa58..c455be7d4 100644
-> --- a/drivers/iio/frequency/Kconfig
-> +++ b/drivers/iio/frequency/Kconfig
-> @@ -60,6 +60,16 @@ config ADF4377
->           To compile this driver as a module, choose M here: the
->           module will be called adf4377.
->
-> +config ADMFM2000
-> +       tristate "Analog Devices ADMFM2000 Dual Microwave Down Converter"
-> +       depends on GPIOLIB
-> +       help
-> +         Say yes here to build support for Analog Devices ADMFM2000 Dual
-> +         Microwave Down Converter.
-> +
-> +         To compile this driver as a module, choose M here: the
-> +         module will be called admfm2000.
-> +
->  config ADMV1013
->         tristate "Analog Devices ADMV1013 Microwave Upconverter"
->         depends on SPI && COMMON_CLK
-> diff --git a/drivers/iio/frequency/Makefile b/drivers/iio/frequency/Makefile
-> index b616c29b4..70d0e0b70 100644
-> --- a/drivers/iio/frequency/Makefile
-> +++ b/drivers/iio/frequency/Makefile
-> @@ -8,6 +8,7 @@ obj-$(CONFIG_AD9523) += ad9523.o
->  obj-$(CONFIG_ADF4350) += adf4350.o
->  obj-$(CONFIG_ADF4371) += adf4371.o
->  obj-$(CONFIG_ADF4377) += adf4377.o
-> +obj-$(CONFIG_ADMFM2000) += admfm2000.o
->  obj-$(CONFIG_ADMV1013) += admv1013.o
->  obj-$(CONFIG_ADMV1014) += admv1014.o
->  obj-$(CONFIG_ADMV4420) += admv4420.o
-> diff --git a/drivers/iio/frequency/admfm2000.c b/drivers/iio/frequency/admfm2000.c
-> new file mode 100644
-> index 000000000..351fb9044
-> --- /dev/null
-> +++ b/drivers/iio/frequency/admfm2000.c
-> @@ -0,0 +1,310 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * ADMFM2000 Dual Microwave Down Converter
-> + *
-> + * Copyright 2023 Analog Devices Inc.
-> + */
-> +
-> +#include <linux/device.h>
-> +#include <linux/err.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/iio/iio.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/of_device.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regulator/consumer.h>
-> +
-> +#define ADMFM2000_MIXER_MODE           0
-> +#define ADMFM2000_DIRECT_IF_MODE       1
-> +#define ADMF20000_DSA_GPIOS            5
-> +#define ADMF20000_MODE_GPIOS           2
-> +#define ADMF20000_MAX_GAIN             0
-> +#define ADMF20000_MIN_GAIN             -31000
-> +#define ADMF20000_DEFAULT_GAIN         -0x20
-> +
-> +struct admfm2000_state {
-> +       struct mutex                    lock; /* protect sensor state */
-> +       struct gpio_descs               *sw_ch[2];
-> +       struct gpio_descs               *dsa_gpios[2];
-> +       u32                             gain[2];
-> +};
-> +
-> +static int admfm2000_mode(struct iio_dev *indio_dev, u32 reg, u32 mode)
-> +{
-> +       struct admfm2000_state *st = iio_priv(indio_dev);
-> +       DECLARE_BITMAP(values, 2);
-> +
-> +       switch (mode) {
-> +       case ADMFM2000_MIXER_MODE:
-> +               values[0] = (reg == 0) ? 1 : 2;
-> +               gpiod_set_array_value_cansleep(st->sw_ch[reg]->ndescs,
-> +                                              st->sw_ch[reg]->desc,
-> +                                              NULL, values);
-> +               break;
-> +       case ADMFM2000_DIRECT_IF_MODE:
-> +               values[0] = (reg == 0) ? 2 : 1;
-> +               gpiod_set_array_value_cansleep(st->sw_ch[reg]->ndescs,
-> +                                              st->sw_ch[reg]->desc,
-> +                                              NULL, values);
-> +               break;
-> +       default:
-> +               return -EINVAL;
-> +       }
-> +
-> +       return 0;
-> +}
-> +
-> +static int admfm2000_attenuation(struct iio_dev *indio_dev, u32 chan,
-> +                                u32 value)
-> +{
-> +       struct admfm2000_state *st = iio_priv(indio_dev);
-> +       DECLARE_BITMAP(values, BITS_PER_TYPE(value));
-> +
-> +       values[0] = value;
-> +
-> +       gpiod_set_array_value_cansleep(st->dsa_gpios[chan]->ndescs,
-> +                                      st->dsa_gpios[chan]->desc,
-> +                                      NULL, values);
-> +       return 0;
-> +}
-> +
-> +static int admfm2000_read_raw(struct iio_dev *indio_dev,
-> +                             struct iio_chan_spec const *chan, int *val,
-> +                             int *val2, long mask)
-> +{
-> +       struct admfm2000_state *st = iio_priv(indio_dev);
-> +       int gain;
-> +
-> +       switch (mask) {
-> +       case IIO_CHAN_INFO_HARDWAREGAIN:
-> +               mutex_lock(&st->lock);
-> +               gain = ~(st->gain[chan->channel]) * -1000;
-> +               *val = gain / 1000;
-> +               *val2 = (gain % 1000) * 1000;
-> +               mutex_unlock(&st->lock);
-> +
-> +               return  IIO_VAL_INT_PLUS_MICRO_DB;
-> +       default:
-> +               return -EINVAL;
-> +       }
-> +}
-> +
-> +static int admfm2000_write_raw(struct iio_dev *indio_dev,
-> +                            struct iio_chan_spec const *chan, int val,
-> +                            int val2, long mask)
-> +{
-> +       struct admfm2000_state *st = iio_priv(indio_dev);
-> +       int gain, ret;
-> +
-> +       if (val < 0)
-> +               gain = (val * 1000) - (val2 / 1000);
-> +       else
-> +               gain = (val * 1000) + (val2 / 1000);
-> +
-> +       if (gain > ADMF20000_MAX_GAIN || gain < ADMF20000_MIN_GAIN)
-> +               return -EINVAL;
-> +
-> +       switch (mask) {
-> +       case IIO_CHAN_INFO_HARDWAREGAIN:
-> +               mutex_lock(&st->lock);
-> +               st->gain[chan->channel] = ~((abs(gain) / 1000) & 0x1F);
-> +
-> +               ret = admfm2000_attenuation(indio_dev, chan->channel,
-> +                                           st->gain[chan->channel]);
-> +
-> +               mutex_unlock(&st->lock);
-> +               if (ret)
-> +                       return ret;
-> +               break;
-> +       default:
-> +               return -EINVAL;
-> +       }
-> +
-> +       return 0;
-> +}
-> +
-> +static int admfm2000_write_raw_get_fmt(struct iio_dev *indio_dev,
-> +                                      struct iio_chan_spec const *chan,
-> +                                      long mask)
-> +{
-> +       switch (mask) {
-> +       case IIO_CHAN_INFO_HARDWAREGAIN:
-> +               return IIO_VAL_INT_PLUS_MICRO_DB;
-> +       default:
-> +               return -EINVAL;
-> +       }
-> +}
-> +
-> +static const struct iio_info admfm2000_info = {
-> +       .read_raw = &admfm2000_read_raw,
-> +       .write_raw = &admfm2000_write_raw,
-> +       .write_raw_get_fmt = &admfm2000_write_raw_get_fmt,
-> +};
-> +
-> +#define ADMFM2000_CHAN(_channel) {                                     \
-> +       .type = IIO_VOLTAGE,                                            \
-> +       .output = 1,                                                    \
-> +       .indexed = 1,                                                   \
-> +       .channel = _channel,                                            \
-> +       .info_mask_separate = BIT(IIO_CHAN_INFO_HARDWAREGAIN),          \
-> +}
-> +
-> +static const struct iio_chan_spec admfm2000_channels[] = {
-> +       ADMFM2000_CHAN(0),
-> +       ADMFM2000_CHAN(1),
-> +};
-> +
-> +static int admfm2000_channel_config(struct admfm2000_state *st,
-> +                                   struct iio_dev *indio_dev)
-> +{
-> +       struct platform_device *pdev = to_platform_device(indio_dev->dev.parent);
-> +       struct device *dev = &pdev->dev;
-> +       struct fwnode_handle *child;
-> +       u32 reg, mode;
-> +       int ret;
-> +
-> +       device_for_each_child_node(dev, child) {
-> +               ret = fwnode_property_read_u32(child, "reg", &reg);
-> +               if (ret) {
-> +                       fwnode_handle_put(child);
-> +                       return dev_err_probe(dev, ret,
-> +                                            "Failed to get reg property\n");
-> +               }
-> +
-> +               if (reg >= indio_dev->num_channels) {
-> +                       fwnode_handle_put(child);
-> +                       return dev_err_probe(dev, -EINVAL, "reg bigger than: %d\n",
-> +                                            indio_dev->num_channels);
-> +               }
-> +
-> +               ret = fwnode_property_read_u32(child, "adi,mode", &mode);
-> +               if (ret) {
-> +                       fwnode_handle_put(child);
-> +                       return dev_err_probe(dev, ret,
-> +                                            "Failed to get mode property\n");
-> +               }
-> +
-> +               if (mode >= 2) {
-> +                       fwnode_handle_put(child);
-> +                       return dev_err_probe(dev, -EINVAL, "mode bigger than: 1\n");
-> +               }
-> +
-> +               ret = admfm2000_mode(indio_dev, reg, mode);
-> +               if (ret) {
-> +                       fwnode_handle_put(child);
-> +                       return ret;
-> +               }
-> +       }
-> +
-> +       return 0;
-> +}
-> +
-> +static int admfm2000_setup(struct admfm2000_state *st,
-> +                          struct iio_dev *indio_dev)
-> +{
-> +       struct platform_device *pdev = to_platform_device(indio_dev->dev.parent);
-> +       struct device *dev = &pdev->dev;
-> +
-> +       st->sw_ch[0] = devm_gpiod_get_array(dev, "switch1", GPIOD_OUT_LOW);
-> +       if (IS_ERR(st->sw_ch[0]))
-> +               return dev_err_probe(dev, PTR_ERR(st->sw_ch[0]),
-> +                                    "Failed to get gpios\n");
-> +
-> +       if (st->sw_ch[0]->ndescs != ADMF20000_MODE_GPIOS) {
-> +               dev_err_probe(dev, -ENODEV, "%d GPIOs needed to operate\n",
-> +                             ADMF20000_MODE_GPIOS);
-> +               return -ENODEV;
-> +       }
-> +
-> +       st->sw_ch[1] = devm_gpiod_get_array(dev, "switch2", GPIOD_OUT_LOW);
-> +       if (IS_ERR(st->sw_ch[1]))
-> +               return dev_err_probe(dev, PTR_ERR(st->sw_ch[1]),
-> +                                    "Failed to get gpios\n");
-> +
-> +       if (st->sw_ch[1]->ndescs != ADMF20000_MODE_GPIOS) {
-> +               dev_err_probe(dev, -ENODEV, "%d GPIOs needed to operate\n",
-> +                             ADMF20000_MODE_GPIOS);
-> +               return -ENODEV;
-> +       }
-> +
-> +       st->dsa_gpios[0] = devm_gpiod_get_array(dev, "attenuation1",
-> +                                               GPIOD_OUT_LOW);
-> +       if (IS_ERR(st->dsa_gpios[0]))
-> +               return dev_err_probe(dev, PTR_ERR(st->dsa_gpios[0]),
-> +                                    "Failed to get gpios\n");
-> +
-> +       if (st->dsa_gpios[0]->ndescs != ADMF20000_DSA_GPIOS) {
-> +               dev_err_probe(dev, -ENODEV, "%d GPIOs needed to operate\n",
-> +                             ADMF20000_DSA_GPIOS);
-> +               return -ENODEV;
-> +       }
-> +
-> +       st->dsa_gpios[1] = devm_gpiod_get_array(dev, "attenuation2",
-> +                                               GPIOD_OUT_LOW);
-> +       if (IS_ERR(st->dsa_gpios[1]))
-> +               return dev_err_probe(dev, PTR_ERR(st->dsa_gpios[1]),
-> +                                    "Failed to get gpios\n");
-> +
-> +       if (st->dsa_gpios[1]->ndescs != ADMF20000_DSA_GPIOS) {
-> +               dev_err_probe(dev, -ENODEV, "%d GPIOs needed to operate\n",
-> +                             ADMF20000_DSA_GPIOS);
-> +               return -ENODEV;
-> +       }
-> +
-> +       return 0;
-> +}
-> +
-> +static int admfm2000_probe(struct platform_device *pdev)
-> +{
-> +       struct device *dev = &pdev->dev;
-> +       struct admfm2000_state *st;
-> +       struct iio_dev *indio_dev;
-> +       int ret;
-> +
-> +       indio_dev = devm_iio_device_alloc(dev, sizeof(*st));
-> +       if (!indio_dev)
-> +               return -ENOMEM;
-> +
-> +       st = iio_priv(indio_dev);
-> +
-> +       indio_dev->name = "admfm2000";
-> +       indio_dev->num_channels = ARRAY_SIZE(admfm2000_channels);
-> +       indio_dev->channels = admfm2000_channels;
-> +       indio_dev->info = &admfm2000_info;
-> +       indio_dev->modes = INDIO_DIRECT_MODE;
-> +
-> +       st->gain[0] = ADMF20000_DEFAULT_GAIN;
-> +       st->gain[1] = ADMF20000_DEFAULT_GAIN;
-> +
-> +       mutex_init(&st->lock);
-> +
-> +       ret = admfm2000_setup(st, indio_dev);
-> +       if (ret)
-> +               return ret;
-> +
-> +       ret = admfm2000_channel_config(st, indio_dev);
-> +       if (ret)
-> +               return ret;
-> +
-> +       return devm_iio_device_register(dev, indio_dev);
-> +}
-> +
-> +static const struct of_device_id admfm2000_of_match[] = {
-> +       { .compatible = "adi,admfm2000" },
-> +       { }
-> +};
-> +MODULE_DEVICE_TABLE(of, admfm2000_of_match);
-> +
-> +static struct platform_driver admfm2000_driver = {
-> +       .driver = {
-> +               .name = "admfm2000",
-> +               .of_match_table = admfm2000_of_match,
-> +       },
-> +       .probe = admfm2000_probe,
-> +};
-> +module_platform_driver(admfm2000_driver);
-> +
-> +MODULE_AUTHOR("Kim Seer Paller <kimseer.paller@analog.com>");
-> +MODULE_DESCRIPTION("ADMFM2000 Dual Microwave Down Converter");
-> +MODULE_LICENSE("GPL");
-> --
-> 2.34.1
->
+> > I'd suggest that you just send two separate series, one with binding and
+> > driver updates, which will eventually be merged by Greg, and one with
+> > the devicetree changes, which goes through Bjorn's tree.
+> > 
+> > It's good if you could add a link to the binding series in the cover
+> > letter of the devicetree changes as they are of course going to be quite
+> > closely related and need to be reviewed in parallel.
+> 
+> Thanks for this pointer. So for Multiport, can I do it this way:
+> 
+> 1. Core bindings and Core driver changes in one series. Now that we 
+> finalized we don't be adding the ctrl_irq[1] as discussed on:
+> https://lore.kernel.org/all/ZU33uWpStIobzyd6@hovoldconsulting.com/.
+> 
+> 2. QC bindings and QC driver changes for Multiport to be pushed after we 
+> clean up the current driver and DT's (an effort which is going on 
+> currently).
+
+No, I was just referring to how to handle binding/driver vs devicetree
+patches for USB where we send them separately (unlike for most other
+subsystems).
+
+The dwc3 core and Qualcomm glue parts should still go in the same series
+for multiport support.
+
+Whether to do the irq cleanup before or after adding multiport support
+is a different question, but, yeah, it is probably best to do it before.
+
+The question of whether we can drop ACPI support should also be
+considered as that should also simplify your multiport series.
+
+Johan
 
