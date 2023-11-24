@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-18467-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18468-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EB497F6DAE
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 09:10:04 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE0437F6DD2
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 09:15:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C25301C2090B
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 08:10:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 97FF0280FA0
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 08:15:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3CC08F67;
-	Fri, 24 Nov 2023 08:10:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79CAD8C13;
+	Fri, 24 Nov 2023 08:15:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OEBStme8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LbHb21R8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-x92f.google.com (mail-ua1-x92f.google.com [IPv6:2607:f8b0:4864:20::92f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58D0E130
-	for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 00:09:57 -0800 (PST)
-Received: by mail-ua1-x92f.google.com with SMTP id a1e0cc1a2514c-7ba75345e71so556933241.0
-        for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 00:09:57 -0800 (PST)
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 293F01705
+	for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 00:15:32 -0800 (PST)
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-a00c200782dso233469766b.1
+        for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 00:15:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700813396; x=1701418196; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1700813730; x=1701418530; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=TdMUhpyI2+dQyC5Jb7ZVd4mPkClI52AZ3LWo5a/osyo=;
-        b=OEBStme8+bJxfR0Nx4UBbq63nnGahaq05y51DJEXunPYXY8SxsEJeZnU53TzLNECcW
-         bsPXcAgEjJ9aC6/oXXHv8NBAOo8UYyieCwKBzAWvfZ/jDWiO2zVn8G+8rrRiFANJi97v
-         O0DdT4rHsUcIVayZeRfoZkO+mrUr1PDXTy0rKQ7irQutNoz6Di5Y0jw5huj/QyUtJvlA
-         zFaZdS7sLBjs5aDE9n2lsvwDrSD4M7NOMjbe/pHiZYha7SVKWiaxD1Xzg7n+clOlwLzy
-         0wuPvTHm2bZD5YbdeDE6Wyi1ixVvH2rasprzKmDi4LJewhpMLCln5JHvBG4bEW0AzBQQ
-         6Ouw==
+        bh=f8eC04cTsoeDgEjV4igr1B0hZNEeJHAsb9D/Lg7TaQM=;
+        b=LbHb21R8Z1M0Zf4/kiYe7lCUj2t2dQq2B4LNd66ma9T+v6AVDq+pHGsb8ooRKdCt3/
+         IjBat8jrDcPamJgv4rGRFClvRb5CcgxTSY5sOj9LOTV2CPEX6FwmN2YvAb792qoCTzNd
+         6FvkaN4SNFiAsrwLSwGwC9JauwP9CSUr/XrOxuwswDWEUNakE1oHdj8NsXMlf+1lV1Pa
+         fHpG3LvYYK3cgXQX9lqaBoY744vQ+anGN+GMPtIecuylthOb901iw0LmMejHngkKI2PB
+         4kle7PMcZtuI6hQ6g0hqhLuqgfHZLQD7BVLZaScY9Br8vVbnHy8dGMybwTuXy9mqzv+1
+         DGaA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700813396; x=1701418196;
+        d=1e100.net; s=20230601; t=1700813730; x=1701418530;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TdMUhpyI2+dQyC5Jb7ZVd4mPkClI52AZ3LWo5a/osyo=;
-        b=w6xIqGWJjdYWPSeNg5LOX167xeQsgQ2G/POtuE5dNXNayLHmgygCz0QZZNcfleo0GN
-         vf9rEd092vcVCa9wmP4uilp+Fv+0Wy7I5v/oLZThl15wj37xtFjgd82Ybv/0Vy86jaJ1
-         EA9gaouR7ZHUopzZNsyY9RlbV31K6m38Lspk9Xo78ps9MQJq1Q9cFk2D1FIUPaY+IkJN
-         DCSLYlzBDscx2ngJc4Zcl5R9HohfOkAZjtLRbnIBCaoIWxbOR3yFdaQol4ki9XNK2Fm5
-         oBPOlVIfxhxam+fSOcxtSchzgI1nLHsw0hijx47OjUMWr8N68z7uNKjdiOwwDuJ7QgPO
-         kqgA==
-X-Gm-Message-State: AOJu0YwOfnd1y90TQT4huM+n9ry0ZyltxqvjpNDZR6n/wOSRaxVtpS7K
-	UxJUUsmIgvpQ8ERK/mVT5J6uBw==
-X-Google-Smtp-Source: AGHT+IHKESaqwzFkAII+v/Gc3bBjqRwWiSLQkt08GJSOgnaFma7ZBn0Qe9nodZJupkTfCYrNnqZ27A==
-X-Received: by 2002:a05:6122:2015:b0:49e:2145:1651 with SMTP id l21-20020a056122201500b0049e21451651mr2101831vkd.6.1700813396304;
-        Fri, 24 Nov 2023 00:09:56 -0800 (PST)
+        bh=f8eC04cTsoeDgEjV4igr1B0hZNEeJHAsb9D/Lg7TaQM=;
+        b=uvPKrD3shM1o+Kj8GD44t8wQ63xcpZOT58zi6b5GcHQqHgj7u3jwwusaECOkBuZc90
+         UOBHL9U65gI8tRUaWbUOm18j1lIYCKp7kQAqXHW47BeB/UzxPp9qnb0zLF8nzR6+lom1
+         QEMl/hgSSY3RO/Usoe7+0xPx267wJoYlYy3PYeS+kC6JKdKYMcOSKbBpnDMNkdNpQSEr
+         zO8whGyKOwzBwptjM9CtAZ0XjNs/1pamjesqEn1MzuU1iCjExaFDNVXBRvS+nqAWwa1K
+         yGzA0Unmr7VuP8VUWzJqRq87k0mSWujOjK2tvm9gjnJ9IP3HpWnN0vPRgfyKijLB67OX
+         sbQQ==
+X-Gm-Message-State: AOJu0Yxaa6goqCze8s+jCXdr8ri7cgAcboIc9P8P5ZUAJugLXtdidmWh
+	UHQnO62wl4AbvyNNCEiMhy1jFA==
+X-Google-Smtp-Source: AGHT+IETDLKBOCl2urHa/cDw7dYAvuOpux+rqajafYGrRjZ2ktUBawGw4Dj4V5ZfKbB0azg9RuxcFg==
+X-Received: by 2002:a17:906:c288:b0:9ff:3b31:bb6 with SMTP id r8-20020a170906c28800b009ff3b310bb6mr1316598ejz.62.1700813730562;
+        Fri, 24 Nov 2023 00:15:30 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.100])
-        by smtp.gmail.com with ESMTPSA id 38-20020a9f2029000000b007a01cbe8f28sm520429uam.4.2023.11.24.00.09.50
+        by smtp.gmail.com with ESMTPSA id x22-20020a1709060a5600b009c3827134e5sm1749428ejf.117.2023.11.24.00.15.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Nov 2023 00:09:55 -0800 (PST)
-Message-ID: <4a4a3313-2fb5-4b20-a24f-4422aeedbc41@linaro.org>
-Date: Fri, 24 Nov 2023 09:09:48 +0100
+        Fri, 24 Nov 2023 00:15:29 -0800 (PST)
+Message-ID: <f241a042-4bff-42e4-98ed-fcb3eb6aa663@linaro.org>
+Date: Fri, 24 Nov 2023 09:15:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,24 +62,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] media: i2c: Add GC08A3 image sensor driver
+Subject: Re: [PATCH v3 1/4] dt-bindings: dma: ti: k3-*: Add descriptions for
+ register regions
 Content-Language: en-US
-To: Zhi Mao <zhi.mao@mediatek.com>, mchehab@kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org
-Cc: shengnan.wang@mediatek.com, yaya.chang@mediatek.com, 10572168@qq.com,
- Project_Global_Chrome_Upstream_Group@mediatek.com, yunkec@chromium.org,
- conor+dt@kernel.org, matthias.bgg@gmail.com,
- angelogioacchino.delregno@collabora.com, jacopo.mondi@ideasonboard.com,
- sakari.ailus@linux.intel.com, hverkuil-cisco@xs4all.nl, heiko@sntech.de,
- jernej.skrabec@gmail.com, macromorgan@hotmail.com, linus.walleij@linaro.org,
- laurent.pinchart@ideasonboard.com, hdegoede@redhat.com,
- tomi.valkeinen@ideasonboard.com, gerald.loacker@wolfvision.net,
- andy.shevchenko@gmail.com, bingbu.cao@intel.com,
- dan.scally@ideasonboard.com, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-References: <20231123115104.32094-1-zhi.mao@mediatek.com>
- <20231123115104.32094-3-zhi.mao@mediatek.com>
+To: Vignesh Raghavendra <vigneshr@ti.com>,
+ Peter Ujfalusi <peter.ujfalusi@gmail.com>, Vinod Koul <vkoul@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20231124045722.191817-1-vigneshr@ti.com>
+ <20231124045722.191817-2-vigneshr@ti.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -125,279 +119,18 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231123115104.32094-3-zhi.mao@mediatek.com>
+In-Reply-To: <20231124045722.191817-2-vigneshr@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 23/11/2023 12:51, Zhi Mao wrote:
-> Add a V4L2 sub-device driver for Galaxycore GC08A3 image sensor.
+On 24/11/2023 05:57, Vignesh Raghavendra wrote:
+> In preparation for introducing more register regions, add description
+> for existing register regions so that its easier to map reg-names to
+> that of SoC Documentations/TRMs.
 > 
-> Signed-off-by: Zhi Mao <zhi.mao@mediatek.com>
-> ---
->  drivers/media/i2c/Kconfig  |   14 +
->  drivers/media/i2c/Makefile |    1 +
->  drivers/media/i2c/gc08a3.c | 2046 ++++++++++++++++++++++++++++++++++++
->  3 files changed, 2061 insertions(+)
->  create mode 100644 drivers/media/i2c/gc08a3.c
+> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
 
-
-> +static int gc08a3_start_streaming(struct gc08a3 *gc08a3)
-> +{
-> +	const struct gc08a3_mode *mode;
-> +	const struct gc08a3_reg_list *reg_list;
-> +	int link_freq_index;
-> +	int ret;
-> +
-> +	dev_info(gc08a3->dev, "%s ++\n", __func__);
-
-Drop
-
-> +
-> +	mutex_lock(&gc08a3->mutex);
-> +
-> +	link_freq_index = gc08a3->cur_mode->link_freq_index;
-> +	dev_info(gc08a3->dev, "----link_freq_index = %d ", link_freq_index);
-> +
-> +	reg_list = &link_freq_configs[link_freq_index].reg_list;
-> +	ret = gc08a3_write_reg_list(gc08a3, reg_list);
-> +	if (ret) {
-> +		dev_err(gc08a3->dev, "could not sent common table %d\n", ret);
-> +		goto error;
-> +	}
-> +
-> +	mode = gc08a3->cur_mode;
-> +	dev_info(gc08a3->dev, "----write regtbl: mode(id:%d, WxH:%dx%d)",
-> +		 mode->mode_id, mode->width, mode->height);
-> +	reg_list = &mode->reg_list;
-> +
-> +	ret = gc08a3_write_reg_list(gc08a3, reg_list);
-> +	if (ret < 0) {
-> +		dev_err(gc08a3->dev, "could not sent mode table %d\n", ret);
-> +		goto error;
-> +	}
-> +	ret = __v4l2_ctrl_handler_setup(&gc08a3->ctrls);
-> +	if (ret < 0) {
-> +		dev_err(gc08a3->dev, "could not sync v4l2 controls\n");
-> +		goto error;
-> +	}
-> +
-> +	ret = gc08a3_write_reg(gc08a3, GC08A3_STRAEMING_REG,
-> +			       GC08A3_REG_VALUE_08BIT, 1);
-> +	if (ret < 0) {
-> +		dev_err(gc08a3->dev, "write STRAEMING_REG failed: %d\n", ret);
-> +		goto error;
-> +	}
-> +
-> +	mutex_unlock(&gc08a3->mutex);
-> +
-> +	dev_info(gc08a3->dev, "%s --\n", __func__);
-
-Drop
-
-
-> +
-> +	return 0;
-> +
-> +error:
-> +	mutex_unlock(&gc08a3->mutex);
-> +	return ret;
-> +}
-> +
-> +static int gc08a3_stop_streaming(struct gc08a3 *gc08a3)
-> +{
-> +	int ret;
-> +
-> +	dev_info(gc08a3->dev, "%s ++\n", __func__);
-
-Drop
-
-> +
-> +	ret = gc08a3_write_reg(gc08a3, GC08A3_STRAEMING_REG,
-> +			       GC08A3_REG_VALUE_08BIT, 0);
-> +	if (ret < 0)
-> +		dev_err(gc08a3->dev, "could not sent stop streaming %d\n", ret);
-> +
-> +	dev_info(gc08a3->dev, "%s --\n", __func__);
-> +
-
-Drop
-
-...
-
-> +
-> +static int gc08a3_probe(struct i2c_client *client)
-> +{
-> +	struct device *dev = &client->dev;
-> +	struct gc08a3 *gc08a3;
-> +	int ret;
-> +
-> +	dev_info(dev, "--- %s +", __func__);
-
-
-No, drop such silly debug messages. Everywhere. Really everywhere.
-
-> +
-> +	ret = gc08a3_parse_fwnode(dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	gc08a3 = devm_kzalloc(dev, sizeof(*gc08a3), GFP_KERNEL);
-> +	if (!gc08a3)
-> +		return -ENOMEM;
-> +
-> +	gc08a3->dev = dev;
-> +
-> +	gc08a3->xclk = devm_clk_get(dev, NULL);
-> +	if (IS_ERR(gc08a3->xclk)) {
-> +		dev_err(dev, "could not get xclk\n");
-
-Syntax is:
-return dev_err_probe()
-
-> +		return PTR_ERR(gc08a3->xclk);
-> +	}
-> +
-> +	ret = clk_set_rate(gc08a3->xclk, GC08A3_DEFAULT_CLK_FREQ);
-> +	if (ret) {
-> +		dev_err(dev, "could not set xclk frequency\n");
-> +		return ret;
-> +	}
-> +
-> +	ret = gc08a3_get_regulators(dev, gc08a3);
-> +	if (ret < 0) {
-> +		dev_err(dev, "cannot get regulators\n");
-
-return dev_err_probe()
-
-> +		return ret;
-> +	}
-> +
-> +	gc08a3->enable_gpio = devm_gpiod_get(dev, "enable", GPIOD_OUT_LOW);
-> +	if (IS_ERR(gc08a3->enable_gpio)) {
-> +		dev_err(dev, "cannot get enable gpio\n");
-
-return dev_err_probe()
-
-> +		return PTR_ERR(gc08a3->enable_gpio);
-> +	}
-> +
-> +	gc08a3->regmap = devm_regmap_init_i2c(client, &sensor_regmap_config);
-> +	if (IS_ERR(gc08a3->regmap)) {
-> +		dev_err(dev, "regmap init failed\n");
-
-return dev_err_probe()
-
-> +		return PTR_ERR(gc08a3->regmap);
-> +	}
-> +
-> +	v4l2_i2c_subdev_init(&gc08a3->sd, client, &gc08a3_subdev_ops);
-> +
-> +	gc08a3_power_on(gc08a3->dev);
-> +
-> +	ret = gc08a3_identify_module(gc08a3);
-> +	if (ret) {
-> +		dev_err(&client->dev, "failed to find sensor: %d\n", ret);
-> +		gc08a3_power_off(gc08a3->dev);
-> +		return ret;
-> +	}
-> +
-> +	mutex_init(&gc08a3->mutex);
-> +	gc08a3->cur_mode = &gc08a3_modes[0];
-> +
-> +	ret = gc08a3_init_controls(gc08a3);
-> +	if (ret) {
-> +		dev_err(&client->dev, "failed to init controls: %d", ret);
-
-No power off?
-
-> +		goto free_ctrl;
-> +	}
-> +
-> +	gc08a3->sd.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
-> +	gc08a3->pad.flags = MEDIA_PAD_FL_SOURCE;
-> +	gc08a3->sd.dev = &client->dev;
-> +	gc08a3->sd.entity.function = MEDIA_ENT_F_CAM_SENSOR;
-> +
-> +	dev_dbg(&client->dev, "gc08a3->sd.name: %s, dev->of_node->name: %s\n",
-> +		gc08a3->sd.name, dev->of_node->name);
-> +	if (V4L2_SUBDEV_NAME_SIZE - strlen(gc08a3->sd.name) - 2 <
-> +	    strlen(dev->of_node->name)) {
-> +		dev_err(&client->dev,
-> +			"the string length of (sd.name + of_node->name) is too long.\n");
-
-This looks like random error handling. You had goto in previous cases.
-
-> +		return -EINVAL;
-> +	}
-> +	strncat(gc08a3->sd.name, " ", 1);
-> +	strncat(gc08a3->sd.name, dev->of_node->name,
-> +		V4L2_SUBDEV_NAME_SIZE - strlen(gc08a3->sd.name) - 2);
-> +	dev_dbg(&client->dev, "after: gc08a3->sd.name: %s\n", gc08a3->sd.name);
-> +
-> +	ret = media_entity_pads_init(&gc08a3->sd.entity, 1, &gc08a3->pad);
-> +	if (ret < 0) {
-> +		dev_err(dev, "could not register media entity\n");
-> +		goto free_ctrl;
-> +	}
-> +
-> +	ret = v4l2_async_register_subdev_sensor(&gc08a3->sd);
-> +	if (ret < 0) {
-> +		dev_err(dev, "could not register v4l2 device\n");
-> +		goto free_entity;
-> +	}
-> +
-> +	pm_runtime_set_active(gc08a3->dev);
-> +	pm_runtime_enable(gc08a3->dev);
-> +	pm_runtime_idle(gc08a3->dev);
-> +
-> +	dev_info(dev, "--- %s -", __func__);
-
-No, drop such silly debug messages.
-
-> +
-> +	return 0;
-> +
-> +free_entity:
-> +	media_entity_cleanup(&gc08a3->sd.entity);
-> +free_ctrl:
-> +	mutex_destroy(&gc08a3->mutex);
-> +	v4l2_ctrl_handler_free(&gc08a3->ctrls);
-> +	pm_runtime_disable(gc08a3->dev);
-> +
-> +	return ret;
-> +}
-> +
-> +static void gc08a3_remove(struct i2c_client *client)
-> +{
-> +	struct v4l2_subdev *sd = i2c_get_clientdata(client);
-> +	struct gc08a3 *gc08a3 = to_gc08a3(sd);
-> +
-> +	v4l2_async_unregister_subdev(&gc08a3->sd);
-> +	media_entity_cleanup(&gc08a3->sd.entity);
-> +	v4l2_ctrl_handler_free(&gc08a3->ctrls);
-> +
-> +	pm_runtime_disable(&client->dev);
-> +	pm_runtime_set_suspended(&client->dev);
-> +
-> +	mutex_destroy(&gc08a3->mutex);
-> +}
-> +
-> +static const struct of_device_id gc08a3_of_match[] = {
-> +	{ .compatible = "GalaxyCore,gc08a3" },
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, gc08a3_of_match);
-> +
-> +static const struct dev_pm_ops gc08a3_pm_ops = {
-> +	SET_SYSTEM_SLEEP_PM_OPS(gc08a3_suspend, gc08a3_resume)
-> +		SET_RUNTIME_PM_OPS(gc08a3_power_off, gc08a3_power_on, NULL)
-
-Fix indentation.
-
-This code has very pooro quality. I suggest you to do first internal
-review to avoid commenting on trivial errors and using community
-resources for this.
-
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
