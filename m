@@ -1,199 +1,278 @@
-Return-Path: <devicetree+bounces-18587-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18588-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC30F7F7315
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 12:50:18 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D85BB7F733C
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 12:59:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 19EF41C20F63
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 11:50:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 60FF61F20F0D
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 11:59:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC70D200B2;
-	Fri, 24 Nov 2023 11:50:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E2DE200BA;
+	Fri, 24 Nov 2023 11:59:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ZJmvVtq0"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="dTgRc5AL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CD9F1A5;
-	Fri, 24 Nov 2023 03:50:09 -0800 (PST)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AO8GaX3024034;
-	Fri, 24 Nov 2023 11:49:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=WioykjLZIEzmqvcqqpGNeyMQihVdBnwLtxAN4aQW36M=;
- b=ZJmvVtq0dWWzfz/PiZ/98+LmAueLy5p1oC/PJ58O5BDGCtJlW4h8P7VAwJD6M69cIy4q
- OJ15ypy40/seKHpxe2cMhMd+dM4yycLpLbhlPxicz3Z82A2n3xi2DpofUDMJP7zaJ80x
- mrYmuUU6op/22ygowItD3HD88a9cubzfFhvDExzcaQtWdZzN5m7ZUL1KRPuAJM0rvXdk
- oo49gtqZqnDgoTlcnbBWDAke/Tznl7xsc27p1rMY6ub18tV+wLbSNLTyY1VjeHLnp4t/
- bJ7y3ZhK38rjztJtYKEELWJEJVxyky23I5w/trtSWZx+F7I4ZJLXfyryfiEqPJgDyD/6 9A== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ujp8x0wrb-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 24 Nov 2023 11:49:38 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AOBnb6B004975
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 24 Nov 2023 11:49:37 GMT
-Received: from [10.253.33.181] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 24 Nov
- 2023 03:49:30 -0800
-Message-ID: <367c0aea-b110-4e3f-a161-59d27db11188@quicinc.com>
-Date: Fri, 24 Nov 2023 19:49:27 +0800
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2083.outbound.protection.outlook.com [40.107.220.83])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFF7810CB;
+	Fri, 24 Nov 2023 03:59:43 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DaJAoQjj+e3uMBHohIDJrTwjY4xSHQ3kyoY4ri/3ZA2T26BPP+8DDWd9m2LPLp53A1nGCNEtt/OYmcldq12UBCVlhSH+gIMiOpAtNyPoQhj5JvRM53CriC0jXolp6ZlRJp+eXDqOyQ2uA/jVPGGlDj0HppBrczoIo7mED+t/86XDDzPk/nuBykf471Aof5Dm7jk0UJOqriHpLhF4L2R7CPUSJ2tbjxhsZU7icGeGX7XtjGNipcZwtjB+F/JhBeqiApKz1wErx04Ur21aWQt7KkywFFP6dfjZGEY+oumEArCTi71u08dmLmP/3DkoAdDNMt8hlP/V+MyYlARQrJ9S3g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=+Nbj9GfG37IZIiw33AWvU4/ew9j3Zz8XFL779xP7vWg=;
+ b=GlJXKV8AaeQBQotHbKxSc/v/9Weu3m9wt0xpF7Sbcyi97Vz14ey4qFKl5/LF+qUlmWEEcwNzTtyYcQ0YCAK99VWSYsXb3pa3oghlRyzWBZNxoK1/sJwwESPLSpRIn6e+NPabqGGjOEKBjs40LSEN/oo+PdeSWfmnvm+zAC2qmB8bvor3GtZgP7pFEf9v9PnHgvnB4CxZ3xMcSYgwqz+lUGyL0s6BgBtld2ZXkjMFgitufojW7UO3OUGxx/ZdiEEturPT3yZkuAhMSnMryCWfEqUAROl66xuAJwK4wR5jqRAEpHiAw8ar7317hbf0KWVfVgI1lrSbzi/7YYHwhjNTvw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+Nbj9GfG37IZIiw33AWvU4/ew9j3Zz8XFL779xP7vWg=;
+ b=dTgRc5AL9HbmJyamaLOCWvnWP5FzODw8qAmKNd6OOtDXlnmjMgU4YkMXTl6U5LfyfppchuFbaKeablAFJChkqiRBcKD7kYQjScVgJVPQIyd4R4yVYXiYvNNHyRTiT2wPzvUokIUsRLyEfHTrbIPhYyMexvMlCSQ6mvAOZ5UfXYQ=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from BYAPR12MB4758.namprd12.prod.outlook.com (2603:10b6:a03:a5::28)
+ by SN7PR12MB8434.namprd12.prod.outlook.com (2603:10b6:806:2e6::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7025.19; Fri, 24 Nov
+ 2023 11:59:41 +0000
+Received: from BYAPR12MB4758.namprd12.prod.outlook.com
+ ([fe80::39a2:42da:ea20:3349]) by BYAPR12MB4758.namprd12.prod.outlook.com
+ ([fe80::39a2:42da:ea20:3349%5]) with mapi id 15.20.7025.020; Fri, 24 Nov 2023
+ 11:59:41 +0000
+Message-ID: <06512ea8-9124-42b4-beb0-f302539aedeb@amd.com>
+Date: Fri, 24 Nov 2023 12:59:33 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [LINUX PATCH v2 1/3] clocksource: timer-cadence-ttc: Do not probe
+ TTC device configured as PWM
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ "Sayyed, Mubin" <mubin.sayyed@amd.com>
+Cc: "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
+ "git (AMD-Xilinx)" <git@amd.com>, "mubin10@gmail.com" <mubin10@gmail.com>,
+ "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+ "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
+ "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+ "robh+dt@kernel.org" <robh+dt@kernel.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "tglx@linutronix.de" <tglx@linutronix.de>,
+ "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>
+References: <20231114124748.581850-1-mubin.sayyed@amd.com>
+ <20231114124748.581850-2-mubin.sayyed@amd.com>
+ <d37db10b-f9fa-49b0-8b1e-36e20acbcfd6@linaro.org>
+ <DM4PR12MB593888B73B65D25E42490EF29DB1A@DM4PR12MB5938.namprd12.prod.outlook.com>
+ <e0f28ec5-b980-490b-a857-5218fe521381@linaro.org>
+ <DM4PR12MB5938CB10059DF7E39A2A0E239DB8A@DM4PR12MB5938.namprd12.prod.outlook.com>
+ <a701ba6e-ae4e-4c4d-9d93-c54e56c3348e@linaro.org>
+From: Michal Simek <michal.simek@amd.com>
+Autocrypt: addr=michal.simek@amd.com; keydata=
+ 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
+ 3i3l5DA=
+In-Reply-To: <a701ba6e-ae4e-4c4d-9d93-c54e56c3348e@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: PH0P220CA0014.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:510:d3::28) To BYAPR12MB4758.namprd12.prod.outlook.com
+ (2603:10b6:a03:a5::28)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [net-next RFC PATCH 03/14] dt-bindings: net: document ethernet
- PHY package nodes
-Content-Language: en-US
-To: Christian Marangi <ansuelsmth@gmail.com>, Andrew Lunn <andrew@lunn.ch>
-CC: "Russell King (Oracle)" <linux@armlinux.org.uk>,
-        Rob Herring
-	<robh@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet
-	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni
-	<pabeni@redhat.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn
- Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Florian Fainelli
-	<florian.fainelli@broadcom.com>,
-        Broadcom internal kernel review list
-	<bcm-kernel-feedback-list@broadcom.com>,
-        Daniel Golle
-	<daniel@makrotopia.org>,
-        Qingfang Deng <dqfext@gmail.com>,
-        SkyLake Huang
-	<SkyLake.Huang@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-        David
- Epping <david.epping@missinglinkelectronics.com>,
-        Vladimir Oltean
-	<olteanv@gmail.com>,
-        Harini Katakam <harini.katakam@amd.com>,
-        Simon Horman
-	<horms@kernel.org>,
-        Robert Marko <robert.marko@sartura.hr>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>
-References: <20231120135041.15259-4-ansuelsmth@gmail.com>
- <c21ff90d-6e05-4afc-b39c-2c71d8976826@lunn.ch>
- <20231121144244.GA1682395-robh@kernel.org>
- <a85d6d0a-1fc9-4c8e-9f91-5054ca902cd1@lunn.ch>
- <655e4939.5d0a0220.d9a9e.0491@mx.google.com>
- <6a030399-b8ed-4e2c-899f-d82eb437aafa@lunn.ch>
- <655f2ba9.5d0a0220.294f3.38d8@mx.google.com>
- <c697488a-d34c-4c98-b4c7-64aef2fe583f@lunn.ch>
- <ZV9jM7ve3Kl6ZxSl@shell.armlinux.org.uk>
- <e32d5c84-7a88-4d9f-868f-98514deae6e9@lunn.ch>
- <655fa905.df0a0220.49d9b.7afd@mx.google.com>
-From: Jie Luo <quic_luoj@quicinc.com>
-In-Reply-To: <655fa905.df0a0220.49d9b.7afd@mx.google.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: jLknTLU7yaNEfTc2et0lNIX_kyygQYkY
-X-Proofpoint-ORIG-GUID: jLknTLU7yaNEfTc2et0lNIX_kyygQYkY
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-23_15,2023-11-22_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- adultscore=0 mlxlogscore=999 clxscore=1011 spamscore=0 lowpriorityscore=0
- impostorscore=0 malwarescore=0 bulkscore=0 mlxscore=0 phishscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311060000 definitions=main-2311240092
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BYAPR12MB4758:EE_|SN7PR12MB8434:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6fa7e257-6492-4013-38a8-08dbece4d6fc
+X-LD-Processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	daxkOr0dSk5qEEy7RVgbUvH4EbrnIGSj6a95l091nSo5vab2oispu0j1Wds+bI8KODM1FC/IjQCXtzzeApM6Nw4ef6vuuuI3qYbdSdDmLjykoOMA9hi7tMQ9LzlokNgr6lCRRQO9C8TyW8DbWIQepjMlifVpw8H/ax6xHYImoZ6GHKKiBkoQEDR+1qMQ7IN4wwTYvI05YLBL+EXQYYOAq7vfCvPI0H5sAavloepMncqWJNmy84fulRfs0l5s0IusDon6vltRHYBsOYP15TfuQYV9SmksyoNJ0lm0a0xjdknpNn3zVi5jc2od2rYtMEvJyNuWY9VbHjfGVo3MBeLBcdi9u/Fh7U/W3rjRO9JQKJkZHh1cWwiPD9q5A+MUx9juNTTsRot1HSabDyKSp6XTcD2+0yr6MRt3+BKpccgsjX5YJkONl+4o61Ai8ClrsPSYB1sgg9P+h1e80vCSre1GVOsU1SnrdKCQyz3zpyX2qs2QxwdiW6dURSQH+A1qdRp5CuO1xh430XPivl1utPj1m2QdIWelylulr6A9oxXZem8uR3jast6So6MAVMbi4RXaybnYyxXNmEKHXky5wVm9As3h/FlAY9S8F86/0o97YTCF88yEnYHQonf0Yax3hDzRXNoRJf/tWnw+WRxyirjnWQ==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR12MB4758.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(39860400002)(346002)(136003)(366004)(376002)(230922051799003)(451199024)(1800799012)(186009)(64100799003)(31696002)(6506007)(6512007)(6486002)(2616005)(53546011)(26005)(7416002)(6666004)(83380400001)(8936002)(4326008)(44832011)(8676002)(5660300002)(41300700001)(2906002)(966005)(478600001)(6636002)(316002)(110136005)(54906003)(66556008)(38100700002)(66476007)(66946007)(86362001)(36756003)(31686004)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?MmZOb0VuVzNWdlhYaTU4U2x4c1REeU1IaFYySDVWUS9SN1JxNmtBMy9TL0h4?=
+ =?utf-8?B?cEZmT2x2MWJaeHVyNFZ3a0ZzTU5xaGR1a1NwTGVlSXVRM0U1SXFMNkdoNGh5?=
+ =?utf-8?B?WFJHbUZ4b2hnY2FEaHQ4VE1GNnpGbUk4b3BSS2pwajNlVlZza1oxYS9iNVRS?=
+ =?utf-8?B?STd5QkRmeHBZOFptWVdQYk9TUmx4dVVVNXR5eC9PL3d4aE5mTnlYM2Z4aERV?=
+ =?utf-8?B?UVcyZTk0V2NlNnNWUHNHYmtWekFmWXB0MmgwLzE1R3JBc255cVFLY3dheUFX?=
+ =?utf-8?B?QVd6SFd2bXkraXJLV01yWHk4TERabkFUMU9CemFuT3Q1VUV2RUV2a3ozdTJo?=
+ =?utf-8?B?bDRtWi9iMFA2enY4SG1mdXNLQWRtLzYzc1RDaHR5N3Z6NkZ6NTh5N3E0VWFi?=
+ =?utf-8?B?TUpxS3dhcGQyVFB6TEV3aUhtc2FTSllJRTdRdHhXVkgzNVJDN1kzc3RNcUlu?=
+ =?utf-8?B?alBVbnZEOHRacEpkU0NOdTAxM2dhL3J2dG5rZDRaZlkvcGJwMDhPUXFKeFl4?=
+ =?utf-8?B?QVFST052MW5WR2hjUnB4TnVGWkF5eFMxaThuQWMwWlpIOXFDS2FJMTFrZThq?=
+ =?utf-8?B?dlB3TERPYmNGU3FxbmNhdU01NkdlVG9GNVhTU3g3Q2phajAzSXlFSTgzRThQ?=
+ =?utf-8?B?ZjhON3F4VHdGK1U3QU5hK0FtWjFIUWtGVjh2emdsZmxMa25iMGVod2w4RjFQ?=
+ =?utf-8?B?RTMwNEREb2JXS09kMjZVMUszWWwyby9mc3FDMUk5bFZDN2JLWm9tSnRoVU1O?=
+ =?utf-8?B?eUhEQjUrVUN1dWZYMHZZV0IwOCtpR200LytzYlZpc2Z0UUhmWDVBYUh4RWZT?=
+ =?utf-8?B?K2RkSGFsc0h3TjJYanl2cE1wQWJucEFLK0NwWjJ1MUZFZVV0bGVOQ0REUVBh?=
+ =?utf-8?B?Q2NMMy8xY3pqL2xVblQwZnhYcFJQaklGQ2NtZDg3dDBRUU9hQXBUaElvMFhl?=
+ =?utf-8?B?VzNnSFRETVJTeGlvUm5JUm1SUmw0cnFWVmZYYlc2eTNWUklFbEpuQTRpeGxa?=
+ =?utf-8?B?SnY1WGMzUmcrL3UrbGFQZVRwc0FteXV0amRtMmJsUzl6d3dBVlEzeEUxUFlD?=
+ =?utf-8?B?UjhRMGZGS2pFQnJUR21uVmlWeVVzN1MvRUdEOWJyNklobWVxRUpyZTZkMkJo?=
+ =?utf-8?B?a0V1OWxPd3NuWFJFaUJDOVN3RzlYNVNpbWhuT2E3bDVRU1N1NTB4ZlplUFl1?=
+ =?utf-8?B?MEp3UUM1OFNMZkIwVzZGY3l6UytPMzN1THgxSVJxNGZmQlc3TDBXS1ArWTFp?=
+ =?utf-8?B?STFSZ00zRlNGQTZRNm80NE12b1FERzhHRTBCT0NWMHRCRnQ1RFJUaFRxOTda?=
+ =?utf-8?B?dUh4TjVwNU9nMklJakRnS2ZobmcxNlFDSHZGeWNFRDFzYTRvbk94ZHZlbFRN?=
+ =?utf-8?B?STRDMm1jWmFJa2JLQi9xaVI0Wkx1N0ptSjF3dk5CSDhodkRRS1R0MW9tMFV3?=
+ =?utf-8?B?UER1b1BENzJIZ2RCMnBsM1lmUWdVRThHSWs2Z2tDaXVWZ1MwdHhMY29TTTJB?=
+ =?utf-8?B?TnpOcUdWWWVWZFI1WTlIOFRyaGdwVFN1cW1tbSt4cTdtTWlkNjh4L0dueTd5?=
+ =?utf-8?B?enlHdGI5MFk3WXNyREJBV0M4aSthQnJjUndWV2JEOW0wZ0ZPMnVKZkJwZ0xa?=
+ =?utf-8?B?cWNQaXRGdWQrTGVqbzVxNUlkQm1LT0lwUHBySVlnL3J2NENEaEVBZnNIMXdT?=
+ =?utf-8?B?c1VHQ3V1YlJRaGJsNW1TbkFMQ3dZYjVvWC8yTklFTFNxUHp2cEIwRUNZMlBz?=
+ =?utf-8?B?cGhXaDZPWGw2Z2dwRmlrZTg2cHJZUG1zYjBEQWkzVWljRTdiTFpPVDJMcCtu?=
+ =?utf-8?B?T2piL3lCMmNPak94VXl6T05FRXB3ZjBoR0N3SXE4d1dJRHNBTnhnVkIrTTZL?=
+ =?utf-8?B?VzJjUVJZNE9qNmZJbHM4dEQ2YnRpOCs5Rkhjc2J3M0pCdzMwdTI0b2tGZXZy?=
+ =?utf-8?B?UW5ZbkNjY2NFNzVSQzhRR2t3MDF0QTdRVHF0cDNRWXJuTDFzaXBKTFNieW1C?=
+ =?utf-8?B?VXRHd3kzcXpFTTYwcFNRMVh5czJQNTRrU2JQOXA3L25jL0xSM1dITlE4Wmw3?=
+ =?utf-8?B?UnJtZjZGVzlSWk9vQlFXQ2lGRmd0by9sYXcvMVNDT1NRdXZ4YUp0YzY3R2Ur?=
+ =?utf-8?Q?Clzqe9QBT0Mi9eOdZM284Fj/M?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6fa7e257-6492-4013-38a8-08dbece4d6fc
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR12MB4758.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2023 11:59:40.8153
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: nhqObKB8/ap75niOc48eNfHZR/WLPnnAlGkMRWKV4rveXBw5mZAo8RHjlbD2lLxn
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB8434
 
 
 
-On 11/24/2023 3:33 AM, Christian Marangi wrote:
-> On Thu, Nov 23, 2023 at 03:57:58PM +0100, Andrew Lunn wrote:
->> On Thu, Nov 23, 2023 at 02:35:31PM +0000, Russell King (Oracle) wrote:
->>> On Thu, Nov 23, 2023 at 03:27:05PM +0100, Andrew Lunn wrote:
->>>>> Just to be more precise qca807x can operate in 3 different mode:
->>>>> (this is controlled by the MODE_CFG bits)
->>>>
->>>>> - QSGMII: 5 copper port
->>>>
->>>> 4 slots over QSGMII, plus the second SERDES is connected to the MAC
->>>> using SGMII/1000BaseX?
->>>>
->>>>> - PSGMII: 5 copper port
->>>>
->>>> 5 slots over QSGMII, the second SERDES is idle?
->>>>
->>>>> - PSGMII: 4 copper port + 1 combo (that can be both fiber or copper)
->>>>
->>>> 5 slots over QSGMII, with the second SERDES connected to an SFP cage.
->>>>
->>>> Are ports 1-4 always connected to the P/Q SGMII. Its only port 5 which
->>>> can use the second SERDES?
+On 11/24/23 12:35, Krzysztof Kozlowski wrote:
+> On 24/11/2023 12:03, Sayyed, Mubin wrote:
+>> Hi Krzysztof,
+>>
+>>> -----Original Message-----
+>>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>> Sent: Wednesday, November 15, 2023 5:41 PM
+>>> To: Sayyed, Mubin <mubin.sayyed@amd.com>
+>>> Cc: linux-arm-kernel@lists.infradead.org; linux-kernel@vger.kernel.org;
+>>> devicetree@vger.kernel.org; linux-pwm@vger.kernel.org; git (AMD-Xilinx)
+>>> <git@amd.com>; mubin10@gmail.com; krzysztof.kozlowski+dt@linaro.org;
+>>> u.kleine-koenig@pengutronix.de; thierry.reding@gmail.com;
+>>> robh+dt@kernel.org; conor+dt@kernel.org; tglx@linutronix.de;
+>>> daniel.lezcano@linaro.org; Simek, Michal <michal.simek@amd.com>
+>>> Subject: Re: [LINUX PATCH v2 1/3] clocksource: timer-cadence-ttc: Do not probe
+>>> TTC device configured as PWM
 >>>
->>> I think what would really help here is if there was an ascii table to
->>> describe the configurations, rather than trying to put it into words.
->>
->> Yes.
->>
->> And also for ipq4019. We need to merge these two threads of
->> conversation, since in the end they are probably the same driver, same
->> device tree etc.
->>
+>>> On 15/11/2023 06:55, Sayyed, Mubin wrote:
+>>>>>> +	/*
+>>>>>> +	 * If pwm-cells property is present in TTC node,
+>>>>>> +	 * it would be treated as PWM device.
+>>>>>> +	 */
+>>>>>> +	if (of_property_read_bool(timer, "#pwm-cells"))
+>>>>>> +		return -ENODEV;
+>>>>>
+>>>>> You will introduce dmesg errors, so regressions.
+>>>>>
+>>>> [Mubin]: I will change it to "return 0" to avoid dmesg errors.
+>>>
+>>> No, because solution is wrong.
+>>>
+>>>>
+>>>>> This does not look right. What you want is to bind one device driver
+>>>>> and choose different functionality based on properties.
+>>>> [Mubin]:  I am doing it based on earlier discussion related to AXI Timer PWM
+>>> driver.  It was suggested to use #pwm-cells property for identifying role of
+>>> device(PWM/clocksource) https://lore.kernel.org/linux-
+>>> devicetree/20210513021631.GA878860@robh.at.kernel.org/.
+>>>
+>>> You are mixing bindings with driver. I said here about driver and yes - you must
+>>> use pwm-cells to differentiate that. It's obvious.
+>>>
+>>> So again, one driver binding.
+>> [Mubin]: I will explore whether mfd framework can be used to handle this.
 > 
-> For everyone that missed Robert response in patch 12 let me quote him
-> also here.
-> 
-> "
-> Hi Andrew,
-> I think that the description is confusing.
-> QCA807x supports 3 different modes:
-> 1. PSGMII (5 copper ports)
-> 2. PSGMII (4 copper ports + 1 combo port)
-> 3. QSGMII+SGMII
-> 
-> So, in case option 2 is selected then the combo port can also be used for
-> 1000Base-X and 100Base-FX modules or copper and it will autodetect the
-> exact media.
-> This is supported via the SFP op-s and I have been using it without issues
-> for a while.
-> 
-> I have not tested option 3 in combination with SFP to the copper
-> module so I cant
-> say whether that works.
+> You do not need MFD for this, because you do not have a really MFD. This
+> is just one device, so I expect here one driver. Why do you need
+> multiple drivers (which also would solve that problem but why?)?
 
-For the option3, the last PHY works on SGMII mode, then it can't be
-used with SFP, only copper is supported in this mode.
+this driver is following pattern which is xps-timer (soff IP)
+Documentation/devicetree/bindings/timer/xlnx,xps-timer.yaml
 
->  From what I can gather from the typical usage examples in the
-> datasheet, this QSMII+SGMII
-> mode is basically intended as a backward compatibility thing as only
-> QCA SoC-s have PSGMII
-> support so that you could still use SoC-s with QSGMII and SGMII support only.
-> 
-> So there is no way to control the SerDes-es individually, only the
-> global mode can be changed via
-> the Chip configuration register in the Combo port.
-> 
-> You can see the block diagram of this PHY in this public PDF on page 2[1].
-> 
-> [1] https://content.codico.com/fileadmin/media/download/datasheets/qualcomm/qualcomm_qca8075.pdf
-> "
-> 
+which has two drivers in the kernel.
+On for clocksource
+arch/microblaze/kernel/timer.c
+and pwm one
+drivers/pwm/pwm-xilinx.c
+
+clocksource driver will be at some point moved to drivers/clocksource because 
+that's what will be used in connection to MicroBlaze V.
+
+I have looked at TTC and functionality wise it is related to
+Documentation/devicetree/bindings/mfd/st,stm32-timers.yaml
+or
+Documentation/devicetree/bindings/mfd/st,stm32-lptimer.yaml
+
+which are based on MFD.
+Timer there is only clockevent not clocksource but it shouldn't really matter.
+
+The biggest issue what I see is that ttc clocksource driver is used on arm32 
+Zynq family for a lot of years. It means moving to different binding based on 
+mfd would require keeping support for old dt binding too.
+That would be from my point of view thing to start with. What do you think what 
+would be the best way forward?
+
+But I need to do my homework first to see what functionality that IP has but I 
+am quite sure there could be at least multiple PMWs.
+
+Thanks,
+Michal
+
+
+
+
 
