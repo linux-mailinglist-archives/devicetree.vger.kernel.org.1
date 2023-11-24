@@ -1,73 +1,66 @@
-Return-Path: <devicetree+bounces-18611-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18608-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A20437F74CA
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 14:20:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 287827F74B8
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 14:20:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C4CB81C20D4E
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 13:20:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4BB141C20B34
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 13:20:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 299C428DB9;
-	Fri, 24 Nov 2023 13:20:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3954228DA1;
+	Fri, 24 Nov 2023 13:20:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="cwW0+E/b"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Aa8liEpW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 950BC1724;
-	Fri, 24 Nov 2023 05:20:38 -0800 (PST)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C819210DC;
+	Fri, 24 Nov 2023 05:20:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1700832038; x=1732368038;
+  t=1700832003; x=1732368003;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=D6sAom7DCqR1Zyqj6Jdy6bkLwVXib4NKjEjRLqF2SOc=;
-  b=cwW0+E/b/CDSWn2YxcZ3+w3t7cHB9ibez/ry/tuKUxu7XlhCItoK4XAR
-   tQDTwhLJ4fpGa/4dFa1HB+dUyN3/rL8BV3INhkSHcJr4BWDOfyJZj+WgD
-   blQQ+aArXDRzly3mV7rJWR8PS0WP8mAj1yp3rj3/F1BUiY8gKvNthMvj/
-   VSK9DKB2HOrcKIgVAbUTqn7RTg/H7W8eZkAO5Qb6w5m4z4aLYXl0wLXn8
-   KFBitvC1BCgwCl0CQFhxKxZXDU1ff7WWjR0PMWGKke9lFGNEasihhch+y
-   bh9LFXYzD3G6HUaemaeevlBPV0gxmwLyiIoi6c6t7XooGm3cwaNxtrd1P
+  bh=peRuZaBCZzr/v4C9Q1MvL6hloPYVyHK9MBs7TTjylkU=;
+  b=Aa8liEpWMzykbvH9Av38NtxXXkTa46hSrv+lzT7tHXA9nJ6r4g6MDkEG
+   mKEwXzvCRn5C6SeQf4V3THKyWc/d7hkEzHlt4xQs1cc93ALpejk5SEtsj
+   3zrkHSRsqqrssdcHvG1X2p8W8MxpwOUETPrjboZeHsm9dvzJJJQJ8ga5r
+   KOnEl9s6aw+BdAA4/YP+19ATzDYTR0w0LTkxVuNGCOPY8bEeOn0LtUu+L
+   zo7mXVs1BEi6ujASfjcTsZXroUfra83i/yeyKjJ7txto8+H4ulfV2+aHc
+   oCup6wgDyIn0s4HjUe9Prm3wqD0hagS/Bf/cKV/Ohg65EurnG/DQH4kc4
    Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="456765084"
+X-IronPort-AV: E=McAfee;i="6600,9927,10904"; a="382823364"
 X-IronPort-AV: E=Sophos;i="6.04,224,1695711600"; 
-   d="scan'208";a="456765084"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Nov 2023 05:20:14 -0800
+   d="scan'208";a="382823364"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Nov 2023 05:20:02 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="767477050"
+X-IronPort-AV: E=McAfee;i="6600,9927,10904"; a="885274437"
 X-IronPort-AV: E=Sophos;i="6.04,224,1695711600"; 
-   d="scan'208";a="767477050"
+   d="scan'208";a="885274437"
 Received: from lkp-server01.sh.intel.com (HELO d584ee6ebdcc) ([10.239.97.150])
-  by orsmga002.jf.intel.com with ESMTP; 24 Nov 2023 05:20:09 -0800
+  by fmsmga002.fm.intel.com with ESMTP; 24 Nov 2023 05:20:00 -0800
 Received: from kbuild by d584ee6ebdcc with local (Exim 4.96)
 	(envelope-from <lkp@intel.com>)
-	id 1r6W6J-0002ng-1e;
-	Fri, 24 Nov 2023 13:20:07 +0000
-Date: Fri, 24 Nov 2023 21:19:37 +0800
+	id 1r6W69-0002nb-2u;
+	Fri, 24 Nov 2023 13:19:57 +0000
+Date: Fri, 24 Nov 2023 21:19:50 +0800
 From: kernel test robot <lkp@intel.com>
-To: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
+To: Anshul Dalal <anshulusr@gmail.com>, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, Anshul Dalal <anshulusr@gmail.com>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
-Subject: Re: [PATCH v2 7/9] clk: qcom: add NSS clock Controller driver for
- Qualcomm IPQ5332
-Message-ID: <202311241420.9uiff44i-lkp@intel.com>
-References: <20231121-ipq5332-nsscc-v2-7-a7ff61beab72@quicinc.com>
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Thomas =?iso-8859-1?Q?Wei=DFschuh?= <linux@weissschuh.net>,
+	linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>, Jeff LaBundy <jeff@labundy.com>,
+	linux-kernel-mentees@lists.linuxfoundation.org
+Subject: Re: [PATCH v10 2/2] input: joystick: driver for Adafruit Seesaw
+ Gamepad
+Message-ID: <202311241512.0CL83yG6-lkp@intel.com>
+References: <20231121123409.2231115-2-anshulusr@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,178 +69,117 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231121-ipq5332-nsscc-v2-7-a7ff61beab72@quicinc.com>
+In-Reply-To: <20231121123409.2231115-2-anshulusr@gmail.com>
 
-Hi Kathiravan,
+Hi Anshul,
 
-kernel test robot noticed the following build errors:
+kernel test robot noticed the following build warnings:
 
-[auto build test ERROR on 07b677953b9dca02928be323e2db853511305fa9]
+[auto build test WARNING on dtor-input/next]
+[also build test WARNING on dtor-input/for-linus hid/for-next linus/master v6.7-rc2 next-20231124]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Kathiravan-Thirumoorthy/clk-qcom-ipq5332-add-const-qualifier-to-the-clk_init_data-structure/20231121-223615
-base:   07b677953b9dca02928be323e2db853511305fa9
-patch link:    https://lore.kernel.org/r/20231121-ipq5332-nsscc-v2-7-a7ff61beab72%40quicinc.com
-patch subject: [PATCH v2 7/9] clk: qcom: add NSS clock Controller driver for Qualcomm IPQ5332
-config: i386-allyesconfig (https://download.01.org/0day-ci/archive/20231124/202311241420.9uiff44i-lkp@intel.com/config)
-compiler: clang version 16.0.4 (https://github.com/llvm/llvm-project.git ae42196bc493ffe877a7e3dff8be32035dea4d07)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231124/202311241420.9uiff44i-lkp@intel.com/reproduce)
+url:    https://github.com/intel-lab-lkp/linux/commits/Anshul-Dalal/input-joystick-driver-for-Adafruit-Seesaw-Gamepad/20231121-204243
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/dtor/input.git next
+patch link:    https://lore.kernel.org/r/20231121123409.2231115-2-anshulusr%40gmail.com
+patch subject: [PATCH v10 2/2] input: joystick: driver for Adafruit Seesaw Gamepad
+config: hexagon-randconfig-r123-20231123 (https://download.01.org/0day-ci/archive/20231124/202311241512.0CL83yG6-lkp@intel.com/config)
+compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project.git 4a5ac14ee968ff0ad5d2cc1ffa0299048db4c88a)
+reproduce: (https://download.01.org/0day-ci/archive/20231124/202311241512.0CL83yG6-lkp@intel.com/reproduce)
 
 If you fix the issue in a separate patch/commit (i.e. not just a new version of
 the same patch/commit), kindly add following tags
 | Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202311241420.9uiff44i-lkp@intel.com/
+| Closes: https://lore.kernel.org/oe-kbuild-all/202311241512.0CL83yG6-lkp@intel.com/
 
-All errors (new ones prefixed by >>):
+All warnings (new ones prefixed by >>):
 
->> drivers/clk/qcom/nsscc-ipq5332.c:161:62: error: array has incomplete element type 'const struct freq_conf'
-   static const struct freq_conf ftbl_nss_cc_port1_rx_clk_src_25[] = {
-                                                                ^
-   drivers/clk/qcom/nsscc-ipq5332.c:161:21: note: forward declaration of 'struct freq_conf'
-   static const struct freq_conf ftbl_nss_cc_port1_rx_clk_src_25[] = {
-                       ^
->> drivers/clk/qcom/nsscc-ipq5332.c:162:2: error: call to undeclared function 'C'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-           C(P_UNIPHY0_NSS_RX_CLK, 12.5, 0, 0),
-           ^
-   drivers/clk/qcom/nsscc-ipq5332.c:166:63: error: array has incomplete element type 'const struct freq_conf'
-   static const struct freq_conf ftbl_nss_cc_port1_rx_clk_src_125[] = {
-                                                                 ^
-   drivers/clk/qcom/nsscc-ipq5332.c:161:21: note: forward declaration of 'struct freq_conf'
-   static const struct freq_conf ftbl_nss_cc_port1_rx_clk_src_25[] = {
-                       ^
->> drivers/clk/qcom/nsscc-ipq5332.c:171:64: error: array has incomplete element type 'const struct freq_multi_tbl'
-   static const struct freq_multi_tbl ftbl_nss_cc_port1_rx_clk_src[] = {
-                                                                  ^
-   drivers/clk/qcom/nsscc-ipq5332.c:171:21: note: forward declaration of 'struct freq_multi_tbl'
-   static const struct freq_multi_tbl ftbl_nss_cc_port1_rx_clk_src[] = {
-                       ^
->> drivers/clk/qcom/nsscc-ipq5332.c:172:2: error: call to undeclared function 'FMS'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-           FMS(24000000, P_XO, 1, 0, 0),
-           ^
->> drivers/clk/qcom/nsscc-ipq5332.c:173:2: error: call to undeclared function 'FM'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-           FM(25000000, ftbl_nss_cc_port1_rx_clk_src_25),
-           ^
->> drivers/clk/qcom/nsscc-ipq5332.c:191:11: error: use of undeclared identifier 'clk_rcg2_fm_ops'; did you mean 'clk_rcg2_ops'?
-                   .ops = &clk_rcg2_fm_ops,
-                           ^~~~~~~~~~~~~~~
-                           clk_rcg2_ops
-   drivers/clk/qcom/clk-rcg.h:170:29: note: 'clk_rcg2_ops' declared here
-   extern const struct clk_ops clk_rcg2_ops;
-                               ^
-   drivers/clk/qcom/nsscc-ipq5332.c:195:62: error: array has incomplete element type 'const struct freq_conf'
-   static const struct freq_conf ftbl_nss_cc_port1_tx_clk_src_25[] = {
-                                                                ^
-   drivers/clk/qcom/nsscc-ipq5332.c:161:21: note: forward declaration of 'struct freq_conf'
-   static const struct freq_conf ftbl_nss_cc_port1_rx_clk_src_25[] = {
-                       ^
-   drivers/clk/qcom/nsscc-ipq5332.c:200:63: error: array has incomplete element type 'const struct freq_conf'
-   static const struct freq_conf ftbl_nss_cc_port1_tx_clk_src_125[] = {
-                                                                 ^
-   drivers/clk/qcom/nsscc-ipq5332.c:161:21: note: forward declaration of 'struct freq_conf'
-   static const struct freq_conf ftbl_nss_cc_port1_rx_clk_src_25[] = {
-                       ^
-   drivers/clk/qcom/nsscc-ipq5332.c:205:64: error: array has incomplete element type 'const struct freq_multi_tbl'
-   static const struct freq_multi_tbl ftbl_nss_cc_port1_tx_clk_src[] = {
-                                                                  ^
-   drivers/clk/qcom/nsscc-ipq5332.c:171:21: note: forward declaration of 'struct freq_multi_tbl'
-   static const struct freq_multi_tbl ftbl_nss_cc_port1_rx_clk_src[] = {
-                       ^
-   drivers/clk/qcom/nsscc-ipq5332.c:225:11: error: use of undeclared identifier 'clk_rcg2_fm_ops'; did you mean 'clk_rcg2_ops'?
-                   .ops = &clk_rcg2_fm_ops,
-                           ^~~~~~~~~~~~~~~
-                           clk_rcg2_ops
-   drivers/clk/qcom/clk-rcg.h:170:29: note: 'clk_rcg2_ops' declared here
-   extern const struct clk_ops clk_rcg2_ops;
-                               ^
-   drivers/clk/qcom/nsscc-ipq5332.c:229:62: error: array has incomplete element type 'const struct freq_conf'
-   static const struct freq_conf ftbl_nss_cc_port2_rx_clk_src_25[] = {
-                                                                ^
-   drivers/clk/qcom/nsscc-ipq5332.c:161:21: note: forward declaration of 'struct freq_conf'
-   static const struct freq_conf ftbl_nss_cc_port1_rx_clk_src_25[] = {
-                       ^
-   drivers/clk/qcom/nsscc-ipq5332.c:234:63: error: array has incomplete element type 'const struct freq_conf'
-   static const struct freq_conf ftbl_nss_cc_port2_rx_clk_src_125[] = {
-                                                                 ^
-   drivers/clk/qcom/nsscc-ipq5332.c:161:21: note: forward declaration of 'struct freq_conf'
-   static const struct freq_conf ftbl_nss_cc_port1_rx_clk_src_25[] = {
-                       ^
-   drivers/clk/qcom/nsscc-ipq5332.c:239:64: error: array has incomplete element type 'const struct freq_multi_tbl'
-   static const struct freq_multi_tbl ftbl_nss_cc_port2_rx_clk_src[] = {
-                                                                  ^
-   drivers/clk/qcom/nsscc-ipq5332.c:171:21: note: forward declaration of 'struct freq_multi_tbl'
-   static const struct freq_multi_tbl ftbl_nss_cc_port1_rx_clk_src[] = {
-                       ^
-   drivers/clk/qcom/nsscc-ipq5332.c:259:11: error: use of undeclared identifier 'clk_rcg2_fm_ops'; did you mean 'clk_rcg2_ops'?
-                   .ops = &clk_rcg2_fm_ops,
-                           ^~~~~~~~~~~~~~~
-                           clk_rcg2_ops
-   drivers/clk/qcom/clk-rcg.h:170:29: note: 'clk_rcg2_ops' declared here
-   extern const struct clk_ops clk_rcg2_ops;
-                               ^
-   drivers/clk/qcom/nsscc-ipq5332.c:263:62: error: array has incomplete element type 'const struct freq_conf'
-   static const struct freq_conf ftbl_nss_cc_port2_tx_clk_src_25[] = {
-                                                                ^
-   drivers/clk/qcom/nsscc-ipq5332.c:161:21: note: forward declaration of 'struct freq_conf'
-   static const struct freq_conf ftbl_nss_cc_port1_rx_clk_src_25[] = {
-                       ^
-   drivers/clk/qcom/nsscc-ipq5332.c:268:63: error: array has incomplete element type 'const struct freq_conf'
-   static const struct freq_conf ftbl_nss_cc_port2_tx_clk_src_125[] = {
-                                                                 ^
-   drivers/clk/qcom/nsscc-ipq5332.c:161:21: note: forward declaration of 'struct freq_conf'
-   static const struct freq_conf ftbl_nss_cc_port1_rx_clk_src_25[] = {
-                       ^
-   drivers/clk/qcom/nsscc-ipq5332.c:273:64: error: array has incomplete element type 'const struct freq_multi_tbl'
-   static const struct freq_multi_tbl ftbl_nss_cc_port2_tx_clk_src[] = {
-                                                                  ^
-   drivers/clk/qcom/nsscc-ipq5332.c:171:21: note: forward declaration of 'struct freq_multi_tbl'
-   static const struct freq_multi_tbl ftbl_nss_cc_port1_rx_clk_src[] = {
-                       ^
-   drivers/clk/qcom/nsscc-ipq5332.c:293:11: error: use of undeclared identifier 'clk_rcg2_fm_ops'; did you mean 'clk_rcg2_ops'?
-                   .ops = &clk_rcg2_fm_ops,
-                           ^~~~~~~~~~~~~~~
-                           clk_rcg2_ops
-   drivers/clk/qcom/clk-rcg.h:170:29: note: 'clk_rcg2_ops' declared here
-   extern const struct clk_ops clk_rcg2_ops;
-                               ^
-   19 errors generated.
+   In file included from drivers/input/joystick/adafruit-seesaw.c:21:
+   In file included from include/linux/i2c.h:19:
+   In file included from include/linux/regulator/consumer.h:35:
+   In file included from include/linux/suspend.h:5:
+   In file included from include/linux/swap.h:9:
+   In file included from include/linux/memcontrol.h:13:
+   In file included from include/linux/cgroup.h:26:
+   In file included from include/linux/kernel_stat.h:9:
+   In file included from include/linux/interrupt.h:11:
+   In file included from include/linux/hardirq.h:11:
+   In file included from ./arch/hexagon/include/generated/asm/hardirq.h:1:
+   In file included from include/asm-generic/hardirq.h:17:
+   In file included from include/linux/irq.h:20:
+   In file included from include/linux/io.h:13:
+   In file included from arch/hexagon/include/asm/io.h:334:
+   include/asm-generic/io.h:547:31: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     547 |         val = __raw_readb(PCI_IOBASE + addr);
+         |                           ~~~~~~~~~~ ^
+   include/asm-generic/io.h:560:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     560 |         val = __le16_to_cpu((__le16 __force)__raw_readw(PCI_IOBASE + addr));
+         |                                                         ~~~~~~~~~~ ^
+   include/uapi/linux/byteorder/little_endian.h:37:51: note: expanded from macro '__le16_to_cpu'
+      37 | #define __le16_to_cpu(x) ((__force __u16)(__le16)(x))
+         |                                                   ^
+   In file included from drivers/input/joystick/adafruit-seesaw.c:21:
+   In file included from include/linux/i2c.h:19:
+   In file included from include/linux/regulator/consumer.h:35:
+   In file included from include/linux/suspend.h:5:
+   In file included from include/linux/swap.h:9:
+   In file included from include/linux/memcontrol.h:13:
+   In file included from include/linux/cgroup.h:26:
+   In file included from include/linux/kernel_stat.h:9:
+   In file included from include/linux/interrupt.h:11:
+   In file included from include/linux/hardirq.h:11:
+   In file included from ./arch/hexagon/include/generated/asm/hardirq.h:1:
+   In file included from include/asm-generic/hardirq.h:17:
+   In file included from include/linux/irq.h:20:
+   In file included from include/linux/io.h:13:
+   In file included from arch/hexagon/include/asm/io.h:334:
+   include/asm-generic/io.h:573:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     573 |         val = __le32_to_cpu((__le32 __force)__raw_readl(PCI_IOBASE + addr));
+         |                                                         ~~~~~~~~~~ ^
+   include/uapi/linux/byteorder/little_endian.h:35:51: note: expanded from macro '__le32_to_cpu'
+      35 | #define __le32_to_cpu(x) ((__force __u32)(__le32)(x))
+         |                                                   ^
+   In file included from drivers/input/joystick/adafruit-seesaw.c:21:
+   In file included from include/linux/i2c.h:19:
+   In file included from include/linux/regulator/consumer.h:35:
+   In file included from include/linux/suspend.h:5:
+   In file included from include/linux/swap.h:9:
+   In file included from include/linux/memcontrol.h:13:
+   In file included from include/linux/cgroup.h:26:
+   In file included from include/linux/kernel_stat.h:9:
+   In file included from include/linux/interrupt.h:11:
+   In file included from include/linux/hardirq.h:11:
+   In file included from ./arch/hexagon/include/generated/asm/hardirq.h:1:
+   In file included from include/asm-generic/hardirq.h:17:
+   In file included from include/linux/irq.h:20:
+   In file included from include/linux/io.h:13:
+   In file included from arch/hexagon/include/asm/io.h:334:
+   include/asm-generic/io.h:584:33: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     584 |         __raw_writeb(value, PCI_IOBASE + addr);
+         |                             ~~~~~~~~~~ ^
+   include/asm-generic/io.h:594:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     594 |         __raw_writew((u16 __force)cpu_to_le16(value), PCI_IOBASE + addr);
+         |                                                       ~~~~~~~~~~ ^
+   include/asm-generic/io.h:604:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     604 |         __raw_writel((u32 __force)cpu_to_le32(value), PCI_IOBASE + addr);
+         |                                                       ~~~~~~~~~~ ^
+>> drivers/input/joystick/adafruit-seesaw.c:300:34: warning: unused variable 'seesaw_of_table' [-Wunused-const-variable]
+     300 | static const struct of_device_id seesaw_of_table[] = {
+         |                                  ^
+   7 warnings generated.
 
 
-vim +161 drivers/clk/qcom/nsscc-ipq5332.c
+vim +/seesaw_of_table +300 drivers/input/joystick/adafruit-seesaw.c
 
-   160	
- > 161	static const struct freq_conf ftbl_nss_cc_port1_rx_clk_src_25[] = {
- > 162		C(P_UNIPHY0_NSS_RX_CLK, 12.5, 0, 0),
-   163		C(P_UNIPHY0_NSS_RX_CLK, 5, 0, 0),
-   164	};
-   165	
-   166	static const struct freq_conf ftbl_nss_cc_port1_rx_clk_src_125[] = {
-   167		C(P_UNIPHY0_NSS_RX_CLK, 2.5, 0, 0),
-   168		C(P_UNIPHY0_NSS_RX_CLK, 1, 0, 0),
-   169	};
-   170	
- > 171	static const struct freq_multi_tbl ftbl_nss_cc_port1_rx_clk_src[] = {
- > 172		FMS(24000000, P_XO, 1, 0, 0),
- > 173		FM(25000000, ftbl_nss_cc_port1_rx_clk_src_25),
-   174		FMS(78125000, P_UNIPHY0_NSS_RX_CLK, 4, 0, 0),
-   175		FM(125000000, ftbl_nss_cc_port1_rx_clk_src_125),
-   176		FMS(156250000, P_UNIPHY0_NSS_RX_CLK, 2, 0, 0),
-   177		FMS(312500000, P_UNIPHY0_NSS_RX_CLK, 1, 0, 0),
-   178		{ }
-   179	};
-   180	
-   181	static struct clk_rcg2 nss_cc_port1_rx_clk_src = {
-   182		.cmd_rcgr = 0x450,
-   183		.mnd_width = 0,
-   184		.hid_width = 5,
-   185		.parent_map = nss_cc_parent_map_1,
-   186		.freq_multi_tbl = ftbl_nss_cc_port1_rx_clk_src,
-   187		.clkr.hw.init = &(const struct clk_init_data) {
-   188			.name = "nss_cc_port1_rx_clk_src",
-   189			.parent_data = nss_cc_parent_data_1,
-   190			.num_parents = ARRAY_SIZE(nss_cc_parent_data_1),
- > 191			.ops = &clk_rcg2_fm_ops,
-   192		},
-   193	};
-   194	
+   299	
+ > 300	static const struct of_device_id seesaw_of_table[] = {
+   301		{ .compatible = "adafruit,seesaw-gamepad"},
+   302		{ /* Sentinel */ }
+   303	};
+   304	MODULE_DEVICE_TABLE(of, seesaw_of_table);
+   305	
 
 -- 
 0-DAY CI Kernel Test Service
