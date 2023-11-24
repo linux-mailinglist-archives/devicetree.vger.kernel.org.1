@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-18478-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18479-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 885697F6E17
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 09:27:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CE067F6E27
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 09:29:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1125BB20B73
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 08:27:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 95F37B20B98
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 08:29:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 493B28F77;
-	Fri, 24 Nov 2023 08:27:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D44069479;
+	Fri, 24 Nov 2023 08:29:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="T/yZ/9VM"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MW09yPDK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FB10D48
-	for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 00:27:46 -0800 (PST)
-Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-548696eac92so2178422a12.3
-        for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 00:27:46 -0800 (PST)
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FDBA10E0
+	for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 00:29:19 -0800 (PST)
+Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-548d60a4d60so2182926a12.2
+        for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 00:29:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700814465; x=1701419265; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1700814558; x=1701419358; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=f5z4R+/uebh0H8kwZbipC142tI6MNEmnzXMKVJSCviE=;
-        b=T/yZ/9VM3gFy2iZelGPh79mqsR2bLTLRqGVZG4+LpBxFMEWcfk+jlmQApxTswMzJ9J
-         lY/DGn7wqguMQ//K4ESlRAynuUckQBVDneXFVBF+luqGfa+FYDF41xuDXO/Pc8KT9hcp
-         EDNvsKuOVfXQNSYGXqVaRJ+f7AQSHCp0HFj2QyFa13D9F4RSGLthlj3gcRi+nPmDK4u6
-         9txa3QYykiRAq1VzOQ+lYnE3JSEHqieK1eRh5soQ8OET+zFuhzTjU8ZAPbMmToxY/wv1
-         8D4LaV3Zazdks2SQlIrNi5KK0tasjl+b3gJpFNlfEcFRwpiNz4tVwj0olbCkqiswo+p/
-         YUJA==
+        bh=/rvPZFrhVUmxU2i4yZOTyZ58wV2g2sERsXThLoEWP0E=;
+        b=MW09yPDKbWaDysSMYXAmKZTkYrvNJSgeraFk98jDWtCSMtbG0p5hhjbKd+ilOlcisZ
+         swsPgvHU8TFCfShCXZG8wuGRVjIT2qcZ4oWmIG/s69RHyxVjDScIZzq9KeGroVGuk/fK
+         LJSX9cKwZhwUUOjxvzIddr1MaLhCQes27wIrDGZtf7/GKpluNrHiznNnaQBMQMb0nB4m
+         ZBJM3bp+MSawab0Z4/9+zkIkASNWvJOiLz/IWFjtJ8sVbd8uWgMXp7fhAETA9qv91Awu
+         +RsCisl1ZVLzOCi/3z9uCO6CtsFjWNIAOAUKH8GVv69MJfUHZtPAyslm/4uDHOGkNyJm
+         F6QQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700814465; x=1701419265;
+        d=1e100.net; s=20230601; t=1700814558; x=1701419358;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=f5z4R+/uebh0H8kwZbipC142tI6MNEmnzXMKVJSCviE=;
-        b=M5yg9jRt/v3UIBHHYdWMGIAtggkf1zVMdesUZER4V9Vb4hDIGqbphgt1/8tr92i27w
-         jZUDEGZaYqsk8S/fPLTFpH3oTo+Y1TeC+aBl6syazuOJPLVDt1f2EjCwVkjm8sPFAqVl
-         D1EPJuMwxfTpGgefIjc+KTJeuZN6wzE65Hbvkc4iieeT6CBWFzAwFtXrF3deNsy7UOSu
-         xggC9QTWZqpNYoYTC3IUB8UpbqtI5bM9mWcb3aLM+cqHOpbz7c25uHYs8Jl4iMzmf+OY
-         P0aX602WsbVae9kyTEY26t+QatuY7tzsdAbUuMG/vnjYN6HT6J1e1IXsv56IhPkW1LOi
-         lOeQ==
-X-Gm-Message-State: AOJu0Yx5QB0qhZpQEfy2+fNk5Bh2l2LOpNCi4Fr0A3Nwb+K+abxex2BO
-	Gka83o24Br5P3Bmha87aTZBOdg==
-X-Google-Smtp-Source: AGHT+IG8Cald1MJmAYnUL5rrZ5j3GsAkBmSpYI9i8bSwtQpqyBsgVgkguxYQiCLF6hkeQEx8/5z4XQ==
-X-Received: by 2002:a17:906:3418:b0:a03:a411:abcb with SMTP id c24-20020a170906341800b00a03a411abcbmr1343935ejb.39.1700814464781;
-        Fri, 24 Nov 2023 00:27:44 -0800 (PST)
+        bh=/rvPZFrhVUmxU2i4yZOTyZ58wV2g2sERsXThLoEWP0E=;
+        b=ibPIGc36aWyKchwLqCa3ig0IsW+7gafb51jwP7WsWM/cumdxVN3H8cC8rarv+Lg/7i
+         fG/j+B8PWVKW23nyOIsGB9sduZ7dFHtoH6a5TbZv5oh2qICFVf60rvjFaNbl+5oZE5QQ
+         SdmhHApjl/r4eyNErxn9iloYUa5KhQTpVOq1s6M7mE1yzkLXlIqiYxQAmwDDevaP+Gby
+         vJ+gIDTbAGhQP0RIsXaATkVvdeXL8QjXzrAB5FJTIcGrzFdHFcqfzvlZ24ksFcMcwCZ5
+         hOanXmlylAfzRWahmPd9zx/F7yb4NZ6LUZPc7FkFLpIwnAdl1QANoX1hzjgkFryuKDa4
+         r5NA==
+X-Gm-Message-State: AOJu0YwH6UHi0DXyAc8q4wnGxBNNRJGq7cTfEXnbOksVBuvAISPnmLQt
+	M9N406AwMpv3Ct5DNQxTDlwGZA==
+X-Google-Smtp-Source: AGHT+IGlQJSrJYQpwwyM3Ifvr1J5+LIK1vGtKUKeuCZwMSNHn3lLL8hDH6LgUGviP9Uih/3RusF5XQ==
+X-Received: by 2002:a17:907:7203:b0:a01:9985:30d9 with SMTP id dr3-20020a170907720300b00a01998530d9mr1533783ejc.12.1700814558002;
+        Fri, 24 Nov 2023 00:29:18 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.100])
-        by smtp.gmail.com with ESMTPSA id ks20-20020a170906f85400b009db53aa4f7bsm1772489ejb.28.2023.11.24.00.27.43
+        by smtp.gmail.com with ESMTPSA id ks20-20020a170906f85400b009db53aa4f7bsm1772489ejb.28.2023.11.24.00.29.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Nov 2023 00:27:44 -0800 (PST)
-Message-ID: <46bba00c-00b7-46db-984c-4391f7fc11f6@linaro.org>
-Date: Fri, 24 Nov 2023 09:27:42 +0100
+        Fri, 24 Nov 2023 00:29:17 -0800 (PST)
+Message-ID: <4c5e29ed-3767-4d14-b067-92ac3f8efb27@linaro.org>
+Date: Fri, 24 Nov 2023 09:29:15 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,21 +62,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 18/21] MIPS: mobileye: Add EyeQ5 dtsi
+Subject: Re: [PATCH 1/5] ASoC: dt-bindings: qcom,wcd938x: move out common
+ properties
 Content-Language: en-US
-To: Gregory CLEMENT <gregory.clement@bootlin.com>,
- Paul Burton <paulburton@kernel.org>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>, linux-mips@vger.kernel.org,
- Jiaxun Yang <jiaxun.yang@flygoat.com>, Rob Herring <robh+dt@kernel.org>,
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+ Banajit Goswami <bgoswami@quicinc.com>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Liam Girdwood
+ <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
- Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-References: <20231123152639.561231-1-gregory.clement@bootlin.com>
- <20231123152639.561231-19-gregory.clement@bootlin.com>
+ Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>
+Cc: linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20231123-topic-sm8650-upstream-wcd939x-codec-v1-0-21d4ad9276de@linaro.org>
+ <20231123-topic-sm8650-upstream-wcd939x-codec-v1-1-21d4ad9276de@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -122,107 +125,21 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231123152639.561231-19-gregory.clement@bootlin.com>
+In-Reply-To: <20231123-topic-sm8650-upstream-wcd939x-codec-v1-1-21d4ad9276de@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 23/11/2023 16:26, Gregory CLEMENT wrote:
-> Add a device tree include file for the Mobileye EyeQ5 SoC.
+On 23/11/2023 15:49, Neil Armstrong wrote:
+> Move out common properties from qcom,wcd938x bindings in preparation
+> of adding Qualcomm WCD939x bindings sharing most of the properties.
 > 
-> Based on the work of Slava Samsonov <stanislav.samsonov@intel.com>
-> 
-> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 > ---
+>  .../devicetree/bindings/sound/qcom,wcd938x.yaml    | 81 +-----------------
+>  .../bindings/sound/qcom,wcd93xx-common.yaml        | 95 ++++++++++++++++++++++
 
 
-> +	aliases {
-> +		serial0 = &uart0;
-> +		serial1 = &uart1;
-> +		serial2 = &uart2;
-> +	};
-> +
-> +	cpu_intc: interrupt-controller {
-> +		compatible = "mti,cpu-interrupt-controller";
-> +		interrupt-controller;
-> +		#address-cells = <0>;
-> +		#interrupt-cells = <1>;
-> +	};
-> +
-> +	gic: interrupt-controller@140000 {
-
-Why do you put MMIO nodes in top-level?
-
-> +		compatible = "mti,gic";
-> +		reg = <0x0 0x140000 0x0 0x20000>;
-> +		interrupt-controller;
-> +		#interrupt-cells = <3>;
-> +
-> +		/*
-> +		* Declare the interrupt-parent even though the mti,gic
-> +		* binding doesn't require it, such that the kernel can
-> +		* figure out that cpu_intc is the root interrupt
-> +		* controller & should be probed first.
-> +		*/
-> +		interrupt-parent = <&cpu_intc>;
-> +
-> +		timer {
-> +			compatible = "mti,gic-timer";
-> +			interrupts = <GIC_LOCAL 1 IRQ_TYPE_NONE>;
-> +			clocks = <&core0_clk>;
-> +		};
-> +	};
-> +
-> +	soc: soc {
-
-Are you sure dtbs_check W=1 does not complain? I think you miss here
-address.
-
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +		compatible = "simple-bus";
-> +
-> +		uart0: serial@800000 {
-> +			compatible = "arm,pl011", "arm,primecell";
-> +			reg = <0 0x800000 0x0 0x1000>;
-> +			reg-io-width = <4>;
-> +			interrupt-parent = <&gic>;
-> +			interrupts = <GIC_SHARED 6 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks  = <&uart_clk>, <&occ_periph>;
-> +			clock-names = "uartclk", "apb_pclk";
-> +		};
-> +
-> +		uart1: serial@900000 {
-> +			compatible = "arm,pl011", "arm,primecell";
-> +			reg = <0 0x900000 0x0 0x1000>;
-> +			reg-io-width = <4>;
-> +			interrupt-parent = <&gic>;
-> +			interrupts = <GIC_SHARED 6 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks  = <&uart_clk>, <&occ_periph>;
-> +			clock-names = "uartclk", "apb_pclk";
-> +		};
-> +
-> +		uart2: serial@a00000 {
-> +			compatible = "arm,pl011", "arm,primecell";
-> +			reg = <0 0xa00000 0x0 0x1000>;
-> +			reg-io-width = <4>;
-> +			interrupt-parent = <&gic>;
-> +			interrupts = <GIC_SHARED 6 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks  = <&uart_clk>, <&occ_periph>;
-> +			clock-names = "uartclk", "apb_pclk";
-> +		};
-> +
-> +		olb: olb@e00000 {
-> +			compatible = "mobileye,eyeq5-olb", "syscon", "simple-mfd";
-> +			reg = <0 0xe00000 0x0 0x400>;
-> +			reg-io-width = <4>;
-> +		};
-> +
-
-Stray blank line.
-
-> +	};
-> +};
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
