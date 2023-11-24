@@ -1,162 +1,144 @@
-Return-Path: <devicetree+bounces-18678-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18679-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 068157F7A84
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 18:39:39 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C68007F7C06
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 19:11:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B53CF281242
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 17:39:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 81FF4281E1D
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 18:11:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02113381D4;
-	Fri, 24 Nov 2023 17:39:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="YHDXF87a"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C7B6381D5;
+	Fri, 24 Nov 2023 18:11:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38A22BB;
-	Fri, 24 Nov 2023 09:39:28 -0800 (PST)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AOGgX9i027345;
-	Fri, 24 Nov 2023 17:39:22 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=cbZUHFkE5FzVcXNkKDtig22qsSf8ydEAXWN6seFAMAM=;
- b=YHDXF87ays+f+I4K8AzPGVqIdl0VTQ5dHm8gmQJfclfStUlekDVirlnOAns5sSUxVP1M
- 9QTChaC3u2ZRvilaujTshf6L65oTNO+AWMvlq5AQ0Db+QFccFnzgOt1Gfa+vJlWywHG2
- jQ3acDNFIdaNxyFR+3G0+OcbOSLnE8AUhxpfEHdgoRpfOMuIbrBtKs8RN34vBXpRJC30
- FvAJXgJR2U7tLo01nlylgD6QXSd7MEt8dp9RyD/3EWCQFa8Sy0gNmsOdg9uBioBCiB2O
- c4RFbpdQZOXISdPr1juw/lmcv3lJtqMGUkSnEck7RwgdIdVR0RYnOULsT4RK+x6QEEv9 VQ== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uj6emucdt-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 24 Nov 2023 17:39:22 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AOHdDXb028084
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 24 Nov 2023 17:39:13 GMT
-Received: from [10.216.56.238] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 24 Nov
- 2023 09:39:08 -0800
-Message-ID: <004ddc69-1566-4de4-b260-0fca96a9395f@quicinc.com>
-Date: Fri, 24 Nov 2023 23:09:04 +0530
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3ADB819AD;
+	Fri, 24 Nov 2023 10:10:09 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2CC141007;
+	Fri, 24 Nov 2023 10:10:55 -0800 (PST)
+Received: from e121345-lin.cambridge.arm.com (e121345-lin.cambridge.arm.com [10.1.196.40])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 800793F73F;
+	Fri, 24 Nov 2023 10:10:07 -0800 (PST)
+From: Robin Murphy <robin.murphy@arm.com>
+To: hch@lst.de
+Cc: rafael@kernel.org,
+	lenb@kernel.org,
+	robh+dt@kernel.org,
+	frowand.list@gmail.com,
+	m.szyprowski@samsung.com,
+	james.quinlan@broadcom.com,
+	iommu@lists.linux.dev,
+	linux-acpi@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dma-mapping: Don't store redundant offsets
+Date: Fri, 24 Nov 2023 18:10:03 +0000
+Message-Id: <94e0cec15546ef2be61d90869e499e40e2a55308.1700849106.git.robin.murphy@arm.com>
+X-Mailer: git-send-email 2.39.2.101.g768bb238c484.dirty
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/6] dt-bindings: usb: dwc3: Clean up hs_phy_irq in
- bindings
-To: Johan Hovold <johan@kernel.org>
-CC: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, <quic_wcheng@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_ppratap@quicinc.com>, <quic_jackp@quicinc.com>
-References: <20231122191335.3058-1-quic_kriskura@quicinc.com>
- <ZV9dYpTYRXn63tXe@hovoldconsulting.com>
- <1192d91f-11bf-44af-953a-14e08e2b6ca8@quicinc.com>
- <ZWCpGdJRexnk98IN@hovoldconsulting.com>
-Content-Language: en-US
-From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-In-Reply-To: <ZWCpGdJRexnk98IN@hovoldconsulting.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: vsHpUuDW5EEa0o3VY1neDxDOS6nsKGAN
-X-Proofpoint-GUID: vsHpUuDW5EEa0o3VY1neDxDOS6nsKGAN
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-24_04,2023-11-22_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 clxscore=1015
- spamscore=0 bulkscore=0 priorityscore=1501 impostorscore=0 suspectscore=0
- phishscore=0 lowpriorityscore=0 mlxscore=0 mlxlogscore=999 malwarescore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2311060000
- definitions=main-2311240137
+Content-Transfer-Encoding: 8bit
 
+A bus_dma_region necessarily stores both CPU and DMA base addresses for
+a range, so there's no need to also store the difference between them.
 
->>
->> Yes. From whatever targets I was able to find, only one of them didn't
->> have the power_event irq. Rest all of them had. I will recheck that
->> particular one again.
-> 
-> Please do. The driver polls the corresponding status register on all
-> platforms currently, and perhaps this interrupt can one day be used to
-> get rid of the polling.
->   
+Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+---
+ drivers/acpi/scan.c        |  1 -
+ drivers/of/address.c       |  1 -
+ include/linux/dma-direct.h | 19 ++++++++++++-------
+ kernel/dma/direct.c        |  1 -
+ 4 files changed, 12 insertions(+), 10 deletions(-)
 
-Ok, I just rechecked and case is, I am not able to get my hands on the 
-doc. I can't say for sure that the target is missing the pwr_event 
-interrupt. I say we can safely add the target assuming pwr_event is 
-present for ipq9574. Every target so far even on downstream has this IRQ 
-present in hw.
+diff --git a/drivers/acpi/scan.c b/drivers/acpi/scan.c
+index 026130b37967..c72155606550 100644
+--- a/drivers/acpi/scan.c
++++ b/drivers/acpi/scan.c
+@@ -1532,7 +1532,6 @@ int acpi_dma_get_range(struct device *dev, const struct bus_dma_region **map)
+ 			r->cpu_start = rentry->res->start;
+ 			r->dma_start = rentry->res->start - rentry->offset;
+ 			r->size = resource_size(rentry->res);
+-			r->offset = rentry->offset;
+ 			r++;
+ 		}
+ 	}
+diff --git a/drivers/of/address.c b/drivers/of/address.c
+index b59956310f66..ae46a3605904 100644
+--- a/drivers/of/address.c
++++ b/drivers/of/address.c
+@@ -955,7 +955,6 @@ int of_dma_get_range(struct device_node *np, const struct bus_dma_region **map)
+ 		r->cpu_start = range.cpu_addr;
+ 		r->dma_start = range.bus_addr;
+ 		r->size = range.size;
+-		r->offset = range.cpu_addr - range.bus_addr;
+ 		r++;
+ 	}
+ out:
+diff --git a/include/linux/dma-direct.h b/include/linux/dma-direct.h
+index 18aade195884..3eb3589ff43e 100644
+--- a/include/linux/dma-direct.h
++++ b/include/linux/dma-direct.h
+@@ -21,7 +21,6 @@ struct bus_dma_region {
+ 	phys_addr_t	cpu_start;
+ 	dma_addr_t	dma_start;
+ 	u64		size;
+-	u64		offset;
+ };
+ 
+ static inline dma_addr_t translate_phys_to_dma(struct device *dev,
+@@ -29,9 +28,12 @@ static inline dma_addr_t translate_phys_to_dma(struct device *dev,
+ {
+ 	const struct bus_dma_region *m;
+ 
+-	for (m = dev->dma_range_map; m->size; m++)
+-		if (paddr >= m->cpu_start && paddr - m->cpu_start < m->size)
+-			return (dma_addr_t)paddr - m->offset;
++	for (m = dev->dma_range_map; m->size; m++) {
++		u64 offset = paddr - m->cpu_start;
++
++		if (paddr >= m->cpu_start && offset < m->size)
++			return m->dma_start + offset;
++	}
+ 
+ 	/* make sure dma_capable fails when no translation is available */
+ 	return DMA_MAPPING_ERROR;
+@@ -42,9 +44,12 @@ static inline phys_addr_t translate_dma_to_phys(struct device *dev,
+ {
+ 	const struct bus_dma_region *m;
+ 
+-	for (m = dev->dma_range_map; m->size; m++)
+-		if (dma_addr >= m->dma_start && dma_addr - m->dma_start < m->size)
+-			return (phys_addr_t)dma_addr + m->offset;
++	for (m = dev->dma_range_map; m->size; m++) {
++		u64 offset = dma_addr - m->dma_start;
++
++		if (dma_addr >= m->dma_start && offset < m->size)
++			return m->cpu_start + offset;
++	}
+ 
+ 	return (phys_addr_t)-1;
+ }
+diff --git a/kernel/dma/direct.c b/kernel/dma/direct.c
+index 73c95815789a..98b2e192fd69 100644
+--- a/kernel/dma/direct.c
++++ b/kernel/dma/direct.c
+@@ -677,7 +677,6 @@ int dma_direct_set_offset(struct device *dev, phys_addr_t cpu_start,
+ 		return -ENOMEM;
+ 	map[0].cpu_start = cpu_start;
+ 	map[0].dma_start = dma_start;
+-	map[0].offset = offset;
+ 	map[0].size = size;
+ 	dev->dma_range_map = map;
+ 	return 0;
+-- 
+2.39.2.101.g768bb238c484.dirty
 
->>> Note that DP comes before DM above as that seems like the natural order
->>> of these (plus before minus).
->>>
->>> Now if the HS interrupt is truly unusable, I guess we can consider
->>> dropping it throughout and the above becomes just three permutations
->>> instead, which can even be expressed along the lines of:
->>
->> Infact, I wanted to do this but since you mentioned before that if HW
->> has it, we must describe it, I kept it in. But since this functionality
->> is confirmed to be mutually exclusive of qusb2/{dp/dm}, I am aligned to
->> skip it in bindings and drop it in DT.
-> 
-> As I mentioned elsewhere, it depends on whether it can be used at all.
-> Not simply whether there is some other mechanism that can be used in its
-> stead. Such a decision should be left up to the implementation.
-> 
-> That's why I said "truly unusable" above. It's still not clear to me
-> whether that is the case or not.
-> 
-
-I looked at the code of  4.4, 4.14/ 4.19/ 5.4/ 5.10/ 5.15/ 6.1 and none 
-of them implement the hs_phy_irq.
-
->>> 	- anyOf:
->>> 	  - items:
->>> 	    - const: qusb2_phy
->>> 	  - items:
->>> 	    - const: dp_hs_phy_irq
->>> 	    - const: dm_hs_phy_irq
->>> 	- const: pwr_event
->>> 	- const: ss_phy_irq	(optional)
->>>
->>
->> This must cover all cases AFAIK. How about we keep pwr_event also
->> optional for time being. The ones I am not able to find also would come
->> up under still binding block.
-> 
-> No, we should avoid that if we can as with two many optional things,
-> these quickly gets messy (one optional interrupt at the end is fine and
-> can be expressed using min/maxItems).
-> 
-> If the "qusb2+" combination above isn't needed, then we're down to four
-> permutations, which is few enough to be spelled out explicitly even if
-> we decide that the hs_phy_irq should be kept in. Without hs_phy_irq, it
-> seems there's really only two permutations.
-> 
-
-My opinion would be to keep the power_event irq as mandatory and not to 
-include the hs_phy_irq.
-
-Regards,
-Krishna,
 
