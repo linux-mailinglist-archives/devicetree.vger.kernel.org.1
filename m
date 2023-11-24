@@ -1,62 +1,49 @@
-Return-Path: <devicetree+bounces-18498-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18499-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBF807F6F08
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 09:59:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E874E7F6F0F
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 10:01:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7C6CB281733
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 08:59:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 07BAD1C208DC
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 09:01:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5112965C;
-	Fri, 24 Nov 2023 08:59:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B4513D67;
+	Fri, 24 Nov 2023 09:01:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FhScqQV6"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="jmyx1TIF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88DAD12B
-	for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 00:59:11 -0800 (PST)
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-40b399f0b6fso4098735e9.2
-        for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 00:59:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700816350; x=1701421150; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=yNqJMxRTGvnEbCK0XZ3LOOul2fJNuzup45SG/m7ppc4=;
-        b=FhScqQV6V8ANJN7CHqtnrGctl7NA1sGHSV0qSKDkShX5Tt/vnCwQ2+/zYqGQD78y3w
-         2HlZktI7hsoXfi2eE69bgkhrMvVcQHFhwB/FYvOFo9wrzvdnPDEyWkQG5rBRJCWhKdNl
-         j6TAegmP2ejYMiqZ4KZgikTYJi3ujJgEXEb+wusUYqm0FAiho52PFttDZ1jtRKpfzT8Z
-         1NeMWvbg+s0oPwLX6F2zqh33dV3fpWprUICgRkHj6Ni9tvL2MPdnD3c0JAf+j0z+8oFj
-         pvN/vGNdZALcnp3XpV25EmNFbIpUts+rAzRnOUaz5vGV7MW88HQWIiw/nSxeG++zBfoo
-         c18w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700816350; x=1701421150;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=yNqJMxRTGvnEbCK0XZ3LOOul2fJNuzup45SG/m7ppc4=;
-        b=r2t0+ynblgXFiUcAocwdv/8QHV/I6oKQXkRJY4vI1+z0YelJe0a1272+GOiaBzOwhp
-         ItcoW3FJEsuAGwDqZnkGYwuQAf2mmbigKdrWvzbB/Pc39X+wwMC6lYphYC8h1PsftiGn
-         YdmXdSUzi4+ctlsd9XnDgcgkYusvOiQd0/lNEzxBzz+EN3SKZDU2EJ4+3S7k2BrUyt/Z
-         2wIE02vNvVyzh5jHRKEuUoBXexIC1pFwASRWyyqbazS06kEngdIkJRgPHAx4XTsD9TE2
-         2NIV2O6zP8heY8TLr4rGx5e0xTb6V7qN/lLjooymuNVmush7E+BHVAylL0Q3PVaKAdvc
-         xlfg==
-X-Gm-Message-State: AOJu0YzEcfUdBSFluP1OPXsFT6CCkXOfEQSGMKS59LZBe1xOXjtxMP6E
-	6NhWuqlNYBL46ToJicZzqY8Xlw==
-X-Google-Smtp-Source: AGHT+IE+WGAbjdqPchseLbjHCBwIhcJmv857+lYNTnlyvxkbsuzTKkLV2SWWD+wTZfwtER2TEv0sAw==
-X-Received: by 2002:a5d:51c5:0:b0:332:ca67:b6a1 with SMTP id n5-20020a5d51c5000000b00332ca67b6a1mr1459067wrv.0.1700816349954;
-        Fri, 24 Nov 2023 00:59:09 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:4611:6dae:b5a3:b6a4? ([2a01:e0a:982:cbb0:4611:6dae:b5a3:b6a4])
-        by smtp.gmail.com with ESMTPSA id a4-20020adfeec4000000b003196b1bb528sm3749226wrp.64.2023.11.24.00.59.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Nov 2023 00:59:09 -0800 (PST)
-Message-ID: <525f213c-6a4a-48fb-b29f-55fd49ec3c25@linaro.org>
-Date: Fri, 24 Nov 2023 09:59:08 +0100
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9BBED48;
+	Fri, 24 Nov 2023 01:01:25 -0800 (PST)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AO6ptmO020283;
+	Fri, 24 Nov 2023 09:01:08 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=NGnhDR7j28cFRv3LX8e9alYaea5fVnn28Lkk2JCw0Ro=;
+ b=jmyx1TIFvhD0N9nyuExx9moh+eh7ubq0zO37Ern1OICymJJQWuRg4FUUHKRKmrDiLoEx
+ SPijU99Q8RPKo/ZnVYU7yzy7y/sz+btbmUCOQNqtYIXQncT/dDzY34hPtDEtWQKsCyrV
+ kbD6DLj8QR9cqWoFx1p3mph/IW1Dod2w+i3AaAs3MCKrNGZSrhaSyNVQkj5E+bDDGPkb
+ nBTyIwNIkpveY4RdY6R0dyjm9mm+P0O08wBVrITbox5WSdnv2I+pmcgisC9D+9TZDus0
+ DGzCcT9nHRV/5LQuEMLvZn7AXFICiJ6HE+C9DA4b3Lp7Z6XYI4b3SrX1Y2CGZEN1mWm1 Vw== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ujptr08db-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 24 Nov 2023 09:01:08 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AO917Iu010147
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 24 Nov 2023 09:01:07 GMT
+Received: from [10.216.4.60] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 24 Nov
+ 2023 01:01:00 -0800
+Message-ID: <4fc27dbb-b0aa-437a-a48c-9deea236282d@quicinc.com>
+Date: Fri, 24 Nov 2023 14:30:56 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,80 +51,109 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v4 2/2] drm/bridge: imx: add driver for HDMI TX Parallel
- Video Interface
-Content-Language: en-US, fr
-To: Lucas Stach <l.stach@pengutronix.de>, Fabio Estevam <festevam@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Liu Ying <victor.liu@nxp.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
- patchwork-lst@pengutronix.de, NXP Linux Team <linux-imx@nxp.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- linux-arm-kernel@lists.infradead.org
-References: <20230928125536.1782715-1-l.stach@pengutronix.de>
- <20230928125536.1782715-2-l.stach@pengutronix.de>
- <CAOMZO5CYX8ihTQ87zi3maARWzz+PmLKYBBJGVn69Xig2nAwqug@mail.gmail.com>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <CAOMZO5CYX8ihTQ87zi3maARWzz+PmLKYBBJGVn69Xig2nAwqug@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v13 05/10] usb: dwc3: qcom: Refactor IRQ handling in QCOM
+ Glue driver
+Content-Language: en-US
+To: Johan Hovold <johan@kernel.org>
+CC: Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Andy
+ Gross" <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        "Konrad
+ Dybcio" <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Felipe Balbi
+	<balbi@kernel.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>, <linux-usb@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <quic_pkondeti@quicinc.com>,
+        <quic_ppratap@quicinc.com>, <quic_jackp@quicinc.com>,
+        <ahalaney@redhat.com>, <quic_shazhuss@quicinc.com>
+References: <ZTY7Lwjd3_8NlfEi@hovoldconsulting.com>
+ <cabf24d0-8eea-4eb5-8205-bf7fe6017ec2@quicinc.com>
+ <ZTZ-EvvbuA6HpycT@hovoldconsulting.com>
+ <fb5e5e1d-520c-4cbc-adde-f30e853421a1@quicinc.com>
+ <ZTdqnSHq_Jo8AuPW@hovoldconsulting.com>
+ <04615205-e380-4719-aff1-f32c26004b14@quicinc.com>
+ <ZUz4RD3MjnLlPn6V@hovoldconsulting.com>
+ <6d4d959c-b155-471b-b13d-f6fda557cfe0@quicinc.com>
+ <ZVYTFi3Jnnljl48L@hovoldconsulting.com>
+ <e0789695-43ee-4285-95e9-4cdee24d6ffe@quicinc.com>
+ <ZV9XTU-q038BaWn3@hovoldconsulting.com>
+From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+In-Reply-To: <ZV9XTU-q038BaWn3@hovoldconsulting.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: dhiMc7KSABAEms8HT0fsRkfLLl9S9wUb
+X-Proofpoint-GUID: dhiMc7KSABAEms8HT0fsRkfLLl9S9wUb
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-23_15,2023-11-22_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 impostorscore=0
+ bulkscore=0 mlxscore=0 suspectscore=0 malwarescore=0 clxscore=1015
+ priorityscore=1501 spamscore=0 mlxlogscore=546 lowpriorityscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2311060000 definitions=main-2311240070
 
-On 23/11/2023 18:34, Fabio Estevam wrote:
-> Hi Lucas,
 > 
-> On Thu, Sep 28, 2023 at 9:56 AM Lucas Stach <l.stach@pengutronix.de> wrote:
->>
->> This IP block is found in the HDMI subsystem of the i.MX8MP SoC. It has a
->> full timing generator and can switch between different video sources. On
->> the i.MX8MP however the only supported source is the LCDIF. The block
->> just needs to be powered up and told about the polarity of the video
->> sync signals to act in bypass mode.
->>
->> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
->> Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com> (v2)
->> Tested-by: Marek Vasut <marex@denx.de> (v1)
->> Tested-by: Luca Ceresoli <luca.ceresoli@bootlin.com> (v2)
->> Tested-by: Richard Leitner <richard.leitner@skidata.com> (v2)
->> Tested-by: Frieder Schrempf <frieder.schrempf@kontron.de> (v2)
->> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com> (v3)
+>> I didn't add missing interrupts on sc8280xp because I see that current
+>> interrupts present are working fine (I see ADB working and wakeup
+>> working as well), but the interrupt vector numbers are off by "1"
+>> between hs specifics and DT (both upstream and downstream). Will sort it
+>> out and clean that target up later.
 > 
-> Tested-by: Fabio Estevam <festevam@gmail.com>
+> Which interrupt numbers are off by one here?
+>   
+
+My bad, this might be the confusion. The HW specifics say:
+
+Controller-2, power_event irq:
+
+SYS_apcsQgicSPI[812]		Vector-number: 843
+
+
+Usually vector number = 32 + GIC number AFAIK.
+By that logic, If vector number is 843, GIC_SPI number is 811 which is 
+same as DT. Probably the GIC_SPI number is printed wrong. The DT matches 
+(vector number - 32).
+
+Sorry for mentioning that it is wrong. The DT entries are right and it 
+is working on upstream.
+
+The missing hs_phy_irq's have been put on the mail thread on this list 
+before.
+
+Regards,
+Krishna,
+
+>> [1]: https://patchwork.kernel.org/project/linux-arm-msm/list/?series=803412
 > 
-> Could someone apply this series, please?
+> I took a quick look at the series, and it looks like this will
+> eventually clean things up a lot. We should probably define a generic
+> order for the interrupts with the sometimes optional SS interrupts last.
+> 
+> Side note: It looks like the threading in that series is broken.
+> Consider using git-send-email for sending series as it takes care of
+> things like that.
+> 
 
-I can, but it seems there's some fixes needed in the bindings.
+Usually I do git send-email for the whole out folder where the patches 
+are present, but linux-usb list is common to all the patches in that 
+case, even the DT ones. So to avoid that and to send patches to only 
+relavant mailing lists, I did git send email individually on each patch 
+which might have caused this issue.
 
-Lucas, do you plan to send a v5 with the fixes ?
+Will make sure this won't happen again.
 
-Neil
+Regards,
+Krishna,
+
 
