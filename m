@@ -1,154 +1,151 @@
-Return-Path: <devicetree+bounces-18626-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18627-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEB4A7F75D2
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 14:57:52 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6ACF7F75F9
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 15:08:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A62741F20F57
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 13:57:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5E88E2811AC
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 14:08:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C07512C849;
-	Fri, 24 Nov 2023 13:57:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F06792C854;
+	Fri, 24 Nov 2023 14:08:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Q5NOJ1+u"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Tup9k2Ft"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FE4219AB;
-	Fri, 24 Nov 2023 05:57:44 -0800 (PST)
-Received: by mail-pj1-x1034.google.com with SMTP id 98e67ed59e1d1-280260db156so1676095a91.2;
-        Fri, 24 Nov 2023 05:57:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1700834263; x=1701439063; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DUeSG7wZTdMWBGsjzlL/mhPzqBMmCc2NH8X/pbQTvJA=;
-        b=Q5NOJ1+uc/K7/7oa47Cis/DXC5k77D2UoDkhHuYGr7W5+4v8xce5h63wMetoO0UfZm
-         6l8QMpkGADpxa665MaC2xMSSplQnfv5yckU/F8XoqyCKYoXD7iUXampfNyYcW43l5VH+
-         M898OTtQns7E1k5yV7MZGZHD4QHEOszJaGFmWWMu2U8sL+Q+G6PNzbanLcx2DmWIMaer
-         iYIyNXZrVCM23NU4N1lZCvoRJhf7k0HQZUufBFiTFmrkp1ol6TgmYcl5uLqtVfX/o/s4
-         2YQgi/91iau8PZ2mwIJmzOZGxnBN74bUek586gMasHcxOaL5NJq1Avz2qyPaKLbSWMKc
-         7SgQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700834263; x=1701439063;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=DUeSG7wZTdMWBGsjzlL/mhPzqBMmCc2NH8X/pbQTvJA=;
-        b=VTLBLd0Unj+pku9wlB4zEbBRfRDFJgahXQvJGtpM7NyQy07PXkMNv7zi63aTyokAkG
-         6Lkb1pZrt7VCx5i8GyosOtZKGrQ8031Vp8LyHseiMBteDAPfafIO6O6WpoftvHyprDgM
-         P3/VpQ8pu2CPDIHvq6f50i14XoWa+o4jiLZLdt34gY6Uabj58dt2etuNV2qxe1R7BbV9
-         vY5EBIdJ49eLqboHSFhXxlD8+lnGDDh0bZzpizOIIf1ZpRdwAaatHTOZqpN7qvkKDrf1
-         bQM50jb3mGTFQy1rmKBuU4cjX8QOOHMjNRzEBJGUmMeysvPQiusfjsb8ltbXYvhvjvsX
-         71LA==
-X-Gm-Message-State: AOJu0Yy3BNucNuV3rhmxaU4Ds92xYT7XRtz5tulECbF2QYY4iGgW4iWp
-	wAaCyCwbtoBQM9tVs7tRt1k=
-X-Google-Smtp-Source: AGHT+IE3bUQFnOWAuTGSJ5asZpBxriG6uYX3nVHdFLajI8PX0Xjl0kt1amqmEaxoAgAL37+FSgUUaQ==
-X-Received: by 2002:a17:90b:3e86:b0:285:93f0:b2a4 with SMTP id rj6-20020a17090b3e8600b0028593f0b2a4mr1371480pjb.7.1700834263539;
-        Fri, 24 Nov 2023 05:57:43 -0800 (PST)
-Received: from localhost.localdomain ([192.166.114.90])
-        by smtp.gmail.com with ESMTPSA id o9-20020a170902d4c900b001c3be750900sm3179417plg.163.2023.11.24.05.57.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Nov 2023 05:57:43 -0800 (PST)
-From: Jianhua Lu <lujianhua000@gmail.com>
-To: Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFAD32C84C
+	for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 14:08:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31DABC433C8;
+	Fri, 24 Nov 2023 14:08:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1700834892;
+	bh=gCNNSLuNTNgJRezDOscqJbufDhCORYGxigIFY01Gdeo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Tup9k2Ft33wTnh6RS3H3hryJ0gV/v7LapkgD0de9xKgsL2ZH13Qqm/RwwIktk+2lN
+	 uMrxmpcYKvJD++LQdgxN9oxjolbP7JkX/1cFyrD2rdEp8CHy/ymRViFW+l5wR0aNgL
+	 8CLv/GMg900O9kAFH8kzB7mYDR7UQY0O0Wz36khdu6qvqahYQXlb6Mu1LTrapvLD0N
+	 8YNtF6ssJFQJP+iHA5qysff59STyHraLrvM48XCTTr4O+Z9fJ9QHu5D7rpQhJ9itO+
+	 OyIDuKP3MNDlabwDIaxiVCRtJZb8/AS7Ve6Yd7x7+OE4tCQkKS2Obn3CXoce2P/gCn
+	 B242ivNLykdLw==
+Date: Fri, 24 Nov 2023 14:08:07 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Chen-Yu Tsai <wenst@chromium.org>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	~postmarketos/upstreaming@lists.sr.ht,
-	phone-devel@vger.kernel.org,
-	Jianhua Lu <lujianhua000@gmail.com>
-Subject: [PATCH 3/3] arm64: dts: qcom: sm8250-xiaomi-elish: Add pm8150b type-c node
-Date: Fri, 24 Nov 2023 21:57:13 +0800
-Message-ID: <20231124135713.5610-3-lujianhua000@gmail.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20231124135713.5610-1-lujianhua000@gmail.com>
-References: <20231124135713.5610-1-lujianhua000@gmail.com>
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/9] dt-bindings: arm: mediatek: Add MT8186 Tentacruel /
+ Tentacool Chromebooks
+Message-ID: <20231124-old-each-230d55963934@spud>
+References: <20231012230237.2676469-1-wenst@chromium.org>
+ <20231012230237.2676469-3-wenst@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="k22Pzja/5vzpnLDi"
+Content-Disposition: inline
+In-Reply-To: <20231012230237.2676469-3-wenst@chromium.org>
 
-Add type-c node to feature otg function.
 
-Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
----
- .../dts/qcom/sm8250-xiaomi-elish-common.dtsi  | 36 +++++++++++++++++++
- 1 file changed, 36 insertions(+)
+--k22Pzja/5vzpnLDi
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
-index 3de7cb918448..87a83f9bdea5 100644
---- a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
-@@ -6,6 +6,7 @@
- #include <dt-bindings/arm/qcom,ids.h>
- #include <dt-bindings/phy/phy.h>
- #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-+#include <dt-bindings/usb/pd.h>
- #include "sm8250.dtsi"
- #include "pm8150.dtsi"
- #include "pm8150b.dtsi"
-@@ -627,6 +628,37 @@ vol_up_n: vol-up-n-state {
- 	};
- };
- 
-+&pm8150b_typec {
-+	vdd-pdphy-supply = <&vreg_l2a_3p1>;
-+	status = "okay";
-+
-+	connector {
-+		compatible = "usb-c-connector";
-+
-+		power-role = "source";
-+		data-role = "dual";
-+		self-powered;
-+
-+		source-pdos = <PDO_FIXED(5000, 3000,
-+					 PDO_FIXED_DUAL_ROLE |
-+					 PDO_FIXED_USB_COMM |
-+					 PDO_FIXED_DATA_SWAP)>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+
-+				pm8150b_role_switch_in: endpoint {
-+					remote-endpoint = <&usb_1_role_switch_out>;
-+				};
-+			};
-+		};
-+	};
-+};
-+
- &pon_pwrkey {
- 	status = "okay";
- };
-@@ -694,6 +726,10 @@ &usb_1_hsphy {
- 	status = "okay";
- };
- 
-+&usb_1_role_switch_out {
-+	remote-endpoint = <&pm8150b_role_switch_in>;
-+};
-+
- &venus {
- 	firmware-name = "qcom/sm8250/xiaomi/elish/venus.mbn";
- 	status = "okay";
--- 
-2.41.0
+On Fri, Oct 13, 2023 at 07:02:28AM +0800, Chen-Yu Tsai wrote:
+> Add entries for MT8186 based Tentacruel / Tentacool Chromebooks. The two
+> are based on the same board design: the former is a convertible device
+> with a touchscreen, stylus, and some extra buttons; the latter is a
+> clamshell device and lacks these additional features.
+>=20
+> The two devices both have two variants. The difference is a second
+> source touchpad controller that shares the same address as the original,
+> but is incompatible.
+>=20
+> The extra SKU IDs for the Tentacruel devices map to different sensor
+> components attached to the Embedded Controller. These are not visible
+> to the main processor.
+>=20
+> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
 
+I had a chat with Doug at Plumbers about the limitations of your
+firmware. As a result, I am fine with acking this if you switch the
+order of the sku compatibles to be in descending order.
+The firmware can handle that, right?
+
+Cheers,
+Conor.
+
+> ---
+>  .../devicetree/bindings/arm/mediatek.yaml     | 26 +++++++++++++++++++
+>  1 file changed, 26 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Docume=
+ntation/devicetree/bindings/arm/mediatek.yaml
+> index 60337b439744..aa7e6734b336 100644
+> --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
+> +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
+> @@ -206,6 +206,32 @@ properties:
+>            - enum:
+>                - mediatek,mt8183-pumpkin
+>            - const: mediatek,mt8183
+> +      - description: Google Tentacruel (ASUS Chromebook CM14 Flip CM1402=
+F)
+> +        items:
+> +          - const: google,tentacruel-sku262144
+> +          - const: google,tentacruel-sku262145
+> +          - const: google,tentacruel-sku262146
+> +          - const: google,tentacruel-sku262147
+> +          - const: google,tentacruel
+> +          - const: mediatek,mt8186
+> +      - description: Google Tentacruel (ASUS Chromebook CM14 Flip CM1402=
+F)
+> +        items:
+> +          - const: google,tentacruel-sku262148
+> +          - const: google,tentacruel-sku262149
+> +          - const: google,tentacruel-sku262150
+> +          - const: google,tentacruel-sku262151
+> +          - const: google,tentacruel
+> +          - const: mediatek,mt8186
+> +      - description: Google Tentacool (ASUS Chromebook CM14 CM1402C)
+> +        items:
+> +          - const: google,tentacruel-sku327681
+> +          - const: google,tentacruel
+> +          - const: mediatek,mt8186
+> +      - description: Google Tentacool (ASUS Chromebook CM14 CM1402C)
+> +        items:
+> +          - const: google,tentacruel-sku327683
+> +          - const: google,tentacruel
+> +          - const: mediatek,mt8186
+>        - items:
+>            - enum:
+>                - mediatek,mt8186-evb
+> --=20
+> 2.42.0.655.g421f12c284-goog
+>=20
+
+--k22Pzja/5vzpnLDi
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZWCuLQAKCRB4tDGHoIJi
+0vvFAQDqLdZ9fSLKLXtTwd018oBmapd8qz3y/vFHemYVSnYu3wEA6OPpzezOmyyj
+BIxI0dbI2gD0r5mVOmRPaFRmc56q+Q8=
+=B7KU
+-----END PGP SIGNATURE-----
+
+--k22Pzja/5vzpnLDi--
 
