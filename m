@@ -1,132 +1,161 @@
-Return-Path: <devicetree+bounces-18526-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18527-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 514A97F704E
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 10:47:12 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CF687F7052
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 10:47:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 073122810F6
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 09:47:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C946B28150A
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 09:47:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 272AE16438;
-	Fri, 24 Nov 2023 09:47:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4DB8171A1;
+	Fri, 24 Nov 2023 09:47:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jKO6odCB"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="CKvDX34v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6D5ED71
-	for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 01:47:05 -0800 (PST)
-Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-54aecf9270fso689750a12.0
-        for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 01:47:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700819224; x=1701424024; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=m/gUZBIUzYMuHRAbSO088kKXpKpS1gNBs/8WDq2VIbQ=;
-        b=jKO6odCBYkXTweTsrHdmd5TISGHQqRmzdF5guzWkJSTn8Nt4NujmolMhWDuYAUAz9f
-         nbjZj/wxZhXLfi5JB9xXKUi94SjzFgb2ejKkIKCPU0qI8lDQ1Cy2wbP9sBGzM171QSvw
-         ooP0wyki7HGqnnznOCO0f1uRLHBIdGytqkgkSC8KuPRRax9Y9bJ25Yj2LMS7hIxs3yt7
-         jU22FhsvKk13DkdciH90PehmpKrFz8r1S37IoqwwlA6CEK6w9YiTA0Se0LCsA7yz5FoR
-         fB2xJX7h5j+yaQzyUMMjFjJ+orLBtSs1A80v0jUsgqu0uvug3ltv6xdozuIaep83KBLZ
-         MF8A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700819224; x=1701424024;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=m/gUZBIUzYMuHRAbSO088kKXpKpS1gNBs/8WDq2VIbQ=;
-        b=S+fCdg4KfwKK5UN3/Pado+2SVx+/hDRT6DiEAVmiPNBf/0QDg+yuerquvuR0PZi81H
-         amqq/HxfYo2Awl7Nt0mgl2UvHZ2Rmi3XWPj9eKCuU2dQMj4OMzoduIWTKxXh0uExrQK0
-         +OlX1o+Mwd7IzqyNmlIwXndORE/iZ3Cnic5yiQTOUq4nAE9DKca1o4c0kq7tWVZzRc/J
-         VF1y5fZR1Drw/FhJ8zCnkKD7RUHfGnutWmcB/fHPT2Z5B6ts2STRfs+QglnHlyRuZEQU
-         BU49jmrgEaPqT3FlyV2uMnjs4yB3pKGMRliOqbmkF5TtklduyyoSr8rFZfNe+PWIAijH
-         pPmQ==
-X-Gm-Message-State: AOJu0YzdbgbGFUXBr3QxHKeuFXj7ggkDbo6TbyYOc09mjI2LBQXLYVoD
-	lVIUzHslPhvWeOhNdQhXjfxNqg==
-X-Google-Smtp-Source: AGHT+IFMvp2KSIa0Xp2qSzbbXG24Z2Ciz59q7uri8yqqjGSTT4CLqK9Dzs88aSY4DgaBLqnb9qMAKw==
-X-Received: by 2002:a17:906:7387:b0:9ff:6ae6:9fea with SMTP id f7-20020a170906738700b009ff6ae69feamr1467114ejl.55.1700819224271;
-        Fri, 24 Nov 2023 01:47:04 -0800 (PST)
-Received: from krzk-bin.. ([178.197.218.100])
-        by smtp.gmail.com with ESMTPSA id n7-20020a170906378700b009b2cc87b8c3sm1852685ejc.52.2023.11.24.01.47.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Nov 2023 01:47:03 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] arm64: dts: amlogic: minor whitespace cleanup around '='
-Date: Fri, 24 Nov 2023 10:47:00 +0100
-Message-Id: <20231124094700.58071-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CAA0D71;
+	Fri, 24 Nov 2023 01:47:25 -0800 (PST)
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AO7j93Y021237;
+	Fri, 24 Nov 2023 09:47:12 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=ZPXgpnugqVZGKoYb8pnDz47Cff9lnhLDr+ItJWa9BP0=;
+ b=CKvDX34v3pYSFKvSejLvOoMkallkW6vB/ysTYKNxV66DhGomXgb2z95XAdt9TLLcoRp6
+ 02H3T/LP1DRi3K6kJctxQV182IJOcNfZpbo95tMKxTW+0I8euV32KSuBnYd8GGPUinSv
+ ZUKIhQzW0ragJW8ddlsR68bKHIVJ1T+6R7MurZAKXTjtKUnm9B0fcQLMP1wMgDZ2i6my
+ +H3Vso8D8mgfqIyIRgPkKIOUTzDjoD/0wla4e1kbVCSBRomMOtzVhbL8X6eZ0s/R2wch
+ 51L5mnKIOn9N4kraX0+/zTQaJiKcqPeouAY1OxLmtQ2NQ31FnhRyyTlZtPoWVIqAPK0W qA== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uj30xagya-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 24 Nov 2023 09:47:11 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AO9lA2G019302
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 24 Nov 2023 09:47:10 GMT
+Received: from [10.253.33.181] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 24 Nov
+ 2023 01:47:07 -0800
+Message-ID: <1bd2f3a9-3dd1-4c95-b4e5-c9bf2274f271@quicinc.com>
+Date: Fri, 24 Nov 2023 17:47:04 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 3/6] net: phy: at803x: add QCA8084 ethernet phy support
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>
+CC: Andrew Lunn <andrew@lunn.ch>, <davem@davemloft.net>, <edumazet@google.com>,
+        <kuba@kernel.org>, <pabeni@redhat.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <hkallweit1@gmail.com>, <corbet@lwn.net>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>
+References: <20231118062754.2453-1-quic_luoj@quicinc.com>
+ <20231118062754.2453-4-quic_luoj@quicinc.com>
+ <1eb60a08-f095-421a-bec6-96f39db31c09@lunn.ch>
+ <ZVkRkhMHWcAR37fW@shell.armlinux.org.uk>
+ <eee39816-b0b8-475c-aa4a-8500ba488a29@lunn.ch>
+ <fef2ab86-ccd7-4693-8a7e-2dac2c80fd53@quicinc.com>
+ <1d4d7761-6b42-48ec-af40-747cb4b84ca5@lunn.ch>
+ <316fb626-4dc3-4540-9cc4-e45840e36f77@quicinc.com>
+ <ZVyZ+8Q2eNfAKjO/@shell.armlinux.org.uk>
+ <d2ac542c-aae3-49ae-ae2b-9defc4ca98eb@quicinc.com>
+ <ZV8+/4eNzLpLzSDG@shell.armlinux.org.uk>
+Content-Language: en-US
+From: Jie Luo <quic_luoj@quicinc.com>
+In-Reply-To: <ZV8+/4eNzLpLzSDG@shell.armlinux.org.uk>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: aiyM4pSnaDMmdiJAqPYIRFscEDZWJEmM
+X-Proofpoint-GUID: aiyM4pSnaDMmdiJAqPYIRFscEDZWJEmM
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-23_15,2023-11-22_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 spamscore=0
+ mlxscore=0 bulkscore=0 phishscore=0 adultscore=0 clxscore=1015
+ mlxlogscore=999 lowpriorityscore=0 impostorscore=0 priorityscore=1501
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2311060000 definitions=main-2311240076
 
-The DTS code coding style expects exactly one space before and after '='
-sign.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../boot/dts/amlogic/meson-axg-jethome-jethub-j110-rev-2.dts    | 2 +-
- arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4.dtsi        | 2 +-
- arch/arm64/boot/dts/amlogic/meson-g12b-bananapi.dtsi            | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j110-rev-2.dts b/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j110-rev-2.dts
-index 0062667c4f65..c9e84db0831a 100644
---- a/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j110-rev-2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j110-rev-2.dts
-@@ -30,7 +30,7 @@ &sd_emmc_b {
- &uart_B {
- 	bluetooth {
- 		compatible = "realtek,rtl8822cs-bt";
--		enable-gpios  = <&gpio GPIOZ_7 GPIO_ACTIVE_HIGH>;
-+		enable-gpios = <&gpio GPIOZ_7 GPIO_ACTIVE_HIGH>;
- 		host-wake-gpios = <&gpio GPIOZ_8 GPIO_ACTIVE_HIGH>;
- 		device-wake-gpios = <&gpio GPIOZ_6 GPIO_ACTIVE_HIGH>;
- 	};
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4.dtsi
-index 995ce10d5c81..08c33ec7e9f1 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4.dtsi
-@@ -369,7 +369,7 @@ &uart_A {
- 
- 	bluetooth {
- 		compatible = "realtek,rtl8822cs-bt";
--		enable-gpios  = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
-+		enable-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
- 		host-wake-gpios = <&gpio GPIOX_19 GPIO_ACTIVE_HIGH>;
- 		device-wake-gpios = <&gpio GPIOX_18 GPIO_ACTIVE_HIGH>;
- 	};
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi.dtsi
-index 0a6a12808568..4b8db872bbf3 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi.dtsi
-@@ -487,7 +487,7 @@ &uart_A {
- 
- 	bluetooth {
- 		compatible = "realtek,rtl8822cs-bt";
--		enable-gpios  = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
-+		enable-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
- 		host-wake-gpios = <&gpio GPIOX_19 GPIO_ACTIVE_HIGH>;
- 		device-wake-gpios = <&gpio GPIOX_18 GPIO_ACTIVE_HIGH>;
- 	};
--- 
-2.34.1
+On 11/23/2023 8:01 PM, Russell King (Oracle) wrote:
+> On Thu, Nov 23, 2023 at 06:57:59PM +0800, Jie Luo wrote:
+>> On 11/21/2023 7:52 PM, Russell King (Oracle) wrote:
+>>> Ultimately, you will need a way to use inband signalling with Cisco
+>>> SGMII for 10M/100M/1G speeds, and then switch to 2500base-X when
+>>> operating at 2.5G speeds, and that is done via the PHY driver
+>>> updating phydev->interface.
+>>>
+>>> What we do need is some way for the PHY to also tell the PCS/MAC
+>>> whether inband should be used. This is something I keep bringing up
+>>> and now that we have PCS drivers revised to use the value from
+>>> phylink_pcs_neg_mode() _and_ a consistent implementation amongst them
+>>> we can now think about signalling to PCS drivers whether inband mode
+>>> needs to be turned off when switching between modes.
+>>
+>> Yes, we can switch the interface mode according to the current link
+>> speed in the pcs driver.
+>> but the issue is that the phy-mode i specified for the PHYLINK,
+>> if phy-mode is sgmii, the support capability is limited to maximum
+>> capability 1G during the PHYLINK setup and i can't configure it to 2.5G
+>> dynamically, if the phy-mode is 2500base-x, then PHY capability will
+>> be modified to only support 2.5G, other speeds can't be linked up.
+> 
+> So you need my patches that add "possible_interfaces" to phylib so you
+> can tell phylink that you will be switching between SGMII and
+> 2500base-X. Please see the RFC posting of those patches I sent
+> yesterday and try them out - you will need to modify your phylib
+> driver to fill in phydev->possible_interfaces.
 
+Your patches work on my board, thanks Russell.
+
+> 
+>>> There have been patches in the past that allow inband mode to be
+>>> queried from phylib, and this is another important component in
+>>> properly dealing with PHYs that need to use inband signalling with
+>>> Cisco SGMII, but do not support inband signalling when operating at
+>>> 2.5G speeds. The problem when operating at 2.5G speed is that the
+>>> base-X protocols are normally for use over fibre, which is the media,
+>>> and therefore the ethtool Autoneg bit should define whether inband
+>>> gets used or not. However, in the case of a PHY using 2500base-X,
+>>> the Autoneg bit continues to define whether autonegotiation should
+>>> be used on the media, and in this case it's the media side of the
+>>> PHY rather than the 2500base-X link.
+>>>
+>>> So, when using a 2500base-X link to a PHY, we need to disregard the
+>>> Autoneg bit, but that then raises the question about how we should
+>>> configure it - and one solution to that would be to entire of phylib
+>>> what the PHY wants to do. Another is to somehow ask the PCS driver
+>>> whether it supports inband signalling at 2500base-X, and resolve
+>>> those capabilities.
+>>
+>> For the qca808x PHY, when it is linked in 2.5G, the autoneg is also
+>> disabled in PCS hardware, so the sgmii+ of qca808x PHY is almost
+>> same as 2500base-X.
+> 
+> Not "almost". It _is_ the same. This is the point I've been trying
+> to get across to you. Without inband signalling, 1000base-X and SGMII
+> (when operating at 1G) are _identical_ and entirely compatible.
+> 
+> You've said that your 2.5G "SGMII" mode has inband signalling disabled,
+> and thus it without inband signalling, 2500base-X and this 2.5G mode
+> are again identical and entirely compatible. There's no "almost" about
+> it.
+> 
+> 
+Yes, confirmed with HW guy, they work on the same way.
 
