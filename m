@@ -1,94 +1,162 @@
-Return-Path: <devicetree+bounces-18676-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18678-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E47B07F7A46
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 18:20:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 068157F7A84
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 18:39:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F8951C20A39
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 17:20:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B53CF281242
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 17:39:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 378A0364CC;
-	Fri, 24 Nov 2023 17:20:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02113381D4;
+	Fri, 24 Nov 2023 17:39:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="e8z7WlIn"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="YHDXF87a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B27871733
-	for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 09:20:00 -0800 (PST)
-Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-40b27b498c3so15974625e9.0
-        for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 09:20:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1700846399; x=1701451199; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2d1leqtXuRjh3vDQD1vENVeJ67TD/CQIGzFzr3jZ/Rw=;
-        b=e8z7WlInALi26lTFnVyEdD4XPSgTi+7R4sktHk5KQ6OOaAiDLr/hVDMz77d7A3uyB9
-         qMIZZF9fnlw6dKHWi/2iB9nlkBUmLBM0g5eZH5qITaR8m7HnieRR6YiTcGhypMrRVnQw
-         D8yYKP/68QBQPhHlhFJQ8ogpCcS2+2CgjBhHBpcs3orvqWYf6H9ay61Vnzer/9sAd710
-         f4yBQJTo32R3iansQKw4aC7jXKmQFIv0xwqcoa45+k8GAlzYDFmpRBiOe/0UZpRQ7hqt
-         0scuwRfgBhGHt642452YAn+HmJPOyZcjpuiUvexMGDXU3xAbB1MHIR52E8s4hAVAhAi0
-         mTZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700846399; x=1701451199;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2d1leqtXuRjh3vDQD1vENVeJ67TD/CQIGzFzr3jZ/Rw=;
-        b=HFJqMjXfhoZ3oxorArOsYb5XL4eP6Pda/rGX+rN230by1gkrfchzi/SKEgPIiQippv
-         xKFL/KohwQ981f6YrbNSbEXUpDAts1g0EoslkNaI80R4yPTku9wx2mSatUGL6h8lu4TE
-         S712ctLahEfLxqMn4c8FIuefkuZCrg70+9jWZ6ZB0QFZkFy3JTnHvDSJ0fmtCv15r/cp
-         Qd/D6Xon3y/HDmAOYFgNxsjpNUi/d2v/wW6wYf6fWXsLHCsVDvJgJbbPOavOvSxoOEqj
-         cxy34CDeYuADxXkNvXOy1mj01YKPkK4xWrvaT0PgjEsOBfshBoS5EkYTiFBmMeAP/Dg8
-         uO2A==
-X-Gm-Message-State: AOJu0YxAJzHMd7CcKEmZF3HH8MHJ3OxrrMc5GkSopcgtjICC6aHZFs6s
-	RTEyqaoas4PolV8z3BD35aZOAw==
-X-Google-Smtp-Source: AGHT+IGof/O1OGnHaLOZnn6ikBllpdYsJKE4lZGWZe1M6TLjaYOYsj7vsLD/q57/Kn0PjoMIKgomtQ==
-X-Received: by 2002:a05:600c:450b:b0:408:3f61:cb4f with SMTP id t11-20020a05600c450b00b004083f61cb4fmr2927268wmo.23.1700846399037;
-        Fri, 24 Nov 2023 09:19:59 -0800 (PST)
-Received: from toaster.baylibre.com ([2a01:e0a:3c5:5fb1:1243:6910:fe68:2de5])
-        by smtp.googlemail.com with ESMTPSA id o18-20020adf8b92000000b00332e8dd713fsm2547663wra.74.2023.11.24.09.19.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Nov 2023 09:19:58 -0800 (PST)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Daniel Scally <dan.scally@ideasonboard.com>, linux-clk@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-In-Reply-To: <20231114-topic-amlogic-upstream-isp-clocks-v1-0-223958791501@linaro.org>
-References: <20231114-topic-amlogic-upstream-isp-clocks-v1-0-223958791501@linaro.org>
-Subject: Re: [PATCH 0/3] clk: meson: add MIPI ISP & CSI PHY clocks
-Message-Id: <170084639792.2638113.9821910765744986123.b4-ty@baylibre.com>
-Date: Fri, 24 Nov 2023 18:19:57 +0100
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38A22BB;
+	Fri, 24 Nov 2023 09:39:28 -0800 (PST)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AOGgX9i027345;
+	Fri, 24 Nov 2023 17:39:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=cbZUHFkE5FzVcXNkKDtig22qsSf8ydEAXWN6seFAMAM=;
+ b=YHDXF87ays+f+I4K8AzPGVqIdl0VTQ5dHm8gmQJfclfStUlekDVirlnOAns5sSUxVP1M
+ 9QTChaC3u2ZRvilaujTshf6L65oTNO+AWMvlq5AQ0Db+QFccFnzgOt1Gfa+vJlWywHG2
+ jQ3acDNFIdaNxyFR+3G0+OcbOSLnE8AUhxpfEHdgoRpfOMuIbrBtKs8RN34vBXpRJC30
+ FvAJXgJR2U7tLo01nlylgD6QXSd7MEt8dp9RyD/3EWCQFa8Sy0gNmsOdg9uBioBCiB2O
+ c4RFbpdQZOXISdPr1juw/lmcv3lJtqMGUkSnEck7RwgdIdVR0RYnOULsT4RK+x6QEEv9 VQ== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uj6emucdt-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 24 Nov 2023 17:39:22 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AOHdDXb028084
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 24 Nov 2023 17:39:13 GMT
+Received: from [10.216.56.238] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 24 Nov
+ 2023 09:39:08 -0800
+Message-ID: <004ddc69-1566-4de4-b260-0fca96a9395f@quicinc.com>
+Date: Fri, 24 Nov 2023 23:09:04 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/6] dt-bindings: usb: dwc3: Clean up hs_phy_irq in
+ bindings
+To: Johan Hovold <johan@kernel.org>
+CC: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, <quic_wcheng@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_ppratap@quicinc.com>, <quic_jackp@quicinc.com>
+References: <20231122191335.3058-1-quic_kriskura@quicinc.com>
+ <ZV9dYpTYRXn63tXe@hovoldconsulting.com>
+ <1192d91f-11bf-44af-953a-14e08e2b6ca8@quicinc.com>
+ <ZWCpGdJRexnk98IN@hovoldconsulting.com>
+Content-Language: en-US
+From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+In-Reply-To: <ZWCpGdJRexnk98IN@hovoldconsulting.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.4
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: vsHpUuDW5EEa0o3VY1neDxDOS6nsKGAN
+X-Proofpoint-GUID: vsHpUuDW5EEa0o3VY1neDxDOS6nsKGAN
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-24_04,2023-11-22_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 clxscore=1015
+ spamscore=0 bulkscore=0 priorityscore=1501 impostorscore=0 suspectscore=0
+ phishscore=0 lowpriorityscore=0 mlxscore=0 mlxlogscore=999 malwarescore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2311060000
+ definitions=main-2311240137
 
-Applied to clk-meson (v6.8/drivers), thanks!
 
-[1/3] dt-bindings: clock: g12a-clkc: add MIPI ISP & CSI PHY clock ids
-      https://github.com/BayLibre/clk-meson/commit/439d3404addf
-[2/3] clk: meson: g12a: add MIPI ISP clocks
-      https://github.com/BayLibre/clk-meson/commit/773e4e987308
-[3/3] clk: meson: g12a: add CSI & ISP gates clocks
-      https://github.com/BayLibre/clk-meson/commit/5205628ab0bf
+>>
+>> Yes. From whatever targets I was able to find, only one of them didn't
+>> have the power_event irq. Rest all of them had. I will recheck that
+>> particular one again.
+> 
+> Please do. The driver polls the corresponding status register on all
+> platforms currently, and perhaps this interrupt can one day be used to
+> get rid of the polling.
+>   
 
-Best regards,
---
-Jerome
+Ok, I just rechecked and case is, I am not able to get my hands on the 
+doc. I can't say for sure that the target is missing the pwr_event 
+interrupt. I say we can safely add the target assuming pwr_event is 
+present for ipq9574. Every target so far even on downstream has this IRQ 
+present in hw.
 
+>>> Note that DP comes before DM above as that seems like the natural order
+>>> of these (plus before minus).
+>>>
+>>> Now if the HS interrupt is truly unusable, I guess we can consider
+>>> dropping it throughout and the above becomes just three permutations
+>>> instead, which can even be expressed along the lines of:
+>>
+>> Infact, I wanted to do this but since you mentioned before that if HW
+>> has it, we must describe it, I kept it in. But since this functionality
+>> is confirmed to be mutually exclusive of qusb2/{dp/dm}, I am aligned to
+>> skip it in bindings and drop it in DT.
+> 
+> As I mentioned elsewhere, it depends on whether it can be used at all.
+> Not simply whether there is some other mechanism that can be used in its
+> stead. Such a decision should be left up to the implementation.
+> 
+> That's why I said "truly unusable" above. It's still not clear to me
+> whether that is the case or not.
+> 
+
+I looked at the code of  4.4, 4.14/ 4.19/ 5.4/ 5.10/ 5.15/ 6.1 and none 
+of them implement the hs_phy_irq.
+
+>>> 	- anyOf:
+>>> 	  - items:
+>>> 	    - const: qusb2_phy
+>>> 	  - items:
+>>> 	    - const: dp_hs_phy_irq
+>>> 	    - const: dm_hs_phy_irq
+>>> 	- const: pwr_event
+>>> 	- const: ss_phy_irq	(optional)
+>>>
+>>
+>> This must cover all cases AFAIK. How about we keep pwr_event also
+>> optional for time being. The ones I am not able to find also would come
+>> up under still binding block.
+> 
+> No, we should avoid that if we can as with two many optional things,
+> these quickly gets messy (one optional interrupt at the end is fine and
+> can be expressed using min/maxItems).
+> 
+> If the "qusb2+" combination above isn't needed, then we're down to four
+> permutations, which is few enough to be spelled out explicitly even if
+> we decide that the hs_phy_irq should be kept in. Without hs_phy_irq, it
+> seems there's really only two permutations.
+> 
+
+My opinion would be to keep the power_event irq as mandatory and not to 
+include the hs_phy_irq.
+
+Regards,
+Krishna,
 
