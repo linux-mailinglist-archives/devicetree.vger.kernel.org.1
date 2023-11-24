@@ -1,145 +1,146 @@
-Return-Path: <devicetree+bounces-18698-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18699-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC1467F86D7
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 00:40:12 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 789D37F8707
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 00:53:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 683F1282277
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 23:40:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AA1C61C20B1B
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 23:53:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DC513DB86;
-	Fri, 24 Nov 2023 23:40:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD2BB3DB96;
+	Fri, 24 Nov 2023 23:53:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="UJk7n/+f"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qWiD5pXH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA68D1990;
-	Fri, 24 Nov 2023 15:40:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1700869203; x=1732405203;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=BBPN3UdJMvFNoexMmj/RYUS6v8k8qPrmPLFVGwaOepI=;
-  b=UJk7n/+f5b+UTAUf2I/XlwEN2dUoBSinbIEBrxCI2e/cxO3wPuvk2Erx
-   arhXGtMQ0s9sXKbuFEGtp/bmX9khVPuuado/PC6/WqoEmS3w5IOTBzOG1
-   B9Psm0XgNeilbLhhOuBVgJ4Wsc6UFzonLp6GDMgx/Nf1+7U72WBXLLrww
-   FQnOSKG+vYQS1gLxcBC6hCipkzLaNrZU5LR5HyUE9p5UzznHKf+iESkxZ
-   ZReLv4X60bIn3vJ5zuzjrzDFHi+0w8Gzzh9kDMrIQx6R2LLOH5MelmLkN
-   /UPKijKvkgcY/9KEhimaQ1AExec3Y2Y9UBJyjQYrkLza4howUxI4by6hw
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10904"; a="396383137"
-X-IronPort-AV: E=Sophos;i="6.04,224,1695711600"; 
-   d="scan'208";a="396383137"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Nov 2023 15:40:03 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10904"; a="1015007948"
-X-IronPort-AV: E=Sophos;i="6.04,224,1695711600"; 
-   d="scan'208";a="1015007948"
-Received: from lkp-server01.sh.intel.com (HELO d584ee6ebdcc) ([10.239.97.150])
-  by fmsmga006.fm.intel.com with ESMTP; 24 Nov 2023 15:39:59 -0800
-Received: from kbuild by d584ee6ebdcc with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1r6fm9-0003OE-10;
-	Fri, 24 Nov 2023 23:39:57 +0000
-Date: Sat, 25 Nov 2023 07:39:07 +0800
-From: kernel test robot <lkp@intel.com>
-To: Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org>,
-	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Andy Shevchenko <andy@kernel.org>
-Subject: Re: [PATCH v2 2/2] hwmon: ltc4282: add support for the LTC4282 chip
-Message-ID: <202311250548.lUn3bm1A-lkp@intel.com>
-References: <20231124-ltc4282-support-v2-2-952bf926f83c@analog.com>
+Received: from mail-qv1-xf29.google.com (mail-qv1-xf29.google.com [IPv6:2607:f8b0:4864:20::f29])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FBCC19AC
+	for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 15:53:50 -0800 (PST)
+Received: by mail-qv1-xf29.google.com with SMTP id 6a1803df08f44-679e7188b2eso12827506d6.0
+        for <devicetree@vger.kernel.org>; Fri, 24 Nov 2023 15:53:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1700870029; x=1701474829; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=1FS/kIDFBzyqgGanxolvGaA4a07brcriqTmvix5/W40=;
+        b=qWiD5pXHBCg2vzoSh/laMURGROxnjgh99nrQCmshyhkhkM4i/1oNGXPO0Ip/KqieU1
+         H4s300jNqfGuWj2hM7hVehnp9hPkgTUCQPUWtJN77EDZZllEEx7DJ5vZ2N6RE5/rJSS5
+         QSM2TegbxnY8qHjVTgw0DEqW50gGzh+Q4iL6hXGulKkPa/YJIivqp/5wjPMbpbMYRfLZ
+         Tvizae34QDQyUUIOsdNhgcp4Emey35jL7nM5q5uthJfUMVdPg6YVPKEdxdbikWi3mlep
+         AdQG8BkJnM0RvMv4EEyfK2O1+c2NQdqcSCWFrAo+DRjCYzZRnRn3XB4MRXUA6k+uQtmM
+         4kxQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700870029; x=1701474829;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1FS/kIDFBzyqgGanxolvGaA4a07brcriqTmvix5/W40=;
+        b=MesmQ42NH+5scpILOvK7fa7Yphh/+9z+gs1sWUXPYgzt4ne0mJyQC8mR2TSJYahNm5
+         +j5fxhyhcwmJBX5XxKr+B4CG+ZgtHmG0jXZlc1DZsvsEhmPg6z9lgLoCl95zQoewclXI
+         v6dGW9/VIVfMluleeV3h37wqEcWoVtaCoBr1lkzpdOtmkQKxJpnDyUioyDA/mnF92GaA
+         pUdLvtZ4prkS4rFHsKfZxqDu5pwvr3G6rsm3/SATtD4py9Qvf5GvpZD+TNCyqsA+qvJ3
+         n2sd/5pRW+U88ouikYHgmE4af0Kkrn+TtOIB25YZItIy9ZgfwVLrRBa8dj35deqjS9R1
+         Dm+g==
+X-Gm-Message-State: AOJu0Yx0BvFVmQJHlePquzgzGeK2xCruz2URWXSja5yQk8vxua9wR/KC
+	9vPZwYqo1lUUD3mrrRSWofjJ0U3/DVja6O5bpScOxg==
+X-Google-Smtp-Source: AGHT+IH68YNNs1mdIZPfOGd3BfU7yWO4f5ZEZ2LHNlI3qHeYAMd7J1NbAfruVBibbln969jG6/nSz3dpLoNuc455+D0=
+X-Received: by 2002:a0c:eecd:0:b0:679:e7dd:fa9 with SMTP id
+ h13-20020a0ceecd000000b00679e7dd0fa9mr5108187qvs.10.1700870029271; Fri, 24
+ Nov 2023 15:53:49 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231124-ltc4282-support-v2-2-952bf926f83c@analog.com>
+References: <20231011184823.443959-1-peter.griffin@linaro.org>
+ <20231011184823.443959-18-peter.griffin@linaro.org> <ff91f9e7-6018-402e-935a-c9fa10ced9fd@linaro.org>
+In-Reply-To: <ff91f9e7-6018-402e-935a-c9fa10ced9fd@linaro.org>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Fri, 24 Nov 2023 23:53:38 +0000
+Message-ID: <CADrjBPqNTKHjh=QR__Jdw-Ht5z0NcB3j92dtjFJJS=A1AS9jQw@mail.gmail.com>
+Subject: Re: [PATCH v3 17/20] arm64: dts: google: Add initial Google gs101 SoC support
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	mturquette@baylibre.com, conor+dt@kernel.org, sboyd@kernel.org, 
+	tomasz.figa@gmail.com, s.nawrocki@samsung.com, linus.walleij@linaro.org, 
+	wim@linux-watchdog.org, linux@roeck-us.net, catalin.marinas@arm.com, 
+	will@kernel.org, arnd@arndb.de, olof@lixom.net, gregkh@linuxfoundation.org, 
+	cw00.choi@samsung.com, tudor.ambarus@linaro.org, andre.draszik@linaro.org, 
+	semen.protsenko@linaro.org, saravanak@google.com, willmcvicker@google.com, 
+	soc@kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-watchdog@vger.kernel.org, kernel-team@android.com, 
+	linux-serial@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Nuno,
-
-kernel test robot noticed the following build warnings:
-
-[auto build test WARNING on groeck-staging/hwmon-next]
-[also build test WARNING on linus/master v6.7-rc2 next-20231124]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Nuno-Sa-via-B4-Relay/hwmon-ltc4282-add-support-for-the-LTC4282-chip/20231124-231842
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git hwmon-next
-patch link:    https://lore.kernel.org/r/20231124-ltc4282-support-v2-2-952bf926f83c%40analog.com
-patch subject: [PATCH v2 2/2] hwmon: ltc4282: add support for the LTC4282 chip
-config: x86_64-randconfig-161-20231125 (https://download.01.org/0day-ci/archive/20231125/202311250548.lUn3bm1A-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231125/202311250548.lUn3bm1A-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202311250548.lUn3bm1A-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/hwmon/ltc4282.c:347:6: warning: no previous prototype for 'ltc4282_round_rate' [-Wmissing-prototypes]
-     347 | long ltc4282_round_rate(struct clk_hw *hw, unsigned long rate,
-         |      ^~~~~~~~~~~~~~~~~~
->> drivers/hwmon/ltc4282.c:356:15: warning: no previous prototype for 'ltc4282_recalc_rate' [-Wmissing-prototypes]
-     356 | unsigned long ltc4282_recalc_rate(struct clk_hw *hw, unsigned long parent)
-         |               ^~~~~~~~~~~~~~~~~~~
+Hi Krzysztof,
 
 
-vim +/ltc4282_round_rate +347 drivers/hwmon/ltc4282.c
+On Thu, 12 Oct 2023 at 07:44, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 11/10/2023 20:48, Peter Griffin wrote:
+> > Google gs101 SoC is ARMv8 mobile SoC found in the Pixel 6,
+> > (oriole) Pixel 6a (bluejay) and Pixel 6 pro (raven) mobile
+> > phones. It features:
+> > * 4xA55 little cluster
+> > * 2xA76 Mid cluster
+> > * 2xX1 Big cluster
+> >
+>
+> ...
+>
+> > +     gpa10: gpa10-gpio-bank  {
+> > +             gpio-controller;
+> > +             #gpio-cells = <2>;
+> > +             interrupt-controller;
+> > +             #interrupt-cells = <2>;
+> > +             interrupts = <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>,
+> > +                        <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
+> > +     };
+> > +
+> > +     uart15_bus: uart15-bus-pins {
+> > +            samsung,pins = "gpa2-3", "gpa2-4";
+> > +            samsung,pin-function = <2>;
+>
+> GS101_PIN_FUNC_2
 
-   346	
- > 347	long ltc4282_round_rate(struct clk_hw *hw, unsigned long rate,
-   348				unsigned long *parent_rate)
-   349	{
-   350		int idx = find_closest(rate, ltc4282_out_rates,
-   351				       ARRAY_SIZE(ltc4282_out_rates));
-   352	
-   353		return ltc4282_out_rates[idx];
-   354	}
-   355	
- > 356	unsigned long ltc4282_recalc_rate(struct clk_hw *hw, unsigned long parent)
-   357	{
-   358		struct ltc4282_state *st = container_of(hw, struct ltc4282_state,
-   359							clk_hw);
-   360		u32 clkdiv;
-   361		int ret;
-   362	
-   363		ret = regmap_read(st->map, LTC4282_CLK_DIV, &clkdiv);
-   364		if (ret)
-   365			return 0;
-   366	
-   367		clkdiv = FIELD_GET(LTC4282_CLKOUT_MASK, clkdiv);
-   368		if (!clkdiv)
-   369			return 0;
-   370		if (clkdiv == LTC4282_CLKOUT_INT)
-   371			return LTC4282_CLKOUT_SYSTEM;
-   372	
-   373		return LTC4282_CLKOUT_CNV;
-   374	}
-   375	
+will fix
+>
+> > +            samsung,pin-pud = <0>;
+>
+> GS101_PIN_PULL_NONE
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+will fix
+
+>
+> > +     };
+> > +
+> > +     uart16_bus: uart16-bus-pins {
+> > +            samsung,pins = "gpa3-0", "gpa3-1", "gpa3-2", "gpa3-3";
+> > +            samsung,pin-function = <GS101_PIN_FUNC_2>;
+> > +            samsung,pin-pud = <GS101_PIN_PULL_NONE>;
+>
+> But here it is correct...
+>
+> > +     };
+> > +
+> > +     uart16_bus_rts: uart1-bus-rts-pins {
+> > +             samsung,pins = "gpa3-2";
+> > +             samsung,pin-function = <GS101_PIN_FUNC_OUTPUT>;
+> > +             samsung,pin-pud = <GS101_PIN_PULL_NONE>;
+> > +             samsung,pin-val = <1>;
+>
+> Why do you set UART RTS pin value?
+
+It's a remnant from the downstream drivers that support rts-gpio control.
+I will remove the samsung,pin-val = <1> in the next version.
+
+Thanks,
+
+Peter
 
