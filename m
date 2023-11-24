@@ -1,87 +1,143 @@
-Return-Path: <devicetree+bounces-18585-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18586-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2542E7F72E2
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 12:39:37 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70BB27F72E9
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 12:40:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 781522817BA
-	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 11:39:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E97F5B211FB
+	for <lists+devicetree@lfdr.de>; Fri, 24 Nov 2023 11:40:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4B161DDD7;
-	Fri, 24 Nov 2023 11:39:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3C601EB50;
+	Fri, 24 Nov 2023 11:40:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="B0X2Fgzt"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ET9l9D+i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-x1143.google.com (mail-yw1-x1143.google.com [IPv6:2607:f8b0:4864:20::1143])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0602D5A;
-	Fri, 24 Nov 2023 03:39:29 -0800 (PST)
-Received: by mail-yw1-x1143.google.com with SMTP id 00721157ae682-5cce3010367so16905597b3.0;
-        Fri, 24 Nov 2023 03:39:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1700825969; x=1701430769; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zb10WU8tv9EHtRhhETzeYrXTjtAxyQNnbRx/PI9eif4=;
-        b=B0X2FgztqDFY4cOMMaQiFtEqKgUMtuo+605cSAA+dooJlw8tG9hMS6rvecF6LZR2fX
-         dB4srRw7X4x2E0k/Su3mI/MKoX+g02plTaNOuZ9DfPaTR6dnpvglNAgF5It7B+HaZqiU
-         5nxVu80ck3zhcDTqtjHNCwgyZa/G3L2+PwpPskfjkRpLiq3niLKJeYRnoreI0dCiubis
-         +Tx2TxIaQ01WvJJWLsdo3hGetHvk0OZ/MOnVVhDKoNx/3O1HDl0BPA8ZsT03bta52+hE
-         Z/PAn1j8GsjmKcptKQlCjHfX2aqmDP7f6qC/NwIWHTa35qpeTwuOgxmjCR4JubJ6X3Tu
-         jUsA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700825969; x=1701430769;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zb10WU8tv9EHtRhhETzeYrXTjtAxyQNnbRx/PI9eif4=;
-        b=TqT/HkDlA12T/RDv+vEe950HA0cta23P/7LhWbax/P9xOMCkqr48bDx6vQf+3Pr3Vg
-         oh2lJKY4IxrXkLbcaFNHvhjqDI0nzjEaPm79vobj+3CpE/QlFvqijlJ2Ab1bB5Bst2Pp
-         NsmTYYXSBHVNES6bGe77e7jlgIhKNKxbbiA6wQ0VlEY/A8fnj5fZFrRVLO1N3b2jP857
-         +fU8oSWN1HwdBnR/LoCr2rAZDi/WZeJkbflARzVFGi/xfUNqf4eYqosIVWK8dLPOqKfQ
-         KZ27n4tINlxqbq63Upy2gfhWXZqWPyqufKFbAWbRAdHtT1835ZQf1g5+h3dfgudBe6XG
-         fV2g==
-X-Gm-Message-State: AOJu0YwwPkHkVqkf2mF7w8cXgb66oiMCoP3cQjNdkbJC/WTQNDqo1xE8
-	qeH4Re0ivG4tl3u6X8g4xOx/ExfitrpDnswPLDPtUhiNJJxk4g==
-X-Google-Smtp-Source: AGHT+IFlgdpvIKIPHZcqtrrFQ+m65hOVgTUW/zmNJlDs8CCf1nV9Q6cL/Zmdm2kSYp2dC3KLqGXCd1Fr33dz632JH38=
-X-Received: by 2002:a81:4981:0:b0:5a7:c8a9:79e8 with SMTP id
- w123-20020a814981000000b005a7c8a979e8mr2362179ywa.4.1700825968843; Fri, 24
- Nov 2023 03:39:28 -0800 (PST)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3D41A2;
+	Fri, 24 Nov 2023 03:40:15 -0800 (PST)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AOB7X0R022990;
+	Fri, 24 Nov 2023 11:39:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=tDHSeIF8klwS9UwzqRebuF+OKf98KYwg7r/Vh86pzKk=;
+ b=ET9l9D+iljpGXhn9t0Umx3d8FRi1HmXdgtnd+/5qwTmCHh6UgBujmAvi1r+Yu954kl0/
+ jGqGldIXSPNxFxXoEwOiNj4Cf7Bp9jSLEGD571XrvGIXdP1u/tPe43tC34/jUUZ7OrF1
+ qJNi9wckmKNHUClJsFgxKnlfkcgVPk64qLaGjVwiNia6Tn2hogIsqLsGWbvXrUp+/qQy
+ H/kVEZZkEsr7uaBU1zg1tpga9vHLgS9xBe9qIIkvmA0NcqsucvyV1ENu+W8nKHN5xkxA
+ mKKT6Qw201rFzGvAH1gDrtfjACzao5X8k+dY66Y7xwSyAYRz7wXMvgi/swwHzfjEpqLS NA== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uj4hwjqyh-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 24 Nov 2023 11:39:50 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AOBdnr3020020
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 24 Nov 2023 11:39:49 GMT
+Received: from [10.216.4.251] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 24 Nov
+ 2023 03:39:38 -0800
+Message-ID: <735075ee-1145-471e-9dac-9968b02ad35a@quicinc.com>
+Date: Fri, 24 Nov 2023 17:09:34 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231118105815.17171-1-579lpy@gmail.com> <20231118110232.17261-1-579lpy@gmail.com>
- <20231119-donated-hypnotist-33529b63bee8@spud>
-In-Reply-To: <20231119-donated-hypnotist-33529b63bee8@spud>
-From: peiyu li <579lpy@gmail.com>
-Date: Fri, 24 Nov 2023 19:38:52 +0800
-Message-ID: <CAELPsEaQZ1a-JO2Vne_MZXWN+nVh7LEw1z_wbHVjiLrKPtd_rQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] dt-bindings: iio: humidity: Add TI HDC302x support
-To: conor@kernel.org
-Cc: jic23@kernel.org, lars@metafoo.de, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v3 1/3] dt-bindings: net: qcom,ethqos: add
+ binding doc for fault IRQ for sa8775p
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Vinod Koul
+	<vkoul@kernel.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Andy Gross
+	<agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        "Eric
+ Dumazet" <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>, Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu
+	<joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>, <netdev@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        Prasad Sodagudi
+	<psodagud@quicinc.com>,
+        Andrew Halaney <ahalaney@redhat.com>
+CC: <kernel@quicinc.com>
+References: <cover.1700737841.git.quic_jsuraj@quicinc.com>
+ <ff458955a24c0cb4ba41158b8b53fbef00c8237d.1700737841.git.quic_jsuraj@quicinc.com>
+ <7c9135e0-da6e-4e1a-b673-af6c73d8ee45@linaro.org>
+From: Suraj Jaiswal <quic_jsuraj@quicinc.com>
+In-Reply-To: <7c9135e0-da6e-4e1a-b673-af6c73d8ee45@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: FZYAK8yh1-fNezYLdyWhoJUEJupZisCK
+X-Proofpoint-ORIG-GUID: FZYAK8yh1-fNezYLdyWhoJUEJupZisCK
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-23_15,2023-11-22_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ malwarescore=0 priorityscore=1501 bulkscore=0 mlxscore=0 mlxlogscore=814
+ suspectscore=0 phishscore=0 spamscore=0 lowpriorityscore=0 clxscore=1011
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2311060000 definitions=main-2311240090
 
-On Sun, Nov 19, 2023 at 21:41, Conor Dooley wrote=EF=BC=9A
-...
-> > - change the maintainers to me.
-> > - hdc3020,hdc3021,hdc3022 are compatible,I've changed the dirver.
->
-> Does that even compile? It was the binding I wanted you to change, not
-> the driver. Take a look at the example-schema for how to do this.
-In example-schema.yaml, I did not see another way of writing "compatible".
-So does this mean I need to add an example contains
-compatible =3D "ti,hdc3021", "ti,hdc3020";
-> Cheers,
-> Conor.
-Thanks,
-Li peiyu.
+hi Krzysztof,
+Sure . Will take care of dtbs_check warnings in the next patch .
+
+Thanks
+Suraj
+
+On 11/24/2023 1:48 PM, Krzysztof Kozlowski wrote:
+> On 23/11/2023 12:38, Suraj Jaiswal wrote:
+>> Add binding doc for fault IRQ. The fault IRQ will be
+>> trigger for ECC,DPP,FSM error.
+>>
+>> Signed-off-by: Suraj Jaiswal <quic_jsuraj@quicinc.com>
+>> ---
+>>  Documentation/devicetree/bindings/net/qcom,ethqos.yaml | 7 +++++--
+>>  1 file changed, 5 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/net/qcom,ethqos.yaml b/Documentation/devicetree/bindings/net/qcom,ethqos.yaml
+>> index 7bdb412a0185..e013cb51fb07 100644
+>> --- a/Documentation/devicetree/bindings/net/qcom,ethqos.yaml
+>> +++ b/Documentation/devicetree/bindings/net/qcom,ethqos.yaml
+>> @@ -37,12 +37,14 @@ properties:
+>>      items:
+>>        - description: Combined signal for various interrupt events
+>>        - description: The interrupt that occurs when Rx exits the LPI state
+>> +      - description: The interrupt that occurs when HW fault occurs
+> 
+> Adding required items is breaking the ABI and introducing new dtbs_check
+> warnings. I don't see rationale for this in the commit msg.
+> 
+> I don't see any fixes for the warnings, either. I am quite picky on this
+> part, so to avoid wasting my time - are you 100% sure you do not
+> introduce any new warning?
+> 
+> Best regards,
+> Krzysztof
+> 
 
