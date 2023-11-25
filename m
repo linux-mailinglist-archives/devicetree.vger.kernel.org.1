@@ -1,264 +1,119 @@
-Return-Path: <devicetree+bounces-18871-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18873-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D06A7F8E2E
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 20:48:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 667F57F8E4A
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 21:00:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C597B2814C9
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 19:48:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1FDC9281490
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 20:00:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 503B52FE10;
-	Sat, 25 Nov 2023 19:48:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4573B2FE3E;
+	Sat, 25 Nov 2023 20:00:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MjBlglmb"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="aXwn1L7K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A93A2F845;
-	Sat, 25 Nov 2023 19:48:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 155F0C433C9;
-	Sat, 25 Nov 2023 19:47:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700941684;
-	bh=TG3FLWwBucstw2055o8skcJRkN+mDQJa4/2yE8D+7pI=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=MjBlglmbDTlUKLPBziVsBLkzEJNbJzuhJ1wrX3RYGh6wTdeJTRcHcVpRgYubQ3WAF
-	 XiP/hy8hpRrLGaP7beX7+JtQUDv/5ZfMdSUykTFq20iGV0jLr1ZSSGf4XEnlX70dys
-	 HhhzJBTL8fzxHSWnd8KMohWIUPIpmScAoZoUMI2bvAhCBV/OZHRpyT9nE5YVetM/5Y
-	 6NzOaXNhWmBtxtDZDrxviwLtJklzcPyiDlmXZblZUq1xubFo5wEbitln4yhNr/d6E7
-	 GI8O7xQU/D+5+fBcgv1uAR48U+gIaIhI8LsW53Ib98pIurc7DG+vvt+vgERTzazZdX
-	 qixJDWTnwbgYQ==
-Date: Sat, 25 Nov 2023 19:47:54 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- marius.cristea@microchip.com, lars@metafoo.de, robh+dt@kernel.org,
- jdelvare@suse.com, linux@roeck-us.net, linux-hwmon@vger.kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: iio: adc: adding support for
- PAC193X
-Message-ID: <20231125194754.304523e6@jic23-huawei>
-In-Reply-To: <20231116-channel-variety-cc7c262924ad@squawk>
-References: <20231115134453.6656-1-marius.cristea@microchip.com>
-	<20231115134453.6656-2-marius.cristea@microchip.com>
-	<fedd4bcf-7892-4096-bcca-7ea72d39576f@linaro.org>
-	<20231116-channel-variety-cc7c262924ad@squawk>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0B28127;
+	Sat, 25 Nov 2023 12:00:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1700942450; x=1732478450;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ndvF+Ar9gfYxB4rkH+FeGi/cHGDpQpbFY+l59NJJuCQ=;
+  b=aXwn1L7K+FiTepoVjDLc1n0TySWKAnIPYjVU7bt7osIxzRlgq3fjCgWr
+   QjZgctzEL62Sc4rKeY4KNXpw3XdA9CELBj0v9GVE+3D0FjuPaPbG8XSrR
+   FV2ugoE5YIGjDPHRagNORdIZSfARJ3sZ+KSs7L22SPf4plpjkkyz+1+eC
+   ZgTyuXHGnkm7/ySW/7jCiI8tPzB+4m0rnt+mQ/khRuYbZmPZw89RsgF8E
+   nXVjkVd/tf4Bk1ib7rChiL3DbiN8wNj8DfnWOoDOCFA/dfCRffQQqzql5
+   SK8YGP6sLp/TBRGJ2JQPO2H7iaufCo8IxZbGRfR9RBEiGLfxBWL2R9ja7
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10905"; a="391398657"
+X-IronPort-AV: E=Sophos;i="6.04,227,1695711600"; 
+   d="scan'208";a="391398657"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Nov 2023 12:00:49 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10905"; a="891332354"
+X-IronPort-AV: E=Sophos;i="6.04,227,1695711600"; 
+   d="scan'208";a="891332354"
+Received: from lkp-server01.sh.intel.com (HELO d584ee6ebdcc) ([10.239.97.150])
+  by orsmga004.jf.intel.com with ESMTP; 25 Nov 2023 12:00:46 -0800
+Received: from kbuild by d584ee6ebdcc with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1r6ypY-0004Mh-1Z;
+	Sat, 25 Nov 2023 20:00:44 +0000
+Date: Sun, 26 Nov 2023 04:00:22 +0800
+From: kernel test robot <lkp@intel.com>
+To: Yuxi Wang <Yuxi.Wang@monolithicpower.com>, pavel@ucw.cz, lee@kernel.org,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org, wyx137120466@gmail.com
+Subject: Re: [PATCH 2/2] leds: add mp3326 driver
+Message-ID: <202311260229.JhaLyLj7-lkp@intel.com>
+References: <20231124093034.951-3-Yuxi.Wang@monolithicpower.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231124093034.951-3-Yuxi.Wang@monolithicpower.com>
 
-On Thu, 16 Nov 2023 18:21:33 +0000
-Conor Dooley <conor@kernel.org> wrote:
+Hi Yuxi,
 
-> On Thu, Nov 16, 2023 at 04:01:43PM +0100, Krzysztof Kozlowski wrote:
-> > On 15/11/2023 14:44, marius.cristea@microchip.com wrote:  
-> > > From: Marius Cristea <marius.cristea@microchip.com>
-> > > 
-> > > This is the device tree schema for iio driver for
-> > > Microchip PAC193X series of Power Monitors with Accumulator.
-> > > 
-> > > Signed-off-by: Marius Cristea <marius.cristea@microchip.com>
-> > > ---
-> > >  .../bindings/iio/adc/microchip,pac1934.yaml   | 137 ++++++++++++++++++
-> > >  1 file changed, 137 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/iio/adc/microchip,pac1934.yaml
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/iio/adc/microchip,pac1934.yaml b/Documentation/devicetree/bindings/iio/adc/microchip,pac1934.yaml
-> > > new file mode 100644
-> > > index 000000000000..2609cb19c377
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/iio/adc/microchip,pac1934.yaml
-> > > @@ -0,0 +1,137 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/iio/adc/microchip,pac1934.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Microchip PAC1934 Power Monitors with Accumulator
-> > > +
-> > > +maintainers:
-> > > +  - Marius Cristea <marius.cristea@microchip.com>
-> > > +
-> > > +description: |
-> > > +  This device is part of the Microchip family of Power Monitors with Accumulator.
-> > > +  The datasheet for PAC1931, PAC1932, PAC1933 and PAC1934 can be found here:
-> > > +    https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/ProductDocuments/DataSheets/PAC1931-Family-Data-Sheet-DS20005850E.pdf
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - microchip,pac1931
-> > > +      - microchip,pac1932
-> > > +      - microchip,pac1933
-> > > +      - microchip,pac1934
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  "#address-cells":
-> > > +    const: 1
-> > > +
-> > > +  "#size-cells":
-> > > +    const: 0
-> > > +
-> > > +  interrupts:
-> > > +    maxItems: 1
-> > > +
-> > > +  microchip,slow-io:
-> > > +    type: boolean
-> > > +    description: |
-> > > +      A GPIO used to trigger a change is sampling rate (lowering the chip power consumption).  
-> > 
-> > Use Linux coding style wrapping (as described in Linux Coding style). I
-> > am not going to tell you numbers because I want you to read the document
-> > first.
-> > 
-> > This is boolean, not GPIO. I don't understand. "A GPIO", so any GPIO or
-> > some specific? How is this property related to GPIO?
-> > 
-> >   
-> > > +      If configured in SLOW mode, if this pin is forced high, sampling rate is forced to eight  
-> > 
-> > This pin? This is boolean, not a GPIO. GPIOs are phandles.  
-> 
-> I said it on the previous version, but this really seems like it should
-> be something like "slow-io-gpios". I know Jonathan expressed some
-> concerns about having to deal with it on the operating system side (as
-> the pin is either an input & used for this slow-io control, or an output
-> and used as an interrupt) but that is, in my opinion, a problem for the
-> operating system & the binding should describe how the hardware works,
-> even if that is not convenient. With this sort of property, a GPIO hog
-> would be required to be set up (and the driver for that gpio controller
-> bound etc before the pac driver loads) for correction functionality if
-> this property was in the non-default state.
+kernel test robot noticed the following build errors:
 
-I'd forgotten the discussion completely ;)
-My main question was why bother with slow?  You can do it without the GPIO
-anyway as there is a register bit for it.
+[auto build test ERROR on lee-leds/for-leds-next]
+[also build test ERROR on robh/for-next linus/master v6.7-rc2 next-20231124]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-I can conceive of various possible reasons, the evil one being that it's
-actually out of the host processors control. Is that what we care about here?
-If so it's nothing to do with a GPIO in the Linux sense at all and we can
-assume that it's not connected to an interrupt at the same time.
+url:    https://github.com/intel-lab-lkp/linux/commits/Yuxi-Wang/dt-bindings-leds-add-mps-mp3326-LED/20231124-173610
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/lee/leds.git for-leds-next
+patch link:    https://lore.kernel.org/r/20231124093034.951-3-Yuxi.Wang%40monolithicpower.com
+patch subject: [PATCH 2/2] leds: add mp3326 driver
+config: i386-buildonly-randconfig-005-20231126 (https://download.01.org/0day-ci/archive/20231126/202311260229.JhaLyLj7-lkp@intel.com/config)
+compiler: clang version 16.0.4 (https://github.com/llvm/llvm-project.git ae42196bc493ffe877a7e3dff8be32035dea4d07)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231126/202311260229.JhaLyLj7-lkp@intel.com/reproduce)
 
-We 'might' need a control for that case that says configure the device for
-an external entity to use the slow pin.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202311260229.JhaLyLj7-lkp@intel.com/
 
-It wouldn't be the first device to have that sort of thing, but normally they
-are sequencing pins that are wired up to some mechanical device or similar.
+All errors (new ones prefixed by >>):
+
+   drivers/leds/leds-mp3326.c:543:6: warning: unused variable 'val' [-Wunused-variable]
+           int val;
+               ^
+   drivers/leds/leds-mp3326.c:611:3: error: field designator 'probe_new' does not refer to any field in type 'struct i2c_driver'
+           .probe_new = mp3326_leds_probe,
+            ^
+>> drivers/leds/leds-mp3326.c:619:1: error: type specifier missing, defaults to 'int'; ISO C99 and later do not support implicit int [-Wimplicit-int]
+   module_i2c_driver(mp3326_driver);
+   ^
+   int
+>> drivers/leds/leds-mp3326.c:619:19: error: a parameter list without types is only allowed in a function definition
+   module_i2c_driver(mp3326_driver);
+                     ^
+   1 warning and 3 errors generated.
 
 
-> 
-> > > +      samples/second. When it is forced low, the sampling rate is 1024 samples/second unless
-> > > +      a different sample rate has been programmed.
-> > > +
-> > > +patternProperties:
-> > > +  "^channel@[1-4]+$":
-> > > +    type: object
-> > > +    $ref: adc.yaml
-> > > +    description: Represents the external channels which are connected to the ADC.
-> > > +
-> > > +    properties:
-> > > +      reg:
-> > > +        items:
-> > > +          minimum: 1
-> > > +          maximum: 4
-> > > +
-> > > +      shunt-resistor-micro-ohms:
-> > > +        description: |
-> > > +          Value in micro Ohms of the shunt resistor connected between
-> > > +          the SENSE+ and SENSE- inputs, across which the current is measured. Value
-> > > +          is needed to compute the scaling of the measured current.
-> > > +
-> > > +    required:
-> > > +      - reg
-> > > +      - shunt-resistor-micro-ohms
-> > > +
-> > > +    unevaluatedProperties: false
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +  - "#address-cells"
-> > > +  - "#size-cells"
-> > > +
-> > > +allOf:
-> > > +  - if:
-> > > +      properties:
-> > > +        compatible:
-> > > +          contains:
-> > > +            const: interrupts  
-> > 
-> > 
-> > I don't understand what do you want to say here. I am also 100% sure you
-> > did not test it on a real case (maybe example passes but nothing more).  
-> 
-> As far as I understand, the same pin on the device is used for both an
-> output or an input depending on the configuration. As an input, it is
-> the "slow-io" control, and as an output it is an interrupt.
-> I think Marius is trying to convey that either this pin can be in
-> exclusively one state or another.
-> 
-> _However_ I am not sure that that is really the right thing to do - they
-> might well be mutually exclusive modes, but I think the decision can be
-> made at runtime, rather than at devicetree creation time. Say for
-> example the GPIO controller this is connected to is capable of acting as
-> an interrupt controller. Unless I am misunderstanding the runtime
-> configurability of this hardware, I think it is possible to actually
-> provide a "slow-io-gpios" and an interrupt property & let the operating
-> system decide at runtime which mode it wants to work in.
+vim +/int +619 drivers/leds/leds-mp3326.c
 
-I'll admit I've long forgotten what was going on here, but based just on
-this bit of text I agree. There is nothing 'stopping' us having a pin
-uses as either / or / both interrupt and gpio.
+   618	
+ > 619	module_i2c_driver(mp3326_driver);
 
-It'll be a bit messy to support in the driver as IIRC there are some sanity
-checks that limit combinations on IRQs and output GPIOS.  Can't remember
-how bad the dance to navigate it safely is.
-
-First version I'd just say pick one option if both are provided and
-don't support configuring it at runtime.
-
-Jonathan
- 
-
-
-> 
-> I'm off travelling at the moment Marius, but I should be back in work on
-> Monday if you want to have a chat about it & explain a bit more to me?
-> 
-> Cheers,
-> Conor.
-> 
-> >   
-> > > +    then:
-> > > +      properties:
-> > > +        microchip,slow-io: false
-> > > +    else:
-> > > +      if:
-> > > +        properties:
-> > > +          compatible:
-> > > +            contains:
-> > > +              const: microchip,slow-io
-> > > +      then:
-> > > +        properties:
-> > > +          interrupts: false  
-> > 
-> > Best regards,
-> > Krzysztof
-> >   
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
