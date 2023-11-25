@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-18894-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18895-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C05ED7F8FB0
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 23:16:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19E347F8FC4
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 23:25:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 50341B21039
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 22:16:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A85972814D4
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 22:25:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 928413158C;
-	Sat, 25 Nov 2023 22:16:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94BA52FC31;
+	Sat, 25 Nov 2023 22:25:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VfuP0yvr"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EqMijSsU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10281115
-	for <devicetree@vger.kernel.org>; Sat, 25 Nov 2023 14:16:44 -0800 (PST)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-9fffa4c4f43so420425866b.3
-        for <devicetree@vger.kernel.org>; Sat, 25 Nov 2023 14:16:43 -0800 (PST)
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5757712B
+	for <devicetree@vger.kernel.org>; Sat, 25 Nov 2023 14:24:56 -0800 (PST)
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-548f0b7ab11so4191584a12.1
+        for <devicetree@vger.kernel.org>; Sat, 25 Nov 2023 14:24:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700950602; x=1701555402; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1700951095; x=1701555895; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=F5UmuoyqLYU22WbRQLHQv9DdVyEXzJd3jXlUkopZXFo=;
-        b=VfuP0yvrBLJYFCAMxgnco4td7hSucha4Oz7AwKgD5Vk6I+SdWNUGGItf4KPx+H2Q8I
-         YHB1g0uB3IcTNuZ/yuBYf5fc4l5kd+R286nIIb5StPG8AVmw4KeQbR8XetJn0m80Occa
-         GtEEGffp+DNHy/1ZAcT6HiMJ14wUFJ47BFcDgpYLVyeUVFMmB+m6t4NqYFvogR7Z1DIC
-         hfZlBzWv82QiTvfoamJDl1zo3aP14+e7NfHeCTRFOD1XXvJQZlWtphnPdWsOX+Vl2jra
-         IZjVgUOpGtVaaVbsWEpccve+wKY7ToQg9+eRLqU2+0xHG9ARtn5K7PBZ0gJANTH/7TCU
-         pGIg==
+        bh=sKAE8m+7ShlD9mU1LCDDUsam3G8dOC6GVtW7kEar8Tc=;
+        b=EqMijSsURen2spKnCQW1poZAicjvumegPbTHTDP6sdEZOJPeXmkbMgCVA+g3YFWxEt
+         OzJ0dZaLli7bkhYiP0NDYAW3zcUBXPoSv+SQWfIunQH3CjHubnnkQvZeFElTROk6ZvlB
+         8gN5wTeSjfr9KqYA/Fq7sSG5hMai67MjLxzbcfZ5NDPHz4pIrNbYrRflhGBjOK8hqaaW
+         6X6L3l2JVOw+LZoyjdiNroQOKdCg+MZp0n6NWrAssb0T5aFO3u3JoLc8pNqeyv+60cIn
+         giUzmyplF6WiyawmJNyY/33/Ue22NbRgH8OZW3xCJ6Y48lmC8DPuazOZQETIRIXjkwMB
+         A0pA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700950602; x=1701555402;
+        d=1e100.net; s=20230601; t=1700951095; x=1701555895;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=F5UmuoyqLYU22WbRQLHQv9DdVyEXzJd3jXlUkopZXFo=;
-        b=Mzs5abFILvnHO00dYBwdlPmbeBIr+zLw/FsDXyAXu16Pbgr55XJXPGzhVG65lIt7EX
-         wf7nYwXwd70xHxtLYHGAna11kZi+UEpw2XbSpzoa+MZf+R1OgcS1LFeF+IsZGOF3OoOt
-         vj8CVaJ4abUiw9TzHCFxlALVRUNIYld2Xk7M2Vkavf3gGeSd/MBfzKihtmmSdbUXFsqC
-         AjkG0eJOUpXRUw74ZImGSI4XLpN5Tc8kIGoyJCead2zavX7kqFn2gr88YUCCAmHhWwbl
-         dpARYGnrVOvrThAPn+4/luwhUHtM8VU29mDpO12Su21QXxkvPOOQcVC6Z+n+W8j+HaOI
-         /Xxg==
-X-Gm-Message-State: AOJu0YxQhQyHSAnugYBXv6qPH2W9RmbWA3CxEyKMf0jlBl8Enk7X297A
-	a3zH7vObzRP1pGCXEiKvqW/WeQ==
-X-Google-Smtp-Source: AGHT+IEnIXW43aUJS2Tl7xKtLN87uxlxMCj4jhiu+X8wQZaLCC4VkGQ9WIC3iVHewMOEdDarrEnD0g==
-X-Received: by 2002:a17:906:2da:b0:9e4:6500:7540 with SMTP id 26-20020a17090602da00b009e465007540mr5200894ejk.58.1700950601908;
-        Sat, 25 Nov 2023 14:16:41 -0800 (PST)
+        bh=sKAE8m+7ShlD9mU1LCDDUsam3G8dOC6GVtW7kEar8Tc=;
+        b=Amjx3oR9lC7xnLNWpReyysi42PAg6z9u90E61FjO0KXe853rVG13hDUdl84nTOFTrQ
+         QlKUKA+aN/6xFe99vsm3db6+EbokEQbaYp5dT/Fnp/M46RVGllX63oOP2dMjA1dSBdU1
+         NCYTbKzH1O4ZV4PWLFmrASGXszCfFEz2Tg2MQ7hS6taXF3fSco6HpN8edStOxRISSO+Z
+         +vMnHKlSi4/7sZ33O27h99FFHxpAbAKfV88D0T6a0OyiUpLrX0ig5WV7/bLr0GKKwOwt
+         5xqNfzb4l8xHbT92A5R8tN0pPLcH5/vA77brCUGeDVT9eo9V4iaPk9SY/RH9zE4dSucE
+         igIg==
+X-Gm-Message-State: AOJu0YzD2nC+KwwXV3IdQBycUv7dhZXPfKLRLeS45jw38aGKP9VnJWrf
+	OTg7VmZn02KtwuR+MG/XP0CFww==
+X-Google-Smtp-Source: AGHT+IHuUyOggoOV9rwZMx7Pl9mYiZWI2U1vdaXQZtSxtbz3U2UaIsaZz3GqcbY0MyoGYPyQbjFpNw==
+X-Received: by 2002:a17:906:2246:b0:a0d:35d7:b14c with SMTP id 6-20020a170906224600b00a0d35d7b14cmr705313ejr.6.1700951094765;
+        Sat, 25 Nov 2023 14:24:54 -0800 (PST)
 Received: from [192.168.201.100] (178235187180.dynamic-4-waw-k-2-3-0.vectranet.pl. [178.235.187.180])
-        by smtp.gmail.com with ESMTPSA id cf16-20020a170906b2d000b0099bd7b26639sm3928731ejb.6.2023.11.25.14.16.40
+        by smtp.gmail.com with ESMTPSA id s7-20020a170906500700b00a0950451affsm2561765ejj.67.2023.11.25.14.24.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 25 Nov 2023 14:16:41 -0800 (PST)
-Message-ID: <2bb681c7-8a93-4010-b473-887d68c6a5d2@linaro.org>
-Date: Sat, 25 Nov 2023 23:16:39 +0100
+        Sat, 25 Nov 2023 14:24:54 -0800 (PST)
+Message-ID: <99190f51-59b5-4326-8c02-35529c280c2e@linaro.org>
+Date: Sat, 25 Nov 2023 23:24:50 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,19 +62,32 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] interconnect: qcom: Add SM6115 interconnect provider
- driver
+Subject: Re: [PATCH v3] docs: dt-bindings: add DTS Coding Style document
 Content-Language: en-US
-To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Georgi Djakov <djakov@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- Konrad Dybcio <konradybcio@kernel.org>
-References: <20231125-topic-6115icc-v1-0-fa51c0b556c9@linaro.org>
- <20231125-topic-6115icc-v1-2-fa51c0b556c9@linaro.org>
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ Andrew Davis <afd@ti.com>, Andrew Lunn <andrew@lunn.ch>,
+ Arnd Bergmann <arnd@arndb.de>, Bjorn Andersson <andersson@kernel.org>,
+ Chen-Yu Tsai <wens@kernel.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Heiko Stuebner <heiko@sntech.de>, Jonathan Corbet <corbet@lwn.net>,
+ Michal Simek <michal.simek@amd.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Nishanth Menon <nm@ti.com>,
+ Olof Johansson <olof@lixom.net>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
+ <zajec5@gmail.com>, linux-rockchip@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-arm-msm@vger.kernel.org, workflows@vger.kernel.org,
+ linux-doc@vger.kernel.org
+References: <20231125184422.12315-1-krzysztof.kozlowski@linaro.org>
+ <20231125193737.GD7486@pendragon.ideasonboard.com>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -111,40 +124,26 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20231125-topic-6115icc-v1-2-fa51c0b556c9@linaro.org>
+In-Reply-To: <20231125193737.GD7486@pendragon.ideasonboard.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 25.11.2023 16:59, Konrad Dybcio wrote:
-> Add a driver for managing NoC providers on SM6115.
+[...]
+>> +
+>> +3. Unit addresses shall use lowercase hex, without leading zeros (padding).
 > 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
-The following diff is missing:
+> I'm curious, what's the reason for this ? I think it makes the sources
+> less readable. If the rule is "just" because that's how DT sources are
+> written today and it would be too complicated to change that, that's
+> fine with me.
+One more thing not mentioned is "no 0x prefix" (the unit address is *always*
+interpreted as hex).
 
+Lowercase hex seems to be (in my experience?) the consensus for everything
+except preprocessor defines across the spectrum
 
-----o<----
-
-diff --git a/drivers/interconnect/qcom/sm6115.c b/drivers/interconnect/qcom/sm6115.c
-index d7600dfe56c0..5b21566d64a5 100644
---- a/drivers/interconnect/qcom/sm6115.c
-+++ b/drivers/interconnect/qcom/sm6115.c
-@@ -609,8 +609,8 @@ static struct qcom_icc_node xm_usb3_0 = {
- static struct qcom_icc_node ebi = {
-        .name = "ebi",
-        .id = SM6115_SLAVE_EBI_CH0,
--       .channels = 1,
--       .buswidth = 8,
-+       .channels = 2,
-+       .buswidth = 4,
-        .mas_rpm_id = -1,
-        .slv_rpm_id = 0,
- };
-
-----o<----
-
-Georgi, if everything else is fine, could you please squash it while
-applying? Otherwise I'll just amend it in v2.
+No leading zeroes.. I guess it was just eye-pleasing for people that have
+been doing devicetree to date, myself included.
 
 Konrad
 
