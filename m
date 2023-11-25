@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-18742-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18743-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A86967F8A02
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 11:38:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E7DB7F8A05
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 11:44:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DA6771C20A45
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 10:38:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 60C0F1C20BD2
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 10:44:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6571C3234;
-	Sat, 25 Nov 2023 10:38:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2512D2106;
+	Sat, 25 Nov 2023 10:44:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="grIPAevc"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="v9Nq8PC4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8459610E4
-	for <devicetree@vger.kernel.org>; Sat, 25 Nov 2023 02:37:58 -0800 (PST)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-a00a9d677fcso368106366b.0
-        for <devicetree@vger.kernel.org>; Sat, 25 Nov 2023 02:37:58 -0800 (PST)
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DAD410E7
+	for <devicetree@vger.kernel.org>; Sat, 25 Nov 2023 02:44:40 -0800 (PST)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-a049d19b63bso375847566b.2
+        for <devicetree@vger.kernel.org>; Sat, 25 Nov 2023 02:44:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700908677; x=1701513477; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1700909079; x=1701513879; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=uL68GlhAcKFhOb/g68gkWx6ePVIYvVItoEiLNHG799M=;
-        b=grIPAevcUTUGPq4vIKuPoDycpb5/co9qsQncKPCW0OeRuGhmc0S8MYd/BbReqXXMWl
-         JI52BRWMkldU40pYWD66Kz1T6qJ/WmKcj5y+rtSy9gTrWAt4ckyd/VrGQttu/NRy/62U
-         sDIPJmAb2p4TDZUZ/LPfBFQfAZyyax3Ab8UTbQnpQY4Wdwjxc6fyUu65E3ZlPwg4v0fB
-         KDhDl63tn0vUraWN3RgElIQ20qEyFsfE7ca4T3QUlspH2S1U27nPMcmkYPZEzIUeXQpX
-         JIzJtcCSgFqt3ROgxd5asqTI6r7NnfsBpj6gwAGKwNfjcEb63/LMpc47sTcg5ZG8HfOn
-         Tagw==
+        bh=i5Cp1vx3gVvbCmj7yjPQKKD5FRRXR8fk4il/qJSsZs0=;
+        b=v9Nq8PC4mXighOO2LDVjbya0mSFSGvbPl4mJtqAydwomeEji8ya1m3WTHm4FWNqAm8
+         nyTxENv6Sf8E4R3Y02wfgjDiyoP/y3E3MuqKtxtxbGvYDnJan025CjY9CyN/oYARAKbr
+         cl98TZmINNW6PkBqXigIOdhO7HvA66NFwWyCICZ0X2lZVdakK5gK9njajBVlOLc1thok
+         W/21Dc1ZzKb4KjhUQPm2MwZtrrBPqEmRBlvD3zRcbCs9OntUCtmF/ZQqmCQylVcg02GO
+         zlyti6BVEozTfWjZ9G8qevf/UttDCapyQz8kptEr0DZUP5h8Cs8f1aCQdZ/27f+EhepM
+         bLpw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700908677; x=1701513477;
+        d=1e100.net; s=20230601; t=1700909079; x=1701513879;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uL68GlhAcKFhOb/g68gkWx6ePVIYvVItoEiLNHG799M=;
-        b=HKcP9wu8lRqbVyDf+NFquZKSKofzx+eiaj9Dgu8wO0/UDeN6aoeEHeAmVVASyGJdfP
-         F8znEO3GB2vxOLh7kpt5vsBAUtWzgl7aBbJXEuHzPJk6esjqFwlMf+Q4ZUhPEcXO1xgi
-         uZ3GekXeashrg+ewAw6CYysN1KI94cG2azajzlSqbrVW0nzl5oRgizHGOHgG/BUPKxwv
-         klXs4sZINQYVU3+Wgj8IISDakaSKpHN0AS2Z8kI0FX6gBaEPhodmy8RDsvNWuqyhXxep
-         3n9uYktMVq7IprsGmVs9cqIcCxrc+Ie1Q+RidptCuE9dQ4CQ77MP+QyV7bYoMSaHr/gJ
-         chbg==
-X-Gm-Message-State: AOJu0YxAVqeDLX3oxQt+xfvYqpTWxPcH89HPFbt3v/0sksJgI46Ai9K6
-	PllO6hYH/ZhtPU9A1hqPG53gqw==
-X-Google-Smtp-Source: AGHT+IHz7qGIGE4WcmFejKToYecdRR4HXK2mcFzkDtqc028+qTo9Md8j9riiJ2hNb/XGJVurR6sWtA==
-X-Received: by 2002:a17:906:5187:b0:a0a:fdd7:6c2f with SMTP id y7-20020a170906518700b00a0afdd76c2fmr1507489ejk.74.1700908676972;
-        Sat, 25 Nov 2023 02:37:56 -0800 (PST)
+        bh=i5Cp1vx3gVvbCmj7yjPQKKD5FRRXR8fk4il/qJSsZs0=;
+        b=TbmgIU+DjyNox7TREbeELFo6j6IYu1FAVPEyTWZFeg1D0N+3wUZMzqV+HsSs9z5a1J
+         4ZxV4NTMvk1m4scMVjeXDJXYDkoQaCKl4lrF8w7miwLBOn9LKxSacCx8dlsSvtkGouCs
+         Wsu9zNFIfc1pd3msrQoHhjxFUC/rtyOLwJZU84JdZPc0OO/rANC8qXmX6lHKxgcJpxGK
+         cldDydMo/JNlWLNlBlX5rJybUxe3XO19Rrk+CudpPd1YLkhAtVhGfJhBssgFM3+6u7wU
+         GsYnBm85mIO6hPPIbbQWoiLay9BaYHZY0s5fGVCXEW7SYJXl3f0iZ2bkPqwXuOotEQZS
+         4YIg==
+X-Gm-Message-State: AOJu0YzMzm+ltr/48gvdF2MMcKZQ4cWc8NcT8XnjkZfsJzWv4pEYLV5A
+	pS59b9uXDfYOEBYi89Y2Z60npg==
+X-Google-Smtp-Source: AGHT+IEeAm/4J+tigujRp6ombtjYSDl6OzuU738PT+Tj7UmZiuQHgmWNLWnNgHXTM+RwBL9NAu4lJQ==
+X-Received: by 2002:a17:906:348c:b0:9e7:133a:5787 with SMTP id g12-20020a170906348c00b009e7133a5787mr4074090ejb.38.1700909078488;
+        Sat, 25 Nov 2023 02:44:38 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.100])
-        by smtp.gmail.com with ESMTPSA id v5-20020a170906488500b0099cc3c7ace2sm3326153ejq.140.2023.11.25.02.37.54
+        by smtp.gmail.com with ESMTPSA id l23-20020a170906231700b009ff1997ce86sm3323512eja.149.2023.11.25.02.44.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 25 Nov 2023 02:37:56 -0800 (PST)
-Message-ID: <e34c2746-8e93-48b8-9c96-690242fbf6e9@linaro.org>
-Date: Sat, 25 Nov 2023 11:37:54 +0100
+        Sat, 25 Nov 2023 02:44:37 -0800 (PST)
+Message-ID: <9ec78ce2-6b2f-4c31-9746-572b5e64fe87@linaro.org>
+Date: Sat, 25 Nov 2023 11:44:36 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,19 +62,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: phy: mediatek: tphy: add a property for
- force-mode switch
+Subject: Re: [PATCH 1/2] dt-bindings: leds: add mps mp3326 LED
 Content-Language: en-US
-To: Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>,
- Rob Herring <robh+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Macpaul Lin <macpaul.lin@mediatek.com>
-References: <20231125012303.760-1-chunfeng.yun@mediatek.com>
+To: Yuxi Wang <Yuxi.Wang@monolithicpower.com>, pavel@ucw.cz, lee@kernel.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc: linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
+ devicetree@vger.kernel.org, wyx137120466@gmail.com
+References: <20231124093034.951-1-Yuxi.Wang@monolithicpower.com>
+ <20231124093034.951-2-Yuxi.Wang@monolithicpower.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -120,37 +115,165 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231125012303.760-1-chunfeng.yun@mediatek.com>
+In-Reply-To: <20231124093034.951-2-Yuxi.Wang@monolithicpower.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 25/11/2023 02:23, Chunfeng Yun wrote:
-> Due to some old SoCs with shared t-phy only support force-mode switch, and
-> can't use compatible to distinguish between shared and non-shared t-phy,
-> add a property to supported it.
-> But now prefer to use "mediatek,syscon-type" on new SoC as far as possible.
+On 24/11/2023 10:30, Yuxi Wang wrote:
+> Document mps mp3326 LED driver devicetree bindings.
 > 
-> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> Signed-off-by: Yuxi Wang <Yuxi.Wang@monolithicpower.com>
 > ---
->  Documentation/devicetree/bindings/phy/mediatek,tphy.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
+>  .../devicetree/bindings/leds/mps,mp3326.yaml  | 143 ++++++++++++++++++
+>  1 file changed, 143 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/leds/mps,mp3326.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml b/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
-> index 2bb91542e984..eedba5b7025e 100644
-> --- a/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
-> @@ -235,6 +235,12 @@ patternProperties:
->            Specify the flag to enable BC1.2 if support it
->          type: boolean
->  
-> +      mediatek,force-mode:
-> +        description:
-> +          Use force mode to switch shared phy mode, perfer to use the bellow
+> diff --git a/Documentation/devicetree/bindings/leds/mps,mp3326.yaml b/Documentation/devicetree/bindings/leds/mps,mp3326.yaml
+> new file mode 100644
+> index 000000000000..5f6bde46ccc8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/leds/mps,mp3326.yaml
+> @@ -0,0 +1,143 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/leds/mps,mp3326.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MPS MP3326 RGB/White LED Driver
+> +
+> +maintainers:
+> +  - Yuxi Wang <Yuxi.Wang@monolithicpower.com>
+> +
+> +description: |
+> +  The MP3326 is a RGB/White LED driver with I2C interface.
+> +
+> +  For more product information please see the link below:
+> +  https://www.monolithicpower.com/en/products/mp3326.html
+> +
+> +properties:
+> +  compatible:
+> +    const: mps,mp3326
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  multi-led:
+> +    type: object
 
-I still do not understand what is the "force mode" you want to use. What
-modes do you have? What are the characteristics of force mode?
+Missing ref to multi-led class. Please open existing bindings with such
+node and take a look how it is done there.
 
-Also, please run spellcheck.
+> +    unevaluatedProperties: false
+> +
+> +    properties:
+> +      "#address-cells":
+> +        const: 1
+> +
+> +      "#size-cells":
+> +        const: 0
+> +
+> +      color:
+> +        description: RGB module
+
+Drop property
+
+> +
+> +    patternProperties:
+> +      "^led@[0-3]$":
+
+This says 4...
+
+> +        type: object
+> +        $ref: common.yaml#
+> +        unevaluatedProperties: false
+> +
+> +        properties:
+> +          reg:
+> +            description: Index of the LED.
+> +            minimum: 1
+> +            maximum: 16
+
+But this says 16.
+
+Also reg does not match unit address. Minimum reg is 1, but unit address
+is 0.
+
+> +
+> +        required:
+> +          - reg
+> +          - color
+> +
+> +    required:
+> +      - "#address-cells"
+> +      - "#size-cells"
+> +      - color
+
+Drop color, it is coming with class-multicolor
+
+
+> +
+> +patternProperties:
+> +  "^led@[0-9]$":
+
+It's even weirded. Here you have 10 leds with indices 0-9
+
+> +    type: object
+> +    $ref: common.yaml#
+> +    unevaluatedProperties: false
+> +
+> +    properties:
+> +      reg:
+> +        description: Index of the LED.
+> +        minimum: 1
+> +        maximum: 16
+
+bu there 16! With indices 1-16.
+
+It's a mess.
+
+
+> +    required:
+> +      - reg
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/leds/common.h>
+> +
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        led-controller@30 {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +            compatible = "mps,mp3326";
+> +            reg = <0x30>;
+> +            multi-led {
+> +              #address-cells = <1>;
+> +              #size-cells = <0>;
+> +              color = <LED_COLOR_ID_RGB>;
+> +
+> +              led@0 {
+> +                  reg  = <1>;
+
+OK, you did not test it. Test your DTS before sending.
+
+Also, messed indentation. Use 4 spaces.
 
 Best regards,
 Krzysztof
