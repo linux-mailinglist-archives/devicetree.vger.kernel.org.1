@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-18769-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18770-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B2917F8A97
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 13:11:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 80BCA7F8A9C
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 13:11:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9CF371C2095D
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 12:11:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B2D661C20C6F
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 12:11:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 100D8F9EA;
-	Sat, 25 Nov 2023 12:11:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1342AF9F7;
+	Sat, 25 Nov 2023 12:11:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FLMtnGvr"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zBYiGqg7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5D6CDE
-	for <devicetree@vger.kernel.org>; Sat, 25 Nov 2023 04:10:59 -0800 (PST)
-Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-a00b01955acso397920166b.1
-        for <devicetree@vger.kernel.org>; Sat, 25 Nov 2023 04:10:59 -0800 (PST)
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8218810EB
+	for <devicetree@vger.kernel.org>; Sat, 25 Nov 2023 04:11:41 -0800 (PST)
+Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-a00c200782dso399564166b.1
+        for <devicetree@vger.kernel.org>; Sat, 25 Nov 2023 04:11:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700914258; x=1701519058; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1700914300; x=1701519100; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=e+Amqg9FHbKoht5Ud+nnZydf3qC2jMGGuvZ/5rRQA5A=;
-        b=FLMtnGvruMkNxm1DOMl9kECUFlYMynUZlc9N73e8mClSmduZylDaoemTxvAyH1lAI6
-         gLrnMxoO1TPvseINrNZHYb9bjS+U22SH/zynFH7GXoJHfvNzuOAMI0nTGUikmKUY2yGL
-         VtyiH3IZNQZX7IP+vdc0vznU7Y7AjdvL5XEO73Amz3rK90B59BV1f+aAzdnStnDcwHNy
-         Ll+dwrIoFrJkzByC+zz0ATJS3HiTf6mieeo7klvytoJp7gUNaeXg4MnRl3SAx3iw/5Nr
-         DI5RkdyD+16RhIA/DsB/OaK86iTHGGIQ/PkG/IoPYkqQKPCKdWGircbVGRhuWUR+3un+
-         j8zw==
+        bh=BibnSEZpISlT8UhQtKnCRrY9770lSPJKsFHDzwtX8PY=;
+        b=zBYiGqg78k35Vm9Px7jD3U2lt5IMZi1H/9D0/Dt5RZmlucWnEk9jRocfsJX+AF84Z4
+         IdbckwHyblmlK/IZ4p/4Og/wdYdMFaFxBOOQ8Sr/g2Gbxi/wUjsQ7SuDoO2uhj6M7rJM
+         d0sGTTorwMikpgJnVEzE5Og5T9z10Y9laRfeWqq3eJrLaS2hWzoVXx1xbjxQeI4WXo4h
+         qEOcIvJN65Ds2Mr2E5jXt7XR+35xPVRSeoyG54PyEw4FalRiWx7gFx8KwibRLeoSb5Om
+         xQ7krQWheVdSUWHnO8ObTj6rZZ2fL/IAaWAaFutd1pIofjTfDDUERYmtVFNBmNJv3J0m
+         SqOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700914258; x=1701519058;
+        d=1e100.net; s=20230601; t=1700914300; x=1701519100;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=e+Amqg9FHbKoht5Ud+nnZydf3qC2jMGGuvZ/5rRQA5A=;
-        b=G1GuCc09+CUGfSLoYhWHrNIuWXx+onrmPc5tVfwCuzR0e4/BABshGxBebqezBcQ6+J
-         JdFFU0qGHNqv42NkbGw88DyWmGiDzq4fBAB/6sMKxtf1FC7jRKQW7oGIMazeuyZv8y1z
-         HTHKAD08WCTNybZNLkAdWBiTRrTAO0azmylcKwR+UsDJoDIUDtLVxqvULH2/1LYABjgj
-         9ov+OwQANS/UScEnPCXeTWxG3rVKzc9ViyUWg46kIR6Oag3vxxyv3nRQ/AVhdzVpmDKo
-         WQqLDrjUqYvBbloclJSwnkq16EQY87elWui43N5usfwYv/P5qLJBjL2hJ/ASKF+an77G
-         ga2A==
-X-Gm-Message-State: AOJu0Yxqf+0+ZqyDBxgassiuADx9toiBsUPjVGeWKAgMBIQmQUrDdrN5
-	i55Wh5bmOTxQPu7gr2pdwEYfOQ==
-X-Google-Smtp-Source: AGHT+IGDNxqVlq2BQ+aouPmLDKGU4qmcMspBbSDmnzNRwe/+GYmpxv+JRz5sQUlEuIxQh8J6TTLTPw==
-X-Received: by 2002:a17:906:2c4c:b0:a04:bd7c:b7f7 with SMTP id f12-20020a1709062c4c00b00a04bd7cb7f7mr4277848ejh.64.1700914258072;
-        Sat, 25 Nov 2023 04:10:58 -0800 (PST)
+        bh=BibnSEZpISlT8UhQtKnCRrY9770lSPJKsFHDzwtX8PY=;
+        b=g3m3hKK0KO3pzigiL6m5T/iDphIC4R2MZK+IfpVIcyZadOyp16wJ61QHHzkBQ8g0vT
+         NMYGWv5gruOvpowMXWBEDZx/cwYD7zNhE1CYSgIQV7budRB994Q9NrNW7WcAVgN4gyoH
+         VF7638/tg37d1hy6to4NMbil04b8viZM7vTBlCs6emEF3Nxby9dHo9AnV+fWPUSBsIPP
+         6xp9x3hdG6UQQoAfuzvEaf2KWE3M/uXLtkGS8L4fWIsMSacfq2QX78AHcUxbJahc7zeq
+         CsWLhnx3IOtAD73zztm7knlf4wg1OKrOY5a3Rcgoe1Z8Wih9EEsb9maTun9tH6bJzJ68
+         vp8Q==
+X-Gm-Message-State: AOJu0YxPRuz+WE2uu+K+e9TgoCPIiNxiTWjmhn8gIiV9kM5ycahUjEbM
+	ALACgpjeRFViH+FWbdfH9ZJuaw==
+X-Google-Smtp-Source: AGHT+IFa/iXxJ9iimUN+ucFkj4t/Cda9IuVXxBe2dLoRKtqPgGYuSyYxFC9ktveyui1TOL44x2KJJA==
+X-Received: by 2002:a17:906:5345:b0:a0c:5dc9:5238 with SMTP id j5-20020a170906534500b00a0c5dc95238mr420222ejo.38.1700914300015;
+        Sat, 25 Nov 2023 04:11:40 -0800 (PST)
 Received: from [192.168.201.100] (178235187180.dynamic-4-waw-k-2-3-0.vectranet.pl. [178.235.187.180])
-        by smtp.gmail.com with ESMTPSA id gw4-20020a170906f14400b009e6af2efd77sm3347884ejb.45.2023.11.25.04.10.56
+        by smtp.gmail.com with ESMTPSA id gw4-20020a170906f14400b009e6af2efd77sm3347884ejb.45.2023.11.25.04.11.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 25 Nov 2023 04:10:57 -0800 (PST)
-Message-ID: <a7dd66b3-460e-47c8-a426-a7f9924874ce@linaro.org>
-Date: Sat, 25 Nov 2023 13:10:56 +0100
+        Sat, 25 Nov 2023 04:11:39 -0800 (PST)
+Message-ID: <abf67fe4-bd77-4e9a-afba-b714a15e8ee2@linaro.org>
+Date: Sat, 25 Nov 2023 13:11:38 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,8 +62,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] arm64: dts: qcom: sm8250-xiaomi-elish: Add pm8150b
- type-c node
+Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: sm8250-xiaomi-elish: Enable
+ usb_1 otg
 Content-Language: en-US
 To: Jianhua Lu <lujianhua000@gmail.com>, Andy Gross <agross@kernel.org>,
  Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
@@ -73,7 +73,7 @@ Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
  phone-devel@vger.kernel.org
 References: <20231125023343.10939-1-lujianhua000@gmail.com>
- <20231125023343.10939-2-lujianhua000@gmail.com>
+ <20231125023343.10939-3-lujianhua000@gmail.com>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -110,15 +110,20 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20231125023343.10939-2-lujianhua000@gmail.com>
+In-Reply-To: <20231125023343.10939-3-lujianhua000@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 25.11.2023 03:33, Jianhua Lu wrote:
-> Add type-c node to feature otg function.
+> Change dr_mode to otg and set usb_role_swith property to enable
+switch
+
+> usb otg.
 > 
 > Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
 > ---
+Guess this should be squashed with p1 but okay..
+
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
