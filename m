@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-18767-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18768-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA7037F8A92
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 13:09:35 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 922DA7F8A94
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 13:10:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8B8CDB212AA
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 12:09:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C3F3C1C20CDD
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 12:10:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC552E560;
-	Sat, 25 Nov 2023 12:09:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C04D5F9EF;
+	Sat, 25 Nov 2023 12:10:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lOnznw1G"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="e6F8Uy9g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E818DE
-	for <devicetree@vger.kernel.org>; Sat, 25 Nov 2023 04:09:24 -0800 (PST)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-9fa2714e828so375906266b.1
-        for <devicetree@vger.kernel.org>; Sat, 25 Nov 2023 04:09:24 -0800 (PST)
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3B36D7
+	for <devicetree@vger.kernel.org>; Sat, 25 Nov 2023 04:10:08 -0800 (PST)
+Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-54a94e68fb1so5597456a12.0
+        for <devicetree@vger.kernel.org>; Sat, 25 Nov 2023 04:10:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700914163; x=1701518963; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1700914207; x=1701519007; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=VgispGlB/Vogj3O2jRA/99ot46yAJSqn7bnbdiR7nmw=;
-        b=lOnznw1Ghyep38crzua4Z9kh2vwjgL2zc/f5Ii9Db7+yRe2c7Z+p9No5U4lBNkf2Hb
-         93WDVBfB5mMdEBfv+WHXWjtD5R8W+rM+ogrf7mIIAHB/s+DIV972DRKklO6pyuJ12Wh7
-         4AawvzdKy3C2jQyQvndMgbGdtP43D1leicXEFwMAq9FNLtABIICnWk9VLt+ZFcuJU8Ga
-         hLrUePE4jZW44ZytIR11pxBvq0j6kmEEFwBDlrt11v/+CP9a+fhOZUTThtujjFh9KHXi
-         1sQLtQ7UeQ+ZIH6tlvnWAutXg9bbaYjTcJyl+oHuKw8lDWRaPSrDi8SdFGzAoxMbFJrL
-         Qegw==
+        bh=0ne3LFIkmsbmi3RgcTltZ5JX2XL/7yv4bhm1K2gnu5s=;
+        b=e6F8Uy9gbn4cuQS4XMt2T67CERRGdZ3v6mAxLsVbxKQ/BVuodyhTHWrHA3aKymLMoo
+         Oayi6Fkpa8Mtc4gNZ1v4YyQlo2xS0njXjRJd69IxtZPwfE3r/Y27eB48A53FVOAHJhOZ
+         X71Ahluxfg4NfEtUdJKe402MOGVlGukWJeTxUb0QJx0toCzD+rnfhqbvnWzalMXV2pj+
+         tkylgGMcZdDV1cQFfPLh9SUEWxgOE77bZ9YxVyUQwYne3k1bGTaDzg3TI+LaRYG08iiE
+         A/S8PjI1kp8e0UWwlyN+5WQqeB1XyBqSy9mJsKljTYGF4X5iMrufWbhHjbe65G2GYo86
+         dtow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700914163; x=1701518963;
+        d=1e100.net; s=20230601; t=1700914207; x=1701519007;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=VgispGlB/Vogj3O2jRA/99ot46yAJSqn7bnbdiR7nmw=;
-        b=amMihCPce5J78T0Hxfz9dsen/GwwTpeg+QTxQpCoKb5s0RI0ethV+UUKtPINDzfhse
-         6z7OW7z1eV83XEZ8sa9hvpgy5dxhxi4m7V+CCU5Iv3IfkjwP7ELoXr+hW+LhxKpdLCHA
-         i0QSMvOEpYkQ+fJuvIKPSpyQfRwT78pIgrNeF/CAtobiaz3l2rNdDQPbAa9jEex+yncK
-         oYvRFt+RN5eIpJfHZ7xKCtLnRPo1ESBugA9FlhvINSYF1dcXETdB6dd1HscXtIX5thSq
-         N3+utpbbuSSm7Dq74Rx3gVMhJWJJdVQTNQ8D/s7b4P+qdksfZak7PJcJvI4sCZ31Pt1N
-         abJw==
-X-Gm-Message-State: AOJu0YxXaDImPUPiFp3KYhsvwJ+aUIuAxEb0ag1cgQGJYsUXfQ0hXbSt
-	mSZEpc5eJme3TP7R88xsT4mT5A==
-X-Google-Smtp-Source: AGHT+IGEK5umheP6JPfzRi9HgIdCTuo3lZLa9hajwZqnEDRbtozQjh9YQQAf4l7Q4ZpR0YTAUnrzJA==
-X-Received: by 2002:a17:906:2c4d:b0:9d4:84b6:8715 with SMTP id f13-20020a1709062c4d00b009d484b68715mr4095357ejh.52.1700914163075;
-        Sat, 25 Nov 2023 04:09:23 -0800 (PST)
+        bh=0ne3LFIkmsbmi3RgcTltZ5JX2XL/7yv4bhm1K2gnu5s=;
+        b=oWjm7Atb1tjbs5KXwavz7IwF+VcQD16v2ifKOZm7kHxcLcB1xc9c/znTLDxeY5ohaq
+         C0rS0zAkWn/vsGE6oqexfncXBfpRq0wMJr8R2wUfQq6JHVgMesee4D/Z1/qgdFm8wtbj
+         PecX5VPrloGu59BRLF2vUeIs94dFq2OuhyvMvA7Q+0A6PUf50/vaOwO7MId1Ho/vyBL5
+         TMle08pKqWUYYtQPN8p3kyzm+vlVFbic5NNA3vWUD3/7iTkNQI4hq5Xo3OcJbH9FiqSw
+         55upoXd63a+Cu9tPaLpxMrJcLhIvLddgGF5GbAxHZJ6HwILU5A2SkvLwmhoxaXL98cpC
+         /tHg==
+X-Gm-Message-State: AOJu0YzY56vJkOKWEkGoRL5d051aWJNl/NQ4F6KToorHEDMWNsJIJHDC
+	5cNNUiLxPqNf1z17wCZrPBk3Cw==
+X-Google-Smtp-Source: AGHT+IFOmnAkGclZmKq8xPureQ/o4yixSNKuEvy2d7uscr4cLd7TAG1kTSku+5gHPxk8QX6KqfHa3g==
+X-Received: by 2002:a17:906:2088:b0:9ef:b466:abe0 with SMTP id 8-20020a170906208800b009efb466abe0mr5195557ejq.8.1700914207016;
+        Sat, 25 Nov 2023 04:10:07 -0800 (PST)
 Received: from [192.168.201.100] (178235187180.dynamic-4-waw-k-2-3-0.vectranet.pl. [178.235.187.180])
-        by smtp.gmail.com with ESMTPSA id gw4-20020a170906f14400b009e6af2efd77sm3347884ejb.45.2023.11.25.04.09.21
+        by smtp.gmail.com with ESMTPSA id gw4-20020a170906f14400b009e6af2efd77sm3347884ejb.45.2023.11.25.04.10.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 25 Nov 2023 04:09:22 -0800 (PST)
-Message-ID: <0f7e96c9-de56-415b-bd26-86c7a612dd46@linaro.org>
-Date: Sat, 25 Nov 2023 13:09:21 +0100
+        Sat, 25 Nov 2023 04:10:06 -0800 (PST)
+Message-ID: <332b87ca-56af-4eef-93ba-b8b1b17d3470@linaro.org>
+Date: Sat, 25 Nov 2023 13:10:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,19 +62,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 1/2] Add a compatible for Xiaomi Pad 6.
+Subject: Re: [PATCH v2 1/3] arm64: dts: qcom: sm8250-xiaomi-elish: Fix typos
 Content-Language: en-US
-To: Greg KH <gregkh@linuxfoundation.org>, Luka Panio <lukapanio@gmail.com>
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
+To: Jianhua Lu <lujianhua000@gmail.com>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Kees Cook <keescook@chromium.org>,
- Tony Luck <tony.luck@intel.com>, "Guilherme G . Piccoli"
- <gpiccoli@igalia.com>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-hardening@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
-References: <20231124212732.731419-1-lukapanio@gmail.com>
- <2023112529-fetch-unwritten-bdbd@gregkh>
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ phone-devel@vger.kernel.org
+References: <20231125023343.10939-1-lujianhua000@gmail.com>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -111,25 +108,18 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <2023112529-fetch-unwritten-bdbd@gregkh>
+In-Reply-To: <20231125023343.10939-1-lujianhua000@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 25.11.2023 07:53, Greg KH wrote:
-> On Fri, Nov 24, 2023 at 10:27:31PM +0100, Luka Panio wrote:
->> Acked-by: Conor Dooley <conor.dooley@microchip.com>
->> Signed-off-by: Luka Panio <lukapanio@gmail.com>
->>
->> ---
->> v2:
->> Update commit message
+On 25.11.2023 03:33, Jianhua Lu wrote:
+> There are two typos in this dtsi, so fix it.
+>   classis -> chassis.
+>   80700000 -> 80600000
 > 
-> What commit message?  I know I can't take patches without any changelog
-> text, maybe other maintainers are more loose?
-It was there the last time around, sounds like whatever was used to
-generate the patch files got a bit drunk
-
-https://lore.kernel.org/linux-arm-msm/20231024063740.4975-1-lukapanio@gmail.com/
+> Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
 
