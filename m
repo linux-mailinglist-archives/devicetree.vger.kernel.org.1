@@ -1,330 +1,132 @@
-Return-Path: <devicetree+bounces-18777-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18778-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BBB77F8ABE
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 13:26:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E8D57F8AFB
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 13:57:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5EA341C20CAB
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 12:26:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1B36C2815DB
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 12:56:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F423BFBF3;
-	Sat, 25 Nov 2023 12:26:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 162DBFC1E;
+	Sat, 25 Nov 2023 12:56:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kycsenS2"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ay4LvuEu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4B45D301;
-	Sat, 25 Nov 2023 12:26:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF557C433C7;
-	Sat, 25 Nov 2023 12:26:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700915204;
-	bh=sN2RXnutKRKrOHSA14p+xIODmdty21sisiNrxS+AUDg=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=kycsenS2fbwm3vPrWVjKGm8M2c6Nk1CEJIB4hkvSIfgQgqInrYgCWbQEyj7Ea+Nst
-	 QxooLL6tQXJCuWjKwW3beUttAhHXxlT1KbWCLDbcm9Ql0+wbj3LjOPEwzSJNChty+V
-	 EgB6+gvO45kt2Qpqq1XqWk0DWj3CN457NmhgK0Tfr98lfQqAKdc0u00S2BKTw4+2cz
-	 4iHBW1ax7zlNOtieGLLHQGuu5Dimp7ZuqRWI/w1jmWy1XYXaNH/3oPya8f0OOl686x
-	 BOxWmnfAUIPgHGFdIUvmDrTCok6/+Fugie9BDsTyqFWhpPnFm3Wt0IJqDjL3ykbUeu
-	 D+MhIQjvZ1ZCQ==
-Date: Sat, 25 Nov 2023 12:26:35 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Anshul Dalal <anshulusr@gmail.com>
-Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, Lars-Peter
- Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- linux-kernel-mentees@lists.linuxfoundation.org
-Subject: Re: [PATCH v4 3/3] iio: chemical: add support for Aosong AGS02MA
-Message-ID: <20231125122635.77186f4e@jic23-huawei>
-In-Reply-To: <20231125100139.193584-3-anshulusr@gmail.com>
-References: <20231125100139.193584-1-anshulusr@gmail.com>
-	<20231125100139.193584-3-anshulusr@gmail.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74869A1
+	for <devicetree@vger.kernel.org>; Sat, 25 Nov 2023 04:56:52 -0800 (PST)
+Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-5482df11e73so3651819a12.0
+        for <devicetree@vger.kernel.org>; Sat, 25 Nov 2023 04:56:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1700917011; x=1701521811; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=czOs3NcJUUXQ6TvoXbjsk/IbutSpwpgfOeolvWDt+k0=;
+        b=Ay4LvuEuookjeTm9ommK9LkB4M6F/aaLYsKKmT0QIJMcvRAnMzeaPaTxib+VZg+mn7
+         jJJDFpWB9088yV0R+s31RIz45c6xckTegSrnMbJ2xpjyNzd7kkXSK8NdPvXpXXkNts6N
+         h5kaq8FD4O4YQEmunkVK/GGYK3wg20Uch8sJX9xadGByHjJNqizav3kwlgr5zkvthyNH
+         3MTfdmFWW+NEyHRTlDzSTvR2Oe/wfveGDPPlIucWWs5gxeTrA+fiZw9RNGD6UH43wQxP
+         fOYPlvYxNA78FLCxm8CeWVrjU9RiuqvpJSNbaQ9SJYSMMZ8R2m2CeXSaYgYFdZYzvABo
+         3oRA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700917011; x=1701521811;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=czOs3NcJUUXQ6TvoXbjsk/IbutSpwpgfOeolvWDt+k0=;
+        b=wgRecbkjbFJeU99TZVxVtkv0VOcQliUSgQqNCSkkqpSkSA1NAdXUwPkR5TxGF28VhO
+         1a1t0S5vyqYkhQzxoIW8aPazi58bjuOSJ9aRQhpris4Fx06h9Z2N/TEHB/LJU+zOOtvF
+         E95EosEotAENkRvAlIEH3Il/YwFDZs6nJuh6EStO8uGlO+s5rlY8DbgoDCnnoKS54jWn
+         TTrAUIdR+CELLqaJSNOnmAVbFULouvr0i7vOfmSTGKYaAp81JDjU2rag3ocBkn6Opp81
+         R/7zlGukX/xL1KQ8n4UB7J3xrUeXyO6QYN+AO2NeNPh1rr0kxRYBczpe1xlrl9PK82mU
+         JmNA==
+X-Gm-Message-State: AOJu0YxIqh8A15tLM1qVJ9XL91ssT6WQsD/zLmuAl+njo5eDl6HxGNJO
+	C9pG9btmKzyRUAWYBM0LYjxHYA==
+X-Google-Smtp-Source: AGHT+IFdXYKV7LbfzbDEeh71TJ5AUg5pnKtwZk5+IqrMeTYt+hWq78Jf1aravz5shRoRrzmeCUqe+g==
+X-Received: by 2002:a05:6402:31e4:b0:54a:fb41:14c with SMTP id dy4-20020a05640231e400b0054afb41014cmr3470461edb.36.1700917010873;
+        Sat, 25 Nov 2023 04:56:50 -0800 (PST)
+Received: from [192.168.201.100] (178235187180.dynamic-4-waw-k-2-3-0.vectranet.pl. [178.235.187.180])
+        by smtp.gmail.com with ESMTPSA id eh9-20020a0564020f8900b005486f7f654dsm3008547edb.7.2023.11.25.04.56.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 25 Nov 2023 04:56:50 -0800 (PST)
+Message-ID: <cfcea2d9-7f7b-4434-b3a9-ea2fd1bee965@linaro.org>
+Date: Sat, 25 Nov 2023 13:56:48 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 7/8] arm64: dts: qcom: sm8650-mtp: add interconnect
+ dependent device nodes
+Content-Language: en-US
+To: Neil Armstrong <neil.armstrong@linaro.org>, Andy Gross
+ <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20231124-topic-sm8650-upstream-dt-v4-0-e402e73cc5f0@linaro.org>
+ <20231124-topic-sm8650-upstream-dt-v4-7-e402e73cc5f0@linaro.org>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20231124-topic-sm8650-upstream-dt-v4-7-e402e73cc5f0@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On Sat, 25 Nov 2023 15:31:38 +0530
-Anshul Dalal <anshulusr@gmail.com> wrote:
-Hi Anshul
-
-Comments inline.
-
-
-> A simple driver for the TVOC (Total Volatile Organic Compounds)
-> sensor from Aosong: AGS02MA
+On 24.11.2023 10:20, Neil Armstrong wrote:
+> Now interconnect dependent devices are added in sm8650 DTSI,
+> now enable more devices for the Qualcomm SM8650 MTP board:
+> - PCIe
+> - Display
+> - DSPs
+> - SDCard
+> - UFS
+> - USB role switch with PMIC Glink
 > 
-> Steps in reading the VOC sensor value over i2c:
->   1. Read 5 bytes from the register `AGS02MA_TVOC_READ_REG` [0x00]
->   2. The first 4 bytes are taken as the big endian sensor data with final
->      byte being the CRC
->   3. The CRC is verified and the value is returned over an
->      `IIO_CHAN_INFO_RAW` channel as percents
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-We have standard units for VOC sensors of percents. So if your device
-already outputs in that you should make it an IIO_CHAN_INFO_PROCESSED
-to reflect that.  If not, I'd expect to see a IIO_CHAN_INFO_SCALE
-for any necessary conversion.
-
-> 
-> Tested on Raspberry Pi Zero 2W
-> 
-> Datasheet:
->   https://asairsensors.com/wp-content/uploads/2021/09/AGS02MA.pdf
-Make this a formal tag in the tag block below.
-> Product-Page:
->   http://www.aosong.com/m/en/products-33.html
-This one isn't a standard tag, so fine to keep as you have it here.
-> 
-> Signed-off-by: Anshul Dalal <anshulusr@gmail.com>
-
-...
-
-> diff --git a/drivers/iio/chemical/ags02ma.c b/drivers/iio/chemical/ags02ma.c
-> new file mode 100644
-> index 000000000000..b23160eac99f
-> --- /dev/null
-> +++ b/drivers/iio/chemical/ags02ma.c
-> @@ -0,0 +1,168 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +/*
-> + * Copyright (C) 2023 Anshul Dalal <anshulusr@gmail.com>
-> + *
-> + * Driver for Aosong AGS02MA
-> + *
-> + * Datasheet:
-> + *   https://asairsensors.com/wp-content/uploads/2021/09/AGS02MA.pdf
-> + * Product Page:
-> + *   http://www.aosong.com/m/en/products-33.html
-> + *
-> + * TODO:
-> + *   - Support for ug/m^3 units of measurement
-
-Why? I'd assume that's some linear conversion of the percent value.  Leave
-that to userspace.
-
-> + */
-> +
-> +#include <linux/crc8.h>
-> +#include <linux/delay.h>
-> +#include <linux/i2c.h>
-> +#include <linux/iio/iio.h>
-> +#include <linux/module.h>
-> +
-> +#define AGS02MA_DEVICE_NAME		   "ags02ma"
-> +
-> +#define AGS02MA_TVOC_READ_REG		   0x00
-> +#define AGS02MA_VERSION_REG		   0x11
-> +
-> +#define AGS02MA_VERSION_PROCESSING_DELAY   30
-> +#define AGS02MA_TVOC_READ_PROCESSING_DELAY 1500
-> +
-> +#define AGS02MA_CRC8_INIT		   0xff
-> +#define AGS02MA_CRC8_POLYNOMIAL		   0x31
-> +#define AGS02MA_PPB_PERCENT_CONVERSION     10000000
-> +
-> +DECLARE_CRC8_TABLE(ags02ma_crc8_table);
-> +
-> +struct ags02ma_data {
-> +	struct i2c_client *client;
-> +};
-> +
-> +struct ags02ma_reading {
-> +	__be32 data;
-> +	u8 crc;
-> +} __packed;
-> +
-> +static u32 ags02ma_register_read(struct i2c_client *client, u8 reg, u16 delay)
-> +{
-> +	int ret;
-> +	u8 crc;
-> +	struct ags02ma_reading read_buffer;
-> +
-> +	ret = i2c_master_send(client, &reg, sizeof(reg));
-> +	if (ret < 0) {
-> +		dev_err(&client->dev,
-> +			"Failed to send data to register 0x%x: %d", reg, ret);
-> +		return ret;
-> +	}
-> +
-> +	/* Processing Delay, Check Table 7.7 in the datasheet */
-> +	msleep_interruptible(delay);
-> +
-> +	ret = i2c_master_recv(client, (u8 *)&read_buffer, sizeof(read_buffer));
-> +	if (ret < 0) {
-> +		dev_err(&client->dev,
-> +			"Failed to receive from register 0x%x: %d", reg, ret);
-> +		return ret;
-
-function returns a u32... 
-I'd separate the return value from the data read.  Use
-a u32 *val parameter for the data.
-
-> +	}
-> +
-> +	crc = crc8(ags02ma_crc8_table, (u8 *)&read_buffer.data,
-> +		   sizeof(read_buffer.data), AGS02MA_CRC8_INIT);
-> +	if (crc != read_buffer.crc) {
-> +		dev_err(&client->dev, "CRC error\n");
-> +		return -EIO;
-> +	}
-> +
-> +	return be32_to_cpu(read_buffer.data);
-
-> +}
-> +
-> +static int ags02ma_read_raw(struct iio_dev *iio_device,
-> +			    struct iio_chan_spec const *chan, int *val,
-> +			    int *val2, long mask)
-> +{
-> +	int ret;
-> +	struct ags02ma_data *data = iio_priv(iio_device);
-> +
-> +	if (mask == IIO_CHAN_INFO_RAW) {
-> +		/* The sensor reads data as ppb */
-> +		ret = ags02ma_register_read(data->client, AGS02MA_TVOC_READ_REG,
-> +					    AGS02MA_TVOC_READ_PROCESSING_DELAY);
-> +		if (ret < 0)
-> +			return ret;
-> +		*val = ret;
-> +		*val2 = AGS02MA_PPB_PERCENT_CONVERSION;
-
-Use IIO_CHAN_INFO_SCALE to deal with the division. Not all applications will care, so make it
-a userspace decision rather than doing it in driver (or a consumer decision if for some
-reason we end up with an inkernel consumer of VOC data)  If you enhance this driver
-later to support buffering, you will have made it very challenging by doing
-this conversion in driver.
-
-> +		return IIO_VAL_FRACTIONAL;
-> +	} else {
-> +		return -EINVAL;
-	Flip logic to exit in error case out of main line of code flow.
-
-	if (mask != IIO_CHAN_INFO_RAW)
-		return -EINVAL;
-	
-	/* The sensor read as ppb */
-	ret = ...
-
-> +	}
-> +}
-> +
-> +static const struct iio_info ags02ma_info = {
-> +	.read_raw = ags02ma_read_raw,
-> +};
-> +
-> +static const struct iio_chan_spec ags02ma_channels[] = {
-> +	{ .type = IIO_CONCENTRATION,
-	{
-		.type = ..
-or given there is one, flatten it a level and just fill in
-1 explicitly for num channels.
-
-> +	  .channel2 = IIO_MOD_VOC,
-> +	  .info_mask_separate = BIT(IIO_CHAN_INFO_RAW) }
-						  RAW),
-	},
-
-> +};
-> +
-> +static int ags02ma_probe(struct i2c_client *client)
-> +{
-> +	int ret;
-> +	struct ags02ma_data *data;
-> +	struct iio_dev *indio_dev;
-> +	u32 version;
-> +
-> +	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*data));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	crc8_populate_msb(ags02ma_crc8_table, AGS02MA_CRC8_POLYNOMIAL);
-> +
-> +	ret = ags02ma_register_read(client, AGS02MA_VERSION_REG,
-> +				    AGS02MA_VERSION_PROCESSING_DELAY);
-> +	if (ret < 0) {
-> +		dev_err(&client->dev, "Failed to read device version: %d", ret);
-> +		return ret;
-
-Prefer
-	return dev_err_probe(&client->dev, ret, "Failed to read device version\n");
-for any errors that show up in probe.
-It's shorter + provides advantages if you end up adding some calls that
-can defer probing later.
-
-> +	}
-> +	version = ret;
-> +	dev_dbg(&client->dev, "Aosong AGS02MA, Version: 0x%x", version);
-> +
-> +	data = iio_priv(indio_dev);
-> +	i2c_set_clientdata(client, indio_dev);
-
-Why? I don't think you use it (which is expected in a simple driver - tend
-to need this only when adding power management or having to do explicit
-remove() handling for some reason.
-
-> +	data->client = client;
-> +	indio_dev->info = &ags02ma_info;
-> +	indio_dev->channels = ags02ma_channels;
-> +	indio_dev->num_channels = ARRAY_SIZE(ags02ma_channels);
-> +	indio_dev->name = AGS02MA_DEVICE_NAME;
-
-I'm not a fan of defines for name strings because I'd rather just see them
-where they are used - why hid this away?  It's not saving code
-and a string is as good as a define in all the places it's used
-(there is not real reason they have to have the same value, even though
-they happen to do so in this driver).
-
-> +
-> +	return devm_iio_device_register(&client->dev, indio_dev);
-> +}
-> +
-> +static const struct i2c_device_id ags02ma_id_table[] = {
-> +	{ AGS02MA_DEVICE_NAME, 0 },
-
-Don't put the 0 as it implies some data in there, when it's never
-read (C will put a 0 in there anyway but that doesn't matter)
-
-> +	{ /* Sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(i2c, ags02ma_id_table);
-> +
-> +#ifdef CONFIG_OF
-> +static const struct of_device_id ags02ma_of_table[] = {
-> +	{ .compatible = "aosong,ags02ma"},
-> +	{ /* Sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, ags02ma_of_table);
-> +#endif
-
-With of_match_ptr() dropped below y ou will again not need these.
-
-> +
-> +static struct i2c_driver ags02ma_driver = {
-> +	.driver = {
-> +		.name = AGS02MA_DEVICE_NAME,
-> +		.of_match_table = of_match_ptr(ags02ma_of_table),
-Never have of_match_ptr() in an IIO driver.
-It breaks ACPI PRP0001 based bindings which are frequently used with
-IIO devices - also saves trivial amoutn of space.
-
-> +	},
-
-All minor stuff and great to have more of these VOC drivers in supported.
-
-Thanks,
-
-Jonathan
-
+Konrad
 
