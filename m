@@ -1,131 +1,157 @@
-Return-Path: <devicetree+bounces-18820-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18821-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B43407F8BF6
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 16:13:42 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3025E7F8BFC
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 16:17:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5716E1F20F00
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 15:13:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BD43FB210CF
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 15:17:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97D9A28E0A;
-	Sat, 25 Nov 2023 15:13:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7462428E0C;
+	Sat, 25 Nov 2023 15:17:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="DaxOY5uJ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ap7yNQ2m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B640EFE;
-	Sat, 25 Nov 2023 07:13:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1700925215; x=1732461215;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=7jgvutb4LkVm8tjdml+yARZgSq5LjVU+VQZulrmPA1k=;
-  b=DaxOY5uJsjb4He9j6wryvHgGMJkvxqNpDbAjlhF0FK9vIeGbKyfwpuE4
-   qR1e23gCGBqqVOa28zzkIIwOBUD56yFvO16jxnac2Mvr1UMYnrlbHLp3u
-   jqHnfqP//MUOYCd30DzgroHltQMgSUn1pHgtH868nmhb8mWrUJ9yV5I4Y
-   vWAd7X+UuAmDIRC8nvVT/keRJlLbdIgk1S6iaoC0SmqaYtcW/naoqK6YV
-   BR1W4EpHFGu272qnxUY7pJviYLbwadpxtJRJsmQ7bHUG/Sw7eTC5caNRQ
-   WEhcTR3A8TZRXCYRQjKV47l4HCQim7A0pZJdOFcyT2TDxWbX4bX1w/CCw
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10905"; a="395344786"
-X-IronPort-AV: E=Sophos;i="6.04,226,1695711600"; 
-   d="scan'208";a="395344786"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Nov 2023 07:13:35 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,226,1695711600"; 
-   d="scan'208";a="9211867"
-Received: from lkp-server01.sh.intel.com (HELO d584ee6ebdcc) ([10.239.97.150])
-  by orviesa002.jf.intel.com with ESMTP; 25 Nov 2023 07:13:32 -0800
-Received: from kbuild by d584ee6ebdcc with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1r6uLZ-00047C-2U;
-	Sat, 25 Nov 2023 15:13:29 +0000
-Date: Sat, 25 Nov 2023 23:13:04 +0800
-From: kernel test robot <lkp@intel.com>
-To: Andreas Kemnade <andreas@kemnade.info>, lee@kernel.org,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, bcousson@baylibre.com, tony@atomide.com,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-omap@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH 2/6] twl-core: add power off implementation for twl603x
-Message-ID: <202311252254.j0JQBIvl-lkp@intel.com>
-References: <20231125092938.16535-3-andreas@kemnade.info>
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5A2DFF
+	for <devicetree@vger.kernel.org>; Sat, 25 Nov 2023 07:17:15 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-4083f61312eso22485465e9.3
+        for <devicetree@vger.kernel.org>; Sat, 25 Nov 2023 07:17:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1700925434; x=1701530234; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=L//cXM65lEufA8qopdoTlT0G7CECObDXCb5waukCjRo=;
+        b=Ap7yNQ2moSOX+8m5uas3PtuT63QBqWm6/dD8H9jpRPFgLvz2j41AxuYzYlG0yUT5lV
+         0qgjyt0H35yUQaGz1Z5kIxSHfSiy6RDgF+aFd0sxZOHMuPgthx2lHoj6MfMDmaRSkV6E
+         qyJBvAxQKuF/zDHeBf4I96rnj13bzHSmsnVW/ZKVZ8jLQG32M/i55hnyFLfBYJP7bAbq
+         g4ASPA3UO5MwqKWgf/mkL+iYjKOlBLv/nslgMnuEUljzRvbsdtLhbDwXb3g/1cDQdfeF
+         rD0blYYsMuAtVA3W/iiIwao5+2A1wbuwFk/f4xk3FwMeH4Kf32FjPJIUwu59TJmJwQGu
+         truw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700925434; x=1701530234;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=L//cXM65lEufA8qopdoTlT0G7CECObDXCb5waukCjRo=;
+        b=SfK5qh5RyATxvUzWmkYpmEBDJRnDiYFFnY3ZIToUOWKxLG8akQcK45LOltOsDctXfn
+         JzLJ+39PdwmCSEEvD2qN375x5nXZTW0hMs1wq72fU9TgdHvDi/2w6+523x+r4Da9q3Vq
+         yh8KI9Pb14au5eFTjhVrAIHKwYBnSBC1OoBa8sRCgOe3dId3Qnnr6DXh+K1Khd1rp2m/
+         Dn1Y6GLpaO50js6TnN/n5FnMwaz59x/nxdwheMxaRSOfOsQwq35mFKAG+MtlKZcUztyQ
+         8ZUVYIcOAk56uDvLrzTY+Q2oAKeWgoQm8IqUPNIgER9kbszt1Sgp2D5Ue5PEqYQUJsbZ
+         QgEw==
+X-Gm-Message-State: AOJu0YyxnStcV9TM5N8IAXugdDMzVlVbOT4t8O880PWhdPwbQyswos2b
+	M0ZYkKP13ebqgw0joebDkD7Bag==
+X-Google-Smtp-Source: AGHT+IGwnqLhrtr72VZNjFVnj7zkFww47Kvwg5iba4kzHIGXaWjdDtnp+7LshXKgBUTTBwgApNkbpA==
+X-Received: by 2002:a05:600c:3550:b0:40b:415e:c044 with SMTP id i16-20020a05600c355000b0040b415ec044mr1056018wmq.37.1700925434011;
+        Sat, 25 Nov 2023 07:17:14 -0800 (PST)
+Received: from [192.168.100.102] ([37.228.218.3])
+        by smtp.gmail.com with ESMTPSA id a10-20020a056000050a00b0032ddf2804ccsm6798220wrf.83.2023.11.25.07.17.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 25 Nov 2023 07:17:13 -0800 (PST)
+Message-ID: <44a2b30a-7f8c-44a9-8a74-b09fee2b61b7@linaro.org>
+Date: Sat, 25 Nov 2023 15:17:12 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231125092938.16535-3-andreas@kemnade.info>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 2/2] irqchip: irq-qcom-mpm: Support passing a slice of
+ SRAM as reg space
+Content-Language: en-US
+To: Konrad Dybcio <konrad.dybcio@linaro.org>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>, Thomas Gleixner
+ <tglx@linutronix.de>, Marc Zyngier <maz@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Shawn Guo <shawn.guo@linaro.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>,
+ linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20230328-topic-msgram_mpm-v6-0-682e4855b7e2@linaro.org>
+ <20230328-topic-msgram_mpm-v6-2-682e4855b7e2@linaro.org>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20230328-topic-msgram_mpm-v6-2-682e4855b7e2@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Andreas,
+On 25/11/2023 14:27, Konrad Dybcio wrote:
+> The MPM hardware is accessible to us from the ARM CPUs through a shared
+> memory region (RPM MSG RAM) that's also concurrently accessed by other
+> kinds of cores on the system (like modem, ADSP etc.). Modeling this
+> relation in a (somewhat) sane manner in the device tree basically
+> requires us to either present the MPM as a child of said memory region
+> (which makes little sense, as a mapped memory carveout is not a bus),
+> define nodes which bleed their register spaces into one another, or
+> passing their slice of the MSG RAM through some kind of a property.
+> 
+> Go with the third option and add a way to map a region passed through
+> the "qcom,rpm-msg-ram" property as our register space.
+> 
+> The current way of using 'reg' is preserved for ABI reasons.
+> 
+> Acked-by: Shawn Guo <shawn.guo@linaro.org>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+>   drivers/irqchip/irq-qcom-mpm.c | 21 ++++++++++++++++++---
+>   1 file changed, 18 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/irqchip/irq-qcom-mpm.c b/drivers/irqchip/irq-qcom-mpm.c
+> index 7124565234a5..7115e3056aa5 100644
+> --- a/drivers/irqchip/irq-qcom-mpm.c
+> +++ b/drivers/irqchip/irq-qcom-mpm.c
+> @@ -14,6 +14,7 @@
+>   #include <linux/mailbox_client.h>
+>   #include <linux/module.h>
+>   #include <linux/of.h>
+> +#include <linux/of_address.h>
+>   #include <linux/of_platform.h>
+>   #include <linux/platform_device.h>
+>   #include <linux/pm_domain.h>
+> @@ -322,8 +323,10 @@ static int qcom_mpm_init(struct device_node *np, struct device_node *parent)
+>   	struct device *dev = &pdev->dev;
+>   	struct irq_domain *parent_domain;
+>   	struct generic_pm_domain *genpd;
+> +	struct device_node *msgram_np;
+>   	struct qcom_mpm_priv *priv;
+>   	unsigned int pin_cnt;
+> +	struct resource res;
+>   	int i, irq;
+>   	int ret;
+>   
+> @@ -374,9 +377,21 @@ static int qcom_mpm_init(struct device_node *np, struct device_node *parent)
+>   
+>   	raw_spin_lock_init(&priv->lock);
+>   
+> -	priv->base = devm_platform_ioremap_resource(pdev, 0);
+> -	if (IS_ERR(priv->base))
+> -		return PTR_ERR(priv->base);
+> +	/* If we have a handle to an RPM message ram partition, use it. */
+> +	msgram_np = of_parse_phandle(np, "qcom,rpm-msg-ram", 0);
+> +	if (msgram_np) {
+> +		ret = of_address_to_resource(msgram_np, 0, &res);
 
-kernel test robot noticed the following build warnings:
+You are capturing the return value but doing nothing with it.
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on lee-mfd/for-mfd-next linus/master v6.7-rc2 next-20231124]
-[cannot apply to tmlind-omap/for-next lee-mfd/for-mfd-fixes]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+One of
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Andreas-Kemnade/dt-bindings-mfd-ti-twl-Document-system-power-controller/20231125-173426
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20231125092938.16535-3-andreas%40kemnade.info
-patch subject: [PATCH 2/6] twl-core: add power off implementation for twl603x
-config: xtensa-randconfig-r081-20231125 (https://download.01.org/0day-ci/archive/20231125/202311252254.j0JQBIvl-lkp@intel.com/config)
-compiler: xtensa-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231125/202311252254.j0JQBIvl-lkp@intel.com/reproduce)
+if (ret) {
+     of_node_put(msgram_np);
+     return ret;
+}
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202311252254.j0JQBIvl-lkp@intel.com/
+or just drop the ret =
 
-All warnings (new ones prefixed by >>):
+if you are sure of_address_to_resource() can never return an error for 
+your use-case.
 
->> drivers/mfd/twl-core.c:690:6: warning: no previous prototype for 'twl6030_power_off' [-Wmissing-prototypes]
-     690 | void twl6030_power_off(void)
-         |      ^~~~~~~~~~~~~~~~~
+Once fixed.
 
-
-vim +/twl6030_power_off +690 drivers/mfd/twl-core.c
-
-   689	
- > 690	void twl6030_power_off(void)
-   691	{
-   692	#define APP_DEVOFF      (1<<0)
-   693	#define CON_DEVOFF      (1<<1)
-   694	#define MOD_DEVOFF      (1<<2)
-   695	
-   696		int err;
-   697		u8 val;
-   698	
-   699		err = twl_i2c_read_u8(TWL_MODULE_PM_MASTER, &val,
-   700				      TWL6030_PHOENIX_DEV_ON);
-   701		if (err) {
-   702			pr_err("I2C error %d reading PHOENIX_DEV_ON\n", err);
-   703			return;
-   704		}
-   705	
-   706		val |= APP_DEVOFF | CON_DEVOFF | MOD_DEVOFF;
-   707	
-   708		err = twl_i2c_write_u8(TWL_MODULE_PM_MASTER, val,
-   709				       TWL6030_PHOENIX_DEV_ON);
-   710		if (err)
-   711			pr_err("TWL6030 Unable to power off\n");
-   712	}
-   713	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
