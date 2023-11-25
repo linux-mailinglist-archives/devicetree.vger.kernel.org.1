@@ -1,96 +1,160 @@
-Return-Path: <devicetree+bounces-18744-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18745-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D44577F8A10
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 12:06:26 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C21287F8A19
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 12:16:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1A642B211C4
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 11:06:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 15BB5B2118A
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 11:16:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 623A58C1F;
-	Sat, 25 Nov 2023 11:06:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB9CACA4A;
+	Sat, 25 Nov 2023 11:16:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GzQAqc91"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="Seoz3Qz2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 373882106;
-	Sat, 25 Nov 2023 11:06:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1A55C433C7;
-	Sat, 25 Nov 2023 11:06:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700910378;
-	bh=a10BKOzNP25vy7u3Wr900/nhqUYn6t0HQHvCMFsPHXM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GzQAqc91AzXTfJr0YMNQk4Fb8ANi3UGp7ws1OpgA134zeMmi16feg/71FpWu/RRad
-	 hgEimPRXrCBFQPja2QUhaktDDe0g3JTP7Lo6sH9/6GXqTybrAoNZWQgTPqocAWw2fR
-	 xKpaN6KhvfkenJnRasNXc+kpv4jHsOpPhVY1FVzjEJd1tKA3A/K2P7enxMj4c18BuT
-	 tP1yhNA8lq5FHA/nmG1RTwfrAROJVllv6hM6Zy7Y+WDjCqFF2YaROv+/jgV6bjtTmH
-	 4JDccMs4Puqv94kUHM+nK/wfz90JM/BkkbRmxra8goAAA6NCb6to4+fU9GVktRb6RR
-	 yv5TIhyGpq7aQ==
-Date: Sat, 25 Nov 2023 11:06:13 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Greg KH <gregkh@linuxfoundation.org>
-Cc: Luka Panio <lukapanio@gmail.com>, Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kees Cook <keescook@chromium.org>, Tony Luck <tony.luck@intel.com>,
-	"Guilherme G . Piccoli" <gpiccoli@igalia.com>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v10 1/2] Add a compatible for Xiaomi Pad 6.
-Message-ID: <20231125-scientist-autograph-a574e56ea955@spud>
-References: <20231124212732.731419-1-lukapanio@gmail.com>
- <2023112529-fetch-unwritten-bdbd@gregkh>
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2055.outbound.protection.outlook.com [40.107.92.55])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8A85127;
+	Sat, 25 Nov 2023 03:16:14 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=N5tOhrgZEELKhEdyq9gZ9tR1SaJ69cf2JWQKApNCVkLvOgL/3ael0hBk/095/ox1vetjMxOs9EcKZD0ZgfsXU3ZaidC+hEwHKtXN4WYX0MRKCzX3DQJuEaLvE7LLwMJjP8UXizyk/7tF44eWsucHi59sz6PR1jyscgxHrhsYqHkGFVMkKoWXQWwWO2ed0/Rye/L6KRdnMNjxT4B/CzRgK9FJAlxTRf9L/EFzwDAL9fyQnofGZZi7qKGcjRFf0eLmNfJ39VzmswLltEb/BZ4eyC8Iwb/mOpOAP6a1oxGOwkq7NjF6Q928IiaYs+xmEV0Dp3NLOF2U+MZFPIUwAhm/sw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=hkHDGOZTkp5gZ4OBAd5yvPjRBrZOWac0U4thWag6mmM=;
+ b=cPzjyRqTrYcq5v2dApG+M2mtWtkjxccMNkV0T5dkaBq/+YY7puCuJSjjde5Zw8B4jXsC3nAIGCs7qx3aHQ8xPTYoDWhHOJNPfxXq20SO02wRdulNZ2eKLyU93NZkxjqCAOqWOpui8tav3mkWH0Zp8aJodxdqKHG/+Cb7fMvbOJSBE+ReR8gFjzeQQU9xsw3mc4vFah5HKZVkfBRLgp4lDMV2JZmE4eo8sLhx0UWXP/N3l4/wH9WIqhmbQx7xsP/QqhaGGcUaVSoaBaYt81ojzOTYZdIK3FM7w8Ex4PokT82mky+t4gyBQm5qMqbJHaPhAsR22Hdz5USOon6aDl+8qg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=grandegger.com smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=hkHDGOZTkp5gZ4OBAd5yvPjRBrZOWac0U4thWag6mmM=;
+ b=Seoz3Qz2t8HSNa+pSY0yMK3jbpv6qUG7EcI24TNkWa6TdhAsez5Gn6yBmH2PdK24MtDJW4pxqZyeiZ6fk2q5V8NUOSsPn45H3mPiJvLT/skc9t1xErEEs/fbtUn7Dw2OAIvzRDSH0JOrT8zZyQFAblatJPkZ9tYyGhtxPBr4wi8=
+Received: from SN4PR0501CA0131.namprd05.prod.outlook.com
+ (2603:10b6:803:42::48) by IA1PR12MB9031.namprd12.prod.outlook.com
+ (2603:10b6:208:3f9::19) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7025.25; Sat, 25 Nov
+ 2023 11:16:10 +0000
+Received: from SN1PEPF000252A1.namprd05.prod.outlook.com
+ (2603:10b6:803:42:cafe::af) by SN4PR0501CA0131.outlook.office365.com
+ (2603:10b6:803:42::48) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.16 via Frontend
+ Transport; Sat, 25 Nov 2023 11:16:10 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ SN1PEPF000252A1.mail.protection.outlook.com (10.167.242.8) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7046.17 via Frontend Transport; Sat, 25 Nov 2023 11:16:09 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Sat, 25 Nov
+ 2023 05:15:48 -0600
+Received: from xhdvnc205.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.34 via Frontend
+ Transport; Sat, 25 Nov 2023 05:15:43 -0600
+From: Srinivas Goud <srinivas.goud@amd.com>
+To: <wg@grandegger.com>, <mkl@pengutronix.de>, <davem@davemloft.net>,
+	<edumazet@google.com>, <kuba@kernel.org>, <pabeni@redhat.com>,
+	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+	<conor+dt@kernel.org>, <p.zabel@pengutronix.de>
+CC: <git@amd.com>, <michal.simek@xilinx.com>, <linux-can@vger.kernel.org>,
+	<netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<appana.durga.rao@xilinx.com>, <naga.sureshkumar.relli@xilinx.com>, Srinivas
+ Goud <srgoud@xhdsgoud40.xilinx.com>
+Subject: [PATCH v6 0/3] can: xilinx_can: Add ECC feature support
+Date: Sat, 25 Nov 2023 16:45:30 +0530
+Message-ID: <1700910933-23868-1-git-send-email-srinivas.goud@amd.com>
+X-Mailer: git-send-email 2.1.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="ZAE8VA0RYnei4ICF"
-Content-Disposition: inline
-In-Reply-To: <2023112529-fetch-unwritten-bdbd@gregkh>
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN1PEPF000252A1:EE_|IA1PR12MB9031:EE_
+X-MS-Office365-Filtering-Correlation-Id: d6bbbd35-057a-4064-2b21-08dbeda7ed44
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	NjcIhP+AJDRVD23BjQcpQeG4uJuulZVnB1s5ttOlZgiEtccCGfusCwPF8gv50eIe6rx65L9a40dsb2IfDatzCfJxPg3aZnMRvYv93lWZUDfDZnnKJD1zCReX710vUETBX5PYV2xnZicIPZMH2vGSRa10cLXjgNuTnhClZkT01RFwNxGvdloOV6QbnnY6hYYaxa4paYigMm05j5cjHGASwBGlqEOKXkc0raF+s5snSxGJ8AHodDm7z3eOt8Xa580TQrP77eZkHADwf40Yh+7BA9Siehb1uPsZkmECjsGMPqismMsHKDJj8mOALXMTFTL7INB4N8OZEQHbydbK/zB/iY7rJpL70yha79M9pi+pgFnWa+miUYQMvZmHwhlr9BrXrtjv6zSzePZ1On2w+lUplHtb6mNAVYkX+6c4Zl+RhWtKraL9DMf/5Kmpxq8pp99AOsAd0K+/bbEYh7Lr3Gk1P9dK7DvYsovGOxuwrI/sAeiBDjGiZDZ5UArGlnqO7kJkjmu1G7edWLUCiTNLPKYbtCWn5BlqtUQ2r1PmahOsWhcY9hHG89cEBsqsdrLrQqzzqC1ZJ/3MWRYE+jWzSqvjm03D+HNhcKvi3eYlCiXsAb5e2ML3eG63Dmu/kY3nxqRCjovcDYfc8Izcsm2raUJTE2LAclhmQwrqudVc6NIR7U1X1WZcrATX/fKzBU07PU0vUzSzhiiqvFGcX6vUg4iGNqJTFXYbPUbdonhOXg2mkaX/dRQdUhAr1RMO+qC4XQw22JaND1jIzt2f1NPxNQfDHQObtQEVCZatgQtrIqYtB/PswZmrJOlykeAjnwHrizDLmrRWhxv6X5tXW9ZVwhCmkw==
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(376002)(396003)(39860400002)(346002)(136003)(230173577357003)(230922051799003)(230273577357003)(64100799003)(82310400011)(451199024)(1800799012)(186009)(40470700004)(46966006)(36840700001)(83380400001)(426003)(336012)(82740400003)(26005)(2616005)(44832011)(8936002)(8676002)(4326008)(86362001)(40480700001)(36860700001)(47076005)(81166007)(356005)(478600001)(40460700003)(6666004)(54906003)(70586007)(70206006)(316002)(110136005)(921008)(36756003)(41300700001)(2906002)(7416002)(5660300002)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Nov 2023 11:16:09.8421
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d6bbbd35-057a-4064-2b21-08dbeda7ed44
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SN1PEPF000252A1.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB9031
+
+From: Srinivas Goud <srgoud@xhdsgoud40.xilinx.com>
+
+Add ECC feature support to Tx and Rx FIFOs for Xilinx CAN Controller.
+ECC is an IP configuration option where counter registers are added in
+IP for 1bit/2bit ECC errors count and reset.
+Also driver reports 1bit/2bit ECC errors for FIFOs based on ECC error
+interrupts.
+
+Add xlnx,has-ecc optional property for Xilinx AXI CAN controller
+to support ECC if the ECC block is enabled in the HW.
+
+Add ethtool stats interface for getting all the ECC errors information.
+
+There is no public documentation for it available.
+
+---
+BRANCH: linux-can-next/master
+
+Changes in v6:
+Update commit description
+
+Changes in v5:
+Fix review comments
+Change the sequence of updates the stats
+Add get_strings and get_sset_count stats interface
+Use u64 stats helper function
+
+Changes in v4:
+Fix DT binding check warning
+Update xlnx,has-ecc property description
+
+Changes in v3:
+Update mailing list
+Update commit description
+
+Changes in v2:
+Address review comments
+Add ethtool stats interface
+Update commit description
 
 
---ZAE8VA0RYnei4ICF
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Srinivas Goud (3):
+  dt-bindings: can: xilinx_can: Add 'xlnx,has-ecc' optional property
+  can: xilinx_can: Add ECC support
+  can: xilinx_can: Add ethtool stats interface for ECC errors
 
-On Sat, Nov 25, 2023 at 06:53:05AM +0000, Greg KH wrote:
-> On Fri, Nov 24, 2023 at 10:27:31PM +0100, Luka Panio wrote:
-> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> > Signed-off-by: Luka Panio <lukapanio@gmail.com>
-> >=20
-> > ---
-> > v2:
-> > Update commit message
->=20
-> What commit message?  I know I can't take patches without any changelog
-> text, maybe other maintainers are more loose?
+ .../devicetree/bindings/net/can/xilinx,can.yaml    |   5 +
+ drivers/net/can/xilinx_can.c                       | 159 ++++++++++++++++++++-
+ 2 files changed, 160 insertions(+), 4 deletions(-)
 
-It had one when I acked it.
+-- 
+2.1.1
 
---ZAE8VA0RYnei4ICF
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZWHVJQAKCRB4tDGHoIJi
-0u6wAQDJyRyc1NwXIbDW0Y1VdQakWopuCXfjrBNh84wm0Zyt7AD/QNDxBjigVIUH
-AoGUgSjTd+6ukjv5UhZUnzuMhVXs3gs=
-=xDZq
------END PGP SIGNATURE-----
-
---ZAE8VA0RYnei4ICF--
 
