@@ -1,96 +1,144 @@
-Return-Path: <devicetree+bounces-18775-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18776-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E9A77F8AB4
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 13:21:36 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD0E87F8AB9
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 13:25:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0DE0EB20E0A
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 12:21:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 700E51F20CC8
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 12:25:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D214F9FE;
-	Sat, 25 Nov 2023 12:21:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12B1EFBF3;
+	Sat, 25 Nov 2023 12:25:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WZn1Thnd"
+	dkim=pass (1024-bit key) header.d=z3ntu.xyz header.i=@z3ntu.xyz header.b="b3JDi/QH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19E3B539F;
-	Sat, 25 Nov 2023 12:21:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1FEFDC433C7;
-	Sat, 25 Nov 2023 12:21:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700914889;
-	bh=NokKKbjP7/sQSnXyJk7VS1kmyB9mZyNesxHCciD9GTM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WZn1ThndkOxaashwIdkq7g0vJIDCBIrMA6MwUpzzpcR2SEnw0+PJRhbP/Lo128eId
-	 EUM5asAXzdU38JeWM1oGUECkoCOzVjIiP+O32x05fHTVuLAPr+Eg2dAHeIGtPrNH8l
-	 Fro+ofqk2VSxRF57cijh2a1U9QTzUvs5i0qmzj0hrRKLQ2fWz7xKHMkvURudMokFVd
-	 xC55+IbcYeMw8AEVGXiQcRlbeiJc+dzMSI8oM8XBwAXmr67PXGWJ2n3FL35oFo/sEx
-	 sSGp08vzujBog9qZ7cllzcegwoz1S9W5fMPxy1DFU/WwYoNnJlgfqJLRZvvtQzufKE
-	 1Wb5BZgnf8jGg==
-Date: Sat, 25 Nov 2023 12:21:24 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Marcelo Schmitt <marcelo.schmitt@analog.com>
-Cc: paul.cercueil@analog.com, Michael.Hennerich@analog.com, lars@metafoo.de,
-	jic23@kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	marcelo.schmitt1@gmail.com, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 5/7] dt-bindings: iio: Add binding documentation for
- AD7091R-8
-Message-ID: <20231125-pennant-untie-90b5f0828258@spud>
-References: <cover.1700751907.git.marcelo.schmitt1@gmail.com>
- <8ce972a3708f7789237c86c44e23cdcb23a35103.1700751907.git.marcelo.schmitt1@gmail.com>
+Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 162CBBB;
+	Sat, 25 Nov 2023 04:25:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=z3ntu.xyz; s=z3ntu;
+	t=1700915123; bh=/neb3ai8t+JZrai5HMokEXT4feRyamGmrHQtOs/DwgY=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=b3JDi/QHwcg4Y2Gx9dp9m8udMhODcQr0cSVQQ4mfzARcHgUVwIyHP8dDL0uuVnNvC
+	 cnB8MFiKKDYpPQApdqCko/NBmsLOipd5yNgAZyywRw8lqGDRAXX/tnjycOTV2s7ynU
+	 A5xGSRLZKUahHpD7z2gQKIZUDYl0+MjSvCa31xyw=
+From: Luca Weiss <luca@z3ntu.xyz>
+To: Loic Poulain <loic.poulain@linaro.org>,
+ Stephan Gerhold <stephan@gerhold.net>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Kalle Valo <kvalo@kernel.org>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
+ linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ wcn36xx@lists.infradead.org, linux-wireless@vger.kernel.org
+Subject:
+ Re: [PATCH 1/4] dt-bindings: remoteproc: qcom: wcnss: Add WCN3680B compatible
+Date: Sat, 25 Nov 2023 13:25:22 +0100
+Message-ID: <1868698.tdWV9SEqCh@z3ntu.xyz>
+In-Reply-To: <ZS1MTAHq6GLW6RAK@gerhold.net>
+References:
+ <20231015-fp3-wcnss-v1-0-1b311335e931@z3ntu.xyz>
+ <CAMZdPi-S2_UQO-rD38-thwta-YgH3W78Ecd1Du7Q_US=J7k0ew@mail.gmail.com>
+ <ZS1MTAHq6GLW6RAK@gerhold.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="PpbYFIjhbA0yHs/g"
-Content-Disposition: inline
-In-Reply-To: <8ce972a3708f7789237c86c44e23cdcb23a35103.1700751907.git.marcelo.schmitt1@gmail.com>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+
+On Montag, 16. Oktober 2023 16:44:28 CET Stephan Gerhold wrote:
+> On Mon, Oct 16, 2023 at 03:16:14PM +0200, Loic Poulain wrote:
+> > On Mon, 16 Oct 2023 at 07:35, Krzysztof Kozlowski
+> > 
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> > > On 15/10/2023 22:03, Luca Weiss wrote:
+> > > > Add a compatible for the iris subnode in the WCNSS PIL.
+> > > > 
+> > > > Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> > > > ---
+> > > > 
+> > > >  Documentation/devicetree/bindings/remoteproc/qcom,wcnss-pil.yaml | 1
+> > > >  +
+> > > >  1 file changed, 1 insertion(+)
+> > > > 
+> > > > diff --git
+> > > > a/Documentation/devicetree/bindings/remoteproc/qcom,wcnss-pil.yaml
+> > > > b/Documentation/devicetree/bindings/remoteproc/qcom,wcnss-pil.yaml
+> > > > index 45eb42bd3c2c..0e5e0b7a0610 100644
+> > > > --- a/Documentation/devicetree/bindings/remoteproc/qcom,wcnss-pil.yaml
+> > > > +++ b/Documentation/devicetree/bindings/remoteproc/qcom,wcnss-pil.yaml
+> > > > 
+> > > > @@ -111,6 +111,7 @@ properties:
+> > > >            - qcom,wcn3660
+> > > >            - qcom,wcn3660b
+> > > >            - qcom,wcn3680
+> > > > 
+> > > > +          - qcom,wcn3680b
+> > > 
+> > > Looks like this should be made as compatible with qcom,wcn3680 (so with
+> > > fallback).
+> > 
+> > Yes, agree, let's do a regular fallback as there is nothing 'b'
+> > specific in the driver:
+> > `compatible = "qcom,wcn3680b", "qcom,wcn3680";`
+> > 
+> > And yes, we should also have done that for qcom,wcn3660b...
+> 
+> I don't think this would have worked properly for qcom,wcn3660b:
+> 
+>  - It's not compatible with "qcom,wcn3660", because they have different
+>    regulator voltage requirements. wcn3660(a?) needs vddpa with
+>    2.9-3.0V, but wcn3660b needs 3.3V. That's why wcn3660b uses the
+>    wcn3680_data in qcom_wcnss.iris.c. Otherwise if you would run an
+>    older kernel that knows "qcom,wcn3660" but not "qcom,wcn3660b" it
+>    would apply the wrong voltage.
+> 
+>  - It's not compatible with "qcom,wcn3680" either because that is used
+>    as indication if 802.11ac is supported (wcn3660b doesn't).
+> 
+> The main question here is: What does the current "qcom,wcn3680"
+> compatible actually represent? It's defined with vddpa = 3.3V in the
+> driver, which would suggest that:
+> 
+>  1. It's actually meant to represent WCN3680B, which needs 3.3V vddpa
+>     like WCN3660B, or
+> 
+>  2. WCN3680(A?) has different requirements than WCN3660(A?) and also
+>     needs 3.3V vddpa. But then what is the difference between
+>     WCN3680(A?) and WCN3680B? Is there even a variant without ...B?
+> 
+> There is public documentation for WCN3660B and WCN3680B but the non-B
+> variants are shrouded in mystery.
+
+Hi Stephan (and everyone),
+
+Do you have a suggestion how to move this patchset forward? Is the fallback 
+compatible that was suggested okay for the wcn3680b situation?
+
+  compatible = "qcom,wcn3680b", "qcom,wcn3680";
+
+If so, I'll make v2 with that implemented.
+
+Regards
+Luca
+
+> 
+> Thanks,
+> Stephan
 
 
---PpbYFIjhbA0yHs/g
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 
-On Thu, Nov 23, 2023 at 01:42:21PM -0300, Marcelo Schmitt wrote:
 
-> +  spi-max-frequency: true
-
-This is not needed, since you have unevaluatedProperties: false &
-include the spi periph props.
-
-> +  adi,conversion-start-gpios:
-> +    description:
-
-> +      Device tree identifier of the CONVST pin.
-
-"gpio connected to the CONVST pin".
-
-> +      This logic input is used to initiate conversions on the analog
-> +      input channels.
-> +    maxItems: 1
-
-This looks pretty decent to be overall though.
-
---PpbYFIjhbA0yHs/g
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZWHmxAAKCRB4tDGHoIJi
-0p1xAQCpqjmqfhVCI9G10fGp0R0KaL5NUz2lINY4C7iNmT/CfAEAuBsu2q+bVFVP
-hMsHHj47qNHfR+n8TOZtwwVR460T3Aw=
-=fPlx
------END PGP SIGNATURE-----
-
---PpbYFIjhbA0yHs/g--
 
