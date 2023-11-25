@@ -1,128 +1,122 @@
-Return-Path: <devicetree+bounces-18891-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18892-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFD837F8F66
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 22:05:58 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DE877F8F97
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 23:03:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F1B421C20BB8
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 21:05:57 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E4C6DB20F3B
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 22:03:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B48430D0F;
-	Sat, 25 Nov 2023 21:05:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CC5730FA2;
+	Sat, 25 Nov 2023 22:03:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="MIP/eQ66"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QfiDuN8u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43F9F11F;
-	Sat, 25 Nov 2023 13:05:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1700946352; x=1732482352;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=NW76CWX73/hJcaUlP/qugyIO3Pjb3vwvquuSP5fkRTs=;
-  b=MIP/eQ66Fo0Ewd7Nc7EwsDbCr/bRnd3DHgnrQvCkONvRzLawIqudPtLi
-   7mHtd2ppgScDp2YncgiOaNPql6uAyMLyDzkQ2X2sqAwo2gUVkAnFHJ34q
-   /lZOMpEZqu2qKA4OhhP9H3K3gLPEgX2cMdz69GCzzvmutgrpXpzigGMq7
-   qrCRKhN4s7Oh0bOzEZElcayZB22GZJXhYRtjkfo6XzaAueGUbTpAwR729
-   HsEGe2/9FdF29mOQpWuQBkPvbdBs8kFbqOTykDKGHZVGrbfCqcX3E5gWx
-   yu7xW7s7LfcfbdjfBqZaWfsrIjhzfZz1j9yFqEphXQO3FZILTJ7bNLUnk
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10905"; a="382934973"
-X-IronPort-AV: E=Sophos;i="6.04,227,1695711600"; 
-   d="scan'208";a="382934973"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Nov 2023 13:05:51 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10905"; a="1015179469"
-X-IronPort-AV: E=Sophos;i="6.04,227,1695711600"; 
-   d="scan'208";a="1015179469"
-Received: from lkp-server01.sh.intel.com (HELO d584ee6ebdcc) ([10.239.97.150])
-  by fmsmga006.fm.intel.com with ESMTP; 25 Nov 2023 13:05:48 -0800
-Received: from kbuild by d584ee6ebdcc with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1r6zqU-0004Qs-1Q;
-	Sat, 25 Nov 2023 21:05:46 +0000
-Date: Sun, 26 Nov 2023 05:05:04 +0800
-From: kernel test robot <lkp@intel.com>
-To: Yuxi Wang <Yuxi.Wang@monolithicpower.com>, pavel@ucw.cz, lee@kernel.org,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, linux-kernel@vger.kernel.org,
-	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-	wyx137120466@gmail.com
-Subject: Re: [PATCH 2/2] leds: add mp3326 driver
-Message-ID: <202311260403.PyY8h5Dj-lkp@intel.com>
-References: <20231124093034.951-3-Yuxi.Wang@monolithicpower.com>
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76A27111;
+	Sat, 25 Nov 2023 14:03:32 -0800 (PST)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-a00cbb83c80so423367866b.0;
+        Sat, 25 Nov 2023 14:03:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1700949811; x=1701554611; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=iaSNLjd6qp2TTeM4lQ0nSQjwYYZEfvjgfhn3UAjO2Dc=;
+        b=QfiDuN8uKqiPGC9faoUUMdOx563Qhz6K8URuWInUHZOpD5e6iCo1XzXcjHdr31XT3A
+         apiLx45KCrgcxqejUG5xAao32dkNXHqXmz+IuzyR2wJsb0V8F2yC/PsYslgfPMaNKoE1
+         u7zR2m/f6BkuVaqTbB2wmThDhE7ZL9sp03NylQF2E1imCgIJjt0zhtcWl8B+GLfTRHdB
+         jM1rruf25wwRMOR425Otfw3ZQhXLWRxjC+uNCkGi+/B9pWQV+fa5aZlTasvXgBEfOqQp
+         Y5DjjtOp6u8C0aCwGN02KERR280L1aqTFbi6vs3dubP6hzkMrfVF1K0mp2920FdlTwwY
+         vinA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700949811; x=1701554611;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=iaSNLjd6qp2TTeM4lQ0nSQjwYYZEfvjgfhn3UAjO2Dc=;
+        b=In7aG3A7Enc/Se8Z+ER67/6ECZbPiOabFuGlDJe400p5YUKzlDbOQz3Gjc8yC9C3Kz
+         dNqXF1wljFOs8CyCEvrJvq9oFoVOMF/oqrH3eRLFt+kM99ortSFIiNLaeDzZZb8mayQ8
+         g6dXQNVLHbVC3FDqL2wmlfsCdSq1/ofgLoIljWgeYIk9xoU5v2QwAumfPer7LQjswgc0
+         yV2ZH0hD1OOEEpA/TAc3Gy1Oz3oCflj5AJd61d777QRe9JIvOGvvd6kmUJSQW75Ed+3W
+         c5P36bHHv8uBo9WCXrznT8nbe2dWXeQx2iGMUwWg8AdD7nzB4WC4XXX0L48iMk4+pfHz
+         zKrw==
+X-Gm-Message-State: AOJu0Yy3n/Zy5n3an9HSWSvALhcFH+pJO+D3qeFKqTvMy45papqzPJRq
+	LvWIDqkDDY22DSm3TDC5SZ/04ByPP9cOR741
+X-Google-Smtp-Source: AGHT+IEeOqLqN+RKeb41HFX2rR11Y7Z87AtMIyqBSB6RYdVveIEGxvtyiU2EI1tjJpXeaPwXOQ7PkA==
+X-Received: by 2002:a17:906:da:b0:a04:182c:9ea with SMTP id 26-20020a17090600da00b00a04182c09eamr4039459eji.52.1700949810438;
+        Sat, 25 Nov 2023 14:03:30 -0800 (PST)
+Received: from StrangerPC.home.arpa ([2a0d:3344:1730:e300::11a1])
+        by smtp.gmail.com with ESMTPSA id b20-20020a170906195400b009a1dbf55665sm3910731eje.161.2023.11.25.14.03.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 25 Nov 2023 14:03:30 -0800 (PST)
+From: Luka Panio <lukapanio@gmail.com>
+To: Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Kees Cook <keescook@chromium.org>,
+	Tony Luck <tony.luck@intel.com>,
+	"Guilherme G . Piccoli" <gpiccoli@igalia.com>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-hardening@vger.kernel.org
+Cc: Luka Panio <lukapanio@gmail.com>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v11 1/2] dt-bindings: arm: qcom: Add Xiaomi Pad 6 (xiaomi-pipa)
+Date: Sat, 25 Nov 2023 23:03:14 +0100
+Message-ID: <20231125220315.118922-1-lukapanio@gmail.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231124093034.951-3-Yuxi.Wang@monolithicpower.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Yuxi,
+Add a compatible for Xiaomi Pad 6.
 
-kernel test robot noticed the following build warnings:
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: Luka Panio <lukapanio@gmail.com>
 
-[auto build test WARNING on lee-leds/for-leds-next]
-[also build test WARNING on robh/for-next linus/master v6.7-rc2 next-20231124]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+---
+v2:
+Update commit message
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Yuxi-Wang/dt-bindings-leds-add-mps-mp3326-LED/20231124-173610
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/lee/leds.git for-leds-next
-patch link:    https://lore.kernel.org/r/20231124093034.951-3-Yuxi.Wang%40monolithicpower.com
-patch subject: [PATCH 2/2] leds: add mp3326 driver
-config: x86_64-randconfig-123-20231126 (https://download.01.org/0day-ci/archive/20231126/202311260403.PyY8h5Dj-lkp@intel.com/config)
-compiler: gcc-7 (Ubuntu 7.5.0-6ubuntu2) 7.5.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231126/202311260403.PyY8h5Dj-lkp@intel.com/reproduce)
+v3:
+Update commit message
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202311260403.PyY8h5Dj-lkp@intel.com/
+v4:
+Update commit message
 
-All warnings (new ones prefixed by >>):
+v5:
+Update commit message
 
-   drivers/leds/leds-mp3326.c: In function 'mp3326_parse_dt':
-   drivers/leds/leds-mp3326.c:543:6: warning: unused variable 'val' [-Wunused-variable]
-     int val;
-         ^~~
-   drivers/leds/leds-mp3326.c: At top level:
-   drivers/leds/leds-mp3326.c:611:3: error: 'struct i2c_driver' has no member named 'probe_new'; did you mean 'probe'?
-     .probe_new = mp3326_leds_probe,
-      ^~~~~~~~~
-      probe
->> drivers/leds/leds-mp3326.c:611:15: warning: initialization makes integer from pointer without a cast [-Wint-conversion]
-     .probe_new = mp3326_leds_probe,
-                  ^~~~~~~~~~~~~~~~~
-   drivers/leds/leds-mp3326.c:611:15: note: (near initialization for 'mp3326_driver.class')
-   drivers/leds/leds-mp3326.c:611:15: error: initializer element is not computable at load time
-   drivers/leds/leds-mp3326.c:611:15: note: (near initialization for 'mp3326_driver.class')
+v6:
+Update commit message
+---
+ Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-
-vim +611 drivers/leds/leds-mp3326.c
-
-   609	
-   610	static struct i2c_driver mp3326_driver = {
- > 611		.probe_new = mp3326_leds_probe,
-   612		.driver = {
-   613				.name = "mp3326_led",
-   614				.of_match_table = mp3326_of_match,
-   615			   },
-   616		.id_table = mp3326_id,
-   617	};
-   618	
-
+diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+index adbfaea32343..1bfae1b237d2 100644
+--- a/Documentation/devicetree/bindings/arm/qcom.yaml
++++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+@@ -965,6 +965,7 @@ properties:
+               - sony,pdx203-generic
+               - sony,pdx206-generic
+               - xiaomi,elish
++              - xiaomi,pipa
+           - const: qcom,sm8250
+ 
+       - items:
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.42.0
+
 
