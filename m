@@ -1,73 +1,70 @@
-Return-Path: <devicetree+bounces-18803-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18804-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EC607F8BAD
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 15:30:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D915D7F8BC5
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 15:40:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C0672B21192
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 14:29:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 47D53B21089
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 14:40:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9842318041;
-	Sat, 25 Nov 2023 14:29:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B51CF10A0D;
+	Sat, 25 Nov 2023 14:40:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=edgeble-ai.20230601.gappssmtp.com header.i=@edgeble-ai.20230601.gappssmtp.com header.b="ZTeyRTnk"
+	dkim=pass (2048-bit key) header.d=edgeble-ai.20230601.gappssmtp.com header.i=@edgeble-ai.20230601.gappssmtp.com header.b="Y3k86ImH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47575102
-	for <devicetree@vger.kernel.org>; Sat, 25 Nov 2023 06:29:54 -0800 (PST)
-Received: by mail-pf1-x429.google.com with SMTP id d2e1a72fcca58-6cbe7386263so1856235b3a.2
-        for <devicetree@vger.kernel.org>; Sat, 25 Nov 2023 06:29:54 -0800 (PST)
+Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDBDDD3
+	for <devicetree@vger.kernel.org>; Sat, 25 Nov 2023 06:40:24 -0800 (PST)
+Received: by mail-pj1-x1033.google.com with SMTP id 98e67ed59e1d1-2854757f0f8so2296491a91.1
+        for <devicetree@vger.kernel.org>; Sat, 25 Nov 2023 06:40:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=edgeble-ai.20230601.gappssmtp.com; s=20230601; t=1700922594; x=1701527394; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=eZys39GJuHTXGZ0WnRs5+Y2IzPwKK9Jhq3iPRZLp05Y=;
-        b=ZTeyRTnk/xpkFP9Y2sxee/Tej5Rdpgs8Kufus4CAWUhZSX/7B69xdmLour9hAprHJd
-         7PZWJ9yB66fxgBOje4Qxn/0osKPE2CaqJiY797A1YvyJGzW9HE5oegv1+uwFtyZuh1kz
-         v6TmORGun2GaYNYN1nQc6Ah11VGD7SYwERhYzcZ6B1ViNowubIQviJpo9ba5/Epl8yqU
-         4DrhFPI7ad8j3F3sMFv/TmmkNgixqAqgY0Nd+NGUv3nY51fXln/+MpDArvOFG/UFm7zb
-         Xv3yrsak257M9P3jzY8NOkuHYqGRwruZXnwhsAGaZGWTtAIDdMpa3yme18a4MFe1LViK
-         xdQQ==
+        d=edgeble-ai.20230601.gappssmtp.com; s=20230601; t=1700923224; x=1701528024; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=R00GpAOQ8unl7IA5WlLg5PzZVU6FbtaGJNh4ebAEgak=;
+        b=Y3k86ImH/KORSBn8acs0jNG5nCN2Z2Guxe+sF65+T0thm0G4AebLhNrWYZ8ZaH/l4z
+         RDyk/p+7Cckb8ZzeVJ3/hY7jG9jqdJDYVSkykIiOYWt2+t2ZpJ3VpHEOruDP6LFPpOUv
+         NNReifj1UOUSrjoJwMMMiKMvB1Q4uihsXU+CkwgYvdr+YU3SjNsdYJQLpOG1FG7z7czs
+         eq/2HpyuKweZS5sNWqJgeL49YJFnQ5mrWNQF+tsUt2saKo7lBheG0F/IpOLdJfZhSWsk
+         m6Bo0LYLLEzsy1CuX94yU8Thg6FLjXFttbyh3xjvb6ihYkKG42xOpX7++hy3YoCmz7Rh
+         dtCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700922594; x=1701527394;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=eZys39GJuHTXGZ0WnRs5+Y2IzPwKK9Jhq3iPRZLp05Y=;
-        b=UZHhanmiHObpCYKRBiQbqdGLSR/vvVhXokrPelU3EuvWahYkECRkeNqT3GkwDpzNgp
-         KPOypWQCZdDg1GVESyXVTy3xfUlmFYtl+ua5K0Lx4EIMHJov5avHm4/d2RHm6vRLxeWO
-         ONpvab63mC5Z2FHdmaa734IoJwdK8IJjbBDysGA3fY90usmqsCXNj0UFCcIjKCWJ7ZQb
-         pV6PhW5UbzWNqMl6urW/SI32daPZT5hkAP1/1gjpdvnU53FDJYufxWOyw4shgqIpp2dz
-         nJAHiJwGom9Lo1Hnq5Pyz3+1W9eprSG2NFoQ6oDnci7GMix5K9NWz/uCoPtgkcl8fSEF
-         nneg==
-X-Gm-Message-State: AOJu0YwSraG5840P2teckAxrw3ppQMStkPP1Cmlr1Q3XvvRpP4yiSxRw
-	ABCPl9pJKXmHp1EspUsQ74WHlw==
-X-Google-Smtp-Source: AGHT+IGzRxMDkBx/+dtM5q70cxNBly8uY7XmXX8qeMlhvysirQHXtDZcWgQbUu1xIM9J5BXoyByS7g==
-X-Received: by 2002:a05:6a20:d903:b0:187:6c03:4e01 with SMTP id jd3-20020a056a20d90300b001876c034e01mr7615450pzb.17.1700922593781;
-        Sat, 25 Nov 2023 06:29:53 -0800 (PST)
+        d=1e100.net; s=20230601; t=1700923224; x=1701528024;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=R00GpAOQ8unl7IA5WlLg5PzZVU6FbtaGJNh4ebAEgak=;
+        b=AhMLAt3jQMAVtWUma9JHGZsutXrS0ZTVUeUVt8O5pLYHsjMci5j9Q0QkT/IA8Es7i4
+         KRuPIuDtlU0q77mIcmA7AlYeO2e1+PnfKPoYgURRoQZkPW32/hRnEQcK7kSU3O4DmcrD
+         jR4obfpYpR9eIOFmiwSJ9XNycV1qfAI+G54n7ZlbQlWI/kpPuei1m9vasS/EdedZVkER
+         ymjDL26pYxNzxopAcwv/ejFCYwo9ifAr/GsJCpRFTRKaVTzLMDPE9n8cJseq135jSITe
+         ma8o+kar7xGn4u9GIsdQnqf0qdb3tqWdUGFKCv5YPg5bFWNTgFrT60hl0oozExrtyF5b
+         nFsA==
+X-Gm-Message-State: AOJu0Yx7iB/oOfWtyeCEwpISQZbAqlanX7CoHu+OLHA6qWd0wrrkDbwc
+	FTLiIQ09sihU/TNOZdbWiD95rw==
+X-Google-Smtp-Source: AGHT+IFQA2BGKsZZ1umze64aNrYyQwAcNAiC1NU5/UBm08aKE+MoPLYYZKae3/4MCaWcUNo8WCX0Eg==
+X-Received: by 2002:a17:90b:4b8c:b0:27d:3f43:d9c0 with SMTP id lr12-20020a17090b4b8c00b0027d3f43d9c0mr5022781pjb.24.1700923224234;
+        Sat, 25 Nov 2023 06:40:24 -0800 (PST)
 Received: from localhost.localdomain ([2405:201:c00a:a208:d471:6d33:4b36:d85])
-        by smtp.gmail.com with ESMTPSA id t15-20020a1709027fcf00b001cc6afede3csm5106311plb.7.2023.11.25.06.29.50
+        by smtp.gmail.com with ESMTPSA id h15-20020a17090aea8f00b002802d264240sm4817998pjz.29.2023.11.25.06.40.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 25 Nov 2023 06:29:53 -0800 (PST)
+        Sat, 25 Nov 2023 06:40:23 -0800 (PST)
 From: Jagan Teki <jagan@edgeble.ai>
-To: Rob Herring <robh+dt@kernel.org>,
+To: Heiko Stuebner <heiko@sntech.de>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>
+	Conor Dooley <conor+dt@kernel.org>
 Cc: devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-rockchip@lists.infradead.org,
 	Jagan Teki <jagan@edgeble.ai>
-Subject: [PATCH 2/2] arm64: dts: rockchip: Use NCM6A-IO board for edgeble-neu6b
-Date: Sat, 25 Nov 2023 19:59:14 +0530
-Message-Id: <20231125142914.57459-2-jagan@edgeble.ai>
+Subject: [PATCH 00/10] arm64: dts: rockchip: Pack Edgeble NCM6A, 6B DT
+Date: Sat, 25 Nov 2023 20:10:02 +0530
+Message-Id: <20231125144012.58668-1-jagan@edgeble.ai>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231125142914.57459-1-jagan@edgeble.ai>
-References: <20231125142914.57459-1-jagan@edgeble.ai>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,35 +73,36 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Edgeble AI 6TOPS board topology is now changed in final revisions
-as a compatible IO board, NCM6A-IO, is made available for both
-variants of SoM: NCM6A and NCM6B.
+DT patch set for Edgeble NCM6A, NCM6B SoM, and IO board.
 
-With this change, 6b-io is not as available and 6a; 6b SoM's have
-the same compatible IO board as 6a-io. This change is due to the
-common optimised design of the IO board made available now in
-final revisions, which was not the case in initial revisions.
+Any inputs?
+Jagan.
 
-So, use the NCM6A-IO compatible for NCM6B SoM based IO dts.
+Jagan Teki (10):
+  arm64: dts: rockchip: Drop edgeble-neu6b dcdc-reg4 regulator-init-microvolt
+  arm64: dts: rockchip: Add edgeble-neu6a-common DT
+  arm64: dts: rockchip: Add common DT for edgeble-neu6b-io
+  arm64: dts: rockchip: Add Edgeble NCM6A WiFi6 Overlay
+  arm64: dts: rockchip: Add vdd_cpu_big reg to rk3588-edgeble-ncm6
+  arm64: dts: rockchip: Add Edgeble NCM6A-IO 2.5G ETH
+  arm64: dts: rockchip: Add Edgeble NCM6A-IO M.2 M-Key
+  arm64: dts: rockchip: Add Edgeble NCM6A-IO M.2 M-Key
+  arm64: dts: rockchip: Add Edgeble NCM6A-IO USB2
+  arm64: dts: rockchip: Add LED_GREEN for edgeble-neu6a
 
-Signed-off-by: Jagan Teki <jagan@edgeble.ai>
----
- arch/arm64/boot/dts/rockchip/rk3588-edgeble-neu6b-io.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../rockchip/rk3588-edgeble-neu6a-common.dtsi | 466 ++++++++++++++++++
+ .../dts/rockchip/rk3588-edgeble-neu6a-io.dts  |  14 +-
+ .../dts/rockchip/rk3588-edgeble-neu6a-io.dtsi | 236 +++++++++
+ .../rockchip/rk3588-edgeble-neu6a-wifi.dtso   |  56 +++
+ .../dts/rockchip/rk3588-edgeble-neu6a.dtsi    |  25 +-
+ .../dts/rockchip/rk3588-edgeble-neu6b-io.dts  |  80 +--
+ .../dts/rockchip/rk3588-edgeble-neu6b.dtsi    | 383 +-------------
+ 8 files changed, 765 insertions(+), 496 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-edgeble-neu6a-common.dtsi
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-edgeble-neu6a-io.dtsi
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-edgeble-neu6a-wifi.dtso
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-edgeble-neu6b-io.dts b/arch/arm64/boot/dts/rockchip/rk3588-edgeble-neu6b-io.dts
-index 9933765e4097..861067b5d707 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-edgeble-neu6b-io.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-edgeble-neu6b-io.dts
-@@ -9,7 +9,7 @@
- 
- / {
- 	model = "Edgeble Neu6B IO Board";
--	compatible = "edgeble,neural-compute-module-6b-io",
-+	compatible = "edgeble,neural-compute-module-6a-io",
- 		     "edgeble,neural-compute-module-6b", "rockchip,rk3588";
- 
- 	aliases {
 -- 
 2.25.1
 
