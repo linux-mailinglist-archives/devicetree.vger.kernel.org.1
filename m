@@ -1,247 +1,323 @@
-Return-Path: <devicetree+bounces-18818-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18819-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DBF67F8BEA
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 16:04:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FB1E7F8BF1
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 16:11:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EEE0B2815F9
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 15:04:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EA26B280ECE
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 15:11:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92F9028E00;
-	Sat, 25 Nov 2023 15:04:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5C9728DD6;
+	Sat, 25 Nov 2023 15:11:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sqy2gTGp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OaiY8DKy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03F9DFB
-	for <devicetree@vger.kernel.org>; Sat, 25 Nov 2023 07:04:34 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-40b40423d06so3154965e9.2
-        for <devicetree@vger.kernel.org>; Sat, 25 Nov 2023 07:04:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700924672; x=1701529472; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ScKfY09ekk9iyTG+1Y3vImjdJv6TZqfXKZB9Xfb5+7c=;
-        b=sqy2gTGpD2fI9gUeN2IWDhKaE67kiOQdaPPy7Z1J9naTkwMfu1SsrLudPxOl+T2RsC
-         70Xx906fHoqb04mqlgSUI41Gt2BrKatdVHprt4mf6hA4md9BTiJQxqhuk+O1FbXjxmRb
-         xGzgMhI4Rz1HCLQ5GyvtG4oucs7luTtI0NQNcVzwW+4yienhVZUrKKMd3NVLxkZn5lh8
-         arQAnVYPfr3ignG3L2VpSO7lPpA2mkdZakjV+BLEROXuTmBr7/B5cyCrZ6EGrxNBtwkQ
-         uKsv3IETkBtTLA5jn+OBpSVNrrrC9x1UA35Si+Smefp9TMbW1+wry/8+CDw53gS6H9Vg
-         5DNg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700924672; x=1701529472;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ScKfY09ekk9iyTG+1Y3vImjdJv6TZqfXKZB9Xfb5+7c=;
-        b=uhY3YFC3C4QRi16HAj+Inzy76469HpAdL57d3EOWu4GK7MJxDT/6TLoy9ZSR8oQFph
-         17xMty6ENElS2HEagOqu4GgQwYhDZ1/DDZZ8oMmgnZCKyHSuH9+Co1z19kkX67FNs3NI
-         TxTwoGkX+mV7RVvuXXPUw4SXx/Mg0HRkjMhulUIHBchQmZYNDyW6VAstFegbbU/FvPyE
-         wwzg3Q5p2NlEVS9ZriJASlxtqUUEkto1sIMiIizSQmCisIud8s4QEQIyiVl5BD6dMD6G
-         qtd9pCf2y49t6zFCKNGIWt2AVLpHqNH1sZVnCyJPyBfmNuqvUPzzzgNYU6QpbUjZBU4P
-         bdPg==
-X-Gm-Message-State: AOJu0YxxSWhmGonhJsBTS0qdyf4L5GFdLAffN2fEC3gUm8Fs3Q0l//ud
-	ZWleOmd8hydxAIkqmZkgVBHJCOa27VavDBwd2CBA7xCN
-X-Google-Smtp-Source: AGHT+IFoPTyLpDwlGytHlyDJns+285CNXDsFuYADSsEvWPkUn3TL99C5LbOY9PrRsWyP/d1TcYx/fA==
-X-Received: by 2002:a05:600c:314f:b0:40b:2a18:f1be with SMTP id h15-20020a05600c314f00b0040b2a18f1bemr4857156wmo.1.1700924672282;
-        Sat, 25 Nov 2023 07:04:32 -0800 (PST)
-Received: from [192.168.100.102] ([37.228.218.3])
-        by smtp.gmail.com with ESMTPSA id f9-20020a0560001b0900b003143867d2ebsm6896206wrz.63.2023.11.25.07.04.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 25 Nov 2023 07:04:31 -0800 (PST)
-Message-ID: <d8cd02e7-7e85-4b75-b48c-e9544d03c197@linaro.org>
-Date: Sat, 25 Nov 2023 15:04:30 +0000
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B11CBD512;
+	Sat, 25 Nov 2023 15:11:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B34DEC433C8;
+	Sat, 25 Nov 2023 15:11:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1700925085;
+	bh=NZGKnbCqKEbmlzx2mxvmAGTdTSF3UibDriYC6WTduvs=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=OaiY8DKy9oZV1/6oSA5oQ2kitTPNckTpdefmRwbeJrkqkT2c1+99NYCOG2CC2CJrf
+	 nnaAHGaXBOAO1Sx7SOcOzPlTemSX1ATYYt1+KdHD7NEMugd0DMNlh3s+uD4pmN2+vV
+	 yMQA10Ip1C0OH1umL6O1/0PM6iY4K4v/0IUEZ5SOM/Q4fNMkfHUA9GcCyi2AGww5Ji
+	 FGCOs1leb3t+jCXE0QQt0OYDLw90zt4+Jtfw7zuWjKLSMawD+wJmfy534/uKgg/Xf2
+	 uHfqXecpxkGQs+5fWzRuaVn4XuIk0yeoNLSpaEU1EoJiDd9VzDyRreoURnSXllVLCw
+	 mOvFWMYlHNYQw==
+Date: Sat, 25 Nov 2023 15:11:16 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] iio: light: add VEML6075 UVA and UVB light
+ sensor driver
+Message-ID: <20231125151116.6d9b6e46@jic23-huawei>
+In-Reply-To: <20231110-veml6075-v2-3-d04efbc8bf51@gmail.com>
+References: <20231110-veml6075-v2-0-d04efbc8bf51@gmail.com>
+	<20231110-veml6075-v2-3-d04efbc8bf51@gmail.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: qrb4210-rb2: Enable bluetooth
-Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@linaro.org>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20231120-topic-rb2_bt-v1-0-509db2e28e70@linaro.org>
- <20231120-topic-rb2_bt-v1-2-509db2e28e70@linaro.org>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20231120-topic-rb2_bt-v1-2-509db2e28e70@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On 25/11/2023 13:04, Konrad Dybcio wrote:
-> Enable the QCA bluetooth on RB2. It identifies like the following:
-> 
-> Bluetooth: hci0: QCA Product ID   :0x0000000a
-> Bluetooth: hci0: QCA SOC Version  :0x40020150
-> Bluetooth: hci0: QCA ROM Version  :0x00000201
-> Bluetooth: hci0: QCA Patch Version:0x00000001
-> Bluetooth: hci0: QCA controller version 0x01500201
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->   arch/arm64/boot/dts/qcom/qrb4210-rb2.dts | 81 +++++++++++++++++++++++++++++++-
->   1 file changed, 80 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-> index 9738c0dacd58..bd751236f983 100644
-> --- a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-> +++ b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-> @@ -15,6 +15,7 @@ / {
->   
->   	aliases {
->   		serial0 = &uart4;
-> +		serial1 = &uart3;
->   	};
->   
->   	chosen {
-> @@ -352,7 +353,8 @@ vreg_l8a_0p664: l8 {
->   
->   		vreg_l9a_1p8: l9 {
->   			regulator-min-microvolt = <1800000>;
-> -			regulator-max-microvolt = <2000000>;
-> +			regulator-max-microvolt = <1800000>;
-> +			regulator-allow-set-load;
->   		};
->   
->   		vreg_l10a_1p8: l10 {
-> @@ -389,11 +391,13 @@ vreg_l15a_3p128: l15 {
->   		vreg_l16a_1p3: l16 {
->   			regulator-min-microvolt = <1704000>;
->   			regulator-max-microvolt = <1904000>;
-> +			regulator-allow-set-load;
->   		};
->   
->   		vreg_l17a_1p3: l17 {
->   			regulator-min-microvolt = <1152000>;
->   			regulator-max-microvolt = <1384000>;
-> +			regulator-allow-set-load;
->   		};
->   
->   		vreg_l18a_1p232: l18 {
-> @@ -426,6 +430,7 @@ vreg_l22a_2p96: l22 {
->   		vreg_l23a_3p3: l23 {
->   			regulator-min-microvolt = <3200000>;
->   			regulator-max-microvolt = <3400000>;
-> +			regulator-allow-set-load;
->   		};
->   
->   		vreg_l24a_2p96: l24 {
-> @@ -487,6 +492,60 @@ &tlmm {
->   			       <56 3>, <61 2>, <64 1>,
->   			       <68 1>, <72 8>, <96 1>;
->   
-> +	uart3_default: uart3-default-state {
-> +		cts-pins {
-> +			pins = "gpio8";
-> +			function = "qup3";
-> +			bias-bus-hold;
-> +		};
-> +
-> +		rts-pins {
-> +			pins = "gpio9";
-> +			function = "qup3";
-> +			drive-strength = <2>;
-> +			bias-disable;
-> +		};
-> +
-> +		tx-pins {
-> +			pins = "gpio10";
-> +			function = "qup3";
-> +			drive-strength = <2>;
-> +			bias-disable;
-> +		};
-> +
-> +		rx-pins {
-> +			pins = "gpio11";
-> +			function = "qup3";
-> +			bias-pull-up;
-> +		};
-> +	};
-> +
-> +	uart3_sleep: uart3-sleep-state {
-> +		cts-pins {
-> +			pins = "gpio8";
-> +			function = "gpio";
-> +			bias-bus-hold;
-> +		};
-> +
-> +		rts-pins {
-> +			pins = "gpio9";
-> +			function = "gpio";
-> +			bias-pull-down;
-> +		};
-> +
-> +		tx-pins {
-> +			pins = "gpio10";
-> +			function = "gpio";
-> +			bias-pull-up;
-> +		};
-> +
-> +		rx-pins {
-> +			pins = "gpio11";
-> +			function = "gpio";
-> +			bias-pull-up;
-> +		};
-> +	};
-> +
+On Sat, 25 Nov 2023 12:56:57 +0100
+Javier Carrasco <javier.carrasco.cruz@gmail.com> wrote:
 
-My reading of downstream has all of these pins drive-strength = <2>.
+> The Vishay VEMl6075 is a low power, 16-bit resolution UVA and UVB
+> light sensor with I2C interface and noise compensation (visible and
+> infrarred).
+> 
+> Every UV channel generates an output signal measured in counts per
+> integration period, where the integration time is configurable.
+> 
+> This driver adds support for both UV channels and the ultraviolet
+> index (UVI) inferred from them according to the device application note
+> with open-air (no teflon) coefficients.
+> 
+> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+
+Hi Javier,
+
+A few more minor things. Looks good in general.
+
+Jonathan
+
+> diff --git a/drivers/iio/light/veml6075.c b/drivers/iio/light/veml6075.c
+> new file mode 100644
+> index 000000000000..a33488884076
+> --- /dev/null
+> +++ b/drivers/iio/light/veml6075.c
+> @@ -0,0 +1,486 @@
+...
 
 
->   	lt9611_rst_pin: lt9611-rst-state {
->   		pins = "gpio41";
->   		function = "gpio";
-> @@ -508,6 +567,26 @@ sdc2_card_det_n: sd-card-det-n-state {
->   	};
->   };
->   
-> +&uart3 {
-> +	interrupts-extended = <&intc GIC_SPI 330 IRQ_TYPE_LEVEL_HIGH>,
-> +			      <&tlmm 11 IRQ_TYPE_LEVEL_HIGH>;
-> +	pinctrl-0 = <&uart3_default>;
-> +	pinctrl-1 = <&uart3_sleep>;
-> +	pinctrl-names = "default", "sleep";
-> +	status = "okay";
-> +
-> +	bluetooth {
-> +		compatible = "qcom,wcn3988-bt";
-> +
-> +		vddio-supply = <&vreg_l9a_1p8>;
-> +		vddxo-supply = <&vreg_l16a_1p3>;
-> +		vddrf-supply = <&vreg_l17a_1p3>;
-> +		vddch0-supply = <&vreg_l23a_3p3>;
-> +		enable-gpios = <&tlmm 87 GPIO_ACTIVE_HIGH>;
-> +		max-speed = <3200000>;
-> +	};
+> +struct veml6075_data {
+> +	struct i2c_client *client;
+> +	struct regmap *regmap;
+> +	struct mutex lock; /* integration time/measurement trigger lock */
+
+Could perhaps be clearer. Maybe something like
+	/* Prevent integration time changing during a measurement */
+
 > +};
 
-Does firmware name not matter here ?
+> +
+> +static int veml6075_shutdown(struct veml6075_data *data)
 
-bluetooth {
-     compatible = "qcom,wcn3990-bt";
-     vddio-supply = <&vreg_s4a_1p8>;
-     vddxo-supply = <&vreg_l7a_1p8>;
-     vddrf-supply = <&vreg_l17a_1p3>;
-     vddch0-supply = <&vreg_l25a_3p3>;
-     max-speed = <3200000>;
-     firmware-name = "crnv21.bin";
-};
+Only used in one place. Maybe just do the regmap bit directly there?
+
+> +{
+> +	return regmap_update_bits(data->regmap, VEML6075_CMD_CONF,
+> +				  VEML6075_CONF_SD, VEML6075_CONF_SD);
+> +}
 
 > +
->   &uart4 {
->   	status = "okay";
->   };
+> +static int veml6075_uva_comp(int raw_uva, int comp1, int comp2)
+> +{
+> +	int comp1a_c, comp2a_c, uva_comp;
+> +
+> +	comp1a_c = (comp1 * VEML6075_A_COEF) / 1000U;
+> +	comp2a_c = (comp2 * VEML6075_B_COEF) / 1000U;
+> +	uva_comp = raw_uva - comp1a_c - comp2a_c;
+> +
+> +	return clamp_val(uva_comp, 0, U16_MAX);
+> +}
+> +
+> +static int veml6075_uvb_comp(int raw_uvb, int comp1, int comp2)
+> +{
+> +	int comp1b_c, comp2b_c, uvb_comp;
+> +
+> +	comp1b_c = (comp1 * VEML6075_C_COEF) / 1000U;
 
----
-bod
+Any of units.h appropriate here?  I'm not sure if the / 1000U is a units
+thing or not.
+
+> +	comp2b_c = (comp2 * VEML6075_D_COEF) / 1000U;
+> +	uvb_comp = raw_uvb - comp1b_c - comp2b_c;
+> +
+> +	return clamp_val(uvb_comp, 0, U16_MAX);
+> +}
+
+> +
+> +static int veml6075_read_uvi(struct veml6075_data *data, int *val, int *val2)
+> +{
+> +	int ret, c1, c2, uva, uvb, uvi_micro;
+> +
+> +	guard(mutex)(&data->lock);
+> +
+> +	ret = veml6075_request_measurement(data);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret = veml6075_read_comp(data, &c1, &c2);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret = regmap_read(data->regmap, VEML6075_CMD_UVA, &uva);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret = regmap_read(data->regmap, VEML6075_CMD_UVB, &uvb);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	uvi_micro = veml6075_get_uvi_micro(data, veml6075_uva_comp(uva, c1, c2),
+> +					   veml6075_uvb_comp(uvb, c1, c2));
+> +	if (uvi_micro < 0)
+> +		return uvi_micro;
+> +
+> +	*val = uvi_micro / 1000000LL;
+
+MICRO for divisor.
+https://elixir.bootlin.com/linux/latest/source/include/linux/units.h#L18
+
+
+> +	*val2 = uvi_micro % 1000000LL;
+> +
+> +	return IIO_VAL_INT_PLUS_MICRO;
+> +}
+
+...
+
+> +static int veml6075_read_raw(struct iio_dev *indio_dev,
+> +			     struct iio_chan_spec const *chan,
+> +			     int *val, int *val2, long mask)
+> +{
+> +	struct veml6075_data *data = iio_priv(indio_dev);
+> +	int ret;
+> +
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_RAW:
+> +		ret = veml6075_read_uv_direct(data, chan->channel, val);
+> +		break;
+> +	case IIO_CHAN_INFO_PROCESSED:
+> +		ret = veml6075_read_uvi(data, val, val2);
+> +		break;
+> +	case IIO_CHAN_INFO_INT_TIME:
+> +		ret = veml6075_read_int_time_ms(data, val);
+> +		break;
+> +	case IIO_CHAN_INFO_SCALE:
+> +		return veml6075_read_responsivity(chan->channel, val, val2);
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	return ret;
+return in remaining case statements above.  No point in break unless
+there is shared stuff to do after the switch.
+> +}
+> +
+> +static int veml6075_write_int_time_ms(struct veml6075_data *data, int val)
+> +{
+> +	int i = ARRAY_SIZE(veml6075_it_ms);
+> +
+> +	guard(mutex)(&data->lock);
+> +
+> +	while (i-- > 0) {
+> +		if (val == veml6075_it_ms[i])
+> +			break;
+> +	}
+> +	if (i < 0)
+> +		return -EINVAL;
+> +
+> +	return regmap_update_bits(data->regmap, VEML6075_CMD_CONF,
+> +				  VEML6075_CONF_IT,
+> +				  FIELD_PREP(VEML6075_CONF_IT, i));
+> +}
+> +
+> +static int veml6075_write_raw(struct iio_dev *indio_dev,
+> +			      struct iio_chan_spec const *chan,
+> +			      int val, int val2, long mask)
+> +{
+> +	struct veml6075_data *data = iio_priv(indio_dev);
+> +	int ret;
+> +
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_INT_TIME:
+> +		ret = veml6075_write_int_time_ms(data, val);
+		return here.
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	return ret;
+return above and safe a few lines + local variable ret.
+
+> +}
+> +
+> +static const struct iio_info veml6075_info = {
+> +	.read_avail = veml6075_read_avail,
+> +	.read_raw = veml6075_read_raw,
+> +	.write_raw = veml6075_write_raw,
+> +};
+
+...
+
+> +static const struct regmap_config veml6075_regmap_config = {
+> +	.name = "veml6075",
+> +	.reg_bits = 8,
+> +	.val_bits = 16,
+> +	.max_register = VEML6075_CMD_ID,
+> +	.readable_reg = veml6075_readable_reg,
+> +	.writeable_reg = veml6075_writable_reg,
+> +	.val_format_endian = REGMAP_ENDIAN_LITTLE,
+> +
+stray blank line here that should go.
+> +};
+> +
+> +static int veml6075_probe(struct i2c_client *client)
+> +{
+> +	struct veml6075_data *data;
+> +	struct iio_dev *indio_dev;
+> +	struct regmap *regmap;
+> +	int config, ret;
+> +
+> +	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*data));
+> +	if (!indio_dev)
+> +		return -ENOMEM;
+> +
+> +	regmap = devm_regmap_init_i2c(client, &veml6075_regmap_config);
+> +	if (IS_ERR(regmap))
+> +		return PTR_ERR(regmap);
+> +
+> +	data = iio_priv(indio_dev);
+> +	i2c_set_clientdata(client, indio_dev);
+
+why? Doesn't look like you get it back anywhere in the driver.
+
+
+> +	data->client = client;
+> +	data->regmap = regmap;
+> +
+> +	mutex_init(&data->lock);
+> +
+> +	indio_dev->name = "veml6075";
+> +	indio_dev->info = &veml6075_info;
+> +	indio_dev->channels = veml6075_channels;
+> +	indio_dev->num_channels = ARRAY_SIZE(veml6075_channels);
+> +	indio_dev->modes = INDIO_DIRECT_MODE;
+> +
+> +	ret = devm_regulator_get_enable(&client->dev, "vdd");
+> +	if (ret < 0 && ret != -ENODEV)
+
+I'm lost here.  devm_regulator_get_enable() shouldn't return -ENODEV
+unless you have specified that an incomplete set of regs are provided.
+If you've specified that you should provide a fixed reg.
+https://elixir.bootlin.com/linux/latest/source/drivers/regulator/core.c#L2194
+The paths to not having that provided shouldn't effect normal use (IIRC).
+
+So I'd not expect special handling for -ENODEV.
+That would be appropriate if you were using the optional variant, but
+this regulator isn't optional (we might just not have described it!)
+
+
+> +		return ret;
+> +
+> +	/* default: 100ms integration time, active force enable, shutdown */
+> +	config = FIELD_PREP(VEML6075_CONF_IT, VEML6075_IT_100_MS) |
+> +		FIELD_PREP(VEML6075_CONF_AF, VEML6075_AF_ENABLE) |
+> +		FIELD_PREP(VEML6075_CONF_SD, VEML6075_SD_ENABLE);
+> +	ret = regmap_write(data->regmap, VEML6075_CMD_CONF, config);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	return devm_iio_device_register(&client->dev, indio_dev);
+> +}
+
 
