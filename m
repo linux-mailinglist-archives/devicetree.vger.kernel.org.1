@@ -1,235 +1,148 @@
-Return-Path: <devicetree+bounces-18782-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18783-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DC417F8B0A
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 14:04:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 939CF7F8B28
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 14:50:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 44908281729
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 13:04:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B439E1C20A40
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 13:50:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF91D1094E;
-	Sat, 25 Nov 2023 13:04:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6573F12E69;
+	Sat, 25 Nov 2023 13:50:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aHuud8kc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rF2HsCYM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E597CEB
-	for <devicetree@vger.kernel.org>; Sat, 25 Nov 2023 05:04:49 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-50abbb23122so3579415e87.3
-        for <devicetree@vger.kernel.org>; Sat, 25 Nov 2023 05:04:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700917488; x=1701522288; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=sjX796cis+ayYldjdBxX+dPrYRA+oAMxdqEk9W736A0=;
-        b=aHuud8kcCQUuMvN8bzgUWWzcgYxm0jA+Sh7EtN/QqgIQ2JuplF8AL0RtMAX32PO3r1
-         oV8f5TAl4Zyqvn/VFNRqUIenK/YGYoLe9vOju+mdXqPZRwNmoqQ6JP8EA871uoalUTsg
-         ZStRlE0evNp8IJZBCFD10A6J0Eg+GwxZcZC6FZDtIwd+062J/1WnP5IFWZQuxvpg4Bbi
-         3o/tI4iFkwluJIwBNc1uasznJnr6fa1pXPdjbdCIXuC2/TADU5mZDjxDBgMjCcuvUVpk
-         jcDMMDPtTsLQ/ogmFqn4/7kTfMpl+FYWshDVV/Gigs4t4fjtCoVCzoet0YGhfJf/jteB
-         0xZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700917488; x=1701522288;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=sjX796cis+ayYldjdBxX+dPrYRA+oAMxdqEk9W736A0=;
-        b=BJlEgxKgnVcfHtM1MpWM2QkXKIobRfCFDQ+oMHm9KAa8Vknz6Gqsqol5OSDznhfcqJ
-         C4Y7R6fVu3CiN108RJ593LOWP3nlIzwaY3611FxfI8OA106IZRlZ8CvnYB+HPWbZ+G3z
-         1Ipd5qRmIo+o57Qu9uN9cX+sN2VuJj87qVlCbB1Bmi6TA1JEvI4h79xgHP9PXsLDbMu8
-         HuxefJG3iUZKpkOrppilP/4QFmq8I4R6Xwvas2eOMcVSy06IinV2wCXruFV31l7rFfY2
-         p9MsW1RzE0RL7MhYQT3Yh5SeCX535YaCxWtqOXrF/MECOxzDc6ACn2ojLpA4mK42flCH
-         M4Pg==
-X-Gm-Message-State: AOJu0YzBNk00ySRR4BSTOlnz/HYldjE5G+NANMIMySkQZka5YxDhL5Pl
-	qCSE7F1imjyvQguqkCOFVdZQgA==
-X-Google-Smtp-Source: AGHT+IEBJQcfRNugynBOwjhkVtUG43AIj0ZUleHg9mUXCESst3QbRdQiitWD3aAdsjjsm6Nrxma8rw==
-X-Received: by 2002:ac2:4c4d:0:b0:50a:a571:57a8 with SMTP id o13-20020ac24c4d000000b0050aa57157a8mr1230369lfk.55.1700917488098;
-        Sat, 25 Nov 2023 05:04:48 -0800 (PST)
-Received: from [10.167.154.1] (178235187180.dynamic-4-waw-k-2-3-0.vectranet.pl. [178.235.187.180])
-        by smtp.gmail.com with ESMTPSA id q22-20020a170906361600b00a0290da4a50sm3433750ejb.186.2023.11.25.05.04.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 25 Nov 2023 05:04:47 -0800 (PST)
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Date: Sat, 25 Nov 2023 14:04:42 +0100
-Subject: [PATCH 2/2] arm64: dts: qcom: qrb4210-rb2: Enable bluetooth
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 422191171B;
+	Sat, 25 Nov 2023 13:50:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F718C433C8;
+	Sat, 25 Nov 2023 13:50:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1700920225;
+	bh=ExqPDaAaDFGikMpcUR8jEv5p97UUd1YLtOLKKfLhU10=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=rF2HsCYMUDWG7ZbEHvKLtH+iLRfFlviiHlVOsE7Wv/3YhMlQvqeRFKgI2ngby0YsS
+	 xZHS/kGMTNpvcdcDLWanlTixFNAgJqtS1y+sKkJBnIJZHq7SXdnnrE21nYXzJmotza
+	 pYkkn7N7FiE//NgMJmR6M0zRW/McgFj+rOvzwfBz4H4e32nSkkMTobp2dPQneZw0XZ
+	 GKcCUzgr0XOjFtNKqw+2UnsWax709685JUqzIuUqmg+29DtHODZB/qoSAnK1nVDsnJ
+	 +frBiWyKOi7scL/hJzvrUGZVSNmr0m4FA+Zp+EzNoKiZxjgs0kqdP0XOFIHdy4q8rx
+	 3hYwzoL1SnJ+A==
+Date: Sat, 25 Nov 2023 13:50:17 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Anshul Dalal <anshulusr@gmail.com>
+Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, Lars-Peter
+ Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ linux-kernel-mentees@lists.linuxfoundation.org, Shuah Khan
+ <skhan@linuxfoundation.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: light: add ltr390
+Message-ID: <20231125135017.30936eef@jic23-huawei>
+In-Reply-To: <20231117074554.700970-1-anshulusr@gmail.com>
+References: <20231117074554.700970-1-anshulusr@gmail.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Message-Id: <20231120-topic-rb2_bt-v1-2-509db2e28e70@linaro.org>
-References: <20231120-topic-rb2_bt-v1-0-509db2e28e70@linaro.org>
-In-Reply-To: <20231120-topic-rb2_bt-v1-0-509db2e28e70@linaro.org>
-To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Konrad Dybcio <konrad.dybcio@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1700917484; l=3406;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=lMa4muGtqVp70/kaf96dhyjICErE57I62MAZHfO8ssM=;
- b=7HR57PDclXc87x/L+F8VojLz1k3cobzeS/NzVuAn9vjgGqcqhM6QaspikJl2uOZQK/IxWP8Zf
- alt+mprmlICD+en8KJ1HduUF6lLO3d011Yh5HZzc6k0PH8/5M76Ha0r
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 
-Enable the QCA bluetooth on RB2. It identifies like the following:
+On Fri, 17 Nov 2023 13:15:52 +0530
+Anshul Dalal <anshulusr@gmail.com> wrote:
 
-Bluetooth: hci0: QCA Product ID   :0x0000000a
-Bluetooth: hci0: QCA SOC Version  :0x40020150
-Bluetooth: hci0: QCA ROM Version  :0x00000201
-Bluetooth: hci0: QCA Patch Version:0x00000001
-Bluetooth: hci0: QCA controller version 0x01500201
+> Add binding for Lite-On LTR390 which is an Ambient/UV light sensor that
+> communicates over i2c with an address of 0x53.
+> 
+> Datasheet:
+>   https://optoelectronics.liteon.com/upload/download/DS86-2015-0004/LTR-390UV_Final_%20DS_V1%201.pdf
+> 
+> Signed-off-by: Anshul Dalal <anshulusr@gmail.com>
+> ---
+> 
+> Changes for v2:
+> - Added missing properties in the example
+> ---
+>  .../bindings/iio/light/liteon,ltr390.yaml     | 56 +++++++++++++++++++
+>  1 file changed, 56 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/light/liteon,ltr390.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/light/liteon,ltr390.yaml b/Documentation/devicetree/bindings/iio/light/liteon,ltr390.yaml
+> new file mode 100644
+> index 000000000000..5d98ef2af74d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/light/liteon,ltr390.yaml
+> @@ -0,0 +1,56 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/light/liteon,ltr390.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Lite-On LTR390 ALS and UV Sensor
+> +
+> +description: |
+> +  The Lite-On LTR390 is an ALS (Ambient Light Sensor) and a UV sensor in a
+> +  single package with i2c address of 0x53.
+> +
+> +  Datasheet:
+> +    https://optoelectronics.liteon.com/upload/download/DS86-2015-0004/LTR-390UV_Final_%20DS_V1%201.pdf
+> +
+> +maintainers:
+> +  - Anshul Dalal <anshulusr@gmail.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - liteon,ltr390
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +    description: |
+> +      Level interrupt pin with open drain output.
+> +      The sensor pulls this pin low when the measured reading is greater than
+> +      some configured threshold.
+> +
+> +  vdd-supply: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+Same comment on vdd-supply here as in the other drivers.
+Not vital, but contention has become to add any supplies to required that
+have to be turned on, whether or not the kernel cares about them.
+Note I'd prefer drivers to use the trivial
+devm_regulator_get_enable() call anyway to turn them on at probe and
+off at remove. That's simple enough to do without needing testing with real
+controllable regulators.
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- arch/arm64/boot/dts/qcom/qrb4210-rb2.dts | 81 +++++++++++++++++++++++++++++++-
- 1 file changed, 80 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-index 9738c0dacd58..bd751236f983 100644
---- a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-+++ b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-@@ -15,6 +15,7 @@ / {
- 
- 	aliases {
- 		serial0 = &uart4;
-+		serial1 = &uart3;
- 	};
- 
- 	chosen {
-@@ -352,7 +353,8 @@ vreg_l8a_0p664: l8 {
- 
- 		vreg_l9a_1p8: l9 {
- 			regulator-min-microvolt = <1800000>;
--			regulator-max-microvolt = <2000000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-allow-set-load;
- 		};
- 
- 		vreg_l10a_1p8: l10 {
-@@ -389,11 +391,13 @@ vreg_l15a_3p128: l15 {
- 		vreg_l16a_1p3: l16 {
- 			regulator-min-microvolt = <1704000>;
- 			regulator-max-microvolt = <1904000>;
-+			regulator-allow-set-load;
- 		};
- 
- 		vreg_l17a_1p3: l17 {
- 			regulator-min-microvolt = <1152000>;
- 			regulator-max-microvolt = <1384000>;
-+			regulator-allow-set-load;
- 		};
- 
- 		vreg_l18a_1p232: l18 {
-@@ -426,6 +430,7 @@ vreg_l22a_2p96: l22 {
- 		vreg_l23a_3p3: l23 {
- 			regulator-min-microvolt = <3200000>;
- 			regulator-max-microvolt = <3400000>;
-+			regulator-allow-set-load;
- 		};
- 
- 		vreg_l24a_2p96: l24 {
-@@ -487,6 +492,60 @@ &tlmm {
- 			       <56 3>, <61 2>, <64 1>,
- 			       <68 1>, <72 8>, <96 1>;
- 
-+	uart3_default: uart3-default-state {
-+		cts-pins {
-+			pins = "gpio8";
-+			function = "qup3";
-+			bias-bus-hold;
-+		};
-+
-+		rts-pins {
-+			pins = "gpio9";
-+			function = "qup3";
-+			drive-strength = <2>;
-+			bias-disable;
-+		};
-+
-+		tx-pins {
-+			pins = "gpio10";
-+			function = "qup3";
-+			drive-strength = <2>;
-+			bias-disable;
-+		};
-+
-+		rx-pins {
-+			pins = "gpio11";
-+			function = "qup3";
-+			bias-pull-up;
-+		};
-+	};
-+
-+	uart3_sleep: uart3-sleep-state {
-+		cts-pins {
-+			pins = "gpio8";
-+			function = "gpio";
-+			bias-bus-hold;
-+		};
-+
-+		rts-pins {
-+			pins = "gpio9";
-+			function = "gpio";
-+			bias-pull-down;
-+		};
-+
-+		tx-pins {
-+			pins = "gpio10";
-+			function = "gpio";
-+			bias-pull-up;
-+		};
-+
-+		rx-pins {
-+			pins = "gpio11";
-+			function = "gpio";
-+			bias-pull-up;
-+		};
-+	};
-+
- 	lt9611_rst_pin: lt9611-rst-state {
- 		pins = "gpio41";
- 		function = "gpio";
-@@ -508,6 +567,26 @@ sdc2_card_det_n: sd-card-det-n-state {
- 	};
- };
- 
-+&uart3 {
-+	interrupts-extended = <&intc GIC_SPI 330 IRQ_TYPE_LEVEL_HIGH>,
-+			      <&tlmm 11 IRQ_TYPE_LEVEL_HIGH>;
-+	pinctrl-0 = <&uart3_default>;
-+	pinctrl-1 = <&uart3_sleep>;
-+	pinctrl-names = "default", "sleep";
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "qcom,wcn3988-bt";
-+
-+		vddio-supply = <&vreg_l9a_1p8>;
-+		vddxo-supply = <&vreg_l16a_1p3>;
-+		vddrf-supply = <&vreg_l17a_1p3>;
-+		vddch0-supply = <&vreg_l23a_3p3>;
-+		enable-gpios = <&tlmm 87 GPIO_ACTIVE_HIGH>;
-+		max-speed = <3200000>;
-+	};
-+};
-+
- &uart4 {
- 	status = "okay";
- };
-
--- 
-2.43.0
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        light-sensor@53 {
+> +            compatible = "liteon,ltr390";
+> +            reg = <0x53>;
+> +            interrupts = <18 IRQ_TYPE_EDGE_FALLING>;
+> +            vdd-supply = <&vdd_regulator>;
+> +        };
+> +    };
 
 
