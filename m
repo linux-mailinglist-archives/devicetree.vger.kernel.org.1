@@ -1,61 +1,60 @@
-Return-Path: <devicetree+bounces-18848-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18849-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E7A87F8CFE
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 19:10:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 71EDD7F8CFF
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 19:10:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3C6B12814D6
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 18:10:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2D76A2814F7
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 18:10:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9831A2D78C;
-	Sat, 25 Nov 2023 18:10:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5ED962D796;
+	Sat, 25 Nov 2023 18:10:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dPA5ae4y"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NW5l14nq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C59D93
-	for <devicetree@vger.kernel.org>; Sat, 25 Nov 2023 10:10:05 -0800 (PST)
-Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-5480edd7026so3963280a12.0
-        for <devicetree@vger.kernel.org>; Sat, 25 Nov 2023 10:10:05 -0800 (PST)
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB4C511F
+	for <devicetree@vger.kernel.org>; Sat, 25 Nov 2023 10:10:13 -0800 (PST)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-a02c48a0420so407388966b.2
+        for <devicetree@vger.kernel.org>; Sat, 25 Nov 2023 10:10:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700935804; x=1701540604; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=fCBIJ5U7MscM2oaes+QSv/GTFeBB6PjYulOIUFZtxjM=;
-        b=dPA5ae4y3k85JGEyZZsGd7gOzU40mFxTEP06BsISUE/zaXF6Q7Mh1Gb368p8ZmBdbK
-         B+Rn+k8Z+Sj7jivu3h1vo+8SYimJkgWsUiY7535O7ZD844C5p7ndQ9AokbR5DbPl/HLF
-         7G66uSmYZe2kA14Axeiv69VuiJKPGpk5eMAcv+GNLRQq76f2fhZzbHVd3uuHkmlzACCD
-         XAF9BaR1DEhF3EKEjBmD4GvtsdUmDZgdfWhJfszc6FB7dzeJj+u24joT/tqG0znYZOGz
-         XCo6WG2GZ2OKrJttrlHPE8eRV9sXbNNn4NuM5zoKbsm6MZBFo0yTMDvT+PpMCN1OM9uO
-         sLPg==
+        d=linaro.org; s=google; t=1700935812; x=1701540612; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=o4slUddOEsdIU8ZrompM5mO37k27t3zC9MuWLP8vUw4=;
+        b=NW5l14nqOi48TTtE6mECp2uld9OImT+3ROMJPnAqoZdOxeyXUIAL6Od8ur1uPX0YV/
+         btTZI+WKwzS6NEEzin49HmGZw9cXjp7o2E5axzt67DL8Azgo9Bu9bxcba/dSRz3ZMxnx
+         Xwr0sJyl6L4D5W375ihXJGPIbfoF2+mhPo13E2+4L7Bs6gQ7eqpM0UygXkZ2v5CihKGJ
+         6jgdXKK9Q4no9gesb8qky0Dmrwjr1NuWt+lhUZ/xa1Dco8pMU7e3vnWvvUSxGgTDvgX1
+         92KziUJvdR3H+clrbsVf4pAwiR0HzQRNgnYJmOhnHSgPBZYSJxxn+bZATRhPZJdwbndl
+         v22Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700935804; x=1701540604;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fCBIJ5U7MscM2oaes+QSv/GTFeBB6PjYulOIUFZtxjM=;
-        b=XXAl0LDZzkcUdxw/TDfZL5wSSmdrARefJFaf8eP2IwMpqHM0+fJmwzbQH1IODsKJWR
-         lGXj+9zBKfprYYthAk5xZ4vfauJ8ourDQbR+c+BD3UmNBU1yYQ0cng9F/0PCOwU/5KQx
-         cxXnAn8SVGnyib7DPB54dz8m12aL1MXkV83vC/yp+aY1yEluZMbGtG7jMyu10wAaUjf5
-         /N+p+zEl2mY0OvbfFfaSJOkOqN2NnEU7/LYZcA2Kv4Zt4aG25bibp+JZuhwZ778b1s0h
-         QW40AWbfXtKcP3sZpDGwBaxtHAI4wGkMAn23O+3AvzdSaetD4O4B5K0MQfecRnsXkAj5
-         v2GA==
-X-Gm-Message-State: AOJu0Yxn/uTNL5D3hL6R1vu5zqRFwqOszy4xjS1W3kuYJRE3BRvND9hL
-	iutbGwEm7h5D7Dy50quGkG1r38rsvvBZlenqEOM=
-X-Google-Smtp-Source: AGHT+IF6ifCIOsPdjH/f/ZZJTQOMESqLlRcOXMqvpuXDjffsmtQ9MR8tIMd5XgfgbhQ8nKw1Zjwa0g==
-X-Received: by 2002:a17:907:1315:b0:a04:ce3c:937e with SMTP id vj21-20020a170907131500b00a04ce3c937emr4257516ejb.45.1700935803968;
-        Sat, 25 Nov 2023 10:10:03 -0800 (PST)
+        d=1e100.net; s=20230601; t=1700935812; x=1701540612;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=o4slUddOEsdIU8ZrompM5mO37k27t3zC9MuWLP8vUw4=;
+        b=qmEaQEEs7ROhgm8n0fDiZJv9lzCgrS8kQ4q3W9HP5ePPpmDrHTm9BerErPWp0jDVl/
+         6iXmwubZvXE3VzFYWBrdWw8jiD+T+Pw1ZMfqrLUIjaDtwWwerimyS6I7ug88AO8oweu2
+         sIZ4y7SYf3bsxtimcLUShOynLxV/oil5FPcS+IZYhmggm41T6jdSRn4RV670Mie/sBKl
+         CxUp6lPo+vtaP6p03X3pL3/PY+rKwNSfZsVVQ+5n3tRd0lufWLm4cp1i5bXZQPCi4c7P
+         RArHE32+4rzTQLmgBZ15fDcL8DTMwn/Harr92L8aWSGE1AeMuepzsESaWKjRgsutEc6R
+         bJLw==
+X-Gm-Message-State: AOJu0YyopTePbro+SPeynhLEXbpxqha6pD7Zdi9vYOAkE0W3hmp7osGr
+	XlThE0YLmHnOwKRD9cJiHD234w==
+X-Google-Smtp-Source: AGHT+IEUFBGskA++M5xhTQ9ST8Y6c3fSiMcaFaYOMGSJZRJBKpckiyKY/iDZpvL4qF3pT49eOWZxgQ==
+X-Received: by 2002:a17:906:4a4b:b0:a01:96c2:67cc with SMTP id a11-20020a1709064a4b00b00a0196c267ccmr5100877ejv.50.1700935812303;
+        Sat, 25 Nov 2023 10:10:12 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.109])
-        by smtp.gmail.com with ESMTPSA id p8-20020a170906b20800b00a0cd9d89a00sm499486ejz.151.2023.11.25.10.10.02
+        by smtp.gmail.com with ESMTPSA id p8-20020a170906b20800b00a0cd9d89a00sm499486ejz.151.2023.11.25.10.10.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 25 Nov 2023 10:10:03 -0800 (PST)
-Message-ID: <13396ed1-36db-4bf5-91d4-d36aa8414212@linaro.org>
-Date: Sat, 25 Nov 2023 19:10:02 +0100
+        Sat, 25 Nov 2023 10:10:11 -0800 (PST)
+Message-ID: <4808901c-9b8d-4e65-b2b7-51401d03314d@linaro.org>
+Date: Sat, 25 Nov 2023 19:10:11 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,15 +62,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: arm: rockchip: Update edgeble-neu6
- bindings
+Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Use NCM6A-IO board for
+ edgeble-neu6b
+Content-Language: en-US
 To: Jagan Teki <jagan@edgeble.ai>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
 Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-rockchip@lists.infradead.org
 References: <20231125142914.57459-1-jagan@edgeble.ai>
-Content-Language: en-US
+ <20231125142914.57459-2-jagan@edgeble.ai>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -117,30 +117,21 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231125142914.57459-1-jagan@edgeble.ai>
+In-Reply-To: <20231125142914.57459-2-jagan@edgeble.ai>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 25/11/2023 15:29, Jagan Teki wrote:
-> Current binding has following compatible combination for SoM, IO board
-> - NCM6A: edgeble,neural-compute-module-6a,
-> 	 edgeble,neural-compute-module-6a-io
-> - NCM6B: edgeble,neural-compute-module-6b,
-> 	 edgeble,neural-compute-module-6b-io
+> Edgeble AI 6TOPS board topology is now changed in final revisions
+> as a compatible IO board, NCM6A-IO, is made available for both
+> variants of SoM: NCM6A and NCM6B.
 > 
-> This board topology now changes in final revisions, so a common
-> compatible IO board, NCM6A-IO, is made available for both variants
-> of SoM: NCM6A and NCM6B, produced by Edgeble AI.
-> 
-> With this change, 6b-io is not as available and 6a; 6b SoM's have the
-> same compatible IO board as 6a-io. This change is due to the common
-> optimised design of the IO board made available now in final revisions,
-> which was not the case in initial revisions.
-> 
-> Update the dt-bindings with this new change.
-> 
+> With this change, 6b-io is not as available and 6a; 6b SoM's have
+> the same compatible IO board as 6a-io. This change is due to the
+> common optimised design of the IO board made available now in
+> final revisions, which was not the case in initial revisions.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
