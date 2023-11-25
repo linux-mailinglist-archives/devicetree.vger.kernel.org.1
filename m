@@ -1,61 +1,62 @@
-Return-Path: <devicetree+bounces-18786-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18787-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 533F17F8B4B
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 15:17:51 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 394967F8B51
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 15:17:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7B9141C20CED
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 14:17:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D61171F20F0F
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 14:17:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 023DC14A86;
-	Sat, 25 Nov 2023 14:17:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 335CE171B8;
+	Sat, 25 Nov 2023 14:17:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gOKU8rtc"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MR4xcmJI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E765C133
-	for <devicetree@vger.kernel.org>; Sat, 25 Nov 2023 06:17:42 -0800 (PST)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-9fffa4c4f43so392242366b.3
-        for <devicetree@vger.kernel.org>; Sat, 25 Nov 2023 06:17:42 -0800 (PST)
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 998A3DF
+	for <devicetree@vger.kernel.org>; Sat, 25 Nov 2023 06:17:46 -0800 (PST)
+Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-543456dbd7bso7302853a12.1
+        for <devicetree@vger.kernel.org>; Sat, 25 Nov 2023 06:17:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700921861; x=1701526661; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=OPB29h8XgdVf8/Mj7J0oGuHQzVyt4cdj+mVXkBfm3j0=;
-        b=gOKU8rtcPGTcm8iHKJmZ6+UTFyrVK5qxM9NZWxfCCG2iyXYvULv7LAuMFTonmBoG1+
-         gAK8pwoJZ649bRMrOwwScVIWHwcDupah7phZnfZONgIstetal7dulChbemPcrUMWqGOy
-         qoq8wb9l0N+KPVfp/x2jJsiFQuNQektPB92ZUiru0lZBUKarhUQJf6atqYUrI2Gq3zdt
-         YYTDFdaaewllZY/CNADPel7rULRCZ/7R0Y++nvOkyFZtXfZByTlSJc4ipf70+eia9Kr7
-         UmUUPLHBvkKrtqoiUrABgs5+6oDSll85emPBAHQI7EtKdkodwrknNZs969zbr35YQ2Sl
-         eAVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700921861; x=1701526661;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1700921865; x=1701526665; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=OPB29h8XgdVf8/Mj7J0oGuHQzVyt4cdj+mVXkBfm3j0=;
-        b=BkLa3R+3H6Q/cryZFvT10WxYvGgRPgLNG769HNsRMipb4x88+aB3ICSk+NPf7V4yXA
-         RQTtep//cf2FErrRM+tenfxeb0wKacIMFAnTHQtGkX9VG8AwQs8xVfKjaKd1zC2Ksxkz
-         0wLRhHWHw00kFob3sEP8U9agjSGIbmsQBYR9pqzrAw2af+8Yw4c6HhfELLzHwkVyhWoF
-         SSsu/qIpOtaPibRg2/FJQU2fhw5BsQ501hfqhbPfssLGcPOxN1hWemCGVPTwy/6QK1XG
-         D9cRdLjpOEblahpFWJ+QshE/diOsa56ELIIxmkXjTgEDE+AJyBVJWRbzG/6l3ACjpiM/
-         l1Vw==
-X-Gm-Message-State: AOJu0YzhinL3MgG24vjobfIIbu5dOewT2UaoDH9T4qT8a14yEFmn9l3i
-	dADkx8xIy8+t5teXwDdEGl4MfWrXHVya/tj7cv4=
-X-Google-Smtp-Source: AGHT+IFshDaGZpoZ0UPNN73yo2NyaQpJ6p9P/hDNUi+51RGYJObtCtzb4JKAHb0PVhKI46jF5+kwvQ==
-X-Received: by 2002:a17:907:2da9:b0:9fe:38b7:4278 with SMTP id gt41-20020a1709072da900b009fe38b74278mr5932250ejc.16.1700921861162;
-        Sat, 25 Nov 2023 06:17:41 -0800 (PST)
+        bh=+rQujemNns2ndt1lXcUIici3g0rf7w22fn5B+qvqdAk=;
+        b=MR4xcmJIfSALWI32kA72Mv2nx4nqOZrfQAzNPojw5v4eBYFD4xszOu8eInIvuRCNFr
+         D9sgsdq0A3aHZbDSzvNdwyCJdwJwIQXBVfabKmGoxy7KIqJ1atKaR5ZJIhpE9kvHz6RO
+         ma161huomoE4jZYAwfFQplkzzpsqmDLPILmEt8VMPKQeh8a+TSqc2zmWahH7mx9w3360
+         MRKh3vEoloa0N5Dkvua8eOCkuUSBcmaKOBw0A4E0KZCiPBCvsyvmiQl+ftrsJIMEptx5
+         mcuBP92QsZnZodX9PAM4/fND5CiJDXP4qf1NAgf5Odx+2p+Gpys+ld2eWn9zbODWnBOr
+         svXw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700921865; x=1701526665;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+rQujemNns2ndt1lXcUIici3g0rf7w22fn5B+qvqdAk=;
+        b=mhRmusSwGvffNCzPpDm3QE4IUv973Pwcna1+rUfoCW5WIY5Y9Ut+gAm2cG3q7TFpP8
+         3UputKmaOiaUa0vyzEp0rx8ja4FWyTxpUwXMHiwpuN/Vnpn0imcV+erCkShjictWltli
+         vv5r8UHBLRixVHeYHZhS0MBtBol6WaSeG7eUABhQn/c0P+exvTfdc1ZhuHeH6/JGOPRx
+         jDq+lRLupI8TVKSDv8eOuya/xMyhLgAhfdqc3RskiqO4csItF/y6GjoPWln/a133V7s2
+         rX1eT38bBSGHc5OK4H6BSjLxheOw3AWFSU2gw79WkdLWP40VZ9Ter9d3bsqt4gwMKS0X
+         KZHg==
+X-Gm-Message-State: AOJu0YyI9UCTN46DXkrhQVXCD7MrdHFmHF0AMIeWzpgl5eqPq6xYu8d+
+	a9C3MyAoUS+UIInOVASaGHRIKwTFXuhdPK7YQw8=
+X-Google-Smtp-Source: AGHT+IGPxq21Qjgc/GrNJp+OS6vlYQiVZrLBsYgKptJdvk4KWzY/ul6KxNZYKidVLZt5GlelpE1RPg==
+X-Received: by 2002:a17:906:1c0b:b0:9a9:f042:deb9 with SMTP id k11-20020a1709061c0b00b009a9f042deb9mr5318580ejg.19.1700921864631;
+        Sat, 25 Nov 2023 06:17:44 -0800 (PST)
 Received: from [10.167.154.1] (178235187180.dynamic-4-waw-k-2-3-0.vectranet.pl. [178.235.187.180])
-        by smtp.gmail.com with ESMTPSA id 19-20020a170906319300b00992b8d56f3asm3500345ejy.105.2023.11.25.06.17.38
+        by smtp.gmail.com with ESMTPSA id 19-20020a170906319300b00992b8d56f3asm3500345ejy.105.2023.11.25.06.17.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 25 Nov 2023 06:17:40 -0800 (PST)
+        Sat, 25 Nov 2023 06:17:44 -0800 (PST)
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Subject: [PATCH 00/12] RB1/QCM2290 features
-Date: Sat, 25 Nov 2023 15:17:28 +0100
-Message-Id: <20231125-topic-rb1_feat-v1-0-11d71b12b058@linaro.org>
+Date: Sat, 25 Nov 2023 15:17:29 +0100
+Subject: [PATCH 01/12] dt-bindings: display: msm: qcm2290-mdss: Use the
+ non-deprecated DSI compat
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,9 +65,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAPgBYmUC/x2NywqDQAwAf0VybsBEtof+SillH7EGZJWsLQXx3
- w0eZ2CYHZqYSoNHt4PJT5su1YFuHeQp1o+gFmfgngciDrgtq2a0RO9R4oalBOrDwHemBB6l2AS
- TxZonz+p3nl2uJqP+r8vzdRwnnFqtGnUAAAA=
+Message-Id: <20231125-topic-rb1_feat-v1-1-11d71b12b058@linaro.org>
+References: <20231125-topic-rb1_feat-v1-0-11d71b12b058@linaro.org>
+In-Reply-To: <20231125-topic-rb1_feat-v1-0-11d71b12b058@linaro.org>
 To: Rob Clark <robdclark@gmail.com>, 
  Abhinav Kumar <quic_abhinavk@quicinc.com>, 
  Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>, 
@@ -90,66 +91,43 @@ Cc: Marijn Suijten <marijn.suijten@somainline.org>,
  linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
  iommu@lists.linux.dev, Konrad Dybcio <konrad.dybcio@linaro.org>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1700921858; l=1962;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1700921858; l=1164;
  i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=qqo1HkU087mhGcmOMVz6Ckg9V4Z4NTeii2LcjxJBNPM=;
- b=o1M6AdcRS2Gq88RD4ObPcOl1SXOsPSOZLeS6wO63F2KLCgkoaV13h/mDN9e0icg6ZaSnsLQtx
- 31OcGhoRmcSBrN5eyR4Y9Mh5bTUkFIRHMYG7GFIXZPhZa5DwwDHyDfD
+ bh=Y1sirvX5YFsJjlPb48bi4MpncyZ0lMCRlJZu7X2yRoM=;
+ b=UiGcO+L4/a0dmckDlbkw20ULhUpsIjv/+kQuhdQaBChp5KRuCtnnqN8CqLFyn7qRa5+5NOM2B
+ ozznslemdQeAT1tVEV7J9StfijAPcDgoNEvSOjEwpF9tAfdtcIiixbC
 X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
  pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 
-This series brings:
-- interconnect plumbing
-- display setup
+The "qcom,dsi-ctrl-6g-qcm2290" has been deprecated in commit 0c0f65c6dd44
+("dt-bindings: msm: dsi-controller-main: Add compatible strings for every
+current SoC"), but the example hasn't been updated to reflect that.
 
-for QCM2290/QRB2210 and
+Fix that.
 
-- CAN bus controller
-- HDMI display
-- wifi fw variant name
-
-for QTI RB1
-
-and the necessary bindings changes
-
-Patch 1-4 is for Dmitry/freedreno
-Patch 5 for Georgi/icc
-Patch 7 for Will/iommu
-the rest are for Bjorn/qcom
-
+Fixes: 0c0f65c6dd44 ("dt-bindings: msm: dsi-controller-main: Add compatible strings for every current SoC")
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
-Dmitry Baryshkov (1):
-      arm64: dts: qcom: qrb2210-rb1: add wifi variant property
+ Documentation/devicetree/bindings/display/msm/qcom,qcm2290-mdss.yaml | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-Konrad Dybcio (11):
-      dt-bindings: display: msm: qcm2290-mdss: Use the non-deprecated DSI compat
-      dt-bindings: display: msm: Add reg bus and rotator interconnects
-      dt-bindings: display: msm: qcm2290-mdss: Allow 2 interconnects
-      dt-bindings: display: msm: sm8450-mdss: Allow 3 interconnects
-      dt-bindings: interconnect: qcom,msm8998-bwmon: Add QCM2290 bwmon instance
-      dt-bindings: firmware: qcom,scm: Allow interconnect for everyone
-      iommu/arm-smmu-qcom: Add QCM2290 DPU compatible
-      arm64: dts: qcom: qcm2290: Add display nodes
-      arm64: dts: qcom: qcm2290: Hook up interconnects
-      arm64: dts: qcom: qrb2210-rb1: Set up HDMI
-      arm64: dts: qcom: qrb2210-rb1: Enable CAN bus controller
+diff --git a/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-mdss.yaml
+index 5ad155612b6c..3d82c00a9f85 100644
+--- a/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-mdss.yaml
++++ b/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-mdss.yaml
+@@ -56,7 +56,9 @@ patternProperties:
+ 
+     properties:
+       compatible:
+-        const: qcom,dsi-ctrl-6g-qcm2290
++        items:
++          - const: qcom,qcm2290-dsi-ctrl
++          - const: qcom,mdss-dsi-ctrl
+ 
+   "^phy@[0-9a-f]+$":
+     type: object
 
- .../bindings/display/msm/mdss-common.yaml          |  18 +-
- .../bindings/display/msm/qcom,qcm2290-mdss.yaml    |   8 +-
- .../bindings/display/msm/qcom,sm8450-mdss.yaml     |   4 +-
- .../devicetree/bindings/firmware/qcom,scm.yaml     |  15 -
- .../bindings/interconnect/qcom,msm8998-bwmon.yaml  |   1 +
- arch/arm64/boot/dts/qcom/qcm2290.dtsi              | 462 +++++++++++++++++++++
- arch/arm64/boot/dts/qcom/qrb2210-rb1.dts           | 109 +++++
- drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c         |   1 +
- 8 files changed, 594 insertions(+), 24 deletions(-)
----
-base-commit: 8c9660f6515396aba78d1168d2e17951d653ebf2
-change-id: 20231125-topic-rb1_feat-dd510532621b
-
-Best regards,
 -- 
-Konrad Dybcio <konrad.dybcio@linaro.org>
+2.43.0
 
 
