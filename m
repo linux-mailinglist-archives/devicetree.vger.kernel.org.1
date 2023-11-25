@@ -1,57 +1,58 @@
-Return-Path: <devicetree+bounces-18854-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18855-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC3507F8D92
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 20:05:37 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3794C7F8D93
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 20:05:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 735C72811F3
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 19:05:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E7E622813EB
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 19:05:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B854F2DF87;
-	Sat, 25 Nov 2023 19:05:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE32C2E84B;
+	Sat, 25 Nov 2023 19:05:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=edgeble-ai.20230601.gappssmtp.com header.i=@edgeble-ai.20230601.gappssmtp.com header.b="0r3dYAob"
+	dkim=pass (2048-bit key) header.d=edgeble-ai.20230601.gappssmtp.com header.i=@edgeble-ai.20230601.gappssmtp.com header.b="pZPuXXOd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A3EDF1
-	for <devicetree@vger.kernel.org>; Sat, 25 Nov 2023 11:05:30 -0800 (PST)
-Received: by mail-pf1-x430.google.com with SMTP id d2e1a72fcca58-6b1d1099a84so2773001b3a.1
-        for <devicetree@vger.kernel.org>; Sat, 25 Nov 2023 11:05:30 -0800 (PST)
+Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F0A6F7
+	for <devicetree@vger.kernel.org>; Sat, 25 Nov 2023 11:05:33 -0800 (PST)
+Received: by mail-pf1-x432.google.com with SMTP id d2e1a72fcca58-6cb74a527ceso2395885b3a.2
+        for <devicetree@vger.kernel.org>; Sat, 25 Nov 2023 11:05:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=edgeble-ai.20230601.gappssmtp.com; s=20230601; t=1700939130; x=1701543930; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Jj/HfiSQ6d5t/5HhjyjbiYVeNAO8Z0nCxri2/wDLCdk=;
-        b=0r3dYAobPducBu/qEKGDw8HXPhSxI8wrTh4oEGDjW33lbLkb7J1dLt6QCKOjkMiYff
-         LXNYaIgWowWYZGzTJBYZoeevU61mMxrJBR8pzqfgKCqM/XQG+VEAZR5IrDPBo0rklHKe
-         Xav4Plejy+RRCPfs+bVqG2/7voIB0E8vVxZwkub40n9/6lVedMKvmvIzxOjB+wFi3AJT
-         +skzhxcfk6KE7ZCXhCHuc98NXdVLyB6XA8V1Kan/vM9RCFtgUip8+dubhok2Kc7xCg9o
-         UlTQAmLH0Wx+1GummDw2Cej5B/u9exC0DwRO1IiWXfU1FtW1hwPd/awLTUxbS6Hvn3B9
-         1pBg==
+        d=edgeble-ai.20230601.gappssmtp.com; s=20230601; t=1700939133; x=1701543933; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=d1c5i+MUOB0own5Rsi1Xes6tV5UH+0xxUJRHAiYBM88=;
+        b=pZPuXXOd5NbPFoTrhLSxGeg7evx1MXe5jirlcW/gWY1hL0mOsVe0qK6MsRv+gnvZrl
+         W/3Yg9K6iLzP7rDG6uxihYycp6KidKm7YtTMRU4y4J2yPb72waS4e44mnyXrZf6Kq3M3
+         tfa0i9juBG4zV7iPVR+95KRlGJz9vSZzBaCcme9xB1X0Vcw3hwgNp1FhXF/E3D1rbwVF
+         p+nqoNce6Wwcpgojt7kyYU+3JL/lI8lyKPy3HOdUkhScDE+232gv1lJL0QHXY8G69I2a
+         FT25Fc6C0cFgkx33MpeJ1pD/5+ROuKIfgdUXR7YxuPAdzBY/RiBtnvF9O+BFsNRLOrjW
+         K6Nw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700939130; x=1701543930;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Jj/HfiSQ6d5t/5HhjyjbiYVeNAO8Z0nCxri2/wDLCdk=;
-        b=ij1zV2yoLZ6oOhDk45gvjXCdfsv9kE39xwqUzYIkDSm58uAVjc5dC3c8yIaRDUD8KD
-         ZE/2MuPpckebAI3ahZCx0QIoB4ulc77Iclwd771wX+czegjYTqug7NmBqUKpDPfIjptc
-         ImstbkYYepLD8GCtSjcP0tc6viJsSqaFmcPnAXSB4FrQ/6JFKxuvI55NKdhXZq4amCYX
-         Dq+vlvKDiij4I+X4XLkFUjDtcGA7Cm4f5BNQZl646R9ir+3KBp63W4tyHlhSJ+altuMv
-         dp0RGKF3h2NGy1MxW8ba9CXEfEeywQYGpF3DxUCgojx+cTL+Tr0+X1YwFWq4hsCyw/eT
-         9oPQ==
-X-Gm-Message-State: AOJu0YzvOgOgiy64EPgZX2ls96+dBzzMeAkyrrw9rfN2kxGXA1R9k28M
-	nJYLLr5jyhLtHsLBpmVU2FiRPg==
-X-Google-Smtp-Source: AGHT+IEw91bDj1TnnkxWJC1pJvmcbECDm3e9xvHLhKcRyTP7ujds3WHlaiCTdfVnc2m0w/V5TvD+uQ==
-X-Received: by 2002:a05:6a20:8f1d:b0:18c:3b26:13c with SMTP id b29-20020a056a208f1d00b0018c3b26013cmr4498156pzk.12.1700939130020;
-        Sat, 25 Nov 2023 11:05:30 -0800 (PST)
+        d=1e100.net; s=20230601; t=1700939133; x=1701543933;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=d1c5i+MUOB0own5Rsi1Xes6tV5UH+0xxUJRHAiYBM88=;
+        b=xT5NUOZIEt5y5BYodmratmk1LWP+Dl02fdhuO7KaeOY9pUUav2RJXJ5wsj7QlW4nDV
+         4MwHERmNZbJu+DRgVKaMqmBwXjSxtPONbUV8q+yoIoA5yDQeAHmffL/vqF7WAerjsXCE
+         fiLSSeEEyh/h3RAqfaGk/d5x7qINgpT/UV1unq5pDEv9aHgnN2CmTXoSImfRi7CBLQj9
+         mw966AGYv8ma0c7I2L9nCLkTfcy58/EVJetMtKCqof9Paa5AxWNAQCbV2pXRiwlk2opv
+         PnrLZOCqaPFkR+HOSLS+tIKmvQ19z03gYOGxJmbhhcVvEhUufHNoR2XB/hD2EWslcOOx
+         81bA==
+X-Gm-Message-State: AOJu0Yz7QUERLGwzuMaZGURfoSRWpvBtH5Cnx242fHhbOLtRWgv0IsXp
+	dfzSEFy/k8XG6mfDIyNMcZkYvg==
+X-Google-Smtp-Source: AGHT+IH7F6vMU6hiyCaaneaRq1BN6lED+LPtLiArBxdHxvHBJUDQogPB783Wed7MRnLVxp+mAf/47g==
+X-Received: by 2002:a05:6a20:431e:b0:189:2e8f:d34d with SMTP id h30-20020a056a20431e00b001892e8fd34dmr8437357pzk.42.1700939132763;
+        Sat, 25 Nov 2023 11:05:32 -0800 (PST)
 Received: from localhost.localdomain ([2405:201:c00a:a208:d471:6d33:4b36:d85])
-        by smtp.gmail.com with ESMTPSA id j26-20020a62b61a000000b006cbb7e27091sm4810529pff.175.2023.11.25.11.05.27
+        by smtp.gmail.com with ESMTPSA id j26-20020a62b61a000000b006cbb7e27091sm4810529pff.175.2023.11.25.11.05.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 25 Nov 2023 11:05:29 -0800 (PST)
+        Sat, 25 Nov 2023 11:05:32 -0800 (PST)
 From: Jagan Teki <jagan@edgeble.ai>
 To: Heiko Stuebner <heiko@sntech.de>,
 	Rob Herring <robh+dt@kernel.org>,
@@ -61,10 +62,12 @@ Cc: devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-rockchip@lists.infradead.org,
 	Jagan Teki <jagan@edgeble.ai>
-Subject: [PATCH v2 00/10] arm64: dts: rockchip: Pack Edgeble NCM6A, 6B DT
-Date: Sun, 26 Nov 2023 00:35:12 +0530
-Message-Id: <20231125190522.87607-1-jagan@edgeble.ai>
+Subject: [PATCH v2 01/10] arm64: dts: rockchip: Drop edgeble-neu6b dcdc-reg4 regulator-init-microvolt
+Date: Sun, 26 Nov 2023 00:35:13 +0530
+Message-Id: <20231125190522.87607-2-jagan@edgeble.ai>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20231125190522.87607-1-jagan@edgeble.ai>
+References: <20231125190522.87607-1-jagan@edgeble.ai>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,41 +76,33 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-DT patch set for Edgeble NCM6A, NCM6B SoM, and IO board.
+The 'regulator-init-microvolt' property is not currently supported by
+any driver, it was simply carried on from downstream kernels.
 
+rk3588-edgeble-neu6b-io.dtb: pmic@0: regulators:dcdc-reg4: Unevaluated properties are not allowed ('regulator-init-microvolt' was unexpected)
+
+Remove the invalid property.
+
+Signed-off-by: Jagan Teki <jagan@edgeble.ai>
+---
 Changes for v2:
-- suffix -regulator in node names
-- fix node lables
-- update commit message
+- none
 
-Any inputs?
-Jagan.
+ arch/arm64/boot/dts/rockchip/rk3588-edgeble-neu6b.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
 
-Jagan Teki (10):
-  arm64: dts: rockchip: Drop edgeble-neu6b dcdc-reg4 regulator-init-microvolt
-  arm64: dts: rockchip: Add edgeble-neu6a-common DT
-  arm64: dts: rockchip: Add common DT for edgeble-neu6b-io
-  arm64: dts: rockchip: Add Edgeble NCM6A WiFi6 Overlay
-  arm64: dts: rockchip: Add vdd_cpu_big reg to rk3588-edgeble-ncm6
-  arm64: dts: rockchip: Add Edgeble NCM6A-IO 2.5G ETH
-  arm64: dts: rockchip: Add Edgeble NCM6A-IO M.2 M-Key
-  arm64: dts: rockchip: Add Edgeble NCM6A-IO M.2 B-Key, E-Key
-  arm64: dts: rockchip: Add Edgeble NCM6A-IO USB2
-  arm64: dts: rockchip: Add LED_GREEN for edgeble-neu6a
-
- arch/arm64/boot/dts/rockchip/Makefile         |   1 +
- .../rockchip/rk3588-edgeble-neu6a-common.dtsi | 466 ++++++++++++++++++
- .../dts/rockchip/rk3588-edgeble-neu6a-io.dts  |  14 +-
- .../dts/rockchip/rk3588-edgeble-neu6a-io.dtsi | 236 +++++++++
- .../rockchip/rk3588-edgeble-neu6a-wifi.dtso   |  56 +++
- .../dts/rockchip/rk3588-edgeble-neu6a.dtsi    |  25 +-
- .../dts/rockchip/rk3588-edgeble-neu6b-io.dts  |  80 +--
- .../dts/rockchip/rk3588-edgeble-neu6b.dtsi    | 383 +-------------
- 8 files changed, 765 insertions(+), 496 deletions(-)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-edgeble-neu6a-common.dtsi
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-edgeble-neu6a-io.dtsi
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-edgeble-neu6a-wifi.dtso
-
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-edgeble-neu6b.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-edgeble-neu6b.dtsi
+index 017559bba37f..4797260a8a78 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-edgeble-neu6b.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588-edgeble-neu6b.dtsi
+@@ -165,7 +165,6 @@ vdd_vdenc_s0: vdd_vdenc_mem_s0: dcdc-reg4 {
+ 				regulator-boot-on;
+ 				regulator-min-microvolt = <550000>;
+ 				regulator-max-microvolt = <950000>;
+-				regulator-init-microvolt = <750000>;
+ 				regulator-ramp-delay = <12500>;
+ 
+ 				regulator-state-mem {
 -- 
 2.25.1
 
