@@ -1,117 +1,200 @@
-Return-Path: <devicetree+bounces-18845-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18846-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67C947F8CEA
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 18:52:19 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1774A7F8CF5
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 19:06:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0F0CF1F20CAC
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 17:52:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3B6C31C20B55
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 18:06:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C0B92D04A;
-	Sat, 25 Nov 2023 17:52:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F30432D78A;
+	Sat, 25 Nov 2023 18:06:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="urx7XhfB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PqtyaPAk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 765A611F;
-	Sat, 25 Nov 2023 09:52:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=MdVRObo32aWz8f8kgjwheJhKiMZUR4c7isPKuP93/wU=; b=urx7XhfBX0iP+Qbhwb87KAvF9k
-	oQo7eZJ9HxvOzzfkiRwavlt3zCsDVtFbuWud3BdkXZGJLfR5/GXGMc9qrS2/pEMwWbwvuPnmIhzP8
-	fY9q5+ZtkyA5T7nZGlIaXtmbC9z4j0XzrinGqYFBgcHUiaroB3sgoHUzeWj0JvQC0FTM=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1r6wos-001Cba-Ao; Sat, 25 Nov 2023 18:51:54 +0100
-Date: Sat, 25 Nov 2023 18:51:54 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Qingfang Deng <dqfext@gmail.com>,
-	SkyLake Huang <SkyLake.Huang@mediatek.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	David Epping <david.epping@missinglinkelectronics.com>,
-	Harini Katakam <harini.katakam@amd.com>,
-	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-	Robert Marko <robert.marko@sartura.hr>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [net-next RFC PATCH v2 01/11] net: phy: extend PHY package API
- to support multiple global address
-Message-ID: <a8ce4503-c24d-4d6e-91ec-d03624b31fe0@lunn.ch>
-References: <20231125001127.5674-1-ansuelsmth@gmail.com>
- <20231125001127.5674-2-ansuelsmth@gmail.com>
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF9B923DB;
+	Sat, 25 Nov 2023 18:06:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F86BC433C7;
+	Sat, 25 Nov 2023 18:06:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1700935601;
+	bh=2mqDBd/8TiifGjoo0dqWg0EWWNxd6WuCAOk85z9NRvY=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=PqtyaPAkDxYpd6WhEyojObVwffExmJFfl5wbfM8apViabQv8DS0zPJUXqMOSRVimI
+	 gYSIwknQ50Vj3pct1jQNDDr3bDq0IaXqZbwd20X1+6+FeVCSro2zITfgzE6bFK1RU8
+	 1UDbafK6CNxOTKVRhthrEAmGdaIWF3ssGrCAocFvAK9tIIrZAHl4LkmRq5EbeWfp1n
+	 qdPFZSmhpXsndGbGDvaAaAPIaiqUIXhthkMSQIvvbJXL4m5YmnjC812Jr0C/4hgo3U
+	 h65sDasRhnOgKIP6UPSXq2Dp6qdDRL1mP47E8FNcmtkRq04DBLUhWwQXMaJDXyYkQ9
+	 FgHyH6FR/87ZQ==
+Date: Sat, 25 Nov 2023 18:06:31 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Marek Vasut <marex@denx.de>
+Cc: linux-iio@vger.kernel.org, Alexander Stein
+ <alexander.stein@ew.tq-group.com>, Andre Werner
+ <andre.werner@systec-electronic.com>, Andy Shevchenko
+ <andriy.shevchenko@linux.intel.com>, Bjorn Helgaas <bhelgaas@google.com>,
+ Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@denx.de>,
+ Guenter Roeck <linux@roeck-us.net>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>, Mark Brown <broonie@kernel.org>,
+ Matti Vaittinen <mazziesaccount@gmail.com>, Naresh Solanki
+ <naresh.solanki@9elements.com>, Patrick Rudolph
+ <patrick.rudolph@9elements.com>, Rob Herring <robh+dt@kernel.org>, Stefan
+ Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>, Vincent Tremblay
+ <vincent@vtremblay.dev>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 2/2] iio: light: isl76682: Add ISL76682 driver
+Message-ID: <20231125180631.0dadc926@jic23-huawei>
+In-Reply-To: <20231121031043.327614-2-marex@denx.de>
+References: <20231121031043.327614-1-marex@denx.de>
+	<20231121031043.327614-2-marex@denx.de>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231125001127.5674-2-ansuelsmth@gmail.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Sat, Nov 25, 2023 at 01:11:17AM +0100, Christian Marangi wrote:
-> Current API for PHY package are limited to single address to configure
-> global settings for the PHY package.
+On Tue, 21 Nov 2023 04:10:40 +0100
+Marek Vasut <marex@denx.de> wrote:
+
+> The ISL76682 is very basic ALS which only supports ALS or IR mode
+> in four ranges, 1k/4k/16k/64k LUX. There is no IRQ support or any
+> other fancy functionality.
 > 
-> It was found that some PHY package (for example the qca807x, a PHY
-> package that is shipped with a bundle of 5 PHY) require multiple PHY
-> address to configure global settings. An example scenario is a PHY that
-> have a dedicated PHY for PSGMII/serdes calibrarion and have a specific
-> PHY in the package where the global PHY mode is set and affects every
-> other PHY in the package.
-> 
-> Change the API in the following way:
-> - Make phy_package_join() require a list of address to be passed and the
->   number of address in the list
-> - On shared data init, each address is the list is checked and added to
->   the shared struct.
-> - Make __/phy_package_write/read() require an additional arg that
->   select what global PHY address to use in the provided list.
+> Signed-off-by: Marek Vasut <marex@denx.de>
+Nice little driver.
 
-I think this is overly complex.
+A few comments inline.
 
-I would rename struct phy_package_shared addr to base_addr.
-phy_package_join() would then pass the base address of the package,
-which is the same as your reg property for the package in DT.
+Thanks,
 
-I think all current users of devm_phy_package_join() already do pass
-the lowest address in the package, so this should not cause any
-problems. Most drivers even call it base address, rather than cookie,
-which the documentation uses.
+Jonathan
 
-I would then extend __phy_package_read() etc to take an offset, which
-is added to base_addr, and the read is performed on that address. All
-the existing users would pass 0, and your new driver can pass other
-values.
+> diff --git a/drivers/iio/light/isl76682.c b/drivers/iio/light/isl76682.c
+> new file mode 100644
+> index 0000000000000..7f0ccd0d37539
+> --- /dev/null
+> +++ b/drivers/iio/light/isl76682.c
+> @@ -0,0 +1,364 @@
 
-I also think you can split this out from the DT binding. Make it two
-patch sets. One patch set is about extended the package concept to
-allow access to global registers at addresses other than the base. The
-DT patch is about properties which are shared by the package. These
-seems like two mostly orthogonal concepts.
 
-    Andrew
+> +
+> +static int isl76682_read_raw(struct iio_dev *indio_dev,
+> +			     struct iio_chan_spec const *chan,
+> +			     int *val, int *val2, long mask)
+> +{
+> +	struct isl76682_chip *chip = iio_priv(indio_dev);
+> +	int ret;
+> +	int i;
+> +
+> +	if (chan->type != IIO_LIGHT && chan->type != IIO_INTENSITY)
+> +		return -EINVAL;
+> +
+> +	guard(mutex)(&chip->lock);
+> +
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_RAW:
+> +		switch (chan->type) {
+> +		case IIO_LIGHT:
+> +			ret = isl76682_get(chip, false, val);
+> +			return (ret < 0) ? ret : IIO_VAL_INT;
+> +		case IIO_INTENSITY:
+> +			ret = isl76682_get(chip, true, val);
+> +			return (ret < 0) ? ret : IIO_VAL_INT;
+> +		default:
+> +			break;
+return here and drop the one below.
+
+> +		}
+> +
+> +		return -EINVAL;
+> +	case IIO_CHAN_INFO_SCALE:
+> +		for (i = 0; i < ARRAY_SIZE(isl76682_range_table); i++) {
+> +			if (chip->range != isl76682_range_table[i].range)
+> +				continue;
+> +
+> +			*val = 0;
+> +			switch (chan->type) {
+> +			case IIO_LIGHT:
+> +				*val2 = isl76682_range_table[i].als;
+> +				return IIO_VAL_INT_PLUS_MICRO;
+> +			case IIO_INTENSITY:
+> +				*val2 = isl76682_range_table[i].ir;
+> +				return IIO_VAL_INT_PLUS_MICRO;
+> +			default:
+> +				return -EINVAL;
+> +			}
+> +		}
+> +		return -EINVAL;
+> +	case IIO_CHAN_INFO_INT_TIME:
+> +		*val = 0;
+> +		*val2 = ISL76682_INT_TIME_US;
+> +		return IIO_VAL_INT_PLUS_MICRO;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+
+> +static int isl76682_probe(struct i2c_client *client)
+> +{
+> +	const struct i2c_device_id *id = i2c_client_get_device_id(client);
+
+For reason below, we should avoid accessing this directly.
+If you need the associated data later, then use the access functions that
+try the property.h accessors first and fallback to this only if this fails.
+That ends up much less fragile.
+
+> +	struct device *dev = &client->dev;
+> +	struct isl76682_chip *chip;
+> +	struct iio_dev *indio_dev;
+> +	int ret;
+> +
+> +	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*chip));
+> +	if (!indio_dev)
+> +		return -ENOMEM;
+> +
+> +	chip = iio_priv(indio_dev);
+> +
+> +	mutex_init(&chip->lock);
+> +
+> +	chip->regmap = devm_regmap_init_i2c(client, &isl76682_regmap_config);
+> +	ret = PTR_ERR_OR_ZERO(chip->regmap);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Error initializing regmap\n");
+> +
+> +	chip->range = ISL76682_COMMAND_RANGE_LUX_1K;
+> +
+> +	ret = isl76682_clear_configure_reg(chip);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret = devm_add_action_or_reset(dev, isl76682_reset_action, chip);
+> +	if (ret)
+> +		return ret;
+> +
+> +	indio_dev->info = &isl76682_info;
+> +	indio_dev->channels = isl76682_channels;
+> +	indio_dev->num_channels = ARRAY_SIZE(isl76682_channels);
+> +	indio_dev->name = id->name;
+
+This tends to be fragile as drivers gain more entrees in the id and of table.
+So the name should always be retrieved from a chip_info structure.
+Given you don't need one of those yet, I'd prefer just having the string here
+directly. We've been bitten by this before so I get paranoid about it :)
+
+
+> +	indio_dev->modes = INDIO_DIRECT_MODE;
+> +
+> +	return devm_iio_device_register(dev, indio_dev);
+> +}
+
 
