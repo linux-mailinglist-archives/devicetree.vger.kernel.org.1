@@ -1,147 +1,101 @@
-Return-Path: <devicetree+bounces-18749-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18750-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF03D7F8A35
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 12:36:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D596D7F8A3C
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 12:37:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2B7A7B20FE4
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 11:36:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5CE14B20FB7
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 11:37:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77EE6D298;
-	Sat, 25 Nov 2023 11:36:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AE25D29C;
+	Sat, 25 Nov 2023 11:37:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pZxw/pfQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iIWVavDM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59255AD4C;
-	Sat, 25 Nov 2023 11:36:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4989AC433C7;
-	Sat, 25 Nov 2023 11:36:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71993D295;
+	Sat, 25 Nov 2023 11:37:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3BDB5C433C9;
+	Sat, 25 Nov 2023 11:37:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700912183;
-	bh=aCwCQvlfp9RlSvy/8J0HTVolXv3WTuhEcuknlDUIbko=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=pZxw/pfQvVAlZYNi2K0gVG5mHhMKiATOenG9idjwmEqla54ee+Dajv1wLTV7OlNup
-	 /KkLSouuwAwxp2jQljbURTM2EDN5gqsZ1Ixi6ewNOF3nogJQZ7mb/IJ3J3aJORex6D
-	 /b4Rpg9P6n/FECD4vMXelSwFffToD1cFcqh17e5oMgGGk2uIDNobxnAgBIDWlr32EE
-	 EJcGDxM1LHdx6JKOrDJPNqatQaTiOAsspLKCwa6v/9g0SjglExjMgMEa2AMFviF3+F
-	 2O4f+3jeTMkRgdyACtsaCJWll3p7rKUXpmKWX2B+hhNittRpNuZdlaq5HKs9hbon6x
-	 C0eidqIl4PGow==
-Date: Sat, 25 Nov 2023 11:36:17 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Anshul Dalal <anshulusr@gmail.com>
-Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, Lars-Peter
- Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- linux-kernel-mentees@lists.linuxfoundation.org, Shuah Khan
- <skhan@linuxfoundation.org>
-Subject: Re: [PATCH 1/2] dt-bindings: iio: dac: add MCP4821
-Message-ID: <20231125113617.4d626bb2@jic23-huawei>
-In-Reply-To: <20231117073040.685860-1-anshulusr@gmail.com>
-References: <20231117073040.685860-1-anshulusr@gmail.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	s=k20201202; t=1700912230;
+	bh=u3Ud7opf3X4nqSGw+IYKVKYse4XkAAm5XbEyGIYTOsk=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=iIWVavDMX8IIeDCrFAW/9zo0uBiYVTpuBL154mdUZyTf/phmfF6G4/Nr/80KelrKX
+	 ye78qPsyZfB5pF1+3eooBB24/CtiTaA7i8tf1H4UFk0jYR8oaM+8iVF6a9+gmQlHym
+	 HNZ1p5+Z9F/8pua29v34JB4PplpeslfN6VCZ1B9BkgK3K8PAFzjnwwtzoArZFFjBSJ
+	 xoK8/T9rWaKH1INhp5+Fj6Czlgt8Pp7jZJ/pifmAw1wmv5RsePb3TUk/DGIeFlHDT1
+	 c/Hu4vxkMhsW4SJTeaw78VKNQ5gEVUye/ztPBUtc38IYrhIUH/cmJF6s4i9KeY0Hre
+	 MlsikZsY0euQA==
+From: Mark Brown <broonie@kernel.org>
+To: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
+ Banajit Goswami <bgoswami@quicinc.com>, Andy Gross <agross@kernel.org>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Shenghao Ding <shenghao-ding@ti.com>, Kevin Lu <kevin-lu@ti.com>, 
+ Baojun Xu <baojun.xu@ti.com>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+ Magnus Damm <magnus.damm@gmail.com>, Seven Lee <wtli@nuvoton.com>, 
+ Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, 
+ Alexander Stein <alexander.stein@ew.tq-group.com>, 
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org, 
+ linux-arm-msm@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>
+In-Reply-To: <20231124083803.12773-1-krzysztof.kozlowski@linaro.org>
+References: <20231124083803.12773-1-krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH] ASoC: dt-bindings: correct white-spaces in examples
+Message-Id: <170091222492.2632109.16193424114633167533.b4-ty@kernel.org>
+Date: Sat, 25 Nov 2023 11:37:04 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13-dev-0438c
 
-On Fri, 17 Nov 2023 13:00:37 +0530
-Anshul Dalal <anshulusr@gmail.com> wrote:
-
-> Adds support for MCP48xx series of DACs.
+On Fri, 24 Nov 2023 09:38:03 +0100, Krzysztof Kozlowski wrote:
+> Use only one and exactly one space around '=' in DTS example.
 > 
-> Datasheet:
->   [MCP48x1] https://ww1.microchip.com/downloads/en/DeviceDoc/22244B.pdf
->   [MCP48x2] https://ww1.microchip.com/downloads/en/DeviceDoc/20002249B.pdf
 > 
-> Signed-off-by: Anshul Dalal <anshulusr@gmail.com>
-Hi Anshul,
 
-Usually we mark vdd-supply as required given I guess device doesn't work
-without a supply. Obviously we don't actually have to provide it in a binding
-if the supply is always on and we are fine with a stub regulator being
-provided by the regulator subsystem.
+Applied to
 
-There was some discussion about this a while back and conclusion was
-mark them required in bindings anyway.  We haven't yet updated this in all
-the older IIO bindings and it's a minor thing, but given the build warning
-on patch 2 you are going around again so might as well tidy that up!
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-Jonathan
+Thanks!
 
+[1/1] ASoC: dt-bindings: correct white-spaces in examples
+      commit: 29b0b68f25ae6f9454c3e1c31b054595af0a80fc
 
-> ---
->  .../bindings/iio/dac/microchip,mcp4821.yaml   | 63 +++++++++++++++++++
->  1 file changed, 63 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/dac/microchip,mcp4821.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/dac/microchip,mcp4821.yaml b/Documentation/devicetree/bindings/iio/dac/microchip,mcp4821.yaml
-> new file mode 100644
-> index 000000000000..904de15300bd
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/dac/microchip,mcp4821.yaml
-> @@ -0,0 +1,63 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/dac/microchip,mcp4821.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Microchip MCP4821 and similar DACs
-> +
-> +description: |
-> +  Supports MCP48x1 (single channel) and MCP48x2 (dual channel) series of DACs.
-> +  Device supports simplex communication over SPI in Mode 0,1 and Mode 1,1.
-> +
-> +  +---------+--------------+-------------+
-> +  | Device  |  Resolution  |   Channels  |
-> +  |---------|--------------|-------------|
-> +  | MCP4801 |     8-bit    |      1      |
-> +  | MCP4811 |    10-bit    |      1      |
-> +  | MCP4821 |    12-bit    |      1      |
-> +  | MCP4802 |     8-bit    |      2      |
-> +  | MCP4812 |    10-bit    |      2      |
-> +  | MCP4822 |    12-bit    |      2      |
-> +  +---------+--------------+-------------+
-> +
-> +  Datasheet:
-> +    MCP48x1: https://ww1.microchip.com/downloads/en/DeviceDoc/22244B.pdf
-> +    MCP48x2: https://ww1.microchip.com/downloads/en/DeviceDoc/20002249B.pdf
-> +
-> +maintainers:
-> +  - Anshul Dalal <anshulusr@gmail.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - microchip,mcp4801
-> +      - microchip,mcp4811
-> +      - microchip,mcp4821
-> +      - microchip,mcp4802
-> +      - microchip,mcp4812
-> +      - microchip,mcp4822
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-Whilst I understand the reasoning of keeping these grouped by number of channels,
-I'd still rather see them in numeric order here and probably also in the table above.
-Given that grouping by resolution rather than channels would also be a valid choice,
-I don't see a strong reason to keep them out of order.
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-Also, manufacturers often get creative with numbering (when they run of out of digits
-for example - maybe they'll do a 16 channel variant one day and then be stuck) so
-trying to group things is often a loosing game long term!
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-Jonathan
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
+Thanks,
+Mark
 
->
 
