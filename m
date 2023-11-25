@@ -1,719 +1,443 @@
-Return-Path: <devicetree+bounces-18765-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18766-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A1827F8A88
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 13:07:17 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 308637F8A8C
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 13:07:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8E0A61C20C90
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 12:07:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 546E01C20B67
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 12:07:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B78E8E560;
-	Sat, 25 Nov 2023 12:07:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3ED90EAE3;
+	Sat, 25 Nov 2023 12:07:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QWrXK1ym"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ijLyFy/Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B31E19B3
-	for <devicetree@vger.kernel.org>; Sat, 25 Nov 2023 04:07:08 -0800 (PST)
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-a00cbb83c80so385993066b.0
-        for <devicetree@vger.kernel.org>; Sat, 25 Nov 2023 04:07:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700914026; x=1701518826; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9Ua8H1ptm7Jh60hu9vOx5MGnEW8+EOEb5ojvwQq1JOM=;
-        b=QWrXK1ymUaWXa9UWZQUbz7n4Pr40GhFVfGAIJsJz84IQXVlWDHpnY6ob9E1VnGDP7k
-         86IQfoDJmL/aHKh8ZGHL5JGh/Zjh1WadbHm9jmAbjAX+XEjciGAC1dG/I9CnEIALAw2R
-         qSuwfo7gyigeMIqcBpiVHbzf1v7pvbqTvJ5zI+w781kvbZ5w2tyTyTrvtQX7KI8HThxQ
-         6Kyw9oUcjH6QwXBMdkCXBGg8riVG+JtLl/okhDCCguaaaqeSkeSk2ljz9NnMsFaLA0iH
-         MYLKtq/rLok3oB5SsNP4twQmzozYoyZO0lx+Rcu5hxDM1H4gRrd0WKJZps9c6at+YJPp
-         gFsg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700914026; x=1701518826;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9Ua8H1ptm7Jh60hu9vOx5MGnEW8+EOEb5ojvwQq1JOM=;
-        b=T89SKwXHHQkBbdAKifP7h+/p+3+qybbWYJ2BulIpTv2TIrcbhPx5UafSzhZ7D15xdn
-         7sBkHekHt+h9KB707PEX2ceU3pDHIZ6ZuFBGA2/32RIer8T9Mrhjo4+74PlWRiMqZtS/
-         Z57u9pzDfhq5S7SvgQyMB+MShF3k+pcm/cEupjzd1WdaIf54tUk7Oe4Q7Ad24p9SmprU
-         4AsleXTAwzyJ/O8/0CJKZ0ELARZ5Hs9HFe9S42zskAN4jO6mZ1q8z5g+FAs1IRim54OS
-         F2J46qoKbinUfcu2uTrgwHxReKtSYHzZkB3/REo0+kr6q0zw+TUfd1U58qxI6cpSUbUb
-         /YPg==
-X-Gm-Message-State: AOJu0YyIVDtUcKCo8y4wcjPb4gQ1B+2C0U0Ku4E9Ln/wINiPes+mXIa8
-	KwcCU1duprV4QwBWhb9F70YqZg==
-X-Google-Smtp-Source: AGHT+IH0M6xQj7KsrKP6PqIuiNzN/gULlTS56kTOHqbcJQfDasUyiWHLshIlSs+TQToG9S6jPgoAxQ==
-X-Received: by 2002:a17:906:7691:b0:a04:837e:87af with SMTP id o17-20020a170906769100b00a04837e87afmr4562560ejm.33.1700914026516;
-        Sat, 25 Nov 2023 04:07:06 -0800 (PST)
-Received: from [192.168.201.100] (178235187180.dynamic-4-waw-k-2-3-0.vectranet.pl. [178.235.187.180])
-        by smtp.gmail.com with ESMTPSA id a20-20020a1709063e9400b00a0369e232bfsm3361413ejj.75.2023.11.25.04.07.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 25 Nov 2023 04:07:06 -0800 (PST)
-Message-ID: <ad9a7c4b-82f4-4347-b4dd-a394e4ba95f0@linaro.org>
-Date: Sat, 25 Nov 2023 13:07:03 +0100
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 204FAD530;
+	Sat, 25 Nov 2023 12:07:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49DF2C433C7;
+	Sat, 25 Nov 2023 12:07:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1700914072;
+	bh=D4kxke8I3u5kGrzOOHNBlvZ51Ki1vGdPFs5hwb4dDbs=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=ijLyFy/ZtJRy6r9c6iO9ei8RPEudxWqyIYBBykt5rjPo695Qm5s3h7oxloOtucRfm
+	 o+OTQ+rzXrZXtoMhhHDpx9vqjJ6DHz7SuVMCykhGi+/7MmbKrSoNJuEz4vDumxSZel
+	 doOZXOpIAwfsVQiXRIls58IY5bDqHAYceYGRP/MpEsBdytonerHnulaTJlwVKVvvbh
+	 kEspLTFEdtI4FMSnFZ1T9rblRjDO9NR6Oqu6cDiV92/n0isG65dGb6u3ohAKb/XU3B
+	 GxLVvya9b1PFCoM+XyibJ0VyS06XmBEGE57RxysWUgA+1muRcwOntPlD+QCqB1qFlP
+	 wBGsWfadxVY0A==
+Date: Sat, 25 Nov 2023 12:07:44 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Anshul Dalal <anshulusr@gmail.com>
+Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, Lars-Peter
+ Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ linux-kernel-mentees@lists.linuxfoundation.org, Shuah Khan
+ <skhan@linuxfoundation.org>
+Subject: Re: [PATCH 2/2] iio: dac: driver for MCP4821
+Message-ID: <20231125120744.23b0893d@jic23-huawei>
+In-Reply-To: <20231117073040.685860-2-anshulusr@gmail.com>
+References: <20231117073040.685860-1-anshulusr@gmail.com>
+	<20231117073040.685860-2-anshulusr@gmail.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/5] ASoC: codecs: Add WCD939x Codec driver
-Content-Language: en-US
-To: Neil Armstrong <neil.armstrong@linaro.org>,
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Banajit Goswami <bgoswami@quicinc.com>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>
-Cc: linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20231123-topic-sm8650-upstream-wcd939x-codec-v1-0-21d4ad9276de@linaro.org>
- <20231123-topic-sm8650-upstream-wcd939x-codec-v1-5-21d4ad9276de@linaro.org>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20231123-topic-sm8650-upstream-wcd939x-codec-v1-5-21d4ad9276de@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On 23.11.2023 15:49, Neil Armstrong wrote:
-> Add the main WCD9390/WCD9395 Audio Codec driver to support:
-> - 4 ADC inputs for up to 5 Analog Microphones
-> - 4 DMIC inputs for up to 8 Digital Microphones
-> - 4 Microphone BIAS
-> - Stereo Headphone output
-> - Mono EAR output
-> - MBHC engine for Headset Detection
+On Fri, 17 Nov 2023 13:00:38 +0530
+Anshul Dalal <anshulusr@gmail.com> wrote:
+
+Hi Anshul,
+
+Comments inline.
+
+> Adds driver for the MCP48xx series of DACs.
 > 
-> It makes usage of the generic MBHC and CLSH generic code and
-> the USB Type-C mux and switch helpers to gather USB-C Events
-> in order to properly setup Headset Detection mechanism
-> when connected behind the separate USB-C Mux subsystem.
+> Device uses a simplex SPI channel.
+> To set the value of an output channel, a 16-bit
+> data of following format must be written:
+
+Wrap anything that isn't specifically formatted at 75 chars not this short.  
+I could fix that whilst applying but you are going to be doing a v2 anyway
+so you can tidy it up :)
+
 > 
-> WCD9390/WCD9395 supports a PCM path for Playback instead
-> of the actually implemented PDM playback, it will be
-> implemented later.
+> Bit field | Description
+> 15 [MSB]  | Channel selection bit
+>             0 -> Channel A
+>             1 -> Channel B
+> 13        | Output Gain Selection bit
+>             0 -> 2x Gain (Vref = 4.096V)
+>             1 -> 1x Gain (Vref = 2.048V)
+> 12        | Output Shutdown Control bit
+>             0 -> Shutdown the selected channel
+>             1 -> Active mode operation
+> 11-0 [LSB]| DAC Input Data bits
+>             Value's big endian representation is
+>             taken as input for the selected DAC
+>             channel.
+>             For devices with a resolution of less
+>             than 12-bits, only the x most
+>             significant bits are considered where
+>             x is the resolution of the device.
+> Reference: Page#22 [MCP48x2 Datasheet]
 > 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->  sound/soc/codecs/Kconfig       |    8 +
->  sound/soc/codecs/Makefile      |    6 +
->  sound/soc/codecs/wcd-clsh-v2.h |    1 +
->  sound/soc/codecs/wcd939x.c     | 3635 ++++++++++++++++++++++++++++++++++++++++
->  4 files changed, 3650 insertions(+)
+> Supported devices:
+>   +---------+--------------+-------------+
+>   | Device  |  Resolution  |   Channels  |
+>   |---------|--------------|-------------|
+>   | MCP4801 |     8-bit    |      1      |
+>   | MCP4811 |    10-bit    |      1      |
+>   | MCP4821 |    12-bit    |      1      |
+>   | MCP4802 |     8-bit    |      2      |
+>   | MCP4812 |    10-bit    |      2      |
+>   | MCP4822 |    12-bit    |      2      |
+>   +---------+--------------+-------------+
 > 
-> diff --git a/sound/soc/codecs/Kconfig b/sound/soc/codecs/Kconfig
-> index 1a29b38d4cb9..31f26eb2f833 100644
-> --- a/sound/soc/codecs/Kconfig
-> +++ b/sound/soc/codecs/Kconfig
-> @@ -2056,8 +2056,16 @@ config SND_SOC_WCD938X_SDW
->  	  The WCD9380/9385 is a audio codec IC Integrated in
->  	  Qualcomm SoCs like SM8250.
+> Devices tested:
+>   MCP4821 [12-bit single channel]
+>   MCP4802 [8-bit dual channel]
+> 
+> Tested on Raspberry Pi Zero 2W
+> 
+> Datasheet:
+>   [MCP48x1] https://ww1.microchip.com/downloads/en/DeviceDoc/22244B.pdf
+>   [MCP48x2] https://ww1.microchip.com/downloads/en/DeviceDoc/20002249B.pdf
+So Datasheet is part of the tag block so no line break between this
+and sign off.  The way to format this is to add two entries and apply comments
+after them.  Don't worry about long lines for this.
+
+> 
+
+Datasheet: https//.... #MCP48x1
+Datasheet: https//.... #MCP48x2
+Signed-off-by: ...
+
+> Signed-off-by: Anshul Dalal <anshulusr@gmail.com>
+...
+
+> diff --git a/drivers/iio/dac/Kconfig b/drivers/iio/dac/Kconfig
+> index 93b8be183de6..f5adc364de30 100644
+> --- a/drivers/iio/dac/Kconfig
+> +++ b/drivers/iio/dac/Kconfig
+> @@ -400,6 +400,16 @@ config MCP4728
+>  	  To compile this driver as a module, choose M here: the module
+>  	  will be called mcp4728.
 >  
-> +config SND_SOC_WCD939X
-> +	depends on SND_SOC_WCD939X_SDW
-> +	tristate
-> +	depends on SOUNDWIRE || !SOUNDWIRE
-> +	select SND_SOC_WCD_CLASSH
+> +config MCP4821
+> +	tristate "MCP4801/11/21/02/12/22 DAC driver"
+> +	depends on SPI
+> +	help
+> +	  Say yes here to build the driver for the Microchip MCP4801
+> +	  MCP4811, MCP4821, MCP4802, MCP4812 and MCP4822 DAC devices.
+
+Numeric order her as well please.
+
 > +
->  config SND_SOC_WCD939X_SDW
->  	tristate "WCD9390/WCD9395 Codec - SDW"
-> +	select SND_SOC_WCD939X
-> +	select SND_SOC_WCD_MBHC
->  	select REGMAP_IRQ
->  	depends on SOUNDWIRE
->  	select REGMAP_SOUNDWIRE
-> diff --git a/sound/soc/codecs/Makefile b/sound/soc/codecs/Makefile
-> index c63e4c274ed4..4fba9fbb6516 100644
-> --- a/sound/soc/codecs/Makefile
-> +++ b/sound/soc/codecs/Makefile
-> @@ -312,6 +312,7 @@ snd-soc-wcd9335-objs := wcd9335.o
->  snd-soc-wcd934x-objs := wcd934x.o
->  snd-soc-wcd938x-objs := wcd938x.o
->  snd-soc-wcd938x-sdw-objs := wcd938x-sdw.o
-> +snd-soc-wcd939x-objs := wcd939x.o
->  snd-soc-wcd939x-sdw-objs := wcd939x-sdw.o
->  snd-soc-wl1273-objs := wl1273.o
->  snd-soc-wm-adsp-objs := wm_adsp.o
-> @@ -702,6 +703,11 @@ ifdef CONFIG_SND_SOC_WCD938X_SDW
->  # avoid link failure by forcing sdw code built-in when needed
->  obj-$(CONFIG_SND_SOC_WCD938X) += snd-soc-wcd938x-sdw.o
->  endif
-> +obj-$(CONFIG_SND_SOC_WCD939X)	+= snd-soc-wcd939x.o
-> +ifdef CONFIG_SND_SOC_WCD939X_SDW
-> +# avoid link failure by forcing sdw code built-in when needed
-> +obj-$(CONFIG_SND_SOC_WCD939X) += snd-soc-wcd939x-sdw.o
-> +endif
->  obj-$(CONFIG_SND_SOC_WL1273)	+= snd-soc-wl1273.o
->  obj-$(CONFIG_SND_SOC_WM0010)	+= snd-soc-wm0010.o
->  obj-$(CONFIG_SND_SOC_WM1250_EV1) += snd-soc-wm1250-ev1.o
-> diff --git a/sound/soc/codecs/wcd-clsh-v2.h b/sound/soc/codecs/wcd-clsh-v2.h
-> index 4e3653058275..eeb9bc5b01e2 100644
-> --- a/sound/soc/codecs/wcd-clsh-v2.h
-> +++ b/sound/soc/codecs/wcd-clsh-v2.h
-> @@ -47,6 +47,7 @@ enum wcd_codec_version {
->  	/* New CLSH after this */
->  	WCD937X  = 2,
->  	WCD938X  = 3,
-> +	WCD939X  = 4,
->  };
->  struct wcd_clsh_ctrl;
->  
-> diff --git a/sound/soc/codecs/wcd939x.c b/sound/soc/codecs/wcd939x.c
+> +	  To compile this driver as a module, choose M here: the module
+> +	  will be called mcp4821.
+> +
+>  config MCP4922
+>  	tristate "MCP4902, MCP4912, MCP4922 DAC driver"
+>  	depends on SPI
+
+...
+
+> diff --git a/drivers/iio/dac/mcp4821.c b/drivers/iio/dac/mcp4821.c
 > new file mode 100644
-> index 000000000000..47af08e6c0c8
+> index 000000000000..d08acf6b8993
 > --- /dev/null
-> +++ b/sound/soc/codecs/wcd939x.c
-> @@ -0,0 +1,3635 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
+> +++ b/drivers/iio/dac/mcp4821.c
+> @@ -0,0 +1,207 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
 > +/*
-> + * Copyright (c) 2018-2021, The Linux Foundation. All rights reserved.
-> + * Copyright (c) 2022-2023, Qualcomm Innovation Center, Inc. All rights reserved.
-> + * Copyright (c) 2023, Linaro Limited
+> + * Copyright (C) 2023 Anshul Dalal <anshulusr@gmail.com>
+> + *
+> + * Driver for Microchip MCP4801, MCP4811, MCP4821, MCP4802, MCP4812 and MCP4822
+> + *
+> + * Based on the work of:
+> + *	Michael Welling (MCP4922 Driver)
+> + *
+> + * Datasheet:
+> + *	MCP48x1: https://ww1.microchip.com/downloads/en/DeviceDoc/22244B.pdf
+> + *	MCP48x2: https://ww1.microchip.com/downloads/en/DeviceDoc/20002249B.pdf
+> + *
+> + * TODO:
+> + *	- Configurable gain
+> + *	- Regulator control
 > + */
 > +
+> +#include <asm/unaligned.h>
+So in IIO at least header ordering is normally (each block alphabetical)
+
+linux/*.h
+
+linux/iio/*.h (it's an IIO driver so sometimes good to separate these out)
+
+asm/*.h (these are effectively even more specific so we put them in their own block.
+
+> +#include <linux/iio/iio.h>
+> +#include <linux/iio/types.h>
 > +#include <linux/module.h>
-> +#include <linux/slab.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/device.h>
-> +#include <linux/delay.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/kernel.h>
-> +#include <linux/pm_runtime.h>
-> +#include <linux/component.h>
-> +#include <sound/tlv.h>
-> +#include <linux/of_gpio.h>
-> +#include <linux/of_graph.h>
-> +#include <linux/of.h>
-> +#include <sound/jack.h>
-> +#include <sound/pcm.h>
-> +#include <sound/pcm_params.h>
-> +#include <linux/regmap.h>
-> +#include <sound/soc.h>
-> +#include <sound/soc-dapm.h>
-> +#include <linux/regulator/consumer.h>
-> +#include <linux/usb/typec_mux.h>
-> +#include <linux/usb/typec_altmode.h>
+> +#include <linux/mutex.h>
+> +#include <linux/spi/spi.h>
 > +
-> +#include "wcd-clsh-v2.h"
-> +#include "wcd-mbhc-v2.h"
-> +#include "wcd939x.h"
+> +#define MCP4821_ACTIVE_MODE BIT(12)
+> +#define MCP4802_SECOND_CHAN BIT(15)
+> +#define MCP4821_CHAN_NUM    1
+Not used so drop this.
+
 > +
-> +#define WCD939X_MAX_MICBIAS		(4)
-> +#define WCD939X_MAX_SUPPLY		(4)
-> +#define WCD939X_MBHC_MAX_BUTTONS	(8)
-> +#define TX_ADC_MAX			(4)
-> +#define WCD_MBHC_HS_V_MAX		1600
+> +/* DAC uses an internal Voltage reference of 4.096V at a gain of 2x */
+> +#define MCP4821_2X_GAIN_VREF_MV 4096
 > +
-> +enum {
-> +	WCD939X_VERSION_1_0 = 0,
-> +	WCD939X_VERSION_1_1,
-> +	WCD939X_VERSION_2_0,
+> +enum mcp4821_supported_drvice_ids {
+> +	ID_MCP4801,
+> +	ID_MCP4811,
+> +	ID_MCP4821,
+> +	ID_MCP4802,
+
+Numeric order preferred throughout if we have long lists like this.
+
+> +	ID_MCP4812,
+> +	ID_MCP4822,
 > +};
 > +
-> +#define WCD939X_RATES_MASK (SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |\
-> +			    SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |\
-> +			    SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |\
-> +			    SNDRV_PCM_RATE_384000)
-> +/* Fractional Rates */
-> +#define WCD939X_FRAC_RATES_MASK (SNDRV_PCM_RATE_44100 | SNDRV_PCM_RATE_88200 |\
-> +				 SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800)
-> +#define WCD939X_FORMATS (SNDRV_PCM_FMTBIT_S16_LE |\
-> +			 SNDRV_PCM_FMTBIT_S24_LE |\
-> +			 SNDRV_PCM_FMTBIT_S24_3LE |\
-> +			 SNDRV_PCM_FMTBIT_S32_LE)
-> +
-> +/* Convert from vout ctl to micbias voltage in mV */
-> +#define WCD_VOUT_CTL_TO_MICB(v)		(1000 + (v) * 50)
-> +#define SWR_CLK_RATE_0P6MHZ		(600000)
-> +#define SWR_CLK_RATE_1P2MHZ		(1200000)
-> +#define SWR_CLK_RATE_2P4MHZ		(2400000)
-> +#define SWR_CLK_RATE_4P8MHZ		(4800000)
-> +#define SWR_CLK_RATE_9P6MHZ		(9600000)
-> +#define SWR_CLK_RATE_11P2896MHZ		(1128960)
-> +
-> +#define ADC_MODE_VAL_HIFI		0x01
-> +#define ADC_MODE_VAL_LO_HIF		0x02
-> +#define ADC_MODE_VAL_NORMAL		0x03
-> +#define ADC_MODE_VAL_LP			0x05
-> +#define ADC_MODE_VAL_ULP1		0x09
-> +#define ADC_MODE_VAL_ULP2		0x0B
-> +
-> +/* Z value defined in milliohm */
-> +#define WCD939X_ZDET_VAL_32		(32000)
-> +#define WCD939X_ZDET_VAL_400		(400000)
-> +#define WCD939X_ZDET_VAL_1200		(1200000)
-> +#define WCD939X_ZDET_VAL_100K		(100000000)
-> +
-> +/* Z floating defined in ohms */
-> +#define WCD939X_ZDET_FLOATING_IMPEDANCE	(0x0FFFFFFE)
-> +#define WCD939X_ZDET_NUM_MEASUREMENTS	(900)
-> +#define WCD939X_MBHC_GET_C1(c)		(((c) & 0xC000) >> 14)
-> +#define WCD939X_MBHC_GET_X1(x)		((x) & 0x3FFF)
-> +
-> +/* Z value compared in milliOhm */
-> +#define WCD939X_MBHC_IS_SECOND_RAMP_REQUIRED(z) false
-> +#define WCD939X_ANA_MBHC_ZDET_CONST	(1018 * 1024)
-> +
-> +enum {
-> +	WCD9390 = 0,
-> +	WCD9395 = 5,
-> +};
-> +
-> +enum {
-> +	/* INTR_CTRL_INT_MASK_0 */
-> +	WCD939X_IRQ_MBHC_BUTTON_PRESS_DET = 0,
-> +	WCD939X_IRQ_MBHC_BUTTON_RELEASE_DET,
-> +	WCD939X_IRQ_MBHC_ELECT_INS_REM_DET,
-> +	WCD939X_IRQ_MBHC_ELECT_INS_REM_LEG_DET,
-> +	WCD939X_IRQ_MBHC_SW_DET,
-> +	WCD939X_IRQ_HPHR_OCP_INT,
-> +	WCD939X_IRQ_HPHR_CNP_INT,
-> +	WCD939X_IRQ_HPHL_OCP_INT,
-> +
-> +	/* INTR_CTRL_INT_MASK_1 */
-> +	WCD939X_IRQ_HPHL_CNP_INT,
-> +	WCD939X_IRQ_EAR_CNP_INT,
-> +	WCD939X_IRQ_EAR_SCD_INT,
-> +	WCD939X_IRQ_HPHL_PDM_WD_INT,
-> +	WCD939X_IRQ_HPHR_PDM_WD_INT,
-> +	WCD939X_IRQ_EAR_PDM_WD_INT,
-> +
-> +	/* INTR_CTRL_INT_MASK_2 */
-> +	WCD939X_IRQ_MBHC_MOISTURE_INT,
-> +	WCD939X_IRQ_HPHL_SURGE_DET_INT,
-> +	WCD939X_IRQ_HPHR_SURGE_DET_INT,
-> +	WCD939X_NUM_IRQS,
-> +};
-> +
-> +enum {
-> +	WCD_ADC1 = 0,
-> +	WCD_ADC2,
-> +	WCD_ADC3,
-> +	WCD_ADC4,
-> +	HPH_PA_DELAY,
-> +};
-> +
-> +enum {
-> +	ADC_MODE_INVALID = 0,
-> +	ADC_MODE_HIFI,
-> +	ADC_MODE_LO_HIF,
-> +	ADC_MODE_NORMAL,
-> +	ADC_MODE_LP,
-> +	ADC_MODE_ULP1,
-> +	ADC_MODE_ULP2,
-> +};
-> +
-> +enum {
-> +	AIF1_PB = 0,
-> +	AIF1_CAP,
-> +	NUM_CODEC_DAIS,
-> +};
-> +
-> +static u8 tx_mode_bit[] = {
-> +	[ADC_MODE_INVALID] = 0x00,
-> +	[ADC_MODE_HIFI] = 0x01,
-> +	[ADC_MODE_LO_HIF] = 0x02,
-> +	[ADC_MODE_NORMAL] = 0x04,
-> +	[ADC_MODE_LP] = 0x08,
-> +	[ADC_MODE_ULP1] = 0x10,
-> +	[ADC_MODE_ULP2] = 0x20,
-> +};
-> +
-> +struct wcd939x_priv {
-> +	struct sdw_slave *tx_sdw_dev;
-> +	struct wcd939x_sdw_priv *sdw_priv[NUM_CODEC_DAIS];
-> +	struct device *txdev;
-> +	struct device *rxdev;
-> +	struct device_node *rxnode, *txnode;
-> +	struct regmap *regmap;
-> +	struct snd_soc_component *component;
-> +	/* micb setup lock */
-> +	struct mutex micb_lock;
-> +	/* typec handling */
-> +	bool typec_analog_mux;
-> +	struct typec_mux_dev *typec_mux;
-> +	struct typec_switch_dev *typec_sw;
-> +	enum typec_orientation typec_orientation;
-> +	unsigned long typec_mode;
-> +	struct typec_switch *typec_switch;
-> +	/* mbhc module */
-> +	struct wcd_mbhc *wcd_mbhc;
-> +	struct wcd_mbhc_config mbhc_cfg;
-> +	struct wcd_mbhc_intr intr_ids;
-> +	struct wcd_clsh_ctrl *clsh_info;
-> +	struct irq_domain *virq;
-> +	struct regmap_irq_chip *wcd_regmap_irq_chip;
-> +	struct regmap_irq_chip_data *irq_chip;
-> +	struct regulator_bulk_data supplies[WCD939X_MAX_SUPPLY];
-> +	struct snd_soc_jack *jack;
-> +	unsigned long status_mask;
-> +	s32 micb_ref[WCD939X_MAX_MICBIAS];
-> +	s32 pullup_ref[WCD939X_MAX_MICBIAS];
-> +	u32 hph_mode;
-> +	u32 tx_mode[TX_ADC_MAX];
-> +	int variant;
-> +	int reset_gpio;
-> +	u32 micb1_mv;
-> +	u32 micb2_mv;
-> +	u32 micb3_mv;
-> +	u32 micb4_mv;
-> +	int hphr_pdm_wd_int;
-> +	int hphl_pdm_wd_int;
-> +	int ear_pdm_wd_int;
-> +	bool comp1_enable;
-> +	bool comp2_enable;
-> +	bool ldoh;
-> +};
-> +
-> +static const DECLARE_TLV_DB_SCALE(line_gain, 0, 7, 1);
-> +static const DECLARE_TLV_DB_SCALE(analog_gain, 0, 25, 1);
-> +
-> +struct wcd939x_mbhc_zdet_param {
-> +	u16 ldo_ctl;
-> +	u16 noff;
-> +	u16 nshift;
-> +	u16 btn5;
-> +	u16 btn6;
-> +	u16 btn7;
-> +};
-> +
-> +static struct wcd_mbhc_field wcd_mbhc_fields[WCD_MBHC_REG_FUNC_MAX] = {
-> +	WCD_MBHC_FIELD(WCD_MBHC_L_DET_EN, WCD939X_ANA_MBHC_MECH, 0x80),
-> +	WCD_MBHC_FIELD(WCD_MBHC_GND_DET_EN, WCD939X_ANA_MBHC_MECH, 0x40),
-> +	WCD_MBHC_FIELD(WCD_MBHC_MECH_DETECTION_TYPE, WCD939X_ANA_MBHC_MECH, 0x20),
-> +	WCD_MBHC_FIELD(WCD_MBHC_MIC_CLAMP_CTL, WCD939X_MBHC_NEW_PLUG_DETECT_CTL, 0x30),
-> +	WCD_MBHC_FIELD(WCD_MBHC_ELECT_DETECTION_TYPE, WCD939X_ANA_MBHC_ELECT, 0x08),
-> +	WCD_MBHC_FIELD(WCD_MBHC_HS_L_DET_PULL_UP_CTRL, WCD939X_MBHC_NEW_INT_MECH_DET_CURRENT, 0x1F),
-> +	WCD_MBHC_FIELD(WCD_MBHC_HS_L_DET_PULL_UP_COMP_CTRL, WCD939X_ANA_MBHC_MECH, 0x04),
-> +	WCD_MBHC_FIELD(WCD_MBHC_HPHL_PLUG_TYPE, WCD939X_ANA_MBHC_MECH, 0x10),
-> +	WCD_MBHC_FIELD(WCD_MBHC_GND_PLUG_TYPE, WCD939X_ANA_MBHC_MECH, 0x08),
-> +	WCD_MBHC_FIELD(WCD_MBHC_SW_HPH_LP_100K_TO_GND, WCD939X_ANA_MBHC_MECH, 0x01),
-> +	WCD_MBHC_FIELD(WCD_MBHC_ELECT_SCHMT_ISRC, WCD939X_ANA_MBHC_ELECT, 0x06),
-> +	WCD_MBHC_FIELD(WCD_MBHC_FSM_EN, WCD939X_ANA_MBHC_ELECT, 0x80),
-> +	WCD_MBHC_FIELD(WCD_MBHC_INSREM_DBNC, WCD939X_MBHC_NEW_PLUG_DETECT_CTL, 0x0F),
-> +	WCD_MBHC_FIELD(WCD_MBHC_BTN_DBNC, WCD939X_MBHC_NEW_CTL_1, 0x03),
-> +	WCD_MBHC_FIELD(WCD_MBHC_HS_VREF, WCD939X_MBHC_NEW_CTL_2, 0x03),
-> +	WCD_MBHC_FIELD(WCD_MBHC_HS_COMP_RESULT, WCD939X_ANA_MBHC_RESULT_3, 0x08),
-> +	WCD_MBHC_FIELD(WCD_MBHC_IN2P_CLAMP_STATE, WCD939X_ANA_MBHC_RESULT_3, 0x10),
-> +	WCD_MBHC_FIELD(WCD_MBHC_MIC_SCHMT_RESULT, WCD939X_ANA_MBHC_RESULT_3, 0x20),
-> +	WCD_MBHC_FIELD(WCD_MBHC_HPHL_SCHMT_RESULT, WCD939X_ANA_MBHC_RESULT_3, 0x80),
-> +	WCD_MBHC_FIELD(WCD_MBHC_HPHR_SCHMT_RESULT, WCD939X_ANA_MBHC_RESULT_3, 0x40),
-> +	WCD_MBHC_FIELD(WCD_MBHC_OCP_FSM_EN, WCD939X_HPH_OCP_CTL, 0x10),
-> +	WCD_MBHC_FIELD(WCD_MBHC_BTN_RESULT, WCD939X_ANA_MBHC_RESULT_3, 0x07),
-> +	WCD_MBHC_FIELD(WCD_MBHC_BTN_ISRC_CTL, WCD939X_ANA_MBHC_ELECT, 0x70),
-> +	WCD_MBHC_FIELD(WCD_MBHC_ELECT_RESULT, WCD939X_ANA_MBHC_RESULT_3, 0xFF),
-> +	WCD_MBHC_FIELD(WCD_MBHC_MICB_CTRL, WCD939X_ANA_MICB2, 0xC0),
-> +	WCD_MBHC_FIELD(WCD_MBHC_HPH_CNP_WG_TIME, WCD939X_HPH_CNP_WG_TIME, 0xFF),
-> +	WCD_MBHC_FIELD(WCD_MBHC_HPHR_PA_EN, WCD939X_ANA_HPH, 0x40),
-> +	WCD_MBHC_FIELD(WCD_MBHC_HPHL_PA_EN, WCD939X_ANA_HPH, 0x80),
-> +	WCD_MBHC_FIELD(WCD_MBHC_HPH_PA_EN, WCD939X_ANA_HPH, 0xC0),
-> +	WCD_MBHC_FIELD(WCD_MBHC_SWCH_LEVEL_REMOVE, WCD939X_ANA_MBHC_RESULT_3, 0x10),
-> +	WCD_MBHC_FIELD(WCD_MBHC_ANC_DET_EN, WCD939X_MBHC_CTL_BCS, 0x02),
-> +	WCD_MBHC_FIELD(WCD_MBHC_FSM_STATUS, WCD939X_MBHC_NEW_FSM_STATUS, 0x01),
-> +	WCD_MBHC_FIELD(WCD_MBHC_MUX_CTL, WCD939X_MBHC_NEW_CTL_2, 0x70),
-> +	WCD_MBHC_FIELD(WCD_MBHC_MOISTURE_STATUS, WCD939X_MBHC_NEW_FSM_STATUS, 0x20),
-> +	WCD_MBHC_FIELD(WCD_MBHC_HPHR_GND, WCD939X_HPH_PA_CTL2, 0x40),
-> +	WCD_MBHC_FIELD(WCD_MBHC_HPHL_GND, WCD939X_HPH_PA_CTL2, 0x10),
-> +	WCD_MBHC_FIELD(WCD_MBHC_HPHL_OCP_DET_EN, WCD939X_HPH_L_TEST, 0x01),
-> +	WCD_MBHC_FIELD(WCD_MBHC_HPHR_OCP_DET_EN, WCD939X_HPH_R_TEST, 0x01),
-> +	WCD_MBHC_FIELD(WCD_MBHC_HPHL_OCP_STATUS, WCD939X_DIGITAL_INTR_STATUS_0, 0x80),
-> +	WCD_MBHC_FIELD(WCD_MBHC_HPHR_OCP_STATUS, WCD939X_DIGITAL_INTR_STATUS_0, 0x20),
-> +	WCD_MBHC_FIELD(WCD_MBHC_ADC_EN, WCD939X_MBHC_NEW_CTL_1, 0x08),
-> +	WCD_MBHC_FIELD(WCD_MBHC_ADC_COMPLETE, WCD939X_MBHC_NEW_FSM_STATUS, 0x40),
-> +	WCD_MBHC_FIELD(WCD_MBHC_ADC_TIMEOUT, WCD939X_MBHC_NEW_FSM_STATUS, 0x80),
-> +	WCD_MBHC_FIELD(WCD_MBHC_ADC_RESULT, WCD939X_MBHC_NEW_ADC_RESULT, 0xFF),
-> +	WCD_MBHC_FIELD(WCD_MBHC_MICB2_VOUT, WCD939X_ANA_MICB2, 0x3F),
-> +	WCD_MBHC_FIELD(WCD_MBHC_ADC_MODE, WCD939X_MBHC_NEW_CTL_1, 0x10),
-> +	WCD_MBHC_FIELD(WCD_MBHC_DETECTION_DONE, WCD939X_MBHC_NEW_CTL_1, 0x04),
-> +	WCD_MBHC_FIELD(WCD_MBHC_ELECT_ISRC_EN, WCD939X_ANA_MBHC_ZDET, 0x02),
-> +};
-> +
-> +static const struct regmap_irq wcd939x_irqs[WCD939X_NUM_IRQS] = {
-> +	REGMAP_IRQ_REG(WCD939X_IRQ_MBHC_BUTTON_PRESS_DET, 0, 0x01),
-> +	REGMAP_IRQ_REG(WCD939X_IRQ_MBHC_BUTTON_RELEASE_DET, 0, 0x02),
-> +	REGMAP_IRQ_REG(WCD939X_IRQ_MBHC_ELECT_INS_REM_DET, 0, 0x04),
-> +	REGMAP_IRQ_REG(WCD939X_IRQ_MBHC_ELECT_INS_REM_LEG_DET, 0, 0x08),
-> +	REGMAP_IRQ_REG(WCD939X_IRQ_MBHC_SW_DET, 0, 0x10),
-> +	REGMAP_IRQ_REG(WCD939X_IRQ_HPHR_OCP_INT, 0, 0x20),
-> +	REGMAP_IRQ_REG(WCD939X_IRQ_HPHR_CNP_INT, 0, 0x40),
-> +	REGMAP_IRQ_REG(WCD939X_IRQ_HPHL_OCP_INT, 0, 0x80),
-> +	REGMAP_IRQ_REG(WCD939X_IRQ_HPHL_CNP_INT, 1, 0x01),
-> +	REGMAP_IRQ_REG(WCD939X_IRQ_EAR_CNP_INT, 1, 0x02),
-> +	REGMAP_IRQ_REG(WCD939X_IRQ_EAR_SCD_INT, 1, 0x04),
-> +	REGMAP_IRQ_REG(WCD939X_IRQ_HPHL_PDM_WD_INT, 1, 0x20),
-> +	REGMAP_IRQ_REG(WCD939X_IRQ_HPHR_PDM_WD_INT, 1, 0x40),
-> +	REGMAP_IRQ_REG(WCD939X_IRQ_EAR_PDM_WD_INT, 1, 0x80),
-> +	REGMAP_IRQ_REG(WCD939X_IRQ_MBHC_MOISTURE_INT, 2, 0x02),
-> +	REGMAP_IRQ_REG(WCD939X_IRQ_HPHL_SURGE_DET_INT, 2, 0x04),
-> +	REGMAP_IRQ_REG(WCD939X_IRQ_HPHR_SURGE_DET_INT, 2, 0x08),
-> +};
-> +
-> +static struct regmap_irq_chip wcd939x_regmap_irq_chip = {
-> +	.name = "wcd939x",
-> +	.irqs = wcd939x_irqs,
-> +	.num_irqs = ARRAY_SIZE(wcd939x_irqs),
-> +	.num_regs = 3,
-> +	.status_base = WCD939X_DIGITAL_INTR_STATUS_0,
-> +	.mask_base = WCD939X_DIGITAL_INTR_MASK_0,
-> +	.ack_base = WCD939X_DIGITAL_INTR_CLEAR_0,
-> +	.use_ack = 1,
-> +	.runtime_pm = true,
-> +	.irq_drv_data = NULL,
-> +};
-> +
-> +static int wcd939x_get_clk_rate(int mode)
+> +static int mcp4821_chan_count(enum mcp4821_supported_drvice_ids device_id)
 > +{
-> +	int rate;
-> +
-> +	switch (mode) {
-> +	case ADC_MODE_ULP2:
-> +		rate = SWR_CLK_RATE_0P6MHZ;
-> +		break;
-> +	case ADC_MODE_ULP1:
-> +		rate = SWR_CLK_RATE_1P2MHZ;
-> +		break;
-> +	case ADC_MODE_LP:
-> +		rate = SWR_CLK_RATE_4P8MHZ;
-> +		break;
-> +	case ADC_MODE_NORMAL:
-> +	case ADC_MODE_LO_HIF:
-> +	case ADC_MODE_HIFI:
-> +	case ADC_MODE_INVALID:
+> +	switch (device_id) {
+> +	case ID_MCP4801:
+> +	case ID_MCP4811:
+> +	case ID_MCP4821:
+> +		return 1;
 > +	default:
-> +		rate = SWR_CLK_RATE_9P6MHZ;
-> +		break;
+
+I'd rather see this explicit for each device even though it's a few more lines
+of code.
+
+> +		return 2;
 > +	}
-> +
-> +	return rate;
 > +}
 > +
-> +static int wcd939x_set_swr_clk_rate(struct snd_soc_component *component, int rate, int bank)
-> +{
-> +	u8 mask = (bank ? 0xF0 : 0x0F);
-> +	u8 val = 0;
+> +struct mcp4821_state {
+> +	struct spi_device *spi;
+> +	struct mutex lock;
+
+All locks need to have a comment describing the scope of data they are protecting.
+
+> +	u16 dac_value[2];
+> +};
 > +
-> +	switch (rate) {
-> +	case SWR_CLK_RATE_0P6MHZ:
-> +		val = 6;
-> +		break;
-> +	case SWR_CLK_RATE_1P2MHZ:
-> +		val = 5;
-> +		break;
-> +	case SWR_CLK_RATE_2P4MHZ:
-> +		val = 3;
-> +		break;
-> +	case SWR_CLK_RATE_4P8MHZ:
-> +		val = 1;
-> +		break;
-> +	case SWR_CLK_RATE_9P6MHZ:
+> +#define MCP4821_CHAN(channel_id, resolution)				\
+> +	{								\
+> +		.type = IIO_VOLTAGE,					\
+> +		.output = 1,						\
+> +		.indexed = 1,						\
+> +		.channel = (channel_id),				\
+> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),		\
+> +		.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),	\
+> +		.scan_type = {						\
+> +			.sign = 'u',					\
+> +			.realbits = (resolution),			\
+> +			.storagebits = 16,				\
+> +			.shift = 12 - (resolution),			\
+> +		},							\
+> +	}
+> +
+> +static const struct iio_chan_spec mcp4821_channels[6][2] = {
+> +	[ID_MCP4801] = { MCP4821_CHAN(0, 8), {} },
+
+C will fill in the second entry with zeros without needing a {} and
+as we don't care about it anyway, just don't bother adding the {} placeholder,
+making it a bit neater.
+
+> +	[ID_MCP4811] = { MCP4821_CHAN(0, 10), {} },
+> +	[ID_MCP4821] = { MCP4821_CHAN(0, 12), {} },
+> +	[ID_MCP4802] = { MCP4821_CHAN(0, 8), MCP4821_CHAN(1, 8) },
+> +	[ID_MCP4812] = { MCP4821_CHAN(0, 10), MCP4821_CHAN(1, 10) },
+> +	[ID_MCP4822] = { MCP4821_CHAN(0, 12), MCP4821_CHAN(1, 12) },
+> +};
+> +
+> +static int mcp4821_read_raw(struct iio_dev *indio_dev,
+> +			    struct iio_chan_spec const *chan, int *val,
+> +			    int *val2, long mask)
+> +{
+> +	struct mcp4821_state *state;
+> +
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_RAW:
+> +		state = iio_priv(indio_dev);
+> +		mutex_lock(&state->lock);
+
+Can use the new auto cleanup stuff for this to shorten things a tiny bit.
+
+		scoped_guard(mutex, &state->lock)
+			*val = state->dac_channel[chan->channel];
+
+Obviously very minor advantage here so I don't mind either way.
+
+> +		*val = state->dac_value[chan->channel];
+> +		mutex_unlock(&state->lock);
+> +		return IIO_VAL_INT;
+> +	case IIO_CHAN_INFO_SCALE:
+> +		*val = MCP4821_2X_GAIN_VREF_MV;
+> +		*val2 = chan->scan_type.realbits;
+> +		return IIO_VAL_FRACTIONAL_LOG2;
 > +	default:
-> +		val = 0;
-> +		break;
+> +		return -EINVAL;
 > +	}
-> +
-> +	snd_soc_component_write_field(component, WCD939X_DIGITAL_SWR_TX_CLK_RATE, mask, val);
-> +
-> +	return 0;
 > +}
 > +
-> +static int wcd939x_io_init(struct snd_soc_component *component)
+> +static int mcp4821_write_raw(struct iio_dev *indio_dev,
+> +			     struct iio_chan_spec const *chan, int val,
+> +			     int val2, long mask)
 > +{
-> +	snd_soc_component_write_field(component, WCD939X_ANA_BIAS,
-> +				      WCD939X_BIAS_ANALOG_BIAS_EN, 1);
-All of these values are BIT()s or 2-4 ORed BIT()s, can you check what they
-mean?
+> +	struct mcp4821_state *state;
+> +	__be16 write_val;
+> +	u8 write_buffer[2];
 
-Same for almost all other snd_soc_component_ write/modify functions
+type of these two is backwards.  you are build the value in write_val, so that should
+just be a u16, then converting it to be16 so write_buffer should be __be16
 
-[...]
-
-> +static int wcd939x_tx_swr_ctrl(struct snd_soc_dapm_widget *w,
-> +			       struct snd_kcontrol *kcontrol, int event)
-> +{
-> +	struct snd_soc_component *component = snd_soc_dapm_to_component(w->dapm);
-> +	struct wcd939x_priv *wcd939x = snd_soc_component_get_drvdata(component);
-> +	int bank;
-> +	int rate;
+> +	int ret;
+> +	bool is_value_valid = val >= 0 && val < BIT(chan->scan_type.realbits) &&
+> +			      val2 == 0;
+> +	if (mask == IIO_CHAN_INFO_RAW && is_value_valid) {
+> +		state = iio_priv(indio_dev);
 > +
-> +	bank = (wcd939x_swr_get_current_bank(wcd939x->sdw_priv[AIF1_CAP]->sdev)) ? 0 : 1;
-> +	bank = bank ? 0 : 1;
-this is just the return value of wcd939x_swr_get_current_bank NOTed twice
+> +		write_val = MCP4821_ACTIVE_MODE | val << chan->scan_type.shift;
+> +		if (chan->channel)
+> +			write_val |= MCP4802_SECOND_CHAN;
+> +		put_unaligned_be16(write_val, write_buffer);
 
+
+
+> +		ret = spi_write(state->spi, write_buffer, sizeof(write_buffer));
+> +		if (ret) {
+> +			dev_err(&state->spi->dev,
+> +				"Failed to write to device: %d", ret);
+> +			return ret;
+> +		}
 > +
-> +	switch (event) {
-> +	case SND_SOC_DAPM_PRE_PMU:
-> +		if (strnstr(w->name, "ADC", sizeof("ADC"))) {
-> +			int i = 0, mode = 0;
-> +
-> +			if (test_bit(WCD_ADC1, &wcd939x->status_mask))
-> +				mode |= tx_mode_bit[wcd939x->tx_mode[WCD_ADC1]];
-> +			if (test_bit(WCD_ADC2, &wcd939x->status_mask))
-> +				mode |= tx_mode_bit[wcd939x->tx_mode[WCD_ADC2]];
-> +			if (test_bit(WCD_ADC3, &wcd939x->status_mask))
-> +				mode |= tx_mode_bit[wcd939x->tx_mode[WCD_ADC3]];
-> +			if (test_bit(WCD_ADC4, &wcd939x->status_mask))
-> +				mode |= tx_mode_bit[wcd939x->tx_mode[WCD_ADC4]];
-> +
-> +			if (mode != 0) {
-> +				for (i = 0; i < ADC_MODE_ULP2; i++) {
-> +					if (mode & (1 << i)) {
-BIT(i)
+> +		mutex_lock(&state->lock);
 
-> +						i++;
-> +						break;
-> +					}
-the immediate break makes it look like you're just looking for the first set
-bit, 1-indexed, and there's functions for that
+As above if you want to.
 
-> +				}
-> +			}
-> +			rate = wcd939x_get_clk_rate(i);
-> +			wcd939x_set_swr_clk_rate(component, rate, bank);
-> +			/* Copy clk settings to active bank */
-> +			wcd939x_set_swr_clk_rate(component, rate, !bank);
-This comment is very confusing
 
-[...]
+> +		state->dac_value[chan->channel] = val;
+> +		mutex_unlock(&state->lock);
+> +		return 0;
+> +	} else {
+> +		return -EINVAL;
+Flip this and separate the unrelated conditions.
+	if (mask != IIO_CHAN_INFO_RAW)
+		return -EINVAL;
 
-> +static void wcd939x_mbhc_get_result_params(struct snd_soc_component *component,
-> +					   s16 *d1_a, u16 noff,
-> +						int32_t *zdet)
-very weird alignment
+	if (!is_value_valid)
+		return -EINVAL;
 
-> +{
-> +	struct wcd939x_priv *wcd939x = snd_soc_component_get_drvdata(component);
-> +	int i;
-> +	int val, val1;
-> +	s16 c1;
-> +	s32 x1, d1;
-> +	s32 denom;
-> +	static const int mincode_param[] = {
-static inside a function means something else than static global
+	...
 
-> +		3277, 1639, 820, 410, 205, 103, 52, 26
-> +	};
-reverse-Christmas-tree
+reduces unnecessary indent and generally puts the errors 'out of line' which
+is common kernel approach and generally 'what we expect to see' when reviewing.
 
-> +
-> +	regmap_update_bits(wcd939x->regmap, WCD939X_ANA_MBHC_ZDET, 0x20, 0x20);
-> +	for (i = 0; i < WCD939X_ZDET_NUM_MEASUREMENTS; i++) {
-> +		regmap_read(wcd939x->regmap, WCD939X_ANA_MBHC_RESULT_2, &val);
-> +		if (val & 0x80)
-BIT(7), please name it
 
-> +			break;
 > +	}
-> +	val = val << 0x8;
-<< 8 makes more sense
-
-> +	regmap_read(wcd939x->regmap, WCD939X_ANA_MBHC_RESULT_1, &val1);
-> +	val |= val1;
-> +	regmap_update_bits(wcd939x->regmap, WCD939X_ANA_MBHC_ZDET, 0x20, 0x00);
-BIT()s
-
-> +	x1 = WCD939X_MBHC_GET_X1(val);
-> +	c1 = WCD939X_MBHC_GET_C1(val);
-> +	/* If ramp is not complete, give additional 5ms */
-> +	if (c1 < 2 && x1)
-> +		usleep_range(5000, 5050);
-udelay, see timers-howto.txt
-
-[...]
-
-> +static void wcd939x_wcd_mbhc_qfuse_cal(struct snd_soc_component *component,
-> +				       s32 *z_val, int flag_l_r)
-> +{
-> +	s16 q1;
-> +	int q1_cal;
-> +
-> +	q1 = snd_soc_component_read(component, WCD939X_DIGITAL_EFUSE_REG_21 + flag_l_r);
-> +	if (q1 & 0x80)
-BIT
-> +		q1_cal = (10000 - ((q1 & 0x7F) * 10));
-GENMASK
-
-> +	else
-> +		q1_cal = (10000 + (q1 * 10));
-> +	if (q1_cal > 0)
-> +		*z_val = ((*z_val) * 10000) / q1_cal;
 > +}
 > +
-> +static void wcd939x_wcd_mbhc_calc_impedance(struct snd_soc_component *component,
-> +					    u32 *zl, uint32_t *zr)
+> +static const struct iio_info mcp4821_info = {
+> +	.read_raw = &mcp4821_read_raw,
+> +	.write_raw = &mcp4821_write_raw,
+> +};
+> +
+> +static int mcp4821_probe(struct spi_device *spi)
 > +{
-> +	struct wcd939x_priv *wcd939x = dev_get_drvdata(component->dev);
-> +	s16 reg0, reg1, reg2, reg3, reg4;
-> +	s32 z1l, z1r, z1ls;
-> +	int z_mono, z_diff1, z_diff2;
-> +	bool is_fsm_disable = false;
-> +	struct wcd939x_mbhc_zdet_param zdet_param[] = {
-const
+> +	struct iio_dev *indio_dev;
+> +	struct mcp4821_state *state;
+> +	const struct spi_device_id *id;
+> +
+> +	indio_dev = devm_iio_device_alloc(&spi->dev, sizeof(*state));
+> +	if (indio_dev == NULL) {
+> +		dev_err(&spi->dev, "Failed to allocate iio device\n");
+> +		return -ENOMEM;
+		return dev_err_probe(&spi->dev, -ENOMEM,
+				     "failed to allocate IIO device\n");
 
-> +		{4, 0, 4, 0x08, 0x14, 0x18}, /* < 32ohm */
-> +		{4, 0, 6, 0x18, 0x60, 0x78}, /* 32ohm < Z < 400ohm */
-> +		{1, 4, 5, 0x18, 0x7C, 0x90}, /* 400ohm < Z < 1200ohm */
-> +		{1, 6, 7, 0x18, 0x7C, 0x90}, /* >1200ohm */
-> +	};
-> +	struct wcd939x_mbhc_zdet_param *zdet_param_ptr = NULL;
-> +	s16 d1_a[][4] = {
-const
+However that's very unlikely to ever happen, so you could just not bother
+with the message.
 
-> +		{0, 30, 90, 30},
-> +		{0, 30, 30, 6},
-> +		{0, 30, 30, 5},
-> +		{0, 30, 30, 5},
-> +	};
-> +	s16 *d1 = NULL;
-????
+> +	}
+> +
+> +	state = iio_priv(indio_dev);
+> +	spi_set_drvdata(spi, indio_dev);
 
-[...]
+Why?
+
+> +	id = spi_get_device_id(spi);
+For dt bindings this relies on the fallback of breaking up the compatible.
+That's fragile, so add the data to the of_table as well + use pointers
+not enum values so that you can then use spi_get_device_match_data()
+which handles other firmware types as well and falls back to what you
+have here.
 
 > +
-> +	rc = of_property_read_u32(np, "qcom,micbias1-microvolt",  &prop_val);
-similarly to the swr port map, this should be commonized for WCDxxxx
+> +	state->spi = spi;
+> +	mutex_init(&state->lock);
+> +
+> +	indio_dev->name = id->name;
+
+Also fragile (very weird things happen if you end up with fallback DT compatibles
+in the future).  So embed a string in a device specific structure as described
+below.
+
+> +	indio_dev->info = &mcp4821_info;
+> +	indio_dev->modes = INDIO_DIRECT_MODE;
+> +	indio_dev->channels = mcp4821_channels[id->driver_data];
+> +	indio_dev->num_channels = mcp4821_chan_count(id->driver_data);
+Combine channels and chan_count as static data in a
+struct mcp4821_info {
+	struct iio_chan_spec channels];
+	int num_channels;
+	const char *name;
+}
+> +	return devm_iio_device_register(&spi->dev, indio_dev);
+> +}
+> +
+> +static const struct spi_device_id mcp4821_id_table[] = {
+> +	{ "mcp4801", ID_MCP4801},
+use &mcp4821_data[ID_MCP4801] etc in here.. (with cast as needed, lots of
+examples in tree...
+> +	{ "mcp4811", ID_MCP4811},
+> +	{ "mcp4821", ID_MCP4821},
+> +	{ "mcp4802", ID_MCP4802},
+> +	{ "mcp4812", ID_MCP4812},
+> +	{ "mcp4822", ID_MCP4822},
+> +	{ /* Sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(spi, mcp4821_id_table);
+> +
+> +static const struct of_device_id mcp4821_of_table[] = {
+> +	{ .compatible = "microchip,mcp4801"},
+and provide the data here as well. 
+> +	{ .compatible = "microchip,mcp4811"},
+> +	{ .compatible = "microchip,mcp4821"},
+...
+
+Thanks,
+
+Jonathan
 
 
-Konrad
 
