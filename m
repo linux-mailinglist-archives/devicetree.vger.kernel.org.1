@@ -1,157 +1,152 @@
-Return-Path: <devicetree+bounces-18821-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18822-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3025E7F8BFC
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 16:17:26 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 522B47F8C00
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 16:20:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BD43FB210CF
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 15:17:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EEF2328119D
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 15:20:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7462428E0C;
-	Sat, 25 Nov 2023 15:17:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56D6028E1C;
+	Sat, 25 Nov 2023 15:20:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ap7yNQ2m"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HEDX8mPb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5A2DFF
-	for <devicetree@vger.kernel.org>; Sat, 25 Nov 2023 07:17:15 -0800 (PST)
-Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-4083f61312eso22485465e9.3
-        for <devicetree@vger.kernel.org>; Sat, 25 Nov 2023 07:17:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700925434; x=1701530234; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=L//cXM65lEufA8qopdoTlT0G7CECObDXCb5waukCjRo=;
-        b=Ap7yNQ2moSOX+8m5uas3PtuT63QBqWm6/dD8H9jpRPFgLvz2j41AxuYzYlG0yUT5lV
-         0qgjyt0H35yUQaGz1Z5kIxSHfSiy6RDgF+aFd0sxZOHMuPgthx2lHoj6MfMDmaRSkV6E
-         qyJBvAxQKuF/zDHeBf4I96rnj13bzHSmsnVW/ZKVZ8jLQG32M/i55hnyFLfBYJP7bAbq
-         g4ASPA3UO5MwqKWgf/mkL+iYjKOlBLv/nslgMnuEUljzRvbsdtLhbDwXb3g/1cDQdfeF
-         rD0blYYsMuAtVA3W/iiIwao5+2A1wbuwFk/f4xk3FwMeH4Kf32FjPJIUwu59TJmJwQGu
-         truw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700925434; x=1701530234;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=L//cXM65lEufA8qopdoTlT0G7CECObDXCb5waukCjRo=;
-        b=SfK5qh5RyATxvUzWmkYpmEBDJRnDiYFFnY3ZIToUOWKxLG8akQcK45LOltOsDctXfn
-         JzLJ+39PdwmCSEEvD2qN375x5nXZTW0hMs1wq72fU9TgdHvDi/2w6+523x+r4Da9q3Vq
-         yh8KI9Pb14au5eFTjhVrAIHKwYBnSBC1OoBa8sRCgOe3dId3Qnnr6DXh+K1Khd1rp2m/
-         Dn1Y6GLpaO50js6TnN/n5FnMwaz59x/nxdwheMxaRSOfOsQwq35mFKAG+MtlKZcUztyQ
-         8ZUVYIcOAk56uDvLrzTY+Q2oAKeWgoQm8IqUPNIgER9kbszt1Sgp2D5Ue5PEqYQUJsbZ
-         QgEw==
-X-Gm-Message-State: AOJu0YyxnStcV9TM5N8IAXugdDMzVlVbOT4t8O880PWhdPwbQyswos2b
-	M0ZYkKP13ebqgw0joebDkD7Bag==
-X-Google-Smtp-Source: AGHT+IGwnqLhrtr72VZNjFVnj7zkFww47Kvwg5iba4kzHIGXaWjdDtnp+7LshXKgBUTTBwgApNkbpA==
-X-Received: by 2002:a05:600c:3550:b0:40b:415e:c044 with SMTP id i16-20020a05600c355000b0040b415ec044mr1056018wmq.37.1700925434011;
-        Sat, 25 Nov 2023 07:17:14 -0800 (PST)
-Received: from [192.168.100.102] ([37.228.218.3])
-        by smtp.gmail.com with ESMTPSA id a10-20020a056000050a00b0032ddf2804ccsm6798220wrf.83.2023.11.25.07.17.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 25 Nov 2023 07:17:13 -0800 (PST)
-Message-ID: <44a2b30a-7f8c-44a9-8a74-b09fee2b61b7@linaro.org>
-Date: Sat, 25 Nov 2023 15:17:12 +0000
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36A3828E0A;
+	Sat, 25 Nov 2023 15:20:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A854C433C8;
+	Sat, 25 Nov 2023 15:20:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1700925607;
+	bh=1pvnCX5R8u7RfMiNPMMmS+WyuEpdLzjE3FRiy8NZtag=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=HEDX8mPbSBds2f9EPZIoR4PeAeVug9LqWOLy4sEKt1ZLgpSQ81ClVczXPJH7ok8/n
+	 xlur70r2f2X8KOkin4mEpIGOWbCVYwxPglQUXK0793tK0lQNkt/TWAR643uOgymRDX
+	 JMnau9dxkkRPbnvWXrwGoQY7I/743LfrKMY1TJgFd0vMNHrU3rD1PbPi8/+EbL10WE
+	 s6P2+EOTMsuInMFG26T/EUwZtaEHItecdAjYRs9rGA1Wr4tLSAhndiPXYTo+g+Jp7q
+	 3eDaoTl7tce+RxUhSK1CgLxBWFl9QQ4nnFqOtgKR/QHoBGlS7+sn8rIccdMAnxdp/R
+	 YBM8wLekOBbwg==
+Date: Sat, 25 Nov 2023 15:19:59 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Crt Mori <cmo@melexis.com>
+Cc: Kim Seer Paller <kimseer.paller@analog.com>, Lars-Peter Clausen
+ <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, Rob
+ Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/2] iio: frequency: admfm2000: New driver
+Message-ID: <20231125151959.00261229@jic23-huawei>
+In-Reply-To: <CAKv63uvod-zdYSy93sJPBefBrqUUGhKDRLrC3vxvdeTZ4eM-nA@mail.gmail.com>
+References: <20231123094357.222371-1-kimseer.paller@analog.com>
+	<20231123094357.222371-2-kimseer.paller@analog.com>
+	<CAKv63uvod-zdYSy93sJPBefBrqUUGhKDRLrC3vxvdeTZ4eM-nA@mail.gmail.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/2] irqchip: irq-qcom-mpm: Support passing a slice of
- SRAM as reg space
-Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@linaro.org>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>, Thomas Gleixner
- <tglx@linutronix.de>, Marc Zyngier <maz@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Shawn Guo <shawn.guo@linaro.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>,
- linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20230328-topic-msgram_mpm-v6-0-682e4855b7e2@linaro.org>
- <20230328-topic-msgram_mpm-v6-2-682e4855b7e2@linaro.org>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20230328-topic-msgram_mpm-v6-2-682e4855b7e2@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On 25/11/2023 14:27, Konrad Dybcio wrote:
-> The MPM hardware is accessible to us from the ARM CPUs through a shared
-> memory region (RPM MSG RAM) that's also concurrently accessed by other
-> kinds of cores on the system (like modem, ADSP etc.). Modeling this
-> relation in a (somewhat) sane manner in the device tree basically
-> requires us to either present the MPM as a child of said memory region
-> (which makes little sense, as a mapped memory carveout is not a bus),
-> define nodes which bleed their register spaces into one another, or
-> passing their slice of the MSG RAM through some kind of a property.
+On Thu, 23 Nov 2023 11:19:51 +0100
+Crt Mori <cmo@melexis.com> wrote:
+
+> Hi,
+> Just minor remark inline.
 > 
-> Go with the third option and add a way to map a region passed through
-> the "qcom,rpm-msg-ram" property as our register space.
+> Best regards,
+> Crt
+
+Hi Crt,
+
+Please crop replies / reviews to only relevant context. If there are lots of
+comments it maybe fine to leave whole driver but that's not the case ehre.
+
+Should only see something like...
+
+Thanks,
+
+Jonathan
+
 > 
-> The current way of using 'reg' is preserved for ABI reasons.
+> On Thu, 23 Nov 2023 at 10:44, Kim Seer Paller <kimseer.paller@analog.com> wrote:
+> >
+> > Dual microwave down converter module with input RF and LO frequency
+> > ranges from 0.5 to 32 GHz and an output IF frequency range from 0.1 to
+> > 8 GHz. It consists of a LNA, mixer, IF filter, DSA, and IF amplifier
+> > for each down conversion path.
+> >
+> > Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
+> > ---
+...
+
+
+> > +static int admfm2000_setup(struct admfm2000_state *st,
+> > +                          struct iio_dev *indio_dev)
+> > +{
+
+...
+
+> > +       if (st->dsa_gpios[1]->ndescs != ADMF20000_DSA_GPIOS) {
+> > +               dev_err_probe(dev, -ENODEV, "%d GPIOs needed to operate\n",
+> > +                             ADMF20000_DSA_GPIOS);  
 > 
-> Acked-by: Shawn Guo <shawn.guo@linaro.org>
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->   drivers/irqchip/irq-qcom-mpm.c | 21 ++++++++++++++++++---
->   1 file changed, 18 insertions(+), 3 deletions(-)
+> no return -ENODEV here?
 > 
-> diff --git a/drivers/irqchip/irq-qcom-mpm.c b/drivers/irqchip/irq-qcom-mpm.c
-> index 7124565234a5..7115e3056aa5 100644
-> --- a/drivers/irqchip/irq-qcom-mpm.c
-> +++ b/drivers/irqchip/irq-qcom-mpm.c
-> @@ -14,6 +14,7 @@
->   #include <linux/mailbox_client.h>
->   #include <linux/module.h>
->   #include <linux/of.h>
-> +#include <linux/of_address.h>
->   #include <linux/of_platform.h>
->   #include <linux/platform_device.h>
->   #include <linux/pm_domain.h>
-> @@ -322,8 +323,10 @@ static int qcom_mpm_init(struct device_node *np, struct device_node *parent)
->   	struct device *dev = &pdev->dev;
->   	struct irq_domain *parent_domain;
->   	struct generic_pm_domain *genpd;
-> +	struct device_node *msgram_np;
->   	struct qcom_mpm_priv *priv;
->   	unsigned int pin_cnt;
-> +	struct resource res;
->   	int i, irq;
->   	int ret;
->   
-> @@ -374,9 +377,21 @@ static int qcom_mpm_init(struct device_node *np, struct device_node *parent)
->   
->   	raw_spin_lock_init(&priv->lock);
->   
-> -	priv->base = devm_platform_ioremap_resource(pdev, 0);
-> -	if (IS_ERR(priv->base))
-> -		return PTR_ERR(priv->base);
-> +	/* If we have a handle to an RPM message ram partition, use it. */
-> +	msgram_np = of_parse_phandle(np, "qcom,rpm-msg-ram", 0);
-> +	if (msgram_np) {
-> +		ret = of_address_to_resource(msgram_np, 0, &res);
+> > +       }
+> > +
+> > +       return 0;
+> > +}
+> > +
+> > +static int admfm2000_probe(struct platform_device *pdev)
+> > +{
+> > +       struct device *dev = &pdev->dev;
+> > +       struct iio_dev *indio_dev;
+> > +       struct admfm2000_state *st;
+> > +       int ret;  
+> 
+> Order these in reverse christmass tree like you did above.
+> 
+> 
+> > +
+> > +       indio_dev = devm_iio_device_alloc(dev, sizeof(*st));
+> > +       if (!indio_dev)
+> > +               return -ENOMEM;
+> > +
+> > +       st = iio_priv(indio_dev);
+> > +
+> > +       indio_dev->name = "admfm2000";
+> > +       indio_dev->num_channels = ARRAY_SIZE(admfm2000_channels);
+> > +       indio_dev->channels = admfm2000_channels;
+> > +       indio_dev->info = &admfm2000_info;
+> > +       indio_dev->modes = INDIO_DIRECT_MODE;
+> > +
+> > +       st->gain[0] = ADMF20000_DEFAULT_GAIN;
+> > +       st->gain[1] = ADMF20000_DEFAULT_GAIN;
+> > +
+> > +       mutex_init(&st->lock);
+> > +
+> > +       ret = admfm2000_setup(st, indio_dev);
+> > +       if (ret)
+> > +               return ret;
+> > +
+> > +       ret = admfm2000_channel_config(st, indio_dev);
+> > +       if (ret)
+> > +               return ret;
+> > +
+> > +       return devm_iio_device_register(dev, indio_dev);
+> > +}
 
-You are capturing the return value but doing nothing with it.
+Thanks,
 
-One of
-
-if (ret) {
-     of_node_put(msgram_np);
-     return ret;
-}
-
-or just drop the ret =
-
-if you are sure of_address_to_resource() can never return an error for 
-your use-case.
-
-Once fixed.
-
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Jonathan
 
