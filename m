@@ -1,101 +1,91 @@
-Return-Path: <devicetree+bounces-18842-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18843-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DEBA7F8CC0
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 18:28:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 51A5B7F8CC4
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 18:28:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 899AB1C20AD3
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 17:28:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 82ACD1C20BA8
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 17:28:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 980C82C868;
-	Sat, 25 Nov 2023 17:28:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B78B2C868;
+	Sat, 25 Nov 2023 17:28:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SbQK1jgy"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="kp+5QG1E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77B59DF66;
-	Sat, 25 Nov 2023 17:28:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20319C433C8;
-	Sat, 25 Nov 2023 17:28:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700933285;
-	bh=SdEIJH9TzgPXfaP1Q2Dpkp+FAEfYhe/GjdmyR7hDB+Y=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=SbQK1jgydoMznxVji1B2PXND/RwJ/X1wxjP/8wICn9krvA2d74vnYLrabHpMu0QjE
-	 Rm5m3ybwhM1S+daLt0AqhBj1djVoe8E4wjf+6AvOvNc1eSN8gpLg61hyTIDwxDXUdE
-	 Xfc4mqe5jESNPIgeOoKq3vJeRx/T9Zk8rxc86d1gp8LIWGMzyZxxYdAfAZG9w8nh9v
-	 RAfM0aUsTPMR5rFn77Tm0AcIT/9KHHcftFqu4pT15XB+PaRuzMye0bsnc4jXMar2UQ
-	 N2U/0YS1Bxm4W3uzGLZENfXGmj01l9ev3ZY6QoIqnwev29aR4mArPjcn3xjBJN9F25
-	 ATwXeUnNLoCwQ==
-Date: Sat, 25 Nov 2023 17:27:58 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Crt Mori <cmo@melexis.com>, Rob Herring <robh+dt@kernel.org>,
- linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: iio: temperature: add MLX90635 device
- bindings
-Message-ID: <20231125172758.04b0254e@jic23-huawei>
-In-Reply-To: <ea997987-6a84-445c-a806-527d766569b1@kernel.org>
-References: <cover.1700648164.git.cmo@melexis.com>
-	<2e8b4a7d3ef4bc1c53bd0a849e4c31eaf2477f6b.1700648165.git.cmo@melexis.com>
-	<99d1808a-da04-4bc1-a1f7-cbd269adbbf0@kernel.org>
-	<CAKv63uv87srZ3gJxFASuGWV6cULXkN=gYi_L=BCcd3dgOFQEfw@mail.gmail.com>
-	<ea997987-6a84-445c-a806-527d766569b1@kernel.org>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF6DB12B;
+	Sat, 25 Nov 2023 09:28:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=VcPaglTJNXboIOVIfziLcej/MavQwgea6uWybKAiriA=; b=kp+5QG1EFMcBC/4ZwcOAIs+Cn/
+	XHgPWllgKTp6orzQQEc3ucYuK7UEMRAwv5iNKKTvWilG/oCKXjVL1KBp7/aTx13dDz0r4Df3SmJgO
+	4xqh4pdJvVD2kKqjnSWYgAzubijgqz/neja5zSTt1iwUGk/f/Z1tt9bz+uePf5kIxeqg=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1r6wRq-001CWJ-5v; Sat, 25 Nov 2023 18:28:06 +0100
+Date: Sat, 25 Nov 2023 18:28:06 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Qingfang Deng <dqfext@gmail.com>,
+	SkyLake Huang <SkyLake.Huang@mediatek.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	David Epping <david.epping@missinglinkelectronics.com>,
+	Harini Katakam <harini.katakam@amd.com>,
+	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+	Robert Marko <robert.marko@sartura.hr>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [net-next RFC PATCH v2 00/11] net: phy: Support DT PHY package
+Message-ID: <bf26ba4b-ea21-450d-b2ce-0f68f2d2796a@lunn.ch>
+References: <20231125001127.5674-1-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231125001127.5674-1-ansuelsmth@gmail.com>
 
-On Wed, 22 Nov 2023 13:35:19 +0100
-Krzysztof Kozlowski <krzk@kernel.org> wrote:
-
-> On 22/11/2023 13:28, Crt Mori wrote:
-> >>> +  Since measured object emissivity effects Infra Red energy emitted,
-> >>> +  emissivity should be set before requesting the object temperature.
-> >>> +
-> >>> +properties:
-> >>> +  compatible:
-> >>> +    const: melexis,mlx90635  
-> >>
-> >> It's the same as mlx90632. Add it there (as enum).
-> >>  
-> > 
-> > Properties are the same, but then you can't have much differences for
-> > a temperature sensor. It has a bit worse relative measurement error
-> > outside of the human body range and overall different DSP, register
-> > map, even physical size - it's 1.8x1.8 mm compared to 90632 3x3 mm. I
-> > was not sure how it qualifies for adding it as another enum, but I
-> > went with the feeling that if it can reuse the driver, then it is an
-> > enum, otherwise it is a new file. And I could not reuse anything from
-> > 90632.
-> > 
-> > Thanks for quick feedback and best regards,  
+> One example is this:
 > 
-> Driver is independent choice. There is no need for new binding file if
-> everything is the same from bindings point of view.
-> 
-> Best regards,
-> Krzysztof
-> 
-> 
+>         ethernet-phy-package@0 {
+>             #address-cells = <1>;
+>             #size-cells = <0>;
 
-We got this wrong in the past in IIO and it's a slow effort to merge
-the various very similar bindings.  For now we are mostly keeping
-to within a vendor though unless a driver supports parts from multiple
-vendors.  It potentially gets too confusing to maintain otherwise.
+Please extend this example with a compatible, and include a property
+which is global.
 
-This one is easy case though so definitely merge as Krzystof suggested!
+> (For Andrew, we are looking intro making this in at803x PHY driver and see
+> what functions can be reused, idea is to move the driver to a dedicated
+> directory and create something like at803x-common.c as the at803x PHY
+> driver is too bloated and splitting it it's a better approach)
 
-Jonathan
+This sounds good.
+
+     Andrew
+     
 
