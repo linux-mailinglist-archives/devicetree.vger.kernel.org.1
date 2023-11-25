@@ -1,81 +1,133 @@
-Return-Path: <devicetree+bounces-18839-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18844-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B01BD7F8C91
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 17:56:45 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17E427F8CD2
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 18:35:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3D62DB20D0E
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 16:56:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C3451281489
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 17:35:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E639728E09;
-	Sat, 25 Nov 2023 16:56:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B2542CCB2;
+	Sat, 25 Nov 2023 17:35:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QRf8irJ0"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="So91xl6x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC7342117;
-	Sat, 25 Nov 2023 16:56:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F268C433C7;
-	Sat, 25 Nov 2023 16:56:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700931399;
-	bh=IPD5Po2zb9ZkslvDJpcIYJpLgsFXk1lDbitaI3nB7EU=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=QRf8irJ0QLq2+Z7Wof9rCOq2IOeb0Oq7E1KKjD4Bu8Op9vbhmytFPShygaV2HDJSf
-	 AR0jwuOQjKmuUs10jO4SOJqNxX9GXs610AoW98Xs3VxOXNLkopqPn8OEYpo322i4o8
-	 LE4ygU5VvUJP76icBhYMRFlSGf/SGgSMZXIJT+nebZm+7Nx0bzIwjGsRQNxeedGSXs
-	 1xgIcpBd6Qn6oSbqPXrmh5nw7FkBO7z0PoSBPULxUeE0X8ZPWBEEg/OAGCdgAiP+0q
-	 d3Hw0+JTFLerKOZPjX+xKdy4+dp6rd2VUuZ4CIi8zQiFYtXx2JM55STqlSnDa2bwtF
-	 BWx4CACk0PnFA==
-Date: Sat, 25 Nov 2023 16:56:25 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: mitrutzceclan <mitrutzceclan@gmail.com>
-Cc: linus.walleij@linaro.org, brgl@bgdev.pl, andy@kernel.org,
- linux-gpio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, Rob
- Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Michael Walle <michael@walle.cc>, Andy Shevchenko
- <andy.shevchenko@gmail.com>, Arnd Bergmann <arnd@arndb.de>, ChiaEn Wu
- <chiaen_wu@richtek.com>, Niklas Schnelle <schnelle@linux.ibm.com>, Leonard
- =?UTF-8?B?R8O2aHJz?= <l.goehrs@pengutronix.de>, Mike Looijmans
- <mike.looijmans@topic.nl>, Haibo Chen <haibo.chen@nxp.com>, Hugo Villeneuve
- <hvilleneuve@dimonoff.com>, Ceclan Dumitru <dumitru.ceclan@analog.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 1/2] dt-bindings: adc: add AD7173
-Message-ID: <20231125165625.4f68cc49@jic23-huawei>
-In-Reply-To: <20231123152331.5751-1-user@HYB-hhAwRlzzMZb>
-References: <20231123152331.5751-1-user@HYB-hhAwRlzzMZb>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 554FB11F;
+	Sat, 25 Nov 2023 09:35:10 -0800 (PST)
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-40b31232bf0so23027495e9.1;
+        Sat, 25 Nov 2023 09:35:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1700933709; x=1701538509; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=axG3mfbjbz/W134k+YbcMH+7XBFg5Rppc/71KawjxBY=;
+        b=So91xl6x4Lu62YfkdGwdY1a14qvPcZipQrTk7c+tEvLDc8T9tqUJN2HY2nVB6t/IZJ
+         uDmcPyfdgajXR0n1U1K9HqBoISFIfOpEX5aD28CH8OY3GuTBanq+PQKwoam/KUk8C2A4
+         s24RujmGVlxNtMb1Wp1C6HYby72CrLTRzHhk6vXVy8xcf/aDYvb7ocOfM0i0DYCDkWyl
+         wuP97dt6XrmaP6SjGElg2YsgdI9v69gGq6DIdBKb+yYVAQI3xxM39teix5pPytJp+3Kn
+         Gj8UxKtnhN9i8/ri3GfNtnGaWBVzVlFEnR6MT6WTjsEDHHvkKu1d/crI6bBsNFtTxft4
+         8mvw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700933709; x=1701538509;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=axG3mfbjbz/W134k+YbcMH+7XBFg5Rppc/71KawjxBY=;
+        b=VdMJfcJ24FNPNt+Qo/af7Y3oH/823TPLmvfrzgYRfXX6YH41euBN36GZwN+pCnONtz
+         Ap1ND7YI1J6CPStGR1WiCNJZ4Yuf2ElY54MzwP9LUBwhQ+xomY+CdplGwmvrXPEbcahT
+         6JX01KDHK9oF9uOGizoZoXNGKDWDDUah702ClDkQ2QWOxGKpSWot7LI1B4Fdtf7qtQtS
+         cQ/w9wtrkiAOPdCiHmysxf2eekbsRkhV9piKAD07/yqtTEhnvtwqI9Q4wfUe5XAZT6Kv
+         V2NtqBg9saFzjo2nLSh0GnP91f3MyREJxR7c7qktjQUC2Kbr/L+Stv4IcWICaMRDperf
+         Gh2A==
+X-Gm-Message-State: AOJu0YwfOCBlbb/FA2F5x2JUzKpFycU49uEO5ssn8WRTH+jFvALA28nP
+	KZs/F4bF8ngu4/FVK7FPszs=
+X-Google-Smtp-Source: AGHT+IF2k2jTI5R4V86TMAzGvEmeagVATmpSvXj1vel8cBJdrhFvqOUF1JNx7OrJEBc8H5AxuK1DRA==
+X-Received: by 2002:a05:600c:a04:b0:408:3a67:f6f5 with SMTP id z4-20020a05600c0a0400b004083a67f6f5mr5297187wmp.18.1700933708421;
+        Sat, 25 Nov 2023 09:35:08 -0800 (PST)
+Received: from Ansuel-xps. (93-34-89-13.ip49.fastwebnet.it. [93.34.89.13])
+        by smtp.gmail.com with ESMTPSA id t16-20020a05600c199000b0040a44179a88sm9027766wmq.42.2023.11.25.09.35.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 25 Nov 2023 09:35:08 -0800 (PST)
+Message-ID: <6562304c.050a0220.44374.e4b3@mx.google.com>
+X-Google-Original-Message-ID: <ZWH7iXQy9SMwbyZz@Ansuel-xps.>
+Date: Sat, 25 Nov 2023 14:50:01 +0100
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Qingfang Deng <dqfext@gmail.com>,
+	SkyLake Huang <SkyLake.Huang@mediatek.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	David Epping <david.epping@missinglinkelectronics.com>,
+	Harini Katakam <harini.katakam@amd.com>,
+	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+	Robert Marko <robert.marko@sartura.hr>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [net-next RFC PATCH v2 00/11] net: phy: Support DT PHY package
+References: <20231125001127.5674-1-ansuelsmth@gmail.com>
+ <bf26ba4b-ea21-450d-b2ce-0f68f2d2796a@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <bf26ba4b-ea21-450d-b2ce-0f68f2d2796a@lunn.ch>
 
-On Thu, 23 Nov 2023 17:23:21 +0200
-mitrutzceclan <mitrutzceclan@gmail.com> wrote:
-
-> From: Dumitru Ceclan <mitrutzceclan@gmail.com>
+On Sat, Nov 25, 2023 at 06:28:06PM +0100, Andrew Lunn wrote:
+> > One example is this:
+> > 
+> >         ethernet-phy-package@0 {
+> >             #address-cells = <1>;
+> >             #size-cells = <0>;
 > 
-> The AD7173 family offer a complete integrated Sigma-Delta ADC solution
-> which can be used in high precision, low noise single channel applications
-> or higher speed multiplexed applications. The Sigma-Delta ADC is intended
-> primarily for measurement of signals close to DC but also delivers
-> outstanding performance with input bandwidths out to ~10kHz.
+> Please extend this example with a compatible, and include a property
+> which is global.
+>
+
+Hi, don't know if you notice the changelog, I now check with the node
+name prefix instead of using compatible ethernet-phy-package. (some
+requested and didn't like using it) (easy to reintroduce, was just a
+small proposal/idea)
+
+Also in theory the compatible for specific PHY package can also be
+skipped. (we can use the select way and match for PHY id. Can also be
+introduced easily but shouldn't that be checked in some way? Or it's ok
+to have a compatible that will only be used for documentation?)
+
+> > (For Andrew, we are looking intro making this in at803x PHY driver and see
+> > what functions can be reused, idea is to move the driver to a dedicated
+> > directory and create something like at803x-common.c as the at803x PHY
+> > driver is too bloated and splitting it it's a better approach)
 > 
-> Signed-off-by: Dumitru Ceclan <mitrutzceclan@gmail.com>
+> This sounds good.
+> 
 
-An example of reference selection would be good to have. Otherwise
-looks fine to me, but I'll wait for the binding experts to take another
-look.
+Thanks, also for Russell, I forgot to include the PHY mode in the
+qca807x commit, will include that once I will move the code to the
+shared implementation with at803x. (sorry)
 
+-- 
+	Ansuel
 
