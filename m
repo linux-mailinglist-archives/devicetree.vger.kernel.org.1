@@ -1,126 +1,128 @@
-Return-Path: <devicetree+bounces-18890-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18891-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5405E7F8F28
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 21:49:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFD837F8F66
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 22:05:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0E4BF281538
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 20:49:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F1B421C20BB8
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 21:05:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B6C530CEC;
-	Sat, 25 Nov 2023 20:49:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B48430D0F;
+	Sat, 25 Nov 2023 21:05:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QMg7kcfx"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="MIP/eQ66"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A0F53066C;
-	Sat, 25 Nov 2023 20:49:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82379C433C7;
-	Sat, 25 Nov 2023 20:48:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700945343;
-	bh=By6S2NY0eBp0qntAaH6BVeBEX9Zm0qYIHhQZPhrXhuk=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=QMg7kcfxfWqw0cPWEjfDtDjDsnhH6xqQ/g74kyPwOf65WczUoktH8rf7UC1s9rwx1
-	 2BoQBvtaLmDmWwMq4xudZVfUd452/AddQ1o7k/+BieHAJ/RysG5CXslSROe0vseCCN
-	 ztCjymuiTqk2XOtABhYotw1v7Ly7Dp0r7rU/h/QDVABPyQ7r4I8XjWdMKKthjl4FBY
-	 31cKdJ7r2zjqXDrhExCCEvIasXcUaG3/KR3XeFXi2aYucmiXrJay1F3RdkGHmLJ3ZH
-	 6pMJY64+aQGQgTOVXLgJIZVruVAmXalCXX/zndiSsjyiuqE+iGI95OWhIhXJVJzGnt
-	 PR0iSxBWy+04A==
-Date: Sat, 25 Nov 2023 20:48:50 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Nia Espera <nespera@igalia.com>
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Lars-Peter Clausen
- <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Kees Cook <keescook@chromium.org>, Tony Luck
- <tony.luck@intel.com>, "Guilherme G. Piccoli" <gpiccoli@igalia.com>, Vinod
- Koul <vkoul@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski@linaro.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, linux-arm-msm@vger.kernel.org,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- phone-devel@vger.kernel.org, Rob <Me@orbit.sh>, Clayton Craft
- <clayton@igalia.com>, Caleb Connolly <caleb.connolly@linaro.org>, Luca
- Weiss <luca.weiss@fairphone.com>, ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v4 1/6] dt-bindings: iio: adc: qcom: Add Qualcomm
- smb139x
-Message-ID: <20231125204850.02e0b9a0@jic23-huawei>
-In-Reply-To: <20231111-nia-sm8350-for-upstream-v4-1-3a638b02eea5@igalia.com>
-References: <20231111-nia-sm8350-for-upstream-v4-0-3a638b02eea5@igalia.com>
-	<20231111-nia-sm8350-for-upstream-v4-1-3a638b02eea5@igalia.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43F9F11F;
+	Sat, 25 Nov 2023 13:05:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1700946352; x=1732482352;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=NW76CWX73/hJcaUlP/qugyIO3Pjb3vwvquuSP5fkRTs=;
+  b=MIP/eQ66Fo0Ewd7Nc7EwsDbCr/bRnd3DHgnrQvCkONvRzLawIqudPtLi
+   7mHtd2ppgScDp2YncgiOaNPql6uAyMLyDzkQ2X2sqAwo2gUVkAnFHJ34q
+   /lZOMpEZqu2qKA4OhhP9H3K3gLPEgX2cMdz69GCzzvmutgrpXpzigGMq7
+   qrCRKhN4s7Oh0bOzEZElcayZB22GZJXhYRtjkfo6XzaAueGUbTpAwR729
+   HsEGe2/9FdF29mOQpWuQBkPvbdBs8kFbqOTykDKGHZVGrbfCqcX3E5gWx
+   yu7xW7s7LfcfbdjfBqZaWfsrIjhzfZz1j9yFqEphXQO3FZILTJ7bNLUnk
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10905"; a="382934973"
+X-IronPort-AV: E=Sophos;i="6.04,227,1695711600"; 
+   d="scan'208";a="382934973"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Nov 2023 13:05:51 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10905"; a="1015179469"
+X-IronPort-AV: E=Sophos;i="6.04,227,1695711600"; 
+   d="scan'208";a="1015179469"
+Received: from lkp-server01.sh.intel.com (HELO d584ee6ebdcc) ([10.239.97.150])
+  by fmsmga006.fm.intel.com with ESMTP; 25 Nov 2023 13:05:48 -0800
+Received: from kbuild by d584ee6ebdcc with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1r6zqU-0004Qs-1Q;
+	Sat, 25 Nov 2023 21:05:46 +0000
+Date: Sun, 26 Nov 2023 05:05:04 +0800
+From: kernel test robot <lkp@intel.com>
+To: Yuxi Wang <Yuxi.Wang@monolithicpower.com>, pavel@ucw.cz, lee@kernel.org,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, linux-kernel@vger.kernel.org,
+	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+	wyx137120466@gmail.com
+Subject: Re: [PATCH 2/2] leds: add mp3326 driver
+Message-ID: <202311260403.PyY8h5Dj-lkp@intel.com>
+References: <20231124093034.951-3-Yuxi.Wang@monolithicpower.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231124093034.951-3-Yuxi.Wang@monolithicpower.com>
 
-On Sat, 11 Nov 2023 23:07:39 +0100
-Nia Espera <nespera@igalia.com> wrote:
+Hi Yuxi,
 
-> Bindings for a charger controller chip found on sm8350
-> 
-> Signed-off-by: Nia Espera <nespera@igalia.com>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Acked-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> ---
->  include/dt-bindings/iio/qcom,spmi-adc7-smb139x.h | 19 +++++++++++++++++++
->  include/dt-bindings/iio/qcom,spmi-vadc.h         |  3 +++
->  2 files changed, 22 insertions(+)
-> 
-> diff --git a/include/dt-bindings/iio/qcom,spmi-adc7-smb139x.h b/include/dt-bindings/iio/qcom,spmi-adc7-smb139x.h
-> new file mode 100644
-> index 000000000000..c0680d1285cf
-> --- /dev/null
-> +++ b/include/dt-bindings/iio/qcom,spmi-adc7-smb139x.h
-> @@ -0,0 +1,19 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-3-Clause */
-> +/*
-> + * Copyright (c) 2020 The Linux Foundation. All rights reserved.
-> + */
-> +
-> +#ifndef _DT_BINDINGS_QCOM_SPMI_VADC_SMB139X_H
-> +#define _DT_BINDINGS_QCOM_SPMI_VADC_SMB139X_H
-> +
-> +#include <dt-bindings/iio/qcom,spmi-vadc.h>
-> +
-> +#define SMB139x_1_ADC7_SMB_TEMP			(SMB139x_1_SID << 8 | ADC7_SMB_TEMP)
-> +#define SMB139x_1_ADC7_ICHG_SMB			(SMB139x_1_SID << 8 | ADC7_ICHG_SMB)
-> +#define SMB139x_1_ADC7_IIN_SMB			(SMB139x_1_SID << 8 | ADC7_IIN_SMB)
-> +
-> +#define SMB139x_2_ADC7_SMB_TEMP			(SMB139x_2_SID << 8 | ADC7_SMB_TEMP)
-> +#define SMB139x_2_ADC7_ICHG_SMB			(SMB139x_2_SID << 8 | ADC7_ICHG_SMB)
-> +#define SMB139x_2_ADC7_IIN_SMB			(SMB139x_2_SID << 8 | ADC7_IIN_SMB)
-> +
-> +#endif
-> diff --git a/include/dt-bindings/iio/qcom,spmi-vadc.h b/include/dt-bindings/iio/qcom,spmi-vadc.h
-> index 08adfe25964c..ef07ecd4d585 100644
-> --- a/include/dt-bindings/iio/qcom,spmi-vadc.h
-> +++ b/include/dt-bindings/iio/qcom,spmi-vadc.h
-> @@ -239,12 +239,15 @@
->  #define ADC7_GPIO3				0x0c
->  #define ADC7_GPIO4				0x0d
->  
-> +#define ADC7_SMB_TEMP				0x06
->  #define ADC7_CHG_TEMP				0x10
->  #define ADC7_USB_IN_V_16			0x11
->  #define ADC7_VDC_16				0x12
->  #define ADC7_CC1_ID				0x13
->  #define ADC7_VREF_BAT_THERM			0x15
->  #define ADC7_IIN_FB				0x17
-> +#define ADC7_ICHG_SMB				0x18
-> +#define ADC7_IIN_SMB				0x19
->  
->  /* 30k pull-up1 */
->  #define ADC7_AMUX_THM1_30K_PU			0x24
-> 
+kernel test robot noticed the following build warnings:
 
+[auto build test WARNING on lee-leds/for-leds-next]
+[also build test WARNING on robh/for-next linus/master v6.7-rc2 next-20231124]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Yuxi-Wang/dt-bindings-leds-add-mps-mp3326-LED/20231124-173610
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/lee/leds.git for-leds-next
+patch link:    https://lore.kernel.org/r/20231124093034.951-3-Yuxi.Wang%40monolithicpower.com
+patch subject: [PATCH 2/2] leds: add mp3326 driver
+config: x86_64-randconfig-123-20231126 (https://download.01.org/0day-ci/archive/20231126/202311260403.PyY8h5Dj-lkp@intel.com/config)
+compiler: gcc-7 (Ubuntu 7.5.0-6ubuntu2) 7.5.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231126/202311260403.PyY8h5Dj-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202311260403.PyY8h5Dj-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   drivers/leds/leds-mp3326.c: In function 'mp3326_parse_dt':
+   drivers/leds/leds-mp3326.c:543:6: warning: unused variable 'val' [-Wunused-variable]
+     int val;
+         ^~~
+   drivers/leds/leds-mp3326.c: At top level:
+   drivers/leds/leds-mp3326.c:611:3: error: 'struct i2c_driver' has no member named 'probe_new'; did you mean 'probe'?
+     .probe_new = mp3326_leds_probe,
+      ^~~~~~~~~
+      probe
+>> drivers/leds/leds-mp3326.c:611:15: warning: initialization makes integer from pointer without a cast [-Wint-conversion]
+     .probe_new = mp3326_leds_probe,
+                  ^~~~~~~~~~~~~~~~~
+   drivers/leds/leds-mp3326.c:611:15: note: (near initialization for 'mp3326_driver.class')
+   drivers/leds/leds-mp3326.c:611:15: error: initializer element is not computable at load time
+   drivers/leds/leds-mp3326.c:611:15: note: (near initialization for 'mp3326_driver.class')
+
+
+vim +611 drivers/leds/leds-mp3326.c
+
+   609	
+   610	static struct i2c_driver mp3326_driver = {
+ > 611		.probe_new = mp3326_leds_probe,
+   612		.driver = {
+   613				.name = "mp3326_led",
+   614				.of_match_table = mp3326_of_match,
+   615			   },
+   616		.id_table = mp3326_id,
+   617	};
+   618	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
