@@ -1,158 +1,231 @@
-Return-Path: <devicetree+bounces-18899-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18900-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C7697F8FDC
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 23:40:01 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8861D7F9047
+	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 00:15:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 284951C20A40
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 22:40:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4122A2811AD
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 23:15:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BFD728DA5;
-	Sat, 25 Nov 2023 22:39:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0A9A3159D;
+	Sat, 25 Nov 2023 23:15:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=NETORG5796793.onmicrosoft.com header.i=@NETORG5796793.onmicrosoft.com header.b="otEgidex"
+	dkim=pass (2048-bit key) header.d=ragnatech-se.20230601.gappssmtp.com header.i=@ragnatech-se.20230601.gappssmtp.com header.b="1ts85+fB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (mail-bn8nam04on2049.outbound.protection.outlook.com [40.107.100.49])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6080FEA;
-	Sat, 25 Nov 2023 14:39:51 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ocpls+Kd9u5f9xpTVIKs+rPrXWrcsed31qUjmAgDLXEEPj9Wrwe5LBMAoO0aG6+MkNOX5SXai1D663uk9mZByk6/lnpQbUoLDXwA/ddNPC6EKgV2r9bxjsiIXhJFsVSI8cKQHYwnmXo0cf5TzEv6grjdQQbum6mjpoq/a7iazrNqQhyAda45pitm6mcEe0bTDSIuy0Gic2eSAL1ewF9wbWclWrMtYPccozw4LxjyzS7KS8VsyHjHIJoNIvITL/igHwgb0k9ZGzpKu2MBIhGBE6FaRPq9RaEy8rjA9uOk1SGAHbVrXB3wUVvhIcCkhljWn9yjVZtZ+SzxFtUVtairUQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Lc8h7MyMCFM/s74QT6QBbByTMUt01ouZCRThragDUuY=;
- b=MSjVq7E1rzDqoWydg+ssWFU6BfTmZpJxfpOJAKU3bMN/fbepguiwfXyiMhEqQvGOi+7xG5SSj5+cfkPmbPDXfTbn3fVn0zkzmjffBLC26SkyBcfCmvd+pzmX6/WABJ46Xu7AsIlMa8B5zNc2iNmHaYUDBrFX3amzSGfFHgKYip9OEo8BO+RZ6R66ZxeYEpSFEsc3LeLsxLnCrvUWi/pPyu/SsP74PYdgNCdEn4eUKoLcpqTdabC1wSbr2+hQhIT3DTctBfYLwIc4yBK9E/e0zTyIr6QtVPLB/3BWO7HYs/NkQKkG+1cZ4zXr3sASsRWvrcDVGgq64PwY7xHR27xk/A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=labundy.com; dmarc=pass action=none header.from=labundy.com;
- dkim=pass header.d=labundy.com; arc=none
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 939FA129
+	for <devicetree@vger.kernel.org>; Sat, 25 Nov 2023 15:15:39 -0800 (PST)
+Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-50aaaf6e58fso4668016e87.2
+        for <devicetree@vger.kernel.org>; Sat, 25 Nov 2023 15:15:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=NETORG5796793.onmicrosoft.com; s=selector1-NETORG5796793-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Lc8h7MyMCFM/s74QT6QBbByTMUt01ouZCRThragDUuY=;
- b=otEgidex7JmNiw0urAqKVcOMX+3VjX1EHpTYkXWHRA4ElmFGVKsunpZnfJ0hxpnaRlH/QkNun9jB+e3DBTjS7I47Q9wV+MCar/HBEK5DIVVrzFjAoicYG3OM/fpi82wj2Lcb/n9WyTENO2UCQTL9nwYxpeCAFhedm8AWsk+Dbtw=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=labundy.com;
-Received: from SN4PR0801MB3774.namprd08.prod.outlook.com
- (2603:10b6:803:43::21) by CO1PR08MB7256.namprd08.prod.outlook.com
- (2603:10b6:303:f2::11) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7025.25; Sat, 25 Nov
- 2023 22:39:48 +0000
-Received: from SN4PR0801MB3774.namprd08.prod.outlook.com
- ([fe80::36f2:78d1:ad7d:66da]) by SN4PR0801MB3774.namprd08.prod.outlook.com
- ([fe80::36f2:78d1:ad7d:66da%4]) with mapi id 15.20.7025.022; Sat, 25 Nov 2023
- 22:39:47 +0000
-Date: Sat, 25 Nov 2023 16:39:44 -0600
-From: Jeff LaBundy <jeff@labundy.com>
-To: Thomas =?iso-8859-1?Q?Wei=DFschuh?= <linux@weissschuh.net>
-Cc: Anshul Dalal <anshulusr@gmail.com>, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
+        d=ragnatech-se.20230601.gappssmtp.com; s=20230601; t=1700954138; x=1701558938; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=GGFaf+ETqCnHk8JiD8A042rYvg2H80ZFMxgBvI539vI=;
+        b=1ts85+fBJb/nO86KK9TJjMM9hIa0WTN05ggJX4DIO66fVN7CRoOJZEuqkJyjy56DuL
+         r4VS1DH/RFKe2F+bF8g7Ynyo6aJr/aWpFp/G4RH7+kdS1IrWkNAlO2aW0XKEtEEBBU6O
+         lAsezuOp7W0lVvO0ntVfAAUmDEXROqDQTs14P0RW9WAtPpFKNg7kEHs+aXCyPV6eGAFZ
+         j7PRR1Vygc9WahEU728EvxT1i4rjMlu13OcG5pt88FrWAGDm9yY/tWCYqzPB6PSbhmuy
+         Ewco0hrXpKtFpA6q9qTX6rKCJmETT1gnS6jpyOTBH9EIGIh3Dw8ll+1k7c+wsG026bV2
+         6rVw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700954138; x=1701558938;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=GGFaf+ETqCnHk8JiD8A042rYvg2H80ZFMxgBvI539vI=;
+        b=MbATTXg9iKjoLcM7DBTCqsiz2maCU5P5z55VYx9c6TExRFbQBqtSa0i83GVFak9mt5
+         BkJS+6sJp8hJSTlm9oWHI4+NNQa0eWUFSrpxDVrmk/OHMAxARKrojXj2JlQfSp7Wfo9m
+         R3NAAqkotJoRQ1v2LV4tQhaCv99CmzVaDGXm1G7bORzWhXNtqqtmom/1KVGYakY74QBD
+         AMAYYNV94n8WztydWRKMw1aSYuxjzeXIuUfVFxG7BxiFy9uvDDvPEwuBVFhOYZ+l3yA0
+         +LjZXFOLVwlrHtjwvP+0ldUhK+fSb9U5cTp7NaqOnLLd394ak9FuwjCBIOCsfeqboGvz
+         6kKQ==
+X-Gm-Message-State: AOJu0Yym6bjZHGsSRkANg8NSPpTZG3NzQMtVFDL8VvDE4liYjbEH5GDm
+	6dXNP+SNthziwbmId2iFkCH1aQ==
+X-Google-Smtp-Source: AGHT+IFn0ukWHweVX6SvLZ3CgpGPTTMcGnllaCZzjQJXuMflkfWq0S962RziUK6GNpzbJl/YpX9h8Q==
+X-Received: by 2002:a05:6512:50f:b0:50b:ad20:b119 with SMTP id o15-20020a056512050f00b0050bad20b119mr433263lfb.68.1700954137166;
+        Sat, 25 Nov 2023 15:15:37 -0800 (PST)
+Received: from localhost (h-46-59-36-206.A463.priv.bahnhof.se. [46.59.36.206])
+        by smtp.gmail.com with ESMTPSA id x8-20020a19f608000000b004fe36bae2d6sm974633lfe.81.2023.11.25.15.15.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 25 Nov 2023 15:15:36 -0800 (PST)
+Date: Sun, 26 Nov 2023 00:15:34 +0100
+From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shuah Khan <skhan@linuxfoundation.org>,
-	linux-kernel-mentees@lists.linuxfoundation.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 2/2] input: joystick: driver for Adafruit Seesaw
- Gamepad
-Message-ID: <ZWJ3sFfrVQA3djmi@nixie71>
-References: <20231027051819.81333-1-anshulusr@gmail.com>
- <20231027051819.81333-2-anshulusr@gmail.com>
- <d1dd2142-546f-42b7-8966-ab75fd4f8817@t-8ch.de>
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <d1dd2142-546f-42b7-8966-ab75fd4f8817@t-8ch.de>
-X-ClientProxiedBy: DM6PR02CA0121.namprd02.prod.outlook.com
- (2603:10b6:5:1b4::23) To SN4PR0801MB3774.namprd08.prod.outlook.com
- (2603:10b6:803:43::21)
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [RFC] dt-bindings: renesas: Document preferred compatible naming
+Message-ID: <ZWKAFirL8lHFYi6v@oden.dyn.berto.se>
+References: <20231123190612.2427668-1-niklas.soderlund+renesas@ragnatech.se>
+ <CAMuHMdVZd3z-Hd-TrFVsV10rcjXKAxwS4rKRG5Yb1D024fHpxA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN4PR0801MB3774:EE_|CO1PR08MB7256:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6b7fc18b-73e4-4e5d-5c71-08dbee076da5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	kSbTiM/HpFODn3mtmdqA1DHi1VXuX+fsj1LKIezLoZgnhaU1JJuwznjWXXA5G2/tQjYWJ6fEMfaSACu4w6BxphjdCON/zHTDT66lVzC2Tj+cex41UrDCFbgtCzriTn9irJN3S699qNHa04KbMx0mNxkhvLCkoV233LNbUWaEGgrgs1e/f//Xb++mnwNWm/1YvdRisPLbk8erDqa7hRwa6iqz2hc/aisYVtZeDpkTgD33PCJV5Ze/dBUUfnRTnLl7w/6YU7FSqGu73OAR4nofvZlY1v/imORt6c5XkAr8ipFoVxXl7n0vuBv2zyFuwFfzLiEGWmw3kfxkq6g6vUUIa0AD43+TpGf6uhcKDXkYlvWHXUSQZL8hsKzBUCpFDYwPctaJa/qgSd1JOr4jOJ2g2fT522uKRBZKgHozZhsk4RH6s47hT+FbCMFor+msN1pvxXvjU4QE/cEb8/vIGHqqjlrQrmMuZQeuUb8ftycy1IC5HnE7BMWShrW73Ua874NEAy7qcGFpLFAvm7G1UrsmSqyx0+AbsQ2/Jc/5cHP75ecfPRfsup0RRdPXoSO2lNi9
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN4PR0801MB3774.namprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7916004)(376002)(346002)(366004)(396003)(136003)(39830400003)(230922051799003)(64100799003)(451199024)(1800799012)(186009)(38100700002)(33716001)(86362001)(41300700001)(4326008)(8936002)(8676002)(6916009)(54906003)(66476007)(316002)(66556008)(66946007)(9686003)(6512007)(6666004)(6506007)(478600001)(6486002)(5660300002)(7416002)(2906002)(4744005)(26005)(83380400001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?iso-8859-1?Q?bG9E84EpC2FUR3qvcvhyQ/gKOfxlfgvVKuQC8p72HGlGVwUdHWa1x+0MwQ?=
- =?iso-8859-1?Q?Dme/m96Tugaz+qIxN+iCJkPNaRS7Q0irTAV6NFde1LIbS7zyDe21bd0Juk?=
- =?iso-8859-1?Q?beJNYOms+VX+VdiscV5oQ6cI/zdosiduF62UiSlsQqENzYICzw4wCrZW4/?=
- =?iso-8859-1?Q?QsOfMo8yQVdcVCOQkJbqRQAJu4fn8dG17Z/5aRcfbpDerjxC8BWa1tzcXx?=
- =?iso-8859-1?Q?f4uoBCraOUMlNKYjThvJb4rlt32/t0jvB72thtHXEj4zcxU0AHvcLqsX2w?=
- =?iso-8859-1?Q?8cILi9d4FVMiAw65qhXvxUnGCWly+rXiAqyCbQXVgbcKOdWhpuX5DIpHQf?=
- =?iso-8859-1?Q?GHSDoRfCYh7eS4L09k/ahZbPylZ5a0ALsHqi5b42pn8XU+z2Hu9S5XM9Wm?=
- =?iso-8859-1?Q?xSnnwglDQqUQZ416fjzC2vnDrreZCLvITX9wONFeAt5uwNZyvKckiaHIHg?=
- =?iso-8859-1?Q?xSxuIjuHBUtbglpZlaUf9dmznBdE3DqEzERKYzYXc5zYfLDOfACHlMztho?=
- =?iso-8859-1?Q?iDpTecp3jYCnOjjlWr2jk+3uHaWfJ9+GMTWC5zFr0zhKp4KfWAiAXNhRjX?=
- =?iso-8859-1?Q?+VEg3h7j1kHOyFjT2ii1pr3rS6Uu7pJjdR3t5AvwlIAQmesCN/mjP0QyCp?=
- =?iso-8859-1?Q?ZK5p8LcTgNDwAhAR49pCB38FsrnBPsM0KjjYdIGQmzH7hzV5skiMcUAsnd?=
- =?iso-8859-1?Q?WAsg8Wrtoc02xRh3SNCSxTNAWWC3rpLFgST6OfzRZf5xRmQj+xPf0We5QP?=
- =?iso-8859-1?Q?JZsrQdyAlxS/81R2GsnHrqAqULN1afv/0anr3b/BQ9N1JvwE1pz5kdMj0s?=
- =?iso-8859-1?Q?P3iqMnS2zy01NnDQIP4cVFO/iy8xzCp2Wl8lrp6fCgcmyqJNnyJfona8Go?=
- =?iso-8859-1?Q?pco1i0GD5LWqOUH+T+5nqgUjiiHuyuwweA8xEKBm4eZ1iX5ADwk5uX0VqV?=
- =?iso-8859-1?Q?WmuyH+D0SnQqzxZBXYJuJR2F3o/AXqqvqo4MbZKgaxaQqc6sK5Cz75NF2T?=
- =?iso-8859-1?Q?q95JBqAw8Keu8eTZUBzd9ibnwRzbgY3eZMSk8ykhEU+KA9PkrEeTPs48aE?=
- =?iso-8859-1?Q?jjN5+kT2G9I+iySZ0vF4jFTNE2M+JWpl2lmkm67Zr6FrH0ijrg2zxu4WzC?=
- =?iso-8859-1?Q?dsYxMTG8QPhSIStMS8q120hxmK6ILkl3R9HQF3AYJKTGHz8IsJvi9qKGid?=
- =?iso-8859-1?Q?y0+A3noG/qR7E6q+BEwlXxf00Z13hX2nqjLQgZm2vaTS1hk1H88X3FpIHM?=
- =?iso-8859-1?Q?2WhvWaXqjSliqqa/lPoOWaLLyYo+hJjI2bSLYshAZHGiX6r9pBlML9VSbL?=
- =?iso-8859-1?Q?hCAbQcUsbzMRK64+Ph1nYs3zc6BjijanCIXzE0D1iWGL2Xv43bJhEF6r1e?=
- =?iso-8859-1?Q?qPlP1HGgOLKxkUQwWLgR7QxnxJiORiLJu4WD3s5OvAcz27azCh2f/HgTyp?=
- =?iso-8859-1?Q?Jmk8okUJe0KIYZEiR3mWd5TsMMibRWtZ4V/f9txWB4WdfLfDLFj1gu+niv?=
- =?iso-8859-1?Q?7GfS7RsoMaUEq2CXalLT6EzjS5jNCXBY5ZZaEzWPjzHo/bflAlqMhmqrvi?=
- =?iso-8859-1?Q?evwUSMMNVJMBAsME2uIp1dwwOBF7yoMYGHL+spuhBXJXzNHxWCMRUdmoTW?=
- =?iso-8859-1?Q?3Lmb8FJkXwSJG/Y5ezt6uZPwkYTuRTbmYX?=
-X-OriginatorOrg: labundy.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6b7fc18b-73e4-4e5d-5c71-08dbee076da5
-X-MS-Exchange-CrossTenant-AuthSource: SN4PR0801MB3774.namprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Nov 2023 22:39:47.6645
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 00b69d09-acab-4585-aca7-8fb7c6323e6f
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: wj7QxmTzqplEy0Xx2bCXRQcSdE7KYzZY7dfPoHnBlmLpPuCTY5l4QQAruGChyYdkBVIq+kos21c/PoK8kZfFgg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR08MB7256
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMuHMdVZd3z-Hd-TrFVsV10rcjXKAxwS4rKRG5Yb1D024fHpxA@mail.gmail.com>
 
-Hi Thomas and Anshul,
+Hi Geert,
 
-On Fri, Oct 27, 2023 at 06:14:58AM +0000, Thomas Wei�schuh wrote:
+Thanks for your feedback.
 
-[...]
-
-> > +struct seesaw_data {
-> > +	__be16 x;
-> > +	__be16 y;
+On 2023-11-24 09:02:28 +0100, Geert Uytterhoeven wrote:
+> Hi Niklas,
 > 
-> The fact that these are big endian is now an implementation detail
-> hidden within seesaw_read_data(), so the __be16 can go away.
+> On Thu, Nov 23, 2023 at 8:07 PM Niklas Söderlund
+> <niklas.soderlund+renesas@ragnatech.se> wrote:
+> > Compatibles can come in two formats. Either "vendor,ip-soc" or
+> > "vendor,soc-ip". Add a DT schema file documenting Renesas preferred
+> > policy and enforcing it for all new compatibles, except few existing
+> > patterns.
+> >
+> > Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
 > 
-> > +	u32 button_state;
-> > +} __packed;
+> Thanks for your patch!
 > 
-> While this was requested by Jeff I don't think it's correct.
-> The struct is never received in this form from the device.
-> I guess he also got confused, like me, by the fact that data is directly
-> read into the fields of the struct.
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/arm/renesas-soc.yaml
+> 
+> s/arm/soc/
 
-Apologies for some confusion on my part here; Thomas is correct and
-my comment can be disregarded. Originally I thought this struct was
-mapped to a continguous range of registers, but after studying the
-documentation some more, that is clearly not the case :)
+I opted to put this in soc/renesas/renesas-soc.yaml.
 
-Kind regards,
-Jeff LaBundy
+> 
+> > @@ -0,0 +1,85 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/arm/renesas-soc.yaml#
+> 
+> s/arm/soc/
+> 
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Renesas SoC compatibles naming convention
+> > +
+> > +maintainers:
+> > +  - Geert Uytterhoeven <geert+renesas@glider.be>
+> > +  - Niklas Söderlund <niklas.soderlund@ragnatech.se>
+> 
+> +renesas?
+
+Nope, I don't record the +renesas part in files. I fear the day Gmail
+drops support for the feature or I need to switch mail provider.
+
+> 
+> > +
+> > +description: |
+> > +  Guidelines for new compatibles for SoC blocks/components.
+> > +  When adding new compatibles in new bindings, use the format::
+> > +    renesas,SoC-IP
+> > +
+> > +  For example::
+> > +   renesas,r8a77965-csi2
+> > +
+> > +  When adding new compatibles to existing bindings, use the format in the
+> > +  existing binding, even if it contradicts the above.
+> > +
+> > +select:
+> > +  properties:
+> > +    compatible:
+> > +      pattern: "^renesas,.*$"
+> > +  required:
+> > +    - compatible
+> > +
+> > +properties:
+> > +  compatible:
+> > +    oneOf:
+> > +      # Preferred naming style for compatibles of SoC components:
+> > +      - pattern: "^renesas,emev2-[a-z0-9-]+$"
+> > +      - pattern: "^renesas,r7s[0-9]+-[a-z0-9-]+$"
+> > +      - pattern: "^renesas,r8a[a-z0-9]+-[a-z0-9-]+$"
+> > +      - pattern: "^renesas,r9a[0-9]+g[0-9]+-[a-z0-9-]+$"
+> 
+> Missing renesas,rcar-* families.
+> 
+> > +      - pattern: "^renesas,rzn1-[a-z0-9-]+$"
+> 
+> Missing renesas,rzg2l-* (there may be more).
+
+There where a few more, added.
+
+> 
+> > +      - pattern: "^renesas,rzv2m-[a-z0-9-]+$"
+> > +      - pattern: "^renesas,sh73a0-[a-z0-9-]+$"
+> 
+> We'll get more sh7* soon ;-)
+
+I adapted the regexp to prepare for this.
+
+
+> 
+> > +
+> > +      # SoC agnostic compatibles - new compatibles are OK:
+> > +      - enum:
+> > +          - renesas,bsid
+> > +          - renesas,fcpf
+> > +          - renesas,fcpv
+> > +          - renesas,fdp1
+> > +          - renesas,prr
+> > +          - renesas,smp-sram
+> 
+> Missing renesas,tmu (there may be more).
+
+As discussed offline I will change the pattern in the initial select to 
+only match on .*-.* so most of these will be gone.
+
+> 
+> > +          - renesas,vsp1
+> > +          - renesas,vsp2
+> > +
+> > +      # Legacy namings - variations of existing patterns/compatibles are OK,
+> > +      # but do not add completely new entries to these:
+> > +      - pattern: "^renesas,du-[a-z0-9]+$"
+> > +      - pattern: "^renesas,ether-[a-z0-9]+$"
+> > +      - pattern: "^renesas,gether-[a-z0-9]+$"
+> > +      - pattern: "^renesas,ipmmu-[a-z0-9]+$"
+> > +      - pattern: "^renesas,pfc-[a-z0-9]+$"
+> > +      - pattern: "^renesas,sata-[a-z0-9]+$"
+> > +      - pattern: "^renesas,scif-[a-z0-9]+$"
+> > +      - pattern: "^renesas,sdhi-[a-z0-9]+$"
+> > +      - pattern: "^renesas,thermal-[a-z0-9]+$"
+> > +      - pattern: "^renesas,usb2-phy-[a-z0-9]+$"
+> > +      - pattern: "^renesas,vin-[a-z0-9]+$"
+> 
+> This list also looks incomplete, e.g. hscif and scif[ab] are missing.
+> I guess you created it based on the error output of "make dtbs_check",
+> which ignores all nodes that are disabled?  Although that can't explain
+> everything, as some boards use scifa for the console...
+
+Not sure how my tests missed so much. For next version I have extracted 
+all compatible variables and created a test dts file with every 
+available value. There where quiet a lot missing in this RFC.
+
+> 
+> Gr{oetje,eeting}s,
+> 
+>                         Geert
+> 
+> -- 
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> 
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                 -- Linus Torvalds
+
+-- 
+Kind Regards,
+Niklas Söderlund
 
