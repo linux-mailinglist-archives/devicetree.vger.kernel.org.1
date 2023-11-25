@@ -1,57 +1,52 @@
-Return-Path: <devicetree+bounces-18841-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18842-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB9237F8CB4
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 18:21:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DEBA7F8CC0
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 18:28:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1A5081C20C7C
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 17:21:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 899AB1C20AD3
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 17:28:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CDD62C878;
-	Sat, 25 Nov 2023 17:21:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 980C82C868;
+	Sat, 25 Nov 2023 17:28:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mbtWk4hs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SbQK1jgy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 351A82C86E;
-	Sat, 25 Nov 2023 17:21:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 302DBC433C7;
-	Sat, 25 Nov 2023 17:21:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77B59DF66;
+	Sat, 25 Nov 2023 17:28:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20319C433C8;
+	Sat, 25 Nov 2023 17:28:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700932895;
-	bh=Io8wGWK+gGlHLld3dtwwXCMsjBV7UlvA/1mtFc9Febo=;
+	s=k20201202; t=1700933285;
+	bh=SdEIJH9TzgPXfaP1Q2Dpkp+FAEfYhe/GjdmyR7hDB+Y=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=mbtWk4hshEnIKg5QeVoynnl1YgpQ3KkzrcdF9r3DpKGj0oP1mcEZkJwupMHvW76SM
-	 fplLctDha0YKhUnEsk3MYaDNZTHtyJK+0ILC26/tK2nBIikQbRX8v+zsr4AIcwIejA
-	 lbfC7sDhE5SjxjvvKXhN0jEOioox1hPnl8teyBkxhwmIO9JUrax3Li7G/h7jodHE9g
-	 CzbkhoXjBOOX51JQxlLzv0vihHlCxFHf4+d4Jsayfo1byAdDmJmRKRxj1qYCAGRbrr
-	 p4821X81zV4VbCwejsZZVwVSzMZSVa+DMT23YeH5wTMVDltyOr2GXN5gagk+0AAczL
-	 Vb6LVbxkfsL4Q==
-Date: Sat, 25 Nov 2023 17:21:25 +0000
+	b=SbQK1jgydoMznxVji1B2PXND/RwJ/X1wxjP/8wICn9krvA2d74vnYLrabHpMu0QjE
+	 Rm5m3ybwhM1S+daLt0AqhBj1djVoe8E4wjf+6AvOvNc1eSN8gpLg61hyTIDwxDXUdE
+	 Xfc4mqe5jESNPIgeOoKq3vJeRx/T9Zk8rxc86d1gp8LIWGMzyZxxYdAfAZG9w8nh9v
+	 RAfM0aUsTPMR5rFn77Tm0AcIT/9KHHcftFqu4pT15XB+PaRuzMye0bsnc4jXMar2UQ
+	 N2U/0YS1Bxm4W3uzGLZENfXGmj01l9ev3ZY6QoIqnwev29aR4mArPjcn3xjBJN9F25
+	 ATwXeUnNLoCwQ==
+Date: Sat, 25 Nov 2023 17:27:58 +0000
 From: Jonathan Cameron <jic23@kernel.org>
-To: mitrutzceclan <mitrutzceclan@gmail.com>
-Cc: linus.walleij@linaro.org, brgl@bgdev.pl, andy@kernel.org,
- linux-gpio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, Rob
- Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Michael Walle <michael@walle.cc>, Andy Shevchenko
- <andy.shevchenko@gmail.com>, Arnd Bergmann <arnd@arndb.de>, ChiaEn Wu
- <chiaen_wu@richtek.com>, Niklas Schnelle <schnelle@linux.ibm.com>, Leonard
- =?UTF-8?B?R8O2aHJz?= <l.goehrs@pengutronix.de>, Mike Looijmans
- <mike.looijmans@topic.nl>, Haibo Chen <haibo.chen@nxp.com>, Hugo Villeneuve
- <hvilleneuve@dimonoff.com>, Ceclan Dumitru <dumitru.ceclan@analog.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 2/2] iio: adc: ad7173: add AD7173 driver
-Message-ID: <20231125172125.1b0f1ae7@jic23-huawei>
-In-Reply-To: <20231123152331.5751-2-user@HYB-hhAwRlzzMZb>
-References: <20231123152331.5751-1-user@HYB-hhAwRlzzMZb>
-	<20231123152331.5751-2-user@HYB-hhAwRlzzMZb>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Crt Mori <cmo@melexis.com>, Rob Herring <robh+dt@kernel.org>,
+ linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] dt-bindings: iio: temperature: add MLX90635 device
+ bindings
+Message-ID: <20231125172758.04b0254e@jic23-huawei>
+In-Reply-To: <ea997987-6a84-445c-a806-527d766569b1@kernel.org>
+References: <cover.1700648164.git.cmo@melexis.com>
+	<2e8b4a7d3ef4bc1c53bd0a849e4c31eaf2477f6b.1700648165.git.cmo@melexis.com>
+	<99d1808a-da04-4bc1-a1f7-cbd269adbbf0@kernel.org>
+	<CAKv63uv87srZ3gJxFASuGWV6cULXkN=gYi_L=BCcd3dgOFQEfw@mail.gmail.com>
+	<ea997987-6a84-445c-a806-527d766569b1@kernel.org>
 X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -62,292 +57,45 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Thu, 23 Nov 2023 17:23:22 +0200
-mitrutzceclan <mitrutzceclan@gmail.com> wrote:
+On Wed, 22 Nov 2023 13:35:19 +0100
+Krzysztof Kozlowski <krzk@kernel.org> wrote:
 
-> From: Dumitru Ceclan <mitrutzceclan@gmail.com>
+> On 22/11/2023 13:28, Crt Mori wrote:
+> >>> +  Since measured object emissivity effects Infra Red energy emitted,
+> >>> +  emissivity should be set before requesting the object temperature.
+> >>> +
+> >>> +properties:
+> >>> +  compatible:
+> >>> +    const: melexis,mlx90635  
+> >>
+> >> It's the same as mlx90632. Add it there (as enum).
+> >>  
+> > 
+> > Properties are the same, but then you can't have much differences for
+> > a temperature sensor. It has a bit worse relative measurement error
+> > outside of the human body range and overall different DSP, register
+> > map, even physical size - it's 1.8x1.8 mm compared to 90632 3x3 mm. I
+> > was not sure how it qualifies for adding it as another enum, but I
+> > went with the feeling that if it can reuse the driver, then it is an
+> > enum, otherwise it is a new file. And I could not reuse anything from
+> > 90632.
+> > 
+> > Thanks for quick feedback and best regards,  
 > 
-> The AD7173 family offer a complete integrated Sigma-Delta ADC solution
-> which can be used in high precision, low noise single channel
-> applications or higher speed multiplexed applications. The Sigma-Delta
-> ADC is intended primarily for measurement of signals close to DC but also
-> delivers outstanding performance with input bandwidths out to ~10kHz.
+> Driver is independent choice. There is no need for new binding file if
+> everything is the same from bindings point of view.
+> 
+> Best regards,
+> Krzysztof
 > 
 > 
-> Reviewed-by: Michael Walle <michael@walle.cc> # for gpio-regmap
-> Signed-off-by: Dumitru Ceclan <mitrutzceclan@gmail.com>
 
-Hi.
+We got this wrong in the past in IIO and it's a slow effort to merge
+the various very similar bindings.  For now we are mostly keeping
+to within a vendor though unless a driver supports parts from multiple
+vendors.  It potentially gets too confusing to maintain otherwise.
 
-A few minor things from me.
-
-thanks,
-
-Jonathan
-
-> new file mode 100644
-> index 000000000000..ca307d406cee
-> --- /dev/null
-> +++ b/drivers/iio/adc/ad7173.c
-> @@ -0,0 +1,962 @@
-
-...
-
-> +
-> +static int ad7173_read_raw(struct iio_dev *indio_dev,
-> +			   struct iio_chan_spec const *chan,
-> +			   int *val, int *val2, long info)
-> +{
-> +	struct ad7173_state *st = iio_priv(indio_dev);
-> +	struct ad7173_channel *ch = &st->channels[chan->address];
-> +	unsigned int reg;
-> +	int ret;
-> +
-> +	switch (info) {
-> +	case IIO_CHAN_INFO_RAW:
-> +		ret = ad_sigma_delta_single_conversion(indio_dev, chan, val);
-> +		if (ret < 0)
-> +			return ret;
-> +
-> +		/* disable channel after single conversion */
-> +		ret = ad_sd_write_reg(&st->sd, AD7173_REG_CH(chan->address), 2, 0);
-> +		if (ret < 0)
-> +			return ret;
-> +
-> +		return IIO_VAL_INT;
-> +	case IIO_CHAN_INFO_SCALE:
-> +		if (chan->type == IIO_TEMP) {
-> +			*val = 250000000;
-> +			*val2 = 800273203; /* (2^24 * 477) / 10 */
-> +			return IIO_VAL_FRACTIONAL;
-> +		} else {
-> +			*val = ad7173_get_ref_voltage_milli(st, ch->cfg.ref_sel);
-> +			*val2 = chan->scan_type.realbits - !!(ch->cfg.bipolar);
-> +			return IIO_VAL_FRACTIONAL_LOG2;
-> +		}
-> +	case IIO_CHAN_INFO_OFFSET:
-> +		if (chan->type == IIO_TEMP) {
-> +			*val = -874379;
-> +		} else {
-> +			if (ch->cfg.bipolar)
-> +				*val = -BIT(chan->scan_type.realbits - 1);
-> +			else
-> +				*val = 0;
-Ideally if the channel isn't bipolar, don't expose the offset at all. Default
-assumption if there is no such file is 0 offset. 
-If that's fiddly to do then fine to keep the file though.
-
-> +		}
-> +		return IIO_VAL_INT;
-> +	case IIO_CHAN_INFO_SAMP_FREQ:
-> +		reg = st->channels[chan->address].cfg.odr;
-> +
-> +		*val = st->info->sinc5_data_rates[reg] / MILLI;
-> +		*val2 = (st->info->sinc5_data_rates[reg] % MILLI) * (MICRO/MILLI);
-> +
-> +		return IIO_VAL_INT_PLUS_MICRO;
-> +	}
-> +	return -EINVAL;
-
-
-...
-
-
-> +static int ad7173_fw_parse_channel_config(struct iio_dev *indio_dev)
-> +{
-> +	struct ad7173_channel *channels_st_priv_arr, *chan_st_priv;
-> +	struct ad7173_state *st = iio_priv(indio_dev);
-> +	struct device *dev = indio_dev->dev.parent;
-> +	struct iio_chan_spec *chan_arr, *chan;
-> +	struct fwnode_handle *child;
-> +	unsigned int ain[2], chan_index = 0;
-> +	unsigned int num_channels;
-> +	const char *ref_label;
-> +	u32 ref_sel;
-> +	int i, ret;
-> +
-> +	st->regulators[0].supply = ad7173_ref_sel_str[AD7173_SETUP_REF_SEL_EXT_REF];
-> +	st->regulators[1].supply = ad7173_ref_sel_str[AD7173_SETUP_REF_SEL_EXT_REF2];
-> +	st->regulators[2].supply = ad7173_ref_sel_str[AD7173_SETUP_REF_SEL_AVDD1_AVSS];
-> +
-> +	ret = devm_regulator_bulk_get(dev, ARRAY_SIZE(st->regulators),
-> +				      st->regulators);
-
-If only some of them are supplied, the driver works fine as long as no channel is using them?
-If so should probably get the optionally then check for availability of the ones you
-want.  I'm sure someone will just wire up ref.  Incidentally, ref2 isn't there for all chips
-I think, so we should not get it on the ones where it can't exist.
-
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to get regulators\n");
-> +
-> +	ret = regulator_bulk_enable(ARRAY_SIZE(st->regulators), st->regulators);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to enable regulators\n");
-> +
-> +	ret = devm_add_action_or_reset(dev, ad7173_disable_regulators, st);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret,
-> +				     "Failed to add regulators disable action\n");
-> +
-> +	num_channels = device_get_child_node_count(dev);
-> +
-> +	if (st->info->has_temp)
-> +		num_channels++;
-> +
-> +	if (num_channels == 0)
-> +		return 0;
-
-Isn't it all a bit pointless if this happens?  So maybe an error makes more sense?
-
-> +	st->num_channels = num_channels;
-> +
-> +	chan_arr = devm_kcalloc(dev, sizeof(*chan_arr), num_channels, GFP_KERNEL);
-> +	if (!chan_arr)
-> +		return -ENOMEM;
-> +
-> +	channels_st_priv_arr = devm_kcalloc(dev, num_channels,
-> +					    sizeof(*channels_st_priv_arr),
-> +					    GFP_KERNEL);
-> +	if (!channels_st_priv_arr)
-> +		return -ENOMEM;
-> +
-> +	indio_dev->channels = chan_arr;
-> +	indio_dev->num_channels = num_channels;
-> +	st->channels = channels_st_priv_arr;
-> +
-> +	if (st->info->has_temp) {
-> +		chan_arr[chan_index] = ad7173_temp_iio_channel_template;
-> +		chan_st_priv = &channels_st_priv_arr[chan_index];
-> +		chan_st_priv->ain =
-> +			AD7173_CH_ADDRESS(chan_arr[chan_index].channel, chan_arr[chan_index].channel2);
-> +		chan_st_priv->cfg.bipolar = false;
-> +		chan_st_priv->cfg.input_buf = true;
-> +		chan_st_priv->cfg.ref_sel = AD7173_SETUP_REF_SEL_INT_REF;
-> +		st->adc_mode |= AD7173_ADC_MODE_REF_EN;
-> +
-> +		chan_index++;
-> +	}
-> +
-> +	device_for_each_child_node(dev, child) {
-> +		chan = &chan_arr[chan_index];
-> +		chan_st_priv = &channels_st_priv_arr[chan_index];
-> +		ret = fwnode_property_read_u32_array(child, "diff-channels",
-> +						     ain, ARRAY_SIZE(ain));
-> +		if (ret) {
-> +			fwnode_handle_put(child);
-> +			return ret;
-> +		}
-> +
-> +		if (ain[0] >= st->info->num_inputs ||
-> +		    ain[1] >= st->info->num_inputs) {
-> +			fwnode_handle_put(child);
-> +			return dev_err_probe(dev, -EINVAL,
-> +				"Input pin number out of range for pair (%d %d).", ain[0], ain[1]);
-> +		}
-> +
-> +		ref_sel = AD7173_SETUP_REF_SEL_INT_REF;
-> +		ret = fwnode_property_read_string(child, "adi,reference-select", &ref_label);
-> +		if (!ret) {
-> +			for (i = 0; i < ARRAY_SIZE(ad7173_ref_sel_str); i++)
-> +				if (strcmp(ref_label, ad7173_ref_sel_str[i]) == 0) {
-> +					ref_sel = i;
-> +					break;
-> +				}
-> +
-> +			if (i == ARRAY_SIZE(ad7173_ref_sel_str))
-Missing fwnode_handle_put(child). Same for other error paths in th device_for_each_child_node() 
-loop. I wonder if that can get cleaned up with the cleanup.h magic.  Anyhow, that's a question
-for another day.
-
-> +				return dev_err_probe(dev, -EINVAL, "Invalid channel reference name %s", ref_label);
-
-
-> +		} else if (ret != -EINVAL) {
-Up to you, but you could be lazier and set ref_label = ref_sel_str[AD7173_SETUP_REF_SEL_INT_REF] before
-trying to read it then don't bother handling the fwnode property read error at all
-That's common practice when there is a default.
-
-It would unnecessarily run the string match when the property wasn't there, but that's not too bad
-for the code simplification it would give I think
-
-> +			return dev_err_probe(dev, ret, "Invalid channel reference value");
-> +		}
-> +
-> +		ret = ad7173_get_ref_voltage_milli(st, (u8)ref_sel);
-> +		if (ret < 0)
-> +			return dev_err_probe(dev, ret,
-> +					     "Cannot use reference %u", ref_sel);
-> +		if (ref_sel == AD7173_SETUP_REF_SEL_EXT_REF2 &&
-> +		    st->info->id != AD7173_ID)
-> +			return dev_err_probe(dev, -EINVAL, "External reference 2 is only available on ad7173-8");
-
-Why all the way down here?  I'd do this a few lines earlier so we haven't already used the bonkers
-value.
-
-> +		if (ref_sel == AD7173_SETUP_REF_SEL_INT_REF)
-> +			st->adc_mode |= AD7173_ADC_MODE_REF_EN;
-> +		chan_st_priv->cfg.ref_sel = ref_sel;
-> +
-> +		*chan = ad7173_channel_template;
-> +		chan->address = chan_index;
-> +		chan->scan_index = chan_index;
-> +		chan->channel = ain[0];
-> +		chan->channel2 = ain[1];
-> +		chan->differential = true;
-> +
-> +		chan_st_priv->ain = AD7173_CH_ADDRESS(ain[0], ain[1]);
-> +		chan_st_priv->chan_reg = chan_index;
-> +		chan_st_priv->cfg.input_buf = true;
-> +		chan_st_priv->cfg.odr = 0;
-> +
-> +		chan_st_priv->cfg.bipolar = fwnode_property_read_bool(child, "bipolar");
-> +		if (chan_st_priv->cfg.bipolar)
-> +			chan->info_mask_separate |= BIT(IIO_CHAN_INFO_OFFSET);
-> +
-> +		chan_index++;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int ad7173_probe(struct spi_device *spi)
-> +{
-> +	struct ad7173_state *st;
-> +	struct iio_dev *indio_dev;
-> +	struct device *dev = &spi->dev;
-> +	int ret;
-> +
-> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*st));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	st = iio_priv(indio_dev);
-> +	st->info = device_get_match_data(dev);
-> +	if (!st->info)
-> +		return -ENODEV;
-> +
-> +	ida_init(&st->cfg_slots_status);
-> +	ret = devm_add_action_or_reset(dev, ad7173_ida_destroy, st);
-> +	if (ret)
-> +		return ret;
-> +
-> +	indio_dev->name = st->info->name;
-> +	indio_dev->modes = INDIO_DIRECT_MODE;
-> +	indio_dev->info = &ad7173_info;
-> +
-> +	spi->mode = SPI_MODE_3;
-> +
-> +	ad7173_sigma_delta_info.num_slots = st->info->num_configs;
-> +	ret = ad_sd_init(&st->sd, indio_dev, spi, &ad7173_sigma_delta_info);
-> +	if (ret)
-> +		return ret;
-> +
-> +	spi_set_drvdata(spi, indio_dev);
-
-Used?  I'm not immediately seeing where. If not, don't set it.
-
-Thanks,
+This one is easy case though so definitely merge as Krzystof suggested!
 
 Jonathan
 
