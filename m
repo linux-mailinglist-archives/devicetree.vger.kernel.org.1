@@ -1,165 +1,91 @@
-Return-Path: <devicetree+bounces-18866-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18867-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A12B7F8DE5
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 20:21:37 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 333757F8DFC
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 20:33:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 845121C20B73
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 19:21:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E0A60281489
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 19:33:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2AC52F847;
-	Sat, 25 Nov 2023 19:21:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8FA32F865;
+	Sat, 25 Nov 2023 19:33:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Sb6FVtOk"
+	dkim=pass (2048-bit key) header.d=lwn.net header.i=@lwn.net header.b="HI8sPjWp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from ms.lwn.net (ms.lwn.net [IPv6:2600:3c01:e000:3a1::42])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A759DA3;
+	Sat, 25 Nov 2023 11:33:49 -0800 (PST)
+Received: from localhost (unknown [IPv6:2601:280:5e00:7e19::646])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B094ECA69;
-	Sat, 25 Nov 2023 19:21:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6713C433C8;
-	Sat, 25 Nov 2023 19:21:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700940092;
-	bh=1WVqsLzDFggpUKiGezfN49UcPqnUKcOjEe2mjRbMP68=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=Sb6FVtOkCPaRpLPtg39IxHFpRR+ZGljFDCKQdlnhkgIeNSWBwB8bJiHn/DNCTCLL3
-	 Vvpv8lcYUzPEN/+Ng0TTHMD2H73NK7lTGl0ULecuSORNkbRfSxaWcrieVlh+JbM/W9
-	 ZdrXI/JuVoXZj7bwqR0aFJhKm1UuL9IZma45ZcosTtpLwkDrdQ8QGHYWLqYFHv8VxK
-	 H8VO6ytzhzA4YaAcZKB4k9fdulwhI3qMqCe+KKiQFpKfbp0uydnFmZzl8jspqFFQPc
-	 sA/CP+YskZm8IzezzUj894fdmqenyp66/QYTPogPFsQV1f0U0mUwM+4qGrTcjswtfs
-	 xB6F4ROhy8hvA==
-Date: Sat, 25 Nov 2023 19:21:26 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Petre Rodan <petre.rodan@subdimension.ro>
-Cc: Jonathan Cameron <Jonathan.Cameron@Huawei.com>, Krzysztof Kozlowski
- <krzysztof.kozlowski@linaro.org>, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org, Conor Dooley
- <conor+dt@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Rob Herring
+	by ms.lwn.net (Postfix) with ESMTPSA id 5E2C32EF;
+	Sat, 25 Nov 2023 19:33:48 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 ms.lwn.net 5E2C32EF
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lwn.net; s=20201203;
+	t=1700940828; bh=t6CfNN2Z8X5QY5A5KOdO3deQpJm61wgO3/ulw3bk6T8=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+	b=HI8sPjWpWXJ+tKUEs/C/KfnLll4zPcwZBo+FLGeMzciNTwTO7K8O3z9GziJib49Tl
+	 uYW3mXodk1C/2mS87I4QRWMZTXrzAhES8XZD9CLFG6rXQ4YESejjd0Oe7BYLFACboA
+	 /ZSyhKd0VaY5Pnq7CaonASA88352gX5481Ldl4Lco9NiBBBpJxwzPcTzEn7zbny8Px
+	 +fKOvn1NKV3myLst7a0q6xQBH2wbF2N1Bz2m/DjkMpyJtRTBDLRRVlWmjQVd2mgqbr
+	 FiwwKTk5kLrpO6ROhVX50aTLOc5vNmA/1XnKWcb/8kBJmTZvzScP0VF5yBPfJgDQZ3
+	 7F9SUI41fxu4Q==
+From: Jonathan Corbet <corbet@lwn.net>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Rob Herring
  <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>,
- linux-kernel-mentees@lists.linuxfoundation.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: iio: pressure: add honeywell,hsc030
-Message-ID: <20231125192126.55cda541@jic23-huawei>
-In-Reply-To: <ZVukhMcY8A3Crxc_@sunspire>
-References: <20231117164232.8474-1-petre.rodan@subdimension.ro>
-	<20231117192305.17612-1-petre.rodan@subdimension.ro>
-	<5b2e4b05-9408-48ea-92ac-15883e102013@linaro.org>
-	<ZVtiVM2Gm1x1j_G1@sunspire>
-	<8aa11758-5eee-427b-adcb-c3578a521daf@linaro.org>
-	<ZVtv8x8LqGMhCisw@sunspire>
-	<20231120173929.00006a6d@Huawei.com>
-	<ZVukhMcY8A3Crxc_@sunspire>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+ <angelogioacchino.delregno@collabora.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Andrew Davis
+ <afd@ti.com>, Andrew Lunn <andrew@lunn.ch>, Arnd Bergmann <arnd@arndb.de>,
+ Bjorn Andersson <andersson@kernel.org>, Chen-Yu Tsai <wens@kernel.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Geert Uytterhoeven
+ <geert+renesas@glider.be>, Heiko Stuebner <heiko@sntech.de>, Konrad Dybcio
+ <konrad.dybcio@linaro.org>, Michal Simek <michal.simek@amd.com>, Neil
+ Armstrong <neil.armstrong@linaro.org>, Nishanth Menon <nm@ti.com>, Olof
+ Johansson <olof@lixom.net>, =?utf-8?Q?Rafa=C5=82_Mi=C5=82ecki?=
+ <zajec5@gmail.com>,
+ linux-rockchip@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+ workflows@vger.kernel.org, linux-doc@vger.kernel.org
+Subject: Re: [PATCH v3] docs: dt-bindings: add DTS Coding Style document
+In-Reply-To: <20231125184422.12315-1-krzysztof.kozlowski@linaro.org>
+References: <20231125184422.12315-1-krzysztof.kozlowski@linaro.org>
+Date: Sat, 25 Nov 2023 12:33:47 -0700
+Message-ID: <87v89p1vc4.fsf@meer.lwn.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
 
-On Mon, 20 Nov 2023 20:25:08 +0200
-Petre Rodan <petre.rodan@subdimension.ro> wrote:
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> writes:
 
-> Hello!
-> 
-> On Mon, Nov 20, 2023 at 05:39:29PM +0000, Jonathan Cameron wrote:
-> > On Mon, 20 Nov 2023 16:40:51 +0200
-> > Petre Rodan <petre.rodan@subdimension.ro> wrote:
-> >   
-> > > Hello!
-> > > 
-> > > On Mon, Nov 20, 2023 at 03:04:07PM +0100, Krzysztof Kozlowski wrote:  
-> > > > On 20/11/2023 14:42, Petre Rodan wrote:
-> > > >     
-> > > > >>> +properties:
-> > > > >>> +  compatible:
-> > > > >>> +    enum:
-> > > > >>> +      - honeywell,hsc    
-> > > > >>
-> > > > >> Way too generic    
-> > > > > 
-> > > > > I'm new to this, please excuse my ignorance.
-> > > > > my driver covers all Honeywell pressure sensors under the "TruStability board mount HSC/SSC" moniker.    
-> > > > 
-> > > > We talk here about bindings, not driver. For the driver you can use
-> > > > whatever name is approved by reviewers of your driver.
-> > > >     
-> > > > > that is why my intention was to provide a rather generic name for the driver itself.
-> > > > > are you afraid that they will come up with a different device that they will call "hsc" in the future?
-> > > > > in this case honeywell,trustability-hsc would be fine?
-> > > > > 
-> > > > > as I see you prefer to target a particular chip, but I am a bit afraid that the end-user will be confused by needing to set up something like
-> > > > > 
-> > > > > pressure@28 {
-> > > > > 	compatible = "honeywell,hsc030pa";    
-> > > > 
-> > > > The compatible should be specific, thus for example match exact model
-> > > > number.    
-> > > 
-> > > there are an infinite number of combinations of 4 transfer functions and 118 ranges + one custom range, so providing an array with all specific chips that could end up as compatible is out of the question.
-> > > I was aiming at providing a generic name for the binding and get the transfer function and the pressure range as required parameters.
-> > >   
-> > > > If you can guarantee that all devices from given family are the same in
-> > > > respect of programming model and hardware requirements (e.g. supplies),
-> > > > then you could go with family name. However such guarantees are rarely
-> > > > given.    
-> > > 
-> > > I see your point.
-> > >   
-> > > > Therefore for mprls0025pa I agreed for using one specific model
-> > > > for entire family.
-> > > > 
-> > > > https://lore.kernel.org/all/d577bc44-780f-f25d-29c6-ed1d353b540c@linaro.org/
-> > > > 
-> > > >     
-> > > > > 	reg = <0x28>;
-> > > > > 	honeywell,transfer-function = <0>;
-> > > > > 	honeywell,pressure-range = "250MD";
-> > > > > };
-> > > > > 
-> > > > > ie. specifying "hsc030pa" as driver while his chip is not in the 030PA range, but 250MD.
-> > > > > 
-> > > > > so do you prefer
-> > > > >  honeywell,trustability-hsc  OR
-> > > > >  honeywell,hsc030pa    
-> > > > 
-> > > > I think the latter, just like we did for mprls0025pa. How many devices
-> > > > do you have there?    
-> > > 
-> > > both hsc and ssc have 118 ranges, 4 transfer functions and both can be requested from the manufacturer with custom measurement ranges.
-> > > 
-> > > ok,I will rename hsc->hsc030pa in the code as you requested.  
-> > 
-> > Where does pa come from?   
-> 
-> honeywell,hsc030pa was provided as an equivalent to honeywell,mprls0025pa (which is already in the repo).
-> 
-> '030PA' and '0025PA' define the pressure range (0-30, 0-25), the unit of measure (Psi) and the measurement type (Absolute) for a particular chip in the honeywell catalog. (please ignore the psi part, we convert everything to pascals).
-> but both my driver and Andreas Klinger's mprls0025pa actually provide a generic abstraction layer for entire series of sensors.
+> Document preferred coding style for Devicetree sources (DTS and DTSI),
+> to bring consistency among all (sub)architectures and ease in reviews.
 
-ah ok. That's fine then - searching the datasheet I found didn't include that particular
-string, so I was rather confused.
+One little nit:
 
-I'm fine with specific now you've explained where it came from!
+> diff --git a/Documentation/devicetree/bindings/dts-coding-style.rst b/Documentation/devicetree/bindings/dts-coding-style.rst
+> new file mode 100644
+> index 000000000000..e374bec0f555
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/dts-coding-style.rst
+> @@ -0,0 +1,194 @@
+> +.. SPDX-License-Identifier: GPL-2.0
+> +.. _dtscodingstyle:
 
-Jonathan
+There is no need to put a label at the top of a document like that, I'd
+just take it out.
 
-> 
-> > If we are going generic, feels like trustability-ssc etc are more representative
-> > and matches the datasheet cover page.  
-> 
-> Krzysztof voted for non-generic, honeywell,mprls0025pa is already set up non-generic, my intent was to go generic.
-> 
-> I'll rewrite the code to whatever you guys feel is best.
-> 
-> peter
-> 
-> 
+Thanks,
 
+jon
 
