@@ -1,100 +1,170 @@
-Return-Path: <devicetree+bounces-18903-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18904-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C1CB7F9055
-	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 00:33:43 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B82B87F9058
+	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 00:40:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BAB1C2813AF
-	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 23:33:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DD5F71C20A64
+	for <lists+devicetree@lfdr.de>; Sat, 25 Nov 2023 23:40:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66C9A315A9;
-	Sat, 25 Nov 2023 23:33:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47473315A7;
+	Sat, 25 Nov 2023 23:40:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ragnatech-se.20230601.gappssmtp.com header.i=@ragnatech-se.20230601.gappssmtp.com header.b="waXySOPm"
+	dkim=pass (2048-bit key) header.d=gmx.de header.i=linosanfilippo@gmx.de header.b="V6p4UK7g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 842C9A6
-	for <devicetree@vger.kernel.org>; Sat, 25 Nov 2023 15:33:35 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-50baa1ca01cso1005662e87.2
-        for <devicetree@vger.kernel.org>; Sat, 25 Nov 2023 15:33:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ragnatech-se.20230601.gappssmtp.com; s=20230601; t=1700955214; x=1701560014; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=rpy3qo29luDIC1NMBRwSckmMxLbTBSubAS+PXk1u3Dg=;
-        b=waXySOPmaFxgbpWz/pU/1Nc7vxCzrrpTbpgWH3P2JKnYYlTgODuL30u/MmWL9odSYy
-         r14mzTl9d28C0K2Dg7mWQt2s/aaAsHMwLNyrQON7MWnfyyF4VZwFBBpOhNlV2un4PHES
-         vNA41NmNF2A3wb3oLNRW31TGEQ+bWnrPzc3AR3J+rD0SENLIHFX82ymOWy/lA31yLV21
-         andTLThXgRuGesD2iNt5OxblMDELkbZwWd4eY4L7uvgLN/Em/dDH87+WTQNu7KI8M6dd
-         ZOgeyVUMhqAny6EPG89h1mPfjz6f/7lR9nCO7gA7wj1+xx1ySSoZl21zB9tTzpTceWjy
-         3VmA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700955214; x=1701560014;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=rpy3qo29luDIC1NMBRwSckmMxLbTBSubAS+PXk1u3Dg=;
-        b=Dk0+F9zk7gUCoSW4thanuJZZbV6lJQA9MUrCUoBoTmfRny1pV50DSu95nMyjN6SwCp
-         oOF0hME8rHpi0nmCbGdVRwNlAPrztlAImSshTro41NuFtd3j6S/KQQVQ4dGvPa3h3EdD
-         LT4lK2wLHHqqtE8rzDAO4Of9rkOrxei1MBmAdvNpwpbAQqjr9Thp/GqLc305nCeiBM4x
-         UvXXrcxFuAINzRK8y539JOZL0LpIFPDzuZARqp8N10xzkYNb269LxXete41B0YLdlcNM
-         xgdZtAh8KcNB4N2E2mdFoV6AbMs31T/J3cxDLwG0917xURUfgpwTbNskhVBxGNNjNfue
-         Vpxw==
-X-Gm-Message-State: AOJu0YzEQ/8WYg0tg81uC4y19IFYJN3JuD6F5RG9dIhMitWwQMhqlpgz
-	S4/lEuyib/47fMspj9aeVBt+zg==
-X-Google-Smtp-Source: AGHT+IHKjTic1LqyMeILPYCrL3v4w7Xmnrnz1aRH49hdew5LhCkOVpXUl/09mFfdijp2C1hTw/V4Nw==
-X-Received: by 2002:a05:6512:206:b0:50b:a687:cdee with SMTP id a6-20020a056512020600b0050ba687cdeemr3356415lfo.25.1700955213589;
-        Sat, 25 Nov 2023 15:33:33 -0800 (PST)
-Received: from sleipner.berto.se (p4fcc8a96.dip0.t-ipconnect.de. [79.204.138.150])
-        by smtp.googlemail.com with ESMTPSA id c15-20020a056512324f00b005095614210dsm994225lfr.241.2023.11.25.15.33.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 25 Nov 2023 15:33:33 -0800 (PST)
-From: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	=?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Subject: [PATCH] ARM: dts: renesas: r9a06g032: Add missing space in compatible
-Date: Sun, 26 Nov 2023 00:33:27 +0100
-Message-ID: <20231125233327.238575-1-niklas.soderlund+renesas@ragnatech.se>
-X-Mailer: git-send-email 2.42.1
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A622A6;
+	Sat, 25 Nov 2023 15:40:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.de; s=s31663417;
+	t=1700955609; x=1701560409; i=linosanfilippo@gmx.de;
+	bh=SP2ucH5r5Gk6l2j+5rFElVMMInW0SpnmPF4xI/IwDj0=;
+	h=X-UI-Sender-Class:Subject:To:Cc:References:From:Date:
+	 In-Reply-To;
+	b=V6p4UK7gc83syEEOnBaGBw9lFADuk+sWQohChmEK6WvkDETUiRSQaZ5KSCsIZocR
+	 MK23vO7gJdBzSfWsEq3GGTr9DdBCSVtp6+G7RDWlYhXkc1Q03yTVdWDhFhBVMB2DO
+	 DLv5/hVIREd7eIcG+SmuvxHXs/6E3QKTfGHVgVAZrLxKSk4i7gHXA1iZQ2A7/d1cx
+	 0x0cCw60xJTN43cRFHlnik97/fUqiAu778DvfjswGEVDPO0fEKNTvT7aVElXA14iG
+	 n58Tx5qvVtC44Wckii8PBfLMoALnXdCuRO6GM/VTNsZX3PX4qMucW95pjV94eDpeF
+	 52dyLqJonZb5Nr0KBA==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.2.37] ([84.180.3.177]) by mail.gmx.net (mrgmx104
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MirjY-1rlbjR1zNM-00exK7; Sun, 26
+ Nov 2023 00:40:09 +0100
+Subject: Re: [PATCH 1/2] dt-bindings: serial: rs485: add rs485-mux-gpios
+ binding
+To: Lukas Wunner <lukas@wunner.de>,
+ Rasmus Villemoes <linux@rasmusvillemoes.dk>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+ Crescent CY Hsieh <crescentcy.hsieh@moxa.com>,
+ =?UTF-8?Q?Ilpo_J=c3=a4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ brenda.streiff@ni.com, cniedermaier@dh-electronics.com,
+ Tomas Paukrt <tomaspaukrt@email.cz>
+References: <20231120151056.148450-1-linux@rasmusvillemoes.dk>
+ <20231120151056.148450-2-linux@rasmusvillemoes.dk>
+ <20231122145344.GA18949@wunner.de>
+From: Lino Sanfilippo <LinoSanfilippo@gmx.de>
+Message-ID: <3b8548b1-b8a9-0c9e-4040-5cfda06a85c6@gmx.de>
+Date: Sun, 26 Nov 2023 00:40:07 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20231122145344.GA18949@wunner.de>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:07zHm1TyCdV/+MnqDviThy3OX1Ef71ZtfO7wE5IGH7Hq4oN7q+t
+ 2lKYbOsDocv7AfpDI3evugvWmaMTGi04fYGqZ/7leh7DmDYTkcP57crLET5UfQvzylA1QmS
+ RounC16PHjjcMwRi+q5altMwuK7TGYLcIIoB3AEvEfLVF2SgybEp6okwxR5ICNd4hubeZeO
+ kc4HMpQNxfWKxMmvG77yg==
+UI-OutboundReport: notjunk:1;M01:P0:ZInMyQRO+3o=;dTF6cGcRKSxrqhzmrjwN9Ahblyj
+ 37gS6WPx7o94qtr6i0w7Cacqcyt7J9YMXgNQutM0Wl5k3vuy1drPTFrGzsvTWFNxxsUuSOl5g
+ r4PDepomjUsUw0STwz78iIUMOij2QWB/bhZ5f88l7awbzudXGqi/P12P2b9HGO229b5oxMKF5
+ lC75SZ2VvyZCUiXXXgDGFcG8NwuxeS9dXE+MAP5L5K/bt+6VsXFO/1/fRg+OqOeLwX4OuGcPv
+ cw/uxi700jQsW/chl68+CwL0iVBEJWn+treuXaDghxU/U1jYj7weLZPx2mDwUU5DQhPniSv5v
+ 9IjtM/rdAm3BSRE+Xeid4oAzK8ieEmK2iBwDeD6TbUU9TJ1owY9QSKmqgqjnOSoHprWyIaiWN
+ sZf5hkPqY+4iMBxbw5OzN1lr1AI6ZdQn66asD177epJ8tSdSdDKSkXm31mP8ZT7Y03qQ1aBRM
+ BJ+DcYi3RiHWAKvkCulrUXOki7lygIqGYcwwO/MfhPRoRO3WmiDsaki4CTEp61fQn+PgdFXXP
+ vYQJ12sfAlSB27L+yNYVkobwZvlrCmdqomr8zY9e/lLaYKlmLm8YzJk2bPAkSPyOSjANG1G3x
+ tYJ975ZzU2JW9KnwuvbC3B4z5zOq92gzEgwMmlMeb9OJ9k0YuuiY8OIJB9Tz/bgPEcMwN4qYV
+ Fc+WiBgF7HV7o2+gROAigPQh2fUOLe6+vdckPlZbesW2NUazkk52o54VylUmG/V2rJeCuotYO
+ LEdnx/PmRx61D7Et3K6/Gs5oJDWDWRF1US43h8DmVmhwEpGIWPaxmCHPK4DYzxVFCHQfJMmFX
+ Hkcy5cz2T3k4ucwtybxT8rDqDt665pwCkoy/hVx9AynQ46ZD8deZ7SKAOTaQZUxYRr/kn2F2T
+ aicbcef84LXnpSRoOFNIBEp5OmRiPJkUwyb93eqaLTMeTo+YXKOc2Z/YJl4Y359BWhhO8A2OF
+ BTVjn2FlSo1HPqVPPx2GMr4/3u0=
 
-Add missing space in compatible property and align style with rest of
-the file.
+Hi,
 
-Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
----
- arch/arm/boot/dts/renesas/r9a06g032.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On 22.11.23 at 15:53, Lukas Wunner wrote:
+> On Mon, Nov 20, 2023 at 04:10:54PM +0100, Rasmus Villemoes wrote:
+>> Some boards are capable of both rs232 and rs485, and control which
+>> external terminals are active via a gpio-controlled mux. Allow
+>> describing that gpio in DT so that the kernel can transparently handle
+>> the proper setting when the uart is switched between rs232 and rs485
+>> modes.
+>
+> Crescent CY Hsieh (+cc) is in parallel trying to add an RS-422 mode bit
+> to struct serial_rs485:
+>
+> https://lore.kernel.org/all/20231121095122.15948-1-crescentcy.hsieh@moxa=
+.com/
+>
 
-diff --git a/arch/arm/boot/dts/renesas/r9a06g032.dtsi b/arch/arm/boot/dts/renesas/r9a06g032.dtsi
-index 0fa565a1c3ad..fa63e1afc4ef 100644
---- a/arch/arm/boot/dts/renesas/r9a06g032.dtsi
-+++ b/arch/arm/boot/dts/renesas/r9a06g032.dtsi
-@@ -437,7 +437,7 @@ gic: interrupt-controller@44101000 {
- 		};
- 
- 		can0: can@52104000 {
--			compatible = "renesas,r9a06g032-sja1000","renesas,rzn1-sja1000";
-+			compatible = "renesas,r9a06g032-sja1000", "renesas,rzn1-sja1000";
- 			reg = <0x52104000 0x800>;
- 			reg-io-width = <4>;
- 			interrupts = <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH>;
--- 
-2.42.1
+That new flag was suggested by me instead of using SER_RS422_ENABLED, whic=
+h
+would mostly be redundant to SER_RS485_ENABLED.
+I dont know if it is a good choice in the long term to handle both modes w=
+ithin
+the RS485 configuration. It would be cleaner to have an own RS422 structur=
+e with
+its own flags and properties. And until now the only flag that seems to ma=
+ke sense
+for both RS422 and RS485 is AFAICS SER_RS485_TERMINATE_BUS.
+
+On the other hand the bus termination is at least a property that both mod=
+es have
+in common. And handling RS422 in its own structure would require another i=
+octl
+to set and get the the RS422 settings.
+
+But maybe there are more or better possibilities to handle RS4822 support.=
+ I would like to
+hear other ideas.
+
+
+
+> I don't know whether that makes sense at all (I had thought RS-422 is
+> the same as RS-485 with full-duplex, i.e. SER_RS485_ENABLED plus
+> SER_RS485_RX_DURING_TX)
+>
+> But if that patch gets accepted, we'd have *three* different modes:
+> RS-232, RS-485, RS-422.
+
+Actually we would have four (as Brenda already wrote,
+see https://lore.kernel.org/all/c6ea912f-d5ab-4761-813d-3b6b6be141cb@ni.co=
+m/),
+and with the propose SER_RS485_MODE_RS422 flag these modes would be used l=
+ike
+
+RS-232:                       rs485->flags =3D 0
+RS-422:                       rs485->flags =3D SER_RS485_ENABLED|SER_RS485=
+_MODE_RS422
+RS-485 (2-wire half-duplex):  rs485->flags =3D SER_RS485_ENABLED
+RS-485 (4-wire full-duplex):  rs485->flags =3D SER_RS485_ENABLED|SER_RS485=
+_RX_DURING_TX
+
+
+>  A single GPIO seems insufficient to handle that.
+
+GPIOs for RS485 is another thing.
+
+I mean, currently we have a GPIO for RS485 termination (I introduced it wi=
+th commit 44b27aec9d9680875).
+Christoph introduced support for a rx-during-tx GPIO (see commit 163f080eb=
+717). Tomas intends
+to add a GPIO which enables RS485 if asserted
+(see https://lore.kernel.org/all/3Za.ZZs%7D.ndXI8CMee4.1bN6eQ@seznam.cz/) =
+and with Rasmus patches
+we are about to add a MUX-GPIO which is to be asserted if RS485 is enabled=
+.
+
+I wonder where this will end and if we really have to support every possib=
+le GPIO
+in the serial core.
+
+Regards,
+Lino
 
 
