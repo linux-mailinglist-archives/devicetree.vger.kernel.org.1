@@ -1,158 +1,87 @@
-Return-Path: <devicetree+bounces-18930-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18933-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A6A17F9198
-	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 07:09:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B6BF7F91F0
+	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 10:11:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B973FB20E76
-	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 06:09:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 08A302811CC
+	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 09:11:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B213E8F68;
-	Sun, 26 Nov 2023 06:08:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 586F246AF;
+	Sun, 26 Nov 2023 09:11:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="h+E6KtW6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IWkNP4DG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED5EC111;
-	Sat, 25 Nov 2023 22:08:40 -0800 (PST)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AQ68V25011305;
-	Sun, 26 Nov 2023 06:08:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=qcppdkim1;
- bh=YAEbePQjuOtIFFbxRz6vCXEReg9DSyCnUSz57STbWpI=;
- b=h+E6KtW6/yrPhCwoyvINeFwh6QErxnKZ7RXUr+wihatGsnfYJVOOXnmIPmt6gzyvfwVF
- 6gxCHu1eFQ9U5rfTvzHYMkGDyEOnGD01n3VRefbPbZI3LG3M+LqpSmv0np8hczDkshmB
- ozqDJfqLIE0nf0gtAAASG5F+7MYGY5XZ31YJtKScVq7MFIzG4nRxJE553z++Vx7b6QyP
- 7fvUGcODKGsrqGif+wsx/Sj0rmBjAz4BeMXF4SZkNFZcIC4xv3MQzlIimk4bIR1Gtp6e
- bFUGe1MiumSpvK2s7EEZrwuP22lTeOf9oZNdTpnPCJDTj/ptVwZuks9OHzKDT1+iuseW gQ== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uk8h8hsk6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sun, 26 Nov 2023 06:08:30 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AQ68TrZ003642
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sun, 26 Nov 2023 06:08:29 GMT
-Received: from akronite-sh-dev02.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Sat, 25 Nov 2023 22:08:25 -0800
-From: Luo Jie <quic_luoj@quicinc.com>
-To: <andrew@lunn.ch>, <davem@davemloft.net>, <edumazet@google.com>,
-        <kuba@kernel.org>, <pabeni@redhat.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <hkallweit1@gmail.com>, <linux@armlinux.org.uk>, <corbet@lwn.net>
-CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>
-Subject: [PATCH v6 6/6] net: phy: qca8084: add qca8084_link_change_notify
-Date: Sun, 26 Nov 2023 14:07:32 +0800
-Message-ID: <20231126060732.31764-7-quic_luoj@quicinc.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231126060732.31764-1-quic_luoj@quicinc.com>
-References: <20231126060732.31764-1-quic_luoj@quicinc.com>
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 363F520FA;
+	Sun, 26 Nov 2023 09:11:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 562A6C433C7;
+	Sun, 26 Nov 2023 09:11:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1700989909;
+	bh=gwi2O8NXY8zMJqR9PPUCK789M/onA+FRT7MLBztXinY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=IWkNP4DGItnMd7Z2iP9WUrd2r7mcIUrwN9Cx4meOX1fpyQl89NikYVNeQasS+1YTw
+	 jAFq+TxoKo0JAMdxh4Z5R3gFAGGIO+hGL3fKSPbW+q6Wqrbd4I0WX1G9P0INF0ExVW
+	 qViEvvcrkA4cN3ooJuK7I2haaJqftw9aHhTjNU1ECYR02G+Fzp3ZmpZ69WSmm9oKfv
+	 tKUvUr532PjLOh9nHQoNAjE9E3lpu3MQYJoH0eBDCoAClaFHt50vkddQEeqfF7QnwN
+	 jPF3NFEew0Zr2iH5e8a9QYNyO4lh4BnZbeeGX6EcssbxoRh1HcN5hH7o6G6TD7orMv
+	 2pQEUAnWAiAgQ==
+Date: Sun, 26 Nov 2023 17:11:43 +0800
+From: Shawn Guo <shawnguo@kernel.org>
+To: Jacky Bai <ping.bai@nxp.com>
+Cc: wim@linux-watchdog.org, linux@roeck-us.net, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, s.hauer@pengutronix.de,
+	kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 3/3] arm64: dts: imx93: Add the 'fsl,ext-reset-output'
+ property for wdog3
+Message-ID: <20231126091143.GA87953@dragon>
+References: <20231010081909.2899101-1-ping.bai@nxp.com>
+ <20231010081909.2899101-3-ping.bai@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 44VO1U_gIfGcxZmiOIaLIQBDBnZ02dpa
-X-Proofpoint-GUID: 44VO1U_gIfGcxZmiOIaLIQBDBnZ02dpa
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-26_04,2023-11-22_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- lowpriorityscore=0 mlxlogscore=999 impostorscore=0 bulkscore=0
- phishscore=0 malwarescore=0 mlxscore=0 adultscore=0 clxscore=1015
- spamscore=0 suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311060000 definitions=main-2311260042
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231010081909.2899101-3-ping.bai@nxp.com>
 
-When the link is changed, qca8084 needs to do the fifo reset and
-adjust the IPG level for the qusgmii link speed 1000M.
+On Tue, Oct 10, 2023 at 04:19:09PM +0800, Jacky Bai wrote:
+> Add 'fsl,ext-reset-output' property for wdog3 to let it to trigger
+> external reset through wdog_any pin.
+> 
+> Signed-off-by: Jacky Bai <ping.bai@nxp.com>
+> Reviewed-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  arch/arm64/boot/dts/freescale/imx93.dtsi | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi b/arch/arm64/boot/dts/freescale/imx93.dtsi
+> index f20dd18e0b65..bb40a022601d 100644
+> --- a/arch/arm64/boot/dts/freescale/imx93.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
+> @@ -562,6 +562,7 @@ wdog3: watchdog@42490000 {
+>  				interrupts = <GIC_SPI 79 IRQ_TYPE_LEVEL_HIGH>;
+>  				clocks = <&clk IMX93_CLK_WDOG3_GATE>;
+>  				timeout-sec = <40>;
+> +				fsl,ext-reset-output;
 
-Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
----
- drivers/net/phy/at803x.c | 41 ++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 41 insertions(+)
+Shouldn't this be a board level setting?
 
-diff --git a/drivers/net/phy/at803x.c b/drivers/net/phy/at803x.c
-index c0d5d4410e89..16ea022744ce 100644
---- a/drivers/net/phy/at803x.c
-+++ b/drivers/net/phy/at803x.c
-@@ -289,6 +289,13 @@
- #define QCA8084_MSE_THRESHOLD			0x800a
- #define QCA8084_MSE_THRESHOLD_2P5G_VAL		0x51c6
- 
-+#define QCA8084_FIFO_CONTROL			0x19
-+#define QCA8084_FIFO_MAC_2_PHY			BIT(1)
-+#define QCA8084_FIFO_PHY_2_MAC			BIT(0)
-+
-+#define QCA8084_MMD7_IPG_OP			0x901d
-+#define QCA8084_IPG_10_TO_11_EN			BIT(0)
-+
- MODULE_DESCRIPTION("Qualcomm Atheros AR803x and QCA808X PHY driver");
- MODULE_AUTHOR("Matus Ujhelyi");
- MODULE_LICENSE("GPL");
-@@ -2114,6 +2121,39 @@ static int qca8084_config_init(struct phy_device *phydev)
- 			     QCA8084_MSE_THRESHOLD_2P5G_VAL);
- }
- 
-+static void qca8084_link_change_notify(struct phy_device *phydev)
-+{
-+	int ret;
-+
-+	ret = phy_modify(phydev, QCA8084_FIFO_CONTROL,
-+			 QCA8084_FIFO_MAC_2_PHY | QCA8084_FIFO_PHY_2_MAC,
-+			 0);
-+	if (ret)
-+		return;
-+
-+	/* If the PHY works on PHY_INTERFACE_MODE_10G_QXGMII mode, the fifo
-+	 * needs to be kept as reset state in link down status.
-+	 */
-+	if (phydev->interface != PHY_INTERFACE_MODE_10G_QXGMII ||
-+	    phydev->link) {
-+		msleep(50);
-+		ret = phy_modify(phydev, QCA8084_FIFO_CONTROL,
-+				 QCA8084_FIFO_MAC_2_PHY |
-+				 QCA8084_FIFO_PHY_2_MAC,
-+				 QCA8084_FIFO_MAC_2_PHY |
-+				 QCA8084_FIFO_PHY_2_MAC);
-+		if (ret)
-+			return;
-+	}
-+
-+	/* Enable IPG 10 to 11 tuning on link speed 1000M of QUSGMII mode. */
-+	if (phydev->interface == PHY_INTERFACE_MODE_10G_QXGMII)
-+		phy_modify_mmd(phydev, MDIO_MMD_AN, QCA8084_MMD7_IPG_OP,
-+			       QCA8084_IPG_10_TO_11_EN,
-+			       phydev->speed == SPEED_1000 ?
-+			       QCA8084_IPG_10_TO_11_EN : 0);
-+}
-+
- static struct phy_driver at803x_driver[] = {
- {
- 	/* Qualcomm Atheros AR8035 */
-@@ -2312,6 +2352,7 @@ static struct phy_driver at803x_driver[] = {
- 	.cable_test_start	= qca808x_cable_test_start,
- 	.cable_test_get_status	= qca808x_cable_test_get_status,
- 	.config_init		= qca8084_config_init,
-+	.link_change_notify	= qca8084_link_change_notify,
- }, };
- 
- module_phy_driver(at803x_driver);
--- 
-2.42.0
+Shawn
 
+>  				status = "disabled";
+>  			};
+>  
+> -- 
+> 2.34.1
+> 
 
