@@ -1,110 +1,88 @@
-Return-Path: <devicetree+bounces-18984-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18985-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2133E7F951C
-	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 20:43:21 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F9887F952C
+	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 21:08:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CF30A280C96
-	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 19:43:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4153E1C203A7
+	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 20:08:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AE4E12E49;
-	Sun, 26 Nov 2023 19:43:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FFFA12E55;
+	Sun, 26 Nov 2023 20:08:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UKeJOUwY"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZeWVBZ2b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9D4AD52A;
-	Sun, 26 Nov 2023 19:43:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ABF77C433C7;
-	Sun, 26 Nov 2023 19:43:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701027796;
-	bh=MfPWdhI66tGlSElbZFqrJ4lp9k4RWE3b0eJdiDiyLj8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UKeJOUwY97ffDjyVICQgaX2Wb8q6WilSKUPvkWm5tQ32pK8ViitXaPlaQDNR5XqTY
-	 9AUAq8pm6KDmGj+9fSgOguHC1B11Tdh63ToL0rcDLq8mNRH4EGCuZT6a1oSdmeWHII
-	 UH02ScCplG1irqAmbHxdsth04jTMO+3aqYl1CLbC7mqb/zWAZtlDtmyM8uZsgotvo8
-	 hDz4hoVV8n3uWrdkVNB70iTq4VD9r7jPOA/4blIOdAcV8ZUG6k+bPvRPJqrmaqmmAR
-	 vr0oOEN5PMsfaJVOmcqVjWW+/kPJLrG/DS6D7ii3lZBolWWuaEqqMs8IEqO9ZQ2j1B
-	 DMd6HsND1+p5Q==
-Date: Sun, 26 Nov 2023 20:43:11 +0100
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Tim Lunn <tim@feathertop.org>
-Cc: linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-	Jagan Teki <jagan@edgeble.ai>, Rob Herring <robh+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	Heiko Stuebner <heiko@sntech.de>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-i2c@vger.kernel.org
-Subject: Re: [PATCH v2 3/9] i2c: rk3x: Adjust offset for i2c2 on rv1126
-Message-ID: <20231126194311.jxkvz3kqgsbzfgek@zenone.zhora.eu>
-References: <20231122122232.952696-1-tim@feathertop.org>
- <20231122122232.952696-4-tim@feathertop.org>
+Received: from mail-yw1-x1129.google.com (mail-yw1-x1129.google.com [IPv6:2607:f8b0:4864:20::1129])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1E2BD7
+	for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 12:08:16 -0800 (PST)
+Received: by mail-yw1-x1129.google.com with SMTP id 00721157ae682-5cce5075bd6so26781357b3.0
+        for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 12:08:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1701029296; x=1701634096; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=oY/+6Vdf/DK4Vduwgn3n01nTcjhDvzNRLJfMJ/HHsLw=;
+        b=ZeWVBZ2bsTOBYFlv/CEqfALy72G1JJXdcBFze91qgJoacKJ+7Ob2czV9Cz52qGL2Bt
+         n71OwK364yWaBqvI6TUZZfW4ooHS2igd+LeUBZ5MWvE/xstwbo0u1Yocq/lXW4p6Jb9N
+         qKLUpAo/Jv4gOijX1nsCOLLA04s9eXgATcw0H0R/msRKIgDNOEQhw45a3Et3wwtx2FVR
+         pE6n+SsH3Ki+ICROzykztMeUFOp+q41eO3uVFaqX9cWKRbUgLCjV6W37qt0ZXCMsVn01
+         KbEM7hEjmBGhRmzdMOjL3mwk2wXFslcjYx1A2LX5Hmur8HElGHi6ztj/GDdrQlkjojk4
+         Vr+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701029296; x=1701634096;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=oY/+6Vdf/DK4Vduwgn3n01nTcjhDvzNRLJfMJ/HHsLw=;
+        b=TdKA3kPPDI0QRtCQQy1dx9vNW3pwmn0shnCG9t38uc5bZX8jhd+O67N9fb7NfToOCt
+         ASqOEm4vfBzVCRDXXL3CiW9/0P6ufkG9CRZVhAfeNIlJvElKUn5LzhZpLwpTuMDH8tIe
+         qKFG1OAioDzb1YoqftiwYuRaSc7Di/H3Hel8i6ZrheGNNH6vEPgXbfCLe7xb6NNPgvOh
+         MtGQbE+s2DEguon7Z8gzIIjnJiMHWIDBgfsZOHQXJkfC8EaxCaoSMjwBC3HgrHu9ZJgQ
+         zk7JTiiHXvQqlC4ch1SOaXDtfhtukaZCRxCx+kmnNSQ2TSRz4U1W8chGUNiQwiC85ncV
+         EZdQ==
+X-Gm-Message-State: AOJu0Yy+VdAv3xK8MxSFrXKCCeHrX1tZ8pcEEZx0470abMS4YJMUATiw
+	KPqZzZQCG7TDl8uAxXAfQf8U8JTPrzOkS8UuEslbyw==
+X-Google-Smtp-Source: AGHT+IFFBCc7DEmI9LRDuJXBegkzaw0XRK2lD9elEp31ICkd9wVkz9h0c066lGIr5re94D7Av79NdJLG0iWp7EOCIMM=
+X-Received: by 2002:a05:690c:2b0b:b0:5ce:2148:d4bd with SMTP id
+ em11-20020a05690c2b0b00b005ce2148d4bdmr5935726ywb.4.1701029296078; Sun, 26
+ Nov 2023 12:08:16 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231122122232.952696-4-tim@feathertop.org>
+References: <20231126103029.851742-1-anshulusr@gmail.com>
+In-Reply-To: <20231126103029.851742-1-anshulusr@gmail.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Sun, 26 Nov 2023 21:08:03 +0100
+Message-ID: <CACRpkdayV=KUv4j+af_HSEtz05kmg+g-UTOjENsGuS4xtsdTNQ@mail.gmail.com>
+Subject: Re: [PATCH v1] dt-bindings: input: convert gpio-mouse to json-schema
+To: Anshul Dalal <anshulusr@gmail.com>
+Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-kernel@vger.kernel.org, linux-kernel-mentees@lists.linuxfoundation.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Tim,
+On Sun, Nov 26, 2023 at 11:32=E2=80=AFAM Anshul Dalal <anshulusr@gmail.com>=
+ wrote:
 
-On Wed, Nov 22, 2023 at 11:22:26PM +1100, Tim Lunn wrote:
-> Rockchip RV1126 has special case mask bits for i2c2.
-> 
-> i2c2 wasnt previously enabled in rv1126.dtsi, adding DT node alone
-> is not sufficient to enable i2c2. This patch fixes the i2c2 bus.
+> Convert device tree binding documentation for GPIO attached mouse to
+> json-schema.
+>
+> Signed-off-by: Anshul Dalal <anshulusr@gmail.com>
 
-If I don't have sufficient information about the hardware this
-description is completely meaningless to me.
+Nice work! It looks flawless, making good use of default typing suffixes
+-ms -gpios.
 
-> Signed-off-by: Tim Lunn <tim@feathertop.org>
-> ---
-> 
-> Changes in v2:
-> - i2c: clarify commit message
-> 
->  drivers/i2c/busses/i2c-rk3x.c | 7 +++++--
->  1 file changed, 5 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/i2c/busses/i2c-rk3x.c b/drivers/i2c/busses/i2c-rk3x.c
-> index a044ca0c35a1..151927466d1d 100644
-> --- a/drivers/i2c/busses/i2c-rk3x.c
-> +++ b/drivers/i2c/busses/i2c-rk3x.c
-> @@ -1288,8 +1288,11 @@ static int rk3x_i2c_probe(struct platform_device *pdev)
->  			return -EINVAL;
->  		}
->  
-> -		/* 27+i: write mask, 11+i: value */
-> -		value = BIT(27 + bus_nr) | BIT(11 + bus_nr);
-> +		if (i2c->soc_data == &rv1126_soc_data && bus_nr == 2)
-> +			value = BIT(20) | BIT(4);
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-Any chance to put a comment here as it is in the other
-assignment?
-
-Are the two assignment mutually exclusive?
-
-Heiko, any chance to take a look here?
-
-Thanks,
-Andi
-
-> +		else
-> +			/* 27+i: write mask, 11+i: value */
-> +			value = BIT(27 + bus_nr) | BIT(11 + bus_nr);
->  
->  		ret = regmap_write(grf, i2c->soc_data->grf_offset, value);
->  		if (ret != 0) {
-> -- 
-> 2.40.1
-> 
+Yours,
+Linus Walleij
 
