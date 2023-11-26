@@ -1,97 +1,225 @@
-Return-Path: <devicetree+bounces-18993-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18994-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FA017F95B9
-	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 23:18:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C37D87F95D2
+	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 23:36:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ACECE280D62
-	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 22:18:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6D2D5280D7D
+	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 22:36:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 843FC1401A;
-	Sun, 26 Nov 2023 22:18:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="EZPuyjMV"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CFACFBEE;
+	Sun, 26 Nov 2023 22:36:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DAA9F0;
-	Sun, 26 Nov 2023 14:17:58 -0800 (PST)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 98D4186F40;
-	Sun, 26 Nov 2023 23:17:55 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1701037076;
-	bh=WjKUdUadE75KuCF33+OZs4fr2JhweqKtmUzbN8Hxwnw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=EZPuyjMVAuDJJzr8z3VXqNjR4AMygf7DOuB6HtFzCBcBLefqzvQU4KkXZet89L/4z
-	 dZ1Wtztb2/zp08g6jUbw3uVv0c2vIPU2P3vPeteA0dtFJxDV2pJnnerQhSEP9goBfV
-	 6pN/ooLPqlugqyaanzEAx5d6SavwAIIZexVBjuvrHlrpWbhVg9D8nbvgNjDLAzHHH5
-	 FOOdc+IqrOuir2ddVIOheoEsvIh7mZrRsvBmXH8FRAU3zkDGUkvZFEsHA7kPUpDaUJ
-	 lQBkDGcmLxi6oZptsnxaXf3uuglvEHMFJzPlplUq81MxdGjPNymRB9I7cC+DUn7+P9
-	 wT0uOfoFK0M0Q==
-Message-ID: <124ca1d8-5569-4c6c-8019-24e58dd8a5fc@denx.de>
-Date: Sun, 26 Nov 2023 23:17:55 +0100
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24BF9E3;
+	Sun, 26 Nov 2023 14:35:59 -0800 (PST)
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.96.2)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1r7NjA-0002M0-22;
+	Sun, 26 Nov 2023 22:35:49 +0000
+Date: Sun, 26 Nov 2023 22:35:45 +0000
+From: Daniel Golle <daniel@makrotopia.org>
+To: =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+Cc: Vladimir Oltean <olteanv@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Landen Chao <Landen.Chao@mediatek.com>,
+	DENG Qingfang <dqfext@gmail.com>,
+	Sean Wang <sean.wang@mediatek.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH RESEND net-next 2/2] dt-bindings: net: dsa:
+ mediatek,mt7530: document MDIO-bus
+Message-ID: <ZWPIQW1JA3rsvAzm@makrotopia.org>
+References: <6eb1b7b8dbc3a4b14becad15f0707d4f624ee18b.1691246461.git.daniel@makrotopia.org>
+ <9aec0fe0cb676b76132c388bb3ead46f596a6e6e.1691246461.git.daniel@makrotopia.org>
+ <dcb981b9-b435-c0e5-8e47-d66add207fdc@arinc9.com>
+ <20230808121707.chona7hakapp6whe@skbuf>
+ <44fde617-1159-4961-84c4-372fe265fbd8@arinc9.com>
+ <20230809220102.t3dqw7iojez5xsq3@skbuf>
+ <3f262579-eec1-4b21-9b18-1d1d612e715b@arinc9.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/2] iio: light: isl76682: Add ISL76682 driver
-Content-Language: en-US
-To: "Dr.-Ing. Andre Werner" <andre.werner@systec-electronic.com>
-Cc: linux-iio@vger.kernel.org,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Matti Vaittinen <mazziesaccount@gmail.com>,
- Alexander Stein <alexander.stein@ew.tq-group.com>,
- Bjorn Helgaas <bhelgaas@google.com>, Conor Dooley <conor+dt@kernel.org>,
- Fabio Estevam <festevam@denx.de>, Guenter Roeck <linux@roeck-us.net>,
- Jonathan Cameron <jic23@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Lars-Peter Clausen <lars@metafoo.de>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>, Mark Brown <broonie@kernel.org>,
- Naresh Solanki <naresh.solanki@9elements.com>,
- Patrick Rudolph <patrick.rudolph@9elements.com>,
- Rob Herring <robh+dt@kernel.org>,
- Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
- Vincent Tremblay <vincent@vtremblay.dev>, devicetree@vger.kernel.org
-References: <20231125222738.97875-1-marex@denx.de>
- <20231125222738.97875-2-marex@denx.de>
- <907048010.848203.1701027206602.JavaMail.zimbra@systec-electronic.com>
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <907048010.848203.1701027206602.JavaMail.zimbra@systec-electronic.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <3f262579-eec1-4b21-9b18-1d1d612e715b@arinc9.com>
 
-On 11/26/23 20:33, Dr.-Ing. Andre Werner wrote:
-
-[...]
-
-> +static int isl76682_write_raw(struct iio_dev *indio_dev,
-> +			      struct iio_chan_spec const *chan,
-> +			      int val, int val2, long mask)
-> +{
-> +	struct isl76682_chip *chip = iio_priv(indio_dev);
-> +	int i;
-> +
-> +	if (chan->type != IIO_LIGHT && chan->type != IIO_INTENSITY)
-> +		return -EINVAL;
+On Sat, Aug 12, 2023 at 01:45:29AM +0300, Arınç ÜNAL wrote:
+> On 10.08.2023 01:01, Vladimir Oltean wrote:
+> > [...]
+> > Since commit fe7324b93222 ("net: dsa: OF-ware slave_mii_bus"), DSA as a
+> > framework also supports auto-creating an internal MDIO bus based on the
+> > presence of the "mdio" node name, so I guess it makes sense for the
+> > "mdio" to appear in the generic dsa.yaml if there's nothing else that's
+> > special about it.
 > 
-> In my understanding, this is not necessary as you use that 'iio_chan_spec' to specify
-> the channels available at all. So there will be no other channel types created by the IIO environment, I think.
+> I agree with this. I've done this which works. It's even found a port
+> node with the ethernet property missing, as it should've.
 
-That's a good point, I think we can drop it in this case and the next one.
+Are you planning to complete/submit your work below?
+I'm asking because being able to reference the PHYs on the internal
+MDIO bus is mandatory on MT7988 which requires calibration data from
+NVMEM for each PHY, so supporting MT7988 depends on the associated
+driver change[1].
 
-Jonathan , is there any reason you can think of why this shouldn't be 
-dropped ?
+[1]: https://patchwork.kernel.org/project/netdevbpf/patch/6eb1b7b8dbc3a4b14becad15f0707d4f624ee18b.1691246461.git.daniel@makrotopia.org/
 
-I'll add it into V6, thanks.
+
+> 
+> diff --git a/Documentation/devicetree/bindings/net/dsa/dsa.yaml b/Documentation/devicetree/bindings/net/dsa/dsa.yaml
+> index ec74a660beda..03ccedbc49dc 100644
+> --- a/Documentation/devicetree/bindings/net/dsa/dsa.yaml
+> +++ b/Documentation/devicetree/bindings/net/dsa/dsa.yaml
+> @@ -31,6 +31,24 @@ properties:
+>        (single device hanging off a CPU port) must not specify this property
+>      $ref: /schemas/types.yaml#/definitions/uint32-array
+> +  mdio:
+> +    description: The internal MDIO bus of the switch
+> +    $ref: /schemas/net/mdio.yaml#
+> +
+> +if:
+> +  required: [ mdio ]
+> +then:
+> +  patternProperties:
+> +    "^(ethernet-)?ports$":
+> +      patternProperties:
+> +        "^(ethernet-)?port@[0-9]+$":
+> +          if:
+> +            not:
+> +              required: [ ethernet ]
+> +          then:
+> +            required:
+> +              - phy-handle
+> +
+>  additionalProperties: true
+>  $defs:
+> diff --git a/Documentation/devicetree/bindings/net/dsa/microchip,lan937x.yaml b/Documentation/devicetree/bindings/net/dsa/microchip,lan937x.yaml
+> index 8d7e878b84dc..fe1e2008995d 100644
+> --- a/Documentation/devicetree/bindings/net/dsa/microchip,lan937x.yaml
+> +++ b/Documentation/devicetree/bindings/net/dsa/microchip,lan937x.yaml
+> @@ -78,6 +78,16 @@ examples:
+>              };
+>      };
+> +    macb1 {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            fixed-link {
+> +                    speed = <1000>;
+> +                    full-duplex;
+> +            };
+> +    };
+> +
+>      spi {
+>              #address-cells = <1>;
+>              #size-cells = <0>;
+> @@ -138,6 +148,7 @@ examples:
+>                                      phy-mode = "rgmii";
+>                                      tx-internal-delay-ps = <2000>;
+>                                      rx-internal-delay-ps = <2000>;
+> +                                    ethernet = <&macb0>;
+>                                      fixed-link {
+>                                              speed = <1000>;
+> diff --git a/Documentation/devicetree/bindings/net/dsa/realtek.yaml b/Documentation/devicetree/bindings/net/dsa/realtek.yaml
+> index cfd69c2604ea..f600e65fc990 100644
+> --- a/Documentation/devicetree/bindings/net/dsa/realtek.yaml
+> +++ b/Documentation/devicetree/bindings/net/dsa/realtek.yaml
+> @@ -6,9 +6,6 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  title: Realtek switches for unmanaged switches
+> -allOf:
+> -  - $ref: dsa.yaml#/$defs/ethernet-ports
+> -
+>  maintainers:
+>    - Linus Walleij <linus.walleij@linaro.org>
+> @@ -95,37 +92,41 @@ properties:
+>        - '#address-cells'
+>        - '#interrupt-cells'
+> -  mdio:
+> -    $ref: /schemas/net/mdio.yaml#
+> -    unevaluatedProperties: false
+> -
+> -    properties:
+> -      compatible:
+> -        const: realtek,smi-mdio
+> -
+> -if:
+> -  required:
+> -    - reg
+> -
+> -then:
+> -  $ref: /schemas/spi/spi-peripheral-props.yaml#
+> -  not:
+> -    required:
+> -      - mdc-gpios
+> -      - mdio-gpios
+> -      - mdio
+> -
+> -  properties:
+> -    mdc-gpios: false
+> -    mdio-gpios: false
+> -    mdio: false
+> -
+> -else:
+> -  required:
+> -    - mdc-gpios
+> -    - mdio-gpios
+> -    - mdio
+> -    - reset-gpios
+> +allOf:
+> +  - $ref: dsa.yaml#/$defs/ethernet-ports
+> +  - if:
+> +      required: [ mdio ]
+> +    then:
+> +      properties:
+> +        mdio:
+> +          properties:
+> +            compatible:
+> +              const: realtek,smi-mdio
+> +
+> +          required:
+> +            - compatible
+> +
+> +  - if:
+> +      required:
+> +        - reg
+> +    then:
+> +      $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +      not:
+> +        required:
+> +          - mdc-gpios
+> +          - mdio-gpios
+> +          - mdio
+> +
+> +      properties:
+> +        mdc-gpios: false
+> +        mdio-gpios: false
+> +        mdio: false
+> +    else:
+> +      required:
+> +        - mdc-gpios
+> +        - mdio-gpios
+> +        - mdio
+> +        - reset-gpios
+>  required:
+>    - compatible
+> 
 
