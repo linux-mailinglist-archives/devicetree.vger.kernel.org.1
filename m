@@ -1,181 +1,98 @@
-Return-Path: <devicetree+bounces-18918-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18919-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 175567F90F5
-	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 03:29:11 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23B167F910F
+	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 03:57:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9B9752813B6
-	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 02:29:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AAF0FB20E7D
+	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 02:57:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F3D51392;
-	Sun, 26 Nov 2023 02:29:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 948F9A4F;
+	Sun, 26 Nov 2023 02:57:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="h4bWSvjj"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="oeVDF4oC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D362127;
-	Sat, 25 Nov 2023 18:29:06 -0800 (PST)
-Received: by mail-pf1-x429.google.com with SMTP id d2e1a72fcca58-6bd32d1a040so3019888b3a.3;
-        Sat, 25 Nov 2023 18:29:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1700965745; x=1701570545; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=P1u8RnYufqQNrSSEpBJB5j2w/wLYGiG0sRTQz3GvAHk=;
-        b=h4bWSvjjYER/qXlYgrb3P+sCiDWumsBL1lbT0He1DoxdLi1TcZls5FjAlUJ/eorPIz
-         ux90/fWqdJxDyFWvH013QLdxr9ebzrc7JhHFePkBCrFyZu5xGSeTizBsw4JGWAoFPxr5
-         674SlGfOCoaHup5wPCGuT1/zkFcOHVA1lKPTvZOAk5DVOCxEmwiw0KL/zzrGvMrr7YVd
-         10azQLKQIW1OzDzbhAg7/d3fSqYxnBnQG6qtnbAgLHFA+yDIB+KO3VG/TijZoBzalVa7
-         PXeQXwg9N2N5ehTAjP1017/pgk0yi8PtmOzGm3oCw9hUSRSwfJWHW3LO/KtLpn6/Ija+
-         ftTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700965745; x=1701570545;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=P1u8RnYufqQNrSSEpBJB5j2w/wLYGiG0sRTQz3GvAHk=;
-        b=M2SuSqmFCZsZsIFnBClKZx2H0B5xd3JxHT5VpsgvAiK9CJI46iBFJS8YDqfwYe2b58
-         tSXRZWLRO56ah4YDOilPXUW3bZe8OBOGMPzXCbl0QbIC1Nkt0SKPG0ZnDA8sPznXf0mx
-         7LeObcEmnmprdMHLFLltnih3dXjPtFY+Pc9awRE3y56biMQ6D8pPFnETaDjCiT3IizGp
-         v3SqLMLp8WQzEn63CeXIWKlZpaGlEj+OoYHeJdHn+VgRXRJ8/qr1PQbbFu7uyS2HNPaz
-         RNe3/4oseRl/wm0/sb3xqi3yPIP2CNi9Pu7iUAB+I/LQIxnOISqkQijt1GSt/66eudWD
-         7k8Q==
-X-Gm-Message-State: AOJu0YzUVZg1lIVyvhwYJdxa2kPmeBlN6umCvGPHv6Kc4fHbqCIS/ohR
-	Gec46/JtrZdI4huc9BzvCCs=
-X-Google-Smtp-Source: AGHT+IGv6qQUhlwklgkmfzLhvCVpf3TXWWtE2sCfhPyVABtBpSAdcQMopN9XevGjmBaGO05EyoXonQ==
-X-Received: by 2002:a05:6a00:1d83:b0:6cb:8d97:3df3 with SMTP id z3-20020a056a001d8300b006cb8d973df3mr9496862pfw.5.1700965745448;
-        Sat, 25 Nov 2023 18:29:05 -0800 (PST)
-Received: from localhost.localdomain ([192.166.114.90])
-        by smtp.gmail.com with ESMTPSA id x18-20020aa793b2000000b00688435a9915sm4961821pff.189.2023.11.25.18.29.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 25 Nov 2023 18:29:05 -0800 (PST)
-From: Jianhua Lu <lujianhua000@gmail.com>
-To: Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 213BCAF;
+	Sat, 25 Nov 2023 18:57:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+	s=s31663417; t=1700967406; x=1701572206; i=wahrenst@gmx.net;
+	bh=J1gJcLMyXZ+FsOhBrNIdq8Ve8lUdV033prPLll8RRVg=;
+	h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
+	b=oeVDF4oChzX9TAVC0IgL2df7f7ZS/jTbE9rKV1cC79SBdU4LZ7vwBIIIx9ZJHYBR
+	 4g8NICrcNyu1Re6FgJkWWXt2VhUBC/Gc2kUBMF6xS0q4fQY3YIEQET35ywWUBGU/M
+	 203vyAn26lJ+X4MCKTJSREC1ga+0vhh0kuIp+o5vcTH9bt71otsqcn8La6jY2zON3
+	 g+p7goh1mCEdRVP0+v5jxrloRoBcbR94eOYrQBdmIH5Nw5nt4solL6gmRfh3begaj
+	 GvBKJKcCIg5upfepxE/dnpmaigtf39VFa1Z2Xu6LB3LlZxAjG7vQU5ABNXdw3C/DR
+	 se/wV+g3GtpcACovDA==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from stefanw-SCHENKER ([37.4.248.43]) by mail.gmx.net (mrgmx004
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1Mlw7V-1rX24b0tiV-00j3Ii; Sun, 26
+ Nov 2023 03:56:46 +0100
+From: Stefan Wahren <wahrenst@gmx.net>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Mathias Nyman <mathias.nyman@intel.com>
+Cc: bcm-kernel-feedback-list@broadcom.com,
+	Cyril Brulebois <kibi@debian.org>,
+	linux-usb@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	~postmarketos/upstreaming@lists.sr.ht,
-	phone-devel@vger.kernel.org,
-	Jianhua Lu <lujianhua000@gmail.com>
-Subject: [PATCH v3 2/2] arm64: dts: qcom: sm8250-xiaomi-elish: Add pm8150b type-c node and enable usb otg
-Date: Sun, 26 Nov 2023 10:28:49 +0800
-Message-ID: <20231126022849.14273-2-lujianhua000@gmail.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20231126022849.14273-1-lujianhua000@gmail.com>
-References: <20231126022849.14273-1-lujianhua000@gmail.com>
+	linux-arm-kernel@lists.infradead.org,
+	Stefan Wahren <wahrenst@gmx.net>
+Subject: [PATCH 0/3] ARM: dts: bcm2711-rpi-cm4-io: Enable xHCI host
+Date: Sun, 26 Nov 2023 03:56:09 +0100
+Message-Id: <20231126025612.12522-1-wahrenst@gmx.net>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:DbvfE6OS0wsWi/hPWyTyC8xb1OdJsIz+l8oKXEuXIAQstgFWCdb
+ 06XG05hErGWv0uFmQa/R7ZPVLHrkLAdHVpHZAJCNNpCuh9L/6docqFo0H60UxqMOE7qApm0
+ RYzqzYxjtr82OYCvMXyFMzwDpNFFrbr7d1TWSzRlT1BCyABeakt9zCB2hJAW5wH8ACrkhXw
+ 5TapLmAu/FhkzrqrZ5gTA==
+UI-OutboundReport: notjunk:1;M01:P0:M4FnxJ4ExmU=;A+iRm20MfmFSiYQtY7jVUlLzSe8
+ gOPmgaOblLAtLF+e745WZYo+rFCpK7SRtcWBt7XmhM3rlaNUIE1SDY4riajM+9V3m6LnSyIXE
+ 4G1+YkP6wZSgEb2OF3TOMckvTeDXrKRM4OXJPhmj7Yw7VhP3CDpV2meWrNxLsC0LBzCG81OpJ
+ jJcIRboUYLIPr6+yvzpdT4YoNQHfnT0CNL2/J6ADfXVk8Vc5mkxiUP3X7BAvvNgNPBtXlkASv
+ 6Barcqi08qDP9xR7ithRc0JzVvFAOigwd11qHgPCjaQvZbOlnN1WYbvJeL5c0l3ibQlUOGf7V
+ 3I2tfrMKELNrFICOuf/zMCJK0oFoDVPIFSPbBH/V0woUchHE0PxLcX0gLALOtpiGZmhwUyUDz
+ Oh583YI1rcScbo/3AoYNWZhJZzHP5j6/ugb7jXSqTVUoB48hl03i4tCWk7F/Zp1DmjJjXi/ZU
+ /lq4JEy1DPvgWFvxUqspoCHUy/lq6ZjUa18ByBYf2ppHN3PXsYtrVcx2nPdtgkfdZd8KN1leZ
+ 3/m7l+hUk+ltgRlRpabESEfROzpWKhOBrM/2wSzlGYBqxWpsHVvLGPjIcXE5a2hfim45aihLC
+ T0dZfG+VHOFkgmwZ+Ed3v64TeMXSgcpiDMd0kPzDztFouWBuzERhM5z3IN7OPbkLAfrAeTqpP
+ D064eC6bp6DuxTJLQV4xzW7QC1oSgPjC1/l79UVj7l+aWMgvF41gm3oMoPf8rX5meU9GtojN5
+ 5VY0/3bzgwOZP3rwymiF351LBMIhcZT95lC7zmMc3S1/UJbmuVktVqVGVXvHYd69dRqq66S7f
+ fZjqzXC/HM/ZPiU7e4qmaSmvFRYX3oIR1XlkJj3CwZcaI0Q+ExhGkJhcX/4vI7qhKm86OxtrU
+ +xKwnIcXoUiLwS7Hnwh29WNgF2mGcv3AppsMnFjeH9CahWu6aqC2LPnqFzBVAG9QoOXMA4dAI
+ kpMm+A==
 
-Add type-c node to feature otg function and set usb-role-switch property
-for usb_1_dwc3 to enable usb otg.
+In contrast to the Raspberry Pi 4, the Compute Module 4 or the IO board
+does not have a VL805 USB 3.0 host controller, which is connected via
+PCIe. Instead, the BCM2711 on the Compute Module provides the built-in
+xHCI.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
----
-Changes in v3:
-  1. squash patch[3/3].
-  2. update commit message.
-  3. add pm8150b_vbus node.
+Stefan Wahren (3):
+  dt-bindings: usb: xhci: Add optional power-domains
+  ARM: dts: bcm2711: Add generic xHCI
+  ARM: dts: bcm2711-rpi-cm4-io: Enable xHCI host
 
-No changes in v2:
+ Documentation/devicetree/bindings/usb/generic-xhci.yaml | 3 +++
+ arch/arm/boot/dts/broadcom/bcm2711-rpi-cm4-io.dts       | 9 ++++++++-
+ arch/arm/boot/dts/broadcom/bcm2711-rpi.dtsi             | 5 +++++
+ arch/arm/boot/dts/broadcom/bcm2711.dtsi                 | 9 +++++++++
+ 4 files changed, 25 insertions(+), 1 deletion(-)
 
- .../dts/qcom/sm8250-xiaomi-elish-common.dtsi  | 43 ++++++++++++++++++-
- 1 file changed, 42 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
-index 3d4ea428e4cb..946365f15a59 100644
---- a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
-@@ -6,6 +6,7 @@
- #include <dt-bindings/arm/qcom,ids.h>
- #include <dt-bindings/phy/phy.h>
- #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-+#include <dt-bindings/usb/pd.h>
- #include "sm8250.dtsi"
- #include "pm8150.dtsi"
- #include "pm8150b.dtsi"
-@@ -627,6 +628,41 @@ vol_up_n: vol-up-n-state {
- 	};
- };
- 
-+&pm8150b_typec {
-+	vdd-pdphy-supply = <&vreg_l2a_3p1>;
-+	status = "okay";
-+
-+	connector {
-+		compatible = "usb-c-connector";
-+
-+		power-role = "source";
-+		data-role = "dual";
-+		self-powered;
-+
-+		source-pdos = <PDO_FIXED(5000, 3000,
-+					 PDO_FIXED_DUAL_ROLE |
-+					 PDO_FIXED_USB_COMM |
-+					 PDO_FIXED_DATA_SWAP)>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+
-+				pm8150b_role_switch_in: endpoint {
-+					remote-endpoint = <&usb_1_role_switch_out>;
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&pm8150b_vbus {
-+	status = "okay";
-+};
-+
- &pon_pwrkey {
- 	status = "okay";
- };
-@@ -664,11 +700,12 @@ &usb_1 {
- };
- 
- &usb_1_dwc3 {
--	dr_mode = "peripheral";
-+	dr_mode = "otg";
- 	maximum-speed = "high-speed";
- 	/* Remove USB3 phy */
- 	phys = <&usb_1_hsphy>;
- 	phy-names = "usb2-phy";
-+	usb-role-switch;
- };
- 
- &usb_1_hsphy {
-@@ -678,6 +715,10 @@ &usb_1_hsphy {
- 	status = "okay";
- };
- 
-+&usb_1_role_switch_out {
-+	remote-endpoint = <&pm8150b_role_switch_in>;
-+};
-+
- &ufs_mem_hc {
- 	vcc-supply = <&vreg_l17a_3p0>;
- 	vcc-max-microamp = <800000>;
--- 
-2.41.0
+=2D-
+2.34.1
 
 
