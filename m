@@ -1,248 +1,160 @@
-Return-Path: <devicetree+bounces-18963-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18964-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9CA97F9383
-	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 16:47:19 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E33507F93A5
+	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 17:04:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2F597B20D9F
-	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 15:47:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 208361C20C4A
+	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 16:04:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 821E7D2EC;
-	Sun, 26 Nov 2023 15:47:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0450FD52C;
+	Sun, 26 Nov 2023 16:04:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="TfsoGZur"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MPCc7s3s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5E681BF2
-	for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 07:47:00 -0800 (PST)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-9fa2714e828so463794066b.1
-        for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 07:47:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1701013619; x=1701618419; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=57RS1TjNb/HqQje9zcsenifzEIw3YsAQboR6CT03G7Q=;
-        b=TfsoGZurUYcJK9n7LG/vdgxQcSEBa5gBvua0grM+k0vDMiRjaNeK498yc84FQUIpwd
-         srE5ptNStb0qpgtiK3nvI5G2xakiIu+9yk0NWbM7iHceZeMaK3XJB//OKj2WE5rWynTG
-         yQ8knmk0eckAQokk0gR7M7wMhHDtLmHi+ttLg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701013619; x=1701618419;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=57RS1TjNb/HqQje9zcsenifzEIw3YsAQboR6CT03G7Q=;
-        b=QyGGtoqnEdmCFZSdwX6AxTU7a0p8p0uE5ZbLkaHOwwFqugBRYZF4FUvn5Fwn0nSO66
-         pi98u2wmyXbFjOUmgRMZ9TLGtrVaYd/IRRV3F0BRYhjJgAS1NE5eCb4qGPTyW8stD6P+
-         KlV1tkim38ZDUeelRmLGoOlR31UFdeSpX1ojQkhgzP4KADxMv0Nkz4Yt/P9tGh7x9Yud
-         /b94McnF8IHUtqrj28MOwWEjaUnuTjZ3HkuUwtQBad5geOoRulGBG9N0HjCpaRFMGgZg
-         5zNd2QOYkOjtbQNaxEdwNhnflfcmI03AIyDzzBBlF3jg8Gg4cy1XgtZEu5BuSVwsdHRn
-         qygw==
-X-Gm-Message-State: AOJu0YxsgjbBkebjjbwqOxa0x3FGfdzeZlPZOgZUykp4otjXx0RUGrNR
-	+P8VC0/g4tW0wgC3aTSc7P0eNQ==
-X-Google-Smtp-Source: AGHT+IFFAkWEHslPxVDi3PxTU7rV1hntw34+Ha2b28xcIGv01rVUUu1t4D3z24GzasVBPbxW+RZUpg==
-X-Received: by 2002:a17:906:3751:b0:9dc:2215:1593 with SMTP id e17-20020a170906375100b009dc22151593mr6258179ejc.25.1701013619211;
-        Sun, 26 Nov 2023 07:46:59 -0800 (PST)
-Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-95-244-100-54.retail.telecomitalia.it. [95.244.100.54])
-        by smtp.gmail.com with ESMTPSA id h24-20020a170906591800b009fdc684a79esm4656158ejq.124.2023.11.26.07.46.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 26 Nov 2023 07:46:58 -0800 (PST)
-From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-To: linux-kernel@vger.kernel.org
-Cc: Amarula patchwork <linux-amarula@amarulasolutions.com>,
-	michael@amarulasolutions.com,
-	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Peng Fan <peng.fan@nxp.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 11/11] arm64: dts: imx8mn-bsh-smm-s2/pro: add display setup
-Date: Sun, 26 Nov 2023 16:45:03 +0100
-Message-ID: <20231126154605.15767-12-dario.binacchi@amarulasolutions.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231126154605.15767-1-dario.binacchi@amarulasolutions.com>
-References: <20231126154605.15767-1-dario.binacchi@amarulasolutions.com>
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2A91DDA0;
+	Sun, 26 Nov 2023 16:04:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4FACEC433C7;
+	Sun, 26 Nov 2023 16:04:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701014688;
+	bh=juZpsIMH+zxndA5/oqXyf6KAF1d5Vbdex0YVpHNxFtg=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=MPCc7s3sMuYrw2qSU3ehirBXCceb+Zc90kY3gwhzjjR+P0ylUyt5udZAKW7GoOy9M
+	 wGtg5u2BuYdWwoHbXpTtF1Wu8E4O/Z9S72LP0R4Z0zmHYOSbAeCEpuPF8HSDtfYNZr
+	 YnPROqMvDbjjS4XIZmBohZBtm58uHVUfM1RCBjtkVCNTNJ8srAqkVFtDR45d6ErW/I
+	 Kz7fWIExR/f2eHHVsj7ts8L7x5Bepurm/ivk0hso233j7Y54y8r4CCpFSzRHpoNPW8
+	 Wv49cTpyWZsBGMoQhAqcNAPFnVG2SsxfSt8sahOiz8q3b4CcHVVKg2UPZzQtt+Kvfk
+	 /rxGOnAMw1U9w==
+Date: Sun, 26 Nov 2023 16:04:38 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ marius.cristea@microchip.com, lars@metafoo.de, robh+dt@kernel.org,
+ jdelvare@suse.com, linux@roeck-us.net, linux-hwmon@vger.kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: iio: adc: adding support for
+ PAC193X
+Message-ID: <20231126160438.01ff57d7@jic23-huawei>
+In-Reply-To: <20231126-nineteen-clumsy-701ac4145ba8@spud>
+References: <20231115134453.6656-1-marius.cristea@microchip.com>
+	<20231115134453.6656-2-marius.cristea@microchip.com>
+	<fedd4bcf-7892-4096-bcca-7ea72d39576f@linaro.org>
+	<20231116-channel-variety-cc7c262924ad@squawk>
+	<20231125194754.304523e6@jic23-huawei>
+	<20231126-nineteen-clumsy-701ac4145ba8@spud>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-From: Michael Trimarchi <michael@amarulasolutions.com>
+On Sun, 26 Nov 2023 11:24:56 +0000
+Conor Dooley <conor@kernel.org> wrote:
 
-Add the display and nodes required for its operation.
+> On Sat, Nov 25, 2023 at 07:47:54PM +0000, Jonathan Cameron wrote:
+> > On Thu, 16 Nov 2023 18:21:33 +0000
+> > Conor Dooley <conor@kernel.org> wrote:  
+> > > On Thu, Nov 16, 2023 at 04:01:43PM +0100, Krzysztof Kozlowski wrote:  
+> > > > On 15/11/2023 14:44, marius.cristea@microchip.com wrote:    
+> > > > > From: Marius Cristea <marius.cristea@microchip.com>  
+> 
+> > > > > +patternProperties:
+> > > > > +  "^channel@[1-4]+$":
+> > > > > +    type: object
+> > > > > +    $ref: adc.yaml
+> > > > > +    description: Represents the external channels which are connected to the ADC.
+> > > > > +
+> > > > > +    properties:
+> > > > > +      reg:
+> > > > > +        items:
+> > > > > +          minimum: 1
+> > > > > +          maximum: 4
+> > > > > +
+> > > > > +      shunt-resistor-micro-ohms:
+> > > > > +        description: |
+> > > > > +          Value in micro Ohms of the shunt resistor connected between
+> > > > > +          the SENSE+ and SENSE- inputs, across which the current is measured. Value
+> > > > > +          is needed to compute the scaling of the measured current.
+> > > > > +
+> > > > > +    required:
+> > > > > +      - reg
+> > > > > +      - shunt-resistor-micro-ohms
+> > > > > +
+> > > > > +    unevaluatedProperties: false
+> > > > > +
+> > > > > +required:
+> > > > > +  - compatible
+> > > > > +  - reg
+> > > > > +  - "#address-cells"
+> > > > > +  - "#size-cells"
+> > > > > +
+> > > > > +allOf:
+> > > > > +  - if:
+> > > > > +      properties:
+> > > > > +        compatible:
+> > > > > +          contains:
+> > > > > +            const: interrupts    
+> > > > 
+> > > > 
+> > > > I don't understand what do you want to say here. I am also 100% sure you
+> > > > did not test it on a real case (maybe example passes but nothing more).    
+> > > 
+> > > As far as I understand, the same pin on the device is used for both an
+> > > output or an input depending on the configuration. As an input, it is
+> > > the "slow-io" control, and as an output it is an interrupt.
+> > > I think Marius is trying to convey that either this pin can be in
+> > > exclusively one state or another.
+> > > 
+> > > _However_ I am not sure that that is really the right thing to do - they
+> > > might well be mutually exclusive modes, but I think the decision can be
+> > > made at runtime, rather than at devicetree creation time. Say for
+> > > example the GPIO controller this is connected to is capable of acting as
+> > > an interrupt controller. Unless I am misunderstanding the runtime
+> > > configurability of this hardware, I think it is possible to actually
+> > > provide a "slow-io-gpios" and an interrupt property & let the operating
+> > > system decide at runtime which mode it wants to work in.  
+> > 
+> > I'll admit I've long forgotten what was going on here, but based just on
+> > this bit of text I agree. There is nothing 'stopping' us having a pin
+> > uses as either / or / both interrupt and gpio.
+> > 
+> > It'll be a bit messy to support in the driver as IIRC there are some sanity
+> > checks that limit combinations on IRQs and output GPIOS.  Can't remember
+> > how bad the dance to navigate it safely is.
+> > 
+> > First version I'd just say pick one option if both are provided and
+> > don't support configuring it at runtime.  
+> 
+> Just to be clear, you are suggesting having the
+> "microchip,slow-io-gpios" and "interrupts" properties in the binding,
+> but the driver will just (for example) put that pin into alert mode
+> always & leave it there?
 
-Signed-off-by: Michael Trimarchi <michael@amarulasolutions.com>
-Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Yes.
 
----
+> If that is what you are suggesting, that seems pragmatic to me.
 
-Changes in v2:
-- Adjust the mipi_dsi node based on the latest patches merged into
-  the mainline in the dtsi files it includes.
-- Added to the series the following patches:
-  - 0001 drm/bridge: Fix bridge disable logic
-  - 0002 drm/bridge: Fix a use case in the bridge disable logic
-  - 0003 samsung-dsim: enter display mode in the enable() callback
-  - 0004 drm: bridge: samsung-dsim: complete the CLKLANE_STOP setting
+If a use case to do something else comes along later, then we can
+be smarter, but I'd like to keep it simple initially at least.
 
- .../freescale/imx8mn-bsh-smm-s2-common.dtsi   |   1 +
- .../freescale/imx8mn-bsh-smm-s2-display.dtsi  | 121 ++++++++++++++++++
- 2 files changed, 122 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-display.dtsi
+Jonathan
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi
-index 22a754d438f1..bbb07c650da9 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi
-@@ -7,6 +7,7 @@
- /dts-v1/;
- 
- #include "imx8mn.dtsi"
-+#include "imx8mn-bsh-smm-s2-display.dtsi"
- 
- / {
- 	chosen {
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-display.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-display.dtsi
-new file mode 100644
-index 000000000000..08f173b15495
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-display.dtsi
-@@ -0,0 +1,121 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2021 BSH
-+ */
-+
-+/ {
-+	backlight: backlight {
-+		compatible = "pwm-backlight";
-+		pwms = <&pwm1 0 700000 0>;	/* 700000 ns = 1337Hz */
-+		brightness-levels = <0 100>;
-+		num-interpolated-steps = <100>;
-+		default-brightness-level = <50>;
-+		status = "okay";
-+	};
-+
-+	reg_3v3_dvdd: regulator-3v3-O3 {
-+		compatible = "regulator-fixed";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_dvdd>;
-+		regulator-name = "3v3-dvdd-supply";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpio = <&gpio1 7 GPIO_ACTIVE_LOW>;
-+	};
-+
-+	reg_v3v3_avdd: regulator-3v3-O2 {
-+		compatible = "regulator-fixed";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_avdd>;
-+		regulator-name = "3v3-avdd-supply";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpio = <&gpio1 5 GPIO_ACTIVE_LOW>;
-+	};
-+};
-+
-+&pwm1 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_bl>;
-+};
-+
-+&lcdif {
-+	status = "okay";
-+	assigned-clocks = <&clk IMX8MN_VIDEO_PLL1>;
-+	assigned-clock-rates = <594000000>;
-+};
-+
-+&pgc_dispmix {
-+	assigned-clocks = <&clk IMX8MN_CLK_DISP_AXI>, <&clk IMX8MN_CLK_DISP_APB>;
-+	assigned-clock-parents = <&clk IMX8MN_SYS_PLL2_1000M>, <&clk IMX8MN_SYS_PLL1_800M>;
-+	assigned-clock-rates = <500000000>, <200000000>;
-+};
-+
-+&mipi_dsi {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+	samsung,esc-clock-frequency = <20000000>;
-+	samsung,pll-clock-frequency = <12000000>;
-+
-+	panel@0 {
-+		compatible = "sharp,ls068b3sx02", "synaptics,r63353";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_panel>;
-+		reg = <0>;
-+
-+		backlight = <&backlight>;
-+		dvdd-supply = <&reg_3v3_dvdd>;
-+		avdd-supply = <&reg_v3v3_avdd>;
-+		reset-gpios = <&gpio4 29 GPIO_ACTIVE_HIGH>;
-+
-+		port {
-+			panel_in: endpoint {
-+				remote-endpoint = <&mipi_dsi_out>;
-+			};
-+		};
-+
-+	};
-+
-+	ports {
-+		port@1 {
-+			reg = <1>;
-+			mipi_dsi_out: endpoint {
-+				remote-endpoint = <&panel_in>;
-+			};
-+		};
-+	};
-+};
-+
-+&gpu {
-+	status = "okay";
-+};
-+
-+&iomuxc {
-+
-+	/* This is for both PWM and voltage regulators for display */
-+	pinctrl_bl: pwm1grp {
-+		fsl,pins = <
-+			MX8MN_IOMUXC_GPIO1_IO01_PWM1_OUT	0x16
-+		>;
-+	};
-+
-+	pinctrl_panel: panelgrp {
-+		fsl,pins = <
-+			MX8MN_IOMUXC_SAI3_RXC_GPIO4_IO29	0x16	/* panel reset */
-+		>;
-+	};
-+
-+	pinctrl_dvdd: dvddgrp {
-+		fsl,pins = <
-+			MX8MN_IOMUXC_GPIO1_IO07_GPIO1_IO7	0x16	/* VDD 3V3_VO3 */
-+		>;
-+	};
-+
-+	pinctrl_avdd: avddgrp {
-+		fsl,pins = <
-+			MX8MN_IOMUXC_GPIO1_IO05_GPIO1_IO5	0x16	/* VDD 3V3_VO2 */
-+		>;
-+	};
-+};
--- 
-2.42.0
+> 
+> Cheers,
+> Conor.
+> 
 
 
