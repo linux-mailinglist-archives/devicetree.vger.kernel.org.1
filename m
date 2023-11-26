@@ -1,94 +1,122 @@
-Return-Path: <devicetree+bounces-18969-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18970-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F6007F93F3
-	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 17:39:37 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2C2A7F948A
+	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 18:19:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B3E05281005
-	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 16:39:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 06C591C208CC
+	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 17:19:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1EDFD26E;
-	Sun, 26 Nov 2023 16:39:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4174DDD8;
+	Sun, 26 Nov 2023 17:19:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cqRejtF/"
+	dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b="XVTNgv3E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82E481368;
-	Sun, 26 Nov 2023 16:39:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46BA7C433C7;
-	Sun, 26 Nov 2023 16:39:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701016772;
-	bh=zAX6XnqcADpFRg2WH300zCg5ZPXSwswAQpyCMx/ybWU=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=cqRejtF/XVGxW3ad/CblOp6VNbmmKTOv05rUG9ceK4nBSLOxBRk5nkqwfq+2csAVH
-	 Gn2rOkqZ8chuvKWUn0DNPZbVqz9A3RVQ3hiiCTsK15myabedk2MTdrVlWZDsznXHnE
-	 CrBpdiWZYh8BeHnQEgyurCbpL9TcftcTkig0B9J7TgmgdKuCME68TV6uqFpi3+X66F
-	 qJ29734WLRJ0zyBMDhTLSW/FmK3vH7oFIW7ZPDuOpvV+11bSDXlQ469DYoxmz90C5d
-	 8p5X3+4ja8o7YhqzpIAObJLMWWOA0kpM1bKi1nKObQQBn5NK4KZWGm2yCTs/boVBb5
-	 UuzkeflWTG0HQ==
-Date: Sun, 26 Nov 2023 16:39:22 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: Ana-Maria Cusco <anamaria.cuscoo@gmail.com>, Ana-Maria Cusco
- <ana-maria.cusco@analog.com>, Lars-Peter Clausen <lars@metafoo.de>, Michael
- Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] dt-bindings: iio: hmc425a: add entry for
- ADRF5740 Attenuator
-Message-ID: <20231126163922.74505322@jic23-huawei>
-In-Reply-To: <20231113-left-patchwork-09a1f88b0fa2@squawk>
-References: <20231113102535.51074-1-anamaria.cuscoo@gmail.com>
-	<20231113102535.51074-3-anamaria.cuscoo@gmail.com>
-	<20231113-discourse-sushi-e8fea2450a44@squawk>
-	<20231113-left-patchwork-09a1f88b0fa2@squawk>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+Received: from mail5.25mail.st (mail5.25mail.st [74.50.62.9])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B0F7AC
+	for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 09:19:21 -0800 (PST)
+Received: from localhost (91-158-86-216.elisa-laajakaista.fi [91.158.86.216])
+	by mail5.25mail.st (Postfix) with ESMTPSA id 894AA60479;
+	Sun, 26 Nov 2023 17:18:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=atomide.com;
+	s=25mailst; t=1701019160;
+	bh=Yi4nE9OmTsFagLEE5vj6YKCJ5nsTaUEbxvbympjRX3k=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=XVTNgv3ElKZu0YZB3dm19Jz+9FI9cI0PM9gtu651eE/WOg8Vau2jHgTxbpXeu3mFT
+	 noyWvXrA0QyiL/MiyYLtIsHfUO+aSCZ0ui2ML7hs83J1uaMnqava4knjozc8daBJ/u
+	 6FwvbtH/dNk2Cf24RvWIDf8j8WomvAWIJl4jcxqw2sdkHlq3mDm5Sh1DxKN9MRYvRX
+	 cWrACrSAwQ40vHdjkcdOzEf4HGSjt8rRWs27Pju6Hv3qrsrOMvZ3l0YNzcy8fexVxl
+	 w/SFo4hwFgrRfF+ylxjVzfuJdqbVbApeuW/bWqvyaShMAjFQJIqDJ5jnf4rjOp1xZz
+	 MVCjPiPv7khGA==
+Date: Sun, 26 Nov 2023 19:18:37 +0200
+From: Tony Lindgren <tony@atomide.com>
+To: Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Sam Ravnborg <sam@ravnborg.org>,
+	Vinay Simha BN <simhavcs@gmail.com>
+Cc: Carl Philipp Klemm <philipp@uvos.xyz>, devicetree@vger.kernel.org,
+	Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>,
+	Merlijn Wajer <merlijn@wizzup.org>,
+	Sebastian Reichel <sre@kernel.org>, dri-devel@lists.freedesktop.org,
+	Pavel Machek <pavel@ucw.cz>
+Subject: [PATCH 3/6] drm/bridge: tc358775: Add jeida-24 support
+Message-ID: <20231126171837.GK5169@atomide.com>
+References: <20231126163247.10131-1-tony@atomide.com>
+ <20231126163247.10131-2-tony@atomide.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231126163247.10131-2-tony@atomide.com>
 
-On Mon, 13 Nov 2023 13:41:27 +0000
-Conor Dooley <conor@kernel.org> wrote:
+The jeida-24 register values are the default hardware settings, but they
+not listed in the driver. Let's add them.
 
-> On Mon, Nov 13, 2023 at 01:40:40PM +0000, Conor Dooley wrote:
-> > On Mon, Nov 13, 2023 at 12:25:35PM +0200, Ana-Maria Cusco wrote:  
-> > > From: Ana-Maria Cusco <ana-maria.cusco@analog.com>
-> > > 
-> > > The ADRF5740 is a silicon, 4-bit digital attenuator with 22 dB
-> > > attenuation control range in 2 dB steps.
-> > > 
-> > > Signed-off-by: Ana-Maria Cusco <ana-maria.cusco@analog.com>  
-> > 
-> > Acked-by: Conor Dooley <conor.dooley@microchip.com>  
-> 
-> One thing though, the bindings patch should come before the driver patch
-> in your series.
-Flipped order whilst applying.
+Signed-off-by: Tony Lindgren <tony@atomide.com>
+---
+ drivers/gpu/drm/bridge/tc358775.c | 21 ++++++++++++++++++---
+ 1 file changed, 18 insertions(+), 3 deletions(-)
 
-Applied to the togreg branch of iio.git an pushed out initially as
-testing for 0-day to poke at it and see if it can find anythign we missed.
-
-Trivial thing but Ana-Maria, I'd prefer a cover letter even on a short series
-like this. It provides a place for general comments / discussion / tags to be
-applied and it gives it a pretty name in patchwork.
-
-Jonathan
-
-
-> 
-> Thanks,
-> conor.
-
+diff --git a/drivers/gpu/drm/bridge/tc358775.c b/drivers/gpu/drm/bridge/tc358775.c
+--- a/drivers/gpu/drm/bridge/tc358775.c
++++ b/drivers/gpu/drm/bridge/tc358775.c
+@@ -458,8 +458,18 @@ static void tc_bridge_enable(struct drm_bridge *bridge)
+ 	 * Default hardware register settings of tc358775 configured
+ 	 * with MEDIA_BUS_FMT_RGB888_1X7X4_JEIDA jeida-24 format
+ 	 */
+-	if (connector->display_info.bus_formats[0] ==
+-		MEDIA_BUS_FMT_RGB888_1X7X4_SPWG) {
++	switch (connector->display_info.bus_formats[0]) {
++	case MEDIA_BUS_FMT_RGB888_1X7X4_JEIDA:
++		/* JEIDA-24 */
++		d2l_write(tc->i2c, LV_MX0003, LV_MX(LVI_R2, LVI_R3, LVI_R4, LVI_R5));
++		d2l_write(tc->i2c, LV_MX0407, LV_MX(LVI_R6, LVI_R1, LVI_R7, LVI_G2));
++		d2l_write(tc->i2c, LV_MX0811, LV_MX(LVI_G3, LVI_G4, LVI_G0, LVI_G1));
++		d2l_write(tc->i2c, LV_MX1215, LV_MX(LVI_G5, LVI_G6, LVI_G7, LVI_B2));
++		d2l_write(tc->i2c, LV_MX1619, LV_MX(LVI_B0, LVI_B1, LVI_B3, LVI_B4));
++		d2l_write(tc->i2c, LV_MX2023, LV_MX(LVI_B5, LVI_B6, LVI_B7, LVI_L0));
++		d2l_write(tc->i2c, LV_MX2427, LV_MX(LVI_HS, LVI_VS, LVI_DE, LVI_R0));
++		break;
++	case MEDIA_BUS_FMT_RGB888_1X7X4_SPWG:
+ 		/* VESA-24 */
+ 		d2l_write(tc->i2c, LV_MX0003, LV_MX(LVI_R0, LVI_R1, LVI_R2, LVI_R3));
+ 		d2l_write(tc->i2c, LV_MX0407, LV_MX(LVI_R4, LVI_R7, LVI_R5, LVI_G0));
+@@ -468,7 +478,9 @@ static void tc_bridge_enable(struct drm_bridge *bridge)
+ 		d2l_write(tc->i2c, LV_MX1619, LV_MX(LVI_B6, LVI_B7, LVI_B1, LVI_B2));
+ 		d2l_write(tc->i2c, LV_MX2023, LV_MX(LVI_B3, LVI_B4, LVI_B5, LVI_L0));
+ 		d2l_write(tc->i2c, LV_MX2427, LV_MX(LVI_HS, LVI_VS, LVI_DE, LVI_R6));
+-	} else { /*  MEDIA_BUS_FMT_RGB666_1X7X3_SPWG - JEIDA-18 */
++		break;
++	case MEDIA_BUS_FMT_RGB666_1X7X3_SPWG:
++		/* JEIDA-18 */
+ 		d2l_write(tc->i2c, LV_MX0003, LV_MX(LVI_R0, LVI_R1, LVI_R2, LVI_R3));
+ 		d2l_write(tc->i2c, LV_MX0407, LV_MX(LVI_R4, LVI_L0, LVI_R5, LVI_G0));
+ 		d2l_write(tc->i2c, LV_MX0811, LV_MX(LVI_G1, LVI_G2, LVI_L0, LVI_L0));
+@@ -476,6 +488,9 @@ static void tc_bridge_enable(struct drm_bridge *bridge)
+ 		d2l_write(tc->i2c, LV_MX1619, LV_MX(LVI_L0, LVI_L0, LVI_B1, LVI_B2));
+ 		d2l_write(tc->i2c, LV_MX2023, LV_MX(LVI_B3, LVI_B4, LVI_B5, LVI_L0));
+ 		d2l_write(tc->i2c, LV_MX2427, LV_MX(LVI_HS, LVI_VS, LVI_DE, LVI_L0));
++		break;
++	default:
++		break;
+ 	}
+ 
+ 	d2l_write(tc->i2c, VFUEN, VFUEN_EN);
+-- 
+2.42.1
 
