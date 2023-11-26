@@ -1,137 +1,105 @@
-Return-Path: <devicetree+bounces-18947-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18948-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5EF47F929D
-	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 13:42:45 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D754E7F92BE
+	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 13:53:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5BF141F20CBA
-	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 12:42:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A0342810F9
+	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 12:53:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D40948F56;
-	Sun, 26 Nov 2023 12:42:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE461D262;
+	Sun, 26 Nov 2023 12:53:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HU1rKIhr"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="E8E+6IRD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEAFFDE
-	for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 04:42:38 -0800 (PST)
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-9fcfd2a069aso456442366b.1
-        for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 04:42:38 -0800 (PST)
+Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65A26E5;
+	Sun, 26 Nov 2023 04:53:35 -0800 (PST)
+Received: by mail-pl1-x629.google.com with SMTP id d9443c01a7336-1cf88973da5so7580835ad.0;
+        Sun, 26 Nov 2023 04:53:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701002557; x=1701607357; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=1Vt471ip4OY/Ubuhs3IIpL+rtLLzLQnUh9Pz2KMJg+Y=;
-        b=HU1rKIhrPFE7GP/S5XXYfe4wxLRUuNFJy/EX0isNt2WFnrbI01utVvgfSjeKGexJmI
-         VxfABj26bVUGJFUvf7J1D35gKeA/lHMqac5lUI3bxC/JaeUwl11asQdx/lX0ZZOQHFkZ
-         kgTBQsUpo6XCvOfAKU+TJKVRrd0bhEjOundBAQY+ek5RA+Pvg2zlHvtWRlbsZrwhwMWu
-         BSRHwfj96zbrDiIs2H6hTUI7GmHb86r2SFFpKzhuUMYXS3d4Lof9KZDD4kYc26M0zXVE
-         DT0LK60+Nn28fAnnateNcDaDMSQRUsz2m+1UDTkTZMv3R+DdT5WUPK3c2nRhXgor+U6m
-         b+JA==
+        d=gmail.com; s=20230601; t=1701003215; x=1701608015; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=aHs/ezw0Ly84u9q64DOYUfuCUEAWK3MbwxB/x63EELg=;
+        b=E8E+6IRDcldGcJBT/42weRji81vcSG7itI4+bI9QWivse8qR7knRmgJgtGgHYjeT9Z
+         agFmPbuoYbgZrvNs4Aoe8oxIWgaAYUh2CZIGoAZEVKQIiUY4deXg0NVL/v2snC527Ph1
+         mSwegMKGBMWLYHCV+WbeBLt51Yz1HRIaOr6awTeqNoY+6bcVWwAvX+8s1SP7/xXx6YS8
+         q5jBmpvZJqP+iGKEf4eifQzJXIUToy0dF99oP6WR7okIBy9OUtaQT+M7UX4HBUREvVNR
+         BN9uW7o2XSJzLOZBPNROCor5uNJgwkIgDATfmGt2OCztWAPE889AyEb/hRpT7MqfMekp
+         o3ZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701002557; x=1701607357;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1Vt471ip4OY/Ubuhs3IIpL+rtLLzLQnUh9Pz2KMJg+Y=;
-        b=Gh0dqqoSdWA3boJhQb+A2pU/rRS5p2QKBobvqwxKon2WmasfBZMqr79Txtrvzp3y4Z
-         zl+jCSHy0+nIAxWOY498mBvQb/q6Px7ofX2LOqnXnV8aWhrtXzH4d8URQCCPVtyu+Z58
-         gq6qaeg4Jp9WWyJW4mbqrtgS9lz7UYhWrdWxKGpgPNsFC5a6NQoP4fw85zLCBeqUu6Im
-         DTIYmyyID1Ceabu+vhpLqpuR4k6bWLFl+3Fc5ibqa2lZvQEOTPba9Z4ijpvkRkl4dcqR
-         /j/qexbFUk71fLjB84tTRDJRFrGP/yKSOihj6SsHmIbmYN/t+QwOq4NyFe1ZExY4hxsV
-         LWLw==
-X-Gm-Message-State: AOJu0YxnAGNWa5mjWh0k8Q7hJUNX5HtnNh9QKXI6ayMn1P7+q4yvGISX
-	glcWbJyx5ADY0Lsx7fghwsPq6A==
-X-Google-Smtp-Source: AGHT+IG9UjTaOoi1+xUm/b2wRTNQ1VcBEYvo+QB46x0jbjJnQey0h3cUBmE+gzbIou80XZUIxeCo4Q==
-X-Received: by 2002:a17:906:a448:b0:a02:14d6:2854 with SMTP id cb8-20020a170906a44800b00a0214d62854mr5109135ejb.59.1701002557121;
-        Sun, 26 Nov 2023 04:42:37 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.223.109])
-        by smtp.gmail.com with ESMTPSA id v11-20020a1709067d8b00b009dddec5a96fsm4557506ejo.170.2023.11.26.04.42.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 26 Nov 2023 04:42:36 -0800 (PST)
-Message-ID: <08b00968-d361-4e95-8f66-4791c25c45a5@linaro.org>
-Date: Sun, 26 Nov 2023 13:42:34 +0100
+        d=1e100.net; s=20230601; t=1701003215; x=1701608015;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=aHs/ezw0Ly84u9q64DOYUfuCUEAWK3MbwxB/x63EELg=;
+        b=cuElXlLREuQRSzL8fYdzb7PeXWDn8ZhRD046hGb0avRdD7SNHLHVZFkh6FBTwabWJm
+         69KgJNWq60Q38r0tTYnVzT97MG1HZUeO6rIMCc3HoysbtGMgMkyodWTcdkeobv58g/cZ
+         Hr//OJvIGd9obNjeGFaSe4YHJg6AhkqPoABUCwRKx/n3JS3hnA/NtI6xx07FHTkwWEzm
+         2f3+fswmbbO4hQtN/x15cIawuKg7Om5NMCumJUOJvzMmjEkqU7CCZy0rE/FC7Rj0cKax
+         e5Ibqx3iBb7pFP4IS+ey9jNlFVsOZnM7YxwozTgPvpcvKYREwphAiD1gxEg/dzzicS5E
+         fFEQ==
+X-Gm-Message-State: AOJu0YwosEP6NJ6mSWt07A9ElZ9HYthCcj2Orl1jnyUj3kiaW7ogGn0j
+	TR8n1gElYiEv0rRTg62PW3c=
+X-Google-Smtp-Source: AGHT+IE+5zVPM8eDpWwMgK5uqH0bAsdymwRoGx/b9m2ctZ2AkU+0RfDrjJHUJFZwFXoe/JCEj1yP3A==
+X-Received: by 2002:a05:6a00:2d24:b0:6cb:bc84:f932 with SMTP id fa36-20020a056a002d2400b006cbbc84f932mr11413073pfb.0.1701003214807;
+        Sun, 26 Nov 2023 04:53:34 -0800 (PST)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:114f:aa2:522:14a4])
+        by smtp.gmail.com with ESMTPSA id bh2-20020a056a02020200b0059d6f5196fasm5239847pgb.78.2023.11.26.04.53.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 26 Nov 2023 04:53:34 -0800 (PST)
+From: Fabio Estevam <festevam@gmail.com>
+To: sakari.ailus@linux.intel.com
+Cc: rfoss@kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	mchehab@kernel.org,
+	laurent.pinchart@ideasonboard.com,
+	devicetree@vger.kernel.org,
+	linux-media@vger.kernel.org,
+	Fabio Estevam <festevam@denx.de>
+Subject: [PATCH 1/2] media: dt-bindings: media: Introduce MEDIA_BUS_TYPE_DPI
+Date: Sun, 26 Nov 2023 09:53:19 -0300
+Message-Id: <20231126125320.4024456-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: renesas: r9a09g011: Add missing space in
- compatible
-To: =?UTF-8?Q?Niklas_S=C3=B6derlund?=
- <niklas.soderlund+renesas@ragnatech.se>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
-References: <20231125233242.237660-1-niklas.soderlund+renesas@ragnatech.se>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231125233242.237660-1-niklas.soderlund+renesas@ragnatech.se>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 26/11/2023 00:32, Niklas Söderlund wrote:
-> Add missing space in compatible property and align style with rest of
-> the file.
-> 
-> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+From: Fabio Estevam <festevam@denx.de>
 
-These are trivialities. Squash per subsystem please.
+Commit 18860529a599 ("media: dt-bindings: media: video-interfaces: Add
+new bus-type") introduced a new bus-type for DPI video bus.
 
-Best regards,
-Krzysztof
+Introduce MEDIA_BUS_TYPE_DPI into video-interfaces.h to complete
+the list of video interfaces.
+
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+---
+ include/dt-bindings/media/video-interfaces.h | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/include/dt-bindings/media/video-interfaces.h b/include/dt-bindings/media/video-interfaces.h
+index 68ac4e05e37f..0dace694a18f 100644
+--- a/include/dt-bindings/media/video-interfaces.h
++++ b/include/dt-bindings/media/video-interfaces.h
+@@ -12,5 +12,6 @@
+ #define MEDIA_BUS_TYPE_CSI2_DPHY		4
+ #define MEDIA_BUS_TYPE_PARALLEL			5
+ #define MEDIA_BUS_TYPE_BT656			6
++#define MEDIA_BUS_TYPE_DPI			7
+ 
+ #endif /* __DT_BINDINGS_MEDIA_VIDEO_INTERFACES_H__ */
+-- 
+2.34.1
 
 
