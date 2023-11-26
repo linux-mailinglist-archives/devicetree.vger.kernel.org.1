@@ -1,93 +1,79 @@
-Return-Path: <devicetree+bounces-18959-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18960-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E96A7F936E
-	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 16:46:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E0377F9378
+	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 16:46:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5FCEA1C20C86
-	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 15:46:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4B0F51F20F1C
+	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 15:46:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1B17D270;
-	Sun, 26 Nov 2023 15:46:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8465D296;
+	Sun, 26 Nov 2023 15:46:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="Q1JP71nM"
+	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="UepSTK1z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5599710A
-	for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 07:46:34 -0800 (PST)
-Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-54b18dbf148so1586303a12.1
-        for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 07:46:34 -0800 (PST)
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 653BC10E4
+	for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 07:46:49 -0800 (PST)
+Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-5441305cbd1so4502570a12.2
+        for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 07:46:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1701013593; x=1701618393; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=9NRiOseJ+HrnJijqkKCLC6KfYm1MOmk1OCYsL3w35U8=;
-        b=Q1JP71nMk6Gm3cEdgikVaOoELTDOZoQZie+e3piRLSeklXrYkvAYAhDEdNDf6qxCje
-         38xOcQ8gnVubMSPWSdbPabTjlFFGEu82J3R0pkOzb0YDhpRDsnpauNEGlgPMwYxW28PG
-         1KHfqERz5dij90Y1CCPlwrP/G/3GwLapeCAs4=
+        d=amarulasolutions.com; s=google; t=1701013608; x=1701618408; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3VVKgh/q76onEx9kq6IcN/9X/7jTKpjDPPOIb4Iciwc=;
+        b=UepSTK1zs+5LYf509oDVTGDD+yct0nfEF0d2l//fkvyyZPFHvs3AkZIY0XYxEFWIg2
+         aV3MjUxpM6Hh2TI2GtyuNxZXLzpjdIhsAxMYFL7u8yr219LZvPXRmstXK9NUm6rIiJh7
+         C9IWp3ogoFsuK+JEpQ8WHuh+GebfOuM/lfFjs=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701013593; x=1701618393;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9NRiOseJ+HrnJijqkKCLC6KfYm1MOmk1OCYsL3w35U8=;
-        b=hHP0b6K+WMVwx+iK49S7fckowSKswoR7vL3qqWGNfl8FaHpXJyjc76t0MfWtldGDkg
-         MWiLd/b/7hsA2ai//omfELZyjh5aVLQ3BWglHzM2bOGMEbnIeiY5WliStOuobVSYWoW0
-         1nkv4aKZ2MFnLBqDF+sRv2f9i4cJjMYPz70GxH7nQbEZNmZ7NTipFo0a11AYJnh1sSMT
-         QR2Nz5pIO6LbKaCsK9L9iqzPawqffKJfxD+8r4Kf83mDXGVawhtc4K/aoNzQjH+RJvrH
-         62UoqbpGZDHfXjtstDQqEhprI2Q9W/Zx+HKCXXJOmG8EkOniVp68+xyNX4ymsDy+jORI
-         jwaQ==
-X-Gm-Message-State: AOJu0YzZbf8xYD+OylXES3wVH421M7q331pRCl8HEVRblb5gJlQAJPVD
-	Z/O+pWPZReDlXDGeqHQpmfrsnA==
-X-Google-Smtp-Source: AGHT+IEb53K6LDcvxA1JVS/ygRWYIX4dk43omNRLsXmu9w+lynQAvanumFjUNJA5PES2kP7X13+6BA==
-X-Received: by 2002:a17:906:2b52:b0:9dd:9380:bb15 with SMTP id b18-20020a1709062b5200b009dd9380bb15mr6186748ejg.50.1701013593129;
-        Sun, 26 Nov 2023 07:46:33 -0800 (PST)
+        d=1e100.net; s=20230601; t=1701013608; x=1701618408;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=3VVKgh/q76onEx9kq6IcN/9X/7jTKpjDPPOIb4Iciwc=;
+        b=jBbYqlDg29T3qdGOHW8EzZtpy6zNcD4EE4BD8Lw+ZcmXtWQCZ3O/fwAK2olCKAw3wO
+         SM+7rwsDM09IK3CUKlSL8zlzpNbIyC60RbKlXntMAjxqrDm1H3bw8lCFdC6SOylqBpr9
+         7ER9aoNt+16dra+wX30mNMvxZhH59LyARkJGjXJ7eZ5r7ffYLqoqSLDABHGmMnVWi4Zd
+         UJBqKfJ98C15CuwLtMAACWQ717j+2tjx7CUuOXQavDOhwfs3pPE0uJq/koauihY6NZw6
+         Neu9pqZ9J6eD3uY8pMDJlMTYSXUaWoWbtvA8aitC1r7ghTYGn128ItvTw58w/KKZQT1y
+         czyQ==
+X-Gm-Message-State: AOJu0YyCqe97+/C86fPY114VT5nwAlzUzHmm9D0GKgDvACbG6fUgzFdK
+	FC71p5kYLVTwqMhK+iLh7P7Ymw==
+X-Google-Smtp-Source: AGHT+IGh/GGtx0+Kr31oo0KM6n0Q+Y9wLwm8EiDP3Jl7b2fFr+mDIBBp6sgXtDUCXfRCSimlSPO59w==
+X-Received: by 2002:a17:906:d210:b0:a03:d8ea:a269 with SMTP id w16-20020a170906d21000b00a03d8eaa269mr6106273ejz.11.1701013607789;
+        Sun, 26 Nov 2023 07:46:47 -0800 (PST)
 Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-95-244-100-54.retail.telecomitalia.it. [95.244.100.54])
-        by smtp.gmail.com with ESMTPSA id h24-20020a170906591800b009fdc684a79esm4656158ejq.124.2023.11.26.07.46.30
+        by smtp.gmail.com with ESMTPSA id h24-20020a170906591800b009fdc684a79esm4656158ejq.124.2023.11.26.07.46.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 26 Nov 2023 07:46:32 -0800 (PST)
+        Sun, 26 Nov 2023 07:46:47 -0800 (PST)
 From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
 To: linux-kernel@vger.kernel.org
 Cc: Amarula patchwork <linux-amarula@amarulasolutions.com>,
 	michael@amarulasolutions.com,
 	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Daniel Vetter <daniel@ffwll.ch>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
 	David Airlie <airlied@gmail.com>,
-	Fabio Estevam <festevam@gmail.com>,
-	Frieder Schrempf <frieder.schrempf@kontron.de>,
-	Inki Dae <inki.dae@samsung.com>,
-	Jagan Teki <jagan@amarulasolutions.com>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
 	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
 	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
 	Maxime Ripard <mripard@kernel.org>,
-	NXP Linux Team <linux-imx@nxp.com>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
-	Peng Fan <peng.fan@nxp.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
 	Rob Herring <robh+dt@kernel.org>,
-	Robert Foss <rfoss@kernel.org>,
 	Sam Ravnborg <sam@ravnborg.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
 	Thomas Zimmermann <tzimmermann@suse.de>,
 	devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 00/11] Add displays support for bsh-smm-s2/pro boards
-Date: Sun, 26 Nov 2023 16:44:52 +0100
-Message-ID: <20231126154605.15767-1-dario.binacchi@amarulasolutions.com>
+	dri-devel@lists.freedesktop.org
+Subject: [PATCH v2 05/11] dt-bindings: display: panel: Add synaptics r63353 panel controller
+Date: Sun, 26 Nov 2023 16:44:57 +0100
+Message-ID: <20231126154605.15767-6-dario.binacchi@amarulasolutions.com>
 X-Mailer: git-send-email 2.42.0
+In-Reply-To: <20231126154605.15767-1-dario.binacchi@amarulasolutions.com>
+References: <20231126154605.15767-1-dario.binacchi@amarulasolutions.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -96,57 +82,92 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The series adds drivers for the displays used by bsh-smm-s2/pro boards.
-This required applying some patches to the samsung-dsim driver and the
-drm_bridge.c module.
+From: Michael Trimarchi <michael@amarulasolutions.com>
+
+Add documentation for "synaptics,r63353" panel.
+
+Signed-off-by: Michael Trimarchi <michael@amarulasolutions.com>
+Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+
+---
 
 Changes in v2:
 - Add $ref to panel-common.yaml
 - Drop port, reset-gpios, and backlight
 - Set port and backlight ad required
 - Replace additionalProperties with unevaluatedProperties
-- Adjust the timings of the panel reset
-- Adjust the mipi_dsi node based on the latest patches merged into
-  the mainline in the dtsi files it includes.
-- Added to the series the following patches:
-  - 0001 drm/bridge: Fix bridge disable logic
-  - 0002 drm/bridge: Fix a use case in the bridge disable logic
-  - 0003 samsung-dsim: enter display mode in the enable() callback
-  - 0004 drm: bridge: samsung-dsim: complete the CLKLANE_STOP setting
 
-Dario Binacchi (4):
-  drm/bridge: Fix bridge disable logic
-  drm/bridge: Fix a use case in the bridge disable logic
-  drm: bridge: samsung-dsim: enter display mode in the enable() callback
-  drm: bridge: samsung-dsim: complete the CLKLANE_STOP setting
-
-Michael Trimarchi (7):
-  dt-bindings: display: panel: Add synaptics r63353 panel controller
-  drm/panel: Add Synaptics R63353 panel driver
-  dt-bindings: display: panel: Add Ilitek ili9805 panel controller
-  drm/panel: Add Ilitek ILI9805 panel driver
-  dt-bindings: ili9805: add compatible string for Tianma TM041XDHG01
-  drm/panel: ilitek-ili9805: add support for Tianma TM041XDHG01 panel
-  arm64: dts: imx8mn-bsh-smm-s2/pro: add display setup
-
- .../display/panel/ilitek,ili9805.yaml         |  64 +++
- .../display/panel/synaptics,r63353.yaml       |  61 +++
- MAINTAINERS                                   |  12 +
- .../freescale/imx8mn-bsh-smm-s2-common.dtsi   |   1 +
- .../freescale/imx8mn-bsh-smm-s2-display.dtsi  | 121 +++++
- drivers/gpu/drm/bridge/samsung-dsim.c         |  14 +-
- drivers/gpu/drm/drm_bridge.c                  |   9 +-
- drivers/gpu/drm/panel/Kconfig                 |  18 +
- drivers/gpu/drm/panel/Makefile                |   2 +
- drivers/gpu/drm/panel/panel-ilitek-ili9805.c  | 418 ++++++++++++++++++
- .../gpu/drm/panel/panel-synaptics-r63353.c    | 375 ++++++++++++++++
- 11 files changed, 1088 insertions(+), 7 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/display/panel/ilitek,ili9805.yaml
+ .../display/panel/synaptics,r63353.yaml       | 61 +++++++++++++++++++
+ 1 file changed, 61 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/display/panel/synaptics,r63353.yaml
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-display.dtsi
- create mode 100644 drivers/gpu/drm/panel/panel-ilitek-ili9805.c
- create mode 100644 drivers/gpu/drm/panel/panel-synaptics-r63353.c
 
+diff --git a/Documentation/devicetree/bindings/display/panel/synaptics,r63353.yaml b/Documentation/devicetree/bindings/display/panel/synaptics,r63353.yaml
+new file mode 100644
+index 000000000000..590db3719eb2
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/panel/synaptics,r63353.yaml
+@@ -0,0 +1,61 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/panel/synaptics,r63353.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Synaptics R63353 based MIPI-DSI panels
++
++maintainers:
++  - Michael Trimarchi <michael@amarulasolutions.com>
++
++allOf:
++  - $ref: panel-common.yaml#
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - sharp,ls068b3sx02
++      - const: synaptics,r63353
++
++  avdd-supply: true
++  dvdd-supply: true
++  reg: true
++
++required:
++  - compatible
++  - avdd-supply
++  - dvdd-supply
++  - reg
++  - reset-gpios
++  - port
++  - backlight
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    dsi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        panel@0 {
++            compatible = "sharp,ls068b3sx02", "synaptics,r63353";
++            reg = <0>;
++            avdd-supply = <&avdd_display>;
++            dvdd-supply = <&dvdd_display>;
++            reset-gpios = <&r_pio 0 5 GPIO_ACTIVE_LOW>; /* PL05 */
++            backlight = <&backlight>;
++
++            port {
++                panel_in: endpoint {
++                    remote-endpoint = <&mipi_dsi_out>;
++                };
++            };
++        };
++    };
++
++...
 -- 
 2.42.0
 
