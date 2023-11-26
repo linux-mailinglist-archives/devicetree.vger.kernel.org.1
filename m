@@ -1,66 +1,66 @@
-Return-Path: <devicetree+bounces-19008-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19009-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EEFE7F967C
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 00:28:46 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B189B7F967D
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 00:28:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 211D4B20A28
-	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 23:28:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E3B541C2082C
+	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 23:28:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC44515EBE;
-	Sun, 26 Nov 2023 23:28:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4944416400;
+	Sun, 26 Nov 2023 23:28:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="JQBKF97m"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="SOeL1YT6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA5F8D53
-	for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 15:28:34 -0800 (PST)
-Received: from mail-pg1-f200.google.com (mail-pg1-f200.google.com [209.85.215.200])
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92A0A123
+	for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 15:28:41 -0800 (PST)
+Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 78AE93F885
-	for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 23:28:33 +0000 (UTC)
+	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id B9A213F18D
+	for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 23:28:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1701041313;
-	bh=x/4VKc6j7ZPLGeNJb06p6pcCmpUDLk01xwbpFjzzvZw=;
+	s=20210705; t=1701041319;
+	bh=OuMn6YJcnYA0SdFjV5QIvrMlS1FQMrQ/PHdRB99f0NE=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
 	 MIME-Version;
-	b=JQBKF97mNX55Yf3Gyc2h2E3Ppw+eHmmbNqFuFmM/Zhm126nXJhsKyqc0xCm7nuL0w
-	 aG994RUfDT5oNwldoNpSR60mqWo4rQVXXwQHu8+TmprsjuF+HIZbnDxhCu8eol/1uP
-	 ehsYxm1WzCaC+Ts48Fzou0cRMWTucocEXyqrONyIT6SkuhoDRxPa+7QNtxUYeidORC
-	 L7T7lP/CuVHI2wjsgAt1Or+CXFo/dKSjH7z2GMInI5iMFkvQQsVD7uZSY/EWaRgQHu
-	 NJmsliRbOwSkHtSQkjS8P3vjPv+QwKD0p3yrxNYmIEq0RHBkyfbCPPBxKWOHUPqAAO
-	 Y/VNxZ0R3j4Aw==
-Received: by mail-pg1-f200.google.com with SMTP id 41be03b00d2f7-5bd26ef66d1so5042573a12.2
-        for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 15:28:33 -0800 (PST)
+	b=SOeL1YT6bSbk0XdhgDWSbLQ3Oy2/R330q1FZW9Otql84J+LVo+a+ftyWioX7X+XLE
+	 WsxSrwwg/P59pPDLYmxOJAl/9TCz1USYBQgmpN8hXweRkD3i6Bf0moQR+W54rQT5VD
+	 H+vQL8+7CsGj71XsrVF/gLCpx1htMw5a6FAUB+tdZdIFso/ohrT0kG2Pd6iPeOfCTF
+	 +drDqIKz/kEztmbP9ijGw/XyKRMhKRQT1tjyl8CgZvKAlZqqZVs5zlYkr78aooDeJn
+	 D2Ca80EAPxvcRPKDIVxDVq75Vp5RdfKH9n0Au6CImu5fIqu534LWbQTrwJjaAwWatG
+	 qBuf15ArBLASA==
+Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-285b3dd68c0so1662832a91.3
+        for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 15:28:39 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701041312; x=1701646112;
+        d=1e100.net; s=20230601; t=1701041318; x=1701646118;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=x/4VKc6j7ZPLGeNJb06p6pcCmpUDLk01xwbpFjzzvZw=;
-        b=ERJphmkfZ2kloS2PwsjVT722KiVNfeUPeQbffuWzJFFHERqBeh+mEdk4UcpT42XJt+
-         lELJcyPAjQSNeVpyNmsHqmFdxZ1v4L/Tv5cLeLtz3CmA4Psxqh39+sgDlKPkWUEt6kEt
-         igCZljqhpFA9FPW1eNc+xasCT4Q+W0C0jojWb+76GlQykRTA1fZMNY46NoljBpDyOGHd
-         gIMSqf4sxQJaK1kcrqAp5NzZ7SR8SUVKVNpEsKrZclYtvflxXiErQqsehK8uNJkbiD1P
-         FZz+QBNxgu25hkTYc53N5jxq6sBhIQ7RXFzoXA6mdXw1vrrnpHgp0CRjcQUR+1oTiwgD
-         5AkA==
-X-Gm-Message-State: AOJu0Yy8QOdQS2gJDhR3SY67Zq/bjUs3q8TfXWvsdVVsKg7v+EoNYQI6
-	pl6iMNru2X1FsxOxBMkUncQxKoB1WedJAQ6cGNjjBjKg4PMtth0pQiP2KaDkmtg35YxoToEr1ap
-	IfsnUoYEDRHu208jSo8DSPhA568OdtpVyyO85Zv0=
-X-Received: by 2002:a17:902:ab94:b0:1cf:b6a7:67a3 with SMTP id f20-20020a170902ab9400b001cfb6a767a3mr5596105plr.56.1701041312180;
-        Sun, 26 Nov 2023 15:28:32 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGn7gI9RzWm5JEwz0gkJGEdgyWBwAAAeo20KFp29UD271sxXxpOWLxGNhlLdPN5ZwfEX2jcYQ==
-X-Received: by 2002:a17:902:ab94:b0:1cf:b6a7:67a3 with SMTP id f20-20020a170902ab9400b001cfb6a767a3mr5596096plr.56.1701041311896;
-        Sun, 26 Nov 2023 15:28:31 -0800 (PST)
+        bh=OuMn6YJcnYA0SdFjV5QIvrMlS1FQMrQ/PHdRB99f0NE=;
+        b=ETw9/5xjDMgfGcw1UYE6YeJErspwTkJp+g6MZUSOtcnyqXrLs4qwUU5JL/sL7XJVVR
+         g1Ijf/Opp7KHmNUKsqQIpz+wm3aRCmskfKRtD2U5rup8uqY/xnSDo596IpeFc3DxCI4Y
+         7j+0L+wURCMYPXibAHeWztJnGLpSetH6WbR839UAGsMJG3SPG1nBt++Mn0mYNqree8dG
+         eF910Oxh6RrMMGxVEl06aNbwYau5/Ma/AfKTjzJgWu+NgQOuUsGu8jCM2yHOIWKoml48
+         yzWL3hgW/wD7/OZKRxmxlrIyWd8GW2YzOIflWKKsJ89fxRgN7ERv1fT2iF+QouA6X/1q
+         5caQ==
+X-Gm-Message-State: AOJu0Yw7rPotBnS+0fBFEbVA/TyNwgRAUBsqlZj/IEChBIXI2FyHIFd1
+	pynKCsufJjlPbOoDB7Exae0eVN+rv75P2r8+0vccZL4xRO/3wYu88wbqAQZx1hdnunDyamri/Bo
+	Og8DZPtef0+sPyx1MfnBZamk7jm8VbNvzO1uIGXg=
+X-Received: by 2002:a17:902:e80d:b0:1cf:b56f:5359 with SMTP id u13-20020a170902e80d00b001cfb56f5359mr6002918plg.16.1701041318487;
+        Sun, 26 Nov 2023 15:28:38 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEJoOhGmXHm3ZFgs42HkJ4RCFLyzcurPDAEjQybVEulGwZcrjrwFmdT8LY5fG5jxKouwWX+bA==
+X-Received: by 2002:a17:902:e80d:b0:1cf:b56f:5359 with SMTP id u13-20020a170902e80d00b001cfb56f5359mr6002901plg.16.1701041318277;
+        Sun, 26 Nov 2023 15:28:38 -0800 (PST)
 Received: from stitch.. ([80.71.140.73])
-        by smtp.gmail.com with ESMTPSA id y10-20020a170902b48a00b001cfb52ebffesm3123853plr.147.2023.11.26.15.28.25
+        by smtp.gmail.com with ESMTPSA id y10-20020a170902b48a00b001cfb52ebffesm3123853plr.147.2023.11.26.15.28.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 26 Nov 2023 15:28:30 -0800 (PST)
+        Sun, 26 Nov 2023 15:28:37 -0800 (PST)
 From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
 To: linux-riscv@lists.infradead.org,
 	devicetree@vger.kernel.org,
@@ -72,9 +72,9 @@ Cc: Paul Walmsley <paul.walmsley@sifive.com>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Subject: [PATCH v1 5/8] riscv: dts: starfive: Add pool for coherent DMA memory on JH7100 boards
-Date: Mon, 27 Nov 2023 00:27:43 +0100
-Message-Id: <20231126232746.264302-6-emil.renner.berthing@canonical.com>
+Subject: [PATCH v1 6/8] riscv: dts: starfive: Add JH7100 MMC nodes
+Date: Mon, 27 Nov 2023 00:27:44 +0100
+Message-Id: <20231126232746.264302-7-emil.renner.berthing@canonical.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20231126232746.264302-1-emil.renner.berthing@canonical.com>
 References: <20231126232746.264302-1-emil.renner.berthing@canonical.com>
@@ -86,62 +86,51 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The StarFive JH7100 SoC has non-coherent device DMAs, but most drivers
-expect to be able to allocate coherent memory for DMA descriptors and
-such. However on the JH7100 DDR memory appears twice in the physical
-memory map, once cached and once uncached:
+Add device tree nodes for the Synopsis MMC controllers on the
+StarFive JH7100 SoC.
 
-  0x00_8000_0000 - 0x08_7fff_ffff : Off chip DDR memory, cached
-  0x10_0000_0000 - 0x17_ffff_ffff : Off chip DDR memory, uncached
-
-To use this uncached region we create a global DMA memory pool there and
-reserve the corresponding area in the cached region.
-
-However the uncached region is fully above the 32bit address limit, so add
-a dma-ranges map so the DMA address used for peripherals is still in the
-regular cached region below the limit.
-
-Link: https://github.com/starfive-tech/JH7100_Docs/blob/main/JH7100%20Data%20Sheet%20V01.01.04-EN%20(4-21-2021).pdf
 Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
 ---
- .../boot/dts/starfive/jh7100-common.dtsi      | 24 +++++++++++++++++++
- 1 file changed, 24 insertions(+)
+ arch/riscv/boot/dts/starfive/jh7100.dtsi | 26 ++++++++++++++++++++++++
+ 1 file changed, 26 insertions(+)
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7100-common.dtsi b/arch/riscv/boot/dts/starfive/jh7100-common.dtsi
-index b93ce351a90f..3af88e6970a3 100644
---- a/arch/riscv/boot/dts/starfive/jh7100-common.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7100-common.dtsi
-@@ -39,6 +39,30 @@ led-ack {
- 			label = "ack";
+diff --git a/arch/riscv/boot/dts/starfive/jh7100.dtsi b/arch/riscv/boot/dts/starfive/jh7100.dtsi
+index 0cafac437746..c216aaecac53 100644
+--- a/arch/riscv/boot/dts/starfive/jh7100.dtsi
++++ b/arch/riscv/boot/dts/starfive/jh7100.dtsi
+@@ -178,6 +178,32 @@ plic: interrupt-controller@c000000 {
+ 			riscv,ndev = <133>;
  		};
- 	};
-+
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		dma-reserved@fa000000 {
-+			reg = <0x0 0xfa000000 0x0 0x1000000>;
-+			no-map;
-+		};
-+
-+		linux,dma@107a000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x10 0x7a000000 0x0 0x1000000>;
-+			no-map;
-+			linux,dma-default;
-+		};
-+	};
-+
-+	soc {
-+		dma-ranges = <0x00 0x80000000 0x00 0x80000000 0x00 0x7a000000>,
-+			     <0x00 0xfa000000 0x10 0x7a000000 0x00 0x01000000>,
-+			     <0x00 0xfb000000 0x00 0xfb000000 0x07 0x85000000>;
-+	};
- };
  
- &gpio {
++		sdio0: mmc@10000000 {
++			compatible = "snps,dw-mshc";
++			reg = <0x0 0x10000000 0x0 0x10000>;
++			clocks = <&clkgen JH7100_CLK_SDIO0_AHB>,
++				 <&clkgen JH7100_CLK_SDIO0_CCLKINT_INV>;
++			clock-names = "biu", "ciu";
++			interrupts = <4>;
++			data-addr = <0>;
++			fifo-depth = <32>;
++			fifo-watermark-aligned;
++			status = "disabled";
++		};
++
++		sdio1: mmc@10010000 {
++			compatible = "snps,dw-mshc";
++			reg = <0x0 0x10010000 0x0 0x10000>;
++			clocks = <&clkgen JH7100_CLK_SDIO1_AHB>,
++				 <&clkgen JH7100_CLK_SDIO1_CCLKINT_INV>;
++			clock-names = "biu", "ciu";
++			interrupts = <5>;
++			data-addr = <0>;
++			fifo-depth = <32>;
++			fifo-watermark-aligned;
++			status = "disabled";
++		};
++
+ 		clkgen: clock-controller@11800000 {
+ 			compatible = "starfive,jh7100-clkgen";
+ 			reg = <0x0 0x11800000 0x0 0x10000>;
 -- 
 2.40.1
 
