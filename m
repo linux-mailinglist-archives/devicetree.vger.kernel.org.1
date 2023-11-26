@@ -1,262 +1,153 @@
-Return-Path: <devicetree+bounces-18958-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18959-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BAEA7F9363
-	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 16:36:00 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E96A7F936E
+	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 16:46:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 93FD7B20D11
-	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 15:35:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5FCEA1C20C86
+	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 15:46:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06F0AD26A;
-	Sun, 26 Nov 2023 15:35:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1B17D270;
+	Sun, 26 Nov 2023 15:46:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="QuQ2hnbz"
+	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="Q1JP71nM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E74A2E1
-	for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 07:35:47 -0800 (PST)
-Received: from mail-oa1-f70.google.com (mail-oa1-f70.google.com [209.85.160.70])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id F2D0C40C59
-	for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 15:35:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1701012946;
-	bh=XKvEfE/yT+1u6a5zCoBgvHyNpleLhtsW9IihC1CtfgY=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type;
-	b=QuQ2hnbzOdmjQTzOrN5UKqDY8TitkA7LUk8K3ZxfX7KE2TD5VtTM8sq/+y5Yd8PG3
-	 J6CyBQa31rkfKDFvquyJo+xAX9LOPdCMn11yxYDgpj3/+IJWa19jAzZxlX9qWacVf9
-	 GWe8gGJFyUcOgeBagFsy3ZWRrAny5xTDJhtLIbR9840JfDFf+5vXw8t4Li6BflYMCN
-	 oBFB6vQYv+coDoOc7zsFKiCEiEgF/NCAwlO/SMclJE8E0XtiGd1CVoTQ+INuevOaee
-	 eadzABWyRSSOV02mmvenSvN0DYQndjIG0XE0Uvcc1uUJDhmcfoSOx7JQOTC3C8Y23L
-	 wMmqtzkxlO9hA==
-Received: by mail-oa1-f70.google.com with SMTP id 586e51a60fabf-1f950d4e1f8so4726592fac.2
-        for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 07:35:45 -0800 (PST)
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5599710A
+	for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 07:46:34 -0800 (PST)
+Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-54b18dbf148so1586303a12.1
+        for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 07:46:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google; t=1701013593; x=1701618393; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=9NRiOseJ+HrnJijqkKCLC6KfYm1MOmk1OCYsL3w35U8=;
+        b=Q1JP71nMk6Gm3cEdgikVaOoELTDOZoQZie+e3piRLSeklXrYkvAYAhDEdNDf6qxCje
+         38xOcQ8gnVubMSPWSdbPabTjlFFGEu82J3R0pkOzb0YDhpRDsnpauNEGlgPMwYxW28PG
+         1KHfqERz5dij90Y1CCPlwrP/G/3GwLapeCAs4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701012944; x=1701617744;
-        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XKvEfE/yT+1u6a5zCoBgvHyNpleLhtsW9IihC1CtfgY=;
-        b=BEuT6r8zG7wsMoPFGg60Cit85gAHlZ2CXFiiXMdCv4Dl5Uv7vNDLe54+3o6NmYqJhZ
-         RTKZEMMQSW94LrPb1kiVgwdr+Ni3ceDvIGtKbn5UE8lZGr7BJYRxUHrXzumQeiPnj7MN
-         fZ1Gwi86uQxFbfDKlHsWBPkAXQ6b3Pny/+Aa9BNQiw/i9r3Cmc0DtYOHa+egeo7uIBtD
-         +adkVMYwTIfV0caZh677MVmxeuU9GwYtYa7RjxF8naB4e1lBetra/Oo8Y0++qyCMV4aO
-         2MEXo5VlCo7QKBXfq2KgOvm+0CWhAZhHZwIaiiFb9YOtn5/zZZgsHehw+HJiTxabm1/I
-         2hBA==
-X-Gm-Message-State: AOJu0YzWh9URlvHyluCEwQSVrbj0VN2v5ztdiPBoWFydW182Uz+Bcoa2
-	wEIDFcRqo0DPvhEY0SQqq0xaNNrqewCYaogCBtxS3c+4d5MKxEwrOhcwX37ZujCxorV8dAzuDHv
-	y7m4ZwI/Kkxm/GzCJucSUbm0Kp44bUTfcAKqlDQKUosAkhFaANZLPluWXdzhic68=
-X-Received: by 2002:a05:6870:3c8b:b0:1f5:c6f9:b76d with SMTP id gl11-20020a0568703c8b00b001f5c6f9b76dmr12642870oab.49.1701012944494;
-        Sun, 26 Nov 2023 07:35:44 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGPyr6YtnSTxDyRnhJ4O+RkJcUnFuikgx1HgSKh7dR1BpfbqeB2EhGJO7dnreod0RXfNNu8Voklx2OIMwDo9gc=
-X-Received: by 2002:a05:6870:3c8b:b0:1f5:c6f9:b76d with SMTP id
- gl11-20020a0568703c8b00b001f5c6f9b76dmr12642845oab.49.1701012944216; Sun, 26
- Nov 2023 07:35:44 -0800 (PST)
-Received: from 348282803490 named unknown by gmailapi.google.com with
- HTTPREST; Sun, 26 Nov 2023 16:35:43 +0100
-From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-In-Reply-To: <20231126-unlighted-favorably-4627f2361a59@spud>
-References: <20231126-unlighted-favorably-4627f2361a59@spud>
+        d=1e100.net; s=20230601; t=1701013593; x=1701618393;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9NRiOseJ+HrnJijqkKCLC6KfYm1MOmk1OCYsL3w35U8=;
+        b=hHP0b6K+WMVwx+iK49S7fckowSKswoR7vL3qqWGNfl8FaHpXJyjc76t0MfWtldGDkg
+         MWiLd/b/7hsA2ai//omfELZyjh5aVLQ3BWglHzM2bOGMEbnIeiY5WliStOuobVSYWoW0
+         1nkv4aKZ2MFnLBqDF+sRv2f9i4cJjMYPz70GxH7nQbEZNmZ7NTipFo0a11AYJnh1sSMT
+         QR2Nz5pIO6LbKaCsK9L9iqzPawqffKJfxD+8r4Kf83mDXGVawhtc4K/aoNzQjH+RJvrH
+         62UoqbpGZDHfXjtstDQqEhprI2Q9W/Zx+HKCXXJOmG8EkOniVp68+xyNX4ymsDy+jORI
+         jwaQ==
+X-Gm-Message-State: AOJu0YzZbf8xYD+OylXES3wVH421M7q331pRCl8HEVRblb5gJlQAJPVD
+	Z/O+pWPZReDlXDGeqHQpmfrsnA==
+X-Google-Smtp-Source: AGHT+IEb53K6LDcvxA1JVS/ygRWYIX4dk43omNRLsXmu9w+lynQAvanumFjUNJA5PES2kP7X13+6BA==
+X-Received: by 2002:a17:906:2b52:b0:9dd:9380:bb15 with SMTP id b18-20020a1709062b5200b009dd9380bb15mr6186748ejg.50.1701013593129;
+        Sun, 26 Nov 2023 07:46:33 -0800 (PST)
+Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-95-244-100-54.retail.telecomitalia.it. [95.244.100.54])
+        by smtp.gmail.com with ESMTPSA id h24-20020a170906591800b009fdc684a79esm4656158ejq.124.2023.11.26.07.46.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 26 Nov 2023 07:46:32 -0800 (PST)
+From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+To: linux-kernel@vger.kernel.org
+Cc: Amarula patchwork <linux-amarula@amarulasolutions.com>,
+	michael@amarulasolutions.com,
+	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	David Airlie <airlied@gmail.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	Frieder Schrempf <frieder.schrempf@kontron.de>,
+	Inki Dae <inki.dae@samsung.com>,
+	Jagan Teki <jagan@amarulasolutions.com>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Peng Fan <peng.fan@nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Sam Ravnborg <sam@ravnborg.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2 00/11] Add displays support for bsh-smm-s2/pro boards
+Date: Sun, 26 Nov 2023 16:44:52 +0100
+Message-ID: <20231126154605.15767-1-dario.binacchi@amarulasolutions.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Date: Sun, 26 Nov 2023 16:35:43 +0100
-Message-ID: <CAJM55Z8-xJfxeV1xJrKXDpsGV05QV4C3JP3myRRBEq6dNfdPLQ@mail.gmail.com>
-Subject: Re: [PATCH v1] riscv: dts: microchip: move timebase-frequency to mpfs.dtsi
-To: Conor Dooley <conor@kernel.org>, linux-riscv@lists.infradead.org
-Cc: Conor Dooley <conor.dooley@microchip.com>, 
-	Daire McNamara <daire.mcnamara@microchip.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
->
-> The timebase-frequency on PolarFire SoC is not set by an oscillator on
-> the board, but rather by an internal divider, so move the property to
-> mpfs.dtsi.
->
-> This looks to be copy-pasta from the SiFive Unleashed as the comments
-> in both places were almost identical. In the Unleashed's case this looks
-> to actually be valid, as the clock is provided by a crystal on the PCB.
->
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+The series adds drivers for the displays used by bsh-smm-s2/pro boards.
+This required applying some patches to the samsung-dsim driver and the
+drm_bridge.c module.
 
-Makes sense to me.
+Changes in v2:
+- Add $ref to panel-common.yaml
+- Drop port, reset-gpios, and backlight
+- Set port and backlight ad required
+- Replace additionalProperties with unevaluatedProperties
+- Adjust the timings of the panel reset
+- Adjust the mipi_dsi node based on the latest patches merged into
+  the mainline in the dtsi files it includes.
+- Added to the series the following patches:
+  - 0001 drm/bridge: Fix bridge disable logic
+  - 0002 drm/bridge: Fix a use case in the bridge disable logic
+  - 0003 samsung-dsim: enter display mode in the enable() callback
+  - 0004 drm: bridge: samsung-dsim: complete the CLKLANE_STOP setting
 
-Reviewed-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Dario Binacchi (4):
+  drm/bridge: Fix bridge disable logic
+  drm/bridge: Fix a use case in the bridge disable logic
+  drm: bridge: samsung-dsim: enter display mode in the enable() callback
+  drm: bridge: samsung-dsim: complete the CLKLANE_STOP setting
 
-> ---
-> CC: Conor Dooley <conor.dooley@microchip.com>
-> CC: Daire McNamara <daire.mcnamara@microchip.com>
-> CC: Rob Herring <robh+dt@kernel.org>
-> CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> CC: Paul Walmsley <paul.walmsley@sifive.com>
-> CC: Palmer Dabbelt <palmer@dabbelt.com>
-> CC: linux-riscv@lists.infradead.org
-> CC: devicetree@vger.kernel.org
-> ---
->  arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts | 7 -------
->  arch/riscv/boot/dts/microchip/mpfs-m100pfsevp.dts | 7 -------
->  arch/riscv/boot/dts/microchip/mpfs-polarberry.dts | 7 -------
->  arch/riscv/boot/dts/microchip/mpfs-sev-kit.dts    | 7 -------
->  arch/riscv/boot/dts/microchip/mpfs-tysom-m.dts    | 7 -------
->  arch/riscv/boot/dts/microchip/mpfs.dtsi           | 1 +
->  6 files changed, 1 insertion(+), 35 deletions(-)
->
-> diff --git a/arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts b/arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts
-> index 90b261114763..dce96f27cc89 100644
-> --- a/arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts
-> +++ b/arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts
-> @@ -8,9 +8,6 @@
->  #include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/leds/common.h>
->
-> -/* Clock frequency (in Hz) of the rtcclk */
-> -#define RTCCLK_FREQ		1000000
-> -
->  / {
->  	model = "Microchip PolarFire-SoC Icicle Kit";
->  	compatible = "microchip,mpfs-icicle-reference-rtlv2210", "microchip,mpfs-icicle-kit",
-> @@ -29,10 +26,6 @@ chosen {
->  		stdout-path = "serial1:115200n8";
->  	};
->
-> -	cpus {
-> -		timebase-frequency = <RTCCLK_FREQ>;
-> -	};
-> -
->  	leds {
->  		compatible = "gpio-leds";
->
-> diff --git a/arch/riscv/boot/dts/microchip/mpfs-m100pfsevp.dts b/arch/riscv/boot/dts/microchip/mpfs-m100pfsevp.dts
-> index 184cb36a175e..a8d623ee9fa4 100644
-> --- a/arch/riscv/boot/dts/microchip/mpfs-m100pfsevp.dts
-> +++ b/arch/riscv/boot/dts/microchip/mpfs-m100pfsevp.dts
-> @@ -10,9 +10,6 @@
->  #include "mpfs.dtsi"
->  #include "mpfs-m100pfs-fabric.dtsi"
->
-> -/* Clock frequency (in Hz) of the rtcclk */
-> -#define MTIMER_FREQ	1000000
-> -
->  / {
->  	model = "Aries Embedded M100PFEVPS";
->  	compatible = "aries,m100pfsevp", "microchip,mpfs";
-> @@ -33,10 +30,6 @@ chosen {
->  		stdout-path = "serial1:115200n8";
->  	};
->
-> -	cpus {
-> -		timebase-frequency = <MTIMER_FREQ>;
-> -	};
-> -
->  	ddrc_cache_lo: memory@80000000 {
->  		device_type = "memory";
->  		reg = <0x0 0x80000000 0x0 0x40000000>;
-> diff --git a/arch/riscv/boot/dts/microchip/mpfs-polarberry.dts b/arch/riscv/boot/dts/microchip/mpfs-polarberry.dts
-> index c87cc2d8fe29..ea0808ab1042 100644
-> --- a/arch/riscv/boot/dts/microchip/mpfs-polarberry.dts
-> +++ b/arch/riscv/boot/dts/microchip/mpfs-polarberry.dts
-> @@ -6,9 +6,6 @@
->  #include "mpfs.dtsi"
->  #include "mpfs-polarberry-fabric.dtsi"
->
-> -/* Clock frequency (in Hz) of the rtcclk */
-> -#define MTIMER_FREQ	1000000
-> -
->  / {
->  	model = "Sundance PolarBerry";
->  	compatible = "sundance,polarberry", "microchip,mpfs";
-> @@ -22,10 +19,6 @@ chosen {
->  		stdout-path = "serial0:115200n8";
->  	};
->
-> -	cpus {
-> -		timebase-frequency = <MTIMER_FREQ>;
-> -	};
-> -
->  	ddrc_cache_lo: memory@80000000 {
->  		device_type = "memory";
->  		reg = <0x0 0x80000000 0x0 0x2e000000>;
-> diff --git a/arch/riscv/boot/dts/microchip/mpfs-sev-kit.dts b/arch/riscv/boot/dts/microchip/mpfs-sev-kit.dts
-> index 013cb666c72d..f9a890579438 100644
-> --- a/arch/riscv/boot/dts/microchip/mpfs-sev-kit.dts
-> +++ b/arch/riscv/boot/dts/microchip/mpfs-sev-kit.dts
-> @@ -6,9 +6,6 @@
->  #include "mpfs.dtsi"
->  #include "mpfs-sev-kit-fabric.dtsi"
->
-> -/* Clock frequency (in Hz) of the rtcclk */
-> -#define MTIMER_FREQ		1000000
-> -
->  / {
->  	#address-cells = <2>;
->  	#size-cells = <2>;
-> @@ -28,10 +25,6 @@ chosen {
->  		stdout-path = "serial1:115200n8";
->  	};
->
-> -	cpus {
-> -		timebase-frequency = <MTIMER_FREQ>;
-> -	};
-> -
->  	reserved-memory {
->  		#address-cells = <2>;
->  		#size-cells = <2>;
-> diff --git a/arch/riscv/boot/dts/microchip/mpfs-tysom-m.dts b/arch/riscv/boot/dts/microchip/mpfs-tysom-m.dts
-> index e0797c7e1b35..d1120f5f2c01 100644
-> --- a/arch/riscv/boot/dts/microchip/mpfs-tysom-m.dts
-> +++ b/arch/riscv/boot/dts/microchip/mpfs-tysom-m.dts
-> @@ -11,9 +11,6 @@
->  #include "mpfs.dtsi"
->  #include "mpfs-tysom-m-fabric.dtsi"
->
-> -/* Clock frequency (in Hz) of the rtcclk */
-> -#define MTIMER_FREQ		1000000
-> -
->  / {
->  	model = "Aldec TySOM-M-MPFS250T-REV2";
->  	compatible = "aldec,tysom-m-mpfs250t-rev2", "microchip,mpfs";
-> @@ -34,10 +31,6 @@ chosen {
->  		stdout-path = "serial1:115200n8";
->  	};
->
-> -	cpus {
-> -		timebase-frequency = <MTIMER_FREQ>;
-> -	};
-> -
->  	ddrc_cache_lo: memory@80000000 {
->  		device_type = "memory";
->  		reg = <0x0 0x80000000 0x0 0x30000000>;
-> diff --git a/arch/riscv/boot/dts/microchip/mpfs.dtsi b/arch/riscv/boot/dts/microchip/mpfs.dtsi
-> index a6faf24f1dba..266489d43912 100644
-> --- a/arch/riscv/boot/dts/microchip/mpfs.dtsi
-> +++ b/arch/riscv/boot/dts/microchip/mpfs.dtsi
-> @@ -13,6 +13,7 @@ / {
->  	cpus {
->  		#address-cells = <1>;
->  		#size-cells = <0>;
-> +		timebase-frequency = <1000000>;
->
->  		cpu0: cpu@0 {
->  			compatible = "sifive,e51", "sifive,rocket0", "riscv";
-> --
-> 2.39.2
->
->
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+Michael Trimarchi (7):
+  dt-bindings: display: panel: Add synaptics r63353 panel controller
+  drm/panel: Add Synaptics R63353 panel driver
+  dt-bindings: display: panel: Add Ilitek ili9805 panel controller
+  drm/panel: Add Ilitek ILI9805 panel driver
+  dt-bindings: ili9805: add compatible string for Tianma TM041XDHG01
+  drm/panel: ilitek-ili9805: add support for Tianma TM041XDHG01 panel
+  arm64: dts: imx8mn-bsh-smm-s2/pro: add display setup
+
+ .../display/panel/ilitek,ili9805.yaml         |  64 +++
+ .../display/panel/synaptics,r63353.yaml       |  61 +++
+ MAINTAINERS                                   |  12 +
+ .../freescale/imx8mn-bsh-smm-s2-common.dtsi   |   1 +
+ .../freescale/imx8mn-bsh-smm-s2-display.dtsi  | 121 +++++
+ drivers/gpu/drm/bridge/samsung-dsim.c         |  14 +-
+ drivers/gpu/drm/drm_bridge.c                  |   9 +-
+ drivers/gpu/drm/panel/Kconfig                 |  18 +
+ drivers/gpu/drm/panel/Makefile                |   2 +
+ drivers/gpu/drm/panel/panel-ilitek-ili9805.c  | 418 ++++++++++++++++++
+ .../gpu/drm/panel/panel-synaptics-r63353.c    | 375 ++++++++++++++++
+ 11 files changed, 1088 insertions(+), 7 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/ilitek,ili9805.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/panel/synaptics,r63353.yaml
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-display.dtsi
+ create mode 100644 drivers/gpu/drm/panel/panel-ilitek-ili9805.c
+ create mode 100644 drivers/gpu/drm/panel/panel-synaptics-r63353.c
+
+-- 
+2.42.0
+
 
