@@ -1,379 +1,119 @@
-Return-Path: <devicetree+bounces-19002-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19003-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F2547F965F
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 00:19:31 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98F8B7F9670
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 00:28:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4037E280DE5
-	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 23:19:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4B850280D48
+	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 23:28:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92C4415E9C;
-	Sun, 26 Nov 2023 23:19:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FEB315EB2;
+	Sun, 26 Nov 2023 23:28:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="l8I4UbzZ"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="nSJcalq4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2101.outbound.protection.outlook.com [40.107.114.101])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB945111
-	for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 15:19:24 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MaF/IUBQM8E/gSckRDFZoehi85CZSw6Rs5eagzJkWFB3OTNPyiJ07xTj6HymMgM9jxVA35pUVpZX5HuaQ/7qiC2O4OXxN1Lk5R09aITbKU1lZjMZ/PO16Q9GszZBsjrHjUEmtixX02C2+UMXzztia/Iyc5nYY17ElRlTHBRWr4kd0nDwunAv5bVJDZk2oUC049lJwruHZQVZgromlPktLWEcfjeVxQegZTp2WENZr6IIaFLH7s7mu3HbBMHfB+NKrof8MoFIJaldbUKQQGxuiFBEdjqdQs0z+JeaDw1FOhjZc12tlvWjuzEwd38KrXcxvOdoP9vVuqqWwnBexzmNjQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ufCmAgxj4vWDs+5p6C0t9sXW43Dw7ngQaq3vAMp+Z9Y=;
- b=XEKd+qNmJvR4h5SmfO7js66rKHn/Rye+yRW+dsxuptx28s8EMPhtzuQg7tb+qOsBoKEhJCJ0qupeya0qciCdfTABmB3ZJEXhPdOMXiddTE23WV7/6vg0XKEMBxqR2POK1HoyggCxDQIOzFiBlgv01olmvRrYFj84ig1+hPSLxJYAPJLlqltdGFo3GpdPqChpW3ome+qmSr0cTm9TF1M1H8Pv30GZJPxhrpOzqih/qgJKp4OTcpA/GQUkIdyZ104cE/FhNa2zVL38NRdw8d1w8yZfdPS2+3ypxNKtv4/dDYIyGRWl97waRS5+XLGmorApzcbfmRIRmFRSMmLqy2c4jw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ufCmAgxj4vWDs+5p6C0t9sXW43Dw7ngQaq3vAMp+Z9Y=;
- b=l8I4UbzZw4Ev1N9iuek9tkux3Z9gselzusZXbXBvO69RnB8b+8O/lJmmgDq22UsSqJh9joqN2mVfXamT8EVjYgUXR1dSn/KjH1+/4bYBrLJUdbFjBODZoH4DZs6ZTGauWtTOo7iGg0iDZLGiXoon81D0Q3haczmHGxu/ZIqcEnE=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
- (2603:1096:400:3a9::11) by OSRPR01MB11697.jpnprd01.prod.outlook.com
- (2603:1096:604:230::5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7025.27; Sun, 26 Nov
- 2023 23:19:23 +0000
-Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
- ([fe80::16b3:a84d:faa6:4846]) by TYCPR01MB10914.jpnprd01.prod.outlook.com
- ([fe80::16b3:a84d:faa6:4846%6]) with mapi id 15.20.7025.022; Sun, 26 Nov 2023
- 23:19:22 +0000
-Message-ID: <87msv0w1ad.wl-kuninori.morimoto.gx@renesas.com>
-From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Subject: [PATCH v7 resend 5/5] ASoC: audio-graph-card2-custom-sample: add CPU/Codec = N:M sample
-User-Agent: Wanderlust/2.15.9 Emacs/27.1 Mule/6.0
-To: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-	Mark Brown <broonie@kernel.org>,
-	Bard Liao <yung-chuan.liao@linux.intel.com>,
-	bard.liao@intel.com,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E71FD113
+	for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 15:28:01 -0800 (PST)
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id E8DF340C4F
+	for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 23:27:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1701041279;
+	bh=g2nzefL9abJS3V7F5jIo1B7LNOEauW6WFlyZ4XwqLeg=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version;
+	b=nSJcalq49+OANyoXnUQEc4riU+vnj9J5Pm3EHX51sb2lnOkXUL90U+UgUkWWmnDPT
+	 tQcuZfJFvkv4SQNWjjh4QSLGKDTwz/UD1tI7Oao9NbdvJ9egrOeDPG3Ewzpmxz5NcP
+	 zrfHqa8xoxwnrPrRdvMttNqlp2jfzmJrE6EawVv48/FPr7IJPnMu4GG0/h48+FwKo9
+	 2BEU+xAGKCRZJ/fPrnS2Mq+dKmJ3L6y5E2+RWyZ0GVFXT3Gtm8x+ALp+/bCPNcRBA3
+	 EwcS9ZOJRPSoEMf7tmDPn8YV616iwGfousmSoFQhNzqXWaTN/LusMGL1KtSFvqCUJo
+	 xhfAs/kMe2VKA==
+Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-1cfc3a062e8so9014625ad.1
+        for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 15:27:59 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701041278; x=1701646078;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=g2nzefL9abJS3V7F5jIo1B7LNOEauW6WFlyZ4XwqLeg=;
+        b=vNZeW4S65w7SkZCZFePjhhqdLe73f9w30qWaX0oJZsTttnqZtbgV3qTSsLX2cCd2wr
+         EX2oXnBUgRQlFcyeVu/8bEzRJOVTEiVFTdLLAF7iulinnJ5UCbmpU/dM+TROoAG9upCa
+         nkE9OogTfNHerqmn3EtXe0CxZ+XJeY/fm058w5H+KKXwPPDKk3QJxkB6QlxqaLQsaqaZ
+         nryA5Efwo02sWpfCFjY9a3jQqptzLJO6Mw/qxSDMLTvOlZBKy2YeXcn4E5nciC4zCfXx
+         uKcSU3dPph6R0yWyTlY60XY3DFwa1dkUyhcgEN1TGTRyOcd7+yYX96M6bOIQkHlfVJ+6
+         7aPA==
+X-Gm-Message-State: AOJu0YxTf4ippbwCIy/XAZXvIc+t3woP8t3m0ML4oyADcApDEnFcPzrs
+	qsmS3zl5khsER3NgahX5prE9ipzqoqGLz9u1t2CHz75uPiV2GGfl34EyMplU6ZMcWAtyZxZKc6w
+	E8VxSpr4fI6RWRjNUSnW4rc7jZe1znnxw3b1hlw0=
+X-Received: by 2002:a17:902:e843:b0:1cf:d24c:7b6c with SMTP id t3-20020a170902e84300b001cfd24c7b6cmr592913plg.59.1701041278371;
+        Sun, 26 Nov 2023 15:27:58 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHH60lQE3aZPaurMVIV4axuHzu18clG+N8+FOTOm8l4AK/mfUHBLQos1lPIK8CEhfQ0hwX19w==
+X-Received: by 2002:a17:902:e843:b0:1cf:d24c:7b6c with SMTP id t3-20020a170902e84300b001cfd24c7b6cmr592895plg.59.1701041278076;
+        Sun, 26 Nov 2023 15:27:58 -0800 (PST)
+Received: from stitch.. ([80.71.140.73])
+        by smtp.gmail.com with ESMTPSA id y10-20020a170902b48a00b001cfb52ebffesm3123853plr.147.2023.11.26.15.27.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 26 Nov 2023 15:27:57 -0800 (PST)
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+To: linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Conor Dooley <conor@kernel.org>,
 	Rob Herring <robh+dt@kernel.org>,
-	Jerome Brunet <jbrunet@baylibre.com>
-Cc: alsa-devel@alsa-project.org,
-	devicetree@vger.kernel.org
-In-Reply-To: <87ttp8w1bk.wl-kuninori.morimoto.gx@renesas.com>
-References: <87ttp8w1bk.wl-kuninori.morimoto.gx@renesas.com>
-Content-Type: text/plain; charset=US-ASCII
-Date: Sun, 26 Nov 2023 23:19:22 +0000
-X-ClientProxiedBy: TYCP286CA0087.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:400:2b3::18) To TYCPR01MB10914.jpnprd01.prod.outlook.com
- (2603:1096:400:3a9::11)
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Subject: [PATCH v1 0/8] Add JH7100 errata and update device tree
+Date: Mon, 27 Nov 2023 00:27:38 +0100
+Message-Id: <20231126232746.264302-1-emil.renner.berthing@canonical.com>
+X-Mailer: git-send-email 2.40.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYCPR01MB10914:EE_|OSRPR01MB11697:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2c4c6824-aeb2-4548-4417-08dbeed61fe1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	s69WLMWMi7bUqG/MphReyBBeEMLYAI7Dt8z+L9ZCZuzACZKBhHmQaG0Bt/xeorZJoVHACEUZ+l2uYLTsuqvzDbrEcrS3aknD1Lx3uCB7/J6VWnRB80TvLXA1QqiAgiPkvYisXz4J824rlP3hsbGasgB1l72nEWJa/nFnU2xvSHnnkP6Ca8r3DQ2hRm14yHuS9EGKHr9YeABRGJNHDtOHDj7kyyHOSB8fZO/rPeAse1cuWc6IKan3OnGwTTJbK7nk655n9lm8UipCczJfZRmkC36OOa7Ke9k9tOeh0JtPgqXUJmqEU2ZVxt1WQmOIsqi27WGLSfMvX7bAwMo3vDB1ksDx31mltJGNem/KCpyI4rBYt4zxjCS7EsaWTsrrIY7oFtf/P7rJF39ab+j8z70qocNacAqy4u1JYDeqfg1OHtbA4xyQN11MqXS/ia5eq8VkA30TJ0saFcY+2bmSYKaZxIARZc10v+b8QM1E5ZtmKFqwHKszrbbT38DhdNCdqo4w3UYWGIHyeuoXv2COWTbigJqC5q6ZqpBqzijBGkDAjQr5/mrlH0mWDB1bTKA5do42YPxjxqtahlLoPGACtiuWEjHzHk2NhzYgZkem/DeugvWDazx/2FrlR67zcNA1bFUQaq0wv01AyucRVRzE7ul1+Q==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB10914.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39860400002)(396003)(376002)(136003)(366004)(346002)(230922051799003)(1800799012)(186009)(451199024)(64100799003)(7416002)(4326008)(2906002)(8676002)(8936002)(41300700001)(26005)(66476007)(110136005)(316002)(66946007)(66556008)(6512007)(52116002)(5660300002)(2616005)(6506007)(83380400001)(86362001)(38100700002)(38350700005)(6486002)(478600001)(36756003)(2013699003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?GuiYLlYPeCMkRVvV89pzi45mN3SaDNMIy+ToBL5lt4Dpc1tqFsAZKELeUzyL?=
- =?us-ascii?Q?C6LHErvDktkdw33NXs/kFhDxub4+Y/90pnHDPmgDgkbZCtD9dH/2LQGDYidH?=
- =?us-ascii?Q?/ayrygolyBCRYYbxuPZQCYJE2ppnUAfNt67ekektNpYEor+36uI1Lud0Lv3G?=
- =?us-ascii?Q?IE727C6G+HoX/yTlVc5R3VHyfyKFb7boTvZkrR7S+2UfkH9C90E7SLEtYNix?=
- =?us-ascii?Q?HSp3Z2SqHYsfYTR7klMxMtFyyEkO8sar+pPOLHxmuwQkqvxohCzDo8Mey89D?=
- =?us-ascii?Q?1MCb5CXKEWcH4OnQMluronDt3/DwvyV6r0sELs9ElfvZY/jVph7qmdOPo+DR?=
- =?us-ascii?Q?7vYDmcFDR8vkVME/sIjFVRgo3ctkkBqZAg3DeaiRUAUuZiVxtd4pU9mgDXY6?=
- =?us-ascii?Q?UljaAEUIM10AMgAA1tJ9lxGZ91/0Oc445bL4nKAgTIBuUoCcipI8B4tnYePP?=
- =?us-ascii?Q?LfrJgIYU0TUVXtHQdm1GqZmhFj0ukITCO4ukJsUc/LPPGWCJKSzeZV3g4wPO?=
- =?us-ascii?Q?MjfE1reYNLyQ2oqH0+75PvCs2Juw1o+nyAogvrhL0UyhiEfipLu4UiLb9qcS?=
- =?us-ascii?Q?GAKJ5drXIbDBz1Z3BomSq99+JZEgftgMI2u65Xr5dd+5vaZ8riEzlgLzEK/y?=
- =?us-ascii?Q?eqQx4xtRwyypKxn4nBAyN4Svld0Dhv8rjHk3r8TfWpY3BiVX4JpsVn1lTpGd?=
- =?us-ascii?Q?+gAfdOnAWDUVcPZlib8I0HrxZGUXs7vC5VWnJWThvy3kcdp3umlOngmyCJzC?=
- =?us-ascii?Q?EtYFUTUfpRqqTCeMScGDkQ59skPWxN6co4RjkFAn5WlTMqLSRqoLXTvMeSCW?=
- =?us-ascii?Q?Iat9mibV5ROCoWonKLme7YUngIMBdHo9LBNylPXe2AhHhFVCvHxD2ckJugVy?=
- =?us-ascii?Q?1vjF0oBAjlq4LKAZVaRWG7XP6BP9a4mR4cyyDjdwPo1q+0kZwzYYP5Tbvh/r?=
- =?us-ascii?Q?w+No5Mfv9yMrO+g04F8MVFJFkjZHG2uVSo+FJq8LTHdxzy8zdQgvh3I/Ti5a?=
- =?us-ascii?Q?cavyC2rE9JlePstgNkR1rqBtEEowM612d8HlIMX6FrryB4vGCYIHfv3pH4BN?=
- =?us-ascii?Q?PZ4XWeimY2dCmJsAtc3AgbNAKlUd0Q6YLHJhTvTZAlw+2MdClCkxoPvA5AHc?=
- =?us-ascii?Q?aCs7LODbRPRYqZo9Rrx+npnyD+YLXtW+gHe4KGgBCHNEOkcRJS73rn0fmejE?=
- =?us-ascii?Q?UxNOBep6S11PMVYUqtvmGxpmJxHtGeV+bnmJ0Sz4GSb2pQ4DJohTEl/uHgND?=
- =?us-ascii?Q?rkzaCy1I81y7J5QgeNhUp19wjkCcQY2AR9SSspCdBxaFGKWbKxxx2R/9EXI0?=
- =?us-ascii?Q?00GvFXoxUEuDhbkPnsNjJbVA2ohhwV9dQKUbpW9ZzqSKizknq4VN+cf8SGrs?=
- =?us-ascii?Q?InNHtABHaLUUqZg6/8a7yZL6MXdT15zfh97tjAnuGQ8B1psMLDlSkDGOG8kY?=
- =?us-ascii?Q?HAWfARs6R6snaZ/NhkjovSvoA/+QGOzygNmn38bV8qyQ/EqSgpfiUQd4VwsS?=
- =?us-ascii?Q?jI4MJCcxqjHSSVNBEerQ2xj7pwKcYr6+1/hutZIYfqQDQ8oES9FXwtWaeTyT?=
- =?us-ascii?Q?WO99BpUL95kU+hl7FHyMWCP8UX+PIIje6tmFHynQG5B9tLsvS8Bx08ys3Lax?=
- =?us-ascii?Q?lKZhF3JhFt27EB98XWKBQZM=3D?=
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2c4c6824-aeb2-4548-4417-08dbeed61fe1
-X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB10914.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Nov 2023 23:19:22.9187
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 4XTuMYM8+uXMSx2Dkhda1uaFr13/jWd9RzbqRGVOM/+BllOqY8LslVzDyTq7nAc/15syVbeyTkgQ7nHqH3tBN3HmV10fHU3ok1MiQiLUFr1weMeQlKJQOLxyc6F2kJqP
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSRPR01MB11697
+Content-Transfer-Encoding: 8bit
 
-Now ASoC is supporting CPU/Codec = N:M connection.
-This patch adds its sample settings.
+Now that the driver for the SiFive cache controller supports manual
+flushing as non-standard cache operations[1] we can add an errata option
+for the StarFive JH7100 SoC and update the device tree with the cache
+controller, dedicated DMA pool and add MMC nodes for the SD-card and
+wifi.
 
-But One note here is that it has many type of samples, it reached to
-maximum of sound minor number. Therefore, new sample is disabled so far.
-If you want to try it, you need to disable some other one instead.
+This series needs the following commit in [1] to work properly:
 
-Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
----
- .../audio-graph-card2-custom-sample.dtsi      | 199 ++++++++++++++++++
- 1 file changed, 199 insertions(+)
+0d5701dc9cd6 ("soc: sifive: ccache: Add StarFive JH7100 support")
 
-diff --git a/sound/soc/generic/audio-graph-card2-custom-sample.dtsi b/sound/soc/generic/audio-graph-card2-custom-sample.dtsi
-index 7e2cd9cc3fa8..9efd31206c9b 100644
---- a/sound/soc/generic/audio-graph-card2-custom-sample.dtsi
-+++ b/sound/soc/generic/audio-graph-card2-custom-sample.dtsi
-@@ -64,6 +64,26 @@ / {
- 	 *	cpu2 <--| |		| |-> codec2
- 	 *		+-+		+-+
- 	 *
-+	 * [Multi-CPU/Codec-1]
-+	 *
-+	 *		+-+		+-+
-+	 *		| |<-@--------->| |
-+	 *		| |		| |
-+	 *	cpu8 <--| |<----------->| |-> codec14
-+	 *	cpu9 <--| |<---+------->| |-> codec15
-+	 *		+-+	\------>| |-> codec16
-+	 *				+-+
-+	 *
-+	 * [Multi-CPU/Codec-2]
-+	 *
-+	 *		+-+		+-+
-+	 *		| |<-@--------->| |
-+	 *		| |		| |
-+	 *	cpu10 <-| |<----------->| |-> codec17
-+	 *	cpu11 <-| |<-----+----->| |-> codec18
-+	 *	cpu12 <-| |<----/	+-+
-+	 *		+-+
-+	 *
- 	 * [DPCM]
- 	 *
- 	 *	CPU3/CPU4 are converting rate to 44100
-@@ -156,6 +176,26 @@ &sm0
- 			 */
- 			 &mcpu0
- 
-+			/*
-+			 * [Multi-CPU/Codec-1]: cpu side only
-+			 * cpu8/cpu9/codec14/codec15/codec16
-+			 *
-+			 * Because it will reach to the maximum of sound minor number,
-+			 * disable it so far.
-+			 * If you want to try it, please disable some other one instead.
-+			 */
-+			//&mcpu1
-+
-+			/*
-+			 * [Multi-CPU/Codec-2]: cpu side only
-+			 * cpu10/cpu11/cpu12/codec17/codec18
-+			 *
-+			 * Because it will reach to the maximum of sound minor number,
-+			 * disable it so far.
-+			 * If you want to try it, please disable some other one instead.
-+			 */
-+			//&mcpu2
-+
- 			/*
- 			 * [DPCM]: both FE / BE
- 			 * cpu3/cpu4/codec3
-@@ -295,6 +335,150 @@ ports@5 {
- 				port@1 { reg = <1>; smcodec1_ep: endpoint { remote-endpoint = <&codec12_ep>; };};/* (A) Multi Element */
- 				port@2 { reg = <2>; smcodec2_ep: endpoint { remote-endpoint = <&codec13_ep>; };};/* (B) Multi Element */
- 			};
-+
-+			/*
-+			 * [Multi-CPU-1]
-+			 *
-+			 *		+---+		+---+
-+			 *		|  X|<-@------->|x  |
-+			 *		|   |		|   |
-+			 *	cpu8 <--|A 1|<--------->|3 a|-> codec14
-+			 *	cpu9 <--|B 2|<---+----->|4 b|-> codec15
-+			 *		+---+	  \---->|5 c|-> codec16
-+			 *				+---+
-+			 */
-+			ports@6 {
-+				reg = <6>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+			mcpu1:	port@0 { reg = <0>; mcpu10_ep: endpoint { remote-endpoint = <&mcodec10_ep>; };};    /* (X) to pair */
-+				port@1 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <1>;
-+					mcpu11_ep:   endpoint@0 { reg = <0>; remote-endpoint = <&cpu8_ep>;       }; /* (A) Multi Element */
-+					mcpu11_ep_0: endpoint@1 { reg = <1>; remote-endpoint = <&mcodec11_ep_0>; }; /* (1) connected Codec */
-+				};
-+				port@2 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <2>;
-+					mcpu12_ep:   endpoint@0 { reg = <0>; remote-endpoint = <&cpu9_ep>;       }; /* (B) Multi Element */
-+					mcpu12_ep_0: endpoint@1 { reg = <1>; remote-endpoint = <&mcodec12_ep_0>; }; /* (2) connected Codec */
-+					mcpu12_ep_1: endpoint@2 { reg = <2>; remote-endpoint = <&mcodec13_ep_0>; }; /* (2) connected Codec */
-+				};
-+			};
-+
-+			/*
-+			 * [Multi-Codec-1]
-+			 *
-+			 *		+---+		+---+
-+			 *		|  X|<-@------->|x  |
-+			 *		|   |		|   |
-+			 *	cpu8 <--|A 1|<--------->|3 a|-> codec14
-+			 *	cpu9 <--|B 2|<---+----->|4 b|-> codec15
-+			 *		+---+	  \---->|5 c|-> codec16
-+			 *				+---+
-+			 */
-+			ports@7 {
-+				reg = <7>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				port@0 { reg = <0>; mcodec10_ep: endpoint { remote-endpoint = <&mcpu10_ep>;  };};   /* (x) to pair */
-+				port@1 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <1>;
-+					mcodec11_ep:   endpoint@0 { reg = <0>; remote-endpoint = <&codec14_ep>;  }; /* (a) Multi Element */
-+					mcodec11_ep_0: endpoint@1 { reg = <1>; remote-endpoint = <&mcpu11_ep_0>; }; /* (3) connected CPU */
-+				};
-+				port@2 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <2>;
-+					mcodec12_ep:   endpoint@0 { reg = <0>; remote-endpoint = <&codec15_ep>;  }; /* (b) Multi Element */
-+					mcodec12_ep_0: endpoint@1 { reg = <1>; remote-endpoint = <&mcpu12_ep_0>; }; /* (4) connected CPU */
-+				};
-+				port@3 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <3>;
-+					mcodec13_ep:   endpoint@0 { reg = <0>; remote-endpoint = <&codec16_ep>;  }; /* (c) Multi Element */
-+					mcodec13_ep_0: endpoint@1 { reg = <1>; remote-endpoint = <&mcpu12_ep_1>; }; /* (5) connected CPU */
-+				};
-+			};
-+
-+			/*
-+			 * [Multi-CPU-2]
-+			 *
-+			 *		+---+		+---+
-+			 *		|  X|<-@------->|x  |
-+			 *		|   |		|   |
-+			 *	cpu10 <-|A 1|<--------->|4 a|-> codec17
-+			 *	cpu11 <-|B 2|<-----+--->|5 b|-> codec18
-+			 *	cpu12 <-|C 3|<----/	+---+
-+			 *		+---+
-+			 */
-+			ports@8 {
-+				reg = <8>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+			mcpu2:	port@0 { reg = <0>; mcpu20_ep: endpoint { remote-endpoint = <&mcodec20_ep>; };};    /* (X) to pair */
-+				port@1 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <1>;
-+					mcpu21_ep:   endpoint@0 { reg = <0>; remote-endpoint = <&cpu10_ep>;      }; /* (A) Multi Element */
-+					mcpu21_ep_0: endpoint@1 { reg = <1>; remote-endpoint = <&mcodec21_ep_0>; }; /* (1) connected Codec */
-+				};
-+				port@2 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <2>;
-+					mcpu22_ep:   endpoint@0 { reg = <0>; remote-endpoint = <&cpu11_ep>;      }; /* (B) Multi Element */
-+					mcpu22_ep_0: endpoint@1 { reg = <1>; remote-endpoint = <&mcodec22_ep_0>; }; /* (2) connected Codec */
-+				};
-+				port@3 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <3>;
-+					mcpu23_ep:   endpoint@0 { reg = <0>; remote-endpoint = <&cpu12_ep>;      }; /* (C) Multi Element */
-+					mcpu23_ep_0: endpoint@1 { reg = <1>; remote-endpoint = <&mcodec22_ep_1>; }; /* (3) connected Codec */
-+				};
-+			};
-+
-+			/*
-+			 * [Multi-Codec-2]
-+			 *
-+			 *		+---+		+---+
-+			 *		|  X|<-@------->|x  |
-+			 *		|   |		|   |
-+			 *	cpu10 <-|A 1|<--------->|4 a|-> codec17
-+			 *	cpu11 <-|B 2|<-----+--->|5 b|-> codec18
-+			 *	cpu12 <-|C 3|<----/	+---+
-+			 *		+---+
-+			 */
-+			ports@9 {
-+				reg = <9>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				port@0 { reg = <0>; mcodec20_ep: endpoint { remote-endpoint = <&mcpu20_ep>;  };};   /* (x) to pair */
-+				port@1 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <1>;
-+					mcodec21_ep:   endpoint@0 { reg = <0>; remote-endpoint = <&codec17_ep>;  }; /* (a) Multi Element */
-+					mcodec21_ep_0: endpoint@1 { reg = <1>; remote-endpoint = <&mcpu21_ep_0>; }; /* (4) connected CPU */
-+				};
-+				port@2 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <2>;
-+					mcodec22_ep:   endpoint@0 { reg = <0>; remote-endpoint = <&codec18_ep>;  }; /* (b) Multi Element */
-+					mcodec22_ep_0: endpoint@1 { reg = <1>; remote-endpoint = <&mcpu22_ep_0>; }; /* (5) connected CPU */
-+					mcodec22_ep_1: endpoint@2 { reg = <2>; remote-endpoint = <&mcpu23_ep_0>; }; /* (5) connected CPU */
-+				};
-+			};
- 		};
- 
- 		dpcm {
-@@ -440,6 +624,14 @@ ports {
- 
- 			/* [Semi-Multi] */
- 			sm0:  port@7 { reg = <7>; cpu7_ep: endpoint { remote-endpoint = <&smcodec0_ep>; }; };
-+
-+			/* [Multi-CPU-1] */
-+			      port@8 { reg = <8>; cpu8_ep: endpoint { remote-endpoint = <&mcpu11_ep>;   }; };
-+			      port@9 { reg = <9>; cpu9_ep: endpoint { remote-endpoint = <&mcpu12_ep>;   }; };
-+			/* [Multi-CPU-2] */
-+			      port@a { reg = <10>; cpu10_ep: endpoint { remote-endpoint = <&mcpu21_ep>; }; };
-+			      port@b { reg = <11>; cpu11_ep: endpoint { remote-endpoint = <&mcpu22_ep>; }; };
-+			      port@c { reg = <12>; cpu12_ep: endpoint { remote-endpoint = <&mcpu23_ep>; }; };
- 		};
- 	};
- 
-@@ -498,6 +690,13 @@ port@3  {
- 			port@c { reg = <12>; codec12_ep: endpoint { remote-endpoint = <&smcodec1_ep>; }; };
- 			port@d { reg = <13>; codec13_ep: endpoint { remote-endpoint = <&smcodec2_ep>; }; };
- 
-+			/* [Multi-Codec-1] */
-+			port@e  { reg = <14>; codec14_ep: endpoint { remote-endpoint = <&mcodec11_ep>; }; };
-+			port@f  { reg = <15>; codec15_ep: endpoint { remote-endpoint = <&mcodec12_ep>; }; };
-+			port@10 { reg = <16>; codec16_ep: endpoint { remote-endpoint = <&mcodec13_ep>; }; };
-+			/* [Multi-Codec-2] */
-+			port@11 { reg = <17>; codec17_ep: endpoint { remote-endpoint = <&mcodec21_ep>; }; };
-+			port@12 { reg = <18>; codec18_ep: endpoint { remote-endpoint = <&mcodec22_ep>; }; };
- 		};
- 	};
- };
+[1]: https://git.kernel.org/pub/scm/linux/kernel/git/conor/linux.git/log/?h=riscv-soc-for-next
+
+Emil Renner Berthing (7):
+  riscv: errata: Add StarFive JH7100 errata
+  riscv: dts: starfive: Mark the JH7100 as having non-coherent DMAs
+  riscv: dts: starfive: Add JH7100 cache controller
+  riscv: dts: starfive: Add pool for coherent DMA memory on JH7100
+    boards
+  riscv: dts: starfive: Add JH7100 MMC nodes
+  riscv: dts: starfive: Enable SD-card on JH7100 boards
+  riscv: dts: starfive: Enable SDIO wifi on JH7100 boards
+
+Geert Uytterhoeven (1):
+  riscv: dts: starfive: Group tuples in interrupt properties
+
+ arch/riscv/Kconfig.errata                     |  17 +++
+ .../boot/dts/starfive/jh7100-common.dtsi      | 131 ++++++++++++++++++
+ arch/riscv/boot/dts/starfive/jh7100.dtsi      |  48 ++++++-
+ 3 files changed, 192 insertions(+), 4 deletions(-)
+
 -- 
-2.25.1
+2.40.1
 
 
