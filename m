@@ -1,59 +1,48 @@
-Return-Path: <devicetree+bounces-18970-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18971-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2C2A7F948A
-	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 18:19:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 884787F948D
+	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 18:20:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 06C591C208CC
-	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 17:19:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4208F281130
+	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 17:20:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4174DDD8;
-	Sun, 26 Nov 2023 17:19:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2227FDF4F;
+	Sun, 26 Nov 2023 17:20:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b="XVTNgv3E"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="hsZEBQ+u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail5.25mail.st (mail5.25mail.st [74.50.62.9])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B0F7AC
-	for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 09:19:21 -0800 (PST)
-Received: from localhost (91-158-86-216.elisa-laajakaista.fi [91.158.86.216])
-	by mail5.25mail.st (Postfix) with ESMTPSA id 894AA60479;
-	Sun, 26 Nov 2023 17:18:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=atomide.com;
-	s=25mailst; t=1701019160;
-	bh=Yi4nE9OmTsFagLEE5vj6YKCJ5nsTaUEbxvbympjRX3k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XVTNgv3ElKZu0YZB3dm19Jz+9FI9cI0PM9gtu651eE/WOg8Vau2jHgTxbpXeu3mFT
-	 noyWvXrA0QyiL/MiyYLtIsHfUO+aSCZ0ui2ML7hs83J1uaMnqava4knjozc8daBJ/u
-	 6FwvbtH/dNk2Cf24RvWIDf8j8WomvAWIJl4jcxqw2sdkHlq3mDm5Sh1DxKN9MRYvRX
-	 cWrACrSAwQ40vHdjkcdOzEf4HGSjt8rRWs27Pju6Hv3qrsrOMvZ3l0YNzcy8fexVxl
-	 w/SFo4hwFgrRfF+ylxjVzfuJdqbVbApeuW/bWqvyaShMAjFQJIqDJ5jnf4rjOp1xZz
-	 MVCjPiPv7khGA==
-Date: Sun, 26 Nov 2023 19:18:37 +0200
-From: Tony Lindgren <tony@atomide.com>
-To: Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Sam Ravnborg <sam@ravnborg.org>,
-	Vinay Simha BN <simhavcs@gmail.com>
-Cc: Carl Philipp Klemm <philipp@uvos.xyz>, devicetree@vger.kernel.org,
-	Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>,
-	Merlijn Wajer <merlijn@wizzup.org>,
-	Sebastian Reichel <sre@kernel.org>, dri-devel@lists.freedesktop.org,
-	Pavel Machek <pavel@ucw.cz>
-Subject: [PATCH 3/6] drm/bridge: tc358775: Add jeida-24 support
-Message-ID: <20231126171837.GK5169@atomide.com>
-References: <20231126163247.10131-1-tony@atomide.com>
- <20231126163247.10131-2-tony@atomide.com>
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57166FA;
+	Sun, 26 Nov 2023 09:20:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=4MBWFFSClU/aEAnkgxSP6reaZoimcEhMr3ed7yybq+M=; b=hsZEBQ+u8iH9Hs0HeYuSUu6EkU
+	XZckZ4Bn2MGdjRy/wATcotRT2fVdBnGryCcx8+1hzLR7Z2A3O+aq3Ni+xDGB7eormGj7LX1+7N5X3
+	xnPm07ZamDJDbK60mlLAhyfsbNPIQqmm9gew4cZcnfAEEgIOyUT2+Omj0bZVd9ked034=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1r7Ino-001GFC-C1; Sun, 26 Nov 2023 18:20:16 +0100
+Date: Sun, 26 Nov 2023 18:20:16 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Luo Jie <quic_luoj@quicinc.com>
+Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	hkallweit1@gmail.com, linux@armlinux.org.uk, corbet@lwn.net,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+Subject: Re: [PATCH v6 1/6] net: phy: introduce core support for phy-mode =
+ "10g-qxgmii"
+Message-ID: <f97fd2f0-3e39-4de0-8b1c-f333a0f56a7f@lunn.ch>
+References: <20231126060732.31764-1-quic_luoj@quicinc.com>
+ <20231126060732.31764-2-quic_luoj@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,61 +51,31 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231126163247.10131-2-tony@atomide.com>
+In-Reply-To: <20231126060732.31764-2-quic_luoj@quicinc.com>
 
-The jeida-24 register values are the default hardware settings, but they
-not listed in the driver. Let's add them.
+On Sun, Nov 26, 2023 at 02:07:27PM +0800, Luo Jie wrote:
+> From: Vladimir Oltean <vladimir.oltean@nxp.com>
+> 
+> 10G-QXGMII is a MAC-to-PHY interface defined by the USXGMII multiport
+> specification. It uses the same signaling as USXGMII, but it multiplexes
+> 4 ports over the link, resulting in a maximum speed of 2.5G per port.
+> 
+> Some in-tree SoCs like the NXP LS1028A use "usxgmii" when they mean
+> either the single-port USXGMII or the quad-port 10G-QXGMII variant, and
+> they could get away just fine with that thus far. But there is a need to
+> distinguish between the 2 as far as SerDes drivers are concerned.
 
-Signed-off-by: Tony Lindgren <tony@atomide.com>
----
- drivers/gpu/drm/bridge/tc358775.c | 21 ++++++++++++++++++---
- 1 file changed, 18 insertions(+), 3 deletions(-)
+Can this is split into two patches?
 
-diff --git a/drivers/gpu/drm/bridge/tc358775.c b/drivers/gpu/drm/bridge/tc358775.c
---- a/drivers/gpu/drm/bridge/tc358775.c
-+++ b/drivers/gpu/drm/bridge/tc358775.c
-@@ -458,8 +458,18 @@ static void tc_bridge_enable(struct drm_bridge *bridge)
- 	 * Default hardware register settings of tc358775 configured
- 	 * with MEDIA_BUS_FMT_RGB888_1X7X4_JEIDA jeida-24 format
- 	 */
--	if (connector->display_info.bus_formats[0] ==
--		MEDIA_BUS_FMT_RGB888_1X7X4_SPWG) {
-+	switch (connector->display_info.bus_formats[0]) {
-+	case MEDIA_BUS_FMT_RGB888_1X7X4_JEIDA:
-+		/* JEIDA-24 */
-+		d2l_write(tc->i2c, LV_MX0003, LV_MX(LVI_R2, LVI_R3, LVI_R4, LVI_R5));
-+		d2l_write(tc->i2c, LV_MX0407, LV_MX(LVI_R6, LVI_R1, LVI_R7, LVI_G2));
-+		d2l_write(tc->i2c, LV_MX0811, LV_MX(LVI_G3, LVI_G4, LVI_G0, LVI_G1));
-+		d2l_write(tc->i2c, LV_MX1215, LV_MX(LVI_G5, LVI_G6, LVI_G7, LVI_B2));
-+		d2l_write(tc->i2c, LV_MX1619, LV_MX(LVI_B0, LVI_B1, LVI_B3, LVI_B4));
-+		d2l_write(tc->i2c, LV_MX2023, LV_MX(LVI_B5, LVI_B6, LVI_B7, LVI_L0));
-+		d2l_write(tc->i2c, LV_MX2427, LV_MX(LVI_HS, LVI_VS, LVI_DE, LVI_R0));
-+		break;
-+	case MEDIA_BUS_FMT_RGB888_1X7X4_SPWG:
- 		/* VESA-24 */
- 		d2l_write(tc->i2c, LV_MX0003, LV_MX(LVI_R0, LVI_R1, LVI_R2, LVI_R3));
- 		d2l_write(tc->i2c, LV_MX0407, LV_MX(LVI_R4, LVI_R7, LVI_R5, LVI_G0));
-@@ -468,7 +478,9 @@ static void tc_bridge_enable(struct drm_bridge *bridge)
- 		d2l_write(tc->i2c, LV_MX1619, LV_MX(LVI_B6, LVI_B7, LVI_B1, LVI_B2));
- 		d2l_write(tc->i2c, LV_MX2023, LV_MX(LVI_B3, LVI_B4, LVI_B5, LVI_L0));
- 		d2l_write(tc->i2c, LV_MX2427, LV_MX(LVI_HS, LVI_VS, LVI_DE, LVI_R6));
--	} else { /*  MEDIA_BUS_FMT_RGB666_1X7X3_SPWG - JEIDA-18 */
-+		break;
-+	case MEDIA_BUS_FMT_RGB666_1X7X3_SPWG:
-+		/* JEIDA-18 */
- 		d2l_write(tc->i2c, LV_MX0003, LV_MX(LVI_R0, LVI_R1, LVI_R2, LVI_R3));
- 		d2l_write(tc->i2c, LV_MX0407, LV_MX(LVI_R4, LVI_L0, LVI_R5, LVI_G0));
- 		d2l_write(tc->i2c, LV_MX0811, LV_MX(LVI_G1, LVI_G2, LVI_L0, LVI_L0));
-@@ -476,6 +488,9 @@ static void tc_bridge_enable(struct drm_bridge *bridge)
- 		d2l_write(tc->i2c, LV_MX1619, LV_MX(LVI_L0, LVI_L0, LVI_B1, LVI_B2));
- 		d2l_write(tc->i2c, LV_MX2023, LV_MX(LVI_B3, LVI_B4, LVI_B5, LVI_L0));
- 		d2l_write(tc->i2c, LV_MX2427, LV_MX(LVI_HS, LVI_VS, LVI_DE, LVI_L0));
-+		break;
-+	default:
-+		break;
- 	}
- 
- 	d2l_write(tc->i2c, VFUEN, VFUEN_EN);
--- 
-2.42.1
+>  	switch (interface) {
+>  	case PHY_INTERFACE_MODE_USXGMII:
+> -		caps |= MAC_10000FD | MAC_5000FD | MAC_2500FD;
+> +		caps |= MAC_10000FD | MAC_5000FD;
+> +		fallthrough;
+
+This change seems to refer to the second paragraph, where as the rest
+of the code is about the first. Or does splitting this cause a bisect
+problem?
+
+	Andrew
 
