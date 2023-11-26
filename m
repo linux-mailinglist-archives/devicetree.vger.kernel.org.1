@@ -1,161 +1,111 @@
-Return-Path: <devicetree+bounces-18995-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18996-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 927627F95D3
-	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 23:36:19 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE26C7F9640
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 00:06:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 846A71C2083D
-	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 22:36:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2B5731C20826
+	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 23:06:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFE33DDC4;
-	Sun, 26 Nov 2023 22:36:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 973AC14F6F;
+	Sun, 26 Nov 2023 23:06:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F171011D
-	for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 14:36:11 -0800 (PST)
-Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-1cfc985c92dso2845955ad.0
-        for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 14:36:11 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701038171; x=1701642971;
-        h=content-transfer-encoding:mime-version:message-id:date:references
-         :in-reply-to:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+uk6RlcgU3djTkE7dMDEVAusZLaNDjC2rMU1uabPfZg=;
-        b=nH7K8EMgFJV9T70ZBc/Kb08dC5pxatEY0GRCxQz0Wz57ROAJG8XymHjT9ZHbhtlYs6
-         W1zoB5Is63s2Fyr/wW17t3czAK52YA94MQzBi+4ieiwhTUiIJng/lKz/7svzZuXhJRpy
-         OoX+61y5IvA13epdEbwJ6JZO32V2m3iXG4+D8YZrHhqI3Xno05w6gS4g6dYUjXDPp7qr
-         754jabWM+5uhcVIK2Nro62qkCQKurivveJ7+gusOYCPz74jvLYHM79P08ADGi/B/LLCq
-         7MZ2MHpyx6UOR1kMPYyhBkfuBGR7UKgVuzm+YC2WOW0JHxe4t6ktqsS+kAwVHn9KLRjf
-         kmAA==
-X-Gm-Message-State: AOJu0YzyBYDCnly3f9Xiar7YJbdt8Drp6Ds8CdQ8ukzmT/b9jcC8xYvc
-	xHy/ScyqKzQzLnrRZO3xF8Ldvg==
-X-Google-Smtp-Source: AGHT+IE080+WEh7ZsFMHyjajn01nT5LRVtR2puIQ59I0DQVbOQIYpw1BZIiAxR98fBSoj/96zLMB7g==
-X-Received: by 2002:a17:902:64d0:b0:1ca:e4b:148d with SMTP id y16-20020a17090264d000b001ca0e4b148dmr8004394pli.65.1701038171313;
-        Sun, 26 Nov 2023 14:36:11 -0800 (PST)
-Received: from localhost (75-172-121-199.tukw.qwest.net. [75.172.121.199])
-        by smtp.gmail.com with ESMTPSA id w4-20020a170902e88400b001c452f827casm6856621plg.257.2023.11.26.14.36.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 26 Nov 2023 14:36:10 -0800 (PST)
-From: Kevin Hilman <khilman@kernel.org>
-To: =?utf-8?Q?Th=C3=A9o?= Lebrun <theo.lebrun@bootlin.com>, Roger Quadros
- <rogerq@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob
- Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Peter Chen <peter.chen@kernel.org>, Pawel Laszczak <pawell@cadence.com>,
- Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, Tero
- Kristo <kristo@kernel.org>, "Vardhan, Vibhore" <vibhore@ti.com>
-Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- =?utf-8?Q?Gr=C3=A9gory?= Clement <gregory.clement@bootlin.com>, Thomas
- Petazzoni
- <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 3/6] usb: cdns3-ti: add suspend/resume procedures for J7200
-In-Reply-To: <CX63KP2UPL1N.J9Q344Q06IGP@tleb-bootlin-xps13-01>
-References: <20231113-j7200-usb-suspend-v1-0-ad1ee714835c@bootlin.com>
- <20231113-j7200-usb-suspend-v1-3-ad1ee714835c@bootlin.com>
- <5080372b-1f48-4cbc-a6c4-8689c28983cb@kernel.org>
- <CWZH66HQZNYM.T623ZOEEE0BK@tleb-bootlin-xps13-01>
- <dad980f3-e032-41e4-a1e4-a16a7f45ff95@kernel.org>
- <CX0GOP07I40N.198G7LJ0HYDBG@tleb-bootlin-xps13-01>
- <bdea68ad-7523-4738-8fa1-b670d81a6b93@kernel.org>
- <CX10D9YX1O1C.30PF317AG065N@tleb-bootlin-xps13-01>
- <3e00b2ad-b58f-4b09-9230-683c58d3bb92@kernel.org>
- <CX15J7B8F8HH.1WZ10OOW31X1H@tleb-bootlin-xps13-01>
- <7h34wxfmwn.fsf@baylibre.com>
- <CX63KP2UPL1N.J9Q344Q06IGP@tleb-bootlin-xps13-01>
-Date: Sun, 26 Nov 2023 14:36:10 -0800
-Message-ID: <7hil5odtwl.fsf@baylibre.com>
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D009910F
+	for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 15:06:11 -0800 (PST)
+Received: from i53875bf8.versanet.de ([83.135.91.248] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1r7OCW-0002sV-3l; Mon, 27 Nov 2023 00:06:08 +0100
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Tim Lunn <tim@feathertop.org>, linux-rockchip@lists.infradead.org,
+ devicetree@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Jagan Teki <jagan@edgeble.ai>, Rob Herring <robh+dt@kernel.org>,
+ linux-arm-kernel@lists.infradead.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH v2 4/9] ARM: dts: rockchip: rv1126: Add i2c2 nodes
+Date: Mon, 27 Nov 2023 00:06:06 +0100
+Message-ID: <4762834.KRxA6XjA2N@diego>
+In-Reply-To: <813224c2-398d-4c2d-8909-1839ce63be60@linaro.org>
+References:
+ <20231122122232.952696-1-tim@feathertop.org>
+ <20231122122232.952696-5-tim@feathertop.org>
+ <813224c2-398d-4c2d-8909-1839ce63be60@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Th=C3=A9o Lebrun <theo.lebrun@bootlin.com> writes:
+Hi Krzysztof,
 
-> Hello,
->
-> On Wed Nov 22, 2023 at 11:23 PM CET, Kevin Hilman wrote:
->> Th=C3=A9o Lebrun <theo.lebrun@bootlin.com> writes:
->> > On Fri Nov 17, 2023 at 12:51 PM CET, Roger Quadros wrote:
->> >> On 17/11/2023 12:17, Th=C3=A9o Lebrun wrote:
->> >> > On Thu Nov 16, 2023 at 10:44 PM CET, Roger Quadros wrote:
->> >> >> On 16/11/2023 20:56, Th=C3=A9o Lebrun wrote:
->> >> >>> On Thu Nov 16, 2023 at 1:40 PM CET, Roger Quadros wrote:
->> >> >>>> On 15/11/2023 17:02, Th=C3=A9o Lebrun wrote:
->> >> >>>>> On Wed Nov 15, 2023 at 12:37 PM CET, Roger Quadros wrote:
->> >> >>>>>> You might want to check suspend/resume ops in cdns3-plat and
->> >> >>>>>> do something similar here.
->> >> >>>>>
->> >> >>>>> I'm unsure what you are referring to specifically in cdns3-plat?
->> >> >>>>
->> >> >>>> What I meant is, calling pm_runtime_get/put() from system suspen=
-d/resume
->> >> >>>> hooks doesn't seem right.
->> >> >>>>
->> >> >>>> How about using something like pm_runtime_forbid(dev) on devices=
- which
->> >> >>>> loose USB context on runtime suspend e.g. J7200.
->> >> >>>> So at probe we can get rid of the pm_runtime_get_sync() call.
->> >> >>>
->> >> >>> What is the goal of enabling PM runtime to then block (ie forbid)=
- it in
->> >> >>> its enabled state until system suspend?
->> >> >>
->> >> >> If USB controller retains context on runtime_suspend on some platf=
-orms
->> >> >> then we don't want to forbid PM runtime.
->> >> >=20
->> >> > What's the point of runtime PM if nothing is done based on it? This=
- is
->> >> > the current behavior of the driver.
->>
->> The point is to signal to the power domain the device is in that it can
->> power on/off.  These IP blocks are (re)used on many different SoCs, so
->> the driver should not make any assumptions about what power domain it is
->> in (if any.)
->
-> On my platform, when the device is attached to the PD it gets turned on.
-> That feels logical to me: if a driver is not RPM aware it "just works".
+Am Mittwoch, 22. November 2023, 13:29:47 CET schrieb Krzysztof Kozlowski:
+> On 22/11/2023 13:22, Tim Lunn wrote:
+> > Add i2c2 node and i2c2_xfer pinctrl for Rockchip RV1126
+> > 
+> > Signed-off-by: Tim Lunn <tim@feathertop.org>
+> > ---
+> > 
+> > (no changes since v1)
+> > 
+> >  arch/arm/boot/dts/rockchip/rv1126-pinctrl.dtsi | 10 ++++++++++
+> >  arch/arm/boot/dts/rockchip/rv1126.dtsi         | 15 +++++++++++++++
+> >  2 files changed, 25 insertions(+)
+> > 
+> > diff --git a/arch/arm/boot/dts/rockchip/rv1126-pinctrl.dtsi b/arch/arm/boot/dts/rockchip/rv1126-pinctrl.dtsi
+> > index 4f85b7b3fc4c..167a48afa3a4 100644
+> > --- a/arch/arm/boot/dts/rockchip/rv1126-pinctrl.dtsi
+> > +++ b/arch/arm/boot/dts/rockchip/rv1126-pinctrl.dtsi
+> > @@ -87,6 +87,16 @@ i2c0_xfer: i2c0-xfer {
+> >  				<0 RK_PB5 1 &pcfg_pull_none_drv_level_0_smt>;
+> >  		};
+> >  	};
+> > +	i2c2 {
+> > +		/omit-if-no-ref/
+> > +		i2c2_xfer: i2c2-xfer {
+> > +			rockchip,pins =
+> > +				/* i2c2_scl */
+> > +				<0 RK_PC2 1 &pcfg_pull_none_drv_level_0_smt>,
+> > +				/* i2c2_sda */
+> > +				<0 RK_PC3 1 &pcfg_pull_none_drv_level_0_smt>;
+> > +		};
+> > +	};
+> >  	pwm2 {
+> >  		/omit-if-no-ref/
+> >  		pwm2m0_pins: pwm2m0-pins {
+> > diff --git a/arch/arm/boot/dts/rockchip/rv1126.dtsi b/arch/arm/boot/dts/rockchip/rv1126.dtsi
+> > index 6c5c928f06c7..cf1df75df418 100644
+> > --- a/arch/arm/boot/dts/rockchip/rv1126.dtsi
+> > +++ b/arch/arm/boot/dts/rockchip/rv1126.dtsi
+> > @@ -21,6 +21,7 @@ / {
+> >  
+> >  	aliases {
+> >  		i2c0 = &i2c0;
+> > +		i2c2 = &i2c2;
+> 
+> No, this should be per-board to match board labeling/schematics.
 
-It "just works"... until the domain gets turned off.
+At least for i2c, uarts and i.e. spi ... Rockchip manuals, pin namings
+and also all board schematics I've seen so far are very consistent for
+these ... i2c2 for example is labled i2c2 both in the pins in the socs
+and also in the board-schematics using them.
 
-> Are there platforms where RPM must get enabled for the attached
-> power-domains to be turned on?
+So while I can agree that things like mmc-aliases might be board-specific,
+I do think aliases for the core busses should be able to live in the soc dtsi
+as for all Rockchip SoCs so far?
 
-Yes, but but more importantly, there are platforms where RPM must get
-enabled for the power domain to *stay* on.  For example, the power
-domain might get turned on due to devices probing etc, but as soon as
-all the RPM-enabled drivers drop their refcount, the domain will turn
-off.  If there is a device in that domain with a non-RPM enabled driver,
-that device will be powered off anc cause a crash.
 
-> The call chain that attaches & enables PD is platform_probe ->
-> dev_pm_domain_attach. That function takes a bool power_on which is
-> always true. In the genpd case, genpd_dev_pm_attach
-> calls __genpd_dev_pm_attach which does a genpd_power_on.
->
-> Things I've not accounted for:
->
->  - ACPI looks like it does the same but I've not checked. It gets passed
->    the power_on bool argument.
->
->  - genpd_dev_pm_attach early returns with no error if there are multiple
->    PM domains attached to the device. There are many platforms in the
->    case according to some devicetree grepping. I can imagine a behavior
->    difference where dev_pm_domain callpaths handle that differently in
->    the RPM case. Is that what we are discussing?
+Heiko
 
-You're only looking at the attach, power-on phase.  You need to think
-about when the domain powers off and powers back on.
-
-Kevin
 
 
