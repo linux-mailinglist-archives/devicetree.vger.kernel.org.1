@@ -1,56 +1,62 @@
-Return-Path: <devicetree+bounces-18979-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18981-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 219387F94F4
-	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 19:57:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 183F37F94FF
+	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 20:16:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 94A65B20A74
-	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 18:57:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B5963280D7A
+	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 19:16:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36CBC10958;
-	Sun, 26 Nov 2023 18:57:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89C3710979;
+	Sun, 26 Nov 2023 19:16:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b="PPZzIyLR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f44.google.com (mail-oo1-f44.google.com [209.85.161.44])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A649DB;
-	Sun, 26 Nov 2023 10:57:17 -0800 (PST)
-Received: by mail-oo1-f44.google.com with SMTP id 006d021491bc7-586a516755aso2039694eaf.0;
-        Sun, 26 Nov 2023 10:57:17 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701025036; x=1701629836;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PZ3lIuB7TROofp/XK5RdQNDCfQK42fsDiRba7dlWv/k=;
-        b=SF/nibQYLKKrKhCgZsIfNi7yzbx/N3Th12nHaON9A65N9r5zwBCtqJeaMnw5Hsj37X
-         mQi7T55WAkE5wGr+EH8SL/5ZpBc7j9IHcwqkad0DDrEAPUF/M8JHjiBDAAGjUd3KGk37
-         8lqat6NuIBgGLwdBcyaw9oUg31q1Ht6Apb/drlmHIojlmiSVFzwXWIBQEbJ4lx7INep1
-         dcHZuLYfjDvRqQkK5QAuWBN/m2+W5DumReUJr51Lac9N+TERY14V54XGvurDTb3kTh2J
-         vs0eRD2J8pzQX/p+nVqSJuwMcz+1UcYw2vSi8+9D6J1xsPwPnomZ8UrQoAHux1nNqnFK
-         zRGw==
-X-Gm-Message-State: AOJu0Yy8ndy8zgPc5Qpn1oZqyhz7DZqawQn2147nehL8/sk9GGOjCAFZ
-	kn7i5RK95x0E25SCj7kZTPRRoyytlQ==
-X-Google-Smtp-Source: AGHT+IESXXGngd5rzDZYKrntqszcw4kI01HKt8M15eBOcGYLERrYrKvMVn5jnWZHZAVQh+aU5SCtPQ==
-X-Received: by 2002:a05:6870:d85:b0:1ef:781a:1f2e with SMTP id mj5-20020a0568700d8500b001ef781a1f2emr4561901oab.1.1701025036682;
-        Sun, 26 Nov 2023 10:57:16 -0800 (PST)
-Received: from herring.priv ([2607:fb91:9e5:15e5:aee2:7746:1955:d879])
-        by smtp.gmail.com with ESMTPSA id s4-20020a056808208400b003b83bb8dbcesm236011oiw.30.2023.11.26.10.57.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 26 Nov 2023 10:57:15 -0800 (PST)
-Received: (nullmailer pid 31839 invoked by uid 1000);
-	Sun, 26 Nov 2023 18:57:13 -0000
-Date: Sun, 26 Nov 2023 11:57:13 -0700
-From: Rob Herring <robh@kernel.org>
-To: Gregory CLEMENT <gregory.clement@bootlin.com>
-Cc: linux-mips@vger.kernel.org, Paul Burton <paulburton@kernel.org>, linux-kernel@vger.kernel.org, Alexandre Belloni <alexandre.belloni@bootlin.com>, Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, Rob Herring <robh+dt@kernel.org>, =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, devicetree@vger.kernel.org, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Tawfik Bayouk <tawfik.bayouk@mobileye.com>, Jiaxun Yang <jiaxun.yang@flygoat.com>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Subject: Re: [PATCH v2 16/21] dt-bindings: mips: Add bindings for Mobileye
- SoCs
-Message-ID: <170102463021.19577.17303058490928522192.robh@kernel.org>
-References: <20231123152639.561231-1-gregory.clement@bootlin.com>
- <20231123152639.561231-17-gregory.clement@bootlin.com>
+Received: from mail5.25mail.st (mail5.25mail.st [74.50.62.9])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B84E6FB
+	for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 11:16:37 -0800 (PST)
+Received: from localhost (91-158-86-216.elisa-laajakaista.fi [91.158.86.216])
+	by mail5.25mail.st (Postfix) with ESMTPSA id BE62960342;
+	Sun, 26 Nov 2023 19:15:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=atomide.com;
+	s=25mailst; t=1701026197;
+	bh=BcTjqWe4uScWhaNbhPONqwVftNfiGtAQS9TIsxqQBR4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=PPZzIyLRPGvv/xqQ0VhyiPLCAqPrN+lwNamSXl5xslpa1kXkRd5ZbfElk+s1oVhgK
+	 kNOLfyd+ZINqltUejUdoVzKl0XJDFoCoK8pd+TbD+Kqs7lTT53Y886uUXCatsw9wsX
+	 aduQj+BC6APTu0Gc7roXsUHDORJYA5Ip9yotJ5iH9SuHLXjQLURKOpScFKJbRp3H1+
+	 wggJVix7Hg8ijuk2n0nepak09rkn/1abhPIfi1bndDecZeg2W9a6zvvIa0CfbJKQtx
+	 0p6Ne7gUElgwGD68p6EkB+97P198ihe2F3kORpXX58BVgMUtTds+q1NDQg3lt8djIK
+	 ItJp+J6nWkBxA==
+Date: Sun, 26 Nov 2023 21:15:54 +0200
+From: Tony Lindgren <tony@atomide.com>
+To: Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Sam Ravnborg <sam@ravnborg.org>,
+	Vinay Simha BN <simhavcs@gmail.com>
+Cc: Carl Philipp Klemm <philipp@uvos.xyz>, devicetree@vger.kernel.org,
+	Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>,
+	Merlijn Wajer <merlijn@wizzup.org>,
+	Sebastian Reichel <sre@kernel.org>, dri-devel@lists.freedesktop.org,
+	Pavel Machek <pavel@ucw.cz>
+Subject: [PATCH 6/6] drm/bridge: tc358775: Configure hs_rate and lp_rate
+Message-ID: <20231126191554.GM5169@atomide.com>
+References: <20231126163247.10131-1-tony@atomide.com>
+ <20231126163247.10131-2-tony@atomide.com>
+ <20231126171837.GK5169@atomide.com>
+ <20231126172018.GL5169@atomide.com>
+ <20231126182135.GA5166@atomide.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,22 +65,32 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231123152639.561231-17-gregory.clement@bootlin.com>
+In-Reply-To: <20231126182135.GA5166@atomide.com>
 
+The hs_rate and lp_rate may be used by the dsi host for timing
+calculations. The tc358775 has a maximum bit rate of 1 Gbps/lane,
+tc358765 has maximurate of 800 Mbps per lane.
 
-On Thu, 23 Nov 2023 16:26:33 +0100, Gregory CLEMENT wrote:
-> Add the yaml bindings for Mobileye SoCs. Currently only EyeQ5 is
-> supported
-> 
-> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
-> ---
->  .../devicetree/bindings/mips/mobileye.yaml    | 32 +++++++++++++++++++
->  1 file changed, 32 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mips/mobileye.yaml
-> 
+Signed-off-by: Tony Lindgren <tony@atomide.com>
+---
+ drivers/gpu/drm/bridge/tc358775.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-With the indentation fixed:
-
-Reviewed-by: Rob Herring <robh@kernel.org>
-
+diff --git a/drivers/gpu/drm/bridge/tc358775.c b/drivers/gpu/drm/bridge/tc358775.c
+--- a/drivers/gpu/drm/bridge/tc358775.c
++++ b/drivers/gpu/drm/bridge/tc358775.c
+@@ -653,6 +653,11 @@ static int tc_attach_host(struct tc_data *tc)
+ 	dsi->format = MIPI_DSI_FMT_RGB888;
+ 	dsi->mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST |
+ 		MIPI_DSI_MODE_LPM;
++	if (tc->type == TC358765)
++		dsi->hs_rate = 800000000;
++	else
++		dsi->hs_rate = 1000000000;
++	dsi->lp_rate = 10000000;
+ 
+ 	ret = devm_mipi_dsi_attach(dev, dsi);
+ 	if (ret < 0) {
+-- 
+2.42.1
 
