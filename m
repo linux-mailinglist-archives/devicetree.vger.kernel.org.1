@@ -1,166 +1,262 @@
-Return-Path: <devicetree+bounces-18957-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18958-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 429367F9354
-	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 16:17:27 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BAEA7F9363
+	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 16:36:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 718871C20CD3
-	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 15:17:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 93FD7B20D11
+	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 15:35:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C4B8D26A;
-	Sun, 26 Nov 2023 15:17:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06F0AD26A;
+	Sun, 26 Nov 2023 15:35:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=svenpeter.dev header.i=@svenpeter.dev header.b="Z0trJmkX";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="V2ZlWk6S"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="QuQ2hnbz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com [66.111.4.25])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F14211D;
-	Sun, 26 Nov 2023 07:17:21 -0800 (PST)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-	by mailout.nyi.internal (Postfix) with ESMTP id 8895C5C0130;
-	Sun, 26 Nov 2023 10:17:20 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute3.internal (MEProxy); Sun, 26 Nov 2023 10:17:20 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
-	 h=cc:cc:content-transfer-encoding:content-type:date:date:from
-	:from:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:sender:subject:subject:to:to; s=fm1; t=1701011840; x=
-	1701098240; bh=8R0p6DlkXF+oFfSCrVqGL6mEemuNQRmY1fVSrZeXoEA=; b=Z
-	0trJmkX4q1fVZfB1XQyy6tkRrvUMNsk5XtYTLvwCq4RShayw8OvHIHdWng0PC+6q
-	qWlyMTphrtYq6Fra8y2H8dAtnmTmAvKgI4MX2vEZpyuuv7ZkaKUVAZohep16VRdS
-	buk1tEB50Sr1+DtbyJKTJyicWW3Ho9Sx82qWxwP81ZCshxM4ePxme+Wjvmwb9dFn
-	kjFF5nioIYYzaqakcgMyuSCAHxC+LAfOXxdsW7vBqKjjusWkImcHeOha6atnDgFG
-	gJQ3A2U6XMgRWVFUIK4OoalwLa63NgLwnQ0aKyIPKQDUmuFIiAmPQ8l2AOcZpgxu
-	LYBSAe0KWphdsn8qlTpHA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:date:date:feedback-id:feedback-id:from:from
-	:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1701011840; x=
-	1701098240; bh=8R0p6DlkXF+oFfSCrVqGL6mEemuNQRmY1fVSrZeXoEA=; b=V
-	2ZlWk6SZ/YL3bxtXeocJt8UjUvfK7pF2TV8LH+HWLif3MMIh06Ap1MRaixQCkNlj
-	ZwwpYKXVlGRPqvA00YsqUhEdPBkqgkZPzxeZVWUznNLAVhzUByTSdl/ZVECpUUSG
-	PTUoqrXBu+qn1xRAHubC/S4hz6+9IHtgEPuxeQeyiqHqEpNCbBEFBpezCYLFVUTh
-	ueZ6TomLyPaxguyK+m/W+WLRmInGQOtym2tdJkbmlUaWCx6lr4uLESsgOVNjRAdu
-	dwL3S4cDHbZcClNW0NtxEGHI/Ku9zt1kVWj6wQ2RDCBfkuXOl82gFKN77dFjOe21
-	6csLZwA0NSRgfNn7fW2ew==
-X-ME-Sender: <xms:gGFjZXx-qRHg9f3ZgefBnRaAp4OaEE1evmDpPU69J2eMAgSXQOFGhA>
-    <xme:gGFjZfReFDcMzqbXhaXgo8PEgTK_iZCF63KU50gMCce4fnVEpVZGB3rMax3vmFC57
-    AypoS8P6hhMr8RZKcE>
-X-ME-Received: <xmr:gGFjZRX-S9nsOyTPXL5tCQxIRQ-Eu2-yfGRHjk96fPxJLCVNGg7Ayx2bYEWvW4eTzm8cSAfzeL9p86Wn3Zrnzz-QRA0f0Y_L4_sFAN5C3ODTuzRrP8C0wL0TLQBj960>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrudehledgjeeiucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhephffvvefufffkofgjfhgggfestdekredtredttdenucfhrhhomhepufhvvghn
-    ucfrvghtvghruceoshhvvghnsehsvhgvnhhpvghtvghrrdguvghvqeenucggtffrrghtth
-    gvrhhnpeejieehheekgedvjefhveekjefguddtfefhteehtdeiffelkeeiuedufeelkeej
-    geenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehsvh
-    gvnhesshhvvghnphgvthgvrhdruggvvh
-X-ME-Proxy: <xmx:gGFjZRh54YF9Ch5KVMOmIutgFSQCZK7pb0d8b0hyCd-pTQ9RcPAJAw>
-    <xmx:gGFjZZDjL463XmgFVk9fUA3t36WCv0wmvDBce-VomRbqHE2TML3jOQ>
-    <xmx:gGFjZaLgfbrxsG_OKVy0ijr3SlE70ZPHKfgPvUiOhqNVkzVIGtCvvg>
-    <xmx:gGFjZd5igePXAKioXfooE5PKwsogm9WxGVH8m2CSpjExAOMwA2Kc4Q>
-Feedback-ID: i51094778:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sun,
- 26 Nov 2023 10:17:18 -0500 (EST)
-From: Sven Peter <sven@svenpeter.dev>
-To: Hector Martin <marcan@marcan.st>,
-	Sven Peter <sven@svenpeter.dev>,
-	Joerg Roedel <joro@8bytes.org>,
-	Will Deacon <will@kernel.org>,
-	Robin Murphy <robin.murphy@arm.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	linux-arm-kernel@lists.infradead.org,
-	asahi@lists.linux.dev,
-	iommu@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v4 3/3] iommu: dart: Add support for t8103 USB4 DART
-Date: Sun, 26 Nov 2023 16:17:01 +0100
-Message-Id: <20231126151701.16534-4-sven@svenpeter.dev>
-X-Mailer: git-send-email 2.39.3 (Apple Git-145)
-In-Reply-To: <20231126151701.16534-1-sven@svenpeter.dev>
-References: <20231126151701.16534-1-sven@svenpeter.dev>
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E74A2E1
+	for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 07:35:47 -0800 (PST)
+Received: from mail-oa1-f70.google.com (mail-oa1-f70.google.com [209.85.160.70])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id F2D0C40C59
+	for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 15:35:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1701012946;
+	bh=XKvEfE/yT+1u6a5zCoBgvHyNpleLhtsW9IihC1CtfgY=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type;
+	b=QuQ2hnbzOdmjQTzOrN5UKqDY8TitkA7LUk8K3ZxfX7KE2TD5VtTM8sq/+y5Yd8PG3
+	 J6CyBQa31rkfKDFvquyJo+xAX9LOPdCMn11yxYDgpj3/+IJWa19jAzZxlX9qWacVf9
+	 GWe8gGJFyUcOgeBagFsy3ZWRrAny5xTDJhtLIbR9840JfDFf+5vXw8t4Li6BflYMCN
+	 oBFB6vQYv+coDoOc7zsFKiCEiEgF/NCAwlO/SMclJE8E0XtiGd1CVoTQ+INuevOaee
+	 eadzABWyRSSOV02mmvenSvN0DYQndjIG0XE0Uvcc1uUJDhmcfoSOx7JQOTC3C8Y23L
+	 wMmqtzkxlO9hA==
+Received: by mail-oa1-f70.google.com with SMTP id 586e51a60fabf-1f950d4e1f8so4726592fac.2
+        for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 07:35:45 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701012944; x=1701617744;
+        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=XKvEfE/yT+1u6a5zCoBgvHyNpleLhtsW9IihC1CtfgY=;
+        b=BEuT6r8zG7wsMoPFGg60Cit85gAHlZ2CXFiiXMdCv4Dl5Uv7vNDLe54+3o6NmYqJhZ
+         RTKZEMMQSW94LrPb1kiVgwdr+Ni3ceDvIGtKbn5UE8lZGr7BJYRxUHrXzumQeiPnj7MN
+         fZ1Gwi86uQxFbfDKlHsWBPkAXQ6b3Pny/+Aa9BNQiw/i9r3Cmc0DtYOHa+egeo7uIBtD
+         +adkVMYwTIfV0caZh677MVmxeuU9GwYtYa7RjxF8naB4e1lBetra/Oo8Y0++qyCMV4aO
+         2MEXo5VlCo7QKBXfq2KgOvm+0CWhAZhHZwIaiiFb9YOtn5/zZZgsHehw+HJiTxabm1/I
+         2hBA==
+X-Gm-Message-State: AOJu0YzWh9URlvHyluCEwQSVrbj0VN2v5ztdiPBoWFydW182Uz+Bcoa2
+	wEIDFcRqo0DPvhEY0SQqq0xaNNrqewCYaogCBtxS3c+4d5MKxEwrOhcwX37ZujCxorV8dAzuDHv
+	y7m4ZwI/Kkxm/GzCJucSUbm0Kp44bUTfcAKqlDQKUosAkhFaANZLPluWXdzhic68=
+X-Received: by 2002:a05:6870:3c8b:b0:1f5:c6f9:b76d with SMTP id gl11-20020a0568703c8b00b001f5c6f9b76dmr12642870oab.49.1701012944494;
+        Sun, 26 Nov 2023 07:35:44 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGPyr6YtnSTxDyRnhJ4O+RkJcUnFuikgx1HgSKh7dR1BpfbqeB2EhGJO7dnreod0RXfNNu8Voklx2OIMwDo9gc=
+X-Received: by 2002:a05:6870:3c8b:b0:1f5:c6f9:b76d with SMTP id
+ gl11-20020a0568703c8b00b001f5c6f9b76dmr12642845oab.49.1701012944216; Sun, 26
+ Nov 2023 07:35:44 -0800 (PST)
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Sun, 26 Nov 2023 16:35:43 +0100
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+In-Reply-To: <20231126-unlighted-favorably-4627f2361a59@spud>
+References: <20231126-unlighted-favorably-4627f2361a59@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Mime-Version: 1.0
+Date: Sun, 26 Nov 2023 16:35:43 +0100
+Message-ID: <CAJM55Z8-xJfxeV1xJrKXDpsGV05QV4C3JP3myRRBEq6dNfdPLQ@mail.gmail.com>
+Subject: Re: [PATCH v1] riscv: dts: microchip: move timebase-frequency to mpfs.dtsi
+To: Conor Dooley <conor@kernel.org>, linux-riscv@lists.infradead.org
+Cc: Conor Dooley <conor.dooley@microchip.com>, 
+	Daire McNamara <daire.mcnamara@microchip.com>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-This variant of the regular t8103 DART is used for the two
-USB4/Thunderbolt PCIe controllers. It supports 64 instead of 16 streams
-which requires a slightly different MMIO layout.
+Conor Dooley wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
+>
+> The timebase-frequency on PolarFire SoC is not set by an oscillator on
+> the board, but rather by an internal divider, so move the property to
+> mpfs.dtsi.
+>
+> This looks to be copy-pasta from the SiFive Unleashed as the comments
+> in both places were almost identical. In the Unleashed's case this looks
+> to actually be valid, as the clock is provided by a crystal on the PCB.
+>
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 
-Acked-by: Hector Martin <marcan@marcan.st>
-Signed-off-by: Sven Peter <sven@svenpeter.dev>
----
- drivers/iommu/apple-dart.c | 29 +++++++++++++++++++++++++++++
- 1 file changed, 29 insertions(+)
+Makes sense to me.
 
-diff --git a/drivers/iommu/apple-dart.c b/drivers/iommu/apple-dart.c
-index 8b6b0cdba9b5..f47f60c0a4d0 100644
---- a/drivers/iommu/apple-dart.c
-+++ b/drivers/iommu/apple-dart.c
-@@ -81,6 +81,7 @@
- #define DART_T8020_TCR_BYPASS_DAPF      BIT(12)
- 
- #define DART_T8020_TTBR       0x200
-+#define DART_T8020_USB4_TTBR  0x400
- #define DART_T8020_TTBR_VALID BIT(31)
- #define DART_T8020_TTBR_ADDR_FIELD_SHIFT 0
- #define DART_T8020_TTBR_SHIFT 12
-@@ -1217,6 +1218,33 @@ static const struct apple_dart_hw apple_dart_hw_t8103 = {
- 	.ttbr_shift = DART_T8020_TTBR_SHIFT,
- 	.ttbr_count = 4,
- };
-+
-+static const struct apple_dart_hw apple_dart_hw_t8103_usb4 = {
-+	.type = DART_T8020,
-+	.irq_handler = apple_dart_t8020_irq,
-+	.invalidate_tlb = apple_dart_t8020_hw_invalidate_tlb,
-+	.oas = 36,
-+	.fmt = APPLE_DART,
-+	.max_sid_count = 64,
-+
-+	.enable_streams = DART_T8020_STREAMS_ENABLE,
-+	.lock = DART_T8020_CONFIG,
-+	.lock_bit = DART_T8020_CONFIG_LOCK,
-+
-+	.error = DART_T8020_ERROR,
-+
-+	.tcr = DART_T8020_TCR,
-+	.tcr_enabled = DART_T8020_TCR_TRANSLATE_ENABLE,
-+	.tcr_disabled = 0,
-+	.tcr_bypass = 0,
-+
-+	.ttbr = DART_T8020_USB4_TTBR,
-+	.ttbr_valid = DART_T8020_TTBR_VALID,
-+	.ttbr_addr_field_shift = DART_T8020_TTBR_ADDR_FIELD_SHIFT,
-+	.ttbr_shift = DART_T8020_TTBR_SHIFT,
-+	.ttbr_count = 4,
-+};
-+
- static const struct apple_dart_hw apple_dart_hw_t6000 = {
- 	.type = DART_T6000,
- 	.irq_handler = apple_dart_t8020_irq,
-@@ -1309,6 +1337,7 @@ static DEFINE_SIMPLE_DEV_PM_OPS(apple_dart_pm_ops, apple_dart_suspend, apple_dar
- 
- static const struct of_device_id apple_dart_of_match[] = {
- 	{ .compatible = "apple,t8103-dart", .data = &apple_dart_hw_t8103 },
-+	{ .compatible = "apple,t8103-usb4-dart", .data = &apple_dart_hw_t8103_usb4 },
- 	{ .compatible = "apple,t8110-dart", .data = &apple_dart_hw_t8110 },
- 	{ .compatible = "apple,t6000-dart", .data = &apple_dart_hw_t6000 },
- 	{},
--- 
-2.34.1
+Reviewed-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
 
+> ---
+> CC: Conor Dooley <conor.dooley@microchip.com>
+> CC: Daire McNamara <daire.mcnamara@microchip.com>
+> CC: Rob Herring <robh+dt@kernel.org>
+> CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> CC: Paul Walmsley <paul.walmsley@sifive.com>
+> CC: Palmer Dabbelt <palmer@dabbelt.com>
+> CC: linux-riscv@lists.infradead.org
+> CC: devicetree@vger.kernel.org
+> ---
+>  arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts | 7 -------
+>  arch/riscv/boot/dts/microchip/mpfs-m100pfsevp.dts | 7 -------
+>  arch/riscv/boot/dts/microchip/mpfs-polarberry.dts | 7 -------
+>  arch/riscv/boot/dts/microchip/mpfs-sev-kit.dts    | 7 -------
+>  arch/riscv/boot/dts/microchip/mpfs-tysom-m.dts    | 7 -------
+>  arch/riscv/boot/dts/microchip/mpfs.dtsi           | 1 +
+>  6 files changed, 1 insertion(+), 35 deletions(-)
+>
+> diff --git a/arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts b/arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts
+> index 90b261114763..dce96f27cc89 100644
+> --- a/arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts
+> +++ b/arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts
+> @@ -8,9 +8,6 @@
+>  #include <dt-bindings/gpio/gpio.h>
+>  #include <dt-bindings/leds/common.h>
+>
+> -/* Clock frequency (in Hz) of the rtcclk */
+> -#define RTCCLK_FREQ		1000000
+> -
+>  / {
+>  	model = "Microchip PolarFire-SoC Icicle Kit";
+>  	compatible = "microchip,mpfs-icicle-reference-rtlv2210", "microchip,mpfs-icicle-kit",
+> @@ -29,10 +26,6 @@ chosen {
+>  		stdout-path = "serial1:115200n8";
+>  	};
+>
+> -	cpus {
+> -		timebase-frequency = <RTCCLK_FREQ>;
+> -	};
+> -
+>  	leds {
+>  		compatible = "gpio-leds";
+>
+> diff --git a/arch/riscv/boot/dts/microchip/mpfs-m100pfsevp.dts b/arch/riscv/boot/dts/microchip/mpfs-m100pfsevp.dts
+> index 184cb36a175e..a8d623ee9fa4 100644
+> --- a/arch/riscv/boot/dts/microchip/mpfs-m100pfsevp.dts
+> +++ b/arch/riscv/boot/dts/microchip/mpfs-m100pfsevp.dts
+> @@ -10,9 +10,6 @@
+>  #include "mpfs.dtsi"
+>  #include "mpfs-m100pfs-fabric.dtsi"
+>
+> -/* Clock frequency (in Hz) of the rtcclk */
+> -#define MTIMER_FREQ	1000000
+> -
+>  / {
+>  	model = "Aries Embedded M100PFEVPS";
+>  	compatible = "aries,m100pfsevp", "microchip,mpfs";
+> @@ -33,10 +30,6 @@ chosen {
+>  		stdout-path = "serial1:115200n8";
+>  	};
+>
+> -	cpus {
+> -		timebase-frequency = <MTIMER_FREQ>;
+> -	};
+> -
+>  	ddrc_cache_lo: memory@80000000 {
+>  		device_type = "memory";
+>  		reg = <0x0 0x80000000 0x0 0x40000000>;
+> diff --git a/arch/riscv/boot/dts/microchip/mpfs-polarberry.dts b/arch/riscv/boot/dts/microchip/mpfs-polarberry.dts
+> index c87cc2d8fe29..ea0808ab1042 100644
+> --- a/arch/riscv/boot/dts/microchip/mpfs-polarberry.dts
+> +++ b/arch/riscv/boot/dts/microchip/mpfs-polarberry.dts
+> @@ -6,9 +6,6 @@
+>  #include "mpfs.dtsi"
+>  #include "mpfs-polarberry-fabric.dtsi"
+>
+> -/* Clock frequency (in Hz) of the rtcclk */
+> -#define MTIMER_FREQ	1000000
+> -
+>  / {
+>  	model = "Sundance PolarBerry";
+>  	compatible = "sundance,polarberry", "microchip,mpfs";
+> @@ -22,10 +19,6 @@ chosen {
+>  		stdout-path = "serial0:115200n8";
+>  	};
+>
+> -	cpus {
+> -		timebase-frequency = <MTIMER_FREQ>;
+> -	};
+> -
+>  	ddrc_cache_lo: memory@80000000 {
+>  		device_type = "memory";
+>  		reg = <0x0 0x80000000 0x0 0x2e000000>;
+> diff --git a/arch/riscv/boot/dts/microchip/mpfs-sev-kit.dts b/arch/riscv/boot/dts/microchip/mpfs-sev-kit.dts
+> index 013cb666c72d..f9a890579438 100644
+> --- a/arch/riscv/boot/dts/microchip/mpfs-sev-kit.dts
+> +++ b/arch/riscv/boot/dts/microchip/mpfs-sev-kit.dts
+> @@ -6,9 +6,6 @@
+>  #include "mpfs.dtsi"
+>  #include "mpfs-sev-kit-fabric.dtsi"
+>
+> -/* Clock frequency (in Hz) of the rtcclk */
+> -#define MTIMER_FREQ		1000000
+> -
+>  / {
+>  	#address-cells = <2>;
+>  	#size-cells = <2>;
+> @@ -28,10 +25,6 @@ chosen {
+>  		stdout-path = "serial1:115200n8";
+>  	};
+>
+> -	cpus {
+> -		timebase-frequency = <MTIMER_FREQ>;
+> -	};
+> -
+>  	reserved-memory {
+>  		#address-cells = <2>;
+>  		#size-cells = <2>;
+> diff --git a/arch/riscv/boot/dts/microchip/mpfs-tysom-m.dts b/arch/riscv/boot/dts/microchip/mpfs-tysom-m.dts
+> index e0797c7e1b35..d1120f5f2c01 100644
+> --- a/arch/riscv/boot/dts/microchip/mpfs-tysom-m.dts
+> +++ b/arch/riscv/boot/dts/microchip/mpfs-tysom-m.dts
+> @@ -11,9 +11,6 @@
+>  #include "mpfs.dtsi"
+>  #include "mpfs-tysom-m-fabric.dtsi"
+>
+> -/* Clock frequency (in Hz) of the rtcclk */
+> -#define MTIMER_FREQ		1000000
+> -
+>  / {
+>  	model = "Aldec TySOM-M-MPFS250T-REV2";
+>  	compatible = "aldec,tysom-m-mpfs250t-rev2", "microchip,mpfs";
+> @@ -34,10 +31,6 @@ chosen {
+>  		stdout-path = "serial1:115200n8";
+>  	};
+>
+> -	cpus {
+> -		timebase-frequency = <MTIMER_FREQ>;
+> -	};
+> -
+>  	ddrc_cache_lo: memory@80000000 {
+>  		device_type = "memory";
+>  		reg = <0x0 0x80000000 0x0 0x30000000>;
+> diff --git a/arch/riscv/boot/dts/microchip/mpfs.dtsi b/arch/riscv/boot/dts/microchip/mpfs.dtsi
+> index a6faf24f1dba..266489d43912 100644
+> --- a/arch/riscv/boot/dts/microchip/mpfs.dtsi
+> +++ b/arch/riscv/boot/dts/microchip/mpfs.dtsi
+> @@ -13,6 +13,7 @@ / {
+>  	cpus {
+>  		#address-cells = <1>;
+>  		#size-cells = <0>;
+> +		timebase-frequency = <1000000>;
+>
+>  		cpu0: cpu@0 {
+>  			compatible = "sifive,e51", "sifive,rocket0", "riscv";
+> --
+> 2.39.2
+>
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
