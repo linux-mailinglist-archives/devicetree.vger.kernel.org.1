@@ -1,77 +1,77 @@
-Return-Path: <devicetree+bounces-18989-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18990-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0A3F7F956F
-	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 22:11:12 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C16977F9576
+	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 22:15:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5463C280D97
-	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 21:11:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F2AD11C2040D
+	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 21:15:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F89112E7F;
-	Sun, 26 Nov 2023 21:11:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DE0F12E78;
+	Sun, 26 Nov 2023 21:15:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="uxNgOXms"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="e3qWUy6J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EAD8FB
-	for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 13:11:03 -0800 (PST)
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A39CFB
+	for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 13:15:27 -0800 (PST)
+Received: from mail-pf1-f198.google.com (mail-pf1-f198.google.com [209.85.210.198])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id D558640C52
-	for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 21:10:59 +0000 (UTC)
+	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id C2DA13F193
+	for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 21:15:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1701033059;
-	bh=rvglDuo/fTyCEy2eZikNSrK0RCDTjL208TqZkqJiFe0=;
+	s=20210705; t=1701033325;
+	bh=X6K8bPWubM7CP2uBLEzKZ5K58KMm2j9nc1xapYlq3qo=;
 	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
 	 To:Cc:Content-Type;
-	b=uxNgOXms3kTtZrV9UKovibbt5fnciZ8qdyZ4o64IQpe4AEf3FgVDO6mokn3arw580
-	 qFxi1lxD8QcBJ2MKaGszWdV3s7H9T0Pzd2d36/1/bfFobK4wyZ/yBY2IDMdOZz+cBj
-	 aN95HuWTNXmyMrq3WMzuqZ71tTp66X8JpJ9e81D1mPm0eR7mLqHOWK+5iCo/jQqJF6
-	 Wz2LhlmkxpMopSt/remgbiMLpWJCDzqCosdN1BZGkIFZ4HFzq27Upi3QUUD6Mtr9Xt
-	 6962AVK98Dm0xXrBb3CuYGkIiihffdBBZSzlb4FnvAtmFVhPOL6CjTKY3PRO+SYBnp
-	 SI0plRoW99sFA==
-Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-67a16e9eedbso26587716d6.0
-        for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 13:10:59 -0800 (PST)
+	b=e3qWUy6Jw9I1ZN9WXlbBUa7M8R7K04o8hUk8zTkB+92tx6j1VsuCCW/k8juMlLkGT
+	 ybq76CIi1OZL0wpV05vEOs9oTm8i+pNaN0wXCrJdPz7DPjp+qmcANwM7PGc/TxRhYy
+	 1NzIOuGEK/YuEaUSNw+2oEXwiL/tUq6YxyBeWNhtLQfLyFvD7aUhvKtSHzYy2WD0pl
+	 2NstU35tCzI1aL3Gcnyel9BagnAoXm1iddAIw8VJAf2fBz23EuSEL5xjfyhus8XeFL
+	 9QCqah2e5M4QrXVYpfP30YWiNMh9QoATLGN49wrau7CyzNvatdzGoRunbEWkP8rmjW
+	 XZCyQnXM9BuIw==
+Received: by mail-pf1-f198.google.com with SMTP id d2e1a72fcca58-6cd8b5b2d04so826913b3a.0
+        for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 13:15:25 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701033058; x=1701637858;
+        d=1e100.net; s=20230601; t=1701033324; x=1701638124;
         h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
          :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rvglDuo/fTyCEy2eZikNSrK0RCDTjL208TqZkqJiFe0=;
-        b=k+qLUnTL5SQkfJuiyyXeJz6RimbePkriWGj40MEybfzofmgKMuGnUGDVgZYV+0fFn7
-         ygL2015QHfnuwRupaf6AySZ3DNaAvYjMiIMuD1SjLArX+qLgaEyd79cPc+8kyPvEQvvm
-         6y1P9pHWNHzg4pTEsmtUuruWPB2R84KqOrD+Szr8NGCPrrb/uRicLfcM30x5FgCm3Uvu
-         L+980A/Mo2qVe+unkTp3NCq+hstriJ4HYchtMMZqROq91tNiHsCYYsiXz/qAroGP9beo
-         skwLZSA3AamyqLjfanmsS9AyIrD/6Cw2bU3LHMCSFpgk3eFs9lTe/jUbOCqb06FjWRKj
-         Jyfg==
-X-Gm-Message-State: AOJu0YwaqMUlSx/rVLWwVJUgDL7Wvkvebenfml8x4CRmGkrg0T/uwxi+
-	cAmHiuCM9yiSz4RxB+yYKNQ9xVy6m5Kn7IB0kPS6aQlTwZfkwpE0Hm27kEeLKEAIUt+BitZcdiy
-	kFqqNpY/R8zSE86ELYkxGEAJdbhzo5jIwNbtWqgQUQfWG9yabSJic2v0=
-X-Received: by 2002:a0c:e241:0:b0:679:2f94:865c with SMTP id x1-20020a0ce241000000b006792f94865cmr10212326qvl.2.1701033058735;
-        Sun, 26 Nov 2023 13:10:58 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGYWNxo8Vh6oRaTbtMwPUh8NeMnB/m/b1dccmMlQVlfIUn9lkEBCVo+foSjrK/Vattp6N8+q2aLZGzM4wRhZ9g=
-X-Received: by 2002:a0c:e241:0:b0:679:2f94:865c with SMTP id
- x1-20020a0ce241000000b006792f94865cmr10212317qvl.2.1701033058505; Sun, 26 Nov
- 2023 13:10:58 -0800 (PST)
+        bh=X6K8bPWubM7CP2uBLEzKZ5K58KMm2j9nc1xapYlq3qo=;
+        b=ZfYC/Fcazu4mONyNY2i8oM0rJD2buyKigO1lmnIzEXRfJsWN/3+ejflS+rP6fXloDE
+         7KxfSpFvz+d9kdT6zc4p7DuxieMcV2pb4IANdRygOTWBq3/JFu3+SN/59B4YBPMwMpUg
+         IOlJL8iPgnWlPNzsQ3X3TgPPtXM1WuJ8edo8IHZGcDWn4AhSXCvNEKb2C2HWSJp9Qg9/
+         QBdj3t1ftVLM/uk6VH9ZRsTRAt4QrXP5wMsWeRfd0E94sTpzUyymAnzRNNNcjOVQ1mbH
+         ZayC/sqrsKssOxTDHKnIPyxcAboN1ZWP94oRrI7OnmPmU/UmLZVaj+j3gBVkTMZRm6sF
+         EPdQ==
+X-Gm-Message-State: AOJu0YxUqMF+lUUV+JNVOQg04x5y6amOJENV8m077AQNRf+tuwNfHRt+
+	EqX/qbBkSfMi4feIbjDJ6XRL+Nx0HoxyItenn2IFfr8YREVd8qLqo1J/XLXf+iKUznR2OGb92VI
+	O9OniBGz+BVjd4wfJ6KhcoEEhTDSegZ0w+26fvmTT9ckZAbPtc23o82Q=
+X-Received: by 2002:a05:622a:4d1:b0:423:93ce:56a8 with SMTP id q17-20020a05622a04d100b0042393ce56a8mr9480174qtx.37.1701033303344;
+        Sun, 26 Nov 2023 13:15:03 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGvOe1/VcODkUu33j/9j5dbJoi16WUGuqQQy1j3aYZEMCOFUmi43jYGiMI7L4+bD3DEsgAlRyl8uU3g9zCAnrU=
+X-Received: by 2002:a05:622a:4d1:b0:423:93ce:56a8 with SMTP id
+ q17-20020a05622a04d100b0042393ce56a8mr9480140qtx.37.1701033303037; Sun, 26
+ Nov 2023 13:15:03 -0800 (PST)
 Received: from 348282803490 named unknown by gmailapi.google.com with
- HTTPREST; Sun, 26 Nov 2023 22:10:57 +0100
+ HTTPREST; Sun, 26 Nov 2023 22:15:02 +0100
 From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-In-Reply-To: <20231029042712.520010-13-cristian.ciocaltea@collabora.com>
-References: <20231029042712.520010-1-cristian.ciocaltea@collabora.com> <20231029042712.520010-13-cristian.ciocaltea@collabora.com>
+In-Reply-To: <20231029042712.520010-10-cristian.ciocaltea@collabora.com>
+References: <20231029042712.520010-1-cristian.ciocaltea@collabora.com> <20231029042712.520010-10-cristian.ciocaltea@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 Mime-Version: 1.0
-Date: Sun, 26 Nov 2023 22:10:57 +0100
-Message-ID: <CAJM55Z9e=vjGKNnmURN15mvXo2bVd3igBA-3puF9q7eh5hiP+A@mail.gmail.com>
-Subject: Re: [PATCH v2 12/12] [UNTESTED] riscv: dts: starfive:
- beaglev-starlight: Enable gmac
+Date: Sun, 26 Nov 2023 22:15:02 +0100
+Message-ID: <CAJM55Z-1ibownJG-pEuUx5VvPfnuV0+kT-6Fo3VnVs2YycNEEg@mail.gmail.com>
+Subject: Re: [PATCH v2 09/12] riscv: dts: starfive: jh7100: Add sysmain and
+ gmac DT nodes
 To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, 
 	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
 	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>, 
@@ -88,51 +88,73 @@ Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
 Content-Type: text/plain; charset="UTF-8"
 
 Cristian Ciocaltea wrote:
-> The BeagleV Starlight SBC uses a Microchip KSZ9031RNXCA PHY supporting
-> RGMII-ID.
->
-> TODO: Verify if manual adjustment of the RX internal delay is needed. If
-> yes, add the mdio & phy sub-nodes.
-
-Sorry for being late here. I've tested that removing the mdio and phy nodes on
-the the Starlight board works fine, but the rx-internal-delay-ps = <900>
-property not needed on any of my VisionFive V1 boards either. So I wonder why
-you need that on your board
-
-Also in the driver patch you add support for phy-mode = "rgmii-txid", but here
-you still set it to "rgmii-id", so which is it?
-
-You've alse removed the phy reset gpio on the Starlight board:
-
-  snps,reset-gpios = <&gpio 63 GPIO_ACTIVE_LOW>
-
-Why?
-
+> Provide the sysmain and gmac DT nodes supporting the DWMAC found on the
+> StarFive JH7100 SoC.
 >
 > Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
 > ---
->  arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dts | 5 +++++
->  1 file changed, 5 insertions(+)
+>  arch/riscv/boot/dts/starfive/jh7100.dtsi | 36 ++++++++++++++++++++++++
+>  1 file changed, 36 insertions(+)
 >
-> diff --git a/arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dts b/arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dts
-> index 7cda3a89020a..d3f4c99d98da 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dts
-> +++ b/arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dts
-> @@ -11,3 +11,8 @@ / {
->  	model = "BeagleV Starlight Beta";
->  	compatible = "beagle,beaglev-starlight-jh7100-r0", "starfive,jh7100";
->  };
+> diff --git a/arch/riscv/boot/dts/starfive/jh7100.dtsi b/arch/riscv/boot/dts/starfive/jh7100.dtsi
+> index a8a5bb00b0d8..e8228e96d350 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7100.dtsi
+> +++ b/arch/riscv/boot/dts/starfive/jh7100.dtsi
+> @@ -179,6 +179,37 @@ plic: interrupt-controller@c000000 {
+>  			riscv,ndev = <133>;
+>  		};
+>
+> +		gmac: ethernet@10020000 {
+> +			compatible = "starfive,jh7100-dwmac", "snps,dwmac";
+> +			reg = <0x0 0x10020000 0x0 0x10000>;
+> +			clocks = <&clkgen JH7100_CLK_GMAC_ROOT_DIV>,
+> +				 <&clkgen JH7100_CLK_GMAC_AHB>,
+> +				 <&clkgen JH7100_CLK_GMAC_PTP_REF>,
+> +				 <&clkgen JH7100_CLK_GMAC_TX_INV>,
+> +				 <&clkgen JH7100_CLK_GMAC_GTX>;
+> +			clock-names = "stmmaceth", "pclk", "ptp_ref", "tx", "gtx";
+> +			resets = <&rstgen JH7100_RSTN_GMAC_AHB>;
+> +			reset-names = "ahb";
+> +			interrupts = <6>, <7>;
+> +			interrupt-names = "macirq", "eth_wake_irq";
+> +			max-frame-size = <9000>;
+> +			snps,multicast-filter-bins = <32>;
+> +			snps,perfect-filter-entries = <128>;
+> +			starfive,syscon = <&sysmain 0x70 0>;
+> +			rx-fifo-depth = <32768>;
+> +			tx-fifo-depth = <16384>;
+> +			snps,axi-config = <&stmmac_axi_setup>;
+> +			snps,fixed-burst;
+> +			snps,force_thresh_dma_mode;
+> +			status = "disabled";
 > +
-> +&gmac {
-> +	phy-mode = "rgmii-id";
-> +	status = "okay";
-> +};
+> +			stmmac_axi_setup: stmmac-axi-config {
+> +				snps,wr_osr_lmt = <0xf>;
+> +				snps,rd_osr_lmt = <0xf>;
 
-Lastly the phy-mode and status are the same for the VF1 and Starlight boards,
-so why can't these be set in the jh7100-common.dtsi?
+As I also noted on the JH7110 patches these are not addresses or offsets but
+limits eg. counting things, which makes a lot more sense in decimal for most
+humans. But here you've changed them back to 0xf, why?
 
-/Emil
-
+> +				snps,blen = <256 128 64 32 0 0 0>;
+> +			};
+> +		};
+> +
+>  		clkgen: clock-controller@11800000 {
+>  			compatible = "starfive,jh7100-clkgen";
+>  			reg = <0x0 0x11800000 0x0 0x10000>;
+> @@ -193,6 +224,11 @@ rstgen: reset-controller@11840000 {
+>  			#reset-cells = <1>;
+>  		};
+>
+> +		sysmain: syscon@11850000 {
+> +			compatible = "starfive,jh7100-sysmain", "syscon";
+> +			reg = <0x0 0x11850000 0x0 0x10000>;
+> +		};
+> +
+>  		i2c0: i2c@118b0000 {
+>  			compatible = "snps,designware-i2c";
+>  			reg = <0x0 0x118b0000 0x0 0x10000>;
 > --
 > 2.42.0
 >
