@@ -1,145 +1,114 @@
-Return-Path: <devicetree+bounces-18976-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18977-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26B6F7F94B3
-	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 18:48:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB48B7F94CF
+	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 19:17:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 79895B20BDA
-	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 17:48:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B5714B20C1A
+	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 18:17:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13958E56B;
-	Sun, 26 Nov 2023 17:48:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF7F5F9FD;
+	Sun, 26 Nov 2023 18:17:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="ZK1Xn+aV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HsP2FAzX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC2C1DD;
-	Sun, 26 Nov 2023 09:48:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=P+MMY/H9HFvWRq/TZPXfzpfMq3RLmEgdkEE9wrSqusE=; b=ZK1Xn+aVbP+grqplmNoNPl/JFs
-	tdqVCS3ZE4Jt1ffDtrPn4OMhzm4zhF1OO/YzWxla+LZx6dFXZPsIuvOEz/1WMe8lk47VLg12prwn2
-	Tl1HVsDqUmWdr6SlgvLkVUkqNY0LGcaMsQis5uj6R/afxgJMm+a5uq60ZNlRtVNdWnaU=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1r7JEr-001GJ7-Ig; Sun, 26 Nov 2023 18:48:13 +0100
-Date: Sun, 26 Nov 2023 18:48:13 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, Andrew Davis <afd@ti.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Chen-Yu Tsai <wens@kernel.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Heiko Stuebner <heiko@sntech.de>, Jonathan Corbet <corbet@lwn.net>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Michal Simek <michal.simek@amd.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Nishanth Menon <nm@ti.com>, Olof Johansson <olof@lixom.net>,
-	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-	linux-rockchip@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
-	linux-amlogic@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-	workflows@vger.kernel.org, linux-doc@vger.kernel.org
-Subject: Re: [PATCH v3] docs: dt-bindings: add DTS Coding Style document
-Message-ID: <4fa1e860-48bd-456b-ab0b-88215c2b8d1b@lunn.ch>
-References: <20231125184422.12315-1-krzysztof.kozlowski@linaro.org>
- <a3b65c90-afc9-4caf-8744-112369a838d2@lunn.ch>
- <15292222-39b3-4e9e-a6c1-26fba8f5efcd@linaro.org>
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94028EAD6;
+	Sun, 26 Nov 2023 18:17:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 564E6C433C8;
+	Sun, 26 Nov 2023 18:16:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701022624;
+	bh=y5A6d9XUtPolGuHANG8CCFGRtGSFjaWe+7EWUBbWjxw=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=HsP2FAzXeMYj+xrJ8YYKfkosv4OuxaXAmmGxNLE+IAW8zemA6/GeBH4LMn4HJXOwX
+	 zAo57eyjyqN3UCMbb2yVu73u/zg+ZGt/ASEdsdiVTDdBGu7S7Hpgpvpwr5RFEwLF3U
+	 lqfT0lRf8BmoUTf5hcQku9R5HukgsPTcg9rOuF2xSMsPLDzwQWM6vPHenNyKdRB4tt
+	 uK2XN8NeviDfyomnod+aZ4NH3QAYirvOn5PM4r3LUz+3ixIDyXDY/RG5A2r848Kfys
+	 HAx8UqcumfhDH/c4kZaSFPYGOgKNa0GnnQM8KOo1ws8l5z9GB6D/JJzkYFr1h/1Ivi
+	 7YoBVokPT7i9w==
+Date: Sun, 26 Nov 2023 18:16:55 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Marek Vasut <marex@denx.de>
+Cc: linux-iio@vger.kernel.org, Andy Shevchenko
+ <andriy.shevchenko@linux.intel.com>, Matti Vaittinen
+ <mazziesaccount@gmail.com>, Alexander Stein
+ <alexander.stein@ew.tq-group.com>, Andre Werner
+ <andre.werner@systec-electronic.com>, Bjorn Helgaas <bhelgaas@google.com>,
+ Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@denx.de>,
+ Guenter Roeck <linux@roeck-us.net>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>, Mark Brown <broonie@kernel.org>,
+ Naresh Solanki <naresh.solanki@9elements.com>, Patrick Rudolph
+ <patrick.rudolph@9elements.com>, Rob Herring <robh+dt@kernel.org>, Stefan
+ Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>, Vincent Tremblay
+ <vincent@vtremblay.dev>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 2/2] iio: light: isl76682: Add ISL76682 driver
+Message-ID: <20231126181655.4e1040f9@jic23-huawei>
+In-Reply-To: <20231125222738.97875-2-marex@denx.de>
+References: <20231125222738.97875-1-marex@denx.de>
+	<20231125222738.97875-2-marex@denx.de>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <15292222-39b3-4e9e-a6c1-26fba8f5efcd@linaro.org>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Sun, Nov 26, 2023 at 11:38:38AM +0100, Krzysztof Kozlowski wrote:
-> On 25/11/2023 20:47, Andrew Lunn wrote:
-> >> +=====================================
-> >> +Devicetree Sources (DTS) Coding Style
-> >> +=====================================
-> >> +
-> >> +When writing Devicetree Sources (DTS) please observe below guidelines.  They
-> >> +should be considered complementary to any rules expressed already in Devicetree
-> >> +Specification and dtc compiler (including W=1 and W=2 builds).
-> >> +
-> >> +Individual architectures and sub-architectures can add additional rules, making
-> >> +the style stricter.
-> > 
-> > It would be nice to add a pointer where such rules are documented.
+On Sat, 25 Nov 2023 23:26:23 +0100
+Marek Vasut <marex@denx.de> wrote:
+
+> The ISL76682 is very basic ALS which only supports ALS or IR mode
+> in four ranges, 1k/4k/16k/64k LUX. There is no IRQ support or any
+> other fancy functionality.
 > 
-> Subsystem profile or any other place. The generic doc should not point
-> to specific ones.
+> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> Reviewed-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> Signed-off-by: Marek Vasut <marex@denx.de>
 
-That is not so friendly for a developer. A reviewer points out that a
-file is not consistent with the coding style. So they go away and fix
-it, as described here. They then get a second review which say, no,
-you to do X, Y and Z, despite them actually following the coding
-style.
+Hi Marek,
 
-Maybe add to the paragraph above:
+One last question + a comment in general. Act on that if you like.
 
-These further restrictions are voluntary, until added to this
-document.
+Thanks,
 
-This should encourage those architectures to document their coding
-style.
+Jonathan
 
-> The root node is a bit special, but other than that mixing nodes with
-> and without unit address is discouraged practice.
 
-If the root node is special, maybe it needs a few rules of its own?
-All properties without an address come first, then properties with
-addresses. Sorting within these classes follow the normal rules
-already stated?
+> +static int integration_time_available[] = { 0, ISL76682_INT_TIME_US };
 
-> >> +Indentation
-> >> +-----------
-> >> +
-> >> +1. Use indentation according to :ref:`codingstyle`.
-> >> +2. For arrays spanning across lines, it is preferred to align the continued
-> >> +   entries with opening < from the first line.
-> >> +3. Each entry in arrays with multiple cells (e.g. "reg" with two IO addresses)
-> >> +   shall be enclosed in <>.
-> >> +
-> >> +Example::
-> >> +
-> >> +	thermal-sensor@c271000 {
-> >> +		compatible = "qcom,sm8550-tsens", "qcom,tsens-v2";
-> >> +		reg = <0x0 0x0c271000 0x0 0x1000>,
-> >> +		      <0x0 0x0c222000 0x0 0x1000>;
-> >> +	};
-> > 
-> > I'm not sure i understand this. Is this example correct?
-> > 
-> >                 gpio-fan,speed-map = <0    0
-> >                                       3000 1
-> >                                       6000 2>;
-> > 
-> > It exists a lot in todays files.
-> 
-> Depends on the binidng. Is it matrix? If yes, then it is not correct.
+Why have an available attribute for a single value. Is it useful for anything?
 
-It seems to me, rules 2 and 3 should be swapped. You can only align
-the <, if you have <. So logically, the rule about having < should
-come first.
 
-     Andrew
+> +static int isl76682_probe(struct i2c_client *client)
+> +{
+
+...
+
+> +	indio_dev->info = &isl76682_info;
+> +	indio_dev->channels = isl76682_channels;
+> +	indio_dev->num_channels = ARRAY_SIZE(isl76682_channels);
+> +	indio_dev->name = ISL76682_DRIVER_NAME;
+Trivial but I'm not a fan of using defines in cases like this. It just makes
+me go find the define when I could see the string directly here.
+
+In cases where matching or similar strictly requires the naming to be the same
+in various places a define is useful. In this case less so.
+
+Anyhow, it's a very minor comment so never mind if you prefer to leave it
+as it stands.
+
+> +	indio_dev->modes = INDIO_DIRECT_MODE;
+> +
+> +	return devm_iio_device_register(dev, indio_dev);
+> +}
+
 
