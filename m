@@ -1,125 +1,227 @@
-Return-Path: <devicetree+bounces-18924-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18925-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A802A7F9128
-	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 04:51:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A5B17F912F
+	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 05:10:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5F67F2812E6
-	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 03:51:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 315321C20A88
+	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 04:10:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F39DB137E;
-	Sun, 26 Nov 2023 03:51:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D4EE1FB0;
+	Sun, 26 Nov 2023 04:10:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CP90BNv5"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=NETORG5796793.onmicrosoft.com header.i=@NETORG5796793.onmicrosoft.com header.b="vFM4tTWm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-x32f.google.com (mail-ot1-x32f.google.com [IPv6:2607:f8b0:4864:20::32f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB4A911F
-	for <devicetree@vger.kernel.org>; Sat, 25 Nov 2023 19:51:48 -0800 (PST)
-Received: by mail-ot1-x32f.google.com with SMTP id 46e09a7af769-6d81fc0ad6eso112727a34.2
-        for <devicetree@vger.kernel.org>; Sat, 25 Nov 2023 19:51:48 -0800 (PST)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2087.outbound.protection.outlook.com [40.107.220.87])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBA49AF;
+	Sat, 25 Nov 2023 20:10:43 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=FmjC6CKacskh5wIIq3uQ2imKUnCth1HT6E2HFahnlgKyIC4jFgI3+Yn8q4tg5LTeJzauarQ4XaU3+huZ7fg4nCn0CrSusA//ibTthuuDFAyzMHNmZ7MQfWh9AFasJS9iFm9sfCUuEmRL1W21cTFMWZkQdBdmYsowzTSZYFBDD2173JOhEDyk2/lkPxokAu9V+q/5XfwZmTGN84peDkYTtypjRZIkg1UwGVeu7FAQ/OEiT0fWjlgj8owBKqI9G9Wf/Lcwfqex99oyjlSUSjRNAblOPNSlFgyJ+N2YprJ7rlrcl2sxDhG91Zds2s5hj1//1Y/V/wgnPUHlDAJHNp1MOg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=cOx43Rm564whuojAtVKnnB22TdJx4wnlEB6caKxekrY=;
+ b=ggKZpM5dcRnhacMQajPU63/DYvZeRQO1LFC/irUpQyz6Qcz8Am+N6yIOTj0GYZ1pZtDSIUEtmJuEWxlDPrKUKqUVA8mtQRj97BsyMnfVVHQQPrM2TTrc07xcfDY7Qf9k4e1SfsB33SkyR0ASkXlzc6slN9MMpQ+6ijpM1fSZfR9n6z5RLlkZ7Cy9wQ5Ek8M0Kwi2gjoxpmZyomcJjBSwT4+T23sZCxTj1adIYxD+0v8HJo1VlgNmUekNEIi4nTGb01V03fHoeuqVtKTWiEjVJ2a6rGVss5/Z3HG/8zU47AeeN7/X/UJPwTlid7/Fl5WrQWtf0dS6cIZfNNri1ccPxw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=labundy.com; dmarc=pass action=none header.from=labundy.com;
+ dkim=pass header.d=labundy.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1700970708; x=1701575508; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=n3ePcv5eyiWbDO+V9MEwPvr8kWuH4Kzge2qv1KaLJqs=;
-        b=CP90BNv57gYzjErADY76HsSuCRTZ7zSBtsPJtFcf5iebZisOfRtOwq8jiyUtqA09W0
-         MPamyBQdYeYnbh7YieOrPHOPuafS4pMuJ3bHYOVipcGSjNC/fSfG1T11R+TYgxLroNT7
-         CVB9vz9TXxE7MBjdpn5WznFeiMsfszTKqBmuX6Gci4G/9CZ1ry6IzgtkU4rgGwFum+BE
-         d+/p9SUb0UTXlsagmnwJ0X4Ez7Kctpw2qHG/LpUfDgK6PO6ihCnnN2pxB2ogxnD1m1wl
-         bsVSDKd2Xi1pDNybdnGzWWD4bIvWItPyEpEkJtEyvm6/lYMKCuhzrJ7xYh8qt/zJnMEl
-         rATA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700970708; x=1701575508;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=n3ePcv5eyiWbDO+V9MEwPvr8kWuH4Kzge2qv1KaLJqs=;
-        b=iP51PsduwUVHEWsiS4GCt76nuOJj3LhlBLSuPlrGspntMy16QiSCYEEhRg8xmgiDBd
-         rBHSm/NhGpNH2O4NuHCWgqRdjzxYDGm2gjDrxp6gOrqapjOHbqLBtFWhcJX9v4yuu9io
-         ruOJ+YrSrKA0JWD4shhxhh+wZHoZLFuJlMWpJi64DZ44U2JVRZpxBGipGV297rwIaqCH
-         G9Hm7wwKqH1zujpL94Z8BxpmflLLjGjdZzxTxxntZVecD5hxXO4lj9/rrWflspGZZ/2x
-         qWNMx2pHJ6fb+FpCE3TgGEKG/BgLwKPDa0yDDVxt55tGv5nDRSkhbiydcGzill1grLaH
-         0tYQ==
-X-Gm-Message-State: AOJu0YzGpBWd9PKTT75DZhEOgB6AzcfugQG8SiaxcufHgAZECjjfr7SV
-	b0iztlxP5ZbWBslZemDoXuU=
-X-Google-Smtp-Source: AGHT+IF/X8aRobgXRIN9qGUIxqzUHSyxSexoCuANEUhynakNMA+LmC0DkbZCl5A53nkihBW/EJWx5g==
-X-Received: by 2002:a05:6808:1407:b0:3b2:f2e0:6b39 with SMTP id w7-20020a056808140700b003b2f2e06b39mr10679999oiv.12.1700970708056;
-        Sat, 25 Nov 2023 19:51:48 -0800 (PST)
-Received: from neuromancer. ([75.28.21.198])
-        by smtp.gmail.com with ESMTPSA id be8-20020a056808218800b003b2e4754cc2sm1064673oib.26.2023.11.25.19.51.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 25 Nov 2023 19:51:47 -0800 (PST)
-Message-ID: <6562c0d3.050a0220.2a5c5.554b@mx.google.com>
-X-Google-Original-Message-ID: <ZWLA0WS8boG6j1Rc@neuromancer.>
-Date: Sat, 25 Nov 2023 21:51:45 -0600
-From: Chris Morgan <macroalpha82@gmail.com>
-To: linux-rockchip@lists.infradead.org
-Cc: devicetree@vger.kernel.org, conor+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, neil.armstrong@linaro.org,
-	sam@ravnborg.org, Chris Morgan <macromorgan@hotmail.com>,
-	sebastian.reichel@collabora.com, dri-devel@lists.freedesktop.org,
-	robh+dt@kernel.org, Jessica Zhang <quic_jesszhan@quicinc.com>,
-	Macebrooks@gmail.com
-Subject: Re: [PATCH V4 2/6] drm/panel: nv3051d: Hold panel in reset for
- unprepare
-References: <20231117202536.1387815-1-macroalpha82@gmail.com>
- <20231117202536.1387815-3-macroalpha82@gmail.com>
+ d=NETORG5796793.onmicrosoft.com; s=selector1-NETORG5796793-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cOx43Rm564whuojAtVKnnB22TdJx4wnlEB6caKxekrY=;
+ b=vFM4tTWmybjovR/L8byD4QEywL73SufMfiPmTp7PfpqQ5vOlpDj1MyjoMrxGbYIm9KeL8eHNFOEtkRT866oQx1IyEvQ5BviBJAz/+0Ewm1ZQJY8yuBIxbojBwO67QydvzBQTRtzvHY5JvewPUIM5MX3JCe0sG6HzpD3ypGRhaYc=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=labundy.com;
+Received: from SN4PR0801MB3774.namprd08.prod.outlook.com
+ (2603:10b6:803:43::21) by DM3PR08MB9645.namprd08.prod.outlook.com
+ (2603:10b6:8:1ae::12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7025.19; Sun, 26 Nov
+ 2023 04:10:40 +0000
+Received: from SN4PR0801MB3774.namprd08.prod.outlook.com
+ ([fe80::36f2:78d1:ad7d:66da]) by SN4PR0801MB3774.namprd08.prod.outlook.com
+ ([fe80::36f2:78d1:ad7d:66da%4]) with mapi id 15.20.7025.022; Sun, 26 Nov 2023
+ 04:10:39 +0000
+Date: Sat, 25 Nov 2023 22:10:33 -0600
+From: Jeff LaBundy <jeff@labundy.com>
+To: Thomas =?iso-8859-1?Q?Wei=DFschuh?= <linux@weissschuh.net>
+Cc: Anshul Dalal <anshulusr@gmail.com>, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	linux-kernel-mentees@lists.linuxfoundation.org
+Subject: Re: [PATCH v8 1/2] dt-bindings: input: bindings for Adafruit Seesaw
+ Gamepad
+Message-ID: <ZWLFOV/U90bhm4ow@nixie71>
+References: <20231108005337.45069-1-anshulusr@gmail.com>
+ <0defc0e3-dc15-459d-9e71-64f3c38a6931@t-8ch.de>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <0defc0e3-dc15-459d-9e71-64f3c38a6931@t-8ch.de>
+X-ClientProxiedBy: SN7PR04CA0061.namprd04.prod.outlook.com
+ (2603:10b6:806:121::6) To SN4PR0801MB3774.namprd08.prod.outlook.com
+ (2603:10b6:803:43::21)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231117202536.1387815-3-macroalpha82@gmail.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN4PR0801MB3774:EE_|DM3PR08MB9645:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1be0dff7-ff30-4186-4fbd-08dbee35a662
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	whkkBWY1IYyE5Tkk0QpvkpcJjF4Xjo3VuKfr+bl/KgvSCQF4qDnVtadlRZa2NQBzUNudOtDfjeNbmTUxTeUBcy9eYMfVRK7z3GfjNIpMkPeZkQrHQJ4zoaSDJP+szzEtk1Qnujwg4Y5UQK5IxFJZ+ZQfhJYJnw+BgSgnjaIirW82P754RZ7zClkUzJh3zRbEraC/lQn8ed96u4DlJRqmQPgnrYWw0Q4PHYsJYKw3IG7yFl0iNYnfPZJkhcAs4PExxw8readcEh9oenT1ptMPF40k45AXekanh55fpFpoAOdjlFgAu8Cs7Ce6+3bIwRykNlO9Pf/bQdhIVNYM7cDSJ+F1N+KIAPwazwXdOX6G+KVEKDmeEYKu3fCKpLFdsjWZXlWbcxqP2hokQv3u2fv6nigX2WYPoTXNTVUNBq/oM5kuLFoOYPAecSDO32M5PSA9zVVP132ltkYSCoM+knMFmsjRldm3biG3dDOEzftdGhu568MSKJY7mPjOfTU618KcNWGHIkGq/Fa7XeUqbEF4xVHUm40syKLIjeiH7dzcG8k=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN4PR0801MB3774.namprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7916004)(376002)(136003)(346002)(39830400003)(366004)(396003)(230922051799003)(1800799012)(64100799003)(186009)(451199024)(66556008)(38100700002)(66476007)(54906003)(86362001)(6512007)(478600001)(6506007)(6666004)(33716001)(6486002)(9686003)(66946007)(2906002)(7416002)(66574015)(316002)(26005)(5660300002)(8936002)(41300700001)(8676002)(6916009)(966005)(4326008);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?iso-8859-1?Q?+ytXkehfYEaVCzuQlgU2OSjeAoNFUDRA3hRSydBszJzZ18EG4jlqsXc+Y4?=
+ =?iso-8859-1?Q?ROCRQQQS1ifstgPhZVytKmdFIOMAECagGTJRanTWwgivA1ubuH2KykjIJ4?=
+ =?iso-8859-1?Q?gXs2MOBmNaMnbD0RCr2EsQsDKx4nyi5jjqViKYz13R2l4JxpYEkoFkDyZD?=
+ =?iso-8859-1?Q?k1Eye5jARPq8d74zfqbCDnKaz6hhbq/6BIssyjSg1Q4C8Mqk0vtpHOSHAk?=
+ =?iso-8859-1?Q?hMKfUL7+328Pz1ylkbsQ16egnzxxSiQCOUAuX+mWSKWMqzOV6tpWAtLVyi?=
+ =?iso-8859-1?Q?ZSBBed+my3KR8kttzk1fFjwuoHBMgEf71N0CRYRzxjjrFMnjBaxrhcetcb?=
+ =?iso-8859-1?Q?BdxcEUqCN73eGnYN7cHIyPEK7sYj1/rm+3DRjVrCw3edFcZm5D/7iO2Tu1?=
+ =?iso-8859-1?Q?PL00KU9Mtwg0B4OYG63OqtVKBhCkPb9i9qA5e32E9g/5PHOVEwojtE33Nv?=
+ =?iso-8859-1?Q?kHi8azzL6THK+Y6WzAEGdxJSpwkjtXCft4Man+e9Pnf+6NkCoumQH5Htdw?=
+ =?iso-8859-1?Q?1sx3XeQeHMdymLwxrK/ds6TaoC96nkisgar62oN/pxvE6KWxwJ3ZaJlPuZ?=
+ =?iso-8859-1?Q?ypFSvTUBTpWIF2NOimkzG5X7HWR7NBCZSg6XBL+fQWHxZrVTX2ir/eJdQI?=
+ =?iso-8859-1?Q?RIUf68dYHS/BUqrDaXRKgKc6SYGeWiNYIu5q7Tlvscwy5MmmdT2uxzYhfz?=
+ =?iso-8859-1?Q?OPhPP5tnDpgp0seo9dBWTlpvc1d/u5vbXIvkIjZl1o2El6dv2/FHQltBhu?=
+ =?iso-8859-1?Q?VBl+CYZBYz+dPwF1OA3+cocVPSgeZtce87oTRiPs80qzh3XtAcsUXHzhWV?=
+ =?iso-8859-1?Q?MWcaRfc/0/Mt8/XvB9kbZu81sqThOOi+YJ/BmoRKRrd//UwNyxyAelAHuM?=
+ =?iso-8859-1?Q?mDLXmZRs5m9r2w0gQluqVCdutqN93xDC+UDtMH1tK2h0dR6tTW2qyOfVGK?=
+ =?iso-8859-1?Q?WkGO6fdmEvaRg/+BCFrjjixJnVj+lw9gA6ID0HWKQ7qd2JpsXTsndXqXEh?=
+ =?iso-8859-1?Q?CAaDY+2ewUN/cCutxiuyS+LpdqS1ghztMS7eUtb3CF7hRsEKprNHno7Pgg?=
+ =?iso-8859-1?Q?rQqMMWMBzKtY9NxO7ujOuarMlGyQdnCBdVxUyRgkvv56oy3kWIHttRFRjr?=
+ =?iso-8859-1?Q?5k8UUHPhQdHBaIXqLWu085NC7AKraRDvUVrHpsXkqf4WfrfQIsnjKKa1Zo?=
+ =?iso-8859-1?Q?nL1k7EWX4gG+klAttgklErZ0upYKC3c/0yETDcMJPvJXYXpH9yGiqRhCRE?=
+ =?iso-8859-1?Q?tl+GFKWtw3H4HF1X46NDrdr1iHXmZzTIVD7DzBDvHhamZyZvXVck4FYn4s?=
+ =?iso-8859-1?Q?XCTJh+qUGPNngrWJK4vXqj0iWGFq5li3CmOMRGK/vG8Io0UW/FxUCcxro2?=
+ =?iso-8859-1?Q?VZpuD3ynj9+X3qcdG57NoTEQ2xOHeuUZWv0EA2IgJmnwXBxCGt2IPQzDOA?=
+ =?iso-8859-1?Q?f5gFbNkoeEWHhuRfESsLa1WM2rVR9p17EeJla4KTorHYBjtE3myAafI6SE?=
+ =?iso-8859-1?Q?L4ZuJsmrAnkpVQyUpFAYFmaOW5Eu82TaeP8CZavd+77kYKBAKZh9VJCi8A?=
+ =?iso-8859-1?Q?GHyfDQYq1BkEa+VWV4czOj6E2BtN7QId4YmSgAbwUUU9abQye5Yaj/gniU?=
+ =?iso-8859-1?Q?uHcXZ9ilKPTE6azG6ljC1DN0oJq/JZVqBF?=
+X-OriginatorOrg: labundy.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1be0dff7-ff30-4186-4fbd-08dbee35a662
+X-MS-Exchange-CrossTenant-AuthSource: SN4PR0801MB3774.namprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Nov 2023 04:10:39.6603
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 00b69d09-acab-4585-aca7-8fb7c6323e6f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ZeZFvRfx+K70dYnEV8wtl9ys3fkeUkTjUWYt9eIxTOmI2O4IhpVootleH2wY/uRH6FxTpDm6Z6jPzwNfMAyCqA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PR08MB9645
 
-On Fri, Nov 17, 2023 at 02:25:32PM -0600, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
+Hi Thomas and Anshul,
+
+On Tue, Nov 14, 2023 at 08:20:46PM +0100, Thomas Weißschuh wrote:
+> On 2023-11-08 06:23:35+0530, Anshul Dalal wrote:
+> > Adds bindings for the Adafruit Seesaw Gamepad.
+> > 
+> > The gamepad functions as an i2c device with the default address of 0x50
+> > and has an IRQ pin that can be enabled in the driver to allow for a rising
+> > edge trigger on each button press or joystick movement.
+> > 
+> > Product page:
+> >   https://www.adafruit.com/product/5743
+> > Arduino driver:
+> >   https://github.com/adafruit/Adafruit_Seesaw
+> > 
+> > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Signed-off-by: Anshul Dalal <anshulusr@gmail.com>
+> > ---
+
+[...]
+
+> > +properties:
+> > +  compatible:
+> > +    const: adafruit,seesaw-gamepad
 > 
-> Improve the panel's ability to restore from suspend by holding the
-> panel in suspend after unprepare.
+> I don't really have any clue about devicetree, but shouldn't the actual
+> driver have an id-table for this "compatible"?
+> 
+> It had one up to v5 of the patchset.
+> 
+> Jeff had some comments about the OF aspect [0], but to me the state now
+> seems incorrect.
+> Maybe the DT can be dropped completely?
+> 
+> Jeff, could you advise?
 
-Now I have confirmation this does fix a bug for some users, and a
-somewhat serious bug at that. A user had their device suspended for
-approximately 12 hours and when they returned the screen was not
-displaying correctly, even after a reboot. This patch was recommended
-for troubleshooting, and confirmed to fix the problem (note, the screen
-did eventually "right" itself after several hours of being off prior to
-testing this fix). So now knowing it's really a bug as there was some
-question previously if there were actual issues, is there a way this
-can be added to the 6.6 and older supported kernels?
+My original comment was merely to say that this driver doesn't need an
+entire binding because it is easily covered by trivial-devices.yaml. The
+whole point of that binding is to save the trouble of writing a new file
+such as this for trivial devices with this same set of common properties.
 
-Thanks to brooksytech for the bug report and confirmation of fixes.
+I don't feel strongly about _not_ adding a new binding for this device,
+it just seems like unnecessary work for all involved. If the maintainers
+do not mind, then I don't either :)
 
-Might be a bit late for this, but:
-Tested-by: brooksytech <macebrooks@gmail.com>
+Taking things a step further, this driver really doesn't need to define
+an of_device_id struct either, because I seem to recall that OF can still
+bind to drivers with "compatible" strings specified in the i2c_device_id
+struct.
+
+At any rate, this version is most certainly broken because the compatible
+string defined in this binding does not match SEESAW_DEVICE_NAME specified
+in the driver's i2c_device_id struct, and there is no of_device_id struct.
+So there is no way the driver would bind if this binding were followed in
+earnest.
+
+I see this has been addressed in the latest version, so I will take a look
+at that one.
 
 > 
-> Fixes: b1d39f0f4264 ("drm/panel: Add NewVision NV3051D MIPI-DSI LCD panel")
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> Reviewed-by: Jessica Zhang <quic_jesszhan@quicinc.com>
-> ---
->  drivers/gpu/drm/panel/panel-newvision-nv3051d.c | 2 ++
->  1 file changed, 2 insertions(+)
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +    description:
+> > +      The gamepad's IRQ pin triggers a rising edge if interrupts are enabled.
 > 
-> diff --git a/drivers/gpu/drm/panel/panel-newvision-nv3051d.c b/drivers/gpu/drm/panel/panel-newvision-nv3051d.c
-> index 79de6c886292..c44c6945662f 100644
-> --- a/drivers/gpu/drm/panel/panel-newvision-nv3051d.c
-> +++ b/drivers/gpu/drm/panel/panel-newvision-nv3051d.c
-> @@ -261,6 +261,8 @@ static int panel_nv3051d_unprepare(struct drm_panel *panel)
->  
->  	usleep_range(10000, 15000);
->  
-> +	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-> +
->  	regulator_disable(ctx->vdd);
->  
->  	return 0;
-> -- 
-> 2.34.1
+> Interrupts are not supported yet by the driver.
+> Should the property be there already?
 > 
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    i2c {
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +
+> > +        joystick@50 {
+> > +            compatible = "adafruit,seesaw-gamepad";
+> > +            reg = <0x50>;
+> > +        };
+> > +    };
+> > -- 
+> > 2.42.0
+> 
+> [0] https://lore.kernel.org/lkml/ZTWza+S+t+UZKlwu@nixie71/
+
+Kind regards,
+Jeff LaBundy
 
