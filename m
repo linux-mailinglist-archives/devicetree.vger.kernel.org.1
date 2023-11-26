@@ -1,66 +1,66 @@
-Return-Path: <devicetree+bounces-19007-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19008-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D74697F967A
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 00:28:36 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EEFE7F967C
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 00:28:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 91B50280D7A
-	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 23:28:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 211D4B20A28
+	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 23:28:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9071415EBE;
-	Sun, 26 Nov 2023 23:28:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC44515EBE;
+	Sun, 26 Nov 2023 23:28:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="KZi+788E"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="JQBKF97m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0128E132
-	for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 15:28:27 -0800 (PST)
-Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com [209.85.210.200])
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA5F8D53
+	for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 15:28:34 -0800 (PST)
+Received: from mail-pg1-f200.google.com (mail-pg1-f200.google.com [209.85.215.200])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id B689C40C53
-	for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 23:28:26 +0000 (UTC)
+	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 78AE93F885
+	for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 23:28:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1701041306;
-	bh=ooP6PggRSm/MvoVaaWC7Qd0T8g9hHs1exEm2Idgm5Vk=;
+	s=20210705; t=1701041313;
+	bh=x/4VKc6j7ZPLGeNJb06p6pcCmpUDLk01xwbpFjzzvZw=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
 	 MIME-Version;
-	b=KZi+788ElKxojDUJyanMurB8Egk886Q5oA5ghrIuimxfijvBMNwS8slj1uSUYxZ0j
-	 4l/l9RweaCWZxfCovcDnVGLr2ej8UEdSNP4D31AGpnTmrazCPXMgCx6n6PL3gbX80c
-	 Pxv1OLkLCUyDf6Pc1oS8Jk7bZ8kM3nabhRiKeYjJqy4nkv4fNnqlPzo23VMqbQNrV+
-	 B9pXjr7tzFSud4ySabUiGXxsQgPDgoh7zeqfgR8zTZIu3NMrEsClOTmHd6OWZB7NtA
-	 eM23eq18Gq1rbKWoEPe9SQ04jQCZ/bqvber1NEhss2OqnajaNs4LCIrdRWH9nZ+jdk
-	 WWeSV4j5mAEEw==
-Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-6cb9dd2ab8fso4074194b3a.0
-        for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 15:28:26 -0800 (PST)
+	b=JQBKF97mNX55Yf3Gyc2h2E3Ppw+eHmmbNqFuFmM/Zhm126nXJhsKyqc0xCm7nuL0w
+	 aG994RUfDT5oNwldoNpSR60mqWo4rQVXXwQHu8+TmprsjuF+HIZbnDxhCu8eol/1uP
+	 ehsYxm1WzCaC+Ts48Fzou0cRMWTucocEXyqrONyIT6SkuhoDRxPa+7QNtxUYeidORC
+	 L7T7lP/CuVHI2wjsgAt1Or+CXFo/dKSjH7z2GMInI5iMFkvQQsVD7uZSY/EWaRgQHu
+	 NJmsliRbOwSkHtSQkjS8P3vjPv+QwKD0p3yrxNYmIEq0RHBkyfbCPPBxKWOHUPqAAO
+	 Y/VNxZ0R3j4Aw==
+Received: by mail-pg1-f200.google.com with SMTP id 41be03b00d2f7-5bd26ef66d1so5042573a12.2
+        for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 15:28:33 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701041305; x=1701646105;
+        d=1e100.net; s=20230601; t=1701041312; x=1701646112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ooP6PggRSm/MvoVaaWC7Qd0T8g9hHs1exEm2Idgm5Vk=;
-        b=jP2a/lRmujvTegWzDJqL2O2fuiTNw+0/trpSE2XvK4nq+hKuDH7wyQAEnNtTrsgcDo
-         i70cyaq3fO1tROyi8MnhzSV/TDblCFDmhL3GfFrfa/UgT/XO7ZfYNaV4YKjAL2mcxPr2
-         iJjpNZxfufOUDIfjMeUBdCNWbYmu6+Q5cwr/4qAYiE9w7N82DeO3jI+8smlXPGZKl0aR
-         K32b08RkZ0vffhDNfIvpYTErfUvAMAijN99cig5zE2RnQbCEkbWDZM6Y2ptpFN2KYUTY
-         1AdKXUIDZ59m5mYVL7TtiXRcqTPfINiWHAsQzcCZk6Rp0x61COTE1ihVdheit3iDEym5
-         KDuQ==
-X-Gm-Message-State: AOJu0Yx1UyKufcilkznMewdqU8fHZ4o+K+KmSleyJEhGZn1PghtsO+gu
-	7QO73Slk4nJSIXnTrX7Biba+hS6qUBgXT68SfFJJA/muFr7BExzO7HKt+j493gSpZgpNSS7a03Q
-	t6Tx7JrjulxKx5F4lKwcrCAEXi7kr0Y8sE6Ix+LZV8z+vhPE=
-X-Received: by 2002:a05:6a20:d396:b0:163:5bfd:ae5b with SMTP id iq22-20020a056a20d39600b001635bfdae5bmr10808809pzb.15.1701041305137;
-        Sun, 26 Nov 2023 15:28:25 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IG6/+46S+tGsJEGamPcALc1jASvPx4ZKJR3bsxdW8PeeYicEZOnptpK9l7LnyTwdz3qboVPLA==
-X-Received: by 2002:a05:6a20:d396:b0:163:5bfd:ae5b with SMTP id iq22-20020a056a20d39600b001635bfdae5bmr10808799pzb.15.1701041304797;
-        Sun, 26 Nov 2023 15:28:24 -0800 (PST)
+        bh=x/4VKc6j7ZPLGeNJb06p6pcCmpUDLk01xwbpFjzzvZw=;
+        b=ERJphmkfZ2kloS2PwsjVT722KiVNfeUPeQbffuWzJFFHERqBeh+mEdk4UcpT42XJt+
+         lELJcyPAjQSNeVpyNmsHqmFdxZ1v4L/Tv5cLeLtz3CmA4Psxqh39+sgDlKPkWUEt6kEt
+         igCZljqhpFA9FPW1eNc+xasCT4Q+W0C0jojWb+76GlQykRTA1fZMNY46NoljBpDyOGHd
+         gIMSqf4sxQJaK1kcrqAp5NzZ7SR8SUVKVNpEsKrZclYtvflxXiErQqsehK8uNJkbiD1P
+         FZz+QBNxgu25hkTYc53N5jxq6sBhIQ7RXFzoXA6mdXw1vrrnpHgp0CRjcQUR+1oTiwgD
+         5AkA==
+X-Gm-Message-State: AOJu0Yy8QOdQS2gJDhR3SY67Zq/bjUs3q8TfXWvsdVVsKg7v+EoNYQI6
+	pl6iMNru2X1FsxOxBMkUncQxKoB1WedJAQ6cGNjjBjKg4PMtth0pQiP2KaDkmtg35YxoToEr1ap
+	IfsnUoYEDRHu208jSo8DSPhA568OdtpVyyO85Zv0=
+X-Received: by 2002:a17:902:ab94:b0:1cf:b6a7:67a3 with SMTP id f20-20020a170902ab9400b001cfb6a767a3mr5596105plr.56.1701041312180;
+        Sun, 26 Nov 2023 15:28:32 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGn7gI9RzWm5JEwz0gkJGEdgyWBwAAAeo20KFp29UD271sxXxpOWLxGNhlLdPN5ZwfEX2jcYQ==
+X-Received: by 2002:a17:902:ab94:b0:1cf:b6a7:67a3 with SMTP id f20-20020a170902ab9400b001cfb6a767a3mr5596096plr.56.1701041311896;
+        Sun, 26 Nov 2023 15:28:31 -0800 (PST)
 Received: from stitch.. ([80.71.140.73])
-        by smtp.gmail.com with ESMTPSA id y10-20020a170902b48a00b001cfb52ebffesm3123853plr.147.2023.11.26.15.28.18
+        by smtp.gmail.com with ESMTPSA id y10-20020a170902b48a00b001cfb52ebffesm3123853plr.147.2023.11.26.15.28.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 26 Nov 2023 15:28:24 -0800 (PST)
+        Sun, 26 Nov 2023 15:28:30 -0800 (PST)
 From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
 To: linux-riscv@lists.infradead.org,
 	devicetree@vger.kernel.org,
@@ -72,9 +72,9 @@ Cc: Paul Walmsley <paul.walmsley@sifive.com>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Subject: [PATCH v1 4/8] riscv: dts: starfive: Add JH7100 cache controller
-Date: Mon, 27 Nov 2023 00:27:42 +0100
-Message-Id: <20231126232746.264302-5-emil.renner.berthing@canonical.com>
+Subject: [PATCH v1 5/8] riscv: dts: starfive: Add pool for coherent DMA memory on JH7100 boards
+Date: Mon, 27 Nov 2023 00:27:43 +0100
+Message-Id: <20231126232746.264302-6-emil.renner.berthing@canonical.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20231126232746.264302-1-emil.renner.berthing@canonical.com>
 References: <20231126232746.264302-1-emil.renner.berthing@canonical.com>
@@ -86,54 +86,62 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The StarFive JH7100 SoC also features the SiFive L2 cache controller.
-This SoC has non-coherent DMAs, but predate the RISC-V Zicbom extension,
-so we need the sifive,cache-ops property to use the cache controller for
-cache flushing operations instead.
+The StarFive JH7100 SoC has non-coherent device DMAs, but most drivers
+expect to be able to allocate coherent memory for DMA descriptors and
+such. However on the JH7100 DDR memory appears twice in the physical
+memory map, once cached and once uncached:
 
+  0x00_8000_0000 - 0x08_7fff_ffff : Off chip DDR memory, cached
+  0x10_0000_0000 - 0x17_ffff_ffff : Off chip DDR memory, uncached
+
+To use this uncached region we create a global DMA memory pool there and
+reserve the corresponding area in the cached region.
+
+However the uncached region is fully above the 32bit address limit, so add
+a dma-ranges map so the DMA address used for peripherals is still in the
+regular cached region below the limit.
+
+Link: https://github.com/starfive-tech/JH7100_Docs/blob/main/JH7100%20Data%20Sheet%20V01.01.04-EN%20(4-21-2021).pdf
 Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
 ---
- arch/riscv/boot/dts/starfive/jh7100.dtsi | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+ .../boot/dts/starfive/jh7100-common.dtsi      | 24 +++++++++++++++++++
+ 1 file changed, 24 insertions(+)
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7100.dtsi b/arch/riscv/boot/dts/starfive/jh7100.dtsi
-index 7c1009428c1f..0cafac437746 100644
---- a/arch/riscv/boot/dts/starfive/jh7100.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7100.dtsi
-@@ -32,6 +32,7 @@ U74_0: cpu@0 {
- 			i-tlb-sets = <1>;
- 			i-tlb-size = <32>;
- 			mmu-type = "riscv,sv39";
-+			next-level-cache = <&ccache>;
- 			riscv,isa = "rv64imafdc";
- 			riscv,isa-base = "rv64i";
- 			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "zicntr", "zicsr",
-@@ -60,6 +61,7 @@ U74_1: cpu@1 {
- 			i-tlb-sets = <1>;
- 			i-tlb-size = <32>;
- 			mmu-type = "riscv,sv39";
-+			next-level-cache = <&ccache>;
- 			riscv,isa = "rv64imafdc";
- 			riscv,isa-base = "rv64i";
- 			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "zicntr", "zicsr",
-@@ -154,6 +156,17 @@ clint: clint@2000000 {
- 					      <&cpu1_intc 3>, <&cpu1_intc 7>;
+diff --git a/arch/riscv/boot/dts/starfive/jh7100-common.dtsi b/arch/riscv/boot/dts/starfive/jh7100-common.dtsi
+index b93ce351a90f..3af88e6970a3 100644
+--- a/arch/riscv/boot/dts/starfive/jh7100-common.dtsi
++++ b/arch/riscv/boot/dts/starfive/jh7100-common.dtsi
+@@ -39,6 +39,30 @@ led-ack {
+ 			label = "ack";
  		};
- 
-+		ccache: cache-controller@2010000 {
-+			compatible = "starfive,jh7100-ccache", "sifive,ccache0", "cache";
-+			reg = <0x0 0x2010000 0x0 0x1000>;
-+			interrupts = <128>, <130>, <131>, <129>;
-+			cache-block-size = <64>;
-+			cache-level = <2>;
-+			cache-sets = <2048>;
-+			cache-size = <2097152>;
-+			cache-unified;
+ 	};
++
++	reserved-memory {
++		#address-cells = <2>;
++		#size-cells = <2>;
++		ranges;
++
++		dma-reserved@fa000000 {
++			reg = <0x0 0xfa000000 0x0 0x1000000>;
++			no-map;
 +		};
 +
- 		plic: interrupt-controller@c000000 {
- 			compatible = "starfive,jh7100-plic", "sifive,plic-1.0.0";
- 			reg = <0x0 0xc000000 0x0 0x4000000>;
++		linux,dma@107a000000 {
++			compatible = "shared-dma-pool";
++			reg = <0x10 0x7a000000 0x0 0x1000000>;
++			no-map;
++			linux,dma-default;
++		};
++	};
++
++	soc {
++		dma-ranges = <0x00 0x80000000 0x00 0x80000000 0x00 0x7a000000>,
++			     <0x00 0xfa000000 0x10 0x7a000000 0x00 0x01000000>,
++			     <0x00 0xfb000000 0x00 0xfb000000 0x07 0x85000000>;
++	};
+ };
+ 
+ &gpio {
 -- 
 2.40.1
 
