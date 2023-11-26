@@ -1,227 +1,137 @@
-Return-Path: <devicetree+bounces-18925-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-18926-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A5B17F912F
-	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 05:10:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D32D7F9186
+	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 07:08:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 315321C20A88
-	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 04:10:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 29FD7281249
+	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 06:08:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D4EE1FB0;
-	Sun, 26 Nov 2023 04:10:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24A1F3FC7;
+	Sun, 26 Nov 2023 06:08:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=NETORG5796793.onmicrosoft.com header.i=@NETORG5796793.onmicrosoft.com header.b="vFM4tTWm"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="CLYhTMfy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2087.outbound.protection.outlook.com [40.107.220.87])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBA49AF;
-	Sat, 25 Nov 2023 20:10:43 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FmjC6CKacskh5wIIq3uQ2imKUnCth1HT6E2HFahnlgKyIC4jFgI3+Yn8q4tg5LTeJzauarQ4XaU3+huZ7fg4nCn0CrSusA//ibTthuuDFAyzMHNmZ7MQfWh9AFasJS9iFm9sfCUuEmRL1W21cTFMWZkQdBdmYsowzTSZYFBDD2173JOhEDyk2/lkPxokAu9V+q/5XfwZmTGN84peDkYTtypjRZIkg1UwGVeu7FAQ/OEiT0fWjlgj8owBKqI9G9Wf/Lcwfqex99oyjlSUSjRNAblOPNSlFgyJ+N2YprJ7rlrcl2sxDhG91Zds2s5hj1//1Y/V/wgnPUHlDAJHNp1MOg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cOx43Rm564whuojAtVKnnB22TdJx4wnlEB6caKxekrY=;
- b=ggKZpM5dcRnhacMQajPU63/DYvZeRQO1LFC/irUpQyz6Qcz8Am+N6yIOTj0GYZ1pZtDSIUEtmJuEWxlDPrKUKqUVA8mtQRj97BsyMnfVVHQQPrM2TTrc07xcfDY7Qf9k4e1SfsB33SkyR0ASkXlzc6slN9MMpQ+6ijpM1fSZfR9n6z5RLlkZ7Cy9wQ5Ek8M0Kwi2gjoxpmZyomcJjBSwT4+T23sZCxTj1adIYxD+0v8HJo1VlgNmUekNEIi4nTGb01V03fHoeuqVtKTWiEjVJ2a6rGVss5/Z3HG/8zU47AeeN7/X/UJPwTlid7/Fl5WrQWtf0dS6cIZfNNri1ccPxw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=labundy.com; dmarc=pass action=none header.from=labundy.com;
- dkim=pass header.d=labundy.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=NETORG5796793.onmicrosoft.com; s=selector1-NETORG5796793-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cOx43Rm564whuojAtVKnnB22TdJx4wnlEB6caKxekrY=;
- b=vFM4tTWmybjovR/L8byD4QEywL73SufMfiPmTp7PfpqQ5vOlpDj1MyjoMrxGbYIm9KeL8eHNFOEtkRT866oQx1IyEvQ5BviBJAz/+0Ewm1ZQJY8yuBIxbojBwO67QydvzBQTRtzvHY5JvewPUIM5MX3JCe0sG6HzpD3ypGRhaYc=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=labundy.com;
-Received: from SN4PR0801MB3774.namprd08.prod.outlook.com
- (2603:10b6:803:43::21) by DM3PR08MB9645.namprd08.prod.outlook.com
- (2603:10b6:8:1ae::12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7025.19; Sun, 26 Nov
- 2023 04:10:40 +0000
-Received: from SN4PR0801MB3774.namprd08.prod.outlook.com
- ([fe80::36f2:78d1:ad7d:66da]) by SN4PR0801MB3774.namprd08.prod.outlook.com
- ([fe80::36f2:78d1:ad7d:66da%4]) with mapi id 15.20.7025.022; Sun, 26 Nov 2023
- 04:10:39 +0000
-Date: Sat, 25 Nov 2023 22:10:33 -0600
-From: Jeff LaBundy <jeff@labundy.com>
-To: Thomas =?iso-8859-1?Q?Wei=DFschuh?= <linux@weissschuh.net>
-Cc: Anshul Dalal <anshulusr@gmail.com>, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	linux-kernel-mentees@lists.linuxfoundation.org
-Subject: Re: [PATCH v8 1/2] dt-bindings: input: bindings for Adafruit Seesaw
- Gamepad
-Message-ID: <ZWLFOV/U90bhm4ow@nixie71>
-References: <20231108005337.45069-1-anshulusr@gmail.com>
- <0defc0e3-dc15-459d-9e71-64f3c38a6931@t-8ch.de>
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <0defc0e3-dc15-459d-9e71-64f3c38a6931@t-8ch.de>
-X-ClientProxiedBy: SN7PR04CA0061.namprd04.prod.outlook.com
- (2603:10b6:806:121::6) To SN4PR0801MB3774.namprd08.prod.outlook.com
- (2603:10b6:803:43::21)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 314F8E4;
+	Sat, 25 Nov 2023 22:08:38 -0800 (PST)
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AQ62oWC001113;
+	Sun, 26 Nov 2023 06:08:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=5akeRdGBH0Gei6ryYFUrDZ30FvI2MMkj0LH1ePIIkPw=;
+ b=CLYhTMfyZTz1ueNf0tLIfzK3YKEdl9kisbST62bAlYmQK3ZwT6koIbZUvspM4VqnLHR2
+ xiymWzzx3HlynWTYME6QN+I0pcb/G5BdU4J/LSTD3+4W8eYLVHlbvA0jhIwbYNzXsrz4
+ tPLsOPciW+/MGOGdymeILyz8YDNIRjvv6Pezp4keywREiZn1egJ0Kpc2RYzE22AF/UEY
+ zRzLg2H+pecBJPD5v9SzMsMMaFbsmttbKp2ESK7eGPIbYHUGJ9CGJKZK0xVg+kVScuI+
+ V7XGSyR0V1DAYY7KxNeUb437KiTRk0hGnH2L5fsBA74MjznhjnEuk2NvFPRsxek3bGag PA== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uk8h8hsjv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sun, 26 Nov 2023 06:08:09 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AQ688W7024506
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sun, 26 Nov 2023 06:08:08 GMT
+Received: from akronite-sh-dev02.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Sat, 25 Nov 2023 22:08:04 -0800
+From: Luo Jie <quic_luoj@quicinc.com>
+To: <andrew@lunn.ch>, <davem@davemloft.net>, <edumazet@google.com>,
+        <kuba@kernel.org>, <pabeni@redhat.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <hkallweit1@gmail.com>, <linux@armlinux.org.uk>, <corbet@lwn.net>
+CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>
+Subject: [PATCH v6 0/6] add qca8084 ethernet phy driver
+Date: Sun, 26 Nov 2023 14:07:26 +0800
+Message-ID: <20231126060732.31764-1-quic_luoj@quicinc.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN4PR0801MB3774:EE_|DM3PR08MB9645:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1be0dff7-ff30-4186-4fbd-08dbee35a662
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	whkkBWY1IYyE5Tkk0QpvkpcJjF4Xjo3VuKfr+bl/KgvSCQF4qDnVtadlRZa2NQBzUNudOtDfjeNbmTUxTeUBcy9eYMfVRK7z3GfjNIpMkPeZkQrHQJ4zoaSDJP+szzEtk1Qnujwg4Y5UQK5IxFJZ+ZQfhJYJnw+BgSgnjaIirW82P754RZ7zClkUzJh3zRbEraC/lQn8ed96u4DlJRqmQPgnrYWw0Q4PHYsJYKw3IG7yFl0iNYnfPZJkhcAs4PExxw8readcEh9oenT1ptMPF40k45AXekanh55fpFpoAOdjlFgAu8Cs7Ce6+3bIwRykNlO9Pf/bQdhIVNYM7cDSJ+F1N+KIAPwazwXdOX6G+KVEKDmeEYKu3fCKpLFdsjWZXlWbcxqP2hokQv3u2fv6nigX2WYPoTXNTVUNBq/oM5kuLFoOYPAecSDO32M5PSA9zVVP132ltkYSCoM+knMFmsjRldm3biG3dDOEzftdGhu568MSKJY7mPjOfTU618KcNWGHIkGq/Fa7XeUqbEF4xVHUm40syKLIjeiH7dzcG8k=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN4PR0801MB3774.namprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7916004)(376002)(136003)(346002)(39830400003)(366004)(396003)(230922051799003)(1800799012)(64100799003)(186009)(451199024)(66556008)(38100700002)(66476007)(54906003)(86362001)(6512007)(478600001)(6506007)(6666004)(33716001)(6486002)(9686003)(66946007)(2906002)(7416002)(66574015)(316002)(26005)(5660300002)(8936002)(41300700001)(8676002)(6916009)(966005)(4326008);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?iso-8859-1?Q?+ytXkehfYEaVCzuQlgU2OSjeAoNFUDRA3hRSydBszJzZ18EG4jlqsXc+Y4?=
- =?iso-8859-1?Q?ROCRQQQS1ifstgPhZVytKmdFIOMAECagGTJRanTWwgivA1ubuH2KykjIJ4?=
- =?iso-8859-1?Q?gXs2MOBmNaMnbD0RCr2EsQsDKx4nyi5jjqViKYz13R2l4JxpYEkoFkDyZD?=
- =?iso-8859-1?Q?k1Eye5jARPq8d74zfqbCDnKaz6hhbq/6BIssyjSg1Q4C8Mqk0vtpHOSHAk?=
- =?iso-8859-1?Q?hMKfUL7+328Pz1ylkbsQ16egnzxxSiQCOUAuX+mWSKWMqzOV6tpWAtLVyi?=
- =?iso-8859-1?Q?ZSBBed+my3KR8kttzk1fFjwuoHBMgEf71N0CRYRzxjjrFMnjBaxrhcetcb?=
- =?iso-8859-1?Q?BdxcEUqCN73eGnYN7cHIyPEK7sYj1/rm+3DRjVrCw3edFcZm5D/7iO2Tu1?=
- =?iso-8859-1?Q?PL00KU9Mtwg0B4OYG63OqtVKBhCkPb9i9qA5e32E9g/5PHOVEwojtE33Nv?=
- =?iso-8859-1?Q?kHi8azzL6THK+Y6WzAEGdxJSpwkjtXCft4Man+e9Pnf+6NkCoumQH5Htdw?=
- =?iso-8859-1?Q?1sx3XeQeHMdymLwxrK/ds6TaoC96nkisgar62oN/pxvE6KWxwJ3ZaJlPuZ?=
- =?iso-8859-1?Q?ypFSvTUBTpWIF2NOimkzG5X7HWR7NBCZSg6XBL+fQWHxZrVTX2ir/eJdQI?=
- =?iso-8859-1?Q?RIUf68dYHS/BUqrDaXRKgKc6SYGeWiNYIu5q7Tlvscwy5MmmdT2uxzYhfz?=
- =?iso-8859-1?Q?OPhPP5tnDpgp0seo9dBWTlpvc1d/u5vbXIvkIjZl1o2El6dv2/FHQltBhu?=
- =?iso-8859-1?Q?VBl+CYZBYz+dPwF1OA3+cocVPSgeZtce87oTRiPs80qzh3XtAcsUXHzhWV?=
- =?iso-8859-1?Q?MWcaRfc/0/Mt8/XvB9kbZu81sqThOOi+YJ/BmoRKRrd//UwNyxyAelAHuM?=
- =?iso-8859-1?Q?mDLXmZRs5m9r2w0gQluqVCdutqN93xDC+UDtMH1tK2h0dR6tTW2qyOfVGK?=
- =?iso-8859-1?Q?WkGO6fdmEvaRg/+BCFrjjixJnVj+lw9gA6ID0HWKQ7qd2JpsXTsndXqXEh?=
- =?iso-8859-1?Q?CAaDY+2ewUN/cCutxiuyS+LpdqS1ghztMS7eUtb3CF7hRsEKprNHno7Pgg?=
- =?iso-8859-1?Q?rQqMMWMBzKtY9NxO7ujOuarMlGyQdnCBdVxUyRgkvv56oy3kWIHttRFRjr?=
- =?iso-8859-1?Q?5k8UUHPhQdHBaIXqLWu085NC7AKraRDvUVrHpsXkqf4WfrfQIsnjKKa1Zo?=
- =?iso-8859-1?Q?nL1k7EWX4gG+klAttgklErZ0upYKC3c/0yETDcMJPvJXYXpH9yGiqRhCRE?=
- =?iso-8859-1?Q?tl+GFKWtw3H4HF1X46NDrdr1iHXmZzTIVD7DzBDvHhamZyZvXVck4FYn4s?=
- =?iso-8859-1?Q?XCTJh+qUGPNngrWJK4vXqj0iWGFq5li3CmOMRGK/vG8Io0UW/FxUCcxro2?=
- =?iso-8859-1?Q?VZpuD3ynj9+X3qcdG57NoTEQ2xOHeuUZWv0EA2IgJmnwXBxCGt2IPQzDOA?=
- =?iso-8859-1?Q?f5gFbNkoeEWHhuRfESsLa1WM2rVR9p17EeJla4KTorHYBjtE3myAafI6SE?=
- =?iso-8859-1?Q?L4ZuJsmrAnkpVQyUpFAYFmaOW5Eu82TaeP8CZavd+77kYKBAKZh9VJCi8A?=
- =?iso-8859-1?Q?GHyfDQYq1BkEa+VWV4czOj6E2BtN7QId4YmSgAbwUUU9abQye5Yaj/gniU?=
- =?iso-8859-1?Q?uHcXZ9ilKPTE6azG6ljC1DN0oJq/JZVqBF?=
-X-OriginatorOrg: labundy.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1be0dff7-ff30-4186-4fbd-08dbee35a662
-X-MS-Exchange-CrossTenant-AuthSource: SN4PR0801MB3774.namprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Nov 2023 04:10:39.6603
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 00b69d09-acab-4585-aca7-8fb7c6323e6f
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ZeZFvRfx+K70dYnEV8wtl9ys3fkeUkTjUWYt9eIxTOmI2O4IhpVootleH2wY/uRH6FxTpDm6Z6jPzwNfMAyCqA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PR08MB9645
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: AJoocCCCaCLmBEODcVVnZ-AjEYznKAJH
+X-Proofpoint-GUID: AJoocCCCaCLmBEODcVVnZ-AjEYznKAJH
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-26_04,2023-11-22_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ lowpriorityscore=0 mlxlogscore=574 impostorscore=0 bulkscore=0
+ phishscore=0 malwarescore=0 mlxscore=0 adultscore=0 clxscore=1015
+ spamscore=0 suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2311060000 definitions=main-2311260042
 
-Hi Thomas and Anshul,
+QCA8084 is four-port PHY with maximum link capability 2.5G,
+which supports the interface mode qusgmii and sgmii mode,
+there are two PCSs available to connected with ethernet port.
 
-On Tue, Nov 14, 2023 at 08:20:46PM +0100, Thomas Weißschuh wrote:
-> On 2023-11-08 06:23:35+0530, Anshul Dalal wrote:
-> > Adds bindings for the Adafruit Seesaw Gamepad.
-> > 
-> > The gamepad functions as an i2c device with the default address of 0x50
-> > and has an IRQ pin that can be enabled in the driver to allow for a rising
-> > edge trigger on each button press or joystick movement.
-> > 
-> > Product page:
-> >   https://www.adafruit.com/product/5743
-> > Arduino driver:
-> >   https://github.com/adafruit/Adafruit_Seesaw
-> > 
-> > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > Signed-off-by: Anshul Dalal <anshulusr@gmail.com>
-> > ---
+QCA8084 can work in switch mode or PHY mode.
+For switch mode, both PCS0 and PCS1 work on sgmii mode.
+For PHY mode, PCS1 works on qusgmii mode.
+The fourth PHY connected with PCS0 works on sgmii mode.
 
-[...]
+Besides this PHY driver patches, the PCS driver is also needed
+to bring up the qca8084 device, which mainly configurs PCS
+and clocks.
 
-> > +properties:
-> > +  compatible:
-> > +    const: adafruit,seesaw-gamepad
-> 
-> I don't really have any clue about devicetree, but shouldn't the actual
-> driver have an id-table for this "compatible"?
-> 
-> It had one up to v5 of the patchset.
-> 
-> Jeff had some comments about the OF aspect [0], but to me the state now
-> seems incorrect.
-> Maybe the DT can be dropped completely?
-> 
-> Jeff, could you advise?
+Changes in v3:
+	* pick the two patches to introduce the interface mode
+	  10g-qxgmii from Vladimir Oltean(olteanv@gmail.com).
+	* add the function phydev_id_is_qca808x to identify the
+	  PHY qca8081 and qca8084.
+	* update the interface mode name PHY_INTERFACE_MODE_QUSGMII
+	  to PHY_INTERFACE_MODE_10G_QXGMII.
 
-My original comment was merely to say that this driver doesn't need an
-entire binding because it is easily covered by trivial-devices.yaml. The
-whole point of that binding is to save the trouble of writing a new file
-such as this for trivial devices with this same set of common properties.
+Changes in v4:
+	* remove the following patch:
+	  <net: phylink: move phylink_pcs_neg_mode() to phylink.c>.
+	* split out 10g_qxgmii change of ethernet-controller.yaml.
 
-I don't feel strongly about _not_ adding a new binding for this device,
-it just seems like unnecessary work for all involved. If the maintainers
-do not mind, then I don't either :)
+Changes in v5:
+	* update the author of the patch below.
+	  <introduce core support for phy-mode = "10g-qxgmii">.
 
-Taking things a step further, this driver really doesn't need to define
-an of_device_id struct either, because I seem to recall that OF can still
-bind to drivers with "compatible" strings specified in the i2c_device_id
-struct.
+Changes in v6:
+	* drop the "inline" keyword.
+	* apply the patches with "--max-line-length=80".
 
-At any rate, this version is most certainly broken because the compatible
-string defined in this binding does not match SEESAW_DEVICE_NAME specified
-in the driver's i2c_device_id struct, and there is no of_device_id struct.
-So there is no way the driver would bind if this binding were followed in
-earnest.
+Luo Jie (4):
+  net: phy: at803x: add QCA8084 ethernet phy support
+  net: phy: at803x: add the function phydev_id_is_qca808x
+  net: phy: at803x: Add qca8084_config_init function
+  net: phy: qca8084: add qca8084_link_change_notify
 
-I see this has been addressed in the latest version, so I will take a look
-at that one.
+Vladimir Oltean (2):
+  net: phy: introduce core support for phy-mode = "10g-qxgmii"
+  dt-bindings: net: ethernet-controller: add 10g-qxgmii mode
 
-> 
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +    description:
-> > +      The gamepad's IRQ pin triggers a rising edge if interrupts are enabled.
-> 
-> Interrupts are not supported yet by the driver.
-> Should the property be there already?
-> 
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    i2c {
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +
-> > +        joystick@50 {
-> > +            compatible = "adafruit,seesaw-gamepad";
-> > +            reg = <0x50>;
-> > +        };
-> > +    };
-> > -- 
-> > 2.42.0
-> 
-> [0] https://lore.kernel.org/lkml/ZTWza+S+t+UZKlwu@nixie71/
+ .../bindings/net/ethernet-controller.yaml     |   1 +
+ Documentation/networking/phy.rst              |   6 +
+ drivers/net/phy/at803x.c                      | 139 +++++++++++++++++-
+ drivers/net/phy/phy-core.c                    |   1 +
+ drivers/net/phy/phylink.c                     |  11 +-
+ include/linux/phy.h                           |   4 +
+ include/linux/phylink.h                       |   2 +
+ 7 files changed, 156 insertions(+), 8 deletions(-)
 
-Kind regards,
-Jeff LaBundy
+
+base-commit: 8c9660f6515396aba78d1168d2e17951d653ebf2
+-- 
+2.42.0
+
 
