@@ -1,162 +1,108 @@
-Return-Path: <devicetree+bounces-19222-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19215-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 714F77FA0EA
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 14:22:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7513A7FA0CD
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 14:21:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2AEDA2815A5
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 13:22:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A6D891C20DF8
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 13:21:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECD442E3FB;
-	Mon, 27 Nov 2023 13:22:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E72842D7BE;
+	Mon, 27 Nov 2023 13:21:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=helmholz.de header.i=@helmholz.de header.b="HCmfkdpm"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="lLy47fo9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.helmholz.de (mail.helmholz.de [217.6.86.34])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07CA310E6
-	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 05:22:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=helmholz.de
-	; s=dkim1; h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:CC:To:From:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=8Wu8wYKy/yf0l+UtfT5Dhb2NiOkWRL+Q3S7J8pRxlU0=; b=HCmfkdpmtjehEo0efXZW/nklvO
-	mIfHmn9P9q39hXuh3xj/bCld10aGq5M98QPxuQGcfzp9SEXzZ3KR0iTBavEA6XmsKXBof641wDqWx
-	xWyjXza92vDpHKqDAunvUGKG9Q7o0ahWNErADv/o+yV2JyPG7B7yVVo9ee/leKffvce3o2MuZvvA+
-	1cbdWMGUBM9R6V73mDSZzwcVmNp65AxyFqM0lKcZmMEuksa7qtpNmIt1qCciUTpEa1vECvGsFQoEr
-	s28voF/oSMK9n+b9YGZlHk81dfHjMJ1UgRx8lSEWELemlnQyK6WsHvsVDulACAaBJzvBnV/FJRvlF
-	o6I0d9AQ==;
-Received: from [192.168.1.4] (port=38641 helo=SH-EX2013.helmholz.local)
-	by mail.helmholz.de with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384
-	(Exim 4.96)
-	(envelope-from <Ante.Knezic@helmholz.de>)
-	id 1r7bXo-0008TV-03;
-	Mon, 27 Nov 2023 14:21:00 +0100
-Received: from linuxdev.helmholz.local (192.168.6.7) by
- SH-EX2013.helmholz.local (192.168.1.4) with Microsoft SMTP Server (TLS) id
- 15.0.1497.48; Mon, 27 Nov 2023 14:20:59 +0100
-From: Ante Knezic <ante.knezic@helmholz.de>
-To: <netdev@vger.kernel.org>
-CC: <woojung.huh@microchip.com>, <andrew@lunn.ch>, <f.fainelli@gmail.com>,
-	<olteanv@gmail.com>, <davem@davemloft.net>, <edumazet@google.com>,
-	<kuba@kernel.org>, <pabeni@redhat.com>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>, <marex@denx.de>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<UNGLinuxDriver@microchip.com>, Ante Knezic <ante.knezic@helmholz.de>
-Subject: [PATCH net-next v6 2/2] net: dsa: microchip: add property to select internal RMII reference clock
-Date: Mon, 27 Nov 2023 14:20:43 +0100
-Message-ID: <6be97f0b1554b666894c0d74da4ebd384da441c4.1701091042.git.ante.knezic@helmholz.de>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <cover.1701091042.git.ante.knezic@helmholz.de>
-References: <cover.1701091042.git.ante.knezic@helmholz.de>
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D296AA
+	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 05:21:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1701091271; x=1732627271;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=3f3W/zCExRpERTrtvRVhd6LxhDLUKOt67dv+M4QmBRw=;
+  b=lLy47fo9lpHIVy3EYY0NIlouCAeG0SwE30IRij0baGrW57V9ufNQCxGk
+   QM7cTG911iWC5VjgyMIJ+p7kJGZEqCw0U69Q2IdFpbq6GvfesPXJjUQ6S
+   91VO33M7bTshHJk9XYzdlSKAYzrBtYQywVjmqEtRG23jGISpQce0Mw3DZ
+   IRUfEUWHDjIhnxwL/q1RUfZCk/33gxdNOKT87qunZKsXXWcKTiHDOjLYt
+   FMLSAkhBAflO8PSfaRIJcmM2KoxHN0QeyKesyMHkCcYheA2XnAOsImthj
+   bjoOd4rBD7zCswmggAU2uBliqjdKa7kDRUskO5xq5dKIF8yL9lQ8Kp7bl
+   w==;
+X-IronPort-AV: E=Sophos;i="6.04,230,1695679200"; 
+   d="scan'208";a="34192151"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 27 Nov 2023 14:21:08 +0100
+Received: from steina-w.localnet (steina-w.tq-net.de [10.123.53.18])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 98ECC280075;
+	Mon, 27 Nov 2023 14:21:08 +0100 (CET)
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: tony@atomide.com, dri-devel@lists.freedesktop.org, Michael Walle <mwalle@kernel.org>
+Cc: Michael Walle <mwalle@kernel.org>, krzysztof.kozlowski+dt@linaro.org, dri-devel@lists.freedesktop.org, Laurent.pinchart@ideasonboard.com, andrzej.hajda@intel.com, ivo.g.dimitrov.75@gmail.com, rfoss@kernel.org, jernej.skrabec@gmail.com, simhavcs@gmail.com, merlijn@wizzup.org, devicetree@vger.kernel.org, conor+dt@kernel.org, jonas@kwiboo.se, pavel@ucw.cz, mripard@kernel.org, robh+dt@kernel.org, philipp@uvos.xyz, neil.armstrong@linaro.org, sre@kernel.org, tzimmermann@suse.de
+Subject: Re: [PATCH 1/6] dt-bindings: tc358775: Add support for tc358765
+Date: Mon, 27 Nov 2023 14:21:08 +0100
+Message-ID: <5735396.DvuYhMxLoT@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20231127124430.2153227-1-mwalle@kernel.org>
+References: <20231126163247.10131-1-tony@atomide.com> <20231127124430.2153227-1-mwalle@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-ClientProxiedBy: SH-EX2013.helmholz.local (192.168.1.4) To
- SH-EX2013.helmholz.local (192.168.1.4)
-X-EXCLAIMER-MD-CONFIG: 2ae5875c-d7e5-4d7e-baa3-654d37918933
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-Microchip KSZ8863/KSZ8873 have the ability to select between internal
-and external RMII reference clock. By default, reference clock
-needs to be provided via REFCLKI_3 pin. If required, device can be
-setup to provide RMII clock internally so that REFCLKI_3 pin can be
-left unconnected.
-Add a new "microchip,rmii-clk-internal" property which will set
-RMII clock reference to internal. If property is not set, reference
-clock needs to be provided externally.
+Hi,
 
-While at it, move the ksz8795_cpu_interface_select() to
-ksz8_config_cpu_port() to get a cleaner call path for cpu port.
+Am Montag, 27. November 2023, 13:44:30 CET schrieb Michael Walle:
+> Hi,
+>=20
+> > The tc358765 is similar to tc358775 except for the stdby-gpios.
+>=20
+> Bad timing (for me). I'm about to send a bigger patch series for the
+> tc358775 which fixes the (completely) broken initialialization. And also
+> contains some of your fixes.
+>=20
+> That being said, I intend to make the standby gpio optional also for the
+> tc358755, because it might just be hardwired on the board.
+>=20
+> But second, I'm really curious if this bridge is working for you correctly
+> as it is at the moment. One particular thing I've noticed is that you must
+> release the reset while both the clock and the data lanes are in LP11 mod=
+e.
+> Otherwise, the bridge won't work properly (i.e. horizontally shifted
+> picture, or no picture at all).
 
-Signed-off-by: Ante Knezic <ante.knezic@helmholz.de>
----
- drivers/net/dsa/microchip/ksz8795.c     | 29 +++++++++++++++++++++++------
- drivers/net/dsa/microchip/ksz8795_reg.h |  3 +++
- 2 files changed, 26 insertions(+), 6 deletions(-)
+Apparently this seems to be true for all Toshiba DSI bridges. The power on=
+=20
+sequence for TC9595 (TC358767) also requires LP-11 before releasing the res=
+et=20
+signal RESX. Additionally LP-11 is requires for using the DP AUX channel.
+This also relates to the patch set from Dmitry [1].
 
-diff --git a/drivers/net/dsa/microchip/ksz8795.c b/drivers/net/dsa/microchip/ksz8795.c
-index 4bf4d67557dc..9fd2be9c4022 100644
---- a/drivers/net/dsa/microchip/ksz8795.c
-+++ b/drivers/net/dsa/microchip/ksz8795.c
-@@ -1358,6 +1358,9 @@ static void ksz8795_cpu_interface_select(struct ksz_device *dev, int port)
- {
- 	struct ksz_port *p = &dev->ports[port];
- 
-+	if (!ksz_is_ksz87xx(dev))
-+		return;
-+
- 	if (!p->interface && dev->compat_interface) {
- 		dev_warn(dev->dev,
- 			 "Using legacy switch \"phy-mode\" property, because it is missing on port %d node. "
-@@ -1391,18 +1394,29 @@ void ksz8_port_setup(struct ksz_device *dev, int port, bool cpu_port)
- 	/* enable 802.1p priority */
- 	ksz_port_cfg(dev, port, P_PRIO_CTRL, PORT_802_1P_ENABLE, true);
- 
--	if (cpu_port) {
--		if (!ksz_is_ksz88x3(dev))
--			ksz8795_cpu_interface_select(dev, port);
--
-+	if (cpu_port)
- 		member = dsa_user_ports(ds);
--	} else {
-+	else
- 		member = BIT(dsa_upstream_port(ds, port));
--	}
- 
- 	ksz8_cfg_port_member(dev, port, member);
- }
- 
-+static void ksz88x3_config_rmii_clk(struct ksz_device *dev)
-+{
-+	struct dsa_port *cpu_dp = dsa_to_port(dev->ds, dev->cpu_port);
-+	bool rmii_clk_internal;
-+
-+	if (!ksz_is_ksz88x3(dev))
-+		return;
-+
-+	rmii_clk_internal = of_property_read_bool(cpu_dp->dn,
-+						  "microchip,rmii-clk-internal");
-+
-+	ksz_cfg(dev, KSZ88X3_REG_FVID_AND_HOST_MODE,
-+		KSZ88X3_PORT3_RMII_CLK_INTERNAL, rmii_clk_internal);
-+}
-+
- void ksz8_config_cpu_port(struct dsa_switch *ds)
- {
- 	struct ksz_device *dev = ds->priv;
-@@ -1419,6 +1433,9 @@ void ksz8_config_cpu_port(struct dsa_switch *ds)
- 
- 	ksz8_port_setup(dev, dev->cpu_port, true);
- 
-+	ksz8795_cpu_interface_select(dev, dev->cpu_port);
-+	ksz88x3_config_rmii_clk(dev);
-+
- 	for (i = 0; i < dev->phy_port_cnt; i++) {
- 		ksz_port_stp_state_set(ds, i, BR_STATE_DISABLED);
- 	}
-diff --git a/drivers/net/dsa/microchip/ksz8795_reg.h b/drivers/net/dsa/microchip/ksz8795_reg.h
-index 3c9dae53e4d8..beca974e0171 100644
---- a/drivers/net/dsa/microchip/ksz8795_reg.h
-+++ b/drivers/net/dsa/microchip/ksz8795_reg.h
-@@ -22,6 +22,9 @@
- #define KSZ8863_GLOBAL_SOFTWARE_RESET	BIT(4)
- #define KSZ8863_PCS_RESET		BIT(0)
- 
-+#define KSZ88X3_REG_FVID_AND_HOST_MODE  0xC6
-+#define KSZ88X3_PORT3_RMII_CLK_INTERNAL BIT(3)
-+
- #define REG_SW_CTRL_0			0x02
- 
- #define SW_NEW_BACKOFF			BIT(7)
--- 
-2.11.0
+Best regards,
+Alexander
+
+[1] https://lore.kernel.org/dri-devel/20231016165355.1327217-1-dmitry.barys=
+hkov@linaro.org/
+
+> What DSI host controller are you using?
+>=20
+> -michael
+
+
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
 
 
