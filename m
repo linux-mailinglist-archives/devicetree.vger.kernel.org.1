@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-19126-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19127-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0BA27F9C94
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 10:27:51 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 665C67F9CA0
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 10:29:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 769FE281206
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 09:27:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E0F65B20EA8
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 09:29:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07B3514F97;
-	Mon, 27 Nov 2023 09:27:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B630168B7;
+	Mon, 27 Nov 2023 09:29:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wCc+o2Gl"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="D0ysxIPh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65F61CB
-	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 01:27:45 -0800 (PST)
-Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-548ce39b101so5324351a12.2
-        for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 01:27:45 -0800 (PST)
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8311DB
+	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 01:29:39 -0800 (PST)
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-543c3756521so5408282a12.2
+        for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 01:29:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701077264; x=1701682064; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701077378; x=1701682178; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=lrmaHyuEvzQlfjveyzKyXYh/y9m2kH1eqL1NoD2v4Oc=;
-        b=wCc+o2Gl7bpLYnKTNnKha1EQ5iE86BMAqu4EO2SCQ5gdPkYpwro0+Yd6zDe2Q5wpiA
-         EnIAq2IAwB1zOz5rLvVF45ZZPLYst6hHEywZeZ3YIaptYqfc1DdgOtAtu8WyRYKeV88L
-         U3qE2O+F4IU6X9DpjcdaUfZIsDph+qQLa3I2G+xC8m7w9yNs9peyHth/k+5nNnoWGXPt
-         zw1TCsImH4eKVw6qKFeb4ztpoLWVKt+tS5zeQuuTWA06POyYoTLyoGz9m/C/G09HsYDN
-         gRSE4hOazmB7xrubgfiHtBnUwjJBTEOtNlCT8QH7V6uvzZmeuiPIh8SxPPnycIAuTVqG
-         D+DA==
+        bh=8t9ZAW6097iEl0cM/Be1EUtotKdWY+bTlW4LcMiOHrk=;
+        b=D0ysxIPhT6TP+oLN/RmDp1GIAmijxzJaJ3wk4CekDkK4r45ZNUG005yGyfiHIo0YYK
+         bg5RWrN+gzdZdDVu2krAAuTdZ4Q+YGL1Z5jCvwWLGVIJcNnTD3OiaqLuotnQkeTcQHM9
+         Bd5uubyOPM+F1r5Yq+YkaZM1kol9TpyHkxtSThUu8U3Zd+R5LwrD7Haa7D+j3b8X+L0q
+         9z17fUJfKpbCXs7YMOACHJA2MUkf9y3MLFJFppjkHg2bCFlB5sYfkZDfZtHDOpn4YeAt
+         WyFk4hoJrkdPUg4TDeduY2nE4+a3ynr01x8ThGng0DYi9l65OCcVwsArHmdX8bQLREiv
+         weHQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701077264; x=1701682064;
+        d=1e100.net; s=20230601; t=1701077378; x=1701682178;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lrmaHyuEvzQlfjveyzKyXYh/y9m2kH1eqL1NoD2v4Oc=;
-        b=DKuznQZQHwyVss5cKF87RooBEcBAjbb+hvI9LnfxpGl3ABpkdsz+ZDIBp5XrCrRbXr
-         XTAmP5qcWTsAnSyy3bj8EdeqefpH1u00H/QrWukR/TSvRg3J+vP/IJfTU37Lzfcx2gDR
-         0XhPKjQ/bXArDVqYSJeVoPPHemFyS57Ap2qUj12WrUZJWtquNWLsgT7XDORwSzNXV4oA
-         4Ve3HLIhgXLQd6gWKszLXwLujHS3ym3dK4B1Hd/Hbmf/nEVfa0rTOXlZTkeE0vRdLa5g
-         i3B15nd3bwm8UhBXZbC+F1u0xVSrDFCnPL+DZwPXi63y35gsz2//yKrRg6BUGQ9jRgvB
-         e8Yw==
-X-Gm-Message-State: AOJu0YwF3jcyXUyGovqfaiSqgVpATEaeIJ6SnQV8icEZiMPZ9maL6FMT
-	B7n2cjSUSh/izsDJrlkU7p3WJFJzmwUVDDO/CmuETA==
-X-Google-Smtp-Source: AGHT+IFamcLrDlDTk6+K564OMPM/StUOpJThaMJeZcT9DkKuGh7+NPZH8VubdIBK2SAi9n5PGIjpRw==
-X-Received: by 2002:a17:906:5195:b0:a03:9a89:5aaf with SMTP id y21-20020a170906519500b00a039a895aafmr7139056ejk.6.1701077263760;
-        Mon, 27 Nov 2023 01:27:43 -0800 (PST)
+        bh=8t9ZAW6097iEl0cM/Be1EUtotKdWY+bTlW4LcMiOHrk=;
+        b=kD6/oPzPKGBGIsQUWcbAuyWAjKRUyHRDJQQ07nuboWSP75fLHo6rV/YZFVtnfDKlqR
+         L5/BNC4aN4nBQhzx/noupYm3BnFACbOd5hNzwEDCLs+eJntRb5ulansja51fkzuEHcvg
+         fKCw1UZV8NHRIJfr9kZDBA9PZjhG8HBa/9+JqejukiwvB0wqiCrFm8vxAk+zl48H8IiQ
+         KevK8oM/n5ynvAioqbTMZMtx+l+cAuWWUL5Iw+sG1IztcBl0xLyv1HShMebQ4meYarwG
+         si/faM4/RHRPrj7yvibswmvquIiSdPK+Hrj7yOTYYTPgVG6HliwQkxIA+wPy6sL9CHW4
+         QkkA==
+X-Gm-Message-State: AOJu0YxMzfrknzT84pe0MZRe5WePiz/3qdCFyPBgATa+6ZZ9T6JuTSer
+	co5E6Lponvs0pCCP9JE6JDN3Pw==
+X-Google-Smtp-Source: AGHT+IG7Qxk2IAbze55XR0TPdZmlHXHcmoDgtbL0JMrt68jClNMmOqafMhxP6bIswpBQqwWrihaKNw==
+X-Received: by 2002:a17:906:530b:b0:9bf:2f84:5de7 with SMTP id h11-20020a170906530b00b009bf2f845de7mr8379316ejo.4.1701077378438;
+        Mon, 27 Nov 2023 01:29:38 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.109])
-        by smtp.gmail.com with ESMTPSA id xo25-20020a170907bb9900b00a0b6541b592sm3016866ejc.88.2023.11.27.01.27.42
+        by smtp.gmail.com with ESMTPSA id bk25-20020a170906b0d900b00a0a2553ec99sm3677975ejb.65.2023.11.27.01.29.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Nov 2023 01:27:43 -0800 (PST)
-Message-ID: <7b8a830d-42d0-4220-b9fe-3f5fff43e74d@linaro.org>
-Date: Mon, 27 Nov 2023 10:27:41 +0100
+        Mon, 27 Nov 2023 01:29:37 -0800 (PST)
+Message-ID: <910dffd5-5293-4f88-84d9-e4aa81e5e9c3@linaro.org>
+Date: Mon, 27 Nov 2023 10:29:35 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,20 +62,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/9] ARM: dts: rockchip: rv1126: Add i2c2 nodes
+Subject: Re: [PATCH 1/2] dt-bindings: display: simple: Add boe,bp101wx1-100
+ panel
 Content-Language: en-US
-To: Tim Lunn <tim@feathertop.org>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
- <heiko@sntech.de>, linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org
-Cc: Jagan Teki <jagan@edgeble.ai>, Rob Herring <robh+dt@kernel.org>,
- linux-arm-kernel@lists.infradead.org,
+To: Tony Lindgren <tony@atomide.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-References: <20231122122232.952696-1-tim@feathertop.org>
- <20231122122232.952696-5-tim@feathertop.org>
- <813224c2-398d-4c2d-8909-1839ce63be60@linaro.org> <4762834.KRxA6XjA2N@diego>
- <b0c637f5-5abf-420b-8b02-839eba68799e@linaro.org>
- <d5fef204-a4db-4452-9e22-8928b9db54d5@feathertop.org>
+ Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>
+Cc: Carl Philipp Klemm <philipp@uvos.xyz>,
+ Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>,
+ Merlijn Wajer <merlijn@wizzup.org>, Pavel Machek <pavel@ucw.cz>,
+ Sebastian Reichel <sre@kernel.org>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org
+References: <20231127051547.15023-1-tony@atomide.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -121,78 +125,16 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <d5fef204-a4db-4452-9e22-8928b9db54d5@feathertop.org>
+In-Reply-To: <20231127051547.15023-1-tony@atomide.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 27/11/2023 10:23, Tim Lunn wrote:
-> Hi
+On 27/11/2023 06:15, Tony Lindgren wrote:
+> This panel is found on Motorola mapphone tablets mz615 to mz617.
 > 
-> On 11/27/23 17:52, Krzysztof Kozlowski wrote:
->> On 27/11/2023 00:06, Heiko Stübner wrote:
->>> Hi Krzysztof,
->>>
->>> Am Mittwoch, 22. November 2023, 13:29:47 CET schrieb Krzysztof Kozlowski:
->>>> On 22/11/2023 13:22, Tim Lunn wrote:
->>>>> Add i2c2 node and i2c2_xfer pinctrl for Rockchip RV1126
->>>>>
->>>>> Signed-off-by: Tim Lunn <tim@feathertop.org>
->>>>> ---
->>>>>
->>>>> (no changes since v1)
->>>>>
->>>>>   arch/arm/boot/dts/rockchip/rv1126-pinctrl.dtsi | 10 ++++++++++
->>>>>   arch/arm/boot/dts/rockchip/rv1126.dtsi         | 15 +++++++++++++++
->>>>>   2 files changed, 25 insertions(+)
->>>>>
->>>>> diff --git a/arch/arm/boot/dts/rockchip/rv1126-pinctrl.dtsi b/arch/arm/boot/dts/rockchip/rv1126-pinctrl.dtsi
->>>>> index 4f85b7b3fc4c..167a48afa3a4 100644
->>>>> --- a/arch/arm/boot/dts/rockchip/rv1126-pinctrl.dtsi
->>>>> +++ b/arch/arm/boot/dts/rockchip/rv1126-pinctrl.dtsi
->>>>> @@ -87,6 +87,16 @@ i2c0_xfer: i2c0-xfer {
->>>>>   				<0 RK_PB5 1 &pcfg_pull_none_drv_level_0_smt>;
->>>>>   		};
->>>>>   	};
->>>>> +	i2c2 {
->>>>> +		/omit-if-no-ref/
->>>>> +		i2c2_xfer: i2c2-xfer {
->>>>> +			rockchip,pins =
->>>>> +				/* i2c2_scl */
->>>>> +				<0 RK_PC2 1 &pcfg_pull_none_drv_level_0_smt>,
->>>>> +				/* i2c2_sda */
->>>>> +				<0 RK_PC3 1 &pcfg_pull_none_drv_level_0_smt>;
->>>>> +		};
->>>>> +	};
->>>>>   	pwm2 {
->>>>>   		/omit-if-no-ref/
->>>>>   		pwm2m0_pins: pwm2m0-pins {
->>>>> diff --git a/arch/arm/boot/dts/rockchip/rv1126.dtsi b/arch/arm/boot/dts/rockchip/rv1126.dtsi
->>>>> index 6c5c928f06c7..cf1df75df418 100644
->>>>> --- a/arch/arm/boot/dts/rockchip/rv1126.dtsi
->>>>> +++ b/arch/arm/boot/dts/rockchip/rv1126.dtsi
->>>>> @@ -21,6 +21,7 @@ / {
->>>>>   
->>>>>   	aliases {
->>>>>   		i2c0 = &i2c0;
->>>>> +		i2c2 = &i2c2;
->>>> No, this should be per-board to match board labeling/schematics.
->>> At least for i2c, uarts and i.e. spi ... Rockchip manuals, pin namings
->>> and also all board schematics I've seen so far are very consistent for
->>> these ... i2c2 for example is labled i2c2 both in the pins in the socs
->>> and also in the board-schematics using them.
->>>
->>> So while I can agree that things like mmc-aliases might be board-specific,
->>> I do think aliases for the core busses should be able to live in the soc dtsi
->>> as for all Rockchip SoCs so far?
->> If you do not list here all aliases, it is already board-specific, isn't it?
->>
->> https://lore.kernel.org/linux-rockchip/CAK8P3a25iYksubCnQb1-e5yj=crEsK37RB9Hn4ZGZMwcVVrG7g@mail.gmail.com/
-> I had only added aliases for nodes that are implemented. RV1126 has 6 
-> i2c busses but so far not all these exist in the soc.dtsi.
-> 
+> Signed-off-by: Tony Lindgren <tony@atomide.com>
 
-OK, that would explain why you have only two. Anyway, it is just generic
-guideline, so up to Heiko what to do with it.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
