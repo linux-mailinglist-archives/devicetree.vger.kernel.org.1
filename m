@@ -1,152 +1,110 @@
-Return-Path: <devicetree+bounces-19310-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19307-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 596987FA5DE
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 17:13:37 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B84247FA5D8
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 17:13:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8B1181C204F8
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 16:13:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EA8DB1C20A17
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 16:13:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F92535F01;
-	Mon, 27 Nov 2023 16:13:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50978358BD;
+	Mon, 27 Nov 2023 16:13:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="QuQ3qJbg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B57F51A5
-	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 08:13:30 -0800 (PST)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <auto@pengutronix.de>)
-	id 1r7eEI-0001PM-89; Mon, 27 Nov 2023 17:13:02 +0100
-Received: from [2a0a:edc0:0:1101:1d::ac] (helo=dude04.red.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <auto@pengutronix.de>)
-	id 1r7eEF-00Bz1F-Jx; Mon, 27 Nov 2023 17:12:59 +0100
-Received: from rhi by dude04.red.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <auto@pengutronix.de>)
-	id 1r7eEF-00D7aL-1j;
-	Mon, 27 Nov 2023 17:12:59 +0100
-From: Roland Hieber <rhi@pengutronix.de>
-Date: Mon, 27 Nov 2023 17:12:29 +0100
-Subject: [PATCH 2/2] ARM: dts: imx7: add MIPI-DSI support
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F6921A7;
+	Mon, 27 Nov 2023 08:13:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1701101596; x=1732637596;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=F/1Z6F/qkdvf+ShW0L/YhA3CPDTmDttQCk27xrnwW8A=;
+  b=QuQ3qJbgZzwVMaJBPKDXjCneHvzKBfFSCLIA2shqlHURVmjnjjXI9dgX
+   yKXkqsYdm9xiCsT/P692u2WprvqC/3VRG92f+5zbwSukzOHLeCS0/n2U7
+   /Wpei0Yi1Fw7fJQz0rMQWQ0qsdnxjSVp7H5U5MiDIwt5/D01gYLGFwlhG
+   w5klOta+sGYxiWvk5YTUBRKgWYTwj+4elHimHtwZUdgAN7UbSnxldNwwx
+   IxHo61TUW1N+kZoIfR0dXf3PqZKvXIAjUgVpqbjUmz//nHmOd88RtiS3j
+   6Gd1livHe/JsPo/jwSzvDY52R/Xb++sBKW89gbYsCYYFqBpORTFJ4sDl2
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10907"; a="389886472"
+X-IronPort-AV: E=Sophos;i="6.04,231,1695711600"; 
+   d="scan'208";a="389886472"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Nov 2023 08:13:15 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10907"; a="744607590"
+X-IronPort-AV: E=Sophos;i="6.04,231,1695711600"; 
+   d="scan'208";a="744607590"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Nov 2023 08:13:10 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.97)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1r7eEL-0000000HYHk-4B1u;
+	Mon, 27 Nov 2023 18:13:05 +0200
+Date: Mon, 27 Nov 2023 18:13:05 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Marek Vasut <marex@denx.de>
+Cc: linux-iio@vger.kernel.org, Matti Vaittinen <mazziesaccount@gmail.com>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Andre Werner <andre.werner@systec-electronic.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@denx.de>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Mark Brown <broonie@kernel.org>,
+	Naresh Solanki <naresh.solanki@9elements.com>,
+	Patrick Rudolph <patrick.rudolph@9elements.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
+	Vincent Tremblay <vincent@vtremblay.dev>,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 2/2] iio: light: isl76682: Add ISL76682 driver
+Message-ID: <ZWTAEWRreMir7x_T@smile.fi.intel.com>
+References: <20231125222738.97875-1-marex@denx.de>
+ <20231125222738.97875-2-marex@denx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231127-b4-imx7-mipi-dsi-v1-2-7d22eee70c67@pengutronix.de>
-References: <20231127-b4-imx7-mipi-dsi-v1-0-7d22eee70c67@pengutronix.de>
-In-Reply-To: <20231127-b4-imx7-mipi-dsi-v1-0-7d22eee70c67@pengutronix.de>
-To: Inki Dae <inki.dae@samsung.com>, 
- Jagan Teki <jagan@amarulasolutions.com>, 
- Marek Szyprowski <m.szyprowski@samsung.com>, 
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- Roland Hieber <rhi@pengutronix.de>, Marco Felsch <m.felsch@pengutronix.de>
-X-Mailer: b4 0.12.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: auto@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231125222738.97875-2-marex@denx.de>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-From: Marco Felsch <m.felsch@pengutronix.de>
+On Sat, Nov 25, 2023 at 11:26:23PM +0100, Marek Vasut wrote:
+> The ISL76682 is very basic ALS which only supports ALS or IR mode
+> in four ranges, 1k/4k/16k/64k LUX. There is no IRQ support or any
+> other fancy functionality.
 
-This adds the device tree support for the MIPI-DSI block. The block can
-be used as encoder for the parallel signals coming from the lcdif block.
+...
 
-Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-Signed-off-by: Roland Hieber <rhi@pengutronix.de>
----
- arch/arm/boot/dts/nxp/imx/imx7s.dtsi | 46 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 46 insertions(+)
+> +	for (i = 0; i < ARRAY_SIZE(isl76682_range_table); i++) {
+> +		if (chan->type == IIO_LIGHT && val2 != isl76682_range_table[i].als)
+> +				continue;
+> +		if (chan->type == IIO_INTENSITY && val2 != isl76682_range_table[i].ir)
+> +				continue;
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx7s.dtsi b/arch/arm/boot/dts/nxp/imx/imx7s.dtsi
-index 29b8fd03567a..7adadf9c3694 100644
---- a/arch/arm/boot/dts/nxp/imx/imx7s.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx7s.dtsi
-@@ -818,6 +818,16 @@ lcdif: lcdif@30730000 {
- 					<&clks IMX7D_LCDIF_PIXEL_ROOT_CLK>;
- 				clock-names = "pix", "axi";
- 				status = "disabled";
-+
-+				port {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					lcdif_out_mipi_dsi: endpoint@0 {
-+						reg = <0>;
-+						remote-endpoint = <&mipi_dsi_in_lcdif>;
-+					};
-+				};
- 			};
- 
- 			mipi_csi: mipi-csi@30750000 {
-@@ -850,6 +860,42 @@ mipi_vc0_to_csi_mux: endpoint {
- 					};
- 				};
- 			};
-+
-+			mipi_dsi: dsi@30760000 {
-+				compatible = "fsl,imx7d-mipi-dsim", "fsl,imx8mm-mipi-dsim";
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				reg = <0x30760000 0x400>;
-+				clocks = <&clks IMX7D_MIPI_DSI_ROOT_CLK>,
-+					 <&clks IMX7D_MIPI_DPHY_ROOT_CLK>;
-+				clock-names = "bus_clk", "sclk_mipi";
-+				assigned-clocks = <&clks IMX7D_MIPI_DSI_ROOT_SRC>,
-+						  <&clks IMX7D_PLL_SYS_PFD5_CLK>;
-+				assigned-clock-parents = <&clks IMX7D_PLL_SYS_PFD5_CLK>;
-+				assigned-clock-rates = <0>, <333000000>;
-+				power-domains = <&pgc_mipi_phy>;
-+				interrupts = <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>;
-+				samsung,burst-clock-frequency = <891000000>;
-+				samsung,esc-clock-frequency = <20000000>;
-+				samsung,pll-clock-frequency = <24000000>;
-+				status = "disabled";
-+
-+				ports {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					port@0 {
-+						reg = <0>;
-+						#address-cells = <1>;
-+						#size-cells = <0>;
-+
-+						mipi_dsi_in_lcdif: endpoint@0 {
-+							reg = <0>;
-+							remote-endpoint = <&lcdif_out_mipi_dsi>;
-+						};
-+					};
-+				};
-+			};
- 		};
- 
- 		aips3: bus@30800000 {
+You forgot to drop indentation level for 'continue' lines.
+
+> +		scoped_guard(mutex, &chip->lock)
+> +			chip->range = isl76682_range_table[i].range;
+> +		return 0;
+> +	}
 
 -- 
-2.39.2
+With Best Regards,
+Andy Shevchenko
+
 
 
