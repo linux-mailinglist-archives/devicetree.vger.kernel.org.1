@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-19190-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19191-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 626417F9F7D
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 13:23:55 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5364C7F9F88
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 13:28:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 940261C20B85
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 12:23:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E543CB20BF9
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 12:28:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 171401DDEB;
-	Mon, 27 Nov 2023 12:23:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D27801DFC1;
+	Mon, 27 Nov 2023 12:28:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GRHW8G5N"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wRsbUzy0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67BDB10F
-	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 04:23:48 -0800 (PST)
-Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-9fa45e75ed9so572573166b.1
-        for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 04:23:48 -0800 (PST)
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 103B113A
+	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 04:27:59 -0800 (PST)
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-a06e59384b6so525485566b.1
+        for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 04:27:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701087827; x=1701692627; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701088077; x=1701692877; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=M7CygS/PO90G4qc/2mRV1YYszBcCYh2ZWUTNhxvwvtc=;
-        b=GRHW8G5Nmt9YyGl+OA9yv28X9Sbc2KZSLSuL7sxWngkzThYwQNVVU5PO+YC6dvquMK
-         wpVEU68o9J8US8yTQQtsLXZwTgclyELe7s0w2XDI7TfMOKYVBf+whXe0lTpuyd6KsY3x
-         HM3mox8lDIT25sUKA/NrTV/8jUV5Jv6FOwaX+hgq3V2xK+TwWOWFiNTmpIS+WCgt8CbM
-         VKs/U/QBCckxjsYVCGvt4yTb2dmYn7XBLOtxPCKA/GzAk6+7OpnTp/350uVnS5feHHID
-         N6l2eD2A4ZHo142EJYuxV4YtZfjTGuyis0TrYH5rcezGQXhrykpjL7bv5A+eW/LMLfsr
-         Aptg==
+        bh=VOWo+wDLTQ6LtueSi5uTAbIdfJHo+Rh93+WXgZshvmM=;
+        b=wRsbUzy0wacC9FCdjZzmvtZHfcKdoaqL51Iu6ysUir90gQuBdS2jJaKf+z3SKsvnAC
+         g2nXX9x7HLL+QWJIQKHD3CWXZO1o4XQJmWN2HfjLc1oGgxslSjww/PwOQwQ0RBiGlg3I
+         faGC8c4vcFo7SLwuDCRCNNy30S0sxpA5eF+f0DkeQcTPfj5x5UepfC0oDd0MHWVvgNls
+         iLxSSjQ0c93AcXoJ5xe3a4hkJbLvdTvbCYYiXlk4c4fvX2Ku9JWDA4ItKeIaDqM+NJbM
+         kjB8PXfzx6jwdrkxfRwCRNRHzgSNsjbjd1WE1OhM/UshOlFJ+7WAreluBTgQfYY0PVwM
+         MYiA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701087827; x=1701692627;
+        d=1e100.net; s=20230601; t=1701088077; x=1701692877;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=M7CygS/PO90G4qc/2mRV1YYszBcCYh2ZWUTNhxvwvtc=;
-        b=UJgBNp20yRnEoOkDMdoyladpz8VQUvZnju4mcTNIPrqVSWXcAas2orR/t6iGLMXZ1q
-         +akcTIxQn2qJ/8irQ4/W3hHT+bROJqu4skfJPU2YS1XEXXmFPYoRd3dYuibahcBw8Jfp
-         Oo/a9c8kamDZvmxTItsnL+Jaw9GrRokxyRbQS+S6kGz2QnpKdpPzBMIA6m6ZrwRCGVQs
-         RHmByCMK2GXUU587315cZ2aCV25r1O0hrcH9XARfGXbFJjLIl8QW+/+ZwaKpVqRJNUB2
-         XYCHMOvYMDbcMJKDPWrIugngQv5hpdt7ABuOAeH01i8zFtVvhwVGQAClo1XU/VkyyXkv
-         gtrw==
-X-Gm-Message-State: AOJu0Yxxu2d32iTrJj8wtBVdy5+jXhLh/8Ox+cJJl5sX0gyGwuYQGYoW
-	q6vC61IwG+/X83MCHnefz9ap2Q==
-X-Google-Smtp-Source: AGHT+IFbTET+o7uLkv685HeoQk9Gn2PXTnWD7L7z89QwhnGciSV+re+d+ZcJ8XhQAbxJZs8QalRXNQ==
-X-Received: by 2002:a17:906:194f:b0:a01:3df:a93a with SMTP id b15-20020a170906194f00b00a0103dfa93amr9299948eje.23.1701087826795;
-        Mon, 27 Nov 2023 04:23:46 -0800 (PST)
+        bh=VOWo+wDLTQ6LtueSi5uTAbIdfJHo+Rh93+WXgZshvmM=;
+        b=cEQX5vKuLwOt2CiuQ43m9T8bwECH0+pzJGDLhjOBMINMVV772Sc+RuD2thHuFOibqH
+         Bo24XpPLethmHWW6bZW62xppZ3XBlOw9mb1Q4pqzwGNWhkMmCTR5j0wa8ZYJtR52Qh5f
+         sO8dachbezvUdBfprYYOjtmMkmC0O7rJQytRKmzH4rmscejgp6sf5sCbjANR7Z0aCPeY
+         vwgr8Yh8MIH/hD3A9aeGBy40FddDFlUUiuaHPXi20Xww8jVShyqZ7wWL2AtKhhNyzxBc
+         PhxqDKfs88TV4eFvxIuOLk1VM6nBvlziGvDjxQ+Vk9Xu3dNQI28bEIXhUBXapjbjpMrL
+         c1YA==
+X-Gm-Message-State: AOJu0Ywy3xsZJ4rMoNteB5Zy3w+d/qO0HDFJ95P4cJpAEIo/83prdySx
+	AN05/2U5eUpEzqmLjB2OKH6Beg==
+X-Google-Smtp-Source: AGHT+IEdz4rYPJnzWS03irP6vWuc3Ac4YU0czADdpY570/d38LijCAuUfxtyLO3R03NBBWzmd5XgPg==
+X-Received: by 2002:a17:907:1608:b0:a10:9722:97d3 with SMTP id cw8-20020a170907160800b00a10972297d3mr1349677ejd.0.1701088077476;
+        Mon, 27 Nov 2023 04:27:57 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.109])
-        by smtp.gmail.com with ESMTPSA id x24-20020a170906135800b009fc8233fb66sm5625190ejb.36.2023.11.27.04.23.44
+        by smtp.gmail.com with ESMTPSA id u10-20020a170906c40a00b009fd0a0b7ee5sm5608500ejz.9.2023.11.27.04.27.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Nov 2023 04:23:46 -0800 (PST)
-Message-ID: <7bba5723-97c2-4301-9864-353d8bfda752@linaro.org>
-Date: Mon, 27 Nov 2023 13:23:43 +0100
+        Mon, 27 Nov 2023 04:27:56 -0800 (PST)
+Message-ID: <769bf4e4-0db7-4fc4-9640-3797a729e404@linaro.org>
+Date: Mon, 27 Nov 2023 13:27:54 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,23 +62,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/2] dt-bindings: display: bridge: cdns: Add properties
- to support StarFive JH7110 SoC
+Subject: Re: [PATCH v2 1/2] dt-bindings: interconnect: Add Qualcomm SM6115 NoC
 Content-Language: en-US
-To: Shengyang Chen <shengyang.chen@starfivetech.com>,
- devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
-Cc: andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org,
- Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
- jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- p.zabel@pengutronix.de, tomi.valkeinen@ideasonboard.com, r-ravikumar@ti.com,
- rdunlap@infradead.org, u.kleine-koenig@pengutronix.de,
- bbrezillon@kernel.org, changhuang.liang@starfivetech.com,
- keith.zhao@starfivetech.com, jack.zhu@starfivetech.com,
- linux-kernel@vger.kernel.org
-References: <20231127113436.57361-1-shengyang.chen@starfivetech.com>
- <20231127113436.57361-2-shengyang.chen@starfivetech.com>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>, Georgi Djakov <djakov@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ Konrad Dybcio <konradybcio@kernel.org>
+References: <20231125-topic-6115icc-v2-0-69d05d90871b@linaro.org>
+ <20231125-topic-6115icc-v2-1-69d05d90871b@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -124,34 +120,38 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231127113436.57361-2-shengyang.chen@starfivetech.com>
+In-Reply-To: <20231125-topic-6115icc-v2-1-69d05d90871b@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 27/11/2023 12:34, Shengyang Chen wrote:
-> From: Keith Zhao <keith.zhao@starfivetech.com>
+On 27/11/2023 12:10, Konrad Dybcio wrote:
+> Add bindings for Qualcomm SM6115 Network-On-Chip interconnect.
 > 
-> Add properties in CDNS DSI yaml file to match with
-> CDNS DSI module in StarFive JH7110 SoC.
-> 
-> Signed-off-by: Keith Zhao <keith.zhao@starfivetech.com>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > ---
->  .../bindings/display/bridge/cdns,dsi.yaml     | 38 ++++++++++++++++++-
->  1 file changed, 36 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/cdns,dsi.yaml b/Documentation/devicetree/bindings/display/bridge/cdns,dsi.yaml
-> index 23060324d16e..3f02ee383aad 100644
-> --- a/Documentation/devicetree/bindings/display/bridge/cdns,dsi.yaml
-> +++ b/Documentation/devicetree/bindings/display/bridge/cdns,dsi.yaml
-> @@ -17,6 +17,7 @@ properties:
->      enum:
->        - cdns,dsi
->        - ti,j721e-dsi
-> +      - starfive,cdns-dsi
+...
 
-BTW, one more thing, I really doubt that starfive created "cdns" block.
-"cdns" is vendor prefix. Use SoCs-specific compatibles.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - qcom,sm6115-bimc
+> +      - qcom,sm6115-cnoc
+> +      - qcom,sm6115-snoc
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    minItems: 1
+> +    maxItems: 4
 
+clock-names as well here. All of such arrays go together.
+
+> +
+> +# Child node's properties
+> +patternProperties:
+> +  '^interconnect-[a-z0-9]+$':
 Best regards,
 Krzysztof
 
