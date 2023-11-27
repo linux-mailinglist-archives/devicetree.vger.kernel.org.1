@@ -1,68 +1,119 @@
-Return-Path: <devicetree+bounces-19042-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19043-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E8387F979E
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 03:49:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DAB617F97A2
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 03:50:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AA8CF1C203A2
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 02:49:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1787F1C208C2
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 02:50:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BD1617E3;
-	Mon, 27 Nov 2023 02:49:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E17E715CF;
+	Mon, 27 Nov 2023 02:50:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GKVf1tq/"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="S8eHiNmH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F65715CF
-	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 02:49:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B345CC433C7;
-	Mon, 27 Nov 2023 02:49:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701053354;
-	bh=WzcUcUgYpgUwHfNLtibWN67BMbtYRgVxrQI3rWWcUQc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GKVf1tq/nSXsTPJVU8rIv0+3l1G37QF47x0lQiX4IBwOt+6E+DfAJRwQJPU9wFdRr
-	 MxtYhodTH6mMiwXMCDMfAYWJUNmz5GfYM137rpOxZvwWw2Awdeig/t3sOMnIc7QkYe
-	 mN7lNwXf06YBBGxRKCQD71rFEhZNVNDjchtVBx/rSOWiANUEN8Sb0Vb+6eC5EVziPz
-	 zMY6/CeuvkDC7aZNirTfXsmhHu5zTqy+ZgwIa5SoU7tpeQ+uvUDLoA8rJpU5+ng0mN
-	 JGUr6+CMwurpK4VCkQb36MYf9CEXsIYd7QSQgI3cKh7+4//WSKMpVT0H2GDG1bFCWC
-	 73OxLJnUFSeAQ==
-Date: Mon, 27 Nov 2023 10:49:08 +0800
-From: Shawn Guo <shawnguo@kernel.org>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	NXP Linux Team <linux-imx@nxp.com>, devicetree@vger.kernel.org,
-	linux@ew.tq-group.com, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/1] arm64: dts: freescale: Add dual-channel LVDS overlay
- for TQMa8MPxL
-Message-ID: <20231127024908.GQ87953@dragon>
-References: <20231020130755.670762-1-alexander.stein@ew.tq-group.com>
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 163EB123;
+	Sun, 26 Nov 2023 18:50:10 -0800 (PST)
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AR1lADg001493;
+	Mon, 27 Nov 2023 02:49:39 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=mCh5mE47W9jeoJS21kfeEVlOZY+HBsw2oF7ej9ujBNU=;
+ b=S8eHiNmH/rxXl6h5eseBEGJC/FyTfBR/N5Ic9hLftu7ofLJd4U0bcuo20tRrUl8d/OVm
+ 6J7AUuZHy0kJKhUTuif+o5EVGac7/xsdrJCj5PrjUyjX2U+FmqOxmJx8kNe3VS7P4yip
+ j7YVq7ebN3M0J2zm0iGbwLc7N1gjBKJEilonLF/VJifVIO1aQDptX7/mfddiVq+p6kEw
+ 5LZR0beFWCYUUjX7AbgZmtX4a6SH1jwr5jb17ilXGgf6Dw3g0etojsSaH4uWLbmsFZQj
+ S0ujjlD4S0z3NF2TCg/XNzKwKSKH4cyVc7I17wUhZM58T0JgXG973uZW509gSrTfxhw7 NA== 
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uk69ub9jc-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 27 Nov 2023 02:49:39 +0000
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AR2ncAp028568
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 27 Nov 2023 02:49:38 GMT
+Received: from [10.239.155.136] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Sun, 26 Nov
+ 2023 18:49:33 -0800
+Message-ID: <35308205-6dd8-8b95-c237-06f3e875a8eb@quicinc.com>
+Date: Mon, 27 Nov 2023 10:49:30 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231020130755.670762-1-alexander.stein@ew.tq-group.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v2] dt-bindings: ufs: Add msi-parent for UFS MCQ
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <quic_asutoshd@quicinc.com>, <quic_cang@quicinc.com>,
+        <bvanassche@acm.org>, <mani@kernel.org>, <stanley.chu@mediatek.com>,
+        <adrian.hunter@intel.com>, <beanhuo@micron.com>, <avri.altman@wdc.com>,
+        <junwoo80.lee@samsung.com>, <martin.petersen@oracle.com>,
+        <quic_nguyenb@quicinc.com>, <quic_nitirawa@quicinc.com>
+CC: <linux-scsi@vger.kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+        "Rob
+ Herring" <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, Guenter Roeck <linux@roeck-us.net>,
+        Wolfram Sang <wsa@kernel.org>, Mark Brown
+	<broonie@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE
+ BINDINGS" <devicetree@vger.kernel.org>,
+        open list
+	<linux-kernel@vger.kernel.org>
+References: <1700629624-23571-1-git-send-email-quic_ziqichen@quicinc.com>
+ <ae2f2dc9-4c08-4db8-bfae-80608723d8c3@linaro.org>
+From: Ziqi Chen <quic_ziqichen@quicinc.com>
+In-Reply-To: <ae2f2dc9-4c08-4db8-bfae-80608723d8c3@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: N36ZUswL9HBUMKQYV-ueEkXwd1sUha9h
+X-Proofpoint-GUID: N36ZUswL9HBUMKQYV-ueEkXwd1sUha9h
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-26_25,2023-11-22_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 bulkscore=0
+ adultscore=0 spamscore=0 mlxlogscore=958 mlxscore=0 phishscore=0
+ priorityscore=1501 suspectscore=0 lowpriorityscore=0 impostorscore=0
+ clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2311060000 definitions=main-2311270019
 
-On Fri, Oct 20, 2023 at 03:07:55PM +0200, Alexander Stein wrote:
-> This adds an overlay for the supported LVDS display AUO G133HAN01.
-> Configure the video PLL frequency to exactly match typical pixel clock of
-> 141.200 MHz.
+Thank you , will re-wrap commit message.
+
+-Ziqi
+
+On 11/22/2023 3:39 PM, Krzysztof Kozlowski wrote:
+> On 22/11/2023 06:06, Ziqi Chen wrote:
+>> The Message Signaled Interrupts (MSI) support has been
+>> introduced in UFSHCI version 4.0 (JESD223E). The MSI is
+>> the recommended interrupt approach for MCQ. If choose to
+>> use MSI, In UFS DT, we need to provide msi-parent property
+>> that point to the hardware entity which serves as the MSI
+>> controller for this UFS controller.
 > 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-
-Applied, thanks!
+> Please wrap commit message according to Linux coding style / submission
+> process (neither too early nor over the limit):
+> https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
+> 
+> 
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> Best regards,
+> Krzysztof
+> 
 
