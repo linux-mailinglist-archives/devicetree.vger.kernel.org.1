@@ -1,137 +1,76 @@
-Return-Path: <devicetree+bounces-19107-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19106-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F7177F9B71
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 09:14:47 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5549A7F9B6F
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 09:14:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C115F1C2094A
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 08:14:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F6E0280D6E
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 08:14:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E932111AF;
-	Mon, 27 Nov 2023 08:14:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HjLj4Es8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D22C5111A7;
+	Mon, 27 Nov 2023 08:14:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 358AB10785;
-	Mon, 27 Nov 2023 08:14:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9366C433C7;
-	Mon, 27 Nov 2023 08:14:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701072881;
-	bh=3qTRy2F6nIzhohgL6U9JKBvv0/WyY8i9YB8Pa1jwqoY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HjLj4Es8Qcz0nTYQn5qvj64G45BJZTp09Oq/G8YT0WFtwaBlK4/9G/6sty4THEUQq
-	 17ABHg2kuSgGEqBkuDdykyrPL23ayOp112E8QAwGZQRu8ATu9Tni6Cmd9KjibhskGe
-	 EBYVsoX6S9VO1XziXK8idk+GeAx+L5ykVZ+qUNJDHLdWuq4LFQLwqgwuBpVk4xJZCS
-	 v83tYF5wpwBflqyROjIihArZG4RSYVa1zDJDbTWZ6rx1fU2LbDwEN0x3l5Kl9l7mv9
-	 SsWErUG8r0uDCzLug+efrQDwo944+KIqHfzgoPvX9aMt45ava8pradQ9oKKCHkSiT9
-	 Dsp9hjAdD3rKA==
-Date: Mon, 27 Nov 2023 08:14:32 +0000
-From: Lee Jones <lee@kernel.org>
-To: Jishnu Prakash <quic_jprakash@quicinc.com>
-Cc: jic23@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, agross@kernel.org, andersson@kernel.org,
-	konrad.dybcio@linaro.org, daniel.lezcano@linaro.org,
-	dmitry.baryshkov@linaro.org, linus.walleij@linaro.org,
-	linux-arm-msm@vger.kernel.org, andriy.shevchenko@linux.intel.com,
-	quic_subbaram@quicinc.com, quic_collinsd@quicinc.com,
-	quic_amelende@quicinc.com, quic_kamalw@quicinc.com,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	marijn.suijten@somainline.org, lars@metafoo.de, luca@z3ntu.xyz,
-	linux-iio@vger.kernel.org, rafael@kernel.org, rui.zhang@intel.com,
-	lukasz.luba@arm.com, cros-qcom-dts-watchers@chromium.org,
-	sboyd@kernel.org, linux-pm@vger.kernel.org,
-	linux-arm-msm-owner@vger.kernel.org, kernel@quicinc.com
-Subject: Re: [PATCH V2 3/3] dt-bindings: iio/adc: Move QCOM ADC bindings to
- iio/adc folder
-Message-ID: <20231127081432.GC1470173@google.com>
-References: <20231116032644.753370-1-quic_jprakash@quicinc.com>
- <20231116032644.753370-2-quic_jprakash@quicinc.com>
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 043FA184;
+	Mon, 27 Nov 2023 00:14:21 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 43C592F4;
+	Mon, 27 Nov 2023 00:15:08 -0800 (PST)
+Received: from e129166.arm.com (unknown [10.57.4.90])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id E7FBF3F6C4;
+	Mon, 27 Nov 2023 00:14:18 -0800 (PST)
+From: Lukasz Luba <lukasz.luba@arm.com>
+To: linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Cc: lukasz.luba@arm.com,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	heiko@sntech.de,
+	conor+dt@kernel.org,
+	daniel.lezcano@linaro.org
+Subject: [PATCH] arm64: dts: rockchip: Add dynamic-power-coefficient to rk3399 GPU
+Date: Mon, 27 Nov 2023 08:15:11 +0000
+Message-Id: <20231127081511.1911706-1-lukasz.luba@arm.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231116032644.753370-2-quic_jprakash@quicinc.com>
 
-On Thu, 16 Nov 2023, Jishnu Prakash wrote:
+Add dynamic-power-coefficient to the GPU node. That will create Energy
+Model for the GPU based on the coefficient and OPP table information.
+It will enable mechanism such as DTMP or IPA to work with the GPU DVFS.
+In similar way the Energy Model for CPUs in rk3399 is created, so both
+are aligned in power scale. The maximum power used from this coefficient
+is 1.5W at 600MHz.
 
-> There are several files containing QCOM ADC macros for channel names
-> right now in the include/dt-bindings/iio folder. Since all of these
-> are specifically for adc, move the files to the
-> include/dt-bindings/iio/adc folder.
-> 
-> Also update all affected devicetree and driver files to fix compilation
-> errors seen with this move and update documentation files to fix
-> dtbinding check errors for the same.
-> 
-> Signed-off-by: Jishnu Prakash <quic_jprakash@quicinc.com>
-> ---
->  .../devicetree/bindings/iio/adc/qcom,spmi-vadc.yaml       | 4 ++--
->  Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml | 2 +-
+Signed-off-by: Lukasz Luba <lukasz.luba@arm.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3399.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-Acked-by: Lee Jones <lee@kernel.org>
-
->  .../devicetree/bindings/thermal/qcom-spmi-adc-tm-hc.yaml  | 2 +-
->  .../devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml    | 6 +++---
->  arch/arm64/boot/dts/qcom/pm2250.dtsi                      | 2 +-
->  arch/arm64/boot/dts/qcom/pm6125.dtsi                      | 2 +-
->  arch/arm64/boot/dts/qcom/pm6150.dtsi                      | 2 +-
->  arch/arm64/boot/dts/qcom/pm6150l.dtsi                     | 2 +-
->  arch/arm64/boot/dts/qcom/pm660.dtsi                       | 2 +-
->  arch/arm64/boot/dts/qcom/pm660l.dtsi                      | 2 +-
->  arch/arm64/boot/dts/qcom/pm7250b.dtsi                     | 2 +-
->  arch/arm64/boot/dts/qcom/pm8150.dtsi                      | 2 +-
->  arch/arm64/boot/dts/qcom/pm8150b.dtsi                     | 2 +-
->  arch/arm64/boot/dts/qcom/pm8150l.dtsi                     | 2 +-
->  arch/arm64/boot/dts/qcom/pm8916.dtsi                      | 2 +-
->  arch/arm64/boot/dts/qcom/pm8950.dtsi                      | 2 +-
->  arch/arm64/boot/dts/qcom/pm8953.dtsi                      | 2 +-
->  arch/arm64/boot/dts/qcom/pm8994.dtsi                      | 2 +-
->  arch/arm64/boot/dts/qcom/pm8998.dtsi                      | 2 +-
->  arch/arm64/boot/dts/qcom/pmi632.dtsi                      | 2 +-
->  arch/arm64/boot/dts/qcom/pmi8950.dtsi                     | 2 +-
->  arch/arm64/boot/dts/qcom/pmm8155au_1.dtsi                 | 2 +-
->  arch/arm64/boot/dts/qcom/pmp8074.dtsi                     | 2 +-
->  arch/arm64/boot/dts/qcom/pms405.dtsi                      | 2 +-
->  arch/arm64/boot/dts/qcom/sc7280-idp.dts                   | 2 +-
->  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi                  | 2 +-
->  arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi                | 4 ++--
->  arch/arm64/boot/dts/qcom/sc8180x-pmics.dtsi               | 2 +-
->  .../arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts | 6 +++---
->  arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts         | 2 +-
->  arch/arm64/boot/dts/qcom/sm8450-hdk.dts                   | 8 ++++----
->  drivers/iio/adc/qcom-spmi-adc5-gen3.c                     | 2 +-
->  drivers/iio/adc/qcom-spmi-adc5.c                          | 2 +-
->  drivers/iio/adc/qcom-spmi-vadc.c                          | 2 +-
->  include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pm8550.h  | 2 +-
->  include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pm8550b.h | 2 +-
->  .../dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pm8550vx.h    | 2 +-
->  include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pmk8550.h | 2 +-
->  include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pm8350.h | 2 +-
->  .../dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pm8350b.h    | 2 +-
->  .../dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pmk8350.h    | 2 +-
->  .../dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pmr735a.h    | 2 +-
->  .../dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pmr735b.h    | 0
->  include/dt-bindings/iio/{ => adc}/qcom,spmi-vadc.h        | 0
->  44 files changed, 51 insertions(+), 51 deletions(-)
->  rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pm8350.h (98%)
->  rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pm8350b.h (99%)
->  rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pmk8350.h (97%)
->  rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pmr735a.h (95%)
->  rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pmr735b.h (100%)
->  rename include/dt-bindings/iio/{ => adc}/qcom,spmi-vadc.h (100%)
-
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+index 9da0b6d77c8d..87cfdf570b19 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+@@ -2113,6 +2113,7 @@ gpu: gpu@ff9a0000 {
+ 		interrupt-names = "job", "mmu", "gpu";
+ 		clocks = <&cru ACLK_GPU>;
+ 		#cooling-cells = <2>;
++		dynamic-power-coefficient = <2640>;
+ 		power-domains = <&power RK3399_PD_GPU>;
+ 		status = "disabled";
+ 	};
 -- 
-Lee Jones [李琼斯]
+2.25.1
+
 
