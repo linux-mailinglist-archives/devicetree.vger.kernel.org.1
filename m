@@ -1,88 +1,131 @@
-Return-Path: <devicetree+bounces-19302-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19303-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE5D47FA58D
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 17:03:42 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 325747FA5AA
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 17:07:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 09B841C20C07
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 16:03:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B7EA9B20FC3
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 16:07:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 872F834CFE;
-	Mon, 27 Nov 2023 16:03:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB7D035882;
+	Mon, 27 Nov 2023 16:07:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6D29DD;
-	Mon, 27 Nov 2023 08:03:35 -0800 (PST)
-X-IronPort-AV: E=McAfee;i="6600,9927,10907"; a="391610315"
-X-IronPort-AV: E=Sophos;i="6.04,231,1695711600"; 
-   d="scan'208";a="391610315"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Nov 2023 08:03:35 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10907"; a="1099823783"
-X-IronPort-AV: E=Sophos;i="6.04,231,1695711600"; 
-   d="scan'208";a="1099823783"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Nov 2023 08:03:31 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andy@kernel.org>)
-	id 1r7e52-0000000HY9E-2bUV;
-	Mon, 27 Nov 2023 18:03:28 +0200
-Date: Mon, 27 Nov 2023 18:03:28 +0200
-From: Andy Shevchenko <andy@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>,
-	kernel test robot <lkp@intel.com>,
-	Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org>,
-	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org, oe-kbuild-all@lists.linux.dev,
-	Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Rob Herring <robh+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Linus Walleij <linus.walleij@linaro.org>
-Subject: Re: [PATCH v2 2/2] hwmon: ltc4282: add support for the LTC4282 chip
-Message-ID: <ZWS90GQTJWA7DrML@smile.fi.intel.com>
-References: <20231124-ltc4282-support-v2-2-952bf926f83c@analog.com>
- <202311250548.lUn3bm1A-lkp@intel.com>
- <fb2aaa4c69c88738499dfbf46ef93e3b81ca93cb.camel@gmail.com>
- <76957975-56e7-489e-9c79-086b6c1ffe89@kernel.org>
- <ac950d01-d9aa-4fb7-810d-b21335e4cc94@kernel.org>
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB839BF
+	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 08:07:37 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <auto@pengutronix.de>)
+	id 1r7e6u-00009E-Dr; Mon, 27 Nov 2023 17:05:24 +0100
+Received: from [2a0a:edc0:0:1101:1d::ac] (helo=dude04.red.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <auto@pengutronix.de>)
+	id 1r7e6t-00Bz08-Ny; Mon, 27 Nov 2023 17:05:23 +0100
+Received: from rhi by dude04.red.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <auto@pengutronix.de>)
+	id 1r7e6t-00D6SA-2B;
+	Mon, 27 Nov 2023 17:05:23 +0100
+From: Roland Hieber <rhi@pengutronix.de>
+Date: Mon, 27 Nov 2023 17:05:01 +0100
+Subject: [PATCH] ARM: dts: imx7: Declare timers compatible with
+ fsl,imx6dl-gpt
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ac950d01-d9aa-4fb7-810d-b21335e4cc94@kernel.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20231127-b4-imx7-dt-v1-1-6ecbd0471cc4@pengutronix.de>
+X-B4-Tracking: v=1; b=H4sIACy+ZGUC/x2NywqDMBAAf0X27IKbRgL+ivSQx7YuaCyJloD47
+ 116nIFhLqhchCtM3QWFv1JlzwrUdxAXn9+MkpTBDOZBZBwGi7I1h+lAl2h0bDlSMqBB8JUxFJ/
+ jokk+11Xlp/BL2v8wP+/7Bwty/vFxAAAA
+To: Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, 
+ Frank Li <Frank.Li@freescale.com>, Anson Huang <b20788@freescale.com>
+Cc: Shawn Guo <shawn.guo@linaro.org>, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Philipp Zabel <p.zabel@pengutronix.de>, Roland Hieber <rhi@pengutronix.de>
+X-Mailer: b4 0.12.0
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: auto@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Mon, Nov 27, 2023 at 09:12:14AM +0100, Krzysztof Kozlowski wrote:
-> On 27/11/2023 09:10, Krzysztof Kozlowski wrote:
+From: Philipp Zabel <p.zabel@pengutronix.de>
 
-...
+The timer nodes declare compatibility with "fsl,imx6sx-gpt", which
+itself is compatible with "fsl,imx6dl-gpt". Switch the fallback
+compatible from "fsl,imx6sx-gpt" to "fsl,imx6dl-gpt".
 
-> Wait, this was not even unusual test, just standard compile, which means
-> you did not do basic tests on your end. You must build your new driver
-> with W=1, smatch, sparse and coccinelle before sending upstream.
+Fixes: 949673450291 ("ARM: dts: add imx7d soc dtsi file")
+Signed-off-by: Philipp Zabel <p.zabel@pengutronix.de>
+Signed-off-by: Roland Hieber <rhi@pengutronix.de>
+---
+ arch/arm/boot/dts/nxp/imx/imx7s.dtsi | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-Well, sparse is lagging in development, for the last year it's at least two
-times it broke kernel builds because of being not ready for the new stuff used
-in the kernel. Do we have anybody to sync this? I don't think so, hence
-requiring this from developer is doubtful. Otherwise I agree, that basic
-compilation with GCC/LLVM must be done.
+diff --git a/arch/arm/boot/dts/nxp/imx/imx7s.dtsi b/arch/arm/boot/dts/nxp/imx/imx7s.dtsi
+index 29b8fd03567a..5387da8a2a0a 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx7s.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx7s.dtsi
+@@ -454,7 +454,7 @@ iomuxc_lpsr: pinctrl@302c0000 {
+ 			};
+ 
+ 			gpt1: timer@302d0000 {
+-				compatible = "fsl,imx7d-gpt", "fsl,imx6sx-gpt";
++				compatible = "fsl,imx7d-gpt", "fsl,imx6dl-gpt";
+ 				reg = <0x302d0000 0x10000>;
+ 				interrupts = <GIC_SPI 55 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&clks IMX7D_GPT1_ROOT_CLK>,
+@@ -463,7 +463,7 @@ gpt1: timer@302d0000 {
+ 			};
+ 
+ 			gpt2: timer@302e0000 {
+-				compatible = "fsl,imx7d-gpt", "fsl,imx6sx-gpt";
++				compatible = "fsl,imx7d-gpt", "fsl,imx6dl-gpt";
+ 				reg = <0x302e0000 0x10000>;
+ 				interrupts = <GIC_SPI 54 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&clks IMX7D_GPT2_ROOT_CLK>,
+@@ -473,7 +473,7 @@ gpt2: timer@302e0000 {
+ 			};
+ 
+ 			gpt3: timer@302f0000 {
+-				compatible = "fsl,imx7d-gpt", "fsl,imx6sx-gpt";
++				compatible = "fsl,imx7d-gpt", "fsl,imx6dl-gpt";
+ 				reg = <0x302f0000 0x10000>;
+ 				interrupts = <GIC_SPI 53 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&clks IMX7D_GPT3_ROOT_CLK>,
+@@ -483,7 +483,7 @@ gpt3: timer@302f0000 {
+ 			};
+ 
+ 			gpt4: timer@30300000 {
+-				compatible = "fsl,imx7d-gpt", "fsl,imx6sx-gpt";
++				compatible = "fsl,imx7d-gpt", "fsl,imx6dl-gpt";
+ 				reg = <0x30300000 0x10000>;
+ 				interrupts = <GIC_SPI 52 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&clks IMX7D_GPT4_ROOT_CLK>,
 
+---
+base-commit: 2cc14f52aeb78ce3f29677c2de1f06c0e91471ab
+change-id: 20231127-b4-imx7-dt-7d157e4ec1d2
+
+Best regards,
 -- 
-With Best Regards,
-Andy Shevchenko
-
+Roland Hieber, Pengutronix e.K.          | rhi@pengutronix.de          |
+Steuerwalder Str. 21                     | https://www.pengutronix.de/ |
+31137 Hildesheim, Germany                | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686         | Fax:   +49-5121-206917-5555 |
 
 
