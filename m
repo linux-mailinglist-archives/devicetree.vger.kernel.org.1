@@ -1,79 +1,215 @@
-Return-Path: <devicetree+bounces-19329-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19332-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCD8A7FA77D
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 18:06:23 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 335B27FA79C
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 18:09:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3101C1F20F0B
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 17:06:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3FC3B1C20AFA
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 17:09:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1891535884;
-	Mon, 27 Nov 2023 17:06:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 257EC36B0D;
+	Mon, 27 Nov 2023 17:09:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="u16ZdZOp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f49.google.com (mail-oo1-f49.google.com [209.85.161.49])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55CE93256;
-	Mon, 27 Nov 2023 09:06:16 -0800 (PST)
-Received: by mail-oo1-f49.google.com with SMTP id 006d021491bc7-589d4033e84so2373507eaf.1;
-        Mon, 27 Nov 2023 09:06:16 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701104775; x=1701709575;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cWvJMjZ6wf7DZDfLqz8m8/1Tw1FelhGhcvu4suyu0c8=;
-        b=jdx1ut2snO5iTLddkc1kWI8cXB2ZEJ0cXmxBIIJIhFv/P4v6CmBz49k6DmePTNTN/N
-         k0NCTZe/+YL0wkdU2ZXZnBMWAenEX+bJHlWA/zRipyue1b+I0va3JI7/AYP4fYUVDOgs
-         JzPKiyzoLlYQ1NtCzHBf8PfTiCK+AkqIOd2eVGHh93x67fEm/4CJbINrVhNspBF070Gj
-         ZJ/yINJ9xauWyJkeE6gXFcX5aVvhOjY/dCZoKmr5IwgMJv4MIt5A6GVKvPYQTRBQ/JKr
-         IuB/nIZ4Qhg4WqRM7+ydXtFDBztQnDkEWKsK4Yp10f7jfAyCxHXKiZ5QjtzsrWN0mK7J
-         eG3w==
-X-Gm-Message-State: AOJu0YzRZxXimhpu8Y0RukKOihYu+0XWqIcWBDNm7LqMjLdkDHY//sqV
-	dIa1cS2QcZzx6Bj4oQI3n4ri5ttatw==
-X-Google-Smtp-Source: AGHT+IGomlZxiLfZXj8tSZA4lc0/MxCM/APuXjlf1dCwBFKdZvDLqTjOQLkhFGr26D+VaTkL4m/9Sg==
-X-Received: by 2002:a05:6820:220b:b0:58a:128:8ff0 with SMTP id cj11-20020a056820220b00b0058a01288ff0mr13465794oob.5.1701104775517;
-        Mon, 27 Nov 2023 09:06:15 -0800 (PST)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id r21-20020a4aea95000000b00581fc1af0a7sm1552890ooh.28.2023.11.27.09.06.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Nov 2023 09:06:14 -0800 (PST)
-Received: (nullmailer pid 1458096 invoked by uid 1000);
-	Mon, 27 Nov 2023 17:06:13 -0000
-Date: Mon, 27 Nov 2023 11:06:13 -0600
-From: Rob Herring <robh@kernel.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Konrad Dybcio <konrad.dybcio@linaro.org>, devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>, linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, Thomas Gleixner <tglx@linutronix.de>
-Subject: Re: [PATCH] dt-bindings: qcom,pdc: document the SM8650 Power Domain
- Controller
-Message-ID: <170110476457.1456623.11118726147199543641.robh@kernel.org>
-References: <20231025-topic-sm8650-upstream-bindings-pdc-v1-1-42f62cc9858c@linaro.org>
+Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDB3619A2;
+	Mon, 27 Nov 2023 09:09:43 -0800 (PST)
+Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 3ARDqXKF029391;
+	Mon, 27 Nov 2023 18:09:21 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=selector1; bh=scaZiRN
+	a51OlJfNVswXDrj5I08uYQmb4qOjuwQApPR8=; b=u16ZdZOpX4aVKwEtlsk700+
+	Y0bfUzgc5SFiUuRqjkCtD2JWAP0vDCN8rFRTFWn6P0icBhQo9cvO5XJkMCwoQiIa
+	rWDR9x39zzWeysM4aBNxoeQmR5PS21ef+GULgAQmJFR6MXvmaiWuf31n/9vWusuv
+	Dvs3hJ2NAyIVABk3Izbi87rBhwZiFYOTl1eQ9Xv5/JUsEuC2bgf4WQs2Q9iMZFqZ
+	TXSNIp90VXaKrOutgvD+Pu8svNDof1CQx8e+8fSISsirKJLvhnKfIcDNzypjIgm+
+	jIApj+gznSr4gMoptKc6JvAZ1POB9NBSSbWa8zAElwfRiHTyv+qCu5/WsaETHdA=
+	=
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3ukvrp5v8x-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 27 Nov 2023 18:09:21 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 6154510002A;
+	Mon, 27 Nov 2023 18:08:41 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 5600824B880;
+	Mon, 27 Nov 2023 18:08:41 +0100 (CET)
+Received: from localhost (10.129.178.213) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Mon, 27 Nov
+ 2023 18:08:41 +0100
+From: Alain Volmat <alain.volmat@foss.st.com>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Philipp
+ Zabel <p.zabel@pengutronix.de>
+CC: Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Laurent Pinchart
+	<laurent.pinchart@ideasonboard.com>,
+        Dan Scally
+	<dan.scally@ideasonboard.com>,
+        Alain Volmat <alain.volmat@foss.st.com>, <linux-media@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v9 0/5] Add support for DCMIPP camera interface of STMicroelectronics STM32 SoC series
+Date: Mon, 27 Nov 2023 18:08:14 +0100
+Message-ID: <20231127170828.1426117-1-alain.volmat@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231025-topic-sm8650-upstream-bindings-pdc-v1-1-42f62cc9858c@linaro.org>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-27_15,2023-11-27_01,2023-05-22_02
 
+This patchset introduces support for Digital Camera Memory Interface
+Pixel Processor (DCMIPP) of STMicroelectronics STM32 SoC series.
 
-On Wed, 25 Oct 2023 09:27:36 +0200, Neil Armstrong wrote:
-> Document the Power Domain Controller on the SM8650 Platform.
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
-> For convenience, a regularly refreshed linux-next based git tree containing
-> all the SM8650 related work is available at:
-> https://git.codelinaro.org/neil.armstrong/linux/-/tree/topic/sm85650/upstream/integ
-> ---
->  Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
+This initial support implements a single capture pipe
+allowing RGB565, YUV, Y, RAW8 and JPEG capture with
+frame skipping, prescaling and cropping.
 
-Applied, thanks!
+DCMIPP is exposed through 3 subdevices:
+- dcmipp_dump_parallel: parallel interface handling
+- dcmipp_dump_postproc: frame skipping, prescaling and cropping control
+- dcmipp_dump_capture: video device capture node
+
+v9:
+  - serie rebased on top of master branch of tree sailus/media_tree.git
+    in order to use init_state instead of init_cfg ops
+  - addition of link_validate in subdevs & video capture device
+    (bytecap)
+  - use local variable rtsc within probe for reset_controller
+
+v8:
+  - serie rebased on top of master branch of tree sailus/media_tree.git
+    in order to use v4l2_subdev_state_* functions
+
+v7:
+  - correct byteproc set_fmt handling and compose/crop/fmt handling
+  - replace few v4l2_subdev_get_try_* into v4l2_subdev_get_pad_*
+  - correct ordering within dcmipp_remove
+
+v6:
+  - correct copyright year in all files
+  - correct Kconfig (removal of OF addition of select
+    VIDEO_V4L2_SUBDEV_API/MEDIA_CONTROLLER
+  - add missing mutex_destroy in error handling
+  - rely on fwnode_graph_get_endpoint_by_id instead of fwnode_graph_get_next_endpoint
+  - rely on device_get_match_data instead of of_device_get_match_data
+  - use local variable for pads_flag initialization
+
+v5:
+  - removal of dcmipp_frame_size & dcmipp_frame_stride and use
+    v4l2_fill_pixfmt
+  - correct typos & avoid check of available buffer at start_streaming
+    time since this is done by vb2 framework
+  - avoid set of pad format in dcmipp_par_ent_init and
+    dcmipp_byteproc_ent_init since done via init_cfg
+  - reorder bound functions
+  - use v4l2_subdev_get_fmt in parallel and byteproc subdevs
+  - correct struct dcmipp_ent_device comments
+  - removal of dcmipp_hdw_pixel_alignment in bytecap subdev since not
+    applicable in this byte mode pipeline
+
+v4:
+  - rework of mutex / spinlock handling
+  - addition of dma mask setting
+  - removal of __maybe_unused, use pm_ptr and new declaration macros
+  - driver now only generate a single stm32-dcmipp.ko module instead of
+    several as before
+  - removal of the component framework usage
+  - various small fixes (function names, lowercase values, indentation,
+    print formats)
+  - register name removal in register access function, only dev_dbg with
+    address & values are kept
+  - removal of VB2_READ and CAP_READWRITE
+  - usage of subdev active state mechanism and removal of locally stored
+    format/compose/crop
+  - addition of port { } within the stm32mp135.dtsi
+
+v3:
+  - Have same To & Cc in all patches emails of the serie so that everybody
+    has coherent view of the serie
+  - bindings: correct wording, clock-names & label removal
+  - driver: replace of_graph call with fwnode_graph
+  - driver: use defined bus-type when calling v4l2_fwnode_endpoint_parse
+  - driver: remove clock name
+  - dtsi: remove clock-names property
+
+v2:
+  - removal of pclk-max-frequency from yaml example dts
+  - codying-style fixes
+  - correction in enum functions (format, mbus, frame_size ...) handling
+  - drop of v4l2_pipeline_pm_ calls, and specific open/close handler of
+    vdev
+  - video dev s_stream handling updated to call s_stream of remote subdev
+    instead of loop until sensor subdev
+  - code update following media_pipeline & v4l2_async_ api changes since v1
+  - removal of IP reset call upon error
+  - removal of link_validate handlers
+  - addition of V4L2_CAP_IO_MC device_caps
+  - removal of the frame skip control for the time being, will be added
+    back in another commit once control method will be agreed
+  - change byteproc entity type to MEDIA_ENT_F_PROC_VIDEO_SCALER
+  - various fixes from Dan & Sakari remarks
+
+Alain Volmat (2):
+  dt-bindings: media: add bindings for stm32 dcmipp
+  media: MAINTAINERS: add entry for STM32 DCMIPP driver
+
+Hugues Fruchet (3):
+  media: stm32-dcmipp: STM32 DCMIPP camera interface driver
+  ARM: dts: stm32: add dcmipp support to stm32mp135
+  ARM: multi_v7_defconfig: enable STM32 DCMIPP media support
+
+ .../bindings/media/st,stm32-dcmipp.yaml       |  89 ++
+ MAINTAINERS                                   |   5 +-
+ arch/arm/boot/dts/st/stm32mp135.dtsi          |  11 +
+ arch/arm/configs/multi_v7_defconfig           |   1 +
+ drivers/media/platform/st/stm32/Kconfig       |  16 +
+ drivers/media/platform/st/stm32/Makefile      |   1 +
+ .../platform/st/stm32/stm32-dcmipp/Makefile   |   4 +
+ .../st/stm32/stm32-dcmipp/dcmipp-bytecap.c    | 956 ++++++++++++++++++
+ .../st/stm32/stm32-dcmipp/dcmipp-byteproc.c   | 565 +++++++++++
+ .../st/stm32/stm32-dcmipp/dcmipp-common.c     | 111 ++
+ .../st/stm32/stm32-dcmipp/dcmipp-common.h     | 216 ++++
+ .../st/stm32/stm32-dcmipp/dcmipp-core.c       | 604 +++++++++++
+ .../st/stm32/stm32-dcmipp/dcmipp-parallel.c   | 440 ++++++++
+ 13 files changed, 3018 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/media/st,stm32-dcmipp.yaml
+ create mode 100644 drivers/media/platform/st/stm32/stm32-dcmipp/Makefile
+ create mode 100644 drivers/media/platform/st/stm32/stm32-dcmipp/dcmipp-bytecap.c
+ create mode 100644 drivers/media/platform/st/stm32/stm32-dcmipp/dcmipp-byteproc.c
+ create mode 100644 drivers/media/platform/st/stm32/stm32-dcmipp/dcmipp-common.c
+ create mode 100644 drivers/media/platform/st/stm32/stm32-dcmipp/dcmipp-common.h
+ create mode 100644 drivers/media/platform/st/stm32/stm32-dcmipp/dcmipp-core.c
+ create mode 100644 drivers/media/platform/st/stm32/stm32-dcmipp/dcmipp-parallel.c
+
+-- 
+2.25.1
 
 
