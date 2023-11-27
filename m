@@ -1,48 +1,57 @@
-Return-Path: <devicetree+bounces-19349-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19350-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A703E7FA836
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 18:39:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F7237FA838
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 18:40:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2D24AB20FDE
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 17:39:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EDF21280FC7
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 17:40:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92CCF3A8C1;
-	Mon, 27 Nov 2023 17:39:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5B5A381A9;
+	Mon, 27 Nov 2023 17:40:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ArVF/yJx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pvv0aHCW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7025C23778;
-	Mon, 27 Nov 2023 17:39:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67B20C433C8;
-	Mon, 27 Nov 2023 17:39:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2B6E23778;
+	Mon, 27 Nov 2023 17:40:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1E56C433C8;
+	Mon, 27 Nov 2023 17:40:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701106760;
-	bh=cZVni5i/Ob43TnjoYqSrY6A6OIKEq/YnyMKIogXMCDA=;
+	s=k20201202; t=1701106852;
+	bh=ASd7HNOCLvajDqM7bkeIb2gghMVUfzmmdhTIGZqmuTI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ArVF/yJxdRduggKVVhfomhFAJXKGLID06BVAVR923G39naYYXYaKIeMWkTxU8JBPX
-	 CXXH2aiC0wva6OJIyzEIM6OtVOBad07nA8EGcOiEVuvo8hdKyiqDNZko8ua2Z1U6mf
-	 RwTA44u/MmXoEj+nMt55pIbSmH1PqVnCWO4wFHTufhndDbZ7EHsIZ2ceb1xKkYy8RK
-	 SNMppAwszJp/PHSW2eCiBeCF0QotYpoAfIMeVIUaixXWUhhnAWK04vUPRmhc0sZGau
-	 ZSnPeLBtgYwbxYxz/ZMWZ4HZgRka0RPFkT0aDfbCbGb+O/MXAxgWac3UkAvoYbi2B7
-	 02g9u5uRWo19A==
-Date: Mon, 27 Nov 2023 17:39:16 +0000
+	b=Pvv0aHCW0DtzZKvjvXIZwkYYt259J3Ck3NIpXuR+5WM/LLeVkzZaYNJqLTItQQ+kJ
+	 PGDelokDttm0zvlhDXhr1kuViE+b1xi2MVY0riYLQQsGod0MXrqpAlvk+lQOeHIVHg
+	 VpHePaeufzwgN1XkqsCXdBb8SJDRsG/O+LzpVKf+1UxOWTsF6gzp2QjngkdXVJpvVC
+	 1B5nJiZCoMMESAeu2QtA3oxXeywf7bZPtNCHewgv6Q8uFZwxp2ZmoNQKOxQrbqr/TK
+	 Zx1GcMjhpUpZWN1sTi3ztCdUlFRnWpW2xItMid0xLDbCCUuLFP7wnbA8OpbYlZGP8s
+	 PaYNuOrx0OCVg==
+Date: Mon, 27 Nov 2023 17:40:45 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, git@amd.com,
-	mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	michal.simek@amd.com
-Subject: Re: [PATCH v2 1/2] dt-bindings: clock: versal: Make alt_ref optional
-Message-ID: <20231127-casino-cramp-0d780a05266b@spud>
-References: <20231127072204.25879-1-shubhrajyoti.datta@amd.com>
- <20231127072204.25879-2-shubhrajyoti.datta@amd.com>
+To: Ziqi Chen <quic_ziqichen@quicinc.com>
+Cc: quic_asutoshd@quicinc.com, quic_cang@quicinc.com, bvanassche@acm.org,
+	mani@kernel.org, stanley.chu@mediatek.com, adrian.hunter@intel.com,
+	beanhuo@micron.com, avri.altman@wdc.com, junwoo80.lee@samsung.com,
+	martin.petersen@oracle.com, quic_nguyenb@quicinc.com,
+	quic_nitirawa@quicinc.com, linux-scsi@vger.kernel.org,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Wolfram Sang <wsa@kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3] dt-bindings: ufs: Add msi-parent for UFS MCQ
+Message-ID: <20231127-glimpse-demotion-6adae40eee30@spud>
+References: <1701063365-82582-1-git-send-email-quic_ziqichen@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,123 +59,68 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="vgrsQn/XqlfqY81N"
+	protocol="application/pgp-signature"; boundary="meYWU9+SxTC9ZooD"
 Content-Disposition: inline
-In-Reply-To: <20231127072204.25879-2-shubhrajyoti.datta@amd.com>
+In-Reply-To: <1701063365-82582-1-git-send-email-quic_ziqichen@quicinc.com>
 
 
---vgrsQn/XqlfqY81N
+--meYWU9+SxTC9ZooD
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Nov 27, 2023 at 12:52:03PM +0530, Shubhrajyoti Datta wrote:
-> The alt_ref is present only in Versal-net devices.
-> Other versal devices do not have it. Update the binding
-> accordingly.
+On Mon, Nov 27, 2023 at 01:36:02PM +0800, Ziqi Chen wrote:
+> The Message Signaled Interrupts (MSI) support has been introduced in
+> UFSHCI version 4.0 (JESD223E). The MSI is the recommended interrupt
+> approach for MCQ. If choose to use MSI, In UFS DT, we need to provide
+> msi-parent property that point to the hardware entity which serves as
+> the MSI controller for this UFS controller.
+>=20
+> Signed-off-by: Ziqi Chen <quic_ziqichen@quicinc.com>
+>=20
 
-$subject is not accurate btw, "alt_ref" is not an option, its not
-present on !versal-net devices. Could you rephrase that please?
+> V2 -> V3: Wrap commit message to meet Linux coding style.
+> V1 -> V2: Rebased on Linux 6.7-rc1 and updated the commit message to
+>           incorporate the details about when MCQ/MSI got introduced.
 
-Thanks,
+This should be below the --- line FYI. With that fixed,
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+Cheers,
 Conor.
 
->=20
-> Fixes: 352546805a44 ("dt-bindings: clock: Add bindings for versal clock d=
-river")
-> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
->=20
 > ---
+>  Documentation/devicetree/bindings/ufs/ufs-common.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 >=20
-> Changes in v2:
-> - Have specific constraints for versal and versal net.
->=20
->  .../bindings/clock/xlnx,versal-clk.yaml       | 31 +++++++++++++++----
->  1 file changed, 25 insertions(+), 6 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml=
- b/Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml
-> index 1ba687d433b1..bef109d163a8 100644
-> --- a/Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml
-> +++ b/Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml
-> @@ -31,11 +31,11 @@ properties:
->    clocks:
->      description: List of clock specifiers which are external input
->        clocks to the given clock controller.
-> -    minItems: 3
-> +    minItems: 2
->      maxItems: 8
+> diff --git a/Documentation/devicetree/bindings/ufs/ufs-common.yaml b/Docu=
+mentation/devicetree/bindings/ufs/ufs-common.yaml
+> index 985ea8f..31fe7f3 100644
+> --- a/Documentation/devicetree/bindings/ufs/ufs-common.yaml
+> +++ b/Documentation/devicetree/bindings/ufs/ufs-common.yaml
+> @@ -87,6 +87,8 @@ properties:
+>      description:
+>        Specifies max. load that can be drawn from VCCQ2 supply.
 > =20
->    clock-names:
-> -    minItems: 3
-> +    minItems: 2
->      maxItems: 8
-> =20
->  required:
-> @@ -59,15 +59,34 @@ allOf:
->          clocks:
->            items:
->              - description: reference clock
-> -            - description: alternate reference clock
->              - description: alternate reference clock for programmable lo=
-gic
-> =20
->          clock-names:
->            items:
->              - const: ref
-> -            - const: alt_ref
->              - const: pl_alt_ref
-> =20
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - xlnx,versal-net-clk
+> +  msi-parent: true
 > +
-> +    then:
-> +      properties:
-> +        clocks:
-> +          items:
-> +            - description: reference clock
-> +            - description: alternate reference clock for programmable lo=
-gic
-> +            - description: alternate reference clock
-> +
-> +        clock-names:
-> +          items:
-> +            - const: ref
-> +            - const: pl_alt_ref
-> +            - const: alt_ref
-> +
->    - if:
->        properties:
->          compatible:
-> @@ -110,8 +129,8 @@ examples:
->          versal_clk: clock-controller {
->            #clock-cells =3D <1>;
->            compatible =3D "xlnx,versal-clk";
-> -          clocks =3D <&ref>, <&alt_ref>, <&pl_alt_ref>;
-> -          clock-names =3D "ref", "alt_ref", "pl_alt_ref";
-> +          clocks =3D <&ref>,  <&pl_alt_ref>;
-> +          clock-names =3D "ref", "pl_alt_ref";
->          };
->        };
->      };
+>  dependencies:
+>    freq-table-hz: [ clocks ]
+>    operating-points-v2: [ clocks, clock-names ]
 > --=20
-> 2.17.1
+> 2.7.4
 >=20
 
---vgrsQn/XqlfqY81N
+--meYWU9+SxTC9ZooD
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZWTUQwAKCRB4tDGHoIJi
-0nAeAQDHhRRAEyS4HQPJuUh07J+gohIF6cS9Hfe3RGl78RpxDQD+O8mTXiK6zZHJ
-RfTf86BXEXuHk2l3FW2E9u9GVNjCWgI=
-=YDC+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZWTUnQAKCRB4tDGHoIJi
+0lkfAQCvRuG2xjcDa3+t00Vi0nYJlmW0utoE6J+FzXzKoY69mgEA7pfEtowMhenM
+81QppLYUmCj2rygQBpmYhDJ6qM4hLA0=
+=b2Sv
 -----END PGP SIGNATURE-----
 
---vgrsQn/XqlfqY81N--
+--meYWU9+SxTC9ZooD--
 
