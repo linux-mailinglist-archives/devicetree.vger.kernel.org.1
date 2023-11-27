@@ -1,88 +1,122 @@
-Return-Path: <devicetree+bounces-19065-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19066-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C242D7F9918
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 07:07:28 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64DCF7F991E
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 07:12:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F37E71C2084E
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 06:07:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9FF23B20A70
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 06:12:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D5C46FB3;
-	Mon, 27 Nov 2023 06:07:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44C4B7492;
+	Mon, 27 Nov 2023 06:12:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="mrDBRmM4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B474E1
-	for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 22:07:22 -0800 (PST)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <a.fatoum@pengutronix.de>)
-	id 1r7Um5-0004Sr-Lr; Mon, 27 Nov 2023 07:07:17 +0100
-Message-ID: <314ad280-e3e8-4087-8862-439cf45aa0f9@pengutronix.de>
-Date: Mon, 27 Nov 2023 07:07:16 +0100
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A33AE1;
+	Sun, 26 Nov 2023 22:12:50 -0800 (PST)
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AR263eq015676;
+	Mon, 27 Nov 2023 06:12:32 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=Nw//Q0T2ItPW3xNVWkuPhtnEwG+agGNfwZ8OqqbER20=;
+ b=mrDBRmM4W5BJJ/RSJMrSSZWtX2600J7lqT6+tPcBO04E4iZJYGBnHPJ+Ghf3EJ2gMSc+
+ vG5zwZit2gtQRyVmK2SRKtxo0eYfSYIyFNQpjU1AD6D3ZYfDuLJZCOtFrNHmcBi28EsE
+ yUC/3+4l1xmfqEdkTpstxa9ZrOH4SuRohg/Obv8z2QdUuERkvrrLuk3kMHiIEx4zeCRw
+ xhy5W4RBjkxJ1QLN8tuU/+MZJ1fAWkq8Kg5as/pmiRPh2QcZ9ZUe2ARnI5FbygdaGlxH
+ zpczCysdzm1io+zxnBB7fD7vfLWQM0/qqOEjUyROIfNBLYOgKYHqsF/gQ7rJubx7VryO Ew== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uk7xmbew3-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 27 Nov 2023 06:12:31 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AR6CUCX020583
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 27 Nov 2023 06:12:30 GMT
+Received: from [10.253.33.46] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Sun, 26 Nov
+ 2023 22:12:27 -0800
+Message-ID: <826700de-ed89-4ed9-b225-e0453ecbfd3f@quicinc.com>
+Date: Mon, 27 Nov 2023 14:12:12 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v2 3/4] arm64: dts: freescale: Add support for the
- Variscite i.MX8MP DART8MCustomBoard
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 1/6] net: phy: introduce core support for phy-mode =
+ "10g-qxgmii"
+To: Andrew Lunn <andrew@lunn.ch>
+CC: <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+        <pabeni@redhat.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <hkallweit1@gmail.com>, <linux@armlinux.org.uk>, <corbet@lwn.net>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>
+References: <20231126060732.31764-1-quic_luoj@quicinc.com>
+ <20231126060732.31764-2-quic_luoj@quicinc.com>
+ <f97fd2f0-3e39-4de0-8b1c-f333a0f56a7f@lunn.ch>
 Content-Language: en-US
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev
-Cc: devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
- Marco Contenti <marco.c@variscite.com>, Nate Drude <nate.d@variscite.com>,
- FrancescoFerraro <francesco.f@variscite.com>,
- Harshesh Valera <harshesh.v@variscite.com>
-References: <20231025165058.31697-1-laurent.pinchart@ideasonboard.com>
- <20231025165058.31697-4-laurent.pinchart@ideasonboard.com>
-From: Ahmad Fatoum <a.fatoum@pengutronix.de>
-In-Reply-To: <20231025165058.31697-4-laurent.pinchart@ideasonboard.com>
-Content-Type: text/plain; charset=UTF-8
+From: Jie Luo <quic_luoj@quicinc.com>
+In-Reply-To: <f97fd2f0-3e39-4de0-8b1c-f333a0f56a7f@lunn.ch>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: LpBQzuSRG-iAGm7WdZcBygis0OlOfSLD
+X-Proofpoint-GUID: LpBQzuSRG-iAGm7WdZcBygis0OlOfSLD
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-27_03,2023-11-22_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 adultscore=0
+ mlxlogscore=800 clxscore=1015 suspectscore=0 priorityscore=1501
+ lowpriorityscore=0 spamscore=0 phishscore=0 impostorscore=0 bulkscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2311060000 definitions=main-2311270041
 
-On 25.10.23 18:50, Laurent Pinchart wrote:
-> The DT8MCustomBoard is a carrier board for DART i.MX8-based modules.
-> This device tree file adds support for the DT8MCustomBoard v2.0 with a
-> connected DART-MX8M-PLUS module.
+
+
+On 11/27/2023 1:20 AM, Andrew Lunn wrote:
+> On Sun, Nov 26, 2023 at 02:07:27PM +0800, Luo Jie wrote:
+>> From: Vladimir Oltean <vladimir.oltean@nxp.com>
+>>
+>> 10G-QXGMII is a MAC-to-PHY interface defined by the USXGMII multiport
+>> specification. It uses the same signaling as USXGMII, but it multiplexes
+>> 4 ports over the link, resulting in a maximum speed of 2.5G per port.
+>>
+>> Some in-tree SoCs like the NXP LS1028A use "usxgmii" when they mean
+>> either the single-port USXGMII or the quad-port 10G-QXGMII variant, and
+>> they could get away just fine with that thus far. But there is a need to
+>> distinguish between the 2 as far as SerDes drivers are concerned.
 > 
-> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> ---
+> Can this is split into two patches?
 
+This patch is a single logical for introducing the mode 10g-qxgmii,
+looks it's better to keep it within a single patch.
 
-> +&eqos {
-> +	mdio {
-> +		ethphy1: ethernet-phy@1 {
-> +			compatible = "ethernet-phy-ieee802.3-c22";
-> +			reg = <1>;
-> +			eee-broken-1000t;
-> +			reset-gpios = <&gpio_exp_2 0 GPIO_ACTIVE_LOW>;
-> +			reset-assert-us = <10000>;
-> +			reset-deassert-us = <20000>;
+> 
+>>   	switch (interface) {
+>>   	case PHY_INTERFACE_MODE_USXGMII:
+>> -		caps |= MAC_10000FD | MAC_5000FD | MAC_2500FD;
+>> +		caps |= MAC_10000FD | MAC_5000FD;
+>> +		fallthrough;
+> 
+> This change seems to refer to the second paragraph, where as the rest
+> of the code is about the first. Or does splitting this cause a bisect
+> problem?
+> 
+> 	Andrew
 
-Ouch. So you have a PHY at address 0 (broadcast address) and a PHY at address
-1 on the same bus? I think it's worth a comment whether broadcast for this
-PHY here is disabled by strapping or in the bootloader.
-
-Cheers,
-Ahmad
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Since the caps change is related to the new added interface mode
+10g-qxgmii, it is reasonable to keep the changes integrated here.
 
 
