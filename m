@@ -1,174 +1,95 @@
-Return-Path: <devicetree+bounces-19384-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19385-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE9AF7FAB67
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 21:27:44 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34D947FABA8
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 21:36:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DF5131C20DD2
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 20:27:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B9E74B21288
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 20:36:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED91146442;
-	Mon, 27 Nov 2023 20:27:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=z3ntu.xyz header.i=@z3ntu.xyz header.b="CITmsuf4"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14CCF3BB55;
+	Mon, 27 Nov 2023 20:36:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2987E19A6;
-	Mon, 27 Nov 2023 12:27:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=z3ntu.xyz; s=z3ntu;
-	t=1701116852; bh=wjGIuleQ8kD0z2aVCMJjHMNPVmJYR139BLY4d6XpI1Q=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=CITmsuf4OwScTPbofNMOSgAtZ0drI/A4I02RxAI8Q9XCGQdfw8Gjn+WBillie3caD
-	 E5iR5ev6U/j/hvZOmRcTns+y0IavwYPaRysGzBKB6OUZwCyRkp36FWeFNF1qhkWbRg
-	 GE9GZ06SNeLT41ez/Go5UlAPQVoL/XsYOlZYg24s=
-From: Luca Weiss <luca@z3ntu.xyz>
-To: Stephan Gerhold <stephan@gerhold.net>
-Cc: Loic Poulain <loic.poulain@linaro.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
- Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Mathieu Poirier <mathieu.poirier@linaro.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Kalle Valo <kvalo@kernel.org>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
- linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- wcn36xx@lists.infradead.org, linux-wireless@vger.kernel.org
-Subject:
- Re: [PATCH 1/4] dt-bindings: remoteproc: qcom: wcnss: Add WCN3680B compatible
-Date: Mon, 27 Nov 2023 21:27:30 +0100
-Message-ID: <5919350.DvuYhMxLoT@z3ntu.xyz>
-In-Reply-To: <ZWT3APJlNQaKVyJU@gerhold.net>
-References:
- <20231015-fp3-wcnss-v1-0-1b311335e931@z3ntu.xyz>
- <1868698.tdWV9SEqCh@z3ntu.xyz> <ZWT3APJlNQaKVyJU@gerhold.net>
+Received: from mail-oo1-f45.google.com (mail-oo1-f45.google.com [209.85.161.45])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9D4491;
+	Mon, 27 Nov 2023 12:36:51 -0800 (PST)
+Received: by mail-oo1-f45.google.com with SMTP id 006d021491bc7-58d956c8c38so535860eaf.2;
+        Mon, 27 Nov 2023 12:36:51 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701117411; x=1701722211;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=FC+FugQldxH8ozFUppzyiz48ydYS76ZkBSAy4uUEC3I=;
+        b=n8rUxRvWDRDJTvRyTWI3CExF3DqvToUuQbm9vrhPZMI8wlf8+BWEh8AVAMpj4DTCOY
+         M95f/H0VWJ/OVxlipEd5d9AsPlj1KnNWJm7vJA6z9Vw95FEtM3FqSVra9T6NfIEaRnat
+         55xkPHVyycyilqT8a66WeRb9hZ8ZZmRuiSeGWL8oww2+Knzv4L5xokLXfnGp7PsumnsK
+         aoznBaxf6S4jlEkxnv4xtqX5IQrySPKCBhx+N8zteGZbHF3wXORlBWyWRNJR1HbkNlou
+         uHei6JKozkkS+qzwiEChzczL3aF8wQVgJBDLz5zd3dzV9BL0yKC5fx6TG2cwbcS/L+8R
+         qUsA==
+X-Gm-Message-State: AOJu0YyLfDa2g1NZ40at4J1k7JE5zL90oHH5bSh0mNWsinazZy6a47t+
+	PKvuIbFrsvtGeYDlMJfygQ==
+X-Google-Smtp-Source: AGHT+IHZRrQ6avLBuDCqee8jWm6NVmmBIMYAZVCC1trSeLZ24qZkYvVy9lfibseNEz8WUf5rtqrYbw==
+X-Received: by 2002:a05:6820:2225:b0:58d:5c9e:ebe3 with SMTP id cj37-20020a056820222500b0058d5c9eebe3mr9420861oob.0.1701117411030;
+        Mon, 27 Nov 2023 12:36:51 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id 62-20020a4a0041000000b00587aaf6add7sm1695922ooh.9.2023.11.27.12.36.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Nov 2023 12:36:50 -0800 (PST)
+Received: (nullmailer pid 3226763 invoked by uid 1000);
+	Mon, 27 Nov 2023 20:36:49 -0000
+Date: Mon, 27 Nov 2023 14:36:49 -0600
+From: Rob Herring <robh@kernel.org>
+To: Ahmad Fatoum <a.fatoum@pengutronix.de>
+Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>, linux-stm32@st-md-mailman.stormreply.com, devicetree@vger.kernel.org, Alexandre Torgue <alexandre.torgue@foss.st.com>, Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, kernel@pengutronix.de
+Subject: Re: [PATCH 1/2] dt-bindings: arm: stm32: don't mix SCMI and non-SCMI
+ board compatibles
+Message-ID: <170111740896.3226593.5878779539402327826.robh@kernel.org>
+References: <20231122185235.2017642-1-a.fatoum@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231122185235.2017642-1-a.fatoum@pengutronix.de>
 
-On Montag, 27. November 2023 21:07:28 CET Stephan Gerhold wrote:
-> On Sat, Nov 25, 2023 at 01:25:22PM +0100, Luca Weiss wrote:
-> > On Montag, 16. Oktober 2023 16:44:28 CET Stephan Gerhold wrote:
-> > > On Mon, Oct 16, 2023 at 03:16:14PM +0200, Loic Poulain wrote:
-> > > > On Mon, 16 Oct 2023 at 07:35, Krzysztof Kozlowski
-> > > > 
-> > > > <krzysztof.kozlowski@linaro.org> wrote:
-> > > > > On 15/10/2023 22:03, Luca Weiss wrote:
-> > > > > > Add a compatible for the iris subnode in the WCNSS PIL.
-> > > > > > 
-> > > > > > Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-> > > > > > ---
-> > > > > > 
-> > > > > >  Documentation/devicetree/bindings/remoteproc/qcom,wcnss-pil.yaml
-> > > > > >  | 1
-> > > > > >  +
-> > > > > >  1 file changed, 1 insertion(+)
-> > > > > > 
-> > > > > > diff --git
-> > > > > > a/Documentation/devicetree/bindings/remoteproc/qcom,wcnss-pil.yaml
-> > > > > > b/Documentation/devicetree/bindings/remoteproc/qcom,wcnss-pil.yaml
-> > > > > > index 45eb42bd3c2c..0e5e0b7a0610 100644
-> > > > > > ---
-> > > > > > a/Documentation/devicetree/bindings/remoteproc/qcom,wcnss-pil.yam
-> > > > > > l
-> > > > > > +++
-> > > > > > b/Documentation/devicetree/bindings/remoteproc/qcom,wcnss-pil.yam
-> > > > > > l
-> > > > > > 
-> > > > > > @@ -111,6 +111,7 @@ properties:
-> > > > > >            - qcom,wcn3660
-> > > > > >            - qcom,wcn3660b
-> > > > > >            - qcom,wcn3680
-> > > > > > 
-> > > > > > +          - qcom,wcn3680b
-> > > > > 
-> > > > > Looks like this should be made as compatible with qcom,wcn3680 (so
-> > > > > with
-> > > > > fallback).
-> > > > 
-> > > > Yes, agree, let's do a regular fallback as there is nothing 'b'
-> > > > specific in the driver:
-> > > > `compatible = "qcom,wcn3680b", "qcom,wcn3680";`
-> > > > 
-> > > > And yes, we should also have done that for qcom,wcn3660b...
-> > > 
-> > > I don't think this would have worked properly for qcom,wcn3660b:
-> > >  - It's not compatible with "qcom,wcn3660", because they have different
-> > >  
-> > >    regulator voltage requirements. wcn3660(a?) needs vddpa with
-> > >    2.9-3.0V, but wcn3660b needs 3.3V. That's why wcn3660b uses the
-> > >    wcn3680_data in qcom_wcnss.iris.c. Otherwise if you would run an
-> > >    older kernel that knows "qcom,wcn3660" but not "qcom,wcn3660b" it
-> > >    would apply the wrong voltage.
-> > >  
-> > >  - It's not compatible with "qcom,wcn3680" either because that is used
-> > >  
-> > >    as indication if 802.11ac is supported (wcn3660b doesn't).
-> > > 
-> > > The main question here is: What does the current "qcom,wcn3680"
-> > > compatible actually represent? It's defined with vddpa = 3.3V in the
-> > > 
-> > > driver, which would suggest that:
-> > >  1. It's actually meant to represent WCN3680B, which needs 3.3V vddpa
-> > >  
-> > >     like WCN3660B, or
-> > >  
-> > >  2. WCN3680(A?) has different requirements than WCN3660(A?) and also
-> > >  
-> > >     needs 3.3V vddpa. But then what is the difference between
-> > >     WCN3680(A?) and WCN3680B? Is there even a variant without ...B?
-> > > 
-> > > There is public documentation for WCN3660B and WCN3680B but the non-B
-> > > variants are shrouded in mystery.
-> > 
-> > Hi Stephan (and everyone),
-> > 
-> > Do you have a suggestion how to move this patchset forward? Is the
-> > fallback
-> > compatible that was suggested okay for the wcn3680b situation?
-> > 
-> >   compatible = "qcom,wcn3680b", "qcom,wcn3680";
-> > 
-> > If so, I'll make v2 with that implemented.
+
+On Wed, 22 Nov 2023 19:52:33 +0100, Ahmad Fatoum wrote:
+> SCMI-enabled boards may restrict access to resources like clocks, resets
+> and regulators to the secure world.
 > 
-> Personally, I would just go with what exists already and use the
-> existing "qcom,wcn3680" compatible as-is. No one has provided evidence
-> that there is actually something like a WCN3680(A), without a 'B' at the
-> end. Also, all existing users of the "qcom,wcn3680" compatible upstream
-> actually seem to refer to WCN3680B (I'm quite sure apq8039-t2 has
-> WCN3680B, MSM8974 isn't entirely clear but iirc you mentioned there was
-> some schematic of a MSM8974 device which says WCN3680B as well).
+> A normal world bootloader or kernel compatible with the non-SCMI-enabled
+> board is thus not guaranteed to be able to deal with the SCMI variant.
 > 
-> It would be nice to have the compatible perfectly correct and complete,
-> but I see no point to extend it with additional information that we
-> can't properly verify.
+> It follows, that the SCMI-enabled board is not compatible with the
+> non-SCMI enabled board, so drop that compatible.
 > 
-> Or do you actually need a different compatible to customize something in
-> the driver?
-
-No it should be fine with qcom,wcn3680.
-
-I'll send v2 in the coming days then, thanks for your input!
-
-Regards
-Luca
-
+> This change is motivated by the barebox' bootloader's use of bootloader
+> specification files[1][2]: barebox for non-SCMI DK2 will compare its
+> own top-level "stm32mp157c-dk2" compatible with all compatibles
+> listed in the device tree referenced by each bootloader spec file.
+> If the boot medium contains a configuration with
+> compatible = "st,stm32mp157c-dk2-scmi", "st,stm32mp157c-dk2", "st,stm32mp157";
+> it will match, because of the second compatible and boot a kernel with
+> SCMI enabled, although no SCMI may exist on the platform.
 > 
-> Thanks,
-> Stephan
+> [1]: https://uapi-group.org/specifications/specs/boot_loader_specification/
+> [2]: https://www.barebox.org/doc/latest/user/booting-linux.html#boot-loader-specification
+> 
+> Fixes: 8e14ebb1f08f ("dt-bindings: arm: stm32: Add SCMI version of STM32 boards (DK1/DK2/ED1/EV1)")
+> Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+> ---
+>  .../devicetree/bindings/arm/stm32/stm32.yaml     | 16 +++-------------
+>  1 file changed, 3 insertions(+), 13 deletions(-)
+> 
 
-
-
+Acked-by: Rob Herring <robh@kernel.org>
 
 
