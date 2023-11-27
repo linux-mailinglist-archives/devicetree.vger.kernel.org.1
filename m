@@ -1,135 +1,123 @@
-Return-Path: <devicetree+bounces-19165-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19166-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EE3A7F9E53
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 12:15:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 423B47F9E68
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 12:20:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 50D7D1C209B9
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 11:15:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F078A2813B5
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 11:19:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25BF919447;
-	Mon, 27 Nov 2023 11:15:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="zSxWfPZc"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26FB919463;
+	Mon, 27 Nov 2023 11:19:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEEFA138;
-	Mon, 27 Nov 2023 03:15:27 -0800 (PST)
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 3ARAOo5T003615;
-	Mon, 27 Nov 2023 12:14:58 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:in-reply-to; s=selector1; bh=8Vbivb9VqhvIy3KkCjS2N
-	dwe7AeBFgkC6zhQeVlfu7A=; b=zSxWfPZc1DeG2lKUspz0geU/YXF2Uy06NM25C
-	hgu0n+a3RjupMrtlYC5OyZCtwmAkzTubyeXmTu3eaGfFF8FsnbhzdOoUTp6reSob
-	poW1EFUGgxy4y1/bW/dWHu56JxagYJtUQjOSvWdqm5zPmLJTuF/+Y3yN64DdRpbl
-	BWM3+Sxo6e+ElQIc85PY5Lhr93x/Vec1EyeUKjm3jouGbheFraKCScpSrV0M+ZMu
-	U99IMCDAfbmAY8nk2TJ8X7AIAUTKFb0txXo9HZNbyPPrDteNoiJFss3y2jAsfl87
-	Sgu82Z55S57+po++JodlZAQz5OGENTxdBB1GotsAFJ+yluYgw==
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3uk951qb3d-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 27 Nov 2023 12:14:58 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 90A1710004B;
-	Mon, 27 Nov 2023 12:14:55 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id A7111217B73;
-	Mon, 27 Nov 2023 12:14:55 +0100 (CET)
-Received: from gnbcxd0016.gnb.st.com (10.129.178.213) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Mon, 27 Nov
- 2023 12:14:55 +0100
-Date: Mon, 27 Nov 2023 12:14:46 +0100
-From: Alain Volmat <alain.volmat@foss.st.com>
-To: Sakari Ailus <sakari.ailus@linux.intel.com>
-CC: Hugues Fruchet <hugues.fruchet@foss.st.com>,
-        Mauro Carvalho Chehab
-	<mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue
-	<alexandre.torgue@foss.st.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Philipp
- Zabel <p.zabel@pengutronix.de>,
-        Laurent Pinchart
-	<laurent.pinchart@ideasonboard.com>,
-        Dan Scally
-	<dan.scally@ideasonboard.com>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v8 0/5] Add support for DCMIPP camera interface of
- STMicroelectronics STM32 SoC series
-Message-ID: <20231127111446.GA1421638@gnbcxd0016.gnb.st.com>
-Mail-Followup-To: Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Hugues Fruchet <hugues.fruchet@foss.st.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Dan Scally <dan.scally@ideasonboard.com>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20231122073927.788810-1-alain.volmat@foss.st.com>
- <ZWRwa2ImfkZMI8Xz@kekkonen.localdomain>
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25691B8
+	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 03:19:54 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <sha@pengutronix.de>)
+	id 1r7ZeO-0000ed-Kg; Mon, 27 Nov 2023 12:19:40 +0100
+Received: from [2a0a:edc0:2:b01:1d::c0] (helo=ptx.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <sha@pengutronix.de>)
+	id 1r7ZeL-00BvgR-89; Mon, 27 Nov 2023 12:19:37 +0100
+Received: from sha by ptx.whiteo.stw.pengutronix.de with local (Exim 4.92)
+	(envelope-from <sha@pengutronix.de>)
+	id 1r7ZeL-00459o-52; Mon, 27 Nov 2023 12:19:37 +0100
+Date: Mon, 27 Nov 2023 12:19:37 +0100
+From: Sascha Hauer <s.hauer@pengutronix.de>
+To: Andy Yan <andyshrk@163.com>
+Cc: heiko@sntech.de, hjc@rock-chips.com, dri-devel@lists.freedesktop.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+	devicetree@vger.kernel.org, sebastian.reichel@collabora.com,
+	kever.yang@rock-chips.com, chris.obbard@collabora.com,
+	Andy Yan <andy.yan@rock-chips.com>
+Subject: Re: [PATCH v2 10/12] drm/rockchip: vop2: Add support for rk3588
+Message-ID: <20231127111937.GW3359458@pengutronix.de>
+References: <20231122125316.3454268-1-andyshrk@163.com>
+ <20231122125544.3454918-1-andyshrk@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ZWRwa2ImfkZMI8Xz@kekkonen.localdomain>
-X-Disclaimer: ce message est personnel / this message is private
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-27_09,2023-11-27_01,2023-05-22_02
+In-Reply-To: <20231122125544.3454918-1-andyshrk@163.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Hi Sakari,
+Hi Andy,
 
-On Mon, Nov 27, 2023 at 10:33:15AM +0000, Sakari Ailus wrote:
-> Hi Alain,
-> 
-> On Wed, Nov 22, 2023 at 08:39:14AM +0100, Alain Volmat wrote:
-> > This patchset introduces support for Digital Camera Memory Interface
-> > Pixel Processor (DCMIPP) of STMicroelectronics STM32 SoC series.
-> > 
-> > This initial support implements a single capture pipe
-> > allowing RGB565, YUV, Y, RAW8 and JPEG capture with
-> > frame skipping, prescaling and cropping.
-> > 
-> > DCMIPP is exposed through 3 subdevices:
-> > - dcmipp_dump_parallel: parallel interface handling
-> > - dcmipp_dump_postproc: frame skipping, prescaling and cropping control
-> > - dcmipp_dump_capture: video device capture node
-> 
-> The DTS changes will presumably be merged via a different tree, right?
+Looks good overall, two small things inside.
 
-Yes, Alexandre will take care of the DTS changes via the linux-stm32 tree.
+On Wed, Nov 22, 2023 at 08:55:44PM +0800, Andy Yan wrote:
+>  
+> +#define vop2_output_if_is_hdmi(x)	(x == ROCKCHIP_VOP2_EP_HDMI0 || x == ROCKCHIP_VOP2_EP_HDMI1)
+> +#define vop2_output_if_is_dp(x)		(x == ROCKCHIP_VOP2_EP_DP0 || x == ROCKCHIP_VOP2_EP_DP1)
+> +#define vop2_output_if_is_edp(x)	(x == ROCKCHIP_VOP2_EP_EDP0 || x == ROCKCHIP_VOP2_EP_EDP1)
+> +#define vop2_output_if_is_mipi(x)	(x == ROCKCHIP_VOP2_EP_MIPI0 || x == ROCKCHIP_VOP2_EP_MIPI1)
+> +#define vop2_output_if_is_lvds(x)	(x == ROCKCHIP_VOP2_EP_LVDS0 || x == ROCKCHIP_VOP2_EP_LVDS1)
+> +#define vop2_output_if_is_dpi(x)	(x == ROCKCHIP_VOP2_EP_RGB0)
 
-Regards,
-Alain
+Not that it matters in practice here, but you should add braces around
+the x argument in the macros usage, i.e. ((x) == ROCKCHIP_VOP2_EP_RGB0)
 
-> 
-> -- 
-> Sakari Ailus
-> 
+> +static unsigned long rk3588_set_intf_mux(struct vop2_video_port *vp, int id, u32 polflags)
+> +{
+> +	struct vop2 *vop2 = vp->vop2;
+> +	int dclk_core_div, dclk_out_div, if_pixclk_div, if_dclk_div;
+> +	unsigned long clock;
+> +	u32 die, dip, div, vp_clk_div, val;
+> +
+> +	clock = rk3588_calc_cru_cfg(vp, id, &dclk_core_div, &dclk_out_div,
+> +				    &if_pixclk_div, &if_dclk_div);
+> +	if (!clock)
+> +		return 0;
+> +
+> +	vp_clk_div = FIELD_PREP(RK3588_VP_CLK_CTRL__DCLK_CORE_DIV, dclk_core_div);
+> +	vp_clk_div |= FIELD_PREP(RK3588_VP_CLK_CTRL__DCLK_OUT_DIV, dclk_out_div);
+> +
+> +	die = vop2_readl(vop2, RK3568_DSP_IF_EN);
+> +	dip = vop2_readl(vop2, RK3568_DSP_IF_POL);
+> +	div = vop2_readl(vop2, RK3568_DSP_IF_CTRL);
+> +
+> +	switch (id) {
+> +	case ROCKCHIP_VOP2_EP_HDMI0:
+> +		div |= FIELD_PREP(RK3588_DSP_IF_EDP_HDMI0_DCLK_DIV, if_dclk_div);
+
+you should clear the bits of a mask before setting them again. The same
+goes for several other bits modified in this switch/case.
+
+> +		div |= FIELD_PREP(RK3588_DSP_IF_EDP_HDMI0_PCLK_DIV, if_pixclk_div);
+> +		die &= ~RK3588_SYS_DSP_INFACE_EN_EDP_HDMI0_MUX;
+> +		die |= RK3588_SYS_DSP_INFACE_EN_HDMI0 |
+> +			    FIELD_PREP(RK3588_SYS_DSP_INFACE_EN_EDP_HDMI0_MUX, vp->id);
+> +		val = rk3588_get_hdmi_pol(polflags);
+> +		regmap_write(vop2->vop_grf, RK3588_GRF_VOP_CON2, HIWORD_UPDATE(1, 1, 1));
+> +		regmap_write(vop2->vo1_grf, RK3588_GRF_VO1_CON0, HIWORD_UPDATE(val, 6, 5));
+> +		break;
+
+Sascha
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
