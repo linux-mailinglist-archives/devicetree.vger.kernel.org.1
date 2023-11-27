@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-19270-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19271-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CC2A7FA49C
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 16:29:32 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B5687FA49E
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 16:29:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C1314B2150C
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 15:29:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BAAD92819C2
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 15:29:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC423328D1;
-	Mon, 27 Nov 2023 15:29:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 492BE328B5;
+	Mon, 27 Nov 2023 15:29:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UKonYcAR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZZ/sWaZI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF922D56
-	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 07:29:12 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-507962561adso6643032e87.0
-        for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 07:29:12 -0800 (PST)
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E3B9189
+	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 07:29:16 -0800 (PST)
+Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-548f0b7ab11so5993911a12.1
+        for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 07:29:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701098951; x=1701703751; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701098954; x=1701703754; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=3WME6ubitd3vxaAOMdHVezdwhed8qbighnDEBO169Ec=;
-        b=UKonYcARxR2F+oVvEtIZffRRe3YUImWLduFZvNkzJxKbi4hJfZa9bu411c5qWtcmko
-         22xkUEofvENTiEvu7JUT0ZcgBGZ6wDCWgAhw+N9VDkHUyWR+rAuK0rlNiYTF+RHLY5Z+
-         D2LKUNClcPN30hH82qlHHr0EmGXhFl6sViSnQtt6JfvN95A268ur8+AysSUfa7uVsC1I
-         HHH7e0h4OMAd+VzCIqh/1F5lmA6xXs+TlQB0GeDMGtjDyyk9CfvHIiBvooUBnd1OqHQj
-         fbGrtTRQFsfp8PTt0LpS/dgrhrNQ59PY8mRyTY+r/XmlZru6e/nBDe4Wu4MkmnthA8Ed
-         r+VA==
+        bh=9K/KL6rUHA7mDcBMrrqIFDkXaVSeDD2iYf5D2W8YBIg=;
+        b=ZZ/sWaZI91cn1stFMgzEBqD3hhfdzFKBLXod2X9G3e3GUxuxKZj00W4r6znSgu0Zu7
+         Ons5FJ1oO/huV2y5FPjELEz9MhxwFMja7t4rvJ3jRd/4oPJQ4gAISzOhZKBN4Sa+aqMo
+         cfO2DzCzy18IY04a17QovuWsPKt0pWpC9dm+Tio/e0bFVxnBr6AknsVBIjtCVTpMQaYL
+         LPfC3lyMXJj3h9sruotnyCm22zdbHOihqx/t2JxIFXyb3lqawB9/leJRil5YE3KIg3xd
+         IRtFlKY52kCOtGLWaWC39/e7hmlOGdqKNP+ToULCy2Cxus7O7Qht+MNCOLI4z+8iak2Z
+         R5Sg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701098951; x=1701703751;
+        d=1e100.net; s=20230601; t=1701098954; x=1701703754;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=3WME6ubitd3vxaAOMdHVezdwhed8qbighnDEBO169Ec=;
-        b=L1JIGJzinZxdyyJzSEyf+MAJNPrvUXSdH/xQuhfzJ4jVWL+8erb+BXr5r5ELpro7ng
-         bcWzfruvikBR7DTcE+UjCdGBC8S4gFo8jwatLW4l24oD2LfIraB83h7Bhj6oY1rJKgM5
-         IWM6dtm8F99zMfmp8BH7OhrLeSKUaY0fIb3ay+FMzkfU4qgwFq0SfbNk8biL9iHGxit9
-         9O/3T1wYQ20197v64dWWRUmSD9LzmTJTsdCgNVw8r1UshTbNrf48LUdf+pZtFuOWOBrE
-         D5j5x39DsUEAo6rxiOSIxWI8oupmKCxllwQ2FdfnShUC7A1LngNDaxgujIUtGnRo+jBj
-         RWiQ==
-X-Gm-Message-State: AOJu0Yye40k9FAUMw/930GTuHdDMKDpo4XUYC4yZY/5+W+WDLlrzeNgc
-	ihvjJxWtGLaPtiKneqUPa8Y8tQ==
-X-Google-Smtp-Source: AGHT+IH9PASqf8+9MS/t3uEvXsv+5J3bCkLHJgeNIv00zKAMBrW7rkqqrSRlRaaexUly2vTsBuJ+TA==
-X-Received: by 2002:a19:ac48:0:b0:50a:6fc5:e95c with SMTP id r8-20020a19ac48000000b0050a6fc5e95cmr7956561lfc.60.1701098951013;
-        Mon, 27 Nov 2023 07:29:11 -0800 (PST)
+        bh=9K/KL6rUHA7mDcBMrrqIFDkXaVSeDD2iYf5D2W8YBIg=;
+        b=BGg4eJJYd8LxW3DRIc6+lK2I6/pF2wOc8PTDM1EwksLzYbKfC3te5ulfdxLSmqNqLr
+         Oe+luZuMghz42z81/JEfHfdET8R6R1XgbHPva2I2G5sLgWolr/EBtAwN+U6wMKYmRLq0
+         AaWSbxgtnADkc821Qeoz+qC+XMjLJ1+sjLznUslMjcr1CFgi/FgTQIuSPmlPhNsEML0e
+         WKVIWSvX+94fK1sOHZgG2ovU3YMBZQg1x/JFfaeWcagG7vkBvKBiMVsDAhKkvXyfL5yg
+         LXBWjfzoTt93mdhWflD4RZ4b3UWS3YKSHBkuxyL8wzhaJ8KdUcbg0aGA6h2tVG0/mMb7
+         ABRQ==
+X-Gm-Message-State: AOJu0YyFrUV/c42VlgexTbZZ4Ly7ZstGoQyV2lfWmTZjNVa8kdfe+pQE
+	3nF1IZmxpwKgIq7qN61qrT7g6w==
+X-Google-Smtp-Source: AGHT+IEIiagBs4pKlQcv6cU58laBuVympuk9luCBlm1ZQI6HobNWAnEpM0jGc9hClEDNkc6Pr54I+w==
+X-Received: by 2002:a50:c04a:0:b0:53d:d913:d3cb with SMTP id u10-20020a50c04a000000b0053dd913d3cbmr9226012edd.28.1701098954710;
+        Mon, 27 Nov 2023 07:29:14 -0800 (PST)
 Received: from [10.167.154.1] (178235187180.dynamic-4-waw-k-2-3-0.vectranet.pl. [178.235.187.180])
-        by smtp.gmail.com with ESMTPSA id e7-20020a056402104700b00542db304680sm5321002edu.63.2023.11.27.07.29.08
+        by smtp.gmail.com with ESMTPSA id e7-20020a056402104700b00542db304680sm5321002edu.63.2023.11.27.07.29.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Nov 2023 07:29:10 -0800 (PST)
+        Mon, 27 Nov 2023 07:29:14 -0800 (PST)
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Date: Mon, 27 Nov 2023 16:28:46 +0100
-Subject: [PATCH v2 06/12] arm64: dts: qcom: sc7180: Add the missing MDSS
+Date: Mon, 27 Nov 2023 16:28:47 +0100
+Subject: [PATCH v2 07/12] arm64: dts: qcom: sc7280: Add the missing MDSS
  icc path
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -65,7 +65,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20231125-topic-rb1_feat-v2-6-979b28f35e4a@linaro.org>
+Message-Id: <20231125-topic-rb1_feat-v2-7-979b28f35e4a@linaro.org>
 References: <20231125-topic-rb1_feat-v2-0-979b28f35e4a@linaro.org>
 In-Reply-To: <20231125-topic-rb1_feat-v2-0-979b28f35e4a@linaro.org>
 To: Rob Clark <robdclark@gmail.com>, 
@@ -92,11 +92,11 @@ Cc: Marijn Suijten <marijn.suijten@somainline.org>,
  linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
  iommu@lists.linux.dev, Konrad Dybcio <konrad.dybcio@linaro.org>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1701098925; l=1145;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1701098925; l=1493;
  i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=QxbVxThi6gj4JqQP8V9LpJsjR/myuVOnIJbwHX7amYU=;
- b=fS2uPRd3j9acJg11U61tq9XVN8ayomlEw9d5ATm43L3nTtaAyensMfnnnvE/jpMI6SBpUTurk
- TEzmocPClnSCqU9FEoaODlLAlpLeRUPaiJm5qFPFJKjE9fYnQKYi6tN
+ bh=RpzLMWuMbYjvqQjs1yjMVMPj1VmkWicMXA9dO0pSXPQ=;
+ b=R55EDfVA3vNj1gKF5/rCo8RrwCBiKh1MWLkiyJUgCpQVrEUf8nd/J8yIoPfGKZI92hXoMX4hD
+ 5r03X65uJfzC/GqWapMJgl2lg6iTLvi+NlygsZ5KcTfiGZHefthMnG8
 X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
  pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 
@@ -108,14 +108,22 @@ Add the missing path.
 
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sc7180.dtsi | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/qcom/sc7280.dtsi | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-index 11f353d416b4..9664e42faeb1 100644
---- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-@@ -3100,8 +3100,12 @@ mdss: display-subsystem@ae00000 {
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index 04bf85b0399a..41d327b1f1b6 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -15,6 +15,7 @@
+ #include <dt-bindings/dma/qcom-gpi.h>
+ #include <dt-bindings/firmware/qcom,scm.h>
+ #include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/interconnect/qcom,icc.h>
+ #include <dt-bindings/interconnect/qcom,osm-l3.h>
+ #include <dt-bindings/interconnect/qcom,sc7280.h>
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
+@@ -3958,8 +3959,12 @@ mdss: display-subsystem@ae00000 {
  			interrupt-controller;
  			#interrupt-cells = <1>;
  
@@ -124,11 +132,11 @@ index 11f353d416b4..9664e42faeb1 100644
 +			interconnects = <&mmss_noc MASTER_MDP0 QCOM_ICC_TAG_ALWAYS
 +					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
 +					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+					 &config_noc SLAVE_DISPLAY_CFG QCOM_ICC_TAG_ALWAYS>;
++					 &cnoc2 SLAVE_DISPLAY_CFG QCOM_ICC_TAG_ALWAYS>;
 +			interconnect-names = "mdp0-mem",
 +					     "cpu-cfg";
  
- 			iommus = <&apps_smmu 0x800 0x2>;
+ 			iommus = <&apps_smmu 0x900 0x402>;
  
 
 -- 
