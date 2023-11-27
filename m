@@ -1,105 +1,85 @@
-Return-Path: <devicetree+bounces-19173-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19175-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 318D97F9E9A
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 12:30:21 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A8A57F9EAA
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 12:34:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E0ED91F2060A
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 11:30:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8C2AC1C20CC6
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 11:34:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BE5C19BD2;
-	Mon, 27 Nov 2023 11:30:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arinc9.com header.i=@arinc9.com header.b="npQAcUWN"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 978721A588;
+	Mon, 27 Nov 2023 11:34:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::223])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CAA1B8;
-	Mon, 27 Nov 2023 03:30:12 -0800 (PST)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 64C3160015;
-	Mon, 27 Nov 2023 11:30:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arinc9.com; s=gm1;
-	t=1701084611;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=NhGJjrTTtgimxfRNbfSScr4mzO4GO8LCiZ6yeATg9+M=;
-	b=npQAcUWNK817PNnMtIdROlqCU68u6J61oYaZWTMkiXUcjId2TZsw9+CYlsWf1Twe1A7QsX
-	PPvsguZ8kGHxSACCttFXMA6c2ei3G64kYeMy+O4ks2hYu6y7mO1bjtaBqADr6WclX07srH
-	155/YPZ39tOrpqzZESeecLaJ0vM0tOdKlwJmCioV8VOiHnuGB2t0K6hin8yJ4p+UipZkS9
-	t5j2c/ATP0vtoe0KQ5MEYPyYsg6f2MBpD8LbOYBm9JGdhTJriRAjtlFHetKxHJBG4Y/nSi
-	eGI5gzotSHzqYhUoB84bkoQOt+uUn+iPOWfQusWJrH5LtOwNCxqAp99XSnibiA==
-Date: Mon, 27 Nov 2023 13:30:00 +0200
-From: =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-To: Daniel Golle <daniel@makrotopia.org>
-CC: Vladimir Oltean <olteanv@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
- Florian Fainelli <f.fainelli@gmail.com>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Landen Chao <Landen.Chao@mediatek.com>, DENG Qingfang <dqfext@gmail.com>,
- Sean Wang <sean.wang@mediatek.com>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_RESEND_net-next_2/2=5D_dt-bindings=3A?= =?US-ASCII?Q?_net=3A_dsa=3A_mediatek=2Cmt7530=3A_document_MDIO-bus?=
-User-Agent: K-9 Mail for Android
-In-Reply-To: <ZWPIQW1JA3rsvAzm@makrotopia.org>
-References: <6eb1b7b8dbc3a4b14becad15f0707d4f624ee18b.1691246461.git.daniel@makrotopia.org> <9aec0fe0cb676b76132c388bb3ead46f596a6e6e.1691246461.git.daniel@makrotopia.org> <dcb981b9-b435-c0e5-8e47-d66add207fdc@arinc9.com> <20230808121707.chona7hakapp6whe@skbuf> <44fde617-1159-4961-84c4-372fe265fbd8@arinc9.com> <20230809220102.t3dqw7iojez5xsq3@skbuf> <3f262579-eec1-4b21-9b18-1d1d612e715b@arinc9.com> <ZWPIQW1JA3rsvAzm@makrotopia.org>
-Message-ID: <D03B73C8-0DD4-459E-8BA3-C1A0B16809A3@arinc9.com>
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B7C8B8;
+	Mon, 27 Nov 2023 03:34:45 -0800 (PST)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+	by fd01.gateway.ufhost.com (Postfix) with ESMTP id 82FE724DC0A;
+	Mon, 27 Nov 2023 19:34:38 +0800 (CST)
+Received: from EXMBX171.cuchost.com (172.16.6.91) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 27 Nov
+ 2023 19:34:38 +0800
+Received: from yang-virtual-machine.localdomain (113.72.144.198) by
+ EXMBX171.cuchost.com (172.16.6.91) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.42; Mon, 27 Nov 2023 19:34:37 +0800
+From: Shengyang Chen <shengyang.chen@starfivetech.com>
+To: <devicetree@vger.kernel.org>, <dri-devel@lists.freedesktop.org>
+CC: <andrzej.hajda@intel.com>, <neil.armstrong@linaro.org>,
+	<rfoss@kernel.org>, <Laurent.pinchart@ideasonboard.com>, <jonas@kwiboo.se>,
+	<jernej.skrabec@gmail.com>, <maarten.lankhorst@linux.intel.com>,
+	<mripard@kernel.org>, <tzimmermann@suse.de>, <airlied@gmail.com>,
+	<daniel@ffwll.ch>, <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+	<conor+dt@kernel.org>, <p.zabel@pengutronix.de>,
+	<tomi.valkeinen@ideasonboard.com>, <r-ravikumar@ti.com>,
+	<rdunlap@infradead.org>, <u.kleine-koenig@pengutronix.de>,
+	<bbrezillon@kernel.org>, <changhuang.liang@starfivetech.com>,
+	<keith.zhao@starfivetech.com>, <shengyang.chen@starfivetech.com>,
+	<jack.zhu@starfivetech.com>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v1 0/2] Add StarFive JH7110 SoC DSI support
+Date: Mon, 27 Nov 2023 19:34:34 +0800
+Message-ID: <20231127113436.57361-1-shengyang.chen@starfivetech.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: arinc.unal@arinc9.com
+Content-Type: text/plain
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX171.cuchost.com
+ (172.16.6.91)
+X-YovoleRuleAgent: yovoleflag
 
-On 27 November 2023 00:35:45 EET, Daniel Golle <daniel@makrotopia=2Eorg> wr=
-ote:
->On Sat, Aug 12, 2023 at 01:45:29AM +0300, Ar=C4=B1n=C3=A7 =C3=9CNAL wrote=
-:
->> On 10=2E08=2E2023 01:01, Vladimir Oltean wrote:
->> > [=2E=2E=2E]
->> > Since commit fe7324b93222 ("net: dsa: OF-ware slave_mii_bus"), DSA as=
- a
->> > framework also supports auto-creating an internal MDIO bus based on t=
-he
->> > presence of the "mdio" node name, so I guess it makes sense for the
->> > "mdio" to appear in the generic dsa=2Eyaml if there's nothing else th=
-at's
->> > special about it=2E
->>=20
->> I agree with this=2E I've done this which works=2E It's even found a po=
-rt
->> node with the ethernet property missing, as it should've=2E
->
->Are you planning to complete/submit your work below?
->I'm asking because being able to reference the PHYs on the internal
->MDIO bus is mandatory on MT7988 which requires calibration data from
->NVMEM for each PHY, so supporting MT7988 depends on the associated
->driver change[1]=2E
->
->[1]: https://patchwork=2Ekernel=2Eorg/project/netdevbpf/patch/6eb1b7b8dbc=
-3a4b14becad15f0707d4f624ee18b=2E1691246461=2Egit=2Edaniel@makrotopia=2Eorg/
+This series is the v1 series that attempts to support
+the CDNS DSI driver used to converts DPI to DSI.
+CDNS DSI is embedded in StarFive JH7110 SoC.
+The series has been tested on the VisionFive 2 board.
 
-This patch triggered conversation on a deeper level regarding the
-devicetree bindings aspect of it=2E I will continue discussing that with t=
-he
-maintainers here and achieve a mutual agreement=2E
+Keith Zhao (2):
+  dt-bindings: display: bridge: cdns: Add properties to support StarFive
+    JH7110 SoC
+  gpu: drm: bridge: cadence: Add a driver and platform ops for StarFive
+    JH7110 SoC
 
-To get things going on the driver side, I think it's fine to submit that
-as a single patch=2E I'll do that in a week, if nobody else does it first=
-=2E
+ .../bindings/display/bridge/cdns,dsi.yaml     |  38 +-
+ MAINTAINERS                                   |   8 +
+ drivers/gpu/drm/bridge/cadence/Kconfig        |   7 +
+ drivers/gpu/drm/bridge/cadence/Makefile       |   1 +
+ .../gpu/drm/bridge/cadence/cdns-dsi-core.c    |  28 +-
+ .../gpu/drm/bridge/cadence/cdns-dsi-core.h    |  19 +
+ .../gpu/drm/bridge/cadence/cdns-dsi-jh7110.c  | 386 ++++++++++++++++++
+ .../gpu/drm/bridge/cadence/cdns-dsi-jh7110.h  | 186 +++++++++
+ 8 files changed, 670 insertions(+), 3 deletions(-)
+ create mode 100644 drivers/gpu/drm/bridge/cadence/cdns-dsi-jh7110.c
+ create mode 100644 drivers/gpu/drm/bridge/cadence/cdns-dsi-jh7110.h
 
-Ar=C4=B1n=C3=A7
+-- 
+2.17.1
+
 
