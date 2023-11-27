@@ -1,100 +1,92 @@
-Return-Path: <devicetree+bounces-19241-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19242-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87F0D7FA201
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 15:08:47 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1BA47FA206
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 15:09:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3CF5D2816DE
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 14:08:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D31C31C20D52
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 14:09:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F034030F93;
-	Mon, 27 Nov 2023 14:08:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NZsq3uLN"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 888BA30FA0;
+	Mon, 27 Nov 2023 14:09:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBABA2DF84;
-	Mon, 27 Nov 2023 14:08:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C873C433C9;
-	Mon, 27 Nov 2023 14:08:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701094123;
-	bh=wn7K+MJ4CCUYwE/Jmw8x+LP459OMd0Ff92Uy1W27qFY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=NZsq3uLNd/9703PT2wWztiWDYt9MEeniA4F061hp7w0uYqIxzzOecYGkZt5kF6y2p
-	 sP0wDVz/zjFuYX5N6bNrZlN8DcJ1ueKUiRJTx64PE9q3dMlhEEJXpU6U94cQxuXLER
-	 tdBeiDszeaSOyccm7v746m9G7r91DOJoeVUHLlz9N4nkeOAc9fcFm3AkJvqdhQj7jB
-	 jqALVZGfpJsDY/kgjh+jPa7urVBy3589nwmW4XyNNTc6XIUBYStU7eHhd7oHN4tIu7
-	 FGLADXux5JurYFIBHH2kkfzO0izX62BOOeRXG/WDVBLF1KueQ+3+XkabbKtsp0DIDe
-	 lqp5MpnLp73gw==
-Message-ID: <7fbe4090-94cd-4aaf-98b6-07f2a089d51a@kernel.org>
-Date: Mon, 27 Nov 2023 16:08:37 +0200
+Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com [209.85.219.180])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 885E05B89;
+	Mon, 27 Nov 2023 06:09:08 -0800 (PST)
+Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-db406b5ceddso4129670276.0;
+        Mon, 27 Nov 2023 06:09:08 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701094147; x=1701698947;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=TclnUxt+Pe57f4VMcCrdiPoEHOSxx9819gRSBIhIC88=;
+        b=wmIn48sBatzJ1f9ElX48hSuiq3qHHRl30LyoSpTmnUbMttiegtxidCseRNVvk8lZGh
+         TOyONOsqcv0R3z0IkBaB8r40uQ4uKygYeUR8I72GIMjBkSDbT+HnB86eS8Ga+YFm3ffB
+         nL74jR7WIx08klE3YbL1LAeveqsVizqqwJWX58Y7yhknePbVfyPWuHQ9eBq7GlyaYaZl
+         YADYnDSl/mN/jX/gSTe8i7C6jniTJsPF/dYTtWkaJNl0Epy/Z+G96THAIsdoBK+ac2zr
+         moB9l8e/Xpga2qzEg43g3VS+K8kTdVk2H1tdO69SKo+4Js4pVdRN3pEfyt+cFM5coKlx
+         uhZQ==
+X-Gm-Message-State: AOJu0Yw1dLZXIGtraNRnPQsk3kOx7gTSk9DbgeQ9C4Bxd/Kaj/JAZwxV
+	RDdjlhbZttVFCYUf59NNYjPS/lLgQgqRgQ==
+X-Google-Smtp-Source: AGHT+IGgJnwbRYRl3xTtJ+fOfoWlQW3RkyiNHGAq3JEZ765CEOex2A8NnN5ZbDDl1k/YW5ByolPnBA==
+X-Received: by 2002:a25:8d04:0:b0:da3:76d7:ddcd with SMTP id n4-20020a258d04000000b00da376d7ddcdmr10115524ybl.17.1701094147558;
+        Mon, 27 Nov 2023 06:09:07 -0800 (PST)
+Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com. [209.85.128.174])
+        by smtp.gmail.com with ESMTPSA id l131-20020a252589000000b00d72176bdc5csm3055856ybl.40.2023.11.27.06.09.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Nov 2023 06:09:07 -0800 (PST)
+Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-5cfc3a48ab2so11676357b3.0;
+        Mon, 27 Nov 2023 06:09:07 -0800 (PST)
+X-Received: by 2002:a81:d549:0:b0:5c9:9097:6427 with SMTP id
+ l9-20020a81d549000000b005c990976427mr10948746ywj.44.1701094146938; Mon, 27
+ Nov 2023 06:09:06 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/2] interconnect: qcom: Introduce support for SM8650
-Content-Language: en-US
-To: Bjorn Andersson <andersson@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, Andy Gross <agross@kernel.org>,
- linux-kernel@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Rob Herring <robh+dt@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Abel Vesa <abel.vesa@linaro.org>
-References: <20231123-topic-sm8650-upstream-interconnect-v2-0-7e050874f59b@linaro.org>
-From: Georgi Djakov <djakov@kernel.org>
-In-Reply-To: <20231123-topic-sm8650-upstream-interconnect-v2-0-7e050874f59b@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20231125233242.237660-1-niklas.soderlund+renesas@ragnatech.se>
+In-Reply-To: <20231125233242.237660-1-niklas.soderlund+renesas@ragnatech.se>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 27 Nov 2023 15:08:56 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUgaavWyq9WDTcnqAUhsDZT7XfaoY2sBFvXvCCegqBgsQ@mail.gmail.com>
+Message-ID: <CAMuHMdUgaavWyq9WDTcnqAUhsDZT7XfaoY2sBFvXvCCegqBgsQ@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: r9a09g011: Add missing space in compatible
+To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 23.11.23 15:32, Neil Armstrong wrote:
-> This covers the RPMh Network-On-Chip Interconnect bindings
-> and driver for the interconnect framework.
+On Sun, Nov 26, 2023 at 12:32=E2=80=AFAM Niklas S=C3=B6derlund
+<niklas.soderlund+renesas@ragnatech.se> wrote:
+> Add missing space in compatible property and align style with rest of
+> the file.
+>
+> Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.=
+se>
 
-Thanks Neil!
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.8.
 
-> As reported for earlier Interconnect drivers, the IDs
-> for multi-rsc voting has been removed from this driver
-> so the proper solution can be developed without having
-> to remove entries later on.
-> 
-> To easy Bjorn into merging the DT bits, would it be possible
-> to have an immutable branch with bindings shared with Bjorn once
-> this patchset have been properly reviewed and accepted ?
+Gr{oetje,eeting}s,
 
-Hi Bjorn,
+                        Geert
 
-Here is a stable branch with the DT bindings header that might be needed
-for SM8650 dts patches.
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-https://git.kernel.org/pub/scm/linux/kernel/git/djakov/icc.git/log/?h=icc-sm8650
-
-Thanks,
-Georgi
-
-> 
-> Dependencies: None
-> 
-> For convenience, a regularly refreshed linux-next based git tree containing
-> all the SM8650 related work is available at:
-> https://git.codelinaro.org/neil.armstrong/linux/-/tree/topic/sm8650/upstream/integ
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
-> Changes in v2:
-> - Collected Reviewed-by
-> - Moved required block in bindings as requested by Krzysztof
-> - Link to v1: https://lore.kernel.org/r/20231025-topic-sm8650-upstream-interconnect-v1-0-b7277e03aa3d@linaro.org
-
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
