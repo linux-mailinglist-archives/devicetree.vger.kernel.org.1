@@ -1,122 +1,185 @@
-Return-Path: <devicetree+bounces-19296-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19299-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1EBE7FA558
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 16:55:46 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 325C07FA56C
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 16:58:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9C62B2817D6
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 15:55:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8FEF5B21194
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 15:58:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57B2E34CD1;
-	Mon, 27 Nov 2023 15:55:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 667C334CCA;
+	Mon, 27 Nov 2023 15:58:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KA+5cpyl"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="KeHHAhdK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 290DC3457D;
-	Mon, 27 Nov 2023 15:55:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id BA65CC433C9;
-	Mon, 27 Nov 2023 15:55:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701100540;
-	bh=nr6I60+Ybh8j/RB6wm/XTGHNHpMDeabpoOKt6I7wF7k=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=KA+5cpylVtTlBKIh3V5XrNh9rCKCF05gT6AAArCWB6Mv53p8ljrLahI3LRYGcuIh8
-	 Acp+AGaY6gVnhHHJtH75W6FIFCpA4k3YaMdbrOkntbA/NUFy1VoJYajW+X0/sowBc7
-	 3O9c+pbrco6+9pX8euep1ALceik/o/OfL9qd1mz7UIOzgPyy1XWK8tIk1SNK7snTfV
-	 ONpGIQ2UEdDf9199xGe327DOyk+3qMUI9mk4PpuyKZcOQKyDBbLJmjqgEncYI/k8WN
-	 aGe32dxhRiwI5foVjoMcGmZ66YLEWqak+mKLnaQhIADIJmPYA6AfcB+XXbee6VMrvp
-	 9gEp7ahbb0t7g==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A3330C07E97;
-	Mon, 27 Nov 2023 15:55:40 +0000 (UTC)
-From: Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org>
-Date: Mon, 27 Nov 2023 16:55:35 +0100
-Subject: [PATCH 2/2] iio: dac: ad5791: Add support for controlling RBUF via
- devicetree
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1993B4;
+	Mon, 27 Nov 2023 07:58:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=/x+K0NohDOju58WZmfchmXWiIvrloK7WVCcvOl3plTM=; b=KeHHAhdKhbHXQbBQZBTXeU04DU
+	2L+5oNvqRgW8p15KQLGI0HmNhiXLoWa5eRi5tfOJ1NilEdyoU36JZrDuqefdREEd1/zmYwR4NPec2
+	EYj2j7Z5FNoym+r68w6KCUcBEKxTO0Hza9OHNOlnKvT+iiSCbL0G55/9m23FQlDIAnk6pHyzFpqtm
+	apTNcHm5ZXA4YYnRjKvK4nDV5nQTPhCpxZEeexKOIeY5zLbxdkUY0k3/fdCjH5S6RgKA9SteH31Qo
+	YFhm20KUKy6/Tna/RJSXxJ1mEmWCJ2JOoY+qFhrRl/l6TXcoW2lwwyJTW0MEquJqX+hREB/YB0YOM
+	vmDgHwzA==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:49996)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1r7e04-00068P-2v;
+	Mon, 27 Nov 2023 15:58:20 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1r7e03-00022H-C0; Mon, 27 Nov 2023 15:58:19 +0000
+Date: Mon, 27 Nov 2023 15:58:19 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Tomer Maimon <tmaimon77@gmail.com>
+Cc: davem@davemloft.net, edumazet@google.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, alexandre.torgue@foss.st.com,
+	peppe.cavallaro@st.com, joabreu@synopsys.com,
+	mcoquelin.stm32@gmail.com, avifishman70@gmail.com,
+	tali.perry1@gmail.com, joel@jms.id.au, andrew@codeconstruct.com.au,
+	venture@google.com, yuenn@google.com, benjaminfair@google.com,
+	j.neuschaefer@gmx.net, openbmc@lists.ozlabs.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v1 2/2] net: stmmac: Add NPCM support
+Message-ID: <ZWS8m66LrrRQpbLO@shell.armlinux.org.uk>
+References: <20231121151733.2015384-1-tmaimon77@gmail.com>
+ <20231121151733.2015384-3-tmaimon77@gmail.com>
+ <ZVzQh9ykusyknGgP@shell.armlinux.org.uk>
+ <CAP6Zq1gzAhp9BZNX1MOozUfQc82Vi_S==on5_nOfVfpvtgnN2g@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231127-ad5791-michael-stuff-v1-2-04167b3edc56@analog.com>
-References: <20231127-ad5791-michael-stuff-v1-0-04167b3edc56@analog.com>
-In-Reply-To: <20231127-ad5791-michael-stuff-v1-0-04167b3edc56@analog.com>
-To: linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Cc: Lars-Peter Clausen <lars@metafoo.de>, 
- Michael Hennerich <Michael.Hennerich@analog.com>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Michael Hennerich <michael.hennerich@analog.com>
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1701100539; l=1575;
- i=nuno.sa@analog.com; s=20231116; h=from:subject:message-id;
- bh=V60ayX58Xp4oAs8NlC1uKeQ7LGPvuaHa+/Zm9B0Kn5A=;
- b=+lvFhDi3dz4Zjoy+gfF6jAx15RVdJzTmTyoGM4/y+g47gGI4uQXyrrSVhfUD63LCuoXgeevMI
- Peh1v1bDO7WCOtxCMMJgMDLviDkccef5D+7VQcpinEe2h62xBE1hTSf
-X-Developer-Key: i=nuno.sa@analog.com; a=ed25519;
- pk=3NQwYA013OUYZsmDFBf8rmyyr5iQlxV/9H4/Df83o1E=
-X-Endpoint-Received:
- by B4 Relay for nuno.sa@analog.com/20231116 with auth_id=100
-X-Original-From: Nuno Sa <nuno.sa@analog.com>
-Reply-To: <nuno.sa@analog.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAP6Zq1gzAhp9BZNX1MOozUfQc82Vi_S==on5_nOfVfpvtgnN2g@mail.gmail.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-From: Michael Hennerich <michael.hennerich@analog.com>
+On Wed, Nov 22, 2023 at 07:23:28PM +0200, Tomer Maimon wrote:
+> Hi Russell,
+> 
+> Thanks for your comments.
+> 
+> On Tue, 21 Nov 2023 at 17:45, Russell King (Oracle)
+> <linux@armlinux.org.uk> wrote:
+> >
+> > On Tue, Nov 21, 2023 at 05:17:33PM +0200, Tomer Maimon wrote:
+> > > Add Nuvoton NPCM BMC SoCs support to STMMAC dwmac driver.
+> > >
+> > > And modify MAINTAINERS to add a new F: entry for this driver.
+> > >
+> > > Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+> >
+> > A few comments on this...
+> >
+> > > +#define IND_AC_BA_REG                0x1FE
+> > > +#define SR_MII_CTRL          0x3E0000
+> > > +
+> > > +#define PCS_SR_MII_CTRL_REG  0x0
+> > > +#define PCS_SPEED_SELECT6    BIT(6)
+> > > +#define PCS_AN_ENABLE                BIT(12)
+> > > +#define PCS_SPEED_SELECT13   BIT(13)
+> > > +#define PCS_RST                      BIT(15)
+> >
+> > include/uapi/linux/mii.h:
+> >
+> > #define BMCR_SPEED1000          0x0040  /* MSB of Speed (1000)         */
+> > #define BMCR_ANENABLE           0x1000  /* Enable auto negotiation     */
+> > #define BMCR_SPEED100           0x2000  /* Select 100Mbps              */
+> > #define BMCR_RESET              0x8000  /* Reset to default state      */
+> >
+> > Look familiar? Maybe use the standard definitions for a standardised
+> > register?
+> >
+> > > +void npcm_dwmac_pcs_init(struct npcm_dwmac *dwmac, struct device *dev,
+> > > +                      struct plat_stmmacenet_data *plat_dat)
+> > > +{
+> > > +     u16 val;
+> > > +
+> > > +     iowrite16((u16)(SR_MII_CTRL >> 9), dwmac->reg + IND_AC_BA_REG);
+> > > +     val = ioread16(dwmac->reg + PCS_SR_MII_CTRL_REG);
+> > > +     val |= PCS_RST;
+> > > +     iowrite16(val, dwmac->reg + PCS_SR_MII_CTRL_REG);
+> > > +
+> > > +     while (val & PCS_RST)
+> > > +             val = ioread16(dwmac->reg + PCS_SR_MII_CTRL_REG);
+> >
+> > What if the PCS never clears its reset bit? Maybe use
+> > read_poll_timeout() ?
+> >
+> > > +
+> > > +     val &= ~(PCS_AN_ENABLE);
+> > > +     iowrite16(val, dwmac->reg + PCS_SR_MII_CTRL_REG);
+> > > +}
+> >
+> > Also, maybe it's time to require new stmmac platform support to start
+> > making use of the phylink PCS support rather than continuing to code its
+> > own?
+> >
+> > I notice, however, that you always disable inband signalling - please
+> > explain why. Also, what protocol does the PCS use when communicating
+> > with the PHY?
+> With disable inband signalling you mean disable auto negotiation?
 
-This patch adds support for an external amplifier to be connected in a
-gain of two configuration.
+Over a SGMII, 1000base-X, USXGMII etc link, there is an inband
+signalling method. Whether it is "auto negotiation" depends on your
+point of view.
 
-Signed-off-by: Michael Hennerich <michael.hennerich@analog.com>
-Signed-off-by: Nuno Sa <nuno.sa@analog.com>
----
- drivers/iio/dac/ad5791.c | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+With 1000base-X, it is "auto negotiation" because the two link partners
+advertise their abilities, and resolve the operational link parameters.
+In essence, there is a negotiation between both ends.
 
-diff --git a/drivers/iio/dac/ad5791.c b/drivers/iio/dac/ad5791.c
-index a4167454da81..75b549827e15 100644
---- a/drivers/iio/dac/ad5791.c
-+++ b/drivers/iio/dac/ad5791.c
-@@ -345,6 +345,7 @@ static int ad5791_probe(struct spi_device *spi)
- 	struct iio_dev *indio_dev;
- 	struct ad5791_state *st;
- 	int ret, pos_voltage_uv = 0, neg_voltage_uv = 0;
-+	bool use_rbuf_gain2;
- 
- 	indio_dev = devm_iio_device_alloc(&spi->dev, sizeof(*st));
- 	if (!indio_dev)
-@@ -379,6 +380,12 @@ static int ad5791_probe(struct spi_device *spi)
- 	st->pwr_down = true;
- 	st->spi = spi;
- 
-+	if (pdata)
-+		use_rbuf_gain2 = pdata->use_rbuf_gain2;
-+	else
-+		use_rbuf_gain2 = device_property_read_bool(&spi->dev,
-+							   "adi,rbuf-gain2-en");
-+
- 	if (!IS_ERR(st->reg_vss) && !IS_ERR(st->reg_vdd)) {
- 		st->vref_mv = (pos_voltage_uv + neg_voltage_uv) / 1000;
- 		st->vref_neg_mv = neg_voltage_uv / 1000;
-@@ -398,7 +405,7 @@ static int ad5791_probe(struct spi_device *spi)
- 
- 
- 	st->ctrl = AD5761_CTRL_LINCOMP(st->chip_info->get_lin_comp(st->vref_mv))
--		  | ((pdata && pdata->use_rbuf_gain2) ? 0 : AD5791_CTRL_RBUF) |
-+		  | (use_rbuf_gain2 ? 0 : AD5791_CTRL_RBUF) |
- 		  AD5791_CTRL_BIN2SC;
- 
- 	ret = ad5791_spi_write(st, AD5791_ADDR_CTRL, st->ctrl |
+In the case of e.g. Cisco SGMII, "auto negotiation" is a total misnomer.
+There is no "negotiation". The SGMII PHY side re-purposes the 1000base-X
+inband 16-bit control word to inform the MAC about the negotiated
+speed and duplex settings, and the MAC can only say "yes thank you for
+that" back to the PHY. There is no "and this is what I'm doing" to it.
+So there's no "negotiation" in SGMII.
+
+So, I prefer using "inband signalling" because that more accurately
+describes both of these situations, whereas "auto negotiation" does
+not.
+
+Note also that whenever I see "SGMII", that means Cisco's SGMII,
+which is 1000base-X modified by Cisco, and doesn't include the IEEE
+802.3 1000base-X.
+
+> if
+> yes it is because the PCS sgmii is connected to the external phy AN
+> and is not working between the PCS and external phy.
+
+What if the external PHY wants to use Cisco SGMII inband signalling?
+
+> accessing the PCS registers is indirect. The top 13 bits (bits 21-9)
+> of the offset have to be written to Indirect Access Base register
+> bits 12:0 before indirectly accessing the target register with the
+> offset of the bottom 9 bits (8:0) of the offset
+
+I'm not sure how this connects with my email. I asked what protocol
+is used between the PCS and PHY, and I _think_ you've said that it's
+Cisco SGMII.
+
+Please give details of which PHY is being used - I'd like to know
+more about why the inband signalling isn't being used.
+
+Thanks.
 
 -- 
-2.43.0
-
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
