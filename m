@@ -1,220 +1,166 @@
-Return-Path: <devicetree+bounces-19101-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19102-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DF457F9B50
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 09:07:33 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D233F7F9B55
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 09:09:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C1BD7B209EF
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 08:07:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 797E6B209ED
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 08:09:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18F7E10A28;
-	Mon, 27 Nov 2023 08:07:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F359410A34;
+	Mon, 27 Nov 2023 08:09:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="XbLa0Mqx"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="et0sWe7R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from IND01-BMX-obe.outbound.protection.outlook.com (mail-bmxind01olkn2042.outbound.protection.outlook.com [40.92.103.42])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46FD4B5;
-	Mon, 27 Nov 2023 00:07:23 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Ur85VhFn9PxMJmrvw21d7doozFssbzDJn0bu3L9Gxby4lNWPY27ByDiLuhsozsPjc7azq4uX8zBLWO+RdRTXBavZOchAF+mH2J8fRIaPcs2XyHz1/qulSovnZHHwLDnlSELseZywVWEkXenkKfGpisxPoFHnssD3gIg+QLmFQkzjVQHr8BoT8cdLnFnDZVvwlWgGAFWm/JOwYpsxV9y5nbURTlnYGd/Vtmn0z4fllC4pCWiP+WGTULlp2oqtiVjVtsqDzptt/fNKmAPAJTn55pKNGqhPCzFFWA1IVlCqVr23XQ7AA9aSUx5nbKrQU3j+J5VsKsGRApK/uMgTY3wv7w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xR2yUk3o2sX4BBmQ7DHwlK2oQyPNgPORTOHQUgWUWuo=;
- b=gL8O8rp4E4Y/surZPOEdx7eKLw/XJv6g7QOvyczNgq7Eb908nf5pYAdiR5bCyejhH1vqBStJIM9UV23iayjH1GkAYNefPKDvO1Oxba/kIIooNXyRO5zUw9heS9dYzL1f9NPfTrl/GhLh0sqq3GP9YfeMkURtJMGlv+fuX017jmdmksj2YZB6HanUI/Xe5saRH6o5iMro/t5a6lWnXd8iahhKnDMAwmJa6GFOL5KkVhKJvSdNJBftaw5WiL5mgGk3oov2aV+9sdoAMkiPK3opc9qOeUhXmNpRo7Q0rZ2cJvfQ02kY0sgW1+5qkqKM7SKlSnWfhQPRa6OY5U+/7m1U2w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xR2yUk3o2sX4BBmQ7DHwlK2oQyPNgPORTOHQUgWUWuo=;
- b=XbLa0MqxsUpFV0iknJolQd/+9bh0IYk/jChRujggxIc1LR2uaRbdBteCr5kkBntITcawElqSC6tBLb7sWBS+Zao2v/FlYCVWJweMMHRw9NedZWmeQX6eTtQpjfs3wQbWAmtkpgRlnon1KNaNIu6pqcf4cberebywxguYXBlQYFZl4FO6g7GsKCtDAoBmWbGiXb9kU8oHOpqfhzucmBJFTXsmVysqfxYlrwbdKsa5hpnS6NAyBCSFf0rvu5Cg6n2nDFD9DEAz07E8M1a7WQkJiYuwosA++d92ba9rQEAn3van2ds+B6h+DCMakZD1DAmmNgOAvFGVF8I9Sx0LSFH6uQ==
-Received: from MA0P287MB0332.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:ab::5) by
- PN0P287MB1048.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:143::13) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7025.28; Mon, 27 Nov 2023 08:07:14 +0000
-Received: from MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
- ([fe80::b1a7:eee7:e903:9ef3]) by MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
- ([fe80::b1a7:eee7:e903:9ef3%7]) with mapi id 15.20.7025.022; Mon, 27 Nov 2023
- 08:07:14 +0000
-Message-ID:
- <MA0P287MB03329CFBA3BB6A4E4F322F99FEBDA@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
-Date: Mon, 27 Nov 2023 16:07:12 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/4] clk: sophgo: Add SG2042 clock generator driver
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Chen Wang <unicornxw@gmail.com>, aou@eecs.berkeley.edu, chao.wei@sophgo.com,
- conor@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- mturquette@baylibre.com, palmer@dabbelt.com, paul.walmsley@sifive.com,
- richardcochran@gmail.com, robh+dt@kernel.org, sboyd@kernel.org,
- devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- haijiao.liu@sophgo.com, xiaoguang.xing@sophgo.com, guoren@kernel.org,
- jszhang@kernel.org, inochiama@outlook.com, samuel.holland@sifive.com
-References: <cover.1701044106.git.unicorn_wang@outlook.com>
- <c06130afb4bdc1890b4e8d29388fa6feef1f1826.1701044106.git.unicorn_wang@outlook.com>
- <81d421c8-bfd6-42b5-9da1-f067792f8f48@linaro.org>
-From: Chen Wang <unicorn_wang@outlook.com>
-In-Reply-To: <81d421c8-bfd6-42b5-9da1-f067792f8f48@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TMN: [fR3pS4hF/Iu54SRmBKeGOTf18NsVrMm+]
-X-ClientProxiedBy: SI1PR02CA0007.apcprd02.prod.outlook.com
- (2603:1096:4:1f7::6) To MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:ab::5)
-X-Microsoft-Original-Message-ID:
- <8d100c7d-6439-4b41-abe6-5a690dda9cbc@outlook.com>
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B5EC138
+	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 00:09:30 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-50baa3e5c00so2129668e87.1
+        for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 00:09:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1701072568; x=1701677368; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=rn+UYaLR9UVBQ3OHWhJmg5Nn5FxMaUWGGdZVxwhJ9eE=;
+        b=et0sWe7R+5ZJXnzHreC+NEOBMWnlLbBU8GmqymlaMcO3DUuMF5kg+fj6rQ0ljCeYhM
+         yqkw6eVM9EldU5hf68pCCnfLBP0rhXOh9HCALfOuTz4crXPe66Xs6zHa9PnQl+2krhh9
+         vbjpT8huHBvK9/t/EBE8/Z42wsm6vw9658ejrxv0/7zN8BvO4QiP5JM0mbH//KsF6ztv
+         XXyHJ7SvT7XmATaNTQRgAh2P54Tf6xNIL0M3E3GmGmRsQhwIZOzxYyP0EUj+VGo2GxYa
+         s//Zepju8Bw0WYHLUs0qq36npoGt5QNsgKWF+1Q8RCFpWL7q9e68LrIkAxZTox/fMFIG
+         HONA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701072568; x=1701677368;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=rn+UYaLR9UVBQ3OHWhJmg5Nn5FxMaUWGGdZVxwhJ9eE=;
+        b=CP8iZ7Ws5EEGn8+iS1wDge1Z/+tQRDravMXIglOE69zo2CqCKf2xDUiCnRVkroefPr
+         hYqTh0yuLuCD8PILNQ5qvuyIUNm1S8tqPIOmxv0ZTutuD/1Viugkz8oFahK8Wd2iqN+4
+         0lnbr0u0kDJzjnO3g+yAetV1Xz7q+Uiq9nrBbPNe/66cj9Y2TUGfGep0XwijFIm1uJdn
+         2PoABy3vzR3ajExC9+I581X6E2SmJFwXrYbYvcAJnV65sZnzMW7TRAnqLmRq9XJAZYUa
+         VwigkE/XDzIr2UrEMBtK0ZL0zFgF2SrcrjBM9sPBrnb9PWU/bP8S8zeRKaHXvg58tzEa
+         ReJQ==
+X-Gm-Message-State: AOJu0YwV48k79SX9ANy9Eo+BZPpbCNNHNEIpdoP3ZwdU2WzlqZLi7wwQ
+	qkn2Pg8iZByznipXmgcLTQLMXg==
+X-Google-Smtp-Source: AGHT+IFrYeQJFDL7FWcFShdrCH4BBQIFmmfj0xNDZKBRQ2tGG+FCLSghCsphxVaO5/hi0/LcfJ/t9Q==
+X-Received: by 2002:ac2:44ca:0:b0:50b:aa9a:6691 with SMTP id d10-20020ac244ca000000b0050baa9a6691mr3902883lfm.51.1701072568408;
+        Mon, 27 Nov 2023 00:09:28 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:5a15:ac68:b4a4:85ff? ([2a01:e0a:982:cbb0:5a15:ac68:b4a4:85ff])
+        by smtp.gmail.com with ESMTPSA id z11-20020adff74b000000b00332f74ffdd9sm5200377wrp.30.2023.11.27.00.09.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Nov 2023 00:09:27 -0800 (PST)
+Message-ID: <1dd87851-25d3-4f85-99ca-5c072675efec@linaro.org>
+Date: Mon, 27 Nov 2023 09:09:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MA0P287MB0332:EE_|PN0P287MB1048:EE_
-X-MS-Office365-Filtering-Correlation-Id: b91567f4-dac3-4402-1cf5-08dbef1fdd54
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	B3M4aB/2t2ClB/Vk+G8rjqfGhWDgGt6BWcGKiH4qKvJoyLj9FzICpVmPUw1W+TtC6ZR9nUnsmyVPsrnlmztFHO9Y7mrpebkgWxnMy8LEAqUSgNWzwozzKRQZ4M5xX5bgx4T7MlnbjyiEKTMFgp8eEn/lovPm8Fc20LaTQKn5VEi/9pgJX748oJ1Bm4EiC6GEoAqxjT1VQt5ImEZL+7s2q/vPa/Etlx7aTaFvB075qwT6ZKhepmmIblk/RJeojqLVhlWzwPybZBAQH++G6rnIH8aijLJhiIduF+WFALCnT3BSULAePin6vqmODLtWz/1t9Mz6MX+9eehe9dq2XkRMI1llf3k+2bldaQQBfEybSxoly1MvkSKHaCSzHEKbZa8YBGqgkEhuonNVZCAEf8UzFXyR1qKJ6B/UflepPR4szvEMTCG6xXPhnuZILwpSGtn9SBFxXJkvbDVqun7m5K94MBYbH05n9kCTFF4FsVfXMm7dJ16Ei27piile6unpz2VWAs6eqjVA4ntbDVEltpVaQtey7x8oPrug6KnnH8kyRqlbYiSpJZkW6HaIdCIX9kk/
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?QnRYREdFOW5sUEhJVzVjYjlvNUliNW0vQlVEcE52YTZqWlN2cXlQM0xrUFpF?=
- =?utf-8?B?WXBiU0pCY0oxdnZsWGZKWXVhUVIrOGtESzRtbURXdldzNXRkK2VETUpTUldM?=
- =?utf-8?B?M0pENlczQU5JOGxWY2VmRWwrQmFsdGJGWjhyblJIN0h0NzBELzZyWjJIQUUv?=
- =?utf-8?B?UXhxQTlKTk5NYUg5RW5saitmRzJRQ1ZvS2FmTDVxdGE2R20wdVBreWsvUUxj?=
- =?utf-8?B?YjdNbnEyREtmWGR2bXkydTRMY1ZvenYvc0c1MlEzUnNMMUh5bTlZRGo0Sys3?=
- =?utf-8?B?N1liOWxYVnZPMEFqcHc2MHhXWEU5NnNDRS9JZWRnNVdSZHltRzY4dnVOcTdK?=
- =?utf-8?B?NXVRVm55K1NtVEQyTW9sMEJnUVp4cnJwVll1SkhUQjBZSTdIc1d3WHc5RUZx?=
- =?utf-8?B?VTI4bVNqMUVPNVh2WlRnYkw3T01ib3RRNVRxMXNXZmJiOURIc2UwS0RKT0c1?=
- =?utf-8?B?d1ZJVUM5KzdZSit0RmpnNWNjLy9VbVJhNko3L2tsenp5dm0rRnVIbW1lTGZr?=
- =?utf-8?B?MFhka3R3RkllZlhzNC81VWgwUHZxNHVLdGpob05jVXE5Q2gvNHNJSTFCL1FB?=
- =?utf-8?B?MEp0d3FTYU1SbnRnUHplUmVQZVVNL25nQTdQTnlJSnd3N0RCNUFzaGpYdEx1?=
- =?utf-8?B?cWtHNldWdXJGeldNMjdDeG1CM0xpeWtkNDBrRktxbCtVd1kvOTV2Vk5kbGM2?=
- =?utf-8?B?RmlDVjd4SVJVVWZmL1ZpVnpaYkdpWDBWSHQxRlpBWjZoaDcrNFZRTENXWFZT?=
- =?utf-8?B?REFBTWNGbFB5MXFSaHI1cDNveUlWSWtTaEx2RkR5L2Y4Tk5YQklsS01YZmRu?=
- =?utf-8?B?WjZkaEZ4U05ZdWthQUU3UVlRaGtFNklxRWdMMGdqVm9xdEhNQTF5MjZzQ0V3?=
- =?utf-8?B?dWZHdTVHVUREY2o4dmJ6cWk1ZGhSbVJrZVMyeUttd2pSZm45RlFkRVo0UitJ?=
- =?utf-8?B?Sk5iVHY3RWRyQ2RsQXEzMytKZTFMSllQMlMwUFFsV0swTmlodUx4blZ2Y1hU?=
- =?utf-8?B?NFRYbmxlM0pxRHBKa0I5d1VmQXhrakw3eG4xaWYveDE5NS81LzJjd3pPS25q?=
- =?utf-8?B?c0RIYmptUHZvWnlkNWF1QmVVNS9WRjJLcU9tUzVnb2FHSnZVTk1kSU10ZEFy?=
- =?utf-8?B?dzBjM2Jmdk5ZUGtrTlYvTkR6eWhOL0FNa09xUFJ0aExVeTFnK0NObThXb1FZ?=
- =?utf-8?B?UjVtYW03UFhnR2RmNksvWTNyV3pzakFmd1VHQS85VjR2d29ERy9UM3U5L3dp?=
- =?utf-8?B?bjVtNVNnbHlFc1k0RTg1Q2tTdzFjNVlkMHBMck5CMXRvcms2T00xQUNOdUJO?=
- =?utf-8?B?eWF1U0poOHRXNHEvK2Nhb1NKaDNhckNIUHpjQnRwdHlLMGV2MXF6NllhR1NS?=
- =?utf-8?B?Sk1SL0sxRTZrTUpneEtrWUV1WncvaDVSMExEalNpbXBVdkRoYStYQzFuS3lO?=
- =?utf-8?B?WVdBNHZ5T29DWUMza0xwbVBaQU5DSDFwdGhVWlU2cjBNVkh4VkI3aGdtZzV5?=
- =?utf-8?B?N0Z2VnhrU3pxWkhiMlFKaFNORVJ3RzJXdUVuYTdBVTB1ZGhZcExkR2xYeVpZ?=
- =?utf-8?B?K1B3RG9RY0FWTU5UQUR0aVlWcEMyZHdpdDZoUVhnNGxSME1yZDBobGNQUXFn?=
- =?utf-8?Q?AiA419N0tpUsbCTM1sUcc7YAv1eCwOfzA3e2iB8Gphmw=3D?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b91567f4-dac3-4402-1cf5-08dbef1fdd54
-X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Nov 2023 08:07:14.4990
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN0P287MB1048
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v2] arm64: dts: amlogic: meson-axg: pinctrl node for NAND
+Content-Language: en-US, fr
+To: Arseniy Krasnov <avkrasnov@salutedevices.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: oxffffaa@gmail.com, kernel@sberdevices.ru,
+ Liang Yang <liang.yang@amlogic.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20231109094504.131265-1-avkrasnov@salutedevices.com>
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro Developer Services
+In-Reply-To: <20231109094504.131265-1-avkrasnov@salutedevices.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
+On 09/11/2023 10:45, Arseniy Krasnov wrote:
+> Add pinctrl node for the Meson NAND controller.
+> 
+> Signed-off-by: Arseniy Krasnov <avkrasnov@salutedevices.com>
+> ---
+>   Changelog:
+>   v1 -> v2:
+>    * Rename node name 'nand_all_pins' -> 'nand-all-pins'.
+> 
+>   arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 23 ++++++++++++++++++++++
+>   1 file changed, 23 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> index a49aa62e3f9f..7e5ac9db93f8 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> @@ -432,6 +432,27 @@ mux-1 {
+>   					};
+>   				};
+>   
+> +				nand_all_pins: nand-all-pins {
+> +					mux {
+> +						groups = "emmc_nand_d0",
+> +							 "emmc_nand_d1",
+> +							 "emmc_nand_d2",
+> +							 "emmc_nand_d3",
+> +							 "emmc_nand_d4",
+> +							 "emmc_nand_d5",
+> +							 "emmc_nand_d6",
+> +							 "emmc_nand_d7",
+> +							 "nand_ce0",
+> +							 "nand_ale",
+> +							 "nand_cle",
+> +							 "nand_wen_clk",
+> +							 "nand_ren_wr";
+> +						function = "nand";
+> +						input-enable;
+> +						bias-pull-up;
+> +					};
+> +				};
+> +
+>   				emmc_ds_pins: emmc_ds {
+>   					mux {
+>   						groups = "emmc_ds";
+> @@ -1913,6 +1934,8 @@ nfc: nand-controller@7800 {
+>   				reg = <0x0 0x7800 0x0 0x100>,
+>   				      <0x0 0x7000 0x0 0x800>;
+>   				reg-names = "nfc", "emmc";
+> +				pinctrl-0 = <&nand_all_pins>;
+> +				pinctrl-names = "default";
+>   				#address-cells = <1>;
+>   				#size-cells = <0>;
+>   				interrupts = <GIC_SPI 34 IRQ_TYPE_EDGE_RISING>;
 
-On 2023/11/27 15:12, Krzysztof Kozlowski wrote:
-> On 27/11/2023 02:15, Chen Wang wrote:
->> From: Chen Wang <unicorn_wang@outlook.com>
->>
->> Add a driver for the SOPHGO SG2042 clock generator.
->>
->> Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
-> ...
->
->> +static void __init sg2042_clk_init(struct device_node *node)
->> +{
->> +	struct sg2042_clk_data *clk_data = NULL;
->> +	int i, ret = 0;
->> +	int num_clks = 0;
->> +
->> +	num_clks = ARRAY_SIZE(sg2042_pll_clks) +
->> +		   ARRAY_SIZE(sg2042_div_clks) +
->> +		   ARRAY_SIZE(sg2042_gate_clks) +
->> +		   ARRAY_SIZE(sg2042_mux_clks);
->> +	if (num_clks == 0) {
->> +		ret = -EINVAL;
->> +		goto error_out;
->> +	}
->> +
->> +	ret = sg2042_clk_init_clk_data(node, num_clks, &clk_data);
->> +	if (ret < 0)
->> +		goto error_out;
->> +
->> +	ret = sg2042_clk_register_plls(clk_data, sg2042_pll_clks,
->> +				ARRAY_SIZE(sg2042_pll_clks));
->> +	if (ret)
->> +		goto cleanup;
->> +
->> +	ret = sg2042_clk_register_divs(clk_data, sg2042_div_clks,
->> +				ARRAY_SIZE(sg2042_div_clks));
->> +	if (ret)
->> +		goto cleanup;
->> +
->> +	ret = sg2042_clk_register_gates(clk_data, sg2042_gate_clks,
->> +				ARRAY_SIZE(sg2042_gate_clks));
->> +	if (ret)
->> +		goto cleanup;
->> +
->> +	ret = sg2042_clk_register_muxs(clk_data, sg2042_mux_clks,
->> +				ARRAY_SIZE(sg2042_mux_clks));
->> +	if (ret)
->> +		goto cleanup;
->> +
->> +	for (i = 0; i < num_clks; i++)
->> +		dbg_info("provider [%d]: %s\n", i, clk_hw_get_name(clk_data->onecell_data.hws[i]));
->> +	ret = of_clk_add_hw_provider(node, of_clk_hw_onecell_get, &clk_data->onecell_data);
->> +	if (ret)
->> +		goto cleanup;
->> +
->> +	return;
->> +
->> +cleanup:
->> +	for (i = 0; i < num_clks; i++) {
->> +		if (clk_data->onecell_data.hws[i] != NULL)
->> +			clk_hw_unregister(clk_data->onecell_data.hws[i]);
->> +	}
->> +	kfree(clk_data);
->> +
->> +error_out:
->> +	pr_err("%s failed error number %d\n", __func__, ret);
->> +}
->> +
->> +CLK_OF_DECLARE(sg2042_clk, "sophgo,sg2042-clkgen", sg2042_clk_init);
-> No, this should be platform device. It's a child of another device, so
-> you cannot use other way of init ordering.
-
-hi, Krzysztof,
-
-Thanks for your review.
-
-I don't quite understand your opinion. Do you mean CLK_OF_DECLARE is 
-only used for platform device so it can not be use here? But I think 
-this driver is still for platform device though I move the clock 
-controller node as a child of the system contoller node. System 
-controller node is just a block of registers which are used to control 
-some other platform devices ,such as clock controller, reset controller 
-and pin controller for this SoC.
-
-And I also see other similar code in kernel, for example: 
-drivers/clk/clk-k210.c.
-
-And I'm confused by your input "so you cannot use other way of init 
-ordering." Do you mean "so you CAN use other way of init ordering"? 
-What's the other way of init ordering do you mean?
-
-Thanks,
-
-Chen
-
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
