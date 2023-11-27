@@ -1,296 +1,111 @@
-Return-Path: <devicetree+bounces-19366-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19367-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C52557FA922
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 19:41:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 89AC07FA936
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 19:47:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E91731C20A40
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 18:41:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BA5201C20299
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 18:47:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F2A52EB00;
-	Mon, 27 Nov 2023 18:41:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C5963454E;
+	Mon, 27 Nov 2023 18:47:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="RxdLNbIq"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bdP8QAj/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81B0119B
-	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 10:41:32 -0800 (PST)
-Received: by mail-pl1-x62a.google.com with SMTP id d9443c01a7336-1cfa5840db3so26376725ad.2
-        for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 10:41:32 -0800 (PST)
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83F8C1A1;
+	Mon, 27 Nov 2023 10:47:37 -0800 (PST)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-9fcfd2a069aso635984366b.1;
+        Mon, 27 Nov 2023 10:47:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1701110492; x=1701715292; darn=vger.kernel.org;
-        h=in-reply-to:autocrypt:from:references:cc:to:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Ikyxh5IOh2jGN7Kf9+OkO8PfWTkqKdHB3qn2kkfWz8k=;
-        b=RxdLNbIqkxivGESP5oOqMBSEQKQzKZi6vXxfmV4e/PJG0Z35h6wvlu4Sp9ElX65bf8
-         P1A3aJmPjRpXw/kiSl9Vpy4Z8DcG0uivHaJTUUiapRMD7fa8j9p/pn5buHkZOkDhrLHN
-         mXwmuMFqA1VMlXAvh/axlzy0U110/V4mQYY0U=
+        d=gmail.com; s=20230601; t=1701110856; x=1701715656; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=feoucnNh3cnG002IsGWyER4iW7pfsWcNc8v7OfR+1cU=;
+        b=bdP8QAj/qLSJL8501SKkxcefdV2GDw+y2AnbQyAjoafEfyttgQL2THiXEviedljJtD
+         OtRVp9NZT2c8yC+c1bdG9xFqI8qxoZzgO+faTs0b8Qeqav4EnZp1PE4xrCT4zA43dQJU
+         Bx+Mdbghsisku2/lwNCXNU4C5WbXJwWXEIF7Wc4cysEgKCjHXm9kt/Bfk1vxG8kTts0C
+         D41Db+iSyc6dViERmxBJtIBA4nLtX3+kE9uZmiNKkIREmVko5Y8n3yQf8+mULSyRL78i
+         tuDw/h9au0+S7RZVymPnlBey0AqeiYeqdNwFcYTT42PXDYuUDFX78ezicRPy8SdynhxV
+         mofA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701110492; x=1701715292;
-        h=in-reply-to:autocrypt:from:references:cc:to:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=Ikyxh5IOh2jGN7Kf9+OkO8PfWTkqKdHB3qn2kkfWz8k=;
-        b=qa82qZFxxKBV67FfmKiK3byaOsvswt9bIDEwuYl2kJlfKn461d0hdJcH1O9rYhUm5I
-         O5U77rGNhMl98FzTXvnsCr5fMfWtDA22d38/UyhhSsWnbYAPapvJniWkKORKVvy04ciF
-         +AtPtkAqMOWXdO3VZu3o/bz/iZvK839MpEXfzrEWb385PgUeR9evrRZAllPDXY7FOX8e
-         QnoYxQBM5PKOG3i/22m4/YwtrBgNMPieHjPp5m7LrqkaYD2v1xYiX6nIDd/JTW8el8zL
-         AVsmAGq/2lk5/5DYi04tn1bzF3isU8lyRLvT0dR/YRJIm/lX4p/tjSx2v0HYhZkKolIP
-         zoaA==
-X-Gm-Message-State: AOJu0YyUEXvxXgh5itdgSTcGpL0e3GwUf0hk/omfghyKyp09ro6C5qFg
-	IWVbkonUl5kCN4aEQrj2wJvDVA==
-X-Google-Smtp-Source: AGHT+IG9poL1q/uxrLAcxjksJrU2YrZjTU1uo2DenCedmUd9xqN93nv5oP6cwmnJ0VHIAZhtwU17fQ==
-X-Received: by 2002:a17:902:e881:b0:1cf:cf34:d4cf with SMTP id w1-20020a170902e88100b001cfcf34d4cfmr4063160plg.18.1701110491877;
-        Mon, 27 Nov 2023 10:41:31 -0800 (PST)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id m6-20020a170902db0600b001cfc2e0a81bsm3485531plx.19.2023.11.27.10.41.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Nov 2023 10:41:30 -0800 (PST)
-Message-ID: <91ceed68-fe3a-408c-a858-095d5749b4d2@broadcom.com>
-Date: Mon, 27 Nov 2023 10:41:28 -0800
+        d=1e100.net; s=20230601; t=1701110856; x=1701715656;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=feoucnNh3cnG002IsGWyER4iW7pfsWcNc8v7OfR+1cU=;
+        b=EPK++922wb7JsngS1skNytvdqwLPLOUMCxTP+8iFKHe+9+2KtsNRgOeHQt1Z1W7ymX
+         UV5ThhGS67OyJvkyW9rxQrDN8xkkX+umesjbjH+x7sLsgpcRrLX05KRoV1L72xBOfNpg
+         ZbFTaUXDptH1QRuaCMsUORX+eKhCQZbYzrO9XlikLT55JsVk3qyLs7z2Il2Zkdauxw+c
+         9fj/NtdxUZIvkIOM+aw8SNQ1UTezYcBKJ+J4L2YTY6+KlLSYQwF1au9a5jaLmUza3CWv
+         sU+g972m/wIrl9b/+dWQB4qFwzy+ikLGYN63WsMj+RV1gR3b9GHArWU5uR3XV2oib9d4
+         JLxw==
+X-Gm-Message-State: AOJu0YyW+Pn2ZKXMObKWDmN3GztdTITANRYpZ9YFLKHE1Ej03h77BYiu
+	RiTPgHfuIYEiUyOBEm8e1Q==
+X-Google-Smtp-Source: AGHT+IGNIXVWpAF/Vtmt0THD1hdYjxHh9x8U6OL7SM2ONORvUymzeJ5XQxWTJ/AmZWmVtFH1/xe/cg==
+X-Received: by 2002:a17:907:a092:b0:9fd:ab4:5859 with SMTP id hu18-20020a170907a09200b009fd0ab45859mr10100668ejc.66.1701110855697;
+        Mon, 27 Nov 2023 10:47:35 -0800 (PST)
+Received: from U4.lan ([2a02:810b:f40:4300:370c:d8f:2dce:7367])
+        by smtp.gmail.com with ESMTPSA id 26-20020a170906009a00b009b9aa8fffdasm5907725ejc.131.2023.11.27.10.47.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Nov 2023 10:47:35 -0800 (PST)
+From: Alex Bee <knaerzche@gmail.com>
+To: Heiko Stuebner <heiko@sntech.de>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Alex Bee <knaerzche@gmail.com>
+Subject: [PATCH] ARM: dts: rockchip: Fix sdmmc_pwren's pinmux setting for RK3128
+Date: Mon, 27 Nov 2023 19:46:44 +0100
+Message-ID: <20231127184643.13314-2-knaerzche@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/3] ARM: dts: bcm2711-rpi-cm4-io: Enable xHCI host
-To: Justin Chen <justin.chen@broadcom.com>, Phil Elwell
- <phil@raspberrypi.com>, Stefan Wahren <wahrenst@gmx.net>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Mathias Nyman <mathias.nyman@intel.com>,
- bcm-kernel-feedback-list@broadcom.com, Cyril Brulebois <kibi@debian.org>,
- linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20231126025612.12522-1-wahrenst@gmx.net>
- <53e1f6e6-a28e-45af-991e-75b283a21b34@broadcom.com>
- <46320840-09ab-4c86-90c9-bee7b75f248a@gmx.net>
- <CAMEGJJ3SXHSnasqoMJnshf5Wu92NVi8+NoMdxmMsJH7WH2WjWg@mail.gmail.com>
- <a78f9ba5-ad34-4af2-9817-eeb7dd9d02ef@gmx.net>
- <CAMEGJJ3PpEgD_davgTn9e+re4hosunU+uj_i5sdKMFNLFR5hBA@mail.gmail.com>
- <624b79b1-f2dc-4f2e-a225-d1623d905b19@gmx.net>
- <CAMEGJJ0aL4VDoq06+JGHz9yx5nVvgbNULNKoT07myzVGNiyCoQ@mail.gmail.com>
- <b8a90433-e0fe-4148-a512-c0e9ace2b4b6@broadcom.com>
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
- 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
-In-Reply-To: <b8a90433-e0fe-4148-a512-c0e9ace2b4b6@broadcom.com>
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-	boundary="0000000000009dd84a060b26a6d0"
-
---0000000000009dd84a060b26a6d0
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-On 11/27/23 09:44, Justin Chen wrote:
-> 
-> 
-> On 11/27/23 8:28 AM, Phil Elwell wrote:
->> On Mon, 27 Nov 2023 at 12:39, Stefan Wahren <wahrenst@gmx.net> wrote:
->>>
->>> Hi Phil,
->>>
->>>>>>> Hi Justin,
->>>>>>>
->>>>>>> [add Phil]
->>>>>>>
->>>>>>> Am 27.11.23 um 07:02 schrieb Justin Chen:
->>>>>>>> On 11/25/23 6:56 PM, Stefan Wahren wrote:
->>>>>>>>> In contrast to the Raspberry Pi 4, the Compute Module 4 or the 
->>>>>>>>> IO board
->>>>>>>>> does not have a VL805 USB 3.0 host controller, which is 
->>>>>>>>> connected via
->>>>>>>>> PCIe. Instead, the BCM2711 on the Compute Module provides the 
->>>>>>>>> built-in
->>>>>>>>> xHCI.
->>>>>>>>>
->>>>>>>> Does this work? I maintain this built-in xHCI controller 
->>>>>>>> internally. I
->>>>>>>> wasn't aware the Compute Module uses this block.
->>>>>>> i successful tested this with a CM4 (arm 32 bit,
->>>>>>> multi_v7_lpae_defconfig) with eMMC. Before this series the USB 
->>>>>>> devices
->>>>>>> (mouse, keyboard) connected to the host interface didn't work. After
->>>>>>> comparing vendor DTS with mainline i noticed the missing xHCI 
->>>>>>> block [1].
->>>>>>> Unfortunately i wasn't able to get further information from the 
->>>>>>> public
->>>>>>> datasheets. I don't know if the VideoCore does some magic tricks 
->>>>>>> on the
->>>>>>> xHCI or i missed some downstream xHCI changes.
->>>>>>>
->>>>>>>> This block is held in reset and needs a bit toggled to get things
->>>>>>>> going. Florian, just to confirm, this is our "brcm,xhci-brcm-v2" 
->>>>>>>> block
->>>>>>>> correct?
->>>>>>>>
->>>>>>>> Justin
->>>>>>> [1]  -
->>>>>>> https://github.com/raspberrypi/linux/blob/rpi-6.1.y/arch/arm/boot/dts/bcm2711-rpi-ds.dtsi#L119
->>>>>> What's the question here? Does the XHCI block present in the
->>>>>> raspberrypi/linux dtsi file really exist? Yes it does.
->>>>> since i don't have any documentation about the xHCI block, i 
->>>>> assumed the
->>>>> compatible generic-xhci is correct. But Justin seems to suggest 
->>>>> that the
->>>>> xHCI block needs some special treatment and we need a specific 
->>>>> compatible.
->>>>>
->>>>> Did i missed some xHCI driver changes?
->>>>> Does the VC firmware something to the xHCI especially on CM4?
->>>> The firmware switches the on-board USB pins from DWC-OTG to XHCI if
->>>> otg_mode=1 is set in config.txt, or if booting over USB MSD.
->>> is this pinctrl/pinmux available from ARM via 0x7e200000 or a different
->>> IO address?
->>
->> It's in a different, undocumented block.
->>
->> Phil
-> 
-> Well if it works, then maybe I am misunderstanding something here. Maybe 
-> its time for me to pick up a CM4 board.
-There is one on my desk that you are welcome to use, or remote into if 
-you prefer.
+RK3128's reference design uses sdmmc_pwren pincontrol as GPIO - see [0].
 
-To answer your earlier question, yes this is the same block as the one 
-present in 72112 for which we use the "brcm,xhci-brcm-v2" compatible 
-string, it would be preferable to have it backed by that compatible 
-string in case we happen to support suspend/resume on the Pi 4B one day, 
-if nothing else.
+Let's change it in the SoC DT as well.
 
-I did confirm that after applying Stefan's patches plus changing my 
-config.txt to have otg_mode=1, USB continues to be fully functional. 
-This is the case with using both "generic-xhci" or "brcm,xhci-brcm-v2" 
-so with the minor request to update the compatible to 
-"brcm,xhci-brcm-v2", this is:
+[0] https://github.com/rockchip-linux/kernel/commit/8c62deaf6025
 
-Tested-by: Florian Fainelli <florian.fainelli@broadcom.com>
+Fixes: a0201bff6259 ("ARM: dts: rockchip: add rk3128 soc dtsi")
+Signed-off-by: Alex Bee <knaerzche@gmail.com>
+---
+This should have been part of my XPI-3128 board submission - it uses this
+pin as GPIO and adapts the reference design in this regard.
+Originally I had this as an override in the board DT, but later noticed
+this relatively new commit in vendor's kernel. I simply forgot to add 
+that commit.
 
-Stefan, I am getting a deadlock on boot if I leave your changes in and 
-uncomment dwc_otg=1 in config.txt, is there an alias or something that 
-the boot loader should be patching?
+ arch/arm/boot/dts/rockchip/rk3128.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm/boot/dts/rockchip/rk3128.dtsi b/arch/arm/boot/dts/rockchip/rk3128.dtsi
+index 4e8b38604ecd..b16786e81c08 100644
+--- a/arch/arm/boot/dts/rockchip/rk3128.dtsi
++++ b/arch/arm/boot/dts/rockchip/rk3128.dtsi
+@@ -859,7 +859,7 @@ sdmmc_wp: sdmmc-wp {
+ 			};
+ 
+ 			sdmmc_pwren: sdmmc-pwren {
+-				rockchip,pins = <1 RK_PB6 1 &pcfg_pull_default>;
++				rockchip,pins = <1 RK_PB6 RK_FUNC_GPIO &pcfg_pull_default>;
+ 			};
+ 
+ 			sdmmc_bus4: sdmmc-bus4 {
 -- 
-Florian
+2.43.0
 
-
---0000000000009dd84a060b26a6d0
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
-
-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
-riBJ/K1AFUjRAjFhGV64l++td7dkmnq/X8ET75ti+w1s4FRpFqkD2m7pg5NxdsZphYIXAgMBAAGj
-QjBAMA4GA1UdDwEB/wQEAwIBBjAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBSP8Et/qC5FJK5N
-UPpjmove4t0bvDANBgkqhkiG9w0BAQsFAAOCAQEAS0DbwFCq/sgM7/eWVEVJu5YACUGssxOGhigH
-M8pr5nS5ugAtrqQK0/Xx8Q+Kv3NnSoPHRHt44K9ubG8DKY4zOUXDjuS5V2yq/BKW7FPGLeQkbLmU
-Y/vcU2hnVj6DuM81IcPJaP7O2sJTqsyQiunwXUaMld16WCgaLx3ezQA3QY/tRG3XUyiXfvNnBB4V
-14qWtNPeTCekTBtzc3b0F5nCH3oO4y0IrQocLP88q1UOD5F+NuvDV0m+4S4tfGCLw0FREyOdzvcy
-a5QBqJnnLDMfOjsl0oZAzjsshnjJYS8Uuu7bVW/fhO4FCU29KNhyztNiUGUe65KXgzHZs7XKR1g/
-XzCCBVgwggRAoAMCAQICDBP8P9hKRVySg3Qv5DANBgkqhkiG9w0BAQsFADBbMQswCQYDVQQGEwJC
-RTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMg
-UGVyc29uYWxTaWduIDIgQ0EgMjAyMDAeFw0yMjA5MTAxMjE4MTFaFw0yNTA5MTAxMjE4MTFaMIGW
-MQswCQYDVQQGEwJJTjESMBAGA1UECBMJS2FybmF0YWthMRIwEAYDVQQHEwlCYW5nYWxvcmUxFjAU
-BgNVBAoTDUJyb2FkY29tIEluYy4xGTAXBgNVBAMTEEZsb3JpYW4gRmFpbmVsbGkxLDAqBgkqhkiG
-9w0BCQEWHWZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tMIIBIjANBgkqhkiG9w0BAQEFAAOC
-AQ8AMIIBCgKCAQEA+oi3jMmHltY4LMUy8Up5+1zjd1iSgUBXhwCJLj1GJQF+GwP8InemBbk5rjlC
-UwbQDeIlOfb8xGqHoQFGSW8p9V1XUw+cthISLkycex0AJ09ufePshLZygRLREU0H4ecNPMejxCte
-KdtB4COST4uhBkUCo9BSy1gkl8DJ8j/BQ1KNUx6oYe0CntRag+EnHv9TM9BeXBBLfmMRnWNhvOSk
-nSmRX0J3d9/G2A3FIC6WY2XnLW7eAZCQPa1Tz3n2B5BGOxwqhwKLGLNu2SRCPHwOdD6e0drURF7/
-Vax85/EqkVnFNlfxtZhS0ugx5gn2pta7bTdBm1IG4TX+A3B1G57rVwIDAQABo4IB3jCCAdowDgYD
-VR0PAQH/BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3Vy
-ZS5nbG9iYWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEG
-CCsGAQUFBzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWdu
-MmNhMjAyMDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93
-d3cuZ2xvYmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6
-hjhodHRwOi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNy
-bDAoBgNVHREEITAfgR1mbG9yaWFuLmZhaW5lbGxpQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggr
-BgEFBQcDBDAfBgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUUwwfJ6/F
-KL0fRdVROal/Lp4lAF0wDQYJKoZIhvcNAQELBQADggEBAKBgfteDc1mChZjKBY4xAplC6uXGyBrZ
-kNGap1mHJ+JngGzZCz+dDiHRQKGpXLxkHX0BvEDZLW6LGOJ83ImrW38YMOo3ZYnCYNHA9qDOakiw
-2s1RH00JOkO5SkYdwCHj4DB9B7KEnLatJtD8MBorvt+QxTuSh4ze96Jz3kEIoHMvwGFkgObWblsc
-3/YcLBmCgaWpZ3Ksev1vJPr5n8riG3/N4on8gO5qinmmr9Y7vGeuf5dmZrYMbnb+yCBalkUmZQwY
-NxADYvcRBA0ySL6sZpj8BIIhWiXiuusuBmt2Mak2eEv0xDbovE6Z6hYyl/ZnRadbgK/ClgbY3w+O
-AfUXEZ0xggJtMIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52
-LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwT
-/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIPSicU5tBOCA2aYf
-0gHtFxQrumnx37pb+YQ65FYzj2xXMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
-AQkFMQ8XDTIzMTEyNzE4NDEzMlowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
-AWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEH
-MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQC0QF/phMshvdgULkEXXg5XvyLoVDW+kSTM
-fwi+tgx97YPi6sMxeRpdS0pY1YP2OxqYMLjcjdhSfj5kG1iJhnwYapEr1C2yOFtyMBnelrNxgRvn
-lelNzM6C8FtZyViYSNGFcUkpaZC/dJAt1fbhYQPK5M7Yfpy3shmER9xVaQ1FJD9SDYMS2RKuxzl5
-Jk/qQ1ZMZrSVAANfLljY2XxkY5f5sjgiiLxP6de/hjzhr/X85jny20C6NJyLSiPhgUjjxn0nBEZb
-becig9XFzmpC6qe1zzJ7CtYzqBW/tphX4bw9VLlLTLfCoYDLztVBKaMp5skWGUe9pF9WEBMr+b44
-KTMX
---0000000000009dd84a060b26a6d0--
 
