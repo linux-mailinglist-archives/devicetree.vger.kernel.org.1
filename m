@@ -1,164 +1,105 @@
-Return-Path: <devicetree+bounces-19172-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19173-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E273F7F9E92
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 12:27:56 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 318D97F9E9A
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 12:30:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9B4262811DF
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 11:27:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E0ED91F2060A
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 11:30:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36CA8199D6;
-	Mon, 27 Nov 2023 11:27:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BE5C19BD2;
+	Mon, 27 Nov 2023 11:30:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="vKod8A2M"
+	dkim=pass (2048-bit key) header.d=arinc9.com header.i=@arinc9.com header.b="npQAcUWN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A66718F;
-	Mon, 27 Nov 2023 03:27:48 -0800 (PST)
-Received: from pendragon.ideasonboard.com (aztw-30-b2-v4wan-166917-cust845.vm26.cable.virginm.net [82.37.23.78])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 7E1C92B6;
-	Mon, 27 Nov 2023 12:27:12 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1701084432;
-	bh=AuKYoWFJ7sVxjyuT0y2LtlrUIBWzhTWO8cEmpOiB9qI=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=vKod8A2MZvWRjzcKLr4aQcvIZFTcSAMqSOr1Ta/IYYYDxHOvbvkhJf4uj5izp0tjA
-	 GWpGzFGXRml8+336jS+dMWuqA5JS1QKI2LLt0fpTKaoZeWURnUqAOj6lNGSMhlnCmr
-	 /93pSFnwVdMBuG6DKh7V55dPTuFwtYtIKACKu0hc=
-Content-Type: text/plain; charset="utf-8"
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::223])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CAA1B8;
+	Mon, 27 Nov 2023 03:30:12 -0800 (PST)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 64C3160015;
+	Mon, 27 Nov 2023 11:30:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arinc9.com; s=gm1;
+	t=1701084611;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=NhGJjrTTtgimxfRNbfSScr4mzO4GO8LCiZ6yeATg9+M=;
+	b=npQAcUWNK817PNnMtIdROlqCU68u6J61oYaZWTMkiXUcjId2TZsw9+CYlsWf1Twe1A7QsX
+	PPvsguZ8kGHxSACCttFXMA6c2ei3G64kYeMy+O4ks2hYu6y7mO1bjtaBqADr6WclX07srH
+	155/YPZ39tOrpqzZESeecLaJ0vM0tOdKlwJmCioV8VOiHnuGB2t0K6hin8yJ4p+UipZkS9
+	t5j2c/ATP0vtoe0KQ5MEYPyYsg6f2MBpD8LbOYBm9JGdhTJriRAjtlFHetKxHJBG4Y/nSi
+	eGI5gzotSHzqYhUoB84bkoQOt+uUn+iPOWfQusWJrH5LtOwNCxqAp99XSnibiA==
+Date: Mon, 27 Nov 2023 13:30:00 +0200
+From: =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+To: Daniel Golle <daniel@makrotopia.org>
+CC: Vladimir Oltean <olteanv@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
+ Florian Fainelli <f.fainelli@gmail.com>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Landen Chao <Landen.Chao@mediatek.com>, DENG Qingfang <dqfext@gmail.com>,
+ Sean Wang <sean.wang@mediatek.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_RESEND_net-next_2/2=5D_dt-bindings=3A?= =?US-ASCII?Q?_net=3A_dsa=3A_mediatek=2Cmt7530=3A_document_MDIO-bus?=
+User-Agent: K-9 Mail for Android
+In-Reply-To: <ZWPIQW1JA3rsvAzm@makrotopia.org>
+References: <6eb1b7b8dbc3a4b14becad15f0707d4f624ee18b.1691246461.git.daniel@makrotopia.org> <9aec0fe0cb676b76132c388bb3ead46f596a6e6e.1691246461.git.daniel@makrotopia.org> <dcb981b9-b435-c0e5-8e47-d66add207fdc@arinc9.com> <20230808121707.chona7hakapp6whe@skbuf> <44fde617-1159-4961-84c4-372fe265fbd8@arinc9.com> <20230809220102.t3dqw7iojez5xsq3@skbuf> <3f262579-eec1-4b21-9b18-1d1d612e715b@arinc9.com> <ZWPIQW1JA3rsvAzm@makrotopia.org>
+Message-ID: <D03B73C8-0DD4-459E-8BA3-C1A0B16809A3@arinc9.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain;
+ charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20231127025706.GT87953@dragon>
-References: <20231101104614.2209986-1-kieran.bingham@ideasonboard.com> <20231127025706.GT87953@dragon>
-Subject: Re: [PATCH v2] arm64: dts: freescale: debix-som-a-bmb-08: Add CSI Power Regulators
-From: Kieran Bingham <kieran.bingham@ideasonboard.com>
-Cc: devicetree@vger.kernel.org, Marco Felsch <m.felsch@pengutronix.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE <linux-arm-kernel@lists.infradead.org>, open list <linux-kernel@vger.kernel.org>;
-To: Shawn Guo <shawnguo@kernel.org>
-Date: Mon, 27 Nov 2023 11:27:43 +0000
-Message-ID: <170108446363.451646.11141020197161463231@ping.linuxembedded.co.uk>
-User-Agent: alot/0.10
+X-GND-Sasl: arinc.unal@arinc9.com
 
-Quoting Shawn Guo (2023-11-27 02:57:06)
-> On Wed, Nov 01, 2023 at 10:46:11AM +0000, Kieran Bingham wrote:
-> > Provide the 1.8 and 3.3 volt regulators that are utilised on the Debix
-> > SOM BMB-08 base board.
-> >=20
-> > Facilitate this by also supplying the pin control used to enable the
-> > regulators on the second MIPI CSI port.
-> >=20
-> > Reviewed-by: Marco Felsch <m.felsch@pengutronix.de>
-> > Signed-off-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
-> >=20
-> > ---
-> > v2:
-> >  - Remove _SW post fixes from regulators.
-> >=20
-> >  .../freescale/imx8mp-debix-som-a-bmb-08.dts   | 56 +++++++++++++++++++
-> >  1 file changed, 56 insertions(+)
-> >=20
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-debix-som-a-bmb-08.dt=
-s b/arch/arm64/boot/dts/freescale/imx8mp-debix-som-a-bmb-08.dts
-> > index 0b0c95432bdc..386177c66c6d 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx8mp-debix-som-a-bmb-08.dts
-> > +++ b/arch/arm64/boot/dts/freescale/imx8mp-debix-som-a-bmb-08.dts
-> > @@ -63,6 +63,50 @@ regulator-som-vdd3v3 {
-> >               regulator-always-on;
-> >       };
-> > =20
-> > +     reg_csi1_1v8: regulator-csi1-vdd1v8 {
-> > +             compatible =3D "regulator-fixed";
-> > +             regulator-min-microvolt =3D <1800000>;
-> > +             regulator-max-microvolt =3D <1800000>;
-> > +             regulator-name =3D "CSI1_VDD1V8";
-> > +             gpio =3D <&expander0 13 GPIO_ACTIVE_HIGH>;
-> > +             vin-supply =3D <&reg_baseboard_vdd3v3>;
-> > +             enable-active-high;
->=20
-> Could you move it one line above, so that it appears right after
-> GPIO_ACTIVE_HIGH polarity?
+On 27 November 2023 00:35:45 EET, Daniel Golle <daniel@makrotopia=2Eorg> wr=
+ote:
+>On Sat, Aug 12, 2023 at 01:45:29AM +0300, Ar=C4=B1n=C3=A7 =C3=9CNAL wrote=
+:
+>> On 10=2E08=2E2023 01:01, Vladimir Oltean wrote:
+>> > [=2E=2E=2E]
+>> > Since commit fe7324b93222 ("net: dsa: OF-ware slave_mii_bus"), DSA as=
+ a
+>> > framework also supports auto-creating an internal MDIO bus based on t=
+he
+>> > presence of the "mdio" node name, so I guess it makes sense for the
+>> > "mdio" to appear in the generic dsa=2Eyaml if there's nothing else th=
+at's
+>> > special about it=2E
+>>=20
+>> I agree with this=2E I've done this which works=2E It's even found a po=
+rt
+>> node with the ethernet property missing, as it should've=2E
+>
+>Are you planning to complete/submit your work below?
+>I'm asking because being able to reference the PHYs on the internal
+>MDIO bus is mandatory on MT7988 which requires calibration data from
+>NVMEM for each PHY, so supporting MT7988 depends on the associated
+>driver change[1]=2E
+>
+>[1]: https://patchwork=2Ekernel=2Eorg/project/netdevbpf/patch/6eb1b7b8dbc=
+3a4b14becad15f0707d4f624ee18b=2E1691246461=2Egit=2Edaniel@makrotopia=2Eorg/
 
-Yes, Sorry - I'm not sure why this is inconsistent with all the others.
+This patch triggered conversation on a deeper level regarding the
+devicetree bindings aspect of it=2E I will continue discussing that with t=
+he
+maintainers here and achieve a mutual agreement=2E
 
-v3 heading out next.
+To get things going on the driver side, I think it's fine to submit that
+as a single patch=2E I'll do that in a week, if nobody else does it first=
+=2E
 
---
-Kieran
-
-
->=20
-> Shawn
->=20
-> > +     };
-> > +
-> > +     reg_csi1_3v3: regulator-csi1-vdd3v3 {
-> > +             compatible =3D "regulator-fixed";
-> > +             regulator-min-microvolt =3D <3300000>;
-> > +             regulator-max-microvolt =3D <3300000>;
-> > +             regulator-name =3D "CSI1_VDD3V3";
-> > +             gpio =3D <&expander0 14 GPIO_ACTIVE_HIGH>;
-> > +             enable-active-high;
-> > +             vin-supply =3D <&reg_vdd5v0>;
-> > +     };
-> > +
-> > +     reg_csi2_1v8: regulator-csi2-vdd1v8 {
-> > +             compatible =3D "regulator-fixed";
-> > +             pinctrl-names =3D "default";
-> > +             pinctrl-0 =3D <&pinctrl_reg_csi2_1v8>;
-> > +             regulator-min-microvolt =3D <1800000>;
-> > +             regulator-max-microvolt =3D <1800000>;
-> > +             regulator-name =3D "CSI2_VDD1V8";
-> > +             gpio =3D <&gpio3 21 GPIO_ACTIVE_HIGH>;
-> > +             enable-active-high;
-> > +             vin-supply =3D <&reg_baseboard_vdd3v3>;
-> > +     };
-> > +
-> > +     reg_csi2_3v3: regulator-csi2-vdd3v3 {
-> > +             compatible =3D "regulator-fixed";
-> > +             pinctrl-names =3D "default";
-> > +             pinctrl-0 =3D <&pinctrl_reg_csi2_3v3>;
-> > +             regulator-min-microvolt =3D <3300000>;
-> > +             regulator-max-microvolt =3D <3300000>;
-> > +             regulator-name =3D "CSI2_VDD3V3";
-> > +             gpio =3D <&gpio4 25 GPIO_ACTIVE_HIGH>;
-> > +             enable-active-high;
-> > +             vin-supply =3D <&reg_vdd5v0>;
-> > +     };
-> > +
-> >       regulator-vbus-usb20 {
-> >               compatible =3D "regulator-fixed";
-> >               regulator-min-microvolt =3D <5000000>;
-> > @@ -413,6 +457,18 @@ MX8MP_IOMUXC_GPIO1_IO03__GPIO1_IO03              0=
-x41
-> >               >;
-> >       };
-> > =20
-> > +     pinctrl_reg_csi2_1v8: regcsi21v8grp {
-> > +             fsl,pins =3D <
-> > +                     MX8MP_IOMUXC_SAI5_RXD0__GPIO3_IO21              0=
-x19
-> > +             >;
-> > +     };
-> > +
-> > +     pinctrl_reg_csi2_3v3: regcsi23v3grp {
-> > +             fsl,pins =3D <
-> > +                     MX8MP_IOMUXC_SAI2_TXC__GPIO4_IO25               0=
-x19
-> > +             >;
-> > +     };
-> > +
-> >       pinctrl_uart2: uart2grp {
-> >               fsl,pins =3D <
-> >                       MX8MP_IOMUXC_UART2_RXD__UART2_DCE_RX            0=
-x14f
-> > --=20
-> > 2.34.1
-> >
+Ar=C4=B1n=C3=A7
 
