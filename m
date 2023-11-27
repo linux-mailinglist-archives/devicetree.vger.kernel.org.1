@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-19079-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19080-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54E387F9A93
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 08:12:16 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85E457F9A9B
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 08:13:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 77DCF1C2083F
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 07:12:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 288A0B207E5
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 07:13:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7309BF9F3;
-	Mon, 27 Nov 2023 07:12:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49403FC05;
+	Mon, 27 Nov 2023 07:13:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CtgGILB3"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zDQYEfcl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD8D612F
-	for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 23:12:04 -0800 (PST)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-a00f67f120aso519347466b.2
-        for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 23:12:04 -0800 (PST)
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7504413D
+	for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 23:13:22 -0800 (PST)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-9fa2714e828so521404766b.1
+        for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 23:13:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701069123; x=1701673923; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701069201; x=1701674001; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=4ubOvgLu6AFBn84bjahvcko85SY43MVq22H0FsKOBcY=;
-        b=CtgGILB3xAdeLK6jKSUYT/yAghkvhW+U19tqhjd1d/UBmK9gvtwQIe1PIHX2YF1Gx8
-         ZKpWnRNI5x32U7ysyLqoiIr/AGWeTUKJUNxqJdFmEHDA52btwH7HEcIxCuNEAGvfHouD
-         Cm1mPP87pO2/iqjbKw6t+58y7m9VFxpfwjB9frJS6cNvlpRNirXq2INDbavdVEs+W2Zi
-         E6YmcZ/0uWwUAliKG33cklXgCy1lnyOJ10PB9F7/iZMeyecyDKXXSzlaz5aGfK+NovFF
-         HhYVy5ea0NKqEBB3mMcS7OMy0+G1qqExESnmlpVhNb5pN3Pu5UlaHeL5lCCvRPE8vi2K
-         XtOw==
+        bh=tbVe3tMYTyb/FdyH9uKkvXaSbuVFLhVdV8vu0G4f77c=;
+        b=zDQYEfcl/ejXT8+t8DgNE3w4f1ww5HbY0j/1WdCq64QcElpF9jXwPU4bXNrs9GaHPi
+         kUvYaZIlGN1XCAVMZB4aRIFk9n8jR2KfGHiJRrN81weZsov5l0GANCKBD+0fVGMRUSpI
+         r1MpPMlSljsc6y+X60TTfYqq8I+PePkvmMWWADohqLRuDpW6TBIBTj2KLC1TzhQEftYc
+         EKSxtrU3mNE41Tk0ZKXgRUNqRr7uje92McwnEu9o56u1v8pB1YEJ9O+Hpe6tuaIERQtd
+         zdiZ54KmfGSfQOU9kT2YIUDseI3fu4wB/bFF7I+yPMTe8/aRGAvYuZFLIPWGTo0qtcus
+         gBkw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701069123; x=1701673923;
+        d=1e100.net; s=20230601; t=1701069201; x=1701674001;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4ubOvgLu6AFBn84bjahvcko85SY43MVq22H0FsKOBcY=;
-        b=UkNHrLMTlwcLB6VwkyHsOigNB5VygCNoPHoxtWNJkP+cljoozKNEn617LalH0mbLoG
-         2QXC29saNwXJocE/uUxl2F4ibIX3ca4FLq5GNldMf/YS/GB11vrVUiQ3crTCEXTMsN4D
-         PXxF2mOzRUFQatGh4AJ+XJbJ66bAWlu/ain73Dh4qiw7e5qWemLxExNlUbrp66A2RNVo
-         rVVIhgJlWWO0dMW5JJhphRqyIb3L6AkZv4pTI04AP/Lyevo6LmLQbM2NRRfq/+W7Xeus
-         l2z27dGQ/BanbwGQfSjxl53Bqh9apFwlJ8XOfJHsYGVxHErBo+BbwKhXMIGwFIuuhyKs
-         V92g==
-X-Gm-Message-State: AOJu0YxGVR4gz3ceD8rVV2R1+25ajUXcN93EPa2dSqcIbOkWejeSkXcH
-	T+Gcul8nHKIlMQTTDptiySx9/Q==
-X-Google-Smtp-Source: AGHT+IHaLuybBfxWZ6mI3AsPpDA/cozfVthOHnGLNkRA6pJtNz+jIulWgmlCPi7YcqPi6jJ6NPYOmg==
-X-Received: by 2002:a17:906:2c4d:b0:9d4:84b6:8715 with SMTP id f13-20020a1709062c4d00b009d484b68715mr6815835ejh.52.1701069123322;
-        Sun, 26 Nov 2023 23:12:03 -0800 (PST)
+        bh=tbVe3tMYTyb/FdyH9uKkvXaSbuVFLhVdV8vu0G4f77c=;
+        b=Z1Rw+mbiWFPJPpLe5Sl9S71gxVQ2Gr8+oaP3F55ByJgezKTegM8ulNlwoPlJvES+Ie
+         ZmOC7gpiTgObx5MEPHJaCI0OS7D1iH+I9TCMi6uUznY1hpubnBi9f7DBTzG3Jgd/1uNP
+         4VqMCcQhptYScGJIn1jFPkDHBPXvDbCxsmiHbrtSizORFjYO6p0uAEmN9QA+s2prJxkz
+         4zq/QkLuY48oudaLqyJ5VruVlSvqeFQBODpDOzZ00WXEKO2Stlrw2DJ98WeOpfYJdBYY
+         yNAMBRBrLc19r3/I+IDKoALkUyk56Y/jJOUDEku6yWpXls4Rtd/G6+ulymeSRvo9QPdP
+         olIQ==
+X-Gm-Message-State: AOJu0YwST2wuRcXm7BVYfQ8BQyoWF2goRExNH0vRW4c2X3DPVQjxQD8V
+	e+MTiv9+BFSqnhpnB9Os9HOxhx/V0ZbVnFVMelGzRw==
+X-Google-Smtp-Source: AGHT+IFMWMOURpwMpS2lIps1zBs+bISU7TKXOjGiHwV+YM/N16bzmWCwCmoAHjVdg4aUdQfxVq4JlA==
+X-Received: by 2002:a17:906:20d7:b0:a10:172b:4cfe with SMTP id c23-20020a17090620d700b00a10172b4cfemr967159ejc.11.1701069200994;
+        Sun, 26 Nov 2023 23:13:20 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.109])
-        by smtp.gmail.com with ESMTPSA id mm21-20020a170906cc5500b009fd490c4cb6sm5366758ejb.39.2023.11.26.23.12.01
+        by smtp.gmail.com with ESMTPSA id mm21-20020a170906cc5500b009fd490c4cb6sm5366758ejb.39.2023.11.26.23.13.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 26 Nov 2023 23:12:02 -0800 (PST)
-Message-ID: <81d421c8-bfd6-42b5-9da1-f067792f8f48@linaro.org>
-Date: Mon, 27 Nov 2023 08:12:00 +0100
+        Sun, 26 Nov 2023 23:13:20 -0800 (PST)
+Message-ID: <c4cdfe7f-fd83-47ba-a377-54d0934e8d76@linaro.org>
+Date: Mon, 27 Nov 2023 08:13:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,19 +62,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/4] clk: sophgo: Add SG2042 clock generator driver
+Subject: Re: [PATCH v1] dt-bindings: input: convert gpio-mouse to json-schema
 Content-Language: en-US
-To: Chen Wang <unicornxw@gmail.com>, aou@eecs.berkeley.edu,
- chao.wei@sophgo.com, conor@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- mturquette@baylibre.com, palmer@dabbelt.com, paul.walmsley@sifive.com,
- richardcochran@gmail.com, robh+dt@kernel.org, sboyd@kernel.org,
- devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- haijiao.liu@sophgo.com, xiaoguang.xing@sophgo.com, guoren@kernel.org,
- jszhang@kernel.org, inochiama@outlook.com, samuel.holland@sifive.com
-Cc: Chen Wang <unicorn_wang@outlook.com>
-References: <cover.1701044106.git.unicorn_wang@outlook.com>
- <c06130afb4bdc1890b4e8d29388fa6feef1f1826.1701044106.git.unicorn_wang@outlook.com>
+To: Anshul Dalal <anshulusr@gmail.com>, linux-input@vger.kernel.org,
+ devicetree@vger.kernel.org
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Linus Walleij
+ <linus.walleij@linaro.org>, linux-kernel@vger.kernel.org,
+ linux-kernel-mentees@lists.linuxfoundation.org
+References: <20231126103029.851742-1-anshulusr@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -120,103 +118,18 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <c06130afb4bdc1890b4e8d29388fa6feef1f1826.1701044106.git.unicorn_wang@outlook.com>
+In-Reply-To: <20231126103029.851742-1-anshulusr@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 27/11/2023 02:15, Chen Wang wrote:
-> From: Chen Wang <unicorn_wang@outlook.com>
+On 26/11/2023 11:30, Anshul Dalal wrote:
+> Convert device tree binding documentation for GPIO attached mouse to
+> json-schema.
 > 
-> Add a driver for the SOPHGO SG2042 clock generator.
-> 
-> Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
+> Signed-off-by: Anshul Dalal <anshulusr@gmail.com>
+> ---
 
-...
-
-> +static void __init sg2042_clk_init(struct device_node *node)
-> +{
-> +	struct sg2042_clk_data *clk_data = NULL;
-> +	int i, ret = 0;
-> +	int num_clks = 0;
-> +
-> +	num_clks = ARRAY_SIZE(sg2042_pll_clks) +
-> +		   ARRAY_SIZE(sg2042_div_clks) +
-> +		   ARRAY_SIZE(sg2042_gate_clks) +
-> +		   ARRAY_SIZE(sg2042_mux_clks);
-> +	if (num_clks == 0) {
-> +		ret = -EINVAL;
-> +		goto error_out;
-> +	}
-> +
-> +	ret = sg2042_clk_init_clk_data(node, num_clks, &clk_data);
-> +	if (ret < 0)
-> +		goto error_out;
-> +
-> +	ret = sg2042_clk_register_plls(clk_data, sg2042_pll_clks,
-> +				ARRAY_SIZE(sg2042_pll_clks));
-> +	if (ret)
-> +		goto cleanup;
-> +
-> +	ret = sg2042_clk_register_divs(clk_data, sg2042_div_clks,
-> +				ARRAY_SIZE(sg2042_div_clks));
-> +	if (ret)
-> +		goto cleanup;
-> +
-> +	ret = sg2042_clk_register_gates(clk_data, sg2042_gate_clks,
-> +				ARRAY_SIZE(sg2042_gate_clks));
-> +	if (ret)
-> +		goto cleanup;
-> +
-> +	ret = sg2042_clk_register_muxs(clk_data, sg2042_mux_clks,
-> +				ARRAY_SIZE(sg2042_mux_clks));
-> +	if (ret)
-> +		goto cleanup;
-> +
-> +	for (i = 0; i < num_clks; i++)
-> +		dbg_info("provider [%d]: %s\n", i, clk_hw_get_name(clk_data->onecell_data.hws[i]));
-> +	ret = of_clk_add_hw_provider(node, of_clk_hw_onecell_get, &clk_data->onecell_data);
-> +	if (ret)
-> +		goto cleanup;
-> +
-> +	return;
-> +
-> +cleanup:
-> +	for (i = 0; i < num_clks; i++) {
-> +		if (clk_data->onecell_data.hws[i] != NULL)
-> +			clk_hw_unregister(clk_data->onecell_data.hws[i]);
-> +	}
-> +	kfree(clk_data);
-> +
-> +error_out:
-> +	pr_err("%s failed error number %d\n", __func__, ret);
-> +}
-> +
-> +CLK_OF_DECLARE(sg2042_clk, "sophgo,sg2042-clkgen", sg2042_clk_init);
-
-No, this should be platform device. It's a child of another device, so
-you cannot use other way of init ordering.
-
-> diff --git a/drivers/clk/sophgo/clk-sophgo-sg2042.h b/drivers/clk/sophgo/clk-sophgo-sg2042.h
-> new file mode 100644
-> index 000000000000..ca1c8b9a937a
-> --- /dev/null
-
-
-...
-
-> +#define to_sg2042_mux_nb(_nb) container_of(_nb, struct sg2042_mux_clock, clk_nb)
-> +
-> +#ifdef DEBUG
-> +	#define dbg_info(format, arg...) \
-> +		pr_info("--> %s: "format"", __func__, ## arg)
-> +#else
-> +	#define dbg_info(format, arg...)
-> +#endif
-
-Drop custom debug prints.
-
-> +
-> +#endif /* __CLK_SOPHGO_SG2042_H */
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
