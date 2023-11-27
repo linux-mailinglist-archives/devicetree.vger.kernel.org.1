@@ -1,128 +1,115 @@
-Return-Path: <devicetree+bounces-19012-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19013-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D86C7F9688
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 00:32:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 684A47F96CA
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 01:26:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 14FFA280E40
-	for <lists+devicetree@lfdr.de>; Sun, 26 Nov 2023 23:32:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A13281C20831
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 00:26:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCE0517734;
-	Sun, 26 Nov 2023 23:32:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ZBEQUFjO"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7930B361;
+	Mon, 27 Nov 2023 00:26:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB71AE4;
-	Sun, 26 Nov 2023 15:32:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1701041540; x=1732577540;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=DL1UZC6QXeMznGYKv4T6wrrF7fnm2ErIt+iYauhRjkk=;
-  b=ZBEQUFjOfZgdej31Mtys8xUCWR0hd3qNvn00Xu8la2+Ps20Ncmn4xqRD
-   5o6ONr3bBFS5+XDWKVZx/kJvPxIJCYsteWvnqOagHmRmTBr5F0CL08vQH
-   TB4koUfuaJ50npN48jQApLfopOdYB16BrG17yBJZwlSMxIDjeOe6aYp4u
-   pd6PUubXajuF15VGWPwgbyRhXvfW+R0Rks1+H8tkcO0ktQMX+0UxUZUk7
-   b1F6ZnsKNBo8FpldoTVi0GLP1rnWkwjdLxrG5Yrv6YbHlCMZGGKssHV/5
-   zCqetYZwixELWv4SuJNA/eUt3KbTT/g8OQhsYRbM3y1zkqROtq5Y9MylM
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10906"; a="372768311"
-X-IronPort-AV: E=Sophos;i="6.04,229,1695711600"; 
-   d="scan'208";a="372768311"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Nov 2023 15:32:20 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10906"; a="858862273"
-X-IronPort-AV: E=Sophos;i="6.04,229,1695711600"; 
-   d="scan'208";a="858862273"
-Received: from lkp-server01.sh.intel.com (HELO d584ee6ebdcc) ([10.239.97.150])
-  by FMSMGA003.fm.intel.com with ESMTP; 26 Nov 2023 15:32:17 -0800
-Received: from kbuild by d584ee6ebdcc with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1r7Obn-0005dB-1V;
-	Sun, 26 Nov 2023 23:32:15 +0000
-Date: Mon, 27 Nov 2023 07:32:05 +0800
-From: kernel test robot <lkp@intel.com>
-To: Andreas Kemnade <andreas@kemnade.info>, lee@kernel.org,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, bcousson@baylibre.com, tony@atomide.com,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-omap@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH 2/6] twl-core: add power off implementation for twl603x
-Message-ID: <202311270558.j38P20an-lkp@intel.com>
-References: <20231125092938.16535-3-andreas@kemnade.info>
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36B4FF0;
+	Sun, 26 Nov 2023 16:26:23 -0800 (PST)
+Received: from i53875bf8.versanet.de ([83.135.91.248] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1r7PS2-0003nk-BA; Mon, 27 Nov 2023 01:26:14 +0100
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Tim Lunn <tim@feathertop.org>, Andi Shyti <andi.shyti@kernel.org>
+Cc: linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+ Jagan Teki <jagan@edgeble.ai>, Rob Herring <robh+dt@kernel.org>,
+ linux-arm-kernel@lists.infradead.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-i2c@vger.kernel.org
+Subject: Re: [PATCH v2 3/9] i2c: rk3x: Adjust offset for i2c2 on rv1126
+Date: Mon, 27 Nov 2023 01:26:13 +0100
+Message-ID: <4717511.tIAgqjz4sF@diego>
+In-Reply-To: <20231126194311.jxkvz3kqgsbzfgek@zenone.zhora.eu>
+References:
+ <20231122122232.952696-1-tim@feathertop.org>
+ <20231122122232.952696-4-tim@feathertop.org>
+ <20231126194311.jxkvz3kqgsbzfgek@zenone.zhora.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231125092938.16535-3-andreas@kemnade.info>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Hi Andreas,
+Hi Andi,
 
-kernel test robot noticed the following build warnings:
+Am Sonntag, 26. November 2023, 20:43:11 CET schrieb Andi Shyti:
+> Hi Tim,
+> 
+> On Wed, Nov 22, 2023 at 11:22:26PM +1100, Tim Lunn wrote:
+> > Rockchip RV1126 has special case mask bits for i2c2.
+> > 
+> > i2c2 wasnt previously enabled in rv1126.dtsi, adding DT node alone
+> > is not sufficient to enable i2c2. This patch fixes the i2c2 bus.
+> 
+> If I don't have sufficient information about the hardware this
+> description is completely meaningless to me.
+> 
+> > Signed-off-by: Tim Lunn <tim@feathertop.org>
+> > ---
+> > 
+> > Changes in v2:
+> > - i2c: clarify commit message
+> > 
+> >  drivers/i2c/busses/i2c-rk3x.c | 7 +++++--
+> >  1 file changed, 5 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/drivers/i2c/busses/i2c-rk3x.c b/drivers/i2c/busses/i2c-rk3x.c
+> > index a044ca0c35a1..151927466d1d 100644
+> > --- a/drivers/i2c/busses/i2c-rk3x.c
+> > +++ b/drivers/i2c/busses/i2c-rk3x.c
+> > @@ -1288,8 +1288,11 @@ static int rk3x_i2c_probe(struct platform_device *pdev)
+> >  			return -EINVAL;
+> >  		}
+> >  
+> > -		/* 27+i: write mask, 11+i: value */
+> > -		value = BIT(27 + bus_nr) | BIT(11 + bus_nr);
+> > +		if (i2c->soc_data == &rv1126_soc_data && bus_nr == 2)
+> > +			value = BIT(20) | BIT(4);
+> 
+> Any chance to put a comment here as it is in the other
+> assignment?
+> 
+> Are the two assignment mutually exclusive?
+> 
+> Heiko, any chance to take a look here?
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on lee-mfd/for-mfd-next linus/master v6.7-rc2 next-20231124]
-[cannot apply to tmlind-omap/for-next lee-mfd/for-mfd-fixes]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+So the background is, that on some SoCs Rockchip implemented to
+different variants for the i2c controller. One new-style controller
+that they started using in rk3066 and are using even today.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Andreas-Kemnade/dt-bindings-mfd-ti-twl-Document-system-power-controller/20231125-173426
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20231125092938.16535-3-andreas%40kemnade.info
-patch subject: [PATCH 2/6] twl-core: add power off implementation for twl603x
-config: x86_64-randconfig-122-20231126 (https://download.01.org/0day-ci/archive/20231127/202311270558.j38P20an-lkp@intel.com/config)
-compiler: gcc-9 (Debian 9.3.0-22) 9.3.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231127/202311270558.j38P20an-lkp@intel.com/reproduce)
+For these old socs they kept the "old" controller block as a sort
+of fallback if the new thing didn't work out, and the bit above is
+switching between the 
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202311270558.j38P20an-lkp@intel.com/
+Hence that is limited to rk3066, rk3188 and seemingly the rv1126.
+And while the bits controlling the i2c controllers on the original socs
+are order sequentially in the grf register, the rv1126 seems to have
+those bits in non-consequtive places.
 
-sparse warnings: (new ones prefixed by >>)
->> drivers/mfd/twl-core.c:690:6: sparse: sparse: symbol 'twl6030_power_off' was not declared. Should it be static?
 
-vim +/twl6030_power_off +690 drivers/mfd/twl-core.c
+So TL;DR the change itself is likely good, and hopefully there won't
+be any more of those, as all the new socs don't need this anymore.
 
-   689	
- > 690	void twl6030_power_off(void)
-   691	{
-   692	#define APP_DEVOFF      (1<<0)
-   693	#define CON_DEVOFF      (1<<1)
-   694	#define MOD_DEVOFF      (1<<2)
-   695	
-   696		int err;
-   697		u8 val;
-   698	
-   699		err = twl_i2c_read_u8(TWL_MODULE_PM_MASTER, &val,
-   700				      TWL6030_PHOENIX_DEV_ON);
-   701		if (err) {
-   702			pr_err("I2C error %d reading PHOENIX_DEV_ON\n", err);
-   703			return;
-   704		}
-   705	
-   706		val |= APP_DEVOFF | CON_DEVOFF | MOD_DEVOFF;
-   707	
-   708		err = twl_i2c_write_u8(TWL_MODULE_PM_MASTER, val,
-   709				       TWL6030_PHOENIX_DEV_ON);
-   710		if (err)
-   711			pr_err("TWL6030 Unable to power off\n");
-   712	}
-   713	
+I do agree with the request for a comment describing the issue
+in the code, but otherwise
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Acked-by: Heiko Stuebner <heiko@sntech.de>
+
+
 
