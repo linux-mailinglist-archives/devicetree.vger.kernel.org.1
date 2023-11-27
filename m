@@ -1,173 +1,137 @@
-Return-Path: <devicetree+bounces-19105-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19107-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A77377F9B63
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 09:12:52 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F7177F9B71
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 09:14:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6AE52280D65
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 08:12:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C115F1C2094A
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 08:14:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74B87111A4;
-	Mon, 27 Nov 2023 08:12:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E932111AF;
+	Mon, 27 Nov 2023 08:14:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ayynpGb6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HjLj4Es8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86170136
-	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 00:12:43 -0800 (PST)
-Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-2c8790474d5so49488341fa.2
-        for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 00:12:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701072762; x=1701677562; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=oDZtUi7jbhZiZ6gFrIVGS7Pc6EtiVEZLQbo/dnLHNT8=;
-        b=ayynpGb6LQ5ckPlufVRnZAnoDJtD3Z60RZfbyA1Egr7IJGsslxxK8K4ALLfRTi1rbf
-         MJIKCXIR3isUw46qV+ID3RKlIsCSl2LBtVVKlVUXE1Mz5ebRyqQF3PX3sAB6uAimi09L
-         rgf21qqI8IaMUfDXk3px9N9ARw7HlXfNzmfdwRuYTFt1bRugYp0T8Ae84scDEndU1/v4
-         oIInl++hYOuPwnQDwmIGBARs0V7HA/27wqaupGvTBYxxOcRIf1qzdozv3iFp8NoOIXRo
-         enoj0SjxnFfZkdiF+O4U7kOKLHRng9qWdFmOryxfgXapzW7ketCIjzf61op72oZjt02Y
-         VO4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701072762; x=1701677562;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=oDZtUi7jbhZiZ6gFrIVGS7Pc6EtiVEZLQbo/dnLHNT8=;
-        b=phVpKZxPZJHW9AR84x+lXbCc/eYqT2gSlsLW8yuanCgIIGbyolAR5iWPt5037sUoFv
-         6yumTbxMWlpfvWRuigJp+WpmZHIfCPspTySO+L6ucXsxRFSA+T/07njVIsBFwFYGN0PK
-         E9hLp8W2flbjmtaSBpUJj4NQ8WMyXaI/Mglc9Z1PLpiP0gLrS+am6l71S9JNJWLko+Na
-         9jXCHE2ZitBIaxElQqyPrVy9HA1AIFAXBzKn1oXtqZ+Z9EXmDzQZ1rmUOj1ocFm97yTL
-         jsJrXla+kfLEjE6f2QbM1qzRnQZyFzyi3sYRPHb9gVDZOS6xwtMs3T9qP7HWkHeh78U8
-         QooQ==
-X-Gm-Message-State: AOJu0YyR8LOROYX88+I7tAkFQxUsSo1JBb2Gu5sRqxAcgI+ibOl2fY33
-	+0k3UH4v7trE/LQS/j2CbnVWYg==
-X-Google-Smtp-Source: AGHT+IHUzFg3nwVkI3fr+ES71VeklRqkXC9pJMV7pMTwEUnZrWkKltvjw2FWrd5nOiv2l/Ei+7HdxQ==
-X-Received: by 2002:a2e:545d:0:b0:2c9:a191:92e with SMTP id y29-20020a2e545d000000b002c9a191092emr1525037ljd.15.1701072760871;
-        Mon, 27 Nov 2023 00:12:40 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:5a15:ac68:b4a4:85ff? ([2a01:e0a:982:cbb0:5a15:ac68:b4a4:85ff])
-        by smtp.gmail.com with ESMTPSA id fl8-20020a05600c0b8800b004030e8ff964sm13704060wmb.34.2023.11.27.00.12.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Nov 2023 00:12:40 -0800 (PST)
-Message-ID: <eda3c1a8-b241-4016-9878-6e4c88b56b50@linaro.org>
-Date: Mon, 27 Nov 2023 09:12:40 +0100
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 358AB10785;
+	Mon, 27 Nov 2023 08:14:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9366C433C7;
+	Mon, 27 Nov 2023 08:14:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701072881;
+	bh=3qTRy2F6nIzhohgL6U9JKBvv0/WyY8i9YB8Pa1jwqoY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HjLj4Es8Qcz0nTYQn5qvj64G45BJZTp09Oq/G8YT0WFtwaBlK4/9G/6sty4THEUQq
+	 17ABHg2kuSgGEqBkuDdykyrPL23ayOp112E8QAwGZQRu8ATu9Tni6Cmd9KjibhskGe
+	 EBYVsoX6S9VO1XziXK8idk+GeAx+L5ykVZ+qUNJDHLdWuq4LFQLwqgwuBpVk4xJZCS
+	 v83tYF5wpwBflqyROjIihArZG4RSYVa1zDJDbTWZ6rx1fU2LbDwEN0x3l5Kl9l7mv9
+	 SsWErUG8r0uDCzLug+efrQDwo944+KIqHfzgoPvX9aMt45ava8pradQ9oKKCHkSiT9
+	 Dsp9hjAdD3rKA==
+Date: Mon, 27 Nov 2023 08:14:32 +0000
+From: Lee Jones <lee@kernel.org>
+To: Jishnu Prakash <quic_jprakash@quicinc.com>
+Cc: jic23@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, agross@kernel.org, andersson@kernel.org,
+	konrad.dybcio@linaro.org, daniel.lezcano@linaro.org,
+	dmitry.baryshkov@linaro.org, linus.walleij@linaro.org,
+	linux-arm-msm@vger.kernel.org, andriy.shevchenko@linux.intel.com,
+	quic_subbaram@quicinc.com, quic_collinsd@quicinc.com,
+	quic_amelende@quicinc.com, quic_kamalw@quicinc.com,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	marijn.suijten@somainline.org, lars@metafoo.de, luca@z3ntu.xyz,
+	linux-iio@vger.kernel.org, rafael@kernel.org, rui.zhang@intel.com,
+	lukasz.luba@arm.com, cros-qcom-dts-watchers@chromium.org,
+	sboyd@kernel.org, linux-pm@vger.kernel.org,
+	linux-arm-msm-owner@vger.kernel.org, kernel@quicinc.com
+Subject: Re: [PATCH V2 3/3] dt-bindings: iio/adc: Move QCOM ADC bindings to
+ iio/adc folder
+Message-ID: <20231127081432.GC1470173@google.com>
+References: <20231116032644.753370-1-quic_jprakash@quicinc.com>
+ <20231116032644.753370-2-quic_jprakash@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH] arm64: dts: meson: radxa-zero2: add pwm-fan support
-Content-Language: en-US, fr
-To: Christian Hewitt <christianshewitt@gmail.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc: Yuntian Zhang <yt@radxa.com>
-References: <20231028075445.3515664-1-christianshewitt@gmail.com>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <20231028075445.3515664-1-christianshewitt@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20231116032644.753370-2-quic_jprakash@quicinc.com>
 
-On 28/10/2023 09:54, Christian Hewitt wrote:
-> The A311D on Zero2 needs active cooling and the board includes a header to
-> connect a simple fan. Add pwm-fan support with basic thermal properties so
-> the fan runs when connected.
+On Thu, 16 Nov 2023, Jishnu Prakash wrote:
+
+> There are several files containing QCOM ADC macros for channel names
+> right now in the include/dt-bindings/iio folder. Since all of these
+> are specifically for adc, move the files to the
+> include/dt-bindings/iio/adc folder.
 > 
-> Suggested-by: Yuntian Zhang <yt@radxa.com>
-> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> Also update all affected devicetree and driver files to fix compilation
+> errors seen with this move and update documentation files to fix
+> dtbinding check errors for the same.
+> 
+> Signed-off-by: Jishnu Prakash <quic_jprakash@quicinc.com>
 > ---
->   .../dts/amlogic/meson-g12b-radxa-zero2.dts    | 27 +++++++++++++++++++
->   1 file changed, 27 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts
-> index 890f5bfebb03..895b6ea67180 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts
-> @@ -33,6 +33,15 @@ memory@0 {
->   		reg = <0x0 0x0 0x0 0x80000000>;
->   	};
->   
-> +	fan0: pwm-fan {
-> +		compatible = "pwm-fan";
-> +		#cooling-cells = <2>;
-> +		cooling-min-state = <0>;
-> +		cooling-max-state = <4>;
-> +		cooling-levels = <0 64 128 192 255>;
-> +		pwms = <&pwm_AO_ab 0 40000 0>;
-> +	};
-> +
->   	gpio-keys-polled {
->   		compatible = "gpio-keys-polled";
->   		poll-interval = <100>;
-> @@ -286,6 +295,24 @@ &cpu103 {
->   	clock-latency = <50000>;
->   };
->   
-> +&cpu_thermal {
-> +	cooling-maps {
-> +		map0 {
-> +			trip = <&cpu_passive>;
-> +			cooling-device = <&fan0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> +		};
-> +	};
-> +};
-> +
-> +&ddr_thermal {
-> +	cooling-maps {
-> +		map0 {
-> +			trip = <&ddr_passive>;
-> +			cooling-device = <&fan0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> +		};
-> +	};
-> +};
+>  .../devicetree/bindings/iio/adc/qcom,spmi-vadc.yaml       | 4 ++--
+>  Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml | 2 +-
 
-You should instead add a new active trips, and use them for the fan cooling-map.
+Acked-by: Lee Jones <lee@kernel.org>
 
-Look at how it's done on the Khadas VIM3s or Odroid boards.
+>  .../devicetree/bindings/thermal/qcom-spmi-adc-tm-hc.yaml  | 2 +-
+>  .../devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml    | 6 +++---
+>  arch/arm64/boot/dts/qcom/pm2250.dtsi                      | 2 +-
+>  arch/arm64/boot/dts/qcom/pm6125.dtsi                      | 2 +-
+>  arch/arm64/boot/dts/qcom/pm6150.dtsi                      | 2 +-
+>  arch/arm64/boot/dts/qcom/pm6150l.dtsi                     | 2 +-
+>  arch/arm64/boot/dts/qcom/pm660.dtsi                       | 2 +-
+>  arch/arm64/boot/dts/qcom/pm660l.dtsi                      | 2 +-
+>  arch/arm64/boot/dts/qcom/pm7250b.dtsi                     | 2 +-
+>  arch/arm64/boot/dts/qcom/pm8150.dtsi                      | 2 +-
+>  arch/arm64/boot/dts/qcom/pm8150b.dtsi                     | 2 +-
+>  arch/arm64/boot/dts/qcom/pm8150l.dtsi                     | 2 +-
+>  arch/arm64/boot/dts/qcom/pm8916.dtsi                      | 2 +-
+>  arch/arm64/boot/dts/qcom/pm8950.dtsi                      | 2 +-
+>  arch/arm64/boot/dts/qcom/pm8953.dtsi                      | 2 +-
+>  arch/arm64/boot/dts/qcom/pm8994.dtsi                      | 2 +-
+>  arch/arm64/boot/dts/qcom/pm8998.dtsi                      | 2 +-
+>  arch/arm64/boot/dts/qcom/pmi632.dtsi                      | 2 +-
+>  arch/arm64/boot/dts/qcom/pmi8950.dtsi                     | 2 +-
+>  arch/arm64/boot/dts/qcom/pmm8155au_1.dtsi                 | 2 +-
+>  arch/arm64/boot/dts/qcom/pmp8074.dtsi                     | 2 +-
+>  arch/arm64/boot/dts/qcom/pms405.dtsi                      | 2 +-
+>  arch/arm64/boot/dts/qcom/sc7280-idp.dts                   | 2 +-
+>  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi                  | 2 +-
+>  arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi                | 4 ++--
+>  arch/arm64/boot/dts/qcom/sc8180x-pmics.dtsi               | 2 +-
+>  .../arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts | 6 +++---
+>  arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts         | 2 +-
+>  arch/arm64/boot/dts/qcom/sm8450-hdk.dts                   | 8 ++++----
+>  drivers/iio/adc/qcom-spmi-adc5-gen3.c                     | 2 +-
+>  drivers/iio/adc/qcom-spmi-adc5.c                          | 2 +-
+>  drivers/iio/adc/qcom-spmi-vadc.c                          | 2 +-
+>  include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pm8550.h  | 2 +-
+>  include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pm8550b.h | 2 +-
+>  .../dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pm8550vx.h    | 2 +-
+>  include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pmk8550.h | 2 +-
+>  include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pm8350.h | 2 +-
+>  .../dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pm8350b.h    | 2 +-
+>  .../dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pmk8350.h    | 2 +-
+>  .../dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pmr735a.h    | 2 +-
+>  .../dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pmr735b.h    | 0
+>  include/dt-bindings/iio/{ => adc}/qcom,spmi-vadc.h        | 0
+>  44 files changed, 51 insertions(+), 51 deletions(-)
+>  rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pm8350.h (98%)
+>  rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pm8350b.h (99%)
+>  rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pmk8350.h (97%)
+>  rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pmr735a.h (95%)
+>  rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pmr735b.h (100%)
+>  rename include/dt-bindings/iio/{ => adc}/qcom,spmi-vadc.h (100%)
 
-Neil
-
-> +
->   &frddr_a {
->   	status = "okay";
->   };
-
+-- 
+Lee Jones [李琼斯]
 
