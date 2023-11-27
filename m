@@ -1,135 +1,153 @@
-Return-Path: <devicetree+bounces-19192-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19193-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2E0A7F9F92
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 13:31:58 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56EED7F9F98
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 13:33:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D34F91C20CA9
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 12:31:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0FA0A2815AA
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 12:33:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 252CA16419;
-	Mon, 27 Nov 2023 12:31:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A646918042;
+	Mon, 27 Nov 2023 12:33:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="MSHagY5/"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="ZNHpEhlJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D21E8A8;
-	Mon, 27 Nov 2023 04:31:52 -0800 (PST)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3ARBrb9u022059;
-	Mon, 27 Nov 2023 12:31:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id; s=qcppdkim1;
- bh=kuGSrclxLs/RfD+R4Gphj3d9E+Ib0FPGIH/RFehqR9U=;
- b=MSHagY5/yS8rx4kx4SGMopN+dkyouiOprwZqfKVlh0AqLOkDD7oH6ZXmkaQ7Emwrzxgc
- ZD/dfYWTTYBAo9F55bxBH7hBP+Zs1R5Nor4kdGvzEH8PiQkB6RV71cwbGlg65eRKvEe3
- 1u1YYYbxsNHxWpEm69M/dmq0q6Oox8d7mYRTptutO0gWBAFsxQ9B8xuFckEp7HIU3UH4
- t8mGD0vPKp51zlquaW5ADr2cZKrXivDffmXkmHE2P8Vv+SDyN/r63eZJfwGEwJZaOHIm
- p8+dM9pmv9y5sC5ZESLqqIEdoz3kLgUGEe+IngBFniTKoISj9gPeUlaI+q1DCNEEpU0x rg== 
-Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3umt63043y-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 27 Nov 2023 12:31:48 +0000
-Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 3ARCQnCu028171;
-	Mon, 27 Nov 2023 12:31:45 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 3uka0krc58-1;
-	Mon, 27 Nov 2023 12:31:45 +0000
-Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 3ARCVjA7000338;
-	Mon, 27 Nov 2023 12:31:45 GMT
-Received: from hu-maiyas-hyd.qualcomm.com (hu-vdadhani-hyd.qualcomm.com [10.213.106.28])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 3ARCVj05000334;
-	Mon, 27 Nov 2023 12:31:45 +0000
-Received: by hu-maiyas-hyd.qualcomm.com (Postfix, from userid 4047106)
-	id BF9D25001CE; Mon, 27 Nov 2023 18:01:44 +0530 (+0530)
-From: Viken Dadhaniya <quic_vdadhani@quicinc.com>
-To: andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linux-arm-sm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc: quic_vnivarth@quicinc.com, quic_msavaliy@quicinc.com,
-        quic_vtanuku@quicinc.com, quic_cchiluve@quicinc.com,
-        quic_dkammath@quicinc.com, Viken Dadhaniya <quic_vdadhani@quicinc.com>
-Subject: [V2] arm64: dts: qcom: sc7280: add slimbus DT node
-Date: Mon, 27 Nov 2023 18:01:33 +0530
-Message-Id: <20231127123133.23165-1-quic_vdadhani@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: mT52Myn3py5neD3AMiDixvPdthD_QXML
-X-Proofpoint-ORIG-GUID: mT52Myn3py5neD3AMiDixvPdthD_QXML
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-27_09,2023-11-27_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
- mlxlogscore=405 bulkscore=0 suspectscore=0 spamscore=0 lowpriorityscore=0
- malwarescore=0 phishscore=0 clxscore=1015 impostorscore=0 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2311060000
- definitions=main-2311270085
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA2D4135;
+	Mon, 27 Nov 2023 04:33:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+	s=s31663417; t=1701088400; x=1701693200; i=wahrenst@gmx.net;
+	bh=nxlyVf/kBLvAr9KUBeBeC3yNs6JtXqImub1VWLvYG8o=;
+	h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:
+	 In-Reply-To;
+	b=ZNHpEhlJAW94QYR/sVO82BhbvcZNdewE6Ed+Qmmo5cg74JyDm9SnHeSPyijBoXEE
+	 CBpLSqNmtROmN99zvfDvxUiCIcuSw++tf0eYEA5Ip+tefx2tdYUISj/CfQR65ACo2
+	 OcBX39UIoMIsNKsKOU3FyNPfYLU/I2HvGgJ5yizKAcAmqPMSPq7jpeEUMe4S77K94
+	 OS8r1oc91R/UUIln7GoyIuU7/l/q386Ys5wcJ1HJVt4NGK99OqaMtFg71SqO0/NOB
+	 7ugaGoDRbYUSSew8UJgzFlkDXFSLEmYlm1PugoMTRJFymawva6AGBUjrDoklmlhaJ
+	 gOyflmI15ItNA94u2A==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.129] ([37.4.248.43]) by mail.gmx.net (mrgmx105
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MG9kC-1r4KcO1zga-00GdMp; Mon, 27
+ Nov 2023 13:33:20 +0100
+Message-ID: <624b79b1-f2dc-4f2e-a225-d1623d905b19@gmx.net>
+Date: Mon, 27 Nov 2023 13:33:18 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/3] ARM: dts: bcm2711-rpi-cm4-io: Enable xHCI host
+Content-Language: en-US
+To: Phil Elwell <phil@raspberrypi.com>
+Cc: Justin Chen <justin.chen@broadcom.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Mathias Nyman <mathias.nyman@intel.com>,
+ bcm-kernel-feedback-list@broadcom.com, Cyril Brulebois <kibi@debian.org>,
+ linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20231126025612.12522-1-wahrenst@gmx.net>
+ <53e1f6e6-a28e-45af-991e-75b283a21b34@broadcom.com>
+ <46320840-09ab-4c86-90c9-bee7b75f248a@gmx.net>
+ <CAMEGJJ3SXHSnasqoMJnshf5Wu92NVi8+NoMdxmMsJH7WH2WjWg@mail.gmail.com>
+ <a78f9ba5-ad34-4af2-9817-eeb7dd9d02ef@gmx.net>
+ <CAMEGJJ3PpEgD_davgTn9e+re4hosunU+uj_i5sdKMFNLFR5hBA@mail.gmail.com>
+From: Stefan Wahren <wahrenst@gmx.net>
+In-Reply-To: <CAMEGJJ3PpEgD_davgTn9e+re4hosunU+uj_i5sdKMFNLFR5hBA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:tQO5FM+1X6vOvoNaL1rMeBrgfEEmIOTmByWDEVozrxnx4+A9LVV
+ WNJJMXGBE4xZqEr5k3hOCkXc+GC5EWltyOtQMI5sbnoxkJwexGj4nfsIg4yjP5Wx1P2ur5x
+ tb9NnqrSNBkJQ+LbwYSEUnoC16wZ9PY9D4vY/zgKZg9RRkFqKjfqvBgNllP3+pbk61Jq8v5
+ TSC6km3BaxjkVkIRIkkCg==
+UI-OutboundReport: notjunk:1;M01:P0:7pgJlwopdF4=;PJ9V0QnSTifn5hmUIi7nBBsNC0R
+ adL1nkFKsi+H39m6mg7U+XtVuwzCh2sgB+qXrFWX/izMBAtTZgwtsPg4FmWd8DTXHIFTMxQPn
+ TEQTHMMGUu8gz5lNokhZ89GhBRrmeV6Uswk7e8SPA3MfqrRwHZP8EWY1jo7pCKB+77oTMmMbX
+ Gb1YG9uVGEjTaLGvwrLuNoIElG5f6qbpfFiwOfwyZS4KiXs41oGgqQLtAnlz9PYippsO0Nz/D
+ h8ngijKjKHywjP1b1Ud+Pt/NtjZ+mX9F4SsnsZY8K2/1ZJe8O2aaml+bluuadUHnApyqQmwey
+ IMZZn8ADv6XA2HRPlYETWRpeGZjapmT6g2FR5+UZNu4lhyoTiINvvvq8P0I/Os3bNYCeH2D7X
+ 5RvgsyEsTrDDlJuEUZnAMeXFggSmaSYWCUI3DJEP3seGcl7OEtez1RofraBAlG3kr9m3sHyN4
+ OPSmb9E0D//T9XFYwdj03pjDwhuc1ATWM8Vz4M6moAz3sWgNjdhxl7IGlM7BNNcBe7iB49M+D
+ KvuAUsDpkzaVoi10CpVOYwWy7hV60LLUjOwjuIE9Pq7DQ6p0wFEmiqTNMBKLcG6J636GJ7qvj
+ 0Hkfs5L7soeMYQO1tzdALTPV/y5UpIPvP8VRPT0Xtdw90rfNK0a9rKhL7wPWI6KEl2P7/Ny/Q
+ 1MV1iG4oeoIOj7dcKAQP0dGNogjzP3aX75eICUK5FkvUuMi7O2ELOqyL2fSrbsryRkhT6Y2+p
+ mi2qYV/FKP2q6GqzJKtcaJiUYMbHr/l6SdP3O1h4TNMJcHJb+ClBAtISlvt2eA+Cj3mdeBriK
+ vIRXeQUe4pljg4sVWekpguHypkkZw8v3/6/Uq3/sbKQ8Fhz8KHdgvl8O1hu1pXdEwg8Sl526E
+ WE3L/OAjhIiRiN9LW6zGQxiZqzxwjpI7oIJXuqCZgYx0Zk0Xn/24C/FEUFGy4akkPctyilgcO
+ 6UAORFkc3Hne4jaVXLNasKkkb9E=
 
-Populate the DTSI node for slimbus instance to be
-used by BT FM client.
+Hi Phil,
 
-Signed-off-by: Viken Dadhaniya <quic_vdadhani@quicinc.com>
----
-v1 -> v2:
-- change 0x0 -> 0 to reg property.
-- reorder the DT property.
-- change node tag slim_msm to slim.
----
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 25 +++++++++++++++++++++++++
- 1 file changed, 25 insertions(+)
+>>>> Hi Justin,
+>>>>
+>>>> [add Phil]
+>>>>
+>>>> Am 27.11.23 um 07:02 schrieb Justin Chen:
+>>>>> On 11/25/23 6:56 PM, Stefan Wahren wrote:
+>>>>>> In contrast to the Raspberry Pi 4, the Compute Module 4 or the IO b=
+oard
+>>>>>> does not have a VL805 USB 3.0 host controller, which is connected v=
+ia
+>>>>>> PCIe. Instead, the BCM2711 on the Compute Module provides the built=
+-in
+>>>>>> xHCI.
+>>>>>>
+>>>>> Does this work? I maintain this built-in xHCI controller internally.=
+ I
+>>>>> wasn't aware the Compute Module uses this block.
+>>>> i successful tested this with a CM4 (arm 32 bit,
+>>>> multi_v7_lpae_defconfig) with eMMC. Before this series the USB device=
+s
+>>>> (mouse, keyboard) connected to the host interface didn't work. After
+>>>> comparing vendor DTS with mainline i noticed the missing xHCI block [=
+1].
+>>>> Unfortunately i wasn't able to get further information from the publi=
+c
+>>>> datasheets. I don't know if the VideoCore does some magic tricks on t=
+he
+>>>> xHCI or i missed some downstream xHCI changes.
+>>>>
+>>>>> This block is held in reset and needs a bit toggled to get things
+>>>>> going. Florian, just to confirm, this is our "brcm,xhci-brcm-v2" blo=
+ck
+>>>>> correct?
+>>>>>
+>>>>> Justin
+>>>> [1]  -
+>>>> https://github.com/raspberrypi/linux/blob/rpi-6.1.y/arch/arm/boot/dts=
+/bcm2711-rpi-ds.dtsi#L119
+>>> What's the question here? Does the XHCI block present in the
+>>> raspberrypi/linux dtsi file really exist? Yes it does.
+>> since i don't have any documentation about the xHCI block, i assumed th=
+e
+>> compatible generic-xhci is correct. But Justin seems to suggest that th=
+e
+>> xHCI block needs some special treatment and we need a specific compatib=
+le.
+>>
+>> Did i missed some xHCI driver changes?
+>> Does the VC firmware something to the xHCI especially on CM4?
+> The firmware switches the on-board USB pins from DWC-OTG to XHCI if
+> otg_mode=3D1 is set in config.txt, or if booting over USB MSD.
+is this pinctrl/pinmux available from ARM via 0x7e200000 or a different
+IO address?
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 04bf85b0399a..9fec8743e19a 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -2528,6 +2528,31 @@
- 			status = "disabled";
- 		};
- 
-+		slimbam: dma-controller@3a84000 {
-+			compatible = "qcom,bam-v1.7.0";
-+			reg = <0 0x03a84000 0 0x20000>;
-+			interrupts = <GIC_SPI 164 IRQ_TYPE_LEVEL_HIGH>;
-+			#dma-cells = <1>;
-+			qcom,controlled-remotely;
-+			num-channels  = <31>;
-+			qcom,ee = <1>;
-+			qcom,num-ees = <2>;
-+			iommus = <&apps_smmu 0x1826 0x0>;
-+			status = "disabled";
-+		};
-+
-+		slim: slim-ngd@3ac0000 {
-+			compatible = "qcom,slim-ngd-v1.5.0";
-+			reg = <0 0x03ac0000 0 0x2c000>;
-+			interrupts = <GIC_SPI 163 IRQ_TYPE_LEVEL_HIGH>;
-+			dmas = <&slimbam 3>, <&slimbam 4>;
-+			dma-names = "rx", "tx";
-+			iommus = <&apps_smmu 0x1826 0x0>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
- 		lpass_hm: clock-controller@3c00000 {
- 			compatible = "qcom,sc7280-lpasshm";
- 			reg = <0 0x03c00000 0 0x28>;
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
-of Code Aurora Forum, hosted by The Linux Foundation
+Thanks
+> This also
+> triggers the enabling of the node with the label or alias "xhci".
+>
+> CM4 is not handled any differently to the other 2711-based devices in
+> this regard.
+>
+> Phil
 
 
