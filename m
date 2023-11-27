@@ -1,156 +1,105 @@
-Return-Path: <devicetree+bounces-19260-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19261-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03B6B7FA442
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 16:19:35 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D7667FA45A
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 16:25:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BAD072816A0
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 15:19:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6F5491C20A8E
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 15:25:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 068A231A76;
-	Mon, 27 Nov 2023 15:19:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="B6PrzDkN"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F9C831A90;
+	Mon, 27 Nov 2023 15:25:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com [IPv6:2607:f8b0:4864:20::b36])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1DCCAA;
-	Mon, 27 Nov 2023 07:19:27 -0800 (PST)
-Received: by mail-yb1-xb36.google.com with SMTP id 3f1490d57ef6-db4050e68f3so4007067276.0;
-        Mon, 27 Nov 2023 07:19:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701098367; x=1701703167; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=VIKMvlIRYtS1WvbUoM+vWJ1z9I2GYsx2bfxFTfmC+TQ=;
-        b=B6PrzDkNSGflIGyKxT6lJSOQZtl1VH+4eiypVM5zl6cxjK23Wu2q3XJoL02SsBwr8T
-         tG5rUCL+N435lbKfNLuwQzM9kkp22+OqmqSoS/RQLuESSO9QDwyHCsdyYja060omGwzY
-         IV0DGMss6fZt2LCYzx+7kzq6Pnmw5UGgUgUoyWDl5YCO30EVZOEp69vFTHGKzLBAqFpd
-         a2cWE9Az84mPzYdX0BZAGPpVFenUGhI4pyE6TFE5AHHb9RktbvLxCWPrslOos9qox1oq
-         EY5v4iCAuV8blJQC2bx+/rYlLI3G9MKDhP48+TtHa/UyX/n2e54ArFdB2RQQDiTh2eJa
-         c2zQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701098367; x=1701703167;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=VIKMvlIRYtS1WvbUoM+vWJ1z9I2GYsx2bfxFTfmC+TQ=;
-        b=PKNIZUTCGlVrHyGL9wh0SpeZx9laWJA/LwnOcNNTbiOKAW+BRLnihbKVgcx+892VIx
-         yvOSQE0FUZ6l3c56lWhOdnOQwL0xxHyfn1JLQlbWHq1hF7TBi9doiMXogMTruhxyD8GQ
-         AklyggB8qKLHe7aGGXcgDr0apdTkO5ZfAkYZwlrtBwqzrKeGUdgJIkdmWsYn/PhdrFsC
-         fEdliWz/GivdlqrQyKU4v+8Ctwv4F0qLPP9I+VflecCd0i3/q5SE3p6gefp1rMMfhHI1
-         p77jODzFwYV/h+tYieRSqS6RnOfDBW9bG09X5Zsp2wgDNXKt0knZK4B4E3M9qWUJpRKC
-         y2BQ==
-X-Gm-Message-State: AOJu0YyjwNgrsfuhjhNul3djBBh96C/XCqQ6ohod5LEm26UZ6XyCkE1n
-	BUJpvoRF+5jjxxjVBNfuOIF5cBmRmaVeA8TszEI=
-X-Google-Smtp-Source: AGHT+IE/rFqsV0KKN1gYLmgiErQUf25fY8S0FvfOygtZwLf5Ah7JOJcfJbDXf3oSBTUYCLBu/J8CZ1DTNOo/phyIfOI=
-X-Received: by 2002:a25:4b02:0:b0:db0:23d8:780 with SMTP id
- y2-20020a254b02000000b00db023d80780mr9466434yba.60.1701098366826; Mon, 27 Nov
- 2023 07:19:26 -0800 (PST)
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94867AA
+	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 07:25:18 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <auto@pengutronix.de>)
+	id 1r7dTr-0001YD-Bb; Mon, 27 Nov 2023 16:25:03 +0100
+Received: from [2a0a:edc0:0:1101:1d::ac] (helo=dude04.red.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <auto@pengutronix.de>)
+	id 1r7dTq-00ByRy-2v; Mon, 27 Nov 2023 16:25:02 +0100
+Received: from rhi by dude04.red.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <auto@pengutronix.de>)
+	id 1r7dTq-00CvQv-05;
+	Mon, 27 Nov 2023 16:25:02 +0100
+From: Roland Hieber <rhi@pengutronix.de>
+Date: Mon, 27 Nov 2023 16:24:44 +0100
+Subject: [PATCH] dt-bindings: serial: add assigned-clock-parents and
+ assigned-clocks properties
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231121151733.2015384-1-tmaimon77@gmail.com> <20231121151733.2015384-3-tmaimon77@gmail.com>
- <6aeb28f5-04c2-4723-9da2-d168025c307c@lunn.ch> <CAP6Zq1j0kyrg+uxkXH-HYqHz0Z4NwWRUGzprius=BPC9+WfKFQ@mail.gmail.com>
- <9ad42fef-b210-496a-aafc-eb2a7416c4df@lunn.ch> <CAP6Zq1jw9uLP_FQGR8=p3Y2NTP6XcNtzkJQ0dm3+xVNE1SpsVg@mail.gmail.com>
-In-Reply-To: <CAP6Zq1jw9uLP_FQGR8=p3Y2NTP6XcNtzkJQ0dm3+xVNE1SpsVg@mail.gmail.com>
-From: Tomer Maimon <tmaimon77@gmail.com>
-Date: Mon, 27 Nov 2023 17:19:15 +0200
-Message-ID: <CAP6Zq1ijfMSPjk1vPwDM2B+r_vAH3DShhSu_jr8xJyUkTQY89w@mail.gmail.com>
-Subject: Re: [PATCH v1 2/2] net: stmmac: Add NPCM support
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: alexandre.torgue@foss.st.com, tali.perry1@gmail.com, edumazet@google.com, 
-	krzysztof.kozlowski+dt@linaro.org, linux-stm32@st-md-mailman.stormreply.com, 
-	benjaminfair@google.com, openbmc@lists.ozlabs.org, joabreu@synopsys.com, 
-	joel@jms.id.au, devicetree@vger.kernel.org, j.neuschaefer@gmx.net, 
-	robh+dt@kernel.org, peppe.cavallaro@st.com, 
-	linux-arm-kernel@lists.infradead.org, avifishman70@gmail.com, 
-	venture@google.com, linux-kernel@vger.kernel.org, mcoquelin.stm32@gmail.com, 
-	netdev@vger.kernel.org, davem@davemloft.net
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20231127-b4-dt-bindings-serial-v1-1-422a198fd91a@pengutronix.de>
+X-B4-Tracking: v=1; b=H4sIALu0ZGUC/x3N0QrCMAyF4VcZuTawtkrFVxEv0jVugRKlcSKMv
+ bvRy//Ax9nAuAsbXIYNOr/F5KEe4TDAtJDOjFK9IY4xhRAzliPWFxbRKjob/jg1POc0hpo5xRO
+ B20LGWDrptLjWtTUfn53v8vmfXW/7/gWZ3xm3fAAAAA==
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>
+Cc: linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ Philipp Zabel <p.zabel@pengutronix.de>, Roland Hieber <rhi@pengutronix.de>
+X-Mailer: b4 0.12.0
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: auto@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Hi Andrew,
+From: Philipp Zabel <p.zabel@pengutronix.de>
 
-I took a look at the xpcs driver and the stmmac driver and it doesn't
-cover NPCM use.
+Add the "assigned-clock-parents" and "assigned-clocks" properties used
+by board device trees to set the UART root clock source.
 
-in the NPCM case the stmmac ID=0x37 therefore the driver is linked to DWMAC1000
-https://elixir.bootlin.com/linux/v6.7-rc2/source/drivers/net/ethernet/stmicro/stmmac/hwif.c#L139
+Signed-off-by: Philipp Zabel <p.zabel@pengutronix.de>
+Signed-off-by: Roland Hieber <rhi@pengutronix.de>
+---
+ Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-to enable the xpcs, the stmmac should support xgmac or gmac4 and in
-the NPCM is support only gmac.
-https://elixir.bootlin.com/linux/v6.7-rc2/source/drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c#L555
-https://elixir.bootlin.com/linux/v6.7-rc2/source/drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c#L573
+diff --git a/Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml b/Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml
+index 83035553044a..41bf8264488d 100644
+--- a/Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml
++++ b/Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml
+@@ -103,6 +103,12 @@ properties:
+       are sensible for most use cases. If you need low latency processing on
+       slow connections this needs to be configured appropriately.
+ 
++  assigned-clock-parents:
++    maxItems: 1
++
++  assigned-clocks:
++    maxItems: 1
++
+ required:
+   - compatible
+   - reg
 
-and the most important thing is that the XPCS is handled through an
-indirect register access and not through MDIO. the MDIO is connected
-to the external PHY and not to the XPCS.
+---
+base-commit: 2cc14f52aeb78ce3f29677c2de1f06c0e91471ab
+change-id: 20231127-b4-dt-bindings-serial-87301d7e325a
 
-In that case, I think the best way to handle the XPCS is through the
-NPCM glue layer, what do you think?
+Best regards,
+-- 
+Roland Hieber, Pengutronix e.K.          | r.hieber@pengutronix.de     |
+Steuerwalder Str. 21                     | https://www.pengutronix.de/ |
+31137 Hildesheim, Germany                | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686         | Fax:   +49-5121-206917-5555 |
 
-Thanks,
-
-Tomer
-
-On Thu, 23 Nov 2023 at 15:50, Tomer Maimon <tmaimon77@gmail.com> wrote:
->
-> Hi Andrew,
->
-> On Wed, 22 Nov 2023 at 20:45, Andrew Lunn <andrew@lunn.ch> wrote:
-> >
-> > On Wed, Nov 22, 2023 at 07:50:57PM +0200, Tomer Maimon wrote:
-> > > Hi Andrew,
-> > >
-> > > Thanks for your comments
-> > >
-> > > On Tue, 21 Nov 2023 at 18:42, Andrew Lunn <andrew@lunn.ch> wrote:
-> > > >
-> > > > > +void npcm_dwmac_pcs_init(struct npcm_dwmac *dwmac, struct device *dev,
-> > > > > +                      struct plat_stmmacenet_data *plat_dat)
-> > > > > +{
-> > > > > +     u16 val;
-> > > > > +
-> > > > > +     iowrite16((u16)(SR_MII_CTRL >> 9), dwmac->reg + IND_AC_BA_REG);
-> > > > > +     val = ioread16(dwmac->reg + PCS_SR_MII_CTRL_REG);
-> > > > > +     val |= PCS_RST;
-> > > > > +     iowrite16(val, dwmac->reg + PCS_SR_MII_CTRL_REG);
-> > > > > +
-> > > > > +     while (val & PCS_RST)
-> > > > > +             val = ioread16(dwmac->reg + PCS_SR_MII_CTRL_REG);
-> > > > > +
-> > > > > +     val &= ~(PCS_AN_ENABLE);
-> > > > > +     iowrite16(val, dwmac->reg + PCS_SR_MII_CTRL_REG);
-> > > > > +}
-> > > >
-> > > > Is this a licensed PCS implementation? Or home grown? If its been
-> > > > licensed from somebody, it maybe should live in driver/net/pcs, so
-> > > > others can reuse it when they license the same core.
-> >
-> > > we are using DWC PCS, I don't see support for DWC PCS and I am not
-> > > sure it is supposed to be supported at /drivers/net/pcs
-> >
-> > I've not followed the naming used by Synopsys. Is DWC PCS the same as
-> > XPCS? Does Synopsys have multiple PCS implementations?
-> >
-> > > I do see a patch set to support DWC PCS but I don't think it answers my needs
-> > > https://patchwork.ozlabs.org/project/netdev/patch/1559674736-2190-3-git-send-email-weifeng.voon@intel.com/
-> >
-> > I _think_ this patch eventually got turned into
-> > driver/net/pcs/pcs-xpcs.c
-> >
-> > What exactly does it not do for you?
-> Thanks for pointing me to Synopsys (DWC) PCS in pcs-xpcs.c I need to
-> check if the driver follows all our SGMII needs
-> >
-> >      Andrew
->
-> Best regards,
->
-> Tomer
 
