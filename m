@@ -1,217 +1,333 @@
-Return-Path: <devicetree+bounces-19285-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19287-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E2A57FA511
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 16:43:52 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F6747FA528
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 16:49:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 19448B211C1
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 15:43:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1A46BB211A1
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 15:49:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 944173456A;
-	Mon, 27 Nov 2023 15:43:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C23F34575;
+	Mon, 27 Nov 2023 15:49:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jOmAkxrC"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hYE0RvR9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A88061B6
-	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 07:43:20 -0800 (PST)
-Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-50baa2a278bso2813307e87.0
-        for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 07:43:20 -0800 (PST)
+Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 998A592;
+	Mon, 27 Nov 2023 07:49:20 -0800 (PST)
+Received: by mail-pf1-x42c.google.com with SMTP id d2e1a72fcca58-6cb55001124so3702454b3a.0;
+        Mon, 27 Nov 2023 07:49:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701099799; x=1701704599; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3aP8K9Goq0Ajdk3ruXbrYq/NC+8PUborhUnZaj6PIZ0=;
-        b=jOmAkxrCo3wCfew4GYwOGy/jb8LihQSVMqX/uPau083+FTuqdJ5PFq/Kr2QtkmPVt0
-         o0mDjS+QD4P2/oOLaRvVp0ufbpxunMbtdpIJBLZJVri6DkQNpVAb9eGxG3hZvBO+MlW1
-         BUD8dKz/TxJGUE4DbEZjCt9101dYDXpHlkdDR/YFu82rndP1HDICKYWDGR7nn/qfp6BX
-         QwU5jiRylvMHvHfgq/QY9+oYTo8vK7nZ+M3iSfKWhmIQ3ymUN1zhOewtHyJDhG4mXrq2
-         expIwSGQiGmlLPcW8wJE+Qa2q74JiuUBct9Ek9mMPnIQJTihCyWjoGZqeO95T/lfWrp0
-         dTGA==
+        d=gmail.com; s=20230601; t=1701100160; x=1701704960; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=SVraQ5x1AlroeiisGiemyiPSQyAwtn5m3q3wzSpg2DA=;
+        b=hYE0RvR9M1O82YDxQUrfGMqLaAl44FlCTejkMOhcQ5xZCYNKL81tcqQn31BQN3HjrZ
+         6tTqdbnfePQ5ufVeo8nRAKD8Hm1Zf2TDAE4mVjUxcFIEaGXE4WDMQqMhASL3kllz7Vdj
+         +uIuL7RK6FT4U7F3fiyIQ4f8zgc2rfOZ6VgnOBcR1zdjLFBbwpCnfY5GE22cfgMsHobs
+         /n8bUiEsM3jQAe2NTg7R2TcSgqymkvLf0q8ZyqM1UNYSbzZ7qdIeD+oCeuO4QjS1rGkK
+         dCTy+i9Y7ut2+yv3u1BDXDiKjkT3SoUf9GZwibvAAYCcXRywsMS2gYtpHyOvqtrSRsei
+         HbCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701099799; x=1701704599;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3aP8K9Goq0Ajdk3ruXbrYq/NC+8PUborhUnZaj6PIZ0=;
-        b=CTrtoxwwzPNymu68CONNRjr2xwvA9yNXXSyfTwD85fTiTtk7aqciYijHYLm7eO3hfN
-         VDLDy1TI9O3PRoo9s1yQIZa+LGUoNvo6BmOfkyGXrmZIaX9IPSYyErONz0nzfBezdlrB
-         v4+aZJP6kT2WQMOL12q/PDSJ819v3H3A5EBVbz5+MDwcYPiLJMzyPPw6TK8RKpme3tT1
-         0v7OzGujS/rwY/OEAI23liB/Ykva2TOKvT00LlOXdFeGRJnKk02rCwDGGYpIz1jck/ec
-         b5T1LiIZN/yxI1sG1ONYMBDcel2wi0Z2PEkm9R/P0wRdi2Pp8OOcTR84Zbc92Igx66PS
-         1YcA==
-X-Gm-Message-State: AOJu0Yyh8yDD5rk2rXRy0BZHrttKkzfEBn0dWCRCjWm7Kn73vSM6EdXK
-	nwzVbiOnyK5Rr10oBeUJKjqnag==
-X-Google-Smtp-Source: AGHT+IEl2h/fOsgwU09exGBpssRKZnlkjGR2zVc5gS4VsLGIP5yLiJ2denrQ+5UDOLs7S1XfAarBhA==
-X-Received: by 2002:a05:6512:1105:b0:50b:a69d:b8bb with SMTP id l5-20020a056512110500b0050ba69db8bbmr6124861lfg.49.1701099798589;
-        Mon, 27 Nov 2023 07:43:18 -0800 (PST)
-Received: from [127.0.1.1] ([85.235.12.238])
-        by smtp.gmail.com with ESMTPSA id v28-20020ac2559c000000b0050ab86037d8sm1505049lfg.205.2023.11.27.07.43.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Nov 2023 07:43:18 -0800 (PST)
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Mon, 27 Nov 2023 16:43:08 +0100
-Subject: [PATCH net-next v9 5/5] dt-bindings: marvell: Add Marvell
- MV88E6060 DSA schema
+        d=1e100.net; s=20230601; t=1701100160; x=1701704960;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=SVraQ5x1AlroeiisGiemyiPSQyAwtn5m3q3wzSpg2DA=;
+        b=LGTnAlSARJacmpTKo/f86PEHAgBJx8NSOKcA5ei42AtNSMPI/01MgDxjFExGQMShRY
+         jJToZeRt3mXvZLfiC80sDbtZ/cGHWkF39WOpJ8tYL6HEkpjHLGlYhac46ZzUbcbGmRs2
+         qIo5UdQktFTYJqgfnMxpu6F+2seXHmSfPrfuB1RZFxTdmtm2JJcsmcyzhbx2q+Bsk9v6
+         VJWlqYeH8LfDU6z1TmQdHT6827Rrlu3hM7M+26PSM6Qqhq2ciyT4OxROuB6BMXXkfpit
+         uRxWkLNXGGqMgPkU2UbDfDcrj74aUmAX8hF3qGXjXaVUajOaj+P+gWcfLebeiWq8cUJO
+         l6kQ==
+X-Gm-Message-State: AOJu0YyTrGsC5l7hOEUsdHEs21RVonCalpMjR5inKuxlJgQeP6QUgIxL
+	CFmxZiqDgY8KOKQgM+eaVig=
+X-Google-Smtp-Source: AGHT+IHguMuvdY34htuBcWtvgmLZwEU9YNFuDK7y1xqDQnfw31S+qDKdA5lEKhUJyHKcjkTZiIyc6A==
+X-Received: by 2002:a05:6a20:5482:b0:18c:21aa:6a3f with SMTP id i2-20020a056a20548200b0018c21aa6a3fmr13984345pzk.8.1701100159790;
+        Mon, 27 Nov 2023 07:49:19 -0800 (PST)
+Received: from ?IPV6:2401:4900:2353:8963:b940:1ac0:2fbc:6b6? ([2401:4900:2353:8963:b940:1ac0:2fbc:6b6])
+        by smtp.gmail.com with ESMTPSA id s15-20020a63524f000000b0059cc2f1b7basm7745403pgl.11.2023.11.27.07.49.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Nov 2023 07:49:19 -0800 (PST)
+Message-ID: <f6ced6e9-65d2-4bbc-9792-473465bad547@gmail.com>
+Date: Mon, 27 Nov 2023 21:17:25 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] iio: light: driver for Lite-On ltr390
+Content-Language: en-US
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ linux-kernel-mentees@lists.linuxfoundation.org,
+ Shuah Khan <skhan@linuxfoundation.org>
+References: <20231117074554.700970-1-anshulusr@gmail.com>
+ <20231117074554.700970-2-anshulusr@gmail.com>
+ <20231125140641.08284929@jic23-huawei>
+From: Anshul Dalal <anshulusr@gmail.com>
+In-Reply-To: <20231125140641.08284929@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20231127-marvell-88e6152-wan-led-v9-5-272934e04681@linaro.org>
-References: <20231127-marvell-88e6152-wan-led-v9-0-272934e04681@linaro.org>
-In-Reply-To: <20231127-marvell-88e6152-wan-led-v9-0-272934e04681@linaro.org>
-To: Andrew Lunn <andrew@lunn.ch>, 
- Gregory Clement <gregory.clement@bootlin.com>, 
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Russell King <linux@armlinux.org.uk>, 
- Florian Fainelli <f.fainelli@gmail.com>, 
- Vladimir Oltean <olteanv@gmail.com>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- =?utf-8?q?Marek_Beh=C3=BAn?= <kabel@kernel.org>
-Cc: Christian Marangi <ansuelsmth@gmail.com>, 
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
- Linus Walleij <linus.walleij@linaro.org>, 
- Vladimir Oltean <vladimir.oltean@nxp.com>, Rob Herring <robh@kernel.org>, 
- Florian Fainelli <florian.fainelli@broadcom.com>
-X-Mailer: b4 0.12.4
 
-The Marvell MV88E6060 is one of the oldest DSA switches from
-Marvell, and it has DT bindings used in the wild. Let's define
-them properly.
+On 11/25/23 19:36, Jonathan Cameron wrote:
+> On Fri, 17 Nov 2023 13:15:53 +0530
+> Anshul Dalal <anshulusr@gmail.com> wrote:
+> 
+>> Implements driver for the Ambient/UV Light sensor LTR390.
+>> The driver exposes two ways of getting sensor readings:
+>>   1. Raw UV Counts directly from the sensor
+>>   2. The computed UV Index value with a percision of 2 decimal places
+>>
+>> NOTE: Ambient light sensing has not been implemented yet.
+>>
+>> Datasheet:
+>>   https://optoelectronics.liteon.com/upload/download/DS86-2015-0004/LTR-390UV_Final_%20DS_V1%201.pdf
+> Make this a formal Datasheet tag, just before the Signed-off-by below
 
-It is different enough from the rest of the MV88E6xxx switches
-that it deserves its own binding.
+Thanks for pointing it out, I was unaware of the standard formal tags.
+Is there any resource that lists out the formal tags that I can refer to.
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-Reviewed-by: Vladimir Oltean <vladimir.oltean@nxp.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
- .../bindings/net/dsa/marvell,mv88e6060.yaml        | 88 ++++++++++++++++++++++
- MAINTAINERS                                        |  1 +
- 2 files changed, 89 insertions(+)
+>>
+>> Driver tested on RPi Zero 2W
+>>
+>> Signed-off-by: Anshul Dalal <anshulusr@gmail.com>
+> 
+> Hi Anshul,
+> 
+> Some comments on this one inline.  Some of these overlap with comments on the
+> other drivers you've submitted. Normally I'd moan about sending too many drivers
+> at a time, but fair enough given you sent them out over a couple of weeks and just
+> happened to hit time when I was travelling.
+> 
+> My main question in here is why have the two channels - conversion looks linear
+> so you should be fine exposing IIO_CHAN_INFO_RAW + IIO_CHAN_INFO_SCALE on a
+> single channel and leaving userspace to do the maths.
+> 
+> Jonathan
 
-diff --git a/Documentation/devicetree/bindings/net/dsa/marvell,mv88e6060.yaml b/Documentation/devicetree/bindings/net/dsa/marvell,mv88e6060.yaml
-new file mode 100644
-index 000000000000..4f1adf00431a
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/dsa/marvell,mv88e6060.yaml
-@@ -0,0 +1,88 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/dsa/marvell,mv88e6060.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Marvell MV88E6060 DSA switch
-+
-+maintainers:
-+  - Andrew Lunn <andrew@lunn.ch>
-+
-+description:
-+  The Marvell MV88E6060 switch has been produced and sold by Marvell
-+  since at least 2008. The switch has one pin ADDR4 that controls the
-+  MDIO address of the switch to be 0x10 or 0x00, and on the MDIO bus
-+  connected to the switch, the PHYs inside the switch appear as
-+  independent devices on address 0x00-0x04 or 0x10-0x14, so in difference
-+  from many other DSA switches this switch does not have an internal
-+  MDIO bus for the PHY devices.
-+
-+properties:
-+  compatible:
-+    const: marvell,mv88e6060
-+    description:
-+      The MV88E6060 is the oldest Marvell DSA switch product, and
-+      as such a bit limited in features compared to later hardware.
-+
-+  reg:
-+    maxItems: 1
-+
-+  reset-gpios:
-+    description:
-+      GPIO to be used to reset the whole device
-+    maxItems: 1
-+
-+allOf:
-+  - $ref: dsa.yaml#/$defs/ethernet-ports
-+
-+required:
-+  - compatible
-+  - reg
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    mdio {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        ethernet-switch@16 {
-+            compatible = "marvell,mv88e6060";
-+            reg = <16>;
-+
-+            ethernet-ports {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+
-+                ethernet-port@0 {
-+                    reg = <0>;
-+                    label = "lan1";
-+                };
-+                ethernet-port@1 {
-+                    reg = <1>;
-+                    label = "lan2";
-+                };
-+                ethernet-port@2 {
-+                    reg = <2>;
-+                    label = "lan3";
-+                };
-+                ethernet-port@3 {
-+                    reg = <3>;
-+                    label = "lan4";
-+                };
-+                ethernet-port@5 {
-+                    reg = <5>;
-+                    phy-mode = "rev-mii";
-+                    ethernet = <&ethc>;
-+                    fixed-link {
-+                        speed = <100>;
-+                        full-duplex;
-+                    };
-+                };
-+            };
-+        };
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 73e00086b130..3e1700d56736 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12786,6 +12786,7 @@ MARVELL 88E6XXX ETHERNET SWITCH FABRIC DRIVER
- M:	Andrew Lunn <andrew@lunn.ch>
- L:	netdev@vger.kernel.org
- S:	Maintained
-+F:	Documentation/devicetree/bindings/net/dsa/marvell,mv88e6060.yaml
- F:	Documentation/devicetree/bindings/net/dsa/marvell,mv88e6xxx.yaml
- F:	Documentation/networking/devlink/mv88e6xxx.rst
- F:	drivers/net/dsa/mv88e6xxx/
+This driver was my first time working with the IIO subsystem and wasn't
+sure about the correct way to use the channels. This should be fixed in
+the next revision with the UV index being reported in the following channel:
 
--- 
-2.34.1
+static const struct iio_chan_spec ltr390_channel = {
+	.type = IIO_UVINDEX,
+	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) | BIT(IIO_CHAN_INFO_SCALE)
+};
 
+With data being reported as:
+
+case IIO_CHAN_INFO_RAW:
+	ret = ltr390_register_read(data, LTR390_UVS_DATA);
+	if (ret < 0)
+		return ret;
+	*val = ret;
+	return IIO_VAL_INT;
+case IIO_CHAN_INFO_SCALE:
+	*val = LTR390_WINDOW_FACTOR;
+	*val2 = LTR390_COUNTS_PER_UVI;
+	return IIO_VAL_FRACTIONAL;
+
+>> diff --git a/drivers/iio/light/ltr390.c b/drivers/iio/light/ltr390.c
+>> new file mode 100644
+>> index 000000000000..67ca028ce828
+>> --- /dev/null
+>> +++ b/drivers/iio/light/ltr390.c
+>> @@ -0,0 +1,232 @@
+>> +// SPDX-License-Identifier: GPL-2.0-or-later
+>> +/*
+>> + * IIO driver for Lite-On LTR390 ALS and UV sensor
+>> + * (7-bit I2C slave address 0x53)
+>> + *
+>> + * Based on the work of:
+>> + *   Shreeya Patel and Shi Zhigang (LTRF216 Driver)
+>> + *
+>> + * Copyright (C) 2023 Anshul Dalal <anshulusr@gmail.com>
+>> + *
+>> + * Datasheet:
+>> + *   https://optoelectronics.liteon.com/upload/download/DS86-2015-0004/LTR-390UV_Final_%20DS_V1%201.pdf
+>> + *
+>> + * TODO:
+>> + *   - Support for configurable gain and resolution
+> 
+> Not using PROCESSED will help with this, so I'd drop that even in this initial
+> driver.
+>>> + *   - Sensor suspend/resume support
+>> + *   - Add support for reading the ALS
+>> + *   - Interrupt support
+> 
+>> + */
+>> +
+>> +#include <asm/unaligned.h>
+> 
+> Put this in a block of includes after the linux ones.
+> 
+>> +#include <linux/delay.h>
+>> +#include <linux/i2c.h>
+>> +#include <linux/iio/iio.h>
+>> +#include <linux/math.h>
+>> +#include <linux/module.h>
+>> +#include <linux/mutex.h>
+>> +#include <linux/regmap.h>
+>> +
+>> +#define LTR390_DEVICE_NAME	    "ltr390"
+>> +
+>> +#define LTR390_MAIN_CTRL	    0x00
+>> +#define LTR390_PART_ID		    0x06
+>> +#define LTR390_UVS_DATA		    0x10
+>> +
+>> +#define LTR390_SW_RESET		    BIT(4)
+>> +#define LTR390_UVS_MODE		    BIT(3)
+>> +#define LTR390_SENSOR_ENABLE	    BIT(1)
+>> +
+>> +#define LTR390_PART_NUMBER_ID	    0xb
+>> +#define LTR390_FRACTIONAL_PERCISION 100
+>> +
+>> +/*
+>> + * At 20-bit resolution (integration time: 400ms) and 18x gain, 2300 counts of
+>> + * the sensor are equal to 1 UV Index [Datasheet Page#8].
+>> + *
+>> + * For the default resolution of 18-bit (integration time: 100ms) and default
+>> + * gain of 3x, the counts/uvi are calculated as follows:
+>> + * 2300 / ((3/18) * (100/400)) = 95.83
+>> + */
+>> +#define LTR390_COUNTS_PER_UVI 96
+>> +
+>> +/*
+>> + * Window Factor is needed when the device is under Window glass with coated
+>> + * tinted ink. This is to compensate for the light loss due to the lower
+>> + * transmission rate of the window glass and helps * in calculating lux.
+>> + */
+>> +#define LTR390_WINDOW_FACTOR 1
+>> +
+>> +struct ltr390_data {
+>> +	struct regmap *regmap;
+>> +	struct i2c_client *client;
+>> +	struct mutex lock;
+> 
+> All locks need a comment explaining the scope of data they protect.
+> Note that regmap and the i2c bus will have their own locks by default
+> so I'm not sure you need one here at all as I'm not seeing read modify write
+> cycles or anything like that (I might be missing one though!)
+
+My goal with the mutex was to protect the sysfs though that might be
+unnecessary.
+
+>> +};
+>> +
+>> +static const struct regmap_config ltr390_regmap_config = {
+>> +	.name = LTR390_DEVICE_NAME,
+>> +	.reg_bits = 8,
+>> +	.reg_stride = 1,
+>> +	.val_bits = 8,
+>> +};
+>> +
+>> +static int ltr390_register_read(struct ltr390_data *data, u8 register_address)
+>> +{
+>> +	struct device *dev = &data->client->dev;
+>> +	int ret;
+>> +	u8 recieve_buffer[3];
+>> +
+>> +	mutex_lock(&data->lock);
+> 
+> guard(mutex)(&data->lock); 
+> here then you can just return directly without worrying about manual
+> unlocking of the mutex.  This stuff is fairly new in the kernel but very
+> useful for cases like this!  I have a set of driver cleanup that I'll send
+> out that does this in a few IIO drivers, once I've caught up with reviews etc.
+> 
+> This isn't a critical path where we have to care that we will then unlock
+> after the maths to extract value in the final line of the function.
+> 
+>> +
+>> +	ret = regmap_bulk_read(data->regmap, register_address, recieve_buffer,
+>> +			       sizeof(recieve_buffer));
+>> +	if (ret) {
+>> +		dev_err(dev, "failed to read measurement data: %d\n", ret);
+>> +		mutex_unlock(&data->lock);
+>> +		return ret;
+>> +	}
+>> +
+>> +	mutex_unlock(&data->lock);
+>> +	return get_unaligned_le24(recieve_buffer);
+>> +}
+>> +
+>> +static int ltr390_get_uv_index(struct ltr390_data *data)
+>> +{
+>> +	int ret;
+>> +	int uv_index;
+>> +
+>> +	ret = ltr390_register_read(data, LTR390_UVS_DATA);
+>> +	if (ret < 0)
+>> +		return ret;
+>> +
+>> +	uv_index = DIV_ROUND_CLOSEST(ret * LTR390_FRACTIONAL_PERCISION *
+>> +					     LTR390_WINDOW_FACTOR,
+>> +				     LTR390_COUNTS_PER_UVI);
+> 
+> This looks like a linear conversion.  Perhaps make it a userspace problem
+> as division much easier in userspace where floating point is available.
+> 
+>> +
+>> +	return uv_index;
+>> +}
+>> +
+> 
+>> +
+>> +static const struct iio_chan_spec ltr390_channels[] = {
+>> +	{
+>> +		.type = IIO_UVINDEX,
+>> +		.info_mask_separate = BIT(IIO_CHAN_INFO_PROCESSED)
+>> +	},
+>> +	{
+>> +		.type = IIO_INTENSITY,
+>> +		.channel2 = IIO_MOD_LIGHT_UV,
+>> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW)
+>> +	},
+>> +};
+>> +
+>> +static int ltr390_probe(struct i2c_client *client)
+>> +{
+>> +	struct ltr390_data *data;
+>> +	struct iio_dev *indio_dev;
+>> +	int ret, part_number;
+>> +
+>> +	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*data));
+>> +	if (!indio_dev)
+>> +		return -ENOMEM;
+>> +
+>> +	data = iio_priv(indio_dev);
+>> +
+>> +	data->regmap = devm_regmap_init_i2c(client, &ltr390_regmap_config);
+>> +	if (IS_ERR(data->regmap))
+>> +		return dev_err_probe(&client->dev, PTR_ERR(data->regmap),
+> There are quite a few &client->dev in here. I'd introduce
+> struct device *dev = &client->dev;
+> as a local variable then use that to shorten all those lines a little.
+> 
+>> +				     "regmap initialization failed\n");
+>> +
+>> +	data->client = client;
+>> +	i2c_set_clientdata(client, indio_dev);
+> 
+> Why set this? I don' think you are using it.
+> 
+
+It seems to be necessary for regmap to work properly, I tested without
+it and I get an EREMOTEIO(121) when reading the part id.
+
+>> [..]
+
+Thanks for the review,
+Best regards,
+Anshul
 
