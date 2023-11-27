@@ -1,97 +1,94 @@
-Return-Path: <devicetree+bounces-19251-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19253-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A5437FA281
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 15:22:13 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D3137FA2BF
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 15:31:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4B18F1C20C5F
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 14:22:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4F3A31C20B1A
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 14:31:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16E55315BA;
-	Mon, 27 Nov 2023 14:22:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89333111B4;
+	Mon, 27 Nov 2023 14:31:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mC4cbMO7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54F46198;
-	Mon, 27 Nov 2023 06:22:03 -0800 (PST)
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-5cca68f6e01so42530557b3.2;
-        Mon, 27 Nov 2023 06:22:03 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701094922; x=1701699722;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=834pVqsGyG/ThloFCq4Fg8uGigDw1US55aPZgUr69AE=;
-        b=hZgxPAobZDD2wyA6PCv3abu3HYrdfeTdF3Y+Kjwkzx1BfAUIq0SXTU3FPSQoS5+G+s
-         lPF8r9g3h07Rk9sret3Zs3/qhcPzZH8q0Swm2Ruves73yq0jxjWHiGBHmtzCXU4ySWS6
-         hbBWIJAAKAqCAj66cq5Fs329tAxx9F1DCcdqg/qiHayf2LGenx5Yd2KG/H5oa2OXoJvK
-         fWu9OdhBut4NGzU7RLwWQCNTFTzZHw1nY60O+xNn4NltRFP1rYZDjczI7+hlrL0sXv17
-         9ao6uBHyxeeOFrFbRCl0oUudlihSIhgjlXcxuW5+CLC3Mmo9v4+R1YMLgsdjrrQ+i35w
-         iNRQ==
-X-Gm-Message-State: AOJu0YwT8soz50xGXB4jQ3HTJ0zUI8D9VpIWFvPZOHao3bFXqDbX3raY
-	V5wdiTIyX+l5QfmeCwOjgy9DSnIk5Y8Fag==
-X-Google-Smtp-Source: AGHT+IHIry33GnwZYxjABz1zje1OAyuJ5yzdqY1RHUsCssQtdGrmsmjetxCAOQFmRXv717eoprhxog==
-X-Received: by 2002:a81:a507:0:b0:5cb:d645:8cdf with SMTP id u7-20020a81a507000000b005cbd6458cdfmr11688215ywg.48.1701094922153;
-        Mon, 27 Nov 2023 06:22:02 -0800 (PST)
-Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com. [209.85.219.175])
-        by smtp.gmail.com with ESMTPSA id y66-20020a81a145000000b005b4501cb71csm3231244ywg.29.2023.11.27.06.22.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Nov 2023 06:22:01 -0800 (PST)
-Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-daf26d84100so3819090276.3;
-        Mon, 27 Nov 2023 06:22:01 -0800 (PST)
-X-Received: by 2002:a25:6cc5:0:b0:d9a:6b1e:ef51 with SMTP id
- h188-20020a256cc5000000b00d9a6b1eef51mr10902367ybc.2.1701094921451; Mon, 27
- Nov 2023 06:22:01 -0800 (PST)
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CB1331735
+	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 14:31:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 568C2C433C8;
+	Mon, 27 Nov 2023 14:31:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701095512;
+	bh=iugwmqYRf+o6ZULdzB0347RuwISU5ZoccVSgJEsSJP8=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=mC4cbMO7w4hP6MVmh14mk4ITlEIEbhZvG3xlfUbvW2ULFpje+/oHkteFICiqYrN5N
+	 IJpeZggFhb1HTXvrX3HTM7wVhB7VpTZR9lulWHFAweA7eeNkQaTUwjnMnY1tMO8WDd
+	 4qlnz/skerxsuf6+XH1v4PBkRLkSnyce3x6y+FXbfpa+OgUc7KoGJ7oFY/04NUsxHI
+	 i9UXGzUd1QKuxwHB5phkWYuwMQ/m6YeBZNlu/sJtDdRtikJwp/KLIUByDuUV5Rq2px
+	 Pvpl7VYWGM4BL/tvG/sQz/jD262xkEEj3++o/vDHyEdHZw6vbuv/Mm10gxt3stSLxm
+	 NjEYQHT8UtHIg==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231124092121.16866-1-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20231124092121.16866-1-krzysztof.kozlowski@linaro.org>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 27 Nov 2023 15:21:50 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdU7cs_DCwkbD4FGy=OgxsfLe4poU0916dM1xUB62ahqqg@mail.gmail.com>
-Message-ID: <CAMuHMdU7cs_DCwkbD4FGy=OgxsfLe4poU0916dM1xUB62ahqqg@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: correct white-spaces in examples
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-iio@vger.kernel.org, 
-	linux-mmc@vger.kernel.org, netdev@vger.kernel.org, linux-pci@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-renesas-soc@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-pm@vger.kernel.org, 
-	linux-remoteproc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Date: Mon, 27 Nov 2023 15:31:44 +0100
+From: Michael Walle <mwalle@kernel.org>
+To: Tony Lindgren <tony@atomide.com>
+Cc: Laurent.pinchart@ideasonboard.com, airlied@gmail.com,
+ andrzej.hajda@intel.com, daniel@ffwll.ch, devicetree@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, ivo.g.dimitrov.75@gmail.com,
+ jernej.skrabec@gmail.com, jonas@kwiboo.se,
+ maarten.lankhorst@linux.intel.com, merlijn@wizzup.org, mripard@kernel.org,
+ neil.armstrong@linaro.org, pavel@ucw.cz, philipp@uvos.xyz, rfoss@kernel.org,
+ sam@ravnborg.org, simhavcs@gmail.com, sre@kernel.org, tzimmermann@suse.de,
+ Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH 2/6] drm/bridge: tc358775: Fix getting dsi host data lanes
+In-Reply-To: <20231127131947.GE5166@atomide.com>
+References: <20231126163247.10131-2-tony@atomide.com>
+ <20231127130941.2154871-1-mwalle@kernel.org>
+ <20231127131947.GE5166@atomide.com>
+Message-ID: <48e9584ca904397ac0b0771d7e8b81ba@kernel.org>
+X-Sender: mwalle@kernel.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Fri, Nov 24, 2023 at 10:21=E2=80=AFAM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
-> Use only one and exactly one space around '=3D' in DTS example.
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
++ dt maintainers
 
->  .../bindings/pinctrl/renesas,rzg2l-pinctrl.yaml           | 6 +++---
+>> I actually have the same fix, but with one additional detail, which 
+>> I'm
+>> unsure about though: This looks at the data-lanes property of the 
+>> *remote*
+>> endpoint whereas other bridge drivers (see tc358767, ti-sn65dsi83, 
+>> lt8912b,
+>> anx7625) look at the local endpoint and I'm not sure what is correct.
+> 
+> Yes I've been wondering about that too. Let's just move it over to the
+> bridge node? We could produce a warning if the dsi host node has the
+> data-lanes property.. No current in kernel users AFAIK.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Acked-by: Geert Uytterhoeven <geert+renesas@glider.be>
+I haven't found any in-tree users either. In my patch, I first try the 
+remote
+end and then the local end. But thinking more about it I don't think
+this is correct. Maybe we can do it the other way around, first try
+data-lanes of the local endpoint and if not found, then try the remote
+one. That way, we would at least be backwards compatible in the driver.
+And for the dt-bindings, make it mandatory to have a local data-lanes.
 
-Gr{oetje,eeting}s,
+-michael
 
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+> FYI, for omapdrm, we already have a legacy dt property "lanes" for the
+> wiring that tells number of lanes used and the order of the lanes.
+> 
+> Regards,
+> 
+> Tony
 
