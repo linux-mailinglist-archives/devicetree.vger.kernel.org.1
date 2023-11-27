@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-19161-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19162-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15C177F9E2F
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 12:11:21 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A5B47F9E33
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 12:11:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1F6BEB20E16
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 11:11:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3C6D21C20D6E
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 11:11:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56C0A18E3D;
-	Mon, 27 Nov 2023 11:11:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BDC019460;
+	Mon, 27 Nov 2023 11:11:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="P0qPLrQC"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SQmltOjm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6212A135
-	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 03:11:06 -0800 (PST)
-Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-9ffef4b2741so543105866b.3
-        for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 03:11:06 -0800 (PST)
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A72DD188
+	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 03:11:08 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-50ba71356ddso3221581e87.1
+        for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 03:11:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701083464; x=1701688264; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=aWIIj+kvMy4kZX5d0cpQ2c41mKIu3M1tMd1Zqq8If4M=;
-        b=P0qPLrQChRjPwk0jDlfWWHntaedfqnRP44hGX0tzwQ2YYpX0ElcdpMjQHP9/Q+9CqE
-         8dd5DTnepnlMb12tR5NN14pa6WUIF6xtDD9StblwWq0TZc/vui/bB96gZ/poKXmT1nTu
-         tYQsQCUAyu5FayqROS4/lV1OroonVLR57GHaDPeFjuEbQpuNreXMBmNuvreJgXipYaCl
-         Rjtj+cwG2Phl0EoxipfL8nhVzNmHV/+XBYzfbyHFyFXyhdyZArjnEJWRhLcWasoJkVta
-         gHHUyUrjXfLhxTh1MMtCBZNf/jel80mFUnDkZ66oHvXlFx9kesZ9+2sUD7xDl3wF73eV
-         k9vQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701083464; x=1701688264;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1701083466; x=1701688266; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=aWIIj+kvMy4kZX5d0cpQ2c41mKIu3M1tMd1Zqq8If4M=;
-        b=c73PoPJEZKEiuIV728K9lhfSv3SkWzByLasn5tynXZDiheGjyoOTpUNMfAG0rqD+Zg
-         S61rHqbk1yQcxaIoEY7NF02KM/cXtpum5xvXOAqxWlnQyCS863sELbj6tiDm6FevF88f
-         jlmJfh8VTl//5hb5NGYYEOn5Y5WCnkHv3I+kv5bCQu9m334st0GeXfm0MUyC6jZTLrpV
-         qqZxLG5pdDt5Lqr5Jq22MqitBvFb6n6SpGE0FcOh3ykXy/YkDafGlJoOsacnP2m94gR7
-         /VLZYDhEGwZESTbIqQn9Dewk2rh+D1ml2JYdR7CVX+8AmvfJKrNkQaE/68vokP9vDLT1
-         m9/A==
-X-Gm-Message-State: AOJu0YwgwpN5N952eupMF59fcFnKh+q7Vp30W0q2/NOsdGojtjYEHKEF
-	L3dJ/CV+H114/Z5PfvqmXS207Z/uKpRi+X9uy0o=
-X-Google-Smtp-Source: AGHT+IG3CEZbOjnyg3S3/SHsocbkM+WWXlxkYAiY7U4XFuHw4QdaJTyPvJ1fajsn0I7iYexaJtwE2A==
-X-Received: by 2002:a17:906:209e:b0:a0a:f9af:c159 with SMTP id 30-20020a170906209e00b00a0af9afc159mr6033015ejq.25.1701083464551;
-        Mon, 27 Nov 2023 03:11:04 -0800 (PST)
+        bh=UrH/JGlM/sEwiQVmTMXaMn2giY8tjo5E5+l9Dv01fks=;
+        b=SQmltOjmiQojBsJv+PVZEYt7DSKLS3c63+V9JbNgMtnG+1IQDeC1BoyAfYRrO4V+uH
+         6pOx4iq2IElpA0FT73qaZxPMFFPyF77evQKfXvATR0WJwvnqfPYtUUj3KVFSop8Fj2VJ
+         nzHQ4Bg2m3NOlTlsYfWnFvyK/gbMWmic+Lrh2RskHMErbYSkjNcBy6RvYhPkFqLJivq3
+         UeHJA3JIa2zWO2DIi9e62nHPiJKaULS0ILFkw+suvZqlWx6eDQnJPkpFa2yYy12ChhZi
+         4ACHsCp5zYEYmmQ6DLPmtMlRCfWFWTuAoX1riKpa89LpipdZy0QrwIwUZH8I4vVxaB0O
+         Fj7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701083466; x=1701688266;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=UrH/JGlM/sEwiQVmTMXaMn2giY8tjo5E5+l9Dv01fks=;
+        b=UzXIdc6vA2DsowpR4bETujlbOgw7WN5ptJIdvz7eaySjMHa8EeBtWX3zCa7PeOPfhm
+         sxC4oX+R4JN3BLq6BZ2+M4T3WjDb9E0yZGenflR3kB194E1M0kzdKvK3+O1NfYgmaYeW
+         Ks16bDLXhP9555Oiq0XxOJ/tZxyTKRfR6CLs1U2y7TTg2R4zKidBWdRWnkRYkDgx6Nmo
+         kWIAI3ak7447Bzds6lIGVVYHwGxaEjHBU/jbWyL6efcpgHTwQFFdy2GfPrZLVu0XslV4
+         WoMlknpgjQzN/ft0/rzfPnOJG1KQJYEcz96vQSvJeHlEX8Kcx995D0qWL9ollurJ5z+L
+         jZPw==
+X-Gm-Message-State: AOJu0YxG3ST0MOVxwk//ukXB9IzYR4azPhgzpakAaSTRS4GjXJ2smoJ6
+	ZQ/Q4dlSs2bfHNwB9ivBFsMBEPD4OUvg2aOVtq4=
+X-Google-Smtp-Source: AGHT+IHWP9VhnwnJLkrxRvbBNHAddZ6lotrgtblwr4/l/QgTQiFXyEV+kfqFzmjvCHwfeBh+ms7xRA==
+X-Received: by 2002:a05:6512:41b:b0:50b:aa9b:c9ca with SMTP id u27-20020a056512041b00b0050baa9bc9camr4039264lfk.57.1701083466350;
+        Mon, 27 Nov 2023 03:11:06 -0800 (PST)
 Received: from [10.167.154.1] (178235187180.dynamic-4-waw-k-2-3-0.vectranet.pl. [178.235.187.180])
-        by smtp.gmail.com with ESMTPSA id n27-20020a170906089b00b009fe0902961bsm5537329eje.23.2023.11.27.03.11.02
+        by smtp.gmail.com with ESMTPSA id n27-20020a170906089b00b009fe0902961bsm5537329eje.23.2023.11.27.03.11.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Nov 2023 03:11:04 -0800 (PST)
+        Mon, 27 Nov 2023 03:11:05 -0800 (PST)
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Subject: [PATCH v2 0/2] SM6115 interconnect
-Date: Mon, 27 Nov 2023 12:10:58 +0100
-Message-Id: <20231125-topic-6115icc-v2-0-69d05d90871b@linaro.org>
+Date: Mon, 27 Nov 2023 12:10:59 +0100
+Subject: [PATCH v2 1/2] dt-bindings: interconnect: Add Qualcomm SM6115 NoC
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,10 +64,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAEJ5ZGUC/3WNywqDMBBFf0Vm3SlOSnx05X8UF3Ga6IAkklhpE
- f+9qfsuz4F7zw7JRrEJ7sUO0W6SJPgM6lIAT8aPFuWZGVSpbkRK4xoWYayItDCjoaZ2um1a42r
- Im8Eki0M0nqe88q95znKJ1sn7jDz6zJOkNcTP2dzoZ//db4QlOqOJy0HrittuFm9iuIY4Qn8cx
- xfdFCiMwAAAAA==
+Message-Id: <20231125-topic-6115icc-v2-1-69d05d90871b@linaro.org>
+References: <20231125-topic-6115icc-v2-0-69d05d90871b@linaro.org>
+In-Reply-To: <20231125-topic-6115icc-v2-0-69d05d90871b@linaro.org>
 To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
  Georgi Djakov <djakov@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
@@ -78,50 +77,295 @@ Cc: Marijn Suijten <marijn.suijten@somainline.org>,
  Konrad Dybcio <konradybcio@kernel.org>, 
  Konrad Dybcio <konrad.dybcio@linaro.org>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1701083462; l=1377;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1701083462; l=7746;
  i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=KDSOgOJZ9OKDivLFVaAgoa4LgcSMlJhCVgjjK2+bl7s=;
- b=8kGfGfFvWPhFWeVdYOYNJHM+n5qjYW3NtvraF/dOYqRWNPyV/6xu+2xjJmt4MAytbgsKuA43W
- zQbCVYwqlC1DDp9vBTCbw7l30rV7oMdjVcQcvOT0iNW1d9TcX5KXKnh
+ bh=E4y7x9DxUyUwxdcFN78HbP+Sm7ZTeBa28I4zBkYFbuw=;
+ b=RJmfm6+IjmfA1owI6JWQqqhPM/ZJ5z5q/zOdH6gldOBRmeXXgvCDSv76VIJXECKarD/AHM+vX
+ o4ly0sro76UBEEbqCZoWKNwxyrRphX7+nRs0tFG2ioswi+vJWodoLX+
 X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
  pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 
-As it says on the can.
-
-Georgi, Bjorn, can we please set up an immutable branch with the bindings?
+Add bindings for Qualcomm SM6115 Network-On-Chip interconnect.
 
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
-Changes in v2:
-bindings:
-- Remove unnecessary '|' after description:
-- sort property definitions in a manner that resembles their proper ordering
-- define clock{s/-names} before using them in conditional blocks
-- drop unnecessary allOf:
-- move unevaluatedProperties after the conditional blocks
-- disallow clock{s,-names} when unnecessary
-- fix up the example
-C:
-- Apply my own fixup (ebi channel configuration)
-- Link to v1: https://lore.kernel.org/r/20231125-topic-6115icc-v1-0-fa51c0b556c9@linaro.org
+ .../bindings/interconnect/qcom,sm6115.yaml         | 148 +++++++++++++++++++++
+ include/dt-bindings/interconnect/qcom,sm6115.h     | 111 ++++++++++++++++
+ 2 files changed, 259 insertions(+)
 
----
-Konrad Dybcio (2):
-      dt-bindings: interconnect: Add Qualcomm SM6115 NoC
-      interconnect: qcom: Add SM6115 interconnect provider driver
+diff --git a/Documentation/devicetree/bindings/interconnect/qcom,sm6115.yaml b/Documentation/devicetree/bindings/interconnect/qcom,sm6115.yaml
+new file mode 100644
+index 000000000000..279c8a5070ec
+--- /dev/null
++++ b/Documentation/devicetree/bindings/interconnect/qcom,sm6115.yaml
+@@ -0,0 +1,148 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/interconnect/qcom,sm6115.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm SM6115 Network-On-Chip interconnect
++
++maintainers:
++  - Konrad Dybcio <konradybcio@kernel.org>
++
++description:
++  The Qualcomm SM6115 interconnect providers support adjusting the
++  bandwidth requirements between the various NoC fabrics.
++
++properties:
++  compatible:
++    enum:
++      - qcom,sm6115-bimc
++      - qcom,sm6115-cnoc
++      - qcom,sm6115-snoc
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    minItems: 1
++    maxItems: 4
++
++# Child node's properties
++patternProperties:
++  '^interconnect-[a-z0-9]+$':
++    type: object
++    description:
++      The interconnect providers do not have a separate QoS register space,
++      but share parent's space.
++
++    $ref: qcom,rpm-common.yaml#
++
++    properties:
++      compatible:
++        enum:
++          - qcom,sm6115-clk-virt
++          - qcom,sm6115-mmrt-virt
++          - qcom,sm6115-mmnrt-virt
++
++    required:
++      - compatible
++
++    unevaluatedProperties: false
++
++required:
++  - compatible
++  - reg
++
++allOf:
++  - $ref: qcom,rpm-common.yaml#
++  - if:
++      properties:
++        compatible:
++          const: qcom,sm6115-cnoc
++
++    then:
++      properties:
++        clocks:
++          items:
++            - description: USB-NoC AXI clock
++
++        clock-names:
++          items:
++            - const: usb_axi
++
++  - if:
++      properties:
++        compatible:
++          const: qcom,sm6115-snoc
++
++    then:
++      properties:
++        clocks:
++          items:
++            - description: CPU-NoC AXI clock.
++            - description: UFS-NoC AXI clock.
++            - description: USB-NoC AXI clock.
++            - description: IPA clock.
++
++        clock-names:
++          items:
++            - const: cpu_axi
++            - const: ufs_axi
++            - const: usb_axi
++            - const: ipa
++
++  - if:
++      properties:
++        compatible:
++          enum:
++            - qcom,sm6115-bimc
++            - qcom,sm6115-clk-virt
++            - qcom,sm6115-mmrt-virt
++            - qcom,sm6115-mmnrt-virt
++
++    then:
++      properties:
++        clocks: false
++        clock-names: false
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/qcom,gcc-sm6115.h>
++    #include <dt-bindings/clock/qcom,rpmcc.h>
++
++    snoc: interconnect@1880000 {
++        compatible = "qcom,sm6115-snoc";
++        reg = <0x01880000 0x60200>;
++        clocks = <&gcc GCC_SYS_NOC_CPUSS_AHB_CLK>,
++                 <&gcc GCC_SYS_NOC_UFS_PHY_AXI_CLK>,
++                 <&gcc GCC_SYS_NOC_USB3_PRIM_AXI_CLK>,
++                 <&rpmcc RPM_SMD_IPA_CLK>;
++        clock-names = "cpu_axi",
++                      "ufs_axi",
++                      "usb_axi",
++                      "ipa";
++        #interconnect-cells = <1>;
++
++        qup_virt: interconnect-clk {
++            compatible = "qcom,sm6115-clk-virt";
++            #interconnect-cells = <1>;
++        };
++
++        mmnrt_virt: interconnect-mmnrt {
++            compatible = "qcom,sm6115-mmnrt-virt";
++            #interconnect-cells = <1>;
++        };
++
++        mmrt_virt: interconnect-mmrt {
++            compatible = "qcom,sm6115-mmrt-virt";
++            #interconnect-cells = <1>;
++        };
++    };
++
++    cnoc: interconnect@1900000 {
++        compatible = "qcom,sm6115-cnoc";
++        reg = <0x01900000 0x8200>;
++        #interconnect-cells = <1>;
++    };
+diff --git a/include/dt-bindings/interconnect/qcom,sm6115.h b/include/dt-bindings/interconnect/qcom,sm6115.h
+new file mode 100644
+index 000000000000..21090e585f05
+--- /dev/null
++++ b/include/dt-bindings/interconnect/qcom,sm6115.h
+@@ -0,0 +1,111 @@
++/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
++/*
++ * Copyright (c) 2020, The Linux Foundation. All rights reserved.
++ * Copyright (c) 2023, Linaro Limited
++ */
++
++#ifndef __DT_BINDINGS_INTERCONNECT_QCOM_SM6115_H
++#define __DT_BINDINGS_INTERCONNECT_QCOM_SM6115_H
++
++/* BIMC */
++#define MASTER_AMPSS_M0				0
++#define MASTER_SNOC_BIMC_RT			1
++#define MASTER_SNOC_BIMC_NRT			2
++#define SNOC_BIMC_MAS				3
++#define MASTER_GRAPHICS_3D			4
++#define MASTER_TCU_0				5
++#define SLAVE_EBI_CH0				6
++#define BIMC_SNOC_SLV				7
++
++/* CNOC */
++#define SNOC_CNOC_MAS				0
++#define MASTER_QDSS_DAP				1
++#define SLAVE_AHB2PHY_USB			2
++#define SLAVE_APSS_THROTTLE_CFG			3
++#define SLAVE_BIMC_CFG				4
++#define SLAVE_BOOT_ROM				5
++#define SLAVE_CAMERA_NRT_THROTTLE_CFG		6
++#define SLAVE_CAMERA_RT_THROTTLE_CFG		7
++#define SLAVE_CAMERA_CFG			8
++#define SLAVE_CLK_CTL				9
++#define SLAVE_RBCPR_CX_CFG			10
++#define SLAVE_RBCPR_MX_CFG			11
++#define SLAVE_CRYPTO_0_CFG			12
++#define SLAVE_DCC_CFG				13
++#define SLAVE_DDR_PHY_CFG			14
++#define SLAVE_DDR_SS_CFG			15
++#define SLAVE_DISPLAY_CFG			16
++#define SLAVE_DISPLAY_THROTTLE_CFG		17
++#define SLAVE_GPU_CFG				18
++#define SLAVE_GPU_THROTTLE_CFG			19
++#define SLAVE_HWKM_CORE				20
++#define SLAVE_IMEM_CFG				21
++#define SLAVE_IPA_CFG				22
++#define SLAVE_LPASS				23
++#define SLAVE_MAPSS				24
++#define SLAVE_MDSP_MPU_CFG			25
++#define SLAVE_MESSAGE_RAM			26
++#define SLAVE_CNOC_MSS				27
++#define SLAVE_PDM				28
++#define SLAVE_PIMEM_CFG				29
++#define SLAVE_PKA_CORE				30
++#define SLAVE_PMIC_ARB				31
++#define SLAVE_QDSS_CFG				32
++#define SLAVE_QM_CFG				33
++#define SLAVE_QM_MPU_CFG			34
++#define SLAVE_QPIC				35
++#define SLAVE_QUP_0				36
++#define SLAVE_RPM				37
++#define SLAVE_SDCC_1				38
++#define SLAVE_SDCC_2				39
++#define SLAVE_SECURITY				40
++#define SLAVE_SNOC_CFG				41
++#define SLAVE_TCSR				42
++#define SLAVE_TLMM				43
++#define SLAVE_USB3				44
++#define SLAVE_VENUS_CFG				45
++#define SLAVE_VENUS_THROTTLE_CFG		46
++#define SLAVE_VSENSE_CTRL_CFG			47
++#define SLAVE_SERVICE_CNOC			48
++
++/* SNOC */
++#define MASTER_CRYPTO_CORE0			0
++#define MASTER_SNOC_CFG				1
++#define MASTER_TIC				2
++#define MASTER_ANOC_SNOC			3
++#define BIMC_SNOC_MAS				4
++#define MASTER_PIMEM				5
++#define MASTER_QDSS_BAM				6
++#define MASTER_QPIC				7
++#define MASTER_QUP_0				8
++#define MASTER_IPA				9
++#define MASTER_QDSS_ETR				10
++#define MASTER_SDCC_1				11
++#define MASTER_SDCC_2				12
++#define MASTER_USB3				13
++#define SLAVE_APPSS				14
++#define SNOC_CNOC_SLV				15
++#define SLAVE_OCIMEM				16
++#define SLAVE_PIMEM				17
++#define SNOC_BIMC_SLV				18
++#define SLAVE_SERVICE_SNOC			19
++#define SLAVE_QDSS_STM				20
++#define SLAVE_TCU				21
++#define SLAVE_ANOC_SNOC				22
++
++/* CLK Virtual */
++#define MASTER_QUP_CORE_0			0
++#define SLAVE_QUP_CORE_0			1
++
++/* MMRT Virtual */
++#define MASTER_CAMNOC_HF			0
++#define MASTER_MDP_PORT0			1
++#define SLAVE_SNOC_BIMC_RT			2
++
++/* MMNRT Virtual */
++#define MASTER_CAMNOC_SF			0
++#define MASTER_VIDEO_P0				1
++#define MASTER_VIDEO_PROC			2
++#define SLAVE_SNOC_BIMC_NRT			3
++
++#endif
 
- .../bindings/interconnect/qcom,sm6115.yaml         |  148 ++
- drivers/interconnect/qcom/Kconfig                  |    9 +
- drivers/interconnect/qcom/Makefile                 |    2 +
- drivers/interconnect/qcom/sm6115.c                 | 1427 ++++++++++++++++++++
- include/dt-bindings/interconnect/qcom,sm6115.h     |  111 ++
- 5 files changed, 1697 insertions(+)
----
-base-commit: 48bbaf8b793e0770798519f8ee1ea2908ff0943a
-change-id: 20231125-topic-6115icc-a187f5989af7
-
-Best regards,
 -- 
-Konrad Dybcio <konrad.dybcio@linaro.org>
+2.43.0
 
 
