@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-19078-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19079-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E3EF7F9A8F
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 08:10:21 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54E387F9A93
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 08:12:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6C718B20ACF
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 07:10:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 77DCF1C2083F
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 07:12:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5B70FBF1;
-	Mon, 27 Nov 2023 07:10:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7309BF9F3;
+	Mon, 27 Nov 2023 07:12:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MZcwNS6Y"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CtgGILB3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 184621FFB
-	for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 23:09:43 -0800 (PST)
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-a00a9c6f283so513997666b.0
-        for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 23:09:43 -0800 (PST)
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD8D612F
+	for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 23:12:04 -0800 (PST)
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-a00f67f120aso519347466b.2
+        for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 23:12:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701068981; x=1701673781; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701069123; x=1701673923; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=P9GW1TDioLY5vdADSFwXA/zMGb7NkUYx8GOUReKjU5Q=;
-        b=MZcwNS6YFL/ecj80+tOJ9LtW+PZHNpI5mG8MV4LBVSVhCAD319aiSBfZVS/NsfCYqk
-         8PtLTscJQZcuH35FtBDSCwzeIQYm0AmFzjzWevhkjjzrCHo90EBt0OWBKQRGm9W89QQU
-         JvYm9zJgG4ZFLLkhlFMEy4e2nVcuY9rv8MProxI+0Htjap+xmSzcuR3xkNgEDr9ZcSui
-         zfcMRycsKTS3hE8P5yumL/R+teYbqJudSMu7sA1iWYAho/tWfbPbPaDt7kor6Lv05n9k
-         xI9djZuWYmkf6LP643PhgotDnB89MIOyEq4gbnJuT/jROOCf603fbLhmmNaRM6tPM8hw
-         cNVA==
+        bh=4ubOvgLu6AFBn84bjahvcko85SY43MVq22H0FsKOBcY=;
+        b=CtgGILB3xAdeLK6jKSUYT/yAghkvhW+U19tqhjd1d/UBmK9gvtwQIe1PIHX2YF1Gx8
+         ZKpWnRNI5x32U7ysyLqoiIr/AGWeTUKJUNxqJdFmEHDA52btwH7HEcIxCuNEAGvfHouD
+         Cm1mPP87pO2/iqjbKw6t+58y7m9VFxpfwjB9frJS6cNvlpRNirXq2INDbavdVEs+W2Zi
+         E6YmcZ/0uWwUAliKG33cklXgCy1lnyOJ10PB9F7/iZMeyecyDKXXSzlaz5aGfK+NovFF
+         HhYVy5ea0NKqEBB3mMcS7OMy0+G1qqExESnmlpVhNb5pN3Pu5UlaHeL5lCCvRPE8vi2K
+         XtOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701068981; x=1701673781;
+        d=1e100.net; s=20230601; t=1701069123; x=1701673923;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=P9GW1TDioLY5vdADSFwXA/zMGb7NkUYx8GOUReKjU5Q=;
-        b=G7L4L+sjORXVVCCXwypPIesRDJN365E5guwaOGRTRUvu50Hg/P8zHS74lZYx69vHsB
-         WZKo7tsasSDqkSgM4Ho6XHyKZziymTdvzwqUm3yhgq1usesqxYiG/zMyMz5ootd1E7vh
-         OR9bHPQx5SYpEFCPrv1D7BJfofbL0gNipcBdMtCuGdMkMyi5NVy2WwdtS8tT8z81LWx4
-         p7Q1VEP1fcIy9XZ+A+I+mb3eG/o37mFvTRcTL/21CGHvYR9lxAiX9r50pvXgHoh7IR/n
-         +F/zvezpMcY3yZmqhPQmLb2QXGKBklmasrqEoOdcKsu/JbJyCKMX0pGFwcDkmawYEBmV
-         4zZg==
-X-Gm-Message-State: AOJu0Yw0BNQ3l+le9OWSkYwijhGLxP1JDg69wevj9RI0r9Kf5HvSI3GM
-	r5rKt3+uBpSruivZQWNAYCb7Jw==
-X-Google-Smtp-Source: AGHT+IG/V9FhAJXFRlAWq6sCwDujgFJ0/jiTYy3NYEEszgWw0VinneHrRgG/G/1nYZtvLnF7lXLgCQ==
-X-Received: by 2002:a17:906:6808:b0:a03:9680:8149 with SMTP id k8-20020a170906680800b00a0396808149mr6586573ejr.55.1701068981560;
-        Sun, 26 Nov 2023 23:09:41 -0800 (PST)
+        bh=4ubOvgLu6AFBn84bjahvcko85SY43MVq22H0FsKOBcY=;
+        b=UkNHrLMTlwcLB6VwkyHsOigNB5VygCNoPHoxtWNJkP+cljoozKNEn617LalH0mbLoG
+         2QXC29saNwXJocE/uUxl2F4ibIX3ca4FLq5GNldMf/YS/GB11vrVUiQ3crTCEXTMsN4D
+         PXxF2mOzRUFQatGh4AJ+XJbJ66bAWlu/ain73Dh4qiw7e5qWemLxExNlUbrp66A2RNVo
+         rVVIhgJlWWO0dMW5JJhphRqyIb3L6AkZv4pTI04AP/Lyevo6LmLQbM2NRRfq/+W7Xeus
+         l2z27dGQ/BanbwGQfSjxl53Bqh9apFwlJ8XOfJHsYGVxHErBo+BbwKhXMIGwFIuuhyKs
+         V92g==
+X-Gm-Message-State: AOJu0YxGVR4gz3ceD8rVV2R1+25ajUXcN93EPa2dSqcIbOkWejeSkXcH
+	T+Gcul8nHKIlMQTTDptiySx9/Q==
+X-Google-Smtp-Source: AGHT+IHaLuybBfxWZ6mI3AsPpDA/cozfVthOHnGLNkRA6pJtNz+jIulWgmlCPi7YcqPi6jJ6NPYOmg==
+X-Received: by 2002:a17:906:2c4d:b0:9d4:84b6:8715 with SMTP id f13-20020a1709062c4d00b009d484b68715mr6815835ejh.52.1701069123322;
+        Sun, 26 Nov 2023 23:12:03 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.109])
-        by smtp.gmail.com with ESMTPSA id b10-20020a1709063f8a00b009f8af454d0dsm5350041ejj.112.2023.11.26.23.09.39
+        by smtp.gmail.com with ESMTPSA id mm21-20020a170906cc5500b009fd490c4cb6sm5366758ejb.39.2023.11.26.23.12.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 26 Nov 2023 23:09:41 -0800 (PST)
-Message-ID: <98f4cffd-0094-48c4-b899-937e555693fb@linaro.org>
-Date: Mon, 27 Nov 2023 08:09:39 +0100
+        Sun, 26 Nov 2023 23:12:02 -0800 (PST)
+Message-ID: <81d421c8-bfd6-42b5-9da1-f067792f8f48@linaro.org>
+Date: Mon, 27 Nov 2023 08:12:00 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,7 +62,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/4] dt-bindings: soc: sophgo: Add Sophgo syscon module
+Subject: Re: [PATCH v2 3/4] clk: sophgo: Add SG2042 clock generator driver
 Content-Language: en-US
 To: Chen Wang <unicornxw@gmail.com>, aou@eecs.berkeley.edu,
  chao.wei@sophgo.com, conor@kernel.org, krzysztof.kozlowski+dt@linaro.org,
@@ -74,7 +74,7 @@ To: Chen Wang <unicornxw@gmail.com>, aou@eecs.berkeley.edu,
  jszhang@kernel.org, inochiama@outlook.com, samuel.holland@sifive.com
 Cc: Chen Wang <unicorn_wang@outlook.com>
 References: <cover.1701044106.git.unicorn_wang@outlook.com>
- <6ff37629458cde4549067e0caddeb5cb640ca7f9.1701044106.git.unicorn_wang@outlook.com>
+ <c06130afb4bdc1890b4e8d29388fa6feef1f1826.1701044106.git.unicorn_wang@outlook.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -120,91 +120,103 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <6ff37629458cde4549067e0caddeb5cb640ca7f9.1701044106.git.unicorn_wang@outlook.com>
+In-Reply-To: <c06130afb4bdc1890b4e8d29388fa6feef1f1826.1701044106.git.unicorn_wang@outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 27/11/2023 01:58, Chen Wang wrote:
+On 27/11/2023 02:15, Chen Wang wrote:
 > From: Chen Wang <unicorn_wang@outlook.com>
 > 
-> Add documentation to describe Sophgo System Controller Registers for
-> SG2042.
+> Add a driver for the SOPHGO SG2042 clock generator.
 > 
 > Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
-> ---
->  .../soc/sophgo/sophgo,sg2042-syscon.yaml      | 58 +++++++++++++++++++
->  1 file changed, 58 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/sophgo/sophgo,sg2042-syscon.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/soc/sophgo/sophgo,sg2042-syscon.yaml b/Documentation/devicetree/bindings/soc/sophgo/sophgo,sg2042-syscon.yaml
+
+...
+
+> +static void __init sg2042_clk_init(struct device_node *node)
+> +{
+> +	struct sg2042_clk_data *clk_data = NULL;
+> +	int i, ret = 0;
+> +	int num_clks = 0;
+> +
+> +	num_clks = ARRAY_SIZE(sg2042_pll_clks) +
+> +		   ARRAY_SIZE(sg2042_div_clks) +
+> +		   ARRAY_SIZE(sg2042_gate_clks) +
+> +		   ARRAY_SIZE(sg2042_mux_clks);
+> +	if (num_clks == 0) {
+> +		ret = -EINVAL;
+> +		goto error_out;
+> +	}
+> +
+> +	ret = sg2042_clk_init_clk_data(node, num_clks, &clk_data);
+> +	if (ret < 0)
+> +		goto error_out;
+> +
+> +	ret = sg2042_clk_register_plls(clk_data, sg2042_pll_clks,
+> +				ARRAY_SIZE(sg2042_pll_clks));
+> +	if (ret)
+> +		goto cleanup;
+> +
+> +	ret = sg2042_clk_register_divs(clk_data, sg2042_div_clks,
+> +				ARRAY_SIZE(sg2042_div_clks));
+> +	if (ret)
+> +		goto cleanup;
+> +
+> +	ret = sg2042_clk_register_gates(clk_data, sg2042_gate_clks,
+> +				ARRAY_SIZE(sg2042_gate_clks));
+> +	if (ret)
+> +		goto cleanup;
+> +
+> +	ret = sg2042_clk_register_muxs(clk_data, sg2042_mux_clks,
+> +				ARRAY_SIZE(sg2042_mux_clks));
+> +	if (ret)
+> +		goto cleanup;
+> +
+> +	for (i = 0; i < num_clks; i++)
+> +		dbg_info("provider [%d]: %s\n", i, clk_hw_get_name(clk_data->onecell_data.hws[i]));
+> +	ret = of_clk_add_hw_provider(node, of_clk_hw_onecell_get, &clk_data->onecell_data);
+> +	if (ret)
+> +		goto cleanup;
+> +
+> +	return;
+> +
+> +cleanup:
+> +	for (i = 0; i < num_clks; i++) {
+> +		if (clk_data->onecell_data.hws[i] != NULL)
+> +			clk_hw_unregister(clk_data->onecell_data.hws[i]);
+> +	}
+> +	kfree(clk_data);
+> +
+> +error_out:
+> +	pr_err("%s failed error number %d\n", __func__, ret);
+> +}
+> +
+> +CLK_OF_DECLARE(sg2042_clk, "sophgo,sg2042-clkgen", sg2042_clk_init);
+
+No, this should be platform device. It's a child of another device, so
+you cannot use other way of init ordering.
+
+> diff --git a/drivers/clk/sophgo/clk-sophgo-sg2042.h b/drivers/clk/sophgo/clk-sophgo-sg2042.h
 > new file mode 100644
-> index 000000000000..329d645091b4
+> index 000000000000..ca1c8b9a937a
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/sophgo/sophgo,sg2042-syscon.yaml
-> @@ -0,0 +1,58 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/soc/sophgo/sophgo,sg2042-syscon.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Sophgo SG2042 SoC system controller
-> +
-> +maintainers:
-> +  - Chen Wang <unicorn_wang@outlook.com>
-> +
-> +description:
-> +  The Sophgo SG2042 SoC system controller provides register information such
-> +  as offset, mask and shift to configure some modules, such as clocks, reset
-> +  signals and pinctrl.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - sophgo,sg2042-syscon
-> +      - const: syscon
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clock-controller:
-> +    # Child node
-> +    type: object
-> +    $ref: ../../clock/sophgo/sophgo,sg2042-clkgen.yaml
 
-Use full path, so /schemas/clock/
-(look at other bindings how they do it)
 
-> +    description:
-> +      Clock controller for the SoC clocks. This child node definition
-> +      should follow the bindings specified in
-> +      Documentation/devicetree/bindings/clock/sophgo/sophgo,sg2042-clkgen.yaml
+...
 
-Drop description.
+> +#define to_sg2042_mux_nb(_nb) container_of(_nb, struct sg2042_mux_clock, clk_nb)
+> +
+> +#ifdef DEBUG
+> +	#define dbg_info(format, arg...) \
+> +		pr_info("--> %s: "format"", __func__, ## arg)
+> +#else
+> +	#define dbg_info(format, arg...)
+> +#endif
+
+Drop custom debug prints.
 
 > +
-> +required:
-> +  - compatible
-> +  - reg
-
-clock-controller, no?
-
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    syscon@30010000 {
-> +        compatible = "sophgo,sg2042-syscon", "syscon";
-> +        reg = <0x30010000 0x1000>;
-> +    };
-> +
-> +    syscon@30020000 {
-> +        compatible = "sophgo,sg2042-syscon", "syscon";
-
-Wait, these are two different devices. Why do you use the same
-compatible for them? Is their register layout exactly the same?
+> +#endif /* __CLK_SOPHGO_SG2042_H */
 
 Best regards,
 Krzysztof
