@@ -1,177 +1,88 @@
-Return-Path: <devicetree+bounces-19301-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19302-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD8FD7FA586
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 17:02:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CE5D47FA58D
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 17:03:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DF94D1C20986
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 16:02:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 09B841C20C07
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 16:03:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E016B34CDE;
-	Mon, 27 Nov 2023 16:02:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="GnFO8zsP"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 872F834CFE;
+	Mon, 27 Nov 2023 16:03:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D49E9B4;
-	Mon, 27 Nov 2023 08:02:11 -0800 (PST)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3ARG1pI6110363;
-	Mon, 27 Nov 2023 10:01:51 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1701100911;
-	bh=DkNYOh3WI1Z8sgvoainrTIvlDD/uER17VIsjEaXQfok=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=GnFO8zsPuESwH/yF+CK/9Rz+/8wthIhHjiWdUlyUCJGzRirkDhUrDati4bHPBPOt6
-	 TCpiBQ2KGKIp/jUYV/qJruvEqLNfXmLyMA1/1YXBwcJZlP8Z7CTrWzBuOxtSIoI5FN
-	 qkOhEX4G63W1h8lR7zCIvJjwq4KSEdaU0ZRBALIU=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3ARG1p5A006427
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 27 Nov 2023 10:01:51 -0600
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 27
- Nov 2023 10:01:50 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 27 Nov 2023 10:01:50 -0600
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3ARG1npe011871;
-	Mon, 27 Nov 2023 10:01:50 -0600
-Date: Mon, 27 Nov 2023 21:31:48 +0530
-From: Jai Luthra <j-luthra@ti.com>
-To: Aradhya Bhatia <a-bhatia1@ti.com>
-CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux
- Kernel List <linux-kernel@vger.kernel.org>,
-        Linux ARM Kernel List
-	<linux-arm-kernel@lists.infradead.org>,
-        Devarsh Thakkar <devarsht@ti.com>
-Subject: Re: [PATCH] arm64: dts: ti: k3-am62a7-sk: Add interrupt support for
- IO Expander
-Message-ID: <47bohluxljqwmehol6d6owgkf2zrlornyne6xi2zddhapgtwok@jukkjr7kwton>
-References: <20231108191652.1118155-1-a-bhatia1@ti.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6D29DD;
+	Mon, 27 Nov 2023 08:03:35 -0800 (PST)
+X-IronPort-AV: E=McAfee;i="6600,9927,10907"; a="391610315"
+X-IronPort-AV: E=Sophos;i="6.04,231,1695711600"; 
+   d="scan'208";a="391610315"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Nov 2023 08:03:35 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10907"; a="1099823783"
+X-IronPort-AV: E=Sophos;i="6.04,231,1695711600"; 
+   d="scan'208";a="1099823783"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Nov 2023 08:03:31 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.97)
+	(envelope-from <andy@kernel.org>)
+	id 1r7e52-0000000HY9E-2bUV;
+	Mon, 27 Nov 2023 18:03:28 +0200
+Date: Mon, 27 Nov 2023 18:03:28 +0200
+From: Andy Shevchenko <andy@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>,
+	kernel test robot <lkp@intel.com>,
+	Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org>,
+	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org, oe-kbuild-all@lists.linux.dev,
+	Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Rob Herring <robh+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: [PATCH v2 2/2] hwmon: ltc4282: add support for the LTC4282 chip
+Message-ID: <ZWS90GQTJWA7DrML@smile.fi.intel.com>
+References: <20231124-ltc4282-support-v2-2-952bf926f83c@analog.com>
+ <202311250548.lUn3bm1A-lkp@intel.com>
+ <fb2aaa4c69c88738499dfbf46ef93e3b81ca93cb.camel@gmail.com>
+ <76957975-56e7-489e-9c79-086b6c1ffe89@kernel.org>
+ <ac950d01-d9aa-4fb7-810d-b21335e4cc94@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="nxg2xsltibpzyyyn"
-Content-Disposition: inline
-In-Reply-To: <20231108191652.1118155-1-a-bhatia1@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-
---nxg2xsltibpzyyyn
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <ac950d01-d9aa-4fb7-810d-b21335e4cc94@kernel.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-Hi Aradhya,
+On Mon, Nov 27, 2023 at 09:12:14AM +0100, Krzysztof Kozlowski wrote:
+> On 27/11/2023 09:10, Krzysztof Kozlowski wrote:
 
-On Nov 09, 2023 at 00:46:52 +0530, Aradhya Bhatia wrote:
-> The Hot Plug Detect (HPD) signal for the HDMI display travels from the
-> on-board HDMI connector, through the IO Expander 1, and finally to the
-> main_gpio1 line #23, of the SoC.
->=20
-> Add interrupt information for the IO Expander 1 (exp1).
-> Also add pinmux info of main gpio 1, line #23.
->=20
-> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
+...
 
-Reviewed-by: Jai Luthra <j-luthra@ti.com>
+> Wait, this was not even unusual test, just standard compile, which means
+> you did not do basic tests on your end. You must build your new driver
+> with W=1, smatch, sparse and coccinelle before sending upstream.
 
-> ---
->=20
-> Notes:
->=20
->   - HDMI display on AM62A7 is not in the mainline yet. All the patches,
->     including this one, required to enable HDMI display and HPD on
->     AM62A7 SK-EVM, can be found on my github fork in the branch
->     "next_am62a-v3"[0].
->=20
-> [0]: https://github.com/aradhya07/linux-ab/tree/next_am62a-v3
->=20
->  arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts b/arch/arm64/boot/dt=
-s/ti/k3-am62a7-sk.dts
-> index 8f64ac2c7568..560dad02ef62 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-> @@ -274,6 +274,12 @@ AM62AX_IOPAD(0x08c, PIN_OUTPUT, 2) /* (K19) GPMC0_WE=
-n.MCASP1_AXR0 */
->  			AM62AX_IOPAD(0x084, PIN_INPUT, 2) /* (L18) GPMC0_ADVn_ALE.MCASP1_AXR2=
- */
->  		>;
->  	};
-> +
-> +	main_gpio1_ioexp_intr_pins_default: main-gpio1-ioexp-intr-default-pins {
-> +		pinctrl-single,pins =3D <
-> +			AM62AX_IOPAD(0x01d4, PIN_INPUT, 7) /* (C15) UART0_RTSn.GPIO1_23 */
-> +		>;
-> +	};
->  };
-> =20
->  &mcu_pmx0 {
-> @@ -407,6 +413,12 @@ exp1: gpio@22 {
->  		reg =3D <0x22>;
->  		gpio-controller;
->  		#gpio-cells =3D <2>;
-> +		interrupt-parent =3D <&main_gpio1>;
-> +		interrupts =3D <23 IRQ_TYPE_EDGE_FALLING>;
-> +		interrupt-controller;
-> +		#interrupt-cells =3D <2>;
-> +		pinctrl-names =3D "default";
-> +		pinctrl-0 =3D <&main_gpio1_ioexp_intr_pins_default>;
-> =20
->  		gpio-line-names =3D "GPIO_CPSW2_RST", "GPIO_CPSW1_RST",
->  				   "BT_EN_SOC", "MMC1_SD_EN",
->=20
-> base-commit: 2220f68f4504aa1ccce0fac721ccdb301e9da32f
-> --=20
-> 2.42.0
->=20
+Well, sparse is lagging in development, for the last year it's at least two
+times it broke kernel builds because of being not ready for the new stuff used
+in the kernel. Do we have anybody to sync this? I don't think so, hence
+requiring this from developer is doubtful. Otherwise I agree, that basic
+compilation with GCC/LLVM must be done.
 
---=20
-Thanks,
-Jai
+-- 
+With Best Regards,
+Andy Shevchenko
 
-GPG Fingerprint: 4DE0 D818 E5D5 75E8 D45A AFC5 43DE 91F9 249A 7145
 
---nxg2xsltibpzyyyn
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEETeDYGOXVdejUWq/FQ96R+SSacUUFAmVkvV0ACgkQQ96R+SSa
-cUUtxxAAlDWzech4ZFVVHTV4LVfOJMd45nH9fgx/cZ7UyW6ohOUcIFW8eSTl+ze8
-yrrHBlRXIIO/DWl9OHhHEGnfnJ1rJ7/CNRaoq3MsgyfxuYits8AA7hJBPxoio7+3
-1asxTxabvgNgxMZVc0xeMNqYeNzOs2NCnpWMPbhovHkv1lPz18nK94/o4WrIkiQy
-UEu3PMh3DBkKsrnJSjU442yne8XF7tZdRNU5flslGsv+89xO9lIhtO6g5yJfcH5B
-k7NocQuwdfA482RHJYLdIQFIkHJ5tIS10Ar9kMQtDsnybX+kl5TAKZRYkdeTR9Wg
-cKl1xT1T9NBZFhDs/URGDcQuxG/7sLudPF+3SCzQYDnT6WOy2Uq9b83fGFaClCSM
-mikdNkuYtLs876asIIkw8+opLXosLU9PHqUaJFOiXaxrX14rw87LiWi/dj3+SMXy
-BE3ZWyUxYA2xnxX8UGKSyw4mH9dVFOSIQqLCojBYjzjvLReTKbjlB/b8zQbWUvkf
-rb8B5qQ6QUoXYfQeQCEbA0Vk3H1lkBEvLd8crEuB8gZzh1O2KqIz8oIMRFAYTzJR
-Z3XNtcEi6so+TlVWoJ1i1CSMhpeY0Wujh25VMl7AZEeTIvh1wrjCQ17aNwUmDWg8
-NpgyK0z8Q035rrWXWhEEoycycTE0aVPsSEGQnszdEXlVx3FwHbE=
-=WIOm
------END PGP SIGNATURE-----
-
---nxg2xsltibpzyyyn--
 
