@@ -1,62 +1,61 @@
-Return-Path: <devicetree+bounces-19289-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19292-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B32857FA532
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 16:51:17 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B62FF7FA53B
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 16:52:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 43460B212B8
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 15:51:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E770D1C209DD
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 15:52:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13B3634578;
-	Mon, 27 Nov 2023 15:51:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 815283457F;
+	Mon, 27 Nov 2023 15:52:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tIK/yoyo"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="C0vWTb6r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 834B519A
-	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 07:51:07 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-50ba73196b1so3436983e87.0
-        for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 07:51:07 -0800 (PST)
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61E40D59
+	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 07:52:31 -0800 (PST)
+Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-507a0907896so5711350e87.2
+        for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 07:52:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701100265; x=1701705065; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=XzpjgIoTApBpg6RH8jtn7hI12q8Te+BGFiuT3n+0Mpg=;
-        b=tIK/yoyou8KmiLSwbL9kYEdCOguvaxB+RFVzAWgf/3FkA1R65Hwmrsk4uAFx2ljmar
-         DjZWlZSFIWwicsSlBLxqSskNtUXhEkbPMnGOnlKuG/yPdXX+vZDfp422moGJFkFuGez/
-         fBq4th8Yok1yPaEju2ZDHLxpUrHZB2mlVoK9GDETEwYq3n0oIwsJ+edPpZ6+r4WVunnU
-         Opyh5pUMrob/2+IVXfXk1yBsQRZL7XCJuoMYURzp+ABW8lUZRj5svMSsEcUks2i3XpLz
-         EKBh7xmeHgT/+doV0lIHdLhK7k5SEUS6TflYefckHe15dYAje0jJxDyBsY2NaXqGBizO
-         HhyA==
+        d=linaro.org; s=google; t=1701100349; x=1701705149; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=+Qt5tTZHEEzddg6Ssj7r37p+bACPrFj0HogZyj70Blc=;
+        b=C0vWTb6rGN+nwhvM8X4GZOdTxM9kSuWMPjJTrZVyrKmCPAFRsZcMA/F/CohWqyP2xo
+         TEPDBH+73DMgyqJH6FDf13q+jy0XVDiO6xs+Jo+29jY2r7TmftqsCX6alyxk7VpbiaCD
+         EXcEM8rD4ItlHYGGZzrZy74xyfXTsFhskM3zzHV9JOmQV14mr/qQQqojXOLJXG+vTLK9
+         3uX0EY0TCUbUC4VOIBruNd230n0LgU68m6GyR08N2yq/T180L7cpTVPIObogKQOuoUbS
+         SoUd2NMwT6x4gOEp74k7zQg7zpHyhFO3hJZKx7bgiTpLNtFepIecjODSHFMAs03igIVD
+         NpQg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701100265; x=1701705065;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=XzpjgIoTApBpg6RH8jtn7hI12q8Te+BGFiuT3n+0Mpg=;
-        b=sJ4n/BAjFfi8tl3Scp6pnv8RW6XTHO8JsjKqf2+NOr2WmuXdRB5i5uTyJdFdY8Anxk
-         r2MKGIkq0nHEeSJrky9HWi/bIaaz6Hd7gzbe0c3QLaprbNE9GjYvz4sLu4nTReaGZzsS
-         UMlk1Pd6Lc/CHrRa6NTuGT680nY55qIXh+kQrxFJADO8k1G6nwHoHCEWaRNSalFC2tM2
-         RK4lv0lTiuTjX6EGCU+KrDYHI+8r14k/e0aL2FGPH4YhkcaUu9pbLTkEvKFTLhfa87Tn
-         O3KragoBd5uWy6yPbT5JIX5tqAnhLVMDs3f1WEibs38WtgOjpHyIci98oJzZtS662xtK
-         fz1Q==
-X-Gm-Message-State: AOJu0Yw2Lf20AC9LHcuWynet2oqaCQIRfSmNhPLh13p5YgIgkrXNRMYN
-	h3k+KADdcXUMmwdImh/FILDp0+UyFYIIH1kCX5M=
-X-Google-Smtp-Source: AGHT+IEcRyqGS1E5o70eVg5WuvtHz4bhKKK0XH43+n99TPn2zH3JDSkGEl2M5AjX/RTSFxRvZItv+Q==
-X-Received: by 2002:a05:6512:31c3:b0:509:377a:26d9 with SMTP id j3-20020a05651231c300b00509377a26d9mr10226865lfe.8.1701100265505;
-        Mon, 27 Nov 2023 07:51:05 -0800 (PST)
-Received: from [127.0.1.1] ([85.235.12.238])
-        by smtp.gmail.com with ESMTPSA id b16-20020ac25e90000000b0050a71df5d39sm1515787lfq.300.2023.11.27.07.51.04
+        d=1e100.net; s=20230601; t=1701100349; x=1701705149;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+Qt5tTZHEEzddg6Ssj7r37p+bACPrFj0HogZyj70Blc=;
+        b=XVxP8i9vDTZh3vY2hJB2DW9dJ6JT2BqSDoPXZXqjbBgngqbUJYri/R5oO6ZqDgj2xf
+         mqgGs2DZ3FyDewUq1eswflXWgnhi9PtZs8vQw7KdFHab6CuEh9ceTkjbbVr4moBAYAFn
+         YoKPJd8DjxtjdURq/K4LA0No8teSCKXjJ6eZC+3YT5UaXqDdLKi721IkmsnCDYdVy6z6
+         /0q/fS2bEI+zkWzQVwUC+DBL12soSEWmf4agIcS8g5R/hZWS5qIppNHrcuaR2ouQUszX
+         M2ApCP+ITtQlSFWw+Nx5thrzalQMjW6ATcRYdop6e4RFR/4HFTtLAQ0sbU8/dK1casfM
+         56hA==
+X-Gm-Message-State: AOJu0YwNG1jMyJCyFhTttzKttsfhVg3X/CJSJ/yO7+KMVRVztyzEtXTC
+	22AVXhrMNdaPdk2m24G+zXc7JQ==
+X-Google-Smtp-Source: AGHT+IEKpRFaESt4gZvElSt1l0ne4fGi8XPGy+WkqgJ128EQh8YsvW3WHrm+Q+ZuH8OVSRdawRxsRA==
+X-Received: by 2002:ac2:42c4:0:b0:507:a70e:c619 with SMTP id n4-20020ac242c4000000b00507a70ec619mr4364196lfl.67.1701100349416;
+        Mon, 27 Nov 2023 07:52:29 -0800 (PST)
+Received: from [10.167.154.1] (178235187180.dynamic-4-waw-k-2-3-0.vectranet.pl. [178.235.187.180])
+        by smtp.gmail.com with ESMTPSA id mb22-20020a170906eb1600b009fc0c42098csm5855150ejb.173.2023.11.27.07.52.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Nov 2023 07:51:04 -0800 (PST)
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Mon, 27 Nov 2023 16:51:02 +0100
-Subject: [PATCH v9 3/3] ARM64: dts: Add special compatibles for the Turris
- Mox
+        Mon, 27 Nov 2023 07:52:29 -0800 (PST)
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: [PATCH v7 0/2] Resolve MPM register space situation
+Date: Mon, 27 Nov 2023 16:52:11 +0100
+Message-Id: <20230328-topic-msgram_mpm-v7-0-6ee2bfeaac2c@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,89 +64,102 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20231127-mv88e6xxx-mvebu-fixes-v9-3-d19b963e81fb@linaro.org>
-References: <20231127-mv88e6xxx-mvebu-fixes-v9-0-d19b963e81fb@linaro.org>
-In-Reply-To: <20231127-mv88e6xxx-mvebu-fixes-v9-0-d19b963e81fb@linaro.org>
-To: Andrew Lunn <andrew@lunn.ch>, 
- Gregory Clement <gregory.clement@bootlin.com>, 
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, 
+X-B4-Tracking: v=1; b=H4sIACu7ZGUC/4XQy2rEMAwF0F8ZvK6LIz8zq/5HGYrtKIkhL+yZ0
+ DLk36vMrgSa5RXoXKEnK5gTFna9PFnGNZU0TxTs24XF3k8d8tRQZiBACgmO3+clRT6WLvvxa1x
+ GHo1zAWWIUCtGa8EX5CH7Kfa0OD2GgYZLxjZ9v3o+b5T7VO5z/nnVrtU+/adhrbjgVbDOed1qL
+ +XHkCaf5/c5d2zXVjgTgAQE5ZVDbVvRHAR5JkgSIFpowQZlhTkI6kxQJASP0kETRVvDQdBngib
+ BoDBAr6hN0AfBnAlmFxygcloHi39v2LbtF7C2wB8QAgAA
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Thomas Gleixner <tglx@linutronix.de>, Marc Zyngier <maz@kernel.org>, 
  Rob Herring <robh+dt@kernel.org>, 
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Russell King <linux@armlinux.org.uk>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Linus Walleij <linus.walleij@linaro.org>
-X-Mailer: b4 0.12.4
+ Shawn Guo <shawn.guo@linaro.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
+ linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1701100347; l=2818;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=jzGaK78zqBfidrnl46fLd36+PZ3YDc+jJgsIYSdRn9o=;
+ b=xjIuKG6/Sr8LMdWtOOOHLmJy45SGvaDnQbAUVFhGFvFL98TkHNzpXEQaONwXO3JJvs82pw42m
+ uPRG2NFAyjIDzXSjZ5MH6KGM9lFIXS0cXYN+dNQAho+K9ocK0pMHz1h
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 
-These special compatibles are added to the Marvell Armada 3720
-Turris Mox in order to be able to special-case and avoid
-warnings on the non-standard nodenames that are ABI on this
-one board due to being used in deployed versions of U-Boot.
+v6 -> v7:
+- Actually check the rvalue of of_address_to_resource
+- Pick up rb
+- Link to v6: https://lore.kernel.org/r/20230328-topic-msgram_mpm-v6-0-682e4855b7e2@linaro.org
 
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+v5 -> v6:
+- Resending due to no responses.
+- Change of base to next-20231124 (no changes to the patch)
+
+Link to v5: https://lore.kernel.org/r/20230328-topic-msgram_mpm-v5-0-6e06278896b5@linaro.org
+
+v4 -> v5:
+- Pick up tags
+- Rebase on Rob's of_ header untanglement
+
+Link to v4: https://lore.kernel.org/r/20230328-topic-msgram_mpm-v4-0-bae382dc0f92@linaro.org
+
+v3 -> v4:
+- Fix up indentation in the bindings patch
+- Add an example glink-edge subnode to remoteproc-rpm (its bindings
+  require that..)
+
+Link to v3: https://lore.kernel.org/r/20230328-topic-msgram_mpm-v3-0-2c72f27b4706@linaro.org
+
+v2 -> v3:
+- Fix the example
+- Pick up tags
+- remove the outdated example from the cover letter, check bindings
+  should you want to see one
+
+The bindings for the wrapper node used in the yaml example are merged
+in qcom/for-next
+
+Link to v2: https://lore.kernel.org/r/20230328-topic-msgram_mpm-v2-0-e24a48e57f0d@linaro.org
+
+v1 -> v2:
+- deprecate 'reg', make qcom,rpm-msg-ram required [1/2]
+- Use devm_ioremap() [2/2]
+
+Link to v1: https://lore.kernel.org/r/20230328-topic-msgram_mpm-v1-0-1b788a5f5a33@linaro.org
+
+Depends on resolution of https://github.com/devicetree-org/dt-schema/issues/104
+
+The MPM (and some other things, irrelevant to this patchset) resides
+(as far as the ARM cores are concerned, anyway) in a MMIO-mapped region
+that's a portion of the RPM (low-power management core)'s RAM, known
+as the RPM Message RAM. Representing this relation in the Device Tree
+creates some challenges, as one would either have to treat a memory
+region as a bus, map nodes in a way such that their reg-s would be
+overlapping, or supply the nodes with a slice of that region.
+
+This series implements the third option, by adding a qcom,rpm-msg-ram
+property, which has been used for some drivers poking into this region
+before. Bindings ABI compatibility is preserved through keeping the
+"normal" (a.k.a read the reg property and map that region) way of
+passing the register space.
+
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+Konrad Dybcio (2):
+      dt-bindings: interrupt-controller: mpm: Pass MSG RAM slice through phandle
+      irqchip: irq-qcom-mpm: Support passing a slice of SRAM as reg space
 
-diff --git a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts b/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
-index 66cd98b67744..a89747d2a600 100644
---- a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
-+++ b/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
-@@ -312,7 +312,7 @@ phy1: ethernet-phy@1 {
- 	 * Also do not touch the "ports" or "port@n" nodes. These are also ABI.
- 	 */
- 	switch0@10 {
--		compatible = "marvell,mv88e6190";
-+		compatible = "marvell,turris-mox-mv88e6190", "marvell,mv88e6190";
- 		reg = <0x10>;
- 		dsa,member = <0 0>;
- 		interrupt-parent = <&moxtet>;
-@@ -438,7 +438,7 @@ port-sfp@a {
- 
- 	/* NOTE: this node name is ABI, don't change it! */
- 	switch0@2 {
--		compatible = "marvell,mv88e6085";
-+		compatible = "marvell,turris-mox-mv88e6085", "marvell,mv88e6085";
- 		reg = <0x2>;
- 		dsa,member = <0 0>;
- 		interrupt-parent = <&moxtet>;
-@@ -506,7 +506,7 @@ port@5 {
- 
- 	/* NOTE: this node name is ABI, don't change it! */
- 	switch1@11 {
--		compatible = "marvell,mv88e6190";
-+		compatible = "marvell,turris-mox-mv88e6190", "marvell,mv88e6190";
- 		reg = <0x11>;
- 		dsa,member = <0 1>;
- 		interrupt-parent = <&moxtet>;
-@@ -632,7 +632,7 @@ port-sfp@a {
- 
- 	/* NOTE: this node name is ABI, don't change it! */
- 	switch1@2 {
--		compatible = "marvell,mv88e6085";
-+		compatible = "marvell,turris-mox-mv88e6085", "marvell,mv88e6085";
- 		reg = <0x2>;
- 		dsa,member = <0 1>;
- 		interrupt-parent = <&moxtet>;
-@@ -700,7 +700,7 @@ port@5 {
- 
- 	/* NOTE: this node name is ABI, don't change it! */
- 	switch2@12 {
--		compatible = "marvell,mv88e6190";
-+		compatible = "marvell,turris-mox-mv88e6190", "marvell,mv88e6190";
- 		reg = <0x12>;
- 		dsa,member = <0 2>;
- 		interrupt-parent = <&moxtet>;
-@@ -817,7 +817,7 @@ port-sfp@a {
- 
- 	/* NOTE: this node name is ABI, don't change it! */
- 	switch2@2 {
--		compatible = "marvell,mv88e6085";
-+		compatible = "marvell,turris-mox-mv88e6085", "marvell,mv88e6085";
- 		reg = <0x2>;
- 		dsa,member = <0 2>;
- 		interrupt-parent = <&moxtet>;
+ .../bindings/interrupt-controller/qcom,mpm.yaml    | 52 +++++++++++++++-------
+ drivers/irqchip/irq-qcom-mpm.c                     | 26 +++++++++--
+ 2 files changed, 58 insertions(+), 20 deletions(-)
+---
+base-commit: 48bbaf8b793e0770798519f8ee1ea2908ff0943a
+change-id: 20230328-topic-msgram_mpm-c688be3bc294
 
+Best regards,
 -- 
-2.34.1
+Konrad Dybcio <konrad.dybcio@linaro.org>
 
 
