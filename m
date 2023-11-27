@@ -1,165 +1,121 @@
-Return-Path: <devicetree+bounces-19067-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19068-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AED7F7F9920
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 07:13:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB7117F999F
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 07:24:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 69FC6280E2B
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 06:13:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 64413280E47
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 06:24:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E410079DB;
-	Mon, 27 Nov 2023 06:13:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B199D27E;
+	Mon, 27 Nov 2023 06:22:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="avhEA42U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A8DFE1
-	for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 22:13:43 -0800 (PST)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <a.fatoum@pengutronix.de>)
-	id 1r7UsE-0004vi-Dd; Mon, 27 Nov 2023 07:13:38 +0100
-Message-ID: <7046940b-854c-c4c0-461a-c817484f5d50@pengutronix.de>
-Date: Mon, 27 Nov 2023 07:13:37 +0100
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 347A319AD;
+	Sun, 26 Nov 2023 22:22:23 -0800 (PST)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AR4pbgE019742;
+	Mon, 27 Nov 2023 06:22:03 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=5KdBbiFwLFtOZF7WLrJ3EbuoE7Dvt1DnypGwC+JKB+c=;
+ b=avhEA42UDDVejMQhK4VftiQcVBl6J6CUZa9h23X7mvVI0vmVKTFxTTrN9bHQqVnUy5d6
+ Eu4UkjnQ2053RZoHo8GwdNj+C9faAaAdsujVE3nPa25Q5y8wa+qsewUoXRWLnM4Wsszp
+ ePzaDOxpNQRYXdm4OM67BtXhs24ANKGJpcEJP0nf2Mf7kINrMPOUKWlVlUu0DP0c4QVB
+ YMl7HgLaGPUFiX7tkaZO78Fk9F+S96StfcsaXsP4ErRYDjOp6JIuUNNNuBNEDW350yLt
+ ppcP7oLuQUO2AeWLSiw3f+y/CHKQfPp4n+WDC5eNPqYEqU9tl7HWfNBRqhRmdAcC/H05 9Q== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uk9ppkabw-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 27 Nov 2023 06:22:03 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AR6M2Qe028669
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 27 Nov 2023 06:22:02 GMT
+Received: from [10.253.33.46] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Sun, 26 Nov
+ 2023 22:21:59 -0800
+Message-ID: <f0604c25-87a7-497a-8884-7a779ee7a2f5@quicinc.com>
+Date: Mon, 27 Nov 2023 14:21:46 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v2 2/4] arm64: dts: freescale: Add support for the
- Variscite DART-MX8M-PLUS SoM
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 3/6] net: phy: at803x: add QCA8084 ethernet phy support
 Content-Language: en-US
-From: Ahmad Fatoum <a.fatoum@pengutronix.de>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev
-Cc: devicetree@vger.kernel.org, Harshesh Valera <harshesh.v@variscite.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>, Li Yang
- <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- FrancescoFerraro <francesco.f@variscite.com>,
- Nate Drude <nate.d@variscite.com>, Shawn Guo <shawnguo@kernel.org>,
- Marco Contenti <marco.c@variscite.com>
-References: <20231025165058.31697-1-laurent.pinchart@ideasonboard.com>
- <20231025165058.31697-3-laurent.pinchart@ideasonboard.com>
- <962e1d33-bc97-6bf8-b94d-581762dd6afa@pengutronix.de>
-In-Reply-To: <962e1d33-bc97-6bf8-b94d-581762dd6afa@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8
+To: Andrew Lunn <andrew@lunn.ch>
+CC: <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+        <pabeni@redhat.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <hkallweit1@gmail.com>, <linux@armlinux.org.uk>, <corbet@lwn.net>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>
+References: <20231126060732.31764-1-quic_luoj@quicinc.com>
+ <20231126060732.31764-4-quic_luoj@quicinc.com>
+ <0b22dd51-417c-436d-87ce-7ebc41185860@lunn.ch>
+From: Jie Luo <quic_luoj@quicinc.com>
+In-Reply-To: <0b22dd51-417c-436d-87ce-7ebc41185860@lunn.ch>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: WSi6TPtH7lrRBeDVgEeBVZJoh0jjbKug
+X-Proofpoint-GUID: WSi6TPtH7lrRBeDVgEeBVZJoh0jjbKug
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-27_03,2023-11-22_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ phishscore=0 mlxlogscore=907 suspectscore=0 lowpriorityscore=0
+ clxscore=1015 mlxscore=0 bulkscore=0 spamscore=0 adultscore=0
+ malwarescore=0 impostorscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2311060000 definitions=main-2311270043
 
-On 27.11.23 06:58, Ahmad Fatoum wrote:
-> Hello Laurent,
 
-Ah, I see now, that this series was about to be merged. I missed it at first,
-because of the MAINTAINERS entry losing a F:, which I now sent a fix for.
 
-Anyways, should you resend to fix the binding errors, you could address some
-of the nitpicks, but I found nothing critical.
+On 11/27/2023 1:31 AM, Andrew Lunn wrote:
+>> +		/* There are two PCSs available for QCA8084, which support the
+>> +		 * following interface modes.
+>> +		 *
+>> +		 * 1. PHY_INTERFACE_MODE_10G_QXGMII utilizes PCS1 for all
+>> +		 * available 4 ports, which is for all link speeds.
+>> +		 *
+>> +		 * 2. PHY_INTERFACE_MODE_2500BASEX utilizes PCS0 for the
+>> +		 * fourth port, which is only for the link speed 2500M same
+>> +		 * as QCA8081.
+>> +		 *
+>> +		 * 3. PHY_INTERFACE_MODE_SGMII utilizes PCS0 for the fourth
+>> +		 * port, which is for the link speed 10M, 100M and 1000M same
+>> +		 * as QCA8081.
+>> +		 */
+> 
+> How are these 3 modes configured? I don't see any software
+> configuration of this in these drivers. Can it only by configured by
+> strapping?
 
-Cheers,
-Ahmad
+The interface mode is passed in the .config_init, which is configured
+by the PCS driver, the hardware register is located in the PCS, this
+driver will be pushed later.
 
 > 
-> On 25.10.23 18:50, Laurent Pinchart wrote:
->> +	reg_eqos_phy: regulator-eqos-phy {
->> +		compatible = "regulator-fixed";
->> +		regulator-name = "eqos-phy";
->> +		regulator-min-microvolt = <3300000>;
->> +		regulator-max-microvolt = <3300000>;
->> +		gpio = <&gpio2 20 GPIO_ACTIVE_HIGH>;
->> +		enable-active-high;
->> +		regulator-always-on;
+> I think there should be some validation of the phydev->interface
+> mode. Are ports 1-3 set to PHY_INTERFACE_MODE_10G_QXGMII? Is port 4
+> interface mode consistent with the strapping?
 > 
-> Apparently, https://lore.kernel.org/all/20230721110345.3925719-1-m.felsch@pengutronix.de/
-> didn't make it upstream. Perhaps you mentioning that you could use this would help get
-> it unstuck? :)
-> 
->> +&eqos {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_eqos>;
->> +	phy-mode = "rgmii";
->> +	phy-handle = <&ethphy0>;
->> +	status = "okay";
->> +
->> +	mdio {
->> +		compatible = "snps,dwmac-mdio";
->> +		#address-cells = <1>;
->> +		#size-cells = <0>;
->> +
->> +		ethphy0: ethernet-phy@0 {
->> +			compatible = "ethernet-phy-ieee802.3-c22";
->> +			reg = <0>;
->> +			eee-broken-1000t;
->> +			reset-gpios = <&gpio2 11 GPIO_ACTIVE_LOW>;
-> 
-> Nitpick: Separate pinctrl entry for PHY GPIOs that's added to the PHY node?
-> Makes it easier to check that all used signals are indeed muxed.
-> 
->> +	pmic@25 {
->> +		compatible = "nxp,pca9450c";
->> +		reg = <0x25>;
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&pinctrl_pmic>;
->> +		interrupt-parent = <&gpio1>;
->> +		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
->> +
->> +		regulators {
->> +			BUCK1 {
->> +				regulator-name = "BUCK1";
->> +				regulator-min-microvolt = <600000>;
->> +				regulator-max-microvolt = <2187500>;
-> 
-> Nitpick: These may be the limits of what the BUCK can output, but they
-> don't look like a safe operating range for the board. The Linux driver already
-> has ranges hardcoded to cover what's possible by the hardware, so if you specify
-> regulator range here, it should pertain to what the board and SoC are designed
-> to handle.
-> 
->> +/* eMMC */
->> +&usdhc3 {
->> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
->> +	pinctrl-0 = <&pinctrl_usdhc3>;
->> +	pinctrl-1 = <&pinctrl_usdhc3_100mhz>;
->> +	pinctrl-2 = <&pinctrl_usdhc3_200mhz>;
->> +	bus-width = <8>;
->> +	non-removable;
-> 
-> no-sd
-> no-sdio
-> 
-> may give you a tiny bit of speedup during probe, if you know that there will
-> always be an eMMC here.
-> 
->> +	pinctrl_i2c1: i2c1grp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_I2C1_SCL__I2C1_SCL					0x400001c2
->> +			MX8MP_IOMUXC_I2C1_SDA__I2C1_SDA					0x400001c2
->> +		>;
->> +	};
->> +
->> +	pinctrl_i2c1_gpio: i2c1gpiogrp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_I2C1_SCL__GPIO5_IO14				0x1c2
->> +			MX8MP_IOMUXC_I2C1_SDA__GPIO5_IO15				0x1c2
-> 
-> This surprises me. I'd expect that the SION bit needs to be set for GPIO bus recovery.
-> 
-> Cheers,
-> Ahmad
-> 
+> 	  Andrew
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
-
+All ports(1-4) can be PHY_INTERFACE_MODE_10G_QXGMII, if port4 is
+connected with PCS0, which will works on sgmii/2500basex mode,
+these configuration is controlled by register instead of boot strapping.
 
