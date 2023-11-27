@@ -1,144 +1,156 @@
-Return-Path: <devicetree+bounces-19259-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19260-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 429F27FA43A
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 16:17:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03B6B7FA442
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 16:19:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D88761F20D3C
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 15:17:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BAD072816A0
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 15:19:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51A2531A76;
-	Mon, 27 Nov 2023 15:17:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 068A231A76;
+	Mon, 27 Nov 2023 15:19:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="Mzn2l2x+"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="B6PrzDkN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E845AA;
-	Mon, 27 Nov 2023 07:17:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-	s=s31663417; t=1701098201; x=1701703001; i=wahrenst@gmx.net;
-	bh=uKHkG9+U47RYHsud2aL+arN6vGOO0g0Agwwf3Wi2AkI=;
-	h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:
-	 In-Reply-To;
-	b=Mzn2l2x+c6ZyZLyWIoYyljmPPba9NLq2y6sgEPrMA3UNWP0VRAFoDDByYvxUfn+G
-	 2A6MJd/fpDeOmQR21zy+mkb/RpR+05xyOfqrJO471aZ7HXR5npacQ556OXOxs72HF
-	 29u+1HlA/mKMMETPo0XQjDmzJu8PJwQwqqJeYDywqVncTZIFbeZEtCro08XgcgQE8
-	 064bRQLooOoFR8WNQoBKo3oEmwwcq9U+0HiCp9KhD6hGRFqySv5UVQ96C55FTIAxL
-	 TVCXTUvvvfmDvJiL6CqhsKhlEz3M6GxOux7cNCE2U9C5t+7QEOeQlU6IGOGbw75N6
-	 LOOgiQ6xXz7Ca86J+w==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.1.129] ([37.4.248.43]) by mail.gmx.net (mrgmx104
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MQMyf-1qulIG1xh3-00MKLB; Mon, 27
- Nov 2023 16:16:41 +0100
-Message-ID: <91488944-64e2-4715-baaa-ff5c18d46840@gmx.net>
-Date: Mon, 27 Nov 2023 16:16:40 +0100
+Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com [IPv6:2607:f8b0:4864:20::b36])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1DCCAA;
+	Mon, 27 Nov 2023 07:19:27 -0800 (PST)
+Received: by mail-yb1-xb36.google.com with SMTP id 3f1490d57ef6-db4050e68f3so4007067276.0;
+        Mon, 27 Nov 2023 07:19:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1701098367; x=1701703167; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=VIKMvlIRYtS1WvbUoM+vWJ1z9I2GYsx2bfxFTfmC+TQ=;
+        b=B6PrzDkNSGflIGyKxT6lJSOQZtl1VH+4eiypVM5zl6cxjK23Wu2q3XJoL02SsBwr8T
+         tG5rUCL+N435lbKfNLuwQzM9kkp22+OqmqSoS/RQLuESSO9QDwyHCsdyYja060omGwzY
+         IV0DGMss6fZt2LCYzx+7kzq6Pnmw5UGgUgUoyWDl5YCO30EVZOEp69vFTHGKzLBAqFpd
+         a2cWE9Az84mPzYdX0BZAGPpVFenUGhI4pyE6TFE5AHHb9RktbvLxCWPrslOos9qox1oq
+         EY5v4iCAuV8blJQC2bx+/rYlLI3G9MKDhP48+TtHa/UyX/n2e54ArFdB2RQQDiTh2eJa
+         c2zQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701098367; x=1701703167;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VIKMvlIRYtS1WvbUoM+vWJ1z9I2GYsx2bfxFTfmC+TQ=;
+        b=PKNIZUTCGlVrHyGL9wh0SpeZx9laWJA/LwnOcNNTbiOKAW+BRLnihbKVgcx+892VIx
+         yvOSQE0FUZ6l3c56lWhOdnOQwL0xxHyfn1JLQlbWHq1hF7TBi9doiMXogMTruhxyD8GQ
+         AklyggB8qKLHe7aGGXcgDr0apdTkO5ZfAkYZwlrtBwqzrKeGUdgJIkdmWsYn/PhdrFsC
+         fEdliWz/GivdlqrQyKU4v+8Ctwv4F0qLPP9I+VflecCd0i3/q5SE3p6gefp1rMMfhHI1
+         p77jODzFwYV/h+tYieRSqS6RnOfDBW9bG09X5Zsp2wgDNXKt0knZK4B4E3M9qWUJpRKC
+         y2BQ==
+X-Gm-Message-State: AOJu0YyjwNgrsfuhjhNul3djBBh96C/XCqQ6ohod5LEm26UZ6XyCkE1n
+	BUJpvoRF+5jjxxjVBNfuOIF5cBmRmaVeA8TszEI=
+X-Google-Smtp-Source: AGHT+IE/rFqsV0KKN1gYLmgiErQUf25fY8S0FvfOygtZwLf5Ah7JOJcfJbDXf3oSBTUYCLBu/J8CZ1DTNOo/phyIfOI=
+X-Received: by 2002:a25:4b02:0:b0:db0:23d8:780 with SMTP id
+ y2-20020a254b02000000b00db023d80780mr9466434yba.60.1701098366826; Mon, 27 Nov
+ 2023 07:19:26 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/3] ARM: dts: bcm2711-rpi-cm4-io: Enable xHCI host
-To: Cyril Brulebois <kibi@debian.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Mathias Nyman <mathias.nyman@intel.com>,
- bcm-kernel-feedback-list@broadcom.com, linux-usb@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20231126025612.12522-1-wahrenst@gmx.net>
- <20231127003432.7aztwjxper2a3o33@mraw.org>
- <b1156fee-aa43-43b3-bb03-baaac49575f4@gmx.net>
- <20231127115538.npv23hhn7jfrk3fc@mraw.org>
- <892c2e2f-3187-491b-b464-56d099b6fd49@gmx.net>
- <20231127130225.lyk2jngfru5lw6sd@mraw.org>
-Content-Language: en-US
-From: Stefan Wahren <wahrenst@gmx.net>
-In-Reply-To: <20231127130225.lyk2jngfru5lw6sd@mraw.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:z1I3XJZGqSHwV2wlk4Op4Opz52HPOPJnSUJgR9jfPR+DgUYNCv8
- Fk2ZVaVfTwW9+nM5EVzpNaLJvXuPZDD+JTP5HGQRG/dXZEBRB2BkaoShkrn//i0eLvn9+YT
- 8UFNs78XOCf4cTWG7mUs4lq704i0oJ7ZGeVziVHJYGmmt6ROVkNPBfhS1UiDPX8wzXH82Bd
- sdZ++l2hvgKg6Sf6OK2Eg==
-UI-OutboundReport: notjunk:1;M01:P0:eF3XxoYewsw=;OxmxbOEhmmsNtFOX1lmtKKIqcOF
- pvZRTMpyXUQZ8afCb0NdcKjrb9OxU65SRH7UO2mdaVERykcGrwS5qx8U8tryyzYL5aCv7IEnK
- sBonKenQ6ibbYEQbCtfXSCQRHAKb86AyYmBsJRiD/QCvnFr5D78yXdGI4ZQ5oOG79ASqwjxrX
- nGkzjYof+B29Md+8wdk8fNektjXBY+ehdZQ8jdvo23D5AfHR/qL8NJKvL1HGUpTklxwbNHK9Q
- QwjBv+1iS7tIz06EkAMz4MPtLZi5nOS43lu9Tv8H1P2awmOE6pZrKKjBqgRPwPy/O1iwZUeNL
- 7HrlwhxPuct/zasL+/roj1JCBArFKHkv2HzUWy6sB0CrInVonIK0zMcIVlWCwwPYz/dAFMhGh
- CePwb/3S+brnvOSF8kk4E99W9AL35Dv5shFlqsQbV2momvLlc4lALPLfKx6xR+gieVOGlXmbu
- 4Kt0i0qiLIOgjIOFzuPJdXv0zh22cS1tgErKxiKsMbv94lZTljSe3Oj/iYa36oXAV11WRgT3l
- 7Fd85WD2RI19zJ7pUck3ikIo5dExg7XHQ9aNh4EHlsHaT/2IVphQ3vvtOLeL621UjO1rfJN7I
- G97EFneJCQ9nGH2d038Ctd/cF7n72tk7NYM6+l8k2Jd5AyPwE9bXLElR36ukmEPA/ksFuzaHE
- bBykkGxJts0MUaF/WqyTJgNCl0W9zvxZHk+wEcRBb/ZHe28ZOej0tI2mulbgRMR9QVnRXrORp
- lR1PWoDrE0l4N0KSqStMPNp1XEXk3EwFCLtaGjbvwwWU1pj2Xq1x5ifuKX07KLxexuf6adW+p
- ivrKombmGjf77GlE2ntAYjj2g2mYNetJnVDcYdOQMrhXNzlYE7fbBMQrqTiEJbtwKYhPKl7fP
- hsLj64Y0yJ7yRxYbDfghgxBxcpTx7k1xrINpgmKzWJu5RDHDQd8J44ywe7eSnCjTnIkJtupaD
- kla38xBu+e6i4J9n8OUeSTrYoKQ=
+References: <20231121151733.2015384-1-tmaimon77@gmail.com> <20231121151733.2015384-3-tmaimon77@gmail.com>
+ <6aeb28f5-04c2-4723-9da2-d168025c307c@lunn.ch> <CAP6Zq1j0kyrg+uxkXH-HYqHz0Z4NwWRUGzprius=BPC9+WfKFQ@mail.gmail.com>
+ <9ad42fef-b210-496a-aafc-eb2a7416c4df@lunn.ch> <CAP6Zq1jw9uLP_FQGR8=p3Y2NTP6XcNtzkJQ0dm3+xVNE1SpsVg@mail.gmail.com>
+In-Reply-To: <CAP6Zq1jw9uLP_FQGR8=p3Y2NTP6XcNtzkJQ0dm3+xVNE1SpsVg@mail.gmail.com>
+From: Tomer Maimon <tmaimon77@gmail.com>
+Date: Mon, 27 Nov 2023 17:19:15 +0200
+Message-ID: <CAP6Zq1ijfMSPjk1vPwDM2B+r_vAH3DShhSu_jr8xJyUkTQY89w@mail.gmail.com>
+Subject: Re: [PATCH v1 2/2] net: stmmac: Add NPCM support
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: alexandre.torgue@foss.st.com, tali.perry1@gmail.com, edumazet@google.com, 
+	krzysztof.kozlowski+dt@linaro.org, linux-stm32@st-md-mailman.stormreply.com, 
+	benjaminfair@google.com, openbmc@lists.ozlabs.org, joabreu@synopsys.com, 
+	joel@jms.id.au, devicetree@vger.kernel.org, j.neuschaefer@gmx.net, 
+	robh+dt@kernel.org, peppe.cavallaro@st.com, 
+	linux-arm-kernel@lists.infradead.org, avifishman70@gmail.com, 
+	venture@google.com, linux-kernel@vger.kernel.org, mcoquelin.stm32@gmail.com, 
+	netdev@vger.kernel.org, davem@davemloft.net
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Cyril,
+Hi Andrew,
 
-Am 27.11.23 um 14:02 schrieb Cyril Brulebois:
-> Stefan Wahren <wahrenst@gmx.net> (2023-11-27):
->> Could you please provide the following information:
->>
->> - settings of config.txt
-> Here you go:
->
->      arm_64bit=3D1
->      enable_uart=3D1
->      upstream_kernel=3D1
->
->      kernel=3Dvmlinuz-6.6.0+
->      initramfs initrd.img-6.6.0+
->
->      enable_jtag_gpio=3D1
->      force_turbo=3D1
->
->> - VC firmware version
-> This is pieeprom-2023-01-11.bin
->
-> I know there's pieeprom-2023-05-11.bin as well, but I've been keeping
-> the former as a constant throughout the PCIe patch series testing once
-> I realized how critical it was (old beta EEPROM versions found in some
-> CM4s made everything much harder initially).
+I took a look at the xpcs driver and the stmmac driver and it doesn't
+cover NPCM use.
 
-Sorry, i was a little bit unspecific. This the first level bootloader
-stored in the EEPROM. I meant the VC firmware version from the SD card
-which is logged in dmesg:
+in the NPCM case the stmmac ID=0x37 therefore the driver is linked to DWMAC1000
+https://elixir.bootlin.com/linux/v6.7-rc2/source/drivers/net/ethernet/stmicro/stmmac/hwif.c#L139
 
-raspberrypi-firmware soc:firmware: Attached to firmware from ...
+to enable the xpcs, the stmmac should support xgmac or gmac4 and in
+the NPCM is support only gmac.
+https://elixir.bootlin.com/linux/v6.7-rc2/source/drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c#L555
+https://elixir.bootlin.com/linux/v6.7-rc2/source/drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c#L573
 
-> In case the config matters:
->
->      [all]
->      BOOT_UART=3D0
->      WAKE_ON_GPIO=3D1
->      POWER_OFF_ON_HALT=3D0
->      BOOT_ORDER=3D0xf25641
->      ENABLE_SELF_UPDATE=3D1
->
->> - did you use arm64/defconfig or something special?
-> I'm using a =E2=80=9Cdistribution config=E2=80=9D, starting from the lat=
-est arm64 config
-> found in Debian unstable (6.5.10-1), and applying `make oldconfig`.
->
-> You'll find it attached.
-Thanks
->
->
-> Cheers,
->
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+and the most important thing is that the XPCS is handled through an
+indirect register access and not through MDIO. the MDIO is connected
+to the external PHY and not to the XPCS.
 
+In that case, I think the best way to handle the XPCS is through the
+NPCM glue layer, what do you think?
+
+Thanks,
+
+Tomer
+
+On Thu, 23 Nov 2023 at 15:50, Tomer Maimon <tmaimon77@gmail.com> wrote:
+>
+> Hi Andrew,
+>
+> On Wed, 22 Nov 2023 at 20:45, Andrew Lunn <andrew@lunn.ch> wrote:
+> >
+> > On Wed, Nov 22, 2023 at 07:50:57PM +0200, Tomer Maimon wrote:
+> > > Hi Andrew,
+> > >
+> > > Thanks for your comments
+> > >
+> > > On Tue, 21 Nov 2023 at 18:42, Andrew Lunn <andrew@lunn.ch> wrote:
+> > > >
+> > > > > +void npcm_dwmac_pcs_init(struct npcm_dwmac *dwmac, struct device *dev,
+> > > > > +                      struct plat_stmmacenet_data *plat_dat)
+> > > > > +{
+> > > > > +     u16 val;
+> > > > > +
+> > > > > +     iowrite16((u16)(SR_MII_CTRL >> 9), dwmac->reg + IND_AC_BA_REG);
+> > > > > +     val = ioread16(dwmac->reg + PCS_SR_MII_CTRL_REG);
+> > > > > +     val |= PCS_RST;
+> > > > > +     iowrite16(val, dwmac->reg + PCS_SR_MII_CTRL_REG);
+> > > > > +
+> > > > > +     while (val & PCS_RST)
+> > > > > +             val = ioread16(dwmac->reg + PCS_SR_MII_CTRL_REG);
+> > > > > +
+> > > > > +     val &= ~(PCS_AN_ENABLE);
+> > > > > +     iowrite16(val, dwmac->reg + PCS_SR_MII_CTRL_REG);
+> > > > > +}
+> > > >
+> > > > Is this a licensed PCS implementation? Or home grown? If its been
+> > > > licensed from somebody, it maybe should live in driver/net/pcs, so
+> > > > others can reuse it when they license the same core.
+> >
+> > > we are using DWC PCS, I don't see support for DWC PCS and I am not
+> > > sure it is supposed to be supported at /drivers/net/pcs
+> >
+> > I've not followed the naming used by Synopsys. Is DWC PCS the same as
+> > XPCS? Does Synopsys have multiple PCS implementations?
+> >
+> > > I do see a patch set to support DWC PCS but I don't think it answers my needs
+> > > https://patchwork.ozlabs.org/project/netdev/patch/1559674736-2190-3-git-send-email-weifeng.voon@intel.com/
+> >
+> > I _think_ this patch eventually got turned into
+> > driver/net/pcs/pcs-xpcs.c
+> >
+> > What exactly does it not do for you?
+> Thanks for pointing me to Synopsys (DWC) PCS in pcs-xpcs.c I need to
+> check if the driver follows all our SGMII needs
+> >
+> >      Andrew
+>
+> Best regards,
+>
+> Tomer
 
