@@ -1,125 +1,119 @@
-Return-Path: <devicetree+bounces-19323-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19324-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B55507FA65D
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 17:29:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8468A7FA66A
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 17:31:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D90451C20A70
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 16:29:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B68F91C20DF1
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 16:31:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84FEC36AE6;
-	Mon, 27 Nov 2023 16:29:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C331731739;
+	Mon, 27 Nov 2023 16:31:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="cXZDY253"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TffA28v8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com [IPv6:2607:f8b0:4864:20::b33])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1943699
-	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 08:29:01 -0800 (PST)
-Received: by mail-yb1-xb33.google.com with SMTP id 3f1490d57ef6-db35caa1749so3942570276.2
-        for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 08:29:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google; t=1701102540; x=1701707340; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=i70tntcGFXXrEjgo++8Q6tFowckjpLWeV9hv9uXKYaM=;
-        b=cXZDY2536itPDE7PfXTWEbUbOkFgqOcwJI7VnOisF1flRRAZhcwHFcV63m2oLNHb5N
-         ndXJVc7U8CZiJ0YUV0V7CuAnXuWV6emssx43Rhr5Y91B52v6umhWH1Tm3za2TqVTzqMV
-         3/F+JJ4ojKAOp9azsK8pOMdcNROb4qRfyR/EQplABsKQRYuWbpNkVtqqf/sh1euusfzX
-         S7HDrCSGsFtVZIMa3gpDMc0IrxikXi5bH98VC1F32r99u9/J1iK4v1A57jOss7TA+MJf
-         yIXUX2eSoVPdsqw5EzT2yfHwb04A3py2eedK6c4vtXQ3vuhaYlEN5qScdPz4tXGYX8Ug
-         V0yw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701102540; x=1701707340;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=i70tntcGFXXrEjgo++8Q6tFowckjpLWeV9hv9uXKYaM=;
-        b=ZT7xhLlZygdPjCrrkRDCFj4BUsCTUIzv0LazXBHGqrlEmqpVfBZtkbzmmivvgITRvI
-         CL+nittoGLKulHsImesbICSKoaKkCyjpaQOyxhQPzh0Zxp8hBIVe8y5Sc2sq9Gwi0eG1
-         i8bH1m5POERShBHbYhFeaJlBd4GECgJeA9+HlYG5eGMnCxehLg4UmnZSml+VOMs/vOSv
-         g18tedO2nfrV46XGohnzCVcbs3r8A3wGQjshGd/mb2zfXxLxo2s0Jl7YMfeKYKmNqy+s
-         e5Rz+mfkdbq2wSiUjafXdFqE/nftm/VCMaClZmu/vVEsmsy0S9pR2yaZVcsM6dhPqgpu
-         QwdQ==
-X-Gm-Message-State: AOJu0Yxzbq882Xys2gKmirgKMEc0N/pRDn0Fs+AwFO0aokHSrGWnnkhY
-	gJ5bVx8d5u2tPfOudcHxsh9EzHJX5n4A0iBhaK2PDQ==
-X-Google-Smtp-Source: AGHT+IECO7V4AYcbg7yNybQqcBKejUQe6X0wJ0B9pkzgEqrXskYntB79d2VRHm4J8BZo27Bj904D9w0enPPVZtjnbSg=
-X-Received: by 2002:a25:3626:0:b0:d9c:7d48:3020 with SMTP id
- d38-20020a253626000000b00d9c7d483020mr11734725yba.20.1701102540286; Mon, 27
- Nov 2023 08:29:00 -0800 (PST)
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 989FF36AEA;
+	Mon, 27 Nov 2023 16:31:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C05CC433C9;
+	Mon, 27 Nov 2023 16:31:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701102680;
+	bh=QyrwuZSluoOjDbBks6BhG0l158nQkSBESH7pk3BuN/4=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=TffA28v8TQYOj/Sb3yTimxZBiF3/XGnEc1+oojAdi2hPpPfj424H85o0QP8MdaL8w
+	 AE1i94EwHCHsYv0VRxGj8imypbozPKn1yrvdntnBsbp7WAMFoVQl+jZN9N6qDuYJRh
+	 bl9dvf4iWkLqteUHMox7C/VZkxk2TGTT1sasAGUReOSeIJOJT3Mq1ehwPH4GGvuooD
+	 WBw20cRxxqp4aBOHjfwXx0z/5f4h0CFI1MbCSlVXZBC1fvF/+xi047G8U6kCKvy1/v
+	 NwEUqwUz5bWVdweucLmgEHTZD8EaupYHfD/wp+r2SSIvR43ZM4aBM59dKoK/1YHhGx
+	 S+R4oAz9Tz1og==
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-50ba75e33f3so3468559e87.2;
+        Mon, 27 Nov 2023 08:31:20 -0800 (PST)
+X-Gm-Message-State: AOJu0Yz7HDG1SBwGaWDRdAEnOG2yo9onP43NeCf+kETHwTess7dyx2kd
+	6yYXMyi/HqIeWdCaKbA/x/26oI6LbDUa9uUhHw==
+X-Google-Smtp-Source: AGHT+IHFeX3nhFy49WRqdXV+PP4d4cXmmkxRaXig2AIq3mYt0a41fSudyhyy1H4l8l6jZKZv+ppy567rFcegLRgtz+Y=
+X-Received: by 2002:ac2:52ab:0:b0:50b:ae2f:4d9f with SMTP id
+ r11-20020ac252ab000000b0050bae2f4d9fmr3064778lfm.54.1701102678303; Mon, 27
+ Nov 2023 08:31:18 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231126025612.12522-1-wahrenst@gmx.net> <53e1f6e6-a28e-45af-991e-75b283a21b34@broadcom.com>
- <46320840-09ab-4c86-90c9-bee7b75f248a@gmx.net> <CAMEGJJ3SXHSnasqoMJnshf5Wu92NVi8+NoMdxmMsJH7WH2WjWg@mail.gmail.com>
- <a78f9ba5-ad34-4af2-9817-eeb7dd9d02ef@gmx.net> <CAMEGJJ3PpEgD_davgTn9e+re4hosunU+uj_i5sdKMFNLFR5hBA@mail.gmail.com>
- <624b79b1-f2dc-4f2e-a225-d1623d905b19@gmx.net>
-In-Reply-To: <624b79b1-f2dc-4f2e-a225-d1623d905b19@gmx.net>
-From: Phil Elwell <phil@raspberrypi.com>
-Date: Mon, 27 Nov 2023 16:28:48 +0000
-Message-ID: <CAMEGJJ0aL4VDoq06+JGHz9yx5nVvgbNULNKoT07myzVGNiyCoQ@mail.gmail.com>
-Subject: Re: [PATCH 0/3] ARM: dts: bcm2711-rpi-cm4-io: Enable xHCI host
-To: Stefan Wahren <wahrenst@gmx.net>
-Cc: Justin Chen <justin.chen@broadcom.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Florian Fainelli <florian.fainelli@broadcom.com>, Mathias Nyman <mathias.nyman@intel.com>, 
-	bcm-kernel-feedback-list@broadcom.com, Cyril Brulebois <kibi@debian.org>, 
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org
+References: <cover.1701093036.git.lukas@wunner.de> <3f56f0a2bb90697a23e83583a21684b75dc7eea2.1701093036.git.lukas@wunner.de>
+In-Reply-To: <3f56f0a2bb90697a23e83583a21684b75dc7eea2.1701093036.git.lukas@wunner.de>
+From: Rob Herring <robh+dt@kernel.org>
+Date: Mon, 27 Nov 2023 10:31:06 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKwJsaJhoi07gG76TgDtrwh0i=iGtxL-_pbQbGDZ_8C3A@mail.gmail.com>
+Message-ID: <CAL_JsqKwJsaJhoi07gG76TgDtrwh0i=iGtxL-_pbQbGDZ_8C3A@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: tpm: Consolidate TCG TIS bindings
+To: Lukas Wunner <lukas@wunner.de>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jarkko Sakkinen <jarkko@kernel.org>, Peter Huewe <peterhuewe@gmx.de>, Jason Gunthorpe <jgg@ziepe.ca>, 
+	devicetree@vger.kernel.org, linux-integrity@vger.kernel.org, 
+	Lino Sanfilippo <LinoSanfilippo@gmx.de>, Nayna Jain <nayna@linux.ibm.com>, 
+	Thirupathaiah Annapureddy <thiruan@microsoft.com>, Sasha Levin <sashal@kernel.org>, 
+	Alexander Steffen <Alexander.Steffen@infineon.com>, 
+	Johannes Holland <Johannes.Holland@infineon.com>, Amir Mizinski <amirmizi6@gmail.com>, 
+	Benoit HOUYERE <benoit.houyere@st.com>, Peter Delevoryas <peter@pjd.dev>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, 27 Nov 2023 at 12:39, Stefan Wahren <wahrenst@gmx.net> wrote:
+On Mon, Nov 27, 2023 at 8:09=E2=80=AFAM Lukas Wunner <lukas@wunner.de> wrot=
+e:
 >
-> Hi Phil,
+> A significant number of Trusted Platform Modules conform to the "TIS"
+> specification published by the Trusted Computing Group ("TCG PC Client
+> Specific TPM Interface Specification").  These chips typically use an
+> SPI, I=C2=B2C or LPC bus as transport (via MMIO in the latter case).  Som=
+e
+> of them even support multiple of those buses (selectable through a
+> config strap) or the same chip is available in multiple SKUs, each with
+> a different bus interface.
 >
-> >>>> Hi Justin,
-> >>>>
-> >>>> [add Phil]
-> >>>>
-> >>>> Am 27.11.23 um 07:02 schrieb Justin Chen:
-> >>>>> On 11/25/23 6:56 PM, Stefan Wahren wrote:
-> >>>>>> In contrast to the Raspberry Pi 4, the Compute Module 4 or the IO board
-> >>>>>> does not have a VL805 USB 3.0 host controller, which is connected via
-> >>>>>> PCIe. Instead, the BCM2711 on the Compute Module provides the built-in
-> >>>>>> xHCI.
-> >>>>>>
-> >>>>> Does this work? I maintain this built-in xHCI controller internally. I
-> >>>>> wasn't aware the Compute Module uses this block.
-> >>>> i successful tested this with a CM4 (arm 32 bit,
-> >>>> multi_v7_lpae_defconfig) with eMMC. Before this series the USB devices
-> >>>> (mouse, keyboard) connected to the host interface didn't work. After
-> >>>> comparing vendor DTS with mainline i noticed the missing xHCI block [1].
-> >>>> Unfortunately i wasn't able to get further information from the public
-> >>>> datasheets. I don't know if the VideoCore does some magic tricks on the
-> >>>> xHCI or i missed some downstream xHCI changes.
-> >>>>
-> >>>>> This block is held in reset and needs a bit toggled to get things
-> >>>>> going. Florian, just to confirm, this is our "brcm,xhci-brcm-v2" block
-> >>>>> correct?
-> >>>>>
-> >>>>> Justin
-> >>>> [1]  -
-> >>>> https://github.com/raspberrypi/linux/blob/rpi-6.1.y/arch/arm/boot/dts/bcm2711-rpi-ds.dtsi#L119
-> >>> What's the question here? Does the XHCI block present in the
-> >>> raspberrypi/linux dtsi file really exist? Yes it does.
-> >> since i don't have any documentation about the xHCI block, i assumed the
-> >> compatible generic-xhci is correct. But Justin seems to suggest that the
-> >> xHCI block needs some special treatment and we need a specific compatible.
-> >>
-> >> Did i missed some xHCI driver changes?
-> >> Does the VC firmware something to the xHCI especially on CM4?
-> > The firmware switches the on-board USB pins from DWC-OTG to XHCI if
-> > otg_mode=1 is set in config.txt, or if booting over USB MSD.
-> is this pinctrl/pinmux available from ARM via 0x7e200000 or a different
-> IO address?
+> The devicetree bindings for these TPMs have not been converted to DT
+> schema yet and are spread out across 3 generic files and 3 chip-specific
+> files.  A few TPM compatible strings were added to trivial-devices.yaml
+> even though additional properties are documented in the plaintext
+> bindings.
+>
+> Consolidate the devicetree bindings into 3 files, one per bus.
+>
+> Move common properties to a separate tpm-common.yaml.
+>
+> Document compatible strings which are supported by the TPM TIS driver
+> but were neglected to be added to the devicetree bindings.
+>
+> Document the memory-region property recently introduced by commit
+> 1e2714bb83fc ("tpm: Add reserved memory event log").
+>
+> Signed-off-by: Lukas Wunner <lukas@wunner.de>
+> ---
+> Changes v1 -> v2:
+>   * Overhaul i2c compatible definitions.  Turns out that the fallback
+>     tcg,tpm-tis-i2c only applies to chips conforming to the PTP spec,
+>     wheras other chips use a vendor-specific interface and thus omit
+>     the fallback.
+>   * Don't enforce fallback compatible tcg,tpm_tis-spi for google,cr50.
+>   * Add nodename restriction to tpm-common.yaml.
+>   * Add clock constraints that were previously documented for
+>     infineon,slb9635tt and infineon,slb9645tt.
+>   * Drop google,cr50 SPI example (Rob).
 
-It's in a different, undocumented block.
+That's going to avoid a warning in the examples, but it's going to
+fail any actual google,c50 SPI user. What's going to happen is both
+the SPI and I2C TPM schemas will be applied. Any SPI based cases will
+fail if they have SPI properties because the I2C schema won't allow
+them. If there is no fallback for google,cr50, then you must do a
+separate schema doc (well, you could do an if/then schema in
+tcg,tpm-tis-i2c.yaml to reference spi-peripheral-props.yaml, but that
+would look kind of odd).
 
-Phil
+Rob
 
