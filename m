@@ -1,72 +1,125 @@
-Return-Path: <devicetree+bounces-19036-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19037-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A61527F9787
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 03:33:29 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 154737F978E
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 03:38:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 62C1D280D5F
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 02:33:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1A1FE1C2048A
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 02:38:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 053B3809;
-	Mon, 27 Nov 2023 02:33:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68C54A3F;
+	Mon, 27 Nov 2023 02:37:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M8zq0IJI"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="EzbQH/0V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D22C636D;
-	Mon, 27 Nov 2023 02:33:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E069C433C8;
-	Mon, 27 Nov 2023 02:33:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701052404;
-	bh=TC8bErlTXY8SMV34kwRk2apyEXaXxVE1iXS1SQVMkzA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=M8zq0IJIMr4irkYsiRwS0YT6Ed/dTUSuXZI+SKmUtBitPCyDUkW+sqmjJClOmi5J5
-	 KTXibohwgc6olsL+QkYHSKG2SWYvN29FLrxs5GkLjaAXYFrQP9HKerL9GXcam7Dczl
-	 t/VgAWqPLVoJxRm6zpdTmkcntL8ItzWRpO2RjCMLOO6nFbZPU6Zjf4ulfwZ4uIsbDL
-	 1/jwFSj+8zzSxBFFb1xY4jnQ/DqNEIk1eQdYTLrn3rec/9ebzMY3yjHM0OSGqF4ON/
-	 iDoYLHtbo/0/eyiEReDQpxcEvKlAtI0+7y6iHMcyrH57H2CaaPW3xajLGgEKcPfi7m
-	 J34NJDUTn64rg==
-Date: Mon, 27 Nov 2023 10:33:17 +0800
-From: Shawn Guo <shawnguo@kernel.org>
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, s.hauer@pengutronix.de, sboyd@kernel.org,
-	abelvesa@kernel.org, kernel@pengutronix.de, festevam@gmail.com,
-	linux-imx@nxp.com, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH V3 2/2] arm64: dts: imx93: update analog node
-Message-ID: <20231127023317.GL87953@dragon>
-References: <20231025072242.1134090-1-peng.fan@oss.nxp.com>
- <20231025072242.1134090-2-peng.fan@oss.nxp.com>
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0476C5;
+	Sun, 26 Nov 2023 18:37:54 -0800 (PST)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AR25aZZ001610;
+	Mon, 27 Nov 2023 02:37:12 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=EUx2kznvF55x6TcJFKC10LOA6TIMz5Dd7BoGMsvEIWA=;
+ b=EzbQH/0VQZl5LF3KJrNYtLz4ZO1B5g/kySLWjRzWZYwCnS5v2TPNGbU09LYT/KEML+IE
+ Jx1XKXxOCyIiq3CGzxcl5pNKMhA0CRtrTZnVJavsF3Bgj9xvjO2/v6ASSA2H27yyEuQi
+ 35DnD5t9VkqTrJFoE3SW9hw0M2c1x81f3kFiew7L65WnnXLgaw3NxagUMJfXIEkDDjQh
+ oyen/oqfMuAfx476oakBeRCAr3KNaqIjqFxa79rIGQPLp9j6fREmwO29QJ0R7Gy+GnpO
+ NUl3kYhOiAV4EchTt9ogPUoCLdHqU6qX6nf14u6gxngxMgOfkYEJL3/zvK8VJxqoOd8q lA== 
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uk912k24c-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 27 Nov 2023 02:37:11 +0000
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AR2bA05007540
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 27 Nov 2023 02:37:10 GMT
+Received: from [10.239.155.136] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Sun, 26 Nov
+ 2023 18:37:06 -0800
+Message-ID: <62770dc8-097e-9583-39fd-1a18ba2a8d13@quicinc.com>
+Date: Mon, 27 Nov 2023 10:36:52 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231025072242.1134090-2-peng.fan@oss.nxp.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v2] dt-bindings: ufs: Add msi-parent for UFS MCQ
+Content-Language: en-US
+To: Bart Van Assche <bvanassche@acm.org>, <quic_asutoshd@quicinc.com>,
+        <quic_cang@quicinc.com>, <mani@kernel.org>, <stanley.chu@mediatek.com>,
+        <adrian.hunter@intel.com>, <beanhuo@micron.com>, <avri.altman@wdc.com>,
+        <junwoo80.lee@samsung.com>, <martin.petersen@oracle.com>,
+        <quic_nguyenb@quicinc.com>, <quic_nitirawa@quicinc.com>
+CC: <linux-scsi@vger.kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+        "Rob
+ Herring" <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, Guenter Roeck <linux@roeck-us.net>,
+        Wolfram Sang <wsa@kernel.org>, Mark Brown
+	<broonie@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE
+ BINDINGS" <devicetree@vger.kernel.org>,
+        open list
+	<linux-kernel@vger.kernel.org>
+References: <1700629624-23571-1-git-send-email-quic_ziqichen@quicinc.com>
+ <f9640827-4100-4ebf-8281-46f2d656540a@acm.org>
+From: Ziqi Chen <quic_ziqichen@quicinc.com>
+In-Reply-To: <f9640827-4100-4ebf-8281-46f2d656540a@acm.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: tD-mE2HJJtcgPXMzDPYrw-1jwI2kxQFg
+X-Proofpoint-ORIG-GUID: tD-mE2HJJtcgPXMzDPYrw-1jwI2kxQFg
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-26_25,2023-11-22_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 adultscore=0
+ clxscore=1015 lowpriorityscore=0 bulkscore=0 suspectscore=0
+ mlxlogscore=999 phishscore=0 spamscore=0 malwarescore=0 priorityscore=1501
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2311060000 definitions=main-2311270018
 
-On Wed, Oct 25, 2023 at 03:22:42PM +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
+
+
+On 11/23/2023 1:53 AM, Bart Van Assche wrote:
+> On 11/21/23 21:06, Ziqi Chen wrote:
+>> diff --git a/Documentation/devicetree/bindings/ufs/ufs-common.yaml 
+>> b/Documentation/devicetree/bindings/ufs/ufs-common.yaml
+>> index 985ea8f..31fe7f3 100644
+>> --- a/Documentation/devicetree/bindings/ufs/ufs-common.yaml
+>> +++ b/Documentation/devicetree/bindings/ufs/ufs-common.yaml
+>> @@ -87,6 +87,8 @@ properties:
+>>       description:
+>>         Specifies max. load that can be drawn from VCCQ2 supply.
+>> +  msi-parent: true
+>> +
+>>   dependencies:
+>>     freq-table-hz: [ clocks ]
+>>     operating-points-v2: [ clocks, clock-names ]
 > 
-> The analog module produces PLL and OSC for Clock Controller Module. Since
-> the binding doc has been updated to clock-controller for this module,
-> Let's also update the device tree node.
+> Does this patch break support for UFSHCI 4.0 controllers that do not 
+> support MSI?
+
+No, the controllers that do not support MSI would NOT be impacted by 
+this patch.
+
+-Ziqi
+
 > 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-
-s/analog/anatop
-
-Fixed it up and applied.
-
-Shawn
+> Thanks,
+> 
+> Bart.
 
