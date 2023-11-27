@@ -1,228 +1,180 @@
-Return-Path: <devicetree+bounces-19076-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19077-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C00A7F9A7E
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 08:08:40 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D14977F9A8D
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 08:10:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6EF2C1C2083F
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 07:08:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 739A9B20BB1
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 07:10:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A555AF9E6;
-	Mon, 27 Nov 2023 07:08:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EE82E576;
+	Mon, 27 Nov 2023 07:10:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gOPQnOre"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="oTVS80Kk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B2D410F4
-	for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 23:08:11 -0800 (PST)
-Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-548d60a4d60so5117220a12.2
-        for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 23:08:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701068890; x=1701673690; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=XQ1qy9BZ1qyfzs89N8Lb4GIR3Gihkdl8F0LLaK//4UY=;
-        b=gOPQnOrevzuHg7eZNx1QNko64SZIxRNsay6+K0unnZpZGfjTF4CGVjCfrd0Q392RlW
-         eqbksCMu3ajcZE72a3UxvqJxL7/LSU0IqhnWLs0D2TxLuGJrGxuYzC0Y3AG5IaEd6bq4
-         rjUY6XOTYg74fss3aCWdWMJdK10SozNss/mWa3z6PyTk7uPXOIV+30JyhV0LDZA5I3Vf
-         39BojEzT1iGrmUj/+BXxmSOG7PwgrIkMKBxQ8QmSfQpmNvFnPKkov6AzZnEmicVy7vgf
-         LbLyq1Df3zSeIPR7+w0QWMw38YTsFkFw5TOVYJ6HVzlnSH1ztS/5LvofVrqf41/yRBMi
-         owSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701068890; x=1701673690;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XQ1qy9BZ1qyfzs89N8Lb4GIR3Gihkdl8F0LLaK//4UY=;
-        b=qOngDMfMQEYJi8ziGJwzpBXBNPMe1+nPRWkfzdrfKU92k32TrmXp/m0l5ZzaYqR2tD
-         O9smKaFJikzF1YPnNYC3GhIhMvKK6Mjh6rSyWk5GairaUt6V7JuvRTvASpNnAXJPeL0Y
-         CtqafIoWoON+F4vliC533OlfWyNAzl5RP8nCbgamMZeX5+56mWY6zFBXaUFyYMGk+cJC
-         F34tiMdg6UG+KgQpkcdiNWfB8Dvji9WFBkLCV0HpELQu4zHLpqxg2n8hs6Thqy0MULtC
-         D4qMUxtt1PVsNpODLEayjBCCrVPI2S22Cf+HMqt8pDBzNyQ8OCHIZXa9+JT6dk55QbMq
-         4xDQ==
-X-Gm-Message-State: AOJu0YyL0nswtFS13iaWlRd6CMYXlzziGsKWeJZjK3lmWJez7n1DkwOH
-	wVlHubJn4RCsP2b/nkRrISFUgg==
-X-Google-Smtp-Source: AGHT+IGH7O+miI+brl+xKCrg1b8t98lW5NTcL9cIQCtR5/gZdcYoYLc3+Erif3+bYvGTSzPOxIqK1g==
-X-Received: by 2002:a17:906:207:b0:a0b:6873:45b1 with SMTP id 7-20020a170906020700b00a0b687345b1mr4941856ejd.39.1701068889899;
-        Sun, 26 Nov 2023 23:08:09 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.223.109])
-        by smtp.gmail.com with ESMTPSA id b10-20020a1709063f8a00b009f8af454d0dsm5350041ejj.112.2023.11.26.23.08.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 26 Nov 2023 23:08:09 -0800 (PST)
-Message-ID: <e74740c2-7d61-4dfe-ae88-4ead6d72ea5a@linaro.org>
-Date: Mon, 27 Nov 2023 08:08:06 +0100
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0739ED4C;
+	Sun, 26 Nov 2023 23:09:28 -0800 (PST)
+X-UUID: e3fba6a48cf311eea33bb35ae8d461a2-20231127
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:Message-ID; bh=K2PJi3jwZOEV4t9opwJNWlHsedlGUWYs96i+olFWgks=;
+	b=oTVS80KkpX1TIVZwCQ5i0YY3rM9Rdn8C9STXLV2OEtabIlVQvfs6bvaLeykkoK6dK5zikcdLdTr3S1RMgYknPHDZXMAICX+yglJHf1qxigEyRPi4a2nmWngEfWeYg5mfDGDUDHHRPxj1zHr3UqSkIBTB7psWEiBeO/XbKw58YhQ=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.33,REQID:80067bb4-ed2f-44fa-8271-eb477e54b7e9,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:364b77b,CLOUDID:695fd995-10ce-4e4b-85c2-c9b5229ff92b,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:11|1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:
+	NO,DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULN
+X-UUID: e3fba6a48cf311eea33bb35ae8d461a2-20231127
+Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw01.mediatek.com
+	(envelope-from <macpaul.lin@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 209107869; Mon, 27 Nov 2023 15:09:22 +0800
+Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Mon, 27 Nov 2023 15:09:20 +0800
+Received: from [172.21.84.99] (172.21.84.99) by mtkmbs13n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.1118.26 via Frontend
+ Transport; Mon, 27 Nov 2023 15:09:16 +0800
+Message-ID: <239def9b-437b-9211-7844-af4332651df0@mediatek.com>
+Date: Mon, 27 Nov 2023 15:09:16 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/4] dt-bindings: clock: sophgo: Add SG2042 bindings
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH 1/2] dt-bindings: phy: mediatek: tphy: add a property for
+ force-mode switch
 Content-Language: en-US
-To: Chen Wang <unicornxw@gmail.com>, aou@eecs.berkeley.edu,
- chao.wei@sophgo.com, conor@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- mturquette@baylibre.com, palmer@dabbelt.com, paul.walmsley@sifive.com,
- richardcochran@gmail.com, robh+dt@kernel.org, sboyd@kernel.org,
- devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- haijiao.liu@sophgo.com, xiaoguang.xing@sophgo.com, guoren@kernel.org,
- jszhang@kernel.org, inochiama@outlook.com, samuel.holland@sifive.com
-Cc: Chen Wang <unicorn_wang@outlook.com>
-References: <cover.1701044106.git.unicorn_wang@outlook.com>
- <aea19fcddcb0aec54b2779fc99b5ac6c1e465fe0.1701044106.git.unicorn_wang@outlook.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <aea19fcddcb0aec54b2779fc99b5ac6c1e465fe0.1701044106.git.unicorn_wang@outlook.com>
-Content-Type: text/plain; charset=UTF-8
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Chunfeng Yun
+	<chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>, Rob Herring
+	<robh+dt@kernel.org>
+CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+	<conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
+	<linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, Bear.Wang <bear.wang@mediatek.com>, Pablo Sun
+	<pablo.sun@mediatek.com>
+References: <20231125012303.760-1-chunfeng.yun@mediatek.com>
+ <e34c2746-8e93-48b8-9c96-690242fbf6e9@linaro.org>
+From: Macpaul Lin <macpaul.lin@mediatek.com>
+In-Reply-To: <e34c2746-8e93-48b8-9c96-690242fbf6e9@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-AS-Result: No-10--23.998500-8.000000
+X-TMASE-MatchedRID: oHOSwQSJZWjOA/Z0gqCQkia1MaKuob8PCJpCCsn6HCHBnyal/eRn3gzR
+	CsGHURLuwpcJm2NYlPAF6GY0Fb6yCkcld4HSm4ijJhFEQZiq2ZRaNaxZBRbNWi8zQZ2rR/OpHAC
+	UcDvcWyAWCFKYHMKZzrku/UHvXeV0lKHFFpLwOfV0BEBFOTiHn0yQ5fRSh265DpCUEeEFm7BCcg
+	190NG0Lm7WtzS49SDh7gJfo9qwL5MLd3u89FoqUYx50lzSVLoGuLwbhNl9B5Vb6PBUqmq+Uqmw5
+	s23nMRbldeVwPvfm98WDRm21M319O7xD4C0m34gSDkh6bW+bce+1Vx7rDn4r9E7QwDOCDQvumwa
+	iQr4L/9esXg8Yfd+c0h3fkYy4ItjjeaAXTNKmaPJ1E/nrJFED22yXuVfuC5Sv+26ZYWzwkIjoQf
+	+PfmfKG7NLVzg+DHpBpRFZxWdQvVWPFA/2aU/QZ4CIKY/Hg3AtOt1ofVlaoLUHQeTVDUrItRnEQ
+	CUU+jzjoczmuoPCq2UTGVAhB5EbQ==
+X-TM-AS-User-Approved-Sender: No
+X-TM-AS-User-Blocked-Sender: No
+X-TMASE-Result: 10--23.998500-8.000000
+X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-SNTS-SMTP: 06540C401410A2EDC9AFE6778E2BD70B19C59F2E68A1AB5AEC12EA9AC240FB322000:8
 
-On 27/11/2023 01:58, Chen Wang wrote:
-> From: Chen Wang <unicorn_wang@outlook.com>
+On 11/25/23 18:37, Krzysztof Kozlowski and Chunfeng Yun wrote:
+> 	
 > 
-> Add bindings for the clock generator on the SG2042 RISC-V SoC.
+> External email : Please do not click links or open attachments until you 
+> have verified the sender or the content.
 > 
-> Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
-> ---
->  .../clock/sophgo/sophgo,sg2042-clkgen.yaml    |  42 +++++
->  include/dt-bindings/clock/sophgo-sg2042-clk.h | 169 ++++++++++++++++++
->  2 files changed, 211 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/sophgo/sophgo,sg2042-clkgen.yaml
->  create mode 100644 include/dt-bindings/clock/sophgo-sg2042-clk.h
+> On 25/11/2023 02:23, Chunfeng Yun wrote:
+>> Due to some old SoCs with shared t-phy only support force-mode switch, and
+>> can't use compatible to distinguish between shared and non-shared t-phy,
+>> add a property to supported it.
+>> But now prefer to use "mediatek,syscon-type" on new SoC as far as possible.
+>> 
+>> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+>> ---
+>>  Documentation/devicetree/bindings/phy/mediatek,tphy.yaml | 6 ++++++
+>>  1 file changed, 6 insertions(+)
+>> 
+>> diff --git a/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml b/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
+>> index 2bb91542e984..eedba5b7025e 100644
+>> --- a/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
+>> +++ b/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
+>> @@ -235,6 +235,12 @@ patternProperties:
+>>            Specify the flag to enable BC1.2 if support it
+>>          type: boolean
+>>  
+>> +      mediatek,force-mode:
+>> +        description:
+>> +          Use force mode to switch shared phy mode, perfer to use the bellow
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/sophgo/sophgo,sg2042-clkgen.yaml b/Documentation/devicetree/bindings/clock/sophgo/sophgo,sg2042-clkgen.yaml
-> new file mode 100644
-> index 000000000000..6c0d0461e489
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/sophgo/sophgo,sg2042-clkgen.yaml
-> @@ -0,0 +1,42 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/sophgo/sophgo,sg2042-clkgen.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Sophgo SG2042 Clock Generator
-> +
-> +maintainers:
-> +  - Chen Wang <unicorn_wang@outlook.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: sophgo,sg2042-clkgen
-> +
-> +  clocks:
-> +    items:
-> +      - description: Clock Generation IC (25 MHz)
-> +
-> +  '#clock-cells':
-> +    const: 1
-> +    description:
-> +      See <dt-bindings/clock/sophgo-sg2042-clk.h> for valid indices.
-> +
-> +  assigned-clocks: true
+> I still do not understand what is the "force mode" you want to use. What
+> modes do you have? What are the characteristics of force mode?
+> 
+> Also, please run spellcheck.
+> 
+> Best regards,
+> Krzysztof
+> 
 
-Drop
+Thanks!
 
-> +
-> +  assigned-clock-rates: true
+1. I've tested this patch and it could solve the clock unstable for
+XHCI1 on mt8195 or mt8395 during system boot up or during
+unload/reload the phy driver.
 
-Drop
+The error message has been listed as follows.
 
-> +
-> +required:
-> +  - compatible
-> +  - clocks
-> +  - '#clock-cells'
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    clock-controller {
-> +            compatible = "sophgo,sg2042-clkgen";
+[   13.849936][   T72] xhci-mtk 11290000.usb: supply vbus not found, 
+using dummy regulator
+[   13.851300][   T72] xhci-mtk 11290000.usb: uwk - reg:0x400, version:104
+[   13.852624][   T72] xhci-mtk 11290000.usb: xHCI Host Controller
+[   13.853393][   T72] xhci-mtk 11290000.usb: new USB bus registered, 
+assigned bus number 3
+[   13.874490][   T72] xhci-mtk 11290000.usb: clocks are not stable (0x3d0f)
+[   13.875369][   T72] xhci-mtk 11290000.usb: can't setup: -110
+[   13.876091][   T72] xhci-mtk 11290000.usb: USB bus 3 deregistered
+[   13.877081][   T72] xhci-mtk: probe of 11290000.usb failed with error 
+-110
 
-Use 4 spaces for example indentation.
+2. This is a fix patch to XHCI1 since MT8195 has been upstream.
+Please add "Fixes:" tags and "Cc: stable@kernel.org" to back ward
+porting to previous stable trees.
 
-> +            clocks = <&cgi>;
-> +            #clock-cells = <1>;
-> +    };
-> diff --git a/include/dt-bindings/clock/sophgo-sg2042-clk.h b/include/dt-bindings/clock/sophgo-sg2042-clk.h
-> new file mode 100644
-> index 000000000000..a8e05c00c3bf
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/sophgo-sg2042-clk.h
+For example, add
+Fixes: 6b5ef194611e5 ("phy: mediatek: tphy: remove macros to prepare 
+bitfield")
+is suggested since the force-mode was missing in the previous
+implementation which causes hardware function was abnormal.
+However, add
+Fixes: 33d18746fa514 ("phy: phy-mtk-tphy: use new io helpers to access 
+register")
+will be better since the USB support for mt8195 is already enabled in 
+late 2021.
 
-The same filename as binding.
+3. How about we revise the description as follows for more precisely?
 
-> @@ -0,0 +1,169 @@
-> +/* SPDX-License-Identifier: GPL-2.0 OR MIT */
+mediatek,force-mode:
+   description:
+     The force mode is used to manually switch the shared PHY mode
+     between USB and PCIe. When force-mode is set, the USB 3.0 mode
+     will be selected. This is typically required for older SoCs
+     that do not automatically manage PHY mode switching.
+     For newer SoCs that support it, it is preferable to use the
+     "mediatek,syscon-type" property instead.
+   type: boolean
 
-Any particular reason for a bit different license than the bindings? How
-is your DTS licensed?
-
-> +/*
-> + * Copyright (C) 2023 Sophgo Technology Inc. All rights reserved.
-> + */
-> +
-> +#ifndef __DT_BINDINGS_CLOCK_SOPHGO_SG2042_H__
-> +#define __DT_BINDINGS_CLOCK_SOPHGO_SG2042_H__
-> +
-> +/* Divider clocks */
-> +#define DIV_CLK_MPLL_RP_CPU_NORMAL_0 0
-
-Missing tabs before each value.
-
-
-
-Best regards,
-Krzysztof
-
+Thanks,
+Macpaul Lin
 
