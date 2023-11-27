@@ -1,137 +1,96 @@
-Return-Path: <devicetree+bounces-19376-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19377-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E1C07FAA95
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 20:49:50 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BC8D7FAACD
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 21:01:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CCF4A28198A
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 19:49:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD9391C20C1B
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 20:01:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 978833DBB3;
-	Mon, 27 Nov 2023 19:49:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZQmRGurt"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC7574596A;
+	Mon, 27 Nov 2023 20:01:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C6691DFFA
-	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 19:49:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF345C433CC;
-	Mon, 27 Nov 2023 19:49:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701114586;
-	bh=kLT4h06WD18nH9XJUOYId4CY/OMjL8Pp0wVPy8Dmo5k=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=ZQmRGurtQ/ymuqgkPK0S1auQK1jsqKsXA7ocVJ8YHFYFckwUYrdWasFs0vthwPFG6
-	 cBGuFNJI0ddO7kW1QKc6Yu76RJ6F+jdK1uA9IFXFukRKB/QZpSDPByMLL+x9iXczaF
-	 ihxrobCdRdEws2xjOf2N8p6R5ZH9Lkmwuro/zv+59tyIcoavkt/6B53khFbQBn2J6D
-	 KrptU5Ez5t2g0e7dEbsTHGk+xOWdSOG2F2nl6IZMey806jXeFaGvmKCwbRJwUXpWQr
-	 e+FnZbMo8h9N1MdTFLHkYW6r7skfAckBzAQTR6El+QFn+3FN2MIfP1BPfb5UWRVkkS
-	 nepgkAVRhzUrw==
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-507ad511315so6519543e87.0;
-        Mon, 27 Nov 2023 11:49:45 -0800 (PST)
-X-Gm-Message-State: AOJu0YwNX8RGa74I6oIsKbUZjRZfChBcxApGLLDNMkNFB4Ig/7N64cMr
-	biYjrUWfoG3RT9260QyrO7sCGlSGHIl/rlMRTg==
-X-Google-Smtp-Source: AGHT+IGNdZ3nXKFdr7ac3lMqcvw4UBbPABOb47aX7ue0+l6bJSzouGDgMxTJptlpiC2GKZuLcdUzV8D/ndIVyh6M4AY=
-X-Received: by 2002:a05:6512:b97:b0:502:ff3b:766f with SMTP id
- b23-20020a0565120b9700b00502ff3b766fmr11352186lfv.6.1701114584115; Mon, 27
- Nov 2023 11:49:44 -0800 (PST)
+Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1174B8;
+	Mon, 27 Nov 2023 12:01:25 -0800 (PST)
+Received: by mail-ot1-f42.google.com with SMTP id 46e09a7af769-6d7ed2c143eso3123990a34.3;
+        Mon, 27 Nov 2023 12:01:25 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701115285; x=1701720085;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=K/1Bukk4BZ7q2jm9cQ+nh+Ew1x1vbMAH5xhvy5k7R8M=;
+        b=lSFG6pA5wKjns0zTlvVkLibyiQp4j9V0Stsxxe/QKIZ3Du9I1HEAnMdqHp5FfKPK4I
+         ULVtDmQ9+8hNjmi4DWHDedhd//qGNR48PvmmDUXJPN70gbXBNHf+YD5+Vk5PJKmZB5U/
+         2iE2lcTE7eJiEm2M2JW2qOBL0p6hZwCfDMzUp321WEnpZlqctgzMG67WtGF8zCiey3QI
+         LXWxlJ2Aue8rPNyYPD+Dldfc1zXFb+r0QrlfeCdZ55vZjcWm6Ep9T42PZ46z1qTZ2Kxt
+         lzPJiVi62hq7xhBq+0NFCAeu5lm9k6VZ3Yve26YHj6y13hcmxVF4JEj4YEoIA9ME0iCU
+         keGA==
+X-Gm-Message-State: AOJu0Yw53vRUdrhho9opBV+zDSDnMfDQ2LXM03me4M35wbH/l4JnhvoO
+	G2HKWXmtIkNqY2F6Iio65Q==
+X-Google-Smtp-Source: AGHT+IGpGZwUOq3P4IPSr4NBY/hO/zlRPqa0tzUESZae2bUTULaZ08r0lrc/X6YYWp6GU5CPIonPNg==
+X-Received: by 2002:a05:6871:7292:b0:1fa:cbf:88a3 with SMTP id mm18-20020a056871729200b001fa0cbf88a3mr15764884oac.26.1701115285170;
+        Mon, 27 Nov 2023 12:01:25 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id l7-20020a05683016c700b006d812c49f21sm805272otr.17.2023.11.27.12.01.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Nov 2023 12:01:24 -0800 (PST)
+Received: (nullmailer pid 2911558 invoked by uid 1000);
+	Mon, 27 Nov 2023 20:01:23 -0000
+Date: Mon, 27 Nov 2023 14:01:23 -0600
+From: Rob Herring <robh@kernel.org>
+To: Tomas Paukrt <tomaspaukrt@email.cz>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 2/2] dt-bindings: serial: Add support for enabling
+ RS485 mode via GPIO at boot time
+Message-ID: <20231127200123.GA2896702-robh@kernel.org>
+References: <3Zb.ZZsn.wkax8K4so6.1bN6eS@seznam.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231127190857.1977974-1-enachman@marvell.com> <20231127190857.1977974-2-enachman@marvell.com>
-In-Reply-To: <20231127190857.1977974-2-enachman@marvell.com>
-From: Rob Herring <robh+dt@kernel.org>
-Date: Mon, 27 Nov 2023 13:49:31 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJ90mOMUS040SBtjnuELcyM1qnOyHzuga6xPNbMct2PvA@mail.gmail.com>
-Message-ID: <CAL_JsqJ90mOMUS040SBtjnuELcyM1qnOyHzuga6xPNbMct2PvA@mail.gmail.com>
-Subject: Re: [PATCH v6 1/3] MAINTAINERS: add ac5 to list of maintained Marvell
- dts files
-To: Elad Nachman <enachman@marvell.com>
-Cc: krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, andrew@lunn.ch, 
-	gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com, pali@kernel.org, 
-	mrkiko.rs@gmail.com, chris.packham@alliedtelesis.co.nz, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, cyuval@marvell.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3Zb.ZZsn.wkax8K4so6.1bN6eS@seznam.cz>
 
-On Mon, Nov 27, 2023 at 1:09=E2=80=AFPM Elad Nachman <enachman@marvell.com>=
- wrote:
->
-> From: Elad Nachman <enachman@marvell.com>
->
-> Add ac5 dts files to the list of maintained Marvell Armada dts files
->
-> Signed-off-by: Elad Nachman <enachman@marvell.com>
+On Tue, Nov 21, 2023 at 09:28:12AM +0100, Tomas Paukrt wrote:
+> Add an option to enable the RS485 mode at boot time based on
+> the state of a GPIO pin (DIP switch or configuration jumper).
+> The GPIO is defined by the device tree property "linux,rs485-mode-gpio".
+> 
+> Signed-off-by: Tomas Paukrt <tomaspaukrt@email.cz>
 > ---
->  MAINTAINERS | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index b81da7a36a36..6f863a0c3248 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -2339,6 +2339,7 @@ F:        arch/arm/boot/dts/marvell/armada*
->  F:     arch/arm/boot/dts/marvell/kirkwood*
->  F:     arch/arm/configs/mvebu_*_defconfig
->  F:     arch/arm/mach-mvebu/
-> +F:     arch/arm64/boot/dts/marvell/ac5*
->  F:     arch/arm64/boot/dts/marvell/armada*
->  F:     arch/arm64/boot/dts/marvell/cn913*
+>  Documentation/devicetree/bindings/serial/rs485.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/serial/rs485.yaml b/Documentation/devicetree/bindings/serial/rs485.yaml
+> index 9418fd6..7a72f37 100644
+> --- a/Documentation/devicetree/bindings/serial/rs485.yaml
+> +++ b/Documentation/devicetree/bindings/serial/rs485.yaml
+> @@ -47,6 +47,10 @@ properties:
+>        later with proper ioctl.
+>      $ref: /schemas/types.yaml#/definitions/flag
+> 
+> +  linux,rs485-mode-gpio:
 
-$ ls arch/arm64/boot/dts/marvell/
-ac5-98dx25xx.dtsi                    armada-7040.dtsi
-armada-ap810-ap0.dtsi
-ac5-98dx35xx.dtsi                    armada-7040-mochabin.dts
-armada-ap810-ap0-octa-core.dtsi
-ac5-98dx35xx-rd.dts                  armada-70x0.dtsi
-armada-common.dtsi
-armada-371x.dtsi                     armada-8020.dtsi
-armada-cp110.dtsi
-armada-3720-db.dts                   armada-8040-clearfog-gt-8k.dts
-armada-cp115.dtsi
-armada-3720-eDPU.dts                 armada-8040-db.dts
-armada-cp11x.dtsi
-armada-3720-espressobin.dts          armada-8040.dtsi
-cn9130-crb-A.dts
-armada-3720-espressobin.dtsi         armada-8040-mcbin.dts
-cn9130-crb-B.dts
-armada-3720-espressobin-emmc.dts     armada-8040-mcbin.dtsi
-cn9130-crb.dtsi
-armada-3720-espressobin-ultra.dts    armada-8040-mcbin-singleshot.dts
-cn9130-db-B.dts
-armada-3720-espressobin-v7.dts       armada-8040-puzzle-m801.dts
-cn9130-db.dts
-armada-3720-espressobin-v7-emmc.dts  armada-8080-db.dts
-cn9130-db.dtsi
-armada-3720-gl-mv1000.dts            armada-8080.dtsi
-cn9130.dtsi
-armada-3720-turris-mox.dts           armada-80x0.dtsi
-cn9131-db-B.dts
-armada-3720-uDPU.dts                 armada-ap806.dtsi
-cn9131-db.dts
-armada-3720-uDPU.dtsi                armada-ap806-dual.dtsi
-cn9131-db.dtsi
-armada-372x.dtsi                     armada-ap806-quad.dtsi
-cn9132-db-B.dts
-armada-37xx.dtsi                     armada-ap807.dtsi
-cn9132-db.dts
-armada-7020.dtsi                     armada-ap807-quad.dtsi
-cn9132-db.dtsi
-armada-7040-db.dts                   armada-ap80x.dtsi                 Make=
-file
+This has little to do with Linux, so no need for linux prefix.
 
-Looks to me like a single entry will do:
+The preferred form is always plural '-gpios'.
 
-F: arch/arm64/boot/dts/marvell/
-
-Rob
+> +    description: GPIO pin to enable RS485 mode at boot time.
+> +    maxItems: 1
+> +
+>    rs485-rx-during-tx:
+>      description: enables the receiving of data even while sending data.
+>      $ref: /schemas/types.yaml#/definitions/flag
+> --
+> 2.7.4
+> 
 
