@@ -1,62 +1,39 @@
-Return-Path: <devicetree+bounces-19102-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19103-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D233F7F9B55
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 09:09:39 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AEFEF7F9B57
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 09:11:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 797E6B209ED
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 08:09:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DFA511C2040E
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 08:11:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F359410A34;
-	Mon, 27 Nov 2023 08:09:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E97B31118D;
+	Mon, 27 Nov 2023 08:11:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="et0sWe7R"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VtV3jRUi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B5EC138
-	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 00:09:30 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-50baa3e5c00so2129668e87.1
-        for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 00:09:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701072568; x=1701677368; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=rn+UYaLR9UVBQ3OHWhJmg5Nn5FxMaUWGGdZVxwhJ9eE=;
-        b=et0sWe7R+5ZJXnzHreC+NEOBMWnlLbBU8GmqymlaMcO3DUuMF5kg+fj6rQ0ljCeYhM
-         yqkw6eVM9EldU5hf68pCCnfLBP0rhXOh9HCALfOuTz4crXPe66Xs6zHa9PnQl+2krhh9
-         vbjpT8huHBvK9/t/EBE8/Z42wsm6vw9658ejrxv0/7zN8BvO4QiP5JM0mbH//KsF6ztv
-         XXyHJ7SvT7XmATaNTQRgAh2P54Tf6xNIL0M3E3GmGmRsQhwIZOzxYyP0EUj+VGo2GxYa
-         s//Zepju8Bw0WYHLUs0qq36npoGt5QNsgKWF+1Q8RCFpWL7q9e68LrIkAxZTox/fMFIG
-         HONA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701072568; x=1701677368;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=rn+UYaLR9UVBQ3OHWhJmg5Nn5FxMaUWGGdZVxwhJ9eE=;
-        b=CP8iZ7Ws5EEGn8+iS1wDge1Z/+tQRDravMXIglOE69zo2CqCKf2xDUiCnRVkroefPr
-         hYqTh0yuLuCD8PILNQ5qvuyIUNm1S8tqPIOmxv0ZTutuD/1Viugkz8oFahK8Wd2iqN+4
-         0lnbr0u0kDJzjnO3g+yAetV1Xz7q+Uiq9nrBbPNe/66cj9Y2TUGfGep0XwijFIm1uJdn
-         2PoABy3vzR3ajExC9+I581X6E2SmJFwXrYbYvcAJnV65sZnzMW7TRAnqLmRq9XJAZYUa
-         VwigkE/XDzIr2UrEMBtK0ZL0zFgF2SrcrjBM9sPBrnb9PWU/bP8S8zeRKaHXvg58tzEa
-         ReJQ==
-X-Gm-Message-State: AOJu0YwV48k79SX9ANy9Eo+BZPpbCNNHNEIpdoP3ZwdU2WzlqZLi7wwQ
-	qkn2Pg8iZByznipXmgcLTQLMXg==
-X-Google-Smtp-Source: AGHT+IFrYeQJFDL7FWcFShdrCH4BBQIFmmfj0xNDZKBRQ2tGG+FCLSghCsphxVaO5/hi0/LcfJ/t9Q==
-X-Received: by 2002:ac2:44ca:0:b0:50b:aa9a:6691 with SMTP id d10-20020ac244ca000000b0050baa9a6691mr3902883lfm.51.1701072568408;
-        Mon, 27 Nov 2023 00:09:28 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:5a15:ac68:b4a4:85ff? ([2a01:e0a:982:cbb0:5a15:ac68:b4a4:85ff])
-        by smtp.gmail.com with ESMTPSA id z11-20020adff74b000000b00332f74ffdd9sm5200377wrp.30.2023.11.27.00.09.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Nov 2023 00:09:27 -0800 (PST)
-Message-ID: <1dd87851-25d3-4f85-99ca-5c072675efec@linaro.org>
-Date: Mon, 27 Nov 2023 09:09:27 +0100
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA50610A37;
+	Mon, 27 Nov 2023 08:11:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02068C433C7;
+	Mon, 27 Nov 2023 08:11:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701072669;
+	bh=bpWldNvw9mvVqhQM5ADwm6MqwJrs016CP96LH6mUA/o=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=VtV3jRUiKk3CDnEC8TeQXiS/r1H5Rviyrhxmx+KFoyP0+8C5CYMCivMsjLg976kr7
+	 MYv9rgIattvF3aNlZwN9KNkx6Tq/1HNA2F/pifZhGGg/fBJGsqc9YW+lxKGdnbSr50
+	 jNzW09bjvV7nw3SFjx9BqIsX1yK+w9qTMIvOFgHeiYhnvsq4UMMasToNkGCCDdcaEH
+	 d8+SHwzZW6nfZ9llILiXevMR3rgAbB3zrIBYE3SzzXmEqb3vfz1w9kygZb3dJh409X
+	 KJSV6D248C+tHFpNE9IO3lx3tJ54DRvCj8jQL13DyoXgc6pwRIu0zP07F6elFZfJvu
+	 PAoDpCLJvvt/Q==
+Message-ID: <76957975-56e7-489e-9c79-086b6c1ffe89@kernel.org>
+Date: Mon, 27 Nov 2023 09:10:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,103 +41,100 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v2] arm64: dts: amlogic: meson-axg: pinctrl node for NAND
-Content-Language: en-US, fr
-To: Arseniy Krasnov <avkrasnov@salutedevices.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: oxffffaa@gmail.com, kernel@sberdevices.ru,
- Liang Yang <liang.yang@amlogic.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20231109094504.131265-1-avkrasnov@salutedevices.com>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <20231109094504.131265-1-avkrasnov@salutedevices.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH v2 2/2] hwmon: ltc4282: add support for the LTC4282 chip
+Content-Language: en-US
+To: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>,
+ kernel test robot <lkp@intel.com>,
+ Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org>,
+ linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-doc@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, Jean Delvare <jdelvare@suse.com>,
+ Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, Linus Walleij
+ <linus.walleij@linaro.org>, Andy Shevchenko <andy@kernel.org>
+References: <20231124-ltc4282-support-v2-2-952bf926f83c@analog.com>
+ <202311250548.lUn3bm1A-lkp@intel.com>
+ <fb2aaa4c69c88738499dfbf46ef93e3b81ca93cb.camel@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <fb2aaa4c69c88738499dfbf46ef93e3b81ca93cb.camel@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On 09/11/2023 10:45, Arseniy Krasnov wrote:
-> Add pinctrl node for the Meson NAND controller.
+On 27/11/2023 08:53, Nuno Sá wrote:
+>>    355  
+>>  > 356  unsigned long ltc4282_recalc_rate(struct clk_hw *hw, unsigned long parent)
+>>    357  {
+>>    358          struct ltc4282_state *st = container_of(hw, struct ltc4282_state,
+>>    359                                                  clk_hw);
+>>    360          u32 clkdiv;
+>>    361          int ret;
+>>    362  
+>>    363          ret = regmap_read(st->map, LTC4282_CLK_DIV, &clkdiv);
+>>    364          if (ret)
+>>    365                  return 0;
+>>    366  
+>>    367          clkdiv = FIELD_GET(LTC4282_CLKOUT_MASK, clkdiv);
+>>    368          if (!clkdiv)
+>>    369                  return 0;
+>>    370          if (clkdiv == LTC4282_CLKOUT_INT)
+>>    371                  return LTC4282_CLKOUT_SYSTEM;
+>>    372  
+>>    373          return LTC4282_CLKOUT_CNV;
+>>    374  }
+>>    375  
+>>
 > 
-> Signed-off-by: Arseniy Krasnov <avkrasnov@salutedevices.com>
-> ---
->   Changelog:
->   v1 -> v2:
->    * Rename node name 'nand_all_pins' -> 'nand-all-pins'.
-> 
->   arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 23 ++++++++++++++++++++++
->   1 file changed, 23 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> index a49aa62e3f9f..7e5ac9db93f8 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> @@ -432,6 +432,27 @@ mux-1 {
->   					};
->   				};
->   
-> +				nand_all_pins: nand-all-pins {
-> +					mux {
-> +						groups = "emmc_nand_d0",
-> +							 "emmc_nand_d1",
-> +							 "emmc_nand_d2",
-> +							 "emmc_nand_d3",
-> +							 "emmc_nand_d4",
-> +							 "emmc_nand_d5",
-> +							 "emmc_nand_d6",
-> +							 "emmc_nand_d7",
-> +							 "nand_ce0",
-> +							 "nand_ale",
-> +							 "nand_cle",
-> +							 "nand_wen_clk",
-> +							 "nand_ren_wr";
-> +						function = "nand";
-> +						input-enable;
-> +						bias-pull-up;
-> +					};
-> +				};
-> +
->   				emmc_ds_pins: emmc_ds {
->   					mux {
->   						groups = "emmc_ds";
-> @@ -1913,6 +1934,8 @@ nfc: nand-controller@7800 {
->   				reg = <0x0 0x7800 0x0 0x100>,
->   				      <0x0 0x7000 0x0 0x800>;
->   				reg-names = "nfc", "emmc";
-> +				pinctrl-0 = <&nand_all_pins>;
-> +				pinctrl-names = "default";
->   				#address-cells = <1>;
->   				#size-cells = <0>;
->   				interrupts = <GIC_SPI 34 IRQ_TYPE_EDGE_RISING>;
+> Arghh, I do need to see if I can add some test branch of my own to the test robot :/.
+> Anyways, will wait for some more reviewing before sending v3 to address this.
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+It's easy to test your patches on your own machines...  Just build few
+different configs.
+
+Best regards,
+Krzysztof
+
 
