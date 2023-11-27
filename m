@@ -1,541 +1,137 @@
-Return-Path: <devicetree+bounces-19398-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19399-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C04927FAC89
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 22:27:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CCED7FAC93
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 22:32:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 255FCB21448
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 21:27:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 16BCB281BA7
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 21:32:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45DF746455;
-	Mon, 27 Nov 2023 21:27:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56E3346451;
+	Mon, 27 Nov 2023 21:32:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="eM9kuVmj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LgGa0Jrc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9476137;
-	Mon, 27 Nov 2023 13:27:43 -0800 (PST)
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id B03B38744C;
-	Mon, 27 Nov 2023 22:27:41 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1701120462;
-	bh=Rpd4WgTCiOTZ8QhvrwR8JML97DR8PbCHBK13pAB6JP8=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=eM9kuVmjlTel5Llg6CH1CqBlLSmNq47Lwznn5foQVMhy8gcGb33a+ylecXSYN8350
-	 0TmYyAaOxasmzZio+Y9qE5Dy0i6Vh59STry1ZLKLKLJZuz4BQrS3/5ooTNoVjidKS5
-	 41E+hF3Alo50hEvGJKbnJdGTAmMlXhxpaMyViSXLfXprEeJOebwOLFmoOW+MiPAVv6
-	 mA6NssKmc9wEMdH67V6yXnyphYFgDu6TcsKxyukfxMmPObUytwmYb0GGW4jo39NiM9
-	 G7T3W9Z7/vJls8rK6mMFRdedzRhtoIG8tFLF0orAkdrldLjZ0iW0XoJlJ0sw3ewW+U
-	 Ui7DBjV4gEyKA==
-From: Marek Vasut <marex@denx.de>
-To: linux-iio@vger.kernel.org
-Cc: Marek Vasut <marex@denx.de>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Matti Vaittinen <mazziesaccount@gmail.com>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Andre Werner <andre.werner@systec-electronic.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@denx.de>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Mark Brown <broonie@kernel.org>,
-	Naresh Solanki <naresh.solanki@9elements.com>,
-	Patrick Rudolph <patrick.rudolph@9elements.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
-	Vincent Tremblay <vincent@vtremblay.dev>,
-	devicetree@vger.kernel.org
-Subject: [PATCH v6 2/2] iio: light: isl76682: Add ISL76682 driver
-Date: Mon, 27 Nov 2023 22:26:53 +0100
-Message-ID: <20231127212726.77707-2-marex@denx.de>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231127212726.77707-1-marex@denx.de>
-References: <20231127212726.77707-1-marex@denx.de>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3342A31580;
+	Mon, 27 Nov 2023 21:32:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C7FBC433C8;
+	Mon, 27 Nov 2023 21:32:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701120748;
+	bh=oKVuzSwUsB23sGbqCUdMKzeZOFoBgjY8WDwms9OBRnc=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=LgGa0JrcD0Mjn91d/RumF0tZD9/oib+k4L290CqFgpd4gZ/96SKvsPaMyLK6OZcug
+	 xNz664QoqgXdNYqM0DHe929wTJPfBM5hsa3Xc/1ragtuWoLImhBNNX8iugp4iAOJyS
+	 4h/k+A2p++OxoxLV2tmRzMoDvWhxDEMZXLoUuu063Ae7tesDJuM33sS5ETOmzzq3q0
+	 J8E9ONxnyws2yXI/HwKuK3iB+1ZUnBMOMq3rquVc/jNLgkfUjuFn+g6P6upN2xow7i
+	 b/P+TdfnjF9TJd+FPvwM2SzGCqJxGQ5zz0KAjxiNbh99zGgi97NofVtKH7P4xipToR
+	 p5n2lUED4T+Iw==
+Message-ID: <31afd614c5eb5e82a860fecfc1c21c39.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CAMuHMdU0Hqem8Ooehoo64rrGn8q8+5A8_DjGZd9Tvh=Xej6mdA@mail.gmail.com>
+References: <8734x9tda9.wl-kuninori.morimoto.gx@renesas.com> <87wmulrynq.wl-kuninori.morimoto.gx@renesas.com> <20231116192324.GB2821275-robh@kernel.org> <CAMuHMdU0Hqem8Ooehoo64rrGn8q8+5A8_DjGZd9Tvh=Xej6mdA@mail.gmail.com>
+Subject: Re: [PATCH 4/4] drivers: clk: renesas: enable all clocks which is assinged to non Linux system
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, Frank Rowand <frowand.list@gmail.com>, Michael Turquette <mturquette@baylibre.com>, devicetree@vger.kernel.org, linux-clk@vger.kernel.org, linux-renesas-soc@vger.kernel.org, Aymeric Aillet <aymeric.aillet@iot.bzh>, Yusuke Goda <yusuke.goda.sx@renesas.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>, Rob Herring <robh@kernel.org>
+Date: Mon, 27 Nov 2023 13:32:26 -0800
+User-Agent: alot/0.10
 
-The ISL76682 is very basic ALS which only supports ALS or IR mode
-in four ranges, 1k/4k/16k/64k LUX. There is no IRQ support or any
-other fancy functionality.
+Quoting Geert Uytterhoeven (2023-11-16 13:08:46)
+> On Thu, Nov 16, 2023 at 8:23=E2=80=AFPM Rob Herring <robh@kernel.org> wro=
+te:
+> > On Tue, Nov 14, 2023 at 12:01:14AM +0000, Kuninori Morimoto wrote:
+> > > Some board might use Linux and another OS in the same time. In such
+> > > case, current Linux will stop necessary module clock when booting
+> > > which is not used on Linux side, but is used on another OS side.
+> > >
+> > > To avoid such situation, renesas-cpg-mssr try to find
+> > > status =3D "reserved" devices (A), and add CLK_IGNORE_UNUSED flag to =
+its
+> > > <&cgp CPG_MOD xxx> clock (B).
+> >
+> > See Stephen's presentation from Plumbers this week. The default behavior
+> > for unused clocks may be changing soon.
+>=20
+> Thank you!
+>=20
+> ou mean "Make sync_state()/handoff work for the common clk
+> framework"[1]? IIUIC, that presentation didn't cover the problem we are
+> facing, except for the big "Kconfig for clk_ignore_unused=3Dtrue" hammer.
 
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Reviewed-by: Matti Vaittinen <mazziesaccount@gmail.com>
-Signed-off-by: Marek Vasut <marex@denx.de>
----
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Andre Werner <andre.werner@systec-electronic.com>
-Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Bjorn Helgaas <bhelgaas@google.com>
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Fabio Estevam <festevam@denx.de>
-Cc: Guenter Roeck <linux@roeck-us.net>
-Cc: Jonathan Cameron <jic23@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Lars-Peter Clausen <lars@metafoo.de>
-Cc: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Cc: Mark Brown <broonie@kernel.org>
-Cc: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Naresh Solanki <naresh.solanki@9elements.com>
-Cc: Patrick Rudolph <patrick.rudolph@9elements.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>
-Cc: Vincent Tremblay <vincent@vtremblay.dev>
-Cc: devicetree@vger.kernel.org
-Cc: linux-iio@vger.kernel.org
----
-V2: - Overhaul the driver
-    - Cache the entire 8-bit command register instead of parts of it
-      and build up and rewrite the entire register if necessary
-    - Fix illumination scale, add intensity scale, add integration time
-V3: - Limit the read data to 16bit ADC range
-    - Update Kconfig description
-    - Update macros, drop bitshifts
-    - Switch over to table lookup for lux ranges
-    - Switch over to .read_avail instead of attributes
-    - Use guard where applicable
-    - Drop remove function in favor of reset action
-V4: - Address feedback from Andy
-    - Add missing includes
-    - Change ISL76682_ADC_MAX to BIT(16) - 1
-    - Drop initial ret assignment in isl76682_read_raw()
-    - Move return -EINVAL to default: switch-case branch
-    - Use switch-case consistenly instead of if/else
-    - Drop trailing commas
-    - Add comment to isl76682_clear_configure_reg on command zeroing on failure
-    - Drop i2c_set_clientdata
-    - Update devm_regmap_init_i2c return value handling
-V5: - Remove newline, add newline, around module_i2c_driver
-    - Combine if:s
-    - Drop inner comma in isl76682_of_match
-    - Replace one more break with return -EINVAL
-    - Add RB from Andy and Matti
-    - Dispose of dependency on i2c_device_id, use ISL76682_DRIVER_NAME
-V6: - Inline ISL76682_DRIVER_NAME, drop the macro
-    - Fix continue indent in isl76682_write_raw()
-    - Drop channel type pre check in read_raw / write_raw
----
- drivers/iio/light/Kconfig    |  15 ++
- drivers/iio/light/Makefile   |   1 +
- drivers/iio/light/isl76682.c | 353 +++++++++++++++++++++++++++++++++++
- 3 files changed, 369 insertions(+)
- create mode 100644 drivers/iio/light/isl76682.c
+:)
 
-diff --git a/drivers/iio/light/Kconfig b/drivers/iio/light/Kconfig
-index 45edba797e4c7..9e8cdc091556d 100644
---- a/drivers/iio/light/Kconfig
-+++ b/drivers/iio/light/Kconfig
-@@ -252,6 +252,21 @@ config ISL29125
- 	  To compile this driver as a module, choose M here: the module will be
- 	  called isl29125.
- 
-+config ISL76682
-+	tristate "Intersil ISL76682 Light Sensor"
-+	depends on I2C
-+	select REGMAP_I2C
-+	help
-+	  Say Y here if you want to build a driver for the Intersil ISL76682
-+	  Ambient Light Sensor and IR Intensity sensor. This driver provides
-+	  the readouts via standard IIO sysfs and device interface. Both ALS
-+	  illuminance and IR illuminance are provided raw with separate scale
-+	  setting which can be configured via sysfs, the default scale is 1000
-+	  lux, other options are 4000/16000/64000 lux.
-+
-+	  To compile this driver as a module, choose M here: the module will be
-+	  called isl76682.
-+
- config HID_SENSOR_ALS
- 	depends on HID_SENSOR_HUB
- 	select IIO_BUFFER
-diff --git a/drivers/iio/light/Makefile b/drivers/iio/light/Makefile
-index c0db4c4c36ec9..09fa585f3109f 100644
---- a/drivers/iio/light/Makefile
-+++ b/drivers/iio/light/Makefile
-@@ -28,6 +28,7 @@ obj-$(CONFIG_IQS621_ALS)	+= iqs621-als.o
- obj-$(CONFIG_SENSORS_ISL29018)	+= isl29018.o
- obj-$(CONFIG_SENSORS_ISL29028)	+= isl29028.o
- obj-$(CONFIG_ISL29125)		+= isl29125.o
-+obj-$(CONFIG_ISL76682)		+= isl76682.o
- obj-$(CONFIG_JSA1212)		+= jsa1212.o
- obj-$(CONFIG_SENSORS_LM3533)	+= lm3533-als.o
- obj-$(CONFIG_LTR501)		+= ltr501.o
-diff --git a/drivers/iio/light/isl76682.c b/drivers/iio/light/isl76682.c
-new file mode 100644
-index 0000000000000..15a68609985b6
---- /dev/null
-+++ b/drivers/iio/light/isl76682.c
-@@ -0,0 +1,353 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * IIO driver for the light sensor ISL76682.
-+ * ISL76682 is Ambient Light Sensor
-+ *
-+ * Copyright (c) 2023 Marek Vasut <marex@denx.de>
-+ */
-+
-+#include <linux/array_size.h>
-+#include <linux/bits.h>
-+#include <linux/cleanup.h>
-+#include <linux/delay.h>
-+#include <linux/err.h>
-+#include <linux/i2c.h>
-+#include <linux/module.h>
-+#include <linux/mutex.h>
-+#include <linux/regmap.h>
-+#include <linux/types.h>
-+
-+#include <linux/iio/iio.h>
-+
-+#define ISL76682_REG_COMMAND			0x00
-+
-+#define ISL76682_COMMAND_EN			BIT(7)
-+#define ISL76682_COMMAND_MODE_CONTINUOUS	BIT(6)
-+#define ISL76682_COMMAND_LIGHT_IR		BIT(5)
-+
-+#define ISL76682_COMMAND_RANGE_LUX_1K		0x0
-+#define ISL76682_COMMAND_RANGE_LUX_4K		0x1
-+#define ISL76682_COMMAND_RANGE_LUX_16K		0x2
-+#define ISL76682_COMMAND_RANGE_LUX_64K		0x3
-+#define ISL76682_COMMAND_RANGE_LUX_MASK		GENMASK(1, 0)
-+
-+#define ISL76682_REG_ALSIR_L			0x01
-+
-+#define ISL76682_REG_ALSIR_U			0x02
-+
-+#define ISL76682_NUM_REGS			(ISL76682_REG_ALSIR_U + 1)
-+
-+#define ISL76682_CONV_TIME_MS			100
-+#define ISL76682_INT_TIME_US			90000
-+
-+#define ISL76682_ADC_MAX			(BIT(16) - 1)
-+
-+struct isl76682_chip {
-+	/*
-+	 * Lock to synchronize access to device command register
-+	 * and the content of range variable below.
-+	 */
-+	struct mutex			lock;
-+	struct regmap			*regmap;
-+	u8				range;
-+	u8				command;
-+};
-+
-+struct isl76682_range {
-+	u8				range;
-+	u32				als;
-+	u32				ir;
-+};
-+
-+static struct isl76682_range isl76682_range_table[] = {
-+	{ ISL76682_COMMAND_RANGE_LUX_1K, 15000, 10500 },
-+	{ ISL76682_COMMAND_RANGE_LUX_4K, 60000, 42000 },
-+	{ ISL76682_COMMAND_RANGE_LUX_16K, 240000, 168000 },
-+	{ ISL76682_COMMAND_RANGE_LUX_64K, 960000, 673000 }
-+};
-+
-+static int isl76682_get(struct isl76682_chip *chip, bool mode_ir, int *data)
-+{
-+	u8 command;
-+	int ret;
-+
-+	command = ISL76682_COMMAND_EN | ISL76682_COMMAND_MODE_CONTINUOUS |
-+		  chip->range;
-+
-+	if (mode_ir)
-+		command |= ISL76682_COMMAND_LIGHT_IR;
-+
-+	if (command != chip->command) {
-+		ret = regmap_write(chip->regmap, ISL76682_REG_COMMAND, command);
-+		if (ret)
-+			return ret;
-+
-+		/* Need to wait for conversion time if ALS/IR mode enabled */
-+		msleep(ISL76682_CONV_TIME_MS);
-+
-+		chip->command = command;
-+	}
-+
-+	ret = regmap_bulk_read(chip->regmap, ISL76682_REG_ALSIR_L, data, 2);
-+	*data &= ISL76682_ADC_MAX;
-+	return ret;
-+}
-+
-+static int isl76682_write_raw(struct iio_dev *indio_dev,
-+			      struct iio_chan_spec const *chan,
-+			      int val, int val2, long mask)
-+{
-+	struct isl76682_chip *chip = iio_priv(indio_dev);
-+	int i;
-+
-+	if (mask != IIO_CHAN_INFO_SCALE)
-+		return -EINVAL;
-+
-+	if (val != 0)
-+		return -EINVAL;
-+
-+	for (i = 0; i < ARRAY_SIZE(isl76682_range_table); i++) {
-+		if (chan->type == IIO_LIGHT && val2 != isl76682_range_table[i].als)
-+			continue;
-+		if (chan->type == IIO_INTENSITY && val2 != isl76682_range_table[i].ir)
-+			continue;
-+
-+		scoped_guard(mutex, &chip->lock)
-+			chip->range = isl76682_range_table[i].range;
-+		return 0;
-+	}
-+
-+	return -EINVAL;
-+}
-+
-+static int isl76682_read_raw(struct iio_dev *indio_dev,
-+			     struct iio_chan_spec const *chan,
-+			     int *val, int *val2, long mask)
-+{
-+	struct isl76682_chip *chip = iio_priv(indio_dev);
-+	int ret;
-+	int i;
-+
-+	guard(mutex)(&chip->lock);
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_RAW:
-+		switch (chan->type) {
-+		case IIO_LIGHT:
-+			ret = isl76682_get(chip, false, val);
-+			return (ret < 0) ? ret : IIO_VAL_INT;
-+		case IIO_INTENSITY:
-+			ret = isl76682_get(chip, true, val);
-+			return (ret < 0) ? ret : IIO_VAL_INT;
-+		default:
-+			return -EINVAL;
-+		}
-+		return -EINVAL;
-+	case IIO_CHAN_INFO_SCALE:
-+		for (i = 0; i < ARRAY_SIZE(isl76682_range_table); i++) {
-+			if (chip->range != isl76682_range_table[i].range)
-+				continue;
-+
-+			*val = 0;
-+			switch (chan->type) {
-+			case IIO_LIGHT:
-+				*val2 = isl76682_range_table[i].als;
-+				return IIO_VAL_INT_PLUS_MICRO;
-+			case IIO_INTENSITY:
-+				*val2 = isl76682_range_table[i].ir;
-+				return IIO_VAL_INT_PLUS_MICRO;
-+			default:
-+				return -EINVAL;
-+			}
-+		}
-+		return -EINVAL;
-+	case IIO_CHAN_INFO_INT_TIME:
-+		*val = 0;
-+		*val2 = ISL76682_INT_TIME_US;
-+		return IIO_VAL_INT_PLUS_MICRO;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int illuminance_scale_available[] = {
-+	0, 15000,
-+	0, 60000,
-+	0, 240000,
-+	0, 960000,
-+};
-+
-+static int intensity_scale_available[] = {
-+	0, 10500,
-+	0, 42000,
-+	0, 168000,
-+	0, 673000,
-+};
-+
-+static int integration_time_available[] = { 0, ISL76682_INT_TIME_US };
-+
-+static int isl76682_read_avail(struct iio_dev *indio_dev,
-+			       struct iio_chan_spec const *chan,
-+			       const int **vals, int *type,
-+			       int *length, long mask)
-+{
-+	switch (mask) {
-+	case IIO_CHAN_INFO_SCALE:
-+		switch (chan->type) {
-+		case IIO_LIGHT:
-+			*vals = illuminance_scale_available;
-+			*length = ARRAY_SIZE(illuminance_scale_available);
-+			*type = IIO_VAL_INT_PLUS_MICRO;
-+			return IIO_AVAIL_LIST;
-+		case IIO_INTENSITY:
-+			*vals = intensity_scale_available;
-+			*length = ARRAY_SIZE(intensity_scale_available);
-+			*type = IIO_VAL_INT_PLUS_MICRO;
-+			return IIO_AVAIL_LIST;
-+		default:
-+			return -EINVAL;
-+		}
-+	case IIO_CHAN_INFO_INT_TIME:
-+		*vals = integration_time_available;
-+		*length = ARRAY_SIZE(integration_time_available);
-+		*type = IIO_VAL_INT_PLUS_MICRO;
-+		return IIO_AVAIL_LIST;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static const struct iio_chan_spec isl76682_channels[] = {
-+	{
-+		.type = IIO_LIGHT,
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-+				      BIT(IIO_CHAN_INFO_SCALE),
-+		.info_mask_shared_by_type_available = BIT(IIO_CHAN_INFO_SCALE),
-+		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_INT_TIME),
-+	}, {
-+		.type = IIO_INTENSITY,
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-+				      BIT(IIO_CHAN_INFO_SCALE),
-+		.info_mask_shared_by_type_available = BIT(IIO_CHAN_INFO_SCALE),
-+		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_INT_TIME),
-+	}
-+};
-+
-+static const struct iio_info isl76682_info = {
-+	.read_avail	= isl76682_read_avail,
-+	.read_raw	= isl76682_read_raw,
-+	.write_raw	= isl76682_write_raw,
-+};
-+
-+static int isl76682_clear_configure_reg(struct isl76682_chip *chip)
-+{
-+	struct device *dev = regmap_get_device(chip->regmap);
-+	int ret;
-+
-+	ret = regmap_write(chip->regmap, ISL76682_REG_COMMAND, 0x0);
-+	if (ret < 0)
-+		dev_err(dev, "Error %d clearing the CONFIGURE register\n", ret);
-+
-+	/*
-+	 * In the success case, the command register was zeroed out.
-+	 *
-+	 * In the error case, we do not know in which state the command
-+	 * register is, so we assume it is zeroed out, so that it would
-+	 * be reprogrammed at the next data read out, and at that time
-+	 * we hope it would be reprogrammed successfully. That is very
-+	 * much a best effort approach.
-+	 */
-+	chip->command = 0;
-+
-+	return ret;
-+}
-+
-+static void isl76682_reset_action(void *chip)
-+{
-+	isl76682_clear_configure_reg(chip);
-+}
-+
-+static bool isl76682_is_volatile_reg(struct device *dev, unsigned int reg)
-+{
-+	switch (reg) {
-+	case ISL76682_REG_ALSIR_L:
-+	case ISL76682_REG_ALSIR_U:
-+		return true;
-+	default:
-+		return false;
-+	}
-+}
-+
-+static const struct regmap_config isl76682_regmap_config = {
-+	.reg_bits		= 8,
-+	.val_bits		= 8,
-+	.volatile_reg		= isl76682_is_volatile_reg,
-+	.max_register		= ISL76682_NUM_REGS - 1,
-+	.num_reg_defaults_raw	= ISL76682_NUM_REGS,
-+	.cache_type		= REGCACHE_FLAT,
-+};
-+
-+static int isl76682_probe(struct i2c_client *client)
-+{
-+	struct device *dev = &client->dev;
-+	struct isl76682_chip *chip;
-+	struct iio_dev *indio_dev;
-+	int ret;
-+
-+	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*chip));
-+	if (!indio_dev)
-+		return -ENOMEM;
-+
-+	chip = iio_priv(indio_dev);
-+
-+	mutex_init(&chip->lock);
-+
-+	chip->regmap = devm_regmap_init_i2c(client, &isl76682_regmap_config);
-+	ret = PTR_ERR_OR_ZERO(chip->regmap);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Error initializing regmap\n");
-+
-+	chip->range = ISL76682_COMMAND_RANGE_LUX_1K;
-+
-+	ret = isl76682_clear_configure_reg(chip);
-+	if (ret < 0)
-+		return ret;
-+
-+	ret = devm_add_action_or_reset(dev, isl76682_reset_action, chip);
-+	if (ret)
-+		return ret;
-+
-+	indio_dev->info = &isl76682_info;
-+	indio_dev->channels = isl76682_channels;
-+	indio_dev->num_channels = ARRAY_SIZE(isl76682_channels);
-+	indio_dev->name = "isl76682";
-+	indio_dev->modes = INDIO_DIRECT_MODE;
-+
-+	return devm_iio_device_register(dev, indio_dev);
-+}
-+
-+static const struct i2c_device_id isl76682_id[] = {
-+	{ "isl76682" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(i2c, isl76682_id);
-+
-+static const struct of_device_id isl76682_of_match[] = {
-+	{ .compatible = "isil,isl76682" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, isl76682_of_match);
-+
-+static struct i2c_driver isl76682_driver = {
-+	.driver  = {
-+		.name		= "isl76682",
-+		.of_match_table	= isl76682_of_match,
-+	},
-+	.probe		= isl76682_probe,
-+	.id_table	= isl76682_id,
-+};
-+module_i2c_driver(isl76682_driver);
-+
-+MODULE_DESCRIPTION("ISL76682 Ambient Light Sensor driver");
-+MODULE_LICENSE("GPL");
-+MODULE_AUTHOR("Marek Vasut <marex@denx.de>");
--- 
-2.42.0
+>=20
+> > > Table 2.4: Values for status property
+> > > https://github.com/devicetree-org/devicetree-specification/releases/d=
+ownload/v0.4/devicetree-specification-v0.4.pdf
+> > >
+> > > "reserved"
+> > >       Indicates that the device is operational, but should not be
+> > >       used. Typically this is used for devices that are controlled
+> > >       by another software component, such as platform firmware.
+> > >
+> > > ex)
+> > >       scif5: serial@e6f30000 {
+> > >               ...
+> > > (B)           clocks =3D <&cpg CPG_MOD 202>,
+> > >                        <&cpg CPG_CORE R8A7795_CLK_S3D1>,
+> > >                        <&scif_clk>;
+> > >               ...
+> > > (A)           status =3D "reserved";
+> > >       };
+> >
+> > I have some reservations about whether a reserved node should be touched
+> > at all by Linux. I suppose since it is platform specific, it's okay. I
+> > don't think we could apply such behavior globally.
+>=20
+> That's an interesting comment, as the issue is that currently Linux
+> does touch (resources belonging to) reserved nodes, and this patch
+> would prevent doing that for module clock resources;-)
 
+I think I get it.
+
+>=20
+> The core issue is that Linux distinguishes only between two cases:
+>   1. "device is used by Linux" (if a driver is available),
+>      as indicated by 'status =3D "okay"' in DT, or
+>   2. "device is unused by Linux".
+> On a heterogenous system, the latter actually comprises two cases:
+>   2a. "device is unused", or
+>   2b. "device is used by another OS running on another CPU core".
+>=20
+> Looking for 'status =3D "reserved"' allows us to distinguish between 2a
+> and 2b, and can prevent disabling clocks that are used by another OS.
+> Probably we need a similar solution for power domains.
+>=20
+> Do you have a better or alternative suggestion?
+
+Does the protected-clocks property work? That basically says "don't use
+these clks in the OS". The driver implementation would not register
+those clks and then the framework would be unaware of their existence,
+leading to them never being disabled during late init.
+
+This approach also looks OK to me, basically programmatically creating
+the protected-clocks list by parsing DT for reserved consumer nodes and
+then figuring out that no consumer exists so we can skip registering the
+clk entirely, or add the flag. I'm not sure we want to implement that
+policy globally, because maybe someone really wants to disable the clk
+still to clean up bootloader state and then let a remoteproc use the clk
+later.
+
+Do you want to keep those clks registered with the framework? Is there
+any benefit to keeping clks around if linux can't do anything with them?
 
