@@ -1,118 +1,127 @@
-Return-Path: <devicetree+bounces-19395-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19397-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 760E47FAC76
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 22:21:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CF0E7FAC87
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 22:27:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1EEC3281CE8
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 21:21:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 244E9281CE8
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 21:27:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 426984642A;
-	Mon, 27 Nov 2023 21:21:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6EA24644A;
+	Mon, 27 Nov 2023 21:27:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="CFvETX62"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f50.google.com (mail-oo1-f50.google.com [209.85.161.50])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D9261A2;
-	Mon, 27 Nov 2023 13:20:57 -0800 (PST)
-Received: by mail-oo1-f50.google.com with SMTP id 006d021491bc7-58d08497aa1so2894109eaf.0;
-        Mon, 27 Nov 2023 13:20:57 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701120056; x=1701724856;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=kTyGpuRf8monTMr39nvAvdHW73wZ89TRN3McibZVJu4=;
-        b=gCf8OkDfh4AoMs7z/Ds11fEhY24dYrxpZkR/Hfye5pxmxmNT7PGHkIPVwCsxfP2iDt
-         twf4mo+9F3+6UxL8cjH97k3imwGYyCHpKL9XUU2s/2OmRJ0lDtyRMu30WcLG/idoMbW7
-         X2Te7tltz760YipZhudQsVOwb3baXqI+9FdUP32r7IoKyTpqX9FfCKhxm8McHh7gjE4M
-         hhqfro3CwfGFk1C5GVcAme4QWi+KecchTvcaed1pIfZHNlPzh1P6hAuui8G5gQL26SnR
-         rcKbxVtK+vM5frHxcrGRH5fEVZS1a+dZp1/XACYaPNpEnp5wLwp53OLqzdnW09bA0vRh
-         cErQ==
-X-Gm-Message-State: AOJu0Yw3vmFX6sf10Pet/4nLsP8q7goy9KhBLkQqMcHaHgW5YPQVqSid
-	gqCKzRWdPXiCm1WNglNybpK98PLhFA==
-X-Google-Smtp-Source: AGHT+IH5aq88U86E8lbR0VHkxggDYwd+qSuHkEyr+yKdh90BxhPi9eA5RDHXDqrmDuuibUUiQu1kRg==
-X-Received: by 2002:a05:6820:809:b0:58d:a6ed:5601 with SMTP id bg9-20020a056820080900b0058da6ed5601mr1798385oob.1.1701120056561;
-        Mon, 27 Nov 2023 13:20:56 -0800 (PST)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id o15-20020a4a384f000000b0058d76e8ce0dsm610918oof.36.2023.11.27.13.20.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Nov 2023 13:20:55 -0800 (PST)
-Received: (nullmailer pid 3609049 invoked by uid 1000);
-	Mon, 27 Nov 2023 21:20:55 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2516101;
+	Mon, 27 Nov 2023 13:27:42 -0800 (PST)
+Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id A4DD2870F4;
+	Mon, 27 Nov 2023 22:27:40 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1701120461;
+	bh=dnI4XRWYFlNanBvAAEl4WZSJUEII9A6YsA8/KWQlGQc=;
+	h=From:To:Cc:Subject:Date:From;
+	b=CFvETX62Er+D7+zuPdI8ju/VDVZqV/bTKWp6BItoJvNrHp/BLI4XWTrqt18mc8KLz
+	 wJCqzK3d/ilcKt7HvdJZw+MMsxyKeO9+ivBeM2lvXvMEWt2iUcb5zAQ2sV81EWhE5M
+	 GruNwGTcOLi6229jvQudsPMN20PbiJUuxR813kMSRpHr9v76zS7ZFuZZaKzu9ysUAS
+	 lBKb7iLcvyuL9xryAjdZsXKcR9GFM8y5UaCJMcaQ+NZbztjmh073eRLjKVb6i9Y6i6
+	 JajbDqv1VV9uvobhX+axeMXZrxJerycSGPtOyK/cLyu9nrrw3y4RaZBu12FtVZXFyN
+	 RBNUFo4bBYUpQ==
+From: Marek Vasut <marex@denx.de>
+To: linux-iio@vger.kernel.org
+Cc: Marek Vasut <marex@denx.de>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Andre Werner <andre.werner@systec-electronic.com>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@denx.de>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Mark Brown <broonie@kernel.org>,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	Naresh Solanki <naresh.solanki@9elements.com>,
+	Patrick Rudolph <patrick.rudolph@9elements.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
+	Vincent Tremblay <vincent@vtremblay.dev>,
+	devicetree@vger.kernel.org
+Subject: [PATCH v6 1/2] dt-bindings: iio: light: isl76682: Document ISL76682
+Date: Mon, 27 Nov 2023 22:26:52 +0100
+Message-ID: <20231127212726.77707-1-marex@denx.de>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-Cc: krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org, devicetree@vger.kernel.org, mturquette@baylibre.com, conor+dt@kernel.org, git@amd.com, linux-clk@vger.kernel.org, michal.simek@amd.com, sboyd@kernel.org
-In-Reply-To: <20231127072204.25879-2-shubhrajyoti.datta@amd.com>
-References: <20231127072204.25879-1-shubhrajyoti.datta@amd.com>
- <20231127072204.25879-2-shubhrajyoti.datta@amd.com>
-Message-Id: <170112005500.3608964.10409860517366826170.robh@kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: clock: versal: Make alt_ref
- optional
-Date: Mon, 27 Nov 2023 15:20:55 -0600
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
+The ISL76682 is very basic ALS which only supports ALS or IR mode
+in four ranges, 1k/4k/16k/64k LUX. There is no IRQ support or any
+other fancy functionality. Document it as trivial device.
 
-On Mon, 27 Nov 2023 12:52:03 +0530, Shubhrajyoti Datta wrote:
-> The alt_ref is present only in Versal-net devices.
-> Other versal devices do not have it. Update the binding
-> accordingly.
-> 
-> Fixes: 352546805a44 ("dt-bindings: clock: Add bindings for versal clock driver")
-> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-> 
-> ---
-> 
-> Changes in v2:
-> - Have specific constraints for versal and versal net.
-> 
->  .../bindings/clock/xlnx,versal-clk.yaml       | 31 +++++++++++++++----
->  1 file changed, 25 insertions(+), 6 deletions(-)
-> 
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: Marek Vasut <marex@denx.de>
+---
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Andre Werner <andre.werner@systec-electronic.com>
+Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Bjorn Helgaas <bhelgaas@google.com>
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Fabio Estevam <festevam@denx.de>
+Cc: Guenter Roeck <linux@roeck-us.net>
+Cc: Jonathan Cameron <jic23@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Lars-Peter Clausen <lars@metafoo.de>
+Cc: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Cc: Mark Brown <broonie@kernel.org>
+Cc: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Naresh Solanki <naresh.solanki@9elements.com>
+Cc: Patrick Rudolph <patrick.rudolph@9elements.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>
+Cc: Vincent Tremblay <vincent@vtremblay.dev>
+Cc: devicetree@vger.kernel.org
+Cc: linux-iio@vger.kernel.org
+---
+V2: Add AB from Conor
+V3: No change
+V4: No change
+V5: No change
+V6: No change
+---
+ Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.example.dtb: versal-firmware: clock-controller:clocks: [[4294967295], [4294967295], [4294967295]] is too long
-	from schema $id: http://devicetree.org/schemas/firmware/xilinx/xlnx,zynqmp-firmware.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.example.dtb: versal-firmware: clock-controller:clock-names:1: 'pl_alt_ref' was expected
-	from schema $id: http://devicetree.org/schemas/firmware/xilinx/xlnx,zynqmp-firmware.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.example.dtb: versal-firmware: clock-controller:clock-names: ['ref', 'alt_ref', 'pl_alt_ref'] is too long
-	from schema $id: http://devicetree.org/schemas/firmware/xilinx/xlnx,zynqmp-firmware.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.example.dtb: clock-controller: clocks: [[4294967295], [4294967295], [4294967295]] is too long
-	from schema $id: http://devicetree.org/schemas/clock/xlnx,versal-clk.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.example.dtb: clock-controller: clock-names:1: 'pl_alt_ref' was expected
-	from schema $id: http://devicetree.org/schemas/clock/xlnx,versal-clk.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.example.dtb: clock-controller: clock-names: ['ref', 'alt_ref', 'pl_alt_ref'] is too long
-	from schema $id: http://devicetree.org/schemas/clock/xlnx,versal-clk.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231127072204.25879-2-shubhrajyoti.datta@amd.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+index 441b55723675a..d7ffecc0e9bf5 100644
+--- a/Documentation/devicetree/bindings/trivial-devices.yaml
++++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+@@ -181,6 +181,8 @@ properties:
+           - isil,isl29030
+             # Intersil ISL68137 Digital Output Configurable PWM Controller
+           - isil,isl68137
++            # Intersil ISL76682 Ambient Light Sensor
++          - isil,isl76682
+             # Linear Technology LTC2488
+           - lineartechnology,ltc2488
+             # 5 Bit Programmable, Pulse-Width Modulator
+-- 
+2.42.0
 
 
