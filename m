@@ -1,131 +1,116 @@
-Return-Path: <devicetree+bounces-19303-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19304-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 325747FA5AA
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 17:07:47 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AF277FA5C2
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 17:10:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B7EA9B20FC3
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 16:07:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C826928125C
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 16:10:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB7D035882;
-	Mon, 27 Nov 2023 16:07:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1C86358B1;
+	Mon, 27 Nov 2023 16:10:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SMqhFRWt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB839BF
-	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 08:07:37 -0800 (PST)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <auto@pengutronix.de>)
-	id 1r7e6u-00009E-Dr; Mon, 27 Nov 2023 17:05:24 +0100
-Received: from [2a0a:edc0:0:1101:1d::ac] (helo=dude04.red.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <auto@pengutronix.de>)
-	id 1r7e6t-00Bz08-Ny; Mon, 27 Nov 2023 17:05:23 +0100
-Received: from rhi by dude04.red.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <auto@pengutronix.de>)
-	id 1r7e6t-00D6SA-2B;
-	Mon, 27 Nov 2023 17:05:23 +0100
-From: Roland Hieber <rhi@pengutronix.de>
-Date: Mon, 27 Nov 2023 17:05:01 +0100
-Subject: [PATCH] ARM: dts: imx7: Declare timers compatible with
- fsl,imx6dl-gpt
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 914A61A7;
+	Mon, 27 Nov 2023 08:10:45 -0800 (PST)
+Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-332e40315bdso2764854f8f.1;
+        Mon, 27 Nov 2023 08:10:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1701101444; x=1701706244; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=g+lF3QgCwvWnbjfqhJEMa7OoaEHoxVxVETL2faHDack=;
+        b=SMqhFRWtRXFUUW0aQqRS7CFlvhBuTwPPO4sEscfBdfaUdWRHI8r4Y7RxtfW30D8RuW
+         9Q4V+Or0/TWhBrTHN4KOO2lF3Y7DbYDzZAR4KX2axqgl4B3FxZKEWr8DJIereGJhFi+I
+         Gn8ou6H1IVjTzN/6LO+B8AOmIwK5YQM7f6nDgiHSforpXyLkdekwFjPLrFk2J08Qrjxt
+         LAUAvCjpeuTCNF2YSadPA/kU+u8j5ok3nEwgYo8nxY5zoIERblxVUsWt16Y8lJfrbOJK
+         t98qhQmJ9y1jED3BgYBqunUx5pv2cOMlcmZE4pi1+b6dVLmtcg++UFelhETpAjrbXdf0
+         norw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701101444; x=1701706244;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=g+lF3QgCwvWnbjfqhJEMa7OoaEHoxVxVETL2faHDack=;
+        b=LuRcgnfPc+l+D5hf8h/X9EhRyEND4VMSYExi2lkk1UDcAeYgu0jUVhynU8t8CHKEId
+         28IOtb8EAL3eI/gj/y2pI9kEixU2OGzvky0P0g9C8XoUlxSY/nYZihLXZsvGUPofriAp
+         Z8uWiavRwJ06k+utN9GlnjGtD38LnB4+ZybI3/Ur6XuqbmcKG+WVIQrrPsTvOFQ1SRwk
+         UkYJ55mhPdaCrM5UtFo2tBM/ZFFOclw9TxF3ckfbjK4pDIghqeCwGgW2hgS/CDoQtHUn
+         t3h7veZoFkNcktYP4jGzVO7X0uWKMVqPLH5E1pG4RiBm8C9ctzDdoyGGoKBmBO6hbUiE
+         yawQ==
+X-Gm-Message-State: AOJu0Yx6RC54bHD7dovwTn2tPc6phgrHE/7MyT8k34MEDM0RcLfi7Xfu
+	rUf5WvCIRyaGRvyWTBDUmGU=
+X-Google-Smtp-Source: AGHT+IFGREU7mhh8Zy+vus2qLVxZ7UEZYtWvBcxMMrydr3j/3AjBv6ioEJwShSAq6Sb8x3TtsHo1YA==
+X-Received: by 2002:a5d:6a91:0:b0:333:2f2:33c7 with SMTP id s17-20020a5d6a91000000b0033302f233c7mr2471080wru.41.1701101443549;
+        Mon, 27 Nov 2023 08:10:43 -0800 (PST)
+Received: from [172.25.98.130] ([5.2.194.157])
+        by smtp.gmail.com with ESMTPSA id s16-20020a5d69d0000000b00332cddd7468sm12386974wrw.40.2023.11.27.08.10.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Nov 2023 08:10:42 -0800 (PST)
+Message-ID: <0002141e-4605-414d-9baf-84bc794ee66b@gmail.com>
+Date: Mon, 27 Nov 2023 18:10:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 1/2] dt-bindings: adc: add AD7173
+To: Conor Dooley <conor@kernel.org>
+Cc: linus.walleij@linaro.org, brgl@bgdev.pl, andy@kernel.org,
+ linux-gpio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
+ Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Michael Walle <michael@walle.cc>,
+ Andy Shevchenko <andy.shevchenko@gmail.com>, Arnd Bergmann <arnd@arndb.de>,
+ ChiaEn Wu <chiaen_wu@richtek.com>, Niklas Schnelle <schnelle@linux.ibm.com>,
+ =?UTF-8?Q?Leonard_G=C3=B6hrs?= <l.goehrs@pengutronix.de>,
+ Mike Looijmans <mike.looijmans@topic.nl>, Haibo Chen <haibo.chen@nxp.com>,
+ Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+ Ceclan Dumitru <dumitru.ceclan@analog.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231123152331.5751-1-user@HYB-hhAwRlzzMZb>
+ <20231123-ninth-joylessly-89e8531cf756@spud>
+Content-Language: en-US
+From: Ceclan Dumitru <mitrutzceclan@gmail.com>
+In-Reply-To: <20231123-ninth-joylessly-89e8531cf756@spud>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20231127-b4-imx7-dt-v1-1-6ecbd0471cc4@pengutronix.de>
-X-B4-Tracking: v=1; b=H4sIACy+ZGUC/x2NywqDMBAAf0X27IKbRgL+ivSQx7YuaCyJloD47
- 116nIFhLqhchCtM3QWFv1JlzwrUdxAXn9+MkpTBDOZBZBwGi7I1h+lAl2h0bDlSMqBB8JUxFJ/
- jokk+11Xlp/BL2v8wP+/7Bwty/vFxAAAA
-To: Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, 
- Frank Li <Frank.Li@freescale.com>, Anson Huang <b20788@freescale.com>
-Cc: Shawn Guo <shawn.guo@linaro.org>, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Philipp Zabel <p.zabel@pengutronix.de>, Roland Hieber <rhi@pengutronix.de>
-X-Mailer: b4 0.12.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: auto@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-From: Philipp Zabel <p.zabel@pengutronix.de>
 
-The timer nodes declare compatibility with "fsl,imx6sx-gpt", which
-itself is compatible with "fsl,imx6dl-gpt". Switch the fallback
-compatible from "fsl,imx6sx-gpt" to "fsl,imx6dl-gpt".
 
-Fixes: 949673450291 ("ARM: dts: add imx7d soc dtsi file")
-Signed-off-by: Philipp Zabel <p.zabel@pengutronix.de>
-Signed-off-by: Roland Hieber <rhi@pengutronix.de>
----
- arch/arm/boot/dts/nxp/imx/imx7s.dtsi | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+On 11/23/23 20:02, Conor Dooley wrote:
+> On Thu, Nov 23, 2023 at 05:23:21PM +0200, mitrutzceclan wrote:
+>> +allOf:
+>> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+>> +
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          not:
+>> +            contains:
+>> +              const: adi,ad7173-8
+>> +    then:
+>> +      properties:
+>> +        refin2-supply: false
+>> +      patternProperties:
+>> +        "^channel@[0-9a-f]$":
+>> +          properties:
+>> +            adi,reference-select:
+>> +              enum:
+>> +                - refin
+>> +                - refout-avss
+>> +                - avdd
+> 
+> I assume you tested that this restriction works as intended?
+> 
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx7s.dtsi b/arch/arm/boot/dts/nxp/imx/imx7s.dtsi
-index 29b8fd03567a..5387da8a2a0a 100644
---- a/arch/arm/boot/dts/nxp/imx/imx7s.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx7s.dtsi
-@@ -454,7 +454,7 @@ iomuxc_lpsr: pinctrl@302c0000 {
- 			};
- 
- 			gpt1: timer@302d0000 {
--				compatible = "fsl,imx7d-gpt", "fsl,imx6sx-gpt";
-+				compatible = "fsl,imx7d-gpt", "fsl,imx6dl-gpt";
- 				reg = <0x302d0000 0x10000>;
- 				interrupts = <GIC_SPI 55 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clks IMX7D_GPT1_ROOT_CLK>,
-@@ -463,7 +463,7 @@ gpt1: timer@302d0000 {
- 			};
- 
- 			gpt2: timer@302e0000 {
--				compatible = "fsl,imx7d-gpt", "fsl,imx6sx-gpt";
-+				compatible = "fsl,imx7d-gpt", "fsl,imx6dl-gpt";
- 				reg = <0x302e0000 0x10000>;
- 				interrupts = <GIC_SPI 54 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clks IMX7D_GPT2_ROOT_CLK>,
-@@ -473,7 +473,7 @@ gpt2: timer@302e0000 {
- 			};
- 
- 			gpt3: timer@302f0000 {
--				compatible = "fsl,imx7d-gpt", "fsl,imx6sx-gpt";
-+				compatible = "fsl,imx7d-gpt", "fsl,imx6dl-gpt";
- 				reg = <0x302f0000 0x10000>;
- 				interrupts = <GIC_SPI 53 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clks IMX7D_GPT3_ROOT_CLK>,
-@@ -483,7 +483,7 @@ gpt3: timer@302f0000 {
- 			};
- 
- 			gpt4: timer@30300000 {
--				compatible = "fsl,imx7d-gpt", "fsl,imx6sx-gpt";
-+				compatible = "fsl,imx7d-gpt", "fsl,imx6dl-gpt";
- 				reg = <0x30300000 0x10000>;
- 				interrupts = <GIC_SPI 52 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clks IMX7D_GPT4_ROOT_CLK>,
-
----
-base-commit: 2cc14f52aeb78ce3f29677c2de1f06c0e91471ab
-change-id: 20231127-b4-imx7-dt-7d157e4ec1d2
-
-Best regards,
--- 
-Roland Hieber, Pengutronix e.K.          | rhi@pengutronix.de          |
-Steuerwalder Str. 21                     | https://www.pengutronix.de/ |
-31137 Hildesheim, Germany                | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686         | Fax:   +49-5121-206917-5555 |
-
+Yes, for both reference and reference-select
 
