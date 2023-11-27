@@ -1,131 +1,120 @@
-Return-Path: <devicetree+bounces-19119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19120-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0DF67F9C00
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 09:44:40 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DC627F9C28
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 09:58:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7C81A280E39
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 08:44:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 027D7280E4C
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 08:58:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B994FC0E;
-	Mon, 27 Nov 2023 08:44:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF8D010A23;
+	Mon, 27 Nov 2023 08:58:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KYel8iVK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Uk9vjKJH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93501101;
-	Mon, 27 Nov 2023 00:44:33 -0800 (PST)
-Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-543c3756521so5347039a12.2;
-        Mon, 27 Nov 2023 00:44:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701074672; x=1701679472; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=Ryw139IsJD5rUs7/wQF0rwLMirP5Sgaw6bKRYfTe/yA=;
-        b=KYel8iVKgK8YRXM433wKZBFlphd8wVcrzK3sot+K28ic9kun2/J+gcQ7NsBDF2F+MO
-         bb9xu3C/3NVRiUihdGnJKavndcxSYoM7GbXINHuibtvl15ZBqipCryvIlS1a2nsHYTWt
-         30j2PHm0eLkurU7ZhnGjsEf22YyKmpYU8v9LM4obpnRFD0/41xaFXeEXqOEt2GRhnsuM
-         PtzFYsndpetzCKQrbrpH34Eo+T+zoHo8JOksFixGCT0kUm6MaUxSai7l6kZvY9hchNQe
-         tIafDPrFQrA3U/E0msA1iucAzSAJ6nFOleToZvYb8V/p1h55RRGKxEBOtfI5mEfYeijr
-         WBww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701074672; x=1701679472;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Ryw139IsJD5rUs7/wQF0rwLMirP5Sgaw6bKRYfTe/yA=;
-        b=E9DlfhqDCMov6W0TOXjYqyw6QQ1PDu6zLs5M0FuBUriWrP4Iu+itVywAS+Wn4gShFD
-         UD3eMQvixDNbfirwbEjMR9NMF9OA9gfXb0/NQITGmKGDuFu/+bp1hFIx3D0Nhgu/YgR7
-         gVq/XlTRBwWF0VXt4z61zfgiLu5zoBqDpBN1xaB4RZ/S9Sib0cvOXxMlLdU0y+J75mdk
-         k/FgpsWNmk7dLw7235KP4hHQIeshsIQ3ACishivwEDSVf7KpLwuaLcM7canaIwuLqHZK
-         5EdnNM8qctbdvR0FIU184Y2OeYyyJjGYp/rMeWfsODhF6XkXB0Klhgp7klaeflTuzNxu
-         44YQ==
-X-Gm-Message-State: AOJu0Yx5taPUglOLYkTADTG1OJK+OlGgSsnt1wLiFwXhAbzbf1kgFywY
-	fNlBdnr03+61HxvfX76AMQE=
-X-Google-Smtp-Source: AGHT+IHuqXI8TOxYld9vChZZAP7YKaEcWuQ7ETmVLdKwxFJhUpEdnEpOE7+ThFBXFjy++pE5f+wPUw==
-X-Received: by 2002:a17:906:2209:b0:a02:9891:29ba with SMTP id s9-20020a170906220900b00a02989129bamr7306878ejs.15.1701074671934;
-        Mon, 27 Nov 2023 00:44:31 -0800 (PST)
-Received: from ?IPv6:2001:a61:3456:4e01:6ae:b55a:bd1d:57fc? ([2001:a61:3456:4e01:6ae:b55a:bd1d:57fc])
-        by smtp.gmail.com with ESMTPSA id g1-20020a170906348100b009de3641d538sm5429579ejb.134.2023.11.27.00.44.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Nov 2023 00:44:31 -0800 (PST)
-Message-ID: <5a4182806724fa96eab92e7224d11aec7aa39e20.camel@gmail.com>
-Subject: Re: [PATCH v2 2/2] hwmon: ltc4282: add support for the LTC4282 chip
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>, kernel test robot
- <lkp@intel.com>,  Nuno Sa via B4 Relay
- <devnull+nuno.sa.analog.com@kernel.org>, linux-hwmon@vger.kernel.org,
- devicetree@vger.kernel.org,  linux-doc@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, Jean Delvare <jdelvare@suse.com>, Guenter
- Roeck <linux@roeck-us.net>, Rob Herring <robh+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>,  Jonathan Corbet <corbet@lwn.net>, Bartosz
- Golaszewski <brgl@bgdev.pl>, Linus Walleij <linus.walleij@linaro.org>, Andy
- Shevchenko <andy@kernel.org>
-Date: Mon, 27 Nov 2023 09:44:31 +0100
-In-Reply-To: <ac950d01-d9aa-4fb7-810d-b21335e4cc94@kernel.org>
-References: <20231124-ltc4282-support-v2-2-952bf926f83c@analog.com>
-	 <202311250548.lUn3bm1A-lkp@intel.com>
-	 <fb2aaa4c69c88738499dfbf46ef93e3b81ca93cb.camel@gmail.com>
-	 <76957975-56e7-489e-9c79-086b6c1ffe89@kernel.org>
-	 <ac950d01-d9aa-4fb7-810d-b21335e4cc94@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
-User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEB5810952;
+	Mon, 27 Nov 2023 08:58:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8762CC433C9;
+	Mon, 27 Nov 2023 08:57:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701075481;
+	bh=vlkRKPap0wgeSnSlCOGOwGwxoaA4L0nJ8YvdUXJ/oeg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Uk9vjKJHr7sPMTPnALarecQpDW7LAKnT4LzjIEtlya1P5X9r6ERMVISFOopfB6v4h
+	 LOcELYHn2GcLnJW0rQF7EVRkBczbEiIelJtBSP0f75l31jxyugBEnozPcftGGBKhMO
+	 h1F/m5pP4Bj0zKE8KWLhL/EkS+EjMxRXzUNi4VXAwsxKvtYh0c5eDtYfLEnIYhB14M
+	 2IBldoTCvQdKUs6fetJXUobrYghWn2iO+wsKoSibvhBDcAPwvyKB6P2KZZZ0e4KVIY
+	 H32nAcxfn0HJOv1ZCzS/jvfkgCTRR0xXvgigSDl4XefjL85MCyIPCwJw0/c3Rn+KvF
+	 lDgVnLqpRt4RA==
+Date: Mon, 27 Nov 2023 08:57:55 +0000
+From: Lee Jones <lee@kernel.org>
+To: Dmitry Rokosov <ddrokosov@salutedevices.com>
+Cc: pavel@ucw.cz, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, andy.shevchenko@gmail.com,
+	kernel@sberdevices.ru, rockosov@gmail.com,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-leds@vger.kernel.org,
+	George Stark <gnstark@salutedevices.com>
+Subject: Re: [PATCH v4 04/11] leds: aw200xx: calculate dts property
+ display_rows in the driver
+Message-ID: <20231127085755.GE1470173@google.com>
+References: <20231121202835.28152-1-ddrokosov@salutedevices.com>
+ <20231121202835.28152-5-ddrokosov@salutedevices.com>
+ <20231123163252.GF1354538@google.com>
+ <20231124094146.qsgmmbwulemjikpg@CAB-WSD-L081021>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20231124094146.qsgmmbwulemjikpg@CAB-WSD-L081021>
 
-T24gTW9uLCAyMDIzLTExLTI3IGF0IDA5OjEyICswMTAwLCBLcnp5c3p0b2YgS296bG93c2tpIHdy
-b3RlOgo+IE9uIDI3LzExLzIwMjMgMDk6MTAsIEtyenlzenRvZiBLb3psb3dza2kgd3JvdGU6Cj4g
-PiBPbiAyNy8xMS8yMDIzIDA4OjUzLCBOdW5vIFPDoSB3cm90ZToKPiA+ID4gPiDCoMKgIDM1NcKg
-wqAKPiA+ID4gPiDCoD4gMzU2wqDCoHVuc2lnbmVkIGxvbmcgbHRjNDI4Ml9yZWNhbGNfcmF0ZShz
-dHJ1Y3QgY2xrX2h3ICpodywgdW5zaWduZWQgbG9uZwo+ID4gPiA+IHBhcmVudCkKPiA+ID4gPiDC
-oMKgIDM1N8KgwqB7Cj4gPiA+ID4gwqDCoCAzNTjCoMKgwqDCoMKgwqDCoMKgwqDCoHN0cnVjdCBs
-dGM0MjgyX3N0YXRlICpzdCA9IGNvbnRhaW5lcl9vZihodywgc3RydWN0Cj4gPiA+ID4gbHRjNDI4
-Ml9zdGF0ZSwKPiA+ID4gPiDCoMKgIDM1OcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqBjbGtfaHcpOwo+ID4gPiA+IMKgwqAgMzYwwqDCoMKgwqDCoMKgwqDCoMKgwqB1
-MzIgY2xrZGl2Owo+ID4gPiA+IMKgwqAgMzYxwqDCoMKgwqDCoMKgwqDCoMKgwqBpbnQgcmV0Owo+
-ID4gPiA+IMKgwqAgMzYywqDCoAo+ID4gPiA+IMKgwqAgMzYzwqDCoMKgwqDCoMKgwqDCoMKgwqBy
-ZXQgPSByZWdtYXBfcmVhZChzdC0+bWFwLCBMVEM0MjgyX0NMS19ESVYsICZjbGtkaXYpOwo+ID4g
-PiA+IMKgwqAgMzY0wqDCoMKgwqDCoMKgwqDCoMKgwqBpZiAocmV0KQo+ID4gPiA+IMKgwqAgMzY1
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmV0dXJuIDA7Cj4gPiA+ID4gwqDC
-oCAzNjbCoMKgCj4gPiA+ID4gwqDCoCAzNjfCoMKgwqDCoMKgwqDCoMKgwqDCoGNsa2RpdiA9IEZJ
-RUxEX0dFVChMVEM0MjgyX0NMS09VVF9NQVNLLCBjbGtkaXYpOwo+ID4gPiA+IMKgwqAgMzY4wqDC
-oMKgwqDCoMKgwqDCoMKgwqBpZiAoIWNsa2RpdikKPiA+ID4gPiDCoMKgIDM2OcKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJldHVybiAwOwo+ID4gPiA+IMKgwqAgMzcwwqDCoMKg
-wqDCoMKgwqDCoMKgwqBpZiAoY2xrZGl2ID09IExUQzQyODJfQ0xLT1VUX0lOVCkKPiA+ID4gPiDC
-oMKgIDM3McKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJldHVybiBMVEM0Mjgy
-X0NMS09VVF9TWVNURU07Cj4gPiA+ID4gwqDCoCAzNzLCoMKgCj4gPiA+ID4gwqDCoCAzNzPCoMKg
-wqDCoMKgwqDCoMKgwqDCoHJldHVybiBMVEM0MjgyX0NMS09VVF9DTlY7Cj4gPiA+ID4gwqDCoCAz
-NzTCoMKgfQo+ID4gPiA+IMKgwqAgMzc1wqDCoAo+ID4gPiA+IAo+ID4gPiAKPiA+ID4gQXJnaGgs
-IEkgZG8gbmVlZCB0byBzZWUgaWYgSSBjYW4gYWRkIHNvbWUgdGVzdCBicmFuY2ggb2YgbXkgb3du
-IHRvIHRoZSB0ZXN0Cj4gPiA+IHJvYm90IDovLgo+ID4gPiBBbnl3YXlzLCB3aWxsIHdhaXQgZm9y
-IHNvbWUgbW9yZSByZXZpZXdpbmcgYmVmb3JlIHNlbmRpbmcgdjMgdG8gYWRkcmVzcyB0aGlzLgo+
-ID4gCj4gPiBJdCdzIGVhc3kgdG8gdGVzdCB5b3VyIHBhdGNoZXMgb24geW91ciBvd24gbWFjaGlu
-ZXMuLi7CoCBKdXN0IGJ1aWxkIGZldwo+ID4gZGlmZmVyZW50IGNvbmZpZ3MuCj4gPiAKPiAKPiBX
-YWl0LCB0aGlzIHdhcyBub3QgZXZlbiB1bnVzdWFsIHRlc3QsIGp1c3Qgc3RhbmRhcmQgY29tcGls
-ZSwgd2hpY2ggbWVhbnMKPiB5b3UgZGlkIG5vdCBkbyBiYXNpYyB0ZXN0cyBvbiB5b3VyIGVuZC4g
-WW91IG11c3QgYnVpbGQgeW91ciBuZXcgZHJpdmVyCj4gd2l0aCBXPTEsIHNtYXRjaCwgc3BhcnNl
-IGFuZCBjb2NjaW5lbGxlIGJlZm9yZSBzZW5kaW5nIHVwc3RyZWFtLgo+IAo+IEJlc3QgcmVnYXJk
-cywKPiBLcnp5c3p0b2YKPiAKCldlbGwsIEkgZG8gYWdyZWUgdGhhdCBhIHNwYXJzZSBidWlsZCB3
-b3VsZCBlYXNpbHkgY2F1Z2h0IHRoaXMgYW5kIEknbSBtYWQgd2l0aCBteXNlbGYKYmVjYXVzZSB0
-aGF0IG11Y2ggKHRvZ2V0aGVyIHdpdGggY2hlY2twYXRjaCkgSSB1c3VhbGx5IHJ1biAoSSBjb25m
-ZXNzIHRoYXQgY29jY2luZWxsZQphbmQgc21hdGNoIGlzIHNvbWV0aGluZyB0aGF0IEkgZG9uJ3Qg
-dXN1YWxseSBkby4gCgoieW91IGRpZCBub3QgZG8gYmFzaWMgdGVzdHMgb24geW91ciBlbmQiCgpI
-b3dldmVyIEkgZG8gdGhpbmsgdGhpcyBpcyBhIGJpdCB1bmZhaXIuIEkgZGlkIGdvdCBhIGxvdCBv
-ZiB0aGluZ3MgdG8gZG8gaW4gdjIgd2l0aAptYWpvciByZWZhY3RvcnMgb24gc29tZSBvZiB0aGUg
-ZmVhdHVyZXMuIFNvICJiYXNpYyB0ZXN0IiB0byBtZSBpcyBhY3R1YWxseSBtYWtpbmcKc3VyZSB0
-aGF0IGFsbCBvZiB0aGVzZSBjaGFuZ2VzIGRvbid0IGJyZWFrIHRoZSBkcml2ZXIgYW5kIHRoZSBk
-ZXZpY2Ugc3RpbGwgd29ya3MgYXMKZXhwZWN0ZWQuCgpBbnl3YXlzLCBJIGRvbid0IHdhbnQgdG8g
-ZmluZCBhbnkgZXhlY3VzZXMgYW5kIHN0YXJ0IGFuIGFyZ3VtZW50LiBXaWxsIHRyeSB0byBkbwpi
-ZXR0ZXIgaW4gbmV4dCBpdGVyYXRpb25zLgoKLSBOdW5vIFPDoQo=
+On Fri, 24 Nov 2023, Dmitry Rokosov wrote:
 
+> On Thu, Nov 23, 2023 at 04:32:52PM +0000, Lee Jones wrote:
+> > On Tue, 21 Nov 2023, Dmitry Rokosov wrote:
+> > 
+> > > From: George Stark <gnstark@salutedevices.com>
+> > > 
+> > > Get rid of device tree property "awinic,display-rows". The property
+> > > value actually means number of current switches and depends on how leds
+> > 
+> > Nit: LEDs
+> > 
+> > > are connected to the device. It should be calculated manually by max
+> > > used led number. In the same way it is computed automatically now.
+> > 
+> > As above - I won't mention this again.
+> > 
+> > > Max used led is taken from led definition subnodes.
+> > > 
+> > > Signed-off-by: George Stark <gnstark@salutedevices.com>
+> > > Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
+> > > ---
+> > >  drivers/leds/leds-aw200xx.c | 39 +++++++++++++++++++++++++------------
+> > >  1 file changed, 27 insertions(+), 12 deletions(-)
+> > > 
+> > > diff --git a/drivers/leds/leds-aw200xx.c b/drivers/leds/leds-aw200xx.c
+> > > index 7762b3a132ac..4bce5e7381c0 100644
+> > > --- a/drivers/leds/leds-aw200xx.c
+> > > +++ b/drivers/leds/leds-aw200xx.c
+> > > @@ -379,6 +379,30 @@ static void aw200xx_disable(const struct aw200xx *const chip)
+> > >  	return gpiod_set_value_cansleep(chip->hwen, 0);
+> > >  }
+> > >  
+> > > +static bool aw200xx_probe_get_display_rows(struct device *dev, struct aw200xx *chip)
+> > > +{
+> > > +	struct fwnode_handle *child;
+> > > +	u32 max_source = 0;
+> > > +
+> > > +	device_for_each_child_node(dev, child) {
+> > > +		u32 source;
+> > > +		int ret;
+> > > +
+> > > +		ret = fwnode_property_read_u32(child, "reg", &source);
+> > > +		if (ret || source >= chip->cdef->channels)
+> > 
+> > Shouldn't the second clause fail instantly?
+> > 
+> 
+> We already have such logic in the aw200xx_probe_fw() function, which
+> skips the LED node with the wrong reg value too. Furthermore, we have
+> strict reg constraints in the dt-bindings parts (in the current patch
+> series), so we assume that the DT developer will not create an LED with
+> the wrong reg value.
+
+Why is it being checked again then?
+
+-- 
+Lee Jones [李琼斯]
 
