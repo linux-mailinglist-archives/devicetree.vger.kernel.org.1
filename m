@@ -1,61 +1,60 @@
-Return-Path: <devicetree+bounces-19069-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19070-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97BA17F9A3B
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 07:52:12 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F8ED7F9A41
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 07:54:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5239E280C2F
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 06:52:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3E1D61C20929
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 06:54:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91DC1D297;
-	Mon, 27 Nov 2023 06:52:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46917D524;
+	Mon, 27 Nov 2023 06:54:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NE0xbhJl"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qP366yZh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 381A7133
-	for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 22:52:05 -0800 (PST)
-Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-a02d12a2444so553914466b.3
-        for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 22:52:05 -0800 (PST)
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B87A9186
+	for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 22:54:08 -0800 (PST)
+Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2c876f1e44dso47379431fa.0
+        for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 22:54:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701067923; x=1701672723; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=zEF6ZSrvW/DF7X1nXTILv6t22ru1GRaAO8KYb1A5HuA=;
-        b=NE0xbhJlEI9mtS9OpPLXtZ3kAtoEKGbWWpof7pLz0AL/KCNKFL7eSeyzzd+dSgIUKp
-         SuRcQrqF0uGCXyfRMeNwIDmTMDrWfMzwfQUICnrW6+K+BlxafUdVyjNvKSkjATmvD6AC
-         Tcp/ia5Z+MhpwOjcUxM6DmJag6yTGZhBB8kXiQvQfqrAVkjyeqPpuAy3c78bEiFlgfgn
-         71GsyRmmMmZYiUiUvri2rLTgBnW5y4ZYWnf78ZkwXf5onUsi+fRWBdyf3ojsyWA8MsoR
-         R942oQIJtYJHoZf5U/vS3+Qc/HL30oLojEAR83F3WyrcVi/YDAgAFJotXl5jE95DhnZk
-         DNlg==
+        d=linaro.org; s=google; t=1701068047; x=1701672847; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=g7O18zBiTgze+LVcu41zvOHt3KDlXKTRguomVeb/Thw=;
+        b=qP366yZhkbcg55UNxG/AGYaUvmM/KEcna8mNDSWDSYPERzKn3idfBHHrPp8Aq0JueB
+         QyO6MFaqdGbAzsTU2zkJ50ro4LrpV3pYnwegU8rtn2qwBFqFcPGJqyD3G3cZSBiN6iSu
+         yWW0iaPelGEe/f59DWpAOI8r7LZ6+JbdSxhCdCVx8gl5Nrqng3Qd7mt1XIFi7RTE7YYV
+         i9pPU20z2GHhF49pS4vy9RQ2oZuedUV2XAOdfZfh+l6yJgIMo4bKmg9qO3SU5mR6iYdu
+         zSromp/gfAch1+awNpmQxI/YFbtRikwgQbZY4lwM82uqdZuBgL5fdst98N3uonUnFb3L
+         ZWHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701067924; x=1701672724;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zEF6ZSrvW/DF7X1nXTILv6t22ru1GRaAO8KYb1A5HuA=;
-        b=VOO6Bnbohww/xlAYOy7W9b4C6+5Kk2/aXauL0RCACh2kUhEmnSrS6Y74QJTmHEKqG2
-         Gt7kYBVQknIc8uTGdOIgk1PWKVCmBJWHIYV2OkvBHlaFmewFJm/Y+U/gN1AozKzGrF71
-         8/HGKHharxCrHOZAWfFzvBCUXO79CiDVFaSa+ay7QsR8nkoUKYUxw16Xlo7bocq9JpEG
-         fyni6QKkW9LH01vUdiH9dCj2ZX4iv8N6hk/nRskcc2c/yw3Y9KObG8ksuk+Ial05fVgA
-         S1zrD2Fsrg7PE/fyZynTxD7EM/3eVklFG5sQbN1nngkkBbuXbDRLeloGZzhiXVNofpp1
-         oH8Q==
-X-Gm-Message-State: AOJu0Yy+P9RdiyqWk6KJbbaPUGZX9zFf2eQmwvKjE2nXSFAjJikKswX9
-	pUHvYIgU8qAp4i2hACoXdxB8Qw==
-X-Google-Smtp-Source: AGHT+IFnuDBskaYPCTWf05fophlg6x6CpHErJVZCt3k+I3976UGzPOraus0xv8EC3WNVZ/t9BfkGhA==
-X-Received: by 2002:a17:906:2cb:b0:a0f:76dc:febc with SMTP id 11-20020a17090602cb00b00a0f76dcfebcmr1425061ejk.70.1701067923505;
-        Sun, 26 Nov 2023 22:52:03 -0800 (PST)
+        d=1e100.net; s=20230601; t=1701068047; x=1701672847;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=g7O18zBiTgze+LVcu41zvOHt3KDlXKTRguomVeb/Thw=;
+        b=G/KLYhQ2Ki75DouY9YtsAkWsvHGpRLyzn5iXQ72Du7/8MoZ6KDDU6P92AvFg4ymDMV
+         iESKrs0jofAlan2BHd9ZBYpgoSCrCuTTFhYlp6zKttouK6jreEgCwjoNEC3wNP4a6fmH
+         2rasVmpETDnyK7qd0xmCJ2Emzp15wms4LOqbjsWHsVksdmauQvdyOf3ErihGwk+gLbOS
+         pABC7l6uLpVyPPo591JNCkSPzKA1soz3r/EAKM09GZv3s6fQc3sdhGM8QWrVbqNLioO7
+         sB04n4T8mgIK+R5vFdswyz/Ql2bXhkFAqnP53w8z3HpO6KeH3fCTHL5dw71p/E7D/jbe
+         Athg==
+X-Gm-Message-State: AOJu0YwwB3JlUhKXODZqFrPES1QZ/Pj3qXnDNczwqWKkRVf3sp0y9XPq
+	SZm7l3ZWbYIe89PcwQsg5HxOYA==
+X-Google-Smtp-Source: AGHT+IGySsVCaGz+BUtPFjXidV9mOz6tbh6cIk6Zv9lyxPI3Wu3V0ZesH3rLnRic2lXgw0/WByl3Zw==
+X-Received: by 2002:a05:6512:12c8:b0:50a:7575:1339 with SMTP id p8-20020a05651212c800b0050a75751339mr9573201lfg.18.1701068046576;
+        Sun, 26 Nov 2023 22:54:06 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.109])
-        by smtp.gmail.com with ESMTPSA id c25-20020a170906529900b009ff77c2e1dasm5324386ejm.167.2023.11.26.22.52.01
+        by smtp.gmail.com with ESMTPSA id c15-20020a05640227cf00b0054b564d04e8sm1258290ede.85.2023.11.26.22.54.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 26 Nov 2023 22:52:02 -0800 (PST)
-Message-ID: <b0c637f5-5abf-420b-8b02-839eba68799e@linaro.org>
-Date: Mon, 27 Nov 2023 07:52:00 +0100
+        Sun, 26 Nov 2023 22:54:06 -0800 (PST)
+Message-ID: <d1113c4f-cb67-4850-bd46-9ed2ec97ff08@linaro.org>
+Date: Mon, 27 Nov 2023 07:54:02 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,18 +62,32 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/9] ARM: dts: rockchip: rv1126: Add i2c2 nodes
-To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
- Tim Lunn <tim@feathertop.org>, linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org
-Cc: Jagan Teki <jagan@edgeble.ai>, Rob Herring <robh+dt@kernel.org>,
- linux-arm-kernel@lists.infradead.org,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-References: <20231122122232.952696-1-tim@feathertop.org>
- <20231122122232.952696-5-tim@feathertop.org>
- <813224c2-398d-4c2d-8909-1839ce63be60@linaro.org> <4762834.KRxA6XjA2N@diego>
+Subject: Re: [PATCH 01/12] dt-bindings: display: msm: qcm2290-mdss: Use the
+ non-deprecated DSI compat
 Content-Language: en-US
+To: Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Clark
+ <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Loic Poulain <loic.poulain@linaro.org>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Andy Gross
+ <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Georgi Djakov <djakov@kernel.org>, Will Deacon <will@kernel.org>,
+ Robin Murphy <robin.murphy@arm.com>, Joerg Roedel <joro@8bytes.org>,
+ Krishna Manikandan <quic_mkrishn@quicinc.com>,
+ Robert Marko <robimarko@gmail.com>, Das Srinagesh <quic_gurus@quicinc.com>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>,
+ Rob Herring <robh@kernel.org>, linux-arm-msm@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ iommu@lists.linux.dev
+References: <20231125-topic-rb1_feat-v1-0-11d71b12b058@linaro.org>
+ <20231125-topic-rb1_feat-v1-1-11d71b12b058@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -120,71 +133,37 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <4762834.KRxA6XjA2N@diego>
+In-Reply-To: <20231125-topic-rb1_feat-v1-1-11d71b12b058@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 27/11/2023 00:06, Heiko Stübner wrote:
-> Hi Krzysztof,
+On 25/11/2023 15:17, Konrad Dybcio wrote:
+> The "qcom,dsi-ctrl-6g-qcm2290" has been deprecated in commit 0c0f65c6dd44
+> ("dt-bindings: msm: dsi-controller-main: Add compatible strings for every
+> current SoC"), but the example hasn't been updated to reflect that.
 > 
-> Am Mittwoch, 22. November 2023, 13:29:47 CET schrieb Krzysztof Kozlowski:
->> On 22/11/2023 13:22, Tim Lunn wrote:
->>> Add i2c2 node and i2c2_xfer pinctrl for Rockchip RV1126
->>>
->>> Signed-off-by: Tim Lunn <tim@feathertop.org>
->>> ---
->>>
->>> (no changes since v1)
->>>
->>>  arch/arm/boot/dts/rockchip/rv1126-pinctrl.dtsi | 10 ++++++++++
->>>  arch/arm/boot/dts/rockchip/rv1126.dtsi         | 15 +++++++++++++++
->>>  2 files changed, 25 insertions(+)
->>>
->>> diff --git a/arch/arm/boot/dts/rockchip/rv1126-pinctrl.dtsi b/arch/arm/boot/dts/rockchip/rv1126-pinctrl.dtsi
->>> index 4f85b7b3fc4c..167a48afa3a4 100644
->>> --- a/arch/arm/boot/dts/rockchip/rv1126-pinctrl.dtsi
->>> +++ b/arch/arm/boot/dts/rockchip/rv1126-pinctrl.dtsi
->>> @@ -87,6 +87,16 @@ i2c0_xfer: i2c0-xfer {
->>>  				<0 RK_PB5 1 &pcfg_pull_none_drv_level_0_smt>;
->>>  		};
->>>  	};
->>> +	i2c2 {
->>> +		/omit-if-no-ref/
->>> +		i2c2_xfer: i2c2-xfer {
->>> +			rockchip,pins =
->>> +				/* i2c2_scl */
->>> +				<0 RK_PC2 1 &pcfg_pull_none_drv_level_0_smt>,
->>> +				/* i2c2_sda */
->>> +				<0 RK_PC3 1 &pcfg_pull_none_drv_level_0_smt>;
->>> +		};
->>> +	};
->>>  	pwm2 {
->>>  		/omit-if-no-ref/
->>>  		pwm2m0_pins: pwm2m0-pins {
->>> diff --git a/arch/arm/boot/dts/rockchip/rv1126.dtsi b/arch/arm/boot/dts/rockchip/rv1126.dtsi
->>> index 6c5c928f06c7..cf1df75df418 100644
->>> --- a/arch/arm/boot/dts/rockchip/rv1126.dtsi
->>> +++ b/arch/arm/boot/dts/rockchip/rv1126.dtsi
->>> @@ -21,6 +21,7 @@ / {
->>>  
->>>  	aliases {
->>>  		i2c0 = &i2c0;
->>> +		i2c2 = &i2c2;
->>
->> No, this should be per-board to match board labeling/schematics.
+> Fix that.
 > 
-> At least for i2c, uarts and i.e. spi ... Rockchip manuals, pin namings
-> and also all board schematics I've seen so far are very consistent for
-> these ... i2c2 for example is labled i2c2 both in the pins in the socs
-> and also in the board-schematics using them.
+> Fixes: 0c0f65c6dd44 ("dt-bindings: msm: dsi-controller-main: Add compatible strings for every current SoC")
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/display/msm/qcom,qcm2290-mdss.yaml | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
 > 
-> So while I can agree that things like mmc-aliases might be board-specific,
-> I do think aliases for the core busses should be able to live in the soc dtsi
-> as for all Rockchip SoCs so far?
+> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-mdss.yaml
+> index 5ad155612b6c..3d82c00a9f85 100644
+> --- a/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-mdss.yaml
+> +++ b/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-mdss.yaml
+> @@ -56,7 +56,9 @@ patternProperties:
+>  
+>      properties:
+>        compatible:
+> -        const: qcom,dsi-ctrl-6g-qcm2290
+> +        items:
+> +          - const: qcom,qcm2290-dsi-ctrl
+> +          - const: qcom,mdss-dsi-ctrl
 
-If you do not list here all aliases, it is already board-specific, isn't it?
-
-https://lore.kernel.org/linux-rockchip/CAK8P3a25iYksubCnQb1-e5yj=crEsK37RB9Hn4ZGZMwcVVrG7g@mail.gmail.com/
+You must also update the example here.
 
 Best regards,
 Krzysztof
