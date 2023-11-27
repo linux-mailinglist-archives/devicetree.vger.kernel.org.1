@@ -1,113 +1,137 @@
-Return-Path: <devicetree+bounces-19375-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19376-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C5FE7FAA57
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 20:36:26 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E1C07FAA95
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 20:49:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ADF7A1C20CED
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 19:36:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CCF4A28198A
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 19:49:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BFF13FB0F;
-	Mon, 27 Nov 2023 19:36:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 978833DBB3;
+	Mon, 27 Nov 2023 19:49:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="dR8IECDw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZQmRGurt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D09A8D5A;
-	Mon, 27 Nov 2023 11:36:19 -0800 (PST)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3ARJa4cU101037;
-	Mon, 27 Nov 2023 13:36:04 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1701113764;
-	bh=iI7ZvtM2UEW3p1rnWnJJvLA76dVEiHpqzz31MDh7+4E=;
-	h=From:To:CC:Subject:Date;
-	b=dR8IECDwChavWD2mjflDtcmgLKzmw8YssZn/8qjC1V67oHtahP1m2vKyYZ/6O7mKT
-	 4Xubwks+cgv1eBG6JJO9KZb3CT/d8bBZO2DUx+PvWzXJIYQq2Oupduzto0Tb0fXP6X
-	 9EjyctEF/DxOhK+3bYCMfeG81dGLIVmUgX5O0tos=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3ARJa4OM027994
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 27 Nov 2023 13:36:04 -0600
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 27
- Nov 2023 13:36:03 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 27 Nov 2023 13:36:03 -0600
-Received: from lelv0327.itg.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3ARJa3c1060644;
-	Mon, 27 Nov 2023 13:36:03 -0600
-From: Andrew Davis <afd@ti.com>
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>,
-        Robert Nelson <robertcnelson@gmail.com>,
-        Rob
- Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Andrew Davis
-	<afd@ti.com>
-Subject: [PATCH v2] arm64: dts: ti: k3-am625-beagleplay: Use UART name in pinmux name
-Date: Mon, 27 Nov 2023 13:36:02 -0600
-Message-ID: <20231127193602.151499-1-afd@ti.com>
-X-Mailer: git-send-email 2.39.2
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C6691DFFA
+	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 19:49:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF345C433CC;
+	Mon, 27 Nov 2023 19:49:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701114586;
+	bh=kLT4h06WD18nH9XJUOYId4CY/OMjL8Pp0wVPy8Dmo5k=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=ZQmRGurtQ/ymuqgkPK0S1auQK1jsqKsXA7ocVJ8YHFYFckwUYrdWasFs0vthwPFG6
+	 cBGuFNJI0ddO7kW1QKc6Yu76RJ6F+jdK1uA9IFXFukRKB/QZpSDPByMLL+x9iXczaF
+	 ihxrobCdRdEws2xjOf2N8p6R5ZH9Lkmwuro/zv+59tyIcoavkt/6B53khFbQBn2J6D
+	 KrptU5Ez5t2g0e7dEbsTHGk+xOWdSOG2F2nl6IZMey806jXeFaGvmKCwbRJwUXpWQr
+	 e+FnZbMo8h9N1MdTFLHkYW6r7skfAckBzAQTR6El+QFn+3FN2MIfP1BPfb5UWRVkkS
+	 nepgkAVRhzUrw==
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-507ad511315so6519543e87.0;
+        Mon, 27 Nov 2023 11:49:45 -0800 (PST)
+X-Gm-Message-State: AOJu0YwNX8RGa74I6oIsKbUZjRZfChBcxApGLLDNMkNFB4Ig/7N64cMr
+	biYjrUWfoG3RT9260QyrO7sCGlSGHIl/rlMRTg==
+X-Google-Smtp-Source: AGHT+IGNdZ3nXKFdr7ac3lMqcvw4UBbPABOb47aX7ue0+l6bJSzouGDgMxTJptlpiC2GKZuLcdUzV8D/ndIVyh6M4AY=
+X-Received: by 2002:a05:6512:b97:b0:502:ff3b:766f with SMTP id
+ b23-20020a0565120b9700b00502ff3b766fmr11352186lfv.6.1701114584115; Mon, 27
+ Nov 2023 11:49:44 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20231127190857.1977974-1-enachman@marvell.com> <20231127190857.1977974-2-enachman@marvell.com>
+In-Reply-To: <20231127190857.1977974-2-enachman@marvell.com>
+From: Rob Herring <robh+dt@kernel.org>
+Date: Mon, 27 Nov 2023 13:49:31 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJ90mOMUS040SBtjnuELcyM1qnOyHzuga6xPNbMct2PvA@mail.gmail.com>
+Message-ID: <CAL_JsqJ90mOMUS040SBtjnuELcyM1qnOyHzuga6xPNbMct2PvA@mail.gmail.com>
+Subject: Re: [PATCH v6 1/3] MAINTAINERS: add ac5 to list of maintained Marvell
+ dts files
+To: Elad Nachman <enachman@marvell.com>
+Cc: krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, andrew@lunn.ch, 
+	gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com, pali@kernel.org, 
+	mrkiko.rs@gmail.com, chris.packham@alliedtelesis.co.nz, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, cyuval@marvell.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The main_uart0 may not always be the console, but it will always be
-the UART0 in MAIN domain. Name the pinmux node to match. This makes
-it consistent with all other TI SoC based boards.
+On Mon, Nov 27, 2023 at 1:09=E2=80=AFPM Elad Nachman <enachman@marvell.com>=
+ wrote:
+>
+> From: Elad Nachman <enachman@marvell.com>
+>
+> Add ac5 dts files to the list of maintained Marvell Armada dts files
+>
+> Signed-off-by: Elad Nachman <enachman@marvell.com>
+> ---
+>  MAINTAINERS | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index b81da7a36a36..6f863a0c3248 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -2339,6 +2339,7 @@ F:        arch/arm/boot/dts/marvell/armada*
+>  F:     arch/arm/boot/dts/marvell/kirkwood*
+>  F:     arch/arm/configs/mvebu_*_defconfig
+>  F:     arch/arm/mach-mvebu/
+> +F:     arch/arm64/boot/dts/marvell/ac5*
+>  F:     arch/arm64/boot/dts/marvell/armada*
+>  F:     arch/arm64/boot/dts/marvell/cn913*
 
-Signed-off-by: Andrew Davis <afd@ti.com>
----
+$ ls arch/arm64/boot/dts/marvell/
+ac5-98dx25xx.dtsi                    armada-7040.dtsi
+armada-ap810-ap0.dtsi
+ac5-98dx35xx.dtsi                    armada-7040-mochabin.dts
+armada-ap810-ap0-octa-core.dtsi
+ac5-98dx35xx-rd.dts                  armada-70x0.dtsi
+armada-common.dtsi
+armada-371x.dtsi                     armada-8020.dtsi
+armada-cp110.dtsi
+armada-3720-db.dts                   armada-8040-clearfog-gt-8k.dts
+armada-cp115.dtsi
+armada-3720-eDPU.dts                 armada-8040-db.dts
+armada-cp11x.dtsi
+armada-3720-espressobin.dts          armada-8040.dtsi
+cn9130-crb-A.dts
+armada-3720-espressobin.dtsi         armada-8040-mcbin.dts
+cn9130-crb-B.dts
+armada-3720-espressobin-emmc.dts     armada-8040-mcbin.dtsi
+cn9130-crb.dtsi
+armada-3720-espressobin-ultra.dts    armada-8040-mcbin-singleshot.dts
+cn9130-db-B.dts
+armada-3720-espressobin-v7.dts       armada-8040-puzzle-m801.dts
+cn9130-db.dts
+armada-3720-espressobin-v7-emmc.dts  armada-8080-db.dts
+cn9130-db.dtsi
+armada-3720-gl-mv1000.dts            armada-8080.dtsi
+cn9130.dtsi
+armada-3720-turris-mox.dts           armada-80x0.dtsi
+cn9131-db-B.dts
+armada-3720-uDPU.dts                 armada-ap806.dtsi
+cn9131-db.dts
+armada-3720-uDPU.dtsi                armada-ap806-dual.dtsi
+cn9131-db.dtsi
+armada-372x.dtsi                     armada-ap806-quad.dtsi
+cn9132-db-B.dts
+armada-37xx.dtsi                     armada-ap807.dtsi
+cn9132-db.dts
+armada-7020.dtsi                     armada-ap807-quad.dtsi
+cn9132-db.dtsi
+armada-7040-db.dts                   armada-ap80x.dtsi                 Make=
+file
 
-Changes for v2:
- - Update node name to -pins postfix
- - Rebase on v6.7-rc1
+Looks to me like a single entry will do:
 
- arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+F: arch/arm64/boot/dts/marvell/
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
-index 9a6bd0a3c94f7..eadbdd9ffe377 100644
---- a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
-@@ -443,7 +443,7 @@ AM62X_IOPAD(0x01a8, PIN_INPUT, 7) /* (D20) MCASP0_AFSX.GPIO1_12 */
- 		>;
- 	};
- 
--	console_pins_default: console-default-pins {
-+	main_uart0_pins_default: main-uart0-default-pins {
- 		bootph-all;
- 		pinctrl-single,pins = <
- 			AM62X_IOPAD(0x01c8, PIN_INPUT, 0) /* (D14) UART0_RXD */
-@@ -877,7 +877,7 @@ wlcore: wlcore@2 {
- &main_uart0 {
- 	bootph-all;
- 	pinctrl-names = "default";
--	pinctrl-0 = <&console_pins_default>;
-+	pinctrl-0 = <&main_uart0_pins_default>;
- 	status = "okay";
- };
- 
--- 
-2.39.2
-
+Rob
 
