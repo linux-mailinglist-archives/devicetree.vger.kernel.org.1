@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-19328-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19329-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DA517FA771
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 18:02:31 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DCD8A7FA77D
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 18:06:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5F1711C20C7B
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 17:02:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3101C1F20F0B
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 17:06:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7AF13457D;
-	Mon, 27 Nov 2023 17:02:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1891535884;
+	Mon, 27 Nov 2023 17:06:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE7EB3C16;
-	Mon, 27 Nov 2023 09:02:23 -0800 (PST)
-Received: by mail-ot1-f54.google.com with SMTP id 46e09a7af769-6ce2b6b3cb6so2739406a34.3;
-        Mon, 27 Nov 2023 09:02:23 -0800 (PST)
+Received: from mail-oo1-f49.google.com (mail-oo1-f49.google.com [209.85.161.49])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55CE93256;
+	Mon, 27 Nov 2023 09:06:16 -0800 (PST)
+Received: by mail-oo1-f49.google.com with SMTP id 006d021491bc7-589d4033e84so2373507eaf.1;
+        Mon, 27 Nov 2023 09:06:16 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701104543; x=1701709343;
+        d=1e100.net; s=20230601; t=1701104775; x=1701709575;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=egdCKcTL5F1nxl2XwDwu8DS/+z9OxCWFUwjLPJGVEYM=;
-        b=urHBs7tqGEgjp5TNs8Qa41tId4Fco5Y8T4iJs1dYSx30hJ1duG9k+k28ZrDBi7ofwd
-         hsXtTmrHrOfMAgVLegk4/12Y4+R1+XRmYH/rYW9gt6VG1WLqZLoHE2OoXjbKBWyTR8B5
-         FCCyFIkn5mgALEuY3MoCmrLSptDKBt0bfbbLs+0aXQ+8wylZbxC29HDy7FBiaiZo5Mhq
-         Biuz+MONScMgPud3qt7d7bQGTxvzlDYuPNn8nHRcvJ2988Z7yl9Tm5aUGSv5F/BFTQgu
-         5bj08/r+YshEmVYc2nrYqQ6DLaPj12OwH/wSAqmCSXqXzQs/MGWdwOuzstZVVYY8kWN5
-         CW0Q==
-X-Gm-Message-State: AOJu0YzwORhZKnTfcmW8Cq7mYWKHwsBMdmdk6MasKh3pxtEzNan+9Puo
-	ys31yB0jpJEF//3Oi2E7ZrDJBXXMyA==
-X-Google-Smtp-Source: AGHT+IGu7+X9A7HDeL5cLIqKrFNpUqAS8XGhG7FU7efpiBVxtKmwRfmvKUAtyTz1NNkDSJZWu0usIA==
-X-Received: by 2002:a9d:6944:0:b0:6d8:11f1:de4d with SMTP id p4-20020a9d6944000000b006d811f1de4dmr8299962oto.32.1701104542837;
-        Mon, 27 Nov 2023 09:02:22 -0800 (PST)
+        bh=cWvJMjZ6wf7DZDfLqz8m8/1Tw1FelhGhcvu4suyu0c8=;
+        b=jdx1ut2snO5iTLddkc1kWI8cXB2ZEJ0cXmxBIIJIhFv/P4v6CmBz49k6DmePTNTN/N
+         k0NCTZe/+YL0wkdU2ZXZnBMWAenEX+bJHlWA/zRipyue1b+I0va3JI7/AYP4fYUVDOgs
+         JzPKiyzoLlYQ1NtCzHBf8PfTiCK+AkqIOd2eVGHh93x67fEm/4CJbINrVhNspBF070Gj
+         ZJ/yINJ9xauWyJkeE6gXFcX5aVvhOjY/dCZoKmr5IwgMJv4MIt5A6GVKvPYQTRBQ/JKr
+         IuB/nIZ4Qhg4WqRM7+ydXtFDBztQnDkEWKsK4Yp10f7jfAyCxHXKiZ5QjtzsrWN0mK7J
+         eG3w==
+X-Gm-Message-State: AOJu0YzRZxXimhpu8Y0RukKOihYu+0XWqIcWBDNm7LqMjLdkDHY//sqV
+	dIa1cS2QcZzx6Bj4oQI3n4ri5ttatw==
+X-Google-Smtp-Source: AGHT+IGomlZxiLfZXj8tSZA4lc0/MxCM/APuXjlf1dCwBFKdZvDLqTjOQLkhFGr26D+VaTkL4m/9Sg==
+X-Received: by 2002:a05:6820:220b:b0:58a:128:8ff0 with SMTP id cj11-20020a056820220b00b0058a01288ff0mr13465794oob.5.1701104775517;
+        Mon, 27 Nov 2023 09:06:15 -0800 (PST)
 Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id i14-20020a4aab0e000000b0057327cecdd8sm1529024oon.10.2023.11.27.09.02.21
+        by smtp.gmail.com with ESMTPSA id r21-20020a4aea95000000b00581fc1af0a7sm1552890ooh.28.2023.11.27.09.06.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Nov 2023 09:02:22 -0800 (PST)
-Received: (nullmailer pid 1424446 invoked by uid 1000);
-	Mon, 27 Nov 2023 17:02:20 -0000
-Date: Mon, 27 Nov 2023 11:02:20 -0600
+        Mon, 27 Nov 2023 09:06:14 -0800 (PST)
+Received: (nullmailer pid 1458096 invoked by uid 1000);
+	Mon, 27 Nov 2023 17:06:13 -0000
+Date: Mon, 27 Nov 2023 11:06:13 -0600
 From: Rob Herring <robh@kernel.org>
-To: Rohit Agarwal <quic_rohiagar@quicinc.com>
-Cc: tglx@linutronix.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, Conor Dooley <conor.dooley@microchip.com>, andersson@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, agross@kernel.org, konrad.dybcio@linaro.org
-Subject: Re: [PATCH v5] dt-bindings: interrupt-controller: Add SDX75 PDC
- compatible
-Message-ID: <170110453222.1422827.15955753691131343417.robh@kernel.org>
-References: <20231117082829.609882-1-quic_rohiagar@quicinc.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Konrad Dybcio <konrad.dybcio@linaro.org>, devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>, linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, Thomas Gleixner <tglx@linutronix.de>
+Subject: Re: [PATCH] dt-bindings: qcom,pdc: document the SM8650 Power Domain
+ Controller
+Message-ID: <170110476457.1456623.11118726147199543641.robh@kernel.org>
+References: <20231025-topic-sm8650-upstream-bindings-pdc-v1-1-42f62cc9858c@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,40 +58,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231117082829.609882-1-quic_rohiagar@quicinc.com>
+In-Reply-To: <20231025-topic-sm8650-upstream-bindings-pdc-v1-1-42f62cc9858c@linaro.org>
 
 
-On Fri, 17 Nov 2023 13:58:29 +0530, Rohit Agarwal wrote:
-> Add device tree bindings for PDC on SDX75 SOC.
+On Wed, 25 Oct 2023 09:27:36 +0200, Neil Armstrong wrote:
+> Document the Power Domain Controller on the SM8650 Platform.
 > 
-> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 > ---
-> 
-> Hi,
-> 
-> Changes in v5:
->  - Rebased on 6.7-rc1
->  - Removed all the applied patches from this series.
->  - Link to v4: https://lore.kernel.org/all/1686311438-24177-1-git-send-email-quic_rohiagar@quicinc.com/
-> 
-> Changes in v4:
->  - Addressed some of the dt bindings check mentioned by Krzysztof.
-> 
-> Changes in v3:
->  - Clubbed all the dt node into a single patch as suggested by Krzysztof.
->  - Removed the applied patch.
->  - Addressed some comments from Konrad and Dmitry.
-> 
-> Changes in v2:
->  - Added the CPUFreq support patch.
->  - Collected the Acked by tags.
->  - Addressed some minor comments from Konrad.
-> 
-> Thanks,
-> Rohit.
-> 
->  .../devicetree/bindings/interrupt-controller/qcom,pdc.yaml       | 1 +
+> For convenience, a regularly refreshed linux-next based git tree containing
+> all the SM8650 related work is available at:
+> https://git.codelinaro.org/neil.armstrong/linux/-/tree/topic/sm85650/upstream/integ
+> ---
+>  Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml | 1 +
 >  1 file changed, 1 insertion(+)
 > 
 
