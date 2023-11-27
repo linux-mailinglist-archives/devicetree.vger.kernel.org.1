@@ -1,148 +1,92 @@
-Return-Path: <devicetree+bounces-19146-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19147-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D31C7F9D55
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 11:22:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EA78C7F9D79
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 11:28:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5E6A7B20CC2
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 10:22:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8B788B20D1D
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 10:28:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBD6718657;
-	Mon, 27 Nov 2023 10:21:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ESm/FWjn"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 377F318AFB;
+	Mon, 27 Nov 2023 10:28:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8B0CCE;
-	Mon, 27 Nov 2023 02:21:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1701080513; x=1732616513;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=7ys8XwLQh3l2KF6BGHrQz531VXoPnwLZjyOw4eVo+Sg=;
-  b=ESm/FWjnF6tlzhGZrBKAcFjUKDpr/ECj5BLdjIz3ljti1WJfVxs5Xwyb
-   reUe+y03oVDBp7FBNQR3Lf0V5ow9ySHqNj5poiMbNifhX3YzyuQpGNgGr
-   FLCdsJRZpkqcfYiwe+duSp737CJXeu2WtK67IeBM6fZFCGP97gxucCfE9
-   EXaVgTUkZVGGb/cQmy9brGtgFWy9kvjMkf6CptRDrIvDaxRKbts1qj7o0
-   MtYH6Dx2mlnxXfi1BHQVA9TuMHIOGB+S6Cm8PbTe/2v4m2bPUC/hQdJ6z
-   g9nElOKG6bEz/bnLZnKQKFSu0NowQjJCecEAivnZngEVacKymFptMzBvR
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10906"; a="372835270"
-X-IronPort-AV: E=Sophos;i="6.04,230,1695711600"; 
-   d="scan'208";a="372835270"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Nov 2023 02:21:53 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10906"; a="912058091"
-X-IronPort-AV: E=Sophos;i="6.04,230,1695711600"; 
-   d="scan'208";a="912058091"
-Received: from lkp-server01.sh.intel.com (HELO d584ee6ebdcc) ([10.239.97.150])
-  by fmsmga001.fm.intel.com with ESMTP; 27 Nov 2023 02:21:50 -0800
-Received: from kbuild by d584ee6ebdcc with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1r7YkN-00069M-2v;
-	Mon, 27 Nov 2023 10:21:47 +0000
-Date: Mon, 27 Nov 2023 18:20:22 +0800
-From: kernel test robot <lkp@intel.com>
-To: Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org>,
-	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Andy Shevchenko <andy@kernel.org>
-Subject: Re: [PATCH v2 2/2] hwmon: ltc4282: add support for the LTC4282 chip
-Message-ID: <202311271611.huVhrU16-lkp@intel.com>
-References: <20231124-ltc4282-support-v2-2-952bf926f83c@analog.com>
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94E0610F;
+	Mon, 27 Nov 2023 02:28:12 -0800 (PST)
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-5b383b4184fso40823377b3.1;
+        Mon, 27 Nov 2023 02:28:12 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701080891; x=1701685691;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=w2MrYlyFk9vAAKCcyLHvMRthDomGQ7+yTct4LR3NVc4=;
+        b=CaMzy9TOqjlDaormMibwM3twyra1KpWYxiurnrlvpqR0n3BuNRA3RA+XQcewHfY5Xq
+         TJa0XajDI8YMW5iO06baVSgdTqX/pgCVR92jAefRJ4e2vBYZmdk0z3bR84Z3WYfOjNHI
+         U1loX2S8PRtxA5HASg82cEyGSe2QfeaRE2hAP3c7eb0Q7jiZeOktgJ26LsH9Y8/Bbhbz
+         BrQDC3LS4G9D9tWeT/kjNAe/SeonWWyVhVpdfWBd8/I9BD/2B/utwo/MGgptGxN0d30F
+         H1j2uRtToQ+YGZAP0p3XLCtfbnS/WR8ortP32xqbaVCCAoUpilyqHNZOj1A8RmFgUDPu
+         iMAA==
+X-Gm-Message-State: AOJu0YysdqJDFrVUY1oXTtFccIJgi5tJW/bxpk0B7YKG+t5kDEDiTb33
+	lp0t+vsvcj/thc5RSvwfOQTympdPovVKVQ==
+X-Google-Smtp-Source: AGHT+IFYlUbB0WokcuCPxMKOcuf3Su0WDdqpLjiYNKM/+CsSrbUZwwHu/kzwa/6+z+yqqzcfUBjW3A==
+X-Received: by 2002:a05:690c:2505:b0:5ce:e0a8:ed6f with SMTP id dt5-20020a05690c250500b005cee0a8ed6fmr8291628ywb.22.1701080891685;
+        Mon, 27 Nov 2023 02:28:11 -0800 (PST)
+Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com. [209.85.219.169])
+        by smtp.gmail.com with ESMTPSA id x126-20020a814a84000000b005ca7a00a9b0sm3147065ywa.64.2023.11.27.02.28.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Nov 2023 02:28:11 -0800 (PST)
+Received: by mail-yb1-f169.google.com with SMTP id 3f1490d57ef6-d9caf5cc948so3600678276.0;
+        Mon, 27 Nov 2023 02:28:11 -0800 (PST)
+X-Received: by 2002:a25:cec6:0:b0:d9b:311f:e9cc with SMTP id
+ x189-20020a25cec6000000b00d9b311fe9ccmr11611974ybe.34.1701080891379; Mon, 27
+ Nov 2023 02:28:11 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231124-ltc4282-support-v2-2-952bf926f83c@analog.com>
+References: <20231125233327.238575-1-niklas.soderlund+renesas@ragnatech.se>
+In-Reply-To: <20231125233327.238575-1-niklas.soderlund+renesas@ragnatech.se>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 27 Nov 2023 11:28:00 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVxmhXvt+xcDe_=sbx4d-U=KaDNHsHF9kRvdYKGzSUoiw@mail.gmail.com>
+Message-ID: <CAMuHMdVxmhXvt+xcDe_=sbx4d-U=KaDNHsHF9kRvdYKGzSUoiw@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: renesas: r9a06g032: Add missing space in compatible
+To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Nuno,
+On Sun, Nov 26, 2023 at 12:33=E2=80=AFAM Niklas S=C3=B6derlund
+<niklas.soderlund+renesas@ragnatech.se> wrote:
+> Add missing space in compatible property and align style with rest of
+> the file.
+>
+> Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.=
+se>
 
-kernel test robot noticed the following build warnings:
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.8.
 
-[auto build test WARNING on groeck-staging/hwmon-next]
-[also build test WARNING on linus/master v6.7-rc3 next-20231127]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Gr{oetje,eeting}s,
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Nuno-Sa-via-B4-Relay/hwmon-ltc4282-add-support-for-the-LTC4282-chip/20231124-231842
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git hwmon-next
-patch link:    https://lore.kernel.org/r/20231124-ltc4282-support-v2-2-952bf926f83c%40analog.com
-patch subject: [PATCH v2 2/2] hwmon: ltc4282: add support for the LTC4282 chip
-config: nios2-randconfig-r111-20231127 (https://download.01.org/0day-ci/archive/20231127/202311271611.huVhrU16-lkp@intel.com/config)
-compiler: nios2-linux-gcc (GCC) 13.2.0
-reproduce: (https://download.01.org/0day-ci/archive/20231127/202311271611.huVhrU16-lkp@intel.com/reproduce)
+                        Geert
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202311271611.huVhrU16-lkp@intel.com/
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-sparse warnings: (new ones prefixed by >>)
->> drivers/hwmon/ltc4282.c:347:6: sparse: sparse: symbol 'ltc4282_round_rate' was not declared. Should it be static?
->> drivers/hwmon/ltc4282.c:356:15: sparse: sparse: symbol 'ltc4282_recalc_rate' was not declared. Should it be static?
->> drivers/hwmon/ltc4282.c:967:34: sparse: sparse: dubious: x & !y
-   drivers/hwmon/ltc4282.c:1057:34: sparse: sparse: dubious: x & !y
-   drivers/hwmon/ltc4282.c: note: in included file (through include/uapi/linux/swab.h, include/linux/swab.h, include/uapi/linux/byteorder/little_endian.h, ...):
-   arch/nios2/include/uapi/asm/swab.h:25:24: sparse: sparse: too many arguments for function __builtin_custom_ini
-   arch/nios2/include/uapi/asm/swab.h:25:24: sparse: sparse: too many arguments for function __builtin_custom_ini
-   arch/nios2/include/uapi/asm/swab.h:31:24: sparse: sparse: too many arguments for function __builtin_custom_ini
-   arch/nios2/include/uapi/asm/swab.h:31:24: sparse: sparse: too many arguments for function __builtin_custom_ini
-   arch/nios2/include/uapi/asm/swab.h:25:24: sparse: sparse: too many arguments for function __builtin_custom_ini
-   arch/nios2/include/uapi/asm/swab.h:25:24: sparse: sparse: too many arguments for function __builtin_custom_ini
-
-vim +/ltc4282_round_rate +347 drivers/hwmon/ltc4282.c
-
-   346	
- > 347	long ltc4282_round_rate(struct clk_hw *hw, unsigned long rate,
-   348				unsigned long *parent_rate)
-   349	{
-   350		int idx = find_closest(rate, ltc4282_out_rates,
-   351				       ARRAY_SIZE(ltc4282_out_rates));
-   352	
-   353		return ltc4282_out_rates[idx];
-   354	}
-   355	
- > 356	unsigned long ltc4282_recalc_rate(struct clk_hw *hw, unsigned long parent)
-   357	{
-   358		struct ltc4282_state *st = container_of(hw, struct ltc4282_state,
-   359							clk_hw);
-   360		u32 clkdiv;
-   361		int ret;
-   362	
-   363		ret = regmap_read(st->map, LTC4282_CLK_DIV, &clkdiv);
-   364		if (ret)
-   365			return 0;
-   366	
-   367		clkdiv = FIELD_GET(LTC4282_CLKOUT_MASK, clkdiv);
-   368		if (!clkdiv)
-   369			return 0;
-   370		if (clkdiv == LTC4282_CLKOUT_INT)
-   371			return LTC4282_CLKOUT_SYSTEM;
-   372	
-   373		return LTC4282_CLKOUT_CNV;
-   374	}
-   375	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
