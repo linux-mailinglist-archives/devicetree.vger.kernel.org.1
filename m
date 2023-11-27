@@ -1,146 +1,134 @@
-Return-Path: <devicetree+bounces-19225-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19227-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01FAE7FA0FE
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 14:25:52 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDFBD7FA101
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 14:26:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 013151C20C42
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 13:25:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8025DB209BC
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 13:26:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64C3A2EAE6;
-	Mon, 27 Nov 2023 13:25:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 400192E41D;
+	Mon, 27 Nov 2023 13:26:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NbCCcEDe"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="eY5eglF9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46F691096D
-	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 13:25:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C93D0C433C7;
-	Mon, 27 Nov 2023 13:25:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701091544;
-	bh=Umygg2yHRdjm+EZVjaEnqKXeTQXJLjvWgCeoV3Q0X1k=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=NbCCcEDeYKgeOSSEh+j9VE8puG3hnVMHs37nBertaUtwAbRna82aXErSIsj0PuKzq
-	 I2xLL0Vibg9XO4VDMp44YWRf0GeSwor8DZpkdAk2mr4Pi9AqrOjuIfC1OrSEo9HYH9
-	 IEg4J4Fk3uhzreUvXOn74UbJs0nyT6OApg3p+3t9/Yh1COJZ0FmjvA2RwOIwvorcVM
-	 C5pEn+qi8galpFbtiBrAedApvV8kQMgPot+IubxT6cLOG/BHF15Qi9OSi/kqi6kAGr
-	 84bimbC4v7GlZ/6Lj3j0r4D9LNf/oqNcFh70OVFUEz/G1l+pof4x1AIZqqdDc6Aec7
-	 tGiI7cqoR5LZg==
-From: Michael Walle <mwalle@kernel.org>
-To: tony@atomide.com
-Cc: Laurent.pinchart@ideasonboard.com,
-	airlied@gmail.com,
-	andrzej.hajda@intel.com,
-	daniel@ffwll.ch,
-	devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	ivo.g.dimitrov.75@gmail.com,
-	jernej.skrabec@gmail.com,
-	jonas@kwiboo.se,
-	maarten.lankhorst@linux.intel.com,
-	merlijn@wizzup.org,
-	mripard@kernel.org,
-	neil.armstrong@linaro.org,
-	pavel@ucw.cz,
-	philipp@uvos.xyz,
-	rfoss@kernel.org,
-	sam@ravnborg.org,
-	simhavcs@gmail.com,
-	sre@kernel.org,
-	tzimmermann@suse.de,
-	Michael Walle <mwalle@kernel.org>
-Subject: Re: [PATCH 3/6] drm/bridge: tc358775: Add jeida-24 support
-Date: Mon, 27 Nov 2023 14:25:25 +0100
-Message-Id: <20231127132525.2156089-1-mwalle@kernel.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20231126171837.GK5169@atomide.com>
-References: <20231126171837.GK5169@atomide.com>
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::226])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E65485;
+	Mon, 27 Nov 2023 05:26:01 -0800 (PST)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 608B7C000D;
+	Mon, 27 Nov 2023 13:25:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1701091560;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=A2YChlyfbMPmIhM4ZAtNvRzQpOjcTZdxdAoI6XnzuAM=;
+	b=eY5eglF9GmoTKCK3yOrebScc9pb2iRDEQFN2aINDLK4+baN8wZ41yC4OrCcEpBqUHqG2qJ
+	CMIPi8PMAIl5AsfSZiEKZC7Je3gUH+B6tak719ivTd3DCtml+YoMscAw7XPAK5wHJCnu4o
+	uo0a9lPsRwfdFzR5kg1hmTTF/M1+NALjQjcY1KzX2uBxJgyxnx7GqmZt8FjLlv2e6Ytr4F
+	PPeq95Qb69Jb33tuyNXQ7qJ1DPFXjuQeDxlaS+a42yaHxVGVtTRIpMuOI1tFkhT8qY/I+B
+	SGavC6PPR1ICEe7NgXliY+GHENhMQWXlhkvAPJQ/8oNgY+Kt76754c780+9bqg==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Mon, 27 Nov 2023 14:25:58 +0100
+Message-Id: <CX9MMPFL7HAY.NGULD1FN5WPN@tleb-bootlin-xps13-01>
+To: "Kevin Hilman" <khilman@kernel.org>, "Roger Quadros"
+ <rogerq@kernel.org>, "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+ "Rob Herring" <robh+dt@kernel.org>, "Krzysztof Kozlowski"
+ <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Peter Chen" <peter.chen@kernel.org>, "Pawel Laszczak"
+ <pawell@cadence.com>, "Nishanth Menon" <nm@ti.com>, "Vignesh Raghavendra"
+ <vigneshr@ti.com>, "Tero Kristo" <kristo@kernel.org>, "Vardhan, Vibhore"
+ <vibhore@ti.com>
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: Re: [PATCH 3/6] usb: cdns3-ti: add suspend/resume procedures for
+ J7200
+Cc: <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+ =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, "Thomas
+ Petazzoni" <thomas.petazzoni@bootlin.com>
+X-Mailer: aerc 0.15.2
+References: <20231113-j7200-usb-suspend-v1-0-ad1ee714835c@bootlin.com>
+ <20231113-j7200-usb-suspend-v1-3-ad1ee714835c@bootlin.com>
+ <5080372b-1f48-4cbc-a6c4-8689c28983cb@kernel.org>
+ <CWZH66HQZNYM.T623ZOEEE0BK@tleb-bootlin-xps13-01>
+ <dad980f3-e032-41e4-a1e4-a16a7f45ff95@kernel.org>
+ <CX0GOP07I40N.198G7LJ0HYDBG@tleb-bootlin-xps13-01>
+ <bdea68ad-7523-4738-8fa1-b670d81a6b93@kernel.org>
+ <CX10D9YX1O1C.30PF317AG065N@tleb-bootlin-xps13-01>
+ <3e00b2ad-b58f-4b09-9230-683c58d3bb92@kernel.org>
+ <CX15J7B8F8HH.1WZ10OOW31X1H@tleb-bootlin-xps13-01>
+ <7h34wxfmwn.fsf@baylibre.com>
+ <CX63KP2UPL1N.J9Q344Q06IGP@tleb-bootlin-xps13-01>
+ <7hil5odtwl.fsf@baylibre.com>
+In-Reply-To: <7hil5odtwl.fsf@baylibre.com>
+X-GND-Sasl: theo.lebrun@bootlin.com
 
-> The jeida-24 register values are the default hardware settings, but they
-> not listed in the driver. Let's add them.
+Hello,
 
-jeida-24 and jeida-18 should have the same mapping, jeida-18 is broken in
-this driver. could you test this patch:
+On Sun Nov 26, 2023 at 11:36 PM CET, Kevin Hilman wrote:
+> Th=C3=A9o Lebrun <theo.lebrun@bootlin.com> writes:
+> > On Wed Nov 22, 2023 at 11:23 PM CET, Kevin Hilman wrote:
+> >> Th=C3=A9o Lebrun <theo.lebrun@bootlin.com> writes:
+> >> The point is to signal to the power domain the device is in that it ca=
+n
+> >> power on/off.  These IP blocks are (re)used on many different SoCs, so
+> >> the driver should not make any assumptions about what power domain it =
+is
+> >> in (if any.)
+> >
+> > On my platform, when the device is attached to the PD it gets turned on=
+.
+> > That feels logical to me: if a driver is not RPM aware it "just works".
+>
+> It "just works"... until the domain gets turned off.
+>
+> > Are there platforms where RPM must get enabled for the attached
+> > power-domains to be turned on?
+>
+> Yes, but but more importantly, there are platforms where RPM must get
+> enabled for the power domain to *stay* on.  For example, the power
+> domain might get turned on due to devices probing etc, but as soon as
+> all the RPM-enabled drivers drop their refcount, the domain will turn
+> off.  If there is a device in that domain with a non-RPM enabled driver,
+> that device will be powered off anc cause a crash.
 
---snip--
+OK, that makes sense, thanks for taking the time to explain. This topic
+makes me see two things that I feel are close to being bugs. I'd be
+curious to get your view on both.
 
-From 46da1d76d4908e5879ed746cce1faeacd69c432e Mon Sep 17 00:00:00 2001
-From: Michael Walle <mwalle@kernel.org>
-Date: Wed, 4 Oct 2023 13:52:57 +0200
-Subject: [PATCH] drm/bridge: tc358775: fix support for jeida-18 and jeida-24
+ - If a device does not use RPM but its children do, it might get its
+   associated power-domain turned off. That forces every single driver
+   that want to stay alive to enable & increment RPM.
 
-The bridge always uses 24bpp internally. Therefore, for jeida-18
-mapping we need to discard the lowest two bits for each channel and thus
-starting with LV_[RGB]2. jeida-24 has the same mapping but uses four
-lanes instead of three, with the forth pair transmitting the lowest two
-bits of each channel. Thus, the mapping between jeida-18 and jeida-24
-is actually the same, except that one channel is turned off (by
-selecting the RGB666 format in VPCTRL).
+   What I naively expect: a genpd with a device attached to it that is
+   not using RPM should mean that it should not be powered off at
+   runtime_suspend. Benefit: no RPM calls in drivers that do not use
+   it, and the behavior is that the genpd associated stays alive "as
+   expected".
 
-While at it, remove the bogus comment about the hardware default because
-the default is overwritten in any case.
+ - If a device uses RPM & has a refcount strictly positive, its
+   associated power-domain gets turned off either way at suspend_noirq.
+   That feels non-intuitive as well.
 
-Tested with a jeida-18 display (Evervision VGG644804).
+   What I naively expect: check for RPM refcounts of attached devices
+   when doing suspend_noirq of power-domains. Benefit: control of what
+   power-domains do from attached devices is done through the RPM API.
 
-Fixes: b26975593b17 ("display/drm/bridge: TC358775 DSI/LVDS driver")
-Signed-off-by: Michael Walle <mwalle@kernel.org>
----
- drivers/gpu/drm/bridge/tc358775.c | 21 +++++++++------------
- 1 file changed, 9 insertions(+), 12 deletions(-)
+Regards,
 
-diff --git a/drivers/gpu/drm/bridge/tc358775.c b/drivers/gpu/drm/bridge/tc358775.c
-index 90a89d70d832..592c69c2aedc 100644
---- a/drivers/gpu/drm/bridge/tc358775.c
-+++ b/drivers/gpu/drm/bridge/tc358775.c
-@@ -454,10 +454,6 @@ static void tc_bridge_enable(struct drm_bridge *bridge)
- 	dev_dbg(tc->dev, "bus_formats %04x bpc %d\n",
- 		connector->display_info.bus_formats[0],
- 		tc->bpc);
--	/*
--	 * Default hardware register settings of tc358775 configured
--	 * with MEDIA_BUS_FMT_RGB888_1X7X4_JEIDA jeida-24 format
--	 */
- 	if (connector->display_info.bus_formats[0] ==
- 		MEDIA_BUS_FMT_RGB888_1X7X4_SPWG) {
- 		/* VESA-24 */
-@@ -468,14 +464,15 @@ static void tc_bridge_enable(struct drm_bridge *bridge)
- 		d2l_write(tc->i2c, LV_MX1619, LV_MX(LVI_B6, LVI_B7, LVI_B1, LVI_B2));
- 		d2l_write(tc->i2c, LV_MX2023, LV_MX(LVI_B3, LVI_B4, LVI_B5, LVI_L0));
- 		d2l_write(tc->i2c, LV_MX2427, LV_MX(LVI_HS, LVI_VS, LVI_DE, LVI_R6));
--	} else { /*  MEDIA_BUS_FMT_RGB666_1X7X3_SPWG - JEIDA-18 */
--		d2l_write(tc->i2c, LV_MX0003, LV_MX(LVI_R0, LVI_R1, LVI_R2, LVI_R3));
--		d2l_write(tc->i2c, LV_MX0407, LV_MX(LVI_R4, LVI_L0, LVI_R5, LVI_G0));
--		d2l_write(tc->i2c, LV_MX0811, LV_MX(LVI_G1, LVI_G2, LVI_L0, LVI_L0));
--		d2l_write(tc->i2c, LV_MX1215, LV_MX(LVI_G3, LVI_G4, LVI_G5, LVI_B0));
--		d2l_write(tc->i2c, LV_MX1619, LV_MX(LVI_L0, LVI_L0, LVI_B1, LVI_B2));
--		d2l_write(tc->i2c, LV_MX2023, LV_MX(LVI_B3, LVI_B4, LVI_B5, LVI_L0));
--		d2l_write(tc->i2c, LV_MX2427, LV_MX(LVI_HS, LVI_VS, LVI_DE, LVI_L0));
-+	} else {
-+		/* JEIDA-18 and JEIDA-24 */
-+		d2l_write(tc->i2c, LV_MX0003, LV_MX(LVI_R2, LVI_R3, LVI_R4, LVI_R5));
-+		d2l_write(tc->i2c, LV_MX0407, LV_MX(LVI_R6, LVI_R1, LVI_R7, LVI_G2));
-+		d2l_write(tc->i2c, LV_MX0811, LV_MX(LVI_G3, LVI_G4, LVI_G0, LVI_G1));
-+		d2l_write(tc->i2c, LV_MX1215, LV_MX(LVI_G5, LVI_G6, LVI_G7, LVI_B2));
-+		d2l_write(tc->i2c, LV_MX1619, LV_MX(LVI_B0, LVI_B1, LVI_B3, LVI_B4));
-+		d2l_write(tc->i2c, LV_MX2023, LV_MX(LVI_B5, LVI_B6, LVI_B7, LVI_L0));
-+		d2l_write(tc->i2c, LV_MX2427, LV_MX(LVI_HS, LVI_VS, LVI_DE, LVI_R0));
- 	}
- 
- 	d2l_write(tc->i2c, VFUEN, VFUEN_EN);
--- 
-2.39.2
-
+--
+Th=C3=A9o Lebrun, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
