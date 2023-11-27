@@ -1,129 +1,136 @@
-Return-Path: <devicetree+bounces-19178-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19177-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 825ED7F9EC3
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 12:39:09 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4492D7F9EC0
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 12:38:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3D1832815AD
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 11:39:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E42822814B9
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 11:38:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 962861A70E;
-	Mon, 27 Nov 2023 11:39:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE4541A5B6;
+	Mon, 27 Nov 2023 11:38:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="tHjDDjIf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9D11186
-	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 03:38:57 -0800 (PST)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1r7Zwb-0002vG-1v; Mon, 27 Nov 2023 12:38:29 +0100
-Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1r7ZwY-00Bvkh-VA; Mon, 27 Nov 2023 12:38:26 +0100
-Received: from pza by lupine with local (Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1r7ZwT-000AAH-2o;
-	Mon, 27 Nov 2023 12:38:21 +0100
-Message-ID: <ba856a09de62a6ddbf1c19d5fd502de1cbc3e273.camel@pengutronix.de>
-Subject: Re: [PATCH v8 3/5] media: stm32-dcmipp: STM32 DCMIPP camera
- interface driver
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Alain Volmat <alain.volmat@foss.st.com>, Hugues Fruchet
- <hugues.fruchet@foss.st.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,  Alexandre Torgue
- <alexandre.torgue@foss.st.com>, Russell King <linux@armlinux.org.uk>
-Cc: Sakari Ailus <sakari.ailus@linux.intel.com>, Laurent Pinchart
- <laurent.pinchart@ideasonboard.com>, Dan Scally
- <dan.scally@ideasonboard.com>,  linux-media@vger.kernel.org,
- devicetree@vger.kernel.org,  linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org,  linux-kernel@vger.kernel.org
-Date: Mon, 27 Nov 2023 12:38:21 +0100
-In-Reply-To: <20231122073927.788810-4-alain.volmat@foss.st.com>
-References: <20231122073927.788810-1-alain.volmat@foss.st.com>
-	 <20231122073927.788810-4-alain.volmat@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75C42B8;
+	Mon, 27 Nov 2023 03:38:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+	s=s31663417; t=1701085104; x=1701689904; i=wahrenst@gmx.net;
+	bh=SFIH2xcNlah3YTHeM1h2ULCAXeOmNtEhny0Q2XMb7Kk=;
+	h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:
+	 In-Reply-To;
+	b=tHjDDjIfaM0cX2L3Qs1V/lT7EhT84reVpLuPO5hYgnw612geui5Ds1hfEHyChnsr
+	 8lvTYT7vxj+wwh1KVquAHwLt4nmOhJM4XoepjbmqVSDfwLZzgwlMCUf6HDugQNv4V
+	 bOfR5JEijhPdcPyT7UjB8nR8rzRcNqE3jf0ZfFVGJ5UvKw4WnhdU+yIYqfIOFG5Vi
+	 j4KrJn2nsYwliBWvDQOJ+TCHm7yF0dd4LLXfTpaZWDtQ7l4vMHvnKkPcJg7PgI7Mq
+	 IpxH3lpYOd4XOp4A4qxgIpuagqn4A8kN7bCCYTg7VMCajDDnOLP+6/FB8fjCkon0B
+	 CEW6IvHYAfM0G1LmWg==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.129] ([37.4.248.43]) by mail.gmx.net (mrgmx105
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1Mz9Ux-1rURyl2mCx-00wBBy; Mon, 27
+ Nov 2023 12:38:24 +0100
+Message-ID: <a78f9ba5-ad34-4af2-9817-eeb7dd9d02ef@gmx.net>
+Date: Mon, 27 Nov 2023 12:38:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/3] ARM: dts: bcm2711-rpi-cm4-io: Enable xHCI host
+Content-Language: en-US
+To: Phil Elwell <phil@raspberrypi.com>
+Cc: Justin Chen <justin.chen@broadcom.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Mathias Nyman <mathias.nyman@intel.com>,
+ bcm-kernel-feedback-list@broadcom.com, Cyril Brulebois <kibi@debian.org>,
+ linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20231126025612.12522-1-wahrenst@gmx.net>
+ <53e1f6e6-a28e-45af-991e-75b283a21b34@broadcom.com>
+ <46320840-09ab-4c86-90c9-bee7b75f248a@gmx.net>
+ <CAMEGJJ3SXHSnasqoMJnshf5Wu92NVi8+NoMdxmMsJH7WH2WjWg@mail.gmail.com>
+From: Stefan Wahren <wahrenst@gmx.net>
+In-Reply-To: <CAMEGJJ3SXHSnasqoMJnshf5Wu92NVi8+NoMdxmMsJH7WH2WjWg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:5xpmIlJ03s0Oj6NYZwycFK0MHCRodpFkZf5S/GcU6pugugr56+0
+ beBZvRvneVnp2hkEj6nniiwUD+ZfddsRem7zH61uvOHkhY7lgaVQW2Mz2XArvdaDDz0cVmk
+ AJeU6PeF+uBB0NxaZ7xrerXfLxzibFDJKv1h4s3HzDfcTcpRjqtqOwVFmX94Ha0M4/HJ50V
+ 2Yzl35Q6b3YKW/bGE+EtA==
+UI-OutboundReport: notjunk:1;M01:P0:uV74jL5nR4E=;gYKDyL+02UWZtwx/DABCpUPJ/Iq
+ pPQNtObT+2mO+1oSyB4NJFP0b1+fmHbtEtPlOWDo2uzn/hsNdWqD0P5kIluT47X10ycN5XoZn
+ EqCqOk3crez+PzaHUntX0e9NWVbk6VGDUiIC7Qg0qnU/3and6pM8dW5yHJN8wzid8czWAKwPp
+ qgndN8DlUFI6Qoum5u6Ggjpq7p04xUgfLSStiEWz3nkn+mCraEEKoHyUInQUDe/pm8BijMSYJ
+ /wsJW+QMpkvues8+EB6AZVCXCfHlyhjRfC6nndFYEJ2Ae0v5Y5mpxtQIA0ZAJveJRSW56wXd1
+ gh+a3dXWWqVHMzp6xRiZ+ru5JoJ2H5GJcml02nTqsau/dg7FUdycL+PueSDxgBWrcVyn2P9Nx
+ fe9lAC0RFaWaUmU72zgwiFDgI/Ad1dmGeuCYZv7RKEg2tzXvqqFgpOIfzm4zUWbBfuAfsT6D6
+ jy/DNqOFU8W6Yo3IPhZLX2Y/ZWdna6eBLgK5pRT/DGXn6lAFXxGThaxXYhkRL/WWhJfSqUIEa
+ 2MSqLREOz+2d/YnQoKJIE9lwgtmw3EE0AvSu8x98reang7qI2iCI9XvII5JcXV7poYIYMkVew
+ 3v96iFl7DQJD40/2het2lwe0ifxlABThzXKW/YFIptv10hxe1clEvLKns5KjflmulgaJsndER
+ 2PeFNyIz/z2a/UCEvdzWa1OPEDrur+/+hKygTgmAPcNHxHt7DSPwEiVOBRPLRiAr7OU7SJsU2
+ pCHvm3qFZsFeqa1IDqneXgGUQ3rk4wjF1Msz5lwVb13IT+J4FfVQ88VhE5FD8zXxUjtaWIejq
+ t4RaK1U1TX1yoCJq9JGdpgBuWaomP4OOiazR5E2/2/GeTy/IuaHuYp6v8Q1eeSA/269cMRQcm
+ KRiAQUOPDaAaPV9tRL2DEBQTvGa1RKTlZ3FgWqYuuqstAAnH3bpsYfEjAY+lcKSs3ulVtyld8
+ iugNrw==
 
-On Mi, 2023-11-22 at 08:39 +0100, Alain Volmat wrote:
-> From: Hugues Fruchet <hugues.fruchet@foss.st.com>
->=20
-> This V4L2 subdev driver enables Digital Camera Memory Interface
-> Pixel Processor(DCMIPP) of STMicroelectronics STM32 SoC series.
->=20
-> Signed-off-by: Hugues Fruchet <hugues.fruchet@foss.st.com>
-> Signed-off-by: Alain Volmat <alain.volmat@foss.st.com>
-> ---
-[...]
-> diff --git a/drivers/media/platform/st/stm32/stm32-dcmipp/dcmipp-core.c b=
-/drivers/media/platform/st/stm32/stm32-dcmipp/dcmipp-core.c
-> new file mode 100644
-> index 000000000000..28ddb26314c3
-> --- /dev/null
-> +++ b/drivers/media/platform/st/stm32/stm32-dcmipp/dcmipp-core.c
-> @@ -0,0 +1,604 @@
-[...]
-> +struct dcmipp_device {
-> +	/* The platform device */
-> +	struct platform_device		pdev;
-> +	struct device			*dev;
-> +
-> +	/* Hardware resources */
-> +	struct reset_control		*rstc;
+Hi Phil,
 
-As long as rstc is only used in dcmipp_probe(), there is no need to
-carry it around in struct dcmipp_device.
+Am 27.11.23 um 12:22 schrieb Phil Elwell:
+> On Mon, 27 Nov 2023 at 11:08, Stefan Wahren <wahrenst@gmx.net> wrote:
+>> Hi Justin,
+>>
+>> [add Phil]
+>>
+>> Am 27.11.23 um 07:02 schrieb Justin Chen:
+>>>
+>>> On 11/25/23 6:56 PM, Stefan Wahren wrote:
+>>>> In contrast to the Raspberry Pi 4, the Compute Module 4 or the IO boa=
+rd
+>>>> does not have a VL805 USB 3.0 host controller, which is connected via
+>>>> PCIe. Instead, the BCM2711 on the Compute Module provides the built-i=
+n
+>>>> xHCI.
+>>>>
+>>> Does this work? I maintain this built-in xHCI controller internally. I
+>>> wasn't aware the Compute Module uses this block.
+>> i successful tested this with a CM4 (arm 32 bit,
+>> multi_v7_lpae_defconfig) with eMMC. Before this series the USB devices
+>> (mouse, keyboard) connected to the host interface didn't work. After
+>> comparing vendor DTS with mainline i noticed the missing xHCI block [1]=
+.
+>> Unfortunately i wasn't able to get further information from the public
+>> datasheets. I don't know if the VideoCore does some magic tricks on the
+>> xHCI or i missed some downstream xHCI changes.
+>>
+>>> This block is held in reset and needs a bit toggled to get things
+>>> going. Florian, just to confirm, this is our "brcm,xhci-brcm-v2" block
+>>> correct?
+>>>
+>>> Justin
+>> [1]  -
+>> https://github.com/raspberrypi/linux/blob/rpi-6.1.y/arch/arm/boot/dts/b=
+cm2711-rpi-ds.dtsi#L119
+> What's the question here? Does the XHCI block present in the
+> raspberrypi/linux dtsi file really exist? Yes it does.
+since i don't have any documentation about the xHCI block, i assumed the
+compatible generic-xhci is correct. But Justin seems to suggest that the
+xHCI block needs some special treatment and we need a specific compatible.
 
-[...]
-> +static int dcmipp_probe(struct platform_device *pdev)
-> +{
-> +	struct dcmipp_device *dcmipp;
-> +	struct clk *kclk;
+Did i missed some xHCI driver changes?
+Does the VC firmware something to the xHCI especially on CM4?
 
-rstc could be a local variable here.
+Thanks
+>
+> Phil
 
-[...]
-
-> +	/* Get hardware resources from devicetree */
-> +	dcmipp->rstc =3D devm_reset_control_get_exclusive(&pdev->dev, NULL);
-> +	if (IS_ERR(dcmipp->rstc))
-> +		return dev_err_probe(&pdev->dev, PTR_ERR(dcmipp->rstc),
-> +				     "Could not get reset control\n");
-[...]
-> +	/* Reset device */
-> +	ret =3D reset_control_assert(dcmipp->rstc);
-> +	if (ret) {
-> +		dev_err(&pdev->dev, "Failed to assert the reset line\n");
-> +		return ret;
-> +	}
-> +
-> +	usleep_range(3000, 5000);
-> +
-> +	ret =3D reset_control_deassert(dcmipp->rstc);
-> +	if (ret) {
-> +		dev_err(&pdev->dev, "Failed to deassert the reset line\n");
-> +		return ret;
-> +	}
-
-regards
-Philipp
 
