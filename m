@@ -1,53 +1,54 @@
-Return-Path: <devicetree+bounces-19051-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19052-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5036D7F97DF
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 04:16:41 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 501857F97EB
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 04:23:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 80AD81C20826
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 03:16:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CB4DCB20A13
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 03:23:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4430520E0;
-	Mon, 27 Nov 2023 03:16:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CA2820F7;
+	Mon, 27 Nov 2023 03:23:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T4ZPLxqU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Jn12v7RV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2420D441F;
-	Mon, 27 Nov 2023 03:16:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79BBFC433C8;
-	Mon, 27 Nov 2023 03:16:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D4AB23C8
+	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 03:23:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F2CBC433C8;
+	Mon, 27 Nov 2023 03:23:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701054996;
-	bh=BrdY3KVSz3OKjfp8VA3lQbt0q3Ax4cix+/DXFjr6lSQ=;
+	s=k20201202; t=1701055430;
+	bh=UqWQSWnQlFHOXDahR564UiFu2gmiWejxDC1l3SAOMXM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=T4ZPLxqUsdmWhtzfzEfLUAoEd0RgJ81X/iZXnEipjkR/cKj26g69Yl7syz/mUClAX
-	 l6gIuW4zgxYc7zIc8mmH08hJ7Mk8heJLmYLrNmMzozTfpebJDRq6AIOwjKIVwNH2Xo
-	 jtlgQcCr6AE3tJY5CruRSunR2zL24ByQ8mY0MZMJxwDuDYwHc7llE6vXrQFl+ucfGh
-	 vZmefcrzYNGMJI+xBGp7WVzM88SKGkGfqwu6ZNyXMNJRgLUasM/3Cz+1wYO5Al+PLi
-	 C6uSjzh205MUsEiNVIANWXseZeAmoRS/7v6DSuxUHbrx8grieunOg/FPj3LGipFeGn
-	 +Tk8mRAkHZ7CQ==
-Date: Mon, 27 Nov 2023 11:16:31 +0800
+	b=Jn12v7RVQ4Ba0wCENEspHXptscLisqAvzw+o+5umafgEq9jS4qGcqMPikPwsQz7sR
+	 qtNGQV4TjmOKCq6Y0wlWrSWWj/NlBGZGNHAgavlYvZ7RAN+biYUvZlpafsPKXZywLu
+	 zO4axk2yWs02724c2KqE7iW0+1crTyirVztjMPJ5wA5i+TKiuxzulY//5dOfjofytm
+	 5oUpwUGvB+8XtzDP7CXeLRgDCC1yZKV9jioWaHx/OZQoNr/jCaaLz1T3EQA6xw+00Z
+	 iaGzI1T1/9/uC9avyBCRKS5gn/F+l3ZulKiydS6wV67/iQQToM0AUujHVjBQFQWxQg
+	 onK/n7Rp2WnzA==
+Date: Mon, 27 Nov 2023 11:23:45 +0800
 From: Shawn Guo <shawnguo@kernel.org>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
-	devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+To: Hugo Villeneuve <hugo@hugovil.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Li Yang <leoyang.li@nxp.com>,
-	Marco Contenti <marco.c@variscite.com>,
-	Nate Drude <nate.d@variscite.com>,
-	FrancescoFerraro <francesco.f@variscite.com>,
-	Harshesh Valera <harshesh.v@variscite.com>
-Subject: Re: [PATCH v2 4/4] arm64: dts: freescale: Add panel overlay for
- Variscite DART
-Message-ID: <20231127031631.GY87953@dragon>
-References: <20231025165058.31697-1-laurent.pinchart@ideasonboard.com>
- <20231025165058.31697-5-laurent.pinchart@ideasonboard.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: imx8mn-var-som: add fixed 3.3V regulator for
+ EEPROM
+Message-ID: <20231127032345.GA87953@dragon>
+References: <20231030151920.191018-1-hugo@hugovil.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,27 +57,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231025165058.31697-5-laurent.pinchart@ideasonboard.com>
+In-Reply-To: <20231030151920.191018-1-hugo@hugovil.com>
 
-On Wed, Oct 25, 2023 at 07:50:58PM +0300, Laurent Pinchart wrote:
-> Add a DT overlay for the Variscite i.MX8MP DT8MCustomBoard that models
-> the GKTW70SDAE4SE LVDS panel found in the evaluation kit.
+On Mon, Oct 30, 2023 at 11:19:20AM -0400, Hugo Villeneuve wrote:
+> From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 > 
-> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> When the EEPROM is probed, we have this warning:
+> 
+>     at24 0-0052: supply vcc not found, using dummy regulator
+> 
+> Add fixed 3.3v regulator to silence the warning.
+> 
+> Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 
-It doesn't apply to imx/dt64 branch, and I managed to manually apply it.
-However, here is what I'm getting from 'make ARCH=arm64 dtbs'.
-
-../arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtso:54.3-16: Warning (reg_format): /fragment@1/__overlay__/touch@38:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
-arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtbo: Warning (pci_device_reg): Failed prerequisite 'reg_format'
-arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtbo: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
-arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtbo: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
-arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtbo: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
-../arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtso:52.11-68.4: Warning (avoid_default_addr_size): /fragment@1/__overlay__/touch@38: Relying on default #address-cells value
-../arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtso:52.11-68.4: Warning (avoid_default_addr_size): /fragment@1/__overlay__/touch@38: Relying on default #size-cells value
-arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtbo: Warning (graph_port): /fragment@3: graph port node name should be 'port'
-../arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtso:85.15-87.3: Warning (graph_endpoint): /fragment@3/__overlay__: graph endpoint node name should be 'endpoint'
-../arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtso:85.15-87.3: Warning (graph_endpoint): /fragment@3/__overlay__: graph connection to node '/fragment@0/__overlay__/panel/port/endpoint' is not bidirectional
-
-Shawn
+Applied, thanks!
 
