@@ -1,282 +1,228 @@
-Return-Path: <devicetree+bounces-19382-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19383-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FB3F7FAB31
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 21:18:29 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A7BC7FAB48
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 21:24:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 80EF21C20A70
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 20:18:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 05BF51C20D18
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 20:24:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5475E45C13;
-	Mon, 27 Nov 2023 20:18:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D5CC45C0F;
+	Mon, 27 Nov 2023 20:24:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f49.google.com (mail-oo1-f49.google.com [209.85.161.49])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD51C1BD;
-	Mon, 27 Nov 2023 12:18:20 -0800 (PST)
-Received: by mail-oo1-f49.google.com with SMTP id 006d021491bc7-58d533268e6so1474058eaf.1;
-        Mon, 27 Nov 2023 12:18:20 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701116300; x=1701721100;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bENZaIEkpJYeXQb3obhDaVX2IagyhGDLjLt3ZYuJ/ok=;
-        b=eEriZf4yxFKnEDzKUsRMOkZH1KtOYZK5c8ck34FAuirqZlDdGgKr4ONWT93mx0PRIN
-         fljO8mEFLVjlzf8ZJ8R4wbGTsCOIOFk8NmTgZdJb1syq29RqnOwIf3SBNsPLWUONcdP0
-         AqelDIFwLN2IfE3K22VTXBrTwf8/6eRboOjM7jR3p57BJlsK5NsT50s4WwlZx6CwcESX
-         ayEFQpBquRHB7moPNvfG+MLo9gFUdEJAFNQO6SRReyOyX3BSlaQ2J4NJW8inu6vEORom
-         H6tWVxoThKx/31jWZhbegJbB0Mw4UW2eJrBdCzydGDfsocgKA5lXugwsaEF2ay6Qj9X7
-         u28Q==
-X-Gm-Message-State: AOJu0Yy9b8f1BvMoxRHU5F0cllo385xHe5nTTQxJu0CyOz71A5SizQ0s
-	4PzS4sh3WQxvloK2Utyojw==
-X-Google-Smtp-Source: AGHT+IFIzZ++vKtHlOgq7ThtESTzfXnpNg+vniSqQtFwqwxLBYUrKmp3ByScpp7i4/Z7fRvKpCna2A==
-X-Received: by 2002:a05:6820:827:b0:58d:974b:5056 with SMTP id bg39-20020a056820082700b0058d974b5056mr3811141oob.1.1701116299998;
-        Mon, 27 Nov 2023 12:18:19 -0800 (PST)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id u188-20020a4a57c5000000b0058d1de21893sm990011ooa.24.2023.11.27.12.18.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Nov 2023 12:18:19 -0800 (PST)
-Received: (nullmailer pid 3044125 invoked by uid 1000);
-	Mon, 27 Nov 2023 20:18:18 -0000
-Date: Mon, 27 Nov 2023 14:18:18 -0600
-From: Rob Herring <robh@kernel.org>
-To: Nikita Shubin <nikita.shubin@maquefel.me>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Alexander Sverdlin <alexander.sverdlin@gmail.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 06/39] dt-bindings: soc: Add Cirrus EP93xx
-Message-ID: <20231127201818.GA2966449-robh@kernel.org>
-References: <20231122-ep93xx-v5-0-d59a76d5df29@maquefel.me>
- <20231122-ep93xx-v5-6-d59a76d5df29@maquefel.me>
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a02:c205:3004:2154::1])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9D581BD;
+	Mon, 27 Nov 2023 12:24:12 -0800 (PST)
+Received: from p200301077700a9001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:107:7700:a900:1a3d:a2ff:febf:d33a] helo=aktux)
+	by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <andreas@kemnade.info>)
+	id 1r7i9I-006mnO-M7; Mon, 27 Nov 2023 21:24:08 +0100
+Received: from andi by aktux with local (Exim 4.96)
+	(envelope-from <andreas@kemnade.info>)
+	id 1r7i9I-000bvU-1J;
+	Mon, 27 Nov 2023 21:24:08 +0100
+From: Andreas Kemnade <andreas@kemnade.info>
+To: mturquette@baylibre.com,
+	sboyd@kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	andreas@kemnade.info,
+	kristo@kernel.org,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-omap@vger.kernel.org
+Subject: [PATCH] dt-bindings: clock: ti: Convert interface.txt to json-schema
+Date: Mon, 27 Nov 2023 21:23:59 +0100
+Message-Id: <20231127202359.145778-1-andreas@kemnade.info>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231122-ep93xx-v5-6-d59a76d5df29@maquefel.me>
+Content-Transfer-Encoding: 8bit
 
-On Wed, Nov 22, 2023 at 11:59:44AM +0300, Nikita Shubin wrote:
-> Add device tree bindings for the Cirrus Logic EP93xx SoC.
-> 
-> Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
-> ---
->  .../bindings/arm/cirrus/cirrus,ep9301.yaml         | 38 ++++++++++
+Convert the OMAP interface clock device tree binding to json-schema
+and fix up reg property which is optional and taken from parent if
+not specified.
+Specify the creator of the original binding as a maintainer.
 
->  .../bindings/soc/cirrus/cirrus,ep9301-syscon.yaml  | 83 ++++++++++++++++++++++
->  include/dt-bindings/soc/cirrus,ep9301-syscon.h     | 46 ++++++++++++
+Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+---
+ .../bindings/clock/ti/interface.txt           | 57 ------------
+ .../bindings/clock/ti/ti,interface-clock.yaml | 90 +++++++++++++++++++
+ 2 files changed, 90 insertions(+), 57 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/clock/ti/interface.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/ti/ti,interface-clock.yaml
 
-This looks like it is mostly clocks. I'd put it in bindings/clock/ and 
-include/dt-bindings/clock/ instead.
+diff --git a/Documentation/devicetree/bindings/clock/ti/interface.txt b/Documentation/devicetree/bindings/clock/ti/interface.txt
+deleted file mode 100644
+index d3eb5ca92a7fe..0000000000000
+--- a/Documentation/devicetree/bindings/clock/ti/interface.txt
++++ /dev/null
+@@ -1,57 +0,0 @@
+-Binding for Texas Instruments interface clock.
+-
+-Binding status: Unstable - ABI compatibility may be broken in the future
+-
+-This binding uses the common clock binding[1]. This clock is
+-quite much similar to the basic gate-clock [2], however,
+-it supports a number of additional features, including
+-companion clock finding (match corresponding functional gate
+-clock) and hardware autoidle enable / disable.
+-
+-[1] Documentation/devicetree/bindings/clock/clock-bindings.txt
+-[2] Documentation/devicetree/bindings/clock/gpio-gate-clock.yaml
+-
+-Required properties:
+-- compatible : shall be one of:
+-  "ti,omap3-interface-clock" - basic OMAP3 interface clock
+-  "ti,omap3-no-wait-interface-clock" - interface clock which has no hardware
+-				       capability for waiting clock to be ready
+-  "ti,omap3-hsotgusb-interface-clock" - interface clock with USB specific HW
+-					handling
+-  "ti,omap3-dss-interface-clock" - interface clock with DSS specific HW handling
+-  "ti,omap3-ssi-interface-clock" - interface clock with SSI specific HW handling
+-  "ti,am35xx-interface-clock" - interface clock with AM35xx specific HW handling
+-  "ti,omap2430-interface-clock" - interface clock with OMAP2430 specific HW
+-				  handling
+-- #clock-cells : from common clock binding; shall be set to 0
+-- clocks : link to phandle of parent clock
+-- reg : base address for the control register
+-
+-Optional properties:
+-- clock-output-names : from common clock binding.
+-- ti,bit-shift : bit shift for the bit enabling/disabling the clock (default 0)
+-
+-Examples:
+-	aes1_ick: aes1_ick@48004a14 {
+-		#clock-cells = <0>;
+-		compatible = "ti,omap3-interface-clock";
+-		clocks = <&security_l4_ick2>;
+-		reg = <0x48004a14 0x4>;
+-		ti,bit-shift = <3>;
+-	};
+-
+-	cam_ick: cam_ick@48004f10 {
+-		#clock-cells = <0>;
+-		compatible = "ti,omap3-no-wait-interface-clock";
+-		clocks = <&l4_ick>;
+-		reg = <0x48004f10 0x4>;
+-		ti,bit-shift = <0>;
+-	};
+-
+-	ssi_ick_3430es2: ssi_ick_3430es2@48004a10 {
+-		#clock-cells = <0>;
+-		compatible = "ti,omap3-ssi-interface-clock";
+-		clocks = <&ssi_l4_ick>;
+-		reg = <0x48004a10 0x4>;
+-		ti,bit-shift = <0>;
+-	};
+diff --git a/Documentation/devicetree/bindings/clock/ti/ti,interface-clock.yaml b/Documentation/devicetree/bindings/clock/ti/ti,interface-clock.yaml
+new file mode 100644
+index 0000000000000..48a54caeb3857
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/ti/ti,interface-clock.yaml
+@@ -0,0 +1,90 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/ti/ti,interface-clock.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Texas Instruments interface clock.
++
++maintainers:
++  - Tero Kristo <kristo@kernel.org>
++
++description: |
++  This binding uses the common clock binding[1]. This clock is
++  quite much similar to the basic gate-clock[2], however,
++  it supports a number of additional features, including
++  companion clock finding (match corresponding functional gate
++  clock) and hardware autoidle enable / disable.
++
++  [1] Documentation/devicetree/bindings/clock/clock-bindings.txt
++  [2] Documentation/devicetree/bindings/clock/gpio-gate-clock.yaml
++
++
++properties:
++  compatible:
++    enum:
++      - ti,omap3-interface-clock           # basic OMAP3 interface clock
++      - ti,omap3-no-wait-interface-clock   # interface clock which has no hardware
++                                           # capability for waiting clock to be ready
++      - ti,omap3-hsotgusb-interface-clock  # interface clock with USB specific HW handling
++      - ti,omap3-dss-interface-clock       # interface clock with DSS specific HW handling
++      - ti,omap3-ssi-interface-clock       # interface clock with SSI specific HW handling
++      - ti,am35xx-interface-clock          # interface clock with AM35xx specific HW handling
++      - ti,omap2430-interface-clock        # interface clock with OMAP2430 specific HW handling
++  "#clock-cells":
++    const: 0
++
++  clocks:
++    maxItems: 1
++
++  clock-output-names:
++    maxItems: 1
++
++  reg:
++    description:
++      if not specified, value from parent is used
++    maxItems: 1
++
++  ti,bit-shift:
++    description:
++      bit shift for the bit enabling/disabling the clock
++    $ref: /schemas/types.yaml#/definitions/uint32
++    default: 0
++
++required:
++  - compatible
++  - clocks
++  - '#clock-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    bus {
++      #address-cells = <1>;
++      #size-cells = <1>;
++
++      aes1_ick: aes1-ick@48004a14 {
++        #clock-cells = <0>;
++        compatible = "ti,omap3-interface-clock";
++        clocks = <&security_l4_ick2>;
++        reg = <0x48004a14 0x4>;
++        ti,bit-shift = <3>;
++      };
++
++      cam_ick: cam-ick@48004f10 {
++        #clock-cells = <0>;
++        compatible = "ti,omap3-no-wait-interface-clock";
++        clocks = <&l4_ick>;
++        reg = <0x48004f10 0x4>;
++        ti,bit-shift = <0>;
++      };
++
++      ssi_ick_3430es2: ssi-ick-3430es2@48004a10 {
++        #clock-cells = <0>;
++        compatible = "ti,omap3-ssi-interface-clock";
++        clocks = <&ssi_l4_ick>;
++        reg = <0x48004a10 0x4>;
++        ti,bit-shift = <0>;
++      };
++    };
+-- 
+2.39.2
 
->  3 files changed, 167 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/cirrus/cirrus,ep9301.yaml b/Documentation/devicetree/bindings/arm/cirrus/cirrus,ep9301.yaml
-> new file mode 100644
-> index 000000000000..97dd8b6aefa9
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/cirrus/cirrus,ep9301.yaml
-> @@ -0,0 +1,38 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/arm/cirrus/cirrus,ep9301.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Cirrus Logic EP93xx platforms
-> +
-> +description:
-> +  The EP93xx SoC is a ARMv4T-based with 200 MHz ARM9 CPU.
-> +
-> +maintainers:
-> +  - Alexander Sverdlin <alexander.sverdlin@gmail.com>
-> +  - Nikita Shubin <nikita.shubin@maquefel.me>
-> +
-> +properties:
-> +  $nodename:
-> +    const: '/'
-> +  compatible:
-> +    oneOf:
-> +      - description: The TS-7250 is a compact, full-featured Single Board Computer (SBC)
-> +          based upon the Cirrus EP9302 ARM9 CPU
-
-Wrap lines at 80 unless there's some advantage to going to 100. Here 
-there is not.
-
-> +        items:
-> +          - const: technologic,ts7250
-> +          - const: cirrus,ep9301
-> +
-> +      - description: The Liebherr BK3 is a derivate from ts7250 board
-> +        items:
-> +          - const: liebherr,bk3
-> +          - const: cirrus,ep9301
-> +
-> +      - description: EDB302 is an evaluation board by Cirrus Logic,
-> +          based on a Cirrus Logic EP9302 CPU
-> +        items:
-> +          - const: cirrus,edb9302
-> +          - const: cirrus,ep9301
-> +
-> +additionalProperties: true
-> diff --git a/Documentation/devicetree/bindings/soc/cirrus/cirrus,ep9301-syscon.yaml b/Documentation/devicetree/bindings/soc/cirrus/cirrus,ep9301-syscon.yaml
-> new file mode 100644
-> index 000000000000..283cf2386d95
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/cirrus/cirrus,ep9301-syscon.yaml
-> @@ -0,0 +1,83 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/soc/cirrus/cirrus,ep9301-syscon.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Cirrus Logic EP93xx Platforms System Controller
-> +
-> +maintainers:
-> +  - Alexander Sverdlin <alexander.sverdlin@gmail.com>
-> +  - Nikita Shubin <nikita.shubin@maquefel.me>
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - cirrus,ep9302-syscon
-> +              - cirrus,ep9307-syscon
-> +              - cirrus,ep9312-syscon
-> +              - cirrus,ep9315-syscon
-
-The registers of these are all the same as (or a superset of) the 
-EP9301? That's what you are claiming. Perhaps already discussed, but 
-there's no blurb here to explain the relationship.
-
-'syscon' is a Linux term. Is this block really called this?
-
-> +          - const: cirrus,ep9301-syscon
-> +          - const: syscon
-> +          - const: simple-mfd
-> +      - items:
-> +          - const: cirrus,ep9301-syscon
-> +          - const: syscon
-> +          - const: simple-mfd
-
-Doesn't look like an simple-mfd to me. You don't have independent child 
-blocks which don't depend on the parent node.
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#clock-cells":
-> +    const: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: reference clock
-> +
-> +patternProperties:
-> +  '^pins-':
-> +    type: object
-> +    description: pin node
-> +    $ref: /schemas/pinctrl/pinmux-node.yaml
-> +
-> +    properties:
-> +      function:
-> +        enum: [ spi, ac97, i2s, pwm, keypad, pata, lcd, gpio ]
-> +
-> +      groups:
-> +        enum: [ ssp, ac97, i2s_on_ssp, i2s_on_ac97, pwm1, gpio1agrp,
-> +                gpio2agrp, gpio3agrp, gpio4agrp, gpio6agrp, gpio7agrp,
-> +                rasteronsdram0grp, rasteronsdram3grp, keypadgrp, idegrp ]
-> +
-> +    required:
-> +      - function
-> +      - groups
-> +
-> +    unevaluatedProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#clock-cells"
-> +  - clocks
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    syscon@80930000 {
-> +      compatible = "cirrus,ep9301-syscon",
-> +                   "syscon", "simple-mfd";
-> +      reg = <0x80930000 0x1000>;
-> +
-> +      #clock-cells = <1>;
-> +      clocks = <&xtali>;
-> +
-> +      spi_default_pins: pins-spi {
-> +        function = "spi";
-> +        groups = "ssp";
-> +      };
-> +    };
-> diff --git a/include/dt-bindings/soc/cirrus,ep9301-syscon.h b/include/dt-bindings/soc/cirrus,ep9301-syscon.h
-> new file mode 100644
-> index 000000000000..6bb8f532e7d0
-> --- /dev/null
-> +++ b/include/dt-bindings/soc/cirrus,ep9301-syscon.h
-> @@ -0,0 +1,46 @@
-> +/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
-> +#ifndef DT_BINDINGS_CIRRUS_EP93XX_CLOCK_H
-> +#define DT_BINDINGS_CIRRUS_EP93XX_CLOCK_H
-> +
-> +#define EP93XX_CLK_PLL1		0
-> +#define EP93XX_CLK_PLL2		1
-> +
-> +#define EP93XX_CLK_FCLK		2
-> +#define EP93XX_CLK_HCLK		3
-> +#define EP93XX_CLK_PCLK		4
-> +
-> +#define EP93XX_CLK_UART		5
-> +#define EP93XX_CLK_SPI		6
-> +#define EP93XX_CLK_PWM		7
-> +#define EP93XX_CLK_USB		8
-> +
-> +#define EP93XX_CLK_M2M0		9
-> +#define EP93XX_CLK_M2M1		10
-> +
-> +#define EP93XX_CLK_M2P0		11
-> +#define EP93XX_CLK_M2P1		12
-> +#define EP93XX_CLK_M2P2		13
-> +#define EP93XX_CLK_M2P3		14
-> +#define EP93XX_CLK_M2P4		15
-> +#define EP93XX_CLK_M2P5		16
-> +#define EP93XX_CLK_M2P6		17
-> +#define EP93XX_CLK_M2P7		18
-> +#define EP93XX_CLK_M2P8		19
-> +#define EP93XX_CLK_M2P9		20
-> +
-> +#define EP93XX_CLK_UART1	21
-> +#define EP93XX_CLK_UART2	22
-> +#define EP93XX_CLK_UART3	23
-> +
-> +#define EP93XX_CLK_ADC		24
-> +#define EP93XX_CLK_ADC_EN	25
-> +
-> +#define EP93XX_CLK_KEYPAD	26
-> +
-> +#define EP93XX_CLK_VIDEO	27
-> +
-> +#define EP93XX_CLK_I2S_MCLK	28
-> +#define EP93XX_CLK_I2S_SCLK	29
-> +#define EP93XX_CLK_I2S_LRCLK	30
-> +
-> +#endif /* DT_BINDINGS_CIRRUS_EP93XX_CLOCK_H */
-> 
-> -- 
-> 2.41.0
-> 
 
