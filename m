@@ -1,144 +1,197 @@
-Return-Path: <devicetree+bounces-19055-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19056-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7060F7F9816
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 05:00:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D85C7F981D
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 05:06:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2816F280E3F
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 04:00:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 379E3280D69
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 04:06:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB23C46AB;
-	Mon, 27 Nov 2023 04:00:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E521746B1;
+	Mon, 27 Nov 2023 04:06:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="JuSrSvlt"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="O3cnkcSE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7AF7E8
-	for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 20:00:22 -0800 (PST)
-Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2c5b7764016so41726691fa.1
-        for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 20:00:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1701057621; x=1701662421; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2hyXUgZR2V8CGJro2dBZPICRFG2CL4zf1FqusNumER4=;
-        b=JuSrSvltC5UQ83aMrnUsOTRSllvtycVDuZMltBoSXu8wmKPRg8PMw/kX+28inwRHV/
-         gw3WKQ2ea5igBBfTJsfqUVeN1MgUi2OKEoHxfdYXUqWQMN8A99e/xKiI6vezHJkCAYGE
-         TWmwVMS6mzKlJjIiUiv8kFczv6CjN/qaHaJiM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701057621; x=1701662421;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2hyXUgZR2V8CGJro2dBZPICRFG2CL4zf1FqusNumER4=;
-        b=on3MR6IrvEjUoWwHu6Oly3U7mfeNy6ugi1k04GoVjUvjon3xzpN1O1sOtwIZHdCRIm
-         s+oCtL7MMbc2Nck6xdcY7TWzV5II73btztNv6bFcnkkDuoeCOGA2C/nmjCgizKteBgbj
-         CMhxscLe6UXYnY2OwVDh7svFE0SYtWxArUv1IVoo+yc18x70PhXx4B1trdh6RqLtSnui
-         AeBFivLINOC2DgLK7m8bTjBARdOdrq4T9B0qwZF6ljgXclXWcAztwaRiahPWXw3gZgpn
-         HbJYuNfJWBufDFgHqUrmvqeq0FKa5q+abhjyzUDuxvOuiRHkbDFLN0+lxLzuqZwxx2BU
-         LylQ==
-X-Gm-Message-State: AOJu0YwQLeUh7Gxxnx20cIpR0CUJzMg1N5blaKPCY8qF5XG28anqGWJn
-	5fqFGzE5MG7qU31KJKF9oHo5L98C+U2UIkpIt4YQVQ==
-X-Google-Smtp-Source: AGHT+IGWNLzkTfKJ9/s46JZ8EFnCkfTriGkCE5/WH1eK+5G+zIursvHQuaGd5Lbk44N+a4VuvKKNSbjCULPbRF3Hxbg=
-X-Received: by 2002:a19:ac48:0:b0:50a:6fc5:e95c with SMTP id
- r8-20020a19ac48000000b0050a6fc5e95cmr6666053lfc.60.1701057621033; Sun, 26 Nov
- 2023 20:00:21 -0800 (PST)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30B7318F;
+	Sun, 26 Nov 2023 20:06:25 -0800 (PST)
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AR2vIa7019476;
+	Mon, 27 Nov 2023 04:06:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=qihjlYJ9Zk58q2u/A2EOlARfuTPFniwvFgt/hGDu1KI=;
+ b=O3cnkcSEWkRiwYHkTb++i5wQWN2bLVinivz3FWM4c/xgsAHvsp1dkWBrvqM8yPkE2bUI
+ bNvWyrWxNiFjn/41jik/y4UnKDG99Zmpk11/IBcfpkHvS3eurr9x9LQuq8GeftXZWqJu
+ tg7m4RQrfw2trozboOaospe7UPm+p7irLJ0e+YsifvDU+aCjx/CcokA0vwWa5YFQWV9R
+ sXAdvBN4myPOiiv7M1WBJuFAqq/xNJqT0vNVHj1eJw55Te1T60LkD3pB0Ebj3mPNwmD/
+ Xh8UaZlf0Wlxn0UKoHFSl65bI0TtrUugMLsu4vtGSHACNmxvW64ZTRyTdmvYADuKXAa+ qg== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uk8h8k5b7-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 27 Nov 2023 04:06:22 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AR46K7m010637
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 27 Nov 2023 04:06:20 GMT
+Received: from [10.239.133.49] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Sun, 26 Nov
+ 2023 20:06:17 -0800
+Message-ID: <a64ded1e-af5d-481c-b66c-8019b3d1ad5a@quicinc.com>
+Date: Mon, 27 Nov 2023 12:06:07 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231012230237.2676469-1-wenst@chromium.org> <20231012230237.2676469-7-wenst@chromium.org>
- <60beb523-292b-4c77-9030-1bfdfd73c140@collabora.com>
-In-Reply-To: <60beb523-292b-4c77-9030-1bfdfd73c140@collabora.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Mon, 27 Nov 2023 12:00:10 +0800
-Message-ID: <CAGXv+5GmjZbzLbxADoNXDiF8dTAwnxva29vuM0FG8vY-6wTJcQ@mail.gmail.com>
-Subject: Re: [PATCH 6/9] arm64: dts: mediatek: Add MT8186 Krabby platform
- based Tentacruel / Tentacool
-To: Eugen Hristev <eugen.hristev@collabora.com>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: Fix the warnings from coresight
+ bindings
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross
+	<agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Tao Zhang
+	<quic_taozha@quicinc.com>
+References: <20231124061739.2816-1-quic_jinlmao@quicinc.com>
+ <47406b19-811f-47ab-8c08-dd8c4cc5d8bd@linaro.org>
+From: Jinlong Mao <quic_jinlmao@quicinc.com>
+In-Reply-To: <47406b19-811f-47ab-8c08-dd8c4cc5d8bd@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: GY5WYH6PdDb_ygZhnmyOvwpkx-9-jj36
+X-Proofpoint-GUID: GY5WYH6PdDb_ygZhnmyOvwpkx-9-jj36
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-26_25,2023-11-22_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ lowpriorityscore=0 mlxlogscore=455 impostorscore=0 bulkscore=0
+ phishscore=0 malwarescore=0 mlxscore=0 adultscore=0 clxscore=1015
+ spamscore=0 suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2311060000 definitions=main-2311270029
 
-On Mon, Oct 23, 2023 at 5:05=E2=80=AFPM Eugen Hristev
-<eugen.hristev@collabora.com> wrote:
->
-> On 10/13/23 02:02, Chen-Yu Tsai wrote:
-> > Tentacruel and Tentacool are MT8186 based Chromebooks based on the
-> > Krabby design.
-> >
-> > Tentacruel, also known as the ASUS Chromebook CM14 Flip CM1402F, is a
-> > convertible device with touchscreen and stylus.
-> >
-> > Tentacool, also known as the ASUS Chromebook CM14 CM1402C, is a laptop
-> > device. It does not have a touchscreen or stylus.
-> >
-> > The two devices both have two variants. The difference is a second
-> > source touchpad controller that shares the same address as the original=
-,
-> > but is incompatible.
-> >
-> > The extra SKU IDs for the Tentacruel devices map to different sensor
-> > components attached to the Embedded Controller. These are not visible
-> > to the main processor.
-> >
-> > Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
-> > ---
-> >   arch/arm64/boot/dts/mediatek/Makefile         |    4 +
-> >   .../dts/mediatek/mt8186-corsola-krabby.dtsi   |  130 ++
-> >   .../mt8186-corsola-tentacool-sku327681.dts    |   49 +
-> >   .../mt8186-corsola-tentacool-sku327683.dts    |   26 +
-> >   .../mt8186-corsola-tentacruel-sku262144.dts   |   44 +
-> >   .../mt8186-corsola-tentacruel-sku262148.dts   |   28 +
-> >   .../boot/dts/mediatek/mt8186-corsola.dtsi     | 1704 ++++++++++++++++=
-+
-> >   7 files changed, 1985 insertions(+)
-> >   create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-krabby=
-.dtsi
-> >   create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-tentac=
-ool-sku327681.dts
-> >   create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-tentac=
-ool-sku327683.dts
-> >   create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-tentac=
-ruel-sku262144.dts
-> >   create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-tentac=
-ruel-sku262148.dts
-> >   create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
-> >
 
-[...]
 
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi b/arch/ar=
-m64/boot/dts/mediatek/mt8186-corsola.dtsi
-> > new file mode 100644
-> > index 000000000000..42ebab1bafeb
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
-> > @@ -0,0 +1,1704 @@
+On 11/24/2023 3:50 PM, Krzysztof Kozlowski wrote:
+> On 24/11/2023 07:17, Mao Jinlong wrote:
+>> Fix all warnings in Qualcomm boards coming from Coresight bindings.
+> 
+> One logical thing, one patch. That applies not only to Linux kernel, but
+> to all software projects.
+> 
+>>
+>> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/msm8996.dtsi | 26 ----------------------
+>>   arch/arm64/boot/dts/qcom/msm8998.dtsi | 32 +++++++++++++++++----------
+>>   arch/arm64/boot/dts/qcom/sdm845.dtsi  |  5 +----
+>>   arch/arm64/boot/dts/qcom/sm8150.dtsi  |  5 +----
+>>   arch/arm64/boot/dts/qcom/sm8250.dtsi  | 24 ++++----------------
+>>   5 files changed, 26 insertions(+), 66 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+>> index 6ba9da9e6a8b..e42c22b26adc 100644
+>> --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+>> @@ -2637,24 +2637,6 @@ funnel1_out: endpoint {
+>>   			};
+>>   		};
+>>   
+>> -		funnel@3023000 {
+>> -			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
+>> -			reg = <0x3023000 0x1000>;
+>> -
+>> -			clocks = <&rpmcc RPM_QDSS_CLK>, <&rpmcc RPM_QDSS_A_CLK>;
+>> -			clock-names = "apb_pclk", "atclk";
+>> -
+>> -
+>> -			out-ports {
+>> -				port {
+>> -					funnel2_out: endpoint {
+>> -						remote-endpoint =
+>> -						  <&merge_funnel_in2>;
+>> -					};
+>> -				};
+>> -			};
+>> -		};
+> 
+> Why do you remove nodes? How is this anyhow related to commit msg?
+> Nothing here is explained.
+> 
+>> -
+>>   		funnel@3025000 {
+>>   			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
+>>   			reg = <0x3025000 0x1000>;
+>> @@ -2681,14 +2663,6 @@ merge_funnel_in1: endpoint {
+>>   						  <&funnel1_out>;
+>>   					};
+>>   				};
+>> -
+>> -				port@2 {
+>> -					reg = <2>;
+>> -					merge_funnel_in2: endpoint {
+>> -						remote-endpoint =
+>> -						  <&funnel2_out>;
+>> -					};
+> 
+> Why?
+> 
+>> -				};
+>>   			};
+>>   
+>>   			out-ports {
+>> diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+>> index b485bf925ce6..ebc5ba1b369e 100644
+>> --- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+>> @@ -2031,9 +2031,11 @@ etm5: etm@7c40000 {
+>>   
+>>   			cpu = <&CPU4>;
+>>   
+>> -			port {
+>> -				etm4_out: endpoint {
+>> -					remote-endpoint = <&apss_funnel_in4>;
+>> +			out-ports {
+>> +				port {
+> 
+> So you want to say out-ports is missing? Commit msg is really not
+> explaining anything.
+> 
+>> +					etm4_out: endpoint {
+>> +						remote-endpoint = <&apss_funnel_in4>;
+>> +					};
+>>   				};
+> 
+> 
+> Best regards,
+> Krzysztof
+Thanks for the review. I will separate the patches and update the commit 
+message.
 
-[...]
+Thanks
+Jinlong Mao
 
->
-> Hi Chen-Yu,
->
-> These two aud_gpio_tdm empty entries cause this message to be printed:
->
-> [   12.949519] mt8186_mt6366_rt1019_rt5682s sound: there is not valid
-> maps for state aud_gpio_tdm_off
-> [   12.959025] mt8186_mt6366_rt1019_rt5682s sound: there is not valid
-> maps for state aud_gpio_tdm_on
-
-I guess we need to teach the sound driver to ignore empty pinmux states?
-
-ChenYu
+> 
 
