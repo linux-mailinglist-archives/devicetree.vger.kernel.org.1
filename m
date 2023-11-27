@@ -1,92 +1,164 @@
-Return-Path: <devicetree+bounces-19198-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19199-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61F2D7F9FF9
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 13:49:17 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9CBE7FA007
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 13:52:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1DD23280F98
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 12:49:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 789D4B20EA9
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 12:51:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC21F200AD;
-	Mon, 27 Nov 2023 12:49:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=subdimension.ro header.i=@subdimension.ro header.b="RAh260Gs"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C1D1288AE;
+	Mon, 27 Nov 2023 12:51:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.subdimension.ro (unknown [IPv6:2a01:7e01:e001:1d1::2])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91CDC10F;
-	Mon, 27 Nov 2023 04:49:05 -0800 (PST)
-Received: from sunspire (unknown [188.24.94.216])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by mail.subdimension.ro (Postfix) with ESMTPSA id C373528EE6F;
-	Mon, 27 Nov 2023 12:49:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=subdimension.ro;
-	s=skycaves; t=1701089344;
-	bh=cwI3GU5QJoO4WZeJ9HERDelXuedCeP382ih3gbwwNT8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=RAh260Gsp/50YvzL6LtuRInMnm75fhSYkHl26MnnD4o7eOLYSREw85VC5FCkcTXri
-	 KoHC/yP2VnrzoN4vv7m4pk+sM9XpEmDJ/CMEM88NNIcA7KUCUfuAQeobLvBynnd4ge
-	 gspr9WBW27T5ii76QZDVVh6L4IU3NsZoBq4/8zG0=
-Date: Mon, 27 Nov 2023 14:49:02 +0200
-From: Petre Rodan <petre.rodan@subdimension.ro>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	linux-kernel-mentees@lists.linuxfoundation.org,
-	Jonathan Cameron <jic23@kernel.org>
-Subject: Re: [PATCH v3 1/2] dt-bindings: iio: pressure: add honeywell,hsc030
-Message-ID: <ZWSQPrExmcT5kPit@sunspire>
-References: <20231126101443.13880-1-petre.rodan@subdimension.ro>
- <8641e35a-d481-4c27-b450-9ee72ae769b5@linaro.org>
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F2AED7
+	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 04:51:50 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1r7b5A-0003Jf-Mc; Mon, 27 Nov 2023 13:51:24 +0100
+Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1r7b55-00Bwme-Ia; Mon, 27 Nov 2023 13:51:19 +0100
+Received: from pza by lupine with local (Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1r7b55-000C2j-1c;
+	Mon, 27 Nov 2023 13:51:19 +0100
+Message-ID: <23011695aafca595c3c8722fda2a8e194c5318df.camel@pengutronix.de>
+Subject: Re: [PATCH v7][2/4] mmc: Add Synopsys DesignWare mmc cmdq host
+ driver
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Jyan Chou <jyanchou@realtek.com>, ulf.hansson@linaro.org, 
+	adrian.hunter@intel.com, jh80.chung@samsung.com, riteshh@codeaurora.org, 
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc: conor+dt@kernel.org, asutoshd@codeaurora.org, linux-mmc@vger.kernel.org,
+  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, arnd@arndb.de, 
+ briannorris@chromium.org, doug@schmorgal.com, tonyhuang.sunplus@gmail.com, 
+ abel.vesa@linaro.org, william.qiu@starfivetech.com
+Date: Mon, 27 Nov 2023 13:51:19 +0100
+In-Reply-To: <20231121091101.5540-3-jyanchou@realtek.com>
+References: <20231121091101.5540-1-jyanchou@realtek.com>
+	 <20231121091101.5540-3-jyanchou@realtek.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <8641e35a-d481-4c27-b450-9ee72ae769b5@linaro.org>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Mon, Nov 27, 2023 at 09:06:54AM +0100, Krzysztof Kozlowski wrote:
-> On 26/11/2023 11:14, Petre Rodan wrote:
-> > +  honeywell,pmin-pascal:
-> > +    description: |
-> > +      Minimum pressure value the sensor can measure in pascal.
-> > +      To be specified only if honeywell,pressure-triplet is set to "NA".
-> > +    $ref: /schemas/types.yaml#/definitions/int32
-> > +
-> > +  honeywell,pmax-pascal:
-> > +    description: |
-> > +      Maximum pressure value the sensor can measure in pascal.
-> > +      To be specified only if honeywell,pressure-triplet is set to "NA".
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> 
-> Sent a pull request:
-> https://github.com/devicetree-org/dt-schema/pull/118
-> Once it get merged, both $ref could be dropped.
+Hi,
 
-thank your for the PR.
+On Di, 2023-11-21 at 17:10 +0800, Jyan Chou wrote:
+> We implemented cmdq feature on Synopsys DesignWare mmc driver.
+> The difference between dw_mmc.c and dw_mmc_cqe.c were distinct
+> register definitions, mmc user flow and the addition of cmdq.
+>=20
+> New version of User Guide had modify mmc driver's usage flow,
+> we may need to renew code to precisely follow user guide.
+>=20
+> More over, We added a wait status function to satisfy synopsys
+> user guide's description, since this flow might be specific in
+> synopsys host driver only.
+>=20
+> Signed-off-by: Jyan Chou <jyanchou@realtek.com>
+>=20
+> =E2=80=94--
+[...]
+> diff --git a/drivers/mmc/host/dw_mmc_cqe.c b/drivers/mmc/host/dw_mmc_cqe.=
+c
+> new file mode 100644
+> index 000000000000..eb00d6a474b2
+> --- /dev/null
+> +++ b/drivers/mmc/host/dw_mmc_cqe.c
+> @@ -0,0 +1,1467 @@
+[...]
+> +#ifdef CONFIG_OF
+> +static struct dw_mci_board *dw_mci_cqe_parse_dt(struct dw_mci *host)
+> +{
+> +	struct dw_mci_board *pdata;
+> +	struct device *dev =3D host->dev;
+> +	const struct dw_mci_drv_data *drv_data =3D host->drv_data;
+> +	int ret;
+> +
+> +	pdata =3D devm_kzalloc(dev, sizeof(*pdata), GFP_KERNEL);
+> +	if (!pdata)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	pdata->rstc =3D devm_reset_control_get_optional_exclusive(dev, NULL);
+> +	if (IS_ERR(pdata->rstc)) {
+> +		if (PTR_ERR(pdata->rstc) =3D=3D -EPROBE_DEFER)
+> +			return ERR_PTR(-EPROBE_DEFER);
 
-in patternProperties, please also add the int32 type for pascal.
-your patch seems to cover kilopascal only.
+This should
 
-cheers,
-peter
+		return ERR_CAST(pdata->rstc);
+
+instead.
+
+There is no reason to hide device tree parsing errors here, and I'd
+argue pdata should not be returned with rstc set to an error value.
+devm_reset_control_get_optional_exclusive() returns NULL if there are
+no errors and no reset is specified in the device tree.
+
+Then you can just use dev_err_probe() at the call site in
+dw_mci_cqe_probe().
 
 
-> 
-> Best regards,
-> Krzysztof
-> 
+[...]
+> +int dw_mci_cqe_probe(struct dw_mci *host)
+> +{
+[...]
+> +	if (!IS_ERR(host->pdata->rstc)) {
+> +		reset_control_assert(host->pdata->rstc);
+> +		usleep_range(10, 50);
+> +		reset_control_deassert(host->pdata->rstc);
+> +	}
 
--- 
-petre rodan
+This should be changed to
+
+	if (host->pdata->rstc) {
+		reset_control_assert(host->pdata->rstc);
+		usleep_range(10, 50);
+		reset_control_deassert(host->pdata->rstc);
+	}
+
+[...]
+> +	return 0;
+> +
+> +err_dmaunmap:
+> +	if (!IS_ERR(host->pdata->rstc))
+> +		reset_control_assert(host->pdata->rstc);
+
+This should be just
+
+	reset_control_assert(host->pdata->rstc);
+
+as reset_control_assert() is a no-op if host->pdata->rstc =3D=3D NULL.
+
+[...]
+> +void dw_mci_cqe_remove(struct dw_mci *host)
+> +{
+[...]
+> +	if (!IS_ERR(host->pdata->rstc))
+> +		reset_control_assert(host->pdata->rstc);
+
+	reset_control_assert(host->pdata->rstc);
+
+
+regards
+Philipp
 
