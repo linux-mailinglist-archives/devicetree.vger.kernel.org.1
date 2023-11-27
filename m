@@ -1,42 +1,39 @@
-Return-Path: <devicetree+bounces-19432-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19436-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D46F7FAE64
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 00:35:42 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D31187FAE86
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 00:41:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1B7A11F20613
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 23:35:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8D1B6281669
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 23:41:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B098495EC;
-	Mon, 27 Nov 2023 23:35:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F96049F6C;
+	Mon, 27 Nov 2023 23:41:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a7rXnkcZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D2481B1
-	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 15:35:33 -0800 (PST)
-Received: from i53875bf8.versanet.de ([83.135.91.248] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1r7l8U-0007RK-4f; Tue, 28 Nov 2023 00:35:30 +0100
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Alex Bee <knaerzche@gmail.com>
-Cc: Jagan Teki <jagan@edgeble.ai>, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org, Tim Lunn <tim@feathertop.org>,
- Rob Herring <robh+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v2 4/9] ARM: dts: rockchip: rv1126: Add i2c2 nodes
-Date: Tue, 28 Nov 2023 00:35:29 +0100
-Message-ID: <24475706.hxa6pUQ8Du@diego>
-In-Reply-To: <5e89eb12-3462-422e-aca3-7cc18743310c@gmail.com>
-References:
- <20231122122232.952696-1-tim@feathertop.org> <50694679.MN2xkq1pzW@diego>
- <5e89eb12-3462-422e-aca3-7cc18743310c@gmail.com>
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17CBADF68;
+	Mon, 27 Nov 2023 23:41:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75224C433C8;
+	Mon, 27 Nov 2023 23:41:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701128486;
+	bh=weP+2DgJBx1dYZy08M9yhRAGupDOCwbQuosE0EUyWV8=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=a7rXnkcZC0eEvflSMXIq1b0VcYoXkkWXq7OxnUI3DSeFDFGx+J/xGScO0HjQZfmMe
+	 LqYpPyoLGy2r+5CHC6aiamz5sN4VcghqVZvgYwctTYV2gTK3RlcyemaLO7XVfCZdsX
+	 e3faqKi6gg4r+yKlUMjZuo08wMW7AOwvfxjpa7z1LkXR1SHAXT9mMf6mgHJwCm6coh
+	 QTIrRv6awIasaqIatl+jqQiP9RYv+ySszOgyI6ZbeIO1Mnhlv2H7PLeR/tv9Duq0Eh
+	 h3P7/evhc5HEy5y1At1XjPkCfXOXXdN7Prv/qJh6g7aig9avY2WHIRtOKGnTZvfr4g
+	 HHOsRFJNAYLmw==
+Message-ID: <729bbf75faad7c3a4ed74fffc3d84007.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -44,124 +41,101 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+In-Reply-To: <20231122-x1e80100-clk-tcsrcc-v1-2-43078c6d6452@linaro.org>
+References: <20231122-x1e80100-clk-tcsrcc-v1-0-43078c6d6452@linaro.org> <20231122-x1e80100-clk-tcsrcc-v1-2-43078c6d6452@linaro.org>
+Subject: Re: [PATCH 2/2] clk: qcom: Add TCSR clock driver for x1e80100
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>
+To: Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Michael Turquette <mturquette@baylibre.com>, Rajendra Nayak <quic_rjendra@quicinc.com>, Rob Herring <robh+dt@kernel.org>
+Date: Mon, 27 Nov 2023 15:41:24 -0800
+User-Agent: alot/0.10
 
-Hi Alex,
+Quoting Abel Vesa (2023-11-22 05:42:13)
+> diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
+> index ad1acd9b7426..6ed9c89d9070 100644
+> --- a/drivers/clk/qcom/Kconfig
+> +++ b/drivers/clk/qcom/Kconfig
+> @@ -1116,4 +1116,12 @@ config SM_VIDEOCC_8450
+>           SM8450 devices.
+>           Say Y if you want to support video devices and functionality su=
+ch as
+>           video encode/decode.
+> +
+> +config X1E_TCSRCC_80100
 
-Am Dienstag, 28. November 2023, 00:11:37 CET schrieb Alex Bee:
-> Hi Heiko,
-> Am 27.11.23 um 10:45 schrieb Heiko St=FCbner:
-> > Am Montag, 27. November 2023, 10:27:41 CET schrieb Krzysztof Kozlowski:
-> >> On 27/11/2023 10:23, Tim Lunn wrote:
-> >>> Hi
-> >>>
-> >>> On 11/27/23 17:52, Krzysztof Kozlowski wrote:
-> >>>> On 27/11/2023 00:06, Heiko St=FCbner wrote:
-> >>>>> Hi Krzysztof,
-> >>>>>
-> >>>>> Am Mittwoch, 22. November 2023, 13:29:47 CET schrieb Krzysztof Kozl=
-owski:
-> >>>>>> On 22/11/2023 13:22, Tim Lunn wrote:
-> >>>>>>> Add i2c2 node and i2c2_xfer pinctrl for Rockchip RV1126
-> >>>>>>>
-> >>>>>>> Signed-off-by: Tim Lunn <tim@feathertop.org>
-> >>>>>>> ---
-> >>>>>>>
-> >>>>>>> (no changes since v1)
-> >>>>>>>
-> >>>>>>>    arch/arm/boot/dts/rockchip/rv1126-pinctrl.dtsi | 10 ++++++++++
-> >>>>>>>    arch/arm/boot/dts/rockchip/rv1126.dtsi         | 15 ++++++++++=
-+++++
-> >>>>>>>    2 files changed, 25 insertions(+)
-> >>>>>>>
-> >>>>>>> diff --git a/arch/arm/boot/dts/rockchip/rv1126-pinctrl.dtsi b/arc=
-h/arm/boot/dts/rockchip/rv1126-pinctrl.dtsi
-> >>>>>>> index 4f85b7b3fc4c..167a48afa3a4 100644
-> >>>>>>> --- a/arch/arm/boot/dts/rockchip/rv1126-pinctrl.dtsi
-> >>>>>>> +++ b/arch/arm/boot/dts/rockchip/rv1126-pinctrl.dtsi
-> >>>>>>> @@ -87,6 +87,16 @@ i2c0_xfer: i2c0-xfer {
-> >>>>>>>    				<0 RK_PB5 1 &pcfg_pull_none_drv_level_0_smt>;
-> >>>>>>>    		};
-> >>>>>>>    	};
-> >>>>>>> +	i2c2 {
-> >>>>>>> +		/omit-if-no-ref/
-> >>>>>>> +		i2c2_xfer: i2c2-xfer {
-> >>>>>>> +			rockchip,pins =3D
-> >>>>>>> +				/* i2c2_scl */
-> >>>>>>> +				<0 RK_PC2 1 &pcfg_pull_none_drv_level_0_smt>,
-> >>>>>>> +				/* i2c2_sda */
-> >>>>>>> +				<0 RK_PC3 1 &pcfg_pull_none_drv_level_0_smt>;
-> >>>>>>> +		};
-> >>>>>>> +	};
-> >>>>>>>    	pwm2 {
-> >>>>>>>    		/omit-if-no-ref/
-> >>>>>>>    		pwm2m0_pins: pwm2m0-pins {
-> >>>>>>> diff --git a/arch/arm/boot/dts/rockchip/rv1126.dtsi b/arch/arm/bo=
-ot/dts/rockchip/rv1126.dtsi
-> >>>>>>> index 6c5c928f06c7..cf1df75df418 100644
-> >>>>>>> --- a/arch/arm/boot/dts/rockchip/rv1126.dtsi
-> >>>>>>> +++ b/arch/arm/boot/dts/rockchip/rv1126.dtsi
-> >>>>>>> @@ -21,6 +21,7 @@ / {
-> >>>>>>>   =20
-> >>>>>>>    	aliases {
-> >>>>>>>    		i2c0 =3D &i2c0;
-> >>>>>>> +		i2c2 =3D &i2c2;
-> >>>>>> No, this should be per-board to match board labeling/schematics.
-> >>>>> At least for i2c, uarts and i.e. spi ... Rockchip manuals, pin nami=
-ngs
-> >>>>> and also all board schematics I've seen so far are very consistent =
-for
-> >>>>> these ... i2c2 for example is labled i2c2 both in the pins in the s=
-ocs
-> >>>>> and also in the board-schematics using them.
-> >>>>>
-> >>>>> So while I can agree that things like mmc-aliases might be board-sp=
-ecific,
-> >>>>> I do think aliases for the core busses should be able to live in th=
-e soc dtsi
-> >>>>> as for all Rockchip SoCs so far?
-> >>>> If you do not list here all aliases, it is already board-specific, i=
-sn't it?
-> >>>>
-> >>>> https://lore.kernel.org/linux-rockchip/CAK8P3a25iYksubCnQb1-e5yj=3Dc=
-rEsK37RB9Hn4ZGZMwcVVrG7g@mail.gmail.com/
-> >>> I had only added aliases for nodes that are implemented. RV1126 has 6
-> >>> i2c busses but so far not all these exist in the soc.dtsi.
-> >>>
-> >>
-> >> OK, that would explain why you have only two. Anyway, it is just gener=
-ic
-> >> guideline, so up to Heiko what to do with it.
-> >=20
-> > People see "uart2-tx" on their pin-header description and then of course
-> > want to use ttyS2 ... same with reading i2c2-sda on the pin-header and =
-then
-> > running i2cdetect on said i2c2 dev node.
-> >=20
-> If that's "the" rule, why was rk3128.dtsi merged after similar=20
-> complaints came up [0] without having aliases for the core buses=20
-> defined?
+Is the config symbol intentionally namespaced for X1E prefix to group
+one SoC? Why not X1E80100_TCSRCC then?
 
-probably because it slipped through or so. At least in my argument in
-the mail you linked I'm consistent to here ;-)
+> +       tristate "X1E80100 TCSR Clock Controller"
+> +       depends on ARM64 || COMPILE_TEST
+> +       select QCOM_GDSC
+> +       help
+> +         Support for the TCSR clock controller on X1E80100 devices.
+> +         Say Y if you want to use peripheral devices such as SD/UFS.
+>  endif
+> diff --git a/drivers/clk/qcom/tcsrcc-x1e80100.c b/drivers/clk/qcom/tcsrcc=
+-x1e80100.c
+> new file mode 100644
+> index 000000000000..2ec142c3d1f9
+> --- /dev/null
+> +++ b/drivers/clk/qcom/tcsrcc-x1e80100.c
+> @@ -0,0 +1,295 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2022, Qualcomm Innovation Center, Inc. All rights reser=
+ved.
+> + * Copyright (c) 2023, Linaro Limited
+> + */
+> +
+> +#include <linux/clk-provider.h>
+> +#include <linux/module.h>
+> +#include <linux/of_device.h>
+> +#include <linux/regmap.h>
+> +
+> +#include <dt-bindings/clock/qcom,x1e80100-tcsr.h>
+> +
+> +#include "clk-alpha-pll.h"
+> +#include "clk-branch.h"
+> +#include "clk-pll.h"
+> +#include "clk-rcg.h"
+> +#include "clk-regmap.h"
+> +#include "clk-regmap-divider.h"
+> +#include "clk-regmap-mux.h"
+> +#include "common.h"
+> +#include "reset.h"
+> +
+> +enum {
+> +       DT_BI_TCXO_PAD,
+> +};
+> +
+> +static struct clk_branch tcsr_edp_clkref_en =3D {
+> +       .halt_reg =3D 0x15130,
+> +       .halt_check =3D BRANCH_HALT_DELAY,
+> +       .clkr =3D {
+> +               .enable_reg =3D 0x15130,
+> +               .enable_mask =3D BIT(0),
+> +               .hw.init =3D &(const struct clk_init_data) {
+> +                       .name =3D "tcsr_edp_clkref_en",
+> +                       .ops =3D &clk_branch2_ops,
+> +               },
+> +       },
+> +};
+> +
+> +static struct clk_branch tcsr_pcie_2l_4_clkref_en =3D {
+> +       .halt_reg =3D 0x15100,
+> +       .halt_check =3D BRANCH_HALT_DELAY,
 
-> It's pretty strange to have to define them on board-level there=20
-> as well.
->
-> I'm happy to submit a patch which changes that.
+Why are these all branch halt delay but still have a halt_reg?
 
-Yep and rk3128 really is the only outlier there, so sure, go ahead
-with moving the core ones.
+> +       .clkr =3D {
+> +               .enable_reg =3D 0x15100,
+> +               .enable_mask =3D BIT(0),
+> +               .hw.init =3D &(struct clk_init_data){
 
+const?
 
-Heiko
-
-> [0] https://lore.kernel.org/all/22076018.EfDdHjke4D@diego/
-
-
-
-
-
-
-
+> +                       .name =3D "tcsr_pcie_2l_4_clkref_en",
+> +                       .parent_data =3D &(const struct clk_parent_data){
+> +                               .index =3D DT_BI_TCXO_PAD,
+> +                       },
 
