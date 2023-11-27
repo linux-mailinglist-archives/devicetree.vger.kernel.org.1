@@ -1,119 +1,100 @@
-Return-Path: <devicetree+bounces-19360-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19361-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 988F17FA8E1
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 19:21:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2DCC7FA8E6
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 19:22:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C91CB1C208FA
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 18:21:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9D99E2815AD
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 18:22:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DE303D3A3;
-	Mon, 27 Nov 2023 18:21:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=debian.org header.i=@debian.org header.b="BWxoRKu0"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 848243D39A;
+	Mon, 27 Nov 2023 18:22:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from stravinsky.debian.org (stravinsky.debian.org [IPv6:2001:41b8:202:deb::311:108])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E03B992;
-	Mon, 27 Nov 2023 10:21:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=debian.org;
-	s=smtpauto.stravinsky; h=X-Debian-User:In-Reply-To:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=SNVechLYXqvOX/AArSP2A06NM8kGgDgyWoojg2wGWbM=; b=BWxoRKu0B+1c/eQlg1eT9WIB6g
-	dv1XQ1y9ipi1UkzucxcBM+zN0g8BXn0ytMT8TS0TszSxwH/q3S26rTNARF15mma3puUNjT4K5lTA7
-	HWpl7pueh519W6nj0ksBoj+HbciQR6n9kDr1O9IzGC9P2Mavq9i0Yr+NQ98pfdJKC77TyP59ccGz8
-	09179pOtki0/y7aKjBr3u9q0s3GZGR/pzxt7xoTmEFbrgXzK2UrAvLSzCnw28qL8HMQgvKyZMRFYG
-	d2QZS6ybBAOyKwxFD5J43ks+RU/WOulnKeRZOvfrI8+KNwuCeDhYWZpZ8qzf0jd4/FSDjVoi3YDoj
-	DCUIySvg==;
-Received: from authenticated user
-	by stravinsky.debian.org with esmtpsa (TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
-	(Exim 4.94.2)
-	(envelope-from <kibi@debian.org>)
-	id 1r7gEG-00ANiX-Ul; Mon, 27 Nov 2023 18:21:09 +0000
-Date: Mon, 27 Nov 2023 19:21:06 +0100
-From: Cyril Brulebois <kibi@debian.org>
-To: Stefan Wahren <wahrenst@gmx.net>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Mathias Nyman <mathias.nyman@intel.com>,
-	bcm-kernel-feedback-list@broadcom.com, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 0/3] ARM: dts: bcm2711-rpi-cm4-io: Enable xHCI host
-Message-ID: <20231127182106.p6zjcozwqguqnojj@mraw.org>
-Organization: Debian
-References: <20231126025612.12522-1-wahrenst@gmx.net>
- <20231127003432.7aztwjxper2a3o33@mraw.org>
- <b1156fee-aa43-43b3-bb03-baaac49575f4@gmx.net>
- <20231127115538.npv23hhn7jfrk3fc@mraw.org>
- <892c2e2f-3187-491b-b464-56d099b6fd49@gmx.net>
- <20231127130225.lyk2jngfru5lw6sd@mraw.org>
- <d22e404b-30e5-4c1f-add0-77c0bb88351d@gmx.net>
+Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B162D92
+	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 10:22:40 -0800 (PST)
+Received: by mail-ot1-f47.google.com with SMTP id 46e09a7af769-6d7f67a99c7so1985336a34.0
+        for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 10:22:40 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701109360; x=1701714160;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=MBQp87nN1ZXYCV+ZiFDJ9d6k54ZH5acCAfj3YDGmhyY=;
+        b=FtL854lIJqeAR42J6Z94aA2tzMSjT1uNxmwgQ4U+DuyM6yy7+FaeMN+jL1kq7CqUnD
+         zLmd1P7Z9sOQyvxiFkbkjoSYayIuyK2T/ST543fRiP18TjK4TTSorQjV1SO0sq4uC08u
+         cVheMQWnrl6PxSODXyJKvK7rCZy4hkdjhS1BRJvizUCIWXfF33minYiG8+HYr8UxikJl
+         sDuj2k3GBgwGwFaFNLZ0edHewLyQggknKdGql7NIIULbqYisiUw4qeWqexO8h6GajhSc
+         vdpaRhKR14aQXILUA+Y5pc3ni8BOV+15/o8UQBM8tI5fhWpTyT4k/WTSmsl34K4MF143
+         ocQg==
+X-Gm-Message-State: AOJu0YxNKy3wkLMH48yxiB99nh9KZvnY3RVqMqYr4AS0IOEpNy58b6Lf
+	cC9PD1ZcaWn1SskQKdlxqg==
+X-Google-Smtp-Source: AGHT+IHXYT4+k7zpz4AEDVZdLbxXvHpVrBEm971Wf5iGDpvFIwdb5owQef5DYxzrjq7ZVEzIgLtqDw==
+X-Received: by 2002:a9d:5541:0:b0:6bd:335e:1eda with SMTP id h1-20020a9d5541000000b006bd335e1edamr8177093oti.11.1701109359977;
+        Mon, 27 Nov 2023 10:22:39 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id t2-20020a4aadc2000000b00586c4324f5dsm1562721oon.35.2023.11.27.10.22.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Nov 2023 10:22:39 -0800 (PST)
+Received: (nullmailer pid 2128060 invoked by uid 1000);
+	Mon, 27 Nov 2023 18:22:38 -0000
+Date: Mon, 27 Nov 2023 12:22:38 -0600
+From: Rob Herring <robh@kernel.org>
+To: Pavel =?iso-8859-1?Q?L=F6bl?= <pavel@loebl.cz>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/3] dt-bindings: arm: sunxi: Add Banana Pi P2 Zero v1.1
+Message-ID: <20231127182238.GA2068488-robh@kernel.org>
+References: <20231118111418.979681-1-pavel@loebl.cz>
+ <20231118111418.979681-2-pavel@loebl.cz>
+ <d87bb48b-e04a-4ee4-86eb-d1533328cc74@kernel.org>
+ <20231120231017.614b9d61@alena.lan>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="enguv7l6mg7h36au"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <d22e404b-30e5-4c1f-add0-77c0bb88351d@gmx.net>
-X-Debian-User: kibi
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20231120231017.614b9d61@alena.lan>
 
+On Mon, Nov 20, 2023 at 11:10:17PM +0100, Pavel Löbl wrote:
+> On Mon, 20 Nov 2023 10:16:55 +0100
+> Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> 
+> > On 18/11/2023 12:14, Pavel Löbl wrote:
+> > > Document binding for Banana Pi P2 Zero v1.1.
+> > > 
+> > > Signed-off-by: Pavel Löbl <pavel@loebl.cz>
+> > > ---
+> > >  Documentation/devicetree/bindings/arm/sunxi.yaml | 6 ++++++  
+> > 
+> > Please use scripts/get_maintainers.pl to get a list of necessary
+> > people and lists to CC (and consider --no-git-fallback argument). It
+> > might happen, that command when run on an older kernel, gives you
+> > outdated entries. Therefore please be sure you base your patches on
+> > recent Linux kernel.
+> That's what I did using next-20231117 kernel source, without
+> --no-git-fallback argument though. The output seemed a bit long so I
+> have not included every line in CC. So you are saying I should address
+> more people next time?
 
---enguv7l6mg7h36au
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+You should use --no-git-fallback.
 
-Hi Stefan,
+> Also it's not clear to me what should go to Cc: and what should go to
+> To: when submitting. Looking at the list there does not seem to be a
+> rule.
 
-Stefan Wahren <wahrenst@gmx.net> (2023-11-27):
-> can you please check what happens if you add the following to
-> config.txt:
->=20
-> [cm4]
-> otg_mode=3D1
+As Krzysztof said, doesn't matter, but I put people in To and lists in 
+Cc. Setting up tocmd/cccmd with --nol and --nom options will do that 
+automatically. Or you could put who should apply the patch in To 
+(allwinner maintainers) and everyone else in Cc. But that takes manual 
+work, so I don't do that.
 
-I've only rebooted a few times but the system seems to be booting fine
-once this setting is added to config.txt.
-
-Writing stuff to a USB stick with or without the patches seems to give
-similar performances: ~ 18 MB/s after 3 minutes of copying /dev/null to
-/dev/sda with a 32M block size; similar CPU usage for dd, usb-storage,
-and the relevant kworker thread.
-
-
-Cheers,
---=20
-Cyril Brulebois (kibi@debian.org)            <https://debamax.com/>
-D-I release manager -- Release team member -- Freelance Consultant
-
---enguv7l6mg7h36au
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEtg6/KYRFPHDXTPR4/5FK8MKzVSAFAmVk3gsACgkQ/5FK8MKz
-VSCnTQ/6Ao90LSyY1CLWughKy/yH4RsSA/Q21yKPVdGUmFLY/7okPzqs3XF2/Zwj
-ULHfoc5hGZXO8CaefPnjmzwsrz+evftz68Qa7atPSCWEWnajds9OPKfXcEIUy4oD
-3pkXiIgRJSdyaBrCLv6W9ap3RBATlI482ggJS/nQxLvRob9RhMU9rMyuNc81x95v
-D6u1j6lOXWsFAFt9axw9Rzwt+MC4upmRr7qcRWd8JdPviW+AgA6kGMMvXAelq5Zs
-pihCB+QKpRDPsOzJQ2B1zn7G6w3CUkjxhAVlMZ07UwEfUPL2+1n8jcIziYlfy1eV
-vDf49+JUV1EkggpPfT55M+kBsXfkLPsKeF+aFPpQgEN7MoNemATkhIPez42ndLdk
-qWnMkAPd8+n7z/EM3FPshOu1CdtLVDcWfAQBn5qAZtRhIgicjdZLYNVTEvnzBfhe
-QykQOM1xxVb1lRcm0PiPYvegPyHJtKkegX8rancNYesf7k2Gxk1VF2fUXvXV4bjT
-JQTGoUnSocl2cB2cXlVsV+28ASaHJ6kT589gyRX9U4AQP2oLdNGglpL6v9Pwi7Jy
-MyzKrQVLZerwcWUxPBHP054oHVsVIxUx5g1s2RYbOVyE53jhIAAa1VA6AphrwRn4
-lVNr6I/zsz/AZlYN9CxKPgidlU25xXypN/h/k7+j+7JiD4c+vl0=
-=DusX
------END PGP SIGNATURE-----
-
---enguv7l6mg7h36au--
+Rob
 
