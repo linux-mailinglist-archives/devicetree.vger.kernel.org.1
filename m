@@ -1,116 +1,137 @@
-Return-Path: <devicetree+bounces-19335-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19336-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68F417FA7B1
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 18:11:03 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE6FE7FA7C9
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 18:14:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F03ABB20D5F
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 17:11:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2BB761C20BAB
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 17:14:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C83237152;
-	Mon, 27 Nov 2023 17:10:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA1623716A;
+	Mon, 27 Nov 2023 17:14:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="wU8oj20B"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Fa/wQuX9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7314FD5B;
-	Mon, 27 Nov 2023 09:10:54 -0800 (PST)
-Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 3ARDqXKS029391;
-	Mon, 27 Nov 2023 18:10:36 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding:content-type; s=
-	selector1; bh=C6SZxz0TGWAZCG4nQZS/IpSyh67G5SmFl9Z8NkWEcG0=; b=wU
-	8oj20B2ZzoVSAZ01JiQlzIiRNt7OlWv6HU95xj36UBeJGAl6tE7Yc0XDZFe0XZav
-	tssIvJ0x906yIamWxHfKkHJL3reVgtJwBk65/RVtOMKW9GLMHv7s44TEObBOq4NN
-	O8XdUJPIzvWUfEDUp3IXm9M1/3gFg+xGTM73zmmOXfF+PNrS6iUWiwQyCCAO5pLp
-	ZbwwMehsVSRxpiOvL2m+w7/twKeIiSXl+vtdqde5vteBIXL8FcXO7gw6sGmrqs1S
-	hLtxCmC89PpzlUyVuXtBfVVBzNL/RQu3sTmbCk+4KBZXS0WzNa7BNa5XQRVID2gv
-	RpEUGJhGxtsw6VtvfM6w==
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3ukvrp5vf6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 27 Nov 2023 18:10:36 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 8C2B810002A;
-	Mon, 27 Nov 2023 18:10:35 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 8200324B8AF;
-	Mon, 27 Nov 2023 18:10:35 +0100 (CET)
-Received: from localhost (10.129.178.213) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Mon, 27 Nov
- 2023 18:10:35 +0100
-From: Alain Volmat <alain.volmat@foss.st.com>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue
-	<alexandre.torgue@foss.st.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Philipp
- Zabel <p.zabel@pengutronix.de>
-CC: Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Laurent Pinchart
-	<laurent.pinchart@ideasonboard.com>,
-        Dan Scally
-	<dan.scally@ideasonboard.com>,
-        Hugues Fruchet <hugues.fruchet@foss.st.com>,
-        Alain Volmat <alain.volmat@foss.st.com>, <linux-media@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v9 5/5] ARM: multi_v7_defconfig: enable STM32 DCMIPP media support
-Date: Mon, 27 Nov 2023 18:08:19 +0100
-Message-ID: <20231127170828.1426117-6-alain.volmat@foss.st.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231127170828.1426117-1-alain.volmat@foss.st.com>
-References: <20231127170828.1426117-1-alain.volmat@foss.st.com>
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEED0288DD
+	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 17:14:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05BE1C433C7;
+	Mon, 27 Nov 2023 17:14:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701105284;
+	bh=94eA5a3oVs1VTguMTV9OICnFtDjCrfp2/1bumD9OBZQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Fa/wQuX929+5dckPfYpUstS/A0PYi6ycn5TAH8wdbjF3R0MA8NWtU2JDzQKolgyvt
+	 LIdAMaLbIwy2Zu22qZ4AiKrl8xoGIPudfiWX3PEkYFK+QtJlKtkfzTYluMf0QWdGOV
+	 rRTYnLkT4j+kxALg0gAOSgRNdV+e0XLBSwO3fFds8seHEL31R3+4wLr/nnS1QEkDFF
+	 EnLkTCojnQeygYnmU1SUSfHV50HWG3zRY+jFN0sYWexHhR1217i5PnnTN5KT3Urdo4
+	 Ua+TSAMOSCqB4LApFdAHQX6MJDa5+Mr46b8GfdKndENulAzNbrtsz1vXe+k9m+NNO1
+	 1ybXs76rFt0fA==
+Date: Mon, 27 Nov 2023 17:14:36 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Roland Hieber <rhi@pengutronix.de>
+Cc: Inki Dae <inki.dae@samsung.com>,
+	Jagan Teki <jagan@amarulasolutions.com>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>, dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Philipp Zabel <p.zabel@pengutronix.de>
+Subject: Re: [PATCH 1/2] dt-bindings: display: bridge: samsung-dsim: Add
+ i.MX7D support
+Message-ID: <20231127-sessions-publisher-d15b28966646@spud>
+References: <20231127-b4-imx7-mipi-dsi-v1-0-7d22eee70c67@pengutronix.de>
+ <20231127-b4-imx7-mipi-dsi-v1-1-7d22eee70c67@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-27_15,2023-11-27_01,2023-05-22_02
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="eEkdIYeTY4jIHAux"
+Content-Disposition: inline
+In-Reply-To: <20231127-b4-imx7-mipi-dsi-v1-1-7d22eee70c67@pengutronix.de>
 
-From: Hugues Fruchet <hugues.fruchet@foss.st.com>
 
-Enables support of STM32 DCMIPP V4L2 media driver.
+--eEkdIYeTY4jIHAux
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Hugues Fruchet <hugues.fruchet@foss.st.com>
-Signed-off-by: Alain Volmat <alain.volmat@foss.st.com>
----
- arch/arm/configs/multi_v7_defconfig | 1 +
- 1 file changed, 1 insertion(+)
+On Mon, Nov 27, 2023 at 05:12:28PM +0100, Roland Hieber wrote:
+> From: Philipp Zabel <p.zabel@pengutronix.de>
+>=20
+> Add support for the "fsl,imx7d-mipi-dsim" compatible used on i.MX7D.
+>=20
+> Signed-off-by: Philipp Zabel <p.zabel@pengutronix.de>
+> Signed-off-by: Roland Hieber <rhi@pengutronix.de>
 
-diff --git a/arch/arm/configs/multi_v7_defconfig b/arch/arm/configs/multi_v7_defconfig
-index 10fd74bf85f9..016e768f03f2 100644
---- a/arch/arm/configs/multi_v7_defconfig
-+++ b/arch/arm/configs/multi_v7_defconfig
-@@ -691,6 +691,7 @@ CONFIG_VIDEO_STI_BDISP=m
- CONFIG_VIDEO_STI_DELTA=m
- CONFIG_VIDEO_STI_HVA=m
- CONFIG_VIDEO_STM32_DCMI=m
-+CONFIG_VIDEO_STM32_DCMIPP=m
- CONFIG_V4L_TEST_DRIVERS=y
- CONFIG_VIDEO_VIVID=m
- CONFIG_VIDEO_S5C73M3=m
--- 
-2.25.1
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
+Cheers,
+Conor.
+
+> ---
+>  .../devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml         | =
+4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/display/bridge/samsung,mip=
+i-dsim.yaml b/Documentation/devicetree/bindings/display/bridge/samsung,mipi=
+-dsim.yaml
+> index 4ed7a799ba26..e43fec560941 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.=
+yaml
+> +++ b/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.=
+yaml
+> @@ -27,7 +27,9 @@ properties:
+>            - fsl,imx8mm-mipi-dsim
+>            - fsl,imx8mp-mipi-dsim
+>        - items:
+> -          - const: fsl,imx8mn-mipi-dsim
+> +          - enum:
+> +              - fsl,imx7d-mipi-dsim
+> +              - fsl,imx8mn-mipi-dsim
+>            - const: fsl,imx8mm-mipi-dsim
+> =20
+>    reg:
+>=20
+> --=20
+> 2.39.2
+>=20
+
+--eEkdIYeTY4jIHAux
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZWTOfAAKCRB4tDGHoIJi
+0gR3AQC/uU0C6yQnjFTOi3VAkiumHD8Z665Xqv9I+8g62eUrFgEAyZ2kzmH3FFHh
+D1CWuyb+hcb2UhlGWyV3b4HuLNpq8QQ=
+=ysHQ
+-----END PGP SIGNATURE-----
+
+--eEkdIYeTY4jIHAux--
 
