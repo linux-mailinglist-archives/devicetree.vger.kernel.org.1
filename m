@@ -1,113 +1,100 @@
-Return-Path: <devicetree+bounces-19240-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19241-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DA2B7FA1F8
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 15:04:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87F0D7FA201
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 15:08:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3F2061C20CD5
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 14:04:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3CF5D2816DE
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 14:08:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D228D30CE1;
-	Mon, 27 Nov 2023 14:04:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F034030F93;
+	Mon, 27 Nov 2023 14:08:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NZsq3uLN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2E1D524E
-	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 06:04:47 -0800 (PST)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <sha@pengutronix.de>)
-	id 1r7cE3-0006eI-SP; Mon, 27 Nov 2023 15:04:39 +0100
-Received: from [2a0a:edc0:2:b01:1d::c0] (helo=ptx.whiteo.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <sha@pengutronix.de>)
-	id 1r7cE3-00BxQe-Ei; Mon, 27 Nov 2023 15:04:39 +0100
-Received: from sha by ptx.whiteo.stw.pengutronix.de with local (Exim 4.92)
-	(envelope-from <sha@pengutronix.de>)
-	id 1r7cE3-0046xO-Bx; Mon, 27 Nov 2023 15:04:39 +0100
-Date: Mon, 27 Nov 2023 15:04:39 +0100
-From: Sascha Hauer <s.hauer@pengutronix.de>
-To: Andy Yan <andyshrk@163.com>
-Cc: heiko@sntech.de, hjc@rock-chips.com, dri-devel@lists.freedesktop.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-	devicetree@vger.kernel.org, sebastian.reichel@collabora.com,
-	kever.yang@rock-chips.com, chris.obbard@collabora.com,
-	Andy Yan <andy.yan@rock-chips.com>
-Subject: Re: [PATCH v2 04/12] drm/rockchip: vop2: clear afbc en and transform
- bit for cluster window at linear mode
-Message-ID: <20231127140439.GE977968@pengutronix.de>
-References: <20231122125316.3454268-1-andyshrk@163.com>
- <20231122125425.3454549-1-andyshrk@163.com>
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBABA2DF84;
+	Mon, 27 Nov 2023 14:08:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C873C433C9;
+	Mon, 27 Nov 2023 14:08:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701094123;
+	bh=wn7K+MJ4CCUYwE/Jmw8x+LP459OMd0Ff92Uy1W27qFY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=NZsq3uLNd/9703PT2wWztiWDYt9MEeniA4F061hp7w0uYqIxzzOecYGkZt5kF6y2p
+	 sP0wDVz/zjFuYX5N6bNrZlN8DcJ1ueKUiRJTx64PE9q3dMlhEEJXpU6U94cQxuXLER
+	 tdBeiDszeaSOyccm7v746m9G7r91DOJoeVUHLlz9N4nkeOAc9fcFm3AkJvqdhQj7jB
+	 jqALVZGfpJsDY/kgjh+jPa7urVBy3589nwmW4XyNNTc6XIUBYStU7eHhd7oHN4tIu7
+	 FGLADXux5JurYFIBHH2kkfzO0izX62BOOeRXG/WDVBLF1KueQ+3+XkabbKtsp0DIDe
+	 lqp5MpnLp73gw==
+Message-ID: <7fbe4090-94cd-4aaf-98b6-07f2a089d51a@kernel.org>
+Date: Mon, 27 Nov 2023 16:08:37 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231122125425.3454549-1-andyshrk@163.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/2] interconnect: qcom: Introduce support for SM8650
+Content-Language: en-US
+To: Bjorn Andersson <andersson@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, Andy Gross <agross@kernel.org>,
+ linux-kernel@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Abel Vesa <abel.vesa@linaro.org>
+References: <20231123-topic-sm8650-upstream-interconnect-v2-0-7e050874f59b@linaro.org>
+From: Georgi Djakov <djakov@kernel.org>
+In-Reply-To: <20231123-topic-sm8650-upstream-interconnect-v2-0-7e050874f59b@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Nov 22, 2023 at 08:54:25PM +0800, Andy Yan wrote:
-> From: Andy Yan <andy.yan@rock-chips.com>
+On 23.11.23 15:32, Neil Armstrong wrote:
+> This covers the RPMh Network-On-Chip Interconnect bindings
+> and driver for the interconnect framework.
+
+Thanks Neil!
+
+> As reported for earlier Interconnect drivers, the IDs
+> for multi-rsc voting has been removed from this driver
+> so the proper solution can be developed without having
+> to remove entries later on.
 > 
-> The enable bit and transform offset of cluster windows should be
-> cleared when it work at linear mode, or we may have a iommu fault
-> issue.
+> To easy Bjorn into merging the DT bits, would it be possible
+> to have an immutable branch with bindings shared with Bjorn once
+> this patchset have been properly reviewed and accepted ?
+
+Hi Bjorn,
+
+Here is a stable branch with the DT bindings header that might be needed
+for SM8650 dts patches.
+
+https://git.kernel.org/pub/scm/linux/kernel/git/djakov/icc.git/log/?h=icc-sm8650
+
+Thanks,
+Georgi
+
 > 
-> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
-
-Reviewed-by: Sascha Hauer <s.hauer@pengutronix.de>
-
-Sascha
-
+> Dependencies: None
+> 
+> For convenience, a regularly refreshed linux-next based git tree containing
+> all the SM8650 related work is available at:
+> https://git.codelinaro.org/neil.armstrong/linux/-/tree/topic/sm8650/upstream/integ
+> 
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 > ---
-> 
-> (no changes since v1)
-> 
->  drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-> index 639dfebc6bd1..a019cc9bbd54 100644
-> --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-> @@ -1312,6 +1312,11 @@ static void vop2_plane_atomic_update(struct drm_plane *plane,
->  		vop2_win_write(win, VOP2_WIN_AFBC_ROTATE_270, rotate_270);
->  		vop2_win_write(win, VOP2_WIN_AFBC_ROTATE_90, rotate_90);
->  	} else {
-> +		if (vop2_cluster_window(win)) {
-> +			vop2_win_write(win, VOP2_WIN_AFBC_ENABLE, 0);
-> +			vop2_win_write(win, VOP2_WIN_AFBC_TRANSFORM_OFFSET, 0);
-> +		}
-> +
->  		vop2_win_write(win, VOP2_WIN_YRGB_VIR, DIV_ROUND_UP(fb->pitches[0], 4));
->  	}
->  
-> -- 
-> 2.34.1
-> 
-> 
-> 
+> Changes in v2:
+> - Collected Reviewed-by
+> - Moved required block in bindings as requested by Krzysztof
+> - Link to v1: https://lore.kernel.org/r/20231025-topic-sm8650-upstream-interconnect-v1-0-b7277e03aa3d@linaro.org
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
