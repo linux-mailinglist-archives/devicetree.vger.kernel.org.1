@@ -1,98 +1,82 @@
-Return-Path: <devicetree+bounces-19155-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19154-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF0307F9DE1
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 11:43:59 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B4177F9DDA
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 11:43:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4E0B8B20DFB
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 10:43:57 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BF34CB20DC5
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 10:43:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0525017721;
-	Mon, 27 Nov 2023 10:43:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3069134A2;
+	Mon, 27 Nov 2023 10:43:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ct4hLl3j"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="vqpokK7y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F7C318A;
-	Mon, 27 Nov 2023 02:43:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1701081830; x=1732617830;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=AH0RtqoF4KI3vHwA85rjVB2jP494O9yweQmmJkW6BU0=;
-  b=ct4hLl3j+JuPjJy7DrHOwAmMqarJ0YIH4BVytBupZ1a9+3fKEWdt8Y7A
-   sjnnlvPCTW/GFim+/1wY7ulw34ZQQCSe9z3a3ipY445oma6fHNc73ljSl
-   1HFNdcDzdEUWWAgcRYrHA13LAHsd+qSRvy4LX98nCpwvPvVyKKzzFm5G7
-   ka4DR8kqeb75qfcxQ5eWuggeVi+JY9ByQb8tXocqCrQl8qkaHMUyqnA4W
-   ReCmGITSh//PGHpgKhQ0TKHPsnYgpXQCKHGQMB7lySx0T88I0O4wgRjHT
-   G7PGMp2lUnUhqtHXqZZc1KsMGz3jam60Z4CN4D/uY2xed+eAYT3tA9DDb
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10906"; a="389825252"
-X-IronPort-AV: E=Sophos;i="6.04,230,1695711600"; 
-   d="scan'208";a="389825252"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Nov 2023 02:43:50 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10906"; a="838661037"
-X-IronPort-AV: E=Sophos;i="6.04,230,1695711600"; 
-   d="scan'208";a="838661037"
-Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
-  by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Nov 2023 02:43:46 -0800
-Received: from kekkonen.localdomain (localhost [127.0.0.1])
-	by kekkonen.fi.intel.com (Postfix) with SMTP id 77F4511FCD0;
-	Mon, 27 Nov 2023 12:33:15 +0200 (EET)
-Date: Mon, 27 Nov 2023 10:33:15 +0000
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Alain Volmat <alain.volmat@foss.st.com>
-Cc: Hugues Fruchet <hugues.fruchet@foss.st.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Dan Scally <dan.scally@ideasonboard.com>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v8 0/5] Add support for DCMIPP camera interface of
- STMicroelectronics STM32 SoC series
-Message-ID: <ZWRwa2ImfkZMI8Xz@kekkonen.localdomain>
-References: <20231122073927.788810-1-alain.volmat@foss.st.com>
+Received: from mail.manjaro.org (mail.manjaro.org [IPv6:2a01:4f8:c0c:51f3::1])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49D4EEA
+	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 02:43:10 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231122073927.788810-1-alain.volmat@foss.st.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1701081786;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Sv3zUYeCIAwtSQ/4pLuCWPrHDmeMxigzL0J1JJKeGb8=;
+	b=vqpokK7yjxI8ofYjft393wXKMsHk/av4/dBN9wD9FA2/EJeJtqdIfdWT/b8HNUnaVjHVEw
+	hk3DDpq8b05MIWbHvcQBGfwSWqIIwH0sbMkb7qB2vnEJjxhILKIrE4PFqB2n35hb6dTwEZ
+	9Re31xypPjO9niGJh4dgyJZi9HfAAt/OkTWPPcxq9ekkvGf2ZLq5I3jUdo4EoPAkjXkB1W
+	VGLYf3Yv+J96ZO0PYGZLihpq2zsfWDpNx2xZsRFT6ChMCVOYblJgJbodfCGPcewcpDSLJa
+	FJ+sSVoeS+Yob5/YevNu9mCKXsN41KuzhBSyFsc3wsFmfPNX6JaaOWRfk/UPuQ==
+Date: Mon, 27 Nov 2023 11:43:05 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
+Cc: linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Tim Lunn
+ <tim@feathertop.org>, Jagan Teki <jagan@edgeble.ai>, Rob Herring
+ <robh+dt@kernel.org>, linux-arm-kernel@lists.infradead.org, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>
+Subject: Re: [PATCH v2 4/9] ARM: dts: rockchip: rv1126: Add i2c2 nodes
+In-Reply-To: <4065853.CrzyxZ31qj@diego>
+References: <20231122122232.952696-1-tim@feathertop.org>
+ <50694679.MN2xkq1pzW@diego>
+ <99db2b8a-631b-40df-a33a-c2baeb44c940@feathertop.org>
+ <4065853.CrzyxZ31qj@diego>
+Message-ID: <4bd0ce0f496646209eb8b220dfdd80bd@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-Hi Alain,
-
-On Wed, Nov 22, 2023 at 08:39:14AM +0100, Alain Volmat wrote:
-> This patchset introduces support for Digital Camera Memory Interface
-> Pixel Processor (DCMIPP) of STMicroelectronics STM32 SoC series.
+On 2023-11-27 11:29, Heiko Stübner wrote:
+> Am Montag, 27. November 2023, 10:58:43 CET schrieb Tim Lunn:
+>> On 11/27/23 20:45, Heiko Stübner wrote:
+>>> It's different for mmc, where this naming scheme isn't normally used,
+>>> so we (mostly?) migrated to them being in the board-specific alias 
+>>> section.
+>> 
+>> What about the ethernet alias, the MAC is part of the SoC, should this
+>> stay as it is in patch 6 from this series, or move to board dtsi?
 > 
-> This initial support implements a single capture pipe
-> allowing RGB565, YUV, Y, RAW8 and JPEG capture with
-> frame skipping, prescaling and cropping.
+> I think judging from everything above (and the other modern boards
+> like all rk3588 ones) the ethernet0 alias should move to the board 
+> dts(i).
 > 
-> DCMIPP is exposed through 3 subdevices:
-> - dcmipp_dump_parallel: parallel interface handling
-> - dcmipp_dump_postproc: frame skipping, prescaling and cropping control
-> - dcmipp_dump_capture: video device capture node
+> The gmac generally does not have this numbering scheme like i2c or 
+> uarts.
 
-The DTS changes will presumably be merged via a different tree, right?
-
--- 
-Sakari Ailus
+Please note there's already an Ethernet alias defined in rk3399.dtsi, 
+even despite not all RK3399-based devices using the GMAC, for example 
+the Pinebook Pro.  Perhaps that's something to be fixed as well.
 
