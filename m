@@ -1,158 +1,108 @@
-Return-Path: <devicetree+bounces-19179-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19180-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D6997F9ED2
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 12:41:50 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1193B7F9EE7
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 12:47:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CC83D281564
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 11:41:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 421141C20DC9
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 11:47:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A17FA1A706;
-	Mon, 27 Nov 2023 11:41:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E26421A71A;
+	Mon, 27 Nov 2023 11:47:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="o4emJLIu"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="nEg+V7LB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5916AB8;
-	Mon, 27 Nov 2023 03:41:40 -0800 (PST)
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id E182012001E;
-	Mon, 27 Nov 2023 14:41:38 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru E182012001E
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1701085298;
-	bh=k9sXRlxKX0Gfpxy2Hej1U/l4OVoqNKeGfoA0hcSApV0=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
-	b=o4emJLIuoBD4DcoBOF1FevkO4JyAUmJdgCkNStovRPC4hJQHgVkm6PcFvnx6B1PkE
-	 FUz78b6Amq886+YsRXk5TDUqk4/bXIJI/MkUarSusMOkRVEzQp5egtE0Q2qzgSnpvI
-	 YVzs8Yq1bpdvrI2Ug7TjRZ4cqE2KxUP1o7Dj7wj5pOMrdBbIVWPB33RRB2er8Lh76o
-	 BIJcVtVewxxEMPAhqSY9ZEnLqUUeFcS3Ev4pNTDzxuvg4Eeta3PRs4mwpUPqcYXwgT
-	 GGnlY3lOQ7DeocAro1InW0zOp9CZz8A647XTKACdks/FN0uVZ5/CLcmvXfv31mN8ts
-	 uSyBR/TxeCrgw==
-Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Mon, 27 Nov 2023 14:41:38 +0300 (MSK)
-Received: from localhost (100.64.160.123) by p-i-exch-sc-m01.sberdevices.ru
- (172.16.192.107) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 27 Nov
- 2023 14:41:38 +0300
-Date: Mon, 27 Nov 2023 14:41:38 +0300
-From: Dmitry Rokosov <ddrokosov@salutedevices.com>
-To: Lee Jones <lee@kernel.org>
-CC: <pavel@ucw.cz>, <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-	<conor+dt@kernel.org>, <andy.shevchenko@gmail.com>, <kernel@sberdevices.ru>,
-	<rockosov@gmail.com>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-leds@vger.kernel.org>, George Stark
-	<gnstark@salutedevices.com>
-Subject: Re: [PATCH v4 04/11] leds: aw200xx: calculate dts property
- display_rows in the driver
-Message-ID: <20231127114138.27reupes7w47txfk@CAB-WSD-L081021>
-References: <20231121202835.28152-1-ddrokosov@salutedevices.com>
- <20231121202835.28152-5-ddrokosov@salutedevices.com>
- <20231123163252.GF1354538@google.com>
- <20231124094146.qsgmmbwulemjikpg@CAB-WSD-L081021>
- <20231127085755.GE1470173@google.com>
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1794F187
+	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 03:47:05 -0800 (PST)
+Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-40b34563987so22965105e9.1
+        for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 03:47:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1701085623; x=1701690423; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=3tA3boN6EG4yS9sARU9W7D9LN4ahR4KmDV0zSEVrFb0=;
+        b=nEg+V7LBIaLbiPtIHMYgKvHXwNi2+b7HjwYtp7LGjgmofHn4ps0bc/zPZ52Y3QP0J9
+         48ODicnGQzPeJ6xxCxxOoS3pnUOpxpZ26+h85QamkTcmylL4kBlbK4zmTO+SA4lNkm/I
+         ldD+0iKWoGLLCiaqbllKuKtBz5BwbnfigdQ+OjLc2tff0ehjZAeERZULXuzZXowcIgEZ
+         88LWwHs0aQIdiaGpnL3kF7QKjY/bwqJ6kU/vDonUj6MDD3rHlci5/dKC15FaT5+wVisl
+         xAr2ykvWJbdpFrEVNH+B735//7T1pTO9LFMAD1+ayQ+lm7KzGmaq6Dy554aANxr4N0r4
+         ZBxw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701085623; x=1701690423;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3tA3boN6EG4yS9sARU9W7D9LN4ahR4KmDV0zSEVrFb0=;
+        b=b/JvQs9mhjPn8CV+G9qZkb73DrXI43Mrk+EzLpap9o7eMBTBwSYS22tYlsfMr3F5dx
+         T+MqoZ7qqm9W2Zgh0plZ2zEuZo/91lOcEwxQPcX3cUNmAXxS17PA5ozqMTcxvPJKWaVs
+         susSuVRGcv93UVCo/B1iuQAYFm9mA27iSwtepvNhQoiBLtsui2URsOLCje+zDBI3K8cm
+         wII1RX4d8/HNKroxEUGSeJoKwA9o0Ar9vDhL1G3/Azwi/yArTLXny36WumknlsPWnZ8z
+         i1ZjnfP8hhls9xkApFrETooNMZCAgFd9YTJ60xqXcsLqMi/92YkiNjjQb829Vg57ozvd
+         X45A==
+X-Gm-Message-State: AOJu0YySKagG1LVoKUw6WUBcmXgv4N9Ki8WgZnhdNkz6MDBZ9o40CF+x
+	SJ5q4iewICvwnADPIom6QNe/IQ==
+X-Google-Smtp-Source: AGHT+IHFHh5s3DrJkF+ahST3zPitBaks2yNwrnyWDMDsu2R3tzZh+/mmIzmyi63lGqBAWzE/QyPjfw==
+X-Received: by 2002:a05:600c:6d3:b0:408:37aa:774a with SMTP id b19-20020a05600c06d300b0040837aa774amr12532754wmn.17.1701085623387;
+        Mon, 27 Nov 2023 03:47:03 -0800 (PST)
+Received: from Red ([2a01:cb1d:3d5:a100:4a02:2aff:fe07:1efc])
+        by smtp.googlemail.com with ESMTPSA id s8-20020a7bc388000000b0040b4562ee20sm1681859wmj.0.2023.11.27.03.47.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Nov 2023 03:47:03 -0800 (PST)
+Date: Mon, 27 Nov 2023 12:47:01 +0100
+From: Corentin LABBE <clabbe@baylibre.com>
+To: Frank Wunderlich <frank-w@public-files.de>
+Cc: davem@davemloft.net, heiko@sntech.de, herbert@gondor.apana.org.au,
+	krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
+	p.zabel@pengutronix.de, robh+dt@kernel.org, sboyd@kernel.org,
+	ricardo@pardini.net, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+	linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org
+Subject: Re: Aw: Re:  [PATCH 6/6] crypto: rockchip: add rk3588 driver
+Message-ID: <ZWSBtZAwn_58UtcD@Red>
+References: <20231107155532.3747113-1-clabbe@baylibre.com>
+ <20231107155532.3747113-7-clabbe@baylibre.com>
+ <trinity-a0ee3146-f23d-4f6c-b29c-5fe446c4d4ad-1699797868421@3c-app-gmx-bs50>
+ <ZVtVkACNHTcCjqGp@Red>
+ <trinity-a9a71294-1396-43e4-9ed5-9ee2914ef093-1700838301802@3c-app-gmx-bs48>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20231127085755.GE1470173@google.com>
-User-Agent: NeoMutt/20220415
-X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 181606 [Nov 27 2023]
-X-KSMG-AntiSpam-Version: 6.0.0.2
-X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 4 0.3.4 720d3c21819df9b72e78f051e300e232316d302a, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, salutedevices.com:7.1.1;127.0.0.199:7.1.2;100.64.160.123:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;p-i-exch-sc-m01.sberdevices.ru:7.1.1,5.0.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/11/27 09:57:00 #22553179
-X-KSMG-AntiVirus-Status: Clean, skipped
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <trinity-a9a71294-1396-43e4-9ed5-9ee2914ef093-1700838301802@3c-app-gmx-bs48>
 
-Lee,
-
-Thank you for the quick reply!
-
-On Mon, Nov 27, 2023 at 08:57:55AM +0000, Lee Jones wrote:
-> On Fri, 24 Nov 2023, Dmitry Rokosov wrote:
+Le Fri, Nov 24, 2023 at 04:05:01PM +0100, Frank Wunderlich a écrit :
+> Hi
 > 
-> > On Thu, Nov 23, 2023 at 04:32:52PM +0000, Lee Jones wrote:
-> > > On Tue, 21 Nov 2023, Dmitry Rokosov wrote:
-> > > 
-> > > > From: George Stark <gnstark@salutedevices.com>
-> > > > 
-> > > > Get rid of device tree property "awinic,display-rows". The property
-> > > > value actually means number of current switches and depends on how leds
-> > > 
-> > > Nit: LEDs
-> > > 
-> > > > are connected to the device. It should be calculated manually by max
-> > > > used led number. In the same way it is computed automatically now.
-> > > 
-> > > As above - I won't mention this again.
-> > > 
-> > > > Max used led is taken from led definition subnodes.
-> > > > 
-> > > > Signed-off-by: George Stark <gnstark@salutedevices.com>
-> > > > Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
-> > > > ---
-> > > >  drivers/leds/leds-aw200xx.c | 39 +++++++++++++++++++++++++------------
-> > > >  1 file changed, 27 insertions(+), 12 deletions(-)
-> > > > 
-> > > > diff --git a/drivers/leds/leds-aw200xx.c b/drivers/leds/leds-aw200xx.c
-> > > > index 7762b3a132ac..4bce5e7381c0 100644
-> > > > --- a/drivers/leds/leds-aw200xx.c
-> > > > +++ b/drivers/leds/leds-aw200xx.c
-> > > > @@ -379,6 +379,30 @@ static void aw200xx_disable(const struct aw200xx *const chip)
-> > > >  	return gpiod_set_value_cansleep(chip->hwen, 0);
-> > > >  }
-> > > >  
-> > > > +static bool aw200xx_probe_get_display_rows(struct device *dev, struct aw200xx *chip)
-> > > > +{
-> > > > +	struct fwnode_handle *child;
-> > > > +	u32 max_source = 0;
-> > > > +
-> > > > +	device_for_each_child_node(dev, child) {
-> > > > +		u32 source;
-> > > > +		int ret;
-> > > > +
-> > > > +		ret = fwnode_property_read_u32(child, "reg", &source);
-> > > > +		if (ret || source >= chip->cdef->channels)
-> > > 
-> > > Shouldn't the second clause fail instantly?
-> > > 
-> > 
-> > We already have such logic in the aw200xx_probe_fw() function, which
-> > skips the LED node with the wrong reg value too. Furthermore, we have
-> > strict reg constraints in the dt-bindings parts (in the current patch
-> > series), so we assume that the DT developer will not create an LED with
-> > the wrong reg value.
+> > Gesendet: Montag, 20. November 2023 um 13:48 Uhr
+> > Von: "Corentin LABBE" <clabbe@baylibre.com>
 > 
-> Why is it being checked again then?
+> > You are using kcapi-rng but the driver do not support RNG yet. (and probably never if I continue to fail having good results with it).
+> > So it is normal values does not change.
+> 
+> which functions does the driver support atm? or how can i test correctly
+> (and which kernel options i need for this)?
+> 
+> regards Frank
 
-Hmmm, aw200xx_probe_get_display_rows() executes before the old
-implementation... So we need to check it again. Do you think it should
-be reworked? I've already sent a new patchset. Could you please take a
-look at the other fixes?
+Hello
 
--- 
-Thank you,
-Dmitry
+The driver handle AES(ECB CBC XTS) and hashes (MD5 SHAxxx and SM3)
+For testing you need:
+CONFIG_CRYPTO_MANAGER_DISABLES_TESTS is not set
+CONFIG_CRYPTO_MANAGER_EXTRA_TESTS=y
+
+Note that I have already got several report of random hashes tests failling, but I am near to have a reproducer.
+
+Regards
 
