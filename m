@@ -1,108 +1,91 @@
-Return-Path: <devicetree+bounces-19215-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19216-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7513A7FA0CD
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 14:21:18 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E09C97FA0D7
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 14:22:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A6D891C20DF8
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 13:21:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 93AB41F20C82
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 13:22:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E72842D7BE;
-	Mon, 27 Nov 2023 13:21:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAE212DF9C;
+	Mon, 27 Nov 2023 13:22:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="lLy47fo9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bCbLnI25"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D296AA
-	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 05:21:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1701091271; x=1732627271;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=3f3W/zCExRpERTrtvRVhd6LxhDLUKOt67dv+M4QmBRw=;
-  b=lLy47fo9lpHIVy3EYY0NIlouCAeG0SwE30IRij0baGrW57V9ufNQCxGk
-   QM7cTG911iWC5VjgyMIJ+p7kJGZEqCw0U69Q2IdFpbq6GvfesPXJjUQ6S
-   91VO33M7bTshHJk9XYzdlSKAYzrBtYQywVjmqEtRG23jGISpQce0Mw3DZ
-   IRUfEUWHDjIhnxwL/q1RUfZCk/33gxdNOKT87qunZKsXXWcKTiHDOjLYt
-   FMLSAkhBAflO8PSfaRIJcmM2KoxHN0QeyKesyMHkCcYheA2XnAOsImthj
-   bjoOd4rBD7zCswmggAU2uBliqjdKa7kDRUskO5xq5dKIF8yL9lQ8Kp7bl
-   w==;
-X-IronPort-AV: E=Sophos;i="6.04,230,1695679200"; 
-   d="scan'208";a="34192151"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 27 Nov 2023 14:21:08 +0100
-Received: from steina-w.localnet (steina-w.tq-net.de [10.123.53.18])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 98ECC280075;
-	Mon, 27 Nov 2023 14:21:08 +0100 (CET)
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: tony@atomide.com, dri-devel@lists.freedesktop.org, Michael Walle <mwalle@kernel.org>
-Cc: Michael Walle <mwalle@kernel.org>, krzysztof.kozlowski+dt@linaro.org, dri-devel@lists.freedesktop.org, Laurent.pinchart@ideasonboard.com, andrzej.hajda@intel.com, ivo.g.dimitrov.75@gmail.com, rfoss@kernel.org, jernej.skrabec@gmail.com, simhavcs@gmail.com, merlijn@wizzup.org, devicetree@vger.kernel.org, conor+dt@kernel.org, jonas@kwiboo.se, pavel@ucw.cz, mripard@kernel.org, robh+dt@kernel.org, philipp@uvos.xyz, neil.armstrong@linaro.org, sre@kernel.org, tzimmermann@suse.de
-Subject: Re: [PATCH 1/6] dt-bindings: tc358775: Add support for tc358765
-Date: Mon, 27 Nov 2023 14:21:08 +0100
-Message-ID: <5735396.DvuYhMxLoT@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20231127124430.2153227-1-mwalle@kernel.org>
-References: <20231126163247.10131-1-tony@atomide.com> <20231127124430.2153227-1-mwalle@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8308C2DF8F;
+	Mon, 27 Nov 2023 13:22:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 756C5C433C8;
+	Mon, 27 Nov 2023 13:22:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701091347;
+	bh=2JKjpQ+5QKANLP+xGmPCkybvq6kf6sMCsdtq+PhVm3o=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=bCbLnI25DgO/3NhVtGI6COesZn76ioTqblgX0vP1w6UCsafKA1UsKw7/uB3q5Si7E
+	 p3Kwxii8gLbZ2pI48nGZ95j7tCxkjRhPDeDT7MIb1pu3byNgX7F9a4EJOuREIhO0KE
+	 omLxzqv8kaY+/4fjVKkhTbtcao3YOMTD+yEee7TTDbDD0gN9sSx0tOisOzv+002ZU9
+	 NSNR9SnqbE5j0LVkbDbzY9ZBG53CmO/nLruMScsiR115l2tUbzLKTvIGkd4MoZGRKI
+	 eyfyZQWOIpSFd+X71z4OeyFouedfd4sC93e34la6eVNuzs3w8/gDNq1j5lW7DL4YbT
+	 QcrR/GgjDKUdg==
+From: Vinod Koul <vkoul@kernel.org>
+To: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>, 
+ Daniel Vetter <daniel@ffwll.ch>, Lee Jones <lee@kernel.org>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
+ Alex Bee <knaerzche@gmail.com>
+Cc: Elaine Zhang <zhangqing@rock-chips.com>, 
+ Johan Jonker <jbx6244@gmail.com>, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ alsa-devel@alsa-project.org, linux-clk@vger.kernel.org, 
+ linux-phy@lists.infradead.org
+In-Reply-To: <20230829171647.187787-1-knaerzche@gmail.com>
+References: <20230829171647.187787-1-knaerzche@gmail.com>
+Subject: Re: (subset) [PATCH 00/31] Fix and improve Rockchip RK3128 support
+Message-Id: <170109134007.42627.12929766893521974712.b4-ty@kernel.org>
+Date: Mon, 27 Nov 2023 18:52:20 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.12.3
 
-Hi,
 
-Am Montag, 27. November 2023, 13:44:30 CET schrieb Michael Walle:
-> Hi,
->=20
-> > The tc358765 is similar to tc358775 except for the stdby-gpios.
->=20
-> Bad timing (for me). I'm about to send a bigger patch series for the
-> tc358775 which fixes the (completely) broken initialialization. And also
-> contains some of your fixes.
->=20
-> That being said, I intend to make the standby gpio optional also for the
-> tc358755, because it might just be hardwired on the board.
->=20
-> But second, I'm really curious if this bridge is working for you correctly
-> as it is at the moment. One particular thing I've noticed is that you must
-> release the reset while both the clock and the data lanes are in LP11 mod=
-e.
-> Otherwise, the bridge won't work properly (i.e. horizontally shifted
-> picture, or no picture at all).
+On Tue, 29 Aug 2023 19:16:16 +0200, Alex Bee wrote:
+> this series fixes some issues I found when testing my "new" RK3128 board
+> with the mainline kernel and adds some core functionality like SMP bringup,
+> usb and networking.
+> 
+> The propably most distinctive change is the split up of the DTs for the
+> different SoCs of this platform: RK3126 and RK3128. Even if I'm not adding
+> a RK3126 board in this series: I think this change should be done as early
+> as possible in order to avoid issues in future.
+> Actually it should have been done like that in the first place.
+> 
+> [...]
 
-Apparently this seems to be true for all Toshiba DSI bridges. The power on=
-=20
-sequence for TC9595 (TC358767) also requires LP-11 before releasing the res=
-et=20
-signal RESX. Additionally LP-11 is requires for using the DP AUX channel.
-This also relates to the patch set from Dmitry [1].
+Applied, thanks!
+
+[08/31] phy: rockchip-inno-usb2: Split ID interrupt phy registers
+        commit: 2fda59099462ee700e424ba3ac928d13ad6389a8
+[09/31] phy: phy-rockchip-inno-usb2: Add RK3128 support
+        commit: 62ff41017e147472b07de6125c3be82ce02a8dd7
 
 Best regards,
-Alexander
-
-[1] https://lore.kernel.org/dri-devel/20231016165355.1327217-1-dmitry.barys=
-hkov@linaro.org/
-
-> What DSI host controller are you using?
->=20
-> -michael
-
-
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
+-- 
+~Vinod
 
 
 
