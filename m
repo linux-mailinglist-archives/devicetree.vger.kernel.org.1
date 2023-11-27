@@ -1,89 +1,114 @@
-Return-Path: <devicetree+bounces-19396-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19390-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEC587FAC81
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 22:25:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC13D7FAC59
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 22:11:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 69A0D281ACF
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 21:25:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B9A951C20F8F
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 21:11:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38D0946442;
-	Mon, 27 Nov 2023 21:25:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="t5SQMCx3"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F005D45C0B;
+	Mon, 27 Nov 2023 21:11:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53F43101;
-	Mon, 27 Nov 2023 13:25:18 -0800 (PST)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id AB04D8777D;
-	Mon, 27 Nov 2023 22:25:13 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1701120315;
-	bh=LegISOAZj/VTwj6ARkkB9OAlGrxp17UtyxUiTPjGYlE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=t5SQMCx3A6ona53IT5vZtfKVi1fqQT3ABwspsknnFQx00H/tU1CYy38TVhIZWcW8S
-	 83ks7rWZcdDMakATT2Kk1oK6MKYL5Fq0vLtpPbT6Y6lkFQvafqFqkberCYtxmu/V70
-	 C1HRd/YdWrUxrSasKOhikb9r4pqlhxWrz3t08HJOfqMqfvgZWo+mrIs+SDkMXagkXf
-	 G9nuBRgOkCHnND6gU7vxMhgEmR5fnSUP5/gZS1YXfkRherGHwm/V5TMnEgXrB4gCcO
-	 6v4SQ7axkcWudjG75/mCSchWbG+Emz1ruBVNN3fO6cacEJRV52QLivYZF35reTa/6T
-	 uW9QYJr3dbP3w==
-Message-ID: <d5c0cc28-693d-4797-aebf-e4c13b6c8267@denx.de>
-Date: Mon, 27 Nov 2023 21:52:48 +0100
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFAFAD5F
+	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 13:11:44 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <auto@pengutronix.de>)
+	id 1r7itI-0004lF-8W; Mon, 27 Nov 2023 22:11:40 +0100
+Received: from [2a0a:edc0:0:1101:1d::ac] (helo=dude04.red.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <auto@pengutronix.de>)
+	id 1r7itH-00C1px-FB; Mon, 27 Nov 2023 22:11:39 +0100
+Received: from rhi by dude04.red.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <auto@pengutronix.de>)
+	id 1r7itH-00FAHf-1H;
+	Mon, 27 Nov 2023 22:11:39 +0100
+From: Roland Hieber <rhi@pengutronix.de>
+Subject: [PATCH 0/5] ARM: dts: add support for Gossen Metrawatt Profitest
+Date: Mon, 27 Nov 2023 22:11:01 +0100
+Message-Id: <20231127-b4-imx7-var-som-gome-v1-0-f26f88f2d0bc@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/2] iio: light: isl76682: Add ISL76682 driver
-Content-Language: en-US
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: linux-iio@vger.kernel.org, Matti Vaittinen <mazziesaccount@gmail.com>,
- Alexander Stein <alexander.stein@ew.tq-group.com>,
- Andre Werner <andre.werner@systec-electronic.com>,
- Bjorn Helgaas <bhelgaas@google.com>, Conor Dooley <conor+dt@kernel.org>,
- Fabio Estevam <festevam@denx.de>, Guenter Roeck <linux@roeck-us.net>,
- Jonathan Cameron <jic23@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Lars-Peter Clausen <lars@metafoo.de>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>, Mark Brown <broonie@kernel.org>,
- Naresh Solanki <naresh.solanki@9elements.com>,
- Patrick Rudolph <patrick.rudolph@9elements.com>,
- Rob Herring <robh+dt@kernel.org>,
- Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
- Vincent Tremblay <vincent@vtremblay.dev>, devicetree@vger.kernel.org
-References: <20231125222738.97875-1-marex@denx.de>
- <20231125222738.97875-2-marex@denx.de> <ZWTAEWRreMir7x_T@smile.fi.intel.com>
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <ZWTAEWRreMir7x_T@smile.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+X-B4-Tracking: v=1; b=H4sIAOUFZWUC/x2N0QqDMAwAf0XyvMDaiZX9ythDWzMN2HYkKIL47
+ wt7vIPjTlASJoVnd4LQzsqtGrhbB3mJdSbkyRj83T+c8wFTj1yOgHsU1FZwboXQhTAOrqdhnDJ
+ YmqISJok1LxbXbV1NfoU+fPxfr/d1/QAZK/gMewAAAA==
+To: Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, 
+ Li Yang <leoyang.li@nxp.com>
+Cc: linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>, 
+ linux-arm-kernel@lists.infradead.org, Roland Hieber <rhi@pengutronix.de>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ Marco Felsch <m.felsch@pengutronix.de>, 
+ Michael Tretter <m.tretter@pengutronix.de>
+X-Mailer: b4 0.12.0
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: auto@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On 11/27/23 17:13, Andy Shevchenko wrote:
-> On Sat, Nov 25, 2023 at 11:26:23PM +0100, Marek Vasut wrote:
->> The ISL76682 is very basic ALS which only supports ALS or IR mode
->> in four ranges, 1k/4k/16k/64k LUX. There is no IRQ support or any
->> other fancy functionality.
-> 
-> ...
-> 
->> +	for (i = 0; i < ARRAY_SIZE(isl76682_range_table); i++) {
->> +		if (chan->type == IIO_LIGHT && val2 != isl76682_range_table[i].als)
->> +				continue;
->> +		if (chan->type == IIO_INTENSITY && val2 != isl76682_range_table[i].ir)
->> +				continue;
-> 
-> You forgot to drop indentation level for 'continue' lines.
+This series aims to add initial support for the Gossen Metrawatt
+Profitest MF board (internally known as e143_01), as well as the
+Variscite VAR-SOM-MX7 System on Module that it is based on.
 
-I noticed that too and already fixed it in v6 .
+The resulting device tree has been dt-schema-validated, and the
+necessary fixes have been submitted in the following patch series:
+
+http://lore.kernel.org/r/20231127-b4-dt-bindings-serial-v1-1-422a198fd91a@pengutronix.de
+http://lore.kernel.org/r/20231127-b4-dt-bindings-mxsfb-v1-1-922e4e71c838@pengutronix.de
+http://lore.kernel.org/r/20231127-b4-dt-bindings-timer-v1-1-e06bd6b2370b@pengutronix.de
+http://lore.kernel.org/r/20231127-b4-imx7-dt-v1-1-6ecbd0471cc4@pengutronix.de
+
+It builds on top of this series adding MIPI-DSI support to i.MX7:
+
+http://lore.kernel.org/r/20231127-b4-imx7-mipi-dsi-v1-0-7d22eee70c67@pengutronix.de
+
+Signed-off-by: Roland Hieber <rhi@pengutronix.de>
+---
+Marco Felsch (2):
+      ARM: dts: add Variscite VAR-SOM-MX7 System on Module
+      ARM: dts: add support for Gossen Metrawatt Profitest
+
+Philipp Zabel (3):
+      dt-bindings: at24: add ROHM BR24G04
+      dt-bindings: vendor-prefixes: add Gossen Metrawatt
+      ARM: dts: imx7d-pinfunc: add mux for OSC32K_32K_OUT via GPIO1_IO03
+
+ Documentation/devicetree/bindings/arm/fsl.yaml     |   7 +
+ Documentation/devicetree/bindings/eeprom/at24.yaml |   1 +
+ .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
+ arch/arm/boot/dts/nxp/imx/Makefile                 |   1 +
+ arch/arm/boot/dts/nxp/imx/imx7d-gome-e143_01.dts   | 559 +++++++++++++++++++
+ arch/arm/boot/dts/nxp/imx/imx7d-pinfunc.h          |   1 +
+ arch/arm/boot/dts/nxp/imx/imx7d-var-som-mx7.dtsi   | 607 +++++++++++++++++++++
+ 7 files changed, 1178 insertions(+)
+---
+base-commit: 2cc14f52aeb78ce3f29677c2de1f06c0e91471ab
+change-id: 20231127-b4-imx7-var-som-gome-1778614e68dc
+
+Best regards,
+-- 
+Roland Hieber, Pengutronix e.K.          | rhi@pengutronix.de          |
+Steuerwalder Str. 21                     | https://www.pengutronix.de/ |
+31137 Hildesheim, Germany                | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686         | Fax:   +49-5121-206917-5555 |
+
 
