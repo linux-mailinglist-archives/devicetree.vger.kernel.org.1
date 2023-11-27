@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-19081-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19082-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19C2F7F9AA1
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 08:18:17 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D51A7F9AC8
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 08:21:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B9E61280CA0
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 07:18:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8E8D11C204F6
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 07:21:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0001DFC05;
-	Mon, 27 Nov 2023 07:18:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2022EFC17;
+	Mon, 27 Nov 2023 07:21:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Q5PkZdgm"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iE0nblJ0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFE84C3
-	for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 23:18:09 -0800 (PST)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-a013d22effcso520487666b.2
-        for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 23:18:09 -0800 (PST)
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59A6C182
+	for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 23:21:26 -0800 (PST)
+Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-a0b7f793b8aso196123866b.2
+        for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 23:21:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701069488; x=1701674288; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701069685; x=1701674485; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZTO6z8CT5mDY+MC5WnhF2YX8xdCH3UJwKLvS9guIClQ=;
-        b=Q5PkZdgmLQ3AdY2tTyrDmFUBCrbOT0vWG7MHodMXcvWCTUmADx2CKZcMpGpJqdJppJ
-         XmoZLqkdiWpJqYjqZTfBsl4yTEa2sG440RTjbQ1Bx9c2xlshPC1WG9ae5y9TTXvTSxw+
-         EIrBS9c981tJq0hh9bjDBD3ENp7c8K6pmQuckQ1Mm8QDvhnBJvzLnna8eoJLwYpQX9IL
-         DsCZTJPzLdSPwSU4+CWTTge3wgCFm7VN6H+jdo1P+V2BlRUzFpFXtt8gQrnjsqEIo5gs
-         mbTNoJ65d2/pf36MKCw2GdlcAnG4VczDn/pGYfM869H4gtItnrQDXOFX5gamgZhmerjZ
-         ZcaQ==
+        bh=T6S1s40sWViYLu6oL2nXqBoaND9tOpYGaBtg6/tr1Es=;
+        b=iE0nblJ0CpTKwSyQ3W/UxQtehZKtgGrCkIkthfyr6s70mn2yYJfwiItAFRQX+i07K8
+         tHx3LPGpzNgGeS8vWcZgD8ALEsk/anO7wUnBQqh6FDYm8CuiGckYYSCIUz4Xdm/LENAs
+         hnzE8sXpQ2w6ohWkgC6kYH2XxxuFhOi5OyEb3Ti291YSD2+BtR1D5GyNvPsYsJXwqffD
+         2UixqDLJBu7hJDeWxqEAJbF3I4AncZhc9BlZw3nGBMBC4ob0OXoMiq/fyX/dQJtd3mKG
+         hMOKk8qcQ1whODpQZoECeir8raudW5aPDSHZHS73ueBcMHUfEGuc6Aruk0Vmt7ZW3Cti
+         s7kA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701069488; x=1701674288;
+        d=1e100.net; s=20230601; t=1701069685; x=1701674485;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZTO6z8CT5mDY+MC5WnhF2YX8xdCH3UJwKLvS9guIClQ=;
-        b=Xn7ZxUtOiOxfgZCe92gAf05390QMVhWyVPL4GIvcm7I6zRD7y17KMpqtoiUAyvPXvv
-         RA77xZMAe5GwHXRNtqgV7bMh4KHjd64flNPf73s5mR/mlQwg3no+hEHtDad6cQaBdIsD
-         Ia1Or7CJC3HdOrbAgMqMdNRbOTI6VHSVGjtRT2tRQ54u4+urR9L4oMEdEHKWx+hRy0Jn
-         kxt0NZOsqoWnkCvTZM9EQXqIhiTAgsymrGN6Gt6ufBwH0/T9xhghljwxRRbP7HnwG/8A
-         2eG7bsPE0ixNDm4fpxHtnA5YzcGAv3MCCUYegaU9ClBtJK+mINT8lhL4BSg4vQNBW5q9
-         yLOA==
-X-Gm-Message-State: AOJu0YwAdsczBGjgrXNlS6/XIr6vxZl7SbdvAvr5xOiNPNU8HwLIhCro
-	0G2gQ/4vdcDPYzfTH2NwExZbHg==
-X-Google-Smtp-Source: AGHT+IFr5gmWUB5HVId9rwFjHEVwaDAhmWnJVrM4ya9f0fz6ls24aq3DMb4mSt8VPHUYt7VkUM26hw==
-X-Received: by 2002:a17:906:33c1:b0:9e7:d1ab:e90b with SMTP id w1-20020a17090633c100b009e7d1abe90bmr6616252eja.19.1701069488381;
-        Sun, 26 Nov 2023 23:18:08 -0800 (PST)
+        bh=T6S1s40sWViYLu6oL2nXqBoaND9tOpYGaBtg6/tr1Es=;
+        b=n1YtSRSv9yfixRF+cjXN+As89CzzQfze+WkN5Pwbr3etsQ2ic4q8NA9DjhOsJhlv3j
+         sBZqcSIXjT2cy6qJ6Ubziu/4oWJKs7Rrzf9o27zAA6T0tDPK5E2tO7hsFXQdSQtK76kw
+         2ZmiuC+6/hwDtTxV2qbY5mIQoo+gDFJr3e+whvst56gP37HatVdbhp5q0NHUJMBeKJSb
+         0EbTNjfsmoBN/3l3cSfCzYbju35Zm6o8Gl0sB5r5z+MguBIz7m8MXytHDynAkFx6GMHl
+         Ed0qGkxctbFfhTWI2ymPqFHSM6gjt2MgVx1yCyIiSU1HYeJCi1sHCOLG0IttpaH/2GEv
+         cHww==
+X-Gm-Message-State: AOJu0YxVxFCg/lZINBbipaO2Tyinm/UBh2vri4OUM/bWCk6kAKlE35ae
+	pDHY8/VYfQHKpFXta2Kp6EM5dA==
+X-Google-Smtp-Source: AGHT+IFcr9ctcVoVNDyfiO9b5IQBOV2ALaTQ1okpUVxrhxJd7WhtzILjh5MFlhdI2NVpwd1+zEifmQ==
+X-Received: by 2002:a17:906:1f02:b0:9ff:a532:b122 with SMTP id w2-20020a1709061f0200b009ffa532b122mr6616259ejj.7.1701069684818;
+        Sun, 26 Nov 2023 23:21:24 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.109])
-        by smtp.gmail.com with ESMTPSA id pw11-20020a17090720ab00b00a0f1025b17asm1064526ejb.130.2023.11.26.23.18.06
+        by smtp.gmail.com with ESMTPSA id kg23-20020a17090776f700b00a04431e5a44sm5416738ejc.16.2023.11.26.23.21.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 26 Nov 2023 23:18:07 -0800 (PST)
-Message-ID: <b8acb02c-f667-45b5-96b0-9f2edb208124@linaro.org>
-Date: Mon, 27 Nov 2023 08:18:05 +0100
+        Sun, 26 Nov 2023 23:21:24 -0800 (PST)
+Message-ID: <0dc24d82-e09d-45bc-98ae-1dfb6318cb96@linaro.org>
+Date: Mon, 27 Nov 2023 08:21:22 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,25 +62,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/6] dt-bindings: tc358775: Add support for tc358765
+Subject: Re: [PATCH 1/2] dt-bindings: phy: mediatek: tphy: add a property for
+ force-mode switch
 Content-Language: en-US
-To: Tony Lindgren <tony@atomide.com>, Andrzej Hajda
- <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>,
- Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Simha BN <simhavcs@gmail.com>
-Cc: Carl Philipp Klemm <philipp@uvos.xyz>,
- Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>,
- Merlijn Wajer <merlijn@wizzup.org>, Pavel Machek <pavel@ucw.cz>,
- Sebastian Reichel <sre@kernel.org>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org
-References: <20231126163247.10131-1-tony@atomide.com>
+To: Macpaul Lin <macpaul.lin@mediatek.com>,
+ Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, "Bear.Wang" <bear.wang@mediatek.com>,
+ Pablo Sun <pablo.sun@mediatek.com>
+References: <20231125012303.760-1-chunfeng.yun@mediatek.com>
+ <e34c2746-8e93-48b8-9c96-690242fbf6e9@linaro.org>
+ <239def9b-437b-9211-7844-af4332651df0@mediatek.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -126,16 +124,103 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231126163247.10131-1-tony@atomide.com>
+In-Reply-To: <239def9b-437b-9211-7844-af4332651df0@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 26/11/2023 17:32, Tony Lindgren wrote:
-> The tc358765 is similar to tc358775 except for the stdby-gpios.
+On 27/11/2023 08:09, Macpaul Lin wrote:
+> On 11/25/23 18:37, Krzysztof Kozlowski and Chunfeng Yun wrote:
+>> 	
+>>
+>> External email : Please do not click links or open attachments until you 
+>> have verified the sender or the content.
+>>
+>> On 25/11/2023 02:23, Chunfeng Yun wrote:
+>>> Due to some old SoCs with shared t-phy only support force-mode switch, and
+>>> can't use compatible to distinguish between shared and non-shared t-phy,
+>>> add a property to supported it.
+>>> But now prefer to use "mediatek,syscon-type" on new SoC as far as possible.
+>>>
+>>> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+>>> ---
+>>>  Documentation/devicetree/bindings/phy/mediatek,tphy.yaml | 6 ++++++
+>>>  1 file changed, 6 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml b/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
+>>> index 2bb91542e984..eedba5b7025e 100644
+>>> --- a/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
+>>> +++ b/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
+>>> @@ -235,6 +235,12 @@ patternProperties:
+>>>            Specify the flag to enable BC1.2 if support it
+>>>          type: boolean
+>>>  
+>>> +      mediatek,force-mode:
+>>> +        description:
+>>> +          Use force mode to switch shared phy mode, perfer to use the bellow
+>>
+>> I still do not understand what is the "force mode" you want to use. What
+>> modes do you have? What are the characteristics of force mode?
+>>
+>> Also, please run spellcheck.
+>>
+>> Best regards,
+>> Krzysztof
+>>
 > 
+> Thanks!
+> 
+> 1. I've tested this patch and it could solve the clock unstable for
+> XHCI1 on mt8195 or mt8395 during system boot up or during
+> unload/reload the phy driver.
+> 
+> The error message has been listed as follows.
+> 
+> [   13.849936][   T72] xhci-mtk 11290000.usb: supply vbus not found, 
+> using dummy regulator
+> [   13.851300][   T72] xhci-mtk 11290000.usb: uwk - reg:0x400, version:104
+> [   13.852624][   T72] xhci-mtk 11290000.usb: xHCI Host Controller
+> [   13.853393][   T72] xhci-mtk 11290000.usb: new USB bus registered, 
+> assigned bus number 3
+> [   13.874490][   T72] xhci-mtk 11290000.usb: clocks are not stable (0x3d0f)
+> [   13.875369][   T72] xhci-mtk 11290000.usb: can't setup: -110
+> [   13.876091][   T72] xhci-mtk 11290000.usb: USB bus 3 deregistered
+> [   13.877081][   T72] xhci-mtk: probe of 11290000.usb failed with error 
+> -110
+> 
+> 2. This is a fix patch to XHCI1 since MT8195 has been upstream.
+> Please add "Fixes:" tags and "Cc: stable@kernel.org" to back ward
+> porting to previous stable trees.
+> 
+> For example, add
+> Fixes: 6b5ef194611e5 ("phy: mediatek: tphy: remove macros to prepare 
+> bitfield")
+> is suggested since the force-mode was missing in the previous
+> implementation which causes hardware function was abnormal.
+> However, add
+> Fixes: 33d18746fa514 ("phy: phy-mtk-tphy: use new io helpers to access 
+> register")
+> will be better since the USB support for mt8195 is already enabled in 
+> late 2021.
+> 
+> 3. How about we revise the description as follows for more precisely?
+> 
+> mediatek,force-mode:
+>    description:
+>      The force mode is used to manually switch the shared PHY mode
+>      between USB and PCIe. When force-mode is set, the USB 3.0 mode
+>      will be selected. This is typically required for older SoCs
+>      that do not automatically manage PHY mode switching.
+>      For newer SoCs that support it, it is preferable to use the
+>      "mediatek,syscon-type" property instead.
+>    type: boolean
 
+Again, what is force-mode? It looks like you wrote bindings for the
+driver behavior. Bindings describe hardware, not how the driver should
+behave. The property might be reasonable, but you must describe here
+hardware characteristics/issue/etc.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Also, your driver change suggests this is compatible specific, so why it
+cannot be deduced from compatible?
 
 Best regards,
 Krzysztof
