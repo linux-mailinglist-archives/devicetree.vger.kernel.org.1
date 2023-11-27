@@ -1,153 +1,244 @@
-Return-Path: <devicetree+bounces-19181-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19182-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77B0A7F9EF0
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 12:49:33 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 288B77F9F1C
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 12:56:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A99181C20D04
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 11:49:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4BE2D1C20AA1
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 11:55:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9BBB1A71C;
-	Mon, 27 Nov 2023 11:49:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF1C31B27F;
+	Mon, 27 Nov 2023 11:55:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="jWS0lV+z"
+	dkim=pass (2048-bit key) header.d=debian.org header.i=@debian.org header.b="lqLFkr23"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5973101;
-	Mon, 27 Nov 2023 03:49:26 -0800 (PST)
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3ARB3G7R023323;
-	Mon, 27 Nov 2023 11:49:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=oUuLdVyesXk1FBSpoe8O/kpXBhAsMocetEcxPvq3ts4=;
- b=jWS0lV+zkBQBf+bXkaKipIaaycwYTucVNASnd0mYpw3k1Vo6F+7GLEA82Xbj2HnDRhmx
- mQshqioI1OoYMBjvriowTAbA4v9y/3RrOnxF2C3B4NbOflKViejGz+m+jsEVcqNatCRw
- 28bYTVnymgWGJhZcZm4xRIjhgELYzjbLiACI108MIPiZ+9ciLTadjhiIX2nsUcEu2Fs4
- NfJ8rUWqEeFSBlCNFFWuzUU0qTvWQjxM82WqZ/bq1UXs233Cp+v/nfwqH5Qlp3qZMvEs
- TnrbiK4Kue8hC6J8KxQXBy4xjPJXTxzT8GlxITUjwbsJu0ey1D5mgi020Gan40RMI4wK jg== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uk9adm17p-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 27 Nov 2023 11:49:15 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3ARBnEat016991
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 27 Nov 2023 11:49:14 GMT
-Received: from [10.217.219.216] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 27 Nov
- 2023 03:49:08 -0800
-Message-ID: <1341f3d2-f20f-af2b-fd6e-bfe63a32630f@quicinc.com>
-Date: Mon, 27 Nov 2023 17:19:05 +0530
+Received: from stravinsky.debian.org (stravinsky.debian.org [IPv6:2001:41b8:202:deb::311:108])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 293648F;
+	Mon, 27 Nov 2023 03:55:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=debian.org;
+	s=smtpauto.stravinsky; h=X-Debian-User:In-Reply-To:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description;
+	bh=2GRltP4Rr3L5riZZSXtiFRtgLW87kbnv/sr2hXRDfq4=; b=lqLFkr23rJuB9oajngA5aisE/n
+	5CoO+kFXIGE9qZvNFV5wEYE86hUc9lCYYj7Tcs/dzCtbB/cr4WHiH3oSuq6uxM7sEqIHyqhzhjJ8W
+	HcxXh1bXc3u1PWsdhoP3I9X5SCdQX77wJRKZxiBLGGAQPggea/mkhiYXy08MgfzhBaqcGEBdakxzW
+	IFkMXiFJUUvOlPbJvUP39Qxd/SjjDYgkjLN8axtpH5AfIpPKLoIyl8va/X9XQQm4URavkDMzYN4s1
+	Asmv8fer3FJoy5Kacm1sI4jZaoyCQjpXASPNB8i+GdVgZpXHDkOuP0oXji9hV2i2W24/3IvEowKAV
+	fYs/O4HA==;
+Received: from authenticated user
+	by stravinsky.debian.org with esmtpsa (TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
+	(Exim 4.94.2)
+	(envelope-from <kibi@debian.org>)
+	id 1r7aDE-00A9Ih-Hr; Mon, 27 Nov 2023 11:55:41 +0000
+Date: Mon, 27 Nov 2023 12:55:38 +0100
+From: Cyril Brulebois <kibi@debian.org>
+To: Stefan Wahren <wahrenst@gmx.net>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Mathias Nyman <mathias.nyman@intel.com>,
+	bcm-kernel-feedback-list@broadcom.com, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 0/3] ARM: dts: bcm2711-rpi-cm4-io: Enable xHCI host
+Message-ID: <20231127115538.npv23hhn7jfrk3fc@mraw.org>
+Organization: Debian
+References: <20231126025612.12522-1-wahrenst@gmx.net>
+ <20231127003432.7aztwjxper2a3o33@mraw.org>
+ <b1156fee-aa43-43b3-bb03-baaac49575f4@gmx.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.1
-Subject: Re: [PATCH v2 1/3] dt-bindings: phy: qcom,qmp: Add PCIe
- qcom,refclk-always-on property
-Content-Language: en-US
-To: Conor Dooley <conor@kernel.org>,
-        Dmitry Baryshkov
-	<dmitry.baryshkov@linaro.org>
-CC: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quic_vbadigan@quicinc.com>,
-        <quic_ramkri@quicinc.com>, <quic_nitegupt@quicinc.com>,
-        <quic_skananth@quicinc.com>, <quic_vpernami@quicinc.com>,
-        <quic_parass@quicinc.com>
-References: <20231107-refclk_always_on-v2-0-de23962fc4b3@quicinc.com>
- <20231107-refclk_always_on-v2-1-de23962fc4b3@quicinc.com>
- <CAA8EJpqvCJsft3Y-m2ZYORBg=6P7EhT-PsCSkuQ4xaxuf3KOwA@mail.gmail.com>
- <20231108-surgical-yelling-7314b68c0289@spud>
-From: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
-In-Reply-To: <20231108-surgical-yelling-7314b68c0289@spud>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: oB4cY0b_PFjbrYAkkiRiYVDtEAB4y0-X
-X-Proofpoint-GUID: oB4cY0b_PFjbrYAkkiRiYVDtEAB4y0-X
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-27_09,2023-11-27_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 mlxscore=0
- clxscore=1011 priorityscore=1501 malwarescore=0 lowpriorityscore=0
- phishscore=0 bulkscore=0 mlxlogscore=999 adultscore=0 impostorscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311060000 definitions=main-2311270080
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="5uc5qthx4vce3b2r"
+Content-Disposition: inline
+In-Reply-To: <b1156fee-aa43-43b3-bb03-baaac49575f4@gmx.net>
+X-Debian-User: kibi
 
 
-On 11/8/2023 9:22 PM, Conor Dooley wrote:
-> On Tue, Nov 07, 2023 at 03:01:47PM +0200, Dmitry Baryshkov wrote:
->> On Tue, 7 Nov 2023 at 14:26, Krishna chaitanya chundru
->> <quic_krichai@quicinc.com> wrote:
->>> Document qcom,refclk-always-on property which is needed in some platforms
->>> to supply refclk even in PCIe low power states.
->>>
->>> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
->>> ---
->>>   .../devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml        | 7 +++++++
->>>   1 file changed, 7 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
->>> index 2c3d6553a7ba..263291447a5b 100644
->>> --- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
->>> +++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
->>> @@ -93,6 +93,13 @@ properties:
->>>     "#phy-cells":
->>>       const: 0
->>>
->>> +  qcom,refclk-always-on:
->>> +    type: boolean
->>> +    description: If there is some issues in platform with clkreq signal
->> nit: there are some
->>
->> However this still doesn't describe what kind of issues with clkreq
->> you observe. I mean, clkreq is just a GPIO pin.
->>
->>> +      propagation to the host and due to that host will not send refclk, which
->>> +      results in linkdown in L1.2 or L1.1 exit initiated by EP. This property
->>> +      if set keeps refclk always on even in Low power states (optional).
-> Dimitry's issues with the property aside, putting "(optional)" in the
-> description is meaningless - qcom,refclk-always-on isn't listed in the
-> required properties section, so therefore has to be optional.
->
-> Cheers,
-> Conor.
+--5uc5qthx4vce3b2r
+Content-Type: multipart/mixed; boundary="ys2p3o3qlbkot5o6"
+Content-Disposition: inline
 
-I removed the optional flag and updated the description.
 
-- Krishna chaitanya.
+--ys2p3o3qlbkot5o6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
->>> +
->>>   required:
->>>     - compatible
->>>     - reg
->>>
->>> --
->>> 2.42.0
->>>
->>>
->>
->> -- 
->> With best wishes
->> Dmitry
+Hi Stefan,
+
+Stefan Wahren <wahrenst@gmx.net> (2023-11-27):
+> thanks for testing. Are you absolutely sure that you are using
+> bcm2711-rpi-cm4-io.dtb from the mainline tree?
+
+I'm pretty sure, yes.
+
+Starting from the unpatched kernel:
+
+    root@rpi4-20231108:~# md5sum /boot/firmware/bcm2711-rpi-cm4-io.dtb /usr=
+/lib/linux-image-6.6.0+/broadcom/bcm2711-rpi-cm4-io.dtb
+    5cbe07e9f85ddfefd21ffe98bf92f5ea  /boot/firmware/bcm2711-rpi-cm4-io.dtb
+    5cbe07e9f85ddfefd21ffe98bf92f5ea  /usr/lib/linux-image-6.6.0+/broadcom/=
+bcm2711-rpi-cm4-io.dtb
+
+The second file is shipped by the linux-image package built via `make
+bindeb-pkg`, and sync'd into /boot/firmware as the first one.
+
+After deploying the patched kernel, I'm seeing both files getting
+updated:
+
+    root@rpi4-20231108:~# md5sum /boot/firmware/bcm2711-rpi-cm4-io.dtb /usr=
+/lib/linux-image-6.6.0+/broadcom/bcm2711-rpi-cm4-io.dtb
+    c6ea63f43dcdf8ecd66dda6c494f52e2  /boot/firmware/bcm2711-rpi-cm4-io.dtb
+    c6ea63f43dcdf8ecd66dda6c494f52e2  /usr/lib/linux-image-6.6.0+/broadcom/=
+bcm2711-rpi-cm4-io.dtb
+
+Comparing a copy of the first set of files against the refreshed DTB,
+I'm seeing the attached (dt)diff.
+
+> I would expect the following hardware name: Raspberry Pi Compute
+> Module 4 IO Board
+
+I suppose this is an arm(32) vs. arm64 difference?
+
+ - setup_arch() in arch/arm/kernel/setup.c does this:
+
+        machine_desc =3D mdesc;
+        machine_name =3D mdesc->name;
+        dump_stack_set_arch_desc("%s", mdesc->name);
+
+ - setup_machine_fdt() in arch/arm64/kernel/setup.c does that:
+
+        name =3D of_flat_dt_get_machine_name();
+        if (!name)
+                return;
+
+        pr_info("Machine model: %s\n", name);
+        dump_stack_set_arch_desc("%s (DT)", name);
+
+So I'd guess you're testing on arm(32) and seeing the name embedded in
+the DTB while I'm testing on arm64 and seeing the name as filled by the
+bootloader?
+
+> Be aware the arm files has been moved into a broadcom subdirectory.
+
+Thanks for mentioning that, but I've been working on arm64 exclusively,
+and those files have always been shipped in that broadcom subdirectory
+anyway.
+
+With 64-bit capable hardware, I didn't think of mentioning I was testing
+64-bit kernel and user space (Debian 12, arm64), sorry about that.
+
+
+Cheers,
+--=20
+Cyril Brulebois (kibi@debian.org)            <https://debamax.com/>
+D-I release manager -- Release team member -- Freelance Consultant
+
+--ys2p3o3qlbkot5o6
+Content-Type: text/x-diff; charset=us-ascii
+Content-Disposition: attachment; filename="bcm2711-rpi-cm4-io.dtb.diff"
+Content-Transfer-Encoding: quoted-printable
+
+--- /dev/fd/63	2023-11-27 11:39:50.018176449 +0000
++++ /dev/fd/62	2023-11-27 11:39:50.018176449 +0000
+@@ -183,6 +183,7 @@
+ 		vchiq =3D "/soc/mailbox@7e00b840";
+ 		vec =3D "/soc/vec@7ec13000";
+ 		wifi_pwrseq =3D "/wifi-pwrseq";
++		xhci =3D "/scb/usb@7e9c0000";
+ 	};
+=20
+ 	aliases {
+@@ -351,14 +352,14 @@
+=20
+ 	leds {
+ 		compatible =3D "gpio-leds";
+-		phandle =3D <0xad>;
++		phandle =3D <0xae>;
+=20
+ 		led-act {
+ 			default-state =3D "keep";
+ 			gpios =3D <0x06 0x2a 0x00>;
+ 			label =3D "ACT";
+ 			linux,default-trigger =3D "heartbeat";
+-			phandle =3D <0xae>;
++			phandle =3D <0xaf>;
+ 		};
+=20
+ 		led-pwr {
+@@ -467,7 +468,7 @@
+ 			clocks =3D <0x11 0x05>;
+ 			compatible =3D "brcm,2711-v3d";
+ 			interrupts =3D <0x00 0x4a 0x04>;
+-			phandle =3D <0xac>;
++			phandle =3D <0xad>;
+ 			power-domains =3D <0x27 0x01>;
+ 			reg =3D <0x00 0x7ec00000 0x4000 0x00 0x7ec04000 0x4000>;
+ 			reg-names =3D "hub\0core0";
+@@ -492,6 +493,17 @@
+ 			ranges =3D <0x2000000 0x00 0xf8000000 0x06 0x00 0x00 0x4000000>;
+ 			reg =3D <0x00 0x7d500000 0x9310>;
+ 		};
++
++		usb@7e9c0000 {
++			#address-cells =3D <0x01>;
++			#size-cells =3D <0x00>;
++			compatible =3D "generic-xhci";
++			interrupts =3D <0x00 0xb0 0x04>;
++			phandle =3D <0xac>;
++			power-domains =3D <0x0c 0x06>;
++			reg =3D <0x00 0x7e9c0000 0x100000>;
++			status =3D "okay";
++		};
+ 	};
+=20
+ 	soc {
+@@ -1889,13 +1901,13 @@
+ 			clock-names =3D "otg";
+ 			clocks =3D <0x13>;
+ 			compatible =3D "brcm,bcm2835-usb";
+-			dr_mode =3D "host";
+ 			interrupts =3D <0x00 0x49 0x04>;
+ 			phandle =3D <0x8a>;
+ 			phy-names =3D "usb2-phy";
+ 			phys =3D <0x14>;
+ 			power-domains =3D <0x0c 0x06>;
+ 			reg =3D <0x7e980000 0x10000>;
++			status =3D "disabled";
+ 		};
+=20
+ 		vec@7ec13000 {
+
+--ys2p3o3qlbkot5o6--
+
+--5uc5qthx4vce3b2r
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEtg6/KYRFPHDXTPR4/5FK8MKzVSAFAmVkg7YACgkQ/5FK8MKz
+VSAceg//aQH1I8U4rJDWs5wJDrvLE5Q3AeJAxf7XWl1YO7oHpx3xe/+Av0ML8I/B
+RBc7ub497H2jElNb0XOycnPxjNDiLp1Lx5p/Eij16nw+WFoADVQj4HorCRVpRxwo
+zqh2O6B4Lj/BtNoymaI9x963aVMmS9B7QCWjWGZTlG8Q5ws8ArPPr6PzuwP3IqZK
+4h5YZ5oyAWhkHMa/2uLL0vq213hEvjgEKsnrJaJPjEbAo+ThPEw7LRu7SvaMsx8U
+XGWt30x7RxHvGXTCn730ONPGex/UFJ6lejtZqRjsGP0YMVH2LV3fs8R2WHOWHcfD
+4TLv+0jV84UG2SdfmMJTe2dgf2Q+28/7pMqCRdwMO0AqAa8vXyAxjh6/I2n/ivyT
+YA8ZrKGEhLqqAacVglyKV9RM8YGFKw2WaXe2cbS6W5cxUv26g55n5Uk0SgIgR5FQ
+h3YTKcvSmBO0UsaX0vhjZ2v66qagQfFNnNGf+7i8IbU2XAfB3muaTxHv9spf9yT2
+7Q66B/DEZw+dZol8fVaJY6kPwmiCSqeFEKZJis9WTf/5HV6F73Jihn844qA/Zmyj
+3BXViDEOaFeaWR7CsNl+5B32PBDUr+OJsDXdCk0KwnmbANIJGpLgpaTzf5k5Ov20
+c7Zsp3bfm71pmty8qXwN9tObtm3t6mtPJr7ChtY+M6SZU46oXKQ=
+=I2NW
+-----END PGP SIGNATURE-----
+
+--5uc5qthx4vce3b2r--
 
