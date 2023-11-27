@@ -1,122 +1,168 @@
-Return-Path: <devicetree+bounces-19138-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19140-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1FBE7F9D0B
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 11:02:28 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EBC57F9D28
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 11:12:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7CECD28120A
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 10:02:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 50C4B1C20A8E
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 10:12:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6A1B17990;
-	Mon, 27 Nov 2023 10:02:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A5FE1803F;
+	Mon, 27 Nov 2023 10:12:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Ytama7R1"
+	dkim=pass (2048-bit key) header.d=feathertop.org header.i=@feathertop.org header.b="i+tMYLJC";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="B2b6Bm1R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82C1A182
-	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 02:02:19 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-507cd62472dso5106752e87.0
-        for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 02:02:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1701079338; x=1701684138; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XAjnvuy3bIc5fGjb9nb5ctNWWJSrBAlAyEp3sSpRk/w=;
-        b=Ytama7R1uYLBvEJNurbzev+vvVDDdL0TEBv7tUgpCt4yPk3D7sTx9D4AmvlUgs3CHd
-         NsNzGAop4H29rQbLTJWOzKkqt0lhwNsoqSJzDa51iqjd6ZHEYnqfGY/OSx6oTWeaufnO
-         0nFRvWw/5/xiWHzob3WpYAU1xIWgSWVXSRLcY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701079338; x=1701684138;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=XAjnvuy3bIc5fGjb9nb5ctNWWJSrBAlAyEp3sSpRk/w=;
-        b=YIELJIUYMlXIUmuHxj1HZ+GxVqwq6X9RwRCXpQ2y2IRxYOqjRCyjhLMjiMEL8owIzM
-         /aesKdmnVMzhWHQbgU4NHaJekOL8wsIZYHdQTSkAKXxQsjZQUu2hvZErkfwCqVbLiGMA
-         uoT+oHwOl/1zv8nhPhEzim3DkgXsC+kEJSk5bORO0SoFdXzOY2/sE51b5jgK8mxZquVZ
-         1ZBzQP6HyWJerxOLXG6RByZ5sy/oRqEAQ9jLh27aDj0TeDL3skfHmy2V1rvb188nneVr
-         0dyWDnHi1pZGPuVmRfFpT0e12fc/VaLYrutItkSr5EFVD3x8gyIHKGvi1SDQdkhOusZ+
-         Yr3Q==
-X-Gm-Message-State: AOJu0Yw+rvYF/jThH5ulFVQ7gAsGwB7LprB0BFI6Egshs+VeuW2o7yAN
-	OE3wROoOg2rJAVw4UfkNXdBGi/UUtoh7BDu2HxaISw==
-X-Google-Smtp-Source: AGHT+IF0wnC4g6yMuKCAZGpA/zZCG8U/CbU78D4eogjx5O8ynkFaH3hUcJ5lQcoAWF8HMw6ivUX1mBRPScw1wHlbvCM=
-X-Received: by 2002:ac2:532d:0:b0:509:366b:a01c with SMTP id
- f13-20020ac2532d000000b00509366ba01cmr2846168lfh.14.1701079337688; Mon, 27
- Nov 2023 02:02:17 -0800 (PST)
+Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com [66.111.4.28])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E955910A;
+	Mon, 27 Nov 2023 02:12:04 -0800 (PST)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+	by mailout.nyi.internal (Postfix) with ESMTP id 629E15C00AF;
+	Mon, 27 Nov 2023 05:12:04 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute6.internal (MEProxy); Mon, 27 Nov 2023 05:12:04 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=feathertop.org;
+	 h=cc:cc:content-transfer-encoding:content-type:content-type
+	:date:date:from:from:in-reply-to:in-reply-to:message-id
+	:mime-version:references:reply-to:sender:subject:subject:to:to;
+	 s=fm3; t=1701079924; x=1701166324; bh=28QuhMK9GVHX2Z+NvBneJtnv1
+	aX+4y54lRy7QfGLO9c=; b=i+tMYLJCsz1fCVNiTjbB8G+sFnfmkdlL7A/tSOg8M
+	klmEiIJbH4Dyf2V1/Qsn0FV7jxS0Jw6QqsckaeBBpbxoHS1UhWJb709X/v1uNpmq
+	V0nuG668VjbE0xoiscZn9UomWEfoz3R58yQ9oIftT2ki9xsomooDoFlsoyzBkyJ+
+	Cvn+ENZAqLVRzqUF299QZ/PbtTOC7QNDGKhqywLNF6SzhPKH1hyldH5BrtEUmdUs
+	hS49iqLS7EaUOQseWrkgJTI+0chdYmtfU/9TcwNGCzfuMYeIJqoL/Pz3QkxKB1e0
+	8DJdvPK/RVwBn6KdBXxe77c5Rx5B9rEkTcxo+7CtO8nQA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:sender:subject:subject:to:to:x-me-proxy
+	:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=
+	1701079924; x=1701166324; bh=28QuhMK9GVHX2Z+NvBneJtnv1aX+4y54lRy
+	7QfGLO9c=; b=B2b6Bm1RDl3w/VSr2E/9+ZeA1NrYiUOwbI4sVCFcqWIdYvunCQo
+	HARPrAl7NeOBq9CAgo4z02U7lm98YCm75N8BwSC7sFWCE0/btv1e/n3x3zqh0/9l
+	Uzf4vQjeCY+/aNPEjyWlNrxbN9SMpR9hf0pUy26cF5J1immTl03KSvvIe6deufp7
+	3DOsxb96z+2PjYcNJvjbQfmORvx9FgcuSbpVcR4AcrdJQvDzlqJzZCU3zo9InEmZ
+	V6uROjtWaE8z1yFSJGXaEL0k8nUz1ya3xUfkZ+6xEneLUmfQjd45oyYLEjz/UUoX
+	mdMgdQdB9NhKFR0xiRDcPnGSId0ZYo+MX/A==
+X-ME-Sender: <xms:dGtkZXvt_lu42vwK-DdQzrMNhNE019tHig2q_EumY-dSwvMwDb6P2Q>
+    <xme:dGtkZYe7QRT5qxGs0Z8HqAtuKRsFmr5Bkx-ICAlZ0JoExOpIbrMF9rWjHJKiW5Drx
+    Q9LKeD6pg>
+X-ME-Received: <xmr:dGtkZax6TJgsAco6gcq6HuBrlkqIe81HilaR-zVwtrIssIvD7Pc6VVP3xEy9VRMGcgFdhr73TL0G4ldcCQx4F7yuRxYKZVogXvwMQw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrudeiuddguddvucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepkfffgggfuffvvehfhfgjtgfgsehtkeertddtvdejnecuhfhrohhmpefvihhm
+    ucfnuhhnnhcuoehtihhmsehfvggrthhhvghrthhophdrohhrgheqnecuggftrfgrthhtvg
+    hrnhepueegfefgveeuiedtheffgfefveejkeetiefhhfdvjeevlefhueekudeuleeghfek
+    necuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepthhimh
+    esfhgvrghthhgvrhhtohhprdhorhhg
+X-ME-Proxy: <xmx:dGtkZWMvOhI3yos1B1UGvIaKM4E5b5d1e5A2wj1iQnWKdrrroWi0iw>
+    <xmx:dGtkZX_j4M5pkrqNtXGiubRVZ5z2FnYzOV98CcVS__-KwInlQxoLUw>
+    <xmx:dGtkZWWTH3788f3CJe3a_P3z25wNYmp0KwaaROAhFJ6BtF4GcBEjag>
+    <xmx:dGtkZTRm_5FvNfh2phWy9lxNym8j1deMwtLwloT6YWUYgdDbAH1z1g>
+Feedback-ID: i1f8241ce:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 27 Nov 2023 05:11:59 -0500 (EST)
+Message-ID: <69e4609d-689d-4f03-b5f7-d3563ace185b@feathertop.org>
+Date: Mon, 27 Nov 2023 21:11:57 +1100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231127081511.1911706-1-lukasz.luba@arm.com>
-In-Reply-To: <20231127081511.1911706-1-lukasz.luba@arm.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Mon, 27 Nov 2023 18:02:06 +0800
-Message-ID: <CAGXv+5EgDk2B_FYo9hNiLVogq+mww1j140W4hsDhywExzgpf2g@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: rockchip: Add dynamic-power-coefficient to
- rk3399 GPU
-To: Lukasz Luba <lukasz.luba@arm.com>
-Cc: linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de, 
-	conor+dt@kernel.org, daniel.lezcano@linaro.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/9] i2c: rk3x: Adjust offset for i2c2 on rv1126
+Content-Language: en-US
+To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+ Andi Shyti <andi.shyti@kernel.org>
+Cc: linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+ Jagan Teki <jagan@edgeble.ai>, Rob Herring <robh+dt@kernel.org>,
+ linux-arm-kernel@lists.infradead.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-i2c@vger.kernel.org
+References: <20231122122232.952696-1-tim@feathertop.org>
+ <20231122122232.952696-4-tim@feathertop.org>
+ <20231126194311.jxkvz3kqgsbzfgek@zenone.zhora.eu> <4717511.tIAgqjz4sF@diego>
+From: Tim Lunn <tim@feathertop.org>
+In-Reply-To: <4717511.tIAgqjz4sF@diego>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Mon, Nov 27, 2023 at 4:14=E2=80=AFPM Lukasz Luba <lukasz.luba@arm.com> w=
-rote:
+
+On 11/27/23 11:26, Heiko Stübner wrote:
+> Hi Andi,
 >
-> Add dynamic-power-coefficient to the GPU node. That will create Energy
-> Model for the GPU based on the coefficient and OPP table information.
-> It will enable mechanism such as DTMP or IPA to work with the GPU DVFS.
-> In similar way the Energy Model for CPUs in rk3399 is created, so both
-> are aligned in power scale. The maximum power used from this coefficient
-> is 1.5W at 600MHz.
+> Am Sonntag, 26. November 2023, 20:43:11 CET schrieb Andi Shyti:
+>> Hi Tim,
+>>
+>> On Wed, Nov 22, 2023 at 11:22:26PM +1100, Tim Lunn wrote:
+>>> Rockchip RV1126 has special case mask bits for i2c2.
+>>>
+>>> i2c2 wasnt previously enabled in rv1126.dtsi, adding DT node alone
+>>> is not sufficient to enable i2c2. This patch fixes the i2c2 bus.
+>> If I don't have sufficient information about the hardware this
+>> description is completely meaningless to me.
+>>
+>>> Signed-off-by: Tim Lunn <tim@feathertop.org>
+>>> ---
+>>>
+>>> Changes in v2:
+>>> - i2c: clarify commit message
+>>>
+>>>   drivers/i2c/busses/i2c-rk3x.c | 7 +++++--
+>>>   1 file changed, 5 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/drivers/i2c/busses/i2c-rk3x.c b/drivers/i2c/busses/i2c-rk3x.c
+>>> index a044ca0c35a1..151927466d1d 100644
+>>> --- a/drivers/i2c/busses/i2c-rk3x.c
+>>> +++ b/drivers/i2c/busses/i2c-rk3x.c
+>>> @@ -1288,8 +1288,11 @@ static int rk3x_i2c_probe(struct platform_device *pdev)
+>>>   			return -EINVAL;
+>>>   		}
+>>>   
+>>> -		/* 27+i: write mask, 11+i: value */
+>>> -		value = BIT(27 + bus_nr) | BIT(11 + bus_nr);
+>>> +		if (i2c->soc_data == &rv1126_soc_data && bus_nr == 2)
+>>> +			value = BIT(20) | BIT(4);
+>> Any chance to put a comment here as it is in the other
+>> assignment?
+>>
+>> Are the two assignment mutually exclusive?
+Yes they are mutually exclusive, and its only i2c2 that is 
+non-sequential (as per Heikos description below).
+>>
+>> Heiko, any chance to take a look here?
+> So the background is, that on some SoCs Rockchip implemented to
+> different variants for the i2c controller. One new-style controller
+> that they started using in rk3066 and are using even today.
 >
-> Signed-off-by: Lukasz Luba <lukasz.luba@arm.com>
-> ---
->  arch/arm64/boot/dts/rockchip/rk3399.dtsi | 1 +
->  1 file changed, 1 insertion(+)
+> For these old socs they kept the "old" controller block as a sort
+> of fallback if the new thing didn't work out, and the bit above is
+> switching between the
 >
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/d=
-ts/rockchip/rk3399.dtsi
-> index 9da0b6d77c8d..87cfdf570b19 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-> @@ -2113,6 +2113,7 @@ gpu: gpu@ff9a0000 {
->                 interrupt-names =3D "job", "mmu", "gpu";
->                 clocks =3D <&cru ACLK_GPU>;
->                 #cooling-cells =3D <2>;
-> +               dynamic-power-coefficient =3D <2640>;
-
-For reference, in the ChromeOS downstrean v5.10 kernel we have:
-
-gpu_power_model: power_model {
-        compatible =3D "arm,mali-simple-power-model";
-        static-coefficient =3D <411522>;
-        dynamic-coefficient =3D <977>;
-        ts =3D <32000 4700 (-80) 2>;
-        thermal-zone =3D "gpu";
-};
-
-This is for the Mali kbase.
-
-ChenYu
-
->                 power-domains =3D <&power RK3399_PD_GPU>;
->                 status =3D "disabled";
->         };
-> --
-> 2.25.1
+> Hence that is limited to rk3066, rk3188 and seemingly the rv1126.
+> And while the bits controlling the i2c controllers on the original socs
+> are order sequentially in the grf register, the rv1126 seems to have
+> those bits in non-consequtive places.
 >
 >
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> So TL;DR the change itself is likely good, and hopefully there won't
+> be any more of those, as all the new socs don't need this anymore.
+rv1108 is also similar but different bits again (only going off the BSP 
+sources).
+I dont have hardware or the TRM to validate this on rv1108.
+>
+> I do agree with the request for a comment describing the issue
+> in the code, but otherwise
+
+I will fix this.
+
+> Acked-by: Heiko Stuebner <heiko@sntech.de>
+>
+>
 
