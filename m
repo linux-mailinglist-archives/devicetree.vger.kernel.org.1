@@ -1,123 +1,120 @@
-Return-Path: <devicetree+bounces-19059-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19060-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA7AD7F989B
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 06:17:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DD1627F98C4
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 06:37:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 06D8F1C20831
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 05:17:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 18EF21C208EB
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 05:37:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B31F35382;
-	Mon, 27 Nov 2023 05:17:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E926653A2;
+	Mon, 27 Nov 2023 05:36:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b="HtMyL3SX"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="lH0u1Jeb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail5.25mail.st (mail5.25mail.st [74.50.62.9])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54AD5D0
-	for <devicetree@vger.kernel.org>; Sun, 26 Nov 2023 21:17:40 -0800 (PST)
-Received: from localhost (91-158-86-216.elisa-laajakaista.fi [91.158.86.216])
-	by mail5.25mail.st (Postfix) with ESMTPSA id B70BA60531;
-	Mon, 27 Nov 2023 05:17:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=atomide.com;
-	s=25mailst; t=1701062259;
-	bh=NcdojB4iPXFnRMSer1A13c9p7bqPNjtZkU2bEsQjc1k=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=HtMyL3SXJ5CZxMW4xaUUGj/baz0bEZEAvkWdqxoBe+0v2QL446oBspJIIDET0mWxq
-	 +xBmwMsWuoQt9fljkxdyiOhTBGioU0goB83f7Gu85THtrHIMAdOUBVz1DFlyIBNvXp
-	 GTrz+/0QTOCz/nMAyrKNl/vmXEo2EXwa8qJgpctApVgDY7KuppfMjNT38eLKEu1sFD
-	 +FHm/e86HJPGZQxLVH7c6/eVpDQYX86bga5qAVg4i++8YWijEeNUruLrrXvL7bg/HK
-	 ABo2K55EQObyJwlbeFgdMzIJWfoawmdPDesmkpTjaSvy6Ofcyi/i8Ky0QDTZzPUVKK
-	 lvM7iW87qfDAA==
-From: Tony Lindgren <tony@atomide.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	Sam Ravnborg <sam@ravnborg.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>
-Cc: Carl Philipp Klemm <philipp@uvos.xyz>,
-	Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>,
-	Merlijn Wajer <merlijn@wizzup.org>,
-	Pavel Machek <pavel@ucw.cz>,
-	Sebastian Reichel <sre@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH 2/2] drm/panel: simple: Add BOE BP101WX1-100 panel
-Date: Mon, 27 Nov 2023 07:15:44 +0200
-Message-ID: <20231127051547.15023-2-tony@atomide.com>
-X-Mailer: git-send-email 2.42.1
-In-Reply-To: <20231127051547.15023-1-tony@atomide.com>
-References: <20231127051547.15023-1-tony@atomide.com>
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CED01BC0;
+	Sun, 26 Nov 2023 21:36:39 -0800 (PST)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AR4FQGw011281;
+	Mon, 27 Nov 2023 05:36:12 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id; s=qcppdkim1;
+ bh=GCPVOVi5g6LysSZSqHHe3W2fDnHZfgK9keTuJB1q5wk=;
+ b=lH0u1Jebzl+vy48uFnKxmgWh8IrF6Z5N52UuYyIUeZ2X60cNb/8WCXcaQh0YK4ZI9jdZ
+ lgZS3sok/0tiqsev3xXQ4g7m7cgwYEBT2PR8LBm2stsYphBYzbwyMHpVPrrETK+gI82E
+ 7h4FdU2RrKXr/FnhQuKdpKyRgUNh+UQerQIWNt5wWQC+5gci0OyE+vsmGj6y/k2zMwDZ
+ wKf7TemsFzsitYXJAOSCnBrCjxvcdSg6OHfCMVpSHXg+g6tdb3X3MN2BrA4MH7n1+QL0
+ OktePYqmIqenl/JIlQKQhIjDIYhGPE886+1qbLK57d2CtPQ1LCeH0EOnSaMFmWkL2OTM gw== 
+Received: from aptaippmta02.qualcomm.com (tpe-colo-wan-fw-bordernet.qualcomm.com [103.229.16.4])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uk9ppk7pe-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 27 Nov 2023 05:36:12 +0000
+Received: from pps.filterd (APTAIPPMTA02.qualcomm.com [127.0.0.1])
+	by APTAIPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 3AR5a9FB023415;
+	Mon, 27 Nov 2023 05:36:09 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APTAIPPMTA02.qualcomm.com (PPS) with ESMTP id 3uka0k9hyh-1;
+	Mon, 27 Nov 2023 05:36:09 +0000
+Received: from APTAIPPMTA02.qualcomm.com (APTAIPPMTA02.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 3AR5a9aT023409;
+	Mon, 27 Nov 2023 05:36:09 GMT
+Received: from cbsp-sh-gv.qualcomm.com (CBSP-SH-gv.ap.qualcomm.com [10.231.249.68])
+	by APTAIPPMTA02.qualcomm.com (PPS) with ESMTP id 3AR5a8Hq023405;
+	Mon, 27 Nov 2023 05:36:09 +0000
+Received: by cbsp-sh-gv.qualcomm.com (Postfix, from userid 393357)
+	id 28F26552F; Mon, 27 Nov 2023 13:36:08 +0800 (CST)
+From: Ziqi Chen <quic_ziqichen@quicinc.com>
+To: quic_asutoshd@quicinc.com, quic_cang@quicinc.com, bvanassche@acm.org,
+        mani@kernel.org, stanley.chu@mediatek.com, adrian.hunter@intel.com,
+        beanhuo@micron.com, avri.altman@wdc.com, junwoo80.lee@samsung.com,
+        martin.petersen@oracle.com, quic_ziqichen@quicinc.com,
+        quic_nguyenb@quicinc.com, quic_nitirawa@quicinc.com
+Cc: linux-scsi@vger.kernel.org, Alim Akhtar <alim.akhtar@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Wolfram Sang <wsa@kernel.org>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+        linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH v3] dt-bindings: ufs: Add msi-parent for UFS MCQ
+Date: Mon, 27 Nov 2023 13:36:02 +0800
+Message-Id: <1701063365-82582-1-git-send-email-quic_ziqichen@quicinc.com>
+X-Mailer: git-send-email 2.7.4
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: gNL2OK04Xe0OSooPseeNyimQDizKgmP3
+X-Proofpoint-GUID: gNL2OK04Xe0OSooPseeNyimQDizKgmP3
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-27_03,2023-11-22_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ phishscore=0 mlxlogscore=949 suspectscore=0 lowpriorityscore=0
+ clxscore=1011 mlxscore=0 bulkscore=0 spamscore=0 adultscore=0
+ malwarescore=0 impostorscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2311060000 definitions=main-2311270038
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 
-This panel is found on Motorola mapphone tablets from mz615 to mz617.
+The Message Signaled Interrupts (MSI) support has been introduced in
+UFSHCI version 4.0 (JESD223E). The MSI is the recommended interrupt
+approach for MCQ. If choose to use MSI, In UFS DT, we need to provide
+msi-parent property that point to the hardware entity which serves as
+the MSI controller for this UFS controller.
 
-Signed-off-by: Tony Lindgren <tony@atomide.com>
+Signed-off-by: Ziqi Chen <quic_ziqichen@quicinc.com>
+
+V2 -> V3: Wrap commit message to meet Linux coding style.
+V1 -> V2: Rebased on Linux 6.7-rc1 and updated the commit message to
+          incorporate the details about when MCQ/MSI got introduced.
 ---
- drivers/gpu/drm/panel/panel-simple.c | 32 ++++++++++++++++++++++++++++
- 1 file changed, 32 insertions(+)
+ Documentation/devicetree/bindings/ufs/ufs-common.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
---- a/drivers/gpu/drm/panel/panel-simple.c
-+++ b/drivers/gpu/drm/panel/panel-simple.c
-@@ -1324,6 +1324,35 @@ static const struct panel_desc bananapi_s070wv20_ct16 = {
- 	},
- };
+diff --git a/Documentation/devicetree/bindings/ufs/ufs-common.yaml b/Documentation/devicetree/bindings/ufs/ufs-common.yaml
+index 985ea8f..31fe7f3 100644
+--- a/Documentation/devicetree/bindings/ufs/ufs-common.yaml
++++ b/Documentation/devicetree/bindings/ufs/ufs-common.yaml
+@@ -87,6 +87,8 @@ properties:
+     description:
+       Specifies max. load that can be drawn from VCCQ2 supply.
  
-+static const struct drm_display_mode boe_bp101wx1_100_mode = {
-+	.clock = 78945,
-+	.hdisplay = 1280,
-+	.hsync_start = 1280 + 0,
-+	.hsync_end = 1280 + 0 + 2,
-+	.htotal = 1280 + 62 + 0 + 2,
-+	.vdisplay = 800,
-+	.vsync_start = 800 + 8,
-+	.vsync_end = 800 + 8 + 2,
-+	.vtotal = 800 + 6 + 8 + 2,
-+};
++  msi-parent: true
 +
-+static const struct panel_desc boe_bp101wx1_100 = {
-+	.modes = &boe_bp101wx1_100_mode,
-+	.num_modes = 1,
-+	.bpc = 8,
-+	.size = {
-+		.width = 217,
-+		.height = 136,
-+	},
-+	.delay = {
-+		.enable = 50,
-+		.disable = 50,
-+	},
-+	.bus_format = MEDIA_BUS_FMT_RGB888_1X7X4_JEIDA,
-+	.bus_flags = DRM_BUS_FLAG_DE_HIGH,
-+	.connector_type = DRM_MODE_CONNECTOR_LVDS,
-+};
-+
- static const struct display_timing boe_ev121wxm_n10_1850_timing = {
- 	.pixelclock = { 69922000, 71000000, 72293000 },
- 	.hactive = { 1280, 1280, 1280 },
-@@ -4252,6 +4281,9 @@ static const struct of_device_id platform_of_match[] = {
- 	}, {
- 		.compatible = "bananapi,s070wv20-ct16",
- 		.data = &bananapi_s070wv20_ct16,
-+	}, {
-+		.compatible = "boe,bp101wx1-100",
-+		.data = &boe_bp101wx1_100,
- 	}, {
- 		.compatible = "boe,ev121wxm-n10-1850",
- 		.data = &boe_ev121wxm_n10_1850,
+ dependencies:
+   freq-table-hz: [ clocks ]
+   operating-points-v2: [ clocks, clock-names ]
 -- 
-2.42.1
+2.7.4
+
 
