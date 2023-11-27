@@ -1,88 +1,77 @@
-Return-Path: <devicetree+bounces-19357-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19358-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F111A7FA85E
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 18:53:30 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FCF17FA866
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 18:55:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A5EC128161F
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 17:53:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A19B01C20B49
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 17:55:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 816F53BB25;
-	Mon, 27 Nov 2023 17:53:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BZZVBa3K"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BE663BB31;
+	Mon, 27 Nov 2023 17:55:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61164746B;
-	Mon, 27 Nov 2023 17:53:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D4F8C433C8;
-	Mon, 27 Nov 2023 17:53:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701107605;
-	bh=26PQ6jwX8FLz7MO9L5/L1UazsxLIswdEKnXCxM6fe80=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BZZVBa3KmUF2kSm/KXK2TZY4BUdbTl6S2ncN6qpvtnIJUJLTnzGyazp1L1tTbPHDA
-	 A49ResrHvhD0BiDD5E4ULWcOWzO6VvMolRZly6IVlfSnYVUTuP0I2HTcXL8yqGuIsv
-	 kg3VvzIvUbs6/YJQoYyqaTWUSS71nD0+mVi5mujYvlLdmSU0Nk4YD1Qjm9sZqR2+/0
-	 UFTg0nYyTxeQfOGgPd93/BGfpXXiPK+r5qLH+SDYe6zgJsZ8KpRquqjxQCzmtaIcjR
-	 cTswsWpjTusPC1Ua8dTMn3l+EVLDk0B/YqtxaDXwz1Jfk2IEN1+qGZCa/WqzxoOZR0
-	 u1UGCDj4F/T2A==
-Date: Mon, 27 Nov 2023 17:53:21 +0000
-From: Conor Dooley <conor@kernel.org>
-To: 579lpy@gmail.com
-Cc: jic23@kernel.org, lars@metafoo.de, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] dt-bindings: iio: humidity: Add TI HDC302x support
-Message-ID: <20231127-jab-retying-f89d4790034a@spud>
-References: <20231125102221.2795-1-579lpy@gmail.com>
- <20231125102749.2876-1-579lpy@gmail.com>
+Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2B0B186;
+	Mon, 27 Nov 2023 09:55:45 -0800 (PST)
+Received: by mail-oi1-f169.google.com with SMTP id 5614622812f47-3b565e35fedso2707974b6e.2;
+        Mon, 27 Nov 2023 09:55:45 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701107745; x=1701712545;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=L26i2R31YBB32RHwf8xEa95wnS6W9yDbV0iLws6hOL4=;
+        b=lPBmqeaDt0FwDc/LjvESwwy2aOFhGyFxjK77KJS39qAFQj4mFkTc+SPkbc3KXUx8sY
+         gc/vRP29LwfWuSwGRPwT7xCjK2NZC/l2Jq5Ddix+BfNoqrsQn2QbdPBjbs4b7XACvnGP
+         YIbq5RraazGc8zb6Xh0LiOt38arM3W9kNRdHD+uZkFnEAHTic5HV8OuRDIwC9WmySM8P
+         tSJo4HLZhZzbtfWU5/uXeyuwJtQ8xCgAe1aiXl8iz4QQzwOTJYiYCuxRgGi4/deYbUpd
+         HAmlcTx6bqVWqFBuOVJAxNVmyo/8wZnT9cw8uZmpcy1jhEQ5trAbgvrPgunzj4nm86GH
+         fniw==
+X-Gm-Message-State: AOJu0YxV9KwKDIaN2CtoVZasDHn7880rztDVoOT6rOwPShX1K2+QEGom
+	wpFvnnHy2Fd+6ELhvaJk5A==
+X-Google-Smtp-Source: AGHT+IHh5PLzpOWFfsx+tNMkyl2NpKyrg0r+4w5u4CMZNruFnsvNEiokfY7omCoyUGIRYIDk8GRdCQ==
+X-Received: by 2002:a05:6808:10ce:b0:3ab:73a6:1469 with SMTP id s14-20020a05680810ce00b003ab73a61469mr18010811ois.14.1701107745157;
+        Mon, 27 Nov 2023 09:55:45 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id eh3-20020a056808274300b003b2e4b72a75sm1551295oib.52.2023.11.27.09.55.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Nov 2023 09:55:44 -0800 (PST)
+Received: (nullmailer pid 1889222 invoked by uid 1000);
+	Mon, 27 Nov 2023 17:55:43 -0000
+Date: Mon, 27 Nov 2023 11:55:43 -0600
+From: Rob Herring <robh@kernel.org>
+To: Sibi Sankar <quic_sibis@quicinc.com>
+Cc: andersson@kernel.org, konrad.dybcio@linaro.org, will@kernel.org, robin.murphy@arm.com, joro@8bytes.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, agross@kernel.org, vkoul@kernel.org, quic_gurus@quicinc.com, quic_rjendra@quicinc.com, abel.vesa@linaro.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org, iommu@lists.linux.dev, quic_tsoni@quicinc.com, neil.armstrong@linaro.org
+Subject: Re: [PATCH V3 5/5] dt-bindings: interrupt-controller: qcom,pdc:
+ document pdc on X1E80100
+Message-ID: <20231127175543.GA1880474-robh@kernel.org>
+References: <20231124100608.29964-1-quic_sibis@quicinc.com>
+ <20231124100608.29964-6-quic_sibis@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="O599d3nNZVKMXShY"
-Content-Disposition: inline
-In-Reply-To: <20231125102749.2876-1-579lpy@gmail.com>
-
-
---O599d3nNZVKMXShY
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20231124100608.29964-6-quic_sibis@quicinc.com>
 
-On Sat, Nov 25, 2023 at 06:27:49PM +0800, 579lpy@gmail.com wrote:
-> From: Li peiyu <579lpy@gmail.com>
->=20
-> Add device tree bindings for HDC3020/HDC3021/HDC3022 humidity and
-> temperature sensors.
->=20
-> Signed-off-by: Li peiyu <579lpy@gmail.com>
+On Fri, Nov 24, 2023 at 03:36:08PM +0530, Sibi Sankar wrote:
+> The X1E80100 SoC includes a PDC, document it.
+> 
+> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+> ---
+> 
+> v3
+> * Rebased to the latest lnext. [Krzysztof]
+> 
+>  .../devicetree/bindings/interrupt-controller/qcom,pdc.yaml       | 1 +
+>  1 file changed, 1 insertion(+)
 
-With Jonathans comments applied:
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-
-Cheers,
-Conor.
-
---O599d3nNZVKMXShY
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZWTXkQAKCRB4tDGHoIJi
-0iDrAP4z9bAGYCtegBn2EG1sz1c4yMq3QvltCyPaq4ivhgWmAgEAqsM5Ks8AzcH+
-kIQl/jwM8oihxnW/Jc5jW074404KagI=
-=yzqp
------END PGP SIGNATURE-----
-
---O599d3nNZVKMXShY--
+Applied, thanks.
 
