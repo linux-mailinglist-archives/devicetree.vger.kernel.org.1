@@ -1,38 +1,38 @@
-Return-Path: <devicetree+bounces-19048-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19049-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A6617F97C2
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 04:00:21 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2894E7F97C6
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 04:05:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C18CFB20A12
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 03:00:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5993A1C20823
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 03:05:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A8521C38;
-	Mon, 27 Nov 2023 03:00:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 268D61FD2;
+	Mon, 27 Nov 2023 03:05:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TLfwvk9n"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WDWy9M8u"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE57917E3
-	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 03:00:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4E18C433C7;
-	Mon, 27 Nov 2023 03:00:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05CBE15CF
+	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 03:05:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 840E5C433C7;
+	Mon, 27 Nov 2023 03:05:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701054014;
-	bh=IkFY8z7tvP3iyBfW1OANk2r9vzoQbd6cRztOmLNq/Mo=;
+	s=k20201202; t=1701054302;
+	bh=cCYR0rsee51S1ewLY/ytk7KdSu8JwC2r/iRiZHtvK1U=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TLfwvk9nvifI6oKgObwHPtw59c+mx1N/IQ0AiiRHaruzRBSwCbcMh7iZD/RcN8+FR
-	 bo4fCOOJz1BlgvnARSH0K1jfSrVXnBQ7yTFNoFDH4g2G2Gtjcf2zAA5+g4c/yMdyU5
-	 VCsj8QcNyWbXXRKEBMqIj94KtB82/DqJKtVYBmP4byfmZIHOJiyrn3smgiwGQ50TA/
-	 wHsowPvO2TpFM4w+VHmW/IvWX242us+jaMcIllnlUqMJH+2VYBGJR+hf8Fb28fsU7Q
-	 kcl/LmIZ5EKf/Mhe2Yd71MWUUz6yYesPJ3RclQiczEHp1yEALVA0eUl+9mDC2y2WGE
-	 Aa6jljNwdOJFw==
-Date: Mon, 27 Nov 2023 11:00:09 +0800
+	b=WDWy9M8uXMmaVP2iNxUH7d8U6qVSo4jhKilHDOiRvUXbJTJ974xMSwEoyjHWWzTO7
+	 2HaT49tsa4atwFz0hANxeEhgyh/9osvXE5EOyXxcHNnV9QT+Nv3o8AN0PANcKqYEjU
+	 IC0H93yhtxWXP19eJHWcOJ3DFr4uO7G20vUX21QPhv+aUPvlWMQt1/FywMP88pe4vN
+	 dAsLqw4SZ27VNUZjUZzRKy3J721UZwnwQA3hZynpDXruwx3e1VxIdkKJl1dsoz3Dxv
+	 6cEZNw9U4GMi8dAUow+VqazO6B2SvFvugsFun5bs7ZKqXSHJxINGumlbc+1W0ZTiyh
+	 DLDGSvZ8/tpPg==
+Date: Mon, 27 Nov 2023 11:04:57 +0800
 From: Shawn Guo <shawnguo@kernel.org>
 To: Alexander Stein <alexander.stein@ew.tq-group.com>
 Cc: Rob Herring <robh+dt@kernel.org>,
@@ -43,10 +43,10 @@ Cc: Rob Herring <robh+dt@kernel.org>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>,
 	NXP Linux Team <linux-imx@nxp.com>, devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/1] ARM: dts: imx7s: Add DMA channels for CSPI
- peripherals
-Message-ID: <20231127030009.GV87953@dragon>
-References: <20231023094612.374487-1-alexander.stein@ew.tq-group.com>
+Subject: Re: [PATCH 1/1] arm64: dts: imx8mp: Disable dsp reserved memory by
+ default
+Message-ID: <20231127030457.GW87953@dragon>
+References: <20231025072832.2277609-1-alexander.stein@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,14 +55,13 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231023094612.374487-1-alexander.stein@ew.tq-group.com>
+In-Reply-To: <20231025072832.2277609-1-alexander.stein@ew.tq-group.com>
 
-On Mon, Oct 23, 2023 at 11:46:12AM +0200, Alexander Stein wrote:
-> This adds the rx/tx DMA channels for CSPI peripherals. Channel numbers
-> are taken from i.MX7D RM Rev1 01/2018.
-> Peripheral types ID (7) is selected according to fsl,imx-sdma.yaml and
-> is similar to i.MX6 and i.MX8M platforms. Same goes for transfer
-> priority ID (last number).
+On Wed, Oct 25, 2023 at 09:28:32AM +0200, Alexander Stein wrote:
+> Even if the 'dsp' node is disabled the memory intended to be used by the
+> DSP is reserved. This limits the memory range suitable for CMA allocation.
+> Thus disable the dsp_reserved node. DSP users need to enable it in parallel
+> to the 'dsp' node.
 > 
 > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 
