@@ -1,40 +1,40 @@
-Return-Path: <devicetree+bounces-19158-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19159-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C8D67F9E00
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 11:57:36 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C98C17F9E26
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 12:09:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B4E041F2029C
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 10:57:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8C2772813B0
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 11:09:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1C9B18C15;
-	Mon, 27 Nov 2023 10:57:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F000318C29;
+	Mon, 27 Nov 2023 11:09:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="DEnGZ8mG"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="rM3/Rr/a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6B5F111;
-	Mon, 27 Nov 2023 02:57:27 -0800 (PST)
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5851093;
+	Mon, 27 Nov 2023 03:09:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-	s=s31663417; t=1701082627; x=1701687427; i=wahrenst@gmx.net;
-	bh=wuAXr7a3zbDnbtVJU7CNeO6mV9KsemSbkPnViW/x+N8=;
+	s=s31663417; t=1701083327; x=1701688127; i=wahrenst@gmx.net;
+	bh=XY4niUA2BLlbUEpgZEcLc0jhmNTnqITIi8toHsOZdCg=;
 	h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:
 	 In-Reply-To;
-	b=DEnGZ8mG6EOaZOBsRJrpHLWDcYOIsDOFzdBdPL3NJGafNmlIzCadaoIFr1pNGkOH
-	 Js0D1+16IEuSTB6AxN5Ay2FAtoF0WoTQj4y9PRAo/UPYuAXnF7rBS65oiMVuJM3Dz
-	 uxny4padUrkduA4s9XsaQuk2tFeY41bZcY5ikxJ+U/PV4QGDe8JCM9B93w+PL4AZf
-	 v3Y4OIyXGGhVwC6fDLZpawSRCAEae7Jyx2NvaBs9PUX1HtuIhjXKXJM+Xx6kbjQ9h
-	 bt4jXVQ8X+92MR7H4dADfC036BiOO0B8XvRSpQl6MInF8GvrnGssCeWUisYrY99HN
-	 9T5+9dgFYqSDb1Mdbg==
+	b=rM3/Rr/a8YixD9HXl4DXaT1wkaZm8im8dS4J2yZxu7ZKs/c2AtR3bWjeZNyTqtiR
+	 bR/BbZB4pvdiTosZjlnWKcDRjItaCoURB4Lb8/w+JYuXyUeXyUCVUfQQF7Q5ypZkl
+	 5/VBHzLVY6Ff69mfucIfugDIrh24mR8eVwSJ5TmehcsX4duARhPkkQ4l6wM0LCI2W
+	 RB0ov9QIt/s1u8EZz+VLEYWUSUZ7x7zJvCjmXooTl74f5z2Fn9+xdWVZ0Bs9xNej3
+	 TRS17aWp9m+H5aX9T9vmJWcq4hpYCUrTizmgE+0oO4SUwe1jWxXoe2mt7eq8ZWppp
+	 wOmuj1VJG9YxqEPF8w==
 X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
 Received: from [192.168.1.129] ([37.4.248.43]) by mail.gmx.net (mrgmx104
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MMGNC-1qpLQT1458-00JHjr; Mon, 27
- Nov 2023 11:57:07 +0100
-Message-ID: <b1156fee-aa43-43b3-bb03-baaac49575f4@gmx.net>
-Date: Mon, 27 Nov 2023 11:57:05 +0100
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MDQeU-1qyC4n1AbG-00AWwL; Mon, 27
+ Nov 2023 12:08:47 +0100
+Message-ID: <46320840-09ab-4c86-90c9-bee7b75f248a@gmx.net>
+Date: Mon, 27 Nov 2023 12:08:45 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -43,111 +43,74 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH 0/3] ARM: dts: bcm2711-rpi-cm4-io: Enable xHCI host
-To: Cyril Brulebois <kibi@debian.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+Content-Language: en-US
+To: Justin Chen <justin.chen@broadcom.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
  Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>,
  Florian Fainelli <florian.fainelli@broadcom.com>,
- Mathias Nyman <mathias.nyman@intel.com>,
- bcm-kernel-feedback-list@broadcom.com, linux-usb@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+ Mathias Nyman <mathias.nyman@intel.com>, Phil Elwell <phil@raspberrypi.com>
+Cc: bcm-kernel-feedback-list@broadcom.com, Cyril Brulebois <kibi@debian.org>,
+ linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
 References: <20231126025612.12522-1-wahrenst@gmx.net>
- <20231127003432.7aztwjxper2a3o33@mraw.org>
-Content-Language: en-US
+ <53e1f6e6-a28e-45af-991e-75b283a21b34@broadcom.com>
 From: Stefan Wahren <wahrenst@gmx.net>
-In-Reply-To: <20231127003432.7aztwjxper2a3o33@mraw.org>
+In-Reply-To: <53e1f6e6-a28e-45af-991e-75b283a21b34@broadcom.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:Pqpo7ZuF10VhdzjMtTTqHOJho1s81dHreoX1FQSyLixwL39Wkig
- dXTqpVokUOAlwpSJz9QvEllkvU2AG4Fiop5KdUjfCZX77hd34bxG0oEBJY7CiUxiydiDHY/
- S6OABtKkS1+qCp9v4/UlNsuX5rD3t53EcFFl9udNmzrBJeVHQT0HFBJXgKnzK0w96/pRTOD
- mrEUloCrZqD5lV2/hE+oQ==
-UI-OutboundReport: notjunk:1;M01:P0:M0Gnxm6/rVM=;dM5isbqdCnPfzcgJ71lKO32FqYL
- VrVKTR89qdVFaecEN/0Ix1RYK6tR/93IdhpKIufSkr8LawgxDFsxBRUnkp7MTT0RK7D3otNqs
- gsXPX19THSDYkcOMU+L6RXnQbY4Z0E8YqoPuAzULvf80NxuGR/0AvjxDEmzx513hM08kwxwG0
- aIQs2++VPr6TNJ2OJ+KKCfiPatXfSjeKdcEvXatZ4rmc0gfBfnyJVTsOTW1kLM7nCg5lsxJzR
- 17UFB+Ob1f7vPHLG56OgLGFDLrZlCRO6UuknZ4TJH+KJUhtqcI08RYKzs3Bi4XAyLqEAzZuSp
- HBqX2IXt7h9Mfw655nUX6WJ7bU7oOllhCZFtr9CLl/3uIoNkO+wyv+p4VDWnYlqWLP4J2OSBs
- wlWaIdVG6FRUqIYH+nRoCNM9/LsPf60GQekqK+haDOlRREkkM1ahh6Po2/ZYUfCN0Dwt31KQx
- +fv6+0CoFOSyrh/c6biL/TReel5CE7xxJj8k1vn54eWnvdmSRbBLX7h2VrJfJY5Ia5HhHfrid
- hNCFqQlr9ZXuMqfBLKwPbt4LE4ioirpPZoMSCkMPr9q8R42vDJrf0luhQaL8R+oH4boI7SQDv
- mxHVnjROgyX2LtCDLmJ7qVXK8SRkWoiHhDhGqxn7e5edmGaRcCQaE54TnxSSfiQxPPzANimcS
- bY8wjZsbyQxPTAF+ITUKHWUhOwZdkHTNRMVJvW+Y0dugDOcJppOKWD2HEyq4TuEkiMB4uukna
- eBTPZqRLSIL+LB7fmuMXu3MQeY9u9vWlL9ok5XJRG3Mb0ZdGJqZarO20dbMEikT3YbVUiiqVI
- zxNCNlVqzJn9nUY/2V/kPc6IjCadaZoF1C4A/wlrTQ3ERHancB3/iGgK+gbNCrKefAE4X4IYW
- /yHhyRlseTdblfbrx5QRrALepl6I1fUiQ4uI/3mmFmiwmN6PAE4hHynSD0Nw9Qpz3Kj1Hnmxg
- QuLgvnOXm+GgbicER80N8IoH52s=
+X-Provags-ID: V03:K1:ivVir0qMd19/dKE5WNKScnFzNG3A7JKKY35vT0/MJVxf1rrEOQS
+ iV0+y+I4bnXE+mVqLKpMpMA8DlBEw3UcQ0znE8PF57Fj8HlZDozAJqd1mhRee7EYOICYm7t
+ iZW6EGxx31bnFgCIVs2iUsDtH8j29qSYqGC3joDxyRjcG4Dgm29zctGl8A26fu9wS5UCA/r
+ jwk9eLlY9Sq/iRYwp1qOQ==
+UI-OutboundReport: notjunk:1;M01:P0:PCriccJkO5o=;tXcHVchL5nKoZjE7wfC0CZ/txrj
+ VSHmpmOQddMYVALc/BJx883D8xvUJ6zTlEcM39Az/5V3tH4hXCxpJLcDaSj6kjIsS96qVHaPD
+ p+iLfgfuj+VLRZcxEUienLZdBe3m9v2AmkrwyJgsuvDamUSgsCO9JRIikzomH9gNF+Q9jakbq
+ QY0PS06sd6xE7oIrsHDfleJu3yf06z7GViD6+U5HYHzd1cjKnCiaQAvF9vIC9Lu+7onuoES9b
+ bF/xJjUJilIM/7BZHDADTCi1FBFY0q39l+U18ePpCbSxwvBUXIXiZpuFOnS6Og7NbHMqVbCoM
+ Od1gTUi9do1a/qFsKrrWhoHrY8loEd9qj+rXMo0ZFQzUrQRykhokhkJxtJaRLQnx1Ks/druq5
+ xCyA7e8GVG6fT1mObmD5fbTS8xd894F5Krl/jKGD7RskaftGvB7ZYh8Kq921ybuee9iJ23M0I
+ DH5my3wA/WhgUGKAF5X6HLndvI+AjNhcsM/7DwzZfBW2O6RqqQx7FTaPzZDsYLUwCSLnhWaxA
+ OvvVH4ZVczC8vjFZhu2kYGbyeyBS5CE1GYe1tzwSsXwBq6z7jDV6GGddU/aOoecA7BEUbsHbK
+ aZamKIr6PvtaVvTJUS8hKugGs/qts+6DeHRrt9jRZnno6qlt7tD+ETPZj9zYR1Leg3uay2V4E
+ +Z/+GVo2q8zBakKUMkCawwfwGqkZ5aSsHW2Cr0zfjLF5rsLX3gw0sPzD13L9lqWXi9MTHvk9w
+ Cw72lqdEq5EOjuboEEcM9VuaOIH6Kwu7mBp6440PW08Fq9VIvqPYkFfqvkz9+xZ9/Jkm2ENXn
+ Fry66X3rLaotbniEmx9kUvKCu0z51SdxGvMLc0Tz7Z/e/nl6WJ2FBHbHVFhhFzUjG9EjRO6p3
+ YSXDpcXN4EWzP1B6bwY483aK5YA/jDHC1vhcLFMVe57H8DR2WNWNSbyDEa/Ie8WdyfcixWVLZ
+ lk5lxMrDEPQBIO6J/nJko9T1woQ=
 
-Hi Cyril,
+Hi Justin,
 
-Am 27.11.23 um 01:34 schrieb Cyril Brulebois:
-> Hi Stefan,
+[add Phil]
+
+Am 27.11.23 um 07:02 schrieb Justin Chen:
 >
-> Stefan Wahren <wahrenst@gmx.net> (2023-11-26):
+>
+> On 11/25/23 6:56 PM, Stefan Wahren wrote:
 >> In contrast to the Raspberry Pi 4, the Compute Module 4 or the IO board
 >> does not have a VL805 USB 3.0 host controller, which is connected via
 >> PCIe. Instead, the BCM2711 on the Compute Module provides the built-in
 >> xHCI.
 >>
->> Stefan Wahren (3):
->>    dt-bindings: usb: xhci: Add optional power-domains
->>    ARM: dts: bcm2711: Add generic xHCI
->>    ARM: dts: bcm2711-rpi-cm4-io: Enable xHCI host
->>
->>   Documentation/devicetree/bindings/usb/generic-xhci.yaml | 3 +++
->>   arch/arm/boot/dts/broadcom/bcm2711-rpi-cm4-io.dts       | 9 ++++++++-
->>   arch/arm/boot/dts/broadcom/bcm2711-rpi.dtsi             | 5 +++++
->>   arch/arm/boot/dts/broadcom/bcm2711.dtsi                 | 9 +++++++++
->>   4 files changed, 25 insertions(+), 1 deletion(-)
-> I've tried applying this series on top of v6.6-15365-g305230142ae0 (the
-> base commit for Jim's v8 patch series regarding PCIe/clkreq[1]), since I
-> know the unpatched kernel is working fine with a CM4 Lite if there's no
-> PCIe hardware plugged in.
 >
->   1. https://lore.kernel.org/all/20231113185607.1756-1-james.quinlan@bro=
-adcom.com/
->
-> With those patches applied, on the following hardware setup:
->   - CM4 Lite (and SD card)
->   - CM4 IO Board
->   - Ethernet
->   - HDMI
->   - Serial console
->
-> (But neither USB storage or USB keyboard.)
->
-> I'm seeing various failure modes, but basically the system no longer
-> boots. I'm a little short on time right now, but if the following
-> excerpts aren't sufficient I can adjust logging to capture a full
-> trace for one or more of those.
->
-> This seems like a showstopper on its own, but if you'd like me to try
-> with an eMMC-equipped CM4, I can do that as well.
-...
->
->      [    3.118407] xhci-hcd fe9c0000.usb: xHCI Host Controller
->      [    3.123745] xhci-hcd fe9c0000.usb: new USB bus registered, assig=
-ned bus number 1
->      [    4.172083] ------------[ cut here ]------------
->      [    4.176768] Firmware transaction timeout
->      [    4.176825] WARNING: CPU: 2 PID: 143 at drivers/firmware/raspber=
-rypi.c:64 rpi_firmware_property_list+0x250/0x270
->      [    4.191121] Modules linked in: xhci_plat_hcd(+) xhci_hcd genet(+=
-) mdio_bcm_unimac crct10dif_ce reset_raspberrypi crct10dif_common of_mdio =
-usbcore i2c_bcm2835 sdhci_iproc fixed_phy fwnode_mdio usb_common sdhci_plt=
-fm libphy fixed gpio_regulator sdhci phy_generic
->      [    4.214527] CPU: 2 PID: 143 Comm: kworker/2:2 Not tainted 6.6.0+=
- #1
->      [    4.220880] Hardware name: Raspberry Pi Compute Module 4 Rev 1.0=
- (DT)
+> Does this work? I maintain this built-in xHCI controller internally. I
+> wasn't aware the Compute Module uses this block.
+i successful tested this with a CM4 (arm 32 bit,
+multi_v7_lpae_defconfig) with eMMC. Before this series the USB devices
+(mouse, keyboard) connected to the host interface didn't work. After
+comparing vendor DTS with mainline i noticed the missing xHCI block [1].
+Unfortunately i wasn't able to get further information from the public
+datasheets. I don't know if the VideoCore does some magic tricks on the
+xHCI or i missed some downstream xHCI changes.
 
-thanks for testing. Are you absolutely sure that you are using
-bcm2711-rpi-cm4-io.dtb from the mainline tree?
+> This block is held in reset and needs a bit toggled to get things
+> going. Florian, just to confirm, this is our "brcm,xhci-brcm-v2" block
+> correct?
+>
+> Justin
 
-I would expect the following hardware name: Raspberry Pi Compute Module
-4 IO Board
-
-Be aware the arm files has been moved into a broadcom subdirectory.
-
+[1]=C2=A0 -
+https://github.com/raspberrypi/linux/blob/rpi-6.1.y/arch/arm/boot/dts/bcm2=
+711-rpi-ds.dtsi#L119
 
