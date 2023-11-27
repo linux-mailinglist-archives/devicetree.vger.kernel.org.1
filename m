@@ -1,136 +1,158 @@
-Return-Path: <devicetree+bounces-19177-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19179-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4492D7F9EC0
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 12:38:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D6997F9ED2
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 12:41:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E42822814B9
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 11:38:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CC83D281564
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 11:41:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE4541A5B6;
-	Mon, 27 Nov 2023 11:38:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A17FA1A706;
+	Mon, 27 Nov 2023 11:41:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="tHjDDjIf"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="o4emJLIu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75C42B8;
-	Mon, 27 Nov 2023 03:38:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-	s=s31663417; t=1701085104; x=1701689904; i=wahrenst@gmx.net;
-	bh=SFIH2xcNlah3YTHeM1h2ULCAXeOmNtEhny0Q2XMb7Kk=;
-	h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:
-	 In-Reply-To;
-	b=tHjDDjIfaM0cX2L3Qs1V/lT7EhT84reVpLuPO5hYgnw612geui5Ds1hfEHyChnsr
-	 8lvTYT7vxj+wwh1KVquAHwLt4nmOhJM4XoepjbmqVSDfwLZzgwlMCUf6HDugQNv4V
-	 bOfR5JEijhPdcPyT7UjB8nR8rzRcNqE3jf0ZfFVGJ5UvKw4WnhdU+yIYqfIOFG5Vi
-	 j4KrJn2nsYwliBWvDQOJ+TCHm7yF0dd4LLXfTpaZWDtQ7l4vMHvnKkPcJg7PgI7Mq
-	 IpxH3lpYOd4XOp4A4qxgIpuagqn4A8kN7bCCYTg7VMCajDDnOLP+6/FB8fjCkon0B
-	 CEW6IvHYAfM0G1LmWg==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.1.129] ([37.4.248.43]) by mail.gmx.net (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1Mz9Ux-1rURyl2mCx-00wBBy; Mon, 27
- Nov 2023 12:38:24 +0100
-Message-ID: <a78f9ba5-ad34-4af2-9817-eeb7dd9d02ef@gmx.net>
-Date: Mon, 27 Nov 2023 12:38:23 +0100
+Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5916AB8;
+	Mon, 27 Nov 2023 03:41:40 -0800 (PST)
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id E182012001E;
+	Mon, 27 Nov 2023 14:41:38 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru E182012001E
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1701085298;
+	bh=k9sXRlxKX0Gfpxy2Hej1U/l4OVoqNKeGfoA0hcSApV0=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
+	b=o4emJLIuoBD4DcoBOF1FevkO4JyAUmJdgCkNStovRPC4hJQHgVkm6PcFvnx6B1PkE
+	 FUz78b6Amq886+YsRXk5TDUqk4/bXIJI/MkUarSusMOkRVEzQp5egtE0Q2qzgSnpvI
+	 YVzs8Yq1bpdvrI2Ug7TjRZ4cqE2KxUP1o7Dj7wj5pOMrdBbIVWPB33RRB2er8Lh76o
+	 BIJcVtVewxxEMPAhqSY9ZEnLqUUeFcS3Ev4pNTDzxuvg4Eeta3PRs4mwpUPqcYXwgT
+	 GGnlY3lOQ7DeocAro1InW0zOp9CZz8A647XTKACdks/FN0uVZ5/CLcmvXfv31mN8ts
+	 uSyBR/TxeCrgw==
+Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Mon, 27 Nov 2023 14:41:38 +0300 (MSK)
+Received: from localhost (100.64.160.123) by p-i-exch-sc-m01.sberdevices.ru
+ (172.16.192.107) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 27 Nov
+ 2023 14:41:38 +0300
+Date: Mon, 27 Nov 2023 14:41:38 +0300
+From: Dmitry Rokosov <ddrokosov@salutedevices.com>
+To: Lee Jones <lee@kernel.org>
+CC: <pavel@ucw.cz>, <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+	<conor+dt@kernel.org>, <andy.shevchenko@gmail.com>, <kernel@sberdevices.ru>,
+	<rockosov@gmail.com>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-leds@vger.kernel.org>, George Stark
+	<gnstark@salutedevices.com>
+Subject: Re: [PATCH v4 04/11] leds: aw200xx: calculate dts property
+ display_rows in the driver
+Message-ID: <20231127114138.27reupes7w47txfk@CAB-WSD-L081021>
+References: <20231121202835.28152-1-ddrokosov@salutedevices.com>
+ <20231121202835.28152-5-ddrokosov@salutedevices.com>
+ <20231123163252.GF1354538@google.com>
+ <20231124094146.qsgmmbwulemjikpg@CAB-WSD-L081021>
+ <20231127085755.GE1470173@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/3] ARM: dts: bcm2711-rpi-cm4-io: Enable xHCI host
-Content-Language: en-US
-To: Phil Elwell <phil@raspberrypi.com>
-Cc: Justin Chen <justin.chen@broadcom.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Mathias Nyman <mathias.nyman@intel.com>,
- bcm-kernel-feedback-list@broadcom.com, Cyril Brulebois <kibi@debian.org>,
- linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20231126025612.12522-1-wahrenst@gmx.net>
- <53e1f6e6-a28e-45af-991e-75b283a21b34@broadcom.com>
- <46320840-09ab-4c86-90c9-bee7b75f248a@gmx.net>
- <CAMEGJJ3SXHSnasqoMJnshf5Wu92NVi8+NoMdxmMsJH7WH2WjWg@mail.gmail.com>
-From: Stefan Wahren <wahrenst@gmx.net>
-In-Reply-To: <CAMEGJJ3SXHSnasqoMJnshf5Wu92NVi8+NoMdxmMsJH7WH2WjWg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:5xpmIlJ03s0Oj6NYZwycFK0MHCRodpFkZf5S/GcU6pugugr56+0
- beBZvRvneVnp2hkEj6nniiwUD+ZfddsRem7zH61uvOHkhY7lgaVQW2Mz2XArvdaDDz0cVmk
- AJeU6PeF+uBB0NxaZ7xrerXfLxzibFDJKv1h4s3HzDfcTcpRjqtqOwVFmX94Ha0M4/HJ50V
- 2Yzl35Q6b3YKW/bGE+EtA==
-UI-OutboundReport: notjunk:1;M01:P0:uV74jL5nR4E=;gYKDyL+02UWZtwx/DABCpUPJ/Iq
- pPQNtObT+2mO+1oSyB4NJFP0b1+fmHbtEtPlOWDo2uzn/hsNdWqD0P5kIluT47X10ycN5XoZn
- EqCqOk3crez+PzaHUntX0e9NWVbk6VGDUiIC7Qg0qnU/3and6pM8dW5yHJN8wzid8czWAKwPp
- qgndN8DlUFI6Qoum5u6Ggjpq7p04xUgfLSStiEWz3nkn+mCraEEKoHyUInQUDe/pm8BijMSYJ
- /wsJW+QMpkvues8+EB6AZVCXCfHlyhjRfC6nndFYEJ2Ae0v5Y5mpxtQIA0ZAJveJRSW56wXd1
- gh+a3dXWWqVHMzp6xRiZ+ru5JoJ2H5GJcml02nTqsau/dg7FUdycL+PueSDxgBWrcVyn2P9Nx
- fe9lAC0RFaWaUmU72zgwiFDgI/Ad1dmGeuCYZv7RKEg2tzXvqqFgpOIfzm4zUWbBfuAfsT6D6
- jy/DNqOFU8W6Yo3IPhZLX2Y/ZWdna6eBLgK5pRT/DGXn6lAFXxGThaxXYhkRL/WWhJfSqUIEa
- 2MSqLREOz+2d/YnQoKJIE9lwgtmw3EE0AvSu8x98reang7qI2iCI9XvII5JcXV7poYIYMkVew
- 3v96iFl7DQJD40/2het2lwe0ifxlABThzXKW/YFIptv10hxe1clEvLKns5KjflmulgaJsndER
- 2PeFNyIz/z2a/UCEvdzWa1OPEDrur+/+hKygTgmAPcNHxHt7DSPwEiVOBRPLRiAr7OU7SJsU2
- pCHvm3qFZsFeqa1IDqneXgGUQ3rk4wjF1Msz5lwVb13IT+J4FfVQ88VhE5FD8zXxUjtaWIejq
- t4RaK1U1TX1yoCJq9JGdpgBuWaomP4OOiazR5E2/2/GeTy/IuaHuYp6v8Q1eeSA/269cMRQcm
- KRiAQUOPDaAaPV9tRL2DEBQTvGa1RKTlZ3FgWqYuuqstAAnH3bpsYfEjAY+lcKSs3ulVtyld8
- iugNrw==
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20231127085755.GE1470173@google.com>
+User-Agent: NeoMutt/20220415
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 181606 [Nov 27 2023]
+X-KSMG-AntiSpam-Version: 6.0.0.2
+X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 4 0.3.4 720d3c21819df9b72e78f051e300e232316d302a, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, salutedevices.com:7.1.1;127.0.0.199:7.1.2;100.64.160.123:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;p-i-exch-sc-m01.sberdevices.ru:7.1.1,5.0.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/11/27 09:57:00 #22553179
+X-KSMG-AntiVirus-Status: Clean, skipped
 
-Hi Phil,
+Lee,
 
-Am 27.11.23 um 12:22 schrieb Phil Elwell:
-> On Mon, 27 Nov 2023 at 11:08, Stefan Wahren <wahrenst@gmx.net> wrote:
->> Hi Justin,
->>
->> [add Phil]
->>
->> Am 27.11.23 um 07:02 schrieb Justin Chen:
->>>
->>> On 11/25/23 6:56 PM, Stefan Wahren wrote:
->>>> In contrast to the Raspberry Pi 4, the Compute Module 4 or the IO boa=
-rd
->>>> does not have a VL805 USB 3.0 host controller, which is connected via
->>>> PCIe. Instead, the BCM2711 on the Compute Module provides the built-i=
-n
->>>> xHCI.
->>>>
->>> Does this work? I maintain this built-in xHCI controller internally. I
->>> wasn't aware the Compute Module uses this block.
->> i successful tested this with a CM4 (arm 32 bit,
->> multi_v7_lpae_defconfig) with eMMC. Before this series the USB devices
->> (mouse, keyboard) connected to the host interface didn't work. After
->> comparing vendor DTS with mainline i noticed the missing xHCI block [1]=
-.
->> Unfortunately i wasn't able to get further information from the public
->> datasheets. I don't know if the VideoCore does some magic tricks on the
->> xHCI or i missed some downstream xHCI changes.
->>
->>> This block is held in reset and needs a bit toggled to get things
->>> going. Florian, just to confirm, this is our "brcm,xhci-brcm-v2" block
->>> correct?
->>>
->>> Justin
->> [1]  -
->> https://github.com/raspberrypi/linux/blob/rpi-6.1.y/arch/arm/boot/dts/b=
-cm2711-rpi-ds.dtsi#L119
-> What's the question here? Does the XHCI block present in the
-> raspberrypi/linux dtsi file really exist? Yes it does.
-since i don't have any documentation about the xHCI block, i assumed the
-compatible generic-xhci is correct. But Justin seems to suggest that the
-xHCI block needs some special treatment and we need a specific compatible.
+Thank you for the quick reply!
 
-Did i missed some xHCI driver changes?
-Does the VC firmware something to the xHCI especially on CM4?
+On Mon, Nov 27, 2023 at 08:57:55AM +0000, Lee Jones wrote:
+> On Fri, 24 Nov 2023, Dmitry Rokosov wrote:
+> 
+> > On Thu, Nov 23, 2023 at 04:32:52PM +0000, Lee Jones wrote:
+> > > On Tue, 21 Nov 2023, Dmitry Rokosov wrote:
+> > > 
+> > > > From: George Stark <gnstark@salutedevices.com>
+> > > > 
+> > > > Get rid of device tree property "awinic,display-rows". The property
+> > > > value actually means number of current switches and depends on how leds
+> > > 
+> > > Nit: LEDs
+> > > 
+> > > > are connected to the device. It should be calculated manually by max
+> > > > used led number. In the same way it is computed automatically now.
+> > > 
+> > > As above - I won't mention this again.
+> > > 
+> > > > Max used led is taken from led definition subnodes.
+> > > > 
+> > > > Signed-off-by: George Stark <gnstark@salutedevices.com>
+> > > > Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
+> > > > ---
+> > > >  drivers/leds/leds-aw200xx.c | 39 +++++++++++++++++++++++++------------
+> > > >  1 file changed, 27 insertions(+), 12 deletions(-)
+> > > > 
+> > > > diff --git a/drivers/leds/leds-aw200xx.c b/drivers/leds/leds-aw200xx.c
+> > > > index 7762b3a132ac..4bce5e7381c0 100644
+> > > > --- a/drivers/leds/leds-aw200xx.c
+> > > > +++ b/drivers/leds/leds-aw200xx.c
+> > > > @@ -379,6 +379,30 @@ static void aw200xx_disable(const struct aw200xx *const chip)
+> > > >  	return gpiod_set_value_cansleep(chip->hwen, 0);
+> > > >  }
+> > > >  
+> > > > +static bool aw200xx_probe_get_display_rows(struct device *dev, struct aw200xx *chip)
+> > > > +{
+> > > > +	struct fwnode_handle *child;
+> > > > +	u32 max_source = 0;
+> > > > +
+> > > > +	device_for_each_child_node(dev, child) {
+> > > > +		u32 source;
+> > > > +		int ret;
+> > > > +
+> > > > +		ret = fwnode_property_read_u32(child, "reg", &source);
+> > > > +		if (ret || source >= chip->cdef->channels)
+> > > 
+> > > Shouldn't the second clause fail instantly?
+> > > 
+> > 
+> > We already have such logic in the aw200xx_probe_fw() function, which
+> > skips the LED node with the wrong reg value too. Furthermore, we have
+> > strict reg constraints in the dt-bindings parts (in the current patch
+> > series), so we assume that the DT developer will not create an LED with
+> > the wrong reg value.
+> 
+> Why is it being checked again then?
 
-Thanks
->
-> Phil
+Hmmm, aw200xx_probe_get_display_rows() executes before the old
+implementation... So we need to check it again. Do you think it should
+be reworked? I've already sent a new patchset. Could you please take a
+look at the other fixes?
 
+-- 
+Thank you,
+Dmitry
 
