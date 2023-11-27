@@ -1,61 +1,111 @@
-Return-Path: <devicetree+bounces-19340-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19341-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 931167FA7FF
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 18:33:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E8C67FA80D
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 18:33:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4DC922818D7
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 17:33:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EEE5C2818D4
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 17:33:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DED1B381D5;
-	Mon, 27 Nov 2023 17:32:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 495C639FC7;
+	Mon, 27 Nov 2023 17:33:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DXI7RxKK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zyseagj8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AD5726AC3;
-	Mon, 27 Nov 2023 17:32:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F028CC433C7;
-	Mon, 27 Nov 2023 17:32:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22E2E358B3;
+	Mon, 27 Nov 2023 17:33:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32784C433C7;
+	Mon, 27 Nov 2023 17:33:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701106377;
-	bh=BgbaDnMC2tbzXy23qRFkhrncnNLb4XGkV4S41F/p7Yo=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=DXI7RxKKeHC0GXYGmZOGMuRiMzmNk9RZRAk9d6TgCRObIqhjmUKxd7gpN9k7M15C6
-	 BPzw40RPJFMcJeMtdcbsa0yuQTewyQVevXDa88g95ZwmFlqabn9uk2nkWA26ALdEOz
-	 QSrvkAgaJVIHtFw3E1X4kpmAUQMdy+l9Qvui2ArtIPxgcc/6WEv8lRAXbUHD0E2gIc
-	 aXRSzPbd+ltAAmFemcwCSxQJsj5kH1BChAxnwpKAta+d3AUMERGy55J6Jl8pdQcyME
-	 JF3FG4ZxnUykx2HLRGmqbPeWFlt8V9xyPNUUnt/WN62CPMKOLuo+ercwqq3n4VfIhR
-	 vnWXMyo3dhZfQ==
-Message-ID: <b711a36c58455deeef5e1caa6669f546.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	s=k20201202; t=1701106434;
+	bh=4sXySQchTuW8h+aOTNQyzU6G4RPf33PoqMAO4ZKZSNg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Zyseagj8U+MIhkThFmLfwbzPrVUYzPUIDmxEORqw7b3WqnjDJGDdMXthWDoPKG8UM
+	 OhT8o8lpnZLDgvsa5/1y97sBT5xUcKIG/jhuOF4UlO3zaKnfYy/LzW25vF7tq7jH+u
+	 0W+u768afJEGa77/4TWt4QgmOhgFe+jejOeP8oBJEtwlfbQKqsM1Y41jhqaAxWNY6/
+	 /+9qyKoH3E1EQ6iacJ0fccJKDvKSBGjpver+r9MqxiYfhZxvR5h6e/dGVB4sDtC/vv
+	 IE7YKnDSBIB1fcFSugGfSZTINGkZFRIsfy/qyZBfpBSAChOqmzwmHxx/kBcdSyO/Mx
+	 ROmP9HsoifxAw==
+Date: Mon, 27 Nov 2023 17:33:48 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+Cc: nuno.sa@analog.com, linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+	Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Andy Shevchenko <andy@kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: Add LTC4282 bindings
+Message-ID: <20231127-payback-bulginess-3afd21d0e0fb@spud>
+References: <20231124-ltc4282-support-v2-0-952bf926f83c@analog.com>
+ <20231124-ltc4282-support-v2-1-952bf926f83c@analog.com>
+ <20231125-chivalry-bargraph-cb6bb2b1ed66@spud>
+ <ac3d17579847686f9800567aecfeb749c04ba759.camel@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="sSckkexfIMYASZhR"
+Content-Disposition: inline
+In-Reply-To: <ac3d17579847686f9800567aecfeb749c04ba759.camel@gmail.com>
+
+
+--sSckkexfIMYASZhR
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20231124092121.16866-1-krzysztof.kozlowski@linaro.org>
-References: <20231124092121.16866-1-krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH] dt-bindings: correct white-spaces in examples
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org, linux-pci@vger.kernel.org, linux-pm@vger.kernel.org, linux-remoteproc@vger.kernel.org, linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org
-Date: Mon, 27 Nov 2023 09:32:54 -0800
-User-Agent: alot/0.10
 
-Quoting Krzysztof Kozlowski (2023-11-24 01:21:21)
-> Use only one and exactly one space around '=3D' in DTS example.
+On Mon, Nov 27, 2023 at 08:56:36AM +0100, Nuno S=E1 wrote:
+> On Sat, 2023-11-25 at 11:56 +0000, Conor Dooley wrote:
+> > On Fri, Nov 24, 2023 at 03:18:16PM +0100, Nuno Sa via B4 Relay wrote:
+> >=20
+> > > +=A0 adi,gpio1-mode:
+> > > +=A0=A0=A0 description: Defines the function of the Pin.
+> > > +=A0=A0=A0 $ref: /schemas/types.yaml#/definitions/string
+> > > +=A0=A0=A0 enum: [gpio, power_bad, power_good]
+> > > +
+> > > +=A0 adi,gpio2-mode:
+> > > +=A0=A0=A0 description: Defines the function of the Pin.
+> > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0 0 - GPIO Mode.
+> > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0 1 - Acts as an input pin and it is feede=
+d into the ADC.
+> > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0 2 - Pulls Low when the MOSFET is dissipa=
+ting power (stress).
+> >=20
+> > These three descriptions here probably need to be updated, one for being
+> > too short and these two for still having the integer stuff in the
+> > descriptions. Otherwise I think this is looking okay.
+> >=20
 >=20
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->=20
-> ---
+> Yeah, the integer stuff are leftovers. I can also try to add more into the
+> description.
 
-Acked-by: Stephen Boyd <sboyd@kernel.org>
+That'd be great, thanks.
+
+--sSckkexfIMYASZhR
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZWTS/AAKCRB4tDGHoIJi
+0uuwAP4kjTrjXbUqkYAUovnUt/B2RFg6oZ4kGaG4G1wAsfZKqwD9E4mdinkpH6bj
+TJpLbUTYSremMCno0sBVGAYoa51tvwA=
+=eMK4
+-----END PGP SIGNATURE-----
+
+--sSckkexfIMYASZhR--
 
