@@ -1,111 +1,151 @@
-Return-Path: <devicetree+bounces-19341-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19342-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E8C67FA80D
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 18:33:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 812B87FA812
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 18:34:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EEE5C2818D4
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 17:33:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3D3C828180A
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 17:34:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 495C639FC7;
-	Mon, 27 Nov 2023 17:33:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CD3339FD8;
+	Mon, 27 Nov 2023 17:34:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zyseagj8"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Vzgs4/Hs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22E2E358B3;
-	Mon, 27 Nov 2023 17:33:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32784C433C7;
-	Mon, 27 Nov 2023 17:33:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701106434;
-	bh=4sXySQchTuW8h+aOTNQyzU6G4RPf33PoqMAO4ZKZSNg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Zyseagj8U+MIhkThFmLfwbzPrVUYzPUIDmxEORqw7b3WqnjDJGDdMXthWDoPKG8UM
-	 OhT8o8lpnZLDgvsa5/1y97sBT5xUcKIG/jhuOF4UlO3zaKnfYy/LzW25vF7tq7jH+u
-	 0W+u768afJEGa77/4TWt4QgmOhgFe+jejOeP8oBJEtwlfbQKqsM1Y41jhqaAxWNY6/
-	 /+9qyKoH3E1EQ6iacJ0fccJKDvKSBGjpver+r9MqxiYfhZxvR5h6e/dGVB4sDtC/vv
-	 IE7YKnDSBIB1fcFSugGfSZTINGkZFRIsfy/qyZBfpBSAChOqmzwmHxx/kBcdSyO/Mx
-	 ROmP9HsoifxAw==
-Date: Mon, 27 Nov 2023 17:33:48 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-Cc: nuno.sa@analog.com, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-	Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Andy Shevchenko <andy@kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: Add LTC4282 bindings
-Message-ID: <20231127-payback-bulginess-3afd21d0e0fb@spud>
-References: <20231124-ltc4282-support-v2-0-952bf926f83c@analog.com>
- <20231124-ltc4282-support-v2-1-952bf926f83c@analog.com>
- <20231125-chivalry-bargraph-cb6bb2b1ed66@spud>
- <ac3d17579847686f9800567aecfeb749c04ba759.camel@gmail.com>
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AC0790;
+	Mon, 27 Nov 2023 09:34:32 -0800 (PST)
+Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-409299277bbso33236945e9.2;
+        Mon, 27 Nov 2023 09:34:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1701106470; x=1701711270; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=aMR2AzaNP6dtsYlxVMl7E7nXSabAWLa9DNxxIFd59k4=;
+        b=Vzgs4/HsCi11zqtuks/HmeMR/5wuGdvsUder6xTkdlEpF6yYKIRD0ZJKaU7kIVc4KC
+         dlO9GODwGJP9HCaV5GQws/bPwFHpSsOxFNfNvrqi2f5dKQyU2IK/nJkVvshfR6aWnTXy
+         MOy7qfgBdXM0bPrWJoIGUDGKYoJGg729EPGAZlnuWimpi6Il31NIqIgYv51+ulqktiBo
+         vwNH1D5DkodtiyM1C54aAMW/6JX7wBnWkBa41vdODjOmzcfTmeydLd7+KA3e8V7yyKZD
+         sExrKfX1SFKL/3zBZIOAMcTHFfVRbJNlVu0PSBDUnWjIsbljCIjG8xiPl8bv6AhU8AkC
+         FUag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701106470; x=1701711270;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=aMR2AzaNP6dtsYlxVMl7E7nXSabAWLa9DNxxIFd59k4=;
+        b=CsvxMX5ektRUr1ZGRjDAKvO+62PMfZGb+NrmNI85L/P5Lr5oaSu/FHkVe2RDlSDJu9
+         umbWWMcPxtbGbfgEsZL4/AK+9Z9kHyCbZMXviYFycb0+quouR3HptnY+djTmp17Kj7Ah
+         C2DB8ueyfEc4pu9kuF3UHlzqU7AOtP9osJNAL1i8yNPb6baJru7ScExK+fRR8Xwtx2wF
+         dBz/sMYa13gzNxmc310qybXXXd0xbMuGgNu8SKbPrzmSK9eUfmmYKRR9OrxqnQaImHNh
+         BJ/AX4V8L71NCWgRglsMxlSeFGnDGGa4pIa1WYX9uXh1LW6RYmgvmdl6lfsrUVrKAdQf
+         Iaeg==
+X-Gm-Message-State: AOJu0YxecfbQJBYDJcnUMnS4S2dGDzI0rZ5XK/EQcUjNvgYz6C0F+Ogo
+	bxQN2l/jvLDN9fvHRyzoJ+s=
+X-Google-Smtp-Source: AGHT+IG3cENoOyM1tLbWu17mI0hNJOKfLtmjDf/rLwg1+1jpowY4BpyUdoKvDh7hnCmB+C+OZRyNww==
+X-Received: by 2002:a05:600c:1989:b0:408:3f87:cba with SMTP id t9-20020a05600c198900b004083f870cbamr8743868wmq.39.1701106470453;
+        Mon, 27 Nov 2023 09:34:30 -0800 (PST)
+Received: from [127.0.1.1] (2a02-8389-41cf-e200-aa01-5533-a7bc-788c.cable.dynamic.v6.surfer.at. [2a02:8389:41cf:e200:aa01:5533:a7bc:788c])
+        by smtp.gmail.com with ESMTPSA id je19-20020a05600c1f9300b004083729fc14sm15139626wmb.20.2023.11.27.09.34.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Nov 2023 09:34:30 -0800 (PST)
+From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+Subject: [PATCH v3 0/3] iio: light: add support for VEML6075 UVA and UVB
+ light sensor
+Date: Mon, 27 Nov 2023 18:34:27 +0100
+Message-Id: <20231110-veml6075-v3-0-6ee46775b422@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="sSckkexfIMYASZhR"
-Content-Disposition: inline
-In-Reply-To: <ac3d17579847686f9800567aecfeb749c04ba759.camel@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACPTZGUC/3WNzQ7CIBAGX8VwFsMu4N/J9zAegG5bEkoNKNE0f
+ XdpTx70OF92ZieWKXnK7LyZWKLisx9jBbndMNeb2BH3TWWGAiUACF5oCHtx0FwiaERHxpkTq+f
+ WZOI2mej6KsRnCHW8J2r9a+1fb5V7nx9jeq/vCizrj3IBLrjUykpUmkCZSzcYH3ZuHNgSKfhPx
+ Co2QlFr3dG2Gr7FeZ4/9scZxe4AAAA=
+To: Jonathan Cameron <jic23@kernel.org>, 
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
+ devicetree@vger.kernel.org, 
+ Javier Carrasco <javier.carrasco.cruz@gmail.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1701106468; l=2761;
+ i=javier.carrasco.cruz@gmail.com; s=20230509; h=from:subject:message-id;
+ bh=OMwY/jKvDu8C3jplLlM5jK7D4g8rurvRZ9c6ohzQ9oU=;
+ b=YeVlqLGNl4FGKDS94OC/YyuQEU/QpF3QUqaPskq+WieSahVQ7/g032rEuR6kdBMDn/3rjLNE3
+ VLhFWF/+8w4C2P9hWkI1i3s5D5q/LpiirfuXN49TGLWEC6Hv6dFd3Hf
+X-Developer-Key: i=javier.carrasco.cruz@gmail.com; a=ed25519;
+ pk=tIGJV7M+tCizagNijF0eGMBGcOsPD+0cWGfKjl4h6K8=
 
+This series adds support for the Vishay VEML6075 ultraviolet sensor,
+which offers UVA and UVB measurement channels and I2C communication.
 
---sSckkexfIMYASZhR
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The device bindings and a simple example are also provided.
 
-On Mon, Nov 27, 2023 at 08:56:36AM +0100, Nuno S=E1 wrote:
-> On Sat, 2023-11-25 at 11:56 +0000, Conor Dooley wrote:
-> > On Fri, Nov 24, 2023 at 03:18:16PM +0100, Nuno Sa via B4 Relay wrote:
-> >=20
-> > > +=A0 adi,gpio1-mode:
-> > > +=A0=A0=A0 description: Defines the function of the Pin.
-> > > +=A0=A0=A0 $ref: /schemas/types.yaml#/definitions/string
-> > > +=A0=A0=A0 enum: [gpio, power_bad, power_good]
-> > > +
-> > > +=A0 adi,gpio2-mode:
-> > > +=A0=A0=A0 description: Defines the function of the Pin.
-> > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0 0 - GPIO Mode.
-> > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0 1 - Acts as an input pin and it is feede=
-d into the ADC.
-> > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0 2 - Pulls Low when the MOSFET is dissipa=
-ting power (stress).
-> >=20
-> > These three descriptions here probably need to be updated, one for being
-> > too short and these two for still having the integer stuff in the
-> > descriptions. Otherwise I think this is looking okay.
-> >=20
->=20
-> Yeah, the integer stuff are leftovers. I can also try to add more into the
-> description.
+This driver has been tested with a Gravity VEML6075 UV Sensor Module in
+open air conditions.
 
-That'd be great, thanks.
+Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+---
+Changes in v3:
+- veml6075.c: use MICRO instead of 1000000LL (add linux/units.h).
+- veml6075.c: improve lock description.
+- veml6075.c: remove unnecessary i2c_get_client_data() from the probe
+  function.
+- veml6075.c: remove shutdown function and do the bit update inline.
+- veml6075.c: improve return path in read/write_raw().
+- veml6075.c: remove -ENODEV return check for regulator_get_enable().
+- Link to v2: https://lore.kernel.org/r/20231110-veml6075-v2-0-d04efbc8bf51@gmail.com
 
---sSckkexfIMYASZhR
-Content-Type: application/pgp-signature; name="signature.asc"
+Changes in v2:
+- General: swap patch order (bindings first).
+- iio core: add uva and uvb modifiers.
+- veml6075.c: use uva and uvb modifiers instead of extend_name
+- veml6075.c: remove redundant information from the description.
+- veml6075.c: inline device name.
+- veml6075.c: use read_avail() for available attributes.
+- veml6075.c: use guard(mutex) instead of lock/unlock().
+- veml6075.c: use regulator_get_enable() without _optional.
+- veml6075.c: register managed iio device and delete remove().
+- veml6075.c: remove remaining debug messages.
+- veml6075.c: error path cleanup (return type after val assignment).
+- veml6075.c: remove zero from i2c_device_id.
+- MAINTAINERS: fix bindings name.
+- vishay,veml6075.yaml: remove vdd-supply description and mark property
+  as true.
+- Link to v1: https://lore.kernel.org/r/20231110-veml6075-v1-0-354b3245e14a@gmail.com
 
------BEGIN PGP SIGNATURE-----
+---
+Javier Carrasco (3):
+      iio: add modifiers for A and B ultraviolet light
+      dt-bindings: iio: light: add support for Vishay VEML6075
+      iio: light: add VEML6075 UVA and UVB light sensor driver
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZWTS/AAKCRB4tDGHoIJi
-0uuwAP4kjTrjXbUqkYAUovnUt/B2RFg6oZ4kGaG4G1wAsfZKqwD9E4mdinkpH6bj
-TJpLbUTYSremMCno0sBVGAYoa51tvwA=
-=eMK4
------END PGP SIGNATURE-----
+ Documentation/ABI/testing/sysfs-bus-iio            |   7 +-
+ .../bindings/iio/light/vishay,veml6075.yaml        |  39 ++
+ MAINTAINERS                                        |   6 +
+ drivers/iio/industrialio-core.c                    |   2 +
+ drivers/iio/light/Kconfig                          |  11 +
+ drivers/iio/light/Makefile                         |   1 +
+ drivers/iio/light/veml6075.c                       | 474 +++++++++++++++++++++
+ include/uapi/linux/iio/types.h                     |   2 +
+ tools/iio/iio_event_monitor.c                      |   2 +
+ 9 files changed, 542 insertions(+), 2 deletions(-)
+---
+base-commit: b85ea95d086471afb4ad062012a4d73cd328fa86
+change-id: 20231110-veml6075-321522ceaca9
 
---sSckkexfIMYASZhR--
+Best regards,
+-- 
+Javier Carrasco <javier.carrasco.cruz@gmail.com>
+
 
