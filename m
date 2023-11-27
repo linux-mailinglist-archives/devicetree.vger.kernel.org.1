@@ -1,187 +1,144 @@
-Return-Path: <devicetree+bounces-19258-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19259-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AA6C7FA41A
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 16:09:18 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 429F27FA43A
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 16:17:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DA9FBB210ED
-	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 15:09:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D88761F20D3C
+	for <lists+devicetree@lfdr.de>; Mon, 27 Nov 2023 15:17:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF6803175A;
-	Mon, 27 Nov 2023 15:09:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51A2531A76;
+	Mon, 27 Nov 2023 15:17:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="jD2Kx1Gp"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="Mzn2l2x+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86345AA;
-	Mon, 27 Nov 2023 07:09:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=S6gRHL7aWODpPuBJIryHbptG3WPOk3fgIh9keMDXZtI=; b=jD2Kx1Gp3h8I3UmaPgzNR3FeCq
-	PGU0PNt2nM9tBN6xrKdSNIwCQMtzvwRjIklErBISu69Y5Jw5Djbm9To5QEcNUxVt+thMjOs66RHCm
-	4pk0+UbjMQ6K/yYV7t+Gh/P2oLIUx7WQv6LKwfAnLlIh7jKke9QEicYfuNt4xWdrBdKd5m9unwb+G
-	7WuDuU7GJ02MiBdGwr2Zjp+bZpWsh3Q/51i5vuPIHkzeN8hRjzwjaOofO6UeoNxtP77R+ZrJndf3X
-	fku8pQV5bc4GbS00BlhX81uu+KQ1jVC4WHnZz+Jutfy9sn0/dqxhdn3MmqmIKHedM/L/ccIfl1DRZ
-	YxSsuZ8g==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:58562)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1r7dE3-00061S-2V;
-	Mon, 27 Nov 2023 15:08:43 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1r7dE1-0001zq-BK; Mon, 27 Nov 2023 15:08:41 +0000
-Date: Mon, 27 Nov 2023 15:08:41 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Daniel Golle <daniel@makrotopia.org>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chunfeng Yun <chunfeng.yun@mediatek.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Felix Fietkau <nbd@nbd.name>, John Crispin <john@phrozen.org>,
-	Sean Wang <sean.wang@mediatek.com>,
-	Mark Lee <Mark-MC.Lee@mediatek.com>,
-	Lorenzo Bianconi <lorenzo@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Alexander Couzens <lynxis@fe80.eu>,
-	Philipp Zabel <p.zabel@pengutronix.de>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org
-Subject: Re: [RFC PATCH 6/8] net: pcs: add driver for MediaTek USXGMII PCS
-Message-ID: <ZWSw+cecLhjbpX4o@shell.armlinux.org.uk>
-References: <cover.1699565880.git.daniel@makrotopia.org>
- <b9f787f3e4aa36e148d7595495af60db53f74417.1699565880.git.daniel@makrotopia.org>
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E845AA;
+	Mon, 27 Nov 2023 07:17:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+	s=s31663417; t=1701098201; x=1701703001; i=wahrenst@gmx.net;
+	bh=uKHkG9+U47RYHsud2aL+arN6vGOO0g0Agwwf3Wi2AkI=;
+	h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:
+	 In-Reply-To;
+	b=Mzn2l2x+c6ZyZLyWIoYyljmPPba9NLq2y6sgEPrMA3UNWP0VRAFoDDByYvxUfn+G
+	 2A6MJd/fpDeOmQR21zy+mkb/RpR+05xyOfqrJO471aZ7HXR5npacQ556OXOxs72HF
+	 29u+1HlA/mKMMETPo0XQjDmzJu8PJwQwqqJeYDywqVncTZIFbeZEtCro08XgcgQE8
+	 064bRQLooOoFR8WNQoBKo3oEmwwcq9U+0HiCp9KhD6hGRFqySv5UVQ96C55FTIAxL
+	 TVCXTUvvvfmDvJiL6CqhsKhlEz3M6GxOux7cNCE2U9C5t+7QEOeQlU6IGOGbw75N6
+	 LOOgiQ6xXz7Ca86J+w==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.129] ([37.4.248.43]) by mail.gmx.net (mrgmx104
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MQMyf-1qulIG1xh3-00MKLB; Mon, 27
+ Nov 2023 16:16:41 +0100
+Message-ID: <91488944-64e2-4715-baaa-ff5c18d46840@gmx.net>
+Date: Mon, 27 Nov 2023 16:16:40 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b9f787f3e4aa36e148d7595495af60db53f74417.1699565880.git.daniel@makrotopia.org>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/3] ARM: dts: bcm2711-rpi-cm4-io: Enable xHCI host
+To: Cyril Brulebois <kibi@debian.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Mathias Nyman <mathias.nyman@intel.com>,
+ bcm-kernel-feedback-list@broadcom.com, linux-usb@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20231126025612.12522-1-wahrenst@gmx.net>
+ <20231127003432.7aztwjxper2a3o33@mraw.org>
+ <b1156fee-aa43-43b3-bb03-baaac49575f4@gmx.net>
+ <20231127115538.npv23hhn7jfrk3fc@mraw.org>
+ <892c2e2f-3187-491b-b464-56d099b6fd49@gmx.net>
+ <20231127130225.lyk2jngfru5lw6sd@mraw.org>
+Content-Language: en-US
+From: Stefan Wahren <wahrenst@gmx.net>
+In-Reply-To: <20231127130225.lyk2jngfru5lw6sd@mraw.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:z1I3XJZGqSHwV2wlk4Op4Opz52HPOPJnSUJgR9jfPR+DgUYNCv8
+ Fk2ZVaVfTwW9+nM5EVzpNaLJvXuPZDD+JTP5HGQRG/dXZEBRB2BkaoShkrn//i0eLvn9+YT
+ 8UFNs78XOCf4cTWG7mUs4lq704i0oJ7ZGeVziVHJYGmmt6ROVkNPBfhS1UiDPX8wzXH82Bd
+ sdZ++l2hvgKg6Sf6OK2Eg==
+UI-OutboundReport: notjunk:1;M01:P0:eF3XxoYewsw=;OxmxbOEhmmsNtFOX1lmtKKIqcOF
+ pvZRTMpyXUQZ8afCb0NdcKjrb9OxU65SRH7UO2mdaVERykcGrwS5qx8U8tryyzYL5aCv7IEnK
+ sBonKenQ6ibbYEQbCtfXSCQRHAKb86AyYmBsJRiD/QCvnFr5D78yXdGI4ZQ5oOG79ASqwjxrX
+ nGkzjYof+B29Md+8wdk8fNektjXBY+ehdZQ8jdvo23D5AfHR/qL8NJKvL1HGUpTklxwbNHK9Q
+ QwjBv+1iS7tIz06EkAMz4MPtLZi5nOS43lu9Tv8H1P2awmOE6pZrKKjBqgRPwPy/O1iwZUeNL
+ 7HrlwhxPuct/zasL+/roj1JCBArFKHkv2HzUWy6sB0CrInVonIK0zMcIVlWCwwPYz/dAFMhGh
+ CePwb/3S+brnvOSF8kk4E99W9AL35Dv5shFlqsQbV2momvLlc4lALPLfKx6xR+gieVOGlXmbu
+ 4Kt0i0qiLIOgjIOFzuPJdXv0zh22cS1tgErKxiKsMbv94lZTljSe3Oj/iYa36oXAV11WRgT3l
+ 7Fd85WD2RI19zJ7pUck3ikIo5dExg7XHQ9aNh4EHlsHaT/2IVphQ3vvtOLeL621UjO1rfJN7I
+ G97EFneJCQ9nGH2d038Ctd/cF7n72tk7NYM6+l8k2Jd5AyPwE9bXLElR36ukmEPA/ksFuzaHE
+ bBykkGxJts0MUaF/WqyTJgNCl0W9zvxZHk+wEcRBb/ZHe28ZOej0tI2mulbgRMR9QVnRXrORp
+ lR1PWoDrE0l4N0KSqStMPNp1XEXk3EwFCLtaGjbvwwWU1pj2Xq1x5ifuKX07KLxexuf6adW+p
+ ivrKombmGjf77GlE2ntAYjj2g2mYNetJnVDcYdOQMrhXNzlYE7fbBMQrqTiEJbtwKYhPKl7fP
+ hsLj64Y0yJ7yRxYbDfghgxBxcpTx7k1xrINpgmKzWJu5RDHDQd8J44ywe7eSnCjTnIkJtupaD
+ kla38xBu+e6i4J9n8OUeSTrYoKQ=
 
-On Thu, Nov 09, 2023 at 09:51:57PM +0000, Daniel Golle wrote:
-> Add driver for USXGMII PCS found in the MediaTek MT7988 SoC and supporting
-> USXGMII, 10GBase-R and 5GBase-R interface modes. In order to support
-> Cisco SGMII, 1000Base-X and 2500Base-X via the also present LynxI PCS
-> create a wrapped PCS taking care of the components shared between the
-> new USXGMII PCS and the legacy LynxI PCS.
+Hi Cyril,
 
-What is the actual hardware setup here?
+Am 27.11.23 um 14:02 schrieb Cyril Brulebois:
+> Stefan Wahren <wahrenst@gmx.net> (2023-11-27):
+>> Could you please provide the following information:
+>>
+>> - settings of config.txt
+> Here you go:
+>
+>      arm_64bit=3D1
+>      enable_uart=3D1
+>      upstream_kernel=3D1
+>
+>      kernel=3Dvmlinuz-6.6.0+
+>      initramfs initrd.img-6.6.0+
+>
+>      enable_jtag_gpio=3D1
+>      force_turbo=3D1
+>
+>> - VC firmware version
+> This is pieeprom-2023-01-11.bin
+>
+> I know there's pieeprom-2023-05-11.bin as well, but I've been keeping
+> the former as a constant throughout the PCIe patch series testing once
+> I realized how critical it was (old beta EEPROM versions found in some
+> CM4s made everything much harder initially).
 
-From what I can tell, it's something like this:
+Sorry, i was a little bit unspecific. This the first level bootloader
+stored in the EEPROM. I meant the VC firmware version from the SD card
+which is logged in dmesg:
 
-         .---- LynxI PCS ----.
- MAC ---+                     +--- PEXP --- external
-         `--- USXGMII PCS ---'
+raspberrypi-firmware soc:firmware: Attached to firmware from ...
 
-Where PEXP is the serdes, handled by the drivers/phy layer in the
-kernel. This is not an unusual setup, but we don't have the serdes PHY
-controlled by the PCS driver.
+> In case the config matters:
+>
+>      [all]
+>      BOOT_UART=3D0
+>      WAKE_ON_GPIO=3D1
+>      POWER_OFF_ON_HALT=3D0
+>      BOOT_ORDER=3D0xf25641
+>      ENABLE_SELF_UPDATE=3D1
+>
+>> - did you use arm64/defconfig or something special?
+> I'm using a =E2=80=9Cdistribution config=E2=80=9D, starting from the lat=
+est arm64 config
+> found in Debian unstable (6.5.10-1), and applying `make oldconfig`.
+>
+> You'll find it attached.
+Thanks
+>
+>
+> Cheers,
+>
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
 
-You seem to be combining the whole lot into one driver, which seems
-rather odd.
-
-I would suggest that the serdes PHY is handled in the MAC driver, using
-the mac_prepare(), mac_config() and mac_finish() methods, as well as
-other parts of the driver:
-
-- when the netdev is opened, call phy_power_on(pextp)
-- when the netdev is closed, call phy_power_off(pextp)
-- in mac_prepare(), if the interface has changed, call phy_reset(pextp)
-- in mac_finish(), if the interface has changed, update your recorded
-  interface mode to detect future changes in either mac_prepare() or
-  mac_finish(), and call phy_set_mode_ext(pextp, PHY_MODE_ETHERNET,
-  interface).
-
-That will move most of what seems to be duplicated between the two PCS
-instances out of the PCS driver and to MAC level, and then the PCS parts
-become more about just driving the PCS hardware and nothing beyond that.
-More specifically, the wrapping's only function then is to deal with the
-sgmii reset. What exactly is that reset signal controlling? The reset to
-the LynxI PCS or something else?
-
-If you don't do that (and I prefer that you _do_ the above), then the
-following comments apply to the code here:
-
-1. the use of phy_power_on() without any calls to phy_power_off().
-   These are counted calls, and after the first call to phy_power_on(),
-   the only effect will be to increase the enable-counts of any
-   associated regulator and the power count. So, basically you're
-   missing calls to phy_power_off(). I suggest a call to phy_power_off()
-   in the pcs_disable() function.
-
-2. calling phy_power_on() in pcs_config() is entirely unnecessary.
-   pcs_config() will not be called unless pcs_enable() has _already_
-   been called, so the call to phy_power_on() in the pcs_enable()
-   function is entirely sufficient.
-
-With these two fixed, it means that the pextp PHY will be powered up
-when one of the pcs_enable() functions is called, and powered down
-when one of the pcs_disable() functions is called.
-
-3. the complicated reset sequence, which is basically:
-   - phy_reset(pextp)
-   - reset_control_assert(sgmii or xfi reset)
-   - *sleep* 100-500us (yes, sleep)
-   - reset_control_deassert(sgmii or xfi reset)
-   - *delay* 10ms (not sleep, but spin wait)
-   If we are in a schedulable context (which the usleep_range() suggests
-   we are) then why bother sleeping for the short delay, and
-   spin-waiting for the longer delay? A bit of consistency seems to be
-   needed here.
-
-4. really needs to explain why it's necessary to repeatedly call the
-   pcs_config() function at each get_state() if the link is down.
-
-   Note that with the code the way it is, phy_power_on() will be
-   repeatedly called, and at some point the "power_count" will overflow
-   which would probably be bad. The counting in the regulator core will
-   probably also overflow as well. So this is bad.
-
-   Apart from the overflow issue, the only thing I can see that this
-   achieves is to call the core of the pcs_config function. In the case
-   of the lynxi, calling its pcs_config() repeatedly with the same
-   parameters. Looking at pcs-mtk-lynxi.c, I can't see what this would
-   achieve.
-
-With the above issues dealt with, from the point of view of the lynxi /
-sgmii code, the only things I can see that the wrapping achieves are:
-
-a) when pcs_enable() is called, call phy_power_on(pextp)
-b) when pcs_disable() is called, call phy_power_offpextp)
-c) when pcs_config() is called, if the interface has changed:
-   i)  call phy_reset() and assert/deassert the "sgmii" reset before
-       calling the lynxi PCS
-   ii) call phy_set_mode_ext(pextp) for the new interface mode after
-       calling the lynxi PCS
-
-I haven't picked through the usxgmii code completely, so I'm not
-specifically commenting on it, although some of the above applies
-there as well.
-
-Thanks.
-
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
