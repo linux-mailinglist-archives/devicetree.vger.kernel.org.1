@@ -1,84 +1,98 @@
-Return-Path: <devicetree+bounces-19760-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19761-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D8987FC542
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 21:24:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97E5C7FC55B
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 21:27:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5F55E1C20CBF
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 20:24:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C9AB91C20EEC
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 20:27:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF07F41C8A;
-	Tue, 28 Nov 2023 20:24:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 344DA4F8A2;
+	Tue, 28 Nov 2023 20:27:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AI+3OrOW"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="F/hoZsMS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AB7D46BAE;
-	Tue, 28 Nov 2023 20:24:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EBCE8C433C7;
-	Tue, 28 Nov 2023 20:24:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701203074;
-	bh=AxZmt6ng+cjEW/8ifHbtAk94LDFE5Mh7uTAVhNosjrA=;
-	h=In-Reply-To:References:Subject:From:To:Date:From;
-	b=AI+3OrOWNKfQ4WaArgVY2zE3iQgt2mmwbWLoqzyj6bk3hFwZwi7oVmN5iR8Q6vqgV
-	 AGplDW3Kj9cNGKv//2OTPuVXRAhvDF3RIorjKHVpGbEv4QFzY02cPHj3u7avWd9kM8
-	 h9MQFqIPSMBisM4Dwn7Bx1XEYY9b+QSUCLXKpXRqHUwXCZEY+isJn4mii2/tyJx3uy
-	 6bwXIx0HA7o3493ViblidvG1NQb3071cXrTGY4UaAIxCpGn5QRblfZB1PiRU0Zu/KB
-	 fq1brk+hB0ov3M0wWnXJ6nwLVSpGCJPiIriInlLL12KXG1s9Rd/H50ZuztbjxTNoHW
-	 JEbrHvo5/OA0Q==
-Message-ID: <21095bde37a8090686dfb372e5fffa58.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45B1019AC
+	for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 12:26:56 -0800 (PST)
+Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2c4fdf94666so74288511fa.2
+        for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 12:26:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1701203214; x=1701808014; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:user-agent:from:references
+         :in-reply-to:mime-version:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5e/cA2xc7eDKmbypo6Z8SLywnOUPp9h8bqqyEEbG2Ow=;
+        b=F/hoZsMShCa4kqpUalbfw1ECS7gOY7sksIHg5XG6JQquJ095bDWWM1dTnt+NO5Y0M+
+         CljMyLu3Z4mNaSTtQ+2HPKu8aGSiYxOmu5IO6iUaIBnjgBPaE4MIjTm1hbdb3gk0r50L
+         W23OvsvzjM6TfG5QxtqDYl03qbSm5NjTCcnhY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701203214; x=1701808014;
+        h=cc:to:subject:message-id:date:user-agent:from:references
+         :in-reply-to:mime-version:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5e/cA2xc7eDKmbypo6Z8SLywnOUPp9h8bqqyEEbG2Ow=;
+        b=KMYRZaHK/2CbLekrUoanqOZXf5FF63S+Bo7pxYL50yY2fEQh0BRsdxR8DHD2QfKMc6
+         rkfk2/8dy3RZlw56yq7nwq5Jjy0lsFFmtLfTdYotdVGtAVrQ5Jz/9Nk/A9WFdfTOmMQF
+         3bj/FChcPjnWS9nkLTNmXY2eEinrvRiQWlEG3Fu/yGuMK5qZz4pTyg1WyCI4YaS5Dufo
+         5th2Iz6Rkt+HWgMvrT826Qye4ykVQl2HtSqMjL/T71/vDflorSr9hNu+JQJg/4SijzTM
+         VmAj3yvaxT+AUFvf5Ocjr2jzJJzgWy573ySkgr8JMI+4kvftIsyCGaybpp0NreDrmxb6
+         p1IQ==
+X-Gm-Message-State: AOJu0YypyScb+o4Cjy4yrM5+UnZFoURN+MNmF2bfRw5nVu9ja4IVI3EU
+	rxHThB1ClBoXcf+m5UvfpYUOPc3njz7oqIovqE/PEg==
+X-Google-Smtp-Source: AGHT+IHPo1Uzv9EVtilCouzElyVLqdgaW4ild4G1hYIMDOJYzDiORoqPIa0lrdy3P4ThtYYFo/T7JY6HIy/vgT0G6QA=
+X-Received: by 2002:a2e:b523:0:b0:2c9:8f6b:3d9a with SMTP id
+ z3-20020a2eb523000000b002c98f6b3d9amr9371511ljm.16.1701203214015; Tue, 28 Nov
+ 2023 12:26:54 -0800 (PST)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 28 Nov 2023 12:26:53 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <cb983f0d30f019120cf49f24efb655cf794084d3.1700498124.git.daniel@makrotopia.org>
-References: <b277c5f084ff35849efb8250510b2536053d1316.1700498124.git.daniel@makrotopia.org> <cb983f0d30f019120cf49f24efb655cf794084d3.1700498124.git.daniel@makrotopia.org>
-Subject: Re: [PATCH v2 3/4] clk: mediatek: Add pcw_chg_shift control
-From: Stephen Boyd <sboyd@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Chen-Yu Tsai <wenst@chromium.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dan Carpenter <dan.carpenter@linaro.org>,
-	Daniel Golle <daniel@makrotopia.org>,
-	David S.Miller <davem@davemloft.net>,
-	Edward-JW Yang <edward-jw.yang@mediatek.com>,
-	Eric Dumazet <edumazet@google.com>,
-	Frank Wunderlich <frank-w@public-files.de>,
-	Garmin.Chang <Garmin.Chang@mediatek.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	James Liao <jamesjj.liao@mediatek.com>,
-	Jianhui Zhao <zhaojh329@gmail.com>,
-	Johnson Wang <johnson.wang@mediatek.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
-	Sabrina Dubroca <sd@queasysnail.net>,
-	Sam Shih <sam.shih@mediatek.com>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-m@web.codeaurora.org,
-	ediatek@lists.infradead.org, netdev@vger.kernel.org
-Date: Tue, 28 Nov 2023 12:24:31 -0800
+In-Reply-To: <0ea669ad-9a33-40e0-b4df-aa2b2a1b92de@linaro.org>
+References: <20231128002052.2520402-1-swboyd@chromium.org> <0ea669ad-9a33-40e0-b4df-aa2b2a1b92de@linaro.org>
+From: Stephen Boyd <swboyd@chromium.org>
 User-Agent: alot/0.10
+Date: Tue, 28 Nov 2023 12:26:53 -0800
+Message-ID: <CAE-0n50My=0FZ044b2beaB2cHpC6MxYtsEKsVou=80yO2iERYg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: arm: qcom: Fix html link
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Rob Herring <robh+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, patches@lists.linux.dev, 
+	devicetree@vger.kernel.org, Alexandre TORGUE <alexandre.torgue@foss.st.com>, 
+	Yanteng Si <siyanteng@loongson.cn>, Jonathan Corbet <corbet@lwn.net>, 
+	Bjorn Andersson <andersson@kernel.org>, Douglas Anderson <dianders@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
 
-Quoting Daniel Golle (2023-11-20 09:19:05)
-> Introduce pcw_chg_shfit control to optionally use that instead of the
-> hardcoded PCW_CHG_MASK macro.
-> This will needed for clocks on the MT7988 SoC.
->=20
-> Signed-off-by: Sam Shih <sam.shih@mediatek.com>
+Quoting Krzysztof Kozlowski (2023-11-27 23:46:53)
+> On 28/11/2023 01:20, Stephen Boyd wrote:
+> > This link got broken by commit e790a4ce5290 ("arm: docs: Move Arm
+> > documentation to Documentation/arch/") when the doc moved from arm/ to
+> > arch/arm/. Fix the link so that it can continue to be followed.
+> >
+> > Fixes: e790a4ce5290 ("arm: docs: Move Arm documentation to Documentation/arch/")
+> > Cc: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+> > Cc: Yanteng Si <siyanteng@loongson.cn>
+> > Cc: Jonathan Corbet <corbet@lwn.net>
+> > Cc: Bjorn Andersson <andersson@kernel.org>
+> > Cc: Douglas Anderson <dianders@chromium.org>
+> > Signed-off-by: Stephen Boyd <swboyd@chromium.org>
+> > ---
+> >  Documentation/devicetree/bindings/arm/qcom.yaml | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>
+> This should go via Qcom, but you did not Cc msm mailing list.
+>
 
-Is Sam Shih the author? This has the wrong From: line then.
-
-> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+Ok. I was hoping to go through DT tree but am also fine sending it
+through qcom.
 
