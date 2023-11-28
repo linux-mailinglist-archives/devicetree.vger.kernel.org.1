@@ -1,100 +1,113 @@
-Return-Path: <devicetree+bounces-19771-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19773-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F08D97FC80A
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 22:35:56 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 387DE7FC82A
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 22:48:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EE7D31C2108C
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 21:35:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6A1531C20E20
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 21:48:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C631C44C92;
-	Tue, 28 Nov 2023 21:35:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ZEp9XUnK"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3DDA44C94;
+	Tue, 28 Nov 2023 21:48:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83C111FC1;
-	Tue, 28 Nov 2023 13:35:40 -0800 (PST)
-Received: from beast.luon.net (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: sjoerd)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 46F4966072E7;
-	Tue, 28 Nov 2023 21:35:39 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1701207339;
-	bh=EA3Sl4Au7lUnYnJzLlX/RZSBt2UJuslBcjVt/8x9WDs=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=ZEp9XUnKUM1gGQiTwlQAQadMFC5KorC0k2m7ZfpvRuKXIZ07rRz9NOa+BSfXuzwWo
-	 dAZRIl+kVb1ppR4xQ5mxpA7Y82IQrZifXQ8ck/IbTLcJtForp8yK6Mdy813vPNNZ7p
-	 pHrTvt9eIxz9FzsKcdzOiTIIk7l+J9U1E00fPA2Q5AE9TzjHQnqAIYBBlNZH0t/w7X
-	 4Yr8K7FafTiijBf1eghAs7Z6NmqBRN2BP5/dwnplRLE0rYF/t2izUkiSWIyc74a1j/
-	 GJTQk9M4FUQ+bPFOJP/+YPxAStPAcYx5CbAjXwgBuM+3RT5d5XyLLFUq96sUOfSl7x
-	 ZJIQIlK/A8fMQ==
-Received: by beast.luon.net (Postfix, from userid 1000)
-	id 7AC3C9676CFE; Tue, 28 Nov 2023 22:35:37 +0100 (CET)
-From: Sjoerd Simons <sjoerd@collabora.com>
-To: =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
-Cc: =?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>,
-	kernel@collabora.com,
-	stable@vger.kernel.org,
-	Andrew Lunn <andrew@lunn.ch>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Gregory Clement <gregory.clement@bootlin.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 3/3] arm64: dts: armada-3720-turris-mox: set irq type for RTC
-Date: Tue, 28 Nov 2023 22:35:06 +0100
-Message-ID: <20231128213536.3764212-4-sjoerd@collabora.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20231128213536.3764212-1-sjoerd@collabora.com>
-References: <20231128213536.3764212-1-sjoerd@collabora.com>
+Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 667E998;
+	Tue, 28 Nov 2023 13:48:03 -0800 (PST)
+Received: by mail-ot1-f51.google.com with SMTP id 46e09a7af769-6d7eca548ccso3449624a34.3;
+        Tue, 28 Nov 2023 13:48:03 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701208082; x=1701812882;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tY859mgZuixEXsQXpxoxdofdHWsZ/aGJN72aWxxZ5dQ=;
+        b=qXCDnFAZWQAmzBbgOS5s8g6UUc2mCDm/AXW/1mOWdbKPHbVDZwFaIEx+0rr4TzAGR7
+         P7K5DIWyXlIr0KfY8KE/HSPkzaixwpzlZSEs+kGSejslAhsOGcx9XJ8zQjP9Y2G9IXkg
+         2DJ0lPJVvmbdhWsVG0sscwwred8Rwy35zt//i4fCAyXwZO3X61AjYpD93E5fMlBBN6l8
+         9ieWZcW7N0tuKnV7Br/k5+SDAZD0gSgwmea7TL/F48iNA8xPk1rdjI5jMz+d6bLRGth4
+         QbVzapp6AadeGJvyfzTmlZp8pjqVxxBSQvA3hFaLGuOkwaOw66DE+uof2sdjdMe0CPAz
+         oI/Q==
+X-Gm-Message-State: AOJu0YyJSQmC9SgdLKX6F5CHuTi+yiOHsCg29cFAB8Syr9O0TWOhjz4c
+	nLInS/j40mcrkJ/8kjbqg6PUORRRbQ==
+X-Google-Smtp-Source: AGHT+IG3MhdI/KC/5pcMn9+h7mJSK+hnGWJUirDvj5cEw3pKREm4LBbTIwkWueAPZns7pEIbVfOTuQ==
+X-Received: by 2002:a05:6870:248e:b0:1fa:1c89:c656 with SMTP id s14-20020a056870248e00b001fa1c89c656mr14173684oaq.56.1701208082608;
+        Tue, 28 Nov 2023 13:48:02 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id z20-20020a056870385400b001fa2823dc13sm1930073oal.0.2023.11.28.13.48.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Nov 2023 13:48:01 -0800 (PST)
+Received: (nullmailer pid 3975504 invoked by uid 1000);
+	Tue, 28 Nov 2023 21:48:00 -0000
+From: Rob Herring <robh@kernel.org>
+To: Philipp Zabel <p.zabel@pengutronix.de>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Wei Xu <xuwei5@hisilicon.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: reset: hisilicon,hi3660-reset: Drop providers and consumers from example
+Date: Tue, 28 Nov 2023 15:47:58 -0600
+Message-ID: <20231128214759.3975428-1-robh@kernel.org>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-The rtc on the mox shares its interrupt line with the moxtet bus. Set
-the interrupt type to be consistent between both devices. This ensures
-correct setup of the interrupt line regardless of probing order.
+Binding examples should generally only cover what the binding covers. A
+provider binding doesn't need to show consumers and vice-versa. The
+hisilicon,hi3660-reset binding example has both, so let's drop them.
 
-Signed-off-by: Sjoerd Simons <sjoerd@collabora.com>
-Cc: stable@vger.kernel.org # v6.2+
-Fixes: 21aad8ba615e ("arm64: dts: armada-3720-turris-mox: Add missing interrupt for RTC")
+This also fixes an undocumented (by schema) compatible warning for
+"hisilicon,hi3660-iomcu".
 
+Signed-off-by: Rob Herring <robh@kernel.org>
 ---
+ .../reset/hisilicon,hi3660-reset.yaml         | 25 +------------------
+ 1 file changed, 1 insertion(+), 24 deletions(-)
 
-(no changes since v1)
-
- arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts b/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
-index 9eab2bb22134..805ef2d79b40 100644
---- a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
-+++ b/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
-@@ -130,7 +130,7 @@ rtc@6f {
- 		compatible = "microchip,mcp7940x";
- 		reg = <0x6f>;
- 		interrupt-parent = <&gpiosb>;
--		interrupts = <5 0>; /* GPIO2_5 */
-+		interrupts = <5 IRQ_TYPE_EDGE_FALLING>; /* GPIO2_5 */
- 	};
- };
+diff --git a/Documentation/devicetree/bindings/reset/hisilicon,hi3660-reset.yaml b/Documentation/devicetree/bindings/reset/hisilicon,hi3660-reset.yaml
+index cdfcf32c53fa..e4de002d6903 100644
+--- a/Documentation/devicetree/bindings/reset/hisilicon,hi3660-reset.yaml
++++ b/Documentation/devicetree/bindings/reset/hisilicon,hi3660-reset.yaml
+@@ -50,32 +50,9 @@ additionalProperties: false
  
+ examples:
+   - |
+-    #include <dt-bindings/interrupt-controller/irq.h>
+-    #include <dt-bindings/interrupt-controller/arm-gic.h>
+-    #include <dt-bindings/clock/hi3660-clock.h>
+-
+-    iomcu: iomcu@ffd7e000 {
+-        compatible = "hisilicon,hi3660-iomcu", "syscon";
+-        reg = <0xffd7e000 0x1000>;
+-    };
+-
+-    iomcu_rst: iomcu_rst_controller {
++    iomcu_rst_controller {
+         compatible = "hisilicon,hi3660-reset";
+         hisilicon,rst-syscon = <&iomcu>;
+         #reset-cells = <2>;
+     };
+-
+-    /* Specifying reset lines connected to IP modules */
+-    i2c@ffd71000 {
+-        compatible = "snps,designware-i2c";
+-        reg = <0xffd71000 0x1000>;
+-        interrupts = <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH>;
+-        #address-cells = <1>;
+-        #size-cells = <0>;
+-        clock-frequency = <400000>;
+-        clocks = <&crg_ctrl HI3660_CLK_GATE_I2C0>;
+-        resets = <&iomcu_rst 0x20 3>;
+-        pinctrl-names = "default";
+-        pinctrl-0 = <&i2c0_pmx_func &i2c0_cfg_func>;
+-    };
+ ...
 -- 
-2.43.0
+2.42.0
 
 
