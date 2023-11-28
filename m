@@ -1,224 +1,452 @@
-Return-Path: <devicetree+bounces-19648-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19649-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B80C97FBA54
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 13:41:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6984A7FBA5C
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 13:42:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EDBCAB2115F
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 12:41:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BE29FB215D0
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 12:42:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 453D03457D;
-	Tue, 28 Nov 2023 12:41:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87909405CE;
+	Tue, 28 Nov 2023 12:42:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=subdimension.ro header.i=@subdimension.ro header.b="Hv9JhTAV"
+	dkim=pass (2048-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="BoO+G5sW";
+	dkim=permerror (0-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="IzmrX3mf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.subdimension.ro (unknown [IPv6:2a01:7e01:e001:1d1::2])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CADDD51;
-	Tue, 28 Nov 2023 04:40:55 -0800 (PST)
-Received: from localhost.localdomain (unknown [188.24.94.216])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by mail.subdimension.ro (Postfix) with ESMTPSA id 9429E28EE6F;
-	Tue, 28 Nov 2023 12:40:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=subdimension.ro;
-	s=skycaves; t=1701175253;
-	bh=445nBh8jeISJn7/7ca4zeuuwAqc9EBuV/Atp2i/lZQo=;
-	h=From:To:Cc:Subject:Date;
-	b=Hv9JhTAVO0ZZm5bYNfeD673dplGPD9JonGSv0SIGFw+BXLOIy+LjbHAbasQgC/RCK
-	 /U1AdQ2K+CAFoqV+ju5T9p+82Ditz8yyqmO/G+jDiasXFBjZGHTQukksOeOAAFE6bp
-	 jWjyqR2oXV+JjsZ3ViEVlI50pdCiued3nm/BZmg0=
-From: Petre Rodan <petre.rodan@subdimension.ro>
-To: linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: Petre Rodan <petre.rodan@subdimension.ro>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [81.169.146.165])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3A00D59;
+	Tue, 28 Nov 2023 04:42:04 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1701175322; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=oAvSZlvrEVIFs9exHkMFKW3+YoVO7gKmlBuHFpcNlEYCkX8wijvmUZ6aq12dEMxX3v
+    NoCrZkl8asmN0fmCMXalhhEK8NROcPAIIlybnUkAmEmogZMhrQZSboXHXDRUbEr4Nhxg
+    KO2BAom4A+6hhtG9Rzy9E1iFaZBeDOM+XkZY0PY34IDu6KA+QJIoGActSU2bMxCkvAvO
+    1u00QefNwyafrSgoWQrjlWxVHueUdn4CLFuq8WlyLjIZ+CENqBrDIELTym02Ho5XA1iV
+    s+sdwH1oRZ9x0IzTaYbIBUCT2a4IMOlq+3CzlHeUlorxSEFNyqBd5q4N8QM0HCoU79XC
+    2m8g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1701175322;
+    s=strato-dkim-0002; d=strato.com;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=TS8/WXeqr+m6rKcDo8NKgNdTMbcPnyKqnODnr8gI8hs=;
+    b=Q/gfLd4L4xzjF91QdYPUPNqocXqvunJdg0rPc6CGdR4QHAk6lK13LNbUEs30P5UljZ
+    uqMP0xqu8kNAAsbjud2bppeY+OiRyzvFXyp/xoH8WBeiq9CAFFroU131wUeVnioI/3sU
+    JW3EGTpFTqwRozdUuuDMf+LWeto4maffmGJDcHr5NFQTeGsQRGOKCf3vXBoab2GXhbw/
+    frYcQ1R9zxQrFLvy9ReG/r9oDdawP2YVJRsg0Y9HLWo82uveDMihRKR/sxVeB1rFExSZ
+    yEt0zrzQkvTIRmcEVh09m4BNoNkBJDu3k3htMkvXUiY1CLyrRSxzKHXGqYZbC1XrRKxK
+    Zo7w==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1701175322;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=TS8/WXeqr+m6rKcDo8NKgNdTMbcPnyKqnODnr8gI8hs=;
+    b=BoO+G5sWWQNmY/5dRxdbHlFH9pxjZj/RYZ+xf6VhQtMHgqcbFe/9c9gPyYE3FSRSE6
+    A8eiahSXghyaNtt7r+MuCCsvUpskPODuvMlhNYVHD8oHqJWX+yFbaYeYODXe+nDxsZ3B
+    k1/pJO3FnDZNzqM/V4th58pz2ndK2JKLGsW5dPNB+EHfO/1Efhn9JGVG+0dXY0N+VRVY
+    7okcarziiU+RFwm2Wb9xiS1HB0Pnh3/kL0hRS3YhUMumJRXd7eJExn/ePak+73LnJm/y
+    U3+KX8iscb7leQ6/euMwW3vTEWYF0UmmJXHHNPa/T8r0/KNrI24n2sKB44xpf0ewzD4k
+    83ug==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1701175322;
+    s=strato-dkim-0003; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=TS8/WXeqr+m6rKcDo8NKgNdTMbcPnyKqnODnr8gI8hs=;
+    b=IzmrX3mfqfsZT9NHUBJSSsUiqhdkaXvkf/Rj4TM1Kqski1PWl9IFsvBLubhdi5REoE
+    Wl7Ma/qr7iuT6izExVBg==
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4peA8paF1A=="
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 49.9.1 DYNA|AUTH)
+    with ESMTPSA id t3efe7zASCg2mDV
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+	(Client did not present a certificate);
+    Tue, 28 Nov 2023 13:42:02 +0100 (CET)
+Date: Tue, 28 Nov 2023 13:41:56 +0100
+From: Stephan Gerhold <stephan@gerhold.net>
+To: Ulf Hansson <ulf.hansson@linaro.org>
+Cc: Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
+	Viresh Kumar <viresh.kumar@linaro.org>,
+	Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Ilia Lin <ilia.lin@kernel.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	linux-kernel-mentees@lists.linuxfoundation.org,
-	Jonathan Cameron <jic23@kernel.org>
-Subject: [PATCH v4 1/2] dt-bindings: iio: pressure: add honeywell,hsc030
-Date: Tue, 28 Nov 2023 14:40:37 +0200
-Message-ID: <20231128124042.22744-1-petre.rodan@subdimension.ro>
-X-Mailer: git-send-email 2.41.0
+	Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, stable@vger.kernel.org
+Subject: Re: [PATCH 1/4] cpufreq: qcom-nvmem: Handling multiple power domains
+Message-ID: <ZWXgFNKgm9QaFuzx@gerhold.net>
+References: <20230912-msm8909-cpufreq-v1-0-767ce66b544b@kernkonzept.com>
+ <20230912-msm8909-cpufreq-v1-1-767ce66b544b@kernkonzept.com>
+ <CAPDyKFq6U-MR4Bd+GmixYseRECDh142RhydtKbiPd3NHV2g6aw@mail.gmail.com>
+ <ZQGqfMigCFZP_HLA@gerhold.net>
+ <CAPDyKFppdXe1AZo1jm2Bc_ZR18hw5Bmh1x+2P7Obhb_rJ2gc4Q@mail.gmail.com>
+ <ZRcC2IRRv6dtKY65@gerhold.net>
+ <CAPDyKFoiup8KNv=1LFGKDdDLA1pHsdJUgTTWMdgxnikEmReXzg@mail.gmail.com>
+ <ZSg-XtwMxg3_fWxc@gerhold.net>
+ <CAPDyKFoH5EOvRRKy-Bgp_B9B3rf=PUKK5N45s5PNgfBi55PaOQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAPDyKFoH5EOvRRKy-Bgp_B9B3rf=PUKK5N45s5PNgfBi55PaOQ@mail.gmail.com>
+Content-Transfer-Encoding: 7bit
 
-Adds binding for digital Honeywell TruStability HSC and SSC series
-pressure and temperature sensors. 
-Communication is one way. The sensor only requires 4 bytes worth of
-clock pulses on both i2c and spi in order to push the data out.
-The i2c address is hardcoded and depends on the part number.
-There is no additional GPIO control.
+Hi Uffe,
 
-Datasheet:
-https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/products/sensors/pressure-sensors/board-mount-pressure-sensors/trustability-hsc-series/documents/sps-siot-trustability-hsc-series-high-accuracy-board-mount-pressure-sensors-50099148-a-en-ciid-151133.pdf [HSC]
-Datasheet:
-https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/products/sensors/pressure-sensors/board-mount-pressure-sensors/trustability-ssc-series/documents/sps-siot-trustability-ssc-series-standard-accuracy-board-mount-pressure-sensors-50099533-a-en-ciid-151134.pdf [SSC]
-Signed-off-by: Petre Rodan <petre.rodan@subdimension.ro>
----
-V2: - fix yaml struct
-    - cleanup based on Krzysztof's review
-V3: - rename range_str -> honeywell,pressure-triplet to define the string
-       containing the pressure range, measurement unit and type
-    - honeywell,pmax-pascal becomes uint32
-V4: - added enum to honeywell,transfer-function
----
- .../iio/pressure/honeywell,hsc030pa.yaml      | 134 ++++++++++++++++++
- 1 file changed, 134 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/pressure/honeywell,hsc030pa.yaml
+On Mon, Oct 16, 2023 at 04:47:52PM +0200, Ulf Hansson wrote:
+> [...]
+> > > >   - MSM8916 (CPR+RPMPD):
+> > > >     https://github.com/msm8916-mainline/linux/commit/8880f39108206d7a60a0a8351c0373bddf58657c
+> > >
+> > > This looks a bit odd to me. Does a CPU really have four different
+> > > power-domains, where three of them are performance-domains?
+> > >
+> >
+> > Good question. I think we're largely entering "uncharted territory" with
+> > these questions, I can just try to answer it the best I can from the
+> > limited documentation and knowledge I have. :)
+> >
+> > The CPU does indeed use four different power domains. There also seem to
+> > be additional power switches that gate power for some components without
+> > having to turn off the entire supply.
+> >
+> > I'll list them twice from two points of view: Once mapping component ->
+> > power domain, then again showing each power domain separately to make it
+> > more clear. At the end I also want to make clear that MSM8909 (with the
+> > "single" power domain) is actually exactly the same SoC design, just
+> > with different regulators supplying the power domains.
+> >
+> > It's totally fine if you just skim over it. I'm listing it in detail
+> > also as reference for myself. :D
+> >
+> > # Components
+> >  - SoC
+> >    - CPU subsystem ("APPS")
+> >      - CPU cluster
+> >        - 4x CPU core (logic and L1 cache) -> VDD_APC
+> >        - Shared L2 cache
+> >          - Logic -> VDD_APC
+> >          - Memory -> VDD_MX
+> >      - CPU clock controller (logic) -> VDD_CX
+> >        - Provides CPU frequency from different clock sources
+> >        - L2 cache runs at 1/2 of CPU frequency
+> >        => Both VDD_APC and VDD_MX must be scaled based on frequency
+> >      - CPU PLL clock source
+> >        - Generates the higher (GHz) CPU frequencies
+> >        - Logic (?, unsure) -> VDD_CX
+> >        - ??? -> VDD_SR2_APPS_PLL
+> >        => VDD_CX must be scaled based on PLL frequency
+> >
+> > # Power Domains
+> > ## VDD_APC
+> >  - dedicated for CPU
+> >  - powered off completely in deepest cluster cpuidle state
+> >
+> >  - per-core power switch (per-core cpuidle)
+> >    - CPU logic
+> >    - L1 cache controller/logic and maybe memory(?, unsure)
+> >  - shared L2 cache controller/logic
+> >
+> >  => must be scaled based on CPU frequency
+> >
+> > ## VDD_MX
+> >  - global SoC power domain for "on-chip memories"
+> >  - always on, reduced to minimal voltage when entire SoC is idle
+> >
+> >  - power switch (controlled by deepest cluster cpuidle state?, unsure)
+> >    - L2 cache memory
+> >
+> >  => must be scaled based on L2 frequency (=> 1/2 CPU frequency)
+> >
+> > ## VDD_CX
+> >  - global SoC power domain for "digital logic"
+> >  - always on, reduced to minimal voltage when entire SoC is idle
+> >  - voting for VDD_CX in the RPM firmware also affects VDD_MX performance
+> >    state (firmware implicitly sets VDD_MX >= VDD_CX)
+> >
+> >  - CPU clock controller logic, CPU PLL logic(?, unsure)
+> >
+> >  => must be scaled based on CPU PLL frequency
+> >
+> > ## VDD_SR2_APPS_PLL
+> >  - global SoC power domain for CPU clock PLLs
+> >  - on MSM8916: always on with constant voltage
+> >
+> >  => ignored in Linux at the moment
+> >
+> > # Power Domain Regulators
+> > These power domains are literally input pins on the SoC chip. In theory
+> > one could connect any suitable regulator to each of those. In practice
+> > there are just a couple of standard reference designs that everyone
+> > uses:
+> >
+> > ## MSM8916 (SoC) + PM8916 (PMIC)
+> > We need to scale 3 power domains together with cpufreq:
+> >
+> >  - VDD_APC (CPU logic) = &pm8916_spmi_s2 (via CPR)
+> >  - VDD_MX  (L2 memory) = &pm8916_l3 (via RPMPD: MSM8916_VDDMX)
+> >  - VDD_CX  (CPU PLL)   = &pm8916_s1 (via RPMPD: MSM8916_VDDCX)
+> >
+> > ## MSM8909 (SoC) + PM8909 (PMIC)
+> > We need to scale 1 power domain together with cpufreq:
+> >
+> >  - VDD_APC = VDD_CX    = &pm8909_s1 (via RPMPD: MSM8909_VDDCX)
+> >    (CPU logic, L2 logic and CPU PLL)
+> > (- VDD_MX  (L2 memory) = &pm8909_l3 (RPM firmware enforces VDD_MX >= VDD_CX))
+> >
+> > There is implicit magic in the RPM firmware here that saves us from
+> > scaling VDD_MX. VDD_CX/APC are the same power rail.
+> >
+> > ## MSM8909 (SoC) + PM8916 (PMIC)
+> > When MSM8909 is paired with PM8916 instead of PM8909, the setup is
+> > identical to MSM8916+PM8916. We need to scale 3 power domains.
+> >
+> > > In a way it sounds like an option could be to hook up the cpr to the
+> > > rpmpd:s instead (possibly even set it as a child-domains to the
+> > > rpmpd:s), assuming that is a better description of the HW, which it
+> > > may not be, of course.
+> >
+> > Hm. It's definitely an option. I must admit I haven't really looked
+> > much at child-domains so far, so spontaneously I'm not sure about
+> > the implications, for both the abstract hardware description and
+> > the implementation.
+> >
+> > There seems to be indeed some kind of relation between MX <=> CX/APC:
+> >
+> >  - When voting for CX in the RPM firmware, it will always implicitly
+> >    adjust the MX performance state to be MX >= CX.
+> >
+> >  - When scaling APC up, we must increase MX before APC.
+> >  - When scaling APC down, we must decrease MX after APC.
+> >  => Clearly MX >= APC. Not in terms of raw voltage, but at least for the
+> >     abstract performance state.
+> >
+> > Is this some kind of parent-child relationship between MX <=> CX and
+> > MX <=> APC?
+> 
+> Thanks for sharing the above. Yes, to me, it looks like there is a
+> parent/child-domain relationship that could be worth describing/using.
+> 
+> >
+> > If yes, maybe we could indeed bind MX to the CPR genpd somehow. They use
+> > different performance state numbering, so we need some kind of
+> > translation. I'm not entirely sure how that would be described.
+> 
+> Both the power-domain and the required-opps DT bindings
+> (Documentation/devicetree/bindings/opp/opp-v2-base.yaml) are already
+> allowing us to describe these kinds of hierarchical
+> dependencies/layouts.
+> 
+> In other words, to scale performance for a child domain, the child may
+> rely on that we scale performance for the parent domain too. This is
+> already supported by genpd and through the opp library - so it should
+> just work. :-)
+> 
 
-diff --git a/Documentation/devicetree/bindings/iio/pressure/honeywell,hsc030pa.yaml b/Documentation/devicetree/bindings/iio/pressure/honeywell,hsc030pa.yaml
-new file mode 100644
-index 000000000000..418fb1d2eefd
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/pressure/honeywell,hsc030pa.yaml
-@@ -0,0 +1,134 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/pressure/honeywell,hsc030pa.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Honeywell TruStability HSC and SSC pressure sensor series
-+
-+description: |
-+  support for Honeywell TruStability HSC and SSC digital pressure sensor
-+  series.
-+
-+  These sensors have either an I2C, an SPI or an analog interface. Only the
-+  digital versions are supported by this driver.
-+
-+  There are 118 models with different pressure ranges available in each family.
-+  The vendor calls them "HSC series" and "SSC series". All of them have an
-+  identical programming model but differ in pressure range, unit and transfer
-+  function.
-+
-+  To support different models one needs to specify the pressure range as well
-+  as the transfer function. Pressure range can either be provided via
-+  pressure-triplet (directly extracted from the part number) or in case it's
-+  a custom chip via numerical range limits converted to pascals.
-+
-+  The transfer function defines the ranges of raw conversion values delivered
-+  by the sensor. pmin-pascal and pmax-pascal corespond to the minimum and
-+  maximum pressure that can be measured.
-+
-+  Please note that in case of an SPI-based sensor, the clock signal should not
-+  exceed 800kHz and the MOSI signal is not required.
-+
-+  Specifications about the devices can be found at:
-+  https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/products/sensors/pressure-sensors/board-mount-pressure-sensors/trustability-hsc-series/documents/sps-siot-trustability-hsc-series-high-accuracy-board-mount-pressure-sensors-50099148-a-en-ciid-151133.pdf
-+  https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/products/sensors/pressure-sensors/board-mount-pressure-sensors/trustability-ssc-series/documents/sps-siot-trustability-ssc-series-standard-accuracy-board-mount-pressure-sensors-50099533-a-en-ciid-151134.pdf
-+
-+maintainers:
-+  - Petre Rodan <petre.rodan@subdimension.ro>
-+
-+properties:
-+  compatible:
-+    const: honeywell,hsc030pa
-+
-+  reg:
-+    maxItems: 1
-+
-+  honeywell,transfer-function:
-+    description: |
-+      Transfer function which defines the range of valid values delivered by
-+      the sensor.
-+      0 - A, 10% to 90% of 2^14
-+      1 - B, 5% to 95% of 2^14
-+      2 - C, 5% to 85% of 2^14
-+      3 - F, 4% to 94% of 2^14
-+    enum: [0, 1, 2, 3]
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+
-+  honeywell,pressure-triplet:
-+    description: |
-+      Case-sensitive five character string that defines pressure range, unit
-+      and type as part of the device nomenclature. In the unlikely case of a
-+      custom chip, set to "NA" and provide pmin-pascal and pmax-pascal.
-+    enum: [001BA, 1.6BA, 2.5BA, 004BA, 006BA, 010BA, 1.6MD, 2.5MD, 004MD,
-+           006MD, 010MD, 016MD, 025MD, 040MD, 060MD, 100MD, 160MD, 250MD,
-+           400MD, 600MD, 001BD, 1.6BD, 2.5BD, 004BD, 2.5MG, 004MG, 006MG,
-+           010MG, 016MG, 025MG, 040MG, 060MG, 100MG, 160MG, 250MG, 400MG,
-+           600MG, 001BG, 1.6BG, 2.5BG, 004BG, 006BG, 010BG, 100KA, 160KA,
-+           250KA, 400KA, 600KA, 001GA, 160LD, 250LD, 400LD, 600LD, 001KD,
-+           1.6KD, 2.5KD, 004KD, 006KD, 010KD, 016KD, 025KD, 040KD, 060KD,
-+           100KD, 160KD, 250KD, 400KD, 250LG, 400LG, 600LG, 001KG, 1.6KG,
-+           2.5KG, 004KG, 006KG, 010KG, 016KG, 025KG, 040KG, 060KG, 100KG,
-+           160KG, 250KG, 400KG, 600KG, 001GG, 015PA, 030PA, 060PA, 100PA,
-+           150PA, 0.5ND, 001ND, 002ND, 004ND, 005ND, 010ND, 020ND, 030ND,
-+           001PD, 005PD, 015PD, 030PD, 060PD, 001NG, 002NG, 004NG, 005NG,
-+           010NG, 020NG, 030NG, 001PG, 005PG, 015PG, 030PG, 060PG, 100PG,
-+           150PG, NA]
-+    $ref: /schemas/types.yaml#/definitions/string
-+
-+  honeywell,pmin-pascal:
-+    description: |
-+      Minimum pressure value the sensor can measure in pascal.
-+      To be specified only if honeywell,pressure-triplet is set to "NA".
-+    $ref: /schemas/types.yaml#/definitions/int32
-+
-+  honeywell,pmax-pascal:
-+    description: |
-+      Maximum pressure value the sensor can measure in pascal.
-+      To be specified only if honeywell,pressure-triplet is set to "NA".
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+
-+  vdd-supply:
-+    description:
-+      Provide VDD power to the sensor (either 3.3V or 5V depending on the chip)
-+
-+  spi-max-frequency:
-+    maximum: 800000
-+
-+required:
-+  - compatible
-+  - reg
-+  - honeywell,transfer-function
-+  - honeywell,pressure-triplet
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        pressure@28 {
-+            compatible = "honeywell,hsc030pa";
-+            reg = <0x28>;
-+            honeywell,transfer-function = <0>;
-+            honeywell,pressure-triplet = "030PA";
-+        };
-+    };
-+  - |
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        pressure@0 {
-+            compatible = "honeywell,hsc030pa";
-+            reg = <0>;
-+            spi-max-frequency = <800000>;
-+            honeywell,transfer-function = <0>;
-+            honeywell,pressure-triplet = "NA";
-+            honeywell,pmin-pascal = <0>;
-+            honeywell,pmax-pascal = <200000>;
-+        };
-+    };
-+...
--- 
-2.41.0
+I'm getting back to the "multiple power domains" case of MSM8916 now, as
+discussed above. I've tried modelling MX as parent genpd of CPR, to
+avoid having to scale multiple power domains as part of cpufreq.
+
+Basically, it looks like the following:
+
+	cpr: power-controller@b018000 {
+		compatible = "qcom,msm8916-cpr", "qcom,cpr";
+		reg = <0x0b018000 0x1000>;
+		/* ... */
+		#power-domain-cells = <0>;
+		operating-points-v2 = <&cpr_opp_table>;
+		/* Supposed to be parent domain, not consumer */
+		power-domains = <&rpmpd MSM8916_VDDMX_AO>;
+
+		cpr_opp_table: opp-table {
+			compatible = "operating-points-v2-qcom-level";
+
+			cpr_opp1: opp1 {
+				opp-level = <1>;
+				qcom,opp-fuse-level = <1>;
+				required-opps = <&rpmpd_opp_svs_soc>;
+			};
+			cpr_opp2: opp2 {
+				opp-level = <2>;
+				qcom,opp-fuse-level = <2>;
+				required-opps = <&rpmpd_opp_nom>;
+			};
+			cpr_opp3: opp3 {
+				opp-level = <3>;
+				qcom,opp-fuse-level = <3>;
+				required-opps = <&rpmpd_opp_super_turbo>;
+			};
+		};
+	};
+
+As already discussed [1] it's a bit annoying that the genpd core
+attaches the power domain as consumer by default, but I work around this
+by calling of_genpd_add_subdomain() followed by dev_pm_domain_detach()
+in the CPR driver.
+
+The actual scaling works fine, performance states of the MX power domain
+are updated when CPR performance state. I added some debug prints and it
+looks e.g. as follows (CPR is the power-controller@):
+
+    [   24.498218] PM: mx_ao set performance state 6
+    [   24.498788] PM: power-controller@b018000 set performance state 3
+    [   24.511025] PM: mx_ao set performance state 3
+    [   24.511526] PM: power-controller@b018000 set performance state 1
+    [   24.521189] PM: mx_ao set performance state 4
+    [   24.521660] PM: power-controller@b018000 set performance state 2
+    [   24.533183] PM: mx_ao set performance state 6
+    [   24.533535] PM: power-controller@b018000 set performance state 3
+
+There is one remaining problem here: Consider e.g. the switch from CPR
+performance state 3 -> 1. In both cases the parent genpd state is set
+*before* the child genpd. When scaling down, the parent genpd state must
+be reduced *after* the child genpd. Otherwise, we can't guarantee that
+the parent genpd state is always >= of the child state.
+
+In the OPP core, the order of such operations is always chosen based on
+whether we are scaling up or down. When scaling up, power domain states
+are set before the frequency is changed, and the other way around for
+scaling down.
+
+Is this something you could imagine changing in the GENPD core, either
+unconditionally for everyone, or as an option?
+
+I tried to hack this in for a quick test and came up with the following
+(the diff is unreadable so I'll just post the entire changed
+(_genpd_set_performance_state() function). Admittedly it's a bit ugly.
+
+With these changes the sequence from above looks more like:
+
+    [   22.374555] PM: mx_ao set performance state 6
+    [   22.375175] PM: power-controller@b018000 set performance state 3
+    [   22.424661] PM: power-controller@b018000 set performance state 1
+    [   22.425169] PM: mx_ao set performance state 3
+    [   22.434932] PM: mx_ao set performance state 4
+    [   22.435331] PM: power-controller@b018000 set performance state 2
+    [   22.461197] PM: mx_ao set performance state 6
+    [   22.461968] PM: power-controller@b018000 set performance state 3
+
+Which is correct now.
+
+Let me know if you have any thoughts about this. :-)
+
+Thanks for taking the time to discuss this!
+Stephan
+
+[1]: https://lore.kernel.org/linux-pm/CAPDyKFq+zsoeF-4h5TfT4Z+S46a501_pUq8y2c1x==Tt6EKBGA@mail.gmail.com/
+
+static int _genpd_set_performance_state(struct generic_pm_domain *genpd,
+					unsigned int state, int depth);
+
+static void _genpd_rollback_parent_state(struct gpd_link *link, int depth)
+{
+	struct generic_pm_domain *parent = link->parent;
+	int parent_state;
+
+	genpd_lock_nested(parent, depth + 1);
+
+	parent_state = link->prev_performance_state;
+	link->performance_state = parent_state;
+
+	parent_state = _genpd_reeval_performance_state(parent, parent_state);
+	if (_genpd_set_performance_state(parent, parent_state, depth + 1)) {
+		pr_err("%s: Failed to roll back to %d performance state\n",
+		       parent->name, parent_state);
+	}
+
+	genpd_unlock(parent);
+}
+
+static int _genpd_set_parent_state(struct generic_pm_domain *genpd,
+				   struct gpd_link *link,
+				   unsigned int state, int depth)
+{
+	struct generic_pm_domain *parent = link->parent;
+	int parent_state, ret;
+
+	/* Find parent's performance state */
+	ret = genpd_xlate_performance_state(genpd, parent, state);
+	if (unlikely(ret < 0))
+		return ret;
+
+	parent_state = ret;
+
+	genpd_lock_nested(parent, depth + 1);
+
+	link->prev_performance_state = link->performance_state;
+	link->performance_state = parent_state;
+	parent_state = _genpd_reeval_performance_state(parent,
+						parent_state);
+	ret = _genpd_set_performance_state(parent, parent_state, depth + 1);
+	if (ret)
+		link->performance_state = link->prev_performance_state;
+
+	genpd_unlock(parent);
+
+	return ret;
+}
+
+static int _genpd_set_performance_state(struct generic_pm_domain *genpd,
+					unsigned int state, int depth)
+{
+	struct gpd_link *link = NULL;
+	int ret;
+
+	if (state == genpd->performance_state)
+		return 0;
+
+	/* When scaling up, propagate to parents first in normal order */
+	if (state > genpd->performance_state) {
+		list_for_each_entry(link, &genpd->child_links, child_node) {
+			ret = _genpd_set_parent_state(genpd, link, state, depth);
+			if (ret)
+				goto rollback_parents_up;
+		}
+	}
+
+	if (genpd->set_performance_state) {
+		pr_err("%s set performance state %d\n", genpd->name, state);
+		ret = genpd->set_performance_state(genpd, state);
+		if (ret) {
+			if (link)
+				goto rollback_parents_up;
+			return ret;
+		}
+	}
+
+	/* When scaling down, propagate to parents after in reverse order */
+	if (state < genpd->performance_state) {
+		list_for_each_entry_reverse(link, &genpd->child_links, child_node) {
+			ret = _genpd_set_parent_state(genpd, link, state, depth);
+			if (ret)
+				goto rollback_parents_down;
+		}
+	}
+
+	genpd->performance_state = state;
+	return 0;
+
+rollback_parents_up:
+	list_for_each_entry_continue_reverse(link, &genpd->child_links, child_node)
+		_genpd_rollback_parent_state(link, depth);
+	return ret;
+rollback_parents_down:
+	list_for_each_entry_continue(link, &genpd->child_links, child_node)
+		_genpd_rollback_parent_state(link, depth);
+	return ret;
+}
 
 
