@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-19578-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19579-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C9857FB5EA
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 10:34:42 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 666687FB5EF
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 10:35:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AF230B2174B
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 09:34:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 97ADC1C209F5
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 09:35:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7373D49F8C;
-	Tue, 28 Nov 2023 09:34:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79CFD495E0;
+	Tue, 28 Nov 2023 09:35:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ydUI51XM"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uA/qCZOu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABC1EA5
-	for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 01:34:25 -0800 (PST)
-Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-54ba30784ecso695422a12.1
-        for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 01:34:25 -0800 (PST)
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3AC4D41
+	for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 01:35:27 -0800 (PST)
+Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-54ba86ae133so559236a12.2
+        for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 01:35:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701164064; x=1701768864; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701164126; x=1701768926; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=TMwU5/BNEX9XHiZ75bjuTerelzqVSuKACTjxMb1RjI8=;
-        b=ydUI51XMxcUi3NvRNG8LjPofX4cjEiVA9SCu18e8DG2Xz7MOHArZj25GfiFx08uj2q
-         HvnKZNDdypnIQrzPZKffgBJj+agB7IKGYgTMYFuWy1lhg1Izlg2CCgHtmLpumUQWwj9R
-         F9vMW8J5fpyTx8DrngxV8ShuYzbTzFodfIuXl6quxMj0GCW7p0J63bHm8Mjq66UB36/t
-         giGOtQl7GbpdZzQjp78uFV9uk9nIx/1E3boXb4Z4RyYLyGzZoXr8ph2M2B4vikMYjJ7Z
-         4p5N/CLIiBco8+w5DUWlEnRAYu5Qsz4VTo9uHs2nEeWlGVbKS0GtMOBjdOpWvk8Qn8hf
-         zH/A==
+        bh=84dlZqBXYJ8Aq5jzir2g3g1+R0e6np7LtnAqDzYJW2g=;
+        b=uA/qCZOu996NbB15/pjS1ZcKt6TzMG4xGIXUDlgf6/L8lMIT9PTCbRTUt8Apd1uzDf
+         Y0K021sZE0W5X8svUloCsrdIyc96KvibIbonbcbtOUlxzIHa6ke1zEjVeKZT1Q60dWhg
+         EhkXokX54VW2+2skpzbJdC3VtKsVLzXxl3F4PdWfK7l9sWBHPgqirVR7izJZy2Xiod1/
+         ceOFTTwrPnaRGexbpDtNzZYWQX7MVzehs8uU4PnPC+2iIoxMfNphjVO5f/Kxu+chN4No
+         mGjvCMvetekwtNN427qTMS0Ii8FyYVDqRZLEVA+no9I7ZQ0n4ykl8nbano13MRC8nQ/v
+         C8aw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701164064; x=1701768864;
+        d=1e100.net; s=20230601; t=1701164126; x=1701768926;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TMwU5/BNEX9XHiZ75bjuTerelzqVSuKACTjxMb1RjI8=;
-        b=a5QuIZDqSFpl8re/eaFhHZXVCw6+5je7jZBz3Yquh/+x6aYPTYTPuA857Ikg8SxJjP
-         EHQendLwLJV6jEvpfHWjnrez2aKH8Ljr3R0fBjC2XNYjhI7EzCC5CYSrzob9Weke21qk
-         dIxcDWIiCbK+SX32Ra0WrJZj87pD9z4O5MRoCKU4V1rkra7TPZ3u4KL51etUNK/Not/1
-         eoR5tiOI+O9Lf0cm59zVopYMwqFBbYoKUZAZS9aNnAp6i0lDtd30zlmuPRmltZUBRWjI
-         qViKg/GZ/Ok7VRUbwT1AV32kL7plrnPl8RkAN0vB9Tu2P1vJ0TGnGyos6mKVii+Kw8p1
-         vfhw==
-X-Gm-Message-State: AOJu0YysYISgpciVG/F0kmTSoajqym25Xea1tl5jAkGJ1GjBbAG2484Q
-	bNLs0E+x2HehwczfZPek0tHNXg==
-X-Google-Smtp-Source: AGHT+IFinfpdcdjcdUv7tzR+eGPGwJuwrWbpMa8wXwBhE3Kh30oCfYrMQj0ZxJHjEkaYHHIkOQDCFg==
-X-Received: by 2002:aa7:d80b:0:b0:54b:1bf2:2f3c with SMTP id v11-20020aa7d80b000000b0054b1bf22f3cmr7300928edq.12.1701164064179;
-        Tue, 28 Nov 2023 01:34:24 -0800 (PST)
+        bh=84dlZqBXYJ8Aq5jzir2g3g1+R0e6np7LtnAqDzYJW2g=;
+        b=w3MBFGHlqE2wUjKDUX9IWQYN8OnIlzaNs+ghslvQMTrtHHtoB7uQgd8mqfq0UE9PC0
+         LmNEX+HAF6Nwsj0QSpm69XS1ny37Ct7hNr2NB7hIotsRJFPVuh/PuXqZl6w0lh+RGtie
+         6on4L+dDN+Mf7KNY/w6jicnrbDNukp+6T9H83fLFFAcBHcWwFpgxNJ3Crk5jPo7xOyW8
+         dRhCJPLwBB7UqJK7ac1XkyequBy+Mv3JDwvym1696WgTJgKV+AXYFIxgXH38DBilt3X8
+         pclSiOd/pvFLXprmv5Th9vEIrOdiOovpe3yrZtKQe9jQddkfORGJR41WIT9sQ1HRrrg+
+         jBew==
+X-Gm-Message-State: AOJu0YwsutDg/L4Z2mBkD5eBVx/WC+BIlWYvKXsQ0ut1RzfA5BUSkt3P
+	sqCTYzhQIQMV35dHf/k83LEMtQ==
+X-Google-Smtp-Source: AGHT+IFBfBQvY3GniQ61q9Gc15c4YSbzphmVsOKJiBZNeZHKyWOVnD608kwTqBDqBj/soac5ai3bHA==
+X-Received: by 2002:a50:a693:0:b0:53e:5dad:dce0 with SMTP id e19-20020a50a693000000b0053e5daddce0mr10912228edc.3.1701164126298;
+        Tue, 28 Nov 2023 01:35:26 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.109])
-        by smtp.gmail.com with ESMTPSA id x1-20020aa7d381000000b00548ab1abc75sm6239824edq.51.2023.11.28.01.34.22
+        by smtp.gmail.com with ESMTPSA id x1-20020aa7d381000000b00548ab1abc75sm6239824edq.51.2023.11.28.01.35.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Nov 2023 01:34:23 -0800 (PST)
-Message-ID: <7fed5d90-da04-40fb-8677-b807b6f51cc9@linaro.org>
-Date: Tue, 28 Nov 2023 10:34:22 +0100
+        Tue, 28 Nov 2023 01:35:25 -0800 (PST)
+Message-ID: <5109e1ce-9aa9-4c7b-bf22-9be23b5939d8@linaro.org>
+Date: Tue, 28 Nov 2023 10:35:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,8 +62,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/4] arm64: dts: nuvoton: Add pinctrl support for
- ma35d1
+Subject: Re: [PATCH v2 2/4] dt-bindings: pinctrl: Document nuvoton ma35d1 pin
+ control
 Content-Language: en-US
 To: Jacky Huang <ychuang570808@gmail.com>, linus.walleij@linaro.org,
  robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
@@ -72,9 +72,11 @@ Cc: linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  ychuang3@nuvoton.com, schung@nuvoton.com
 References: <20231128061118.575847-1-ychuang570808@gmail.com>
- <20231128061118.575847-4-ychuang570808@gmail.com>
- <7edda3ca-b98a-4125-979f-3ee7ac718a9a@linaro.org>
- <a0be9aaa-290d-450e-b0b8-d87453bcaaa0@gmail.com>
+ <20231128061118.575847-3-ychuang570808@gmail.com>
+ <7c24aaf8-8f93-4b93-b7e5-abc88e95682d@linaro.org>
+ <ffbaad9b-9a30-4cdd-bb78-8fb7d6ff4e9f@gmail.com>
+ <5ac7f79a-68d3-49ef-9615-3c0076591d78@linaro.org>
+ <2e0f58cc-0cfa-4957-bac1-c40897d7135b@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -120,46 +122,32 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <a0be9aaa-290d-450e-b0b8-d87453bcaaa0@gmail.com>
+In-Reply-To: <2e0f58cc-0cfa-4957-bac1-c40897d7135b@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 28/11/2023 09:37, Jacky Huang wrote:
->>> +			gpion: gpio@40040340 {
->>> +				reg = <0x340 0x40>;
->>> +				interrupts = <GIC_SPI  105 IRQ_TYPE_LEVEL_HIGH>;
->>> +				clocks = <&clk GPN_GATE>;
->>> +				gpio-controller;
->>> +				#gpio-cells = <2>;
->>> +				interrupt-controller;
->>> +				#interrupt-cells = <2>;
->>> +			};
->>> +
->>> +			pcfg_default: pin-default {
->>> +				slew-rate = <0>;
->>> +				input-schmitt-disable;
->>> +				bias-disable;
->>> +				power-source = <1>;
->>> +				drive-strength = <17100>;
->>> +			};
->> It does not look like you tested the DTS against bindings. Please run
->> `make dtbs_check W=1` (see
->> Documentation/devicetree/bindings/writing-schema.rst or
->> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
->> for instructions).
+On 28/11/2023 10:32, Jacky Huang wrote:
+>>>> +required:
+>>>>> +  - compatible
+>>>>> +  - nuvoton,sys
+>>>> This goes after patternProperties
+>>> I will fix the above two as:
+>>>
+>>> allOf:
+>>>     - $ref: pinctrl.yaml#
+>> Look:
 >>
->> Best regards,
->> Krzysztof
+>>>> allOf goes before additionalProperties.
+>> Open example-schema.
 >>
+>> ..
 > 
-> I forgot to remove 'ma35d1-pinfunc.h' from my local copy.
-> After remove the '#include <dt-bindings/pinctrl/ma35d1-pinfunc.h>', it 
-> can pass
-> the `make dtbs_check W=1` check.
-> I will fix it in the next version.
+> I found that 'pinctrl.yaml' is not required for this document, so I will 
+> drop it.
 
-Really? Then your bindings look wrong. Why do you mix MMIO nodes and
-non-MMIO in one device node?
+Why is it not required? I don't understand where this discussion is going.
+
+
 
 Best regards,
 Krzysztof
