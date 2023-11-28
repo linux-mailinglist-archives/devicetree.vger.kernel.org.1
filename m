@@ -1,211 +1,91 @@
-Return-Path: <devicetree+bounces-19706-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19708-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 242F87FBE27
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 16:34:26 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BC287FBE2E
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 16:36:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 369D2B213E5
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 15:34:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F16D11C20EDF
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 15:35:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABE355D4BD;
-	Tue, 28 Nov 2023 15:34:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C87035E0CE;
+	Tue, 28 Nov 2023 15:35:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="jW5PFFRF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6E26D1;
-	Tue, 28 Nov 2023 07:34:15 -0800 (PST)
-Received: by mail-oi1-f179.google.com with SMTP id 5614622812f47-3b85c88710eso2018519b6e.3;
-        Tue, 28 Nov 2023 07:34:15 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701185655; x=1701790455;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7/s5nzJrgcDgHTEmuKvkZGzXXI/W4rPPv5fulVrFV4o=;
-        b=GlzHpU8x5PFHeIZ+tMcpcggtUcRwHrl7YX6oIbSv/KzhBXd6mc0yZ5a5V0oG5HwMw7
-         g2sDMlV7sc0cXSav4SrZVkml+DuaUVUGIEHxJTIojOmB5o0X+P6CpIDlGfNVi0CJezZi
-         X99j4PvPPqnj3Vq67Upb4Z3mZONCbTtxNDCLPdMVigjRwO/EzHJdbhFloqAkX7JOzQS6
-         oD0LlYH/Sk+K6boasoixAWn42PGbErVHbV6YzktSDjXFCMkpgzQ9iArUGI7Uqoe8B3j/
-         T0j5wJNh4Tcz67zgremGAKcHI3JDssj56ZjG2c3thnVBWXhNFi3FKnb2XrF2Bit+KD8A
-         1fSA==
-X-Gm-Message-State: AOJu0YxCG9Clpb1G6hkW5wyGiCG1A70Cmc8yIecnKlqlZYjaj9nvF1aU
-	+Nf8YRFUx4PTSFotqo4k0MNXc7uRRA==
-X-Google-Smtp-Source: AGHT+IF7fXNt26u5294GTSFxKFMQiYGKeu/ESpbRbCazTn2YRAqixDIUhPyeZLCN5iXYcID3T4WN4A==
-X-Received: by 2002:a05:6808:128a:b0:3b8:44cb:414d with SMTP id a10-20020a056808128a00b003b844cb414dmr25575185oiw.25.1701185655190;
-        Tue, 28 Nov 2023 07:34:15 -0800 (PST)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id w9-20020a056808140900b003b892a45d32sm8668oiv.4.2023.11.28.07.34.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Nov 2023 07:34:14 -0800 (PST)
-Received: (nullmailer pid 3312619 invoked by uid 1000);
-	Tue, 28 Nov 2023 15:34:13 -0000
-Date: Tue, 28 Nov 2023 09:34:13 -0600
-From: Rob Herring <robh@kernel.org>
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: Frank Rowand <frowand.list@gmail.com>, Geert Uytterhoeven <geert+renesas@glider.be>, Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org, linux-clk@vger.kernel.org, linux-renesas-soc@vger.kernel.org, Aymeric Aillet <aymeric.aillet@iot.bzh>, Yusuke Goda <yusuke.goda.sx@renesas.com>
-Subject: Re: [PATCH v2 4/4] drivers: clk: renesas: enable all clocks which is
- assinged to non Linux system
-Message-ID: <20231128153413.GA3301324-robh@kernel.org>
-References: <87fs0zc14m.wl-kuninori.morimoto.gx@renesas.com>
- <87a5r7c13d.wl-kuninori.morimoto.gx@renesas.com>
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::229])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C989A92;
+	Tue, 28 Nov 2023 07:35:48 -0800 (PST)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 28365FF803;
+	Tue, 28 Nov 2023 15:35:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1701185746;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=wheDqiE2a9OZr8JN6HhD16I1O5hsDNL5yX5S9DFZ7RQ=;
+	b=jW5PFFRFM3QHLzqGw2eP/vuhSY/2H2WnsX80le7uM3aFzdaPasOGKMZgaXRnRpg6HxF9KS
+	dPnktG+RUba8i95BML29r6+xhH9dY/rgmO7IINtPJsklbQgDHXKmN7VoQQEuA8j/fe+Qun
+	k18ByByEdOzlQSvn9h/HWKFQgYQdr3GZu/bAX/Ma/UHmffHAvdqOx3Ng5N00Lrgd1npuem
+	ZJoWIKv12Ep8Iqqb7Ob8Q8pUrvTKaoWWm0rm0344ox0KT3OnkjwNdY0kC4b7XVpbrgAH39
+	PUPjFOugk3XfkPz6GGUD7xSoe7vm4eUO+zKHdkbDnb7L41h/dv6TlJbu06YBbA==
+From: Thomas Richard <thomas.richard@bootlin.com>
+Subject: [PATCH 0/3] pinctrl: pinctrl-single: fix suspend/resume on j7200
+Date: Tue, 28 Nov 2023 16:34:58 +0100
+Message-Id: <20231128-j7200-pinctrl-s2r-v1-0-704e7dc24460@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87a5r7c13d.wl-kuninori.morimoto.gx@renesas.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKIIZmUC/x3N0QrCMAyF4VcZuTbQRobWVxEv2iy6iNSRiAhj7
+ 77Wy+/Az1nBxVQcLsMKJl91fdeGeBiA51wfgjo1AwU6xkhnfJ4oBFy08sde6GSYRi6J45hyEmh
+ dyS5YLFeee9nZ58Xkrr//1fW2bTsVmSuPegAAAA==
+To: Linus Walleij <linus.walleij@linaro.org>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Tony Lindgren <tony@atomide.com>, 
+ Haojian Zhuang <haojian.zhuang@linaro.org>, Nishanth Menon <nm@ti.com>, 
+ Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-omap@vger.kernel.org, thomas.petazzoni@bootlin.com, 
+ gregory.clement@bootlin.com, theo.lebrun@bootlin.com, u-kumar1@ti.com, 
+ Thomas Richard <thomas.richard@bootlin.com>
+X-Mailer: b4 0.12.0
+X-GND-Sasl: thomas.richard@bootlin.com
 
-On Tue, Nov 21, 2023 at 02:05:42AM +0000, Kuninori Morimoto wrote:
-> Some board might use Linux and another OS in the same time. In such
-> case, current Linux will stop necessary module clock when booting
-> which is not used on Linux side, but is used on another OS side.
-> 
-> To avoid such situation, renesas-cpg-mssr try to find
-> status = "reserved" devices (A), and add CLK_IGNORE_UNUSED flag to its
-> <&cgp CPG_MOD xxx> clock (B).
-> 
-> Table 2.4: Values for status property
-> https://github.com/devicetree-org/devicetree-specification/releases/download/v0.4/devicetree-specification-v0.4.pdf
-> 
-> "reserved"
-> 	Indicates that the device is operational, but should not be
-> 	used. Typically this is used for devices that are controlled
-> 	by another software component, such as platform firmware.
-> 
-> ex)
-> 	scif5: serial@e6f30000 {
-> 		...
-> (B)		clocks = <&cpg CPG_MOD 202>,
-> 			 <&cpg CPG_CORE R8A7795_CLK_S3D1>,
-> 			 <&scif_clk>;
-> 		...
-> (A)		status = "reserved";
-> 	};
-> 
-> Cc: Aymeric Aillet <aymeric.aillet@iot.bzh>
-> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-> Tested-by: Yusuke Goda <yusuke.goda.sx@renesas.com>
-> ---
->  drivers/clk/renesas/renesas-cpg-mssr.c | 118 +++++++++++++++++++++++--
->  1 file changed, 109 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/clk/renesas/renesas-cpg-mssr.c b/drivers/clk/renesas/renesas-cpg-mssr.c
-> index cb80d1bf6c7c..26098b7f4323 100644
-> --- a/drivers/clk/renesas/renesas-cpg-mssr.c
-> +++ b/drivers/clk/renesas/renesas-cpg-mssr.c
-> @@ -142,6 +142,8 @@ static const u16 srstclr_for_gen4[] = {
->   * @reset_clear_regs:  Pointer to reset clearing registers array
->   * @smstpcr_saved: [].mask: Mask of SMSTPCR[] bits under our control
->   *                 [].val: Saved values of SMSTPCR[]
-> + * @reserved_ids: Temporary used, reserved id list
-> + * @num_reserved_ids: Temporary used, number of reserved id list
->   * @clks: Array containing all Core and Module Clocks
->   */
->  struct cpg_mssr_priv {
-> @@ -168,6 +170,9 @@ struct cpg_mssr_priv {
->  		u32 val;
->  	} smstpcr_saved[ARRAY_SIZE(mstpsr_for_gen4)];
->  
-> +	unsigned int *reserved_ids;
-> +	unsigned int num_reserved_ids;
-> +
->  	struct clk *clks[];
->  };
->  
-> @@ -453,6 +458,19 @@ static void __init cpg_mssr_register_mod_clk(const struct mssr_mod_clk *mod,
->  			break;
->  		}
->  
-> +	/*
-> +	 * Ignore reserved device.
-> +	 * see
-> +	 *	cpg_mssr_reserved_init()
-> +	 */
-> +	for (i = 0; i < priv->num_reserved_ids; i++) {
-> +		if (id == priv->reserved_ids[i]) {
-> +			dev_info(dev, "Ignore Linux non-assigned mod (%s)\n", mod->name);
-> +			init.flags |= CLK_IGNORE_UNUSED;
-> +			break;
-> +		}
-> +	}
-> +
->  	clk = clk_register(NULL, &clock->hw);
->  	if (IS_ERR(clk))
->  		goto fail;
-> @@ -949,6 +967,75 @@ static const struct dev_pm_ops cpg_mssr_pm = {
->  #define DEV_PM_OPS	NULL
->  #endif /* CONFIG_PM_SLEEP && CONFIG_ARM_PSCI_FW */
->  
-> +static void __init cpg_mssr_reserved_exit(struct cpg_mssr_priv *priv)
-> +{
-> +	kfree(priv->reserved_ids);
-> +}
-> +
-> +static int __init cpg_mssr_reserved_init(struct cpg_mssr_priv *priv,
-> +					 const struct cpg_mssr_info *info)
-> +{
-> +	struct device_node *root = of_find_node_by_path("/soc");
+On j7200, during suspend to ram the SoC is powered-off. So the pinctrl
+contexts are lost.
+The flag PCS_CONTEXT_LOSS_OFF shall be set to restore the pinctrl
+contexts.
 
-'root' is '/', so I find this slightly confusing.
+A new compatible (ti,j7200-padconf) was created to enable this flag only
+for j7200.
 
-> +	struct device_node *node = NULL;
-> +	struct of_phandle_args clkspec;
-> +	unsigned int *ids = NULL;
-> +	unsigned int num = 0;
-> +
-> +	/*
-> +	 * Because cpg_mssr_info has .num_hw_mod_clks which indicates number of all Module Clocks,
-> +	 * and clk_disable_unused() will disable all unused clocks, the device which is assigned to
-> +	 * non-Linux system will be disabled when Linux was booted.
-> +	 *
-> +	 * To avoid such situation, renesas-cpg-mssr assumes the device which has
-> +	 * status = "reserved" is assigned to non-Linux system, and add CLK_IGNORE_UNUSED flag
-> +	 * to its clocks if it was CPG_MOD.
-> +	 * see also
-> +	 *	cpg_mssr_register_mod_clk()
-> +	 *
-> +	 *	scif5: serial@e6f30000 {
-> +	 *		...
-> +	 * =>		clocks = <&cpg CPG_MOD 202>,
-> +	 *			 <&cpg CPG_CORE R8A7795_CLK_S3D1>,
-> +	 *			 <&scif_clk>;
-> +	 *			 ...
-> +	 *		 status = "reserved";
-> +	 *	};
-> +	 */
-> +	for_each_reserved_child_of_node(root, node) {
+Signed-off-by: Thomas Richard <thomas.richard@bootlin.com>
+---
+Thomas Richard (3):
+      dt-bindings: pinctrl: pinctrl-single: add ti,j7200-padconf compatible
+      pinctrl: pinctrl-single: add ti,j7200-padconf compatible
+      arm64: dts: ti: k3-j7200: use ti,j7200-padconf compatible
 
-Don't you really want to find all reserved nodes in the DT rather than
-just child nodes of a single node?
+ .../devicetree/bindings/pinctrl/pinctrl-single.yaml          |  1 +
+ arch/arm64/boot/dts/ti/k3-j7200-main.dtsi                    |  8 ++++----
+ arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi              | 12 ++++++------
+ drivers/pinctrl/pinctrl-single.c                             |  5 +++++
+ 4 files changed, 16 insertions(+), 10 deletions(-)
+---
+base-commit: 2a20795e4274c0d94c14fcb8309f72699e404d99
+change-id: 20231128-j7200-pinctrl-s2r-95cb9c159a9e
 
+Best regards,
+-- 
+Thomas Richard <thomas.richard@bootlin.com>
 
-> +		unsigned int i = 0;
-> +
-> +		while (!of_parse_phandle_with_args(node, "clocks", "#clock-cells", i++, &clkspec)) {
-
-of_for_each_phandle()
-
-> +
-> +			of_node_put(clkspec.np);
-> +
-> +			if (clkspec.np == priv->dev->of_node &&
-> +			    clkspec.args[0] == CPG_MOD) {
-> +
-> +				ids = krealloc_array(ids, (num + 1), sizeof(*ids), GFP_KERNEL);
-> +				if (!ids)
-> +					return -ENOMEM;
-> +
-> +				ids[num] = info->num_total_core_clks +
-> +						MOD_CLK_PACK(clkspec.args[1]);
-> +
-> +				num++;
-> +			}
-> +		}
-> +	}
 
