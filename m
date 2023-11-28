@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-19738-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19739-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDE367FC01E
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 18:16:56 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E08277FC039
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 18:23:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8A34F282B22
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 17:16:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1E6E71C20C00
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 17:23:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA5A75B5BE;
-	Tue, 28 Nov 2023 17:16:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC2955C08B;
+	Tue, 28 Nov 2023 17:22:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 410E3112;
-	Tue, 28 Nov 2023 09:16:49 -0800 (PST)
-Received: by mail-ot1-f46.google.com with SMTP id 46e09a7af769-6d81fc0ad6eso1815974a34.2;
-        Tue, 28 Nov 2023 09:16:49 -0800 (PST)
+Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF37C269D;
+	Tue, 28 Nov 2023 09:22:33 -0800 (PST)
+Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-1fa48ad4e99so1420959fac.3;
+        Tue, 28 Nov 2023 09:22:33 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701191808; x=1701796608;
+        d=1e100.net; s=20230601; t=1701192153; x=1701796953;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=oSxaWECo+SoCPkPcgpg66jWsY5n75WOX6TEqToGLZ/Y=;
-        b=FU30CcjL2/BiQaBb35czzBVVXhVMh1frC3EybjFRtEEGgbxg/bOATSZtttOmy2ItBL
-         AhmvbGpvxBAZj6ZwZupH2JWHGqzKSk4wdRFZqIgUYq9+UoQjDitMGV6RWh+/kcd1GGbu
-         bAjA1rM9v8wwHDH/Ng7wfHgRkwZJ5OsZKMScT4XY9grBOabtZ8lgcBe2Rpuks1OK7zT6
-         zFJ4qiBXhiyCggle7WtSa+njAml4RjUwgoaMXnsEho8utGhvK54RL01HhYVdTM4Vrc/0
-         eemVGjZ4TKoboCHnyPrCYSQt47dZ3mL4LK/FMDU6XSmNWmO/sCaHMsNmD9uFmaAnNd4w
-         zaFA==
-X-Gm-Message-State: AOJu0YyRKe7RqAmOv/T9P/pENoYAWELNItVvtOWJjM/lrwldO64X8SiX
-	7oYZ3ECPRiCDx0KyfMLbS6bm9LQOMg==
-X-Google-Smtp-Source: AGHT+IHvVqecVFyyONprur+6eo+yl0fMCE2yoFPpWSNzy7UBUsQLpPgr1zOkPI5pjRd2ZjgqIXuGFA==
-X-Received: by 2002:a05:6830:16ca:b0:6d8:2843:8887 with SMTP id l10-20020a05683016ca00b006d828438887mr8076088otr.34.1701191808521;
-        Tue, 28 Nov 2023 09:16:48 -0800 (PST)
+        bh=ylIoRbnL8O2xTi9kh8EQEUoiv0UEt3VeCCDvVQ1Qxis=;
+        b=NMSE2dw4wIB2A1zYg8RwwsmfuFq540vyBHlnhggpEDxaisgW1HTx0TGmVmZnQdqNZD
+         sJ3UC2IFp7Jw1WCBeub85j5jKgEifMFwaZuTFfKNFtjeGmPtgD5Nt4AWnVjN1S+Kx2oe
+         W+J7f/HlRWRO4jPO020SvQyBMVsAO99AesH6EJ1ncQN/harTXfEIli1156Wyj5lD7BO8
+         wOM+RkxKj3AQFJ/hVPwD1USa4g9tJ7iJ1h1je4LeStEslLFoOZNvlFGxghDGyqdTqzts
+         Phu4jh4TBJrNco1D0dKl0MycKJLghXfgY4a6PQUsfOsC0FFLKesx1w+GzrkxZ4QrLlcx
+         nEXw==
+X-Gm-Message-State: AOJu0Ywprt8gysvflFBl29YIjTGmeyy1h0zHE+1WCSgTj3TvCCqx6lRV
+	ms5hvbAQn1sqD01cZnZ1qA==
+X-Google-Smtp-Source: AGHT+IH4uka2JL/WD6JdYSwixPfHea2oa+Zs4fHCxwHNRKroPU5guvcL/77MKRhVhFrmIBEkbZ5BZw==
+X-Received: by 2002:a05:6870:1e87:b0:1fa:38da:c145 with SMTP id pb7-20020a0568701e8700b001fa38dac145mr11792667oab.42.1701192152638;
+        Tue, 28 Nov 2023 09:22:32 -0800 (PST)
 Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id m10-20020a9d644a000000b006d81ae3d8f6sm931210otl.56.2023.11.28.09.16.47
+        by smtp.gmail.com with ESMTPSA id wh32-20020a056871a6a000b001fa3c734bc5sm1427658oab.46.2023.11.28.09.22.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Nov 2023 09:16:47 -0800 (PST)
-Received: (nullmailer pid 3522278 invoked by uid 1000);
-	Tue, 28 Nov 2023 17:16:47 -0000
-Date: Tue, 28 Nov 2023 11:16:47 -0600
+        Tue, 28 Nov 2023 09:22:32 -0800 (PST)
+Received: (nullmailer pid 3528242 invoked by uid 1000);
+	Tue, 28 Nov 2023 17:22:30 -0000
+Date: Tue, 28 Nov 2023 11:22:30 -0600
 From: Rob Herring <robh@kernel.org>
-To: Andreas Kemnade <andreas@kemnade.info>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, kristo@kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: clock: ti: Convert interface.txt to
- json-schema
-Message-ID: <20231128171647.GA3343123-robh@kernel.org>
-References: <20231127202359.145778-1-andreas@kemnade.info>
+To: Roland Hieber <rhi@pengutronix.de>
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, Li Yang <leoyang.li@nxp.com>, linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Marco Felsch <m.felsch@pengutronix.de>, Philipp Zabel <p.zabel@pengutronix.de>
+Subject: Re: [PATCH 4/5] ARM: dts: add Variscite VAR-SOM-MX7 System on Module
+Message-ID: <20231128172230.GA3523780-robh@kernel.org>
+References: <20231127-b4-imx7-var-som-gome-v1-0-f26f88f2d0bc@pengutronix.de>
+ <20231127-b4-imx7-var-som-gome-v1-4-f26f88f2d0bc@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,33 +58,36 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231127202359.145778-1-andreas@kemnade.info>
+In-Reply-To: <20231127-b4-imx7-var-som-gome-v1-4-f26f88f2d0bc@pengutronix.de>
 
-On Mon, Nov 27, 2023 at 09:23:59PM +0100, Andreas Kemnade wrote:
-> Convert the OMAP interface clock device tree binding to json-schema
-> and fix up reg property which is optional and taken from parent if
-> not specified.
-> Specify the creator of the original binding as a maintainer.
+On Mon, Nov 27, 2023 at 10:11:05PM +0100, Roland Hieber wrote:
+> From: Marco Felsch <m.felsch@pengutronix.de>
+> 
+> Add DTSI file of Variscite VAR-SOM-MX7 System on Module in a basic
+> version. While we don't have a VAR-MX7 development board at hand, we
+> will use this DTSI as base for a custom board in a later commit.
+> 
+> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> Co-developed-by: Philipp Zabel <p.zabel@pengutronix.de>
+> Signed-off-by: Philipp Zabel <p.zabel@pengutronix.de>
+> Signed-off-by: Roland Hieber <rhi@pengutronix.de>
+> ---
+>  arch/arm/boot/dts/nxp/imx/imx7d-var-som-mx7.dtsi | 607 +++++++++++++++++++++++
+>  1 file changed, 607 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/nxp/imx/imx7d-var-som-mx7.dtsi b/arch/arm/boot/dts/nxp/imx/imx7d-var-som-mx7.dtsi
+> new file mode 100644
+> index 000000000000..29b9b9305b81
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/nxp/imx/imx7d-var-som-mx7.dtsi
+> @@ -0,0 +1,607 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
 
-Great! This and other TI clocks are at the top of the list[1] of 
-occurrences of undocumented (by schemas) compatibles: 
+This license and...
 
-   3763 ['ti,omap3-interface-clock']
-   3249 ['ti,divider-clock']
-   1764 ['ti,mux-clock']
-   1680 ['ti,gate-clock']
-   1522 ['ti,wait-gate-clock']
-   1459 ['ti,composite-clock']
-   1343 ['ti,composite-mux-clock']
-   1341 ['ti,clkctrl']
-   1296 ['fsl,imx6q-ssi', 'fsl,imx51-ssi']
-   1196 ['ti,composite-gate-clock']
-   1032 ['ti,clockdomain']
+> +#include "imx7d.dtsi"
 
-Of course, that's largely due to OMAP being early clock adopter and 
-trying to do fine-grained clocks in DT.
+...what's in here don't match.
 
 Rob
-
-[1] https://gitlab.com/robherring/linux-dt/-/jobs/5620809910#L5618
 
