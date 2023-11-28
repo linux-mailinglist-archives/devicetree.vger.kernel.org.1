@@ -1,131 +1,109 @@
-Return-Path: <devicetree+bounces-19498-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19499-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B4AF7FB282
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 08:17:31 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EC5C7FB298
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 08:23:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CAA59B20C27
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 07:17:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DAD5B281DA2
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 07:23:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF29F12B8B;
-	Tue, 28 Nov 2023 07:17:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="HvKJb6X7"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DCF412E57;
+	Tue, 28 Nov 2023 07:23:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 432E7D4B;
-	Mon, 27 Nov 2023 23:17:10 -0800 (PST)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AS5TPPG009575;
-	Tue, 28 Nov 2023 07:16:52 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=x6K4f+OPEftNFmuo369lliTD2CG6kzo5gCB7A0J1JUo=;
- b=HvKJb6X7jfrCJ/jBEjfvG8idvHVgOGLW7sSR/9XkZ0XgfAQT2dCVwQ3FlgMr1zHLv7Bd
- k0Qde/VsA4P1krjzB+vDDfFRQR8SvjZADITqwI105hwueMJ+zKEpm/nn75DmzHyMTING
- IYcE+45JEvFLVj56O2vwP3bBiGmKYglh6nbdia0QuOSSxG6YwxkaYodcUm+uDAgxrtNK
- D8havENIU+ItbQVt9xTRMg/Ue8UqryiMsW8sMJbLLcbHS3vorLCA1I78mcNvo1Sk2dsI
- FJiwC1SDa22bRSdxSJbhUiMgQBo69znm/hwWorBvcPDFhGvhY6KStjUB/F33Mpih2Pas Qg== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3umt632mk1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 28 Nov 2023 07:16:52 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AS7GpMj014522
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 28 Nov 2023 07:16:51 GMT
-Received: from [10.253.72.234] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 27 Nov
- 2023 23:16:47 -0800
-Message-ID: <9c4c1fe7-5d71-4bb2-8b92-f4e9a136e93d@quicinc.com>
-Date: Tue, 28 Nov 2023 15:16:45 +0800
+Received: from mail-oo1-f53.google.com (mail-oo1-f53.google.com [209.85.161.53])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6179137;
+	Mon, 27 Nov 2023 23:23:40 -0800 (PST)
+Received: by mail-oo1-f53.google.com with SMTP id 006d021491bc7-586a516755aso2724069eaf.0;
+        Mon, 27 Nov 2023 23:23:40 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701156220; x=1701761020;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=yLPWKkVfBk073fR6U+1F3GDmSFa2Z9/zDjFo/SdlpIs=;
+        b=qDblPq87J8s8/y+CuNfWtH1zqmnb8LBbhhO8VjZHKnernE/VnRtPolFAtaHNspzqEw
+         nSA0a00Sxcx/pYfVEbOQNTZDIBd+/D0IBn0h/4GTiZUeFSL9FRP04uY7jGBZszAUkjH9
+         nh5cwLA+gG/gizdjiPFbFJRdC+hwNrJMTW05OjgH0wHjrngk9iffgi/wVSPQmcv4I15H
+         7R0XwbcV0dJG8or0d+cFK3Rv2i3SkaIxP68yxqz2pJxSDABjZ14mjrhbVJxhDB3WSnaB
+         kWmeZFpH4ar0i2xO7CUMPX1zT7xPHhMHCQM10uCq06pKpXrNNwH5XrN/ejoHB213SVje
+         Qp4g==
+X-Gm-Message-State: AOJu0YyMoPWN+AOZakRLg8Qrdg1v9w1VWR1xlo0aZBIj45d7hsnAsvEg
+	ngOwRGxwpWhPfh/ut1JuMw==
+X-Google-Smtp-Source: AGHT+IGPoRA3KYun6r0Yc+p3X/bGzpkesAMMixYIG3xcSPbb4Kw+J7HFNgMh9KVpHyE8SziDIXK5Bg==
+X-Received: by 2002:a05:6871:691:b0:1fa:2620:aab1 with SMTP id l17-20020a056871069100b001fa2620aab1mr4884109oao.5.1701156219918;
+        Mon, 27 Nov 2023 23:23:39 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id nx11-20020a056870be8b00b001e98b1544fesm2723140oab.9.2023.11.27.23.23.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Nov 2023 23:23:39 -0800 (PST)
+Received: (nullmailer pid 1866835 invoked by uid 1000);
+	Tue, 28 Nov 2023 07:23:37 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 3/6] net: phy: at803x: add QCA8084 ethernet phy support
-Content-Language: en-US
-To: Andrew Lunn <andrew@lunn.ch>
-CC: <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-        <pabeni@redhat.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <hkallweit1@gmail.com>, <linux@armlinux.org.uk>, <corbet@lwn.net>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>
-References: <20231126060732.31764-1-quic_luoj@quicinc.com>
- <20231126060732.31764-4-quic_luoj@quicinc.com>
- <0b22dd51-417c-436d-87ce-7ebc41185860@lunn.ch>
- <f0604c25-87a7-497a-8884-7a779ee7a2f5@quicinc.com>
- <8e4046dd-813c-4766-83fb-c54a700caf31@lunn.ch>
-From: Jie Luo <quic_luoj@quicinc.com>
-In-Reply-To: <8e4046dd-813c-4766-83fb-c54a700caf31@lunn.ch>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: sQivrcbt6sr1381r_AlFHt39Y1KM7cWh
-X-Proofpoint-ORIG-GUID: sQivrcbt6sr1381r_AlFHt39Y1KM7cWh
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-28_05,2023-11-27_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
- mlxlogscore=734 bulkscore=0 suspectscore=0 spamscore=0 lowpriorityscore=0
- malwarescore=0 phishscore=0 clxscore=1015 impostorscore=0 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2311060000
- definitions=main-2311280055
+From: Rob Herring <robh@kernel.org>
+To: Jacky Huang <ychuang570808@gmail.com>
+Cc: p.zabel@pengutronix.de, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, ychuang3@nuvoton.com, linus.walleij@linaro.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, j.neuschaefer@gmx.net, conor+dt@kernel.org, schung@nuvoton.com
+In-Reply-To: <20231128061118.575847-3-ychuang570808@gmail.com>
+References: <20231128061118.575847-1-ychuang570808@gmail.com>
+ <20231128061118.575847-3-ychuang570808@gmail.com>
+Message-Id: <170115621743.1866777.10057732835703871214.robh@kernel.org>
+Subject: Re: [PATCH v2 2/4] dt-bindings: pinctrl: Document nuvoton ma35d1
+ pin control
+Date: Tue, 28 Nov 2023 01:23:37 -0600
 
 
-
-On 11/27/2023 9:22 PM, Andrew Lunn wrote:
-> On Mon, Nov 27, 2023 at 02:21:46PM +0800, Jie Luo wrote:
->>
->>
->> On 11/27/2023 1:31 AM, Andrew Lunn wrote:
->>>> +		/* There are two PCSs available for QCA8084, which support the
->>>> +		 * following interface modes.
->>>> +		 *
->>>> +		 * 1. PHY_INTERFACE_MODE_10G_QXGMII utilizes PCS1 for all
->>>> +		 * available 4 ports, which is for all link speeds.
->>>> +		 *
->>>> +		 * 2. PHY_INTERFACE_MODE_2500BASEX utilizes PCS0 for the
->>>> +		 * fourth port, which is only for the link speed 2500M same
->>>> +		 * as QCA8081.
->>>> +		 *
->>>> +		 * 3. PHY_INTERFACE_MODE_SGMII utilizes PCS0 for the fourth
->>>> +		 * port, which is for the link speed 10M, 100M and 1000M same
->>>> +		 * as QCA8081.
->>>> +		 */
->>>
->>> How are these 3 modes configured? I don't see any software
->>> configuration of this in these drivers. Can it only by configured by
->>> strapping?
->>
->> The interface mode is passed in the .config_init, which is configured
->> by the PCS driver, the hardware register is located in the PCS, this
->> driver will be pushed later.
+On Tue, 28 Nov 2023 06:11:16 +0000, Jacky Huang wrote:
+> From: Jacky Huang <ychuang3@nuvoton.com>
 > 
-> Is this the same as how the syqca807x works? Can the PCS driver be
-> shared by these two drivers?
-
-I am not sure syqca807x, would you point me the code path of this driver?
-
+> Add documentation to describe nuvoton ma35d1 pin control and GPIO.
 > 
-> What i don't like at the moment is that we have two driver
-> developments going on at once for hardware which seems very similar,
-> but no apparent cooperation?
+> Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
+> ---
+>  .../pinctrl/nuvoton,ma35d1-pinctrl.yaml       | 189 ++++++++++++++++++
+>  1 file changed, 189 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/nuvoton,ma35d1-pinctrl.yaml
 > 
-> 	Andrew
 
-The PCS of qca8084 is the PHY PCS, which should be new PCS driver,
-in the previous chips, we don't have this kind of PHY PCS.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/pinctrl/nuvoton,ma35d1-pinctrl.example.dts:27:18: fatal error: dt-bindings/pinctrl/ma35d1-pinfunc.h: No such file or directory
+   27 |         #include <dt-bindings/pinctrl/ma35d1-pinfunc.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[2]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/pinctrl/nuvoton,ma35d1-pinctrl.example.dtb] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1424: dt_binding_check] Error 2
+make: *** [Makefile:234: __sub-make] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231128061118.575847-3-ychuang570808@gmail.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
