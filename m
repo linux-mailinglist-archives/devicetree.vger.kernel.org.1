@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-19512-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19513-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD1C57FB338
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 08:52:19 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EE4D7FB34A
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 08:53:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 36769B20D7F
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 07:52:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 61F24B20DF5
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 07:53:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F9AB13AF5;
-	Tue, 28 Nov 2023 07:52:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 014B112E45;
+	Tue, 28 Nov 2023 07:53:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xQe4Rh+L"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lQmX1+yA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B3641A5
-	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 23:52:11 -0800 (PST)
-Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-a0b7f793b8aso366472266b.2
-        for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 23:52:11 -0800 (PST)
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E41C119B0
+	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 23:53:26 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-50a6ff9881fso7783616e87.1
+        for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 23:53:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701157930; x=1701762730; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701158005; x=1701762805; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=1Mdz4BEd/239cXzF5fGBLwmtYBQtjtLQ7JDZbNV3gcs=;
-        b=xQe4Rh+LDZ8ELcl/CoP69KFoYKRdF26UaUKkdxdaRDPD/Y3IHjIM78CA0s7vG2JyLK
-         ezCk33uWLXkKfM1vm9E6sq7MI4ioeEgm67XSrnOUwxyXGgnGZwH0933s8+bKsZmaSSrI
-         hkLN+tNfq5EI/H/Rwmcoz/NxnW2j1O6IEVNN5HGEE3LeJtht4wII3T6Y8ONF44WcBt0O
-         1sAZuMjUAoxlv9/z/TTlJWVE+FDJJINuW2UvCn1Yfbjc4LU6E4Jb9CrJ/Swept0MvdP5
-         Vl1SjZcynvlLUbltyQCW1gmhrnsnIrU+aDUNBDl9uS+kfxZEpIhiuFei5XBTVhCAtWWe
-         Rqig==
+        bh=yzl9ebikqAka4LvdE7bnKeHPsmkRzmz1194Tc0othuM=;
+        b=lQmX1+yAyQmgYiT3OrddcKxxhSLfm35xjxbmU+LZL6B8S8Xro3ZKvQ6aST7BJowSVC
+         wmohgsA8aLxNv70QfWTiLzQgS8JadVb52cndiXQgMR7Wh84jR+QOMGs0Q9/qkvvBw+v1
+         lq0zbJPrGycY6s++RUHH+wR8mVjY68JlBQbYydMwj2HYz4URuUu3V+7x8NSrsAUzKrOo
+         peB2VQptoHqFKfKUJ03wmt4xpTSTcdcwfbrbXW/jI9uVl38ItROnNYKj0IHdD9F8g3hn
+         O9AJQSNWhy9TpMm2cIINv0zQ9oLlXTX7AsL5jBydnuFNGu7TdbFi5io4y8MjKny67gxb
+         vWNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701157930; x=1701762730;
+        d=1e100.net; s=20230601; t=1701158005; x=1701762805;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1Mdz4BEd/239cXzF5fGBLwmtYBQtjtLQ7JDZbNV3gcs=;
-        b=kVxu6X+jhLH6X6HomrZT6C8QIDbHBZpSUqJ8pE4dgCMMY+j1+EkxS8kyDuwbdUkSSf
-         tZNnpQ4D7ThsoSwmUqM2npl00CNR2xMr1A6xHRthDvG4OwKBELaMvDGv8wNYB/EO8aO9
-         kmk9I0zPwxa8GSyruoOcRCRhz4CbREkBoh1Yvt3trG1RxZbHLTXp7as7C3pz9lDd78aT
-         KrtbnQsl6a9rRkmCuRTEL11slLZo1J3hHKCMooqtu6iedvlI9g01+0W1ZvXr0XzsVfk1
-         g4q5lFYLlCWJbu18JOv9BydKndzN/lTrmoV9R6EAvnnSkHgyg5tRZzBYedJdPFcqcRVN
-         zHKQ==
-X-Gm-Message-State: AOJu0Yxu9x2j+SK+285WhechgCuxmfhTgGZFziTZ81gkyj8X3y1ykRES
-	YsRz5gLa4AVIYBIvkU4ojzlEQQ==
-X-Google-Smtp-Source: AGHT+IG81esmqcMA/f2xKnh9xX14ip3wkAD3HBX9/+pk6zaXM3/xzX2wiRQ2vC1eYQRfTjOtqe2mKw==
-X-Received: by 2002:a17:906:2a17:b0:a02:2be5:f821 with SMTP id j23-20020a1709062a1700b00a022be5f821mr8189363eje.77.1701157930052;
-        Mon, 27 Nov 2023 23:52:10 -0800 (PST)
+        bh=yzl9ebikqAka4LvdE7bnKeHPsmkRzmz1194Tc0othuM=;
+        b=LOuGN5ZgJk0q63u8jDUoZMGD2v5mvK9TmWDEfu402+xNbjYiTCMXxMLc/rHuwFJXGB
+         FoDUHA+jUcGZhaHSeD4CNyB/JbmssnStQAXBrQ6lCOBMwNPYDYUnzpvaeQeUcq7q0XyY
+         jg+4hUQriCdMzn7xVNmeYhoMu0Mov7QjqY4GZY2b1A6TpfG2OIguChiKBrqYmnkBsGuG
+         EC4y3wg+Vp5Ez9cZJ+4NQbGv7SnJNaBYL1t5KS0vWgCe9EIZ9y9/pXJS5gkJwTeXsu/9
+         bDQlpugZ+ttIvnVIZxa/u8V+wX286qRDh9jr50ReC7qPgO35vpy07bmu92elcH7ExvST
+         Jxng==
+X-Gm-Message-State: AOJu0YzTgpwXZXTCv3uLXlnG7sXAVtreWeKKdtf0N1FEoir8y2YMzVZq
+	DdMVPyfILnmNPvusOKfxhAvx6Q==
+X-Google-Smtp-Source: AGHT+IFaTbrYw9FA5q4t60WjzgXwDSJOfoZTzQ0o5RG1LQlKr+WtAS96LhfwiPQXzXVTExUhH1odtg==
+X-Received: by 2002:a05:6512:12c2:b0:50b:b13f:f46a with SMTP id p2-20020a05651212c200b0050bb13ff46amr5112260lfg.3.1701158005002;
+        Mon, 27 Nov 2023 23:53:25 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.109])
-        by smtp.gmail.com with ESMTPSA id xa20-20020a170907b9d400b00a0be4fec1b4sm3787635ejc.138.2023.11.27.23.52.08
+        by smtp.gmail.com with ESMTPSA id xa20-20020a170907b9d400b00a0be4fec1b4sm3787635ejc.138.2023.11.27.23.53.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Nov 2023 23:52:09 -0800 (PST)
-Message-ID: <81a6e21c-6d82-412e-a630-31b5677040ee@linaro.org>
-Date: Tue, 28 Nov 2023 08:52:08 +0100
+        Mon, 27 Nov 2023 23:53:24 -0800 (PST)
+Message-ID: <ec48d23e-e224-4ba6-8f49-9110472635f6@linaro.org>
+Date: Tue, 28 Nov 2023 08:53:22 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,7 +62,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/5] dt-bindings: vendor-prefixes: add Gossen Metrawatt
+Subject: Re: [PATCH 4/5] ARM: dts: add Variscite VAR-SOM-MX7 System on Module
 Content-Language: en-US
 To: Roland Hieber <rhi@pengutronix.de>, Bartosz Golaszewski <brgl@bgdev.pl>,
  Rob Herring <robh+dt@kernel.org>,
@@ -74,9 +74,10 @@ To: Roland Hieber <rhi@pengutronix.de>, Bartosz Golaszewski <brgl@bgdev.pl>,
  Li Yang <leoyang.li@nxp.com>
 Cc: linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
- linux-arm-kernel@lists.infradead.org, Philipp Zabel <p.zabel@pengutronix.de>
+ linux-arm-kernel@lists.infradead.org, Marco Felsch
+ <m.felsch@pengutronix.de>, Philipp Zabel <p.zabel@pengutronix.de>
 References: <20231127-b4-imx7-var-som-gome-v1-0-f26f88f2d0bc@pengutronix.de>
- <20231127-b4-imx7-var-som-gome-v1-2-f26f88f2d0bc@pengutronix.de>
+ <20231127-b4-imx7-var-som-gome-v1-4-f26f88f2d0bc@pengutronix.de>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -122,21 +123,59 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231127-b4-imx7-var-som-gome-v1-2-f26f88f2d0bc@pengutronix.de>
+In-Reply-To: <20231127-b4-imx7-var-som-gome-v1-4-f26f88f2d0bc@pengutronix.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 27/11/2023 22:11, Roland Hieber wrote:
-> From: Philipp Zabel <p.zabel@pengutronix.de>
+> From: Marco Felsch <m.felsch@pengutronix.de>
 > 
-> Add vendor prefix for Gossen Metrawatt GmbH:
+> Add DTSI file of Variscite VAR-SOM-MX7 System on Module in a basic
+> version. While we don't have a VAR-MX7 development board at hand, we
+> will use this DTSI as base for a custom board in a later commit.
 > 
-> https://www.gossenmetrawatt.de/en/
-> 
+> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> Co-developed-by: Philipp Zabel <p.zabel@pengutronix.de>
 > Signed-off-by: Philipp Zabel <p.zabel@pengutronix.de>
 > Signed-off-by: Roland Hieber <rhi@pengutronix.de>
+> ---
+>  arch/arm/boot/dts/nxp/imx/imx7d-var-som-mx7.dtsi | 607 +++++++++++++++++++++++
+>  1 file changed, 607 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/nxp/imx/imx7d-var-som-mx7.dtsi b/arch/arm/boot/dts/nxp/imx/imx7d-var-som-mx7.dtsi
+> new file mode 100644
+> index 000000000000..29b9b9305b81
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/nxp/imx/imx7d-var-som-mx7.dtsi
+> @@ -0,0 +1,607 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (C) 2015 Freescale Semiconductor, Inc.
+> + * Copyright (C) 2016-2017 Variscite Ltd.
+> + * Copyright (C) 2022 Philipp Zabel, Pengutronix
+> + * Copyright (C) 2022 Roland Hieber, Pengutronix
+> + *
+> + * This program is free software; you can redistribute it and/or modify
+> + * it under the terms of the GNU General Public License version 2 as
+> + * published by the Free Software Foundation.
+> + */
+> +
+> +#include <dt-bindings/input/input.h>
+> +#include "imx7d.dtsi"
+> +
+> +/ {
+> +	model = "Variscite i.MX7 Dual VAR-SOM-MX7";
+> +	compatible = "variscite,var-som-mx7", "fsl,imx7d";
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+You claim this was validated, but I don't see anywhere the binding.
+
+It does not look like you tested the DTS against bindings. Please run
+`make dtbs_check W=1` (see
+Documentation/devicetree/bindings/writing-schema.rst or
+https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+for instructions).
+
+
 
 Best regards,
 Krzysztof
