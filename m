@@ -1,126 +1,108 @@
-Return-Path: <devicetree+bounces-19441-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19442-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B0727FAEF5
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 01:20:30 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB4FF7FAEF6
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 01:21:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D34CDB20CFA
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 00:20:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DD4311C20AEC
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 00:21:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 314677F1;
-	Tue, 28 Nov 2023 00:20:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D63137B;
+	Tue, 28 Nov 2023 00:20:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="hW0dZeRH"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="j0HaNRlM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 178151B1;
-	Mon, 27 Nov 2023 16:20:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=3rCiSJ0JteV9fXbkXFk1duODECuXLFBCy7Ih056e2Wc=; b=hW0dZeRHACO/frHZ9YnX3eoLtx
-	ZG4ktbt2J7QdboYO3eTqrtkBibe95L41acOPNsXyHMn18Tcb4nOT/FUxsSZ4TCrDrEGGdm3h96IKk
-	dUWHSEb2dcLSLRLxSlaIuQDe25Ra/l8MSE+VbSNVoGi8Q3oHYvX4dFWWcxVE1XmvLONU=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1r7lpj-001OoV-D5; Tue, 28 Nov 2023 01:20:11 +0100
-Date: Tue, 28 Nov 2023 01:20:11 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3BF01B6
+	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 16:20:54 -0800 (PST)
+Received: by mail-pl1-x62b.google.com with SMTP id d9443c01a7336-1cf7a8ab047so37149785ad.1
+        for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 16:20:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1701130854; x=1701735654; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=b9LcCMDmTSdehjuq3j0tEJnIQIb6+TDJYhvhvJwU+wo=;
+        b=j0HaNRlM9mX4bZwsZGFVAiz0eTkwB/pdJTDOabkRfx0fXjD+BG8NEjs+UgHvBdx9p8
+         SZUt107ra1xcyurkJA4DZwHGWm3OG5s2lXKYeoM+M6wy12DdKJuRDLngUnCBOQwt2njK
+         etgNzmp1epSToBuG6kIer8nyHFs7tD6fboSXo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701130854; x=1701735654;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=b9LcCMDmTSdehjuq3j0tEJnIQIb6+TDJYhvhvJwU+wo=;
+        b=tfRNJVZcXsR34vFNVOmGBnoOoYQ7ZPfFOn10Yd4kJr/NIcxsNAAHjlSWJX8r+L8Se9
+         XOQD7VwPAE9sa3FbXKL/z8xPBkCQlaIIQ7Vjf2lJjIMYEQCNQeE031zyChXFbRRr5p5N
+         qRTJvOcx5xM9ZHjyD5D3XzDSuS/3RpkDz5co9Gtd8eQhRX80MkrLZYbQOV1moEZSfmSw
+         r9nEewastTnv5LvpdFfSpN5plcc2BuVjsyz0xjUnjVdZGugzPM1f3VM4wcCwLHVcpF74
+         PKX1gNAv/MOkU2+/6IdCAFBM7QBB+5VRbo4MU9UpCQIwElThpFAfv1X2IGerIfO8C0hl
+         Zn7w==
+X-Gm-Message-State: AOJu0Yx+YcmJrK/yh1ThTfawreaWVCMdTYQTt69S4YaqnF0MnlXstA4N
+	XR62EjlHCrXv4TnEdaQn5RcsMg==
+X-Google-Smtp-Source: AGHT+IGFzSIOfg8sKm6Au/0ACHEqu0Oge23/jZd49oSPNDz1XcwfEzxfUkI9Gck94hxyHvZcKR6OQQ==
+X-Received: by 2002:a17:902:d303:b0:1cc:2f70:4865 with SMTP id b3-20020a170902d30300b001cc2f704865mr12921138plc.26.1701130854419;
+        Mon, 27 Nov 2023 16:20:54 -0800 (PST)
+Received: from smtp.gmail.com ([2620:15c:11a:201:6438:b5d1:198e:8bb0])
+        by smtp.gmail.com with ESMTPSA id c5-20020a170902d90500b001c60c3f9508sm8878786plz.230.2023.11.27.16.20.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Nov 2023 16:20:54 -0800 (PST)
+From: Stephen Boyd <swboyd@chromium.org>
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: linux-kernel@vger.kernel.org,
+	patches@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	Alexandre TORGUE <alexandre.torgue@foss.st.com>,
+	Yanteng Si <siyanteng@loongson.cn>,
+	Jonathan Corbet <corbet@lwn.net>,
 	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Robert Marko <robert.marko@sartura.hr>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [net-next PATCH RFC v3 0/8] net: phy: Support DT PHY package
-Message-ID: <a29b1106-87a6-4ea2-bb1d-9858f9ab425b@lunn.ch>
-References: <20231126015346.25208-1-ansuelsmth@gmail.com>
+	Douglas Anderson <dianders@chromium.org>
+Subject: [PATCH] dt-bindings: arm: qcom: Fix html link
+Date: Mon, 27 Nov 2023 16:20:51 -0800
+Message-ID: <20231128002052.2520402-1-swboyd@chromium.org>
+X-Mailer: git-send-email 2.43.0.rc1.413.gea7ed67945-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231126015346.25208-1-ansuelsmth@gmail.com>
+Content-Transfer-Encoding: 8bit
 
-On Sun, Nov 26, 2023 at 02:53:38AM +0100, Christian Marangi wrote:
-> This depends on another series for PHY package API change. [1]
-> 
-> Idea of this big series is to introduce the concept of PHY package in DT
-> and generalize the support of it by PHY driver.
-> 
-> The concept of PHY package is nothing new and is already a thing in the
-> kernel with the API phy_package_join/leave/read/write.
-> 
-> The main idea of those API is to permit the PHY to have a shared global
-> data and to run probe/config only once for the PHY package. There are
-> various example of this already in the kernel with the mscc, bcm54140
-> mediatek ge and micrle driver and they all follow the same pattern.
-> 
-> What is currently lacking is describing this in DT and better reference
-> the PHY in charge of global configuration of the PHY package. For the
-> already present PHY, the implementation is simple enough with only one
-> PHY having the required regs to apply global configuration.
-> 
-> This can be ok for simple PHY package but some Qcom PHY package on
-> ""modern"" SoC have more complex implementation. One example is the PHY
-> for qca807x where some global regs are present in the so-called "combo"
-> port and everything about psgmii calibration is placed in a 5th port in
-> the PHY package.
-> 
-> Given these additional thing, the original phy_package API are extended
-> with support for multiple global PHY for configuration. Each PHY driver
-> will have an enum of the ID for the global PHY to reference and is
-> required to pass to the read/write function.
+This link got broken by commit e790a4ce5290 ("arm: docs: Move Arm
+documentation to Documentation/arch/") when the doc moved from arm/ to
+arch/arm/. Fix the link so that it can continue to be followed.
 
-Please update the text. As far as i see, a lot of this is not relevant
-for this patch set. phy_package_join() etc has no relation to DT,
-since the driver knows how many devices are in its package, it knows
-its base address, etc.
+Fixes: e790a4ce5290 ("arm: docs: Move Arm documentation to Documentation/arch/")
+Cc: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+Cc: Yanteng Si <siyanteng@loongson.cn>
+Cc: Jonathan Corbet <corbet@lwn.net>
+Cc: Bjorn Andersson <andersson@kernel.org>
+Cc: Douglas Anderson <dianders@chromium.org>
+Signed-off-by: Stephen Boyd <swboyd@chromium.org>
+---
+ Documentation/devicetree/bindings/arm/qcom.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-The DT is only about properties which are shared by all PHYs within
-the package, e.g reset, regulators, maybe the MODE_CFG register for
-this particular PHY package.
+diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+index 7f80f48a0954..8a6466d1fc4e 100644
+--- a/Documentation/devicetree/bindings/arm/qcom.yaml
++++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+@@ -138,7 +138,7 @@ description: |
+   There are many devices in the list below that run the standard ChromeOS
+   bootloader setup and use the open source depthcharge bootloader to boot the
+   OS. These devices do not use the scheme described above. For details, see:
+-  https://docs.kernel.org/arm/google/chromebook-boot-flow.html
++  https://docs.kernel.org/arch/arm/google/chromebook-boot-flow.html
+ 
+ properties:
+   $nodename:
 
-> 
-> On top of this, it's added correct DT support for describing PHY
-> package.
-> 
-> One example is this:
-> 
->         ethernet-phy-package@0 {
->             compatible = "ethernet-phy-package";
+base-commit: b85ea95d086471afb4ad062012a4d73cd328fa86
+-- 
+https://chromeos.dev
 
-This needs a compatible for this particular PHY package.
-
->             #address-cells = <1>;
->             #size-cells = <0>;
-> 
->             reg = <0>;
->             qcom,package-mode = "qsgmii";
-
-This property it not useful. Why PCA does it apply to, when there are
-two? It makes much more sense to describe the overall configuration
-mode, from which you can derive what interface mode each port should
-be using, and thus validate the phy-mode in DT.
-
-   Andrew
 
