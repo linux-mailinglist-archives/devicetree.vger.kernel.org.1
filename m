@@ -1,141 +1,116 @@
-Return-Path: <devicetree+bounces-19765-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19769-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1041D7FC6AE
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 22:05:52 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F3B07FC7D6
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 22:18:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DFB5C1C21155
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 21:05:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D7E77282591
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 21:18:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 637CF4438F;
-	Tue, 28 Nov 2023 21:05:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DC5F44390;
+	Tue, 28 Nov 2023 21:18:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Kh7dkKyQ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="masbeh8U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40DFFDE;
-	Tue, 28 Nov 2023 13:05:44 -0800 (PST)
-Received: from notapiano (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nfraprado)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id BB2F66602F24;
-	Tue, 28 Nov 2023 21:05:38 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1701205542;
-	bh=s7rR2Rat8SrAjrdLaEbiFvlrPgXrqFu53OZ4LGKJWWE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Kh7dkKyQX4OzBE18csALgyO/a/ZQcAgejLadYxotEYVWGHXi6CIeFRmzTqvrEYcNs
-	 W5l5c2H4zmP5KyL60WN4jxIJX4gslSDDOMPWb5cTGkYKEC62WeGrUU6Zwh26GOuBBO
-	 8fQhFeiomH+EO1UHTSylTMoBDWTGeHFfeZh6qoUbn6G6lPTNTAQ+GASZ23+IhNCh4L
-	 WBYGLVAxEiiylzwSjbl56RUS/Ktp5dIl8v9sv9gl5LI8TBaX5o83t/HViUqjeQ11ej
-	 ImEsktfwPxvyIbIv4aMtH/f6Jx+oknva3/fPfAMGSRrLc9ozl4LQl6TPh7AsZQNx3T
-	 ple876rAgvx0g==
-Date: Tue, 28 Nov 2023 16:05:33 -0500
-From: =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>
-To: "Bird, Tim" <Tim.Bird@sony.com>
-Cc: Christopher Obbard <chris.obbard@collabora.com>,
-	Shuah Khan <shuah@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Saravana Kannan <saravanak@google.com>,
+Received: from mail-il1-x133.google.com (mail-il1-x133.google.com [IPv6:2607:f8b0:4864:20::133])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B859C7D84;
+	Tue, 28 Nov 2023 13:18:41 -0800 (PST)
+Received: by mail-il1-x133.google.com with SMTP id e9e14a558f8ab-35ca9a9719cso10908175ab.1;
+        Tue, 28 Nov 2023 13:18:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1701206321; x=1701811121; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=UL4SChusK1lb/YwOQOEddQGq0wDopSfaIQXyfIQ8Eac=;
+        b=masbeh8U9VmFJHd2cs1cAfXkTnc1KLpYf8TgJR5u7xXxQlY2QzeeXthtb7SZPRHBrA
+         W0L7slCw1xuyDnJtcbsRL0R62sKFixgd4AQKL7ryBF/C2fiJ67kzwrgBqYTkq7e0L3hE
+         WbR8wGvLURtRqUYLHecp6J7q1aZmrbgNP2FI5bujFexraVEyJ0aKY2SE6ovl3cvBgeCb
+         977NZj4x8+edMDncJS1QXv0i9fW2AhCxua+6LCTyIzQEbrw7G2ghNNXvNtNv3WuVOWOt
+         y15raKYRUvm2kLT0V9XmcQ5oijlidCiCsmPiJkpYUkaCMxpnviaE2nkoahmTTm1o144u
+         4YkA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701206321; x=1701811121;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=UL4SChusK1lb/YwOQOEddQGq0wDopSfaIQXyfIQ8Eac=;
+        b=SvRKIkX1bCS7l8c0SGKz/gU1lbG12VoFvOfCaoN3Jn8YeYIMmC1F6hXKT5i8pkEblV
+         GgxE6e2lkjEfEgeZzfOxKTfT5TBx3o4ruqhZGxjZAIbQh3ABoXlFSYUK5Bm69UiOKAKC
+         YTAIDduRrtAqdY6liroPwg1CjkQsTXi9xzKsqTWQRkICLqEitWQbfv2SaVuvURTk0b1B
+         r//JwJyPIle29AQgGcdU7bUjIOwFtfDDmTcHXXJiCm4ODOVx7mz3hsnftIuyHtKgMd+J
+         OYUrqGQEc5QJES/nt6rcF/ZIey4dwGzNyVRS3rxI1NgI1/RNk8rlPOsPFGJ88vTrVpxn
+         Zwfw==
+X-Gm-Message-State: AOJu0YwWop7CjocomSVXdg17at/OG2lNHDjTEuLx/PKIfOcxUGPz3zEL
+	sBU+CmK/1c8ldeEVlcXXFqA=
+X-Google-Smtp-Source: AGHT+IFerwHWb1cSOZdOoNCEQVsDbqmV+rX3p+k4yOtxnBCjIoKdpfjSYyAA75sfEDZiIctoS0vdJw==
+X-Received: by 2002:a05:6e02:96f:b0:35c:ece0:75bd with SMTP id q15-20020a056e02096f00b0035cece075bdmr6507603ilt.26.1701206321002;
+        Tue, 28 Nov 2023 13:18:41 -0800 (PST)
+Received: from aford-System-Version.lan ([2601:447:d002:5be:9cf:804b:3499:a67b])
+        by smtp.gmail.com with ESMTPSA id f15-20020a056e020b4f00b0035cb9b85123sm299991ilu.46.2023.11.28.13.18.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Nov 2023 13:18:40 -0800 (PST)
+From: Adam Ford <aford173@gmail.com>
+To: linux-arm-kernel@lists.infradead.org
+Cc: aford@beaconembedded.com,
+	Adam Ford <aford173@gmail.com>,
 	Rob Herring <robh+dt@kernel.org>,
-	"kernelci@lists.linux.dev" <kernelci@lists.linux.dev>,
-	David Gow <davidgow@google.com>,
-	Guenter Roeck <groeck@chromium.org>,
-	"linux-kselftest@vger.kernel.org" <linux-kselftest@vger.kernel.org>,
-	"linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-	"kernel@collabora.com" <kernel@collabora.com>,
-	Dan Carpenter <dan.carpenter@linaro.org>,
-	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-	Doug Anderson <dianders@chromium.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [RFC PATCH v2 2/2] kselftest: devices: Add sample board file for
- google,spherion
-Message-ID: <ca434109-7f98-42a3-98b1-eb39480d707d@notapiano>
-References: <20231127233558.868365-1-nfraprado@collabora.com>
- <20231127233558.868365-3-nfraprado@collabora.com>
- <897e404e0097a0c422bdb1d0e2d6cbb996500e8e.camel@collabora.com>
- <BN8PR13MB2738FFDE8693A90B781CCADDFDBCA@BN8PR13MB2738.namprd13.prod.outlook.com>
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] arm64: dts: imx8mn: Enable Overdrive mode
+Date: Tue, 28 Nov 2023 15:18:31 -0600
+Message-Id: <20231128211832.313544-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.40.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <BN8PR13MB2738FFDE8693A90B781CCADDFDBCA@BN8PR13MB2738.namprd13.prod.outlook.com>
 
-On Tue, Nov 28, 2023 at 06:33:52PM +0000, Bird, Tim wrote:
-> 
-> 
-> > -----Original Message-----
-> > From: Christopher Obbard <chris.obbard@collabora.com>
-> > Hi Nícolas,
-> > 
-> > On Mon, 2023-11-27 at 18:34 -0500, Nícolas F. R. A. Prado wrote:
-> > > Add a sample board file describing the file's format and with the list
-> > > of devices expected to be probed on the google,spherion machine as an
-> > > example.
-> > 
-> > Did you consider using some machine-readable & extensible format like yaml?
-> > Surely we don't need to invent yet-another file-format? :-)
+The i.MX8M Nano supports and overdrive mode if the SoC is given
+the proper voltage.  Add imx8mn-overdrive.dtsi file which can
+be included by boards who support the voltage necessary to handle
+the faster clocks.  This increases the GPU clocks from 400MHz to
+600MHz.
 
-For this RFC my focus was to gather feedback on even more basic aspects of the
-test, mainly:
-- Is using a device's match properties (the ones that constitute modalias) a
-  good way to encode a device in a stable way or can we do better? (See cover
-  letter for comparison to HW topology approach)
+Signed-off-by: Adam Ford <aford173@gmail.com>
 
-So I just went for the simplest format I could think of. Moving forward, I agree
-YAML might be a better fit and I can try it out for the next version.
+diff --git a/arch/arm64/boot/dts/freescale/imx8mn-overdrive.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-overdrive.dtsi
+new file mode 100644
+index 000000000000..5d03fb893e90
+--- /dev/null
++++ b/arch/arm64/boot/dts/freescale/imx8mn-overdrive.dtsi
+@@ -0,0 +1,18 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++
++&gpu {
++	assigned-clocks = <&clk IMX8MN_CLK_GPU_CORE>,
++			  <&clk IMX8MN_CLK_GPU_SHADER>,
++			  <&clk IMX8MN_CLK_GPU_AXI>,
++			  <&clk IMX8MN_CLK_GPU_AHB>,
++			  <&clk IMX8MN_GPU_PLL>;
++	assigned-clock-parents = <&clk IMX8MN_GPU_PLL_OUT>,
++				  <&clk IMX8MN_GPU_PLL_OUT>,
++				  <&clk IMX8MN_SYS_PLL1_800M>,
++				  <&clk IMX8MN_SYS_PLL1_800M>;
++	assigned-clock-rates = <600000000>,
++			       <600000000>,
++			       <800000000>,
++			       <400000000>,
++			       <1200000000>;
++};
+-- 
+2.40.1
 
-> 
-> I went back to examine the test more closely.  These board files are loaded via
-> the shell's 'source' command.
-> 
-> If I'm reading the test correctly, the format is machine-readable and extensible, since
-> it's a fragment of a shell script.  The 'usb' and 'pci' first entries on the lines are
-> actually function calls, and the other items in a test line are arguments.
-> 
-> So, as an RFC - how about calling the board files: "<compatible-string>.sh" to make this
-> clear, and maybe adding a comment at the top about the nature of the file?
-> 
-> There's probably a use case for reading this file not in this original shell script context,
-> so I think Christopher's point about a machine-readable AND easily human-readable
-> format is valid.  Personally, I find this format not too bad to read (but then I'm a
-> shell junky.)
-
-That's right, the board files are shell scripts that are sourced. I went this
-route for simplicity rather than necessity. In fact, I'd prefer to have the
-board files be dumb files with just the data necessary to describe the devices
-on the platform moving forward. For this purpose I'll try using YAML for the
-next version and seeing how it goes.
-
-> 
-> I believe, Nicolas, that you were already planning on putting some comments in the
-> file to describe the line format (function arguments?), based on feedback from Greg KH.
-> IMHO, knowing that the format allows comments is useful, so adding a sample
-> comment would be welcome.
-
-Well, the text added at the top of this file describing the format of each line
-was already done in response to Greg's comment. Although I didn't mention
-anything about comments indeed, I'll make sure to document that for next
-version (even if it is in YAML it doesn't hurt to have comments as part of the
-example).
-
-Also, I've noticed that my patches show "(no changes since v1)". Please
-disregard these. There have clearly been changes since v1 (the whole approach is
-different), which I've documented on the cover letter, but those trailers were
-added by mistake when generating the patches.
-
-Thanks,
-Nícolas
 
