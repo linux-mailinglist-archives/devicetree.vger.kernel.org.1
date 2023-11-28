@@ -1,130 +1,136 @@
-Return-Path: <devicetree+bounces-19617-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19618-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 027687FB7BF
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 11:28:04 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05BC77FB7E2
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 11:32:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3467D1C212D6
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 10:28:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B52F728234D
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 10:32:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A13894EB53;
-	Tue, 28 Nov 2023 10:27:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A3074F1E4;
+	Tue, 28 Nov 2023 10:32:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com [209.85.219.182])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFB1F4206;
-	Tue, 28 Nov 2023 02:27:38 -0800 (PST)
-Received: by mail-yb1-f182.google.com with SMTP id 3f1490d57ef6-db46725a531so3645418276.1;
-        Tue, 28 Nov 2023 02:27:38 -0800 (PST)
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3023268F;
+	Tue, 28 Nov 2023 02:32:34 -0800 (PST)
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-5d05ff42db0so20094047b3.2;
+        Tue, 28 Nov 2023 02:32:34 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701167258; x=1701772058;
+        d=1e100.net; s=20230601; t=1701167554; x=1701772354;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=mIGiIpNbEORiCIc0PSFrQIjsLdpdQ8g7U1Sz9jJiMDw=;
-        b=ipO5H6zzwHuB5xA0xl/7fCuPiMMX0FpOeDQrdTh9oXJltlRAAW68tN3r1mdnhhkweL
-         iJDo2X+ks7d90GlM5hEoTUoXqBr197HkwED1e4UT2RbPIwQ81DsLJTzvieK9LXUvxD3K
-         GCX7Th8SpP5XbzuXcod668vMrt9blzlGQvc7int8yLy8cICTk1/X66qd608OtZeGvRWu
-         IPAADWD0lG/dLN0bxCs29ARur1cnxjmc6AqT3qVQTqlAKXmAvKKGIa+RXlDxClCmalI5
-         d9ozg4H5VuIg3a8GtnZbDg3isTNhQOUx4yDFd9TOYBKaytP0qKZ3nQOi6ax9Puccs2YD
-         uSvQ==
-X-Gm-Message-State: AOJu0YyoGiMZzfxHp6XVtgCl9Ru8z/mDW4lOgKnbaulMuawo9gf+zpLg
-	xXZAlugnnJi03petEQpfOSjglGMtZjMJJw==
-X-Google-Smtp-Source: AGHT+IHitO328tOb5Z8DDIlC/7Z8HQLMdYblfo5O4pGuk//acpQhJzo56XOKqbDoZbkUr9YJVJ72zQ==
-X-Received: by 2002:a25:ca54:0:b0:d9a:b67f:94e3 with SMTP id a81-20020a25ca54000000b00d9ab67f94e3mr14230365ybg.52.1701167257842;
-        Tue, 28 Nov 2023 02:27:37 -0800 (PST)
-Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com. [209.85.128.173])
-        by smtp.gmail.com with ESMTPSA id y16-20020a258610000000b00d9c7bf8f32fsm3449771ybk.42.2023.11.28.02.27.36
+        bh=wr1xUrZ1Ezxs/JZSmLhd1h3l1AFhvakfp0EV1xDi8m4=;
+        b=noYXrXcA1yEhorWO7lqK05h08jtTesEcI/SdYbZ670+U2RCyrTFZlMDTtur/dYJg9v
+         fNnlQS40gbR8KGU7oaUGd2dJqzKZ4lQXPqT7uOUDmmtmPh1/4cO+QkPndqsUWQEjYST3
+         SnVXe7bu49nCn4/APoWyntk0xjn1U7QKCFlrNnxN0JqlIn4zvnvzrD+v/s9ATT7NwSko
+         +yJKwmUGdMq7vpMVXXCrajEvhW/ndjVvGpdgCIRBTqnvE6h1LwffjVP+aZxqnxwy0vYY
+         v+WBqdGNZgzWMy3qH+Y1Mj9IeYK6g2SRmKH17aNTRK5+5kPBoyMZ/KPc0RLeJghlu3mh
+         uV5Q==
+X-Gm-Message-State: AOJu0YyCtB64jmOwuXhy84NpP/Lsh1r/yIk6U6lNXRrD0nBYTgAzv1p/
+	LFjk9/6rwQtJ/z+AjVpBqFzTn5RruUvwrg==
+X-Google-Smtp-Source: AGHT+IE/riOUsksVCt6H5yKuJnXb4X9siQfM3iI7WypAi95v4MAFvlZ5BPgLiLt7G3id34CDjWpWIw==
+X-Received: by 2002:a81:ae59:0:b0:5d0:aa04:6057 with SMTP id g25-20020a81ae59000000b005d0aa046057mr5055418ywk.14.1701167553998;
+        Tue, 28 Nov 2023 02:32:33 -0800 (PST)
+Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com. [209.85.219.178])
+        by smtp.gmail.com with ESMTPSA id r123-20020a0de881000000b005cc636ddb1esm3855909ywe.41.2023.11.28.02.32.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Nov 2023 02:27:36 -0800 (PST)
-Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-5ce8eff71e1so34781397b3.0;
-        Tue, 28 Nov 2023 02:27:36 -0800 (PST)
-X-Received: by 2002:a05:690c:fcb:b0:5cf:b2cc:cf5d with SMTP id
- dg11-20020a05690c0fcb00b005cfb2cccf5dmr8410244ywb.5.1701167256195; Tue, 28
- Nov 2023 02:27:36 -0800 (PST)
+        Tue, 28 Nov 2023 02:32:33 -0800 (PST)
+Received: by mail-yb1-f178.google.com with SMTP id 3f1490d57ef6-db3fa47c2f7so4732283276.0;
+        Tue, 28 Nov 2023 02:32:33 -0800 (PST)
+X-Received: by 2002:a25:abeb:0:b0:d9c:efc5:1391 with SMTP id
+ v98-20020a25abeb000000b00d9cefc51391mr13969103ybi.60.1701167552874; Tue, 28
+ Nov 2023 02:32:32 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231108-wave5-v14-rebased-v14-0-0b4af1258656@collabora.com> <20231108-wave5-v14-rebased-v14-6-0b4af1258656@collabora.com>
-In-Reply-To: <20231108-wave5-v14-rebased-v14-6-0b4af1258656@collabora.com>
+References: <20231125232821.234631-1-niklas.soderlund+renesas@ragnatech.se> <deacc7ea-6fad-47d6-978b-3f639aa5da35@linaro.org>
+In-Reply-To: <deacc7ea-6fad-47d6-978b-3f639aa5da35@linaro.org>
 From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 28 Nov 2023 11:27:25 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUYOq=q1j=d+Eac28hthOUAaNUkuvxmRu-mUN1pLKq69g@mail.gmail.com>
-Message-ID: <CAMuHMdUYOq=q1j=d+Eac28hthOUAaNUkuvxmRu-mUN1pLKq69g@mail.gmail.com>
-Subject: Re: [PATCH v14 6/8] dt-bindings: media: wave5: add yaml devicetree bindings
-To: Sebastian Fricke <sebastian.fricke@collabora.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, NXP Linux Team <linux-imx@nxp.com>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Conor Dooley <conor+dt@kernel.org>, 
-	Nas Chung <nas.chung@chipsnmedia.com>, Fabio Estevam <festevam@gmail.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Jackson Lee <jackson.lee@chipsnmedia.com>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Hans Verkuil <hverkuil@xs4all.nl>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh+dt@kernel.org>, 
-	Ivan Bornyakov <brnkv.i1@gmail.com>, Deborah Brouwer <deborah.brouwer@collabora.com>, 
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>, devicetree@vger.kernel.org, 
-	Robert Beckett <bob.beckett@collabora.com>, linux-arm-kernel@lists.infradead.org, 
-	kernel@collabora.com, linux-kernel@vger.kernel.org, 
-	linux-media@vger.kernel.org, Nishanth Menon <nm@ti.com>, "R, Vignesh" <vigneshr@ti.com>, 
-	Tero Kristo <kristo@kernel.org>
+Date: Tue, 28 Nov 2023 11:32:21 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUcbr--3Cs4+2m=hOehXJt0WqiuYqV_j0DBmR+YgoEb-g@mail.gmail.com>
+Message-ID: <CAMuHMdUcbr--3Cs4+2m=hOehXJt0WqiuYqV_j0DBmR+YgoEb-g@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: renesas: Document preferred compatible naming
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Sebastian,
+Hi Krzysztof,
 
-CC TI K3
+On Tue, Nov 28, 2023 at 10:51=E2=80=AFAM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+> On 26/11/2023 00:28, Niklas S=C3=B6derlund wrote:
+> > Compatibles can come in two formats. Either "vendor,ip-soc" or
+> > "vendor,soc-ip". Add a DT schema file documenting Renesas preferred
+> > policy and enforcing it for all new compatibles, except few existing
+> > patterns.
+> >
+> > Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatec=
+h.se>
 
-On Wed, Nov 8, 2023 at 8:29=E2=80=AFPM Sebastian Fricke
-<sebastian.fricke@collabora.com> wrote:
-> From: Robert Beckett <bob.beckett@collabora.com>
+> > +      # Legacy namings - variations of existing patterns/compatibles a=
+re OK,
+> > +      # but do not add completely new entries to these:
+> > +      - pattern: "^renesas,can-[a-z0-9]+$"
+> > +      - pattern: "^renesas,dmac-[a-z0-9]+$"
+> > +      - pattern: "^renesas,du-[a-z0-9]+$"
+> > +      - pattern: "^renesas,ether-[a-z0-9]+$"
+> > +      - pattern: "^renesas,etheravb-[a-z0-9]+$"
+> > +      - pattern: "^renesas,etheravb-rcar-gen[0-9]$"
+> > +      - pattern: "^renesas,gether-[a-z0-9]+$"
+> > +      - pattern: "^renesas,gpio-[a-z0-9]+$"
+> > +      - pattern: "^renesas,hscif-[a-z0-9]+$"
+> > +      - pattern: "^renesas,i2c-[a-z0-9]+$"
+> > +      - pattern: "^renesas,iic-[a-z0-9]+$"
+> > +      - pattern: "^renesas,intc-ex-[a-z0-9]+$"
+> > +      - pattern: "^renesas,intc-irqpin-[a-z0-9]+$"
+> > +      - pattern: "^renesas,ipmmu-[a-z0-9]+$"
+> > +      - pattern: "^renesas,irqc-[a-z0-9]+$"
+> > +      - pattern: "^renesas,jpu-[a-z0-9]+$"
+> > +      - pattern: "^renesas,mmcif-[a-z0-9]+$"
+> > +      - pattern: "^renesas,msiof-[a-z0-9]+$"
+> > +      - pattern: "^renesas,pci-[a-z0-9]+$"
+> > +      - pattern: "^renesas,pci-rcar-gen[0-9]$"
+> > +      - pattern: "^renesas,pcie-[a-z0-9]+$"
+> > +      - pattern: "^renesas,pcie-rcar-gen[0-9]$"
+> > +      - pattern: "^renesas,pfc-[a-z0-9]+$"
+> > +      - pattern: "^renesas,pwm-[a-z0-9]+$"
+> > +      - pattern: "^renesas,qspi-[a-z0-9]+$"
+> > +      - pattern: "^renesas,rcar_sound-[a-z0-9]+$"
+> > +      - pattern: "^renesas,riic-[a-z0-9]+$"
+> > +      - pattern: "^renesas,rspi-[a-z0-9]+$"
+> > +      - pattern: "^renesas,sata-[a-z0-9]+(-es1)?$"
+> > +      - pattern: "^renesas,scif-[a-z0-9]+$"
+> > +      - pattern: "^renesas,scifa-[a-z0-9]+$"
+> > +      - pattern: "^renesas,scifb-[a-z0-9]+$"
+> > +      - pattern: "^renesas,sdhi-[a-z0-9]+$"
+> > +      - pattern: "^renesas,thermal-[a-z0-9]+$"
+> > +      - pattern: "^renesas,tmu-[a-z0-9]+$"
+> > +      - pattern: "^renesas,tpu-[a-z0-9]+$"
+> > +      - pattern: "^renesas,usb-phy-[a-z0-9]+$"
+> > +      - pattern: "^renesas,usb2-phy-[a-z0-9]+$"
+> > +      - pattern: "^renesas,usbhs-[a-z0-9]+$"
+> > +      - pattern: "^renesas,vin-[a-z0-9]+$"
+> > +      - pattern: "^renesas,xhci-[a-z0-9]+$"
 >
-> Add bindings for the wave5 chips&media codec driver
->
-> Signed-off-by: Robert Beckett <bob.beckett@collabora.com>
-> Signed-off-by: Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
-> Signed-off-by: Sebastian Fricke <sebastian.fricke@collabora.com>
+> No, wait, you basically listed most of the SoC as exceptions. What SoC
+> blocks exactly are you going to cover in such case with your rules?
 
-Thanks for your patch, which is now commit de4b9f7e371a5384
-("dt-bindings: media: wave5: add yaml devicetree bindings")
-in media/master.
-
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/cnm,wave521c.yaml
-> @@ -0,0 +1,61 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/cnm,wave521c.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Chips&Media Wave 5 Series multi-standard codec IP
-> +
-> +maintainers:
-> +  - Nas Chung <nas.chung@chipsnmedia.com>
-> +  - Jackson Lee <jackson.lee@chipsnmedia.com>
-> +
-> +description:
-> +  The Chips&Media WAVE codec IP is a multi format video encoder/decoder
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - ti,k3-j721s2-wave521c
-
-This is the only compatible value defined which contains both "k3"
-and "j72*".  I assume the "k3-" part should be dropped?
-
-> +      - const: cnm,wave521c
-> +
-
-This also applies to the driver added in commit 9707a6254a8a6b97
-("media: chips-media: wave5: Add the v4l2 layer") in media/master.
+As Renesas was an early adopter of DT, there are a lot of compatible
+values that do not follow current best practices.
+Unfortunately there is not much we can do about that...
 
 Gr{oetje,eeting}s,
 
