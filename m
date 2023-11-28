@@ -1,123 +1,138 @@
-Return-Path: <devicetree+bounces-19741-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19742-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F45A7FC05B
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 18:37:42 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 979BC7FC08A
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 18:49:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4A1FA282A43
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 17:37:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1C110B213AB
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 17:49:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD7DD5CD2E;
-	Tue, 28 Nov 2023 17:37:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC51C39AEA;
+	Tue, 28 Nov 2023 17:49:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="i6b5JWm/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25976D5B;
-	Tue, 28 Nov 2023 09:37:38 -0800 (PST)
-Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-1fa619735c1so1176032fac.0;
-        Tue, 28 Nov 2023 09:37:38 -0800 (PST)
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AFBC93;
+	Tue, 28 Nov 2023 09:49:34 -0800 (PST)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-a03a900956dso2375566b.1;
+        Tue, 28 Nov 2023 09:49:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1701193772; x=1701798572; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2Q6ar52kT12/oSOUgsQunGkK9992ePoRC0ssPbZWDgw=;
+        b=i6b5JWm/Osc81en8u5MDun6d2WX3T2lgYcXr6EDNsslp3MsrN9UGO1lIuwIsO8uelE
+         p7Ye+IxD1z8eu+soCqNKCvxuiMg8DllwymR/KoOEKthKXtgoLUaBz2EkJzUncZEgPqFL
+         Sl39VY27IQ2XgIsnnv5bBiV3NTmtWd22L6x+vDxo25aqiZ/dJiKEQjHIx8DLvZ1GOJL0
+         E0BI49DiZI7AczT8S3AbawIwwQ3LFiZg4c6AAtvQw9pQ63NPrCVpj4Qp4tP9PG8+mSg4
+         BW92EwaV8iwL+5vZsnTx7LFjyRcjZq/MTgzCBKw7Wg1PkCPsS416mBpjXwM/yqiHoGTN
+         iQ2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701193057; x=1701797857;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=euvcKpX30ZVsmfkaXJTTyAJfHCgabkUtlIpVB4OOtdk=;
-        b=xOe/8aW/yzPAouFlm/9KNzmqQCl7sYE76Cm6nOsqAty0nH+f4Et94IyIv2NSZizNXG
-         8VQ3ueyHpVc99OI1n5jU9li3vmKpCI1qup5fCVb56W8N6RSmOIAEbwd2rmu7TxTJCPb6
-         RfNhN4DODohegHTJJrPl2gvWOWLk2SHQkzsOfB9LnwDWw5NcmSv2CNTwJPgt4yJgd7f/
-         2Nxc68g7qVmLitpy/CnoGCXHEXxIZ1eD+cM+okXYj86GOiwkdHxn94rZayHjwRrYQFwz
-         F7g1hKAszsiRMQ66Xw0mLfnVmnYnsg2ruIYww5z7wqhxT6akWe+JecvtXOMJsYtmP3n5
-         Dt+w==
-X-Gm-Message-State: AOJu0YwtJd0DkDnVpm12DZ0u6B5D3zbXBQ01WKrPF/f3RbaZWkTMhiPq
-	WVffMz/IOvbsoFC7keosVw==
-X-Google-Smtp-Source: AGHT+IFqYYn9X2TZT97zZ6qFLfge2tyuoZxVF9rjnkiko+nm/6218G7n1xYaCVZdrESr/DQLfEbS8w==
-X-Received: by 2002:a05:6870:d3cb:b0:1b0:2f63:4ff6 with SMTP id l11-20020a056870d3cb00b001b02f634ff6mr22471768oag.1.1701193057389;
-        Tue, 28 Nov 2023 09:37:37 -0800 (PST)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id wx20-20020a0568707e1400b001fa38903b92sm1518933oab.15.2023.11.28.09.37.36
+        d=1e100.net; s=20230601; t=1701193772; x=1701798572;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2Q6ar52kT12/oSOUgsQunGkK9992ePoRC0ssPbZWDgw=;
+        b=HSCHEJ9tx9fP3ac938yQCRyALwwkzSgU0NA2XKhLkTPBVT3SLcKA2SbDQdCiDA3ElQ
+         J6+1QM5AWhrwExibRUh94ftYAxKvkuWiqSTx+zCP25csTHSYn6Wl1MrWH3vT8Fus4w3q
+         I/d6URFXxgD8O3EU+pqxuMsF5TEyjahKkqBaN9jsrXL4gjKUD7B1ABiaXZO1blaWMm03
+         VYFK4x3mz0mkuQAcxy8HV9KEYEonaw/EiSfw3jw9qoZ04X/EoXy9YobU32SAWL++n5JW
+         ZIQtYZlesTy9mhmt1n9HztfNMSd0FOnE6JKa7KoEHYwe9NA1ldHsEbTUPwZ+g88AvhvB
+         uXCw==
+X-Gm-Message-State: AOJu0YyaouNdzjWolwYz7jj15SqcjG2MMD4Fv1ZHSLwK/6dsL6J+y662
+	coBwelqbex2xOQwHLA83h/8=
+X-Google-Smtp-Source: AGHT+IFegfjLsT1XNjq4u1dJkNE5gSVojRjltbsyE47RsYa/oKV+OirEmiPZK9QlSr1+eKKQQmVk8w==
+X-Received: by 2002:a17:906:f811:b0:a0f:1882:d5e with SMTP id kh17-20020a170906f81100b00a0f18820d5emr5384410ejb.37.1701193772296;
+        Tue, 28 Nov 2023 09:49:32 -0800 (PST)
+Received: from localhost (p200300e41f0fa600f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f0f:a600:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id cm26-20020a0564020c9a00b0054ae75dcd6bsm5742280edb.95.2023.11.28.09.49.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Nov 2023 09:37:36 -0800 (PST)
-Received: (nullmailer pid 3544147 invoked by uid 1000);
-	Tue, 28 Nov 2023 17:37:35 -0000
-Date: Tue, 28 Nov 2023 11:37:35 -0600
-From: Rob Herring <robh@kernel.org>
-To: Peter Chiu <chui-hao.chiu@mediatek.com>
-Cc: Felix Fietkau <nbd@nbd.name>, Lorenzo Bianconi <lorenzo.bianconi@redhat.com>, Ryder Lee <ryder.Lee@mediatek.com>, Evelyn Tsai <evelyn.tsai@mediatek.com>, Shayne Chen <shayne.chen@mediatek.com>, Sam Shih <sam.shih@mediatek.com>, linux-wireless@vger.kernel.org, linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: net: wireless: mt76: add interrupts
- description for MT7986
-Message-ID: <20231128173735.GA3537931-robh@kernel.org>
-References: <20231128035723.5217-1-chui-hao.chiu@mediatek.com>
+        Tue, 28 Nov 2023 09:49:30 -0800 (PST)
+From: Thierry Reding <thierry.reding@gmail.com>
+To: David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Lee Jones <lee@kernel.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Tomasz Figa <tomasz.figa@gmail.com>,
+	Sylwester Nawrocki <s.nawrocki@samsung.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+	Alessandro Zummo <a.zummo@towertech.it>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Jaehoon Chung <jh80.chung@samsung.com>,
+	Sam Protsenko <semen.protsenko@linaro.org>,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	linux-i2c@vger.kernel.org,
+	linux-iio@vger.kernel.org,
+	linux-mmc@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	linux-pwm@vger.kernel.org,
+	linux-rtc@vger.kernel.org,
+	linux-serial@vger.kernel.org,
+	alsa-devel@alsa-project.org,
+	linux-sound@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: (subset) [PATCH 00/17] dt-bindings: samsung: add specific compatibles for existing SoC
+Date: Tue, 28 Nov 2023 18:49:23 +0100
+Message-ID: <170119374454.445690.515311393756577368.b4-ty@gmail.com>
+X-Mailer: git-send-email 2.42.0
+In-Reply-To: <20231108104343.24192-1-krzysztof.kozlowski@linaro.org>
+References: <20231108104343.24192-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231128035723.5217-1-chui-hao.chiu@mediatek.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On Tue, Nov 28, 2023 at 11:57:23AM +0800, Peter Chiu wrote:
-> The mt7986 can support four interrupts to distribute the interrupts
-> to different CPUs.
+
+On Wed, 08 Nov 2023 11:43:26 +0100, Krzysztof Kozlowski wrote:
+> Merging
+> =======
+> I propose to take entire patchset through my tree (Samsung SoC), because:
+> 1. Next cycle two new SoCs will be coming (Google GS101 and ExynosAutov920), so
+>    they will touch the same lines in some of the DT bindings (not all, though).
+>    It is reasonable for me to take the bindings for the new SoCs, to have clean
+>    `make dtbs_check` on the new DTS.
+> 2. Having it together helps me to have clean `make dtbs_check` within my tree
+>    on the existing DTS.
+> 3. No drivers are affected by this change.
+> 4. I plan to do the same for Tesla FSD and Exynos ARM32 SoCs, thus expect
+>    follow up patchsets.
 > 
-> Signed-off-by: Peter Chiu <chui-hao.chiu@mediatek.com>
-> ---
->  .../bindings/net/wireless/mediatek,mt76.yaml  | 24 +++++++++++++++----
->  1 file changed, 20 insertions(+), 4 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
-> index 252207adbc54..20f5f2ead265 100644
-> --- a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
-> +++ b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
-> @@ -19,9 +19,6 @@ description: |
->    Alternatively, it can specify the wireless part of the MT7628/MT7688
->    or MT7622/MT7986 SoC.
->  
-> -allOf:
-> -  - $ref: ieee80211.yaml#
-> -
->  properties:
->    compatible:
->      enum:
-> @@ -38,7 +35,8 @@ properties:
->        MT7986 should contain 3 regions consys, dcm, and sku, in this order.
->  
->    interrupts:
-> -    maxItems: 1
-> +    minItems: 1
-> +    maxItems: 4
->  
->    power-domains:
->      maxItems: 1
-> @@ -219,6 +217,24 @@ required:
->  
->  unevaluatedProperties: false
->  
-> +allOf:
-> +  - $ref: ieee80211.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - mediatek,mt7986-wmac
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          minItems: 1
-> +          items:
-> +            - description: major interrupt for rings
-> +            - description: addditional interrupt for ring 19
-> +            - description: addditional interrupt for ring 4
-> +            - description: addditional interrupt for ring 5
+> [...]
 
-This list belongs in the top level. The if/then schema needs to set 
-'maxItems: 1' for the cases with only 1 interrupt and 'minItems: 4' for 
-the cases with 4 interrupts.
+Applied, thanks!
 
-Rob
+[12/17] dt-bindings: pwm: samsung: add specific compatibles for existing SoC
+        commit: 5d67b8f81b9d598599366214e3b2eb5f84003c9f
+
+Best regards,
+-- 
+Thierry Reding <thierry.reding@gmail.com>
 
