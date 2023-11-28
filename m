@@ -1,34 +1,49 @@
-Return-Path: <devicetree+bounces-19523-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19516-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD1817FB40F
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 09:28:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AE737FB3A9
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 09:11:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 05D311C20DFF
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 08:28:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4C6431C20BCA
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 08:11:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E3AE18033;
-	Tue, 28 Nov 2023 08:28:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8348415AF4;
+	Tue, 28 Nov 2023 08:11:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="HAm8BYCe"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="F/8PUI6n"
 X-Original-To: devicetree@vger.kernel.org
-X-Greylist: delayed 900 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 28 Nov 2023 00:28:47 PST
-Received: from mail-m254123.xmail.ntesmail.com (mail-m254123.xmail.ntesmail.com [103.129.254.123])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A119BE1
-	for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 00:28:47 -0800 (PST)
-DKIM-Signature: a=rsa-sha256;
-	b=HAm8BYCe9hC7NPROBosIMFj9wasb0u+eJOzr6lpMGIMOAg26fKmaMpCkzi9ZRHDPSYlqMJvaTT0l8bHr4NV2vppOqf5wngABHhxCx8bC3YkshxgK479gp0RBsaUgHQ6aqsz+LfRiAV5V6VoiaJzWKoWbOx+VPmz9kwlUAH9AHD0=;
-	s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=l5YDICzpqBFa88znUPxe1seE4a0/hNlDkTMuGOSDKdU=;
-	h=date:mime-version:subject:message-id:from;
-Received: from [172.16.12.141] (unknown [58.22.7.114])
-	by mail-m12762.qiye.163.com (Hmail) with ESMTPA id 01F355C0371;
-	Tue, 28 Nov 2023 16:03:46 +0800 (CST)
-Message-ID: <ebe46d19-954d-4dbb-82ba-a443058e9f4e@rock-chips.com>
-Date: Tue, 28 Nov 2023 16:03:46 +0800
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DCDFB0;
+	Tue, 28 Nov 2023 00:11:34 -0800 (PST)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AS5l8Mt012065;
+	Tue, 28 Nov 2023 08:11:20 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=BtNV9fxeItkU7fpOKRpTTkq1EpJ8ElvN9qoExmaMMo0=;
+ b=F/8PUI6nWUUO7nyDMwGIOLj8+Ygb7FyG+GP9HGSehmaxC7LJlr7oR5i0Os//FSoh2YGK
+ 6VeV+21rCHeYKp53QVGSWYuWOFVRR5dGZ6qLmtE85kkmb5d88YrH5zhFy7P3+5DsIDWb
+ wbLxsEhnFQ+0UAjcgIwtvBPT2Vivv55W8i6ISzcXbN/UpTXtENLS4UK1jxg6TgTcv0L/
+ UyS8OXEb0/aHfsM2a5r7cFl4+ZWo9oPKYT/AtjuAsxIyzE3Cfa/L8SLqkjYtlRzLnoZy
+ 9UD3QI3prPP+wYWjvCkvF/aQNWD8lI5sZa+tlIl42CCdxxeKTOfn/5IekNLgXLfmuloy kw== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3umsvajsx8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 28 Nov 2023 08:11:20 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AS8BJj1021367
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 28 Nov 2023 08:11:19 GMT
+Received: from [10.239.132.204] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 28 Nov
+ 2023 00:11:14 -0800
+Message-ID: <420ce17d-279e-47ee-9935-35bc03b89f98@quicinc.com>
+Date: Tue, 28 Nov 2023 16:11:12 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -36,68 +51,174 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 04/12] drm/rockchip: vop2: clear afbc en and transform
- bit for cluster window at linear mode
-Content-Language: en-US
-To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
- Andy Yan <andyshrk@163.com>
-Cc: hjc@rock-chips.com, dri-devel@lists.freedesktop.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
- devicetree@vger.kernel.org, sebastian.reichel@collabora.com,
- kever.yang@rock-chips.com, chris.obbard@collabora.com, s.hauer@pengutronix.de
-References: <20231122125316.3454268-1-andyshrk@163.com>
- <20231122125425.3454549-1-andyshrk@163.com> <3927498.QCnGb9OGeP@diego>
-From: Andy Yan <andy.yan@rock-chips.com>
-In-Reply-To: <3927498.QCnGb9OGeP@diego>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH 15/16] arm64: dts: qcom: sm8550-aim300: add pmic glink
+ port/endpoints
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, <agross@kernel.org>,
+        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <tglx@linutronix.de>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>
+References: <20231117101817.4401-1-quic_tengfan@quicinc.com>
+ <20231117101817.4401-16-quic_tengfan@quicinc.com>
+ <e3e27fec-8ab9-4331-a5aa-2958dd630b11@linaro.org>
+From: Tengfei Fan <quic_tengfan@quicinc.com>
+In-Reply-To: <e3e27fec-8ab9-4331-a5aa-2958dd630b11@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQxhCT1ZCSEkYTU1PSR9ISktVEwETFh
-	oSFyQUDg9ZV1kYEgtZQVlOQ1VJSVVMVUpKT1lXWRYaDxIVHRRZQVlPS0hVSk1PSU5JVUpLS1VKQl
-	kG
-X-HM-Tid: 0a8c14f4a803b229kuuu01f355c0371
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Myo6Lww5Qzw9Sx5MEBY3Ej8I
-	AzcKCQ5VSlVKTEtKSk5DTUlDS0tPVTMWGhIXVRoVHwJVAhoVOwkUGBBWGBMSCwhVGBQWRVlXWRIL
-	WUFZTkNVSUlVTFVKSk9ZV1kIAVlBSEtKTTcG
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: cNJyJUBvkVNb_T6jO9n5Dp1jNc-2l6xe
+X-Proofpoint-GUID: cNJyJUBvkVNb_T6jO9n5Dp1jNc-2l6xe
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-28_07,2023-11-27_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 bulkscore=0
+ malwarescore=0 suspectscore=0 spamscore=0 priorityscore=1501
+ impostorscore=0 mlxlogscore=899 phishscore=0 clxscore=1015
+ lowpriorityscore=0 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2311060000 definitions=main-2311280063
 
-Hi Heiko:
 
-On 11/27/23 23:02, Heiko Stübner wrote:
-> Am Mittwoch, 22. November 2023, 13:54:25 CET schrieb Andy Yan:
->> From: Andy Yan <andy.yan@rock-chips.com>
+
+在 11/17/2023 6:32 PM, Dmitry Baryshkov 写道:
+> On 17/11/2023 12:18, Tengfei Fan wrote:
+>> Add nodes to support Type-C USB/DP functionality.
 >>
->> The enable bit and transform offset of cluster windows should be
->> cleared when it work at linear mode, or we may have a iommu fault
->> issue.
+>> On this platform, a Type-C redriver is added to the SuperSpeed graph.
 >>
->> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
-> I guess same here?
->
-> Fixes: 604be85547ce ("drm/rockchip: Add VOP2 driver")
+>> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/sm8550-aim300.dts | 88 +++++++++++++++++++++-
+>>   1 file changed, 87 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8550-aim300.dts 
+>> b/arch/arm64/boot/dts/qcom/sm8550-aim300.dts
+>> index 6dc3040b9f76..f3c558dd40f1 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm8550-aim300.dts
+>> +++ b/arch/arm64/boot/dts/qcom/sm8550-aim300.dts
+>> @@ -100,7 +100,15 @@
+>>                       reg = <1>;
+>>                       pmic_glink_ss_in: endpoint {
+>> -                        remote-endpoint = <&usb_1_dwc3_ss>;
+>> +                        remote-endpoint = <&redriver_ss_out>;
+>> +                    };
+>> +                };
+>> +
+>> +                port@2 {
+>> +                    reg = <2>;
+>> +
+>> +                    pmic_glink_sbu: endpoint {
+>> +                        remote-endpoint = <&fsa4480_sbu_mux>;
+>>                       };
+>>                   };
+>>               };
+>> @@ -519,6 +527,62 @@
+>>       };
+>>   };
+>> +&i2c_master_hub_0 {
+>> +    status = "okay";
+>> +};
+>> +
+>> +&i2c_hub_2 {
+>> +    status = "okay";
+>> +
+>> +    typec-mux@42 {
+>> +        compatible = "fcs,fsa4480";
+>> +        reg = <0x42>;
+>> +
+>> +        vcc-supply = <&vreg_bob1>;
+>> +
+>> +        mode-switch;
+>> +        orientation-switch;
+>> +
+>> +        port {
+>> +            fsa4480_sbu_mux: endpoint {
+>> +                remote-endpoint = <&pmic_glink_sbu>;
+>> +            };
+>> +        };
+>> +    };
+>> +
+>> +    typec-retimer@1c {
+>> +        compatible = "onnn,nb7vpq904m";
+>> +        reg = <0x1c>;
+>> +
+>> +        vcc-supply = <&vreg_l15b_1p8>;
+>> +
+>> +        orientation-switch;
+>> +        retimer-switch;
+>> +
+>> +        ports {
+>> +            #address-cells = <1>;
+>> +            #size-cells = <0>;
+>> +
+>> +            port@0 {
+>> +                reg = <0>;
+>> +
+>> +                redriver_ss_out: endpoint {
+>> +                    remote-endpoint = <&pmic_glink_ss_in>;
+>> +                };
+>> +            };
+>> +
+>> +            port@1 {
+>> +                reg = <1>;
+>> +
+>> +                redriver_ss_in: endpoint {
+>> +                    data-lanes = <3 2 1 0>;
+>> +                    remote-endpoint = <&usb_dp_qmpphy_out>;
+>> +                };
+>> +            };
+>> +        };
+>> +    };
+>> +};
+>> +
+>>   &gcc {
+>>       clocks = <&bi_tcxo_div2>, <&sleep_clk>,
+>>            <&pcie0_phy>,
+>> @@ -552,6 +616,16 @@
+>>       status = "okay";
+>>   };
+>> +&mdss_dp0 {
+>> +    status = "okay";
+>> +};
+>> +
+>> +&mdss_dp0_out {
+>> +    data-lanes = <0 1>;
+> 
+> Why? Are you really limited to two lanes for DP by the hardware?
+I got confirmation from a colleague that it is right that limited to two 
+lanes.
+> 
+>> +    remote-endpoint = <&usb_dp_qmpphy_dp_in>;
+>> +};
+>> +
+>> +
+>>   &mdss_dsi0 {
+>>       vdda-supply = <&vreg_l3e_1p2>;
+>>       status = "okay";
+>> @@ -861,6 +935,18 @@
+>>       status = "okay";
+>>   };
+>> +&usb_dp_qmpphy_dp_in {
+>> +    remote-endpoint = <&mdss_dp0_out>;
+>> +};
+>> +
+>> +&usb_dp_qmpphy_out {
+>> +    remote-endpoint = <&redriver_ss_in>;
+>> +};
+>> +
+>> +&usb_dp_qmpphy_usb_ss_in {
+>> +    remote-endpoint = <&usb_1_dwc3_ss>;
+>> +};
+>> +
+>>   &xo_board {
+>>       clock-frequency = <76800000>;
+>>   };
+> 
 
-
-I'm not sure if we need a Fixes tag here,  in fact this issue never happens on
-
-rk3566/8 , because the cluster windows of rk356x only support afbc format,
-
-they don't have a chance to switch between afbc and linear mode.
-
-Of course, the lack support of linear mode of rk356x cluster windows is a thoughtless
-
-of IC design, if it really support both afbc and linear format, we indeed need this fix.
-
-The situation is the same as patch 03/12.
-
-So I hope follow your advice, if it need a Fixes tag here.
-
->
->
->
->
-> _______________________________________________
-> Linux-rockchip mailing list
-> Linux-rockchip@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-rockchip
+-- 
+Thx and BRs,
+Tengfei Fan
 
