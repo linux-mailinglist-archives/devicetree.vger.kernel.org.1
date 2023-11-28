@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-19502-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19503-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA85C7FB2D9
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 08:35:42 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 611957FB2E3
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 08:37:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0708A1C20AA8
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 07:35:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 92F2C1C20C26
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 07:37:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 677BA13AD2;
-	Tue, 28 Nov 2023 07:35:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4D6513AE8;
+	Tue, 28 Nov 2023 07:37:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FeThgYCG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gD4GEBn7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E791E10F4
-	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 23:35:22 -0800 (PST)
-Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-549070a04baso6909410a12.3
-        for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 23:35:22 -0800 (PST)
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E83810E2
+	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 23:37:03 -0800 (PST)
+Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-50babce6ff6so3469766e87.3
+        for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 23:37:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701156921; x=1701761721; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701157021; x=1701761821; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=pUq3T8OY7FYfFocDyKvX8NsZIIyr1P43JhtcmH98CZU=;
-        b=FeThgYCGyiGEyhYV4dEtipSruHjARiEHpaem5e3sFjwLMntH/HQMwpoV7oOMs+gD06
-         3CbdtQm07kyDWn1NsKnfm7zjlZjQ+dw2+F0ZHxG1oxn8Cy1FFCRqQ64Bn9nJu0mRb7Ix
-         ZrMKry1P1md6PZKja02leehBFw1I7z1PLh0e0WhARHZRXecUiefmsj+ONZrvJpiWVCoE
-         06ropWIX0nBX2Hl6d81x+fip4Akjuk5jXB1+LXcittmoBFf9R7uiNTC7Iti3gIOuSDAA
-         Zj59NvBWjFBcDCIsFHm6tSEpEjUM/nWLHJDI1gxfRLlOqnhgMj7dNskZWAFQZYDp/5FH
-         AdrQ==
+        bh=q4Ty/mc3A4dG4z2IpAQDxL6wASTKN0l3PuXuZz1XJ+c=;
+        b=gD4GEBn7eC180lkPjlFRkDpxfx+J8oCzQAiCfC8X8AA/GP6G/sTkcl3OPWQmv/ptKR
+         bwcTz0Suvo+FOripXIFjePqp+J8700pjoeaVC6VtfR8TPuWgMDr1x9DnI8hQ/B5oaI2F
+         kf5faFkyLbPc8Ee1P0psWpDxacqFX8TYkBFz3f22wFt6gIDO7jdZBVL5oKmKawvEfb57
+         7YO2N8O8TmLJ2GpmEy3LEHFQ52N+lklbc4cN+K+M3C3/z9p/2us+7vsiCxdqV/B1FT/3
+         PLK5wrIqy15Ftnjoy5B4qJ3N6E0c67BZY9jSABIaoVnHDxhEKM2Qn8A2bdhLMofqSKnv
+         9+Vw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701156921; x=1701761721;
+        d=1e100.net; s=20230601; t=1701157021; x=1701761821;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pUq3T8OY7FYfFocDyKvX8NsZIIyr1P43JhtcmH98CZU=;
-        b=i8/Vntnj0d0mi+w7KgJrcb1PTXMFHrsXPk/t5BqYY+QBCBTD8OmNhyk7NrDMWf9y3r
-         k1mm5ARRni+aigtjWbKj4CfmoPwli41kUoQOOdHB2onbo9VCR1bVlfD6OUNj2HhuVejj
-         EA3mB2K2Y7qR9JeYMmgzumsw6sP/2hHWAOUcPfCR64/Ul/fInJ1ZdsYD3A66rx+iAKNS
-         YQn1w9aLeiBRqFXowq2vkGioPsl4RFhHkxb1aN+gBnDbvsbMI7qEu69DBCn5okUJngSE
-         00hnprbG4NGwPetVjFL3jWEieYnmwFqq9zXzedBtYZfsd8Pw9C39rF22BLxR1yt2czmC
-         O5JA==
-X-Gm-Message-State: AOJu0YyFrQAun2DuiQ2Xxa+EYnUr5yPqUCGtRWnlsZ7GhIp6K9/k44K2
-	nWiIQgXiI64EkIa1uCr+GxxTYg==
-X-Google-Smtp-Source: AGHT+IFhr+TgFLe5ZVVL2SeuuxMz4ugUtaV4jYwhPMWqKm7oKr912FIu0eYSZKzq4E8Av9K2rFJvZg==
-X-Received: by 2002:a17:906:73c5:b0:a10:ef07:fa9e with SMTP id n5-20020a17090673c500b00a10ef07fa9emr2504407ejl.6.1701156921394;
-        Mon, 27 Nov 2023 23:35:21 -0800 (PST)
+        bh=q4Ty/mc3A4dG4z2IpAQDxL6wASTKN0l3PuXuZz1XJ+c=;
+        b=Ut/XExCcxAq0dMI3MLYmwGmRfgcQUSq+mlithBnDBwVo8XBAC/JK063twNj0jrow+r
+         X/QbmJkQUeZ8K2KClQEDoqTGaTJYjukmoJtAZKJ18To3npSuQS1BV9rWy1uXetoF0Emp
+         tinR/M2cENatIyiul88mRoSiISYoTgoH+cV6kJtnyIr9fQutSwjxmZzSwYmVw/ZUGOrD
+         SLYqsUkPHrzJcXpMva9FE5qjM+J1ah/oePWMJj5AR5PtYgnGcO0xhh4avRcaTlCuJRG0
+         n/E66Q4jPd6lTq30j9CWp6GGfVh7RwFkftabDIWympibMwx1DKESvyVBf5oMVU6MWOhj
+         8cSQ==
+X-Gm-Message-State: AOJu0YzQWdolvk9i8cRzvzz0wS9AcS8DWOOLI/dq3hXjxNxJKfs1e2Jz
+	bVWi4lDtFhSWVLtARzm9Anu4hQ==
+X-Google-Smtp-Source: AGHT+IHCg4GpPpTE+clk6c1JZ8ms9g4d9Zj/QYHanq7kDauwzXvkjZZgy28czyyUOTYCzI9IzN6YZg==
+X-Received: by 2002:a05:6512:746:b0:509:8da4:93da with SMTP id c6-20020a056512074600b005098da493damr8472890lfs.18.1701157021339;
+        Mon, 27 Nov 2023 23:37:01 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.109])
-        by smtp.gmail.com with ESMTPSA id q23-20020a17090676d700b00a017da998bdsm6473249ejn.32.2023.11.27.23.35.19
+        by smtp.gmail.com with ESMTPSA id q23-20020a17090676d700b00a017da998bdsm6473249ejn.32.2023.11.27.23.36.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Nov 2023 23:35:21 -0800 (PST)
-Message-ID: <7edda3ca-b98a-4125-979f-3ee7ac718a9a@linaro.org>
-Date: Tue, 28 Nov 2023 08:35:19 +0100
+        Mon, 27 Nov 2023 23:37:00 -0800 (PST)
+Message-ID: <5f4cf393-5c6c-4eed-b116-b65adf133d19@linaro.org>
+Date: Tue, 28 Nov 2023 08:36:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,17 +62,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/4] arm64: dts: nuvoton: Add pinctrl support for
- ma35d1
+Subject: Re: [PATCH v2 1/2] dt-bindings: mmc: mtk-sd: add tuning steps related
+ property
 Content-Language: en-US
-To: Jacky Huang <ychuang570808@gmail.com>, linus.walleij@linaro.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- p.zabel@pengutronix.de, j.neuschaefer@gmx.net
-Cc: linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- ychuang3@nuvoton.com, schung@nuvoton.com
-References: <20231128061118.575847-1-ychuang570808@gmail.com>
- <20231128061118.575847-4-ychuang570808@gmail.com>
+To: Axe Yang <axe.yang@mediatek.com>,
+ Chaotian Jing <chaotian.jing@mediatek.com>,
+ Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Wenbin Mei <wenbin.mei@mediatek.com>
+Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org,
+ Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20231128070127.27442-1-axe.yang@mediatek.com>
+ <20231128070127.27442-2-axe.yang@mediatek.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -118,46 +124,19 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231128061118.575847-4-ychuang570808@gmail.com>
+In-Reply-To: <20231128070127.27442-2-axe.yang@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 28/11/2023 07:11, Jacky Huang wrote:
-> From: Jacky Huang <ychuang3@nuvoton.com>
+On 28/11/2023 08:01, Axe Yang wrote:
+> Add 'mediatek,tuning-steps' setting. This property will give MSDC
+> a chance to extend tuning steps up to 64. With more tuning steps,
+> MSDC may achieve a more optimal calibration result, thus avoiding
+> potential CRC issues.
 > 
-> Add 'pinctrl' node and 'gpioa' ~ 'gpion' nodes to the dtsi of ma35d1
-> SoC and describe default pin configurations.
-> 
-> Enable all UART nodes presented on som and iot boards, and add pinctrl
-> function settings to these nodes.
-> 
-> Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
+> Signed-off-by: Axe Yang <axe.yang@mediatek.com>
 
-
-> +
-> +			gpion: gpio@40040340 {
-> +				reg = <0x340 0x40>;
-> +				interrupts = <GIC_SPI  105 IRQ_TYPE_LEVEL_HIGH>;
-> +				clocks = <&clk GPN_GATE>;
-> +				gpio-controller;
-> +				#gpio-cells = <2>;
-> +				interrupt-controller;
-> +				#interrupt-cells = <2>;
-> +			};
-> +
-> +			pcfg_default: pin-default {
-> +				slew-rate = <0>;
-> +				input-schmitt-disable;
-> +				bias-disable;
-> +				power-source = <1>;
-> +				drive-strength = <17100>;
-> +			};
-
-It does not look like you tested the DTS against bindings. Please run
-`make dtbs_check W=1` (see
-Documentation/devicetree/bindings/writing-schema.rst or
-https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
-for instructions).
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
