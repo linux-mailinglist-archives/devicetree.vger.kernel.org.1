@@ -1,237 +1,333 @@
-Return-Path: <devicetree+bounces-19612-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19610-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 400EE7FB6FF
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 11:18:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8925F7FB6E5
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 11:14:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 62A4D1C212D6
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 10:18:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 31B9F282864
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 10:14:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD3B34E1B1;
-	Tue, 28 Nov 2023 10:18:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F9C54D5A5;
+	Tue, 28 Nov 2023 10:14:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="Kv4h4eza"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Fdd7PUO6"
 X-Original-To: devicetree@vger.kernel.org
-X-Greylist: delayed 389 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 28 Nov 2023 02:18:47 PST
-Received: from mail-m12829.netease.com (mail-m12829.netease.com [103.209.128.29])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27403E1;
-	Tue, 28 Nov 2023 02:18:46 -0800 (PST)
-DKIM-Signature: a=rsa-sha256;
-	b=Kv4h4ezaY2IFPxMQ+PRFA0A72grSJmM3w9FxR0roZprWLmUgFKpm/R54b+N4A7P3UXL1BDBEAIoumNnhy3BSfMQHcC5IlOVVfibR78U7QcFV4n+X+t2l1sb+p8Pu6xfoyaahKOdYogpIhPfkJASrjlzP8R6qs3H4ma/pQsuMFT0=;
-	s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=7JTD2+HcWsQ2R6pCShDzTLWMGQXPh84DvuG0l3o9KdE=;
-	h=date:mime-version:subject:message-id:from;
-Received: from [172.16.12.141] (unknown [58.22.7.114])
-	by mail-m12762.qiye.163.com (Hmail) with ESMTPA id E7F885C0306;
-	Tue, 28 Nov 2023 18:11:46 +0800 (CST)
-Message-ID: <16644455-d7a1-445e-8b48-ae22577a2627@rock-chips.com>
-Date: Tue, 28 Nov 2023 18:11:46 +0800
+Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD9A1113
+	for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 02:14:25 -0800 (PST)
+Received: by mail-yb1-xb2d.google.com with SMTP id 3f1490d57ef6-dae0ab8ac3eso4703804276.0
+        for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 02:14:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1701166465; x=1701771265; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zDYuOa0Z95bwZdXi4RNLwU1ybgqiSo1lhIUr1bukG28=;
+        b=Fdd7PUO6SzzXdIq5iI/XvNCzBk+hkxOewh1DPhwMR8T/dplH9kLUt/NXZCHaB8CVS9
+         7Xtg+Yh1IxJHxJKpdqnTv4Tm3dkHXfkD2mfP4wZXSxdwzpMO/7eF9W2lboBbL5T7OkL5
+         Qlbf6fqGtBBep5ms9u+4r1ht3MB/xSaNnEUIia+Yfk9fsc5+Dsr7AWpyvtXWjqqi1KkA
+         i0FXo9KtuCp0Q/Qut3aeHVJN7Vn8+mFzuZf/bXIgogD19IQx2XFTHFWSEtvGnuL33ZBG
+         rtWgZZtfpnnqA8Dnq4vIi0q4hner7pFE13x81zY49e21xazGlPHzl4SzsQz5xdyJSMgD
+         4lVg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701166465; x=1701771265;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=zDYuOa0Z95bwZdXi4RNLwU1ybgqiSo1lhIUr1bukG28=;
+        b=haFKggKn/RGN4oabJ9tRWGkkF1yWXKSi75gv8XgLewFR0v1YuddECU6sLnDLy/6mt9
+         y1xpKRs8Mie24rKztcSWdx0GC3c0zpvkkeCpz5Z45ZotJkk0UnM56F/L9thwtuPNlQgA
+         QJTKqr5sNBuIPL9+6CeBT4chKCmpz3cpsTB6syr2pWYGYjr6Ul8KWdxaRahk0qw23ozi
+         819yMhE49+k6X37qk1StVCpL+7Ighc7OEHo7G5y2EC80qI1HK9ecpBRw+aTEN7uKop5q
+         co9NmzJU2QR08ADITgdkbYwEiPB0WeMZmxXQJfcuL/VlAAtOJfXGoxs1xx+MdqRtxMn8
+         Imvg==
+X-Gm-Message-State: AOJu0YzF296H0orG4oPPx0fgNDe1FWT8RrB+XMka3lfGYbeY5WotxOnj
+	j/+MT7qc47bYgBX8bFm4aXDQTiXH7c61Sa9C3pPoIQ==
+X-Google-Smtp-Source: AGHT+IFTMtIk4AxRTB0t45v1MEkPE7qtIltciuNCg31fummK1gEIueLA5ewKvHdFI5EF6O52jYMdCKHB/i4ypOEn7Wg=
+X-Received: by 2002:a25:260c:0:b0:d89:4357:a9fd with SMTP id
+ m12-20020a25260c000000b00d894357a9fdmr14050870ybm.18.1701166464923; Tue, 28
+ Nov 2023 02:14:24 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 10/12] drm/rockchip: vop2: Add support for rk3588
-Content-Language: en-US
-To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
- Andy Yan <andyshrk@163.com>
-Cc: hjc@rock-chips.com, dri-devel@lists.freedesktop.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
- devicetree@vger.kernel.org, sebastian.reichel@collabora.com,
- kever.yang@rock-chips.com, chris.obbard@collabora.com, s.hauer@pengutronix.de
-References: <20231122125316.3454268-1-andyshrk@163.com>
- <4788319.uZKlY2gecq@diego>
- <f179e9ae-b2cd-4f6c-badc-4d76d8a3ba0d@rock-chips.com>
- <4339687.HovnAMPojK@diego>
-From: Andy Yan <andy.yan@rock-chips.com>
-In-Reply-To: <4339687.HovnAMPojK@diego>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGhgdTFYaSkJMT0seGkNPSh9VEwETFh
-	oSFyQUDg9ZV1kYEgtZQVlOQ1VJSVVMVUpKT1lXWRYaDxIVHRRZQVlPS0hVSk1PSU5JVUpLS1VKQl
-	kG
-X-HM-Tid: 0a8c1569d7d1b229kuuue7f885c0306
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6M006Aww5Czw8Gh4WCCMOMioQ
-	HwpPCipVSlVKTEtKSk1NSEtMQktJVTMWGhIXVRoVHwJVAhoVOwkUGBBWGBMSCwhVGBQWRVlXWRIL
-	WUFZTkNVSUlVTFVKSk9ZV1kIAVlBQ0hKTDcG
+References: <20231128061118.575847-1-ychuang570808@gmail.com> <20231128061118.575847-5-ychuang570808@gmail.com>
+In-Reply-To: <20231128061118.575847-5-ychuang570808@gmail.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Tue, 28 Nov 2023 11:14:12 +0100
+Message-ID: <CACRpkda3ro2shN7W5iateMTL7RF6jDONUbwwVQ_QK5sBzP3jLg@mail.gmail.com>
+Subject: Re: [PATCH v2 4/4] pinctrl: nuvoton: Add ma35d1 pinctrl and GPIO driver
+To: Jacky Huang <ychuang570808@gmail.com>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	p.zabel@pengutronix.de, j.neuschaefer@gmx.net, 
+	linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	ychuang3@nuvoton.com, schung@nuvoton.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Heiko:
+Hi Jacky,
 
-On 11/28/23 17:44, Heiko Stübner wrote:
-> Hi Andy,
->
-> Am Dienstag, 28. November 2023, 10:32:55 CET schrieb Andy Yan:
->> On 11/27/23 23:29, Heiko Stübner wrote:
->>> Am Mittwoch, 22. November 2023, 13:55:44 CET schrieb Andy Yan:
->>>> From: Andy Yan <andy.yan@rock-chips.com>
->>>>
->>>> VOP2 on rk3588:
->>>>
->>>> Four video ports:
->>>> VP0 Max 4096x2160
->>>> VP1 Max 4096x2160
->>>> VP2 Max 4096x2160
->>>> VP3 Max 2048x1080
->>>>
->>>> 4 4K Cluster windows with AFBC/line RGB and AFBC-only YUV support
->>>> 4 4K Esmart windows with line RGB/YUV support
->>>>
->>>> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
->>>>
->>>> ---
->>>>
->>>> Changes in v2:
->>>> - add rk3588_ prefix for functions which are rk3588 only
->>>> - make some calculation as fixed value and keep calculation formula as
->>>>     comment
->>>> - check return value for some cru calculation functions.
->>>> - check return value for syscon_regmap_lookup_by_phandle
->>>> - add NV20/NV30 for esmart plane
->>>>
->>>>    drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 381 ++++++++++++++++++-
->>>>    drivers/gpu/drm/rockchip/rockchip_drm_vop2.h |  66 ++++
->>>>    drivers/gpu/drm/rockchip/rockchip_vop2_reg.c | 221 +++++++++++
->>>>    3 files changed, 660 insertions(+), 8 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
->>>> index 4bcc405bcf11..9eecbe1f71f9 100644
->>>> --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
->>>> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
->>>> @@ -271,9 +282,12 @@ static bool vop2_cluster_window(const struct vop2_win *win)
->>>>    static void vop2_cfg_done(struct vop2_video_port *vp)
->>>>    {
->>>>    	struct vop2 *vop2 = vp->vop2;
->>>> +	u32 val;
->>>> +
->>>> +	val = BIT(vp->id) | (BIT(vp->id) << 16) |
->>>> +		RK3568_REG_CFG_DONE__GLB_CFG_DONE_EN;
->>>>    
->>>> -	regmap_set_bits(vop2->map, RK3568_REG_CFG_DONE,
->>>> -			BIT(vp->id) | RK3568_REG_CFG_DONE__GLB_CFG_DONE_EN);
->>>> +	regmap_set_bits(vop2->map, RK3568_REG_CFG_DONE, val);
->>> I don't fully understand that code:
->>> (1) the write mask is also present on the rk3568, so should this change
->>>       be a separate patch with a fixes tag?
->> The write mask of VP config done on rk356x is missing, that means
->> you can write the corresponding mask bit, but it has no effect.
->>
->> I once considered making it a separate patch,  I can split it as a separate patch if
->> you like.
-> I think I'd like it to be a separate patch please.
->
->
->>> (2) RK3568_REG_CFG_DONE__GLB_CFG_DONE_EN does not contain the part for
->>>       the write-mask
->>>
->>> 	#define RK3568_REG_CFG_DONE__GLB_CFG_DONE_EN     BIT(15)
->>>
->>>       why is this working then?
->>
->> Actually this bit has no write-mask bit. 🙂
-> when doing that separate patch mentioned above, could you also add a
-> comment to the code stating that RK3568_REG_CFG_DONE__GLB_CFG_DONE_EN
-> doesn't have a write mask bit please?
->
-> Because the TRM is not clear and ideally I'd not forget this fact for
-> the future :-) .
->
+thanks for your patch!
 
-Okay, will do both above.
+This is an interesting new driver. The initial review pass will be
+along the lines "utilize helpers and library functions please".
+You will see that this will shrink the core driver and make it
+rely on core code helpers making it much easier to maintain
+in the long run (I think).
 
->>>>    }
->>>>    
->>>>    static void vop2_win_disable(struct vop2_win *win)
->>> [...]
->>>
->>>> @@ -1298,7 +1346,11 @@ static void vop2_plane_atomic_update(struct drm_plane *plane,
->>>>    			vop2_win_write(win, VOP2_WIN_AFBC_ENABLE, 1);
->>>>    		vop2_win_write(win, VOP2_WIN_AFBC_FORMAT, afbc_format);
->>>>    		vop2_win_write(win, VOP2_WIN_AFBC_UV_SWAP, uv_swap);
->>>> -		vop2_win_write(win, VOP2_WIN_AFBC_AUTO_GATING_EN, 0);
->>>> +		if (vop2->data->soc_id == 3566 || vop2->data->soc_id == 3568)
->>>> +			vop2_win_write(win, VOP2_WIN_AFBC_AUTO_GATING_EN, 0);
->>>> +		else
->>>> +			vop2_win_write(win, VOP2_WIN_AFBC_AUTO_GATING_EN, 1);
->>>> +
->>> I think this at least warrants a comment, what is happening here. Also,
->>> can you already see how future vop2-users are behaving - aka are all new
->>> socs in the "else" part of the conditional, or would a switch-case better
->>> represent future socs?
->>
->> On rk356x, this bit is auto gating enable, but this function is not work well so
->> we need to disable this function.
->> On rk3588, and the following new soc(rk3528/rk3576), this bit is gating disable,
->> we should write 1 to disable gating when enable a cluster window.
->>
->>
->> Maybe i add some comments in next version ?
-> Yep that comment would be helpful. And with your explanation the code
-> itself can stay as it is :-)
+On Tue, Nov 28, 2023 at 7:11=E2=80=AFAM Jacky Huang <ychuang570808@gmail.co=
+m> wrote:
 
+> +if ARCH_MA35 || COMPILE_TEST
 
-will do.
+Isn't it cleaner to put the depends on inside the Kconfig entries?
+This looks a bit convoluted.
 
-> Thanks
-> Heiko
->
->
->>>>    		vop2_win_write(win, VOP2_WIN_AFBC_BLOCK_SPLIT_EN, 0);
->>>>    		transform_offset = vop2_afbc_transform_offset(pstate, half_block_en);
->>>>    		vop2_win_write(win, VOP2_WIN_AFBC_HDR_PTR, yrgb_mst);
->>>> @@ -1627,9 +1937,17 @@ static void vop2_crtc_atomic_enable(struct drm_crtc *crtc,
->>>>    	drm_for_each_encoder_mask(encoder, crtc->dev, crtc_state->encoder_mask) {
->>>>    		struct rockchip_encoder *rkencoder = to_rockchip_encoder(encoder);
->>>>    
->>>> -		rk3568_set_intf_mux(vp, rkencoder->crtc_endpoint_id, polflags);
->>>> +		/*
->>>> +		 * for drive a high resolution(4KP120, 8K), vop on rk3588/rk3576 need
->>>> +		 * process multi(1/2/4/8) pixels per cycle, so the dclk feed by the
->>>> +		 * system cru may be the 1/2 or 1/4 of mode->clock.
->>>> +		 */
->>>> +		clock = vop2_set_intf_mux(vp, rkencoder->crtc_endpoint_id, polflags);
->>>>    	}
->>>>    
->>>> +	if (!clock)
->>>> +		return;
->>>> +
->>> hmm, shouldn't the check for the validity of a mode happen before
->>> atomic_enable is run? So this shouldn't error out in the middle of the
->>> function?
+> +config PINCTRL_MA35
+> +       bool
+> +       depends on OF
 
+So
+depends on ARCH_MA35 || COMPILE_TEST here
 
-Actually it is a check like the check of clk_prepares_enable at the beginning,
+> +       select GENERIC_PINCTRL_GROUPS
+> +       select GENERIC_PINMUX_FUNCTIONS
+> +       select GENERIC_PINCONF
+> +       select GPIOLIB
+> +       select GPIO_GENERIC
+> +       select GPIOLIB_IRQCHIP
+> +       select MFD_SYSCON
+> +
+> +config PINCTRL_MA35D1
+> +       bool "Pinctrl and GPIO driver for Nuvoton MA35D1"
+> +       depends on OF
 
-maybe one place can do this is at crtc_atomic_check ? But we really don't need to
+Now depends on OF gets listed twice, which is confusing
 
-do the calculate and enable the related interface at every frame commit.
+> +       select PINCTRL_MA35
 
-with a grep i can find many platforms do this kind of check in crtc_atomic_enable(ade/meson/vc4/omap/malidp/tidss_crtc_atomic_enable, etc...)
+So use
+depends on PINCTRL_MA35
 
-so maybe just let it as it is now?
+instead, and this becomes a sub-choice.
 
->>>
->>>
->>>>    	if (vcstate->output_mode == ROCKCHIP_OUT_MODE_AAAA &&
->>>>    	    !(vp_data->feature & VOP_FEATURE_OUTPUT_10BIT))
->>>>    		out_mode = ROCKCHIP_OUT_MODE_P888;
->>> Thanks
->>> Heiko
->>>
->>>
->>>
->>> _______________________________________________
->>> Linux-rockchip mailing list
->>> Linux-rockchip@lists.infradead.org
->>> http://lists.infradead.org/mailman/listinfo/linux-rockchip
->
->
->
+> +#include <linux/clk.h>
+> +#include <linux/mfd/syscon.h>
+> +#include <linux/of.h>
+> +#include <linux/of_irq.h>
+> +#include <linux/of_device.h>
+> +#include <linux/of_address.h>
+
+Do you really need them all?
+
+Then I think you need <linux/platform_device.h> because
+ma35d1_pinctrl_probe(struct platform_device *pdev)
+passes a platform_device into this file.
+
+> +struct ma35_pin_bank {
+> +       void __iomem            *reg_base;
+> +       struct clk              *clk;
+> +       int                     irq;
+> +       u8                      nr_pins;
+> +       const char              *name;
+> +       u8                      bank_num;
+> +       bool                    valid;
+> +       struct device_node      *of_node;
+
+Just call the variable *np  ("noide pointer")
+this is the most usual practice despite struct device
+using thus long "of_node" name.
+
+> +       struct gpio_chip        chip;
+> +       struct irq_chip         irqc;
+
+Please do not use dynamic irq_chips anymore, use an immutable
+irq_chip, look in other drivers how to do this because we changed
+almost all of them.
+
+> +static int ma35_get_group_pins(struct pinctrl_dev *pctldev, unsigned int=
+ selector,
+> +                              const unsigned int **pins, unsigned int *n=
+pins)
+> +{
+> +       struct ma35_pinctrl *npctl =3D pinctrl_dev_get_drvdata(pctldev);
+> +
+> +       if (selector >=3D npctl->ngroups)
+> +               return -EINVAL;
+> +
+> +       *pins =3D npctl->groups[selector].pins;
+> +       *npins =3D npctl->groups[selector].npins;
+> +
+> +       return 0;
+> +}
+
+Hm it looks simple.
+
+Have you looked into using CONFIG_GENERIC_PINCTRL_GROUPS
+and then you get a bunch of these functions such as
+pinctrl_generic_get_group_count
+pinctrl_generic_get_group_name
+pinctrl_generic_get_group_name(this function)
+pinctrl_generic_get_group
+pinctrl_generic_group_name_to_selector
+(etc)
+
+for FREE, also using a radix tree which is neat.
+
+> +static int ma35_pinctrl_dt_node_to_map_func(struct pinctrl_dev *pctldev,
+> +                                           struct device_node *np,
+> +                                           struct pinctrl_map **map,
+> +                                           unsigned int *num_maps)
+> +{
+> +       struct ma35_pinctrl *npctl =3D pinctrl_dev_get_drvdata(pctldev);
+> +       struct ma35_pin_group *grp;
+> +       struct pinctrl_map *new_map;
+> +       struct device_node *parent;
+> +       int map_num =3D 1;
+> +       int i;
+> +
+> +       /*
+> +        * first find the group of this node and check if we need create
+> +        * config maps for pins
+> +        */
+> +       grp =3D ma35_pinctrl_find_group_by_name(npctl, np->name);
+> +       if (!grp) {
+> +               dev_err(npctl->dev, "unable to find group for node %s\n",=
+ np->name);
+> +               return -EINVAL;
+> +       }
+> +
+> +       map_num +=3D grp->npins;
+> +       new_map =3D devm_kzalloc(pctldev->dev, sizeof(*new_map) * map_num=
+, GFP_KERNEL);
+> +       if (!new_map)
+> +               return -ENOMEM;
+> +
+> +       *map =3D new_map;
+> +       *num_maps =3D map_num;
+> +       /* create mux map */
+> +       parent =3D of_get_parent(np);
+> +       if (!parent) {
+> +               devm_kfree(pctldev->dev, new_map);
+> +               return -EINVAL;
+> +       }
+> +
+> +       new_map[0].type =3D PIN_MAP_TYPE_MUX_GROUP;
+> +       new_map[0].data.mux.function =3D parent->name;
+> +       new_map[0].data.mux.group =3D np->name;
+> +       of_node_put(parent);
+> +
+> +       new_map++;
+> +       for (i =3D 0; i < grp->npins; i++) {
+> +               new_map[i].type =3D PIN_MAP_TYPE_CONFIGS_PIN;
+> +               new_map[i].data.configs.group_or_pin =3D pin_get_name(pct=
+ldev, grp->pins[i]);
+> +               new_map[i].data.configs.configs =3D grp->settings[i].conf=
+igs;
+> +               new_map[i].data.configs.num_configs =3D grp->settings[i].=
+nconfigs;
+> +       }
+> +       dev_dbg(pctldev->dev, "maps: function %s group %s num %d\n",
+> +               (*map)->data.mux.function, (*map)->data.mux.group, map_nu=
+m);
+> +
+> +       return 0;
+> +}
+
+This looks like it could be replaced with:
+pinconf_generic_dt_node_to_map_group
+pinconf_generic_dt_node_to_map_all
+
+please check the generic helpers closely.
+
+> +static void ma35_dt_free_map(struct pinctrl_dev *pctldev, struct pinctrl=
+_map *map,
+> +                            unsigned int num_maps)
+> +{
+> +       devm_kfree(pctldev->dev, map);
+> +}
+
+pinconf_generic_dt_free_map
+
+> +static int ma35_pinmux_get_func_count(struct pinctrl_dev *pctldev)
+> +{
+> +       struct ma35_pinctrl *npctl =3D pinctrl_dev_get_drvdata(pctldev);
+> +
+> +       return npctl->nfunctions;
+> +}
+
+pinmux_generic_get_function_count
+pinmux_generic_get_function_name
+pinmux_generic_get_function_groups
+(etc)
+
+Please check the CONFIG_GENERIC_PINMUX_FUNCTIONS
+option because these are again all very generic.
+
+> +static int ma35_gpio_core_direction_in(struct gpio_chip *gc, unsigned in=
+t gpio)
+> +{
+> +       struct ma35_pin_bank *bank =3D gpiochip_get_data(gc);
+> +       void __iomem *reg_mode =3D bank->reg_base + MA35_GP_REG_MODE;
+> +       unsigned long flags;
+> +       unsigned int regval;
+> +
+> +       spin_lock_irqsave(&bank->lock, flags);
+> +
+> +       regval =3D readl(reg_mode);
+> +
+> +       regval &=3D ~GENMASK(gpio * 2 + 1, gpio * 2);
+> +       regval |=3D MA35_GP_MODE_INPUT << gpio * 2;
+> +
+> +       writel(regval, reg_mode);
+> +
+> +       spin_unlock_irqrestore(&bank->lock, flags);
+> +
+> +       return 0;
+> +}
+
+The pinctrl set_mux is using a regmap but not the GPIO which is a bit
+of a weird mix.
+
+Further, if you were using regmap-mmio for GPIO, you could probably
+utilize CONFIG_GPIO_REGMAP to simplify also this part of the
+code with a library. Look at other drivers using this!
+
+> +               if (bank->irq > 0) {
+> +                       struct gpio_irq_chip *girq;
+> +
+> +                       girq =3D &bank->chip.irq;
+> +                       girq->chip =3D &bank->irqc;
+> +                       girq->chip->name =3D bank->name;
+> +                       girq->chip->irq_disable =3D ma35_irq_gpio_mask;
+> +                       girq->chip->irq_enable =3D ma35_irq_gpio_unmask;
+> +                       girq->chip->irq_set_type =3D ma35_irq_irqtype;
+> +                       girq->chip->irq_mask =3D ma35_irq_gpio_mask;
+> +                       girq->chip->irq_unmask =3D ma35_irq_gpio_unmask;
+> +                       girq->chip->flags =3D IRQCHIP_MASK_ON_SUSPEND |
+> +                       IRQCHIP_SKIP_SET_WAKE | IRQCHIP_IMMUTABLE;
+> +                       girq->parent_handler =3D ma35_irq_demux_intgroup;
+> +                       girq->num_parents =3D 1;
+> +
+> +                       girq->parents =3D devm_kcalloc(&pdev->dev, 1, siz=
+eof(*girq->parents),
+> +                                                    GFP_KERNEL);
+> +                       if (!girq->parents)
+> +                               return -ENOMEM;
+> +
+> +                       girq->parents[0] =3D bank->irq;
+> +                       girq->default_type =3D IRQ_TYPE_NONE;
+> +                       girq->handler =3D handle_level_irq;
+> +               }
+
+As menioned, replace this with an immutable irq_chip.
+
+Yours,
+Linus Walleij
 
