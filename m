@@ -1,40 +1,40 @@
-Return-Path: <devicetree+bounces-19458-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19457-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E11F37FAFA4
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 112527FAFA3
 	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 02:38:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1E49E1C20BF2
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 01:38:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C038C281B23
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 01:38:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 593C41877;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A5AF186D;
 	Tue, 28 Nov 2023 01:38:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rnplus.nl header.i=@rnplus.nl header.b="i3198qmd"
+	dkim=pass (1024-bit key) header.d=rnplus.nl header.i=@rnplus.nl header.b="j/MfXWJg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.rnplus.nl (mail.rnplus.nl [178.251.25.70])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D91EE6
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D8D1E4
 	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 17:37:58 -0800 (PST)
 Received: from localhost (unknown [127.0.0.1])
-	by mail.rnplus.nl (Postfix) with ESMTP id DC549379436
-	for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 01:33:44 +0000 (UTC)
+	by mail.rnplus.nl (Postfix) with ESMTP id EAF16379442
+	for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 01:33:50 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at rnplus.nl
 Received: from mail.rnplus.nl ([127.0.0.1])
 	by localhost (mail.rnplus.nl [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 3Wjsij8dDACM for <devicetree@vger.kernel.org>;
-	Tue, 28 Nov 2023 02:33:44 +0100 (CET)
+	with ESMTP id oy_WrJYU1uDo for <devicetree@vger.kernel.org>;
+	Tue, 28 Nov 2023 02:33:50 +0100 (CET)
 Received: from werkpc.lan (87-101-2-254.dsl.cambrium.nl [87.101.2.254])
-	by mail.rnplus.nl (Postfix) with ESMTPSA id 16404379432;
-	Tue, 28 Nov 2023 02:33:43 +0100 (CET)
+	by mail.rnplus.nl (Postfix) with ESMTPSA id 437C3379439;
+	Tue, 28 Nov 2023 02:33:50 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=rnplus.nl; s=dkim;
-	t=1701135224; bh=81KwltVxZAuMaWLnYPGe+jkgwQiKXhiV7pP19DaDTdw=;
-	h=From:To:Cc:Subject:Date;
-	b=i3198qmdu53X0lp5Stk2jvnw9k2rIjPPev7I0lZAzFHXk9+mVKhYtr3FKe+HNRAkW
-	 I/L/bghaqwsLHnpp5gMKNBEb6/jvwprHj0w4GAcb9SNQFuuH1SPCi4umFQdKDJdpGC
-	 GVDOwWS1/3IrJ/ZS58HmQewCJaeu0oUNIAGjSTyY=
+	t=1701135230; bh=oZJLJBZAx0MsbUik85ITPZJyjd007ov2TZPI2l716ic=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=j/MfXWJgHTh0AtXvrXLnAe1itn7cYMb7NGAh1tII1aJIEz83V2lHg+ki4glL0fRbr
+	 +ANvN1kFhezYBvoJs0HOYCFs3G3sz6aeP4BbF8ooWtTdoxOdDUfhD29Yk1pRZxzAEd
+	 bOrakgBLjHchm570f05dJmQ5+Ol3tE6Dr1EjAl1g=
 From: Renze Nicolai <renze@rnplus.nl>
 To: linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org,
@@ -48,10 +48,12 @@ To: linux-arm-kernel@lists.infradead.org,
 	joel@jms.id.au,
 	andrew@aj.id.au
 Cc: Renze Nicolai <renze@rnplus.nl>
-Subject: [PATCH 0/2] ARM: dts: aspeed: asrock: Add ASRock X570D4U BMC
-Date: Tue, 28 Nov 2023 02:30:15 +0100
-Message-ID: <20231128013136.2699317-1-renze@rnplus.nl>
+Subject: [PATCH 1/2] dt-bindings: arm: aspeed: add Asrock X570D4U board
+Date: Tue, 28 Nov 2023 02:30:16 +0100
+Message-ID: <20231128013136.2699317-2-renze@rnplus.nl>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20231128013136.2699317-1-renze@rnplus.nl>
+References: <20231128013136.2699317-1-renze@rnplus.nl>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,25 +62,25 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Hello,
+Document Asrock X570D4U compatible.
 
-These patches add a device-tree (and a bindings update) for the
-Aspeed BMC on the ASRock X570D4U, so that it can be added as a
-supported OpenBMC platform.
+Signed-off-by: Renze Nicolai <renze@rnplus.nl>
+---
+ Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Greetings,
-Renze Nicolai
-
-Renze Nicolai (2):
-  dt-bindings: arm: aspeed: add Asrock X570D4U board
-  ARM: dts: aspeed: asrock: Add ASRock X570D4U BMC
-
- .../bindings/arm/aspeed/aspeed.yaml           |   1 +
- arch/arm/boot/dts/aspeed/Makefile             |   1 +
- .../dts/aspeed/aspeed-bmc-asrock-x570d4u.dts  | 344 ++++++++++++++++++
- 3 files changed, 346 insertions(+)
- create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-x570d4u.dts
-
+diff --git a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+index 749ee54a3ff8..81ed678905fa 100644
+--- a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
++++ b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+@@ -36,6 +36,7 @@ properties:
+               - aspeed,ast2500-evb
+               - asrock,e3c246d4i-bmc
+               - asrock,romed8hm3-bmc
++              - asrock,x570d4u-bmc
+               - bytedance,g220a-bmc
+               - facebook,cmm-bmc
+               - facebook,minipack-bmc
 -- 
 2.43.0
 
