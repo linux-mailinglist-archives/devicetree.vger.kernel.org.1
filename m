@@ -1,62 +1,49 @@
-Return-Path: <devicetree+bounces-19749-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19750-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A4647FC0F5
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 19:03:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D02D7FC100
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 19:07:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 51011282514
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 18:03:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C46742821CC
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 18:07:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D90E41C96;
-	Tue, 28 Nov 2023 18:03:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A70E41C99;
+	Tue, 28 Nov 2023 18:07:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SqqwOf+2"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Z47OvWEe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA374AB;
-	Tue, 28 Nov 2023 10:03:49 -0800 (PST)
-Received: by mail-pl1-x62b.google.com with SMTP id d9443c01a7336-1cfc985c92dso22823005ad.0;
-        Tue, 28 Nov 2023 10:03:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701194629; x=1701799429; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=t34+zNByVczgqctyRV+yQUYE4kIPs4CYhcIOcWoRV/Y=;
-        b=SqqwOf+2Gs8RxgUzfG8mXtWwPQ37l4jejudYJvwdomJkALhUC/FxWLickumuYv2ZwN
-         QEtIh+ivUi8QqmPCyiNUheQe1QR+jCjDNTQrq6Ozx+XFRNKP2NFOtEq/p3DVleXlpt1Q
-         0BGnhGatnBUDYQyMXmlYHdqAQonIrY2h70JvLW+OV9xvYvi5pq0voewqXHdC+54bngwx
-         s4YKO3DfbZ+BwoKoFrCA5gWYeyDrBoec2GCWa6VgbNKoH/2HpixXNGpvXFqAD1rpIkZE
-         nuEXkHBMFrUyUGRDZp++KqayXN7swNGBcGxXsPvjXt89muhenICASnHpcfrR+cF63iiD
-         AfzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701194629; x=1701799429;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=t34+zNByVczgqctyRV+yQUYE4kIPs4CYhcIOcWoRV/Y=;
-        b=CFB/uGM/VemJ6sKHa0IbET1TqR87rRon/qG5pzoNBgTGTv4HxkdxKqLuTjDAGTjBi2
-         FUgjh2v1Y4Eq2TRAFjLcwNmZOam+SwzQlQ482mQCv7FS8PgCvQkO466Uo4SaqdJL7H1+
-         IWxZwvictEG1cFX4dwzw0nMDzAmmg6P0gem3VnN4HhpgmZQdmqCn5pBhf6tnO+VBfyKb
-         Lvzq2HSPZ1mQVb1QiFWy3zomtP1NguO2ESxfSM4KSiubVHfghhRO6r/AJbH+UkaAPF/u
-         ei7k+IB63O0xrNQWjhz2A2jbw0srJnIH8GyKZvzfnpjhLJOHreBIgwp4P5GWBv3xIjHM
-         OXUw==
-X-Gm-Message-State: AOJu0Yxmsk4o0r0mF+x016GbJ2ZUGmAgSLnLO5rkiH5QRg1LJCCCpWsd
-	kNjHNlyrzUWR0+0t+NcXa00=
-X-Google-Smtp-Source: AGHT+IGizhYWi7d1Q8ggW+eEPShcC+V/3yGbM6htn5BsIkta4XVgm4DOPyxZLvQU6Zzxir+TJB53ew==
-X-Received: by 2002:a17:903:41c8:b0:1d0:955:b5d4 with SMTP id u8-20020a17090341c800b001d00955b5d4mr1464503ple.33.1701194628965;
-        Tue, 28 Nov 2023 10:03:48 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id x19-20020a170902b41300b001c7283d3089sm10513428plr.273.2023.11.28.10.03.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Nov 2023 10:03:48 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <cacce41f-f1c0-4f76-ab24-c6ea8bb0303f@roeck-us.net>
-Date: Tue, 28 Nov 2023 10:03:46 -0800
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF8E4AB;
+	Tue, 28 Nov 2023 10:07:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1701194826; x=1732730826;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=EeyQbQkwGtpaPWXrYXjELaDlGVMx1ZNDEakvPDDbB2Y=;
+  b=Z47OvWEexGaV9oaWP1wlXO0dYIg2FKzFMNkyrhq1zcTfrBawXBMq77GL
+   IE2aZAZZcCmkhTPK8hyF2ESbwhIFcCa+OWGobtjQUjP1hzbv/C5o1mT9s
+   CS/jUzLwXPqlksQ+rRof5PbY0H7UyE1hH/TfUpdyCMY8tZBTiXnuXx/LV
+   i3EygIZwCKVqVWQdxqUUqCfiLUilXKC4KnhmkfmlwVbd+HGYfZ7YTQ1KR
+   nz68Q1eo3A3XdwlDOm1Kh/Wnqv7JlzG2J0E72NsTcSd9rFjT0TkgdsZ9e
+   M1hoqFyBXRKZatF2JtFEg63n8KC39sjaKSZQXZcWJdD+8LNnQypsP08Tu
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10908"; a="424130945"
+X-IronPort-AV: E=Sophos;i="6.04,234,1695711600"; 
+   d="scan'208";a="424130945"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Nov 2023 10:05:43 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10908"; a="834723966"
+X-IronPort-AV: E=Sophos;i="6.04,234,1695711600"; 
+   d="scan'208";a="834723966"
+Received: from ahunter6-mobl1.ger.corp.intel.com (HELO [10.0.2.15]) ([10.251.221.84])
+  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Nov 2023 10:05:20 -0800
+Message-ID: <655c5964-0917-4021-b254-7917b368b05f@intel.com>
+Date: Tue, 28 Nov 2023 20:05:15 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,111 +51,407 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] hwmon: ltc4282: add support for the LTC4282 chip
+Subject: Re: [PATCH v7][2/4] mmc: Add Synopsys DesignWare mmc cmdq host driver
 Content-Language: en-US
-To: Krzysztof Kozlowski <krzk@kernel.org>, Andy Shevchenko <andy@kernel.org>
-Cc: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>,
- kernel test robot <lkp@intel.com>,
- Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org>,
- linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
- linux-doc@vger.kernel.org, oe-kbuild-all@lists.linux.dev,
- Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- Bartosz Golaszewski <brgl@bgdev.pl>, Linus Walleij <linus.walleij@linaro.org>
-References: <20231124-ltc4282-support-v2-2-952bf926f83c@analog.com>
- <202311250548.lUn3bm1A-lkp@intel.com>
- <fb2aaa4c69c88738499dfbf46ef93e3b81ca93cb.camel@gmail.com>
- <76957975-56e7-489e-9c79-086b6c1ffe89@kernel.org>
- <ac950d01-d9aa-4fb7-810d-b21335e4cc94@kernel.org>
- <ZWS90GQTJWA7DrML@smile.fi.intel.com>
- <bcc5da24-7243-42fa-a82b-48851ce17c0c@kernel.org>
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <bcc5da24-7243-42fa-a82b-48851ce17c0c@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+To: Jyan Chou <jyanchou@realtek.com>, ulf.hansson@linaro.org,
+ jh80.chung@samsung.com, riteshh@codeaurora.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org
+Cc: conor+dt@kernel.org, asutoshd@codeaurora.org, p.zabel@pengutronix.de,
+ linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, arnd@arndb.de, briannorris@chromium.org,
+ doug@schmorgal.com, tonyhuang.sunplus@gmail.com, abel.vesa@linaro.org,
+ william.qiu@starfivetech.com
+References: <20231121091101.5540-1-jyanchou@realtek.com>
+ <20231121091101.5540-3-jyanchou@realtek.com>
+From: Adrian Hunter <adrian.hunter@intel.com>
+Organization: Intel Finland Oy, Registered Address: PL 281, 00181 Helsinki,
+ Business Identity Code: 0357606 - 4, Domiciled in Helsinki
+In-Reply-To: <20231121091101.5540-3-jyanchou@realtek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On 11/28/23 08:50, Krzysztof Kozlowski wrote:
-> On 27/11/2023 17:03, Andy Shevchenko wrote:
->> On Mon, Nov 27, 2023 at 09:12:14AM +0100, Krzysztof Kozlowski wrote:
->>> On 27/11/2023 09:10, Krzysztof Kozlowski wrote:
->>
->> ...
->>
->>> Wait, this was not even unusual test, just standard compile, which means
->>> you did not do basic tests on your end. You must build your new driver
->>> with W=1, smatch, sparse and coccinelle before sending upstream.
->>
->> Well, sparse is lagging in development, for the last year it's at least two
->> times it broke kernel builds because of being not ready for the new stuff used
->> in the kernel. Do we have anybody to sync this? I don't think so, hence
->> requiring this from developer is doubtful. Otherwise I agree, that basic
->> compilation with GCC/LLVM must be done.
+On 21/11/23 11:10, Jyan Chou wrote:
+> We implemented cmdq feature on Synopsys DesignWare mmc driver.
+> The difference between dw_mmc.c and dw_mmc_cqe.c were distinct
+> register definitions, mmc user flow and the addition of cmdq.
 > 
-> Sparse still detects several issues and handles lock annotations, so it
-> is useful. But if you disagree with that part, I still insist on Smatch
-> (which is actively developed and works great) and Coccinelle (also
-> actively developed).
+> New version of User Guide had modify mmc driver's usage flow,
+> we may need to renew code to precisely follow user guide.
+> 
+> More over, We added a wait status function to satisfy synopsys
+> user guide's description, since this flow might be specific in
+> synopsys host driver only.
+> 
+> Signed-off-by: Jyan Chou <jyanchou@realtek.com>
 > 
 
-Quite frankly, for my part I would be more than happy if people would read
-and follow Documentation/hwmon/submitting-patches.rst. Most submitters don't
-bother. That doesn't even mention building with W=1 (the much more optimistic
-me who wrote that document several years ago thought that would be obvious),
-much less running any source code analysis tools . Feel free to submit a patch
-to strengthen the wording there. If you do that, it would have to be more explicit
-then "run smatch" or "run coccinelle" because hardly anyone would know how
-to do that.
+Some comments below wrt cqhci
 
-Until then, there isn't really anything to insist on. I even had submitters
-react angry when I asked them to follow the guidance in that document,
-so I won't insist on anything that isn't documented as requirement.
-Quite frankly, most of the time I'd probably fix up issues such as missing
-"static" myself because I am tired having to argue about it with submitters
-who don't care.
+> —--
+> v6 -> v7:
+> - Remove reset-names in driver and adjust reset control's code.
+> 
+> v5 -> v6:
+> - Fix linux coding style issues.
+> - Drop useless code that is not described in the bindings.
+> - Replace devm_clk_get and clk_prepare_enable with devm_clk_get_enabled.
+> - Replace EXPORT_SYMBOL with EXPORT_SYMBOL_GPL.
+> 
+> v4 -> v5:
+> - Fix linux coding style issues.
+> - Fix test robot build errors to make good use of setup_tran_desc
+>   call back function.
+> - Remove useless function.
+> 
+> v3 -> v4:
+> - Modify dma mode selection and dma addressing bit to statisfy
+>   linux coding style.
+> 
+> v1 -> v2:
+> - Remove dw_mci_cqe_set_tran_desc due to the duplicated function.
+> - Add ->pre_enable() / ->post_disable()
+> 
+> v0 -> v1:
+> - Seperate different support into single patch.
+> - Fix the compiler complains.
+> ---
+> ---
+>  drivers/mmc/host/Kconfig      |   13 +
+>  drivers/mmc/host/Makefile     |    1 +
+>  drivers/mmc/host/dw_mmc_cqe.c | 1467 +++++++++++++++++++++++++++++++++
+>  drivers/mmc/host/dw_mmc_cqe.h |  456 ++++++++++
+>  4 files changed, 1937 insertions(+)
+>  create mode 100644 drivers/mmc/host/dw_mmc_cqe.c
+>  create mode 100644 drivers/mmc/host/dw_mmc_cqe.h
+> 
+> diff --git a/drivers/mmc/host/Kconfig b/drivers/mmc/host/Kconfig
+> index 58bd5fe4cd25..06bb4de28cc4 100644
+> --- a/drivers/mmc/host/Kconfig
+> +++ b/drivers/mmc/host/Kconfig
+> @@ -837,6 +837,19 @@ config MMC_DW_STARFIVE
+>  	  Synopsys DesignWare Memory Card Interface driver. Select this option
+>  	  for platforms based on StarFive JH7110 SoC.
+>  
+> +config MMC_DW_CQE
+> +	tristate "Synopsys DesignWare Memory Card with CQE Interface"
+> +	depends on ARC || ARM || ARM64 || MIPS || COMPILE_TEST
+> +	select MMC_CQHCI
+> +	help
+> +	 This selects support for the Synopsys DesignWare Mobile Storage IP
+> +	 block after JEDEC Standard version 5.1. Select this option for SD and
+> +	 MMC interfaces that use command queue.
+> +
+> +	 If you have a controller with this interface, say Y or M here.
+> +
+> +	 If unsure, say Y.
+> +
+>  config MMC_SH_MMCIF
+>  	tristate "SuperH Internal MMCIF support"
+>  	depends on SUPERH || ARCH_RENESAS || COMPILE_TEST
+> diff --git a/drivers/mmc/host/Makefile b/drivers/mmc/host/Makefile
+> index d0be4465f3ec..464fe58f8541 100644
+> --- a/drivers/mmc/host/Makefile
+> +++ b/drivers/mmc/host/Makefile
+> @@ -55,6 +55,7 @@ obj-$(CONFIG_MMC_DW_K3)		+= dw_mmc-k3.o
+>  obj-$(CONFIG_MMC_DW_PCI)	+= dw_mmc-pci.o
+>  obj-$(CONFIG_MMC_DW_ROCKCHIP)	+= dw_mmc-rockchip.o
+>  obj-$(CONFIG_MMC_DW_STARFIVE)	+= dw_mmc-starfive.o
+> +obj-$(CONFIG_MMC_DW_CQE)	+= dw_mmc_cqe.o
+>  obj-$(CONFIG_MMC_SH_MMCIF)	+= sh_mmcif.o
+>  obj-$(CONFIG_MMC_JZ4740)	+= jz4740_mmc.o
+>  obj-$(CONFIG_MMC_VUB300)	+= vub300.o
+> diff --git a/drivers/mmc/host/dw_mmc_cqe.c b/drivers/mmc/host/dw_mmc_cqe.c
+> new file mode 100644
+> index 000000000000..eb00d6a474b2
+> --- /dev/null
+> +++ b/drivers/mmc/host/dw_mmc_cqe.c
+> @@ -0,0 +1,1467 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * Synopsys DesignWare Multimedia Card Interface driver with CMDQ support
+> + *  (Based on Synopsys DesignWare Multimedia Card Interface driver)
+> + *
+> + * Copyright (c) 2023 Realtek Semiconductor Corp
+> + */
+> +
+> +#include <linux/bitops.h>
+> +#include <linux/blkdev.h>
+> +#include <linux/clk.h>
+> +#include <linux/debugfs.h>
+> +#include <linux/delay.h>
+> +#include <linux/device.h>
+> +#include <linux/dma-mapping.h>
+> +#include <linux/err.h>
+> +#include <linux/init.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/iopoll.h>
+> +#include <linux/ioport.h>
+> +#include <linux/irq.h>
+> +#include <linux/mmc/card.h>
+> +#include <linux/mmc/host.h>
+> +#include <linux/mmc/mmc.h>
+> +#include <linux/mmc/sd.h>
+> +#include <linux/mmc/sdio.h>
+> +#include <linux/mmc/slot-gpio.h>
+> +#include <linux/module.h>
+> +#include <linux/of_gpio.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/regulator/consumer.h>
+> +#include <linux/seq_file.h>
+> +#include <linux/sizes.h>
+> +#include <linux/slab.h>
+> +#include <linux/stat.h>
+> +
+> +#include "dw_mmc_cqe.h"
+> +#include "cqhci.h"
+> +
+> +#define DW_MCI_FREQ_MAX	200000000	/* unit: HZ */
+> +#define DW_MCI_FREQ_MIN	100000		/* unit: HZ */
+> +#define DW_MCI_CMDQ_DISABLED	0x30f0001
+> +#define DW_MCI_CMDQ_ENABLED	0x30f0101
+> +#define DW_MCI_POWEROFF		0x3220301
+> +#define DW_MCI_DESC_LEN		0x100000
+> +#define DW_MCI_MAX_SCRIPT_BLK	128
+> +#define DW_MCI_TIMEOUT_Ms	200
+> +#define DW_MCI_TIMEOUT		200000
+> +#define TUNING_ERR		531
 
-Guenter
+Could just use EIO
+
+> +#define DW_MCI_NOT_READY	9999
+> +
+> +DECLARE_COMPLETION(dw_mci_wait);
+> +
+> +static int dw_mci_cqe_regs_show(struct dw_mci *host,
+> +				struct mmc_command *cmd, u32 cmd_flags)
+> +{
+> +	dev_info(host->dev, "opcode = %d, arg = 0x%x, cmdflags = 0x%x\n",
+> +		 cmd->opcode, cmd->arg, cmd_flags);
+> +	dev_info(host->dev, "status_int = 0x%x\n", host->normal_interrupt);
+> +	dev_info(host->dev, "error_int = 0x%x\n", host->error_interrupt);
+> +	dev_info(host->dev, "auto_error_int = 0x%x\n", host->auto_error_interrupt);
+> +
+> +	return 0;
+> +}
+> +
+> +static void dw_mci_cqe_dumpregs(struct mmc_host *mmc)
+> +{
+> +	struct dw_mci_slot *slot = mmc_priv(mmc);
+> +	struct dw_mci *host = slot->host;
+> +
+> +	dev_info(host->dev, "%s: cmd idx 0x%08x\n", __func__, mcq_readw(host, CMD_R));
+> +}
+> +
+> +static void dw_mci_cqe_setup_tran_desc(struct mmc_data *data,
+> +				       struct cqhci_host *cq_host,
+> +					u8 *desc,
+> +					int sg_count)
+> +{
+> +	struct scatterlist *sg;
+> +	u32 cur_blk_cnt, remain_blk_cnt;
+> +	unsigned int begin, end;
+> +	int i, len;
+> +	bool last = false;
+> +	bool dma64 = cq_host->dma64;
+> +	dma_addr_t addr;
+> +
+> +	for_each_sg(data->sg, sg, sg_count, i) {
+> +		addr = sg_dma_address(sg);
+> +		len = sg_dma_len(sg);
+> +		remain_blk_cnt  = len >> 9;
+> +
+> +		while (remain_blk_cnt) {
+> +			if (remain_blk_cnt > DW_MCI_MAX_SCRIPT_BLK)
+
+Use max_seg_size then that won't happen
+
+> +				cur_blk_cnt = DW_MCI_MAX_SCRIPT_BLK;
+> +			else
+> +				cur_blk_cnt = remain_blk_cnt;
+> +
+> +			begin = addr / SZ_128M;
+> +			end = (addr + cur_blk_cnt * SZ_512) / SZ_128M;
+> +
+> +			if (begin != end)
+> +				cur_blk_cnt = (end * SZ_128M - addr) / SZ_512;
+> +
+> +			if ((i + 1) == sg_count && remain_blk_cnt == cur_blk_cnt)
+> +				last = true;
+> +
+> +			cqhci_set_tran_desc(desc, addr,
+> +					    (cur_blk_cnt << 9), last, dma64);
+> +
+> +			addr = addr + (cur_blk_cnt << 9);
+> +			remain_blk_cnt -= cur_blk_cnt;
+> +			desc += cq_host->trans_desc_len;
+> +		}
+> +	}
+> +}
+
+Provide a hook for cqhci_set_tran_desc() instead of cqhci_prep_tran_desc()
+You'll need to check the details, but something like:
+
+
+diff --git a/drivers/mmc/host/cqhci-core.c b/drivers/mmc/host/cqhci-core.c
+index b3d7d6d8d654..98e7e9d3030d 100644
+--- a/drivers/mmc/host/cqhci-core.c
++++ b/drivers/mmc/host/cqhci-core.c
+@@ -522,7 +522,10 @@ static int cqhci_prep_tran_desc(struct mmc_request *mrq,
+ 
+ 		if ((i+1) == sg_count)
+ 			end = true;
+-		cqhci_set_tran_desc(desc, addr, len, end, dma64);
++		if (cq_host->ops->set_tran_desc)
++			cq_host->ops->set_tran_desc(&desc, addr, len, end, dma64);
++		else
++			cqhci_set_tran_desc(desc, addr, len, end, dma64);
+ 		desc += cq_host->trans_desc_len;
+ 	}
+
+And:
+
+#define BOUNDARY_OK(addr, len) \
+	((addr | (SZ_128M - 1)) == ((addr + len - 1) | (SZ_128M - 1)))
+
+
+static void dw_mci_cqe_set_tran_desc(u8 **desc, dma_addr_t addr, int len, bool end, bool dma64)
+{
+	int tmplen, offset;
+
+	if (likely(!len || BOUNDARY_OK(addr, len))) {
+		cqhci_set_tran_desc(*desc, addr, len, end, dma64);
+		return;
+	}
+
+	offset = addr & (SZ_128M - 1);
+	tmplen = SZ_128M - offset;
+	cqhci_set_tran_desc(*desc, addr, tmplen, false, dma64);
+
+	addr += tmplen;
+	len -= tmplen;
+	*desc += cq_host->trans_desc_len;
+	cqhci_set_tran_desc(*desc, addr, len, end, dma64);
+}
+
+
+> +
+> +static void dw_mci_cqe_enable(struct mmc_host *mmc)
+> +{
+> +	struct dw_mci_slot *slot = mmc_priv(mmc);
+> +	struct dw_mci *host = slot->host;
+> +
+> +	mcq_writeb(host, SW_RST_R, SDMMC_RST_DAT);
+> +	mcq_writew(host, XFER_MODE_R,
+> +		   ((1 << SDMMC_MULTI_BLK_SEL) | SDMMC_BLOCK_COUNT_ENABLE
+> +			| SDMMC_DMA_ENABLE));
+> +
+> +	mcq_writeb(host, HOST_CTRL1_R,
+> +		   (mcq_readb(host, HOST_CTRL1_R) & 0xe7) |
+> +			(SDMMC_ADMA2_32 << SDMMC_DMA_SEL));
+> +	mcq_writew(host, BLOCKSIZE_R, 0x200);
+> +	mcq_writew(host, BLOCKCOUNT_R, 0);
+> +
+> +	mcq_writel(host, SDMASA_R, 0);
+> +
+> +	cqhci_writel(host->cqe, 0x10, CQHCI_SSC1);
+> +	cqhci_writel(host->cqe, 0, CQHCI_CTL);
+> +
+> +	if (cqhci_readl(host->cqe, CQHCI_CTL) && CQHCI_HALT) {
+> +		dev_err(host->dev, "%s: cqhci: CQE failed to exit halt state\n",
+> +			mmc_hostname(mmc));
+> +	}
+> +
+> +	dw_mci_clr_signal_int(host);
+> +	dw_mci_en_cqe_int(host);
+> +}
+> +
+> +static void dw_mci_cqe_pre_enable(struct mmc_host *mmc)
+> +{
+> +	struct cqhci_host *cq_host = mmc->cqe_private;
+> +	u32 reg;
+> +
+> +	reg = cqhci_readl(cq_host, CQHCI_CFG);
+> +	reg |= CQHCI_ENABLE;
+> +	cqhci_writel(cq_host, reg, CQHCI_CFG);
+> +}
+> +
+> +static void dw_mci_cqe_post_disable(struct mmc_host *mmc)
+> +{
+> +	struct cqhci_host *cq_host = mmc->cqe_private;
+> +	u32 reg;
+> +
+> +	reg = cqhci_readl(cq_host, CQHCI_CFG);
+> +	reg &= ~CQHCI_ENABLE;
+> +	cqhci_writel(cq_host, reg, CQHCI_CFG);
+> +}
+> +
+> +static const struct cqhci_host_ops dw_mci_cqhci_host_ops = {
+> +	.enable = dw_mci_cqe_enable,
+> +	.dumpregs = dw_mci_cqe_dumpregs,
+> +	.pre_enable = dw_mci_cqe_pre_enable,
+> +	.post_disable = dw_mci_cqe_post_disable,
+> +	.setup_tran_desc = dw_mci_cqe_setup_tran_desc,
+> +};
+> +
+
+[SNIP]
+
+> +
+> +static irqreturn_t dw_mci_cqe_interrupt(int irq, void *dev_id)
+> +{
+> +	struct dw_mci *host = dev_id;
+> +	struct mmc_host *mmc = host->slot->mmc;
+> +	struct cqhci_host *cq_host = NULL;
+> +	int cmd_error = 0, data_error = 0;
+> +
+> +	if (host->pdata && (host->pdata->caps2 & MMC_CAP2_CQE))
+> +		cq_host = mmc->cqe_private;
+> +
+> +	dw_mci_get_int(host);
+> +
+> +	if (host->pdata && (host->pdata->caps2 & MMC_CAP2_CQE)) {
+> +		if (!mmc->cqe_on && !cq_host->activated)
+
+Shouldn't really look at internals like mmc->cqe_on or
+cq_host->activated.  There are the cqhci_host_ops ->enable()
+and ->disable() callbacks to keep track of whether cqhci is
+expecting interrupts.
+
+> +			dw_mci_clr_signal_int(host);
+> +	} else {
+> +		dw_mci_clr_signal_int(host);
+> +	}
+> +
+> +	if (host->pdata && (host->pdata->caps2 & MMC_CAP2_CQE) &&
+> +	    mmc->cqe_on && cq_host->activated) {
+
+As above
+
+> +		if (host->normal_interrupt & SDMMC_ERR_INTERRUPT) {
+> +			dev_err(host->dev, "cmdq error: interrupt status=%08x, error interrupt=0x%08x, CQIS=0x%x, CQTCN=0x%x\n",
+> +				host->normal_interrupt, host->error_interrupt,
+> +				readl(host->cqe->mmio + CQHCI_IS),
+> +				readl(host->cqe->mmio + CQHCI_TCN));
+> +
+> +			dw_mci_cqe_command_complete(host, host->error_interrupt, &cmd_error);
+> +			dw_mci_cqe_data_complete(host, host->error_interrupt, &data_error);
+> +		}
+> +		cqhci_irq(mmc, (u32)(host->normal_interrupt), cmd_error, data_error);
+> +		dw_mci_clr_int(host);
+> +
+> +		return IRQ_HANDLED;
+> +	}
+> +
+> +	if (host->int_waiting) {
+> +		del_timer(&host->timer);
+> +		complete(host->int_waiting);
+> +	}
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+
 
 
