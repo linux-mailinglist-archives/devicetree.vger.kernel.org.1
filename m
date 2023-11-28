@@ -1,457 +1,290 @@
-Return-Path: <devicetree+bounces-19750-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19751-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D02D7FC100
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 19:07:14 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FAED7FC103
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 19:08:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C46742821CC
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 18:07:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 813AF1C20914
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 18:08:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A70E41C99;
-	Tue, 28 Nov 2023 18:07:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F31941C9C;
+	Tue, 28 Nov 2023 18:08:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Z47OvWEe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XWiG9o0D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF8E4AB;
-	Tue, 28 Nov 2023 10:07:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1701194826; x=1732730826;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=EeyQbQkwGtpaPWXrYXjELaDlGVMx1ZNDEakvPDDbB2Y=;
-  b=Z47OvWEexGaV9oaWP1wlXO0dYIg2FKzFMNkyrhq1zcTfrBawXBMq77GL
-   IE2aZAZZcCmkhTPK8hyF2ESbwhIFcCa+OWGobtjQUjP1hzbv/C5o1mT9s
-   CS/jUzLwXPqlksQ+rRof5PbY0H7UyE1hH/TfUpdyCMY8tZBTiXnuXx/LV
-   i3EygIZwCKVqVWQdxqUUqCfiLUilXKC4KnhmkfmlwVbd+HGYfZ7YTQ1KR
-   nz68Q1eo3A3XdwlDOm1Kh/Wnqv7JlzG2J0E72NsTcSd9rFjT0TkgdsZ9e
-   M1hoqFyBXRKZatF2JtFEg63n8KC39sjaKSZQXZcWJdD+8LNnQypsP08Tu
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10908"; a="424130945"
-X-IronPort-AV: E=Sophos;i="6.04,234,1695711600"; 
-   d="scan'208";a="424130945"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Nov 2023 10:05:43 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10908"; a="834723966"
-X-IronPort-AV: E=Sophos;i="6.04,234,1695711600"; 
-   d="scan'208";a="834723966"
-Received: from ahunter6-mobl1.ger.corp.intel.com (HELO [10.0.2.15]) ([10.251.221.84])
-  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Nov 2023 10:05:20 -0800
-Message-ID: <655c5964-0917-4021-b254-7917b368b05f@intel.com>
-Date: Tue, 28 Nov 2023 20:05:15 +0200
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C3D841C90;
+	Tue, 28 Nov 2023 18:08:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CADF9C433CD;
+	Tue, 28 Nov 2023 18:08:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701194883;
+	bh=4DwB38wbaKFqe7hUkjoK0KTOX2HU0BmeTqXJcyORlu4=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=XWiG9o0Dtq787TusZ2eK1KJKrxDR6ZWsvWOUs1UhQwi/EqTGjSVzPy1M+BcivIXz8
+	 nKM4NnDzVmlPy4d56Q2UCesllUtMPZGL/0QkX7IMNeaphkjFm2UDe7x33QM08aSyNg
+	 HT+7MRyZ5Ty1ggpvUZ0/+5D4vejZIgr5QVPyS7fPyIAE7W8mxdCvLJL9bT57/U9ZSM
+	 5KfMaTnpcjctst3YM+476nbFzErxYqznvVsXBJ+2Ovg6wsBotr7yBLXpwoWP9LvQci
+	 glX1WDuLypxtZc6NAtIkU+q16SZ7p4PwqSyOVYlSslQcaGx7xyqM26ZGNPB+3i2to5
+	 XGQqVb9QkNvWQ==
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2c9b8363683so9606181fa.3;
+        Tue, 28 Nov 2023 10:08:03 -0800 (PST)
+X-Gm-Message-State: AOJu0YykdBSVQZeJ/uQbgEdgEgpTbvgOz+fxikU1OYw7/ewtiK8U7EUo
+	0Rm4X68zssgfIvKV8SzzOjwwz8QJ5jE4w3mIjgY=
+X-Google-Smtp-Source: AGHT+IEMmvfyq0v5/2oBeBE/oqLc1Eu+CJpsjOxQOhU1mp+t/ys+FzWHNt4xUEoc92KVGBiOkt8B0IacbD0oqbAchGI=
+X-Received: by 2002:a2e:b0e1:0:b0:2c9:b9db:73 with SMTP id h1-20020a2eb0e1000000b002c9b9db0073mr988987ljl.20.1701194881929;
+ Tue, 28 Nov 2023 10:08:01 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7][2/4] mmc: Add Synopsys DesignWare mmc cmdq host driver
-Content-Language: en-US
-To: Jyan Chou <jyanchou@realtek.com>, ulf.hansson@linaro.org,
- jh80.chung@samsung.com, riteshh@codeaurora.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org
-Cc: conor+dt@kernel.org, asutoshd@codeaurora.org, p.zabel@pengutronix.de,
- linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, arnd@arndb.de, briannorris@chromium.org,
- doug@schmorgal.com, tonyhuang.sunplus@gmail.com, abel.vesa@linaro.org,
- william.qiu@starfivetech.com
-References: <20231121091101.5540-1-jyanchou@realtek.com>
- <20231121091101.5540-3-jyanchou@realtek.com>
-From: Adrian Hunter <adrian.hunter@intel.com>
-Organization: Intel Finland Oy, Registered Address: PL 281, 00181 Helsinki,
- Business Identity Code: 0357606 - 4, Domiciled in Helsinki
-In-Reply-To: <20231121091101.5540-3-jyanchou@realtek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20230926194242.2732127-1-sjg@chromium.org> <20230926194242.2732127-2-sjg@chromium.org>
+ <BN9PR11MB5483FF3039913334C7EA83E1E6AEA@BN9PR11MB5483.namprd11.prod.outlook.com>
+ <CAMj1kXFG92NpL7T7YocOup0xLKyopt3MnSCp0RL8cLzozzJz7A@mail.gmail.com>
+ <BN9PR11MB548303B09536EB1577472029E6B3A@BN9PR11MB5483.namprd11.prod.outlook.com>
+ <CAPnjgZ36t8g7E=0MSJyaV8-QKv9RVYe47Jd5E=NU-mFM4LWBQA@mail.gmail.com>
+ <CAMj1kXHAEeK7x2f13k_JV3Xcw61nNLasyvXQf+mKwKekQ48EpQ@mail.gmail.com>
+ <BN9PR11MB548334E0DA6495C438FBFDE1E6BBA@BN9PR11MB5483.namprd11.prod.outlook.com>
+ <BN9PR11MB548314DDE8D4C9503103D51CE6BBA@BN9PR11MB5483.namprd11.prod.outlook.com>
+In-Reply-To: <BN9PR11MB548314DDE8D4C9503103D51CE6BBA@BN9PR11MB5483.namprd11.prod.outlook.com>
+From: Ard Biesheuvel <ardb@kernel.org>
+Date: Tue, 28 Nov 2023 19:07:50 +0100
+X-Gmail-Original-Message-ID: <CAMj1kXHbM+ArLgNZgnmiok4gOfv6QLYxzyB9OCwfhEkJ2xGK_g@mail.gmail.com>
+Message-ID: <CAMj1kXHbM+ArLgNZgnmiok4gOfv6QLYxzyB9OCwfhEkJ2xGK_g@mail.gmail.com>
+Subject: Re: [PATCH v7 2/2] schemas: Add some common reserved-memory usages
+To: "Chiu, Chasel" <chasel.chiu@intel.com>
+Cc: Simon Glass <sjg@chromium.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
+	Rob Herring <robh@kernel.org>, "Tan, Lean Sheng" <sheng.tan@9elements.com>, 
+	lkml <linux-kernel@vger.kernel.org>, Dhaval Sharma <dhaval@rivosinc.com>, 
+	"Brune, Maximilian" <maximilian.brune@9elements.com>, Yunhui Cui <cuiyunhui@bytedance.com>, 
+	"Dong, Guo" <guo.dong@intel.com>, Tom Rini <trini@konsulko.com>, 
+	ron minnich <rminnich@gmail.com>, "Guo, Gua" <gua.guo@intel.com>, 
+	"linux-acpi@vger.kernel.org" <linux-acpi@vger.kernel.org>, U-Boot Mailing List <u-boot@lists.denx.de>
+Content-Type: text/plain; charset="UTF-8"
 
-On 21/11/23 11:10, Jyan Chou wrote:
-> We implemented cmdq feature on Synopsys DesignWare mmc driver.
-> The difference between dw_mmc.c and dw_mmc_cqe.c were distinct
-> register definitions, mmc user flow and the addition of cmdq.
-> 
-> New version of User Guide had modify mmc driver's usage flow,
-> we may need to renew code to precisely follow user guide.
-> 
-> More over, We added a wait status function to satisfy synopsys
-> user guide's description, since this flow might be specific in
-> synopsys host driver only.
-> 
-> Signed-off-by: Jyan Chou <jyanchou@realtek.com>
-> 
-
-Some comments below wrt cqhci
-
-> —--
-> v6 -> v7:
-> - Remove reset-names in driver and adjust reset control's code.
-> 
-> v5 -> v6:
-> - Fix linux coding style issues.
-> - Drop useless code that is not described in the bindings.
-> - Replace devm_clk_get and clk_prepare_enable with devm_clk_get_enabled.
-> - Replace EXPORT_SYMBOL with EXPORT_SYMBOL_GPL.
-> 
-> v4 -> v5:
-> - Fix linux coding style issues.
-> - Fix test robot build errors to make good use of setup_tran_desc
->   call back function.
-> - Remove useless function.
-> 
-> v3 -> v4:
-> - Modify dma mode selection and dma addressing bit to statisfy
->   linux coding style.
-> 
-> v1 -> v2:
-> - Remove dw_mci_cqe_set_tran_desc due to the duplicated function.
-> - Add ->pre_enable() / ->post_disable()
-> 
-> v0 -> v1:
-> - Seperate different support into single patch.
-> - Fix the compiler complains.
-> ---
-> ---
->  drivers/mmc/host/Kconfig      |   13 +
->  drivers/mmc/host/Makefile     |    1 +
->  drivers/mmc/host/dw_mmc_cqe.c | 1467 +++++++++++++++++++++++++++++++++
->  drivers/mmc/host/dw_mmc_cqe.h |  456 ++++++++++
->  4 files changed, 1937 insertions(+)
->  create mode 100644 drivers/mmc/host/dw_mmc_cqe.c
->  create mode 100644 drivers/mmc/host/dw_mmc_cqe.h
-> 
-> diff --git a/drivers/mmc/host/Kconfig b/drivers/mmc/host/Kconfig
-> index 58bd5fe4cd25..06bb4de28cc4 100644
-> --- a/drivers/mmc/host/Kconfig
-> +++ b/drivers/mmc/host/Kconfig
-> @@ -837,6 +837,19 @@ config MMC_DW_STARFIVE
->  	  Synopsys DesignWare Memory Card Interface driver. Select this option
->  	  for platforms based on StarFive JH7110 SoC.
->  
-> +config MMC_DW_CQE
-> +	tristate "Synopsys DesignWare Memory Card with CQE Interface"
-> +	depends on ARC || ARM || ARM64 || MIPS || COMPILE_TEST
-> +	select MMC_CQHCI
-> +	help
-> +	 This selects support for the Synopsys DesignWare Mobile Storage IP
-> +	 block after JEDEC Standard version 5.1. Select this option for SD and
-> +	 MMC interfaces that use command queue.
-> +
-> +	 If you have a controller with this interface, say Y or M here.
-> +
-> +	 If unsure, say Y.
-> +
->  config MMC_SH_MMCIF
->  	tristate "SuperH Internal MMCIF support"
->  	depends on SUPERH || ARCH_RENESAS || COMPILE_TEST
-> diff --git a/drivers/mmc/host/Makefile b/drivers/mmc/host/Makefile
-> index d0be4465f3ec..464fe58f8541 100644
-> --- a/drivers/mmc/host/Makefile
-> +++ b/drivers/mmc/host/Makefile
-> @@ -55,6 +55,7 @@ obj-$(CONFIG_MMC_DW_K3)		+= dw_mmc-k3.o
->  obj-$(CONFIG_MMC_DW_PCI)	+= dw_mmc-pci.o
->  obj-$(CONFIG_MMC_DW_ROCKCHIP)	+= dw_mmc-rockchip.o
->  obj-$(CONFIG_MMC_DW_STARFIVE)	+= dw_mmc-starfive.o
-> +obj-$(CONFIG_MMC_DW_CQE)	+= dw_mmc_cqe.o
->  obj-$(CONFIG_MMC_SH_MMCIF)	+= sh_mmcif.o
->  obj-$(CONFIG_MMC_JZ4740)	+= jz4740_mmc.o
->  obj-$(CONFIG_MMC_VUB300)	+= vub300.o
-> diff --git a/drivers/mmc/host/dw_mmc_cqe.c b/drivers/mmc/host/dw_mmc_cqe.c
-> new file mode 100644
-> index 000000000000..eb00d6a474b2
-> --- /dev/null
-> +++ b/drivers/mmc/host/dw_mmc_cqe.c
-> @@ -0,0 +1,1467 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +/*
-> + * Synopsys DesignWare Multimedia Card Interface driver with CMDQ support
-> + *  (Based on Synopsys DesignWare Multimedia Card Interface driver)
-> + *
-> + * Copyright (c) 2023 Realtek Semiconductor Corp
-> + */
-> +
-> +#include <linux/bitops.h>
-> +#include <linux/blkdev.h>
-> +#include <linux/clk.h>
-> +#include <linux/debugfs.h>
-> +#include <linux/delay.h>
-> +#include <linux/device.h>
-> +#include <linux/dma-mapping.h>
-> +#include <linux/err.h>
-> +#include <linux/init.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/iopoll.h>
-> +#include <linux/ioport.h>
-> +#include <linux/irq.h>
-> +#include <linux/mmc/card.h>
-> +#include <linux/mmc/host.h>
-> +#include <linux/mmc/mmc.h>
-> +#include <linux/mmc/sd.h>
-> +#include <linux/mmc/sdio.h>
-> +#include <linux/mmc/slot-gpio.h>
-> +#include <linux/module.h>
-> +#include <linux/of_gpio.h>
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/pm_runtime.h>
-> +#include <linux/regulator/consumer.h>
-> +#include <linux/seq_file.h>
-> +#include <linux/sizes.h>
-> +#include <linux/slab.h>
-> +#include <linux/stat.h>
-> +
-> +#include "dw_mmc_cqe.h"
-> +#include "cqhci.h"
-> +
-> +#define DW_MCI_FREQ_MAX	200000000	/* unit: HZ */
-> +#define DW_MCI_FREQ_MIN	100000		/* unit: HZ */
-> +#define DW_MCI_CMDQ_DISABLED	0x30f0001
-> +#define DW_MCI_CMDQ_ENABLED	0x30f0101
-> +#define DW_MCI_POWEROFF		0x3220301
-> +#define DW_MCI_DESC_LEN		0x100000
-> +#define DW_MCI_MAX_SCRIPT_BLK	128
-> +#define DW_MCI_TIMEOUT_Ms	200
-> +#define DW_MCI_TIMEOUT		200000
-> +#define TUNING_ERR		531
-
-Could just use EIO
-
-> +#define DW_MCI_NOT_READY	9999
-> +
-> +DECLARE_COMPLETION(dw_mci_wait);
-> +
-> +static int dw_mci_cqe_regs_show(struct dw_mci *host,
-> +				struct mmc_command *cmd, u32 cmd_flags)
-> +{
-> +	dev_info(host->dev, "opcode = %d, arg = 0x%x, cmdflags = 0x%x\n",
-> +		 cmd->opcode, cmd->arg, cmd_flags);
-> +	dev_info(host->dev, "status_int = 0x%x\n", host->normal_interrupt);
-> +	dev_info(host->dev, "error_int = 0x%x\n", host->error_interrupt);
-> +	dev_info(host->dev, "auto_error_int = 0x%x\n", host->auto_error_interrupt);
-> +
-> +	return 0;
-> +}
-> +
-> +static void dw_mci_cqe_dumpregs(struct mmc_host *mmc)
-> +{
-> +	struct dw_mci_slot *slot = mmc_priv(mmc);
-> +	struct dw_mci *host = slot->host;
-> +
-> +	dev_info(host->dev, "%s: cmd idx 0x%08x\n", __func__, mcq_readw(host, CMD_R));
-> +}
-> +
-> +static void dw_mci_cqe_setup_tran_desc(struct mmc_data *data,
-> +				       struct cqhci_host *cq_host,
-> +					u8 *desc,
-> +					int sg_count)
-> +{
-> +	struct scatterlist *sg;
-> +	u32 cur_blk_cnt, remain_blk_cnt;
-> +	unsigned int begin, end;
-> +	int i, len;
-> +	bool last = false;
-> +	bool dma64 = cq_host->dma64;
-> +	dma_addr_t addr;
-> +
-> +	for_each_sg(data->sg, sg, sg_count, i) {
-> +		addr = sg_dma_address(sg);
-> +		len = sg_dma_len(sg);
-> +		remain_blk_cnt  = len >> 9;
-> +
-> +		while (remain_blk_cnt) {
-> +			if (remain_blk_cnt > DW_MCI_MAX_SCRIPT_BLK)
-
-Use max_seg_size then that won't happen
-
-> +				cur_blk_cnt = DW_MCI_MAX_SCRIPT_BLK;
-> +			else
-> +				cur_blk_cnt = remain_blk_cnt;
-> +
-> +			begin = addr / SZ_128M;
-> +			end = (addr + cur_blk_cnt * SZ_512) / SZ_128M;
-> +
-> +			if (begin != end)
-> +				cur_blk_cnt = (end * SZ_128M - addr) / SZ_512;
-> +
-> +			if ((i + 1) == sg_count && remain_blk_cnt == cur_blk_cnt)
-> +				last = true;
-> +
-> +			cqhci_set_tran_desc(desc, addr,
-> +					    (cur_blk_cnt << 9), last, dma64);
-> +
-> +			addr = addr + (cur_blk_cnt << 9);
-> +			remain_blk_cnt -= cur_blk_cnt;
-> +			desc += cq_host->trans_desc_len;
-> +		}
-> +	}
-> +}
-
-Provide a hook for cqhci_set_tran_desc() instead of cqhci_prep_tran_desc()
-You'll need to check the details, but something like:
+You are referring to a 2000 line patch so it is not 100% clear where
+to look tbh.
 
 
-diff --git a/drivers/mmc/host/cqhci-core.c b/drivers/mmc/host/cqhci-core.c
-index b3d7d6d8d654..98e7e9d3030d 100644
---- a/drivers/mmc/host/cqhci-core.c
-+++ b/drivers/mmc/host/cqhci-core.c
-@@ -522,7 +522,10 @@ static int cqhci_prep_tran_desc(struct mmc_request *mrq,
- 
- 		if ((i+1) == sg_count)
- 			end = true;
--		cqhci_set_tran_desc(desc, addr, len, end, dma64);
-+		if (cq_host->ops->set_tran_desc)
-+			cq_host->ops->set_tran_desc(&desc, addr, len, end, dma64);
-+		else
-+			cqhci_set_tran_desc(desc, addr, len, end, dma64);
- 		desc += cq_host->trans_desc_len;
- 	}
+On Tue, 21 Nov 2023 at 19:37, Chiu, Chasel <chasel.chiu@intel.com> wrote:
+>
+>
+> In PR, UefiPayloadPkg/Library/FdtParserLib/FdtParserLib.c, line 268 is for related example code.
+>
 
-And:
+That refers to a 'memory-allocation' node, right? How does that relate
+to the 'reserved-memory' node?
 
-#define BOUNDARY_OK(addr, len) \
-	((addr | (SZ_128M - 1)) == ((addr + len - 1) | (SZ_128M - 1)))
+And crucially, how does this clarify in which way "runtime-code" and
+"runtime-data" reservations are being used?
 
-
-static void dw_mci_cqe_set_tran_desc(u8 **desc, dma_addr_t addr, int len, bool end, bool dma64)
-{
-	int tmplen, offset;
-
-	if (likely(!len || BOUNDARY_OK(addr, len))) {
-		cqhci_set_tran_desc(*desc, addr, len, end, dma64);
-		return;
-	}
-
-	offset = addr & (SZ_128M - 1);
-	tmplen = SZ_128M - offset;
-	cqhci_set_tran_desc(*desc, addr, tmplen, false, dma64);
-
-	addr += tmplen;
-	len -= tmplen;
-	*desc += cq_host->trans_desc_len;
-	cqhci_set_tran_desc(*desc, addr, len, end, dma64);
-}
+Since the very beginning of this discussion, I have been asking
+repeatedly for examples that describe the wider context in which these
+reservations are used. The "runtime" into runtime-code and
+runtime-data means that these regions have a special significance to
+the operating system, not just to the next bootloader stage. So I want
+to understand exactly why it is necessary to describe these regions in
+a way where the operating system might be expected to interpret this
+information and act upon it.
 
 
-> +
-> +static void dw_mci_cqe_enable(struct mmc_host *mmc)
-> +{
-> +	struct dw_mci_slot *slot = mmc_priv(mmc);
-> +	struct dw_mci *host = slot->host;
-> +
-> +	mcq_writeb(host, SW_RST_R, SDMMC_RST_DAT);
-> +	mcq_writew(host, XFER_MODE_R,
-> +		   ((1 << SDMMC_MULTI_BLK_SEL) | SDMMC_BLOCK_COUNT_ENABLE
-> +			| SDMMC_DMA_ENABLE));
-> +
-> +	mcq_writeb(host, HOST_CTRL1_R,
-> +		   (mcq_readb(host, HOST_CTRL1_R) & 0xe7) |
-> +			(SDMMC_ADMA2_32 << SDMMC_DMA_SEL));
-> +	mcq_writew(host, BLOCKSIZE_R, 0x200);
-> +	mcq_writew(host, BLOCKCOUNT_R, 0);
-> +
-> +	mcq_writel(host, SDMASA_R, 0);
-> +
-> +	cqhci_writel(host->cqe, 0x10, CQHCI_SSC1);
-> +	cqhci_writel(host->cqe, 0, CQHCI_CTL);
-> +
-> +	if (cqhci_readl(host->cqe, CQHCI_CTL) && CQHCI_HALT) {
-> +		dev_err(host->dev, "%s: cqhci: CQE failed to exit halt state\n",
-> +			mmc_hostname(mmc));
-> +	}
-> +
-> +	dw_mci_clr_signal_int(host);
-> +	dw_mci_en_cqe_int(host);
-> +}
-> +
-> +static void dw_mci_cqe_pre_enable(struct mmc_host *mmc)
-> +{
-> +	struct cqhci_host *cq_host = mmc->cqe_private;
-> +	u32 reg;
-> +
-> +	reg = cqhci_readl(cq_host, CQHCI_CFG);
-> +	reg |= CQHCI_ENABLE;
-> +	cqhci_writel(cq_host, reg, CQHCI_CFG);
-> +}
-> +
-> +static void dw_mci_cqe_post_disable(struct mmc_host *mmc)
-> +{
-> +	struct cqhci_host *cq_host = mmc->cqe_private;
-> +	u32 reg;
-> +
-> +	reg = cqhci_readl(cq_host, CQHCI_CFG);
-> +	reg &= ~CQHCI_ENABLE;
-> +	cqhci_writel(cq_host, reg, CQHCI_CFG);
-> +}
-> +
-> +static const struct cqhci_host_ops dw_mci_cqhci_host_ops = {
-> +	.enable = dw_mci_cqe_enable,
-> +	.dumpregs = dw_mci_cqe_dumpregs,
-> +	.pre_enable = dw_mci_cqe_pre_enable,
-> +	.post_disable = dw_mci_cqe_post_disable,
-> +	.setup_tran_desc = dw_mci_cqe_setup_tran_desc,
-> +};
-> +
-
-[SNIP]
-
-> +
-> +static irqreturn_t dw_mci_cqe_interrupt(int irq, void *dev_id)
-> +{
-> +	struct dw_mci *host = dev_id;
-> +	struct mmc_host *mmc = host->slot->mmc;
-> +	struct cqhci_host *cq_host = NULL;
-> +	int cmd_error = 0, data_error = 0;
-> +
-> +	if (host->pdata && (host->pdata->caps2 & MMC_CAP2_CQE))
-> +		cq_host = mmc->cqe_private;
-> +
-> +	dw_mci_get_int(host);
-> +
-> +	if (host->pdata && (host->pdata->caps2 & MMC_CAP2_CQE)) {
-> +		if (!mmc->cqe_on && !cq_host->activated)
-
-Shouldn't really look at internals like mmc->cqe_on or
-cq_host->activated.  There are the cqhci_host_ops ->enable()
-and ->disable() callbacks to keep track of whether cqhci is
-expecting interrupts.
-
-> +			dw_mci_clr_signal_int(host);
-> +	} else {
-> +		dw_mci_clr_signal_int(host);
-> +	}
-> +
-> +	if (host->pdata && (host->pdata->caps2 & MMC_CAP2_CQE) &&
-> +	    mmc->cqe_on && cq_host->activated) {
-
-As above
-
-> +		if (host->normal_interrupt & SDMMC_ERR_INTERRUPT) {
-> +			dev_err(host->dev, "cmdq error: interrupt status=%08x, error interrupt=0x%08x, CQIS=0x%x, CQTCN=0x%x\n",
-> +				host->normal_interrupt, host->error_interrupt,
-> +				readl(host->cqe->mmio + CQHCI_IS),
-> +				readl(host->cqe->mmio + CQHCI_TCN));
-> +
-> +			dw_mci_cqe_command_complete(host, host->error_interrupt, &cmd_error);
-> +			dw_mci_cqe_data_complete(host, host->error_interrupt, &data_error);
-> +		}
-> +		cqhci_irq(mmc, (u32)(host->normal_interrupt), cmd_error, data_error);
-> +		dw_mci_clr_int(host);
-> +
-> +		return IRQ_HANDLED;
-> +	}
-> +
-> +	if (host->int_waiting) {
-> +		del_timer(&host->timer);
-> +		complete(host->int_waiting);
-> +	}
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-
-
+>
+> > -----Original Message-----
+> > From: Chiu, Chasel
+> > Sent: Tuesday, November 21, 2023 10:34 AM
+> > To: Ard Biesheuvel <ardb@kernel.org>; Simon Glass <sjg@chromium.org>
+> > Cc: devicetree@vger.kernel.org; Mark Rutland <mark.rutland@arm.com>; Rob
+> > Herring <robh@kernel.org>; Tan, Lean Sheng <sheng.tan@9elements.com>; lkml
+> > <linux-kernel@vger.kernel.org>; Dhaval Sharma <dhaval@rivosinc.com>; Brune,
+> > Maximilian <maximilian.brune@9elements.com>; Yunhui Cui
+> > <cuiyunhui@bytedance.com>; Dong, Guo <guo.dong@intel.com>; Tom Rini
+> > <trini@konsulko.com>; ron minnich <rminnich@gmail.com>; Guo, Gua
+> > <gua.guo@intel.com>; linux-acpi@vger.kernel.org; U-Boot Mailing List <u-
+> > boot@lists.denx.de>; Chiu, Chasel <chasel.chiu@intel.com>
+> > Subject: RE: [PATCH v7 2/2] schemas: Add some common reserved-memory
+> > usages
+> >
+> >
+> > Hi Ard,
+> >
+> > Here is the POC PR for your reference:
+> > https://github.com/tianocore/edk2/pull/4969/files#diff-
+> > ccebabae5274b21634723a2111ee0de11bed6cfe8cb206ef9e263d9c5f926a9cR26
+> > 8
+> > Please note that this PR is still in early phase and expected to have significant
+> > changes.
+> >
+> > The idea is that payload entry will create gEfiMemoryTypeInformationGuid HOB
+> > with payload default memory types and allow FDT to override if correspond node
+> > present.
+> > Please let me know if you have questions or suggestions.
+> >
+> > Thanks,
+> > Chasel
+> >
+> >
+> > > -----Original Message-----
+> > > From: Ard Biesheuvel <ardb@kernel.org>
+> > > Sent: Tuesday, November 21, 2023 8:42 AM
+> > > To: Simon Glass <sjg@chromium.org>
+> > > Cc: Chiu, Chasel <chasel.chiu@intel.com>; devicetree@vger.kernel.org;
+> > > Mark Rutland <mark.rutland@arm.com>; Rob Herring <robh@kernel.org>;
+> > > Tan, Lean Sheng <sheng.tan@9elements.com>; lkml
+> > > <linux-kernel@vger.kernel.org>; Dhaval Sharma <dhaval@rivosinc.com>;
+> > > Brune, Maximilian <maximilian.brune@9elements.com>; Yunhui Cui
+> > > <cuiyunhui@bytedance.com>; Dong, Guo <guo.dong@intel.com>; Tom Rini
+> > > <trini@konsulko.com>; ron minnich <rminnich@gmail.com>; Guo, Gua
+> > > <gua.guo@intel.com>; linux- acpi@vger.kernel.org; U-Boot Mailing List
+> > > <u-boot@lists.denx.de>
+> > > Subject: Re: [PATCH v7 2/2] schemas: Add some common reserved-memory
+> > > usages
+> > >
+> > > On Mon, 20 Nov 2023 at 21:12, Simon Glass <sjg@chromium.org> wrote:
+> > > >
+> > > > Hi,
+> > > >
+> > > > On Mon, 13 Nov 2023 at 11:09, Chiu, Chasel <chasel.chiu@intel.com> wrote:
+> > > > >
+> > > > >
+> > > > > Hi Ard,
+> > > > >
+> > > > > Please see my reply below inline.
+> > > > >
+> > > > > Thanks,
+> > > > > Chasel
+> > > > >
+> > > > >
+> > > > > > -----Original Message-----
+> > > > > > From: Ard Biesheuvel <ardb@kernel.org>
+> > > > > > Sent: Saturday, November 11, 2023 3:04 AM
+> > > > > > To: Chiu, Chasel <chasel.chiu@intel.com>
+> > > > > > Cc: Simon Glass <sjg@chromium.org>; devicetree@vger.kernel.org;
+> > > > > > Mark Rutland <mark.rutland@arm.com>; Rob Herring
+> > > > > > <robh@kernel.org>; Tan, Lean Sheng <sheng.tan@9elements.com>;
+> > > > > > lkml <linux-kernel@vger.kernel.org>; Dhaval Sharma
+> > > > > > <dhaval@rivosinc.com>; Brune, Maximilian
+> > > > > > <maximilian.brune@9elements.com>; Yunhui Cui
+> > > > > > <cuiyunhui@bytedance.com>; Dong, Guo <guo.dong@intel.com>; Tom
+> > > > > > Rini <trini@konsulko.com>; ron minnich <rminnich@gmail.com>;
+> > > > > > Guo, Gua <gua.guo@intel.com>; linux- acpi@vger.kernel.org;
+> > > > > > U-Boot Mailing List <u-boot@lists.denx.de>
+> > > > > > Subject: Re: [PATCH v7 2/2] schemas: Add some common
+> > > > > > reserved-memory usages
+> > > > > >
+> > > > > > On Sat, 11 Nov 2023 at 04:20, Chiu, Chasel <chasel.chiu@intel.com>
+> > wrote:
+> > > > > > >
+> > > > > > >
+> > > > > > > Just sharing some usage examples from UEFI/EDK2 scenario.
+> > > > > > > To support ACPI S4/Hibernation, memory map must be consistent
+> > > > > > > before entering and after resuming from S4, in this case
+> > > > > > > payload may need to know previous memory map from bootloader
+> > > > > > > (currently generic payload cannot access platform/bootloader
+> > > > > > > specific non-volatile data, thus could not save/restore memory
+> > > > > > > map
+> > > > > > > information)
+> > > > > >
+> > > > > > So how would EDK2 reconstruct the entire EFI memory map from
+> > > > > > just these unannotated /reserved-memory nodes? The EFI memory
+> > > > > > map contains much more information than that, and all of it has
+> > > > > > to match the pre-hibernate situation, right? Can you given an example?
+> > > > >
+> > > > >
+> > > > > Here we listed only typically memory types that may change cross
+> > > > > different
+> > > platforms.
+> > > > > Reserved memory type already can be handled by reserved-memory
+> > > > > node,
+> > > and rest of the types usually no need to change cross platforms thus
+> > > currently we could rely on default in generic payload.
+> > > > > In the future if we see a need to add new memory types we will
+> > > > > discuss and
+> > > add it to FDT schema.
+> > > > >
+> > > > >
+> > > > >
+> > > > > >
+> > > > > > > Another usage is to support binary model which generic payload
+> > > > > > > is a prebuilt
+> > > > > > binary compatible for all platforms/configurations, however the
+> > > > > > payload default memory map might not always work for all the
+> > > > > > configurations and we want to allow bootloader to override
+> > > > > > payload default
+> > > memory map without recompiling.
+> > > > > > >
+> > > > > >
+> > > > > > Agreed. But can you explain how a EDK2 payload might make
+> > > > > > meaningful use of 'runtime-code' regions provided via DT  by the
+> > > > > > non-EDK2 platform init? Can you give an example?
+> > > > >
+> > > > >
+> > > > > Runtime-code/data is used by UEFI payload for booting UEFI OS
+> > > > > which
+> > > required UEFI runtime services.
+> > > > > Platform Init will select some regions from the usable memory and
+> > > > > assign it to
+> > > runtime-code/data for UPL to consume. Or assign same runtime-code/data
+> > > from previous boot.
+> > > > > If UEFI OS is not supported, PlatformInit may not need to provide
+> > > > > runtime-code/data regions to payload. (always providing
+> > > > > runtime-code/data should be supported too)
+> > > > >
+> > > > >
+> > > > > >
+> > > > > > > Under below assumption:
+> > > > > > >         FDT OS impact has been evaluated and taken care by
+> > > > > > > relevant
+> > > > > > experts/stakeholders.
+> > > > > > > Reviewed-by: Chasel Chiu <chasel.chiu@intel.com>
+> > > > > > >
+> > > > > >
+> > > > > > I am sorry but I don't know what 'FDT OS impact' means. We are
+> > > > > > talking about a firmware-to-firmware abstraction that has the
+> > > > > > potential to leak into the OS visible interface.
+> > > > > >
+> > > > > > I am a maintainer in the Tianocore project myself, so it would
+> > > > > > help if you could explain who these relevant experts and
+> > > > > > stakeholders are. Was this discussed on the edk2-devel mailing
+> > > > > > list? If so, apologies for missing it but I may not have been cc'ed perhaps?
+> > > > >
+> > > > >
+> > > > >
+> > > > >
+> > > > > I'm not familiar with FDT OS, also I do not know if who from
+> > > > > edk2-devel were
+> > > supporting FDT OS, I think Simon might be able to connect FDT OS
+> > > experts/stakeholders.
+> > > > > We are mostly focusing on payload firmware phase implementation in
+> > > > > edk2 (and other payloads too), however, since we have aligned the
+> > > > > payload FDT and OS FDT months ago, I'm assuming FDT OS impact must
+> > > > > be there and we need (or already done?) FDT OS experts to support
+> > > > > it. (again, maybe Simon could share more information about FDT OS)
+> > > > >
+> > > > > In edk2 such FDT schema is UefiPayloadPkg internal usage only and
+> > > > > payload
+> > > entry will convert FDT into HOB thus we expected the most of the edk2
+> > > generic code are no-touch/no impact, that's why we only had small
+> > > group
+> > > (UefiPayloadPkg) discussion.
+> > > > > Ard, if you are aware of any edk2 code that's for supporting FDT
+> > > > > OS, please let
+> > > us know and we can discuss if those code were impacted or not.
+> > > >
+> > > > We discussed this and just to clarify, 'FDT OS' is not a special OS,
+> > > > it is just Linux.
+> > > >
+> > > > So, with the above, are we all on the same page? Can the patch be
+> > > > applied, perhaps? If not, what other discussion is needed?
+> > > >
+> > >
+> > > An example of how a platform-init/payload combination would make
+> > > meaningful use of such runtime-code/data regions.
 
