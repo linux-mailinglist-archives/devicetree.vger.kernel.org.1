@@ -1,213 +1,164 @@
-Return-Path: <devicetree+bounces-19559-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19560-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E0367FB526
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 10:02:19 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C195C7FB529
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 10:02:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 35082282465
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 09:02:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2E41AB21A36
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 09:02:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39DE0358AC;
-	Tue, 28 Nov 2023 09:02:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="NGkt5BpA";
-	dkim=permerror (0-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="8/1mIY83"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D709364C0;
+	Tue, 28 Nov 2023 09:02:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [81.169.146.165])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A702DE4;
-	Tue, 28 Nov 2023 01:02:09 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1701162126; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=r6eAu2ggbZSwoSOSC2LB9/TsOtVSDFGz1Yn6exqUJQ0DHNrZcDZFk2KMB6Pf2oxC4i
-    BD9rNHK1hh72OUMXPKLavH9XGEbp8ZBmEli83jQTqYUvLSva2U2lgNj9pIX3HuMVJt+2
-    qUz6BBCiePvo5XSEigRXFjYsQHZ3rLlZvVPXMb8P5gsWGcddPchoOkSsj1QNmgaWew8G
-    6c5Ml6V5mmIOeUMjXSAZUPm8rCOv7yZZf2k1BAnlxms0I+mBi9T87BkWQnq6AU/3Zjn5
-    bCpGLFHdB0BpP9+jgJ/ZYgEWUPJQz3LSIEqXVujdRK4OG77rNrCb8vS78Cn7rkaFkelM
-    VQ8A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1701162126;
-    s=strato-dkim-0002; d=strato.com;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=njnHQBlxJazLWcAbW1gqa8mgblbBdF2CRCqEZQfBIIw=;
-    b=qzWaaTlBGfcOt2NSli9uC30OIHhTm7Et3bwWlm5HYltZczHIohrUpFsbELgy0mQfkS
-    WLyMz3zcRmaMElchm3RwfdjsZjVb+DeFjRQpFLfanu2K1+Ee6n52PZX/sHVTsBBPg6DY
-    P5KBI2rUPZEwXI181zMZX6FcG0zFldP3BDmfAbL6LD5gWXt6A/XYrNilOalrEWN1yRFr
-    nqPOIVRn30AqUGijCfS29EyfgvhiOP/EmYVHWyrs4QT5OxcZpJv9Y6jmDOwHRCn0negL
-    1TTkuctz5ZvQSFL1jWE5UVbC2TNr894f2i30jcJhcjDaLQfuF91h5IJQ0/+8Ve/FuZfH
-    58RA==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo01
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1701162126;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=njnHQBlxJazLWcAbW1gqa8mgblbBdF2CRCqEZQfBIIw=;
-    b=NGkt5BpAHMAwG5ZGf2LpEqrMuOEjWLA6KVKLpltw4TzVMPa9HVzLWEtcKSBfqWrujV
-    qBOb4Dr8yy4PqS7SnkqExRYuFSIIElBJulaur0QNIREh0xy5LNNScHRpV0Ovj65xoe2R
-    MZmoW4OWEBqr1uEslj3AZKcxky/jhP6NL0nhANSgY1EUHpY5zIdu5MsqZ7ghvg2N4jdy
-    fYEqXZ7s2chHCM17/Dx78JTKLrSMGVOScX5rMWRHytabBb4IhYkYLHxhEzbiqRhMJSon
-    MUFdLiI8i8a9xMdgl7S9Jd5vbf79Nk1Dk69X9amD5LK4afivnJjWMjz0ylAWKLMMoOYB
-    UifQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1701162126;
-    s=strato-dkim-0003; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=njnHQBlxJazLWcAbW1gqa8mgblbBdF2CRCqEZQfBIIw=;
-    b=8/1mIY83/yDD+zTLGU3PquPNdvq5bT+5tGhBNu6pRU7uN+7Y0kocxGPDSnyY8/AxHp
-    urFKBT2uGou13TLtIEBw==
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4peA8paF1A=="
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 49.9.1 DYNA|AUTH)
-    with ESMTPSA id t3efe7zAS925ktT
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-	(Client did not present a certificate);
-    Tue, 28 Nov 2023 10:02:05 +0100 (CET)
-Date: Tue, 28 Nov 2023 10:01:47 +0100
-From: Stephan Gerhold <stephan@gerhold.net>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/8] arm64: dts: qcom: add initial SM8650 dtsi
-Message-ID: <ZWWse_i-wjSTH8O4@gerhold.net>
-References: <20231124-topic-sm8650-upstream-dt-v4-0-e402e73cc5f0@linaro.org>
- <20231124-topic-sm8650-upstream-dt-v4-2-e402e73cc5f0@linaro.org>
+Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80E94138;
+	Tue, 28 Nov 2023 01:02:17 -0800 (PST)
+Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-6cd89f2af9dso2171454b3a.1;
+        Tue, 28 Nov 2023 01:02:17 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701162136; x=1701766936;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Yt4LAqQU1wA4ivqpHWCEk999ohmlO5witUfv7lMNY8w=;
+        b=ay7PexDe4DsSp5nukg2FXhnshzElb2eeKRLzmyL/1YZksQpesgFNoVU5Eb8+g/5y7c
+         EiJLYQNJdh1LSdeyF27M54b4Kvdehxz47vCbdSLaXbs5rN/cBIwhTEYX/pRndymRigXm
+         33mjWzTz0SyAbHtLDTsmkiyMhcxmnzh1PbVhsqoxpBJIXcAtJ6mDFtjVA3NZRHZNJ1mc
+         gA5QJVQCt1Ong8rr/8v5CHCsIiGPx4g56hlhFPH1SwXx2kdCi8PYsU3UmAASTfXq5czz
+         wezgGGS8f2mvmgzLQKZNyphOxHsSoGN/TB7QtfNOh1hQF00mh3d2wG5RymFSVbzXeUiv
+         eyPg==
+X-Gm-Message-State: AOJu0YwjJoXZgYfi1EgHNBazi2+NXCgOIreRFiyowM2ZOB6E8xBsQ40J
+	RKZg8hP+Vn7jfgHMapkTJIthCVNflMkEyw==
+X-Google-Smtp-Source: AGHT+IECKBKEKAkqEOQCB1OnF84IxcjfemRETNwPwTWoUhJ0h8o9qv7+fV0sluONo2LkHN3d5x4viA==
+X-Received: by 2002:a05:6a21:6d98:b0:18c:376d:fbe8 with SMTP id wl24-20020a056a216d9800b0018c376dfbe8mr12664526pzb.41.1701162136014;
+        Tue, 28 Nov 2023 01:02:16 -0800 (PST)
+Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com. [209.85.215.169])
+        by smtp.gmail.com with ESMTPSA id t15-20020a170902e84f00b001cfd2b088fasm3079588plg.134.2023.11.28.01.02.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 28 Nov 2023 01:02:14 -0800 (PST)
+Received: by mail-pg1-f169.google.com with SMTP id 41be03b00d2f7-5c206572eedso4098635a12.0;
+        Tue, 28 Nov 2023 01:02:14 -0800 (PST)
+X-Received: by 2002:a17:90b:33cb:b0:285:d550:994b with SMTP id
+ lk11-20020a17090b33cb00b00285d550994bmr5940155pjb.40.1701162133957; Tue, 28
+ Nov 2023 01:02:13 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231124-topic-sm8650-upstream-dt-v4-2-e402e73cc5f0@linaro.org>
-Content-Transfer-Encoding: 7bit
+References: <20231128005849.19044-1-andre.przywara@arm.com>
+ <20231128005849.19044-5-andre.przywara@arm.com> <ddceb30f-1778-4312-af91-97813fe3c6fb@linaro.org>
+ <CAGb2v66YpYBS78C7H-O3zef2NTs+7=ec3A7jrZ+DxjYEyBmWxQ@mail.gmail.com>
+ <9045f837-3370-46e9-8631-7464c796d643@linaro.org> <CAGb2v66PFNz++d3_5smYBL_BRirYhu4SvX0j36y0JsmXHT33OQ@mail.gmail.com>
+In-Reply-To: <CAGb2v66PFNz++d3_5smYBL_BRirYhu4SvX0j36y0JsmXHT33OQ@mail.gmail.com>
+Reply-To: wens@csie.org
+From: Chen-Yu Tsai <wens@csie.org>
+Date: Tue, 28 Nov 2023 17:02:02 +0800
+X-Gmail-Original-Message-ID: <CAGb2v66L+sW-GQ4HvR-rXsG=JTi6vKt-9P-y1=vPqh0e5gKiOg@mail.gmail.com>
+Message-ID: <CAGb2v66L+sW-GQ4HvR-rXsG=JTi6vKt-9P-y1=vPqh0e5gKiOg@mail.gmail.com>
+Subject: Re: [PATCH v3 4/6] thermal: sun8i: add syscon register access code
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Andre Przywara <andre.przywara@arm.com>, Vasily Khoruzhick <anarsoul@gmail.com>, 
+	Yangtao Li <tiny.windzz@gmail.com>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Samuel Holland <samuel@sholland.org>, "Rafael J . Wysocki" <rafael@kernel.org>, 
+	Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
+	Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Martin Botka <martin.botka@somainline.org>, Bob McChesney <bob@electricworry.net>, 
+	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Nov 24, 2023 at 10:20:39AM +0100, Neil Armstrong wrote:
-> Add initial DTSI for the Qualcomm SM8650 platform,
-> only contains nodes which doesn't depend on interconnect.
-> 
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/sm8650.dtsi | 2439 ++++++++++++++++++++++++++++++++++
->  1 file changed, 2439 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> new file mode 100644
-> index 000000000000..b0a9ca53d58e
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> @@ -0,0 +1,2439 @@
-> +[...]
-> +		timer@17420000 {
-> +			compatible = "arm,armv7-timer-mem";
-> +			reg = <0 0x17420000 0 0x1000>;
-> +
-> +			ranges = <0 0 0 0x20000000>;
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +
-> +			frame@17421000 {
-> +				reg = <0x17421000 0x1000>,
-> +				      <0x17422000 0x1000>;
-> +
-> +				interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
-> +					     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +				frame-number = <0>;
-> +			};
-> +
-> +			frame@17423000 {
-> +				reg = <0x17423000 0x1000>;
-> +
-> +				interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +				frame-number = <1>;
-> +
-> +				status = "disabled";
-> +			};
-> +
-> +			frame@17425000 {
-> +				reg = <0x17425000 0x1000>;
-> +
-> +				interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +				frame-number = <2>;
-> +
-> +				status = "disabled";
-> +			};
-> +
-> +			frame@17427000 {
-> +				reg = <0x17427000 0x1000>;
-> +
-> +				interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +				frame-number = <3>;
-> +
-> +				status = "disabled";
-> +			};
-> +
-> +			frame@17429000 {
-> +				reg = <0x17429000 0x1000>;
-> +
-> +				interrupts = <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +				frame-number = <4>;
-> +
-> +				status = "disabled";
-> +			};
-> +
-> +			frame@1742b000 {
-> +				reg = <0x1742b000 0x1000>;
-> +
-> +				interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +				frame-number = <5>;
-> +
-> +				status = "disabled";
-> +			};
-> +
-> +			frame@1742d000 {
-> +				reg = <0x1742d000 0x1000>;
-> +
-> +				interrupts = <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +				frame-number = <6>;
-> +
-> +				status = "disabled";
-> +			};
-> +		};
+On Tue, Nov 28, 2023 at 4:59=E2=80=AFPM Chen-Yu Tsai <wens@csie.org> wrote:
+>
+> On Tue, Nov 28, 2023 at 4:30=E2=80=AFPM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+> >
+> > On 28/11/2023 08:50, Chen-Yu Tsai wrote:
+> > > On Tue, Nov 28, 2023 at 3:43=E2=80=AFPM Krzysztof Kozlowski
+> > > <krzysztof.kozlowski@linaro.org> wrote:
+> > >>
+> > >> On 28/11/2023 01:58, Andre Przywara wrote:
+> > >>>
+> > >>> +static struct regmap *sun8i_ths_get_syscon_regmap(struct device_no=
+de *node)
+> > >>> +{
+> > >>> +     struct device_node *syscon_node;
+> > >>> +     struct platform_device *syscon_pdev;
+> > >>> +     struct regmap *regmap =3D NULL;
+> > >>> +
+> > >>> +     syscon_node =3D of_parse_phandle(node, "syscon", 0);
+> > >>
+> > >> Nope. For the 100th time, this cannot be generic.
+> > >>
+> > >>> +     if (!syscon_node)
+> > >>> +             return ERR_PTR(-ENODEV);
+> > >>> +
+> > >>> +     syscon_pdev =3D of_find_device_by_node(syscon_node);
+> > >>> +     if (!syscon_pdev) {
+> > >>> +             /* platform device might not be probed yet */
+> > >>> +             regmap =3D ERR_PTR(-EPROBE_DEFER);
+> > >>> +             goto out_put_node;
+> > >>> +     }
+> > >>> +
+> > >>> +     /* If no regmap is found then the other device driver is at f=
+ault */
+> > >>> +     regmap =3D dev_get_regmap(&syscon_pdev->dev, NULL);
+> > >>> +     if (!regmap)
+> > >>> +             regmap =3D ERR_PTR(-EINVAL);
+> > >>
+> > >> Aren't you open-coding existing API to get regmap from syscon?
+> > >
+> > > Not really. This is to get a regmap exported by the device. Syscon's =
+regmap
+> > > is not tied to the device at all.
+> >
+> > I am talking about open-coding existing API. Look at syscon.h.
+>
+> The underlying implementation is different.
+>
+> syscon maintains its own mapping of device nodes to regmaps, and creates
+> regmaps when none exist. The regmap is not tied to any struct device.
+> syscon basically exists outside of the driver model and one has no contro=
+l
+> over what is exposed because it is meant for blocks that are a collection
+> of random stuff.
 
-Nitpick: Personally I feel the empty lines between each property here
-are a bit overly verbose. It would be better readable without them.
-Might be personal preference though :-)
+My bad. I failed to realize there is a platform device driver for syscon,
+in addition to the existing "no struct device" implementation.
 
-> +[...]
-> +	timer {
-> +		compatible = "arm,armv8-timer";
-> +
-> +		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
 
-I'm pretty sure GIC_CPU_MASK_SIMPLE() is only valid & used on GICv2.
-Unlike arm,gic.yaml, arm,gic-v3.yaml doesn't mention "bits[15:8] PPI
-interrupt cpu mask". Also see e.g. commit 4a92b6d75bab ("arm64: dts:
-msm8996: Fix wrong use of GIC_CPU_MASK_SIMPLE()").
+ChenYu
 
-Would be also good to check if any existing DTs have introduced this
-incorrectly again since then.
-
-Thanks,
-Stephan
+> Here the provider device registers the (limited) regmap it wants to provi=
+de,
+> tying the new regmap to itself. The consumer gets it via the dev_get_regm=
+ap()
+> call. The provider has a main function and isn't exposing that part of it=
+s
+> register map to the outside; only the random bits that were stuffed in ar=
+e.
+>
+> > > With this scheme a device to could export just enough registers for t=
+he
+> > > consumer to use, instead of the whole address range.
+> > >
+> > > We do this in the R40 clock controller as well, which has some bits t=
+hat
+> > > tweak the ethernet controllers RGMII delay...
+> >
+> > Not related.
+>
+> Related as in that is possibly what this code was based on, commit
+> 49a06cae6e7c ("net: stmmac: dwmac-sun8i: Allow getting syscon regmap
+> from external device").
+>
+>
+> ChenYu
 
