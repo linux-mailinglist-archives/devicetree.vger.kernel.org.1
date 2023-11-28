@@ -1,229 +1,218 @@
-Return-Path: <devicetree+bounces-19680-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19681-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 993DF7FBD19
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 15:46:53 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1382B7FBD25
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 15:48:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 513F6282ECA
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 14:46:52 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A65F9B217E6
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 14:48:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04D105B5C2;
-	Tue, 28 Nov 2023 14:46:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BE305B5C2;
+	Tue, 28 Nov 2023 14:48:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="Ow16Q7sg"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pk101a4/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-x112d.google.com (mail-yw1-x112d.google.com [IPv6:2607:f8b0:4864:20::112d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9769FD64
-	for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 06:46:41 -0800 (PST)
-Received: by mail-yw1-x112d.google.com with SMTP id 00721157ae682-5cc7966e731so46009767b3.0
-        for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 06:46:41 -0800 (PST)
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EFEA1B5
+	for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 06:48:22 -0800 (PST)
+Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-5482df11e73so7278853a12.0
+        for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 06:48:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google; t=1701182801; x=1701787601; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=4Q/moD1HPV0hXuVQmjjgbBf8FXS8oQMIJ2nGE30iwTI=;
-        b=Ow16Q7sgnu5LXNMvwd/4xSJ5XWdN4FNHzUIrqKPMkJ16TbM1LQwf0RJwUAp0AUFZrm
-         /sUGGMrowFzHX/ExXnms9GNl+W0amKhpkUTzjM06Dv71PLTHMNlSxbvuNmY0ktKEyoQh
-         2H28UZRzHrQ4MjsDkRigG2cEfBCPjep4LSPwaP56vY/bEh1G86wOkAPj7YsI2fvFUP8i
-         53mMuTaVoJDsi+gvojVKxo1uAVijm5dab1HOnwbJIGVqrKVIXknz3B/Lrk6CbWC2/i7X
-         pwk9CXJoRZCU+REdUeD7vUnHHyDbwoyyUptppESqGw2tX26KHK47u694kFnQowQWMPRl
-         IC6Q==
+        d=linaro.org; s=google; t=1701182901; x=1701787701; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=YXM2QvVCfM/PcFCqOwwKdvg2nVXyFEWc8mKRxKzbzTQ=;
+        b=pk101a4/CwbMf3wXq3THwftGYH7H8dO4zVHkIX3HqEbeB6Ot0nEnJY9Txg86xvmMI8
+         YVW0S+QsIPRIY+0v1voM7XJvpk9PM0nZfr12JMI3pTo4Zt88QKzxwyXl0MtQywSieZKA
+         8FyxdbYlArqKC3tUmQ6LO9x+2ZNXiRASCnQtzqTGmJ5Nmjh8rXqxZAu6NKJjuLnOz4Xi
+         j5YiVl3BFJebP86kHZhGeoxlBgVDGuhlfv35PB/58jHgRuk9VnXXtEU/P5/abFCbho+U
+         b27RkQooINGqSCzQ/9OclThVeg3gG9LqvjBezA8VSBYVwSzI3uwDsF3curSBXzHMP594
+         8YuA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701182801; x=1701787601;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4Q/moD1HPV0hXuVQmjjgbBf8FXS8oQMIJ2nGE30iwTI=;
-        b=A/X8NvqrruVtlwKh8c56z7qzgCgkzvjBMxpLYJTWJGTQjee9E3cUmTRMD/yZedFKmV
-         ZjDjt7XdFsykOJPWwS3FqB6FYduTd54V+JIuzwsbzFWCaY0liLx7li2p9a2gmXnEa2cU
-         XFCgijgx/yqmMs+ANR2SUkBCchoYXdwdUVVvqHKH2TpqnAMLCvlktxNU4GE30wEir+E4
-         o3h1gjZwpl5XDYebFuXOoDQqpbr0QPO2zFKHe/IFeXEAAjnJstR7Nk3WgDIsFTq4TK3R
-         L08cvDuOSLp/FEh12w+ZNXw15qb6QQkZ6kvbIUaUCZCnEzrHqVCzUK85gboNRnMtrfpy
-         5ARw==
-X-Gm-Message-State: AOJu0Yw12zMtmoj8mGhX/1T/EhYWCERy/4vWkVivTu6q2AVZk7HC7z+A
-	k/4yNcDG6BOhvKrQL5LOX/YkqKvwlP7qi8dblQ2pcw==
-X-Google-Smtp-Source: AGHT+IF0gdIBMmCN7xzCkPdVkItSlQZrtQ9wdoaigGcyWr9S9Uz0vx3wYmHCkGPHzq9ZHsHDSECwLLim+EG2g29lBrI=
-X-Received: by 2002:a05:690c:2e02:b0:5d1:f8ed:b4c5 with SMTP id
- et2-20020a05690c2e0200b005d1f8edb4c5mr612548ywb.42.1701182800783; Tue, 28 Nov
- 2023 06:46:40 -0800 (PST)
+        d=1e100.net; s=20230601; t=1701182901; x=1701787701;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=YXM2QvVCfM/PcFCqOwwKdvg2nVXyFEWc8mKRxKzbzTQ=;
+        b=Q9qOYirnvcu75gp3+Mh3zkbYaF7F+uHcc5R7X77D3SInMQ5oPt84xqG/8HBMl26P0x
+         bQ7cnKkAfdSpuLDx8oPPpSfJwAzkEYSrvxAkhmk5ZCS/VgtyGEPECdYL9TdBFayULDQX
+         fHFctp536H2W1+PDwY4B0LoTbYz6e+7c0JUn/qXf4Lr0p+OgTTIUyUruUoyUlyLBXcXl
+         j2widawAPZr8ZkvjuZ4uwEYs9cOetXPZrRlgSnAxJxORjk+1aTHzPYSJN+Ront3YTr5S
+         IJpetyQNKZ1zjCRI3lOoTVFP6ChULkaydVwTGug3r53OSNqBMFo59925T3KJ39yIgifk
+         KA2A==
+X-Gm-Message-State: AOJu0YzBDOKw8Sb64tdaqpLXCB3/UkqIZGJ6ohraO27WSa47S+tly6wA
+	ccqI0Mo/QZ48MUmG9YBO8/XSrA==
+X-Google-Smtp-Source: AGHT+IHXkszZI4Dc6MOOOL7fYPkFDn7aB1/w1V2XnU19A5IPpq4XJl+HD8u3ZmfUBoElU0FeS3Drrg==
+X-Received: by 2002:a17:906:20ce:b0:a0c:46b4:a70d with SMTP id c14-20020a17090620ce00b00a0c46b4a70dmr7003390ejc.28.1701182900768;
+        Tue, 28 Nov 2023 06:48:20 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.223.109])
+        by smtp.gmail.com with ESMTPSA id kz15-20020a17090777cf00b009fd50aa6984sm6846778ejc.83.2023.11.28.06.48.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 28 Nov 2023 06:48:20 -0800 (PST)
+Message-ID: <4e90608e-aca5-4b57-be76-350ad54f9e7c@linaro.org>
+Date: Tue, 28 Nov 2023 15:48:18 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231126025612.12522-1-wahrenst@gmx.net> <53e1f6e6-a28e-45af-991e-75b283a21b34@broadcom.com>
- <46320840-09ab-4c86-90c9-bee7b75f248a@gmx.net> <CAMEGJJ3SXHSnasqoMJnshf5Wu92NVi8+NoMdxmMsJH7WH2WjWg@mail.gmail.com>
- <a78f9ba5-ad34-4af2-9817-eeb7dd9d02ef@gmx.net> <CAMEGJJ3PpEgD_davgTn9e+re4hosunU+uj_i5sdKMFNLFR5hBA@mail.gmail.com>
- <624b79b1-f2dc-4f2e-a225-d1623d905b19@gmx.net> <CAMEGJJ0aL4VDoq06+JGHz9yx5nVvgbNULNKoT07myzVGNiyCoQ@mail.gmail.com>
- <b8a90433-e0fe-4148-a512-c0e9ace2b4b6@broadcom.com> <91ceed68-fe3a-408c-a858-095d5749b4d2@broadcom.com>
- <10383aa9-942b-415d-b70e-ade3a7aae6fa@gmx.net> <71e96b4e-a0b4-4145-8174-a18cf1ccd06e@broadcom.com>
- <ab4b6629-9e30-4385-bf14-c31223e68769@gmx.net>
-In-Reply-To: <ab4b6629-9e30-4385-bf14-c31223e68769@gmx.net>
-From: Phil Elwell <phil@raspberrypi.com>
-Date: Tue, 28 Nov 2023 14:46:29 +0000
-Message-ID: <CAMEGJJ0wEc-X=z9h3coM8abdbTBMet-AK_Eqvfi6px4wuThxEA@mail.gmail.com>
-Subject: Re: [PATCH 0/3] ARM: dts: bcm2711-rpi-cm4-io: Enable xHCI host
-To: Stefan Wahren <wahrenst@gmx.net>
-Cc: Florian Fainelli <florian.fainelli@broadcom.com>, Justin Chen <justin.chen@broadcom.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Mathias Nyman <mathias.nyman@intel.com>, bcm-kernel-feedback-list@broadcom.com, 
-	Cyril Brulebois <kibi@debian.org>, linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 4/6] thermal: sun8i: add syscon register access code
+Content-Language: en-US
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: Vasily Khoruzhick <anarsoul@gmail.com>, Yangtao Li
+ <tiny.windzz@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>, "Rafael J . Wysocki"
+ <rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Martin Botka <martin.botka@somainline.org>,
+ Bob McChesney <bob@electricworry.net>, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, Icenowy Zheng <icenowy@aosc.io>
+References: <20231128005849.19044-1-andre.przywara@arm.com>
+ <20231128005849.19044-5-andre.przywara@arm.com>
+ <ddceb30f-1778-4312-af91-97813fe3c6fb@linaro.org>
+ <20231128143309.38a4ce61@donnerap.manchester.arm.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231128143309.38a4ce61@donnerap.manchester.arm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, 28 Nov 2023 at 06:44, Stefan Wahren <wahrenst@gmx.net> wrote:
->
->
-> Am 27.11.23 um 22:49 schrieb Florian Fainelli:
-> > On 11/27/23 11:22, Stefan Wahren wrote:
-> >> Hi,
-> >>
-> >> Am 27.11.23 um 19:41 schrieb Florian Fainelli:
-> >>> On 11/27/23 09:44, Justin Chen wrote:
-> >>>>
-> >>>>
-> >>>> On 11/27/23 8:28 AM, Phil Elwell wrote:
-> >>>>> On Mon, 27 Nov 2023 at 12:39, Stefan Wahren <wahrenst@gmx.net> wrote:
-> >>>>>>
-> >>>>>> Hi Phil,
-> >>>>>>
-> >>>>>>>>>> Hi Justin,
-> >>>>>>>>>>
-> >>>>>>>>>> [add Phil]
-> >>>>>>>>>>
-> >>>>>>>>>> Am 27.11.23 um 07:02 schrieb Justin Chen:
-> >>>>>>>>>>> On 11/25/23 6:56 PM, Stefan Wahren wrote:
-> >>>>>>>>>>>> In contrast to the Raspberry Pi 4, the Compute Module 4 or
-> >>>>>>>>>>>> the IO board
-> >>>>>>>>>>>> does not have a VL805 USB 3.0 host controller, which is
-> >>>>>>>>>>>> connected via
-> >>>>>>>>>>>> PCIe. Instead, the BCM2711 on the Compute Module provides the
-> >>>>>>>>>>>> built-in
-> >>>>>>>>>>>> xHCI.
-> >>>>>>>>>>>>
-> >>>>>>>>>>> Does this work? I maintain this built-in xHCI controller
-> >>>>>>>>>>> internally. I
-> >>>>>>>>>>> wasn't aware the Compute Module uses this block.
-> >>>>>>>>>> i successful tested this with a CM4 (arm 32 bit,
-> >>>>>>>>>> multi_v7_lpae_defconfig) with eMMC. Before this series the USB
-> >>>>>>>>>> devices
-> >>>>>>>>>> (mouse, keyboard) connected to the host interface didn't work.
-> >>>>>>>>>> After
-> >>>>>>>>>> comparing vendor DTS with mainline i noticed the missing xHCI
-> >>>>>>>>>> block [1].
-> >>>>>>>>>> Unfortunately i wasn't able to get further information from the
-> >>>>>>>>>> public
-> >>>>>>>>>> datasheets. I don't know if the VideoCore does some magic
-> >>>>>>>>>> tricks on the
-> >>>>>>>>>> xHCI or i missed some downstream xHCI changes.
-> >>>>>>>>>>
-> >>>>>>>>>>> This block is held in reset and needs a bit toggled to get
-> >>>>>>>>>>> things
-> >>>>>>>>>>> going. Florian, just to confirm, this is our
-> >>>>>>>>>>> "brcm,xhci-brcm-v2" block
-> >>>>>>>>>>> correct?
-> >>>>>>>>>>>
-> >>>>>>>>>>> Justin
-> >>>>>>>>>> [1]  -
-> >>>>>>>>>> https://github.com/raspberrypi/linux/blob/rpi-6.1.y/arch/arm/boot/dts/bcm2711-rpi-ds.dtsi#L119
-> >>>>>>>>>>
-> >>>>>>>>>>
-> >>>>>>>>> What's the question here? Does the XHCI block present in the
-> >>>>>>>>> raspberrypi/linux dtsi file really exist? Yes it does.
-> >>>>>>>> since i don't have any documentation about the xHCI block, i
-> >>>>>>>> assumed the
-> >>>>>>>> compatible generic-xhci is correct. But Justin seems to suggest
-> >>>>>>>> that the
-> >>>>>>>> xHCI block needs some special treatment and we need a specific
-> >>>>>>>> compatible.
-> >>>>>>>>
-> >>>>>>>> Did i missed some xHCI driver changes?
-> >>>>>>>> Does the VC firmware something to the xHCI especially on CM4?
-> >>>>>>> The firmware switches the on-board USB pins from DWC-OTG to XHCI if
-> >>>>>>> otg_mode=1 is set in config.txt, or if booting over USB MSD.
-> >>>>>> is this pinctrl/pinmux available from ARM via 0x7e200000 or a
-> >>>>>> different
-> >>>>>> IO address?
-> >>>>>
-> >>>>> It's in a different, undocumented block.
-> >>>>>
-> >>>>> Phil
-> >>>>
-> >>>> Well if it works, then maybe I am misunderstanding something here.
-> >>>> Maybe its time for me to pick up a CM4 board.
-> >>> There is one on my desk that you are welcome to use, or remote into if
-> >>> you prefer.
-> >>>
-> >>> To answer your earlier question, yes this is the same block as the one
-> >>> present in 72112 for which we use the "brcm,xhci-brcm-v2" compatible
-> >>> string, it would be preferable to have it backed by that compatible
-> >>> string in case we happen to support suspend/resume on the Pi 4B one
-> >>> day, if nothing else.
-> >>>
-> >>> I did confirm that after applying Stefan's patches plus changing my
-> >>> config.txt to have otg_mode=1, USB continues to be fully functional.
-> >>> This is the case with using both "generic-xhci" or "brcm,xhci-brcm-v2"
-> >>> so with the minor request to update the compatible to
-> >>> "brcm,xhci-brcm-v2", this is:
-> >>>
-> >>> Tested-by: Florian Fainelli <florian.fainelli@broadcom.com>
-> >>>
-> >>> Stefan, I am getting a deadlock on boot if I leave your changes in and
-> >>> uncomment dwc_otg=1 in config.txt, is there an alias or something that
-> >>> the boot loader should be patching?
-> >>
-> >> sorry but i'm unable reproduce those deadlocks, neither in arm or arm64,
-> >> with eMMC or without eMMC, xhci builtin or module. If i uncomment this
-> >> in config.txt, USB host is just disabled.
-> >
-> > Here is my config.txt FWIW:
-> >
-> > # A bit too verbose
-> > uart_2ndstage=1
-> > enable_uart=1
-> > arm_64bit=1
-> > # Custom kernel images
-> > kernel=kernel8-upstream.img
-> > #kernel=kernel7l.img
-> > #device_tree=bcm2711-rpi-4-b-UPSTREAM.dtb
-> > device_tree=bcm2711-rpi-cm4-io-UPSTREAM.dtb
-> > force_turbo=1
-> > # DWC-OTG <=> XHCI
-> > #otg_mode=1
-> >
-> >>
-> >> I'm using the following firmware:
-> >>
-> >> raspberrypi-firmware soc:firmware: Attached to firmware from
-> >> 2023-03-17T10:50:39
-> >
-> > OK, my CM4 is at 2022-07-25T15:10:17, updating to 2023-10-17T15:39:16
-> > does not really show any difference.
-> >
-> >>
-> >> Is this DTS difference a problem?
-> >
-> > It does not appear so, changing the node unit-name does not affect the
-> > results.
-> >
-> >>
-> >> upstream   -> xhci: usb@7e9c0000
-> >> downstream -> xhci: xhci@7e9c0000
-> >
-> > Side question: does the VPU boot ROM or firmware take care of
-> > configuring the USB PHY somehow? Should not we also have a Device Tree
-> > node for it eventually?
->
-> Sorry, as the person with the least knowledge about the hardware i
-> cannot answer this question. But we should avoid those nop-PHY because
-> they have source of regressions in the past.
+On 28/11/2023 15:33, Andre Przywara wrote:
+> On Tue, 28 Nov 2023 08:43:32 +0100
+> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+> 
+> Hi,
+> 
+>> On 28/11/2023 01:58, Andre Przywara wrote:
+>>>  
+>>> +static struct regmap *sun8i_ths_get_syscon_regmap(struct device_node *node)
+>>> +{
+>>> +	struct device_node *syscon_node;
+>>> +	struct platform_device *syscon_pdev;
+>>> +	struct regmap *regmap = NULL;
+>>> +
+>>> +	syscon_node = of_parse_phandle(node, "syscon", 0);  
+>>
+>> Nope. For the 100th time, this cannot be generic.
+> 
+> OK. Shall this name refer to the required functionality (temperature
+> offset fix) or to the target syscon node (like allwinner,misc-syscon).
+> The problem is that this is really a syscon, as in: "random collection of
+> bits that we didn't know where else to put in", so "syscon" alone actually
+> says it all.
 
-The EEPROM firmware initialises the USB PHY.
+Every syscon is a "random collection of bits...", but not every "random
+collection of bits..." is a syscon.
 
-Phil
+Your target device does not implement syscon nodes. Your Linux
+implementation does not use it as syscon. Therefore if something does
+not look like syscon and does not behave like syscon, it is not a syscon.
+
+I looked at the bit and this is SRAM, not syscon. I am sorry, but it is
+something entirely different and we have a binding for it: "sram", I think.
+
+> 
+> 
+> And btw: it would have been about the same effort (and more helpful!) to
+> type:
+> 
+> "This cannot be generic, please check writing-bindings.rst."    ;-)
+> 
+>>
+>>> +	if (!syscon_node)
+>>> +		return ERR_PTR(-ENODEV);
+>>> +
+>>> +	syscon_pdev = of_find_device_by_node(syscon_node);
+>>> +	if (!syscon_pdev) {
+>>> +		/* platform device might not be probed yet */
+>>> +		regmap = ERR_PTR(-EPROBE_DEFER);
+>>> +		goto out_put_node;
+>>> +	}
+>>> +
+>>> +	/* If no regmap is found then the other device driver is at fault */
+>>> +	regmap = dev_get_regmap(&syscon_pdev->dev, NULL);
+>>> +	if (!regmap)
+>>> +		regmap = ERR_PTR(-EINVAL);  
+>>
+>> Aren't you open-coding existing API to get regmap from syscon?
+> 
+> That's a good point, I lifted that code from sun8i-emac.c, where we have
+> the exact same problem. 
+> Unfortunately syscon_regmap_lookup_by_phandle() requires the syscon DT
+> node to have "syscon" in its compatible string list, which we
+> don't have. We actually explicitly dropped this for the A64 (with
+> 1f1f5183981d70bf0950), and never added this for later SoCs in the first place.
+> I guess we could add it back, and it would work for this case here (tested
+> that), but then cannot replace the sun8i-emac.c code, because that would
+> break older DTs.
+> So is there any chance we can drop the requirement for "syscon" in the
+> compatible string list, in the implementation of
+> syscon_regmap_lookup_by_phandle()? Maybe optionally, using a different
+> prototype? Or is there another existing API that does this already?
+
+I must correct myself: I was wrong. You are not open-coding, because as
+pointed out, this is not a phandle to syscon (even if you call it like
+"syscon").
+
+The code is fine, maybe except missing links (needs double checking,
+because maybe regmap creates links?). The DT binding and DTS needs
+fixing, because it is not a syscon.
+
+Best regards,
+Krzysztof
+
 
