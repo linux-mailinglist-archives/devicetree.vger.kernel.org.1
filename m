@@ -1,242 +1,203 @@
-Return-Path: <devicetree+bounces-19487-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19488-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B97677FB20C
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 07:44:56 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C276D7FB23B
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 08:00:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DBED11C2095C
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 06:44:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F229E1C20983
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 07:00:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32EED63B0;
-	Tue, 28 Nov 2023 06:44:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="MOcwYO8o"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7D30DDCC;
+	Tue, 28 Nov 2023 07:00:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94CD2197;
-	Mon, 27 Nov 2023 22:44:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-	s=s31663417; t=1701153864; x=1701758664; i=wahrenst@gmx.net;
-	bh=9p/L+dIs/yOOUpJOeqIgX4V6lS9jUXF4jrKNFp088qM=;
-	h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:
-	 In-Reply-To;
-	b=MOcwYO8oGqVOwSez+bQ8AUaDwNQyDoIEzmMxUvHuibeCG3r+HZXE+VL3IjVG+Wmx
-	 Q2xh1kpW2luPlUN0oY1/ZmDkeOeM2+5D2+xKcmwitC3eL7+6u2h/HRLGwrmQIzfXn
-	 RNxqKL7WX5xEGE5TibR5XYFnLRSdoHdEXFy8au8jk/9MtVsi2TV4QeEwQBTKEJ1ll
-	 bLEa5wZZDQsaYtQ/8mo0Ralo584JBqBvEx49aR+BPsIsMZ39VyZqrgkhA+ODOloaQ
-	 hDFYuoIdyW4+nlGbgapr/z9xEq6QKMf1J2ecyMwo1OLky9hkDwEokqwtohD3bXEDO
-	 /A4HDkFm/VMeY8Ws8Q==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.1.129] ([37.4.248.43]) by mail.gmx.net (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MFbVu-1r59ss1tIE-00HBCp; Tue, 28
- Nov 2023 07:44:24 +0100
-Message-ID: <ab4b6629-9e30-4385-bf14-c31223e68769@gmx.net>
-Date: Tue, 28 Nov 2023 07:44:20 +0100
+Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0E9BEA;
+	Mon, 27 Nov 2023 23:00:11 -0800 (PST)
+X-SpamFilter-By: ArmorX SpamTrap 5.78 with qID 3AS6wcIzB1875016, This message is accepted by code: ctloc85258
+Received: from mail.realtek.com (rtexh36506.realtek.com.tw[172.21.6.27])
+	by rtits2.realtek.com.tw (8.15.2/2.95/5.92) with ESMTPS id 3AS6wcIzB1875016
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 28 Nov 2023 14:58:39 +0800
+Received: from RTEXMBS03.realtek.com.tw (172.21.6.96) by
+ RTEXH36506.realtek.com.tw (172.21.6.27) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.17; Tue, 28 Nov 2023 14:58:39 +0800
+Received: from RTEXMBS04.realtek.com.tw (172.21.6.97) by
+ RTEXMBS03.realtek.com.tw (172.21.6.96) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.7; Tue, 28 Nov 2023 14:58:39 +0800
+Received: from RTEXMBS04.realtek.com.tw ([fe80::40c2:6c24:2df4:e6c7]) by
+ RTEXMBS04.realtek.com.tw ([fe80::40c2:6c24:2df4:e6c7%5]) with mapi id
+ 15.01.2375.007; Tue, 28 Nov 2023 14:58:39 +0800
+From: =?utf-8?B?SnlhbiBDaG91IFvlkajoirflrold?= <jyanchou@realtek.com>
+To: Christian Loehle <christian.loehle@arm.com>,
+        "ulf.hansson@linaro.org"
+	<ulf.hansson@linaro.org>,
+        "adrian.hunter@intel.com"
+	<adrian.hunter@intel.com>,
+        "jh80.chung@samsung.com" <jh80.chung@samsung.com>,
+        "riteshh@codeaurora.org" <riteshh@codeaurora.org>,
+        "robh+dt@kernel.org"
+	<robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org"
+	<krzysztof.kozlowski+dt@linaro.org>
+CC: "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "asutoshd@codeaurora.org"
+	<asutoshd@codeaurora.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "arnd@arndb.de" <arnd@arndb.de>,
+        "briannorris@chromium.org"
+	<briannorris@chromium.org>,
+        "doug@schmorgal.com" <doug@schmorgal.com>,
+        "tonyhuang.sunplus@gmail.com" <tonyhuang.sunplus@gmail.com>,
+        "abel.vesa@linaro.org" <abel.vesa@linaro.org>,
+        "william.qiu@starfivetech.com"
+	<william.qiu@starfivetech.com>
+Subject: RE: [PATCH v7][2/4] mmc: Add Synopsys DesignWare mmc cmdq host driver
+Thread-Topic: [PATCH v7][2/4] mmc: Add Synopsys DesignWare mmc cmdq host
+ driver
+Thread-Index: AQHaHFq+bFd/3O/jHUaixlBEulhIvbCNpQgAgAGvOTA=
+Date: Tue, 28 Nov 2023 06:58:38 +0000
+Message-ID: <02f3c158c7fe44f382d865345628b79a@realtek.com>
+References: <20231121091101.5540-1-jyanchou@realtek.com>
+ <20231121091101.5540-3-jyanchou@realtek.com>
+ <87d7235c-8d3f-42df-b1ed-ea0abe5af3b9@arm.com>
+In-Reply-To: <87d7235c-8d3f-42df-b1ed-ea0abe5af3b9@arm.com>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+x-kse-serverinfo: RTEXMBS03.realtek.com.tw, 9
+x-kse-antispam-interceptor-info: fallback
+x-kse-antivirus-interceptor-info: fallback
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/3] ARM: dts: bcm2711-rpi-cm4-io: Enable xHCI host
-To: Florian Fainelli <florian.fainelli@broadcom.com>,
- Justin Chen <justin.chen@broadcom.com>, Phil Elwell <phil@raspberrypi.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Mathias Nyman <mathias.nyman@intel.com>,
- bcm-kernel-feedback-list@broadcom.com, Cyril Brulebois <kibi@debian.org>,
- linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20231126025612.12522-1-wahrenst@gmx.net>
- <53e1f6e6-a28e-45af-991e-75b283a21b34@broadcom.com>
- <46320840-09ab-4c86-90c9-bee7b75f248a@gmx.net>
- <CAMEGJJ3SXHSnasqoMJnshf5Wu92NVi8+NoMdxmMsJH7WH2WjWg@mail.gmail.com>
- <a78f9ba5-ad34-4af2-9817-eeb7dd9d02ef@gmx.net>
- <CAMEGJJ3PpEgD_davgTn9e+re4hosunU+uj_i5sdKMFNLFR5hBA@mail.gmail.com>
- <624b79b1-f2dc-4f2e-a225-d1623d905b19@gmx.net>
- <CAMEGJJ0aL4VDoq06+JGHz9yx5nVvgbNULNKoT07myzVGNiyCoQ@mail.gmail.com>
- <b8a90433-e0fe-4148-a512-c0e9ace2b4b6@broadcom.com>
- <91ceed68-fe3a-408c-a858-095d5749b4d2@broadcom.com>
- <10383aa9-942b-415d-b70e-ade3a7aae6fa@gmx.net>
- <71e96b4e-a0b4-4145-8174-a18cf1ccd06e@broadcom.com>
-Content-Language: en-US
-From: Stefan Wahren <wahrenst@gmx.net>
-In-Reply-To: <71e96b4e-a0b4-4145-8174-a18cf1ccd06e@broadcom.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:CqIwg5/UCbqJkTfCiwIUHNcnS9TAwnk+UW0II9hDbnAJK8qb/Xb
- oSbZZJxEqwn/EC7vvXQlkYfzvMeHTx9pgFkLhflu5XgdVA0iB1TcISE3Lq1wSVKHWl7bRXV
- 6gjpmxZquEYll700lLpj3agKkHFdoCYQTYfvgVhcjchKQBFAFw1Sj7B3/uSt5HbiPggAoO4
- lVEDCZra9OoCgjGl651ug==
-UI-OutboundReport: notjunk:1;M01:P0:zPIufbtySzk=;XenWx8vAVuUR4HRy1YhTuigUX6F
- tF6hld/NOyKRKrMkjPpJ+AQzziMuM2L6M/adCDRg9mGSKaQIVW9aH0djNx2ZbaCuK2GjjfkDw
- gvwdUfgBOiocN1zoksmE0UiA+MS16roHpF0NwY4EhnI0aBXYV88jfL0eRn9eoIXiK7dbiusUw
- 8aMR73BOtENVgtMp1Kf9z4EWCd7+oIeW1gKXT+yI77neJuMShM9Y1aM/6EFMpJLlF1LOxRuBc
- t6vYULd+AT/Fh6Vo/D/b8TY9OQA9c7Vm0o5vQPkyfLSQmJ/BwsLFnaz98IX2f9w+x3fezJ2LK
- iY6cKZPHpr33claxqnWX9aNdP7RUfkRBH883furNEdAMTsYOY7OhW0aUxX1iebMDvAMzPHh1+
- OWmQZuedZun2/rYTBm93lidtNRrOoqjt/uiWHAHyzp2H4BORpbW6dYC6LDKTaB8cblrmApSNC
- uOt3ShKRJ51wI4T4WV4EJBQmM5j1UFWmq/srZke9Tw1UnLHF6Sef0jKdQ2Hni/QkCljQj/+LF
- hZkMHU+YBj1sXUvqcKfeVCVlg9N8QtaNTNxZX6EfdHIi1OwACPKeaiHF1p4BnAtlQQ/0S7mnv
- wo7cb92Xy1yZzowJxUl47C05dYrXD6KMMZshIdJMejAcvm/EFl4QdWQzFgcDjPtUg9TeuZhBF
- FcwCrNpKsD9WDK86Y2mfoRws4dsyY8s9E0QggAzZseqlw2/MW+R4g6ozaWJBecoVvCnLm6kL4
- ql9cpUxxjaARCnNdhSorD/iH4XskynG/6w5cOSTLWynoqGrolDfpwXHA/sO0TH22GrLLTqbMg
- V6a7lD7jMA8NGnX6lyFLKXsK2HcoqmN8QUADL/0xB4+cC3BZHgeEbFPfyvrRw2joAkS8yh73/
- 9B3YkX/fSjoICuDTvavhrTv4jBsNOrOAgV+OSJPGSHVKk19llvbWIMo6i7JRirSL4K3FhC8Z0
- ovU84Q==
+X-KSE-AntiSpam-Interceptor-Info: fallback
 
-
-Am 27.11.23 um 22:49 schrieb Florian Fainelli:
-> On 11/27/23 11:22, Stefan Wahren wrote:
->> Hi,
->>
->> Am 27.11.23 um 19:41 schrieb Florian Fainelli:
->>> On 11/27/23 09:44, Justin Chen wrote:
->>>>
->>>>
->>>> On 11/27/23 8:28 AM, Phil Elwell wrote:
->>>>> On Mon, 27 Nov 2023 at 12:39, Stefan Wahren <wahrenst@gmx.net> wrote=
-:
->>>>>>
->>>>>> Hi Phil,
->>>>>>
->>>>>>>>>> Hi Justin,
->>>>>>>>>>
->>>>>>>>>> [add Phil]
->>>>>>>>>>
->>>>>>>>>> Am 27.11.23 um 07:02 schrieb Justin Chen:
->>>>>>>>>>> On 11/25/23 6:56 PM, Stefan Wahren wrote:
->>>>>>>>>>>> In contrast to the Raspberry Pi 4, the Compute Module 4 or
->>>>>>>>>>>> the IO board
->>>>>>>>>>>> does not have a VL805 USB 3.0 host controller, which is
->>>>>>>>>>>> connected via
->>>>>>>>>>>> PCIe. Instead, the BCM2711 on the Compute Module provides the
->>>>>>>>>>>> built-in
->>>>>>>>>>>> xHCI.
->>>>>>>>>>>>
->>>>>>>>>>> Does this work? I maintain this built-in xHCI controller
->>>>>>>>>>> internally. I
->>>>>>>>>>> wasn't aware the Compute Module uses this block.
->>>>>>>>>> i successful tested this with a CM4 (arm 32 bit,
->>>>>>>>>> multi_v7_lpae_defconfig) with eMMC. Before this series the USB
->>>>>>>>>> devices
->>>>>>>>>> (mouse, keyboard) connected to the host interface didn't work.
->>>>>>>>>> After
->>>>>>>>>> comparing vendor DTS with mainline i noticed the missing xHCI
->>>>>>>>>> block [1].
->>>>>>>>>> Unfortunately i wasn't able to get further information from the
->>>>>>>>>> public
->>>>>>>>>> datasheets. I don't know if the VideoCore does some magic
->>>>>>>>>> tricks on the
->>>>>>>>>> xHCI or i missed some downstream xHCI changes.
->>>>>>>>>>
->>>>>>>>>>> This block is held in reset and needs a bit toggled to get
->>>>>>>>>>> things
->>>>>>>>>>> going. Florian, just to confirm, this is our
->>>>>>>>>>> "brcm,xhci-brcm-v2" block
->>>>>>>>>>> correct?
->>>>>>>>>>>
->>>>>>>>>>> Justin
->>>>>>>>>> [1]=C2=A0 -
->>>>>>>>>> https://github.com/raspberrypi/linux/blob/rpi-6.1.y/arch/arm/bo=
-ot/dts/bcm2711-rpi-ds.dtsi#L119
->>>>>>>>>>
->>>>>>>>>>
->>>>>>>>> What's the question here? Does the XHCI block present in the
->>>>>>>>> raspberrypi/linux dtsi file really exist? Yes it does.
->>>>>>>> since i don't have any documentation about the xHCI block, i
->>>>>>>> assumed the
->>>>>>>> compatible generic-xhci is correct. But Justin seems to suggest
->>>>>>>> that the
->>>>>>>> xHCI block needs some special treatment and we need a specific
->>>>>>>> compatible.
->>>>>>>>
->>>>>>>> Did i missed some xHCI driver changes?
->>>>>>>> Does the VC firmware something to the xHCI especially on CM4?
->>>>>>> The firmware switches the on-board USB pins from DWC-OTG to XHCI i=
-f
->>>>>>> otg_mode=3D1 is set in config.txt, or if booting over USB MSD.
->>>>>> is this pinctrl/pinmux available from ARM via 0x7e200000 or a
->>>>>> different
->>>>>> IO address?
->>>>>
->>>>> It's in a different, undocumented block.
->>>>>
->>>>> Phil
->>>>
->>>> Well if it works, then maybe I am misunderstanding something here.
->>>> Maybe its time for me to pick up a CM4 board.
->>> There is one on my desk that you are welcome to use, or remote into if
->>> you prefer.
->>>
->>> To answer your earlier question, yes this is the same block as the one
->>> present in 72112 for which we use the "brcm,xhci-brcm-v2" compatible
->>> string, it would be preferable to have it backed by that compatible
->>> string in case we happen to support suspend/resume on the Pi 4B one
->>> day, if nothing else.
->>>
->>> I did confirm that after applying Stefan's patches plus changing my
->>> config.txt to have otg_mode=3D1, USB continues to be fully functional.
->>> This is the case with using both "generic-xhci" or "brcm,xhci-brcm-v2"
->>> so with the minor request to update the compatible to
->>> "brcm,xhci-brcm-v2", this is:
->>>
->>> Tested-by: Florian Fainelli <florian.fainelli@broadcom.com>
->>>
->>> Stefan, I am getting a deadlock on boot if I leave your changes in and
->>> uncomment dwc_otg=3D1 in config.txt, is there an alias or something th=
-at
->>> the boot loader should be patching?
->>
->> sorry but i'm unable reproduce those deadlocks, neither in arm or arm64=
-,
->> with eMMC or without eMMC, xhci builtin or module. If i uncomment this
->> in config.txt, USB host is just disabled.
->
-> Here is my config.txt FWIW:
->
-> # A bit too verbose
-> uart_2ndstage=3D1
-> enable_uart=3D1
-> arm_64bit=3D1
-> # Custom kernel images
-> kernel=3Dkernel8-upstream.img
-> #kernel=3Dkernel7l.img
-> #device_tree=3Dbcm2711-rpi-4-b-UPSTREAM.dtb
-> device_tree=3Dbcm2711-rpi-cm4-io-UPSTREAM.dtb
-> force_turbo=3D1
-> # DWC-OTG <=3D> XHCI
-> #otg_mode=3D1
->
->>
->> I'm using the following firmware:
->>
->> raspberrypi-firmware soc:firmware: Attached to firmware from
->> 2023-03-17T10:50:39
->
-> OK, my CM4 is at 2022-07-25T15:10:17, updating to 2023-10-17T15:39:16
-> does not really show any difference.
->
->>
->> Is this DTS difference a problem?
->
-> It does not appear so, changing the node unit-name does not affect the
-> results.
->
->>
->> upstream=C2=A0=C2=A0 -> xhci: usb@7e9c0000
->> downstream -> xhci: xhci@7e9c0000
->
-> Side question: does the VPU boot ROM or firmware take care of
-> configuring the USB PHY somehow? Should not we also have a Device Tree
-> node for it eventually?
-
-Sorry, as the person with the least knowledge about the hardware i
-cannot answer this question. But we should avoid those nop-PHY because
-they have source of regressions in the past.
-
+SGksDQoNCj4+IFdlIGltcGxlbWVudGVkIGNtZHEgZmVhdHVyZSBvbiBTeW5vcHN5cyBEZXNpZ25X
+YXJlIG1tYyBkcml2ZXIuDQo+PiBUaGUgZGlmZmVyZW5jZSBiZXR3ZWVuIGR3X21tYy5jIGFuZCBk
+d19tbWNfY3FlLmMgd2VyZSBkaXN0aW5jdCANCj4+IHJlZ2lzdGVyIGRlZmluaXRpb25zLCBtbWMg
+dXNlciBmbG93IGFuZCB0aGUgYWRkaXRpb24gb2YgY21kcS4NCj4+DQo+PiBOZXcgdmVyc2lvbiBv
+ZiBVc2VyIEd1aWRlIGhhZCBtb2RpZnkgbW1jIGRyaXZlcidzIHVzYWdlIGZsb3csIHdlIG1heSAN
+Cj4+IG5lZWQgdG8gcmVuZXcgY29kZSB0byBwcmVjaXNlbHkgZm9sbG93IHVzZXIgZ3VpZGUuDQo+
+Pg0KPj4gTW9yZSBvdmVyLCBXZSBhZGRlZCBhIHdhaXQgc3RhdHVzIGZ1bmN0aW9uIHRvIHNhdGlz
+Znkgc3lub3BzeXMgdXNlciANCj4+IGd1aWRlJ3MgZGVzY3JpcHRpb24sIHNpbmNlIHRoaXMgZmxv
+dyBtaWdodCBiZSBzcGVjaWZpYyBpbiBzeW5vcHN5cyANCj4+IGhvc3QgZHJpdmVyIG9ubHkuDQo+
+Pg0KPj4gU2lnbmVkLW9mZi1ieTogSnlhbiBDaG91IDxqeWFuY2hvdUByZWFsdGVrLmNvbT4NCj4+
+DQo+PiDigJQtLQ0KPj4gdjYgLT4gdjc6DQo+PiAtIFJlbW92ZSByZXNldC1uYW1lcyBpbiBkcml2
+ZXIgYW5kIGFkanVzdCByZXNldCBjb250cm9sJ3MgY29kZS4NCj4+DQo+PiB2NSAtPiB2NjoNCj4+
+IC0gRml4IGxpbnV4IGNvZGluZyBzdHlsZSBpc3N1ZXMuDQo+PiAtIERyb3AgdXNlbGVzcyBjb2Rl
+IHRoYXQgaXMgbm90IGRlc2NyaWJlZCBpbiB0aGUgYmluZGluZ3MuDQo+PiAtIFJlcGxhY2UgZGV2
+bV9jbGtfZ2V0IGFuZCBjbGtfcHJlcGFyZV9lbmFibGUgd2l0aCBkZXZtX2Nsa19nZXRfZW5hYmxl
+ZC4NCj4+IC0gUmVwbGFjZSBFWFBPUlRfU1lNQk9MIHdpdGggRVhQT1JUX1NZTUJPTF9HUEwuDQo+
+Pg0KPj4gdjQgLT4gdjU6DQo+PiAtIEZpeCBsaW51eCBjb2Rpbmcgc3R5bGUgaXNzdWVzLg0KPj4g
+LSBGaXggdGVzdCByb2JvdCBidWlsZCBlcnJvcnMgdG8gbWFrZSBnb29kIHVzZSBvZiBzZXR1cF90
+cmFuX2Rlc2MNCj4+ICAgY2FsbCBiYWNrIGZ1bmN0aW9uLg0KPj4gLSBSZW1vdmUgdXNlbGVzcyBm
+dW5jdGlvbi4NCj4+DQo+PiB2MyAtPiB2NDoNCj4+IC0gTW9kaWZ5IGRtYSBtb2RlIHNlbGVjdGlv
+biBhbmQgZG1hIGFkZHJlc3NpbmcgYml0IHRvIHN0YXRpc2Z5DQo+PiAgIGxpbnV4IGNvZGluZyBz
+dHlsZS4NCj4+DQo+PiB2MSAtPiB2MjoNCj4+IC0gUmVtb3ZlIGR3X21jaV9jcWVfc2V0X3RyYW5f
+ZGVzYyBkdWUgdG8gdGhlIGR1cGxpY2F0ZWQgZnVuY3Rpb24uDQo+PiAtIEFkZCAtPnByZV9lbmFi
+bGUoKSAvIC0+cG9zdF9kaXNhYmxlKCkNCj4+DQo+PiB2MCAtPiB2MToNCj4+IC0gU2VwZXJhdGUg
+ZGlmZmVyZW50IHN1cHBvcnQgaW50byBzaW5nbGUgcGF0Y2guDQo+PiAtIEZpeCB0aGUgY29tcGls
+ZXIgY29tcGxhaW5zLg0KPj4gLS0tDQo+PiAtLS0NCj4+ICBkcml2ZXJzL21tYy9ob3N0L0tjb25m
+aWcgICAgICB8ICAgMTMgKw0KPj4gIGRyaXZlcnMvbW1jL2hvc3QvTWFrZWZpbGUgICAgIHwgICAg
+MSArDQo+PiAgZHJpdmVycy9tbWMvaG9zdC9kd19tbWNfY3FlLmMgfCAxNDY3IA0KPj4gKysrKysr
+KysrKysrKysrKysrKysrKysrKysrKysrKysrICBkcml2ZXJzL21tYy9ob3N0L2R3X21tY19jcWUu
+aCB8ICANCj4+IDQ1NiArKysrKysrKysrDQo+PiAgNCBmaWxlcyBjaGFuZ2VkLCAxOTM3IGluc2Vy
+dGlvbnMoKykNCj4+ICBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVycy9tbWMvaG9zdC9kd19tbWNf
+Y3FlLmMgIGNyZWF0ZSBtb2RlIDEwMDY0NCANCj4+IGRyaXZlcnMvbW1jL2hvc3QvZHdfbW1jX2Nx
+ZS5oDQo+Pg0KPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvbW1jL2hvc3QvS2NvbmZpZyBiL2RyaXZl
+cnMvbW1jL2hvc3QvS2NvbmZpZyBpbmRleCANCj4+IDU4YmQ1ZmU0Y2QyNS4uMDZiYjRkZTI4Y2M0
+IDEwMDY0NA0KPj4gLS0tIGEvZHJpdmVycy9tbWMvaG9zdC9LY29uZmlnDQo+PiArKysgYi9kcml2
+ZXJzL21tYy9ob3N0L0tjb25maWcNCj4+IEBAIC04MzcsNiArODM3LDE5IEBAIGNvbmZpZyBNTUNf
+RFdfU1RBUkZJVkUNCj4+ICAgICAgICAgU3lub3BzeXMgRGVzaWduV2FyZSBNZW1vcnkgQ2FyZCBJ
+bnRlcmZhY2UgZHJpdmVyLiBTZWxlY3QgdGhpcyBvcHRpb24NCj4+ICAgICAgICAgZm9yIHBsYXRm
+b3JtcyBiYXNlZCBvbiBTdGFyRml2ZSBKSDcxMTAgU29DLg0KPj4NCj4+ICtjb25maWcgTU1DX0RX
+X0NRRQ0KPj4gKyAgICAgdHJpc3RhdGUgIlN5bm9wc3lzIERlc2lnbldhcmUgTWVtb3J5IENhcmQg
+d2l0aCBDUUUgSW50ZXJmYWNlIg0KPj4gKyAgICAgZGVwZW5kcyBvbiBBUkMgfHwgQVJNIHx8IEFS
+TTY0IHx8IE1JUFMgfHwgQ09NUElMRV9URVNUDQo+PiArICAgICBzZWxlY3QgTU1DX0NRSENJDQo+
+PiArICAgICBoZWxwDQo+PiArICAgICAgVGhpcyBzZWxlY3RzIHN1cHBvcnQgZm9yIHRoZSBTeW5v
+cHN5cyBEZXNpZ25XYXJlIE1vYmlsZSBTdG9yYWdlIElQDQo+PiArICAgICAgYmxvY2sgYWZ0ZXIg
+SkVERUMgU3RhbmRhcmQgdmVyc2lvbiA1LjEuIFNlbGVjdCB0aGlzIG9wdGlvbiBmb3IgU0QgYW5k
+DQo+PiArICAgICAgTU1DIGludGVyZmFjZXMgdGhhdCB1c2UgY29tbWFuZCBxdWV1ZS4NCj4gL2Fm
+dGVyL2FjY29yZGluZyB0by8gPw0KDQpTb3JyeSBmb3IgYXNraW5nLCB3aGF0IGRvZXMgIiAvYWZ0
+ZXIvYWNjb3JkaW5nIHRvLyA/ICIgbWVhbiA/DQoNCj4gRG9lcyB0aGUgaGFyZHdhcmUgYWN0dWFs
+bHkgaW1wbGVtZW50IGJvdGg6IFNEIGFuZCBNTUMgQ1E/DQo+IElmIHNvIHRoYXQgd291bGQgYmUg
+dmVyeSBpbnRlcmVzdGluZywgYnV0IGFsc28gbm90IGN1cnJlbnRseSBzdXBwb3J0ZWQgYnkgbW1j
+IGxheWVyLg0KDQpTaW5jZSB3ZSBvbmx5IGhhZCBTeW5vcHN5cyBlTU1DJ3MgSVAsIG91ciBoYXJk
+d2FyZSBvbmx5IGltcGxlbWVudCBNTUMgQ1EsDQpidXQgYmVjYXVzZSB3ZSBmb2xsb3dlZCBTeW5v
+cHN5cycgZGF0YSBib29rIGFuZCB1c2VyIGd1aWRlLCBpdCBtaWdodCBwcm9iYWJseSBleHBhbmQg
+DQp0byBTRCBjYXJkIHVzYWdlLCB0aGFua3MuDQoNCkJlc3QgUmVnYXJkcywNCkp5YW4NCi0tLS0t
+T3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9tOiBDaHJpc3RpYW4gTG9laGxlIDxjaHJpc3RpYW4u
+bG9laGxlQGFybS5jb20+IA0KU2VudDogTW9uZGF5LCBOb3ZlbWJlciAyNywgMjAyMyA5OjAyIFBN
+DQpUbzogSnlhbiBDaG91IFvlkajoirflroldIDxqeWFuY2hvdUByZWFsdGVrLmNvbT47IHVsZi5o
+YW5zc29uQGxpbmFyby5vcmc7IGFkcmlhbi5odW50ZXJAaW50ZWwuY29tOyBqaDgwLmNodW5nQHNh
+bXN1bmcuY29tOyByaXRlc2hoQGNvZGVhdXJvcmEub3JnOyByb2JoK2R0QGtlcm5lbC5vcmc7IGty
+enlzenRvZi5rb3psb3dza2krZHRAbGluYXJvLm9yZw0KQ2M6IGNvbm9yK2R0QGtlcm5lbC5vcmc7
+IGFzdXRvc2hkQGNvZGVhdXJvcmEub3JnOyBwLnphYmVsQHBlbmd1dHJvbml4LmRlOyBsaW51eC1t
+bWNAdmdlci5rZXJuZWwub3JnOyBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZzsgbGludXgta2Vy
+bmVsQHZnZXIua2VybmVsLm9yZzsgYXJuZEBhcm5kYi5kZTsgYnJpYW5ub3JyaXNAY2hyb21pdW0u
+b3JnOyBkb3VnQHNjaG1vcmdhbC5jb207IHRvbnlodWFuZy5zdW5wbHVzQGdtYWlsLmNvbTsgYWJl
+bC52ZXNhQGxpbmFyby5vcmc7IHdpbGxpYW0ucWl1QHN0YXJmaXZldGVjaC5jb20NClN1YmplY3Q6
+IFJlOiBbUEFUQ0ggdjddWzIvNF0gbW1jOiBBZGQgU3lub3BzeXMgRGVzaWduV2FyZSBtbWMgY21k
+cSBob3N0IGRyaXZlcg0KDQoNCkV4dGVybmFsIG1haWwuDQoNCg0KDQpPbiAyMS8xMS8yMDIzIDA5
+OjEwLCBKeWFuIENob3Ugd3JvdGU6DQo+IFdlIGltcGxlbWVudGVkIGNtZHEgZmVhdHVyZSBvbiBT
+eW5vcHN5cyBEZXNpZ25XYXJlIG1tYyBkcml2ZXIuDQo+IFRoZSBkaWZmZXJlbmNlIGJldHdlZW4g
+ZHdfbW1jLmMgYW5kIGR3X21tY19jcWUuYyB3ZXJlIGRpc3RpbmN0IA0KPiByZWdpc3RlciBkZWZp
+bml0aW9ucywgbW1jIHVzZXIgZmxvdyBhbmQgdGhlIGFkZGl0aW9uIG9mIGNtZHEuDQo+DQo+IE5l
+dyB2ZXJzaW9uIG9mIFVzZXIgR3VpZGUgaGFkIG1vZGlmeSBtbWMgZHJpdmVyJ3MgdXNhZ2UgZmxv
+dywgd2UgbWF5IA0KPiBuZWVkIHRvIHJlbmV3IGNvZGUgdG8gcHJlY2lzZWx5IGZvbGxvdyB1c2Vy
+IGd1aWRlLg0KPg0KPiBNb3JlIG92ZXIsIFdlIGFkZGVkIGEgd2FpdCBzdGF0dXMgZnVuY3Rpb24g
+dG8gc2F0aXNmeSBzeW5vcHN5cyB1c2VyIA0KPiBndWlkZSdzIGRlc2NyaXB0aW9uLCBzaW5jZSB0
+aGlzIGZsb3cgbWlnaHQgYmUgc3BlY2lmaWMgaW4gc3lub3BzeXMgDQo+IGhvc3QgZHJpdmVyIG9u
+bHkuDQo+DQo+IFNpZ25lZC1vZmYtYnk6IEp5YW4gQ2hvdSA8anlhbmNob3VAcmVhbHRlay5jb20+
+DQo+DQo+IOKAlC0tDQo+IHY2IC0+IHY3Og0KPiAtIFJlbW92ZSByZXNldC1uYW1lcyBpbiBkcml2
+ZXIgYW5kIGFkanVzdCByZXNldCBjb250cm9sJ3MgY29kZS4NCj4NCj4gdjUgLT4gdjY6DQo+IC0g
+Rml4IGxpbnV4IGNvZGluZyBzdHlsZSBpc3N1ZXMuDQo+IC0gRHJvcCB1c2VsZXNzIGNvZGUgdGhh
+dCBpcyBub3QgZGVzY3JpYmVkIGluIHRoZSBiaW5kaW5ncy4NCj4gLSBSZXBsYWNlIGRldm1fY2xr
+X2dldCBhbmQgY2xrX3ByZXBhcmVfZW5hYmxlIHdpdGggZGV2bV9jbGtfZ2V0X2VuYWJsZWQuDQo+
+IC0gUmVwbGFjZSBFWFBPUlRfU1lNQk9MIHdpdGggRVhQT1JUX1NZTUJPTF9HUEwuDQo+DQo+IHY0
+IC0+IHY1Og0KPiAtIEZpeCBsaW51eCBjb2Rpbmcgc3R5bGUgaXNzdWVzLg0KPiAtIEZpeCB0ZXN0
+IHJvYm90IGJ1aWxkIGVycm9ycyB0byBtYWtlIGdvb2QgdXNlIG9mIHNldHVwX3RyYW5fZGVzYw0K
+PiAgIGNhbGwgYmFjayBmdW5jdGlvbi4NCj4gLSBSZW1vdmUgdXNlbGVzcyBmdW5jdGlvbi4NCj4N
+Cj4gdjMgLT4gdjQ6DQo+IC0gTW9kaWZ5IGRtYSBtb2RlIHNlbGVjdGlvbiBhbmQgZG1hIGFkZHJl
+c3NpbmcgYml0IHRvIHN0YXRpc2Z5DQo+ICAgbGludXggY29kaW5nIHN0eWxlLg0KPg0KPiB2MSAt
+PiB2MjoNCj4gLSBSZW1vdmUgZHdfbWNpX2NxZV9zZXRfdHJhbl9kZXNjIGR1ZSB0byB0aGUgZHVw
+bGljYXRlZCBmdW5jdGlvbi4NCj4gLSBBZGQgLT5wcmVfZW5hYmxlKCkgLyAtPnBvc3RfZGlzYWJs
+ZSgpDQo+DQo+IHYwIC0+IHYxOg0KPiAtIFNlcGVyYXRlIGRpZmZlcmVudCBzdXBwb3J0IGludG8g
+c2luZ2xlIHBhdGNoLg0KPiAtIEZpeCB0aGUgY29tcGlsZXIgY29tcGxhaW5zLg0KPiAtLS0NCj4g
+LS0tDQo+ICBkcml2ZXJzL21tYy9ob3N0L0tjb25maWcgICAgICB8ICAgMTMgKw0KPiAgZHJpdmVy
+cy9tbWMvaG9zdC9NYWtlZmlsZSAgICAgfCAgICAxICsNCj4gIGRyaXZlcnMvbW1jL2hvc3QvZHdf
+bW1jX2NxZS5jIHwgMTQ2NyANCj4gKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrICBk
+cml2ZXJzL21tYy9ob3N0L2R3X21tY19jcWUuaCB8ICANCj4gNDU2ICsrKysrKysrKysNCj4gIDQg
+ZmlsZXMgY2hhbmdlZCwgMTkzNyBpbnNlcnRpb25zKCspDQo+ICBjcmVhdGUgbW9kZSAxMDA2NDQg
+ZHJpdmVycy9tbWMvaG9zdC9kd19tbWNfY3FlLmMgIGNyZWF0ZSBtb2RlIDEwMDY0NCANCj4gZHJp
+dmVycy9tbWMvaG9zdC9kd19tbWNfY3FlLmgNCj4NCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvbW1j
+L2hvc3QvS2NvbmZpZyBiL2RyaXZlcnMvbW1jL2hvc3QvS2NvbmZpZyBpbmRleCANCj4gNThiZDVm
+ZTRjZDI1Li4wNmJiNGRlMjhjYzQgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvbW1jL2hvc3QvS2Nv
+bmZpZw0KPiArKysgYi9kcml2ZXJzL21tYy9ob3N0L0tjb25maWcNCj4gQEAgLTgzNyw2ICs4Mzcs
+MTkgQEAgY29uZmlnIE1NQ19EV19TVEFSRklWRQ0KPiAgICAgICAgIFN5bm9wc3lzIERlc2lnbldh
+cmUgTWVtb3J5IENhcmQgSW50ZXJmYWNlIGRyaXZlci4gU2VsZWN0IHRoaXMgb3B0aW9uDQo+ICAg
+ICAgICAgZm9yIHBsYXRmb3JtcyBiYXNlZCBvbiBTdGFyRml2ZSBKSDcxMTAgU29DLg0KPg0KPiAr
+Y29uZmlnIE1NQ19EV19DUUUNCj4gKyAgICAgdHJpc3RhdGUgIlN5bm9wc3lzIERlc2lnbldhcmUg
+TWVtb3J5IENhcmQgd2l0aCBDUUUgSW50ZXJmYWNlIg0KPiArICAgICBkZXBlbmRzIG9uIEFSQyB8
+fCBBUk0gfHwgQVJNNjQgfHwgTUlQUyB8fCBDT01QSUxFX1RFU1QNCj4gKyAgICAgc2VsZWN0IE1N
+Q19DUUhDSQ0KPiArICAgICBoZWxwDQo+ICsgICAgICBUaGlzIHNlbGVjdHMgc3VwcG9ydCBmb3Ig
+dGhlIFN5bm9wc3lzIERlc2lnbldhcmUgTW9iaWxlIFN0b3JhZ2UgSVANCj4gKyAgICAgIGJsb2Nr
+IGFmdGVyIEpFREVDIFN0YW5kYXJkIHZlcnNpb24gNS4xLiBTZWxlY3QgdGhpcyBvcHRpb24gZm9y
+IFNEIGFuZA0KPiArICAgICAgTU1DIGludGVyZmFjZXMgdGhhdCB1c2UgY29tbWFuZCBxdWV1ZS4N
+Ci9hZnRlci9hY2NvcmRpbmcgdG8vID8NCkRvZXMgdGhlIGhhcmR3YXJlIGFjdHVhbGx5IGltcGxl
+bWVudCBib3RoOiBTRCBhbmQgTU1DIENRPw0KSWYgc28gdGhhdCB3b3VsZCBiZSB2ZXJ5IGludGVy
+ZXN0aW5nLCBidXQgYWxzbyBub3QgY3VycmVudGx5IHN1cHBvcnRlZCBieSBtbWMgbGF5ZXIuDQo=
 
