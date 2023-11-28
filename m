@@ -1,130 +1,174 @@
-Return-Path: <devicetree+bounces-19748-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19749-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDD597FC0EF
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 18:59:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A4647FC0F5
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 19:03:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ECE3C1C20CD0
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 17:59:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 51011282514
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 18:03:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92121539B;
-	Tue, 28 Nov 2023 17:59:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D90E41C96;
+	Tue, 28 Nov 2023 18:03:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="RHCIKMRu"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SqqwOf+2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0600268A;
-	Tue, 28 Nov 2023 09:59:21 -0800 (PST)
-Received: from [100.108.216.202] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: obbardc)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 1D1F266022D3;
-	Tue, 28 Nov 2023 17:59:19 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1701194360;
-	bh=cbu4+oS+iW2pjUotuYauU8lriqInLrlwrlVQI6PWFi0=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=RHCIKMRujRTWC7ORZp2fKTVzecqj33tmLwrIlT1KDmR19bUnfqoN2cBS2wuRBF3d3
-	 vC9pRVqelDajXE2alKFTYHCbjmyDc6cSk6ppVNFLzucM6bc5hJw/+stXZB1uQz8qYG
-	 maN+e/2dCs/+g5krKSeU/rni5+b89bEw/z/GOcuC4yVilmANdnlLIpWDyUBiT6vbQA
-	 PjYntjUlYLa+6iEiEWfK5gmgB3u/5UUjFDx9tj1rgNsybXQVoJ2tHhCDhezcjyzFtT
-	 kvMv6TddY/9a4CK4tlk7/Af7qx04gP4T/8FiC6Arc21UZ2IimQCz+dJgECGCxfuAm0
-	 sQOgPeAgq2tQw==
-Message-ID: <897e404e0097a0c422bdb1d0e2d6cbb996500e8e.camel@collabora.com>
-Subject: Re: [RFC PATCH v2 2/2] kselftest: devices: Add sample board file
- for google,spherion
-From: Christopher Obbard <chris.obbard@collabora.com>
-To: =?ISO-8859-1?Q?N=EDcolas?= "F. R. A. Prado" <nfraprado@collabora.com>, 
- Shuah Khan <shuah@kernel.org>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, Bjorn Helgaas <bhelgaas@google.com>
-Cc: Saravana Kannan <saravanak@google.com>, Rob Herring
- <robh+dt@kernel.org>,  kernelci@lists.linux.dev, David Gow
- <davidgow@google.com>, Guenter Roeck <groeck@chromium.org>,
- linux-kselftest@vger.kernel.org,  linux-usb@vger.kernel.org,
- kernel@collabora.com, Dan Carpenter <dan.carpenter@linaro.org>, Tim Bird
- <Tim.Bird@sony.com>,  linux-pci@vger.kernel.org, Doug Anderson
- <dianders@chromium.org>,  devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Date: Tue, 28 Nov 2023 17:59:01 +0000
-In-Reply-To: <20231127233558.868365-3-nfraprado@collabora.com>
-References: <20231127233558.868365-1-nfraprado@collabora.com>
-	 <20231127233558.868365-3-nfraprado@collabora.com>
-Autocrypt: addr=chris.obbard@collabora.com; prefer-encrypt=mutual;
- keydata=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
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.1-1 
+Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA374AB;
+	Tue, 28 Nov 2023 10:03:49 -0800 (PST)
+Received: by mail-pl1-x62b.google.com with SMTP id d9443c01a7336-1cfc985c92dso22823005ad.0;
+        Tue, 28 Nov 2023 10:03:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1701194629; x=1701799429; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=t34+zNByVczgqctyRV+yQUYE4kIPs4CYhcIOcWoRV/Y=;
+        b=SqqwOf+2Gs8RxgUzfG8mXtWwPQ37l4jejudYJvwdomJkALhUC/FxWLickumuYv2ZwN
+         QEtIh+ivUi8QqmPCyiNUheQe1QR+jCjDNTQrq6Ozx+XFRNKP2NFOtEq/p3DVleXlpt1Q
+         0BGnhGatnBUDYQyMXmlYHdqAQonIrY2h70JvLW+OV9xvYvi5pq0voewqXHdC+54bngwx
+         s4YKO3DfbZ+BwoKoFrCA5gWYeyDrBoec2GCWa6VgbNKoH/2HpixXNGpvXFqAD1rpIkZE
+         nuEXkHBMFrUyUGRDZp++KqayXN7swNGBcGxXsPvjXt89muhenICASnHpcfrR+cF63iiD
+         AfzQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701194629; x=1701799429;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=t34+zNByVczgqctyRV+yQUYE4kIPs4CYhcIOcWoRV/Y=;
+        b=CFB/uGM/VemJ6sKHa0IbET1TqR87rRon/qG5pzoNBgTGTv4HxkdxKqLuTjDAGTjBi2
+         FUgjh2v1Y4Eq2TRAFjLcwNmZOam+SwzQlQ482mQCv7FS8PgCvQkO466Uo4SaqdJL7H1+
+         IWxZwvictEG1cFX4dwzw0nMDzAmmg6P0gem3VnN4HhpgmZQdmqCn5pBhf6tnO+VBfyKb
+         Lvzq2HSPZ1mQVb1QiFWy3zomtP1NguO2ESxfSM4KSiubVHfghhRO6r/AJbH+UkaAPF/u
+         ei7k+IB63O0xrNQWjhz2A2jbw0srJnIH8GyKZvzfnpjhLJOHreBIgwp4P5GWBv3xIjHM
+         OXUw==
+X-Gm-Message-State: AOJu0Yxmsk4o0r0mF+x016GbJ2ZUGmAgSLnLO5rkiH5QRg1LJCCCpWsd
+	kNjHNlyrzUWR0+0t+NcXa00=
+X-Google-Smtp-Source: AGHT+IGizhYWi7d1Q8ggW+eEPShcC+V/3yGbM6htn5BsIkta4XVgm4DOPyxZLvQU6Zzxir+TJB53ew==
+X-Received: by 2002:a17:903:41c8:b0:1d0:955:b5d4 with SMTP id u8-20020a17090341c800b001d00955b5d4mr1464503ple.33.1701194628965;
+        Tue, 28 Nov 2023 10:03:48 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id x19-20020a170902b41300b001c7283d3089sm10513428plr.273.2023.11.28.10.03.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 28 Nov 2023 10:03:48 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <cacce41f-f1c0-4f76-ab24-c6ea8bb0303f@roeck-us.net>
+Date: Tue, 28 Nov 2023 10:03:46 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] hwmon: ltc4282: add support for the LTC4282 chip
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzk@kernel.org>, Andy Shevchenko <andy@kernel.org>
+Cc: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>,
+ kernel test robot <lkp@intel.com>,
+ Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org>,
+ linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-doc@vger.kernel.org, oe-kbuild-all@lists.linux.dev,
+ Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, Linus Walleij <linus.walleij@linaro.org>
+References: <20231124-ltc4282-support-v2-2-952bf926f83c@analog.com>
+ <202311250548.lUn3bm1A-lkp@intel.com>
+ <fb2aaa4c69c88738499dfbf46ef93e3b81ca93cb.camel@gmail.com>
+ <76957975-56e7-489e-9c79-086b6c1ffe89@kernel.org>
+ <ac950d01-d9aa-4fb7-810d-b21335e4cc94@kernel.org>
+ <ZWS90GQTJWA7DrML@smile.fi.intel.com>
+ <bcc5da24-7243-42fa-a82b-48851ce17c0c@kernel.org>
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <bcc5da24-7243-42fa-a82b-48851ce17c0c@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi N=C3=ADcolas,
+On 11/28/23 08:50, Krzysztof Kozlowski wrote:
+> On 27/11/2023 17:03, Andy Shevchenko wrote:
+>> On Mon, Nov 27, 2023 at 09:12:14AM +0100, Krzysztof Kozlowski wrote:
+>>> On 27/11/2023 09:10, Krzysztof Kozlowski wrote:
+>>
+>> ...
+>>
+>>> Wait, this was not even unusual test, just standard compile, which means
+>>> you did not do basic tests on your end. You must build your new driver
+>>> with W=1, smatch, sparse and coccinelle before sending upstream.
+>>
+>> Well, sparse is lagging in development, for the last year it's at least two
+>> times it broke kernel builds because of being not ready for the new stuff used
+>> in the kernel. Do we have anybody to sync this? I don't think so, hence
+>> requiring this from developer is doubtful. Otherwise I agree, that basic
+>> compilation with GCC/LLVM must be done.
+> 
+> Sparse still detects several issues and handles lock annotations, so it
+> is useful. But if you disagree with that part, I still insist on Smatch
+> (which is actively developed and works great) and Coccinelle (also
+> actively developed).
+> 
 
-On Mon, 2023-11-27 at 18:34 -0500, N=C3=ADcolas F. R. A. Prado wrote:
-> Add a sample board file describing the file's format and with the list
-> of devices expected to be probed on the google,spherion machine as an
-> example.
+Quite frankly, for my part I would be more than happy if people would read
+and follow Documentation/hwmon/submitting-patches.rst. Most submitters don't
+bother. That doesn't even mention building with W=1 (the much more optimistic
+me who wrote that document several years ago thought that would be obvious),
+much less running any source code analysis tools . Feel free to submit a patch
+to strengthen the wording there. If you do that, it would have to be more explicit
+then "run smatch" or "run coccinelle" because hardly anyone would know how
+to do that.
 
-Did you consider using some machine-readable & extensible format like yaml?
-Surely we don't need to invent yet-another file-format? :-)
+Until then, there isn't really anything to insist on. I even had submitters
+react angry when I asked them to follow the guidance in that document,
+so I won't insist on anything that isn't documented as requirement.
+Quite frankly, most of the time I'd probably fix up issues such as missing
+"static" myself because I am tired having to argue about it with submitters
+who don't care.
 
-
-Chris
-
->=20
-> Signed-off-by: N=C3=ADcolas F. R. A. Prado <nfraprado@collabora.com>
-> ---
->=20
-> (no changes since v1)
->=20
-> =C2=A0.../testing/selftests/devices/boards/google,spherion | 12 +++++++++=
-+++
-> =C2=A01 file changed, 12 insertions(+)
-> =C2=A0create mode 100644 tools/testing/selftests/devices/boards/google,sp=
-herion
->=20
-> diff --git a/tools/testing/selftests/devices/boards/google,spherion
-> b/tools/testing/selftests/devices/boards/google,spherion
-> new file mode 100644
-> index 000000000000..db9a17cccd03
-> --- /dev/null
-> +++ b/tools/testing/selftests/devices/boards/google,spherion
-> @@ -0,0 +1,12 @@
-> +# Example test definition for Google Spherion Chromebook
-> +#
-> +# Format:
-> +#=C2=A0=C2=A0 usb|pci test_name number_of_matches field=3Dvalue [ field=
-=3Dvalue ... ]
-> +#
-> +# The available match fields vary by bus. The field-value match pairs fo=
-r a
-> +# device can be retrieved from the device's modalias attribute in sysfs.=
- A
-> +# subset of the fields may be used to make the match more generic so it =
-can
-> work
-> +# with the different hardware variants of a device on the machine.
-> +usb camera 1 ic=3D0e isc=3D01 ip=3D00
-> +usb bluetooth 1 ic=3De0 isc=3D01 ip=3D01 in=3D00
-> +pci wifi 1 v=3D14c3 d=3D7961
-> --=20
-> 2.42.1
->=20
-> _______________________________________________
-> Kernel mailing list -- kernel@mailman.collabora.com
-> To unsubscribe send an email to kernel-leave@mailman.collabora.com
+Guenter
 
 
