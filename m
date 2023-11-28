@@ -1,161 +1,268 @@
-Return-Path: <devicetree+bounces-19517-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19520-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68B407FB3AE
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 09:11:56 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F15F7FB3BB
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 09:14:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 09559B21230
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 08:11:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8BA791C20BCA
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 08:14:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 192A115E80;
-	Tue, 28 Nov 2023 08:11:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F57016416;
+	Tue, 28 Nov 2023 08:14:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="A20XC7FZ"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="N+aB0tQS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-db3eur04on2041.outbound.protection.outlook.com [40.107.6.41])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D86E98;
-	Tue, 28 Nov 2023 00:11:47 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TCkcjKPev4BW8CJoKaOvnH4dqWVUD26hHd655VtHBC2dO/t2/Pyv0Kdmqv0KPMNZZ8ueG8Q4ZzASHkzyw8qcqSz7AzNu8HpCefiNLPXdWvKl56SUHnINi16TXoFrMeI8rcrOJH2gXA0xz0IkqYfjMlggcafB5eRWukiW03U4kP5rtHzG6gvxYvVQoqoo5kXYvmQEqX6pTf0ut7R+qm4CMbI7nQhw8Apas/PnICqYQbygfNOHuL66qFC8Q0U4Qce41MyRzVJJMZyMYAe3WLNvNu8tdYWgwothGNNd+OnK1tu81w69bB8qTRpsKi+WcmgzmGf41NOwFxwhpME94AgL8Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dm2FDg0t+Tna5IV6r/T026XdzCOt13LyOTVstv9GeGg=;
- b=aeha1ORHOkR08YU+dXnmf4WMqjuqPMfpbCuREzXKmH7xPCVPhdUkSjSukMwDwcA6ahn7plpIhijgFOXiP1ERTW/2U1VnHumoJtPl/tv4fpYC9JFEiCWNSvoBoGaWb+dOvIY5Pt/jKKsQKE2MkBFNCAPQC3NPLN0jwVBZ6JQ/unHXFI5xQA8tgkhVTFcMmSBeb2Q6S3xxwxOal54S7BRh9nbFB4zf/JyBv7vikfj3p6XvtVnKBTy28LNq6ggOB2Ev60lzUjtfKYMrTfRTFi9JD/kCp7XMRAoMgrn/toRbWRtTUhb3LDZdZR+KckVnCkiFx5u8CIn7igRugkg0tTLjeg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dm2FDg0t+Tna5IV6r/T026XdzCOt13LyOTVstv9GeGg=;
- b=A20XC7FZ3IWsIDZA5F3eJrPpInlDixoZ/EECASiQLmaLVnJttNvhLld5SymXJuHRQSVxtkMK+qmFvxyoOpMWOeixEVRGhOxAEQrCs1qQFNmnPSyrzC64qCDRfAycA/M54GMBxbfN1wUNmf/ph/eF3r/QVwD7C1wiI9JyLjQNgbQ=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from VI1PR04MB5151.eurprd04.prod.outlook.com (2603:10a6:803:61::28)
- by PAXPR04MB9445.eurprd04.prod.outlook.com (2603:10a6:102:2b4::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.19; Tue, 28 Nov
- 2023 08:11:44 +0000
-Received: from VI1PR04MB5151.eurprd04.prod.outlook.com
- ([fe80::c688:1f14:2ab1:c78a]) by VI1PR04MB5151.eurprd04.prod.outlook.com
- ([fe80::c688:1f14:2ab1:c78a%4]) with mapi id 15.20.7046.015; Tue, 28 Nov 2023
- 08:11:44 +0000
-From: Daniel Baluta <daniel.baluta@oss.nxp.com>
-To: broonie@kernel.org,
-	robh+dt@kernel.org
-Cc: kuninori.morimoto.gx@renesas.com,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	lgirdwood@gmail.com,
-	daniel.baluta@gmail.com,
-	alsa-devel@alsa-project.org,
-	iuliana.prodan@nxp.com,
-	shengjiu.wang@nxp.com
-Subject: [PATCH v4 2/2] ASoC: dt-bindings: audio-graph-port: Document new DAI link flags playback-only/capture-only
-Date: Tue, 28 Nov 2023 10:11:19 +0200
-Message-Id: <20231128081119.106360-3-daniel.baluta@oss.nxp.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231128081119.106360-1-daniel.baluta@oss.nxp.com>
-References: <20231128081119.106360-1-daniel.baluta@oss.nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: BE1P281CA0084.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:b10:78::11) To VI1PR04MB5151.eurprd04.prod.outlook.com
- (2603:10a6:803:61::28)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F37BCE;
+	Tue, 28 Nov 2023 00:14:28 -0800 (PST)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AS4KoE4009769;
+	Tue, 28 Nov 2023 08:14:20 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=guuOMbz3l0LYG0OKUpwSPI8VLzr9E5tLRgYzgSVkmA0=;
+ b=N+aB0tQSxGe6q8bI6pecGjQg9+7D9+XOPqLl35CqfoPQ0oFv+0Y0nBzozkYwq0uMHW12
+ uvB8iPBRqihWMp8SwHTiLu4Rf7IcY9KAL+zinmIbYRCTOhJ3Im4/aV67mc9sr2kagNV1
+ bFD2vT4UfpmSRBtwHNsZCrA5cCY/cwjtMOV9KcudejKYVFeKwv4YFV20ldXoaUNfTKvF
+ kBEkSSW7c3iQuFN3vL1jD8xRLVi7XRtGsmNUA569lmKk0Gg34QPHJ2IDklRk90oy2bLZ
+ La8dqKQYKS6/nt32OsCL4X6/mD6OV5FUxJax4D/RtHMbM6VOa7aXXvOKJmvPUKbGuJZw nA== 
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3umrqq2xwc-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 28 Nov 2023 08:14:20 +0000
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AS8EJtV030775
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 28 Nov 2023 08:14:19 GMT
+Received: from [10.216.60.229] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 28 Nov
+ 2023 00:14:13 -0800
+Message-ID: <a4e8b531-49f9-f4a1-51cb-e422c56281cc@quicinc.com>
+Date: Tue, 28 Nov 2023 13:44:10 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: VI1PR04MB5151:EE_|PAXPR04MB9445:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0355fa44-7b9b-4593-13e7-08dbefe9a5de
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	GO/uLctfVmBsBXnSk//dOglC0wGJtb4LY7MZYjqeWMOagaxZllqsoKq55sXgpPaeRrAJ226T875FNOQXc4h0Edc8d8aA7lhh8Cz4gCebMTma2L229TNV1qLL6LKrMo3PdxK2GPZuJ+ZMHgNEcRVodNPHx2hXA/pi8eF5yuhwIFgLnDkcbRXk0kSrDsgb7fPaCzEs+MuWaJP+XqWGUvY4YAF7O8WrT22b5AOYu+OONZiyCobP9cNIJnCOlBcdqIehkQfskIqUgV5wqWSjSzOTDeKcghqm3xF6r5c4yvEea9UrSzHd13ot7/VQpE0pE+erVwGwYfIH6/DjWoHwDb6nP/6/pFvb75m7LCK2ZnU3vQSy9/zT1wWSX2nZe+Nzv/QX7nTgvv0nioO+CL2CP85bIIx0bE7i2vtjF3nxOi1hRKd3DtS1TvcSluguxgmjJaf4WW7VFKpOg+Eyo308TvId/rClSFH2gl5v0KtElZE00o2/h0v3di4Q/sWgLrVJbhd7KLpZ/wrkLPHzN1sUlNbWT9ocKP1vHtIkOWUa9uwf/rGwqJyDOeL25oLFV4z402ayna+pAS2iXG6Okhp5YTfV5QlF0wbykOxJrfPPtaXXrJLtvK+l8o1o3kWw1zJTiXD2
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5151.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39860400002)(376002)(366004)(346002)(396003)(136003)(230922051799003)(1800799012)(64100799003)(451199024)(186009)(38100700002)(2013699003)(86362001)(316002)(66946007)(66476007)(6486002)(66556008)(478600001)(41300700001)(4326008)(5660300002)(44832011)(8676002)(8936002)(2906002)(1076003)(2616005)(6666004)(6506007)(52116002)(6512007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?OvsJ/77dhZtYbGVk7S+kvMLpjAafmz4gH3bmbUJ3NWLPjMP3B/90nh+bYQql?=
- =?us-ascii?Q?bxiOxC3QOs6LwR1yJUma3lMXf7uDbyG+e5KD5n0+KzC8mCfw6DdCBtDN6g+A?=
- =?us-ascii?Q?DIVzx7E6j67rQna/dZujyHDl6Sdo9Rwfv1dOFDGCC7WtFMTgmkSlPieDDxJR?=
- =?us-ascii?Q?WDcTdzGnr9XhibVrSpHVxomWMsVvaxFtiugV68kWDNLrj6gZMyuzwN1zEu4G?=
- =?us-ascii?Q?R+DzJX6cOVx4udNcdTHmLVcGOxKcZdDen4BDsBzRlGXJKLR3QA44sPV7jX8s?=
- =?us-ascii?Q?VHo7JGca9Y+MxKgs2NwPvjEtVGxZ6wMCtlZ9DODHNUIORzat4dkUOM/IKiwN?=
- =?us-ascii?Q?HZxSPMfJ7r0rhphKM5hEO3fOHMC+DKcciUzcNi+RcaAht2V+dxhaUEU/98my?=
- =?us-ascii?Q?mXAkEjotsxYkEfHs7MfAXZwQufw17yBFaT3k24QNkjwsUI/rHPAuSWGmIQ0y?=
- =?us-ascii?Q?Yukg2C1kA67Wc0oSoWBsJKmEDXM1caNqGS+AontJV49MFg66pGuVy3FrH0tt?=
- =?us-ascii?Q?LxdVUdSxZl2Rzp7M5e/VYt/aOYEYnVzOYTTePYsT06dxFx70dpgRJ9Si5jeb?=
- =?us-ascii?Q?SvboxwvF3zoRR4rSAPpZKUzYb4TO4O9MhrzYMGNIvCB6u+F3Ss3XurJXf65F?=
- =?us-ascii?Q?qV0frxEsKYPyS/w4vYpKH0MivQF7/lmCMQS2QcxrS+X58fdSq27u7mwrMHe0?=
- =?us-ascii?Q?OhqkI6FqOxSLFpgblMsk//UD3V8bIVLvrTbZyiXI6UkutkVhcE6eh/b/Jnun?=
- =?us-ascii?Q?YON4UiWlKYzYim2XTWfBhx+KgTNHURiRGY/xrcE2KtZ/bgpCrRQq4DfGcLkN?=
- =?us-ascii?Q?a9CCw6JbO7+mWxR8ZhxwflaZUuda3S+0ilYGXjcIoIYWm8ghtbsIjarcL8Jt?=
- =?us-ascii?Q?kstwa5pxiIivTw9M+tXi9RNxZQA/Kj2Ks48gUMq+7XwZ0I4MnzJdlJ5a6fPY?=
- =?us-ascii?Q?VT7TWqNXi/XUo/uG75O1mJh5OMQdrorBv2WxyV20wlSxGbcs8zF2mJ1pH5wR?=
- =?us-ascii?Q?pNmKI4ZbdXlH6vjUvPF7Yv6CYaI2n7j0lsRU1ugzFCqbtf8nIb5tpP8tMAb6?=
- =?us-ascii?Q?bLg7xbBZFL/PEA3vJPGa7XLnNzD+2ZibQi3akaWnJ12yDSETy+1m0jPRCqYi?=
- =?us-ascii?Q?gofxeE0Vqxa4+sTHNeOllytvfcR0szt47VKJ4zvpipjF4bZ7IZ1cw3pZzRwe?=
- =?us-ascii?Q?kuMK7jjjDS5vOinyxTzswXd8NqB27tFijd5glqqAqvcNTPpmKzmCN+JRpYf6?=
- =?us-ascii?Q?lt5Nx17rHVzLvCr8MumbPb6w6RsUiFscIC64i0AA+IFx5muI1R5eQa3uEeLr?=
- =?us-ascii?Q?V43sVKwP3wLDonCTZRRLDqrdLn8u6t18MRQjzLhsa7QZFxEMNCpznoheUrrf?=
- =?us-ascii?Q?CErcKuq+/rRXTV8dhWWLPQM4rB3d+ATy7d+xaZejuoTsayk0fNA2rXCltsnU?=
- =?us-ascii?Q?uMTsU51Ry7egT3QpKycDYBKusEefCCI6khgpT9USCrosqLNOr8Fp9+l5akKS?=
- =?us-ascii?Q?jR91S+3u/MwRiS1B9tTyIyaqvBoipP7vxYtM9ZUeHx7Qa0H8JmutmpZOFw50?=
- =?us-ascii?Q?nGbWUEo89+XQRuennCMFAFteRoR0MNZEqVoxwJlONaNK6D//nInQrJ7Sf2KQ?=
- =?us-ascii?Q?ccQhogZFDWSftWACaMa5ffwrRA2+ihC6YAbwCqNLSSGII0RtkhkeJoG21Vis?=
- =?us-ascii?Q?yJA+aw=3D=3D?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0355fa44-7b9b-4593-13e7-08dbefe9a5de
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5151.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Nov 2023 08:11:39.5102
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 71OWlyU62xDp7gJDlfzUdnhgqE861WQoq8WpTC0DfMfl/kPQcEKgizbPY9VA3RorxUkOlcGV8USe5icO9gVKiA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB9445
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v2 2/3] arm64: dts: qcom: sc7280: Move video-firmware to
+ chrome-common
+Content-Language: en-US
+To: Luca Weiss <luca.weiss@fairphone.com>,
+        Dmitry Baryshkov
+	<dmitry.baryshkov@linaro.org>
+CC: Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
+        Bryan O'Donoghue
+	<bryan.odonoghue@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Mauro
+ Carvalho Chehab <mchehab@kernel.org>,
+        <cros-qcom-dts-watchers@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
+        <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+References: <20231002-sc7280-venus-pas-v2-0-bd2408891317@fairphone.com>
+ <20231002-sc7280-venus-pas-v2-2-bd2408891317@fairphone.com>
+ <4cfad910-1821-3a31-c372-3f6b199e8f71@quicinc.com>
+ <CX5ENKY70B5J.2D6DXKGI4EGX3@fairphone.com>
+ <ff021f49-f81b-0fd1-bd2c-895dbbb03d56@quicinc.com>
+ <CX70EBXCOB66.3998C482R86CN@fairphone.com>
+ <a29123a3-afe1-8f92-ff6c-835926d411af@quicinc.com>
+ <CAA8EJppkjpMmcHCvxomgUMPxGpf77iN9roRvb=NEcxdk237-UA@mail.gmail.com>
+ <e6d80982-1674-d0c4-9dbe-94d77079f6ba@quicinc.com>
+ <CX75Y1X2QIN7.1GRH1YI56MMZ@fairphone.com>
+From: Vikash Garodia <quic_vgarodia@quicinc.com>
+In-Reply-To: <CX75Y1X2QIN7.1GRH1YI56MMZ@fairphone.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: SWNyR8CKJr76zR2CihilRb79841x5gCd
+X-Proofpoint-GUID: SWNyR8CKJr76zR2CihilRb79841x5gCd
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-28_07,2023-11-27_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ malwarescore=0 clxscore=1015 lowpriorityscore=0 mlxscore=0
+ priorityscore=1501 adultscore=0 phishscore=0 bulkscore=0 suspectscore=0
+ spamscore=0 mlxlogscore=999 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2311060000 definitions=main-2311280063
 
-From: Daniel Baluta <daniel.baluta@nxp.com>
 
-Document new playback-only and capture-only flags which can be used
-when dai link can only support just one direction: playback or capture
-but not both.
+On 11/24/2023 9:26 PM, Luca Weiss wrote:
+> On Fri Nov 24, 2023 at 2:35 PM CET, Vikash Garodia wrote:
+>>
+>>
+>> On 11/24/2023 6:23 PM, Dmitry Baryshkov wrote:
+>>> On Fri, 24 Nov 2023 at 14:30, Vikash Garodia <quic_vgarodia@quicinc.com> wrote:
+>>>>
+>>>> On 11/24/2023 5:05 PM, Luca Weiss wrote:
+>>>>> On Fri Nov 24, 2023 at 7:38 AM CET, Vikash Garodia wrote:
+>>>>>>
+>>>>>> On 11/22/2023 7:50 PM, Luca Weiss wrote:
+>>>>>>> On Wed Nov 22, 2023 at 2:17 PM CET, Vikash Garodia wrote:
+>>>>>>>>
+>>>>>>>> On 10/2/2023 7:50 PM, Luca Weiss wrote:
+>>>>>>>>> If the video-firmware node is present, the venus driver assumes we're on
+>>>>>>>>> a system that doesn't use TZ for starting venus, like on ChromeOS
+>>>>>>>>> devices.
+>>>>>>>>>
+>>>>>>>>> Move the video-firmware node to chrome-common.dtsi so we can use venus
+>>>>>>>>> on a non-ChromeOS devices.
+>>>>>>>>>
+>>>>>>>>> At the same time also disable the venus node by default in the dtsi,
+>>>>>>>>> like it's done on other SoCs.
+>>>>>>>>>
+>>>>>>>>> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+>>>>>>>>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+>>>>>>>>> ---
+>>>>>>>>>  arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi | 8 ++++++++
+>>>>>>>>>  arch/arm64/boot/dts/qcom/sc7280.dtsi               | 6 ++----
+>>>>>>>>>  2 files changed, 10 insertions(+), 4 deletions(-)
+>>>>>>>>>
+>>>>>>>>> diff --git a/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi b/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
+>>>>>>>>> index 5d462ae14ba1..cd491e46666d 100644
+>>>>>>>>> --- a/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
+>>>>>>>>> +++ b/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
+>>>>>>>>> @@ -104,6 +104,14 @@ &scm {
+>>>>>>>>>   dma-coherent;
+>>>>>>>>>  };
+>>>>>>>>>
+>>>>>>>>> +&venus {
+>>>>>>>>> + status = "okay";
+>>>>>>>>> +
+>>>>>>>>> + video-firmware {
+>>>>>>>>> +         iommus = <&apps_smmu 0x21a2 0x0>;
+>>>>>>>>> + };
+>>>>>>>>> +};
+>>>>>>>>> +
+>>>>>>>>>  &watchdog {
+>>>>>>>>>   status = "okay";
+>>>>>>>>>  };
+>>>>>>>>> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>>>>>>>>> index 66f1eb83cca7..fa53f54d4675 100644
+>>>>>>>>> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>>>>>>>>> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>>>>>>>>> @@ -3740,6 +3740,8 @@ venus: video-codec@aa00000 {
+>>>>>>>>>                            <&apps_smmu 0x2184 0x20>;
+>>>>>> 0x2184 is a secure SID. I think qcm6490-fairphone-fp5.dts needs to override the
+>>>>>> iommus property as well to retain only the non secure SID i.e 0x2180 ? I am
+>>>>>> seeing below crash
+>>>>>>
+>>>>>> Call trace:
+>>>>>> [   47.663593]  qcom_smmu_write_s2cr+0x64/0xa4
+>>>>>> [   47.663616]  arm_smmu_attach_dev+0x120/0x284
+>>>>>> [   47.663647]  __iommu_attach_device+0x24/0xf8
+>>>>>> [   47.676845]  __iommu_device_set_domain+0x70/0xd0
+>>>>>> [   47.681632]  __iommu_group_set_domain_internal+0x60/0x1b4
+>>>>>> [   47.687218]  iommu_setup_default_domain+0x358/0x418
+>>>>>> [   47.692258]  __iommu_probe_device+0x3e4/0x404
+>>>>>>
+>>>>>> Could you please reconfirm if Video SID 0x2184 (and mask) is allowed by the
+>>>>>> qcm6490-fairphone-fp5 hardware having TZ ?
+>>>>>
+>>>>> Hi,
+>>>>>
+>>>>> On FP5 it seems it's no problem to have both SIDs in there, probe and
+>>>>> using venus appears to work fine.
+>>>>>
+>>>>> Are you using different firmware than QCM6490.LA.3.0 on the device where
+>>>>> you tested this?
+>>>> I was testing this on RB3 board which uses firmware [1].
+>>>
+>>> There is something wrong here.
+>>>
+>>> RB3 board uses venus-5.2
+>>> RB5 board uses vpu-1.0
+>>> Only sc7280 uses vpu-2.0
+>>
+>> Tested on QCM6490 IDP board, which is QCOM internal board similar to RB3 gen2.
+> 
+> In any case, I don't know much about the venus & iommu setup here. I can
+> try removing the 0x2184 SID and test if venus still works on FP5.
 
-Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
----
- .../devicetree/bindings/sound/audio-graph-port.yaml         | 6 ++++++
- 1 file changed, 6 insertions(+)
+Please remove 0x2184 SID and confirm specifically encoder works. This SID is for
+encoder.
 
-diff --git a/Documentation/devicetree/bindings/sound/audio-graph-port.yaml b/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
-index 60b5e3fd1115..b13c08de505e 100644
---- a/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
-+++ b/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
-@@ -19,6 +19,12 @@ definitions:
-     properties:
-       mclk-fs:
-         $ref: simple-card.yaml#/definitions/mclk-fs
-+      playback-only:
-+        description: port connection used only for playback
-+        $ref: /schemas/types.yaml#/definitions/flag
-+      capture-only:
-+        description: port connection used only for capture
-+        $ref: /schemas/types.yaml#/definitions/flag
- 
-   endpoint-base:
-     allOf:
--- 
-2.25.1
+> Also should the chromebooks keep that iommu entry or not?
+Chrome-common can have 0x2184 since its no-TZ based solution. So in sc7280.dtsi,
+you can keep the default SID i.e 0x2180 (with respective mask) and in
+chrome-common, we can override the iommus property with 0x2180 and 0x2184.
 
+Regards,
+Vikash
+
+> Regards
+> Luca
+> 
+>>
+>>>>
+>>>> Regards,
+>>>> Vikash
+>>>>
+>>>> [1]
+>>>> https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/qcom/vpu-2.0
+>>>>
+>>>>>>
+>>>>>>>>>                   memory-region = <&video_mem>;
+>>>>>>>>>
+>>>>>>>>> +                 status = "disabled";
+>>>>>>>>> +
+>>>>>>>>>                   video-decoder {
+>>>>>>>>>                           compatible = "venus-decoder";
+>>>>>>>>>                   };
+>>>>>>>>> @@ -3748,10 +3750,6 @@ video-encoder {
+>>>>>>>>>                           compatible = "venus-encoder";
+>>>>>>>>>                   };
+>>>>>>>>>
+>>>>>>>>> -                 video-firmware {
+>>>>>>>>> -                         iommus = <&apps_smmu 0x21a2 0x0>;
+>>>>>>>>> -                 };
+>>>>>>>>> -
+>>>>>>>>>                   venus_opp_table: opp-table {
+>>>>>>>>>                           compatible = "operating-points-v2";
+>>>>>>>>>
+>>>>>>>>>
+>>>>>>>> Changes look good. Is this tested on SC7280 ?
+>>>>>>>
+>>>>>>> Hi Vikash,
+>>>>>>>
+>>>>>>> I didn't test it myself on sc7280 (just qcm6490-fp5) but dtx_diff
+>>>>>>> reports no differences except for status = okay property being added, so
+>>>>>>> there should be no change on those boards. See below.
+>>>>>>>
+>>>>>>> Regards
+>>>>>>> Luca
+>>>>>>
+>>>>>> I tested on SC7280 (herobrine) and all good.
+>>>>>
+>>>>> Great, thanks!
+>>>>>
+>>>>> Regards
+>>>>> Luca
+>>>>>
+>>>>>>
+>>>>>> Regards,
+>>>>>> Vikash
+>>>>>
+>>>>
+>>>
+>>>
+> 
 
