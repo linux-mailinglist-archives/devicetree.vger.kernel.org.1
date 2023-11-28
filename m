@@ -1,56 +1,56 @@
-Return-Path: <devicetree+bounces-19700-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19701-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6EF47FBD9E
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 16:02:13 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0A0F7FBE06
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 16:23:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 69DD7B20E85
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 15:02:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9FE941C20E26
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 15:23:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C41195C8EE;
-	Tue, 28 Nov 2023 15:02:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 938325D49F;
+	Tue, 28 Nov 2023 15:23:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 755C310C;
-	Tue, 28 Nov 2023 07:02:06 -0800 (PST)
-Received: by mail-oi1-f174.google.com with SMTP id 5614622812f47-3b8382b8f5aso3454058b6e.0;
-        Tue, 28 Nov 2023 07:02:06 -0800 (PST)
+Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F79B1701;
+	Tue, 28 Nov 2023 07:23:04 -0800 (PST)
+Received: by mail-oi1-f182.google.com with SMTP id 5614622812f47-3b84402923fso2751308b6e.0;
+        Tue, 28 Nov 2023 07:23:04 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701183725; x=1701788525;
+        d=1e100.net; s=20230601; t=1701184984; x=1701789784;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=IWiVW1Tj7aQ56Epxxc+8Fc1eCMFReni5f+36Hxx0HAU=;
-        b=Fu3J2EvT9YSaFxHgrdDBJKPc+4jakCdgE1k+I35kcU+oSv0MBkIjXCfo9omiZkRbyA
-         KlKe/KVYI2CRXKqBmtZB87x0AEBB2jijvTbAuAHb7g8jLPBLea8vP8lcn34ZTbTRXJaQ
-         PmS1q4MKTiVm0/DZinqBLH5DQ0df2529udcQIuoSYxknPOa+xDl0FdFI6LfGz671HY40
-         PUdpiG7QWYYvIQu3p1ePRUDqbp1PmEtCbV92vZLiPloJOTBFjLMVw0XNj/Q0cVCMihfh
-         dSLves/FSEfVcb4gR87wWP3LTxOlrQg/GwDGVgiEfOGi6/RP0iviZkjNVajmvBX4fSwq
-         7x7A==
-X-Gm-Message-State: AOJu0YzFuhvi9uY+Ky5SzcgQQVuICeMOlcWEqRbQOxjwa+RkBxHlvghw
-	dZCU7+jKVG39uVrutUVpcg==
-X-Google-Smtp-Source: AGHT+IEeLzPRwuhWLu/lFo1HqvMvDm3Ulpwlen9Y4ezRuH348Sgi+IzPCxqC07eSOVGL9ia1tTiC6Q==
-X-Received: by 2002:a05:6808:1188:b0:3b2:f27a:8a52 with SMTP id j8-20020a056808118800b003b2f27a8a52mr18433036oil.41.1701183725601;
-        Tue, 28 Nov 2023 07:02:05 -0800 (PST)
+        bh=n8lrrpwWFs5OE69FmxlNZV6hy765/ETf7P4dl/kidnU=;
+        b=RTeg0UiO/hZciB4VALdv5PFKZyxBQxSsOaFU4qfAyHYm8/O2m5g6m4+W/9+kLIPOse
+         l9rbwHisWNtSc/ujxQiOJCrabcCys2zos1B3wSu5KkegkWgzZ9r8acxfnsvO8nndlt6l
+         /W5BieTawYyaGg+vPdMkcKt21yPRna5N2Vp7OQNKmCmQS6gLQftELqBAs2EXaI2YZwC/
+         ICUPkOrxscY9j5bu8z/UHbWgrItuS09jmcYbA2aZgxsssctoURsP7cY6G4fpDlFGXUhM
+         ztlvn2ke9uzSxRFyOjLyXt6fQO50ShT19Dr5dpClglNO2MX6SqVIq1n+6ACDyW0ftyDk
+         cy2g==
+X-Gm-Message-State: AOJu0YyIMH9wBm9JRDU8JkBVavbbp/pAT993Ff6oZhv6HaaTuGvmp/IA
+	qnvO8m9sAhiHS4z8eaTzRA==
+X-Google-Smtp-Source: AGHT+IGkVAUja/6fjsjPq78kvxJEYyVNZuUdW5L4rCDF3BTk1W3hhlgCIQtiracg+VmBUh9tLUFxEA==
+X-Received: by 2002:a05:6808:16a2:b0:3ab:9afd:8efd with SMTP id bb34-20020a05680816a200b003ab9afd8efdmr16856302oib.40.1701184981856;
+        Tue, 28 Nov 2023 07:23:01 -0800 (PST)
 Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id ay9-20020a056808300900b003b8388ffaffsm1852220oib.41.2023.11.28.07.02.04
+        by smtp.gmail.com with ESMTPSA id s6-20020a056808008600b003a8560a9d34sm1836647oic.25.2023.11.28.07.23.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Nov 2023 07:02:05 -0800 (PST)
-Received: (nullmailer pid 3274715 invoked by uid 1000);
-	Tue, 28 Nov 2023 15:02:03 -0000
-Date: Tue, 28 Nov 2023 09:02:03 -0600
+        Tue, 28 Nov 2023 07:23:01 -0800 (PST)
+Received: (nullmailer pid 3300509 invoked by uid 1000);
+	Tue, 28 Nov 2023 15:23:00 -0000
+Date: Tue, 28 Nov 2023 09:23:00 -0600
 From: Rob Herring <robh@kernel.org>
-To: Ante Knezic <ante.knezic@helmholz.de>
-Cc: netdev@vger.kernel.org, woojung.huh@microchip.com, andrew@lunn.ch, f.fainelli@gmail.com, olteanv@gmail.com, davem@davemloft.net, edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, marex@denx.de, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, UNGLinuxDriver@microchip.com
-Subject: Re: [PATCH net-next v6 1/2] dt-bindings: net: microchip,ksz:
- document microchip,rmii-clk-internal
-Message-ID: <20231128150203.GA3264915-robh@kernel.org>
-References: <cover.1701091042.git.ante.knezic@helmholz.de>
- <7f1f89010743a06c4880fd224149ea495fe32512.1701091042.git.ante.knezic@helmholz.de>
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: Frank Rowand <frowand.list@gmail.com>, Geert Uytterhoeven <geert+renesas@glider.be>, Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org, linux-clk@vger.kernel.org, linux-renesas-soc@vger.kernel.org, Aymeric Aillet <aymeric.aillet@iot.bzh>, Yusuke Goda <yusuke.goda.sx@renesas.com>
+Subject: Re: [PATCH v2 2/4] of: add __of_get_next_status_child() and makes
+ more generic of_get_next
+Message-ID: <20231128152300.GA3275878-robh@kernel.org>
+References: <87fs0zc14m.wl-kuninori.morimoto.gx@renesas.com>
+ <87cyw3c13p.wl-kuninori.morimoto.gx@renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,87 +59,43 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <7f1f89010743a06c4880fd224149ea495fe32512.1701091042.git.ante.knezic@helmholz.de>
+In-Reply-To: <87cyw3c13p.wl-kuninori.morimoto.gx@renesas.com>
 
-On Mon, Nov 27, 2023 at 02:20:42PM +0100, Ante Knezic wrote:
-> Add documentation for selecting reference rmii clock on KSZ88X3 devices
+On Tue, Nov 21, 2023 at 02:05:30AM +0000, Kuninori Morimoto wrote:
+> Linux Kernel has of_get_next_available_child().
+> Add more generic __of_get_next_status_child() to enable to use same
+> logic for other status.
 > 
-> Signed-off-by: Ante Knezic <ante.knezic@helmholz.de>
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> Tested-by: Yusuke Goda <yusuke.goda.sx@renesas.com>
 > ---
->  .../devicetree/bindings/net/dsa/microchip,ksz.yaml | 38 +++++++++++++++++++++-
->  1 file changed, 37 insertions(+), 1 deletion(-)
-
-You forgot Conor's ack.
-
+>  drivers/of/base.c | 29 ++++++++++++++++++-----------
+>  1 file changed, 18 insertions(+), 11 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-> index b3029c64d0d5..6fd482f2656b 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-> +++ b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-> @@ -11,7 +11,6 @@ maintainers:
->    - Woojung Huh <Woojung.Huh@microchip.com>
+> diff --git a/drivers/of/base.c b/drivers/of/base.c
+> index 3cb467a7e747..d0f7e7c890f1 100644
+> --- a/drivers/of/base.c
+> +++ b/drivers/of/base.c
+> @@ -612,16 +612,9 @@ struct device_node *of_get_next_child(const struct device_node *node,
+>  }
+>  EXPORT_SYMBOL(of_get_next_child);
 >  
->  allOf:
-> -  - $ref: dsa.yaml#/$defs/ethernet-ports
->    - $ref: /schemas/spi/spi-peripheral-props.yaml#
->  
->  properties:
-> @@ -78,6 +77,43 @@ required:
->    - compatible
->    - reg
->  
-> +if:
-> +  not:
-> +    properties:
-> +      compatible:
-> +        enum:
-> +          - microchip,ksz8863
-> +          - microchip,ksz8873
-> +then:
-> +  $ref: dsa.yaml#/$defs/ethernet-ports
-> +else:
-> +  patternProperties:
-> +    "^(ethernet-)?ports$":
-> +      patternProperties:
-> +        "^(ethernet-)?port@[0-2]$":
-> +          $ref: dsa-port.yaml#
-> +          properties:
-> +            microchip,rmii-clk-internal:
-> +              $ref: /schemas/types.yaml#/definitions/flag
-> +              description:
-> +                When ksz88x3 is acting as clock provier (via REFCLKO) it
-> +                can select between internal and external RMII reference
-> +                clock. Internal reference clock means that the clock for
-> +                the RMII of ksz88x3 is provided by the ksz88x3 internally
-> +                and the REFCLKI pin is unconnected. For the external
-> +                reference clock, the clock needs to be fed back to ksz88x3
-> +                via REFCLKI.
-> +                If microchip,rmii-clk-internal is set, ksz88x3 will provide
-> +                rmii reference clock internally, otherwise reference clock
-> +                should be provided externally.
+> -/**
+> - * of_get_next_available_child - Find the next available child node
+> - * @node:	parent node
+> - * @prev:	previous child of the parent node, or NULL to get first
+> - *
+> - * This function is like of_get_next_child(), except that it
+> - * automatically skips any disabled nodes (i.e. status = "disabled").
+> - */
+> -struct device_node *of_get_next_available_child(const struct device_node *node,
+> -	struct device_node *prev)
+> +static struct device_node *__of_get_next_status_child(const struct device_node *node,
 
-> +          if:
-> +            not:
-> +              required: [ ethernet ]
-> +          then:
-> +            properties:
-> +              microchip,rmii-clk-internal: false
+'__' means the lock should already be held, not that it is an internal 
+function.
 
-This can be expressed as:
+With that dropped,
 
-dependencies:
-  microchip,rmii-clk-internal: [ethernet]
-
-
-> +          unevaluatedProperties: false
-
-Move this under the $ref.
-
-> +
->  unevaluatedProperties: false
->  
->  examples:
-> -- 
-> 2.11.0
-> 
+Reviewed-by: Rob Herring <robh@kernel.org>
 
