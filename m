@@ -1,53 +1,53 @@
-Return-Path: <devicetree+bounces-19773-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19774-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 387DE7FC82A
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 22:48:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BC457FC82B
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 22:48:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6A1531C20E20
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 21:48:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD67F1C20F2C
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 21:48:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3DDA44C94;
-	Tue, 28 Nov 2023 21:48:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73CB544C97;
+	Tue, 28 Nov 2023 21:48:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 667E998;
-	Tue, 28 Nov 2023 13:48:03 -0800 (PST)
-Received: by mail-ot1-f51.google.com with SMTP id 46e09a7af769-6d7eca548ccso3449624a34.3;
-        Tue, 28 Nov 2023 13:48:03 -0800 (PST)
+Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC132B0;
+	Tue, 28 Nov 2023 13:48:11 -0800 (PST)
+Received: by mail-ot1-f42.google.com with SMTP id 46e09a7af769-6cd0a8bc6dcso3656354a34.2;
+        Tue, 28 Nov 2023 13:48:11 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701208082; x=1701812882;
+        d=1e100.net; s=20230601; t=1701208091; x=1701812891;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=tY859mgZuixEXsQXpxoxdofdHWsZ/aGJN72aWxxZ5dQ=;
-        b=qXCDnFAZWQAmzBbgOS5s8g6UUc2mCDm/AXW/1mOWdbKPHbVDZwFaIEx+0rr4TzAGR7
-         P7K5DIWyXlIr0KfY8KE/HSPkzaixwpzlZSEs+kGSejslAhsOGcx9XJ8zQjP9Y2G9IXkg
-         2DJ0lPJVvmbdhWsVG0sscwwred8Rwy35zt//i4fCAyXwZO3X61AjYpD93E5fMlBBN6l8
-         9ieWZcW7N0tuKnV7Br/k5+SDAZD0gSgwmea7TL/F48iNA8xPk1rdjI5jMz+d6bLRGth4
-         QbVzapp6AadeGJvyfzTmlZp8pjqVxxBSQvA3hFaLGuOkwaOw66DE+uof2sdjdMe0CPAz
-         oI/Q==
-X-Gm-Message-State: AOJu0YyJSQmC9SgdLKX6F5CHuTi+yiOHsCg29cFAB8Syr9O0TWOhjz4c
-	nLInS/j40mcrkJ/8kjbqg6PUORRRbQ==
-X-Google-Smtp-Source: AGHT+IG3MhdI/KC/5pcMn9+h7mJSK+hnGWJUirDvj5cEw3pKREm4LBbTIwkWueAPZns7pEIbVfOTuQ==
-X-Received: by 2002:a05:6870:248e:b0:1fa:1c89:c656 with SMTP id s14-20020a056870248e00b001fa1c89c656mr14173684oaq.56.1701208082608;
-        Tue, 28 Nov 2023 13:48:02 -0800 (PST)
+        bh=HrJ0LHtyb46py1wsTp8nuyQVcABfVvnzMH83rgwCH3U=;
+        b=wyVuby5OnCprk+IwWtJ0/yMj5YuM2QJdkcyLvk+7McIuNcjB0lGekeMuCI+VCmry7l
+         b8L5ppW9uPlxfZHBgzIybAhQluMjHdjO8G3YrqHsypNYMapH07+v2PEc1X8U5ySmVxoE
+         lQ+zzxkMztuB67t1emnSF3GhSS2lFtH7M7TD+kcsp9lFd/f5wb4yIm797SDfkSVpODP1
+         e1dXFDr9zdfGsb4y6zEROxKhSfyPsVuS2bHB/KneZRgD5uNom56WSNUAB38pesXUUPEs
+         w1ejiKUNXSPIRTL+7BRPo00HC7DT7+AoGOYbygzXrObLPhIpInTaHlyBspslFiRyZKgz
+         TOSg==
+X-Gm-Message-State: AOJu0YzQnqDC8ITXIYfsMwmF2N1tNWrxUA8hrXN1RH9CWxV18+64Xx83
+	lmE+ZPehSRprzR4rWiVngw==
+X-Google-Smtp-Source: AGHT+IHqEJJFSEStAXI4DhX5amCfCmwugJtgNaAYjJgH64aasKenmGzatAY6vvhJcfUYjyMYnWkK2w==
+X-Received: by 2002:a05:6870:b619:b0:1fa:3e11:e178 with SMTP id cm25-20020a056870b61900b001fa3e11e178mr12375997oab.10.1701208091189;
+        Tue, 28 Nov 2023 13:48:11 -0800 (PST)
 Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id z20-20020a056870385400b001fa2823dc13sm1930073oal.0.2023.11.28.13.48.01
+        by smtp.gmail.com with ESMTPSA id ti3-20020a056871890300b001f9e3731545sm2765905oab.11.2023.11.28.13.48.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Nov 2023 13:48:01 -0800 (PST)
-Received: (nullmailer pid 3975504 invoked by uid 1000);
-	Tue, 28 Nov 2023 21:48:00 -0000
+        Tue, 28 Nov 2023 13:48:10 -0800 (PST)
+Received: (nullmailer pid 3975662 invoked by uid 1000);
+	Tue, 28 Nov 2023 21:48:06 -0000
 From: Rob Herring <robh@kernel.org>
-To: Philipp Zabel <p.zabel@pengutronix.de>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Wei Xu <xuwei5@hisilicon.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: reset: hisilicon,hi3660-reset: Drop providers and consumers from example
-Date: Tue, 28 Nov 2023 15:47:58 -0600
-Message-ID: <20231128214759.3975428-1-robh@kernel.org>
+To: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Tony Lindgren <tony@atomide.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: iio/adc: ti,palmas-gpadc: Drop incomplete example
+Date: Tue, 28 Nov 2023 15:48:02 -0600
+Message-ID: <20231128214803.3975542-1-robh@kernel.org>
 X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -57,54 +57,41 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Binding examples should generally only cover what the binding covers. A
-provider binding doesn't need to show consumers and vice-versa. The
-hisilicon,hi3660-reset binding example has both, so let's drop them.
+The example for the TI Palmas ADC is incomplete as the binding is the
+full PMIC, not just the sub-functions. It is preferred for MFD examples
+to be complete in the top-level MFD device binding rather than piecemeal
+in each sub-function binding.
 
 This also fixes an undocumented (by schema) compatible warning for
-"hisilicon,hi3660-iomcu".
+'"ti,twl6035-pmic", "ti,palmas-pmic"'.
 
 Signed-off-by: Rob Herring <robh@kernel.org>
 ---
- .../reset/hisilicon,hi3660-reset.yaml         | 25 +------------------
- 1 file changed, 1 insertion(+), 24 deletions(-)
+ .../bindings/iio/adc/ti,palmas-gpadc.yaml         | 15 ---------------
+ 1 file changed, 15 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/reset/hisilicon,hi3660-reset.yaml b/Documentation/devicetree/bindings/reset/hisilicon,hi3660-reset.yaml
-index cdfcf32c53fa..e4de002d6903 100644
---- a/Documentation/devicetree/bindings/reset/hisilicon,hi3660-reset.yaml
-+++ b/Documentation/devicetree/bindings/reset/hisilicon,hi3660-reset.yaml
-@@ -50,32 +50,9 @@ additionalProperties: false
+diff --git a/Documentation/devicetree/bindings/iio/adc/ti,palmas-gpadc.yaml b/Documentation/devicetree/bindings/iio/adc/ti,palmas-gpadc.yaml
+index 720c16a108d4..f94057d8f605 100644
+--- a/Documentation/devicetree/bindings/iio/adc/ti,palmas-gpadc.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/ti,palmas-gpadc.yaml
+@@ -67,19 +67,4 @@ required:
+   - compatible
+   - "#io-channel-cells"
  
- examples:
-   - |
--    #include <dt-bindings/interrupt-controller/irq.h>
--    #include <dt-bindings/interrupt-controller/arm-gic.h>
--    #include <dt-bindings/clock/hi3660-clock.h>
--
--    iomcu: iomcu@ffd7e000 {
--        compatible = "hisilicon,hi3660-iomcu", "syscon";
--        reg = <0xffd7e000 0x1000>;
--    };
--
--    iomcu_rst: iomcu_rst_controller {
-+    iomcu_rst_controller {
-         compatible = "hisilicon,hi3660-reset";
-         hisilicon,rst-syscon = <&iomcu>;
-         #reset-cells = <2>;
-     };
--
--    /* Specifying reset lines connected to IP modules */
--    i2c@ffd71000 {
--        compatible = "snps,designware-i2c";
--        reg = <0xffd71000 0x1000>;
--        interrupts = <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH>;
--        #address-cells = <1>;
--        #size-cells = <0>;
--        clock-frequency = <400000>;
--        clocks = <&crg_ctrl HI3660_CLK_GATE_I2C0>;
--        resets = <&iomcu_rst 0x20 3>;
--        pinctrl-names = "default";
--        pinctrl-0 = <&i2c0_pmx_func &i2c0_cfg_func>;
+-examples:
+-  - |
+-    #include <dt-bindings/clock/mt8183-clk.h>
+-    pmic {
+-        compatible = "ti,twl6035-pmic", "ti,palmas-pmic";
+-        adc {
+-            compatible = "ti,palmas-gpadc";
+-            interrupts = <18 0>,
+-                         <16 0>,
+-                         <17 0>;
+-            #io-channel-cells = <1>;
+-            ti,channel0-current-microamp = <5>;
+-            ti,channel3-current-microamp = <10>;
+-        };
 -    };
  ...
 -- 
