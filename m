@@ -1,138 +1,106 @@
-Return-Path: <devicetree+bounces-19643-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19644-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8D2D7FB9D5
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 13:03:02 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C1327FB9D9
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 13:04:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 901ED2823AB
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 12:03:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B1DD61F20FDD
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 12:04:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34C154F8AE;
-	Tue, 28 Nov 2023 12:02:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BAFC4F899;
+	Tue, 28 Nov 2023 12:04:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sv0moNEI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dS+vj4KE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D04A4F8A6;
-	Tue, 28 Nov 2023 12:02:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47D59C43395;
-	Tue, 28 Nov 2023 12:02:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E76319460
+	for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 12:04:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5968C433C7;
+	Tue, 28 Nov 2023 12:04:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701172978;
-	bh=tkisRUNNY/d67zoz0XA6BZXue7+K+QjhY+cL0sK45N8=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=sv0moNEISqAvIRepmeldusBufgOdTcqt5uw7EgC03dJNooOu6yLd9UagBF49Pq5oV
-	 nuxldMXUbHev2H7y9Z0bND2qTUshxyEHfw40PUMU5GRpmnlw3/lmIFw3bmo2oi4HKK
-	 3nv7+VgALDGdeBGLMdVtFpfC/dwrXrZf5RrrvEiE3ppWMZaF7+2JP5BLcT2pu8gpqF
-	 t9PImNSajJ3jx70BxXDGfAEBM0EIfnyjL66CugRoFldWEmOXJKI+gpDPfR9xQRfyMi
-	 uwtuEm2YpH3wWALrbtqg9gCvW1smFJ0BXnCMtILNLb39eIl7Ts+y8liW6eDOuA0XUq
-	 CiDCP3bAiiDbA==
-Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-1fa486a0e10so1387578fac.3;
-        Tue, 28 Nov 2023 04:02:58 -0800 (PST)
-X-Gm-Message-State: AOJu0YxBp5OpxrU7RhSBFyROqalFRhDW9ewwn+HlOtHqfegueV0K1g51
-	4r/stXtFkG5DEbpuZsv/4h0a2dQs3osWpzelLqM=
-X-Google-Smtp-Source: AGHT+IEFDfYBlWh8jfejCGx1eDJyhRxoHb509GRWFdAaRY+qU5DbRfAMND1PnS9hMDUW0DhzFL5FYkPa7akv32zR/1E=
-X-Received: by 2002:a05:6871:5824:b0:1fa:26b7:af18 with SMTP id
- oj36-20020a056871582400b001fa26b7af18mr12432388oac.17.1701172977577; Tue, 28
- Nov 2023 04:02:57 -0800 (PST)
+	s=k20201202; t=1701173090;
+	bh=i55TD+jqPJqNMu1csxYYbwmdAkXCEdI8W2QHQXOzNMQ=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=dS+vj4KENFpbmNeaFcBTdQCEgb80MJG/nZw46Orm0YRo9u5edeLbzdu4EV3AJCv9/
+	 wRCJf2FCFBYJLHCqhI6l2Kuy3qPq6fBuiC7pNtw+4G3kh27JcZaNJbTBsx8LJDOEX3
+	 /TozcelAfJREaWirWdC3mBmzEV7hS5AvBJCU78oNwgAgyZjc750ra+NrZV0XPjnXnF
+	 XZFijZyRrP439uGTD48vFiOIeWZPujBJnM2dg/R9KOoA5bEkeP4GSpMkOx1QvL7pqp
+	 r48jWI4dZJxzn/O/2wVGeN6BxF+qXobTQL57qVGleUcDobnl9r7xUzsvbLlulNfY0W
+	 pphU5s2r2mb7w==
+From: Mark Brown <broonie@kernel.org>
+To: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>, 
+ Bard Liao <yung-chuan.liao@linux.intel.com>, bard.liao@intel.com, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Rob Herring <robh+dt@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: alsa-devel@alsa-project.org, devicetree@vger.kernel.org
+In-Reply-To: <87v8a64f3d.wl-kuninori.morimoto.gx@renesas.com>
+References: <87v8a64f3d.wl-kuninori.morimoto.gx@renesas.com>
+Subject: Re: [PATCH v7 0/5] ASoC: makes CPU/Codec channel connection map
+ more generic
+Message-Id: <170117308718.2712587.12761626999755612414.b4-ty@kernel.org>
+Date: Tue, 28 Nov 2023 12:04:47 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231122-dtc-warnings-v2-0-bd4087325392@kernel.org>
- <CAK7LNASVMjVg4dr=KdSDHwGww_47H78H7rMXA=wf+ncugesDSA@mail.gmail.com> <CAL_Jsq+N0GxwZ2YmspEzfiuGOw7M+DmYkyhLgaYtk+Ov2ycY_A@mail.gmail.com>
-In-Reply-To: <CAL_Jsq+N0GxwZ2YmspEzfiuGOw7M+DmYkyhLgaYtk+Ov2ycY_A@mail.gmail.com>
-From: Masahiro Yamada <masahiroy@kernel.org>
-Date: Tue, 28 Nov 2023 21:02:21 +0900
-X-Gmail-Original-Message-ID: <CAK7LNAT6-pBjUbB+Fcik27QWniK7BizvoUG+EiFvFtJ+MTdmJA@mail.gmail.com>
-Message-ID: <CAK7LNAT6-pBjUbB+Fcik27QWniK7BizvoUG+EiFvFtJ+MTdmJA@mail.gmail.com>
-Subject: Re: [PATCH v2 0/4] kbuild: Per arch/platform dtc warning levels
-To: Rob Herring <robh@kernel.org>
-Cc: Nathan Chancellor <nathan@kernel.org>, Nick Desaulniers <ndesaulniers@google.com>, 
-	Nicolas Schier <nicolas@fjasle.eu>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
-	Conor Dooley <conor@kernel.org>, linux-kbuild@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13-dev-0438c
 
-On Mon, Nov 27, 2023 at 11:03=E2=80=AFPM Rob Herring <robh@kernel.org> wrot=
-e:
->
-> On Thu, Nov 23, 2023 at 1:39=E2=80=AFAM Masahiro Yamada <masahiroy@kernel=
-.org> wrote:
-> >
-> > On Thu, Nov 23, 2023 at 7:12=E2=80=AFAM Rob Herring <robh@kernel.org> w=
-rote:
-> > >
-> > > This series adds support to set the dtc extra warning level on a per
-> > > arch or per platform (directory really) basis.
-> > >
-> > > The first version of this was just a simple per directory override fo=
-r
-> > > Samsung platforms, but Conor asked to be able to do this for all of
-> > > riscv.
-> > >
-> > > For merging, either I can take the whole thing or the riscv and samsu=
-ng
-> > > patches can go via their normal trees. The added variable will have n=
-o
-> > > effect until merged with patch 2.
-> > >
-> > > v1:
-> > >  - https://lore.kernel.org/all/20231116211739.3228239-1-robh@kernel.o=
-rg/
-> > >
-> > > Signed-off-by: Rob Herring <robh@kernel.org>
-> > > ---
-> >
-> >
-> > There were some attempts in the past to enable W=3D1 in particular subs=
-ystems,
-> > so here is a similar comment.
-> >
-> > Adding a new warning flag to W=3D1 is always safe without doing any com=
-pile test.
-> >
-> > With this series, it would not be true any more because a new warning i=
-n W=3D1
-> > would potentially break riscv/samsung platforms.
->
-> The difference here is the people potentially adding warnings are also
-> the ones ensuring no warnings.
->
-> > Linus requires a clean build (i.e. zero warning) when W=3D option is no=
-t given.
->
-> Linus doesn't build any of this AFAICT. We are not always warning free
-> for W=3D0 with dtbs.
+On Mon, 13 Nov 2023 01:27:50 +0000, Kuninori Morimoto wrote:
+> Cc Bard, Pierre-Louis, Jerome, DT-ML
+> 
+> This is v7 patch-set.
+> 
+> Current ASoC is supporting CPU/Codec = N:M (N < M) connection by using
+> ch_map idea. This patch-set expands it that all connection uses this idea,
+> and no longer N < M limit [1][2].
+> 
+> [...]
 
+Applied to
 
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-Does it mean, you can enable all warnings by default?
+Thanks!
 
+[1/5] ASoC: makes CPU/Codec channel connection map more generic
+      commit: 45cc50d13433a62f23b7b4af380497aae5e8ddc7
+[2/5] ASoC: audio-graph-card2: use better image for Multi connection
+      commit: 912eb415631140c93ff5f05378411fec8e6a537f
+[3/5] ASoC: audio-graph-card2: add CPU:Codec = N:M support
+      commit: e2de6808df4ad5faa6106f7a80617921fdf5dff5
+[4/5] ASoC: audio-graph-card2-custom-sample: Add connection image
+      commit: a706366f93c37c6649acfe15a1ef9a80e25bace4
+[5/5] ASoC: audio-graph-card2-custom-sample: add CPU/Codec = N:M sample
+      commit: 792846d9daa876186196b66dc496a2ba8ddd7535
 
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
->
-> Rob
->
+Thanks,
+Mark
 
-
---=20
-Best Regards
-Masahiro Yamada
 
