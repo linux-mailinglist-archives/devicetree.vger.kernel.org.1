@@ -1,52 +1,51 @@
-Return-Path: <devicetree+bounces-19606-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19608-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2902C7FB6CE
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 11:10:53 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9DB07FB6D0
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 11:10:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D9370282BFB
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 10:10:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 30A65B21B51
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 10:10:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8BBF4D588;
-	Tue, 28 Nov 2023 10:10:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B84A4D587;
+	Tue, 28 Nov 2023 10:10:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="CfcbSztL"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="sPKDMrhK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 361D010A;
-	Tue, 28 Nov 2023 02:10:46 -0800 (PST)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3ASAAZdw023076;
-	Tue, 28 Nov 2023 04:10:35 -0600
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4FE9E6;
+	Tue, 28 Nov 2023 02:10:48 -0800 (PST)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3ASAAbkM079845;
+	Tue, 28 Nov 2023 04:10:37 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1701166235;
-	bh=Qm78XzrRYE6dT0oIbU5WDgyx6hn0YmjpOZVu9WaEDzA=;
+	s=ti-com-17Q1; t=1701166237;
+	bh=mOGju8jFGvhn3pPWAI2K8eBExjaLWFL6KaBuQrryyBc=;
 	h=From:Date:Subject:References:In-Reply-To:To:CC;
-	b=CfcbSztL22xRlJ+Q7aQIibriYQnteggB2w+4c+kI/m42BAJnw534NiQCGWceK6ht5
-	 k8bp5sxFScXkLzNsXlBTiKXcRrBhJPAK1xX3c2a0JO3q3jUPbYVD7tnhDTDVLbURJa
-	 Jr7AY9K9uoetcISEptzi1Qq4cCVY7rQo6YsFK8H0=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3ASAAZ54070686
+	b=sPKDMrhKeb1dyw0s4qdJ70Ip3A2nkRoNTdatBwG9JapyXeGN6s7X1SfJpzw6KT0vy
+	 MsPSg7JEosX1I/SIno1fCmwSZJQempIz2iHoKhwoh4cEOKyeXHqU2S/KPPH3UHx8o1
+	 wbGdQUQyn1W5ufRTU6QNyWtpZI1bC7mOVTmCg2Qo=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3ASAAbWJ017681
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 28 Nov 2023 04:10:35 -0600
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 28 Nov 2023 04:10:37 -0600
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 28
- Nov 2023 04:10:34 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ Nov 2023 04:10:37 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 28 Nov 2023 04:10:34 -0600
+ Frontend Transport; Tue, 28 Nov 2023 04:10:37 -0600
 Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3ASAAXZB125468;
-	Tue, 28 Nov 2023 04:10:34 -0600
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3ASAAZY3101378;
+	Tue, 28 Nov 2023 04:10:36 -0600
 From: Jai Luthra <j-luthra@ti.com>
-Date: Tue, 28 Nov 2023 15:39:49 +0530
-Subject: [PATCH v3 7/9] arm64: dts: ti: k3-am62a7-sk: Enable camera
- peripherals
+Date: Tue, 28 Nov 2023 15:39:50 +0530
+Subject: [PATCH v3 8/9] arm64: dts: ti: k3-am62x: Add overlay for IMX219
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,7 +54,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-ID: <20231128-csi_dts-v3-7-0bb11cfa9d43@ti.com>
+Message-ID: <20231128-csi_dts-v3-8-0bb11cfa9d43@ti.com>
 References: <20231128-csi_dts-v3-0-0bb11cfa9d43@ti.com>
 In-Reply-To: <20231128-csi_dts-v3-0-0bb11cfa9d43@ti.com>
 To: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
@@ -78,70 +77,163 @@ CC: <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
         Jai Luthra
 	<j-luthra@ti.com>
 X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1291; i=j-luthra@ti.com;
- h=from:subject:message-id; bh=s5NY99U26dYVT2Xd40MgpPFPJ01pwWoG1kV6T+WuzsM=;
- b=owEBbQKS/ZANAwAIAUPekfkkmnFFAcsmYgBlZbyEaYwrLbe2rCCbxCp+I03KmJ2QVONsp9TG5
- PCZJ48LoWuJAjMEAAEIAB0WIQRN4NgY5dV16NRar8VD3pH5JJpxRQUCZWW8hAAKCRBD3pH5JJpx
- RVaTD/9izTRAPvFTgvnCkUDpPJpVMVm2BO/f+etxdXxhSAbHyec6+2NbvQTWM0Q0goROBWgMnXk
- sQSF68nGKZuatUs3vEVcokQc5mu6+tZjUfYK/gzTMPxzpD83WuECm9P+GpS7HMDMAaRQy/Ra30X
- HzaK5So5RgISHpztvwxb7LXA0SEr9vnBK3rJmIh7vAyT8UC8DFFay/3AowQEKWkUPJqbhfVsjTC
- Y/xQ+GA+5ROAC3/C7CWW8NHxTMXufXfjjiiJHiQp/jHZmYkzwl0JOHWFxHatEFQhZRp+zcmry1y
- rzbB4C7XuQjIy1aK2kpKv8yCZm6GS2hYBxutuRwMow1zEj59tGZa8alPAsbJ+LhXpGfOujra6th
- x3DF6FqixNcNMB1L1e7Npkt8owDRYt5UD2TnZxooNeO9Pig6HjRSfD5Y38C7slJpBOgKzHuF+LO
- AtFEFvjoESZCHNVUj5srRykFSv1emw9JLJW/KieIl3H63xspIXh0nsDeHk9Vn0CaULJHUHnjPve
- g+b/es0IKbB+oRaZDJsKHzrv6Q91GMKbz+bBxRrqQP9qMcou8lYKZtyUdoC4sPrHYOkSMKV+v9r
- m6Ru9L2arkVYuLpVqaTssrct6p6SRP9OtZFFdgS5ET0w8HUKS/H90s4iLResMdkcbO0cdhWdM5n
- izoXJSxQ3/QsXhQ==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3941; i=j-luthra@ti.com;
+ h=from:subject:message-id; bh=b6cpauaHGBPWOmaKZGQ9EpAhMDjQqtcqqV29zVSXG0Q=;
+ b=owEBbQKS/ZANAwAIAUPekfkkmnFFAcsmYgBlZbyElXcvNGiBoQc9blIyFbPOT42C8p3/Gdgks
+ cNTmTFYERiJAjMEAAEIAB0WIQRN4NgY5dV16NRar8VD3pH5JJpxRQUCZWW8hAAKCRBD3pH5JJpx
+ Rdf/EACgWlEPD6pzHy/K2QJHCgpeSeHN1GOizNFAsrlo/q4EE9fElBaL7MPSq4tuvJzkfvmV/hm
+ OIDTPQQSmlWImTc0FJLzOSKq9n4V/JGqiOTADKTvnhvYbmcSYltiEYWqV7fU6BNNbGwRN592Js8
+ lh7ImUahxp5cfnrGbehKQI3cL5ZMQWPjtxXlCHuUGUWNcjSNt8jeih6SmTPtdz6eQjjeKy2hgh1
+ 2j9FXHfQFbY9Y7pxCfG9qMmONpaJwSIYGwQKPaIeWo3woej8lywnxfETZ8BGHfa7OgXOFBeSH2t
+ 1wDb+B+aGOeI2bB4J0iGnM3F8QLJ5vO8IAq/yP7lgvOjEaHYbhXyE9pYCdIDPYlFOZk+h+3Cdz4
+ C/Y3eq2fQUwwBTWzL4Bu92MzsgYaMG7l5qZIfcLHsJQDQ5rhqD73FBLbYccZ1U9mfeRm31Ept6p
+ I31aysw+Te8An42O7uZzc6o0sZlJf8Y0Bet/GUrjB+n8Rfz+9PjQ4Qp0ovVHqZpCqnVmzeJoRjD
+ QoGMgfHD+78uVWD0ZJG+SjofNmrGJtGTLdqPMxqhy2HJX7VcTBn3Hht+D75AkWK+/5/4fmvhjVH
+ sHGpBgK1qY8W2RtIROVq6X6Rvbcda4PZANEwz2MHFBrOLJObo7X41Eh/RPnMxDPf7M0/4M5wpOS
+ 9AowAv1nGyxFgsQ==
 X-Developer-Key: i=j-luthra@ti.com; a=openpgp;
  fpr=4DE0D818E5D575E8D45AAFC543DE91F9249A7145
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Enable I2C-2 as it is used to control CSI based sensors. Also enable
-IO-EXP-2 as it controls the mux between different CSI-2 connectors.
+RPi v2 Camera (IMX219) is an 8MP camera that can be used with SK-AM62A
+through the 22-pin CSI-RX connector.
+
+Same overlay can be used across SK-AM62* boards that have a 15/22-pin
+FFC connector, so we name it with the k3-am62x- prefix.
 
 Signed-off-by: Jai Luthra <j-luthra@ti.com>
 ---
- arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 27 +++++++++++++++++++++++++++
- 1 file changed, 27 insertions(+)
+ arch/arm64/boot/dts/ti/Makefile                    |  7 ++
+ .../arm64/boot/dts/ti/k3-am62x-sk-csi2-imx219.dtso | 84 ++++++++++++++++++++++
+ 2 files changed, 91 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-index 8f64ac2c7568..eb2f45a6ba23 100644
---- a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-@@ -434,6 +434,33 @@ tlv320aic3106: audio-codec@1b {
- 		DRVDD-supply = <&vcc_3v3_sys>;
- 		DVDD-supply = <&buck5>;
- 	};
+diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+index f957b5f741ff..fd9166497c32 100644
+--- a/arch/arm64/boot/dts/ti/Makefile
++++ b/arch/arm64/boot/dts/ti/Makefile
+@@ -35,6 +35,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-am62p5-sk.dtb
+ # Common overlays for SK-AM62* family of boards
+ dtb-$(CONFIG_ARCH_K3) += k3-am62x-sk-csi2-ov5640.dtbo
+ dtb-$(CONFIG_ARCH_K3) += k3-am62x-sk-csi2-tevi-ov5640.dtbo
++dtb-$(CONFIG_ARCH_K3) += k3-am62x-sk-csi2-imx219.dtbo
+ 
+ # Boards with AM64x SoC
+ dtb-$(CONFIG_ARCH_K3) += k3-am642-evm.dtb
+@@ -91,18 +92,24 @@ k3-am625-beagleplay-csi2-ov5640-dtbs := k3-am625-beagleplay.dtb \
+ 	k3-am625-beagleplay-csi2-ov5640.dtbo
+ k3-am625-beagleplay-csi2-tevi-ov5640-dtbs := k3-am625-beagleplay.dtb \
+ 	k3-am625-beagleplay-csi2-tevi-ov5640.dtbo
++k3-am625-sk-csi2-imx219-dtbs := k3-am625-sk.dtb \
++	k3-am62x-sk-csi2-imx219.dtbo
+ k3-am625-sk-csi2-ov5640-dtbs := k3-am625-sk.dtb \
+ 	k3-am62x-sk-csi2-ov5640.dtbo
+ k3-am625-sk-csi2-tevi-ov5640-dtbs := k3-am625-sk.dtb \
+ 	k3-am62x-sk-csi2-tevi-ov5640.dtbo
++k3-am62a7-sk-csi2-imx219-dtbs := k3-am62a7-sk.dtb \
++	k3-am62x-sk-csi2-imx219.dtbo
+ k3-am62a7-sk-csi2-ov5640-dtbs := k3-am62a7-sk.dtb \
+ 	k3-am62x-sk-csi2-ov5640.dtbo
+ k3-am62a7-sk-csi2-tevi-ov5640-dtbs := k3-am62a7-sk.dtb \
+ 	k3-am62x-sk-csi2-tevi-ov5640.dtbo
+ dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
+ 	k3-am625-beagleplay-csi2-tevi-ov5640.dtb \
++	k3-am625-sk-csi2-imx219.dtb \
+ 	k3-am625-sk-csi2-ov5640.dtb \
+ 	k3-am625-sk-csi2-tevi-ov5640.dtb \
++	k3-am62a7-sk-csi2-imx219.dtb \
+ 	k3-am62a7-sk-csi2-ov5640.dtb \
+ 	k3-am62a7-sk-csi2-tevi-ov5640.dtb
+ 
+diff --git a/arch/arm64/boot/dts/ti/k3-am62x-sk-csi2-imx219.dtso b/arch/arm64/boot/dts/ti/k3-am62x-sk-csi2-imx219.dtso
+new file mode 100644
+index 000000000000..6f4cd73c2f43
+--- /dev/null
++++ b/arch/arm64/boot/dts/ti/k3-am62x-sk-csi2-imx219.dtso
+@@ -0,0 +1,84 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * IMX219 (RPi v2) Camera Module
++ * Copyright (C) 2023 Texas Instruments Incorporated - https://www.ti.com/
++ */
 +
-+	exp2: gpio@23 {
-+		compatible = "ti,tca6424";
-+		reg = <0x23>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
++/dts-v1/;
++/plugin/;
 +
-+		gpio-line-names = "", "",
-+				  "", "",
-+				  "", "",
-+				  "", "",
-+				  "WL_LT_EN", "CSI_RSTz",
-+				  "", "",
-+				  "", "",
-+				  "", "",
-+				  "SPI0_FET_SEL", "SPI0_FET_OE",
-+				  "RGMII2_BRD_CONN_DET", "CSI_SEL2",
-+				  "CSI_EN", "AUTO_100M_1000M_CONFIG",
-+				  "CSI_VLDO_SEL", "SoC_WLAN_SDIO_RST";
++#include <dt-bindings/gpio/gpio.h>
++
++&{/} {
++	clk_imx219_fixed: imx219-xclk {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		clock-frequency = <24000000>;
 +	};
 +};
 +
 +&main_i2c2 {
++	#address-cells = <1>;
++	#size-cells = <0>;
 +	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_i2c2_pins_default>;
-+	clock-frequency = <400000>;
- };
- 
- &sdhci1 {
++
++	i2c-switch@71 {
++		compatible = "nxp,pca9543";
++		#address-cells = <1>;
++		#size-cells = <0>;
++		reg = <0x71>;
++
++		/* CAM port */
++		i2c@1 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <1>;
++
++			ov5640: camera@10 {
++				compatible = "sony,imx219";
++				reg = <0x10>;
++
++				clocks = <&clk_imx219_fixed>;
++				clock-names = "xclk";
++
++				reset-gpios = <&exp1 13 GPIO_ACTIVE_HIGH>;
++
++				port {
++					csi2_cam0: endpoint {
++						remote-endpoint = <&csi2rx0_in_sensor>;
++						link-frequencies = /bits/ 64 <456000000>;
++						clock-lanes = <0>;
++						data-lanes = <1 2>;
++					};
++				};
++			};
++		};
++	};
++};
++
++&cdns_csi2rx0 {
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		csi0_port0: port@0 {
++			reg = <0>;
++			status = "okay";
++
++			csi2rx0_in_sensor: endpoint {
++				remote-endpoint = <&csi2_cam0>;
++				bus-type = <4>; /* CSI2 DPHY. */
++				clock-lanes = <0>;
++				data-lanes = <1 2>;
++			};
++		};
++	};
++};
++
++&ti_csi2rx0 {
++	status = "okay";
++};
++
++&dphy0 {
++	status = "okay";
++};
 
 -- 
 2.42.1
