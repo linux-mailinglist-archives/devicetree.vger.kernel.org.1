@@ -1,96 +1,164 @@
-Return-Path: <devicetree+bounces-19777-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19778-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 321257FC935
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 23:13:29 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AE307FC975
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 23:25:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C87C9B21296
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 22:13:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A3656B2139A
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 22:25:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FB5C481C5;
-	Tue, 28 Nov 2023 22:13:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60A8450244;
+	Tue, 28 Nov 2023 22:25:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jm81GYhQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f43.google.com (mail-oo1-f43.google.com [209.85.161.43])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A6331BE;
-	Tue, 28 Nov 2023 14:13:20 -0800 (PST)
-Received: by mail-oo1-f43.google.com with SMTP id 006d021491bc7-58d3c5126e9so2477499eaf.1;
-        Tue, 28 Nov 2023 14:13:20 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701209599; x=1701814399;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=76mP+x+bYO6jX4WukwyAY+fmiKt3MRVCF+jR8taIB6c=;
-        b=pq1CazXO1TwvBLO4RzhAo3YONJ81RLa/olOzdogkMD8x7osYxjfabAAu2T8HaZHFPQ
-         ZXy7zUGVu6ezIvQYbF/gTeNNey3Tjrr8fYEWr1WcDqz2B4E4EnBJ+nOtZ7JJMEhl2Ygm
-         VTKQLDiE+8wcF0oPqZVARpV25oO0dvzUASVSR5eNHyQaAVQ8maMqJMO44IySUbb/Tr01
-         F82TfC8ipB0mdrYYO/dQhqUFjUVTTmcny16jyLoAEv0CNjfwogC6wa/GDc5TJ5mBgs+V
-         r7VCGC76C2ll12XZcoRysNd5c6InGkfq24XrIj5e1aGFgLJuaovH+wa6bqqwY1RucjyE
-         f7Cw==
-X-Gm-Message-State: AOJu0Yx7DtxQpKqNmk1zOIosK4itBSgPur5koe3u0CN9kYv8ZgxxUCt1
-	Vvb1bXzy5jpaEisma/5x3Q==
-X-Google-Smtp-Source: AGHT+IHLa/L1r6e7R0OzqIz2an7oAGmbLiFuC1QyvPdBbgI2xiaK1h3cuyi5/8Y7OB+uf8eAxVWIFA==
-X-Received: by 2002:a05:6820:626:b0:58d:74f2:bb4f with SMTP id e38-20020a056820062600b0058d74f2bb4fmr10557302oow.1.1701209599248;
-        Tue, 28 Nov 2023 14:13:19 -0800 (PST)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id e64-20020a4a5543000000b0058d8b0c4bbdsm835334oob.32.2023.11.28.14.13.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Nov 2023 14:13:18 -0800 (PST)
-Received: (nullmailer pid 4078954 invoked by uid 1000);
-	Tue, 28 Nov 2023 22:13:17 -0000
-From: Rob Herring <robh@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: Turn on undocumented compatible checks
-Date: Tue, 28 Nov 2023 16:10:08 -0600
-Message-ID: <20231128221008.4050638-2-robh@kernel.org>
-X-Mailer: git-send-email 2.42.0
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3904244366;
+	Tue, 28 Nov 2023 22:25:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0965C433AD;
+	Tue, 28 Nov 2023 22:25:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701210344;
+	bh=xw0jvipvintPrN+TgSa50fPhSr/OQ4+PLz58lH+HcbQ=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=jm81GYhQKdtghqZzcibJps70VcRXNVXYv83wu50oGnscBqTrRc/YtqxTp7E7cuE/6
+	 NRtc0GGIDU1bI0MyNKDuFDCKQ3kZsEU6iskMiWTMYb47Sas28ml6p2C7WuDCa7ELxO
+	 hvOBXHoJDFIrncf8lWiN0ssSqT3s1B6AdpdM02wtvE8DiCCElHXjSIBepJ+06NwGMf
+	 H+Cy8uxOmMfNP5eSAoB87/JM0Refr5wwxVmXtgsVTtanzxTxI/alFcRPXGLRtNomUG
+	 UVg2asGdOH/+adDowrri+E8+XK4W0HhI5LNyHdJAwEuWNo8vXHLOxRRRqxHGIJlBmn
+	 0cz0ceMXh2McA==
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-50bc21821a1so872212e87.0;
+        Tue, 28 Nov 2023 14:25:44 -0800 (PST)
+X-Gm-Message-State: AOJu0YzNf2XAPPoZin4D+iCchkZVXyHSYb3SCl+RpjcbSc7+AFTAhrZu
+	dWkLVu3Aw+p3qjeS9ULRnX1mE/CkliPLawJg9A==
+X-Google-Smtp-Source: AGHT+IGnIgBpTrIKTkP3WlvgS+ZB8HvzDAmJkPSscfGKFyVApWHtyV/uoYFyVwHsgH3F68YSqBbNeCx6OMJVUk8qodo=
+X-Received: by 2002:a05:6512:4d1:b0:50b:a806:966b with SMTP id
+ w17-20020a05651204d100b0050ba806966bmr7526326lfq.23.1701210342779; Tue, 28
+ Nov 2023 14:25:42 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20231122-dtc-warnings-v2-0-bd4087325392@kernel.org>
+ <CAK7LNASVMjVg4dr=KdSDHwGww_47H78H7rMXA=wf+ncugesDSA@mail.gmail.com>
+ <CAL_Jsq+N0GxwZ2YmspEzfiuGOw7M+DmYkyhLgaYtk+Ov2ycY_A@mail.gmail.com> <CAK7LNAT6-pBjUbB+Fcik27QWniK7BizvoUG+EiFvFtJ+MTdmJA@mail.gmail.com>
+In-Reply-To: <CAK7LNAT6-pBjUbB+Fcik27QWniK7BizvoUG+EiFvFtJ+MTdmJA@mail.gmail.com>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 28 Nov 2023 16:25:30 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJSFnVG6+CfcbgVFGo3EyiSTt-et0NSW2qWjei+zXURcg@mail.gmail.com>
+Message-ID: <CAL_JsqJSFnVG6+CfcbgVFGo3EyiSTt-et0NSW2qWjei+zXURcg@mail.gmail.com>
+Subject: Re: [PATCH v2 0/4] kbuild: Per arch/platform dtc warning levels
+To: Masahiro Yamada <masahiroy@kernel.org>
+Cc: Nathan Chancellor <nathan@kernel.org>, Nick Desaulniers <ndesaulniers@google.com>, 
+	Nicolas Schier <nicolas@fjasle.eu>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	Conor Dooley <conor@kernel.org>, linux-kbuild@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The undocumented compatibles in the examples are down to just a few
-left. Turn on the warning by default. The increased visibility should
-get the remaining warnings fixed.
+On Tue, Nov 28, 2023 at 6:03=E2=80=AFAM Masahiro Yamada <masahiroy@kernel.o=
+rg> wrote:
+>
+> On Mon, Nov 27, 2023 at 11:03=E2=80=AFPM Rob Herring <robh@kernel.org> wr=
+ote:
+> >
+> > On Thu, Nov 23, 2023 at 1:39=E2=80=AFAM Masahiro Yamada <masahiroy@kern=
+el.org> wrote:
+> > >
+> > > On Thu, Nov 23, 2023 at 7:12=E2=80=AFAM Rob Herring <robh@kernel.org>=
+ wrote:
+> > > >
+> > > > This series adds support to set the dtc extra warning level on a pe=
+r
+> > > > arch or per platform (directory really) basis.
+> > > >
+> > > > The first version of this was just a simple per directory override =
+for
+> > > > Samsung platforms, but Conor asked to be able to do this for all of
+> > > > riscv.
+> > > >
+> > > > For merging, either I can take the whole thing or the riscv and sam=
+sung
+> > > > patches can go via their normal trees. The added variable will have=
+ no
+> > > > effect until merged with patch 2.
+> > > >
+> > > > v1:
+> > > >  - https://lore.kernel.org/all/20231116211739.3228239-1-robh@kernel=
+.org/
+> > > >
+> > > > Signed-off-by: Rob Herring <robh@kernel.org>
+> > > > ---
+> > >
+> > >
+> > > There were some attempts in the past to enable W=3D1 in particular su=
+bsystems,
+> > > so here is a similar comment.
+> > >
+> > > Adding a new warning flag to W=3D1 is always safe without doing any c=
+ompile test.
+> > >
+> > > With this series, it would not be true any more because a new warning=
+ in W=3D1
+> > > would potentially break riscv/samsung platforms.
+> >
+> > The difference here is the people potentially adding warnings are also
+> > the ones ensuring no warnings.
+> >
+> > > Linus requires a clean build (i.e. zero warning) when W=3D option is =
+not given.
+> >
+> > Linus doesn't build any of this AFAICT. We are not always warning free
+> > for W=3D0 with dtbs.
+>
+>
+>
+> Does it mean, you can enable all warnings by default?
 
-Signed-off-by: Rob Herring <robh@kernel.org>
+No, Linus might not care, but others (me) do. The whole point of not
+allowing warnings is the same. Get to zero warnings so any new
+warnings stand out. We now have some subset of platforms which are
+warning free and want warnings enabled by default to keep them that
+way. How do you suggest we do that?
+
+I understand your point on W=3D1 in general, but I think it just doesn't
+apply in this case. In general,
+someone may be testing a new compiler and there's some new warning to
+enable, so they add it to W=3D1. They are working independently of any
+subsystem (and Linus) and introducing new warnings would be a burden
+to fix and a problem to leave. For DT, it is a bit different as adding
+new warnings, updating dtc version, and selecting warnings to enable
+are pretty much all done together. Plus, schema warnings have pretty
+much superseded dtc warnings. If we do add new warnings which can't be
+fixed up front, then we could still only enable the warning for W=3D1
+from the command line. Something like this on top of this series:
+
+diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
+index 53a74e53e0ca..41307c6e1fee 100644
+--- a/scripts/Makefile.lib
++++ b/scripts/Makefile.lib
+@@ -341,6 +341,10 @@ quiet_cmd_gzip =3D GZIP    $@
+ # ------------------------------------------------------------------------=
 ---
-After the last batch of fixes I've sent out, there's 6 warnings 
-remaining:
+ DTC ?=3D $(objtree)/scripts/dtc/dtc
 
- ['socionext,milbeaut-usio-uart']
- ['sprd,sc9863a-glbregs', 'syscon', 'simple-mfd']
- ['brcm,bcm2711-avs-monitor', 'syscon', 'simple-mfd']
- ['fsl,imx6q-anatop', 'syscon', 'simple-mfd']
- ['hisilicon,hi3798cv200-combphy']
- ['qca,ar9331-switch']
++ifeq ($(findstring 1,$(KBUILD_EXTRA_WARN)),)
++DTC_FLAGS +=3D -Wno-some_new_warning_we_need_off_globally
++endif
++
+ KBUILD_EXTRA_WARN_DTC +=3D $(KBUILD_EXTRA_WARN)
 
- Documentation/devicetree/bindings/Makefile | 3 ---
- 1 file changed, 3 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/Makefile b/Documentation/devicetree/bindings/Makefile
-index 3e886194b043..3e3e49d8a733 100644
---- a/Documentation/devicetree/bindings/Makefile
-+++ b/Documentation/devicetree/bindings/Makefile
-@@ -61,9 +61,6 @@ override DTC_FLAGS := \
- 	-Wno-unique_unit_address \
- 	-Wunique_unit_address_if_enabled
- 
--# Disable undocumented compatible checks until warning free
--override DT_CHECKER_FLAGS ?=
--
- $(obj)/processed-schema.json: $(DT_DOCS) $(src)/.yamllint check_dtschema_version FORCE
- 	$(call if_changed_rule,chkdt)
- 
--- 
-2.42.0
-
+ # Disable noisy checks by default
 
