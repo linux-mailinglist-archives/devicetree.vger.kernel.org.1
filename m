@@ -1,109 +1,140 @@
-Return-Path: <devicetree+bounces-19499-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19500-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EC5C7FB298
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 08:23:52 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34D0A7FB2C6
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 08:32:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DAD5B281DA2
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 07:23:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D58361F20626
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 07:32:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DCF412E57;
-	Tue, 28 Nov 2023 07:23:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C88D4134D3;
+	Tue, 28 Nov 2023 07:32:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fgCs+u9D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f53.google.com (mail-oo1-f53.google.com [209.85.161.53])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6179137;
-	Mon, 27 Nov 2023 23:23:40 -0800 (PST)
-Received: by mail-oo1-f53.google.com with SMTP id 006d021491bc7-586a516755aso2724069eaf.0;
-        Mon, 27 Nov 2023 23:23:40 -0800 (PST)
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F41078E
+	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 23:32:18 -0800 (PST)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-9fa45e75ed9so697654466b.1
+        for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 23:32:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1701156737; x=1701761537; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=QVmDKLnjgMvzt0v2Mm83VY+hDZMHwEGAGNUJ3XXPIO0=;
+        b=fgCs+u9DnbSnswdfvZUZfDFpHSvj4aLdKB28B3LijNfPxQZ6Nt1S28NXDoCiNQe6bL
+         I1v3B6R1ijreetbt6wz3tjI+jSpgt+HbRPM0XckGsdj2Q+UL6Ixt1RboHNHWUmMVdih6
+         6GNzAnpiNDfXc3xwEdLyKonIBe7Z6kw8dwM72PwQ71+s3FZBb6CurqOcEJ9xndAOFCLj
+         qYz+QhVEjgqa8v5WgF035JT/uUOUYwkVtJ0/WrQu83ksZBxUByQJMY/S2aMYmHnuHxPX
+         qE4ITF2TYkWuNNlbmki5vjxxxlBw8nHjSXjSkpoKYs2XBgkSqbN6b0PzhlUGOWaUXPdQ
+         WfYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701156220; x=1701761020;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=yLPWKkVfBk073fR6U+1F3GDmSFa2Z9/zDjFo/SdlpIs=;
-        b=qDblPq87J8s8/y+CuNfWtH1zqmnb8LBbhhO8VjZHKnernE/VnRtPolFAtaHNspzqEw
-         nSA0a00Sxcx/pYfVEbOQNTZDIBd+/D0IBn0h/4GTiZUeFSL9FRP04uY7jGBZszAUkjH9
-         nh5cwLA+gG/gizdjiPFbFJRdC+hwNrJMTW05OjgH0wHjrngk9iffgi/wVSPQmcv4I15H
-         7R0XwbcV0dJG8or0d+cFK3Rv2i3SkaIxP68yxqz2pJxSDABjZ14mjrhbVJxhDB3WSnaB
-         kWmeZFpH4ar0i2xO7CUMPX1zT7xPHhMHCQM10uCq06pKpXrNNwH5XrN/ejoHB213SVje
-         Qp4g==
-X-Gm-Message-State: AOJu0YyMoPWN+AOZakRLg8Qrdg1v9w1VWR1xlo0aZBIj45d7hsnAsvEg
-	ngOwRGxwpWhPfh/ut1JuMw==
-X-Google-Smtp-Source: AGHT+IGPoRA3KYun6r0Yc+p3X/bGzpkesAMMixYIG3xcSPbb4Kw+J7HFNgMh9KVpHyE8SziDIXK5Bg==
-X-Received: by 2002:a05:6871:691:b0:1fa:2620:aab1 with SMTP id l17-20020a056871069100b001fa2620aab1mr4884109oao.5.1701156219918;
-        Mon, 27 Nov 2023 23:23:39 -0800 (PST)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id nx11-20020a056870be8b00b001e98b1544fesm2723140oab.9.2023.11.27.23.23.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Nov 2023 23:23:39 -0800 (PST)
-Received: (nullmailer pid 1866835 invoked by uid 1000);
-	Tue, 28 Nov 2023 07:23:37 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        d=1e100.net; s=20230601; t=1701156737; x=1701761537;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=QVmDKLnjgMvzt0v2Mm83VY+hDZMHwEGAGNUJ3XXPIO0=;
+        b=aCpOo0VNHY7eyCrCGTdlyJ/GfKkGZJIhjUdzJxFwYukVncvmmhlnR7JshsRomOVn+0
+         GOj+L0jUCxczeHoFBkhIT9NdIvJHOE/B3gTfaSnbmN1e6YmKdeFzEbIzRt0dyJ4PoJqu
+         9dY3AD5ofxMxc0J7HizkHenX+BxIRj4FJwSXC8pYnmrsjdzHI1bt+z/UruU+JdEialSv
+         CiKsQNuCA3Ih4fpbM7u/+eOU+0GNLh3OazSt79hqhf1V4BpnX9l9oasvg5ZOPR+3is6M
+         OiBxxWmQlLapd1aO1coXRUgX45FvcTi+veGBUE8hpjOaKJPpSmFk0/5yHe9df2/24ffl
+         CKog==
+X-Gm-Message-State: AOJu0Yyireeyuhs/dFRb2VTC+UZ9rNlgrqLMIanWuSkpu4cs+sf1eBw1
+	3Hbz7dgXvQhEqaKvGPZbEec7Mw==
+X-Google-Smtp-Source: AGHT+IH8uot6HPGQdkHS66ZfPJHgWJ+JzMgtwFQkzgAno8EOxdj+XfozYykudFVGEBJFA5+1wkvkQQ==
+X-Received: by 2002:a17:907:3101:b0:9c5:844f:a7f4 with SMTP id wl1-20020a170907310100b009c5844fa7f4mr9425064ejb.35.1701156737372;
+        Mon, 27 Nov 2023 23:32:17 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.223.109])
+        by smtp.gmail.com with ESMTPSA id ci11-20020a170906c34b00b00a0d672bfbb0sm2942163ejb.142.2023.11.27.23.32.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Nov 2023 23:32:16 -0800 (PST)
+Message-ID: <00636ba7-c0f0-4142-98be-d0449c838821@linaro.org>
+Date: Tue, 28 Nov 2023 08:32:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Jacky Huang <ychuang570808@gmail.com>
-Cc: p.zabel@pengutronix.de, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, ychuang3@nuvoton.com, linus.walleij@linaro.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, j.neuschaefer@gmx.net, conor+dt@kernel.org, schung@nuvoton.com
-In-Reply-To: <20231128061118.575847-3-ychuang570808@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/4] dt-bindings: reset: Add syscon to nuvoton ma35d1
+ system-management node
+Content-Language: en-US
+To: Jacky Huang <ychuang570808@gmail.com>, linus.walleij@linaro.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ p.zabel@pengutronix.de, j.neuschaefer@gmx.net
+Cc: linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ ychuang3@nuvoton.com, schung@nuvoton.com
 References: <20231128061118.575847-1-ychuang570808@gmail.com>
- <20231128061118.575847-3-ychuang570808@gmail.com>
-Message-Id: <170115621743.1866777.10057732835703871214.robh@kernel.org>
-Subject: Re: [PATCH v2 2/4] dt-bindings: pinctrl: Document nuvoton ma35d1
- pin control
-Date: Tue, 28 Nov 2023 01:23:37 -0600
+ <20231128061118.575847-2-ychuang570808@gmail.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
+ m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
+ HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
+ XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
+ mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
+ v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
+ cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
+ rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
+ qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
+ aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
+ gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
+ dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
+ NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
+ hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
+ oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
+ H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
+ yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
+ 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
+ 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
+ +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
+ FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
+ 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
+ DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
+ oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
+ 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
+ Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
+ qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
+ /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
+ qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
+ EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
+ KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
+ fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231128061118.575847-2-ychuang570808@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-
-On Tue, 28 Nov 2023 06:11:16 +0000, Jacky Huang wrote:
+On 28/11/2023 07:11, Jacky Huang wrote:
 > From: Jacky Huang <ychuang3@nuvoton.com>
 > 
-> Add documentation to describe nuvoton ma35d1 pin control and GPIO.
+> Add a compatible 'syscon' to the system management node since the system
+> control registers are mapped by this driver. The other driver must access
+> the system control registers through 'regmap' using a phandle that
+> references this node.
 > 
 > Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
-> ---
->  .../pinctrl/nuvoton,ma35d1-pinctrl.yaml       | 189 ++++++++++++++++++
->  1 file changed, 189 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/nuvoton,ma35d1-pinctrl.yaml
-> 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/pinctrl/nuvoton,ma35d1-pinctrl.example.dts:27:18: fatal error: dt-bindings/pinctrl/ma35d1-pinfunc.h: No such file or directory
-   27 |         #include <dt-bindings/pinctrl/ma35d1-pinfunc.h>
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[2]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/pinctrl/nuvoton,ma35d1-pinctrl.example.dtb] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1424: dt_binding_check] Error 2
-make: *** [Makefile:234: __sub-make] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231128061118.575847-3-ychuang570808@gmail.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Best regards,
+Krzysztof
 
 
