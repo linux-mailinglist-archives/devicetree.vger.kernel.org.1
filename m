@@ -1,139 +1,155 @@
-Return-Path: <devicetree+bounces-19545-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19537-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60B867FB4A6
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 09:45:36 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E9437FB47F
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 09:42:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 043D6B218B6
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 08:45:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0F196B21615
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 08:42:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8789F19BB1;
-	Tue, 28 Nov 2023 08:45:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 961BA19463;
+	Tue, 28 Nov 2023 08:42:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="M7OCSlHr"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TppnYu7G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8BACD4C
-	for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 00:45:27 -0800 (PST)
-Received: by mail-pl1-x62e.google.com with SMTP id d9443c01a7336-1cf89e31773so35328465ad.0
-        for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 00:45:27 -0800 (PST)
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0985CE4
+	for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 00:42:46 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-50abbb23122so6706403e87.3
+        for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 00:42:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1701161126; x=1701765926; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dxKs9xH99OQyNQM5ja7w5sBqIVdDZ2l2tkwooD9gc1c=;
-        b=M7OCSlHrgPke0dbRqhyKdV1U2j9DpXjb4BCazCV3m+84qXU2FL1ddycrfXCIqHph/f
-         ho6kJGxPgWAnRHqRtJAJRY2tqfLbYFoAVS5FClxouPLTXDerBCtgJN1NI8jPG81stcAm
-         tovPvDMh9jBVtmUBDucEX24Dj789D8LC366RQ=
+        d=linaro.org; s=google; t=1701160964; x=1701765764; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=IvRBywu9gVQURZ2UKxTv1QWp3IKlwvhSMetZYtCm5UI=;
+        b=TppnYu7GFOZuBQ0xVhRnq0+TB+FZfAV8eXsUayNKhFR3UuU7pb/p5UNh7opPMlgz/H
+         mOVjW8PW/TR44whTV58sKxDfdZ1K/kIFQdaAyY4g4c7SYDcSdrspNWrLqm0TsfxP9p17
+         Hee0akaTzOPHNe2mvDehR4jZWOY6PT9u2kpy6Hp0oryOaK6NGXK702lDE8FTuFWjmHgt
+         DpZvD80EDJWTQheWLifsg7KPjaIyISUnR+Y67US7Hnkied1QaEKc/1OzEikHf52UdPIV
+         pvoLtN2pNPhsoulFdMlUGcM0k8uh+8KbPj/GPsflhAkp5QkYgL1YC/qOWKyMUTpExf1P
+         Q22g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701161126; x=1701765926;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dxKs9xH99OQyNQM5ja7w5sBqIVdDZ2l2tkwooD9gc1c=;
-        b=HcMTowiFhM3pDKF6qIUZJ2mfNEQ2foqyCYLRtoqQ0ydR+Nc1+5aOu/S5YFKxM8G9q5
-         I48dcUkL7V5j5aRmn/dnem4YuUrpnapgUxI/MMWCjxwVQlKSZJjI9mLEMzBcRZgCBI+U
-         S7RdZHNUtGzBpdkUdvxj8LB7YjQhJ1CWFYKqdSUgN+zvpT7m+ksXI6N2b3Y8NQrrKh+J
-         iHZhEUQ3/b1XgziWYAVkiT9nEUx8Ha9kl1jm/wgGHNw5SI9AQReeVjYK86m7nZR1JVwB
-         iA8tWZSmrU7W3zl16HapKhjTHs/j8sD3NvCoGP6nMcGQWyme5l5uCEjUkdtPJ3oeCg2C
-         j7zg==
-X-Gm-Message-State: AOJu0YyF3MFlMgRIanKZuwZV5ucX7+vgn8QWqHmKn8kqQwuObEBCciah
-	SF4orDbaBi1ezpXe7DoMixgLCg==
-X-Google-Smtp-Source: AGHT+IEHq/8o8TRy8LBy9PDIxcsp3BaVE1rQDjyRLP/di+1I1g3a9pBwAwe3ppG7Mgw8ZIdwK6eHKA==
-X-Received: by 2002:a17:902:988b:b0:1cf:b130:e9af with SMTP id s11-20020a170902988b00b001cfb130e9afmr10074896plp.20.1701161126645;
-        Tue, 28 Nov 2023 00:45:26 -0800 (PST)
-Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:a990:1e95:a915:9c70])
-        by smtp.gmail.com with ESMTPSA id j1-20020a170902c08100b001ab39cd875csm8358074pld.133.2023.11.28.00.45.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Nov 2023 00:45:26 -0800 (PST)
-From: Chen-Yu Tsai <wenst@chromium.org>
-To: Rob Herring <robh+dt@kernel.org>,
-	Frank Rowand <frowand.list@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Wolfram Sang <wsa@kernel.org>,
-	Benson Leung <bleung@chromium.org>,
-	Tzung-Bi Shih <tzungbi@kernel.org>
-Cc: Chen-Yu Tsai <wenst@chromium.org>,
-	chrome-platform@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Douglas Anderson <dianders@chromium.org>,
-	Johan Hovold <johan@kernel.org>,
-	Hsin-Yi Wang <hsinyi@chromium.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	andriy.shevchenko@linux.intel.com,
-	Jiri Kosina <jikos@kernel.org>,
-	linus.walleij@linaro.org,
-	broonie@kernel.org,
-	gregkh@linuxfoundation.org,
-	hdegoede@redhat.com,
-	james.clark@arm.com,
-	james@equiv.tech,
-	keescook@chromium.org,
-	rafael@kernel.org,
-	tglx@linutronix.de,
-	Jeff LaBundy <jeff@labundy.com>,
-	linux-input@vger.kernel.org,
-	linux-i2c@vger.kernel.org
-Subject: [RFC PATCH v3 5/5] arm64: dts: mediatek: mt8173-elm-hana: Add G2touch G7500 touchscreen
-Date: Tue, 28 Nov 2023 16:42:34 +0800
-Message-ID: <20231128084236.157152-6-wenst@chromium.org>
-X-Mailer: git-send-email 2.43.0.rc1.413.gea7ed67945-goog
-In-Reply-To: <20231128084236.157152-1-wenst@chromium.org>
-References: <20231128084236.157152-1-wenst@chromium.org>
+        d=1e100.net; s=20230601; t=1701160964; x=1701765764;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=IvRBywu9gVQURZ2UKxTv1QWp3IKlwvhSMetZYtCm5UI=;
+        b=rfGF4NFYcDP2LR0BbbXjbXwruEurP7Zwk+wx35aRCemCxEiqZtyJuFgkC08u+1gDtJ
+         4uE8lFV5iyLcWhCchZQPXi7qzKvi4M/kW2GOjA46mS9w04lyW1bi8omr/SLG98pIGZKu
+         wY4zco7tnyrGiVFr6I5egjffHKEu7YRaB1aTungEUQcMPrSzY5qiRuj3RMsK3aBapJwm
+         Bb+97oAZYdD3u9ETSg8Tk0lOuYvz4p4eWHCt4dlUqip0n0lslY2Sb8xnHfQk72uNGtPO
+         HbdilwwplRpk+YyeICDNRAY9EVx7Mz6Q9IJ49TpHU1YytA//LE5oH+IeTnJYG64tiw0M
+         EPSw==
+X-Gm-Message-State: AOJu0YwmzRy66aaXug8DH11Usg42vkTSNmJ3tcez+/h6vQ9Y8J9g8w5F
+	f1iDo3esbnZ/nn7Kxm7M1qqzPg==
+X-Google-Smtp-Source: AGHT+IGTC0udF55QMgLBA9cC7gVtvMjQINc56O8MPgGWDrx+c0NldisecL2JgxIBGPu7KgVsb9soqg==
+X-Received: by 2002:a05:6512:3da9:b0:505:7371:ec83 with SMTP id k41-20020a0565123da900b005057371ec83mr11945842lfv.48.1701160964325;
+        Tue, 28 Nov 2023 00:42:44 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:eada:f40e:7ab3:2afe? ([2a01:e0a:982:cbb0:eada:f40e:7ab3:2afe])
+        by smtp.gmail.com with ESMTPSA id q19-20020a194313000000b0050a78dac3fasm1795027lfa.12.2023.11.28.00.42.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 28 Nov 2023 00:42:43 -0800 (PST)
+Message-ID: <0d249c13-a671-4696-98ad-b222f3b72593@linaro.org>
+Date: Tue, 28 Nov 2023 09:42:42 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH RESEND v2] dt-bindings: thermal: qcom-tsens: document the
+ SM8650 Temperature Sensor
+Content-Language: en-US, fr
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Amit Kucheria <amitk@kernel.org>,
+ Thara Gopinath <thara.gopinath@gmail.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231128-topic-sm8650-upstream-bindings-tsens-v2-1-8a21f61130a5@linaro.org>
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro Developer Services
+In-Reply-To: <20231128-topic-sm8650-upstream-bindings-tsens-v2-1-8a21f61130a5@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-This introduces yet another second-source touchscreen found on Hana.
-This is a G2touch G7500 touchscreen, which is compatible with HID over
-I2C.
+Hi Daniel,
 
-Add a device node for it. In keeping with the new scheme for second
-source components, mark it as "failed-needs-probe".
+On 28/11/2023 09:37, Neil Armstrong wrote:
+> Document the Temperature Sensor (TSENS) on the SM8650 Platform.
+> 
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 
-Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
----
-Changes since v2:
-- Drop class from status
----
- arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
+Please ignore this resend, I forgot to add reviews.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi b/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi
-index 1d68bc6834e4..216d8b43be05 100644
---- a/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi
-@@ -31,6 +31,15 @@ touchscreen3: touchscreen@20 {
- 		interrupts = <88 IRQ_TYPE_LEVEL_LOW>;
- 		status = "fail-needs-probe";
- 	};
-+
-+	touchscreen4: touchscreen@40 {
-+		compatible = "hid-over-i2c";
-+		reg = <0x40>;
-+		hid-descr-addr = <0x0001>;
-+		interrupt-parent = <&pio>;
-+		interrupts = <88 IRQ_TYPE_LEVEL_LOW>;
-+		status = "fail-needs-probe";
-+	};
- };
- 
- &i2c4 {
--- 
-2.43.0.rc1.413.gea7ed67945-goog
+Thanks,
+Neil
+
+> ---
+> For convenience, a regularly refreshed linux-next based git tree containing
+> all the SM8650 related work is available at:
+> https://git.codelinaro.org/neil.armstrong/linux/-/tree/topic/sm85650/upstream/integ
+> ---
+> Changes in v2:
+> - Fixed typo in subject
+> - Link to v1: https://lore.kernel.org/r/20231025-topic-sm8650-upstream-bindings-tsens-v1-1-09fdd17b1116@linaro.org
+> ---
+>   Documentation/devicetree/bindings/thermal/qcom-tsens.yaml | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+> index 437b74732886..99d9c526c0b6 100644
+> --- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+> +++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+> @@ -66,6 +66,7 @@ properties:
+>                 - qcom,sm8350-tsens
+>                 - qcom,sm8450-tsens
+>                 - qcom,sm8550-tsens
+> +              - qcom,sm8650-tsens
+>             - const: qcom,tsens-v2
+>   
+>         - description: v2 of TSENS with combined interrupt
+> 
+> ---
+> base-commit: fe1998aa935b44ef873193c0772c43bce74f17dc
+> change-id: 20231016-topic-sm8650-upstream-bindings-tsens-4e748933642e
+> 
+> Best regards,
 
 
