@@ -1,71 +1,99 @@
-Return-Path: <devicetree+bounces-19621-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19622-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 882FD7FB7FF
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 11:36:22 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97F257FB844
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 11:43:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C30551C212AC
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 10:36:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C9FF71C21328
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 10:43:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2440E156F6;
-	Tue, 28 Nov 2023 10:36:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D760341A8;
+	Tue, 28 Nov 2023 10:43:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b="SfHUHZD8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DDD92D62;
-	Tue, 28 Nov 2023 02:36:16 -0800 (PST)
-Received: from i53875bf8.versanet.de ([83.135.91.248] helo=phil.lan)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1r7vRr-0003E0-50; Tue, 28 Nov 2023 11:36:11 +0100
-From: Heiko Stuebner <heiko@sntech.de>
-To: Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	kernel@collabora.com,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v1 1/2] arm64: dts: rockchip: add USB3 host to rock-5b
-Date: Tue, 28 Nov 2023 11:36:09 +0100
-Message-Id: <170116776016.2189213.11963461092677000892.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20231106155934.80838-1-sebastian.reichel@collabora.com>
-References: <20231106155934.80838-1-sebastian.reichel@collabora.com>
+Received: from mail5.25mail.st (mail5.25mail.st [74.50.62.9])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C7D41A5;
+	Tue, 28 Nov 2023 02:43:37 -0800 (PST)
+Received: from localhost (91-158-86-216.elisa-laajakaista.fi [91.158.86.216])
+	by mail5.25mail.st (Postfix) with ESMTPSA id A89946086E;
+	Tue, 28 Nov 2023 10:43:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=atomide.com;
+	s=25mailst; t=1701168216;
+	bh=o617uNhOvw3Vu+eRSs1W8/UqKPoU/B9IfoVIbQuRnCs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=SfHUHZD8Ii8XGRTnm9DAGobgeC1l8WZoBabIgGA4wyWEeDVkCp6jaK4/3tqggtzbs
+	 ffDZ2ja1ef6OXetd1WjT3kMh1eZQN8Rc7u//EG4n5Zo3v12/zRGt1nXPzQaZgZ5rNA
+	 0erJaEOVziSGN/z4c0Yk4gtDioSzqY7AZU12PwuTRdny4zCD6mJFxhU0ff2ewqupxz
+	 uXSFVS5+zn8BTnWhr3Gyj9L7iK4LShq52qf4UBlMCynbEOROexYPW2pmbhZBqGFQuL
+	 xk4oTauzv+/3IdzgXFytannM0KGZKwH+0HUdJMJE7j7zv2OAHdrJbQaCxkJUzjUeY9
+	 ehRM5MW3LndoA==
+Date: Tue, 28 Nov 2023 12:43:10 +0200
+From: Tony Lindgren <tony@atomide.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Andreas Kemnade <andreas@kemnade.info>, mturquette@baylibre.com,
+	sboyd@kernel.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	kristo@kernel.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-omap@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: clock: ti: Convert interface.txt to
+ json-schema
+Message-ID: <20231128104310.GS5169@atomide.com>
+References: <20231127202359.145778-1-andreas@kemnade.info>
+ <7a62ed8a-b0e3-4881-90d7-b8f5d38e482e@linaro.org>
+ <20231128093241.707a4fa0@aktux>
+ <7361082a-f271-4ef4-9dad-06ee7445c749@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7361082a-f271-4ef4-9dad-06ee7445c749@linaro.org>
 
-On Mon, 6 Nov 2023 16:54:31 +0100, Sebastian Reichel wrote:
-> Enable USB3 host controller for the Radxa ROCK 5 Model B. This adds
-> USB3 for the upper USB3 port (the one further away from the PCB).
+* Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> [231128 08:41]:
+> On 28/11/2023 09:32, Andreas Kemnade wrote:
+> > On Tue, 28 Nov 2023 09:00:16 +0100
+> > Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+> > 
+> >>> +required:
+> >>> +  - compatible
+> >>> +  - clocks
+> >>> +  - '#clock-cells'  
+> >>
+> >> reg is required. Device cannot take "reg" from parent, DTS does not work
+> >> like this.
+> > 
+> > Well, apparently they do... and I am just dealing with status quo and not
+> > how it should be.
+> > Look at commit 31fc1c63c2ae4a542e3c7ac572a10a59ece45c24
 > 
-> The lower USB3 and the USB-C ports use the RK3588 USB TypeC host
-> controller, which use a different PHY without upstream support.
-> 
-> 
-> [...]
+> Who designed clock-controller binding with a device node per each clock?
+> This is ridiculous (although of course not your fault here)! Looking at
+> omap3xxx-clocks.dtsi - all its children should be just defined by the
+> driver, not by DTSI.
 
-Applied, thanks!
+Earlier all the clocks were separate nodes, the ti,clksel binding made
+things a bit better by grouping the seprate clock nodes so we don't have
+multiple nodes with the same reg.. But yeah clksel instance clocks should
+be clock@6 with reg = <6> if the clock bits are at bit 6. That would be
+fairly easy to do if that helps, but in general I doubt anybody's going
+to spend much effort to fix the omap3 legacy clocks atthis point.
 
-[1/2] arm64: dts: rockchip: add USB3 host to rock-5b
-      commit: 3585766438c4c24dcc6cc93e26e9eccccce50a13
-[2/2] arm64: dts: rockchip: add USB3 host to rock-5a
-      commit: bbda1bf9586f0f0745ab1097df6975a9354a03ff
+For omap4 and later, things are a bit better as they use the clkctrl clocks:
 
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+Documentation/devicetree/bindings/clock/ti-clkctrl.txt
+
+I don't think omap3 has any clkctrl clocks but if it does then that could
+be used.
+
+Regards,
+
+Tony
 
