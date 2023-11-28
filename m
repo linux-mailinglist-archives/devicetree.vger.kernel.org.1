@@ -1,122 +1,147 @@
-Return-Path: <devicetree+bounces-19659-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19660-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D2B47FBB60
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 14:23:24 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4B987FBB6A
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 14:25:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C738B282CB1
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 13:23:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 102CC1C21495
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 13:25:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA60558110;
-	Tue, 28 Nov 2023 13:23:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D27D0584E9;
+	Tue, 28 Nov 2023 13:25:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="S8u9G0yD"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="l+sNZgcm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-xc33.google.com (mail-oo1-xc33.google.com [IPv6:2607:f8b0:4864:20::c33])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DD5390;
-	Tue, 28 Nov 2023 05:23:16 -0800 (PST)
-Received: by mail-oo1-xc33.google.com with SMTP id 006d021491bc7-58d54fd8c5aso1517998eaf.2;
-        Tue, 28 Nov 2023 05:23:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701177795; x=1701782595; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Z+D+kelET1lYqbh/KjJRYmV6h/cajU1QJXlzne6uJHw=;
-        b=S8u9G0yDz4h+C0E6uhHuAynYfb+vsxUsK+FNwNRSYfU5v2RyUuWVSsJQLb0/F8nt5p
-         pKqOep9sVzWJvnJNpmMgID0dzKcWNahPhhIXDSAbjdMafruRKa4HWBmEu/2GkJSw2BhF
-         u43ibYV3ON6qxpo3eGBJ4oxUy9JK2y991hEvot8EDUQ/Db973ZyD0jMv/M16IoKGjFmS
-         YaMM9oXzSVoOPItHHJt5ek6Y67q07vvujYhNB2jjtPiGgFw9VPJ789FsetytBAJfhnAP
-         zJ27gDFDjDVZVVo+9dE8us3/Gd0Qh5VZtdu2L4VV9kio9X9Td8IHc+2NnHMBzgeUNj12
-         azMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701177795; x=1701782595;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Z+D+kelET1lYqbh/KjJRYmV6h/cajU1QJXlzne6uJHw=;
-        b=P0ki99roaR6aUWIzADL5e8mMxiXx0dZTy9NMstZNEeRdS42ejf6ExLSc/nZvmaz874
-         L0dONPaQtlMk4LFm1NET9djAAtC20i1HYb2vKyFmrCCggkgPjCjd1rQW6hEUlhvBVJ5D
-         1nLmsXIWfXNN90v5ctn36UDgbL/s59R8CZwAZkPdHV+MXhpcU+beqIYe7YZpKfb49KLs
-         W6+AtVJs3BFtkAdVSowGqQgAxCf/UCMucZcA3bf0kNH4lUvRkrZ5zxKhyAFarjtFmorw
-         NdzcNXDocy3+rB9eajbnMOfEA3acR8zGMvyUAuvIqeaZ8dtu3v2d6UFT1va8gyc0pNUh
-         7/sg==
-X-Gm-Message-State: AOJu0Ywx85F8/xlDj/gwdS/ZdPQ28zeEvpf+PYtpQiXTfYnU10jmOo8r
-	cCked5d+SxFw9l8BDnFOitA443iKD3PAXv0lzJI=
-X-Google-Smtp-Source: AGHT+IF+YMz6ll1sP40q174Fm9TYiVlVqsZPnobmdN/XMvXZnG9ddn0oUn+jFztkp4G5300CWS9GroRE72If5g8Vm3A=
-X-Received: by 2002:a05:6820:1504:b0:58d:97fb:cce9 with SMTP id
- ay4-20020a056820150400b0058d97fbcce9mr5162214oob.0.1701177795285; Tue, 28 Nov
- 2023 05:23:15 -0800 (PST)
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EEEEDA;
+	Tue, 28 Nov 2023 05:25:39 -0800 (PST)
+Received: by mail.gandi.net (Postfix) with ESMTPA id 9036B60004;
+	Tue, 28 Nov 2023 13:25:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1701177938;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=ofb5DztxekXhN3yofu4Ak0quar7W/LQtnV5utRbbo1M=;
+	b=l+sNZgcmAYNacJGLGSpjTmMqdte0rwzAYJYNk8htPE1wdgCBf1ALXWJ02vxb6XgXBwJ1fx
+	76KDjQ/Ala/8VIvrvWOphL0RB3kRzCg/3H1cnvyL9a4ASDckPotv+RFnJGkjoJ39g9MXZZ
+	Oyun/EL3sMKmPScZcbh1fQ/1YCgfMHpgy1yLFe1yKQekfTIgLIaJF9kxrx/YkwCc1I+4k+
+	Ni3cIaqsiA75IMmI3A9egAf5z9PbdNxAytsdBg7IHO4TS/zcMgD69161TTW7UA0zClj/x5
+	nche3zL2uH6/EVJxl9lY8Pa+ZmOPk0KZjM3Qts9k4ziFGyz6DF4BYYUYiolGpQ==
+From: Herve Codina <herve.codina@bootlin.com>
+To: Herve Codina <herve.codina@bootlin.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Lee Jones <lee@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>
+Cc: netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: [PATCH 0/5] Add support for framer infrastructure and PEF2256 framer
+Date: Tue, 28 Nov 2023 14:25:29 +0100
+Message-ID: <20231128132534.258459-1-herve.codina@bootlin.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231121094642.2973795-1-qiujingbao.dlmu@gmail.com>
- <20231121094642.2973795-4-qiujingbao.dlmu@gmail.com> <457b44f2-57b6-4811-ae43-b49a92d64d99@linaro.org>
-In-Reply-To: <457b44f2-57b6-4811-ae43-b49a92d64d99@linaro.org>
-From: jingbao qiu <qiujingbao.dlmu@gmail.com>
-Date: Tue, 28 Nov 2023 21:23:04 +0800
-Message-ID: <CAJRtX8Skn7y_=Zq9U0mk0msVAkQ0-EAvofzkmC-ZEA_Q8XLxgA@mail.gmail.com>
-Subject: Re: [PATCH 3/3] riscv: dts: sophgo: add rtc dt node for CV1800B
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: a.zummo@towertech.it, alexandre.belloni@bootlin.com, 
-	krzysztof.kozlowski+dt@linaro.org, chao.wei@sophgo.com, 
-	unicorn_wang@outlook.com, conor+dt@kernel.org, robh+dt@kernel.org, 
-	conor@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com, 
-	aou@eecs.berkeley.edu, linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: herve.codina@bootlin.com
 
-On Tue, Nov 21, 2023 at 6:00=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 21/11/2023 10:46, Jingbao Qiu wrote:
-> > Add the rtc device tree node to CV1800B SoC.
-> >
-> > Signed-off-by: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
-> > ---
-> >  arch/riscv/boot/dts/sophgo/cv1800b.dtsi | 8 ++++++++
-> >  1 file changed, 8 insertions(+)
-> >
-> > diff --git a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi b/arch/riscv/boot/=
-dts/sophgo/cv1800b.dtsi
-> > index df40e87ee063..89411c75b89a 100644
-> > --- a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
-> > +++ b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
-> > @@ -119,5 +119,13 @@ clint: timer@74000000 {
-> >                       reg =3D <0x74000000 0x10000>;
-> >                       interrupts-extended =3D <&cpu0_intc 3>, <&cpu0_in=
-tc 7>;
-> >               };
-> > +
-> > +             rtc: rtc-controller@05026000 {
-> > +                     compatible =3D "sophgo,cv800b-rtc";
-> > +                     reg =3D <0x05026000 0x1000>;
-> > +                     interrupts =3D <17 IRQ_TYPE_LEVEL_HIGH>;
-> > +                     interrupt-parent =3D <&plic>;
-> > +                     clocks =3D <&osc>;
-> > +             };
->
-> It does not look like you tested the DTS against bindings. Please run
-> `make dtbs_check W=3D1` (see
-> Documentation/devicetree/bindings/writing-schema.rst or
-> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sou=
-rces-with-the-devicetree-schema/
-> for instructions).
+Hi,
 
-I will check it.
+This series introduces the framer infrastructure and adds the PEF2256
+framer provider.
 
->
-> Best regards,
-> Krzysztof
->
+Patches were previously sent as part of a full feature series and were
+previously reviewed in that context:
+"Add support for QMC HDLC, framer infrastructure and PEF2256 framer" [1]
+
+In order to ease the merge, the full feature series has been split and
+this series contains patches related to the framer part (infrastructure
+and provider).
+ - Introduce framer infrastructure (patch 1)
+ - Add PEF2256 framer provider (patches 2, 3, 4, 5)
+
+Compare to the original full feature series, a modification was done on
+patch 3 in order to fix a dependency issue detected my a kernel test
+robot.
 
 Best regards,
-Jingbao Qiu
+Hervé
+
+[1]: https://lore.kernel.org/linux-kernel/20231115144007.478111-1-herve.codina@bootlin.com/
+
+Changes compare to the full feature series:
+  - Patch 3
+    Add 'depends on HAS_IOMEM' to fix the following issue detected by a
+    kernel test robot:
+       WARNING: unmet direct dependencies detected for MFD_CORE
+       Depends on [n]: HAS_IOMEM [=n]
+       Selected by [y]:
+       - FRAMER_PEF2256 [=y] && NETDEVICES [=y] && WAN [=y] && FRAMER [=y] && OF [=y]
+
+Patches extracted:
+  - Patch 1 : full feature series patch 21
+  - Patch 2 : full feature series patch 22
+  - Patch 3 : full feature series patch 23
+  - Patch 4 : full feature series patch 24
+  - Patch 5 : full feature series patch 25
+
+Herve Codina (5):
+  net: wan: Add framer framework support
+  dt-bindings: net: Add the Lantiq PEF2256 E1/T1/J1 framer
+  net: wan: framer: Add support for the Lantiq PEF2256 framer
+  pinctrl: Add support for the Lantic PEF2256 pinmux
+  MAINTAINERS: Add the Lantiq PEF2256 driver entry
+
+ .../bindings/net/lantiq,pef2256.yaml          | 213 +++++
+ MAINTAINERS                                   |   8 +
+ drivers/net/wan/Kconfig                       |   2 +
+ drivers/net/wan/Makefile                      |   2 +
+ drivers/net/wan/framer/Kconfig                |  42 +
+ drivers/net/wan/framer/Makefile               |   7 +
+ drivers/net/wan/framer/framer-core.c          | 882 ++++++++++++++++++
+ drivers/net/wan/framer/pef2256/Makefile       |   8 +
+ drivers/net/wan/framer/pef2256/pef2256-regs.h | 250 +++++
+ drivers/net/wan/framer/pef2256/pef2256.c      | 880 +++++++++++++++++
+ drivers/pinctrl/Kconfig                       |  15 +
+ drivers/pinctrl/Makefile                      |   1 +
+ drivers/pinctrl/pinctrl-pef2256.c             | 358 +++++++
+ include/linux/framer/framer-provider.h        | 194 ++++
+ include/linux/framer/framer.h                 | 205 ++++
+ include/linux/framer/pef2256.h                |  31 +
+ 16 files changed, 3098 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/lantiq,pef2256.yaml
+ create mode 100644 drivers/net/wan/framer/Kconfig
+ create mode 100644 drivers/net/wan/framer/Makefile
+ create mode 100644 drivers/net/wan/framer/framer-core.c
+ create mode 100644 drivers/net/wan/framer/pef2256/Makefile
+ create mode 100644 drivers/net/wan/framer/pef2256/pef2256-regs.h
+ create mode 100644 drivers/net/wan/framer/pef2256/pef2256.c
+ create mode 100644 drivers/pinctrl/pinctrl-pef2256.c
+ create mode 100644 include/linux/framer/framer-provider.h
+ create mode 100644 include/linux/framer/framer.h
+ create mode 100644 include/linux/framer/pef2256.h
+
+-- 
+2.42.0
+
 
