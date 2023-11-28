@@ -1,110 +1,106 @@
-Return-Path: <devicetree+bounces-19678-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19679-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 552D67FBCF4
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 15:41:18 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64CE97FBD0D
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 15:45:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 10FF92824B8
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 14:41:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E0683B20D3D
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 14:44:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 759B65ABBC;
-	Tue, 28 Nov 2023 14:41:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 034B854F81;
+	Tue, 28 Nov 2023 14:44:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W6TNTicP"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="YM44BhIk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 775D88E;
+	Tue, 28 Nov 2023 06:44:51 -0800 (PST)
+Received: from notapiano (cola.collaboradmins.com [IPv6:2a01:4f8:1c1c:5717::1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C4F55AB90;
-	Tue, 28 Nov 2023 14:41:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 210BAC433C8;
-	Tue, 28 Nov 2023 14:41:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701182474;
-	bh=U2H+GaDgE1dc4siI/syiwRHS98L9I2baF5G5hcg3p/U=;
+	(Authenticated sender: nfraprado)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 8FC1F66072A7;
+	Tue, 28 Nov 2023 14:44:47 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1701182690;
+	bh=Og082W+PSa4+5mTtMkeABO/eaXozRb0GXaqspZ1T4tk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=W6TNTicPVl5nDAiXtQpSjzw2y84+MOfRlm6UC9/qN7eRwrjnuN2a19WAxn+wjIcf7
-	 7iq/UQgsK5YE6QI8tBvpEJ1NnnAo7sZo7T5/g3CsHzZWP1TLHQ3bOGyvBbTdL0f+Lh
-	 FxWq+10RM8IKbgIwNGU8Z4cagslUoY/dUrFeQcKtcM7eCR1ftEYXP2gDRfsGvK2pWS
-	 2MtslNlOaWBkWIEkgyGwAqGkafxaPh+px9YFtpCjEAqGQqTB5rHVkdKZXjWrRg1akB
-	 kM06/0FWFkd2rDyFKtH9UZS4No8lm5rQo62Y6uG4aQym5TLE1sNWG3k5BOzXK+YQzl
-	 oyxyn2KBV1q3A==
-Date: Tue, 28 Nov 2023 14:41:08 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Herve Codina <herve.codina@bootlin.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	Christophe Leroy <christophe.leroy@csgroup.eu>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 0/5] Add support for framer infrastructure and PEF2256
- framer
-Message-ID: <511c83d1-d77f-4ac0-927e-91070787bc34@sirena.org.uk>
-References: <20231128132534.258459-1-herve.codina@bootlin.com>
- <17b2f126-f6a4-431c-9e72-56a9c2932a88@sirena.org.uk>
- <CACRpkda5VMuXccwSBd-DBkM4W7A1E+UfZwBxWqtqxZzKjrqY4A@mail.gmail.com>
+	b=YM44BhIk4AoBxZhrTRTnU7Agoo7aoXPbUC+kkVuglrVw1oxHaC3sN8xCREdcJsw06
+	 nkr38YpWD1IqnnPUZg0U1xrL42f2YkAagOaXzZbmapAdkdOOKx72TS7W6/NKBrQdGi
+	 pSdVYBGbsAOUQmzKiYu686WEzswrT9EmB4QGR734x0tqIM5IVwVMJkIlN9wWe8M1Zf
+	 QUEA1zCVt8AMmHKT4XbcFIJlEqyaQI+ygZlTOWLpatmlemGPx8hz/ZtFkBWT4zx/FP
+	 k+trbQUknlfB3LDKn9G2JLuIf7r5XxE8bJy3BSPLEmHviNzpgOMQZ1rYkKOJOV5FUA
+	 SSysqpsfwHfrA==
+Date: Tue, 28 Nov 2023 09:43:53 -0500
+From: =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>
+To: "Bird, Tim" <Tim.Bird@sony.com>
+Cc: Shuah Khan <shuah@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Saravana Kannan <saravanak@google.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	"kernelci@lists.linux.dev" <kernelci@lists.linux.dev>,
+	David Gow <davidgow@google.com>,
+	Guenter Roeck <groeck@chromium.org>,
+	"linux-kselftest@vger.kernel.org" <linux-kselftest@vger.kernel.org>,
+	"linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+	"kernel@collabora.com" <kernel@collabora.com>,
+	Dan Carpenter <dan.carpenter@linaro.org>,
+	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+	Doug Anderson <dianders@chromium.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [RFC PATCH v2 2/2] kselftest: devices: Add sample board file for
+ google,spherion
+Message-ID: <ee913bc5-c752-4da7-a140-7492f429c2cb@notapiano>
+References: <20231127233558.868365-1-nfraprado@collabora.com>
+ <20231127233558.868365-3-nfraprado@collabora.com>
+ <BN8PR13MB27384F089C7DAAF06DF9DDECFDBCA@BN8PR13MB2738.namprd13.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="S3M3tGRsMZ5+00g1"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <CACRpkda5VMuXccwSBd-DBkM4W7A1E+UfZwBxWqtqxZzKjrqY4A@mail.gmail.com>
-X-Cookie: Must be over 21.
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <BN8PR13MB27384F089C7DAAF06DF9DDECFDBCA@BN8PR13MB2738.namprd13.prod.outlook.com>
 
+On Tue, Nov 28, 2023 at 12:10:46AM +0000, Bird, Tim wrote:
+> > -----Original Message-----
+> > From: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> > Add a sample board file describing the file's format and with the list
+> > of devices expected to be probed on the google,spherion machine as an
+> > example.
+> > 
+> > Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> > ---
+> > 
+> > (no changes since v1)
+> > 
+> >  .../testing/selftests/devices/boards/google,spherion | 12 ++++++++++++
+> 
+> Overall, while trying to maintain a comprehensive set of board definitions
+> seems hard, I think having a few as examples is useful.
+> 
+> I'm not a big fan of naming these with a comma in the name.  Is there a reason
+> you are not using dash or underscore?
 
---S3M3tGRsMZ5+00g1
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I'm using the name that we get from the DT compatible, so the right file can be
+automatically selected by the test.
 
-On Tue, Nov 28, 2023 at 03:26:56PM +0100, Linus Walleij wrote:
-> On Tue, Nov 28, 2023 at 3:03=E2=80=AFPM Mark Brown <broonie@kernel.org> w=
-rote:
+> 
+> Do you anticipate a convention of  <producer> <board-or-product-name> tuples for
+> the filename?
 
-> > If this gets applied it'd be good to get a signed tag based off Linus'
-> > tree so things that depend on it can be pulled into other trees (eg, the
-> > ASoC mapping for the framer).
+I'd just stick to the DT compatible as it's the simplest option and should work
+just the same, assuming I understood correctly what you mean.
 
-> Do you mean my pin control tree or the big penguins tree? :D
-> (I'm guessing mine.)
-
-I actually meant mainline there.
-
-> I thought this thing would be merged primarily into the networking
-> tree, and I don't know if they do signed tags, I usually create an
-> immutable branch but that should work just as fine I guess.
-
-Right, I'd expect a signed tag on the immutable branch - it's generally
-helpful to avoid confusion about the branch actually being immutable.
-
---S3M3tGRsMZ5+00g1
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmVl/AMACgkQJNaLcl1U
-h9C9eQf/R1llySAg9H/iM2wmZyiHeAxLfrwmt4OWBoTpGBRwWcNPKExSnleKXm5l
-czCL9LeGlT5a11xDPjoV4DRh3ehaYuj1FN3Pq5JS0VoG0c9orw1oqLQuU7RJlGqd
-ajTjDRie+pJ+pOEVsLF3pS+h8KwbPhaoJEorU1acAZTXrsYlAQKJNQTcTzYg8KAi
-9LSrm+69xcNmsvM2zIFXzDsbYnzDiwqdT3VPYyqtUA7JAlkFpqk8cCO//b3fhdmo
-hG0x321MSxK4T7K2v5FVRISIznHqZjCLnyE1kknSYR3T8ki84tMtMFf3GgOr7Nyp
-bN2bP8drVCn3NNx1eU+MPKhNrKMfLA==
-=mwLw
------END PGP SIGNATURE-----
-
---S3M3tGRsMZ5+00g1--
+Thanks,
+Nícolas
 
