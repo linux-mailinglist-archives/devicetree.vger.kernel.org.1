@@ -1,141 +1,201 @@
-Return-Path: <devicetree+bounces-19718-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19719-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E408B7FBEC5
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 16:59:10 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9221A7FBEFC
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 17:09:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9E7E6282583
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 15:59:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 46A2E28284A
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 16:09:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10A653529F;
-	Tue, 28 Nov 2023 15:59:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9D4D37D1A;
+	Tue, 28 Nov 2023 16:09:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rcpluKra"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="MO+W63+c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45912A8
-	for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 07:59:02 -0800 (PST)
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-a00ac0101d9so769652966b.0
-        for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 07:59:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701187140; x=1701791940; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=AaKEDvZfPZNdz7W5gQHFALD/l/cH7uGbYVPM6yBbsYI=;
-        b=rcpluKra2YYHnn7gYg+6b4xqffMOPLN2SCmlj9hiMIYHDrWxqfUbSbizwUl1h2pIUs
-         48g2aR+HqhkhDpq+9nRTqcL0+y+4mFjuNf7iIKB8y5VYj68jbu+cr1WvOCw5wdMlAlLm
-         9OkZx4VFaRej129nEU6Xfwm9WSVumMT7Mxm4OAqxEJ4jbi2l9cF/3L5F9myMc5KYFBtu
-         uYtrOhiQwHTT6DjjHMg3pWYPN0euibFi3N8UAB3vgtHZsoWRbJlhL0l9t5RtdlfITAMO
-         Zd59ljigyqRRB/WrXs6WAk8IuYbqBK8ysRHjX9O5X56eTVkVrbBdA/zeWgeXro51ZxVV
-         ATTA==
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F14FCD66
+	for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 08:09:44 -0800 (PST)
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 6958744435
+	for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 16:09:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1701187783;
+	bh=pEKPe8cq8iCO+hKEkwpNbBcU/bv+bYZjuOAiUbbFTmw=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type;
+	b=MO+W63+cRGwvaE4iadeXs8g6lSdXYD0uaCAJFP2OmR646Nqa/dG88manE8XLAcFNv
+	 KNcD/k2aU9C4JeT1ogIenMQViV/yEX/bht/ONCcz7ThG0c7aPjpyBTASrUYC8jaL1w
+	 H0nrgwvZo3u3mpfzVilsNRYKdv6VKBJhnSqqXHumbWcLpiDOjjClndlSEnatXcCEGR
+	 w16TLE9arWTrZgUptVl3W7qjQXAfRBAip7XOQOa5Qf0/P0LWQ1ZuyC8cjxhtX9mehE
+	 0VjUJLxDfqNrWPzkcJAOzngL7N5DPWwosAeChUdlydiDguwswKbh8pflel0siTkWN3
+	 xSEk2QSQBNNfA==
+Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-677fb25cfe5so67509336d6.3
+        for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 08:09:43 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701187140; x=1701791940;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AaKEDvZfPZNdz7W5gQHFALD/l/cH7uGbYVPM6yBbsYI=;
-        b=v9pgRx5YbPkEVXPah5bsSU9WU89H7JFErmCdcccDkXg77vYZcGU5sBvFmtdvoZDXUf
-         b4oCCFxPTFHWJUJ5sX+8XHH7u1W58Osslc2EM+T4c4FkThwqsbJovF9UC36UtvbVhhL7
-         ttD422cUykQX60pRR8b1U6T2l37liJZAkW3UKGajeQTHytqVlcB8DJYIks7Gbxh2oAzo
-         87sAU3nGPhMwi0kEZWJmcYu6+oLG6xSs1GwAfWscr4eaihNIoHntKRnznjFrYB9p0qsS
-         3Az0IRRUxUxjgdRUxQUF4usAM31NTgJZtZ/1KZwvfgcnHom9p6Z8d5paSVaxwPzhGvRR
-         uQWA==
-X-Gm-Message-State: AOJu0YwGw9Qhvopv+lJupZbZ9JVlDVMoxe6q5gqwgwkuhCYXxmCe8Koz
-	1t629IpDXt6qYyOFpYHpDNlhlQ==
-X-Google-Smtp-Source: AGHT+IHRyZ1gCN80lTu4DpA/+6W2e3R58FaFqLJN0x+rlhbScFNHVuoFoIUOR1u8Nc9SeUtLdQd1wQ==
-X-Received: by 2002:a17:906:c9d3:b0:9e0:2319:16d4 with SMTP id hk19-20020a170906c9d300b009e0231916d4mr11550675ejb.40.1701187140662;
-        Tue, 28 Nov 2023 07:59:00 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.223.109])
-        by smtp.gmail.com with ESMTPSA id x13-20020a170906710d00b009b2ca104988sm6976187ejj.98.2023.11.28.07.58.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Nov 2023 07:59:00 -0800 (PST)
-Message-ID: <cf778d32-73a2-4ef2-a0dc-31c6c4efe3ea@linaro.org>
-Date: Tue, 28 Nov 2023 16:58:58 +0100
+        d=1e100.net; s=20230601; t=1701187782; x=1701792582;
+        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=pEKPe8cq8iCO+hKEkwpNbBcU/bv+bYZjuOAiUbbFTmw=;
+        b=jywmSt1YPy3JV3AM3Dh0w/nC9vedqt/MtK+ma299sMYmxdE6PLtVq8EQ/JfMJaOIq0
+         Q5PSWgq0vHkvG1bjQKh0x4u9TQVIyUlWf62i5Pk2nYuPMKn4LvDu3kp/ksFL0JSBYFdI
+         ik8rYc0bMQFqLiFv/WKeaTiEi+0JgbnU3VSuAHFh9D4Oi/lQ4KGpuKVlJpnWH2bpNPuA
+         es1czY1vUzFSi+i65GcJvI+Tg7NbedWIywaI+iRobY1qq3TzcZRH53L1f6N1Rp7SCkha
+         7WS3d34LzvhmWTXpd7FcqzZ7HHMYvH3IvqNCc82rxJ8W8sDNeLPkWewrUy+IjNGxa8di
+         Jn9A==
+X-Gm-Message-State: AOJu0YwMdMajuM+S7pcLAXzL3HcG6rfL/gOZgyTBxtaTZi4lENJoHFiM
+	89AV6E60UC26lGx7Pg69qRVXOGs8aWzQwe3FBZVHVwkxCj7B4X0RRAmG6GZyUrY0qURk4rujb9g
+	xp9FOB4ICBOymII1j8ILbK/PVkM/z8A5ZwLiY4wKXjUl51mKYTlSop2I=
+X-Received: by 2002:ad4:5144:0:b0:67a:3863:d126 with SMTP id g4-20020ad45144000000b0067a3863d126mr10046219qvq.44.1701187782205;
+        Tue, 28 Nov 2023 08:09:42 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGBKpSSFbtesM/25uZwKIDezsMT1jPt3i9azPNVI4N4TMfmDOkXhoCn8EiGeenreU73yagsK6uZPTXiBRU8kPg=
+X-Received: by 2002:ad4:5144:0:b0:67a:3863:d126 with SMTP id
+ g4-20020ad45144000000b0067a3863d126mr10046174qvq.44.1701187781933; Tue, 28
+ Nov 2023 08:09:41 -0800 (PST)
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 28 Nov 2023 17:09:41 +0100
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+In-Reply-To: <054bbf2a-e7ba-40bf-8f8b-f0e0e9b396c6@collabora.com>
+References: <20231029042712.520010-1-cristian.ciocaltea@collabora.com>
+ <20231029042712.520010-13-cristian.ciocaltea@collabora.com>
+ <CAJM55Z9e=vjGKNnmURN15mvXo2bVd3igBA-3puF9q7eh5hiP+A@mail.gmail.com>
+ <2f06ce36-0dc1-495e-b6a6-318951a53e8d@collabora.com> <CAJM55Z8vkMbqXY5sS2o4cLi8ow-JQTcXU9=uYMBSykwd4ppExw@mail.gmail.com>
+ <054bbf2a-e7ba-40bf-8f8b-f0e0e9b396c6@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: adi,ad5791: Add support for
- controlling RBUF
-Content-Language: en-US
-To: Nuno Sa <nuno.sa@analog.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>
-References: <20231128-ad5791-michael-stuff-v2-0-541bb1c9dc43@analog.com>
- <20231128-ad5791-michael-stuff-v2-1-541bb1c9dc43@analog.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231128-ad5791-michael-stuff-v2-1-541bb1c9dc43@analog.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Mime-Version: 1.0
+Date: Tue, 28 Nov 2023 17:09:41 +0100
+Message-ID: <CAJM55Z9+j6CmfjNkPLCk1DR3EBuEMspsRtNvygDbPWJDCytQpw@mail.gmail.com>
+Subject: Re: [PATCH v2 12/12] [UNTESTED] riscv: dts: starfive:
+ beaglev-starlight: Enable gmac
+To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, 
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Emil Renner Berthing <kernel@esmil.dk>, Samin Guo <samin.guo@starfivetech.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	Jose Abreu <joabreu@synopsys.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+	Richard Cochran <richardcochran@gmail.com>, Giuseppe Cavallaro <peppe.cavallaro@st.com>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org, kernel@collabora.com
+Content-Type: text/plain; charset="UTF-8"
 
-On 28/11/2023 16:26, Nuno Sa wrote:
-> From: Michael Hennerich <michael.hennerich@analog.com>
-> 
-> This change adds support for an external amplifier to be connected in a
+Cristian Ciocaltea wrote:
+> On 11/28/23 14:08, Emil Renner Berthing wrote:
+> > Cristian Ciocaltea wrote:
+> >> On 11/26/23 23:10, Emil Renner Berthing wrote:
+> >>> Cristian Ciocaltea wrote:
+> >>>> The BeagleV Starlight SBC uses a Microchip KSZ9031RNXCA PHY supporting
+> >>>> RGMII-ID.
+> >>>>
+> >>>> TODO: Verify if manual adjustment of the RX internal delay is needed. If
+> >>>> yes, add the mdio & phy sub-nodes.
+> >>>
+> >>> Sorry for being late here. I've tested that removing the mdio and phy nodes on
+> >>> the the Starlight board works fine, but the rx-internal-delay-ps = <900>
+> >>> property not needed on any of my VisionFive V1 boards either.
+> >>
+> >> No problem, thanks a lot for taking the time to help with the testing!
+> >>
+> >>> So I wonder why you need that on your board
+> >>
+> >> I noticed you have a patch 70ca054e82b5 ("net: phy: motorcomm: Disable
+> >> rgmii rx delay") in your tree, hence I you please confirm the tests were
+> >> done with that commit reverted?
+> >>
+> >>> Also in the driver patch you add support for phy-mode = "rgmii-txid", but here
+> >>> you still set it to "rgmii-id", so which is it?
+> >>
+> >> Please try with "rgmii-id" first. I added "rgmii-txid" to have a
+> >> fallback solution in case the former cannot be used.
+> >
+> > Ah, I see. Sorry I should have read up on the whole thread. Yes, the Starlight
+> > board with the Microchip phy works with "rgmii-id" as is. And you're right,
+> > with "rgmii-id" my VF1 needs the rx-internal-delay-ps = <900> property too.
+>
+> That's great, we have now a pretty clear indication that this uncommon behavior
+> stems from the Motorcomm PHY, and *not* from GMAC.
+>
+> >>
+> >>> You've alse removed the phy reset gpio on the Starlight board:
+> >>>
+> >>>   snps,reset-gpios = <&gpio 63 GPIO_ACTIVE_LOW>
+> >>>
+> >>> Why?
+> >>
+> >> I missed this in v1 as the gmac handling was done exclusively in
+> >> jh7100-common. Thanks for noticing!
+> >>
+> >>>>
+> >>>> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+> >>>> ---
+> >>>>  arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dts | 5 +++++
+> >>>>  1 file changed, 5 insertions(+)
+> >>>>
+> >>>> diff --git a/arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dts b/arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dts
+> >>>> index 7cda3a89020a..d3f4c99d98da 100644
+> >>>> --- a/arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dts
+> >>>> +++ b/arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dts
+> >>>> @@ -11,3 +11,8 @@ / {
+> >>>>  	model = "BeagleV Starlight Beta";
+> >>>>  	compatible = "beagle,beaglev-starlight-jh7100-r0", "starfive,jh7100";
+> >>>>  };
+> >>>> +
+> >>>> +&gmac {
+> >>>> +	phy-mode = "rgmii-id";
+> >>>> +	status = "okay";
+> >>>> +};
+> >>>
+> >>> Lastly the phy-mode and status are the same for the VF1 and Starlight boards,
+> >>> so why can't these be set in the jh7100-common.dtsi?
+> >>
+> >> I wasn't sure "rgmii-id" can be used for both boards and I didn't want
+> >> to unconditionally enable gmac on Starlight before getting a
+> >> confirmation that this actually works.
+> >>
+> >> If there is no way to make it working with "rgmii-id" (w/ or w/o
+> >> adjusting rx-internal-delay-ps), than we should switch to "rgmii-txid".
+> >
+> > Yeah, I don't exactly know the difference, but both boards seem to work fine
+> > with "rgmii-id", so if that is somehow better and/or more correct let's just go
+> > with that.
+>
+> As Andrew already pointed out, going with "rgmii-id" would be the recommended
+> approach, as this passes the responsibility of adding both TX and RX delays to
+> the PHY.  "rgmii-txid" requires the MAC to handle the RX delay, which might
+> break the boards having a conformant (aka well-behaving) PHY.  For some reason
+> the Microchip PHY seems to work fine in both cases, but that's most likely an
+> exception, as other PHYs might expose a totally different and undesired
+> behavior.
+>
+> I will prepare a v3 soon, and will drop the patches you have already submitted
+> as part of [1].
 
-Nothing improved here.
+Sounds good. Then what's missing for ethernet to work is just the clock patches:
+https://github.com/esmil/linux/commit/b5abe1cb3815765739aff7949deed6f65b952c4a
+https://github.com/esmil/linux/commit/3a7a423b15a9f796586cbbdc37010d2b83ff2367
 
-I said "This commit/patch" so you replaced it to "change", really, read
-the Submitting patches document.
+You can either include those as part of your patch series enabling ethernet, or
+they can be submitted separately with the audio clocks. Either way is
+fine by me.
 
+/Emil
 
-
-Best regards,
-Krzysztof
-
+>
+> Thanks again for your support,
+> Cristian
+>
+> [1]: https://lore.kernel.org/all/20231126232746.264302-1-emil.renner.berthing@canonical.com/
 
