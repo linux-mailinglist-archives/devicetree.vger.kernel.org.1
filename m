@@ -1,194 +1,134 @@
-Return-Path: <devicetree+bounces-19713-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19717-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC5F37FBE64
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 16:46:55 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A2D77FBE97
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 16:52:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 50C7AB20E36
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 15:46:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C72212826D7
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 15:52:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 349ED1E4AC;
-	Tue, 28 Nov 2023 15:46:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SWMPbqs9"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 057AF35275;
+	Tue, 28 Nov 2023 15:52:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B9ECC5;
-	Tue, 28 Nov 2023 07:46:46 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-332e40322f0so3505182f8f.3;
-        Tue, 28 Nov 2023 07:46:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701186404; x=1701791204; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=eaSqohHugtt6grw6CEKXWSAnRWopnEUVV/N+wIwdxWQ=;
-        b=SWMPbqs9ng1eB6exXFiWps/Of1W0zWcMVl40ANAUMY6CFq3ffjDiQA7iIBlpics069
-         on0aUhJCLr18i+WfqDYdeTz3DAEodZZ52KMRzWDA2S4TJDym/wIkqrjrGOYZ/U4YlXVF
-         31594k8MtqLzpnbpTFI4to1c+2bb8MvS12csrxeKtwvVHYFqEjUT/BeMKWIb92CkgMjo
-         r5k7ol9pj5CV/EMx35++IbdMK2EOeKAAEyaBNJ9+kgy8UtBvrJxRkSrh1NYu89AjjNTb
-         Up0pGXfUNPsd377Lkx2vIRhDrCeOW0hNBNIHvSa78U2Y6uwNviVm2CsDzZR5qhk9flZJ
-         xC4Q==
+Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E36C190;
+	Tue, 28 Nov 2023 07:52:24 -0800 (PST)
+Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-1f0f94943d9so2858055fac.2;
+        Tue, 28 Nov 2023 07:52:24 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701186404; x=1701791204;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=eaSqohHugtt6grw6CEKXWSAnRWopnEUVV/N+wIwdxWQ=;
-        b=shFPklkm3JMSoG4oF1vrA1Myv3iKEnSdVkgALhE8SWTfe9QFN1aI3tKMXbpzzDETOr
-         4z39n5sTzEiEIg9YpdUQycCLt/rhwm5pgkQn6oSbU580ETuLrox5VK6b+f6++ENtT+Ai
-         1Oue6gpDGTZXYY2qCGcysjEySANJxBJM6T7cif8Z3gkSplGos7kA2QzUb4U8wnlIwm8Y
-         zQO4mjB5XAlBOZCD6Rd97ETNtwKQZhi97giLJXal7zd1qbiJAXkv2PIM8Y/o0qrfANLF
-         pb8fNna5UWfiOmzQrARrzB9HaNWKO8nBkOxfw1mWBvPI+HkGyQBfm5eMWzE1Hm+ryRq8
-         tsfg==
-X-Gm-Message-State: AOJu0YwvcLIfqHBsxUcgCPlBYqXW7SQ+PLOnrsozpgLC5xQoMtyeQHTF
-	IbxcwtSn5MMCi50O881qMsE=
-X-Google-Smtp-Source: AGHT+IHuXzZ/2bcrZP6mKjeZQFKF3z9OOwNPyxBC+M2EUC+TojqMO8yb/JYBs7Ci1biEYfYlmxZPEQ==
-X-Received: by 2002:adf:fa8d:0:b0:333:12f9:d381 with SMTP id h13-20020adffa8d000000b0033312f9d381mr746477wrr.36.1701186403956;
-        Tue, 28 Nov 2023 07:46:43 -0800 (PST)
-Received: from ?IPv6:2003:f6:ef1b:2000:4423:d503:bf11:e8c6? (p200300f6ef1b20004423d503bf11e8c6.dip0.t-ipconnect.de. [2003:f6:ef1b:2000:4423:d503:bf11:e8c6])
-        by smtp.gmail.com with ESMTPSA id o10-20020adfcf0a000000b00332cda91c85sm15264190wrj.12.2023.11.28.07.46.43
+        d=1e100.net; s=20230601; t=1701186744; x=1701791544;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=NpwcFU+v81rNX9yOoWEAEytDSoMoPOtVuaO4Q23AamM=;
+        b=ngUKOpfaG2idw0mBg/y2Mkvu3sazw+9wCQXt4xCNNYVH1JKMtXP0BkWZS25brsqs86
+         5IsHBmbCLjZmFTKYHuqMMb3YWwAuDbfzsyUl+q7sKcFxxAq0tuQsAax36O43pANN9mLp
+         0zsQXYdn8tn5TN5s9zzmT0otiFNvHpfrlVQRzz490CZdvdhiAYIgIg29xTHGe9NpOsGQ
+         8d24sF20cyVFUx3go8tJREWRh8PYlKGCrasFhQLhO/rRXFVqdkjRMOs7GWDgkqPwqUIQ
+         hIBIXbNyzuHQSwybBbguKApB9TsynGxAyPWkzlJ4JIRnXgWkUk5FcdCazpW+LmJGNbD/
+         /ssQ==
+X-Gm-Message-State: AOJu0Yxx6xn62nafqkrKPIWjL3QdHBOk8FBbLUQHPfRvOc1Dv1mTgEex
+	wVz9lmm+jCg/aef+f/BUyA==
+X-Google-Smtp-Source: AGHT+IGOObQFuIpAGX2qh0tH048w+P8whX0JpMfwqHCw3+gilpnx0P4tozSWhUirRDG3Lyt6B3Q1jA==
+X-Received: by 2002:a05:6871:453:b0:1f4:dd99:b07 with SMTP id e19-20020a056871045300b001f4dd990b07mr17030773oag.49.1701186744081;
+        Tue, 28 Nov 2023 07:52:24 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id js4-20020a056870bac400b001fa3757b80esm1517332oab.5.2023.11.28.07.52.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Nov 2023 07:46:43 -0800 (PST)
-Message-ID: <e4147e797ee2a35092f4dbf9e8687fb63f7a8c5a.camel@gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: Add LTC4282 bindings
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Rob Herring <robh@kernel.org>, Nuno Sa <nuno.sa@analog.com>
-Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-doc@vger.kernel.org, Jean Delvare <jdelvare@suse.com>, Guenter Roeck
- <linux@roeck-us.net>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley <conor+dt@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>, Bartosz Golaszewski <brgl@bgdev.pl>, 
- Linus Walleij <linus.walleij@linaro.org>, Andy Shevchenko <andy@kernel.org>
-Date: Tue, 28 Nov 2023 16:49:43 +0100
-In-Reply-To: <20231128153733.GA3313427-robh@kernel.org>
-References: <20231124-ltc4282-support-v2-0-952bf926f83c@analog.com>
-	 <20231124-ltc4282-support-v2-1-952bf926f83c@analog.com>
-	 <20231128153733.GA3313427-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.1 
+        Tue, 28 Nov 2023 07:52:23 -0800 (PST)
+Received: (nullmailer pid 3332019 invoked by uid 1000);
+	Tue, 28 Nov 2023 15:52:22 -0000
+Date: Tue, 28 Nov 2023 09:52:22 -0600
+From: Rob Herring <robh@kernel.org>
+To: Shengyang Chen <shengyang.chen@starfivetech.com>
+Cc: devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, p.zabel@pengutronix.de, tomi.valkeinen@ideasonboard.com, r-ravikumar@ti.com, rdunlap@infradead.org, u.kleine-koenig@pengutronix.de, bbrezillon@kernel.org, changhuang.liang@starfivetech.com, keith.zhao@starfivetech.com, jack.zhu@starfivetech.com, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 1/2] dt-bindings: display: bridge: cdns: Add
+ properties to support StarFive JH7110 SoC
+Message-ID: <20231128155222.GA3319844-robh@kernel.org>
+References: <20231127113436.57361-1-shengyang.chen@starfivetech.com>
+ <20231127113436.57361-2-shengyang.chen@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231127113436.57361-2-shengyang.chen@starfivetech.com>
 
-On Tue, 2023-11-28 at 09:37 -0600, Rob Herring wrote:
-> On Fri, Nov 24, 2023 at 03:18:16PM +0100, Nuno Sa wrote:
-> > Add bindings for the LTC4282 High Current Hot Swap Controller with I2C
-> > Compatible Monitoring.
-> >=20
-> > Signed-off-by: Nuno Sa <nuno.sa@analog.com>
-> > ---
-> > =C2=A0.../devicetree/bindings/hwmon/adi,ltc4282.yaml=C2=A0=C2=A0=C2=A0=
-=C2=A0 | 206
-> > +++++++++++++++++++++
-> > =C2=A0MAINTAINERS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 6 +
-> > =C2=A02 files changed, 212 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/hwmon/adi,ltc4282.yaml
-> > b/Documentation/devicetree/bindings/hwmon/adi,ltc4282.yaml
-> > new file mode 100644
-> > index 000000000000..6c979f70687e
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/hwmon/adi,ltc4282.yaml
-> > @@ -0,0 +1,206 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/hwmon/adi,ltc4282.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Analog Devices LTC4282 I2C High Current Hot Swap Controller ove=
-r I2C
-> > +
-> > +maintainers:
-> > +=C2=A0 - Nuno Sa <nuno.sa@analog.com>
-> > +
-> > +description: |
-> > +=C2=A0 Analog Devices LTC4282 I2C High Current Hot Swap Controller ove=
-r I2C.
-> > +
-> > +=C2=A0
-> > https://www.analog.com/media/en/technical-documentation/data-sheets/ltc=
-4282.pdf
-> > +
-> > +properties:
-> > +=C2=A0 compatible:
-> > +=C2=A0=C2=A0=C2=A0 enum:
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - adi,ltc4282
-> > +
-> > +=C2=A0 reg:
-> > +=C2=A0=C2=A0=C2=A0 maxItems: 1
-> > +
-> > +=C2=A0 vdd-supply: true
-> > +
-> > +=C2=A0 clocks:
-> > +=C2=A0=C2=A0=C2=A0 maxItems: 1
-> > +
-> > +=C2=A0 '#clock-cells':
-> > +=C2=A0=C2=A0=C2=A0 const: 0
-> > +
-> > +=C2=A0 adi,rsense-nano-ohms:
-> > +=C2=A0=C2=A0=C2=A0 description: Value of the sense resistor.
-> > +
-> > +=C2=A0 adi,vin-mode-microvolt:
-> > +=C2=A0=C2=A0=C2=A0 description:
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Selects operating range for the Undervo=
-ltage, Overvoltage and
-> > Foldback
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pins. Also for the ADC. Should be set t=
-o the nominal input voltage.
-> > +=C2=A0=C2=A0=C2=A0 enum: [3300000, 5000000, 12000000, 24000000]
-> > +=C2=A0=C2=A0=C2=A0 default: 12000000
-> > +
-> > +=C2=A0 adi,fet-bad-timeout-ms:
-> > +=C2=A0=C2=A0=C2=A0 description:
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 From the moment a FET bad conditions is=
- present, this property
-> > selects the
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 wait time/timeout for a FET-bad fault t=
-o be signaled. Setting this to
-> > 0,
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 disables FET bad faults to be reported.
-> > +=C2=A0=C2=A0=C2=A0 default: 255
-> > +=C2=A0=C2=A0=C2=A0 maximum: 255
-> > +
-> > +=C2=A0 adi,overvoltage-dividers:
-> > +=C2=A0=C2=A0=C2=A0 description: |
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Select which dividers to use for VDD Ov=
-ervoltage detection. Note that
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 when the internal dividers are used the=
- threshold is referenced to
-> > VDD.
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 The percentages in the datasheet are mi=
-sleading since the actual
-> > values
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 to look for are in the "Absolute Maximu=
-m Ratings" table in the
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "Comparator Inputs" section. In there t=
-here's a line for each of the
-> > 5%,
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 10% and 15% settings with the actual mi=
-n, typical and max tolerances.
-> > +=C2=A0=C2=A0=C2=A0 $ref: /schemas/types.yaml#/definitions/string
-> > +=C2=A0=C2=A0=C2=A0 enum: [external, vdd_5_percent, vdd_10_percent, vdd=
-_15_percent]
-> > +=C2=A0=C2=A0=C2=A0 default: 0
->=20
-> Default is an integer yet the type is a string?
+On Mon, Nov 27, 2023 at 07:34:35PM +0800, Shengyang Chen wrote:
+> From: Keith Zhao <keith.zhao@starfivetech.com>
+> 
+> Add properties in CDNS DSI yaml file to match with
+> CDNS DSI module in StarFive JH7110 SoC.
+> 
+> Signed-off-by: Keith Zhao <keith.zhao@starfivetech.com>
+> ---
+>  .../bindings/display/bridge/cdns,dsi.yaml     | 38 ++++++++++++++++++-
+>  1 file changed, 36 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/bridge/cdns,dsi.yaml b/Documentation/devicetree/bindings/display/bridge/cdns,dsi.yaml
+> index 23060324d16e..3f02ee383aad 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/cdns,dsi.yaml
+> +++ b/Documentation/devicetree/bindings/display/bridge/cdns,dsi.yaml
+> @@ -17,6 +17,7 @@ properties:
+>      enum:
+>        - cdns,dsi
+>        - ti,j721e-dsi
+> +      - starfive,cdns-dsi
+>  
+>    reg:
+>      minItems: 1
+> @@ -27,14 +28,20 @@ properties:
+>            Register block for wrapper settings registers in case of TI J7 SoCs.
+>  
+>    clocks:
+> +    minItems: 2
+>      items:
+>        - description: PSM clock, used by the IP
+>        - description: sys clock, used by the IP
+> +      - description: apb clock, used by the IP
+> +      - description: txesc clock, used by the IP
+>  
+>    clock-names:
+> +    minItems: 2
+>      items:
+>        - const: dsi_p_clk
+>        - const: dsi_sys_clk
+> +      - const: apb
+> +      - const: txesc
+>  
+>    phys:
+>      maxItems: 1
+> @@ -46,10 +53,21 @@ properties:
+>      maxItems: 1
+>  
+>    resets:
+> -    maxItems: 1
+> +    minItems: 1
+> +    items:
+> +      - description: dsi sys reset line
+> +      - description: dsi dpi reset line
+> +      - description: dsi apb reset line
+> +      - description: dsi txesc reset line
+> +      - description: dsi txbytehs reset line
+>  
+>    reset-names:
+> -    const: dsi_p_rst
+> +    items:
+> +      - const: dsi_p_rst
+> +      - const: dsi_dpi
+> +      - const: dsi_apb
+> +      - const: dsi_txesc
+> +      - const: dsi_txbytehs
 
-Argh, another leftover from v1. Thanks for catching it... Will change it in=
- v3.
+Let's not continue the redundant 'dsi_' prefix. We're stuck with it for 
+the first one, but not the new ones.
 
-- Nuno S=C3=A1
->=20
+Rob
 
