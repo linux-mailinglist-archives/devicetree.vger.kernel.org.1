@@ -1,93 +1,95 @@
-Return-Path: <devicetree+bounces-19739-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19740-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E08277FC039
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 18:23:00 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71C827FC045
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 18:29:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1E6E71C20C00
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 17:23:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 050612827EF
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 17:29:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC2955C08B;
-	Tue, 28 Nov 2023 17:22:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 643925B5D6;
+	Tue, 28 Nov 2023 17:29:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uhIS7Awr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF37C269D;
-	Tue, 28 Nov 2023 09:22:33 -0800 (PST)
-Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-1fa48ad4e99so1420959fac.3;
-        Tue, 28 Nov 2023 09:22:33 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701192153; x=1701796953;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ylIoRbnL8O2xTi9kh8EQEUoiv0UEt3VeCCDvVQ1Qxis=;
-        b=NMSE2dw4wIB2A1zYg8RwwsmfuFq540vyBHlnhggpEDxaisgW1HTx0TGmVmZnQdqNZD
-         sJ3UC2IFp7Jw1WCBeub85j5jKgEifMFwaZuTFfKNFtjeGmPtgD5Nt4AWnVjN1S+Kx2oe
-         W+J7f/HlRWRO4jPO020SvQyBMVsAO99AesH6EJ1ncQN/harTXfEIli1156Wyj5lD7BO8
-         wOM+RkxKj3AQFJ/hVPwD1USa4g9tJ7iJ1h1je4LeStEslLFoOZNvlFGxghDGyqdTqzts
-         Phu4jh4TBJrNco1D0dKl0MycKJLghXfgY4a6PQUsfOsC0FFLKesx1w+GzrkxZ4QrLlcx
-         nEXw==
-X-Gm-Message-State: AOJu0Ywprt8gysvflFBl29YIjTGmeyy1h0zHE+1WCSgTj3TvCCqx6lRV
-	ms5hvbAQn1sqD01cZnZ1qA==
-X-Google-Smtp-Source: AGHT+IH4uka2JL/WD6JdYSwixPfHea2oa+Zs4fHCxwHNRKroPU5guvcL/77MKRhVhFrmIBEkbZ5BZw==
-X-Received: by 2002:a05:6870:1e87:b0:1fa:38da:c145 with SMTP id pb7-20020a0568701e8700b001fa38dac145mr11792667oab.42.1701192152638;
-        Tue, 28 Nov 2023 09:22:32 -0800 (PST)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id wh32-20020a056871a6a000b001fa3c734bc5sm1427658oab.46.2023.11.28.09.22.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Nov 2023 09:22:32 -0800 (PST)
-Received: (nullmailer pid 3528242 invoked by uid 1000);
-	Tue, 28 Nov 2023 17:22:30 -0000
-Date: Tue, 28 Nov 2023 11:22:30 -0600
-From: Rob Herring <robh@kernel.org>
-To: Roland Hieber <rhi@pengutronix.de>
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, Li Yang <leoyang.li@nxp.com>, linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Marco Felsch <m.felsch@pengutronix.de>, Philipp Zabel <p.zabel@pengutronix.de>
-Subject: Re: [PATCH 4/5] ARM: dts: add Variscite VAR-SOM-MX7 System on Module
-Message-ID: <20231128172230.GA3523780-robh@kernel.org>
-References: <20231127-b4-imx7-var-som-gome-v1-0-f26f88f2d0bc@pengutronix.de>
- <20231127-b4-imx7-var-som-gome-v1-4-f26f88f2d0bc@pengutronix.de>
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41C3F443E;
+	Tue, 28 Nov 2023 17:29:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 875ECC433C7;
+	Tue, 28 Nov 2023 17:29:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701192570;
+	bh=4XvKlG/zv6MZy3Qi+1cyz4jVKinz5Rpd8AQHCJ5MZWo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=uhIS7Awr6BRSM0qCLhFQKcG5NqrcWBrH+WnLFYMSXN00D0yANQf2FPU39R4pZoWtb
+	 XEVIgw5PGnKQDSVDxZxmW5a2n+zkS3nJ17kFTHbH+sqQ8opEtYf4t2t4RSlYlI2pZi
+	 gP0kNhoalFZ4jn2wXiy2U3QEar0nD+8Zz0Z5uVLx1tF3keYaGu8IEv2xe1xqCYRlJC
+	 YyK2ctqeirUNTrhk3OffUuTsyTv9iuo5juELUOMWHUPQPqidgiThtDfd5ttStxXDtu
+	 TCu3K4WLyDU/Am1wThc5Af9e4mRCEw/R+iNMwZFhZ1TrRxjJ/DroZPJWjT5g+pfISV
+	 AWcsn1escATwA==
+Date: Tue, 28 Nov 2023 17:29:25 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Ante Knezic <ante.knezic@helmholz.de>, netdev@vger.kernel.org,
+	woojung.huh@microchip.com, andrew@lunn.ch, f.fainelli@gmail.com,
+	olteanv@gmail.com, davem@davemloft.net, edumazet@google.com,
+	kuba@kernel.org, pabeni@redhat.com,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	marex@denx.de, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, UNGLinuxDriver@microchip.com
+Subject: Re: [PATCH net-next v6 1/2] dt-bindings: net: microchip,ksz:
+ document microchip,rmii-clk-internal
+Message-ID: <20231128-laxative-overjoyed-ab1b4b3656a1@spud>
+References: <cover.1701091042.git.ante.knezic@helmholz.de>
+ <7f1f89010743a06c4880fd224149ea495fe32512.1701091042.git.ante.knezic@helmholz.de>
+ <20231128150203.GA3264915-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="Eaz27h0FCLG7yZaF"
+Content-Disposition: inline
+In-Reply-To: <20231128150203.GA3264915-robh@kernel.org>
+
+
+--Eaz27h0FCLG7yZaF
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231127-b4-imx7-var-som-gome-v1-4-f26f88f2d0bc@pengutronix.de>
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Nov 27, 2023 at 10:11:05PM +0100, Roland Hieber wrote:
-> From: Marco Felsch <m.felsch@pengutronix.de>
-> 
-> Add DTSI file of Variscite VAR-SOM-MX7 System on Module in a basic
-> version. While we don't have a VAR-MX7 development board at hand, we
-> will use this DTSI as base for a custom board in a later commit.
-> 
-> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> Co-developed-by: Philipp Zabel <p.zabel@pengutronix.de>
-> Signed-off-by: Philipp Zabel <p.zabel@pengutronix.de>
-> Signed-off-by: Roland Hieber <rhi@pengutronix.de>
-> ---
->  arch/arm/boot/dts/nxp/imx/imx7d-var-som-mx7.dtsi | 607 +++++++++++++++++++++++
->  1 file changed, 607 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/nxp/imx/imx7d-var-som-mx7.dtsi b/arch/arm/boot/dts/nxp/imx/imx7d-var-som-mx7.dtsi
-> new file mode 100644
-> index 000000000000..29b9b9305b81
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/nxp/imx/imx7d-var-som-mx7.dtsi
-> @@ -0,0 +1,607 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
+On Tue, Nov 28, 2023 at 09:02:03AM -0600, Rob Herring wrote:
+> On Mon, Nov 27, 2023 at 02:20:42PM +0100, Ante Knezic wrote:
+> > Add documentation for selecting reference rmii clock on KSZ88X3 devices
+> >=20
+> > Signed-off-by: Ante Knezic <ante.knezic@helmholz.de>
+> > ---
+> >  .../devicetree/bindings/net/dsa/microchip,ksz.yaml | 38 ++++++++++++++=
++++++++-
+> >  1 file changed, 37 insertions(+), 1 deletion(-)
+>=20
+> You forgot Conor's ack.
 
-This license and...
+I think that's for the better, v5 and v6 look to have changed a decent
+amount from what I acked in v4.
 
-> +#include "imx7d.dtsi"
+--Eaz27h0FCLG7yZaF
+Content-Type: application/pgp-signature; name="signature.asc"
 
-...what's in here don't match.
+-----BEGIN PGP SIGNATURE-----
 
-Rob
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZWYjdQAKCRB4tDGHoIJi
+0sM2AP0UONa6EAG1nkKSAMDOqDho9LhS8mI88zn0U4Zuvi53FQD+IEMco3IIebRn
+qUJ59RjTmGnDpyXY+3khiNsf+D9M3QA=
+=BBCx
+-----END PGP SIGNATURE-----
+
+--Eaz27h0FCLG7yZaF--
 
