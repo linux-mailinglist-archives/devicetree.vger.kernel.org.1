@@ -1,224 +1,87 @@
-Return-Path: <devicetree+bounces-19586-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19588-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB1817FB629
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 10:44:58 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 168327FB63A
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 10:48:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1A4EB1C21036
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 09:44:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 95857B20BFD
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 09:48:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 281874A980;
-	Tue, 28 Nov 2023 09:44:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 454054A9B1;
+	Tue, 28 Nov 2023 09:48:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernkonzept.com header.i=@kernkonzept.com header.b="bLCJbpS1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0DF0DA;
-	Tue, 28 Nov 2023 01:44:48 -0800 (PST)
-Received: from i53875bf8.versanet.de ([83.135.91.248] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1r7udu-0002kA-Qd; Tue, 28 Nov 2023 10:44:34 +0100
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Andy Yan <andyshrk@163.com>, Andy Yan <andy.yan@rock-chips.com>
-Cc: hjc@rock-chips.com, dri-devel@lists.freedesktop.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
- devicetree@vger.kernel.org, sebastian.reichel@collabora.com,
- kever.yang@rock-chips.com, chris.obbard@collabora.com, s.hauer@pengutronix.de
-Subject: Re: [PATCH v2 10/12] drm/rockchip: vop2: Add support for rk3588
-Date: Tue, 28 Nov 2023 10:44:33 +0100
-Message-ID: <4339687.HovnAMPojK@diego>
-In-Reply-To: <f179e9ae-b2cd-4f6c-badc-4d76d8a3ba0d@rock-chips.com>
-References:
- <20231122125316.3454268-1-andyshrk@163.com> <4788319.uZKlY2gecq@diego>
- <f179e9ae-b2cd-4f6c-badc-4d76d8a3ba0d@rock-chips.com>
+Received: from mx.kernkonzept.com (serv1.kernkonzept.com [IPv6:2a01:4f8:1c1c:b490::2])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D81E4DD;
+	Tue, 28 Nov 2023 01:48:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kernkonzept.com; s=mx1; h=Cc:To:Content-Transfer-Encoding:Content-Type:
+	MIME-Version:Message-Id:Date:Subject:From:References:In-Reply-To:Reply-To:
+	Content-ID:Content-Description;
+	bh=qqD5FhYjTlrMhvo9H9Ud7tOWyJdz/L1HRDU0aJZunQs=; b=bLCJbpS15T6e6UbeFBQuRcwcAy
+	WRIkpCQVF1x0WSK/YCENnhXMk5gd31wDctSwhTOMPwgWm8wdgga2k2Cz2k5PbOLJ4HM7Y62kzWK1I
+	XZ+NPKRxMQx1F1F3Ph2aAo4nfADdjz8BY1w+GXO31WTcxzz4nBa5IffczTRTskGkO+Y39E87yC0dv
+	qtJ6OrL0biub8GhYcwg28WfQK+N5GXoOml6Bpfoa0ZyRFnJSlhwIGSpjV/NdIxwFhrxfV5+gji3Ld
+	xegF/08FluSg6sK9HoB82ua2/1qigPzLJUfsmXS9FPvhf0RuKCWf03TNfQCoZE3x2xuEuW2lyu2t6
+	iM75m4UQ==;
+Received: from [10.22.3.24] (helo=serv1.dd1.int.kernkonzept.com)
+	by mx.kernkonzept.com with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim 4.96)
+	id 1r7uhr-008Pi6-2D;
+	Tue, 28 Nov 2023 10:48:39 +0100
+From: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+Subject: [PATCH 0/3] i2c: qup: Allow scaling power domains and interconnect
+Date: Tue, 28 Nov 2023 10:48:34 +0100
+Message-Id: <20231128-i2c-qup-dvfs-v1-0-59a0e3039111@kernkonzept.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHK3ZWUC/x3MQQqAIBBA0avErBtQA9GuEi1Kx5qNmVIE0t2Tl
+ m/xf4VCmanA2FXIdHPhIzbIvgO3L3EjZN8MSqhBSqGRlcPzSujvUHB1WpCy1nhvoCUpU+Dn303
+ z+35PDgNQXgAAAA==
+To: Wolfram Sang <wsa@kernel.org>
+Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
+ linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+X-Mailer: b4 0.12.4
 
-Hi Andy,
+Make it possible to scale performance states of the power domain and
+interconnect of the I2C QUP controller.
 
-Am Dienstag, 28. November 2023, 10:32:55 CET schrieb Andy Yan:
-> On 11/27/23 23:29, Heiko St=C3=BCbner wrote:
-> > Am Mittwoch, 22. November 2023, 13:55:44 CET schrieb Andy Yan:
-> >> From: Andy Yan <andy.yan@rock-chips.com>
-> >>
-> >> VOP2 on rk3588:
-> >>
-> >> Four video ports:
-> >> VP0 Max 4096x2160
-> >> VP1 Max 4096x2160
-> >> VP2 Max 4096x2160
-> >> VP3 Max 2048x1080
-> >>
-> >> 4 4K Cluster windows with AFBC/line RGB and AFBC-only YUV support
-> >> 4 4K Esmart windows with line RGB/YUV support
-> >>
-> >> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
-> >>
-> >> ---
-> >>
-> >> Changes in v2:
-> >> - add rk3588_ prefix for functions which are rk3588 only
-> >> - make some calculation as fixed value and keep calculation formula as
-> >>    comment
-> >> - check return value for some cru calculation functions.
-> >> - check return value for syscon_regmap_lookup_by_phandle
-> >> - add NV20/NV30 for esmart plane
-> >>
-> >>   drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 381 +++++++++++++++++=
-+-
-> >>   drivers/gpu/drm/rockchip/rockchip_drm_vop2.h |  66 ++++
-> >>   drivers/gpu/drm/rockchip/rockchip_vop2_reg.c | 221 +++++++++++
-> >>   3 files changed, 660 insertions(+), 8 deletions(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gp=
-u/drm/rockchip/rockchip_drm_vop2.c
-> >> index 4bcc405bcf11..9eecbe1f71f9 100644
-> >> --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-> >> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-> >> @@ -271,9 +282,12 @@ static bool vop2_cluster_window(const struct vop2=
-_win *win)
-> >>   static void vop2_cfg_done(struct vop2_video_port *vp)
-> >>   {
-> >>   	struct vop2 *vop2 =3D vp->vop2;
-> >> +	u32 val;
-> >> +
-> >> +	val =3D BIT(vp->id) | (BIT(vp->id) << 16) |
-> >> +		RK3568_REG_CFG_DONE__GLB_CFG_DONE_EN;
-> >>  =20
-> >> -	regmap_set_bits(vop2->map, RK3568_REG_CFG_DONE,
-> >> -			BIT(vp->id) | RK3568_REG_CFG_DONE__GLB_CFG_DONE_EN);
-> >> +	regmap_set_bits(vop2->map, RK3568_REG_CFG_DONE, val);
-> > I don't fully understand that code:
-> > (1) the write mask is also present on the rk3568, so should this change
-> >      be a separate patch with a fixes tag?
->=20
-> The write mask of VP config done on rk356x is missing, that means
-> you can write the corresponding mask bit, but it has no effect.
->
-> I once considered making it a separate patch,  I can split it as a separa=
-te patch if
-> you like.
+This is necessary to guarantee performance with power management
+enabled. Otherwise these resources might run at minimal performance
+state which is not sufficient for certain workloads.
 
-I think I'd like it to be a separate patch please.
+Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+---
+Stephan Gerhold (3):
+      dt-bindings: i2c: qcom,i2c-qup: Document power-domains
+      dt-bindings: i2c: qup: Document interconnects
+      i2c: qup: Vote for interconnect bandwidth to DRAM
 
+ .../devicetree/bindings/i2c/qcom,i2c-qup.yaml      | 14 +++++++++
+ drivers/i2c/busses/i2c-qup.c                       | 36 ++++++++++++++++++++++
+ 2 files changed, 50 insertions(+)
+---
+base-commit: b85ea95d086471afb4ad062012a4d73cd328fa86
+change-id: 20231106-i2c-qup-dvfs-bc60e2998dd8
 
-> > (2) RK3568_REG_CFG_DONE__GLB_CFG_DONE_EN does not contain the part for
-> >      the write-mask
-> >
-> > 	#define RK3568_REG_CFG_DONE__GLB_CFG_DONE_EN     BIT(15)
-> >
-> >      why is this working then?
->=20
->=20
-> Actually this bit has no write-mask bit. =F0=9F=99=82
-
-when doing that separate patch mentioned above, could you also add a
-comment to the code stating that RK3568_REG_CFG_DONE__GLB_CFG_DONE_EN
-doesn't have a write mask bit please?
-
-Because the TRM is not clear and ideally I'd not forget this fact for
-the future :-) .
-
-
-> >>   }
-> >>  =20
-> >>   static void vop2_win_disable(struct vop2_win *win)
-> > [...]
-> >
-> >> @@ -1298,7 +1346,11 @@ static void vop2_plane_atomic_update(struct drm=
-_plane *plane,
-> >>   			vop2_win_write(win, VOP2_WIN_AFBC_ENABLE, 1);
-> >>   		vop2_win_write(win, VOP2_WIN_AFBC_FORMAT, afbc_format);
-> >>   		vop2_win_write(win, VOP2_WIN_AFBC_UV_SWAP, uv_swap);
-> >> -		vop2_win_write(win, VOP2_WIN_AFBC_AUTO_GATING_EN, 0);
-> >> +		if (vop2->data->soc_id =3D=3D 3566 || vop2->data->soc_id =3D=3D 356=
-8)
-> >> +			vop2_win_write(win, VOP2_WIN_AFBC_AUTO_GATING_EN, 0);
-> >> +		else
-> >> +			vop2_win_write(win, VOP2_WIN_AFBC_AUTO_GATING_EN, 1);
-> >> +
-> > I think this at least warrants a comment, what is happening here. Also,
-> > can you already see how future vop2-users are behaving - aka are all new
-> > socs in the "else" part of the conditional, or would a switch-case bett=
-er
-> > represent future socs?
->=20
->=20
-> On rk356x, this bit is auto gating enable, but this function is not work =
-well so
-> we need to disable this function.
-> On rk3588, and the following new soc(rk3528/rk3576), this bit is gating d=
-isable,
-> we should write 1 to disable gating when enable a cluster window.
->=20
->=20
-> Maybe i add some comments in next version ?
-
-Yep that comment would be helpful. And with your explanation the code
-itself can stay as it is :-)
-
-Thanks
-Heiko
-
-
-> >>   		vop2_win_write(win, VOP2_WIN_AFBC_BLOCK_SPLIT_EN, 0);
-> >>   		transform_offset =3D vop2_afbc_transform_offset(pstate, half_block=
-_en);
-> >>   		vop2_win_write(win, VOP2_WIN_AFBC_HDR_PTR, yrgb_mst);
-> >
-> >> @@ -1627,9 +1937,17 @@ static void vop2_crtc_atomic_enable(struct drm_=
-crtc *crtc,
-> >>   	drm_for_each_encoder_mask(encoder, crtc->dev, crtc_state->encoder_m=
-ask) {
-> >>   		struct rockchip_encoder *rkencoder =3D to_rockchip_encoder(encoder=
-);
-> >>  =20
-> >> -		rk3568_set_intf_mux(vp, rkencoder->crtc_endpoint_id, polflags);
-> >> +		/*
-> >> +		 * for drive a high resolution(4KP120, 8K), vop on rk3588/rk3576 ne=
-ed
-> >> +		 * process multi(1/2/4/8) pixels per cycle, so the dclk feed by the
-> >> +		 * system cru may be the 1/2 or 1/4 of mode->clock.
-> >> +		 */
-> >> +		clock =3D vop2_set_intf_mux(vp, rkencoder->crtc_endpoint_id, polfla=
-gs);
-> >>   	}
-> >>  =20
-> >> +	if (!clock)
-> >> +		return;
-> >> +
-> > hmm, shouldn't the check for the validity of a mode happen before
-> > atomic_enable is run? So this shouldn't error out in the middle of the
-> > function?
-> >
-> >
-> >>   	if (vcstate->output_mode =3D=3D ROCKCHIP_OUT_MODE_AAAA &&
-> >>   	    !(vp_data->feature & VOP_FEATURE_OUTPUT_10BIT))
-> >>   		out_mode =3D ROCKCHIP_OUT_MODE_P888;
-> >
-> > Thanks
-> > Heiko
-> >
-> >
-> >
-> > _______________________________________________
-> > Linux-rockchip mailing list
-> > Linux-rockchip@lists.infradead.org
-> > http://lists.infradead.org/mailman/listinfo/linux-rockchip
->=20
-
-
-
+Best regards,
+-- 
+Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+Kernkonzept GmbH at Dresden, Germany, HRB 31129, CEO Dr.-Ing. Michael Hohmuth
 
 
