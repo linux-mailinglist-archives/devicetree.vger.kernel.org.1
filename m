@@ -1,145 +1,149 @@
-Return-Path: <devicetree+bounces-19650-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19651-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 485617FBA73
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 13:47:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D2CD27FBB1D
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 14:16:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DCF70B218E1
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 12:47:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 61E14B218B0
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 13:16:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F35B48CDB;
-	Tue, 28 Nov 2023 12:47:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D46FF57867;
+	Tue, 28 Nov 2023 13:16:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Forr+1Et"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aq4aBjSh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C3B4199B9;
-	Tue, 28 Nov 2023 12:47:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DFFEDC433C8;
-	Tue, 28 Nov 2023 12:47:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701175641;
-	bh=wz5MmqLlCmnpuKdiwKhGrAWVXAILgZuTDZs8I6iusiE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Forr+1EtaGHgFMmidpddzg6MbnY60fpHgKg7FSe6soz+RILdnmcCQZzXDkTNgdfb3
-	 YWmON4fXBNtD1WJ+g9ONKGzcBeP7zldQDe03W6ZmeRji0Ri2VPGf4igZrBhf16sVPl
-	 p0nSNOhIVlkdCOgxSKjNSu5kPldrsrgxQfp9eyE/XqTkqGYq5bZcAJM2PhBbip5NwR
-	 WdIAMpENriUAUmei7ELMI7etamRDe1xUIOlhWNPnlnV0TOPPN8eoIN7gNb2woAzfWc
-	 TNYPdoKSVKy1OnGAO9tazOLtQkZ7ZQ+6ejpiVpfbSi+MA/W5zI3vBMmK4dOuHL8Z4h
-	 A0A8nADfizGaA==
-Date: Tue, 28 Nov 2023 12:47:18 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Banajit Goswami <bgoswami@quicinc.com>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 4/5] ASoC: codecs: Add WCD939x Soundwire slave driver
-Message-ID: <ZWXhVvGWwXc27FHo@finisterre.sirena.org.uk>
-References: <20231123-topic-sm8650-upstream-wcd939x-codec-v1-0-21d4ad9276de@linaro.org>
- <20231123-topic-sm8650-upstream-wcd939x-codec-v1-4-21d4ad9276de@linaro.org>
- <ZV+PTynfbRmF0trU@finisterre.sirena.org.uk>
- <ee3baf94-4158-4440-8d89-de39fe0aa2f3@linaro.org>
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3725610D4
+	for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 05:16:00 -0800 (PST)
+Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2c997467747so38743991fa.1
+        for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 05:16:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1701177358; x=1701782158; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=o2U0Dw+C6h6+RoUlbLOMo/lv9uHPeB9SLzHDaRTZV7s=;
+        b=aq4aBjShzauCTPcrw1rBmEmFJRHOZAvJt92AhlThn+N+MBM/k1/D2ClUuo/oIiLVlk
+         ZoS9400FlRyjHk6VaNgyfV3BO3qyUWFTehddU0TwpMUVzdULBViISpeoNlnAO6dfNc5M
+         Ep19/2B7gGFoVHIcBwbr/PMzKvGWGLe8K/2/0VxjuTLkTWIwRCAta+YCrhUnmZEl3Ude
+         n4CI9rMo7RYVlq5NC8lt0+b/BgLqLXNBxtItNssBlnLIquZYBJJ7ZWjZ2CgSus9yezBL
+         Ua9es5B5T/ja87fcsFOiCOicDItstxAG0sBEUpE5VOhrlUFLl7rFMVX+2zEk7CywknB3
+         W4xg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701177358; x=1701782158;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=o2U0Dw+C6h6+RoUlbLOMo/lv9uHPeB9SLzHDaRTZV7s=;
+        b=vBoznve8+4Az/UduI4W/lBKnfZ8veKWQCYhNymyAp2Njq5Qs/fv0Iob2KsWftkpTfg
+         5ODjhjKMwn0oLoFJiIVV0qaNqnYu1z6oAnaed1XqRTfdi8nVBRXt0nxfzK7HwLJKRoJJ
+         gGt6CvZVpJPHIJbBn9wPHOJCniuvC/ebsoPxdlckwKH8+Ofpmud4iMGM3K4onKAKiTlB
+         Vo4Atsoe0qHBus563c0+RQDWDt3lOS/WXTDNTmeGjk+CyNWpyOtBDnmXtadRKasVXw+b
+         TT7jAMx7r3e3J6SEV7RglQAQ1ogMV4iYeTG0KPE/S7KwAyy7cOGE0CUSXLtsNbSGy40R
+         gIlA==
+X-Gm-Message-State: AOJu0YxpqkRPbmsW3Qf8CTT84pEELKEQDMIaosGWgkpZ54KRMKx1UQKw
+	19u822ImgrW5suap5rPBX+WmgQ==
+X-Google-Smtp-Source: AGHT+IEzEaz+EEBfeJx7la23pJ4m/XXEUN3X5Za/9Q6XMgt9Zg15Eol47FvI5Utk4vk+9djDSK1vPg==
+X-Received: by 2002:a2e:888f:0:b0:2c9:b96e:16e4 with SMTP id k15-20020a2e888f000000b002c9b96e16e4mr403296lji.42.1701177358355;
+        Tue, 28 Nov 2023 05:15:58 -0800 (PST)
+Received: from ?IPV6:2001:14ba:a0db:1f00::227? (dzdqv0yyyyyyyyyyyykxt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::227])
+        by smtp.gmail.com with ESMTPSA id t7-20020a2e9547000000b002b657f10b78sm1707226ljh.58.2023.11.28.05.15.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 28 Nov 2023 05:15:57 -0800 (PST)
+Message-ID: <37bfdc21-8d2a-4a6c-a2eb-9eaa1e808496@linaro.org>
+Date: Tue, 28 Nov 2023 15:15:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="zRYJJGeNyjEN57NU"
-Content-Disposition: inline
-In-Reply-To: <ee3baf94-4158-4440-8d89-de39fe0aa2f3@linaro.org>
-X-Cookie: Slow day.  Practice crawling.
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 12/12] arm64: dts: qcom: qrb2210-rb1: add wifi variant
+ property
+Content-Language: en-GB
+To: Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Clark
+ <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Loic Poulain <loic.poulain@linaro.org>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Andy Gross
+ <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Georgi Djakov <djakov@kernel.org>, Will Deacon <will@kernel.org>,
+ Robin Murphy <robin.murphy@arm.com>, Joerg Roedel <joro@8bytes.org>,
+ Krishna Manikandan <quic_mkrishn@quicinc.com>,
+ Robert Marko <robimarko@gmail.com>, Das Srinagesh <quic_gurus@quicinc.com>,
+ cros-qcom-dts-watchers@chromium.org
+Cc: Marijn Suijten <marijn.suijten@somainline.org>,
+ Rob Herring <robh@kernel.org>, linux-arm-msm@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ iommu@lists.linux.dev
+References: <20231125-topic-rb1_feat-v2-0-979b28f35e4a@linaro.org>
+ <20231125-topic-rb1_feat-v2-12-979b28f35e4a@linaro.org>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20231125-topic-rb1_feat-v2-12-979b28f35e4a@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
+On 27/11/2023 17:28, Konrad Dybcio wrote:
+> From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> 
+> The RB1 platform doesn't have board-specific board-id programmed, it uses
+> generic 0xff. Thus add the property with the 'variant' of the
+> calibration data.
+> 
+> Note: the driver will check for the calibration data for the following
+> IDs, so existing board-2.bin files will continue to work.
+> 
+> - 'bus=snoc,qmi-board-id=ff,qmi-chip-id=120,variant=Thundercomm_RB1'
+> - 'bus=snoc,qmi-board-id=ff,qmi-chip-id=120'
+> - 'bus=snoc,qmi-board-id=ff'
+> 
+> For the reference, the board is identified by the driver in the
+> following way:
+> 
+> ath10k_snoc c800000.wifi: qmi chip_id 0x120 chip_family 0x4007 board_id 0xff soc_id 0x40670000
+> ath10k_snoc c800000.wifi: qmi fw_version 0x337302d3 fw_build_timestamp 2023-01-06 01:50 fw_build_id QC_IMAGE_VERSION_STRING=WLAN.HL.3.3.7.c2-00723-QCAHLSWMTPLZ-1
+> ath10k_snoc c800000.wifi: wcn3990 hw1.0 target 0x00000008 chip_id 0x00000000 sub 0000:0000
+> ath10k_snoc c800000.wifi: kconfig debug 0 debugfs 0 tracing 0 dfs 0 testmode 0
+> ath10k_snoc c800000.wifi: firmware ver  api 5 features wowlan,mgmt-tx-by-reference,non-bmi crc32 b3d4b790
+> ath10k_snoc c800000.wifi: htt-ver 3.114 wmi-op 4 htt-op 3 cal file max-sta 32 raw 0 hwcrypto 1
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
---zRYJJGeNyjEN57NU
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+As you are resending this patch, you should add your S-o-b.
 
-On Tue, Nov 28, 2023 at 10:09:29AM +0100, Neil Armstrong wrote:
-> On 23/11/2023 18:43, Mark Brown wrote:
+> ---
+>   arch/arm64/boot/dts/qcom/qrb2210-rb1.dts | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts b/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts
+> index ac597eb3fe9d..bd7bcf803654 100644
+> --- a/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts
+> +++ b/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts
+> @@ -535,6 +535,7 @@ &wifi {
+>   	vdd-1.8-xo-supply = <&pm2250_l13>;
+>   	vdd-1.3-rfa-supply = <&pm2250_l10>;
+>   	vdd-3.3-ch0-supply = <&pm2250_l22>;
+> +	qcom,ath10k-calibration-variant = "Thundercomm_RB1";
+>   	status = "okay";
+>   };
+>   
+> 
 
-> > > +static int wcd9390_interrupt_callback(struct sdw_slave *slave,
-> > > +				      struct sdw_slave_intr_status *status)
-> > > +{
-> > > +	struct wcd939x_sdw_priv *wcd = dev_get_drvdata(&slave->dev);
-> > > +	struct irq_domain *slave_irq = wcd->slave_irq;
-> > > +	u32 sts1, sts2, sts3;
-> > > +
-> > > +	do {
-> > > +		handle_nested_irq(irq_find_mapping(slave_irq, 0));
-> > > +		regmap_read(wcd->regmap, WCD939X_DIGITAL_INTR_STATUS_0, &sts1);
-> > > +		regmap_read(wcd->regmap, WCD939X_DIGITAL_INTR_STATUS_1, &sts2);
-> > > +		regmap_read(wcd->regmap, WCD939X_DIGITAL_INTR_STATUS_2, &sts3);
-> > > +
-> > > +	} while (sts1 || sts2 || sts3);
-> > > +
-> > > +	return IRQ_HANDLED;
-> > > +}
+-- 
+With best wishes
+Dmitry
 
-> > We do this in the other Qualcomm drivers but it doesn't seem ideal to
-> > just ignore the interrupts.
-
-> It seems we simply ignore IRQs that are not mapped in the regmap_irq,
-> what would be the ideal way to handle this ?
-
-I don't understnad what "this" is here.  Why even register an interrupt
-handler here?  What is the regmap_irq you are referring to here and why
-would an interrupt handler here be related to it?
-
-> > > +static int wcd939x_sdw_component_bind(struct device *dev, struct device *master,
-> > > +				      void *data)
-> > > +{
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +static void wcd939x_sdw_component_unbind(struct device *dev,
-> > > +					 struct device *master, void *data)
-> > > +{
-> > > +}
-> > > +
-> > > +static const struct component_ops wcd939x_sdw_component_ops = {
-> > > +	.bind = wcd939x_sdw_component_bind,
-> > > +	.unbind = wcd939x_sdw_component_unbind,
-> > > +};
-
-> > Do these need to be provided if they can legitimately be empty?
-
-> AFAIK yes, component code will crash if those are not defined.
-> I'll add a comment explaining whey they are no-op.
-
-If the framework can genuninely have empty callbacks here the framework
-should be updated to make the callbacks optional.
-
---zRYJJGeNyjEN57NU
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmVl4VUACgkQJNaLcl1U
-h9CQFAf/X86BJjWyIuWFGa/imsTVc1qRNOaSfXiSo5tUqzDx+dmeJZ0iDSexp52n
-+s6hQKvWt8aXarV/rAUIIM8yemaz2BMINAZQQxW5Qm0IpNH82u9AFczWvx9fK8AG
-ISjnkn5P+MEhqTHfB54ZNcdT11C9KPgo0kP5eMIsRNJxVPahElMgde866TSK7P3Q
-VYrYF+xKYHaoHR5kIC4lgHgbzVpaa2O9nbuur28vCX5HHg7Mv9y2ia1X2R+qLKrp
-yuB/5lBeGaFidOuZdoz8KqxsI9e4Z4aqzKGsMBVV7i966MiEX2cHfcEq0qC8y6QN
-dndVngDVmPkbhT/RFYsA7yCD2uRfxA==
-=P7CZ
------END PGP SIGNATURE-----
-
---zRYJJGeNyjEN57NU--
 
