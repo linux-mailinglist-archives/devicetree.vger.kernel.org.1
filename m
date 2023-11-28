@@ -1,118 +1,69 @@
-Return-Path: <devicetree+bounces-19613-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19615-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D1357FB704
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 11:20:44 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9006F7FB70F
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 11:23:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8D9A91C212EB
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 10:20:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C15241C2124C
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 10:23:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A47F4E1C9;
-	Tue, 28 Nov 2023 10:20:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eaHRUk0e"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61A044E1D5;
+	Tue, 28 Nov 2023 10:23:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6FAD1841;
-	Tue, 28 Nov 2023 10:20:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B8A7C433C7;
-	Tue, 28 Nov 2023 10:20:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701166840;
-	bh=RWQ4oqqgHJ3ICm2hpPKNYpjBIge+3p/xB+tOFDs5NMw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eaHRUk0ehNhq8VY3cH77WL9LJEMIls02t0rLxqblsykoX2aLe0T7ldvP5f2UEmXQP
-	 LF0pjMGXvE8keZeRAIFmeGYuPLqK7ahQuamy1SbIQ0C5GK6eO4aNl3GQzazN0nDcse
-	 WCRfqTndclieY7vIq57jBdizycgeQsGPmGN+m7Byqhbpq4JocPN5cH/LfttH+NOn9B
-	 px9IHT9/1bIkKrJ/0rySpY1D8SYfH5JV+QKe3BPQQel4PXODhMGhQ0AEV2bWPY94IH
-	 BisfxqYWGRMAPmjDbQcUXQHsBoUwerbC1mmQ4/TmB5KC/HASaYFhbEWBKRPq7S0gZP
-	 zhSVeYPBRGVTQ==
-Received: from johan by xi.lan with local (Exim 4.96.2)
-	(envelope-from <johan@kernel.org>)
-	id 1r7vDI-0005YI-2G;
-	Tue, 28 Nov 2023 11:21:08 +0100
-Date: Tue, 28 Nov 2023 11:21:08 +0100
-From: Johan Hovold <johan@kernel.org>
-To: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55AD512C;
+	Tue, 28 Nov 2023 02:23:35 -0800 (PST)
+Received: from i53875bf8.versanet.de ([83.135.91.248] helo=phil.lan)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1r7vFd-00030f-06; Tue, 28 Nov 2023 11:23:33 +0100
+From: Heiko Stuebner <heiko@sntech.de>
+To: linux-kernel@vger.kernel.org,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, quic_wcheng@quicinc.com,
-	linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	quic_ppratap@quicinc.com, quic_jackp@quicinc.com
-Subject: Re: [PATCH 1/6] dt-bindings: usb: dwc3: Clean up hs_phy_irq in
- bindings
-Message-ID: <ZWW_FOAKp95Cf9vN@hovoldconsulting.com>
-References: <20231122191335.3058-1-quic_kriskura@quicinc.com>
- <ZV9dYpTYRXn63tXe@hovoldconsulting.com>
- <1192d91f-11bf-44af-953a-14e08e2b6ca8@quicinc.com>
- <ZWCpGdJRexnk98IN@hovoldconsulting.com>
- <004ddc69-1566-4de4-b260-0fca96a9395f@quicinc.com>
+	Trevor Woerner <twoerner@gmail.com>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH] arm64: rockchip: dts: rk3308-rock-pi-s add gpio-line-names
+Date: Tue, 28 Nov 2023 11:23:31 +0100
+Message-Id: <170116700275.2183789.12263120893522806404.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20231120162232.27653-1-twoerner@gmail.com>
+References: <20231120162232.27653-1-twoerner@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <004ddc69-1566-4de4-b260-0fca96a9395f@quicinc.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On Fri, Nov 24, 2023 at 11:09:04PM +0530, Krishna Kurapati PSSNV wrote:
-> >> Yes. From whatever targets I was able to find, only one of them didn't
-> >> have the power_event irq. Rest all of them had. I will recheck that
-> >> particular one again.
-> > 
-> > Please do. The driver polls the corresponding status register on all
-> > platforms currently, and perhaps this interrupt can one day be used to
-> > get rid of the polling.
-> >   
+On Mon, 20 Nov 2023 11:22:32 -0500, Trevor Woerner wrote:
+> Add names to the pins of the general-purpose expansion header as given in the
+> Radxa GPIO page[1] following the conventions in the kernel documentation[2] to
+> make it easier for users to correlate the pins with functions when using
+> utilities such as gpioinfo.
 > 
-> Ok, I just rechecked and case is, I am not able to get my hands on the 
-> doc. I can't say for sure that the target is missing the pwr_event 
-> interrupt. I say we can safely add the target assuming pwr_event is 
-> present for ipq9574. Every target so far even on downstream has this IRQ 
-> present in hw.
-
-Ok, good.
-
-> >>> Now if the HS interrupt is truly unusable, I guess we can consider
-> >>> dropping it throughout and the above becomes just three permutations
-> >>> instead, which can even be expressed along the lines of:
-> >>
-> >> Infact, I wanted to do this but since you mentioned before that if HW
-> >> has it, we must describe it, I kept it in. But since this functionality
-> >> is confirmed to be mutually exclusive of qusb2/{dp/dm}, I am aligned to
-> >> skip it in bindings and drop it in DT.
-> > 
-> > As I mentioned elsewhere, it depends on whether it can be used at all.
-> > Not simply whether there is some other mechanism that can be used in its
-> > stead. Such a decision should be left up to the implementation.
-> > 
-> > That's why I said "truly unusable" above. It's still not clear to me
-> > whether that is the case or not.
+> [1] https://wiki.radxa.com/RockpiS/hardware/gpio
+> [2] Documentation/devicetree/bindings/gpio/gpio.txt
 > 
-> I looked at the code of  4.4, 4.14/ 4.19/ 5.4/ 5.10/ 5.15/ 6.1 and none 
-> of them implement the hs_phy_irq.
+> [...]
 
-But again, that is completely irrelevant. As I've said numerous times
-now, this is about what the hardware is capable of, not which
-functionality a particular OS chooses to use.
- 
-> My opinion would be to keep the power_event irq as mandatory and not to 
-> include the hs_phy_irq.
+Applied, thanks!
 
-Ok, but you still need to explain why dropping hs_phy_irq is correct.
+[1/1] arm64: rockchip: dts: rk3308-rock-pi-s add gpio-line-names
+      commit: 6204c84c196889c54ce5c4d44d69472c93e56c39
 
-Until there's a clear answer to that, it seems we need to include it.
-
-Johan
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
