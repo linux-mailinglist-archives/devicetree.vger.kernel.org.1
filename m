@@ -1,130 +1,108 @@
-Return-Path: <devicetree+bounces-19634-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19631-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C4ED7FB8EF
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 12:05:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BC9C7FB8D5
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 12:03:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8D3D01C21403
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 11:05:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BC07E1C21331
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 11:03:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 416D94E1AA;
-	Tue, 28 Nov 2023 11:05:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92F4849F92;
+	Tue, 28 Nov 2023 11:03:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=melexis.com header.i=@melexis.com header.b="WmB+7bvc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jH8rMrpu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CEA91FCB
-	for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 03:05:17 -0800 (PST)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-a00b056ca38so709138666b.2
-        for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 03:05:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=melexis.com; s=google; t=1701169516; x=1701774316; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ZErotTciFh+W4EIUk/jK7VwlzHqyAHTYt/8Z9M3bwy0=;
-        b=WmB+7bvc0AI//kI5Yk+uioBlenkszXC3fMviF6oE4RyBhksmbogyUfPB5KAA+8ekGo
-         0vDcIN/j/NDAAN3mg2sKRBeBowSmCmcy9dYRjYlBeQAjrmfQpqqWD8Vbqtp9xG+tT1T6
-         7x/L+6ek8rpEXw7+uyE1Hcxydr9/BqmeDnfRahDavVo6wVl2lqUYN+er8FNBJpnmB0wa
-         aG4UqrH6qFo7TftS42urB8keYRmZFkxSWMD4+zrtGTdm39ZWSPnZt1dt1W3KXujfAkQH
-         ijktlzdmEDwpQ+mgnqanaV+mm6nr/YT2qUp9heW4IBKyRe+xMiSeaio/cBjiBLpDL9J3
-         xDrg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701169516; x=1701774316;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ZErotTciFh+W4EIUk/jK7VwlzHqyAHTYt/8Z9M3bwy0=;
-        b=upTMlbu8z4Ey9FGQjy3OssYc7nrVLTwYikzjxL9asfHdcYpwhYg22B6Jr2yaiDI9mi
-         BKOM/m9E6ok2oTnoVAkC+VfXGxeAxTinr12dFsGjl3WVC2LAS3Ehz7OzWlJ1F97eq8Am
-         oE2ZsDiEm8jIPp4vmO1M38teMXqREfs58MaJrcgg6KsxtDtx/iu9zFAPQlyg10ujnMV8
-         LtiIpboXMg7AU7pftKQFpW28rfV81ah+AhZV6TU/UNOf9+Cmur5e9biUYFA3sIUXd0Id
-         2owiIcaHy2l6+8ypHGi639sDmRg+IZSE6q/gm6zQX05Ft0lmEvOw0XsebgcGbkYxF868
-         CZYg==
-X-Gm-Message-State: AOJu0YwTLXQLPUAJ6L6cda5ds7D5jdBW+SBR8645VHTY9yr8wc4GGykD
-	hCEyZ6Gk9FPQdLZQINP7GlHRy05mRTu66rxSa4s=
-X-Google-Smtp-Source: AGHT+IF88graGsp2EiQI3DeNW7yBOyI3PBwjZMG5ecHagJ7rlExos2CVPUI+aemtEVMhr8ijiIc6Cw==
-X-Received: by 2002:a17:906:b20a:b0:9e6:4410:2993 with SMTP id p10-20020a170906b20a00b009e644102993mr6893876ejz.18.1701169515620;
-        Tue, 28 Nov 2023 03:05:15 -0800 (PST)
-Received: from localhost.localdomain (d54C3956F.access.telenet.be. [84.195.149.111])
-        by smtp.gmail.com with ESMTPSA id lv20-20020a170906bc9400b00a0f78db91c3sm2236936ejb.95.2023.11.28.03.05.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Nov 2023 03:05:15 -0800 (PST)
-From: Crt Mori <cmo@melexis.com>
-To: Jonathan Cameron <jic23@kernel.org>,
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71A3C46421;
+	Tue, 28 Nov 2023 11:03:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB088C433C9;
+	Tue, 28 Nov 2023 11:03:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701169429;
+	bh=RuN83uZU0ViigSxLsl1fezUOYA7OPMFJtWAUwKSFmMM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jH8rMrpuKeWkEUFmqohSTh/33Dmmf9PKYbItvO4e87DYJ/MZ7sD/sLQBK0awgxdg9
+	 4BBIOaP5zk1wTZ54/hVu5xswTa7sQGtwmA4ru7dpQwqF1t0FB+XROrZ4xZBpwMpXIk
+	 Tc/rsf2tP3Wsaye/sCCFJ+XJk4UBYiKv5l1xFszFGGNdmMu+z1syVm8NH1Dyr1GABs
+	 Hko8L74saFFbJHkeJtDWygxL8UQxpUGY8vjpUuVbthG/7DRxcPbo6r99QDzHknyLqa
+	 LOPeku8nr1gAOTz2mRhez+5UvfDOZRlU5ZI9F5YujbCDUCNrCDwWOY//llpbzrd7hk
+	 UtLfeziz9CXhQ==
+Date: Tue, 28 Nov 2023 16:33:38 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Ziqi Chen <quic_ziqichen@quicinc.com>
+Cc: quic_asutoshd@quicinc.com, quic_cang@quicinc.com, bvanassche@acm.org,
+	stanley.chu@mediatek.com, adrian.hunter@intel.com,
+	beanhuo@micron.com, avri.altman@wdc.com, junwoo80.lee@samsung.com,
+	martin.petersen@oracle.com, quic_nguyenb@quicinc.com,
+	quic_nitirawa@quicinc.com, linux-scsi@vger.kernel.org,
+	Alim Akhtar <alim.akhtar@samsung.com>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
-	linux-iio@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Crt Mori <cmo@melexis.com>
-Subject: [PATCH v2 2/2] dt-bindings: iio: temperature: add MLX90635 device
-Date: Tue, 28 Nov 2023 12:02:52 +0100
-Message-Id: <f8cb0afb2966540dd266da09e832eab22604347b.1701168726.git.cmo@melexis.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <cover.1701168726.git.cmo@melexis.com>
-References: <cover.1701168726.git.cmo@melexis.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4] dt-bindings: ufs: Add msi-parent for UFS MCQ
+Message-ID: <20231128110338.GQ3088@thinkpad>
+References: <1701144469-1018-1-git-send-email-quic_ziqichen@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <1701144469-1018-1-git-send-email-quic_ziqichen@quicinc.com>
 
-Add device tree bindings for MLX90635 Infra Red contactless temperature
-sensor.
+On Tue, Nov 28, 2023 at 12:07:47PM +0800, Ziqi Chen wrote:
+> The Message Signaled Interrupts (MSI) support has been introduced in
+> UFSHCI version 4.0 (JESD223E). The MSI is the recommended interrupt
+> approach for MCQ. If choose to use MSI, In UFS DT, we need to provide
+> msi-parent property that point to the hardware entity which serves as
+> the MSI controller for this UFS controller.
+> 
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Ziqi Chen <quic_ziqichen@quicinc.com>
 
-Signed-off-by: Crt Mori <cmo@melexis.com>
----
- .../iio/temperature/melexis,mlx90632.yaml     | 19 +++++++++++++++++--
- 1 file changed, 17 insertions(+), 2 deletions(-)
+Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
-diff --git a/Documentation/devicetree/bindings/iio/temperature/melexis,mlx90632.yaml b/Documentation/devicetree/bindings/iio/temperature/melexis,mlx90632.yaml
-index 4a55e7f25ae7..03bb5d4fa8b5 100644
---- a/Documentation/devicetree/bindings/iio/temperature/melexis,mlx90632.yaml
-+++ b/Documentation/devicetree/bindings/iio/temperature/melexis,mlx90632.yaml
-@@ -4,7 +4,7 @@
- $id: http://devicetree.org/schemas/iio/temperature/melexis,mlx90632.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
--title: Melexis MLX90632 contactless Infra Red temperature sensor
-+title: Melexis MLX90632 and MLX90635 contactless Infra Red temperature sensor
- 
- maintainers:
-   - Crt Mori <cmo@melexis.com>
-@@ -27,9 +27,24 @@ description: |
-   Since measured object emissivity effects Infra Red energy emitted,
-   emissivity should be set before requesting the object temperature.
- 
-+  https://www.melexis.com/en/documents/documentation/datasheets/datasheet-mlx90635
-+
-+  MLX90635 is most suitable for consumer applications where
-+  measured object temperature is in range between -20 to 100 degrees
-+  Celsius with relative error of measurement 2 degree Celsius in
-+  object temperature range for industrial applications, while just 0.2
-+  degree Celsius for human body measurement applications. Since it can
-+  operate and measure ambient temperature in range of -20 to 85 degrees
-+  Celsius it is suitable also for outdoor use.
-+
-+  Since measured object emissivity effects Infra Red energy emitted,
-+  emissivity should be set before requesting the object temperature.
-+
- properties:
-   compatible:
--    const: melexis,mlx90632
-+    enum:
-+      - melexis,mlx90632
-+      - melexis,mlx90635
- 
-   reg:
-     maxItems: 1
+- Mani
+
+> ---
+> V3 -> V4: Corrected version change format.
+> V2 -> V3: Wrap commit message to meet Linux coding style.
+> V1 -> V2: Rebased on Linux 6.7-rc1 and updated the commit message to
+>           incorporate the details about when MCQ/MSI got introduced.
+> ---
+>  Documentation/devicetree/bindings/ufs/ufs-common.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/ufs/ufs-common.yaml b/Documentation/devicetree/bindings/ufs/ufs-common.yaml
+> index 985ea8f..31fe7f3 100644
+> --- a/Documentation/devicetree/bindings/ufs/ufs-common.yaml
+> +++ b/Documentation/devicetree/bindings/ufs/ufs-common.yaml
+> @@ -87,6 +87,8 @@ properties:
+>      description:
+>        Specifies max. load that can be drawn from VCCQ2 supply.
+>  
+> +  msi-parent: true
+> +
+>  dependencies:
+>    freq-table-hz: [ clocks ]
+>    operating-points-v2: [ clocks, clock-names ]
+> -- 
+> 2.7.4
+> 
+
 -- 
-2.40.1
-
+மணிவண்ணன் சதாசிவம்
 
