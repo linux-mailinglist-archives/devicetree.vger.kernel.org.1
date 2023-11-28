@@ -1,49 +1,60 @@
-Return-Path: <devicetree+bounces-19593-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19592-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8E057FB64C
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 10:51:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56C0A7FB647
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 10:51:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E96D31C210B8
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 09:51:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0C231282613
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 09:51:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 124724B5B4;
-	Tue, 28 Nov 2023 09:51:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCC6D4B5A8;
+	Tue, 28 Nov 2023 09:51:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Rrxrx8Z7"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VePyDTgJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A442DD;
-	Tue, 28 Nov 2023 01:51:22 -0800 (PST)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AS92Jim001270;
-	Tue, 28 Nov 2023 09:51:08 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=x3VuEoTEYQ/pyLlSPNqK4bzWJTAHrnd0D4Sm8XSCgyA=;
- b=Rrxrx8Z7BINkdDBoUmEp2JQ/XL9Rj9lIk/DPkuwQ/9KERXfr60LIEWCkopPyiUIOYBGh
- Il6Awg4M3LDi7FKDM1JLRr6CrGL461CdHU+NMV1ZV6htkDQ7Hh9SXHD0wXiNlJfzgsKg
- Ckh39HC5GkM9VCSBsQq3b556CiqM40P8VQp2fybJvfh/w0swni87M7jfTxwTP+EFvlDd
- NxxSH066Uph+2kR03LlG0A0kp06KHzmcWkq8qy4PtELFsirlhsHSH0+ng1Cb6/t4uk1S
- vihtkjg91wqqKdWTjOnrSt8f/xRWbTfo32i04nS//FVANfJtVud6RT1LyQxuk2g0waRD jQ== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3un02h1u53-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 28 Nov 2023 09:51:08 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AS9oluF032645
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 28 Nov 2023 09:50:47 GMT
-Received: from [10.253.72.234] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 28 Nov
- 2023 01:50:43 -0800
-Message-ID: <a324b7d4-5265-4766-814a-36c53a84f732@quicinc.com>
-Date: Tue, 28 Nov 2023 17:50:41 +0800
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C14CADA
+	for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 01:51:06 -0800 (PST)
+Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-54b0c7987easo4578408a12.3
+        for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 01:51:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1701165065; x=1701769865; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=4uMBANKaqpPmKTnnSwXs+PN4+MO+y59jIe/Y85fpLPg=;
+        b=VePyDTgJ82yr77aDG2OlqneDMYkd+Ttc8J5/jA78DHpN7MZbOVU7Mqpf7l9HBIDas5
+         G4j/E4vSSHxLKHqdeY6LlG2HGHP63M/IekGVZfCx/weTfr6q1aV7ZXA6blqbZTxqUDsT
+         FVCTcCaX9iQW4A/7O+VTSeZp86RnGXvMNG5e3+WQ8MlJHBJnCMPDMOweo1f99epBtEMh
+         lta8lN622zwugAUI50P2qOt1KDFOQEw8S2cbN2SixA5tn4cxycOgaf3D8CTa06coFTqd
+         4vn4HqLOsvVja5QTqwRhIOEv9U58/uW2D0qkGrAF2EPwPwBtdfR8N0RBlwTd56VHywne
+         u7zg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701165065; x=1701769865;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=4uMBANKaqpPmKTnnSwXs+PN4+MO+y59jIe/Y85fpLPg=;
+        b=CwFq6fthXpOeOMbo0RL1u9LF6ohttn3OouqNVG7JxuTqMWLXpf64/QasBo38VMAL8Q
+         p19TPcK4JvQr1hex58GsiuYPny9z9uDLniSpKy70k799tlYMoZFr3j3L3FaE4QCIiSB1
+         bWVriQbyVe9aWQe5uvHHh5x17igs6JMxEE61VHElAPWkoIcphpLnDnVlLrGm9RLZaMNf
+         Y4HH64RvOr8IL80KHp7/w61z0e3v0I49lS33vLz5jidNJh4nITxA9cKKZ7vbhyst+FNw
+         uavMvpaawYXO7Ju82M3J8zDGTHla9vTJomecnfa+hqMtqEHVK1EsG6nT2valW/PJnTB4
+         5cTQ==
+X-Gm-Message-State: AOJu0YzxT3svZ3y/C4MmDWSaTgOSZtW0zsexXTBcyVvWf4H6ZnhI/R4n
+	yr1W9bIX7mMmZhYjOq4jWZeC6w==
+X-Google-Smtp-Source: AGHT+IHLwCtp5smMD5qxAQb0nxZH5y1fMrNXvZVipJH8dwdMFyh2QW8AXAS+ZuwYCr6Wax1gczsg3w==
+X-Received: by 2002:a17:907:1686:b0:a12:bde:7acc with SMTP id cx6-20020a170907168600b00a120bde7accmr2182793ejd.67.1701165065253;
+        Tue, 28 Nov 2023 01:51:05 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.223.109])
+        by smtp.gmail.com with ESMTPSA id i17-20020a170906265100b009ff10bfcefbsm6627368ejc.106.2023.11.28.01.51.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 28 Nov 2023 01:51:04 -0800 (PST)
+Message-ID: <deacc7ea-6fad-47d6-978b-3f639aa5da35@linaro.org>
+Date: Tue, 28 Nov 2023 10:51:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -51,76 +62,305 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 3/6] net: phy: at803x: add QCA8084 ethernet phy support
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-CC: Andrew Lunn <andrew@lunn.ch>, <davem@davemloft.net>, <edumazet@google.com>,
-        <kuba@kernel.org>, <pabeni@redhat.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <hkallweit1@gmail.com>, <corbet@lwn.net>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>
-References: <20231126060732.31764-1-quic_luoj@quicinc.com>
- <20231126060732.31764-4-quic_luoj@quicinc.com>
- <0b22dd51-417c-436d-87ce-7ebc41185860@lunn.ch>
- <f0604c25-87a7-497a-8884-7a779ee7a2f5@quicinc.com>
- <8e4046dd-813c-4766-83fb-c54a700caf31@lunn.ch>
- <9c4c1fe7-5d71-4bb2-8b92-f4e9a136e93d@quicinc.com>
- <ZWWsLf/w82N0vwBq@shell.armlinux.org.uk>
+Subject: Re: [PATCH] dt-bindings: renesas: Document preferred compatible
+ naming
 Content-Language: en-US
-From: Jie Luo <quic_luoj@quicinc.com>
-In-Reply-To: <ZWWsLf/w82N0vwBq@shell.armlinux.org.uk>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 9_16NBdSU2EYQ7K_JFS6gQk8ZNMaNUE3
-X-Proofpoint-ORIG-GUID: 9_16NBdSU2EYQ7K_JFS6gQk8ZNMaNUE3
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-28_08,2023-11-27_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
- priorityscore=1501 malwarescore=0 adultscore=0 lowpriorityscore=0
- impostorscore=0 spamscore=0 mlxscore=0 phishscore=0 bulkscore=0
- mlxlogscore=741 suspectscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2311060000 definitions=main-2311280077
+To: =?UTF-8?Q?Niklas_S=C3=B6derlund?=
+ <niklas.soderlund+renesas@ragnatech.se>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+References: <20231125232821.234631-1-niklas.soderlund+renesas@ragnatech.se>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231125232821.234631-1-niklas.soderlund+renesas@ragnatech.se>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-
-
-On 11/28/2023 5:00 PM, Russell King (Oracle) wrote:
-> On Tue, Nov 28, 2023 at 03:16:45PM +0800, Jie Luo wrote:
->>>> The interface mode is passed in the .config_init, which is configured
->>>> by the PCS driver, the hardware register is located in the PCS, this
->>>> driver will be pushed later.
->>>
->>> Is this the same as how the syqca807x works? Can the PCS driver be
->>> shared by these two drivers?
->>
->> I am not sure syqca807x, would you point me the code path of this driver?
->>
->>>
->>> What i don't like at the moment is that we have two driver
->>> developments going on at once for hardware which seems very similar,
->>> but no apparent cooperation?
->>>
->>> 	Andrew
->>
->> The PCS of qca8084 is the PHY PCS, which should be new PCS driver,
->> in the previous chips, we don't have this kind of PHY PCS.
+On 26/11/2023 00:28, Niklas Söderlund wrote:
+> Compatibles can come in two formats. Either "vendor,ip-soc" or
+> "vendor,soc-ip". Add a DT schema file documenting Renesas preferred
+> policy and enforcing it for all new compatibles, except few existing
+> patterns.
 > 
-> No. PCS drivers are for MAC-side PCS drivers, not PHY-side PCS drivers.
+> Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+> ---
+> * Changes since RFC
+> - Moved to Documentation/devicetree/bindings/soc/renesas.
+> - Changed the pattern in the initial select to match on .*-.*.
+> - Added a lot of missing compatible values.
 > 
->                       +-------------
-> 		     |     PHY
-> MAC---PCS --- link --- PCS --- ...
->         ^             |  ^
->         |	     +--|----------
->    For this PCS          |
->                    Not for this PCS
+> Compared to the RFC I did not use make dt_binding_check and manual
+> reading of the bindings to find all compatibles. Instead I generated
+> YAML of all renesas related files under arch/arm and arc/arm64 and
+> parsed all the compatible values.
 > 
+> For v6.7-rc2 the hits on each pattern where,
+> 
+> ^renesas,emev2-[a-z0-9-]+$ = 14
+> ^renesas,r7s[0-9]+-[a-z0-9-]+$ = 58
+> ^renesas,r8a[a-z0-9]+-[a-z0-9-]+$ = 1661
+> ^renesas,r9a[0-9]+g[a-z0-9]+-[a-z0-9-]+$ = 160
+> ^renesas,rcar-[a-z0-9-]+$ = 4522
+> ^renesas,rz-[a-z0-9-]+$ = 26
+> ^renesas,rza-[a-z0-9-]+$ = 4
+> ^renesas,rza1-[a-z0-9-]+$ = 10
+> ^renesas,rza2-[a-z0-9-]+$ = 6
+> ^renesas,rzg2l-[a-z0-9-]+$ = 54
+> ^renesas,rzn1[a-z0-9]*-[a-z0-9-]+$ = 22
+> ^renesas,rzv2m-[a-z0-9-]+$ = 9
+> ^renesas,sh-[a-z0-9-]+$ = 36
+> ^renesas,sh7[a-z0-9]+-[a-z0-9-]+$ = 27
+> renesas,cpg-div6-clock = 45
+> renesas,cpg-mstp-clocks = 49
+> renesas,intc-irqpin = 20
+> renesas,smp-sram = 20
+> ^renesas,can-[a-z0-9]+$ = 136
+> ^renesas,dmac-[a-z0-9]+$ = 326
+> ^renesas,du-[a-z0-9]+$ = 77
+> ^renesas,ether-[a-z0-9]+$ = 21
+> ^renesas,etheravb-[a-z0-9]+$ = 84
+> ^renesas,etheravb-rcar-gen[0-9]$ = 82
+> ^renesas,gether-[a-z0-9]+$ = 4
+> ^renesas,gpio-[a-z0-9]+$ = 608
+> ^renesas,hscif-[a-z0-9]+$ = 336
+> ^renesas,i2c-[a-z0-9]+$ = 517
+> ^renesas,iic-[a-z0-9]+$ = 118
+> ^renesas,intc-ex-[a-z0-9]+$ = 58
+> ^renesas,intc-irqpin-[a-z0-9]+$ = 10
+> ^renesas,ipmmu-[a-z0-9]+$ = 828
+> ^renesas,irqc-[a-z0-9]+$ = 22
+> ^renesas,jpu-[a-z0-9]+$ = 6
+> ^renesas,mmcif-[a-z0-9]+$ = 29
+> ^renesas,msiof-[a-z0-9]+$ = 290
+> ^renesas,pci-[a-z0-9]+$ = 38
+> ^renesas,pci-rcar-gen[0-9]$ = 36
+> ^renesas,pcie-[a-z0-9]+$ = 105
+> ^renesas,pcie-rcar-gen[0-9]$ = 105
+> ^renesas,pfc-[a-z0-9]+$ = 84
+> ^renesas,pwm-[a-z0-9]+$ = 984
+> ^renesas,qspi-[a-z0-9]+$ = 21
+> ^renesas,rcar_sound-[a-z0-9]+$ = 136
+> ^renesas,riic-[a-z0-9]+$ = 64
+> ^renesas,rspi-[a-z0-9]+$ = 48
+> ^renesas,sata-[a-z0-9]+(-es1)?$ = 38
+> ^renesas,scif-[a-z0-9]+$ = 506
+> ^renesas,scifa-[a-z0-9]+$ = 108
+> ^renesas,scifb-[a-z0-9]+$ = 57
+> ^renesas,sdhi-[a-z0-9]+$ = 294
+> ^renesas,thermal-[a-z0-9]+$ = 22
+> ^renesas,tmu-[a-z0-9]+$ = 298
+> ^renesas,tpu-[a-z0-9]+$ = 44
+> ^renesas,usb-phy-[a-z0-9]+$ = 18
+> ^renesas,usb2-phy-[a-z0-9]+$ = 118
+> ^renesas,usbhs-[a-z0-9]+$ = 86
+> ^renesas,vin-[a-z0-9]+$ = 523
+> ^renesas,xhci-[a-z0-9]+$ = 59
+> renesas,bsc-r8a73a4 = 1
+> renesas,bsc-sh73a0 = 1
+> renesas,dbsc-r8a73a4 = 2
+> renesas,dbsc3-r8a7740 = 1
+> renesas,em-gio = 5
+> renesas,em-sti = 1
+> renesas,em-uart = 5
+> renesas,fsi2-r8a7740 = 1
+> renesas,fsi2-sh73a0 = 1
+> renesas,hspi-r8a7778 = 3
+> renesas,hspi-r8a7779 = 3
+> renesas,imr-lx4 = 36
+> renesas,mtu2-r7s72100 = 3
+> renesas,rmobile-iic = 116
+> renesas,sbsc-sh73a0 = 2
+> renesas,sdhi-mmc-r8a77470 = 1
+> renesas,shmobile-flctl-sh7372 = 0
+> renesas,sysc-r8a73a4 = 1
+> renesas,sysc-r8a7740 = 1
+> renesas,sysc-rmobile = 3
+> renesas,sysc-sh73a0 = 1
+> renesas,usb-dmac = 144
+> 
+> This do not include the examples in the bindings YAML files. So there is
+> on hit, renesas,shmobile-flctl-sh7372, that is not used in an upstream
+> DTS.
+> ---
+>  .../bindings/soc/renesas/renesas-soc.yaml     | 126 ++++++++++++++++++
+>  1 file changed, 126 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/renesas/renesas-soc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/renesas/renesas-soc.yaml b/Documentation/devicetree/bindings/soc/renesas/renesas-soc.yaml
+> new file mode 100644
+> index 000000000000..4674c1f61c1e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/renesas/renesas-soc.yaml
+> @@ -0,0 +1,126 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/soc/renesas/renesas-soc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Renesas SoC compatibles naming convention
+> +
+> +maintainers:
+> +  - Geert Uytterhoeven <geert+renesas@glider.be>
+> +  - Niklas Söderlund <niklas.soderlund@ragnatech.se>
+> +
+> +description: |
+> +  Guidelines for new compatibles for SoC blocks/components.
+> +  When adding new compatibles in new bindings, use the format::
+> +    renesas,SoC-IP
+> +
+> +  For example::
+> +   renesas,r8a77965-csi2
+> +
+> +  When adding new compatibles to existing bindings, use the format in the
+> +  existing binding, even if it contradicts the above.
+> +
+> +select:
+> +  properties:
+> +    compatible:
+> +      pattern: "^renesas,.*-.*$"
+> +  required:
+> +    - compatible
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      # Preferred naming style for compatibles of SoC components:
+> +      - pattern: "^renesas,emev2-[a-z0-9-]+$"
+> +      - pattern: "^renesas,r7s[0-9]+-[a-z0-9-]+$"
+> +      - pattern: "^renesas,r8a[a-z0-9]+-[a-z0-9-]+$"
+> +      - pattern: "^renesas,r9a[0-9]+g[a-z0-9]+-[a-z0-9-]+$"
+> +      - pattern: "^renesas,rcar-[a-z0-9-]+$"
+> +      - pattern: "^renesas,rz-[a-z0-9-]+$"
+> +      - pattern: "^renesas,rza-[a-z0-9-]+$"
+> +      - pattern: "^renesas,rza1-[a-z0-9-]+$"
+> +      - pattern: "^renesas,rza2-[a-z0-9-]+$"
+> +      - pattern: "^renesas,rzg2l-[a-z0-9-]+$"
+> +      - pattern: "^renesas,rzn1[a-z0-9]*-[a-z0-9-]+$"
+> +      - pattern: "^renesas,rzv2m-[a-z0-9-]+$"
+> +      - pattern: "^renesas,sh-[a-z0-9-]+$"
+> +      - pattern: "^renesas,sh7[a-z0-9]+-[a-z0-9-]+$"
 
-The PCS drivers in drivers/net/pcs/ should be in PHY side, such as
-pcs-lynx.c and pcs-xpcs.c, they are configuring the MDIO device
-registers.
+Why so many different patterns? Why it cannot be for example:
+"^renesas,rz[a-z0-9]*-[a-z0-9-]+$" to cover multiple entries?
+
+The point is not to validate the devices. Other bindings do it. The
+point is to have one or two patterns to enforce ordering of SoC-block.
+
+The size of this file suggests you either over-complicated the thing or
+there is little benefit of adding it.
+
+> +
+> +      # SoC agnostic compatibles - new compatibles are OK:
+
+Why new compatibles are ok?
+
+> +      - enum:
+> +          - renesas,cpg-div6-clock
+> +          - renesas,cpg-mstp-clocks
+> +          - renesas,intc-irqpin
+> +          - renesas,smp-sram
+
+smp-sram can have new compatibles? I am sorry, but this needs explanation...
+
+> +
+> +      # Legacy namings - variations of existing patterns/compatibles are OK,
+> +      # but do not add completely new entries to these:
+> +      - pattern: "^renesas,can-[a-z0-9]+$"
+> +      - pattern: "^renesas,dmac-[a-z0-9]+$"
+> +      - pattern: "^renesas,du-[a-z0-9]+$"
+> +      - pattern: "^renesas,ether-[a-z0-9]+$"
+> +      - pattern: "^renesas,etheravb-[a-z0-9]+$"
+> +      - pattern: "^renesas,etheravb-rcar-gen[0-9]$"
+> +      - pattern: "^renesas,gether-[a-z0-9]+$"
+> +      - pattern: "^renesas,gpio-[a-z0-9]+$"
+> +      - pattern: "^renesas,hscif-[a-z0-9]+$"
+> +      - pattern: "^renesas,i2c-[a-z0-9]+$"
+> +      - pattern: "^renesas,iic-[a-z0-9]+$"
+> +      - pattern: "^renesas,intc-ex-[a-z0-9]+$"
+> +      - pattern: "^renesas,intc-irqpin-[a-z0-9]+$"
+> +      - pattern: "^renesas,ipmmu-[a-z0-9]+$"
+> +      - pattern: "^renesas,irqc-[a-z0-9]+$"
+> +      - pattern: "^renesas,jpu-[a-z0-9]+$"
+> +      - pattern: "^renesas,mmcif-[a-z0-9]+$"
+> +      - pattern: "^renesas,msiof-[a-z0-9]+$"
+> +      - pattern: "^renesas,pci-[a-z0-9]+$"
+> +      - pattern: "^renesas,pci-rcar-gen[0-9]$"
+> +      - pattern: "^renesas,pcie-[a-z0-9]+$"
+> +      - pattern: "^renesas,pcie-rcar-gen[0-9]$"
+> +      - pattern: "^renesas,pfc-[a-z0-9]+$"
+> +      - pattern: "^renesas,pwm-[a-z0-9]+$"
+> +      - pattern: "^renesas,qspi-[a-z0-9]+$"
+> +      - pattern: "^renesas,rcar_sound-[a-z0-9]+$"
+> +      - pattern: "^renesas,riic-[a-z0-9]+$"
+> +      - pattern: "^renesas,rspi-[a-z0-9]+$"
+> +      - pattern: "^renesas,sata-[a-z0-9]+(-es1)?$"
+> +      - pattern: "^renesas,scif-[a-z0-9]+$"
+> +      - pattern: "^renesas,scifa-[a-z0-9]+$"
+> +      - pattern: "^renesas,scifb-[a-z0-9]+$"
+> +      - pattern: "^renesas,sdhi-[a-z0-9]+$"
+> +      - pattern: "^renesas,thermal-[a-z0-9]+$"
+> +      - pattern: "^renesas,tmu-[a-z0-9]+$"
+> +      - pattern: "^renesas,tpu-[a-z0-9]+$"
+> +      - pattern: "^renesas,usb-phy-[a-z0-9]+$"
+> +      - pattern: "^renesas,usb2-phy-[a-z0-9]+$"
+> +      - pattern: "^renesas,usbhs-[a-z0-9]+$"
+> +      - pattern: "^renesas,vin-[a-z0-9]+$"
+> +      - pattern: "^renesas,xhci-[a-z0-9]+$"
+
+No, wait, you basically listed most of the SoC as exceptions. What SoC
+blocks exactly are you going to cover in such case with your rules?
+
+
+
+Best regards,
+Krzysztof
+
 
