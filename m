@@ -1,106 +1,174 @@
-Return-Path: <devicetree+bounces-19644-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19645-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C1327FB9D9
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 13:04:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 498D97FB9E4
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 13:08:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B1DD61F20FDD
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 12:04:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 02CF12821E9
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 12:08:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BAFC4F899;
-	Tue, 28 Nov 2023 12:04:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DB524F88D;
+	Tue, 28 Nov 2023 12:08:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dS+vj4KE"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="g7wmxKs7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2ADF4182
+	for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 04:08:46 -0800 (PST)
+Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E76319460
-	for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 12:04:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5968C433C7;
-	Tue, 28 Nov 2023 12:04:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701173090;
-	bh=i55TD+jqPJqNMu1csxYYbwmdAkXCEdI8W2QHQXOzNMQ=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=dS+vj4KENFpbmNeaFcBTdQCEgb80MJG/nZw46Orm0YRo9u5edeLbzdu4EV3AJCv9/
-	 wRCJf2FCFBYJLHCqhI6l2Kuy3qPq6fBuiC7pNtw+4G3kh27JcZaNJbTBsx8LJDOEX3
-	 /TozcelAfJREaWirWdC3mBmzEV7hS5AvBJCU78oNwgAgyZjc750ra+NrZV0XPjnXnF
-	 XZFijZyRrP439uGTD48vFiOIeWZPujBJnM2dg/R9KOoA5bEkeP4GSpMkOx1QvL7pqp
-	 r48jWI4dZJxzn/O/2wVGeN6BxF+qXobTQL57qVGleUcDobnl9r7xUzsvbLlulNfY0W
-	 pphU5s2r2mb7w==
-From: Mark Brown <broonie@kernel.org>
-To: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>, 
- Bard Liao <yung-chuan.liao@linux.intel.com>, bard.liao@intel.com, 
- Conor Dooley <conor+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Rob Herring <robh+dt@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>, 
- Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: alsa-devel@alsa-project.org, devicetree@vger.kernel.org
-In-Reply-To: <87v8a64f3d.wl-kuninori.morimoto.gx@renesas.com>
-References: <87v8a64f3d.wl-kuninori.morimoto.gx@renesas.com>
-Subject: Re: [PATCH v7 0/5] ASoC: makes CPU/Codec channel connection map
- more generic
-Message-Id: <170117308718.2712587.12761626999755612414.b4-ty@kernel.org>
-Date: Tue, 28 Nov 2023 12:04:47 +0000
+	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 244943F888
+	for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 12:08:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1701173322;
+	bh=iOZrwSPmspp94JeIuHB4gK1Gx/cQjCpWhXKzSprsIjI=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type;
+	b=g7wmxKs723iBnlhu9vo25IzqlqTAaeN/HR5qna+F4vekJqX5HphJWlXK8lsD4/zxQ
+	 LWozX5FjG6WD9P/zcu+Z9yEreyaEIRAJJU52lFolBY63bBu7ZOz2kQQzYhlAzGza7S
+	 3+32M4rgrlFJzXq24l7ZlPp/OvXZ/UuSf4sqcA/Q8Kkc/TPmmqUf3LsxftCEu9juyn
+	 LIIy4D8k8XClnsd3OsLQK5t38ME/ium/EayPM0xdNySGQHAMps64lYdlh5ba2Pb7X6
+	 06BlMXGSVdELJofGZOY1MHzGjx8UZVEsPWBO8YmvcZiPtHRx1sSkNRWrrsjc1HH1Gb
+	 eHUyLpMvHE6BQ==
+Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-285a20a12cfso4085717a91.2
+        for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 04:08:42 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701173320; x=1701778120;
+        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=iOZrwSPmspp94JeIuHB4gK1Gx/cQjCpWhXKzSprsIjI=;
+        b=KtjPPD/Ui25LlUN++4OE3M1tCieRd0x7U0LkhwZcAb3fqW7kjU/hWvIDThmSupgRqj
+         rOsEBceiGsGFq6R26qphPk4ADz0i+CoSpVqli8zOdDpSZFRtaikwT8OaHEUJ+B6oPYuo
+         NttczVHtVbQyukNRiZueiGJ4vE3A34DG2GD7oVeHqXFr2W1o+aDaSPp6E8wrzBZ+X/U8
+         f4sWdgTSdxXOAP9ZIYKKbzKouy+tVqvJEZCENYKjeyy2O2HLhBXsTGQmSdtKsW0uaRoo
+         MLMQmLLx5yibZ2v7WO3CuMD772AAuynOG99BDo29a1d5DULRgzlAxiO6KlGLUzqvoYiG
+         puTQ==
+X-Gm-Message-State: AOJu0Yw2aaglC+W5Bt47LWmZ01DRFVUdQYrOPtRAn5WP4cIVea020anQ
+	YPRTn7AU6A1RTiCHpqwNLi0tpUWAb4qvWg95wkufa2rjemeIx4fYHvezfXU0QEwp5T5Eg4cbENX
+	xFOgqTnP3HkknTVIdc94J48FnSFnSlHlsoJyXpQfdP6B6gVRVYCTisOM=
+X-Received: by 2002:a0c:c788:0:b0:67a:4bb0:693a with SMTP id k8-20020a0cc788000000b0067a4bb0693amr5088410qvj.55.1701173299944;
+        Tue, 28 Nov 2023 04:08:19 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGBEBEjzW+Uph8+AZgkvAUsq8GnJE2nUXrDjraYHJF2flj0Zg8LkQf+0YqL9hF83A1yoS4DqWVvh0w1JaGFdxE=
+X-Received: by 2002:a0c:c788:0:b0:67a:4bb0:693a with SMTP id
+ k8-20020a0cc788000000b0067a4bb0693amr5088373qvj.55.1701173299631; Tue, 28 Nov
+ 2023 04:08:19 -0800 (PST)
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 28 Nov 2023 13:08:18 +0100
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+In-Reply-To: <2f06ce36-0dc1-495e-b6a6-318951a53e8d@collabora.com>
+References: <20231029042712.520010-1-cristian.ciocaltea@collabora.com>
+ <20231029042712.520010-13-cristian.ciocaltea@collabora.com>
+ <CAJM55Z9e=vjGKNnmURN15mvXo2bVd3igBA-3puF9q7eh5hiP+A@mail.gmail.com> <2f06ce36-0dc1-495e-b6a6-318951a53e8d@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13-dev-0438c
+Mime-Version: 1.0
+Date: Tue, 28 Nov 2023 13:08:18 +0100
+Message-ID: <CAJM55Z8vkMbqXY5sS2o4cLi8ow-JQTcXU9=uYMBSykwd4ppExw@mail.gmail.com>
+Subject: Re: [PATCH v2 12/12] [UNTESTED] riscv: dts: starfive:
+ beaglev-starlight: Enable gmac
+To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, 
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Emil Renner Berthing <kernel@esmil.dk>, Samin Guo <samin.guo@starfivetech.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	Jose Abreu <joabreu@synopsys.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+	Richard Cochran <richardcochran@gmail.com>, Giuseppe Cavallaro <peppe.cavallaro@st.com>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org, kernel@collabora.com
+Content-Type: text/plain; charset="UTF-8"
 
-On Mon, 13 Nov 2023 01:27:50 +0000, Kuninori Morimoto wrote:
-> Cc Bard, Pierre-Louis, Jerome, DT-ML
-> 
-> This is v7 patch-set.
-> 
-> Current ASoC is supporting CPU/Codec = N:M (N < M) connection by using
-> ch_map idea. This patch-set expands it that all connection uses this idea,
-> and no longer N < M limit [1][2].
-> 
-> [...]
+Cristian Ciocaltea wrote:
+> On 11/26/23 23:10, Emil Renner Berthing wrote:
+> > Cristian Ciocaltea wrote:
+> >> The BeagleV Starlight SBC uses a Microchip KSZ9031RNXCA PHY supporting
+> >> RGMII-ID.
+> >>
+> >> TODO: Verify if manual adjustment of the RX internal delay is needed. If
+> >> yes, add the mdio & phy sub-nodes.
+> >
+> > Sorry for being late here. I've tested that removing the mdio and phy nodes on
+> > the the Starlight board works fine, but the rx-internal-delay-ps = <900>
+> > property not needed on any of my VisionFive V1 boards either.
+>
+> No problem, thanks a lot for taking the time to help with the testing!
+>
+> > So I wonder why you need that on your board
+>
+> I noticed you have a patch 70ca054e82b5 ("net: phy: motorcomm: Disable
+> rgmii rx delay") in your tree, hence I you please confirm the tests were
+> done with that commit reverted?
+>
+> > Also in the driver patch you add support for phy-mode = "rgmii-txid", but here
+> > you still set it to "rgmii-id", so which is it?
+>
+> Please try with "rgmii-id" first. I added "rgmii-txid" to have a
+> fallback solution in case the former cannot be used.
 
-Applied to
+Ah, I see. Sorry I should have read up on the whole thread. Yes, the Starlight
+board with the Microchip phy works with "rgmii-id" as is. And you're right,
+with "rgmii-id" my VF1 needs the rx-internal-delay-ps = <900> property too.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+>
+> > You've alse removed the phy reset gpio on the Starlight board:
+> >
+> >   snps,reset-gpios = <&gpio 63 GPIO_ACTIVE_LOW>
+> >
+> > Why?
+>
+> I missed this in v1 as the gmac handling was done exclusively in
+> jh7100-common. Thanks for noticing!
+>
+> >>
+> >> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+> >> ---
+> >>  arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dts | 5 +++++
+> >>  1 file changed, 5 insertions(+)
+> >>
+> >> diff --git a/arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dts b/arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dts
+> >> index 7cda3a89020a..d3f4c99d98da 100644
+> >> --- a/arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dts
+> >> +++ b/arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dts
+> >> @@ -11,3 +11,8 @@ / {
+> >>  	model = "BeagleV Starlight Beta";
+> >>  	compatible = "beagle,beaglev-starlight-jh7100-r0", "starfive,jh7100";
+> >>  };
+> >> +
+> >> +&gmac {
+> >> +	phy-mode = "rgmii-id";
+> >> +	status = "okay";
+> >> +};
+> >
+> > Lastly the phy-mode and status are the same for the VF1 and Starlight boards,
+> > so why can't these be set in the jh7100-common.dtsi?
+>
+> I wasn't sure "rgmii-id" can be used for both boards and I didn't want
+> to unconditionally enable gmac on Starlight before getting a
+> confirmation that this actually works.
+>
+> If there is no way to make it working with "rgmii-id" (w/ or w/o
+> adjusting rx-internal-delay-ps), than we should switch to "rgmii-txid".
+
+Yeah, I don't exactly know the difference, but both boards seem to work fine
+with "rgmii-id", so if that is somehow better and/or more correct let's just go
+with that.
 
 Thanks!
+/Emil
 
-[1/5] ASoC: makes CPU/Codec channel connection map more generic
-      commit: 45cc50d13433a62f23b7b4af380497aae5e8ddc7
-[2/5] ASoC: audio-graph-card2: use better image for Multi connection
-      commit: 912eb415631140c93ff5f05378411fec8e6a537f
-[3/5] ASoC: audio-graph-card2: add CPU:Codec = N:M support
-      commit: e2de6808df4ad5faa6106f7a80617921fdf5dff5
-[4/5] ASoC: audio-graph-card2-custom-sample: Add connection image
-      commit: a706366f93c37c6649acfe15a1ef9a80e25bace4
-[5/5] ASoC: audio-graph-card2-custom-sample: add CPU/Codec = N:M sample
-      commit: 792846d9daa876186196b66dc496a2ba8ddd7535
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+>
+> Thanks,
+> Cristian
 
