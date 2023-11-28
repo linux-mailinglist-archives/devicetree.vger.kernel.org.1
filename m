@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-19576-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19578-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DDD77FB5E3
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 10:33:41 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C9857FB5EA
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 10:34:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ADA56282612
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 09:33:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AF230B2174B
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 09:34:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 163E0495CD;
-	Tue, 28 Nov 2023 09:33:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7373D49F8C;
+	Tue, 28 Nov 2023 09:34:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RUyJKoLW"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ydUI51XM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56014A3
-	for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 01:33:34 -0800 (PST)
-Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-54b0310f536so6882564a12.0
-        for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 01:33:34 -0800 (PST)
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABC1EA5
+	for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 01:34:25 -0800 (PST)
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-54ba30784ecso695422a12.1
+        for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 01:34:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701164013; x=1701768813; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701164064; x=1701768864; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=okFSkWuWQL3WzsaPSpoB+y2m96LmGU+28yaf1MmYak0=;
-        b=RUyJKoLWfcsts2QoyAXBKJnHDGA8Yz+yXqg0j2/Yaf64gw+X6StGCseMKeSlFyq1hs
-         OtOevSwvSg9oasryjvTwTl3xh7zKllyEIw7377jKSHWGFCmb7BmfsrWyHISNxPA882lf
-         IIBWi3Bq7J0chlK4NTkj6kmqNa79cxkB1kZwHkmY9fQYgD/CJ9U5vIflm9g8yeXEzNW7
-         3aUWYCw8SxjA41/kt0oPc1E7puwLErNFKZDD2/7CG7evGClgItmU14hB9UeEaRDzaBM9
-         PcOI4nINX+c+/bdhldfLdPB/9pDy+xAP7KSrvheURZ9xa5YWtyjsYf53Kew2PLg5gCaI
-         Fl1Q==
+        bh=TMwU5/BNEX9XHiZ75bjuTerelzqVSuKACTjxMb1RjI8=;
+        b=ydUI51XMxcUi3NvRNG8LjPofX4cjEiVA9SCu18e8DG2Xz7MOHArZj25GfiFx08uj2q
+         HvnKZNDdypnIQrzPZKffgBJj+agB7IKGYgTMYFuWy1lhg1Izlg2CCgHtmLpumUQWwj9R
+         F9vMW8J5fpyTx8DrngxV8ShuYzbTzFodfIuXl6quxMj0GCW7p0J63bHm8Mjq66UB36/t
+         giGOtQl7GbpdZzQjp78uFV9uk9nIx/1E3boXb4Z4RyYLyGzZoXr8ph2M2B4vikMYjJ7Z
+         4p5N/CLIiBco8+w5DUWlEnRAYu5Qsz4VTo9uHs2nEeWlGVbKS0GtMOBjdOpWvk8Qn8hf
+         zH/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701164013; x=1701768813;
+        d=1e100.net; s=20230601; t=1701164064; x=1701768864;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=okFSkWuWQL3WzsaPSpoB+y2m96LmGU+28yaf1MmYak0=;
-        b=Iwdo/vVmrf/mApJh/4WLGKqloANczxFjNcDrU40Xo1Dgfk4u8pgFPPOWWtmcqBMWLw
-         o95dvw9HhKtdY0+e1r0Bgk3FnvdhJOFhXGHWLOReoYj1WE8lAyBNoDm3DfIu+8Wr549h
-         xz9U2vWf1Wk8Y8sP6ZMLsmhYtTb/QdCZbHFOiI83nXu9xchFVeOMU2Q8bcbnFjUUYU5j
-         5s110stWFRlIVdMPJZWZ684wwNCFUO0WT1Ge+ckNhcHLfRUVak+jOtKoSwWigDywwQdy
-         OuZLPt3NZBj8IqDLkY9dZN85ueW5r8jELWWTZxFhJk7UT2+qiRm3XdpvIrFIU9r3CNLo
-         u7EQ==
-X-Gm-Message-State: AOJu0Yx3AK1dRFo0jt/QvdGvWaxgHOLGxXuBTwglNxHeHFHS0ZXbHfYt
-	nRctttClqBrhPSepwqda31XFWQ==
-X-Google-Smtp-Source: AGHT+IER1AQX/mb49xKQgyq1HdeACbfKkTd4oIHdEH/94iH/4oSPUbKvweyWEmFy1LWDOBHVUwtvew==
-X-Received: by 2002:aa7:c045:0:b0:54b:5007:9a12 with SMTP id k5-20020aa7c045000000b0054b50079a12mr5882371edo.10.1701164012791;
-        Tue, 28 Nov 2023 01:33:32 -0800 (PST)
+        bh=TMwU5/BNEX9XHiZ75bjuTerelzqVSuKACTjxMb1RjI8=;
+        b=a5QuIZDqSFpl8re/eaFhHZXVCw6+5je7jZBz3Yquh/+x6aYPTYTPuA857Ikg8SxJjP
+         EHQendLwLJV6jEvpfHWjnrez2aKH8Ljr3R0fBjC2XNYjhI7EzCC5CYSrzob9Weke21qk
+         dIxcDWIiCbK+SX32Ra0WrJZj87pD9z4O5MRoCKU4V1rkra7TPZ3u4KL51etUNK/Not/1
+         eoR5tiOI+O9Lf0cm59zVopYMwqFBbYoKUZAZS9aNnAp6i0lDtd30zlmuPRmltZUBRWjI
+         qViKg/GZ/Ok7VRUbwT1AV32kL7plrnPl8RkAN0vB9Tu2P1vJ0TGnGyos6mKVii+Kw8p1
+         vfhw==
+X-Gm-Message-State: AOJu0YysYISgpciVG/F0kmTSoajqym25Xea1tl5jAkGJ1GjBbAG2484Q
+	bNLs0E+x2HehwczfZPek0tHNXg==
+X-Google-Smtp-Source: AGHT+IFinfpdcdjcdUv7tzR+eGPGwJuwrWbpMa8wXwBhE3Kh30oCfYrMQj0ZxJHjEkaYHHIkOQDCFg==
+X-Received: by 2002:aa7:d80b:0:b0:54b:1bf2:2f3c with SMTP id v11-20020aa7d80b000000b0054b1bf22f3cmr7300928edq.12.1701164064179;
+        Tue, 28 Nov 2023 01:34:24 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.109])
-        by smtp.gmail.com with ESMTPSA id x1-20020aa7d381000000b00548ab1abc75sm6239824edq.51.2023.11.28.01.33.31
+        by smtp.gmail.com with ESMTPSA id x1-20020aa7d381000000b00548ab1abc75sm6239824edq.51.2023.11.28.01.34.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Nov 2023 01:33:32 -0800 (PST)
-Message-ID: <30a74f59-6230-48d5-a872-a9bee0cc5b4f@linaro.org>
-Date: Tue, 28 Nov 2023 10:33:30 +0100
+        Tue, 28 Nov 2023 01:34:23 -0800 (PST)
+Message-ID: <7fed5d90-da04-40fb-8677-b807b6f51cc9@linaro.org>
+Date: Tue, 28 Nov 2023 10:34:22 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,17 +62,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: adi,ad5791.yaml: Add support for
- controlling RBUF
+Subject: Re: [PATCH v2 3/4] arm64: dts: nuvoton: Add pinctrl support for
+ ma35d1
 Content-Language: en-US
-To: nuno.sa@analog.com, linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-References: <20231127-ad5791-michael-stuff-v1-0-04167b3edc56@analog.com>
- <20231127-ad5791-michael-stuff-v1-1-04167b3edc56@analog.com>
+To: Jacky Huang <ychuang570808@gmail.com>, linus.walleij@linaro.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ p.zabel@pengutronix.de, j.neuschaefer@gmx.net
+Cc: linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ ychuang3@nuvoton.com, schung@nuvoton.com
+References: <20231128061118.575847-1-ychuang570808@gmail.com>
+ <20231128061118.575847-4-ychuang570808@gmail.com>
+ <7edda3ca-b98a-4125-979f-3ee7ac718a9a@linaro.org>
+ <a0be9aaa-290d-450e-b0b8-d87453bcaaa0@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -118,45 +120,46 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231127-ad5791-michael-stuff-v1-1-04167b3edc56@analog.com>
+In-Reply-To: <a0be9aaa-290d-450e-b0b8-d87453bcaaa0@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 27/11/2023 16:55, Nuno Sa via B4 Relay wrote:
-> From: Michael Hennerich <michael.hennerich@analog.com>
+On 28/11/2023 09:37, Jacky Huang wrote:
+>>> +			gpion: gpio@40040340 {
+>>> +				reg = <0x340 0x40>;
+>>> +				interrupts = <GIC_SPI  105 IRQ_TYPE_LEVEL_HIGH>;
+>>> +				clocks = <&clk GPN_GATE>;
+>>> +				gpio-controller;
+>>> +				#gpio-cells = <2>;
+>>> +				interrupt-controller;
+>>> +				#interrupt-cells = <2>;
+>>> +			};
+>>> +
+>>> +			pcfg_default: pin-default {
+>>> +				slew-rate = <0>;
+>>> +				input-schmitt-disable;
+>>> +				bias-disable;
+>>> +				power-source = <1>;
+>>> +				drive-strength = <17100>;
+>>> +			};
+>> It does not look like you tested the DTS against bindings. Please run
+>> `make dtbs_check W=1` (see
+>> Documentation/devicetree/bindings/writing-schema.rst or
+>> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+>> for instructions).
+>>
+>> Best regards,
+>> Krzysztof
+>>
 > 
+> I forgot to remove 'ma35d1-pinfunc.h' from my local copy.
+> After remove the '#include <dt-bindings/pinctrl/ma35d1-pinfunc.h>', it 
+> can pass
+> the `make dtbs_check W=1` check.
+> I will fix it in the next version.
 
-Subject: drop ".yaml"
-
-> This patch adds support for an external amplifier to be connected in a
-
-Please do not use "This commit/patch", but imperative mood. See longer
-explanation here:
-https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
-
-> gain of two configuration.
-> 
-> Signed-off-by: Michael Hennerich <michael.hennerich@analog.com>
-> Signed-off-by: Nuno Sa <nuno.sa@analog.com>
-> ---
->  Documentation/devicetree/bindings/iio/dac/adi,ad5791.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad5791.yaml b/Documentation/devicetree/bindings/iio/dac/adi,ad5791.yaml
-> index 3a84739736f6..c81285d84db7 100644
-> --- a/Documentation/devicetree/bindings/iio/dac/adi,ad5791.yaml
-> +++ b/Documentation/devicetree/bindings/iio/dac/adi,ad5791.yaml
-> @@ -26,6 +26,11 @@ properties:
->    vdd-supply: true
->    vss-supply: true
->  
-> +  adi,rbuf-gain2-en:
-> +    description: Specify to allow an external amplifier to be connected in a
-> +      gain of two configuration.
-
-I don't understand this. Without this property external amplifier is not
-allowed to be connected? This sounds like some policy, but should rather
-focus on hardware.
+Really? Then your bindings look wrong. Why do you mix MMIO nodes and
+non-MMIO in one device node?
 
 Best regards,
 Krzysztof
