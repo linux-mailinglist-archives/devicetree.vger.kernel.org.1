@@ -1,280 +1,166 @@
-Return-Path: <devicetree+bounces-19732-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19733-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F7927FBF92
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 17:50:32 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2CEC7FBF94
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 17:50:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 271BA2829A9
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 16:50:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 95F97282A37
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 16:50:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B782D57890;
-	Tue, 28 Nov 2023 16:50:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B448F5B5B6;
+	Tue, 28 Nov 2023 16:50:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="zJFEehZZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VMNENkx2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D1CFD4B;
-	Tue, 28 Nov 2023 08:50:26 -0800 (PST)
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 3ASEnrP2023428;
-	Tue, 28 Nov 2023 17:50:11 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding:content-type; s=
-	selector1; bh=e5JQ/h42L5uhpTPt24TWXUIHpp+cXePsoRZw+56u2lo=; b=zJ
-	FEehZZoU1EWJA01rpjTGSVPWdO/JMzpaBvg42/46EVClInrc+5hJzpPN/TQaHdGE
-	ZJf4NNjqkCVOJ08wimxn39b/RRbJ7DidcyqjYHrpNNVinsAH732bysyQLJ1jjFLI
-	T061WxgcTKI0BFl8xCY3paJuAWMj9o9fLNDTY92aQxyUIS3MDX2I13Oc9sfbTR9Q
-	46d/dP82wnf3uPttTTN2hQ7wWM0wv7I1m1GeYxpTdY+U7mB4WL8WIW5ViM6+ktMT
-	oM4ZXfZCjomE1WGIXH7AWqQnLJl/jvZnM9ZzjIEIQpy0rIJMg0Xt7i1c0IwEAT5/
-	hYT8Y8zNtmbH+wx5XeEg==
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3uk8pjw5rb-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 28 Nov 2023 17:50:11 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id A5BAC100050;
-	Tue, 28 Nov 2023 17:50:10 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 9A028259485;
-	Tue, 28 Nov 2023 17:50:10 +0100 (CET)
-Received: from localhost (10.201.21.240) by SHFDAG1NODE1.st.com (10.75.129.69)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Tue, 28 Nov
- 2023 17:50:10 +0100
-From: <gabriel.fernandez@foss.st.com>
-To: Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd
-	<sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue
-	<alexandre.torgue@foss.st.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Gabriel Fernandez <gabriel.fernandez@foss.st.com>
-CC: <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v4 5/5] arm64: dts: st: add rcc support in stm32mp251
-Date: Tue, 28 Nov 2023 17:48:51 +0100
-Message-ID: <20231128164851.588315-6-gabriel.fernandez@foss.st.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231128164851.588315-1-gabriel.fernandez@foss.st.com>
-References: <20231128164851.588315-1-gabriel.fernandez@foss.st.com>
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CD0A5ABA8;
+	Tue, 28 Nov 2023 16:50:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 238B4C43391;
+	Tue, 28 Nov 2023 16:50:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701190232;
+	bh=EzBRlUdWtojgmIuIil4jL3QpKF01LdWaXfWJK6/lfmE=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=VMNENkx24ar0AG4kwNEYcgD1fSGnUzsV5M3CHnUFO95egvPKXcs8CIHswGVwlfl6l
+	 nDNUPK0lTZI8jfaobG+zK7b7Dp6uVnpUviAqkN/DgWbmdpde6NAUe3HyN5izn6spz7
+	 jXm+ILJ1pPgniPvCDQdM98lrg7evfKgcI447CfDBcvIg20BiPRB9IJCP+ad/whBVRH
+	 Tu7vVFazyKvv9jkDxDUxyEtK487wPU0/bBku1chV3NOHAxVTn8qp4nWuFO00vaPNv9
+	 z4TcY8HLzyWggufLvtv6djLehkO8/O9oyZ0+vvkMSjMHqM0EPnL7RSYmrvcDUU4Rit
+	 7Ixxt6GfZ3kfw==
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-50943ccbbaeso7977219e87.2;
+        Tue, 28 Nov 2023 08:50:32 -0800 (PST)
+X-Gm-Message-State: AOJu0Yw6Tfjv6VyEfmRJq+v0VYIR5oArlA8g92/48L4C+D91cQN+H2CP
+	J3GYtJ7MPKBC3H49m0nCTf8snycmZwChMzaKkQ==
+X-Google-Smtp-Source: AGHT+IHKVOIZpOAytolK6Nl+aWI1xmuii6vKwSdFNSAZfLUktVONq4m16q+G98GlafInI1ClKOH6O12EgOfFC3bMslQ=
+X-Received: by 2002:a05:6512:929:b0:508:1a25:a190 with SMTP id
+ f9-20020a056512092900b005081a25a190mr8734195lft.23.1701190230229; Tue, 28 Nov
+ 2023 08:50:30 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-28_18,2023-11-27_01,2023-05-22_02
+References: <20231128005849.19044-1-andre.przywara@arm.com>
+ <20231128005849.19044-5-andre.przywara@arm.com> <ddceb30f-1778-4312-af91-97813fe3c6fb@linaro.org>
+ <20231128143309.38a4ce61@donnerap.manchester.arm.com> <4e90608e-aca5-4b57-be76-350ad54f9e7c@linaro.org>
+ <20231128161010.26657e76@donnerap.manchester.arm.com>
+In-Reply-To: <20231128161010.26657e76@donnerap.manchester.arm.com>
+From: Rob Herring <robh+dt@kernel.org>
+Date: Tue, 28 Nov 2023 10:50:18 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+9J1=+gZ83QyedAWbFN=AwSB8ue+o4TM7F6yu5_62z3g@mail.gmail.com>
+Message-ID: <CAL_Jsq+9J1=+gZ83QyedAWbFN=AwSB8ue+o4TM7F6yu5_62z3g@mail.gmail.com>
+Subject: Re: [PATCH v3 4/6] thermal: sun8i: add syscon register access code
+To: Andre Przywara <andre.przywara@arm.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Vasily Khoruzhick <anarsoul@gmail.com>, Yangtao Li <tiny.windzz@gmail.com>, 
+	Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Samuel Holland <samuel@sholland.org>, "Rafael J . Wysocki" <rafael@kernel.org>, 
+	Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
+	Lukasz Luba <lukasz.luba@arm.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Martin Botka <martin.botka@somainline.org>, Bob McChesney <bob@electricworry.net>, 
+	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+	Icenowy Zheng <icenowy@aosc.io>, Maxime Ripard <mripard@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+On Tue, Nov 28, 2023 at 10:10=E2=80=AFAM Andre Przywara <andre.przywara@arm=
+.com> wrote:
+>
+> On Tue, 28 Nov 2023 15:48:18 +0100
+> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+>
+> Hi,
+>
+> (adding Maxime for the syscon question below)
+>
+> > On 28/11/2023 15:33, Andre Przywara wrote:
+> > > On Tue, 28 Nov 2023 08:43:32 +0100
+> > > Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+> > >
+> > > Hi,
+> > >
+> > >> On 28/11/2023 01:58, Andre Przywara wrote:
+> > >>>
+> > >>> +static struct regmap *sun8i_ths_get_syscon_regmap(struct device_no=
+de *node)
+> > >>> +{
+> > >>> + struct device_node *syscon_node;
+> > >>> + struct platform_device *syscon_pdev;
+> > >>> + struct regmap *regmap =3D NULL;
+> > >>> +
+> > >>> + syscon_node =3D of_parse_phandle(node, "syscon", 0);
+> > >>
+> > >> Nope. For the 100th time, this cannot be generic.
 
-Add RCC support to manage clocks and resets on the STM32MP251.
+Unless it is the 100th time for the submitter, please just point to
+the documentation.
 
-Signed-off-by: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
----
- arch/arm64/boot/dts/st/stm32mp251.dtsi | 59 ++++++++++++++------------
- 1 file changed, 31 insertions(+), 28 deletions(-)
+Can we simply ban "syscon" as a property name? It looks like we have
+65 cases in upstream dts files. Maybe that's doable. This is where we
+need levels of warnings with okay for existing vs. don't use in new
+designs.
 
-diff --git a/arch/arm64/boot/dts/st/stm32mp251.dtsi b/arch/arm64/boot/dts/st/stm32mp251.dtsi
-index 124403f5f1f4..dfbdb3a773e4 100644
---- a/arch/arm64/boot/dts/st/stm32mp251.dtsi
-+++ b/arch/arm64/boot/dts/st/stm32mp251.dtsi
-@@ -3,7 +3,9 @@
-  * Copyright (C) STMicroelectronics 2023 - All Rights Reserved
-  * Author: Alexandre Torgue <alexandre.torgue@foss.st.com> for STMicroelectronics.
-  */
-+#include <dt-bindings/clock/st,stm32mp25-rcc.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/reset/st,stm32mp25-rcc.h>
- 
- / {
- 	#address-cells = <2>;
-@@ -35,22 +37,10 @@ arm_wdt: watchdog {
- 	};
- 
- 	clocks {
--		ck_flexgen_08: ck-flexgen-08 {
-+		clk_rcbsec: clk-rcbsec {
- 			#clock-cells = <0>;
- 			compatible = "fixed-clock";
--			clock-frequency = <100000000>;
--		};
--
--		ck_flexgen_51: ck-flexgen-51 {
--			#clock-cells = <0>;
--			compatible = "fixed-clock";
--			clock-frequency = <200000000>;
--		};
--
--		ck_icn_ls_mcu: ck-icn-ls-mcu {
--			#clock-cells = <0>;
--			compatible = "fixed-clock";
--			clock-frequency = <200000000>;
-+			clock-frequency = <64000000>;
- 		};
- 	};
- 
-@@ -122,7 +112,7 @@ usart2: serial@400e0000 {
- 				compatible = "st,stm32h7-uart";
- 				reg = <0x400e0000 0x400>;
- 				interrupts = <GIC_SPI 115 IRQ_TYPE_LEVEL_HIGH>;
--				clocks = <&ck_flexgen_08>;
-+				clocks = <&rcc CK_KER_USART2>;
- 				status = "disabled";
- 			};
- 
-@@ -131,7 +121,7 @@ sdmmc1: mmc@48220000 {
- 				arm,primecell-periphid = <0x00353180>;
- 				reg = <0x48220000 0x400>, <0x44230400 0x8>;
- 				interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>;
--				clocks = <&ck_flexgen_51>;
-+				clocks = <&rcc CK_KER_SDMMC1 >;
- 				clock-names = "apb_pclk";
- 				cap-sd-highspeed;
- 				cap-mmc-highspeed;
-@@ -140,6 +130,19 @@ sdmmc1: mmc@48220000 {
- 			};
- 		};
- 
-+		rcc: clock-controller@44200000 {
-+			compatible = "st,stm32mp25-rcc";
-+			reg = <0x44200000 0x10000>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			clock-names = "hse", "hsi", "msi", "lse", "lsi";
-+			clocks = <&scmi_clk CK_SCMI_HSE>,
-+				<&scmi_clk CK_SCMI_HSI>,
-+				<&scmi_clk CK_SCMI_MSI>,
-+				<&scmi_clk CK_SCMI_LSE>,
-+				<&scmi_clk CK_SCMI_LSI>;
-+		};
-+
- 		syscfg: syscon@44230000 {
- 			compatible = "st,stm32mp25-syscfg", "syscon";
- 			reg = <0x44230000 0x10000>;
-@@ -158,7 +161,7 @@ gpioa: gpio@44240000 {
- 				interrupt-controller;
- 				#interrupt-cells = <2>;
- 				reg = <0x0 0x400>;
--				clocks = <&ck_icn_ls_mcu>;
-+				clocks = <&scmi_clk CK_SCMI_GPIOA>;
- 				st,bank-name = "GPIOA";
- 				status = "disabled";
- 			};
-@@ -169,7 +172,7 @@ gpiob: gpio@44250000 {
- 				interrupt-controller;
- 				#interrupt-cells = <2>;
- 				reg = <0x10000 0x400>;
--				clocks = <&ck_icn_ls_mcu>;
-+				clocks = <&scmi_clk CK_SCMI_GPIOB>;
- 				st,bank-name = "GPIOB";
- 				status = "disabled";
- 			};
-@@ -180,7 +183,7 @@ gpioc: gpio@44260000 {
- 				interrupt-controller;
- 				#interrupt-cells = <2>;
- 				reg = <0x20000 0x400>;
--				clocks = <&ck_icn_ls_mcu>;
-+				clocks = <&scmi_clk CK_SCMI_GPIOC>;
- 				st,bank-name = "GPIOC";
- 				status = "disabled";
- 			};
-@@ -191,7 +194,7 @@ gpiod: gpio@44270000 {
- 				interrupt-controller;
- 				#interrupt-cells = <2>;
- 				reg = <0x30000 0x400>;
--				clocks = <&ck_icn_ls_mcu>;
-+				clocks = <&scmi_clk CK_SCMI_GPIOD>;
- 				st,bank-name = "GPIOD";
- 				status = "disabled";
- 			};
-@@ -202,7 +205,7 @@ gpioe: gpio@44280000 {
- 				interrupt-controller;
- 				#interrupt-cells = <2>;
- 				reg = <0x40000 0x400>;
--				clocks = <&ck_icn_ls_mcu>;
-+				clocks = <&scmi_clk CK_SCMI_GPIOE>;
- 				st,bank-name = "GPIOE";
- 				status = "disabled";
- 			};
-@@ -213,7 +216,7 @@ gpiof: gpio@44290000 {
- 				interrupt-controller;
- 				#interrupt-cells = <2>;
- 				reg = <0x50000 0x400>;
--				clocks = <&ck_icn_ls_mcu>;
-+				clocks = <&scmi_clk CK_SCMI_GPIOF>;
- 				st,bank-name = "GPIOF";
- 				status = "disabled";
- 			};
-@@ -224,7 +227,7 @@ gpiog: gpio@442a0000 {
- 				interrupt-controller;
- 				#interrupt-cells = <2>;
- 				reg = <0x60000 0x400>;
--				clocks = <&ck_icn_ls_mcu>;
-+				clocks = <&scmi_clk CK_SCMI_GPIOG>;
- 				st,bank-name = "GPIOG";
- 				status = "disabled";
- 			};
-@@ -235,7 +238,7 @@ gpioh: gpio@442b0000 {
- 				interrupt-controller;
- 				#interrupt-cells = <2>;
- 				reg = <0x70000 0x400>;
--				clocks = <&ck_icn_ls_mcu>;
-+				clocks = <&scmi_clk CK_SCMI_GPIOH>;
- 				st,bank-name = "GPIOH";
- 				status = "disabled";
- 			};
-@@ -246,7 +249,7 @@ gpioi: gpio@442c0000 {
- 				interrupt-controller;
- 				#interrupt-cells = <2>;
- 				reg = <0x80000 0x400>;
--				clocks = <&ck_icn_ls_mcu>;
-+				clocks = <&scmi_clk CK_SCMI_GPIOI>;
- 				st,bank-name = "GPIOI";
- 				status = "disabled";
- 			};
-@@ -257,7 +260,7 @@ gpioj: gpio@442d0000 {
- 				interrupt-controller;
- 				#interrupt-cells = <2>;
- 				reg = <0x90000 0x400>;
--				clocks = <&ck_icn_ls_mcu>;
-+				clocks = <&scmi_clk CK_SCMI_GPIOJ>;
- 				st,bank-name = "GPIOJ";
- 				status = "disabled";
- 			};
-@@ -268,7 +271,7 @@ gpiok: gpio@442e0000 {
- 				interrupt-controller;
- 				#interrupt-cells = <2>;
- 				reg = <0xa0000 0x400>;
--				clocks = <&ck_icn_ls_mcu>;
-+				clocks = <&scmi_clk CK_SCMI_GPIOK>;
- 				st,bank-name = "GPIOK";
- 				status = "disabled";
- 			};
-@@ -287,7 +290,7 @@ gpioz: gpio@46200000 {
- 				interrupt-controller;
- 				#interrupt-cells = <2>;
- 				reg = <0 0x400>;
--				clocks = <&ck_icn_ls_mcu>;
-+				clocks = <&scmi_clk CK_SCMI_GPIOZ>;
- 				st,bank-name = "GPIOZ";
- 				st,bank-ioport = <11>;
- 				status = "disabled";
--- 
-2.25.1
+> > > OK. Shall this name refer to the required functionality (temperature
+> > > offset fix) or to the target syscon node (like allwinner,misc-syscon)=
+.
+> > > The problem is that this is really a syscon, as in: "random collectio=
+n of
+> > > bits that we didn't know where else to put in", so "syscon" alone act=
+ually
+> > > says it all.
+> >
+> > Every syscon is a "random collection of bits...", but not every "random
+> > collection of bits..." is a syscon.
+> >
+> > Your target device does not implement syscon nodes. Your Linux
+> > implementation does not use it as syscon. Therefore if something does
+> > not look like syscon and does not behave like syscon, it is not a sysco=
+n.
+> >
+> > I looked at the bit and this is SRAM, not syscon. I am sorry, but it is
+> > something entirely different and we have a binding for it: "sram", I th=
+ink.
+>
+> Well, it's somehow both: On the face of it it's a SRAM controller, indeed=
+:
+> it can switch the control of certain SRAM regions between CPU access and
+> peripheral access (for the video and the display engine). But then it's
+> also a syscon, because on top of that, it also controls those random bits=
+,
+> for instance the EMAC clock register, and this ominous THS bit.
+> I guess in hindsight we should have never dropped that "syscon" string
+> then, but I am not sure if adding it back has side effects?
+>
+> And as I mentioned in the cover letter: modelling this as some SRAM
+> region, as you suggest, might be an alternative, but it doesn't sound rig=
+ht
+> either, as I don't think it really is one: I just tried in U-Boot, and I
+> can write and read the whole SRAM C region just fine, with and without th=
+e
+> bit set. And SRAM content is preserved, even with the thermal sensor
+> running and the bit cleared (or set).
+>
+> So adding the "syscon" to the compatible would fix most things, but then
+> we need to keep the open coded lookup code in dwmac-sun8i.c (because olde=
+r
+> DTs would break otherwise).
 
+Really, I'd like to get rid of the "syscon" compatible. It is nothing
+more than a flag for Linux to create a regmap.
+
+Not a fully baked idea, but perhaps what is needed is drivers that
+request a regmap for a node simply get one regardless. That kind of
+throws out the Linux driver model though. Alternatively with no
+"syscon" compatible, we'd have to have table(s) of 100s of compatibles
+in the kernel.
+
+Rob
 
