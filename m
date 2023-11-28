@@ -1,61 +1,60 @@
-Return-Path: <devicetree+bounces-19668-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19669-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9504A7FBC0A
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 14:59:49 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BED587FBC10
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 15:01:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C68A61C20C2E
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 13:59:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E10761C20DA1
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 14:01:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C80E659B51;
-	Tue, 28 Nov 2023 13:59:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97CFE59B74;
+	Tue, 28 Nov 2023 14:01:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FEzXdTT9"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Fg8m6pLi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71CE1CC
-	for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 05:59:42 -0800 (PST)
-Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-5094727fa67so7882497e87.3
-        for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 05:59:42 -0800 (PST)
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E709D64
+	for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 06:01:16 -0800 (PST)
+Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-54b7ef7f4d5so2543282a12.1
+        for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 06:01:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701179980; x=1701784780; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=+mkha0IAGj2KB0F4H6bacXlhgX/QEw7yYVbprPdEXMU=;
-        b=FEzXdTT9uSM8IoFrpiomJSu85j/LOacN5x5HMkb9XkM0P5/01m791xHQ+iTPp/+qfj
-         zQh93vrc5dtxba11mpMq2QMtIIzwUjNr5SoeOzOGrZjGcjvWMHPjJdiOzKrNO+5X09GN
-         spTMrOMOcyeZhiZJu0uVF5kL9cLEKl6PvWCbvd4N9LocF8ECdHXRaCWSxwMVKecP3Rx6
-         K2L8Q36SWWdddJBv7o6+lOil1kRP9kC5ze8K05KkY9WoczCblCor/QqHvxMoClNTMl8S
-         Eis14WzV7LYirKrLXkxb7pDdJXwrkByzjwQOZeb0Gg74WSl0YgoSqcviKJXQfv0l+Teb
-         8TZA==
+        d=linaro.org; s=google; t=1701180075; x=1701784875; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=J8O6nPdgp77Ha5oQtP71MkxQpqaYfWS5iS2ThHn17jE=;
+        b=Fg8m6pLiqkOypLqvATzWhw7B+6LCxam1CgURqBzrjLsH+b+ioPzp4UdWfNIu/YNDc0
+         akNCkOthDp//lRLSWoNM11F7bP8l0u8msppQ6rS8ArQ/DWOlbD2wshDHWASwiTwqR4bS
+         O/RyH+sdVjXBNQ50zh7fCgQe/xoJSC6JlIQPDsenHen2GMSDFQHzWm59KQz4tdo/Elqs
+         DXVLyD2pmTvXyk7r6D566JS4/WZHpUikRh7DL3gELrdeay5GLXmZ+q6YEPmgH6yn4/+B
+         Qb0lcn1i1q8HuqwJCIWz3RnMv5EBMBgcopNKm4ZRVjsub5UETML9d5BeJRDU1iYWvMAB
+         prgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701179980; x=1701784780;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+mkha0IAGj2KB0F4H6bacXlhgX/QEw7yYVbprPdEXMU=;
-        b=sYuKGl0E+8PP+6l/drr0EUQ8XpNyLMJx2XUYAWafsZfuQAu/WYoJh5i0vIvzBlS1zr
-         TeJwlsQDITv1QOQY9Dyf+HmsKGZRtKRX0uOHQ/v5610lbuO81ZmV0pWKIhfw7xwy8wDG
-         q/j4uM9Ya1UvevqY02lGYAMPE+mlMh5sTlOyOTSiwZTaO0E7TCjIzhzSsLPrKlElg6YN
-         7SHzS1ul7hzuOWwqEvHOYKX9Uc52QdahLKbdpYXxJc10dxB3uzg9T3OnlPuH9VuScRWi
-         sDcWOfVEedc5fQ6cICxQuD7IQtNXh6gCzUYDireXP3YAd9qlfeewEUZbdKSsXC9Qgr5j
-         lB4w==
-X-Gm-Message-State: AOJu0YxmdcWHrk9uWsnJDJKf6Lgz+WHcWMWuD7ItZIx6EArS0qvpZIQr
-	uot+Mpa/UIrq9oAS4/THHwcj/A==
-X-Google-Smtp-Source: AGHT+IFcaI+Etx2eE8pIwnwY1Yr68cYvKSIiTgHJQs8Rwl/uuciWGJdvx/6mE4KVicdEHR/SqC6mDA==
-X-Received: by 2002:a19:4f0b:0:b0:507:a229:f53e with SMTP id d11-20020a194f0b000000b00507a229f53emr6874521lfb.24.1701179980579;
-        Tue, 28 Nov 2023 05:59:40 -0800 (PST)
+        d=1e100.net; s=20230601; t=1701180075; x=1701784875;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=J8O6nPdgp77Ha5oQtP71MkxQpqaYfWS5iS2ThHn17jE=;
+        b=tvXJfHNUJ65YbgC6RnZclb2EnBuNIF3R1WXkcLn/lfynvSoVsXjb+dC9q80vVwIPI/
+         cdXmOgT5UbbemYA+DqJPl7lfUnKuOBPCjLOPua2Le3KIuKzr+qoalCc9NxwSIEYN8BRp
+         ct5u4OWPXR2pP5SNzbfY5Jj3uGGQIlkyvemNuNenfIwmAUpHAJOq+oRGEDaaxbR7ZXs/
+         p3bN0LCBJARcOF3K7okQs/id6wgy86m4q6gBS/UKcasXhpKsbf79wJw0GawNKqiX2OSh
+         qGH7Sj0W4//fmXz9Dtt1eOY3ol9Hl6r2srYg85XUNH5agc2kC5psBt2rOJX2jRY4bwPP
+         V5Xw==
+X-Gm-Message-State: AOJu0YxIp0aHi7NNVkcN870n12bGIlTT7AAG0hl0GNxLXbyW8zdMEISI
+	Xg5HMZz3Ew8Ic8KtsKdatrzg6w==
+X-Google-Smtp-Source: AGHT+IHQEHZ1np1OwZ6LDhGAPAswOtYaDcxZs2yD0Jb/iMLMD3RXrIOZNuFkKUONlSNzb5jWLFpNUw==
+X-Received: by 2002:a17:906:2dd2:b0:9ce:24d0:8a01 with SMTP id h18-20020a1709062dd200b009ce24d08a01mr10691625eji.60.1701180075039;
+        Tue, 28 Nov 2023 06:01:15 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.109])
-        by smtp.gmail.com with ESMTPSA id pw11-20020a17090720ab00b00a0f1025b17asm2545133ejb.130.2023.11.28.05.59.39
+        by smtp.gmail.com with ESMTPSA id pw11-20020a17090720ab00b00a0f1025b17asm2545133ejb.130.2023.11.28.06.01.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Nov 2023 05:59:40 -0800 (PST)
-Message-ID: <438768a3-c50c-46f1-8a4e-2233c7545453@linaro.org>
-Date: Tue, 28 Nov 2023 14:59:37 +0100
+        Tue, 28 Nov 2023 06:01:14 -0800 (PST)
+Message-ID: <0acdc122-b7fa-4bb4-b838-6420cd43d0e0@linaro.org>
+Date: Tue, 28 Nov 2023 15:01:12 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,20 +62,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] rtc: add rtc controller support for Sophgo CV1800B
- SoC
-To: jingbao qiu <qiujingbao.dlmu@gmail.com>
-Cc: a.zummo@towertech.it, alexandre.belloni@bootlin.com,
- krzysztof.kozlowski+dt@linaro.org, chao.wei@sophgo.com,
- unicorn_wang@outlook.com, conor+dt@kernel.org, robh+dt@kernel.org,
- conor@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
- aou@eecs.berkeley.edu, linux-rtc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231121094642.2973795-1-qiujingbao.dlmu@gmail.com>
- <20231121094642.2973795-3-qiujingbao.dlmu@gmail.com>
- <09b29f1f-a42b-49f7-afca-f82357acd4c8@linaro.org>
- <CAJRtX8TU9Z3OXL1zw9+mGNhxugp_C2jo40k-s9V2byNCQeBoLQ@mail.gmail.com>
+Subject: Re: [PATCH v1 2/2] arm64: dts: qcom: ipq9574: Fix USB
+ 'vdda-pll-supply'
 Content-Language: en-US
+To: Varadarajan Narayanan <quic_varada@quicinc.com>
+Cc: agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ lgirdwood@gmail.com, broonie@kernel.org, dmitry.baryshkov@linaro.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <cover.1701160842.git.varada@hu-varada-blr.qualcomm.com>
+ <f98bbf0a515236709d999010f08c8f2470a31209.1701160842.git.varada@hu-varada-blr.qualcomm.com>
+ <832a6d4f-f561-4cf5-b1cb-7e4b2d4d50b4@linaro.org>
+ <ZWW9oF24YUGfev+2@hu-varada-blr.qualcomm.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -122,54 +120,36 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CAJRtX8TU9Z3OXL1zw9+mGNhxugp_C2jo40k-s9V2byNCQeBoLQ@mail.gmail.com>
+In-Reply-To: <ZWW9oF24YUGfev+2@hu-varada-blr.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 28/11/2023 14:22, jingbao qiu wrote:
->>> +     if (ret)
->>> +             goto err;
->>> +
->>> +     rtc->clk = devm_clk_get(&pdev->dev, NULL);
->>> +     if (IS_ERR(rtc->clk)) {
->>> +             dev_err(&pdev->dev, "no clock");
+On 28/11/2023 11:14, Varadarajan Narayanan wrote:
+> On Tue, Nov 28, 2023 at 09:51:50AM +0100, Krzysztof Kozlowski wrote:
+>> On 28/11/2023 09:46, Varadarajan Narayanan wrote:
+>>> From: Varadarajan Narayanan <quic_varada@quicinc.com>
+>>>
+>>> The earlier patch ec4f047679d5, incorrectly used 'l2'
+>>> as the vdda-pll-supply. However, 'l5' is the correct
+>>> ldo that supplies power to the USB PHY.
+>>>
+>>> Fixes: ec4f047679d5 ("arm64: dts: qcom: ipq9574: Enable USB")
 >>
->> This code is not ready for upstream. There are multiple things wrong here.
->>
->> First, syntax is return dev_err_probe.
->>
->> Second, you do not have clocks and you do not allow them! Just open your
->> binding.
+>> Doesn't this depend on the driver change?
 > 
-> I'm not fully understanding here, can you elaborate more?
+> Yes, will mention in the cover letter.
 
-That the syntax is dev_err_probe() or that you do not have clocks?
+This commit should have it in its changelog ---
 
+> 
+>> It affects both existing
+>> kernel and backports which you claim here should happen.
+> 
+> Ok. Will include stable@vger.kernel.org in the next revision.
 
-> as there is clocks info like this in the dt-bindings:
->  clocks = <&osc>;
-
-Really?
-
-Point me to the line in your patch:
-
-+properties:
-+  compatible:
-+    enum:
-+      - sophgo,cv1800b-rtc
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-
-Where are the clocks?
-
+I wasn't speaking about Cc. You indicated this should be backported.
+Then please backport it, without previous commit, and check the result.
+Is stable tree working correctly or not?
 
 Best regards,
 Krzysztof
