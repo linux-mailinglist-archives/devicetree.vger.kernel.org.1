@@ -1,178 +1,114 @@
-Return-Path: <devicetree+bounces-19720-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19721-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB5137FBEFE
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 17:10:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B61B97FBF01
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 17:11:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CDD9E1C20AA8
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 16:10:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3A68A1F20EF8
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 16:11:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADD6837D1D;
-	Tue, 28 Nov 2023 16:10:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36F2237D1E;
+	Tue, 28 Nov 2023 16:11:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="H9Bn+40s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 2B1EAD4B;
-	Tue, 28 Nov 2023 08:10:16 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4DA12C15;
-	Tue, 28 Nov 2023 08:11:03 -0800 (PST)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 45B843F6C4;
-	Tue, 28 Nov 2023 08:10:13 -0800 (PST)
-Date: Tue, 28 Nov 2023 16:10:10 +0000
-From: Andre Przywara <andre.przywara@arm.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Vasily Khoruzhick <anarsoul@gmail.com>, Yangtao Li
- <tiny.windzz@gmail.com>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
- <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, "Rafael J
- . Wysocki" <rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>,
- Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>, Rob
- Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Martin Botka <martin.botka@somainline.org>, Bob McChesney
- <bob@electricworry.net>, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, Icenowy Zheng <icenowy@aosc.io>, Maxime Ripard
- <mripard@kernel.org>
-Subject: Re: [PATCH v3 4/6] thermal: sun8i: add syscon register access code
-Message-ID: <20231128161010.26657e76@donnerap.manchester.arm.com>
-In-Reply-To: <4e90608e-aca5-4b57-be76-350ad54f9e7c@linaro.org>
-References: <20231128005849.19044-1-andre.przywara@arm.com>
-	<20231128005849.19044-5-andre.przywara@arm.com>
-	<ddceb30f-1778-4312-af91-97813fe3c6fb@linaro.org>
-	<20231128143309.38a4ce61@donnerap.manchester.arm.com>
-	<4e90608e-aca5-4b57-be76-350ad54f9e7c@linaro.org>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B06C5DA;
+	Tue, 28 Nov 2023 08:11:20 -0800 (PST)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3ASBliTK019059;
+	Tue, 28 Nov 2023 16:11:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=iqbAdlkzfpJ3QRXcSlzFEiRtZrwRPJqcPLYmnFK9te4=;
+ b=H9Bn+40scZaA7X7DxIujXYibiSOUDsAMQErDQ2lE7xZ9WQdn30fiajQGldjhRBHGJwN3
+ N216pFNn0Z7YBUfWmLk1a7tS1oWUYUdQZRwr9xSVu1fUH4SUNw/Ln+Oa7dDLpTH9Aktb
+ Fzp85jTQ3Nd9VFliUO/8oScKD5u2pIp0pH0FHtQ1E9KGGkavvvOtryun3AaFHUcVwmjX
+ 10Fg4bx4L/8VBCIzaVjhVGPo/86OVLC7zJXi1qf/JQ8vH1umzOZaQa3R8lxCr+O3XPPn
+ 9WGu+ql+IGJ9pmNxN/WIvpPCU5Iyd16hRC/skT4aBS0nyiG0zfKNSyhp5vJDlqu/mseJ Mw== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3unfn4rv2u-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 28 Nov 2023 16:11:16 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3ASGBF1g003718
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 28 Nov 2023 16:11:15 GMT
+Received: from [10.216.35.46] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 28 Nov
+ 2023 08:11:10 -0800
+Message-ID: <26b69814-201b-8d07-d844-27e804aa3016@quicinc.com>
+Date: Tue, 28 Nov 2023 21:41:06 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [PATCH V2 0/4] Add runtime PM support for videocc on SM8150
+Content-Language: en-US
+To: Konrad Dybcio <konradybcio@kernel.org>, Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+References: <20231118123944.2202630-1-quic_skakitap@quicinc.com>
+ <47925f9e-32aa-4762-a4ec-aa559e18ff12@kernel.org>
+From: "Satya Priya Kakitapalli (Temp)" <quic_skakitap@quicinc.com>
+In-Reply-To: <47925f9e-32aa-4762-a4ec-aa559e18ff12@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: st3HThTTRbxcV2U3hW0UrJWTCjJP1TlH
+X-Proofpoint-GUID: st3HThTTRbxcV2U3hW0UrJWTCjJP1TlH
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-28_18,2023-11-27_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 spamscore=0
+ impostorscore=0 adultscore=0 clxscore=1011 suspectscore=0
+ priorityscore=1501 mlxscore=0 bulkscore=0 mlxlogscore=983 phishscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2311060000 definitions=main-2311280129
 
-On Tue, 28 Nov 2023 15:48:18 +0100
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
-Hi,
+On 11/20/2023 5:18 PM, Konrad Dybcio wrote:
+> On 18.11.2023 13:39, Satya Priya Kakitapalli wrote:
+>> Add runtime support for videocc on SM8150 and update the resets
+>> and video_pll0_config configuration.
+>>
+>> Satya Priya Kakitapalli (4):
+>>    dt-bindings: clock: Update the videocc resets for sm8150
+>>    clk: qcom: videocc-sm8150: Update the videocc resets
+>>    clk: qcom: videocc-sm8150: Add missing PLL config properties
+>>    clk: qcom: videocc-sm8150: Add runtime PM support
+> Hi, it's good practive to include a link to the previous revision
+> and a summary of changes.
+>
+> The b4 tool [1] does that for you, please consider using it.
 
-(adding Maxime for the syscon question below)
 
-> On 28/11/2023 15:33, Andre Przywara wrote:
-> > On Tue, 28 Nov 2023 08:43:32 +0100
-> > Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> > 
-> > Hi,
-> >   
-> >> On 28/11/2023 01:58, Andre Przywara wrote:  
-> >>>  
-> >>> +static struct regmap *sun8i_ths_get_syscon_regmap(struct device_node *node)
-> >>> +{
-> >>> +	struct device_node *syscon_node;
-> >>> +	struct platform_device *syscon_pdev;
-> >>> +	struct regmap *regmap = NULL;
-> >>> +
-> >>> +	syscon_node = of_parse_phandle(node, "syscon", 0);    
-> >>
-> >> Nope. For the 100th time, this cannot be generic.  
-> > 
-> > OK. Shall this name refer to the required functionality (temperature
-> > offset fix) or to the target syscon node (like allwinner,misc-syscon).
-> > The problem is that this is really a syscon, as in: "random collection of
-> > bits that we didn't know where else to put in", so "syscon" alone actually
-> > says it all.  
-> 
-> Every syscon is a "random collection of bits...", but not every "random
-> collection of bits..." is a syscon.
-> 
-> Your target device does not implement syscon nodes. Your Linux
-> implementation does not use it as syscon. Therefore if something does
-> not look like syscon and does not behave like syscon, it is not a syscon.
-> 
-> I looked at the bit and this is SRAM, not syscon. I am sorry, but it is
-> something entirely different and we have a binding for it: "sram", I think.
+Hi, I have installed b4 and followed all the steps, but it doesn't 
+populate my cover letter with change log and previous series link, do i 
+need to use some option for that?
 
-Well, it's somehow both: On the face of it it's a SRAM controller, indeed:
-it can switch the control of certain SRAM regions between CPU access and
-peripheral access (for the video and the display engine). But then it's
-also a syscon, because on top of that, it also controls those random bits,
-for instance the EMAC clock register, and this ominous THS bit.
-I guess in hindsight we should have never dropped that "syscon" string
-then, but I am not sure if adding it back has side effects?
 
-And as I mentioned in the cover letter: modelling this as some SRAM
-region, as you suggest, might be an alternative, but it doesn't sound right
-either, as I don't think it really is one: I just tried in U-Boot, and I
-can write and read the whole SRAM C region just fine, with and without the
-bit set. And SRAM content is preserved, even with the thermal sensor
-running and the bit cleared (or set).
-
-So adding the "syscon" to the compatible would fix most things, but then
-we need to keep the open coded lookup code in dwmac-sun8i.c (because older
-DTs would break otherwise).
-
-What do people think about this?
-Samuel, does this affect the D1 LDO driver as well?
-
-Cheers,
-Andre
-
-> 
-> > 
-> > 
-> > And btw: it would have been about the same effort (and more helpful!) to
-> > type:
-> > 
-> > "This cannot be generic, please check writing-bindings.rst."    ;-)
-> >   
-> >>  
-> >>> +	if (!syscon_node)
-> >>> +		return ERR_PTR(-ENODEV);
-> >>> +
-> >>> +	syscon_pdev = of_find_device_by_node(syscon_node);
-> >>> +	if (!syscon_pdev) {
-> >>> +		/* platform device might not be probed yet */
-> >>> +		regmap = ERR_PTR(-EPROBE_DEFER);
-> >>> +		goto out_put_node;
-> >>> +	}
-> >>> +
-> >>> +	/* If no regmap is found then the other device driver is at fault */
-> >>> +	regmap = dev_get_regmap(&syscon_pdev->dev, NULL);
-> >>> +	if (!regmap)
-> >>> +		regmap = ERR_PTR(-EINVAL);    
-> >>
-> >> Aren't you open-coding existing API to get regmap from syscon?  
-> > 
-> > That's a good point, I lifted that code from sun8i-emac.c, where we have
-> > the exact same problem. 
-> > Unfortunately syscon_regmap_lookup_by_phandle() requires the syscon DT
-> > node to have "syscon" in its compatible string list, which we
-> > don't have. We actually explicitly dropped this for the A64 (with
-> > 1f1f5183981d70bf0950), and never added this for later SoCs in the first place.
-> > I guess we could add it back, and it would work for this case here (tested
-> > that), but then cannot replace the sun8i-emac.c code, because that would
-> > break older DTs.
-> > So is there any chance we can drop the requirement for "syscon" in the
-> > compatible string list, in the implementation of
-> > syscon_regmap_lookup_by_phandle()? Maybe optionally, using a different
-> > prototype? Or is there another existing API that does this already?  
-> 
-> I must correct myself: I was wrong. You are not open-coding, because as
-> pointed out, this is not a phandle to syscon (even if you call it like
-> "syscon").
-> 
-> The code is fine, maybe except missing links (needs double checking,
-> because maybe regmap creates links?). The DT binding and DTS needs
-> fixing, because it is not a syscon.
-> 
-> Best regards,
-> Krzysztof
-> 
-
+> Konrad
+>
+> [1] https://b4.docs.kernel.org/en/latest/index.html
 
