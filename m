@@ -1,119 +1,130 @@
-Return-Path: <devicetree+bounces-19630-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19634-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F67C7FB8BD
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 12:00:23 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C4ED7FB8EF
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 12:05:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 712291C20F53
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 11:00:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8D3D01C21403
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 11:05:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D8A448CDC;
-	Tue, 28 Nov 2023 11:00:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 416D94E1AA;
+	Tue, 28 Nov 2023 11:05:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="izM++sar"
+	dkim=pass (2048-bit key) header.d=melexis.com header.i=@melexis.com header.b="WmB+7bvc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E2C8197;
-	Tue, 28 Nov 2023 03:00:17 -0800 (PST)
-Received: by mail-pf1-x435.google.com with SMTP id d2e1a72fcca58-6cb66fbc63dso3841072b3a.0;
-        Tue, 28 Nov 2023 03:00:17 -0800 (PST)
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CEA91FCB
+	for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 03:05:17 -0800 (PST)
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-a00b056ca38so709138666b.2
+        for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 03:05:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701169216; x=1701774016; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=sUB7QgCX9kAMB/Lg9l0EP3qxCwdAvpTXoJYwnDzkTg4=;
-        b=izM++sarEPxp0YqHL1kM0mwuWBwTOwH6820Cr55ZWLWu6XPoipNDP+DJ7M2nlZ2soM
-         FiTfNn5qtAcp/m1RVKRiWSSZE6TbojS8D8xANOlwLjXbuNv13wcVLnK7JLlc8jd2J9+8
-         knsZCqtkq4rhY2jFDzbtFqSYe3ZirVu7LeGGwFeWpRP7Dpfl5xTS7lPk9Wbnm3J+jY8o
-         mDi2DQbraDrL6pvoguCeNoA+3F+UzbXj2fWqyJAjKA5f+CQkZfomaX+7Ckzfotfw4hxe
-         bymxrcplsuE7G5TMkj5riEvPcxnISSBrpZ93o9ktMY7Cf84tG8UCiyMswc+GxTKyuKzr
-         aU/w==
+        d=melexis.com; s=google; t=1701169516; x=1701774316; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZErotTciFh+W4EIUk/jK7VwlzHqyAHTYt/8Z9M3bwy0=;
+        b=WmB+7bvc0AI//kI5Yk+uioBlenkszXC3fMviF6oE4RyBhksmbogyUfPB5KAA+8ekGo
+         0vDcIN/j/NDAAN3mg2sKRBeBowSmCmcy9dYRjYlBeQAjrmfQpqqWD8Vbqtp9xG+tT1T6
+         7x/L+6ek8rpEXw7+uyE1Hcxydr9/BqmeDnfRahDavVo6wVl2lqUYN+er8FNBJpnmB0wa
+         aG4UqrH6qFo7TftS42urB8keYRmZFkxSWMD4+zrtGTdm39ZWSPnZt1dt1W3KXujfAkQH
+         ijktlzdmEDwpQ+mgnqanaV+mm6nr/YT2qUp9heW4IBKyRe+xMiSeaio/cBjiBLpDL9J3
+         xDrg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701169216; x=1701774016;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sUB7QgCX9kAMB/Lg9l0EP3qxCwdAvpTXoJYwnDzkTg4=;
-        b=tmlUTDgKSEH1Jbi31ai+Tl7fRKWI3E+O81p7Kay4ljxDziicSUluBQXdBp1LqIW2f5
-         QQqGorn1nE4d2rE1GnaGM8V1VwnWBRtLLpWAovNrt7SaaSjtIBznVD3UVyn7bcSPafO6
-         Yp1ysRB5BztxkQyJkDXU3a6l7tEwo6VoL3GURbUO2zfHu/SdGj53MQOv+KLi55P2Wy1W
-         5HFdZsiWplHTvMg1fq1wzw7qecp2kpENL2yFsLcZ/OmTJs+9PvbtdmuoTWCoEJYzW3M9
-         Ru6sefDM+aD4GYst2PuEQlKdFO9wYDCgTaQgL8QIGVl5gKVcB+aN3AHM30hvwIIaVYBh
-         dd+g==
-X-Gm-Message-State: AOJu0YxzvzJ7hAsUKYmSm0kp0d5FD5ip+EQw2UPk0adQZ+vOkey1Sj6p
-	iPUGoUw3c+T4zYaT7R7EZKM=
-X-Google-Smtp-Source: AGHT+IELZy2cfK9evDSGdPDLQOTm0q44f8N3/c+byMrYR82BkmRcoyiSNcxwqRFBJEoqnyNviZmX+Q==
-X-Received: by 2002:a05:6a21:33aa:b0:18b:9428:cd1f with SMTP id yy42-20020a056a2133aa00b0018b9428cd1fmr20906975pzb.21.1701169215950;
-        Tue, 28 Nov 2023 03:00:15 -0800 (PST)
-Received: from [172.19.1.47] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
-        by smtp.gmail.com with ESMTPSA id q3-20020a056a00088300b006cb64908070sm8867824pfj.93.2023.11.28.03.00.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Nov 2023 03:00:15 -0800 (PST)
-Message-ID: <5a96dd2a-53f2-498a-89e8-547e7fbc22d4@gmail.com>
-Date: Tue, 28 Nov 2023 19:00:12 +0800
+        d=1e100.net; s=20230601; t=1701169516; x=1701774316;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ZErotTciFh+W4EIUk/jK7VwlzHqyAHTYt/8Z9M3bwy0=;
+        b=upTMlbu8z4Ey9FGQjy3OssYc7nrVLTwYikzjxL9asfHdcYpwhYg22B6Jr2yaiDI9mi
+         BKOM/m9E6ok2oTnoVAkC+VfXGxeAxTinr12dFsGjl3WVC2LAS3Ehz7OzWlJ1F97eq8Am
+         oE2ZsDiEm8jIPp4vmO1M38teMXqREfs58MaJrcgg6KsxtDtx/iu9zFAPQlyg10ujnMV8
+         LtiIpboXMg7AU7pftKQFpW28rfV81ah+AhZV6TU/UNOf9+Cmur5e9biUYFA3sIUXd0Id
+         2owiIcaHy2l6+8ypHGi639sDmRg+IZSE6q/gm6zQX05Ft0lmEvOw0XsebgcGbkYxF868
+         CZYg==
+X-Gm-Message-State: AOJu0YwTLXQLPUAJ6L6cda5ds7D5jdBW+SBR8645VHTY9yr8wc4GGykD
+	hCEyZ6Gk9FPQdLZQINP7GlHRy05mRTu66rxSa4s=
+X-Google-Smtp-Source: AGHT+IF88graGsp2EiQI3DeNW7yBOyI3PBwjZMG5ecHagJ7rlExos2CVPUI+aemtEVMhr8ijiIc6Cw==
+X-Received: by 2002:a17:906:b20a:b0:9e6:4410:2993 with SMTP id p10-20020a170906b20a00b009e644102993mr6893876ejz.18.1701169515620;
+        Tue, 28 Nov 2023 03:05:15 -0800 (PST)
+Received: from localhost.localdomain (d54C3956F.access.telenet.be. [84.195.149.111])
+        by smtp.gmail.com with ESMTPSA id lv20-20020a170906bc9400b00a0f78db91c3sm2236936ejb.95.2023.11.28.03.05.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Nov 2023 03:05:15 -0800 (PST)
+From: Crt Mori <cmo@melexis.com>
+To: Jonathan Cameron <jic23@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+	linux-iio@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Crt Mori <cmo@melexis.com>
+Subject: [PATCH v2 2/2] dt-bindings: iio: temperature: add MLX90635 device
+Date: Tue, 28 Nov 2023 12:02:52 +0100
+Message-Id: <f8cb0afb2966540dd266da09e832eab22604347b.1701168726.git.cmo@melexis.com>
+X-Mailer: git-send-email 2.40.1
+In-Reply-To: <cover.1701168726.git.cmo@melexis.com>
+References: <cover.1701168726.git.cmo@melexis.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/4] dt-bindings: pinctrl: Document nuvoton ma35d1 pin
- control
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- linus.walleij@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- p.zabel@pengutronix.de, j.neuschaefer@gmx.net
-Cc: linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- ychuang3@nuvoton.com, schung@nuvoton.com
-References: <20231128061118.575847-1-ychuang570808@gmail.com>
- <20231128061118.575847-3-ychuang570808@gmail.com>
- <7c24aaf8-8f93-4b93-b7e5-abc88e95682d@linaro.org>
- <ffbaad9b-9a30-4cdd-bb78-8fb7d6ff4e9f@gmail.com>
- <5ac7f79a-68d3-49ef-9615-3c0076591d78@linaro.org>
- <2e0f58cc-0cfa-4957-bac1-c40897d7135b@gmail.com>
- <5109e1ce-9aa9-4c7b-bf22-9be23b5939d8@linaro.org>
-From: Jacky Huang <ychuang570808@gmail.com>
-In-Reply-To: <5109e1ce-9aa9-4c7b-bf22-9be23b5939d8@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
+Add device tree bindings for MLX90635 Infra Red contactless temperature
+sensor.
 
+Signed-off-by: Crt Mori <cmo@melexis.com>
+---
+ .../iio/temperature/melexis,mlx90632.yaml     | 19 +++++++++++++++++--
+ 1 file changed, 17 insertions(+), 2 deletions(-)
 
-On 2023/11/28 下午 05:35, Krzysztof Kozlowski wrote:
-> On 28/11/2023 10:32, Jacky Huang wrote:
->>>>> +required:
->>>>>> +  - compatible
->>>>>> +  - nuvoton,sys
->>>>> This goes after patternProperties
->>>> I will fix the above two as:
->>>>
->>>> allOf:
->>>>      - $ref: pinctrl.yaml#
->>> Look:
->>>
->>>>> allOf goes before additionalProperties.
->>> Open example-schema.
->>>
->>> ..
->> I found that 'pinctrl.yaml' is not required for this document, so I will
->> drop it.
-> Why is it not required? I don't understand where this discussion is going.
->
->
->
-> Best regards,
-> Krzysztof
->
+diff --git a/Documentation/devicetree/bindings/iio/temperature/melexis,mlx90632.yaml b/Documentation/devicetree/bindings/iio/temperature/melexis,mlx90632.yaml
+index 4a55e7f25ae7..03bb5d4fa8b5 100644
+--- a/Documentation/devicetree/bindings/iio/temperature/melexis,mlx90632.yaml
++++ b/Documentation/devicetree/bindings/iio/temperature/melexis,mlx90632.yaml
+@@ -4,7 +4,7 @@
+ $id: http://devicetree.org/schemas/iio/temperature/melexis,mlx90632.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+-title: Melexis MLX90632 contactless Infra Red temperature sensor
++title: Melexis MLX90632 and MLX90635 contactless Infra Red temperature sensor
+ 
+ maintainers:
+   - Crt Mori <cmo@melexis.com>
+@@ -27,9 +27,24 @@ description: |
+   Since measured object emissivity effects Infra Red energy emitted,
+   emissivity should be set before requesting the object temperature.
+ 
++  https://www.melexis.com/en/documents/documentation/datasheets/datasheet-mlx90635
++
++  MLX90635 is most suitable for consumer applications where
++  measured object temperature is in range between -20 to 100 degrees
++  Celsius with relative error of measurement 2 degree Celsius in
++  object temperature range for industrial applications, while just 0.2
++  degree Celsius for human body measurement applications. Since it can
++  operate and measure ambient temperature in range of -20 to 85 degrees
++  Celsius it is suitable also for outdoor use.
++
++  Since measured object emissivity effects Infra Red energy emitted,
++  emissivity should be set before requesting the object temperature.
++
+ properties:
+   compatible:
+-    const: melexis,mlx90632
++    enum:
++      - melexis,mlx90632
++      - melexis,mlx90635
+ 
+   reg:
+     maxItems: 1
+-- 
+2.40.1
 
-I read the description of 'pinctrl.yaml'. Yes, it is required. So, I 
-will add it to allOf: - $ref: pinctrl.yaml# properties: compatible: 
-enum: - nuvoton,ma35d1-pinctrl '#address-cells': const: 1 ... Best 
-Regards, Jacky Huang
 
