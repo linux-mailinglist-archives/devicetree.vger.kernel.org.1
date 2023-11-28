@@ -1,108 +1,84 @@
-Return-Path: <devicetree+bounces-19759-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19760-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACD037FC491
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 21:02:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D8987FC542
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 21:24:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D9EFF1C20F67
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 20:02:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5F55E1C20CBF
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 20:24:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BDCD40BEA;
-	Tue, 28 Nov 2023 20:02:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF07F41C8A;
+	Tue, 28 Nov 2023 20:24:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HT8CvifQ"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AI+3OrOW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-x12a.google.com (mail-il1-x12a.google.com [IPv6:2607:f8b0:4864:20::12a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDD5719A7;
-	Tue, 28 Nov 2023 12:02:34 -0800 (PST)
-Received: by mail-il1-x12a.google.com with SMTP id e9e14a558f8ab-35cd70d7735so8746835ab.0;
-        Tue, 28 Nov 2023 12:02:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701201754; x=1701806554; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5tnM12/4j0Y+uLQFwEGrW8QMTCft1ueWMRxbG+QvaFE=;
-        b=HT8CvifQxw6LqAYcaiPSd1WbyhbcDY+krssLP3gErMemeNmJh+0/79y5ghhxMIcNml
-         xbXaQNclKMDv8o1UJOF1prrc2LV07ABZL3f4086Tvb7jqQgZddig9pqQmIXEuyYiVNb/
-         sMI5wdiWR+7CndZkvU7f2r4/DJX5TNhONh4l8nkTtkDJzO2AXSJduU9iQ9l2qqBOK51l
-         HydK/mXTQBwOYZNPGTXh2YVedOKZM1jCZEElQzQWBh2yaCwl63NT0XzRPrVevMS3HEa9
-         joQ5PfWmgJyO9yqeta+8m7DqKAjC7FyiSUVAjrJbvhFwcmkm8jcMciCU/x7H9sCs50ZK
-         BcJQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701201754; x=1701806554;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=5tnM12/4j0Y+uLQFwEGrW8QMTCft1ueWMRxbG+QvaFE=;
-        b=CstHK5J0AHFlQ3cXvxtiReRkw1hc/9xmbffy7mH7TjeALcVzdEjIVHpaMV6OGGVcIi
-         Rxl8L47bfrpSAfx2iGlzoeNuyFKmGJkf8wQkuKgSepzxf1CknM/lmlDHSPQ7/uTSQFyC
-         +l6TRojuAf4MXBFWvCe8jZutgeByyERHNX5yEY0B5ECCp3W3JIH7HkCk3O1KseXHMQ+r
-         za3UykWy4ROGejSIzNJ9DWN07WOJb4so/6M8tbsXF9GTIqdBhelPH0UJdICRgW0Um95R
-         T3gkl201x2lkqxoffBXPKkP5lPEHTA8VP18Ef2Y2F/hfRxrnPQi0WCCJ9F1rhrucd9Er
-         Yc1w==
-X-Gm-Message-State: AOJu0YzXpgY5s8IInATYThkiiw6+gOgiMJvxPnc3L0N4YQTwaTaluOz+
-	KcOupBheY74hSh3+xdy+I88=
-X-Google-Smtp-Source: AGHT+IHgeNNuAfEhRJ3eVYTVUQa6XM8bmE4W2LGAdkFF6E4X78yV+YYvMT2WkHVR9HQXxIrgA0hD1A==
-X-Received: by 2002:a92:ca0d:0:b0:35b:c7a:cdc5 with SMTP id j13-20020a92ca0d000000b0035b0c7acdc5mr26703331ils.26.1701201753991;
-        Tue, 28 Nov 2023 12:02:33 -0800 (PST)
-Received: from aford-System-Version.lan ([2601:447:d002:5be:9cf:804b:3499:a67b])
-        by smtp.gmail.com with ESMTPSA id bs12-20020a056e02240c00b0035d21e48d28sm323392ilb.8.2023.11.28.12.02.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Nov 2023 12:02:33 -0800 (PST)
-From: Adam Ford <aford173@gmail.com>
-To: linux-arm-kernel@lists.infradead.org
-Cc: aford@beaconembedded.com,
-	Adam Ford <aford173@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Frieder Schrempf <frieder.schrempf@kontron.de>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] arm64: dts: imx8mm-beacon: Enable overdrive mode
-Date: Tue, 28 Nov 2023 14:02:18 -0600
-Message-Id: <20231128200219.226038-3-aford173@gmail.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20231128200219.226038-1-aford173@gmail.com>
-References: <20231128200219.226038-1-aford173@gmail.com>
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AB7D46BAE;
+	Tue, 28 Nov 2023 20:24:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EBCE8C433C7;
+	Tue, 28 Nov 2023 20:24:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701203074;
+	bh=AxZmt6ng+cjEW/8ifHbtAk94LDFE5Mh7uTAVhNosjrA=;
+	h=In-Reply-To:References:Subject:From:To:Date:From;
+	b=AI+3OrOWNKfQ4WaArgVY2zE3iQgt2mmwbWLoqzyj6bk3hFwZwi7oVmN5iR8Q6vqgV
+	 AGplDW3Kj9cNGKv//2OTPuVXRAhvDF3RIorjKHVpGbEv4QFzY02cPHj3u7avWd9kM8
+	 h9MQFqIPSMBisM4Dwn7Bx1XEYY9b+QSUCLXKpXRqHUwXCZEY+isJn4mii2/tyJx3uy
+	 6bwXIx0HA7o3493ViblidvG1NQb3071cXrTGY4UaAIxCpGn5QRblfZB1PiRU0Zu/KB
+	 fq1brk+hB0ov3M0wWnXJ6nwLVSpGCJPiIriInlLL12KXG1s9Rd/H50ZuztbjxTNoHW
+	 JEbrHvo5/OA0Q==
+Message-ID: <21095bde37a8090686dfb372e5fffa58.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <cb983f0d30f019120cf49f24efb655cf794084d3.1700498124.git.daniel@makrotopia.org>
+References: <b277c5f084ff35849efb8250510b2536053d1316.1700498124.git.daniel@makrotopia.org> <cb983f0d30f019120cf49f24efb655cf794084d3.1700498124.git.daniel@makrotopia.org>
+Subject: Re: [PATCH v2 3/4] clk: mediatek: Add pcw_chg_shift control
+From: Stephen Boyd <sboyd@kernel.org>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Chen-Yu Tsai <wenst@chromium.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dan Carpenter <dan.carpenter@linaro.org>,
+	Daniel Golle <daniel@makrotopia.org>,
+	David S.Miller <davem@davemloft.net>,
+	Edward-JW Yang <edward-jw.yang@mediatek.com>,
+	Eric Dumazet <edumazet@google.com>,
+	Frank Wunderlich <frank-w@public-files.de>,
+	Garmin.Chang <Garmin.Chang@mediatek.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	James Liao <jamesjj.liao@mediatek.com>,
+	Jianhui Zhao <zhaojh329@gmail.com>,
+	Johnson Wang <johnson.wang@mediatek.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+	Sabrina Dubroca <sd@queasysnail.net>,
+	Sam Shih <sam.shih@mediatek.com>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-m@web.codeaurora.org,
+	ediatek@lists.infradead.org, netdev@vger.kernel.org
+Date: Tue, 28 Nov 2023 12:24:31 -0800
+User-Agent: alot/0.10
 
-The SoC runs at a high enough voltage to support overdrive
-mode, so include the imx8mm-overdrive.dtsi file to increase
-the VPU and GPU clocks to their overdrive speeds.
+Quoting Daniel Golle (2023-11-20 09:19:05)
+> Introduce pcw_chg_shfit control to optionally use that instead of the
+> hardcoded PCW_CHG_MASK macro.
+> This will needed for clocks on the MT7988 SoC.
+>=20
+> Signed-off-by: Sam Shih <sam.shih@mediatek.com>
 
-Signed-off-by: Adam Ford <aford173@gmail.com>
+Is Sam Shih the author? This has the wrong From: line then.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
-index f264102bdb27..62ed64663f49 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
-@@ -3,6 +3,8 @@
-  * Copyright 2020 Compass Electronics Group, LLC
-  */
- 
-+#include "imx8mm-overdrive.dtsi"
-+
- / {
- 	aliases {
- 		rtc0 = &rtc;
--- 
-2.40.1
-
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
 
