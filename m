@@ -1,509 +1,128 @@
-Return-Path: <devicetree+bounces-19460-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19461-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 852847FB031
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 03:45:46 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB9657FB0BF
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 04:57:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 44CC8280E00
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 02:45:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 491A3B20E6E
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 03:57:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 053485387;
-	Tue, 28 Nov 2023 02:45:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E33E2883E;
+	Tue, 28 Nov 2023 03:57:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=bewilderbeest.net header.i=@bewilderbeest.net header.b="fU+6pcAo"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="qyQxmlqG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from thorn.bewilderbeest.net (thorn.bewilderbeest.net [IPv6:2605:2700:0:5::4713:9cab])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDB62D56;
-	Mon, 27 Nov 2023 18:45:34 -0800 (PST)
-Received: from hatter.bewilderbeest.net (unknown [IPv6:2602:61:7e5d:5300::2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: zev)
-	by thorn.bewilderbeest.net (Postfix) with ESMTPSA id B8BACCF7;
-	Mon, 27 Nov 2023 18:45:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
-	s=thorn; t=1701139533;
-	bh=+QF4LKMlUrGkXYlxbIDT2tyvAxlPf26m6XiL9dEwUgY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fU+6pcAodw09LYeyW+GknQCc30II9Gz5ZAs/E2jhnJLHTh1AKHKpYAMhIS5F+T8M8
-	 4dGjwvIAkAa2ulTr2wkU7YNSHmuVYMVR+nlMDx1rVGcX01yFFAEeaseYS1fOow+j8B
-	 x1smP/5FEUh0VgNh+pN4gmF1H1XEbm346AHO0Yko=
-Date: Mon, 27 Nov 2023 18:45:31 -0800
-From: Zev Weiss <zev@bewilderbeest.net>
-To: Renze Nicolai <renze@rnplus.nl>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
-	arnd@arndb.de, olof@lixom.net, soc@kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, joel@jms.id.au, andrew@aj.id.au
-Subject: Re: [PATCH 2/2] ARM: dts: aspeed: asrock: Add ASRock X570D4U BMC
-Message-ID: <5e74d971-b70a-4e17-be06-dec89110e2e6@hatter.bewilderbeest.net>
-References: <20231128013136.2699317-1-renze@rnplus.nl>
- <20231128013136.2699317-3-renze@rnplus.nl>
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 704099D;
+	Mon, 27 Nov 2023 19:57:32 -0800 (PST)
+X-UUID: 3df51cae8da211eea33bb35ae8d461a2-20231128
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=w0zhHTFWA03x1O2f6LVHcIebtJwTLXkrPBnvPfMfwzE=;
+	b=qyQxmlqGylU2osV2eA6wtV8gzbzWqj4P+xxrSOMQMoEWazGMR1cdDJsqeHs+3CVvt6TKwQ66/eClsLFJYQJQsPJtMD7RBJmjCK5KGdck9g/ox2ccL6A9Yto5trgLwdDPo0UH0aycgt1+KN6XwBIfWN5Vf1hLoA7N1ZEDDDj27Xk=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.34,REQID:503b0d0a-46f5-4a19-9b4f-51ee8082b2eb,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:abefa75,CLOUDID:d507e395-10ce-4e4b-85c2-c9b5229ff92b,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
+	DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: 3df51cae8da211eea33bb35ae8d461a2-20231128
+Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw01.mediatek.com
+	(envelope-from <chui-hao.chiu@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1451637348; Tue, 28 Nov 2023 11:57:25 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Tue, 28 Nov 2023 11:57:24 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Tue, 28 Nov 2023 11:57:24 +0800
+From: Peter Chiu <chui-hao.chiu@mediatek.com>
+To: Felix Fietkau <nbd@nbd.name>, Rob Herring <robh+dt@kernel.org>
+CC: Lorenzo Bianconi <lorenzo.bianconi@redhat.com>, Ryder Lee
+	<ryder.Lee@mediatek.com>, Evelyn Tsai <evelyn.tsai@mediatek.com>, Shayne Chen
+	<shayne.chen@mediatek.com>, Sam Shih <sam.shih@mediatek.com>,
+	<linux-wireless@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, Peter Chiu <chui-hao.chiu@mediatek.com>
+Subject: [PATCH] dt-bindings: net: wireless: mt76: add interrupts description for MT7986
+Date: Tue, 28 Nov 2023 11:57:23 +0800
+Message-ID: <20231128035723.5217-1-chui-hao.chiu@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20231128013136.2699317-3-renze@rnplus.nl>
+Content-Type: text/plain
+X-MTK: N
 
-Hi Renze,
+The mt7986 can support four interrupts to distribute the interrupts
+to different CPUs.
 
-Happy to see this moving forward again!  A few comments below, mostly 
-pretty minor stuff.
+Signed-off-by: Peter Chiu <chui-hao.chiu@mediatek.com>
+---
+ .../bindings/net/wireless/mediatek,mt76.yaml  | 24 +++++++++++++++----
+ 1 file changed, 20 insertions(+), 4 deletions(-)
 
-On Mon, Nov 27, 2023 at 05:30:17PM PST, Renze Nicolai wrote:
->This is a relatively low-cost AST2500-based Amd Ryzen 5000 Series
->micro-ATX board that we hope can provide a decent platform for OpenBMC
->development.
->
->This initial device-tree provides the necessary configuration for
->basic BMC functionality such as serial console, KVM support
->and POST code snooping.
->
->Signed-off-by: Renze Nicolai <renze@rnplus.nl>
->---
-> arch/arm/boot/dts/aspeed/Makefile             |   1 +
-> .../dts/aspeed/aspeed-bmc-asrock-x570d4u.dts  | 344 ++++++++++++++++++
-> 2 files changed, 345 insertions(+)
-> create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-x570d4u.dts
->
->diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed/Makefile
->index d3ac20e316d0..2205bd079d0c 100644
->--- a/arch/arm/boot/dts/aspeed/Makefile
->+++ b/arch/arm/boot/dts/aspeed/Makefile
->@@ -10,6 +10,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
-> 	aspeed-bmc-arm-stardragon4800-rep2.dtb \
-> 	aspeed-bmc-asrock-e3c246d4i.dtb \
-> 	aspeed-bmc-asrock-romed8hm3.dtb \
->+	aspeed-bmc-asrock-x570d4u.dtb \
-> 	aspeed-bmc-bytedance-g220a.dtb \
-> 	aspeed-bmc-delta-ahe50dc.dtb \
-> 	aspeed-bmc-facebook-bletchley.dtb \
->diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-x570d4u.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-x570d4u.dts
->new file mode 100644
->index 000000000000..9fb1d76abacb
->--- /dev/null
->+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-x570d4u.dts
->@@ -0,0 +1,344 @@
->+// SPDX-License-Identifier: GPL-2.0+
->+/dts-v1/;
->+#include "aspeed-g5.dtsi"
->+#include <dt-bindings/gpio/aspeed-gpio.h>
->+
->+/ {
->+	model = "Asrock Rack X570D4U BMC";
->+	compatible = "asrock,x570d4u-bmc";
+diff --git a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
+index 252207adbc54..20f5f2ead265 100644
+--- a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
++++ b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
+@@ -19,9 +19,6 @@ description: |
+   Alternatively, it can specify the wireless part of the MT7628/MT7688
+   or MT7622/MT7986 SoC.
+ 
+-allOf:
+-  - $ref: ieee80211.yaml#
+-
+ properties:
+   compatible:
+     enum:
+@@ -38,7 +35,8 @@ properties:
+       MT7986 should contain 3 regions consys, dcm, and sku, in this order.
+ 
+   interrupts:
+-    maxItems: 1
++    minItems: 1
++    maxItems: 4
+ 
+   power-domains:
+     maxItems: 1
+@@ -219,6 +217,24 @@ required:
+ 
+ unevaluatedProperties: false
+ 
++allOf:
++  - $ref: ieee80211.yaml#
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - mediatek,mt7986-wmac
++    then:
++      properties:
++        interrupts:
++          minItems: 1
++          items:
++            - description: major interrupt for rings
++            - description: addditional interrupt for ring 19
++            - description: addditional interrupt for ring 4
++            - description: addditional interrupt for ring 5
++
+ examples:
+   - |
+     pcie0 {
+-- 
+2.18.0
 
-This should probably be:
-
-   compatible = "asrock,x570d4u-bmc", "aspeed,ast2500";
-
->+
->+	chosen {
->+			stdout-path = &uart5;
->+			bootargs = "console=ttyS4,115200 earlycon";
->+	};
->+
->+	memory@80000000 {
->+			reg = <0x80000000 0x20000000>;
->+	};
->+
->+	reserved-memory {
->+			#address-cells = <1>;
->+			#size-cells = <1>;
->+			ranges;
->+
->+			pci_memory: region@9A000000 {
->+				no-map;
->+				reg = <0x9A000000 0x00010000>; /* 64K */
-
-Minor style nit: while it's not completely universal, most device-trees 
-(and kernel code in general) generally prefers lower-case letters in hex 
-literals.
-
->+			};
->+
->+			video_engine_memory: jpegbuffer {
->+				size = <0x02800000>;	/* 40M */
->+				alignment = <0x01000000>;
->+				compatible = "shared-dma-pool";
->+				reusable;
->+			};
->+
->+			gfx_memory: framebuffer {
->+				size = <0x01000000>;
->+				alignment = <0x01000000>;
->+				compatible = "shared-dma-pool";
->+				reusable;
->+			};
->+	};
-
-The three blocks above (chosen, memory, reserved-memory) all have their 
-bodies indented by an extra tab, which would be good to trim off.
-
->+
->+	leds {
->+		compatible = "gpio-leds";
->+
->+		heartbeat {
->+			/* led-heartbeat-n */
->+			gpios = <&gpio ASPEED_GPIO(H, 6) GPIO_ACTIVE_LOW>;
->+			linux,default-trigger = "timer";
->+		};
->+
->+		system-fault {
->+			/* led-fault-n */
->+			gpios = <&gpio ASPEED_GPIO(Z, 2) GPIO_ACTIVE_LOW>;
->+			panic-indicator;
->+		};
-
-For completeness these should have 'function' and 'color' attributes 
-added as well (you'll need to #include <dt-bindings/leds/common.h> for 
-the LED_FUNCTION_* and LED_COLOR_ID_* macros to use for that).  Also, 
-the preferred names for the nodes would now be led-0 and led-1 (the 
-kernel will assign them more recognizable names in /sys/class/leds based 
-on the color and function attributes).
-
->+	};
->+
->+	iio-hwmon {
->+		compatible = "iio-hwmon";
->+		io-channels = <&adc 0>, <&adc 1>, <&adc 2>, <&adc 3>, <&adc 4>,
->+			<&adc 5>, <&adc 6>, <&adc 7>, <&adc 8>, <&adc 9>,
->+			<&adc 10>, <&adc 11>, <&adc 12>;
->+	};
->+};
->+
->+&gpio {
->+	status = "okay";
->+	gpio-line-names =
->+	/*A0-A3*/       "status-locatorled-n",                    "",                      "button-nmi-n",          "",
->+	/*A4-A7*/       "",                                       "",                      "",                      "",
->+	/*B0-B3*/       "input-bios-post-cmplt-n",                "",                      "",                      "",
->+	/*B4-B7*/       "",                                       "",                      "",                      "",
->+	/*C0-C3*/       "",                                       "",                      "",                      "",
->+	/*C4-C7*/       "",                                       "",                      "control-locatorbutton", "",
->+	/*D0-D3*/       "button-power",                           "control-power",         "button-reset",          "control-reset",
->+	/*D4-D7*/       "",                                       "",                      "",                      "",
->+	/*E0-E3*/       "",                                       "",                      "",                      "",
->+	/*E4-E7*/       "",                                       "",                      "",                      "",
->+	/*F0-F3*/       "",                                       "",                      "",                      "",
->+	/*F4-F7*/       "",                                       "",                      "",                      "",
->+	/*G0-G3*/       "output-rtc-battery-voltage-read-enable", "input-id0",             "input-id1",             "input-id2",
->+	/*G4-G7*/       "input-alert1-n",                         "input-alert2-n",        "input-alert3-n",        "",
->+	/*H0-H3*/       "",                                       "",                      "",                      "",
->+	/*H4-H7*/       "input-mfg",                              "",                      "led-heartbeat-n",       "input-caseopen",
->+	/*I0-I3*/       "",                                       "",                      "",                      "",
->+	/*I4-I7*/       "",                                       "",                      "",                      "",
->+	/*J0-J3*/       "output-bmc-ready",                       "",                      "",                      "",
->+	/*J4-J7*/       "",                                       "",                      "",                      "",
->+	/*K0-K3*/       "",                                       "",                      "",                      "",
->+	/*K4-K7*/       "",                                       "",                      "",                      "",
->+	/*L0-L3*/       "",                                       "",                      "",                      "",
->+	/*L4-L7*/       "",                                       "",                      "",                      "",
->+	/*M0-M3*/       "",                                       "",                      "",                      "",
->+	/*M4-M7*/       "",                                       "",                      "",                      "",
->+	/*N0-N3*/       "",                                       "",                      "",                      "",
->+	/*N4-N7*/       "",                                       "",                      "",                      "",
->+	/*O0-O3*/       "",                                       "",                      "",                      "",
->+	/*O4-O7*/       "",                                       "",                      "",                      "",
->+	/*P0-P3*/       "",                                       "",                      "",                      "",
->+	/*P4-P7*/       "",                                       "",                      "",                      "",
->+	/*Q0-Q3*/       "",                                       "",                      "",                      "",
->+	/*Q4-Q7*/       "",                                       "",                      "",                      "",
->+	/*R0-R3*/       "",                                       "",                      "",                      "",
->+	/*R4-R7*/       "",                                       "",                      "",                      "",
->+	/*S0-S3*/       "input-bmc-pchhot-n",                     "",                      "",                      "",
->+	/*S4-S7*/       "",                                       "",                      "",                      "",
->+	/*T0-T3*/       "",                                       "",                      "",                      "",
->+	/*T4-T7*/       "",                                       "",                      "",                      "",
->+	/*U0-U3*/       "",                                       "",                      "",                      "",
->+	/*U4-U7*/       "",                                       "",                      "",                      "",
->+	/*V0-V3*/       "",                                       "",                      "",                      "",
->+	/*V4-V7*/       "",                                       "",                      "",                      "",
->+	/*W0-W3*/       "",                                       "",                      "",                      "",
->+	/*W4-W7*/       "",                                       "",                      "",                      "",
->+	/*X0-X3*/       "",                                       "",                      "",                      "",
->+	/*X4-X7*/       "",                                       "",                      "",                      "",
->+	/*Y0-Y3*/       "",                                       "",                      "",                      "",
->+	/*Y4-Y7*/       "",                                       "",                      "",                      "",
->+	/*Z0-Z3*/       "",                                       "",                      "led-fault-n",           "output-bmc-throttle-n",
->+	/*Z4-Z7*/       "",                                       "",                      "",                      "",
->+	/*AA0-AA3*/     "input-cpu1-thermtrip-latch-n",           "",                      "input-cpu1-prochot-n",  "",
->+	/*AA4-AC7*/     "",                                       "",                      "",                      "",
->+	/*AB0-AB3*/     "",                                       "",                      "",                      "",
->+	/*AB4-AC7*/     "",                                       "",                      "",                      "",
->+	/*AC0-AC3*/     "",                                       "",                      "",                      "",
->+	/*AC4-AC7*/     "",                                       "",                      "",                      "";
->+
->+
->+	/* Assert output-bmc-ready to allow the BIOS to continue booting */
->+	bmc-ready {
->+		gpio-hog;
->+		/* output-bmc-ready */
->+		gpios = <ASPEED_GPIO(J, 0) GPIO_ACTIVE_LOW>;
->+		output-high;
->+	};
-
-I did this on the e3c246d4i and I'm not sure it was entirely the right 
-choice -- it does solve the problem of avoiding the host's boot sequence
-sitting there waiting for a timeout to expire before proceeding, but it 
-does so by essentially lying and asserting readiness at all times (when 
-the host is probably expecting that to mean that the BMC is actually 
-prepared to respond to IPMI commands on the KCS interface and such).  In 
-practice the only time I think it might cause any noticeable problems is 
-if the host happens to reboot at just the wrong time relative to a BMC 
-reboot, but ideally we'd have some more honest userspace logic to assert 
-it at an appropriate time when it actually means something (though 
-exactly what might be up for some discussion).  Under the circumstances 
-this may be the pragmatic approach for now, but if OpenBMC does ever 
-arrive at something to solve that particular problem this would need to 
-be backed out to make room for it.
-
->+};
->+
->+&fmc {
->+	status = "okay";
->+	flash@0 {
->+			status = "okay";
->+			label = "bmc";
->+			m25p,fast-read;
->+			spi-max-frequency = <10000000>;
-
-Over-indented block body again here.
-
->+#include "openbmc-flash-layout-64.dtsi"
->+	};
->+};
->+
->+&uart5 {
->+	status = "okay";
->+};
->+
->+&vuart {
->+	status = "okay";
->+};
->+
->+&mac0 {
->+	status = "okay";
->+	pinctrl-names = "default";
->+	pinctrl-0 = <&pinctrl_rgmii1_default &pinctrl_mdio1_default>;
->+};
->+
->+&mac1 {
->+	status = "okay";
->+	pinctrl-names = "default";
->+	pinctrl-0 = <&pinctrl_rmii2_default &pinctrl_mdio2_default>;
->+	use-ncsi;
->+};
-
-mac0 & mac1 could make use of the recently-added support for retrieving 
-MAC addresses from a location specified by an nvmem-cells property; see 
-https://lore.kernel.org/openbmc/20231120121901.19817-6-zev@bewilderbeest.net/T/#u 
-for an example (already mentioned off-list, just including here for the 
-sake of completeness).
-
->+
->+&i2c0 {
->+	status = "okay";
->+};
->+
->+&i2c1 {
->+	status = "okay";
->+
->+	w83773g@4c {
->+		compatible = "nuvoton,w83773g";
->+		reg = <0x4c>;
->+	};
->+};
->+
->+&i2c2 {
->+	status = "okay";
->+};
->+
->+&i2c3 {
->+	status = "okay";
->+};
->+
->+&i2c4 {
->+	status = "okay";
->+
->+	i2c-switch@70 {
-
-I'm guessing this mux is for the PCIe slots?  (A brief comment 
-indicating that might be nice if so, and maybe which channels are mapped 
-to which specific slots if you happen to have worked that out.)
-
-It'd probably also be good to add some aliases for the sub-busses of the 
-mux so they get assigned consistent, predictable numbers.
-
->+		compatible = "nxp,pca9545";
->+		#address-cells = <1>;
->+		#size-cells = <0>;
->+		reg = <0x70>;
->+
->+		interrupt-parent = <&i2c_ic>;
->+		interrupts = <4>;
->+		interrupt-controller;
->+		#interrupt-cells = <2>;
->+
->+		i2c@0 {
->+			#address-cells = <1>;
->+			#size-cells = <0>;
->+			reg = <0>;
->+		};
->+
->+		i2c@1 {
->+			#address-cells = <1>;
->+			#size-cells = <0>;
->+			reg = <1>;
->+		};
->+
->+		i2c@2 {
->+			#address-cells = <1>;
->+			#size-cells = <0>;
->+			reg = <2>;
->+		};
->+
->+		i2c@3 {
->+			#address-cells = <1>;
->+			#size-cells = <0>;
->+			reg = <3>;
->+		};
->+	};
->+};
->+
->+&i2c5 {
->+	status = "okay";
->+};
->+
->+&i2c7 {
->+	status = "okay";
->+
->+	eeprom@57 {
->+		compatible = "st,24c128", "atmel,24c128";
->+		reg = <0x57>;
->+		pagesize = <16>;
->+	};
-
-I assume this is the motherboard's FRU eeprom; if so and this is 
-anything like the other ASRR boards I've dealt with, the BMC MAC 
-addresses should be at offsets 0x3f80 (dedicated) and 0x3f88 (NCSI) 
-within it.
-
->+};
->+
->+&gfx {
->+	status = "okay";
->+};
->+
->+&pinctrl {
->+	aspeed,external-nodes = <&gfx &lhc>;
->+};
->+
->+&vhub {
->+	status = "okay";
->+};
->+
->+&ehci1 {
->+	status = "okay";
->+};
->+&uhci {
->+	status = "okay";
->+};
->+
->+&kcs3 {
->+	aspeed,lpc-io-reg = <0xca2>;
->+	status = "okay";
->+};
->+
->+&lpc_ctrl {
->+	status = "okay";
->+};
->+
->+&lpc_snoop {
->+	status = "okay";
->+	snoop-ports = <0x80>;
->+};
->+
->+&p2a {
->+	status = "okay";
->+	memory-region = <&pci_memory>;
->+};
->+
->+&video {
->+	status = "okay";
->+	memory-region = <&video_engine_memory>;
->+};
->+
->+&pwm_tacho {
->+	status = "okay";
->+	pinctrl-names = "default";
->+	pinctrl-0 = <&pinctrl_pwm0_default
->+				&pinctrl_pwm1_default
->+				&pinctrl_pwm2_default
->+				&pinctrl_pwm3_default
->+				&pinctrl_pwm4_default
->+				&pinctrl_pwm5_default>;
->+	fan@0 {
->+		reg = <0x00>;
->+		aspeed,fan-tach-ch = /bits/ 8 <0x00 0x01>;
->+	};
->+	fan@1 {
->+		reg = <0x01>;
->+		aspeed,fan-tach-ch = /bits/ 8 <0x02 0x03>;
->+	};
->+	fan@2 {
->+		reg = <0x02>;
->+		aspeed,fan-tach-ch = /bits/ 8 <0x04 0x05>;
->+	};
->+	fan@3 {
->+		reg = <0x03>;
->+		aspeed,fan-tach-ch = /bits/ 8 <0x06 0x07>;
->+	};
->+	fan@4 {
->+		reg = <0x04>;
->+		aspeed,fan-tach-ch = /bits/ 8 <0x08 0x09>;
->+	};
->+	fan@5 {
->+		reg = <0x05>;
->+		aspeed,fan-tach-ch = /bits/ 8 <0x0a 0x0b>;
->+	};
-
-Minor style nit: it's common (and nice IMO) to include a blank line 
-between sibling nodes.
-
->+};
->+
->+&adc {
->+	status = "okay";
->+	pinctrl-names = "default";
->+	pinctrl-0 = <&pinctrl_adc0_default
->+				&pinctrl_adc1_default
->+				&pinctrl_adc2_default
->+				&pinctrl_adc3_default
->+				&pinctrl_adc4_default
->+				&pinctrl_adc5_default
->+				&pinctrl_adc6_default
->+				&pinctrl_adc7_default
->+				&pinctrl_adc8_default
->+				&pinctrl_adc9_default
->+				&pinctrl_adc10_default
->+				&pinctrl_adc11_default
->+				&pinctrl_adc12_default
->+				&pinctrl_adc13_default
->+				&pinctrl_adc14_default
->+				&pinctrl_adc15_default>;
->+};
->-- 
->2.43.0
->
->
 
