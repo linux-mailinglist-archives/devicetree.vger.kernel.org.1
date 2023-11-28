@@ -1,166 +1,134 @@
-Return-Path: <devicetree+bounces-19733-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19735-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2CEC7FBF94
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 17:50:35 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9260A7FBF98
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 17:51:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 95F97282A37
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 16:50:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C42BF1C20C45
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 16:51:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B448F5B5B6;
-	Tue, 28 Nov 2023 16:50:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB7935C064;
+	Tue, 28 Nov 2023 16:51:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VMNENkx2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZgfTaApW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CD0A5ABA8;
-	Tue, 28 Nov 2023 16:50:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 238B4C43391;
-	Tue, 28 Nov 2023 16:50:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 920D45915C;
+	Tue, 28 Nov 2023 16:51:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C86E1C433C7;
+	Tue, 28 Nov 2023 16:51:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701190232;
-	bh=EzBRlUdWtojgmIuIil4jL3QpKF01LdWaXfWJK6/lfmE=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=VMNENkx24ar0AG4kwNEYcgD1fSGnUzsV5M3CHnUFO95egvPKXcs8CIHswGVwlfl6l
-	 nDNUPK0lTZI8jfaobG+zK7b7Dp6uVnpUviAqkN/DgWbmdpde6NAUe3HyN5izn6spz7
-	 jXm+ILJ1pPgniPvCDQdM98lrg7evfKgcI447CfDBcvIg20BiPRB9IJCP+ad/whBVRH
-	 Tu7vVFazyKvv9jkDxDUxyEtK487wPU0/bBku1chV3NOHAxVTn8qp4nWuFO00vaPNv9
-	 z4TcY8HLzyWggufLvtv6djLehkO8/O9oyZ0+vvkMSjMHqM0EPnL7RSYmrvcDUU4Rit
-	 7Ixxt6GfZ3kfw==
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-50943ccbbaeso7977219e87.2;
-        Tue, 28 Nov 2023 08:50:32 -0800 (PST)
-X-Gm-Message-State: AOJu0Yw6Tfjv6VyEfmRJq+v0VYIR5oArlA8g92/48L4C+D91cQN+H2CP
-	J3GYtJ7MPKBC3H49m0nCTf8snycmZwChMzaKkQ==
-X-Google-Smtp-Source: AGHT+IHKVOIZpOAytolK6Nl+aWI1xmuii6vKwSdFNSAZfLUktVONq4m16q+G98GlafInI1ClKOH6O12EgOfFC3bMslQ=
-X-Received: by 2002:a05:6512:929:b0:508:1a25:a190 with SMTP id
- f9-20020a056512092900b005081a25a190mr8734195lft.23.1701190230229; Tue, 28 Nov
- 2023 08:50:30 -0800 (PST)
+	s=k20201202; t=1701190266;
+	bh=7W/vahT7ggXSZ6p6vtoTRcfcRPo0VstJTQk4dlT3coI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ZgfTaApWwtZva/r+hXbrrj5VlwER4fSbB/AGB21yqYbDcGJo7P74s/sJmSUrErb17
+	 YZzC57HnyRFxdhY/iLlplZR1mjBT8WnG1ksoUIKOqXvrbrqWkiqMcxdGAsTOwtixNs
+	 RLmJzM57IDyI5qPoTeykDvvV8FaBx+xwBkzfFUR/MeHDcOmqaKJ6Omo0pYReG8Kkg2
+	 LtfTEayeC9ipg0DVDfVdo0gPNsh0wcODekvJWnR2gUn60hsXwblVEzzXImP7QgUpxa
+	 eWyjWIoLRiUSlCqe4NWKvsMT2RGZ+gZINszc8t79gzVAKHjNXslNkgnf1sEE0uTuzp
+	 qXKs+lKUeLcRQ==
+Message-ID: <bcc5da24-7243-42fa-a82b-48851ce17c0c@kernel.org>
+Date: Tue, 28 Nov 2023 17:50:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231128005849.19044-1-andre.przywara@arm.com>
- <20231128005849.19044-5-andre.przywara@arm.com> <ddceb30f-1778-4312-af91-97813fe3c6fb@linaro.org>
- <20231128143309.38a4ce61@donnerap.manchester.arm.com> <4e90608e-aca5-4b57-be76-350ad54f9e7c@linaro.org>
- <20231128161010.26657e76@donnerap.manchester.arm.com>
-In-Reply-To: <20231128161010.26657e76@donnerap.manchester.arm.com>
-From: Rob Herring <robh+dt@kernel.org>
-Date: Tue, 28 Nov 2023 10:50:18 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+9J1=+gZ83QyedAWbFN=AwSB8ue+o4TM7F6yu5_62z3g@mail.gmail.com>
-Message-ID: <CAL_Jsq+9J1=+gZ83QyedAWbFN=AwSB8ue+o4TM7F6yu5_62z3g@mail.gmail.com>
-Subject: Re: [PATCH v3 4/6] thermal: sun8i: add syscon register access code
-To: Andre Przywara <andre.przywara@arm.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Vasily Khoruzhick <anarsoul@gmail.com>, Yangtao Li <tiny.windzz@gmail.com>, 
-	Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Samuel Holland <samuel@sholland.org>, "Rafael J . Wysocki" <rafael@kernel.org>, 
-	Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
-	Lukasz Luba <lukasz.luba@arm.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Martin Botka <martin.botka@somainline.org>, Bob McChesney <bob@electricworry.net>, 
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
-	Icenowy Zheng <icenowy@aosc.io>, Maxime Ripard <mripard@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] hwmon: ltc4282: add support for the LTC4282 chip
+Content-Language: en-US
+To: Andy Shevchenko <andy@kernel.org>
+Cc: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>,
+ kernel test robot <lkp@intel.com>,
+ Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org>,
+ linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-doc@vger.kernel.org, oe-kbuild-all@lists.linux.dev,
+ Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
+ Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Jonathan Corbet <corbet@lwn.net>, Bartosz Golaszewski <brgl@bgdev.pl>,
+ Linus Walleij <linus.walleij@linaro.org>
+References: <20231124-ltc4282-support-v2-2-952bf926f83c@analog.com>
+ <202311250548.lUn3bm1A-lkp@intel.com>
+ <fb2aaa4c69c88738499dfbf46ef93e3b81ca93cb.camel@gmail.com>
+ <76957975-56e7-489e-9c79-086b6c1ffe89@kernel.org>
+ <ac950d01-d9aa-4fb7-810d-b21335e4cc94@kernel.org>
+ <ZWS90GQTJWA7DrML@smile.fi.intel.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <ZWS90GQTJWA7DrML@smile.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, Nov 28, 2023 at 10:10=E2=80=AFAM Andre Przywara <andre.przywara@arm=
-.com> wrote:
->
-> On Tue, 28 Nov 2023 15:48:18 +0100
-> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
->
-> Hi,
->
-> (adding Maxime for the syscon question below)
->
-> > On 28/11/2023 15:33, Andre Przywara wrote:
-> > > On Tue, 28 Nov 2023 08:43:32 +0100
-> > > Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> > >
-> > > Hi,
-> > >
-> > >> On 28/11/2023 01:58, Andre Przywara wrote:
-> > >>>
-> > >>> +static struct regmap *sun8i_ths_get_syscon_regmap(struct device_no=
-de *node)
-> > >>> +{
-> > >>> + struct device_node *syscon_node;
-> > >>> + struct platform_device *syscon_pdev;
-> > >>> + struct regmap *regmap =3D NULL;
-> > >>> +
-> > >>> + syscon_node =3D of_parse_phandle(node, "syscon", 0);
-> > >>
-> > >> Nope. For the 100th time, this cannot be generic.
+On 27/11/2023 17:03, Andy Shevchenko wrote:
+> On Mon, Nov 27, 2023 at 09:12:14AM +0100, Krzysztof Kozlowski wrote:
+>> On 27/11/2023 09:10, Krzysztof Kozlowski wrote:
+> 
+> ...
+> 
+>> Wait, this was not even unusual test, just standard compile, which means
+>> you did not do basic tests on your end. You must build your new driver
+>> with W=1, smatch, sparse and coccinelle before sending upstream.
+> 
+> Well, sparse is lagging in development, for the last year it's at least two
+> times it broke kernel builds because of being not ready for the new stuff used
+> in the kernel. Do we have anybody to sync this? I don't think so, hence
+> requiring this from developer is doubtful. Otherwise I agree, that basic
+> compilation with GCC/LLVM must be done.
 
-Unless it is the 100th time for the submitter, please just point to
-the documentation.
+Sparse still detects several issues and handles lock annotations, so it
+is useful. But if you disagree with that part, I still insist on Smatch
+(which is actively developed and works great) and Coccinelle (also
+actively developed).
 
-Can we simply ban "syscon" as a property name? It looks like we have
-65 cases in upstream dts files. Maybe that's doable. This is where we
-need levels of warnings with okay for existing vs. don't use in new
-designs.
+Best regards,
+Krzysztof
 
-> > > OK. Shall this name refer to the required functionality (temperature
-> > > offset fix) or to the target syscon node (like allwinner,misc-syscon)=
-.
-> > > The problem is that this is really a syscon, as in: "random collectio=
-n of
-> > > bits that we didn't know where else to put in", so "syscon" alone act=
-ually
-> > > says it all.
-> >
-> > Every syscon is a "random collection of bits...", but not every "random
-> > collection of bits..." is a syscon.
-> >
-> > Your target device does not implement syscon nodes. Your Linux
-> > implementation does not use it as syscon. Therefore if something does
-> > not look like syscon and does not behave like syscon, it is not a sysco=
-n.
-> >
-> > I looked at the bit and this is SRAM, not syscon. I am sorry, but it is
-> > something entirely different and we have a binding for it: "sram", I th=
-ink.
->
-> Well, it's somehow both: On the face of it it's a SRAM controller, indeed=
-:
-> it can switch the control of certain SRAM regions between CPU access and
-> peripheral access (for the video and the display engine). But then it's
-> also a syscon, because on top of that, it also controls those random bits=
-,
-> for instance the EMAC clock register, and this ominous THS bit.
-> I guess in hindsight we should have never dropped that "syscon" string
-> then, but I am not sure if adding it back has side effects?
->
-> And as I mentioned in the cover letter: modelling this as some SRAM
-> region, as you suggest, might be an alternative, but it doesn't sound rig=
-ht
-> either, as I don't think it really is one: I just tried in U-Boot, and I
-> can write and read the whole SRAM C region just fine, with and without th=
-e
-> bit set. And SRAM content is preserved, even with the thermal sensor
-> running and the bit cleared (or set).
->
-> So adding the "syscon" to the compatible would fix most things, but then
-> we need to keep the open coded lookup code in dwmac-sun8i.c (because olde=
-r
-> DTs would break otherwise).
-
-Really, I'd like to get rid of the "syscon" compatible. It is nothing
-more than a flag for Linux to create a regmap.
-
-Not a fully baked idea, but perhaps what is needed is drivers that
-request a regmap for a node simply get one regardless. That kind of
-throws out the Linux driver model though. Alternatively with no
-"syscon" compatible, we'd have to have table(s) of 100s of compatibles
-in the kernel.
-
-Rob
 
