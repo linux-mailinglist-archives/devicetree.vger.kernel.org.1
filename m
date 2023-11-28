@@ -1,145 +1,142 @@
-Return-Path: <devicetree+bounces-19616-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19617-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A44C67FB7BE
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 11:27:56 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 027687FB7BF
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 11:28:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2ACD0B2075B
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 10:27:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3467D1C212D6
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 10:28:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D46874EB50;
-	Tue, 28 Nov 2023 10:27:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="H0c5PIzo"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A13894EB53;
+	Tue, 28 Nov 2023 10:27:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CEBA3C11;
-	Tue, 28 Nov 2023 02:27:28 -0800 (PST)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3ASARC1v124699;
-	Tue, 28 Nov 2023 04:27:12 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1701167232;
-	bh=3sRIzxuRQ5hn6n4I9MdNZbD7Qs4HRbGDYtm64Tx7S2U=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=H0c5PIzoaYY3HJ4mQyM/heXxZiPxw86opttWJB/p3pA41Ns63l2aLVhHVbUdvUBqz
-	 KdExUQEPsKkroyoJfG8alRS7+DdzPf/geWZgIeFVlenye1DNCxk9hiWXTqkpKY3Rge
-	 DRS4xmyJkOni+9UPASdfXrkOnIC0QiGbki0yCynA=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3ASARCWA061475
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 28 Nov 2023 04:27:12 -0600
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 28
- Nov 2023 04:27:12 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 28 Nov 2023 04:27:12 -0600
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3ASARBMc008414;
-	Tue, 28 Nov 2023 04:27:11 -0600
-Date: Tue, 28 Nov 2023 15:57:07 +0530
-From: Jai Luthra <j-luthra@ti.com>
-To: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
-        Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Aradhya Bhatia <a-bhatia1@ti.com>,
-        Devarsh
- Thakkar <devarsht@ti.com>,
-        Vaishnav Achath <vaishnav.a@ti.com>,
-        Julien Massot
-	<julien.massot@collabora.com>,
-        Martyn Welch <martyn.welch@collabora.com>,
-        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-Subject: Re: [PATCH v3 4/9] arm64: dts: ti: k3-am625-beagleplay: Add overlays
- for OV5640
-Message-ID: <g6m7mwhifsmsy3c5gvkqfiktw6cjdd3aaz55att325yhacncga@eoklyawsppi4>
-References: <20231128-csi_dts-v3-0-0bb11cfa9d43@ti.com>
- <20231128-csi_dts-v3-4-0bb11cfa9d43@ti.com>
+Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com [209.85.219.182])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFB1F4206;
+	Tue, 28 Nov 2023 02:27:38 -0800 (PST)
+Received: by mail-yb1-f182.google.com with SMTP id 3f1490d57ef6-db46725a531so3645418276.1;
+        Tue, 28 Nov 2023 02:27:38 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701167258; x=1701772058;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=mIGiIpNbEORiCIc0PSFrQIjsLdpdQ8g7U1Sz9jJiMDw=;
+        b=ipO5H6zzwHuB5xA0xl/7fCuPiMMX0FpOeDQrdTh9oXJltlRAAW68tN3r1mdnhhkweL
+         iJDo2X+ks7d90GlM5hEoTUoXqBr197HkwED1e4UT2RbPIwQ81DsLJTzvieK9LXUvxD3K
+         GCX7Th8SpP5XbzuXcod668vMrt9blzlGQvc7int8yLy8cICTk1/X66qd608OtZeGvRWu
+         IPAADWD0lG/dLN0bxCs29ARur1cnxjmc6AqT3qVQTqlAKXmAvKKGIa+RXlDxClCmalI5
+         d9ozg4H5VuIg3a8GtnZbDg3isTNhQOUx4yDFd9TOYBKaytP0qKZ3nQOi6ax9Puccs2YD
+         uSvQ==
+X-Gm-Message-State: AOJu0YyoGiMZzfxHp6XVtgCl9Ru8z/mDW4lOgKnbaulMuawo9gf+zpLg
+	xXZAlugnnJi03petEQpfOSjglGMtZjMJJw==
+X-Google-Smtp-Source: AGHT+IHitO328tOb5Z8DDIlC/7Z8HQLMdYblfo5O4pGuk//acpQhJzo56XOKqbDoZbkUr9YJVJ72zQ==
+X-Received: by 2002:a25:ca54:0:b0:d9a:b67f:94e3 with SMTP id a81-20020a25ca54000000b00d9ab67f94e3mr14230365ybg.52.1701167257842;
+        Tue, 28 Nov 2023 02:27:37 -0800 (PST)
+Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com. [209.85.128.173])
+        by smtp.gmail.com with ESMTPSA id y16-20020a258610000000b00d9c7bf8f32fsm3449771ybk.42.2023.11.28.02.27.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 28 Nov 2023 02:27:36 -0800 (PST)
+Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-5ce8eff71e1so34781397b3.0;
+        Tue, 28 Nov 2023 02:27:36 -0800 (PST)
+X-Received: by 2002:a05:690c:fcb:b0:5cf:b2cc:cf5d with SMTP id
+ dg11-20020a05690c0fcb00b005cfb2cccf5dmr8410244ywb.5.1701167256195; Tue, 28
+ Nov 2023 02:27:36 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="ddab7bbkrutslmue"
-Content-Disposition: inline
-In-Reply-To: <20231128-csi_dts-v3-4-0bb11cfa9d43@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-
---ddab7bbkrutslmue
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20231108-wave5-v14-rebased-v14-0-0b4af1258656@collabora.com> <20231108-wave5-v14-rebased-v14-6-0b4af1258656@collabora.com>
+In-Reply-To: <20231108-wave5-v14-rebased-v14-6-0b4af1258656@collabora.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 28 Nov 2023 11:27:25 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUYOq=q1j=d+Eac28hthOUAaNUkuvxmRu-mUN1pLKq69g@mail.gmail.com>
+Message-ID: <CAMuHMdUYOq=q1j=d+Eac28hthOUAaNUkuvxmRu-mUN1pLKq69g@mail.gmail.com>
+Subject: Re: [PATCH v14 6/8] dt-bindings: media: wave5: add yaml devicetree bindings
+To: Sebastian Fricke <sebastian.fricke@collabora.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, NXP Linux Team <linux-imx@nxp.com>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Conor Dooley <conor+dt@kernel.org>, 
+	Nas Chung <nas.chung@chipsnmedia.com>, Fabio Estevam <festevam@gmail.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Jackson Lee <jackson.lee@chipsnmedia.com>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Hans Verkuil <hverkuil@xs4all.nl>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh+dt@kernel.org>, 
+	Ivan Bornyakov <brnkv.i1@gmail.com>, Deborah Brouwer <deborah.brouwer@collabora.com>, 
+	Nicolas Dufresne <nicolas.dufresne@collabora.com>, devicetree@vger.kernel.org, 
+	Robert Beckett <bob.beckett@collabora.com>, linux-arm-kernel@lists.infradead.org, 
+	kernel@collabora.com, linux-kernel@vger.kernel.org, 
+	linux-media@vger.kernel.org, Nishanth Menon <nm@ti.com>, "R, Vignesh" <vigneshr@ti.com>, 
+	Tero Kristo <kristo@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Hi Sebastian,
 
-On Nov 28, 2023 at 15:39:46 +0530, Jai Luthra wrote:
-> Three different OV5640 modules are supported using the FFC connector on
-> BeaglePlay:
-> - Digilent PCam 5C
-> - ALINX AN5641
-> - TEVI-OV5640-*-RPI
->=20
-> The Digilent and ALINX modules supply a 12Mhz XCLK to the sensor, while
-> the TEVI module supplies a 24Mhz XCLK, thus requiring a separate
-> overlay.
+CC TI K3
 
-Sorry looks like I forgot to pull Andrew's R-By tag from v2 [1],=20
-hopefully this works:
+On Wed, Nov 8, 2023 at 8:29=E2=80=AFPM Sebastian Fricke
+<sebastian.fricke@collabora.com> wrote:
+> From: Robert Beckett <bob.beckett@collabora.com>
+>
+> Add bindings for the wave5 chips&media codec driver
+>
+> Signed-off-by: Robert Beckett <bob.beckett@collabora.com>
+> Signed-off-by: Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
+> Signed-off-by: Sebastian Fricke <sebastian.fricke@collabora.com>
 
-Reviewed-by: Andrew Davis <afd@ti.com>
+Thanks for your patch, which is now commit de4b9f7e371a5384
+("dt-bindings: media: wave5: add yaml devicetree bindings")
+in media/master.
 
-[1]: https://lore.kernel.org/all/6a4bca7b-7750-45e6-bbce-2d324e5fc900@ti.co=
-m/
->=20
-> Signed-off-by: Jai Luthra <j-luthra@ti.com>
-> ---
->  arch/arm64/boot/dts/ti/Makefile                    | 11 ++++
->  .../dts/ti/k3-am625-beagleplay-csi2-ov5640.dtso    | 77 ++++++++++++++++=
-++++++
->  .../ti/k3-am625-beagleplay-csi2-tevi-ov5640.dtso   | 77 ++++++++++++++++=
-++++++
->  3 files changed, 165 insertions(+)
-> [...]
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/cnm,wave521c.yaml
+> @@ -0,0 +1,61 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/cnm,wave521c.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Chips&Media Wave 5 Series multi-standard codec IP
+> +
+> +maintainers:
+> +  - Nas Chung <nas.chung@chipsnmedia.com>
+> +  - Jackson Lee <jackson.lee@chipsnmedia.com>
+> +
+> +description:
+> +  The Chips&Media WAVE codec IP is a multi format video encoder/decoder
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - ti,k3-j721s2-wave521c
+
+This is the only compatible value defined which contains both "k3"
+and "j72*".  I assume the "k3-" part should be dropped?
+
+> +      - const: cnm,wave521c
+> +
+
+This also applies to the driver added in commit 9707a6254a8a6b97
+("media: chips-media: wave5: Add the v4l2 layer") in media/master.
+
+Gr{oetje,eeting}s,
+
+                        Geert
 
 --=20
-Thanks,
-Jai
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-GPG Fingerprint: 4DE0 D818 E5D5 75E8 D45A AFC5 43DE 91F9 249A 7145
-
---ddab7bbkrutslmue
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEETeDYGOXVdejUWq/FQ96R+SSacUUFAmVlwHoACgkQQ96R+SSa
-cUWnVQ/9FU9ACdSgt786j+4/M1zmPQoH+XBEdQZ+mvQEx3eH6P0IIhJ2clq660Db
-FnUCOYH1/S+y5J6OShlviMMhyVQWOGCMsV6Mr2vd+cY10WsWePDZCdvHuUFsNUMv
-9lNsyFLdVD8mFsHwwvJicuKZoX/Pm0iBAO1Qt6El7FVwiEctqGZ/t20/nNIvE9e2
-8jxBXmfFUFPsbKYl115ikWvMwkdG8u5Yr+Djp3tgChToBRPvkPMZjKlXzcCJe7Ro
-4uOGfeI1h3Da8Cg016uxx+ul/xvdkki4kiEKYnhCcVesiz+wmgQgWTMdXBZPRji1
-o2X1q/xYQN8US9X8P54/DsnM1cn2CLWQ4qZtfEfEmk1/Mt6SGTHkYp91uPkiTpJe
-nlvFrCf3wepnkP81rGaNy2iccy+ICFh0cGV3QwJplqWtdspjVdtL9IhYsVRlIyE/
-QD6wF/SkJt2OFU1kwK4gcdPNyPQqvjmOeNAJhE/GBpf0neg8KHGxp7ofLxJXaeS9
-oeTlzcUmIOnZp+IthpCRubXR1vnCb01Tm6ukiGm6zg3VoVokDei/dmXHmS9uze+W
-RHdYA6BbGKCyJHkwV0d7v3aY0XWWGlEJByyMjwmm55cTwUZgYxzk9WwLBPMI7TrF
-mFSb6lHDxKPrynXiIykgTwQqCpvbS0o/UzEd4UDk87D1g/VG45s=
-=sqAl
------END PGP SIGNATURE-----
-
---ddab7bbkrutslmue--
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
