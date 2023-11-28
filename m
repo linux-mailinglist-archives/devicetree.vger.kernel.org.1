@@ -1,53 +1,53 @@
-Return-Path: <devicetree+bounces-19776-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19777-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A993E7FC830
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 22:48:25 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 321257FC935
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 23:13:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D88361C20EDB
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 21:48:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C87C9B21296
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 22:13:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B7C846B9B;
-	Tue, 28 Nov 2023 21:48:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FB5C481C5;
+	Tue, 28 Nov 2023 22:13:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6E7510EB;
-	Tue, 28 Nov 2023 13:48:21 -0800 (PST)
-Received: by mail-ot1-f53.google.com with SMTP id 46e09a7af769-6d7fa93afe9so3521392a34.2;
-        Tue, 28 Nov 2023 13:48:21 -0800 (PST)
+Received: from mail-oo1-f43.google.com (mail-oo1-f43.google.com [209.85.161.43])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A6331BE;
+	Tue, 28 Nov 2023 14:13:20 -0800 (PST)
+Received: by mail-oo1-f43.google.com with SMTP id 006d021491bc7-58d3c5126e9so2477499eaf.1;
+        Tue, 28 Nov 2023 14:13:20 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701208101; x=1701812901;
+        d=1e100.net; s=20230601; t=1701209599; x=1701814399;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=t7ww6mzqGGsPSUlmzuVBNdpMvbBkDIB8lVn3IEY42Yw=;
-        b=OUSOzlMkutmpO/8LaqU0b2QWTG0+mxb6y24078ZbqgagW0UPA7YESsUkkZ/cPgqjbq
-         oEnjZUK2wNR3Gnb87gtV2C5KQbtoV+CTF59u28WtZbgcDENDW+cjh0PG5qJoVEcD7gy0
-         C32R0sCHWh/aS1h9m/wE2HpUNI+eZEsrSfDTr1yNzbwFy8A0fKP2IsTGPCR2b2z4ktVy
-         chOfLxxfveaOImGxilUoX75LgJwwBMRQtk+SYO9m/L74TBbgGF8FJPxx6Z9R7eoJx/jy
-         zOPtWV530Ycoi8flaG3QrZd0xKGTREbKFNOgCpjbF1F1kNLf6a9K4n7CXgL/XBNDHV+i
-         JtBA==
-X-Gm-Message-State: AOJu0YyqPZM4L7YFzf4q+4oZVRBoEzqy2r0XBCkPL5OXf9yCTGUZb1s9
-	3r5G3OtfxSARG2YNBeZm/A==
-X-Google-Smtp-Source: AGHT+IFfsLzRsqEDpTBO+1cbp0LH2t58zWoYprlXnC0BcWPBMKo6S3NXELnekLsFxwV0oLfQIukP3w==
-X-Received: by 2002:a05:6830:4390:b0:6d8:1889:72af with SMTP id s16-20020a056830439000b006d8188972afmr11498728otv.2.1701208100908;
-        Tue, 28 Nov 2023 13:48:20 -0800 (PST)
+        bh=76mP+x+bYO6jX4WukwyAY+fmiKt3MRVCF+jR8taIB6c=;
+        b=pq1CazXO1TwvBLO4RzhAo3YONJ81RLa/olOzdogkMD8x7osYxjfabAAu2T8HaZHFPQ
+         ZXy7zUGVu6ezIvQYbF/gTeNNey3Tjrr8fYEWr1WcDqz2B4E4EnBJ+nOtZ7JJMEhl2Ygm
+         VTKQLDiE+8wcF0oPqZVARpV25oO0dvzUASVSR5eNHyQaAVQ8maMqJMO44IySUbb/Tr01
+         F82TfC8ipB0mdrYYO/dQhqUFjUVTTmcny16jyLoAEv0CNjfwogC6wa/GDc5TJ5mBgs+V
+         r7VCGC76C2ll12XZcoRysNd5c6InGkfq24XrIj5e1aGFgLJuaovH+wa6bqqwY1RucjyE
+         f7Cw==
+X-Gm-Message-State: AOJu0Yx7DtxQpKqNmk1zOIosK4itBSgPur5koe3u0CN9kYv8ZgxxUCt1
+	Vvb1bXzy5jpaEisma/5x3Q==
+X-Google-Smtp-Source: AGHT+IHLa/L1r6e7R0OzqIz2an7oAGmbLiFuC1QyvPdBbgI2xiaK1h3cuyi5/8Y7OB+uf8eAxVWIFA==
+X-Received: by 2002:a05:6820:626:b0:58d:74f2:bb4f with SMTP id e38-20020a056820062600b0058d74f2bb4fmr10557302oow.1.1701209599248;
+        Tue, 28 Nov 2023 14:13:19 -0800 (PST)
 Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id be5-20020a056830350500b006d6496747b6sm1789545otb.80.2023.11.28.13.48.18
+        by smtp.gmail.com with ESMTPSA id e64-20020a4a5543000000b0058d8b0c4bbdsm835334oob.32.2023.11.28.14.13.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Nov 2023 13:48:20 -0800 (PST)
-Received: (nullmailer pid 3975986 invoked by uid 1000);
-	Tue, 28 Nov 2023 21:48:18 -0000
+        Tue, 28 Nov 2023 14:13:18 -0800 (PST)
+Received: (nullmailer pid 4078954 invoked by uid 1000);
+	Tue, 28 Nov 2023 22:13:17 -0000
 From: Rob Herring <robh@kernel.org>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Chen Zhong <chen.zhong@mediatek.com>
-Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-Subject: [PATCH] dt-bindings: input: mediatek,pmic-keys: Drop incomplete example
-Date: Tue, 28 Nov 2023 15:48:16 -0600
-Message-ID: <20231128214816.3975893-1-robh@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: Turn on undocumented compatible checks
+Date: Tue, 28 Nov 2023 16:10:08 -0600
+Message-ID: <20231128221008.4050638-2-robh@kernel.org>
 X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -57,51 +57,39 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The example for the Mediatek PMIC keys is incomplete as the binding is
-the full PMIC, not just the sub-functions. It is preferred for MFD
-examples to be complete in the top-level MFD device binding rather than
-piecemeal in each sub-function binding.
-
-This also fixes an undocumented (by schema) compatible warning for
-"mediatek,mt6397".
+The undocumented compatibles in the examples are down to just a few
+left. Turn on the warning by default. The increased visibility should
+get the remaining warnings fixed.
 
 Signed-off-by: Rob Herring <robh@kernel.org>
 ---
- .../bindings/input/mediatek,pmic-keys.yaml    | 24 +------------------
- 1 file changed, 1 insertion(+), 23 deletions(-)
+After the last batch of fixes I've sent out, there's 6 warnings 
+remaining:
 
-diff --git a/Documentation/devicetree/bindings/input/mediatek,pmic-keys.yaml b/Documentation/devicetree/bindings/input/mediatek,pmic-keys.yaml
-index e34c9e78d38d..70567d92c746 100644
---- a/Documentation/devicetree/bindings/input/mediatek,pmic-keys.yaml
-+++ b/Documentation/devicetree/bindings/input/mediatek,pmic-keys.yaml
-@@ -90,26 +90,4 @@ required:
+ ['socionext,milbeaut-usio-uart']
+ ['sprd,sc9863a-glbregs', 'syscon', 'simple-mfd']
+ ['brcm,bcm2711-avs-monitor', 'syscon', 'simple-mfd']
+ ['fsl,imx6q-anatop', 'syscon', 'simple-mfd']
+ ['hisilicon,hi3798cv200-combphy']
+ ['qca,ar9331-switch']
+
+ Documentation/devicetree/bindings/Makefile | 3 ---
+ 1 file changed, 3 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/Makefile b/Documentation/devicetree/bindings/Makefile
+index 3e886194b043..3e3e49d8a733 100644
+--- a/Documentation/devicetree/bindings/Makefile
++++ b/Documentation/devicetree/bindings/Makefile
+@@ -61,9 +61,6 @@ override DTC_FLAGS := \
+ 	-Wno-unique_unit_address \
+ 	-Wunique_unit_address_if_enabled
  
- unevaluatedProperties: false
+-# Disable undocumented compatible checks until warning free
+-override DT_CHECKER_FLAGS ?=
+-
+ $(obj)/processed-schema.json: $(DT_DOCS) $(src)/.yamllint check_dtschema_version FORCE
+ 	$(call if_changed_rule,chkdt)
  
--examples:
--  - |
--    #include <dt-bindings/input/input.h>
--    #include <dt-bindings/interrupt-controller/arm-gic.h>
--
--    pmic {
--        compatible = "mediatek,mt6397";
--
--        keys {
--          compatible = "mediatek,mt6397-keys";
--          mediatek,long-press-mode = <1>;
--          power-off-time-sec = <0>;
--
--          key-power {
--            linux,keycodes = <KEY_POWER>;
--            wakeup-source;
--          };
--
--          key-home {
--            linux,keycodes = <KEY_VOLUMEDOWN>;
--          };
--        };
--    };
-+...
 -- 
 2.42.0
 
