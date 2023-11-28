@@ -1,147 +1,237 @@
-Return-Path: <devicetree+bounces-19598-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19612-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 283C07FB6BC
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 11:08:28 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 400EE7FB6FF
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 11:18:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D7F702828CF
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 10:08:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 62A4D1C212D6
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 10:18:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D7584D11F;
-	Tue, 28 Nov 2023 10:08:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD3B34E1B1;
+	Tue, 28 Nov 2023 10:18:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ODxDpQPd"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="Kv4h4eza"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70FFCDC;
-	Tue, 28 Nov 2023 02:08:20 -0800 (PST)
-Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-3316d3d11e1so2997260f8f.0;
-        Tue, 28 Nov 2023 02:08:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701166099; x=1701770899; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=Gu7D9Uuj/glFG5Vgj83Kr5LBLOtxorZnx9Itlbl/pPw=;
-        b=ODxDpQPdo3sScs8p6rTS+lua4EZ+WFB76TFx6dbHfHMizZQCDzptbXGvSjcIU3qkba
-         n9a1KuyaTBNDCsKQ6ggupIsMBI+2mFnb5AhrLvKX3/lPOw/I0OxMUPvRmwFksCPASKf2
-         g2S7pcXjQ9mlvhYvWjsaB17uhNXA1Rlc4mhi70ela91+SKv/+0ADLv+cx+W9Rkipaubf
-         /BFvvBVg6QGtT5bD94RnRq2EBTZwdw63iroXjCluYOp9Q6xdcyW0K9j3BCjPsq9W7iof
-         pZ19di6wjL57TX6zHMlHeY7GFAbuEbFmUtunpuBo6UYn9/Wxj6vnBZiuZUJjPSVgn7rr
-         AXaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701166099; x=1701770899;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Gu7D9Uuj/glFG5Vgj83Kr5LBLOtxorZnx9Itlbl/pPw=;
-        b=drafL066ssnjnThhB7MTvirvDpfy16tTISpfFoNSSkIka2wmMFlnKja8nWnabwUJ9+
-         Ug5OVk+VV4ufrgM6+WLboP09sQ01JrSWGS1e+gjf2fRZtyW2jDNQ+M0Thjjkz+RykgyR
-         opHqOI4oHNwTxoG+Ne6ulM24U6+vqlAaMQwgiy9igRXCKd9VZk55rrMcC+1NoMzTS1l7
-         jtYOiMUf0dnFNUrCaJJ6YMlaSeqsJyH2y7Lr8teB459H87WxIsafXP4uxSavhQceOyWb
-         Hui4irGwwKuUTGZe+O9hX0g+o9gh9VM91g0G0CI07xEtQNAiLHYyFYYQ3LZUZxL24kwH
-         jNTQ==
-X-Gm-Message-State: AOJu0YwvULv4QLuoHA1Vc1eDLktfV1qk6YotthTaJjKOjRhY9IF2s94H
-	WyklzPZyq03qdQ9tTO7t8GOjAdffnLLNpnHLS4k=
-X-Google-Smtp-Source: AGHT+IFsTFnl36sn7+8Kbkeeldpmgaauq5/JCu5VnUlgtSl4PXfWEvXOZYH71RYHUN2wjJ8w5MBySw==
-X-Received: by 2002:a5d:4946:0:b0:332:e3ad:4273 with SMTP id r6-20020a5d4946000000b00332e3ad4273mr16406169wrs.2.1701166098563;
-        Tue, 28 Nov 2023 02:08:18 -0800 (PST)
-Received: from ?IPv6:2003:f6:ef1b:2000:4423:d503:bf11:e8c6? (p200300f6ef1b20004423d503bf11e8c6.dip0.t-ipconnect.de. [2003:f6:ef1b:2000:4423:d503:bf11:e8c6])
-        by smtp.gmail.com with ESMTPSA id o14-20020a5d4a8e000000b00332e073f12bsm14448715wrq.19.2023.11.28.02.08.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Nov 2023 02:08:18 -0800 (PST)
-Message-ID: <5ad34779b6ad50f7f00c99f27e171f34628cebe0.camel@gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: adi,ad5791.yaml: Add support for
- controlling RBUF
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- nuno.sa@analog.com,  linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>
-Date: Tue, 28 Nov 2023 11:11:18 +0100
-In-Reply-To: <30a74f59-6230-48d5-a872-a9bee0cc5b4f@linaro.org>
-References: <20231127-ad5791-michael-stuff-v1-0-04167b3edc56@analog.com>
-	 <20231127-ad5791-michael-stuff-v1-1-04167b3edc56@analog.com>
-	 <30a74f59-6230-48d5-a872-a9bee0cc5b4f@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.1 
+X-Greylist: delayed 389 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 28 Nov 2023 02:18:47 PST
+Received: from mail-m12829.netease.com (mail-m12829.netease.com [103.209.128.29])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27403E1;
+	Tue, 28 Nov 2023 02:18:46 -0800 (PST)
+DKIM-Signature: a=rsa-sha256;
+	b=Kv4h4ezaY2IFPxMQ+PRFA0A72grSJmM3w9FxR0roZprWLmUgFKpm/R54b+N4A7P3UXL1BDBEAIoumNnhy3BSfMQHcC5IlOVVfibR78U7QcFV4n+X+t2l1sb+p8Pu6xfoyaahKOdYogpIhPfkJASrjlzP8R6qs3H4ma/pQsuMFT0=;
+	s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=7JTD2+HcWsQ2R6pCShDzTLWMGQXPh84DvuG0l3o9KdE=;
+	h=date:mime-version:subject:message-id:from;
+Received: from [172.16.12.141] (unknown [58.22.7.114])
+	by mail-m12762.qiye.163.com (Hmail) with ESMTPA id E7F885C0306;
+	Tue, 28 Nov 2023 18:11:46 +0800 (CST)
+Message-ID: <16644455-d7a1-445e-8b48-ae22577a2627@rock-chips.com>
+Date: Tue, 28 Nov 2023 18:11:46 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 10/12] drm/rockchip: vop2: Add support for rk3588
+Content-Language: en-US
+To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+ Andy Yan <andyshrk@163.com>
+Cc: hjc@rock-chips.com, dri-devel@lists.freedesktop.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+ devicetree@vger.kernel.org, sebastian.reichel@collabora.com,
+ kever.yang@rock-chips.com, chris.obbard@collabora.com, s.hauer@pengutronix.de
+References: <20231122125316.3454268-1-andyshrk@163.com>
+ <4788319.uZKlY2gecq@diego>
+ <f179e9ae-b2cd-4f6c-badc-4d76d8a3ba0d@rock-chips.com>
+ <4339687.HovnAMPojK@diego>
+From: Andy Yan <andy.yan@rock-chips.com>
+In-Reply-To: <4339687.HovnAMPojK@diego>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGhgdTFYaSkJMT0seGkNPSh9VEwETFh
+	oSFyQUDg9ZV1kYEgtZQVlOQ1VJSVVMVUpKT1lXWRYaDxIVHRRZQVlPS0hVSk1PSU5JVUpLS1VKQl
+	kG
+X-HM-Tid: 0a8c1569d7d1b229kuuue7f885c0306
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6M006Aww5Czw8Gh4WCCMOMioQ
+	HwpPCipVSlVKTEtKSk1NSEtMQktJVTMWGhIXVRoVHwJVAhoVOwkUGBBWGBMSCwhVGBQWRVlXWRIL
+	WUFZTkNVSUlVTFVKSk9ZV1kIAVlBQ0hKTDcG
 
-On Tue, 2023-11-28 at 10:33 +0100, Krzysztof Kozlowski wrote:
-> On 27/11/2023 16:55, Nuno Sa via B4 Relay wrote:
-> > From: Michael Hennerich <michael.hennerich@analog.com>
-> >=20
->=20
-> Subject: drop ".yaml"
+Hi Heiko:
 
-Will do...
+On 11/28/23 17:44, Heiko Stübner wrote:
+> Hi Andy,
+>
+> Am Dienstag, 28. November 2023, 10:32:55 CET schrieb Andy Yan:
+>> On 11/27/23 23:29, Heiko Stübner wrote:
+>>> Am Mittwoch, 22. November 2023, 13:55:44 CET schrieb Andy Yan:
+>>>> From: Andy Yan <andy.yan@rock-chips.com>
+>>>>
+>>>> VOP2 on rk3588:
+>>>>
+>>>> Four video ports:
+>>>> VP0 Max 4096x2160
+>>>> VP1 Max 4096x2160
+>>>> VP2 Max 4096x2160
+>>>> VP3 Max 2048x1080
+>>>>
+>>>> 4 4K Cluster windows with AFBC/line RGB and AFBC-only YUV support
+>>>> 4 4K Esmart windows with line RGB/YUV support
+>>>>
+>>>> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+>>>>
+>>>> ---
+>>>>
+>>>> Changes in v2:
+>>>> - add rk3588_ prefix for functions which are rk3588 only
+>>>> - make some calculation as fixed value and keep calculation formula as
+>>>>     comment
+>>>> - check return value for some cru calculation functions.
+>>>> - check return value for syscon_regmap_lookup_by_phandle
+>>>> - add NV20/NV30 for esmart plane
+>>>>
+>>>>    drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 381 ++++++++++++++++++-
+>>>>    drivers/gpu/drm/rockchip/rockchip_drm_vop2.h |  66 ++++
+>>>>    drivers/gpu/drm/rockchip/rockchip_vop2_reg.c | 221 +++++++++++
+>>>>    3 files changed, 660 insertions(+), 8 deletions(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+>>>> index 4bcc405bcf11..9eecbe1f71f9 100644
+>>>> --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+>>>> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+>>>> @@ -271,9 +282,12 @@ static bool vop2_cluster_window(const struct vop2_win *win)
+>>>>    static void vop2_cfg_done(struct vop2_video_port *vp)
+>>>>    {
+>>>>    	struct vop2 *vop2 = vp->vop2;
+>>>> +	u32 val;
+>>>> +
+>>>> +	val = BIT(vp->id) | (BIT(vp->id) << 16) |
+>>>> +		RK3568_REG_CFG_DONE__GLB_CFG_DONE_EN;
+>>>>    
+>>>> -	regmap_set_bits(vop2->map, RK3568_REG_CFG_DONE,
+>>>> -			BIT(vp->id) | RK3568_REG_CFG_DONE__GLB_CFG_DONE_EN);
+>>>> +	regmap_set_bits(vop2->map, RK3568_REG_CFG_DONE, val);
+>>> I don't fully understand that code:
+>>> (1) the write mask is also present on the rk3568, so should this change
+>>>       be a separate patch with a fixes tag?
+>> The write mask of VP config done on rk356x is missing, that means
+>> you can write the corresponding mask bit, but it has no effect.
+>>
+>> I once considered making it a separate patch,  I can split it as a separate patch if
+>> you like.
+> I think I'd like it to be a separate patch please.
+>
+>
+>>> (2) RK3568_REG_CFG_DONE__GLB_CFG_DONE_EN does not contain the part for
+>>>       the write-mask
+>>>
+>>> 	#define RK3568_REG_CFG_DONE__GLB_CFG_DONE_EN     BIT(15)
+>>>
+>>>       why is this working then?
+>>
+>> Actually this bit has no write-mask bit. 🙂
+> when doing that separate patch mentioned above, could you also add a
+> comment to the code stating that RK3568_REG_CFG_DONE__GLB_CFG_DONE_EN
+> doesn't have a write mask bit please?
+>
+> Because the TRM is not clear and ideally I'd not forget this fact for
+> the future :-) .
+>
 
->=20
-> > This patch adds support for an external amplifier to be connected in a
->=20
-> Please do not use "This commit/patch", but imperative mood. See longer
-> explanation here:
-> https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/sub=
-mitting-patches.rst#L95
+Okay, will do both above.
 
-ack...
+>>>>    }
+>>>>    
+>>>>    static void vop2_win_disable(struct vop2_win *win)
+>>> [...]
+>>>
+>>>> @@ -1298,7 +1346,11 @@ static void vop2_plane_atomic_update(struct drm_plane *plane,
+>>>>    			vop2_win_write(win, VOP2_WIN_AFBC_ENABLE, 1);
+>>>>    		vop2_win_write(win, VOP2_WIN_AFBC_FORMAT, afbc_format);
+>>>>    		vop2_win_write(win, VOP2_WIN_AFBC_UV_SWAP, uv_swap);
+>>>> -		vop2_win_write(win, VOP2_WIN_AFBC_AUTO_GATING_EN, 0);
+>>>> +		if (vop2->data->soc_id == 3566 || vop2->data->soc_id == 3568)
+>>>> +			vop2_win_write(win, VOP2_WIN_AFBC_AUTO_GATING_EN, 0);
+>>>> +		else
+>>>> +			vop2_win_write(win, VOP2_WIN_AFBC_AUTO_GATING_EN, 1);
+>>>> +
+>>> I think this at least warrants a comment, what is happening here. Also,
+>>> can you already see how future vop2-users are behaving - aka are all new
+>>> socs in the "else" part of the conditional, or would a switch-case better
+>>> represent future socs?
+>>
+>> On rk356x, this bit is auto gating enable, but this function is not work well so
+>> we need to disable this function.
+>> On rk3588, and the following new soc(rk3528/rk3576), this bit is gating disable,
+>> we should write 1 to disable gating when enable a cluster window.
+>>
+>>
+>> Maybe i add some comments in next version ?
+> Yep that comment would be helpful. And with your explanation the code
+> itself can stay as it is :-)
 
->=20
-> > gain of two configuration.
-> >=20
-> > Signed-off-by: Michael Hennerich <michael.hennerich@analog.com>
-> > Signed-off-by: Nuno Sa <nuno.sa@analog.com>
-> > ---
-> > =C2=A0Documentation/devicetree/bindings/iio/dac/adi,ad5791.yaml | 5 +++=
-++
-> > =C2=A01 file changed, 5 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad5791.yaml
-> > b/Documentation/devicetree/bindings/iio/dac/adi,ad5791.yaml
-> > index 3a84739736f6..c81285d84db7 100644
-> > --- a/Documentation/devicetree/bindings/iio/dac/adi,ad5791.yaml
-> > +++ b/Documentation/devicetree/bindings/iio/dac/adi,ad5791.yaml
-> > @@ -26,6 +26,11 @@ properties:
-> > =C2=A0=C2=A0 vdd-supply: true
-> > =C2=A0=C2=A0 vss-supply: true
-> > =C2=A0
-> > +=C2=A0 adi,rbuf-gain2-en:
-> > +=C2=A0=C2=A0=C2=A0 description: Specify to allow an external amplifier=
- to be connected in
-> > a
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 gain of two configuration.
->=20
-> I don't understand this. Without this property external amplifier is not
-> allowed to be connected? This sounds like some policy, but should rather
-> focus on hardware.
->=20
 
-Well, this really translates in a different configuration in the device. If=
- this
-is set then the device is configured to allow an external amplifier to be
-connected in a gain of two configuration which depends on the HW setup you =
-want
-the chip to be.
+will do.
 
-The description already states pretty much what the datasheet says. So whil=
-e I
-understand it's a fair question from you (you don't have the time to check =
-all
-datasheets for reviews you do), I'm not sure there's much more to add into =
-the
-description of the property.
+> Thanks
+> Heiko
+>
+>
+>>>>    		vop2_win_write(win, VOP2_WIN_AFBC_BLOCK_SPLIT_EN, 0);
+>>>>    		transform_offset = vop2_afbc_transform_offset(pstate, half_block_en);
+>>>>    		vop2_win_write(win, VOP2_WIN_AFBC_HDR_PTR, yrgb_mst);
+>>>> @@ -1627,9 +1937,17 @@ static void vop2_crtc_atomic_enable(struct drm_crtc *crtc,
+>>>>    	drm_for_each_encoder_mask(encoder, crtc->dev, crtc_state->encoder_mask) {
+>>>>    		struct rockchip_encoder *rkencoder = to_rockchip_encoder(encoder);
+>>>>    
+>>>> -		rk3568_set_intf_mux(vp, rkencoder->crtc_endpoint_id, polflags);
+>>>> +		/*
+>>>> +		 * for drive a high resolution(4KP120, 8K), vop on rk3588/rk3576 need
+>>>> +		 * process multi(1/2/4/8) pixels per cycle, so the dclk feed by the
+>>>> +		 * system cru may be the 1/2 or 1/4 of mode->clock.
+>>>> +		 */
+>>>> +		clock = vop2_set_intf_mux(vp, rkencoder->crtc_endpoint_id, polflags);
+>>>>    	}
+>>>>    
+>>>> +	if (!clock)
+>>>> +		return;
+>>>> +
+>>> hmm, shouldn't the check for the validity of a mode happen before
+>>> atomic_enable is run? So this shouldn't error out in the middle of the
+>>> function?
 
-- Nuno S=C3=A1
 
+Actually it is a check like the check of clk_prepares_enable at the beginning,
+
+maybe one place can do this is at crtc_atomic_check ? But we really don't need to
+
+do the calculate and enable the related interface at every frame commit.
+
+with a grep i can find many platforms do this kind of check in crtc_atomic_enable(ade/meson/vc4/omap/malidp/tidss_crtc_atomic_enable, etc...)
+
+so maybe just let it as it is now?
+
+>>>
+>>>
+>>>>    	if (vcstate->output_mode == ROCKCHIP_OUT_MODE_AAAA &&
+>>>>    	    !(vp_data->feature & VOP_FEATURE_OUTPUT_10BIT))
+>>>>    		out_mode = ROCKCHIP_OUT_MODE_P888;
+>>> Thanks
+>>> Heiko
+>>>
+>>>
+>>>
+>>> _______________________________________________
+>>> Linux-rockchip mailing list
+>>> Linux-rockchip@lists.infradead.org
+>>> http://lists.infradead.org/mailman/listinfo/linux-rockchip
+>
+>
+>
 
