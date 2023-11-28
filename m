@@ -1,178 +1,208 @@
-Return-Path: <devicetree+bounces-19814-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19835-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52C557FCDE0
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 05:22:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 049F57FCF4F
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 07:41:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 97503281B37
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 04:22:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F2610281205
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 06:40:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F5336FA6;
-	Wed, 29 Nov 2023 04:22:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A8132586;
+	Wed, 29 Nov 2023 06:40:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="X7xXVYwS"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="A5ZrghXp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34C7E1710;
-	Tue, 28 Nov 2023 20:22:18 -0800 (PST)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AT3LoTh026472;
-	Wed, 29 Nov 2023 04:22:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=5GPHYWNLlw5rUJSjPsApRdIgwkJG6a4bhZxOWXdiWCM=;
- b=X7xXVYwS21iJ6zBE+7BhDLSuL7pjydLeECqInL8N5jiqWffbJ3Ivu/KWNGW3Xs0jdqIE
- 1EVYovBsewFOeF73shW+aGRbaTDQRu/FPHDnCKCoVZz35fFTAztoZ30wuqCsCuJCLAUt
- AflgekSW+sUJqUJRMn0N4TZo6u8a/UyecgQd3HhuvPcvc+Opsu1MQaE9t9Gjz+VQVXSP
- meKSaxP0ALMrJvS2MWAz/eIDpo4MXkejs3XazcNBQtielw8hQZCyYHtWJMoAYTEeZvA5
- OSqnGTRsCG8Q71O/SARc3O5RxBf/Q5hsWBXwaFdPLNQHkhTnMdHSGaOrrpzikUvUHjPd tA== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3unekyjh06-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 29 Nov 2023 04:22:12 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AT4MBs7021674
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 29 Nov 2023 04:22:11 GMT
-Received: from [10.239.154.73] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 28 Nov
- 2023 20:22:08 -0800
-Message-ID: <bf772476-79a1-4a52-a8e3-54709adf4673@quicinc.com>
-Date: Wed, 29 Nov 2023 12:22:06 +0800
+Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE8DA19AA
+	for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 22:40:45 -0800 (PST)
+Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
+	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20231129064043epoutp013fbaf8eac671392324019dbcb1b8da17~cBM5rBh7k1354513545epoutp01H
+	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 06:40:43 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20231129064043epoutp013fbaf8eac671392324019dbcb1b8da17~cBM5rBh7k1354513545epoutp01H
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1701240043;
+	bh=QT80ABfKOaLje3F85OKrmKtMSJbzSbx1fuPt9p4WfE4=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=A5ZrghXpyPvTQ6SVXuYynacjuH8+uDg3jxtrHzoWbhr9vrBvT6eiT6xkOCbliQyw2
+	 U8UeT1X5Rd68lryd+hKFAgLefu8yLbS5RQlbxN1c5/f4M/UzNWjEA+NvhmcBtDGlXE
+	 7uo+Xdct7IQfQHPCcmXiVYCHZJiWoaQ5KIZoAoPo=
+Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTP id
+	20231129064043epcas5p28000276dad4ee238a8f98aef82e1cb58~cBM5Rq5_-3188331883epcas5p2f;
+	Wed, 29 Nov 2023 06:40:43 +0000 (GMT)
+Received: from epsmges5p2new.samsung.com (unknown [182.195.38.177]) by
+	epsnrtp3.localdomain (Postfix) with ESMTP id 4Sg8pd4xJDz4x9Pt; Wed, 29 Nov
+	2023 06:40:41 +0000 (GMT)
+Received: from epcas5p1.samsung.com ( [182.195.41.39]) by
+	epsmges5p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	59.D0.10009.9ECD6656; Wed, 29 Nov 2023 15:40:41 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+	epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
+	20231128103157epcas5p46a8113988067721e720ecdf955b21d50~bwtf9ZPIP1279812798epcas5p4u;
+	Tue, 28 Nov 2023 10:31:57 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20231128103157epsmtrp26fb71d9d8e134b06e5c1abc6c2dece99~bwtf8Q_Jf2706527065epsmtrp2C;
+	Tue, 28 Nov 2023 10:31:57 +0000 (GMT)
+X-AuditID: b6c32a4a-ff1ff70000002719-88-6566dce90e69
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+	epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	F1.59.08755.C91C5656; Tue, 28 Nov 2023 19:31:56 +0900 (KST)
+Received: from FDSFTE308 (unknown [107.122.81.79]) by epsmtip2.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20231128103153epsmtip29adf4fc5cef15cfe1d4d50ff05a7e44a~bwtcrmXJ01570715707epsmtip2O;
+	Tue, 28 Nov 2023 10:31:53 +0000 (GMT)
+From: "Aakarsh Jain" <aakarsh.jain@samsung.com>
+To: "'Hans Verkuil'" <hverkuil-cisco@xs4all.nl>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-media@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+Cc: <m.szyprowski@samsung.com>, <andrzej.hajda@intel.com>,
+	<mchehab@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+	<dillon.minfei@gmail.com>, <david.plowman@raspberrypi.com>,
+	<mark.rutland@arm.com>, <robh+dt@kernel.org>, <conor+dt@kernel.org>,
+	<linux-samsung-soc@vger.kernel.org>, <andi@etezian.org>,
+	<gost.dev@samsung.com>, <alim.akhtar@samsung.com>,
+	<aswani.reddy@samsung.com>, <pankaj.dubey@samsung.com>,
+	<ajaykumar.rs@samsung.com>, <linux-fsd@tesla.com>, "'Smitha T Murthy'"
+	<smithatmurthy@gmail.com>
+In-Reply-To: <2ecdfff5-501a-452f-af90-0806f463a51c@xs4all.nl>
+Subject: RE: [Patch v4 09/11] media: s5p-mfc: Load firmware for each run in
+ MFCv12.
+Date: Tue, 28 Nov 2023 16:01:52 +0530
+Message-ID: <0fe601da21e6$1cb6aee0$56240ca0$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND v7 0/3] Add support for vibrator in multiple PMICs
-Content-Language: en-US
-To: <linux-arm-msm@vger.kernel.org>, Andy Gross <agross@kernel.org>,
-        "Bjorn
- Andersson" <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC: <linux-input@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <quic_collinsd@quicinc.com>,
-        <quic_subbaram@quicinc.com>, <quic_kamalw@quicinc.com>,
-        <jestar@qti.qualcomm.com>, Luca Weiss <luca.weiss@fairphone.com>,
-        "Krzysztof
- Kozlowski" <krzysztof.kozlowski@linaro.org>
-References: <20231108-pm8xxx-vibrator-v7-0-632c731d25a8@quicinc.com>
-From: Fenglin Wu <quic_fenglinw@quicinc.com>
-In-Reply-To: <20231108-pm8xxx-vibrator-v7-0-632c731d25a8@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: NsV8g-GEnr5H-cqykFoC4HzDLpvgYYw9
-X-Proofpoint-ORIG-GUID: NsV8g-GEnr5H-cqykFoC4HzDLpvgYYw9
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-29_01,2023-11-27_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxlogscore=999
- mlxscore=0 suspectscore=0 priorityscore=1501 malwarescore=0
- lowpriorityscore=0 impostorscore=0 bulkscore=0 clxscore=1011 spamscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311060000 definitions=main-2311290032
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQLm4twfZx4yvmLB3iF6RxvUJv+HzQGgpOOWAUC8sUkCb5CW0a5La1+A
+Content-Language: en-in
+X-Brightmail-Tracker: H4sIAAAAAAAAA02TezBcVxzHe+69+5BGe4PUqb5kQzvSwa5lHSlJQ2JuVESZTkeaGbbrFrV2
+	d/buatLpTKShHYLQ0TYxSMQjop7rHdR6NY16RFKkhsp6VDETggqJie66tP77/B7f3znfc+bH
+	xy1SeDb8KIWGViukcgF3F1Hb7vCO48zIZ7Tw1yI7pJ9vJdDDnFouyludxtBY3hKB2qpqeKik
+	uRdDN27rOehqRy8H1bWOE+gPfQOG+q+MEij1bwOOdBODHGSY/Rjdv5XFRckVNRx0ue9nDJV2
+	jPJQwVA/hgp16xi6XrPMQwnNHTwUfz6f8741VZJTAqih/EWcasgc5VF5TTMYpStO5FIjg01c
+	qir/HJXQ+ZSgUquLAfX862wetaR7k+r6Z4kXuPtUtGckLQ2n1ba0QqYMj1JEeAk+CA71CXWT
+	CEWOIg/kLrBVSGNoL8FR/0BH3yi50bfANlYq1xpTgVKGETgf8lQrtRraNlLJaLwEtCpcrnJV
+	OTHSGEariHBS0JqDIqHQxc3YGBYdOTtVC1QFr5zRTw1gceCeRRIw40PSFS4UJBJJYBffgmwE
+	sKPhJsYGiwB2Vnbz2GAFwNnkx9i25NLiJM4WmgHMzn+wJZkGcHiyhDB1cUlnONaVzDEVrMh6
+	AHMNPZtynLxIwKxvXExsRnrBgcY8YGJL8iO4fn8FNzFB2sNncelcE5uTHnDjwiMOy3vgnSuT
+	BDvnXViYO4ezV7KFa1OFmz1WpC9M3egFbI817FxL3rwqJBvNoOFuktEQ3xgchSnt0azWEs7e
+	ruaxbAOXHjVzWZbBieszW/PlsLwpg2D5MNT/nkWYxuCkAyy/5cym34Dfd5VtWXwJpjyb3Hot
+	c1ifs81vw6yRVQ7Lr8P2nwpAGhBk7nCWucNZ5g4Hmf+fdg0QxeBVWsXERNCMm8pFQX/x34/L
+	lDE6sLkXB/zqgeHhglMbwPigDUA+LrAyd3osoy3Mw6Vnv6TVylC1Vk4zbcDN+NzpuM1emdK4
+	WApNqMjVQ+gqkUhcPcQSkcDafC4hO9yCjJBq6GiaVtHqbR3GN7OJw2LP7jGMRaWJu+FJ9/0d
+	dht+g9cC9gX92DL1iQeWkGjjQ0B/yamhpyO2Nz7/9nQ90WJvd2hg7kSZR1jeRO1KUFzZ8XNr
+	La8lwQr9h5UL673hJ737rQefuPvbiXYLeb3paTq532BYWnyQvc+0+OWEOgfw1mWs9CbOfR7p
+	TecvdzgEhrgGmBsuXgiOZQ7PV2vHmlvbzvTVzIas5iacCHkyfkT86b6h38SWd1Splf3i8taM
+	ihZvHRg+X/Ug4PifRYL+RXLvvf0Zx9xB0cHuXyRe48xffd9pNT3zvqVE3lfDd6lg8em6UOqH
+	0pLltBdzXhBb9oRdPfbe2JF4GS4xFKx4NrUECQgmUio6gKsZ6b8ZCgXkoAQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrOIsWRmVeSWpSXmKPExsWy7bCSvO6cg6mpBvM+WFsceH+QxeLBvG1s
+	Fot/PGeyuL/4M4vFoc1b2S3W7D3HZLH8+AFWi/lHzrFabD/4iMXi5oGdTBYXZ95lseh78ZDZ
+	YtPja6wWD1+FW1zeNYfNomfDVlaLGef3MVmsPXKX3WLp9YtMFss2/WGyWLT1C7tF694j7BYt
+	jUtYHcQ91sxbw+hxfcknZo+ds+6yeyze85LJY9OqTjaPO9f2sHlsXlLv0Xr0F4tH35ZVjB7/
+	muaye3zeJOdx6utn9gCeKC6blNSczLLUIn27BK6M/u9PGQuui1ZsaTvO1MDYItTFyMkhIWAi
+	0f/pCXMXIxeHkMBuRolbxw8xQiRkJP63HWOHsIUlVv57zg5R9JRR4tHX12BFbAL6EvdP9bCC
+	JEQE9jBKHN29BqyKWWAui8S/I7NZIFo+A81tecIK0sIpYCtxdfdisHZhgWCJxbv3MIPYLAKq
+	Er8bJrKB2LwClhL/m9+xQtiCEidnPmEBsZkFtCWe3nwKZy9b+JoZ4j4FiZ9Pl4HViwi4SfT9
+	P8cIUSMucfRnD/MERuFZSEbNQjJqFpJRs5C0LGBkWcUomVpQnJueW2xYYJiXWq5XnJhbXJqX
+	rpecn7uJEZw2tDR3MG5f9UHvECMTB+MhRgkOZiURXr2PyalCvCmJlVWpRfnxRaU5qcWHGKU5
+	WJTEecVf9KYICaQnlqRmp6YWpBbBZJk4OKUamBzVuM78miCgytrS4v239Z18eozsnW0vzqZa
+	W3+xYjI2cPzR/eFo9ulJntNF7MounRa+eoljiz6zToheuQBbXWb3LukdXlwb+ewYC/b+6fC9
+	+2mzuWtdW3WV8LLrD+ceeWHwctJkgx387RYausblBsrvZbjk8oKWiJ4VV/W0/St9e92305zC
+	4e3KP4pepoW12/0VzQmay3rMfl/502q+ZUWvVZbU1QQ23F8vbpt7N2Peir9OOd8yQhfGvFxW
+	uT+ldXHssp+v8hsmH/zL97a78Mfpt++0tZn+zxdXcdRZeKl15/l7b5qb5F3P7fPfnJYXLxN4
+	85FO3bQz7c9eJhXGX5791y/uwbHwFgvWfTcXKLEUZyQaajEXFScCAO8jLtyKAwAA
+X-CMS-MailID: 20231128103157epcas5p46a8113988067721e720ecdf955b21d50
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20231025102300epcas5p2c266a078b70614dc948b0e47cd5cf788
+References: <20231025102216.50480-1-aakarsh.jain@samsung.com>
+	<CGME20231025102300epcas5p2c266a078b70614dc948b0e47cd5cf788@epcas5p2.samsung.com>
+	<20231025102216.50480-10-aakarsh.jain@samsung.com>
+	<2ecdfff5-501a-452f-af90-0806f463a51c@xs4all.nl>
 
-Hi Dmitry Torokhov,
+Hi Hans,
 
-Can you help to review the series of the changes?
-I knew that you left comment in patch V6 about moving shift and mask 
-into a chip-specific data structure to avoid defining 'hw_type'. 
-Actually 'hw_type' is added here to differentiate the SSBI vibrator 
-module which doesn't need to read the base address from the DT and add 
-it up in register read/write access, while SPMI vibrators in different 
-PMICs may be the same HW but just with different base address, and we 
-can use device compatibles instead of adding the chip-specific data 
-structure for each of them by just updating the base address. See 
-discussion here for more details:
-https://lore.kernel.org/linux-arm-msm/20230718062639.2339589-3-quic_fenglinw@quicinc.com/
+> -----Original Message-----
+> From: Hans Verkuil <hverkuil-cisco=40xs4all.nl>
+> Sent: 22 November 2023 21:14
+> To: Aakarsh Jain <aakarsh.jain=40samsung.com>; linux-arm-
+> kernel=40lists.infradead.org; linux-media=40vger.kernel.org; linux-
+> kernel=40vger.kernel.org; devicetree=40vger.kernel.org
+> Cc: m.szyprowski=40samsung.com; andrzej.hajda=40intel.com;
+> mchehab=40kernel.org; krzysztof.kozlowski+dt=40linaro.org;
+> dillon.minfei=40gmail.com; david.plowman=40raspberrypi.com;
+> mark.rutland=40arm.com; robh+dt=40kernel.org; conor+dt=40kernel.org; linu=
+x-
+> samsung-soc=40vger.kernel.org; andi=40etezian.org; gost.dev=40samsung.com=
+;
+> alim.akhtar=40samsung.com; aswani.reddy=40samsung.com;
+> pankaj.dubey=40samsung.com; ajaykumar.rs=40samsung.com; linux-
+> fsd=40tesla.com; Smitha T Murthy <smithatmurthy=40gmail.com>
+> Subject: Re: =5BPatch v4 09/11=5D media: s5p-mfc: Load firmware for each =
+run in
+> MFCv12.
+>=20
+> On 25/10/2023 12:22, Aakarsh Jain wrote:
+> > In MFCv12, some section of firmware gets updated at each MFC run.
+> > Hence we need to reload original firmware for each run at the start.
+>=20
+> Huh? This is very weird. This definitely deserves a comment in the actual
+> code rather than just the commit log.
+>=20
+> Do you know what is going on? What part is updated? Are you sure it isn't=
+ a
+> driver bug somehow?
+>=20
+> Regards,
+>=20
+> 	Hans
+>=20
+During SYS_INIT command sent to MFC sequentially, firmware is not able to i=
+nitialize the hardware due to incorrect firmware transfer and in current sc=
+enario the firmware is not loaded again in the Reserved memory area.
+In this case RET_SYS_INIT response from hardware is failing. So we need to =
+load firmware every time we open the device node.
+I will add comment in the code why this change is needed.
 
-I also responded here that having 'hw_type' would help us with a cleaner 
-code logic instead of checking specific reg/mask for particular 
-operations: 
-https://lore.kernel.org/linux-arm-msm/8697d115-9aa7-2a1c-4d96-25b15adb5cca@quicinc.com/
+Thanks for the review.
+> >
+> > Cc: linux-fsd=40tesla.com
+> > Signed-off-by: Smitha T Murthy <smithatmurthy=40gmail.com>
+> > Signed-off-by: Aakarsh Jain <aakarsh.jain=40samsung.com>
+> > ---
+> >  drivers/media/platform/samsung/s5p-mfc/s5p_mfc_ctrl.c =7C 5 +++--
+> >  1 file changed, 3 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_ctrl.c
+> > b/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_ctrl.c
+> > index b49159142c53..057088b9d327 100644
+> > --- a/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_ctrl.c
+> > +++ b/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_ctrl.c
+> > =40=40 -51,8 +51,9 =40=40 int s5p_mfc_load_firmware(struct s5p_mfc_dev
+> *dev)
+> >  	 * into kernel. */
+> >  	mfc_debug_enter();
+> >
+> > -	if (dev->fw_get_done)
+> > -		return 0;
+> > +	if (=21IS_MFCV12(dev))
+> > +		if (dev->fw_get_done)
+> > +			return 0;
+> >
+> >  	for (i =3D MFC_FW_MAX_VERSIONS - 1; i >=3D 0; i--) =7B
+> >  		if (=21dev->variant->fw_name=5Bi=5D)
 
-Let me know what's your final suggestion, if you insist that I should 
-move the reg/mask/shift in the chip-specific data structure, I can 
-update it even it won't be as clean as what it looks right now.
-Thanks
 
-Fenglin
-
-On 11/8/2023 3:36 PM, Fenglin Wu via B4 Relay wrote:
-> Add SW support for the vibrator module inside PMI632, PM7250B, PM7325B, PM7550BA.
-> It is very similar to the vibrator module inside PM8916 which is supported in
-> pm8xxx-vib driver but just the drive amplitude is controlled with 2 registers,
-> and the register base offset in each PMIC is different.
-> 
-> Changes in v7;
->    1. Fix a typo: SSBL_VIB_DRV_REG --> SSBI_VIB_DRV_REG
->    2. Move the hw_type switch case in pm8xxx_vib_set() to the refactoring
->       change.
-> 
-> Changes in v6:
->    1. Add "qcom,pmi632-vib" as a standalone compatible string.
-> 
-> Changes in v5:
->    1. Drop "qcom,spmi-vib-gen2" generic compatible string as requested
->       and use device specific compatible strings only.
-> 
-> Changes in v4:
->    1. Update to use the combination of the HW type and register offset
->       as the constant match data, the register base address defined in
->       'reg' property will be added when accessing SPMI registers using
->       regmap APIs.
->    2. Remove 'qcom,spmi-vib-gen1' generic compatible string.
-> 
-> Changes in v3:
->    1. Refactor the driver to support different type of the vibrators with
->      better flexibility by introducing the HW type with corresponding
->      register fields definitions.
->    2. Add 'qcom,spmi-vib-gen1' and 'qcom,spmi-vib-gen2' compatible
->      strings, and add PMI632, PM7250B, PM7325B, PM7550BA as compatbile as
->      spmi-vib-gen2.
-> 
-> Changes in v2:
->    Remove the "pm7550ba-vib" compatible string as it's compatible with pm7325b.
-> 
-> Fenglin Wu (3):
->    input: pm8xxx-vib: refactor to easily support new SPMI vibrator
->    dt-bindings: input: qcom,pm8xxx-vib: add new SPMI vibrator module
->    input: pm8xxx-vibrator: add new SPMI vibrator support
-> 
->   .../bindings/input/qcom,pm8xxx-vib.yaml       |  16 +-
->   drivers/input/misc/pm8xxx-vibrator.c          | 171 ++++++++++++------
->   2 files changed, 132 insertions(+), 55 deletions(-)
-> 
-> --
-> 2.25.1
-> 
-> ---
-> Fenglin Wu (3):
->        input: pm8xxx-vib: refactor to easily support new SPMI vibrator
->        dt-bindings: input: qcom,pm8xxx-vib: add new SPMI vibrator module
->        input: pm8xxx-vibrator: add new SPMI vibrator support
-> 
->   .../devicetree/bindings/input/qcom,pm8xxx-vib.yaml |  16 +-
->   drivers/input/misc/pm8xxx-vibrator.c               | 170 ++++++++++++++-------
->   2 files changed, 131 insertions(+), 55 deletions(-)
-> ---
-> base-commit: 650cda2ce25f08e8fae391b3ba6be27e7296c6a5
-> change-id: 20230925-pm8xxx-vibrator-62df3df46a6c
-> 
-> Best regards,
 
