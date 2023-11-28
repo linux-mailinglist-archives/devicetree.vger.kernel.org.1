@@ -1,103 +1,158 @@
-Return-Path: <devicetree+bounces-19611-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19614-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB7A77FB6E7
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 11:15:15 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE7B77FB709
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 11:21:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 66D4128289F
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 10:15:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 806DDB21B0C
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 10:21:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E385B4D5AA;
-	Tue, 28 Nov 2023 10:15:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 141254E1D4;
+	Tue, 28 Nov 2023 10:21:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="mWYu+PS8"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="XLQhRroj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CDB4DC;
-	Tue, 28 Nov 2023 02:15:09 -0800 (PST)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AS5GINw015575;
-	Tue, 28 Nov 2023 10:15:05 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
- cc : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=qcppdkim1; bh=HjUiSUZwj5j8IsIno6+2NrMwnJbKBPe36Zpz4kUjDlM=;
- b=mWYu+PS8/Kb/2NbcG1+geidoQ/l8f2Fpb4O4rUgmhiTmtF+5xose2zN9cKjIlvmoUKwL
- hPhbfKqDYG0zndkV/TPBPz4bvJrlTR1jUXEY44QMhdVcy6nlwCds7vbTf8x9kas9mb7b
- 8n3hGWK47yBrQxWO68i+lweDnBnl7+SxfRBCHfkbpRXq6bzPh65mA2IOWlRbUh/98p7f
- 896YpIJshKu6BBdXn6jcIwegRPgDoQjgn+PYGJxNtzoGu3ltpMxEhYhy/jG/uXNXvomE
- KSH41rT4R12THKztNW909p7Q1Xq0x4JR58Pk6TIWzj8BsyRkqood0F68yCnvJ9wu69Ns jw== 
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3umsvak2fb-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 28 Nov 2023 10:15:05 +0000
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3ASAF4ts004551
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 28 Nov 2023 10:15:04 GMT
-Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Tue, 28 Nov 2023 02:15:00 -0800
-Date: Tue, 28 Nov 2023 15:44:56 +0530
-From: Varadarajan Narayanan <quic_varada@quicinc.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC: <agross@kernel.org>, <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <lgirdwood@gmail.com>, <broonie@kernel.org>,
-        <dmitry.baryshkov@linaro.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v1 2/2] arm64: dts: qcom: ipq9574: Fix USB
- 'vdda-pll-supply'
-Message-ID: <ZWW9oF24YUGfev+2@hu-varada-blr.qualcomm.com>
-References: <cover.1701160842.git.varada@hu-varada-blr.qualcomm.com>
- <f98bbf0a515236709d999010f08c8f2470a31209.1701160842.git.varada@hu-varada-blr.qualcomm.com>
- <832a6d4f-f561-4cf5-b1cb-7e4b2d4d50b4@linaro.org>
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76FF018F;
+	Tue, 28 Nov 2023 02:21:01 -0800 (PST)
+Received: from [100.107.97.3] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id EEAD16606F5E;
+	Tue, 28 Nov 2023 10:20:58 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1701166860;
+	bh=54tD+0Tstg5j+b+ww3zATak7yvK6MgBTy7TZLjR9EQg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=XLQhRroj4lwvhoB01HFE3noEy6wTtCG2wzTzBgATFEhAa8glnFAa0MpdeHrMwRPFF
+	 lsP6riICCUjv53diP5ZWmieIMlunMG1zaBInMPuqcuTm2Se3LRwmwigjUDMrF4EQgE
+	 VjxfBXeg4x0fwAxT0C7k3YpOcq9OMhhFRkio/6augFXbbBWepukZrsVrLZHPm4b1WB
+	 oy9mJGlMoAsp2uY9mXkh0pMAh0QFx8wH9y2EI+hb/jL5TS1dTwHMZNlN49nuzYbtoq
+	 GyJbMXaztuL99MOZ6yQV4AlMvwtF0hcDszY7KR0t4IHrZRJp/aVapZtAtO6Ayy8Rxn
+	 XiHbs4I8xTUGg==
+Message-ID: <36ba3f89-2bd0-45f0-8b61-59f5c6691427@collabora.com>
+Date: Tue, 28 Nov 2023 11:20:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <832a6d4f-f561-4cf5-b1cb-7e4b2d4d50b4@linaro.org>
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: Fdx1m2JwOburAe_Bgh71eb1fJwy9qrqN
-X-Proofpoint-GUID: Fdx1m2JwOburAe_Bgh71eb1fJwy9qrqN
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-28_09,2023-11-27_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 bulkscore=0
- malwarescore=0 suspectscore=0 spamscore=0 priorityscore=1501
- impostorscore=0 mlxlogscore=245 phishscore=0 clxscore=1011
- lowpriorityscore=0 adultscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2311060000 definitions=main-2311280081
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] mmc: mediatek: extend number of tuning steps
+Content-Language: en-US
+To: =?UTF-8?B?QXhlIFlhbmcgKOadqOejiik=?= <Axe.Yang@mediatek.com>,
+ "robh+dt@kernel.org" <robh+dt@kernel.org>,
+ =?UTF-8?B?V2VuYmluIE1laSAo5qKF5paH5b2sKQ==?= <Wenbin.Mei@mediatek.com>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ =?UTF-8?B?Q2hhb3RpYW4gSmluZyAo5LqV5pyd5aSpKQ==?=
+ <Chaotian.Jing@mediatek.com>,
+ "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>
+Cc: "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ Project_Global_Chrome_Upstream_Group
+ <Project_Global_Chrome_Upstream_Group@mediatek.com>
+References: <20231128070127.27442-1-axe.yang@mediatek.com>
+ <20231128070127.27442-3-axe.yang@mediatek.com>
+ <207c2f89-b1e7-448d-966f-0c403a9f9e8b@collabora.com>
+ <ea1a82b07e98fa682140c460048901a9f962be2b.camel@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <ea1a82b07e98fa682140c460048901a9f962be2b.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Tue, Nov 28, 2023 at 09:51:50AM +0100, Krzysztof Kozlowski wrote:
-> On 28/11/2023 09:46, Varadarajan Narayanan wrote:
-> > From: Varadarajan Narayanan <quic_varada@quicinc.com>
-> >
-> > The earlier patch ec4f047679d5, incorrectly used 'l2'
-> > as the vdda-pll-supply. However, 'l5' is the correct
-> > ldo that supplies power to the USB PHY.
-> >
-> > Fixes: ec4f047679d5 ("arm64: dts: qcom: ipq9574: Enable USB")
->
-> Doesn't this depend on the driver change?
+Il 28/11/23 10:38, Axe Yang (杨磊) ha scritto:
+>> On Tue, 2023-11-28 at 09:53 +0100, AngeloGioacchino Del Regno wrote:
+>> Il 28/11/23 08:01, Axe Yang ha scritto:
+>>> Previously, during the MSDC calibration process, a full clock cycle
+>>> actually not be covered, which in some cases didn't yield the best
+>>> results and could cause CRC errors. This problem is particularly
+>>> evident when MSDC is used as an SDIO host. In fact, MSDC support
+>>> tuning up to a maximum of 64 steps, but by default, the step number
+>>> is 32. By increase the tuning step, we are more likely to cover
+>>> more
+>>> parts of a clock cycle, and get better calibration result.
+>>>
+>>> To illustrate, when tuning 32 steps, if the obtained window has a
+>>> hole
+>>> near the middle, like this: 0xffc07ff (hex), then the selected
+>>> delay
+>>> will be the 6 (counting from right to left).
+>>>
+>>> (32 <- 1)
+>>> 1111 1111 1100 0000 0000 0111 11(1)1 1111
+>>>
+>>> However, if we tune 64 steps, the window obtained may look like
+>>> this:
+>>> 0xfffffffffffc07ff. The final selected delay will be 44, which is
+>>> safer as it is further away from the hole:
+>>>
+>>> (64 <- 1)
+>>> 1111 ... (1)111 1111 1111 1111 1111 1100 0000 0000 0111 1111 1111
+>>>
+>>> In this case, delay 6 selected through 32 steps tuning is obviously
+>>> not optimal, and this delay is closer to the hole, using it would
+>>> easily cause CRC problems.
+>>>
+>>> You will need to configure property "mediatek,tuning-step" in MSDC
+>>> dts node to 64 to extend the steps.
+>>>
+>>
+>> If we can run 64 tuning steps, why should we run 32?
+>>
+>> Why isn't it just better to *always* run 64 tuning steps, on SoCs
+>> supporting that?
+>>
+>> Thanks,
+>> Angelo
+> 
+> Hi Angelo,
+> 
+> That is a good question. The benefit of preserving 32 steps tuning is
+> that it can save time in certain scenarios.
+> 
+> On some platforms, when the delay selected through 64 steps tuning is
+> very close to that chosen through 32 steps, we can reduce the tuning
+> step from 64 to 32. This can save time sending the tuning block
+> commands.
+> 
+> Thus using 32 steps tuning can save kernel boot up time.
+> 
+> Another case where time can be saved is when accessing the RPMB
+> partition of eMMC. Each time switch to RPMB partition, there is a
+> retune action, causing a certain drop in performance. If we are certain
+> that the results of 32 steps tuning are usable and we use it, this can
+> in a sense also guarantee performance when accessing the RPMB
+> partition.
+> 
 
-Yes, will mention in the cover letter.
+Thanks for this explanation! Though, I have some more questions...
 
-> It affects both existing
-> kernel and backports which you claim here should happen.
+...regarding boot up time, how much time are we talking about?
 
-Ok. Will include stable@vger.kernel.org in the next revision.
+I'm asking because while now I see - and agree - on using 32-steps tuning
+on eMMC to guarantee performance during RPMB access, as far as I know,
+there is no RPMB partition on SD/MicroSD cards (and, of course, SDIO devices).
 
-Thanks
-Varada
+If the boot performance impact isn't big, as in, up to ~100 milliseconds is
+not big at all (especially with async probe!), we can definitely avoid the
+addition of a devicetree property for 32-steps tuning, hence use a dynamic
+selection strategy such that:
+  - On eMMC devices, always perform 32-steps tuning (hence no boot delay)
+  - On SD cards and SDIO, always perform 64-steps tuning
+
+Cheers,
+Angelo
+
 
