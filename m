@@ -1,95 +1,129 @@
-Return-Path: <devicetree+bounces-19753-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19754-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFAA97FC421
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 20:18:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C9627FC475
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 20:52:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5E26FB20D11
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 19:18:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD1021C20D1C
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 19:52:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0FE646B97;
-	Tue, 28 Nov 2023 19:18:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91ACE3D0CE;
+	Tue, 28 Nov 2023 19:52:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p57NzxC0"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="BWFbCeo0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A92641988;
+	Tue, 28 Nov 2023 11:52:22 -0800 (PST)
+Received: from notapiano (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B98DD46B81;
-	Tue, 28 Nov 2023 19:18:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD616C433C7;
-	Tue, 28 Nov 2023 19:17:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701199080;
-	bh=SgFpPkvRLZH722x0Q2MvtZK1DcjJxLafBR+Y7mjLxR0=;
+	(Authenticated sender: nfraprado)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id EC19B6602F2B;
+	Tue, 28 Nov 2023 19:52:16 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1701201140;
+	bh=lTlr8qen9KRZ2EZ5Mj/C5s4YyiYXfeKPKLVSZIrbTaI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=p57NzxC0rRSaNC1yF4erIx7C/gTJjFfTBJfigTPSAXGEiABAsE9ucU9XuNAxvCrJj
-	 9xPeIBiCqcPar1Cv/LHyJ/xNmlhiUCQO9xA3wiw5MVIWrOwmP5SIAU9Kg49V2gUmBD
-	 dace5qSugrF8nFkLbOSWHZUc9n5DiBKI2VJ7UFJwNhHOJ4Caoa8wuf5Vx4IwzicuPA
-	 SnMXuZwO/Ak8459BojKDQfsUcvfHGYPJJSur8wFb6RRNVaWWK7MC9mS1CsLbb1pFQH
-	 lHelXtTBW7zVfo4IWbzIHH9dE9moP/5TfDKfzpfvAmOsCsw9MKIoHX/xKN7zyO0oi4
-	 yNgw0d+fxayMg==
-Date: Tue, 28 Nov 2023 20:17:57 +0100
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
-Cc: Wolfram Sang <wsa@kernel.org>, Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	b=BWFbCeo0pR89kb8EP/q48zvjI3cmzqzkOP5Ssg6KCYoxmkYsWhGw7YnYwnK0Ydqx9
+	 shS65Zdg/bf6ykTyCPIAoN+VgUo6f2E5W0QcfQUeciCr3rka0YrpUzn+HSv/Bj7Zct
+	 H7Infuv8i02YACPgJR2RW94Pq1aXDa0SK6yC1DMGOERLw6n3KijfKvg4e7UliZB2FY
+	 gALs+B7NKhpeP+t7oyOtEriPW0ZcVjhpIUPqzuejbdo7CDI5XAGpOkkGmtxmvMbKR9
+	 Y183UDfOcNi0JPgzAIknumKFCAi/HtwqTGlS66GpmKmxmcaHod/LOIaopU07q5hAKg
+	 UIW+brHODLCag==
+Date: Tue, 28 Nov 2023 14:52:12 -0500
+From: =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>
+To: "Bird, Tim" <Tim.Bird@sony.com>
+Cc: Shuah Khan <shuah@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Saravana Kannan <saravanak@google.com>,
 	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] i2c: qup: Vote for interconnect bandwidth to DRAM
-Message-ID: <20231128191757.67mlp2tp6wlxxta2@zenone.zhora.eu>
-References: <20231128-i2c-qup-dvfs-v1-0-59a0e3039111@kernkonzept.com>
- <20231128-i2c-qup-dvfs-v1-3-59a0e3039111@kernkonzept.com>
+	"kernelci@lists.linux.dev" <kernelci@lists.linux.dev>,
+	David Gow <davidgow@google.com>,
+	Guenter Roeck <groeck@chromium.org>,
+	"linux-kselftest@vger.kernel.org" <linux-kselftest@vger.kernel.org>,
+	"linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+	"kernel@collabora.com" <kernel@collabora.com>,
+	Dan Carpenter <dan.carpenter@linaro.org>,
+	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+	Doug Anderson <dianders@chromium.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [RFC PATCH v2 2/2] kselftest: devices: Add sample board file for
+ google,spherion
+Message-ID: <3f22eea4-121d-4d5b-b7af-71961a2ab5e9@notapiano>
+References: <20231127233558.868365-1-nfraprado@collabora.com>
+ <20231127233558.868365-3-nfraprado@collabora.com>
+ <BN8PR13MB27384F089C7DAAF06DF9DDECFDBCA@BN8PR13MB2738.namprd13.prod.outlook.com>
+ <ee913bc5-c752-4da7-a140-7492f429c2cb@notapiano>
+ <BN8PR13MB273808C3B81BABBAADACC6B6FDBCA@BN8PR13MB2738.namprd13.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20231128-i2c-qup-dvfs-v1-3-59a0e3039111@kernkonzept.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <BN8PR13MB273808C3B81BABBAADACC6B6FDBCA@BN8PR13MB2738.namprd13.prod.outlook.com>
 
-Hi Stephan,
+On Tue, Nov 28, 2023 at 05:54:57PM +0000, Bird, Tim wrote:
+> > -----Original Message-----
+> > From: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> > On Tue, Nov 28, 2023 at 12:10:46AM +0000, Bird, Tim wrote:
+> > > > -----Original Message-----
+> > > > From: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> > > > Add a sample board file describing the file's format and with the list
+> > > > of devices expected to be probed on the google,spherion machine as an
+> > > > example.
+> > > >
+> > > > Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> > > > ---
+> > > >
+> > > > (no changes since v1)
+> > > >
+> > > >  .../testing/selftests/devices/boards/google,spherion | 12 ++++++++++++
+> > >
+> > > Overall, while trying to maintain a comprehensive set of board definitions
+> > > seems hard, I think having a few as examples is useful.
+> > >
+> > > I'm not a big fan of naming these with a comma in the name.  Is there a reason
+> > > you are not using dash or underscore?
+> > 
+> > I'm using the name that we get from the DT compatible, so the right file can be
+> > automatically selected by the test.
+> > 
+> > >
+> > > Do you anticipate a convention of  <producer> <board-or-product-name> tuples for
+> > > the filename?
+> > 
+> > I'd just stick to the DT compatible as it's the simplest option and should work
+> > just the same, assuming I understood correctly what you mean.
+> 
+> OK - I see that was mentioned in the original submission.  I should
+> have read more closely.
+> 
+> It makes sense.  Maybe it's worth mentioning in the commit message that the
+> filename is the compatible string from the DT for this board?
+> 
+> This convention, IMHO, should be documented somewhere.
 
-On Tue, Nov 28, 2023 at 10:48:37AM +0100, Stephan Gerhold wrote:
-> When the I2C QUP controller is used together with a DMA engine it needs
-> to vote for the interconnect path to the DRAM. Otherwise it may be
-> unable to access the memory quickly enough.
-> 
-> The requested peak bandwidth is dependent on the I2C core clock.
-> 
-> To avoid sending votes too often the bandwidth is always requested when
-> a DMA transfer starts, but dropped only on runtime suspend. Runtime
-> suspend should only happen if no transfer is active. After resumption we
-> can defer the next vote until the first DMA transfer actually happens.
-> 
-> The implementation is largely identical to the one introduced for
-> spi-qup in commit ecdaa9473019 ("spi: qup: Vote for interconnect
-> bandwidth to DRAM") since both drivers represent the same hardware
-> block.
-> 
-> Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+I have that as part of the comment at the top of the test script in patch 1:
 
-the patch looks good to me.
+# The per-platform list of devices to be tested is stored inside the boards/
+# directory and chosen based on compatible.
 
-> ---
-> The bandwidth calculation is taken over from Qualcomm's
-> downstream/vendor driver [1]. Due to lack of documentation about the
-> interconnect setup/behavior I cannot say exactly if this is right.
-> Unfortunately, this is not implemented very consistently downstream...
-> 
-> [1]: https://git.codelinaro.org/clo/la/kernel/msm-3.10/-/commit/67174e2624ea64814231e7e1e4af83fd882302c6
+And also in the commit message of patch 1.
 
-Krzysztof, any chance you can help here?
+But I guess this sample file is the most likely one to be read when someone
+writes a new board file, so I'll document it here too for next version.
 
 Thanks,
-Andi
+Nícolas
 
