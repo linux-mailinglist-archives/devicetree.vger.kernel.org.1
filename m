@@ -1,60 +1,33 @@
-Return-Path: <devicetree+bounces-19575-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19577-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B43087FB5DE
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 10:32:56 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B73C7FB5E6
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 10:33:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 69F2F1F20FB5
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 09:32:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD8781C20D96
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 09:33:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5582448CF4;
-	Tue, 28 Nov 2023 09:32:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F022495E1;
+	Tue, 28 Nov 2023 09:33:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="msRcg+4s"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="DcLVgxkd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8120BDE;
-	Tue, 28 Nov 2023 01:32:48 -0800 (PST)
-Received: by mail-pf1-x431.google.com with SMTP id d2e1a72fcca58-6c115026985so5141316b3a.1;
-        Tue, 28 Nov 2023 01:32:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701163968; x=1701768768; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3assMsvuUHbHCvmkHme+u60KSQVX3/rK9TdeJztWus4=;
-        b=msRcg+4sWfW2Syktsf/QZ+d5gsqdFKtOWALIXK+qjgukyssKjoDpXz5Unk8xhZNTQU
-         ax+Z9trgqgKyrLGbTQyS19ssu7Pu8xjiTWYBIiBsrzLpvQjdKjxZRpkOHjK+XRDPBLTv
-         N0nP72+vxwq2S1BUDp3UleWq4+HapA2P81Ot3/0A4waFxKhZvfLmNkMQqSejqIDMq55u
-         vG96r348HKdBVaLRJzJAgaxAQB0Pwmc5x5eNGWyimkv6lXRzhbdroJk0ILLIQnSAWDFy
-         FD0A6yY9pLrW0moudvFvoNyDXx8w0aUjmxAkLXKIGBGa9tObPikJ4DFDACKyXC2Nr1DT
-         2ipg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701163968; x=1701768768;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3assMsvuUHbHCvmkHme+u60KSQVX3/rK9TdeJztWus4=;
-        b=OsHvKRkappSqo7rt9Zyh4qcBwjc+lKBgJV1IdQv9ZiKYlYKTo+twe/jxXCz5yIsDJ5
-         kqMDR8ofsAE7VzYhwgsr9WQkkHEP0nq3kfZffGfF7yE6hShy+FIccLnW8LQlRWSkU8y3
-         CtutYCrIWeNo9KQx8JHlVfE8L5k9gZXWlRJ5Nva9jmETF4vItakwa8FMGqpaj3jnskoF
-         Zz7fNLHhRS9Q+bSE8gqYL7yWC6g2xyDml8DBKgh1dfHF3sVunyzoF2TmiOU9y5mnZ8i5
-         i1lYbPeTkOmNSGFN1zFl7R8trMAeOksxnF3+dM3ZHbDZOqdn2t88kqqU0/bsNS3AU/0m
-         mLHg==
-X-Gm-Message-State: AOJu0Yxz3nUktXSmBppv3Yf2VA2FpRr8FdOwSZozUEVReaLjadPaeJ5B
-	eMMeGDq4gu9XQenpOuC1hpA=
-X-Google-Smtp-Source: AGHT+IEi5HfqmGz4750uJCRofUcy8WZVhqq0EXmPX3LT/1+1NCUKKnoUDyGSSyblMGBsBoTN6J+5/A==
-X-Received: by 2002:a05:6a21:3815:b0:17b:426f:829 with SMTP id yi21-20020a056a21381500b0017b426f0829mr13876287pzb.37.1701163967955;
-        Tue, 28 Nov 2023 01:32:47 -0800 (PST)
-Received: from [172.19.1.47] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
-        by smtp.gmail.com with ESMTPSA id h4-20020a170902eec400b001c7453fae33sm2421448plb.280.2023.11.28.01.32.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Nov 2023 01:32:47 -0800 (PST)
-Message-ID: <2e0f58cc-0cfa-4957-bac1-c40897d7135b@gmail.com>
-Date: Tue, 28 Nov 2023 17:32:43 +0800
+Received: from mail-m17213.xmail.ntesmail.com (mail-m17213.xmail.ntesmail.com [45.195.17.213])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B79C492;
+	Tue, 28 Nov 2023 01:33:32 -0800 (PST)
+DKIM-Signature: a=rsa-sha256;
+	b=DcLVgxkd4hRXhqcF3LFgwFiUkuAPVte4HOriks3qtqli+asr6UfOwv7yHAFzmCNlUz7Bf3c5/Bmhnrj/qEbFnUGyFThMExb+W/upEMTqz1W3kNPPB6p7lrjOUYeOjkn1+C2+dgJdnfIgDi8o8qSP0fKbohNU2w8kwVZMuLUenaQ=;
+	s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=W++6O1OO0uiQqmpaiWwyK1zsoZBp0YmOXKt4LJxyAwk=;
+	h=date:mime-version:subject:message-id:from;
+Received: from [172.16.12.141] (unknown [58.22.7.114])
+	by mail-m12762.qiye.163.com (Hmail) with ESMTPA id 7DFB25C03E3;
+	Tue, 28 Nov 2023 17:32:55 +0800 (CST)
+Message-ID: <f179e9ae-b2cd-4f6c-badc-4d76d8a3ba0d@rock-chips.com>
+Date: Tue, 28 Nov 2023 17:32:55 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,118 +35,179 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/4] dt-bindings: pinctrl: Document nuvoton ma35d1 pin
- control
+Subject: Re: [PATCH v2 10/12] drm/rockchip: vop2: Add support for rk3588
 Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- linus.walleij@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- p.zabel@pengutronix.de, j.neuschaefer@gmx.net
-Cc: linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- ychuang3@nuvoton.com, schung@nuvoton.com
-References: <20231128061118.575847-1-ychuang570808@gmail.com>
- <20231128061118.575847-3-ychuang570808@gmail.com>
- <7c24aaf8-8f93-4b93-b7e5-abc88e95682d@linaro.org>
- <ffbaad9b-9a30-4cdd-bb78-8fb7d6ff4e9f@gmail.com>
- <5ac7f79a-68d3-49ef-9615-3c0076591d78@linaro.org>
-From: Jacky Huang <ychuang570808@gmail.com>
-In-Reply-To: <5ac7f79a-68d3-49ef-9615-3c0076591d78@linaro.org>
+To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+ Andy Yan <andyshrk@163.com>
+Cc: hjc@rock-chips.com, dri-devel@lists.freedesktop.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+ devicetree@vger.kernel.org, sebastian.reichel@collabora.com,
+ kever.yang@rock-chips.com, chris.obbard@collabora.com, s.hauer@pengutronix.de
+References: <20231122125316.3454268-1-andyshrk@163.com>
+ <20231122125544.3454918-1-andyshrk@163.com> <4788319.uZKlY2gecq@diego>
+From: Andy Yan <andy.yan@rock-chips.com>
+In-Reply-To: <4788319.uZKlY2gecq@diego>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGkpDTlZPHk1CQ0MZH0sdHh5VEwETFh
+	oSFyQUDg9ZV1kYEgtZQVlOQ1VJSVVMVUpKT1lXWRYaDxIVHRRZQVlPS0hVSk1PSU5JVUpLS1VKQl
+	kG
+X-HM-Tid: 0a8c15464494b229kuuu7dfb25c03e3
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NBA6Qjo4Mzw#Dh45Gi81ERw8
+	QjgwFAJVSlVKTEtKSk1IQkxNT0xNVTMWGhIXVRoVHwJVAhoVOwkUGBBWGBMSCwhVGBQWRVlXWRIL
+	WUFZTkNVSUlVTFVKSk9ZV1kIAVlBTUJPSjcG
 
-Dear Krzysztof,
+Hi Heiko:
 
-Thanks for your review.
+Thanks for you review.
 
-On 2023/11/28 下午 04:33, Krzysztof Kozlowski wrote:
-> On 28/11/2023 09:29, Jacky Huang wrote:
->> Dear Krzysztof,
+On 11/27/23 23:29, Heiko Stübner wrote:
+> Hi Andy,
+>
+> Am Mittwoch, 22. November 2023, 13:55:44 CET schrieb Andy Yan:
+>> From: Andy Yan <andy.yan@rock-chips.com>
 >>
->> Thanks for your review.
+>> VOP2 on rk3588:
 >>
+>> Four video ports:
+>> VP0 Max 4096x2160
+>> VP1 Max 4096x2160
+>> VP2 Max 4096x2160
+>> VP3 Max 2048x1080
 >>
->> On 2023/11/28 下午 03:34, Krzysztof Kozlowski wrote:
->>> On 28/11/2023 07:11, Jacky Huang wrote:
->>>> From: Jacky Huang <ychuang3@nuvoton.com>
->>>>
->>>> Add documentation to describe nuvoton ma35d1 pin control and GPIO.
->>>>
->>>> Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
->>>> ---
->>> Your changelog said:
->>>
->>>>     - Remove ma35d1-pinfunc.h which is unused after update definition of
->>> 'nuvoton,pins'.
->>>
->>> You forgot to add:
->>>
->>> " - Do not test the bindings before sending"
->>>
->>> I assume none of the driver changes compile either.
->> It's my mistake. I forgot to remove 'ma35d1-pinfunc.h' from my local
->> copy, and as a consequence, the 'dt_binding_check' did not catch this
->> error. I will fix this.
-> But then git status would point you that tree is not clean and you did
-> not finish commiting.
->
-> ..
->
-
-Yes, I should have been more careful in checking.
-
->>>> +
->>>> +allOf:
->>>> +  - $ref: pinctrl.yaml#
->>> allOf goes before additionalProperties.
->>>
->>>> +
->>>> +required:
->>>> +  - compatible
->>>> +  - nuvoton,sys
->>> This goes after patternProperties
->> I will fix the above two as:
+>> 4 4K Cluster windows with AFBC/line RGB and AFBC-only YUV support
+>> 4 4K Esmart windows with line RGB/YUV support
 >>
->> allOf:
->>     - $ref: pinctrl.yaml#
-> Look:
->
->>> allOf goes before additionalProperties.
-> Open example-schema.
->
-> ..
+>> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+>>
+>> ---
+>>
+>> Changes in v2:
+>> - add rk3588_ prefix for functions which are rk3588 only
+>> - make some calculation as fixed value and keep calculation formula as
+>>    comment
+>> - check return value for some cru calculation functions.
+>> - check return value for syscon_regmap_lookup_by_phandle
+>> - add NV20/NV30 for esmart plane
+>>
+>>   drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 381 ++++++++++++++++++-
+>>   drivers/gpu/drm/rockchip/rockchip_drm_vop2.h |  66 ++++
+>>   drivers/gpu/drm/rockchip/rockchip_vop2_reg.c | 221 +++++++++++
+>>   3 files changed, 660 insertions(+), 8 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+>> index 4bcc405bcf11..9eecbe1f71f9 100644
+>> --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+>> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+>> @@ -271,9 +282,12 @@ static bool vop2_cluster_window(const struct vop2_win *win)
+>>   static void vop2_cfg_done(struct vop2_video_port *vp)
+>>   {
+>>   	struct vop2 *vop2 = vp->vop2;
+>> +	u32 val;
+>> +
+>> +	val = BIT(vp->id) | (BIT(vp->id) << 16) |
+>> +		RK3568_REG_CFG_DONE__GLB_CFG_DONE_EN;
+>>   
+>> -	regmap_set_bits(vop2->map, RK3568_REG_CFG_DONE,
+>> -			BIT(vp->id) | RK3568_REG_CFG_DONE__GLB_CFG_DONE_EN);
+>> +	regmap_set_bits(vop2->map, RK3568_REG_CFG_DONE, val);
+> I don't fully understand that code:
+> (1) the write mask is also present on the rk3568, so should this change
+>      be a separate patch with a fixes tag?
 
-I found that 'pinctrl.yaml' is not required for this document, so I will 
-drop it.
+The write mask of VP config done on rk356x is missing, that means
 
->>>> +      - $ref: pincfg-node.yaml#
->>>> +
->>>> +    properties:
->>>> +      bias-disable: true
->>> Drop this and other "true", why do you need them here?
->> We are following the conventions used in other pinctrl documents, such as
->> 'realtek,rtd1315e-pinctrl.yaml' and 'xlnx,zynqmp-pinctrl.yaml'.
-> But they are quite different there.
->
->> After comparing various pinctrl documents, I noticed that they all express
->> it as 'bias-disable: true'. Therefore, may I keep the current format?
-> No, you cannot copy pieces of other binding, selectively ignoring the
-> rest. Look how these other bindings are constructed - they have
-> additionalProperties, which you don't.
->
-> Drop all these true properties if the only reason of them being here is
-> they were copied.
->
->
->
-> Best regards,
-> Krzysztof
->
+you can write the corresponding mask bit, but it has no effect.
 
-OK, I will drop these properties.
+I once considered making it a separate patch,  I can split it as a separate patch if
+
+you like.
+
+> (2) RK3568_REG_CFG_DONE__GLB_CFG_DONE_EN does not contain the part for
+>      the write-mask
+>
+> 	#define RK3568_REG_CFG_DONE__GLB_CFG_DONE_EN     BIT(15)
+>
+>      why is this working then?
 
 
-Best Regards,
-Jacky Huang
+Actually this bit has no write-mask bit. 🙂
 
+>
+>>   }
+>>   
+>>   static void vop2_win_disable(struct vop2_win *win)
+> [...]
+>
+>> @@ -1298,7 +1346,11 @@ static void vop2_plane_atomic_update(struct drm_plane *plane,
+>>   			vop2_win_write(win, VOP2_WIN_AFBC_ENABLE, 1);
+>>   		vop2_win_write(win, VOP2_WIN_AFBC_FORMAT, afbc_format);
+>>   		vop2_win_write(win, VOP2_WIN_AFBC_UV_SWAP, uv_swap);
+>> -		vop2_win_write(win, VOP2_WIN_AFBC_AUTO_GATING_EN, 0);
+>> +		if (vop2->data->soc_id == 3566 || vop2->data->soc_id == 3568)
+>> +			vop2_win_write(win, VOP2_WIN_AFBC_AUTO_GATING_EN, 0);
+>> +		else
+>> +			vop2_win_write(win, VOP2_WIN_AFBC_AUTO_GATING_EN, 1);
+>> +
+> I think this at least warrants a comment, what is happening here. Also,
+> can you already see how future vop2-users are behaving - aka are all new
+> socs in the "else" part of the conditional, or would a switch-case better
+> represent future socs?
+
+
+On rk356x, this bit is auto gating enable, but this function is not work well so
+
+we need to disable this function.
+
+On rk3588, and the following new soc(rk3528/rk3576), this bit is gating disable,
+
+we should write 1 to disable gating when enable a cluster window.
+
+
+Maybe i add some comments in next version ?
+
+
+
+>
+>>   		vop2_win_write(win, VOP2_WIN_AFBC_BLOCK_SPLIT_EN, 0);
+>>   		transform_offset = vop2_afbc_transform_offset(pstate, half_block_en);
+>>   		vop2_win_write(win, VOP2_WIN_AFBC_HDR_PTR, yrgb_mst);
+>
+>> @@ -1627,9 +1937,17 @@ static void vop2_crtc_atomic_enable(struct drm_crtc *crtc,
+>>   	drm_for_each_encoder_mask(encoder, crtc->dev, crtc_state->encoder_mask) {
+>>   		struct rockchip_encoder *rkencoder = to_rockchip_encoder(encoder);
+>>   
+>> -		rk3568_set_intf_mux(vp, rkencoder->crtc_endpoint_id, polflags);
+>> +		/*
+>> +		 * for drive a high resolution(4KP120, 8K), vop on rk3588/rk3576 need
+>> +		 * process multi(1/2/4/8) pixels per cycle, so the dclk feed by the
+>> +		 * system cru may be the 1/2 or 1/4 of mode->clock.
+>> +		 */
+>> +		clock = vop2_set_intf_mux(vp, rkencoder->crtc_endpoint_id, polflags);
+>>   	}
+>>   
+>> +	if (!clock)
+>> +		return;
+>> +
+> hmm, shouldn't the check for the validity of a mode happen before
+> atomic_enable is run? So this shouldn't error out in the middle of the
+> function?
+>
+>
+>>   	if (vcstate->output_mode == ROCKCHIP_OUT_MODE_AAAA &&
+>>   	    !(vp_data->feature & VOP_FEATURE_OUTPUT_10BIT))
+>>   		out_mode = ROCKCHIP_OUT_MODE_P888;
+>
+> Thanks
+> Heiko
+>
+>
+>
+> _______________________________________________
+> Linux-rockchip mailing list
+> Linux-rockchip@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-rockchip
 
