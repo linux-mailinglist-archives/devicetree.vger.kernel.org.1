@@ -1,95 +1,123 @@
-Return-Path: <devicetree+bounces-19740-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19741-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71C827FC045
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 18:29:35 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F45A7FC05B
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 18:37:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 050612827EF
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 17:29:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4A1FA282A43
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 17:37:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 643925B5D6;
-	Tue, 28 Nov 2023 17:29:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uhIS7Awr"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD7DD5CD2E;
+	Tue, 28 Nov 2023 17:37:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41C3F443E;
-	Tue, 28 Nov 2023 17:29:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 875ECC433C7;
-	Tue, 28 Nov 2023 17:29:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701192570;
-	bh=4XvKlG/zv6MZy3Qi+1cyz4jVKinz5Rpd8AQHCJ5MZWo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uhIS7Awr6BRSM0qCLhFQKcG5NqrcWBrH+WnLFYMSXN00D0yANQf2FPU39R4pZoWtb
-	 XEVIgw5PGnKQDSVDxZxmW5a2n+zkS3nJ17kFTHbH+sqQ8opEtYf4t2t4RSlYlI2pZi
-	 gP0kNhoalFZ4jn2wXiy2U3QEar0nD+8Zz0Z5uVLx1tF3keYaGu8IEv2xe1xqCYRlJC
-	 YyK2ctqeirUNTrhk3OffUuTsyTv9iuo5juELUOMWHUPQPqidgiThtDfd5ttStxXDtu
-	 TCu3K4WLyDU/Am1wThc5Af9e4mRCEw/R+iNMwZFhZ1TrRxjJ/DroZPJWjT5g+pfISV
-	 AWcsn1escATwA==
-Date: Tue, 28 Nov 2023 17:29:25 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Ante Knezic <ante.knezic@helmholz.de>, netdev@vger.kernel.org,
-	woojung.huh@microchip.com, andrew@lunn.ch, f.fainelli@gmail.com,
-	olteanv@gmail.com, davem@davemloft.net, edumazet@google.com,
-	kuba@kernel.org, pabeni@redhat.com,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	marex@denx.de, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, UNGLinuxDriver@microchip.com
-Subject: Re: [PATCH net-next v6 1/2] dt-bindings: net: microchip,ksz:
- document microchip,rmii-clk-internal
-Message-ID: <20231128-laxative-overjoyed-ab1b4b3656a1@spud>
-References: <cover.1701091042.git.ante.knezic@helmholz.de>
- <7f1f89010743a06c4880fd224149ea495fe32512.1701091042.git.ante.knezic@helmholz.de>
- <20231128150203.GA3264915-robh@kernel.org>
+Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25976D5B;
+	Tue, 28 Nov 2023 09:37:38 -0800 (PST)
+Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-1fa619735c1so1176032fac.0;
+        Tue, 28 Nov 2023 09:37:38 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701193057; x=1701797857;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=euvcKpX30ZVsmfkaXJTTyAJfHCgabkUtlIpVB4OOtdk=;
+        b=xOe/8aW/yzPAouFlm/9KNzmqQCl7sYE76Cm6nOsqAty0nH+f4Et94IyIv2NSZizNXG
+         8VQ3ueyHpVc99OI1n5jU9li3vmKpCI1qup5fCVb56W8N6RSmOIAEbwd2rmu7TxTJCPb6
+         RfNhN4DODohegHTJJrPl2gvWOWLk2SHQkzsOfB9LnwDWw5NcmSv2CNTwJPgt4yJgd7f/
+         2Nxc68g7qVmLitpy/CnoGCXHEXxIZ1eD+cM+okXYj86GOiwkdHxn94rZayHjwRrYQFwz
+         F7g1hKAszsiRMQ66Xw0mLfnVmnYnsg2ruIYww5z7wqhxT6akWe+JecvtXOMJsYtmP3n5
+         Dt+w==
+X-Gm-Message-State: AOJu0YwtJd0DkDnVpm12DZ0u6B5D3zbXBQ01WKrPF/f3RbaZWkTMhiPq
+	WVffMz/IOvbsoFC7keosVw==
+X-Google-Smtp-Source: AGHT+IFqYYn9X2TZT97zZ6qFLfge2tyuoZxVF9rjnkiko+nm/6218G7n1xYaCVZdrESr/DQLfEbS8w==
+X-Received: by 2002:a05:6870:d3cb:b0:1b0:2f63:4ff6 with SMTP id l11-20020a056870d3cb00b001b02f634ff6mr22471768oag.1.1701193057389;
+        Tue, 28 Nov 2023 09:37:37 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id wx20-20020a0568707e1400b001fa38903b92sm1518933oab.15.2023.11.28.09.37.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Nov 2023 09:37:36 -0800 (PST)
+Received: (nullmailer pid 3544147 invoked by uid 1000);
+	Tue, 28 Nov 2023 17:37:35 -0000
+Date: Tue, 28 Nov 2023 11:37:35 -0600
+From: Rob Herring <robh@kernel.org>
+To: Peter Chiu <chui-hao.chiu@mediatek.com>
+Cc: Felix Fietkau <nbd@nbd.name>, Lorenzo Bianconi <lorenzo.bianconi@redhat.com>, Ryder Lee <ryder.Lee@mediatek.com>, Evelyn Tsai <evelyn.tsai@mediatek.com>, Shayne Chen <shayne.chen@mediatek.com>, Sam Shih <sam.shih@mediatek.com>, linux-wireless@vger.kernel.org, linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: net: wireless: mt76: add interrupts
+ description for MT7986
+Message-ID: <20231128173735.GA3537931-robh@kernel.org>
+References: <20231128035723.5217-1-chui-hao.chiu@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="Eaz27h0FCLG7yZaF"
-Content-Disposition: inline
-In-Reply-To: <20231128150203.GA3264915-robh@kernel.org>
-
-
---Eaz27h0FCLG7yZaF
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20231128035723.5217-1-chui-hao.chiu@mediatek.com>
 
-On Tue, Nov 28, 2023 at 09:02:03AM -0600, Rob Herring wrote:
-> On Mon, Nov 27, 2023 at 02:20:42PM +0100, Ante Knezic wrote:
-> > Add documentation for selecting reference rmii clock on KSZ88X3 devices
-> >=20
-> > Signed-off-by: Ante Knezic <ante.knezic@helmholz.de>
-> > ---
-> >  .../devicetree/bindings/net/dsa/microchip,ksz.yaml | 38 ++++++++++++++=
-+++++++-
-> >  1 file changed, 37 insertions(+), 1 deletion(-)
->=20
-> You forgot Conor's ack.
+On Tue, Nov 28, 2023 at 11:57:23AM +0800, Peter Chiu wrote:
+> The mt7986 can support four interrupts to distribute the interrupts
+> to different CPUs.
+> 
+> Signed-off-by: Peter Chiu <chui-hao.chiu@mediatek.com>
+> ---
+>  .../bindings/net/wireless/mediatek,mt76.yaml  | 24 +++++++++++++++----
+>  1 file changed, 20 insertions(+), 4 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
+> index 252207adbc54..20f5f2ead265 100644
+> --- a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
+> +++ b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
+> @@ -19,9 +19,6 @@ description: |
+>    Alternatively, it can specify the wireless part of the MT7628/MT7688
+>    or MT7622/MT7986 SoC.
+>  
+> -allOf:
+> -  - $ref: ieee80211.yaml#
+> -
+>  properties:
+>    compatible:
+>      enum:
+> @@ -38,7 +35,8 @@ properties:
+>        MT7986 should contain 3 regions consys, dcm, and sku, in this order.
+>  
+>    interrupts:
+> -    maxItems: 1
+> +    minItems: 1
+> +    maxItems: 4
+>  
+>    power-domains:
+>      maxItems: 1
+> @@ -219,6 +217,24 @@ required:
+>  
+>  unevaluatedProperties: false
+>  
+> +allOf:
+> +  - $ref: ieee80211.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - mediatek,mt7986-wmac
+> +    then:
+> +      properties:
+> +        interrupts:
+> +          minItems: 1
+> +          items:
+> +            - description: major interrupt for rings
+> +            - description: addditional interrupt for ring 19
+> +            - description: addditional interrupt for ring 4
+> +            - description: addditional interrupt for ring 5
 
-I think that's for the better, v5 and v6 look to have changed a decent
-amount from what I acked in v4.
+This list belongs in the top level. The if/then schema needs to set 
+'maxItems: 1' for the cases with only 1 interrupt and 'minItems: 4' for 
+the cases with 4 interrupts.
 
---Eaz27h0FCLG7yZaF
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZWYjdQAKCRB4tDGHoIJi
-0sM2AP0UONa6EAG1nkKSAMDOqDho9LhS8mI88zn0U4Zuvi53FQD+IEMco3IIebRn
-qUJ59RjTmGnDpyXY+3khiNsf+D9M3QA=
-=BBCx
------END PGP SIGNATURE-----
-
---Eaz27h0FCLG7yZaF--
+Rob
 
