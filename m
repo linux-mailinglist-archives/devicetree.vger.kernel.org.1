@@ -1,163 +1,97 @@
-Return-Path: <devicetree+bounces-19782-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19783-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 504257FCA9B
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 00:13:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A2D67FCAC7
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 00:25:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 590701C20E1C
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 23:13:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 847AC1C20BBB
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 23:25:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C989257320;
-	Tue, 28 Nov 2023 23:13:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C435C5733E;
+	Tue, 28 Nov 2023 23:25:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="LM74q1ML"
+	dkim=pass (1024-bit key) header.d=rnplus.nl header.i=@rnplus.nl header.b="EgnkeBuD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2127.outbound.protection.outlook.com [40.107.113.127])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32E0F183;
-	Tue, 28 Nov 2023 15:13:11 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UcmYaVjEcKaFRcRfjnr0o5CJFRjvVzCVPq7/d/j5hHVekkwzdFXsIArRxNNPgCRtxkHdWZI3MtDD2JX1tJCeU9IWbggso3D0dIOdOc+duQBO7IYfzGx1yizZVZToDNwgcJq7KahdD85TNSNejqvYpQ9T0iILQGCqNWOAShRZcidX7agRL2rhcb+bL4RN8gQE2DYZRhTAobadc63vTzVMRn7jEeO3DeMGK5V6XS+679wTWkrQRqknzORWaNjP/17DS++dLik3jlDOLE7PLNhFOunbwUNdr6fYv5wOEE4BsCoAj0fmq+4BeylL1nJmuImNE2/PC+8YKutlOkrQJpUtDQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Ja7s1yZwSo/hMyZGovnJj1pKQaKLW5KZ9d49Iw4B5/k=;
- b=mme6bpv/NN0Y6k8IPm1JS/tVDM1JujiG9uRRZV/SUE6ua4zjhOkoda2HdpkYGzMEi6+i5Ju+UbYo3remVnB1rw6XppOwnLD5b3oi4f2YvBHBjo2ODbpnOpWVuFWcsH8NQFS43TUqaKU42DCKXECJcQx680/vQd+Lzq+jBGpp3pDiMyAYEAo+gGuW/JDlI61gC3Wl6CVA1BwZCoARcFwMsMuBEQNr/obBSpyXkbNW5qDwc+QIflgICJkWAIbaV626eLC9PDnXafoEiGd0EbgV4UgqQFgUM9wSYLQrxuKZntiaMeryC+GVHT7k9x3k6v0JsiIDI9WF2d6D1fePPY6i2Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Ja7s1yZwSo/hMyZGovnJj1pKQaKLW5KZ9d49Iw4B5/k=;
- b=LM74q1MLUC+mO3W3bB/mrfwSrGO3oupM37DoQNG3Oe3+YJeN4t2RBfOe2ZS5merl9t/ogETjkKUuOd0GsxMXodCdCUgdebV/GEy27cW0naGvpnYzmmKmTD0kI/ZV8T4gT/1vZlqsYaPOtkeVdDaGYHkJYmreW3PdP7ih/0OnJ+w=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
- (2603:1096:400:3a9::11) by OS7PR01MB11821.jpnprd01.prod.outlook.com
- (2603:1096:604:236::6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7025.29; Tue, 28 Nov
- 2023 23:13:08 +0000
-Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
- ([fe80::5732:673b:846c:ed92]) by TYCPR01MB10914.jpnprd01.prod.outlook.com
- ([fe80::5732:673b:846c:ed92%4]) with mapi id 15.20.7046.015; Tue, 28 Nov 2023
- 23:13:08 +0000
-Message-ID: <87v89l4gl8.wl-kuninori.morimoto.gx@renesas.com>
-From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Frank Rowand <frowand.list@gmail.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
+Received: from mail.rnplus.nl (mail.rnplus.nl [178.251.25.70])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BC3E19A4
+	for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 15:25:10 -0800 (PST)
+Received: from localhost (unknown [127.0.0.1])
+	by mail.rnplus.nl (Postfix) with ESMTP id C960737943A
+	for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 23:26:44 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at rnplus.nl
+Received: from mail.rnplus.nl ([127.0.0.1])
+	by localhost (mail.rnplus.nl [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id yYi00Q6P2XXJ for <devicetree@vger.kernel.org>;
+	Wed, 29 Nov 2023 00:26:42 +0100 (CET)
+Received: from werkpc.lan (87-101-2-254.dsl.cambrium.nl [87.101.2.254])
+	by mail.rnplus.nl (Postfix) with ESMTPSA id B3145379289;
+	Wed, 29 Nov 2023 00:26:40 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=rnplus.nl; s=dkim;
+	t=1701214001; bh=G3JB671WawIpbUjjbrLf8COupnjT/0gEiSIXdRR+XLM=;
+	h=From:To:Subject:Date;
+	b=EgnkeBuDR0Tw+njhvtrf3miCyHthsJ+NqYbR0NY4u/ES2+I9u44o4HPuAnsWbKH6R
+	 TXXczAkAJPjKYWTTj0ZRXZtTpf3xuCqp4DRDuFkQmAAE8//ZbDj3OZH7WtiLxqpfQn
+	 SbhAerfJ9/PGdj0FGxfdM3c+jbd3uanlNieu7szY=
+From: Renze Nicolai <renze@rnplus.nl>
+To: linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Aymeric Aillet <aymeric.aillet@iot.bzh>,
-	Yusuke Goda <yusuke.goda.sx@renesas.com>
-Subject: Re: [PATCH v2 4/4] drivers: clk: renesas: enable all clocks which is assinged to non Linux system
-In-Reply-To: <20231128153413.GA3301324-robh@kernel.org>
-References: <87fs0zc14m.wl-kuninori.morimoto.gx@renesas.com>
-	<87a5r7c13d.wl-kuninori.morimoto.gx@renesas.com>
-	<20231128153413.GA3301324-robh@kernel.org>
-User-Agent: Wanderlust/2.15.9 Emacs/27.1 Mule/6.0
-Content-Type: text/plain; charset=US-ASCII
-Date: Tue, 28 Nov 2023 23:13:08 +0000
-X-ClientProxiedBy: TYCP286CA0130.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:400:2b6::12) To TYCPR01MB10914.jpnprd01.prod.outlook.com
- (2603:1096:400:3a9::11)
+	linux-kernel@vger.kernel.org,
+	linux-aspeed@lists.ozlabs.org,
+	arnd@arndb.de,
+	olof@lixom.net,
+	soc@kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	joel@jms.id.au,
+	andrew@aj.id.au,
+	renze@rnplus.nl
+Subject: [PATCH v2 0/2] ARM: dts: aspeed: asrock: Add ASRock X570D4U BMC
+Date: Wed, 29 Nov 2023 00:23:15 +0100
+Message-ID: <20231128232456.2932350-1-renze@rnplus.nl>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYCPR01MB10914:EE_|OS7PR01MB11821:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9140d5a8-4f26-4fd5-9089-08dbf0679560
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	6TOBMUqQXR7aOhu9CnSZlhWGRrKMGw9IZRb9ZssX7tIsf0/I+O7dTfZERQd4uDA9GH2BVacWk2Jh+TnJVze2H2dXnM2kJBmQsiXOhoua4ZxE6KDs8W9vi/TF48sxvIIUrvqr3Do6dbHPVs0ePrBYSKASmPDs2/E/I58alYEeyDpaSxm5Gb+Wnbdccvs3YU6pKcWnns8ntlgwy7/uJymGSkZmGVVm7+NY3/DZuqfaq34vqNRw8Oa+kLYY+i2VynFIFTAcALZnvYWELtP8s8JnDzMqQZo55DY8riUUNzcSd4+7LfIhHB4QLpIIfR7WH2FLstKog2+g/LCkcD6jrE1CF7wwrN/nBix1vRRZvV1bI6q5qGEUErqsunj+f3YW3v/udhOzS4UUf2qdHyu43S/SiyZWncRT6Kx8YRIk3gU9nNJmtn6x/uv8L7bKlXJ7L0wW3QYa52RKasXnV3N28AVhtKewbHUNHy7YW7QrtMOjV8UizmmtarEdhB+ARzo7DCT5V304w3S3ERh9DzakOisSVt5ml2UkPfYbf4Z7fBsK0pT4q1LfJ5PEA8uttBdIayVuIUIreWo8QtoRf+Cb07FQg/kxy2rC64prJ1J1NfS7rMePaXOTCMuNtEp6qqk8xCgH
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB10914.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39860400002)(396003)(346002)(376002)(136003)(366004)(230922051799003)(1800799012)(64100799003)(186009)(451199024)(38100700002)(36756003)(41300700001)(38350700005)(107886003)(2906002)(4744005)(83380400001)(5660300002)(26005)(86362001)(2616005)(52116002)(6506007)(8676002)(8936002)(4326008)(6512007)(6486002)(478600001)(66476007)(54906003)(66946007)(66556008)(316002)(6916009);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?sBYXbeymMh7Xswxdgf1xxZVjTEJh/0Yt51LGMnUA+orWZtE8alUfFfdEAEEU?=
- =?us-ascii?Q?3GNQrILBIW6sObXY+mhidjxFf/9Pq2G+ecv9HvPUOCm3oQhyGhvcM2Vu4QKq?=
- =?us-ascii?Q?MP+POPkcngAsKvZ08DPPDBH5vfxxYeJTlrqJ94K7BtTPmtvthTni7Uu6gP+5?=
- =?us-ascii?Q?pq/W4A6HnebwlGBZ317rmYELHZzFRn3xxHitxZVfa9y9CRqRJioGfW6+qwDY?=
- =?us-ascii?Q?RzrCEfyIgYbAjjTuNtfxEX31IzIJt4QU37tYGFw+l6Un0EulUhRNc6Y+5cQt?=
- =?us-ascii?Q?kfbYh79gII+6HodKEMK4YYg4mkj+aUhXuNqQHe4cubSMyHfLZdKahaUbJrR6?=
- =?us-ascii?Q?r8ehTEOTO0BfeDAPlygEdiSAsjeNMp5xCAsUl9JCYn7N6NVKwqJnfrja2PPq?=
- =?us-ascii?Q?FamdIdDDA14W4/45vO4T3D3Z7MdhJM3bQgxnKJQP9NK8DORbCV4sjUzeUQmR?=
- =?us-ascii?Q?LJCPtyRy7P/MHyHFMDxrJAVzvnzsCU7vL4RIJEpQvd9vMOcMGzDVn84I9Ggp?=
- =?us-ascii?Q?xIZvq+/TxcsoeiQJ2Lf7itw4/OcZQJTARnUOUvQEnPB97IWEoJY5ul++loW1?=
- =?us-ascii?Q?fQVv38kOLd+0Giy6fm0MVe3w5pVaEdSGJGCA9sAvs+lLzTkJbPT5UpyA0gTv?=
- =?us-ascii?Q?usauFANB10EKoe90mrdJpTHhJOjTjJZtUYaaURY9OxFYZCB07Ku2j9eQz928?=
- =?us-ascii?Q?Wu+RZhdjsykEUCKVqk9SMbGeWIkXMzeMpPgdeZ2fhKPvtxHBW1OI32SznTwm?=
- =?us-ascii?Q?KVXfzA3vSpdYsHvSZcNgkx0mfYNeGX/vdel6/M7ShGmIzyQqOH2X7Fafdn/w?=
- =?us-ascii?Q?jo6Z/68MdNnvmw6NMRlCywO5hlD7Qg6IpWGXx8Jy1EibrzIXOvKGIjTAmBTx?=
- =?us-ascii?Q?iCbmgyyJEZT33bOmWxhbdGfMa+0rNwubDKuZgRq2+VpTm2vIuSOuH9Clb7Ub?=
- =?us-ascii?Q?BAley/xydmERWZJ237Tnq+qFwWr38fbqLf6KQi3EHr28UX13ZUXdIUWFP9K1?=
- =?us-ascii?Q?L2PRPT0C+ag77ZYoDLtHTpaVb9zx/o/S2iq0fOtkFvrcXyhX8tHpptq7+Qoq?=
- =?us-ascii?Q?05i01cHBtWuoasEcUJcLNwR9QkOkDzpXzK1N7RYVDt2/agY0Ed5TQmrIkNAR?=
- =?us-ascii?Q?4ktq+wtNf1wChyfoF5+d6K01AEKOyP3+nt/gCy9/vMIWBOYoUo/MZi7wFBMn?=
- =?us-ascii?Q?wDWPzOxZ0XjHr5LUTiwTR0tZ6b4wMKAAf2icyKIPDxI7QkldcKlDT67Tbgl7?=
- =?us-ascii?Q?KKTUUj725XNMyyv5Q5LZfh9vwqzgw+cxhi0o/YbKmzvzN6UTiLYJcIKaZJWX?=
- =?us-ascii?Q?L1CAvx9JugaX+ahDVT2URDJzW6kWRfVM5HikoSiOtZun3JHPyXcLdmORKefu?=
- =?us-ascii?Q?LgZXJKnkUp8RI4rVLnZPpKkcSzfTIRhARmGIztXTZtyE+ZtjcS9YA8NiP13C?=
- =?us-ascii?Q?sVZjNcgRj38wVJKvVNrtDiwmgGf/6ViWISzRZodoTY37MdehaitJN8XqyAd3?=
- =?us-ascii?Q?WquLATt0R4UwwpdlxJyZlRsz937ZsxutBa7HieCjwXBevJdCyF750xpd26Dw?=
- =?us-ascii?Q?/VtBteBiz7m50w8IE4WP8o165qqewj1mepVizCO73Mr3CqnP60norl7k0YU/?=
- =?us-ascii?Q?PTuNCCa+IMZNManCQHvx848=3D?=
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9140d5a8-4f26-4fd5-9089-08dbf0679560
-X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB10914.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Nov 2023 23:13:08.2041
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 0Z5ZOwnk1Va3/qc/gf/iwCbgn0V0CjmaGTkBwixUeaUtuefxnHWuaOVBmnQo9fLZoOcf1ZJ9H1pVHJthUmRbpYVhv7JVlFP7WIoT3l67c1Blh9FEA4aP2+8WAWQPM+B/
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS7PR01MB11821
+Content-Transfer-Encoding: 8bit
 
+Hello,
 
-Hi Rob
+These patches add a device-tree (and a bindings update) for the
+Aspeed BMC on the ASRock X570D4U, so that it can be added as a
+supported OpenBMC platform.
 
-Thank you for reviewing the patch.
+Changes since v1:
+  - Fixed indentation
+  - Added "aspeed,ast2500" compatible
+  - Switched to lower case hex values
+  - Added function and color attributes to the LEDs
+  - Renamed LEDs to led0 and led1
+  - Removed hogging of output-bmc-ready GPIO (should be set from userland instead)
+  - Get MAC addresses of the ethernet interfaces from the FRU EEPROM
+  - Add descriptions to the busses exposed by the I2C switch (i2c-1@70)
+  - Add blank lines between nodes in fan section
+  - Drop bootargs from chosen section
 
-> > +static int __init cpg_mssr_reserved_init(struct cpg_mssr_priv *priv,
-> > +					 const struct cpg_mssr_info *info)
-> > +{
-> > +	struct device_node *root = of_find_node_by_path("/soc");
-> 
-> 'root' is '/', so I find this slightly confusing.
-(snip)
-> > +	 *	scif5: serial@e6f30000 {
-> > +	 *		...
-> > +	 * =>		clocks = <&cpg CPG_MOD 202>,
-> > +	 *			 <&cpg CPG_CORE R8A7795_CLK_S3D1>,
-> > +	 *			 <&scif_clk>;
-> > +	 *			 ...
-> > +	 *		 status = "reserved";
-> > +	 *	};
-> > +	 */
-> > +	for_each_reserved_child_of_node(root, node) {
-> 
-> Don't you really want to find all reserved nodes in the DT rather than
-> just child nodes of a single node?
+Greetings,
+Renze Nicolai
 
-The all devices which we need to check (and ignore the clock) in this
-driver is defined under /soc for now.
+Renze Nicolai (2):
+  dt-bindings: arm: aspeed: add Asrock X570D4U board
+  ARM: dts: aspeed: asrock: Add ASRock X570D4U BMC
 
+ .../bindings/arm/aspeed/aspeed.yaml           |   1 +
+ arch/arm/boot/dts/aspeed/Makefile             |   1 +
+ .../dts/aspeed/aspeed-bmc-asrock-x570d4u.dts  | 359 ++++++++++++++++++
+ 3 files changed, 361 insertions(+)
+ create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-x570d4u.dts
 
-Thank you for your help !!
+-- 
+2.43.0
 
-Best regards
----
-Kuninori Morimoto
 
