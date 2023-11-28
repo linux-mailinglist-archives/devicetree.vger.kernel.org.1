@@ -1,118 +1,151 @@
-Return-Path: <devicetree+bounces-19736-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19737-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FE307FBFE6
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 18:01:59 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0DE57FC01B
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 18:16:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E3A28B2153E
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 17:01:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 56065B214CA
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 17:16:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 808BD4F8A2;
-	Tue, 28 Nov 2023 17:01:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C474F5ABBD;
+	Tue, 28 Nov 2023 17:16:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="H9pKmYpw"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="JO6moXBa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-xf32.google.com (mail-qv1-xf32.google.com [IPv6:2607:f8b0:4864:20::f32])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE983D4B;
-	Tue, 28 Nov 2023 09:01:47 -0800 (PST)
-Received: by mail-qv1-xf32.google.com with SMTP id 6a1803df08f44-67a295e40baso18800576d6.1;
-        Tue, 28 Nov 2023 09:01:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701190907; x=1701795707; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9PqjX8MOTxb1SOKCk/xBi+5E9akrq+S2fSUS82B/9Jw=;
-        b=H9pKmYpwkbTQw9ARYG2xZMJP3khjDaaN71Bbvr0SfQ7hslNjQLUzDzpWNI6kkCJBox
-         bvl3bg1QZOw5NRHj0ctLivTy7GQWqJpiTuRBWMyv082rAFgSSO2a6LVHYu7SDspQZ6It
-         QcaawZkfaN6jpTVjewV0kxMWqaZdSGHjXHFKgB/+wfbRK72N9f44b1MDn9eegqlsn3I5
-         u2wh/916Tm+W0FcnE8CLz2hYD9LSqO6GVDklplfFwUtLA4uP2HuMY2LX1IT9ZGKYoYGB
-         BrZQW8qgWxn3yjP8MMU2eCHQ56AMIYQ5NfMX7CjD9etCh2G2xsTdA5nkjMrGEQKmVPqM
-         L87w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701190907; x=1701795707;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9PqjX8MOTxb1SOKCk/xBi+5E9akrq+S2fSUS82B/9Jw=;
-        b=uF3lZbO0gb0+PTM3f9Cxop0FCpjzAIBJpn41bExgtIh7EzjhGV3HxEyA4OzxqLtiCn
-         IfNtvQgRsneKs8hqs5qHpyF5VR94/wUMeUAWLlHFMQSysdqhJn2lXa8H06tsqZsbFeIr
-         JmuIWKChQIx+5B+7ge8WystTH/hdjr8xKRBLKZAnxW+J0Dfy2L+YT9AxKaNAz7Qr0jf3
-         0VjwIk7mbiDRVAyJRu6rxHKZ1K/QxgpBvhyg0INIfzmsSgt/2SfJJcKdRuuTHRs8Pend
-         aDK+hIuHPa29jiMWXjOJMd31ufDGzXGL/UV20QV4aUqENaAU2PjXc9/qM+a6QJZ4vioB
-         4Rvw==
-X-Gm-Message-State: AOJu0YwQAMtc76g98TeSXuKpOWACaPTFt8bpOLtHVb+9gmTWH7nVbxKb
-	wCt8lIVj7yhnVdGLNfaI9YIY+bOlQzVe7WqTpKmCZSH9Jf0=
-X-Google-Smtp-Source: AGHT+IEMZ3vVr6Jl4jSd075/USecySxeDQcTTDwr/o/Vk4iia4tS13RutWkwZH6QfLRK6EpZ7s8lHcNMTPCB4mP0c7o=
-X-Received: by 2002:a05:6214:8ea:b0:675:3fed:ed with SMTP id
- dr10-20020a05621408ea00b006753fed00edmr16716189qvb.44.1701190906747; Tue, 28
- Nov 2023 09:01:46 -0800 (PST)
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17D2E10EC;
+	Tue, 28 Nov 2023 09:16:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+	s=s31663417; t=1701191747; x=1701796547; i=wahrenst@gmx.net;
+	bh=maOiArq4lqAX4+xV7TPj1wR2WBNTVksblNESsIfRoYs=;
+	h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:
+	 In-Reply-To;
+	b=JO6moXBaS6SH9G3V9DptSvR4tGJvqUlOZFkmVOOgTN4rOUI741S0JWm/VPjwt0Tb
+	 gSCexjhgxnDc8It8asyJlyLWWXMdekdvW22Gkhnw3D5wK7rRb6Ud5Kpu9/DlNi4VI
+	 PqxQQj5bICaEtvfBPmQOGQIY4S+9lmX8c+HDla1TmEz7tDXkE57pVSx6wtbGzWOuy
+	 qYKE5yo7SqQR/s1klYs+3thVmalx8ynzXGkG8ABWVTCWI98jvNHCSYMW2jhiHzqrq
+	 zRGrpS9hkdQtgHGg4ysLVSzmf3eIja+f8KKkUP70IgtqrdefKmKaV/XLmSL5cg5Bj
+	 KOfStFd24h3mfIJrPQ==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.129] ([37.4.248.43]) by mail.gmx.net (mrgmx004
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1N6KYl-1rNtpC3Sm1-016bwg; Tue, 28
+ Nov 2023 18:15:47 +0100
+Message-ID: <ea5cd81f-2488-49ad-96fe-732bdb75bcb7@gmx.net>
+Date: Tue, 28 Nov 2023 18:15:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231124-ltc4282-support-v2-2-952bf926f83c@analog.com>
- <202311250548.lUn3bm1A-lkp@intel.com> <fb2aaa4c69c88738499dfbf46ef93e3b81ca93cb.camel@gmail.com>
- <76957975-56e7-489e-9c79-086b6c1ffe89@kernel.org> <ac950d01-d9aa-4fb7-810d-b21335e4cc94@kernel.org>
- <ZWS90GQTJWA7DrML@smile.fi.intel.com> <bcc5da24-7243-42fa-a82b-48851ce17c0c@kernel.org>
-In-Reply-To: <bcc5da24-7243-42fa-a82b-48851ce17c0c@kernel.org>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Tue, 28 Nov 2023 19:01:10 +0200
-Message-ID: <CAHp75VdwiFLBtxm6vpM1dmrw_UTJ6cZSHQ0yQwKD1ngag7JRDw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] hwmon: ltc4282: add support for the LTC4282 chip
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Andy Shevchenko <andy@kernel.org>, =?UTF-8?B?TnVubyBTw6E=?= <noname.nuno@gmail.com>, 
-	kernel test robot <lkp@intel.com>, 
-	Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org>, linux-hwmon@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-doc@vger.kernel.org, 
-	oe-kbuild-all@lists.linux.dev, Jean Delvare <jdelvare@suse.com>, 
-	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Linus Walleij <linus.walleij@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V2 1/2] leds: gpio: Add kernel log if
+ devm_fwnode_gpiod_get fails
+To: Bartosz Golaszewski <brgl@bgdev.pl>,
+ Linus Walleij <linus.walleij@linaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>, Pavel Machek
+ <pavel@ucw.cz>, "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+ Lee Jones <lee@kernel.org>, bcm-kernel-feedback-list@broadcom.com,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-leds@vger.kernel.org
+References: <20231118124252.14838-1-wahrenst@gmx.net>
+ <20231118124252.14838-2-wahrenst@gmx.net>
+ <ZVtHZWYl2skpn1Bg@smile.fi.intel.com>
+ <9a9486bb-e737-4384-a581-76880b709758@gmx.net>
+ <ZVtS4phUMmDD9ztz@smile.fi.intel.com>
+ <CAMRc=MdpegfNrjWkeGSh8NhT_Go+q5MxueASxrLo18XBJaBsjA@mail.gmail.com>
+Content-Language: en-US
+From: Stefan Wahren <wahrenst@gmx.net>
+In-Reply-To: <CAMRc=MdpegfNrjWkeGSh8NhT_Go+q5MxueASxrLo18XBJaBsjA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:4m4QEg+I8vyFzRjFrJ62aPz6bOgv4kPcQxcJ7XjhW+1Ptj1Yi/2
+ 2HtKVcCUKOmjBhQOjnhiV7J75ioDY3YL0bYk3cJfNcuRhwrG4gMaD6/dWO8MAgvsMSp6bu0
+ UYStDiCogEzJ7gjugb+enlpsrDmCNq8H8LKytEwAXzKEIZrM9bcZ7yDPmUI6DYRFj51isH+
+ yNxyEv4KDJd7uA0J4sDEg==
+UI-OutboundReport: notjunk:1;M01:P0:TKb5+phzamk=;BBTxx7m7CQdViNihSrf/HaX1Bs5
+ 6EuigWbKXvlYF/sUbpdYbaa9/hxk6HgFwewb0PxFxX4jU76loPoNnCCbf1sh34FA6MUZAKE0J
+ 5C50707VTbvNQS+KjYwkgcHHZGevsvxyEaIi6Xc/hI0IZGuc9ZiMqhFe+Lu0xbLnUsnEt22Wt
+ ejzxUPQvqoecVcst012iOEO1H8VztjvgnxywMUtJi+TnOS1/m8HKCTBBnKqW/qshNydG9A2eL
+ eCDvoU1WqY4eiCCP3wJDDqIt/3JQLV6YI8o3aQbr9Yj5NQ3LJBBxa5IBBh995nP7Kwi6vV3Ws
+ m5LzrmvdCWK26Zgo45w3iR+PUOq+OJE+HdEuc8GAQDj3SeXD+v6Gn2UlhNXaIqPekxExghSeV
+ Ct+xR1SoF5wj6owEmKSilUJqHLR5wBlI67RSXGPs7UFWinl/BghUA4JU485FNS0UEAR1RLmmZ
+ exAwFVfQ3+t2wUsO0R2jBKpnUeRB7FZs/0MlwR4TSZabD1CF1GZ5bwDmFTjH3FS6JozuPSm5c
+ CSp5IwBZCtZcur2S1NxQncZOyj4PX7NMbWUSgy0fOYFxlAomdcwo+mjcmKPciClfj9ca3QEtM
+ +cybXr/Bm6Ojhrf3g5y4+NMyX8sN3Vg1Ic3cO02MyoLOpVSmbGQWoiK71NKF0gu64D7uVS+4d
+ G+DW5vN5AhCZQOnlgCYYM6FA1LW+d8KxQkRXNp2ENRYlrC5PQy3H4AShPRAkAgiuSFPGRr9Bq
+ UtGyCVFaRDGFOQUgoIdQsVHoFcekPjQ8Rhzggk52agmoqGnom93u5FkhbX8wlll4a4Lovg+AI
+ JPVu8b638rb28SY1E5RsBIM5q0jGeFS1yi3xOmrfXidGWDjp0iTZaTm+W2h9rYpAww5Ugeqz+
+ IrSjtAAM7VSSwWndJCNCiBehJMOygPyvrL7OXpx44F9JKDAqidI/Q1v8sERL6EryUtCAoN4GH
+ yEayVMXnAdngDfqAnPdGI1BmhVQ=
 
-On Tue, Nov 28, 2023 at 6:51=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
-> On 27/11/2023 17:03, Andy Shevchenko wrote:
-> > On Mon, Nov 27, 2023 at 09:12:14AM +0100, Krzysztof Kozlowski wrote:
-> >> On 27/11/2023 09:10, Krzysztof Kozlowski wrote:
-
-...
-
-> >> Wait, this was not even unusual test, just standard compile, which mea=
-ns
-> >> you did not do basic tests on your end. You must build your new driver
-> >> with W=3D1, smatch, sparse and coccinelle before sending upstream.
-> >
-> > Well, sparse is lagging in development, for the last year it's at least=
- two
-> > times it broke kernel builds because of being not ready for the new stu=
-ff used
-> > in the kernel. Do we have anybody to sync this? I don't think so, hence
-> > requiring this from developer is doubtful. Otherwise I agree, that basi=
-c
-> > compilation with GCC/LLVM must be done.
+Am 22.11.23 um 11:52 schrieb Bartosz Golaszewski:
+> On Mon, Nov 20, 2023 at 1:36=E2=80=AFPM Andy Shevchenko
+> <andriy.shevchenko@linux.intel.com> wrote:
+>> On Mon, Nov 20, 2023 at 01:02:55PM +0100, Stefan Wahren wrote:
+>>> Am 20.11.23 um 12:47 schrieb Andy Shevchenko:
+>>>> On Sat, Nov 18, 2023 at 01:42:51PM +0100, Stefan Wahren wrote:
+>>>>> In case leds-gpio fails to get the GPIO from the DT (e.g. the GPIO i=
+s
+>>>>> already requested) the driver doesn't provide any helpful error log:
+>>>>>
+>>>>>       leds-gpio: probe of leds failed with error -16
+>>>>>
+>>>>> So add a new error log in case devm_fwnode_gpiod_get() fails.
+>> ...
+>>
+>>>>>                    led.gpiod =3D devm_fwnode_gpiod_get(dev, child, N=
+ULL, GPIOD_ASIS,
+>>>>>                                                      NULL);
+>>>>>                    if (IS_ERR(led.gpiod)) {
+>>>>> +                 dev_err_probe(dev, PTR_ERR(led.gpiod), "Failed to =
+get gpio '%pfw'\n",
+>>>>> +                               child);
+>>>>>                            fwnode_handle_put(child);
+>>>>>                            return ERR_CAST(led.gpiod);
+>>>>>                    }
+>>>> Thinking more about it. GPIO library already issues bunch of messages=
+.
+>>>>
+>>>>      "using DT ... for ... GPIO lookup"
+>>>>      "using lookup tables for GPIO lookup"
+>>>>      "No GPIO consumer ... found"
+>>> are these errors or debug messages?
+>> Indeed they are on debug level.
+>>
+>>> I cannot remember that i saw any of them on info level in my case of a=
+n
+>>> already allocated pin (see patch 2).
+>>>
+>>> I'm open to place the log within gpiolib, if this a better place.
+>> I'm not sure, let's hear GPIO maintainers for that.
+>>
+> Hard to tell which method is preferred among all the subsystems.
+> Personally I'm more inclined towards letting drivers decide whether to
+> emit an error message and only emit our own when an error cannot be
+> propagated down the stack.
 >
-> Sparse still detects several issues and handles lock annotations, so it
-> is useful.
+> Linus: Any thoughts?
+gentle ping ...
+>
+> Bart
+>
+>>>> Isn't it enough?
+>> --
+>> With Best Regards,
+>> Andy Shevchenko
+>>
+>>
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
 
-Absolutely.
-
-> But if you disagree with that part, I still insist on Smatch
-> (which is actively developed and works great) and Coccinelle (also
-> actively developed).
-
-No disagreement on the usefulness of the sparse, my point is that its
-development is lagging and hence diminishes the value of the tool to
-the developer.
-
---=20
-With Best Regards,
-Andy Shevchenko
 
