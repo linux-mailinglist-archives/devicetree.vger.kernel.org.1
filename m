@@ -1,172 +1,194 @@
-Return-Path: <devicetree+bounces-19715-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19713-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D7617FBE6F
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 16:48:09 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC5F37FBE64
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 16:46:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BC12E281C92
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 15:48:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 50C7AB20E36
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 15:46:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DE571E4AE;
-	Tue, 28 Nov 2023 15:48:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 349ED1E4AC;
+	Tue, 28 Nov 2023 15:46:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="WZ1m+bv3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SWMPbqs9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10F3D10CB;
-	Tue, 28 Nov 2023 07:48:00 -0800 (PST)
-Received: from [100.116.17.117] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: cristicc)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 044FB66072A4;
-	Tue, 28 Nov 2023 15:47:56 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1701186478;
-	bh=Vl9zpAwbMrEUnNNnWPnj5b4a/P1lPAcyNOVXcUWIhSQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=WZ1m+bv3Q0Jy/chYrN3+dL6SjUX316Z3dvRGEOz4Z2BNnoEIB8lbkgymUNP1nB+DY
-	 yBt948VB2I8zNuO1IADb9n7TxWTa9EHrVxKKDplAGyoFlNciITQ0Q8yW3VnhzeUzD7
-	 sWQLNGT0RAW2oFegXZAlnU0fP7FLNYj+o0/lMm41osUFrCQUv35dADby9b1MMFmVos
-	 UrkWS3AyWavs3NLKUwXuoDzW5zqFSo5DDsQiEwdX8D0mBA8c4DxP4Qu8gM22+jZeLW
-	 Uq3/uRu+1s1+JMOdQK44JYhcUxIj4pzfBcyAOSGSgHedjE/N0rnKFVk0u7NsGkLyz9
-	 fO+ArihKVLK3A==
-Message-ID: <054bbf2a-e7ba-40bf-8f8b-f0e0e9b396c6@collabora.com>
-Date: Tue, 28 Nov 2023 17:47:54 +0200
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B9ECC5;
+	Tue, 28 Nov 2023 07:46:46 -0800 (PST)
+Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-332e40322f0so3505182f8f.3;
+        Tue, 28 Nov 2023 07:46:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1701186404; x=1701791204; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=eaSqohHugtt6grw6CEKXWSAnRWopnEUVV/N+wIwdxWQ=;
+        b=SWMPbqs9ng1eB6exXFiWps/Of1W0zWcMVl40ANAUMY6CFq3ffjDiQA7iIBlpics069
+         on0aUhJCLr18i+WfqDYdeTz3DAEodZZ52KMRzWDA2S4TJDym/wIkqrjrGOYZ/U4YlXVF
+         31594k8MtqLzpnbpTFI4to1c+2bb8MvS12csrxeKtwvVHYFqEjUT/BeMKWIb92CkgMjo
+         r5k7ol9pj5CV/EMx35++IbdMK2EOeKAAEyaBNJ9+kgy8UtBvrJxRkSrh1NYu89AjjNTb
+         Up0pGXfUNPsd377Lkx2vIRhDrCeOW0hNBNIHvSa78U2Y6uwNviVm2CsDzZR5qhk9flZJ
+         xC4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701186404; x=1701791204;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=eaSqohHugtt6grw6CEKXWSAnRWopnEUVV/N+wIwdxWQ=;
+        b=shFPklkm3JMSoG4oF1vrA1Myv3iKEnSdVkgALhE8SWTfe9QFN1aI3tKMXbpzzDETOr
+         4z39n5sTzEiEIg9YpdUQycCLt/rhwm5pgkQn6oSbU580ETuLrox5VK6b+f6++ENtT+Ai
+         1Oue6gpDGTZXYY2qCGcysjEySANJxBJM6T7cif8Z3gkSplGos7kA2QzUb4U8wnlIwm8Y
+         zQO4mjB5XAlBOZCD6Rd97ETNtwKQZhi97giLJXal7zd1qbiJAXkv2PIM8Y/o0qrfANLF
+         pb8fNna5UWfiOmzQrARrzB9HaNWKO8nBkOxfw1mWBvPI+HkGyQBfm5eMWzE1Hm+ryRq8
+         tsfg==
+X-Gm-Message-State: AOJu0YwvcLIfqHBsxUcgCPlBYqXW7SQ+PLOnrsozpgLC5xQoMtyeQHTF
+	IbxcwtSn5MMCi50O881qMsE=
+X-Google-Smtp-Source: AGHT+IHuXzZ/2bcrZP6mKjeZQFKF3z9OOwNPyxBC+M2EUC+TojqMO8yb/JYBs7Ci1biEYfYlmxZPEQ==
+X-Received: by 2002:adf:fa8d:0:b0:333:12f9:d381 with SMTP id h13-20020adffa8d000000b0033312f9d381mr746477wrr.36.1701186403956;
+        Tue, 28 Nov 2023 07:46:43 -0800 (PST)
+Received: from ?IPv6:2003:f6:ef1b:2000:4423:d503:bf11:e8c6? (p200300f6ef1b20004423d503bf11e8c6.dip0.t-ipconnect.de. [2003:f6:ef1b:2000:4423:d503:bf11:e8c6])
+        by smtp.gmail.com with ESMTPSA id o10-20020adfcf0a000000b00332cda91c85sm15264190wrj.12.2023.11.28.07.46.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Nov 2023 07:46:43 -0800 (PST)
+Message-ID: <e4147e797ee2a35092f4dbf9e8687fb63f7a8c5a.camel@gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: Add LTC4282 bindings
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Rob Herring <robh@kernel.org>, Nuno Sa <nuno.sa@analog.com>
+Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-doc@vger.kernel.org, Jean Delvare <jdelvare@suse.com>, Guenter Roeck
+ <linux@roeck-us.net>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley <conor+dt@kernel.org>,
+ Jonathan Corbet <corbet@lwn.net>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+ Linus Walleij <linus.walleij@linaro.org>, Andy Shevchenko <andy@kernel.org>
+Date: Tue, 28 Nov 2023 16:49:43 +0100
+In-Reply-To: <20231128153733.GA3313427-robh@kernel.org>
+References: <20231124-ltc4282-support-v2-0-952bf926f83c@analog.com>
+	 <20231124-ltc4282-support-v2-1-952bf926f83c@analog.com>
+	 <20231128153733.GA3313427-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 12/12] [UNTESTED] riscv: dts: starfive:
- beaglev-starlight: Enable gmac
-Content-Language: en-US
-To: Emil Renner Berthing <emil.renner.berthing@canonical.com>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Emil Renner Berthing <kernel@esmil.dk>,
- Samin Guo <samin.guo@starfivetech.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Jose Abreu <joabreu@synopsys.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Richard Cochran <richardcochran@gmail.com>,
- Giuseppe Cavallaro <peppe.cavallaro@st.com>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, kernel@collabora.com
-References: <20231029042712.520010-1-cristian.ciocaltea@collabora.com>
- <20231029042712.520010-13-cristian.ciocaltea@collabora.com>
- <CAJM55Z9e=vjGKNnmURN15mvXo2bVd3igBA-3puF9q7eh5hiP+A@mail.gmail.com>
- <2f06ce36-0dc1-495e-b6a6-318951a53e8d@collabora.com>
- <CAJM55Z8vkMbqXY5sS2o4cLi8ow-JQTcXU9=uYMBSykwd4ppExw@mail.gmail.com>
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-In-Reply-To: <CAJM55Z8vkMbqXY5sS2o4cLi8ow-JQTcXU9=uYMBSykwd4ppExw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 
-On 11/28/23 14:08, Emil Renner Berthing wrote:
-> Cristian Ciocaltea wrote:
->> On 11/26/23 23:10, Emil Renner Berthing wrote:
->>> Cristian Ciocaltea wrote:
->>>> The BeagleV Starlight SBC uses a Microchip KSZ9031RNXCA PHY supporting
->>>> RGMII-ID.
->>>>
->>>> TODO: Verify if manual adjustment of the RX internal delay is needed. If
->>>> yes, add the mdio & phy sub-nodes.
->>>
->>> Sorry for being late here. I've tested that removing the mdio and phy nodes on
->>> the the Starlight board works fine, but the rx-internal-delay-ps = <900>
->>> property not needed on any of my VisionFive V1 boards either.
->>
->> No problem, thanks a lot for taking the time to help with the testing!
->>
->>> So I wonder why you need that on your board
->>
->> I noticed you have a patch 70ca054e82b5 ("net: phy: motorcomm: Disable
->> rgmii rx delay") in your tree, hence I you please confirm the tests were
->> done with that commit reverted?
->>
->>> Also in the driver patch you add support for phy-mode = "rgmii-txid", but here
->>> you still set it to "rgmii-id", so which is it?
->>
->> Please try with "rgmii-id" first. I added "rgmii-txid" to have a
->> fallback solution in case the former cannot be used.
-> 
-> Ah, I see. Sorry I should have read up on the whole thread. Yes, the Starlight
-> board with the Microchip phy works with "rgmii-id" as is. And you're right,
-> with "rgmii-id" my VF1 needs the rx-internal-delay-ps = <900> property too.
+On Tue, 2023-11-28 at 09:37 -0600, Rob Herring wrote:
+> On Fri, Nov 24, 2023 at 03:18:16PM +0100, Nuno Sa wrote:
+> > Add bindings for the LTC4282 High Current Hot Swap Controller with I2C
+> > Compatible Monitoring.
+> >=20
+> > Signed-off-by: Nuno Sa <nuno.sa@analog.com>
+> > ---
+> > =C2=A0.../devicetree/bindings/hwmon/adi,ltc4282.yaml=C2=A0=C2=A0=C2=A0=
+=C2=A0 | 206
+> > +++++++++++++++++++++
+> > =C2=A0MAINTAINERS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 6 +
+> > =C2=A02 files changed, 212 insertions(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/hwmon/adi,ltc4282.yaml
+> > b/Documentation/devicetree/bindings/hwmon/adi,ltc4282.yaml
+> > new file mode 100644
+> > index 000000000000..6c979f70687e
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/hwmon/adi,ltc4282.yaml
+> > @@ -0,0 +1,206 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/hwmon/adi,ltc4282.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Analog Devices LTC4282 I2C High Current Hot Swap Controller ove=
+r I2C
+> > +
+> > +maintainers:
+> > +=C2=A0 - Nuno Sa <nuno.sa@analog.com>
+> > +
+> > +description: |
+> > +=C2=A0 Analog Devices LTC4282 I2C High Current Hot Swap Controller ove=
+r I2C.
+> > +
+> > +=C2=A0
+> > https://www.analog.com/media/en/technical-documentation/data-sheets/ltc=
+4282.pdf
+> > +
+> > +properties:
+> > +=C2=A0 compatible:
+> > +=C2=A0=C2=A0=C2=A0 enum:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - adi,ltc4282
+> > +
+> > +=C2=A0 reg:
+> > +=C2=A0=C2=A0=C2=A0 maxItems: 1
+> > +
+> > +=C2=A0 vdd-supply: true
+> > +
+> > +=C2=A0 clocks:
+> > +=C2=A0=C2=A0=C2=A0 maxItems: 1
+> > +
+> > +=C2=A0 '#clock-cells':
+> > +=C2=A0=C2=A0=C2=A0 const: 0
+> > +
+> > +=C2=A0 adi,rsense-nano-ohms:
+> > +=C2=A0=C2=A0=C2=A0 description: Value of the sense resistor.
+> > +
+> > +=C2=A0 adi,vin-mode-microvolt:
+> > +=C2=A0=C2=A0=C2=A0 description:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Selects operating range for the Undervo=
+ltage, Overvoltage and
+> > Foldback
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pins. Also for the ADC. Should be set t=
+o the nominal input voltage.
+> > +=C2=A0=C2=A0=C2=A0 enum: [3300000, 5000000, 12000000, 24000000]
+> > +=C2=A0=C2=A0=C2=A0 default: 12000000
+> > +
+> > +=C2=A0 adi,fet-bad-timeout-ms:
+> > +=C2=A0=C2=A0=C2=A0 description:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 From the moment a FET bad conditions is=
+ present, this property
+> > selects the
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 wait time/timeout for a FET-bad fault t=
+o be signaled. Setting this to
+> > 0,
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 disables FET bad faults to be reported.
+> > +=C2=A0=C2=A0=C2=A0 default: 255
+> > +=C2=A0=C2=A0=C2=A0 maximum: 255
+> > +
+> > +=C2=A0 adi,overvoltage-dividers:
+> > +=C2=A0=C2=A0=C2=A0 description: |
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Select which dividers to use for VDD Ov=
+ervoltage detection. Note that
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 when the internal dividers are used the=
+ threshold is referenced to
+> > VDD.
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 The percentages in the datasheet are mi=
+sleading since the actual
+> > values
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 to look for are in the "Absolute Maximu=
+m Ratings" table in the
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "Comparator Inputs" section. In there t=
+here's a line for each of the
+> > 5%,
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 10% and 15% settings with the actual mi=
+n, typical and max tolerances.
+> > +=C2=A0=C2=A0=C2=A0 $ref: /schemas/types.yaml#/definitions/string
+> > +=C2=A0=C2=A0=C2=A0 enum: [external, vdd_5_percent, vdd_10_percent, vdd=
+_15_percent]
+> > +=C2=A0=C2=A0=C2=A0 default: 0
+>=20
+> Default is an integer yet the type is a string?
 
-That's great, we have now a pretty clear indication that this uncommon behavior
-stems from the Motorcomm PHY, and *not* from GMAC.
- 
->>
->>> You've alse removed the phy reset gpio on the Starlight board:
->>>
->>>   snps,reset-gpios = <&gpio 63 GPIO_ACTIVE_LOW>
->>>
->>> Why?
->>
->> I missed this in v1 as the gmac handling was done exclusively in
->> jh7100-common. Thanks for noticing!
->>
->>>>
->>>> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
->>>> ---
->>>>  arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dts | 5 +++++
->>>>  1 file changed, 5 insertions(+)
->>>>
->>>> diff --git a/arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dts b/arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dts
->>>> index 7cda3a89020a..d3f4c99d98da 100644
->>>> --- a/arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dts
->>>> +++ b/arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dts
->>>> @@ -11,3 +11,8 @@ / {
->>>>  	model = "BeagleV Starlight Beta";
->>>>  	compatible = "beagle,beaglev-starlight-jh7100-r0", "starfive,jh7100";
->>>>  };
->>>> +
->>>> +&gmac {
->>>> +	phy-mode = "rgmii-id";
->>>> +	status = "okay";
->>>> +};
->>>
->>> Lastly the phy-mode and status are the same for the VF1 and Starlight boards,
->>> so why can't these be set in the jh7100-common.dtsi?
->>
->> I wasn't sure "rgmii-id" can be used for both boards and I didn't want
->> to unconditionally enable gmac on Starlight before getting a
->> confirmation that this actually works.
->>
->> If there is no way to make it working with "rgmii-id" (w/ or w/o
->> adjusting rx-internal-delay-ps), than we should switch to "rgmii-txid".
-> 
-> Yeah, I don't exactly know the difference, but both boards seem to work fine
-> with "rgmii-id", so if that is somehow better and/or more correct let's just go
-> with that.
+Argh, another leftover from v1. Thanks for catching it... Will change it in=
+ v3.
 
-As Andrew already pointed out, going with "rgmii-id" would be the recommended
-approach, as this passes the responsibility of adding both TX and RX delays to
-the PHY.  "rgmii-txid" requires the MAC to handle the RX delay, which might
-break the boards having a conformant (aka well-behaving) PHY.  For some reason
-the Microchip PHY seems to work fine in both cases, but that's most likely an
-exception, as other PHYs might expose a totally different and undesired
-behavior.
-
-I will prepare a v3 soon, and will drop the patches you have already submitted
-as part of [1].
-
-Thanks again for your support, 
-Cristian
-
-[1]: https://lore.kernel.org/all/20231126232746.264302-1-emil.renner.berthing@canonical.com/
+- Nuno S=C3=A1
+>=20
 
