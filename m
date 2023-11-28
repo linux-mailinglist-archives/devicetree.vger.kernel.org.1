@@ -1,129 +1,132 @@
-Return-Path: <devicetree+bounces-19754-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19755-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C9627FC475
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 20:52:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EFB07FC483
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 20:58:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD1021C20D1C
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 19:52:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DF2BC282D30
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 19:58:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91ACE3D0CE;
-	Tue, 28 Nov 2023 19:52:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F01713D0D0;
+	Tue, 28 Nov 2023 19:58:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="BWFbCeo0"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="qUqZ/7Wi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A92641988;
-	Tue, 28 Nov 2023 11:52:22 -0800 (PST)
-Received: from notapiano (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nfraprado)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id EC19B6602F2B;
-	Tue, 28 Nov 2023 19:52:16 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1701201140;
-	bh=lTlr8qen9KRZ2EZ5Mj/C5s4YyiYXfeKPKLVSZIrbTaI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BWFbCeo0pR89kb8EP/q48zvjI3cmzqzkOP5Ssg6KCYoxmkYsWhGw7YnYwnK0Ydqx9
-	 shS65Zdg/bf6ykTyCPIAoN+VgUo6f2E5W0QcfQUeciCr3rka0YrpUzn+HSv/Bj7Zct
-	 H7Infuv8i02YACPgJR2RW94Pq1aXDa0SK6yC1DMGOERLw6n3KijfKvg4e7UliZB2FY
-	 gALs+B7NKhpeP+t7oyOtEriPW0ZcVjhpIUPqzuejbdo7CDI5XAGpOkkGmtxmvMbKR9
-	 Y183UDfOcNi0JPgzAIknumKFCAi/HtwqTGlS66GpmKmxmcaHod/LOIaopU07q5hAKg
-	 UIW+brHODLCag==
-Date: Tue, 28 Nov 2023 14:52:12 -0500
-From: =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>
-To: "Bird, Tim" <Tim.Bird@sony.com>
-Cc: Shuah Khan <shuah@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	"kernelci@lists.linux.dev" <kernelci@lists.linux.dev>,
-	David Gow <davidgow@google.com>,
-	Guenter Roeck <groeck@chromium.org>,
-	"linux-kselftest@vger.kernel.org" <linux-kselftest@vger.kernel.org>,
-	"linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-	"kernel@collabora.com" <kernel@collabora.com>,
-	Dan Carpenter <dan.carpenter@linaro.org>,
-	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-	Doug Anderson <dianders@chromium.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [RFC PATCH v2 2/2] kselftest: devices: Add sample board file for
- google,spherion
-Message-ID: <3f22eea4-121d-4d5b-b7af-71961a2ab5e9@notapiano>
-References: <20231127233558.868365-1-nfraprado@collabora.com>
- <20231127233558.868365-3-nfraprado@collabora.com>
- <BN8PR13MB27384F089C7DAAF06DF9DDECFDBCA@BN8PR13MB2738.namprd13.prod.outlook.com>
- <ee913bc5-c752-4da7-a140-7492f429c2cb@notapiano>
- <BN8PR13MB273808C3B81BABBAADACC6B6FDBCA@BN8PR13MB2738.namprd13.prod.outlook.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE7C41988;
+	Tue, 28 Nov 2023 11:58:42 -0800 (PST)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3ASJwXmp110777;
+	Tue, 28 Nov 2023 13:58:33 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1701201513;
+	bh=LWN6v5FKtTG8d7oiQpM3iasrj1YmTLn/Pg9INJ+EZ4E=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=qUqZ/7WieKe0EnqYvIVtJNPGokjrWQl0BOKLx/EYZzKQnXLV3uaxYiIJFmWzUrPvH
+	 9kgpQRWYcqFWsRAmSfYaJ9CXvNUr0PN162LjGNSzOd7xdbuLd84vuytuQsdeRWvIzB
+	 FBSOqWOfKHotWx97ak94cYTX+qHw3Ad95bfY5Qw8=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3ASJwXNU036315
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 28 Nov 2023 13:58:33 -0600
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 28
+ Nov 2023 13:58:33 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 28 Nov 2023 13:58:33 -0600
+Received: from [128.247.81.105] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3ASJwXIi031771;
+	Tue, 28 Nov 2023 13:58:33 -0600
+Message-ID: <6eab794f-a5cf-455a-9b49-bc73259bd58e@ti.com>
+Date: Tue, 28 Nov 2023 13:58:33 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] arm64: dts: ti: k3-am62a-main: Add sdhci0 instance
+To: Nitin Yadav <n-yadav@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
+        <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20231030063108.1242981-1-n-yadav@ti.com>
+ <20231030063108.1242981-2-n-yadav@ti.com>
+ <4953b4e5-0f9c-4a3a-ae69-40716750cb40@ti.com>
+ <db70f42e-0296-4f36-ac97-2ecf38b84f51@ti.com>
+Content-Language: en-US
+From: Judith Mendez <jm@ti.com>
+In-Reply-To: <db70f42e-0296-4f36-ac97-2ecf38b84f51@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <BN8PR13MB273808C3B81BABBAADACC6B6FDBCA@BN8PR13MB2738.namprd13.prod.outlook.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Tue, Nov 28, 2023 at 05:54:57PM +0000, Bird, Tim wrote:
-> > -----Original Message-----
-> > From: N�colas F. R. A. Prado <nfraprado@collabora.com>
-> > On Tue, Nov 28, 2023 at 12:10:46AM +0000, Bird, Tim wrote:
-> > > > -----Original Message-----
-> > > > From: N�colas F. R. A. Prado <nfraprado@collabora.com>
-> > > > Add a sample board file describing the file's format and with the list
-> > > > of devices expected to be probed on the google,spherion machine as an
-> > > > example.
-> > > >
-> > > > Signed-off-by: N�colas F. R. A. Prado <nfraprado@collabora.com>
-> > > > ---
-> > > >
-> > > > (no changes since v1)
-> > > >
-> > > >  .../testing/selftests/devices/boards/google,spherion | 12 ++++++++++++
-> > >
-> > > Overall, while trying to maintain a comprehensive set of board definitions
-> > > seems hard, I think having a few as examples is useful.
-> > >
-> > > I'm not a big fan of naming these with a comma in the name.  Is there a reason
-> > > you are not using dash or underscore?
-> > 
-> > I'm using the name that we get from the DT compatible, so the right file can be
-> > automatically selected by the test.
-> > 
-> > >
-> > > Do you anticipate a convention of  <producer> <board-or-product-name> tuples for
-> > > the filename?
-> > 
-> > I'd just stick to the DT compatible as it's the simplest option and should work
-> > just the same, assuming I understood correctly what you mean.
+Hi Nitin,
+
+On 11/27/23 10:39 PM, Nitin Yadav wrote:
 > 
-> OK - I see that was mentioned in the original submission.  I should
-> have read more closely.
 > 
-> It makes sense.  Maybe it's worth mentioning in the commit message that the
-> filename is the compatible string from the DT for this board?
-> 
-> This convention, IMHO, should be documented somewhere.
+> On 11/28/2023 3:11 AM, Judith Mendez wrote:
+>> On 10/30/23 1:31 AM, Nitin Yadav wrote:
+>>> Add sdhci0 DT node in k3-am62a-main for eMMC support. Droping
+>>> ITAP values as they are NA in datasheet[0] for lower speed modes.
+>>>
+>>> [0]https://www.ti.com/lit/gpn/am62a3 Table: 7-79 (Page No. 179)
+>>>
+>>
+>> Minor comment below. All else looks good to me.
+>>
+>> Reviewed by: Judith Mendez <jm@ti.com>
+>>
+>>> Signed-off-by: Nitin Yadav <n-yadav@ti.com>
+>>> ---
+>>>    arch/arm64/boot/dts/ti/k3-am62a-main.dtsi | 19 +++++++++++++++++++
+>>>    1 file changed, 19 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
+>>> index de36abb243f1..89b8b7d302cd 100644
+>>> --- a/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
+>>> +++ b/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
+>>> @@ -488,6 +488,25 @@ main_gpio1: gpio@601000 {
+>>>            status = "disabled";
+>>>        };
+>>>    +    sdhci0: mmc@fa10000 {
+>>> +        compatible = "ti,am62-sdhci";
+>>> +        reg = <0x00 0xfa10000 0x00 0x260>, <0x00 0xfa18000 0x00 0x134>;
+>>> +        interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
+>>> +        power-domains = <&k3_pds 57 TI_SCI_PD_EXCLUSIVE>;
+>>> +        clocks = <&k3_clks 57 5>, <&k3_clks 57 6>;
+>>> +        clock-names = "clk_ahb", "clk_xin";
+>>> +        assigned-clocks = <&k3_clks 57 6>;
+>>> +        assigned-clock-parents = <&k3_clks 57 8>;
+>>> +        mmc-hs200-1_8v;
+>>> +        ti,trm-icp = <0x2>;
+>>> +        ti,otap-del-sel-legacy = <0x0>;
+>>> +        ti,otap-del-sel-mmc-hs = <0x0>;
+>>> +        ti,otap-del-sel-hs200 = <0x6>;
+>>
+>> I am wondering why DDR52 speed mode was not added?
+> plz refer datasheet. No mention of DDR52 in this revised addition.
+I believe it is mentioned in the RIOT, not datasheet.
 
-I have that as part of the comment at the top of the test script in patch 1:
+>>
+>>> +        bus-width = <8>;
+>>> +        ti,clkbuf-sel = <0x7>;
+>>> +        status = "disabled";
+>>> +    };
+>>> +
+>>>        sdhci1: mmc@fa00000 {
+>>>            compatible = "ti,am62-sdhci";
+>>>            reg = <0x00 0xfa00000 0x00 0x260>, <0x00 0xfa08000 0x00 0x134>;
+>>
+>> ~ Judith
 
-# The per-platform list of devices to be tested is stored inside the boards/
-# directory and chosen based on compatible.
-
-And also in the commit message of patch 1.
-
-But I guess this sample file is the most likely one to be read when someone
-writes a new board file, so I'll document it here too for next version.
-
-Thanks,
-N�colas
 
