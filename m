@@ -1,195 +1,126 @@
-Return-Path: <devicetree+bounces-19591-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19593-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EFF37FB640
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 10:48:56 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8E057FB64C
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 10:51:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5B586282754
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 09:48:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E96D31C210B8
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 09:51:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7FE94A9B1;
-	Tue, 28 Nov 2023 09:48:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 124724B5B4;
+	Tue, 28 Nov 2023 09:51:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernkonzept.com header.i=@kernkonzept.com header.b="bRvo0HuL"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Rrxrx8Z7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.kernkonzept.com (serv1.kernkonzept.com [IPv6:2a01:4f8:1c1c:b490::2])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 463A9DD;
-	Tue, 28 Nov 2023 01:48:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kernkonzept.com; s=mx1; h=Cc:To:In-Reply-To:References:Message-Id:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
-	Reply-To:Content-ID:Content-Description;
-	bh=DTg3r4s2dq7irVOmMsd/CGuliapoNYe5wHImtDJ9WS0=; b=bRvo0HuLxOYk643Rru5OD62uMA
-	wLoJqM+cxZ9oFqxb6Ikj1xcFGAHwFEOSKrv0afkPCyKsOkOnD2smw+XOStqx2pAU0BPLuSOwYwBz9
-	Bj5wgtYp+DUF853pZKX2e3kEr2CEIgo5B2l4IK8lHYiEIs7f3Voa3friROnt7ysehS3YYZO1p6D1b
-	tzIA7d38j3Yke2uMff0RZDNjuTrU7DOlf2wAU6rfx8fui06ySGaaOZH88sSQqK5rq8ucqEOKQ3s2W
-	4MgvNDxMOC08yqBgMdW0rLa1PrxiOJwTzgocFUkFtJMvYkMGI+McEshHi2pYs/OeIhgrDYlVgz93z
-	oJMn64Ag==;
-Received: from [10.22.3.24] (helo=serv1.dd1.int.kernkonzept.com)
-	by mx.kernkonzept.com with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim 4.96)
-	id 1r7uhw-008Pi6-07;
-	Tue, 28 Nov 2023 10:48:44 +0100
-From: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
-Date: Tue, 28 Nov 2023 10:48:37 +0100
-Subject: [PATCH 3/3] i2c: qup: Vote for interconnect bandwidth to DRAM
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A442DD;
+	Tue, 28 Nov 2023 01:51:22 -0800 (PST)
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AS92Jim001270;
+	Tue, 28 Nov 2023 09:51:08 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=x3VuEoTEYQ/pyLlSPNqK4bzWJTAHrnd0D4Sm8XSCgyA=;
+ b=Rrxrx8Z7BINkdDBoUmEp2JQ/XL9Rj9lIk/DPkuwQ/9KERXfr60LIEWCkopPyiUIOYBGh
+ Il6Awg4M3LDi7FKDM1JLRr6CrGL461CdHU+NMV1ZV6htkDQ7Hh9SXHD0wXiNlJfzgsKg
+ Ckh39HC5GkM9VCSBsQq3b556CiqM40P8VQp2fybJvfh/w0swni87M7jfTxwTP+EFvlDd
+ NxxSH066Uph+2kR03LlG0A0kp06KHzmcWkq8qy4PtELFsirlhsHSH0+ng1Cb6/t4uk1S
+ vihtkjg91wqqKdWTjOnrSt8f/xRWbTfo32i04nS//FVANfJtVud6RT1LyQxuk2g0waRD jQ== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3un02h1u53-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 28 Nov 2023 09:51:08 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AS9oluF032645
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 28 Nov 2023 09:50:47 GMT
+Received: from [10.253.72.234] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 28 Nov
+ 2023 01:50:43 -0800
+Message-ID: <a324b7d4-5265-4766-814a-36c53a84f732@quicinc.com>
+Date: Tue, 28 Nov 2023 17:50:41 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 3/6] net: phy: at803x: add QCA8084 ethernet phy support
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>
+CC: Andrew Lunn <andrew@lunn.ch>, <davem@davemloft.net>, <edumazet@google.com>,
+        <kuba@kernel.org>, <pabeni@redhat.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <hkallweit1@gmail.com>, <corbet@lwn.net>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>
+References: <20231126060732.31764-1-quic_luoj@quicinc.com>
+ <20231126060732.31764-4-quic_luoj@quicinc.com>
+ <0b22dd51-417c-436d-87ce-7ebc41185860@lunn.ch>
+ <f0604c25-87a7-497a-8884-7a779ee7a2f5@quicinc.com>
+ <8e4046dd-813c-4766-83fb-c54a700caf31@lunn.ch>
+ <9c4c1fe7-5d71-4bb2-8b92-f4e9a136e93d@quicinc.com>
+ <ZWWsLf/w82N0vwBq@shell.armlinux.org.uk>
+Content-Language: en-US
+From: Jie Luo <quic_luoj@quicinc.com>
+In-Reply-To: <ZWWsLf/w82N0vwBq@shell.armlinux.org.uk>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20231128-i2c-qup-dvfs-v1-3-59a0e3039111@kernkonzept.com>
-References: <20231128-i2c-qup-dvfs-v1-0-59a0e3039111@kernkonzept.com>
-In-Reply-To: <20231128-i2c-qup-dvfs-v1-0-59a0e3039111@kernkonzept.com>
-To: Wolfram Sang <wsa@kernel.org>
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, 
- Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
- linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Stephan Gerhold <stephan.gerhold@kernkonzept.com>
-X-Mailer: b4 0.12.4
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 9_16NBdSU2EYQ7K_JFS6gQk8ZNMaNUE3
+X-Proofpoint-ORIG-GUID: 9_16NBdSU2EYQ7K_JFS6gQk8ZNMaNUE3
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-28_08,2023-11-27_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
+ priorityscore=1501 malwarescore=0 adultscore=0 lowpriorityscore=0
+ impostorscore=0 spamscore=0 mlxscore=0 phishscore=0 bulkscore=0
+ mlxlogscore=741 suspectscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2311060000 definitions=main-2311280077
 
-When the I2C QUP controller is used together with a DMA engine it needs
-to vote for the interconnect path to the DRAM. Otherwise it may be
-unable to access the memory quickly enough.
 
-The requested peak bandwidth is dependent on the I2C core clock.
 
-To avoid sending votes too often the bandwidth is always requested when
-a DMA transfer starts, but dropped only on runtime suspend. Runtime
-suspend should only happen if no transfer is active. After resumption we
-can defer the next vote until the first DMA transfer actually happens.
+On 11/28/2023 5:00 PM, Russell King (Oracle) wrote:
+> On Tue, Nov 28, 2023 at 03:16:45PM +0800, Jie Luo wrote:
+>>>> The interface mode is passed in the .config_init, which is configured
+>>>> by the PCS driver, the hardware register is located in the PCS, this
+>>>> driver will be pushed later.
+>>>
+>>> Is this the same as how the syqca807x works? Can the PCS driver be
+>>> shared by these two drivers?
+>>
+>> I am not sure syqca807x, would you point me the code path of this driver?
+>>
+>>>
+>>> What i don't like at the moment is that we have two driver
+>>> developments going on at once for hardware which seems very similar,
+>>> but no apparent cooperation?
+>>>
+>>> 	Andrew
+>>
+>> The PCS of qca8084 is the PHY PCS, which should be new PCS driver,
+>> in the previous chips, we don't have this kind of PHY PCS.
+> 
+> No. PCS drivers are for MAC-side PCS drivers, not PHY-side PCS drivers.
+> 
+>                       +-------------
+> 		     |     PHY
+> MAC---PCS --- link --- PCS --- ...
+>         ^             |  ^
+>         |	     +--|----------
+>    For this PCS          |
+>                    Not for this PCS
+> 
 
-The implementation is largely identical to the one introduced for
-spi-qup in commit ecdaa9473019 ("spi: qup: Vote for interconnect
-bandwidth to DRAM") since both drivers represent the same hardware
-block.
-
-Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
----
-The bandwidth calculation is taken over from Qualcomm's
-downstream/vendor driver [1]. Due to lack of documentation about the
-interconnect setup/behavior I cannot say exactly if this is right.
-Unfortunately, this is not implemented very consistently downstream...
-
-[1]: https://git.codelinaro.org/clo/la/kernel/msm-3.10/-/commit/67174e2624ea64814231e7e1e4af83fd882302c6
----
- drivers/i2c/busses/i2c-qup.c | 36 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 36 insertions(+)
-
-diff --git a/drivers/i2c/busses/i2c-qup.c b/drivers/i2c/busses/i2c-qup.c
-index 598102d16677..ee92a315f074 100644
---- a/drivers/i2c/busses/i2c-qup.c
-+++ b/drivers/i2c/busses/i2c-qup.c
-@@ -14,6 +14,7 @@
- #include <linux/dma-mapping.h>
- #include <linux/err.h>
- #include <linux/i2c.h>
-+#include <linux/interconnect.h>
- #include <linux/interrupt.h>
- #include <linux/io.h>
- #include <linux/module.h>
-@@ -150,6 +151,8 @@
- /* TAG length for DATA READ in RX FIFO  */
- #define READ_RX_TAGS_LEN		2
- 
-+#define QUP_BUS_WIDTH			8
-+
- static unsigned int scl_freq;
- module_param_named(scl_freq, scl_freq, uint, 0444);
- MODULE_PARM_DESC(scl_freq, "SCL frequency override");
-@@ -227,6 +230,7 @@ struct qup_i2c_dev {
- 	int			irq;
- 	struct clk		*clk;
- 	struct clk		*pclk;
-+	struct icc_path		*icc_path;
- 	struct i2c_adapter	adap;
- 
- 	int			clk_ctl;
-@@ -255,6 +259,10 @@ struct qup_i2c_dev {
- 	/* To configure when bus is in run state */
- 	u32			config_run;
- 
-+	/* bandwidth votes */
-+	u32			src_clk_freq;
-+	u32			cur_bw_clk_freq;
-+
- 	/* dma parameters */
- 	bool			is_dma;
- 	/* To check if the current transfer is using DMA */
-@@ -453,6 +461,23 @@ static int qup_i2c_bus_active(struct qup_i2c_dev *qup, int len)
- 	return ret;
- }
- 
-+static int qup_i2c_vote_bw(struct qup_i2c_dev *qup, u32 clk_freq)
-+{
-+	u32 needed_peak_bw;
-+	int ret;
-+
-+	if (qup->cur_bw_clk_freq == clk_freq)
-+		return 0;
-+
-+	needed_peak_bw = Bps_to_icc(clk_freq * QUP_BUS_WIDTH);
-+	ret = icc_set_bw(qup->icc_path, 0, needed_peak_bw);
-+	if (ret)
-+		return ret;
-+
-+	qup->cur_bw_clk_freq = clk_freq;
-+	return 0;
-+}
-+
- static void qup_i2c_write_tx_fifo_v1(struct qup_i2c_dev *qup)
- {
- 	struct qup_i2c_block *blk = &qup->blk;
-@@ -840,6 +865,10 @@ static int qup_i2c_bam_xfer(struct i2c_adapter *adap, struct i2c_msg *msg,
- 	int ret = 0;
- 	int idx = 0;
- 
-+	ret = qup_i2c_vote_bw(qup, qup->src_clk_freq);
-+	if (ret)
-+		return ret;
-+
- 	enable_irq(qup->irq);
- 	ret = qup_i2c_req_dma(qup);
- 
-@@ -1645,6 +1674,7 @@ static void qup_i2c_disable_clocks(struct qup_i2c_dev *qup)
- 	config = readl(qup->base + QUP_CONFIG);
- 	config |= QUP_CLOCK_AUTO_GATE;
- 	writel(config, qup->base + QUP_CONFIG);
-+	qup_i2c_vote_bw(qup, 0);
- 	clk_disable_unprepare(qup->pclk);
- }
- 
-@@ -1745,6 +1775,11 @@ static int qup_i2c_probe(struct platform_device *pdev)
- 			goto fail_dma;
- 		}
- 		qup->is_dma = true;
-+
-+		qup->icc_path = devm_of_icc_get(&pdev->dev, NULL);
-+		if (IS_ERR(qup->icc_path))
-+			return dev_err_probe(&pdev->dev, PTR_ERR(qup->icc_path),
-+					     "failed to get interconnect path\n");
- 	}
- 
- nodma:
-@@ -1793,6 +1828,7 @@ static int qup_i2c_probe(struct platform_device *pdev)
- 		qup_i2c_enable_clocks(qup);
- 		src_clk_freq = clk_get_rate(qup->clk);
- 	}
-+	qup->src_clk_freq = src_clk_freq;
- 
- 	/*
- 	 * Bootloaders might leave a pending interrupt on certain QUP's,
-
--- 
-2.39.2
-
+The PCS drivers in drivers/net/pcs/ should be in PHY side, such as
+pcs-lynx.c and pcs-xpcs.c, they are configuring the MDIO device
+registers.
 
