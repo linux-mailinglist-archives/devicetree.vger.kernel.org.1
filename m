@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-19503-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19504-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 611957FB2E3
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 08:37:11 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53AC07FB2E8
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 08:38:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 92F2C1C20C26
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 07:37:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 848991C209C0
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 07:38:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4D6513AE8;
-	Tue, 28 Nov 2023 07:37:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35C6813AE8;
+	Tue, 28 Nov 2023 07:38:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gD4GEBn7"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lzyJXJCk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E83810E2
-	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 23:37:03 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-50babce6ff6so3469766e87.3
-        for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 23:37:03 -0800 (PST)
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 294EC186
+	for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 23:38:16 -0800 (PST)
+Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-54af0eca12dso5316141a12.3
+        for <devicetree@vger.kernel.org>; Mon, 27 Nov 2023 23:38:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701157021; x=1701761821; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1701157094; x=1701761894; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=q4Ty/mc3A4dG4z2IpAQDxL6wASTKN0l3PuXuZz1XJ+c=;
-        b=gD4GEBn7eC180lkPjlFRkDpxfx+J8oCzQAiCfC8X8AA/GP6G/sTkcl3OPWQmv/ptKR
-         bwcTz0Suvo+FOripXIFjePqp+J8700pjoeaVC6VtfR8TPuWgMDr1x9DnI8hQ/B5oaI2F
-         kf5faFkyLbPc8Ee1P0psWpDxacqFX8TYkBFz3f22wFt6gIDO7jdZBVL5oKmKawvEfb57
-         7YO2N8O8TmLJ2GpmEy3LEHFQ52N+lklbc4cN+K+M3C3/z9p/2us+7vsiCxdqV/B1FT/3
-         PLK5wrIqy15Ftnjoy5B4qJ3N6E0c67BZY9jSABIaoVnHDxhEKM2Qn8A2bdhLMofqSKnv
-         9+Vw==
+        bh=+AI8L9Ek428OSQjeMbMrlQFghJGA+oT7iK0PaPpK+pA=;
+        b=lzyJXJCkY0hQauWkLE+wnH/3DXofP5I4/8Z4n/FtCILAjFShXYTblq20LcA2uBdC54
+         nQYD960UnR+WoSfpBKzjyyQvgUxL6FDuieRBjiXNjm0M6NkP4P+6QywdBJGpsMIOVHOy
+         oOz/UpiEWm2RzzkxE0yCgddaJJRof2segAo6rIetGw3DVG5DsL3eLaoQ+33gMOvcF+c1
+         pjwOif4IfuvOYXZiWTTpCoL0DYGI5D/ohQvqLQcowRUYyQkrzqu5PdBnp8xIxL0zQd4i
+         BsHbVY3q1z31gsmfZICnpxwjsvE60Tr5qgUXZTOhg6MhcVon+Jg3J2g06E/WAyFu4mk0
+         dXSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701157021; x=1701761821;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1701157094; x=1701761894;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=q4Ty/mc3A4dG4z2IpAQDxL6wASTKN0l3PuXuZz1XJ+c=;
-        b=Ut/XExCcxAq0dMI3MLYmwGmRfgcQUSq+mlithBnDBwVo8XBAC/JK063twNj0jrow+r
-         X/QbmJkQUeZ8K2KClQEDoqTGaTJYjukmoJtAZKJ18To3npSuQS1BV9rWy1uXetoF0Emp
-         tinR/M2cENatIyiul88mRoSiISYoTgoH+cV6kJtnyIr9fQutSwjxmZzSwYmVw/ZUGOrD
-         SLYqsUkPHrzJcXpMva9FE5qjM+J1ah/oePWMJj5AR5PtYgnGcO0xhh4avRcaTlCuJRG0
-         n/E66Q4jPd6lTq30j9CWp6GGfVh7RwFkftabDIWympibMwx1DKESvyVBf5oMVU6MWOhj
-         8cSQ==
-X-Gm-Message-State: AOJu0YzQWdolvk9i8cRzvzz0wS9AcS8DWOOLI/dq3hXjxNxJKfs1e2Jz
-	bVWi4lDtFhSWVLtARzm9Anu4hQ==
-X-Google-Smtp-Source: AGHT+IHCg4GpPpTE+clk6c1JZ8ms9g4d9Zj/QYHanq7kDauwzXvkjZZgy28czyyUOTYCzI9IzN6YZg==
-X-Received: by 2002:a05:6512:746:b0:509:8da4:93da with SMTP id c6-20020a056512074600b005098da493damr8472890lfs.18.1701157021339;
-        Mon, 27 Nov 2023 23:37:01 -0800 (PST)
+        bh=+AI8L9Ek428OSQjeMbMrlQFghJGA+oT7iK0PaPpK+pA=;
+        b=gZCkDWILwTxTN+acXehHdWUaEqzLyQp7XNJ7c/7GTO8B9lRzAaI2XQtM7kSfnXJ2ef
+         W5sG3aDBhWf9rz/qC78uFMGSRa2aOk8tekTpQ3vqJOpO0ECNuk9cDsr02fpiZbH6jB70
+         oHVu3Mhp6zhsdc6PrKdqUhMK7eJhuOE7pesCA2d8+8pXUIJF8fIxJLwMZwatKVSbUWNm
+         7kLplnvjhPyLAVZvL4J9uH78SPzGOF7NdvyS4Xx+gKCmbsorpIPwTKC3fSXsuckzxz02
+         E9EKp8ArzLm0qISARxho1bGh53H2B2Hr2SUlPe5XCC1umN8b5L+dZyKRK+BphaFP1RHq
+         nJmg==
+X-Gm-Message-State: AOJu0Yy4O+bBQw3463Bwt2EJ6lyX/R8kqBfprtyIO9IOwiQLm+xmRkL2
+	1MkDSxm3J64e+fOzwaC8SU7hCA==
+X-Google-Smtp-Source: AGHT+IHEL2s/sF8eOedQswRuYaBd76Txot8PfPDF8jHLbInsrT+vjPkS+YKe/cGwulB4xa1yNNgdQg==
+X-Received: by 2002:a17:906:7c4d:b0:9fa:ca0c:ac42 with SMTP id g13-20020a1709067c4d00b009faca0cac42mr10894814ejp.64.1701157094621;
+        Mon, 27 Nov 2023 23:38:14 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.109])
-        by smtp.gmail.com with ESMTPSA id q23-20020a17090676d700b00a017da998bdsm6473249ejn.32.2023.11.27.23.36.59
+        by smtp.gmail.com with ESMTPSA id q23-20020a17090676d700b00a017da998bdsm6473249ejn.32.2023.11.27.23.38.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Nov 2023 23:37:00 -0800 (PST)
-Message-ID: <5f4cf393-5c6c-4eed-b116-b65adf133d19@linaro.org>
-Date: Tue, 28 Nov 2023 08:36:58 +0100
+        Mon, 27 Nov 2023 23:38:14 -0800 (PST)
+Message-ID: <85e0b2eb-9a1b-4580-b6b0-c0dd4c6dd13b@linaro.org>
+Date: Tue, 28 Nov 2023 08:38:12 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,23 +62,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: mmc: mtk-sd: add tuning steps related
- property
+Subject: Re: [PATCH 1/2] dt-bindings: arm: aspeed: add Asrock X570D4U board
 Content-Language: en-US
-To: Axe Yang <axe.yang@mediatek.com>,
- Chaotian Jing <chaotian.jing@mediatek.com>,
- Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Wenbin Mei <wenbin.mei@mediatek.com>
-Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org,
- Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20231128070127.27442-1-axe.yang@mediatek.com>
- <20231128070127.27442-2-axe.yang@mediatek.com>
+To: Renze Nicolai <renze@rnplus.nl>, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-aspeed@lists.ozlabs.org, arnd@arndb.de, olof@lixom.net,
+ soc@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ joel@jms.id.au, andrew@aj.id.au
+References: <20231128013136.2699317-1-renze@rnplus.nl>
+ <20231128013136.2699317-2-renze@rnplus.nl>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -124,19 +116,17 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231128070127.27442-2-axe.yang@mediatek.com>
+In-Reply-To: <20231128013136.2699317-2-renze@rnplus.nl>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 28/11/2023 08:01, Axe Yang wrote:
-> Add 'mediatek,tuning-steps' setting. This property will give MSDC
-> a chance to extend tuning steps up to 64. With more tuning steps,
-> MSDC may achieve a more optimal calibration result, thus avoiding
-> potential CRC issues.
+On 28/11/2023 02:30, Renze Nicolai wrote:
+> Document Asrock X570D4U compatible.
 > 
-> Signed-off-by: Axe Yang <axe.yang@mediatek.com>
+> Signed-off-by: Renze Nicolai <renze@rnplus.nl>
+> ---
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
