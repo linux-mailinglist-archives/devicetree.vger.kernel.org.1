@@ -1,261 +1,154 @@
-Return-Path: <devicetree+bounces-19597-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19601-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFC3B7FB680
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 11:00:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F7D17FB6C9
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 11:10:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E157B1C20F29
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 10:00:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 805321C21361
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 10:10:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CF784BAB0;
-	Tue, 28 Nov 2023 10:00:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CB014D594;
+	Tue, 28 Nov 2023 10:10:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vN76ixwT"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="qQVazlqg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 817F2D4D
-	for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 02:00:38 -0800 (PST)
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-40b27726369so36841865e9.0
-        for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 02:00:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701165637; x=1701770437; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=peRhsy1DaMn6+gTgUstpnReaK7YYQKqTJkP5420book=;
-        b=vN76ixwTr4iE3VLcXbFKDYYy4WXJ2WuKoYHGgGOpPomtoWpZpjjFaG1mEwntQJgQNV
-         1XxRPSXnHExoUITbCf/YfRCEBKjr6wWsmM5n8O2FSWkCGKIkPos3YkMrxYTItRTA9wlX
-         ZA4DSgxRVG3HdQDMV35WmXipXMakNVrQAiPw+WYR5X/Tk+mGMm3m5qtkWh1GFnx3q4Sa
-         KO6CFXAwGryDXbaIl1r2AoWgHaF5Q0NPj926v+sOWuatyu3r/qHXMKzA6HKUOOAy9Igd
-         PgrPZs7R/kLfsUbxHtAf3hjC7PmVwK3BLsH/1uIFcKApm+pwJIWbQAbqMC+eJ9VrUvUK
-         KekA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701165637; x=1701770437;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=peRhsy1DaMn6+gTgUstpnReaK7YYQKqTJkP5420book=;
-        b=AkqE8rEOPFLAviN9HXTjXPBUee4TKTFRTxi88PZUyzAqhS/ZOIbE43h790Z0ZUTmPy
-         0tblz98/GCravmKMQ5kvhWbg+glpQ0kaR2pLA4IrB/Syl3McAAsFiS0pcqGmINotyXw1
-         kn4lP2B9oH/3QSEXUZwRN0XvS5vl/RN/AxACWdb8lOzLhXd0nH1nOoBdk6m04n+OOQLx
-         BaWfyBYZhIbTmPXxcoMk5NToMuAjYR5QewEepK+JNHLogSy1EGqeJyQX9zbCESy2AwDF
-         vKD1JP42I33cKH9XTUN2Y0IQv/eKLF9X1kDq1kpinJSiVrgAWS/7KC5VgUj9od+UFOl3
-         Ilbw==
-X-Gm-Message-State: AOJu0YzRLegua7SkNSSb148AgRVf8OmOsmpXo+mw6m2AiGo3l3OnuNNA
-	oba4nvByYUT7P0QB4kW9QE7dBw==
-X-Google-Smtp-Source: AGHT+IHDGcLTwkeDwIj23rYa62iDcLBoGE0fowJPdUwmZ/8dpIcAMhAtzKy4TywgJ1iH9M2UWG+J1w==
-X-Received: by 2002:a5d:4984:0:b0:332:e3f1:9656 with SMTP id r4-20020a5d4984000000b00332e3f19656mr9594958wrq.35.1701165636928;
-        Tue, 28 Nov 2023 02:00:36 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:eada:f40e:7ab3:2afe? ([2a01:e0a:982:cbb0:eada:f40e:7ab3:2afe])
-        by smtp.gmail.com with ESMTPSA id a2-20020adff7c2000000b003258934a4bcsm11544493wrq.42.2023.11.28.02.00.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Nov 2023 02:00:36 -0800 (PST)
-Message-ID: <fbbed866-fc43-4f30-94a1-942d38103e51@linaro.org>
-Date: Tue, 28 Nov 2023 11:00:36 +0100
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 251CFDC;
+	Tue, 28 Nov 2023 02:10:38 -0800 (PST)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3ASAAKD5023048;
+	Tue, 28 Nov 2023 04:10:20 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1701166220;
+	bh=PSaEN37WFFK44HBQ6MZCI5hdRnxjsBvDaNZHNXtRAsA=;
+	h=From:Subject:Date:To:CC;
+	b=qQVazlqg0za79LH8fWx3sXaTnqPdolTGWDkNmeTY/CFROka82fMvF5YLuX0UztM4M
+	 q46oKD9Xrpzh1M8J+cFE11IZMqbojbWg1Utgz9NLxoS3RSfhaC/hbjm8qzWP0l19cR
+	 IDH33Rdcew7DNsojHJ5X1lf56BqUboiGtVb/CAYs=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3ASAAKcc017491
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 28 Nov 2023 04:10:20 -0600
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 28
+ Nov 2023 04:10:20 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 28 Nov 2023 04:10:20 -0600
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3ASAAIQQ101158;
+	Tue, 28 Nov 2023 04:10:19 -0600
+From: Jai Luthra <j-luthra@ti.com>
+Subject: [PATCH v3 0/9] arm64: dts: ti: Enable CSI cameras for AM62 family
+Date: Tue, 28 Nov 2023 15:39:42 +0530
+Message-ID: <20231128-csi_dts-v3-0-0bb11cfa9d43@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v4 2/8] arm64: dts: qcom: add initial SM8650 dtsi
-Content-Language: en-US, fr
-To: Stephan Gerhold <stephan@gerhold.net>
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231124-topic-sm8650-upstream-dt-v4-0-e402e73cc5f0@linaro.org>
- <20231124-topic-sm8650-upstream-dt-v4-2-e402e73cc5f0@linaro.org>
- <ZWWse_i-wjSTH8O4@gerhold.net>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <ZWWse_i-wjSTH8O4@gerhold.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGa8ZWUC/02NzQ6CMBAGX4Xs2Rq2fwZPvocxpi1F9iCQtmk0h
+ He3kIge58vO7AzRB/IRztUMwWeKNA4FxKEC15vh4Rm1hYHXXCCiZC7SvU2RqU4KYZwRWiso11P
+ wHb220vVWuKeYxvDewhnX9dtQeyMjq1nTdE4JZblt/SXR0Y1PWAOZ/0unn8SLZMt35NhIo+0uL
+ cvyAb6dft3QAAAA
+To: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+        Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Aradhya Bhatia <a-bhatia1@ti.com>,
+        Devarsh
+ Thakkar <devarsht@ti.com>,
+        Vaishnav Achath <vaishnav.a@ti.com>,
+        Julien Massot
+	<julien.massot@collabora.com>,
+        Martyn Welch <martyn.welch@collabora.com>,
+        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+        Jai Luthra
+	<j-luthra@ti.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2497; i=j-luthra@ti.com;
+ h=from:subject:message-id; bh=nPD36jMuOL/T6GPQM40W1N6XADR3g6DOTNeynb4QKeQ=;
+ b=owEBbQKS/ZANAwAIAUPekfkkmnFFAcsmYgBlZbx9OzSNp+ikzFZHPour69oZrn12Z+K+fV2B7
+ j+9REMsM1CJAjMEAAEIAB0WIQRN4NgY5dV16NRar8VD3pH5JJpxRQUCZWW8fQAKCRBD3pH5JJpx
+ Rd/jEADHZNFvkxoIZqwE3/JdsUfqJuzgtx4gNgtKhPQql/QhriqOkKsN7U6gNxNJ7F3UuAXknuG
+ fRn5eWqj7kYWvOQ+JWvg7xfCrpJKa7twPAJicIm4ogPps/iV+8tFT/skcLXcqdnsFdmxIm/196O
+ yDshuEllFXPxE9tAEqZTA28RN7rv1D1qkLJliCtZEm/zQnGGferwrbF5u1uT5iDLeuKdLGnvt5Z
+ 9/reC4bR4lVRywZh2dLWW5oMfnmFn1d3mDU6X13a79067+8JUPs3B2irhODFXvsLQIpHqapbO/F
+ 7UAumL4OYoK8sbRMVof4O3RLtESyYfv6rmcJGJzXEB58J/LfGNTviOttScv0GMEc6g2vUTVMjfk
+ fh0Fj3QbqIpjAb34rNgl77M8tM8TxBb9jhgG8e+fEKbD2easmb29Iwg1x7An0cMxKGfpmFo1wWW
+ ekPKUmRibjXj2DuWaCv14cva48EhmoZivRqfOP/AX7d80bXYSXCtj5EohLRsda7I97ZWolBWcRf
+ zmmEVF838nyaUE+TzofmOxH44ptqu3ZU1HuV8RMRMXiNsEze810JfJjG2lShgLtgUNlEAxVYs0q
+ NMTVC2icpVOraww5h25LKPGLKSOLpbhH4q93Zzzr9rdOrVCWBKNDCNJ0GXAySgrSViY+HGJykmv
+ XRD5dIQn5XqV2Jw==
+X-Developer-Key: i=j-luthra@ti.com; a=openpgp;
+ fpr=4DE0D818E5D575E8D45AAFC543DE91F9249A7145
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi,
+This series enables CSI camera support on BeaglePlay, SK-AM62 and
+SK-AM62A, now that the dt-bindings and driver support for CSI-RX related
+IPs is merged in v6.7-rc1.
 
-On 28/11/2023 10:01, Stephan Gerhold wrote:
-> On Fri, Nov 24, 2023 at 10:20:39AM +0100, Neil Armstrong wrote:
->> Add initial DTSI for the Qualcomm SM8650 platform,
->> only contains nodes which doesn't depend on interconnect.
->>
->> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
->>   arch/arm64/boot/dts/qcom/sm8650.dtsi | 2439 ++++++++++++++++++++++++++++++++++
->>   1 file changed, 2439 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
->> new file mode 100644
->> index 000000000000..b0a9ca53d58e
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
->> @@ -0,0 +1,2439 @@
->> +[...]
->> +		timer@17420000 {
->> +			compatible = "arm,armv7-timer-mem";
->> +			reg = <0 0x17420000 0 0x1000>;
->> +
->> +			ranges = <0 0 0 0x20000000>;
->> +			#address-cells = <1>;
->> +			#size-cells = <1>;
->> +
->> +			frame@17421000 {
->> +				reg = <0x17421000 0x1000>,
->> +				      <0x17422000 0x1000>;
->> +
->> +				interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
->> +					     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>;
->> +
->> +				frame-number = <0>;
->> +			};
->> +
->> +			frame@17423000 {
->> +				reg = <0x17423000 0x1000>;
->> +
->> +				interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
->> +
->> +				frame-number = <1>;
->> +
->> +				status = "disabled";
->> +			};
->> +
->> +			frame@17425000 {
->> +				reg = <0x17425000 0x1000>;
->> +
->> +				interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
->> +
->> +				frame-number = <2>;
->> +
->> +				status = "disabled";
->> +			};
->> +
->> +			frame@17427000 {
->> +				reg = <0x17427000 0x1000>;
->> +
->> +				interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
->> +
->> +				frame-number = <3>;
->> +
->> +				status = "disabled";
->> +			};
->> +
->> +			frame@17429000 {
->> +				reg = <0x17429000 0x1000>;
->> +
->> +				interrupts = <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>;
->> +
->> +				frame-number = <4>;
->> +
->> +				status = "disabled";
->> +			};
->> +
->> +			frame@1742b000 {
->> +				reg = <0x1742b000 0x1000>;
->> +
->> +				interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
->> +
->> +				frame-number = <5>;
->> +
->> +				status = "disabled";
->> +			};
->> +
->> +			frame@1742d000 {
->> +				reg = <0x1742d000 0x1000>;
->> +
->> +				interrupts = <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>;
->> +
->> +				frame-number = <6>;
->> +
->> +				status = "disabled";
->> +			};
->> +		};
-> 
-> Nitpick: Personally I feel the empty lines between each property here
-> are a bit overly verbose. It would be better readable without them.
-> Might be personal preference though :-)
+Along with the device tree nodes for CSI-RX, add new DT overlays for
+different camera modules like RPiv2 (IMX219) or PCam5C (OV5640).
 
-I tried to maintain a coherent style across the document, so it would break it...
+Signed-off-by: Jai Luthra <j-luthra@ti.com>
+---
+Changes in v3:
+- Enable CSI-RX and DPHY nodes in the overlays instead of base DTBs for
+  SK-AM62 and SK-AM62A
+- Link to v2: https://lore.kernel.org/r/20231117-csi_dts-v2-0-bf4312194a6b@ti.com
 
-> 
->> +[...]
->> +	timer {
->> +		compatible = "arm,armv8-timer";
->> +
->> +		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
->> +			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
->> +			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
->> +			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
-> 
-> I'm pretty sure GIC_CPU_MASK_SIMPLE() is only valid & used on GICv2.
-> Unlike arm,gic.yaml, arm,gic-v3.yaml doesn't mention "bits[15:8] PPI
-> interrupt cpu mask". Also see e.g. commit 4a92b6d75bab ("arm64: dts:
-> msm8996: Fix wrong use of GIC_CPU_MASK_SIMPLE()").
-> 
-> Would be also good to check if any existing DTs have introduced this
-> incorrectly again since then.
+Changes in v2:
+- Follow Andrew's comments to avoid creating combined DTBs with overlays
+  applied, instead adding them with "dtb- +=" to optionally test that
+  they apply cleanly with OF_ALL_DTBS=y config.
+- [New Patch] Cleanup existing combined DTBs to also do the same as above
+- Pick Martyn's Tested-By tag for SK-AM62
+- Link to v1: https://lore.kernel.org/r/20231115-csi_dts-v1-0-99fc535b2bde@ti.com
 
-All those platforms using GICv3 still use GIC_CPU_MASK_SIMPLE():
+---
+Jai Luthra (9):
+      arm64: defconfig: Enable AM62 CSI2RX
+      arm64: dts: ti: Enable CSI-RX on AM62
+      arm64: dts: ti: Enable CSI-RX on AM62A
+      arm64: dts: ti: k3-am625-beagleplay: Add overlays for OV5640
+      arm64: dts: ti: k3-am62x-sk: Enable camera peripherals
+      arm64: dts: ti: k3-am62x: Add overlays for OV5640
+      arm64: dts: ti: k3-am62a7-sk: Enable camera peripherals
+      arm64: dts: ti: k3-am62x: Add overlay for IMX219
+      arm64: dts: ti: Use OF_ALL_DTBS for combined blobs
 
-arch/arm64/boot/dts/qcom/qcm2290.dtsi
-arch/arm64/boot/dts/qcom/qdu1000.dtsi
-arch/arm64/boot/dts/qcom/sa8775p.dtsi
-arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-arch/arm64/boot/dts/qcom/sdx75.dtsi
-arch/arm64/boot/dts/qcom/sm4450.dtsi
-arch/arm64/boot/dts/qcom/sm6115.dtsi
-arch/arm64/boot/dts/qcom/sm6350.dtsi
-arch/arm64/boot/dts/qcom/sm6375.dtsi
-arch/arm64/boot/dts/qcom/sm8250.dtsi
-arch/arm64/boot/dts/qcom/sm8350.dtsi
-arch/arm64/boot/dts/qcom/sm8450.dtsi
-arch/arm64/boot/dts/qcom/sm8550.dtsi
+ arch/arm64/boot/dts/ti/Makefile                    | 60 ++++++++++---
+ arch/arm64/boot/dts/ti/k3-am62-main.dtsi           | 62 ++++++++++++++
+ .../dts/ti/k3-am625-beagleplay-csi2-ov5640.dtso    | 77 +++++++++++++++++
+ .../ti/k3-am625-beagleplay-csi2-tevi-ov5640.dtso   | 77 +++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am62a-main.dtsi          | 99 ++++++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am62a7-sk.dts            | 27 ++++++
+ arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi     |  7 ++
+ .../arm64/boot/dts/ti/k3-am62x-sk-csi2-imx219.dtso | 84 ++++++++++++++++++
+ .../arm64/boot/dts/ti/k3-am62x-sk-csi2-ov5640.dtso | 82 ++++++++++++++++++
+ .../boot/dts/ti/k3-am62x-sk-csi2-tevi-ov5640.dtso  | 82 ++++++++++++++++++
+ arch/arm64/configs/defconfig                       |  3 +
+ 11 files changed, 648 insertions(+), 12 deletions(-)
+---
+base-commit: b85ea95d086471afb4ad062012a4d73cd328fa86
+change-id: 20231114-csi_dts-5f433aca3665
 
-I'm sure you're right, and indeed the PPI affinity can be specified in an optional
-4th cell, but I'll need another confirmation I can safely remove it here.
-
-Since it's harmless, it could be cleaned up later on over all the qcom DT.
-
-Thanks,
-Neil
-
-> 
-> Thanks,
-> Stephan
-> 
+Best regards,
+-- 
+Jai Luthra <j-luthra@ti.com>
 
 
