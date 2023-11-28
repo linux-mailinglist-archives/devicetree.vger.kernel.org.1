@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-19521-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19522-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5E8F7FB3F6
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 09:23:15 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF3E67FB400
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 09:23:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E7D521C20EFD
-	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 08:23:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7F2C7B213D5
+	for <lists+devicetree@lfdr.de>; Tue, 28 Nov 2023 08:23:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F7AA17982;
-	Tue, 28 Nov 2023 08:23:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F68418040;
+	Tue, 28 Nov 2023 08:23:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sjS4NsDI"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JO38VfZH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5258394
-	for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 00:23:09 -0800 (PST)
-Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-54af2498e85so5338968a12.0
-        for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 00:23:09 -0800 (PST)
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E41F100
+	for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 00:23:48 -0800 (PST)
+Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-54b532b261bso2788589a12.1
+        for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 00:23:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701159788; x=1701764588; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701159827; x=1701764627; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=coVxxRvKmyhaCH6G8RxJ1YJH2PseX2AUV8csYjv/pKg=;
-        b=sjS4NsDIZHjOM5N15ZV7sABQZQ8gtT7W7mu6SFQotEzL18nqyrZFFPR8Zw5y89Jfyd
-         iYciezR0fAKIsbWoSChS4ddHZ3h5AiHGWe6G5ES+mWwD0fqiM3SD6lJ5LoLTfhz02hQR
-         yVO36FzskL4qYWyqhim0DqkCpY2TwisYwjJsOGZDIyRfgO2cwJlrcwFq/C06gcS80egB
-         qN8re6DP2fUqSeMkr7L2CiGToEXMPMrDKFx2mTcIwBF5z83ABRpF2fnZYWcLfMO7lNAm
-         DYYSbeF0L6efsNfr+OeBcH0WJbtdQ87AGQJrwPHE811vuYI4RezLYwXILcuaUvc+5e3x
-         0UDg==
+        bh=1UOlh2DBPRlglTZsxnljR4k/aNf8IkPiVHCesZDf2rE=;
+        b=JO38VfZHNED7W57A5XEiewGldQ3v8+aA81xO1gn2VvIqp2ogIBWLJEeFOktHYYvl/e
+         NOtMraWDaJk7NSy4GEwwZsod9Aac9k0n18e0Gv/3VEjbmGjS+13hPRPWEkKLjHiUQ9T5
+         tpg2DxoM25M/EeUcuTUf8sD8/mLzkM/qxEwV+9DtADJoEgTlfT5CG3TRM57JahHGZErY
+         jpq3olRyuxwE0Ps2UFBohHAmnuv/UPvbyJf+Iew88ZihGGZzxbVoGV+rKfeBeVpca5yd
+         CqxPAsn5tIsV2QTFZXS99R251vpqAkegBb6S5MGPXSokn3nUa6LWyP13TAx154hl0LLe
+         99mw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701159788; x=1701764588;
+        d=1e100.net; s=20230601; t=1701159827; x=1701764627;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=coVxxRvKmyhaCH6G8RxJ1YJH2PseX2AUV8csYjv/pKg=;
-        b=Ay0cuILaJrFpUJ3625tnP7YSRymDRKmnz0DeXwf5/1CHP3k39qFCuC2NzL+CyBU/+X
-         vqjTSgFD+OQ+1W/jKqaVqkqHqChz1wAX7pGEDH5ZE8svxJehEx8sGmyh74PvY3HUYW+n
-         Tob7QRGr4MJ10eISHp2UaVZ2WFl2wwXwoB5uKD/6MKXU492FiCLCJTCHRlEyZEmzpvEi
-         XNSiqYZ5T1Wxu5x9v1gBKDNuh8B6ByRm6RMC5cebhLo5gZxmWZxqDLjHB7fWQeJEiiEn
-         pXU2NNj+GOmFBqONYzm3YYp5Y0IWlHSF87H8NOjg0QzpYOg3ADD33C7oL5T4ANt+/FSa
-         TuPA==
-X-Gm-Message-State: AOJu0Yz9d8a5RQ+ct72LjFUBwoxd2RdUrluo9MMqmCc0sHj168kIq2f4
-	A4tlApJ5+u+k6SGegFaMVmDxeg==
-X-Google-Smtp-Source: AGHT+IEgMh/OBItu88G3t9aQ2Zwzb8hKRW87qL5/jTOsepyznXcGoQuNepBzzWmCjKnpVCRBxkGYaQ==
-X-Received: by 2002:a50:cd15:0:b0:54b:20a7:cf82 with SMTP id z21-20020a50cd15000000b0054b20a7cf82mr8455451edi.24.1701159787840;
-        Tue, 28 Nov 2023 00:23:07 -0800 (PST)
+        bh=1UOlh2DBPRlglTZsxnljR4k/aNf8IkPiVHCesZDf2rE=;
+        b=evo5fiLc8Kc0U1v7uEP8cG0zjboaGie0s2wKmFs2lQnQDvKxwV7qSRkvQbxFbqzqT+
+         /aAAo3SUWX5Dg9cfhOoFdc6CEroA1kiqi3rtafqmOBm4/iSDm8xuDapmGlDCejl/Cnws
+         bbKiXx3Je42VQCobG/nhO9W/oDe4vcy04ahiUp9d5SFOVJJ99J3FDHwjmxf5OjvKS7wv
+         2FFzsrWacs1ZwLzwEs1o6Y73E/IDbjG22CYBKAAFR24Tg30vjvqlsPZT43xZmcI4oTFc
+         +62fVbJ2/IP6v+ylQdvYPYe0kk3rYGsNbsxsCiMAosPKOYqIAvO1hSoaAHiqtEqVIPEt
+         jeYQ==
+X-Gm-Message-State: AOJu0YxbUm0/FkvKz7fuLVLw4elKx66m64zpA47gHFCca7L0phI104J5
+	Rt4GK3CebvPj00wpbJMHE5TiDw==
+X-Google-Smtp-Source: AGHT+IEWSLfSH2rm0ZeDonvf6plZljG4gTf78THbXKuJ5NkitUThcGz4eAHzdOYzRW5mLVZYsC0kWQ==
+X-Received: by 2002:a05:6402:42c5:b0:54a:ed2a:fa7e with SMTP id i5-20020a05640242c500b0054aed2afa7emr13330706edc.24.1701159827034;
+        Tue, 28 Nov 2023 00:23:47 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.109])
-        by smtp.gmail.com with ESMTPSA id x1-20020aa7d381000000b00548ab1abc75sm6180302edq.51.2023.11.28.00.23.04
+        by smtp.gmail.com with ESMTPSA id x1-20020aa7d381000000b00548ab1abc75sm6180302edq.51.2023.11.28.00.23.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Nov 2023 00:23:07 -0800 (PST)
-Message-ID: <2164e693-875a-44c1-9bf5-9fa192dc589a@linaro.org>
-Date: Tue, 28 Nov 2023 09:23:03 +0100
+        Tue, 28 Nov 2023 00:23:46 -0800 (PST)
+Message-ID: <79916a3e-70c2-4eaa-b4eb-9375c859f53e@linaro.org>
+Date: Tue, 28 Nov 2023 09:23:43 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,8 +62,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 01/12] dt-bindings: display: msm: qcm2290-mdss: Use the
- non-deprecated DSI compat
+Subject: Re: [PATCH v2 02/12] dt-bindings: display: msm: Add reg bus and
+ rotator interconnects
 Content-Language: en-US
 To: Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Clark
  <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
@@ -88,7 +88,7 @@ Cc: Marijn Suijten <marijn.suijten@somainline.org>,
  linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  iommu@lists.linux.dev
 References: <20231125-topic-rb1_feat-v2-0-979b28f35e4a@linaro.org>
- <20231125-topic-rb1_feat-v2-1-979b28f35e4a@linaro.org>
+ <20231125-topic-rb1_feat-v2-2-979b28f35e4a@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -134,16 +134,28 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231125-topic-rb1_feat-v2-1-979b28f35e4a@linaro.org>
+In-Reply-To: <20231125-topic-rb1_feat-v2-2-979b28f35e4a@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 27/11/2023 16:28, Konrad Dybcio wrote:
-> The "qcom,dsi-ctrl-6g-qcm2290" has been deprecated in commit 0c0f65c6dd44
-> ("dt-bindings: msm: dsi-controller-main: Add compatible strings for every
-> current SoC"), but the example hasn't been updated to reflect that.
+> Apart from the already handled data bus (MAS_MDP_Pn<->DDR), there are
+> other connection paths:
+> - a path that connects rotator block to the DDR.
+> - a path that needs to be handled to ensure MDSS register access
+>   functions properly, namely the "reg bus", a.k.a the CPU-MDSS CFG
+>   interconnect.
 > 
-> Fix that.
+> Describe these paths to allow using them in device trees and in the
+> driver.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> [Konrad: rework for one vs two MDP paths, update examples]
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+
+Thanks, looks good.
+
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
