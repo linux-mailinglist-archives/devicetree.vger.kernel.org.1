@@ -1,58 +1,58 @@
-Return-Path: <devicetree+bounces-20010-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20011-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D9D17FD859
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 14:40:43 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 807977FD85C
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 14:40:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 367E02826C1
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 13:40:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A4A891C20D3E
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 13:40:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78737208DB;
-	Wed, 29 Nov 2023 13:40:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36E4F20B17;
+	Wed, 29 Nov 2023 13:40:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="PR3NUmXg"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="JhJFE5s9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB964CE
-	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 05:40:32 -0800 (PST)
-Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2c87acba73bso89284491fa.1
-        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 05:40:32 -0800 (PST)
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02CC8E6
+	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 05:40:34 -0800 (PST)
+Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2c88b7e69dfso80940381fa.0
+        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 05:40:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1701265231; x=1701870031; darn=vger.kernel.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1701265232; x=1701870032; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=dNV0r1tk7i0wstK5L78tpqt0TYtEG6tPq8iOAeVFOuU=;
-        b=PR3NUmXggT3VAc2Q9lPcRj3wE/QB8VSIu04RTsr7v8NVdOQyXdHmj3XKr+BCKDXH7O
-         ZypBSTkOq6toplifydqrYTstPKQRuSY8XTxRCWQVmEpDHXJOB/WagnXap7Qyk/ahrW5m
-         vek7mm4Uzttnu1TH6ULjdVLKmrsgwIgrcOiHVg/3SilJkKvJD/kLrP7Abm0i7NWJ5SAZ
-         vMUpq8av6xu9geJzHgd752LCtqIX1kHysqPa0X6a/HHPH1c4UIGDQRIc38yOVN/Kce94
-         x/31TOoGWUOW/s/WApBpbAHRmIwnhdNcN751ynhinSP+2OS5U2+CH4YugB/RYnrz7grv
-         qchg==
+        bh=hQRwxx9GEOBkFVTtu0HXXPOcGrMBOKITGaWl4mMUCHI=;
+        b=JhJFE5s9qNJaFRQopr+cK1bLrEwuATVyZ4pBBTf3+Nx8RQ8Rdi6kvrufAEyjSac/b5
+         flnqbFamH5PzLaGzE8QkgEwGWN2rTuAJcdVgsXGTnxpszd0euFL6l7MqmBJ+0fNhW/wq
+         wO7TCpJBDu9vGy3k79HbyRuLAZ/GqTH8pS73Iq8FTU9V5kP1YCDVbD2lh570QZhBdZFq
+         geMfimrX86N5hsfGe9MsJ7T3HPIRtiuzV/1jwOOUXD1ayvbJhu97sxqQoKDCS1pahgL3
+         7/3fpVnp5cleisFgVzjlTL+02qD78Kfxq+lUs9Puaf0iWdeXnYNFIHrYSnoXLXILONLf
+         xGmQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701265231; x=1701870031;
+        d=1e100.net; s=20230601; t=1701265232; x=1701870032;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=dNV0r1tk7i0wstK5L78tpqt0TYtEG6tPq8iOAeVFOuU=;
-        b=ia0qSAN7Zs6QAYmr+39ECkE/diWRKAL1SsWWHL4Wgrm9BbHylVNvFDY68gl14sg/g9
-         nVIDFnBcyi5cZtvN3GeM168gb1eHOLuvIGkLF2NiLRCK3YNpNsGNAG2+m4rUXrKoF7uS
-         p85i8VFMky49L5MZ13AEP5ISEPolZi3P/HEG48NwaRir1itfFgWPPG5t/ngT+m+A/2sE
-         ElMeJqiIrbpwxWSclhNeQJZgtinoPalrVXxR1GpiTIiKGxEe/6pXOxdun3kjjZgtEY6+
-         IzdzJHQ2U2HeIWVamyxxoKBNSk0JU//ZaZbneeNK1j4cVUfvtnl6FkS0b+29OynKUGY2
-         oDBA==
-X-Gm-Message-State: AOJu0YyqwcRgAiEUmMfLBdULyV1TRySt2Xz/QyEYA6o8doMVZ5PNV4rP
-	IR3ltHMSxgl4BQFyxeHltnn4Cg==
-X-Google-Smtp-Source: AGHT+IG9Ttru1ruXIsW674i0vE1QI20t43Hug+5XJhyzfmCgdCqgGynOwZI682I9zwA4RbLZ0btt3A==
-X-Received: by 2002:a05:651c:c85:b0:2c9:9376:1ae7 with SMTP id bz5-20020a05651c0c8500b002c993761ae7mr11736281ljb.28.1701265231148;
-        Wed, 29 Nov 2023 05:40:31 -0800 (PST)
+        bh=hQRwxx9GEOBkFVTtu0HXXPOcGrMBOKITGaWl4mMUCHI=;
+        b=HWWPJ2VUnNyNGuF3Gr1uCg1cVgy1eZNMLfHo+WE01e2h1FbMCcjG/jLIUFnJy5maa0
+         kC/+qdv9/5kqx7SSzDW3AxQgehZSoIGrzi2Nvx1ZasVrFhkCPNLF9uC8uwxv66gDBuD0
+         Hp1Nsr89F5Q4ZTi7MTmkkFtbv7Z9bLOGKqPJQlwOF6QPfLh59k4cdrS+1wMASwkg7y5D
+         lj928OhvyY3tRCLAzvAzpg3s32ApLtgpt6dviTBkhDZaqAAg1AX6EaHzLNSPPCEyHNJI
+         whu1VpqVaaSXnmIAtut+4pBSrxC2y7w+OKG9PxS/pt1ZM3D1djQlT7leQtGcMLBu4+HL
+         0A5A==
+X-Gm-Message-State: AOJu0Yxk3wWPMogF6XUh0ndv9vlbnNwwLPYR1C1xUX7vhuQSof+w/iYn
+	avagFr9q7C8YDgCz8KSMUsALxH6MbBMGRUTS9q0=
+X-Google-Smtp-Source: AGHT+IE6EXkIS1MLDJ9G7G35/UHE0u8PoIQgoq4VqHWzasYKaYE0gqoMNy6M4o6VE2MrG4pH/0KbYg==
+X-Received: by 2002:a2e:9646:0:b0:2c9:ba44:fd9d with SMTP id z6-20020a2e9646000000b002c9ba44fd9dmr2347821ljh.38.1701265232031;
+        Wed, 29 Nov 2023 05:40:32 -0800 (PST)
 Received: from toaster.lan ([2a01:e0a:3c5:5fb1:6101:5529:fe2d:d7eb])
-        by smtp.googlemail.com with ESMTPSA id w17-20020a05600c475100b004080f0376a0sm2285860wmo.42.2023.11.29.05.40.30
+        by smtp.googlemail.com with ESMTPSA id w17-20020a05600c475100b004080f0376a0sm2285860wmo.42.2023.11.29.05.40.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Nov 2023 05:40:30 -0800 (PST)
+        Wed, 29 Nov 2023 05:40:31 -0800 (PST)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Thierry Reding <thierry.reding@gmail.com>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
@@ -66,11 +66,10 @@ Cc: Jerome Brunet <jbrunet@baylibre.com>,
 	linux-amlogic@lists.infradead.org,
 	linux-pwm@vger.kernel.org,
 	JunYi Zhao <junyi.zhao@amlogic.com>,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
-	Rob Herring <robh@kernel.org>
-Subject: [PATCH v3 1/4] dt-bindings: pwm: amlogic: fix s4 bindings
-Date: Wed, 29 Nov 2023 14:39:57 +0100
-Message-ID: <20231129134004.3642121-2-jbrunet@baylibre.com>
+	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+Subject: [PATCH v3 2/4] dt-bindings: pwm: amlogic: add new compatible for meson8 pwm type
+Date: Wed, 29 Nov 2023 14:39:58 +0100
+Message-ID: <20231129134004.3642121-3-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.42.0
 In-Reply-To: <20231129134004.3642121-1-jbrunet@baylibre.com>
 References: <20231129134004.3642121-1-jbrunet@baylibre.com>
@@ -83,137 +82,139 @@ MIME-Version: 1.0
 X-Patchwork-Bot: notify
 Content-Transfer-Encoding: 8bit
 
-s4 has been added to the compatible list while converting the Amlogic PWM
-binding documentation from txt to yaml.
+Add a new compatible for the pwm found in the meson8 to sm1 Amlogic SoCs,
+dealing with clocks differently. This does not enable new HW. It is meant
+to fix a bad DT ABI for the currently supported HW.
 
-However, on the s4, the clock bindings have different meaning compared to
-the previous SoCs.
+The original clock bindings describe which input the PWM channel
+multiplexer should pick among its possible parents, which are
+hard-coded in the driver. As such, it is a setting tied to the driver
+implementation and does not describe the HW.
 
-On the previous SoCs the clock bindings used to describe which input the
-PWM channel multiplexer should pick among its possible parents.
+The new bindings introduce here describe the clocks input of the PWM block
+as they exist.
 
-This is very much tied to the driver implementation, instead of describing
-the HW for what it is. When support for the Amlogic PWM was first added,
-how to deal with clocks through DT was not as clear as it nowadays.
-The Linux driver now ignores this DT setting, but still relies on the
-hard-coded list of clock sources.
+The old compatible is deprecated but kept to maintain ABI compatibility.
 
-On the s4, the input multiplexer is gone. The clock bindings actually
-describe the clock as it exists, not a setting. The property has a
-different meaning, even if it is still 2 clocks and it would pass the check
-when support is actually added.
+The SoC specific compatibles introduced match the SoC families supported
+by the original bindings.
 
-Also the s4 cannot work if the clocks are not provided, so the property no
-longer optional.
-
-Finally, for once it makes sense to see the input as being numbered
-somehow. No need to bother with clock-names on the s4 type of PWM.
-
-Fixes: 43a1c4ff3977 ("dt-bindings: pwm: Convert Amlogic Meson PWM binding")
-Reviewed-by: Rob Herring <robh@kernel.org>
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- .../devicetree/bindings/pwm/pwm-amlogic.yaml  | 69 ++++++++++++++++---
- 1 file changed, 60 insertions(+), 9 deletions(-)
+ .../devicetree/bindings/pwm/pwm-amlogic.yaml  | 52 ++++++++++++++++---
+ 1 file changed, 46 insertions(+), 6 deletions(-)
 
 diff --git a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
-index 527864a4d855..387976ed36d5 100644
+index 387976ed36d5..eece390114a3 100644
 --- a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
 +++ b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
-@@ -9,9 +9,6 @@ title: Amlogic PWM
- maintainers:
-   - Heiner Kallweit <hkallweit1@gmail.com>
+@@ -21,23 +21,35 @@ properties:
+           - amlogic,meson-g12a-ee-pwm
+           - amlogic,meson-g12a-ao-pwm-ab
+           - amlogic,meson-g12a-ao-pwm-cd
+-          - amlogic,meson-s4-pwm
++        deprecated: true
+       - items:
+           - const: amlogic,meson-gx-pwm
+           - const: amlogic,meson-gxbb-pwm
++        deprecated: true
+       - items:
+           - const: amlogic,meson-gx-ao-pwm
+           - const: amlogic,meson-gxbb-ao-pwm
++        deprecated: true
+       - items:
+           - const: amlogic,meson8-pwm
+           - const: amlogic,meson8b-pwm
++        deprecated: true
++      - const: amlogic,meson8-pwm-v2
++      - items:
++          - enum:
++              - amlogic,meson8b-pwm-v2
++              - amlogic,meson-gxbb-pwm-v2
++              - amlogic,meson-axg-pwm-v2
++              - amlogic,meson-g12-pwm-v2
++          - const: amlogic,meson8-pwm-v2
++      - const: amlogic,meson-s4-pwm
  
--allOf:
--  - $ref: pwm.yaml#
--
- properties:
-   compatible:
-     oneOf:
-@@ -43,12 +40,8 @@ properties:
-     maxItems: 2
+   reg:
+     maxItems: 1
+ 
+   clocks:
+     minItems: 1
+-    maxItems: 2
++    maxItems: 4
  
    clock-names:
--    oneOf:
--      - items:
--          - enum: [clkin0, clkin1]
--      - items:
--          - const: clkin0
--          - const: clkin1
-+    minItems: 1
-+    maxItems: 2
+     minItems: 1
+@@ -58,7 +70,6 @@ allOf:
+         compatible:
+           contains:
+             enum:
+-              - amlogic,meson8-pwm
+               - amlogic,meson8b-pwm
+               - amlogic,meson-gxbb-pwm
+               - amlogic,meson-gxbb-ao-pwm
+@@ -67,14 +78,15 @@ allOf:
+               - amlogic,meson-g12a-ee-pwm
+               - amlogic,meson-g12a-ao-pwm-ab
+               - amlogic,meson-g12a-ao-pwm-cd
+-              - amlogic,meson-gx-pwm
+-              - amlogic,meson-gx-ao-pwm
+     then:
+-      # Historic bindings tied to the driver implementation
++      # Obsolete historic bindings tied to the driver implementation
+       # The clocks provided here are meant to be matched with the input
+       # known (hard-coded) in the driver and used to select pwm clock
+       # source. Currently, the linux driver ignores this.
++      # This is kept to maintain ABI backward compatibility.
+       properties:
++        clocks:
++          maxItems: 2
+         clock-names:
+           oneOf:
+             - items:
+@@ -83,6 +95,27 @@ allOf:
+                 - const: clkin0
+                 - const: clkin1
  
-   "#pwm-cells":
-     const: 3
-@@ -57,6 +50,57 @@ required:
-   - compatible
-   - reg
- 
-+allOf:
-+  - $ref: pwm.yaml#
-+
++  # Newer binding where clock describe the actual clock inputs of the pwm
++  # block. These are necessary but some inputs may be grounded.
 +  - if:
 +      properties:
 +        compatible:
 +          contains:
 +            enum:
-+              - amlogic,meson8-pwm
-+              - amlogic,meson8b-pwm
-+              - amlogic,meson-gxbb-pwm
-+              - amlogic,meson-gxbb-ao-pwm
-+              - amlogic,meson-axg-ee-pwm
-+              - amlogic,meson-axg-ao-pwm
-+              - amlogic,meson-g12a-ee-pwm
-+              - amlogic,meson-g12a-ao-pwm-ab
-+              - amlogic,meson-g12a-ao-pwm-cd
-+              - amlogic,meson-gx-pwm
-+              - amlogic,meson-gx-ao-pwm
-+    then:
-+      # Historic bindings tied to the driver implementation
-+      # The clocks provided here are meant to be matched with the input
-+      # known (hard-coded) in the driver and used to select pwm clock
-+      # source. Currently, the linux driver ignores this.
-+      properties:
-+        clock-names:
-+          oneOf:
-+            - items:
-+                - enum: [clkin0, clkin1]
-+            - items:
-+                - const: clkin0
-+                - const: clkin1
-+
-+  # Newer IP block take a single input per channel, instead of 4 inputs
-+  # for both channels
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - amlogic,meson-s4-pwm
++              - amlogic,meson8-pwm-v2
 +    then:
 +      properties:
 +        clocks:
++          minItems: 1
 +          items:
-+            - description: input clock of PWM channel A
-+            - description: input clock of PWM channel B
++            - description: input clock 0 of the pwm block
++            - description: input clock 1 of the pwm block
++            - description: input clock 2 of the pwm block
++            - description: input clock 3 of the pwm block
 +        clock-names: false
 +      required:
 +        - clocks
 +
- additionalProperties: false
- 
- examples:
-@@ -68,3 +112,10 @@ examples:
+   # Newer IP block take a single input per channel, instead of 4 inputs
+   # for both channels
+   - if:
+@@ -112,6 +145,13 @@ examples:
        clock-names = "clkin0", "clkin1";
        #pwm-cells = <3>;
      };
 +  - |
-+    pwm@1000 {
-+      compatible = "amlogic,meson-s4-pwm";
++    pwm@2000 {
++      compatible = "amlogic,meson8-pwm-v2";
 +      reg = <0x1000 0x10>;
-+      clocks = <&pwm_src_a>, <&pwm_src_b>;
++      clocks = <&xtal>, <0>, <&fdiv4>, <&fdiv5>;
 +      #pwm-cells = <3>;
 +    };
+   - |
+     pwm@1000 {
+       compatible = "amlogic,meson-s4-pwm";
 -- 
 2.42.0
 
