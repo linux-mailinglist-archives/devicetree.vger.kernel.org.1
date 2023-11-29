@@ -1,272 +1,140 @@
-Return-Path: <devicetree+bounces-19847-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19848-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F0DA7FD009
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 08:42:00 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A10A47FD04F
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 09:04:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 801611C20963
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 07:41:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B4F6328281A
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 08:04:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEE1B10975;
-	Wed, 29 Nov 2023 07:41:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F313D11731;
+	Wed, 29 Nov 2023 08:04:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=marvell.onmicrosoft.com header.i=@marvell.onmicrosoft.com header.b="N7XDvxLR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yPD4Ryvu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0016f401.pphosted.com (mx0a-0016f401.pphosted.com [67.231.148.174])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 378CB1710;
-	Tue, 28 Nov 2023 23:41:55 -0800 (PST)
-Received: from pps.filterd (m0045849.ppops.net [127.0.0.1])
-	by mx0a-0016f401.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AT5mUE4021197;
-	Tue, 28 Nov 2023 23:41:27 -0800
-Received: from nam11-bn8-obe.outbound.protection.outlook.com (mail-bn8nam11lp2168.outbound.protection.outlook.com [104.47.58.168])
-	by mx0a-0016f401.pphosted.com (PPS) with ESMTPS id 3unn86add3-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 28 Nov 2023 23:41:26 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZQoP5DzTvfvwmAvMWl462C8zFyugkatJfal1ufj3u07I9x2lio1KE/2+uEaop5qASLuL+x02g1Ho18bLWfTPBRoY88ZMUuAOQeE7AVPHDcaPQwKo5/KwKCsyJL6e/QyxpqmbtX81760GeYg0GK5mpCzIRUoWiPUshbjoF7w4dpE7kQPdhflaIEMB1TuhuJMRLls67qnkacc9y6rHmavyuZYtDLLCnG0X2KsEdpBOM9mdnDs4nCr61KIAyY9v2OIY+3AN9dvzvVjzjR4c9EyCOJd7NEQo0HtVcS2eSgi5Gj2uGaokyrQ/cvsQiHwIwVsPLv3Fs0Xdx5M1aQ/sazo+tA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6BaE7QkwAblCRYm9VTTxoxy1aPDmzfvw5hOLRwsuCHA=;
- b=Y1HX4ZN0cndRHv7RtjWOcvXwm11gJRMZ9ZVmmFF977sm0L+5OZv8wjqAzvdk5AroKN6/BWn6SfVfK++bVXyk3mhcl+Av1emr5p70ch03vSFxDWaWuhgVhuG33xV78V7noB5LgxVkzJuXnsAmMq4UbfpqgjbwrIgfqZW/kQIz06ElMwTFoL7xH0iijc3mgEedQbctATsf2gqLfSwXqZzOyAOe1NR/ahhGYA9xoCLJUzbIySSgQJCltPwRWFYdJ8toCA+d2bYyYiErQgFmNf7Un8JUs6QWSvKRmtPI2PMEW4tPqCcKSVtKImqfT1mdLe/Jvdjq8FrIs/vw34PHnA4V1A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=marvell.com; dmarc=pass action=none header.from=marvell.com;
- dkim=pass header.d=marvell.com; arc=none
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C760172E
+	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 00:04:20 -0800 (PST)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-a04196fc957so918111366b.2
+        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 00:04:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=marvell.onmicrosoft.com; s=selector1-marvell-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6BaE7QkwAblCRYm9VTTxoxy1aPDmzfvw5hOLRwsuCHA=;
- b=N7XDvxLRCUZc0aAwsQSdqC6r8bj7hPlFhenwzuLEx1AlGt90q+qqv5E0TiAmpcj8Q5TI6ynFoLy6T1jIR3JZzPgYUbDj/2HaAb3Rk9PMphxDqsyFFCN+8LN2gAJbeDpJYlOONej3PCWgyijCBlDn09/7hWJ7W21TDSEURA3hlZQ=
-Received: from BL1PR18MB4248.namprd18.prod.outlook.com (2603:10b6:208:311::15)
- by MN2PR18MB3591.namprd18.prod.outlook.com (2603:10b6:208:264::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.23; Wed, 29 Nov
- 2023 07:41:24 +0000
-Received: from BL1PR18MB4248.namprd18.prod.outlook.com
- ([fe80::9db8:8487:fecc:c862]) by BL1PR18MB4248.namprd18.prod.outlook.com
- ([fe80::9db8:8487:fecc:c862%4]) with mapi id 15.20.7046.023; Wed, 29 Nov 2023
- 07:41:23 +0000
-From: Elad Nachman <enachman@marvell.com>
-To: Andrew Lunn <andrew@lunn.ch>
-CC: "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "gregory.clement@bootlin.com"
-	<gregory.clement@bootlin.com>,
-        "sebastian.hesselbarth@gmail.com"
-	<sebastian.hesselbarth@gmail.com>,
-        "pali@kernel.org" <pali@kernel.org>,
-        "mrkiko.rs@gmail.com" <mrkiko.rs@gmail.com>,
-        "chris.packham@alliedtelesis.co.nz" <chris.packham@alliedtelesis.co.nz>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>,
-        Yuval Caduri <cyuval@marvell.com>
-Subject: RE: [EXT] Re: [PATCH v6 3/3] arm64: dts: cn913x: add device trees for
- COM Express boards
-Thread-Topic: [EXT] Re: [PATCH v6 3/3] arm64: dts: cn913x: add device trees
- for COM Express boards
-Thread-Index: AQHaIWU9yr1UOWxDQke0cEhQKWxs3rCOwMEAgAIjrqA=
-Date: Wed, 29 Nov 2023 07:41:23 +0000
-Message-ID: 
- <BL1PR18MB424884AB9E0D8E8BF4AD1926DB83A@BL1PR18MB4248.namprd18.prod.outlook.com>
-References: <20231127190857.1977974-1-enachman@marvell.com>
- <20231127190857.1977974-4-enachman@marvell.com>
- <35f98bc2-dc26-4441-8ed3-1ecce582d0d2@lunn.ch>
-In-Reply-To: <35f98bc2-dc26-4441-8ed3-1ecce582d0d2@lunn.ch>
-Accept-Language: he-IL, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BL1PR18MB4248:EE_|MN2PR18MB3591:EE_
-x-ms-office365-filtering-correlation-id: bc65aec5-11a6-419a-e2c3-08dbf0ae9642
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- M5MSi5WZU9DPEjr+9NbZ0TD/aUMX+Yj4XV1Z1fudlQ34/VIJXKYKfu2oegkq21XrP/6oc3i9Hl9pYh0rYJjilRd3NwxxiKF6f6jjv4ceBomU+LLGXN7wbq9Yl5EOOd0bF5WNAjHREHa+TEADrYfotMVRdAAvsJZRe1/cADfBWUIA78o6g6fk7DIhNJpN1tPOiTzEXScF3vPw3n0GpmrklC59O3UqDQzoaiXhaR0Cyr7FZSYc6uNlmo4JzDnf1EOsGe8JhzATAJG1xE+oxRjom3TSOU24ZEU+crFDHwaAstsbz8ejvBZCdd289Y9t2dmWY0xXNXtNWpw8LXbkMC7i7aRgoPPdR7aW6eZSkDwBLIvg409qVNcFMTTg+b6fwwOqO8oHCoVh0VpksLQToW7LuHyd0SHPSSb2RrWn6kF6Uivp8EuLqx93FgzrRsrnCrK21SiDF2HJLXPNc4yUbC2hw0GpRYOw8ypeH0fcObrrgFphBsh8sgnzWs2TWckXH3xmAUPYd0R9BSg1h37p6ILFPTIC+yHqhqeS7ou1wMy2tAXtMqSQwREGQMbmTwKtSMTEGJONsmI6al/Fw1AnMLHF3P4q+6fSBTKup4CcPyi5l7Y1wxYQYhPzki+x6lbJkdQc5gxO8AObbe3hn8QVjNbUR97MYbiCbF8PoHoLR2l1Kes=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL1PR18MB4248.namprd18.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39860400002)(136003)(396003)(346002)(366004)(376002)(230922051799003)(230273577357003)(230173577357003)(186009)(451199024)(64100799003)(1800799012)(55016003)(122000001)(38100700002)(83380400001)(2906002)(86362001)(5660300002)(8936002)(52536014)(8676002)(4326008)(6916009)(7416002)(76116006)(316002)(66556008)(54906003)(66946007)(66476007)(66446008)(64756008)(478600001)(71200400001)(41300700001)(7696005)(6506007)(9686003)(33656002)(53546011)(38070700009)(26005)(107886003);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?us-ascii?Q?gO2pec0bL9YhR+3jMcw/E6MNfM3cctL+XbPVeFdHzk4ydPUk5pbqIQ/zI9pC?=
- =?us-ascii?Q?lWm6Xe+UqhY2CWK1sLFZRxzxNVa9nLxOxL7dYyHAI9rM4o0YLwF0GMIXMOrj?=
- =?us-ascii?Q?NjoExDZ5FAl3VslckmR6BVHR5XsXu02jEEYjz1z1rPf0nlIZ1J3PM+2Jpsc3?=
- =?us-ascii?Q?k3e/5koaVRht9ZUiBxihG80Iq+aYoc0+3FegZT0kUF3X0TwOCNnHRvBtvMfw?=
- =?us-ascii?Q?6tnsybvlf/NSuK5HS2PsSONkAvpRU9Jh1RRTshUQXTjyNhHkcviPhQlsz/Q/?=
- =?us-ascii?Q?UM68o//kUAhz2oAa4okBNgt67YG9M3rcSjaz07pz7aOJB9+TKeevNNODK1HG?=
- =?us-ascii?Q?ogClSJNfCsHQIAr436fZgRMOhUWBxXC+L30nQrTZwUEE/cc4o5VPdAMlQIua?=
- =?us-ascii?Q?XDvEflvrgGKaLYAwMrrvMmtNCE4KzydImtbSHPJgNreJRdGxJxE+iv1dPqmY?=
- =?us-ascii?Q?IeG+J5aG93xIpQiCcKlMji6EJMz0f7/kFncUB81mp8kGO6SdK2uL7PAkweoq?=
- =?us-ascii?Q?M4aqTeZZ3pcCjsodMlg898SBJ1nL5T6XXh5BkqBPrBDWFX0/fr09Anyi55BR?=
- =?us-ascii?Q?ns/DGDXCS5SS4bZDfccjLNc7Jw1uiWnH5I4lKq/RCcjv9WCwJDOh1dXdSslk?=
- =?us-ascii?Q?1wLPXAl1RSlLzQpd2fEE9upxNK2w70PT07DWSDGvP9dX+y+Kzq3RRrgViaD7?=
- =?us-ascii?Q?t1QEmkojTkUmiRhJj7K+w6sI79VTG9APAv8vq1lCnGiRO+hmdzuz9FeboFPk?=
- =?us-ascii?Q?aeaabq8r0eYq7ofGY35WWlylnGT/oLex6NUz1jIFj54dpD4MZ9Cn7bb92xNE?=
- =?us-ascii?Q?q/h/sOj19qtD8+ELHyUSK0a0aUffy2FL4oWwhOWE6wNA+CC7jUKcu1rfmxWu?=
- =?us-ascii?Q?IJiX3dFTdKi3zUI9wcCt2hDnhTfXih75oB+YcWD3P8TxKqR7v58Qbu2vucu8?=
- =?us-ascii?Q?bfv2AZTnBfXEwHMjhzgUJzC0shAYnKOUMY24/kT3UEKnHVo0rVrXsbaI1Npy?=
- =?us-ascii?Q?2x319rtd0AsUJylTuFnzFdcZowvTGFAR7tMQJSwCStZCAGFYaLl/fRTYIsIE?=
- =?us-ascii?Q?7Fz+mUNPIa5SuGs6iQzEc9tlVEaNiMLs1inDUs0LlRidk3u7mnj6d/fwKEgn?=
- =?us-ascii?Q?hhE54PSEBFSaYnqcG6WUNSE5hoFRP/uzRPbgwmkCMIaK2K9pCOfC+8nwYOSc?=
- =?us-ascii?Q?VXsm99fRUZ7nZZzYdh6kOcclhe6EYLC2RyX2o71iTSWWHXir7VbPS7TP1A6Q?=
- =?us-ascii?Q?WlmtcgzSmYwUO9c8jiumZa8D9iQaMKu3+zxz0iJ9kCxRe7IaM6SAqpBn4/0H?=
- =?us-ascii?Q?iEk1nd4jyKa84AS4DJHj1YoHymfXh0kbAM2992gjurUEBbS39yDe1CSZp3yW?=
- =?us-ascii?Q?Yb65gPNo6KchaaSMbjDlXz6oOT8Rii/qIFMFjew/kPaMmQDqrgHz5ZKDehMj?=
- =?us-ascii?Q?UQ1YdwTIKq0HY+H/pnVOyfPqxIAnNWU509uFz8dHjBruLoBIKQFjdPKwnkCQ?=
- =?us-ascii?Q?o/CCmswFWFU8Snb2VnaUe/22SFSzHZ09wacvWPYckEC2YX/BFwkfNCMJc6rr?=
- =?us-ascii?Q?TD5xYZpXp/KmYP7wnMLW08N4uk88VqcKJSF8yhVo?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        d=linaro.org; s=google; t=1701245059; x=1701849859; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=IQNgKi21QGNM6yhhBZjxgV+dgrVijEVFKUYc5UpN0qw=;
+        b=yPD4RyvuHVacXHzD5F7b+tqRFbquIeuvd4vHgqLJaN8vnvtXebIH3fGXAP+E+DWwtC
+         QyDV6gQokz6BRYT6PKqKLRTZPbCp67qunp1IrUsPAlzkEiQ8gNGMszpZdek0PbQpyuz/
+         wp2BcVp+37yyDFAFY6ABbrk/K+RzmihAjqtAESF+bgaQvW6jhsClCkMxrAfkkp8cbuyQ
+         RtA8irigB/0+wj1lAgDfIhBclfrFSgal9KIjF2eWb/Ree7QL6eUdnUAi7RcKgp/GYjMi
+         1SJYnefYZOKBCrah7F7anzCJKwB60AplE0y6v/xKvxlHYFWrjijVtYLlx/rhYisI012O
+         KJCQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701245059; x=1701849859;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=IQNgKi21QGNM6yhhBZjxgV+dgrVijEVFKUYc5UpN0qw=;
+        b=oVrweRqveqCp1PPztgs8hQzpwJ2TU6a7bqgvMglMK2JN4JJT46qh0zryp7o99964oa
+         XYAkr10ya3V8VLo5E+HzC4TIlTZd2jxIN1UQLvT+NIFOP79Z3l8bCf8qehzNxPmDB/5P
+         1Ry6xWYGEX2XGtoV92ok2SX47adtNCRV6B6TVunWbq5vDfjz234bpYqpFkpQrdAiih3p
+         20+jCfgIeTO7JhpBRRy1J7KDBJGf4KFzDLmIUxRoqv1YbsSiADS1f6dUtfWYufGyjsw2
+         XKqphBy23OZcSnE962ggRBV+NCrhej+dDMDdBBw8ept0PhaiS7cU4+hzhQ5MnArB4vHz
+         cYNQ==
+X-Gm-Message-State: AOJu0YwSjsJYQyrLu4NDOdepUzUc99IA14xQ0CjgRm5P/B63MLqSkubP
+	lFFKXOcnPwQK81heeFls0zL3nw==
+X-Google-Smtp-Source: AGHT+IET11xmLABfhINR6SmMhez6ufsGrfgZ0Ea9E7SDq5BgT3koHb0TDqhvx2dXpx8Mx40xD/WM1Q==
+X-Received: by 2002:a17:906:7396:b0:a0e:79b3:3cf5 with SMTP id f22-20020a170906739600b00a0e79b33cf5mr5756752ejl.69.1701245058986;
+        Wed, 29 Nov 2023 00:04:18 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.223.109])
+        by smtp.gmail.com with ESMTPSA id t27-20020a1709063e5b00b009fd727116b4sm7590959eji.129.2023.11.29.00.04.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 29 Nov 2023 00:04:18 -0800 (PST)
+Message-ID: <adf1e932-a201-475e-a562-4e35954159ee@linaro.org>
+Date: Wed, 29 Nov 2023 09:04:17 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: marvell.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BL1PR18MB4248.namprd18.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bc65aec5-11a6-419a-e2c3-08dbf0ae9642
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Nov 2023 07:41:23.8548
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 70e1fb47-1155-421d-87fc-2e58f638b6e0
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: TRLDAvomYslmADBKW/IfdP5JT4yKq/pYUqxXXdqlnaPIqhEjutbFQfH5CeQ2mqOFwk+jBBdYrXIDQ4vNIn0+jA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR18MB3591
-X-Proofpoint-ORIG-GUID: zdu0_jzv2QHtCsw9XBeRX_J8XeH8-eQ3
-X-Proofpoint-GUID: zdu0_jzv2QHtCsw9XBeRX_J8XeH8-eQ3
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-29_05,2023-11-27_01,2023-05-22_02
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 1/2] dt-bindings: iio: pressure: add honeywell,hsc030
+Content-Language: en-US
+To: Petre Rodan <petre.rodan@subdimension.ro>, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Cc: Conor Dooley <conor+dt@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ linux-kernel-mentees@lists.linuxfoundation.org,
+ Jonathan Cameron <jic23@kernel.org>
+References: <20231129070432.1437-1-petre.rodan@subdimension.ro>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231129070432.1437-1-petre.rodan@subdimension.ro>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+On 29/11/2023 08:04, Petre Rodan wrote:
+> Adds binding for digital Honeywell TruStability HSC and SSC series
+> pressure and temperature sensors.
+> Communication is one way. The sensor only requires 4 bytes worth of
+> clock pulses on both i2c and spi in order to push the data out.
+> The i2c address is hardcoded and depends on the part number.
+> There is no additional GPIO control.
 
+Your threading is broken (not existing) since v4, making it difficult to
+apply the patchset. Please fix it when sending v6.
 
-> -----Original Message-----
-> From: Andrew Lunn <andrew@lunn.ch>
-> Sent: Tuesday, November 28, 2023 12:34 AM
-> To: Elad Nachman <enachman@marvell.com>
-> Cc: robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org;
-> conor+dt@kernel.org; gregory.clement@bootlin.com;
-> sebastian.hesselbarth@gmail.com; pali@kernel.org; mrkiko.rs@gmail.com;
-> chris.packham@alliedtelesis.co.nz; devicetree@vger.kernel.org; linux-
-> kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org; Yuval Cadur=
-i
-> <cyuval@marvell.com>
-> Subject: [EXT] Re: [PATCH v6 3/3] arm64: dts: cn913x: add device trees fo=
-r
-> COM Express boards
->=20
-> External Email
->=20
-> ----------------------------------------------------------------------
-> > +++ b/arch/arm64/boot/dts/marvell/ac5x-rd-carrier-cn9131.dts
-> > @@ -0,0 +1,25 @@
-> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > +/*
-> > + * Copyright (C) 2023 Marvell International Ltd.
-> > + *
-> > + * Device tree for the AC5X RD Type 7 Com Express carrier board,
-> > + * Utilizing the CN913x COM Express CPU module board.
-> > + * This specific board only maintains a PCIe link with the CPU CPU
-> > +module
-> > + * module, which does not require any special DTS definitions.
-> > + */
-> > +
-> > +#include "cn9131-db-comexpress.dtsi"
-> > +#include "ac5x-rd-carrier.dtsi"
-> > +
-> > +/ {
-> > +	model =3D "Marvell Armada AC5X RD COM EXPRESS type 7 carrier
-> board with CN9131 CPU module";
-> > +	compatible =3D "marvell,cn9131-ac5x-carrier", "marvell,rd-ac5x-
-> carrier",
-> > +			"marvell,cn9131-cpu-module", "marvell,cn9131",
-> > +			"marvell,armada-ap807-quad", "marvell,armada-
-> ap807";
->=20
-> > diff --git a/arch/arm64/boot/dts/marvell/ac5x-rd-carrier.dtsi
-> > b/arch/arm64/boot/dts/marvell/ac5x-rd-carrier.dtsi
-> > new file mode 100644
-> > index 000000000000..fd45d5582233
->=20
-> > +/ {
-> > +	model =3D "Marvell Armada AC5X RD COM EXPRESS type 7 carrier
-> board";
-> > +	compatible =3D "marvell,rd-ac5x-carrier";
->=20
-> Now i'm confused. What does rd mean?
->=20
-> I would expect RD mean Reference Design, and that is the complete device =
-in
-> its box.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-AC5X RD can either work as you would expect, as a complete standalone box u=
-sing the internal CPU, or you can move the switch on the back of the box to=
- "external" mode, and connect via an external cable a kit which would allow=
- it to use an external CPU COM Express module, mounted on top of an interpo=
-ser kit.
+Best regards,
+Krzysztof
 
->=20
-> Yet, here you have RD for the carrier?
->=20
-> The box itself is called cn9131-ac5x-carrier?
->=20
-> This makes no sense to me.
->=20
-> Maybe i'm understanding this all wrong, and its the carrier which you are
-> producing a reference design for? The CPU module does not really matter? =
-I
-
-So in this case, once the switch is set to external as explained above, the=
- AC5X RD becomes part of the carrier solution.
-This is a development/reference solution, not a full commercial solution, h=
-ence it has the flexibility to be configured in different modes of operatio=
-n.
-
-> could use any off the shelf ComExpress 7 SOM. The bits you are trying to =
-sell
-
-Basically, yes. We have it validated versus few x86_64 system in our labs.
-
-> are on the carrier? But since you are Marvell, you don't want to recommen=
-d
-> using an AMD ComExpress board when you happen to also have CPU
-
-To the best of my knowledge, we did not validate specifically against AMD C=
-OM Express solutions.
-Since some of these modules utilize non-standard implementation of the COM =
-Express standard (for example, few AMD CPUs do not have 10G signals, hence =
-few AMD COM Express designs drive PCIe signals via the 10G-KR Ethernet pins=
- of the COM Express standard), it is up to the customer, if he chooses to u=
-se such module(s), to validate them against the Marvell AC5X RD, acting as =
-carrier via the interposer kit.
-
-> module which would work? But the CPU is not really the point of this, its=
- the
-> carrier?
-
-We have tested and validated a complete reference/development solution comb=
-ining CN9131 Com Express CPU module, interposer kit and AC5X RD as carrier.
-We only push to upstream solutions which we have validated in the lab, henc=
-e we push device tree files for the combination tested - specific CPU and s=
-pecific carrier.
-Customers are free to use other COM Express CPU modules, but they will have=
- to validate them by themselves, to account for any deviation from the COM =
-Express standard.
-After that, if they wish, they can choose to go for the process of upstream=
-ing their device tree files by their own, like we chose.
-
->=20
-> 	Andrew
-
-FYI,
-
-Elad.
 
