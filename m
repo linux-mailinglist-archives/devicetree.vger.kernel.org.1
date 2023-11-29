@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-19848-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19849-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A10A47FD04F
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 09:04:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 180217FD067
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 09:11:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B4F6328281A
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 08:04:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F0C162823CB
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 08:11:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F313D11731;
-	Wed, 29 Nov 2023 08:04:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 683BE11711;
+	Wed, 29 Nov 2023 08:11:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yPD4Ryvu"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UBtBLPcg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C760172E
-	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 00:04:20 -0800 (PST)
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-a04196fc957so918111366b.2
-        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 00:04:20 -0800 (PST)
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38F2619BA
+	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 00:11:21 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-50bc501081fso523740e87.1
+        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 00:11:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701245059; x=1701849859; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701245479; x=1701850279; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=IQNgKi21QGNM6yhhBZjxgV+dgrVijEVFKUYc5UpN0qw=;
-        b=yPD4RyvuHVacXHzD5F7b+tqRFbquIeuvd4vHgqLJaN8vnvtXebIH3fGXAP+E+DWwtC
-         QyDV6gQokz6BRYT6PKqKLRTZPbCp67qunp1IrUsPAlzkEiQ8gNGMszpZdek0PbQpyuz/
-         wp2BcVp+37yyDFAFY6ABbrk/K+RzmihAjqtAESF+bgaQvW6jhsClCkMxrAfkkp8cbuyQ
-         RtA8irigB/0+wj1lAgDfIhBclfrFSgal9KIjF2eWb/Ree7QL6eUdnUAi7RcKgp/GYjMi
-         1SJYnefYZOKBCrah7F7anzCJKwB60AplE0y6v/xKvxlHYFWrjijVtYLlx/rhYisI012O
-         KJCQ==
+        bh=h8hB39U7zFZuE+RYHWIc6hAMzXdsKB0nNNKBmoc3gdY=;
+        b=UBtBLPcg5ywEM6sC9qlvawj6SkcikWvsZ6gRSg24AlNsrpwTBobKgoipdZG+gv15SP
+         Oblh7k7JQHbpZ1s0zqxnKtSQv6Sz2KbDL4rPgQJPambcSVi6Ts6Sh/ha4kz26RUU/ygp
+         2WRs74VJrxqFE30vOEIr7NWB4pkj3OTmo0VyA8k2jyyZ8NocbPo8tN8rYCyUnzwlX8lJ
+         PUzxXPBOqXgb9iMsbTbnqcZBW78UcnGewwOFzeAzaQLeWjQWFArZ+Ynys5ypcXyW8hPp
+         rw45JjqZ2+WGuRXh2HX/FsKIqEensDNcQpNZ7sq6mLZf6GBcgwlXlorDt6mweiWwf+UU
+         csbw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701245059; x=1701849859;
+        d=1e100.net; s=20230601; t=1701245479; x=1701850279;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IQNgKi21QGNM6yhhBZjxgV+dgrVijEVFKUYc5UpN0qw=;
-        b=oVrweRqveqCp1PPztgs8hQzpwJ2TU6a7bqgvMglMK2JN4JJT46qh0zryp7o99964oa
-         XYAkr10ya3V8VLo5E+HzC4TIlTZd2jxIN1UQLvT+NIFOP79Z3l8bCf8qehzNxPmDB/5P
-         1Ry6xWYGEX2XGtoV92ok2SX47adtNCRV6B6TVunWbq5vDfjz234bpYqpFkpQrdAiih3p
-         20+jCfgIeTO7JhpBRRy1J7KDBJGf4KFzDLmIUxRoqv1YbsSiADS1f6dUtfWYufGyjsw2
-         XKqphBy23OZcSnE962ggRBV+NCrhej+dDMDdBBw8ept0PhaiS7cU4+hzhQ5MnArB4vHz
-         cYNQ==
-X-Gm-Message-State: AOJu0YwSjsJYQyrLu4NDOdepUzUc99IA14xQ0CjgRm5P/B63MLqSkubP
-	lFFKXOcnPwQK81heeFls0zL3nw==
-X-Google-Smtp-Source: AGHT+IET11xmLABfhINR6SmMhez6ufsGrfgZ0Ea9E7SDq5BgT3koHb0TDqhvx2dXpx8Mx40xD/WM1Q==
-X-Received: by 2002:a17:906:7396:b0:a0e:79b3:3cf5 with SMTP id f22-20020a170906739600b00a0e79b33cf5mr5756752ejl.69.1701245058986;
-        Wed, 29 Nov 2023 00:04:18 -0800 (PST)
+        bh=h8hB39U7zFZuE+RYHWIc6hAMzXdsKB0nNNKBmoc3gdY=;
+        b=fARAzvSibNskOHZaY3eWU0qg+RX8WBum3q44vmSO86NHGp7DsoVJFv2TPM7ShiZKgR
+         B3U2aA81pbuRrqVm/gjoC91gv8GvQE1PtVRLpfNUHxpuoMQ8pxN106tACa1fyhpIzKW7
+         40CghdSGwaILZFv97itVpk801rgWcYwSAR90yELLSSe02TkbBGsUopFVTNp5P94/K6Jw
+         cIdU7LWVEUQxitKcVnII36anHFlqmrxRTzVqIf3wNodJwk8mgjlTGIFoNyQeEwMPWlHv
+         0Y9IXaHtygNEIWOYGuAsl3G0OjPtGXlaOT8n5jVln8lsyF36OhGAvxaP12pSgpQin80c
+         E1RA==
+X-Gm-Message-State: AOJu0YyMIYnxx5SHIhZsT7uug9qvrEOwCEH45XRTEdoSivcDhG2nufLS
+	VSAbofmbkoujX2bLDMbWgAHA8A==
+X-Google-Smtp-Source: AGHT+IE28+hV8H8YoZe24Jyii8nQk+otIT7PpL2YWrVVeGiL9uqWYcGSCVUDwzqIoEjHcOT7INpQ7A==
+X-Received: by 2002:a05:6512:2350:b0:507:9fc1:ca7a with SMTP id p16-20020a056512235000b005079fc1ca7amr11026901lfu.9.1701245479441;
+        Wed, 29 Nov 2023 00:11:19 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.109])
-        by smtp.gmail.com with ESMTPSA id t27-20020a1709063e5b00b009fd727116b4sm7590959eji.129.2023.11.29.00.04.17
+        by smtp.gmail.com with ESMTPSA id v12-20020a170906338c00b009f2b7282387sm7594010eja.46.2023.11.29.00.11.17
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Nov 2023 00:04:18 -0800 (PST)
-Message-ID: <adf1e932-a201-475e-a562-4e35954159ee@linaro.org>
-Date: Wed, 29 Nov 2023 09:04:17 +0100
+        Wed, 29 Nov 2023 00:11:18 -0800 (PST)
+Message-ID: <db3ede63-8708-469f-8e7b-aca798ed50e0@linaro.org>
+Date: Wed, 29 Nov 2023 09:11:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,16 +62,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/2] dt-bindings: iio: pressure: add honeywell,hsc030
+Subject: Re: [PATCH v2 3/4] arm64: dts: nuvoton: Add pinctrl support for
+ ma35d1
 Content-Language: en-US
-To: Petre Rodan <petre.rodan@subdimension.ro>, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Cc: Conor Dooley <conor+dt@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- linux-kernel-mentees@lists.linuxfoundation.org,
- Jonathan Cameron <jic23@kernel.org>
-References: <20231129070432.1437-1-petre.rodan@subdimension.ro>
+To: Jacky Huang <ychuang570808@gmail.com>, linus.walleij@linaro.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ p.zabel@pengutronix.de, j.neuschaefer@gmx.net
+Cc: linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ ychuang3@nuvoton.com, schung@nuvoton.com
+References: <20231128061118.575847-1-ychuang570808@gmail.com>
+ <20231128061118.575847-4-ychuang570808@gmail.com>
+ <7edda3ca-b98a-4125-979f-3ee7ac718a9a@linaro.org>
+ <a0be9aaa-290d-450e-b0b8-d87453bcaaa0@gmail.com>
+ <7fed5d90-da04-40fb-8677-b807b6f51cc9@linaro.org>
+ <8663d26e-32b8-4f2b-b497-9efa7440f070@gmail.com>
+ <2fab32e6-23a4-41bb-b47b-4f993fc590dc@linaro.org>
+ <ff83f0f2-541a-4677-a247-5f47fdcca3f1@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -117,22 +124,45 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231129070432.1437-1-petre.rodan@subdimension.ro>
+In-Reply-To: <ff83f0f2-541a-4677-a247-5f47fdcca3f1@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 29/11/2023 08:04, Petre Rodan wrote:
-> Adds binding for digital Honeywell TruStability HSC and SSC series
-> pressure and temperature sensors.
-> Communication is one way. The sensor only requires 4 bytes worth of
-> clock pulses on both i2c and spi in order to push the data out.
-> The i2c address is hardcoded and depends on the part number.
-> There is no additional GPIO control.
+On 29/11/2023 04:35, Jacky Huang wrote:
+>>>> Best regards,
+>>>> Krzysztof
+>>>>
+>>> Yes, it did pass the 'dtbs_check'. I guess the tool does not detect such
+>>> issues.
+>>> Anyway, I will fix it in the next version.
+>> Hm, I see your bindings indeed allow pin-.* and unit addresses, so it is
+>> the binding issue.
+>>
+>> The examples you used as reference - xlnx,zynqmp-pinctrl.yaml and
+>> realtek,rtd1315e-pinctrl.yaml - do not mix these as you do.
+>>
+>> I don't understand why do you need them yet. I don't see any populate of
+>> children. There are no compatibles, either.
+>>
+>> Which part of your driver uses them exactly?
+>>
+>> Best regards,
+>> Krzysztof
+>>
+> 
+> I will move the 'pcfg_default: pin-default' from dtsi to dts, like this:
+> 
+> &pinctrl {
+>      pcfg_default: pin-default {
+>          slew-rate = <0>;
+>          input-schmitt-disable;
+>          bias-disable;
+>          power-source = <1>;
+>          drive-strength = <17100>;
+>      };
 
-Your threading is broken (not existing) since v4, making it difficult to
-apply the patchset. Please fix it when sending v6.
+This solves nothing. It's the same placement.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
