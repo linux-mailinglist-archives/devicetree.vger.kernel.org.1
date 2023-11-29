@@ -1,123 +1,258 @@
-Return-Path: <devicetree+bounces-20170-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20171-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 406FF7FE163
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 21:54:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7888B7FE16A
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 21:55:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DD9E11F20E9B
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 20:54:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ECDEB1F2029D
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 20:55:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5954D60EFC;
-	Wed, 29 Nov 2023 20:54:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B879760EFF;
+	Wed, 29 Nov 2023 20:55:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nexus-software-ie.20230601.gappssmtp.com header.i=@nexus-software-ie.20230601.gappssmtp.com header.b="kQpQoQWE"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="C/WStUCw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEF2DDC
-	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 12:54:00 -0800 (PST)
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-40b4a8db331so1544755e9.3
-        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 12:54:00 -0800 (PST)
+Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 216FFD7F;
+	Wed, 29 Nov 2023 12:55:46 -0800 (PST)
+Received: by mail-pg1-x536.google.com with SMTP id 41be03b00d2f7-5c6001ec920so183715a12.0;
+        Wed, 29 Nov 2023 12:55:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nexus-software-ie.20230601.gappssmtp.com; s=20230601; t=1701291239; x=1701896039; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=YKjbNQgXkGMeMvnSiazATvW5vc83bVG6h9HitL94um8=;
-        b=kQpQoQWE3JvI6Sk1pwSmnEZjXE1b7nAjtCMMx0yuLuAL06QFPkhCoHrBGfj0cB69YL
-         meYqE+W9sSmk79So2o4ueAM9W+h9hsbItFY4H3K0FmYbAehzaFqu8Nf3k5UCbuvukxZ7
-         HL83XVh35lAlesmW93PkgcVUYIJqCfSUPgHyecXwzt41McLuB+uH5Pj8zCRJUXy/DqKl
-         7Lyfmeqz9e8OencVfsU01vZFBg/k6RuYbyDtRbXYLic+hVupiisctJ/DpNFMexUvTW8R
-         kttwpW4bKf0PrDv3/5d/+nAG6zKKgotHlgahLgWBxc64hZGoYB9x+mGtWl1eSzkw7hv3
-         k5oA==
+        d=gmail.com; s=20230601; t=1701291345; x=1701896145; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VCNLz0W3pK8+rHCupmjeoATMH5+LWZm/5E4W9tL03+k=;
+        b=C/WStUCwwqO9Ee2K612d0VAmXXoXeRugqDFzXoZAb7E/+ZlAeMZiaBAnqj8rBnhBA1
+         wYDFrWaupuezuP+LUu2rfZp1Kg5dfcY/pfCeD3No0fuxAHmcsEHazEENw1jCKAIeppx6
+         K9VO5+9XX6FnQ98ksRi2q5aYYkZC72pD38Ab2tsVY4PufTqxkPlMhScfmWrki/MGN2k7
+         BuDfsW9Zp9z87vntvw0SCYIIa9j5k8asXs+w9giDLQnP1mPd4+yPH+P1kojS8listCFo
+         FICHYMfzGmeFMZR98RmaCdfvL/KkZTFOw1k+69bS1fR62zd21/W03eQJhO+M47Smi0rp
+         v6fA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701291239; x=1701896039;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YKjbNQgXkGMeMvnSiazATvW5vc83bVG6h9HitL94um8=;
-        b=De/YgYIlwWUWMGBlrebfBe3FcgCfRurvgc78OHdEhzgP71gh/PmPrxR63mIS5VOqum
-         n2VoLcndJ2cePQrOJVdF2/UgkktAiet8hSxcjMmy3d5iuevwy9paXnQTXOGGWzA0fmlH
-         Rga8eigxwAmIEpOImM3s2Md5k8dxSNqVgPTssaOSwwW7BFPqBpt5lREPxcFloDadD5UA
-         +fI6XTTRBYpUKdWsygZ0tLAHNwjpOwz0oIuh+XlRaRcPDLIoEz2sD1fm2gzJ9Fj2JIPc
-         0gwKMUx/0n2Egbp9d2cD6a5I0kkU7V5Kr7iiUxocjDD4d9PHghdA44uZcEeZpgYtypdj
-         jOBQ==
-X-Gm-Message-State: AOJu0Yx2GBGH95miqZzqKiZHHovrr26fGEh3WIT3dLsbfLYT3tNGUH9y
-	UtKPIMFl8cF6gtRibTY4LERGZA==
-X-Google-Smtp-Source: AGHT+IFJnxs03uHyKsQvS/eeVLg4bLJCJWU+N3Z26xmaV36HJAdD6+44jAtYpt4zRuMooN+P4N+XzA==
-X-Received: by 2002:a05:600c:4ed3:b0:408:3c10:ad47 with SMTP id g19-20020a05600c4ed300b004083c10ad47mr12917112wmq.40.1701291238941;
-        Wed, 29 Nov 2023 12:53:58 -0800 (PST)
-Received: from [192.168.100.102] ([37.228.218.3])
-        by smtp.gmail.com with ESMTPSA id k18-20020a05600c1c9200b0040b2976eb02sm3351905wms.10.2023.11.29.12.53.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Nov 2023 12:53:58 -0800 (PST)
-Message-ID: <cc8b9eea-ea4c-4943-a0f2-c2a791903440@nexus-software.ie>
-Date: Wed, 29 Nov 2023 20:53:56 +0000
+        d=1e100.net; s=20230601; t=1701291345; x=1701896145;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=VCNLz0W3pK8+rHCupmjeoATMH5+LWZm/5E4W9tL03+k=;
+        b=kwal42AndhFSvMlq30CdTHqKmUsjHqPMEOVhb7VIO6u2yslyoCgHjjZH2mp6uahTLD
+         Y/uWKt7BXQ/EzWnJAsXpTuwhkaTWA8nUMbWGrymaMfmYLDxvueY2CjRatvQG8yE8UKYs
+         pYjr03mAY3oPEB/1lVkQxGwsohAUvFbahQp5fs70haDWJu/vEzUVA7IvBt/Mch4Rmw6/
+         FZ02ydh6rxEXHcASpc1fMNQ4FigxElvZq04wue8XP68hCLt/jFiGw47fcB6mw/tZWihW
+         k5hpuTBHrV8FtTESc5F2Cemc9Bb7wxYm7qBhRClBUZNCDH439p0FcPd4RDQFbn1dA1hS
+         160A==
+X-Gm-Message-State: AOJu0YwTvDVaVOkoNVmvLuY0iFiUfp2Oe23QskLDyDWwssZpfJtDm8i7
+	svWOorQ6jtgNgGbqLhhbWb0qsddO0Bo467IpwBEQH7HL
+X-Google-Smtp-Source: AGHT+IHjuy8gd7uCvMEQyWc8fS1XmEctPuEkHFgZFl3h6yQ8TGuA3ZxC60Doil+vbBAHeRMHD+pQ0DbIuGWzeSNNLZo=
+X-Received: by 2002:a17:90b:8d6:b0:285:8aa4:2ed8 with SMTP id
+ ds22-20020a17090b08d600b002858aa42ed8mr17574038pjb.15.1701291345189; Wed, 29
+ Nov 2023 12:55:45 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 01/15] clk: qcom: branch: Add a helper for setting the
- enable bit
-Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>, Andy Gross <agross@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>,
- linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- Johan Hovold <johan+linaro@kernel.org>
-References: <20230717-topic-branch_aon_cleanup-v2-0-2a583460ef26@linaro.org>
- <20230717-topic-branch_aon_cleanup-v2-1-2a583460ef26@linaro.org>
-From: Bryan O'Donoghue <pure.logic@nexus-software.ie>
-In-Reply-To: <20230717-topic-branch_aon_cleanup-v2-1-2a583460ef26@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20230417055627.16482-1-laurent.pinchart@ideasonboard.com>
+ <20230417055627.16482-2-laurent.pinchart@ideasonboard.com>
+ <CAHCN7x+kymRGO2kxvN2=zLiqRjfTc3hdf3VdNVkWjsW3La0bnA@mail.gmail.com>
+ <20231129105536.GE24293@pendragon.ideasonboard.com> <170128888298.3048548.2160913449516998097@ping.linuxembedded.co.uk>
+In-Reply-To: <170128888298.3048548.2160913449516998097@ping.linuxembedded.co.uk>
+From: Adam Ford <aford173@gmail.com>
+Date: Wed, 29 Nov 2023 14:55:33 -0600
+Message-ID: <CAHCN7xK-DqY=gKT6LF0pkcsvM9Affpvnvmvgj0EozP9ONL5Bsw@mail.gmail.com>
+Subject: Re: [PATCH v1 1/2] arm64: dts: imx8mp: Add CSIS DT nodes
+To: Kieran Bingham <kieran.bingham@ideasonboard.com>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+	Marco Felsch <m.felsch@pengutronix.de>, Alexander Stein <alexander.stein@ew.tq-group.com>, 
+	linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-imx@nxp.com, kernel@pengutronix.de, 
+	Shawn Guo <shawnguo@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+	Jacopo Mondi <jacopo.mondi@ideasonboard.com>, 
+	Xavier Roumegue <xavier.roumegue@oss.nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 29/11/2023 18:59, Konrad Dybcio wrote:
-> We hardcode some clocks to be always-on, as they're essential to the
-> functioning of the SoC / some peripherals. Add a helper to do so
-> to make the writes less magic.
-> 
-> Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->   drivers/clk/qcom/clk-branch.h | 7 +++++++
->   1 file changed, 7 insertions(+)
-> 
-> diff --git a/drivers/clk/qcom/clk-branch.h b/drivers/clk/qcom/clk-branch.h
-> index 0cf800b9d08d..155818cc8d49 100644
-> --- a/drivers/clk/qcom/clk-branch.h
-> +++ b/drivers/clk/qcom/clk-branch.h
-> @@ -47,6 +47,7 @@ struct clk_branch {
->   #define CBCR_FORCE_MEM_PERIPH_OFF	BIT(12)
->   #define CBCR_WAKEUP			GENMASK(11, 8)
->   #define CBCR_SLEEP			GENMASK(7, 4)
-> +#define CBCR_CLOCK_ENABLE		BIT(0)
->   
->   static inline void qcom_branch_set_force_mem_core(struct regmap *regmap,
->   						  struct clk_branch clk, bool on)
-> @@ -81,6 +82,12 @@ static inline void qcom_branch_set_sleep(struct regmap *regmap, struct clk_branc
->   			   FIELD_PREP(CBCR_SLEEP, val));
->   }
->   
-> +static inline void qcom_branch_set_clk_en(struct regmap *regmap, u32 cbcr)
-> +{
-> +	regmap_update_bits(regmap, cbcr, CBCR_CLOCK_ENABLE,
-> +			   CBCR_CLOCK_ENABLE);
-> +}
-> +
->   extern const struct clk_ops clk_branch_ops;
->   extern const struct clk_ops clk_branch2_ops;
->   extern const struct clk_ops clk_branch_simple_ops;
-> 
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+On Wed, Nov 29, 2023 at 2:14=E2=80=AFPM Kieran Bingham
+<kieran.bingham@ideasonboard.com> wrote:
+>
+> Quoting Laurent Pinchart (2023-11-29 10:55:36)
+> > Hi Adam,
+> >
+> > (CC'ing Kieran)
+> >
+> > On Tue, Nov 28, 2023 at 09:17:51PM -0600, Adam Ford wrote:
+> > > On Mon, Apr 17, 2023 at 1:01=E2=80=AFAM Laurent Pinchart wrote:
+> > > >
+> > > > Add DT nodes for the two CSI-2 receivers of the i.MX8MP.
+> > > >
+> > > > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > > > ---
+> > >
+> > > Laurent,
+> > >
+> > > Sorry to dig up an old thread, but I have a concern about the clock
+> > > ratings and nominal mode vs overdrive mode.  I started investigating
+> > > the different data sheets amongst the various imx8m[mnp] families to
+> > > make the default device trees run at nominal mode while also creating
+> > > a separate dtsi file with settings for overdrive so boards who use it
+> > > can include them without having to duplicate the clock settings for
+> > > everyone who supports overdrive.
+> > >
+> > > >  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 60 +++++++++++++++++++=
+++++
+> > > >  1 file changed, 60 insertions(+)
+> > > >
+> > > > diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64=
+/boot/dts/freescale/imx8mp.dtsi
+> > > > index 2dd60e3252f3..2a374a4c14a2 100644
+> > > > --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > > > +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > > > @@ -1239,6 +1239,66 @@ ldb_lvds_ch1: endpoint {
+> > > >                                 };
+> > > >                         };
+> > > >
+> > > > +                       mipi_csi_0: csi@32e40000 {
+> > > > +                               compatible =3D "fsl,imx8mp-mipi-csi=
+2", "fsl,imx8mm-mipi-csi2";
+> > > > +                               reg =3D <0x32e40000 0x10000>;
+> > > > +                               interrupts =3D <GIC_SPI 17 IRQ_TYPE=
+_LEVEL_HIGH>;
+> > > > +                               clock-frequency =3D <500000000>;
+> > > > +                               clocks =3D <&clk IMX8MP_CLK_MEDIA_A=
+PB_ROOT>,
+> > > > +                                        <&clk IMX8MP_CLK_MEDIA_CAM=
+1_PIX_ROOT>,
+> > > > +                                        <&clk IMX8MP_CLK_MEDIA_MIP=
+I_PHY1_REF_ROOT>,
+> > > > +                                        <&clk IMX8MP_CLK_MEDIA_AXI=
+_ROOT>;
+> > > > +                               clock-names =3D "pclk", "wrap", "ph=
+y", "axi";
+> > > > +                               assigned-clocks =3D <&clk IMX8MP_CL=
+K_MEDIA_CAM1_PIX>;
+> > > > +                               assigned-clock-parents =3D <&clk IM=
+X8MP_SYS_PLL2_1000M>;
+> > > > +                               assigned-clock-rates =3D <500000000=
+>;
+> > >
+> > > According to Rev 2.1 of the Data sheet (IMX8MPCEC), dated July 2023,
+> > > 500MHz is listed as single-camera, overdrive mode.  Single-camera,
+> > > nominal mode is 400MHz, but there is more...
+> > > If configured for dual cameras, both CSI can only support up to
+> > > 266MHz, but we have partially configured both albeit without the
+> > > actual camera sensors connected.
+> > >
+> > > > +                               power-domains =3D <&media_blk_ctrl =
+IMX8MP_MEDIABLK_PD_MIPI_CSI2_1>;
+> > > > +                               status =3D "disabled";
+> > > > +
+> > > > +                               ports {
+> > > > +                                       #address-cells =3D <1>;
+> > > > +                                       #size-cells =3D <0>;
+> > > > +
+> > > > +                                       port@0 {
+> > > > +                                               reg =3D <0>;
+> > > > +                                       };
+> > > > +
+> > > > +                                       port@1 {
+> > > > +                                               reg =3D <1>;
+> > > > +                                       };
+> > > > +                               };
+> > > > +                       };
+> > > > +
+> > > > +                       mipi_csi_1: csi@32e50000 {
+> > > > +                               compatible =3D "fsl,imx8mp-mipi-csi=
+2", "fsl,imx8mm-mipi-csi2";
+> > > > +                               reg =3D <0x32e50000 0x10000>;
+> > > > +                               interrupts =3D <GIC_SPI 80 IRQ_TYPE=
+_LEVEL_HIGH>;
+> > > > +                               clock-frequency =3D <266000000>;
+> > > > +                               clocks =3D <&clk IMX8MP_CLK_MEDIA_A=
+PB_ROOT>,
+> > > > +                                        <&clk IMX8MP_CLK_MEDIA_CAM=
+2_PIX_ROOT>,
+> > > > +                                        <&clk IMX8MP_CLK_MEDIA_MIP=
+I_PHY1_REF_ROOT>,
+> > > > +                                        <&clk IMX8MP_CLK_MEDIA_AXI=
+_ROOT>;
+> > > > +                               clock-names =3D "pclk", "wrap", "ph=
+y", "axi";
+> > > > +                               assigned-clocks =3D <&clk IMX8MP_CL=
+K_MEDIA_CAM2_PIX>;
+> > > > +                               assigned-clock-parents =3D <&clk IM=
+X8MP_SYS_PLL2_1000M>;
+> > > > +                               assigned-clock-rates =3D <266000000=
+>;
+> > >
+> > > 266MHz is correct for dual camera, but in single camera, the second
+> > > CSI is capable of 277MHz.
+> > >
+> > > At a minimum, I'd like to fix the overdrive frequency to nominal, but
+> > > since we're plumbing in both cameras, I wonder if it would be better
+> > > to run both at 266MHz with a note on CSI0 that states it could run at
+> > > 400 or 500 if the second CSI is disabled and a note on the second CSI
+> > > that it could run at 277 when the first one is disabled? What are you=
+r
+> > > thoughts?
+> >
+> > My thoughts is that this all should be selected at runtime, based on ho=
+w
+> > many cameras are used. That won't be trivial to do though :-S Kieran,
+> > you've been working with two cameras, any opinion ?
+>
+> Well I've been seeing issues like dropped packets and various issues on
+> the CSI2 receiver that could be because of badly configured clocks ...
+> so there's definitely some things to check and validate here still.
+>
+> I don't know how the clocking would be adapted at runtime yet either ...
+> but it might be something interesting to look at. It's likely more
+> difficult as it's two separate nodes that would have to know about each
+> other at some level.
+
+Any objections if I slow them both to 266Mhz and add a note that
+indicates what they're each capable of doing based on the datasheet?
+This way, regardless of whether or not people have one or two cameras
+it won't violate a spec.  Adding the note at least tells people they
+have options to increase the clock speeds if they choose.
+
+adam
+
+>
+> --
+> Kieran
+>
+>
+> >
+> > > > +                               power-domains =3D <&media_blk_ctrl =
+IMX8MP_MEDIABLK_PD_MIPI_CSI2_2>;
+> > > > +                               status =3D "disabled";
+> > > > +
+> > > > +                               ports {
+> > > > +                                       #address-cells =3D <1>;
+> > > > +                                       #size-cells =3D <0>;
+> > > > +
+> > > > +                                       port@0 {
+> > > > +                                               reg =3D <0>;
+> > > > +                                       };
+> > > > +
+> > > > +                                       port@1 {
+> > > > +                                               reg =3D <1>;
+> > > > +                                       };
+> > > > +                               };
+> > > > +                       };
+> > > > +
+> > > >                         pcie_phy: pcie-phy@32f00000 {
+> > > >                                 compatible =3D "fsl,imx8mp-pcie-phy=
+";
+> > > >                                 reg =3D <0x32f00000 0x10000>;
+> >
+> > --
+> > Regards,
+> >
+> > Laurent Pinchart
 
