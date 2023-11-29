@@ -1,110 +1,131 @@
-Return-Path: <devicetree+bounces-20044-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20045-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A3007FD9C3
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 15:40:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D005B7FD9C8
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 15:41:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 34555281F8D
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 14:40:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7FA3A2832FD
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 14:41:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEF751DDD1;
-	Wed, 29 Nov 2023 14:40:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3B1B1DDD1;
+	Wed, 29 Nov 2023 14:41:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tF8eLQM4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C76EC130;
-	Wed, 29 Nov 2023 06:40:46 -0800 (PST)
-Received: by mail-ot1-f49.google.com with SMTP id 46e09a7af769-6d7e6df999fso4108684a34.1;
-        Wed, 29 Nov 2023 06:40:46 -0800 (PST)
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59810D5D
+	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 06:41:05 -0800 (PST)
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-a06e59384b6so878952966b.1
+        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 06:41:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1701268864; x=1701873664; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=LMoxKGnJmIGZfkHJ0E+5YEBeUlZH7zeNhRCLk2Cz1pw=;
+        b=tF8eLQM4U8+pXxKVhYrxrejm+W2m43XveXmFIomUv4/TeZZ0mlHgJKU5ovES90X5dU
+         wpQsSJzpWq8xX155b4jPpSNsRvZKKlN6TtlzTYa0c0tTA+l0Yumw4ee4EE+x2TtBVv94
+         WodZjZhfFpcQae2eFWhRTeYiGpe3JqvL/Aw6xWdf4CP4ZBhqnats2fkeLEEgELC+Y2Xb
+         PsxalQNmHbGJCFWigslGTqTpciitPu/AoF4ir6ePsHVKGh3y6K2phrrHLGSQKEPBR5Bh
+         fLAt7x6Iie/2QfPXSZU0yzhQGXGpfzausOqXmTmrKfjANTfjuUtbvR2VJTqUuIbR+gcr
+         Vm9g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701268846; x=1701873646;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bO94KdlO8mVlN8Xbd3EfX+TnJ2prZZJzJhNbB54uzYo=;
-        b=vhd5JaDkeSGTvczd6daURFTnzoq/h/iApM24CGkedhN4e0hlG6nSreGKhAwOiFMZgZ
-         4tAiNrHa9ierrwCimtXPLVV6jzn908IODNEC90RMI1pksr4qm5n562/gkPpE2oW94tTP
-         MMbEV1gYNQhvjg5tqNk0aEYZDsmmAag4DDNimXCXuQwZb2CdxLTyNscLKXdFOWiXi98T
-         2Xz7oHd7SMQYkNKc4vnZHLSdTlq49pnOT7YeQrV5wDzEkTC5BEGiComHtvKBajCnVhIU
-         XCdoZl9GUhaeZeQnMu/bYV0j4NHUBk582NAsyYxGFi6oMhcnhkJyBAHYC31oixZj30y3
-         uOAw==
-X-Gm-Message-State: AOJu0YxculQSGCvo/yCxWe/fGLlxKxR4ieInmGs4R3tLKnsaoR5KyHni
-	+g8WClvOcBqRtdB4u5v+5g==
-X-Google-Smtp-Source: AGHT+IGYvYldn7DE9VXqFB9FiYafhMdPpg0tpckV2bRzSGNRrXS4R7SnmD/3iH0hot54xLh8GfPUWA==
-X-Received: by 2002:a9d:7359:0:b0:6b8:6f94:d3a2 with SMTP id l25-20020a9d7359000000b006b86f94d3a2mr19334114otk.25.1701268846012;
-        Wed, 29 Nov 2023 06:40:46 -0800 (PST)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id a3-20020a056830100300b006cdf9935af2sm1967422otp.53.2023.11.29.06.40.44
+        d=1e100.net; s=20230601; t=1701268864; x=1701873664;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LMoxKGnJmIGZfkHJ0E+5YEBeUlZH7zeNhRCLk2Cz1pw=;
+        b=SoHVXQwg5xojN4RM4Wq+RpFGmB+Elxnao5/Mw9tpVBpCBmXSnuz0vBKO5MK8UnsqDU
+         oFKF1hT45HB5Jv5akH/HPCrLF0vs8Y8AJLE+zBMyCwhWzPlrXFvm16r07YnDQOuTB+k5
+         SR0wGe5orkMhIVLfiscwl/Oa2hLT1Srx27nvuSPZWV3wi7gOo2g/gzChYscJGIwVqbEe
+         Uoi0cVQzvyBNQ8tJ+llm78B35TGfkaU0SJ1ubiyoDHKSvylspPbzwq9ehZB8esUqM6Sc
+         qXjFyjLttvCGtImolNm5xcXjCBQMHexAFdwJB5MrmcOCikg8bq7z4zFYJ7QcCOrNuDcJ
+         uWvw==
+X-Gm-Message-State: AOJu0Yy94ljj3SrrxbUoT0ElCgd1aoapXdpUnL9BMbBauP8XkJxBYiqN
+	16geHKMuh2h47WhU/nEHAXMZkA==
+X-Google-Smtp-Source: AGHT+IHtZWKqnALRv6XH1XM5IA6QLLyVhZAx/wZiqDeiiFlMfoihiNp0TV6mitiWZ5KIYlWQk9GYNQ==
+X-Received: by 2002:a17:906:d4:b0:9e3:fbab:e091 with SMTP id 20-20020a17090600d400b009e3fbabe091mr12145976eji.15.1701268863769;
+        Wed, 29 Nov 2023 06:41:03 -0800 (PST)
+Received: from [10.167.154.1] (178235187166.dynamic-4-waw-k-2-3-0.vectranet.pl. [178.235.187.166])
+        by smtp.gmail.com with ESMTPSA id s21-20020a170906285500b00a0179ebc25esm7965638ejc.85.2023.11.29.06.41.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Nov 2023 06:40:45 -0800 (PST)
-Received: (nullmailer pid 2439634 invoked by uid 1000);
-	Wed, 29 Nov 2023 14:40:44 -0000
-Date: Wed, 29 Nov 2023 08:40:44 -0600
-From: Rob Herring <robh@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Petre Rodan <petre.rodan@subdimension.ro>
-Cc: Petre Rodan <petre.rodan@subdimension.ro>, linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-kernel-mentees@lists.linuxfoundation.org, Jonathan Cameron <jic23@kernel.org>
-Subject: Re: [PATCH v5 1/2] dt-bindings: iio: pressure: add honeywell,hsc030
-Message-ID: <20231129144044.GA2320975-robh@kernel.org>
-References: <20231129070432.1437-1-petre.rodan@subdimension.ro>
- <adf1e932-a201-475e-a562-4e35954159ee@linaro.org>
- <ZWb59iEftxX6mQdJ@sunspire>
- <99e89fb4-e99e-4a0f-8058-0ef6f04d61d8@linaro.org>
+        Wed, 29 Nov 2023 06:41:03 -0800 (PST)
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: [PATCH v3 0/2] SM6115 interconnect
+Date: Wed, 29 Nov 2023 15:41:00 +0100
+Message-Id: <20231125-topic-6115icc-v3-0-bd8907b8cfd7@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <99e89fb4-e99e-4a0f-8058-0ef6f04d61d8@linaro.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHxNZ2UC/32NQQ6DIBQFr2JYl4aPQaUr79F0AQj6EwMGLGljv
+ HvRXRftcl4y8zaSbESbyK3aSLQZEwZfoL5UxEzKj5biUJhwxmsALugaFjS0ARBoDFXQtU7ITir
+ XkuJolSzVUXkzFcs/57mMS7QOX+fJ/VF4wrSG+D4/Mxzrr3wGyqhTAgzTQjRG9jN6FcM1xJEcq
+ cz/6rzojRyYGCTrWtBf+r7vHyViF6v/AAAA
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Georgi Djakov <djakov@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+ Konrad Dybcio <konradybcio@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1701268861; l=1565;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=MX9IDohAdLeqrMZe7B3DDkmX0lHf4lB2uYiaw1SW1iI=;
+ b=OQFeRKLny/MJaXzmEndsYyPc+1Zg5UKcwChXoiOM1rPKhb7G7Qo2sxFd3mDWMClZEUOK45MsZ
+ jbSpN+PPraNCeA2X3rpfb/AkGQgLfXPwIRFsepcN7/xfsSzn9pUk43z
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 
-On Wed, Nov 29, 2023 at 09:47:57AM +0100, Krzysztof Kozlowski wrote:
-> On 29/11/2023 09:44, Petre Rodan wrote:
-> > 
-> > hi,
-> > 
-> > On Wed, Nov 29, 2023 at 09:04:17AM +0100, Krzysztof Kozlowski wrote:
-> >> On 29/11/2023 08:04, Petre Rodan wrote:
-> >>> Adds binding for digital Honeywell TruStability HSC and SSC series
-> >>> pressure and temperature sensors.
-> >>> Communication is one way. The sensor only requires 4 bytes worth of
-> >>> clock pulses on both i2c and spi in order to push the data out.
-> >>> The i2c address is hardcoded and depends on the part number.
-> >>> There is no additional GPIO control.
-> >>
-> >> Your threading is broken (not existing) since v4, making it difficult to
-> >> apply the patchset. Please fix it when sending v6.
-> > 
-> > I'm confused.
-> > 
-> > you mean the lack of 'In-Reply-To' and 'References' headers in the emails
-> > `git send-email` is generating?
-> > I've added them for v2, but was told that was a mistake [1]
-> > 
-> > [1] https://lore.kernel.org/lkml/20231125191915.7f1f2dc4@jic23-huawei/
+As it says on the can.
 
-The instructions there were don't thread v2 to v1. Here, we're talking 
-about threading within this version.
+Georgi, Bjorn, can we please set up an immutable branch with the bindings?
 
-> > 
-> > I'm probably misunderstanding something.
-> > also, I hope v5 is flawless enough.
-> 
-> No, v5 is still wrong. Patchset should be threaded. Open lore.kernel.org
-> and look how patchsets are organized and how your patchset is done.
-> 
-> It is as simple as:
-> git format-patch -v6 -2
-> scripts/get_maintainers.pl
-> git send-email v6*
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+Changes in v3:
+- Actually define clock-names before using it in conditional blocks (oops)
+- Link to v2: https://lore.kernel.org/r/20231125-topic-6115icc-v2-0-69d05d90871b@linaro.org
 
-By default, git does the right thing, but the '--thread' option could be 
-changed in your config. Note both commands can do the threading. If you 
-are mucking with 'In-Reply-To' then it is probably wrong.
+Changes in v2:
+bindings:
+- Remove unnecessary '|' after description:
+- sort property definitions in a manner that resembles their proper ordering
+- define clock{s/-names} before using them in conditional blocks
+- drop unnecessary allOf:
+- move unevaluatedProperties after the conditional blocks
+- disallow clock{s,-names} when unnecessary
+- fix up the example
+C:
+- Apply my own fixup (ebi channel configuration)
+- Link to v1: https://lore.kernel.org/r/20231125-topic-6115icc-v1-0-fa51c0b556c9@linaro.org
 
-Rob
+---
+Konrad Dybcio (2):
+      dt-bindings: interconnect: Add Qualcomm SM6115 NoC
+      interconnect: qcom: Add SM6115 interconnect provider driver
+
+ .../bindings/interconnect/qcom,sm6115.yaml         |  152 +++
+ drivers/interconnect/qcom/Kconfig                  |    9 +
+ drivers/interconnect/qcom/Makefile                 |    2 +
+ drivers/interconnect/qcom/sm6115.c                 | 1427 ++++++++++++++++++++
+ include/dt-bindings/interconnect/qcom,sm6115.h     |  111 ++
+ 5 files changed, 1701 insertions(+)
+---
+base-commit: 48bbaf8b793e0770798519f8ee1ea2908ff0943a
+change-id: 20231125-topic-6115icc-a187f5989af7
+
+Best regards,
+-- 
+Konrad Dybcio <konrad.dybcio@linaro.org>
+
 
