@@ -1,178 +1,523 @@
-Return-Path: <devicetree+bounces-19888-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19898-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 502457FD292
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 10:28:41 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11EDE7FD2B9
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 10:30:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 81A601C20E54
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 09:28:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 360151C2099E
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 09:30:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7D0514F9E;
-	Wed, 29 Nov 2023 09:28:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="t9jREKsE"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BD6214F7E;
+	Wed, 29 Nov 2023 09:30:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E28171FF3
-	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 01:28:28 -0800 (PST)
-Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-a0b65cbf096so565088266b.1
-        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 01:28:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701250107; x=1701854907; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9sWY+t7R6FWq3cT1bMI6aLc3NxmK67OlMnTzxt5eSDY=;
-        b=t9jREKsEqZA14E1Dav/KEp4VQRU2D+WOoJ5RtlJy61gosUQ1j9gbMEwtt09QLgRP/i
-         gu0OEoWyer1ZJyoihRzd7UJidN+SGrzgqibjZY6CtausSESu+xcYhKjy0tIFCr+HN9Sw
-         PZjJyw8OP/LQS5LhcaePDZKz3O49L37KyAoeJsiQniKgXyzi+G2kJsCheOpv+Knn0Kri
-         76xkk6rHxBIXRAYib8b8k7XcecAQWRCEq5CfGVFjCmzXG0+e+afJykUBR59YTWdCj626
-         Vw/zHg7DYsjZK7Z1DzO7kDDAZpa+t/ZfllR6pWFvJWMwgiVQnuKZBkqsuPTWXiAHzSUG
-         WzpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701250107; x=1701854907;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9sWY+t7R6FWq3cT1bMI6aLc3NxmK67OlMnTzxt5eSDY=;
-        b=Tks49CQUEQn41dTQ0rFLu8ZLJ6Y7HJ733TAOXxxOrGE3IDS4fv5irBqb+WVSuchD70
-         Bkd9GxSn3inmdd17WUlhzbsaQS64/ngvIh9w/LbQbMXA0OnA4vgruVeAvXw+eViI3gqH
-         Tif+VORzRmGofEQMah8crCoJjVZdhgJuUGvq/Szyb/bRvBzmsnT9w6E3kSYD+bf/X1qU
-         IEeYQ4ayxfv4hfcdjP5+zlK3IZ1nVBH8zCrfEwyTkL/jKkqrv+t7361ZVohO/9kT9Lbe
-         BIufScoY6TmeHOm7DHFW02yGSgpU92H8JQM5EOccvt8/oEZ7Q9vttzlXoavM3gA6Ma8L
-         f/Kg==
-X-Gm-Message-State: AOJu0YxBj7k4FPLbvZ49+Tztvza6Vcy67vNUyzn1ONNqaB+t2U9VfkDj
-	RIp9Fj7/j8U7Hzrih0GH82aD+Q==
-X-Google-Smtp-Source: AGHT+IHwQA/KozZFF7WsHKEv/d4NC5juxPyq7y6I6U2YYOohz9aVAHBstjfSKVyvmYHKl0bOgEWj9g==
-X-Received: by 2002:a17:906:53d6:b0:9e0:4910:1666 with SMTP id p22-20020a17090653d600b009e049101666mr13153768ejo.35.1701250107329;
-        Wed, 29 Nov 2023 01:28:27 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.223.109])
-        by smtp.gmail.com with ESMTPSA id kk9-20020a170907766900b00a0aca3de09fsm5513008ejc.184.2023.11.29.01.28.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Nov 2023 01:28:26 -0800 (PST)
-Message-ID: <c8a28c72-5c0a-4a67-a4c9-e46a5716cda4@linaro.org>
-Date: Wed, 29 Nov 2023 10:28:25 +0100
+Received: from mail-sh.amlogic.com (mail-sh.amlogic.com [58.32.228.43])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E52441BF8;
+	Wed, 29 Nov 2023 01:29:54 -0800 (PST)
+Received: from droid01-cd.amlogic.com (10.98.11.200) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Wed, 29 Nov 2023
+ 17:29:51 +0800
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+To: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+CC: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	"Neil Armstrong" <neil.armstrong@linaro.org>, Kevin Hilman
+	<khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin
+ Blumenstingl <martin.blumenstingl@googlemail.com>, Xianwei Zhao
+	<xianwei.zhao@amlogic.com>
+Subject: [PATCH] arm64: dts: amlogic: s4: add some device nodes
+Date: Wed, 29 Nov 2023 17:29:49 +0800
+Message-ID: <20231129092949.2103338-1-xianwei.zhao@amlogic.com>
+X-Mailer: git-send-email 2.37.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/6] dt-bindings: usb: dwc3: Clean up hs_phy_irq in
- bindings
-Content-Language: en-US
-To: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>,
- Johan Hovold <johan@kernel.org>
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, quic_wcheng@quicinc.com,
- linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- quic_ppratap@quicinc.com, quic_jackp@quicinc.com
-References: <20231122191335.3058-1-quic_kriskura@quicinc.com>
- <ZV9dYpTYRXn63tXe@hovoldconsulting.com>
- <1192d91f-11bf-44af-953a-14e08e2b6ca8@quicinc.com>
- <ZWCpGdJRexnk98IN@hovoldconsulting.com>
- <004ddc69-1566-4de4-b260-0fca96a9395f@quicinc.com>
- <ZWW_FOAKp95Cf9vN@hovoldconsulting.com>
- <18965bb9-7afa-4892-8b71-981ba29d2cd4@quicinc.com>
- <ZWXHrvUDnF2dMk6r@hovoldconsulting.com>
- <6d7527bf-8c1a-49b5-a0cf-99a92098c971@quicinc.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <6d7527bf-8c1a-49b5-a0cf-99a92098c971@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On 28/11/2023 12:32, Krishna Kurapati PSSNV wrote:
-> 
->>
->> So back to my initial proposal, with a slight modification moving
->> pwr_event first (e.g. as it is not a wakeup interrupt):
->>
->> qusb2-:
->>
->> 	- const: pwr_event
->> 	- const: qusb2_phy
->> 	- const: ss_phy_irq	(optional)
->>
->> qusb2:
->>
->> 	- const: pwr_event
->> 	- const: hs_phy_irq
->> 	- const: qusb2_phy
->> 	- const: ss_phy_irq	(optional)
->>
->> femto-:
->> 	- const: pwr_event
->> 	- const: dp_hs_phy_irq
->> 	- const: dm_hs_phy_irq
->> 	- const: ss_phy_irq	(optional)
->>
->> femto:
->> 	- const: pwr_event
->> 	- const: hs_phy_irq
->> 	- const: dp_hs_phy_irq
->> 	- const: dm_hs_phy_irq
->> 	- const: ss_phy_irq	(optional)
+Add some device nodes for board AQ222,
+including clock,I2C,SPICC,nand and ethernet.
 
-I did not follow entire thread and I do not know whether you change the
-order in existing bindings, but just in case: the entries in existing
-bindings cannot change the order. That's a strict ABI requirement
-recently also discussed with Bjorn, because we want to have stable DTB
-for laptop platforms. If my comment is not relevant, then please ignore.
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+ .../dts/amlogic/meson-s4-s805x2-aq222.dts     |  55 +++
+ arch/arm64/boot/dts/amlogic/meson-s4.dtsi     | 350 +++++++++++++++++-
+ 2 files changed, 404 insertions(+), 1 deletion(-)
 
-Best regards,
-Krzysztof
+diff --git a/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts b/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
+index c1f322c73982..fd349c49ebf5 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
+@@ -23,6 +23,16 @@ memory@0 {
+ 		reg = <0x0 0x0 0x0 0x40000000>;
+ 	};
+ 
++	reserved-memory {
++		#address-cells = <2>;
++		#size-cells = <2>;
++		ranges;
++
++		secmon_reserved: secmon@5000000 {
++			reg = <0x0 0x05000000 0x0 0x4000000>;
++			no-map;
++		};
++	};
+ };
+ 
+ &uart_B {
+@@ -34,3 +44,48 @@ &ir {
+ 	pinctrl-0 = <&remote_pins>;
+ 	pinctrl-names = "default";
+ };
++
++&nand {
++	status = "okay";
++	#address-cells = <1>;
++	#size-cells = <0>;
++
++	pinctrl-0 = <&nand_pins>;
++	pinctrl-names = "default";
++
++	nand@0 {
++		reg = <0>;
++		#address-cells = <1>;
++		#size-cells = <1>;
++
++		nand-on-flash-bbt;
++
++		partition@0 {
++			label = "boot";
++			reg = <0x0 0x00200000>;
++		};
++		partition@200000 {
++			label = "env";
++			reg = <0x00200000 0x00400000>;
++		};
++		partition@600000 {
++			label = "system";
++			reg = <0x00600000 0x00a00000>;
++		};
++		partition@1000000 {
++			label = "rootfs";
++			reg = <0x01000000 0x03000000>;
++		};
++		partition@4000000 {
++			label = "media";
++			reg = <0x04000000 0x8000000>;
++		};
++	};
++};
++
++&spicc0 {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&spicc0_pins_x>;
++	cs-gpios = <&gpio GPIOX_10 GPIO_ACTIVE_LOW>;
++};
+diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+index 2344b2d741c3..022aba0f9ef7 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+@@ -6,6 +6,10 @@
+ #include <dt-bindings/interrupt-controller/irq.h>
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
+ #include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/gpio/meson-s4-gpio.h>
++#include <dt-bindings/clock/amlogic,s4-pll-clkc.h>
++#include <dt-bindings/clock/amlogic,s4-peripherals-clkc.h>
++#include <dt-bindings/power/meson-s4-power.h>
+ 
+ / {
+ 	cpus {
+@@ -92,6 +96,38 @@ apb4: bus@fe000000 {
+ 			#size-cells = <2>;
+ 			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
+ 
++			clkc_periphs: clock-controller@0 {
++				compatible = "amlogic,s4-peripherals-clkc";
++				reg = <0x0 0x0 0x0 0x49c>;
++				clocks = <&clkc_pll CLKID_FCLK_DIV2>,
++					<&clkc_pll CLKID_FCLK_DIV2P5>,
++					<&clkc_pll CLKID_FCLK_DIV3>,
++					<&clkc_pll CLKID_FCLK_DIV4>,
++					<&clkc_pll CLKID_FCLK_DIV5>,
++					<&clkc_pll CLKID_FCLK_DIV7>,
++					<&clkc_pll CLKID_HIFI_PLL>,
++					<&clkc_pll CLKID_GP0_PLL>,
++					<&clkc_pll CLKID_MPLL0>,
++					<&clkc_pll CLKID_MPLL1>,
++					<&clkc_pll CLKID_MPLL2>,
++					<&clkc_pll CLKID_MPLL3>,
++					<&clkc_pll CLKID_HDMI_PLL>,
++					<&xtal>;
++				clock-names = "fclk_div2", "fclk_div2p5", "fclk_div3",
++						"fclk_div4", "fclk_div5", "fclk_div7",
++						"hifi_pll", "gp0_pll", "mpll0", "mpll1",
++						"mpll2", "mpll3", "hdmi_pll", "xtal";
++				#clock-cells = <1>;
++			};
++
++			clkc_pll: clock-controller@8000 {
++				compatible = "amlogic,s4-pll-clkc";
++				reg = <0x0 0x8000 0x0 0x1e8>;
++				clocks = <&xtal>;
++				clock-names = "xtal";
++				#clock-cells = <1>;
++			};
++
+ 			watchdog@2100 {
+ 				compatible = "amlogic,s4-wdt", "amlogic,t7-wdt";
+ 				reg = <0x0 0x2100 0x0 0x10>;
+@@ -120,6 +156,187 @@ mux {
+ 						bias-disable;
+ 					};
+ 				};
++
++				i2c0_pins1:i2c0-pins1 {
++					mux {
++						groups = "i2c0_sda",
++						       "i2c0_scl";
++						function = "i2c0";
++						drive-strength-microamp = <3000>;
++						bias-disable;
++					};
++				};
++
++				i2c1_pins1:i2c1-pins1 {
++					mux {
++						groups = "i2c1_sda_c",
++						       "i2c1_scl_c";
++						function = "i2c1";
++						drive-strength-microamp = <3000>;
++						bias-disable;
++					};
++				};
++
++				i2c1_pins2:i2c1-pins2 {
++					mux {
++						groups = "i2c1_sda_d",
++						       "i2c1_scl_d";
++						function = "i2c1";
++						drive-strength-microamp = <3000>;
++						bias-disable;
++					};
++				};
++
++				i2c1_pins3:i2c1-pins3 {
++					mux {
++						groups = "i2c1_sda_h",
++						       "i2c1_scl_h";
++						function = "i2c1";
++						drive-strength-microamp = <3000>;
++						bias-disable;
++					};
++				};
++
++				i2c1_pins4:i2c1-pins4 {
++					mux {
++						groups = "i2c1_sda_x",
++						       "i2c1_scl_x";
++						function = "i2c1";
++						drive-strength-microamp = <3000>;
++						bias-disable;
++					};
++				};
++
++				i2c2_pins1:i2c2-pins1 {
++					mux {
++						groups = "i2c2_sda_d",
++						       "i2c2_scl_d";
++						function = "i2c2";
++						drive-strength-microamp = <3000>;
++						bias-disable;
++					};
++				};
++
++				i2c2_pins2:i2c2-pins2 {
++					mux {
++						groups = "i2c2_sda_h8",
++						       "i2c2_scl_h9";
++						function = "i2c2";
++						drive-strength-microamp = <3000>;
++						bias-disable;
++					};
++				};
++
++				i2c2_pins3:i2c2-pins3 {
++					mux {
++						groups = "i2c2_sda_h0",
++						       "i2c2_scl_h1";
++						function = "i2c2";
++						drive-strength-microamp = <3000>;
++						bias-disable;
++					};
++				};
++
++				i2c3_pins1:i2c3-pins1 {
++					mux {
++						groups = "i2c3_sda_x",
++						       "i2c3_scl_x";
++						function = "i2c3";
++						drive-strength-microamp = <3000>;
++						bias-disable;
++					};
++				};
++
++				i2c3_pins2:i2c3-pins2 {
++					mux {
++						groups = "i2c3_sda_z",
++						       "i2c3_scl_z";
++						function = "i2c3";
++						drive-strength-microamp = <3000>;
++						bias-disable;
++					};
++				};
++
++				i2c4_pins1:i2c4-pins1 {
++					mux {
++						groups = "i2c4_sda_c",
++						       "i2c4_scl_c";
++						function = "i2c4";
++						drive-strength-microamp = <3000>;
++						bias-disable;
++					};
++				};
++
++				i2c4_pins2:i2c4-pins2 {
++					mux {
++						groups = "i2c4_sda_d",
++						       "i2c4_scl_d";
++						function = "i2c4";
++						drive-strength-microamp = <3000>;
++						bias-disable;
++					};
++				};
++
++				i2c4_pins3:i2c4-pins3 {
++					mux {
++						groups = "i2c4_sda_z",
++						       "i2c4_scl_z";
++						function = "i2c4";
++						drive-strength-microamp = <3000>;
++						bias-disable;
++					};
++				};
++
++				nand_pins: nand-pins {
++					mux {
++						groups = "emmc_nand_d0",
++						       "emmc_nand_d1",
++						       "emmc_nand_d2",
++						       "emmc_nand_d3",
++						       "emmc_nand_d4",
++						       "emmc_nand_d5",
++						       "emmc_nand_d6",
++						       "emmc_nand_d7",
++						       "nand_ce0",
++						       "nand_ale",
++						       "nand_cle",
++						       "nand_wen_clk",
++						       "nand_ren_wr";
++						function = "nand";
++						input-enable;
++					};
++				};
++
++				spicc0_pins_x: spicc0-pins_x {
++					mux {
++						groups = "spi_a_mosi_x",
++						       "spi_a_miso_x",
++						       "spi_a_clk_x";
++						function = "spi_a";
++						drive-strength-microamp = <3000>;
++					};
++				};
++
++				spicc0_pins_h: spicc0-pins-h {
++					mux {
++						groups = "spi_a_mosi_h",
++						       "spi_a_miso_h",
++						       "spi_a_clk_h";
++						function = "spi_a";
++						drive-strength-microamp = <3000>;
++					};
++				};
++
++				spicc0_pins_z: spicc0-pins-z {
++					mux {
++						groups = "spi_a_mosi_z",
++						       "spi_a_miso_z",
++						       "spi_a_clk_z";
++						function = "spi_a";
++						drive-strength-microamp = <3000>;
++					};
++				};
++
+ 			};
+ 
+ 			gpio_intc: interrupt-controller@4080 {
+@@ -132,13 +349,119 @@ gpio_intc: interrupt-controller@4080 {
+ 					<10 11 12 13 14 15 16 17 18 19 20 21>;
+ 			};
+ 
++			eth_phy: mdio-multiplexer@28000 {
++				compatible = "amlogic,g12a-mdio-mux";
++				reg = <0x0 0x28000 0x0 0xa4>;
++
++				#address-cells = <1>;
++				#size-cells = <0>;
++				clocks = <&clkc_periphs CLKID_ETHPHY>,
++					 <&xtal>,
++					 <&clkc_pll CLKID_MPLL_50M>;
++				clock-names = "pclk", "clkin0", "clkin1";
++				mdio-parent-bus = <&mdio0>;
++
++				ext_mdio: mdio@0 {
++					reg = <0>;
++					#address-cells = <1>;
++					#size-cells = <0>;
++				};
++
++				int_mdio: mdio@1 {
++					reg = <1>;
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					internal_ephy: ethernet-phy@8 {
++						compatible = "ethernet-phy-id0180.3301",
++							     "ethernet-phy-ieee802.3-c22";
++						interrupts = <GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>;
++						reg = <8>;
++						max-speed = <100>;
++					};
++				};
++			};
++
++			spicc0: spi@50000 {
++				compatible = "amlogic,meson-g12a-spicc";
++				reg = <0x0 0x50000 0x0 0x44>;
++				interrupts = <GIC_SPI 183 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&clkc_periphs CLKID_SPICC0>,
++					 <&clkc_periphs CLKID_SPICC0_EN>;
++				clock-names = "core", "pclk";
++				#address-cells = <1>;
++				#size-cells = <0>;
++				status = "disabled";
++			};
++
++			i2c0: i2c@66000 {
++				compatible = "amlogic,meson-axg-i2c";
++				reg = <0x0 0x66000 0x0 0x20>;
++				interrupts = <GIC_SPI 160 IRQ_TYPE_EDGE_RISING>;
++				clocks = <&clkc_periphs CLKID_I2C_M_A>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				status = "disabled";
++			};
++
++			i2c1: i2c@68000 {
++				compatible = "amlogic,meson-axg-i2c";
++				reg = <0x0 0x68000 0x0 0x20>;
++				interrupts = <GIC_SPI 161 IRQ_TYPE_EDGE_RISING>;
++				clocks = <&clkc_periphs CLKID_I2C_M_B>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				status = "disabled";
++			};
++
++			i2c2: i2c@6a000 {
++				compatible = "amlogic,meson-axg-i2c";
++				reg = <0x0 0x6a000 0x0 0x20>;
++				interrupts = <GIC_SPI 162 IRQ_TYPE_EDGE_RISING>;
++				clocks = <&clkc_periphs CLKID_I2C_M_C>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				status = "disabled";
++			};
++
++			i2c3: i2c@6c000 {
++				compatible = "amlogic,meson-axg-i2c";
++				reg = <0x0 0x6c000 0x0 0x20>;
++				interrupts = <GIC_SPI 163 IRQ_TYPE_EDGE_RISING>;
++				clocks = <&clkc_periphs CLKID_I2C_M_D>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				status = "disabled";
++			};
++
++			i2c4: i2c@6e000 {
++				compatible = "amlogic,meson-axg-i2c";
++				reg = <0x0 0x6e000 0x0 0x20>;
++				interrupts = <GIC_SPI 164 IRQ_TYPE_EDGE_RISING>;
++				clocks = <&clkc_periphs CLKID_I2C_M_E>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				status = "disabled";
++			};
++
++			nand: nand-controller@8c800 {
++				compatible = "amlogic,meson-axg-nfc";
++				reg = <0x0 0x8c800 0x0 0x100>, <0x0 0x8c000 0x0 0x4>;
++				reg-names = "nfc", "emmc";
++				interrupts = <GIC_SPI 175 IRQ_TYPE_EDGE_RISING>;
++				clocks = <&clkc_periphs CLKID_SD_EMMC_C>,
++					<&clkc_pll CLKID_FCLK_DIV2>;
++				clock-names = "core", "device";
++				status = "disabled";
++			};
++
+ 			uart_B: serial@7a000 {
+ 				compatible = "amlogic,meson-s4-uart",
+ 					     "amlogic,meson-ao-uart";
+ 				reg = <0x0 0x7a000 0x0 0x18>;
+ 				interrupts = <GIC_SPI 169 IRQ_TYPE_EDGE_RISING>;
+ 				status = "disabled";
+-				clocks = <&xtal>, <&xtal>, <&xtal>;
++				clocks = <&xtal>, <&clkc_periphs CLKID_UART_B>, <&xtal>;
+ 				clock-names = "xtal", "pclk", "baud";
+ 			};
+ 
+@@ -160,5 +483,30 @@ hwrng: rng@440788 {
+ 				reg = <0x0 0x440788 0x0 0x0c>;
+ 			};
+ 		};
++
++		ethmac: ethernet@fdc00000 {
++			compatible = "amlogic,meson-axg-dwmac",
++				     "snps,dwmac-3.70a",
++				     "snps,dwmac";
++			reg = <0x0 0xfdc00000 0x0 0x10000>,
++			      <0x0 0xfe024000 0x0 0x8>;
++
++			interrupts = <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "macirq";
++			power-domains = <&pwrc PWRC_S4_ETH_ID>;
++			clocks = <&clkc_periphs CLKID_ETH>,
++				 <&clkc_pll CLKID_FCLK_DIV2>,
++				 <&clkc_pll CLKID_MPLL2>;
++			clock-names = "stmmaceth", "clkin0", "clkin1";
++			rx-fifo-depth = <4096>;
++			tx-fifo-depth = <2048>;
++			status = "disabled";
++
++			mdio0: mdio {
++				#address-cells = <1>;
++				#size-cells = <0>;
++				compatible = "snps,dwmac-mdio";
++			};
++		};
+ 	};
+ };
+
+base-commit: 3a5038e9c0556e51db96c2f7149d853efb886c95
+-- 
+2.39.2
 
 
