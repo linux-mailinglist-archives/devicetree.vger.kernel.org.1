@@ -1,242 +1,182 @@
-Return-Path: <devicetree+bounces-20136-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20137-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 119E27FDEDA
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 18:50:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84A5A7FDEEE
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 18:58:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7C4BEB210D5
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 17:50:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 184F3282D3B
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 17:58:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05F2859B64;
-	Wed, 29 Nov 2023 17:49:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HSZ0Bk+X"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A82F5B5D5;
+	Wed, 29 Nov 2023 17:58:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D33CC4C3AC;
-	Wed, 29 Nov 2023 17:49:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A7F0C433C7;
-	Wed, 29 Nov 2023 17:49:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701280198;
-	bh=hOv0atHingnUJuqYGWuaNZX1Z0M6TjcYBZp5aRGip38=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=HSZ0Bk+XmVmFmLv332NYdThxfq4coZgxOk/QGCVmtzUcqbP97NlHYXwFbriiyC9FH
-	 d7/i+52mNChc0yjo6/jXpoAsN+V5rk2WU0NQRFX8RY+48z8kY4qWBHx2BeG1poDNHK
-	 K/xwWP38VggGm4bT8c6GbPVqQEGov8dERZjxti4jevPG5l3dDhxzlO5QuV9tWcKJYo
-	 ZC9huQ3TP9gplgB3P0TMLjTogFgeQKOxgo4E/PjbsPtu38ro5u6PfYzJvA7+vXzZ+0
-	 xhz1vMusrIAxnD4UEQaLNFGsIVKMi1vSUOYnFXILQicFq7V0ZJnyhiBs1v52yDZt7V
-	 mdUXs2OqlgUpQ==
-Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-1fa0885e1c2so3186478fac.0;
-        Wed, 29 Nov 2023 09:49:58 -0800 (PST)
-X-Gm-Message-State: AOJu0Yx7QVeVut9Q7yfnjijicfKXvqiypvOMzedrrYJznFq8/TgZ5YU2
-	mbkk4UEEicsIUvs4EzeABjNS0A2eh5zxkvpVA1M=
-X-Google-Smtp-Source: AGHT+IGPL/pndXjMwP7hy3JldohpjQSp00uVIIbyXY3nxHbNA9I2y0xKAZxcbbFRrog0l235VVgYmZxUmeL8Cb87sfc=
-X-Received: by 2002:a05:6870:82a5:b0:1fa:2888:701d with SMTP id
- q37-20020a05687082a500b001fa2888701dmr17426756oae.8.1701280197666; Wed, 29
- Nov 2023 09:49:57 -0800 (PST)
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3DA7890;
+	Wed, 29 Nov 2023 09:58:18 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1B3AD1474;
+	Wed, 29 Nov 2023 09:59:05 -0800 (PST)
+Received: from [10.1.196.40] (e121345-lin.cambridge.arm.com [10.1.196.40])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1ABB43F5A1;
+	Wed, 29 Nov 2023 09:58:10 -0800 (PST)
+Message-ID: <788519ac-9ad7-459c-a57d-bfe1ec96db3e@arm.com>
+Date: Wed, 29 Nov 2023 17:58:08 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231122-dtc-warnings-v2-0-bd4087325392@kernel.org>
- <CAK7LNASVMjVg4dr=KdSDHwGww_47H78H7rMXA=wf+ncugesDSA@mail.gmail.com>
- <CAL_Jsq+N0GxwZ2YmspEzfiuGOw7M+DmYkyhLgaYtk+Ov2ycY_A@mail.gmail.com>
- <CAK7LNAT6-pBjUbB+Fcik27QWniK7BizvoUG+EiFvFtJ+MTdmJA@mail.gmail.com> <CAL_JsqJSFnVG6+CfcbgVFGo3EyiSTt-et0NSW2qWjei+zXURcg@mail.gmail.com>
-In-Reply-To: <CAL_JsqJSFnVG6+CfcbgVFGo3EyiSTt-et0NSW2qWjei+zXURcg@mail.gmail.com>
-From: Masahiro Yamada <masahiroy@kernel.org>
-Date: Thu, 30 Nov 2023 02:49:21 +0900
-X-Gmail-Original-Message-ID: <CAK7LNARrRwzrU0m0SVOfnJj87hw4kL2YpDK0xRCwuW6fYT9OGg@mail.gmail.com>
-Message-ID: <CAK7LNARrRwzrU0m0SVOfnJj87hw4kL2YpDK0xRCwuW6fYT9OGg@mail.gmail.com>
-Subject: Re: [PATCH v2 0/4] kbuild: Per arch/platform dtc warning levels
-To: Rob Herring <robh@kernel.org>
-Cc: Nathan Chancellor <nathan@kernel.org>, Nick Desaulniers <ndesaulniers@google.com>, 
-	Nicolas Schier <nicolas@fjasle.eu>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
-	Conor Dooley <conor@kernel.org>, linux-kbuild@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 06/10] iommu: Replace iommu_device_lock with
+ iommu_probe_device_lock
+Content-Language: en-GB
+To: Jason Gunthorpe <jgg@nvidia.com>, David Airlie <airlied@gmail.com>,
+ Alyssa Rosenzweig <alyssa@rosenzweig.io>, Albert Ou <aou@eecs.berkeley.edu>,
+ asahi@lists.linux.dev, Catalin Marinas <catalin.marinas@arm.com>,
+ Danilo Krummrich <dakr@redhat.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Dexuan Cui <decui@microsoft.com>, devicetree@vger.kernel.org,
+ dmaengine@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ David Woodhouse <dwmw2@infradead.org>, Frank Rowand
+ <frowand.list@gmail.com>, Hanjun Guo <guohanjun@huawei.com>,
+ Haiyang Zhang <haiyangz@microsoft.com>, iommu@lists.linux.dev,
+ Jon Hunter <jonathanh@nvidia.com>, Joerg Roedel <joro@8bytes.org>,
+ Karol Herbst <kherbst@redhat.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ "K. Y. Srinivasan" <kys@microsoft.com>,
+ Laxman Dewangan <ldewangan@nvidia.com>, Len Brown <lenb@kernel.org>,
+ linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-hyperv@vger.kernel.org, linux-mips@vger.kernel.org,
+ linux-riscv@lists.infradead.org, linux-snps-arc@lists.infradead.org,
+ linux-tegra@vger.kernel.org, Russell King <linux@armlinux.org.uk>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, Lyude Paul <lyude@redhat.com>,
+ Marek Szyprowski <m.szyprowski@samsung.com>, nouveau@lists.freedesktop.org,
+ Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley
+ <paul.walmsley@sifive.com>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>, Sudeep Holla <sudeep.holla@arm.com>,
+ Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
+ Sven Peter <sven@svenpeter.dev>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Vineet Gupta <vgupta@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Wei Liu <wei.liu@kernel.org>, Will Deacon <will@kernel.org>
+Cc: Lu Baolu <baolu.lu@linux.intel.com>, Christoph Hellwig <hch@lst.de>,
+ Jerry Snitselaar <jsnitsel@redhat.com>, Hector Martin <marcan@marcan.st>,
+ Moritz Fischer <mdf@kernel.org>, patches@lists.linux.dev,
+ "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
+ Rob Herring <robh@kernel.org>, Thierry Reding <thierry.reding@gmail.com>
+References: <6-v1-720585788a7d+811b-iommu_fwspec_p1_jgg@nvidia.com>
+From: Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <6-v1-720585788a7d+811b-iommu_fwspec_p1_jgg@nvidia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Nov 29, 2023 at 7:25=E2=80=AFAM Rob Herring <robh@kernel.org> wrote=
-:
->
-> On Tue, Nov 28, 2023 at 6:03=E2=80=AFAM Masahiro Yamada <masahiroy@kernel=
-.org> wrote:
-> >
-> > On Mon, Nov 27, 2023 at 11:03=E2=80=AFPM Rob Herring <robh@kernel.org> =
-wrote:
-> > >
-> > > On Thu, Nov 23, 2023 at 1:39=E2=80=AFAM Masahiro Yamada <masahiroy@ke=
-rnel.org> wrote:
-> > > >
-> > > > On Thu, Nov 23, 2023 at 7:12=E2=80=AFAM Rob Herring <robh@kernel.or=
-g> wrote:
-> > > > >
-> > > > > This series adds support to set the dtc extra warning level on a =
-per
-> > > > > arch or per platform (directory really) basis.
-> > > > >
-> > > > > The first version of this was just a simple per directory overrid=
-e for
-> > > > > Samsung platforms, but Conor asked to be able to do this for all =
-of
-> > > > > riscv.
-> > > > >
-> > > > > For merging, either I can take the whole thing or the riscv and s=
-amsung
-> > > > > patches can go via their normal trees. The added variable will ha=
-ve no
-> > > > > effect until merged with patch 2.
-> > > > >
-> > > > > v1:
-> > > > >  - https://lore.kernel.org/all/20231116211739.3228239-1-robh@kern=
-el.org/
-> > > > >
-> > > > > Signed-off-by: Rob Herring <robh@kernel.org>
-> > > > > ---
-> > > >
-> > > >
-> > > > There were some attempts in the past to enable W=3D1 in particular =
-subsystems,
-> > > > so here is a similar comment.
-> > > >
-> > > > Adding a new warning flag to W=3D1 is always safe without doing any=
- compile test.
-> > > >
-> > > > With this series, it would not be true any more because a new warni=
-ng in W=3D1
-> > > > would potentially break riscv/samsung platforms.
-> > >
-> > > The difference here is the people potentially adding warnings are als=
-o
-> > > the ones ensuring no warnings.
-> > >
-> > > > Linus requires a clean build (i.e. zero warning) when W=3D option i=
-s not given.
-> > >
-> > > Linus doesn't build any of this AFAICT. We are not always warning fre=
-e
-> > > for W=3D0 with dtbs.
-> >
-> >
-> >
-> > Does it mean, you can enable all warnings by default?
->
-> No, Linus might not care, but others (me) do. The whole point of not
-> allowing warnings is the same. Get to zero warnings so any new
-> warnings stand out. We now have some subset of platforms which are
-> warning free and want warnings enabled by default to keep them that
-> way. How do you suggest we do that?
+On 29/11/2023 12:48 am, Jason Gunthorpe wrote:
+> The iommu_device_lock protects the iommu_device_list which is only read by
+> iommu_ops_from_fwnode().
+> 
+> This is now always called under the iommu_probe_device_lock, so we don't
+> need to double lock the linked list. Use the iommu_probe_device_lock on
+> the write side too.
 
+Please no, iommu_probe_device_lock() is a hack and we need to remove the 
+*reason* it exists at all. And IMO just because iommu_present() is 
+deprecated doesn't justify making it look utterly nonsensical - in no 
+way does that have any relationship with probe_device, much less need to 
+serialise against it!
 
+Thanks,
+Robin.
 
-
-
-You may not like it, but an alternative solution could be,
-hard-code extra warning flags.
-
-
-In my compile-tests, Samsung platform is not W=3D1 clean yet.
-I see -Wunit_address_vs_reg, -Wsimple_bus_reg,
--Wunique_unit_address_if_enabled warnings.
-
-I do not see anything else, so you can add the following three
-flags to keep it warning-free.
-
-
-
-
-
-
-diff --git a/arch/arm/boot/dts/samsung/Makefile
-b/arch/arm/boot/dts/samsung/Makefile
-index 7becf36656b1..1e15784ec51f 100644
---- a/arch/arm/boot/dts/samsung/Makefile
-+++ b/arch/arm/boot/dts/samsung/Makefile
-@@ -1,4 +1,10 @@
- # SPDX-License-Identifier: GPL-2.0
-+
-+dtcflags :=3D \
-+       -Wavoid_unnecessary_addr_size \
-+       -Walias_paths \
-+       -Wgraph_child_address
-+
- dtb-$(CONFIG_ARCH_EXYNOS3) +=3D \
-        exynos3250-artik5-eval.dtb \
-        exynos3250-monk.dtb \
-diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
-index 1a965fe68e01..aa5a5fc39cec 100644
---- a/scripts/Makefile.lib
-+++ b/scripts/Makefile.lib
-@@ -362,6 +362,9 @@ DTC_FLAGS +=3D -Wnode_name_chars_strict \
-        -Wunique_unit_address
- endif
-
-+# per-directory flags
-+DTC_FLAGS +=3D $(dtcflags)
-+# per-file flags
- DTC_FLAGS +=3D $(DTC_FLAGS_$(basetarget))
-
- # Set -@ if the target is a base DTB that overlay is applied onto
-
-
-
-
-
-
-
->
-> I understand your point on W=3D1 in general, but I think it just doesn't
-> apply in this case. In general,
-> someone may be testing a new compiler and there's some new warning to
-> enable, so they add it to W=3D1. They are working independently of any
-> subsystem (and Linus) and introducing new warnings would be a burden
-> to fix and a problem to leave. For DT, it is a bit different as adding
-> new warnings, updating dtc version, and selecting warnings to enable
-> are pretty much all done together.
-> Plus, schema warnings have pretty
-> much superseded dtc warnings. If we do add new warnings which can't be
-> fixed up front, then we could still only enable the warning for W=3D1
-> from the command line. Something like this on top of this series:
->
-> diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
-> index 53a74e53e0ca..41307c6e1fee 100644
-> --- a/scripts/Makefile.lib
-> +++ b/scripts/Makefile.lib
-> @@ -341,6 +341,10 @@ quiet_cmd_gzip =3D GZIP    $@
->  # ----------------------------------------------------------------------=
------
->  DTC ?=3D $(objtree)/scripts/dtc/dtc
->
-> +ifeq ($(findstring 1,$(KBUILD_EXTRA_WARN)),)
-> +DTC_FLAGS +=3D -Wno-some_new_warning_we_need_off_globally
-> +endif
+> Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
+> ---
+>   drivers/iommu/iommu.c | 30 +++++++++++++-----------------
+>   1 file changed, 13 insertions(+), 17 deletions(-)
+> 
+> diff --git a/drivers/iommu/iommu.c b/drivers/iommu/iommu.c
+> index 08f29a1dfcd5f8..9557c2ec08d915 100644
+> --- a/drivers/iommu/iommu.c
+> +++ b/drivers/iommu/iommu.c
+> @@ -146,7 +146,6 @@ struct iommu_group_attribute iommu_group_attr_##_name =		\
+>   	container_of(_kobj, struct iommu_group, kobj)
+>   
+>   static LIST_HEAD(iommu_device_list);
+> -static DEFINE_SPINLOCK(iommu_device_lock);
+>   
+>   static const struct bus_type * const iommu_buses[] = {
+>   	&platform_bus_type,
+> @@ -262,9 +261,9 @@ int iommu_device_register(struct iommu_device *iommu,
+>   	if (hwdev)
+>   		iommu->fwnode = dev_fwnode(hwdev);
+>   
+> -	spin_lock(&iommu_device_lock);
+> +	mutex_lock(&iommu_probe_device_lock);
+>   	list_add_tail(&iommu->list, &iommu_device_list);
+> -	spin_unlock(&iommu_device_lock);
+> +	mutex_unlock(&iommu_probe_device_lock);
+>   
+>   	for (int i = 0; i < ARRAY_SIZE(iommu_buses) && !err; i++)
+>   		err = bus_iommu_probe(iommu_buses[i]);
+> @@ -279,9 +278,9 @@ void iommu_device_unregister(struct iommu_device *iommu)
+>   	for (int i = 0; i < ARRAY_SIZE(iommu_buses); i++)
+>   		bus_for_each_dev(iommu_buses[i], NULL, iommu, remove_iommu_group);
+>   
+> -	spin_lock(&iommu_device_lock);
+> +	mutex_lock(&iommu_probe_device_lock);
+>   	list_del(&iommu->list);
+> -	spin_unlock(&iommu_device_lock);
+> +	mutex_unlock(&iommu_probe_device_lock);
+>   
+>   	/* Pairs with the alloc in generic_single_device_group() */
+>   	iommu_group_put(iommu->singleton_group);
+> @@ -316,9 +315,9 @@ int iommu_device_register_bus(struct iommu_device *iommu,
+>   	if (err)
+>   		return err;
+>   
+> -	spin_lock(&iommu_device_lock);
+> +	mutex_lock(&iommu_probe_device_lock);
+>   	list_add_tail(&iommu->list, &iommu_device_list);
+> -	spin_unlock(&iommu_device_lock);
+> +	mutex_unlock(&iommu_probe_device_lock);
+>   
+>   	err = bus_iommu_probe(bus);
+>   	if (err) {
+> @@ -2033,9 +2032,9 @@ bool iommu_present(const struct bus_type *bus)
+>   
+>   	for (int i = 0; i < ARRAY_SIZE(iommu_buses); i++) {
+>   		if (iommu_buses[i] == bus) {
+> -			spin_lock(&iommu_device_lock);
+> +			mutex_lock(&iommu_probe_device_lock);
+>   			ret = !list_empty(&iommu_device_list);
+> -			spin_unlock(&iommu_device_lock);
+> +			mutex_unlock(&iommu_probe_device_lock);
+>   		}
+>   	}
+>   	return ret;
+> @@ -2980,17 +2979,14 @@ EXPORT_SYMBOL_GPL(iommu_default_passthrough);
+>   
+>   const struct iommu_ops *iommu_ops_from_fwnode(struct fwnode_handle *fwnode)
+>   {
+> -	const struct iommu_ops *ops = NULL;
+>   	struct iommu_device *iommu;
+>   
+> -	spin_lock(&iommu_device_lock);
+> +	lockdep_assert_held(&iommu_probe_device_lock);
 > +
-
-Hmm. Tricky, but works.
-
-KBUILD_EXTRA_WARN_DTC=3D1 is weaker than KBUILD_EXTRA_WARN=3D1
-
-
-
-
->  KBUILD_EXTRA_WARN_DTC +=3D $(KBUILD_EXTRA_WARN)
->
->  # Disable noisy checks by default
->
---
-Best Regards
-Masahiro Yamada
+>   	list_for_each_entry(iommu, &iommu_device_list, list)
+> -		if (iommu->fwnode == fwnode) {
+> -			ops = iommu->ops;
+> -			break;
+> -		}
+> -	spin_unlock(&iommu_device_lock);
+> -	return ops;
+> +		if (iommu->fwnode == fwnode)
+> +			return iommu->ops;
+> +	return NULL;
+>   }
+>   
+>   int iommu_fwspec_init(struct device *dev, struct fwnode_handle *iommu_fwnode,
 
