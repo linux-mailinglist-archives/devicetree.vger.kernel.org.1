@@ -1,506 +1,218 @@
-Return-Path: <devicetree+bounces-19828-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19829-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 052B57FCEA9
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 07:02:33 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B3937FCEC9
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 07:05:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B0B9928354E
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 06:02:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3F5421C20FEB
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 06:05:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8E9B79D6;
-	Wed, 29 Nov 2023 06:02:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03FE3D2EB;
+	Wed, 29 Nov 2023 06:05:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="YC8Z/MJg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D98DA1BC3;
-	Tue, 28 Nov 2023 22:02:21 -0800 (PST)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-	by ex01.ufhost.com (Postfix) with ESMTP id ACE6124DD82;
-	Wed, 29 Nov 2023 14:02:20 +0800 (CST)
-Received: from EXMBX066.cuchost.com (172.16.7.66) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 29 Nov
- 2023 14:02:20 +0800
-Received: from jsia-virtual-machine.localdomain (60.54.3.230) by
- EXMBX066.cuchost.com (172.16.6.66) with Microsoft SMTP Server (TLS) id
- 15.0.1497.42; Wed, 29 Nov 2023 14:02:09 +0800
-From: Sia Jee Heng <jeeheng.sia@starfivetech.com>
-To: <kernel@esmil.dk>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <krzk@kernel.org>,
-	<conor+dt@kernel.org>, <paul.walmsley@sifive.com>, <palmer@dabbelt.com>,
-	<aou@eecs.berkeley.edu>, <daniel.lezcano@linaro.org>, <tglx@linutronix.de>,
-	<conor@kernel.org>, <anup@brainfault.org>, <gregkh@linuxfoundation.org>,
-	<jirislaby@kernel.org>, <michal.simek@amd.com>,
-	<michael.zhu@starfivetech.com>, <drew@beagleboard.org>
-CC: <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <jeeheng.sia@starfivetech.com>,
-	<leyfoon.tan@starfivetech.com>
-Subject: [PATCH v2 6/6] riscv: dts: starfive: Add initial StarFive JH8100 device tree
-Date: Wed, 29 Nov 2023 14:00:43 +0800
-Message-ID: <20231129060043.368874-7-jeeheng.sia@starfivetech.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231129060043.368874-1-jeeheng.sia@starfivetech.com>
-References: <20231129060043.368874-1-jeeheng.sia@starfivetech.com>
+Received: from mail-yw1-x114a.google.com (mail-yw1-x114a.google.com [IPv6:2607:f8b0:4864:20::114a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECE7E1FE0
+	for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 22:05:03 -0800 (PST)
+Received: by mail-yw1-x114a.google.com with SMTP id 00721157ae682-5ccf44b0423so85008067b3.0
+        for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 22:05:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1701237903; x=1701842703; darn=vger.kernel.org;
+        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
+         :date:from:to:cc:subject:date:message-id:reply-to;
+        bh=WO7CXB1mNGxZSEafQP2SArLxdW3co4lj0A5pbLIXeXc=;
+        b=YC8Z/MJgWsD7+kRI5X7617QDZNem31VfuQDJHZLwZkhbOunqySfMHXFcN9pEZM3Swf
+         K7f4mpb2M2zUY8pmscdoJ/ct6X47+MYlT5r0Ktiv5DYzV/FQbyXKEJJSjcPlbZPvzwHP
+         clYR/15TXb5zQ4OLDJEUtFJTITDwcLWelth8F8sgd1Db0j+ocpYF/2AArjg7mWNhSqGm
+         xsERRX5HK49/gIsx3+jPxhwRaxD6R0e7f9cAC02TmB4sogn1SdRl3zC4A3A73JBLIVlu
+         ww0jFyFNBR4Z6PW85xsJtGsQfAHRM8w3Bf9v5K1WkwC2Uh68oX+2jxoaQJwC4TNrRtBx
+         Zz6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701237903; x=1701842703;
+        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
+         :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=WO7CXB1mNGxZSEafQP2SArLxdW3co4lj0A5pbLIXeXc=;
+        b=rrjsiv2+34mwnvW/nHSD6L6wvmApLG8SY8nZMryUSWUP0ZOoy5QCFUHhWXLilQvA2x
+         CCzMUt/OKsyvSm11ju2W2xvZ1WlgQcgTDM/rxHKXxbk+gTBHbG1jUjmLRo3wCTXg/7rd
+         R0b9yWW1BayfK4++MYwEcs/UBvPaEO3dKF8D5DyY5wqub0b6Rx+FpgaSfaBCzgaZn7U2
+         LRe7NJ2S+fjsyKwVIBffLQYs2tmrXq1WN57AM6q5xKbwlK5lRFIiy7WYNRa5wgSB7DmG
+         cbk/Y7XjUYenx0yL/lndgNQLYzMZYp9cz8A5fKbF133mZ/3uTI7LQdKZZ0/Hv8GmGFwo
+         6MVA==
+X-Gm-Message-State: AOJu0YxrwSAfyNzQC9T4cmuoRwKJIAYSZ2qi1Vx7Qs+RvGN378cnu59a
+	FU0SZMY0GZBu6KjFBB3ktfHW95P0KJn/
+X-Google-Smtp-Source: AGHT+IHL7hgboFJ1jDI8fHK0ttAzMEfTsQjA7vmjwBnF03SxrfXdHuhYyFsTgeIfr3cTonrW5FaGXfJVhISd
+X-Received: from morats.c.googlers.com ([fda3:e722:ac3:cc00:14:4d90:c0a8:d9e])
+ (user=moritzf job=sendgmr) by 2002:a05:690c:903:b0:59b:eb63:4beb with SMTP id
+ cb3-20020a05690c090300b0059beb634bebmr584543ywb.7.1701237903050; Tue, 28 Nov
+ 2023 22:05:03 -0800 (PST)
+Date: Wed, 29 Nov 2023 06:04:59 +0000
+In-Reply-To: <3-v1-720585788a7d+811b-iommu_fwspec_p1_jgg@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX066.cuchost.com
- (172.16.6.66)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: quoted-printable
+Mime-Version: 1.0
+References: <0-v1-720585788a7d+811b-iommu_fwspec_p1_jgg@nvidia.com> <3-v1-720585788a7d+811b-iommu_fwspec_p1_jgg@nvidia.com>
+Message-ID: <20231129060459.gcunam3msksainng@google.com>
+Subject: Re: [PATCH 03/10] iommu/of: Use -ENODEV consistently in of_iommu_configure()
+From: Moritz Fischer <moritzf@google.com>
+To: Jason Gunthorpe <jgg@nvidia.com>
+Cc: David Airlie <airlied@gmail.com>, Alyssa Rosenzweig <alyssa@rosenzweig.io>, 
+	Albert Ou <aou@eecs.berkeley.edu>, asahi@lists.linux.dev, 
+	Catalin Marinas <catalin.marinas@arm.com>, Danilo Krummrich <dakr@redhat.com>, 
+	Daniel Vetter <daniel@ffwll.ch>, Dexuan Cui <decui@microsoft.com>, devicetree@vger.kernel.org, 
+	dmaengine@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	David Woodhouse <dwmw2@infradead.org>, Frank Rowand <frowand.list@gmail.com>, 
+	Hanjun Guo <guohanjun@huawei.com>, Haiyang Zhang <haiyangz@microsoft.com>, iommu@lists.linux.dev, 
+	Jon Hunter <jonathanh@nvidia.com>, Joerg Roedel <joro@8bytes.org>, 
+	Karol Herbst <kherbst@redhat.com>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+	"K. Y. Srinivasan" <kys@microsoft.com>, Laxman Dewangan <ldewangan@nvidia.com>, Len Brown <lenb@kernel.org>, 
+	linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-hyperv@vger.kernel.org, linux-mips@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, linux-snps-arc@lists.infradead.org, 
+	linux-tegra@vger.kernel.org, Russell King <linux@armlinux.org.uk>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Lyude Paul <lyude@redhat.com>, 
+	Marek Szyprowski <m.szyprowski@samsung.com>, nouveau@lists.freedesktop.org, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Robin Murphy <robin.murphy@arm.com>, Sudeep Holla <sudeep.holla@arm.com>, 
+	Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>, Sven Peter <sven@svenpeter.dev>, 
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Vineet Gupta <vgupta@kernel.org>, 
+	Vinod Koul <vkoul@kernel.org>, Wei Liu <wei.liu@kernel.org>, Will Deacon <will@kernel.org>, 
+	Lu Baolu <baolu.lu@linux.intel.com>, Christoph Hellwig <hch@lst.de>, 
+	Jerry Snitselaar <jsnitsel@redhat.com>, Hector Martin <marcan@marcan.st>, Moritz Fischer <mdf@kernel.org>, 
+	patches@lists.linux.dev, "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>, 
+	Rob Herring <robh@kernel.org>, Thierry Reding <thierry.reding@gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
 
-Add initial device tree for the StarFive JH8100 RISC-V SoC.
+On Tue, Nov 28, 2023 at 08:47:59PM -0400, Jason Gunthorpe wrote:
+> Instead of returning 1 and trying to handle positive error codes just
+> stick to the convention of returning -ENODEV. Remove references to ops
+> from of_iommu_configure(), a NULL ops will already generate an error code.
 
-Signed-off-by: Sia Jee Heng <jeeheng.sia@starfivetech.com>
-Reviewed-by: Ley Foon Tan <leyfoon.tan@starfivetech.com>
----
- arch/riscv/boot/dts/starfive/Makefile       |   1 +
- arch/riscv/boot/dts/starfive/jh8100-evb.dts |  28 ++
- arch/riscv/boot/dts/starfive/jh8100.dtsi    | 378 ++++++++++++++++++++
- 3 files changed, 407 insertions(+)
- create mode 100644 arch/riscv/boot/dts/starfive/jh8100-evb.dts
- create mode 100644 arch/riscv/boot/dts/starfive/jh8100.dtsi
+> There is no reason to check dev->bus, if err=0 at this point then the
+> called configure functions thought there was an iommu and we should try to
+> probe it. Remove it.
 
-diff --git a/arch/riscv/boot/dts/starfive/Makefile b/arch/riscv/boot/dts/=
-starfive/Makefile
-index 0141504c0f5c..fbb0dc619102 100644
---- a/arch/riscv/boot/dts/starfive/Makefile
-+++ b/arch/riscv/boot/dts/starfive/Makefile
-@@ -10,3 +10,4 @@ dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7100-starfive-vision=
-five-v1.dtb
-=20
- dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7110-starfive-visionfive-2-v1.2a.dtb
- dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7110-starfive-visionfive-2-v1.3b.dtb
-+dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh8100-evb.dtb
-diff --git a/arch/riscv/boot/dts/starfive/jh8100-evb.dts b/arch/riscv/boo=
-t/dts/starfive/jh8100-evb.dts
-new file mode 100644
-index 000000000000..39a11226731c
---- /dev/null
-+++ b/arch/riscv/boot/dts/starfive/jh8100-evb.dts
-@@ -0,0 +1,28 @@
-+// SPDX-License-Identifier: GPL-2.0 OR MIT
-+/*
-+ * Copyright (c) 2021-2023 StarFive Technology Co., Ltd.
-+ */
-+
-+#include "jh8100.dtsi"
-+
-+/ {
-+	model =3D "StarFive JH8100 EVB";
-+	compatible =3D "starfive,jh8100-evb", "starfive,jh8100";
-+
-+	aliases {
-+		serial0 =3D &uart0;
-+	};
-+
-+	chosen {
-+		stdout-path =3D "serial0:115200n8";
-+	};
-+
-+	memory {
-+		device_type =3D "memory";
-+		reg =3D <0x0 0x40000000 0x2 0x00000000>;
-+	};
-+};
-+
-+&uart0 {
-+	status =3D "okay";
-+};
-diff --git a/arch/riscv/boot/dts/starfive/jh8100.dtsi b/arch/riscv/boot/d=
-ts/starfive/jh8100.dtsi
-new file mode 100644
-index 000000000000..f26aff5c1ddf
---- /dev/null
-+++ b/arch/riscv/boot/dts/starfive/jh8100.dtsi
-@@ -0,0 +1,378 @@
-+// SPDX-License-Identifier: GPL-2.0 OR MIT
-+/*
-+ * Copyright (c) 2021-2023 StarFive Technology Co., Ltd.
-+ */
-+
-+/dts-v1/;
-+
-+/ {
-+	compatible =3D "starfive,jh8100";
-+	#address-cells =3D <2>;
-+	#size-cells =3D <2>;
-+
-+	cpus {
-+		#address-cells =3D <1>;
-+		#size-cells =3D <0>;
-+		timebase-frequency =3D <4000000>;
-+
-+		cpu0: cpu@0 {
-+			compatible =3D "starfive,dubhe-80", "riscv";
-+			capacity-dmips-mhz =3D <768>;
-+			d-cache-block-size =3D <64>;
-+			d-cache-sets =3D <512>;
-+			d-cache-size =3D <32768>;
-+			d-tlb-sets =3D <1>;
-+			d-tlb-size =3D <48>;
-+			device_type =3D "cpu";
-+			i-cache-block-size =3D <64>;
-+			i-cache-sets =3D <512>;
-+			i-cache-size =3D <32768>;
-+			i-tlb-sets =3D <1>;
-+			i-tlb-size =3D <48>;
-+			mmu-type =3D "riscv,sv48";
-+			next-level-cache =3D <&l2c0>;
-+			reg =3D <0x0>;
-+			riscv,isa =3D "rv64imafdch";
-+			riscv,isa-base =3D "rv64i";
-+			riscv,isa-extensions =3D "i", "m", "a", "f", "d", "c", "h", "zicntr",
-+					       "zicsr", "zifencei", "zihintpause", "zihpm",
-+					       "zba", "zbb", "zbs", "sscofpmf";
-+			tlb-split;
-+
-+			cpu0_intc: interrupt-controller {
-+				compatible =3D "riscv,cpu-intc";
-+				interrupt-controller;
-+				#interrupt-cells =3D <1>;
-+			};
-+		};
-+
-+		cpu1: cpu@1 {
-+			compatible =3D "starfive,dubhe-80", "riscv";
-+			capacity-dmips-mhz =3D <768>;
-+			d-cache-block-size =3D <64>;
-+			d-cache-sets =3D <512>;
-+			d-cache-size =3D <32768>;
-+			d-tlb-sets =3D <1>;
-+			d-tlb-size =3D <48>;
-+			device_type =3D "cpu";
-+			i-cache-block-size =3D <64>;
-+			i-cache-sets =3D <512>;
-+			i-cache-size =3D <32768>;
-+			i-tlb-sets =3D <1>;
-+			i-tlb-size =3D <48>;
-+			mmu-type =3D "riscv,sv48";
-+			next-level-cache =3D <&l2c1>;
-+			reg =3D <0x1>;
-+			riscv,isa =3D "rv64imafdch";
-+			riscv,isa-base =3D "rv64i";
-+			riscv,isa-extensions =3D "i", "m", "a", "f", "d", "c", "h", "zicntr",
-+					       "zicsr", "zifencei", "zihintpause", "zihpm",
-+					       "zba", "zbb", "zbs", "sscofpmf";
-+			tlb-split;
-+
-+			cpu1_intc: interrupt-controller {
-+				compatible =3D "riscv,cpu-intc";
-+				interrupt-controller;
-+				#interrupt-cells =3D <1>;
-+			};
-+		};
-+
-+		cpu2: cpu@2 {
-+			compatible =3D "starfive,dubhe-90", "riscv";
-+			capacity-dmips-mhz =3D <1024>;
-+			d-cache-block-size =3D <64>;
-+			d-cache-sets =3D <1024>;
-+			d-cache-size =3D <65536>;
-+			d-tlb-sets =3D <1>;
-+			d-tlb-size =3D <48>;
-+			device_type =3D "cpu";
-+			i-cache-block-size =3D <64>;
-+			i-cache-sets =3D <1024>;
-+			i-cache-size =3D <65536>;
-+			i-tlb-sets =3D <1>;
-+			i-tlb-size =3D <48>;
-+			mmu-type =3D "riscv,sv48";
-+			next-level-cache =3D <&l2c2>;
-+			reg =3D <0x2>;
-+			riscv,isa =3D "rv64imafdch";
-+			riscv,isa-base =3D "rv64i";
-+			riscv,isa-extensions =3D "i", "m", "a", "f", "d", "c", "h", "zicntr",
-+					       "zicsr", "zifencei", "zihintpause", "zihpm",
-+					       "zba", "zbb", "zbs", "sscofpmf";
-+			tlb-split;
-+
-+			cpu2_intc: interrupt-controller {
-+				compatible =3D "riscv,cpu-intc";
-+				interrupt-controller;
-+				#interrupt-cells =3D <1>;
-+			};
-+		};
-+
-+		cpu3: cpu@3 {
-+			compatible =3D "starfive,dubhe-90", "riscv";
-+			capacity-dmips-mhz =3D <1024>;
-+			d-cache-block-size =3D <64>;
-+			d-cache-sets =3D <1024>;
-+			d-cache-size =3D <65536>;
-+			d-tlb-sets =3D <1>;
-+			d-tlb-size =3D <48>;
-+			device_type =3D "cpu";
-+			i-cache-block-size =3D <64>;
-+			i-cache-sets =3D <1024>;
-+			i-cache-size =3D <65536>;
-+			i-tlb-sets =3D <1>;
-+			i-tlb-size =3D <48>;
-+			mmu-type =3D "riscv,sv48";
-+			next-level-cache =3D <&l2c2>;
-+			reg =3D <0x3>;
-+			riscv,isa =3D "rv64imafdch";
-+			riscv,isa-base =3D "rv64i";
-+			riscv,isa-extensions =3D "i", "m", "a", "f", "d", "c", "h", "zicntr",
-+					       "zicsr", "zifencei", "zihintpause", "zihpm",
-+					       "zba", "zbb", "zbs", "sscofpmf";
-+			tlb-split;
-+
-+			cpu3_intc: interrupt-controller {
-+				compatible =3D "riscv,cpu-intc";
-+				interrupt-controller;
-+				#interrupt-cells =3D <1>;
-+			};
-+		};
-+
-+		cpu4: cpu@4 {
-+			compatible =3D "starfive,dubhe-90", "riscv";
-+			capacity-dmips-mhz =3D <1024>;
-+			d-cache-block-size =3D <64>;
-+			d-cache-sets =3D <1024>;
-+			d-cache-size =3D <65536>;
-+			d-tlb-sets =3D <1>;
-+			d-tlb-size =3D <48>;
-+			device_type =3D "cpu";
-+			i-cache-block-size =3D <64>;
-+			i-cache-sets =3D <1024>;
-+			i-cache-size =3D <65536>;
-+			i-tlb-sets =3D <1>;
-+			i-tlb-size =3D <48>;
-+			mmu-type =3D "riscv,sv48";
-+			next-level-cache =3D <&l2c2>;
-+			reg =3D <0x4>;
-+			riscv,isa =3D "rv64imafdch";
-+			riscv,isa-base =3D "rv64i";
-+			riscv,isa-extensions =3D "i", "m", "a", "f", "d", "c", "h", "zicntr",
-+					       "zicsr", "zifencei", "zihintpause", "zihpm",
-+					       "zba", "zbb", "zbs", "sscofpmf";
-+			tlb-split;
-+
-+			cpu4_intc: interrupt-controller {
-+				compatible =3D "riscv,cpu-intc";
-+				interrupt-controller;
-+				#interrupt-cells =3D <1>;
-+			};
-+		};
-+
-+		cpu5: cpu@5 {
-+			compatible =3D "starfive,dubhe-90", "riscv";
-+			capacity-dmips-mhz =3D <1024>;
-+			d-cache-block-size =3D <64>;
-+			d-cache-sets =3D <1024>;
-+			d-cache-size =3D <65536>;
-+			d-tlb-sets =3D <1>;
-+			d-tlb-size =3D <48>;
-+			device_type =3D "cpu";
-+			i-cache-block-size =3D <64>;
-+			i-cache-sets =3D <1024>;
-+			i-cache-size =3D <65536>;
-+			i-tlb-sets =3D <1>;
-+			i-tlb-size =3D <48>;
-+			mmu-type =3D "riscv,sv48";
-+			next-level-cache =3D <&l2c2>;
-+			reg =3D <0x5>;
-+			riscv,isa =3D "rv64imafdch";
-+			riscv,isa-base =3D "rv64i";
-+			riscv,isa-extensions =3D "i", "m", "a", "f", "d", "c", "h", "zicntr",
-+					       "zicsr", "zifencei", "zihintpause", "zihpm",
-+					       "zba", "zbb", "zbs", "sscofpmf";
-+			tlb-split;
-+
-+			cpu5_intc: interrupt-controller {
-+				compatible =3D "riscv,cpu-intc";
-+				interrupt-controller;
-+				#interrupt-cells =3D <1>;
-+			};
-+		};
-+
-+		cpu-map {
-+			cluster0 {
-+				core0 {
-+					cpu =3D <&cpu0>;
-+				};
-+			};
-+
-+			cluster1 {
-+				core0 {
-+					cpu =3D <&cpu1>;
-+				};
-+			};
-+
-+			cluster2 {
-+				core0 {
-+					cpu =3D <&cpu2>;
-+				};
-+
-+				core1 {
-+					cpu =3D <&cpu3>;
-+				};
-+
-+				core2 {
-+					cpu =3D <&cpu4>;
-+				};
-+
-+				core3 {
-+					cpu =3D <&cpu5>;
-+				};
-+			};
-+		};
-+
-+		l2c0: cache-controller-0 {
-+			compatible =3D "cache";
-+			cache-block-size =3D <64>;
-+			cache-level =3D <2>;
-+			cache-sets =3D <512>;
-+			cache-size =3D <0x40000>;
-+			cache-unified;
-+			next-level-cache =3D <&l3_cache>;
-+		};
-+
-+		l2c1: cache-controller-1 {
-+			compatible =3D "cache";
-+			cache-block-size =3D <64>;
-+			cache-level =3D <2>;
-+			cache-sets =3D <512>;
-+			cache-size =3D <0x40000>;
-+			cache-unified;
-+			next-level-cache =3D <&l3_cache>;
-+		};
-+
-+		l2c2: cache-controller-2{
-+			compatible =3D "cache";
-+			cache-block-size =3D <64>;
-+			cache-level =3D <2>;
-+			cache-sets =3D <4096>;
-+			cache-size =3D <0x200000>;
-+			cache-unified;
-+			next-level-cache =3D <&l3_cache>;
-+		};
-+
-+		l3_cache: cache-controller-3 {
-+			compatible =3D "cache";
-+			cache-block-size =3D <64>;
-+			cache-level =3D <3>;
-+			cache-sets =3D <8192>;
-+			cache-size =3D <0x400000>;
-+			cache-unified;
-+		};
-+	};
-+
-+	clk_uart: clk-uart {
-+		compatible =3D "fixed-clock"; /* Initial clock handler for UART */
-+		#clock-cells =3D <0>;
-+		clock-frequency =3D <24000000>;
-+	};
-+
-+	soc {
-+		compatible =3D "simple-bus";
-+		interrupt-parent =3D <&plic>;
-+		#address-cells =3D <2>;
-+		#size-cells =3D <2>;
-+		ranges;
-+
-+		clint: clint@2000000 {
-+			compatible =3D "starfive,jh8100-clint", "sifive,clint0";
-+			reg =3D <0x0 0x2000000 0x0 0x10000>;
-+			interrupts-extended =3D <&cpu0_intc 3>, <&cpu0_intc 7>,
-+					      <&cpu1_intc 3>, <&cpu1_intc 7>,
-+					      <&cpu2_intc 3>, <&cpu2_intc 7>,
-+					      <&cpu3_intc 3>, <&cpu3_intc 7>,
-+					      <&cpu4_intc 3>, <&cpu4_intc 7>,
-+					      <&cpu5_intc 3>, <&cpu5_intc 7>;
-+		};
-+
-+		plic: interrupt-controller@c000000 {
-+			#interrupt-cells =3D <1>;
-+			#address-cells =3D <0>;
-+			compatible =3D "starfive,jh8100-plic", "sifive,plic-1.0.0";
-+			reg =3D <0x0 0x0c000000 0x0 0x4000000>;
-+			riscv,ndev =3D <200>;
-+			interrupt-controller;
-+			interrupts-extended =3D <&cpu0_intc 11>, <&cpu1_intc 11>,
-+					      <&cpu0_intc 9>, <&cpu1_intc 9>,
-+					      <&cpu2_intc 11>, <&cpu3_intc 11>,
-+					      <&cpu4_intc 11>, <&cpu5_intc 11>,
-+					      <&cpu2_intc 9>, <&cpu3_intc 9>,
-+					      <&cpu4_intc 9>, <&cpu5_intc 9>;
-+		};
-+
-+		uart0: serial@12160000 {
-+			compatible =3D "starfive,jh8100-uart", "cdns,uart-r1p8";
-+			reg =3D <0x0 0x12160000 0x0 0x10000>;
-+			clock-names =3D "uart_clk", "pclk";
-+			clocks =3D <&clk_uart>, <&clk_uart>;
-+			interrupts =3D <67>;
-+			status =3D "disabled";
-+		};
-+
-+		uart1: serial@12170000  {
-+			compatible =3D "starfive,jh8100-uart", "cdns,uart-r1p8";
-+			reg =3D <0x0 0x12170000 0x0 0x10000>;
-+			clock-names =3D "uart_clk", "pclk";
-+			clocks =3D <&clk_uart>, <&clk_uart>;
-+			interrupts =3D <68>;
-+			status =3D "disabled";
-+		};
-+
-+		uart2: serial@12180000  {
-+			compatible =3D "starfive,jh8100-uart", "cdns,uart-r1p8";
-+			reg =3D <0x0 0x12180000 0x0 0x10000>;
-+			clock-names =3D "uart_clk", "pclk";
-+			clocks =3D <&clk_uart>, <&clk_uart>;
-+			interrupts =3D <69>;
-+			status =3D "disabled";
-+		};
-+
-+		uart3: serial@12190000  {
-+			compatible =3D "starfive,jh8100-uart", "cdns,uart-r1p8";
-+			reg =3D <0x0 0x12190000 0x0 0x10000>;
-+			clock-names =3D "uart_clk", "pclk";
-+			clocks =3D <&clk_uart>, <&clk_uart>;
-+			interrupts =3D <70>;
-+			status =3D "disabled";
-+		};
-+
-+		uart4: serial@121a0000  {
-+			compatible =3D "starfive,jh8100-uart", "cdns,uart-r1p8";
-+			reg =3D <0x0 0x121a0000 0x0 0x10000>;
-+			clock-names =3D "uart_clk", "pclk";
-+			clocks =3D <&clk_uart>, <&clk_uart>;
-+			interrupts =3D <71>;
-+			status =3D "disabled";
-+		};
-+
-+		uart5: serial@127d0000  {
-+			compatible =3D "starfive,jh8100-uart", "cdns,uart-r1p8";
-+			reg =3D <0x0 0x127d0000 0x0 0x10000>;
-+			clock-names =3D "uart_clk", "pclk";
-+			clocks =3D <&clk_uart>, <&clk_uart>;
-+			interrupts =3D <72>;
-+			status =3D "disabled";
-+		};
-+
-+		uart6: serial@127e0000  {
-+			compatible =3D "starfive,jh8100-uart", "cdns,uart-r1p8";
-+			reg =3D <0x0 0x127e0000 0x0 0x10000>;
-+			clock-names =3D "uart_clk", "pclk";
-+			clocks =3D <&clk_uart>, <&clk_uart>;
-+			interrupts =3D <73>;
-+			status =3D "disabled";
-+		};
-+	};
-+};
---=20
-2.34.1
+> Reviewed-by: Jerry Snitselaar <jsnitsel@redhat.com>
+> Tested-by: Hector Martin <marcan@marcan.st>
+> Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
+> ---
+>   drivers/iommu/of_iommu.c | 49 ++++++++++++----------------------------
+>   1 file changed, 15 insertions(+), 34 deletions(-)
 
+> diff --git a/drivers/iommu/of_iommu.c b/drivers/iommu/of_iommu.c
+> index c6510d7e7b241b..164317bfb8a81f 100644
+> --- a/drivers/iommu/of_iommu.c
+> +++ b/drivers/iommu/of_iommu.c
+> @@ -17,8 +17,6 @@
+>   #include <linux/slab.h>
+>   #include <linux/fsl/mc.h>
+
+> -#define NO_IOMMU	1
+> -
+>   static int of_iommu_xlate(struct device *dev,
+>   			  struct of_phandle_args *iommu_spec)
+>   {
+> @@ -29,7 +27,7 @@ static int of_iommu_xlate(struct device *dev,
+>   	ops = iommu_ops_from_fwnode(fwnode);
+>   	if ((ops && !ops->of_xlate) ||
+>   	    !of_device_is_available(iommu_spec->np))
+> -		return NO_IOMMU;
+> +		return -ENODEV;
+
+>   	ret = iommu_fwspec_init(dev, &iommu_spec->np->fwnode, ops);
+>   	if (ret)
+> @@ -61,7 +59,7 @@ static int of_iommu_configure_dev_id(struct device_node  
+> *master_np,
+>   			 "iommu-map-mask", &iommu_spec.np,
+>   			 iommu_spec.args);
+>   	if (err)
+> -		return err == -ENODEV ? NO_IOMMU : err;
+> +		return err;
+
+>   	err = of_iommu_xlate(dev, &iommu_spec);
+>   	of_node_put(iommu_spec.np);
+> @@ -72,7 +70,7 @@ static int of_iommu_configure_dev(struct device_node  
+> *master_np,
+>   				  struct device *dev)
+>   {
+>   	struct of_phandle_args iommu_spec;
+> -	int err = NO_IOMMU, idx = 0;
+> +	int err = -ENODEV, idx = 0;
+
+>   	while (!of_parse_phandle_with_args(master_np, "iommus",
+>   					   "#iommu-cells",
+> @@ -117,9 +115,8 @@ static int of_iommu_configure_device(struct  
+> device_node *master_np,
+>   int of_iommu_configure(struct device *dev, struct device_node *master_np,
+>   		       const u32 *id)
+>   {
+> -	const struct iommu_ops *ops = NULL;
+>   	struct iommu_fwspec *fwspec;
+> -	int err = NO_IOMMU;
+> +	int err;
+
+>   	if (!master_np)
+>   		return -ENODEV;
+> @@ -153,37 +150,21 @@ int of_iommu_configure(struct device *dev, struct  
+> device_node *master_np,
+>   	} else {
+>   		err = of_iommu_configure_device(master_np, dev, id);
+>   	}
+> -
+> -	/*
+> -	 * Two success conditions can be represented by non-negative err here:
+> -	 * >0 : there is no IOMMU, or one was unavailable for non-fatal reasons
+> -	 *  0 : we found an IOMMU, and dev->fwspec is initialised appropriately
+> -	 * <0 : any actual error
+> -	 */
+> -	if (!err) {
+> -		/* The fwspec pointer changed, read it again */
+> -		fwspec = dev_iommu_fwspec_get(dev);
+> -		ops    = fwspec->ops;
+> -	}
+>   	mutex_unlock(&iommu_probe_device_lock);
+
+> -	/*
+> -	 * If we have reason to believe the IOMMU driver missed the initial
+> -	 * probe for dev, replay it to get things in order.
+> -	 */
+> -	if (!err && dev->bus)
+> -		err = iommu_probe_device(dev);
+> -
+> -	/* Ignore all other errors apart from EPROBE_DEFER */
+> -	if (err < 0) {
+> -		if (err == -EPROBE_DEFER)
+> -			return err;
+> -		dev_dbg(dev, "Adding to IOMMU failed: %pe\n", ERR_PTR(err));
+> +	if (err == -ENODEV || err == -EPROBE_DEFER)
+>   		return err;
+> -	}
+> -	if (!ops)
+> -		return -ENODEV;
+> +	if (err)
+> +		goto err_log;
+> +
+> +	err = iommu_probe_device(dev);
+> +	if (err)
+> +		goto err_log;
+>   	return 0;
+> +
+> +err_log:
+> +	dev_dbg(dev, "Adding to IOMMU failed: %pe\n", ERR_PTR(err));
+> +	return err;
+>   }
+
+>   static enum iommu_resv_type __maybe_unused
+> --
+> 2.42.0
+
+
+Reviewed-by: Moritz Fischer <moritzf@google.com>
 
