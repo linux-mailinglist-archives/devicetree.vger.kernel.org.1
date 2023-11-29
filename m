@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-19905-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19906-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C1727FD373
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 11:02:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B244F7FD390
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 11:06:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 15CE1B213A2
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 10:02:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C5FFBB213D5
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 10:06:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C3FD18E38;
-	Wed, 29 Nov 2023 10:02:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 252CF1947B;
+	Wed, 29 Nov 2023 10:06:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lyrR25av"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yT278aJw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59E241AD
-	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 02:02:39 -0800 (PST)
-Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-54ba86ae133so2225906a12.2
-        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 02:02:39 -0800 (PST)
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D9721BEB
+	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 02:06:16 -0800 (PST)
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-54b89582efeso3545006a12.0
+        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 02:06:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701252158; x=1701856958; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701252375; x=1701857175; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=jIR1+lFYVoP8VkCPK2xf++tTI+o3PmKoM1Fva6K+WBY=;
-        b=lyrR25avWdsLYfOVXWEIYgBuO35xEfG8xnaXvw3mUsUws2wBejo13YrVQu8v+Gj40t
-         JKtC7NWRawhkboZLMWS2ysNyDxckqlpQ+XQDEEJBRJ63j6T1jsKxNuJtiHUEkLxIgwaG
-         UqJ3k7rrkzukOZLt6o8VZtBoVZuP6bJg8Xm1+Xqek66/dPzbR9AJguiUqr+x9J7e7rln
-         gXbOzNktsPdt6s9jg8T6hPGUtwDi/D/O2gquz50T4s7Hn8vfkDeLE4zerVJReStCKLKt
-         RVQQI+rYGquW4CcnM3MNZUaWGitz1OyDoTvtxZVmT3GLHQEbgg5BrNEq08IXml7BY53m
-         pkgw==
+        bh=za2yJkzzBy3V8ZBT/Ld4CZE8pNBS1Zu1vvkdsZhT4Jo=;
+        b=yT278aJwUcLvatl6DJNDKCTbn4nRwbd6RmnClf70+1Trgo4oKhCAEC5bJI5TK/zar/
+         DSIVVkvQFJcGUntvStIaitAqEpHN0mCA32JXaeaS8fR5VS9cXJGSymDNup2Nd5j5/fns
+         iZa0v0gUlUa2FevrlLDF7KyCldcgbMm+yNk1Z5xIhmjZXUQFaQ8GMgsrbEoALHZhekz1
+         qoJIJfnR6U9m25HxsWBq3AsjHkYyRe5rWMW0QREJe1bTErDZUndul+PbGVQKg0ypj0iJ
+         LZO3DMt8VVwdZS0hjJmN7x+usJSQ1lrU+B3TmM4IW5HUzoJ/locnhXfxxJVA0Rb5keo0
+         YjKQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701252158; x=1701856958;
+        d=1e100.net; s=20230601; t=1701252375; x=1701857175;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jIR1+lFYVoP8VkCPK2xf++tTI+o3PmKoM1Fva6K+WBY=;
-        b=Lh6xncIeYlT2e/E5L32X/mfrE5cjErYrATKGMMypU0ORGlWbDX1S9yrrQGFSkWzGbw
-         9pjG+1E0stE5tUJMYewkdTTBRW8/XtEpu500c0++L1Xx6LIzHw4kF06z4VRhvG/AV2XI
-         9WP02YhLaVcVdPFaqdBZOxdP/qXjDG+oZNi8lfjKgmHW3bzVNvStFSTE+bC8TaV9DbAy
-         mxMU0oY8fmwnM7MAXGrzIdCbIeNcWjdE5qUNmp5Q5ytrk8TioJKQg/D7cJWetPZyOWgg
-         bLrbmqYEcdAHV4VeJv2cHBTsIukN3zQcdBm7Gw28Xw9B2xnhUL7sN8jUW05aUfbPQrBd
-         AkJQ==
-X-Gm-Message-State: AOJu0YwulAlW/Vj/eXGtIYA+jdVUSveo0gEb5fQcSr+5/Sgy2Lx3y52P
-	Dm7Oixz98M+R1AaJ7OaOTV4Hcw==
-X-Google-Smtp-Source: AGHT+IGBe5fF2feOJ6GepESC8b3vogAUSudTCK+dIfUV5hi6Xelj/XxVrSSUnouqB2whrDTf7qU00Q==
-X-Received: by 2002:aa7:dd17:0:b0:54b:d16:4c49 with SMTP id i23-20020aa7dd17000000b0054b0d164c49mr11097087edv.16.1701252157786;
-        Wed, 29 Nov 2023 02:02:37 -0800 (PST)
+        bh=za2yJkzzBy3V8ZBT/Ld4CZE8pNBS1Zu1vvkdsZhT4Jo=;
+        b=S/hxHlq7QXWzdyUy5gNkOjfrRgT/u5hyTVgIb/9tH7sV/MES/D/DiKcmM2RQWNZMeQ
+         rSAZnUR0CpoPaYfapJkv+fHiBeeBYBNZMc1f0SnOLXSGoFisOw8DtBFxyXNG4im7fXut
+         89tXj2S5ZSNfS0g9E6vIuhZfbZa6cPxjOD4Po4qGdxNwj0Zs7w/PQlsjc5XUpHT2R0Y+
+         NPmg3TYSYnc6g0MJYmBerQhDu5lXBmWl7Ht5+GhE4gmFqAkxoYg002+EDJmWao8xO6dP
+         NodRSxJVWkv1yYx3kgqSUp+ZP46k8zyt1BmNmg74M35VWfdtyZuPD/X1lhDBaUweXIjh
+         MXAA==
+X-Gm-Message-State: AOJu0YxFYUbSZKCtChqiiAHJCpE5Tlpj58b1BARa/T5BJwSuHMfZSjtS
+	7ki+OmFcwbIQgvHK5OgdchvmFg==
+X-Google-Smtp-Source: AGHT+IGJuApRen3EBmEwMd5p364lmU7PTBcgXOWX8oNwUiNEQief4We8JeVPD62DOEA/pzjlIjZuIw==
+X-Received: by 2002:a17:906:3f88:b0:9ff:1dea:83b6 with SMTP id b8-20020a1709063f8800b009ff1dea83b6mr11989413ejj.4.1701252374796;
+        Wed, 29 Nov 2023 02:06:14 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.109])
-        by smtp.gmail.com with ESMTPSA id k11-20020a056402048b00b00537963f692esm7111666edv.0.2023.11.29.02.02.36
+        by smtp.gmail.com with ESMTPSA id gx26-20020a170906f1da00b009ad89697c86sm7757685ejb.144.2023.11.29.02.06.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Nov 2023 02:02:37 -0800 (PST)
-Message-ID: <9ec2dd42-5173-40df-8e6b-9c09f2d77f67@linaro.org>
-Date: Wed, 29 Nov 2023 11:02:35 +0100
+        Wed, 29 Nov 2023 02:06:14 -0800 (PST)
+Message-ID: <ae9ef5a6-bb66-4b15-ad6a-fc71206e2795@linaro.org>
+Date: Wed, 29 Nov 2023 11:06:12 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,25 +62,32 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/4] arm64: dts: nuvoton: Add pinctrl support for
- ma35d1
+Subject: Re: [PATCH v3] docs: dt-bindings: add DTS Coding Style document
 Content-Language: en-US
-To: Jacky Huang <ychuang570808@gmail.com>, linus.walleij@linaro.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- p.zabel@pengutronix.de, j.neuschaefer@gmx.net
-Cc: linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- ychuang3@nuvoton.com, schung@nuvoton.com
-References: <20231128061118.575847-1-ychuang570808@gmail.com>
- <20231128061118.575847-4-ychuang570808@gmail.com>
- <7edda3ca-b98a-4125-979f-3ee7ac718a9a@linaro.org>
- <a0be9aaa-290d-450e-b0b8-d87453bcaaa0@gmail.com>
- <7fed5d90-da04-40fb-8677-b807b6f51cc9@linaro.org>
- <8663d26e-32b8-4f2b-b497-9efa7440f070@gmail.com>
- <2fab32e6-23a4-41bb-b47b-4f993fc590dc@linaro.org>
- <ff83f0f2-541a-4677-a247-5f47fdcca3f1@gmail.com>
- <db3ede63-8708-469f-8e7b-aca798ed50e0@linaro.org>
- <4b00c41c-7751-40ca-bf2d-53f1179772d4@gmail.com>
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ Andrew Davis <afd@ti.com>, Arnd Bergmann <arnd@arndb.de>,
+ Bjorn Andersson <andersson@kernel.org>, Chen-Yu Tsai <wens@kernel.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Heiko Stuebner <heiko@sntech.de>, Jonathan Corbet <corbet@lwn.net>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Michal Simek
+ <michal.simek@amd.com>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Nishanth Menon <nm@ti.com>, Olof Johansson <olof@lixom.net>,
+ =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+ linux-rockchip@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+ workflows@vger.kernel.org, linux-doc@vger.kernel.org
+References: <20231125184422.12315-1-krzysztof.kozlowski@linaro.org>
+ <a3b65c90-afc9-4caf-8744-112369a838d2@lunn.ch>
+ <15292222-39b3-4e9e-a6c1-26fba8f5efcd@linaro.org>
+ <4fa1e860-48bd-456b-ab0b-88215c2b8d1b@lunn.ch>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -126,63 +133,95 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <4b00c41c-7751-40ca-bf2d-53f1179772d4@gmail.com>
+In-Reply-To: <4fa1e860-48bd-456b-ab0b-88215c2b8d1b@lunn.ch>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 29/11/2023 10:41, Jacky Huang wrote:
-> 
-> Dear Krzysztof,
-> 
-> 
-> On 2023/11/29 下午 04:11, Krzysztof Kozlowski wrote:
->> On 29/11/2023 04:35, Jacky Huang wrote:
->>>>>> Best regards,
->>>>>> Krzysztof
->>>>>>
->>>>> Yes, it did pass the 'dtbs_check'. I guess the tool does not detect such
->>>>> issues.
->>>>> Anyway, I will fix it in the next version.
->>>> Hm, I see your bindings indeed allow pin-.* and unit addresses, so it is
->>>> the binding issue.
->>>>
->>>> The examples you used as reference - xlnx,zynqmp-pinctrl.yaml and
->>>> realtek,rtd1315e-pinctrl.yaml - do not mix these as you do.
->>>>
->>>> I don't understand why do you need them yet. I don't see any populate of
->>>> children. There are no compatibles, either.
->>>>
->>>> Which part of your driver uses them exactly?
->>>>
->>>> Best regards,
->>>> Krzysztof
->>>>
->>> I will move the 'pcfg_default: pin-default' from dtsi to dts, like this:
+On 26/11/2023 18:48, Andrew Lunn wrote:
+> On Sun, Nov 26, 2023 at 11:38:38AM +0100, Krzysztof Kozlowski wrote:
+>> On 25/11/2023 20:47, Andrew Lunn wrote:
+>>>> +=====================================
+>>>> +Devicetree Sources (DTS) Coding Style
+>>>> +=====================================
+>>>> +
+>>>> +When writing Devicetree Sources (DTS) please observe below guidelines.  They
+>>>> +should be considered complementary to any rules expressed already in Devicetree
+>>>> +Specification and dtc compiler (including W=1 and W=2 builds).
+>>>> +
+>>>> +Individual architectures and sub-architectures can add additional rules, making
+>>>> +the style stricter.
 >>>
->>> &pinctrl {
->>>       pcfg_default: pin-default {
->>>           slew-rate = <0>;
->>>           input-schmitt-disable;
->>>           bias-disable;
->>>           power-source = <1>;
->>>           drive-strength = <17100>;
->>>       };
->> This solves nothing. It's the same placement.
+>>> It would be nice to add a pointer where such rules are documented.
 >>
->>
->> Best regards,
->> Krzysztof
->>
+>> Subsystem profile or any other place. The generic doc should not point
+>> to specific ones.
 > 
-> OK, it stil be the binding issues.
-> For "^pin-[a-z0-9]+$", I reference to the "pcfg-[a-z0-9-]+$" of 
-> rockchip,pinctrl.yaml.
-> 
-> My intention is to describe a generic pin configuration, aiming to make 
-> the pin
-> description more concise. In actual testing, it proves to be effective.
+> That is not so friendly for a developer. A reviewer points out that a
+> file is not consistent with the coding style. So they go away and fix
 
-Can you instead respond to my actual questions?
+Then it is poor reviewer. If reviewer does not mention specific issues
+to fix or specific style to use, but just "coding style", then he has no
+right to expect some other output.
+
+> it, as described here. They then get a second review which say, no,
+> you to do X, Y and Z, despite them actually following the coding
+> style.
+> 
+> Maybe add to the paragraph above:
+> 
+> These further restrictions are voluntary, until added to this
+> document.
+
+"can add" already expresses this.
+
+> 
+> This should encourage those architectures to document their coding
+> style.
+> 
+>> The root node is a bit special, but other than that mixing nodes with
+>> and without unit address is discouraged practice.
+> 
+> If the root node is special, maybe it needs a few rules of its own?
+> All properties without an address come first, then properties with
+> addresses. Sorting within these classes follow the normal rules
+> already stated?
+
+This document ought to be simple at the beginning. Also, root node has
+only nodes without addresses and soc@ node.
+
+> 
+>>>> +Indentation
+>>>> +-----------
+>>>> +
+>>>> +1. Use indentation according to :ref:`codingstyle`.
+>>>> +2. For arrays spanning across lines, it is preferred to align the continued
+>>>> +   entries with opening < from the first line.
+>>>> +3. Each entry in arrays with multiple cells (e.g. "reg" with two IO addresses)
+>>>> +   shall be enclosed in <>.
+>>>> +
+>>>> +Example::
+>>>> +
+>>>> +	thermal-sensor@c271000 {
+>>>> +		compatible = "qcom,sm8550-tsens", "qcom,tsens-v2";
+>>>> +		reg = <0x0 0x0c271000 0x0 0x1000>,
+>>>> +		      <0x0 0x0c222000 0x0 0x1000>;
+>>>> +	};
+>>>
+>>> I'm not sure i understand this. Is this example correct?
+>>>
+>>>                 gpio-fan,speed-map = <0    0
+>>>                                       3000 1
+>>>                                       6000 2>;
+>>>
+>>> It exists a lot in todays files.
+>>
+>> Depends on the binidng. Is it matrix? If yes, then it is not correct.
+> 
+> It seems to me, rules 2 and 3 should be swapped. You can only align
+> the <, if you have <. So logically, the rule about having < should
+> come first.
+
+Hm, sure, I'll reorder them.
 
 Best regards,
 Krzysztof
