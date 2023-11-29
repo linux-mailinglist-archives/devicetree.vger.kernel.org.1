@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-19877-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19878-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94A137FD178
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 09:57:19 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E98BB7FD261
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 10:24:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 93046B20D1D
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 08:57:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0D94EB20CCE
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 09:24:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEB5B12B70;
-	Wed, 29 Nov 2023 08:57:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 999E013FFC;
+	Wed, 29 Nov 2023 09:23:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pauNfesr"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tV8HgSpV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21F9A111
-	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 00:57:11 -0800 (PST)
-Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-5098e423ba2so9384850e87.2
-        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 00:57:11 -0800 (PST)
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FBF1120
+	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 01:23:56 -0800 (PST)
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-9e1021dbd28so871070366b.3
+        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 01:23:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701248229; x=1701853029; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701249835; x=1701854635; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ETCRngdPiNvXGaauG0PLv42XC3p5WNPMJSuI5cLKm0w=;
-        b=pauNfesrv5ed0+oAmiLhqmHUsi+ATJu4tWiPHZFFHX1uWbB3xdRVuIMUx4eANhVU2V
-         vhMC9yEGNBPVaZvo/VpIrxkopfZpLeEZRgHBvoy82tWXZWkCvJV00WI8QpVP2wUuuxSb
-         WO++ig1XZmAuViNGl6oRMjyRlRxOClHQo5EuybfvQZsUHhgskIjQPc+q/V7TVYaqSF0I
-         6pbta937EE5p/f4Q/3o0O4ysTqKCZ6vUnJctdJJrvAlDmUKNjOAkqFPzgZhsGblfeRwM
-         ihKeNcM2aflOyTX06rwFB3bVOyJFLPI75YO+VjR3LGDoQVcSuTOpCgxTYJ/3uY+eYmj5
-         8BQw==
+        bh=/6KtSx6gUmSsayEKdH9E2Y9FJ4Si62b+TTqdgqH2Yx8=;
+        b=tV8HgSpVb54LG4ia9S1dJwISYel5y9ey4gWlOxrwekayFu7tb5JdbKeBpDpedIGoRR
+         hXuZMdAgsxP3vnQBq2kY/gaLWVVy37ZQuvSyhatVDLJY1flA923Y++hUaFR5U4L9LzsO
+         tpxp6WLTZH3dgdYe7R1Q87JdGyiPGc3wPcKlqmhcn/9mVn0pUpCysXDCXM+SLzwl+DLM
+         /gJiQ/1enEjnwxvOOCqRs/7CqUTEfWUCHnk57UTo0lS/x1eGR0DGiwScr6mmqojP5mkZ
+         dnFxfRrlTV128WHemvTJtPIaM/dLw/5nXNLK1mFf8zpl1Aqhz3nWdcN4h/azHWAK+Nzt
+         pcoA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701248229; x=1701853029;
+        d=1e100.net; s=20230601; t=1701249835; x=1701854635;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ETCRngdPiNvXGaauG0PLv42XC3p5WNPMJSuI5cLKm0w=;
-        b=aPA3WFEcnknNYLeImKKiaRRaUh+oQyx2Volc3/V1YvfRzcjN8lzEOUNe9qfTe7i6Mr
-         yFzLMCZURM/eMRWVmmI01HYk+bFJWD+lFb1uYjH/utAykQbEKl8xkSAGy8FAtHmUZJK2
-         pBIhu7S3h8xx65G8IX7dc+WFCU5j26yVjIfGojSlaCxru9I9YgvIMQzlnTeKE1HHi3MZ
-         0jB/7iNLrevrtYQvG7rRrEVQFJ5H2yLFKPtCDHVrRnweExdPpAUSwSGGgOhGhXMTt4LZ
-         OeX3WXzw0h63RUsPkrPnN8NkmdcN4FHgHYxEfgJDMRX3WqFaoTWnoHDUHtkW2Ab86Ygf
-         r4JA==
-X-Gm-Message-State: AOJu0YxwnFfQO/JM6v9KGxwfzEkibpdn6a16ZjPOH2VRfKh/gPMvaPlM
-	m6Kx21W1GoRP10i1dOYce/lp8A==
-X-Google-Smtp-Source: AGHT+IE2gnR9siVK+FBd9mRVSdRpYN1ReqM7jtb0cKx1aaW9GeMN8MjoVBmOWlKAhT4Mhj58WKvMcA==
-X-Received: by 2002:ac2:5110:0:b0:50b:bdf2:884c with SMTP id q16-20020ac25110000000b0050bbdf2884cmr2343534lfb.37.1701248229366;
-        Wed, 29 Nov 2023 00:57:09 -0800 (PST)
+        bh=/6KtSx6gUmSsayEKdH9E2Y9FJ4Si62b+TTqdgqH2Yx8=;
+        b=NAQuBoQx7r/Rb0xa4cAeqJYyEJ6VIKOdgeOTUYR21QYPVfJWYXzXHGwVBJJYz/Rtaa
+         zx8Fjo1LDah+EWvXSEA1kbjfCRKa9vZofWMXO0czWyHqgSIytIR44+b3/0pFo/HMW/Q/
+         9uK5IRiK8v9ptat7MkJg5c6MBfkI0QAMowzjp0gBG/C/p4IId4ZHJAh6sImzUtOjGUCx
+         ULChdkktjgriCAlUrzwkEZ1TJuSxK6qvcX9Uyf3SqVaBon+Md0qtNiNS5gdD1HhOyb7W
+         +9Wgnmgnx76YWmJf8KhnkGQOlmO6fsaOAxpZqBAxnPNnSDqYCMWhqjRjN4qVF0mM7XS7
+         ZeAg==
+X-Gm-Message-State: AOJu0Yx9dA1QTAggZex8p98LMFU6s7X2/2yloKWsvWnjC8/RCKCTs8ha
+	HWniB534GAbq96dn4F5ko7KJoK88eobywIRYqgE=
+X-Google-Smtp-Source: AGHT+IHx3nCrlgudLTZOjKMOpmeuHGj/BKDwzcHf0fUp4tAnU4S56VB2kbxCIryUERb9BCVyV+z4Sg==
+X-Received: by 2002:a17:906:6cd:b0:9e6:59d5:80c5 with SMTP id v13-20020a17090606cd00b009e659d580c5mr13221567ejb.23.1701249834602;
+        Wed, 29 Nov 2023 01:23:54 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.109])
-        by smtp.gmail.com with ESMTPSA id b4-20020a509f04000000b0054b3a6243b1sm4222578edf.71.2023.11.29.00.57.08
+        by smtp.gmail.com with ESMTPSA id t11-20020a170906a10b00b009ff8be60791sm7687010ejy.210.2023.11.29.01.23.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Nov 2023 00:57:09 -0800 (PST)
-Message-ID: <bc95ef35-7eab-4806-9cf8-4594156c9d98@linaro.org>
-Date: Wed, 29 Nov 2023 09:57:07 +0100
+        Wed, 29 Nov 2023 01:23:54 -0800 (PST)
+Message-ID: <c50e5224-7acd-4470-b18e-f223f150ba5b@linaro.org>
+Date: Wed, 29 Nov 2023 10:23:52 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,17 +62,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/6] dt-bindings: interrupt-controller: Add support for
- Realtek DHC SoCs
+Subject: Re: [PATCH v2 1/2] dt-bindings: mfd: Add sony,cronos-cpld
 Content-Language: en-US
-To: James Tai <james.tai@realtek.com>, Thomas Gleixner <tglx@linutronix.de>,
- Marc Zyngier <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+To: Shawn Anastasio <sanastasio@raptorengineering.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- kernel test robot <lkp@intel.com>
-References: <20231129054339.3054202-1-james.tai@realtek.com>
- <20231129054339.3054202-2-james.tai@realtek.com>
+ Lee Jones <lee@kernel.org>, Georgy Yakovlev <Georgy.Yakovlev@sony.com>
+Cc: Timothy Pearson <tpearson@raptorengineering.com>
+References: <cover.1701203916.git.sanastasio@raptorengineering.com>
+ <27ac3bf6e5fecd62918eb096a88503a13a1f0b9c.1701203916.git.sanastasio@raptorengineering.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -118,119 +117,116 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231129054339.3054202-2-james.tai@realtek.com>
+In-Reply-To: <27ac3bf6e5fecd62918eb096a88503a13a1f0b9c.1701203916.git.sanastasio@raptorengineering.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 29/11/2023 06:43, James Tai wrote:
-> Add the YAML documentation for Realtek DHC (Digital Home Center) SoCs.
+On 28/11/2023 22:00, Shawn Anastasio wrote:
+> The Sony Cronos Platform Controller CPLD is a multi-purpose platform
+> controller that provides both a watchdog timer and an LED controller for
+> the Sony Interactive Entertainment Cronos x86 server platform. As both
+> functions are provided by the same CPLD, a multi-function device is
+> exposed as the parent of both functions.
 > 
-> Reported-by: kernel test robot <lkp@intel.com>
-> Closes: https://lore.kernel.org/oe-kbuild-all/202311180921.ayKhiFHL-lkp@intel.com/
-
-Drop both. They are not applicable to this patch.
-
-> CC: Thomas Gleixner <tglx@linutronix.de>
-> CC: Marc Zyngier <maz@kernel.org>
-
-> CC: Rob Herring <robh+dt@kernel.org>
-> CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> CC: Conor Dooley <conor+dt@kernel.org>
-> CC: linux-kernel@vger.kernel.org
-> CC: devicetree@vger.kernel.org
-
-Please drop the autogenerated scripts/get_maintainer.pl CC-entries from
-commit msg. There is no single need to store automated output of
-get_maintainers.pl in the git log. It can be easily re-created at any
-given time, thus its presence in the git history is redundant and
-obfuscates the log.
-
-If you need it for your own patch management purposes, keep it under the
---- separator.
-
-> Signed-off-by: James Tai <james.tai@realtek.com>
+> Add a DT binding for this device.
+> 
+> Signed-off-by: Shawn Anastasio <sanastasio@raptorengineering.com>
 > ---
-> v2 to v3 change:
-> - Retested the bindings using the new version of the dtschema
-> - Fixed the order of property items
-> - Removed redundant files and replaced them with 'realtek,intc.yaml'
-> - Replaced 'interrupts-extended' with 'interrupts'
-> - Added a description for 'interrupts'
-> - Reduced the example code
+> Changes in v2:
+>   - Change SIE to Sony to use the already-established prefix.
+>   - Clarify that Cronos is an x86 server platform in description
+>   - Drop #address-cells/#size-cells
+>   - Add missing additionalProperties to leds/watchdog objects
+>   - Add sony,led-mask property to leds object
+>   - Add sony,default-timeout property to watchdog object
+>   - Update example
 > 
-> v1 to v2 change:
-> - Tested the bindings using 'make dt_binding_check'
-> - Fixed code style issues
+>  .../bindings/mfd/sony,cronos-cpld.yaml        | 92 +++++++++++++++++++
+>  1 file changed, 92 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/sony,cronos-cpld.yaml
 > 
->  .../interrupt-controller/realtek,intc.yaml    | 76 +++++++++++++++++++
->  1 file changed, 76 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/realtek,intc.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/realtek,intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/realtek,intc.yaml
+> diff --git a/Documentation/devicetree/bindings/mfd/sony,cronos-cpld.yaml b/Documentation/devicetree/bindings/mfd/sony,cronos-cpld.yaml
 > new file mode 100644
-> index 000000000000..3aa863b1549d
+> index 000000000000..df2c2e83ccb4
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/realtek,intc.yaml
-> @@ -0,0 +1,76 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +++ b/Documentation/devicetree/bindings/mfd/sony,cronos-cpld.yaml
+> @@ -0,0 +1,92 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright 2023 Raptor Engineering, LLC
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/interrupt-controller/realtek,intc.yaml#
+> +$id: http://devicetree.org/schemas/mfd/sony,cronos-cpld.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Realtek DHC SoCs Interrupt Controller
+> +title: Sony Cronos Platform Controller CPLD multi-function device
 > +
 > +maintainers:
-> +  - James Tai <james.tai@realtek.com>
+> +  - Timothy Pearson <tpearson@raptorengineering.com>
 > +
-> +description:
-> +  This interrupt controller is a component of Realtek DHC (Digital Home Center)
-> +  SoCs and is designed to receive interrupts from peripheral devices.
-> +
-> +  Each DHC SoC has two sets of interrupt controllers, each capable of
-> +  handling up to 32 interrupts.
-> +
-> +allOf:
-> +  - $ref: /schemas/interrupt-controller.yaml#
+> +description: |
+> +  The Sony Cronos Platform Controller CPLD is a multi-purpose platform
+> +  controller that provides both a watchdog timer and an LED controller for the
+> +  Sony Interactive Entertainment Cronos x86 server platform. As both functions
+> +  are provided by the same CPLD, a multi-function device is exposed as the
+> +  parent of both functions.
 > +
 > +properties:
 > +  compatible:
-> +    enum:
-> +      - realtek,rtd1319-intc-iso
-> +      - realtek,rtd1319-intc-misc
-> +      - realtek,rtd1319d-intc-iso
-> +      - realtek,rtd1319d-intc-misc
-> +      - realtek,rtd1325-intc-iso
-> +      - realtek,rtd1325-intc-misc
-> +      - realtek,rtd1619b-intc-iso
-> +      - realtek,rtd1619b-intc-misc
+> +    const: sony,cronos-cpld
 > +
 > +  reg:
 > +    maxItems: 1
 > +
-> +  interrupt-controller: true
-> +
-> +  '#interrupt-cells':
-> +    const: 1
-> +
-> +  '#address-cells':
-> +    const: 0
-> +
-> +  interrupts:
-> +    description: |
-> +      Contains the GIC SPI IRQs mapped to the external interrupt lines.
-> +    minItems: 2
-> +    maxItems: 4
+> +  leds:
+> +    type: object
+> +    description: Cronos Platform Status LEDs
 
-My previous comments were not addressed. Why lines are not described
-(items: description:)? Are they all the same? Why you did not respond to
-clarify this comment?
+Missing ref to LEDs common bindings.
 
-The rest of my comment here was also ignored. You cannot just ignore
-comments, but must respond to them or implement them.
+> +
+> +    properties:
+> +      compatible:
+> +        const: sony,cronos-leds
+> +
+> +      sony,led-mask:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
 
-To clarify: I expect allOf: block after required: constraining the
-interrupts per variant.
+Why aren't you using LEDs bindings? A node for one property is otherwise
+quite useless. I already commented on this last time.
+
+> +        minimum: 0x0
+> +        maximum: 0x7fff
+> +        description: |
+> +          A bitmask that specifies which LEDs are present and can be controlled
+> +          by the Cronos CPLD. Bits 0-5 correspond to platform Status LEDs, bits
+> +          6-10 correspond to Link LEDs, and bits 11-14 correspond to the Power
+> +          State LEDs. All other bits are unused. The default value is 0x7fff
+> +          (all possible LEDs enabled).
+> +
+> +    additionalProperties: false
+> +
+> +  watchdog:
+> +    type: object
+> +    description: Cronos Platform Watchdog Timer
+
+
+> +
+> +    properties:
+> +      compatible:
+> +        const: sony,cronos-watchdog
+> +
+> +      sony,default-timeout:
+
+No, you must use existing bindings. Missing ref to watchdog and drop all
+duplicated properties like this one.
+
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description: |
+> +          The default timeout with which the watchdog timer is initialized, in
+> +          seconds. Supported values are: 10, 20, 30, 40, 50, 60, 70, 80. All
+> +          other values will be rounded down to the nearest supported value.  The
+> +          default value is 80.
+> +
 
 
 
