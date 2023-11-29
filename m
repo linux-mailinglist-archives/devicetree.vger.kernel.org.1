@@ -1,155 +1,123 @@
-Return-Path: <devicetree+bounces-20169-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20170-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 164E77FE15B
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 21:50:19 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 406FF7FE163
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 21:54:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B7459B20B5F
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 20:50:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DD9E11F20E9B
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 20:54:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 851A260EF3;
-	Wed, 29 Nov 2023 20:50:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5954D60EFC;
+	Wed, 29 Nov 2023 20:54:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b="F1EcOt6i"
+	dkim=pass (2048-bit key) header.d=nexus-software-ie.20230601.gappssmtp.com header.i=@nexus-software-ie.20230601.gappssmtp.com header.b="kQpQoQWE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-x32f.google.com (mail-ot1-x32f.google.com [IPv6:2607:f8b0:4864:20::32f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E6E2D1
-	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 12:50:10 -0800 (PST)
-Received: by mail-ot1-x32f.google.com with SMTP id 46e09a7af769-6d81580d696so157243a34.2
-        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 12:50:10 -0800 (PST)
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEF2DDC
+	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 12:54:00 -0800 (PST)
+Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-40b4a8db331so1544755e9.3
+        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 12:54:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ziepe.ca; s=google; t=1701291010; x=1701895810; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Z14ncuPizPQTpz34E/qdK1zleu0e7/OH8lwfu0qFocg=;
-        b=F1EcOt6iBj3aQN+agExfUCk/6FwHrRczkDc9gi5HGDtGGVBgJb4EnxfUHew+kXbVp3
-         pMMxJYd9hjXsd4HXBksuJAAuBs82etU0bVSeCNi9pzptcOtzWiZrGdcqgh96MDiMqF5E
-         oo3pcNWSAQmHD7aYzQeJExoHKAG+asGv6NmsYusKPuj8lxyOf25tg6nUGRz8/IPqfNF4
-         kr4KEQP9O1hgZWdT87ce2gnhOxHs0eejEOyNcKUtbtD8y8Rz2MMZIx9pNx2rBxpvcSce
-         n6UR427PMpcEnV6hDui5Q0wjY4TaJ18T0fnuh+oHD3EWKrSTRpLjIjkpjz+m9v977NZe
-         DC+A==
+        d=nexus-software-ie.20230601.gappssmtp.com; s=20230601; t=1701291239; x=1701896039; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=YKjbNQgXkGMeMvnSiazATvW5vc83bVG6h9HitL94um8=;
+        b=kQpQoQWE3JvI6Sk1pwSmnEZjXE1b7nAjtCMMx0yuLuAL06QFPkhCoHrBGfj0cB69YL
+         meYqE+W9sSmk79So2o4ueAM9W+h9hsbItFY4H3K0FmYbAehzaFqu8Nf3k5UCbuvukxZ7
+         HL83XVh35lAlesmW93PkgcVUYIJqCfSUPgHyecXwzt41McLuB+uH5Pj8zCRJUXy/DqKl
+         7Lyfmeqz9e8OencVfsU01vZFBg/k6RuYbyDtRbXYLic+hVupiisctJ/DpNFMexUvTW8R
+         kttwpW4bKf0PrDv3/5d/+nAG6zKKgotHlgahLgWBxc64hZGoYB9x+mGtWl1eSzkw7hv3
+         k5oA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701291010; x=1701895810;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Z14ncuPizPQTpz34E/qdK1zleu0e7/OH8lwfu0qFocg=;
-        b=Un37PxgBQ9yLSvx9WCg0K99iLtOUHiyQZmKk4+bw8jOI49jgLBO/s/mbU0q0GNFD35
-         x9iy6mnofQedvpPvXRmzckP1HgXa/arurX41GCIkTWQ/v2tmVmKHFb7bo7cgdZ+iandG
-         OEOM/hyj41sJ93wqGJjEgg60a7uBFPPEtj+QSdV+kYHok2wUXi0Q+ykTPB8LdZT2Xfgl
-         FNZ+B9M+N81ghPetE+aMeAN2ZmHUnCYMJLO+xNmev9rsJ7HJlU0XIpX6HD2SXSNYixdg
-         Fxlduw4dettuHv/57+9hlvZ4FD/eTwNJNnybHieDE/sl3ReoxY3jJNr7gopJ523Q1kvo
-         p++A==
-X-Gm-Message-State: AOJu0YyH7wBbuETwdvtDQt9uFFJ6lKo7m5Hkt4w71pZlwA76frniD8pK
-	Cuscv6XWIh6FaEfOPE7bVggpRg==
-X-Google-Smtp-Source: AGHT+IGgKdfE8YcFNMWNxw13U7YpCs8rnHcqlluxJCfOn0tU84fkZFp4MzoV02U2Np+AMlZvjw1IBA==
-X-Received: by 2002:a05:6870:d622:b0:1fa:ca3:7069 with SMTP id a34-20020a056870d62200b001fa0ca37069mr20658402oaq.16.1701291009170;
-        Wed, 29 Nov 2023 12:50:09 -0800 (PST)
-Received: from ziepe.ca (hlfxns017vw-142-134-23-187.dhcp-dynamic.fibreop.ns.bellaliant.net. [142.134.23.187])
-        by smtp.gmail.com with ESMTPSA id yu6-20020a05687c224600b001fa6ba84054sm1349572oab.55.2023.11.29.12.50.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Nov 2023 12:50:08 -0800 (PST)
-Received: from jgg by wakko with local (Exim 4.95)
-	(envelope-from <jgg@ziepe.ca>)
-	id 1r8RVX-005pjC-Mb;
-	Wed, 29 Nov 2023 16:50:07 -0400
-Date: Wed, 29 Nov 2023 16:50:07 -0400
-From: Jason Gunthorpe <jgg@ziepe.ca>
-To: Robin Murphy <robin.murphy@arm.com>
-Cc: Joerg Roedel <joro@8bytes.org>, Christoph Hellwig <hch@lst.de>,
-	Vineet Gupta <vgupta@kernel.org>,
-	Russell King <linux@armlinux.org.uk>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Huacai Chen <chenhuacai@kernel.org>,
-	WANG Xuerui <kernel@xen0n.name>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Hanjun Guo <guohanjun@huawei.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	"K. Y. Srinivasan" <kys@microsoft.com>,
-	Haiyang Zhang <haiyangz@microsoft.com>,
-	Wei Liu <wei.liu@kernel.org>, Dexuan Cui <decui@microsoft.com>,
-	Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
-	David Woodhouse <dwmw2@infradead.org>,
-	Lu Baolu <baolu.lu@linux.intel.com>,
-	Niklas Schnelle <schnelle@linux.ibm.com>,
-	Matthew Rosato <mjrosato@linux.ibm.com>,
-	Gerald Schaefer <gerald.schaefer@linux.ibm.com>,
-	Jean-Philippe Brucker <jean-philippe@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Frank Rowand <frowand.list@gmail.com>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-acpi@vger.kernel.org, iommu@lists.linux.dev,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 6/7] iommu/dma: Centralise iommu_setup_dma_ops()
-Message-ID: <20231129205007.GR1312390@ziepe.ca>
-References: <cover.1701268753.git.robin.murphy@arm.com>
- <7fe5a0d2bc855ac38dff326f3e64ba394bc262d4.1701268753.git.robin.murphy@arm.com>
+        d=1e100.net; s=20230601; t=1701291239; x=1701896039;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=YKjbNQgXkGMeMvnSiazATvW5vc83bVG6h9HitL94um8=;
+        b=De/YgYIlwWUWMGBlrebfBe3FcgCfRurvgc78OHdEhzgP71gh/PmPrxR63mIS5VOqum
+         n2VoLcndJ2cePQrOJVdF2/UgkktAiet8hSxcjMmy3d5iuevwy9paXnQTXOGGWzA0fmlH
+         Rga8eigxwAmIEpOImM3s2Md5k8dxSNqVgPTssaOSwwW7BFPqBpt5lREPxcFloDadD5UA
+         +fI6XTTRBYpUKdWsygZ0tLAHNwjpOwz0oIuh+XlRaRcPDLIoEz2sD1fm2gzJ9Fj2JIPc
+         0gwKMUx/0n2Egbp9d2cD6a5I0kkU7V5Kr7iiUxocjDD4d9PHghdA44uZcEeZpgYtypdj
+         jOBQ==
+X-Gm-Message-State: AOJu0Yx2GBGH95miqZzqKiZHHovrr26fGEh3WIT3dLsbfLYT3tNGUH9y
+	UtKPIMFl8cF6gtRibTY4LERGZA==
+X-Google-Smtp-Source: AGHT+IFJnxs03uHyKsQvS/eeVLg4bLJCJWU+N3Z26xmaV36HJAdD6+44jAtYpt4zRuMooN+P4N+XzA==
+X-Received: by 2002:a05:600c:4ed3:b0:408:3c10:ad47 with SMTP id g19-20020a05600c4ed300b004083c10ad47mr12917112wmq.40.1701291238941;
+        Wed, 29 Nov 2023 12:53:58 -0800 (PST)
+Received: from [192.168.100.102] ([37.228.218.3])
+        by smtp.gmail.com with ESMTPSA id k18-20020a05600c1c9200b0040b2976eb02sm3351905wms.10.2023.11.29.12.53.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 29 Nov 2023 12:53:58 -0800 (PST)
+Message-ID: <cc8b9eea-ea4c-4943-a0f2-c2a791903440@nexus-software.ie>
+Date: Wed, 29 Nov 2023 20:53:56 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <7fe5a0d2bc855ac38dff326f3e64ba394bc262d4.1701268753.git.robin.murphy@arm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 01/15] clk: qcom: branch: Add a helper for setting the
+ enable bit
+Content-Language: en-US
+To: Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>, Andy Gross <agross@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>,
+ linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ Johan Hovold <johan+linaro@kernel.org>
+References: <20230717-topic-branch_aon_cleanup-v2-0-2a583460ef26@linaro.org>
+ <20230717-topic-branch_aon_cleanup-v2-1-2a583460ef26@linaro.org>
+From: Bryan O'Donoghue <pure.logic@nexus-software.ie>
+In-Reply-To: <20230717-topic-branch_aon_cleanup-v2-1-2a583460ef26@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Nov 29, 2023 at 05:43:03PM +0000, Robin Murphy wrote:
-> It's somewhat hard to see, but arm64's arch_setup_dma_ops() should only
-> ever call iommu_setup_dma_ops() after a successful iommu_probe_device(),
-> which means there should be no harm in instead running it off the back
-> of iommu_probe_device() itself, as is currently done for x86 and s390
-> with .probe_finalize bodges. Pull it all into the main flow properly.
+On 29/11/2023 18:59, Konrad Dybcio wrote:
+> We hardcode some clocks to be always-on, as they're essential to the
+> functioning of the SoC / some peripherals. Add a helper to do so
+> to make the writes less magic.
 > 
-> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+> Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > ---
->  arch/arm64/mm/dma-mapping.c  |  2 --
->  drivers/iommu/amd/iommu.c    |  8 --------
->  drivers/iommu/dma-iommu.c    | 17 ++++-------------
->  drivers/iommu/dma-iommu.h    |  6 ++++++
->  drivers/iommu/intel/iommu.c  |  7 -------
->  drivers/iommu/iommu.c        |  2 ++
->  drivers/iommu/s390-iommu.c   |  6 ------
->  drivers/iommu/virtio-iommu.c | 10 ----------
->  include/linux/iommu.h        |  7 -------
->  9 files changed, 12 insertions(+), 53 deletions(-)
-
-Yes! That probe_finalize() stuff is not nice
-
-> diff --git a/drivers/iommu/iommu.c b/drivers/iommu/iommu.c
-> index 824989874dee..3a0901165b69 100644
-> --- a/drivers/iommu/iommu.c
-> +++ b/drivers/iommu/iommu.c
-> @@ -589,6 +589,8 @@ int iommu_probe_device(struct device *dev)
->  	if (ret)
->  		return ret;
->  
-> +	iommu_setup_dma_ops(dev);
+>   drivers/clk/qcom/clk-branch.h | 7 +++++++
+>   1 file changed, 7 insertions(+)
+> 
+> diff --git a/drivers/clk/qcom/clk-branch.h b/drivers/clk/qcom/clk-branch.h
+> index 0cf800b9d08d..155818cc8d49 100644
+> --- a/drivers/clk/qcom/clk-branch.h
+> +++ b/drivers/clk/qcom/clk-branch.h
+> @@ -47,6 +47,7 @@ struct clk_branch {
+>   #define CBCR_FORCE_MEM_PERIPH_OFF	BIT(12)
+>   #define CBCR_WAKEUP			GENMASK(11, 8)
+>   #define CBCR_SLEEP			GENMASK(7, 4)
+> +#define CBCR_CLOCK_ENABLE		BIT(0)
+>   
+>   static inline void qcom_branch_set_force_mem_core(struct regmap *regmap,
+>   						  struct clk_branch clk, bool on)
+> @@ -81,6 +82,12 @@ static inline void qcom_branch_set_sleep(struct regmap *regmap, struct clk_branc
+>   			   FIELD_PREP(CBCR_SLEEP, val));
+>   }
+>   
+> +static inline void qcom_branch_set_clk_en(struct regmap *regmap, u32 cbcr)
+> +{
+> +	regmap_update_bits(regmap, cbcr, CBCR_CLOCK_ENABLE,
+> +			   CBCR_CLOCK_ENABLE);
+> +}
 > +
-
-I'm pretty sure this should be inside the group mutex lock.
-
-The setting of dev->dma_ops should exactly follow the setting of
-group->domain, and all transitions, including from the sysfs override
-file should update it, right?
-
-Thus to avoid races agsinst concurrent sysfs this should be locked.
-
-I think you can just put this in iommu_setup_default_domain() and it
-will take care of all the cases?
-
-Once in iommu_setup_default_domain() it is easy to call it with the
-domain argument and it can know the domain type without using
-iommu_is_dma_domain() which is one of the very last few places
-checking for the DMA domain type.
-
-Jason
+>   extern const struct clk_ops clk_branch_ops;
+>   extern const struct clk_ops clk_branch2_ops;
+>   extern const struct clk_ops clk_branch_simple_ops;
+> 
+Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
