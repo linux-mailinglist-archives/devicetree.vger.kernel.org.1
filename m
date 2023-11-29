@@ -1,202 +1,186 @@
-Return-Path: <devicetree+bounces-19973-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19974-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 443C97FD733
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 13:55:01 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 919B97FD738
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 13:55:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 67EEA1C2097C
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 12:55:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3B8241F20F72
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 12:55:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD65B1DFC8;
-	Wed, 29 Nov 2023 12:54:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 461401DFC9;
+	Wed, 29 Nov 2023 12:55:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZbCHbIJf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B7LzFukE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A403F10C3
-	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 04:54:54 -0800 (PST)
-Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-54a945861c6so9182643a12.3
-        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 04:54:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701262493; x=1701867293; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=BnOhFVb1M8Ieky9ixxo2vsCz1mFiT6hqkrZpGr/aemg=;
-        b=ZbCHbIJfIqw4qDOiPwG0efFh0O3yf/UPHsrN6rFk4mh0OtOdMXxqfKyY8UfLRN3AWD
-         Ckl1m4TAFL9SGYiQhlwPnt6f8ndnnzDPOFfNefLWHBG8HFRd7k6F4OeRoesjbBhDNlRv
-         DdQX3a244GD6JQFnw5WriJwErl2JXbHUbVLoeqPMig5a23hsaI/UEHFUoRqox26IlmOk
-         SZsb/l7yG+OMLxV119BHK56b8mPjVBPY5VB/UyXkSaP33B4Km9h488YcenXxZQlbCTWb
-         lTYwFsFwYt0WEO9KWGJ3Zgbm5uuhuiUUejJmyYMc/0u+XFncl7Ulurv33gZS0qO75Xas
-         sUzA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701262493; x=1701867293;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=BnOhFVb1M8Ieky9ixxo2vsCz1mFiT6hqkrZpGr/aemg=;
-        b=Ra26i3Nb1/1M5yRjc7LS6D7hqiRatmxVbaBpJKVgbnQfanPh5KOD/iDPB/5mvMS4PD
-         92+KNS/ClXN2R6JLtu9Q1l0Gwulz3qsTHpH0FKpSX3TicQURxEYBNeLxFdgGB2clJn4I
-         ygbidW06K2s0197LcqEC+AWlzkp3Clph+S/uRnscUE0TdFmgqjv0Nc7V9HllI6I4G6Qt
-         qBU29GW5r//8A+ZzR8xGOOJsSP04PQ3pBwgFyiw1ai9oFo2XnQTLjdT7fhz5o1D2nvHP
-         Fgn96WbuKSWMETyUNEyboP4m45SuTJfoxNyl/j5MGnoJ95cTDkcFmsLEg52o6eCuDFan
-         JFhw==
-X-Gm-Message-State: AOJu0YxOjMeVuwROaaO7vwvRorF04hgbiWNYKafr9R0fUBGVDl/oy8oh
-	+VkODfaLfNo2DfTgKMOCVnRzBA==
-X-Google-Smtp-Source: AGHT+IEYDeTpe6aRRoO6VuBBVxOwRuNY57fe+k+quVA4ooyis/B2/dk2jyJ6WmPDEnY8OMkLchnCEg==
-X-Received: by 2002:a05:6402:5207:b0:54b:96ee:5c7 with SMTP id s7-20020a056402520700b0054b96ee05c7mr6059332edd.30.1701262493075;
-        Wed, 29 Nov 2023 04:54:53 -0800 (PST)
-Received: from [192.168.209.173] (178235187166.dynamic-4-waw-k-2-3-0.vectranet.pl. [178.235.187.166])
-        by smtp.gmail.com with ESMTPSA id v28-20020aa7cd5c000000b00548d649f638sm7386490edw.96.2023.11.29.04.54.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Nov 2023 04:54:52 -0800 (PST)
-Message-ID: <c6e05a10-88cc-409c-afc0-37166b763eaa@linaro.org>
-Date: Wed, 29 Nov 2023 13:54:49 +0100
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0067CED0;
+	Wed, 29 Nov 2023 12:55:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E359C433C8;
+	Wed, 29 Nov 2023 12:55:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701262523;
+	bh=EjcKHBcdIRPeS1Jr3Xl1RByJy2jdZRnaeHgtLca5xvw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=B7LzFukE5dLDnjFimKjS9MzsDlyjw2TystsfEqKZQoF3X0ypDR27ShYPrtl8a4hDA
+	 NJpjxQGGyxZWEsXW8iuNcZhKohbcA/aqSnTm0M4FaNA2iGO+NYSrUn6Py4Nri/ePlp
+	 6q+xpqSCX/D4UrdrxiaqNtzCTiHavix0EiBQCRhmLqMpgR0ZYgs/JzAEoWb+9i5JTB
+	 Oe+1+75v5eXMmJzgFHrdDl81TfuAg+2NbIX93el81U7iGTeg6IV4SGN5q4PuHW91Kd
+	 ubXJDdo+ZPM5cWSGL7AsbHeYdmv+aYCsKzrJkAOks6DDY5k/SnNe6msZhjyp96wYb4
+	 GEiHLnbD5cmcA==
+Date: Wed, 29 Nov 2023 13:55:04 +0100
+From: Lorenzo Pieralisi <lpieralisi@kernel.org>
+To: Jason Gunthorpe <jgg@nvidia.com>
+Cc: David Airlie <airlied@gmail.com>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Albert Ou <aou@eecs.berkeley.edu>, asahi@lists.linux.dev,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Danilo Krummrich <dakr@redhat.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Dexuan Cui <decui@microsoft.com>, devicetree@vger.kernel.org,
+	dmaengine@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	David Woodhouse <dwmw2@infradead.org>,
+	Frank Rowand <frowand.list@gmail.com>,
+	Hanjun Guo <guohanjun@huawei.com>,
+	Haiyang Zhang <haiyangz@microsoft.com>, iommu@lists.linux.dev,
+	Jon Hunter <jonathanh@nvidia.com>, Joerg Roedel <joro@8bytes.org>,
+	Karol Herbst <kherbst@redhat.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	"K. Y. Srinivasan" <kys@microsoft.com>,
+	Laxman Dewangan <ldewangan@nvidia.com>, Len Brown <lenb@kernel.org>,
+	linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-hyperv@vger.kernel.org, linux-mips@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-snps-arc@lists.infradead.org,
+	linux-tegra@vger.kernel.org, Russell King <linux@armlinux.org.uk>,
+	Lyude Paul <lyude@redhat.com>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	nouveau@lists.freedesktop.org, Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
+	Sven Peter <sven@svenpeter.dev>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Vineet Gupta <vgupta@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	Wei Liu <wei.liu@kernel.org>, Will Deacon <will@kernel.org>,
+	Lu Baolu <baolu.lu@linux.intel.com>, Christoph Hellwig <hch@lst.de>,
+	Jerry Snitselaar <jsnitsel@redhat.com>,
+	Hector Martin <marcan@marcan.st>, Moritz Fischer <mdf@kernel.org>,
+	patches@lists.linux.dev,
+	"Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
+	Rob Herring <robh@kernel.org>,
+	Thierry Reding <thierry.reding@gmail.com>
+Subject: Re: [PATCH 10/10] ACPI: IORT: Allow COMPILE_TEST of IORT
+Message-ID: <ZWc0qPWzNWPkL8vt@lpieralisi>
+References: <0-v1-720585788a7d+811b-iommu_fwspec_p1_jgg@nvidia.com>
+ <10-v1-720585788a7d+811b-iommu_fwspec_p1_jgg@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 3/5] arm64: dts: qcom: Add base X1E80100 dtsi and the
- QCP dts
-To: Sibi Sankar <quic_sibis@quicinc.com>, andersson@kernel.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- catalin.marinas@arm.com, ulf.hansson@linaro.org
-Cc: agross@kernel.org, conor+dt@kernel.org, ayan.kumar.halder@amd.com,
- j@jannau.net, dmitry.baryshkov@linaro.org, nfraprado@collabora.com,
- m.szyprowski@samsung.com, u-kumar1@ti.com, peng.fan@nxp.com,
- lpieralisi@kernel.org, quic_rjendra@quicinc.com, abel.vesa@linaro.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- quic_tsoni@quicinc.com, neil.armstrong@linaro.org
-References: <20231117113931.26660-1-quic_sibis@quicinc.com>
- <20231117113931.26660-4-quic_sibis@quicinc.com>
- <918ff1f5-ce01-43ea-b034-e69fbb31f495@linaro.org>
- <3dd41426-c026-a832-0a6b-0aabfaec2a8c@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
- BB/OmIWU6X+LZW6P88ZmHe+KeyABLMP5s1tJNK1j4ntT7mECcWZDzafPWF4F6m4WJOG27kTJ
- HGWdmtO+RvadOVi6CoUDqALsmfS3MUG5Pj2Ne9+0jRg4hEnB92AyF9rW2G3qisFcwPgvatt7
- TXD5E38mLyOPOUyXNj9XpDbt1hNwKQfiidmPh5e7VNAWRnW1iCMMoKqzM1Anzq7e5Afyeifz
- zRcQPLaqrPjnKqZGL2BKQSZDh6NkI5ZLRhhHQf61fkWcUpTp1oDC6jWVfT7hwRVIQLrrNj9G
- MpPzrlN4YuAqKeIer1FMt8cq64ifgTzxHzXsMcUdclzq2LTk2RXaPl6Jg/IXWqUClJHbamSk
- t1bfif3SnmhA6TiNvEpDKPiT3IDs42THU6ygslrBxyROQPWLI9IL1y8S6RtEh8H+NZQWZNzm
- UQ3imZirlPjxZtvz1BtnnBWS06e7x/UEAguj7VHCuymVgpl2Za17d1jj81YN5Rp5L9GXxkV1
- aUEwONM3eCI3qcYm5JNc5X+JthZOWsbIPSC1Rhxz3JmWIwP1udr5E3oNRe9u2LIEq+wH/toH
- kpPDhTeMkvt4KfE5m5ercid9+ZXAqoaYLUL4HCEw+HW0DXcKDwARAQABzShLb25yYWQgRHli
- Y2lvIDxrb25yYWQuZHliY2lvQGxpbmFyby5vcmc+wsGOBBMBCAA4FiEEU24if9oCL2zdAAQV
- R4cBcg5dfFgFAmQ5bqwCGwMFCwkIBwIGFQoJCAsCBBYCAwECHgECF4AACgkQR4cBcg5dfFjO
- BQ//YQV6fkbqQCceYebGg6TiisWCy8LG77zV7DB0VMIWJv7Km7Sz0QQrHQVzhEr3trNenZrf
- yy+o2tQOF2biICzbLM8oyQPY8B///KJTWI2khoB8IJSJq3kNG68NjPg2vkP6CMltC/X3ohAo
- xL2UgwN5vj74QnlNneOjc0vGbtA7zURNhTz5P/YuTudCqcAbxJkbqZM4WymjQhe0XgwHLkiH
- 5LHSZ31MRKp/+4Kqs4DTXMctc7vFhtUdmatAExDKw8oEz5NbskKbW+qHjW1XUcUIrxRr667V
- GWH6MkVceT9ZBrtLoSzMLYaQXvi3sSAup0qiJiBYszc/VOu3RbIpNLRcXN3KYuxdQAptacTE
- mA+5+4Y4DfC3rUSun+hWLDeac9z9jjHm5rE998OqZnOU9aztbd6zQG5VL6EKgsVXAZD4D3RP
- x1NaAjdA3MD06eyvbOWiA5NSzIcC8UIQvgx09xm7dThCuQYJR4Yxjd+9JPJHI6apzNZpDGvQ
- BBZzvwxV6L1CojUEpnilmMG1ZOTstktWpNzw3G2Gis0XihDUef0MWVsQYJAl0wfiv/0By+XK
- mm2zRR+l/dnzxnlbgJ5pO0imC2w0TVxLkAp0eo0LHw619finad2u6UPQAkZ4oj++iIGrJkt5
- Lkn2XgB+IW8ESflz6nDY3b5KQRF8Z6XLP0+IEdLOOARkOW7yEgorBgEEAZdVAQUBAQdAwmUx
- xrbSCx2ksDxz7rFFGX1KmTkdRtcgC6F3NfuNYkYDAQgHwsF2BBgBCAAgFiEEU24if9oCL2zd
- AAQVR4cBcg5dfFgFAmQ5bvICGwwACgkQR4cBcg5dfFju1Q//Xta1ShwL0MLSC1KL1lXGXeRM
- 8arzfyiB5wJ9tb9U/nZvhhdfilEDLe0jKJY0RJErbdRHsalwQCrtq/1ewQpMpsRxXzAjgfRN
- jc4tgxRWmI+aVTzSRpywNahzZBT695hMz81cVZJoZzaV0KaMTlSnBkrviPz1nIGHYCHJxF9r
- cIu0GSIyUjZ/7xslxdvjpLth16H27JCWDzDqIQMtg61063gNyEyWgt1qRSaK14JIH/DoYRfn
- jfFQSC8bffFjat7BQGFz4ZpRavkMUFuDirn5Tf28oc5ebe2cIHp4/kajTx/7JOxWZ80U70mA
- cBgEeYSrYYnX+UJsSxpzLc/0sT1eRJDEhI4XIQM4ClIzpsCIN5HnVF76UQXh3a9zpwh3dk8i
- bhN/URmCOTH+LHNJYN/MxY8wuukq877DWB7k86pBs5IDLAXmW8v3gIDWyIcgYqb2v8QO2Mqx
- YMqL7UZxVLul4/JbllsQB8F/fNI8AfttmAQL9cwo6C8yDTXKdho920W4WUR9k8NT/OBqWSyk
- bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
- nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
- izWDgYvmBE8=
-In-Reply-To: <3dd41426-c026-a832-0a6b-0aabfaec2a8c@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <10-v1-720585788a7d+811b-iommu_fwspec_p1_jgg@nvidia.com>
 
-On 29.11.2023 10:25, Sibi Sankar wrote:
+On Tue, Nov 28, 2023 at 08:48:06PM -0400, Jason Gunthorpe wrote:
+> The arm-smmu driver can COMPILE_TEST on x86, so expand this to also
+> enable the IORT code so it can be COMPILE_TEST'd too.
 > 
+> Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
+> ---
+>  drivers/acpi/Kconfig        | 2 --
+>  drivers/acpi/Makefile       | 2 +-
+>  drivers/acpi/arm64/Kconfig  | 1 +
+>  drivers/acpi/arm64/Makefile | 2 +-
+>  drivers/iommu/Kconfig       | 1 +
+>  5 files changed, 4 insertions(+), 4 deletions(-)
 > 
-> On 11/18/23 06:36, Konrad Dybcio wrote:
->> On 17.11.2023 12:39, Sibi Sankar wrote:
->>> From: Rajendra Nayak <quic_rjendra@quicinc.com>
->>>
->>> Add base dtsi and QCP board (Qualcomm Compute Platform) dts file for
->>> X1E80100 SoC, describing the CPUs, GCC and RPMHCC clock controllers,
->>> geni UART, interrupt controller, TLMM, reserved memory, interconnects,
->>> SMMU and LLCC nodes.
->>>
->>> Co-developed-by: Abel Vesa <abel.vesa@linaro.org>
->>> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
->>> Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
->>> Co-developed-by: Sibi Sankar <quic_sibis@quicinc.com>
->>> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
->>> ---
-[...]
+> diff --git a/drivers/acpi/Kconfig b/drivers/acpi/Kconfig
+> index f819e760ff195a..3b7f77b227d13a 100644
+> --- a/drivers/acpi/Kconfig
+> +++ b/drivers/acpi/Kconfig
+> @@ -541,9 +541,7 @@ config ACPI_PFRUT
+>  	  To compile the drivers as modules, choose M here:
+>  	  the modules will be called pfr_update and pfr_telemetry.
+>  
+> -if ARM64
+>  source "drivers/acpi/arm64/Kconfig"
+> -endif
+>  
+>  config ACPI_PPTT
+>  	bool
+> diff --git a/drivers/acpi/Makefile b/drivers/acpi/Makefile
+> index eaa09bf52f1760..4e77ae37b80726 100644
+> --- a/drivers/acpi/Makefile
+> +++ b/drivers/acpi/Makefile
+> @@ -127,7 +127,7 @@ obj-y				+= pmic/
+>  video-objs			+= acpi_video.o video_detect.o
+>  obj-y				+= dptf/
+>  
+> -obj-$(CONFIG_ARM64)		+= arm64/
+> +obj-y				+= arm64/
+>  
+>  obj-$(CONFIG_ACPI_VIOT)		+= viot.o
+>  
+> diff --git a/drivers/acpi/arm64/Kconfig b/drivers/acpi/arm64/Kconfig
+> index b3ed6212244c1e..537d49d8ace69e 100644
+> --- a/drivers/acpi/arm64/Kconfig
+> +++ b/drivers/acpi/arm64/Kconfig
+> @@ -11,6 +11,7 @@ config ACPI_GTDT
+>  
+>  config ACPI_AGDI
+>  	bool "Arm Generic Diagnostic Dump and Reset Device Interface"
+> +	depends on ARM64
+>  	depends on ARM_SDE_INTERFACE
+>  	help
+>  	  Arm Generic Diagnostic Dump and Reset Device Interface (AGDI) is
+> diff --git a/drivers/acpi/arm64/Makefile b/drivers/acpi/arm64/Makefile
+> index 143debc1ba4a9d..71d0e635599390 100644
+> --- a/drivers/acpi/arm64/Makefile
+> +++ b/drivers/acpi/arm64/Makefile
+> @@ -4,4 +4,4 @@ obj-$(CONFIG_ACPI_IORT) 	+= iort.o
+>  obj-$(CONFIG_ACPI_GTDT) 	+= gtdt.o
+>  obj-$(CONFIG_ACPI_APMT) 	+= apmt.o
+>  obj-$(CONFIG_ARM_AMBA)		+= amba.o
+> -obj-y				+= dma.o init.o
+> +obj-$(CONFIG_ARM64)		+= dma.o init.o
+> diff --git a/drivers/iommu/Kconfig b/drivers/iommu/Kconfig
+> index 7673bb82945b6c..309378e76a9bc9 100644
+> --- a/drivers/iommu/Kconfig
+> +++ b/drivers/iommu/Kconfig
+> @@ -318,6 +318,7 @@ config ARM_SMMU
+>  	select IOMMU_API
+>  	select IOMMU_IO_PGTABLE_LPAE
+>  	select ARM_DMA_USE_IOMMU if ARM
+> +	select ACPI_IORT if ACPI
+>  	help
+>  	  Support for implementations of the ARM System MMU architecture
+>  	  versions 1 and 2.
+> -- 
 
+I don't think it should be done this way. Is the goal compile testing
+IORT code ? If so, why are we forcing it through the SMMU (only because
+it can be compile tested while eg SMMUv3 driver can't ?) menu entry ?
 
->>> +        idle-states {
->>> +            entry-method = "psci";
->>> +
->>> +            CLUSTER_C4: cpu-sleep-0 {
->>> +                compatible = "arm,idle-state";
->>> +                idle-state-name = "ret";
->>> +                arm,psci-suspend-param = <0x00000004>;
->> These suspend parameters look funky.. is this just a PSCI sleep
->> implementation that strays far away from Arm's suggested guidelines?
-> 
-> not really! it's just that 30th bit is set according to spec i.e
-> it's marked as a retention state.
-So, is there no state where the cores actually power down? Or is it
-not described yet?
+This looks a bit artificial (and it is unclear from the Kconfig
+file why only that driver selects IORT, it looks like eg the SMMUv3
+does not have the same dependency - there is also the SMMUv3 perf
+driver to consider).
 
-FWIW by "power down" I mean it in the sense that Arm DEN0022D does,
-so "In this state the core is powered off. Software on the device
-needs to save all core state, so that it can be preserved over
-the powerdown."
+Maybe we can move IORT code into drivers/acpi and add a silent config
+option there with a dependency on ARM64 || COMPILE_TEST.
 
-> 
->>
->> [...]
->>
->>
->>> +        CPU_PD11: power-domain-cpu11 {
->>> +            #power-domain-cells = <0>;
->>> +            power-domains = <&CLUSTER_PD>;
->>> +        };
->>> +
->>> +        CLUSTER_PD: power-domain-cpu-cluster {
->>> +            #power-domain-cells = <0>;
->>> +            domain-idle-states = <&CLUSTER_CL4>, <&CLUSTER_CL5>;
->>> +        };
->> So, can the 3 clusters not shut down their L2 and PLLs (if separate?)
->> on their own?
-> 
-> on CL5 the clusters are expected to shutdown their l2 and PLL on their
-> own.
-Then I think this won't happen with this description
+Don't know but at least it is clearer. As for the benefits of compile
+testing IORT code - yes the previous patch is a warning to fix but
+I am not so sure about the actual benefits.
 
-every cpu has a genpd tree like this:
-
-cpu_n
- |_CPU_PDn
-    |_CLUSTER_PD
-
-and CLUSTER_PD has two idle states: CLUSTER_CL4 and CLUSTER_CL5
-
-which IIUC means that neither cluster idle state will be reached
-unless all children of CLUSTER_PD (so, all CPUs) go down that low
-
-This is "fine" on e.g. sc8280 where both CPU clusters are part of
-the same Arm DynamIQ cluster (which is considered one cluster as
-far as MPIDR_EL1 goes) (though perhaps that's misleading and with
-the qcom plumbing they perhaps could actually be collapsed separately)
-
-Konrad
+Thanks,
+Lorenzo
 
