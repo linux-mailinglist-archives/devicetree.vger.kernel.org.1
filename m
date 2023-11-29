@@ -1,98 +1,124 @@
-Return-Path: <devicetree+bounces-20119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20120-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A14D7FDD77
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 17:42:24 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0857F7FDD7D
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 17:44:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 04886282247
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 16:42:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3A2F71C20966
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 16:44:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A0892E647;
-	Wed, 29 Nov 2023 16:42:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=xry111.site header.i=@xry111.site header.b="nizf3tKA"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91A8A1BDD7;
+	Wed, 29 Nov 2023 16:43:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from xry111.site (xry111.site [89.208.246.23])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67BA6BC;
-	Wed, 29 Nov 2023 08:42:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xry111.site;
-	s=default; t=1701276134;
-	bh=VzR4EoUUwocqvWHOsW2iuWo50a/tDaBPTdKdJ2I6t2g=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=nizf3tKADXY9gw8RTUwRGlwn3bF+kVHzcfAVVoQy23ftGQWm2aMZcuj6CBws7tvwq
-	 WMFFy81wFg7j3jQUfMh7fvPY1jOvXITNjXdb5dkmIXHJgd90hJjS7roCLSq93WMdzb
-	 tYBpVV0GAKvvq8IUWSqB2agdkt/YRZcNtRZaba+A=
-Received: from [127.0.0.1] (unknown [IPv6:2001:470:683e::1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature ECDSA (P-384) server-digest SHA384)
-	(Client did not present a certificate)
-	(Authenticated sender: xry111@xry111.site)
-	by xry111.site (Postfix) with ESMTPSA id 7382166AB8;
-	Wed, 29 Nov 2023 11:42:11 -0500 (EST)
-Message-ID: <5f437109d2be2b8843f549a661054a2e3ec0d66e.camel@xry111.site>
-Subject: Re: [PATCH v3 1/3] dt-bindings: reset: Document th1520 reset control
-From: Xi Ruoyao <xry111@xry111.site>
-To: Conor Dooley <conor@kernel.org>, Kwanghoon Son <k.son@samsung.com>
-Cc: p.zabel@pengutronix.de, robh+dt@kernel.org, 
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, jszhang@kernel.org,
-  guoren@kernel.org, wefu@redhat.com, paul.walmsley@sifive.com,
- palmer@dabbelt.com,  aou@eecs.berkeley.edu, inki.dae@samsung.com,
- devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org
-Date: Thu, 30 Nov 2023 00:42:09 +0800
-In-Reply-To: <20230919-42333064be342f6ab125dd75@fedora>
-References: <20230918045125.4000083-1-k.son@samsung.com>
-	 <CGME20230918045134epcas1p1b80b338b66512a976c3783cd0e51da50@epcas1p1.samsung.com>
-	 <20230918045125.4000083-2-k.son@samsung.com>
-	 <20230918-4ef7f52da269f3a7e4023bb3@fedora>
-	 <005301d9eab7$5688c920$039a5b60$@samsung.com>
-	 <20230919-42333064be342f6ab125dd75@fedora>
-Autocrypt: addr=xry111@xry111.site; prefer-encrypt=mutual;
- keydata=mDMEYnkdPhYJKwYBBAHaRw8BAQdAsY+HvJs3EVKpwIu2gN89cQT/pnrbQtlvd6Yfq7egugi0HlhpIFJ1b3lhbyA8eHJ5MTExQHhyeTExMS5zaXRlPoiTBBMWCgA7FiEEkdD1djAfkk197dzorKrSDhnnEOMFAmJ5HT4CGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQrKrSDhnnEOPHFgD8D9vUToTd1MF5bng9uPJq5y3DfpcxDp+LD3joA3U2TmwA/jZtN9xLH7CGDHeClKZK/ZYELotWfJsqRcthOIGjsdAPuDgEYnkdPhIKKwYBBAGXVQEFAQEHQG+HnNiPZseiBkzYBHwq/nN638o0NPwgYwH70wlKMZhRAwEIB4h4BBgWCgAgFiEEkdD1djAfkk197dzorKrSDhnnEOMFAmJ5HT4CGwwACgkQrKrSDhnnEOPjXgD/euD64cxwqDIqckUaisT3VCst11RcnO5iRHm6meNIwj0BALLmWplyi7beKrOlqKfuZtCLbiAPywGfCNg8LOTt4iMD
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.1 
+Received: from mail-oo1-f46.google.com (mail-oo1-f46.google.com [209.85.161.46])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D2EAB0;
+	Wed, 29 Nov 2023 08:43:55 -0800 (PST)
+Received: by mail-oo1-f46.google.com with SMTP id 006d021491bc7-58d9dcdf201so1621562eaf.2;
+        Wed, 29 Nov 2023 08:43:55 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701276234; x=1701881034;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=WbKmjK5aYlNvI/2G0s2AcBaMpjvp1DkcAwiIdV5vRGY=;
+        b=aDHt3M/4JyN6qBsJFjkZX5UxNSSeYML3gxCzqx6TLHmkzNS+4ZRsX5Cjetp+dHXL2W
+         qYh+wnSHpWlcbifSI/t9pTOXEsNhePA7v5mOzlv2kAYcvqJtHCsWxSkq038NdvulCAt9
+         dN9cceERh3T/8Ggu24EivLLczIdZhOeSWygFoJYNn8I7ujT1TE8JurhN17/KEmBM50S/
+         PTlsw2Wbx6VPIxxyWkbBW9GyKHIjKGoFVlqTnJ/OCfWDUUQLQVUpBjbqVr3UQcSTkQgQ
+         YB9Ix3TLEJMRPrGJa8gKw2EFEJfeazZfMM5xnLTHDD96oi5rO3aNaMrdWjH0Gip6qjRv
+         MUaA==
+X-Gm-Message-State: AOJu0YxcMAMJTkPIwixxc1rq6epWWWJolqrjlg2v2sIop0xuVnVIRoRs
+	DL9JdHgH9s5eqH30czMleg==
+X-Google-Smtp-Source: AGHT+IGDuhcW/C5uUvHy5z8/jHFZ6ZXPTUVzm1aN0tHX0RbQUR91g7dUq4iuDM++fYQzrsVvP/hwyw==
+X-Received: by 2002:a05:6820:294:b0:58d:c250:cb1d with SMTP id q20-20020a056820029400b0058dc250cb1dmr3473695ood.2.1701276231495;
+        Wed, 29 Nov 2023 08:43:51 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id cz9-20020a056820268900b00584078d1e17sm2309837oob.45.2023.11.29.08.43.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 29 Nov 2023 08:43:50 -0800 (PST)
+Received: (nullmailer pid 2664302 invoked by uid 1000);
+	Wed, 29 Nov 2023 16:43:48 -0000
+From: Rob Herring <robh@kernel.org>
+To: Shawn Guo <shawnguo@kernel.org>, "David S. Miller" <davem@davemloft.net>, Miguel Ojeda <ojeda@kernel.org>, Wolfgang Grandegger <wg@grandegger.com>, Marc Kleine-Budde <mkl@pengutronix.de>, "Rafael J. Wysocki" <rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>, Frank Rowand <frowand.list@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] of: Stop circularly including of_device.h and of_platform.h
+Date: Wed, 29 Nov 2023 10:43:16 -0600
+Message-ID: <20231129164316.2663565-1-robh@kernel.org>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-On Tue, 2023-09-19 at 09:47 +0100, Conor Dooley wrote:
-> Guo,
->=20
-> On Tue, Sep 19, 2023 at 02:08:32PM +0900, Kwanghoon Son wrote:
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: thead,th1520-reset
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: syscon
-> > > >=20
-> > > > iDumb question perhaps, but why is this a syscon?
-> > >=20
-> > > This is good point.
-> > > In fact, I took it from the vendor kernel, and I tried to keep it as =
-same as I could.
-> > > Vendor also followed drivers/reset/reset-imx7.c
-> > > As Rob said, if don't need it, I'll change it.
->=20
-> > I have investigated vendor kernels, but it is still not sure reset info=
-rmation.
-> > I thought this is about sys_reg, but without datasheet, can't tell.
-> > Therefore, should be stopped patch for a while until knows better comes=
- out.
->=20
-> Is there documentation in English you can provide to these people that
-> are trying to add support for your product?
+The DT of_device.h and of_platform.h headers date back to the separate
+of_platform_bus_type before it was merged into the regular platform bus.
+As part of that merge prepping Arm DT support 13 years ago, they
+"temporarily" include each other. The headers also include
+platform_device.h and of.h. The result was lots of drivers relied on
+these implicit includes.
 
-It can be downloaded from
-https://dl.sipeed.com/shareURL/LICHEE/licheepi4a/09_Doc now.  Click on
-"TH1520 User Manual.zip" and enter a captcha.  The doc about resetting
-is in chapter 5 of "TH1520 System User Manual.pdf".
+Now the entire tree has been fixed over the last couple of cycles to
+explicitly include the necessary headers instead of relying on
+of_device.h and/or of_platform.h implicit includes, so the implicit and
+circular includes can finally be removed.
 
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+There are still a few dependencies which have not been applied. If you
+are on the To list, one of them applies to you:
 
---=20
-Xi Ruoyao <xry111@xry111.site>
-School of Aerospace Science and Technology, Xidian University
+https://lore.kernel.org/all/20231122180140.1432025-1-robh@kernel.org/
+https://lore.kernel.org/all/20231115210245.3744589-1-robh@kernel.org/
+https://lore.kernel.org/all/20231115205828.3732207-1-robh@kernel.org/
+https://lore.kernel.org/all/20231115210319.3747145-1-robh@kernel.org/
+https://lore.kernel.org/all/20231115210258.3744896-1-robh@kernel.org/
+---
+ include/linux/of_device.h   | 5 +----
+ include/linux/of_platform.h | 4 ++--
+ 2 files changed, 3 insertions(+), 6 deletions(-)
+
+diff --git a/include/linux/of_device.h b/include/linux/of_device.h
+index 2c7a3d4bc775..b59165b28fd7 100644
+--- a/include/linux/of_device.h
++++ b/include/linux/of_device.h
+@@ -2,10 +2,7 @@
+ #ifndef _LINUX_OF_DEVICE_H
+ #define _LINUX_OF_DEVICE_H
+ 
+-#include <linux/platform_device.h>
+-#include <linux/of_platform.h> /* temporary until merge */
+-
+-#include <linux/of.h>
++#include <linux/device/driver.h>
+ 
+ struct device;
+ struct of_device_id;
+diff --git a/include/linux/of_platform.h b/include/linux/of_platform.h
+index fadfea575485..a2ff1ad48f7f 100644
+--- a/include/linux/of_platform.h
++++ b/include/linux/of_platform.h
+@@ -7,11 +7,11 @@
+  */
+ 
+ #include <linux/mod_devicetable.h>
+-#include <linux/of_device.h>
+-#include <linux/platform_device.h>
+ 
+ struct device;
++struct device_node;
+ struct of_device_id;
++struct platform_device;
+ 
+ /**
+  * struct of_dev_auxdata - lookup table entry for device names & platform_data
+-- 
+2.42.0
+
 
