@@ -1,144 +1,188 @@
-Return-Path: <devicetree+bounces-19836-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19844-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D24AE7FCF55
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 07:46:18 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43FFB7FCFAA
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 08:03:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 00D30B21314
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 06:46:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C6B351F20F8E
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 07:03:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D3D93D62;
-	Wed, 29 Nov 2023 06:46:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72B66F9E4;
+	Wed, 29 Nov 2023 07:03:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="BGYVZATQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from Atcsqr.andestech.com (60-248-80-70.hinet-ip.hinet.net [60.248.80.70])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C768D170B;
-	Tue, 28 Nov 2023 22:46:04 -0800 (PST)
-Received: from mail.andestech.com (ATCPCS16.andestech.com [10.0.1.222])
-	by Atcsqr.andestech.com with ESMTP id 3AT6hinY004282;
-	Wed, 29 Nov 2023 14:43:44 +0800 (+08)
-	(envelope-from peterlin@andestech.com)
-Received: from APC323 (10.0.12.98) by ATCPCS16.andestech.com (10.0.1.222) with
- Microsoft SMTP Server id 14.3.498.0; Wed, 29 Nov 2023 14:43:41 +0800
-Date: Wed, 29 Nov 2023 14:43:37 +0800
-From: Yu-Chien Peter Lin <peterlin@andestech.com>
-To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-CC: <acme@kernel.org>, <adrian.hunter@intel.com>, <ajones@ventanamicro.com>,
-        <alexander.shishkin@linux.intel.com>, <andre.przywara@arm.com>,
-        <anup@brainfault.org>, <aou@eecs.berkeley.edu>,
-        <atishp@atishpatra.org>, <conor+dt@kernel.org>,
-        <conor.dooley@microchip.com>, <conor@kernel.org>,
-        <devicetree@vger.kernel.org>, <dminus@andestech.com>,
-        <evan@rivosinc.com>, <geert+renesas@glider.be>, <guoren@kernel.org>,
-        <heiko@sntech.de>, <irogers@google.com>, <jernej.skrabec@gmail.com>,
-        <jolsa@kernel.org>, <jszhang@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <linux-perf-users@vger.kernel.org>,
-        <linux-renesas-soc@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-        <linux-sunxi@lists.linux.dev>, <locus84@andestech.com>,
-        <magnus.damm@gmail.com>, <mark.rutland@arm.com>, <mingo@redhat.com>,
-        <n.shubin@yadro.com>, <namhyung@kernel.org>, <palmer@dabbelt.com>,
-        <paul.walmsley@sifive.com>, <peterz@infradead.org>,
-        <prabhakar.mahadev-lad.rj@bp.renesas.com>, <rdunlap@infradead.org>,
-        <robh+dt@kernel.org>, <samuel@sholland.org>,
-        <sunilvl@ventanamicro.com>, <tglx@linutronix.de>,
-        <tim609@andestech.com>, <uwu@icenowy.me>, <wens@csie.org>,
-        <will@kernel.org>, <ycliang@andestech.com>
-Subject: Re: [PATCH v4 04/13] dt-bindings: riscv: Add Andes interrupt
- controller compatible string
-Message-ID: <ZWbdmRFfhMcQY_zS@APC323>
-References: <20231122121235.827122-1-peterlin@andestech.com>
- <20231122121235.827122-5-peterlin@andestech.com>
- <CA+V-a8t+vgrwDe9OxqMNHdcVX+qq76DuskF0ETCri4VeP-FAbg@mail.gmail.com>
+X-Greylist: delayed 561 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 28 Nov 2023 23:03:17 PST
+Received: from mail-m12793.qiye.163.com (mail-m12793.qiye.163.com [115.236.127.93])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06713DC;
+	Tue, 28 Nov 2023 23:03:16 -0800 (PST)
+DKIM-Signature: a=rsa-sha256;
+	b=BGYVZATQB6lTahhv420xh9G/Uxq5CQrrNTWhRt7vbpKAoczsUpZwYQ2N3vDEJfKqV+pdvlC4UKyIcyrtTnmPT+It97feALmocPJgXkwViY181JJaSyFTMPC0hsdWUkvPucVkNtKCK5HnVeGe2DiByNVJDQ7dl3NAXjCfcOBeYdM=;
+	c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=Kp7KhheW6iIZn3I5ex3GwoD360GOF4bAbDlX84aX464=;
+	h=date:mime-version:subject:message-id:from;
+Received: from [172.16.12.141] (unknown [58.22.7.114])
+	by mail-m12779.qiye.163.com (Hmail) with ESMTPA id 0F87B780201;
+	Wed, 29 Nov 2023 14:52:56 +0800 (CST)
+Message-ID: <9cdedbb6-67c0-4c43-9f82-629504aae933@rock-chips.com>
+Date: Wed, 29 Nov 2023 14:52:55 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CA+V-a8t+vgrwDe9OxqMNHdcVX+qq76DuskF0ETCri4VeP-FAbg@mail.gmail.com>
-User-Agent: Mutt/2.2.10 (2023-03-25)
-X-DNSRBL: 
-X-SPAM-SOURCE-CHECK: pass
-X-MAIL:Atcsqr.andestech.com 3AT6hinY004282
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 05/12] drm/rockchip: vop2: Set YUV/RGB overlay mode
+Content-Language: en-US
+To: Sascha Hauer <s.hauer@pengutronix.de>, Andy Yan <andyshrk@163.com>
+Cc: heiko@sntech.de, hjc@rock-chips.com, dri-devel@lists.freedesktop.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+ devicetree@vger.kernel.org, sebastian.reichel@collabora.com,
+ kever.yang@rock-chips.com, chris.obbard@collabora.com
+References: <20231122125316.3454268-1-andyshrk@163.com>
+ <20231122125438.3454608-1-andyshrk@163.com>
+ <20231127141632.GF977968@pengutronix.de>
+From: Andy Yan <andy.yan@rock-chips.com>
+In-Reply-To: <20231127141632.GF977968@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGRkYQlZLHU5KTENDTR8ZShhVEwETFh
+	oSFyQUDg9ZV1kYEgtZQVlOQ1VJSVVMVUpKT1lXWRYaDxIVHRRZQVlPS0hVSk1PSU5JVUpLS1VKQl
+	kG
+X-HM-Tid: 0a8c19da26c7b24fkuuu0f87b780201
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6ME06PDo4CDwxSxw8HRcKODoL
+	HQgaCjxVSlVKTEtKSU9LTExNQkJOVTMWGhIXVRoVHwJVAhoVOwkUGBBWGBMSCwhVGBQWRVlXWRIL
+	WUFZTkNVSUlVTFVKSk9ZV1kIAVlBTUpOQzcG
 
-Hi Prabhakar,
+Hi Sasha:
 
-On Fri, Nov 24, 2023 at 03:03:51PM +0000, Lad, Prabhakar wrote:
-> On Wed, Nov 22, 2023 at 12:18 PM Yu Chien Peter Lin
-> <peterlin@andestech.com> wrote:
-> >
-> > Add "andestech,cpu-intc" compatible string to indicate that
-> > Andes specific local interrupt is supported on the core,
-> > e.g. AX45MP cores have 3 types of non-standard local interrupt
-> > can be handled in supervisor mode:
-> >
-> > - Slave port ECC error interrupt
-> > - Bus write transaction error interrupt
-> > - Performance monitor overflow interrupt
-> >
-> > These interrupts are enabled/disabled via a custom register
-> > SLIE instead of the standard interrupt enable register SIE.
-> >
-> > Signed-off-by: Yu Chien Peter Lin <peterlin@andestech.com>
-> > ---
-> > Changes v1 -> v2:
-> >   - New patch
-> > Changes v2 -> v3:
-> >   - Updated commit message
-> >   - Fixed possible compatibles for Andes INTC
-> > Changes v3 -> v4:
-> >   - Add const entry instead of enum (Suggested by Conor)
-> > ---
-> >  Documentation/devicetree/bindings/riscv/cpus.yaml | 6 +++++-
-> >  1 file changed, 5 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
-> > index f392e367d673..50307554478f 100644
-> > --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
-> > +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
-> > @@ -100,7 +100,11 @@ properties:
-> >          const: 1
-> >
-> >        compatible:
-> > -        const: riscv,cpu-intc
-> > +        oneOf:
-> > +          - items:
-> > +              - const: andestech,cpu-intc
-> given that the first patch renames andestech -> andes, do you want to
-> follow the same here?
+On 11/27/23 22:16, Sascha Hauer wrote:
+> On Wed, Nov 22, 2023 at 08:54:38PM +0800, Andy Yan wrote:
+>> From: Andy Yan <andy.yan@rock-chips.com>
+>>
+>> Set overlay mode register according to the
+>> output mode is yuv or rgb.
+>>
+>> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+>> ---
+>>
+>> (no changes since v1)
+>>
+>>   drivers/gpu/drm/rockchip/rockchip_drm_drv.h  |  1 +
+>>   drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 19 ++++++++++++++++---
+>>   2 files changed, 17 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_drv.h b/drivers/gpu/drm/rockchip/rockchip_drm_drv.h
+>> index 3d8ab2defa1b..7a58c5c9d4ec 100644
+>> --- a/drivers/gpu/drm/rockchip/rockchip_drm_drv.h
+>> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_drv.h
+>> @@ -51,6 +51,7 @@ struct rockchip_crtc_state {
+>>   	u32 bus_format;
+>>   	u32 bus_flags;
+>>   	int color_space;
+>> +	bool yuv_overlay;
+> This struct already contains a bool type variable. Please add this one
+> next to it to keep the struct size smaller.
 
-Thanks for pointing this out.
-We would like to use "andestech" for compatible string.
 
-Documentation/devicetree/bindings/vendor-prefixes.yaml
-118:  "^andestech,.*":
-119-    description: Andes Technology Corporation
+Okay, will do.
 
-> > +              - const: riscv,cpu-intc
-> > +          - const: riscv,cpu-intc
-> >
-> >        interrupt-controller: true
-> >
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+>>   };
+>>   #define to_rockchip_crtc_state(s) \
+>>   		container_of(s, struct rockchip_crtc_state, base)
+>> diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+>> index a019cc9bbd54..b32a291c5caa 100644
+>> --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+>> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+>> @@ -1612,6 +1612,8 @@ static void vop2_crtc_atomic_enable(struct drm_crtc *crtc,
+>>   
+>>   	vop2->enable_count++;
+>>   
+>> +	vcstate->yuv_overlay = is_yuv_output(vcstate->bus_format);
+>> +
+>>   	vop2_crtc_enable_irq(vp, VP_INT_POST_BUF_EMPTY);
+>>   
+>>   	polflags = 0;
+>> @@ -1639,7 +1641,7 @@ static void vop2_crtc_atomic_enable(struct drm_crtc *crtc,
+>>   	if (vop2_output_uv_swap(vcstate->bus_format, vcstate->output_mode))
+>>   		dsp_ctrl |= RK3568_VP_DSP_CTRL__DSP_RB_SWAP;
+>>   
+>> -	if (is_yuv_output(vcstate->bus_format))
+>> +	if (vcstate->yuv_overlay)
+>>   		dsp_ctrl |= RK3568_VP_DSP_CTRL__POST_DSP_OUT_R2Y;
+>>   
+>>   	vop2_dither_setup(crtc, &dsp_ctrl);
+>> @@ -1948,10 +1950,12 @@ static void vop2_setup_layer_mixer(struct vop2_video_port *vp)
+>>   	u16 hdisplay;
+>>   	u32 bg_dly;
+>>   	u32 pre_scan_dly;
+>> +	u32 ovl_ctrl;
+>>   	int i;
+>>   	struct vop2_video_port *vp0 = &vop2->vps[0];
+>>   	struct vop2_video_port *vp1 = &vop2->vps[1];
+>>   	struct vop2_video_port *vp2 = &vop2->vps[2];
+>> +	struct rockchip_crtc_state *vcstate = to_rockchip_crtc_state(vp->crtc.state);
+>>   
+>>   	adjusted_mode = &vp->crtc.state->adjusted_mode;
+>>   	hsync_len = adjusted_mode->crtc_hsync_end - adjusted_mode->crtc_hsync_start;
+>> @@ -1964,7 +1968,14 @@ static void vop2_setup_layer_mixer(struct vop2_video_port *vp)
+>>   	pre_scan_dly = ((bg_dly + (hdisplay >> 1) - 1) << 16) | hsync_len;
+>>   	vop2_vp_write(vp, RK3568_VP_PRE_SCAN_HTIMING, pre_scan_dly);
+>>   
+>> -	vop2_writel(vop2, RK3568_OVL_CTRL, 0);
+>> +	ovl_ctrl = vop2_readl(vop2, RK3568_OVL_CTRL);
+>> +	if (vcstate->yuv_overlay)
+>> +		ovl_ctrl |= BIT(vp->id);
+>> +	else
+>> +		ovl_ctrl &= ~BIT(vp->id);
+> Some
+>
+> #define RK3568_OVL_CTRL__YUV_MODE(vp)	BIT(vp)
+>
+> Would be nice.
 
-Thanks for the review!
 
-Best regards,
-Peter Lin
+Okay, will do.
 
-> Cheers,
-> Prabhakar
-> 
-> > --
-> > 2.34.1
-> >
-> >
+>> +
+>> +	vop2_writel(vop2, RK3568_OVL_CTRL, ovl_ctrl);
+> Is it necessary to write this register twice?
+
+I don't think so. Just follow the original code write it here.
+
+Anyway, I will just write once in next version.
+
+
+And would you please check my response about debugfs patch[0] when it is convenient for you?
+
+I want to know what you think, and prepare the next version.
+
+
+[0]https://patchwork.kernel.org/project/dri-devel/patch/20231122125601.3455031-1-andyshrk@163.com/
+
+>
+>> +
+>>   	port_sel = vop2_readl(vop2, RK3568_OVL_PORT_SEL);
+>>   	port_sel &= RK3568_OVL_PORT_SEL__SEL_PORT;
+>>   
+>> @@ -2036,9 +2047,11 @@ static void vop2_setup_layer_mixer(struct vop2_video_port *vp)
+>>   		layer_sel |= RK3568_OVL_LAYER_SEL__LAYER(nlayer + ofs, 5);
+>>   	}
+>>   
+>> +	ovl_ctrl |= RK3568_OVL_CTRL__LAYERSEL_REGDONE_IMD;
+>> +
+>>   	vop2_writel(vop2, RK3568_OVL_LAYER_SEL, layer_sel);
+>>   	vop2_writel(vop2, RK3568_OVL_PORT_SEL, port_sel);
+>> -	vop2_writel(vop2, RK3568_OVL_CTRL, RK3568_OVL_CTRL__LAYERSEL_REGDONE_IMD);
+>> +	vop2_writel(vop2, RK3568_OVL_CTRL, ovl_ctrl);
+> Sascha
+>
 
