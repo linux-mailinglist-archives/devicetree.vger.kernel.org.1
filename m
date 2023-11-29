@@ -1,286 +1,98 @@
-Return-Path: <devicetree+bounces-20118-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20119-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E8BC7FDD6A
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 17:41:19 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A14D7FDD77
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 17:42:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E4B73B20C07
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 16:41:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 04886282247
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 16:42:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49F7B18E15;
-	Wed, 29 Nov 2023 16:41:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A0892E647;
+	Wed, 29 Nov 2023 16:42:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zJp9zlI7"
+	dkim=pass (1024-bit key) header.d=xry111.site header.i=@xry111.site header.b="nizf3tKA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D74C98
-	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 08:41:11 -0800 (PST)
-Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-40b4734b975so28500535e9.2
-        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 08:41:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701276069; x=1701880869; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=dfg7atQN/bLBzM7mE71PtSKnKRCE3/hamOjfFKvk+Ps=;
-        b=zJp9zlI7uQm4mXUqbMtGo1dFFiHpKrgDBpoOXVrxOpJhA3ztQ7lDT4Cwc+s/7pNH5+
-         4e1QOc0DRqU/ewe4uhjp+KsbfMXWFaYEDL+bjKaFXYk/e0WoDHM2WuE6qi3xq1C9QlrU
-         xypBylEB2IzHczcTpH8x2EcpKiMp/pJqjjGUjCQEIi8tDtbtbYCZbF+nuZFvfcqNYO3V
-         WfJhR/GfF7gXJNJtm5ag/Y+yCwFZTWjnLBDOPAqt47sy7ZPSdUbw/EVqcs4o1Uq/l1TK
-         RgYBoepYA618+oc1k3stmyVs7RMejnDwyWPFS2PLdJlIqouAJWR0ws0mz+cCciH486uV
-         Qceg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701276069; x=1701880869;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=dfg7atQN/bLBzM7mE71PtSKnKRCE3/hamOjfFKvk+Ps=;
-        b=s49zRt2mkXt9pMkcReUw0aTVW5WvS+y9Q+jjrUkIFpi316GG2Sr1di54rIh6fvTqBG
-         H+AWgeIFQPnu54XGNoqm0G9NKNsYsFCJKkxugfNbQtO+YFYIXS9uYOQSfbP8vl+6gFDJ
-         7yORYVGxShJg+Jxqf+0TVwHPChc15imzS5w2zjh3+9Q74Hlh9jRsGwfuCrcfzebXUF3m
-         GS7tSC1pDHmHSfZ39M0aPZ7JBc3TkZ9QFq3DLT0KWlxttOpLrXce3JsGaSFr5G/RcgPn
-         gzTSbcWoTDgvfrmX0/KC2HqRApNhiN2/UhenofopKIhfWbwDFhY3qi0wOhJOBTv5imE8
-         T/9w==
-X-Gm-Message-State: AOJu0YyAQhwVFCx5dBmLHk1bbgAx9nrtUsushCDlRAOIMIDsVN5BDRNZ
-	gynFNE8EdZbbvAULiCpUkaFo0A==
-X-Google-Smtp-Source: AGHT+IGojnc7iEBSKQz6F3GlFyEvUSOGmmp2QrAEdcHHEVFRSkWi1DK4rH79rgWmbOL/atepa5/2QQ==
-X-Received: by 2002:a05:600c:1384:b0:409:19a0:d247 with SMTP id u4-20020a05600c138400b0040919a0d247mr13959356wmf.18.1701276069537;
-        Wed, 29 Nov 2023 08:41:09 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:31d3:eea3:8f97:6a2c? ([2a01:e0a:982:cbb0:31d3:eea3:8f97:6a2c])
-        by smtp.gmail.com with ESMTPSA id g10-20020a05600c4eca00b0040596352951sm2783806wmq.5.2023.11.29.08.41.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Nov 2023 08:41:09 -0800 (PST)
-Message-ID: <11f8d986-3e97-4191-b46c-ad3166ee6dc7@linaro.org>
-Date: Wed, 29 Nov 2023 17:41:07 +0100
+Received: from xry111.site (xry111.site [89.208.246.23])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67BA6BC;
+	Wed, 29 Nov 2023 08:42:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xry111.site;
+	s=default; t=1701276134;
+	bh=VzR4EoUUwocqvWHOsW2iuWo50a/tDaBPTdKdJ2I6t2g=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=nizf3tKADXY9gw8RTUwRGlwn3bF+kVHzcfAVVoQy23ftGQWm2aMZcuj6CBws7tvwq
+	 WMFFy81wFg7j3jQUfMh7fvPY1jOvXITNjXdb5dkmIXHJgd90hJjS7roCLSq93WMdzb
+	 tYBpVV0GAKvvq8IUWSqB2agdkt/YRZcNtRZaba+A=
+Received: from [127.0.0.1] (unknown [IPv6:2001:470:683e::1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature ECDSA (P-384) server-digest SHA384)
+	(Client did not present a certificate)
+	(Authenticated sender: xry111@xry111.site)
+	by xry111.site (Postfix) with ESMTPSA id 7382166AB8;
+	Wed, 29 Nov 2023 11:42:11 -0500 (EST)
+Message-ID: <5f437109d2be2b8843f549a661054a2e3ec0d66e.camel@xry111.site>
+Subject: Re: [PATCH v3 1/3] dt-bindings: reset: Document th1520 reset control
+From: Xi Ruoyao <xry111@xry111.site>
+To: Conor Dooley <conor@kernel.org>, Kwanghoon Son <k.son@samsung.com>
+Cc: p.zabel@pengutronix.de, robh+dt@kernel.org, 
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, jszhang@kernel.org,
+  guoren@kernel.org, wefu@redhat.com, paul.walmsley@sifive.com,
+ palmer@dabbelt.com,  aou@eecs.berkeley.edu, inki.dae@samsung.com,
+ devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org
+Date: Thu, 30 Nov 2023 00:42:09 +0800
+In-Reply-To: <20230919-42333064be342f6ab125dd75@fedora>
+References: <20230918045125.4000083-1-k.son@samsung.com>
+	 <CGME20230918045134epcas1p1b80b338b66512a976c3783cd0e51da50@epcas1p1.samsung.com>
+	 <20230918045125.4000083-2-k.son@samsung.com>
+	 <20230918-4ef7f52da269f3a7e4023bb3@fedora>
+	 <005301d9eab7$5688c920$039a5b60$@samsung.com>
+	 <20230919-42333064be342f6ab125dd75@fedora>
+Autocrypt: addr=xry111@xry111.site; prefer-encrypt=mutual;
+ keydata=mDMEYnkdPhYJKwYBBAHaRw8BAQdAsY+HvJs3EVKpwIu2gN89cQT/pnrbQtlvd6Yfq7egugi0HlhpIFJ1b3lhbyA8eHJ5MTExQHhyeTExMS5zaXRlPoiTBBMWCgA7FiEEkdD1djAfkk197dzorKrSDhnnEOMFAmJ5HT4CGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQrKrSDhnnEOPHFgD8D9vUToTd1MF5bng9uPJq5y3DfpcxDp+LD3joA3U2TmwA/jZtN9xLH7CGDHeClKZK/ZYELotWfJsqRcthOIGjsdAPuDgEYnkdPhIKKwYBBAGXVQEFAQEHQG+HnNiPZseiBkzYBHwq/nN638o0NPwgYwH70wlKMZhRAwEIB4h4BBgWCgAgFiEEkdD1djAfkk197dzorKrSDhnnEOMFAmJ5HT4CGwwACgkQrKrSDhnnEOPjXgD/euD64cxwqDIqckUaisT3VCst11RcnO5iRHm6meNIwj0BALLmWplyi7beKrOlqKfuZtCLbiAPywGfCNg8LOTt4iMD
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v3 2/4] dt-bindings: pwm: amlogic: add new compatible for
- meson8 pwm type
-Content-Language: en-US, fr
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Thierry Reding <thierry.reding@gmail.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-pwm@vger.kernel.org,
- JunYi Zhao <junyi.zhao@amlogic.com>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-References: <20231129134004.3642121-1-jbrunet@baylibre.com>
- <20231129134004.3642121-3-jbrunet@baylibre.com>
- <8e78be99-3d4d-4f79-9791-404e60bcb67c@linaro.org>
- <1jfs0ojz1a.fsf@starbuckisacylon.baylibre.com>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <1jfs0ojz1a.fsf@starbuckisacylon.baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
 
-Hi,
+On Tue, 2023-09-19 at 09:47 +0100, Conor Dooley wrote:
+> Guo,
+>=20
+> On Tue, Sep 19, 2023 at 02:08:32PM +0900, Kwanghoon Son wrote:
+> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: thead,th1520-reset
+> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: syscon
+> > > >=20
+> > > > iDumb question perhaps, but why is this a syscon?
+> > >=20
+> > > This is good point.
+> > > In fact, I took it from the vendor kernel, and I tried to keep it as =
+same as I could.
+> > > Vendor also followed drivers/reset/reset-imx7.c
+> > > As Rob said, if don't need it, I'll change it.
+>=20
+> > I have investigated vendor kernels, but it is still not sure reset info=
+rmation.
+> > I thought this is about sys_reg, but without datasheet, can't tell.
+> > Therefore, should be stopped patch for a while until knows better comes=
+ out.
+>=20
+> Is there documentation in English you can provide to these people that
+> are trying to add support for your product?
 
-On 29/11/2023 17:26, Jerome Brunet wrote:
-> 
-> On Wed 29 Nov 2023 at 17:20, Neil Armstrong <neil.armstrong@linaro.org> wrote:
-> 
->> Hi,
->>
->> On 29/11/2023 14:39, Jerome Brunet wrote:
->>> Add a new compatible for the pwm found in the meson8 to sm1 Amlogic SoCs,
->>> dealing with clocks differently. This does not enable new HW. It is meant
->>> to fix a bad DT ABI for the currently supported HW.
->>> The original clock bindings describe which input the PWM channel
->>> multiplexer should pick among its possible parents, which are
->>> hard-coded in the driver. As such, it is a setting tied to the driver
->>> implementation and does not describe the HW.
->>> The new bindings introduce here describe the clocks input of the PWM
->>> block
->>> as they exist.
->>> The old compatible is deprecated but kept to maintain ABI compatibility.
->>> The SoC specific compatibles introduced match the SoC families supported
->>> by the original bindings.
->>> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
->>> ---
->>>    .../devicetree/bindings/pwm/pwm-amlogic.yaml  | 52 ++++++++++++++++---
->>>    1 file changed, 46 insertions(+), 6 deletions(-)
->>> diff --git a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
->>> b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
->>> index 387976ed36d5..eece390114a3 100644
->>> --- a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
->>> +++ b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
->>> @@ -21,23 +21,35 @@ properties:
->>>              - amlogic,meson-g12a-ee-pwm
->>>              - amlogic,meson-g12a-ao-pwm-ab
->>>              - amlogic,meson-g12a-ao-pwm-cd
->>> -          - amlogic,meson-s4-pwm
->>> +        deprecated: true
->>>          - items:
->>>              - const: amlogic,meson-gx-pwm
->>>              - const: amlogic,meson-gxbb-pwm
->>> +        deprecated: true
->>>          - items:
->>>              - const: amlogic,meson-gx-ao-pwm
->>>              - const: amlogic,meson-gxbb-ao-pwm
->>> +        deprecated: true
->>>          - items:
->>>              - const: amlogic,meson8-pwm
->>>              - const: amlogic,meson8b-pwm
->>> +        deprecated: true
->>
->> I think deprecated should be moved in a third patch
-> 
-> The complain on v2 was that it was not clear the new binding was making
-> the old one obsolete. It looked to me that the deprecation old bindings
-> needed to go together with the introduction of the new.
-> 
-> I don't mind one way or the other
-> 
-> Is there a rule somewhere about this ?
+It can be downloaded from
+https://dl.sipeed.com/shareURL/LICHEE/licheepi4a/09_Doc now.  Click on
+"TH1520 User Manual.zip" and enter a captcha.  The doc about resetting
+is in chapter 5 of "TH1520 System User Manual.pdf".
 
-Not sure about that, I don't think it's a problem to have both valid
-at the same time, setting them deprecated afterwards looks cleaner
-to avoid mixing too much changes at the same time.
 
-Neil
-
-> 
->>
->>> +      - const: amlogic,meson8-pwm-v2
->>> +      - items:
->>> +          - enum:
->>> +              - amlogic,meson8b-pwm-v2
->>> +              - amlogic,meson-gxbb-pwm-v2
->>> +              - amlogic,meson-axg-pwm-v2
->>> +              - amlogic,meson-g12-pwm-v2
->>> +          - const: amlogic,meson8-pwm-v2
->>> +      - const: amlogic,meson-s4-pwm
->>>        reg:
->>>        maxItems: 1
->>>        clocks:
->>>        minItems: 1
->>> -    maxItems: 2
->>> +    maxItems: 4
->>>        clock-names:
->>>        minItems: 1
->>> @@ -58,7 +70,6 @@ allOf:
->>>            compatible:
->>>              contains:
->>>                enum:
->>> -              - amlogic,meson8-pwm
->>>                  - amlogic,meson8b-pwm
->>>                  - amlogic,meson-gxbb-pwm
->>>                  - amlogic,meson-gxbb-ao-pwm
->>> @@ -67,14 +78,15 @@ allOf:
->>>                  - amlogic,meson-g12a-ee-pwm
->>>                  - amlogic,meson-g12a-ao-pwm-ab
->>>                  - amlogic,meson-g12a-ao-pwm-cd
->>> -              - amlogic,meson-gx-pwm
->>> -              - amlogic,meson-gx-ao-pwm
->>
->> I don't understand why those entries are removed
-> 
-> It's a mistake. It should not have been added to begin with in
-> the first patch. "amlogic,meson-gx-*" must go along with
-> "amlogic,meson-gxbb-*" so it matches correctly without it.
-> 
-> I'll fix it
-> 
->>
->>>        then:
->>> -      # Historic bindings tied to the driver implementation
->>> +      # Obsolete historic bindings tied to the driver implementation
->>>          # The clocks provided here are meant to be matched with the input
->>>          # known (hard-coded) in the driver and used to select pwm clock
->>>          # source. Currently, the linux driver ignores this.
->>> +      # This is kept to maintain ABI backward compatibility.
->>
->> Same here, this should go in a third patch
->>
->>>          properties:
->>> +        clocks:
->>> +          maxItems: 2
->>>            clock-names:
->>>              oneOf:
->>>                - items:
->>> @@ -83,6 +95,27 @@ allOf:
->>>                    - const: clkin0
->>>                    - const: clkin1
->>>    +  # Newer binding where clock describe the actual clock inputs of the
->>> pwm
->>> +  # block. These are necessary but some inputs may be grounded.
->>> +  - if:
->>> +      properties:
->>> +        compatible:
->>> +          contains:
->>> +            enum:
->>> +              - amlogic,meson8-pwm-v2
->>> +    then:
->>> +      properties:
->>> +        clocks:
->>> +          minItems: 1
->>> +          items:
->>> +            - description: input clock 0 of the pwm block
->>> +            - description: input clock 1 of the pwm block
->>> +            - description: input clock 2 of the pwm block
->>> +            - description: input clock 3 of the pwm block
->>> +        clock-names: false
->>> +      required:
->>> +        - clocks
->>> +
->>>      # Newer IP block take a single input per channel, instead of 4 inputs
->>>      # for both channels
->>>      - if:
->>> @@ -112,6 +145,13 @@ examples:
->>>          clock-names = "clkin0", "clkin1";
->>>          #pwm-cells = <3>;
->>>        };
->>> +  - |
->>> +    pwm@2000 {
->>> +      compatible = "amlogic,meson8-pwm-v2";
->>> +      reg = <0x1000 0x10>;
->>> +      clocks = <&xtal>, <0>, <&fdiv4>, <&fdiv5>;
->>> +      #pwm-cells = <3>;
->>> +    };
->>>      - |
->>>        pwm@1000 {
->>>          compatible = "amlogic,meson-s4-pwm";
->>
->> Neil
-> 
-> 
-
+--=20
+Xi Ruoyao <xry111@xry111.site>
+School of Aerospace Science and Technology, Xidian University
 
