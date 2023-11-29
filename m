@@ -1,346 +1,116 @@
-Return-Path: <devicetree+bounces-19821-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19822-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 188A07FCE7B
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 06:45:05 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1FE27FCE98
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 07:01:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3DF2FB217DF
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 05:45:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9B02328349D
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 06:01:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF0507491;
-	Wed, 29 Nov 2023 05:44:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12F3D7483;
+	Wed, 29 Nov 2023 06:01:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AD6619B1;
-	Tue, 28 Nov 2023 21:44:53 -0800 (PST)
-X-SpamFilter-By: ArmorX SpamTrap 5.78 with qID 3AT5ieCT32554713, This message is accepted by code: ctloc85258
-Received: from mail.realtek.com (rtexh36505.realtek.com.tw[172.21.6.25])
-	by rtits2.realtek.com.tw (8.15.2/2.95/5.92) with ESMTPS id 3AT5ieCT32554713
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 29 Nov 2023 13:44:40 +0800
-Received: from RTEXMBS03.realtek.com.tw (172.21.6.96) by
- RTEXH36505.realtek.com.tw (172.21.6.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.32; Wed, 29 Nov 2023 13:44:40 +0800
-Received: from james-bs01.realtek.com.tw (172.21.190.247) by
- RTEXMBS03.realtek.com.tw (172.21.6.96) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.7; Wed, 29 Nov 2023 13:44:40 +0800
-From: James Tai <james.tai@realtek.com>
-To: Thomas Gleixner <tglx@linutronix.de>, Marc Zyngier <maz@kernel.org>,
-        "Rob
- Herring" <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, James Tai <james.tai@realtek.com>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        "kernel test
- robot" <lkp@intel.com>
-Subject: [PATCH v3 6/6] irqchip: Introduce RTD1619B support using the Realtek common interrupt controller driver
-Date: Wed, 29 Nov 2023 13:43:39 +0800
-Message-ID: <20231129054339.3054202-7-james.tai@realtek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231129054339.3054202-1-james.tai@realtek.com>
-References: <20231129054339.3054202-1-james.tai@realtek.com>
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3F2D19AD;
+	Tue, 28 Nov 2023 22:01:08 -0800 (PST)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+	by ex01.ufhost.com (Postfix) with ESMTP id 96CD724E2B0;
+	Wed, 29 Nov 2023 14:00:59 +0800 (CST)
+Received: from EXMBX066.cuchost.com (172.16.7.66) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 29 Nov
+ 2023 14:00:59 +0800
+Received: from jsia-virtual-machine.localdomain (60.54.3.230) by
+ EXMBX066.cuchost.com (172.16.6.66) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.42; Wed, 29 Nov 2023 14:00:48 +0800
+From: Sia Jee Heng <jeeheng.sia@starfivetech.com>
+To: <kernel@esmil.dk>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <krzk@kernel.org>,
+	<conor+dt@kernel.org>, <paul.walmsley@sifive.com>, <palmer@dabbelt.com>,
+	<aou@eecs.berkeley.edu>, <daniel.lezcano@linaro.org>, <tglx@linutronix.de>,
+	<conor@kernel.org>, <anup@brainfault.org>, <gregkh@linuxfoundation.org>,
+	<jirislaby@kernel.org>, <michal.simek@amd.com>,
+	<michael.zhu@starfivetech.com>, <drew@beagleboard.org>
+CC: <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <jeeheng.sia@starfivetech.com>,
+	<leyfoon.tan@starfivetech.com>
+Subject: [PATCH v2 0/6] Initial device tree support for StarFive JH8100 SoC
+Date: Wed, 29 Nov 2023 14:00:37 +0800
+Message-ID: <20231129060043.368874-1-jeeheng.sia@starfivetech.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: RTEXH36506.realtek.com.tw (172.21.6.27) To
- RTEXMBS03.realtek.com.tw (172.21.6.96)
-X-KSE-ServerInfo: RTEXMBS03.realtek.com.tw, 9
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-KSE-Antivirus-Interceptor-Info: fallback
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-KSE-ServerInfo: RTEXH36505.realtek.com.tw, 9
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-KSE-Antivirus-Interceptor-Info: fallback
-X-KSE-AntiSpam-Interceptor-Info: fallback
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX066.cuchost.com
+ (172.16.6.66)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: quoted-printable
 
-Add support for the RTD1619B platform.
+StarFive JH8100 SoC consists of 4 RISC-V performance Cores (Dubhe-90) and
+2 RISC-V energy efficient cores (Dubhe-80). It also features various
+interfaces such as DDR4, Gbit-Ether, CAN, USB 3.2, SD/MMC, etc., making i=
+t
+ideal for high-performance computing scenarios.
 
-Reported-by: kernel test robot <lkp@intel.com>
-Closes: https://lore.kernel.org/oe-kbuild-all/202311061822.551ieaoI-lkp@intel.com/
-CC: Thomas Gleixner <tglx@linutronix.de>
-CC: Marc Zyngier <maz@kernel.org>
-CC: linux-kernel@vger.kernel.org
-Signed-off-by: James Tai <james.tai@realtek.com>
----
-v2 to v3 change:
-- Unchanged
+This patch series introduces initial SoC DTSI support for the StarFive
+JH8100 SoC. The relevant dt-binding documentation has been updated
+accordingly. Below is the list of IP blocks added in the initial SoC DTSI=
+,
+which can be used for booting via initramfs on FPGA:
 
-v1 to v2 change:
-- Resolved kernel test robot build warnings
-- Replaced magic number with macro
-- Fixed code style issues
+- StarFive Dubhe-80 CPU
+- StarFive Dubhe-90 CPU
+- PLIC
+- CLINT
+- UART
 
- drivers/irqchip/Kconfig                |   6 +
- drivers/irqchip/Makefile               |   1 +
- drivers/irqchip/irq-realtek-rtd1619b.c | 217 +++++++++++++++++++++++++
- 3 files changed, 224 insertions(+)
- create mode 100644 drivers/irqchip/irq-realtek-rtd1619b.c
+The primary goal is to include foundational patches so that additional
+drivers can be built on top of this framework.
 
-diff --git a/drivers/irqchip/Kconfig b/drivers/irqchip/Kconfig
-index 65e2d67d1505..c5b2762df420 100644
---- a/drivers/irqchip/Kconfig
-+++ b/drivers/irqchip/Kconfig
-@@ -240,6 +240,12 @@ config REALTEK_RTD1325_INTC
- 	help
- 	  Support for Realtek RTD1325 Interrupt Controller.
- 
-+config REALTEK_RTD1619B_INTC
-+	tristate "Realtek RTD1619B interrupt controller"
-+	select REALTEK_DHC_INTC
-+	help
-+	  Support for Realtek RTD1619B Interrupt Controller.
-+
- config RENESAS_INTC_IRQPIN
- 	bool "Renesas INTC External IRQ Pin Support" if COMPILE_TEST
- 	select IRQ_DOMAIN
-diff --git a/drivers/irqchip/Makefile b/drivers/irqchip/Makefile
-index eaa12928d60b..da308aefcb87 100644
---- a/drivers/irqchip/Makefile
-+++ b/drivers/irqchip/Makefile
-@@ -51,6 +51,7 @@ obj-$(CONFIG_REALTEK_DHC_INTC)		+= irq-realtek-intc-common.o
- obj-$(CONFIG_REALTEK_RTD1319_INTC)	+= irq-realtek-rtd1319.o
- obj-$(CONFIG_REALTEK_RTD1319D_INTC)	+= irq-realtek-rtd1319d.o
- obj-$(CONFIG_REALTEK_RTD1325_INTC)	+= irq-realtek-rtd1325.o
-+obj-$(CONFIG_REALTEK_RTD1619B_INTC)	+= irq-realtek-rtd1619b.o
- obj-$(CONFIG_RENESAS_INTC_IRQPIN)	+= irq-renesas-intc-irqpin.o
- obj-$(CONFIG_RENESAS_IRQC)		+= irq-renesas-irqc.o
- obj-$(CONFIG_RENESAS_RZA1_IRQC)		+= irq-renesas-rza1.o
-diff --git a/drivers/irqchip/irq-realtek-rtd1619b.c b/drivers/irqchip/irq-realtek-rtd1619b.c
-new file mode 100644
-index 000000000000..27bc4f9ef3bf
---- /dev/null
-+++ b/drivers/irqchip/irq-realtek-rtd1619b.c
-@@ -0,0 +1,217 @@
-+// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
-+/*
-+ * Realtek RTD1619B interrupt controller driver
-+ *
-+ * Copyright (c) 2023 Realtek Semiconductor Corporation
-+ */
-+
-+#include <linux/init.h>
-+#include <linux/io.h>
-+#include <linux/irqchip.h>
-+#include <linux/of_device.h>
-+#include <linux/platform_device.h>
-+
-+#include "irq-realtek-intc-common.h"
-+
-+#define ISO_NMI_WDT_MASK     0x08008090
-+#define ISO_NORMAL_MASK      0xf7ff7f6e
-+#define MISC_NORMAL_MASK     0xffffded6
-+#define MISC_UART1_MASK      0x00000028
-+#define MISC_UART2_MASK      0x00002100
-+
-+#define ISO_ISR_EN_OFFSET    0x40
-+#define ISO_ISR_OFFSET       0
-+#define ISO_ISR_UMSK_OFFSET  0x4
-+#define MISC_ISR_EN_OFFSET   0x80
-+#define MISC_ISR_OFFSET      0xc
-+#define MISC_ISR_UMSK_OFFSET 0x8
-+
-+enum rtd1619b_iso_isr_bits {
-+	RTD1619B_ISO_ISR_TC3_SHIFT	   = 1,
-+	RTD1619B_ISO_ISR_UR0_SHIFT	   = 2,
-+	RTD1619B_ISO_ISR_LSADC0_SHIFT	   = 3,
-+	RTD1619B_ISO_ISR_WDOG1_NMI_SHIFT   = 4,
-+	RTD1619B_ISO_ISR_IRDA_SHIFT	   = 5,
-+	RTD1619B_ISO_ISR_SPI1_SHIFT	   = 6,
-+	RTD1619B_ISO_ISR_WDOG2_NMI_SHIFT   = 7,
-+	RTD1619B_ISO_ISR_I2C0_SHIFT	   = 8,
-+	RTD1619B_ISO_ISR_TC4_SHIFT	   = 9,
-+	RTD1619B_ISO_ISR_TC7_SHIFT	   = 10,
-+	RTD1619B_ISO_ISR_I2C1_SHIFT	   = 11,
-+	RTD1619B_ISO_ISR_HIFI_WAKEUP_SHIFT = 14,
-+	RTD1619B_ISO_ISR_WDOG4_NMI_SHIFT   = 15,
-+	RTD1619B_ISO_ISR_TC8_SHIFT	   = 16,
-+	RTD1619B_ISO_ISR_VFD_SHIFT	   = 17,
-+	RTD1619B_ISO_ISR_VTC_SHIFT	   = 18,
-+	RTD1619B_ISO_ISR_GPIOA_SHIFT	   = 19,
-+	RTD1619B_ISO_ISR_GPIODA_SHIFT	   = 20,
-+	RTD1619B_ISO_ISR_ISO_MISC_SHIFT	   = 21,
-+	RTD1619B_ISO_ISR_CBUS_SHIFT	   = 22,
-+	RTD1619B_ISO_ISR_ETN_SHIFT	   = 23,
-+	RTD1619B_ISO_ISR_USB_HOST_SHIFT	   = 24,
-+	RTD1619B_ISO_ISR_USB_U3_DRD_SHIFT  = 25,
-+	RTD1619B_ISO_ISR_USB_U2_DRD_SHIFT  = 26,
-+	RTD1619B_ISO_ISR_WDOG3_NMI_SHIFT   = 27,
-+	RTD1619B_ISO_ISR_PORB_HV_CEN_SHIFT = 28,
-+	RTD1619B_ISO_ISR_PORB_DV_CEN_SHIFT = 29,
-+	RTD1619B_ISO_ISR_PORB_AV_CEN_SHIFT = 30,
-+	RTD1619B_ISO_ISR_I2C1_REQ_SHIFT	   = 31,
-+};
-+
-+static const u32 rtd1619b_iso_isr_to_scpu_int_en_mask[32] = {
-+	[RTD1619B_ISO_ISR_SPI1_SHIFT]	     = BIT(1),
-+	[RTD1619B_ISO_ISR_UR0_SHIFT]	     = BIT(2),
-+	[RTD1619B_ISO_ISR_LSADC0_SHIFT]	     = BIT(3),
-+	[RTD1619B_ISO_ISR_IRDA_SHIFT]	     = BIT(5),
-+	[RTD1619B_ISO_ISR_I2C0_SHIFT]	     = BIT(8),
-+	[RTD1619B_ISO_ISR_I2C1_SHIFT]	     = BIT(11),
-+	[RTD1619B_ISO_ISR_VFD_SHIFT]	     = BIT(17),
-+	[RTD1619B_ISO_ISR_GPIOA_SHIFT]	     = BIT(19),
-+	[RTD1619B_ISO_ISR_GPIODA_SHIFT]	     = BIT(20),
-+	[RTD1619B_ISO_ISR_PORB_HV_CEN_SHIFT] = BIT(28),
-+	[RTD1619B_ISO_ISR_PORB_DV_CEN_SHIFT] = BIT(29),
-+	[RTD1619B_ISO_ISR_PORB_AV_CEN_SHIFT] = BIT(30),
-+	[RTD1619B_ISO_ISR_I2C1_REQ_SHIFT]    = BIT(31),
-+	[RTD1619B_ISO_ISR_WDOG1_NMI_SHIFT]   = IRQ_ALWAYS_ENABLED,
-+	[RTD1619B_ISO_ISR_WDOG2_NMI_SHIFT]   = IRQ_ALWAYS_ENABLED,
-+	[RTD1619B_ISO_ISR_WDOG3_NMI_SHIFT]   = IRQ_ALWAYS_ENABLED,
-+	[RTD1619B_ISO_ISR_WDOG4_NMI_SHIFT]   = IRQ_ALWAYS_ENABLED,
-+};
-+
-+enum rtd1619b_misc_isr_bits {
-+	RTD1619B_ISR_UR1_SHIFT	  = 3,
-+	RTD1619B_ISR_TC5_SHIFT	  = 4,
-+	RTD1619B_ISR_UR1_TO_SHIFT = 5,
-+	RTD1619B_ISR_TC0_SHIFT	  = 6,
-+	RTD1619B_ISR_TC1_SHIFT	  = 7,
-+	RTD1619B_ISR_UR2_SHIFT	  = 8,
-+	RTD1619B_ISR_UR2_TO_SHIFT = 13,
-+	RTD1619B_ISR_I2C5_SHIFT	  = 14,
-+	RTD1619B_ISR_I2C4_SHIFT	  = 15,
-+	RTD1619B_ISR_I2C3_SHIFT	  = 23,
-+	RTD1619B_ISR_SC0_SHIFT	  = 24,
-+	RTD1619B_ISR_SC1_SHIFT	  = 25,
-+	RTD1619B_ISR_SPI_SHIFT	  = 27,
-+	RTD1619B_ISR_FAN_SHIFT	  = 29,
-+};
-+
-+static const u32 rtd1619b_misc_isr_to_scpu_int_en_mask[32] = {
-+	[RTD1619B_ISR_UR1_SHIFT]    = BIT(3),
-+	[RTD1619B_ISR_UR1_TO_SHIFT] = BIT(5),
-+	[RTD1619B_ISR_UR2_TO_SHIFT] = BIT(6),
-+	[RTD1619B_ISR_UR2_SHIFT]    = BIT(7),
-+	[RTD1619B_ISR_I2C5_SHIFT]   = BIT(14),
-+	[RTD1619B_ISR_I2C4_SHIFT]   = BIT(15),
-+	[RTD1619B_ISR_SC0_SHIFT]    = BIT(24),
-+	[RTD1619B_ISR_SC1_SHIFT]    = BIT(25),
-+	[RTD1619B_ISR_SPI_SHIFT]    = BIT(27),
-+	[RTD1619B_ISR_I2C3_SHIFT]   = BIT(28),
-+	[RTD1619B_ISR_FAN_SHIFT]    = BIT(29),
-+};
-+
-+static struct realtek_intc_subset_cfg rtd1619b_intc_iso_cfgs[] = {
-+	{ ISO_NORMAL_MASK, },
-+	{ ISO_NMI_WDT_MASK, },
-+};
-+
-+static const struct realtek_intc_info rtd1619b_intc_iso_info = {
-+	.isr_offset		 = ISO_ISR_OFFSET,
-+	.umsk_isr_offset	 = ISO_ISR_UMSK_OFFSET,
-+	.scpu_int_en_offset	 = ISO_ISR_EN_OFFSET,
-+	.isr_to_scpu_int_en_mask = rtd1619b_iso_isr_to_scpu_int_en_mask,
-+	.cfg			 = rtd1619b_intc_iso_cfgs,
-+	.cfg_num		 = ARRAY_SIZE(rtd1619b_intc_iso_cfgs),
-+};
-+
-+static struct realtek_intc_subset_cfg rtd1619b_intc_misc_cfgs[] = {
-+	{ MISC_NORMAL_MASK, },
-+	{ MISC_UART1_MASK, },
-+	{ MISC_UART2_MASK, },
-+};
-+
-+static const struct realtek_intc_info rtd1619b_intc_misc_info = {
-+	.isr_offset		 = MISC_ISR_OFFSET,
-+	.umsk_isr_offset	 = MISC_ISR_UMSK_OFFSET,
-+	.scpu_int_en_offset	 = MISC_ISR_EN_OFFSET,
-+	.isr_to_scpu_int_en_mask = rtd1619b_misc_isr_to_scpu_int_en_mask,
-+	.cfg			 = rtd1619b_intc_misc_cfgs,
-+	.cfg_num		 = ARRAY_SIZE(rtd1619b_intc_misc_cfgs),
-+};
-+
-+static const struct of_device_id realtek_intc_rtd1619b_dt_matches[] = {
-+	{
-+		.compatible = "realtek,rtd1619b-intc-iso",
-+		.data = &rtd1619b_intc_iso_info,
-+	}, {
-+		.compatible = "realtek,rtd1619b-intc-misc",
-+		.data = &rtd1619b_intc_misc_info,
-+	},
-+	{ /* sentinel */ }
-+};
-+
-+static int realtek_intc_rtd1619b_suspend(struct device *dev)
-+{
-+	struct realtek_intc_data *data = dev_get_drvdata(dev);
-+	const struct realtek_intc_info *info = data->info;
-+
-+	data->saved_en = readl(data->base + info->scpu_int_en_offset);
-+
-+	writel(DISABLE_INTC, data->base + info->scpu_int_en_offset);
-+	writel(CLEAN_INTC_STATUS, data->base + info->umsk_isr_offset);
-+	writel(CLEAN_INTC_STATUS, data->base + info->isr_offset);
-+
-+	return 0;
-+}
-+
-+static int realtek_intc_rtd1619b_resume(struct device *dev)
-+{
-+	struct realtek_intc_data *data = dev_get_drvdata(dev);
-+	const struct realtek_intc_info *info = data->info;
-+
-+	writel(CLEAN_INTC_STATUS, data->base + info->umsk_isr_offset);
-+	writel(CLEAN_INTC_STATUS, data->base + info->isr_offset);
-+	writel(data->saved_en, data->base + info->scpu_int_en_offset);
-+
-+	return 0;
-+}
-+
-+static const struct dev_pm_ops realtek_intc_rtd1619b_pm_ops = {
-+	.suspend_noirq = realtek_intc_rtd1619b_suspend,
-+	.resume_noirq  = realtek_intc_rtd1619b_resume,
-+};
-+
-+static int rtd1619b_intc_probe(struct platform_device *pdev)
-+{
-+	const struct realtek_intc_info *info;
-+
-+	info = of_device_get_match_data(&pdev->dev);
-+	if (!info)
-+		return -EINVAL;
-+
-+	return realtek_intc_probe(pdev, info);
-+}
-+
-+static struct platform_driver realtek_intc_rtd1619b_driver = {
-+	.probe = rtd1619b_intc_probe,
-+	.driver = {
-+		.name = "realtek_intc_rtd1619b",
-+		.of_match_table = realtek_intc_rtd1619b_dt_matches,
-+		.suppress_bind_attrs = true,
-+		.pm = &realtek_intc_rtd1619b_pm_ops,
-+	},
-+};
-+
-+static int __init realtek_intc_rtd1619b_init(void)
-+{
-+	return platform_driver_register(&realtek_intc_rtd1619b_driver);
-+}
-+core_initcall(realtek_intc_rtd1619b_init);
-+
-+static void __exit realtek_intc_rtd1619b_exit(void)
-+{
-+	platform_driver_unregister(&realtek_intc_rtd1619b_driver);
-+}
-+module_exit(realtek_intc_rtd1619b_exit);
-+
-+MODULE_LICENSE("GPL");
-+MODULE_DESCRIPTION("Realtek RTD1619B Interrupt Controller Driver");
--- 
-2.25.1
+Changes since v1:
+- Dropped patch 5.
+- Moved timebase-frequency from .dts to .dtsi.
+- Moved soc node from .dts to .dtsi.
+- Revised the title for the dt-binding document by removing Xilinx
+  wording.
+- Added a full stop to the end of the commit messages.
+- Removed extra blank lines.
+- Used hyphen for a node name.
+- Added more recipients to the mailing list.
+
+Sia Jee Heng (6):
+  dt-bindings: riscv: Add StarFive Dubhe compatibles
+  dt-bindings: riscv: Add StarFive JH8100 SoC
+  dt-bindings: timer: Add StarFive JH8100 clint
+  dt-bindings: interrupt-controller: Add StarFive JH8100 plic
+  dt-bindings: serial: cdns: Add new compatible string for StarFive
+    JH8100 UART
+  riscv: dts: starfive: Add initial StarFive JH8100 device tree
+
+ .../sifive,plic-1.0.0.yaml                    |   1 +
+ .../devicetree/bindings/riscv/cpus.yaml       |   2 +
+ .../devicetree/bindings/riscv/starfive.yaml   |   5 +-
+ .../devicetree/bindings/serial/cdns,uart.yaml |   4 +
+ .../bindings/timer/sifive,clint.yaml          |   1 +
+ arch/riscv/boot/dts/starfive/Makefile         |   1 +
+ arch/riscv/boot/dts/starfive/jh8100-evb.dts   |  28 ++
+ arch/riscv/boot/dts/starfive/jh8100.dtsi      | 378 ++++++++++++++++++
+ 8 files changed, 419 insertions(+), 1 deletion(-)
+ create mode 100644 arch/riscv/boot/dts/starfive/jh8100-evb.dts
+ create mode 100644 arch/riscv/boot/dts/starfive/jh8100.dtsi
+
+
+base-commit: 18d46e76d7c2eedd8577fae67e3f1d4db25018b0
+--=20
+2.34.1
 
 
