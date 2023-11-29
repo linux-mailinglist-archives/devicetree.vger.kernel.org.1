@@ -1,224 +1,215 @@
-Return-Path: <devicetree+bounces-20184-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20185-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 900287FE32B
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 23:30:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0BB77FE342
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 23:37:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1F53FB210A9
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 22:30:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0C9701C20AB4
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 22:37:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2973D47A44;
-	Wed, 29 Nov 2023 22:30:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 615573B185;
+	Wed, 29 Nov 2023 22:37:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Twumr8gt"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XhemESQ6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D99AB2
-	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 14:29:57 -0800 (PST)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-a00c200782dso36334266b.1
-        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 14:29:56 -0800 (PST)
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 624F1DC
+	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 14:37:47 -0800 (PST)
+Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2c9c39b7923so4388681fa.0
+        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 14:37:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701296995; x=1701901795; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jjJ8Mb+534HQepceR4AuOphlKM7gML1f+9PSTE2HCjU=;
-        b=Twumr8gt3E9+63cRKBsbZdTs9o0k95AQa92DaWz8n+2cGT/Z57di/Agc7C02U4l8Lx
-         u82iKtJKVtpwEqYLBQFMHxS5AGgZPh3OnTLVDwcIT2y82TO+KXjd62RQa6XXwS65c2P4
-         IF7c0nWRaPd7Q8lNKiCJ+qq24NP1lyJrgjmbDZrgztZ+Y3BQ1Sbdwelz6CBUBFdmDwbM
-         SuNfw0uGXwuYoDnZliuna08llr/kvBcFeGfFhzJoLygVccSBk06sl4fT8pemcNGqpeiF
-         sn7DgVNCQ4jcwqkYXZ0M1LTy3dD4aq+2CuTXowPRpFtjbGNr3kldd2UjXFAYjznublIG
-         9Z2g==
+        d=linaro.org; s=google; t=1701297465; x=1701902265; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=bxjDHRvqNf8As8nbmBC+EVTyuwWGJO53SVyTTlAXxs4=;
+        b=XhemESQ6L4viGgH9/2ksBl2n+XF3of44KapZZz2ZdR0xEd/n4g2SsRF/bxiKpy0162
+         p/1JMQXc9WKpHZ4ff6bnxHl63cBB0vK59pMc4ZL+VMcXajdNRWiPBo8UBYoAol3zcKyE
+         7zzJhRuHec3XurvJI66QhsNg++4qGW9Szviw8/+gcCZwbE5D2sLfelo0GqS2py4A1dhZ
+         MDae8xZU/7iVVZP2xoDsPlw5/UidY8cjxWC8nQhxX0XXvjdd21C8zui4TTzQJGnvgGti
+         nsdzESfQpvGf31QxCZh0/T7glGTMbwK/cXkiNZrGlx8NfEgZtxJc4lr6aw2gS+h+YuHp
+         8SkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701296995; x=1701901795;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jjJ8Mb+534HQepceR4AuOphlKM7gML1f+9PSTE2HCjU=;
-        b=s24xYNLwrmd71Jezws+5nWm3bUmsor9+75WDYZMrXLxFojTy9HLLA+n1uShBlWdoJL
-         jdy084HSzSi+PQjHasSPcZzbQDab3mUqmX6FDNAVv7pbLEDHdJrL0HH1DpfduDuruQAi
-         HFrlqfQjLaNeLtNrRV5y7LdcprNcAwMiW/N6EbsVcfJQimimYdmAVNe/z2zimGJpX0P/
-         a9SG8VyqxzwO2RW/4YPnTCCwrrMYRgaYRdyZCD6x3vp9g2vt68yb6T//D0+ituMhUazg
-         y9+xawoN50EWr8rdLA8h5szoHWJ5nxTXvzpUvdcUMjS7WA+EBebz3U06p79b9dpXZhWE
-         81Xw==
-X-Gm-Message-State: AOJu0YxAK4i9WJlXPBTVZoegn8BsmRUiarsA9oOeJgQFWl5W0PwsPIQ7
-	ecGtE3x2PCzs8PlcqJlsDi78dQ==
-X-Google-Smtp-Source: AGHT+IFPWBWAiWFLmSm+a0zThkr+g5UOIuJnAP86zUgmmcw2sX3gcHSnHqviZtEbzdTrQ2XTT+zKLA==
-X-Received: by 2002:a17:907:9728:b0:9be:7b67:1673 with SMTP id jg40-20020a170907972800b009be7b671673mr17684397ejc.1.1701296995481;
-        Wed, 29 Nov 2023 14:29:55 -0800 (PST)
-Received: from [192.168.209.83] (178235187166.dynamic-4-waw-k-2-3-0.vectranet.pl. [178.235.187.166])
-        by smtp.gmail.com with ESMTPSA id f4-20020a170906560400b009fcb5fcfbe6sm8316172ejq.220.2023.11.29.14.29.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Nov 2023 14:29:54 -0800 (PST)
-Message-ID: <5ffa4cbf-c30f-4169-ad75-38cd3e8d11c2@linaro.org>
-Date: Wed, 29 Nov 2023 23:29:51 +0100
+        d=1e100.net; s=20230601; t=1701297465; x=1701902265;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bxjDHRvqNf8As8nbmBC+EVTyuwWGJO53SVyTTlAXxs4=;
+        b=eOfC5tWEqyoVDLrFYuriPMbknTk8+KtjcRxftnuMmDA5OYC2bTyGZrCwk+0sHvkEm4
+         1Bv6xqKr3uATu/t5FyVFl7oKt7KzCgUHlyKGhPk3QQzq5je+3P4tdO/IgzuhH4jrezg1
+         hDm8qfP9o/jOwlt33inN3QiIBxMZYFr0C692nQoWeJL7YDuxgwmA12r9EFFlDo44E6Sr
+         GZipcyGQO575mBSgbszylCcTJDSqilGAFi+UKlMuRsQvkDGH/GGfENmSGjOt3Lc3wge0
+         8iytlvUgAKrVE8UMf0pABqLaudBjeehxSiYkL/aSc4vfdctW66s4AqwqZ2ur6IpnVIas
+         C4+A==
+X-Gm-Message-State: AOJu0YwWEvMlcVAJ9gthMDcJ8DM/z9Y3CP9uGg0GutqExLlTMs+yKY99
+	RRjYpZNhKIrKbHxz0Acg337Ahg==
+X-Google-Smtp-Source: AGHT+IGqOHMpkJNi3MHQWntyW7OBj8quotaGsS43d+srALwTxtmGgH9ibFvTtPCcGtW9LJXOIuEtQQ==
+X-Received: by 2002:a2e:b003:0:b0:2c9:bc45:3206 with SMTP id y3-20020a2eb003000000b002c9bc453206mr3360214ljk.43.1701297465599;
+        Wed, 29 Nov 2023 14:37:45 -0800 (PST)
+Received: from [192.168.1.2] (c-21d3225c.014-348-6c756e10.bbcust.telenor.se. [92.34.211.33])
+        by smtp.gmail.com with ESMTPSA id s16-20020a2eb8d0000000b002c02cf6cac5sm2092680ljp.83.2023.11.29.14.37.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 29 Nov 2023 14:37:45 -0800 (PST)
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Wed, 29 Nov 2023 23:37:41 +0100
+Subject: [PATCH v4] gpio: ixp4xx: Handle clock output on pin 14 and 15
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 3/5] arm64: dts: qcom: Add base X1E80100 dtsi and the
- QCP dts
-Content-Language: en-US
-To: Sibi Sankar <quic_sibis@quicinc.com>, andersson@kernel.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- catalin.marinas@arm.com, ulf.hansson@linaro.org
-Cc: agross@kernel.org, conor+dt@kernel.org, ayan.kumar.halder@amd.com,
- j@jannau.net, dmitry.baryshkov@linaro.org, nfraprado@collabora.com,
- m.szyprowski@samsung.com, u-kumar1@ti.com, peng.fan@nxp.com,
- lpieralisi@kernel.org, quic_rjendra@quicinc.com, abel.vesa@linaro.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- quic_tsoni@quicinc.com, neil.armstrong@linaro.org
-References: <20231117113931.26660-1-quic_sibis@quicinc.com>
- <20231117113931.26660-4-quic_sibis@quicinc.com>
- <918ff1f5-ce01-43ea-b034-e69fbb31f495@linaro.org>
- <3dd41426-c026-a832-0a6b-0aabfaec2a8c@quicinc.com>
- <c6e05a10-88cc-409c-afc0-37166b763eaa@linaro.org>
- <8021a6f5-6316-031d-8181-e0e2047e2fa8@quicinc.com>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <8021a6f5-6316-031d-8181-e0e2047e2fa8@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20231129-ixp4xx-gpio-clocks-v4-1-345f79058c6b@linaro.org>
+X-B4-Tracking: v=1; b=H4sIADS9Z2UC/33Nyw6CMBCF4VcxXVvTTsulrnwP44LLFCYSSlpDM
+ IR3t7DCSFz+J5lvZhbQEwZ2Pc3M40iBXB9Dn0+saou+QU51bAYClDAgOU2DnibeDOR41bnqGXi
+ GOUBurC5LxeLh4NHStKH3R+yWwsv59/ZjlOv6lxslFzzJtNFQWqN1ceuoL7y7ON+w1Rthb8ChA
+ dEQIBNEKUyW1j+G2hvq0FDRSFObW9SYWZl8GcuyfACMCopwPQEAAA==
+To: Linus Walleij <linusw@kernel.org>, Imre Kaloz <kaloz@openwrt.org>, 
+ Krzysztof Halasa <khalasa@piap.pl>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org, 
+ devicetree@vger.kernel.org, Linus Walleij <linus.walleij@linaro.org>
+X-Mailer: b4 0.12.4
 
-On 29.11.2023 16:46, Sibi Sankar wrote:
-> 
-> 
-> On 11/29/23 18:24, Konrad Dybcio wrote:
->> On 29.11.2023 10:25, Sibi Sankar wrote:
->>>
->>>
->>> On 11/18/23 06:36, Konrad Dybcio wrote:
->>>> On 17.11.2023 12:39, Sibi Sankar wrote:
->>>>> From: Rajendra Nayak <quic_rjendra@quicinc.com>
->>>>>
->>>>> Add base dtsi and QCP board (Qualcomm Compute Platform) dts file for
->>>>> X1E80100 SoC, describing the CPUs, GCC and RPMHCC clock controllers,
->>>>> geni UART, interrupt controller, TLMM, reserved memory, interconnects,
->>>>> SMMU and LLCC nodes.
->>>>>
->>>>> Co-developed-by: Abel Vesa <abel.vesa@linaro.org>
->>>>> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
->>>>> Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
->>>>> Co-developed-by: Sibi Sankar <quic_sibis@quicinc.com>
->>>>> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
->>>>> ---
->> [...]
->>
->>
->>>>> +        idle-states {
->>>>> +            entry-method = "psci";
->>>>> +
->>>>> +            CLUSTER_C4: cpu-sleep-0 {
->>>>> +                compatible = "arm,idle-state";
->>>>> +                idle-state-name = "ret";
->>>>> +                arm,psci-suspend-param = <0x00000004>;
->>>> These suspend parameters look funky.. is this just a PSCI sleep
->>>> implementation that strays far away from Arm's suggested guidelines?
->>>
->>> not really! it's just that 30th bit is set according to spec i.e
->>> it's marked as a retention state.
->> So, is there no state where the cores actually power down? Or is it
->> not described yet?
->>
->> FWIW by "power down" I mean it in the sense that Arm DEN0022D does,
->> so "In this state the core is powered off. Software on the device
->> needs to save all core state, so that it can be preserved over
->> the powerdown."
-> 
-> I was told we mark it explicitly as retention because hw is expected
-> to handle powerdown and we don't want sw to also do the same.
-> 
->>
->>>
->>>>
->>>> [...]
->>>>
->>>>
->>>>> +        CPU_PD11: power-domain-cpu11 {
->>>>> +            #power-domain-cells = <0>;
->>>>> +            power-domains = <&CLUSTER_PD>;
->>>>> +        };
->>>>> +
->>>>> +        CLUSTER_PD: power-domain-cpu-cluster {
->>>>> +            #power-domain-cells = <0>;
->>>>> +            domain-idle-states = <&CLUSTER_CL4>, <&CLUSTER_CL5>;
->>>>> +        };
->>>> So, can the 3 clusters not shut down their L2 and PLLs (if separate?)
->>>> on their own?
->>>
->>> on CL5 the clusters are expected to shutdown their l2 and PLL on their
->>> own.
->> Then I think this won't happen with this description
->>
->> every cpu has a genpd tree like this:
->>
->> cpu_n
->>   |_CPU_PDn
->>      |_CLUSTER_PD
->>
->> and CLUSTER_PD has two idle states: CLUSTER_CL4 and CLUSTER_CL5
->>
->> which IIUC means that neither cluster idle state will be reached
->> unless all children of CLUSTER_PD (so, all CPUs) go down that low
->>
->> This is "fine" on e.g. sc8280 where both CPU clusters are part of
->> the same Arm DynamIQ cluster (which is considered one cluster as
->> far as MPIDR_EL1 goes) (though perhaps that's misleading and with
->> the qcom plumbing they perhaps could actually be collapsed separately)
-> 
-> We did verify that the sleep stats increase independently for each
-> cluster, so it's behavior is unlike what you explained above. I'll
-> re-spin this series again in the meantime and you can take another
-> stab at it there.
-So are you saying that you checked the RPMh sleep stats and each cluster
-managed to sleep on its own, or did you do something different?
+This makes it possible to provide basic clock output on pins
+14 and 15. The clocks are typically used by random electronics,
+not modeled in the device tree, so they just need to be provided
+on request.
 
-Were the sleep durations far apart? What's the order of magnitude of that
-difference? Are the values reported in RPMh greater than those in
-/sys/kernel/debug/pm_genpd/power-domain-cpu-cluster/total_idle_time?
+In order to not disturb old systems that require that the
+hardware defaults are kept in the clock setting bits, we only
+manipulate these if either device tree property is present.
+Once we know a device needs one of the clocks we can set it
+in the device tree.
 
-Is there any other (i.e. non-Linux) source of "go to sleep" votes?
+Reviewed-by: Andy Shevchenko <andy@kernel.org>
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+The GPIO block on the very legacy IXP4xx GPIO can provide
+a generated clock output on GPIO 14 and GPIO 15. This
+provides a straight-forward solution with a flag for each
+clock output.
 
-Konrad
+More complicated solutions are thinkable, but I deemed them
+overdesigned for this legacy SoC.
+---
+Changes in v4:
+- Drop the merged bindings patch from the series.
+- Fix a small optimization suggested by andy.
+- Do not |= zeroes on registers, just put in a comment.
+- Link to v3: https://lore.kernel.org/r/20230923-ixp4xx-gpio-clocks-v3-0-66f8fe4e7f15@linaro.org
+
+Changes in v3:
+- Make sure to only manipulate the clock bits if one of the clock
+  DT properties is set. Devices we can't test may rely on HW defaults being
+  preserved in the clock bits.
+- Link to v2: https://lore.kernel.org/r/20230922-ixp4xx-gpio-clocks-v2-0-0215ee10976d@linaro.org
+
+Changes in v2:
+- Fixed formatting pipe | in bindings
+- Fixed som blank lines in bindings
+- When we will just blank out the clock register settings,
+  don't spend time reading the initial value.
+- Link to v1: https://lore.kernel.org/r/20230921-ixp4xx-gpio-clocks-v1-0-574942bf944a@linaro.org
+---
+ drivers/gpio/gpio-ixp4xx.c | 51 +++++++++++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 50 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpio/gpio-ixp4xx.c b/drivers/gpio/gpio-ixp4xx.c
+index dde6cf3a5779..c5a9fa640566 100644
+--- a/drivers/gpio/gpio-ixp4xx.c
++++ b/drivers/gpio/gpio-ixp4xx.c
+@@ -38,6 +38,18 @@
+ #define IXP4XX_GPIO_STYLE_MASK		GENMASK(2, 0)
+ #define IXP4XX_GPIO_STYLE_SIZE		3
+ 
++/*
++ * Clock output control register defines.
++ */
++#define IXP4XX_GPCLK_CLK0DC_SHIFT	0
++#define IXP4XX_GPCLK_CLK0TC_SHIFT	4
++#define IXP4XX_GPCLK_CLK0_MASK		GENMASK(7, 0)
++#define IXP4XX_GPCLK_MUX14		BIT(8)
++#define IXP4XX_GPCLK_CLK1DC_SHIFT	16
++#define IXP4XX_GPCLK_CLK1TC_SHIFT	20
++#define IXP4XX_GPCLK_CLK1_MASK		GENMASK(23, 16)
++#define IXP4XX_GPCLK_MUX15		BIT(24)
++
+ /**
+  * struct ixp4xx_gpio - IXP4 GPIO state container
+  * @dev: containing device for this instance
+@@ -202,6 +214,8 @@ static int ixp4xx_gpio_probe(struct platform_device *pdev)
+ 	struct ixp4xx_gpio *g;
+ 	struct gpio_irq_chip *girq;
+ 	struct device_node *irq_parent;
++	bool clk_14, clk_15;
++	u32 val;
+ 	int ret;
+ 
+ 	g = devm_kzalloc(dev, sizeof(*g), GFP_KERNEL);
+@@ -225,13 +239,48 @@ static int ixp4xx_gpio_probe(struct platform_device *pdev)
+ 	}
+ 	g->fwnode = of_node_to_fwnode(np);
+ 
++	/*
++	 * If either clock output is enabled explicitly in the device tree
++	 * we take full control of the clock by masking off all bits for
++	 * the clock control and selectively enabling them. Otherwise
++	 * we leave the hardware default settings.
++	 *
++	 * Enable clock outputs with default timings of requested clock.
++	 * If you need control over TC and DC, add these to the device
++	 * tree bindings and use them here.
++	 */
++	clk_14 = of_property_read_bool(np, "intel,ixp4xx-gpio14-clkout");
++	clk_15 = of_property_read_bool(np, "intel,ixp4xx-gpio15-clkout");
++
+ 	/*
+ 	 * Make sure GPIO 14 and 15 are NOT used as clocks but GPIO on
+ 	 * specific machines.
+ 	 */
+ 	if (of_machine_is_compatible("dlink,dsm-g600-a") ||
+ 	    of_machine_is_compatible("iom,nas-100d"))
+-		__raw_writel(0x0, g->base + IXP4XX_REG_GPCLK);
++		val = 0;
++	else {
++		val = __raw_readl(g->base + IXP4XX_REG_GPCLK);
++
++		if (clk_14 || clk_15) {
++			val &= ~(IXP4XX_GPCLK_MUX14 | IXP4XX_GPCLK_MUX15);
++			val &= ~IXP4XX_GPCLK_CLK0_MASK;
++			val &= ~IXP4XX_GPCLK_CLK1_MASK;
++			if (clk_14) {
++				/* IXP4XX_GPCLK_CLK0DC implicit low */
++				val |= (1 << IXP4XX_GPCLK_CLK0TC_SHIFT);
++				val |= IXP4XX_GPCLK_MUX14;
++			}
++
++			if (clk_15) {
++				/* IXP4XX_GPCLK_CLK1DC implicit low */
++				val |= (1 << IXP4XX_GPCLK_CLK1TC_SHIFT);
++				val |= IXP4XX_GPCLK_MUX15;
++			}
++		}
++	}
++
++	__raw_writel(val, g->base + IXP4XX_REG_GPCLK);
+ 
+ 	/*
+ 	 * This is a very special big-endian ARM issue: when the IXP4xx is
+
+---
+base-commit: b85ea95d086471afb4ad062012a4d73cd328fa86
+change-id: 20230921-ixp4xx-gpio-clocks-7e82289f4bb3
+
+Best regards,
+-- 
+Linus Walleij <linus.walleij@linaro.org>
+
 
