@@ -1,143 +1,202 @@
-Return-Path: <devicetree+bounces-19972-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19973-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A4E17FD70A
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 13:44:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 443C97FD733
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 13:55:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5C363282DD7
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 12:44:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 67EEA1C2097C
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 12:55:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCC451BDF0;
-	Wed, 29 Nov 2023 12:44:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD65B1DFC8;
+	Wed, 29 Nov 2023 12:54:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VCL3w5H6"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZbCHbIJf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-x12a.google.com (mail-il1-x12a.google.com [IPv6:2607:f8b0:4864:20::12a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15B1410C3;
-	Wed, 29 Nov 2023 04:44:07 -0800 (PST)
-Received: by mail-il1-x12a.google.com with SMTP id e9e14a558f8ab-35b0b36716fso6459295ab.0;
-        Wed, 29 Nov 2023 04:44:07 -0800 (PST)
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A403F10C3
+	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 04:54:54 -0800 (PST)
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-54a945861c6so9182643a12.3
+        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 04:54:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701261846; x=1701866646; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=elZXM+Abii+KZRVpe/jUXO4xHCec/DFLJnfi96Bh/bI=;
-        b=VCL3w5H6AhOOuoK8J0LlVReAQHQ6ujrGRHx97oSizgqfSuYzFSwUfRMB4iBgxiKtIW
-         WIDOoEWLd3H0vqmVah2zHF5FirThu1SNY1o56x/aft4nW9KwXkwza3gU7BxjD92c2HaJ
-         qlm1bFV3NBnNFVTjFJyYnBaABrv/nUxovDIqkFxOQ5wNkHRzhVeI0xMg2jvM1z0HKzNE
-         +YgLN1+ktXSWZKi8YXJZ4dM1t9jNhr9XjuWPOMy2HcAeMtili4dH/12wKghQF48FwEZ3
-         PWQh8ylcbztF7n1JSq1b8nl6Jr1RdQflaC4eZcmYXSuRAKx75CHgPH22JpczE/Yb58/+
-         aOCg==
+        d=linaro.org; s=google; t=1701262493; x=1701867293; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=BnOhFVb1M8Ieky9ixxo2vsCz1mFiT6hqkrZpGr/aemg=;
+        b=ZbCHbIJfIqw4qDOiPwG0efFh0O3yf/UPHsrN6rFk4mh0OtOdMXxqfKyY8UfLRN3AWD
+         Ckl1m4TAFL9SGYiQhlwPnt6f8ndnnzDPOFfNefLWHBG8HFRd7k6F4OeRoesjbBhDNlRv
+         DdQX3a244GD6JQFnw5WriJwErl2JXbHUbVLoeqPMig5a23hsaI/UEHFUoRqox26IlmOk
+         SZsb/l7yG+OMLxV119BHK56b8mPjVBPY5VB/UyXkSaP33B4Km9h488YcenXxZQlbCTWb
+         lTYwFsFwYt0WEO9KWGJ3Zgbm5uuhuiUUejJmyYMc/0u+XFncl7Ulurv33gZS0qO75Xas
+         sUzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701261846; x=1701866646;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=elZXM+Abii+KZRVpe/jUXO4xHCec/DFLJnfi96Bh/bI=;
-        b=l4MY20o5jMdXYaKLPLsL6pCLIyFZafDmn7S7yUXwD7NwhVEg69r/VTscdaVs2JWTvy
-         mr30jjUU2cjuXC4LyIJG4C7BJsddhbKsSEu/4gKhyQToCVwVKN+CMHJjwL/7uVMr5eR6
-         oNGQAfnVR2AYUDnqBDHwN/d1RqLq7/oZTc9gShJgOoVXdQ3s66P8ZOtcf46m9elGwRs+
-         dZfiWd9rRpDI0o+SW6T3jRPL7Uz3/pQ3AeBTO+so7Mjvb127VgQ3Fc0oJVU7CPcf1W1c
-         WQtOegAS3ueWVeBH5qU8rlQzJM9W0nlsOQXlBo0UaZPiOZtZ0Wv0jBKnXoW45AFUABm2
-         hS2w==
-X-Gm-Message-State: AOJu0YzVCRwY4kOk/a1RTpi6UtilCnhilZjXyOO9MfqeTMURIdArDJpD
-	KipNmhsBhiW4Yv05BZ+e1kY=
-X-Google-Smtp-Source: AGHT+IEgdZdb28X+dRlRrJtWHp6v/WXK2rCkT0E/McCMcHVjkqEHXEyo1SLHHLPCH3n8MjLRWmhdig==
-X-Received: by 2002:a92:ce8c:0:b0:35c:7b32:241f with SMTP id r12-20020a92ce8c000000b0035c7b32241fmr13255152ilo.2.1701261846313;
-        Wed, 29 Nov 2023 04:44:06 -0800 (PST)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:5db0:20f8:912:48b])
-        by smtp.gmail.com with ESMTPSA id fe21-20020a056a002f1500b0068bbd43a6e2sm11028416pfb.10.2023.11.29.04.44.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Nov 2023 04:44:05 -0800 (PST)
-From: Fabio Estevam <festevam@gmail.com>
-To: daniel.lezcano@linaro.org
-Cc: rafael@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	robh+dt@kernel.org,
-	conor+dt@kernel.org,
-	mazziesaccount@gmail.com,
-	linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Fabio Estevam <festevam@denx.de>
-Subject: [PATCH v12 4/4] thermal: thermal_of: Allow rebooting after critical temp
-Date: Wed, 29 Nov 2023 09:43:30 -0300
-Message-Id: <20231129124330.519423-4-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231129124330.519423-1-festevam@gmail.com>
-References: <20231129124330.519423-1-festevam@gmail.com>
+        d=1e100.net; s=20230601; t=1701262493; x=1701867293;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=BnOhFVb1M8Ieky9ixxo2vsCz1mFiT6hqkrZpGr/aemg=;
+        b=Ra26i3Nb1/1M5yRjc7LS6D7hqiRatmxVbaBpJKVgbnQfanPh5KOD/iDPB/5mvMS4PD
+         92+KNS/ClXN2R6JLtu9Q1l0Gwulz3qsTHpH0FKpSX3TicQURxEYBNeLxFdgGB2clJn4I
+         ygbidW06K2s0197LcqEC+AWlzkp3Clph+S/uRnscUE0TdFmgqjv0Nc7V9HllI6I4G6Qt
+         qBU29GW5r//8A+ZzR8xGOOJsSP04PQ3pBwgFyiw1ai9oFo2XnQTLjdT7fhz5o1D2nvHP
+         Fgn96WbuKSWMETyUNEyboP4m45SuTJfoxNyl/j5MGnoJ95cTDkcFmsLEg52o6eCuDFan
+         JFhw==
+X-Gm-Message-State: AOJu0YxOjMeVuwROaaO7vwvRorF04hgbiWNYKafr9R0fUBGVDl/oy8oh
+	+VkODfaLfNo2DfTgKMOCVnRzBA==
+X-Google-Smtp-Source: AGHT+IEYDeTpe6aRRoO6VuBBVxOwRuNY57fe+k+quVA4ooyis/B2/dk2jyJ6WmPDEnY8OMkLchnCEg==
+X-Received: by 2002:a05:6402:5207:b0:54b:96ee:5c7 with SMTP id s7-20020a056402520700b0054b96ee05c7mr6059332edd.30.1701262493075;
+        Wed, 29 Nov 2023 04:54:53 -0800 (PST)
+Received: from [192.168.209.173] (178235187166.dynamic-4-waw-k-2-3-0.vectranet.pl. [178.235.187.166])
+        by smtp.gmail.com with ESMTPSA id v28-20020aa7cd5c000000b00548d649f638sm7386490edw.96.2023.11.29.04.54.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 29 Nov 2023 04:54:52 -0800 (PST)
+Message-ID: <c6e05a10-88cc-409c-afc0-37166b763eaa@linaro.org>
+Date: Wed, 29 Nov 2023 13:54:49 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V2 3/5] arm64: dts: qcom: Add base X1E80100 dtsi and the
+ QCP dts
+To: Sibi Sankar <quic_sibis@quicinc.com>, andersson@kernel.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ catalin.marinas@arm.com, ulf.hansson@linaro.org
+Cc: agross@kernel.org, conor+dt@kernel.org, ayan.kumar.halder@amd.com,
+ j@jannau.net, dmitry.baryshkov@linaro.org, nfraprado@collabora.com,
+ m.szyprowski@samsung.com, u-kumar1@ti.com, peng.fan@nxp.com,
+ lpieralisi@kernel.org, quic_rjendra@quicinc.com, abel.vesa@linaro.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ quic_tsoni@quicinc.com, neil.armstrong@linaro.org
+References: <20231117113931.26660-1-quic_sibis@quicinc.com>
+ <20231117113931.26660-4-quic_sibis@quicinc.com>
+ <918ff1f5-ce01-43ea-b034-e69fbb31f495@linaro.org>
+ <3dd41426-c026-a832-0a6b-0aabfaec2a8c@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <3dd41426-c026-a832-0a6b-0aabfaec2a8c@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-From: Fabio Estevam <festevam@denx.de>
+On 29.11.2023 10:25, Sibi Sankar wrote:
+> 
+> 
+> On 11/18/23 06:36, Konrad Dybcio wrote:
+>> On 17.11.2023 12:39, Sibi Sankar wrote:
+>>> From: Rajendra Nayak <quic_rjendra@quicinc.com>
+>>>
+>>> Add base dtsi and QCP board (Qualcomm Compute Platform) dts file for
+>>> X1E80100 SoC, describing the CPUs, GCC and RPMHCC clock controllers,
+>>> geni UART, interrupt controller, TLMM, reserved memory, interconnects,
+>>> SMMU and LLCC nodes.
+>>>
+>>> Co-developed-by: Abel Vesa <abel.vesa@linaro.org>
+>>> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+>>> Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
+>>> Co-developed-by: Sibi Sankar <quic_sibis@quicinc.com>
+>>> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+>>> ---
+[...]
 
-Currently, the default mechanism is to trigger a shutdown after the
-critical temperature is reached.
 
-In some embedded cases, such behavior does not suit well, as the board may
-be unattended in the field and rebooting may be a better approach.
+>>> +        idle-states {
+>>> +            entry-method = "psci";
+>>> +
+>>> +            CLUSTER_C4: cpu-sleep-0 {
+>>> +                compatible = "arm,idle-state";
+>>> +                idle-state-name = "ret";
+>>> +                arm,psci-suspend-param = <0x00000004>;
+>> These suspend parameters look funky.. is this just a PSCI sleep
+>> implementation that strays far away from Arm's suggested guidelines?
+> 
+> not really! it's just that 30th bit is set according to spec i.e
+> it's marked as a retention state.
+So, is there no state where the cores actually power down? Or is it
+not described yet?
 
-The bootloader may also check the temperature and only allow the boot to
-proceed when the temperature is below a certain threshold.
+FWIW by "power down" I mean it in the sense that Arm DEN0022D does,
+so "In this state the core is powered off. Software on the device
+needs to save all core state, so that it can be preserved over
+the powerdown."
 
-Introduce support for allowing a reboot to be triggered after the
-critical temperature is reached.
+> 
+>>
+>> [...]
+>>
+>>
+>>> +        CPU_PD11: power-domain-cpu11 {
+>>> +            #power-domain-cells = <0>;
+>>> +            power-domains = <&CLUSTER_PD>;
+>>> +        };
+>>> +
+>>> +        CLUSTER_PD: power-domain-cpu-cluster {
+>>> +            #power-domain-cells = <0>;
+>>> +            domain-idle-states = <&CLUSTER_CL4>, <&CLUSTER_CL5>;
+>>> +        };
+>> So, can the 3 clusters not shut down their L2 and PLLs (if separate?)
+>> on their own?
+> 
+> on CL5 the clusters are expected to shutdown their l2 and PLL on their
+> own.
+Then I think this won't happen with this description
 
-If the "critical-action" devicetree property is not found, fall back to
-the shutdown action to preserve the existing default behavior.
+every cpu has a genpd tree like this:
 
-If a custom ops->critical exists, then it takes preference over
-critical-actions.
+cpu_n
+ |_CPU_PDn
+    |_CLUSTER_PD
 
-Tested on a i.MX8MM board with the following devicetree changes:
+and CLUSTER_PD has two idle states: CLUSTER_CL4 and CLUSTER_CL5
 
-	thermal-zones {
-		cpu-thermal {
-			critical-action = "reboot";
-		};
-	};
+which IIUC means that neither cluster idle state will be reached
+unless all children of CLUSTER_PD (so, all CPUs) go down that low
 
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
-Changes since v11:
-- None
+This is "fine" on e.g. sc8280 where both CPU clusters are part of
+the same Arm DynamIQ cluster (which is considered one cluster as
+far as MPIDR_EL1 goes) (though perhaps that's misleading and with
+the qcom plumbing they perhaps could actually be collapsed separately)
 
- drivers/thermal/thermal_of.c | 6 ++++++
- 1 file changed, 6 insertions(+)
-
-diff --git a/drivers/thermal/thermal_of.c b/drivers/thermal/thermal_of.c
-index 1e0655b63259..4d6c22e0ed85 100644
---- a/drivers/thermal/thermal_of.c
-+++ b/drivers/thermal/thermal_of.c
-@@ -475,6 +475,7 @@ static struct thermal_zone_device *thermal_of_zone_register(struct device_node *
- 	struct thermal_zone_params tzp = {};
- 	struct thermal_zone_device_ops *of_ops;
- 	struct device_node *np;
-+	const char *action;
- 	int delay, pdelay;
- 	int ntrips, mask;
- 	int ret;
-@@ -511,6 +512,11 @@ static struct thermal_zone_device *thermal_of_zone_register(struct device_node *
- 
- 	mask = GENMASK_ULL((ntrips) - 1, 0);
- 
-+	ret = of_property_read_string(np, "critical-action", &action);
-+	if (!ret)
-+		if (!of_ops->critical && !strcasecmp(action, "reboot"))
-+			of_ops->critical = thermal_zone_device_critical_reboot;
-+
- 	tz = thermal_zone_device_register_with_trips(np->name, trips, ntrips,
- 						     mask, data, of_ops, &tzp,
- 						     pdelay, delay);
--- 
-2.34.1
-
+Konrad
 
