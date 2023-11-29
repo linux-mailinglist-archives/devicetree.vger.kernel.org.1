@@ -1,236 +1,189 @@
-Return-Path: <devicetree+bounces-19878-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19879-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E98BB7FD261
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 10:24:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B3DB7FD272
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 10:26:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0D94EB20CCE
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 09:24:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BBEE51C20EAE
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 09:26:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 999E013FFC;
-	Wed, 29 Nov 2023 09:23:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0534414004;
+	Wed, 29 Nov 2023 09:26:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tV8HgSpV"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="kepG/xR/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FBF1120
-	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 01:23:56 -0800 (PST)
-Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-9e1021dbd28so871070366b.3
-        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 01:23:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701249835; x=1701854635; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/6KtSx6gUmSsayEKdH9E2Y9FJ4Si62b+TTqdgqH2Yx8=;
-        b=tV8HgSpVb54LG4ia9S1dJwISYel5y9ey4gWlOxrwekayFu7tb5JdbKeBpDpedIGoRR
-         hXuZMdAgsxP3vnQBq2kY/gaLWVVy37ZQuvSyhatVDLJY1flA923Y++hUaFR5U4L9LzsO
-         tpxp6WLTZH3dgdYe7R1Q87JdGyiPGc3wPcKlqmhcn/9mVn0pUpCysXDCXM+SLzwl+DLM
-         /gJiQ/1enEjnwxvOOCqRs/7CqUTEfWUCHnk57UTo0lS/x1eGR0DGiwScr6mmqojP5mkZ
-         dnFxfRrlTV128WHemvTJtPIaM/dLw/5nXNLK1mFf8zpl1Aqhz3nWdcN4h/azHWAK+Nzt
-         pcoA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701249835; x=1701854635;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/6KtSx6gUmSsayEKdH9E2Y9FJ4Si62b+TTqdgqH2Yx8=;
-        b=NAQuBoQx7r/Rb0xa4cAeqJYyEJ6VIKOdgeOTUYR21QYPVfJWYXzXHGwVBJJYz/Rtaa
-         zx8Fjo1LDah+EWvXSEA1kbjfCRKa9vZofWMXO0czWyHqgSIytIR44+b3/0pFo/HMW/Q/
-         9uK5IRiK8v9ptat7MkJg5c6MBfkI0QAMowzjp0gBG/C/p4IId4ZHJAh6sImzUtOjGUCx
-         ULChdkktjgriCAlUrzwkEZ1TJuSxK6qvcX9Uyf3SqVaBon+Md0qtNiNS5gdD1HhOyb7W
-         +9Wgnmgnx76YWmJf8KhnkGQOlmO6fsaOAxpZqBAxnPNnSDqYCMWhqjRjN4qVF0mM7XS7
-         ZeAg==
-X-Gm-Message-State: AOJu0Yx9dA1QTAggZex8p98LMFU6s7X2/2yloKWsvWnjC8/RCKCTs8ha
-	HWniB534GAbq96dn4F5ko7KJoK88eobywIRYqgE=
-X-Google-Smtp-Source: AGHT+IHx3nCrlgudLTZOjKMOpmeuHGj/BKDwzcHf0fUp4tAnU4S56VB2kbxCIryUERb9BCVyV+z4Sg==
-X-Received: by 2002:a17:906:6cd:b0:9e6:59d5:80c5 with SMTP id v13-20020a17090606cd00b009e659d580c5mr13221567ejb.23.1701249834602;
-        Wed, 29 Nov 2023 01:23:54 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.223.109])
-        by smtp.gmail.com with ESMTPSA id t11-20020a170906a10b00b009ff8be60791sm7687010ejy.210.2023.11.29.01.23.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Nov 2023 01:23:54 -0800 (PST)
-Message-ID: <c50e5224-7acd-4470-b18e-f223f150ba5b@linaro.org>
-Date: Wed, 29 Nov 2023 10:23:52 +0100
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AAEFB9;
+	Wed, 29 Nov 2023 01:26:10 -0800 (PST)
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AT6TU8W029933;
+	Wed, 29 Nov 2023 09:25:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=7R1kbCVA6UYn66gQXAAcWAa9/+nx41Cmcr+zfZ67Fkk=;
+ b=kepG/xR/E5etU7XUaBqrwL8BTp/D9vf/qQo3dN4ulfPOszvVIKmu5IrEvA7usVaNNay4
+ OFSNc3ENPHQjcQT1AhtJGNRgu29uQRQvZgT+hph8D43Ursjnn/894+HdlRMTUQRWm7ay
+ t50jm2CIAZvBPPzNWm4Ek+sBzHyqL5soMHTJ34JsAMeqTMG1BPaPzchpTCqp1+5iRNn1
+ muNYW27HIb0dY0XMr0AhmBbp8QQnw9Ct0JJNJQ3BTFSdAhE/MAouFArK8xre1lTVErGD
+ tRIDEjEnWwJxwhdOifYIq66c9HTFALh2Cj4iRHYiIQ/Vmjoqbs8kExpjGbUdD06oUNPw nA== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3up02xrf1m-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 29 Nov 2023 09:25:51 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AT9Polr032404
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 29 Nov 2023 09:25:50 GMT
+Received: from [10.131.33.37] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 29 Nov
+ 2023 01:25:44 -0800
+Message-ID: <3dd41426-c026-a832-0a6b-0aabfaec2a8c@quicinc.com>
+Date: Wed, 29 Nov 2023 14:55:40 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: mfd: Add sony,cronos-cpld
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH V2 3/5] arm64: dts: qcom: Add base X1E80100 dtsi and the
+ QCP dts
 Content-Language: en-US
-To: Shawn Anastasio <sanastasio@raptorengineering.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Lee Jones <lee@kernel.org>, Georgy Yakovlev <Georgy.Yakovlev@sony.com>
-Cc: Timothy Pearson <tpearson@raptorengineering.com>
-References: <cover.1701203916.git.sanastasio@raptorengineering.com>
- <27ac3bf6e5fecd62918eb096a88503a13a1f0b9c.1701203916.git.sanastasio@raptorengineering.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <27ac3bf6e5fecd62918eb096a88503a13a1f0b9c.1701203916.git.sanastasio@raptorengineering.com>
-Content-Type: text/plain; charset=UTF-8
+To: Konrad Dybcio <konrad.dybcio@linaro.org>, <andersson@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <catalin.marinas@arm.com>, <ulf.hansson@linaro.org>
+CC: <agross@kernel.org>, <conor+dt@kernel.org>, <ayan.kumar.halder@amd.com>,
+        <j@jannau.net>, <dmitry.baryshkov@linaro.org>,
+        <nfraprado@collabora.com>, <m.szyprowski@samsung.com>,
+        <u-kumar1@ti.com>, <peng.fan@nxp.com>, <lpieralisi@kernel.org>,
+        <quic_rjendra@quicinc.com>, <abel.vesa@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <quic_tsoni@quicinc.com>, <neil.armstrong@linaro.org>
+References: <20231117113931.26660-1-quic_sibis@quicinc.com>
+ <20231117113931.26660-4-quic_sibis@quicinc.com>
+ <918ff1f5-ce01-43ea-b034-e69fbb31f495@linaro.org>
+From: Sibi Sankar <quic_sibis@quicinc.com>
+In-Reply-To: <918ff1f5-ce01-43ea-b034-e69fbb31f495@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: FtYYxaln7cyVjFWbjwltIs7dEvDSRTbl
+X-Proofpoint-GUID: FtYYxaln7cyVjFWbjwltIs7dEvDSRTbl
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-29_06,2023-11-27_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 bulkscore=0
+ suspectscore=0 phishscore=0 adultscore=0 lowpriorityscore=0 spamscore=0
+ priorityscore=1501 impostorscore=0 mlxlogscore=943 clxscore=1015
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2311060000 definitions=main-2311290069
 
-On 28/11/2023 22:00, Shawn Anastasio wrote:
-> The Sony Cronos Platform Controller CPLD is a multi-purpose platform
-> controller that provides both a watchdog timer and an LED controller for
-> the Sony Interactive Entertainment Cronos x86 server platform. As both
-> functions are provided by the same CPLD, a multi-function device is
-> exposed as the parent of both functions.
+
+
+On 11/18/23 06:36, Konrad Dybcio wrote:
+> On 17.11.2023 12:39, Sibi Sankar wrote:
+>> From: Rajendra Nayak <quic_rjendra@quicinc.com>
+>>
+>> Add base dtsi and QCP board (Qualcomm Compute Platform) dts file for
+>> X1E80100 SoC, describing the CPUs, GCC and RPMHCC clock controllers,
+>> geni UART, interrupt controller, TLMM, reserved memory, interconnects,
+>> SMMU and LLCC nodes.
+>>
+>> Co-developed-by: Abel Vesa <abel.vesa@linaro.org>
+>> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+>> Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
+>> Co-developed-by: Sibi Sankar <quic_sibis@quicinc.com>
+>> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+>> ---
+> [...]
 > 
-> Add a DT binding for this device.
+>> +&tlmm {
+>> +	gpio-reserved-ranges = <33 3>, <44 4>, /* SPI (TPM) */
+> Surely SPI doesn't use 7 wires! :D
+
+yeah, they are just secure reserved unused gpios.
+
 > 
-> Signed-off-by: Shawn Anastasio <sanastasio@raptorengineering.com>
-> ---
-> Changes in v2:
->   - Change SIE to Sony to use the already-established prefix.
->   - Clarify that Cronos is an x86 server platform in description
->   - Drop #address-cells/#size-cells
->   - Add missing additionalProperties to leds/watchdog objects
->   - Add sony,led-mask property to leds object
->   - Add sony,default-timeout property to watchdog object
->   - Update example
+> [...]
 > 
->  .../bindings/mfd/sony,cronos-cpld.yaml        | 92 +++++++++++++++++++
->  1 file changed, 92 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/sony,cronos-cpld.yaml
+>> +			L2_0: l2-cache-0 {
+> the cache device is distinguishable by its parent, so "l2-cache" is enough
+
+thanks will fix ^^
+
 > 
-> diff --git a/Documentation/devicetree/bindings/mfd/sony,cronos-cpld.yaml b/Documentation/devicetree/bindings/mfd/sony,cronos-cpld.yaml
-> new file mode 100644
-> index 000000000000..df2c2e83ccb4
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/sony,cronos-cpld.yaml
-> @@ -0,0 +1,92 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright 2023 Raptor Engineering, LLC
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/sony,cronos-cpld.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Sony Cronos Platform Controller CPLD multi-function device
-> +
-> +maintainers:
-> +  - Timothy Pearson <tpearson@raptorengineering.com>
-> +
-> +description: |
-> +  The Sony Cronos Platform Controller CPLD is a multi-purpose platform
-> +  controller that provides both a watchdog timer and an LED controller for the
-> +  Sony Interactive Entertainment Cronos x86 server platform. As both functions
-> +  are provided by the same CPLD, a multi-function device is exposed as the
-> +  parent of both functions.
-> +
-> +properties:
-> +  compatible:
-> +    const: sony,cronos-cpld
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  leds:
-> +    type: object
-> +    description: Cronos Platform Status LEDs
+> 
+>> +				compatible = "cache";
+>> +				cache-level = <2>;
+>> +				cache-unified;
+>> +			};
+>> +		};
+>> +
+> [...]
+> 
+>> +		idle-states {
+>> +			entry-method = "psci";
+>> +
+>> +			CLUSTER_C4: cpu-sleep-0 {
+>> +				compatible = "arm,idle-state";
+>> +				idle-state-name = "ret";
+>> +				arm,psci-suspend-param = <0x00000004>;
+> These suspend parameters look funky.. is this just a PSCI sleep
+> implementation that strays far away from Arm's suggested guidelines?
 
-Missing ref to LEDs common bindings.
+not really! it's just that 30th bit is set according to spec i.e
+it's marked as a retention state.
 
-> +
-> +    properties:
-> +      compatible:
-> +        const: sony,cronos-leds
-> +
-> +      sony,led-mask:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
+> 
+> [...]
+> 
+> 
+>> +		CPU_PD11: power-domain-cpu11 {
+>> +			#power-domain-cells = <0>;
+>> +			power-domains = <&CLUSTER_PD>;
+>> +		};
+>> +
+>> +		CLUSTER_PD: power-domain-cpu-cluster {
+>> +			#power-domain-cells = <0>;
+>> +			domain-idle-states = <&CLUSTER_CL4>, <&CLUSTER_CL5>;
+>> +		};
+> So, can the 3 clusters not shut down their L2 and PLLs (if separate?)
+> on their own?
 
-Why aren't you using LEDs bindings? A node for one property is otherwise
-quite useless. I already commented on this last time.
+on CL5 the clusters are expected to shutdown their l2 and PLL on their
+own.
 
-> +        minimum: 0x0
-> +        maximum: 0x7fff
-> +        description: |
-> +          A bitmask that specifies which LEDs are present and can be controlled
-> +          by the Cronos CPLD. Bits 0-5 correspond to platform Status LEDs, bits
-> +          6-10 correspond to Link LEDs, and bits 11-14 correspond to the Power
-> +          State LEDs. All other bits are unused. The default value is 0x7fff
-> +          (all possible LEDs enabled).
-> +
-> +    additionalProperties: false
-> +
-> +  watchdog:
-> +    type: object
-> +    description: Cronos Platform Watchdog Timer
+> 
+>> +	};
+>> +
+>> +	reserved-memory {
+>> +		#address-cells = <2>;
+>> +		#size-cells = <2>;
+>> +		ranges;
+>> +
+>> +		gunyah_hyp_mem: gunyah-hyp@80000000 {
+>> +			reg = <0x0 0x80000000 0x0 0x800000>;
+>> +			no-map;
+>> +		};
+>> +
+>> +		hyp_elf_package_mem: hyp-elf_package@80800000 {
+> no underscores in node names, use hyphens
 
+ack
 
-> +
-> +    properties:
-> +      compatible:
-> +        const: sony,cronos-watchdog
-> +
-> +      sony,default-timeout:
-
-No, you must use existing bindings. Missing ref to watchdog and drop all
-duplicated properties like this one.
-
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        description: |
-> +          The default timeout with which the watchdog timer is initialized, in
-> +          seconds. Supported values are: 10, 20, 30, 40, 50, 60, 70, 80. All
-> +          other values will be rounded down to the nearest supported value.  The
-> +          default value is 80.
-> +
-
-
-
-Best regards,
-Krzysztof
-
+-Sibi
+> 
+> The rest looks OK I think
+> 
+> Konrad
 
