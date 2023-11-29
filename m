@@ -1,125 +1,98 @@
-Return-Path: <devicetree+bounces-19983-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19985-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AEEC7FD771
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 14:04:45 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56E527FD775
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 14:05:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7CEF41C20A11
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 13:04:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EA784B20DEB
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 13:05:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB1101DFC5;
-	Wed, 29 Nov 2023 13:04:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD9F71DFFD;
+	Wed, 29 Nov 2023 13:05:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="vnn1ywX5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KE0chdJm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B597810E2;
-	Wed, 29 Nov 2023 05:04:38 -0800 (PST)
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 3AT8vK3V030958;
-	Wed, 29 Nov 2023 14:04:28 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding:content-type; s=
-	selector1; bh=6AU3mM4W4Dpoj7He082seCwDnAZEhdu+kcbYvk2yFl8=; b=vn
-	n1ywX5H+G/YjKEflyGiG9D5Eq1ZqDVDyHX0Q4+u6lQSRJv9xI9JzT+ti7Ogp0TJD
-	P5krJ8rTIXcTVLd8EYr0KuQS6Lex5FQSwSMqKp7svbQtremZmG+6NzfaDrJMBbUk
-	GIgBq9wGPMFbVCaI2MLOWqsfNM6iyFD2O852zibsPA3nT7e2QPSF1SYeOV+fNnQl
-	gvpt89XjC7TWvTdUQFWZYAsY/mbsmEmvEM3tkD/k8gwWcc23Uxrg15SzSoIImxhj
-	zeQK/bjngqqAYarZ8CBhj0Ou766NpzF3ctpRDpx4ClRxr3QWFYvvGnIecjLX4Rpw
-	gEoaHzAvbX/NFM4OuTIA==
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3uk9521ay0-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 29 Nov 2023 14:04:28 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 4C2EC10002A;
-	Wed, 29 Nov 2023 14:04:27 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id CA9B421D387;
-	Wed, 29 Nov 2023 14:04:27 +0100 (CET)
-Received: from localhost (10.129.178.213) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Wed, 29 Nov
- 2023 14:04:27 +0100
-From: Alain Volmat <alain.volmat@foss.st.com>
-To: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre
- Torgue <alexandre.torgue@foss.st.com>,
-        Pierre-Yves MORDRET
-	<pierre-yves.mordret@foss.st.com>,
-        Alain Volmat <alain.volmat@foss.st.com>
-CC: <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH 7/7] arm64: dts: st: add i2c2 / i2c8 properties on stm32mp257f-ev1
-Date: Wed, 29 Nov 2023 13:59:16 +0100
-Message-ID: <20231129125920.1702497-8-alain.volmat@foss.st.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231129125920.1702497-1-alain.volmat@foss.st.com>
-References: <20231129125920.1702497-1-alain.volmat@foss.st.com>
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A75B31DFC5;
+	Wed, 29 Nov 2023 13:05:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 2C255C433C8;
+	Wed, 29 Nov 2023 13:05:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701263128;
+	bh=HLyE4DFjg0ktNNqTQcSgMBS1cvWJrNgCeheSB7P/8TQ=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=KE0chdJmgDp9ZigoQJ2TFryVWuKukqKZ+ErZf3IlziXg4q1Fygxeml2W51PY5vhNk
+	 yuCnB9zFNePZFBOD52L+sTWZwktBWS8J14btR21OdEDJ7qRj7i4NNn8W/QRCHjfovR
+	 /ToLiJxeURcX78hnzX7CzAlw93M1cy/Rj5Ms4wBoDnygLL71iwzWs54sLl8YB7X3Oh
+	 a8WKmHMZx/5WBz2+3uJlFUq3ltruxsrjdEMiK5aZYEBUaUZORC+O+xUSi2G7YY8wq5
+	 eFHGcZVP4whr8rvslydOu9jao+HM2H2sMjqoIf6yNwjmyBJbciADGGDEMKORrrXOi7
+	 ay4wnOU8fVu6g==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 123D9C4167B;
+	Wed, 29 Nov 2023 13:05:28 +0000 (UTC)
+From: Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org>
+Subject: [PATCH v3 0/2] iio: dac: ad5791: Add support for controlling RBUF
+ via devicetree
+Date: Wed, 29 Nov 2023 14:03:51 +0100
+Message-Id: <20231129-ad5791-michael-stuff-v3-0-48e192b00909@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-29_09,2023-11-29_01,2023-05-22_02
+X-B4-Tracking: v=1; b=H4sIALc2Z2UC/x2MWwqAIBAArxL73UJqKnWV6CN0rYVeaEUQ3T3pc
+ xhmHkgUmRK0xQORLk68rRlUWYCbhnUkZJ8ZZCWVENLi4LVtBC6cNc2YjjME1MZ4p41UtbeQ0z1
+ S4Pvfdv37ftApwfxmAAAA
+To: linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Cc: Lars-Peter Clausen <lars@metafoo.de>, 
+ Michael Hennerich <Michael.Hennerich@analog.com>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>, 
+ Michael Hennerich <michael.hennerich@analog.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Nuno Sa <nuno.sa@analog.com>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1701263126; l=643;
+ i=nuno.sa@analog.com; s=20231116; h=from:subject:message-id;
+ bh=HLyE4DFjg0ktNNqTQcSgMBS1cvWJrNgCeheSB7P/8TQ=;
+ b=PF3K4AADVjxejkG643HZzUFSIwKaoOI72SmpbsCHZ9FEy1h0Skr/l+9fOlpTR9zx4Vaz13QbG
+ PZFXzSINkszA8wZBxEu81tfcBgnTULS/6bKKReAut2P4wvzU6Nk16zy
+X-Developer-Key: i=nuno.sa@analog.com; a=ed25519;
+ pk=3NQwYA013OUYZsmDFBf8rmyyr5iQlxV/9H4/Df83o1E=
+X-Endpoint-Received:
+ by B4 Relay for nuno.sa@analog.com/20231116 with auth_id=100
+X-Original-From: Nuno Sa <nuno.sa@analog.com>
+Reply-To: <nuno.sa@analog.com>
 
-Add properties for i2c2 and i2c8 available on the stm32mp257f-ev1.
-i2c2 is enabled since several devices are attached to it while
-i2c8 is kept disabled since only used via the gpio expansion connector.
+Simple series to add support for an external amplifier to be connected
+in again of two configuration.
 
-Signed-off-by: Alain Volmat <alain.volmat@foss.st.com>
+v2:
+ * removed .yaml suffix from commit title;
+ * Don't use commit/patch in commit message.
+
+v3:
+ * Be more imperative in the commit message.
+
 ---
- arch/arm64/boot/dts/st/stm32mp257f-ev1.dts | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+Michael Hennerich (2):
+      dt-bindings: adi,ad5791: Add support for controlling RBUF
+      iio: dac: ad5791: Add support for controlling RBUF via devicetree
 
-diff --git a/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts b/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-index b2d3afb15758..0ea8e69bfb3d 100644
---- a/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-+++ b/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-@@ -55,6 +55,26 @@ &arm_wdt {
- 	status = "okay";
- };
- 
-+&i2c2 {
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&i2c2_pins_a>;
-+	pinctrl-1 = <&i2c2_sleep_pins_a>;
-+	i2c-scl-rising-time-ns = <100>;
-+	i2c-scl-falling-time-ns = <13>;
-+	clock-frequency = <400000>;
-+	status = "okay";
-+};
-+
-+&i2c8 {
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&i2c8_pins_a>;
-+	pinctrl-1 = <&i2c8_sleep_pins_a>;
-+	i2c-scl-rising-time-ns = <57>;
-+	i2c-scl-falling-time-ns = <7>;
-+	clock-frequency = <400000>;
-+	status = "disabled";
-+};
-+
- &sdmmc1 {
- 	pinctrl-names = "default", "opendrain", "sleep";
- 	pinctrl-0 = <&sdmmc1_b4_pins_a>;
--- 
-2.25.1
+ Documentation/devicetree/bindings/iio/dac/adi,ad5791.yaml | 5 +++++
+ drivers/iio/dac/ad5791.c                                  | 9 ++++++++-
+ 2 files changed, 13 insertions(+), 1 deletion(-)
+
+Thanks!
+- Nuno Sá
 
 
