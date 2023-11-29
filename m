@@ -1,125 +1,110 @@
-Return-Path: <devicetree+bounces-19965-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19966-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 254627FD6B5
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 13:26:08 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF7897FD6BC
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 13:28:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 56AB71C21215
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 12:26:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F3348B21496
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 12:28:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B91C1DA5E;
-	Wed, 29 Nov 2023 12:26:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WJy9qKOq"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 125BB1DDC7;
+	Wed, 29 Nov 2023 12:28:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F008410C0
-	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 04:26:02 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-3316a4bc37dso4605964f8f.2
-        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 04:26:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701260761; x=1701865561; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qVd0mk/E8WAISTN9cwzB6Xw3Z2qd3DG26hbJb8vpXqs=;
-        b=WJy9qKOqwTWuAsKDPzsTAQtS3T59gjjnEMvVxKazNthlBS0gUib8ZjiPE31DpWpzlL
-         dKE/f5kC5MHnu7lqeWfUZAt7eKjHgIDr+cR5LR9EniB06B7iuALeXxUoRdjVxb3oQdoA
-         wKFClJMZtlvgbMArd/+WLrHl99S3IQ2K117KnmbZ18Tcz7C0bSd/mVoWFCMhcgcHhEc2
-         ozlAwuM+LwiEnFdDIR7z3metlnBJJiE21mq4WPQbYNch2yLraDMVRarSeaBqmIC6XDpF
-         28k47PwlGCZIo05I4DLQk5AkwDhmLfuu5v1mwPUWE10TcfihI49aY+GI6zlWtvybYLGf
-         3ZWg==
+Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49E76D7E;
+	Wed, 29 Nov 2023 04:27:58 -0800 (PST)
+Received: by mail-oi1-f173.google.com with SMTP id 5614622812f47-3b896a0aee5so257816b6e.1;
+        Wed, 29 Nov 2023 04:27:58 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701260761; x=1701865561;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=qVd0mk/E8WAISTN9cwzB6Xw3Z2qd3DG26hbJb8vpXqs=;
-        b=l+mNCuqQLffOPHF2FatOWSdKY8LSYim/qnqckYj075Ofymhzvc/xmLqu6TXc87ybYo
-         EHt/ppqnZ5HW8M9AfRQyVWJ1tLlbuBCvxBuHAx2QqZqYgwSClT4o33PMt6cWws3mgoYL
-         h3tS8g8lrmg+K4z1Ar4ladD6gLJ1vq8P3YGBooFcAx3y1zj5XOAc+8TMsuOhDpUbejsw
-         bO+ZM6T00cLMoaajizyQu1IgkSvtvzD3CmuFTbiWzuZO8XfZBNhv8j+m1GIT0C5ve6Y+
-         /PJsAfyu0vTyrD1k+sT1dSXQq79HAYjop3+zEO7G0j8FHW9kfOuW+3k8VmwaZ/ZhrBii
-         YOQA==
-X-Gm-Message-State: AOJu0YwkPPFJj1ALIqKcrtSHbRQUuc1W6OIGsmG+OuM7AUt92VN2RKRl
-	YolZ2uPJvUePCemtU6SX8JlRRA==
-X-Google-Smtp-Source: AGHT+IHQ3EA5vBpnyDFB4fnqV7h4/enCyNJtRFRN4wtxlHs+OMVVOZDfwzbw0/OUV/fl7njjlBzgEQ==
-X-Received: by 2002:a5d:46c1:0:b0:333:1077:b35c with SMTP id g1-20020a5d46c1000000b003331077b35cmr3785511wrs.47.1701260761421;
-        Wed, 29 Nov 2023 04:26:01 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id n8-20020a5d67c8000000b00332e84210c2sm15542543wrw.88.2023.11.29.04.26.00
+        d=1e100.net; s=20230601; t=1701260877; x=1701865677;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=opRq8HhMKtPyRUv5kMZKX/NFDoGBi9Z7K4WbMMCtpbM=;
+        b=st1P3nf8XyZieuFwJY0JXwW13coFzB/t8ddMZfnJGA9Y8bcanGGHOuZzMy8ko9Qk5d
+         3rs9qB4S9obhUvYuJSzONnirJMn63umGWU3OHTeXWXyN9Ok2CeRv+hH8822yJihs5z6/
+         tPvpAILaNYfUsElhvNjjW+PkUdYGCnUG6mJKN0FrJWiwA9eeKO8e93mxrWa6wbSXP2Zj
+         x4P1swDmRTl9bqPXiuJ2fHnBvFGzgsyVZTBDt/Dw6dpaBHsDyluopmleqegpe+TPzaDb
+         sLeFt3gTd55afi+eyM0oRncSjjxflsRBTCBuoRiNlUu6gP66xCXKuaLTI0PXJnPiUjVw
+         XQVA==
+X-Gm-Message-State: AOJu0Yzds7hRwJFcfKFCjRfgTZy8iEp2RHFy0h9gxym5KCg61u6kndLB
+	xMeogV94QxqRcCakV8PDv6Rrfz51Ew==
+X-Google-Smtp-Source: AGHT+IFeT4TOS1lwCniGFpFyRlrKaGQoldYYSp6/qieipLGGVk/fxUG/nFPnWWnb5eqEqOt+HkpFbA==
+X-Received: by 2002:a05:6808:2102:b0:3b8:3cfd:f0f0 with SMTP id r2-20020a056808210200b003b83cfdf0f0mr5877834oiw.5.1701260877457;
+        Wed, 29 Nov 2023 04:27:57 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id bf4-20020a056808190400b003af56ef1510sm2181994oib.20.2023.11.29.04.27.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Nov 2023 04:26:01 -0800 (PST)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Philipp Zabel <p.zabel@pengutronix.de>, 
- Kevin Hilman <khilman@baylibre.com>, Rob Herring <robh+dt@kernel.org>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- zelong dong <zelong.dong@amlogic.com>
-Cc: linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- yonghui.yu@amlogic.com, kelvin.zhang@amlogic.com
-In-Reply-To: <20230914064018.18790-1-zelong.dong@amlogic.com>
-References: <20230914064018.18790-1-zelong.dong@amlogic.com>
-Subject: Re: (subset) [PATCH v4 0/3] reset: amlogic-c3: add reset driver
-Message-Id: <170126076055.2880660.13057388884278592366.b4-ty@linaro.org>
-Date: Wed, 29 Nov 2023 13:26:00 +0100
+        Wed, 29 Nov 2023 04:27:56 -0800 (PST)
+Received: (nullmailer pid 1991760 invoked by uid 1000);
+	Wed, 29 Nov 2023 12:27:55 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.3
+From: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: devicetree@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, Andreas Klinger <ak@it-klinger.de>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-iio@vger.kernel.org
+In-Reply-To: <20231129111041.26782-1-krzysztof.kozlowski@linaro.org>
+References: <20231129111041.26782-1-krzysztof.kozlowski@linaro.org>
+Message-Id: <170126087595.1991744.9053853140300681368.robh@kernel.org>
+Subject: Re: [PATCH] dt-bindings: iio: honeywell,mprls0025pa: drop ref from
+ pressure properties
+Date: Wed, 29 Nov 2023 06:27:55 -0600
 
-Hi,
 
-On Thu, 14 Sep 2023 14:40:15 +0800, zelong dong wrote:
-> From: Zelong Dong <zelong.dong@amlogic.com>
+On Wed, 29 Nov 2023 12:10:41 +0100, Krzysztof Kozlowski wrote:
+> The dtschema treats now properties with '-pascal' suffix as standard one
+> and already defines $ref for them, thus the $ref should be dropped from
+> the bindings.
 > 
-> This patchset adds Reset controller driver support for Amlogic C3 SoC.
-> The RESET registers count and offset for C3 Soc are same as S4 Soc.
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
-> Changes since v1:
-> - remove Change-ID
-> - run scripts/checkpatch.pl and fix reported warnings
-> - sort dts node by base reg offset
+> ---
 > 
-> [...]
+> dtschema change was merged:
+> https://github.com/devicetree-org/dt-schema/commit/2a1708dcf4ff0b25c4ec46304d6d6cc655c3e635
+> but not yet released as new dtschema version.
+> 
+> This change should be applied once new dtschema version is released or
+> Rob says otherwise.
+> ---
+>  .../devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml | 2 --
+>  1 file changed, 2 deletions(-)
+> 
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.8/arm64-dt)
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-[3/3] arm64: dts: amlogic: add reset controller for Amlogic C3 SoC
-      https://git.kernel.org/amlogic/c/a5468f5ea9a01acf29d02745abae7b82482989d4
+yamllint warnings/errors:
 
-These changes has been applied on the intermediate git tree [1].
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml: honeywell,pmin-pascal: missing type definition
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml: honeywell,pmax-pascal: missing type definition
 
-The v6.8/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
+doc reference errors (make refcheckdocs):
 
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231129111041.26782-1-krzysztof.kozlowski@linaro.org
 
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+pip3 install dtschema --upgrade
 
--- 
-Neil
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
