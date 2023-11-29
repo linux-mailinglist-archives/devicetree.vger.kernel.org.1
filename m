@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-19863-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19864-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CC637FD0DE
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 09:30:56 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF2627FD0E1
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 09:31:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9DDB9B21435
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 08:30:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E11101C2097C
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 08:31:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 139B4E57F;
-	Wed, 29 Nov 2023 08:30:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 090AE11C9B;
+	Wed, 29 Nov 2023 08:31:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cZPB+Qji"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="x+ER/EVM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46F801FD3
-	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 00:30:26 -0800 (PST)
-Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-54bb9024378so1745330a12.3
-        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 00:30:26 -0800 (PST)
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F0692134
+	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 00:31:00 -0800 (PST)
+Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-54ba30784ecso2194059a12.1
+        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 00:31:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701246624; x=1701851424; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701246659; x=1701851459; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=lejQuHQubNzpQo0iMNt5Jkv1iFKF5LFtQJcWLVi9cGc=;
-        b=cZPB+QjisZsyklKzjGs0sFgdcHaD9XjpppPhu0Cs8j7deme0KykkoXkzUhwqR/vZKy
-         RXJyS2hRhysMdY7sI3PlyvJmnpLRWP9B4Dqe1ZysedIxqBaBbyQqld+pKeV11gO17hVf
-         qJ4z/MNeVkEkrctwojMejvYonmZiWmQ+O1d08JZTd0BhrlrYvtSobwjL8c2aoq3DFgR2
-         RvPcxwUdRJMBOxSqzW/eU6qmwckRax+v09tHGCHuNnz/tdT+wJ317m6KlkRzfrPgM8J0
-         QeeUJAe8mT6ZPVGtRc2009XjKRR4ccof5TZ5vCtmBYYEzZxrmMPGyaKaegaRhICmhKLg
-         43vg==
+        bh=lLcARgNXWLshgrpkp/S+MhgkNopD1zpmMo4PWSTyMEg=;
+        b=x+ER/EVMlDe30Q8pCxhEal1LxK1RzJvftvKH7M7VV5y/sououtHhT6BTjARY+RhYYP
+         PHIDpKCz+djSLuGLKShij/SW2RwnO4ZMWgY79CA0T00jZ4FzwBDnVr1jSOCgcNIi9ik8
+         JUl/VLO5PwCCPemcRy3KkSKhZG2c3bSuwtTIvGPCSxhH7aiN9spb3hPoULhV/QefLj4j
+         By2dEqfwGBsaeNRKZpAFZau0XL8C1ePC+lFpNC/v//mU3kSkeL89y/HGJZfkitv2nZyK
+         wZxU/MaQVrkLOlZ+v2IgV10tTUjBY5c1jLfgEB0Gm5YUjviLwqpp3GGb8xs2PaGH4+hk
+         6X0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701246624; x=1701851424;
+        d=1e100.net; s=20230601; t=1701246659; x=1701851459;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lejQuHQubNzpQo0iMNt5Jkv1iFKF5LFtQJcWLVi9cGc=;
-        b=FftLbxE5GBhgd3Q7ts+ZJVRm/9GZQHU24AprY1ZrXX3JZzerv5xUI1X2rD9xv8cEvj
-         qWyW0uFGbVHscoqDmHaJwX7JpdJOAvJrj9+XHuKnhw+GkNuGsBzaUpzcC7pRC1rwc9SX
-         tV5SHw2DN+XmtjC92psBdy5aQisOcy5rCHO37NspiUJQcbo8ayIMMBzPYOIj0fmliaFF
-         94aa6aluLwfRB+kxCh1YVCp+ZLFbCB7uvGH0kRXfdFXKx02P+JMiRkuCTJ2/AprsNncv
-         uFhLlg4bkDlXmltKHhUNMr2lA5nPdR4v+tlWgeuLsr/mmQUoqCGtJBQuMkQ3hMvp/GJy
-         rZ/g==
-X-Gm-Message-State: AOJu0YxiztzgoF3WQ7jDrKRVg8YAGHI0ER5M50r1+o8QrhACVPikpqRV
-	NrrhPInPF4sGe0Phpfi/4FcbsA==
-X-Google-Smtp-Source: AGHT+IFvfMCzJ8aLPor0BE5CSEL29kYANC1oPbU546udiufEyvjAbkzdYP4qHL0ms2/sePH5aj5Ypg==
-X-Received: by 2002:a05:6402:175c:b0:54a:f8d9:52fc with SMTP id v28-20020a056402175c00b0054af8d952fcmr11675326edx.31.1701246624720;
-        Wed, 29 Nov 2023 00:30:24 -0800 (PST)
+        bh=lLcARgNXWLshgrpkp/S+MhgkNopD1zpmMo4PWSTyMEg=;
+        b=q5wBGn5y86ZfAeS5zM+FfoZXIrH5OwalPsVJukKDuzaAeNGGg+g06dxaDKc9qv0lA6
+         wOSZwsVqA+tRX0+hHsfiwvevRAmczyfwJh0rGJhCxVDa0RUumlxXKPXpXR9cVReFG1Il
+         egMTFoyG9ybXDmCyIqBnWLVUaxZLdHEmP4bMiZ23LkgSz8Fi9BBMlXnXZ1qUzSqPJk2R
+         QYl+C4X+lVKerr7kDJM1xKiJWhPNsK7xcaAweBWc15xS6uu2dvt5WlqNMEadhffW2q4m
+         uIuDgRj/cJDF8OnQgZwjE1i+zuUvMjUu/z5cLUHPj00xre9SJUKEpr2vRf2U9XMzfevS
+         BJGw==
+X-Gm-Message-State: AOJu0YzR9YP3LceQgMWFRd91ce7UBcbK30IC3NJ7htE3ZkDplEM6IzU1
+	K1o9MZLP3xtpnCH4R5X33jxLSllbkayQZekZEek=
+X-Google-Smtp-Source: AGHT+IHu0sGX+4sFVrTiCj0U941WlQnSSg22e1TE4LaGX8GzrERrbwKALrfTOhMc74Xh6vzdiPkWNg==
+X-Received: by 2002:a05:6402:5d82:b0:54b:1865:be25 with SMTP id if2-20020a0564025d8200b0054b1865be25mr9848574edb.20.1701246659178;
+        Wed, 29 Nov 2023 00:30:59 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.109])
-        by smtp.gmail.com with ESMTPSA id b9-20020a056402350900b0054b7e312b97sm2519566edd.38.2023.11.29.00.30.23
+        by smtp.gmail.com with ESMTPSA id b9-20020a056402350900b0054b7e312b97sm2519566edd.38.2023.11.29.00.30.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Nov 2023 00:30:24 -0800 (PST)
-Message-ID: <87771c1f-17fd-4895-aafc-4fe0c38a59ee@linaro.org>
-Date: Wed, 29 Nov 2023 09:30:23 +0100
+        Wed, 29 Nov 2023 00:30:58 -0800 (PST)
+Message-ID: <8f39b628-06c1-426d-ab4d-247dbc911704@linaro.org>
+Date: Wed, 29 Nov 2023 09:30:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,16 +62,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: iio/adc: ti,palmas-gpadc: Drop incomplete
- example
+Subject: Re: [PATCH] dt-bindings: reset: hisilicon,hi3660-reset: Drop
+ providers and consumers from example
 Content-Language: en-US
-To: Rob Herring <robh@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
- Lars-Peter Clausen <lars@metafoo.de>,
+To: Rob Herring <robh@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Tony Lindgren <tony@atomide.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20231128214803.3975542-1-robh@kernel.org>
+ Conor Dooley <conor+dt@kernel.org>, Wei Xu <xuwei5@hisilicon.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231128214759.3975428-1-robh@kernel.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -117,18 +115,17 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231128214803.3975542-1-robh@kernel.org>
+In-Reply-To: <20231128214759.3975428-1-robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 28/11/2023 22:48, Rob Herring wrote:
-> The example for the TI Palmas ADC is incomplete as the binding is the
-> full PMIC, not just the sub-functions. It is preferred for MFD examples
-> to be complete in the top-level MFD device binding rather than piecemeal
-> in each sub-function binding.
+On 28/11/2023 22:47, Rob Herring wrote:
+> Binding examples should generally only cover what the binding covers. A
+> provider binding doesn't need to show consumers and vice-versa. The
+> hisilicon,hi3660-reset binding example has both, so let's drop them.
 > 
 > This also fixes an undocumented (by schema) compatible warning for
-> '"ti,twl6035-pmic", "ti,palmas-pmic"'.
+> "hisilicon,hi3660-iomcu".
 > 
 > Signed-off-by: Rob Herring <robh@kernel.org>
 > ---
