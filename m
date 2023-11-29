@@ -1,51 +1,50 @@
-Return-Path: <devicetree+bounces-19867-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19868-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C583C7FD115
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 09:39:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DCE7F7FD13A
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 09:44:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DFDED282B84
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 08:39:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 19A7B1C20F5B
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 08:44:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 076D710944;
-	Wed, 29 Nov 2023 08:39:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBF51101CD;
+	Wed, 29 Nov 2023 08:44:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b="k9iCPhXf"
+	dkim=pass (1024-bit key) header.d=subdimension.ro header.i=@subdimension.ro header.b="ltFKlGOM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail5.25mail.st (mail5.25mail.st [74.50.62.9])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 496A01BD1;
-	Wed, 29 Nov 2023 00:39:08 -0800 (PST)
-Received: from localhost (91-158-86-216.elisa-laajakaista.fi [91.158.86.216])
-	by mail5.25mail.st (Postfix) with ESMTPSA id 633F960514;
-	Wed, 29 Nov 2023 08:38:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=atomide.com;
-	s=25mailst; t=1701247147;
-	bh=4T2boRidFI8X28nZq5JoZ0Nop7HsXEFuU6HdeMnLYUk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=k9iCPhXf3wHSonjZls9kQPzVsqEbj1er44e00sKBvEUJo4lmUkLnF6fkTv7ipfyT2
-	 XLq2qZaeF0OvlE00LdoP4nHpeSBKCqRzQojG8loLErM6JyC2haeGWWhWCT56ZKWj1z
-	 KLzIdZ1FPlHc0ic+x8q7X2UgwS5xuE+rvgdQpCZPKkJKu8+yNp18nA4MsEKRcwcQQa
-	 RMQlZNobYSmF9TPKEUXvmweZ/eG3IC6P1SsT2xQ92+aTb4INPPKxnfqH5QKVN4Cqon
-	 81TSI/i9Yg+J3oWIN5EfnR4oLqggQuO/7IMejufJIq4yXZFTZH05sx54LCNvIHtoqQ
-	 AnDKOi2uRfSXw==
-Date: Wed, 29 Nov 2023 10:38:44 +0200
-From: Tony Lindgren <tony@atomide.com>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
+Received: from mail.subdimension.ro (skycaves.subdimension.ro [172.104.132.142])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D763DA;
+	Wed, 29 Nov 2023 00:44:41 -0800 (PST)
+Received: from sunspire (unknown [188.24.94.216])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by mail.subdimension.ro (Postfix) with ESMTPSA id 91A8328EE6F;
+	Wed, 29 Nov 2023 08:44:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=subdimension.ro;
+	s=skycaves; t=1701247479;
+	bh=8dG6wXZ7YD/GD8RPYXq9Rwlv5prQ9VGMtUd8zQki0VI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=ltFKlGOMTS2z7yJpkWIalxYIAoonpPcij+FCZFtsabdKeeymjkqMejYPKGYgHnKjY
+	 PpcJjqxw3o4RAFxy1G0b6UrABEIc4D95+rpyVnbO0cEz8pOdPI939lSKiiipudbWW/
+	 Eaxw4nHqwbHMv3/ivqAnR1KRC4N/CF3MyT/1pOo0=
+Date: Wed, 29 Nov 2023 10:44:38 +0200
+From: Petre Rodan <petre.rodan@subdimension.ro>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, Rob Herring <robh@kernel.org>,
-	Dhruva Gole <d-gole@ti.com>
-Subject: Re: [PATCH v4 2/2] Input: gpio-keys - Add system suspend support for
- dedicated wakeirqs
-Message-ID: <20231129083844.GU5169@atomide.com>
-References: <20231124083241.40780-1-tony@atomide.com>
- <20231124083241.40780-2-tony@atomide.com>
- <ZWF9F9JHKJ-SjUjp@google.com>
+	linux-kernel-mentees@lists.linuxfoundation.org,
+	Jonathan Cameron <jic23@kernel.org>
+Subject: Re: [PATCH v5 1/2] dt-bindings: iio: pressure: add honeywell,hsc030
+Message-ID: <ZWb59iEftxX6mQdJ@sunspire>
+References: <20231129070432.1437-1-petre.rodan@subdimension.ro>
+ <adf1e932-a201-475e-a562-4e35954159ee@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -54,39 +53,44 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ZWF9F9JHKJ-SjUjp@google.com>
+In-Reply-To: <adf1e932-a201-475e-a562-4e35954159ee@linaro.org>
 
-* Dmitry Torokhov <dmitry.torokhov@gmail.com> [231125 04:50]:
-> Hi Tony,
+
+hi,
+
+On Wed, Nov 29, 2023 at 09:04:17AM +0100, Krzysztof Kozlowski wrote:
+> On 29/11/2023 08:04, Petre Rodan wrote:
+> > Adds binding for digital Honeywell TruStability HSC and SSC series
+> > pressure and temperature sensors.
+> > Communication is one way. The sensor only requires 4 bytes worth of
+> > clock pulses on both i2c and spi in order to push the data out.
+> > The i2c address is hardcoded and depends on the part number.
+> > There is no additional GPIO control.
 > 
-> On Fri, Nov 24, 2023 at 10:32:41AM +0200, Tony Lindgren wrote:
-> > +	/*
-> > +	 * Wakeirq shares the handler with the main interrupt, it's only
-> > +	 * active during system suspend. See gpio_keys_button_enable_wakeup()
-> > +	 * and gpio_keys_button_disable_wakeup().
-> > +	 */
-> > +	error = devm_request_any_context_irq(dev, bdata->wakeirq, isr,
-> > +					     irqflags, wakedesc, bdata);
-> > +	if (error < 0) {
-> > +		dev_err(dev, "Unable to claim wakeirq %d; error %d\n",
-> > +			bdata->irq, error);
-> > +		return error;
-> > +	}
-> > +
-> > +	/*
-> > +	 * Disable wakeirq until suspend. IRQF_NO_AUTOEN won't work if
-> > +	 * IRQF_SHARED was set based on !button->can_disable.
-> > +	 */
-> > +	disable_irq_nosync(bdata->wakeirq);
+> Your threading is broken (not existing) since v4, making it difficult to
+> apply the patchset. Please fix it when sending v6.
+
+I'm confused.
+
+you mean the lack of 'In-Reply-To' and 'References' headers in the emails
+`git send-email` is generating?
+I've added them for v2, but was told that was a mistake [1]
+
+[1] https://lore.kernel.org/lkml/20231125191915.7f1f2dc4@jic23-huawei/
+
+I'm probably misunderstanding something.
+also, I hope v5 is flawless enough.
+
+best regards,
+peter
+
 > 
-> Why _nosync() here and below? Is there any harm in sing the normal
-> variant?
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> Best regards,
+> Krzysztof
+> 
 
-Well they are enabled the same time anyways for a while, so I see no
-harm using the normal variant here. Will post updated patches after
-some testing.
-
-Regards,
-
-Tony
+-- 
+petre rodan
 
