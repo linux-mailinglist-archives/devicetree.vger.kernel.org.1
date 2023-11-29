@@ -1,283 +1,242 @@
-Return-Path: <devicetree+bounces-20135-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20136-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53B4F7FDEA2
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 18:43:58 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 119E27FDEDA
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 18:50:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 08BF82829B8
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 17:43:57 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7C4BEB210D5
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 17:50:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89E3B58AA5;
-	Wed, 29 Nov 2023 17:43:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05F2859B64;
+	Wed, 29 Nov 2023 17:49:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HSZ0Bk+X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 0EBC7173B;
-	Wed, 29 Nov 2023 09:43:46 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BAB751758;
-	Wed, 29 Nov 2023 09:44:32 -0800 (PST)
-Received: from e121345-lin.cambridge.arm.com (e121345-lin.cambridge.arm.com [10.1.196.40])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id B41E83F73F;
-	Wed, 29 Nov 2023 09:43:41 -0800 (PST)
-From: Robin Murphy <robin.murphy@arm.com>
-To: Joerg Roedel <joro@8bytes.org>,
-	Christoph Hellwig <hch@lst.de>
-Cc: Vineet Gupta <vgupta@kernel.org>,
-	Russell King <linux@armlinux.org.uk>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Huacai Chen <chenhuacai@kernel.org>,
-	WANG Xuerui <kernel@xen0n.name>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Hanjun Guo <guohanjun@huawei.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	"K. Y. Srinivasan" <kys@microsoft.com>,
-	Haiyang Zhang <haiyangz@microsoft.com>,
-	Wei Liu <wei.liu@kernel.org>,
-	Dexuan Cui <decui@microsoft.com>,
-	Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
-	David Woodhouse <dwmw2@infradead.org>,
-	Lu Baolu <baolu.lu@linux.intel.com>,
-	Niklas Schnelle <schnelle@linux.ibm.com>,
-	Matthew Rosato <mjrosato@linux.ibm.com>,
-	Gerald Schaefer <gerald.schaefer@linux.ibm.com>,
-	Jean-Philippe Brucker <jean-philippe@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Frank Rowand <frowand.list@gmail.com>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Jason Gunthorpe <jgg@ziepe.ca>,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-acpi@vger.kernel.org,
-	iommu@lists.linux.dev,
-	devicetree@vger.kernel.org
-Subject: [PATCH 7/7] dma-mapping: Simplify arch_setup_dma_ops()
-Date: Wed, 29 Nov 2023 17:43:04 +0000
-Message-Id: <590a4a1b7d10fb9bb1c42ca6cd438e98e6cc94a7.1701268753.git.robin.murphy@arm.com>
-X-Mailer: git-send-email 2.39.2.101.g768bb238c484.dirty
-In-Reply-To: <cover.1701268753.git.robin.murphy@arm.com>
-References: <cover.1701268753.git.robin.murphy@arm.com>
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D33CC4C3AC;
+	Wed, 29 Nov 2023 17:49:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A7F0C433C7;
+	Wed, 29 Nov 2023 17:49:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701280198;
+	bh=hOv0atHingnUJuqYGWuaNZX1Z0M6TjcYBZp5aRGip38=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=HSZ0Bk+XmVmFmLv332NYdThxfq4coZgxOk/QGCVmtzUcqbP97NlHYXwFbriiyC9FH
+	 d7/i+52mNChc0yjo6/jXpoAsN+V5rk2WU0NQRFX8RY+48z8kY4qWBHx2BeG1poDNHK
+	 K/xwWP38VggGm4bT8c6GbPVqQEGov8dERZjxti4jevPG5l3dDhxzlO5QuV9tWcKJYo
+	 ZC9huQ3TP9gplgB3P0TMLjTogFgeQKOxgo4E/PjbsPtu38ro5u6PfYzJvA7+vXzZ+0
+	 xhz1vMusrIAxnD4UEQaLNFGsIVKMi1vSUOYnFXILQicFq7V0ZJnyhiBs1v52yDZt7V
+	 mdUXs2OqlgUpQ==
+Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-1fa0885e1c2so3186478fac.0;
+        Wed, 29 Nov 2023 09:49:58 -0800 (PST)
+X-Gm-Message-State: AOJu0Yx7QVeVut9Q7yfnjijicfKXvqiypvOMzedrrYJznFq8/TgZ5YU2
+	mbkk4UEEicsIUvs4EzeABjNS0A2eh5zxkvpVA1M=
+X-Google-Smtp-Source: AGHT+IGPL/pndXjMwP7hy3JldohpjQSp00uVIIbyXY3nxHbNA9I2y0xKAZxcbbFRrog0l235VVgYmZxUmeL8Cb87sfc=
+X-Received: by 2002:a05:6870:82a5:b0:1fa:2888:701d with SMTP id
+ q37-20020a05687082a500b001fa2888701dmr17426756oae.8.1701280197666; Wed, 29
+ Nov 2023 09:49:57 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20231122-dtc-warnings-v2-0-bd4087325392@kernel.org>
+ <CAK7LNASVMjVg4dr=KdSDHwGww_47H78H7rMXA=wf+ncugesDSA@mail.gmail.com>
+ <CAL_Jsq+N0GxwZ2YmspEzfiuGOw7M+DmYkyhLgaYtk+Ov2ycY_A@mail.gmail.com>
+ <CAK7LNAT6-pBjUbB+Fcik27QWniK7BizvoUG+EiFvFtJ+MTdmJA@mail.gmail.com> <CAL_JsqJSFnVG6+CfcbgVFGo3EyiSTt-et0NSW2qWjei+zXURcg@mail.gmail.com>
+In-Reply-To: <CAL_JsqJSFnVG6+CfcbgVFGo3EyiSTt-et0NSW2qWjei+zXURcg@mail.gmail.com>
+From: Masahiro Yamada <masahiroy@kernel.org>
+Date: Thu, 30 Nov 2023 02:49:21 +0900
+X-Gmail-Original-Message-ID: <CAK7LNARrRwzrU0m0SVOfnJj87hw4kL2YpDK0xRCwuW6fYT9OGg@mail.gmail.com>
+Message-ID: <CAK7LNARrRwzrU0m0SVOfnJj87hw4kL2YpDK0xRCwuW6fYT9OGg@mail.gmail.com>
+Subject: Re: [PATCH v2 0/4] kbuild: Per arch/platform dtc warning levels
+To: Rob Herring <robh@kernel.org>
+Cc: Nathan Chancellor <nathan@kernel.org>, Nick Desaulniers <ndesaulniers@google.com>, 
+	Nicolas Schier <nicolas@fjasle.eu>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	Conor Dooley <conor@kernel.org>, linux-kbuild@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The dma_base, size and iommu arguments are only used by ARM, and can
-now easily be deduced from the device itself, so there's no need to pass
-them through the callchain as well.
+On Wed, Nov 29, 2023 at 7:25=E2=80=AFAM Rob Herring <robh@kernel.org> wrote=
+:
+>
+> On Tue, Nov 28, 2023 at 6:03=E2=80=AFAM Masahiro Yamada <masahiroy@kernel=
+.org> wrote:
+> >
+> > On Mon, Nov 27, 2023 at 11:03=E2=80=AFPM Rob Herring <robh@kernel.org> =
+wrote:
+> > >
+> > > On Thu, Nov 23, 2023 at 1:39=E2=80=AFAM Masahiro Yamada <masahiroy@ke=
+rnel.org> wrote:
+> > > >
+> > > > On Thu, Nov 23, 2023 at 7:12=E2=80=AFAM Rob Herring <robh@kernel.or=
+g> wrote:
+> > > > >
+> > > > > This series adds support to set the dtc extra warning level on a =
+per
+> > > > > arch or per platform (directory really) basis.
+> > > > >
+> > > > > The first version of this was just a simple per directory overrid=
+e for
+> > > > > Samsung platforms, but Conor asked to be able to do this for all =
+of
+> > > > > riscv.
+> > > > >
+> > > > > For merging, either I can take the whole thing or the riscv and s=
+amsung
+> > > > > patches can go via their normal trees. The added variable will ha=
+ve no
+> > > > > effect until merged with patch 2.
+> > > > >
+> > > > > v1:
+> > > > >  - https://lore.kernel.org/all/20231116211739.3228239-1-robh@kern=
+el.org/
+> > > > >
+> > > > > Signed-off-by: Rob Herring <robh@kernel.org>
+> > > > > ---
+> > > >
+> > > >
+> > > > There were some attempts in the past to enable W=3D1 in particular =
+subsystems,
+> > > > so here is a similar comment.
+> > > >
+> > > > Adding a new warning flag to W=3D1 is always safe without doing any=
+ compile test.
+> > > >
+> > > > With this series, it would not be true any more because a new warni=
+ng in W=3D1
+> > > > would potentially break riscv/samsung platforms.
+> > >
+> > > The difference here is the people potentially adding warnings are als=
+o
+> > > the ones ensuring no warnings.
+> > >
+> > > > Linus requires a clean build (i.e. zero warning) when W=3D option i=
+s not given.
+> > >
+> > > Linus doesn't build any of this AFAICT. We are not always warning fre=
+e
+> > > for W=3D0 with dtbs.
+> >
+> >
+> >
+> > Does it mean, you can enable all warnings by default?
+>
+> No, Linus might not care, but others (me) do. The whole point of not
+> allowing warnings is the same. Get to zero warnings so any new
+> warnings stand out. We now have some subset of platforms which are
+> warning free and want warnings enabled by default to keep them that
+> way. How do you suggest we do that?
 
-Signed-off-by: Robin Murphy <robin.murphy@arm.com>
----
- arch/arc/mm/dma.c               |  3 +--
- arch/arm/mm/dma-mapping-nommu.c |  3 +--
- arch/arm/mm/dma-mapping.c       | 12 ++++++++----
- arch/arm64/mm/dma-mapping.c     |  3 +--
- arch/mips/mm/dma-noncoherent.c  |  3 +--
- arch/riscv/mm/dma-noncoherent.c |  3 +--
- drivers/acpi/scan.c             |  3 +--
- drivers/hv/hv_common.c          |  6 +-----
- drivers/of/device.c             |  4 +---
- include/linux/dma-map-ops.h     |  6 ++----
- 10 files changed, 18 insertions(+), 28 deletions(-)
 
-diff --git a/arch/arc/mm/dma.c b/arch/arc/mm/dma.c
-index 2a7fbbb83b70..6b85e94f3275 100644
---- a/arch/arc/mm/dma.c
-+++ b/arch/arc/mm/dma.c
-@@ -90,8 +90,7 @@ void arch_sync_dma_for_cpu(phys_addr_t paddr, size_t size,
- /*
-  * Plug in direct dma map ops.
-  */
--void arch_setup_dma_ops(struct device *dev, u64 dma_base, u64 size,
--			const struct iommu_ops *iommu, bool coherent)
-+void arch_setup_dma_ops(struct device *dev, bool coherent)
- {
- 	/*
- 	 * IOC hardware snoops all DMA traffic keeping the caches consistent
-diff --git a/arch/arm/mm/dma-mapping-nommu.c b/arch/arm/mm/dma-mapping-nommu.c
-index cfd9c933d2f0..97db5397c320 100644
---- a/arch/arm/mm/dma-mapping-nommu.c
-+++ b/arch/arm/mm/dma-mapping-nommu.c
-@@ -33,8 +33,7 @@ void arch_sync_dma_for_cpu(phys_addr_t paddr, size_t size,
- 	}
- }
- 
--void arch_setup_dma_ops(struct device *dev, u64 dma_base, u64 size,
--			const struct iommu_ops *iommu, bool coherent)
-+void arch_setup_dma_ops(struct device *dev, bool coherent)
- {
- 	if (IS_ENABLED(CONFIG_CPU_V7M)) {
- 		/*
-diff --git a/arch/arm/mm/dma-mapping.c b/arch/arm/mm/dma-mapping.c
-index 5409225b4abc..70a2131f9b09 100644
---- a/arch/arm/mm/dma-mapping.c
-+++ b/arch/arm/mm/dma-mapping.c
-@@ -1716,7 +1716,12 @@ static void arm_setup_iommu_dma_ops(struct device *dev, u64 dma_base, u64 size,
- 				    const struct iommu_ops *iommu, bool coherent)
- {
- 	struct dma_iommu_mapping *mapping;
-+	u64 dma_base = 0, size = SZ_4GB;
- 
-+	if (dev->dma_range_map) {
-+		dma_base = dma_range_map_min(dev->dma_range_map);
-+		size = dma_range_map_max(dev->dma_range_map) - dma_base;
-+	}
- 	mapping = arm_iommu_create_mapping(dev->bus, dma_base, size);
- 	if (IS_ERR(mapping)) {
- 		pr_warn("Failed to create %llu-byte IOMMU mapping for device %s\n",
-@@ -1756,8 +1761,7 @@ static void arm_teardown_iommu_dma_ops(struct device *dev) { }
- 
- #endif	/* CONFIG_ARM_DMA_USE_IOMMU */
- 
--void arch_setup_dma_ops(struct device *dev, u64 dma_base, u64 size,
--			const struct iommu_ops *iommu, bool coherent)
-+void arch_setup_dma_ops(struct device *dev, bool coherent)
- {
- 	/*
- 	 * Due to legacy code that sets the ->dma_coherent flag from a bus
-@@ -1776,8 +1780,8 @@ void arch_setup_dma_ops(struct device *dev, u64 dma_base, u64 size,
- 	if (dev->dma_ops)
- 		return;
- 
--	if (iommu)
--		arm_setup_iommu_dma_ops(dev, dma_base, size, iommu, coherent);
-+	if (device_iommu_mapped(dev))
-+		arm_setup_iommu_dma_ops(dev);
- 
- 	xen_setup_dma_ops(dev);
- 	dev->archdata.dma_ops_setup = true;
-diff --git a/arch/arm64/mm/dma-mapping.c b/arch/arm64/mm/dma-mapping.c
-index 96ff791199e8..0b320a25a471 100644
---- a/arch/arm64/mm/dma-mapping.c
-+++ b/arch/arm64/mm/dma-mapping.c
-@@ -46,8 +46,7 @@ void arch_teardown_dma_ops(struct device *dev)
- }
- #endif
- 
--void arch_setup_dma_ops(struct device *dev, u64 dma_base, u64 size,
--			const struct iommu_ops *iommu, bool coherent)
-+void arch_setup_dma_ops(struct device *dev, bool coherent)
- {
- 	int cls = cache_line_size_of_cpu();
- 
-diff --git a/arch/mips/mm/dma-noncoherent.c b/arch/mips/mm/dma-noncoherent.c
-index 3c4fc97b9f39..ab4f2a75a7d0 100644
---- a/arch/mips/mm/dma-noncoherent.c
-+++ b/arch/mips/mm/dma-noncoherent.c
-@@ -137,8 +137,7 @@ void arch_sync_dma_for_cpu(phys_addr_t paddr, size_t size,
- #endif
- 
- #ifdef CONFIG_ARCH_HAS_SETUP_DMA_OPS
--void arch_setup_dma_ops(struct device *dev, u64 dma_base, u64 size,
--		const struct iommu_ops *iommu, bool coherent)
-+void arch_setup_dma_ops(struct device *dev, bool coherent)
- {
- 	dev->dma_coherent = coherent;
- }
-diff --git a/arch/riscv/mm/dma-noncoherent.c b/arch/riscv/mm/dma-noncoherent.c
-index 4e4e469b8dd6..cb89d7e0ba88 100644
---- a/arch/riscv/mm/dma-noncoherent.c
-+++ b/arch/riscv/mm/dma-noncoherent.c
-@@ -128,8 +128,7 @@ void arch_dma_prep_coherent(struct page *page, size_t size)
- 	ALT_CMO_OP(FLUSH, flush_addr, size, riscv_cbom_block_size);
- }
- 
--void arch_setup_dma_ops(struct device *dev, u64 dma_base, u64 size,
--		const struct iommu_ops *iommu, bool coherent)
-+void arch_setup_dma_ops(struct device *dev, bool coherent)
- {
- 	WARN_TAINT(!coherent && riscv_cbom_block_size > ARCH_DMA_MINALIGN,
- 		   TAINT_CPU_OUT_OF_SPEC,
-diff --git a/drivers/acpi/scan.c b/drivers/acpi/scan.c
-index ee88a727f200..cad171fc31e8 100644
---- a/drivers/acpi/scan.c
-+++ b/drivers/acpi/scan.c
-@@ -1640,8 +1640,7 @@ int acpi_dma_configure_id(struct device *dev, enum dev_dma_attr attr,
- 	if (PTR_ERR(iommu) == -EPROBE_DEFER)
- 		return -EPROBE_DEFER;
- 
--	arch_setup_dma_ops(dev, 0, U64_MAX,
--				iommu, attr == DEV_DMA_COHERENT);
-+	arch_setup_dma_ops(dev, attr == DEV_DMA_COHERENT);
- 
- 	return 0;
- }
-diff --git a/drivers/hv/hv_common.c b/drivers/hv/hv_common.c
-index 4372f5d146ab..0e2decd1167a 100644
---- a/drivers/hv/hv_common.c
-+++ b/drivers/hv/hv_common.c
-@@ -484,11 +484,7 @@ EXPORT_SYMBOL_GPL(hv_query_ext_cap);
- 
- void hv_setup_dma_ops(struct device *dev, bool coherent)
- {
--	/*
--	 * Hyper-V does not offer a vIOMMU in the guest
--	 * VM, so pass 0/NULL for the IOMMU settings
--	 */
--	arch_setup_dma_ops(dev, 0, 0, NULL, coherent);
-+	arch_setup_dma_ops(dev, coherent);
- }
- EXPORT_SYMBOL_GPL(hv_setup_dma_ops);
- 
-diff --git a/drivers/of/device.c b/drivers/of/device.c
-index 66879edb4a61..3394751015d3 100644
---- a/drivers/of/device.c
-+++ b/drivers/of/device.c
-@@ -96,7 +96,6 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
- 	const struct iommu_ops *iommu;
- 	const struct bus_dma_region *map = NULL;
- 	struct device_node *bus_np;
--	u64 dma_start = 0;
- 	u64 mask, end = 0;
- 	bool coherent;
- 	int ret;
-@@ -118,7 +117,6 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
- 			return ret == -ENODEV ? 0 : ret;
- 	} else {
- 		/* Determine the overall bounds of all DMA regions */
--		dma_start = dma_range_map_min(map);
- 		end = dma_range_map_max(map);
- 	}
- 
-@@ -167,7 +165,7 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
- 	dev_dbg(dev, "device is%sbehind an iommu\n",
- 		iommu ? " " : " not ");
- 
--	arch_setup_dma_ops(dev, dma_start, end - dma_start + 1, iommu, coherent);
-+	arch_setup_dma_ops(dev, coherent);
- 
- 	if (!iommu)
- 		of_dma_set_restricted_buffer(dev, np);
-diff --git a/include/linux/dma-map-ops.h b/include/linux/dma-map-ops.h
-index a52e508d1869..023f265eae2e 100644
---- a/include/linux/dma-map-ops.h
-+++ b/include/linux/dma-map-ops.h
-@@ -426,11 +426,9 @@ bool arch_dma_unmap_sg_direct(struct device *dev, struct scatterlist *sg,
- #endif
- 
- #ifdef CONFIG_ARCH_HAS_SETUP_DMA_OPS
--void arch_setup_dma_ops(struct device *dev, u64 dma_base, u64 size,
--		const struct iommu_ops *iommu, bool coherent);
-+void arch_setup_dma_ops(struct device *dev, bool coherent);
- #else
--static inline void arch_setup_dma_ops(struct device *dev, u64 dma_base,
--		u64 size, const struct iommu_ops *iommu, bool coherent)
-+static inline void arch_setup_dma_ops(struct device *dev, bool coherent)
- {
- }
- #endif /* CONFIG_ARCH_HAS_SETUP_DMA_OPS */
--- 
-2.39.2.101.g768bb238c484.dirty
 
+
+
+You may not like it, but an alternative solution could be,
+hard-code extra warning flags.
+
+
+In my compile-tests, Samsung platform is not W=3D1 clean yet.
+I see -Wunit_address_vs_reg, -Wsimple_bus_reg,
+-Wunique_unit_address_if_enabled warnings.
+
+I do not see anything else, so you can add the following three
+flags to keep it warning-free.
+
+
+
+
+
+
+diff --git a/arch/arm/boot/dts/samsung/Makefile
+b/arch/arm/boot/dts/samsung/Makefile
+index 7becf36656b1..1e15784ec51f 100644
+--- a/arch/arm/boot/dts/samsung/Makefile
++++ b/arch/arm/boot/dts/samsung/Makefile
+@@ -1,4 +1,10 @@
+ # SPDX-License-Identifier: GPL-2.0
++
++dtcflags :=3D \
++       -Wavoid_unnecessary_addr_size \
++       -Walias_paths \
++       -Wgraph_child_address
++
+ dtb-$(CONFIG_ARCH_EXYNOS3) +=3D \
+        exynos3250-artik5-eval.dtb \
+        exynos3250-monk.dtb \
+diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
+index 1a965fe68e01..aa5a5fc39cec 100644
+--- a/scripts/Makefile.lib
++++ b/scripts/Makefile.lib
+@@ -362,6 +362,9 @@ DTC_FLAGS +=3D -Wnode_name_chars_strict \
+        -Wunique_unit_address
+ endif
+
++# per-directory flags
++DTC_FLAGS +=3D $(dtcflags)
++# per-file flags
+ DTC_FLAGS +=3D $(DTC_FLAGS_$(basetarget))
+
+ # Set -@ if the target is a base DTB that overlay is applied onto
+
+
+
+
+
+
+
+>
+> I understand your point on W=3D1 in general, but I think it just doesn't
+> apply in this case. In general,
+> someone may be testing a new compiler and there's some new warning to
+> enable, so they add it to W=3D1. They are working independently of any
+> subsystem (and Linus) and introducing new warnings would be a burden
+> to fix and a problem to leave. For DT, it is a bit different as adding
+> new warnings, updating dtc version, and selecting warnings to enable
+> are pretty much all done together.
+> Plus, schema warnings have pretty
+> much superseded dtc warnings. If we do add new warnings which can't be
+> fixed up front, then we could still only enable the warning for W=3D1
+> from the command line. Something like this on top of this series:
+>
+> diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
+> index 53a74e53e0ca..41307c6e1fee 100644
+> --- a/scripts/Makefile.lib
+> +++ b/scripts/Makefile.lib
+> @@ -341,6 +341,10 @@ quiet_cmd_gzip =3D GZIP    $@
+>  # ----------------------------------------------------------------------=
+-----
+>  DTC ?=3D $(objtree)/scripts/dtc/dtc
+>
+> +ifeq ($(findstring 1,$(KBUILD_EXTRA_WARN)),)
+> +DTC_FLAGS +=3D -Wno-some_new_warning_we_need_off_globally
+> +endif
+> +
+
+Hmm. Tricky, but works.
+
+KBUILD_EXTRA_WARN_DTC=3D1 is weaker than KBUILD_EXTRA_WARN=3D1
+
+
+
+
+>  KBUILD_EXTRA_WARN_DTC +=3D $(KBUILD_EXTRA_WARN)
+>
+>  # Disable noisy checks by default
+>
+--
+Best Regards
+Masahiro Yamada
 
