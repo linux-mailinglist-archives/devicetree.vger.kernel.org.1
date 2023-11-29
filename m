@@ -1,123 +1,76 @@
-Return-Path: <devicetree+bounces-20075-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20076-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93C5E7FDAC5
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 16:07:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B08687FDAC8
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 16:08:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E0E22828EC
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 15:07:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E23EC1C20A6B
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 15:08:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1ED6637174;
-	Wed, 29 Nov 2023 15:07:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="b7dpdCNs"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3743737175;
+	Wed, 29 Nov 2023 15:08:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D5D7A3;
-	Wed, 29 Nov 2023 07:07:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-	s=s31663417; t=1701270447; x=1701875247; i=wahrenst@gmx.net;
-	bh=irMeSr38zXyjdA5mMhu/UGsBpjsTP9fUQyrG/iSRAto=;
-	h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:
-	 In-Reply-To;
-	b=b7dpdCNsQzKaVyiyPfAS3rS7V8X3Rsrj1duz0+rrIsVysitcM/4eIFg+HHslZfVg
-	 XSSpLJS8KyPUWnUn6O+GkSuqZv1Cvopp7LAGu41iEkBLGsSuAMaFQ1izEzloR+xzv
-	 cFimLk3qxP72RVO6d2dRXxrkC9JJ7eJxj6ekRJHAmIJmNBkWcsUWINk/ivNJJHQtz
-	 8S3HPNIvwwICjsJGPZ44HNxqVc2npaXNIVSc3zjSGg2rSTJ2ydkEAD4RyW6dlV0f5
-	 hnevmpwwsGn6iSiIqw5GJ6D4sXpw1/gx3nMbPl2LYiZMHN6Dq74XVGWfU6Z7hixui
-	 wv1tdS0FqhpwqxyZKQ==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.1.130] ([37.4.248.43]) by mail.gmx.net (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1N5mGB-1rN1O82iDr-017E2F; Wed, 29
- Nov 2023 16:07:27 +0100
-Message-ID: <e1b03c55-da80-4e8d-a445-e14b57b1966e@gmx.net>
-Date: Wed, 29 Nov 2023 16:07:26 +0100
+Received: from mail-oo1-f49.google.com (mail-oo1-f49.google.com [209.85.161.49])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 240D0A3;
+	Wed, 29 Nov 2023 07:08:07 -0800 (PST)
+Received: by mail-oo1-f49.google.com with SMTP id 006d021491bc7-589d4033e84so3576825eaf.1;
+        Wed, 29 Nov 2023 07:08:07 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701270486; x=1701875286;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GI1/wzdwffaI3kyqusnZSh3mTwevHG0W8aO7PvXkZxM=;
+        b=xQa+/NFfQF9/b7VBMZ2Ag27uHaBwS7l8dc6KpPd6vjpWV9foVMBW6KCS2k4QQD5jzV
+         ZthedzWcDZbssGqcb5fpMr8+xpkH6Mr25coPoV7Bz6Z75U348nrE+EtHAk+Jt/izKijm
+         wuQOQ9pMkxFxoY62g3W5L4n5sFdqXUd/A16JVjpND3i1DSpRYtcd9pQtCHWKaw9MmL1r
+         XFqdKT6zpcrW+Vl6Ti+oZbjtRx1fJTe2+BKg5XjxBVdfmNP+rEndsnktmR1vjad2o9At
+         GXKuSz03VL5gMkQsmgHV60dHuPBUHH5DsChmd2nRmXaXiMZ3IlZmZw/UDuEk86sdms45
+         NfIQ==
+X-Gm-Message-State: AOJu0YyVvpmEcZ3EKhhLbfqH5tS5Ptu1+9RqMTDQcn7C0tZSJ/Eebn2o
+	5Z1QVeHfDLZn1QINj2BkDw==
+X-Google-Smtp-Source: AGHT+IG220tKRuDUsK0m/+CIFeuym99iFmyRgi/BSxQOPcoOe72EJJ+O6aqEfhadSUOFUdB/YiUxEA==
+X-Received: by 2002:a05:6820:613:b0:58d:ac91:1dd0 with SMTP id e19-20020a056820061300b0058dac911dd0mr7460361oow.9.1701270486408;
+        Wed, 29 Nov 2023 07:08:06 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id v5-20020a4a2445000000b0058d4805748fsm1883979oov.44.2023.11.29.07.08.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 29 Nov 2023 07:08:05 -0800 (PST)
+Received: (nullmailer pid 2490376 invoked by uid 1000);
+	Wed, 29 Nov 2023 15:08:04 -0000
+Date: Wed, 29 Nov 2023 09:08:04 -0600
+From: Rob Herring <robh@kernel.org>
+To: Crt Mori <cmo@melexis.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-iio@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] dt-bindings: iio: temperature: add MLX90635 device
+Message-ID: <170127048238.2490279.8887087379868217714.robh@kernel.org>
+References: <cover.1701168726.git.cmo@melexis.com>
+ <f8cb0afb2966540dd266da09e832eab22604347b.1701168726.git.cmo@melexis.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 1/2] leds: gpio: Add kernel log if
- devm_fwnode_gpiod_get fails
-Content-Language: en-US
-To: Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>, Pavel Machek
- <pavel@ucw.cz>, "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
- Lee Jones <lee@kernel.org>, bcm-kernel-feedback-list@broadcom.com,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-leds@vger.kernel.org
-References: <20231118124252.14838-1-wahrenst@gmx.net>
- <20231118124252.14838-2-wahrenst@gmx.net>
- <ZVtHZWYl2skpn1Bg@smile.fi.intel.com>
- <9a9486bb-e737-4384-a581-76880b709758@gmx.net>
- <ZVtS4phUMmDD9ztz@smile.fi.intel.com>
- <CAMRc=MdpegfNrjWkeGSh8NhT_Go+q5MxueASxrLo18XBJaBsjA@mail.gmail.com>
- <CACRpkdZuJqEA06NDneNFwjgj=u0Nm+yKCEd3VyJkMyZ1mLxQsA@mail.gmail.com>
-From: Stefan Wahren <wahrenst@gmx.net>
-In-Reply-To: <CACRpkdZuJqEA06NDneNFwjgj=u0Nm+yKCEd3VyJkMyZ1mLxQsA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:exGeobytONeHW0P2JL6SSVsZgrK/4FUUgTaFAigkq8T1pjWKkTk
- 4Z8xuNGWujs2jJkU9pRIrZ/IYtALhuHujgI2U27zvCXzpGsq8ex25EQ9ZShaXNFdrNZURAd
- lds67Q6WBmNBDkVkl5UDxYdjhLr1xEDOIPEYCPE/Qrw+DUQ/hU9SpRqO3LGYktjH9ku2Eah
- b3eqQPFWdzqxt5BuZYrcA==
-UI-OutboundReport: notjunk:1;M01:P0:BS05bT28Qaw=;M+GoIurTPvBzq6QT2gNrdtTIl2o
- D8owlI9dlFmOr0xmOfss021yG7eX+rhRG+OD5Ox+VwF21NnXygVMQyOJF39NMUcs50CSodjqd
- +D6zGezSY7kdWoalIvn3Uw1HMMWgB+qPbhiDT+gIdgdQrDZP0Q0adO/3i8GVXcVQm6NjPBtdd
- Bh7u3WnJqgpoWlO9JXabF9zInkCcfjaLAXvcUvhyba/ZdsMEKTwnVd4fYrGdrEoKzneuaI0sQ
- pVSAZ4sc60n/TuOW1ZK8qxE1n+A0ENeg9yCS++sPoPLJaPHk7lgT1o35RsljExyDuAuxdN3FJ
- 8XY0MRFfd/xXMcWtN/d5woLB9L8OX3dyAPks5OtQ6pccEUwym+l2lLpuPGq5ERUhOLuktfOyL
- qtl0sYtCK1Cg5jG5CbcyLDntyGgxJtAzYIgNAUcsdzEUt/MtQ9MDBEnHaCOId4PbjjSYyzFOL
- ZgMehAfrMonRm55VudkhJrVTCfqVBjc88RGRanYpYxHF9aDKToHnbD0SmRnVKh0dY8jwqAOXN
- OP7Ec4RtMe4tPyu8IgZ8XNZpDcRKHIjZ+s0PTUqmN/jfLDPU8/HcqVQ8NQkMToz2AoYraMP8/
- Q/ncAJ9xLg7bb6t+OY0nhVLrn3qBDt+pQ7lZot8KVJ9fImgwjdSa6K7kC1zhSB0vSXQS/S4kR
- h71hRVmXZaeQwIDV6B9293/fmuFV7VxQhmwZWsCGtLimtlQF6qurnXIziXF1NtWkP4D43kf51
- +IOq+KdHwGiFSou0fB8Ixhiw9JQtxasHFIppVhrbSKX2zCaD64CEk4m4F5gTmtMmrJbJnqqRF
- A+7Q/nb11ggBji4beePZqG/57kcVJXsKaFaIHlXCO0ftBg90fwLqIXH9atKaxc5kZ56/U4GG5
- 5gwJZ4Jwy/Njfe28pRoQL0Tip1ROwQSpMTmDZMnXW/QSafY4P3chCSyA7Nk9MVM7DHW4YM+0V
- vh4DUearCBOzL+UyiUWzMzZ1R58=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f8cb0afb2966540dd266da09e832eab22604347b.1701168726.git.cmo@melexis.com>
 
-Am 29.11.23 um 15:03 schrieb Linus Walleij:
-> On Wed, Nov 22, 2023 at 11:53=E2=80=AFAM Bartosz Golaszewski <brgl@bgdev=
-.pl> wrote:
->
->>>> I cannot remember that i saw any of them on info level in my case of =
-an
->>>> already allocated pin (see patch 2).
->>>>
->>>> I'm open to place the log within gpiolib, if this a better place.
->>> I'm not sure, let's hear GPIO maintainers for that.
->> Hard to tell which method is preferred among all the subsystems.
->> Personally I'm more inclined towards letting drivers decide whether to
->> emit an error message and only emit our own when an error cannot be
->> propagated down the stack.
->>
->> Linus: Any thoughts?
-> I never managed to get it right so I can't give any good advice.
->
-> Usually I tend to think better one more error message than one too littl=
-e.
->
-> Then again I'm a dmesg maximalist who just want it to scroll on forever
-> also with positive messages...
-Okay, based on the feedback this sounds like nobody is against this patch?
->
-> Yours,
-> Linus Walleij
->
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+
+On Tue, 28 Nov 2023 12:02:52 +0100, Crt Mori wrote:
+> Add device tree bindings for MLX90635 Infra Red contactless temperature
+> sensor.
+> 
+> Signed-off-by: Crt Mori <cmo@melexis.com>
+> ---
+>  .../iio/temperature/melexis,mlx90632.yaml     | 19 +++++++++++++++++--
+>  1 file changed, 17 insertions(+), 2 deletions(-)
+> 
+
+Reviewed-by: Rob Herring <robh@kernel.org>
 
 
