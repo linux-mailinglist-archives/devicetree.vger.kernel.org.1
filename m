@@ -1,417 +1,145 @@
-Return-Path: <devicetree+bounces-20107-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20110-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61AF97FDD06
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 17:30:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C9D67FDD17
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 17:34:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 83F761C20AA0
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 16:30:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ADE661C20D0D
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 16:34:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3A7930326;
-	Wed, 29 Nov 2023 16:30:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1E2F374FE;
+	Wed, 29 Nov 2023 16:34:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="l2Hv/CtR"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="UeYw5SEZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB66110CB
-	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 08:30:50 -0800 (PST)
-Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2c9c39b7923so11311fa.0
-        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 08:30:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701275449; x=1701880249; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=TqYU8iwztuDXjDfeokuEzlO5hW0j8v5I0bC84hrmW9g=;
-        b=l2Hv/CtRAMoLj1fodd6EEe8If7isLqMIiVyKkU1sAHIjTeZA4yg+SKSJelq4tPIml1
-         Cs9JPwAXtKrYjM6SaAB7s6MBJPdL4n/iUnqognqhWh7KrG0khGrj/kEXyGbWWAvow3ji
-         PciYR2DCj6rTpk1Bvbdcs9Os/t3H1xh+zURBGWOTTRxmBO2o+xKLvRondsGQJcRG+VJ+
-         k3aOWPlrwPX+MxJRQVIsjUxMy89cl3XOeIcOjlcQfJYXR5HUlE0WN8U3fx5/R5Dk5BY5
-         x+LdrIHwVeweEPCw7N8XlDeXyDjQIsoilb80gptPqdW78orYy6Uu8KamGQ5rgygC0M9g
-         7fwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701275449; x=1701880249;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=TqYU8iwztuDXjDfeokuEzlO5hW0j8v5I0bC84hrmW9g=;
-        b=hjQFuKqLaO5JKeOxuVBqW5x2SGcWNm5EN/miFszFEuYRzkUe2FveOuEzJU8UcRnaDw
-         w7iZR5pL4ic3bTQuBgtTulc8BJ/HwI0L3YQe83RLpcTyliA7GvN1YQuQZeHntt/i7Lnc
-         qIfuzoIktsyJUTXYCK3pi9quTtb7dba0iwKa3S+DPoKVlmb01s3m3iAoqDQ8FQJiXrbq
-         H2pdO73DR/N6RP50G13wgbxOWLylyGNV3qRhAPIGltp5KxQ9E2YmeWuOmQRyWofbYDdw
-         UH6S3/JIlunIbNGpIaLV/cJNwimtezzxKq3/hTCX6lHHC89PQbygxAXjcdKGlcdU4kX3
-         aAsQ==
-X-Gm-Message-State: AOJu0Yxqus5FIzVo5YxdItfM3xpu9jra8q3yjcZWnrDzFXq1Jw8/ACF+
-	NWRAod2grDAx6KDYTzM4FfOMrQ==
-X-Google-Smtp-Source: AGHT+IG4M7TjuTCHamYuuhPyqfoP5F2bi3uqy6qS1rEVtW3/lTvHjpUJChxo0Wm8gXoM5/Eg9z4qCA==
-X-Received: by 2002:a2e:914b:0:b0:2c9:c03d:58c8 with SMTP id q11-20020a2e914b000000b002c9c03d58c8mr1602632ljg.52.1701275448645;
-        Wed, 29 Nov 2023 08:30:48 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:31d3:eea3:8f97:6a2c? ([2a01:e0a:982:cbb0:31d3:eea3:8f97:6a2c])
-        by smtp.gmail.com with ESMTPSA id g14-20020a05600c310e00b0040b481222e3sm2781843wmo.41.2023.11.29.08.30.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Nov 2023 08:30:48 -0800 (PST)
-Message-ID: <89b521d6-e069-4bd5-a24c-87c3bf620796@linaro.org>
-Date: Wed, 29 Nov 2023 17:30:47 +0100
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78B55D67;
+	Wed, 29 Nov 2023 08:34:54 -0800 (PST)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3ATDtoJ3027172;
+	Wed, 29 Nov 2023 16:34:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=sOCNGSxnifiKjtYwTIEEigv5++KLMmWHHCd2JaZpByY=;
+ b=UeYw5SEZde//IYKvovI3jPex2M2WkYlWG9H4rT9Hakdlg6Ze85lMWkTjZa28TaUv6qjB
+ HzGlBVRrjlg8sUtERKfxJHeBc+cEz8ju7uMdeURCdi8Sg6Vusep4MIaTPK/vt+YfKKuW
+ buolMhlJGQdgKP7nGHZBLr1LRNWXxnA1itTTr09kuXCv6iXjdshVMJhDKandcfQTn3k7
+ fzdS7hP39Pxp3HHjT/Ft4F2Aa0SVfl6OieqyTrGKU7V+TIEOg/8zBRCNrWlANEXqlCFt
+ MvBdDNF4ey771mQaWfFfxqX07Hvr56ymb2ZLH/2tqlv5G4Z04Jpk/yBvXzW8Z1azmuLV 4g== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3up1gt97u0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 29 Nov 2023 16:34:34 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3ATGY5T9032137
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 29 Nov 2023 16:34:05 GMT
+Received: from blr-ubuntu-253.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Wed, 29 Nov 2023 08:33:58 -0800
+From: Sibi Sankar <quic_sibis@quicinc.com>
+To: <andersson@kernel.org>, <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <catalin.marinas@arm.com>,
+        <ulf.hansson@linaro.org>
+CC: <agross@kernel.org>, <conor+dt@kernel.org>, <ayan.kumar.halder@amd.com>,
+        <j@jannau.net>, <dmitry.baryshkov@linaro.org>,
+        <nfraprado@collabora.com>, <m.szyprowski@samsung.com>,
+        <u-kumar1@ti.com>, <peng.fan@nxp.com>, <lpieralisi@kernel.org>,
+        <quic_rjendra@quicinc.com>, <abel.vesa@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <quic_tsoni@quicinc.com>, <neil.armstrong@linaro.org>,
+        Sibi Sankar
+	<quic_sibis@quicinc.com>
+Subject: [PATCH V3 0/5] dts: qcom: Introduce X1E80100 platforms device tree
+Date: Wed, 29 Nov 2023 22:03:36 +0530
+Message-ID: <20231129163341.4800-1-quic_sibis@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v3 4/4] pwm: meson: add generic compatible for meson8 to
- sm1
-Content-Language: en-US, fr
-To: Jerome Brunet <jbrunet@baylibre.com>,
- Thierry Reding <thierry.reding@gmail.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-pwm@vger.kernel.org, JunYi Zhao <junyi.zhao@amlogic.com>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-References: <20231129134004.3642121-1-jbrunet@baylibre.com>
- <20231129134004.3642121-5-jbrunet@baylibre.com>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <20231129134004.3642121-5-jbrunet@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: UvmunXbPI45502YbADttorzD327BDpDN
+X-Proofpoint-ORIG-GUID: UvmunXbPI45502YbADttorzD327BDpDN
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-29_14,2023-11-29_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 bulkscore=0
+ malwarescore=0 adultscore=0 spamscore=0 mlxscore=0 lowpriorityscore=0
+ clxscore=1015 phishscore=0 priorityscore=1501 impostorscore=0
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2311060000 definitions=main-2311290126
 
-HI,
+This series adds the initial (clocks, pinctrl, rpmhpd, regulator, interconnect,
+CPU, SoC and board compatibles) device tree support to boot to shell on the
+Qualcomm X1E80100 platform, aka Snapdragon X Elite.
 
-On 29/11/2023 14:40, Jerome Brunet wrote:
-> Introduce a new compatible support in the Amlogic PWM driver.
-> 
-> The PWM HW is actually the same for all SoCs supported so far.
-> A specific compatible is needed only because the clock sources
-> of the PWMs are hard-coded in the driver.
-> 
-> It is better to have the clock source described in DT but this
-> changes the bindings so a new compatible must be introduced.
-> 
-> When all supported platform have migrated to the new compatible,
-> support for the legacy ones may be removed from the driver.
-> 
-> Adding a callback to setup the clock will also make it easier
-> to add support for the new PWM HW found in a1, s4, c3 and t7 SoC
-> families.
-> 
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> ---
->   drivers/pwm/pwm-meson.c | 224 ++++++++++++++++++++++++----------------
->   1 file changed, 133 insertions(+), 91 deletions(-)
-> 
-> diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
-> index 5cbd65cae28a..d5d745a651d3 100644
-> --- a/drivers/pwm/pwm-meson.c
-> +++ b/drivers/pwm/pwm-meson.c
-> @@ -95,6 +95,7 @@ struct meson_pwm_channel {
->   
->   struct meson_pwm_data {
->   	const char * const *parent_names;
-> +	int (*channels_init)(struct device *dev);
->   };
->   
->   struct meson_pwm {
-> @@ -333,95 +334,6 @@ static const struct pwm_ops meson_pwm_ops = {
->   	.get_state = meson_pwm_get_state,
->   };
->   
-> -static const char * const pwm_meson8b_parent_names[] = {
-> -	"xtal", NULL, "fclk_div4", "fclk_div3"
-> -};
-> -
-> -static const struct meson_pwm_data pwm_meson8b_data = {
-> -	.parent_names = pwm_meson8b_parent_names,
-> -};
-> -
-> -/*
-> - * Only the 2 first inputs of the GXBB AO PWMs are valid
-> - * The last 2 are grounded
-> - */
-> -static const char * const pwm_gxbb_ao_parent_names[] = {
-> -	"xtal", "clk81", NULL, NULL,
-> -};
-> -
-> -static const struct meson_pwm_data pwm_gxbb_ao_data = {
-> -	.parent_names = pwm_gxbb_ao_parent_names,
-> -};
-> -
-> -static const char * const pwm_axg_ee_parent_names[] = {
-> -	"xtal", "fclk_div5", "fclk_div4", "fclk_div3"
-> -};
-> -
-> -static const struct meson_pwm_data pwm_axg_ee_data = {
-> -	.parent_names = pwm_axg_ee_parent_names,
-> -};
-> -
-> -static const char * const pwm_axg_ao_parent_names[] = {
-> -	"xtal", "axg_ao_clk81", "fclk_div4", "fclk_div5"
-> -};
-> -
-> -static const struct meson_pwm_data pwm_axg_ao_data = {
-> -	.parent_names = pwm_axg_ao_parent_names,
-> -};
-> -
-> -static const char * const pwm_g12a_ao_ab_parent_names[] = {
-> -	"xtal", "g12a_ao_clk81", "fclk_div4", "fclk_div5"
-> -};
-> -
-> -static const struct meson_pwm_data pwm_g12a_ao_ab_data = {
-> -	.parent_names = pwm_g12a_ao_ab_parent_names,
-> -};
-> -
-> -static const char * const pwm_g12a_ao_cd_parent_names[] = {
-> -	"xtal", "g12a_ao_clk81", NULL, NULL,
-> -};
-> -
-> -static const struct meson_pwm_data pwm_g12a_ao_cd_data = {
-> -	.parent_names = pwm_g12a_ao_cd_parent_names,
-> -};
-> -
-> -static const struct of_device_id meson_pwm_matches[] = {
-> -	{
-> -		.compatible = "amlogic,meson8b-pwm",
-> -		.data = &pwm_meson8b_data
-> -	},
-> -	{
-> -		.compatible = "amlogic,meson-gxbb-pwm",
-> -		.data = &pwm_meson8b_data
-> -	},
-> -	{
-> -		.compatible = "amlogic,meson-gxbb-ao-pwm",
-> -		.data = &pwm_gxbb_ao_data
-> -	},
-> -	{
-> -		.compatible = "amlogic,meson-axg-ee-pwm",
-> -		.data = &pwm_axg_ee_data
-> -	},
-> -	{
-> -		.compatible = "amlogic,meson-axg-ao-pwm",
-> -		.data = &pwm_axg_ao_data
-> -	},
-> -	{
-> -		.compatible = "amlogic,meson-g12a-ee-pwm",
-> -		.data = &pwm_meson8b_data
-> -	},
-> -	{
-> -		.compatible = "amlogic,meson-g12a-ao-pwm-ab",
-> -		.data = &pwm_g12a_ao_ab_data
-> -	},
-> -	{
-> -		.compatible = "amlogic,meson-g12a-ao-pwm-cd",
-> -		.data = &pwm_g12a_ao_cd_data
-> -	},
-> -	{},
-> -};
-> -MODULE_DEVICE_TABLE(of, meson_pwm_matches);
-> -
->   static int meson_pwm_init_clocks_legacy(struct device *dev,
->   					struct clk_parent_data *mux_parent_data)
->   {
-> @@ -528,12 +440,15 @@ static int meson_pwm_init_clocks_legacy(struct device *dev,
->   	return 0;
->   }
->   
-> -static int meson_pwm_init_channels(struct device *dev)
-> +static int meson_pwm_init_channels_legacy(struct device *dev)
->   {
->   	struct clk_parent_data mux_parent_data[MESON_NUM_MUX_PARENTS] = {};
->   	struct meson_pwm *meson = dev_get_drvdata(dev);
->   	int i;
->   
-> +	dev_info(dev, "using obsolete compatible, please consider updating dt\n");
+Our v1 post of the patchsets adding support for Snapdragon X Elite SoC had
+the part number sc8380xp which is now updated to the new part number x1e80100
+based on the new branding scheme and refers to the exact same SoC.
 
-I think dev_warn_once would be more appropriate
+V3:
+* Add more detail to the commit msg describing Oryon. [Rob]
+* Add smem compatible and tcsr_hw nodes. [Abel]
+* Re-name l2-cache, remove hyphen in reserved region. [Konrad]
+* Describe certain secure gpios as unused. [Konrad]
+* Pickup Rbs.
 
-> +
-> +
->   	for (i = 0; i < MESON_NUM_MUX_PARENTS; i++) {
->   		mux_parent_data[i].index = -1;
->   		mux_parent_data[i].name = meson->data->parent_names[i];
-> @@ -542,6 +457,133 @@ static int meson_pwm_init_channels(struct device *dev)
->   	return meson_pwm_init_clocks_legacy(dev, mux_parent_data);
->   }
->   
-> +static int meson_pwm_init_channels_meson8b_v2(struct device *dev)
-> +{
-> +	struct clk_parent_data mux_parent_data[MESON_NUM_MUX_PARENTS] = {};
-> +	int i;
-> +
-> +	/*
-> +	 * NOTE: Instead of relying on the hard coded names in the driver
-> +	 * as the legacy version, this relies on DT to provide the list of
-> +	 * clocks.
-> +	 * For once, using input numbers actually makes more sense than names.
-> +	 * Also DT requires clock-names to be explicitly ordered, so there is
-> +	 * no point bothering with clock names in this case.
-> +	 */
-> +	for (i = 0; i < MESON_NUM_MUX_PARENTS; i++)
-> +		mux_parent_data[i].index = i;
-> +
-> +	return meson_pwm_init_clocks_legacy(dev, mux_parent_data);
-> +}
-> +
-> +static const char * const pwm_meson8b_parent_names[] = {
-> +	"xtal", NULL, "fclk_div4", "fclk_div3"
-> +};
-> +
-> +static const struct meson_pwm_data pwm_meson8b_data = {
-> +	.parent_names = pwm_meson8b_parent_names,
-> +	.channels_init = meson_pwm_init_channels_legacy,
-> +};
-> +
-> +/*
-> + * Only the 2 first inputs of the GXBB AO PWMs are valid
-> + * The last 2 are grounded
-> + */
-> +static const char * const pwm_gxbb_ao_parent_names[] = {
-> +	"xtal", "clk81", NULL, NULL,
-> +};
-> +
-> +static const struct meson_pwm_data pwm_gxbb_ao_data = {
-> +	.parent_names = pwm_gxbb_ao_parent_names,
-> +	.channels_init = meson_pwm_init_channels_legacy,
-> +};
-> +
-> +static const char * const pwm_axg_ee_parent_names[] = {
-> +	"xtal", "fclk_div5", "fclk_div4", "fclk_div3"
-> +};
-> +
-> +static const struct meson_pwm_data pwm_axg_ee_data = {
-> +	.parent_names = pwm_axg_ee_parent_names,
-> +	.channels_init = meson_pwm_init_channels_legacy,
-> +};
-> +
-> +static const char * const pwm_axg_ao_parent_names[] = {
-> +	"xtal", "axg_ao_clk81", "fclk_div4", "fclk_div5"
-> +};
-> +
-> +static const struct meson_pwm_data pwm_axg_ao_data = {
-> +	.parent_names = pwm_axg_ao_parent_names,
-> +	.channels_init = meson_pwm_init_channels_legacy,
-> +};
-> +
-> +static const char * const pwm_g12a_ao_ab_parent_names[] = {
-> +	"xtal", "g12a_ao_clk81", "fclk_div4", "fclk_div5"
-> +};
-> +
-> +static const struct meson_pwm_data pwm_g12a_ao_ab_data = {
-> +	.parent_names = pwm_g12a_ao_ab_parent_names,
-> +	.channels_init = meson_pwm_init_channels_legacy,
-> +};
-> +
-> +static const char * const pwm_g12a_ao_cd_parent_names[] = {
-> +	"xtal", "g12a_ao_clk81", NULL, NULL,
-> +};
-> +
-> +static const struct meson_pwm_data pwm_g12a_ao_cd_data = {
-> +	.parent_names = pwm_g12a_ao_cd_parent_names,
-> +	.channels_init = meson_pwm_init_channels_legacy,
-> +};
-> +
-> +static const struct meson_pwm_data pwm_meson8_v2_data = {
-> +	.channels_init = meson_pwm_init_channels_meson8b_v2,
-> +};
-> +
-> +static const struct of_device_id meson_pwm_matches[] = {
-> +	{
-> +		.compatible = "amlogic,meson8-pwm-v2",
-> +		.data = &pwm_meson8_v2_data
-> +	},
-> +	/*
-> +	 * The following compatibles are obsolete.
-> +	 * Support for these may be removed once the related
-> +	 * platforms have been updated
-> +	 */
+v2:
+* Update the part number from sc8380xp to x1e80100.
+* Fixup ordering in the SoC/board bindings. [Krzysztof]
+* Add pdc node and add wakeup tlmm parent. [Rajendra]
+* Add cpu/cluster idle states. [Bjorn]
+* Document reserved gpios. [Konrad]
+* Remove L1 and add missing props to L2. [Konrad]
+* Remove region suffix. [Konrad]
+* Append digits to gcc node. [Konrad]
+* Add ICC_TAGS instead of leaving it unspecified. [Konrad]
+* Remove double space. [Konrad]
+* Leave the size index of memory node untouched. [Konrad]
+* Override the serial uart with "qcom,geni-debug-uart" in the board files. [Rajendra]
+* Add additional details to patch 5 commit message. [Konrad/Krzysztof]
 
-Not really, support will be needed until there's DT in the
-wild with the old bindings, which is likely forever.
-Drop the 2 last lines, only specify they are obsolete, and
-perhaps note support for legacy bindings will be kept as
-best effort but regressions may happen or something similar.
+Dependencies:
+clks: https://lore.kernel.org/lkml/20231117092737.28362-1-quic_sibis@quicinc.com/
+llcc: https://lore.kernel.org/lkml/20231117095315.2087-1-quic_sibis@quicinc.com/
+misc-bindings: https://lore.kernel.org/lkml/20231117105635.343-1-quic_sibis@quicinc.com/
 
-> +	{
-> +		.compatible = "amlogic,meson8b-pwm",
-> +		.data = &pwm_meson8b_data
-> +	},
-> +	{
-> +		.compatible = "amlogic,meson-gxbb-pwm",
-> +		.data = &pwm_meson8b_data
-> +	},
-> +	{
-> +		.compatible = "amlogic,meson-gxbb-ao-pwm",
-> +		.data = &pwm_gxbb_ao_data
-> +	},
-> +	{
-> +		.compatible = "amlogic,meson-axg-ee-pwm",
-> +		.data = &pwm_axg_ee_data
-> +	},
-> +	{
-> +		.compatible = "amlogic,meson-axg-ao-pwm",
-> +		.data = &pwm_axg_ao_data
-> +	},
-> +	{
-> +		.compatible = "amlogic,meson-g12a-ee-pwm",
-> +		.data = &pwm_meson8b_data
-> +	},
-> +	{
-> +		.compatible = "amlogic,meson-g12a-ao-pwm-ab",
-> +		.data = &pwm_g12a_ao_ab_data
-> +	},
-> +	{
-> +		.compatible = "amlogic,meson-g12a-ao-pwm-cd",
-> +		.data = &pwm_g12a_ao_cd_data
-> +	},
-> +	{},
-> +};
-> +MODULE_DEVICE_TABLE(of, meson_pwm_matches);
-> +
->   static int meson_pwm_probe(struct platform_device *pdev)
->   {
->   	struct meson_pwm *meson;
-> @@ -573,7 +615,7 @@ static int meson_pwm_probe(struct platform_device *pdev)
->   		return -ENODEV;
->   	}
->   
-> -	err = meson_pwm_init_channels(&pdev->dev);
-> +	err = meson->data->channels_init(&pdev->dev);
->   	if (err < 0)
->   		return err;
->   
+Release Link: https://www.qualcomm.com/news/releases/2023/10/qualcomm-unleashes-snapdragon-x-elite--the-ai-super-charged-plat
 
-Apart the dev_info change and the meson_pwm_init_clocks_legacy rename, it looks fine.
+Abel Vesa (1):
+  arm64: dts: qcom: x1e80100: Add Compute Reference Device
 
-Neil
+Rajendra Nayak (4):
+  dt-bindings: arm: cpus: Add qcom,oryon compatible
+  dt-bindings: arm: qcom: Document X1E80100 SoC and boards
+  arm64: dts: qcom: Add base X1E80100 dtsi and the QCP dts
+  arm64: defconfig: Enable X1E80100 SoC base configs
+
+ .../devicetree/bindings/arm/cpus.yaml         |    1 +
+ .../devicetree/bindings/arm/qcom.yaml         |    8 +
+ arch/arm64/boot/dts/qcom/Makefile             |    2 +
+ arch/arm64/boot/dts/qcom/x1e80100-crd.dts     |  426 ++
+ arch/arm64/boot/dts/qcom/x1e80100-qcp.dts     |  401 ++
+ arch/arm64/boot/dts/qcom/x1e80100.dtsi        | 3517 +++++++++++++++++
+ arch/arm64/configs/defconfig                  |    3 +
+ 7 files changed, 4358 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/x1e80100-crd.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/x1e80100.dtsi
+
+-- 
+2.17.1
+
 
