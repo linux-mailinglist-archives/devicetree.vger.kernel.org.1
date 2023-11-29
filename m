@@ -1,120 +1,117 @@
-Return-Path: <devicetree+bounces-19858-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19859-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 086837FD0B9
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 09:29:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BA0F57FD0BA
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 09:29:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3A59F1C2092D
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 08:29:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A3D581C20AA0
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 08:29:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AF1311CB2;
-	Wed, 29 Nov 2023 08:28:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67F64125AE;
+	Wed, 29 Nov 2023 08:29:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="Qq6K9775"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="agzxlpLX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m17207.xmail.ntesmail.com (mail-m17207.xmail.ntesmail.com [45.195.17.207])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0105919B0;
-	Wed, 29 Nov 2023 00:28:53 -0800 (PST)
-DKIM-Signature: a=rsa-sha256;
-	b=Qq6K9775/nBsiVQJ4BXZyTcD+50uTadoc3TZZYEurfENxFZWeUb6lsMbFlNQp19V2GWZYA4CR7hxCQq3OvlIcAU0vPsd4ja89GOqSDcbXGJKP4X37H5560HXSOmA0wNL7k8Zx7j62d7Jjn8f/YsuEsW8GUfnrtAFFvW5iYDHnQY=;
-	c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=aGpoJTy0YujP1OdkZ9q++euEDnLzMZVFRb/6ZJxkj40=;
-	h=date:mime-version:subject:message-id:from;
-Received: from [172.16.12.141] (unknown [58.22.7.114])
-	by mail-m12779.qiye.163.com (Hmail) with ESMTPA id 934D97801C2;
-	Wed, 29 Nov 2023 16:28:19 +0800 (CST)
-Message-ID: <40b9e4cf-620c-4c7c-8e70-8959dec755c8@rock-chips.com>
-Date: Wed, 29 Nov 2023 16:28:19 +0800
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98E5119B7;
+	Wed, 29 Nov 2023 00:28:55 -0800 (PST)
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-a132acb67b5so252122966b.3;
+        Wed, 29 Nov 2023 00:28:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1701246534; x=1701851334; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=ts9qLZBjYQxWkoxOrPRUqONPnbAneYb5fj2vxXgeAUE=;
+        b=agzxlpLXv5SBZJ2XmThPq2shuqUOktuWR8nzyHTIvoVYJ9SopDABnvAENGWj6m+WHM
+         S0tKd7qGYvcuG7tQbPBmw+6szzv5t1NuBXlGouJNLMkPhS0Obu4kU/AMPz32bT0qqVXb
+         2/e4okAvxiKsphONjwYrBP7Biu4GLuESpAVQG3oth0CUAsTtVyllOmL37sfS5nOuUZZL
+         G2B4TdY6u8oGZ0t1Ilc91mZQDaopcibI/4ZVDUrfa1mawIEdJSQL95hWwuQxQ67SXmKj
+         K/BIerqLqFkscTCkf+lW4RbUjFOKdqEG/yqtFR2OE16fPbIkL5WIKx8cf5a0+P1aLEP2
+         88nw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701246534; x=1701851334;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ts9qLZBjYQxWkoxOrPRUqONPnbAneYb5fj2vxXgeAUE=;
+        b=iiVtgFWtVFxi15Q/OA1nF5Lz4uZOhN9ArPaHgk2OCSF9i7lM5A1FwzAfuC+J9S3iQC
+         sM3a2aeTm2tVyuaF6Vj0rdisCKD9jfZ7A8DfhOSLuUpKbXeelrOU4ctRTMZIsKregbzP
+         ZbY0K8E0lmS6E3MS/zqfJyTaHFJ4qOZ4fnyEnVvz2/2PlIMeabLm+TlHVESIMejSZdBH
+         kTM2qHgxFPp3MKwAWfLImBzgWpOAbYmJqivpxLhyfoTZboQ/T1r4Wo5uYZVlclyJ40AI
+         0eeP4XXi4v+CxCjKkreFnV/VOMv60NOUJjsKqMQSC65uyg1EMT9p7XStkLkTEDcRBwQK
+         NvMQ==
+X-Gm-Message-State: AOJu0Yw6vk8B3q4JyJtP00mwABKcTrgSLza3nH8wPYcCwx1PfpRYqEoY
+	sQSLJBu9GvEm5uH+ae/mo6cSvXbNkrTaGdUe/e4=
+X-Google-Smtp-Source: AGHT+IFNbBbO6mrFfuJyo4gjHoIKxEj7pAq+DF6gwAbts407nXDErvqusD9F7qPpST4q7AiCMHej4Q==
+X-Received: by 2002:a17:906:9e08:b0:a03:4acd:750f with SMTP id fp8-20020a1709069e0800b00a034acd750fmr11379403ejc.20.1701246533645;
+        Wed, 29 Nov 2023 00:28:53 -0800 (PST)
+Received: from ?IPv6:2001:a61:3456:4e01:6ae:b55a:bd1d:57fc? ([2001:a61:3456:4e01:6ae:b55a:bd1d:57fc])
+        by smtp.gmail.com with ESMTPSA id hg25-20020a170906f35900b00a0d714f12desm3957211ejb.120.2023.11.29.00.28.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 29 Nov 2023 00:28:53 -0800 (PST)
+Message-ID: <fde82c39dbf56eeb8decac715ce5ec723da31e32.camel@gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: adi,ad5791: Add support for
+ controlling RBUF
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Nuno Sa
+ <nuno.sa@analog.com>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>
+Date: Wed, 29 Nov 2023 09:28:52 +0100
+In-Reply-To: <cf778d32-73a2-4ef2-a0dc-31c6c4efe3ea@linaro.org>
+References: <20231128-ad5791-michael-stuff-v2-0-541bb1c9dc43@analog.com>
+	 <20231128-ad5791-michael-stuff-v2-1-541bb1c9dc43@analog.com>
+	 <cf778d32-73a2-4ef2-a0dc-31c6c4efe3ea@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 10/12] drm/rockchip: vop2: Add support for rk3588
-Content-Language: en-US
-To: Sascha Hauer <s.hauer@pengutronix.de>, Andy Yan <andyshrk@163.com>
-Cc: heiko@sntech.de, hjc@rock-chips.com, dri-devel@lists.freedesktop.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
- devicetree@vger.kernel.org, sebastian.reichel@collabora.com,
- kever.yang@rock-chips.com, chris.obbard@collabora.com
-References: <20231122125316.3454268-1-andyshrk@163.com>
- <20231122125544.3454918-1-andyshrk@163.com>
- <20231127111937.GW3359458@pengutronix.de>
-From: Andy Yan <andy.yan@rock-chips.com>
-In-Reply-To: <20231127111937.GW3359458@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQ0waS1YYHRhOSR1IQkxLH0xVEwETFh
-	oSFyQUDg9ZV1kYEgtZQVlOQ1VJSVVMVUpKT1lXWRYaDxIVHRRZQVlPS0hVSk5MSUpJVUpLS1VKQl
-	kG
-X-HM-Tid: 0a8c1a317c5cb24fkuuu934d97801c2
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Mxg6SAw5Pzw#LBNRVhRPUTEw
-	Sz4wCyxVSlVKTEtKSU9NTktLTktDVTMWGhIXVRoVHwJVAhoVOwkUGBBWGBMSCwhVGBQWRVlXWRIL
-	WUFZTkNVSUlVTFVKSk9ZV1kIAVlBT0lNSjcG
 
-Hi Sascha,
+On Tue, 2023-11-28 at 16:58 +0100, Krzysztof Kozlowski wrote:
+> On 28/11/2023 16:26, Nuno Sa wrote:
+> > From: Michael Hennerich <michael.hennerich@analog.com>
+> >=20
+> > This change adds support for an external amplifier to be connected in a
+>=20
+> Nothing improved here.
+>=20
+> I said "This commit/patch" so you replaced it to "change", really, read
+> the Submitting patches document.
+>=20
 
-On 11/27/23 19:19, Sascha Hauer wrote:
-> Hi Andy,
->
-> Looks good overall, two small things inside.
->
-> On Wed, Nov 22, 2023 at 08:55:44PM +0800, Andy Yan wrote:
->>   
->> +#define vop2_output_if_is_hdmi(x)	(x == ROCKCHIP_VOP2_EP_HDMI0 || x == ROCKCHIP_VOP2_EP_HDMI1)
->> +#define vop2_output_if_is_dp(x)		(x == ROCKCHIP_VOP2_EP_DP0 || x == ROCKCHIP_VOP2_EP_DP1)
->> +#define vop2_output_if_is_edp(x)	(x == ROCKCHIP_VOP2_EP_EDP0 || x == ROCKCHIP_VOP2_EP_EDP1)
->> +#define vop2_output_if_is_mipi(x)	(x == ROCKCHIP_VOP2_EP_MIPI0 || x == ROCKCHIP_VOP2_EP_MIPI1)
->> +#define vop2_output_if_is_lvds(x)	(x == ROCKCHIP_VOP2_EP_LVDS0 || x == ROCKCHIP_VOP2_EP_LVDS1)
->> +#define vop2_output_if_is_dpi(x)	(x == ROCKCHIP_VOP2_EP_RGB0)
-> Not that it matters in practice here, but you should add braces around
-> the x argument in the macros usage, i.e. ((x) == ROCKCHIP_VOP2_EP_RGB0)
-Okay , will do.
->> +static unsigned long rk3588_set_intf_mux(struct vop2_video_port *vp, int id, u32 polflags)
->> +{
->> +	struct vop2 *vop2 = vp->vop2;
->> +	int dclk_core_div, dclk_out_div, if_pixclk_div, if_dclk_div;
->> +	unsigned long clock;
->> +	u32 die, dip, div, vp_clk_div, val;
->> +
->> +	clock = rk3588_calc_cru_cfg(vp, id, &dclk_core_div, &dclk_out_div,
->> +				    &if_pixclk_div, &if_dclk_div);
->> +	if (!clock)
->> +		return 0;
->> +
->> +	vp_clk_div = FIELD_PREP(RK3588_VP_CLK_CTRL__DCLK_CORE_DIV, dclk_core_div);
->> +	vp_clk_div |= FIELD_PREP(RK3588_VP_CLK_CTRL__DCLK_OUT_DIV, dclk_out_div);
->> +
->> +	die = vop2_readl(vop2, RK3568_DSP_IF_EN);
->> +	dip = vop2_readl(vop2, RK3568_DSP_IF_POL);
->> +	div = vop2_readl(vop2, RK3568_DSP_IF_CTRL);
->> +
->> +	switch (id) {
->> +	case ROCKCHIP_VOP2_EP_HDMI0:
->> +		div |= FIELD_PREP(RK3588_DSP_IF_EDP_HDMI0_DCLK_DIV, if_dclk_div);
-> you should clear the bits of a mask before setting them again. The same
-> goes for several other bits modified in this switch/case.
+And? Is this message so horrible? Yes, you did said "This commit/patch" but=
+ I thought
+"commit/patch" was the issue because yes, I already saw other maintainers/r=
+eviewers
+complaining about using those specific words but nothing really against "Th=
+is change"
+(and I do have some messages like that). Yeah, the submitting patches docum=
+ent
+suggests to do it more like "Added a new property so bala bla ..." but I du=
+nno every
+word in that document is blindly followed. Is this such a big deal in here =
+that you
+had reply like I don't care? And even if you're technically right, there we=
+re better
+ways to say that what I have was not exactly what you asked for...
 
+Submitters should make maintainers/reviewers life easier but the other way =
+around is
+equally true and nitpicky things like this are not helpful. Really...
 
-Thanks for catching this, will fixed in next version.
+Anyways, I'll send the v3.
 
->
->> +		div |= FIELD_PREP(RK3588_DSP_IF_EDP_HDMI0_PCLK_DIV, if_pixclk_div);
->> +		die &= ~RK3588_SYS_DSP_INFACE_EN_EDP_HDMI0_MUX;
->> +		die |= RK3588_SYS_DSP_INFACE_EN_HDMI0 |
->> +			    FIELD_PREP(RK3588_SYS_DSP_INFACE_EN_EDP_HDMI0_MUX, vp->id);
->> +		val = rk3588_get_hdmi_pol(polflags);
->> +		regmap_write(vop2->vop_grf, RK3588_GRF_VOP_CON2, HIWORD_UPDATE(1, 1, 1));
->> +		regmap_write(vop2->vo1_grf, RK3588_GRF_VO1_CON0, HIWORD_UPDATE(val, 6, 5));
->> +		break;
-> Sascha
->
+- Nuno S=C3=A1
+
 
