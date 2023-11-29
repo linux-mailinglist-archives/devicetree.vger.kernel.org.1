@@ -1,182 +1,109 @@
-Return-Path: <devicetree+bounces-20137-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20138-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84A5A7FDEEE
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 18:58:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 12DF97FDF0C
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 19:05:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 184F3282D3B
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 17:58:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C1168282C72
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 18:05:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A82F5B5D5;
-	Wed, 29 Nov 2023 17:58:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD93F5C094;
+	Wed, 29 Nov 2023 18:05:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RlikZ1NK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3DA7890;
-	Wed, 29 Nov 2023 09:58:18 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1B3AD1474;
-	Wed, 29 Nov 2023 09:59:05 -0800 (PST)
-Received: from [10.1.196.40] (e121345-lin.cambridge.arm.com [10.1.196.40])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1ABB43F5A1;
-	Wed, 29 Nov 2023 09:58:10 -0800 (PST)
-Message-ID: <788519ac-9ad7-459c-a57d-bfe1ec96db3e@arm.com>
-Date: Wed, 29 Nov 2023 17:58:08 +0000
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE4CCAF;
+	Wed, 29 Nov 2023 10:04:58 -0800 (PST)
+Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-40b479ec4a3so112505e9.2;
+        Wed, 29 Nov 2023 10:04:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1701281097; x=1701885897; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=H4jESqZmpMEPxH+fuQOnMVYUEdrJMqMVfKBMqgWEv/A=;
+        b=RlikZ1NKQOUHfhO4FvxmJPFCBoClwaV/5E1rnnzrJTT92aT+8bJdaE71xffxRpL0O9
+         Z2PrIi6dIyIUW9Gg4Bk7yigYEMy+SS7u7F5sjOpCOuQbO65RCpp0njHRP2ywUltAMJyn
+         z+9ypAlWYshgWz1y7uHm52NyvNNXpwdXqGoZMVTR1OZOyolXZtRA6Bhtu5ckiOJg34In
+         fZ8ghtC4ETA+sQ+p9Mr5p2tfvfrrBtJBclHAJXI/ZHupjlAf8uejGXsWnqES7gtjzvg3
+         dD1JXUrdWau46Xda0aYLLU2oEcvZGTxeRMwofYfE92bCjBiLm35ydZY7W+xxHrKEyiPz
+         rRdQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701281097; x=1701885897;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=H4jESqZmpMEPxH+fuQOnMVYUEdrJMqMVfKBMqgWEv/A=;
+        b=wobf5WiCmaa1Hg6A1oyEOzVdXvU6E5zyeu3Kur8x9O5xq0RBSb0oNQFrirvI6zoGQp
+         ZXu3rZjqeGsJmjczXbzUNf9zIaLatFSG7uP2ywo3HJqhFNXu8KBzZc1+UyVuBxLkPokI
+         qgGfccxEZ9iPKqIYBOitxU4jSCFgf3o2VUSlL1CEBeMYdqdtVQb6fM52fErJsXeRP0dT
+         java1npC2aP2mQwq7q28EBaDnPcucn8J6Meb9KaqPCdqpyW3zuUgkfqMdzy9EJ0IBgOI
+         1SkuqF0dXO5m1UuREFB6Iss6XU6cZGdMZ19R+BkGV5iwL90GOgLb273AAhdLs9GJJxRG
+         VWtg==
+X-Gm-Message-State: AOJu0YxJ2Yyt/3BH9nw312GKzWkXGABnk0QZNO4Goji+1tdMg1UISO/L
+	NrNbaZizYFtWn8wIHUMiwuo=
+X-Google-Smtp-Source: AGHT+IFLTA4R08YIGhe/kznCDigznewvoiILsXBmrSH8RS0rlFq3qOqKk2onvEvKnhtWK2lDpBB5QQ==
+X-Received: by 2002:a05:600c:1c9d:b0:40b:3933:f994 with SMTP id k29-20020a05600c1c9d00b0040b3933f994mr15197936wms.25.1701281096993;
+        Wed, 29 Nov 2023 10:04:56 -0800 (PST)
+Received: from skbuf ([188.26.185.12])
+        by smtp.gmail.com with ESMTPSA id je16-20020a05600c1f9000b003fc0505be19sm3054640wmb.37.2023.11.29.10.04.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 29 Nov 2023 10:04:56 -0800 (PST)
+Date: Wed, 29 Nov 2023 20:04:53 +0200
+From: Vladimir Oltean <olteanv@gmail.com>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Andrew Lunn <andrew@lunn.ch>,
+	Gregory Clement <gregory.clement@bootlin.com>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Russell King <linux@armlinux.org.uk>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>
+Subject: Re: [PATCH net-next v9 4/5] dt-bindings: marvell: Rewrite MV88E6xxx
+ in schema
+Message-ID: <20231129180453.2bkmvuxihtp3yeyz@skbuf>
+References: <20231127-marvell-88e6152-wan-led-v9-0-272934e04681@linaro.org>
+ <20231127-marvell-88e6152-wan-led-v9-4-272934e04681@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 06/10] iommu: Replace iommu_device_lock with
- iommu_probe_device_lock
-Content-Language: en-GB
-To: Jason Gunthorpe <jgg@nvidia.com>, David Airlie <airlied@gmail.com>,
- Alyssa Rosenzweig <alyssa@rosenzweig.io>, Albert Ou <aou@eecs.berkeley.edu>,
- asahi@lists.linux.dev, Catalin Marinas <catalin.marinas@arm.com>,
- Danilo Krummrich <dakr@redhat.com>, Daniel Vetter <daniel@ffwll.ch>,
- Dexuan Cui <decui@microsoft.com>, devicetree@vger.kernel.org,
- dmaengine@vger.kernel.org, dri-devel@lists.freedesktop.org,
- David Woodhouse <dwmw2@infradead.org>, Frank Rowand
- <frowand.list@gmail.com>, Hanjun Guo <guohanjun@huawei.com>,
- Haiyang Zhang <haiyangz@microsoft.com>, iommu@lists.linux.dev,
- Jon Hunter <jonathanh@nvidia.com>, Joerg Roedel <joro@8bytes.org>,
- Karol Herbst <kherbst@redhat.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- "K. Y. Srinivasan" <kys@microsoft.com>,
- Laxman Dewangan <ldewangan@nvidia.com>, Len Brown <lenb@kernel.org>,
- linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-hyperv@vger.kernel.org, linux-mips@vger.kernel.org,
- linux-riscv@lists.infradead.org, linux-snps-arc@lists.infradead.org,
- linux-tegra@vger.kernel.org, Russell King <linux@armlinux.org.uk>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>, Lyude Paul <lyude@redhat.com>,
- Marek Szyprowski <m.szyprowski@samsung.com>, nouveau@lists.freedesktop.org,
- Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley
- <paul.walmsley@sifive.com>, "Rafael J. Wysocki" <rafael@kernel.org>,
- Rob Herring <robh+dt@kernel.org>, Sudeep Holla <sudeep.holla@arm.com>,
- Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
- Sven Peter <sven@svenpeter.dev>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Vineet Gupta <vgupta@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Wei Liu <wei.liu@kernel.org>, Will Deacon <will@kernel.org>
-Cc: Lu Baolu <baolu.lu@linux.intel.com>, Christoph Hellwig <hch@lst.de>,
- Jerry Snitselaar <jsnitsel@redhat.com>, Hector Martin <marcan@marcan.st>,
- Moritz Fischer <mdf@kernel.org>, patches@lists.linux.dev,
- "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
- Rob Herring <robh@kernel.org>, Thierry Reding <thierry.reding@gmail.com>
-References: <6-v1-720585788a7d+811b-iommu_fwspec_p1_jgg@nvidia.com>
-From: Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <6-v1-720585788a7d+811b-iommu_fwspec_p1_jgg@nvidia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231127-marvell-88e6152-wan-led-v9-4-272934e04681@linaro.org>
 
-On 29/11/2023 12:48 am, Jason Gunthorpe wrote:
-> The iommu_device_lock protects the iommu_device_list which is only read by
-> iommu_ops_from_fwnode().
+On Mon, Nov 27, 2023 at 04:43:07PM +0100, Linus Walleij wrote:
+> This is an attempt to rewrite the Marvell MV88E6xxx switch bindings
+> in YAML schema.
 > 
-> This is now always called under the iommu_probe_device_lock, so we don't
-> need to double lock the linked list. Use the iommu_probe_device_lock on
-> the write side too.
-
-Please no, iommu_probe_device_lock() is a hack and we need to remove the 
-*reason* it exists at all. And IMO just because iommu_present() is 
-deprecated doesn't justify making it look utterly nonsensical - in no 
-way does that have any relationship with probe_device, much less need to 
-serialise against it!
-
-Thanks,
-Robin.
-
-> Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
+> The current text binding says:
+>   WARNING: This binding is currently unstable. Do not program it into a
+>   FLASH never to be changed again. Once this binding is stable, this
+>   warning will be removed.
+> 
+> Well that never happened before we switched to YAML markup,
+> we can't have it like this, what about fixing the mess?
+> 
+> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 > ---
->   drivers/iommu/iommu.c | 30 +++++++++++++-----------------
->   1 file changed, 13 insertions(+), 17 deletions(-)
-> 
-> diff --git a/drivers/iommu/iommu.c b/drivers/iommu/iommu.c
-> index 08f29a1dfcd5f8..9557c2ec08d915 100644
-> --- a/drivers/iommu/iommu.c
-> +++ b/drivers/iommu/iommu.c
-> @@ -146,7 +146,6 @@ struct iommu_group_attribute iommu_group_attr_##_name =		\
->   	container_of(_kobj, struct iommu_group, kobj)
->   
->   static LIST_HEAD(iommu_device_list);
-> -static DEFINE_SPINLOCK(iommu_device_lock);
->   
->   static const struct bus_type * const iommu_buses[] = {
->   	&platform_bus_type,
-> @@ -262,9 +261,9 @@ int iommu_device_register(struct iommu_device *iommu,
->   	if (hwdev)
->   		iommu->fwnode = dev_fwnode(hwdev);
->   
-> -	spin_lock(&iommu_device_lock);
-> +	mutex_lock(&iommu_probe_device_lock);
->   	list_add_tail(&iommu->list, &iommu_device_list);
-> -	spin_unlock(&iommu_device_lock);
-> +	mutex_unlock(&iommu_probe_device_lock);
->   
->   	for (int i = 0; i < ARRAY_SIZE(iommu_buses) && !err; i++)
->   		err = bus_iommu_probe(iommu_buses[i]);
-> @@ -279,9 +278,9 @@ void iommu_device_unregister(struct iommu_device *iommu)
->   	for (int i = 0; i < ARRAY_SIZE(iommu_buses); i++)
->   		bus_for_each_dev(iommu_buses[i], NULL, iommu, remove_iommu_group);
->   
-> -	spin_lock(&iommu_device_lock);
-> +	mutex_lock(&iommu_probe_device_lock);
->   	list_del(&iommu->list);
-> -	spin_unlock(&iommu_device_lock);
-> +	mutex_unlock(&iommu_probe_device_lock);
->   
->   	/* Pairs with the alloc in generic_single_device_group() */
->   	iommu_group_put(iommu->singleton_group);
-> @@ -316,9 +315,9 @@ int iommu_device_register_bus(struct iommu_device *iommu,
->   	if (err)
->   		return err;
->   
-> -	spin_lock(&iommu_device_lock);
-> +	mutex_lock(&iommu_probe_device_lock);
->   	list_add_tail(&iommu->list, &iommu_device_list);
-> -	spin_unlock(&iommu_device_lock);
-> +	mutex_unlock(&iommu_probe_device_lock);
->   
->   	err = bus_iommu_probe(bus);
->   	if (err) {
-> @@ -2033,9 +2032,9 @@ bool iommu_present(const struct bus_type *bus)
->   
->   	for (int i = 0; i < ARRAY_SIZE(iommu_buses); i++) {
->   		if (iommu_buses[i] == bus) {
-> -			spin_lock(&iommu_device_lock);
-> +			mutex_lock(&iommu_probe_device_lock);
->   			ret = !list_empty(&iommu_device_list);
-> -			spin_unlock(&iommu_device_lock);
-> +			mutex_unlock(&iommu_probe_device_lock);
->   		}
->   	}
->   	return ret;
-> @@ -2980,17 +2979,14 @@ EXPORT_SYMBOL_GPL(iommu_default_passthrough);
->   
->   const struct iommu_ops *iommu_ops_from_fwnode(struct fwnode_handle *fwnode)
->   {
-> -	const struct iommu_ops *ops = NULL;
->   	struct iommu_device *iommu;
->   
-> -	spin_lock(&iommu_device_lock);
-> +	lockdep_assert_held(&iommu_probe_device_lock);
-> +
->   	list_for_each_entry(iommu, &iommu_device_list, list)
-> -		if (iommu->fwnode == fwnode) {
-> -			ops = iommu->ops;
-> -			break;
-> -		}
-> -	spin_unlock(&iommu_device_lock);
-> -	return ops;
-> +		if (iommu->fwnode == fwnode)
-> +			return iommu->ops;
-> +	return NULL;
->   }
->   
->   int iommu_fwspec_init(struct device *dev, struct fwnode_handle *iommu_fwnode,
+
+Reviewed-by: Vladimir Oltean <vladimir.oltean@nxp.com>
 
