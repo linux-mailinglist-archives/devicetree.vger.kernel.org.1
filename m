@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-19937-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19938-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 634327FD4B9
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 11:53:32 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 787117FD4BC
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 11:55:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 17AC02832FC
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 10:53:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1565DB211AA
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 10:55:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3BC018AE9;
-	Wed, 29 Nov 2023 10:53:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 426011B29E;
+	Wed, 29 Nov 2023 10:55:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EPDWgDSt"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sRcQ/pkT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F54C10DD
-	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 02:53:25 -0800 (PST)
-Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-a00a9d677fcso886279366b.0
-        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 02:53:24 -0800 (PST)
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F30110CE
+	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 02:54:59 -0800 (PST)
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-a00a9c6f1e9so937641866b.3
+        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 02:54:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701255203; x=1701860003; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701255297; x=1701860097; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=l2jvWR/J4cBkDbvzBiC6ME393r+YwZ2uP+QwtlnTojA=;
-        b=EPDWgDStiR0EOZV0u9YFD33/0hCskFYFYWF4hZzTW3WyVfpJBqRR+gGSkOVsHilJYm
-         6dR9zvxU0FiASK06s7GYt1Zook9ZJdnk41XAPO493uzE6FwINNAc9SDBaPQULatOqKmb
-         bdtBm5JjgMxXKSjQpmpT9vypIskLTHZHLi7p0PDQBjRCiKyRndVyMi60kxKa5JP2zITL
-         Gk/KDwr7o9H530ZJAOnpaNcKEm9E7lp0/MgxnVs4E6v/2wDwtXIphWqN4n5I+DiUDao7
-         DMBlHpQtBOjInux28KXwZIxG7tRz8JennZ7ecPftaSBL59i6bWJdjb60tp1jdo+GDp6i
-         JsWA==
+        bh=WaNT7WYUOm/G392OKMIh9XdJ8gT35U7w8c6/M00Pcos=;
+        b=sRcQ/pkTsaL+f+b8oRn1brF5RNpGOSxNPEDw9qUKByYEn4wZDVJPUg2cVM87RvMZ49
+         ae7EZgUNicobf7E+AcZH4lDpNI+0/yg3YGCC0jJ06xouz1MTLc+R4UVOyzOxJ6Rfe+xz
+         IJiS6QQWriBGjqXwe95uFzrcUZfH/rE1sV/GqgcsbjOCQRCgyPS72dqK2jApsEGR+Fj3
+         LvvAyJuso+RXHtHvzI6qkwSp3/OdShOMf9pxVNRAc5J7cfFoYvOZsl3E+QIiFcTw2iI1
+         OesivpsimuowSVH34qhrpbUYkbQnW3wVnXJMFpsbj3BWW1PTjM5TyIeAs9Ghyou3h/0b
+         jjNw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701255203; x=1701860003;
+        d=1e100.net; s=20230601; t=1701255297; x=1701860097;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=l2jvWR/J4cBkDbvzBiC6ME393r+YwZ2uP+QwtlnTojA=;
-        b=SGZynPcccYa/CKy2W6D9cXAaJzzLXlFLRhEfBNpNdAJ1LXjHxrOhYD/QEe8d7ncoAg
-         aWZ6Xvs7N3AqE0J+B4L95BJJft5JL8nwRy6V4oUCpiMLN01drENtLf8ZQkJ6u2NQaxvz
-         Tjc4vbqZp/ypuQrBqe1x1bRcUzHrD8vpaSVarr842fJrT1KMjyxdB9fxXZJR2fkfL8R5
-         S6gtGJ0S0fneL+qaeWab1B80AWwq0HxDsenjr4Iu349OhIKSDPkFzJ4V9U+dZyK2HxQx
-         AlHymuhqj+SZgGbk1HrJDxjtpBlDEsTKmlfI0x1cTcIE93a2qJHT43+xSqiaQlvrTIKS
-         4mNQ==
-X-Gm-Message-State: AOJu0YwVDN7XxaviQnIl3RrFHZ3/MTFPREmaqXWhSW++7Y7nclx8MZIU
-	5LDLlAxvxon21bT3FBfK0Ztl1w==
-X-Google-Smtp-Source: AGHT+IHNeo0Dghv67Ss3OsTU5+PvZkC+kVErbMHdZ1oK2rp8CmSce+8O/aLA2Q0KlJtETlAQPZTJlg==
-X-Received: by 2002:a17:906:f6cf:b0:a10:a91f:e75e with SMTP id jo15-20020a170906f6cf00b00a10a91fe75emr6306762ejb.18.1701255203380;
-        Wed, 29 Nov 2023 02:53:23 -0800 (PST)
+        bh=WaNT7WYUOm/G392OKMIh9XdJ8gT35U7w8c6/M00Pcos=;
+        b=IoKgyUo5UIO4w0KJzVK0QZ1MtYcISRGHO/kec5gcxhJ3vjte6JW+voyCyWbLHR+c1G
+         BHkkJcuhjHcR4Lx93428wvTc2zdHuKK+evWiRE1IyZkwo57i6wtKc5aUCS52qTTtJjtq
+         wf19gRE+nZHd1mXIGFFF1oBRicUEtRk7qsAu7klpJnc50P94Ui/zodVLJKGnO6Lcc+tj
+         TtUBAmi0IEixWFkZTe8w2Xi0YZEORMQraeSAexpmWKOhK2NTnmhQqZOAyMyioibfcW7G
+         PYdyVgr8Qi/hHUpPO7Amuudi557i4ppa5iaz7ioHae3wyQ6ipEEupB/4xQOr4jcMBt44
+         Ad7A==
+X-Gm-Message-State: AOJu0YzSPSETUPL0yPzsZFjlVvxsATx9ZYWer5O7IPSjmCt3o6glG55k
+	MJoxf4KKgc1VDVIs0Nk1vEOZ2Q==
+X-Google-Smtp-Source: AGHT+IEiWyZ9udu+TEmnkAnknsXruKGeWNOjB4HCrQJ1VzfuSdWgVckZxNsxVMGWur3FPBGnvfDaiA==
+X-Received: by 2002:a17:906:cec7:b0:a10:8db4:bcf3 with SMTP id si7-20020a170906cec700b00a108db4bcf3mr6616764ejb.9.1701255297573;
+        Wed, 29 Nov 2023 02:54:57 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.109])
-        by smtp.gmail.com with ESMTPSA id k7-20020a17090627c700b009e50ea0a05asm7814793ejc.99.2023.11.29.02.53.21
+        by smtp.gmail.com with ESMTPSA id k7-20020a17090627c700b009e50ea0a05asm7814793ejc.99.2023.11.29.02.54.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Nov 2023 02:53:22 -0800 (PST)
-Message-ID: <068ca34d-a930-4542-bde3-4fbb4c228807@linaro.org>
-Date: Wed, 29 Nov 2023 11:53:20 +0100
+        Wed, 29 Nov 2023 02:54:57 -0800 (PST)
+Message-ID: <e3bc24d6-d9ef-4705-8de7-05460f915b17@linaro.org>
+Date: Wed, 29 Nov 2023 11:54:56 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,35 +62,27 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/6] dt-bindings: serial: cdns: Add new compatible
- string for StarFive JH8100 UART
+Subject: Re: [PATCH v2 3/4] arm64: dts: nuvoton: Add pinctrl support for
+ ma35d1
 Content-Language: en-US
-To: JeeHeng Sia <jeeheng.sia@starfivetech.com>,
- "kernel@esmil.dk" <kernel@esmil.dk>, "robh+dt@kernel.org"
- <robh+dt@kernel.org>,
- "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
- "krzk@kernel.org" <krzk@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "paul.walmsley@sifive.com" <paul.walmsley@sifive.com>,
- "palmer@dabbelt.com" <palmer@dabbelt.com>,
- "aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>,
- "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
- "tglx@linutronix.de" <tglx@linutronix.de>,
- "conor@kernel.org" <conor@kernel.org>,
- "anup@brainfault.org" <anup@brainfault.org>,
- "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
- "jirislaby@kernel.org" <jirislaby@kernel.org>,
- "michal.simek@amd.com" <michal.simek@amd.com>,
- Michael Zhu <michael.zhu@starfivetech.com>,
- "drew@beagleboard.org" <drew@beagleboard.org>
-Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- Leyfoon Tan <leyfoon.tan@starfivetech.com>
-References: <20231129060043.368874-1-jeeheng.sia@starfivetech.com>
- <20231129060043.368874-6-jeeheng.sia@starfivetech.com>
- <8f2f241d-580a-4906-949a-b99b5a600868@linaro.org>
- <d5a3a8798333431fbb2aee573383a8e4@EXMBX066.cuchost.com>
+To: Jacky Huang <ychuang570808@gmail.com>, linus.walleij@linaro.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ p.zabel@pengutronix.de, j.neuschaefer@gmx.net
+Cc: linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ ychuang3@nuvoton.com, schung@nuvoton.com
+References: <20231128061118.575847-1-ychuang570808@gmail.com>
+ <20231128061118.575847-4-ychuang570808@gmail.com>
+ <7edda3ca-b98a-4125-979f-3ee7ac718a9a@linaro.org>
+ <a0be9aaa-290d-450e-b0b8-d87453bcaaa0@gmail.com>
+ <7fed5d90-da04-40fb-8677-b807b6f51cc9@linaro.org>
+ <8663d26e-32b8-4f2b-b497-9efa7440f070@gmail.com>
+ <2fab32e6-23a4-41bb-b47b-4f993fc590dc@linaro.org>
+ <ff83f0f2-541a-4677-a247-5f47fdcca3f1@gmail.com>
+ <db3ede63-8708-469f-8e7b-aca798ed50e0@linaro.org>
+ <4b00c41c-7751-40ca-bf2d-53f1179772d4@gmail.com>
+ <9ec2dd42-5173-40df-8e6b-9c09f2d77f67@linaro.org>
+ <6d511cc4-f22c-4c8f-a1ea-a8d99be95157@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -136,80 +128,99 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <d5a3a8798333431fbb2aee573383a8e4@EXMBX066.cuchost.com>
+In-Reply-To: <6d511cc4-f22c-4c8f-a1ea-a8d99be95157@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 29/11/2023 11:33, JeeHeng Sia wrote:
+On 29/11/2023 11:14, Jacky Huang wrote:
+> 
+> Dear Krzysztof,
 > 
 > 
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Sent: Wednesday, November 29, 2023 4:26 PM
->> To: JeeHeng Sia <jeeheng.sia@starfivetech.com>; kernel@esmil.dk; robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org;
->> krzk@kernel.org; conor+dt@kernel.org; paul.walmsley@sifive.com; palmer@dabbelt.com; aou@eecs.berkeley.edu;
->> daniel.lezcano@linaro.org; tglx@linutronix.de; conor@kernel.org; anup@brainfault.org; gregkh@linuxfoundation.org;
->> jirislaby@kernel.org; michal.simek@amd.com; Michael Zhu <michael.zhu@starfivetech.com>; drew@beagleboard.org
->> Cc: devicetree@vger.kernel.org; linux-riscv@lists.infradead.org; linux-kernel@vger.kernel.org; Leyfoon Tan
->> <leyfoon.tan@starfivetech.com>
->> Subject: Re: [PATCH v2 5/6] dt-bindings: serial: cdns: Add new compatible string for StarFive JH8100 UART
->>
->> On 29/11/2023 07:00, Sia Jee Heng wrote:
->>> Add new compatible string for UART in the StarFive JH8100 SoC.
+> On 2023/11/29 下午 06:02, Krzysztof Kozlowski wrote:
+>> On 29/11/2023 10:41, Jacky Huang wrote:
+>>> Dear Krzysztof,
 >>>
->>> Signed-off-by: Sia Jee Heng <jeeheng.sia@starfivetech.com>
->>> Reviewed-by: Ley Foon Tan <leyfoon.tan@starfivetech.com>
->>
->> The patch is quite different than v1. Are you sure the review is
->> applicable? If it was given for v2, where is it?
-> This patch is impacted by the comment suggesting the exclusion of patch 5 in V1. In V2, this patch adds compatible for cdns-uart-r1p8, allowing us to continue using the cdns uart.
-
-Please wrap your replies.
-
-How does this answer my concern about review tag?
-
-Do you understand that my comments are inline under the exact line which
-is questioned?
-
->>
->>> ---
->>>  Documentation/devicetree/bindings/serial/cdns,uart.yaml | 4 ++++
->>>  1 file changed, 4 insertions(+)
 >>>
->>> diff --git a/Documentation/devicetree/bindings/serial/cdns,uart.yaml b/Documentation/devicetree/bindings/serial/cdns,uart.yaml
->>> index e35ad1109efc..0d05305778f2 100644
->>> --- a/Documentation/devicetree/bindings/serial/cdns,uart.yaml
->>> +++ b/Documentation/devicetree/bindings/serial/cdns,uart.yaml
->>> @@ -20,6 +20,10 @@ properties:
->>>          items:
->>>            - const: xlnx,zynqmp-uart
->>>            - const: cdns,uart-r1p12
->>> +      - description: UART controller for StarFive JH8100 SoC
+>>> On 2023/11/29 下午 04:11, Krzysztof Kozlowski wrote:
+>>>> On 29/11/2023 04:35, Jacky Huang wrote:
+>>>>>>>> Best regards,
+>>>>>>>> Krzysztof
+>>>>>>>>
+>>>>>>> Yes, it did pass the 'dtbs_check'. I guess the tool does not detect such
+>>>>>>> issues.
+>>>>>>> Anyway, I will fix it in the next version.
+>>>>>> Hm, I see your bindings indeed allow pin-.* and unit addresses, so it is
+>>>>>> the binding issue.
+>>>>>>
+>>>>>> The examples you used as reference - xlnx,zynqmp-pinctrl.yaml and
+>>>>>> realtek,rtd1315e-pinctrl.yaml - do not mix these as you do.
+>>>>>>
+>>>>>> I don't understand why do you need them yet. I don't see any populate of
+>>>>>> children. There are no compatibles, either.
+>>>>>>
+>>>>>> Which part of your driver uses them exactly?
+>>>>>>
+>>>>>> Best regards,
+>>>>>> Krzysztof
+>>>>>>
+>>>>> I will move the 'pcfg_default: pin-default' from dtsi to dts, like this:
+>>>>>
+>>>>> &pinctrl {
+>>>>>        pcfg_default: pin-default {
+>>>>>            slew-rate = <0>;
+>>>>>            input-schmitt-disable;
+>>>>>            bias-disable;
+>>>>>            power-source = <1>;
+>>>>>            drive-strength = <17100>;
+>>>>>        };
+>>>> This solves nothing. It's the same placement.
+>>>>
+>>>>
+>>>> Best regards,
+>>>> Krzysztof
+>>>>
+>>> OK, it stil be the binding issues.
+>>> For "^pin-[a-z0-9]+$", I reference to the "pcfg-[a-z0-9-]+$" of
+>>> rockchip,pinctrl.yaml.
+>>>
+>>> My intention is to describe a generic pin configuration, aiming to make
+>>> the pin
+>>> description more concise. In actual testing, it proves to be effective.
+>> Can you instead respond to my actual questions?
 >>
->> This is duplicating compatible, drop.
-> Do you mean drop compatible for starfive,jh8100-uart ?
-
-No, drop description and use directly " - items"
-
+>> Best regards,
+>> Krzysztof
 >>
->>> +        items:
->>> +          - const: starfive,jh8100-uart
->>> +          - const: cdns,uart-r1p8
->>
->> Don't add things to the end of the list, but keep order. I would suggest
->> to put it at the beginning, so before Xilinx.
-> I'm trying to get what you're asking, but it's a bit confusing for me. So, I thought it might be easier if I just share the code below. Please let me know if this addresses your comment?
-> properties:
->   compatible:
->     oneOf:
->       - description: UART controller for StarFive JH8100 SoC
->         items:
->           - const: cdns,uart-r1p8
+> 
+> The the last one item of nuvoton,pins is a phandle, which can refer to 
+> '&pin-default'. The following code of driver pinctrl-ma35.c parse 
+> "nuvoton,pins", including the node reference by phandle. list = 
+> of_get_property(np, "nuvoton,pins", &size); size /= sizeof(*list); if 
+> (!size || size % 4) { dev_err(npctl->dev, "wrong setting!\n"); return 
+> -EINVAL; } grp->npins = size / 4; grp->pins = devm_kzalloc(npctl->dev, 
+> grp->npins * sizeof(*grp->pins), GFP_KERNEL); if (!grp->pins) return 
+> -ENOMEM; pin = grp->settings = devm_kzalloc(npctl->dev, grp->npins * 
+> sizeof(*grp->settings), GFP_KERNEL); if (!grp->settings) return -ENOMEM; 
+> for (i = 0, j = 0; i < size; i += 4, j++) { struct device_node 
+> *np_config; const __be32 *phandle; pin->offset = be32_to_cpu(*list++) * 
+> MA35_MFP_REG_SZ_PER_BANK + MA35_MFP_REG_BASE; pin->shift = 
+> (be32_to_cpu(*list++) * MA35_MFP_BITS_PER_PORT) % 32; pin->muxval = 
+> be32_to_cpu(*list++); phandle = list++; if (!phandle) return -EINVAL; 
+> np_config = of_find_node_by_phandle(be32_to_cpup(phandle)); ret = 
+> pinconf_generic_parse_dt_config(np_config, NULL, &pin->configs, 
+> &pin->nconfigs); if (ret) return ret; grp->pins[j] = 
+> npctl->info->get_pin_num(pin->offset, pin->shift); pin++; } Best 
+> Regards, Jacky Huang
 
-Order is fixed, thanks. But drop description and bring back specific
-compatible. You must have specific compatibles, always.
+Sorry, I cannot parse it.
 
+I was referring to the children with unit addresses. I don't see any
+populate of the children, so why do you need them?
 
+There are no compatibles, either.
+
+Which part of your driver uses them exactly?
 
 Best regards,
 Krzysztof
