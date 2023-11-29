@@ -1,118 +1,153 @@
-Return-Path: <devicetree+bounces-20029-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20030-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C6767FD924
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 15:20:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1D827FD932
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 15:23:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 24EAA1C2094B
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 14:20:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6E07D282E64
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 14:23:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 383D730651;
-	Wed, 29 Nov 2023 14:20:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0480630651;
+	Wed, 29 Nov 2023 14:23:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="usQAeTpp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L80lP7/D"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E5DC2FE2D;
-	Wed, 29 Nov 2023 14:20:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7BD0BC433C8;
-	Wed, 29 Nov 2023 14:20:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D521D30340;
+	Wed, 29 Nov 2023 14:23:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE4E8C433C8;
+	Wed, 29 Nov 2023 14:23:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701267645;
-	bh=ilqRE+p2fOw9a0JlFxXvmLieJ549kSYDkFaGPRRW8oQ=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=usQAeTppBB5TlyqxaUvm+41VSl5IEzYDcwModnXtK+ilMiYYiZNMrGCbjgRdZXH/p
-	 7dbuv2jwzNtp5Du9YUsXip+eBl0GMPECNrAzKSBpNPdrJYpApOeTO4Yk6eYGfiCG5Z
-	 U5F4XF3VeQXjWf3HSVlVEs4AdNgM6M0FS1acS3in6ezgGKlmMHXPUcU+DJsbfJufr6
-	 TzeJkANcn3GU2M7GZiXB8s1i73Lx36tezfKVwFBWdIYfixNZTpARyWIZ4XoMoy8ixh
-	 3I84Uyv8YYD3+0pUHFFXCaKPdBuTF30Tu7TxB8uOBSzdACibLuOQpvE0nzEdwkoAHZ
-	 HLnyY+98+UN1w==
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-50bbfad8758so2243772e87.3;
-        Wed, 29 Nov 2023 06:20:45 -0800 (PST)
-X-Gm-Message-State: AOJu0YxMIn8A116RYvHh6I4XaAKjyUuECqakwDgeOn8TAJ8A8/2dV8sV
-	MIDEqIAfYuuLBOmvXHsfROXWxVpAelh5QPMTDw==
-X-Google-Smtp-Source: AGHT+IGQ6dT1phTdaBB2cnieLq1FHpCwg9+LMFYxy4gEJXci5LIhzhHGeiWIcYiUZnTGssn08SW/cPnCLwYi8FMKZP4=
-X-Received: by 2002:a05:6512:114d:b0:509:4599:12d9 with SMTP id
- m13-20020a056512114d00b00509459912d9mr16626681lfg.6.1701267643713; Wed, 29
- Nov 2023 06:20:43 -0800 (PST)
+	s=k20201202; t=1701267817;
+	bh=uEINnHilNNToAZ1GUBzJz7tVwPdn3y3/jPZhz8a3h3A=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=L80lP7/DmFjx490yhyox7mwpHFUwjNzTYtOjS2so9TvD4ri5AnHVF3lE0FbCWeVpX
+	 riTz70eyypHC9pvz2VTcNGuSaKjNgAqPV7b3nhobMqbe0tc860r0tI2NrIyRUgjnO9
+	 DRK5oFj7Dd+jtzQMWsgBgs43xVCPA9l0odYE6PX2f7Wb5hkQcIzM3S7kpImE/bopUX
+	 QojwpElox1iuTbWfjDCPqion/nebzRC1EJX3PkPK1Z9M0Pz7gAHMbHNfiqvMB8vPHx
+	 8e6Lflr9nevBFjB3KuP7Pd9w+VzqAjCBvfOIaRJTMliS3wJpDx5136pJRNTHh7CUxF
+	 W2+7eVJkjqL8w==
+Date: Wed, 29 Nov 2023 14:23:32 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Alain Volmat <alain.volmat@foss.st.com>
+Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Pierre-Yves MORDRET <pierre-yves.mordret@foss.st.com>,
+	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/7] dt-bindings: i2c: document st,stm32mp25-i2c
+ compatible
+Message-ID: <20231129-haste-emperor-3a8ba335b267@spud>
+References: <20231129125920.1702497-1-alain.volmat@foss.st.com>
+ <20231129125920.1702497-4-alain.volmat@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231129111041.26782-1-krzysztof.kozlowski@linaro.org>
- <170126087595.1991744.9053853140300681368.robh@kernel.org> <3df72c05-7b79-4804-a220-5e342d6e5dd2@linaro.org>
-In-Reply-To: <3df72c05-7b79-4804-a220-5e342d6e5dd2@linaro.org>
-From: Rob Herring <robh@kernel.org>
-Date: Wed, 29 Nov 2023 08:20:31 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKhAX0vQ6LPN9ZfO4R44HZ3qrfb0oN9A9jo9+Jd2ePFLw@mail.gmail.com>
-Message-ID: <CAL_JsqKhAX0vQ6LPN9ZfO4R44HZ3qrfb0oN9A9jo9+Jd2ePFLw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: iio: honeywell,mprls0025pa: drop ref from
- pressure properties
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: devicetree@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, 
-	Jonathan Cameron <jic23@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
-	Andreas Klinger <ak@it-klinger.de>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	linux-iio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="zQpTz0PrtyWzX5co"
+Content-Disposition: inline
+In-Reply-To: <20231129125920.1702497-4-alain.volmat@foss.st.com>
+
+
+--zQpTz0PrtyWzX5co
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Nov 29, 2023 at 6:29=E2=80=AFAM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 29/11/2023 13:27, Rob Herring wrote:
-> >
-> > On Wed, 29 Nov 2023 12:10:41 +0100, Krzysztof Kozlowski wrote:
-> >> The dtschema treats now properties with '-pascal' suffix as standard o=
-ne
-> >> and already defines $ref for them, thus the $ref should be dropped fro=
-m
-> >> the bindings.
-> >>
-> >> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> >>
-> >> ---
-> >>
-> >> dtschema change was merged:
-> >> https://github.com/devicetree-org/dt-schema/commit/2a1708dcf4ff0b25c4e=
-c46304d6d6cc655c3e635
-> >> but not yet released as new dtschema version.
-> >>
-> >> This change should be applied once new dtschema version is released or
-> >> Rob says otherwise.
-> >> ---
-> >>  .../devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml | 2 -=
--
-> >>  1 file changed, 2 deletions(-)
-> >>
-> >
-> > My bot found errors running 'make DT_CHECKER_FLAGS=3D-m dt_binding_chec=
-k'
-> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> >
-> > yamllint warnings/errors:
-> >
-> > dtschema/dtc warnings/errors:
-> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings=
-/iio/pressure/honeywell,mprls0025pa.yaml: honeywell,pmin-pascal: missing ty=
-pe definition
-> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings=
-/iio/pressure/honeywell,mprls0025pa.yaml: honeywell,pmax-pascal: missing ty=
-pe definition
-> >
->
-> That's expected, depends on the dtschema change.
+On Wed, Nov 29, 2023 at 01:59:12PM +0100, Alain Volmat wrote:
+> Add a new compatible st,stm32mp25-i2c for the STM32MP25 series which
+> has only one interrupt line for both events and errors and differs in
+> term of handling of FastModePlus.
+>=20
+> Signed-off-by: Alain Volmat <alain.volmat@foss.st.com>
+> ---
+>  .../devicetree/bindings/i2c/st,stm32-i2c.yaml | 49 +++++++++++++++----
+>  1 file changed, 39 insertions(+), 10 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/i2c/st,stm32-i2c.yaml b/Do=
+cumentation/devicetree/bindings/i2c/st,stm32-i2c.yaml
+> index 94b75d9f66cd..6a69bb6de23e 100644
+> --- a/Documentation/devicetree/bindings/i2c/st,stm32-i2c.yaml
+> +++ b/Documentation/devicetree/bindings/i2c/st,stm32-i2c.yaml
+> @@ -19,6 +19,7 @@ allOf:
+>                - st,stm32f7-i2c
+>                - st,stm32mp13-i2c
+>                - st,stm32mp15-i2c
+> +              - st,stm32mp25-i2c
+>      then:
+>        properties:
+>          i2c-scl-rising-time-ns:
+> @@ -41,6 +42,43 @@ allOf:
+>          clock-frequency:
+>            enum: [100000, 400000]
+> =20
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - st,stm32f4-i2c
+> +              - st,stm32f7-i2c
+> +              - st,stm32mp13-i2c
+> +              - st,stm32mp15-i2c
+> +    then:
+> +      properties:
+> +        interrupts:
+> +          items:
+> +            - description: interrupt ID for I2C event
+> +            - description: interrupt ID for I2C error
+> +
+> +        interrupt-names:
+> +          items:
+> +            - const: event
+> +            - const: error
+> +
 
-Well, it wasn't because dtschema version used is git tree. However,
-the CI job was using master rather than main branch. master falls
-behind when I use the web interface... Now fixed the CI job to use
-main.
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - st,stm32mp25-i2c
+> +    then:
 
-Rob
+Should this not just be "else:"?
+
+> +      properties:
+> +        interrupts:
+> +          items:
+> +            - description: common interrupt for events and errors
+> +
+> +        interrupt-names:
+> +          items:
+> +            - const: event
+> +
+
+Cheers,
+Conor.
+
+--zQpTz0PrtyWzX5co
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZWdJYAAKCRB4tDGHoIJi
+0g/dAQD+vb0YxP+0kOTPgO9Ix2HQBWIP8nOO1XqZgVw+O7daxQD9HemclzlDL37e
+tMu44zbX0HySlWbw3cPX0YDONRIM3Q8=
+=2fR5
+-----END PGP SIGNATURE-----
+
+--zQpTz0PrtyWzX5co--
 
