@@ -1,377 +1,163 @@
-Return-Path: <devicetree+bounces-20013-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20014-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FB797FD85F
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 14:40:46 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70C847FD86D
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 14:42:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 55CD42826D0
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 13:40:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A318A1C20921
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 13:42:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86A3C20DDF;
-	Wed, 29 Nov 2023 13:40:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F998208D5;
+	Wed, 29 Nov 2023 13:41:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="cmL4Cw75"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XLNpbhVd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 826D41AD
-	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 05:40:35 -0800 (PST)
-Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-40b4746ae3bso22119805e9.0
-        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 05:40:35 -0800 (PST)
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D44B2F4
+	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 05:41:55 -0800 (PST)
+Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-54b8a4d64b5so3896269a12.0
+        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 05:41:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1701265234; x=1701870034; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xVKCchg4ZSZgpZLnFcgq1r1U/HQTY8Hn5xE1KnUJS9E=;
-        b=cmL4Cw75zKTdxsFFyEb/zV6FhBTkegNyIi4nqcMjgbawC2A8fb9sKrYtvVGrZXYz/r
-         16RvvAOagQxvRugOIIyZQu21MuD48xvkO1tdkSF4TC+WX/2Wu9/U3z0pdf+0dOOszCdu
-         5IUkfMav4spdRpFDshwAlTJGvifUi/yec9+CkUQVHoPbThnbcZ///Lwv/6vpB0/X87fJ
-         pg0C9ljN+zCK4QGrNl+fL5GNSZZEAlh8/khx16H6YUD2E/H1N3SnBWaC1ZKNtTl4FNZ0
-         16yEaA0H+3lijdKyvGyFGzCurlBz9k40FuGR2bKyBLg4KrSVjlZxB1CA8b5w+ho1hw1L
-         HNrw==
+        d=linaro.org; s=google; t=1701265314; x=1701870114; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=3XtPAr9Ukc6k2GBioFxne6H2WmYEOPbpmSs1XSXHWIA=;
+        b=XLNpbhVdOLmzLIfJeXFVyXR3Ew5FVmZkiF+m2jr/oh4w/wLL4ZRKKz2/mb4+J+kTnB
+         N9He8hqtxTbmhyFR94ejq6n7tE0DjWk6SVdt6/QVxHoZc0SfHAQ67+wYWbCs5fslFPkV
+         cxxutWWgnwSgVIhcsDlh4zT8jHZypVNQcF+IP83H50kS+GGDNDypHKm5ey4vDQ36K6Ik
+         /P+S39cKjC3rVIVQb5xG6Rha5ysbDsd6Z55YUNqwS/qlt4ciZ/KBv8iRH0gHf4jyIhy0
+         mpZgN114i9ODzH8ADjCpGw790aYgRiA7VNvCuq3x1qX6w1vAVEICTzaILyONSaT7DWcA
+         yMIg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701265234; x=1701870034;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xVKCchg4ZSZgpZLnFcgq1r1U/HQTY8Hn5xE1KnUJS9E=;
-        b=B5VuG88+FStL40DrHbo4lwAepUm5U5pq/JV5Hmgnch9cO09CLGfaIDZXWFDUK+OYiz
-         5Hf/iruAiyR0C47qqFciihqscr5b9Hj0rff6/R5WjccaIUes8OT7jsNkt5M/MrGtxDvi
-         mDyWpvPptoY4qOgThPN5aDE7VAsr6gV/IiWa55PbkY6w+fmvXLuWlvrqSLMlde6A7JHv
-         V5N04NoA1X1QZcvCp26zJS3kKzlLnSUULYK52vd99x4GAIQxieDH0oaV2RHgJicZPNom
-         r+LK7vWEoG2MkCrA/TRaEgvK9zemK0bjzeXPn5shklK5tvEyY4Sh0bBUEqe6I5ozT4pF
-         1x/g==
-X-Gm-Message-State: AOJu0Yxse01WD9xMxcwCwWhgqJN9VvUfyaHo+SqjRj7iY9E4EOyMbakE
-	+3xFJdyyaGAWpzsz+6kU0v1MlQ==
-X-Google-Smtp-Source: AGHT+IHm0KALrSqk206CpxoCAMZGSyTzUrx2fa+hLgKKqO8w4D4vGEOPDLk/yITyoQcEKc8XiS3h7w==
-X-Received: by 2002:a05:600c:a0b:b0:406:52f1:7e6f with SMTP id z11-20020a05600c0a0b00b0040652f17e6fmr15256657wmp.12.1701265233844;
-        Wed, 29 Nov 2023 05:40:33 -0800 (PST)
-Received: from toaster.lan ([2a01:e0a:3c5:5fb1:6101:5529:fe2d:d7eb])
-        by smtp.googlemail.com with ESMTPSA id w17-20020a05600c475100b004080f0376a0sm2285860wmo.42.2023.11.29.05.40.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Nov 2023 05:40:33 -0800 (PST)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Thierry Reding <thierry.reding@gmail.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Jerome Brunet <jbrunet@baylibre.com>,
-	Kevin Hilman <khilman@baylibre.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-amlogic@lists.infradead.org,
-	linux-pwm@vger.kernel.org,
-	JunYi Zhao <junyi.zhao@amlogic.com>,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-Subject: [PATCH v3 4/4] pwm: meson: add generic compatible for meson8 to sm1
-Date: Wed, 29 Nov 2023 14:40:00 +0100
-Message-ID: <20231129134004.3642121-5-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231129134004.3642121-1-jbrunet@baylibre.com>
-References: <20231129134004.3642121-1-jbrunet@baylibre.com>
+        d=1e100.net; s=20230601; t=1701265314; x=1701870114;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3XtPAr9Ukc6k2GBioFxne6H2WmYEOPbpmSs1XSXHWIA=;
+        b=hyhRqYqy78/Z+fDeMBwaHaJszXONxPq6PSAnFHbobmx//vnd+0MqOG22famI1jvOIQ
+         WfP3JOjaxR6yMFzyLS2g8fuLPw/nv5VddNzk5LXKPCx9uwiREwX0AVIi2q8XJw0qK+k8
+         pOpClHvDazdVlr4zdmeT3WStcNlbQii7D8qSLZLRAwHeT28jBoyqmKdQcin1Zl7ygpdF
+         7yxre/PVWmL4mVxSFH7VWpySB1u1pQEZtbVgX/R8VuqVLW1mpS2xtnJ1jkZu6xdw3XjQ
+         avCCZIX0tnYRKtIGrO+j5bpwlareRd/r7KoJ5gBF51IEzg1LVPsZW8x1OjTIn6PV04YN
+         HAAA==
+X-Gm-Message-State: AOJu0YwB7I6ZsylOtPahAZFNEKcUAd2qJaM5X0CYcGXsT1cOAlDmtwB6
+	9NkgCis3FKazZ3b5eC5dgYADdA==
+X-Google-Smtp-Source: AGHT+IH/t7r6ezLoTEDR02u47U2cLWCWVmhmj9ImLkSTIPs8Br92UmaWR6zwzVAOJgC6Y8S/GzwT/g==
+X-Received: by 2002:a50:fb05:0:b0:54b:971:f790 with SMTP id d5-20020a50fb05000000b0054b0971f790mr12128111edq.7.1701265314277;
+        Wed, 29 Nov 2023 05:41:54 -0800 (PST)
+Received: from [192.168.209.173] (178235187166.dynamic-4-waw-k-2-3-0.vectranet.pl. [178.235.187.166])
+        by smtp.gmail.com with ESMTPSA id cy6-20020a0564021c8600b0054bae7dc6c8sm1611702edb.50.2023.11.29.05.41.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 29 Nov 2023 05:41:53 -0800 (PST)
+Message-ID: <026dd401-e4bc-4f59-b0d3-b9e95fd3f74f@linaro.org>
+Date: Wed, 29 Nov 2023 14:41:51 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/5] arm64: dts: qcom: sm8650: add ADSP GPR
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: Neil Armstrong <neil.armstrong@linaro.org>
+References: <20231129132247.63721-1-krzysztof.kozlowski@linaro.org>
+ <20231129132247.63721-2-krzysztof.kozlowski@linaro.org>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20231129132247.63721-2-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Introduce a new compatible support in the Amlogic PWM driver.
+On 29.11.2023 14:22, Krzysztof Kozlowski wrote:
+> Add the ADSP Generic Packet Router (GPR) device node as part of audio
+> subsystem in Qualcomm SM8650 SoC.
+> 
+> Cc: Neil Armstrong <neil.armstrong@linaro.org>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sm8650.dtsi | 40 ++++++++++++++++++++++++++++
+>  1 file changed, 40 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> index 41dfa5e19a15..9df79297dad7 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> @@ -4326,6 +4326,46 @@ fastrpc {
+>  					#address-cells = <1>;
+>  					#size-cells = <0>;
+>  				};
+> +
+> +				gpr {
+> +					compatible = "qcom,gpr";
+> +					qcom,glink-channels = "adsp_apps";
+> +					qcom,domain = <GPR_DOMAIN_ID_ADSP>;
+> +					qcom,intents = <512 20>;
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +
+> +					q6apm: service@1 {
+> +						compatible = "qcom,q6apm";
+> +						reg = <GPR_APM_MODULE_IID>;
+> +						#sound-dai-cells = <0>;
+> +						qcom,protection-domain = "avs/audio",
+> +									 "msm/adsp/audio_pd";
+> +
+> +						q6apmdai: dais {
+> +							compatible = "qcom,q6apm-dais";
+> +							iommus = <&apps_smmu 0x1001 0x80>,
+> +								 <&apps_smmu 0x1061 0x0>;
+> +						};
+> +
+> +						q6apmbedai: bedais {
+> +							compatible = "qcom,q6apm-lpass-dais";
+> +							#sound-dai-cells = <1>;
+> +						};
+'bedais' should be above 'dais' alphabetically
 
-The PWM HW is actually the same for all SoCs supported so far.
-A specific compatible is needed only because the clock sources
-of the PWMs are hard-coded in the driver.
-
-It is better to have the clock source described in DT but this
-changes the bindings so a new compatible must be introduced.
-
-When all supported platform have migrated to the new compatible,
-support for the legacy ones may be removed from the driver.
-
-Adding a callback to setup the clock will also make it easier
-to add support for the new PWM HW found in a1, s4, c3 and t7 SoC
-families.
-
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- drivers/pwm/pwm-meson.c | 224 ++++++++++++++++++++++++----------------
- 1 file changed, 133 insertions(+), 91 deletions(-)
-
-diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
-index 5cbd65cae28a..d5d745a651d3 100644
---- a/drivers/pwm/pwm-meson.c
-+++ b/drivers/pwm/pwm-meson.c
-@@ -95,6 +95,7 @@ struct meson_pwm_channel {
- 
- struct meson_pwm_data {
- 	const char * const *parent_names;
-+	int (*channels_init)(struct device *dev);
- };
- 
- struct meson_pwm {
-@@ -333,95 +334,6 @@ static const struct pwm_ops meson_pwm_ops = {
- 	.get_state = meson_pwm_get_state,
- };
- 
--static const char * const pwm_meson8b_parent_names[] = {
--	"xtal", NULL, "fclk_div4", "fclk_div3"
--};
--
--static const struct meson_pwm_data pwm_meson8b_data = {
--	.parent_names = pwm_meson8b_parent_names,
--};
--
--/*
-- * Only the 2 first inputs of the GXBB AO PWMs are valid
-- * The last 2 are grounded
-- */
--static const char * const pwm_gxbb_ao_parent_names[] = {
--	"xtal", "clk81", NULL, NULL,
--};
--
--static const struct meson_pwm_data pwm_gxbb_ao_data = {
--	.parent_names = pwm_gxbb_ao_parent_names,
--};
--
--static const char * const pwm_axg_ee_parent_names[] = {
--	"xtal", "fclk_div5", "fclk_div4", "fclk_div3"
--};
--
--static const struct meson_pwm_data pwm_axg_ee_data = {
--	.parent_names = pwm_axg_ee_parent_names,
--};
--
--static const char * const pwm_axg_ao_parent_names[] = {
--	"xtal", "axg_ao_clk81", "fclk_div4", "fclk_div5"
--};
--
--static const struct meson_pwm_data pwm_axg_ao_data = {
--	.parent_names = pwm_axg_ao_parent_names,
--};
--
--static const char * const pwm_g12a_ao_ab_parent_names[] = {
--	"xtal", "g12a_ao_clk81", "fclk_div4", "fclk_div5"
--};
--
--static const struct meson_pwm_data pwm_g12a_ao_ab_data = {
--	.parent_names = pwm_g12a_ao_ab_parent_names,
--};
--
--static const char * const pwm_g12a_ao_cd_parent_names[] = {
--	"xtal", "g12a_ao_clk81", NULL, NULL,
--};
--
--static const struct meson_pwm_data pwm_g12a_ao_cd_data = {
--	.parent_names = pwm_g12a_ao_cd_parent_names,
--};
--
--static const struct of_device_id meson_pwm_matches[] = {
--	{
--		.compatible = "amlogic,meson8b-pwm",
--		.data = &pwm_meson8b_data
--	},
--	{
--		.compatible = "amlogic,meson-gxbb-pwm",
--		.data = &pwm_meson8b_data
--	},
--	{
--		.compatible = "amlogic,meson-gxbb-ao-pwm",
--		.data = &pwm_gxbb_ao_data
--	},
--	{
--		.compatible = "amlogic,meson-axg-ee-pwm",
--		.data = &pwm_axg_ee_data
--	},
--	{
--		.compatible = "amlogic,meson-axg-ao-pwm",
--		.data = &pwm_axg_ao_data
--	},
--	{
--		.compatible = "amlogic,meson-g12a-ee-pwm",
--		.data = &pwm_meson8b_data
--	},
--	{
--		.compatible = "amlogic,meson-g12a-ao-pwm-ab",
--		.data = &pwm_g12a_ao_ab_data
--	},
--	{
--		.compatible = "amlogic,meson-g12a-ao-pwm-cd",
--		.data = &pwm_g12a_ao_cd_data
--	},
--	{},
--};
--MODULE_DEVICE_TABLE(of, meson_pwm_matches);
--
- static int meson_pwm_init_clocks_legacy(struct device *dev,
- 					struct clk_parent_data *mux_parent_data)
- {
-@@ -528,12 +440,15 @@ static int meson_pwm_init_clocks_legacy(struct device *dev,
- 	return 0;
- }
- 
--static int meson_pwm_init_channels(struct device *dev)
-+static int meson_pwm_init_channels_legacy(struct device *dev)
- {
- 	struct clk_parent_data mux_parent_data[MESON_NUM_MUX_PARENTS] = {};
- 	struct meson_pwm *meson = dev_get_drvdata(dev);
- 	int i;
- 
-+	dev_info(dev, "using obsolete compatible, please consider updating dt\n");
-+
-+
- 	for (i = 0; i < MESON_NUM_MUX_PARENTS; i++) {
- 		mux_parent_data[i].index = -1;
- 		mux_parent_data[i].name = meson->data->parent_names[i];
-@@ -542,6 +457,133 @@ static int meson_pwm_init_channels(struct device *dev)
- 	return meson_pwm_init_clocks_legacy(dev, mux_parent_data);
- }
- 
-+static int meson_pwm_init_channels_meson8b_v2(struct device *dev)
-+{
-+	struct clk_parent_data mux_parent_data[MESON_NUM_MUX_PARENTS] = {};
-+	int i;
-+
-+	/*
-+	 * NOTE: Instead of relying on the hard coded names in the driver
-+	 * as the legacy version, this relies on DT to provide the list of
-+	 * clocks.
-+	 * For once, using input numbers actually makes more sense than names.
-+	 * Also DT requires clock-names to be explicitly ordered, so there is
-+	 * no point bothering with clock names in this case.
-+	 */
-+	for (i = 0; i < MESON_NUM_MUX_PARENTS; i++)
-+		mux_parent_data[i].index = i;
-+
-+	return meson_pwm_init_clocks_legacy(dev, mux_parent_data);
-+}
-+
-+static const char * const pwm_meson8b_parent_names[] = {
-+	"xtal", NULL, "fclk_div4", "fclk_div3"
-+};
-+
-+static const struct meson_pwm_data pwm_meson8b_data = {
-+	.parent_names = pwm_meson8b_parent_names,
-+	.channels_init = meson_pwm_init_channels_legacy,
-+};
-+
-+/*
-+ * Only the 2 first inputs of the GXBB AO PWMs are valid
-+ * The last 2 are grounded
-+ */
-+static const char * const pwm_gxbb_ao_parent_names[] = {
-+	"xtal", "clk81", NULL, NULL,
-+};
-+
-+static const struct meson_pwm_data pwm_gxbb_ao_data = {
-+	.parent_names = pwm_gxbb_ao_parent_names,
-+	.channels_init = meson_pwm_init_channels_legacy,
-+};
-+
-+static const char * const pwm_axg_ee_parent_names[] = {
-+	"xtal", "fclk_div5", "fclk_div4", "fclk_div3"
-+};
-+
-+static const struct meson_pwm_data pwm_axg_ee_data = {
-+	.parent_names = pwm_axg_ee_parent_names,
-+	.channels_init = meson_pwm_init_channels_legacy,
-+};
-+
-+static const char * const pwm_axg_ao_parent_names[] = {
-+	"xtal", "axg_ao_clk81", "fclk_div4", "fclk_div5"
-+};
-+
-+static const struct meson_pwm_data pwm_axg_ao_data = {
-+	.parent_names = pwm_axg_ao_parent_names,
-+	.channels_init = meson_pwm_init_channels_legacy,
-+};
-+
-+static const char * const pwm_g12a_ao_ab_parent_names[] = {
-+	"xtal", "g12a_ao_clk81", "fclk_div4", "fclk_div5"
-+};
-+
-+static const struct meson_pwm_data pwm_g12a_ao_ab_data = {
-+	.parent_names = pwm_g12a_ao_ab_parent_names,
-+	.channels_init = meson_pwm_init_channels_legacy,
-+};
-+
-+static const char * const pwm_g12a_ao_cd_parent_names[] = {
-+	"xtal", "g12a_ao_clk81", NULL, NULL,
-+};
-+
-+static const struct meson_pwm_data pwm_g12a_ao_cd_data = {
-+	.parent_names = pwm_g12a_ao_cd_parent_names,
-+	.channels_init = meson_pwm_init_channels_legacy,
-+};
-+
-+static const struct meson_pwm_data pwm_meson8_v2_data = {
-+	.channels_init = meson_pwm_init_channels_meson8b_v2,
-+};
-+
-+static const struct of_device_id meson_pwm_matches[] = {
-+	{
-+		.compatible = "amlogic,meson8-pwm-v2",
-+		.data = &pwm_meson8_v2_data
-+	},
-+	/*
-+	 * The following compatibles are obsolete.
-+	 * Support for these may be removed once the related
-+	 * platforms have been updated
-+	 */
-+	{
-+		.compatible = "amlogic,meson8b-pwm",
-+		.data = &pwm_meson8b_data
-+	},
-+	{
-+		.compatible = "amlogic,meson-gxbb-pwm",
-+		.data = &pwm_meson8b_data
-+	},
-+	{
-+		.compatible = "amlogic,meson-gxbb-ao-pwm",
-+		.data = &pwm_gxbb_ao_data
-+	},
-+	{
-+		.compatible = "amlogic,meson-axg-ee-pwm",
-+		.data = &pwm_axg_ee_data
-+	},
-+	{
-+		.compatible = "amlogic,meson-axg-ao-pwm",
-+		.data = &pwm_axg_ao_data
-+	},
-+	{
-+		.compatible = "amlogic,meson-g12a-ee-pwm",
-+		.data = &pwm_meson8b_data
-+	},
-+	{
-+		.compatible = "amlogic,meson-g12a-ao-pwm-ab",
-+		.data = &pwm_g12a_ao_ab_data
-+	},
-+	{
-+		.compatible = "amlogic,meson-g12a-ao-pwm-cd",
-+		.data = &pwm_g12a_ao_cd_data
-+	},
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, meson_pwm_matches);
-+
- static int meson_pwm_probe(struct platform_device *pdev)
- {
- 	struct meson_pwm *meson;
-@@ -573,7 +615,7 @@ static int meson_pwm_probe(struct platform_device *pdev)
- 		return -ENODEV;
- 	}
- 
--	err = meson_pwm_init_channels(&pdev->dev);
-+	err = meson->data->channels_init(&pdev->dev);
- 	if (err < 0)
- 		return err;
- 
--- 
-2.42.0
-
+Konrad
 
