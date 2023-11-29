@@ -1,49 +1,60 @@
-Return-Path: <devicetree+bounces-19936-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19937-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1B4B7FD4B2
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 11:50:37 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 634327FD4B9
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 11:53:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0DC671C209A8
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 10:50:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 17AC02832FC
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 10:53:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B8641B293;
-	Wed, 29 Nov 2023 10:50:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3BC018AE9;
+	Wed, 29 Nov 2023 10:53:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="b6Yiaa1M"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EPDWgDSt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF2A510DA;
-	Wed, 29 Nov 2023 02:50:30 -0800 (PST)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3ATATwp1001200;
-	Wed, 29 Nov 2023 10:50:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=jETCxhm4tnAH6W3L2K0FEp9gQwed225cM9Yoo3a/AcM=;
- b=b6Yiaa1MZJKYB8PIAVFdj/LwOAN/9REIaUM3yPk/YXsqqIEA+G79xP6iC+NlHP7ypxwE
- pHU1AQZio8kmQRo0E0JfThyTPhGSsX0E/2iLHJTPjlpZlCvXspo8lA6wCY1F6EZ0D905
- +LUPSHVxxtN4gnLMDhK7/AwPSlARWc0uB+cIvje7ZlqKcVhc+8pUsGCq/Wdt4JUEQ2B9
- z0Bd5g87TItccJ5e2xTNDordYfvxUtk+falShFHMFw7FnlNsKjEMz5uNwSjE2b0KWyvh
- Lok3M48AwS6GkJ6MgF85XmU1Mnez2ZJQLu8v7ofTbOkeaxQU5aT/ipsT0sDSMGiFB2lX WA== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3up2byr8wh-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 29 Nov 2023 10:50:26 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3ATAoPRZ019480
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 29 Nov 2023 10:50:25 GMT
-Received: from [10.216.28.66] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 29 Nov
- 2023 02:50:20 -0800
-Message-ID: <3abe4ebe-80fc-4214-b01e-50c25575f2b9@quicinc.com>
-Date: Wed, 29 Nov 2023 16:20:16 +0530
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F54C10DD
+	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 02:53:25 -0800 (PST)
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-a00a9d677fcso886279366b.0
+        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 02:53:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1701255203; x=1701860003; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=l2jvWR/J4cBkDbvzBiC6ME393r+YwZ2uP+QwtlnTojA=;
+        b=EPDWgDStiR0EOZV0u9YFD33/0hCskFYFYWF4hZzTW3WyVfpJBqRR+gGSkOVsHilJYm
+         6dR9zvxU0FiASK06s7GYt1Zook9ZJdnk41XAPO493uzE6FwINNAc9SDBaPQULatOqKmb
+         bdtBm5JjgMxXKSjQpmpT9vypIskLTHZHLi7p0PDQBjRCiKyRndVyMi60kxKa5JP2zITL
+         Gk/KDwr7o9H530ZJAOnpaNcKEm9E7lp0/MgxnVs4E6v/2wDwtXIphWqN4n5I+DiUDao7
+         DMBlHpQtBOjInux28KXwZIxG7tRz8JennZ7ecPftaSBL59i6bWJdjb60tp1jdo+GDp6i
+         JsWA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701255203; x=1701860003;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=l2jvWR/J4cBkDbvzBiC6ME393r+YwZ2uP+QwtlnTojA=;
+        b=SGZynPcccYa/CKy2W6D9cXAaJzzLXlFLRhEfBNpNdAJ1LXjHxrOhYD/QEe8d7ncoAg
+         aWZ6Xvs7N3AqE0J+B4L95BJJft5JL8nwRy6V4oUCpiMLN01drENtLf8ZQkJ6u2NQaxvz
+         Tjc4vbqZp/ypuQrBqe1x1bRcUzHrD8vpaSVarr842fJrT1KMjyxdB9fxXZJR2fkfL8R5
+         S6gtGJ0S0fneL+qaeWab1B80AWwq0HxDsenjr4Iu349OhIKSDPkFzJ4V9U+dZyK2HxQx
+         AlHymuhqj+SZgGbk1HrJDxjtpBlDEsTKmlfI0x1cTcIE93a2qJHT43+xSqiaQlvrTIKS
+         4mNQ==
+X-Gm-Message-State: AOJu0YwVDN7XxaviQnIl3RrFHZ3/MTFPREmaqXWhSW++7Y7nclx8MZIU
+	5LDLlAxvxon21bT3FBfK0Ztl1w==
+X-Google-Smtp-Source: AGHT+IHNeo0Dghv67Ss3OsTU5+PvZkC+kVErbMHdZ1oK2rp8CmSce+8O/aLA2Q0KlJtETlAQPZTJlg==
+X-Received: by 2002:a17:906:f6cf:b0:a10:a91f:e75e with SMTP id jo15-20020a170906f6cf00b00a10a91fe75emr6306762ejb.18.1701255203380;
+        Wed, 29 Nov 2023 02:53:23 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.223.109])
+        by smtp.gmail.com with ESMTPSA id k7-20020a17090627c700b009e50ea0a05asm7814793ejc.99.2023.11.29.02.53.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 29 Nov 2023 02:53:22 -0800 (PST)
+Message-ID: <068ca34d-a930-4542-bde3-4fbb4c228807@linaro.org>
+Date: Wed, 29 Nov 2023 11:53:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -51,127 +62,156 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/6] dt-bindings: usb: dwc3: Clean up hs_phy_irq in
- bindings
-To: Johan Hovold <johan@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski@linaro.org>
-CC: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, <quic_wcheng@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_ppratap@quicinc.com>, <quic_jackp@quicinc.com>
-References: <20231122191335.3058-1-quic_kriskura@quicinc.com>
- <ZV9dYpTYRXn63tXe@hovoldconsulting.com>
- <1192d91f-11bf-44af-953a-14e08e2b6ca8@quicinc.com>
- <ZWCpGdJRexnk98IN@hovoldconsulting.com>
- <004ddc69-1566-4de4-b260-0fca96a9395f@quicinc.com>
- <ZWW_FOAKp95Cf9vN@hovoldconsulting.com>
- <18965bb9-7afa-4892-8b71-981ba29d2cd4@quicinc.com>
- <ZWXHrvUDnF2dMk6r@hovoldconsulting.com>
- <6d7527bf-8c1a-49b5-a0cf-99a92098c971@quicinc.com>
- <c8a28c72-5c0a-4a67-a4c9-e46a5716cda4@linaro.org>
- <ZWcPZPX-eT-xHAOv@hovoldconsulting.com>
+Subject: Re: [PATCH v2 5/6] dt-bindings: serial: cdns: Add new compatible
+ string for StarFive JH8100 UART
 Content-Language: en-US
-From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-In-Reply-To: <ZWcPZPX-eT-xHAOv@hovoldconsulting.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To: JeeHeng Sia <jeeheng.sia@starfivetech.com>,
+ "kernel@esmil.dk" <kernel@esmil.dk>, "robh+dt@kernel.org"
+ <robh+dt@kernel.org>,
+ "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+ "krzk@kernel.org" <krzk@kernel.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "paul.walmsley@sifive.com" <paul.walmsley@sifive.com>,
+ "palmer@dabbelt.com" <palmer@dabbelt.com>,
+ "aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>,
+ "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
+ "tglx@linutronix.de" <tglx@linutronix.de>,
+ "conor@kernel.org" <conor@kernel.org>,
+ "anup@brainfault.org" <anup@brainfault.org>,
+ "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+ "jirislaby@kernel.org" <jirislaby@kernel.org>,
+ "michal.simek@amd.com" <michal.simek@amd.com>,
+ Michael Zhu <michael.zhu@starfivetech.com>,
+ "drew@beagleboard.org" <drew@beagleboard.org>
+Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ Leyfoon Tan <leyfoon.tan@starfivetech.com>
+References: <20231129060043.368874-1-jeeheng.sia@starfivetech.com>
+ <20231129060043.368874-6-jeeheng.sia@starfivetech.com>
+ <8f2f241d-580a-4906-949a-b99b5a600868@linaro.org>
+ <d5a3a8798333431fbb2aee573383a8e4@EXMBX066.cuchost.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <d5a3a8798333431fbb2aee573383a8e4@EXMBX066.cuchost.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: IfrZHqYTGRK6-G-08zSRMKQei08laPtA
-X-Proofpoint-ORIG-GUID: IfrZHqYTGRK6-G-08zSRMKQei08laPtA
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-29_08,2023-11-29_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 suspectscore=0
- phishscore=0 clxscore=1015 lowpriorityscore=0 malwarescore=0
- priorityscore=1501 adultscore=0 impostorscore=0 bulkscore=0
- mlxlogscore=952 spamscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2311060000 definitions=main-2311290080
 
-
-
-On 11/29/2023 3:46 PM, Johan Hovold wrote:
-> On Wed, Nov 29, 2023 at 10:28:25AM +0100, Krzysztof Kozlowski wrote:
->> On 28/11/2023 12:32, Krishna Kurapati PSSNV wrote:
->>>
->>>>
->>>> So back to my initial proposal, with a slight modification moving
->>>> pwr_event first (e.g. as it is not a wakeup interrupt):
->>>>
->>>> qusb2-:
->>>>
->>>> 	- const: pwr_event
->>>> 	- const: qusb2_phy
->>>> 	- const: ss_phy_irq	(optional)
->>>>
->>>> qusb2:
->>>>
->>>> 	- const: pwr_event
->>>> 	- const: hs_phy_irq
->>>> 	- const: qusb2_phy
->>>> 	- const: ss_phy_irq	(optional)
->>>>
->>>> femto-:
->>>> 	- const: pwr_event
->>>> 	- const: dp_hs_phy_irq
->>>> 	- const: dm_hs_phy_irq
->>>> 	- const: ss_phy_irq	(optional)
->>>>
->>>> femto:
->>>> 	- const: pwr_event
->>>> 	- const: hs_phy_irq
->>>> 	- const: dp_hs_phy_irq
->>>> 	- const: dm_hs_phy_irq
->>>> 	- const: ss_phy_irq	(optional)
+On 29/11/2023 11:33, JeeHeng Sia wrote:
+> 
+> 
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Sent: Wednesday, November 29, 2023 4:26 PM
+>> To: JeeHeng Sia <jeeheng.sia@starfivetech.com>; kernel@esmil.dk; robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org;
+>> krzk@kernel.org; conor+dt@kernel.org; paul.walmsley@sifive.com; palmer@dabbelt.com; aou@eecs.berkeley.edu;
+>> daniel.lezcano@linaro.org; tglx@linutronix.de; conor@kernel.org; anup@brainfault.org; gregkh@linuxfoundation.org;
+>> jirislaby@kernel.org; michal.simek@amd.com; Michael Zhu <michael.zhu@starfivetech.com>; drew@beagleboard.org
+>> Cc: devicetree@vger.kernel.org; linux-riscv@lists.infradead.org; linux-kernel@vger.kernel.org; Leyfoon Tan
+>> <leyfoon.tan@starfivetech.com>
+>> Subject: Re: [PATCH v2 5/6] dt-bindings: serial: cdns: Add new compatible string for StarFive JH8100 UART
 >>
->> I did not follow entire thread and I do not know whether you change the
->> order in existing bindings, but just in case: the entries in existing
->> bindings cannot change the order. That's a strict ABI requirement
->> recently also discussed with Bjorn, because we want to have stable DTB
->> for laptop platforms. If my comment is not relevant, then please ignore.
-> 
-> Your comment is relevant, but I'm not sure I agree.
-> 
-> The Qualcomm bindings are a complete mess of DT snippets copied from
-> vendor trees and which have not been sanitised properly before being
-> merged upstream (partly due to there not being any public documentation
-> available).
-> 
-> This amounts to an unmaintainable mess which is reflected in the
-> binding schemas which similarly needs to encode every random order which
-> the SoC happened to use when being upstreamed. That makes the binding
-> documentation unreadable too, and the next time a new SoC is upstreamed
-> there is no clear hints of what the binding should look like, and we end
-> up with yet another permutation.
-> 
-> As part of this exercise, we've also determined that some of the
-> devicetrees that are already upstream are incorrect as well as
-> incomplete.
-> 
-> I really see no alternative to ripping of the plaster and cleaning this
-> up once and for all even if it "breaks" some imaginary OS which (unlike
-> Linux) relies on the current random order of these interrupts.
-> 
-> [ If there were any real OSes actually relying on the order, then that
-> would be a different thing of course. ]
-> 
+>> On 29/11/2023 07:00, Sia Jee Heng wrote:
+>>> Add new compatible string for UART in the StarFive JH8100 SoC.
+>>>
+>>> Signed-off-by: Sia Jee Heng <jeeheng.sia@starfivetech.com>
+>>> Reviewed-by: Ley Foon Tan <leyfoon.tan@starfivetech.com>
+>>
+>> The patch is quite different than v1. Are you sure the review is
+>> applicable? If it was given for v2, where is it?
+> This patch is impacted by the comment suggesting the exclusion of patch 5 in V1. In V2, this patch adds compatible for cdns-uart-r1p8, allowing us to continue using the cdns uart.
 
-Hi Krzysztof, Johan,
+Please wrap your replies.
 
-   We are modifying all the DT's in accordance to bindings as well. 
-Still it would be breaking ABI ?
+How does this answer my concern about review tag?
 
-Regards,
-Krishna,
+Do you understand that my comments are inline under the exact line which
+is questioned?
+
+>>
+>>> ---
+>>>  Documentation/devicetree/bindings/serial/cdns,uart.yaml | 4 ++++
+>>>  1 file changed, 4 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/serial/cdns,uart.yaml b/Documentation/devicetree/bindings/serial/cdns,uart.yaml
+>>> index e35ad1109efc..0d05305778f2 100644
+>>> --- a/Documentation/devicetree/bindings/serial/cdns,uart.yaml
+>>> +++ b/Documentation/devicetree/bindings/serial/cdns,uart.yaml
+>>> @@ -20,6 +20,10 @@ properties:
+>>>          items:
+>>>            - const: xlnx,zynqmp-uart
+>>>            - const: cdns,uart-r1p12
+>>> +      - description: UART controller for StarFive JH8100 SoC
+>>
+>> This is duplicating compatible, drop.
+> Do you mean drop compatible for starfive,jh8100-uart ?
+
+No, drop description and use directly " - items"
+
+>>
+>>> +        items:
+>>> +          - const: starfive,jh8100-uart
+>>> +          - const: cdns,uart-r1p8
+>>
+>> Don't add things to the end of the list, but keep order. I would suggest
+>> to put it at the beginning, so before Xilinx.
+> I'm trying to get what you're asking, but it's a bit confusing for me. So, I thought it might be easier if I just share the code below. Please let me know if this addresses your comment?
+> properties:
+>   compatible:
+>     oneOf:
+>       - description: UART controller for StarFive JH8100 SoC
+>         items:
+>           - const: cdns,uart-r1p8
+
+Order is fixed, thanks. But drop description and bring back specific
+compatible. You must have specific compatibles, always.
+
+
+
+Best regards,
+Krzysztof
+
 
