@@ -1,353 +1,286 @@
-Return-Path: <devicetree+bounces-20117-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20118-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 837F67FDD63
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 17:40:37 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E8BC7FDD6A
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 17:41:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A46D31C20A8C
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 16:40:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E4B73B20C07
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 16:41:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5DE3374F8;
-	Wed, 29 Nov 2023 16:40:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49F7B18E15;
+	Wed, 29 Nov 2023 16:41:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zJp9zlI7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [IPv6:2001:4b7e:0:8::81])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72C53A8;
-	Wed, 29 Nov 2023 08:40:29 -0800 (PST)
-Received: from francesco-nb.corp.toradex.com (31-10-206-125.static.upc.ch [31.10.206.125])
-	by mail11.truemail.it (Postfix) with ESMTPA id 6FD8C21D86;
-	Wed, 29 Nov 2023 17:40:27 +0100 (CET)
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>
-Cc: Joao Paulo Goncalves <joao.goncalves@toradex.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Francesco Dolcini <francesco.dolcini@toradex.com>
-Subject: [PATCH v1 2/2] arm64: dts: freescale: verdin-imx8mp: add support to mallow board
-Date: Wed, 29 Nov 2023 17:40:22 +0100
-Message-Id: <20231129164022.143340-3-francesco@dolcini.it>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231129164022.143340-1-francesco@dolcini.it>
-References: <20231129164022.143340-1-francesco@dolcini.it>
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D74C98
+	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 08:41:11 -0800 (PST)
+Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-40b4734b975so28500535e9.2
+        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 08:41:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1701276069; x=1701880869; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dfg7atQN/bLBzM7mE71PtSKnKRCE3/hamOjfFKvk+Ps=;
+        b=zJp9zlI7uQm4mXUqbMtGo1dFFiHpKrgDBpoOXVrxOpJhA3ztQ7lDT4Cwc+s/7pNH5+
+         4e1QOc0DRqU/ewe4uhjp+KsbfMXWFaYEDL+bjKaFXYk/e0WoDHM2WuE6qi3xq1C9QlrU
+         xypBylEB2IzHczcTpH8x2EcpKiMp/pJqjjGUjCQEIi8tDtbtbYCZbF+nuZFvfcqNYO3V
+         WfJhR/GfF7gXJNJtm5ag/Y+yCwFZTWjnLBDOPAqt47sy7ZPSdUbw/EVqcs4o1Uq/l1TK
+         RgYBoepYA618+oc1k3stmyVs7RMejnDwyWPFS2PLdJlIqouAJWR0ws0mz+cCciH486uV
+         Qceg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701276069; x=1701880869;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=dfg7atQN/bLBzM7mE71PtSKnKRCE3/hamOjfFKvk+Ps=;
+        b=s49zRt2mkXt9pMkcReUw0aTVW5WvS+y9Q+jjrUkIFpi316GG2Sr1di54rIh6fvTqBG
+         H+AWgeIFQPnu54XGNoqm0G9NKNsYsFCJKkxugfNbQtO+YFYIXS9uYOQSfbP8vl+6gFDJ
+         7yORYVGxShJg+Jxqf+0TVwHPChc15imzS5w2zjh3+9Q74Hlh9jRsGwfuCrcfzebXUF3m
+         GS7tSC1pDHmHSfZ39M0aPZ7JBc3TkZ9QFq3DLT0KWlxttOpLrXce3JsGaSFr5G/RcgPn
+         gzTSbcWoTDgvfrmX0/KC2HqRApNhiN2/UhenofopKIhfWbwDFhY3qi0wOhJOBTv5imE8
+         T/9w==
+X-Gm-Message-State: AOJu0YyAQhwVFCx5dBmLHk1bbgAx9nrtUsushCDlRAOIMIDsVN5BDRNZ
+	gynFNE8EdZbbvAULiCpUkaFo0A==
+X-Google-Smtp-Source: AGHT+IGojnc7iEBSKQz6F3GlFyEvUSOGmmp2QrAEdcHHEVFRSkWi1DK4rH79rgWmbOL/atepa5/2QQ==
+X-Received: by 2002:a05:600c:1384:b0:409:19a0:d247 with SMTP id u4-20020a05600c138400b0040919a0d247mr13959356wmf.18.1701276069537;
+        Wed, 29 Nov 2023 08:41:09 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:31d3:eea3:8f97:6a2c? ([2a01:e0a:982:cbb0:31d3:eea3:8f97:6a2c])
+        by smtp.gmail.com with ESMTPSA id g10-20020a05600c4eca00b0040596352951sm2783806wmq.5.2023.11.29.08.41.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 29 Nov 2023 08:41:09 -0800 (PST)
+Message-ID: <11f8d986-3e97-4191-b46c-ad3166ee6dc7@linaro.org>
+Date: Wed, 29 Nov 2023 17:41:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+From: neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v3 2/4] dt-bindings: pwm: amlogic: add new compatible for
+ meson8 pwm type
+Content-Language: en-US, fr
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Thierry Reding <thierry.reding@gmail.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-pwm@vger.kernel.org,
+ JunYi Zhao <junyi.zhao@amlogic.com>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+References: <20231129134004.3642121-1-jbrunet@baylibre.com>
+ <20231129134004.3642121-3-jbrunet@baylibre.com>
+ <8e78be99-3d4d-4f79-9791-404e60bcb67c@linaro.org>
+ <1jfs0ojz1a.fsf@starbuckisacylon.baylibre.com>
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro Developer Services
+In-Reply-To: <1jfs0ojz1a.fsf@starbuckisacylon.baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Joao Paulo Goncalves <joao.goncalves@toradex.com>
+Hi,
 
-Add Toradex Verdin IMX8MP Mallow carrier board support. Mallow is a
-low-cost carrier board in the Verdin family with a small form factor and
-build for volume production making it ideal for industrial and embedded
-applications.
+On 29/11/2023 17:26, Jerome Brunet wrote:
+> 
+> On Wed 29 Nov 2023 at 17:20, Neil Armstrong <neil.armstrong@linaro.org> wrote:
+> 
+>> Hi,
+>>
+>> On 29/11/2023 14:39, Jerome Brunet wrote:
+>>> Add a new compatible for the pwm found in the meson8 to sm1 Amlogic SoCs,
+>>> dealing with clocks differently. This does not enable new HW. It is meant
+>>> to fix a bad DT ABI for the currently supported HW.
+>>> The original clock bindings describe which input the PWM channel
+>>> multiplexer should pick among its possible parents, which are
+>>> hard-coded in the driver. As such, it is a setting tied to the driver
+>>> implementation and does not describe the HW.
+>>> The new bindings introduce here describe the clocks input of the PWM
+>>> block
+>>> as they exist.
+>>> The old compatible is deprecated but kept to maintain ABI compatibility.
+>>> The SoC specific compatibles introduced match the SoC families supported
+>>> by the original bindings.
+>>> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+>>> ---
+>>>    .../devicetree/bindings/pwm/pwm-amlogic.yaml  | 52 ++++++++++++++++---
+>>>    1 file changed, 46 insertions(+), 6 deletions(-)
+>>> diff --git a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+>>> b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+>>> index 387976ed36d5..eece390114a3 100644
+>>> --- a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+>>> +++ b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+>>> @@ -21,23 +21,35 @@ properties:
+>>>              - amlogic,meson-g12a-ee-pwm
+>>>              - amlogic,meson-g12a-ao-pwm-ab
+>>>              - amlogic,meson-g12a-ao-pwm-cd
+>>> -          - amlogic,meson-s4-pwm
+>>> +        deprecated: true
+>>>          - items:
+>>>              - const: amlogic,meson-gx-pwm
+>>>              - const: amlogic,meson-gxbb-pwm
+>>> +        deprecated: true
+>>>          - items:
+>>>              - const: amlogic,meson-gx-ao-pwm
+>>>              - const: amlogic,meson-gxbb-ao-pwm
+>>> +        deprecated: true
+>>>          - items:
+>>>              - const: amlogic,meson8-pwm
+>>>              - const: amlogic,meson8b-pwm
+>>> +        deprecated: true
+>>
+>> I think deprecated should be moved in a third patch
+> 
+> The complain on v2 was that it was not clear the new binding was making
+> the old one obsolete. It looked to me that the deprecation old bindings
+> needed to go together with the introduction of the new.
+> 
+> I don't mind one way or the other
+> 
+> Is there a rule somewhere about this ?
 
-https://www.toradex.com/products/carrier-board/mallow-carrier-board
+Not sure about that, I don't think it's a problem to have both valid
+at the same time, setting them deprecated afterwards looks cleaner
+to avoid mixing too much changes at the same time.
 
-Signed-off-by: Joao Paulo Goncalves <joao.goncalves@toradex.com>
-Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
----
- arch/arm64/boot/dts/freescale/Makefile        |   2 +
- .../dts/freescale/imx8mp-verdin-mallow.dtsi   | 208 ++++++++++++++++++
- .../imx8mp-verdin-nonwifi-mallow.dts          |  18 ++
- .../freescale/imx8mp-verdin-wifi-mallow.dts   |  18 ++
- 4 files changed, 246 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-verdin-mallow.dtsi
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-verdin-nonwifi-mallow.dts
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi-mallow.dts
+Neil
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index 300049037eb0..c2ef040a475f 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -123,9 +123,11 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mp-venice-gw74xx.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-venice-gw7905-2x.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-verdin-nonwifi-dahlia.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-verdin-nonwifi-dev.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mp-verdin-nonwifi-mallow.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-verdin-nonwifi-yavia.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-verdin-wifi-dahlia.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-verdin-wifi-dev.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mp-verdin-wifi-mallow.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-verdin-wifi-yavia.dtb
- 
- imx8mp-tqma8mpql-mba8mpxl-lvds-dtbs += imx8mp-tqma8mpql-mba8mpxl.dtb imx8mp-tqma8mpql-mba8mpxl-lvds.dtbo
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-verdin-mallow.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-verdin-mallow.dtsi
-new file mode 100644
-index 000000000000..3f1eac0093dc
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-verdin-mallow.dtsi
-@@ -0,0 +1,208 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright 2023 Toradex
-+ *
-+ * Common dtsi for Verdin IMX8MP SoM on Mallow carrier board
-+ *
-+ * https://www.toradex.com/computer-on-modules/verdin-arm-family/nxp-imx-8m-plus
-+ * https://www.toradex.com/products/carrier-board/mallow-carrier-board
-+ */
-+
-+#include <dt-bindings/leds/common.h>
-+
-+/ {
-+	leds {
-+		compatible = "gpio-leds";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_leds>;
-+
-+		/* SODIMM 52 - USER_LED_1_RED */
-+		led-0 {
-+			color = <LED_COLOR_ID_RED>;
-+			function = LED_FUNCTION_DEBUG;
-+			function-enumerator = <1>;
-+			gpios = <&gpio3 0 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		/* SODIMM 54 - USER_LED_1_GREEN */
-+		led-1 {
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_DEBUG;
-+			function-enumerator = <1>;
-+			gpios = <&gpio3 1 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		/* SODIMM 56 - USER_LED_2_RED */
-+		led-2 {
-+			color = <LED_COLOR_ID_RED>;
-+			function = LED_FUNCTION_DEBUG;
-+			function-enumerator = <2>;
-+			gpios = <&gpio3 6 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		/* SODIMM 58 - USER_LED_2_GREEN */
-+		led-3 {
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_DEBUG;
-+			function-enumerator = <2>;
-+			gpios = <&gpio3 7 GPIO_ACTIVE_HIGH>;
-+		};
-+	};
-+};
-+
-+&backlight {
-+	power-supply = <&reg_3p3v>;
-+};
-+
-+/* Verdin SPI_1 */
-+&ecspi1 {
-+	pinctrl-0 = <&pinctrl_ecspi1>, <&pinctrl_tpm_cs>;
-+	cs-gpios = <&gpio5 9 GPIO_ACTIVE_LOW>, <&gpio3 16 GPIO_ACTIVE_LOW>;
-+	status = "okay";
-+
-+	tpm@1 {
-+		compatible = "infineon,slb9670", "tcg,tpm_tis-spi";
-+		reg = <1>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_tpm_irq>;
-+		interrupt-parent = <&gpio3>;
-+		interrupts = <14 IRQ_TYPE_LEVEL_LOW>;
-+		spi-max-frequency = <18500000>;
-+	};
-+};
-+
-+/* EEPROM on Mallow */
-+&eeprom_carrier_board {
-+	status = "okay";
-+};
-+
-+/* EEPROM on display adapter boards */
-+&eeprom_display_adapter {
-+	status = "okay";
-+};
-+
-+/* Verdin ETH_1 */
-+&eqos {
-+	status = "okay";
-+};
-+
-+/* Verdin CAN_1 */
-+&flexcan1 {
-+	status = "okay";
-+};
-+
-+/* Verdin CAN_2 */
-+&flexcan2 {
-+	status = "okay";
-+};
-+
-+/* Current measurement into module VCC */
-+&hwmon {
-+	status = "okay";
-+};
-+
-+/* Temperature sensor on Mallow */
-+&hwmon_temp {
-+	status = "okay";
-+};
-+
-+/* Verdin I2C_2_DSI */
-+&i2c2 {
-+	status = "okay";
-+};
-+
-+/* Verdin I2C_4_CSI */
-+&i2c3 {
-+	status = "okay";
-+};
-+
-+/* Verdin I2C_1 */
-+&i2c4 {
-+	status = "okay";
-+};
-+
-+/* Verdin PCIE_1 */
-+&pcie {
-+	status = "okay";
-+};
-+
-+&pcie_phy {
-+	status = "okay";
-+};
-+
-+/* Verdin PWM_1 */
-+&pwm1 {
-+	status = "okay";
-+};
-+
-+/* Verdin PWM_2 */
-+&pwm2 {
-+	status = "okay";
-+};
-+
-+/* Verdin PWM_3_DSI */
-+&pwm3 {
-+	status = "okay";
-+};
-+
-+&reg_usdhc2_vmmc {
-+	vin-supply = <&reg_3p3v>;
-+};
-+
-+/* Verdin UART_1 */
-+&uart1 {
-+	status = "okay";
-+};
-+
-+/* Verdin UART_2 */
-+&uart2 {
-+	status = "okay";
-+};
-+
-+/* Verdin UART_3 */
-+&uart3 {
-+	status = "okay";
-+};
-+
-+/* Verdin USB_1 */
-+&usb3_0 {
-+	status = "okay";
-+};
-+
-+&usb3_phy0 {
-+	status = "okay";
-+};
-+
-+/* Verdin USB_2 */
-+&usb3_1 {
-+	status = "okay";
-+};
-+
-+&usb3_phy1 {
-+	status = "okay";
-+};
-+
-+/* Verdin SD_1 */
-+&usdhc2 {
-+	status = "okay";
-+};
-+
-+&iomuxc {
-+	pinctrl_leds: ledsgrp {
-+		fsl,pins =
-+			<MX8MP_IOMUXC_NAND_ALE__GPIO3_IO00	0x106>, /* SODIMM 52 */
-+			<MX8MP_IOMUXC_NAND_CE0_B__GPIO3_IO01	0x106>, /* SODIMM 54 */
-+			<MX8MP_IOMUXC_NAND_DATA00__GPIO3_IO06	0x106>, /* SODIMM 56 */
-+			<MX8MP_IOMUXC_NAND_DATA01__GPIO3_IO07	0x106>; /* SODIMM 58 */
-+	};
-+
-+	pinctrl_tpm_cs: tpmcsgrp {
-+		fsl,pins =
-+			<MX8MP_IOMUXC_NAND_READY_B__GPIO3_IO16	0x82>; /* SODIMM 64 */
-+	};
-+
-+	pinctrl_tpm_irq: tpmirqgrp {
-+		fsl,pins =
-+			<MX8MP_IOMUXC_NAND_DQS__GPIO3_IO14	0x16>; /* SODIMM 66 */
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-verdin-nonwifi-mallow.dts b/arch/arm64/boot/dts/freescale/imx8mp-verdin-nonwifi-mallow.dts
-new file mode 100644
-index 000000000000..6a536a4964bb
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-verdin-nonwifi-mallow.dts
-@@ -0,0 +1,18 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright 2023 Toradex
-+ */
-+
-+/dts-v1/;
-+
-+#include "imx8mp-verdin.dtsi"
-+#include "imx8mp-verdin-nonwifi.dtsi"
-+#include "imx8mp-verdin-mallow.dtsi"
-+
-+/ {
-+	model = "Toradex Verdin iMX8M Plus on Mallow Board";
-+	compatible = "toradex,verdin-imx8mp-nonwifi-mallow",
-+		     "toradex,verdin-imx8mp-nonwifi",
-+		     "toradex,verdin-imx8mp",
-+		     "fsl,imx8mp";
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi-mallow.dts b/arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi-mallow.dts
-new file mode 100644
-index 000000000000..08b7aef3fdde
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi-mallow.dts
-@@ -0,0 +1,18 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright 2023 Toradex
-+ */
-+
-+/dts-v1/;
-+
-+#include "imx8mp-verdin.dtsi"
-+#include "imx8mp-verdin-wifi.dtsi"
-+#include "imx8mp-verdin-mallow.dtsi"
-+
-+/ {
-+	model = "Toradex Verdin iMX8M Plus WB on Mallow Board";
-+	compatible = "toradex,verdin-imx8mp-wifi-mallow",
-+		     "toradex,verdin-imx8mp-wifi",
-+		     "toradex,verdin-imx8mp",
-+		     "fsl,imx8mp";
-+};
--- 
-2.25.1
+> 
+>>
+>>> +      - const: amlogic,meson8-pwm-v2
+>>> +      - items:
+>>> +          - enum:
+>>> +              - amlogic,meson8b-pwm-v2
+>>> +              - amlogic,meson-gxbb-pwm-v2
+>>> +              - amlogic,meson-axg-pwm-v2
+>>> +              - amlogic,meson-g12-pwm-v2
+>>> +          - const: amlogic,meson8-pwm-v2
+>>> +      - const: amlogic,meson-s4-pwm
+>>>        reg:
+>>>        maxItems: 1
+>>>        clocks:
+>>>        minItems: 1
+>>> -    maxItems: 2
+>>> +    maxItems: 4
+>>>        clock-names:
+>>>        minItems: 1
+>>> @@ -58,7 +70,6 @@ allOf:
+>>>            compatible:
+>>>              contains:
+>>>                enum:
+>>> -              - amlogic,meson8-pwm
+>>>                  - amlogic,meson8b-pwm
+>>>                  - amlogic,meson-gxbb-pwm
+>>>                  - amlogic,meson-gxbb-ao-pwm
+>>> @@ -67,14 +78,15 @@ allOf:
+>>>                  - amlogic,meson-g12a-ee-pwm
+>>>                  - amlogic,meson-g12a-ao-pwm-ab
+>>>                  - amlogic,meson-g12a-ao-pwm-cd
+>>> -              - amlogic,meson-gx-pwm
+>>> -              - amlogic,meson-gx-ao-pwm
+>>
+>> I don't understand why those entries are removed
+> 
+> It's a mistake. It should not have been added to begin with in
+> the first patch. "amlogic,meson-gx-*" must go along with
+> "amlogic,meson-gxbb-*" so it matches correctly without it.
+> 
+> I'll fix it
+> 
+>>
+>>>        then:
+>>> -      # Historic bindings tied to the driver implementation
+>>> +      # Obsolete historic bindings tied to the driver implementation
+>>>          # The clocks provided here are meant to be matched with the input
+>>>          # known (hard-coded) in the driver and used to select pwm clock
+>>>          # source. Currently, the linux driver ignores this.
+>>> +      # This is kept to maintain ABI backward compatibility.
+>>
+>> Same here, this should go in a third patch
+>>
+>>>          properties:
+>>> +        clocks:
+>>> +          maxItems: 2
+>>>            clock-names:
+>>>              oneOf:
+>>>                - items:
+>>> @@ -83,6 +95,27 @@ allOf:
+>>>                    - const: clkin0
+>>>                    - const: clkin1
+>>>    +  # Newer binding where clock describe the actual clock inputs of the
+>>> pwm
+>>> +  # block. These are necessary but some inputs may be grounded.
+>>> +  - if:
+>>> +      properties:
+>>> +        compatible:
+>>> +          contains:
+>>> +            enum:
+>>> +              - amlogic,meson8-pwm-v2
+>>> +    then:
+>>> +      properties:
+>>> +        clocks:
+>>> +          minItems: 1
+>>> +          items:
+>>> +            - description: input clock 0 of the pwm block
+>>> +            - description: input clock 1 of the pwm block
+>>> +            - description: input clock 2 of the pwm block
+>>> +            - description: input clock 3 of the pwm block
+>>> +        clock-names: false
+>>> +      required:
+>>> +        - clocks
+>>> +
+>>>      # Newer IP block take a single input per channel, instead of 4 inputs
+>>>      # for both channels
+>>>      - if:
+>>> @@ -112,6 +145,13 @@ examples:
+>>>          clock-names = "clkin0", "clkin1";
+>>>          #pwm-cells = <3>;
+>>>        };
+>>> +  - |
+>>> +    pwm@2000 {
+>>> +      compatible = "amlogic,meson8-pwm-v2";
+>>> +      reg = <0x1000 0x10>;
+>>> +      clocks = <&xtal>, <0>, <&fdiv4>, <&fdiv5>;
+>>> +      #pwm-cells = <3>;
+>>> +    };
+>>>      - |
+>>>        pwm@1000 {
+>>>          compatible = "amlogic,meson-s4-pwm";
+>>
+>> Neil
+> 
+> 
 
 
