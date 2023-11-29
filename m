@@ -1,161 +1,390 @@
-Return-Path: <devicetree+bounces-19873-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19875-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B0EE7FD160
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 09:50:16 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 374307FD16C
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 09:53:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7E4671C20B42
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 08:50:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4942EB21237
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 08:53:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4F00125CA;
-	Wed, 29 Nov 2023 08:50:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="R7s10S/u"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E70A125D2;
+	Wed, 29 Nov 2023 08:52:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA27D111
-	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 00:50:11 -0800 (PST)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-a00a9c6f283so866782566b.0
-        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 00:50:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701247810; x=1701852610; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9xlabvtU9TYU854GcYhnSmDjYvklfmV7dgD/yBvexNM=;
-        b=R7s10S/ukacAsCnN8V90dTwDTVKkyyITgmA4c+VeD3/lS2ax4LT1cIleIgZIhX7Lbz
-         7tlrqXdUBXAUQGugxrRqrlpsY9hluBLwK/ThET5rmPytOhNOSCG8VLFI/60XVDYgaDgI
-         GD0Xb2DP5dTl/IiehXX5daoQvNB4hnQWFdbcGrA+k1HNI7K+K3Q+m3Nj3QUxbLW/3EFY
-         wfPveZzOItrepYYeGOOxG7pGu2UByt7f8q9t6cOZjqXfRvHOtzXG0Hmd0c8HrgO2aBlG
-         6DhJ5M0PQs6xms10kwRoqnXomS1CrlOzAApi82IicPlCNg53ZmQcg1fJXWRwstzWuFFw
-         H3WQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701247810; x=1701852610;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9xlabvtU9TYU854GcYhnSmDjYvklfmV7dgD/yBvexNM=;
-        b=FN/0GA2+cEMUvMZB7ZIYWeNKHN3ttLN63CKK3dWX6tYRUKVP+mR3zi1ixo2PIzaOIp
-         6LATuEWufm9XUsrTkaBmNYA63vPJtGxm2p3hoEElJuY9wV6uflb9O9CQQ8NRAoSQki8x
-         pAJqVBiQqODxeeikCDzhW8AXV8rp/zbW+BnK7INivrlvdjin2x2tUChL0L2V5o0wT0iI
-         suogPInr3tYHvgDwkJLPhN0u7DnnjL1fiPlJXOCumA0JeV+GjzUBfdiL4I0wI3uSb2Dk
-         Dvh7SwXoPfbDnictPYgPhnpMU2KP7Ta5mYscaGI1bYAphEBB6gqh74ggv9N/XKF6x0V4
-         MqFg==
-X-Gm-Message-State: AOJu0YzVu+JZg0jn/WEpjyAs3MqogJGM5F7NQKVnoBg6Xd1baGI1Q4Us
-	bnABhRtkXoOeLlgFs1SHP3TYBQ==
-X-Google-Smtp-Source: AGHT+IG+baR5FaB5/2BmA4i5bsNNOLlOv7Bu12SdjPv9PBMaOWgglvvpinTEegKrP5pyZ9FnLKGnVQ==
-X-Received: by 2002:a17:906:9d05:b0:9ff:6257:1b4c with SMTP id fn5-20020a1709069d0500b009ff62571b4cmr10529926ejc.37.1701247810254;
-        Wed, 29 Nov 2023 00:50:10 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.223.109])
-        by smtp.gmail.com with ESMTPSA id mf8-20020a170906cb8800b009e776cc92dcsm7677727ejb.181.2023.11.29.00.50.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Nov 2023 00:50:09 -0800 (PST)
-Message-ID: <745bbf6c-ea58-4401-ab1d-c2372d2f30f4@linaro.org>
-Date: Wed, 29 Nov 2023 09:50:08 +0100
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16A4ABC
+	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 00:52:52 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <sha@pengutronix.de>)
+	id 1r8GJ6-0003yq-8X; Wed, 29 Nov 2023 09:52:32 +0100
+Received: from [2a0a:edc0:2:b01:1d::c0] (helo=ptx.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <sha@pengutronix.de>)
+	id 1r8GJ3-00CMfK-Iz; Wed, 29 Nov 2023 09:52:29 +0100
+Received: from sha by ptx.whiteo.stw.pengutronix.de with local (Exim 4.92)
+	(envelope-from <sha@pengutronix.de>)
+	id 1r8GJ3-004Pcx-G7; Wed, 29 Nov 2023 09:52:29 +0100
+Date: Wed, 29 Nov 2023 09:52:29 +0100
+From: Sascha Hauer <s.hauer@pengutronix.de>
+To: Andy Yan <andy.yan@rock-chips.com>
+Cc: Andy Yan <andyshrk@163.com>, heiko@sntech.de, hjc@rock-chips.com,
+	dri-devel@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	robh+dt@kernel.org, devicetree@vger.kernel.org,
+	sebastian.reichel@collabora.com, kever.yang@rock-chips.com,
+	chris.obbard@collabora.com
+Subject: Re: [PATCH v2 11/12] drm/rockchip: vop2: Add debugfs support
+Message-ID: <20231129085229.GC963049@pengutronix.de>
+References: <20231122125316.3454268-1-andyshrk@163.com>
+ <20231122125601.3455031-1-andyshrk@163.com>
+ <20231127101337.GU3359458@pengutronix.de>
+ <ea24a638-d10f-4f58-9992-1c80bafdd6d4@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: adi,ad5791: Add support for
- controlling RBUF
-Content-Language: en-US
-To: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>,
- Nuno Sa <nuno.sa@analog.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>
-References: <20231128-ad5791-michael-stuff-v2-0-541bb1c9dc43@analog.com>
- <20231128-ad5791-michael-stuff-v2-1-541bb1c9dc43@analog.com>
- <cf778d32-73a2-4ef2-a0dc-31c6c4efe3ea@linaro.org>
- <fde82c39dbf56eeb8decac715ce5ec723da31e32.camel@gmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
- m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
- HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
- XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
- mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
- v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
- cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
- rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
- qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
- aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
- gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
- dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
- NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
- hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
- oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
- H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
- yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
- 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
- 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
- +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
- FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
- 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
- DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
- oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
- 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
- Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
- qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
- /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
- qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
- EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
- KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
- fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <fde82c39dbf56eeb8decac715ce5ec723da31e32.camel@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-15
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <ea24a638-d10f-4f58-9992-1c80bafdd6d4@rock-chips.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On 29/11/2023 09:28, Nuno SÃ¡ wrote:
-> On Tue, 2023-11-28 at 16:58 +0100, Krzysztof Kozlowski wrote:
->> On 28/11/2023 16:26, Nuno Sa wrote:
->>> From: Michael Hennerich <michael.hennerich@analog.com>
->>>
->>> This change adds support for an external amplifier to be connected in a
->>
->> Nothing improved here.
->>
->> I said "This commit/patch" so you replaced it to "change", really, read
->> the Submitting patches document.
->>
+On Mon, Nov 27, 2023 at 06:56:34PM +0800, Andy Yan wrote:
+>    Hi Sascha:
 > 
-> And? Is this message so horrible? Yes, you did said "This commit/patch" but I thought
-> "commit/patch" was the issue because yes, I already saw other maintainers/reviewers
-> complaining about using those specific words but nothing really against "This change"
-> (and I do have some messages like that). Yeah, the submitting patches document
-> suggests to do it more like "Added a new property so bala bla ..." but I dunno every
-> word in that document is blindly followed. Is this such a big deal in here that you
-> had reply like I don't care? And even if you're technically right, there were better
-> ways to say that what I have was not exactly what you asked for...
+>    thanks for you review.
 > 
-> Submitters should make maintainers/reviewers life easier but the other way around is
-> equally true and nitpicky things like this are not helpful. Really...
+>    On 11/27/23 18:13, Sascha Hauer wrote:
+> 
+>  On Wed, Nov 22, 2023 at 08:56:01PM +0800, Andy Yan wrote:
+> 
+>  From: Andy Yan [1]<andy.yan@rock-chips.com>
+> 
+>  /sys/kernel/debug/dri/vop2/summary:  dump vop display state
+>  /sys/kernel/debug/dri/vop2/regs: dump whole vop registers
+>  /sys/kernel/debug/dri/vop2/active_regs: only dump the registers of
+>  activated modules
+> 
+>  Signed-off-by: Andy Yan [2]<andy.yan@rock-chips.com>
+>  ---
+> 
+>  (no changes since v1)
+> 
+>   drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 399 +++++++++++++++++++
+>   1 file changed, 399 insertions(+)
+> 
+>  diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+>  index 9eecbe1f71f9..4a2342209c15 100644
+>  --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+>  +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+>  @@ -27,6 +27,7 @@
+>   #include <drm/drm_debugfs.h>
+>   #include <drm/drm_flip_work.h>
+>   #include <drm/drm_framebuffer.h>
+>  +#include <drm/drm_gem_framebuffer_helper.h>
+>   #include <drm/drm_probe_helper.h>
+>   #include <drm/drm_vblank.h>
+> 
+>  @@ -187,6 +188,7 @@ struct vop2 {
+>           */
+>          u32 registered_num_wins;
+> 
+>  +       struct resource *res;
+>          void __iomem *regs;
+>          struct regmap *map;
+> 
+>  @@ -228,6 +230,44 @@ struct vop2 {
+>   #define vop2_output_if_is_lvds(x)      (x == ROCKCHIP_VOP2_EP_LVDS0 || x == ROCKCHIP_VOP2_EP_LVDS1)
+>   #define vop2_output_if_is_dpi(x)       (x == ROCKCHIP_VOP2_EP_RGB0)
+> 
+>  +struct vop2_regs_dump {
+>  +       const char *name;
+>  +       u32 base;
+>  +       u32 en_reg;
+>  +       u32 en_val;
+>  +       u32 en_mask;
+>  +};
+>  +
+>  +/*
+>  + * bus-format types.
+>  + */
+>  +struct drm_bus_format_enum_list {
+>  +       int type;
+>  +       const char *name;
+>  +};
+>  +
+>  +static const struct drm_bus_format_enum_list drm_bus_format_enum_list[] = {
+>  +       { DRM_MODE_CONNECTOR_Unknown, "Unknown" },
+>  +       { MEDIA_BUS_FMT_RGB565_1X16, "RGB565_1X16" },
+>  +       { MEDIA_BUS_FMT_RGB666_1X18, "RGB666_1X18" },
+>  +       { MEDIA_BUS_FMT_RGB666_1X24_CPADHI, "RGB666_1X24_CPADHI" },
+>  +       { MEDIA_BUS_FMT_RGB666_1X7X3_SPWG, "RGB666_1X7X3_SPWG" },
+>  +       { MEDIA_BUS_FMT_YUV8_1X24, "YUV8_1X24" },
+>  +       { MEDIA_BUS_FMT_UYYVYY8_0_5X24, "UYYVYY8_0_5X24" },
+>  +       { MEDIA_BUS_FMT_YUV10_1X30, "YUV10_1X30" },
+>  +       { MEDIA_BUS_FMT_UYYVYY10_0_5X30, "UYYVYY10_0_5X30" },
+>  +       { MEDIA_BUS_FMT_RGB888_3X8, "RGB888_3X8" },
+>  +       { MEDIA_BUS_FMT_RGB888_1X24, "RGB888_1X24" },
+>  +       { MEDIA_BUS_FMT_RGB888_1X7X4_SPWG, "RGB888_1X7X4_SPWG" },
+>  +       { MEDIA_BUS_FMT_RGB888_1X7X4_JEIDA, "RGB888_1X7X4_JEIDA" },
+>  +       { MEDIA_BUS_FMT_UYVY8_2X8, "UYVY8_2X8" },
+>  +       { MEDIA_BUS_FMT_YUYV8_1X16, "YUYV8_1X16" },
+>  +       { MEDIA_BUS_FMT_UYVY8_1X16, "UYVY8_1X16" },
+>  +       { MEDIA_BUS_FMT_RGB101010_1X30, "RGB101010_1X30" },
+>  +       { MEDIA_BUS_FMT_YUYV10_1X20, "YUYV10_1X20" },
+>  +};
+>  +static DRM_ENUM_NAME_FN(drm_get_bus_format_name, drm_bus_format_enum_list)
+>  +
+>   static const struct regmap_config vop2_regmap_config;
+> 
+>   static struct vop2_video_port *to_vop2_video_port(struct drm_crtc *crtc)
+>  @@ -2487,6 +2527,363 @@ static const struct drm_crtc_helper_funcs vop2_crtc_helper_funcs = {
+>          .atomic_disable = vop2_crtc_atomic_disable,
+>   };
+> 
+>  +static void vop2_dump_connector_on_crtc(struct drm_crtc *crtc, struct seq_file *s)
+>  +{
+>  +       struct drm_connector_list_iter conn_iter;
+>  +       struct drm_connector *connector;
+>  +
+>  +       drm_connector_list_iter_begin(crtc->dev, &conn_iter);
+>  +       drm_for_each_connector_iter(connector, &conn_iter) {
+>  +               if (crtc->state->connector_mask & drm_connector_mask(connector))
+>  +                       seq_printf(s, "    Connector: %s\n", connector->name);
+>  +
+>  +       }
+>  +       drm_connector_list_iter_end(&conn_iter);
+>  +}
+>  +
+>  +static int vop2_plane_state_dump(struct seq_file *s, struct drm_plane *plane)
+>  +{
+>  +       struct vop2_win *win = to_vop2_win(plane);
+>  +       struct drm_plane_state *pstate = plane->state;
+>  +       struct drm_rect *src, *dst;
+>  +       struct drm_framebuffer *fb;
+>  +       struct drm_gem_object *obj;
+>  +       struct rockchip_gem_object *rk_obj;
+>  +       bool xmirror;
+>  +       bool ymirror;
+>  +       bool rotate_270;
+>  +       bool rotate_90;
+>  +       dma_addr_t fb_addr;
+>  +       int i;
+>  +
+>  +       seq_printf(s, "    %s: %s\n", win->data->name, pstate->crtc ? "ACTIVE" : "DISABLED");
+>  +       if (!pstate || !pstate->fb)
+>  +               return 0;
+>  +
+>  +       fb = pstate->fb;
+>  +       src = &pstate->src;
+>  +       dst = &pstate->dst;
+>  +       xmirror = pstate->rotation & DRM_MODE_REFLECT_X ? true : false;
+>  +       ymirror = pstate->rotation & DRM_MODE_REFLECT_Y ? true : false;
+>  +       rotate_270 = pstate->rotation & DRM_MODE_ROTATE_270;
+>  +       rotate_90 = pstate->rotation & DRM_MODE_ROTATE_90;
+>  +
+>  +       seq_printf(s, "\twin_id: %d\n", win->win_id);
+>  +
+>  +       seq_printf(s, "\tformat: %p4cc%s glb_alpha[0x%x]\n",
+>  +                  &fb->format->format,
+>  +                  drm_is_afbc(fb->modifier) ? "[AFBC]" : "",
+>  +                  pstate->alpha >> 8);
+>  +       seq_printf(s, "\trotate: xmirror: %d ymirror: %d rotate_90: %d rotate_270: %d\n",
+>  +                  xmirror, ymirror, rotate_90, rotate_270);
+>  +       seq_printf(s, "\tzpos: %d\n", pstate->normalized_zpos);
+>  +       seq_printf(s, "\tsrc: pos[%d, %d] rect[%d x %d]\n", src->x1 >> 16,
+>  +                  src->y1 >> 16, drm_rect_width(src) >> 16,
+>  +                  drm_rect_height(src) >> 16);
+>  +       seq_printf(s, "\tdst: pos[%d, %d] rect[%d x %d]\n", dst->x1, dst->y1,
+>  +                  drm_rect_width(dst), drm_rect_height(dst));
+>  +
+>  +       for (i = 0; i < fb->format->num_planes; i++) {
+>  +               obj = fb->obj[0];
+>  +               rk_obj = to_rockchip_obj(obj);
+>  +               fb_addr = rk_obj->dma_addr + fb->offsets[0];
+>  +
+>  +               seq_printf(s, "\tbuf[%d]: addr: %pad pitch: %d offset: %d\n",
+>  +                          i, &fb_addr, fb->pitches[i], fb->offsets[i]);
+>  +       }
+>  +
+>  +       return 0;
+>  +}
+>  +
+>  +static int vop2_crtc_state_dump(struct drm_crtc *crtc, struct seq_file *s)
+>  +{
+>  +       struct vop2_video_port *vp = to_vop2_video_port(crtc);
+>  +       struct drm_crtc_state *cstate = crtc->state;
+>  +       struct rockchip_crtc_state *vcstate;
+>  +       struct drm_display_mode *mode;
+>  +       struct drm_plane *plane;
+>  +       bool interlaced;
+>  +
+>  +       seq_printf(s, "Video Port%d: %s\n", vp->id, !cstate ?
+>  +                  "DISABLED" : cstate->active ? "ACTIVE" : "DISABLED");
+>  +
+>  +       if (!cstate || !cstate->active)
+>  +               return 0;
+>  +
+>  +       mode = &crtc->state->adjusted_mode;
+>  +       vcstate = to_rockchip_crtc_state(cstate);
+>  +       interlaced = !!(mode->flags & DRM_MODE_FLAG_INTERLACE);
+>  +
+>  +       vop2_dump_connector_on_crtc(crtc, s);
+>  +       seq_printf(s, "\tbus_format[%x]: %s\n", vcstate->bus_format,
+>  +                   drm_get_bus_format_name(vcstate->bus_format));
+>  +       seq_printf(s, "\toutput_mode[%x]", vcstate->output_mode);
+>  +       seq_printf(s, " color_space[%d]\n", vcstate->color_space);
+>  +       seq_printf(s, "    Display mode: %dx%d%s%d\n",
+>  +                   mode->hdisplay, mode->vdisplay, interlaced ? "i" : "p",
+>  +                   drm_mode_vrefresh(mode));
+>  +       seq_printf(s, "\tclk[%d] real_clk[%d] type[%x] flag[%x]\n",
+>  +                   mode->clock, mode->crtc_clock, mode->type, mode->flags);
+>  +       seq_printf(s, "\tH: %d %d %d %d\n", mode->hdisplay, mode->hsync_start,
+>  +                   mode->hsync_end, mode->htotal);
+>  +       seq_printf(s, "\tV: %d %d %d %d\n", mode->vdisplay, mode->vsync_start,
+>  +                   mode->vsync_end, mode->vtotal);
+>  +
+>  +       drm_atomic_crtc_for_each_plane(plane, crtc) {
+>  +               vop2_plane_state_dump(s, plane);
+>  +       }
+>  +
+>  +       return 0;
+>  +}
+>  +
+>  +static int vop2_summary_show(struct seq_file *s, void *data)
+>  +{
+>  +       struct drm_info_node *node = s->private;
+>  +       struct drm_minor *minor = node->minor;
+>  +       struct drm_device *drm_dev = minor->dev;
+>  +       struct drm_crtc *crtc;
+>  +
+>  +       drm_modeset_lock_all(drm_dev);
+>  +       drm_for_each_crtc(crtc, drm_dev) {
+>  +               vop2_crtc_state_dump(crtc, s);
+>  +       }
+>  +       drm_modeset_unlock_all(drm_dev);
+>  +
+>  +       return 0;
+>  +}
+>  +
+>  +static void vop2_regs_print(struct vop2 *vop2, struct seq_file *s, struct vop2_regs_dump *dump)
+>  +{
+>  +       resource_size_t start;
+>  +       const int reg_num = 0x110 / 4;
+> 
+>  If I'm not mistaken this prints a register space of 0x110 bytes.
+>  Shouldn't it be 0x100 bytes instead?
+> 
+>  Also, are all these register spaces really have the same size? Does it
+>  make sense to add the size to struct vop2_regs_dump?
+> 
+>    In fact, most used registers of the most blocks are not more than 100, but
+>    for Cluster windows,
+> 
+>    there is a CLUSTER_CTRL register sting at 0x100.
+> 
+>    I think i should add the size to struct vop2_regs_dump.
+> 
+> 
+>  +       u32 val;
+>  +       int i;
+>  +
+>  +       if (dump->en_mask) {
+>  +               val = vop2_readl(vop2, dump->base + dump->en_reg);
+>  +               if ((val & dump->en_mask) != dump->en_val)
+>  +                       return;
+>  +       }
+>  +       seq_printf(s, "\n%s:\n", dump->name);
+>  +
+>  +       start = vop2->res->start + dump->base;
+>  +       for (i = 0; i < reg_num;) {
+>  +               seq_printf(s, "%08x:  %08x %08x %08x %08x\n", (u32)start + i * 4,
+>  +                          vop2_readl(vop2, dump->base + (4 * i)),
+>  +                          vop2_readl(vop2, dump->base + (4 * (i + 1))),
+>  +                          vop2_readl(vop2, dump->base + (4 * (i + 2))),
+>  +                          vop2_readl(vop2, dump->base + (4 * (i + 3))));
+>  +               i += 4;
+>  +       }
+>  +
+>  +}
+>  +
+>  +static int vop2_regs_show(struct seq_file *s, void *arg)
+>  +{
+>  +       struct drm_info_node *node = s->private;
+>  +       struct vop2 *vop2 = (struct vop2 *)node->info_ent->data;
+>  +       struct drm_minor *minor = node->minor;
+>  +       struct drm_device *drm_dev = minor->dev;
+>  +
+>  +       struct vop2_regs_dump dump;
+>  +
+>  +       drm_modeset_lock_all(drm_dev);
+>  +
+>  +       if (vop2->enable_count) {
+>  +               dump.en_mask = 0;
+>  +
+>  +               dump.name = "SYS";
+>  +               dump.base = RK3568_REG_CFG_DONE;
+>  +               vop2_regs_print(vop2, s, &dump);
+> 
+>  Can you create a statically initialized array of struct vop2_regs_dump
+>  and iterate over it?
+>  You would need an additional present_in_soc_xy flag in struct
+>  vop2_regs_dump, but other than that I don't see a problem and the result
+>  might look better.
+> 
+>  For the windows it might also be an option to iterate over
+>  vop2->data->win instead. This array already contains the register base
+>  addresses and window names.
+> 
+>    In fact, we have a dump_regs  arrar in vop2_data per soc in our bsp
+>    kernel[0],
+> 
+>    do you like something like that?
+> 
+>    [0]
+>    [3]https://github.com/armbian/linux-rockchip/blob/rk-5.10-rkr6/drivers/gpu/drm/rockchip/rockchip_vop2_reg.c#L3684
 
-Nitpicking is caused by ignored review feedback and by not reading at
-all attached/linked guideline. I gave quite explicit instruction,
-including what I want the contributor to read. It was not read.
+This looks good from a first glance. I would suggest using C99
+initializers though.
 
-Best regards,
-Krzysztof
+>  Not sure if we really need an additional debugfs entry to print only the
+>  active entities, but if we do then we could avoid a bit of code
+>  duplication by adding creating a common register dump function called
+>  from vop2_regs_show() and vop2_active_regs_show() which takes an
+>  additional ignore_disabled argument.
+> 
+>    As the whole vop2 registers block is very large, so some times only dump
+> 
+>    active modules make we dig bugs easier.
+> 
+>    It seems that if we  "initialized array of struct vop2_regs_dump" as you
+>    said befor, we can avoid
+> 
+>    some duplication code here?
 
+Yes.
+
+Sascha
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
