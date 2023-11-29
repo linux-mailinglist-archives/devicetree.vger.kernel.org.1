@@ -1,215 +1,153 @@
-Return-Path: <devicetree+bounces-20185-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20186-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0BB77FE342
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 23:37:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 80CA17FE410
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 00:10:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0C9701C20AB4
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 22:37:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B23661C20C41
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 23:10:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 615573B185;
-	Wed, 29 Nov 2023 22:37:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBCAD47A68;
+	Wed, 29 Nov 2023 23:10:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XhemESQ6"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="CUcl0Ii/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 624F1DC
-	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 14:37:47 -0800 (PST)
-Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2c9c39b7923so4388681fa.0
-        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 14:37:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701297465; x=1701902265; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=bxjDHRvqNf8As8nbmBC+EVTyuwWGJO53SVyTTlAXxs4=;
-        b=XhemESQ6L4viGgH9/2ksBl2n+XF3of44KapZZz2ZdR0xEd/n4g2SsRF/bxiKpy0162
-         p/1JMQXc9WKpHZ4ff6bnxHl63cBB0vK59pMc4ZL+VMcXajdNRWiPBo8UBYoAol3zcKyE
-         7zzJhRuHec3XurvJI66QhsNg++4qGW9Szviw8/+gcCZwbE5D2sLfelo0GqS2py4A1dhZ
-         MDae8xZU/7iVVZP2xoDsPlw5/UidY8cjxWC8nQhxX0XXvjdd21C8zui4TTzQJGnvgGti
-         nsdzESfQpvGf31QxCZh0/T7glGTMbwK/cXkiNZrGlx8NfEgZtxJc4lr6aw2gS+h+YuHp
-         8SkQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701297465; x=1701902265;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=bxjDHRvqNf8As8nbmBC+EVTyuwWGJO53SVyTTlAXxs4=;
-        b=eOfC5tWEqyoVDLrFYuriPMbknTk8+KtjcRxftnuMmDA5OYC2bTyGZrCwk+0sHvkEm4
-         1Bv6xqKr3uATu/t5FyVFl7oKt7KzCgUHlyKGhPk3QQzq5je+3P4tdO/IgzuhH4jrezg1
-         hDm8qfP9o/jOwlt33inN3QiIBxMZYFr0C692nQoWeJL7YDuxgwmA12r9EFFlDo44E6Sr
-         GZipcyGQO575mBSgbszylCcTJDSqilGAFi+UKlMuRsQvkDGH/GGfENmSGjOt3Lc3wge0
-         8iytlvUgAKrVE8UMf0pABqLaudBjeehxSiYkL/aSc4vfdctW66s4AqwqZ2ur6IpnVIas
-         C4+A==
-X-Gm-Message-State: AOJu0YwWEvMlcVAJ9gthMDcJ8DM/z9Y3CP9uGg0GutqExLlTMs+yKY99
-	RRjYpZNhKIrKbHxz0Acg337Ahg==
-X-Google-Smtp-Source: AGHT+IGqOHMpkJNi3MHQWntyW7OBj8quotaGsS43d+srALwTxtmGgH9ibFvTtPCcGtW9LJXOIuEtQQ==
-X-Received: by 2002:a2e:b003:0:b0:2c9:bc45:3206 with SMTP id y3-20020a2eb003000000b002c9bc453206mr3360214ljk.43.1701297465599;
-        Wed, 29 Nov 2023 14:37:45 -0800 (PST)
-Received: from [192.168.1.2] (c-21d3225c.014-348-6c756e10.bbcust.telenor.se. [92.34.211.33])
-        by smtp.gmail.com with ESMTPSA id s16-20020a2eb8d0000000b002c02cf6cac5sm2092680ljp.83.2023.11.29.14.37.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Nov 2023 14:37:45 -0800 (PST)
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Wed, 29 Nov 2023 23:37:41 +0100
-Subject: [PATCH v4] gpio: ixp4xx: Handle clock output on pin 14 and 15
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D283D5E;
+	Wed, 29 Nov 2023 15:10:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1701299425; x=1732835425;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=wAisHvcC6UE6L2dy6Apps3oV2ZTlJuG1aYg+w33NB3A=;
+  b=CUcl0Ii/hvAiy49F0G13FKYGcwTNG3jT7HrcUGyWU+sOr0lXElahAY6k
+   14Zg/K9FUVZNNjeTPcpXH30O3spm6Qu7jyUcQTjYkSh0CZbT+sa5iAJO8
+   D15zFReOXr6oktMpnBmmmncyvKreQ/0jOg128Qf9HSDn9r2dwT5yzm0mE
+   qN38QBSF2eQ0jrJPixP8NPHhciodug9U4b8fv8CgYIWsuhj90aCVSgg5r
+   gZGU4g2iMLBUHjF5lPbpFJthwL/mVYgOHzXBQ4tsNkBs9UAdSqA6t7Xy2
+   ILsWJCwsfPe+azBv6j0Gf5HrBWtZFcIV4rRCEz7HiEwyWIj3HmzQojQjR
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10909"; a="383637558"
+X-IronPort-AV: E=Sophos;i="6.04,237,1695711600"; 
+   d="scan'208";a="383637558"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Nov 2023 15:10:24 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10909"; a="892609109"
+X-IronPort-AV: E=Sophos;i="6.04,237,1695711600"; 
+   d="scan'208";a="892609109"
+Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
+  by orsmga004.jf.intel.com with ESMTP; 29 Nov 2023 15:10:20 -0800
+Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1r8ThB-00013u-33;
+	Wed, 29 Nov 2023 23:10:17 +0000
+Date: Thu, 30 Nov 2023 07:09:03 +0800
+From: kernel test robot <lkp@intel.com>
+To: Alain Volmat <alain.volmat@foss.st.com>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Pierre-Yves MORDRET <pierre-yves.mordret@foss.st.com>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	Valentin Caron <valentin.caron@foss.st.com>,
+	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 4/7] i2c: stm32f7: add support for stm32mp25 soc
+Message-ID: <202311300357.qiYAoEvz-lkp@intel.com>
+References: <20231129125920.1702497-5-alain.volmat@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231129-ixp4xx-gpio-clocks-v4-1-345f79058c6b@linaro.org>
-X-B4-Tracking: v=1; b=H4sIADS9Z2UC/33Nyw6CMBCF4VcxXVvTTsulrnwP44LLFCYSSlpDM
- IR3t7DCSFz+J5lvZhbQEwZ2Pc3M40iBXB9Dn0+saou+QU51bAYClDAgOU2DnibeDOR41bnqGXi
- GOUBurC5LxeLh4NHStKH3R+yWwsv59/ZjlOv6lxslFzzJtNFQWqN1ceuoL7y7ON+w1Rthb8ChA
- dEQIBNEKUyW1j+G2hvq0FDRSFObW9SYWZl8GcuyfACMCopwPQEAAA==
-To: Linus Walleij <linusw@kernel.org>, Imre Kaloz <kaloz@openwrt.org>, 
- Krzysztof Halasa <khalasa@piap.pl>, Bartosz Golaszewski <brgl@bgdev.pl>, 
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org, 
- devicetree@vger.kernel.org, Linus Walleij <linus.walleij@linaro.org>
-X-Mailer: b4 0.12.4
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231129125920.1702497-5-alain.volmat@foss.st.com>
 
-This makes it possible to provide basic clock output on pins
-14 and 15. The clocks are typically used by random electronics,
-not modeled in the device tree, so they just need to be provided
-on request.
+Hi Alain,
 
-In order to not disturb old systems that require that the
-hardware defaults are kept in the clock setting bits, we only
-manipulate these if either device tree property is present.
-Once we know a device needs one of the clocks we can set it
-in the device tree.
+kernel test robot noticed the following build warnings:
 
-Reviewed-by: Andy Shevchenko <andy@kernel.org>
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
-The GPIO block on the very legacy IXP4xx GPIO can provide
-a generated clock output on GPIO 14 and GPIO 15. This
-provides a straight-forward solution with a flag for each
-clock output.
+[auto build test WARNING on wsa/i2c/for-next]
+[also build test WARNING on atorgue-stm32/stm32-next robh/for-next linus/master v6.7-rc3 next-20231129]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-More complicated solutions are thinkable, but I deemed them
-overdesigned for this legacy SoC.
----
-Changes in v4:
-- Drop the merged bindings patch from the series.
-- Fix a small optimization suggested by andy.
-- Do not |= zeroes on registers, just put in a comment.
-- Link to v3: https://lore.kernel.org/r/20230923-ixp4xx-gpio-clocks-v3-0-66f8fe4e7f15@linaro.org
+url:    https://github.com/intel-lab-lkp/linux/commits/Alain-Volmat/i2c-stm32f7-perform-most-of-irq-job-in-threaded-handler/20231129-210806
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/wsa/linux.git i2c/for-next
+patch link:    https://lore.kernel.org/r/20231129125920.1702497-5-alain.volmat%40foss.st.com
+patch subject: [PATCH 4/7] i2c: stm32f7: add support for stm32mp25 soc
+config: arm-defconfig (https://download.01.org/0day-ci/archive/20231130/202311300357.qiYAoEvz-lkp@intel.com/config)
+compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project.git f28c006a5895fc0e329fe15fead81e37457cb1d1)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231130/202311300357.qiYAoEvz-lkp@intel.com/reproduce)
 
-Changes in v3:
-- Make sure to only manipulate the clock bits if one of the clock
-  DT properties is set. Devices we can't test may rely on HW defaults being
-  preserved in the clock bits.
-- Link to v2: https://lore.kernel.org/r/20230922-ixp4xx-gpio-clocks-v2-0-0215ee10976d@linaro.org
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202311300357.qiYAoEvz-lkp@intel.com/
 
-Changes in v2:
-- Fixed formatting pipe | in bindings
-- Fixed som blank lines in bindings
-- When we will just blank out the clock register settings,
-  don't spend time reading the initial value.
-- Link to v1: https://lore.kernel.org/r/20230921-ixp4xx-gpio-clocks-v1-0-574942bf944a@linaro.org
----
- drivers/gpio/gpio-ixp4xx.c | 51 +++++++++++++++++++++++++++++++++++++++++++++-
- 1 file changed, 50 insertions(+), 1 deletion(-)
+All warnings (new ones prefixed by >>):
 
-diff --git a/drivers/gpio/gpio-ixp4xx.c b/drivers/gpio/gpio-ixp4xx.c
-index dde6cf3a5779..c5a9fa640566 100644
---- a/drivers/gpio/gpio-ixp4xx.c
-+++ b/drivers/gpio/gpio-ixp4xx.c
-@@ -38,6 +38,18 @@
- #define IXP4XX_GPIO_STYLE_MASK		GENMASK(2, 0)
- #define IXP4XX_GPIO_STYLE_SIZE		3
- 
-+/*
-+ * Clock output control register defines.
-+ */
-+#define IXP4XX_GPCLK_CLK0DC_SHIFT	0
-+#define IXP4XX_GPCLK_CLK0TC_SHIFT	4
-+#define IXP4XX_GPCLK_CLK0_MASK		GENMASK(7, 0)
-+#define IXP4XX_GPCLK_MUX14		BIT(8)
-+#define IXP4XX_GPCLK_CLK1DC_SHIFT	16
-+#define IXP4XX_GPCLK_CLK1TC_SHIFT	20
-+#define IXP4XX_GPCLK_CLK1_MASK		GENMASK(23, 16)
-+#define IXP4XX_GPCLK_MUX15		BIT(24)
-+
- /**
-  * struct ixp4xx_gpio - IXP4 GPIO state container
-  * @dev: containing device for this instance
-@@ -202,6 +214,8 @@ static int ixp4xx_gpio_probe(struct platform_device *pdev)
- 	struct ixp4xx_gpio *g;
- 	struct gpio_irq_chip *girq;
- 	struct device_node *irq_parent;
-+	bool clk_14, clk_15;
-+	u32 val;
- 	int ret;
- 
- 	g = devm_kzalloc(dev, sizeof(*g), GFP_KERNEL);
-@@ -225,13 +239,48 @@ static int ixp4xx_gpio_probe(struct platform_device *pdev)
- 	}
- 	g->fwnode = of_node_to_fwnode(np);
- 
-+	/*
-+	 * If either clock output is enabled explicitly in the device tree
-+	 * we take full control of the clock by masking off all bits for
-+	 * the clock control and selectively enabling them. Otherwise
-+	 * we leave the hardware default settings.
-+	 *
-+	 * Enable clock outputs with default timings of requested clock.
-+	 * If you need control over TC and DC, add these to the device
-+	 * tree bindings and use them here.
-+	 */
-+	clk_14 = of_property_read_bool(np, "intel,ixp4xx-gpio14-clkout");
-+	clk_15 = of_property_read_bool(np, "intel,ixp4xx-gpio15-clkout");
-+
- 	/*
- 	 * Make sure GPIO 14 and 15 are NOT used as clocks but GPIO on
- 	 * specific machines.
- 	 */
- 	if (of_machine_is_compatible("dlink,dsm-g600-a") ||
- 	    of_machine_is_compatible("iom,nas-100d"))
--		__raw_writel(0x0, g->base + IXP4XX_REG_GPCLK);
-+		val = 0;
-+	else {
-+		val = __raw_readl(g->base + IXP4XX_REG_GPCLK);
-+
-+		if (clk_14 || clk_15) {
-+			val &= ~(IXP4XX_GPCLK_MUX14 | IXP4XX_GPCLK_MUX15);
-+			val &= ~IXP4XX_GPCLK_CLK0_MASK;
-+			val &= ~IXP4XX_GPCLK_CLK1_MASK;
-+			if (clk_14) {
-+				/* IXP4XX_GPCLK_CLK0DC implicit low */
-+				val |= (1 << IXP4XX_GPCLK_CLK0TC_SHIFT);
-+				val |= IXP4XX_GPCLK_MUX14;
-+			}
-+
-+			if (clk_15) {
-+				/* IXP4XX_GPCLK_CLK1DC implicit low */
-+				val |= (1 << IXP4XX_GPCLK_CLK1TC_SHIFT);
-+				val |= IXP4XX_GPCLK_MUX15;
-+			}
-+		}
-+	}
-+
-+	__raw_writel(val, g->base + IXP4XX_REG_GPCLK);
- 
- 	/*
- 	 * This is a very special big-endian ARM issue: when the IXP4xx is
+>> drivers/i2c/busses/i2c-stm32f7.c:2029:6: warning: variable 'ret' is used uninitialized whenever 'if' condition is true [-Wsometimes-uninitialized]
+           if (i2c_dev->setup.fmp_cr1_bit) {
+               ^~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/i2c/busses/i2c-stm32f7.c:2044:9: note: uninitialized use occurs here
+           return ret;
+                  ^~~
+   drivers/i2c/busses/i2c-stm32f7.c:2029:2: note: remove the 'if' if its condition is always false
+           if (i2c_dev->setup.fmp_cr1_bit) {
+           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/i2c/busses/i2c-stm32f7.c:2022:9: note: initialize the variable 'ret' to silence this warning
+           int ret;
+                  ^
+                   = 0
+   1 warning generated.
 
----
-base-commit: b85ea95d086471afb4ad062012a4d73cd328fa86
-change-id: 20230921-ixp4xx-gpio-clocks-7e82289f4bb3
 
-Best regards,
+vim +2029 drivers/i2c/busses/i2c-stm32f7.c
+
+  2018	
+  2019	static int stm32f7_i2c_write_fm_plus_bits(struct stm32f7_i2c_dev *i2c_dev,
+  2020						  bool enable)
+  2021	{
+  2022		int ret;
+  2023	
+  2024		if (i2c_dev->bus_rate <= I2C_MAX_FAST_MODE_FREQ ||
+  2025		    (!i2c_dev->setup.fmp_cr1_bit && IS_ERR_OR_NULL(i2c_dev->regmap)))
+  2026			/* Optional */
+  2027			return 0;
+  2028	
+> 2029		if (i2c_dev->setup.fmp_cr1_bit) {
+  2030			if (enable)
+  2031				stm32f7_i2c_set_bits(i2c_dev->base + STM32F7_I2C_CR1, STM32_I2C_CR1_FMP);
+  2032			else
+  2033				stm32f7_i2c_clr_bits(i2c_dev->base + STM32F7_I2C_CR1, STM32_I2C_CR1_FMP);
+  2034		} else {
+  2035			if (i2c_dev->fmp_sreg == i2c_dev->fmp_creg)
+  2036				ret = regmap_update_bits(i2c_dev->regmap, i2c_dev->fmp_sreg,
+  2037							 i2c_dev->fmp_mask, enable ? i2c_dev->fmp_mask : 0);
+  2038			else
+  2039				ret = regmap_write(i2c_dev->regmap,
+  2040						   enable ? i2c_dev->fmp_sreg : i2c_dev->fmp_creg,
+  2041						   i2c_dev->fmp_mask);
+  2042		}
+  2043	
+  2044		return ret;
+  2045	}
+  2046	
+
 -- 
-Linus Walleij <linus.walleij@linaro.org>
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
