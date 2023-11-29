@@ -1,245 +1,661 @@
-Return-Path: <devicetree+bounces-20114-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20106-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C9527FDD4B
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 17:38:06 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DBBAB7FDD04
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 17:30:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7649BB20E6A
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 16:38:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 586E0B20D8F
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 16:30:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF8252E647;
-	Wed, 29 Nov 2023 16:38:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1F851F952;
+	Wed, 29 Nov 2023 16:30:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="jqn7BXIE"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="G+h5r0nM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47DC6172B
-	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 08:37:56 -0800 (PST)
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-40b552deba0so5515165e9.1
-        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 08:37:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1701275875; x=1701880675; darn=vger.kernel.org;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=FWyzIycAhixRpcgq6BG+vxReDnTGBpSHfPY7iVZZqyo=;
-        b=jqn7BXIEMQoBUSApFhSdFzn9YVDSAoKtxRK+C1QP1PeygirJit9HbSuJTSjl+42K85
-         CyNUkhF1SVIpBbd2ftORV7d2e4ijAH8zENh24+9jrUjy83l8kuAyvYoT7q94PETP0JsG
-         rcSBc9LdObN+2IHicPWfEGXbVn6vc5cnU7K9bU6xrz1IMdb9gzeO2SzJLZ4iGme6PObt
-         miG5xdAHvWn8Qkm7EYgpPCs3Rjt4YSuLzLutEibzzfj1nHvXdRUHm2s+pHlsX9+u4t7P
-         p9xdIpaMvsjm2MtzcY9ezT1CycGVpqAEDjpGzYAW5txg4XIqQKXawR/EVCpooPLIqM7/
-         68mA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701275875; x=1701880675;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FWyzIycAhixRpcgq6BG+vxReDnTGBpSHfPY7iVZZqyo=;
-        b=Aw7e5K+/OeWYsqGCnN/aeV7JNjQzL5gmZT9RXBytgzUiY2MJK7tP96j/CBOGu3xhpk
-         bjL8YtxpskT3xp0s/YkVWJq8a3vkw374+0N4OddGJzu9J5BEH0Mrg0Db7ONz0ZSoity+
-         ZHT90iZdYguSX1BotbRHejv/+KhKXUB8+uHsrGGSJjjqA2kDyprZy9W5DjU1UZJBqLLb
-         3QmmaOKM2OAkm+dtoRJsrzvWAk5c4FU6oqv05F7xK+7s/r0AbEGsRqMYczmIKzWwrpn6
-         9Ho3XDyaBMlHpBpp8gZLeWZ7zlJa49Wt0u1jAKmzCFJQyIVqUNNDSUKmcmym+3YYXsXR
-         h0Rg==
-X-Gm-Message-State: AOJu0YyGhzMYi4LfVwuNHyUgE21YXu9BnhOPf5wJEBvA9vQ51x3moEQE
-	blu5kW6ilcGO6x+tW36E1YI6DUnzWas9ny8rD/Y=
-X-Google-Smtp-Source: AGHT+IGPzQLHnNMiY0pGKwSqoSExLd5uE8iP+sPsfVle142Jbb03oHPeUBOVT+9ytx/MlONjkBmq2Q==
-X-Received: by 2002:a05:600c:4fc5:b0:402:ea96:c09a with SMTP id o5-20020a05600c4fc500b00402ea96c09amr14591359wmq.16.1701275874667;
-        Wed, 29 Nov 2023 08:37:54 -0800 (PST)
-Received: from localhost ([2a01:e0a:3c5:5fb1:1885:1b93:1f61:bf1b])
-        by smtp.gmail.com with ESMTPSA id u19-20020a05600c139300b0040b540ff0a5sm2430843wmf.19.2023.11.29.08.37.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Nov 2023 08:37:54 -0800 (PST)
-References: <20231129134004.3642121-1-jbrunet@baylibre.com>
- <20231129134004.3642121-3-jbrunet@baylibre.com>
- <8e78be99-3d4d-4f79-9791-404e60bcb67c@linaro.org>
-User-agent: mu4e 1.10.8; emacs 29.1
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: neil.armstrong@linaro.org
-Cc: Jerome Brunet <jbrunet@baylibre.com>, Thierry Reding
- <thierry.reding@gmail.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-pwm@vger.kernel.org, JunYi Zhao
- <junyi.zhao@amlogic.com>, Uwe =?utf-8?Q?Kleine-K=C3=B6nig?=
- <u.kleine-koenig@pengutronix.de>
-Subject: Re: [PATCH v3 2/4] dt-bindings: pwm: amlogic: add new compatible
- for meson8 pwm type
-Date: Wed, 29 Nov 2023 17:26:35 +0100
-In-reply-to: <8e78be99-3d4d-4f79-9791-404e60bcb67c@linaro.org>
-Message-ID: <1jfs0ojz1a.fsf@starbuckisacylon.baylibre.com>
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::228])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B35A10A;
+	Wed, 29 Nov 2023 08:30:25 -0800 (PST)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id B12651BF208;
+	Wed, 29 Nov 2023 16:30:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1701275417;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=U/5phH+NWca6vO6DsnXe7wUBvA81AFYisV2L/kDFT6k=;
+	b=G+h5r0nMmI6Ybe5EPT0HmDD1OzGDsoyQFXXcImKcuX1JkwKqU67CH3q9xLMU0JnVihJjnF
+	2RJ4hjtsetiEjnXUXIH4omufcHIv6TRzcUyY3hORrrHHROdTmmkPVDqlaAsBT2d0ZTY2kn
+	stoMxczfeNy1UBUdIG33or6OuHxWoFa9leyq7XbSZS9QH5yynWevf7h4g5kpaJg6gj0YUK
+	FjtVwsG65OiUAdt31Pum3aGyk+E1D/PN5QSLLRM7qK4kaHik/9MDchNPZE3UCppObb/LMv
+	mvoG9y0Xw28F71ypTxG31LuehTUaHJJ94mP9x0IdD96Rzqu5fs6etPvic+4fdA==
+Date: Wed, 29 Nov 2023 17:30:15 +0100
+From: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+To: Mehdi Djait <mehdi.djait@bootlin.com>
+Cc: mripard@kernel.org, maarten.lankhorst@linux.intel.com,
+	tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch,
+	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+	conor+dt@kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, thomas.petazzoni@bootlin.com,
+	alexandre.belloni@bootlin.com, luca.ceresoli@bootlin.com,
+	dri-devel@lists.freedesktop.org, geert@linux-m68k.org
+Subject: Re: [PATCH 2/2] drm/tiny: Add driver for the sharp LS027B7DH01
+ Memory LCD
+Message-ID: <ZWdnFxr8RNvYFjXy@aptenodytes>
+References: <cover.1701267411.git.mehdi.djait@bootlin.com>
+ <71a9dbf4609dbba46026a31f60261830163a0b99.1701267411.git.mehdi.djait@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="cse+O5W+0oAb9vAR"
+Content-Disposition: inline
+In-Reply-To: <71a9dbf4609dbba46026a31f60261830163a0b99.1701267411.git.mehdi.djait@bootlin.com>
+X-GND-Sasl: paul.kocialkowski@bootlin.com
 
 
-On Wed 29 Nov 2023 at 17:20, Neil Armstrong <neil.armstrong@linaro.org> wrote:
+--cse+O5W+0oAb9vAR
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> Hi,
->
-> On 29/11/2023 14:39, Jerome Brunet wrote:
->> Add a new compatible for the pwm found in the meson8 to sm1 Amlogic SoCs,
->> dealing with clocks differently. This does not enable new HW. It is meant
->> to fix a bad DT ABI for the currently supported HW.
->> The original clock bindings describe which input the PWM channel
->> multiplexer should pick among its possible parents, which are
->> hard-coded in the driver. As such, it is a setting tied to the driver
->> implementation and does not describe the HW.
->> The new bindings introduce here describe the clocks input of the PWM
->> block
->> as they exist.
->> The old compatible is deprecated but kept to maintain ABI compatibility.
->> The SoC specific compatibles introduced match the SoC families supported
->> by the original bindings.
->> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
->> ---
->>   .../devicetree/bindings/pwm/pwm-amlogic.yaml  | 52 ++++++++++++++++---
->>   1 file changed, 46 insertions(+), 6 deletions(-)
->> diff --git a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
->> b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
->> index 387976ed36d5..eece390114a3 100644
->> --- a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
->> +++ b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
->> @@ -21,23 +21,35 @@ properties:
->>             - amlogic,meson-g12a-ee-pwm
->>             - amlogic,meson-g12a-ao-pwm-ab
->>             - amlogic,meson-g12a-ao-pwm-cd
->> -          - amlogic,meson-s4-pwm
->> +        deprecated: true
->>         - items:
->>             - const: amlogic,meson-gx-pwm
->>             - const: amlogic,meson-gxbb-pwm
->> +        deprecated: true
->>         - items:
->>             - const: amlogic,meson-gx-ao-pwm
->>             - const: amlogic,meson-gxbb-ao-pwm
->> +        deprecated: true
->>         - items:
->>             - const: amlogic,meson8-pwm
->>             - const: amlogic,meson8b-pwm
->> +        deprecated: true
->
-> I think deprecated should be moved in a third patch
+Hi Mehdi,
 
-The complain on v2 was that it was not clear the new binding was making
-the old one obsolete. It looked to me that the deprecation old bindings
-needed to go together with the introduction of the new.
+See a few comments about this new driver below.
 
-I don't mind one way or the other
+On Wed 29 Nov 23, 15:29, Mehdi Djait wrote:
+> Introduce a DRM driver for the sharp LS027B7DH01 Memory LCD.
+>=20
+> LS027B7DH01 is a 2.7" 400x240 monochrome display connected to a SPI bus.
+> The drivers
 
-Is there a rule somewhere about this ?
+Typo here: "driver".
 
->
->> +      - const: amlogic,meson8-pwm-v2
->> +      - items:
->> +          - enum:
->> +              - amlogic,meson8b-pwm-v2
->> +              - amlogic,meson-gxbb-pwm-v2
->> +              - amlogic,meson-axg-pwm-v2
->> +              - amlogic,meson-g12-pwm-v2
->> +          - const: amlogic,meson8-pwm-v2
->> +      - const: amlogic,meson-s4-pwm
->>       reg:
->>       maxItems: 1
->>       clocks:
->>       minItems: 1
->> -    maxItems: 2
->> +    maxItems: 4
->>       clock-names:
->>       minItems: 1
->> @@ -58,7 +70,6 @@ allOf:
->>           compatible:
->>             contains:
->>               enum:
->> -              - amlogic,meson8-pwm
->>                 - amlogic,meson8b-pwm
->>                 - amlogic,meson-gxbb-pwm
->>                 - amlogic,meson-gxbb-ao-pwm
->> @@ -67,14 +78,15 @@ allOf:
->>                 - amlogic,meson-g12a-ee-pwm
->>                 - amlogic,meson-g12a-ao-pwm-ab
->>                 - amlogic,meson-g12a-ao-pwm-cd
->> -              - amlogic,meson-gx-pwm
->> -              - amlogic,meson-gx-ao-pwm
->
-> I don't understand why those entries are removed
+> implements the Multiple Lines Data Update Mode.
 
-It's a mistake. It should not have been added to begin with in
-the first patch. "amlogic,meson-gx-*" must go along with
-"amlogic,meson-gxbb-*" so it matches correctly without it.
+This sounds like a fancy vendor-specific way to say that you are updating a=
+ll
+the lines at once instead of a target crop rectangle. The wording could be
+clarified here and you shouldn't assume people are familiar with the vendor=
+'s
+terminology.
 
-I'll fix it
+> External COM inversion is enabled using a PWM signal as input.
 
->
->>       then:
->> -      # Historic bindings tied to the driver implementation
->> +      # Obsolete historic bindings tied to the driver implementation
->>         # The clocks provided here are meant to be matched with the input
->>         # known (hard-coded) in the driver and used to select pwm clock
->>         # source. Currently, the linux driver ignores this.
->> +      # This is kept to maintain ABI backward compatibility.
->
-> Same here, this should go in a third patch
->
->>         properties:
->> +        clocks:
->> +          maxItems: 2
->>           clock-names:
->>             oneOf:
->>               - items:
->> @@ -83,6 +95,27 @@ allOf:
->>                   - const: clkin0
->>                   - const: clkin1
->>   +  # Newer binding where clock describe the actual clock inputs of the
->> pwm
->> +  # block. These are necessary but some inputs may be grounded.
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - amlogic,meson8-pwm-v2
->> +    then:
->> +      properties:
->> +        clocks:
->> +          minItems: 1
->> +          items:
->> +            - description: input clock 0 of the pwm block
->> +            - description: input clock 1 of the pwm block
->> +            - description: input clock 2 of the pwm block
->> +            - description: input clock 3 of the pwm block
->> +        clock-names: false
->> +      required:
->> +        - clocks
->> +
->>     # Newer IP block take a single input per channel, instead of 4 inputs
->>     # for both channels
->>     - if:
->> @@ -112,6 +145,13 @@ examples:
->>         clock-names = "clkin0", "clkin1";
->>         #pwm-cells = <3>;
->>       };
->> +  - |
->> +    pwm@2000 {
->> +      compatible = "amlogic,meson8-pwm-v2";
->> +      reg = <0x1000 0x10>;
->> +      clocks = <&xtal>, <0>, <&fdiv4>, <&fdiv5>;
->> +      #pwm-cells = <3>;
->> +    };
->>     - |
->>       pwm@1000 {
->>         compatible = "amlogic,meson-s4-pwm";
->
-> Neil
+What is this external com inversion about and why should we care about it?
 
+> Signed-off-by: Mehdi Djait <mehdi.djait@bootlin.com>
+> ---
+>  MAINTAINERS                              |   7 +
+>  drivers/gpu/drm/tiny/Kconfig             |   8 +
+>  drivers/gpu/drm/tiny/Makefile            |   1 +
+>  drivers/gpu/drm/tiny/sharp-ls027b7dh01.c | 411 +++++++++++++++++++++++
+>  4 files changed, 427 insertions(+)
+>  create mode 100644 drivers/gpu/drm/tiny/sharp-ls027b7dh01.c
+>=20
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 012df8ccf34e..fb859698bd3d 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -6832,6 +6832,13 @@ S:	Maintained
+>  F:	Documentation/devicetree/bindings/display/panel/samsung,s6d7aa0.yaml
+>  F:	drivers/gpu/drm/panel/panel-samsung-s6d7aa0.c
+> =20
+> +DRM DRIVER FOR SHARP LS027B7DH01 Memory LCD
+> +M:	Mehdi Djait <mehdi.djait@bootlin.com>
+> +S:	Maintained
+> +T:	git git://anongit.freedesktop.org/drm/drm-misc
+> +F:	Documentation/devicetree/bindings/display/sharp,ls027b7dh01.yaml
+> +F:	drivers/gpu/drm/tiny/sharp-ls027b7dh01.c
+> +
+>  DRM DRIVER FOR SITRONIX ST7586 PANELS
+>  M:	David Lechner <david@lechnology.com>
+>  S:	Maintained
+> diff --git a/drivers/gpu/drm/tiny/Kconfig b/drivers/gpu/drm/tiny/Kconfig
+> index f6889f649bc1..a2ade06403ca 100644
+> --- a/drivers/gpu/drm/tiny/Kconfig
+> +++ b/drivers/gpu/drm/tiny/Kconfig
+> @@ -186,6 +186,14 @@ config TINYDRM_REPAPER
+> =20
+>  	  If M is selected the module will be called repaper.
+> =20
+> +config TINYDRM_SHARP_LS027B7DH01
+> +	tristate "DRM support for SHARP LS027B7DH01 display"
+> +	depends on DRM && SPI
+> +	select DRM_KMS_HELPER
+> +	select DRM_GEM_DMA_HELPER
+> +	help
+> +	  DRM driver for the SHARP LS027B7DD01 LCD display.
+> +
+>  config TINYDRM_ST7586
+>  	tristate "DRM support for Sitronix ST7586 display panels"
+>  	depends on DRM && SPI
+> diff --git a/drivers/gpu/drm/tiny/Makefile b/drivers/gpu/drm/tiny/Makefile
+> index 76dde89a044b..b05df3afb231 100644
+> --- a/drivers/gpu/drm/tiny/Makefile
+> +++ b/drivers/gpu/drm/tiny/Makefile
+> @@ -14,5 +14,6 @@ obj-$(CONFIG_TINYDRM_ILI9341)		+=3D ili9341.o
+>  obj-$(CONFIG_TINYDRM_ILI9486)		+=3D ili9486.o
+>  obj-$(CONFIG_TINYDRM_MI0283QT)		+=3D mi0283qt.o
+>  obj-$(CONFIG_TINYDRM_REPAPER)		+=3D repaper.o
+> +obj-$(CONFIG_TINYDRM_SHARP_LS027B7DH01)	+=3D sharp-ls027b7dh01.o
 
--- 
-Jerome
+Looks like other drivers in this directory don't include the vendor name as
+a prefix so it would be best to do the same for consistency.
+
+On the other hand it looks like drm/panel does it always. While the two are
+not consistent with eachother, I think it's best to keep local consistency,
+so align with what other files are doing in the same directory.
+
+>  obj-$(CONFIG_TINYDRM_ST7586)		+=3D st7586.o
+>  obj-$(CONFIG_TINYDRM_ST7735R)		+=3D st7735r.o
+> diff --git a/drivers/gpu/drm/tiny/sharp-ls027b7dh01.c b/drivers/gpu/drm/t=
+iny/sharp-ls027b7dh01.c
+> new file mode 100644
+> index 000000000000..2f58865a5c78
+> --- /dev/null
+> +++ b/drivers/gpu/drm/tiny/sharp-ls027b7dh01.c
+> @@ -0,0 +1,411 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Sharp LS027B7DH01 Memory Display Driver
+> + *
+> + * Copyright (C) 2023 Andrew D'Angelo
+> + * Copyright (C) 2023 Mehdi Djait <mehdi.djait@bootlin.com>
+> + *
+> + * The Sharp Memory LCD requires an alternating signal to prevent the bu=
+ildup of
+> + * a DC bias that would result in a Display that no longer can be update=
+d. Two
+> + * modes for the generation of this signal are supported:
+> + *
+> + * Software, EXTMODE =3D Low: toggling the BIT(1) of the Command and wri=
+ting it at
+> + * least once a second to the display.
+> + *
+> + * Hardware, EXTMODE =3D High: the alternating signal should be supplied=
+ on the
+> + * EXTCOMIN pin.
+> + *
+> + * In this driver the Hardware mode is implemented with a PWM signal.
+> + */
+
+I would put this comment in a more significant place than in the first head=
+er
+block. For instance around the place you are dealing with this feature.
+
+> +
+> +#include <linux/delay.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/pwm.h>
+> +#include <linux/spi/spi.h>
+> +
+> +#include <drm/drm_atomic_helper.h>
+> +#include <drm/drm_damage_helper.h>
+> +#include <drm/drm_drv.h>
+> +#include <drm/drm_fbdev_generic.h>
+> +#include <drm/drm_fb_dma_helper.h>
+> +#include <drm/drm_format_helper.h>
+> +#include <drm/drm_framebuffer.h>
+> +#include <drm/drm_gem_atomic_helper.h>
+> +#include <drm/drm_gem_dma_helper.h>
+> +#include <drm/drm_gem_framebuffer_helper.h>
+> +#include <drm/drm_modes.h>
+> +#include <drm/drm_probe_helper.h>
+> +#include <drm/drm_simple_kms_helper.h>
+> +
+> +#define CMD_WRITE BIT(0)
+> +#define CMD_CLEAR BIT(2)
+> +
+> +struct sharp_ls027b7dh01 {
+> +	struct spi_device *spi;
+> +
+> +	struct drm_device drm;
+> +	struct drm_connector connector;
+> +	struct drm_simple_display_pipe pipe;
+> +	const struct drm_display_mode *display_mode;
+> +
+> +	struct gpio_desc *enable_gpio;
+> +	struct pwm_device *extcomin_pwm;
+> +
+> +	u8 *write_buf;
+> +};
+> +
+> +static inline struct sharp_ls027b7dh01 *drm_to_priv(struct drm_device *d=
+rm)
+> +{
+> +	return container_of(drm, struct sharp_ls027b7dh01, drm);
+> +}
+> +
+> +/**
+> + * sharp_ls027b7dh01_add_headers - Add the Sharp LS027B7DH01 specific he=
+aders
+> + * @write_buf: Buffer to write
+> + * @clip: DRM clip rectangle area to write
+> + * @dst_pitch: Pitch of the write buffer
+> + *
+
+Why are you providing in-tree documentation for this function and not any o=
+ther
+function? The rest of the comment is important but you can drop the part ab=
+ove.
+
+> + * This function adds the SHARP LS027B7DH01 specific headers to the buff=
+er for
+> + * the Multiple Lines Write Mode:
+> + * - The first byte will contain the write command.
+> + * - Every line data starts with the line number and ends with a dummy z=
+ero
+> + *   trailer byte. It should be noted here that the line numbers are ind=
+exed
+> + *   from 1.
+> + *
+> + * Returns the size of the buffer to write to the display.
+> + */
+> +static size_t sharp_ls027b7dh01_add_headers(u8 *write_buf,
+> +					    const struct drm_rect *clip,
+> +					    const unsigned int dst_pitch)
+> +{
+> +	u8 line_num =3D clip->y1 + 1;
+> +	unsigned int lines =3D drm_rect_height(clip);
+> +	unsigned int y;
+> +
+> +	write_buf[0] =3D CMD_WRITE;
+> +	write_buf[1] =3D line_num++;
+> +
+> +	for (y =3D 1; y < lines; y++) {
+> +		write_buf[y * dst_pitch] =3D 0;
+> +		write_buf[y * dst_pitch + 1] =3D line_num++;
+> +	}
+> +
+> +	write_buf[lines * dst_pitch] =3D 0;
+> +	write_buf[lines * dst_pitch + 1] =3D 0;
+> +
+> +	return lines * dst_pitch + 2;
+> +}
+> +
+> +static int sharp_ls027b7dh01_prepare_buf(struct sharp_ls027b7dh01 *priv,
+> +					 u8 *write_buf,
+> +					 size_t *data_len,
+> +					 struct drm_framebuffer *fb,
+> +					 const struct drm_rect *clip)
+> +{
+> +	struct drm_gem_dma_object *dma_obj;
+> +	struct iosys_map dst, vmap;
+> +	unsigned int dst_pitch;
+> +	int ret;
+> +
+> +	/* Leave 2 bytes to hold the line number and the trailer dummy byte. */
+> +	dst_pitch =3D (drm_rect_width(clip) / 8) + 2;
+
+What happens if the drm_rect_width() is not dividable by 8?
+Sounds like a case for DIV_ROUND_UP (and it should be tested to ensure that
+this is what the hardware expects).
+
+> +
+> +	dma_obj =3D drm_fb_dma_get_gem_obj(fb, 0);
+> +
+> +	ret =3D drm_gem_fb_begin_cpu_access(fb, DMA_FROM_DEVICE);
+> +	if (ret)
+> +		return ret;
+> +
+> +	iosys_map_set_vaddr(&dst, &write_buf[2]);
+> +	iosys_map_set_vaddr(&vmap, dma_obj->vaddr);
+> +
+> +	drm_fb_xrgb8888_to_mono(&dst, &dst_pitch, &vmap, fb, clip);
+> +
+> +	drm_gem_fb_end_cpu_access(fb, DMA_FROM_DEVICE);
+> +
+> +	*data_len =3D sharp_ls027b7dh01_add_headers(write_buf, clip, dst_pitch);
+> +
+> +	return 0;
+> +}
+> +
+> +static int sharp_ls027b7dh01_fb_damaged(struct drm_framebuffer *fb,
+> +					const struct drm_rect *rect)
+> +{
+> +	struct drm_rect clip;
+> +	struct sharp_ls027b7dh01 *priv;
+> +	size_t data_len;
+> +	int drm_index;
+> +	int ret;
+> +
+> +	clip.x1 =3D 0;
+> +	clip.x2 =3D fb->width;
+> +	clip.y1 =3D rect->y1;
+> +	clip.y2 =3D rect->y2;
+> +
+> +	priv =3D drm_to_priv(fb->dev);
+> +
+> +	if (!drm_dev_enter(fb->dev, &drm_index))
+> +		return -ENODEV;
+> +
+> +	ret =3D sharp_ls027b7dh01_prepare_buf(priv, priv->write_buf, &data_len,=
+ fb, &clip);
+> +	if (ret)
+> +		goto exit;
+> +
+> +	ret =3D spi_write(priv->spi, priv->write_buf, data_len);
+> +
+> +exit:
+> +	drm_dev_exit(drm_index);
+> +
+> +	return ret;
+> +}
+> +
+> +static void sharp_ls027b7dh01_pipe_update(struct drm_simple_display_pipe=
+ *pipe,
+> +					  struct drm_plane_state *old_state)
+> +{
+> +	struct drm_plane_state *state =3D pipe->plane.state;
+> +	struct drm_rect rect;
+> +
+> +	if (!pipe->crtc.state->active)
+> +		return;
+> +
+> +	if (drm_atomic_helper_damage_merged(old_state, state, &rect))
+> +		sharp_ls027b7dh01_fb_damaged(state->fb, &rect);
+> +}
+> +
+> +static void sharp_ls027b7dh01_pipe_disable(struct drm_simple_display_pip=
+e *pipe)
+> +{
+> +	struct sharp_ls027b7dh01 *priv;
+> +
+> +	priv =3D drm_to_priv(pipe->crtc.dev);
+> +	gpiod_set_value(priv->enable_gpio, 0);
+> +}
+> +
+> +static int sharp_ls027b7dh01_clear_display(struct sharp_ls027b7dh01 *pri=
+v)
+> +{
+> +	u8 clear_buf[2] =3D { CMD_CLEAR, 0 };
+> +
+> +	return spi_write(priv->spi, clear_buf, sizeof(clear_buf));
+> +}
+> +
+> +static int sharp_ls027b7dh01_pwm_enable(struct sharp_ls027b7dh01 *priv)
+> +{
+> +	struct device *dev =3D &priv->spi->dev;
+> +	struct pwm_state pwmstate;
+> +
+> +	priv->extcomin_pwm =3D devm_pwm_get(dev, NULL);
+
+You should almost certainly do that just once in probe, not every time you =
+want
+to enable the pwm. This might increase some internal refcount which won't be
+balanced.
+
+> +	if (IS_ERR(priv->extcomin_pwm)) {
+> +		dev_err(dev, "Could not get EXTCOMIN pwm\n");
+> +		return PTR_ERR(priv->extcomin_pwm);
+> +	}
+> +
+> +	pwm_init_state(priv->extcomin_pwm, &pwmstate);
+> +	pwm_set_relative_duty_cycle(&pwmstate, 50, 100);
+> +	pwm_apply_state(priv->extcomin_pwm, &pwmstate);
+> +
+> +	pwm_enable(priv->extcomin_pwm);
+> +
+> +	return 0;
+> +}
+> +
+> +static void sharp_ls027b7dh01_pipe_enable(struct drm_simple_display_pipe=
+ *pipe,
+> +					  struct drm_crtc_state *crtc_state,
+> +					  struct drm_plane_state *plane_state)
+> +{
+> +	struct sharp_ls027b7dh01 *priv;
+> +	int ret, drm_idx;
+> +
+> +	priv =3D drm_to_priv(pipe->crtc.dev);
+> +
+> +	if (!drm_dev_enter(pipe->crtc.dev, &drm_idx))
+> +		return;
+> +
+> +	gpiod_set_value(priv->enable_gpio, 1);
+> +
+
+Does the panel documentation specify some delay between setting the enable =
+GPIO
+and communicating with it? It's rarely instantaneous.
+
+> +	ret =3D sharp_ls027b7dh01_clear_display(priv);
+> +	if (ret)
+> +		goto exit;
+> +
+> +	sharp_ls027b7dh01_pwm_enable(priv);
+> +
+> +exit:
+> +	drm_dev_exit(drm_idx);
+> +}
+> +
+> +static const struct drm_simple_display_pipe_funcs sharp_ls027b7dh01_pipe=
+_funcs =3D {
+> +	.enable =3D sharp_ls027b7dh01_pipe_enable,
+> +	.disable =3D sharp_ls027b7dh01_pipe_disable,
+> +	.update =3D sharp_ls027b7dh01_pipe_update,
+> +};
+> +
+> +static int sharp_ls027b7dh01_connector_get_modes(struct drm_connector *c=
+onnector)
+> +{
+> +	struct sharp_ls027b7dh01 *priv =3D drm_to_priv(connector->dev);
+> +
+> +	return drm_connector_helper_get_modes_fixed(connector, priv->display_mo=
+de);
+> +}
+> +
+> +static const struct drm_connector_helper_funcs sharp_ls027b7dh01_connect=
+or_hfuncs =3D {
+> +	.get_modes =3D sharp_ls027b7dh01_connector_get_modes,
+> +};
+> +
+> +static const struct drm_connector_funcs sharp_ls027b7dh01_connector_func=
+s =3D {
+> +	.reset =3D drm_atomic_helper_connector_reset,
+> +	.fill_modes =3D drm_helper_probe_single_connector_modes,
+> +	.destroy =3D drm_connector_cleanup,
+> +	.atomic_duplicate_state =3D drm_atomic_helper_connector_duplicate_state,
+> +	.atomic_destroy_state =3D drm_atomic_helper_connector_destroy_state,
+> +};
+> +
+> +static const struct drm_mode_config_funcs sharp_ls027b7dh01_mode_config_=
+funcs =3D {
+> +	.fb_create =3D drm_gem_fb_create_with_dirty,
+> +	.atomic_check =3D drm_atomic_helper_check,
+> +	.atomic_commit =3D drm_atomic_helper_commit,
+> +};
+> +
+> +static const uint32_t sharp_ls027b7dh01_formats[] =3D {
+> +	DRM_FORMAT_XRGB8888,
+> +};
+> +
+> +static const struct drm_display_mode sharp_ls027b7dh01_mode =3D {
+> +	DRM_SIMPLE_MODE(400, 240, 59, 35),
+> +};
+> +
+> +DEFINE_DRM_GEM_DMA_FOPS(sharp_ls027b7dh01_fops);
+> +
+> +static const struct drm_driver sharp_ls027b7dh01_drm_driver =3D {
+> +	.driver_features	=3D DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
+> +	.fops			=3D &sharp_ls027b7dh01_fops,
+> +	DRM_GEM_DMA_DRIVER_OPS_VMAP,
+> +	.name			=3D "sharp_ls027b7dh01",
+> +	.desc			=3D "Sharp ls027b7dh01 Memory LCD",
+> +	.date			=3D "20231129",
+> +	.major			=3D 1,
+> +	.minor			=3D 0,
+> +};
+> +
+> +static int sharp_ls027b7dh01_probe(struct spi_device *spi)
+> +{
+> +	struct device *dev =3D &spi->dev;
+> +	struct sharp_ls027b7dh01 *priv;
+> +	struct drm_device *drm;
+> +	unsigned int write_buf_size;
+> +	int ret;
+> +
+> +	if (!dev->coherent_dma_mask) {
+> +		ret =3D dma_coerce_mask_and_coherent(dev, DMA_BIT_MASK(32));
+> +		if (ret)
+> +			return dev_err_probe(dev, ret, "Failed to set dma mask\n");
+> +	}
+
+Is there a particular need for this? I don't see where you're dealing with
+DMA at all.
+
+> +
+> +	priv =3D devm_drm_dev_alloc(dev, &sharp_ls027b7dh01_drm_driver,
+> +				  struct sharp_ls027b7dh01, drm);
+> +	if (IS_ERR(priv))
+> +		return PTR_ERR(priv);
+> +
+> +	spi_set_drvdata(spi, priv);
+> +	priv->spi =3D spi;
+> +
+> +	priv->enable_gpio =3D devm_gpiod_get(dev, "enable", GPIOD_OUT_HIGH);
+> +	if (IS_ERR(priv->enable_gpio))
+> +		return dev_err_probe(dev, PTR_ERR(priv->enable_gpio),
+> +				     "Failed to get GPIO 'enable'\n");
+> +
+> +	drm =3D &priv->drm;
+> +	ret =3D drmm_mode_config_init(drm);
+> +	if (ret)
+> +		return ret;
+> +
+> +	drm->mode_config.funcs =3D &sharp_ls027b7dh01_mode_config_funcs;
+> +	priv->display_mode =3D &sharp_ls027b7dh01_mode;
+
+It's a bit redundant to store it in priv if there's just one mode supported.
+
+> +
+> +	/*
+> +	 * write_buf_size:
+> +	 *
+> +	 * hdisplay * vdisplay / 8 =3D> 1 bit per Pixel.
+> +	 * 2 * vdisplay =3D> line number byte + trailer dummy byte for every li=
+ne.
+> +	 * 2 =3D> write command byte + final trailer dummy byte.
+> +	 */
+> +	write_buf_size =3D priv->display_mode->hdisplay * priv->display_mode->v=
+display / 8
+> +			 + 2 * priv->display_mode->vdisplay + 2;
+
+Same issue about priv->display_mode->hdisplay * priv->display_mode->vdisplay
+being dividable by 8. In your case you just have a single mode which doesn't
+have the issue, but this code looks generic laid out like this, so it should
+take care of all possible cases.
+> +
+> +	priv->write_buf =3D devm_kzalloc(dev, write_buf_size, GFP_KERNEL);
+> +	if (!priv->write_buf)
+> +		return -ENOMEM;
+> +
+> +	drm->mode_config.min_width =3D priv->display_mode->hdisplay;
+> +	drm->mode_config.max_width =3D priv->display_mode->hdisplay;
+> +	drm->mode_config.min_height =3D priv->display_mode->vdisplay;
+> +	drm->mode_config.max_height =3D priv->display_mode->vdisplay;
+> +
+> +	ret =3D drm_connector_init(drm, &priv->connector,
+> +				 &sharp_ls027b7dh01_connector_funcs,
+> +				 DRM_MODE_CONNECTOR_SPI);
+> +	if (ret)
+> +		return ret;
+> +
+> +	drm_connector_helper_add(&priv->connector,
+> +				 &sharp_ls027b7dh01_connector_hfuncs);
+> +
+> +	ret =3D drm_simple_display_pipe_init(drm, &priv->pipe,
+> +					   &sharp_ls027b7dh01_pipe_funcs,
+> +					   sharp_ls027b7dh01_formats,
+> +					   ARRAY_SIZE(sharp_ls027b7dh01_formats),
+> +					   NULL, &priv->connector);
+> +	if (ret)
+> +		return ret;
+> +
+> +	drm_plane_enable_fb_damage_clips(&priv->pipe.plane);
+> +	drm_mode_config_reset(drm);
+> +
+> +	ret =3D drm_dev_register(drm, 0);
+> +	if (ret)
+> +		return ret;
+> +
+> +	drm_fbdev_generic_setup(drm, 0);
+> +
+> +	return 0;
+> +}
+> +
+> +static void sharp_ls027b7dh01_remove(struct spi_device *spi)
+> +{
+> +	struct sharp_ls027b7dh01 *priv =3D spi_get_drvdata(spi);
+> +
+> +	drm_dev_unplug(&priv->drm);
+> +	drm_atomic_helper_shutdown(&priv->drm);
+> +}
+> +
+> +static void sharp_ls027b7dh01_shutdown(struct spi_device *spi)
+> +{
+> +	struct sharp_ls027b7dh01 *priv =3D spi_get_drvdata(spi);
+> +
+> +	drm_atomic_helper_shutdown(&priv->drm);
+> +}
+> +
+> +static const struct spi_device_id sharp_ls027b7dh01_ids[] =3D {
+> +	{ "ls027b7dh01" },
+> +	{ },
+> +};
+> +MODULE_DEVICE_TABLE(spi, sharp_ls027b7dh01_ids);
+> +
+> +static const struct of_device_id sharp_ls027b7dh01_of_match[] =3D {
+> +	{ .compatible =3D "sharp,ls027b7dh01", },
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(of, sharp_ls027b7dh01_of_match);
+> +
+> +static struct spi_driver sharp_ls027b7dh01_spi_driver =3D {
+> +	.probe =3D sharp_ls027b7dh01_probe,
+> +	.remove =3D sharp_ls027b7dh01_remove,
+> +	.shutdown =3D sharp_ls027b7dh01_shutdown,
+> +	.id_table =3D sharp_ls027b7dh01_ids,
+> +	.driver =3D {
+> +		.name =3D "sharp-ls027b7dh01",
+> +		.of_match_table =3D sharp_ls027b7dh01_of_match,
+> +	},
+> +};
+> +module_spi_driver(sharp_ls027b7dh01_spi_driver);
+> +
+> +MODULE_AUTHOR("Andrew D'Angelo");
+> +MODULE_AUTHOR("Mehdi Djait <mehdi.djait@bootlin.com>");
+> +MODULE_DESCRIPTION("Sharp LS027B7DH01 Driver");
+> +MODULE_LICENSE("GPL");
+> --=20
+> 2.41.0
+>=20
+
+--=20
+Paul Kocialkowski, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
+
+--cse+O5W+0oAb9vAR
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAmVnZxcACgkQ3cLmz3+f
+v9FXfAf/ayQh1/Bg+MOBLRNugsZ2W5amRyftieRigbI+AQRoac2Kt2Nr5hsg7kBD
+HGdOsmEYBtbEUYwJQdqRjODFnhE/vKV3YjJfhkVANyVrHNX7HKu5IiNswIWFONsH
+bs+Kyg8vOBE1vi6dgtpBdPTiBAw81XN7NuLQnoMwTAXYu7OjOOCrEYHH/6WQaPi6
+cHu6MYhxK7HymH0nVpfmdyrpXYQn+p1OFCvKBRx82tb95ibSE9x3Lxcn0miakpdQ
+G2K7NrquhC+HmKwEQHYQcQxUfYwb3dcQNDrPKRQnDUPc/ustIiFq9CiSDqG0nckY
+17dnHaNJGeM1FRHb9OgUBdQx1Ysycw==
+=PO4i
+-----END PGP SIGNATURE-----
+
+--cse+O5W+0oAb9vAR--
 
