@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-20017-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20018-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 927027FD886
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 14:46:16 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 967157FD88E
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 14:47:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C3DF31C20A18
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 13:46:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BA0D91C209A9
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 13:47:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7097720B14;
-	Wed, 29 Nov 2023 13:46:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3DBE208D9;
+	Wed, 29 Nov 2023 13:47:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ndQqp4Eq"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IPjz+8rW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0801E6
-	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 05:46:07 -0800 (PST)
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-a02ba1f500fso967158866b.0
-        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 05:46:07 -0800 (PST)
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2213CDE
+	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 05:47:09 -0800 (PST)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-a0064353af8so180654866b.0
+        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 05:47:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701265566; x=1701870366; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701265627; x=1701870427; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=cBSFdLwbP6iBVNXIZiTcHgh2DF6/dUUBZvh33dWqRVw=;
-        b=ndQqp4EqJFuOHsJ4UojbzmjlRhGVkSvuzKjpuFiK7LrqFkR/6/n1PVRyXDoQdVzx8r
-         WfkWSjp4b3M9Zrrm+2qSJ4sMdCp8eqp41yxs7saqytWR6FvUudYF6v+1wb518DTsorjI
-         Jb8QFMQybb15c+rT11lD2xZ329VZHeise3w9BDwiyhMjwp31ZUx4w4SUUKFG/T0OAtDq
-         UMWUO9VVuZmcw/Kjto6WYU8ef8g5Y3ppcyNXshGIwZoU6f/+3f9cZCiWuXHQrJPvD2Kx
-         YiMEvW3Dg/te7F32vy4S5PJ7yH86DFTRhxInQ+5ybz+K+JZ7r0mLswlru0JgmfWVXltB
-         gBgQ==
+        bh=8E5bkvLIYcOM0I422pk1TjHF7GapQVouJN2+bMb/99s=;
+        b=IPjz+8rWr/TBCOJoSCywQGFi36kUgkN4jhG9x/doYz/Pi2XvNnbFkQRgAzERtNmJct
+         6vXTblAatI3XkMHrDN7sLyjqOvT1R2QdEaVq0nWmM3nqrKKyCjAiHZUcJCSTzqZ42wY2
+         uQU3qY2odpuyleu2iRG5UcA5QMU1D0NnMs9HcOwlPI28oWce8VUjA6ZhDrQ6SuGd5WNK
+         5SyzhmXbxEq8SXS4DbL3d9xTYanFn1XajNihjcDYvFlIe03vXT3q5u637U4cwhsz1h2D
+         xtSydgP+V3M9+ja7dKONa8SuyFhzjYoLrOEp4jUSJuAKjEVi1nUgo00WGw/rgBg1gq6F
+         Hpaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701265566; x=1701870366;
+        d=1e100.net; s=20230601; t=1701265627; x=1701870427;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cBSFdLwbP6iBVNXIZiTcHgh2DF6/dUUBZvh33dWqRVw=;
-        b=rxWYI/PRy9htIk5dFwQ2oRpUEM4qtzk4yGNv40PljkGiKBYR3clmjjoaKH3zdlrq6D
-         XgGC3Rfuwybm1Kfewh2VadbSoqO6ogwCsw4nyiEa+UjKNm5Zpyv3P3wsNvaytXtTVmML
-         rD+9gYFBSBj6q/ZFocyj4N+OsmfQUHLOrzeAaWp4fqrQhRzZcweTWpD9VcVwASjNOXsG
-         wYBg3HXv8w1OL8FdGV5LJUT7Egzi1C40FqgzyjzRRGEvFFVBwaOG/VcpagMaEj2/tHEZ
-         A9NZqp1rDqJrt/JC97sbYXY+2mW5m0rh9kGBgx8Zxg0/2lEUGTmz6tdovBZmahCTSUHh
-         LYng==
-X-Gm-Message-State: AOJu0Yxzd3WkNsJK5bjNp9BFEXeD0u09F3tlz6Mt+e+AexxSsSRjN9YE
-	7AZrnS5PVfF4XcbBdRcdsibqDA==
-X-Google-Smtp-Source: AGHT+IEDLfeyaa/cILOO4tDHn+EEvUTwqz2+8nc3XcAYN2nENkKkAzsj23smEfgm2ZV7pfSa8xuUOQ==
-X-Received: by 2002:a17:906:b299:b0:a03:ad29:a00b with SMTP id q25-20020a170906b29900b00a03ad29a00bmr15555698ejz.36.1701265566229;
-        Wed, 29 Nov 2023 05:46:06 -0800 (PST)
+        bh=8E5bkvLIYcOM0I422pk1TjHF7GapQVouJN2+bMb/99s=;
+        b=JcbimmSgU12uUNBSQOvCodPheV+vFA+uSWYZcaD39bnw/+Lah2+zbJ2qnWZc1Ub/UV
+         oDw9siXftWrtNbHS9GToHOnLAaDBqj+yJb98ywmRaEFLSM5DuAD1tWNH2UbLhcKopj6q
+         cNO/h8zJQqiGItpsqBtqhNAEIeS6sEyQWKnXMiGo08V/F0UmFp77faEDyOh9bukP31s5
+         Sbk3iLGCRaLJtZc1LTipyG5Eof6L19q1T7Bq0WczXN1mVCcHO2hzSB+rBsAaikWWLidX
+         /Vec/ytxxtgCEdolk6b6qCWfZHzsY0H+ukqnjzBv+gzDsG5Wm/bKeERpw8NLpgArmAIP
+         1GyA==
+X-Gm-Message-State: AOJu0YwfIFl1eva+6i7jiWsTqmgAtcMYwlPcYdYKdEN8DuF+MBWgO3ZH
+	Z7CW6XuQnvFUVhRnH3zLDTGoKg==
+X-Google-Smtp-Source: AGHT+IFIxcFBHBzJr2SXAfv0DNWvRQSbd/bH8Swm65bB7ZvuZcwwX8+AC6QOru1mOExaT0mGOSYfOA==
+X-Received: by 2002:a17:906:c791:b0:9ad:8a96:ad55 with SMTP id cw17-20020a170906c79100b009ad8a96ad55mr20249069ejb.14.1701265627638;
+        Wed, 29 Nov 2023 05:47:07 -0800 (PST)
 Received: from [192.168.209.173] (178235187166.dynamic-4-waw-k-2-3-0.vectranet.pl. [178.235.187.166])
-        by smtp.gmail.com with ESMTPSA id f8-20020a17090624c800b009fd77d78f7fsm7910195ejb.116.2023.11.29.05.46.04
+        by smtp.gmail.com with ESMTPSA id f8-20020a17090624c800b009fd77d78f7fsm7910195ejb.116.2023.11.29.05.47.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Nov 2023 05:46:05 -0800 (PST)
-Message-ID: <eaa034cb-06e8-4204-befa-4389bcb7d9e8@linaro.org>
-Date: Wed, 29 Nov 2023 14:46:04 +0100
+        Wed, 29 Nov 2023 05:47:07 -0800 (PST)
+Message-ID: <fbe553fc-fb36-48d7-a1e0-8ba7fea0c01a@linaro.org>
+Date: Wed, 29 Nov 2023 14:47:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,23 +62,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/5] ASoC: codecs: Add WCD939x Codec driver
+Subject: Re: [PATCH 3/5] arm64: dts: qcom: sm8650: add ADSP audio codec macros
 Content-Language: en-US
-To: neil.armstrong@linaro.org,
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Banajit Goswami <bgoswami@quicinc.com>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>
-Cc: linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20231123-topic-sm8650-upstream-wcd939x-codec-v1-0-21d4ad9276de@linaro.org>
- <20231123-topic-sm8650-upstream-wcd939x-codec-v1-5-21d4ad9276de@linaro.org>
- <ad9a7c4b-82f4-4347-b4dd-a394e4ba95f0@linaro.org>
- <42a6f6e0-2846-4cdc-8702-493fadbafb98@linaro.org>
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: Neil Armstrong <neil.armstrong@linaro.org>
+References: <20231129132247.63721-1-krzysztof.kozlowski@linaro.org>
+ <20231129132247.63721-4-krzysztof.kozlowski@linaro.org>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -115,38 +109,46 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <42a6f6e0-2846-4cdc-8702-493fadbafb98@linaro.org>
+In-Reply-To: <20231129132247.63721-4-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 28.11.2023 16:01, Neil Armstrong wrote:
-> On 25/11/2023 13:07, Konrad Dybcio wrote:
+On 29.11.2023 14:22, Krzysztof Kozlowski wrote:
+> Add the Low Power Audio SubSystem (LPASS) / ADSP audio codec macros on
+> Qualcomm SM8650.  The nodes are very similar to SM8550.
 > 
-> <snip>
+> Cc: Neil Armstrong <neil.armstrong@linaro.org>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
->>> +
->>> +static int wcd939x_io_init(struct snd_soc_component *component)
->>> +{
->>> +    snd_soc_component_write_field(component, WCD939X_ANA_BIAS,
->>> +                      WCD939X_BIAS_ANALOG_BIAS_EN, 1);
->> All of these values are BIT()s or 2-4 ORed BIT()s, can you check what they
->> mean?
->>
->> Same for almost all other snd_soc_component_ write/modify functions
+> ---
 > 
-> It uses snd_soc_component_write_field() with is the same as
-> regmap_write_bits(REGISTER, REGISTER_MASK,
->                   FIELD_PREP(REGISTER_MASK, value);
+> Bindings were documented here:
+> https://lore.kernel.org/linux-devicetree/20231129113014.38837-1-krzysztof.kozlowski@linaro.org/
+> ---
+>  arch/arm64/boot/dts/qcom/sm8650.dtsi | 83 ++++++++++++++++++++++++++++
+>  1 file changed, 83 insertions(+)
 > 
-> So the 1 mean write in enable mask in this case, and mask is single bit,
-> read it exactly like if it was using FIELD_PREP(), but even for BITs.
-> 
-> I did check every single snd_soc_component_write_field() so far to check
-> it matches.
-> 
-> Or it's another question ?
-What I wanted to ask is whether it's possible to #define these magic
-values within these fields
+> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> index e926329cf3f9..cf663a18c9f0 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> @@ -2611,6 +2611,89 @@ IPCC_MPROC_SIGNAL_GLINK_QMP
+>  			};
+>  		};
+>  
+> +		lpass_wsa2macro: codec@6aa0000 {
+> +			compatible = "qcom,sm8650-lpass-wsa-macro", "qcom,sm8550-lpass-wsa-macro";
+> +			reg = <0 0x06aa0000 0 0x1000>;
+> +			clocks = <&q6prmcc LPASS_CLK_ID_WSA2_CORE_TX_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +				 <&q6prmcc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +				 <&q6prmcc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +				 <&lpass_vamacro>;
+> +			clock-names = "mclk", "macro", "dcodec", "fsgen";
+one per line?
+
+> +			assigned-clocks = <&q6prmcc LPASS_CLK_ID_WSA2_CORE_TX_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
+> +			assigned-clock-rates = <19200000>;
+Is this necessary?
 
 Konrad
 
