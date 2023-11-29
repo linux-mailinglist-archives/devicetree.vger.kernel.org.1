@@ -1,140 +1,118 @@
-Return-Path: <devicetree+bounces-20028-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20029-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F6397FD907
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 15:14:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C6767FD924
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 15:20:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6D573B20EC5
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 14:14:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 24EAA1C2094B
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 14:20:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73B9030339;
-	Wed, 29 Nov 2023 14:13:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 383D730651;
+	Wed, 29 Nov 2023 14:20:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ok0EsvMJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="usQAeTpp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D2D3200C7;
-	Wed, 29 Nov 2023 14:13:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26654C433C8;
-	Wed, 29 Nov 2023 14:13:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E5DC2FE2D;
+	Wed, 29 Nov 2023 14:20:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7BD0BC433C8;
+	Wed, 29 Nov 2023 14:20:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701267237;
-	bh=pUV4HKLS00qkksqmMEVUB7aFtety+DjB1mxSsU4PJfQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Ok0EsvMJ2+A0iTO86IR6NMExkuRaR3AUmZ/ktqr/hb4SNzQdK1dfBL2VA99FKdvQV
-	 nMKAK6xmHH8u76N3BiyGtsbgk4PYaRDXtaGBGUhh98xV51HJ8gFQAZcsCm/JbCsjLZ
-	 q6/u8ce59a3rXmMasSu0hEd9A9hGRVvjPWFBx+FMYo2MevKumJ1tGjeX7bIf6iQR7o
-	 Z8XD8CEQ9d+jlBrzlPw/JPNet2/hred74+IjHIxY9n20o4V5TFUOtyiMy17Y8ZMpRr
-	 Kw7l+JmEsiYgRq+z5ph1Y0NrTJQjm4AtIyv0143nVOTIsCavFC5GeC68X96VxVK1Rd
-	 uvVprijWEeFbA==
-Message-ID: <cf8d5a8b-9b35-4dac-8347-8fa19bfa3e95@kernel.org>
-Date: Wed, 29 Nov 2023 15:13:48 +0100
+	s=k20201202; t=1701267645;
+	bh=ilqRE+p2fOw9a0JlFxXvmLieJ549kSYDkFaGPRRW8oQ=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=usQAeTppBB5TlyqxaUvm+41VSl5IEzYDcwModnXtK+ilMiYYiZNMrGCbjgRdZXH/p
+	 7dbuv2jwzNtp5Du9YUsXip+eBl0GMPECNrAzKSBpNPdrJYpApOeTO4Yk6eYGfiCG5Z
+	 U5F4XF3VeQXjWf3HSVlVEs4AdNgM6M0FS1acS3in6ezgGKlmMHXPUcU+DJsbfJufr6
+	 TzeJkANcn3GU2M7GZiXB8s1i73Lx36tezfKVwFBWdIYfixNZTpARyWIZ4XoMoy8ixh
+	 3I84Uyv8YYD3+0pUHFFXCaKPdBuTF30Tu7TxB8uOBSzdACibLuOQpvE0nzEdwkoAHZ
+	 HLnyY+98+UN1w==
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-50bbfad8758so2243772e87.3;
+        Wed, 29 Nov 2023 06:20:45 -0800 (PST)
+X-Gm-Message-State: AOJu0YxMIn8A116RYvHh6I4XaAKjyUuECqakwDgeOn8TAJ8A8/2dV8sV
+	MIDEqIAfYuuLBOmvXHsfROXWxVpAelh5QPMTDw==
+X-Google-Smtp-Source: AGHT+IGQ6dT1phTdaBB2cnieLq1FHpCwg9+LMFYxy4gEJXci5LIhzhHGeiWIcYiUZnTGssn08SW/cPnCLwYi8FMKZP4=
+X-Received: by 2002:a05:6512:114d:b0:509:4599:12d9 with SMTP id
+ m13-20020a056512114d00b00509459912d9mr16626681lfg.6.1701267643713; Wed, 29
+ Nov 2023 06:20:43 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] hwmon: ltc4282: add support for the LTC4282 chip
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>,
- Guenter Roeck <linux@roeck-us.net>, Andy Shevchenko <andy@kernel.org>,
- kernel test robot <lkp@intel.com>,
- Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org>,
- linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
- linux-doc@vger.kernel.org, oe-kbuild-all@lists.linux.dev,
- Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- Bartosz Golaszewski <brgl@bgdev.pl>
-References: <20231124-ltc4282-support-v2-2-952bf926f83c@analog.com>
- <202311250548.lUn3bm1A-lkp@intel.com>
- <fb2aaa4c69c88738499dfbf46ef93e3b81ca93cb.camel@gmail.com>
- <76957975-56e7-489e-9c79-086b6c1ffe89@kernel.org>
- <ac950d01-d9aa-4fb7-810d-b21335e4cc94@kernel.org>
- <ZWS90GQTJWA7DrML@smile.fi.intel.com>
- <bcc5da24-7243-42fa-a82b-48851ce17c0c@kernel.org>
- <cacce41f-f1c0-4f76-ab24-c6ea8bb0303f@roeck-us.net>
- <c7e7b7bedd5b016a29cc86f767cbec533d727ff4.camel@gmail.com>
- <d4a9bd79-1cb6-4da6-9380-bb8085866533@kernel.org>
- <CACRpkdaQ0=KduRoSOn+NKNOXvL2HqL_xeCR-LQZWh6CdRMf1Pw@mail.gmail.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <CACRpkdaQ0=KduRoSOn+NKNOXvL2HqL_xeCR-LQZWh6CdRMf1Pw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20231129111041.26782-1-krzysztof.kozlowski@linaro.org>
+ <170126087595.1991744.9053853140300681368.robh@kernel.org> <3df72c05-7b79-4804-a220-5e342d6e5dd2@linaro.org>
+In-Reply-To: <3df72c05-7b79-4804-a220-5e342d6e5dd2@linaro.org>
+From: Rob Herring <robh@kernel.org>
+Date: Wed, 29 Nov 2023 08:20:31 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKhAX0vQ6LPN9ZfO4R44HZ3qrfb0oN9A9jo9+Jd2ePFLw@mail.gmail.com>
+Message-ID: <CAL_JsqKhAX0vQ6LPN9ZfO4R44HZ3qrfb0oN9A9jo9+Jd2ePFLw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: iio: honeywell,mprls0025pa: drop ref from
+ pressure properties
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: devicetree@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, 
+	Jonathan Cameron <jic23@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+	Andreas Klinger <ak@it-klinger.de>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	linux-iio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 29/11/2023 15:10, Linus Walleij wrote:
-> On Wed, Nov 29, 2023 at 9:45 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->> On 29/11/2023 09:35, Nuno Sá wrote:
-> 
->>> world. If we are now going to ask to run smatch, cocci, sparse and so on, we will
->>> scare even more developers from the community... I mean, the bots are also in place
->>
->> This is not related to Linux at all.
-> 
-> Smatch, main author Dan Carpenter
+On Wed, Nov 29, 2023 at 6:29=E2=80=AFAM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 29/11/2023 13:27, Rob Herring wrote:
+> >
+> > On Wed, 29 Nov 2023 12:10:41 +0100, Krzysztof Kozlowski wrote:
+> >> The dtschema treats now properties with '-pascal' suffix as standard o=
+ne
+> >> and already defines $ref for them, thus the $ref should be dropped fro=
+m
+> >> the bindings.
+> >>
+> >> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> >>
+> >> ---
+> >>
+> >> dtschema change was merged:
+> >> https://github.com/devicetree-org/dt-schema/commit/2a1708dcf4ff0b25c4e=
+c46304d6d6cc655c3e635
+> >> but not yet released as new dtschema version.
+> >>
+> >> This change should be applied once new dtschema version is released or
+> >> Rob says otherwise.
+> >> ---
+> >>  .../devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml | 2 -=
+-
+> >>  1 file changed, 2 deletions(-)
+> >>
+> >
+> > My bot found errors running 'make DT_CHECKER_FLAGS=3D-m dt_binding_chec=
+k'
+> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> >
+> > yamllint warnings/errors:
+> >
+> > dtschema/dtc warnings/errors:
+> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings=
+/iio/pressure/honeywell,mprls0025pa.yaml: honeywell,pmin-pascal: missing ty=
+pe definition
+> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings=
+/iio/pressure/honeywell,mprls0025pa.yaml: honeywell,pmax-pascal: missing ty=
+pe definition
+> >
+>
+> That's expected, depends on the dtschema change.
 
-By default Smatch checks regular C code and you need to enable
-kernel-specific tweaks.
+Well, it wasn't because dtschema version used is git tree. However,
+the CI job was using master rather than main branch. master falls
+behind when I use the web interface... Now fixed the CI job to use
+main.
 
-> Coccinelle, main author Julia Lawall
-
-True.
-
-> Sparse, main author Linus Torvalds
-
-Git, main author Linus Torvalds. :)
-
-Best regards,
-Krzysztof
-
+Rob
 
