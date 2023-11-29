@@ -1,56 +1,56 @@
-Return-Path: <devicetree+bounces-20071-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20072-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C8DB7FDA72
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 15:54:12 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87E417FDA9E
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 15:58:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EC157B20D84
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 14:54:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3DA2628275C
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 14:58:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C67BC1DDE6;
-	Wed, 29 Nov 2023 14:54:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4434A3588A;
+	Wed, 29 Nov 2023 14:58:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4D89BE;
-	Wed, 29 Nov 2023 06:54:02 -0800 (PST)
-Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-1fa235f8026so2672357fac.3;
-        Wed, 29 Nov 2023 06:54:02 -0800 (PST)
+Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35881A3;
+	Wed, 29 Nov 2023 06:58:48 -0800 (PST)
+Received: by mail-oi1-f170.google.com with SMTP id 5614622812f47-3b843fea0dfso3900458b6e.3;
+        Wed, 29 Nov 2023 06:58:48 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701269642; x=1701874442;
+        d=1e100.net; s=20230601; t=1701269927; x=1701874727;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Ea/iuRLQ3MiOQbUR87zXKlf7PgJMpl4mFKJ4sK0omKs=;
-        b=C8wVbHlrXxXXHvph7+FT89BofYCysccbYbOGoVYL5ta1qcc3U1Qccbe9h+6zbXKsoL
-         8xAZokW3gTC/SaOihZPft1+bNLMtQg8f/dHJz+egTv2TdytzSgXPcFG9R5gCg4AIYPtL
-         9Gx2jRZ0KWdRovnvN+iWa31m1+JQE07s62KbapySVJrbogV99pBb0eKjAbUG+9d/JQxk
-         4Y2ayddeMSIrtuhlZSC1xlAryK2TVkEELhTEV25N9RQ6S7TxPy+DDD3ZTM2f3ixzt0DJ
-         AHnrejCBWxuPihCqYdRsHj4JdbtkvbCMXWHVoLzxWObRL07KAfXE1+xyZstltzhhcYba
-         CXFw==
-X-Gm-Message-State: AOJu0YxFvkaskRJ8qPhHZ0tuyE8/bks9Ry0PMYFXTdek9LSokr7Lvjyw
-	1aiiNZrzUua2GQm8ls5mQg==
-X-Google-Smtp-Source: AGHT+IEKQZCzwe94OXoL3+AZ7eYT2112nCdj6/VnLFu1cjYWi2d5/xc1SEv31Wkuo3A4ZWK/3DhFNQ==
-X-Received: by 2002:a05:6871:5811:b0:1f9:4244:4c52 with SMTP id oj17-20020a056871581100b001f942444c52mr22776977oac.41.1701269641968;
-        Wed, 29 Nov 2023 06:54:01 -0800 (PST)
+        bh=Om8QH0PgH6JybOzR4agW39ICVCA3hclLDw5NauxCXtE=;
+        b=E8fa01i4+bCx9eNPeg/8VKnLnO4NlrdbNy4FqndnldSJ69C5ZbGiEk4RoZ3SJvVQ5D
+         9y3FDnpYHr+oPaYZ+O9B5uZk0B/mlprV92zZ+RSDWok8wLcwi5xQFAsgcWXfbYSlpoKG
+         FxczfgNKBWEqorjRCrXSCaRl6ppYRhWcQHIs4Uq/LRatZYFV3Vu8dR19rKES9NpBmWMK
+         3vaJQ4UUV4fvQDBudoOxEy5Ph+1fxCoda70LXu0u/6MBh7z8JP1GTo0DvA/J5f1vswfG
+         KGbPuDqMkx63QlZWgrfcD6weFC3/S9p/OG59HqfzExYU3cVDbJeKg3O6bPwMdcDYDGtr
+         Eawg==
+X-Gm-Message-State: AOJu0Yyi7VczYE8oAVKDnrlR74j0HhhpGtpoIupgfa0AYak7x+LKq9Gn
+	7POZG+FAHTJzAFOwwBFZaQ==
+X-Google-Smtp-Source: AGHT+IFaDKlAMO0TTBe2DgTuEmwhSM1mq/2uExerm3hYow5K6ag6Zf/td6nyVFVGAKaudl9+l3aL7g==
+X-Received: by 2002:a05:6808:34c:b0:3a7:1e86:e83f with SMTP id j12-20020a056808034c00b003a71e86e83fmr19018621oie.51.1701269927374;
+        Wed, 29 Nov 2023 06:58:47 -0800 (PST)
 Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id mn13-20020a0568700c8d00b001fa3ab0a3bdsm1982754oab.31.2023.11.29.06.54.00
+        by smtp.gmail.com with ESMTPSA id m23-20020a056808025700b003b29c2f50f0sm2248202oie.18.2023.11.29.06.58.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Nov 2023 06:54:01 -0800 (PST)
-Received: (nullmailer pid 2458296 invoked by uid 1000);
-	Wed, 29 Nov 2023 14:54:00 -0000
-Date: Wed, 29 Nov 2023 08:54:00 -0600
+        Wed, 29 Nov 2023 06:58:46 -0800 (PST)
+Received: (nullmailer pid 2464542 invoked by uid 1000);
+	Wed, 29 Nov 2023 14:58:45 -0000
+Date: Wed, 29 Nov 2023 08:58:45 -0600
 From: Rob Herring <robh@kernel.org>
-To: Daniel Baluta <daniel.baluta@oss.nxp.com>
-Cc: broonie@kernel.org, kuninori.morimoto.gx@renesas.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, lgirdwood@gmail.com, daniel.baluta@gmail.com, alsa-devel@alsa-project.org, iuliana.prodan@nxp.com, shengjiu.wang@nxp.com
-Subject: Re: [PATCH v4 2/2] ASoC: dt-bindings: audio-graph-port: Document new
- DAI link flags playback-only/capture-only
-Message-ID: <20231129145400.GA2447249-robh@kernel.org>
-References: <20231128081119.106360-1-daniel.baluta@oss.nxp.com>
- <20231128081119.106360-3-daniel.baluta@oss.nxp.com>
+To: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, Jiri Slaby <jirislaby@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, linux-serial@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: serial: qcom,msm-uartdm: Vote for
+ shared resources
+Message-ID: <20231129145845.GA2459716-robh@kernel.org>
+References: <20231128-serial-msm-dvfs-v1-0-4f290d20a4be@kernkonzept.com>
+ <20231128-serial-msm-dvfs-v1-1-4f290d20a4be@kernkonzept.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,40 +59,27 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231128081119.106360-3-daniel.baluta@oss.nxp.com>
+In-Reply-To: <20231128-serial-msm-dvfs-v1-1-4f290d20a4be@kernkonzept.com>
 
-On Tue, Nov 28, 2023 at 10:11:19AM +0200, Daniel Baluta wrote:
-> From: Daniel Baluta <daniel.baluta@nxp.com>
+On Tue, Nov 28, 2023 at 10:43:32AM +0100, Stephan Gerhold wrote:
+> Document power-domains, operating-points-v2 and interconnects to allow
+> making performance state votes for certain clock frequencies of the UART
+> DM controller. The interconnect path to DRAM is needed when UART DM is
+> used together with a DMA engine.
 > 
-> Document new playback-only and capture-only flags which can be used
-> when dai link can only support just one direction: playback or capture
-> but not both.
-> 
-> Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
+> Voting for these shared resources is necessary to guarantee performance
+> with power management enabled. Otherwise these resources might run at
+> minimal performance state which is not sufficient for certain UART
+> baud rates.
+
+I find the subject a bit strange because voting is a QCom term/concept 
+and somewhat outside the scope of the binding. The justification is 
+really just that the h/w has these resources. In any case,
+
+Reviewed-by: Rob Herring <robh@kernel.org>
+
+> Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
 > ---
->  .../devicetree/bindings/sound/audio-graph-port.yaml         | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/audio-graph-port.yaml b/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
-> index 60b5e3fd1115..b13c08de505e 100644
-> --- a/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
-> +++ b/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
-> @@ -19,6 +19,12 @@ definitions:
->      properties:
->        mclk-fs:
->          $ref: simple-card.yaml#/definitions/mclk-fs
-> +      playback-only:
-> +        description: port connection used only for playback
-> +        $ref: /schemas/types.yaml#/definitions/flag
-> +      capture-only:
-> +        description: port connection used only for capture
-> +        $ref: /schemas/types.yaml#/definitions/flag
-
-It seems like we have a random mix of port and endpoint properties here 
-and I can't tell what's the logic for deciding the right place. 
-Everything in port is also in endpoint, so maybe using port is 
-deprecated. In most cases for graph bindings, we put properties in 
-endpoint nodes.
-
-Rob
+>  .../devicetree/bindings/serial/qcom,msm-uartdm.yaml         | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
 
