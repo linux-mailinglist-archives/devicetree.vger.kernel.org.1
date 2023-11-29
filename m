@@ -1,43 +1,41 @@
-Return-Path: <devicetree+bounces-20115-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20116-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EE607FDD64
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 17:40:37 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DBD77FDD62
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 17:40:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6AD2EB20EB0
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 16:40:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 445B81F2100F
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 16:40:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0A19358AF;
-	Wed, 29 Nov 2023 16:40:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80F0638DDC;
+	Wed, 29 Nov 2023 16:40:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F9BD90;
-	Wed, 29 Nov 2023 08:40:28 -0800 (PST)
+Received: from mail11.truemail.it (mail11.truemail.it [IPv6:2001:4b7e:0:8::81])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40B7284;
+	Wed, 29 Nov 2023 08:40:29 -0800 (PST)
 Received: from francesco-nb.corp.toradex.com (31-10-206-125.static.upc.ch [31.10.206.125])
-	by mail11.truemail.it (Postfix) with ESMTPA id 5E03221D82;
+	by mail11.truemail.it (Postfix) with ESMTPA id EE50D21D83;
 	Wed, 29 Nov 2023 17:40:26 +0100 (CET)
 From: Francesco Dolcini <francesco@dolcini.it>
 To: Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
 	Li Yang <leoyang.li@nxp.com>
-Cc: Francesco Dolcini <francesco.dolcini@toradex.com>,
+Cc: Joao Paulo Goncalves <joao.goncalves@toradex.com>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v1 0/2] arm64: dts: freescale: verdin-imx8mp: add support to mallow board
-Date: Wed, 29 Nov 2023 17:40:20 +0100
-Message-Id: <20231129164022.143340-1-francesco@dolcini.it>
+	Francesco Dolcini <francesco.dolcini@toradex.com>
+Subject: [PATCH v1 1/2] dt-bindings: arm: fsl: add verdin imx8mp mallow board
+Date: Wed, 29 Nov 2023 17:40:21 +0100
+Message-Id: <20231129164022.143340-2-francesco@dolcini.it>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20231129164022.143340-1-francesco@dolcini.it>
+References: <20231129164022.143340-1-francesco@dolcini.it>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -46,29 +44,41 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-From: Francesco Dolcini <francesco.dolcini@toradex.com>
+From: Joao Paulo Goncalves <joao.goncalves@toradex.com>
 
-Add Toradex Verdin IMX8MP Mallow carrier board support. Mallow is a
-low-cost carrier board in the Verdin family with a small form factor and
-build for volume production making it ideal for industrial and embedded
-applications.
+Add Mallow carrier board for wifi and nonwifi variants of Toradex Verdin
+IMX8MP SoM. Mallow is a low-cost carrier board in the Verdin family with
+a small form factor and build for volume production making it ideal for
+industrial and embedded applications.
 
 https://www.toradex.com/products/carrier-board/mallow-carrier-board
 
-Joao Paulo Goncalves (2):
-  dt-bindings: arm: fsl: add verdin imx8mp mallow board
-  arm64: dts: freescale: verdin-imx8mp: add support to mallow board
+Signed-off-by: Joao Paulo Goncalves <joao.goncalves@toradex.com>
+Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+---
+ Documentation/devicetree/bindings/arm/fsl.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
- .../devicetree/bindings/arm/fsl.yaml          |   2 +
- arch/arm64/boot/dts/freescale/Makefile        |   2 +
- .../dts/freescale/imx8mp-verdin-mallow.dtsi   | 208 ++++++++++++++++++
- .../imx8mp-verdin-nonwifi-mallow.dts          |  18 ++
- .../freescale/imx8mp-verdin-wifi-mallow.dts   |  18 ++
- 5 files changed, 248 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-verdin-mallow.dtsi
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-verdin-nonwifi-mallow.dts
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi-mallow.dts
-
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 32b195852a75..e2e9a443937d 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -1100,6 +1100,7 @@ properties:
+           - enum:
+               - toradex,verdin-imx8mp-nonwifi-dahlia # Verdin iMX8M Plus Module on Dahlia
+               - toradex,verdin-imx8mp-nonwifi-dev    # Verdin iMX8M Plus Module on Verdin Development Board
++              - toradex,verdin-imx8mp-nonwifi-mallow # Verdin iMX8M Plus Module on Mallow
+               - toradex,verdin-imx8mp-nonwifi-yavia  # Verdin iMX8M Plus Module on Yavia
+           - const: toradex,verdin-imx8mp-nonwifi     # Verdin iMX8M Plus Module without Wi-Fi / BT
+           - const: toradex,verdin-imx8mp             # Verdin iMX8M Plus Module
+@@ -1110,6 +1111,7 @@ properties:
+           - enum:
+               - toradex,verdin-imx8mp-wifi-dahlia # Verdin iMX8M Plus Wi-Fi / BT Module on Dahlia
+               - toradex,verdin-imx8mp-wifi-dev    # Verdin iMX8M Plus Wi-Fi / BT M. on Verdin Development B.
++              - toradex,verdin-imx8mp-wifi-mallow # Verdin iMX8M Plus Wi-Fi / BT Module on Mallow
+               - toradex,verdin-imx8mp-wifi-yavia  # Verdin iMX8M Plus Wi-Fi / BT Module on Yavia
+           - const: toradex,verdin-imx8mp-wifi     # Verdin iMX8M Plus Wi-Fi / BT Module
+           - const: toradex,verdin-imx8mp          # Verdin iMX8M Plus Module
 -- 
 2.25.1
 
