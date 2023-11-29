@@ -1,138 +1,106 @@
-Return-Path: <devicetree+bounces-19864-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19865-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF2627FD0E1
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 09:31:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E4F67FD0F9
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 09:34:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E11101C2097C
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 08:31:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3E7301C20BCE
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 08:34:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 090AE11C9B;
-	Wed, 29 Nov 2023 08:31:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 822076D38;
+	Wed, 29 Nov 2023 08:34:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="x+ER/EVM"
+	dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b="qKyqMBGA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F0692134
-	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 00:31:00 -0800 (PST)
-Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-54ba30784ecso2194059a12.1
-        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 00:31:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701246659; x=1701851459; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=lLcARgNXWLshgrpkp/S+MhgkNopD1zpmMo4PWSTyMEg=;
-        b=x+ER/EVMlDe30Q8pCxhEal1LxK1RzJvftvKH7M7VV5y/sououtHhT6BTjARY+RhYYP
-         PHIDpKCz+djSLuGLKShij/SW2RwnO4ZMWgY79CA0T00jZ4FzwBDnVr1jSOCgcNIi9ik8
-         JUl/VLO5PwCCPemcRy3KkSKhZG2c3bSuwtTIvGPCSxhH7aiN9spb3hPoULhV/QefLj4j
-         By2dEqfwGBsaeNRKZpAFZau0XL8C1ePC+lFpNC/v//mU3kSkeL89y/HGJZfkitv2nZyK
-         wZxU/MaQVrkLOlZ+v2IgV10tTUjBY5c1jLfgEB0Gm5YUjviLwqpp3GGb8xs2PaGH4+hk
-         6X0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701246659; x=1701851459;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lLcARgNXWLshgrpkp/S+MhgkNopD1zpmMo4PWSTyMEg=;
-        b=q5wBGn5y86ZfAeS5zM+FfoZXIrH5OwalPsVJukKDuzaAeNGGg+g06dxaDKc9qv0lA6
-         wOSZwsVqA+tRX0+hHsfiwvevRAmczyfwJh0rGJhCxVDa0RUumlxXKPXpXR9cVReFG1Il
-         egMTFoyG9ybXDmCyIqBnWLVUaxZLdHEmP4bMiZ23LkgSz8Fi9BBMlXnXZ1qUzSqPJk2R
-         QYl+C4X+lVKerr7kDJM1xKiJWhPNsK7xcaAweBWc15xS6uu2dvt5WlqNMEadhffW2q4m
-         uIuDgRj/cJDF8OnQgZwjE1i+zuUvMjUu/z5cLUHPj00xre9SJUKEpr2vRf2U9XMzfevS
-         BJGw==
-X-Gm-Message-State: AOJu0YzR9YP3LceQgMWFRd91ce7UBcbK30IC3NJ7htE3ZkDplEM6IzU1
-	K1o9MZLP3xtpnCH4R5X33jxLSllbkayQZekZEek=
-X-Google-Smtp-Source: AGHT+IHu0sGX+4sFVrTiCj0U941WlQnSSg22e1TE4LaGX8GzrERrbwKALrfTOhMc74Xh6vzdiPkWNg==
-X-Received: by 2002:a05:6402:5d82:b0:54b:1865:be25 with SMTP id if2-20020a0564025d8200b0054b1865be25mr9848574edb.20.1701246659178;
-        Wed, 29 Nov 2023 00:30:59 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.223.109])
-        by smtp.gmail.com with ESMTPSA id b9-20020a056402350900b0054b7e312b97sm2519566edd.38.2023.11.29.00.30.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Nov 2023 00:30:58 -0800 (PST)
-Message-ID: <8f39b628-06c1-426d-ab4d-247dbc911704@linaro.org>
-Date: Wed, 29 Nov 2023 09:30:57 +0100
+Received: from mail5.25mail.st (mail5.25mail.st [74.50.62.9])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A054CC1
+	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 00:34:47 -0800 (PST)
+Received: from localhost (91-158-86-216.elisa-laajakaista.fi [91.158.86.216])
+	by mail5.25mail.st (Postfix) with ESMTPSA id C0AEA60A56;
+	Wed, 29 Nov 2023 08:34:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=atomide.com;
+	s=25mailst; t=1701246886;
+	bh=I/lDSuEF8RAPqoQBqt9LY0+dX2L9iBX+fDTbX+I1oV8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qKyqMBGAutt/Tp/O6+AxQDpOM2Ap/2EcglNbIaDaY5yWTqRtqcoW/YP2ELeyWgOJ6
+	 QZewlwXy9lqB54C7t3i7/HkHRVbVvgmPHk3l2szXfMe3rxVjTXNFY7l60mhhvpyAe2
+	 4ShvGCUyEp6ggoOvDTYTOc4h3czinu259K/C0kjWWWMiNEDavK/f3zReQUIFrj1GHR
+	 xLGUUF3ZY6D6NJAUd5KZ/YkB0djcKs8goXpI8PIKKnLB8V3m4FZucarQ0t+MT74ata
+	 2qDNksOzHOK/KT9SSv4BcjMB7utJ47QYhWTXkKZfnzzcAXzCbEB0FoSLYsDZeMqD+K
+	 qER9N6MH5kRgg==
+Date: Wed, 29 Nov 2023 10:34:33 +0200
+From: Tony Lindgren <tony@atomide.com>
+To: Nishanth Menon <nm@ti.com>
+Cc: Vignesh Raghavendra <vigneshr@ti.com>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	sukrut bellary <sukrut.bellary@gmail.com>
+Subject: Re: [PATCH] arm64: dts: ti: k3-am625-sk: Add support for WL1837
+ module onboard
+Message-ID: <20231129083433.GT5169@atomide.com>
+References: <20231121122441.64385-1-tony@atomide.com>
+ <20231123071015.is4sffvdkunko5ws@radar>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: reset: hisilicon,hi3660-reset: Drop
- providers and consumers from example
-Content-Language: en-US
-To: Rob Herring <robh@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Wei Xu <xuwei5@hisilicon.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231128214759.3975428-1-robh@kernel.org>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
- m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
- HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
- XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
- mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
- v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
- cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
- rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
- qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
- aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
- gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
- dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
- NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
- hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
- oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
- H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
- yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
- 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
- 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
- +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
- FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
- 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
- DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
- oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
- 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
- Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
- qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
- /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
- qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
- EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
- KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
- fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231128214759.3975428-1-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231123071015.is4sffvdkunko5ws@radar>
 
-On 28/11/2023 22:47, Rob Herring wrote:
-> Binding examples should generally only cover what the binding covers. A
-> provider binding doesn't need to show consumers and vice-versa. The
-> hisilicon,hi3660-reset binding example has both, so let's drop them.
+* Nishanth Menon <nm@ti.com> [231123 07:10]:
+> On 14:24-20231121, Tony Lindgren wrote:
+> > From: Vignesh Raghavendra <vigneshr@ti.com>
+> > 
+> > WL1837 WLAN card is present on the original AM625 SK board. It
+> > communicates with the SoC using 4 bit SDIO through the second instance of
+> > MMCSD.
+> > 
+> > Starting with SK-AM62B, there is a M.2 WLAN device connector instead of
 > 
-> This also fixes an undocumented (by schema) compatible warning for
-> "hisilicon,hi3660-iomcu".
+> We support AM62B-SK.
+
+Is that with k3-am62-lp-sk.dts though? Wondering if they should have separate
+dts files for the M.2.
+
+> > the integrated WL1837 WLAN. The M.2 connector should be handled separately
+> > in the k3-am62a.dtsi and k3-am62b.dtsi files as needed.
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
+> Should this rather be an overlay instead of integrated dts fixup? M2
+> connector allows for various options including the newer 33xx family[2].
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Not sure if an overlay makes sense for an integrated device.. It sure makes
+sense for plug in boards though.
 
-Best regards,
-Krzysztof
+> It makes sense for the regulator etc to be on the main dts file, but I
+> am not convinced about it being integrated as part of the dts.
 
+Yeah if AM62B-SK is supported with the same dts. My vote would be for
+separate dts files for the integrated variant to keep things simple :)
+
+> Should we use mmc-pwrseq ?
+
+Yes probably, I think there was some issue earlier with that but sounds like
+it's been solved already.
+
+> Looks like we have run into an issue in BeaglePlay with wlan_en
+> being always on for loading firmware. so is there a need to keep the
+> wlan on while suspended?
+
+If the wlan irq was on the first gpio bank, wake-up path would work for
+the wlan. But I think it's wired to a gpio bank with no wake-up capability,
+and the padconf wake related patches are still pending. So no need to keep
+the wlan enabled so far AFAIK.
+
+Regards,
+
+Tony
+
+> [1] https://sukrutb.github.io/s2d_TI_am625-BeaglePlay/ (see towards the
+> end)
+> [2] https://www.ti.com/tool/M2-CC3301
 
