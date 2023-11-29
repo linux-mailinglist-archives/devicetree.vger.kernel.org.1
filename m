@@ -1,99 +1,106 @@
-Return-Path: <devicetree+bounces-20172-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20173-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FC6C7FE16E
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 21:56:00 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00B4B7FE178
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 22:00:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ED72D2823FD
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 20:55:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 31DF91C208CA
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 21:00:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 119526166B;
-	Wed, 29 Nov 2023 20:55:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DF6C61663;
+	Wed, 29 Nov 2023 20:59:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CQEG1oDC"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fCMh6vsP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-x1129.google.com (mail-yw1-x1129.google.com [IPv6:2607:f8b0:4864:20::1129])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B807010D0
-	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 12:55:48 -0800 (PST)
-Received: by mail-yw1-x1129.google.com with SMTP id 00721157ae682-5cbcfdeaff3so2326197b3.0
-        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 12:55:48 -0800 (PST)
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20D68E6
+	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 12:59:54 -0800 (PST)
+Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-3316c6e299eso158373f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 12:59:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701291348; x=1701896148; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TYo9siRRukjyydYpWOxu+G5v9shMXxvSYO9qfz7LOa0=;
-        b=CQEG1oDC57aOHEeElqbxX/8RuWEse9qb9F5n1cPybUXnf2XnjDI6lmffgslSxkXHKj
-         re30QX+97AgjXEruLqA7By6uc/9ldSAfSjcleTUmF8++hyIVUubhVEBRQtk5AudH6D+v
-         tLX2ps+WlXSQqK2N+pRP0dJGfH6Mug7y6l7w5Lw1OVogTgqDzJ7lnxtwiL0tqwetopzk
-         v8eTM5z30V9meqFvRIaJNdWOt3kfDwBi/qq6oIJDkU/VMBVAHy0ahoACczIk0bBGGY2Z
-         9kQZ6mAZMSDLYasj5Fbci9No208TRKPFLkTDgQ3Euj7rkP/ASOiML+4ocPHNlxebjxJg
-         gaHQ==
+        d=linaro.org; s=google; t=1701291592; x=1701896392; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=FzQQfOp27wgqk+mvGXV7TAJbuPcrusmFmRn6zVsoj4c=;
+        b=fCMh6vsPNm/I17BBfoq0wveOG2abeVkXoSFKIpjIJCbUKMtYEQrPlVqqqGOnheiqK5
+         v6kHPHC2e8fQewcK1aJ6bqWdel9R60PVktOlJFMEvucxIsdk09drbberBgJVT1qZpddt
+         AJ4EDXHR/QHOIj7G9UJk6hnmSmgI5204eQMnxtbo33SbblrdId6L3gSaZ10/RRSUSRXL
+         fXdez2ex4ze/6whhycFZa80Aj1jyWYn4y1Tp5UQKaj7LYHSjhvB3wPRp4NQjO9AfnRz6
+         tXlXGGktRw233ZavCIlVXZprd1EXXOCqoagorpfU6k5b2d7HKI+En1Th853pOpwtPmdn
+         ciWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701291348; x=1701896148;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=TYo9siRRukjyydYpWOxu+G5v9shMXxvSYO9qfz7LOa0=;
-        b=tPkLjaO/h7GVuxsj9N7mkQEzXsni3AHNBAFQ8ZUADSgPCWKKC7ELttsY98vdiqdy8k
-         M/wEFe2hWUGyUx92uW2P/Hn4VeV88UalNdYX4y62653xv1N8szPqq6ZakNTx3qL+/N9O
-         IY6vJ/rtZSFMW9jvxX4HiAXu07lrvanEGkeEzhVWVu3PQQ0ERXloGl/WKpq2SO9ccOf7
-         haB5km2jjB3EORv0SZWoefoyWlon1qx2/3k+GrCfZrfo0+6TRLvsYxDYZqqB9HL4WWNN
-         cO2xew8aEaoRaWwbrf/RmPvd3RwXrUx4zNKsJo4fIniWF7Vm/89g5FojOIc3gDAPQIb6
-         xhaw==
-X-Gm-Message-State: AOJu0Yx7DoBuWr0VN2dA9ZiKnVr//bC6hgqH6m4Oppeg9QFDSFq3G3Td
-	xNAgfLe/iXZdlpUJn3Tch8uUwLoKHC212CsdIsQMzQ==
-X-Google-Smtp-Source: AGHT+IHY5Wklar4mLgKVnkc8NkfHKvGY1m88CFYYIg2W1tC54blVltwsxR7dwpNX9DudxX79+O8uwT3RD441V3yMglQ=
-X-Received: by 2002:a81:9e0f:0:b0:591:15a6:c11f with SMTP id
- m15-20020a819e0f000000b0059115a6c11fmr17702431ywj.50.1701291347861; Wed, 29
- Nov 2023 12:55:47 -0800 (PST)
+        d=1e100.net; s=20230601; t=1701291592; x=1701896392;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=FzQQfOp27wgqk+mvGXV7TAJbuPcrusmFmRn6zVsoj4c=;
+        b=YBHBbfQQuEuxtwx2yiYdbUHCb4smsjlJvtw/zeGU4lYGEahvp7A8rwmmtIh7F5RxEw
+         sVLzcBzVIw9yVxdoFQqUFS2PHpvI2Q8UfggcXiSWlh4Q5/azGXFs9+dWhJWZnINsII/n
+         tU2I1HzQT7b8k2WdHqADFljdO9EeJTsiiDn/C4ht3F7pz4TUMwAK8lu0Geg4BRb6oowQ
+         piNgD59eiXGnFUbfbe7T/d4JQZNG1lDp7rFxRl1SjJGHZdq/6QuGMcs6Q94goBb88bro
+         /H2IvXvUMUVxs6R8bSGF+UCWS0tHXpPVvTViA0McBhn7L1D5jU6qYSU2FafeHvP8xFQm
+         fNUA==
+X-Gm-Message-State: AOJu0Yz08hpo9/Jk1SL8PBRcOAbtQaxdiX4zhCmvnTwb9ULYM7iEujlm
+	as/w5JOWaNc4nl/r+gpGHu9n3A==
+X-Google-Smtp-Source: AGHT+IFSqhdoAfTiT6S2k82UhyjDcshJX0U75yjF7Rv6AWlXKr5UKlcpowl5+2AHrDv4ASj5TZwRIA==
+X-Received: by 2002:a5d:6343:0:b0:32f:a5af:99ca with SMTP id b3-20020a5d6343000000b0032fa5af99camr13822722wrw.69.1701291592610;
+        Wed, 29 Nov 2023 12:59:52 -0800 (PST)
+Received: from [192.168.100.102] ([37.228.218.3])
+        by smtp.gmail.com with ESMTPSA id hg11-20020a05600c538b00b0040b48690c49sm3410823wmb.6.2023.11.29.12.59.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 29 Nov 2023 12:59:51 -0800 (PST)
+Message-ID: <d65653d1-e7f6-45c6-ba2c-0ef973866ffb@linaro.org>
+Date: Wed, 29 Nov 2023 20:59:50 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231124-ltc4282-support-v2-0-952bf926f83c@analog.com>
- <20231124-ltc4282-support-v2-2-952bf926f83c@analog.com> <CACRpkdaksfS4WLNQ6ohauAPq3z2LPG2uF37_jWtm0brQHaDtNw@mail.gmail.com>
- <6384831c05b8ceeaf4a16cf9229770252989b762.camel@gmail.com>
-In-Reply-To: <6384831c05b8ceeaf4a16cf9229770252989b762.camel@gmail.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Wed, 29 Nov 2023 21:55:35 +0100
-Message-ID: <CACRpkdZr6TdQCLy73Yx2RdMgQifd67remdxENBKYx3UvEMm87A@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] hwmon: ltc4282: add support for the LTC4282 chip
-To: =?UTF-8?B?TnVubyBTw6E=?= <noname.nuno@gmail.com>
-Cc: nuno.sa@analog.com, linux-hwmon@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-doc@vger.kernel.org, 
-	Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Corbet <corbet@lwn.net>, Bartosz Golaszewski <brgl@bgdev.pl>, Andy Shevchenko <andy@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 02/15] clk: qcom: Use qcom_branch_set_clk_en()
+Content-Language: en-US
+To: Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>, Andy Gross <agross@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>,
+ linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230717-topic-branch_aon_cleanup-v2-0-2a583460ef26@linaro.org>
+ <20230717-topic-branch_aon_cleanup-v2-2-2a583460ef26@linaro.org>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20230717-topic-branch_aon_cleanup-v2-2-2a583460ef26@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Nov 29, 2023 at 5:08=E2=80=AFPM Nuno S=C3=A1 <noname.nuno@gmail.com=
-> wrote:
+On 29/11/2023 18:59, Konrad Dybcio wrote:
+> Instead of magically poking at the bit0 of branch clocks' CBCR, use
+> the newly introduced helper.
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
 
-> Cool, I actually thought that having the direction + get/set stuff would =
-be weird
-> given the fact that we can only PULL_LOW or HIGH_Z the pins.
+> -	/*
+> -	 * Keep clocks always enabled:
+> -	 *	cam_cc_gdsc_clk
+> -	 *	cam_cc_sleep_clk
+> -	 */
+> -	regmap_update_bits(regmap, 0x1419c, BIT(0), BIT(0));
+> -	regmap_update_bits(regmap, 0x142cc, BIT(0), BIT(0));
+> +	qcom_branch_set_clk_en(regmap, 0x1419c); /* CAM_CC_GDSC_CLK */
+> +	qcom_branch_set_clk_en(regmap, 0x142cc); /* CAM_CC_SLEEP_CLK */
 
-There are several drivers in the kernel that implement .set_config(),
-it's existing and should be enabled if it has uses.
+This all looks functionally correct to me, wondering what your 
+motivation for changing the comment is though.
 
-As Andy points out: when the driver reaches a certain complexity,
-such as a huge table of muxable pins (that need to be configured to
-a certain muxing from device tree), and numerous complicated
-pin config options (also needing to be set up from device tree),
-it may be worth to implement a separate pin control driver that
-act as "backend" for the GPIO driver.
+Anyway, IDK that matters.
 
-I think a separate pin control driver would be overkill in this case,
-it's a PWM driver with some smallish GPIO portions AFAICT,
-but you get to decide.
-
-Yours,
-Linus Walleij
+Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
