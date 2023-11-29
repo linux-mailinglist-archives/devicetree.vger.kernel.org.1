@@ -1,390 +1,184 @@
-Return-Path: <devicetree+bounces-19875-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19876-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 374307FD16C
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 09:53:03 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CE547FD174
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 09:56:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4942EB21237
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 08:53:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 925A2B20E74
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 08:56:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E70A125D2;
-	Wed, 29 Nov 2023 08:52:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBEA912B71;
+	Wed, 29 Nov 2023 08:56:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Hja4Dj3K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16A4ABC
-	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 00:52:52 -0800 (PST)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <sha@pengutronix.de>)
-	id 1r8GJ6-0003yq-8X; Wed, 29 Nov 2023 09:52:32 +0100
-Received: from [2a0a:edc0:2:b01:1d::c0] (helo=ptx.whiteo.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <sha@pengutronix.de>)
-	id 1r8GJ3-00CMfK-Iz; Wed, 29 Nov 2023 09:52:29 +0100
-Received: from sha by ptx.whiteo.stw.pengutronix.de with local (Exim 4.92)
-	(envelope-from <sha@pengutronix.de>)
-	id 1r8GJ3-004Pcx-G7; Wed, 29 Nov 2023 09:52:29 +0100
-Date: Wed, 29 Nov 2023 09:52:29 +0100
-From: Sascha Hauer <s.hauer@pengutronix.de>
-To: Andy Yan <andy.yan@rock-chips.com>
-Cc: Andy Yan <andyshrk@163.com>, heiko@sntech.de, hjc@rock-chips.com,
-	dri-devel@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	robh+dt@kernel.org, devicetree@vger.kernel.org,
-	sebastian.reichel@collabora.com, kever.yang@rock-chips.com,
-	chris.obbard@collabora.com
-Subject: Re: [PATCH v2 11/12] drm/rockchip: vop2: Add debugfs support
-Message-ID: <20231129085229.GC963049@pengutronix.de>
-References: <20231122125316.3454268-1-andyshrk@163.com>
- <20231122125601.3455031-1-andyshrk@163.com>
- <20231127101337.GU3359458@pengutronix.de>
- <ea24a638-d10f-4f58-9992-1c80bafdd6d4@rock-chips.com>
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E7F01707;
+	Wed, 29 Nov 2023 00:56:20 -0800 (PST)
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-54afd43c83cso6796955a12.0;
+        Wed, 29 Nov 2023 00:56:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1701248179; x=1701852979; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=UzC7u7XHPaOQqtUVRI8/zgc51khZ8nOUC/D9UTwFyWk=;
+        b=Hja4Dj3KucQ5/88SDiGAEW9XWUECq2m1oaxqvra9RjH2QO795RaC9sVTuRJHUWKLAR
+         H49Hrl4TqMdFO4WBilcl1rjPzD2WwOpntVK0gkEOxDxtwlwAMzVpLXcW5WkoeURZT87v
+         2Uz5jzvwO8IpOqYHxJLlZ4r55PA+v2doUAICLwXWuec6NyQI2mI0C3JeNuYl+FnPwhsb
+         Oc2UlPwupg766KzdWATI6P1Qaw+LtFppCixXKN7GTIcEB8DCpdI0IsnV0qn/RIKsYOFx
+         3QeHTCQc8syEX/6XKBEqsZoGcLwGdBOCqmDPsJXcVKrglLMMfB8jcss9OVeRefs3GEA2
+         NO3w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701248179; x=1701852979;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=UzC7u7XHPaOQqtUVRI8/zgc51khZ8nOUC/D9UTwFyWk=;
+        b=v4U0fmyRDtdlc6DMSjuhfMObJvRVn9jmJ+EybxPf/qk1+eViAAu/rQEDtNA1Adaa8Y
+         G59l3dPCjl0hKSjcEtnhrTiysGpGzz55ibtw/tpG9P4nhjfu0Bc1FbaSUY5NIoU58wgl
+         wvpY9DHigvim/DzFuED+vMO/XAlLzQibGXkmnpB2Vw2+/vH5wCA+Mhfo/V+AcVzzHtnK
+         2Hr6U23dqotg7juLkrToNT9fM66peuLbM5S/g8x87+ARBaOP2NPK5oscJRf6D4Slhmqp
+         2nJ6SEfp/WTVOTkcDnqxh5HcprDkrdu9vD9sJLroTlc3xMac/ZLZFm6MqUYsSkIbs9Dv
+         ssgg==
+X-Gm-Message-State: AOJu0YySW5RhM3tLV8Aoszn3wlSHELuKD2MU4JItX5z+3QkAU46DsdEY
+	0N2HsSY7w0o5ktnDevzuIBU=
+X-Google-Smtp-Source: AGHT+IExjvaOkUK2FbCLNi1a2wfzeXF8TuA05XOy41Zpy+2YJf6EPwUMDERCJj1MJ0WGUTor4fDgQw==
+X-Received: by 2002:aa7:d805:0:b0:548:7a28:4df4 with SMTP id v5-20020aa7d805000000b005487a284df4mr10958769edq.15.1701248178697;
+        Wed, 29 Nov 2023 00:56:18 -0800 (PST)
+Received: from ?IPv6:2001:a61:3456:4e01:6ae:b55a:bd1d:57fc? ([2001:a61:3456:4e01:6ae:b55a:bd1d:57fc])
+        by smtp.gmail.com with ESMTPSA id f11-20020a056402354b00b0054b59096da4sm3377724edd.13.2023.11.29.00.56.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 29 Nov 2023 00:56:18 -0800 (PST)
+Message-ID: <aa9d45b7c7a21fa818f79d249536c461b2dcac9c.camel@gmail.com>
+Subject: Re: [PATCH v2 2/2] hwmon: ltc4282: add support for the LTC4282 chip
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>, Guenter Roeck
+ <linux@roeck-us.net>,  Andy Shevchenko <andy@kernel.org>
+Cc: kernel test robot <lkp@intel.com>, Nuno Sa via B4 Relay
+ <devnull+nuno.sa.analog.com@kernel.org>, linux-hwmon@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-doc@vger.kernel.org, 
+ oe-kbuild-all@lists.linux.dev, Jean Delvare <jdelvare@suse.com>, Rob
+ Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Jonathan
+ Corbet <corbet@lwn.net>, Bartosz Golaszewski <brgl@bgdev.pl>, Linus Walleij
+ <linus.walleij@linaro.org>
+Date: Wed, 29 Nov 2023 09:56:17 +0100
+In-Reply-To: <d4a9bd79-1cb6-4da6-9380-bb8085866533@kernel.org>
+References: <20231124-ltc4282-support-v2-2-952bf926f83c@analog.com>
+	 <202311250548.lUn3bm1A-lkp@intel.com>
+	 <fb2aaa4c69c88738499dfbf46ef93e3b81ca93cb.camel@gmail.com>
+	 <76957975-56e7-489e-9c79-086b6c1ffe89@kernel.org>
+	 <ac950d01-d9aa-4fb7-810d-b21335e4cc94@kernel.org>
+	 <ZWS90GQTJWA7DrML@smile.fi.intel.com>
+	 <bcc5da24-7243-42fa-a82b-48851ce17c0c@kernel.org>
+	 <cacce41f-f1c0-4f76-ab24-c6ea8bb0303f@roeck-us.net>
+	 <c7e7b7bedd5b016a29cc86f767cbec533d727ff4.camel@gmail.com>
+	 <d4a9bd79-1cb6-4da6-9380-bb8085866533@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-15
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ea24a638-d10f-4f58-9992-1c80bafdd6d4@rock-chips.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Mon, Nov 27, 2023 at 06:56:34PM +0800, Andy Yan wrote:
->    Hi Sascha:
-> 
->    thanks for you review.
-> 
->    On 11/27/23 18:13, Sascha Hauer wrote:
-> 
->  On Wed, Nov 22, 2023 at 08:56:01PM +0800, Andy Yan wrote:
-> 
->  From: Andy Yan [1]<andy.yan@rock-chips.com>
-> 
->  /sys/kernel/debug/dri/vop2/summary:  dump vop display state
->  /sys/kernel/debug/dri/vop2/regs: dump whole vop registers
->  /sys/kernel/debug/dri/vop2/active_regs: only dump the registers of
->  activated modules
-> 
->  Signed-off-by: Andy Yan [2]<andy.yan@rock-chips.com>
->  ---
-> 
->  (no changes since v1)
-> 
->   drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 399 +++++++++++++++++++
->   1 file changed, 399 insertions(+)
-> 
->  diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
->  index 9eecbe1f71f9..4a2342209c15 100644
->  --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
->  +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
->  @@ -27,6 +27,7 @@
->   #include <drm/drm_debugfs.h>
->   #include <drm/drm_flip_work.h>
->   #include <drm/drm_framebuffer.h>
->  +#include <drm/drm_gem_framebuffer_helper.h>
->   #include <drm/drm_probe_helper.h>
->   #include <drm/drm_vblank.h>
-> 
->  @@ -187,6 +188,7 @@ struct vop2 {
->           */
->          u32 registered_num_wins;
-> 
->  +       struct resource *res;
->          void __iomem *regs;
->          struct regmap *map;
-> 
->  @@ -228,6 +230,44 @@ struct vop2 {
->   #define vop2_output_if_is_lvds(x)      (x == ROCKCHIP_VOP2_EP_LVDS0 || x == ROCKCHIP_VOP2_EP_LVDS1)
->   #define vop2_output_if_is_dpi(x)       (x == ROCKCHIP_VOP2_EP_RGB0)
-> 
->  +struct vop2_regs_dump {
->  +       const char *name;
->  +       u32 base;
->  +       u32 en_reg;
->  +       u32 en_val;
->  +       u32 en_mask;
->  +};
->  +
->  +/*
->  + * bus-format types.
->  + */
->  +struct drm_bus_format_enum_list {
->  +       int type;
->  +       const char *name;
->  +};
->  +
->  +static const struct drm_bus_format_enum_list drm_bus_format_enum_list[] = {
->  +       { DRM_MODE_CONNECTOR_Unknown, "Unknown" },
->  +       { MEDIA_BUS_FMT_RGB565_1X16, "RGB565_1X16" },
->  +       { MEDIA_BUS_FMT_RGB666_1X18, "RGB666_1X18" },
->  +       { MEDIA_BUS_FMT_RGB666_1X24_CPADHI, "RGB666_1X24_CPADHI" },
->  +       { MEDIA_BUS_FMT_RGB666_1X7X3_SPWG, "RGB666_1X7X3_SPWG" },
->  +       { MEDIA_BUS_FMT_YUV8_1X24, "YUV8_1X24" },
->  +       { MEDIA_BUS_FMT_UYYVYY8_0_5X24, "UYYVYY8_0_5X24" },
->  +       { MEDIA_BUS_FMT_YUV10_1X30, "YUV10_1X30" },
->  +       { MEDIA_BUS_FMT_UYYVYY10_0_5X30, "UYYVYY10_0_5X30" },
->  +       { MEDIA_BUS_FMT_RGB888_3X8, "RGB888_3X8" },
->  +       { MEDIA_BUS_FMT_RGB888_1X24, "RGB888_1X24" },
->  +       { MEDIA_BUS_FMT_RGB888_1X7X4_SPWG, "RGB888_1X7X4_SPWG" },
->  +       { MEDIA_BUS_FMT_RGB888_1X7X4_JEIDA, "RGB888_1X7X4_JEIDA" },
->  +       { MEDIA_BUS_FMT_UYVY8_2X8, "UYVY8_2X8" },
->  +       { MEDIA_BUS_FMT_YUYV8_1X16, "YUYV8_1X16" },
->  +       { MEDIA_BUS_FMT_UYVY8_1X16, "UYVY8_1X16" },
->  +       { MEDIA_BUS_FMT_RGB101010_1X30, "RGB101010_1X30" },
->  +       { MEDIA_BUS_FMT_YUYV10_1X20, "YUYV10_1X20" },
->  +};
->  +static DRM_ENUM_NAME_FN(drm_get_bus_format_name, drm_bus_format_enum_list)
->  +
->   static const struct regmap_config vop2_regmap_config;
-> 
->   static struct vop2_video_port *to_vop2_video_port(struct drm_crtc *crtc)
->  @@ -2487,6 +2527,363 @@ static const struct drm_crtc_helper_funcs vop2_crtc_helper_funcs = {
->          .atomic_disable = vop2_crtc_atomic_disable,
->   };
-> 
->  +static void vop2_dump_connector_on_crtc(struct drm_crtc *crtc, struct seq_file *s)
->  +{
->  +       struct drm_connector_list_iter conn_iter;
->  +       struct drm_connector *connector;
->  +
->  +       drm_connector_list_iter_begin(crtc->dev, &conn_iter);
->  +       drm_for_each_connector_iter(connector, &conn_iter) {
->  +               if (crtc->state->connector_mask & drm_connector_mask(connector))
->  +                       seq_printf(s, "    Connector: %s\n", connector->name);
->  +
->  +       }
->  +       drm_connector_list_iter_end(&conn_iter);
->  +}
->  +
->  +static int vop2_plane_state_dump(struct seq_file *s, struct drm_plane *plane)
->  +{
->  +       struct vop2_win *win = to_vop2_win(plane);
->  +       struct drm_plane_state *pstate = plane->state;
->  +       struct drm_rect *src, *dst;
->  +       struct drm_framebuffer *fb;
->  +       struct drm_gem_object *obj;
->  +       struct rockchip_gem_object *rk_obj;
->  +       bool xmirror;
->  +       bool ymirror;
->  +       bool rotate_270;
->  +       bool rotate_90;
->  +       dma_addr_t fb_addr;
->  +       int i;
->  +
->  +       seq_printf(s, "    %s: %s\n", win->data->name, pstate->crtc ? "ACTIVE" : "DISABLED");
->  +       if (!pstate || !pstate->fb)
->  +               return 0;
->  +
->  +       fb = pstate->fb;
->  +       src = &pstate->src;
->  +       dst = &pstate->dst;
->  +       xmirror = pstate->rotation & DRM_MODE_REFLECT_X ? true : false;
->  +       ymirror = pstate->rotation & DRM_MODE_REFLECT_Y ? true : false;
->  +       rotate_270 = pstate->rotation & DRM_MODE_ROTATE_270;
->  +       rotate_90 = pstate->rotation & DRM_MODE_ROTATE_90;
->  +
->  +       seq_printf(s, "\twin_id: %d\n", win->win_id);
->  +
->  +       seq_printf(s, "\tformat: %p4cc%s glb_alpha[0x%x]\n",
->  +                  &fb->format->format,
->  +                  drm_is_afbc(fb->modifier) ? "[AFBC]" : "",
->  +                  pstate->alpha >> 8);
->  +       seq_printf(s, "\trotate: xmirror: %d ymirror: %d rotate_90: %d rotate_270: %d\n",
->  +                  xmirror, ymirror, rotate_90, rotate_270);
->  +       seq_printf(s, "\tzpos: %d\n", pstate->normalized_zpos);
->  +       seq_printf(s, "\tsrc: pos[%d, %d] rect[%d x %d]\n", src->x1 >> 16,
->  +                  src->y1 >> 16, drm_rect_width(src) >> 16,
->  +                  drm_rect_height(src) >> 16);
->  +       seq_printf(s, "\tdst: pos[%d, %d] rect[%d x %d]\n", dst->x1, dst->y1,
->  +                  drm_rect_width(dst), drm_rect_height(dst));
->  +
->  +       for (i = 0; i < fb->format->num_planes; i++) {
->  +               obj = fb->obj[0];
->  +               rk_obj = to_rockchip_obj(obj);
->  +               fb_addr = rk_obj->dma_addr + fb->offsets[0];
->  +
->  +               seq_printf(s, "\tbuf[%d]: addr: %pad pitch: %d offset: %d\n",
->  +                          i, &fb_addr, fb->pitches[i], fb->offsets[i]);
->  +       }
->  +
->  +       return 0;
->  +}
->  +
->  +static int vop2_crtc_state_dump(struct drm_crtc *crtc, struct seq_file *s)
->  +{
->  +       struct vop2_video_port *vp = to_vop2_video_port(crtc);
->  +       struct drm_crtc_state *cstate = crtc->state;
->  +       struct rockchip_crtc_state *vcstate;
->  +       struct drm_display_mode *mode;
->  +       struct drm_plane *plane;
->  +       bool interlaced;
->  +
->  +       seq_printf(s, "Video Port%d: %s\n", vp->id, !cstate ?
->  +                  "DISABLED" : cstate->active ? "ACTIVE" : "DISABLED");
->  +
->  +       if (!cstate || !cstate->active)
->  +               return 0;
->  +
->  +       mode = &crtc->state->adjusted_mode;
->  +       vcstate = to_rockchip_crtc_state(cstate);
->  +       interlaced = !!(mode->flags & DRM_MODE_FLAG_INTERLACE);
->  +
->  +       vop2_dump_connector_on_crtc(crtc, s);
->  +       seq_printf(s, "\tbus_format[%x]: %s\n", vcstate->bus_format,
->  +                   drm_get_bus_format_name(vcstate->bus_format));
->  +       seq_printf(s, "\toutput_mode[%x]", vcstate->output_mode);
->  +       seq_printf(s, " color_space[%d]\n", vcstate->color_space);
->  +       seq_printf(s, "    Display mode: %dx%d%s%d\n",
->  +                   mode->hdisplay, mode->vdisplay, interlaced ? "i" : "p",
->  +                   drm_mode_vrefresh(mode));
->  +       seq_printf(s, "\tclk[%d] real_clk[%d] type[%x] flag[%x]\n",
->  +                   mode->clock, mode->crtc_clock, mode->type, mode->flags);
->  +       seq_printf(s, "\tH: %d %d %d %d\n", mode->hdisplay, mode->hsync_start,
->  +                   mode->hsync_end, mode->htotal);
->  +       seq_printf(s, "\tV: %d %d %d %d\n", mode->vdisplay, mode->vsync_start,
->  +                   mode->vsync_end, mode->vtotal);
->  +
->  +       drm_atomic_crtc_for_each_plane(plane, crtc) {
->  +               vop2_plane_state_dump(s, plane);
->  +       }
->  +
->  +       return 0;
->  +}
->  +
->  +static int vop2_summary_show(struct seq_file *s, void *data)
->  +{
->  +       struct drm_info_node *node = s->private;
->  +       struct drm_minor *minor = node->minor;
->  +       struct drm_device *drm_dev = minor->dev;
->  +       struct drm_crtc *crtc;
->  +
->  +       drm_modeset_lock_all(drm_dev);
->  +       drm_for_each_crtc(crtc, drm_dev) {
->  +               vop2_crtc_state_dump(crtc, s);
->  +       }
->  +       drm_modeset_unlock_all(drm_dev);
->  +
->  +       return 0;
->  +}
->  +
->  +static void vop2_regs_print(struct vop2 *vop2, struct seq_file *s, struct vop2_regs_dump *dump)
->  +{
->  +       resource_size_t start;
->  +       const int reg_num = 0x110 / 4;
-> 
->  If I'm not mistaken this prints a register space of 0x110 bytes.
->  Shouldn't it be 0x100 bytes instead?
-> 
->  Also, are all these register spaces really have the same size? Does it
->  make sense to add the size to struct vop2_regs_dump?
-> 
->    In fact, most used registers of the most blocks are not more than 100, but
->    for Cluster windows,
-> 
->    there is a CLUSTER_CTRL register sting at 0x100.
-> 
->    I think i should add the size to struct vop2_regs_dump.
-> 
-> 
->  +       u32 val;
->  +       int i;
->  +
->  +       if (dump->en_mask) {
->  +               val = vop2_readl(vop2, dump->base + dump->en_reg);
->  +               if ((val & dump->en_mask) != dump->en_val)
->  +                       return;
->  +       }
->  +       seq_printf(s, "\n%s:\n", dump->name);
->  +
->  +       start = vop2->res->start + dump->base;
->  +       for (i = 0; i < reg_num;) {
->  +               seq_printf(s, "%08x:  %08x %08x %08x %08x\n", (u32)start + i * 4,
->  +                          vop2_readl(vop2, dump->base + (4 * i)),
->  +                          vop2_readl(vop2, dump->base + (4 * (i + 1))),
->  +                          vop2_readl(vop2, dump->base + (4 * (i + 2))),
->  +                          vop2_readl(vop2, dump->base + (4 * (i + 3))));
->  +               i += 4;
->  +       }
->  +
->  +}
->  +
->  +static int vop2_regs_show(struct seq_file *s, void *arg)
->  +{
->  +       struct drm_info_node *node = s->private;
->  +       struct vop2 *vop2 = (struct vop2 *)node->info_ent->data;
->  +       struct drm_minor *minor = node->minor;
->  +       struct drm_device *drm_dev = minor->dev;
->  +
->  +       struct vop2_regs_dump dump;
->  +
->  +       drm_modeset_lock_all(drm_dev);
->  +
->  +       if (vop2->enable_count) {
->  +               dump.en_mask = 0;
->  +
->  +               dump.name = "SYS";
->  +               dump.base = RK3568_REG_CFG_DONE;
->  +               vop2_regs_print(vop2, s, &dump);
-> 
->  Can you create a statically initialized array of struct vop2_regs_dump
->  and iterate over it?
->  You would need an additional present_in_soc_xy flag in struct
->  vop2_regs_dump, but other than that I don't see a problem and the result
->  might look better.
-> 
->  For the windows it might also be an option to iterate over
->  vop2->data->win instead. This array already contains the register base
->  addresses and window names.
-> 
->    In fact, we have a dump_regs  arrar in vop2_data per soc in our bsp
->    kernel[0],
-> 
->    do you like something like that?
-> 
->    [0]
->    [3]https://github.com/armbian/linux-rockchip/blob/rk-5.10-rkr6/drivers/gpu/drm/rockchip/rockchip_vop2_reg.c#L3684
+On Wed, 2023-11-29 at 09:45 +0100, Krzysztof Kozlowski wrote:
+> On 29/11/2023 09:35, Nuno S=C3=A1 wrote:
+> > On Tue, 2023-11-28 at 10:03 -0800, Guenter Roeck wrote:
+> > > On 11/28/23 08:50, Krzysztof Kozlowski wrote:
+> > > > On 27/11/2023 17:03, Andy Shevchenko wrote:
+> > > > > On Mon, Nov 27, 2023 at 09:12:14AM +0100, Krzysztof Kozlowski wro=
+te:
+> > > > > > On 27/11/2023 09:10, Krzysztof Kozlowski wrote:
+> > > > >=20
+> > > > > ...
+> > > > >=20
+> > > > > > Wait, this was not even unusual test, just standard compile, wh=
+ich means
+> > > > > > you did not do basic tests on your end. You must build your new=
+ driver
+> > > > > > with W=3D1, smatch, sparse and coccinelle before sending upstre=
+am.
+> > > > >=20
+> > > > > Well, sparse is lagging in development, for the last year it's at=
+ least two
+> > > > > times it broke kernel builds because of being not ready for the n=
+ew stuff
+> > > > > used
+> > > > > in the kernel. Do we have anybody to sync this? I don't think so,=
+ hence
+> > > > > requiring this from developer is doubtful. Otherwise I agree, tha=
+t basic
+> > > > > compilation with GCC/LLVM must be done.
+> > > >=20
+> > > > Sparse still detects several issues and handles lock annotations, s=
+o it
+> > > > is useful. But if you disagree with that part, I still insist on Sm=
+atch
+> > > > (which is actively developed and works great) and Coccinelle (also
+> > > > actively developed).
+> > > >=20
+> > >=20
+> > > Quite frankly, for my part I would be more than happy if people would=
+ read
+> > > and follow Documentation/hwmon/submitting-patches.rst. Most submitter=
+s don't
+> > > bother. That doesn't even mention building with W=3D1 (the much more =
+optimistic
+> > > me who wrote that document several years ago thought that would be ob=
+vious),
+> > > much less running any source code analysis tools . Feel free to submi=
+t a patch
+> > > to strengthen the wording there. If you do that, it would have to be =
+more
+> > > explicit
+> > > then "run smatch" or "run coccinelle" because hardly anyone would kno=
+w how
+> > > to do that.
+> > >=20
+> >=20
+> > IMO, submitting patches to linux is already not the most straightforwar=
+d thing in
+> > the
+>=20
+> True...
+>=20
+> > world. If we are now going to ask to run smatch, cocci, sparse and so o=
+n, we will
+> > scare even more developers from the community... I mean, the bots are a=
+lso in
+> > place
+>=20
+> This is not related to Linux at all. When you develop any C or C++ code,
+> you run these tools. Upstream or downstream, does not matter. Why would
+> you not use automated, free and easy tools to detect errors in your
+> code? It's just a matter of professional approach to your code.
+>=20
 
-This looks good from a first glance. I would suggest using C99
-initializers though.
+That's true but still are too many things to remember for every single chan=
+ge/driver
+one sends upstream. Yeah, I might just wrap b4 in a script to run more adva=
+nced
+checks on my patches before 'send'.
 
->  Not sure if we really need an additional debugfs entry to print only the
->  active entities, but if we do then we could avoid a bit of code
->  duplication by adding creating a common register dump function called
->  from vop2_regs_show() and vop2_active_regs_show() which takes an
->  additional ignore_disabled argument.
-> 
->    As the whole vop2 registers block is very large, so some times only dump
-> 
->    active modules make we dig bugs easier.
-> 
->    It seems that if we  "initialized array of struct vop2_regs_dump" as you
->    said befor, we can avoid
-> 
->    some duplication code here?
+> > to help with these kind of more advanced analysis, right?
+>=20
+> They do not come for free (someone is paying for them even if they are
+> for free to you) and they have delays in responses.
+>=20
 
-Yes.
+Yeah, but actually thanks to you, I discovered I can have my private branch=
+es covered
+by lkp (and I got the PR merged already) and I do not mind having 1/2 day d=
+elay for
+sending patches. So maybe that will help me avoid these kind of mistakes.
 
-Sascha
+- Nuno S=C3=A1
+>=20
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
