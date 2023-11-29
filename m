@@ -1,97 +1,242 @@
-Return-Path: <devicetree+bounces-20032-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20033-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A96377FD950
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 15:26:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CBF3B7FD958
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 15:29:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DA9701C20A43
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 14:26:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E9E321C209A3
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 14:29:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94C4D31581;
-	Wed, 29 Nov 2023 14:26:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 419173158E;
+	Wed, 29 Nov 2023 14:29:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cK56JkMn"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="pC64L9Hw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA56BD5E;
-	Wed, 29 Nov 2023 06:26:38 -0800 (PST)
-Received: by mail-pl1-x62c.google.com with SMTP id d9443c01a7336-1cfa3fe1701so13325645ad.0;
-        Wed, 29 Nov 2023 06:26:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701267998; x=1701872798; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=e7b2Nulvli0XXaWTRS/NHJL5IUXXuTTk42jEYJUffA4=;
-        b=cK56JkMncQ3IO/CvPWE5OnfVm/LM5CigazbJJpR34THLZw4eajOwbS6q8qkyWqN8kt
-         oZgfxzOFciAbDY6xX9PZ8VZMtta/3ZRwEaTeXXGG0nIXD87weyvRpZ/qwUdOq+ja9Rd+
-         q8J6WunmXmT/sANVg5x0wYeFvq7IHSA/dxCdCYLhTujc/xBLBtd5edtweMujNhGjTo2e
-         1QvwQqFFKOdpmvOyXKNihBHCoMEJ9Dj5WTiCfY1a3bQbFil4fC7jnRxqFoh/cl4L8JOE
-         yAvtjVUiSeGqlf0n5fOzsOWjdMgr0mWNmgtuJQuiZ6PZspyK8iXrJigUUyiEufHqO0R7
-         JDbw==
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B930CDD
+	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 06:28:59 -0800 (PST)
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 1DA753FA56
+	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 14:28:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1701268135;
+	bh=vWP9CYe3KKvgAhmJq37cx8p7ADw60XqsLAUIuzsXUeA=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type;
+	b=pC64L9Hw6264WxHpJlohOKlZ/CrcSaEa9+xaUIgV9rfy8pbUPFUqyiJxhsswXPeo/
+	 Hxia9iIEqW5VyEZJItYfCEu+jZif6rXqUGDb99eooJLizR4WGUTDv4JOWuh8TA6tiw
+	 H0GIfIHgI5P18V4NUwRSgF31pbfuRAA2JHgg4f0ThRBRieBaxkQ0vp84igsHldvO+3
+	 EPl38bn97dhZbsTzC3lqTyUxqUXaR55A1vwAoJbREhC8QTYi2pCObqn54koxOmovPy
+	 vVbYmxuCPNxQyhXAnusi1Xgm+Y8tiVzhMJBAi+spAWZZFavGJmliAZxPsheyp+wB7L
+	 J+SAF3XDBFJEw==
+Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-677fb25cfe5so84687496d6.3
+        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 06:28:55 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701267998; x=1701872798;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=e7b2Nulvli0XXaWTRS/NHJL5IUXXuTTk42jEYJUffA4=;
-        b=n6I6ri5aio5R0duVeCH2kP6wqJ56sytgQEo4bYaF3ub5xHMH0PFPmRtqj/8T3eBj6I
-         gojn4X/GLJy2BOhcLUBdKrJ797jA245Tql8gMm7PE9UTzWAjI5tqY1uyKWskuMUqsjyy
-         kL7knZ0IF5QvsLNbGiSo6i5x/hU9DEYawqevAmH/AtaLQMh5tNoBoe3OXTRU/+XIWyJ4
-         YieVROm1Z7+sKoxD/XVrJITFCmnAW9UVr1vlBL8utRBBJRc69GNp6xQqzAGOAEQURqYB
-         I1YrRzYCfkIifFAOrRt8L8a54YyHjXvuR/7qDX+UIWF/tzIACcCS3av1LhzrU0Gczx6+
-         sRRA==
-X-Gm-Message-State: AOJu0YxvRsoO/hRR37VrdSdO41xCfjDvYxo8qh34XLhuoRs/kc2MjMKm
-	b83XO4/MowgtN3hNQDl0HsPVNl1hVqnQU4553MA=
-X-Google-Smtp-Source: AGHT+IFfblq4BAWKNldtxNoPKOvbcayy5PLLTP8bX9iWs45sm5wkoDieDLx4KVZcLW5V7NBurSVUEknkL0zk/kA4/d4=
-X-Received: by 2002:a17:90a:d996:b0:285:f76:9d6e with SMTP id
- d22-20020a17090ad99600b002850f769d6emr19191499pjv.3.1701267998176; Wed, 29
- Nov 2023 06:26:38 -0800 (PST)
+        d=1e100.net; s=20230601; t=1701268131; x=1701872931;
+        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vWP9CYe3KKvgAhmJq37cx8p7ADw60XqsLAUIuzsXUeA=;
+        b=Ms9H8FjNN8tHrtKlyo2Z5++KafTrv+rQCyVUJhdBFYjY7PZbQIgzHzYDwpYY3lsgFx
+         t0CeCJUL9P+yDkH4aeXSerJhZY+d6t2VRfXvfX3iunnemp+EzhvC5ixzkQ9aR4kBYQS2
+         kLUhy2l8uwA1iR/I8LjFyrF7P9hBnD4iaoVdiJK3V6diTw4zrdgkj9hA0iDwS/ms1PvV
+         qNcIuyNtOag4PU+9GP7LSawhh24uXP7UGJ996BAYyG1ZVdpGLIxTQuQ9Uy1VQcFsvnji
+         exxGZM7aztSBbk6kSXt1psbgkXoGl/5FhaCr5lb7CNa299V19tLBwn+49xYYz/99BMlX
+         FATQ==
+X-Gm-Message-State: AOJu0YxbiQnWW+pUU+3wAsLCep9gHFj9Z2DxH49r0tB1d5JV1UtonZ++
+	Iic8DqGraPWDnJTFqscC1AiugkhGBQHuC992cKuxg3bZLGFF2Q0C5WD29UGHcwVdOzMHtOiolrB
+	u/nU7mmjADnD4R59kvRY69yN7bUTN19YFzHaC3xAlXxBABSLZxCjlLys=
+X-Received: by 2002:ad4:5042:0:b0:67a:674:ed88 with SMTP id m2-20020ad45042000000b0067a0674ed88mr19792158qvq.28.1701268131046;
+        Wed, 29 Nov 2023 06:28:51 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEONtigUGKk4Y3Xk0mTpJLPt7Y7eqdmWiLh7OaZgii+ClWP4Bwqi3efc7dvejFZ/cmdUo7bZdxEtkDa6yrOEjc=
+X-Received: by 2002:ad4:5042:0:b0:67a:674:ed88 with SMTP id
+ m2-20020ad45042000000b0067a0674ed88mr19792134qvq.28.1701268130726; Wed, 29
+ Nov 2023 06:28:50 -0800 (PST)
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 29 Nov 2023 15:28:50 +0100
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+In-Reply-To: <5395f3ce-f9ec-474b-b145-5f62a3b7c4fc@collabora.com>
+References: <20231029042712.520010-1-cristian.ciocaltea@collabora.com>
+ <20231029042712.520010-13-cristian.ciocaltea@collabora.com>
+ <CAJM55Z9e=vjGKNnmURN15mvXo2bVd3igBA-3puF9q7eh5hiP+A@mail.gmail.com>
+ <2f06ce36-0dc1-495e-b6a6-318951a53e8d@collabora.com> <CAJM55Z8vkMbqXY5sS2o4cLi8ow-JQTcXU9=uYMBSykwd4ppExw@mail.gmail.com>
+ <054bbf2a-e7ba-40bf-8f8b-f0e0e9b396c6@collabora.com> <CAJM55Z9+j6CmfjNkPLCk1DR3EBuEMspsRtNvygDbPWJDCytQpw@mail.gmail.com>
+ <5395f3ce-f9ec-474b-b145-5f62a3b7c4fc@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20231129093113.255161-1-paul.elder@ideasonboard.com>
- <20231129093113.255161-2-paul.elder@ideasonboard.com> <CAOMZO5BPQCyCQKPvc9HHqANk5rKic25EkUGCjBdf-d78zGDR0Q@mail.gmail.com>
- <CAHCN7xJyqEN_3GFCRogii_ST3oC354CBG6d029HGRnBKh=H_rQ@mail.gmail.com>
-In-Reply-To: <CAHCN7xJyqEN_3GFCRogii_ST3oC354CBG6d029HGRnBKh=H_rQ@mail.gmail.com>
-From: Fabio Estevam <festevam@gmail.com>
-Date: Wed, 29 Nov 2023 11:26:27 -0300
-Message-ID: <CAOMZO5CfPR05LJodpsUERvPM3Z1dxPtxyYqDqNLw0Ee498QyMw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] arm64: dts: imx8mp: Add DT nodes for the two ISPs
-To: Adam Ford <aford173@gmail.com>
-Cc: Paul Elder <paul.elder@ideasonboard.com>, linux-media@vger.kernel.org, 
-	devicetree@vger.kernel.org, kieran.bingham@ideasonboard.com, 
-	tomi.valkeinen@ideasonboard.com, umang.jain@ideasonboard.com, 
-	Rob Herring <robh+dt@kernel.org>, 
+Mime-Version: 1.0
+Date: Wed, 29 Nov 2023 15:28:50 +0100
+Message-ID: <CAJM55Z-ff8btSQwJcWViUKLTJ8F2C_b70AaKJMwxgxZurUyGBA@mail.gmail.com>
+Subject: Re: [PATCH v2 12/12] [UNTESTED] riscv: dts: starfive:
+ beaglev-starlight: Enable gmac
+To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, 
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>, 
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, NXP Linux Team <linux-imx@nxp.com>, Marek Vasut <marex@denx.de>, 
-	Alexander Stein <alexander.stein@ew.tq-group.com>, Lucas Stach <l.stach@pengutronix.de>, 
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Frank Li <Frank.Li@nxp.com>, 
-	"moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>, 
-	open list <linux-kernel@vger.kernel.org>
+	Emil Renner Berthing <kernel@esmil.dk>, Samin Guo <samin.guo@starfivetech.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	Jose Abreu <joabreu@synopsys.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+	Richard Cochran <richardcochran@gmail.com>, Giuseppe Cavallaro <peppe.cavallaro@st.com>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org, kernel@collabora.com
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hi Adam,
-
-On Wed, Nov 29, 2023 at 10:49=E2=80=AFAM Adam Ford <aford173@gmail.com> wro=
-te:
-
-> Fabio,
+Cristian Ciocaltea wrote:
+> On 11/28/23 18:09, Emil Renner Berthing wrote:
+> > Cristian Ciocaltea wrote:
+> >> On 11/28/23 14:08, Emil Renner Berthing wrote:
+> >>> Cristian Ciocaltea wrote:
+> >>>> On 11/26/23 23:10, Emil Renner Berthing wrote:
+> >>>>> Cristian Ciocaltea wrote:
+> >>>>>> The BeagleV Starlight SBC uses a Microchip KSZ9031RNXCA PHY supporting
+> >>>>>> RGMII-ID.
+> >>>>>>
+> >>>>>> TODO: Verify if manual adjustment of the RX internal delay is needed. If
+> >>>>>> yes, add the mdio & phy sub-nodes.
+> >>>>>
+> >>>>> Sorry for being late here. I've tested that removing the mdio and phy nodes on
+> >>>>> the the Starlight board works fine, but the rx-internal-delay-ps = <900>
+> >>>>> property not needed on any of my VisionFive V1 boards either.
+> >>>>
+> >>>> No problem, thanks a lot for taking the time to help with the testing!
+> >>>>
+> >>>>> So I wonder why you need that on your board
+> >>>>
+> >>>> I noticed you have a patch 70ca054e82b5 ("net: phy: motorcomm: Disable
+> >>>> rgmii rx delay") in your tree, hence I you please confirm the tests were
+> >>>> done with that commit reverted?
+> >>>>
+> >>>>> Also in the driver patch you add support for phy-mode = "rgmii-txid", but here
+> >>>>> you still set it to "rgmii-id", so which is it?
+> >>>>
+> >>>> Please try with "rgmii-id" first. I added "rgmii-txid" to have a
+> >>>> fallback solution in case the former cannot be used.
+> >>>
+> >>> Ah, I see. Sorry I should have read up on the whole thread. Yes, the Starlight
+> >>> board with the Microchip phy works with "rgmii-id" as is. And you're right,
+> >>> with "rgmii-id" my VF1 needs the rx-internal-delay-ps = <900> property too.
+> >>
+> >> That's great, we have now a pretty clear indication that this uncommon behavior
+> >> stems from the Motorcomm PHY, and *not* from GMAC.
+> >>
+> >>>>
+> >>>>> You've alse removed the phy reset gpio on the Starlight board:
+> >>>>>
+> >>>>>   snps,reset-gpios = <&gpio 63 GPIO_ACTIVE_LOW>
+> >>>>>
+> >>>>> Why?
+> >>>>
+> >>>> I missed this in v1 as the gmac handling was done exclusively in
+> >>>> jh7100-common. Thanks for noticing!
+> >>>>
+> >>>>>>
+> >>>>>> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+> >>>>>> ---
+> >>>>>>  arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dts | 5 +++++
+> >>>>>>  1 file changed, 5 insertions(+)
+> >>>>>>
+> >>>>>> diff --git a/arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dts b/arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dts
+> >>>>>> index 7cda3a89020a..d3f4c99d98da 100644
+> >>>>>> --- a/arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dts
+> >>>>>> +++ b/arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dts
+> >>>>>> @@ -11,3 +11,8 @@ / {
+> >>>>>>  	model = "BeagleV Starlight Beta";
+> >>>>>>  	compatible = "beagle,beaglev-starlight-jh7100-r0", "starfive,jh7100";
+> >>>>>>  };
+> >>>>>> +
+> >>>>>> +&gmac {
+> >>>>>> +	phy-mode = "rgmii-id";
+> >>>>>> +	status = "okay";
+> >>>>>> +};
+> >>>>>
+> >>>>> Lastly the phy-mode and status are the same for the VF1 and Starlight boards,
+> >>>>> so why can't these be set in the jh7100-common.dtsi?
+> >>>>
+> >>>> I wasn't sure "rgmii-id" can be used for both boards and I didn't want
+> >>>> to unconditionally enable gmac on Starlight before getting a
+> >>>> confirmation that this actually works.
+> >>>>
+> >>>> If there is no way to make it working with "rgmii-id" (w/ or w/o
+> >>>> adjusting rx-internal-delay-ps), than we should switch to "rgmii-txid".
+> >>>
+> >>> Yeah, I don't exactly know the difference, but both boards seem to work fine
+> >>> with "rgmii-id", so if that is somehow better and/or more correct let's just go
+> >>> with that.
+> >>
+> >> As Andrew already pointed out, going with "rgmii-id" would be the recommended
+> >> approach, as this passes the responsibility of adding both TX and RX delays to
+> >> the PHY.  "rgmii-txid" requires the MAC to handle the RX delay, which might
+> >> break the boards having a conformant (aka well-behaving) PHY.  For some reason
+> >> the Microchip PHY seems to work fine in both cases, but that's most likely an
+> >> exception, as other PHYs might expose a totally different and undesired
+> >> behavior.
+> >>
+> >> I will prepare a v3 soon, and will drop the patches you have already submitted
+> >> as part of [1].
+> >
+> > Sounds good. Then what's missing for ethernet to work is just the clock patches:
+> > https://github.com/esmil/linux/commit/b5abe1cb3815765739aff7949deed6f65b952c4a
+> > https://github.com/esmil/linux/commit/3a7a423b15a9f796586cbbdc37010d2b83ff2367
+> >
+> > You can either include those as part of your patch series enabling ethernet, or
+> > they can be submitted separately with the audio clocks. Either way is
+> > fine by me.
 >
-> Paul posted a series to the media mailing list adding support for the
-> i.MX8MP ISP:
->
-> https://patchwork.linuxtv.org/project/linux-media/list/?series=3D11776
+> I can cherry-pick them, but so far I couldn't identify any networking
+> related issues if those patches are not applied. Could it be something
+> specific to Starlight board only?
 
-Thanks for the clarification. It's great to see this series.
+No, it's the same for both boards. The dwmac-starfive driver adjusts
+the tx clock:
 
-Cheers
+1000Mbit -> 125MHz
+ 100Mbit ->  25MHz
+  10Mbit -> 2.5MHz
+
+The tx clock is given in the device tree as the gmac_tx_inv clock which derives
+from either the gmac_root_div or gmac_rmii_ref external clock like this:
+
+gmac_rmii_ref (external) -> gmac_rmii_txclk     \
+gmac_root_div  (500MHz)  -> gmac_gtxclk (div N) -> gmac_tx (mux) -> gmac_tx_inv
+
+..where N defaults to 4 and the gmac_tx mux defaults to the gmac_gtxclk, so
+the gmac_tx_inv clock defaults to 125MHz suitable for 1000Mbit connections.
+See /sys/kernel/debug/clk/clk_summary for another overview.
+
+When the dwmac_starfive driver request to change gmac_tx_inv to 25MHz the clock
+framework will that it has the CLK_SET_RATE_PARENT flag set, so it will try
+the gmac_tx clock next. This is a mux that can choose either the
+125MHz gmac_gtxclk
+or the external gmac_rmii_txclk which defaults to 0MHz in the current
+device trees,
+so the request cannot be met.
+
+That's why we need to set the CLK_SET_RATE_PARENT (and CLK_SET_RATE_NO_REPARENT)
+flags on the gmac_tx clock so the clock framework again goes to try setting the
+gmac_gtxclk to 25MHz, which it can because it's a divider and setting N=20
+does the trick.
+
+On your board you can manually force a 100Mbit connection with
+ethtool -s eth0 speed 100
+
+That fails on my boards without those two patches.
+/Emil
+
+> >>
+> >> Thanks again for your support,
+> >> Cristian
+> >>
+> >> [1]: https://lore.kernel.org/all/20231126232746.264302-1-emil.renner.berthing@canonical.com/
 
