@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-19860-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19861-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0B7C7FD0BE
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 09:29:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD5887FD0D0
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 09:29:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DB6171C20921
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 08:29:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EE1E91C20E1C
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 08:29:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6258D11CB2;
-	Wed, 29 Nov 2023 08:29:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27AD811CBD;
+	Wed, 29 Nov 2023 08:29:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ydozbr3u"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZssTQcba"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 124441BCE
-	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 00:29:05 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-50bc22c836bso1387405e87.0
-        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 00:29:04 -0800 (PST)
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70ADA19B6
+	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 00:29:30 -0800 (PST)
+Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-54b545ec229so4303627a12.0
+        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 00:29:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701246543; x=1701851343; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701246569; x=1701851369; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=GKcSt8Iznw/0CAx6NbW6jPDPVJuoyQwH3dDNjBg8338=;
-        b=ydozbr3ubrLfFGDvgF2ePOeBeE/lWG4mxh+yfHUoiNKjiFoG5lXGQX8fWwKd4nSVaT
-         prQXy6sEYlmBq4IZrNQuepb1dmrgU2N1OKDKSLB4XFsR3wYi8a+9x5bLE2QYCmEswrqB
-         s3MsKklY5WE9Ok7YZh0XgsYxsICmgD67t3gMud3l8mCotS95z6+tJWFLzNYRmkZCDYLv
-         Uh0xJ0s+BGPge9Px+kSZBgTrNkYU6Ph4EnB1tTVFYOHBeILKdEJOOhUMZ4sSj386oGck
-         3YCIpSAv9cwrzcdLgWxCs211CgdjweXNx+xfqA/FWGAMVKF4iJJgdgWYLfilebcVSv6Z
-         XldA==
+        bh=h5/n7/2j+le0n0ii3nybOlnJwwNlhKzL/VsjeohpXH4=;
+        b=ZssTQcba3td1jG25DLNYKAzL2bHDaYX0l3eXN9Si5rZBroqHVmf81HZTrCe8/lsEsX
+         FhO1dW2yMZ/wQJo+y8RoYwQaToHwtoG9cNuEUMN2cIh2KSkaeCvgs/quMvfR7nM9oWh2
+         eVrb45SQ0YKhOV2qSYisLKYmqXUbAI5mdpyS5EEPFAJGLhrMHHS3eD7p7bAh0w9gZ3CI
+         Yod/sKjFzICCfsh4cTzDb6rN0HmY8KYEtTXUsIgO/ugTznKkiqSZabe/pDa/D8lb77fR
+         4FjbFR6oXq5qqlXiO4JGWx2N/1cl7goVrdtlj1094X1Au+Fc6eA2oduxb09uVgGWfncR
+         VcXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701246543; x=1701851343;
+        d=1e100.net; s=20230601; t=1701246569; x=1701851369;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GKcSt8Iznw/0CAx6NbW6jPDPVJuoyQwH3dDNjBg8338=;
-        b=loEJfJuxcBU1zJ8EevbwC/JfkGrFH4yVRg0kQa4Xa0t5M+rlbr+gIxNhTtXKjRL3vS
-         WGDuukA4JjDemqaCmeULPPmR5laicota3I8NEGwOvG4TghDlmKUn5hvCCT1vP+kBCyME
-         38yxiCh6QjSGWeijVmeTMXJa5W7nOoNwTWyt7Q/HVnoC4jEGCVbCQxDWe/aPIqSgSejQ
-         +8BH6eqBgKOfso/dsB/geO3q/aVbK0H2b4qXTh9/dhL49nFfTi20zMoQfuMfzxfDqdOW
-         7i27NG0COCC4M6ZmaQJ68LAFCecy+OqcsJd8Xm32fbTAaJGbcXnbYfVWhlxX4eUz99/Z
-         pK+w==
-X-Gm-Message-State: AOJu0YyrRfGd/DJnuGPjdbms8xlX0etR26siscbLl2H10f7CZgKwFMIr
-	1x1++M2wXDajHTFXco6Doc88rw==
-X-Google-Smtp-Source: AGHT+IF1VQIFPzPtAmqQdlrtoZuQOo2/3qI1QPOTdDjZ6rxPC9cPw3HY4qQMLj/fbm33Hq0JIsom0g==
-X-Received: by 2002:a05:6512:b97:b0:502:ff3b:766f with SMTP id b23-20020a0565120b9700b00502ff3b766fmr15305601lfv.6.1701246543319;
-        Wed, 29 Nov 2023 00:29:03 -0800 (PST)
+        bh=h5/n7/2j+le0n0ii3nybOlnJwwNlhKzL/VsjeohpXH4=;
+        b=MIVter2f6+exedDGU/rp4jReZzahE1LAoQeBC9WIMKUtkGxdu8EU4no4ykyTMlS08x
+         Bs2pxcdSkI2vDTj8rLRGowLc1u2BFIIbT/8ufP/BEkkKFNu/Z9DOYWs6gmOyHHUjUW90
+         X/lV/lr/wgE+RHcqDA+FNGGt11PRkGFEaqlOFA32JdVb+YXbAvlOR2OdvNTmGC4H9MTI
+         6wikbOUN1NKO7NnS2fUwBHzzT38qDzIKHeGpJ3q2Z9mRN9WJWOZ5XEd4TJeGfCiQF3wV
+         4q21eLOPbQlqpBoReVYQEhmbWw4Y5LjAAo1cj/oV8iQyjHMsZz2d0KJkmr8BKOnR8/a6
+         ujeA==
+X-Gm-Message-State: AOJu0YxykXJAwNc49MESSmU49Vx0M+1sCudhYimTPxsq3FJWvYXbpNlP
+	BtusX0L3RP9EpRarCIhscrKnsg==
+X-Google-Smtp-Source: AGHT+IERsLez/Xv+WTv797ECd/PRTl/73WaQWRaC3FxYuN40SD1k431+XtOMj9wL6CrV8DBy+jn6Gw==
+X-Received: by 2002:aa7:d5c1:0:b0:54b:3edc:194 with SMTP id d1-20020aa7d5c1000000b0054b3edc0194mr7472436eds.26.1701246568984;
+        Wed, 29 Nov 2023 00:29:28 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.109])
-        by smtp.gmail.com with ESMTPSA id b9-20020a056402350900b0054b7e312b97sm2519566edd.38.2023.11.29.00.29.02
+        by smtp.gmail.com with ESMTPSA id b9-20020a056402350900b0054b7e312b97sm2519566edd.38.2023.11.29.00.29.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Nov 2023 00:29:02 -0800 (PST)
-Message-ID: <374ff4b0-be08-45a7-8ce8-000ca702615a@linaro.org>
-Date: Wed, 29 Nov 2023 09:29:01 +0100
+        Wed, 29 Nov 2023 00:29:28 -0800 (PST)
+Message-ID: <69565d9a-a517-4170-99d6-45fdf749450b@linaro.org>
+Date: Wed, 29 Nov 2023 09:29:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,13 +62,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: Turn on undocumented compatible checks
+Subject: Re: [PATCH] dt-bindings: input: mediatek,pmic-keys: Drop incomplete
+ example
 Content-Language: en-US
-To: Rob Herring <robh@kernel.org>,
+To: Rob Herring <robh@kernel.org>, Dmitry Torokhov
+ <dmitry.torokhov@gmail.com>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231128221008.4050638-2-robh@kernel.org>
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Chen Zhong <chen.zhong@mediatek.com>
+Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+References: <20231128214816.3975893-1-robh@kernel.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -114,29 +121,21 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231128221008.4050638-2-robh@kernel.org>
+In-Reply-To: <20231128214816.3975893-1-robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 28/11/2023 23:10, Rob Herring wrote:
-> The undocumented compatibles in the examples are down to just a few
-> left. Turn on the warning by default. The increased visibility should
-> get the remaining warnings fixed.
+On 28/11/2023 22:48, Rob Herring wrote:
+> The example for the Mediatek PMIC keys is incomplete as the binding is
+> the full PMIC, not just the sub-functions. It is preferred for MFD
+> examples to be complete in the top-level MFD device binding rather than
+> piecemeal in each sub-function binding.
+> 
+> This also fixes an undocumented (by schema) compatible warning for
+> "mediatek,mt6397".
 > 
 > Signed-off-by: Rob Herring <robh@kernel.org>
 > ---
-> After the last batch of fixes I've sent out, there's 6 warnings 
-> remaining:
-> 
->  ['socionext,milbeaut-usio-uart']
->  ['sprd,sc9863a-glbregs', 'syscon', 'simple-mfd']
->  ['brcm,bcm2711-avs-monitor', 'syscon', 'simple-mfd']
->  ['fsl,imx6q-anatop', 'syscon', 'simple-mfd']
->  ['hisilicon,hi3798cv200-combphy']
->  ['qca,ar9331-switch']
-> 
-
-Yay!
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
