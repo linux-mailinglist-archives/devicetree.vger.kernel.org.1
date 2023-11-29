@@ -1,116 +1,92 @@
-Return-Path: <devicetree+bounces-19945-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19946-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E3F17FD522
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 12:10:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B532C7FD54F
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 12:16:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8FB6E1C2116B
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 11:10:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E71531C21142
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 11:16:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A31291C29B;
-	Wed, 29 Nov 2023 11:10:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dGQrJDgp"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E42D1C68A;
+	Wed, 29 Nov 2023 11:16:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0280744AC
-	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 03:10:46 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-50abbb23122so8637381e87.3
-        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 03:10:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701256245; x=1701861045; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=5n2a/2E5KdJNNYUo3GWmeCj+sTZDQr2kUzeB2+OZTGU=;
-        b=dGQrJDgpaL22J1na3wRLlX1pr8VzAIXggNbC9cJZCd9kzsqLUG8kCNwSPkCOItlVl9
-         VySV9p76yHHZ2unRrq5zCZZOL6bckBu7ScruYpSC3wx1xKpcOtxdaJ7tpwOPa2IJvkF/
-         quizStJCPUqy8n/Bhffvqks3jQBD6LUB0ZdJS8IOI7WSDGicG9K6ty/Tbb2c5NYqlcyX
-         peIgBQ3wjel1QLpgB0UV4eo2HDVmprK13Aa7WP5iiJdBC/2xBmVHxXC/3R4FY2NmQg2z
-         yRi7ahvs+rhHh+eXOmrmb2CCqtPeoKbEjV4OBC9Sje1RWO/C9wf3KbxQqPb1f4gRb/gA
-         +zxg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701256245; x=1701861045;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5n2a/2E5KdJNNYUo3GWmeCj+sTZDQr2kUzeB2+OZTGU=;
-        b=B7+nw+SN+pnEpp7O48S2PZf3gLumJNlDgHV8qbcYWrh3Vafw7dFv+c+Yj33IdV5TZq
-         7g6XB3FiZBj7XfaB+I5PwlI5Ifbpp7mWCOR30krsOtzBs/6HGq/2e1S4CUDfZBn8MgkR
-         IGS6N/7gEYhYdbmVsErPIT1p5X6OGE0iWELz/6ip323ZGzkcPCHIXq+ctNlNUuI0ANn7
-         1+XX925l8/Qv810REXmFauEfZPPAlxQN03DXn3AbPFiMrdb8AgARmQTG47IyYWHMpqHJ
-         vg5gWASWn6IJdrP/MB+5XjG+jS2dCWxZD5cXnX0ZJfg7hOsMZuQaS4X+GJGXtlVeQlRM
-         +jxg==
-X-Gm-Message-State: AOJu0YzeQo/E7VGSeeIjDz+Pf3aqpJDUpaNMx0SG9x8sX1bzRsk2K9ti
-	+IxlUUUqUK6AzPYkmAc1KeyhRA==
-X-Google-Smtp-Source: AGHT+IFvq19Y8Thc5/IZy2Hl2YGExKF/UoiKpuXNEbxp8HskowSiNp0PsyIJIm+yqWMlWo/ngW8FKA==
-X-Received: by 2002:a05:6512:2186:b0:508:268b:b087 with SMTP id b6-20020a056512218600b00508268bb087mr9510426lft.26.1701256245015;
-        Wed, 29 Nov 2023 03:10:45 -0800 (PST)
-Received: from krzk-bin.. ([178.197.223.109])
-        by smtp.gmail.com with ESMTPSA id x13-20020a170906710d00b009b2ca104988sm7823719ejj.98.2023.11.29.03.10.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Nov 2023 03:10:44 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Andreas Klinger <ak@it-klinger.de>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B98A30E4;
+	Wed, 29 Nov 2023 03:16:30 -0800 (PST)
+Received: from francesco-nb.int.toradex.com (31-10-206-125.static.upc.ch [31.10.206.125])
+	by mail11.truemail.it (Postfix) with ESMTPA id 5141020729;
+	Wed, 29 Nov 2023 12:16:27 +0100 (CET)
+Date: Wed, 29 Nov 2023 12:16:23 +0100
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Francesco Dolcini <francesco@dolcini.it>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: iio: honeywell,mprls0025pa: drop ref from pressure properties
-Date: Wed, 29 Nov 2023 12:10:41 +0100
-Message-Id: <20231129111041.26782-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, Andrew Davis <afd@ti.com>,
+	Andrew Lunn <andrew@lunn.ch>, Arnd Bergmann <arnd@arndb.de>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Chen-Yu Tsai <wens@kernel.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Heiko Stuebner <heiko@sntech.de>, Jonathan Corbet <corbet@lwn.net>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Michal Simek <michal.simek@amd.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Nishanth Menon <nm@ti.com>, Olof Johansson <olof@lixom.net>,
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+	linux-rockchip@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	linux-amlogic@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+	workflows@vger.kernel.org, linux-doc@vger.kernel.org
+Subject: Re: [PATCH v3] docs: dt-bindings: add DTS Coding Style document
+Message-ID: <ZWcdh1JNaPPnz36a@francesco-nb.int.toradex.com>
+References: <20231125184422.12315-1-krzysztof.kozlowski@linaro.org>
+ <ZWboWqELHbIrblnz@francesco-nb.int.toradex.com>
+ <46f30852-4824-45b3-bf01-4a4a5ff2cff7@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <46f30852-4824-45b3-bf01-4a4a5ff2cff7@linaro.org>
 
-The dtschema treats now properties with '-pascal' suffix as standard one
-and already defines $ref for them, thus the $ref should be dropped from
-the bindings.
+On Wed, Nov 29, 2023 at 11:19:15AM +0100, Krzysztof Kozlowski wrote:
+> On 29/11/2023 08:29, Francesco Dolcini wrote:
+> > On Sat, Nov 25, 2023 at 07:44:22PM +0100, Krzysztof Kozlowski wrote:
+> >> ---
+> >> +Following order of properties in device nodes is preferred:
+> >> +
+> >> +1. compatible
+> >> +2. reg
+> >> +3. ranges
+> >> +4. Standard/common properties (defined by common bindings, e.g. without
+> >> +   vendor-prefixes)
+...
+> > On point 4, do you have a more explicit way to define what is an actual
+> > standard/common property? You mention the vendor-prefixes as an example,
+> > is this just an example or this is the whole definition?
+> 
+> The actual definition is: defined by common bindings, which are:
+> meta-schemas and schemas in dtschema, and common bindings per subsystem
+> (e.g. leds/common.yaml).
+> 
+> Lack of vendor-prefix is I think 99% accurate in this matter, but there
+> are some "linux," ones.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Got it, thanks! I would suggest to incorporate in some way this additional
+explanation in v4.
 
----
-
-dtschema change was merged:
-https://github.com/devicetree-org/dt-schema/commit/2a1708dcf4ff0b25c4ec46304d6d6cc655c3e635
-but not yet released as new dtschema version.
-
-This change should be applied once new dtschema version is released or
-Rob says otherwise.
----
- .../devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml | 2 --
- 1 file changed, 2 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml b/Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml
-index b31f8120f14e..d9e903fbfd99 100644
---- a/Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml
-+++ b/Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml
-@@ -53,12 +53,10 @@ properties:
-   honeywell,pmin-pascal:
-     description:
-       Minimum pressure value the sensor can measure in pascal.
--    $ref: /schemas/types.yaml#/definitions/uint32
- 
-   honeywell,pmax-pascal:
-     description:
-       Maximum pressure value the sensor can measure in pascal.
--    $ref: /schemas/types.yaml#/definitions/uint32
- 
-   honeywell,transfer-function:
-     description: |
--- 
-2.34.1
-
+Francesco
 
