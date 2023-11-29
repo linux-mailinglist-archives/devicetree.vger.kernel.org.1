@@ -1,60 +1,49 @@
-Return-Path: <devicetree+bounces-19813-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19814-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E558E7FCDCF
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 05:18:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52C557FCDE0
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 05:22:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1A8CEB2151B
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 04:18:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 97503281B37
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 04:22:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 565DB6ADC;
-	Wed, 29 Nov 2023 04:18:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F5336FA6;
+	Wed, 29 Nov 2023 04:22:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KIvXrw49"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="X7xXVYwS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2E3719A;
-	Tue, 28 Nov 2023 20:18:38 -0800 (PST)
-Received: by mail-oi1-x230.google.com with SMTP id 5614622812f47-3b843fea0dfso3646883b6e.3;
-        Tue, 28 Nov 2023 20:18:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701231518; x=1701836318; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uQo9/9z5ggX4xvrA9jYEd4qbwec1eXPiYblNhuRPU8Q=;
-        b=KIvXrw49M1Kaizvl1DntPTRfXbiZWzXw4MW90qlXbQrR6lNRQ2mqu5/5cNqoKDjKfV
-         1LJW9YzPRsco/7foTZxNtHb8HHVv3nic6fXGWhvGDkhD2ce65Xv5e/IkO6gzrU/Fc/M5
-         ZHSf+MtdrDjJ7E+TJfxExpnAHibjp+eQCAvrnGcYnF/HNpD9ZgZuHqoINHuyuSH7LyIB
-         /iLs0DSQwO9++8dKT+gabLP5ZWk0E9IEpi6EIEoY7jIPZxVZ8Qr78NiltTaWCf9Gi4pv
-         29TggY2loLra7XLwJMUV802K4fE1iGoq9y1BXMzQndd6Y+ggpESKtpR1hEF0gOba82JJ
-         Mh/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701231518; x=1701836318;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uQo9/9z5ggX4xvrA9jYEd4qbwec1eXPiYblNhuRPU8Q=;
-        b=UPNNyd52iXI7xdH/SkkTO7GJdcxsjmPEseeen9jJwTj1/CDZCbJvub48q+CfMRu03b
-         CZH5kP3VZlGkEEc/h8MJ0MSjTwvNC2ejWYGUqFbxANA+5mj8toaE5QLupOiNP8EzTSJr
-         pRbKm1AqpBr5ixr45o1vmqV0LJ3KWD5xAHz5Dc1Dv4JVpHwRNCMWGMuhD9UdXFNadnAp
-         Ax5BUhfdkf3dl5wDUKNw6q6h2NI48P0jb6UYTjCyTsZcZEEyEd83gt8t8IsC2OPTG0Zb
-         ECX36+o5lapDoUIFymu9oi4kftOWQ0k0Fybo1hla0AUhnm3IPw2K5UF6RgWEyU2SSBsK
-         p+jg==
-X-Gm-Message-State: AOJu0YwwrAzGOC5CWBhntrwOSRkAz2aWj1xdHNqTjBmBD7StQcnI5Ppi
-	D/nnsb9ULJEBjKUQCX6Yq6NCQgJEOzQ=
-X-Google-Smtp-Source: AGHT+IGnbvVFFBxz/r0jd3vOISqjQ9c742jdHZS/2oKmIVYMzg5ICvEH2oj6E+QhWt6z/F8775/vkQ==
-X-Received: by 2002:a05:6808:1313:b0:3b8:63ff:7dc7 with SMTP id y19-20020a056808131300b003b863ff7dc7mr14461300oiv.36.1701231518069;
-        Tue, 28 Nov 2023 20:18:38 -0800 (PST)
-Received: from [172.19.1.47] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
-        by smtp.gmail.com with ESMTPSA id e21-20020a656495000000b005b8ebef9fa0sm8889922pgv.83.2023.11.28.20.18.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Nov 2023 20:18:37 -0800 (PST)
-Message-ID: <832e76a4-6881-4bc8-af17-4a449ebbea30@gmail.com>
-Date: Wed, 29 Nov 2023 12:18:34 +0800
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34C7E1710;
+	Tue, 28 Nov 2023 20:22:18 -0800 (PST)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AT3LoTh026472;
+	Wed, 29 Nov 2023 04:22:12 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=5GPHYWNLlw5rUJSjPsApRdIgwkJG6a4bhZxOWXdiWCM=;
+ b=X7xXVYwS21iJ6zBE+7BhDLSuL7pjydLeECqInL8N5jiqWffbJ3Ivu/KWNGW3Xs0jdqIE
+ 1EVYovBsewFOeF73shW+aGRbaTDQRu/FPHDnCKCoVZz35fFTAztoZ30wuqCsCuJCLAUt
+ AflgekSW+sUJqUJRMn0N4TZo6u8a/UyecgQd3HhuvPcvc+Opsu1MQaE9t9Gjz+VQVXSP
+ meKSaxP0ALMrJvS2MWAz/eIDpo4MXkejs3XazcNBQtielw8hQZCyYHtWJMoAYTEeZvA5
+ OSqnGTRsCG8Q71O/SARc3O5RxBf/Q5hsWBXwaFdPLNQHkhTnMdHSGaOrrpzikUvUHjPd tA== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3unekyjh06-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 29 Nov 2023 04:22:12 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AT4MBs7021674
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 29 Nov 2023 04:22:11 GMT
+Received: from [10.239.154.73] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 28 Nov
+ 2023 20:22:08 -0800
+Message-ID: <bf772476-79a1-4a52-a8e3-54709adf4673@quicinc.com>
+Date: Wed, 29 Nov 2023 12:22:06 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,311 +51,128 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/4] pinctrl: nuvoton: Add ma35d1 pinctrl and GPIO
- driver
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, p.zabel@pengutronix.de, j.neuschaefer@gmx.net,
- linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- ychuang3@nuvoton.com, schung@nuvoton.com
-References: <20231128061118.575847-1-ychuang570808@gmail.com>
- <20231128061118.575847-5-ychuang570808@gmail.com>
- <CACRpkda3ro2shN7W5iateMTL7RF6jDONUbwwVQ_QK5sBzP3jLg@mail.gmail.com>
+Subject: Re: [PATCH RESEND v7 0/3] Add support for vibrator in multiple PMICs
 Content-Language: en-US
-From: Jacky Huang <ychuang570808@gmail.com>
-In-Reply-To: <CACRpkda3ro2shN7W5iateMTL7RF6jDONUbwwVQ_QK5sBzP3jLg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+To: <linux-arm-msm@vger.kernel.org>, Andy Gross <agross@kernel.org>,
+        "Bjorn
+ Andersson" <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC: <linux-input@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <quic_collinsd@quicinc.com>,
+        <quic_subbaram@quicinc.com>, <quic_kamalw@quicinc.com>,
+        <jestar@qti.qualcomm.com>, Luca Weiss <luca.weiss@fairphone.com>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski@linaro.org>
+References: <20231108-pm8xxx-vibrator-v7-0-632c731d25a8@quicinc.com>
+From: Fenglin Wu <quic_fenglinw@quicinc.com>
+In-Reply-To: <20231108-pm8xxx-vibrator-v7-0-632c731d25a8@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: NsV8g-GEnr5H-cqykFoC4HzDLpvgYYw9
+X-Proofpoint-ORIG-GUID: NsV8g-GEnr5H-cqykFoC4HzDLpvgYYw9
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-29_01,2023-11-27_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxlogscore=999
+ mlxscore=0 suspectscore=0 priorityscore=1501 malwarescore=0
+ lowpriorityscore=0 impostorscore=0 bulkscore=0 clxscore=1011 spamscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2311060000 definitions=main-2311290032
 
-Dear Linus,
+Hi Dmitry Torokhov,
 
-Thanks for your review.
+Can you help to review the series of the changes?
+I knew that you left comment in patch V6 about moving shift and mask 
+into a chip-specific data structure to avoid defining 'hw_type'. 
+Actually 'hw_type' is added here to differentiate the SSBI vibrator 
+module which doesn't need to read the base address from the DT and add 
+it up in register read/write access, while SPMI vibrators in different 
+PMICs may be the same HW but just with different base address, and we 
+can use device compatibles instead of adding the chip-specific data 
+structure for each of them by just updating the base address. See 
+discussion here for more details:
+https://lore.kernel.org/linux-arm-msm/20230718062639.2339589-3-quic_fenglinw@quicinc.com/
 
-On 2023/11/28 下午 06:14, Linus Walleij wrote:
-> Hi Jacky,
->
-> thanks for your patch!
->
-> This is an interesting new driver. The initial review pass will be
-> along the lines "utilize helpers and library functions please".
-> You will see that this will shrink the core driver and make it
-> rely on core code helpers making it much easier to maintain
-> in the long run (I think).
->
-> On Tue, Nov 28, 2023 at 7:11 AM Jacky Huang <ychuang570808@gmail.com> wrote:
->
->> +if ARCH_MA35 || COMPILE_TEST
-> Isn't it cleaner to put the depends on inside the Kconfig entries?
-> This looks a bit convoluted.
->
->> +config PINCTRL_MA35
->> +       bool
->> +       depends on OF
-> So
-> depends on ARCH_MA35 || COMPILE_TEST here
->
->> +       select GENERIC_PINCTRL_GROUPS
->> +       select GENERIC_PINMUX_FUNCTIONS
->> +       select GENERIC_PINCONF
->> +       select GPIOLIB
->> +       select GPIO_GENERIC
->> +       select GPIOLIB_IRQCHIP
->> +       select MFD_SYSCON
->> +
->> +config PINCTRL_MA35D1
->> +       bool "Pinctrl and GPIO driver for Nuvoton MA35D1"
->> +       depends on OF
-> Now depends on OF gets listed twice, which is confusing
->
->> +       select PINCTRL_MA35
-> So use
-> depends on PINCTRL_MA35
->
-> instead, and this becomes a sub-choice.
+I also responded here that having 'hw_type' would help us with a cleaner 
+code logic instead of checking specific reg/mask for particular 
+operations: 
+https://lore.kernel.org/linux-arm-msm/8697d115-9aa7-2a1c-4d96-25b15adb5cca@quicinc.com/
 
-OK, I will fix the above issues. It will be:
+Let me know what's your final suggestion, if you insist that I should 
+move the reg/mask/shift in the chip-specific data structure, I can 
+update it even it won't be as clean as what it looks right now.
+Thanks
 
-config PINCTRL_MA35
-     bool "Pinctrl and GPIO driver for Nuvoton MA35 series"
-     depends on (ARCH_MA35 || COMPILE_TEST) && OF
-     select GENERIC_PINCTRL_GROUPS
-     select GENERIC_PINMUX_FUNCTIONS
-     select GENERIC_PINCONF
-     select GPIOLIB
-     select GPIO_GENERIC
-     select GPIOLIB_IRQCHIP
-     select MFD_SYSCON
+Fenglin
 
-config PINCTRL_MA35D1
-     bool "Pinctrl and GPIO driver for Nuvoton MA35D1"
-     depends on PINCTRL_MA35
-     help
-       Say Y here to enable pin controller and GPIO support
-       for Nuvoton MA35D1 SoC.
-
->> +#include <linux/clk.h>
->> +#include <linux/mfd/syscon.h>
->> +#include <linux/of.h>
->> +#include <linux/of_irq.h>
->> +#include <linux/of_device.h>
->> +#include <linux/of_address.h>
-> Do you really need them all?
->
-> Then I think you need <linux/platform_device.h> because
-> ma35d1_pinctrl_probe(struct platform_device *pdev)
-> passes a platform_device into this file.
-
-I will have a compile test and remove unnecessary ones and
-add <linux/platform_device.h>.
-
->> +struct ma35_pin_bank {
->> +       void __iomem            *reg_base;
->> +       struct clk              *clk;
->> +       int                     irq;
->> +       u8                      nr_pins;
->> +       const char              *name;
->> +       u8                      bank_num;
->> +       bool                    valid;
->> +       struct device_node      *of_node;
-> Just call the variable *np  ("noide pointer")
-> this is the most usual practice despite struct device
-> using thus long "of_node" name.
-
-OK, I will use 'struct device_node *np'.
-
->> +       struct gpio_chip        chip;
->> +       struct irq_chip         irqc;
-> Please do not use dynamic irq_chips anymore, use an immutable
-> irq_chip, look in other drivers how to do this because we changed
-> almost all of them.
-
-I will use immutable instead.
->> +static int ma35_get_group_pins(struct pinctrl_dev *pctldev, unsigned int selector,
->> +                              const unsigned int **pins, unsigned int *npins)
->> +{
->> +       struct ma35_pinctrl *npctl = pinctrl_dev_get_drvdata(pctldev);
->> +
->> +       if (selector >= npctl->ngroups)
->> +               return -EINVAL;
->> +
->> +       *pins = npctl->groups[selector].pins;
->> +       *npins = npctl->groups[selector].npins;
->> +
->> +       return 0;
->> +}
-> Hm it looks simple.
->
-> Have you looked into using CONFIG_GENERIC_PINCTRL_GROUPS
-> and then you get a bunch of these functions such as
-> pinctrl_generic_get_group_count
-> pinctrl_generic_get_group_name
-> pinctrl_generic_get_group_name(this function)
-> pinctrl_generic_get_group
-> pinctrl_generic_group_name_to_selector
-> (etc)
->
-> for FREE, also using a radix tree which is neat.
-
-Thank you for your reminder. I will look into how to use 
-CONFIG_GENERIC_PINCTRL_GROUPS.
-
->> +static int ma35_pinctrl_dt_node_to_map_func(struct pinctrl_dev *pctldev,
->> +                                           struct device_node *np,
->> +                                           struct pinctrl_map **map,
->> +                                           unsigned int *num_maps)
->> +{
->> +       struct ma35_pinctrl *npctl = pinctrl_dev_get_drvdata(pctldev);
->> +       struct ma35_pin_group *grp;
->> +       struct pinctrl_map *new_map;
->> +       struct device_node *parent;
->> +       int map_num = 1;
->> +       int i;
->> +
->> +       /*
->> +        * first find the group of this node and check if we need create
->> +        * config maps for pins
->> +        */
->> +       grp = ma35_pinctrl_find_group_by_name(npctl, np->name);
->> +       if (!grp) {
->> +               dev_err(npctl->dev, "unable to find group for node %s\n", np->name);
->> +               return -EINVAL;
->> +       }
->> +
->> +       map_num += grp->npins;
->> +       new_map = devm_kzalloc(pctldev->dev, sizeof(*new_map) * map_num, GFP_KERNEL);
->> +       if (!new_map)
->> +               return -ENOMEM;
->> +
->> +       *map = new_map;
->> +       *num_maps = map_num;
->> +       /* create mux map */
->> +       parent = of_get_parent(np);
->> +       if (!parent) {
->> +               devm_kfree(pctldev->dev, new_map);
->> +               return -EINVAL;
->> +       }
->> +
->> +       new_map[0].type = PIN_MAP_TYPE_MUX_GROUP;
->> +       new_map[0].data.mux.function = parent->name;
->> +       new_map[0].data.mux.group = np->name;
->> +       of_node_put(parent);
->> +
->> +       new_map++;
->> +       for (i = 0; i < grp->npins; i++) {
->> +               new_map[i].type = PIN_MAP_TYPE_CONFIGS_PIN;
->> +               new_map[i].data.configs.group_or_pin = pin_get_name(pctldev, grp->pins[i]);
->> +               new_map[i].data.configs.configs = grp->settings[i].configs;
->> +               new_map[i].data.configs.num_configs = grp->settings[i].nconfigs;
->> +       }
->> +       dev_dbg(pctldev->dev, "maps: function %s group %s num %d\n",
->> +               (*map)->data.mux.function, (*map)->data.mux.group, map_num);
->> +
->> +       return 0;
->> +}
-> This looks like it could be replaced with:
-> pinconf_generic_dt_node_to_map_group
-> pinconf_generic_dt_node_to_map_all
->
-> please check the generic helpers closely.
-
-Alright, I will try using these helpers to simplify the code.
-
->> +static void ma35_dt_free_map(struct pinctrl_dev *pctldev, struct pinctrl_map *map,
->> +                            unsigned int num_maps)
->> +{
->> +       devm_kfree(pctldev->dev, map);
->> +}
-> pinconf_generic_dt_free_map
-
-I will fix it.
-
->
->> +static int ma35_pinmux_get_func_count(struct pinctrl_dev *pctldev)
->> +{
->> +       struct ma35_pinctrl *npctl = pinctrl_dev_get_drvdata(pctldev);
->> +
->> +       return npctl->nfunctions;
->> +}
-> pinmux_generic_get_function_count
-> pinmux_generic_get_function_name
-> pinmux_generic_get_function_groups
-> (etc)
->
-> Please check the CONFIG_GENERIC_PINMUX_FUNCTIONS
-> option because these are again all very generic.
-
-I will try to use these helpers and have a test.
-
->> +static int ma35_gpio_core_direction_in(struct gpio_chip *gc, unsigned int gpio)
->> +{
->> +       struct ma35_pin_bank *bank = gpiochip_get_data(gc);
->> +       void __iomem *reg_mode = bank->reg_base + MA35_GP_REG_MODE;
->> +       unsigned long flags;
->> +       unsigned int regval;
->> +
->> +       spin_lock_irqsave(&bank->lock, flags);
->> +
->> +       regval = readl(reg_mode);
->> +
->> +       regval &= ~GENMASK(gpio * 2 + 1, gpio * 2);
->> +       regval |= MA35_GP_MODE_INPUT << gpio * 2;
->> +
->> +       writel(regval, reg_mode);
->> +
->> +       spin_unlock_irqrestore(&bank->lock, flags);
->> +
->> +       return 0;
->> +}
-> The pinctrl set_mux is using a regmap but not the GPIO which is a bit
-> of a weird mix.
->
-> Further, if you were using regmap-mmio for GPIO, you could probably
-> utilize CONFIG_GPIO_REGMAP to simplify also this part of the
-> code with a library. Look at other drivers using this!
-
-Sorry, I'm not quite clear on the issue. This function is just setting 
-the input/output
-direction for a GPIO pin. The code here is only configuring the GPIO 
-control register.
-I've observed similar implementations in other drivers, such as in 
-pinctrl-amd.c.
-
-
->> +               if (bank->irq > 0) {
->> +                       struct gpio_irq_chip *girq;
->> +
->> +                       girq = &bank->chip.irq;
->> +                       girq->chip = &bank->irqc;
->> +                       girq->chip->name = bank->name;
->> +                       girq->chip->irq_disable = ma35_irq_gpio_mask;
->> +                       girq->chip->irq_enable = ma35_irq_gpio_unmask;
->> +                       girq->chip->irq_set_type = ma35_irq_irqtype;
->> +                       girq->chip->irq_mask = ma35_irq_gpio_mask;
->> +                       girq->chip->irq_unmask = ma35_irq_gpio_unmask;
->> +                       girq->chip->flags = IRQCHIP_MASK_ON_SUSPEND |
->> +                       IRQCHIP_SKIP_SET_WAKE | IRQCHIP_IMMUTABLE;
->> +                       girq->parent_handler = ma35_irq_demux_intgroup;
->> +                       girq->num_parents = 1;
->> +
->> +                       girq->parents = devm_kcalloc(&pdev->dev, 1, sizeof(*girq->parents),
->> +                                                    GFP_KERNEL);
->> +                       if (!girq->parents)
->> +                               return -ENOMEM;
->> +
->> +                       girq->parents[0] = bank->irq;
->> +                       girq->default_type = IRQ_TYPE_NONE;
->> +                       girq->handler = handle_level_irq;
->> +               }
-> As menioned, replace this with an immutable irq_chip.
-
-OK, I will fix it.
-
-> Yours,
-> Linus Walleij
-
-Best Regards,
-Jacky Huang
-
-
+On 11/8/2023 3:36 PM, Fenglin Wu via B4 Relay wrote:
+> Add SW support for the vibrator module inside PMI632, PM7250B, PM7325B, PM7550BA.
+> It is very similar to the vibrator module inside PM8916 which is supported in
+> pm8xxx-vib driver but just the drive amplitude is controlled with 2 registers,
+> and the register base offset in each PMIC is different.
+> 
+> Changes in v7;
+>    1. Fix a typo: SSBL_VIB_DRV_REG --> SSBI_VIB_DRV_REG
+>    2. Move the hw_type switch case in pm8xxx_vib_set() to the refactoring
+>       change.
+> 
+> Changes in v6:
+>    1. Add "qcom,pmi632-vib" as a standalone compatible string.
+> 
+> Changes in v5:
+>    1. Drop "qcom,spmi-vib-gen2" generic compatible string as requested
+>       and use device specific compatible strings only.
+> 
+> Changes in v4:
+>    1. Update to use the combination of the HW type and register offset
+>       as the constant match data, the register base address defined in
+>       'reg' property will be added when accessing SPMI registers using
+>       regmap APIs.
+>    2. Remove 'qcom,spmi-vib-gen1' generic compatible string.
+> 
+> Changes in v3:
+>    1. Refactor the driver to support different type of the vibrators with
+>      better flexibility by introducing the HW type with corresponding
+>      register fields definitions.
+>    2. Add 'qcom,spmi-vib-gen1' and 'qcom,spmi-vib-gen2' compatible
+>      strings, and add PMI632, PM7250B, PM7325B, PM7550BA as compatbile as
+>      spmi-vib-gen2.
+> 
+> Changes in v2:
+>    Remove the "pm7550ba-vib" compatible string as it's compatible with pm7325b.
+> 
+> Fenglin Wu (3):
+>    input: pm8xxx-vib: refactor to easily support new SPMI vibrator
+>    dt-bindings: input: qcom,pm8xxx-vib: add new SPMI vibrator module
+>    input: pm8xxx-vibrator: add new SPMI vibrator support
+> 
+>   .../bindings/input/qcom,pm8xxx-vib.yaml       |  16 +-
+>   drivers/input/misc/pm8xxx-vibrator.c          | 171 ++++++++++++------
+>   2 files changed, 132 insertions(+), 55 deletions(-)
+> 
+> --
+> 2.25.1
+> 
+> ---
+> Fenglin Wu (3):
+>        input: pm8xxx-vib: refactor to easily support new SPMI vibrator
+>        dt-bindings: input: qcom,pm8xxx-vib: add new SPMI vibrator module
+>        input: pm8xxx-vibrator: add new SPMI vibrator support
+> 
+>   .../devicetree/bindings/input/qcom,pm8xxx-vib.yaml |  16 +-
+>   drivers/input/misc/pm8xxx-vibrator.c               | 170 ++++++++++++++-------
+>   2 files changed, 131 insertions(+), 55 deletions(-)
+> ---
+> base-commit: 650cda2ce25f08e8fae391b3ba6be27e7296c6a5
+> change-id: 20230925-pm8xxx-vibrator-62df3df46a6c
+> 
+> Best regards,
 
