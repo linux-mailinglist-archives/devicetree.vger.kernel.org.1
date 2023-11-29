@@ -1,112 +1,170 @@
-Return-Path: <devicetree+bounces-20022-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20023-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EC637FD8D6
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 15:01:02 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44DBF7FD8D7
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 15:01:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4838AB20EC5
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 14:00:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 68C621C209F0
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 14:01:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C386249F4;
-	Wed, 29 Nov 2023 14:00:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01ABC20B17;
+	Wed, 29 Nov 2023 14:01:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FwqjyUo6"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FKcaGS6d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-x1132.google.com (mail-yw1-x1132.google.com [IPv6:2607:f8b0:4864:20::1132])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 218C9DE
-	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 06:00:52 -0800 (PST)
-Received: by mail-yw1-x1132.google.com with SMTP id 00721157ae682-59b5484fbe6so67506007b3.1
-        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 06:00:52 -0800 (PST)
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94A5ADE
+	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 06:01:03 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-50bbef0e5d5so2306959e87.1
+        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 06:01:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701266451; x=1701871251; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=oCC/9FFHNPmSAvzhxutRUBRRybrgfLjmAxexqz97QwM=;
-        b=FwqjyUo60rfXa30VDKbLoezKFlRoVm3iYhoHayaNiT9O2KytflIPx7XN9vUmffyEX1
-         w29DWIntpUv1foGz5EPYBElbnzRt50QusN29dhGxjklg/NIi41J55ckCpdmSY0eGSDDF
-         7T+2Rg3iDwpxFjPvErZhTwaYSY2s3rAgW/AW3KFnCNqscDTZNFWzy99ojirkN03LACHR
-         rbGn0XKVE3cou2/rwtAU3WHOm6mobNipKLbU0R4W0jU5pQENfIiuZx2PEVbCGIxYf4Fy
-         km9lK0yWFJGU0uicGp3MVDvx/O58wkxW/JtxbZhEUX4qObdFavFA6dPYlC8Y3JN7lKjj
-         d8Hg==
+        d=linaro.org; s=google; t=1701266462; x=1701871262; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=HFdKEVTW61V1xHyYtbiBsO5/c4EsvUDRepVmlWcXtHE=;
+        b=FKcaGS6dI4FXUUTe1fF3/tSQTgJ9APHPqyA5hZJYGvufxyp8lzKeraM51NNkPXIY4S
+         4TVE+xuz/E+as705ZmTFyk7Z1qQgHBqO2GrA+mp/w+whGDRlHVFqYZ0yY5mS2L18bDkS
+         qy1V4Zlpk8x7vlG9vXakEEQ068OktUAFo2Uz2xBVLVsW+UDWzSm9YeyOaiXz6dI+Fw4G
+         CDgA/sfCscxF1JbSIPLglVLFEgOu2fOVCabyj93luvUf7JlZ8tu1Rsw/ZTTZr1AyVkTi
+         cGac6fx67S36jUFmuvfFNB67JB1uw6vhb5q5sETnWwcYO3GJgh3BVIxrXHLWFCXkbpwV
+         T5/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701266451; x=1701871251;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=oCC/9FFHNPmSAvzhxutRUBRRybrgfLjmAxexqz97QwM=;
-        b=JHZ0RqRQHsQL0tgA6WaJ601LJ1Nc81uLyTosTVHsddgtb07Mf3xEFmvH9ljmP9GZ1u
-         bNOK2AhzkbKEPQICru4Qx9XU0m9da86MbNqLEP9vd2V8AXpzsLuF9BhFkTTnUSbXsTwR
-         +e6xaX3Mh72SotqEvOh3zV3kRgkPqRaaO4vCGmlZkBXOAHPp+mdwGKTrg67x0UCJ8qkt
-         66WhO+1Yfm8eDH94zwRUAYVKZfyYkQYXaIMkSZ1Ri1pLAkDFx1++uC/KvIdtPiWsA4kk
-         mp7witznmNeNii8/meRyzK9R0BKTedg/cdR6Cr6CeOGupW4pibRBJ4O6VEZ2NZF5pgPU
-         Qt7w==
-X-Gm-Message-State: AOJu0Yx1UOAseDbYLFh3WnYe5Ud4nJbBPVFg33P74sJptwGqX0UTHCNB
-	AE4nM57Lgv5EANu2Z9vo6d/DMm6y+zmdWWslqX/RtQ==
-X-Google-Smtp-Source: AGHT+IFyoJirUdQ/sHjIeBYN1D+GunZnohdARQN0SA5/H2NW+f4SA+dOckGi81cdAlrBV7YDQYJpmmvPxIePT364dOM=
-X-Received: by 2002:a0d:c607:0:b0:5c8:708f:1ea with SMTP id
- i7-20020a0dc607000000b005c8708f01eamr19853375ywd.32.1701266451319; Wed, 29
- Nov 2023 06:00:51 -0800 (PST)
+        d=1e100.net; s=20230601; t=1701266462; x=1701871262;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=HFdKEVTW61V1xHyYtbiBsO5/c4EsvUDRepVmlWcXtHE=;
+        b=GDpV+v4CyL94zAHVEVnhk79JlHYkSAAA5U0iNekwIXkrDqC17+zpq6mUyE3vDn7F9Z
+         JlBVbPrLSRTolb9/AktLt3DrVndnUw19vezY3KPk6Z+9nBZxEUqduo5qj9Wn7JKaj5zJ
+         Mw9FBJJpmks7sazykbba3saTvbPe4RWdUVkljt5qtR/XhPYHW7+EoLaV0Zwzrm5QA/P6
+         DhjzjKniJJe/54fDqV+CCQ7LHEs2WMzcrVi6CbGXyw0InOPes6QgXMcBL/ErZfvwjkR3
+         ppSHIKlHwv6xRWqbLQgCYkt4z1DiynYR4ZU5xoWKsFzjoerWIaUis+S0xgTvze67tO4j
+         xZtA==
+X-Gm-Message-State: AOJu0YybZ5Ea9rCJjsyuKn9y7T56X1G2gl+BXeCROl753K+aa1ucWTPG
+	5sAv5zYNj5NXAtWAKBkKQT5XnA==
+X-Google-Smtp-Source: AGHT+IHviG4Z2hXt1LHxLsvc3bZ7a1BErojOSze3hz/kajM1AYS7CCxQR3Bhgrh58eTm6pB20cB+hQ==
+X-Received: by 2002:a05:6512:1d1:b0:50b:bd3f:9118 with SMTP id f17-20020a05651201d100b0050bbd3f9118mr2774050lfp.36.1701266461633;
+        Wed, 29 Nov 2023 06:01:01 -0800 (PST)
+Received: from [192.168.209.173] (178235187166.dynamic-4-waw-k-2-3-0.vectranet.pl. [178.235.187.166])
+        by smtp.gmail.com with ESMTPSA id ck7-20020a0564021c0700b0054b1360dd03sm5520697edb.58.2023.11.29.06.00.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 29 Nov 2023 06:01:01 -0800 (PST)
+Message-ID: <2ca148cc-564c-499a-8fdf-487391c9024c@linaro.org>
+Date: Wed, 29 Nov 2023 15:00:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231128132534.258459-1-herve.codina@bootlin.com>
- <17b2f126-f6a4-431c-9e72-56a9c2932a88@sirena.org.uk> <CACRpkda5VMuXccwSBd-DBkM4W7A1E+UfZwBxWqtqxZzKjrqY4A@mail.gmail.com>
- <511c83d1-d77f-4ac0-927e-91070787bc34@sirena.org.uk> <CACRpkdYmN4318b1wXwUOeFjPN0S2w8M9FpXHOs3LtFa+XoTxVw@mail.gmail.com>
- <20231128173110.0ccb8f53@kernel.org>
-In-Reply-To: <20231128173110.0ccb8f53@kernel.org>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Wed, 29 Nov 2023 15:00:40 +0100
-Message-ID: <CACRpkdbrH-WWVrVWx6MvReUuUW8tU_J8Mb7nW3G8fJGAoiS38g@mail.gmail.com>
-Subject: Re: [PATCH 0/5] Add support for framer infrastructure and PEF2256 framer
-To: Jakub Kicinski <kuba@kernel.org>
-Cc: Mark Brown <broonie@kernel.org>, Herve Codina <herve.codina@bootlin.com>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Lee Jones <lee@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, netdev@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, Christophe Leroy <christophe.leroy@csgroup.eu>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V2 0/4] Add runtime PM support for videocc on SM8150
+Content-Language: en-US
+To: "Satya Priya Kakitapalli (Temp)" <quic_skakitap@quicinc.com>,
+ Konrad Dybcio <konradybcio@kernel.org>, Andy Gross <agross@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ Bjorn Andersson <andersson@kernel.org>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+References: <20231118123944.2202630-1-quic_skakitap@quicinc.com>
+ <47925f9e-32aa-4762-a4ec-aa559e18ff12@kernel.org>
+ <26b69814-201b-8d07-d844-27e804aa3016@quicinc.com>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
+ BB/OmIWU6X+LZW6P88ZmHe+KeyABLMP5s1tJNK1j4ntT7mECcWZDzafPWF4F6m4WJOG27kTJ
+ HGWdmtO+RvadOVi6CoUDqALsmfS3MUG5Pj2Ne9+0jRg4hEnB92AyF9rW2G3qisFcwPgvatt7
+ TXD5E38mLyOPOUyXNj9XpDbt1hNwKQfiidmPh5e7VNAWRnW1iCMMoKqzM1Anzq7e5Afyeifz
+ zRcQPLaqrPjnKqZGL2BKQSZDh6NkI5ZLRhhHQf61fkWcUpTp1oDC6jWVfT7hwRVIQLrrNj9G
+ MpPzrlN4YuAqKeIer1FMt8cq64ifgTzxHzXsMcUdclzq2LTk2RXaPl6Jg/IXWqUClJHbamSk
+ t1bfif3SnmhA6TiNvEpDKPiT3IDs42THU6ygslrBxyROQPWLI9IL1y8S6RtEh8H+NZQWZNzm
+ UQ3imZirlPjxZtvz1BtnnBWS06e7x/UEAguj7VHCuymVgpl2Za17d1jj81YN5Rp5L9GXxkV1
+ aUEwONM3eCI3qcYm5JNc5X+JthZOWsbIPSC1Rhxz3JmWIwP1udr5E3oNRe9u2LIEq+wH/toH
+ kpPDhTeMkvt4KfE5m5ercid9+ZXAqoaYLUL4HCEw+HW0DXcKDwARAQABzShLb25yYWQgRHli
+ Y2lvIDxrb25yYWQuZHliY2lvQGxpbmFyby5vcmc+wsGOBBMBCAA4FiEEU24if9oCL2zdAAQV
+ R4cBcg5dfFgFAmQ5bqwCGwMFCwkIBwIGFQoJCAsCBBYCAwECHgECF4AACgkQR4cBcg5dfFjO
+ BQ//YQV6fkbqQCceYebGg6TiisWCy8LG77zV7DB0VMIWJv7Km7Sz0QQrHQVzhEr3trNenZrf
+ yy+o2tQOF2biICzbLM8oyQPY8B///KJTWI2khoB8IJSJq3kNG68NjPg2vkP6CMltC/X3ohAo
+ xL2UgwN5vj74QnlNneOjc0vGbtA7zURNhTz5P/YuTudCqcAbxJkbqZM4WymjQhe0XgwHLkiH
+ 5LHSZ31MRKp/+4Kqs4DTXMctc7vFhtUdmatAExDKw8oEz5NbskKbW+qHjW1XUcUIrxRr667V
+ GWH6MkVceT9ZBrtLoSzMLYaQXvi3sSAup0qiJiBYszc/VOu3RbIpNLRcXN3KYuxdQAptacTE
+ mA+5+4Y4DfC3rUSun+hWLDeac9z9jjHm5rE998OqZnOU9aztbd6zQG5VL6EKgsVXAZD4D3RP
+ x1NaAjdA3MD06eyvbOWiA5NSzIcC8UIQvgx09xm7dThCuQYJR4Yxjd+9JPJHI6apzNZpDGvQ
+ BBZzvwxV6L1CojUEpnilmMG1ZOTstktWpNzw3G2Gis0XihDUef0MWVsQYJAl0wfiv/0By+XK
+ mm2zRR+l/dnzxnlbgJ5pO0imC2w0TVxLkAp0eo0LHw619finad2u6UPQAkZ4oj++iIGrJkt5
+ Lkn2XgB+IW8ESflz6nDY3b5KQRF8Z6XLP0+IEdLOOARkOW7yEgorBgEEAZdVAQUBAQdAwmUx
+ xrbSCx2ksDxz7rFFGX1KmTkdRtcgC6F3NfuNYkYDAQgHwsF2BBgBCAAgFiEEU24if9oCL2zd
+ AAQVR4cBcg5dfFgFAmQ5bvICGwwACgkQR4cBcg5dfFju1Q//Xta1ShwL0MLSC1KL1lXGXeRM
+ 8arzfyiB5wJ9tb9U/nZvhhdfilEDLe0jKJY0RJErbdRHsalwQCrtq/1ewQpMpsRxXzAjgfRN
+ jc4tgxRWmI+aVTzSRpywNahzZBT695hMz81cVZJoZzaV0KaMTlSnBkrviPz1nIGHYCHJxF9r
+ cIu0GSIyUjZ/7xslxdvjpLth16H27JCWDzDqIQMtg61063gNyEyWgt1qRSaK14JIH/DoYRfn
+ jfFQSC8bffFjat7BQGFz4ZpRavkMUFuDirn5Tf28oc5ebe2cIHp4/kajTx/7JOxWZ80U70mA
+ cBgEeYSrYYnX+UJsSxpzLc/0sT1eRJDEhI4XIQM4ClIzpsCIN5HnVF76UQXh3a9zpwh3dk8i
+ bhN/URmCOTH+LHNJYN/MxY8wuukq877DWB7k86pBs5IDLAXmW8v3gIDWyIcgYqb2v8QO2Mqx
+ YMqL7UZxVLul4/JbllsQB8F/fNI8AfttmAQL9cwo6C8yDTXKdho920W4WUR9k8NT/OBqWSyk
+ bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
+ nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
+ izWDgYvmBE8=
+In-Reply-To: <26b69814-201b-8d07-d844-27e804aa3016@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Wed, Nov 29, 2023 at 2:31=E2=80=AFAM Jakub Kicinski <kuba@kernel.org> wr=
-ote:
-> On Tue, 28 Nov 2023 15:51:01 +0100 Linus Walleij wrote:
-> > > > I thought this thing would be merged primarily into the networking
-> > > > tree, and I don't know if they do signed tags, I usually create an
-> > > > immutable branch but that should work just as fine I guess.
-> > >
-> > > Right, I'd expect a signed tag on the immutable branch - it's general=
-ly
-> > > helpful to avoid confusion about the branch actually being immutable.
-> >
-> > Makes sense, best to create that in the netdev tree if possible
-> > I guess.
->
-> I think you offered creating the branch / tag in an earlier reply,
-> that's less work for me so yes please! :)
+On 28.11.2023 17:11, Satya Priya Kakitapalli (Temp) wrote:
+> 
+> On 11/20/2023 5:18 PM, Konrad Dybcio wrote:
+>> On 18.11.2023 13:39, Satya Priya Kakitapalli wrote:
+>>> Add runtime support for videocc on SM8150 and update the resets
+>>> and video_pll0_config configuration.
+>>>
+>>> Satya Priya Kakitapalli (4):
+>>>    dt-bindings: clock: Update the videocc resets for sm8150
+>>>    clk: qcom: videocc-sm8150: Update the videocc resets
+>>>    clk: qcom: videocc-sm8150: Add missing PLL config properties
+>>>    clk: qcom: videocc-sm8150: Add runtime PM support
+>> Hi, it's good practive to include a link to the previous revision
+>> and a summary of changes.
+>>
+>> The b4 tool [1] does that for you, please consider using it.
+> 
+> 
+> Hi, I have installed b4 and followed all the steps, but it doesn't populate my cover letter with change log and previous series link, do i need to use some option for that?
+You probably did something like this:
 
-OK I fix!
+b4 prep -n 8150vidcc --from-thread 26b69814-201b-8d07-d844-27e804aa3016@quicinc.com
 
-Just waiting for some final reviews to trickle in.
+Then if you do:
 
-Herve: nag me if it doesn't happen in time!
+b4 prep --edit-cover
 
-> FWIW I usually put the branches / tags in my personal k.org tree.
-> I don't wanna pollute the trees for the $many people who fetch
-> netdev with random tags.
+you'll see a note like
 
-Aha yeah pin control is relatively small so I just carry misc sync
-tags there.
+EDITME: Imported from f26b69814-201b-8d07-d844-27e804aa3016@quicinc.com
+        Please review before sending.
 
-Yours,
-Linus Walleij
+so you need to do it manually.
+
+
+Generally, when the series has been sent at least once with b4 already,
+you'll notice that `b4 send` appends something like this to the cover
+letter:
+
+Changes in v2:
+- EDITME: describe what is new in this series revision.
+- EDITME: use bulletpoints and terse descriptions.
+- Link to v1: https://lore.kernel.org/r/20230830-topic-refgenphy-v1-0-892db196a1c0@linaro.org
+
+
+This should be only necessary to do by hand once, since as mentioned it's
+the first time b4 sees this series
+
+
+Konrad
 
