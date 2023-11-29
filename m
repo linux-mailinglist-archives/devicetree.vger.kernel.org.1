@@ -1,130 +1,116 @@
-Return-Path: <devicetree+bounces-19804-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19805-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9CD67FCC68
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 02:43:37 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9689D7FCD28
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 04:04:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 20C68B214AD
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 01:43:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C3B46B213AC
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 03:04:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBF271C10;
-	Wed, 29 Nov 2023 01:43:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CC684C6F;
+	Wed, 29 Nov 2023 03:04:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bN6dJ4ty"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="hs8pfRPG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 507FEF5;
-	Tue, 28 Nov 2023 17:43:29 -0800 (PST)
-Received: by mail-pf1-x430.google.com with SMTP id d2e1a72fcca58-6c115026985so5991569b3a.1;
-        Tue, 28 Nov 2023 17:43:29 -0800 (PST)
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CA3E19AE
+	for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 19:04:46 -0800 (PST)
+Received: by mail-pf1-x430.google.com with SMTP id d2e1a72fcca58-6cd89f2af9dso3133959b3a.1
+        for <devicetree@vger.kernel.org>; Tue, 28 Nov 2023 19:04:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701222209; x=1701827009; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6iT90c21pyrsUl0yRSolDbsHY6gNhOwvDglDwx9J8xk=;
-        b=bN6dJ4tyl/krsgMQgyeptNNFgQSclRWCp+B0LtEbI4sL2RyuXp2QF1a/lBHC5PgyDJ
-         8Mi2qdWxbjEMiq/m61v5dSUtfdqK9yb5TFA3NmKYPn2P5IminWL+V/s1YWh5vkWUiY92
-         bCWaWNZUQVrnb38l5Fa+6X6KMOmR48WoQDowFL7ge575E/r05/LrEv++Y689N/Nf4319
-         N97vkd3pCD19M3FNhFl3TnIOjlzYed8nLxlYueI5KKjKfXJyPNWYu+bpS4mlZfm1ApNX
-         CK3aX5Yu0C0GMkAl0/tnVWUiIgMKoOKlHlWdeAlZNDvWjN7KJ3zsgLU7+KEV8ocW0h2W
-         EjyQ==
+        d=chromium.org; s=google; t=1701227086; x=1701831886; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=tJGxAu392s/bORKdAjJBrcSJ8FzTjUlfAs3pgZbxfG8=;
+        b=hs8pfRPGFma1EueAR2BfbQu6ZGHmezoKnRYlJB+1QWez5uW4HNwTgrlzZEKSaM3hOV
+         7PAiCLSZu7G9sli1ScVvO6EHxvxuUo+tbOCjgCJGGWgiyDjanQ6N1IUkzxMK9uOumoo8
+         Gq6In8LxsytvM8HW3Q+dNy2uyenZB/lahzkP0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701222209; x=1701827009;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6iT90c21pyrsUl0yRSolDbsHY6gNhOwvDglDwx9J8xk=;
-        b=KqqOHEgaH9vHzuWRwRwSf3W42VxSgT/b0dTwCnmAffz/vXxg1e/0mv1upCEQuhquku
-         JqwrjrW/sdI+IU9oSCo62/I+c1iqHGF1ZCB+jsmuftPcOAwzKdYHs3gqbwX7rZgguqKU
-         yWkNzu2G4Gj3vEzwxxmVRMHut4CFDgGjcCtKvnZYFnR8wj028Mm5Mlp9kJ6AMXLaOs34
-         C7RjRVlEzJP1jTA9R9xuoGy5iM4OzT+B4TL3A/5XxghgFxyYeNgAqC8qrTNOdQ2Q7GiN
-         2yKhjf0gv1oWSI8EmYmCV+tGmYCqIkXinA0mimJ9V+MMS27kgPTu+x1iw/UbJKp8/x7z
-         BY4w==
-X-Gm-Message-State: AOJu0Yz/aVFb1aU9m2dmhfqTUuiORFiUB86saMAOu5Qs2VO4Q2xf/UTk
-	BNqTBu4OqITOnFnIKWyFQtE=
-X-Google-Smtp-Source: AGHT+IF1HFKSrLZGJUXNWMIpuVB0MTPE7TOXj4Rob4KrWH8A43EbOW/4Oe2ImDH3ga07LrCnj9W6XQ==
-X-Received: by 2002:a05:6a00:3909:b0:6be:130a:22a0 with SMTP id fh9-20020a056a00390900b006be130a22a0mr18890678pfb.14.1701222208657;
-        Tue, 28 Nov 2023 17:43:28 -0800 (PST)
-Received: from [172.19.1.47] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
-        by smtp.gmail.com with ESMTPSA id fh20-20020a056a00391400b006bb5ff51177sm9610454pfb.194.2023.11.28.17.43.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Nov 2023 17:43:28 -0800 (PST)
-Message-ID: <428082d9-474b-4dfc-90b0-f739a35a1f48@gmail.com>
-Date: Wed, 29 Nov 2023 09:43:24 +0800
+        d=1e100.net; s=20230601; t=1701227086; x=1701831886;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tJGxAu392s/bORKdAjJBrcSJ8FzTjUlfAs3pgZbxfG8=;
+        b=SWXGMuU7r8earNFKfx+M0axJSMzM4AmznNkxDhdg4+y3gv3GVOghyp9iQIRFVED7q7
+         /AEOAwzUjztkwP1UxBYR5xgfzmGnvs12XYDCRfoleAlSJNniFAxSIixDSas9o1UXAE6k
+         bi6ASsChsbDRwqNHxc7kO6vXqOLTm56LFUyPrAMpM6NPzfsPfKIft5q+F9hrDtFmurwb
+         ahwl9ylF9wRJ30yYfazHNkntDpM4hGaavFm6LDDN3hTFrHPSSrTTpsMHtJyrPBzHWfQb
+         Yz3Qbneh3ryEdQtY7PZUb46pCf/PU3jAPM1hWefW+WwfrRC5T02/Ty5SRDNxOlncXrb7
+         7UeA==
+X-Gm-Message-State: AOJu0Yxf70un1GVTRVBAlEsW5FTHwKa0sl4/hfkXwbmXDOJwatGp2Qnz
+	KxKrGApuz0ANeP+DlfP3xA9WKw==
+X-Google-Smtp-Source: AGHT+IGygOdS0FDYG0MeUfrKyvdo448ZeERsKbGVJU3tooOdVfsvGLB+9h5K3ZINX8K1tfa6iwgshw==
+X-Received: by 2002:a05:6a00:10d2:b0:6cb:4bd5:a4c5 with SMTP id d18-20020a056a0010d200b006cb4bd5a4c5mr20961101pfu.9.1701227085930;
+        Tue, 28 Nov 2023 19:04:45 -0800 (PST)
+Received: from smtp.gmail.com ([2620:15c:11a:201:d7b2:b65d:af69:8a53])
+        by smtp.gmail.com with ESMTPSA id u12-20020a056a00098c00b006cd88728572sm4847426pfg.211.2023.11.28.19.04.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Nov 2023 19:04:45 -0800 (PST)
+From: Stephen Boyd <swboyd@chromium.org>
+To: Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>
+Cc: linux-kernel@vger.kernel.org,
+	patches@lists.linux.dev,
+	linux-arm-msm@vger.kernel.org,
+	Rob Herring <robh+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	Alexandre TORGUE <alexandre.torgue@foss.st.com>,
+	Yanteng Si <siyanteng@loongson.cn>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Douglas Anderson <dianders@chromium.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2] dt-bindings: arm: qcom: Fix html link
+Date: Tue, 28 Nov 2023 19:04:41 -0800
+Message-ID: <20231129030443.2753833-1-swboyd@chromium.org>
+X-Mailer: git-send-email 2.43.0.rc1.413.gea7ed67945-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/4] arm64: dts: nuvoton: Add pinctrl support for
- ma35d1
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- linus.walleij@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- p.zabel@pengutronix.de, j.neuschaefer@gmx.net
-Cc: linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- ychuang3@nuvoton.com, schung@nuvoton.com
-References: <20231128061118.575847-1-ychuang570808@gmail.com>
- <20231128061118.575847-4-ychuang570808@gmail.com>
- <18276c95-26e8-4b07-8351-7555d7595f7c@linaro.org>
-Content-Language: en-US
-From: Jacky Huang <ychuang570808@gmail.com>
-In-Reply-To: <18276c95-26e8-4b07-8351-7555d7595f7c@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-Dear Krzysztof,
+This link got broken by commit e790a4ce5290 ("arm: docs: Move Arm
+documentation to Documentation/arch/") when the doc moved from arm/ to
+arch/arm/. Fix the link so that it can continue to be followed.
 
-Thanks for your review.
+Fixes: e790a4ce5290 ("arm: docs: Move Arm documentation to Documentation/arch/")
+Cc: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+Cc: Yanteng Si <siyanteng@loongson.cn>
+Cc: Jonathan Corbet <corbet@lwn.net>
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Stephen Boyd <swboyd@chromium.org>
+---
 
-On 2023/11/28 下午 07:03, Krzysztof Kozlowski wrote:
-> On 28/11/2023 07:11, Jacky Huang wrote:
->> From: Jacky Huang <ychuang3@nuvoton.com>
->>
-> ...
->
->>   
->>   		sys: system-management@40460000 {
->> -			compatible = "nuvoton,ma35d1-reset";
->> +			compatible = "nuvoton,ma35d1-reset", "syscon";
->>   			reg = <0x0 0x40460000 0x0 0x200>;
->>   			#reset-cells = <1>;
->>   		};
->> @@ -95,6 +96,162 @@ clk: clock-controller@40460200 {
->>   			clocks = <&clk_hxt>;
->>   		};
->>   
->> +		pinctrl: pinctrl@40040000 {
->> +			compatible = "nuvoton,ma35d1-pinctrl";
->> +			#address-cells = <1>;
->> +			#size-cells = <1>;
->> +			nuvoton,sys = <&sys>;
->> +			ranges = <0x0 0x0 0x40040000 0xc00>;
->> +
->> +			gpioa: gpio@40040000 {
->> +				reg = <0x0 0x40>;
-> Your unit address does not match reg.
->
-> You must test your DTS with `dtbs_check W=1`.
->
->
->> +				interrupts = <GIC_SPI  14 IRQ_TYPE_LEVEL_HIGH>;
->> +				clocks = <&clk GPA_GATE>;
->> +				gpio-controller;
->> +				#gpio-cells = <2>;
->
-> Best regards,
-> Krzysztof
->
+Please land this through qcom tree.
 
-"OK, I will fix 'gpioa: gpio@40040000' to 'gpioa: gpio@0', and similarly 
-for gpiob to gpion. I will also eliminate all redundant spaces behind 
-GIC_SPI." Best Regards, Jacky Huang
+Changes from v1 (https://lore.kernel.org/r/20231128002052.2520402-1-swboyd@chromium.org):
+ * Pick up tags
+
+ Documentation/devicetree/bindings/arm/qcom.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+index 7f80f48a0954..8a6466d1fc4e 100644
+--- a/Documentation/devicetree/bindings/arm/qcom.yaml
++++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+@@ -138,7 +138,7 @@ description: |
+   There are many devices in the list below that run the standard ChromeOS
+   bootloader setup and use the open source depthcharge bootloader to boot the
+   OS. These devices do not use the scheme described above. For details, see:
+-  https://docs.kernel.org/arm/google/chromebook-boot-flow.html
++  https://docs.kernel.org/arch/arm/google/chromebook-boot-flow.html
+ 
+ properties:
+   $nodename:
+
+base-commit: b85ea95d086471afb4ad062012a4d73cd328fa86
+-- 
+https://chromeos.dev
+
 
