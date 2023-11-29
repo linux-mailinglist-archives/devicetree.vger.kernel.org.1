@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-20149-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20150-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B92FA7FDFDC
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 19:59:51 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 812597FDFE4
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 19:59:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E934B1C20E15
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 18:59:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0C7ADB20FD2
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 18:59:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F00C5CD13;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9F0D5DF08;
 	Wed, 29 Nov 2023 18:59:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ceEZuJGR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qutbMOhJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 151F21704
-	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 10:59:39 -0800 (PST)
-Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2c9bf8964c3so1817861fa.1
-        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 10:59:38 -0800 (PST)
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A41621711
+	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 10:59:40 -0800 (PST)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-a03a900956dso17939966b.1
+        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 10:59:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701284377; x=1701889177; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701284379; x=1701889179; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=RXMNH6TrR/7XnpjC35h5hcRSBIQq27ZTZGmPCePhaF4=;
-        b=ceEZuJGRHjSJEEn2XThBuYRMXJhfXO8ZHHnRI+lYhiuwr3N4vCFV02KyeoV5BDfj2/
-         IQYU6js95/NL321CKrIhIK+wCtVCoFI/IaZJVo7m2S5X0GK+xjUZh2sRWFHBhesZXwNy
-         D8GbUWBO89qBBpFwkYL5Do4SrtrQyI+x/MKxexj55zl2ej/gQ+vO2OtYyqJa1DYJmJY6
-         Dl3z8s179GyE6sANiRgQyFWYaILGhd4iCdgk8RoTwwLjxkbuil1c/uxrwyvO2WG0DRYd
-         /WgpsKcEL0hdOjhIEv5Xsx+QCMxuearTdipvkMPMFGp9axlvkXc9i9HlnMpIoGSbZ4O8
-         zg0g==
+        bh=XlDUepmJECDPJhuprnqUu3VqOzP0g1ylAOO9+Ec40Fc=;
+        b=qutbMOhJVBo1eaAK6wX5JXfMQchq6V5+TTrZIjuBrnvvemi4hSKfJPzrxiRDIe/nQ/
+         TjfD1FwQz/fRQzMRaXeilla1ql+wJPFC1G16GlQhbkVmYevj9xP/ma1vA0ks0oVbu+Zl
+         71jRQBxSDJxFYbULEOR7EgoxFG8kmOajWTDf5d6JaNyyJvPizr+qokV/8BiU9J5IES7/
+         AlVGgven+RzlrORc9SpKGaNz5SO2SmNDRn7rgtrMqa5nvizkmxkiQVYXIv+3wSFxkGLg
+         LxsINhfkB7OJ1kXkRT2vPsmVcRG2VuZIQDwNRz3eIBYqoPx0ZNtO8N4lvYYiyz4FuLfc
+         0UkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701284377; x=1701889177;
+        d=1e100.net; s=20230601; t=1701284379; x=1701889179;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=RXMNH6TrR/7XnpjC35h5hcRSBIQq27ZTZGmPCePhaF4=;
-        b=oy879xf3wCdHrG6pVIzmLUs+g/YpB0ZI5z331t7aQpl+SdPsVRBtGoRdh8RRTYykSn
-         q/e+9KSeLPEFlWVO/pGnrfSrTceijc04MeBo0DD12uBWrwcbC5qyXvnUbHJd5MIRZAER
-         1PjYF3mfsVT0bcTuubUBBl3W37NjeopQB3MIy7o5a3MRjmjHM/qsPVhj6UvwSDgsr67o
-         Nh0Nlwowph9JvVxizQotdsDbvisP9hgQRIB+hKFDOu2jMKJFn82jW+iL0rAFMt7vyNy0
-         Dr4mJHi4FrJ2UXCZn4LLDzmUKzen6a40EjNkUtpaIBSgakba0gnpUoSyu1SAWUhqc9qM
-         23qg==
-X-Gm-Message-State: AOJu0YwDVvIxl4q2djscl7kcBNH45Upa2wuT3yc/M8+/xrErXajxzR81
-	72f/OZPcjidACY7yd/Bg0XdNIw==
-X-Google-Smtp-Source: AGHT+IFNL3CM1j+VFhLk7jRZhqJVTMlPCIKdqhUjhzr31aTHAPGZYyplS/2f5U9wFwtpF7JP++AWtQ==
-X-Received: by 2002:a2e:9b59:0:b0:2c6:ece6:5b65 with SMTP id o25-20020a2e9b59000000b002c6ece65b65mr12502580ljj.10.1701284377331;
-        Wed, 29 Nov 2023 10:59:37 -0800 (PST)
+        bh=XlDUepmJECDPJhuprnqUu3VqOzP0g1ylAOO9+Ec40Fc=;
+        b=QHIz4EkSUf9lKTVigiuxjLuBrbgbbFGJV9uJ1k44d1DH0pe2a7yh6YzqhbuRxSU3DR
+         r8cOWnCsphfH1CXrdHza4ThUSrN8I++7pOcnJ6q41qtEvO6bk8Lntu4rSbU8kMt22DQr
+         D2btnTMETO/TBBKBva5tuCl78LxZs5ulIbPBAem/L+3Itj3/SqBGplMj18TeICuZgURJ
+         B5G4D9FOIglvzph13PIldmKU3QmTXnTjKe3qblrE7/bt50XHpSH//tcw2A8/ozVT18hG
+         r5d/zWOUYV2auloaG2oaYZs/lWQEHm/syhtaoQFvD3/AjlWCU2F9oWNCROcLkKnPPLrl
+         pPww==
+X-Gm-Message-State: AOJu0Yz9o6cX0G8ScDBZ4d2QwS29d/PmaxJXQKH9L3+Eg5Y2SZtrLaa0
+	0fXGZd5GY0ZgzAj/f1C7FoKHQg==
+X-Google-Smtp-Source: AGHT+IGrFuuirgbflWVWu41OzF03NDDuEMuQXDJ+cEw++BBXMgKEaWD9G1+yl9mYtK5v0zFbHw9X8A==
+X-Received: by 2002:a17:906:f811:b0:a0f:1882:d5e with SMTP id kh17-20020a170906f81100b00a0f18820d5emr7816584ejb.37.1701284379041;
+        Wed, 29 Nov 2023 10:59:39 -0800 (PST)
 Received: from [10.167.154.1] (178235187166.dynamic-4-waw-k-2-3-0.vectranet.pl. [178.235.187.166])
-        by smtp.gmail.com with ESMTPSA id o11-20020a1709061d4b00b009faca59cf38sm8160232ejh.182.2023.11.29.10.59.35
+        by smtp.gmail.com with ESMTPSA id o11-20020a1709061d4b00b009faca59cf38sm8160232ejh.182.2023.11.29.10.59.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Nov 2023 10:59:36 -0800 (PST)
+        Wed, 29 Nov 2023 10:59:38 -0800 (PST)
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Date: Wed, 29 Nov 2023 19:59:24 +0100
-Subject: [PATCH v2 05/15] clk: qcom: gpucc-sm6375: Unregister critical
+Date: Wed, 29 Nov 2023 19:59:25 +0100
+Subject: [PATCH v2 06/15] clk: qcom: gpucc-sm6115: Unregister critical
  clocks
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -65,7 +65,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230717-topic-branch_aon_cleanup-v2-5-2a583460ef26@linaro.org>
+Message-Id: <20230717-topic-branch_aon_cleanup-v2-6-2a583460ef26@linaro.org>
 References: <20230717-topic-branch_aon_cleanup-v2-0-2a583460ef26@linaro.org>
 In-Reply-To: <20230717-topic-branch_aon_cleanup-v2-0-2a583460ef26@linaro.org>
 To: Bjorn Andersson <andersson@kernel.org>, Andy Gross <agross@kernel.org>, 
@@ -78,11 +78,11 @@ Cc: Marijn Suijten <marijn.suijten@somainline.org>,
  linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
  Konrad Dybcio <konrad.dybcio@linaro.org>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1701284367; l=2968;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1701284367; l=2946;
  i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=LUWIogmP6OeDvx1GjND0Am0UQ+6einhHWh1HpqaW4UI=;
- b=yQzFMJrhML7Y5IYoegSAF6IeVpUCzfIPsfrVm05xdBsTdVnFLOOzF1l8znsi7qjH8Xpj6+xGI
- YKvvl6fJ0RtAyEzXytX9eeGB375rfVMq5z4XGKhvIB6SxO6ELJcSaNB
+ bh=L0PymLuHyWV4Yhgl+FgHBcte5FGcWRmHBmwI88u/f0w=;
+ b=tqlg8aYXsgxwZazuI492ThhgAeDgh5mPmkZVU+QiLkmD1qTdon0KEaQ7oZzqoxLNuw50o/X6i
+ zcYQaJCO5OMAcCUkT3+H7u0oCnQ/FZU/be3nz+a4AtyNjAlX/a0G6A5
 X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
  pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 
@@ -96,80 +96,80 @@ as CLK_IS_CRITICAL prevents the latter.
 
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- drivers/clk/qcom/gpucc-sm6375.c | 33 +++------------------------------
+ drivers/clk/qcom/gpucc-sm6115.c | 33 +++------------------------------
  1 file changed, 3 insertions(+), 30 deletions(-)
 
-diff --git a/drivers/clk/qcom/gpucc-sm6375.c b/drivers/clk/qcom/gpucc-sm6375.c
-index da24276a018e..6d85936dd441 100644
---- a/drivers/clk/qcom/gpucc-sm6375.c
-+++ b/drivers/clk/qcom/gpucc-sm6375.c
-@@ -183,20 +183,6 @@ static struct clk_rcg2 gpucc_gx_gfx3d_clk_src = {
+diff --git a/drivers/clk/qcom/gpucc-sm6115.c b/drivers/clk/qcom/gpucc-sm6115.c
+index fb71c21c9a89..93a50431aef8 100644
+--- a/drivers/clk/qcom/gpucc-sm6115.c
++++ b/drivers/clk/qcom/gpucc-sm6115.c
+@@ -234,20 +234,6 @@ static struct clk_rcg2 gpu_cc_gx_gfx3d_clk_src = {
  	},
  };
  
--static struct clk_branch gpucc_ahb_clk = {
+-static struct clk_branch gpu_cc_ahb_clk = {
 -	.halt_reg = 0x1078,
 -	.halt_check = BRANCH_HALT_DELAY,
 -	.clkr = {
 -		.enable_reg = 0x1078,
 -		.enable_mask = BIT(0),
 -		.hw.init = &(struct clk_init_data){
--			.name = "gpucc_ahb_clk",
+-			.name = "gpu_cc_ahb_clk",
 -			.flags = CLK_IS_CRITICAL,
 -			.ops = &clk_branch2_ops,
 -		},
 -	},
 -};
 -
- static struct clk_branch gpucc_cx_gfx3d_clk = {
- 	.halt_reg = 0x10a4,
+ static struct clk_branch gpu_cc_crc_ahb_clk = {
+ 	.halt_reg = 0x107c,
  	.halt_check = BRANCH_HALT_DELAY,
-@@ -294,20 +280,6 @@ static struct clk_branch gpucc_cxo_clk = {
+@@ -336,20 +322,6 @@ static struct clk_branch gpu_cc_cxo_clk = {
  	},
  };
  
--static struct clk_branch gpucc_gx_cxo_clk = {
+-static struct clk_branch gpu_cc_gx_cxo_clk = {
 -	.halt_reg = 0x1060,
 -	.halt_check = BRANCH_HALT_DELAY,
 -	.clkr = {
 -		.enable_reg = 0x1060,
 -		.enable_mask = BIT(0),
 -		.hw.init = &(struct clk_init_data){
--			.name = "gpucc_gx_cxo_clk",
+-			.name = "gpu_cc_gx_cxo_clk",
 -			.flags = CLK_IS_CRITICAL,
 -			.ops = &clk_branch2_ops,
 -		},
 -	},
 -};
 -
- static struct clk_branch gpucc_gx_gfx3d_clk = {
+ static struct clk_branch gpu_cc_gx_gfx3d_clk = {
  	.halt_reg = 0x1054,
- 	.halt_check = BRANCH_HALT_DELAY,
-@@ -381,7 +353,6 @@ static struct gdsc gpu_gx_gdsc = {
+ 	.halt_check = BRANCH_HALT_SKIP,
+@@ -418,7 +390,6 @@ static struct gdsc gpu_gx_gdsc = {
  };
  
- static struct clk_regmap *gpucc_sm6375_clocks[] = {
--	[GPU_CC_AHB_CLK] = &gpucc_ahb_clk.clkr,
- 	[GPU_CC_CX_GFX3D_CLK] = &gpucc_cx_gfx3d_clk.clkr,
- 	[GPU_CC_CX_GFX3D_SLV_CLK] = &gpucc_cx_gfx3d_slv_clk.clkr,
- 	[GPU_CC_CX_GMU_CLK] = &gpucc_cx_gmu_clk.clkr,
-@@ -389,7 +360,6 @@ static struct clk_regmap *gpucc_sm6375_clocks[] = {
- 	[GPU_CC_CXO_AON_CLK] = &gpucc_cxo_aon_clk.clkr,
- 	[GPU_CC_CXO_CLK] = &gpucc_cxo_clk.clkr,
- 	[GPU_CC_GMU_CLK_SRC] = &gpucc_gmu_clk_src.clkr,
--	[GPU_CC_GX_CXO_CLK] = &gpucc_gx_cxo_clk.clkr,
- 	[GPU_CC_GX_GFX3D_CLK] = &gpucc_gx_gfx3d_clk.clkr,
- 	[GPU_CC_GX_GFX3D_CLK_SRC] = &gpucc_gx_gfx3d_clk_src.clkr,
- 	[GPU_CC_GX_GMU_CLK] = &gpucc_gx_gmu_clk.clkr,
-@@ -455,6 +425,9 @@ static int gpucc_sm6375_probe(struct platform_device *pdev)
- 	clk_lucid_pll_configure(&gpucc_pll0, regmap, &gpucc_pll0_config);
- 	clk_lucid_pll_configure(&gpucc_pll1, regmap, &gpucc_pll1_config);
+ static struct clk_regmap *gpu_cc_sm6115_clocks[] = {
+-	[GPU_CC_AHB_CLK] = &gpu_cc_ahb_clk.clkr,
+ 	[GPU_CC_CRC_AHB_CLK] = &gpu_cc_crc_ahb_clk.clkr,
+ 	[GPU_CC_CX_GFX3D_CLK] = &gpu_cc_cx_gfx3d_clk.clkr,
+ 	[GPU_CC_CX_GMU_CLK] = &gpu_cc_cx_gmu_clk.clkr,
+@@ -426,7 +397,6 @@ static struct clk_regmap *gpu_cc_sm6115_clocks[] = {
+ 	[GPU_CC_CXO_AON_CLK] = &gpu_cc_cxo_aon_clk.clkr,
+ 	[GPU_CC_CXO_CLK] = &gpu_cc_cxo_clk.clkr,
+ 	[GPU_CC_GMU_CLK_SRC] = &gpu_cc_gmu_clk_src.clkr,
+-	[GPU_CC_GX_CXO_CLK] = &gpu_cc_gx_cxo_clk.clkr,
+ 	[GPU_CC_GX_GFX3D_CLK] = &gpu_cc_gx_gfx3d_clk.clkr,
+ 	[GPU_CC_GX_GFX3D_CLK_SRC] = &gpu_cc_gx_gfx3d_clk_src.clkr,
+ 	[GPU_CC_PLL0] = &gpu_cc_pll0.clkr,
+@@ -488,6 +458,9 @@ static int gpu_cc_sm6115_probe(struct platform_device *pdev)
+ 	qcom_branch_set_force_mem_core(regmap, gpu_cc_gx_gfx3d_clk, true);
+ 	qcom_branch_set_force_periph_on(regmap, gpu_cc_gx_gfx3d_clk, true);
  
-+	qcom_branch_set_clk_en(regmap, 0x1078); /* GPUCC_AHB_CLK */
-+	qcom_branch_set_clk_en(regmap, 0x1060); /* GPUCC_GX_CXO_CLK */
++	qcom_branch_set_clk_en(regmap, 0x1078); /* GPU_CC_AHB_CLK */
++	qcom_branch_set_clk_en(regmap, 0x1060); /* GPU_CC_GX_CXO_CLK */
 +
- 	ret = qcom_cc_really_probe(pdev, &gpucc_sm6375_desc, regmap);
- 	pm_runtime_put(&pdev->dev);
+ 	return qcom_cc_really_probe(pdev, &gpu_cc_sm6115_desc, regmap);
+ }
  
 
 -- 
