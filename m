@@ -1,201 +1,262 @@
-Return-Path: <devicetree+bounces-20068-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20069-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE2A37FDA58
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 15:50:11 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27CE57FDA59
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 15:50:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 67534283247
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 14:50:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AA3991F20F0A
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 14:50:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EC7832C9F;
-	Wed, 29 Nov 2023 14:50:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 955D332C97;
+	Wed, 29 Nov 2023 14:50:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="taIgII0y"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="IU5r85yU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-x1130.google.com (mail-yw1-x1130.google.com [IPv6:2607:f8b0:4864:20::1130])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C319BD66
-	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 06:50:01 -0800 (PST)
-Received: by mail-yw1-x1130.google.com with SMTP id 00721157ae682-5d1f8bc279aso7819937b3.1
-        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 06:50:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701269401; x=1701874201; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OhKeP/2tChma4nLl2fipRCbsIXhCJ2Ql2fHfvqdfSF4=;
-        b=taIgII0yRfSpWHl0rL/sC26C16ad/kzr9+L1NTjdkd+0oEL1o97qsv7sThaJ8mpPOR
-         LkobQkk8+ZlUCtiwc53klj505J28qktSG4RNk2f5uqeBqGKy2IC+YnkUAGyb0iy3Mmo9
-         DAjwC6DxysrpDJ49o/Syi4UYDmlgzvwE+hO7nioj0kaLHoXMthAVqtvfbR7/z0Iji4Wd
-         w7e/VosvxquzH/vLdHF/2IHrE/0qDE8SkugYEZWrz3SaVK18wB1afSn4O3C1SovwQzVd
-         l4TGTpmk9m+bRYJR5oPRkPW8wE9q8RdwtCgHv6K+W2uthVVeTtsfWFr+cTa2B9l0NoH7
-         VsNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701269401; x=1701874201;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OhKeP/2tChma4nLl2fipRCbsIXhCJ2Ql2fHfvqdfSF4=;
-        b=Po95GVginoFeRQE8+hlkSKXkEkSbY5sKpsdYHLwYLzlxSkZbbRAzcCJL5+rdJTcirI
-         SkLvAnrcmoEdkuRoGpTYtkJnLrvwJyqcWssQ/kh7mxQtDrocMOCqRZXfNVgh3Z65Spw0
-         0khj5BOzYcei6j/YEvCTJ5mz0DNmfg2ig+RBVng2VhQeFF9752nayeHmVaxOxSMCmNPI
-         vBu+JaEuZo48hjaCIQ1fjYKYh2Rsnz3AAw2Wt7FWs87FZf1d959iozertDOF5cErFcmU
-         k+6TwSJzScWKADvXKIxcc3AkBSLn9780dhMJ0v5kLgAEkmQQrUFVeZ9W5LxAspFDjBgk
-         7SVQ==
-X-Gm-Message-State: AOJu0YyEtrWTOzyLDzJsantl4+ZyWL+T8HOKO28PFUwhUIk6cq7ptqvF
-	X56zMDxnkQpy0E62Y5H8gGLUmxVfq7eTjbiIdGm8bw==
-X-Google-Smtp-Source: AGHT+IGVvGtWUCNcwNIqqWT4FI0ZK8ySjPr60DSojrMHvp+1VCvIaWJzbx2ZBbM/ASOStaPF82gKQ66tjacLTeXhKlw=
-X-Received: by 2002:a0d:d814:0:b0:5c1:25f:567d with SMTP id
- a20-20020a0dd814000000b005c1025f567dmr17123038ywe.16.1701269400974; Wed, 29
- Nov 2023 06:50:00 -0800 (PST)
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3509EBE;
+	Wed, 29 Nov 2023 06:50:48 -0800 (PST)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id C1CCA240005;
+	Wed, 29 Nov 2023 14:50:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1701269446;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Zvhoy3MWU/kAI5JAksznH8O+bfmDG28Swkq325dgEQc=;
+	b=IU5r85yUfzxDrsmU6tvwihH1x9zyvHde0BuNpwSYc7ufd5mB/Zzjm0I5QsjWyN+05xFd2R
+	hVHbfBLQiMF8py9iAz7EqseLWAcTWSvVSPjn+ICbuydn4D1vLOSKUb8r/mW5bkfOzqp3A3
+	5YGAwOvZzec+EHfLTrgtdyFdvcceXEDoCEIun2K4+PXO76h9l33ozsmWEdJ260VAXWXd4r
+	+KKf7vVP5pyBaQxtWL5ROchoOhB0ZojiNAzzBdriVAzUr1i0mF/DgBjRQHmNDPkaeOE+3j
+	HEvMlUjgOSTeXV3dctOFenhqncAqpdziMZPZu8Nb2li9BZPWKZx+GR/oSGNAnQ==
+Date: Wed, 29 Nov 2023 15:50:45 +0100
+From: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+To: Mehdi Djait <mehdi.djait@bootlin.com>
+Cc: mchehab@kernel.org, heiko@sntech.de, hverkuil-cisco@xs4all.nl,
+	laurent.pinchart@ideasonboard.com,
+	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+	conor+dt@kernel.org, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	thomas.petazzoni@bootlin.com, alexandre.belloni@bootlin.com,
+	maxime.chevallier@bootlin.com, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v9 2/3] media: dt-bindings: media: i2c: Add bindings for
+ TW9900
+Message-ID: <ZWdPxfiB7sEUEKdd@aptenodytes>
+References: <cover.1700235276.git.mehdi.djait@bootlin.com>
+ <de0f0831cbbd64328b1e348168d5d6cf4bc65b0d.1700235276.git.mehdi.djait@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231124-ltc4282-support-v2-0-952bf926f83c@analog.com> <20231124-ltc4282-support-v2-2-952bf926f83c@analog.com>
-In-Reply-To: <20231124-ltc4282-support-v2-2-952bf926f83c@analog.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Wed, 29 Nov 2023 15:49:48 +0100
-Message-ID: <CACRpkdaksfS4WLNQ6ohauAPq3z2LPG2uF37_jWtm0brQHaDtNw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] hwmon: ltc4282: add support for the LTC4282 chip
-To: nuno.sa@analog.com
-Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-doc@vger.kernel.org, Jean Delvare <jdelvare@suse.com>, 
-	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Corbet <corbet@lwn.net>, Bartosz Golaszewski <brgl@bgdev.pl>, Andy Shevchenko <andy@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="a9fMN3vXS4yRSY1P"
+Content-Disposition: inline
+In-Reply-To: <de0f0831cbbd64328b1e348168d5d6cf4bc65b0d.1700235276.git.mehdi.djait@bootlin.com>
+X-GND-Sasl: paul.kocialkowski@bootlin.com
+
+
+--a9fMN3vXS4yRSY1P
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi Nuno,
+Hi,
 
-GPIO-related review as requested! Thanks for your patch!
+On Fri 17 Nov 23, 16:42, Mehdi Djait wrote:
+> The Techwell TW9900 is a video decoder supporting multiple input
+> standards such as PAL and NTSC and has a parallel BT.656 output
+> interface.
+>=20
+> It's designed to be low-power, posesses some features such as a
+> programmable comb-filter, and automatic input standard detection
+>=20
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Mehdi Djait <mehdi.djait@bootlin.com>
 
-On Fri, Nov 24, 2023 at 3:18=E2=80=AFPM Nuno Sa via B4 Relay
-<devnull+nuno.sa.analog.com@kernel.org> wrote:
+Reviewed-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
 
-> +config SENSORS_LTC4282
-> +       tristate "Analog Devices LTC4282"
-> +       depends on I2C
-> +       select REGMAP_I2C
+Cheers,
 
-select GPIOLIB
+Paul
 
-potentially also
+> ---
+>  .../bindings/media/i2c/techwell,tw9900.yaml   | 137 ++++++++++++++++++
+>  1 file changed, 137 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/techwell,=
+tw9900.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/media/i2c/techwell,tw9900.=
+yaml b/Documentation/devicetree/bindings/media/i2c/techwell,tw9900.yaml
+> new file mode 100644
+> index 000000000000..e37317f81072
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/techwell,tw9900.yaml
+> @@ -0,0 +1,137 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/i2c/techwell,tw9900.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Techwell TW9900 NTSC/PAL video decoder
+> +
+> +maintainers:
+> +  - Mehdi Djait <mehdi.djait@bootlin.com>
+> +
+> +description:
+> +  The tw9900 is a multi-standard video decoder, supporting NTSC, PAL sta=
+ndards
+> +  with auto-detection features.
+> +
+> +properties:
+> +  compatible:
+> +    const: techwell,tw9900
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  vdd-supply:
+> +    description: VDD power supply
+> +
+> +  reset-gpios:
+> +    description: GPIO descriptor for the RESET input pin
+> +    maxItems: 1
+> +
+> +  powerdown-gpios:
+> +    description: GPIO descriptor for the POWERDOWN input pin
+> +    maxItems: 1
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        description: Analog input port
+> +
+> +        properties:
+> +          endpoint@0:
+> +            $ref: /schemas/graph.yaml#/properties/endpoint
+> +            description: CVBS over MUX0
+> +
+> +          endpoint@1:
+> +            $ref: /schemas/graph.yaml#/properties/endpoint
+> +            description: CVBS over MUX1
+> +
+> +          endpoint@2:
+> +            $ref: /schemas/graph.yaml#/properties/endpoint
+> +            description: Chroma over CIN0 and Y over MUX0
+> +
+> +          endpoint@3:
+> +            $ref: /schemas/graph.yaml#/properties/endpoint
+> +            description: Chroma over CIN0 and Y over MUX1
+> +
+> +        oneOf:
+> +          - required:
+> +              - endpoint@0
+> +          - required:
+> +              - endpoint@1
+> +          - required:
+> +              - endpoint@2
+> +          - required:
+> +              - endpoint@3
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: Video port for the decoder output.
+> +
+> +
+> +    required:
+> +      - port@0
+> +      - port@1
+> +
+> +required:
+> +  - compatible
+> +  - ports
+> +  - reg
+> +  - vdd-supply
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/display/sdtv-standards.h>
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    composite_connector {
+> +        compatible =3D "composite-video-connector";
+> +        label =3D "tv";
+> +        sdtv-standards =3D <(SDTV_STD_PAL | SDTV_STD_NTSC)>;
+> +
+> +        port {
+> +            composite_to_tw9900: endpoint {
+> +                remote-endpoint =3D <&tw9900_to_composite>;
+> +            };
+> +        };
+> +    };
+> +
+> +    i2c {
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        video-decoder@44 {
+> +            compatible =3D "techwell,tw9900";
+> +            reg =3D <0x44>;
+> +
+> +            vdd-supply =3D <&tw9900_supply>;
+> +            reset-gpios =3D <&gpio2 5 GPIO_ACTIVE_LOW>;
+> +
+> +            ports {
+> +                #address-cells =3D <1>;
+> +                #size-cells =3D <0>;
+> +
+> +                port@0 {
+> +                    #address-cells =3D <1>;
+> +                    #size-cells =3D <0>;
+> +
+> +                    reg =3D <0>;
+> +                    tw9900_to_composite: endpoint@0 {
+> +                        reg =3D <0>;
+> +                        remote-endpoint =3D <&composite_to_tw9900>;
+> +                    };
+> +                };
+> +
+> +                port@1 {
+> +                    reg =3D <1>;
+> +                    endpoint {
+> +                        remote-endpoint =3D <&cif_in>;
+> +                    };
+> +                };
+> +            };
+> +        };
+> +    };
+> --=20
+> 2.41.0
+>=20
 
-select GPIO_REGMAP, see below.
+--=20
+Paul Kocialkowski, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
 
-> +struct ltc4282_gpio {
-> +       const char * const *funcs;
-> +       u32 out_reg;
-> +       u32 out_mask;
-> +       u32 in_reg;
-> +       u32 in_mask;
-> +       bool active_high;
-> +       u8 n_funcs;
-> +};
+--a9fMN3vXS4yRSY1P
+Content-Type: application/pgp-signature; name="signature.asc"
 
-So pretty simple dedicated bits.
+-----BEGIN PGP SIGNATURE-----
 
-> +static int ltc4282_gpio_input_set(struct gpio_chip *chip, unsigned int o=
-ffset)
-> +{
-> +       struct ltc4282_state *st =3D gpiochip_get_data(chip);
-> +
-> +       /* we can only control this for GPIO_1 */
-> +       if (offset !=3D LTC4282_GPIO_1)
-> +               return 0;
-> +
-> +       return regmap_set_bits(st->map, LTC4282_GPIO_CONFIG,
-> +                              LTC4282_GPIO_1_CONFIG_MASK);
-> +}
-> +
-> +static int ltc4282_gpio_output_set(struct gpio_chip *chip, unsigned int =
-offset,
-> +                                  int val)
-> +{
-> +       struct ltc4282_state *st =3D gpiochip_get_data(chip);
-> +       const struct ltc4282_gpio *gpio =3D &ltc4282_gpios[offset];
-> +
-> +       guard(mutex)(&st->lock);
-> +       /*
-> +        * Explicitly setting the pin as output can only be done for GPIO=
-_1. For
-> +        * the other pins we just pull the line down or high-z.
-> +        */
-> +       if (offset =3D=3D LTC4282_GPIO_1) {
-> +               int ret;
-> +
-> +               ret =3D regmap_update_bits(st->map, LTC4282_GPIO_CONFIG,
-> +                                        LTC4282_GPIO_1_CONFIG_MASK,
-> +                                        FIELD_PREP(LTC4282_GPIO_1_CONFIG=
-_MASK, 2));
-> +               if (ret)
-> +                       return ret;
-> +       }
-> +
-> +       /*
-> +        * GPIO_2,3 and the ALERT pin require setting the bit to 1 to pul=
-l down
-> +        * the line
-> +        */
-> +       if (!gpio->active_high)
-> +               val =3D !val;
-> +
-> +       return regmap_update_bits(st->map, gpio->out_reg, gpio->out_mask,
-> +                                 field_prep(gpio->out_mask, val));
-> +}
-> +
-> +static void ltc4282_gpio_set(struct gpio_chip *chip, unsigned int offset=
-,
-> +                            int val)
-> +{
-> +       struct ltc4282_state *st =3D gpiochip_get_data(chip);
-> +       const struct ltc4282_gpio *gpio =3D &ltc4282_gpios[offset];
-> +
-> +       if (!gpio->active_high)
-> +               val =3D !val;
-> +
-> +       regmap_update_bits(st->map, gpio->out_reg, gpio->out_mask,
-> +                          field_prep(gpio->out_mask, val));
-> +}
-> +
-> +static int ltc4282_gpio_get(struct gpio_chip *chip, unsigned int offset)
-> +{
-> +       struct ltc4282_state *st =3D gpiochip_get_data(chip);
-> +       const struct ltc4282_gpio *gpio =3D &ltc4282_gpios[offset];
-> +       int ret;
-> +       u32 val;
-> +
-> +       ret =3D regmap_read(st->map, gpio->in_reg, &val);
-> +       if (ret)
-> +               return ret;
-> +
-> +       return !!(val & gpio->in_mask);
-> +}
-> +
-> +static int ltc4282_gpio_valid_mask(struct gpio_chip *chip,
-> +                                  unsigned long *valid_mask,
-> +                                  unsigned int ngpios)
-> +{
-> +       struct ltc4282_state *st =3D gpiochip_get_data(chip);
-> +
-> +       *valid_mask =3D st->valid_mask;
-> +       return 0;
-> +}
+iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAmVnT8UACgkQ3cLmz3+f
+v9ESKwf8DdcZc4vGwQ10PLCRGzjLRppEKoEyFXbC+BIQH/6ymemelleAp4rsqax+
+j5Vb4+DpA7G73lnNlcgMicJBm9vIuvRTGIfgPdur0aK8GYg81Hx1uWL7jaC0/+e3
+Q6MXtDYPrlsM9eMXRES68pS+gfTHnmkNUYsOI3oMgeWObyQP+IB+h00YLCgkAvGj
+YeGT2/6ztevYBdVemYkTofUTUD5XQCEOrW1S9MnGcRGW5p6SLvTnE71k60orjncN
+Jcss/QV07LktCWev+xWO6G8g3FK0mV5MeyTRUx/jbmf1oreiS2h6YGN8lSMGbFbb
+1KOzl+MfasZrldZXsJjUG5BGRuY2xQ==
+=JVMJ
+-----END PGP SIGNATURE-----
 
-Some of this looks like it could use GPIO_REGMAP, look into other
-drivers using these helpers such as
-drivers/gpio/gpio-ds4520.c and see how small it becomes.
-
-It may or may not help you. But take a look.
-
-Other than that it looks fine.
-
-Yours,
-Linus Walleij
+--a9fMN3vXS4yRSY1P--
 
