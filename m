@@ -1,104 +1,125 @@
-Return-Path: <devicetree+bounces-19964-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19965-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90EBC7FD6AC
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 13:24:36 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 254627FD6B5
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 13:26:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F11CEB21ADB
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 12:24:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 56AB71C21215
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 12:26:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 004D31DA51;
-	Wed, 29 Nov 2023 12:24:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B91C1DA5E;
+	Wed, 29 Nov 2023 12:26:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="opKV7Kdw"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WJy9qKOq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34F7110D7
-	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 04:24:28 -0800 (PST)
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-40b538d5c4eso3854085e9.1
-        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 04:24:28 -0800 (PST)
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F008410C0
+	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 04:26:02 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-3316a4bc37dso4605964f8f.2
+        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 04:26:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701260666; x=1701865466; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=7DhAOyUG1OiZLTShDdBTISkChDUaLTQfa0lLug1y7bI=;
-        b=opKV7Kdwv2kqZ7GCYWiLRqMCcokAtgUE+lDrIeYhNNCrr+aIc4J1hmsBhZeOyjKRpb
-         Y2TgY6zJVePG5P3AigvOJXPgIqbmxQOJT5kgGTlNEkBoMmIq4IJgxElo+Yg56qSakT73
-         jXTqgtkHJ/W/IxZW3lqoEG1xgcUPD5+88ra5S3tQlZpk5q+bibTUUn0VjuL+HNWLH5XR
-         36HQQT8OAw7Ufc5x7LU6SbpdwtjHhVw1vR2JstFPONoa68j6FogFMYdEMVBpOnQZ4S/r
-         qM1rM5GNFfu0uif6jyMiV86riTmjS9IgMW7yP/7JgevM+TSmJ/yWJ0AabAlsy5H/B5wT
-         vsNQ==
+        d=linaro.org; s=google; t=1701260761; x=1701865561; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qVd0mk/E8WAISTN9cwzB6Xw3Z2qd3DG26hbJb8vpXqs=;
+        b=WJy9qKOqwTWuAsKDPzsTAQtS3T59gjjnEMvVxKazNthlBS0gUib8ZjiPE31DpWpzlL
+         dKE/f5kC5MHnu7lqeWfUZAt7eKjHgIDr+cR5LR9EniB06B7iuALeXxUoRdjVxb3oQdoA
+         wKFClJMZtlvgbMArd/+WLrHl99S3IQ2K117KnmbZ18Tcz7C0bSd/mVoWFCMhcgcHhEc2
+         ozlAwuM+LwiEnFdDIR7z3metlnBJJiE21mq4WPQbYNch2yLraDMVRarSeaBqmIC6XDpF
+         28k47PwlGCZIo05I4DLQk5AkwDhmLfuu5v1mwPUWE10TcfihI49aY+GI6zlWtvybYLGf
+         3ZWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701260666; x=1701865466;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7DhAOyUG1OiZLTShDdBTISkChDUaLTQfa0lLug1y7bI=;
-        b=iybgCaKcjeBqI/Tj5xxKigXdv+Rg1XbQqKP5oQTyaKLktbiwbzrSei7Tb45LfAOpyk
-         kujNJrjMKIqG+LGe8pTg+yi00rdNznPd+JKt2CfFdruqbKJcGvNkpHHqjP0CAJNUspZr
-         W69uqKfAHVNHSKDFrwZbnV7WZprUDqmCqLhglxfvxIX6dyWLkk7701Zv+FRtmMzjtao7
-         O/Vu3x5+JZvybJ9BPqRdxJCbz/4UVg1LwEsBkD/eR5bXtUEWIyv5SXIpqxwD4n1i+iBe
-         X7UVzPuR4ONLJS0AlwEaoDSA6pc+ygjADvgPUE6aZZZntsHy1sWFtWj/kN2BsMhYrAJE
-         Sjug==
-X-Gm-Message-State: AOJu0Yw/KqpaBIdt97ESCW11JGFJKSAYbmcHdE3o2qDHcOMa4kl3Zamh
-	f0KkEgqau8fWbr6Zop234LMCTw==
-X-Google-Smtp-Source: AGHT+IGi5tloNSLI4LYd4vqe68E6k/29FUG8DWVdl04/cafVh13sVoXbDJkjOwjDMPoyZ/FGt9k0pg==
-X-Received: by 2002:a05:600c:3548:b0:406:c6de:2bea with SMTP id i8-20020a05600c354800b00406c6de2beamr11526960wmq.17.1701260665422;
-        Wed, 29 Nov 2023 04:24:25 -0800 (PST)
-Received: from ?IPV6:2a05:6e02:1041:c10:38f1:13b7:9b7a:2d6b? ([2a05:6e02:1041:c10:38f1:13b7:9b7a:2d6b])
-        by smtp.googlemail.com with ESMTPSA id d9-20020a05600c34c900b0040b2c195523sm2123151wmq.31.2023.11.29.04.24.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Nov 2023 04:24:25 -0800 (PST)
-Message-ID: <ca107e23-9361-47f3-8292-d2350bc858a0@linaro.org>
-Date: Wed, 29 Nov 2023 13:24:23 +0100
+        d=1e100.net; s=20230601; t=1701260761; x=1701865561;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=qVd0mk/E8WAISTN9cwzB6Xw3Z2qd3DG26hbJb8vpXqs=;
+        b=l+mNCuqQLffOPHF2FatOWSdKY8LSYim/qnqckYj075Ofymhzvc/xmLqu6TXc87ybYo
+         EHt/ppqnZ5HW8M9AfRQyVWJ1tLlbuBCvxBuHAx2QqZqYgwSClT4o33PMt6cWws3mgoYL
+         h3tS8g8lrmg+K4z1Ar4ladD6gLJ1vq8P3YGBooFcAx3y1zj5XOAc+8TMsuOhDpUbejsw
+         bO+ZM6T00cLMoaajizyQu1IgkSvtvzD3CmuFTbiWzuZO8XfZBNhv8j+m1GIT0C5ve6Y+
+         /PJsAfyu0vTyrD1k+sT1dSXQq79HAYjop3+zEO7G0j8FHW9kfOuW+3k8VmwaZ/ZhrBii
+         YOQA==
+X-Gm-Message-State: AOJu0YwkPPFJj1ALIqKcrtSHbRQUuc1W6OIGsmG+OuM7AUt92VN2RKRl
+	YolZ2uPJvUePCemtU6SX8JlRRA==
+X-Google-Smtp-Source: AGHT+IHQ3EA5vBpnyDFB4fnqV7h4/enCyNJtRFRN4wtxlHs+OMVVOZDfwzbw0/OUV/fl7njjlBzgEQ==
+X-Received: by 2002:a5d:46c1:0:b0:333:1077:b35c with SMTP id g1-20020a5d46c1000000b003331077b35cmr3785511wrs.47.1701260761421;
+        Wed, 29 Nov 2023 04:26:01 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id n8-20020a5d67c8000000b00332e84210c2sm15542543wrw.88.2023.11.29.04.26.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 29 Nov 2023 04:26:01 -0800 (PST)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+To: Philipp Zabel <p.zabel@pengutronix.de>, 
+ Kevin Hilman <khilman@baylibre.com>, Rob Herring <robh+dt@kernel.org>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ zelong dong <zelong.dong@amlogic.com>
+Cc: linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ yonghui.yu@amlogic.com, kelvin.zhang@amlogic.com
+In-Reply-To: <20230914064018.18790-1-zelong.dong@amlogic.com>
+References: <20230914064018.18790-1-zelong.dong@amlogic.com>
+Subject: Re: (subset) [PATCH v4 0/3] reset: amlogic-c3: add reset driver
+Message-Id: <170126076055.2880660.13057388884278592366.b4-ty@linaro.org>
+Date: Wed, 29 Nov 2023 13:26:00 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/2] loongson2_thermal: Fix some issues
-Content-Language: en-US
-To: Binbin Zhou <zhoubinbin@loongson.cn>, Binbin Zhou
- <zhoubb.aaron@gmail.com>, Huacai Chen <chenhuacai@loongson.cn>,
- "Rafael J . Wysocki" <rafael@kernel.org>, Amit Kucheria <amitk@kernel.org>,
- Zhang Rui <rui.zhang@intel.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Huacai Chen <chenhuacai@kernel.org>, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, Yinbo Zhu <zhuyinbo@loongson.cn>,
- WANG Xuerui <git@xen0n.name>, loongarch@lists.linux.dev
-References: <cover.1700817227.git.zhoubinbin@loongson.cn>
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <cover.1700817227.git.zhoubinbin@loongson.cn>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.12.3
 
-On 24/11/2023 10:57, Binbin Zhou wrote:
-> Hi all:
+Hi,
+
+On Thu, 14 Sep 2023 14:40:15 +0800, zelong dong wrote:
+> From: Zelong Dong <zelong.dong@amlogic.com>
 > 
-> Some thermal-related DTBS_CHECK warnings and driver issues were found
-> when trying to introduce the Loongson-2K DTS{I} for LoongArch.
-> This patch series attempts to fix those warnings.
+> This patchset adds Reset controller driver support for Amlogic C3 SoC.
+> The RESET registers count and offset for C3 Soc are same as S4 Soc.
 > 
-> Thanks.
+> Changes since v1:
+> - remove Change-ID
+> - run scripts/checkpatch.pl and fix reported warnings
+> - sort dts node by base reg offset
 > 
-> -----
+> [...]
 
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.8/arm64-dt)
 
-Applied, thanks
+[3/3] arm64: dts: amlogic: add reset controller for Amlogic C3 SoC
+      https://git.kernel.org/amlogic/c/a5468f5ea9a01acf29d02745abae7b82482989d4
 
+These changes has been applied on the intermediate git tree [1].
+
+The v6.8/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+for inclusion in their intermediate git branches in order to be sent to Linus during
+the next merge window, or sooner if it's a set of fixes.
+
+In the cases of fixes, those will be merged in the current release candidate
+kernel and as soon they appear on the Linux master branch they will be
+backported to the previous Stable and Long-Stable kernels [2].
+
+The intermediate git branches are merged daily in the linux-next tree [3],
+people are encouraged testing these pre-release kernels and report issues on the
+relevant mailing-lists.
+
+If problems are discovered on those changes, please submit a signed-off-by revert
+patch followed by a corrective changeset.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
 
 -- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+Neil
 
 
