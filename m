@@ -1,234 +1,108 @@
-Return-Path: <devicetree+bounces-19845-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19846-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EEC27FCFAC
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 08:04:57 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F30E47FCFEB
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 08:29:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BFE501C20B5D
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 07:04:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 30D071C20A1D
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 07:29:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98E1810790;
-	Wed, 29 Nov 2023 07:04:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=subdimension.ro header.i=@subdimension.ro header.b="VyuGzLgl"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 513F91096C;
+	Wed, 29 Nov 2023 07:29:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.subdimension.ro (unknown [IPv6:2a01:7e01:e001:1d1::2])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E11BD1710;
-	Tue, 28 Nov 2023 23:04:46 -0800 (PST)
-Received: from localhost.localdomain (unknown [188.24.94.216])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by mail.subdimension.ro (Postfix) with ESMTPSA id 2A50A28EE6F;
-	Wed, 29 Nov 2023 07:04:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=subdimension.ro;
-	s=skycaves; t=1701241485;
-	bh=h0pBAX0b5fBffudVLMqu5Z24kyPYo9GeCNP/h2sstmI=;
-	h=From:To:Cc:Subject:Date;
-	b=VyuGzLgldxb26pZpPREj4KMaMrGJiiqoauV/m3QJzEXo4KPAr0SFJltFBZ3D8v1oz
-	 NPg403n4SBsTqRrlT4JEdFs6x044746tffVDYA1qgSU3k7auQkPJ87dYmcD5+fiSLN
-	 EeazDwvOJI9KIy5s3aPOYpw7cb7JCo3PshVokfak=
-From: Petre Rodan <petre.rodan@subdimension.ro>
-To: linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: Petre Rodan <petre.rodan@subdimension.ro>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Rob Herring <robh+dt@kernel.org>,
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64230DA;
+	Tue, 28 Nov 2023 23:29:39 -0800 (PST)
+Received: from francesco-nb.int.toradex.com (31-10-206-125.static.upc.ch [31.10.206.125])
+	by mail11.truemail.it (Postfix) with ESMTPA id 3023420395;
+	Wed, 29 Nov 2023 08:29:36 +0100 (CET)
+Date: Wed, 29 Nov 2023 08:29:30 +0100
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	linux-kernel-mentees@lists.linuxfoundation.org,
-	Jonathan Cameron <jic23@kernel.org>
-Subject: [PATCH v5 1/2] dt-bindings: iio: pressure: add honeywell,hsc030
-Date: Wed, 29 Nov 2023 09:04:30 +0200
-Message-ID: <20231129070432.1437-1-petre.rodan@subdimension.ro>
-X-Mailer: git-send-email 2.41.0
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, Andrew Davis <afd@ti.com>,
+	Andrew Lunn <andrew@lunn.ch>, Arnd Bergmann <arnd@arndb.de>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Chen-Yu Tsai <wens@kernel.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Heiko Stuebner <heiko@sntech.de>, Jonathan Corbet <corbet@lwn.net>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Michal Simek <michal.simek@amd.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Nishanth Menon <nm@ti.com>, Olof Johansson <olof@lixom.net>,
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+	linux-rockchip@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	linux-amlogic@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+	workflows@vger.kernel.org, linux-doc@vger.kernel.org
+Subject: Re: [PATCH v3] docs: dt-bindings: add DTS Coding Style document
+Message-ID: <ZWboWqELHbIrblnz@francesco-nb.int.toradex.com>
+References: <20231125184422.12315-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231125184422.12315-1-krzysztof.kozlowski@linaro.org>
 
-Adds binding for digital Honeywell TruStability HSC and SSC series
-pressure and temperature sensors.
-Communication is one way. The sensor only requires 4 bytes worth of
-clock pulses on both i2c and spi in order to push the data out.
-The i2c address is hardcoded and depends on the part number.
-There is no additional GPIO control.
+On Sat, Nov 25, 2023 at 07:44:22PM +0100, Krzysztof Kozlowski wrote:
+> Document preferred coding style for Devicetree sources (DTS and DTSI),
+> to bring consistency among all (sub)architectures and ease in reviews.
 
-Datasheet:
-https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/products/sensors/pressure-sensors/board-mount-pressure-sensors/trustability-hsc-series/documents/sps-siot-trustability-hsc-series-high-accuracy-board-mount-pressure-sensors-50099148-a-en-ciid-151133.pdf [HSC]
-Datasheet:
-https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/products/sensors/pressure-sensors/board-mount-pressure-sensors/trustability-ssc-series/documents/sps-siot-trustability-ssc-series-standard-accuracy-board-mount-pressure-sensors-50099533-a-en-ciid-151134.pdf [SSC]
-Signed-off-by: Petre Rodan <petre.rodan@subdimension.ro>
----
-V2: - fix yaml struct
-    - cleanup based on Krzysztof's review
-V3: - rename range_str -> honeywell,pressure-triplet to define the string
-       containing the pressure range, measurement unit and type
-    - honeywell,pmax-pascal becomes uint32
-V4: - added enum to honeywell,transfer-function
-V5: - removed pmin-pascal, pmax-pascal $ref
-    - added pmin-pascal, pmax-pascal constraints
----
- .../iio/pressure/honeywell,hsc030pa.yaml      | 142 ++++++++++++++++++
- 1 file changed, 142 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/pressure/honeywell,hsc030pa.yaml
+Thank Krzysztof, we had most of this collected as BKM in some internal
+documents and it's great to see the effort to consolidate this and add
+it to the kernel documentation.
 
-diff --git a/Documentation/devicetree/bindings/iio/pressure/honeywell,hsc030pa.yaml b/Documentation/devicetree/bindings/iio/pressure/honeywell,hsc030pa.yaml
-new file mode 100644
-index 000000000000..65a24ed67b3c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/pressure/honeywell,hsc030pa.yaml
-@@ -0,0 +1,142 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/pressure/honeywell,hsc030pa.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Honeywell TruStability HSC and SSC pressure sensor series
-+
-+description: |
-+  support for Honeywell TruStability HSC and SSC digital pressure sensor
-+  series.
-+
-+  These sensors have either an I2C, an SPI or an analog interface. Only the
-+  digital versions are supported by this driver.
-+
-+  There are 118 models with different pressure ranges available in each family.
-+  The vendor calls them "HSC series" and "SSC series". All of them have an
-+  identical programming model but differ in pressure range, unit and transfer
-+  function.
-+
-+  To support different models one needs to specify the pressure range as well
-+  as the transfer function. Pressure range can either be provided via
-+  pressure-triplet (directly extracted from the part number) or in case it's
-+  a custom chip via numerical range limits converted to pascals.
-+
-+  The transfer function defines the ranges of raw conversion values delivered
-+  by the sensor. pmin-pascal and pmax-pascal corespond to the minimum and
-+  maximum pressure that can be measured.
-+
-+  Please note that in case of an SPI-based sensor, the clock signal should not
-+  exceed 800kHz and the MOSI signal is not required.
-+
-+  Specifications about the devices can be found at:
-+  https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/products/sensors/pressure-sensors/board-mount-pressure-sensors/trustability-hsc-series/documents/sps-siot-trustability-hsc-series-high-accuracy-board-mount-pressure-sensors-50099148-a-en-ciid-151133.pdf
-+  https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/products/sensors/pressure-sensors/board-mount-pressure-sensors/trustability-ssc-series/documents/sps-siot-trustability-ssc-series-standard-accuracy-board-mount-pressure-sensors-50099533-a-en-ciid-151134.pdf
-+
-+maintainers:
-+  - Petre Rodan <petre.rodan@subdimension.ro>
-+
-+properties:
-+  compatible:
-+    const: honeywell,hsc030pa
-+
-+  reg:
-+    maxItems: 1
-+
-+  honeywell,transfer-function:
-+    description: |
-+      Transfer function which defines the range of valid values delivered by
-+      the sensor.
-+      0 - A, 10% to 90% of 2^14
-+      1 - B, 5% to 95% of 2^14
-+      2 - C, 5% to 85% of 2^14
-+      3 - F, 4% to 94% of 2^14
-+    enum: [0, 1, 2, 3]
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+
-+  honeywell,pressure-triplet:
-+    description: |
-+      Case-sensitive five character string that defines pressure range, unit
-+      and type as part of the device nomenclature. In the unlikely case of a
-+      custom chip, set to "NA" and provide pmin-pascal and pmax-pascal.
-+    enum: [001BA, 1.6BA, 2.5BA, 004BA, 006BA, 010BA, 1.6MD, 2.5MD, 004MD,
-+           006MD, 010MD, 016MD, 025MD, 040MD, 060MD, 100MD, 160MD, 250MD,
-+           400MD, 600MD, 001BD, 1.6BD, 2.5BD, 004BD, 2.5MG, 004MG, 006MG,
-+           010MG, 016MG, 025MG, 040MG, 060MG, 100MG, 160MG, 250MG, 400MG,
-+           600MG, 001BG, 1.6BG, 2.5BG, 004BG, 006BG, 010BG, 100KA, 160KA,
-+           250KA, 400KA, 600KA, 001GA, 160LD, 250LD, 400LD, 600LD, 001KD,
-+           1.6KD, 2.5KD, 004KD, 006KD, 010KD, 016KD, 025KD, 040KD, 060KD,
-+           100KD, 160KD, 250KD, 400KD, 250LG, 400LG, 600LG, 001KG, 1.6KG,
-+           2.5KG, 004KG, 006KG, 010KG, 016KG, 025KG, 040KG, 060KG, 100KG,
-+           160KG, 250KG, 400KG, 600KG, 001GG, 015PA, 030PA, 060PA, 100PA,
-+           150PA, 0.5ND, 001ND, 002ND, 004ND, 005ND, 010ND, 020ND, 030ND,
-+           001PD, 005PD, 015PD, 030PD, 060PD, 001NG, 002NG, 004NG, 005NG,
-+           010NG, 020NG, 030NG, 001PG, 005PG, 015PG, 030PG, 060PG, 100PG,
-+           150PG, NA]
-+    $ref: /schemas/types.yaml#/definitions/string
-+
-+  honeywell,pmin-pascal:
-+    description: |
-+      Minimum pressure value the sensor can measure in pascal.
-+      To be specified only if honeywell,pressure-triplet is set to "NA".
-+
-+  honeywell,pmax-pascal:
-+    description: |
-+      Maximum pressure value the sensor can measure in pascal.
-+      To be specified only if honeywell,pressure-triplet is set to "NA".
-+
-+  vdd-supply:
-+    description:
-+      Provide VDD power to the sensor (either 3.3V or 5V depending on the chip)
-+
-+  spi-max-frequency:
-+    maximum: 800000
-+
-+required:
-+  - compatible
-+  - reg
-+  - honeywell,transfer-function
-+  - honeywell,pressure-triplet
-+
-+additionalProperties: false
-+
-+dependentSchemas:
-+  honeywell,pmin-pascal:
-+    properties:
-+      honeywell,pressure-triplet:
-+        const: NA
-+  honeywell,pmax-pascal:
-+    properties:
-+      honeywell,pressure-triplet:
-+        const: NA
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        pressure@28 {
-+            compatible = "honeywell,hsc030pa";
-+            reg = <0x28>;
-+            honeywell,transfer-function = <0>;
-+            honeywell,pressure-triplet = "030PA";
-+        };
-+    };
-+  - |
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        pressure@0 {
-+            compatible = "honeywell,hsc030pa";
-+            reg = <0>;
-+            spi-max-frequency = <800000>;
-+            honeywell,transfer-function = <0>;
-+            honeywell,pressure-triplet = "NA";
-+            honeywell,pmin-pascal = <0>;
-+            honeywell,pmax-pascal = <200000>;
-+        };
-+    };
-+...
--- 
-2.41.0
+> ---
+> +Following order of properties in device nodes is preferred:
+> +
+> +1. compatible
+> +2. reg
+> +3. ranges
+> +4. Standard/common properties (defined by common bindings, e.g. without
+> +   vendor-prefixes)
+> +5. Vendor-specific properties
+> +6. status (if applicable)
+> +7. Child nodes, where each node is preceded with a blank line
+
+On point 4, do you have a more explicit way to define what is an actual
+standard/common property? You mention the vendor-prefixes as an example,
+is this just an example or this is the whole definition?
+
+What would be the order for this for example (from an existing DTS file)?
+
+	reg_sdhc1_vmmc: regulator-sdhci1 {
+		compatible = "regulator-fixed";
+		pinctrl-names = "default";
+		pinctrl-0 = <&pinctrl_sd1_pwr_en>;
+		enable-active-high;
+		gpio = <&main_gpio0 29 GPIO_ACTIVE_HIGH>;
+		off-on-delay-us = <100000>;
+		regulator-max-microvolt = <3300000>;
+		regulator-min-microvolt = <3300000>;
+		regulator-name = "+V3.3_SD";
+		startup-delay-us = <2000>;
+	};
+
+I guess the point that is not obvious to me here is where do we want
+pinctrl. I like it at position between 3 and 4, the rationale is that is
+a very frequent property and this way it will be in a similar place for
+every node.
+
+Francesco
 
 
