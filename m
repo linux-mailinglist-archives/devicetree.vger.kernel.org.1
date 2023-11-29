@@ -1,58 +1,58 @@
-Return-Path: <devicetree+bounces-20139-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20140-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 976B57FDF11
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 19:06:57 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62D4E7FDF32
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 19:18:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C84B31C20A69
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 18:06:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 096DC282E59
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 18:18:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E02ED5AB81;
-	Wed, 29 Nov 2023 18:06:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A66855C3F9;
+	Wed, 29 Nov 2023 18:18:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Viv2jJJ1"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jCngQQxb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C34AA8;
-	Wed, 29 Nov 2023 10:06:51 -0800 (PST)
-Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-409299277bbso135015e9.2;
-        Wed, 29 Nov 2023 10:06:51 -0800 (PST)
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2E87A3;
+	Wed, 29 Nov 2023 10:18:48 -0800 (PST)
+Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-9fffa4c4f43so7474466b.3;
+        Wed, 29 Nov 2023 10:18:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701281210; x=1701886010; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1701281927; x=1701886727; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=WP/VskNJd0LA4E1Mk07bsXVasJaRqm4qXuSnlHideFE=;
-        b=Viv2jJJ14cnHsSiQMdm1UCPNoju6w1pIshvNP6BEWSaN3RSOoa9mQyjakwA4bgBSyg
-         6Mg4K1CS6Y/D/g3yaNS4mm+yFkCzz79WdiFAex+Dl8mgLPL5voskWEbOlQTDfkld2+oe
-         0Edxx+M/3b9f1twkAJCtMcNfiavOOI1y+sl0cGTY8hHeoNT405g8Z2xBPGIucs6nPgsK
-         9Y0IRnKlFVatmU3WncOStZK7KonitVI6hdDKL0X+F80yxO1Fv2s77Efk7a95/c1PM5vq
-         uVx7EtYL5QIcx4TkqlZXodnp5DlXsJKSTqKqzVIXDL9vrDzpKfoHYy5HILkF0WDNY4if
-         TybQ==
+        bh=+oxFI2xDlsJXdq2twNcWIhhbiyZKz5nGCnvY004qL9Y=;
+        b=jCngQQxbrJ/tnNdZNeiFS6J3A8ITLbAbQ4eAg9O6doogvNeTjSZaTJ7BJytEZGKYkW
+         apFyuxWA3uynA0fjVHhVz+jDxLguRoAzsGIaA01QCEkjeXUZtmxmrJhhmWOcC3bJAZzq
+         YjyorhBr5Pl5aITlL3N6MW42oGvOi8Y4rBH+eILYT6Lu2wH35G4fWkQZlIYJLTzMdtnI
+         C9PEbcqS2UnsuopE35AjXh8LZHDLW5TtCSNldXI4ChQgIaUhteOzTY9/VkSAMatSg/Z0
+         vCkfAbk/u8LoRB+m6sJ1XhXMqXTaDo7rZ+9EV2kVHjbjbg+E4u1Lmyv0aVb3lC/G5zZw
+         1HPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701281210; x=1701886010;
+        d=1e100.net; s=20230601; t=1701281927; x=1701886727;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=WP/VskNJd0LA4E1Mk07bsXVasJaRqm4qXuSnlHideFE=;
-        b=sA04V7+YxfPptJlgNhhAxtcjMv/7Ylz3v7WfPsUhb4zyfHuLttBfPt5NjkBf+Qkdng
-         UYKmr8LDC1O+Q4MP2RtG2xwHSzo8aJMfbDaFj6oG/JEERK+F/bLMuUoXl0T8RpZJIqZ+
-         6eSEV0KV9Apyrh7kIYdxXMtwfdroJzHrDVMozyaCkkCe08a0PQPnBN+L87DjSuxeWRd9
-         Epa9nd03t5f19RE6vgUIU9sfDnCcl/988fZkVoZMCIiYfr7kVNE7+MWKkn9tnBZjQJm5
-         Co7B0E7erGJ/LnDG0VM1mWiIn3O+bajIPUhtNk6X9Q9GLHxI8KnNBaIWo2sN0IN0KoX/
-         tXcA==
-X-Gm-Message-State: AOJu0YyDfuMMclNTgB1tcUsE6MoPlk1kmEDHEyAEmLPD+buJFEY6w6AY
-	ztj+gh0UYTXm1iggP8JMpLI=
-X-Google-Smtp-Source: AGHT+IGCqKmEQmXCHAhNv3R9Y7f8whXFQ6c5b+m19lU3XNKj7aXxtJJZw2vSzghtWrgTqB2kFIERSg==
-X-Received: by 2002:a05:600c:188a:b0:40b:5021:f057 with SMTP id x10-20020a05600c188a00b0040b5021f057mr3307729wmp.11.1701281209422;
-        Wed, 29 Nov 2023 10:06:49 -0800 (PST)
+        bh=+oxFI2xDlsJXdq2twNcWIhhbiyZKz5nGCnvY004qL9Y=;
+        b=N1k849lZyuqYZxrHb3NcqJmS0F77G8mvcw0vt+vMnsOpO1/wQ8e9UUjk0+DKNeVWnS
+         CWhL6akRbWwS3DkoKqM+H3xiHfW95tt3Tf7C/pQHPKXxVCRefBYb5maIAHKYlIUuMxMr
+         BCxhrCRuNya1sZ/EBaln5mQPUQUG/4T/3Hl25u+jNSrZEJZ5PxdHehyUW5NysOuqRYmR
+         6SAtYW+zBsJaJbOLoK198eU+HunBdLAMJeRw7XGMJtjQ9tAgrGQ73K/6jiFIEC7WrrRE
+         oeij9OYqm/WZWtPT7c3oURwOL67eSUFBTgktTHYu2Hc3DlunajooscgU018eRNOIQ4f5
+         3Kcw==
+X-Gm-Message-State: AOJu0YzCPpXqIAUFMp3BVpPNM5m1EJFgTI6fuQ5G4XZqRtCvfPr9u1g+
+	XEN0zfIsXCcyFchXCTuEyGY=
+X-Google-Smtp-Source: AGHT+IGiIg549aZpIYoA3pve4OmRttOCyYE1U0jSAOSKby4WAR65DFIaa5YMrWhY6o6QqTauDVhqOw==
+X-Received: by 2002:a17:906:b248:b0:a04:cc0e:ff3b with SMTP id ce8-20020a170906b24800b00a04cc0eff3bmr14594160ejb.27.1701281926915;
+        Wed, 29 Nov 2023 10:18:46 -0800 (PST)
 Received: from skbuf ([188.26.185.12])
-        by smtp.gmail.com with ESMTPSA id d18-20020a05600c34d200b0040b2b38a1fasm3101035wmq.4.2023.11.29.10.06.44
+        by smtp.gmail.com with ESMTPSA id u25-20020a17090657d900b0098ec690e6d7sm8119082ejr.73.2023.11.29.10.18.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Nov 2023 10:06:45 -0800 (PST)
-Date: Wed, 29 Nov 2023 20:06:42 +0200
+        Wed, 29 Nov 2023 10:18:45 -0800 (PST)
+Date: Wed, 29 Nov 2023 20:18:42 +0200
 From: Vladimir Oltean <olteanv@gmail.com>
 To: Linus Walleij <linus.walleij@linaro.org>
 Cc: Andrew Lunn <andrew@lunn.ch>,
@@ -70,14 +70,12 @@ Cc: Andrew Lunn <andrew@lunn.ch>,
 	Christian Marangi <ansuelsmth@gmail.com>,
 	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-	Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH net-next v9 3/5] dt-bindings: net: ethernet-switch:
- Accept special variants
-Message-ID: <20231129180642.q5ybndg5fp5c4udg@skbuf>
-References: <20231127-marvell-88e6152-wan-led-v9-0-272934e04681@linaro.org>
- <20231127-marvell-88e6152-wan-led-v9-0-272934e04681@linaro.org>
- <20231127-marvell-88e6152-wan-led-v9-3-272934e04681@linaro.org>
- <20231127-marvell-88e6152-wan-led-v9-3-272934e04681@linaro.org>
+	Florian Fainelli <florian.fainelli@broadcom.com>
+Subject: Re: [PATCH net-next v8 5/9] ARM64: dts: marvell: Fix some common
+ switch mistakes
+Message-ID: <20231129181842.74zihcd642lx5zgo@skbuf>
+References: <20231114-marvell-88e6152-wan-led-v8-0-50688741691b@linaro.org>
+ <20231114-marvell-88e6152-wan-led-v8-5-50688741691b@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,24 +84,76 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231127-marvell-88e6152-wan-led-v9-3-272934e04681@linaro.org>
- <20231127-marvell-88e6152-wan-led-v9-3-272934e04681@linaro.org>
+In-Reply-To: <20231114-marvell-88e6152-wan-led-v8-5-50688741691b@linaro.org>
 
-On Mon, Nov 27, 2023 at 04:43:06PM +0100, Linus Walleij wrote:
-> Accept special node naming variants for Marvell switches with
-> special node names as ABI.
-> 
-> This is maybe not the prettiest but it avoids special-casing
-> the Marvell MV88E6xxx bindings by copying a lot of generic
-> binding code down into that one binding just to special-case
-> these unfixable nodes.
-> 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
+On Tue, Nov 14, 2023 at 12:36:00AM +0100, Linus Walleij wrote:
+> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts b/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
+> index 9eab2bb22134..66cd98b67744 100644
+> --- a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
+> +++ b/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
+> @@ -304,7 +304,13 @@ phy1: ethernet-phy@1 {
+>  		reg = <1>;
+>  	};
+>  
+> -	/* switch nodes are enabled by U-Boot if modules are present */
+> +	/*
+> +	 * NOTE: switch nodes are enabled by U-Boot if modules are present
+> +	 * DO NOT change this node name (switch0@10) even if it is not following
+> +	 * conventions! Deployed U-Boot binaries are explicitly looking for
+> +	 * this node in order to augment the device tree!
+> +	 * Also do not touch the "ports" or "port@n" nodes. These are also ABI.
+> +	 */
+>  	switch0@10 {
+>  		compatible = "marvell,mv88e6190";
+>  		reg = <0x10>;
+> @@ -430,6 +436,7 @@ port-sfp@a {
+>  		};
+>  	};
+>  
+> +	/* NOTE: this node name is ABI, don't change it! */
+>  	switch0@2 {
+>  		compatible = "marvell,mv88e6085";
+>  		reg = <0x2>;
+> @@ -497,6 +504,7 @@ port@5 {
+>  		};
+>  	};
+>  
+> +	/* NOTE: this node name is ABI, don't change it! */
+>  	switch1@11 {
+>  		compatible = "marvell,mv88e6190";
+>  		reg = <0x11>;
+> @@ -622,6 +630,7 @@ port-sfp@a {
+>  		};
+>  	};
+>  
+> +	/* NOTE: this node name is ABI, don't change it! */
+>  	switch1@2 {
+>  		compatible = "marvell,mv88e6085";
+>  		reg = <0x2>;
+> @@ -689,6 +698,7 @@ port@5 {
+>  		};
+>  	};
+>  
+> +	/* NOTE: this node name is ABI, don't change it! */
+>  	switch2@12 {
+>  		compatible = "marvell,mv88e6190";
+>  		reg = <0x12>;
+> @@ -805,6 +815,7 @@ port-sfp@a {
+>  		};
+>  	};
+>  
+> +	/* NOTE: this node name is ABI, don't change it! */
+>  	switch2@2 {
+>  		compatible = "marvell,mv88e6085";
+>  		reg = <0x2>;
 
-Not great, not terrible.
+I wouldn't spam the device tree with all these comments; doing so gives
+a false sense of completeness. Code inspection shows that the "port-sfp@a"
+node name is also established ABI, but there isn't any explicit comment
+to point that out. I think a single comment that uses plural to refer to
+all nodes should be enough.
 
-Reviewed-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+Also, doesn't the comment go better along with the patch that changes
+the switch compatible strings, rather than with the patch that actually
+fixes what can be fixed (ethernet-phy node names)?
 
