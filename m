@@ -1,106 +1,115 @@
-Return-Path: <devicetree+bounces-20024-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20025-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2C2D7FD8DE
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 15:03:23 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DFB67FD8E8
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 15:05:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6E68C282DC7
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 14:03:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 28283B20B89
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 14:05:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DBCB249FC;
-	Wed, 29 Nov 2023 14:03:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BF612FE21;
+	Wed, 29 Nov 2023 14:05:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ioc1jism"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="v3yzIOkf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-x1132.google.com (mail-yw1-x1132.google.com [IPv6:2607:f8b0:4864:20::1132])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 978EDB5
-	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 06:03:16 -0800 (PST)
-Received: by mail-yw1-x1132.google.com with SMTP id 00721157ae682-5d2d0661a8dso2131517b3.2
-        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 06:03:16 -0800 (PST)
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 961ACCE
+	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 06:05:42 -0800 (PST)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-a00b01955acso968082466b.1
+        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 06:05:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701266596; x=1701871396; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JLtZ8mDkPpZWh0qK6LF9/jlbCd5x7abg6/bo62M9z7s=;
-        b=ioc1jismhBUIJuMLSqwqtPTlgYsvKaKpYRuM9ggYY2rFQ5p304IPvkI2FVeG6IW+dM
-         uQR4iKC/eRi9G8XRzlI8K94EzuyPtdLopDmO8FnxNqdwQCYJpp9bxqJc3RROwO7d41pM
-         mVdudxA99Lat82c7QuBD/fd/jT1GJVEm5mwWItwDcnccIfbLmz1irxLTGl1pRiuf+TUm
-         l2h11xHos3eudS3Q8Q21WKcFzqqi3i0cdoFTvxM6R65I19+Boeblvs/ipLWbrrkczFoI
-         LFTSnsW4PwVy9saffsqaOPGxUPEkpW0NOukbTcS8oYohW6OvbYCcn0WNGvc6gD6R6SR5
-         nm9w==
+        d=linaro.org; s=google; t=1701266741; x=1701871541; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=MQ8xtOf7SPY4n43K7AQFcp4yw6pnczR2hfrcA2zNKh8=;
+        b=v3yzIOkfFadhqPhGKQCzWKANSK51Sg9KBXlQP4IfJwapYPKGtgNgqEeMMs0/Y3qv46
+         rDKBr174nkdSv+Ruot3atuNe4j1QBW4Y3jZRUBJClmhlHhLNZ1f83X1TCyHC7zJs3T2l
+         QqixzXPqjcpS8Cqzfnjy8cxZuWP6a/PGKx95G6YaJPkNy9LZm7erajMx8p+V0xi7oJV/
+         Q5XyI7pNM4ui8yEI76JjbGSRJ7IP6Vv1YwuDnSwHzsFl/8ulcwinAAEvNyM+R0RJALDV
+         LiJMMsuEoHy0t7DVNEh/lqTrq48QrJ9dHSs+2nIV8IOfyYMliWDtBIp7r74F0JitUkEN
+         OW3Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701266596; x=1701871396;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=JLtZ8mDkPpZWh0qK6LF9/jlbCd5x7abg6/bo62M9z7s=;
-        b=kufalaayuExu1+4WpFyUXy5xbUb6GLLkstKwgrG+VLce34VkJNziAM61keao6KwdUD
-         PNyBB+1rCpD2gSeFOKhWlEL2hHXnV5AenaGU6G6+pVeMPyo/4sAU0Ea7PtAkxQhkremd
-         Mc1a3Y+BPxO0ZZsQA/WPAHmEa1EybyLv2LwmSvb5xbAhTillk3se/Ya2U80GoyH9btzP
-         IRKo8e1+gaGgJUaatA0b2U8XtdSiYWBe7JMFm1rKsDBEbesMWOVgjaokK4bmj1RlGPxP
-         5LXEmj0iNUX6iXKsLlIy3pPv47l6hXsubJuo0OiNdDax8qAM+y5IvLBB5Cr3G6UFAH1m
-         atiw==
-X-Gm-Message-State: AOJu0Yy9OkETo6XnSN+we7SlKLVwxU5TNfP3Gwje4JJ4qMard7b4aRBL
-	lCfiiZudNU5GAK/1GP3yzsAWJPoj5iYfuMns0hhB+w==
-X-Google-Smtp-Source: AGHT+IF5qE0fSj5Cwf0MS+VLGouEXtLuBiPmt4xWTUyyWc7dhVJnanam1W6YNEoqWJAfYgNYIvTzT+8RJsy8rZC6o0E=
-X-Received: by 2002:a25:947:0:b0:d9a:c61e:4466 with SMTP id
- u7-20020a250947000000b00d9ac61e4466mr17163062ybm.61.1701266595673; Wed, 29
- Nov 2023 06:03:15 -0800 (PST)
+        d=1e100.net; s=20230601; t=1701266741; x=1701871541;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MQ8xtOf7SPY4n43K7AQFcp4yw6pnczR2hfrcA2zNKh8=;
+        b=HfI1YTjoolrO16w0+pV92uWJX+ziGWLRCWvN7fZqQOvAdhKm+guQMLJRip/VrKKbdx
+         o5WKvkWGg7z+SfeIWqx5NyxWfAa2MCVgtSWkzWu7Xy2ctv0wBFya/kA35Rfn+sEOWLZ4
+         VZstAz8J2PYRKNy1ZyFqFPmkQz/L5AHKRV34WyQaDc0ZFLs4+luo7OifWJNE9moSMgPH
+         1qrr+eCyrz4WVsITS/kCoch/XLW+oYur3vpWHsKwx6c4HB/G2q/C4Lc0KjTZcKuziB6s
+         IPvY+S2Pfb8mlFH/icLPh3R1fRm4LCrG6U1rqVFDyTTQwO5r2TicJm4U//d9bUrx4cFa
+         c18g==
+X-Gm-Message-State: AOJu0YzH+lbwlk/Dt27efp5dRu9K6ZeL0Yt7e0iOQPe8+ejCjM33z1qD
+	CHRvLF6w68FnGQB0sbeqVNZN+g==
+X-Google-Smtp-Source: AGHT+IEJRq0imNqnhlsR+uCWHbDWbTPaUjfqnej06A/skJff8aDf/UUnunxlBDdm3ZLjEsqjYvGRSg==
+X-Received: by 2002:a17:906:fcc:b0:9bd:a75a:5644 with SMTP id c12-20020a1709060fcc00b009bda75a5644mr12183367ejk.16.1701266741102;
+        Wed, 29 Nov 2023 06:05:41 -0800 (PST)
+Received: from krzk-bin.. ([178.197.223.109])
+        by smtp.gmail.com with ESMTPSA id o14-20020a1709062e8e00b009fe3e9dee25sm7947530eji.61.2023.11.29.06.05.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 29 Nov 2023 06:05:40 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH 1/2] arm64: dts: qcom: sm8450: correct TX Soundwire clock
+Date: Wed, 29 Nov 2023 15:05:36 +0100
+Message-Id: <20231129140537.161720-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231118124252.14838-1-wahrenst@gmx.net> <20231118124252.14838-2-wahrenst@gmx.net>
- <ZVtHZWYl2skpn1Bg@smile.fi.intel.com> <9a9486bb-e737-4384-a581-76880b709758@gmx.net>
- <ZVtS4phUMmDD9ztz@smile.fi.intel.com> <CAMRc=MdpegfNrjWkeGSh8NhT_Go+q5MxueASxrLo18XBJaBsjA@mail.gmail.com>
-In-Reply-To: <CAMRc=MdpegfNrjWkeGSh8NhT_Go+q5MxueASxrLo18XBJaBsjA@mail.gmail.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Wed, 29 Nov 2023 15:03:04 +0100
-Message-ID: <CACRpkdZuJqEA06NDneNFwjgj=u0Nm+yKCEd3VyJkMyZ1mLxQsA@mail.gmail.com>
-Subject: Re: [PATCH V2 1/2] leds: gpio: Add kernel log if devm_fwnode_gpiod_get
- fails
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Stefan Wahren <wahrenst@gmx.net>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Florian Fainelli <florian.fainelli@broadcom.com>, Pavel Machek <pavel@ucw.cz>, 
-	"open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>, Lee Jones <lee@kernel.org>, 
-	bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-leds@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Wed, Nov 22, 2023 at 11:53=E2=80=AFAM Bartosz Golaszewski <brgl@bgdev.pl=
-> wrote:
+The TX Soundwire controller should take clock from TX macro codec, not
+VA macro codec clock, otherwise the clock stays disabled.  This looks
+like a copy-paste issue, because the SC8280xp code uses here correctly
+clock from TX macro.  The VA macro clock is already consumed by TX macro
+codec, thus it won't be disabled by this change.
 
-> > > I cannot remember that i saw any of them on info level in my case of =
-an
-> > > already allocated pin (see patch 2).
-> > >
-> > > I'm open to place the log within gpiolib, if this a better place.
-> >
-> > I'm not sure, let's hear GPIO maintainers for that.
->
-> Hard to tell which method is preferred among all the subsystems.
-> Personally I'm more inclined towards letting drivers decide whether to
-> emit an error message and only emit our own when an error cannot be
-> propagated down the stack.
->
-> Linus: Any thoughts?
+Fixes: 14341e76dbc7 ("arm64: dts: qcom: sm8450: add Soundwire and LPASS")
+Reported-by: Neil Armstrong <neil.armstrong@linaro.org>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-I never managed to get it right so I can't give any good advice.
+---
 
-Usually I tend to think better one more error message than one too little.
+Considering that in Downstream, the TX Soundwire is part of VA macro,
+there is no clear reference code explaining this. Let's just go with
+SC8280xp approach because it seems reasonable, but don't ask me "why".
+---
+ arch/arm64/boot/dts/qcom/sm8450.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Then again I'm a dmesg maximalist who just want it to scroll on forever
-also with positive messages...
+diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+index a305f8c03f9e..28207c7423f0 100644
+--- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+@@ -2314,7 +2314,7 @@ swr2: soundwire@33b0000 {
+ 				     <GIC_SPI 520 IRQ_TYPE_LEVEL_HIGH>;
+ 			interrupt-names = "core", "wakeup";
+ 
+-			clocks = <&vamacro>;
++			clocks = <&txmacro>;
+ 			clock-names = "iface";
+ 			label = "TX";
+ 
+-- 
+2.34.1
 
-Yours,
-Linus Walleij
 
