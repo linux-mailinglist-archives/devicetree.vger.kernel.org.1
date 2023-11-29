@@ -1,164 +1,235 @@
-Return-Path: <devicetree+bounces-20121-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20122-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 264CA7FDDE3
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 18:03:42 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B2EE7FDDE6
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 18:04:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CDFD02825B7
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 17:03:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C61EB282860
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 17:04:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3531F3B79C;
-	Wed, 29 Nov 2023 17:03:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D00C3B7AA;
+	Wed, 29 Nov 2023 17:04:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=subdimension.ro header.i=@subdimension.ro header.b="ZTmzk8kU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 16BA685;
-	Wed, 29 Nov 2023 09:03:35 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D874AC15;
-	Wed, 29 Nov 2023 09:04:21 -0800 (PST)
-Received: from [10.1.30.35] (e110479.arm.com [10.1.30.35])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 825373F73F;
-	Wed, 29 Nov 2023 09:03:31 -0800 (PST)
-Message-ID: <a097a613-14c1-4a53-bbe1-c44964e7ecaa@arm.com>
-Date: Wed, 29 Nov 2023 17:03:24 +0000
+Received: from mail.subdimension.ro (unknown [IPv6:2a01:7e01:e001:1d1::2])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B400594;
+	Wed, 29 Nov 2023 09:04:36 -0800 (PST)
+Received: from localhost.localdomain (unknown [188.24.94.216])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by mail.subdimension.ro (Postfix) with ESMTPSA id 0D5A728EE6F;
+	Wed, 29 Nov 2023 17:04:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=subdimension.ro;
+	s=skycaves; t=1701277475;
+	bh=gPpPxga2dDY1V7HrEM99t1yGm2FFC/JlYq+Sm++MjpE=;
+	h=From:To:Cc:Subject:Date;
+	b=ZTmzk8kUv1hzSWM744cFaZRNHxTDg430c5rMDv1rg0l3W1ENNd/18e9xIYpYNvvsi
+	 20LPwuZZpdHonO5RGYkmZlR7bpfGvfRiNA2q87pdSmzteqxLq6TFVHCOFm9Sv/nwXJ
+	 UkIHVPXRQxwKt69OD87dvSqLQsyxJY7M/zR0c0JM=
+From: Petre Rodan <petre.rodan@subdimension.ro>
+To: linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: Petre Rodan <petre.rodan@subdimension.ro>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	linux-kernel-mentees@lists.linuxfoundation.org,
+	Jonathan Cameron <jic23@kernel.org>
+Subject: [PATCH v6 1/2] dt-bindings: iio: pressure: add honeywell,hsc030
+Date: Wed, 29 Nov 2023 19:04:11 +0200
+Message-ID: <20231129170425.3562-1-petre.rodan@subdimension.ro>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/6] thermal: sun8i: add syscon register access code
-Content-Language: en-US
-To: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Vasily Khoruzhick <anarsoul@gmail.com>, Yangtao Li
- <tiny.windzz@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>, "Rafael J . Wysocki"
- <rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>,
- Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Martin Botka <martin.botka@somainline.org>,
- Bob McChesney <bob@electricworry.net>, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, Icenowy Zheng <icenowy@aosc.io>,
- Maxime Ripard <mripard@kernel.org>
-References: <20231128005849.19044-1-andre.przywara@arm.com>
- <20231128005849.19044-5-andre.przywara@arm.com>
- <ddceb30f-1778-4312-af91-97813fe3c6fb@linaro.org>
- <20231128143309.38a4ce61@donnerap.manchester.arm.com>
- <4e90608e-aca5-4b57-be76-350ad54f9e7c@linaro.org>
- <20231128161010.26657e76@donnerap.manchester.arm.com>
- <CAL_Jsq+9J1=+gZ83QyedAWbFN=AwSB8ue+o4TM7F6yu5_62z3g@mail.gmail.com>
-From: Andre Przywara <andre.przywara@arm.com>
-In-Reply-To: <CAL_Jsq+9J1=+gZ83QyedAWbFN=AwSB8ue+o4TM7F6yu5_62z3g@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-Hi,
+Adds binding for digital Honeywell TruStability HSC and SSC series
+pressure and temperature sensors.
+Communication is one way. The sensor only requires 4 bytes worth of
+clock pulses on both i2c and spi in order to push the data out.
+The i2c address is hardcoded and depends on the part number.
+There is no additional GPIO control.
 
-On 28/11/2023 16:50, Rob Herring wrote:
-> On Tue, Nov 28, 2023 at 10:10 AM Andre Przywara <andre.przywara@arm.com> wrote:
->>
->> On Tue, 28 Nov 2023 15:48:18 +0100
->> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
->>
->> Hi,
->>
->> (adding Maxime for the syscon question below)
->>
->>> On 28/11/2023 15:33, Andre Przywara wrote:
->>>> On Tue, 28 Nov 2023 08:43:32 +0100
->>>> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
->>>>
->>>> Hi,
->>>>
->>>>> On 28/11/2023 01:58, Andre Przywara wrote:
->>>>>>
->>>>>> +static struct regmap *sun8i_ths_get_syscon_regmap(struct device_node *node)
->>>>>> +{
->>>>>> + struct device_node *syscon_node;
->>>>>> + struct platform_device *syscon_pdev;
->>>>>> + struct regmap *regmap = NULL;
->>>>>> +
->>>>>> + syscon_node = of_parse_phandle(node, "syscon", 0);
->>>>>
->>>>> Nope. For the 100th time, this cannot be generic.
-> 
-> Unless it is the 100th time for the submitter, please just point to
-> the documentation.
-> 
-> Can we simply ban "syscon" as a property name? It looks like we have
-> 65 cases in upstream dts files. Maybe that's doable. This is where we
-> need levels of warnings with okay for existing vs. don't use in new
-> designs.
-> 
->>>> OK. Shall this name refer to the required functionality (temperature
->>>> offset fix) or to the target syscon node (like allwinner,misc-syscon).
->>>> The problem is that this is really a syscon, as in: "random collection of
->>>> bits that we didn't know where else to put in", so "syscon" alone actually
->>>> says it all.
->>>
->>> Every syscon is a "random collection of bits...", but not every "random
->>> collection of bits..." is a syscon.
->>>
->>> Your target device does not implement syscon nodes. Your Linux
->>> implementation does not use it as syscon. Therefore if something does
->>> not look like syscon and does not behave like syscon, it is not a syscon.
->>>
->>> I looked at the bit and this is SRAM, not syscon. I am sorry, but it is
->>> something entirely different and we have a binding for it: "sram", I think.
->>
->> Well, it's somehow both: On the face of it it's a SRAM controller, indeed:
->> it can switch the control of certain SRAM regions between CPU access and
->> peripheral access (for the video and the display engine). But then it's
->> also a syscon, because on top of that, it also controls those random bits,
->> for instance the EMAC clock register, and this ominous THS bit.
->> I guess in hindsight we should have never dropped that "syscon" string
->> then, but I am not sure if adding it back has side effects?
->>
->> And as I mentioned in the cover letter: modelling this as some SRAM
->> region, as you suggest, might be an alternative, but it doesn't sound right
->> either, as I don't think it really is one: I just tried in U-Boot, and I
->> can write and read the whole SRAM C region just fine, with and without the
->> bit set. And SRAM content is preserved, even with the thermal sensor
->> running and the bit cleared (or set).
->>
->> So adding the "syscon" to the compatible would fix most things, but then
->> we need to keep the open coded lookup code in dwmac-sun8i.c (because older
->> DTs would break otherwise).
-> 
-> Really, I'd like to get rid of the "syscon" compatible. It is nothing
-> more than a flag for Linux to create a regmap.
+Datasheet:
+https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/products/sensors/pressure-sensors/board-mount-pressure-sensors/trustability-hsc-series/documents/sps-siot-trustability-hsc-series-high-accuracy-board-mount-pressure-sensors-50099148-a-en-ciid-151133.pdf [HSC]
+Datasheet:
+https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/products/sensors/pressure-sensors/board-mount-pressure-sensors/trustability-ssc-series/documents/sps-siot-trustability-ssc-series-standard-accuracy-board-mount-pressure-sensors-50099533-a-en-ciid-151134.pdf [SSC]
+Signed-off-by: Petre Rodan <petre.rodan@subdimension.ro>
+---
+v2: - fix yaml struct
+    - cleanup based on Krzysztof's review
+v3: - rename range_str -> honeywell,pressure-triplet to define the string
+       containing the pressure range, measurement unit and type
+    - honeywell,pmax-pascal becomes uint32
+v4: - added enum to honeywell,transfer-function
+v5: - removed pmin-pascal, pmax-pascal $ref
+    - added pmin-pascal, pmax-pascal constraints
+v6  - no change
+---
+ .../iio/pressure/honeywell,hsc030pa.yaml      | 142 ++++++++++++++++++
+ 1 file changed, 142 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/pressure/honeywell,hsc030pa.yaml
 
-Yeah, so thinking about it indeed feels a bit like we are changing the 
-DT here to cater for some Linux implementation detail. After all we 
-already access the regmap successfully in dwmac-sun8i.c, is that 
-approach frowned upon (because: driver model) and just tolerated because 
-it's already in the code base?
+diff --git a/Documentation/devicetree/bindings/iio/pressure/honeywell,hsc030pa.yaml b/Documentation/devicetree/bindings/iio/pressure/honeywell,hsc030pa.yaml
+new file mode 100644
+index 000000000000..65a24ed67b3c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/pressure/honeywell,hsc030pa.yaml
+@@ -0,0 +1,142 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/pressure/honeywell,hsc030pa.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Honeywell TruStability HSC and SSC pressure sensor series
++
++description: |
++  support for Honeywell TruStability HSC and SSC digital pressure sensor
++  series.
++
++  These sensors have either an I2C, an SPI or an analog interface. Only the
++  digital versions are supported by this driver.
++
++  There are 118 models with different pressure ranges available in each family.
++  The vendor calls them "HSC series" and "SSC series". All of them have an
++  identical programming model but differ in pressure range, unit and transfer
++  function.
++
++  To support different models one needs to specify the pressure range as well
++  as the transfer function. Pressure range can either be provided via
++  pressure-triplet (directly extracted from the part number) or in case it's
++  a custom chip via numerical range limits converted to pascals.
++
++  The transfer function defines the ranges of raw conversion values delivered
++  by the sensor. pmin-pascal and pmax-pascal corespond to the minimum and
++  maximum pressure that can be measured.
++
++  Please note that in case of an SPI-based sensor, the clock signal should not
++  exceed 800kHz and the MOSI signal is not required.
++
++  Specifications about the devices can be found at:
++  https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/products/sensors/pressure-sensors/board-mount-pressure-sensors/trustability-hsc-series/documents/sps-siot-trustability-hsc-series-high-accuracy-board-mount-pressure-sensors-50099148-a-en-ciid-151133.pdf
++  https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/products/sensors/pressure-sensors/board-mount-pressure-sensors/trustability-ssc-series/documents/sps-siot-trustability-ssc-series-standard-accuracy-board-mount-pressure-sensors-50099533-a-en-ciid-151134.pdf
++
++maintainers:
++  - Petre Rodan <petre.rodan@subdimension.ro>
++
++properties:
++  compatible:
++    const: honeywell,hsc030pa
++
++  reg:
++    maxItems: 1
++
++  honeywell,transfer-function:
++    description: |
++      Transfer function which defines the range of valid values delivered by
++      the sensor.
++      0 - A, 10% to 90% of 2^14
++      1 - B, 5% to 95% of 2^14
++      2 - C, 5% to 85% of 2^14
++      3 - F, 4% to 94% of 2^14
++    enum: [0, 1, 2, 3]
++    $ref: /schemas/types.yaml#/definitions/uint32
++
++  honeywell,pressure-triplet:
++    description: |
++      Case-sensitive five character string that defines pressure range, unit
++      and type as part of the device nomenclature. In the unlikely case of a
++      custom chip, set to "NA" and provide pmin-pascal and pmax-pascal.
++    enum: [001BA, 1.6BA, 2.5BA, 004BA, 006BA, 010BA, 1.6MD, 2.5MD, 004MD,
++           006MD, 010MD, 016MD, 025MD, 040MD, 060MD, 100MD, 160MD, 250MD,
++           400MD, 600MD, 001BD, 1.6BD, 2.5BD, 004BD, 2.5MG, 004MG, 006MG,
++           010MG, 016MG, 025MG, 040MG, 060MG, 100MG, 160MG, 250MG, 400MG,
++           600MG, 001BG, 1.6BG, 2.5BG, 004BG, 006BG, 010BG, 100KA, 160KA,
++           250KA, 400KA, 600KA, 001GA, 160LD, 250LD, 400LD, 600LD, 001KD,
++           1.6KD, 2.5KD, 004KD, 006KD, 010KD, 016KD, 025KD, 040KD, 060KD,
++           100KD, 160KD, 250KD, 400KD, 250LG, 400LG, 600LG, 001KG, 1.6KG,
++           2.5KG, 004KG, 006KG, 010KG, 016KG, 025KG, 040KG, 060KG, 100KG,
++           160KG, 250KG, 400KG, 600KG, 001GG, 015PA, 030PA, 060PA, 100PA,
++           150PA, 0.5ND, 001ND, 002ND, 004ND, 005ND, 010ND, 020ND, 030ND,
++           001PD, 005PD, 015PD, 030PD, 060PD, 001NG, 002NG, 004NG, 005NG,
++           010NG, 020NG, 030NG, 001PG, 005PG, 015PG, 030PG, 060PG, 100PG,
++           150PG, NA]
++    $ref: /schemas/types.yaml#/definitions/string
++
++  honeywell,pmin-pascal:
++    description: |
++      Minimum pressure value the sensor can measure in pascal.
++      To be specified only if honeywell,pressure-triplet is set to "NA".
++
++  honeywell,pmax-pascal:
++    description: |
++      Maximum pressure value the sensor can measure in pascal.
++      To be specified only if honeywell,pressure-triplet is set to "NA".
++
++  vdd-supply:
++    description:
++      Provide VDD power to the sensor (either 3.3V or 5V depending on the chip)
++
++  spi-max-frequency:
++    maximum: 800000
++
++required:
++  - compatible
++  - reg
++  - honeywell,transfer-function
++  - honeywell,pressure-triplet
++
++additionalProperties: false
++
++dependentSchemas:
++  honeywell,pmin-pascal:
++    properties:
++      honeywell,pressure-triplet:
++        const: NA
++  honeywell,pmax-pascal:
++    properties:
++      honeywell,pressure-triplet:
++        const: NA
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        pressure@28 {
++            compatible = "honeywell,hsc030pa";
++            reg = <0x28>;
++            honeywell,transfer-function = <0>;
++            honeywell,pressure-triplet = "030PA";
++        };
++    };
++  - |
++    spi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        pressure@0 {
++            compatible = "honeywell,hsc030pa";
++            reg = <0>;
++            spi-max-frequency = <800000>;
++            honeywell,transfer-function = <0>;
++            honeywell,pressure-triplet = "NA";
++            honeywell,pmin-pascal = <0>;
++            honeywell,pmax-pascal = <200000>;
++        };
++    };
++...
+-- 
+2.41.0
 
-> Not a fully baked idea, but perhaps what is needed is drivers that
-> request a regmap for a node simply get one regardless. That kind of > throws out the Linux driver model though. Alternatively with no
-> "syscon" compatible, we'd have to have table(s) of 100s of compatibles
-> in the kernel.
-
-So do you mean to either just remove the explicit syscon compatible 
-check in syscon_node_to_regmap(), or replace it with a check against a 
-list of allowed devices?
-Wouldn't it be sufficient to leave that check to the (syscon-like) 
-devices, by them exporting a regmap in the first place or not? And we 
-can do filtering of accesses there, like we do in sunxi_sram.c?
-
-Cheers,
-Andre
-
-
-> 
-> Rob
 
