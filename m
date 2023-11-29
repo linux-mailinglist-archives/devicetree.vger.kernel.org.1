@@ -1,90 +1,201 @@
-Return-Path: <devicetree+bounces-20067-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20068-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A11A7FDA4F
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 15:48:52 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE2A37FDA58
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 15:50:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3B2771C208F2
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 14:48:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 67534283247
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 14:50:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43CF032C90;
-	Wed, 29 Nov 2023 14:48:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EC7832C9F;
+	Wed, 29 Nov 2023 14:50:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kT2G2Hm8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="taIgII0y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 292681D6BC
-	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 14:48:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B196DC433C7;
-	Wed, 29 Nov 2023 14:48:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701269327;
-	bh=0+QaGA6PBlnGaUf5ZoWEYbce089KPfDbZK0tj/I7cFY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kT2G2Hm8rBBK2fdq61Bkc6ea8uM+C0n3FaCDZbnKVd4J80BT27l4NEw1EfMJLPU7D
-	 PD3im0d1vothsZI+2iCr5mMP2NMABsMnuQjqwlXdmQ0hndCVi+AkXn2H2aog3i5aNO
-	 qYZYxYf2xEWwzIX6z2zkunD47iP4iWw9RGjQ7L7Bpf7YBz+ssH/SKVyAFc/3C6jrDK
-	 Kz7/FtB2kiIAIbfLSKEGeB3pdk0Tm/QfrnoXPYz+kG++6nYvzncdiBxzpQ7n2BdYxd
-	 fNVwPcssWP2wiIK1qdaa0cyMOGpik1Pvj5U/2yu+HqIbMBvAEMknd1N0eOMnEXcgqL
-	 t/myAVP+nNXfQ==
-Date: Wed, 29 Nov 2023 14:48:41 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Sia Jee Heng <jeeheng.sia@starfivetech.com>
-Cc: kernel@esmil.dk, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	krzk@kernel.org, conor+dt@kernel.org, paul.walmsley@sifive.com,
-	palmer@dabbelt.com, aou@eecs.berkeley.edu,
-	daniel.lezcano@linaro.org, tglx@linutronix.de, anup@brainfault.org,
-	gregkh@linuxfoundation.org, jirislaby@kernel.org,
-	michal.simek@amd.com, michael.zhu@starfivetech.com,
-	drew@beagleboard.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-	leyfoon.tan@starfivetech.com
-Subject: Re: [PATCH v2 4/6] dt-bindings: interrupt-controller: Add StarFive
- JH8100 plic
-Message-ID: <20231129-clatter-quarterly-4401934d2b50@spud>
-References: <20231129060043.368874-1-jeeheng.sia@starfivetech.com>
- <20231129060043.368874-5-jeeheng.sia@starfivetech.com>
+Received: from mail-yw1-x1130.google.com (mail-yw1-x1130.google.com [IPv6:2607:f8b0:4864:20::1130])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C319BD66
+	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 06:50:01 -0800 (PST)
+Received: by mail-yw1-x1130.google.com with SMTP id 00721157ae682-5d1f8bc279aso7819937b3.1
+        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 06:50:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1701269401; x=1701874201; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=OhKeP/2tChma4nLl2fipRCbsIXhCJ2Ql2fHfvqdfSF4=;
+        b=taIgII0yRfSpWHl0rL/sC26C16ad/kzr9+L1NTjdkd+0oEL1o97qsv7sThaJ8mpPOR
+         LkobQkk8+ZlUCtiwc53klj505J28qktSG4RNk2f5uqeBqGKy2IC+YnkUAGyb0iy3Mmo9
+         DAjwC6DxysrpDJ49o/Syi4UYDmlgzvwE+hO7nioj0kaLHoXMthAVqtvfbR7/z0Iji4Wd
+         w7e/VosvxquzH/vLdHF/2IHrE/0qDE8SkugYEZWrz3SaVK18wB1afSn4O3C1SovwQzVd
+         l4TGTpmk9m+bRYJR5oPRkPW8wE9q8RdwtCgHv6K+W2uthVVeTtsfWFr+cTa2B9l0NoH7
+         VsNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701269401; x=1701874201;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=OhKeP/2tChma4nLl2fipRCbsIXhCJ2Ql2fHfvqdfSF4=;
+        b=Po95GVginoFeRQE8+hlkSKXkEkSbY5sKpsdYHLwYLzlxSkZbbRAzcCJL5+rdJTcirI
+         SkLvAnrcmoEdkuRoGpTYtkJnLrvwJyqcWssQ/kh7mxQtDrocMOCqRZXfNVgh3Z65Spw0
+         0khj5BOzYcei6j/YEvCTJ5mz0DNmfg2ig+RBVng2VhQeFF9752nayeHmVaxOxSMCmNPI
+         vBu+JaEuZo48hjaCIQ1fjYKYh2Rsnz3AAw2Wt7FWs87FZf1d959iozertDOF5cErFcmU
+         k+6TwSJzScWKADvXKIxcc3AkBSLn9780dhMJ0v5kLgAEkmQQrUFVeZ9W5LxAspFDjBgk
+         7SVQ==
+X-Gm-Message-State: AOJu0YyEtrWTOzyLDzJsantl4+ZyWL+T8HOKO28PFUwhUIk6cq7ptqvF
+	X56zMDxnkQpy0E62Y5H8gGLUmxVfq7eTjbiIdGm8bw==
+X-Google-Smtp-Source: AGHT+IGVvGtWUCNcwNIqqWT4FI0ZK8ySjPr60DSojrMHvp+1VCvIaWJzbx2ZBbM/ASOStaPF82gKQ66tjacLTeXhKlw=
+X-Received: by 2002:a0d:d814:0:b0:5c1:25f:567d with SMTP id
+ a20-20020a0dd814000000b005c1025f567dmr17123038ywe.16.1701269400974; Wed, 29
+ Nov 2023 06:50:00 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="fypqDAEC7EAThQr9"
-Content-Disposition: inline
-In-Reply-To: <20231129060043.368874-5-jeeheng.sia@starfivetech.com>
-
-
---fypqDAEC7EAThQr9
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20231124-ltc4282-support-v2-0-952bf926f83c@analog.com> <20231124-ltc4282-support-v2-2-952bf926f83c@analog.com>
+In-Reply-To: <20231124-ltc4282-support-v2-2-952bf926f83c@analog.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Wed, 29 Nov 2023 15:49:48 +0100
+Message-ID: <CACRpkdaksfS4WLNQ6ohauAPq3z2LPG2uF37_jWtm0brQHaDtNw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] hwmon: ltc4282: add support for the LTC4282 chip
+To: nuno.sa@analog.com
+Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-doc@vger.kernel.org, Jean Delvare <jdelvare@suse.com>, 
+	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, Bartosz Golaszewski <brgl@bgdev.pl>, Andy Shevchenko <andy@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Nov 29, 2023 at 02:00:41PM +0800, Sia Jee Heng wrote:
-> Add compatible string for StarFive JH8100 plic.
->=20
-> Signed-off-by: Sia Jee Heng <jeeheng.sia@starfivetech.com>
-> Reviewed-by: Ley Foon Tan <leyfoon.tan@starfivetech.com>
+Hi Nuno,
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+GPIO-related review as requested! Thanks for your patch!
 
+On Fri, Nov 24, 2023 at 3:18=E2=80=AFPM Nuno Sa via B4 Relay
+<devnull+nuno.sa.analog.com@kernel.org> wrote:
 
---fypqDAEC7EAThQr9
-Content-Type: application/pgp-signature; name="signature.asc"
+> +config SENSORS_LTC4282
+> +       tristate "Analog Devices LTC4282"
+> +       depends on I2C
+> +       select REGMAP_I2C
 
------BEGIN PGP SIGNATURE-----
+select GPIOLIB
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZWdPSQAKCRB4tDGHoIJi
-0hQDAP961Iv1cU5dwPISI0S3yN45u/dL+hNqlw3EW/MWezvgXwEA6cTCBtuJGKCH
-ePXq3ljQb5QkwFLuMvT6evagEHPv4wM=
-=e5L3
------END PGP SIGNATURE-----
+potentially also
 
---fypqDAEC7EAThQr9--
+select GPIO_REGMAP, see below.
+
+> +struct ltc4282_gpio {
+> +       const char * const *funcs;
+> +       u32 out_reg;
+> +       u32 out_mask;
+> +       u32 in_reg;
+> +       u32 in_mask;
+> +       bool active_high;
+> +       u8 n_funcs;
+> +};
+
+So pretty simple dedicated bits.
+
+> +static int ltc4282_gpio_input_set(struct gpio_chip *chip, unsigned int o=
+ffset)
+> +{
+> +       struct ltc4282_state *st =3D gpiochip_get_data(chip);
+> +
+> +       /* we can only control this for GPIO_1 */
+> +       if (offset !=3D LTC4282_GPIO_1)
+> +               return 0;
+> +
+> +       return regmap_set_bits(st->map, LTC4282_GPIO_CONFIG,
+> +                              LTC4282_GPIO_1_CONFIG_MASK);
+> +}
+> +
+> +static int ltc4282_gpio_output_set(struct gpio_chip *chip, unsigned int =
+offset,
+> +                                  int val)
+> +{
+> +       struct ltc4282_state *st =3D gpiochip_get_data(chip);
+> +       const struct ltc4282_gpio *gpio =3D &ltc4282_gpios[offset];
+> +
+> +       guard(mutex)(&st->lock);
+> +       /*
+> +        * Explicitly setting the pin as output can only be done for GPIO=
+_1. For
+> +        * the other pins we just pull the line down or high-z.
+> +        */
+> +       if (offset =3D=3D LTC4282_GPIO_1) {
+> +               int ret;
+> +
+> +               ret =3D regmap_update_bits(st->map, LTC4282_GPIO_CONFIG,
+> +                                        LTC4282_GPIO_1_CONFIG_MASK,
+> +                                        FIELD_PREP(LTC4282_GPIO_1_CONFIG=
+_MASK, 2));
+> +               if (ret)
+> +                       return ret;
+> +       }
+> +
+> +       /*
+> +        * GPIO_2,3 and the ALERT pin require setting the bit to 1 to pul=
+l down
+> +        * the line
+> +        */
+> +       if (!gpio->active_high)
+> +               val =3D !val;
+> +
+> +       return regmap_update_bits(st->map, gpio->out_reg, gpio->out_mask,
+> +                                 field_prep(gpio->out_mask, val));
+> +}
+> +
+> +static void ltc4282_gpio_set(struct gpio_chip *chip, unsigned int offset=
+,
+> +                            int val)
+> +{
+> +       struct ltc4282_state *st =3D gpiochip_get_data(chip);
+> +       const struct ltc4282_gpio *gpio =3D &ltc4282_gpios[offset];
+> +
+> +       if (!gpio->active_high)
+> +               val =3D !val;
+> +
+> +       regmap_update_bits(st->map, gpio->out_reg, gpio->out_mask,
+> +                          field_prep(gpio->out_mask, val));
+> +}
+> +
+> +static int ltc4282_gpio_get(struct gpio_chip *chip, unsigned int offset)
+> +{
+> +       struct ltc4282_state *st =3D gpiochip_get_data(chip);
+> +       const struct ltc4282_gpio *gpio =3D &ltc4282_gpios[offset];
+> +       int ret;
+> +       u32 val;
+> +
+> +       ret =3D regmap_read(st->map, gpio->in_reg, &val);
+> +       if (ret)
+> +               return ret;
+> +
+> +       return !!(val & gpio->in_mask);
+> +}
+> +
+> +static int ltc4282_gpio_valid_mask(struct gpio_chip *chip,
+> +                                  unsigned long *valid_mask,
+> +                                  unsigned int ngpios)
+> +{
+> +       struct ltc4282_state *st =3D gpiochip_get_data(chip);
+> +
+> +       *valid_mask =3D st->valid_mask;
+> +       return 0;
+> +}
+
+Some of this looks like it could use GPIO_REGMAP, look into other
+drivers using these helpers such as
+drivers/gpio/gpio-ds4520.c and see how small it becomes.
+
+It may or may not help you. But take a look.
+
+Other than that it looks fine.
+
+Yours,
+Linus Walleij
 
