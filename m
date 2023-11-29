@@ -1,134 +1,97 @@
-Return-Path: <devicetree+bounces-19881-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19885-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A848E7FD284
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 10:27:52 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 953AC7FD28E
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 10:28:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ED266282F5F
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 09:27:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C69421C2091B
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 09:28:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97E6214297;
-	Wed, 29 Nov 2023 09:27:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2885314A89;
+	Wed, 29 Nov 2023 09:28:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="cdIKcKef"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B28401BCC;
-	Wed, 29 Nov 2023 01:27:39 -0800 (PST)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-	by ex01.ufhost.com (Postfix) with ESMTP id 0DC8424E32E;
-	Wed, 29 Nov 2023 17:27:38 +0800 (CST)
-Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 29 Nov
- 2023 17:27:37 +0800
-Received: from williamqiu-virtual-machine.starfivetech.com (171.223.208.138)
- by EXMBX168.cuchost.com (172.16.6.78) with Microsoft SMTP Server (TLS) id
- 15.0.1497.42; Wed, 29 Nov 2023 17:27:36 +0800
-From: William Qiu <william.qiu@starfivetech.com>
-To: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-riscv@lists.infradead.org>, <linux-pwm@vger.kernel.org>
-CC: Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>, Philipp Zabel
-	<p.zabel@pengutronix.de>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, "Hal
- Feng" <hal.feng@starfivetech.com>, Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
-	William Qiu <william.qiu@starfivetech.com>
-Subject: [PATCH v8 4/4] riscv: dts: starfive: jh7110: Add PWM node and pins configuration
-Date: Wed, 29 Nov 2023 17:27:32 +0800
-Message-ID: <20231129092732.43387-5-william.qiu@starfivetech.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231129092732.43387-1-william.qiu@starfivetech.com>
-References: <20231129092732.43387-1-william.qiu@starfivetech.com>
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9020626B3;
+	Wed, 29 Nov 2023 01:28:16 -0800 (PST)
+Received: from pyrite.hamster-moth.ts.net (h175-177-049-135.catv02.itscom.jp [175.177.49.135])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 99D122B6;
+	Wed, 29 Nov 2023 10:27:35 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1701250058;
+	bh=TEIBgpUjK6NYJRiaGUhsgKnE4DjYmC8agG6/GUA9vAM=;
+	h=From:To:Cc:Subject:Date:From;
+	b=cdIKcKefkWjwzhIvpuWrxnGyyHUS9fT9pqK9a/uCs+7BYq+w5lWzHI5A3SEFv6/xp
+	 1tShxd13EgaI4oarWFRcC6RYkS1wDdgNy6qwmh6bJqiYbX3XUvdRhAW9tHGfdWSpVB
+	 QcKFGgqtKLDDbqgWn7eJ9VnJYHWdkex0l8ZgribY=
+From: Paul Elder <paul.elder@ideasonboard.com>
+To: linux-media@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org
+Cc: kieran.bingham@ideasonboard.com,
+	tomi.valkeinen@ideasonboard.com,
+	umang.jain@ideasonboard.com,
+	aford173@gmail.com,
+	Paul Elder <paul.elder@ideasonboard.com>
+Subject: [PATCH v4 00/11] media: rkisp1: Add support for i.MX8MP
+Date: Wed, 29 Nov 2023 18:27:48 +0900
+Message-Id: <20231129092759.242641-1-paul.elder@ideasonboard.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX168.cuchost.com
- (172.16.6.78)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Add OpenCores PWM controller node and add PWM pins configuration
-on VisionFive 2 board.
+This series extends the rkisp1 driver to support the ISP found in the
+NXP i.MX8MP SoC.
 
-Signed-off-by: William Qiu <william.qiu@starfivetech.com>
----
- .../jh7110-starfive-visionfive-2.dtsi         | 22 +++++++++++++++++++
- arch/riscv/boot/dts/starfive/jh7110.dtsi      |  9 ++++++++
- 2 files changed, 31 insertions(+)
+The ISP IP cores in the Rockchip RK3399 (known as the "Rockchip ISP1")
+and in the NXP i.MX8MP have the same origin, and have slightly diverged
+over time as they are now independently developed (afaik) by Rockchip
+and VeriSilicon. The latter is marketed under the name "ISP8000Nano",
+and is close enough to the RK3399 ISP that it can easily be supported by
+the same driver.
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dt=
-si b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-index b89e9791efa7..e08af8a830ab 100644
---- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-@@ -323,6 +323,12 @@ reserved-data@600000 {
- 	};
- };
-=20
-+&pwm {
-+	pinctrl-names =3D "default";
-+	pinctrl-0 =3D <&pwm_pins>;
-+	status =3D "okay";
-+};
-+
- &spi0 {
- 	pinctrl-names =3D "default";
- 	pinctrl-0 =3D <&spi0_pins>;
-@@ -513,6 +519,22 @@ GPOEN_ENABLE,
- 		};
- 	};
-=20
-+	pwm_pins: pwm-0 {
-+		pwm-pins {
-+			pinmux =3D <GPIOMUX(46, GPOUT_SYS_PWM_CHANNEL0,
-+					      GPOEN_SYS_PWM0_CHANNEL0,
-+					      GPI_NONE)>,
-+				 <GPIOMUX(59, GPOUT_SYS_PWM_CHANNEL1,
-+					      GPOEN_SYS_PWM0_CHANNEL1,
-+					      GPI_NONE)>;
-+			bias-disable;
-+			drive-strength =3D <12>;
-+			input-disable;
-+			input-schmitt-disable;
-+			slew-rate =3D <0>;
-+		};
-+	};
-+
- 	spi0_pins: spi0-0 {
- 		mosi-pins {
- 			pinmux =3D <GPIOMUX(52, GPOUT_SYS_SPI0_TXD,
-diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/d=
-ts/starfive/jh7110.dtsi
-index 45213cdf50dc..1b782f2c1395 100644
---- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-@@ -829,6 +829,15 @@ i2stx1: i2s@120c0000 {
- 			status =3D "disabled";
- 		};
-=20
-+		pwm: pwm@120d0000 {
-+			compatible =3D "starfive,jh7110-pwm", "opencores,pwm-v1";
-+			reg =3D <0x0 0x120d0000 0x0 0x10000>;
-+			clocks =3D <&syscrg JH7110_SYSCLK_PWM_APB>;
-+			resets =3D <&syscrg JH7110_SYSRST_PWM_APB>;
-+			#pwm-cells =3D <3>;
-+			status =3D "disabled";
-+		};
-+
- 		sfctemp: temperature-sensor@120e0000 {
- 			compatible =3D "starfive,jh7110-temp";
- 			reg =3D <0x0 0x120e0000 0x0 0x10000>;
---=20
-2.34.1
+The last two patches add support for UYVY output format, which can be
+implemented on the ISP version in the i.MX8MP but not in the one in the
+RK3399.
+
+This version of the series specifically has been tested on a Polyhex
+Debix model A with an imx219 (Raspberry Pi cam v2).
+
+Laurent Pinchart (2):
+  media: rkisp1: Add and use rkisp1_has_feature() macro
+  media: rkisp1: Configure gasket on i.MX8MP
+
+Paul Elder (9):
+  media: rkisp1: Support setting memory stride for main path
+  media: rkisp1: Support devices lacking self path
+  media: rkisp1: Support devices lacking dual crop
+  media: rkisp1: Fix RSZ_CTRL bits for i.MX8MP
+  dt-bindings: media: rkisp1: Add i.MX8MP ISP to compatible
+  media: rkisp1: Add match data for i.MX8MP ISP
+  media: rkisp1: Shift DMA buffer addresses on i.MX8MP
+  media: rkisp1: Add YC swap capability
+  media: rkisp1: Add UYVY as an output format
+
+ .../bindings/media/rockchip-isp1.yaml         |  37 ++++-
+ .../platform/rockchip/rkisp1/rkisp1-capture.c | 128 ++++++++++++-----
+ .../platform/rockchip/rkisp1/rkisp1-common.h  |  35 ++++-
+ .../platform/rockchip/rkisp1/rkisp1-dev.c     |  66 +++++++--
+ .../platform/rockchip/rkisp1/rkisp1-isp.c     | 131 +++++++++++++++++-
+ .../platform/rockchip/rkisp1/rkisp1-regs.h    |  32 +++++
+ .../platform/rockchip/rkisp1/rkisp1-resizer.c |  27 ++--
+ include/uapi/linux/rkisp1-config.h            |   2 +
+ 8 files changed, 398 insertions(+), 60 deletions(-)
+
+-- 
+2.39.2
 
 
