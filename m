@@ -1,159 +1,153 @@
-Return-Path: <devicetree+bounces-19991-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-19992-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 018F37FD7BB
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 14:16:15 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC7F67FD7D6
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 14:21:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 95D34B21AF5
-	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 13:16:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 77D19B20EF7
+	for <lists+devicetree@lfdr.de>; Wed, 29 Nov 2023 13:21:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E652B1F94D;
-	Wed, 29 Nov 2023 13:16:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AADA200C0;
+	Wed, 29 Nov 2023 13:21:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jloCmk7I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C06B885;
-	Wed, 29 Nov 2023 05:16:01 -0800 (PST)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-	by ex01.ufhost.com (Postfix) with ESMTP id B8FCB24E03E;
-	Wed, 29 Nov 2023 21:15:52 +0800 (CST)
-Received: from EXMBX162.cuchost.com (172.16.6.72) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 29 Nov
- 2023 21:15:52 +0800
-Received: from EXMBX066.cuchost.com (172.16.7.66) by EXMBX162.cuchost.com
- (172.16.6.72) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 29 Nov
- 2023 21:15:52 +0800
-Received: from EXMBX066.cuchost.com ([fe80::5947:9245:907e:339f]) by
- EXMBX066.cuchost.com ([fe80::5947:9245:907e:339f%17]) with mapi id
- 15.00.1497.044; Wed, 29 Nov 2023 21:15:52 +0800
-From: JeeHeng Sia <jeeheng.sia@starfivetech.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, "kernel@esmil.dk"
-	<kernel@esmil.dk>, "robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"krzk@kernel.org" <krzk@kernel.org>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>, "paul.walmsley@sifive.com" <paul.walmsley@sifive.com>,
-	"palmer@dabbelt.com" <palmer@dabbelt.com>, "aou@eecs.berkeley.edu"
-	<aou@eecs.berkeley.edu>, "daniel.lezcano@linaro.org"
-	<daniel.lezcano@linaro.org>, "tglx@linutronix.de" <tglx@linutronix.de>,
-	"conor@kernel.org" <conor@kernel.org>, "anup@brainfault.org"
-	<anup@brainfault.org>, "gregkh@linuxfoundation.org"
-	<gregkh@linuxfoundation.org>, "jirislaby@kernel.org" <jirislaby@kernel.org>,
-	"michal.simek@amd.com" <michal.simek@amd.com>, Michael Zhu
-	<michael.zhu@starfivetech.com>, "drew@beagleboard.org" <drew@beagleboard.org>
-CC: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, Leyfoon Tan
-	<leyfoon.tan@starfivetech.com>
-Subject: RE: [PATCH v2 5/6] dt-bindings: serial: cdns: Add new compatible
- string for StarFive JH8100 UART
-Thread-Topic: [PATCH v2 5/6] dt-bindings: serial: cdns: Add new compatible
- string for StarFive JH8100 UART
-Thread-Index: AQHaIomVReB7ZsOIbUqhwwRlprdVx7CQcD2AgACjd5D//4WkAIAArSFA
-Date: Wed, 29 Nov 2023 13:15:52 +0000
-Message-ID: <a0181b9c536a4692bab5eb827af1636c@EXMBX066.cuchost.com>
-References: <20231129060043.368874-1-jeeheng.sia@starfivetech.com>
- <20231129060043.368874-6-jeeheng.sia@starfivetech.com>
- <8f2f241d-580a-4906-949a-b99b5a600868@linaro.org>
- <d5a3a8798333431fbb2aee573383a8e4@EXMBX066.cuchost.com>
- <068ca34d-a930-4542-bde3-4fbb4c228807@linaro.org>
-In-Reply-To: <068ca34d-a930-4542-bde3-4fbb4c228807@linaro.org>
-Accept-Language: en-US, zh-CN
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-ms-exchange-transport-fromentityheader: Hosted
-x-yovoleruleagent: yovoleflag
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AE1FB2
+	for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 05:21:36 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-3316d3d11e1so571303f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 29 Nov 2023 05:21:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1701264094; x=1701868894; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=LxnwmsnLa+zjyTvJgxXUCowe3oX5PXSw6duoQ6d9X54=;
+        b=jloCmk7Il+eVCUvsK5TCN5TnpUAAX6bIl334mTOpoImgRjUP2UFGcH8fSv6ZwDAQiv
+         YwZRE7/uolQe4bbFilTciqvH248fVpLZ4mWu409QnlLOPZ8ohWIS9wxhoMwfzJFmbWhy
+         /NArQvwghJ1UgzwZ9f5KCWu3az1gWu7e4YqFHGDB9GDp1GMOUWB/8I9PD2K+pDuPKNSe
+         Fjyn72juOkNbA1FiDxv1Dghc5LN0GZ7ZZKLXZN9/+8Q4etZfed5Cpk02SyPnyaKq9eGq
+         bJBpNlk6OEIjcZaG8UM0zjKVXJNWJ/STuZCKwOif+wa8BVzSkgm1iCvpajBpQEXXmoLo
+         MJjw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701264094; x=1701868894;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LxnwmsnLa+zjyTvJgxXUCowe3oX5PXSw6duoQ6d9X54=;
+        b=N+h8jggRyRWHcLR4VC8hzhR44L8nw1uYWu7xXwgS2pvbokjD2jBKua3+28NYWQO0ez
+         PKXeZMzhCljVSoKP0WJS7LtR9QupKKONRVKo0GFM+3DNbDFhU76f8n/hGQeZ3/mEqFn0
+         ZFVb6I7QmhZxpR3jdHD9lfA1JMVHPOIB1iquznkD3txTQP0Q7h/GdU3Cr3CpTeRpp6kt
+         Jja2uLwlp/0KtmD1/OxkdXEC+URiXbahF0nTiC0hhPXyvwd/w7Ugr+AYyHxt12zDGa9o
+         xiNNOMUmeVVtMHArwzXbQeu+lAVm6MTAJ2XGwAiMy73degwD2kF0Ox14MFeytIOW3gTA
+         2crw==
+X-Gm-Message-State: AOJu0YxO5niaA4UoW9wN6iklo5wxKyVnFMe9Emv3txRPuIfsg1kGuDMA
+	+ju7q23LLkTPgLMHkWts24mFIE03YR0cPNxA1lw=
+X-Google-Smtp-Source: AGHT+IE3QkuinWthwHM4v+mpRfOYIx4YIZdPpX9q/wg8fV/SchAUWX3HGJqx55OjKN5baf6RzeEI4g==
+X-Received: by 2002:adf:f682:0:b0:333:145a:4883 with SMTP id v2-20020adff682000000b00333145a4883mr2592094wrp.25.1701264094628;
+        Wed, 29 Nov 2023 05:21:34 -0800 (PST)
+Received: from localhost ([102.36.222.112])
+        by smtp.gmail.com with ESMTPSA id d4-20020a05600c3ac400b0040b538047b4sm2099039wms.3.2023.11.29.05.21.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 29 Nov 2023 05:21:34 -0800 (PST)
+Date: Wed, 29 Nov 2023 16:21:31 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: James Tai <james.tai@realtek.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Marc Zyngier <maz@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, kernel test robot <lkp@intel.com>,
+	Dan Carpenter <error27@gmail.com>
+Subject: Re: [PATCH v3 2/6] irqchip: Add interrupt controller support for
+ Realtek DHC SoCs
+Message-ID: <8f87bfca-ab5f-4b32-a400-a90d09b64cf1@suswa.mountain>
+References: <20231129054339.3054202-1-james.tai@realtek.com>
+ <20231129054339.3054202-3-james.tai@realtek.com>
+ <d94c79bf-04c4-4e87-bd7e-a8755508ac89@suswa.mountain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d94c79bf-04c4-4e87-bd7e-a8755508ac89@suswa.mountain>
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogS3J6eXN6dG9mIEtvemxv
-d3NraSA8a3J6eXN6dG9mLmtvemxvd3NraUBsaW5hcm8ub3JnPg0KPiBTZW50OiBXZWRuZXNkYXks
-IE5vdmVtYmVyIDI5LCAyMDIzIDY6NTMgUE0NCj4gVG86IEplZUhlbmcgU2lhIDxqZWVoZW5nLnNp
-YUBzdGFyZml2ZXRlY2guY29tPjsga2VybmVsQGVzbWlsLmRrOyByb2JoK2R0QGtlcm5lbC5vcmc7
-IGtyenlzenRvZi5rb3psb3dza2krZHRAbGluYXJvLm9yZzsNCj4ga3J6a0BrZXJuZWwub3JnOyBj
-b25vcitkdEBrZXJuZWwub3JnOyBwYXVsLndhbG1zbGV5QHNpZml2ZS5jb207IHBhbG1lckBkYWJi
-ZWx0LmNvbTsgYW91QGVlY3MuYmVya2VsZXkuZWR1Ow0KPiBkYW5pZWwubGV6Y2Fub0BsaW5hcm8u
-b3JnOyB0Z2x4QGxpbnV0cm9uaXguZGU7IGNvbm9yQGtlcm5lbC5vcmc7IGFudXBAYnJhaW5mYXVs
-dC5vcmc7IGdyZWdraEBsaW51eGZvdW5kYXRpb24ub3JnOw0KPiBqaXJpc2xhYnlAa2VybmVsLm9y
-ZzsgbWljaGFsLnNpbWVrQGFtZC5jb207IE1pY2hhZWwgWmh1IDxtaWNoYWVsLnpodUBzdGFyZml2
-ZXRlY2guY29tPjsgZHJld0BiZWFnbGVib2FyZC5vcmcNCj4gQ2M6IGRldmljZXRyZWVAdmdlci5r
-ZXJuZWwub3JnOyBsaW51eC1yaXNjdkBsaXN0cy5pbmZyYWRlYWQub3JnOyBsaW51eC1rZXJuZWxA
-dmdlci5rZXJuZWwub3JnOyBMZXlmb29uIFRhbg0KPiA8bGV5Zm9vbi50YW5Ac3RhcmZpdmV0ZWNo
-LmNvbT4NCj4gU3ViamVjdDogUmU6IFtQQVRDSCB2MiA1LzZdIGR0LWJpbmRpbmdzOiBzZXJpYWw6
-IGNkbnM6IEFkZCBuZXcgY29tcGF0aWJsZSBzdHJpbmcgZm9yIFN0YXJGaXZlIEpIODEwMCBVQVJU
-DQo+IA0KPiBPbiAyOS8xMS8yMDIzIDExOjMzLCBKZWVIZW5nIFNpYSB3cm90ZToNCj4gPg0KPiA+
-DQo+ID4+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+ID4+IEZyb206IEtyenlzenRvZiBL
-b3psb3dza2kgPGtyenlzenRvZi5rb3psb3dza2lAbGluYXJvLm9yZz4NCj4gPj4gU2VudDogV2Vk
-bmVzZGF5LCBOb3ZlbWJlciAyOSwgMjAyMyA0OjI2IFBNDQo+ID4+IFRvOiBKZWVIZW5nIFNpYSA8
-amVlaGVuZy5zaWFAc3RhcmZpdmV0ZWNoLmNvbT47IGtlcm5lbEBlc21pbC5kazsgcm9iaCtkdEBr
-ZXJuZWwub3JnOyBrcnp5c3p0b2Yua296bG93c2tpK2R0QGxpbmFyby5vcmc7DQo+ID4+IGtyemtA
-a2VybmVsLm9yZzsgY29ub3IrZHRAa2VybmVsLm9yZzsgcGF1bC53YWxtc2xleUBzaWZpdmUuY29t
-OyBwYWxtZXJAZGFiYmVsdC5jb207IGFvdUBlZWNzLmJlcmtlbGV5LmVkdTsNCj4gPj4gZGFuaWVs
-LmxlemNhbm9AbGluYXJvLm9yZzsgdGdseEBsaW51dHJvbml4LmRlOyBjb25vckBrZXJuZWwub3Jn
-OyBhbnVwQGJyYWluZmF1bHQub3JnOyBncmVna2hAbGludXhmb3VuZGF0aW9uLm9yZzsNCj4gPj4g
-amlyaXNsYWJ5QGtlcm5lbC5vcmc7IG1pY2hhbC5zaW1la0BhbWQuY29tOyBNaWNoYWVsIFpodSA8
-bWljaGFlbC56aHVAc3RhcmZpdmV0ZWNoLmNvbT47IGRyZXdAYmVhZ2xlYm9hcmQub3JnDQo+ID4+
-IENjOiBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZzsgbGludXgtcmlzY3ZAbGlzdHMuaW5mcmFk
-ZWFkLm9yZzsgbGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZzsgTGV5Zm9vbiBUYW4NCj4gPj4g
-PGxleWZvb24udGFuQHN0YXJmaXZldGVjaC5jb20+DQo+ID4+IFN1YmplY3Q6IFJlOiBbUEFUQ0gg
-djIgNS82XSBkdC1iaW5kaW5nczogc2VyaWFsOiBjZG5zOiBBZGQgbmV3IGNvbXBhdGlibGUgc3Ry
-aW5nIGZvciBTdGFyRml2ZSBKSDgxMDAgVUFSVA0KPiA+Pg0KPiA+PiBPbiAyOS8xMS8yMDIzIDA3
-OjAwLCBTaWEgSmVlIEhlbmcgd3JvdGU6DQo+ID4+PiBBZGQgbmV3IGNvbXBhdGlibGUgc3RyaW5n
-IGZvciBVQVJUIGluIHRoZSBTdGFyRml2ZSBKSDgxMDAgU29DLg0KPiA+Pj4NCj4gPj4+IFNpZ25l
-ZC1vZmYtYnk6IFNpYSBKZWUgSGVuZyA8amVlaGVuZy5zaWFAc3RhcmZpdmV0ZWNoLmNvbT4NCj4g
-Pj4+IFJldmlld2VkLWJ5OiBMZXkgRm9vbiBUYW4gPGxleWZvb24udGFuQHN0YXJmaXZldGVjaC5j
-b20+DQo+ID4+DQo+ID4+IFRoZSBwYXRjaCBpcyBxdWl0ZSBkaWZmZXJlbnQgdGhhbiB2MS4gQXJl
-IHlvdSBzdXJlIHRoZSByZXZpZXcgaXMNCj4gPj4gYXBwbGljYWJsZT8gSWYgaXQgd2FzIGdpdmVu
-IGZvciB2Miwgd2hlcmUgaXMgaXQ/DQo+ID4gVGhpcyBwYXRjaCBpcyBpbXBhY3RlZCBieSB0aGUg
-Y29tbWVudCBzdWdnZXN0aW5nIHRoZSBleGNsdXNpb24gb2YgcGF0Y2ggNSBpbiBWMS4gSW4gVjIs
-IHRoaXMgcGF0Y2ggYWRkcyBjb21wYXRpYmxlIGZvciBjZG5zLXVhcnQtDQo+IHIxcDgsIGFsbG93
-aW5nIHVzIHRvIGNvbnRpbnVlIHVzaW5nIHRoZSBjZG5zIHVhcnQuDQo+IA0KPiBQbGVhc2Ugd3Jh
-cCB5b3VyIHJlcGxpZXMuDQpJIGFtIHNvcnJ5LCBidXQgbWF5IEkga25vdyB0aGUgcHJlZmVycmVk
-IGxlbmd0aCBvZiBjaGFyYWN0ZXJzPw0KPiANCj4gSG93IGRvZXMgdGhpcyBhbnN3ZXIgbXkgY29u
-Y2VybiBhYm91dCByZXZpZXcgdGFnPw0KTXkgYmFkLiBJIHNob3VsZCBoYXZlIG9idGFpbmVkIHlv
-dXIgY29uc2Vuc3VzIGJlZm9yZSBwcm9jZWVkaW5nIHdpdGggdGhlIGNoYW5nZXMNCnRvIHRoaXMg
-cGF0Y2gsIGVzcGVjaWFsbHkgYWZ0ZXIgZHJvcHBpbmcgcGF0Y2ggNSBhcyByZXF1ZXN0ZWQgaW4g
-dmVyc2lvbiAxLg0KPiANCj4gRG8geW91IHVuZGVyc3RhbmQgdGhhdCBteSBjb21tZW50cyBhcmUg
-aW5saW5lIHVuZGVyIHRoZSBleGFjdCBsaW5lIHdoaWNoDQo+IGlzIHF1ZXN0aW9uZWQ/DQpZZXMs
-IGxlc3NvbiBsZWFybmVkLg0KPiANCj4gPj4NCj4gPj4+IC0tLQ0KPiA+Pj4gIERvY3VtZW50YXRp
-b24vZGV2aWNldHJlZS9iaW5kaW5ncy9zZXJpYWwvY2Rucyx1YXJ0LnlhbWwgfCA0ICsrKysNCj4g
-Pj4+ICAxIGZpbGUgY2hhbmdlZCwgNCBpbnNlcnRpb25zKCspDQo+ID4+Pg0KPiA+Pj4gZGlmZiAt
-LWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9zZXJpYWwvY2Rucyx1YXJ0
-LnlhbWwNCj4gYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mvc2VyaWFsL2NkbnMs
-dWFydC55YW1sDQo+ID4+PiBpbmRleCBlMzVhZDExMDllZmMuLjBkMDUzMDU3NzhmMiAxMDA2NDQN
-Cj4gPj4+IC0tLSBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9zZXJpYWwvY2Ru
-cyx1YXJ0LnlhbWwNCj4gPj4+ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5n
-cy9zZXJpYWwvY2Rucyx1YXJ0LnlhbWwNCj4gPj4+IEBAIC0yMCw2ICsyMCwxMCBAQCBwcm9wZXJ0
-aWVzOg0KPiA+Pj4gICAgICAgICAgaXRlbXM6DQo+ID4+PiAgICAgICAgICAgIC0gY29uc3Q6IHhs
-bngsenlucW1wLXVhcnQNCj4gPj4+ICAgICAgICAgICAgLSBjb25zdDogY2Rucyx1YXJ0LXIxcDEy
-DQo+ID4+PiArICAgICAgLSBkZXNjcmlwdGlvbjogVUFSVCBjb250cm9sbGVyIGZvciBTdGFyRml2
-ZSBKSDgxMDAgU29DDQo+ID4+DQo+ID4+IFRoaXMgaXMgZHVwbGljYXRpbmcgY29tcGF0aWJsZSwg
-ZHJvcC4NCj4gPiBEbyB5b3UgbWVhbiBkcm9wIGNvbXBhdGlibGUgZm9yIHN0YXJmaXZlLGpoODEw
-MC11YXJ0ID8NCj4gDQo+IE5vLCBkcm9wIGRlc2NyaXB0aW9uIGFuZCB1c2UgZGlyZWN0bHkgIiAt
-IGl0ZW1zIg0KT2suDQo+IA0KPiA+Pg0KPiA+Pj4gKyAgICAgICAgaXRlbXM6DQo+ID4+PiArICAg
-ICAgICAgIC0gY29uc3Q6IHN0YXJmaXZlLGpoODEwMC11YXJ0DQo+ID4+PiArICAgICAgICAgIC0g
-Y29uc3Q6IGNkbnMsdWFydC1yMXA4DQo+ID4+DQo+ID4+IERvbid0IGFkZCB0aGluZ3MgdG8gdGhl
-IGVuZCBvZiB0aGUgbGlzdCwgYnV0IGtlZXAgb3JkZXIuIEkgd291bGQgc3VnZ2VzdA0KPiA+PiB0
-byBwdXQgaXQgYXQgdGhlIGJlZ2lubmluZywgc28gYmVmb3JlIFhpbGlueC4NCj4gPiBJJ20gdHJ5
-aW5nIHRvIGdldCB3aGF0IHlvdSdyZSBhc2tpbmcsIGJ1dCBpdCdzIGEgYml0IGNvbmZ1c2luZyBm
-b3IgbWUuIFNvLCBJIHRob3VnaHQgaXQgbWlnaHQgYmUgZWFzaWVyIGlmIEkganVzdCBzaGFyZSB0
-aGUgY29kZSBiZWxvdy4NCj4gUGxlYXNlIGxldCBtZSBrbm93IGlmIHRoaXMgYWRkcmVzc2VzIHlv
-dXIgY29tbWVudD8NCj4gPiBwcm9wZXJ0aWVzOg0KPiA+ICAgY29tcGF0aWJsZToNCj4gPiAgICAg
-b25lT2Y6DQo+ID4gICAgICAgLSBkZXNjcmlwdGlvbjogVUFSVCBjb250cm9sbGVyIGZvciBTdGFy
-Rml2ZSBKSDgxMDAgU29DDQo+ID4gICAgICAgICBpdGVtczoNCj4gPiAgICAgICAgICAgLSBjb25z
-dDogY2Rucyx1YXJ0LXIxcDgNCj4gDQo+IE9yZGVyIGlzIGZpeGVkLCB0aGFua3MuIEJ1dCBkcm9w
-IGRlc2NyaXB0aW9uIGFuZCBicmluZyBiYWNrIHNwZWNpZmljDQo+IGNvbXBhdGlibGUuIFlvdSBt
-dXN0IGhhdmUgc3BlY2lmaWMgY29tcGF0aWJsZXMsIGFsd2F5cy4NCk5vdGVkLg0KPiANCj4gDQo+
-IA0KPiBCZXN0IHJlZ2FyZHMsDQo+IEtyenlzenRvZg0KDQo=
+On Wed, Nov 29, 2023 at 11:21:06AM +0300, Dan Carpenter wrote:
+> > +int realtek_intc_probe(struct platform_device *pdev, const struct realtek_intc_info *info)
+> > +{
+> > +	struct realtek_intc_data *data;
+> > +	struct device *dev = &pdev->dev;
+> > +	struct device_node *node = dev->of_node;
+> > +	int ret, i;
+> > +
+> > +	data = devm_kzalloc(dev, struct_size(data, subset_data, info->cfg_num), GFP_KERNEL);
+> > +	if (!data)
+> > +		return -ENOMEM;
+> > +
+> > +	data->base = of_iomap(node, 0);
+> > +	if (!data->base) {
+> > +		ret = -ENOMEM;
+> > +		goto out_cleanup;
+> 
+> devm_ allocations are cleaned up automatically so there is no need to
+> call devm_kfree() before returning.
+> 
+> regards,
+> dan carpenter
+> 
+> > +	}
+> > +
+> > +	data->info = info;
+> > +
+> > +	raw_spin_lock_init(&data->lock);
+> > +
+> > +	data->domain = irq_domain_add_linear(node, 32, &realtek_intc_domain_ops, data);
+
+Btw, as I was testing the other static checker warning for <= 0, my
+static checker really wants this irq_domain_add_linear() to be cleaned
+up on the error path.
+
+Otherwise it probably leads to a use after free because we free data
+(automatically or manually) but it's still on a list somewhere.
+
+> > +	if (!data->domain) {
+> > +		ret = -ENOMEM;
+> > +		goto out_cleanup;
+> > +	}
+> > +
+> > +	data->subset_data_num = info->cfg_num;
+> > +	for (i = 0; i < info->cfg_num; i++) {
+> > +		ret = realtek_intc_subset(node, data, i);
+> > +		if (ret) {
+> > +			WARN(ret, "failed to init subset %d: %d", i, ret);
+> > +			ret = -ENOMEM;
+> > +			goto out_cleanup;
+
+This error path.
+
+regards,
+dan carpenter
+
+
+> > +		}
+> > +	}
+> > +
+> > +	platform_set_drvdata(pdev, data);
+> > +
+> > +	return 0;
+> > +
+> > +out_cleanup:
+> > +
+> > +	if (data->base)
+> > +		iounmap(data->base);
+> > +
+> > +	devm_kfree(dev, data);
+> > +
+> > +	return ret;
+> > +}
 
