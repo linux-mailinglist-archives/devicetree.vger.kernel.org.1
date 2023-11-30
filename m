@@ -1,180 +1,138 @@
-Return-Path: <devicetree+bounces-20372-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20373-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AD917FEF9A
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 13:58:57 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05DC97FEFAE
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 14:02:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E8A7C1F20CD1
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 12:58:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B5F92281F2F
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 13:02:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE7FC3B197;
-	Thu, 30 Nov 2023 12:58:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C0163BB56;
+	Thu, 30 Nov 2023 13:02:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uZiioLM3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MjUaSoX9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0DB03C683;
-	Thu, 30 Nov 2023 12:58:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65182C433C8;
-	Thu, 30 Nov 2023 12:58:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701349132;
-	bh=k61SVR5HqRg7HEBrqbj2RC0wILozeLcKJTkF4ff/FCY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uZiioLM3vGhd04qm7k7+NnViHdFYh5nUaeVbfNcQ7pkEQfQ53udUJq2BV1hqCB+tL
-	 ktmNEhQ5jqdFf0dT1SJRszxd0JNbSxbkgN657cvdVJeVjiqAeOClH5yxYy+qxIT1Sh
-	 g93Vc52elbcNEYTcBo891fzZPSWoZiIZZBmjfWHSTHtRfV1qGgNeL1vp3I9yn/wi4g
-	 roKhPGMFpeCfecjaRhTv7mdoySSRfO43EizHR3SUVJBZL38KudxZlQ+s3oS+7Zjttc
-	 uPBXl52i2/u3veXdotEqe7ANYTsFEwOMLs+S+b4X/3k+frVOkG1tHrGjWiaYGlLkIp
-	 WTVcmgGk9zreA==
-Date: Thu, 30 Nov 2023 12:58:41 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Inochi Amaoto <inochiama@outlook.com>
-Cc: Yu-Chien Peter Lin <peterlin@andestech.com>,
-	Guo Ren <guoren@kernel.org>, acme@kernel.org,
-	adrian.hunter@intel.com, ajones@ventanamicro.com,
-	alexander.shishkin@linux.intel.com, andre.przywara@arm.com,
-	anup@brainfault.org, aou@eecs.berkeley.edu, atishp@atishpatra.org,
-	conor+dt@kernel.org, conor.dooley@microchip.com,
-	devicetree@vger.kernel.org, dminus@andestech.com, evan@rivosinc.com,
-	geert+renesas@glider.be, heiko@sntech.de, irogers@google.com,
-	jernej.skrabec@gmail.com, jolsa@kernel.org, jszhang@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-perf-users@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	locus84@andestech.com, magnus.damm@gmail.com, mark.rutland@arm.com,
-	mingo@redhat.com, n.shubin@yadro.com, namhyung@kernel.org,
-	palmer@dabbelt.com, paul.walmsley@sifive.com, peterz@infradead.org,
-	prabhakar.mahadev-lad.rj@bp.renesas.com, rdunlap@infradead.org,
-	robh+dt@kernel.org, samuel@sholland.org, sunilvl@ventanamicro.com,
-	tglx@linutronix.de, tim609@andestech.com, uwu@icenowy.me,
-	wens@csie.org, will@kernel.org, ycliang@andestech.com
-Subject: Re: [PATCH v4 09/13] dt-bindings: riscv: Add T-Head PMU extension
- description
-Message-ID: <20231130-isotope-runaround-9afb98579734@spud>
-References: <ZWhT_VSpl2aksVK7@APC323>
- <IA1PR20MB4953A05B9162AA2659DE78A5BB82A@IA1PR20MB4953.namprd20.prod.outlook.com>
+Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4F3A10C9;
+	Thu, 30 Nov 2023 05:02:42 -0800 (PST)
+Received: by mail-yb1-xb30.google.com with SMTP id 3f1490d57ef6-db498e1132bso781843276.2;
+        Thu, 30 Nov 2023 05:02:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1701349362; x=1701954162; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=t+XQrviBlIMoJrwg4MwMEzdsSIALeidvNSbX1jKDmG8=;
+        b=MjUaSoX989H8lActhZ9VtW/HseRPca2vYMfIPACvXZWNhWy39waB2cOwN876XBXb8O
+         0BIzk6FkGrbsFl63DRrIKItScP+IQUj/X0EZ6XEWHBXNpUC+k9SFurSlP35/67DZMKDA
+         d+1DJLACC+XNWAcH61TYerZEk5hgLC3Ad9rMs/rt2hYG8tkzEuKcdJKw2Fi5bBfbL5CG
+         ZjOsxTZzOtZ9aRAMRi2ex8fgwjXVQGv4sFhAHnr5CEuBV0qlR0R4/cB+aZsL2+xXnDpO
+         OS4gNjTnF0DOvXMlAiHyZOANL1g7U5ag4h7aqTE7jP14QT/Gwnf9rqPmizupn8b0YpEs
+         HzzQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701349362; x=1701954162;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=t+XQrviBlIMoJrwg4MwMEzdsSIALeidvNSbX1jKDmG8=;
+        b=JqSAdsaZNG2hXI6zGIT58wfjHKIK2+JLnyWl2xgVYrzm31NSdz6x1PPOli/FBIS8wD
+         qTY8H25Ds1ER3U9IEXeyB9djtKqbrJVbZ7gJqIPmP2dfiWnmmjHXLA+U23Gz9GL0UFPl
+         Qd13J9fvqh+zAollmuDK8aPJCZdnS4cTV0/HO/sNNgk/BHRmbH9wEAYCiuQSftuZu28P
+         tUG/yywCOgmEE0u/32OGULaj0sYWBoamGTqVzCipMQbDLEXgZKB1skKQhVSJqzqcQYXS
+         p+hHCQoR+3WtMSNRIsYTBuJtPnElAsE4HHV9g8XcpLQYZ/XLOdnH/VwJ3xzymi2EfYHK
+         U5Ag==
+X-Gm-Message-State: AOJu0Yx9kIzkmKLNs1oHwkUkJ5G9C+oOvJM3f+e5mm59rsCgORlGATCY
+	MhBZluM0Ix4MNVlBVDL1+nPaGHUoewe3Ay7ZV/w=
+X-Google-Smtp-Source: AGHT+IHIwoQzWS4BMQgwFN+MZ738g0TwywAROWyKKdIPTEdVaVrBaTq/gSSsO5ifNGwIKJT7r35V4rLO/ylbgNI4JiA=
+X-Received: by 2002:a25:6853:0:b0:db5:3c1d:76a5 with SMTP id
+ d80-20020a256853000000b00db53c1d76a5mr1385840ybc.44.1701349361458; Thu, 30
+ Nov 2023 05:02:41 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="+TcmYWDdQWc1nRE2"
-Content-Disposition: inline
-In-Reply-To: <IA1PR20MB4953A05B9162AA2659DE78A5BB82A@IA1PR20MB4953.namprd20.prod.outlook.com>
-
-
---+TcmYWDdQWc1nRE2
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+References: <cover.1700449792.git.zhoubinbin@loongson.cn> <cae772aa897f6b10c3f5c4c93a256b50c5de4b21.1700449792.git.zhoubinbin@loongson.cn>
+ <20231127182836.GA2150516-robh@kernel.org>
+In-Reply-To: <20231127182836.GA2150516-robh@kernel.org>
+From: Binbin Zhou <zhoubb.aaron@gmail.com>
+Date: Thu, 30 Nov 2023 19:02:29 +0600
+Message-ID: <CAMpQs4LSTV6PgZSuyQx2Nq+87OHxSa=-Wz5nbhFVsmmvHubQFQ@mail.gmail.com>
+Subject: Re: [PATCH v5 1/5] dt-bindings: interrupt-controller:
+ loongson,liointc: Standardize the naming of 'loongson,parent-int-map'
+To: Rob Herring <robh@kernel.org>
+Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
+	Thomas Gleixner <tglx@linutronix.de>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Huacai Chen <chenhuacai@kernel.org>, loongson-kernel@lists.loongnix.cn, 
+	devicetree@vger.kernel.org, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
+	Jiaxun Yang <jiaxun.yang@flygoat.com>, linux-mips@vger.kernel.org, lvjianmin@loongson.cn, 
+	WANG Xuerui <git@xen0n.name>, loongarch@lists.linux.dev, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Nov 30, 2023 at 08:16:38PM +0800, Inochi Amaoto wrote:
+On Tue, Nov 28, 2023 at 12:28=E2=80=AFAM Rob Herring <robh@kernel.org> wrot=
+e:
+>
+> On Mon, Nov 20, 2023 at 05:06:23PM +0800, Binbin Zhou wrote:
+> > Since the 'loongson,parent_int_map' attribute naming is non-standard, w=
+e
+> > should use 'loongson,parent-int-map' instead.
 > >
-> >Hi Inochi,
+> > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> > Acked-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
+> > ---
+> >  .../bindings/interrupt-controller/loongson,liointc.yaml   | 8 +++-----
+> >  1 file changed, 3 insertions(+), 5 deletions(-)
 > >
-> >On Thu, Nov 30, 2023 at 04:29:22PM +0800, Inochi Amaoto wrote:
-> >>>
-> >>> Hi Guo Ren,
-> >>>
-> >>> On Thu, Nov 23, 2023 at 05:14:30AM +0800, Guo Ren wrote:
-> >>>> On Wed, Nov 22, 2023 at 8:17=E2=80=AFPM Yu Chien Peter Lin
-> >>>> <peterlin@andestech.com> wrote:
-> >>>>>
-> >>>>> Document the ISA string for T-Head performance monitor extension
-> >>>>> which provides counter overflow interrupt mechanism.
-> >>>>>
-> >>>>> Signed-off-by: Yu Chien Peter Lin <peterlin@andestech.com>
-> >>>>> ---
-> >>>>> Changes v2 -> v3:
-> >>>>>   - New patch
-> >>>>> Changes v3 -> v4:
-> >>>>>   - No change
-> >>>>> ---
-> >>>>>  Documentation/devicetree/bindings/riscv/extensions.yaml | 6 ++++++
-> >>>>>  1 file changed, 6 insertions(+)
-> >>>>>
-> >>>>> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yam=
-l b/Documentation/devicetree/bindings/riscv/extensions.yaml
-> >>>>> index c91ab0e46648..694efaea8fce 100644
-> >>>>> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
-> >>>>> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
-> >>>>> @@ -258,5 +258,11 @@ properties:
-> >>>>>              in commit 2e5236 ("Ztso is now ratified.") of the
-> >>>>>              riscv-isa-manual.
-> >>>>>
-> >>>>> +        - const: xtheadpmu
-> >>>>> +          description:
-> >>>>> +            The T-Head performance monitor extension for counter o=
-verflow. For more
-> >>>>> +            details, see the chapter 12 in the Xuantie C906 user m=
-anual.
-> >>>>> +            https://github.com/T-head-Semi/openc906/tree/main/doc
-> >>>>> +
-> >>>>>  additionalProperties: true
-> >>>>>  ...
-> >>>>> --
-> >>>>> 2.34.1
-> >>>>>
-> >>>> Reviewed-by: Guo Ren <guoren@kernel.org>
-> >>>
-> >>> Thanks for the review.
-> >>> Would you share document about T-Head PMU?
-> >>>
-> >>
-> >> Hi, Peter Lin:
-> >>
-> >> You can use the following two document to get all events:
-> >> https://github.com/T-head-Semi/openc906/tree/main/doc
-> >> https://github.com/T-head-Semi/openc910/tree/main/doc
-> >>
-> >> There are also some RTL code can describe these events:
-> >> https://github.com/T-head-Semi/openc910/blob/e0c4ad8ec7f8c70f649d826eb=
-d6c949086453272/C910_RTL_FACTORY/gen_rtl/pmu/rtl/ct_hpcp_top.v#L1123
-> >> https://github.com/T-head-Semi/openc906/blob/af5614d72de7e5a4b8609c427=
-d2e20af1deb21c4/C906_RTL_FACTORY/gen_rtl/pmu/rtl/aq_hpcp_top.v#L543
-> >>
-> >> The perf events json can also be used as document, this is already
-> >> applied (with more detailed explanation):
-> >> https://lore.kernel.org/all/IA1PR20MB495325FCF603BAA841E29281BBBAA@IA1=
-PR20MB4953.namprd20.prod.outlook.com/
+> > diff --git a/Documentation/devicetree/bindings/interrupt-controller/loo=
+ngson,liointc.yaml b/Documentation/devicetree/bindings/interrupt-controller=
+/loongson,liointc.yaml
+> > index 00b570c82903..70c125bf8095 100644
+> > --- a/Documentation/devicetree/bindings/interrupt-controller/loongson,l=
+iointc.yaml
+> > +++ b/Documentation/devicetree/bindings/interrupt-controller/loongson,l=
+iointc.yaml
+> > @@ -54,7 +54,7 @@ properties:
+> >    '#interrupt-cells':
+> >      const: 2
 > >
-> >Thanks for reaching out!
-> >The updated description will be:
-> >
-> >- const: xtheadpmu
-> >  description:
-> >    The T-Head performance monitor extension for counter overflow, as ra=
-tified
-> >    in commit bd9206 ("Initial commit") of Xuantie C906 user manual.
-> >    https://github.com/T-head-Semi/openc906/tree/main/doc
-> >
-> >Is it OK with you?
-> >
->=20
-> I suggest using perf event json as event description. The jsons provide
-> more detailed explanation for these events than the user manual.
+> > -  loongson,parent_int_map:
+> > +  loongson,parent-int-map:
+>
+> Not what I said to do. Now you just break the ABI instead of maintaining
+> both names.
+>
+> Just use loongson,parent_int_map *forever*. Drop this patch.
 
-Does the "perf event json" describe the registers and interrupt behaviour?
+Hi Rob:
 
---+TcmYWDdQWc1nRE2
-Content-Type: application/pgp-signature; name="signature.asc"
+Thanks for your reply, and I am very sorry that I may have missed your
+previous thought, but at the same time I'm confused about how to
+handle the 'parent_int_map' attribute.
 
------BEGIN PGP SIGNATURE-----
+During the V2 patchset, krzysztof noticed the non-standard naming of
+this property and suggested that we rename 'parent_int_map' in the
+binding and label it as "deprecated". But you don't think it's worth
+doing that.
+My understanding is that it doesn't make sense to keep
+'parent_int_map' for the new binding, so I'm just going to rename the
+property in this version.
+It's true that this will result in an ABI break, but at the same time
+corresponding changes have been made to the driver as well as in the
+existing DTS{i}:
+Patch 4: Handles attribute names in both naming styles;
+Patch 5: Replace all 'parent_int_map' in the MIPS DTS{i}.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZWiHAAAKCRB4tDGHoIJi
-0igkAQDOfuuBe9DSefozhmWIFmSJzSSWtODAmHdNEeaJ2/bbUAD+KQI5g0aV+rX2
-4Hztl6JmSKirDEkCeX2FqX9R+Ln89A0=
-=qBbG
------END PGP SIGNATURE-----
+Do you think this is a suitable way to handle this? Or just keep the "_" na=
+ming?
 
---+TcmYWDdQWc1nRE2--
+Thanks.
+Binbin
+>
+> Rob
 
