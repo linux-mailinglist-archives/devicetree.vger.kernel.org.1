@@ -1,130 +1,90 @@
-Return-Path: <devicetree+bounces-20488-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20490-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2B2D7FF84E
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 18:32:13 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FCF97FF85F
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 18:36:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 45662B21258
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 17:32:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9103D1C20A9F
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 17:36:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E85E158122;
-	Thu, 30 Nov 2023 17:31:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u3qz1RuO"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 469555677C;
+	Thu, 30 Nov 2023 17:36:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA96A5677C;
-	Thu, 30 Nov 2023 17:31:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B982C433C8;
-	Thu, 30 Nov 2023 17:31:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701365519;
-	bh=wxg56W6HTHMTFYDW4lY4u8CY4BkNOVOP9bjh79kHVmE=;
-	h=From:To:Cc:Subject:Date:From;
-	b=u3qz1RuObFfuunerRon1cBHkIkU7XP6vXJNp5DiAMMPQkvPEoWkUOPZVq+ytWyqs8
-	 rh7hJHBIhJl33qrkpiM0Q7WWcXqao7Ry4bCOlPzT6CkSsubV+dC1TsLJfq8vjG/M6G
-	 1lPmceDj3EQS4HbiaHHU//CySGBJzKKF5qyYfQhZuEuIh8Ud59jTYgzKSELFJs147a
-	 26poZRPxdioOB5zkDpNDbkMay5YADZg7dhw89vYDNDT84MCO9f/ixv7XkCl24c9A5R
-	 6z5wPJ8p7zc/fYtt+eesdYQGHBEUagEoqH0nb141XlkzdUJShW5Rk9IWHNxUoGj+l0
-	 cucAy8DQJB6Hg==
-Received: from johan by xi.lan with local (Exim 4.96.2)
-	(envelope-from <johan+linaro@kernel.org>)
-	id 1r8kts-0003KX-1h;
-	Thu, 30 Nov 2023 18:32:32 +0100
-From: Johan Hovold <johan+linaro@kernel.org>
-To: Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Alessandro Zummo <a.zummo@towertech.it>
-Cc: Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
-	linux-rtc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Johan Hovold <johan+linaro@kernel.org>
-Subject: [PATCH] dt-bindings: rtc: qcom-pm8xxx: fix inconsistent example
-Date: Thu, 30 Nov 2023 18:32:23 +0100
-Message-ID: <20231130173223.12794-1-johan+linaro@kernel.org>
-X-Mailer: git-send-email 2.41.0
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a02:c205:3004:2154::1])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20A3B131;
+	Thu, 30 Nov 2023 09:36:11 -0800 (PST)
+Received: from p200301077700c3001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:107:7700:c300:1a3d:a2ff:febf:d33a] helo=aktux)
+	by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <andreas@kemnade.info>)
+	id 1r8kxC-006snc-0n; Thu, 30 Nov 2023 18:35:58 +0100
+Date: Thu, 30 Nov 2023 18:35:55 +0100
+From: Andreas Kemnade <andreas@kemnade.info>
+To: Tony Lindgren <tony@atomide.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ bcousson@baylibre.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] ARM: dts: omap4-embt2ws: Add Bluetooth
+Message-ID: <20231130183555.1b329b78@aktux>
+In-Reply-To: <20231007072442.GW34982@atomide.com>
+References: <20231004070309.2408745-1-andreas@kemnade.info>
+	<6b4968d9-80d3-4a5a-b42e-3982825e45e9@linaro.org>
+	<20231007070015.GS34982@atomide.com>
+	<20231007072442.GW34982@atomide.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-The PM8921 is an SSBI PMIC but in the binding example it is described
-as being part of an SPMI PMIC while using an SSBI address.
+Hi Tony,
 
-Make the example consistent by using the sibling PM8941 SPMI PMIC
-instead.
+On Sat, 7 Oct 2023 10:24:42 +0300
+Tony Lindgren <tony@atomide.com> wrote:
 
-Fixes: 8138c5f0318c ("dt-bindings: rtc: qcom-pm8xxx-rtc: Add qcom pm8xxx rtc bindings")
-Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
----
- .../bindings/rtc/qcom-pm8xxx-rtc.yaml         | 36 +++++++++----------
- 1 file changed, 18 insertions(+), 18 deletions(-)
+> * Tony Lindgren <tony@atomide.com> [231007 07:00]:
+> > * Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> [231005 08:47]:  
+> > > On 04/10/2023 09:03, Andreas Kemnade wrote:  
+> > > > Since the required clock is now available, add bluetooth.
+> > > > 
+> > > > Note: Firmware (bts file) from device vendor reroutes tx for some time
+> > > > during initialisation and later put it back, producing timeouts in
+> > > > bluetooth initialisation but ignoring that command leads to proper
+> > > > initialisation.
+> > > > 
+> > > > Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> > > > ---  
+> > > 
+> > > 
+> > > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>  
+> > 
+> > Applying into omap-for-v6.7/dt thanks.  
+> 
+> Looks like this causes the following #clock-cells warning so dropping
+> this patch.
+> 
+> Regards,
+> 
+> Tony
+> 
+> arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts:457.17-462.4: Warning (clocks_property):
+> /ocp/interconnect@48000000/segment@0/target-module@6c000/serial@0/bluetooth-gnss:
+> Missing property '#clock-cells' in node /ocp/interconnect@48000000/segment@0/targe
+>
 
-diff --git a/Documentation/devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml b/Documentation/devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml
-index 774c34c3f8f6..cdc56dfbfac3 100644
---- a/Documentation/devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml
-+++ b/Documentation/devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml
-@@ -67,27 +67,27 @@ additionalProperties: false
- 
- examples:
-   - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-     #include <dt-bindings/spmi/spmi.h>
--    spmi_bus: spmi@c440000 {
--      reg = <0x0c440000 0x1100>;
--      #address-cells = <2>;
--      #size-cells = <0>;
--      pmicintc: pmic@0 {
--        reg = <0x0 SPMI_USID>;
--        compatible = "qcom,pm8921";
--        interrupts = <104 8>;
--        #interrupt-cells = <2>;
--        interrupt-controller;
--        #address-cells = <1>;
-+
-+    spmi {
-+        #address-cells = <2>;
-         #size-cells = <0>;
- 
--        pm8921_rtc: rtc@11d {
--          compatible = "qcom,pm8921-rtc";
--          reg = <0x11d>;
--          interrupts = <0x27 0>;
--          nvmem-cells = <&rtc_offset>;
--          nvmem-cell-names = "offset";
-+        pmic@0 {
-+            compatible = "qcom,pm8941", "qcom,spmi-pmic";
-+            reg = <0x0 SPMI_USID>;
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            rtc@6000 {
-+                compatible = "qcom,pm8941-rtc";
-+                reg = <0x6000>, <0x6100>;
-+                reg-names = "rtc", "alarm";
-+                interrupts = <0x0 0x61 0x1 IRQ_TYPE_EDGE_RISING>;
-+                nvmem-cells = <&rtc_offset>;
-+                nvmem-cell-names = "offset";
-+            };
-         };
--      };
-     };
- ...
--- 
-2.41.0
+I do not get this warning on top of omap-for-v6.8/dt. So I think the
+time is really there for this patch.
 
+Regards,
+Andreas
 
