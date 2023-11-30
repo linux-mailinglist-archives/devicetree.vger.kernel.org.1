@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-20343-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20344-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 025037FEE83
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 13:04:46 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E40507FEE88
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 13:05:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6053FB20DC5
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 12:04:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 977531F20CD1
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 12:05:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9ACA145032;
-	Thu, 30 Nov 2023 12:04:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DF1A3D39E;
+	Thu, 30 Nov 2023 12:05:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CCVHg0bh"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ICDJsHfQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6827EC1
-	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 04:04:34 -0800 (PST)
-Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-a18b0f69b33so84352466b.0
-        for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 04:04:34 -0800 (PST)
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 461F4C1
+	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 04:05:12 -0800 (PST)
+Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-54b8a4d64b5so872117a12.0
+        for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 04:05:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701345873; x=1701950673; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701345911; x=1701950711; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=oRCtcNkJ77JXUPZTujxx1H5XbSMZZjKvuPCS7KxSurY=;
-        b=CCVHg0bhsJRzQDyuWcKxRXqSAR/LWbbfyB0dvVQ1Rm3GOA3KwWwXuRf8tO2WediAiv
-         PvUfKqmnLclAhIXJ+9UEBcykahcyjFnjl6bvO8z4ltzr6eU2tTOs3byPWD6xworKGlZC
-         q5Eq/iHns5tPx5C4hczEC8e7ppmPAfPMZlrUCZ+43qbHs1TS2M1/UGwcEIbNm0oIie8r
-         Sz2TnFBMFCTW/ye4LpLdnE/bHz8eZ3pcRGfI5Z8R/aGBCheVV0fZ3eCl50+xg9qIiDRC
-         uCFcDTW0EfQQX/tTtG+7Uy+YUpWC/qxXQxaCJxOoJ65NW6XInntUq0teVTqukDGR25at
-         OR/A==
+        bh=BVVWmWantvDjX2mjd5YLmNX+K3BZwqjWdaBKpkdsAuI=;
+        b=ICDJsHfQ0+4sNQmguyBBoomDl9ZRxTb2rC/koOTjbY46vp+Wg1/SkTNXHDg53+abkK
+         ZFzQdgPaaD7IaMbMP6Z5AUsAEywGC4lcMo605txiWjl7pZTDC54PXeZpnDtClvd4Onei
+         OEMnh03nrHZFWxZXdSeAxAdY9HyOuFpKkgbBc50guWTd0lI6ptXR3D4V4lC4pWqWC4do
+         h5mpEUfTt4hZ6pPbsvXbLuqJf8zYRYGjmIxmsauzsGrDnuv1mGZOPiNJtEEtXP3Fn6Xv
+         pvg7CSK2Kp7oszucHzLdGJD4+olgErymIaJj0S8v5TCkEyUn3NYtZ9tzz1s/QlVb98b9
+         dr1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701345873; x=1701950673;
+        d=1e100.net; s=20230601; t=1701345911; x=1701950711;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oRCtcNkJ77JXUPZTujxx1H5XbSMZZjKvuPCS7KxSurY=;
-        b=LL+8uvproYxjRIVUFu2WDZy7zNCJM3Nx1AaPxNhp22YOx8IwAGP7gQhnFhgj2SStg3
-         WYawyhmtvb6KFSS/JrFOKvqKQ0Pm4DtXF/TENfPm71PXQcNHaQnCfnTAkX2xAiAN9gEF
-         m4wCC1SKWM2cvIxaBnfbwDOkvxfkLRjvNIBxI7uZAEMIjLL+sImLOmKrSIc0ekjUU4Bn
-         rckYsKMwarTap/S4f9ydbTsqD1DPIPzgTGFI9y2q1beY5NVLJ8YwXVnCJSeHUOU2WDf8
-         Hff9p4nqreZZlQtbyt5frQpHrRuSRtD1J/biPLIrF/dyPiqDnWAv8SDbNpiZqOavcx6R
-         o4Ng==
-X-Gm-Message-State: AOJu0YzTHKY/0cYScjPqAzxULgx3oe3J0bx0RKKZEamaCyqr/g1bTDYP
-	6b9pVZ/vsG3n5v/lumGIcXffhQ==
-X-Google-Smtp-Source: AGHT+IEVI6Nlfc628ZBLtCCJLe63pG4/Qf38669I1Pt06984uhagdGU+5ELZAH/j2H3cuQ3N/VeyfA==
-X-Received: by 2002:a17:906:1006:b0:a18:7350:82d with SMTP id 6-20020a170906100600b00a187350082dmr1405094ejm.16.1701345872912;
-        Thu, 30 Nov 2023 04:04:32 -0800 (PST)
+        bh=BVVWmWantvDjX2mjd5YLmNX+K3BZwqjWdaBKpkdsAuI=;
+        b=OM7jwyw6i58vVG2Glmao6Jo7bBetKpnW10OnSRBvOnDNdIeib2VGSoExu0XB1iLSTm
+         EB+GE1AhUIyj+tLAD+cicTa88yGL36APOxsGmoJOV11p0/GIytSYR+le3LccKh3F/8Vd
+         yKOyE6Ut+dnIOUn0zz8V6US8XNX8AHJJEJdxMI4rUJDc+pYxqDO/YCAQMnc7Gm0Bu+kP
+         K3EBK4BxwDNerTT1bKZWiZ0JryShtXK4+j79XCJLMICWPpO+pUwtNNa99NADNqF1XvoN
+         rQd5Zfd7POhZwXQkx2W0KAwyy5+YnVoMur+78CuKYbA3+Q2rJBuhYiVYaMU7jS/cyZH6
+         J9QQ==
+X-Gm-Message-State: AOJu0YxV+DN71GDSEiN/bWROl2ZKj8va59jE23dtqeVBOqG8woxOPIbh
+	lSRgWscReDAu0G9cCjVcZYMdjQ==
+X-Google-Smtp-Source: AGHT+IFu3MWszFDtvdH7QCKIG+uVLRvGsOyg1FE+Ipx6VTJRcTOCbxIdlbc1w8Z5Qlcy/EavnoZd2g==
+X-Received: by 2002:a05:6402:704:b0:548:657c:9110 with SMTP id w4-20020a056402070400b00548657c9110mr15688921edx.38.1701345910655;
+        Thu, 30 Nov 2023 04:05:10 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.109])
-        by smtp.gmail.com with ESMTPSA id v9-20020aa7d9c9000000b0054b1fca00c7sm486173eds.74.2023.11.30.04.04.31
+        by smtp.gmail.com with ESMTPSA id v9-20020aa7d9c9000000b0054b1fca00c7sm486173eds.74.2023.11.30.04.05.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Nov 2023 04:04:32 -0800 (PST)
-Message-ID: <ff066aef-b2f7-42db-b6bf-05bb4a7736a9@linaro.org>
-Date: Thu, 30 Nov 2023 13:04:30 +0100
+        Thu, 30 Nov 2023 04:05:10 -0800 (PST)
+Message-ID: <35dfd382-14ed-43cb-be0a-d042f765ecdc@linaro.org>
+Date: Thu, 30 Nov 2023 13:05:08 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,17 +62,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/2] dt-bindings: iio: pressure: add honeywell,hsc030
+Subject: Re: [PATCH] arm64: zynqmp: Add missing destination mailbox compatible
 Content-Language: en-US
-To: Petre Rodan <petre.rodan@subdimension.ro>
-Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
- Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
+To: Michal Simek <michal.simek@amd.com>, linux-kernel@vger.kernel.org,
+ monstr@monstr.eu, michal.simek@xilinx.com, git@xilinx.com
+Cc: Conor Dooley <conor+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- linux-kernel-mentees@lists.linuxfoundation.org,
- Jonathan Cameron <jic23@kernel.org>
-References: <20231129170425.3562-1-petre.rodan@subdimension.ro>
- <1bda0a63-6fc9-4fc0-953b-7d618f77b268@linaro.org> <ZWhXgTZ-M3Qj7xoS@sunspire>
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Michael Grzeschik <m.grzeschik@pengutronix.de>,
+ Parth Gajjar <parth.gajjar@amd.com>,
+ Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>,
+ Varalaxmi Bingi <varalaxmi.bingi@amd.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <96460adbb99ea829a2a95c72a40118f81946a559.1701335951.git.michal.simek@amd.com>
+ <79f65b96-9015-41c4-b4ee-a82526c9eefc@linaro.org>
+ <656a0186-e06f-4518-adc2-68dfb2970157@amd.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -118,63 +124,43 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <ZWhXgTZ-M3Qj7xoS@sunspire>
+In-Reply-To: <656a0186-e06f-4518-adc2-68dfb2970157@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 30/11/2023 10:36, Petre Rodan wrote:
+On 30/11/2023 11:02, Michal Simek wrote:
 > 
-> good morning.
 > 
-> On Thu, Nov 30, 2023 at 09:31:45AM +0100, Krzysztof Kozlowski wrote:
->> On 29/11/2023 18:04, Petre Rodan wrote:
->>> Adds binding for digital Honeywell TruStability HSC and SSC series
->>> pressure and temperature sensors.
->>> Communication is one way. The sensor only requires 4 bytes worth of
->>> clock pulses on both i2c and spi in order to push the data out.
->>> The i2c address is hardcoded and depends on the part number.
->>> There is no additional GPIO control.
+> On 11/30/23 10:29, Krzysztof Kozlowski wrote:
+>> On 30/11/2023 10:19, Michal Simek wrote:
+>>> The commit 81186dc16101 ("dt-bindings: zynqmp: add destination mailbox
+>>> compatible") make compatible string for child nodes mandatory that's why
+>>> add it.
 >>>
->>> Datasheet:
->>> https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/products/sensors/pressure-sensors/board-mount-pressure-sensors/trustability-hsc-series/documents/sps-siot-trustability-hsc-series-high-accuracy-board-mount-pressure-sensors-50099148-a-en-ciid-151133.pdf [HSC]
->>> Datasheet:
->>> https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/products/sensors/pressure-sensors/board-mount-pressure-sensors/trustability-ssc-series/documents/sps-siot-trustability-ssc-series-standard-accuracy-board-mount-pressure-sensors-50099533-a-en-ciid-151134.pdf [SSC]
->>> Signed-off-by: Petre Rodan <petre.rodan@subdimension.ro>
+>>> Signed-off-by: Michal Simek <michal.simek@amd.com>
+>>> ---
+>>>
+>>>   arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 1 +
+>>>   1 file changed, 1 insertion(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+>>> index f5e1eb8cb3b7..eaba466804bc 100644
+>>> --- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+>>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+>>> @@ -141,6 +141,7 @@ zynqmp_ipi: zynqmp-ipi {
+>>>   
+>>>   		ipi_mailbox_pmu1: mailbox@ff9905c0 {
+>>>   			bootph-all;
+>>> +			compatible = "xlnx,zynqmp-ipi-dest-mailbox";
 >>
->> This is a friendly reminder during the review process.
->>
->> It looks like you received a tag and forgot to add it.
->>
->> If you do not know the process, here is a short explanation:
->> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
->> versions, under or above your Signed-off-by tag. Tag is "received", when
->> provided in a message replied to you on the mailing list. Tools like b4
->> can help here. However, there's no need to repost patches *only* to add
->> the tags. The upstream maintainer will do that for tags received on the
->> version they apply.
->>
->> https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
->>
->> If a tag was not added on purpose, please state why and what changed.
+>> Probably you want it as first property. Although then reg is also placed
+>> odd, but it's all because bootph-all was put at the beginning.
 > 
-> thank you for the clarification.
-> not going to lie, this entire process is overwhelming. I'm trying to generate
-> the least amount of noise on this very busy list and yet here I am being the
-> loudest one. who whould have thougth that being prudent and running two
-> consecutive commands of `git send-email` would produce out-of-thread patches on
-> your end, or that b4 or whatever you use would not pick up tags already present
-> for a patch?
-> 
-> I'd like to thank everyone commenting on my stupid patch and rest assured that
-> most of the mistakes you point out are a learning lesson on the receiving side.
-> keep them coming and excuse the noise, it will fade away soon.
-> 
-> and regarding the bindings file, there have been no changes to it since the tag.
-> 
+> When DTS conding style is approved I will need to resort all that nodes based on 
+> it. I did this change to be aligned with current style which this file has.
+> What do you think?
 
-Sure, no worries.
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Hm, indeed. So it is entirely up to you :)
 
 Best regards,
 Krzysztof
