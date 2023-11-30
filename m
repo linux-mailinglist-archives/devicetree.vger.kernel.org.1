@@ -1,222 +1,268 @@
-Return-Path: <devicetree+bounces-20422-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20423-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13BB47FF37D
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 16:22:57 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F9367FF39F
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 16:34:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 440251C20D9D
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 15:22:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CF49AB20B63
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 15:34:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D53BC524AD;
-	Thu, 30 Nov 2023 15:22:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5A37524CE;
+	Thu, 30 Nov 2023 15:34:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tH71F1PZ"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="oLpueGYD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21B2D1B3;
+	Thu, 30 Nov 2023 07:34:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1701358454; x=1732894454;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=p4r8DqCKtUKU9Qhg/FMxYaHj1gTRi3Rjjn7C+3DYYlw=;
+  b=oLpueGYDoT567i3Z1GqI7LvLHr/6p53tF93dqZkb23/4dI2ouYiOelwd
+   6sav2gcTwvEwnQ50m0LNfprfXJQyJdIhZP4giY7oZyufzw0vrXzvgPG4N
+   Xvayqju8Tj1iU2stlFDa41Vcscww2GjvM1YtZSFD1JjbqgIn+9ixtlQOu
+   MUvNDSiBGFDVB8ag9oUiJpQInjZ4608ep/4/bDkSxBQcpaao+6aFL5BFg
+   2XOJeI3AqTZnOCS148ACxm5xMFZk2Ox5O16/8bQFMRh9SQBLz+rjW+NeF
+   KlV8r6JTQw+5zJAZrLqB0sRca2ZQMG0xwi3cFDXjtTb6vIGwMMlAL9dAC
+   Q==;
+X-IronPort-AV: E=Sophos;i="6.04,239,1695679200"; 
+   d="scan'208";a="34265862"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 30 Nov 2023 16:34:12 +0100
+Received: from steina-w.localnet (steina-w.tq-net.de [10.123.53.18])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3A4A524A3;
-	Thu, 30 Nov 2023 15:22:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F112BC433C7;
-	Thu, 30 Nov 2023 15:22:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701357772;
-	bh=qkL/traqZYRhreQwWlBq0Fih3eZKxWuxg+IAiO0LgOA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tH71F1PZXOL00uhIYMA+WMCwxITIiKNZ1KskmSoUJiUJMWY9VD5QKEueflTsxdnUl
-	 ZOhThyCyJ2adRZEs4xRiqwKRnxNwoFrwS+1GPoDJeAfYymcLiY1GXV29krH5jWdd7A
-	 /hiPxou8A0xW2GEQ1iSGg71JZBiuUFSdD3oMLA/yeog3qDSF3mSCHFCgFrSVpxIzAS
-	 mTuz523ozWSwy7Vuz9ZVNlNdK4MgR+TmbqTxCHf6dG0oeWuLmCdI+64yICbkm1d5gO
-	 KfO1YcygcRcO8WznF1NyEDB+XRMUarOT0cFaOFpRs75+bdO7CQ+FHknqgfkHkzYGSy
-	 P9P1+kO32rHaQ==
-Date: Thu, 30 Nov 2023 15:22:47 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Anand Moon <linux.amoon@gmail.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Icenowy Zheng <uwu@icenowy.me>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	linux-amlogic@lists.infradead.org, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 1/2] dt-bindings: usb: Add the binding example for the
- Genesys Logic GL3523 hub
-Message-ID: <20231130-snub-backshift-2f69754cf58f@spud>
-References: <20231130053130.21966-1-linux.amoon@gmail.com>
- <20231130053130.21966-2-linux.amoon@gmail.com>
- <20231130-twig-stoning-58235b3195c8@spud>
+	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id D9705280075;
+	Thu, 30 Nov 2023 16:34:11 +0100 (CET)
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, Paul Elder <paul.elder@ideasonboard.com>, kieran.bingham@ideasonboard.com, tomi.valkeinen@ideasonboard.com, umang.jain@ideasonboard.com, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, Tim Harvey <tharvey@gateworks.com>, Philippe Schenker <philippe.schenker@toradex.com>, Marek Vasut <marex@denx.de>, Gregor Herburger <gregor.herburger@ew.tq-group.com>, Marcel Ziswiler <marcel.ziswiler@toradex.com>, open list <linux-kernel@vger.kernel.org>, "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH 2/2] arm64: dts: imx8mp: Add overlays for ISP instances
+Date: Thu, 30 Nov 2023 16:34:11 +0100
+Message-ID: <1874751.tdWV9SEqCh@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20231130142048.GR8402@pendragon.ideasonboard.com>
+References: <20231129093113.255161-1-paul.elder@ideasonboard.com> <5734628.DvuYhMxLoT@steina-w> <20231130142048.GR8402@pendragon.ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="RlRi2l6ZtvVLk88M"
-Content-Disposition: inline
-In-Reply-To: <20231130-twig-stoning-58235b3195c8@spud>
-
-
---RlRi2l6ZtvVLk88M
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-On Thu, Nov 30, 2023 at 03:16:33PM +0000, Conor Dooley wrote:
-> On Thu, Nov 30, 2023 at 11:01:26AM +0530, Anand Moon wrote:
-> > Add the binding example for the USB3.1 Genesys Logic GL3523
-> > integrates with USB 3.1 Gen 1 Super Speed and USB 2.0 High-Speed
-> > hub.
-> >=20
-> > For onboard hub controllers that support USB 3.x and USB 2.0 hubs
-> > with shared resets and power supplies, this property is used to identify
-> > the hubs with which these are shared.
-> >=20
+Hi Laurent,
+
+Am Donnerstag, 30. November 2023, 15:20:48 CET schrieb Laurent Pinchart:
+> Hi Alexander,
 >=20
-> > [Conor Dooley: upgrade peer-hub description]
->=20
-> This should not be in the commit message. Otherwise,
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
->=20
-> Cheers,
-> Conor.
->=20
-> > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> > ---
-> > v5: upgrade peer-hub description : Conor Dooley
-> > [0] https://www.genesyslogic.com.tw/en/product_view.php?show=3D67 [Bloc=
-k Diagram]
-> > v4: Fix the description of peer-hub and update the commit message.
-> > Schematics of the Odroid N2+
-> > https://dn.odroid.com/S922X/ODROID-N2/Schematic/odroid-n2_rev0.6_202101=
-21.pdf
-> > V3: fix the dt_binding_check error, added new example for Genesys GL3523
-> > v2: added Genesys GL3523 binding
-> > v1: none
-> > ---
-> >  .../bindings/usb/genesys,gl850g.yaml          | 65 +++++++++++++++++--
-> >  1 file changed, 61 insertions(+), 4 deletions(-)
+> On Thu, Nov 30, 2023 at 10:51:22AM +0100, Alexander Stein wrote:
+> > Am Mittwoch, 29. November 2023, 16:16:37 CET schrieb Laurent Pinchart:
+> > > On Wed, Nov 29, 2023 at 11:20:07AM +0100, Alexander Stein wrote:
+> > > > Am Mittwoch, 29. November 2023, 10:31:13 CET schrieb Paul Elder:
+> > > > > From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > > > >=20
+> > > > > Add two overlay to enable each ISP instance. The ISP is wired
+> > > > > directly
+> > > > > to the CSIS for now, bypassing the ISI completely.
+> > > >=20
+> > > > I'm not sure if this is worth adding in a separate overlay.
+> > >=20
+> > > The trouble is that, at this point, selection between the ISP and the
+> > > ISI can only be performed through DT :-S That's why this is implement=
+ed
+> > > as an overlay.
 > >=20
-> > diff --git a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml =
-b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-> > index ee08b9c3721f..499192ea4074 100644
-> > --- a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-> > +++ b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-> > @@ -9,9 +9,6 @@ title: Genesys Logic USB hub controller
-> >  maintainers:
-> >    - Icenowy Zheng <uwu@icenowy.me>
-> > =20
-> > -allOf:
-> > -  - $ref: usb-device.yaml#
-> > -
-> >  properties:
-> >    compatible:
-> >      enum:
-> > @@ -27,12 +24,46 @@ properties:
-> > =20
-> >    vdd-supply:
-> >      description:
-> > -      the regulator that provides 3.3V core power to the hub.
-> > +      phandle to the regulator that provides power to the hub.
+> > I feel a better place would be the overlay which actually adds the sens=
+or.
+> > This knows best whether ISI or ISP should be used.
+>=20
+> Any sensor could be used with either the ISI or the ISP, so I don't
+> think the camera module overlay would be the best place for this. Unless
+> you want to duplicate all camera module overlays, with an ISI version
+> and an ISP version :-)
 
-Wait, why is this text changing? I don't see it mentioned anywhere why
-this is no longer specifically 3.3v
+True, that's a really good argument for having these small overlays.
+But how to deal with dtc warnings?
+> imx8mp-isp1.dtbo: Warning (graph_port): /fragment@2: graph port node name=
+=20
+should be 'port'
+> imx8mp-isp1.dtso:34.17-36.3: Warning (graph_endpoint): /fragment@2/
+__overlay__: graph endpoint node name should be 'endpoint'
+> imx8mp-isp1.dtso:34.17-36.3: Warning (graph_endpoint): /fragment@2/
+__overlay__: graph connection to node '/fragment@1/__overlay__/ports/port@1/
+endpoint' is not bidirectional
 
-Thanks,
-Conor.
+But for the small overlay itself:
+Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 
-> > +
-> > +  peer-hub:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    description:
-> > +      For onboard hub controllers that support USB 3.x and USB 2.0 hubs
-> > +      with shared resets and power supplies, this property is used to =
-identify
-> > +      the hubs with which these are shared.
-> > =20
-> >  required:
-> >    - compatible
-> >    - reg
-> > =20
-> > +allOf:
-> > +  - $ref: usb-device.yaml#
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - usb5e3,608
-> > +    then:
-> > +      properties:
-> > +        peer-hub: false
-> > +        vdd-supply: false
-> > +        reset-gpios: true
-> > +
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - usb5e3,610
-> > +              - usb5e3,620
-> > +    then:
-> > +      properties:
-> > +        peer-hub: true
-> > +        vdd-supply: true
-> > +        reset-gpios: true
-> > +
-> >  additionalProperties: false
-> > =20
-> >  examples:
-> > @@ -49,3 +80,29 @@ examples:
-> >              reset-gpios =3D <&pio 7 2 GPIO_ACTIVE_LOW>;
-> >          };
-> >      };
-> > +
-> > +  - |
-> > +    #include <dt-bindings/gpio/gpio.h>
-> > +    usb {
-> > +        dr_mode =3D "host";
-> > +        #address-cells =3D <1>;
-> > +        #size-cells =3D <0>;
-> > +
-> > +        /* 2.0 hub on port 1 */
-> > +        hub_2_0: hub@1 {
-> > +            compatible =3D "usb5e3,610";
-> > +            reg =3D <1>;
-> > +            peer-hub =3D <&hub_3_0>;
-> > +            reset-gpios =3D <&gpio 20 GPIO_ACTIVE_LOW>;
-> > +            vdd-supply =3D <&vcc_5v>;
-> > +        };
-> > +
-> > +        /* 3.1 hub on port 4 */
-> > +        hub_3_0: hub@2 {
-> > +            compatible =3D "usb5e3,620";
-> > +            reg =3D <2>;
-> > +            peer-hub =3D <&hub_2_0>;
-> > +            reset-gpios =3D <&gpio 20 GPIO_ACTIVE_LOW>;
-> > +            vdd-supply =3D <&vcc_5v>;
-> > +        };
-> > +    };
-> > --=20
-> > 2.42.0
+> > > > > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.co=
+m>
+> > > > > Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
+> > > > > ---
+> > > > >=20
+> > > > >  arch/arm64/boot/dts/freescale/Makefile        |  2 ++
+> > > > >  .../arm64/boot/dts/freescale/imx8mp-isp1.dtso | 36
+> > > > >  +++++++++++++++++++
+> > > > >  .../arm64/boot/dts/freescale/imx8mp-isp2.dtso | 36
+> > > > >  +++++++++++++++++++
+> > > > >  3 files changed, 74 insertions(+)
+> > > > >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-isp1.dtso
+> > > > >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-isp2.dtso
+> > > > >=20
+> > > > > diff --git a/arch/arm64/boot/dts/freescale/Makefile
+> > > > > b/arch/arm64/boot/dts/freescale/Makefile index
+> > > > > 300049037eb0..f97dfac11189
+> > > > > 100644
+> > > > > --- a/arch/arm64/boot/dts/freescale/Makefile
+> > > > > +++ b/arch/arm64/boot/dts/freescale/Makefile
+> > > > > @@ -113,6 +113,8 @@ dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-dhcom-pdk2=
+=2Edtb
+> > > > >=20
+> > > > >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-dhcom-pdk3.dtb
+> > > > >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-evk.dtb
+> > > > >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-icore-mx8mp-edimm2.2.dtb
+> > > > >=20
+> > > > > +dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-isp1.dtbo
+> > > > > +dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-isp2.dtbo
+> > > > >=20
+> > > > >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-msc-sm2s-ep1.dtb
+> > > > >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-phyboard-pollux-rdk.dtb
+> > > > >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-tqma8mpql-mba8mpxl.dtb
+> > > > >=20
+> > > > > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-isp1.dtso
+> > > > > b/arch/arm64/boot/dts/freescale/imx8mp-isp1.dtso new file mode
+> > > > > 100644
+> > > > > index 000000000000..cf394ed224ab
+> > > > > --- /dev/null
+> > > > > +++ b/arch/arm64/boot/dts/freescale/imx8mp-isp1.dtso
+> > > > > @@ -0,0 +1,36 @@
+> > > > > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > > > > +/*
+> > > > > + * Copyright 2022 Ideas on Board Oy
+> > > > > + */
+> > > > > +
+> > > > > +/dts-v1/;
+> > > > > +/plugin/;
+> > > > > +
+> > > > > +#include <dt-bindings/media/video-interfaces.h>
+> > > > > +
+> > > > > +&isi_0 {
+> > > > > +	status =3D "disabled";
+> > > >=20
+> > > > ISI is disabled by default. What is your intention here?
+> > >=20
+> > > It could be enabled by an overlay for a camera module. Ideally we want
+> > > to be able to enable both the ISI and ISP at runtime, but that's not
+> > > possible yet and will require a very large amount of work.
 > >=20
+> > Again IMHO this is part of sensor setup, in a very specific overlay. To
+> > put it into different words: I barely see the gain of this small overla=
+y.
+> >=20
+> > Runtime switching would require a combined media controller including b=
+oth
+> > ISI and ISP, no?
+>=20
+> Correct, that's the hard part.
+>=20
+> > > > > +
+> > > > > +	ports {
+> > > > > +		port@0 {
+> > > > > +			/delete-node/ endpoint;
+> > > >=20
+> > > > This doesn't work in overlays. See [1]. Otherwise the OF graph
+> > > > connections
+> > > > look fine to me. I'm using the same in my local overlay.
+> > >=20
+> > > Interesting, I wasn't aware of that. Maybe we should fix it :-)
+> > >=20
+> > > > [1]
+> > > > https://lore.kernel.org/all/CAMuHMdWu4KZbBkvEofUV2wuA1g2S=3DXHHM3RU=
+N1cN
+> > > > rcZBkhsPZA@mail.gmail.com/> > >=20
+> > > > > +		};
+> > > > > +	};
+> > > > > +};
+> > > > > +
+> > > > > +&isp_0 {
+> > > > > +	status =3D "okay";
+> > > > > +
+> > > > > +	ports {
+> > > > > +		port@1 {
+> > > > > +			isp0_in: endpoint {
+> > > > > +				bus-type =3D=20
+<MEDIA_BUS_TYPE_PARALLEL>;
+> > > > > +				remote-endpoint =3D=20
+<&mipi_csi_0_out>;
+> > > > > +			};
+> > > > > +		};
+> > > > > +	};
+> > > > > +};
+> > > > > +
+> > > > > +&mipi_csi_0_out {
+> > > > > +	remote-endpoint =3D <&isp0_in>;
+> > > > > +};
+> > > > > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-isp2.dtso
+> > > > > b/arch/arm64/boot/dts/freescale/imx8mp-isp2.dtso new file mode
+> > > > > 100644
+> > > > > index 000000000000..14e2e7b2617f
+> > > > > --- /dev/null
+> > > > > +++ b/arch/arm64/boot/dts/freescale/imx8mp-isp2.dtso
+> > > > > @@ -0,0 +1,36 @@
+> > > > > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > > > > +/*
+> > > > > + * Copyright 2022 Ideas on Board Oy
+> > > > > + */
+> > > > > +
+> > > > > +/dts-v1/;
+> > > > > +/plugin/;
+> > > > > +
+> > > > > +#include <dt-bindings/media/video-interfaces.h>
+> > > > > +
+> > > > > +&isi_0 {
+> > > > > +	status =3D "disabled";
+> > > > > +
+> > > > > +	ports {
+> > > > > +		port@1 {
+> > > > > +			/delete-node/ endpoint;
+> > > > > +		};
+> > > > > +	};
+> > > > > +};
+> > > > > +
+> > > > > +&isp_1 {
+> > > > > +	status =3D "okay";
+> > > > > +
+> > > > > +	ports {
+> > > > > +		port@1 {
+> > > > > +			isp1_in: endpoint {
+> > > > > +				bus-type =3D=20
+<MEDIA_BUS_TYPE_PARALLEL>;
+> > > > > +				remote-endpoint =3D=20
+<&mipi_csi_1_out>;
+> > > > > +			};
+> > > > > +		};
+> > > > > +	};
+> > > > > +};
+> > > > > +
+> > > > > +&mipi_csi_1_out {
+> > > > > +	remote-endpoint =3D <&isp1_in>;
+> > > > > +};
 
 
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
 
---RlRi2l6ZtvVLk88M
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZWioxwAKCRB4tDGHoIJi
-0kyvAP4mrFsSqjulILny2yGh8/2PbF9zjOgQLnavgZb2aA1pOwEAlbokM8AGRXLE
-vImZQShoC/U9RPHihysDgZlZ1qae1Aw=
-=xGZx
------END PGP SIGNATURE-----
-
---RlRi2l6ZtvVLk88M--
 
