@@ -1,211 +1,124 @@
-Return-Path: <devicetree+bounces-20410-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20411-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C93C7FF34B
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 16:16:46 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA66D7FF356
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 16:19:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E005FB20E0B
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 15:16:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 84CE8281952
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 15:19:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8155551C55;
-	Thu, 30 Nov 2023 15:16:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BBB351C5C;
+	Thu, 30 Nov 2023 15:19:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jC6E0aAc"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Zq5m9SiU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60CF51DA41;
-	Thu, 30 Nov 2023 15:16:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9DAAAC433C7;
-	Thu, 30 Nov 2023 15:16:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701357397;
-	bh=cg7d/rMg3I2RsFPBbUzQIS4hsFzEfYLgoptbAfC9TqA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jC6E0aAcM/h8zOAIvwpIVcj1iDnJtDO73UOMNtVkX+lVIb5h3XHTDFoYsvhwIz7dF
-	 eOjkHqXsNH19eIAuC22YjkHD7QZ9hgtXqA1MylD8Le9wvQ+t/8KRsPQ1ejoQaLe7Ag
-	 CSfRst5jB3YOMrZvG9kslP6I+rob9EuVvXNJuhTAm3wWRYrhTXPfVowVyN6RCwfqSB
-	 muHrWl3/RZUJU5L8BfnJXTIR6AvYRfu0QDrMC2eXK7VTMO++DpmrzPkxjs+dJipOwQ
-	 ydM8mq4Zgaf2/I9JHwXB8BUvwH/Ezry8DGpScCQaXaOOfVKgSn6ZR5VT8L8T/6623M
-	 zMYxiSr5rFqEA==
-Date: Thu, 30 Nov 2023 15:16:33 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Anand Moon <linux.amoon@gmail.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Icenowy Zheng <uwu@icenowy.me>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	linux-amlogic@lists.infradead.org, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 1/2] dt-bindings: usb: Add the binding example for the
- Genesys Logic GL3523 hub
-Message-ID: <20231130-twig-stoning-58235b3195c8@spud>
-References: <20231130053130.21966-1-linux.amoon@gmail.com>
- <20231130053130.21966-2-linux.amoon@gmail.com>
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77D2310E4;
+	Thu, 30 Nov 2023 07:19:46 -0800 (PST)
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AUFIA2H023978;
+	Thu, 30 Nov 2023 15:19:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=77cknAywjb3vJ0XHOP+azo+o2YZ4goxYI+iunv5cNkc=;
+ b=Zq5m9SiUXxY2h1wbcV+obb8yRmbXrTqJosuMDX8dbAWqH2Ttp8dWh4gsroHOduC8ViEn
+ B2pC7kjgnYnDTRwEENPtilgVy8oypg5+V9CYsrFVejDgVSseNnRkPj492YvLOpSaeABC
+ 5nPBk7gDdEz/JrBIsvl+hk//TLbgPgZHiApKrNIQPPDCmRwA+8AY+3dkNOMPvNNT0rNc
+ Czmmax0HW1IsBtPFEN0rn6ZOYFuEAAgkQIMglG7S3f1nfW8PWNSQBXojasQVFWDbows7
+ NzXJvS9o5j0XsOZ9+jF6diujGGllgzca6WOoUGIrgPssubxxkG8Pk6s2a49o4IJxfPG3 pw== 
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3upbxsjep2-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 30 Nov 2023 15:19:22 +0000
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AUFJLw2003303
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 30 Nov 2023 15:19:21 GMT
+Received: from [10.251.45.12] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 30 Nov
+ 2023 07:19:16 -0800
+Message-ID: <47f40099-4215-4c9e-9b7a-c5b981abc589@quicinc.com>
+Date: Thu, 30 Nov 2023 17:19:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="lTL/T6EYqFtp7uZi"
-Content-Disposition: inline
-In-Reply-To: <20231130053130.21966-2-linux.amoon@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/6] Add support for Translation Buffer Units
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <will@kernel.org>, <robin.murphy@arm.com>, <joro@8bytes.org>
+CC: <devicetree@vger.kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <linux-arm-kernel@lists.infradead.org>,
+        <iommu@lists.linux.dev>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <quic_cgoldswo@quicinc.com>,
+        <quic_sukadev@quicinc.com>, <quic_pdaly@quicinc.com>,
+        <quic_sudaraja@quicinc.com>, <djakov@kernel.org>
+References: <20231118042730.2799-1-quic_c_gdjako@quicinc.com>
+ <fe74b1ab-078d-4c53-9133-cf7ab00a656d@linaro.org>
+Content-Language: en-US
+From: Georgi Djakov <quic_c_gdjako@quicinc.com>
+In-Reply-To: <fe74b1ab-078d-4c53-9133-cf7ab00a656d@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: OBdVb95uphT6pHD6u44i1ixvLsUD4i29
+X-Proofpoint-GUID: OBdVb95uphT6pHD6u44i1ixvLsUD4i29
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-30_14,2023-11-30_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 adultscore=0
+ suspectscore=0 mlxlogscore=804 lowpriorityscore=0 mlxscore=0 bulkscore=0
+ priorityscore=1501 malwarescore=0 impostorscore=0 clxscore=1011
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2311060000 definitions=main-2311300110
 
+On 11/18/2023 1:21 PM, Bryan O'Donoghue wrote:
+> On 18/11/2023 04:27, Georgi Djakov wrote:
+>> The TCUs (Translation Control Units) and TBUs (Translation Buffer
+>> Units) are key components of the MMU-500. Multiple TBUs are connected
+>> to a single TCU over an interconnect. Each TBU contains a TLB that
+>> caches page tables. The MMU-500 implements a TBU for each connected
+>> master, and the TBU is designed, so that it is local to the master.
+>>
+>> The Qualcomm SDM845 platform has an implementation of the SMMU-500,
+>> that has multiple TBUs. A DT schema is added to describe the resources
+>> for each TBU (register space, power-domains, interconnects and clocks).
+>>
+>> The TBU driver will manage the resources and allow the system to
+>> operate the TBUs during a context fault to obtain details by doing
+>> s1 inv, software + hardware page table walks etc. This is implemented
+>> with ATOS/eCATs as the ATS feature is not supported. Being able to
+>> query the TBUs is useful for debugging various hardware/software
+>> issues on these platforms.
+>>
+>> v2:
+>> - Improve DT binding description, add full example. (Konrad)
+>> - Drop Qcom specific stuff from the generic binding. (Rob)
+>> - Unconditionally try to populate subnodes. (Konrad)
+>> - Improve TBU driver commit text, remove memory barriers. (Bjorn)
+>> - Move TBU stuff into separate file. Make the driver builtin.
+>> - TODO: Evaluate whether to keep TBU support as a separate driver
+>>    or just instantiate things from qcom_smmu_impl_init()
+>>
+>> v1: https://lore.kernel.org/r/20231019021923.13939-1-quic_c_gdjako@quicinc.com
+> 
+> What is your suggested way to test this series ?
 
---lTL/T6EYqFtp7uZi
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hi Bryan,
 
-On Thu, Nov 30, 2023 at 11:01:26AM +0530, Anand Moon wrote:
-> Add the binding example for the USB3.1 Genesys Logic GL3523
-> integrates with USB 3.1 Gen 1 Super Speed and USB 2.0 High-Speed
-> hub.
->=20
-> For onboard hub controllers that support USB 3.x and USB 2.0 hubs
-> with shared resets and power supplies, this property is used to identify
-> the hubs with which these are shared.
->=20
+Just break some driver to initiate a memory transaction with no valid context. I used venus for that. Or the simplest would be to just specify an invalid stream ID in DT for some device.
 
-> [Conor Dooley: upgrade peer-hub description]
-
-This should not be in the commit message. Otherwise,
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-
-Cheers,
-Conor.
-
-> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> ---
-> v5: upgrade peer-hub description : Conor Dooley
-> [0] https://www.genesyslogic.com.tw/en/product_view.php?show=3D67 [Block =
-Diagram]
-> v4: Fix the description of peer-hub and update the commit message.
-> Schematics of the Odroid N2+
-> https://dn.odroid.com/S922X/ODROID-N2/Schematic/odroid-n2_rev0.6_20210121=
-=2Epdf
-> V3: fix the dt_binding_check error, added new example for Genesys GL3523
-> v2: added Genesys GL3523 binding
-> v1: none
-> ---
->  .../bindings/usb/genesys,gl850g.yaml          | 65 +++++++++++++++++--
->  1 file changed, 61 insertions(+), 4 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml b/=
-Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-> index ee08b9c3721f..499192ea4074 100644
-> --- a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-> +++ b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-> @@ -9,9 +9,6 @@ title: Genesys Logic USB hub controller
->  maintainers:
->    - Icenowy Zheng <uwu@icenowy.me>
-> =20
-> -allOf:
-> -  - $ref: usb-device.yaml#
-> -
->  properties:
->    compatible:
->      enum:
-> @@ -27,12 +24,46 @@ properties:
-> =20
->    vdd-supply:
->      description:
-> -      the regulator that provides 3.3V core power to the hub.
-> +      phandle to the regulator that provides power to the hub.
-> +
-> +  peer-hub:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      For onboard hub controllers that support USB 3.x and USB 2.0 hubs
-> +      with shared resets and power supplies, this property is used to id=
-entify
-> +      the hubs with which these are shared.
-> =20
->  required:
->    - compatible
->    - reg
-> =20
-> +allOf:
-> +  - $ref: usb-device.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - usb5e3,608
-> +    then:
-> +      properties:
-> +        peer-hub: false
-> +        vdd-supply: false
-> +        reset-gpios: true
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - usb5e3,610
-> +              - usb5e3,620
-> +    then:
-> +      properties:
-> +        peer-hub: true
-> +        vdd-supply: true
-> +        reset-gpios: true
-> +
->  additionalProperties: false
-> =20
->  examples:
-> @@ -49,3 +80,29 @@ examples:
->              reset-gpios =3D <&pio 7 2 GPIO_ACTIVE_LOW>;
->          };
->      };
-> +
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    usb {
-> +        dr_mode =3D "host";
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
-> +
-> +        /* 2.0 hub on port 1 */
-> +        hub_2_0: hub@1 {
-> +            compatible =3D "usb5e3,610";
-> +            reg =3D <1>;
-> +            peer-hub =3D <&hub_3_0>;
-> +            reset-gpios =3D <&gpio 20 GPIO_ACTIVE_LOW>;
-> +            vdd-supply =3D <&vcc_5v>;
-> +        };
-> +
-> +        /* 3.1 hub on port 4 */
-> +        hub_3_0: hub@2 {
-> +            compatible =3D "usb5e3,620";
-> +            reg =3D <2>;
-> +            peer-hub =3D <&hub_2_0>;
-> +            reset-gpios =3D <&gpio 20 GPIO_ACTIVE_LOW>;
-> +            vdd-supply =3D <&vcc_5v>;
-> +        };
-> +    };
-> --=20
-> 2.42.0
->=20
-
---lTL/T6EYqFtp7uZi
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZWinUQAKCRB4tDGHoIJi
-0oBYAP9EyD0nfaT0/sje8xRsy43bcV3tjUrZMC7tQBdSN1URWwEAj3HN3gY9KtkI
-O/bdedDkZGY3dMMNQVG2guKxWaU4+wo=
-=yrvD
------END PGP SIGNATURE-----
-
---lTL/T6EYqFtp7uZi--
+Thanks,
+Georgi
 
