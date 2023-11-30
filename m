@@ -1,150 +1,115 @@
-Return-Path: <devicetree+bounces-20448-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20449-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D071F7FF46E
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 17:12:03 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C98F57FF486
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 17:18:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 62E0AB20B6A
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 16:12:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 856CC28166B
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 16:18:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EF1A5466A;
-	Thu, 30 Nov 2023 16:11:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DDDD54BE7;
+	Thu, 30 Nov 2023 16:18:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qpFBB3Yy"
+	dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b="YgCddLm6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3D6F54645
-	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 16:11:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6BF3C433C9;
-	Thu, 30 Nov 2023 16:11:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701360717;
-	bh=vgls5aAlR31WZeeFitudv2gLn3KRn15unDZWj9i/v9g=;
-	h=From:To:Cc:Subject:Date:From;
-	b=qpFBB3YyXinuwQ+7fxRfXLLxKE0ptbNJCoa58UsrfVolYTGrIN1Pq9t4kjnmzbAHV
-	 bWQPN7icrc7LX8RweUK5aEZ8opCL1tGDyvFbhxkAGA8ZSpb8SzCCkGb4HBuk6znZmO
-	 2adWWVogvmoQGNt2U0+c8jk98xkl87kJ8b44LsD0o8aAPdFeNkFUqB555ynQ+jWdhG
-	 cy5dVleeSgOvGWrVqSgZDEP/ueHS7LEWExLonaqssLT8PTbm5GMMG6zRIzFKN2hIrW
-	 DAmLMyyC+/qA1VrgqwObv6RHEa3mRsYY8PpvpeysPkQcRzyDBrNUZjICwA7onqEwQh
-	 WPofq+wUXfGwA==
-From: Conor Dooley <conor@kernel.org>
-To: linux-riscv@lists.infradead.org
-Cc: conor@kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
+Received: from mail.fris.de (unknown [IPv6:2a01:4f8:c2c:390b::1])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4AC9131;
+	Thu, 30 Nov 2023 08:18:32 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 40D4FBFC65;
+	Thu, 30 Nov 2023 17:18:23 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fris.de; s=dkim;
+	t=1701361110; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=xHfhZiZh8lQjFKcB2RX3Sf+jUuCc9cs7MAaXz8+x+ko=;
+	b=YgCddLm6+oKxxsC/eDr4y1Io+iTFkDdbMLEdS5YZJiqn3pWTmnOJP373xraYUfKxNs3Bsu
+	mp3ZlSkuwiHORiV4GBGbr5gc8317AxOJSjpaIizAiV57B1RhtOuLUj7PTcFOzGRauQr29j
+	2gziOZT1zmyFLKrlLWQY696Cj28/v70i8W7cxvDYtKk8dSIjHWf4lcRykkMWjp//2lW0Qf
+	pFK7TiO7n+1PyYo9K4TR31PZsmSl6WNMuQD6sQ61bRsXmBLqKWZFhusuDwO3FgJaYkkT0L
+	KxWk971DFOHH0W007kIk7NNdwMCfFTVeibDI+mdB30Dss000ZBiKCl1RWb7pQw==
+From: Frieder Schrempf <frieder@fris.de>
+To: Conor Dooley <conor+dt@kernel.org>,
 	devicetree@vger.kernel.org,
+	Frieder Schrempf <frieder.schrempf@kontron.de>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	Walker Chen <walker.chen@starfivetech.com>,
-	JeeHeng Sia <jeeheng.sia@starfivetech.com>,
-	Leyfoon Tan <leyfoon.tan@starfivetech.com>
-Subject: [PATCH v1] riscv: dts: starfive: move timebase-frequency to .dtsi
-Date: Thu, 30 Nov 2023 16:11:28 +0000
-Message-Id: <20231130-bobbing-valid-b97f26fe8edc@spud>
-X-Mailer: git-send-email 2.39.2
+	Rob Herring <robh+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	Gregor Herburger <gregor.herburger@ew.tq-group.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+	Marek Vasut <marex@denx.de>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Philippe Schenker <philippe.schenker@toradex.com>,
+	Tim Harvey <tharvey@gateworks.com>
+Subject: [PATCH v2 00/14] arm64: dts: imx8mm-kontron: DT updates
+Date: Thu, 30 Nov 2023 17:16:00 +0100
+Message-ID: <20231130161657.556483-1-frieder@fris.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3135; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=UAAVjF121WPRFea5qRuZ2irQEO1X8uw6HeaKklYIqBU=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDKkZW3TOhG9ZnWv8re2Ju/KbiwqCtQG/lmyyaJXdO/3bn xOCvjP9OkpZGMQ4GGTFFFkSb/e1SK3/47LDuectzBxWJpAhDFycAjCRjAcMf/iuWffPjtxU3cd9 N3zyZtWHfUpdCbK2Fs/frk9RPli32Zfhf4r2nG9fpHmOTkrxrO1xYTKdyat5KOTL291Oja2JahF 1PAA=
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
 Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-From: Conor Dooley <conor.dooley@microchip.com>
+From: Frieder Schrempf <frieder.schrempf@kontron.de>
 
-Properties fixed by the SoC should be defined in the $soc.dtsi, and the
-timebase-frequency is not sourced directly from an off-chip oscillator.
+This patchset contains several improvements and updates for the devicetrees
+for the i.MX8MM modules and boards by Kontron Electronics GmbH.
 
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
-I actually have no idea whether this is true or not, I asked on the
-jh8100 series but only got an answer for that SoC and not the existing
-ones. I'm hoping that a patch envokes more of a reaction!
+* HDMI/LVDS support for the BL/DL i.MX8MM
+* Misc cleanups and small fixes
+* OSM-S i.MX8MM module refactoring and update to latest HW revision
 
-CC: Emil Renner Berthing <kernel@esmil.dk>
-CC: Conor Dooley <conor@kernel.org>
-CC: Rob Herring <robh+dt@kernel.org>
-CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC: Paul Walmsley <paul.walmsley@sifive.com>
-CC: Palmer Dabbelt <palmer@dabbelt.com>
-CC: linux-riscv@lists.infradead.org
-CC: devicetree@vger.kernel.org
-CC: linux-kernel@vger.kernel.org
-CC: Walker Chen <walker.chen@starfivetech.com>
-CC: JeeHeng Sia <jeeheng.sia@starfivetech.com>
-CC: Leyfoon Tan <leyfoon.tan@starfivetech.com>
----
- arch/riscv/boot/dts/starfive/jh7100-common.dtsi               | 4 ----
- arch/riscv/boot/dts/starfive/jh7100.dtsi                      | 1 +
- .../riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi | 4 ----
- arch/riscv/boot/dts/starfive/jh7110.dtsi                      | 1 +
- 4 files changed, 2 insertions(+), 8 deletions(-)
+Changes in v2:
+* Rework DSI mux GPIO logic to be compatible with overlay
+* Switch from 4 to 2 DSI lanes for LVDS bridge to fix non-working display
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7100-common.dtsi b/arch/riscv/boot/dts/starfive/jh7100-common.dtsi
-index b93ce351a90f..214f27083d7b 100644
---- a/arch/riscv/boot/dts/starfive/jh7100-common.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7100-common.dtsi
-@@ -19,10 +19,6 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
--	cpus {
--		timebase-frequency = <6250000>;
--	};
--
- 	memory@80000000 {
- 		device_type = "memory";
- 		reg = <0x0 0x80000000 0x2 0x0>;
-diff --git a/arch/riscv/boot/dts/starfive/jh7100.dtsi b/arch/riscv/boot/dts/starfive/jh7100.dtsi
-index e68cafe7545f..c50b32424721 100644
---- a/arch/riscv/boot/dts/starfive/jh7100.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7100.dtsi
-@@ -16,6 +16,7 @@ / {
- 	cpus {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
-+		timebase-frequency = <6250000>;
- 
- 		U74_0: cpu@0 {
- 			compatible = "sifive,u74-mc", "riscv";
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-index b89e9791efa7..7873c7ffde4d 100644
---- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-@@ -26,10 +26,6 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
--	cpus {
--		timebase-frequency = <4000000>;
--	};
--
- 	memory@40000000 {
- 		device_type = "memory";
- 		reg = <0x0 0x40000000 0x1 0x0>;
-diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-index 45213cdf50dc..ee7d4bb1f537 100644
---- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-@@ -18,6 +18,7 @@ / {
- 	cpus {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
-+		timebase-frequency = <4000000>;
- 
- 		S7_0: cpu@0 {
- 			compatible = "sifive,s7", "riscv";
+Frieder Schrempf (14):
+  arm64: dts: imx8mm-kontron: Add support for display bridges on BL
+    i.MX8MM
+  arm64: dts: imx8mm-kontron: Add DL (Display-Line) overlay with LVDS
+    support
+  arm64: dts: imx8mm-kontron: Disable pullups for I2C signals on OSM-S
+    i.MX8MM
+  arm64: dts: imx8mm-kontron: Disable pullups for I2C signals on SL/BL
+    i.MX8MM
+  arm64: dts: imx8mm-kontron: Disable pullups for onboard UART signals
+    on BL OSM-S board
+  arm64: dts: imx8mm-kontron: Disable pullups for onboard UART signals
+    on BL board
+  arm64: dts: imx8mm-kontron: Disable pull resistors for SD card signals
+    on BL OSM-S board
+  arm64: dts: imx8mm-kontron: Disable pull resistors for SD card signals
+    on BL board
+  arm64: dts: imx8mm-kontron: Fix interrupt for RTC on OSM-S i.MX8MM
+    module
+  arm64: dts: imx8mm-kontron: Fix OSM-S devicetrees to match latest
+    hardware
+  arm64: dts: imx8mm-kontron: Disable uneffective PUE bit in SDIO IOMUX
+  arm64: dts: imx8mm-kontron: Remove useless trickle-diode-disable from
+    RTC node
+  arm64: dts: imx8mm-kontron: Add I2C EEPROM on OSM-S Kontron i.MX8MM
+  arm64: dts: imx8mm-kontron: Refactor devicetree for OSM-S module and
+    board
+
+ arch/arm64/boot/dts/freescale/Makefile        |   4 +
+ .../dts/freescale/imx8mm-kontron-bl-osm-s.dts | 295 +++------
+ .../boot/dts/freescale/imx8mm-kontron-bl.dts  | 196 +++++-
+ .../boot/dts/freescale/imx8mm-kontron-dl.dtso | 200 ++++++
+ .../dts/freescale/imx8mm-kontron-osm-s.dtsi   | 567 +++++++++++++++++-
+ .../boot/dts/freescale/imx8mm-kontron-sl.dtsi |   4 +-
+ 6 files changed, 1032 insertions(+), 234 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-kontron-dl.dtso
+
 -- 
-2.39.2
-
+2.43.0
 
