@@ -1,143 +1,137 @@
-Return-Path: <devicetree+bounces-20307-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20309-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3EB57FEC48
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 10:54:30 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E06E7FEC4E
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 10:55:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5E731B20FB3
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 09:54:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4F4251C20A45
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 09:55:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E19103AC04;
-	Thu, 30 Nov 2023 09:54:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JeH+rs34"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 305F83AC0B;
+	Thu, 30 Nov 2023 09:55:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E30A619AB
-	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 01:54:08 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-40b427507b7so4507465e9.2
-        for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 01:54:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701338047; x=1701942847; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=oFnK2W1R2fhcw00BqzFHQ4o1k7qynf7VtO0VZ35BT6I=;
-        b=JeH+rs34eKDJrK4HSjaCddAyYFF0L/cQpDuNv+AO0an3MwfJ2nPgxin4Zs7YWpnheN
-         bEIZKA5siKq/yI0Xpbee3g9DEkkE6/xk41fKa72VwhpxW4qxxONM8F9GoOHI4TKeLzxb
-         ZYWHRzDm3BqrZmd88r3AGmhbG2bAMRvBhwSq4MYWggDDjivyE+ICrrI6mgnNO2HQ0joc
-         dlamnsN2MIiQ4TGWoqYRJwEfry+m61UUs1ryC6WkpCBZcVrHcWJqDerf1/GGtDrvYTKW
-         Vd5+TupBjhctDYl+/9K2TksZVo4oJqM5Unx1T2NXnK3UupyWcW+rVkZUXZBvvJQxMchq
-         z3Ew==
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE90710E2;
+	Thu, 30 Nov 2023 01:55:06 -0800 (PST)
+Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-d9beb865a40so664163276.1;
+        Thu, 30 Nov 2023 01:55:06 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701338047; x=1701942847;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=oFnK2W1R2fhcw00BqzFHQ4o1k7qynf7VtO0VZ35BT6I=;
-        b=YfyUF/5ZErftahoBZRGh8hpRZwZMD4uZeFgdfaz2LmBDtbTg/wLcYjRqmkmI4iFHQ6
-         bJcgTJuGV1FTvYnqp4SE2FS5ZA5nUCHfdfud/MG6DJ812YlIp1Pqo1Dfcbtz6YnlnOw+
-         +1oCUrBlxojG0we06Ybmibtcv1u8fGzg3VCHAF9fx7nYf0+aN1DwxW4JgZMOVsQW+duN
-         VNIzJMWiLRAMsRVzRqTNugiyRBSVczvLgFOQhMHAgOBh5wWcMO4oKGCk/dQ7Glr0RdUV
-         nv6lfdFCN49ICP/iIRrM/b/3pOUJ2zgqx5uq3Td1xoVNeV7J+ACbAaZI7riUv01ATWJU
-         ubjg==
-X-Gm-Message-State: AOJu0YxVhYAlY/Pvg6nZBEkfxqu6R6AZO0K1HEsLgmDQ1Y4nqAeJWAib
-	8hx6ktcdQ5yjSUs9b055DijLKQ==
-X-Google-Smtp-Source: AGHT+IERbAR5kCEXoFWKv930fgPayDnjMttXIi85mFVhsgzWECqO8UigNd0v3U/lwOMValdiRaGRQA==
-X-Received: by 2002:a05:600c:1c1c:b0:40b:37eb:900c with SMTP id j28-20020a05600c1c1c00b0040b37eb900cmr13788686wms.6.1701338046906;
-        Thu, 30 Nov 2023 01:54:06 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:41c9:3acd:a6e2:5242? ([2a01:e0a:982:cbb0:41c9:3acd:a6e2:5242])
-        by smtp.gmail.com with ESMTPSA id p36-20020a05600c1da400b0040b478da760sm1358964wms.48.2023.11.30.01.54.05
+        d=1e100.net; s=20230601; t=1701338105; x=1701942905;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/kl3Cyom3VKHlW1GdXvF57049dn4ixhhiJNdSH5QXH4=;
+        b=ThV1zXVjgeL2o6qm/ngXJMTKvjPsXQRDbig3iCmK90rdA7SWVKTPHPIoeqjz+lnmhh
+         LVqgiBMlRJx/yf3glxVYxhTEFSLNW3ocKs56hanJW5SYwu3VXNv+xhSj/wKOq3s/XBMw
+         wRSzlVb19rGENx2nL6rJNEkXlvHWl4IT3/OtVrKP3nqQnO+nF6LhNdChr5toz+gf4yZc
+         /PslSlDz9jktsW2zoAmzHuOi7lA1p+UZKza4+00H+//bS6F1fIJiJKyDozFeNEtjuSHn
+         S9szfSdcAOe4JuLAfAWrDG6qENbbjyQaoc6fkJOsWK697OrZRVSrtmv+Jz4bao8YvmGa
+         lkLA==
+X-Gm-Message-State: AOJu0YycV+K2bQzfXSRn99gHL8gZURUQcqBRGYNjb8+6vz7Il4WZgUC+
+	H9fO7zcq0zYhX3+n/9rVxCEn5ls/T874Vg==
+X-Google-Smtp-Source: AGHT+IGad/xbG4AWM4LSIJNFYbwM6pNaT28G+jf3I/a25gC6jZTk3p0GLY2L+0DYJY9VobqtnG1vCQ==
+X-Received: by 2002:a0d:d146:0:b0:5cb:c143:cd90 with SMTP id t67-20020a0dd146000000b005cbc143cd90mr22789105ywd.35.1701338104996;
+        Thu, 30 Nov 2023 01:55:04 -0800 (PST)
+Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com. [209.85.128.179])
+        by smtp.gmail.com with ESMTPSA id z2-20020a816502000000b00597e912e67esm257647ywb.131.2023.11.30.01.55.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Nov 2023 01:54:06 -0800 (PST)
-Message-ID: <690b7dbd-3165-4aa5-af85-1a1eaa12d176@linaro.org>
-Date: Thu, 30 Nov 2023 10:54:05 +0100
+        Thu, 30 Nov 2023 01:55:03 -0800 (PST)
+Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-5d34d85e610so4119657b3.3;
+        Thu, 30 Nov 2023 01:55:03 -0800 (PST)
+X-Received: by 2002:a81:92d7:0:b0:5ca:e49:c98b with SMTP id
+ j206-20020a8192d7000000b005ca0e49c98bmr23203204ywg.8.1701338103524; Thu, 30
+ Nov 2023 01:55:03 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 6/6] arm64: dts: qcom: sm8450-hdk: Enable the A730 GPU
-Content-Language: en-US, fr
-To: Konrad Dybcio <konrad.dybcio@linaro.org>, Will Deacon <will@kernel.org>,
- Robin Murphy <robin.murphy@arm.com>, Joerg Roedel <joro@8bytes.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org
-References: <20231127-topic-a7xx_dt-v1-0-a228b8122ebf@linaro.org>
- <20231127-topic-a7xx_dt-v1-6-a228b8122ebf@linaro.org>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <20231127-topic-a7xx_dt-v1-6-a228b8122ebf@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20231017104638.201260-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <CA+V-a8t3sGn83vpgjECf5dw=bbz2yPXpnn+v2Dx2q3yJRPsKgA@mail.gmail.com>
+ <CAMuHMdXMRj4quvO87LbLHCCLr14EK2AXsvr_muTDrBrA8+BMjg@mail.gmail.com> <CA+V-a8tjy2Ttp_TbZT63PC_UY12J8FLcziCtef-D-jgw_CmKaA@mail.gmail.com>
+In-Reply-To: <CA+V-a8tjy2Ttp_TbZT63PC_UY12J8FLcziCtef-D-jgw_CmKaA@mail.gmail.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 30 Nov 2023 10:54:52 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVcUXY+J36X6iG_jtT1mQhXFbEdF57oOT4DFZAridp2_A@mail.gmail.com>
+Message-ID: <CAMuHMdVcUXY+J36X6iG_jtT1mQhXFbEdF57oOT4DFZAridp2_A@mail.gmail.com>
+Subject: Re: [PATCH v2 0/3] Add missing port pins for RZ/Five SoC
+To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Linus Walleij <linus.walleij@linaro.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 27/11/2023 17:20, Konrad Dybcio wrote:
-> Enable the GPU and provide a path for the ZAP blob.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->   arch/arm64/boot/dts/qcom/sm8450-hdk.dts | 8 ++++++++
->   1 file changed, 8 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
-> index 20153d08edde..a20d5d76af35 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
-> @@ -580,6 +580,14 @@ &dispcc {
->   	status = "okay";
->   };
->   
-> +&gpu {
-> +	status = "okay";
-> +
-> +	zap-shader {
-> +		firmware-name = "qcom/sm8450/a730_zap.mbn";
-> +	};
-> +};
-> +
->   &i2c9 {
->   	clock-frequency = <400000>;
->   	status = "okay";
-> 
+Hi Prabhakar,
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+On Thu, Nov 30, 2023 at 9:48=E2=80=AFAM Lad, Prabhakar
+<prabhakar.csengg@gmail.com> wrote:
+> On Wed, Nov 29, 2023 at 3:32=E2=80=AFPM Geert Uytterhoeven <geert@linux-m=
+68k.org> wrote:
+> > On Wed, Nov 29, 2023 at 3:44=E2=80=AFPM Lad, Prabhakar
+> > <prabhakar.csengg@gmail.com> wrote:
+> > > On Tue, Oct 17, 2023 at 11:47=E2=80=AFAM Prabhakar <prabhakar.csengg@=
+gmail.com> wrote:
+> > > > This patch series intends to incorporate the absent port pins P19 t=
+o P28,
+> > > > which are exclusively available on the RZ/Five SoC.
+> > > >
+> > > > Cheers,
+> > > > Prabhakar
+> > > >
+> > > > RFC -> v2:
+> > > > * Fixed review comments pointed by Geert & Biju
+> > > >
+> > > > RFC: https://lore.kernel.org/lkml/20230630120433.49529-3-prabhakar.=
+mahadev-lad.rj@bp.renesas.com/T/
+> > > >
+> > > > Lad Prabhakar (3):
+> > > >   pinctrl: renesas: rzg2l: Include pinmap in RZG2L_GPIO_PORT_PACK()
+> > > >     macro
+> > > >   pinctrl: renesas: pinctrl-rzg2l: Add the missing port pins P19 to=
+ P28
+> > > >   riscv: dts: renesas: r9a07g043f: Update gpio-ranges property
+> > > >
+> > > >  arch/riscv/boot/dts/renesas/r9a07g043f.dtsi |   4 +
+> > > >  drivers/pinctrl/renesas/pinctrl-rzg2l.c     | 263 ++++++++++++++++=
+++--
+> > > >  2 files changed, 242 insertions(+), 25 deletions(-)
+> > > >
+> > > Gentle ping.
+> >
+> > As the kernel test robot reported a build issue for PATCH 1/3, I had
+> > removed this series from my review queue.
+> Strange patchwork status didnt mention it as "rejected".
+
+Actually I do not use patchwork that much...
+
+> > Do you still want me to review v2, or do you want to send a v3 first?
+> >
+> No worries, I'll send a v3 and we can go from there.
+
+OK.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
