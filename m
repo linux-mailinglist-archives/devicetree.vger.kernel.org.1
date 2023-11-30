@@ -1,212 +1,99 @@
-Return-Path: <devicetree+bounces-20511-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20512-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2BB87FF916
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 19:10:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E16107FF946
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 19:25:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2C1E3B20F6C
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 18:10:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1AAB21C20EB6
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 18:25:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61C7F59157;
-	Thu, 30 Nov 2023 18:10:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E8E159173;
+	Thu, 30 Nov 2023 18:25:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="LoTmiR27"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FIB82FiF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-x829.google.com (mail-qt1-x829.google.com [IPv6:2607:f8b0:4864:20::829])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E004D50
-	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 10:09:59 -0800 (PST)
-Received: by mail-qt1-x829.google.com with SMTP id d75a77b69052e-423dba21f1aso6683761cf.1
-        for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 10:09:59 -0800 (PST)
+Received: from mail-yw1-x112d.google.com (mail-yw1-x112d.google.com [IPv6:2607:f8b0:4864:20::112d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D26E10DE;
+	Thu, 30 Nov 2023 10:25:18 -0800 (PST)
+Received: by mail-yw1-x112d.google.com with SMTP id 00721157ae682-5cfa3a1fb58so13456837b3.2;
+        Thu, 30 Nov 2023 10:25:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1701367799; x=1701972599; darn=vger.kernel.org;
-        h=in-reply-to:autocrypt:from:references:cc:to:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4Ijehorf0viQFAzf3hyigeTxtOnqdpas+JSnwPR8Alw=;
-        b=LoTmiR27Si/n40XPxRXJ+DzAk1Plb6VesX5XOxO51czhnZ9SIaKR2RZZkeAgZCrCJ8
-         HN2tiiwBFP5X05U098idbrUS+JM7K1klSUe9Yyl56fzZc/HVDaGrPOB9iVNipiqPbYnv
-         vNcjDTb12eO5vNSDgMULd+cs2wRQJ5wxmy6JQ=
+        d=gmail.com; s=20230601; t=1701368717; x=1701973517; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=A6XaBmabZtFG50aNMROWpohKVYoF4xocW5H2FTxC+9Y=;
+        b=FIB82FiF1IREPr40mhLtGjOAH5+tZ+N4fN9adfxHhRNtzuysyPh7yICx3CxV6OeT7T
+         qloV/mYI8FqcVcioYXVBFeJhryRIRH20WL7RM4IJUUreeotDpdTinemIXP0263OOchPU
+         +o1bj53NU1XRz7W6yR8CLnHOBMZ2J9akM8Cwm4WYb/2wUdfI9qxykn1QjAswXi+QxDhM
+         zBtkODV9dSZ54f9DHY2jZH6LBtdeMS0cBH1If/bCxIxWpW628OcybI1l4OPoXEHQQsVT
+         w2dXMtUMdKcGJJPCIkX/4/FL7uBmBYswlbMQEjvW4ysFGs7qAlpZ530cm9gBdW7/Web6
+         4+TQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701367799; x=1701972599;
-        h=in-reply-to:autocrypt:from:references:cc:to:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=4Ijehorf0viQFAzf3hyigeTxtOnqdpas+JSnwPR8Alw=;
-        b=H2eljfGtBk8o61a0+864BIEMqZPZy+1lQhwtWrTPEqqjmyGFNon7MoHHiP+oLKdaZy
-         iLDQj6140EtqBFPfBA8ospr/uzbZKJ7/nQ1sLCWdmgYiFly4Ok6Y6488xARPiEUQfYrC
-         SllKJ52oB+a7bnTr6IGo2WBH6e1rsJcLZunvxLvz53SDCztjo9kghfwT+YK+gWxO4ly+
-         GM2q2Ph7b+5nb6cQofdqPUd6zOqK94nyYidYUc3r5YmSLVjnZL1IqYLvbgCilnaxudGw
-         CUfKnL0/3ZT90r978gOpa/YJVqYghEXLoABx5ovr4fs14zbbVIfAs+J2fmVnxLfGvBxj
-         e3tA==
-X-Gm-Message-State: AOJu0YwnM+nuM1RUdN0hXMtEbdHtqbvZbttyJ1a3gcQp+J1IFSAcmcSA
-	oJX0RzIkrQqVDGrH1Jh2obyuuw==
-X-Google-Smtp-Source: AGHT+IEx0xJMN/MT7szKAsxzjqwWFAxGeTCpx6uy+U4fYIRGh6/Tvhakcbvi+TyHSAolCuKL1MjZxQ==
-X-Received: by 2002:a0c:e845:0:b0:67a:2745:3c8e with SMTP id l5-20020a0ce845000000b0067a27453c8emr20897740qvo.46.1701367798743;
-        Thu, 30 Nov 2023 10:09:58 -0800 (PST)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id g13-20020a0ce4cd000000b0067a3ad49979sm696722qvm.96.2023.11.30.10.09.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Nov 2023 10:09:58 -0800 (PST)
-Message-ID: <946c67a4-67e3-4ffb-ab95-6905720e14f3@broadcom.com>
-Date: Thu, 30 Nov 2023 10:09:57 -0800
+        d=1e100.net; s=20230601; t=1701368717; x=1701973517;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=A6XaBmabZtFG50aNMROWpohKVYoF4xocW5H2FTxC+9Y=;
+        b=MqEV3EXPnPogqGfoNcKX6TK9NDLtukWIzA8+FlSgyI9QqNygVLwzKHpYhI1rzl4ZE1
+         qgh/zT9cXwxhGGrf75soNDcmIAt/dY3YRVR2KT/i4dlFIYukWeCdihHWbBhnHoodBGpB
+         DGP+Ez0i80wd45XQzTUpBfVxEwCqD3+9ZfnihkdTCYjXOhVz15WQnSqlfoVMcHNxqrfD
+         VaB1KuBxeT7AxqZnXn7pWSQ3XWo1kUla4Xlhm2PaLTx5iosafmAlGGBoC5Nv3ZHvyRAx
+         bAmcVOaSdIdPplyymNDhFCfZhwoLLGKzyHMP3aNWPCVeK76bEfwovQpdoPz/iYzStf1q
+         Layw==
+X-Gm-Message-State: AOJu0Yy9Xnk+8LFlCDwvdcaPIM2nLyt54l1xlSMcR4L0v9yYWgBI5T7K
+	2I0NlXezc/I6dXWOgKfuiBaBRertt7TbBuyTrI0=
+X-Google-Smtp-Source: AGHT+IECxm8oMNxT8KIHQVCeAUTR2MGh4E9JHpb63/3Y4Q2Le8BmFXxYDbE4XWEDdDdN3V+Hw01yp8c1QDzp4GKgVyg=
+X-Received: by 2002:a81:9a02:0:b0:5d3:b0c5:3001 with SMTP id
+ r2-20020a819a02000000b005d3b0c53001mr1430153ywg.23.1701368717599; Thu, 30 Nov
+ 2023 10:25:17 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 2/2] ARM: dts: bcm2711: Add generic xHCI
-To: Stefan Wahren <wahrenst@gmx.net>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Mathias Nyman <mathias.nyman@intel.com>
-Cc: bcm-kernel-feedback-list@broadcom.com, Cyril Brulebois <kibi@debian.org>,
- linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20231130154229.22334-1-wahrenst@gmx.net>
- <20231130154229.22334-3-wahrenst@gmx.net>
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
- 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
-In-Reply-To: <20231130154229.22334-3-wahrenst@gmx.net>
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-	boundary="0000000000004af376060b628f1c"
+References: <20231121151733.2015384-1-tmaimon77@gmail.com> <20231121151733.2015384-3-tmaimon77@gmail.com>
+ <6aeb28f5-04c2-4723-9da2-d168025c307c@lunn.ch> <CAP6Zq1j0kyrg+uxkXH-HYqHz0Z4NwWRUGzprius=BPC9+WfKFQ@mail.gmail.com>
+ <9ad42fef-b210-496a-aafc-eb2a7416c4df@lunn.ch> <CAP6Zq1jw9uLP_FQGR8=p3Y2NTP6XcNtzkJQ0dm3+xVNE1SpsVg@mail.gmail.com>
+ <CAP6Zq1ijfMSPjk1vPwDM2B+r_vAH3DShhSu_jr8xJyUkTQY89w@mail.gmail.com>
+ <a551aefa-777d-4fd3-b1a5-086dc3e62646@lunn.ch> <CAP6Zq1jVO5y3ySeGNE5-=XWV6Djay5MhGxXCZb9y91q=EA71Vg@mail.gmail.com>
+ <25d0c091-3dce-4d62-a112-c82106809c65@lunn.ch>
+In-Reply-To: <25d0c091-3dce-4d62-a112-c82106809c65@lunn.ch>
+From: Tomer Maimon <tmaimon77@gmail.com>
+Date: Thu, 30 Nov 2023 20:25:06 +0200
+Message-ID: <CAP6Zq1gS_cX9t3bkvvEUAHh=GpBCW6N0vB7zfvhHMVkuxrCh7A@mail.gmail.com>
+Subject: Re: [PATCH v1 2/2] net: stmmac: Add NPCM support
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: alexandre.torgue@foss.st.com, tali.perry1@gmail.com, edumazet@google.com, 
+	krzysztof.kozlowski+dt@linaro.org, linux-stm32@st-md-mailman.stormreply.com, 
+	benjaminfair@google.com, openbmc@lists.ozlabs.org, joabreu@synopsys.com, 
+	joel@jms.id.au, devicetree@vger.kernel.org, j.neuschaefer@gmx.net, 
+	robh+dt@kernel.org, peppe.cavallaro@st.com, 
+	linux-arm-kernel@lists.infradead.org, avifishman70@gmail.com, 
+	venture@google.com, linux-kernel@vger.kernel.org, mcoquelin.stm32@gmail.com, 
+	netdev@vger.kernel.org, davem@davemloft.net
+Content-Type: text/plain; charset="UTF-8"
 
---0000000000004af376060b628f1c
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Hi Andrew,
 
-On 11/30/23 07:42, Stefan Wahren wrote:
-> The BCM2711 SoC also has a generic xHCI. The USB port is currently
-> only usable on the Compute Module 4 (e.g. via IO board). Because
-> DWC2 and xHCI share the same PHY, we let the bootloader enable it
-> on demand.
-> 
-> Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
-> Tested-by: Florian Fainelli <florian.fainelli@broadcom.com>
+Thanks for your input.
 
-And this gives a consistent + 4MB/sec throughput compared to dwc2, so 
-this looks great!
--- 
-Florian
+On Thu, 30 Nov 2023 at 19:26, Andrew Lunn <andrew@lunn.ch> wrote:
+>
+> > I will check with the xpcs maintainer how can we add indirect access
+> > to the xpcs module.
+>
+> https://elixir.bootlin.com/linux/latest/source/drivers/net/ethernet/stmicro/stmmac/dwmac-socfpga.c#L449
+>
+> It creates a regmap for the memory range. On top of that it creates an
+> MDIO bus. You can then access the PCS in the normal way.
+>
+>         Andrew
 
+Best Regards,
 
---0000000000004af376060b628f1c
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
-
-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
-riBJ/K1AFUjRAjFhGV64l++td7dkmnq/X8ET75ti+w1s4FRpFqkD2m7pg5NxdsZphYIXAgMBAAGj
-QjBAMA4GA1UdDwEB/wQEAwIBBjAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBSP8Et/qC5FJK5N
-UPpjmove4t0bvDANBgkqhkiG9w0BAQsFAAOCAQEAS0DbwFCq/sgM7/eWVEVJu5YACUGssxOGhigH
-M8pr5nS5ugAtrqQK0/Xx8Q+Kv3NnSoPHRHt44K9ubG8DKY4zOUXDjuS5V2yq/BKW7FPGLeQkbLmU
-Y/vcU2hnVj6DuM81IcPJaP7O2sJTqsyQiunwXUaMld16WCgaLx3ezQA3QY/tRG3XUyiXfvNnBB4V
-14qWtNPeTCekTBtzc3b0F5nCH3oO4y0IrQocLP88q1UOD5F+NuvDV0m+4S4tfGCLw0FREyOdzvcy
-a5QBqJnnLDMfOjsl0oZAzjsshnjJYS8Uuu7bVW/fhO4FCU29KNhyztNiUGUe65KXgzHZs7XKR1g/
-XzCCBVgwggRAoAMCAQICDBP8P9hKRVySg3Qv5DANBgkqhkiG9w0BAQsFADBbMQswCQYDVQQGEwJC
-RTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMg
-UGVyc29uYWxTaWduIDIgQ0EgMjAyMDAeFw0yMjA5MTAxMjE4MTFaFw0yNTA5MTAxMjE4MTFaMIGW
-MQswCQYDVQQGEwJJTjESMBAGA1UECBMJS2FybmF0YWthMRIwEAYDVQQHEwlCYW5nYWxvcmUxFjAU
-BgNVBAoTDUJyb2FkY29tIEluYy4xGTAXBgNVBAMTEEZsb3JpYW4gRmFpbmVsbGkxLDAqBgkqhkiG
-9w0BCQEWHWZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tMIIBIjANBgkqhkiG9w0BAQEFAAOC
-AQ8AMIIBCgKCAQEA+oi3jMmHltY4LMUy8Up5+1zjd1iSgUBXhwCJLj1GJQF+GwP8InemBbk5rjlC
-UwbQDeIlOfb8xGqHoQFGSW8p9V1XUw+cthISLkycex0AJ09ufePshLZygRLREU0H4ecNPMejxCte
-KdtB4COST4uhBkUCo9BSy1gkl8DJ8j/BQ1KNUx6oYe0CntRag+EnHv9TM9BeXBBLfmMRnWNhvOSk
-nSmRX0J3d9/G2A3FIC6WY2XnLW7eAZCQPa1Tz3n2B5BGOxwqhwKLGLNu2SRCPHwOdD6e0drURF7/
-Vax85/EqkVnFNlfxtZhS0ugx5gn2pta7bTdBm1IG4TX+A3B1G57rVwIDAQABo4IB3jCCAdowDgYD
-VR0PAQH/BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3Vy
-ZS5nbG9iYWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEG
-CCsGAQUFBzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWdu
-MmNhMjAyMDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93
-d3cuZ2xvYmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6
-hjhodHRwOi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNy
-bDAoBgNVHREEITAfgR1mbG9yaWFuLmZhaW5lbGxpQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggr
-BgEFBQcDBDAfBgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUUwwfJ6/F
-KL0fRdVROal/Lp4lAF0wDQYJKoZIhvcNAQELBQADggEBAKBgfteDc1mChZjKBY4xAplC6uXGyBrZ
-kNGap1mHJ+JngGzZCz+dDiHRQKGpXLxkHX0BvEDZLW6LGOJ83ImrW38YMOo3ZYnCYNHA9qDOakiw
-2s1RH00JOkO5SkYdwCHj4DB9B7KEnLatJtD8MBorvt+QxTuSh4ze96Jz3kEIoHMvwGFkgObWblsc
-3/YcLBmCgaWpZ3Ksev1vJPr5n8riG3/N4on8gO5qinmmr9Y7vGeuf5dmZrYMbnb+yCBalkUmZQwY
-NxADYvcRBA0ySL6sZpj8BIIhWiXiuusuBmt2Mak2eEv0xDbovE6Z6hYyl/ZnRadbgK/ClgbY3w+O
-AfUXEZ0xggJtMIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52
-LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwT
-/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEICUqPh3rtq6/G1tS
-dOWcChUoha812ukit+eW3z+02fzMMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
-AQkFMQ8XDTIzMTEzMDE4MDk1OVowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
-AWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEH
-MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQAX5nASrh8fY0TbJq424j29WtVD1ZH7zs7V
-JI/taYY9rEUpQ0ZuqMeP28tuKGTJxHV9nMRG47DZTSZUXHcBKYyf7jSeBoCuHBK4OTjylAsM44w6
-9262TSYjqpAVMShJYZh6cPMqXojBxtqtFcnHkt+9CKX4eEperPiD/+hc5l180e5JLLKg9PCS0PAf
-iWvy6IAUfJDiVsI6y2lVdoq2RTCT4kc12/gQc4ovkujIpSXd4eNlllDdwQVVbQZ574EvBbjkwG1e
-aqDrMZzx6E6fOjimxalx1/Vwduu8q80cnSVkQ6uKdnTFZNZDQfJgk2m8MEki2Knb3t6GcZRSCZoZ
-Pbpu
---0000000000004af376060b628f1c--
+Tomer
 
