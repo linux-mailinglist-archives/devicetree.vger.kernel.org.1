@@ -1,142 +1,199 @@
-Return-Path: <devicetree+bounces-20374-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20375-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48E437FEFC8
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 14:13:14 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35CC07FEFD2
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 14:17:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7649A1C2096E
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 13:13:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E9E9C281F0D
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 13:17:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 999953D38E;
-	Thu, 30 Nov 2023 13:13:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 799333E47F;
+	Thu, 30 Nov 2023 13:17:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="XGIOLx8Z"
+	dkim=pass (2048-bit key) header.d=ragnatech-se.20230601.gappssmtp.com header.i=@ragnatech-se.20230601.gappssmtp.com header.b="c1zz94ao"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6F86D6C;
-	Thu, 30 Nov 2023 05:13:06 -0800 (PST)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AUAX9tP018655;
-	Thu, 30 Nov 2023 13:13:03 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=+80nq5HKyboBab0Chv7EqFCq9FYjhjhHHD23iXvweeA=;
- b=XGIOLx8Zq6kqx1UgB5f8454KUbuDyN+0SsY9ZN8rfarD9aPBCpoWzW/ChmF+dKIeSCV7
- WHBxfzXxXcnapo0GieUfp4nvlBvtlBsZ/YptbrCguw8FEg4D4HgoNkxagEB1tN2S0owJ
- 0uCEfJYu1ouRv5DuOcnZ+L9useHXQXwYIqpX7an44r3AL7B3dUE0me1UjcvZ76fVf+ju
- jQwWzt8vCxJF6TQPNIQNGMOMvBvtBJIjbacGuly9u2oqcwYU+i7meDJor0/oxCRcPsoz
- aX9Fh/tL64js2m2eMPPKc2sW1otJdGGpiTMb/coMuKzUUaVL8Y+fFJhfTqa/xClGehUw gw== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uprhdrbph-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 30 Nov 2023 13:13:03 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AUDD1hS015654
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 30 Nov 2023 13:13:02 GMT
-Received: from [10.239.133.49] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 30 Nov
- 2023 05:12:58 -0800
-Message-ID: <5ef0372a-2b9d-4a19-bbb4-2c6ce29dbe79@quicinc.com>
-Date: Thu, 30 Nov 2023 21:12:56 +0800
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1ECB3D6C
+	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 05:17:06 -0800 (PST)
+Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2c9c1e39defso11618071fa.1
+        for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 05:17:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ragnatech-se.20230601.gappssmtp.com; s=20230601; t=1701350224; x=1701955024; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=NNu7981w+b/EsarpnTnNbtY/sRZQqtfWb3hWpd3oycg=;
+        b=c1zz94aoCFk2x8YbXh+aDxQnQ2iV5kB1rzFIFrDBuPUxqOqQ+C33mh1MZMD4aw30ef
+         NxRQAkp7yPfFnZB2fpjv5zMEwIPsXZi7aSsvb99EvUXiYmO7ho/3UOv82zw0r1ZGAVFh
+         rch9lO/w7GInVTOGSOrqaOTTcMpoOY5VMiLZXtWvNqe85tUIHvJg7o2AbarwQyO6xlHb
+         tSb2mUyz8io4oWc8E+1qGuYyTxY3LbpKbmfBs+CSuC3zpDe6c+BgTk/O2X0BHmudoBTg
+         HyH6+a6y238cg2lmbPq4pL7t5q+4sEcmpgO8QcQihKGnOiHaxMV7EzsWOOtVM7ilrSxQ
+         m0jQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701350224; x=1701955024;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=NNu7981w+b/EsarpnTnNbtY/sRZQqtfWb3hWpd3oycg=;
+        b=TEfS8RMtWtW/q8MoDRe9XY9TYnFOcZFX48jkpHRrvgz2OM+zhVDJD2uldBPmyUn8av
+         nOH20er71zKRD1/WI1NhanrzzFijZ7eOWfTJcW/uyMlCmNBsBdI1/WbCF0onsDcgut5p
+         24fopVisluaHeZfsVg+R4tY94QVooAFeaW/10EeD2LCcPv1wZpvuLDVjXcKHBdFGYk0E
+         km8g6cedL+GZEud0nYjymuo6hCw+/kagKv4QZ67L8q5CrlK3fM2Co0VFLamk8zCtQNag
+         2nV5FKTwIxnHK46SrbOdm21I9s8VhloXhyQS2HUm46ed4tpghkc1iPg+oloPbSu6LuZ2
+         Ml4Q==
+X-Gm-Message-State: AOJu0YyHi4cV0JrOmCrMZ+xS060RDvF1xzMkw+KcjPz4/nNygL94z7vK
+	EEeIrFXxsaC/AzplMIsysDZZrg==
+X-Google-Smtp-Source: AGHT+IE6Fk5mUymExBFFbYGMykHg37q2l+bapF/at/yPgH4L69vguyhE9w1VT0LcWJ9+IM+shvK/5A==
+X-Received: by 2002:a2e:9d91:0:b0:2c9:c0c5:ab7d with SMTP id c17-20020a2e9d91000000b002c9c0c5ab7dmr3263228ljj.13.1701350224208;
+        Thu, 30 Nov 2023 05:17:04 -0800 (PST)
+Received: from localhost (h-46-59-36-206.A463.priv.bahnhof.se. [46.59.36.206])
+        by smtp.gmail.com with ESMTPSA id u3-20020a2e9b03000000b002c9c61cdcbasm140981lji.5.2023.11.30.05.17.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 30 Nov 2023 05:17:02 -0800 (PST)
+Date: Thu, 30 Nov 2023 14:17:01 +0100
+From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: renesas: Document preferred compatible
+ naming
+Message-ID: <ZWiLTYU_Hj0bl1gn@oden.dyn.berto.se>
+References: <20231125232821.234631-1-niklas.soderlund+renesas@ragnatech.se>
+ <deacc7ea-6fad-47d6-978b-3f639aa5da35@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/3] arm64: dts: qcom: msm8996: Fix 'in-ports' is a
- required property
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross
-	<agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Tao Zhang
-	<quic_taozha@quicinc.com>
-References: <20231129143815.7892-1-quic_jinlmao@quicinc.com>
- <20231129143815.7892-2-quic_jinlmao@quicinc.com>
- <3527d540-3e3f-4edb-b5f2-6ac481132c06@linaro.org>
- <591e1aca-20ca-4d42-809d-12cd12ddadb3@quicinc.com>
- <35916812-af55-4b2a-99e5-8566e945cb6e@linaro.org>
-From: Jinlong Mao <quic_jinlmao@quicinc.com>
-In-Reply-To: <35916812-af55-4b2a-99e5-8566e945cb6e@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: yPFr3G_-Q2RtahagzOpdrtj6hWIS8xjj
-X-Proofpoint-GUID: yPFr3G_-Q2RtahagzOpdrtj6hWIS8xjj
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-30_11,2023-11-30_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- phishscore=0 spamscore=0 suspectscore=0 impostorscore=0 mlxlogscore=643
- clxscore=1015 mlxscore=0 priorityscore=1501 adultscore=0 bulkscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311060000 definitions=main-2311300099
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <deacc7ea-6fad-47d6-978b-3f639aa5da35@linaro.org>
 
+Hi Krzysztof,
 
-
-On 11/30/2023 8:06 PM, Krzysztof Kozlowski wrote:
-> On 30/11/2023 12:15, Jinlong Mao wrote:
->>
->>
->> On 11/30/2023 4:55 PM, Krzysztof Kozlowski wrote:
->>> On 29/11/2023 15:38, Mao Jinlong wrote:
->>>> The inport of funnel@3023000 connects to a source which is not supported
->>>> in current linux kernel. Remove the device tree node of funnel@3023000
->>>> to fix the warning. It will be added once the driver support to the
->>>> source is added to linux kernel.
->>>
->>> Thanks for the changes, but that's not correct reason to remove DTS
->>> code. What kernel supports or not, should be irrelevant for the DTS. DTS
->>> for example is used in other projects - did you check if they have the
->>> same issues? Anyway, DTS describes the hardware, so how current kernel
->>> support defines what is and what is not in the hardware?
->>>
->>>
->>> Best regards,
->>> Krzysztof
->>
->> Hi Krzysztof,
->>
->> The funnel dt node must have in-ports node. It is to describe the input
->> connection of funnel HW. But there is no dt_binding doc to describe the
->> DT node of the HW connected to funnel@3023000. So remove the funnel to
->> solve the warning as of now. The funnel will be added back once driver
->> and dt_binding are added for the HW.
->>
->> Documentation/devicetree/bindings/arm/arm,coresight-dynamic-funnel.yaml
+On 2023-11-28 10:51:03 +0100, Krzysztof Kozlowski wrote:
+> > +properties:
+> > +  compatible:
+> > +    oneOf:
+> > +      # Preferred naming style for compatibles of SoC components:
+> > +      - pattern: "^renesas,emev2-[a-z0-9-]+$"
+> > +      - pattern: "^renesas,r7s[0-9]+-[a-z0-9-]+$"
+> > +      - pattern: "^renesas,r8a[a-z0-9]+-[a-z0-9-]+$"
+> > +      - pattern: "^renesas,r9a[0-9]+g[a-z0-9]+-[a-z0-9-]+$"
+> > +      - pattern: "^renesas,rcar-[a-z0-9-]+$"
+> > +      - pattern: "^renesas,rz-[a-z0-9-]+$"
+> > +      - pattern: "^renesas,rza-[a-z0-9-]+$"
+> > +      - pattern: "^renesas,rza1-[a-z0-9-]+$"
+> > +      - pattern: "^renesas,rza2-[a-z0-9-]+$"
+> > +      - pattern: "^renesas,rzg2l-[a-z0-9-]+$"
+> > +      - pattern: "^renesas,rzn1[a-z0-9]*-[a-z0-9-]+$"
+> > +      - pattern: "^renesas,rzv2m-[a-z0-9-]+$"
+> > +      - pattern: "^renesas,sh-[a-z0-9-]+$"
+> > +      - pattern: "^renesas,sh7[a-z0-9]+-[a-z0-9-]+$"
 > 
-> Why we cannot add now the binding for the connected hardware? It's not
-> really related to the driver.
+> Why so many different patterns? Why it cannot be for example:
+> "^renesas,rz[a-z0-9]*-[a-z0-9-]+$" to cover multiple entries?
 > 
-> Best regards,
-> Krzysztof
-
-Do you mean yaml file can be added before the driver code is merged ?
-
-Thanks
-Jinlong Mao
+> The point is not to validate the devices. Other bindings do it. The
+> point is to have one or two patterns to enforce ordering of SoC-block.
 > 
+> The size of this file suggests you either over-complicated the thing or
+> there is little benefit of adding it.
+
+As you point out below there is a lot of patterns that use the style not 
+preferred and the idea to detect future additions of this I thought it a 
+good idea to make these more specialized. If we think that is a bad idea 
+I can try to make fewer more generic ones.
+
+> 
+> > +
+> > +      # SoC agnostic compatibles - new compatibles are OK:
+> 
+> Why new compatibles are ok?
+> 
+> > +      - enum:
+> > +          - renesas,cpg-div6-clock
+> > +          - renesas,cpg-mstp-clocks
+> > +          - renesas,intc-irqpin
+> > +          - renesas,smp-sram
+> 
+> smp-sram can have new compatibles? I am sorry, but this needs explanation...
+
+The intention is to list SoC agnostic compatibles here, or put another 
+way false positives to the generic pattern "renesas,.*-.*". So no 
+"renesas,smp-sram" can't have new compatibles but there might be new 
+renesas compatible strings that hit the pattern that is not related to a 
+SoC. Does this make sens?
+
+> 
+> > +
+> > +      # Legacy namings - variations of existing patterns/compatibles are OK,
+> > +      # but do not add completely new entries to these:
+> > +      - pattern: "^renesas,can-[a-z0-9]+$"
+> > +      - pattern: "^renesas,dmac-[a-z0-9]+$"
+> > +      - pattern: "^renesas,du-[a-z0-9]+$"
+> > +      - pattern: "^renesas,ether-[a-z0-9]+$"
+> > +      - pattern: "^renesas,etheravb-[a-z0-9]+$"
+> > +      - pattern: "^renesas,etheravb-rcar-gen[0-9]$"
+> > +      - pattern: "^renesas,gether-[a-z0-9]+$"
+> > +      - pattern: "^renesas,gpio-[a-z0-9]+$"
+> > +      - pattern: "^renesas,hscif-[a-z0-9]+$"
+> > +      - pattern: "^renesas,i2c-[a-z0-9]+$"
+> > +      - pattern: "^renesas,iic-[a-z0-9]+$"
+> > +      - pattern: "^renesas,intc-ex-[a-z0-9]+$"
+> > +      - pattern: "^renesas,intc-irqpin-[a-z0-9]+$"
+> > +      - pattern: "^renesas,ipmmu-[a-z0-9]+$"
+> > +      - pattern: "^renesas,irqc-[a-z0-9]+$"
+> > +      - pattern: "^renesas,jpu-[a-z0-9]+$"
+> > +      - pattern: "^renesas,mmcif-[a-z0-9]+$"
+> > +      - pattern: "^renesas,msiof-[a-z0-9]+$"
+> > +      - pattern: "^renesas,pci-[a-z0-9]+$"
+> > +      - pattern: "^renesas,pci-rcar-gen[0-9]$"
+> > +      - pattern: "^renesas,pcie-[a-z0-9]+$"
+> > +      - pattern: "^renesas,pcie-rcar-gen[0-9]$"
+> > +      - pattern: "^renesas,pfc-[a-z0-9]+$"
+> > +      - pattern: "^renesas,pwm-[a-z0-9]+$"
+> > +      - pattern: "^renesas,qspi-[a-z0-9]+$"
+> > +      - pattern: "^renesas,rcar_sound-[a-z0-9]+$"
+> > +      - pattern: "^renesas,riic-[a-z0-9]+$"
+> > +      - pattern: "^renesas,rspi-[a-z0-9]+$"
+> > +      - pattern: "^renesas,sata-[a-z0-9]+(-es1)?$"
+> > +      - pattern: "^renesas,scif-[a-z0-9]+$"
+> > +      - pattern: "^renesas,scifa-[a-z0-9]+$"
+> > +      - pattern: "^renesas,scifb-[a-z0-9]+$"
+> > +      - pattern: "^renesas,sdhi-[a-z0-9]+$"
+> > +      - pattern: "^renesas,thermal-[a-z0-9]+$"
+> > +      - pattern: "^renesas,tmu-[a-z0-9]+$"
+> > +      - pattern: "^renesas,tpu-[a-z0-9]+$"
+> > +      - pattern: "^renesas,usb-phy-[a-z0-9]+$"
+> > +      - pattern: "^renesas,usb2-phy-[a-z0-9]+$"
+> > +      - pattern: "^renesas,usbhs-[a-z0-9]+$"
+> > +      - pattern: "^renesas,vin-[a-z0-9]+$"
+> > +      - pattern: "^renesas,xhci-[a-z0-9]+$"
+> 
+> No, wait, you basically listed most of the SoC as exceptions. What SoC
+> blocks exactly are you going to cover in such case with your rules?
+
+As Geert points out these exists for historical reasons, but we don't 
+want any more of this style.
+
+You ask in your reply to Geert that we should reconsider if this is 
+still useful. I think it is as it achieves the over all goal, detect if 
+any new of the not preferred style is added. But I won't press it, if 
+you or Geert think this is a bad route I won't spend more time on this 
+work.
+
+@Geert: What do you think?
+
+-- 
+Kind Regards,
+Niklas Söderlund
 
