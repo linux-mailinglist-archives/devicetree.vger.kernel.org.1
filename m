@@ -1,106 +1,180 @@
-Return-Path: <devicetree+bounces-20371-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20372-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA2827FEF86
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 13:51:44 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AD917FEF9A
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 13:58:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6DD0C281F09
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 12:51:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E8A7C1F20CD1
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 12:58:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FE9B3219D;
-	Thu, 30 Nov 2023 12:51:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE7FC3B197;
+	Thu, 30 Nov 2023 12:58:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hLxnPcLO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uZiioLM3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63CA92B9A3
-	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 12:51:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7984FC433C8;
-	Thu, 30 Nov 2023 12:51:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0DB03C683;
+	Thu, 30 Nov 2023 12:58:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65182C433C8;
+	Thu, 30 Nov 2023 12:58:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701348699;
-	bh=whpAvqeWMJ4SUO2YBq9Sm8+Qb2Or4IsFgJpf3mW6gzo=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=hLxnPcLOjf4scmTFShSA6euIg7GuHrDzeWs9XSAV/gQRuHQMYHCAk3eGIVoTFDBKk
-	 vC7kPrj4g9Xf2wKqn5XcOq0C2VsbOSih3feRRJRpJBUzcUP5rE3bLrz7UJZbZh1zbr
-	 wxZPFFQyBUJUNNGRPJ4JZb7h/jYW0BbQMtwgE9mN8ltkQiyIcVHJ9W/PAD9VvVHzCg
-	 cUKKn9drBbL7f9qsSVGczJdJlcQ2qNLNv2hoJ4AxGgFM7A3W2Ngysqh9aFVopOw1IC
-	 uCU/J6vhPLX3vz11SSbZpC0jBy6BNU+PHvrvDMQ3Sm9ut6Ogebw/AjTy4M34PrsGeZ
-	 jieJSsDJe1i5g==
+	s=k20201202; t=1701349132;
+	bh=k61SVR5HqRg7HEBrqbj2RC0wILozeLcKJTkF4ff/FCY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=uZiioLM3vGhd04qm7k7+NnViHdFYh5nUaeVbfNcQ7pkEQfQ53udUJq2BV1hqCB+tL
+	 ktmNEhQ5jqdFf0dT1SJRszxd0JNbSxbkgN657cvdVJeVjiqAeOClH5yxYy+qxIT1Sh
+	 g93Vc52elbcNEYTcBo891fzZPSWoZiIZZBmjfWHSTHtRfV1qGgNeL1vp3I9yn/wi4g
+	 roKhPGMFpeCfecjaRhTv7mdoySSRfO43EizHR3SUVJBZL38KudxZlQ+s3oS+7Zjttc
+	 uPBXl52i2/u3veXdotEqe7ANYTsFEwOMLs+S+b4X/3k+frVOkG1tHrGjWiaYGlLkIp
+	 WTVcmgGk9zreA==
+Date: Thu, 30 Nov 2023 12:58:41 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Thomas Gleixner <tglx@linutronix.de>,
-	Marc Zyngier <maz@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Chao Wei <chao.wei@sophgo.com>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Anup Patel <anup@brainfault.org>,
-	Inochi Amaoto <inochiama@outlook.com>
-Cc: Conor Dooley <conor.dooley@microchip.com>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v4 0/7] Add Huashan Pi board support
-Date: Thu, 30 Nov 2023 12:51:02 +0000
-Message-Id: <20231130-radiator-cut-167bcaaa2cd6@spud>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To:  <IA1PR20MB495399CAF2EEECC206ADA7ABBBD5A@IA1PR20MB4953.namprd20.prod.outlook.com>
-References:  <IA1PR20MB495399CAF2EEECC206ADA7ABBBD5A@IA1PR20MB4953.namprd20.prod.outlook.com>
+To: Inochi Amaoto <inochiama@outlook.com>
+Cc: Yu-Chien Peter Lin <peterlin@andestech.com>,
+	Guo Ren <guoren@kernel.org>, acme@kernel.org,
+	adrian.hunter@intel.com, ajones@ventanamicro.com,
+	alexander.shishkin@linux.intel.com, andre.przywara@arm.com,
+	anup@brainfault.org, aou@eecs.berkeley.edu, atishp@atishpatra.org,
+	conor+dt@kernel.org, conor.dooley@microchip.com,
+	devicetree@vger.kernel.org, dminus@andestech.com, evan@rivosinc.com,
+	geert+renesas@glider.be, heiko@sntech.de, irogers@google.com,
+	jernej.skrabec@gmail.com, jolsa@kernel.org, jszhang@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-perf-users@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	locus84@andestech.com, magnus.damm@gmail.com, mark.rutland@arm.com,
+	mingo@redhat.com, n.shubin@yadro.com, namhyung@kernel.org,
+	palmer@dabbelt.com, paul.walmsley@sifive.com, peterz@infradead.org,
+	prabhakar.mahadev-lad.rj@bp.renesas.com, rdunlap@infradead.org,
+	robh+dt@kernel.org, samuel@sholland.org, sunilvl@ventanamicro.com,
+	tglx@linutronix.de, tim609@andestech.com, uwu@icenowy.me,
+	wens@csie.org, will@kernel.org, ycliang@andestech.com
+Subject: Re: [PATCH v4 09/13] dt-bindings: riscv: Add T-Head PMU extension
+ description
+Message-ID: <20231130-isotope-runaround-9afb98579734@spud>
+References: <ZWhT_VSpl2aksVK7@APC323>
+ <IA1PR20MB4953A05B9162AA2659DE78A5BB82A@IA1PR20MB4953.namprd20.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1381; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=vYNZ6BjbkHyaeAO19u7sN0ydYCv26psNewnOx/yeJ/c=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDKkZrSZ6DU2KyXmHeM9dlr9kGLV2o86lTQty9GxqM+WfT 9Tia/LvKGVhEONgkBVTZEm83dcitf6Pyw7nnrcwc1iZQIYwcHEKwER+rGT4w8X+tHn1SZVfVv0O 4Ysqb9a0u6qsnzdp+7SYDu6bsxe/P8Pwz4r51D8tN8ZQk919OjnHjwh2LVZZIHpvh0Z/YEjorX8 vWAE=
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="+TcmYWDdQWc1nRE2"
+Content-Disposition: inline
+In-Reply-To: <IA1PR20MB4953A05B9162AA2659DE78A5BB82A@IA1PR20MB4953.namprd20.prod.outlook.com>
 
-From: Conor Dooley <conor.dooley@microchip.com>
 
-On Thu, 19 Oct 2023 07:18:00 +0800, Inochi Amaoto wrote:
-> Huashan Pi board is an embedded development platform based on the
-> CV1812H chip. Add minimal device tree files for this board.
-> Currently, it can boot to a basic shell.
-> 
-> NOTE: this series is based on the Jisheng's Milk-V Duo patch.
-> 
-> Link: https://en.sophgo.com/product/introduce/huashan.html
-> Link: https://en.sophgo.com/product/introduce/cv181xH.html
-> Link: https://lore.kernel.org/linux-riscv/20231006121449.721-1-jszhang@kernel.org/
-> 
-> [...]
+--+TcmYWDdQWc1nRE2
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Applied to riscv-dt-for-next, thanks! LMK if something looks not as
-expected.
+On Thu, Nov 30, 2023 at 08:16:38PM +0800, Inochi Amaoto wrote:
+> >
+> >Hi Inochi,
+> >
+> >On Thu, Nov 30, 2023 at 04:29:22PM +0800, Inochi Amaoto wrote:
+> >>>
+> >>> Hi Guo Ren,
+> >>>
+> >>> On Thu, Nov 23, 2023 at 05:14:30AM +0800, Guo Ren wrote:
+> >>>> On Wed, Nov 22, 2023 at 8:17=E2=80=AFPM Yu Chien Peter Lin
+> >>>> <peterlin@andestech.com> wrote:
+> >>>>>
+> >>>>> Document the ISA string for T-Head performance monitor extension
+> >>>>> which provides counter overflow interrupt mechanism.
+> >>>>>
+> >>>>> Signed-off-by: Yu Chien Peter Lin <peterlin@andestech.com>
+> >>>>> ---
+> >>>>> Changes v2 -> v3:
+> >>>>>   - New patch
+> >>>>> Changes v3 -> v4:
+> >>>>>   - No change
+> >>>>> ---
+> >>>>>  Documentation/devicetree/bindings/riscv/extensions.yaml | 6 ++++++
+> >>>>>  1 file changed, 6 insertions(+)
+> >>>>>
+> >>>>> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yam=
+l b/Documentation/devicetree/bindings/riscv/extensions.yaml
+> >>>>> index c91ab0e46648..694efaea8fce 100644
+> >>>>> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
+> >>>>> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
+> >>>>> @@ -258,5 +258,11 @@ properties:
+> >>>>>              in commit 2e5236 ("Ztso is now ratified.") of the
+> >>>>>              riscv-isa-manual.
+> >>>>>
+> >>>>> +        - const: xtheadpmu
+> >>>>> +          description:
+> >>>>> +            The T-Head performance monitor extension for counter o=
+verflow. For more
+> >>>>> +            details, see the chapter 12 in the Xuantie C906 user m=
+anual.
+> >>>>> +            https://github.com/T-head-Semi/openc906/tree/main/doc
+> >>>>> +
+> >>>>>  additionalProperties: true
+> >>>>>  ...
+> >>>>> --
+> >>>>> 2.34.1
+> >>>>>
+> >>>> Reviewed-by: Guo Ren <guoren@kernel.org>
+> >>>
+> >>> Thanks for the review.
+> >>> Would you share document about T-Head PMU?
+> >>>
+> >>
+> >> Hi, Peter Lin:
+> >>
+> >> You can use the following two document to get all events:
+> >> https://github.com/T-head-Semi/openc906/tree/main/doc
+> >> https://github.com/T-head-Semi/openc910/tree/main/doc
+> >>
+> >> There are also some RTL code can describe these events:
+> >> https://github.com/T-head-Semi/openc910/blob/e0c4ad8ec7f8c70f649d826eb=
+d6c949086453272/C910_RTL_FACTORY/gen_rtl/pmu/rtl/ct_hpcp_top.v#L1123
+> >> https://github.com/T-head-Semi/openc906/blob/af5614d72de7e5a4b8609c427=
+d2e20af1deb21c4/C906_RTL_FACTORY/gen_rtl/pmu/rtl/aq_hpcp_top.v#L543
+> >>
+> >> The perf events json can also be used as document, this is already
+> >> applied (with more detailed explanation):
+> >> https://lore.kernel.org/all/IA1PR20MB495325FCF603BAA841E29281BBBAA@IA1=
+PR20MB4953.namprd20.prod.outlook.com/
+> >
+> >Thanks for reaching out!
+> >The updated description will be:
+> >
+> >- const: xtheadpmu
+> >  description:
+> >    The T-Head performance monitor extension for counter overflow, as ra=
+tified
+> >    in commit bd9206 ("Initial commit") of Xuantie C906 user manual.
+> >    https://github.com/T-head-Semi/openc906/tree/main/doc
+> >
+> >Is it OK with you?
+> >
+>=20
+> I suggest using perf event json as event description. The jsons provide
+> more detailed explanation for these events than the user manual.
 
-[1/7] dt-bindings: interrupt-controller: Add SOPHGO CV1812H plic
-      https://git.kernel.org/conor/c/21a34e63afcc
-[2/7] dt-bindings: timer: Add SOPHGO CV1812H clint
-      https://git.kernel.org/conor/c/06ea2a1968a9
-[3/7] dt-bindings: riscv: Add SOPHGO Huashan Pi board compatibles
-      https://git.kernel.org/conor/c/d7b92027834e
-[4/7] riscv: dts: sophgo: Separate compatible specific for CV1800B soc
-      https://git.kernel.org/conor/c/5b5dce3951b2
-[5/7] riscv: dts: sophgo: cv18xx: Add gpio devices
-      https://git.kernel.org/conor/c/dd791b45c866
-[6/7] riscv: dts: sophgo: add initial CV1812H SoC device tree
-      https://git.kernel.org/conor/c/681ec684a741
-[7/7] riscv: dts: sophgo: add Huashan Pi board device tree
-      https://git.kernel.org/conor/c/2c36b0cfb408
+Does the "perf event json" describe the registers and interrupt behaviour?
 
-Thanks,
-Conor.
+--+TcmYWDdQWc1nRE2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZWiHAAAKCRB4tDGHoIJi
+0igkAQDOfuuBe9DSefozhmWIFmSJzSSWtODAmHdNEeaJ2/bbUAD+KQI5g0aV+rX2
+4Hztl6JmSKirDEkCeX2FqX9R+Ln89A0=
+=qBbG
+-----END PGP SIGNATURE-----
+
+--+TcmYWDdQWc1nRE2--
 
