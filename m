@@ -1,174 +1,135 @@
-Return-Path: <devicetree+bounces-20281-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20282-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB76F7FEAE7
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 09:38:32 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68C7A7FEB1E
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 09:47:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 65E0A2820FC
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 08:38:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D7E7DB20E7F
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 08:47:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D34FA14AA4;
-	Thu, 30 Nov 2023 08:38:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7389C2D606;
+	Thu, 30 Nov 2023 08:47:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qEEQgxpI"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="FTInMXls"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08E691B3
-	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 00:38:28 -0800 (PST)
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-9ffb5a4f622so83405866b.0
-        for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 00:38:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701333506; x=1701938306; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ByMGgvmZASiQIVH9MAuEHTi1856dpriiJoIb9u+u7+w=;
-        b=qEEQgxpI2xIhuUmCgVb9oviTP56RubSs61J81zi4ym9BIEATBEhM61L/KOb2lQ8wX3
-         JLQUNS3mWLm0omj7DhCTiraUXG/opCi8nrpIRuEboGjxzWEaZgvQn2T22avitOLqnXZD
-         xZd62R9dChiKe3snJxs+F2/Ck2Kj+sFcMx5k4DAYALYpp2gsCiMqSkhya7DJj+JDtqry
-         /KXV5Z4YEy0jop/0GynYohy/iONA7DVTj6V+300WqdiJ8CNNRyAfp5P8x+ABCDiJ/PM7
-         NDGCYKveVd+WXiPwmv9z/X4O0iCj4jQPzZ88AgVsltNfB2H1Cb56QmfPDzTAskcAvZrt
-         Fkgw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701333506; x=1701938306;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ByMGgvmZASiQIVH9MAuEHTi1856dpriiJoIb9u+u7+w=;
-        b=t4Gry1mzWjG1EpGQRd6REjTTU1G58uDwxV8mn83lnXtRw5o0MdeHq9iairGJpYl5ri
-         2QmvxcIVAGniNEuMTFdE5a4XI5iurkDnkSMQVwx+bPCFGinOYOoS4C7WK6ucp8u/PAww
-         k2YCUUCg3XLvcwIvw1UP3RZq7pZ9EU5FIBO9Wno4sD5HolHuDLWp/F2zWIsL5TXhk8/D
-         nsA4k3LvIwE7quGHaQb9lMuOV1i93c2Cf6B54+RxQJwhvt7hRWFaIsBgxgZCEzx0O8cM
-         iRwZ8uk381AaPPacYnbbuO88UO8PUKjFmJCDJ1tQS4eCkq3tTqm6Wmx9m4QLyFexg0Or
-         69pA==
-X-Gm-Message-State: AOJu0YzNwdRnTBJ6INqI0/4njGx/kcOVsGvZg1ZrMnkYWXRdoeTWMSI6
-	TtBm35WJd928zGTk/jSqIY3BIg==
-X-Google-Smtp-Source: AGHT+IEQQx94FuTdVfJw48iGjzJETkCL01QchtZ9pob4rAsilwf7HgMVhkZJXuS/hCi6Hk+Y4hCsyA==
-X-Received: by 2002:a17:906:8402:b0:a00:2e6d:3eb0 with SMTP id n2-20020a170906840200b00a002e6d3eb0mr15627187ejx.49.1701333506407;
-        Thu, 30 Nov 2023 00:38:26 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.223.109])
-        by smtp.gmail.com with ESMTPSA id a7-20020a1709062b0700b009fc8f309183sm428214ejg.51.2023.11.30.00.38.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Nov 2023 00:38:25 -0800 (PST)
-Message-ID: <5dbdf7bd-cfa3-492b-a0a3-fdc323cf11f8@linaro.org>
-Date: Thu, 30 Nov 2023 09:38:23 +0100
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2082.outbound.protection.outlook.com [40.107.92.82])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 934F9A2;
+	Thu, 30 Nov 2023 00:47:04 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Gv/mc6BLtJd4Wt1MhYCFeszoFKwlHOxNUDreAU1vBzZEPhNH15AoQ+1rvAJlOPZ8EjksracRRebH0T9KRAzwzxilRPK8oDxcEsiiKny7U1acVPE5QIfV60Ch8UtvfWsKYGSYkbG2tmeh5GZVUNXJf80vAET7OKUPTUEHmWZJ5LJZ8ly2XyZXT855Ydo0Yya/GGnITOQSlUXX7aOMpIK9IKwtln/bJIAEv1nJRC9JYkghZc4a766ZhkafbRkfey7qpEQA9lFtJu1zGOq8fxgh/lB+ysUEf+H3TsUqXg2R0Bq2pnwh2Oj3mwOXjheLOuI7RxxZnWEYT4bBeQnAE5+rog==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=jPFZx6Yg7tKg0fdBcKXYmEcQWRs4QQjiZcK6/4mnxag=;
+ b=WOoFSC4saLjwg3LDtsap/fZZNa2oAP75ph9AG4yCgojJ9pRu+qG0MjQMuwmHpaXrJQSanl2gT1dmJUwzUVI1llAZiuqqiG8+rIlwErxSUdtgG2FotBVKLCX5xTauPC3qEbXhCKoJ5cS8cc99DFYrgS4Afbp4Tj+bMGkrXJ5n5Z4qUkGJEsN85BJngbtk8+tgBSG1NhRhcOvrFYlF/AnXkG8lE7yzj1zVv5cFGFXfHrDKtaWfZe/g7igj0OdB2I/5AfayUni7b5vewF3zlIUtq4hFzNQ9SWACrgsa3PHvuIaGLHeS/x1BGljob8Nw4qwR95zoLaMLWzvXS7j3NRZmIg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=jPFZx6Yg7tKg0fdBcKXYmEcQWRs4QQjiZcK6/4mnxag=;
+ b=FTInMXls1vd9DPijELpFZWLRPqdxbqdGcJNpdK2m3YW3e9rTWFBdBqrNaHr25Lqif2fqkl9hRSTS3R+wLU/HZwEPL1XJC2qi6VjPTUMXdHGcMv1q2v4s9D6Ygph0ccP0z2tcWTLxyYAeffEe7kFqzFEmUpnmTXTxd9Ss5xLRi90=
+Received: from MN2PR18CA0006.namprd18.prod.outlook.com (2603:10b6:208:23c::11)
+ by SA0PR12MB4527.namprd12.prod.outlook.com (2603:10b6:806:73::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.24; Thu, 30 Nov
+ 2023 08:46:59 +0000
+Received: from MN1PEPF0000ECD4.namprd02.prod.outlook.com
+ (2603:10b6:208:23c:cafe::ce) by MN2PR18CA0006.outlook.office365.com
+ (2603:10b6:208:23c::11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.24 via Frontend
+ Transport; Thu, 30 Nov 2023 08:46:59 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ MN1PEPF0000ECD4.mail.protection.outlook.com (10.167.242.132) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7046.17 via Frontend Transport; Thu, 30 Nov 2023 08:46:59 +0000
+Received: from localhost (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Thu, 30 Nov
+ 2023 02:46:56 -0600
+From: Michal Simek <michal.simek@amd.com>
+To: <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
+	<michal.simek@xilinx.com>, <git@xilinx.com>
+CC: Conor Dooley <conor+dt@kernel.org>, Guenter Roeck <linux@roeck-us.net>,
+	Jean Delvare <jdelvare@suse.com>, Jonathan Cameron <jic23@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring
+	<robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-hwmon@vger.kernel.org>
+Subject: [PATCH] dt-bindings: hwmon: Increase max number of io-channels
+Date: Thu, 30 Nov 2023 09:46:54 +0100
+Message-ID: <441d9babc7042892350a58ba4300df4761876ae3.1701334008.git.michal.simek@amd.com>
+X-Mailer: git-send-email 2.36.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: display: Add Sharp LS027B7DH01 Memory
- LCD
-Content-Language: en-US
-To: Mehdi Djait <mehdi.djait@bootlin.com>, mripard@kernel.org,
- maarten.lankhorst@linux.intel.com, tzimmermann@suse.de, airlied@gmail.com,
- daniel@ffwll.ch, krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
- conor+dt@kernel.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- thomas.petazzoni@bootlin.com, alexandre.belloni@bootlin.com,
- luca.ceresoli@bootlin.com, paul.kocialkowski@bootlin.com,
- dri-devel@lists.freedesktop.org, geert@linux-m68k.org
-References: <cover.1701267411.git.mehdi.djait@bootlin.com>
- <2a7c51b6e619c02ec175a5c219b0a0fd7a24499d.1701267411.git.mehdi.djait@bootlin.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <2a7c51b6e619c02ec175a5c219b0a0fd7a24499d.1701267411.git.mehdi.djait@bootlin.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-Developer-Signature: v=1; a=openpgp-sha256; l=954; i=michal.simek@amd.com; h=from:subject:message-id; bh=max88p5KZ++t+kwX6Rah3pgbr7Yq+Wrjb4/Q4PJ25Xo=; b=owGbwMvMwCR4yjP1tKYXjyLjabUkhtQM7x/Tww9bxbT2trpPcHi4IurL5Wg/BxHzCquAPqPDP 1jlN/zpiGVhEGRikBVTZJG2uXJmb+WMKcIXD8vBzGFlAhnCwMUpABOZs5VhQX9//qT/Kl+nX/sb sH/7TVlVx1KhqQzzVD594pRS3veqzeZdfK2x2sUP6esFAQ==
+X-Developer-Key: i=michal.simek@amd.com; a=openpgp; fpr=67350C9BF5CCEE9B5364356A377C7F21FE3D1F91
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN1PEPF0000ECD4:EE_|SA0PR12MB4527:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4a4ae3c2-f6bd-45b5-52aa-08dbf180ea61
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	AtQiTLF0fvAoMZGLYX8yuDcstOs5bGbvtNA6rzo74NGmnZd1StbDW75k7k6Aa+3RhEM1+JiW4ulXZ3mxiWF9ClHTnuZ0uoSqHgoKA/3iHoQvjPNlknjq1PW8SfJmjPgrQ7BHbcxDwCSGWkmHzMnkfkFvOwRp9G+56AXzqy1jIDqNtPs6pKbiR+tJU2xWrad2tnShLI2fDvSwjOLR0B7I0/OQiFxP3TYZgSeC9Q0CS38sVZi2ZCBl4pSwlnZaO23U0Xac1bw1sZyqRURFV1A7uCTBRyUOcDHp/bWirzJJUHGxZxr6u7XUW8VukHAbKhyYx6zPVcWYYahHqwiNQRp5OJBth4moDZbeGXlp6+nT8qOwf5l+rN2eloyZDm+p5bYcJNUne2GmbPMZtYiaAvAaWXFgXijdWTzvxELyFRkzPCEztxpA8k6/3jNr2UAzweyuvZOedqjb4P5sd8L359CXBUwzsq1/5sNOLq6EC1PXUj//prIrv7sekju+4tC4Ih7fbkoZ+Xz6ArqqVP/CPVEyrFV1RVxwYv0NMfzBO0chgJcXVdZVfQE6xLusAktFtTOqHkDqYEBBKTLfSK6qQE0EVuJlZ5ueYklH5NBQmN9lBc/YPc8wu90Dr8oRJTmjaQQPeNlE130G3n+Ocf04YYu49DjacSRII92/u2xz0itIGSJx+TPG62j+VQMDkeVRRQUg5wtnP4hgADDzXyPdFFg4fv1AKRk3i0FDLcHFNz52LW5AzC0HJNOiCHxA9n0ofedvjHISwioyBOVDmpvN3PpVhGgs4Se0V3yZFuv+er9B7DX+BahtnqEeWnE6XQKB4XUT7vdVqCiMPA+d2ACUoImZvQ==
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(39860400002)(346002)(376002)(396003)(136003)(230922051799003)(186009)(82310400011)(451199024)(64100799003)(1800799012)(40470700004)(36840700001)(46966006)(40460700003)(54906003)(316002)(70206006)(8936002)(8676002)(4326008)(70586007)(478600001)(110136005)(44832011)(36756003)(7416002)(86362001)(5660300002)(4744005)(2906002)(41300700001)(36860700001)(356005)(81166007)(47076005)(2616005)(16526019)(26005)(83380400001)(82740400003)(426003)(336012)(40480700001)(202311291699003)(2101003)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Nov 2023 08:46:59.3099
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4a4ae3c2-f6bd-45b5-52aa-08dbf180ea61
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	MN1PEPF0000ECD4.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4527
 
-On 29/11/2023 15:29, Mehdi Djait wrote:
-> +  pwms:
-> +    maxItems: 1
-> +    description: External COM inversion signal
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - spi-lsb-first
-> +  - enable-gpios
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    spi {
-> +            #address-cells = <1>;
+arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts is defining 30 channels
+that's why increase it.
+But AMS binding defines 51 channels
+Documentation/devicetree/bindings/iio/adc/xlnx,zynqmp-ams.yaml
+that's why increase number to 51.
 
-If there is going to be new version, then:
-Use 4 spaces for example indentation.
-
-Anyway:
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
+Signed-off-by: Michal Simek <michal.simek@amd.com>
 ---
 
-This is an automated instruction, just in case, because many review tags
-are being ignored. If you know the process, you can skip it (please do
-not feel offended by me posting it here - no bad intentions intended).
-If you do not know the process, here is a short explanation:
+ Documentation/devicetree/bindings/hwmon/iio-hwmon.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions, under or above your Signed-off-by tag. Tag is "received", when
-provided in a message replied to you on the mailing list. Tools like b4
-can help here. However, there's no need to repost patches *only* to add
-the tags. The upstream maintainer will do that for tags received on the
-version they apply.
-
-https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
-
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/hwmon/iio-hwmon.yaml b/Documentation/devicetree/bindings/hwmon/iio-hwmon.yaml
+index e5b24782f448..be5c7d4579bb 100644
+--- a/Documentation/devicetree/bindings/hwmon/iio-hwmon.yaml
++++ b/Documentation/devicetree/bindings/hwmon/iio-hwmon.yaml
+@@ -19,7 +19,7 @@ properties:
+ 
+   io-channels:
+     minItems: 1
+-    maxItems: 8 # Should be enough
++    maxItems: 51 # Should be enough
+     description: >
+       List of phandles to ADC channels to read the monitoring values
+ 
+-- 
+2.36.1
 
 
