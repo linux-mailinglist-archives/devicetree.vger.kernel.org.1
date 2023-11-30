@@ -1,173 +1,238 @@
-Return-Path: <devicetree+bounces-20540-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20541-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 809817FFF5B
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 00:21:58 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B9847FFF6A
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 00:25:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 31FE01F2091B
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 23:21:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 31838281881
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 23:25:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F6CB59525;
-	Thu, 30 Nov 2023 23:21:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 527E35952E;
+	Thu, 30 Nov 2023 23:25:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="Urgjd/ZT"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="JUlpujqb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10olkn2071.outbound.protection.outlook.com [40.92.42.71])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A9291716;
-	Thu, 30 Nov 2023 15:21:37 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=e+7n4Qp31q3YMTTvUU9hEwyxUWXT9ifH/Ak+NGfCDTnDQID7FoQSxB0Y+gkfqTWFH3HjgViGfbtEGA6LtNAO3C1C+qlEs+FceHU7zcCE5q+cZ4DWMf+G+BZNUpDuE3JAec3i9dkEEm731xRwL8sN/WHI+QUXfOWs3njJzr5+uLZHXi/60Ojb0Ee+aohP2FWNJTwRtdLTFvjRWB1uhtDur51fH6H070mvLFRp0gEbqjrWrUrd0HmAGvej2cEeAA7f7FZ4iGHv3tvONQdMW4RKLwVgianwL5teUYY60HLG+q4qsu0oYfRSuQO5oYI8VdjrxUEe5pZRo/MGAvEOPafgqw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DRzmDpJOHIT8kdYM/+sWnTGi9qOmc3ZWtV1UNM/9Ohc=;
- b=TU4N7IFlZIXsnbPSpvPCrpDUNPzTcQBCKLyFyS43bWuQeLS+VGd4zrit8dJDHmvkOiZtaoXk9gg2Nh/FXifM3TDimgBdQOtsN2ca9FZR7KZQ36U/E7UTyJdnRYN9kCOoODHoMc78u136zgmtfq1o5aJ5jWxPWDZddjjyKCEg6rSFcIFXuOyGHHrgmiL/JeQ3y5fvgoS3jH6Q9A0TEVTRggk41Dvr31XFmfH4SljbxAcqA2E78D5Zqzrz/txxAap4XDTgxbw8TfSuKedr+fUFrWdI+lZNox5EwdMc7H0amiaTABfvv0xeEgjfGfAcMIg4qw+BG9qLIHESC/U2oIvgQg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DRzmDpJOHIT8kdYM/+sWnTGi9qOmc3ZWtV1UNM/9Ohc=;
- b=Urgjd/ZTI7697QksD7dACaYF/9aceHJfa8yhkHRwtqQUmnDD628hDMgXA19KDuoYgbepKwZBLnx1Qwk0ANzeWdkMbaGIKplXy5xuwEjulo3B0I9hmEqjOOU7eX5EqzdpMxgqAUCeDhgFfnmXu3NHMiCCRXB9FukEkTF0owmHgP/VhuVthTznDzRF+VzxoY4/Jubndn1KBWntdOS6andYT87AHua0vr6iocuNihQZt4bhhG1ocOdXonsqI4dy6hg0+lSrhMfUH7KGs1PzL5mbM4k996Jy7Oq3ce4PtHrQXKAP32Ry7lQWPPsCOdeASBekME91/uQ3P+nnHnZyD5LjkQ==
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
- by SJ2PR20MB6657.namprd20.prod.outlook.com (2603:10b6:a03:536::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.22; Thu, 30 Nov
- 2023 23:21:34 +0000
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::55b:c350:980:ad8]) by IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::55b:c350:980:ad8%6]) with mapi id 15.20.7046.024; Thu, 30 Nov 2023
- 23:21:33 +0000
-From: Inochi Amaoto <inochiama@outlook.com>
-To: Conor Dooley <conor@kernel.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Marc Zyngier <maz@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Chao Wei <chao.wei@sophgo.com>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Anup Patel <anup@brainfault.org>,
-	Inochi Amaoto <inochiama@outlook.com>
-Cc: Conor Dooley <conor.dooley@microchip.com>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v4 0/7] Add Huashan Pi board support
-Date: Fri,  1 Dec 2023 07:21:29 +0800
-Message-ID:
- <IA1PR20MB4953275B5B7BB241916A937BBB82A@IA1PR20MB4953.namprd20.prod.outlook.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20231130-radiator-cut-167bcaaa2cd6@spud>
-References: <20231130-radiator-cut-167bcaaa2cd6@spud>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-TMN: [MJhOTG+ZMCtiFRnmAdt+48gyPAUjOd5Msyi38GmXUZo=]
-X-ClientProxiedBy: BY5PR16CA0028.namprd16.prod.outlook.com
- (2603:10b6:a03:1a0::41) To IA1PR20MB4953.namprd20.prod.outlook.com
- (2603:10b6:208:3af::19)
-X-Microsoft-Original-Message-ID:
- <20231130232129.10413-1-inochiama@outlook.com>
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D63891710;
+	Thu, 30 Nov 2023 15:25:12 -0800 (PST)
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AUMv1ds007817;
+	Thu, 30 Nov 2023 23:24:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=dzdwa52RQD+dDIN5fCjoN/RBg7vTB76JT4geO1rWUWs=;
+ b=JUlpujqbfV3FJWXKWzbm+qCutDkbwjRAVycUZZ4U6h0HDb9nxyj7Md3e139Io7p/T0G2
+ KNTh4CPupPHbDPAWM5cKxMgi72BYb0aV+Iw+2aRYA6feshcd/EuWcZfOI4F1PT7t3I/f
+ H0NXVn1BVkVPJCOx6W7N/325jS73Ado/ASQ/NM8tdAr4iPHE96aVAzifePuVHZN+3rJ1
+ 2G/HG6PkhIR57BywSnIpUQgs2KZ3T03neyZaowpY88nG8aRgYXnDKybCxOriA+6lzO1p
+ 0Cu4Gb9lU7p3BQJv1j7UcWejJqeYxVd/O7/O6r++iqo0R5e6+KGYFCL2Nf9ZmXsaq/DK 8w== 
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3upv481b03-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 30 Nov 2023 23:24:56 +0000
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AUNOtCO030237
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 30 Nov 2023 23:24:55 GMT
+Received: from [10.251.45.12] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 30 Nov
+ 2023 15:24:51 -0800
+Message-ID: <cc2eb772-ae0f-4861-a36e-304a5f45b1bf@quicinc.com>
+Date: Fri, 1 Dec 2023 01:24:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|SJ2PR20MB6657:EE_
-X-MS-Office365-Filtering-Correlation-Id: 082ee638-9a53-44a7-a705-08dbf1fb1771
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	uQ5rXsA3Pt7TbC+ezYZAwznZQzvOr0aijsafjbpIv3F/cXVdqifwLPpSU6AMBnu/iBN9hYQJQwPNyNH+u9NeDUVI/CUiSZqFVAtS04ApXyGjVC0XR8Rq24w3Ap2ziXok0ywzGQAZIwja50HIEhC+wJthjVyGTsLFM5CDY/iiThCRAnsowxMoinBUcIdwyPSyqbiGtBcaTAWyxbRXFUM5ORrqBD/bwhdPt/hIutEU56nYdpdcSNIKlf7yOdLrUuCBS15mNIvr++b0jkWoeBaEBBStRlifa32FeejVFL4mKye5StEmI4ez78xPdc1q4hGGsSRP8GOKP2vz/D78NF/cDmCsVOkHpuM9+NN5hohJ2l3oKuSi9Vls/piM2kUZcrlQ1okDCVC20MwfvTpn0slUVWdbtctdoJGV2g3tqnfSSYx3f3NxEz94bi9itlI1KJ+zcpLGsPvzF4dQxPYv5kZNtYVcy3UPiW6xDZDrO3W5+9Mzgwnh1RU0vCrP3cc0B8XmKG/cQgp6+eoiwiNmCXWiFgrE0/zzIuYkhkkJvOGybSM8uIeaKxMCv1O6g5gBvrF0dbIdEQ8v3eV2hN0DtHiVdWugnuy9wBiUo9/+m5Pn6GqLV1FJ7ZziWGY9+9cH+Cv7
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?Sb9jMGcRmG+QcjFy3fWanA4PUqHG8ehRH7i/qqyNVY+JCM4g8ecIaetlt3mg?=
- =?us-ascii?Q?vP7/tS6H4lzHg+pzWTpp8UgJMTlH8xs0hFpcH3TpZl95CdlCKyFt/vGAep8Q?=
- =?us-ascii?Q?Gq4FDZG+y2/+GriLcMW2e+ubhXC71MLsVMlgmfN9lEurBuqABlaOszm7Ha1r?=
- =?us-ascii?Q?yRHUQNnzlvr/atV+aw1ml8JU5KJFod3yWouBbLuBJdAiqLCVzsDwKh+Tn/em?=
- =?us-ascii?Q?03re3+Z3c9nrZapxRdrME/rUr3wJb30dfSEGp4SxOn3H5TH0gYp2gCvtuICk?=
- =?us-ascii?Q?b2f4X9zpAmZRM4TPS09ES1LEKtTkpOvuBmy7UI8pk1i4Vw74mgUQGlAlMXoF?=
- =?us-ascii?Q?QO12l6hVWOI82S4/Rhrl4MWQvV4fr1+TW4kgtkfV81dwz85aCVz1YhDQz6K8?=
- =?us-ascii?Q?vyS+6ABKmNebYeGCg/mUv0r0MW5OBFXZCbEQz1lcORGfEpJNr9IPkCJpMk1O?=
- =?us-ascii?Q?nJ08888Wnj2KuSMsas5k+v75Pu6lOMzolJNW/A3Z9esk3tsxTlW+fx6s4oar?=
- =?us-ascii?Q?B0Gzfmx4PI3QR2nXOw97AwvwiiYJOYkAvu5YLiP1RcZ+z6FQhPY3Qvp6P8E4?=
- =?us-ascii?Q?DGYTvbzS2HdsbkBWZWc4jVwU0hsET++LOErusHtliNA7s4mLcFraHNbkiRWN?=
- =?us-ascii?Q?wKAqQUa709/qiLZS48L+Fcl1e4kq82j8Q9a8Alx+cHRW9X4gqvkVihcF/Q6S?=
- =?us-ascii?Q?jLcJ0GHQ19ZbFPnXlSHa7GkJ7KXxwxUGiaaxg3ibpM19cqt9IYJXbe+DzFIf?=
- =?us-ascii?Q?ZOWL1dbsdXMAkrmIuWwvFk9Sw7uBI4WJ9ovSMrdbqWT65QpvYlEMsI+HfWb8?=
- =?us-ascii?Q?8shQa2FWd7Ib7l3oJta7TqYwbHTiclXT06DLsuLSDTv0OHGHffHjVbW6Hj06?=
- =?us-ascii?Q?VlvgaXGei80xoRsXoHhgE/5uNyeNzffWf4l8OKC2KVudGhmV7qSuxs4uKist?=
- =?us-ascii?Q?uhgx8HSS4EAa4xon3LVozyFn/0syjLg4gO3VgU2mqFv3BMvUQYkX/hTXd0IY?=
- =?us-ascii?Q?IVN3qITK72H6FLeI4ORvkF2rz55aBubKiXs2r+BIuTYMoRa/Jb3DoLWgpqCO?=
- =?us-ascii?Q?PiqitdsiTQ8h8Z6VA0VuI1NKb1zu2slqNVFn+NLiCUcVQrrGAodhHl9J1Lj1?=
- =?us-ascii?Q?5biSmL5ndnR+5Is00uXLY3iwm5y5lTwIZp/a0DU2DyiKGEIJI3R2mBBtxOHW?=
- =?us-ascii?Q?ZEd7XwO4hYLnupMXuFzeTXmiXcBN/vUxc3QMmSujCSnOqdLdV/6gp5belQ8?=
- =?us-ascii?Q?=3D?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 082ee638-9a53-44a7-a705-08dbf1fb1771
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Nov 2023 23:21:33.8231
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR20MB6657
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/6] dt-bindings: iommu: Add Translation Buffer Unit
+ bindings
+Content-Language: en-US
+To: Rob Herring <robh@kernel.org>
+CC: <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <will@kernel.org>, <robin.murphy@arm.com>, <joro@8bytes.org>,
+        <devicetree@vger.kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <linux-arm-kernel@lists.infradead.org>,
+        <iommu@lists.linux.dev>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <quic_cgoldswo@quicinc.com>,
+        <quic_sukadev@quicinc.com>, <quic_pdaly@quicinc.com>,
+        <quic_sudaraja@quicinc.com>, <djakov@kernel.org>
+References: <20231118042730.2799-1-quic_c_gdjako@quicinc.com>
+ <20231118042730.2799-2-quic_c_gdjako@quicinc.com>
+ <20231127181347.GA1953740-robh@kernel.org>
+From: Georgi Djakov <quic_c_gdjako@quicinc.com>
+In-Reply-To: <20231127181347.GA1953740-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: r9Ny_bSdGNAkhGlvkpVOItl5sxEyNfkt
+X-Proofpoint-ORIG-GUID: r9Ny_bSdGNAkhGlvkpVOItl5sxEyNfkt
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-30_23,2023-11-30_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 malwarescore=0
+ spamscore=0 clxscore=1015 impostorscore=0 lowpriorityscore=0 mlxscore=0
+ phishscore=0 suspectscore=0 bulkscore=0 priorityscore=1501 mlxlogscore=999
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2311060000
+ definitions=main-2311300173
 
->
->On Thu, 19 Oct 2023 07:18:00 +0800, Inochi Amaoto wrote:
->> Huashan Pi board is an embedded development platform based on the
->> CV1812H chip. Add minimal device tree files for this board.
->> Currently, it can boot to a basic shell.
+Hi Rob,
+
+Thanks for the feedback!
+
+On 11/27/2023 8:13 PM, Rob Herring wrote:
+> On Fri, Nov 17, 2023 at 08:27:25PM -0800, Georgi Djakov wrote:
+>> The "apps_smmu" on the Qualcomm sdm845 platform is an implementation
+>> of the SMMU-500, that consists of a single TCU (Translation Control
+>> Unit) and multiple TBUs (Translation Buffer Units). The TCU is already
+>> being described in the generic SMMU DT schema. Add also bindings for
+>> the TBUs to describe their properties and resources that needs to be
+>> managed in order to operate them.
 >>
->> NOTE: this series is based on the Jisheng's Milk-V Duo patch.
+>> In this DT schema, the TBUs are modelled as child devices of the TCU
+>> and each of them is described with it's register space, clocks, power
+>> domains, interconnects etc.
 >>
->> Link: https://en.sophgo.com/product/introduce/huashan.html
->> Link: https://en.sophgo.com/product/introduce/cv181xH.html
->> Link: https://lore.kernel.org/linux-riscv/20231006121449.721-1-jszhang@kernel.org/
+>> Signed-off-by: Georgi Djakov <quic_c_gdjako@quicinc.com>
+>> ---
+>>  .../devicetree/bindings/iommu/arm,smmu.yaml   | 25 ++++++
+>>  .../bindings/iommu/qcom,qsmmuv500-tbu.yaml    | 89 +++++++++++++++++++
+>>  2 files changed, 114 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/iommu/qcom,qsmmuv500-tbu.yaml
 >>
->> [...]
->
->Applied to riscv-dt-for-next, thanks! LMK if something looks not as
->expected.
->
->[1/7] dt-bindings: interrupt-controller: Add SOPHGO CV1812H plic
->      https://git.kernel.org/conor/c/21a34e63afcc
->[2/7] dt-bindings: timer: Add SOPHGO CV1812H clint
->      https://git.kernel.org/conor/c/06ea2a1968a9
->[3/7] dt-bindings: riscv: Add SOPHGO Huashan Pi board compatibles
->      https://git.kernel.org/conor/c/d7b92027834e
->[4/7] riscv: dts: sophgo: Separate compatible specific for CV1800B soc
->      https://git.kernel.org/conor/c/5b5dce3951b2
->[5/7] riscv: dts: sophgo: cv18xx: Add gpio devices
->      https://git.kernel.org/conor/c/dd791b45c866
->[6/7] riscv: dts: sophgo: add initial CV1812H SoC device tree
->      https://git.kernel.org/conor/c/681ec684a741
->[7/7] riscv: dts: sophgo: add Huashan Pi board device tree
->      https://git.kernel.org/conor/c/2c36b0cfb408
->
->Thanks,
->Conor.
->
+>> diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+>> index aa9e1c0895a5..f7f89be5f7a3 100644
+>> --- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+>> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+>> @@ -231,6 +231,18 @@ properties:
+>>        enabled for any given device.
+>>      $ref: /schemas/types.yaml#/definitions/phandle
+>>  
+>> +  '#address-cells':
+>> +    enum: [ 1, 2 ]
+>> +
+>> +  '#size-cells':
+>> +    enum: [ 1, 2 ]
+>> +
+>> +  ranges: true
+>> +
+>> +patternProperties:
+>> +  "^tbu@[0-9a-f]*":
+>> +    type: object
+>> +
+>>  required:
+>>    - compatible
+>>    - reg
+>> @@ -453,6 +465,19 @@ allOf:
+>>              - description: Voter clock required for HLOS SMMU access
+>>              - description: Interface clock required for register access
+>>  
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            const: qcom,smmu-500
+> 
+> Doesn't match your example. No failure either, so there's some problem 
+> with your schema. The issue is the tbu@ entry above has no constraint on 
+> child properties. Dropping it would solve the issue. However, having a 
+> TBU is not QCom specific, so that doesn't feel right.
 
-Hi Conor,
+Having a TBU is not Qcom specific. The ARM MMU-500 implementation for example has TBUs, but the registers are within the SMMU address space, there are no clocks, no power-domains or other resources. Not sure about other implementations. So should we just allow empty tbu child nodes with no properties?
 
-Thanks for the confirmation. But I suggest to revert these patches.
-Several days ago, Sophgo informed me that CV1810 series will be
-renamed. And the Huashan Pi will switch to the chip with new name.
-To avoid unnecessary conflict, please drop these patch and I will
-prepare a new patch once the renamed chip is launched.
+>> +    then:
+>> +      patternProperties:
+>> +        "^tbu@[0-9a-f]*":
+> 
+> '+' rather than '*' as 1 is the minimum, not 0.
 
-Sorry for this inconvenience.
+Ok.
+
+>> +          $ref: qcom,qsmmuv500-tbu.yaml
+>> +          unevaluatedProperties: false
+>> +      properties:
+>> +        ranges: true
+>> +
+>>    # Disallow clocks for all other platforms with specific compatibles
+>>    - if:
+>>        properties:
+>> diff --git a/Documentation/devicetree/bindings/iommu/qcom,qsmmuv500-tbu.yaml b/Documentation/devicetree/bindings/iommu/qcom,qsmmuv500-tbu.yaml
+>> new file mode 100644
+>> index 000000000000..4dc9d0ca33c9
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/iommu/qcom,qsmmuv500-tbu.yaml
+>> @@ -0,0 +1,89 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/iommu/qcom,qsmmuv500-tbu.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Qualcomm TBU (Translation Buffer Unit)
+>> +
+>> +maintainers:
+>> +  - Georgi Djakov <quic_c_gdjako@quicinc.com>
+>> +
+>> +description:
+>> +  The Qualcomm SMMU500 implementation consists of TCU and TBU. The TBU contains
+>> +  a Translation Lookaside Buffer (TLB) that caches page tables. TBUs provides
+>> +  debug features to trace and trigger debug transactions. There are multiple TBU
+>> +  instances distributes with each client core.
+>> +
+>> +properties:
+>> +  $nodename:
+>> +    pattern: "^tbu@[0-9a-f]+$"
+> 
+> Drop. You defined this in the parent already.
+
+Ok.
+
+>> +
+>> +  compatible:
+>> +    const: qcom,qsmmuv500-tbu
+>> +
+>> +  reg:
+>> +    items:
+>> +      - description: Address and size of the TBU's register space.
+>> +
+>> +  reg-names:
+>> +    items:
+>> +      - const: base
+> 
+> Not a useful name. Drop.
+
+Agree.
+
+>> +
+>> +  clocks:
+>> +    maxItems: 1
+>> +
+>> +  interconnects:
+>> +    maxItems: 1
+>> +
+>> +  power-domains:
+>> +    maxItems: 1
+>> +
+>> +  qcom,stream-id-range:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+>> +    description: Stream ID range (address and size) that is assigned by the TBU
+>> +    items:
+>> +      minItems: 2
+>> +      maxItems: 2
+> 
+> Perhaps implementations other than QCom's needs this?
+
+Yes, maybe. A TBU can service a fixed amount of stream IDs and this looks like something common for all TBUs. I'll drop the vendor prefix.
+
+Thanks,
+Georgi
 
