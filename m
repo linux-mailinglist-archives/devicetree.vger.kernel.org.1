@@ -1,107 +1,112 @@
-Return-Path: <devicetree+bounces-20347-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20348-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CA157FEE99
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 13:07:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 751B17FEEA4
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 13:10:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BD6C41C20A15
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 12:07:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2EC28281FD7
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 12:10:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D410845949;
-	Thu, 30 Nov 2023 12:07:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C30C345BE6;
+	Thu, 30 Nov 2023 12:10:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="oXDMoxxb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EAlKBklL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A82E799
-	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 04:07:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
-	q=dns/txt; i=@phytec.de; t=1701346031; x=1703938031;
-	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=6rvUSJqr8VDM1wcMHNaKX2mz3K60DDcaKQABVhX/AaA=;
-	b=oXDMoxxbNjg2H8/Y3ydMucLQ82vbw+mPwH0T9oeXL8kZLbDxDnCaaC+89lyOgCDT
-	FvBKmnpAbNTrp/daeiWhrgKwoLXLLmH6kEMhC1M7h00e7/oTn/jxfNVMVfVtlpKI
-	2JSimuE9+KcTC/atR4RO2r25+UonNMNQ+CRVGUF6LuY=;
-X-AuditID: ac14000a-fbefe7000000290d-02-65687aefde66
-Received: from florix.phytec.de (Unknown_Domain [172.25.0.13])
-	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(Client did not present a certificate)
-	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 28.A8.10509.FEA78656; Thu, 30 Nov 2023 13:07:11 +0100 (CET)
-Received: from [172.25.39.28] (172.25.0.11) by Florix.phytec.de (172.25.0.13)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Thu, 30 Nov
- 2023 13:07:10 +0100
-Message-ID: <bd5284ec-6f25-464a-9ee7-4c50496482f1@phytec.de>
-Date: Thu, 30 Nov 2023 13:07:09 +0100
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A46264503D
+	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 12:10:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA446C433C7;
+	Thu, 30 Nov 2023 12:10:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701346209;
+	bh=p1J/0ikNTrqptbAR2XxBCgc8ltrQEzzWP5Mk8ngM4uI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=EAlKBklLAqdkH4XfzrpRSQIrLiABlL9tt/MeVbnIb25N5Kh5GkeyTVvqRngS7VW83
+	 56sbh5NWaVD3Wq2AtWJ6IwMRMQ2U2M2Ld2DdJWSuz0bRRHzblQij9GC2e8ZuBDqMxC
+	 cL2lXI0Klb5jX/fRdTBY0ojRoJcgf2NZf2BupwkaZyOMkscNW+pgjDisw+8YB77/+z
+	 q1/DHpUc0U7rBkvwxeuh5W9OVEesDKkQmkiMlD1Ay8jA0K2e9UpQ+86Nk0ZMfuoPd9
+	 tYWm9nL0fjtUfYaiUJuEc9GG8VmkjCXSiDvrX5epaVbCGZf6JZZsSgwtOc9p94rGQL
+	 nB0x76x2IGz+g==
+Date: Thu, 30 Nov 2023 12:10:03 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Anup Patel <apatel@ventanamicro.com>
+Cc: Inochi Amaoto <inochiama@outlook.com>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Anup Patel <anup@brainfault.org>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Guo Ren <guoren@kernel.org>, Jisheng Zhang <jszhang@kernel.org>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v4 1/2] dt-bindings: timer: thead,c900-aclint-mtimer:
+ separate mtime and mtimecmp regs
+Message-ID: <20231130-laborious-dwarf-6913457466ad@spud>
+References: <IA1PR20MB4953C82499C5D81D2C6A020BBBB6A@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <IA1PR20MB4953F9D77FFC76A9D236922DBBB6A@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <CAK9=C2WAv5jJBt56xBea268DeyUA+YvbU7i+ahVjueafCi-r6A@mail.gmail.com>
+ <20231130-decibel-passenger-6e932b1ce554@spud>
+ <CAK9=C2Vsx8ddpYiqUhvqnJpdb-FKeNhLz3PsVpSeEz4TeQHiEg@mail.gmail.com>
+ <20231130-shower-award-3cd5f1bba5db@spud>
+ <CAK9=C2WgN=3BjxS+nF2ibFQoquNwXfxr_UQv8Kbf1+e4Teyfcw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [Upstream] [PATCH 1/3] arm64: dts: ti:
- k3-am625-phyboard-lyra-rdk: Lower I2C1 frequency
-Content-Language: en-US
-To: Garrett Giordano <ggiordano@phytec.com>, <nm@ti.com>, <vigneshr@ti.com>,
-	<kristo@kernel.org>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
-CC: <devicetree@vger.kernel.org>, <upstream@lists.phytec.de>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-References: <20231129183817.2327259-1-ggiordano@phytec.com>
-From: Wadim Egorov <w.egorov@phytec.de>
-In-Reply-To: <20231129183817.2327259-1-ggiordano@phytec.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: Florix.phytec.de (172.25.0.13) To Florix.phytec.de
- (172.25.0.13)
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprBIsWRmVeSWpSXmKPExsWyRpKBV/d9VUaqwbEFOhZr9p5jsph/5Byr
-	xfotv9ksln+ezW7R9+Ihs8Wmx9dYLS7vmsNm8ebHWSaL1r1H2C2636lb/D/7gd2B22PTqk42
-	jzvX9rB5bF5S79Hf3cLq8efiO1aP4ze2M3l83iQXwB7FZZOSmpNZllqkb5fAlXFxxmv2grkc
-	Fc/vXmZsYPzC1sXIwSEhYCLxrKmki5GLQ0hgMZPEio4DzBDOXUaJDa2vgYo4OXgFbCTWXOhk
-	BrFZBFQl3j26zgwRF5Q4OfMJC4gtKiAvcf/WDHYQW1ggTeLp7jdgcWYBcYlbT+YzgQwVEdjG
-	KPFoay8jiMMs0MYo8WBDN9gGIQFriWkn74F1swmoS9zZ8I0VxOYE2jxtYTMzxCQLicVvDrJD
-	2PIS29/OYYbolZd4cWk52DYJIHvaudfMEHaoxPw139knMArPQnLsLCRHzUIydhaSsQsYWVYx
-	CuVmJmenFmVm6xVkVJakJuulpG5iBMWeCAPXDsa+OR6HGJk4GA8xSnAwK4nwXn+anirEm5JY
-	WZValB9fVJqTWnyIUZqDRUmcd3VHcKqQQHpiSWp2ampBahFMlomDU6qB0XGRN+tl6dVSflW6
-	ehX3u6/7fe713/t+ibfX7mMyP+/JGK7/FBRgc5Etr7C+/kvVopVhdz9v3Oj5We2x7pFM8xUH
-	BXxZg9LULnyb2uZo4rOy67bg8rfpxzVNDXiPP7GYY73Vm3VyedTCuHmcT21dL6yQ0Xyl2Jde
-	cyzqz9KPr+9XOH/+d936rxJLcUaioRZzUXEiAKsNnserAgAA
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="/EQWHXVT+7tBrA/1"
+Content-Disposition: inline
+In-Reply-To: <CAK9=C2WgN=3BjxS+nF2ibFQoquNwXfxr_UQv8Kbf1+e4Teyfcw@mail.gmail.com>
 
 
-Am 29.11.23 um 19:38 schrieb Garrett Giordano:
-> The gpio-expander on i2c-1 has a maximum frequency of 100kHz. Update our
-> main_i2c1 frequency to allow the nxp,pcf8574 gpio-expander to function
-> properly.
->
-> Signed-off-by: Garrett Giordano <ggiordano@phytec.com>
+--/EQWHXVT+7tBrA/1
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-For all three patches,
+On Thu, Nov 30, 2023 at 05:18:15PM +0530, Anup Patel wrote:
+> On Thu, Nov 30, 2023 at 5:15=E2=80=AFPM Conor Dooley <conor@kernel.org> w=
+rote:
 
-Reviewed-by: Wadim Egorov <w.egorov@phytec.de>
+> > > and add separate "riscv" prefixed DT binding for RISC-V mtimer.
+> >
+> > Do you know of any users for a "riscv,mtimer" binding that are not
+> > covered by existing bindings for the clint?
+>=20
+> Ventana Veyron-v1 implements a mtimer per-cluster (or chiplet)
+> which is compatible to "riscv,mtimer" (i.e. we have both mtime
+> and mtimecmp MMIO registers).
+
+Okay, thanks. I guess iff veyron-v1 DT support shows up (or other
+similar devices) we can go ahead with a "riscv,mtimer" binding then.
+I had thought that you guys were going to be using ACPI though, so
+I guess the "other similar devices" applies.
 
 
-> ---
->   arch/arm64/boot/dts/ti/k3-am625-phyboard-lyra-rdk.dts | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/arch/arm64/boot/dts/ti/k3-am625-phyboard-lyra-rdk.dts b/arch/arm64/boot/dts/ti/k3-am625-phyboard-lyra-rdk.dts
-> index a438baf542c2..171354b13e33 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am625-phyboard-lyra-rdk.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am625-phyboard-lyra-rdk.dts
-> @@ -187,7 +187,7 @@ cpsw3g_phy3: ethernet-phy@3 {
->   &main_i2c1 {
->   	pinctrl-names = "default";
->   	pinctrl-0 = <&main_i2c1_pins_default>;
-> -	clock-frequency = <400000>;
-> +	clock-frequency = <100000>;
->   	status = "okay";
->   
->   	gpio_exp: gpio-expander@21 {
+
+--/EQWHXVT+7tBrA/1
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZWh7mwAKCRB4tDGHoIJi
+0mnsAPwOJxP1SKjjaIbQZInh5XnG5Ta3y8YxHd/Psl7fzAGd+QEAruMpJX1VXjzE
+vEq7ApAaXOnfVF9Bhq+Bw7f8pmKZngA=
+=FDEk
+-----END PGP SIGNATURE-----
+
+--/EQWHXVT+7tBrA/1--
 
