@@ -1,62 +1,62 @@
-Return-Path: <devicetree+bounces-20304-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20305-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B88117FEC3E
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 10:53:45 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91AE87FEC42
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 10:54:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E99301C20D9B
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 09:53:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1D056B20FC8
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 09:54:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BDB93A29A;
-	Thu, 30 Nov 2023 09:53:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D73DD3AC02;
+	Thu, 30 Nov 2023 09:53:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mCZsc2oG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zNpheKnB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6C241B3
-	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 01:53:39 -0800 (PST)
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-40b595bf5d2so3137485e9.2
-        for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 01:53:39 -0800 (PST)
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84FC410F9
+	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 01:53:52 -0800 (PST)
+Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2c9bbb30c34so9279171fa.1
+        for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 01:53:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701338018; x=1701942818; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701338031; x=1701942831; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=f0oSj0qrgtoV8MWs2hWZ/nAjZRQvwME7M2ma5I8IkEo=;
-        b=mCZsc2oGXkPHyLUyPFV935QQY85SSxjj2/8HQnjf1Ma9C+cN6+VYtBBHEdJGgBn5XF
-         HQDi3kuju7DGYyumhr2t7L8rQ49dnt7DBmj9Hrb5SDQdiCb0iZ33mf+05Perb0JE+W+F
-         VJt3x1+z50Yuf9/jINK2OJe+as8L0J/qzKaSTx/w67Lo4lnC6GFwijh3ZRSxwwVJ27p2
-         IvV+heacn+62QTe3NSpbG7kl0MgWMu5h8qWA02KgGLlS9p909iIvgfPRi4+33aXfaYMS
-         bgvgdWusq5nkMGS4u145Knfblc5mjjHnv4Ytf/WfFjsN/7qEoEfyo23DZlxOs45VgRyD
-         z/Xw==
+        bh=c1E5/Z/+vvmVPYmXoHySxDBsGGOXtnkM6Blx9MbustI=;
+        b=zNpheKnB1fVggzIFGiGWanTz+NlQUtzogIbb2t9DHbI3CBfHsE9CQA6PDWMOjMbfaa
+         2BWE/8cpGhZVXgdf4i6JJvC38t43KFMe8LeHpxVCxa0vONarb/Z6032SituLu56Y4GvV
+         q8Q88NfKDfiy3yXsC87uYL8wEtKdjB2B39KZ4+tjbLWjYsoQP4dIWbcHXrq7f2VPOK8j
+         n4L+QZCJ6f8sFfmm3NSb3HC3LVmjrMrutqtSCoAn3vuTF7clWOXZidTCqw2pE3BKmUrt
+         W32mfGAD6/rqGWM1u+EU6lbjqb8WCepheZAQSl9TrSoLJM/mlZNN2lA0ddZDmcfwhPzt
+         MA2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701338018; x=1701942818;
+        d=1e100.net; s=20230601; t=1701338031; x=1701942831;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=f0oSj0qrgtoV8MWs2hWZ/nAjZRQvwME7M2ma5I8IkEo=;
-        b=dAMQGoQyHKPQElZxp8bJsfGwWiv8Pd7e1qDmrilR1ecz0Bjg5CQNI2tYyjFakSzS89
-         Lk67bYyWzb2BO3AZjDJJBoq4/n9lJUafGqXEPjkU9qAZimOkTXtQMiO+Q8axtg/gmGzX
-         peyfm8+XcxBYLHW3UqSsYK0Uahp2b0nkGups+yDo2vOUs4TF6iXE1GnfaLVSmzNbwig2
-         49gH7DJjuQCn1HmGoGQzweLj+jWBiHIBrzAZikAYxpTqtbeZy8ezSrhwqFmidQ7RPG1X
-         QnOhyj3d+ZUFwgA99pNpc4phJdlvCvS8LYcHHWP53S+GCNo3Dlrq5sUK5UFrP7DH4aq8
-         oZrQ==
-X-Gm-Message-State: AOJu0Yz2HXQo0zdoxl6EoUIyga6GpaE3Adb3mOAArG8+199o5vlngP1d
-	nFtLn0ye6g5s3EY+jLW9xtHUWw==
-X-Google-Smtp-Source: AGHT+IEHObDb9K2qTDOvGmoxgm+7e0PK9/gGK3ZXS5FzCE3oaEN8Qow73cBBU2nd8zagdCxH6q04Ng==
-X-Received: by 2002:a05:600c:1d05:b0:40b:3faa:c964 with SMTP id l5-20020a05600c1d0500b0040b3faac964mr11627500wms.27.1701338018300;
-        Thu, 30 Nov 2023 01:53:38 -0800 (PST)
+        bh=c1E5/Z/+vvmVPYmXoHySxDBsGGOXtnkM6Blx9MbustI=;
+        b=qz5tk7szsE8XwCmBVoy7EdoQdo/TUkGHmFlDDPkTudyIrk7EHL2ZHSccFE52TPYU/B
+         rOW7u3oDGe8lkIkuAV+9VJ1bvm+S5Ga3Kkgr+IAZbCmiw8m1cL2ha8qlpJMs7THgtX+s
+         FH4ZH7jEEigmZgBPdb9HSjiR8zkpSfo5uuk0Z/5deD+4vQn647OZW4Vcs+YqW+67KEyC
+         l7icCW7VXFuqe1bFpuhrInORjUMejAMJ9eUjQGquW8ydI7rVliOAX0hc4+ObBlKQiRsw
+         UV2MOE5vTienvyj/2C7O9E0hVlfGHX0dEfa7xbg7GXfWF1pbVE6G6t51IzcJcCrGA2EC
+         ioFg==
+X-Gm-Message-State: AOJu0Yye5S2MXUtgZA/texw+hPzgoqtRn1l36TJ//88rDmz6tEtvj4ba
+	tJoBaFOCo1hgGp44xpcnSoairc8JKw1Ktv0B6Q0ImmfH
+X-Google-Smtp-Source: AGHT+IH+lFVvaBYKHmVV+aX0k3VepvzuZh+20oxY9X56mIr3K/UQPC74+u9c62xmmvrU3PdqJYPMqQ==
+X-Received: by 2002:a2e:3c0a:0:b0:2c9:b8fe:aece with SMTP id j10-20020a2e3c0a000000b002c9b8feaecemr5027085lja.51.1701338030780;
+        Thu, 30 Nov 2023 01:53:50 -0800 (PST)
 Received: from ?IPV6:2a01:e0a:982:cbb0:41c9:3acd:a6e2:5242? ([2a01:e0a:982:cbb0:41c9:3acd:a6e2:5242])
-        by smtp.gmail.com with ESMTPSA id p36-20020a05600c1da400b0040b478da760sm1358964wms.48.2023.11.30.01.53.37
+        by smtp.gmail.com with ESMTPSA id p36-20020a05600c1da400b0040b478da760sm1358964wms.48.2023.11.30.01.53.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Nov 2023 01:53:37 -0800 (PST)
-Message-ID: <ebfdd058-dfca-4fd7-be62-cc89e15a8318@linaro.org>
-Date: Thu, 30 Nov 2023 10:53:37 +0100
+        Thu, 30 Nov 2023 01:53:50 -0800 (PST)
+Message-ID: <446792f4-4990-461c-9cc4-58943ca63af5@linaro.org>
+Date: Thu, 30 Nov 2023 10:53:49 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,7 +66,7 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
 Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 2/6] arm64: dts: qcom: sm8450: Add GPU nodes
+Subject: Re: [PATCH 4/6] arm64: dts: qcom: sm8550-qrd: Enable the A740 GPU
 Content-Language: en-US, fr
 To: Konrad Dybcio <konrad.dybcio@linaro.org>, Will Deacon <will@kernel.org>,
  Robin Murphy <robin.murphy@arm.com>, Joerg Roedel <joro@8bytes.org>,
@@ -80,7 +80,7 @@ Cc: Marijn Suijten <marijn.suijten@somainline.org>,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-arm-msm@vger.kernel.org
 References: <20231127-topic-a7xx_dt-v1-0-a228b8122ebf@linaro.org>
- <20231127-topic-a7xx_dt-v1-2-a228b8122ebf@linaro.org>
+ <20231127-topic-a7xx_dt-v1-4-a228b8122ebf@linaro.org>
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
  GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
@@ -106,25 +106,38 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro Developer Services
-In-Reply-To: <20231127-topic-a7xx_dt-v1-2-a228b8122ebf@linaro.org>
+In-Reply-To: <20231127-topic-a7xx_dt-v1-4-a228b8122ebf@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 On 27/11/2023 17:20, Konrad Dybcio wrote:
-> Add the required nodes to support the A730 GPU.
+> Enable the GPU and provide a path for the ZAP blob.
 > 
 > Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > ---
->   arch/arm64/boot/dts/qcom/sm8450.dtsi | 202 +++++++++++++++++++++++++++++++++++
->   1 file changed, 202 insertions(+)
+>   arch/arm64/boot/dts/qcom/sm8550-qrd.dts | 8 ++++++++
+>   1 file changed, 8 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> index bde9c1093384..e9664672c160 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-
-<snip>
-
+> diff --git a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
+> index eef811def39b..9fe51d308675 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
+> @@ -596,6 +596,14 @@ &gcc {
+>   		 <&usb_dp_qmpphy QMP_USB43DP_USB3_PIPE_CLK>;
+>   };
+>   
+> +&gpu {
+> +	status = "okay";
+> +
+> +	zap-shader {
+> +		firmware-name = "qcom/sm8550/a740_zap.mbn";
+> +	};
+> +};
+> +
+>   &lpass_tlmm {
+>   	spkr_1_sd_n_active: spkr-1-sd-n-active-state {
+>   		pins = "gpio17";
+> 
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
