@@ -1,249 +1,156 @@
-Return-Path: <devicetree+bounces-20349-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20350-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F39467FEEBB
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 13:16:54 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFAA77FEED0
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 13:21:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A917E281EEE
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 12:16:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 50236B20D4F
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 12:21:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4585B46432;
-	Thu, 30 Nov 2023 12:16:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 372C04643B;
+	Thu, 30 Nov 2023 12:20:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="sbhmQ1Hd"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="jN2Msd0y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12olkn2096.outbound.protection.outlook.com [40.92.22.96])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5A3810E0;
-	Thu, 30 Nov 2023 04:16:46 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BHVmPhQ19fk1OC3DPtecWzLAVtxSKfQhRMryMaINBYZ6Bh0CFK0wG8Qat29cpV6DU7y/8r4vmWyrbHqXl9co5SiaLzZqXPBF5QwjVhw+HHtf3d7dzglXNNgts9SW+hvVz7ZwEr1O/UooNLN1sCRPPAyZC4xvKM1knQ4lYBGMdPx8tNucBSOAPHpto8H8A217Op3mGcDJNFzaSpnGsFmIJoUv91XFLrT6snTrpP05pMd+lkWwx9fO5jaPA9CttClDnKchrxwNw25eDOCgMqnNDQ5XVzIDt/cBAgdwhVbthFMlJh+kqZjSzjnFxj2LDNEu1hfYSmcfe1FXeL9G6clQZA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=J+M/M9nICUXJYjG/hmaDCxcFvuxVJL7LsPIweNBcjmo=;
- b=O8+2IKPiPsW2K3cD6dhDOoL4Au6ZAiziH7pVf6mVjqsJJWENEfUpWvZaYnfRbgDp4IR9IFtFSzZuks/upsfbdNnFeNewovQBbZHxODc+BCL2+fCZ/GGihiSSV8W3ouuVPs3rSgPEYDA5LOYT+GCDPbDb+YLYL9nL/XYAmDx2oF1uRvVE1/BALtwqlwcKBq4Lkr6v+Lel9VtgQ7zGHXYW3LnkAKYEuKt5494+SC033r5wnM9vsXbGE+tjT2VfFIIQ9n68xTXbZYQTC7PufgpBKOy7jjZNrqYzpsJ8m0ngmXzpgMxWH4bUh0rv8t3fluljUns25+5t7BndxloOLibDgQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=J+M/M9nICUXJYjG/hmaDCxcFvuxVJL7LsPIweNBcjmo=;
- b=sbhmQ1HdtGBy0HREo4PpUvkDSUIzMnLEpD8xosYP0yGNlebPm3MAaaAnb75g7E9vdDhB+Luk3GISK/Rv34mUm1YkRiT8qnOpUHUkVNX0Z6a1+evXGGgpnYeit/uyw7aVf8l8XvOcpFn/KwS9/Drya+axrVDPYGNl1qDYcB0vvaFp9z0bUL1QbPMWLoIP4EQx29YAhpOg21hq6D7AHFTHpQpgbZ6FOyx9CEsbR6JG8n+UqFsjAgXGni300wE38mH/1tsTk+H+1EHh3A/642sVAH4UTYIjn/VmfQX5QO9uQHF2OlsNiM/QUP7rOuIGXoKwIsNkhG1tpM88di+ogWI90w==
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
- by MW3PR20MB3548.namprd20.prod.outlook.com (2603:10b6:303:59::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.24; Thu, 30 Nov
- 2023 12:16:42 +0000
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::55b:c350:980:ad8]) by IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::55b:c350:980:ad8%6]) with mapi id 15.20.7046.024; Thu, 30 Nov 2023
- 12:16:42 +0000
-From: Inochi Amaoto <inochiama@outlook.com>
-To: Yu-Chien Peter Lin <peterlin@andestech.com>
-Cc: Inochi Amaoto <inochiama@outlook.com>,
-	Guo Ren <guoren@kernel.org>,
-	acme@kernel.org,
-	adrian.hunter@intel.com,
-	ajones@ventanamicro.com,
-	alexander.shishkin@linux.intel.com,
-	andre.przywara@arm.com,
-	anup@brainfault.org,
-	aou@eecs.berkeley.edu,
-	atishp@atishpatra.org,
-	conor+dt@kernel.org,
-	conor.dooley@microchip.com,
-	conor@kernel.org,
-	devicetree@vger.kernel.org,
-	dminus@andestech.com,
-	evan@rivosinc.com,
-	geert+renesas@glider.be,
-	heiko@sntech.de,
-	irogers@google.com,
-	jernej.skrabec@gmail.com,
-	jolsa@kernel.org,
-	jszhang@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	linux-arm-kernel@lists.infradead.org,
+Received: from m15.mail.163.com (m15.mail.163.com [45.254.50.220])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1B4FCD46;
+	Thu, 30 Nov 2023 04:20:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=62A33
+	cf5Af2cRWDLxsHpxRpMh1AsaOXYK73nIWVv3Jc=; b=jN2Msd0ypXsyxZfwnIQ78
+	BVr1StiSjinLOGpr16iu0Cwe84MmB2B5n07nCO1GDV3RovIf+LYgXuD0vwVMYbX5
+	p/zg3UH/TEiISMo8hcE/XhTpysK0kHaDDpw7Aq2BVt+EtHP6BW021Vn07q8h3GxG
+	8eO/J63j79rLZj8qrSAq2Q=
+Received: from ProDesk.. (unknown [58.22.7.114])
+	by zwqz-smtp-mta-g1-0 (Coremail) with SMTP id _____wDXn9LyfWhl2DkWBg--.29823S2;
+	Thu, 30 Nov 2023 20:20:07 +0800 (CST)
+From: Andy Yan <andyshrk@163.com>
+To: heiko@sntech.de
+Cc: hjc@rock-chips.com,
+	dri-devel@lists.freedesktop.org,
+	linux-rockchip@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	linux-perf-users@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	locus84@andestech.com,
-	magnus.damm@gmail.com,
-	mark.rutland@arm.com,
-	mingo@redhat.com,
-	n.shubin@yadro.com,
-	namhyung@kernel.org,
-	palmer@dabbelt.com,
-	paul.walmsley@sifive.com,
-	peterz@infradead.org,
-	prabhakar.mahadev-lad.rj@bp.renesas.com,
-	rdunlap@infradead.org,
+	krzysztof.kozlowski+dt@linaro.org,
 	robh+dt@kernel.org,
-	samuel@sholland.org,
-	sunilvl@ventanamicro.com,
-	tglx@linutronix.de,
-	tim609@andestech.com,
-	uwu@icenowy.me,
-	wens@csie.org,
-	will@kernel.org,
-	ycliang@andestech.com
-Subject: Re: [PATCH v4 09/13] dt-bindings: riscv: Add T-Head PMU extension description
-Date: Thu, 30 Nov 2023 20:16:38 +0800
-Message-ID:
- <IA1PR20MB4953A05B9162AA2659DE78A5BB82A@IA1PR20MB4953.namprd20.prod.outlook.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <ZWhT_VSpl2aksVK7@APC323>
-References: <ZWhT_VSpl2aksVK7@APC323>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-TMN: [mIfqZYRrVxkVYQFgFS+wTBDERuDYG1VI49vmpWfNEtE=]
-X-ClientProxiedBy: TYCP286CA0304.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:400:38b::12) To IA1PR20MB4953.namprd20.prod.outlook.com
- (2603:10b6:208:3af::19)
-X-Microsoft-Original-Message-ID:
- <20231130121638.372252-1-inochiama@outlook.com>
+	devicetree@vger.kernel.org,
+	sebastian.reichel@collabora.com,
+	kever.yang@rock-chips.com,
+	chris.obbard@collabora.com,
+	Andy Yan <andy.yan@rock-chips.com>
+Subject: [PATCH v3 00/14] Add VOP2 support on rk3588
+Date: Thu, 30 Nov 2023 20:20:01 +0800
+Message-Id: <20231130122001.12474-1-andyshrk@163.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|MW3PR20MB3548:EE_
-X-MS-Office365-Filtering-Correlation-Id: 23919dd2-30a1-4421-6388-08dbf19e3637
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	mTQoCdoH2i2LeG/N07kZ/eXNisTe23G25Bw+0q72Ymjsr5lrpF93R9VT+nzQYjM4lopWcELUq5TCeI5VEn6U+NIWFnfi/mnUacFUfnBOTV6WFFRxCWBgYGxABjG+XV7+A0DPg6aigY+nH1IMWnWFiPBF053OF1z1IplVmOQah3WuoD1zsMJ1BiAdMfUcjj9YJluN5XWusRcnPCVN9eZOAKKySN8s7PKConZv82EshNUjha114/blZJfOVChHZzJy5N3elj98ir0FCsA1wh30scRKVSlt0s9MSfikYbAdO9ysY59M1eoF0iBMSdfxeUhMbEUe3rLRkNRGYzKKCtr67PtRR+DlnzyW0bd9oAmJ7P8eAPh+mqVHonyq/Dv2khZb105jfgDDaffrA03ZsMpnwWpX7qvdwEFfuxIduidahPKG95sl0L7jRijxocSQw1EQISw1Gva00/hW2kCm7MvIhtiMWbHvtYt28I89VyKFBHZN/ukQrVcX3qgU9VgrU7BBDMg5b8jsXIwqyLrHRu9XPzMTitaRhqFZ3SwSY0I0PV+/2ZLFhcLI+SeN3fzJCWqGBexfkfskFuH6RG7rmb+zPrfNiGwhlmi52+7avL6sYu1/ALf8IKuC1izUjnCIBcnYQ0mL29HlGqvtAzD8sspaZYnJ2MqduQemVCUK16ReBZE=
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?WjFmNmlrMnY4bXZoTGFiWllybjJsZGtkN2p4My9PTk5obUZOU042enpCcE1P?=
- =?utf-8?B?Z28zbWRqWUk5T3RDMTByaGZQUVV5bXJLRmpqdThlbzhuczFXWm10cnE2cFEz?=
- =?utf-8?B?MVZzclNjcXJuNm1rRnNrZ0JJVldsUHJnQ0gzTE5TdnNRMDVYRkw3bVBJQXdv?=
- =?utf-8?B?K2FIcjdHbTNGeUtKeUo5cSt3S3k4K1hSQVkyVTNCQitVaUtvdVgyOG11MFpR?=
- =?utf-8?B?ZjV6dEplaHQxMmZhV0VYRWhzaktvS29WQStJL3FpcDZ4ckpmZUp0eXc1VTZk?=
- =?utf-8?B?TldaVjZ0bFM0MXdFZzB6VTlRZ1ZtVG8vWTRqeG9IMHRCcnBDOURydTIxYUcw?=
- =?utf-8?B?T3pXeG9mdHNvRldaZCtLdVdqVC9tRFdQMDJHRGdBY3JPejJ5UC82SXBSNGpn?=
- =?utf-8?B?WFhod2ZoOFZFd01QcHJ3bVA2RUhQWXJQTFhwWU9wTkxtWXRJOXFabEQ4bkM4?=
- =?utf-8?B?dU9FUGRuUlRod0txbzRJbmIyYW1OL25yQVB6NWViY0lBUG5YU0Q1S2x6dVpK?=
- =?utf-8?B?MVprbzZZTEkxODFEMEhaRlJxY0dzYzBsbk9WNXI3Zm1nRkJWTzFPUVdPT3Ry?=
- =?utf-8?B?NHpiSzJiWTMyMnVjeDYzU09ZNGFXci9DQUVvYm93Yyt4dk9FKzRNT3JaSDZm?=
- =?utf-8?B?OUxVVnJROGlyaXVIc08rTUF4ZHlldDNTWk94aTBxRk1tamJxcC9iL2J2TzF6?=
- =?utf-8?B?WDlTdW0yVDhaMlNyNjNiQzZCTFFUTzF1M1JVVkgyZ1BHZlRJNEw3cXZoUkNl?=
- =?utf-8?B?akdlOWtpWHAydkZ1VVdaSGFaSWliM09BR3ErdytyVHBmQzhaOU1JaGQzeTZx?=
- =?utf-8?B?WldYRmZxS3NQSTJHNnRydExhRDREOTRqV2RYbW1ya3ZqR25Odm5ZVlo1c0Fy?=
- =?utf-8?B?OEw2azdqZ21RY21pZ2VqRm9LL2laSVBjODdDSktKVks5d2hqZFZYSjlWODZn?=
- =?utf-8?B?YktZc3B2QlpSUTFnT2Z0TzRaZmxUcVpvdXhlLzFhNVFvVVB1Z1gxdG5ESHda?=
- =?utf-8?B?TmhzcVBhc0VIajNxVmJSWEdzay80d3JWMkJPQWlUQ2Vzbi9zQ2cvcUNVWmd5?=
- =?utf-8?B?Z2xmN0lTQm1Yc0I4b1FCSkloTFM5RFkrbDlCNGVTblVrVzllMHBvNGdXVFVS?=
- =?utf-8?B?M2xxckpJYkxOT3RCL3YwbGRzcmhKRHBqQ2xyYXRrQUROdG5SVlJpcGdwWDkz?=
- =?utf-8?B?RWNYQnZyMThVZytIZGRvVTJNdmpVbWxXUVZmMmQxdXZaeUJnRTU4bk5EREVX?=
- =?utf-8?B?QS80T0NvSURhYldOaTN6RWtMZEUzMG1OTUp4R0U5Z01jL0VmSElIdXNxU0ZD?=
- =?utf-8?B?c29UNkFPY3hPN0p3dXlmaXhwQVhCQitLUElSY2J5dUtGMGhsd25QVWlNZGQ2?=
- =?utf-8?B?MVRpRWYwMHcrb05rZzJVODF3ZkVtZW1IVTliam1tYlFPNEdhcjJTWHdVaDEv?=
- =?utf-8?B?MUdMS3puVGM5NkZCTHBkZkhhSXJtakxLbnVYdG0xZDJYZ1AyMnlsMlJDNmoy?=
- =?utf-8?B?QlBoUWttYzBoUXU3M1lGT08zb3ZkRDFMaGxGSjNxNkh4WmRLWHowa3ZUQzFW?=
- =?utf-8?B?K3ZVNDAzeXlHRGh2V0swaXU3L3M2akRROHlPOEQyOVZHUzhweGhrR2ZGbFRH?=
- =?utf-8?Q?HL4/t2zz/JQf5ncvoxRmiQWlM0MeH305i3K6vMEk58S4=3D?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 23919dd2-30a1-4421-6388-08dbf19e3637
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Nov 2023 12:16:42.2227
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR20MB3548
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:_____wDXn9LyfWhl2DkWBg--.29823S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxCrW7tr4UAr4UXF48Wr4fuFg_yoWrGF4fp3
+	95CryYqrWxCFW2qrs3tw1rCrWftan7Aay3K393JanIv3W3KFyUKwnIg3Z5Zr9xWr1xZFy2
+	kF45J347Wr42vr7anT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jrcTPUUUUU=
+X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbBEBQ4XmVOAqtRyAABs4
 
->
->Hi Inochi,
->
->On Thu, Nov 30, 2023 at 04:29:22PM +0800, Inochi Amaoto wrote:
->>>
->>> Hi Guo Ren,
->>>
->>> On Thu, Nov 23, 2023 at 05:14:30AM +0800, Guo Ren wrote:
->>>> On Wed, Nov 22, 2023 at 8:17 PM Yu Chien Peter Lin
->>>> <peterlin@andestech.com> wrote:
->>>>>
->>>>> Document the ISA string for T-Head performance monitor extension
->>>>> which provides counter overflow interrupt mechanism.
->>>>>
->>>>> Signed-off-by: Yu Chien Peter Lin <peterlin@andestech.com>
->>>>> ---
->>>>> Changes v2 -> v3:
->>>>>   - New patch
->>>>> Changes v3 -> v4:
->>>>>   - No change
->>>>> ---
->>>>>  Documentation/devicetree/bindings/riscv/extensions.yaml | 6 ++++++
->>>>>  1 file changed, 6 insertions(+)
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Documentation/devicetree/bindings/riscv/extensions.yaml
->>>>> index c91ab0e46648..694efaea8fce 100644
->>>>> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
->>>>> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
->>>>> @@ -258,5 +258,11 @@ properties:
->>>>>              in commit 2e5236 ("Ztso is now ratified.") of the
->>>>>              riscv-isa-manual.
->>>>>
->>>>> +        - const: xtheadpmu
->>>>> +          description:
->>>>> +            The T-Head performance monitor extension for counter overflow. For more
->>>>> +            details, see the chapter 12 in the Xuantie C906 user manual.
->>>>> +            https://github.com/T-head-Semi/openc906/tree/main/doc
->>>>> +
->>>>>  additionalProperties: true
->>>>>  ...
->>>>> --
->>>>> 2.34.1
->>>>>
->>>> Reviewed-by: Guo Ren <guoren@kernel.org>
->>>
->>> Thanks for the review.
->>> Would you share document about T-Head PMU?
->>>
->>
->> Hi, Peter Lin:
->>
->> You can use the following two document to get all events:
->> https://github.com/T-head-Semi/openc906/tree/main/doc
->> https://github.com/T-head-Semi/openc910/tree/main/doc
->>
->> There are also some RTL code can describe these events:
->> https://github.com/T-head-Semi/openc910/blob/e0c4ad8ec7f8c70f649d826ebd6c949086453272/C910_RTL_FACTORY/gen_rtl/pmu/rtl/ct_hpcp_top.v#L1123
->> https://github.com/T-head-Semi/openc906/blob/af5614d72de7e5a4b8609c427d2e20af1deb21c4/C906_RTL_FACTORY/gen_rtl/pmu/rtl/aq_hpcp_top.v#L543
->>
->> The perf events json can also be used as document, this is already
->> applied (with more detailed explanation):
->> https://lore.kernel.org/all/IA1PR20MB495325FCF603BAA841E29281BBBAA@IA1PR20MB4953.namprd20.prod.outlook.com/
->
->Thanks for reaching out!
->The updated description will be:
->
->- const: xtheadpmu
->  description:
->    The T-Head performance monitor extension for counter overflow, as ratified
->    in commit bd9206 ("Initial commit") of Xuantie C906 user manual.
->    https://github.com/T-head-Semi/openc906/tree/main/doc
->
->Is it OK with you?
->
+From: Andy Yan <andy.yan@rock-chips.com>
 
-I suggest using perf event json as event description. The jsons provide
-more detailed explanation for these events than the user manual.
+This patch sets aims at enable the VOP2 support on rk3588.
 
->Best regards,
->Peter Lin
->
->> Best regards,
->> Inochi
->
+Main feature of VOP2 on rk3588:
+Four video ports:
+VP0 Max 4096x2160
+VP1 Max 4096x2160
+VP2 Max 4096x2160
+VP3 Max 2048x1080
+
+4 4K Cluster windows with AFBC/line RGB and AFBC-only YUV support
+4 4K Esmart windows with line RGB/YUV support
+
+The current version support all the 8 windows with all the suppported
+plane format.
+
+And we don't have a upstreamed encoder/connector(HDMI/DP) for rk3588
+yet, Cristian from collabora is working on adding upstream support for
+HDMI on rk3588.
+
+My current test(1080P/4KP60) is runing with a HDMI driver pick from
+downstream bsp kernel.
+
+A branch based on linux-6.7 rc3 containing all the series and
+HDMI driver(not compatible with mainline rk3568 hdmi) picked
+from downstream bsp kernel is available [0].
+
+[0]https://github.com/andyshrk/linux/tree/rk3588-vop2-hdmi-upstream-linux-6.7-rc3-2023-11-30
+
+Changes in v3:
+- split confg one patch from the vop2 driver patch
+- put bool variable yuv_overlay next to other bool variable
+- define macro for RK3568_OVL_CTRL__YUV_MODE
+- just write RK3568_OVL_CTRL register once in function
+  vop2_setup_layer_mixer
+- constrain properties in allOf:if:then
+- some description updates
+- change the subject as Krzysztof suggested, and add his ACK
+- add braces for x in macro vop2_output_if_is_yyy(x)
+- clear the bits of a mask before setting it in rk3588_set_intf_mux
+- add more comments.
+- put regs dump info in vop2_data
+
+Changes in v2:
+- fix errors when running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+- split form vop driver patch
+- add rk3588_ prefix for functions which are rk3588 only
+- make some calculation as fixed value and keep calculation formula as
+  comment
+- check return value for some cru calculation functions.
+- check return value for syscon_regmap_lookup_by_phandle
+- add NV20/NV30 for esmart plane
+
+Andy Yan (14):
+  drm/rockchip: move output interface related definition to
+    rockchip_drm_drv.h
+  Revert "drm/rockchip: vop2: Use regcache_sync() to fix suspend/resume"
+  drm/rockchip: vop2: set half_block_en bit in all mode
+  drm/rockchip: vop2: clear afbc en and transform bit for cluster window
+    at linear mode
+  drm/rockchip: vop2: Add write mask for VP config done
+  drm/rockchip: vop2: Set YUV/RGB overlay mode
+  drm/rockchip: vop2: rename grf to sys_grf
+  dt-bindings: soc: rockchip: add rk3588 vop/vo syscon
+  dt-bindings: display: vop2: Add rk3588 support
+  dt-bindings: rockchip,vop2: Add more endpoint definition
+  drm/rockchip: vop2: Add support for rk3588
+  drm/rockchip: vop2: Add debugfs support
+  dt-bindings: iommu: rockchip: Add Rockchip RK3588
+  arm64: dts: rockchip: Add vop on rk3588
+
+ .../display/rockchip/rockchip-vop2.yaml       | 118 ++-
+ .../bindings/iommu/rockchip,iommu.yaml        |   1 +
+ .../devicetree/bindings/soc/rockchip/grf.yaml |   2 +
+ arch/arm64/boot/dts/rockchip/rk3588s.dtsi     |  96 +++
+ .../gpu/drm/rockchip/analogix_dp-rockchip.c   |   1 -
+ drivers/gpu/drm/rockchip/cdn-dp-core.c        |   1 -
+ .../gpu/drm/rockchip/dw-mipi-dsi-rockchip.c   |   1 -
+ drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c   |   1 -
+ drivers/gpu/drm/rockchip/inno_hdmi.c          |   1 -
+ drivers/gpu/drm/rockchip/rk3066_hdmi.c        |   1 -
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.h   |  18 +
+ drivers/gpu/drm/rockchip/rockchip_drm_vop.h   |  12 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.c  | 749 +++++++++++++++++-
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.h  | 109 ++-
+ drivers/gpu/drm/rockchip/rockchip_lvds.c      |   1 -
+ drivers/gpu/drm/rockchip/rockchip_rgb.c       |   1 -
+ drivers/gpu/drm/rockchip/rockchip_vop2_reg.c  | 412 ++++++++++
+ include/dt-bindings/soc/rockchip,vop2.h       |   4 +
+ 18 files changed, 1452 insertions(+), 77 deletions(-)
+
+-- 
+2.34.1
+
 
