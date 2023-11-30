@@ -1,177 +1,200 @@
-Return-Path: <devicetree+bounces-20249-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20250-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFE787FE892
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 06:21:34 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1ADF07FE8B3
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 06:32:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6479A282018
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 05:21:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B1696B20FFE
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 05:32:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B675013FF6;
-	Thu, 30 Nov 2023 05:21:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F5B1154BE;
+	Thu, 30 Nov 2023 05:32:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NfwJ87uK"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="c44wfmX4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A9F4134A8;
-	Thu, 30 Nov 2023 05:21:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F4E4C433C8;
-	Thu, 30 Nov 2023 05:21:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701321689;
-	bh=SO7acnA+VBGiPPDRPjeZV0L8lWsY1H783sV0wpnMOCU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NfwJ87uKmQi0TjpEJJbc7uduVpBnZVRjYsbqNfzn7Ia4vqX6P5Szj69chlJbr71rt
-	 T7F/4We3/8qz7OeKwcKbcACPT9Z2KT+w82AY97DOx64vJKQnB4JR/bfNHr2hwPWVsv
-	 4p6d74/B+u39ZasqQ4QdbOgMbzaw+DueKKuXemlALO8HakEtfJ7avdNhU+0249Jwk5
-	 19Jhp8eEaXtg/U3ICZMY35kyutXWNJP0NmrOtV6SjnMmJWxOXkv8NRopv3wSZ8+4sb
-	 o/TWHtwlOfpYNUxuuU+BqQ0lcX1GHdKcsgqWsgzKoz74QLB7vi78xFjzwLfy+3ag/w
-	 3EQYo0DhUNjPw==
-Date: Thu, 30 Nov 2023 10:51:16 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Mrinmay Sarkar <quic_msarkar@quicinc.com>
-Cc: agross@kernel.org, andersson@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	konrad.dybcio@linaro.org, mani@kernel.org, robh+dt@kernel.org,
-	quic_shazhuss@quicinc.com, quic_nitegupt@quicinc.com,
-	quic_ramkri@quicinc.com, quic_nayiluri@quicinc.com,
-	dmitry.baryshkov@linaro.org, robh@kernel.org,
-	quic_krichai@quicinc.com, quic_vbadigan@quicinc.com,
-	quic_parass@quicinc.com, quic_schintav@quicinc.com,
-	quic_shijjose@quicinc.com,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org
-Subject: Re: [PATCH v4 1/3] PCI: qcom: Enable cache coherency for SA8775P RC
-Message-ID: <20231130052116.GA3043@thinkpad>
-References: <1700577493-18538-1-git-send-email-quic_msarkar@quicinc.com>
- <1700577493-18538-2-git-send-email-quic_msarkar@quicinc.com>
+Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4717BC;
+	Wed, 29 Nov 2023 21:31:57 -0800 (PST)
+Received: by mail-pl1-x632.google.com with SMTP id d9443c01a7336-1ce3084c2d1so5503665ad.3;
+        Wed, 29 Nov 2023 21:31:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1701322317; x=1701927117; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vtLcNogZL4zUE1VKwwbOaAKoW0e8MSfA/IN4DJLgKRM=;
+        b=c44wfmX4wj+fqdkYUVCWpmDjskMRevagcxolJ4qjr4dpnauJzm0uI0hSjiyVZri+Ul
+         8p/cO+wA7eCTUwiLifAG72dCOdeuSaWb5rxYMl7YKbu4eMtgErW/fxxvZ05Pt+haVFfc
+         UcITO+zT/QdtCNCvObCFzMye0kIVovnO14vCupOQkQgDSu6CkBjcFfLLmvjTxUkc0d9x
+         /hNSiahlFlSBlCmhVF3LqJCEi2dybotfgQaRngDSidwzOC5kUpK2IHjfiPu0vBLo2akS
+         kfvvWLK4sLSdMlveGrrVeZ2NH+1Re+5333XFRoVFmb09ySsxwyzhQIH5FBrs5O80RWSk
+         e+uQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701322317; x=1701927117;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=vtLcNogZL4zUE1VKwwbOaAKoW0e8MSfA/IN4DJLgKRM=;
+        b=aEtlVC+27j8QVRLCkH+l4ygbeUlOPcQwzI/P1m5FVOmiIQwn0pony2axeXpF8iisGm
+         iSu6JucOrDu+3S5nSWLKtnUSX/JQkopaiuwubqfAGplT7glKwLvzfEfpss2I/0/ajl0O
+         +Sb2iysj2mxKZ8+SsQETR4QGSuLnXmOQ7ORJ1q5S0h46/4UBrsgM5b/ffmiGe+vc06fe
+         fHyR1D7ogQaJKcIZVt9qq/FxPHTbfygLL9Y4+Ki7/9iYwzNy7UxSAhFMv1Zy5bHyBC3V
+         xmZop9cwkSO/o7WOwhliz7NroG1Blc/WUoJVPNxQsXFLCHFL3Kr2QGvtga9dB0WlCTUS
+         1sUg==
+X-Gm-Message-State: AOJu0YyfuMZTnAkC2f34j3OI/olAYubeANHyL4SWBcJVc5mQB0XUl6p/
+	Ta8hbC3sk+/lquBVddBIIeE=
+X-Google-Smtp-Source: AGHT+IGvSDeAfCHQWlmojU1BSM6aAFhh7G+Sujt9p/79qfJ5k9x/f9CssKKroYjciNFXQI2GwHUYFA==
+X-Received: by 2002:a17:902:dac1:b0:1cf:edd5:f783 with SMTP id q1-20020a170902dac100b001cfedd5f783mr10924289plx.15.1701322317321;
+        Wed, 29 Nov 2023 21:31:57 -0800 (PST)
+Received: from localhost.localdomain ([49.205.245.83])
+        by smtp.gmail.com with ESMTPSA id t5-20020a170902a5c500b001cfad1a60cesm336330plq.137.2023.11.29.21.31.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 29 Nov 2023 21:31:56 -0800 (PST)
+From: Anand Moon <linux.amoon@gmail.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Icenowy Zheng <uwu@icenowy.me>
+Cc: Anand Moon <linux.amoon@gmail.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	linux-amlogic@lists.infradead.org,
+	linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v5 1/2] dt-bindings: usb: Add the binding example for the Genesys Logic GL3523 hub
+Date: Thu, 30 Nov 2023 11:01:26 +0530
+Message-ID: <20231130053130.21966-2-linux.amoon@gmail.com>
+X-Mailer: git-send-email 2.42.0
+In-Reply-To: <20231130053130.21966-1-linux.amoon@gmail.com>
+References: <20231130053130.21966-1-linux.amoon@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <1700577493-18538-2-git-send-email-quic_msarkar@quicinc.com>
 
-On Tue, Nov 21, 2023 at 08:08:11PM +0530, Mrinmay Sarkar wrote:
-> In a multiprocessor system cache snooping maintains the consistency
-> of caches. Snooping logic is disabled from HW on this platform.
-> Cache coherency doesn’t work without enabling this logic.
-> 
-> 8775 has IP version 1.34.0 so intruduce a new cfg(cfg_1_34_0) for this
-> platform. Assign no_snoop_override flag into struct qcom_pcie_cfg and
-> set it true in cfg_1_34_0 and enable cache snooping if this particular
-> flag is true.
-> 
+Add the binding example for the USB3.1 Genesys Logic GL3523
+integrates with USB 3.1 Gen 1 Super Speed and USB 2.0 High-Speed
+hub.
 
-I just happen to check the internal register details of other platforms and I
-see this PCIE_PARF_NO_SNOOP_OVERIDE register with the reset value of 0x0. So
-going by the logic of this patch, this register needs to be configured for other
-platforms as well to enable cache coherency, but it seems like not the case as
-we never did and all are working fine (so far no issues reported).
+For onboard hub controllers that support USB 3.x and USB 2.0 hubs
+with shared resets and power supplies, this property is used to identify
+the hubs with which these are shared.
 
-So this gives me an impression that this patch is wrong or needs modification.
-So,
+[Conor Dooley: upgrade peer-hub description]
+Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+---
+v5: upgrade peer-hub description : Conor Dooley
+[0] https://www.genesyslogic.com.tw/en/product_view.php?show=67 [Block Diagram]
+v4: Fix the description of peer-hub and update the commit message.
+Schematics of the Odroid N2+
+https://dn.odroid.com/S922X/ODROID-N2/Schematic/odroid-n2_rev0.6_20210121.pdf
+V3: fix the dt_binding_check error, added new example for Genesys GL3523
+v2: added Genesys GL3523 binding
+v1: none
+---
+ .../bindings/usb/genesys,gl850g.yaml          | 65 +++++++++++++++++--
+ 1 file changed, 61 insertions(+), 4 deletions(-)
 
-Nacked-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-
-- Mani
-
-> Signed-off-by: Mrinmay Sarkar <quic_msarkar@quicinc.com>
-> ---
->  drivers/pci/controller/dwc/pcie-qcom.c | 20 +++++++++++++++++++-
->  1 file changed, 19 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-> index 6902e97..76f03fc 100644
-> --- a/drivers/pci/controller/dwc/pcie-qcom.c
-> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
-> @@ -51,6 +51,7 @@
->  #define PARF_SID_OFFSET				0x234
->  #define PARF_BDF_TRANSLATE_CFG			0x24c
->  #define PARF_SLV_ADDR_SPACE_SIZE		0x358
-> +#define PCIE_PARF_NO_SNOOP_OVERIDE		0x3d4
->  #define PARF_DEVICE_TYPE			0x1000
->  #define PARF_BDF_TO_SID_TABLE_N			0x2000
->  
-> @@ -117,6 +118,10 @@
->  /* PARF_LTSSM register fields */
->  #define LTSSM_EN				BIT(8)
->  
-> +/* PARF_NO_SNOOP_OVERIDE register fields */
-> +#define WR_NO_SNOOP_OVERIDE_EN			BIT(1)
-> +#define RD_NO_SNOOP_OVERIDE_EN			BIT(3)
-> +
->  /* PARF_DEVICE_TYPE register fields */
->  #define DEVICE_TYPE_RC				0x4
->  
-> @@ -229,6 +234,7 @@ struct qcom_pcie_ops {
->  
->  struct qcom_pcie_cfg {
->  	const struct qcom_pcie_ops *ops;
-> +	bool no_snoop_overide;
-
-I'd suggest to name variables after their usecase and not the register. Like,
-
-bool enable_cache_snoop;
-
->  };
->  
->  struct qcom_pcie {
-> @@ -961,6 +967,13 @@ static int qcom_pcie_init_2_7_0(struct qcom_pcie *pcie)
->  
->  static int qcom_pcie_post_init_2_7_0(struct qcom_pcie *pcie)
->  {
-> +	const struct qcom_pcie_cfg *pcie_cfg = pcie->cfg;
-> +
-> +	/* Enable cache snooping for SA8775P */
-
-This comment doesn't belong here. It can be added while setting the flag in cfg.
-
-> +	if (pcie_cfg->no_snoop_overide)
-> +		writel(WR_NO_SNOOP_OVERIDE_EN | RD_NO_SNOOP_OVERIDE_EN,
-> +				pcie->parf + PCIE_PARF_NO_SNOOP_OVERIDE);
-> +
->  	qcom_pcie_clear_hpc(pcie->pci);
->  
->  	return 0;
-> @@ -1331,6 +1344,11 @@ static const struct qcom_pcie_cfg cfg_1_9_0 = {
->  	.ops = &ops_1_9_0,
->  };
->  
-> +static const struct qcom_pcie_cfg cfg_1_34_0 = {
-> +	.ops = &ops_1_9_0,
-> +	.no_snoop_overide = true,
-> +};
-> +
->  static const struct qcom_pcie_cfg cfg_2_1_0 = {
->  	.ops = &ops_2_1_0,
->  };
-> @@ -1627,7 +1645,7 @@ static const struct of_device_id qcom_pcie_match[] = {
->  	{ .compatible = "qcom,pcie-msm8996", .data = &cfg_2_3_2 },
->  	{ .compatible = "qcom,pcie-qcs404", .data = &cfg_2_4_0 },
->  	{ .compatible = "qcom,pcie-sa8540p", .data = &cfg_1_9_0 },
-> -	{ .compatible = "qcom,pcie-sa8775p", .data = &cfg_1_9_0},
-> +	{ .compatible = "qcom,pcie-sa8775p", .data = &cfg_1_34_0},
->  	{ .compatible = "qcom,pcie-sc7280", .data = &cfg_1_9_0 },
->  	{ .compatible = "qcom,pcie-sc8180x", .data = &cfg_1_9_0 },
->  	{ .compatible = "qcom,pcie-sc8280xp", .data = &cfg_1_9_0 },
-> -- 
-> 2.7.4
-> 
-> 
-
+diff --git a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+index ee08b9c3721f..499192ea4074 100644
+--- a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
++++ b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+@@ -9,9 +9,6 @@ title: Genesys Logic USB hub controller
+ maintainers:
+   - Icenowy Zheng <uwu@icenowy.me>
+ 
+-allOf:
+-  - $ref: usb-device.yaml#
+-
+ properties:
+   compatible:
+     enum:
+@@ -27,12 +24,46 @@ properties:
+ 
+   vdd-supply:
+     description:
+-      the regulator that provides 3.3V core power to the hub.
++      phandle to the regulator that provides power to the hub.
++
++  peer-hub:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description:
++      For onboard hub controllers that support USB 3.x and USB 2.0 hubs
++      with shared resets and power supplies, this property is used to identify
++      the hubs with which these are shared.
+ 
+ required:
+   - compatible
+   - reg
+ 
++allOf:
++  - $ref: usb-device.yaml#
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - usb5e3,608
++    then:
++      properties:
++        peer-hub: false
++        vdd-supply: false
++        reset-gpios: true
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - usb5e3,610
++              - usb5e3,620
++    then:
++      properties:
++        peer-hub: true
++        vdd-supply: true
++        reset-gpios: true
++
+ additionalProperties: false
+ 
+ examples:
+@@ -49,3 +80,29 @@ examples:
+             reset-gpios = <&pio 7 2 GPIO_ACTIVE_LOW>;
+         };
+     };
++
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    usb {
++        dr_mode = "host";
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        /* 2.0 hub on port 1 */
++        hub_2_0: hub@1 {
++            compatible = "usb5e3,610";
++            reg = <1>;
++            peer-hub = <&hub_3_0>;
++            reset-gpios = <&gpio 20 GPIO_ACTIVE_LOW>;
++            vdd-supply = <&vcc_5v>;
++        };
++
++        /* 3.1 hub on port 4 */
++        hub_3_0: hub@2 {
++            compatible = "usb5e3,620";
++            reg = <2>;
++            peer-hub = <&hub_2_0>;
++            reset-gpios = <&gpio 20 GPIO_ACTIVE_LOW>;
++            vdd-supply = <&vcc_5v>;
++        };
++    };
 -- 
-மணிவண்ணன் சதாசிவம்
+2.42.0
+
 
