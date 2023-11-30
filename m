@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-20279-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20280-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F2E37FEAD9
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 09:36:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FF1B7FEADA
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 09:36:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D1903B20F02
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 08:36:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 449A1281E87
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 08:36:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58514C8C1;
-	Thu, 30 Nov 2023 08:36:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D86831F61A;
+	Thu, 30 Nov 2023 08:36:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FntZOjFL"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XSWp51/m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C16210F3
-	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 00:36:12 -0800 (PST)
-Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-54ba86ae133so577198a12.2
-        for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 00:36:12 -0800 (PST)
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F33D10C2
+	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 00:36:28 -0800 (PST)
+Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-54b8a4d64b5so596013a12.0
+        for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 00:36:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701333371; x=1701938171; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701333386; x=1701938186; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ObsOROnpkbSezGJjA9kHVUriLkfnwLirBce/YF+bAkk=;
-        b=FntZOjFL90ECUoyqY0YSJInC497hIF7Sc/JHJR3KywsUGmYVQheEXjYlB+1ZckmgbO
-         qyD6kKrOdiBFXB8WLoOor6jUbRwOcDpzOvLREHplt5G0LbEepdzqUv8ylq03Upr5/5sq
-         DHkrFg2cisk3VR9wUwXkjbClonbIsm/vMmNFYzlqivEa++NYyD26LQ2bL7Sk2chkf7bO
-         K0U+7rScy6MaCpSt47l+aaYYl+cQqghfNXXj4kSIMLQYOrAYoNOmYiuING5VxyHBiIYV
-         iIx0kSUYkZLOwhoKslOcsMz/5Ezn6rfs2UiAJGjDwWRxxQ/Apav7+bNeCGp2a8vrwzdh
-         QZJw==
+        bh=fEnWjWqb6bw/wLPUo7dggsoinos3NA+ggCCtssDkxFI=;
+        b=XSWp51/mLs/u39Y6kFNZFXnUiSKQIlGFYNT+JZZsLz5S3Mh4lspqaSEIv4zlkHsmqH
+         lWPIV4kxM20jdJ8raChb0mh8243StkcbbZ9tBYMzB2aWzOgfpi6uubMeg1thQyBQchkU
+         I2H9zccNoTqQPN4y0IVLEaR+N5m2I4CeXTnlmxHNGq24X5flCUC/3UtQ4HHIdRIJKmKS
+         lT5BBGwl2/SFphJGepdqqenxacVKAFxYL339h5WTTZBLQLDnuHxK6GsVT9+lGEOArNUg
+         hWrkZ2Gkv+L2khkmKS8pevmgV1htWH7KUvLWipDMARcdeS21xI2tFkSPm7Enrd2OadcX
+         5//g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701333371; x=1701938171;
+        d=1e100.net; s=20230601; t=1701333386; x=1701938186;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ObsOROnpkbSezGJjA9kHVUriLkfnwLirBce/YF+bAkk=;
-        b=vSCKhST69rIC/84E0HRqj1rRUloKMMp0rrKxQOX0Qk+48fkCd88RLD9UxaDx1mxjKa
-         BZmtXVbvUzipUbFQ2zuksCu5nOcRqRNSdelK/ak+8NaQzCSGpWqcDrfyweiOf8FwV9aG
-         vzFpcnBF+/Ti3e+g3DyKqXHAUR5A5D80tBPfO7inqh/EUZTdCqP/dHac93ZmlYvQg6Ly
-         Il+pfax+2ApTwXP9tszMBQv3ptois5MrlyK2GaLU9EY76etsbI/pcFsKvKiTl8WyA9Sb
-         Vs9axOOT5FnhAL+5VtWMinfuVDZcdy6X5q32Ru8BaU0p9Vy+sQM1BljvpYk8sP23FsXq
-         t1IQ==
-X-Gm-Message-State: AOJu0Yy9cR8gJUoga9iHfTQ2CWVq7PVIPuy0hspcdYsGJLcm5EgvTzb7
-	7+9oFbxefJ5qKmP+FN9tJ/XCfA==
-X-Google-Smtp-Source: AGHT+IFijJ2dL0rrwFIC/oGgYn4XPWGR8i7aEz1lHlvxrn+1Mp6Ra089obwQTTw8dewalQdjd0NDCA==
-X-Received: by 2002:a05:6402:520c:b0:54b:4067:6274 with SMTP id s12-20020a056402520c00b0054b40676274mr12578151edd.5.1701333370929;
-        Thu, 30 Nov 2023 00:36:10 -0800 (PST)
+        bh=fEnWjWqb6bw/wLPUo7dggsoinos3NA+ggCCtssDkxFI=;
+        b=iTT1Vl/WwL61k7yiKBOKnjuEUipEJkEPldRs5hDoovtpnok5YqtUjL9cx+K+oLhKXf
+         krfNelkLwEAv/RRhxla9Sgzk0xMfnUpSuPJ1J/LyhtezOJEyKXg2oZL8LK98T3anvrza
+         sZox270+ARfmKm37qi/B2e2d5k/5k81WrYVSyO/Qaeimqafxh7FQahyXDi4N8NGerJNN
+         Siqayioy9FeuDjIZhHpGfUaMzgC7O8Nyq0BshJ+ePqniub5bHRoLl/M4yI7GrYvcCC1g
+         aajVnaDb/4uVOAqZFlVQa7WHkXOqcl1Z/ke5yTmQg4yzTk+RlTru2Jvun+PIYV2jjwpD
+         l6dg==
+X-Gm-Message-State: AOJu0Ywj7hN+bMo/xHSD7F4JK4TRvdf5SUM1kJLBaIq3VhuKVDyoUx+3
+	EA97J7VH7SjvOvxte9Ue1GcQHA==
+X-Google-Smtp-Source: AGHT+IFqg8i2VD+28giSJBfiVjiEnfxLQADYK7/BMo+osqXBvwTar06z+gbWk6sjdr4amy2hfvMO0w==
+X-Received: by 2002:a05:6402:1c0b:b0:54b:eae2:31e9 with SMTP id ck11-20020a0564021c0b00b0054beae231e9mr2085190edb.18.1701333386642;
+        Thu, 30 Nov 2023 00:36:26 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.109])
-        by smtp.gmail.com with ESMTPSA id y24-20020a056402135800b00548d649f638sm313478edw.96.2023.11.30.00.36.08
+        by smtp.gmail.com with ESMTPSA id y24-20020a056402135800b00548d649f638sm313478edw.96.2023.11.30.00.36.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Nov 2023 00:36:10 -0800 (PST)
-Message-ID: <e127dcef-3149-443a-9a8c-d24ef4054f09@linaro.org>
-Date: Thu, 30 Nov 2023 09:36:07 +0100
+        Thu, 30 Nov 2023 00:36:26 -0800 (PST)
+Message-ID: <063ce37b-a088-42bc-ac85-bd439692c2c7@linaro.org>
+Date: Thu, 30 Nov 2023 09:36:25 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,23 +62,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/4] dt-bindings: pwm: amlogic: add new compatible for
- meson8 pwm type
+Subject: Re: [PATCH v1 1/2] dt-bindings: arm: fsl: add verdin imx8mp mallow
+ board
 Content-Language: en-US
-To: neil.armstrong@linaro.org, Jerome Brunet <jbrunet@baylibre.com>
-Cc: Thierry Reding <thierry.reding@gmail.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+To: Francesco Dolcini <francesco@dolcini.it>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>
+Cc: Joao Paulo Goncalves <joao.goncalves@toradex.com>,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-pwm@vger.kernel.org,
- JunYi Zhao <junyi.zhao@amlogic.com>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-References: <20231129134004.3642121-1-jbrunet@baylibre.com>
- <20231129134004.3642121-3-jbrunet@baylibre.com>
- <8e78be99-3d4d-4f79-9791-404e60bcb67c@linaro.org>
- <1jfs0ojz1a.fsf@starbuckisacylon.baylibre.com>
- <11f8d986-3e97-4191-b46c-ad3166ee6dc7@linaro.org>
+ Francesco Dolcini <francesco.dolcini@toradex.com>
+References: <20231129164022.143340-1-francesco@dolcini.it>
+ <20231129164022.143340-2-francesco@dolcini.it>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -124,56 +119,19 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <11f8d986-3e97-4191-b46c-ad3166ee6dc7@linaro.org>
+In-Reply-To: <20231129164022.143340-2-francesco@dolcini.it>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 29/11/2023 17:41, neil.armstrong@linaro.org wrote:
->>>>    .../devicetree/bindings/pwm/pwm-amlogic.yaml  | 52 ++++++++++++++++---
->>>>    1 file changed, 46 insertions(+), 6 deletions(-)
->>>> diff --git a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
->>>> b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
->>>> index 387976ed36d5..eece390114a3 100644
->>>> --- a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
->>>> +++ b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
->>>> @@ -21,23 +21,35 @@ properties:
->>>>              - amlogic,meson-g12a-ee-pwm
->>>>              - amlogic,meson-g12a-ao-pwm-ab
->>>>              - amlogic,meson-g12a-ao-pwm-cd
->>>> -          - amlogic,meson-s4-pwm
->>>> +        deprecated: true
->>>>          - items:
->>>>              - const: amlogic,meson-gx-pwm
->>>>              - const: amlogic,meson-gxbb-pwm
->>>> +        deprecated: true
->>>>          - items:
->>>>              - const: amlogic,meson-gx-ao-pwm
->>>>              - const: amlogic,meson-gxbb-ao-pwm
->>>> +        deprecated: true
->>>>          - items:
->>>>              - const: amlogic,meson8-pwm
->>>>              - const: amlogic,meson8b-pwm
->>>> +        deprecated: true
->>>
->>> I think deprecated should be moved in a third patch
->>
->> The complain on v2 was that it was not clear the new binding was making
->> the old one obsolete. It looked to me that the deprecation old bindings
->> needed to go together with the introduction of the new.
->>
->> I don't mind one way or the other
->>
->> Is there a rule somewhere about this ?
+On 29/11/2023 17:40, Francesco Dolcini wrote:
+> From: Joao Paulo Goncalves <joao.goncalves@toradex.com>
 > 
-> Not sure about that, I don't think it's a problem to have both valid
-> at the same time, setting them deprecated afterwards looks cleaner
-> to avoid mixing too much changes at the same time.
+> Add Mallow carrier board for wifi and nonwifi variants of Toradex Verdin
+> IMX8MP SoM. Mallow is a low-cost carrier board in the Verdin family with
+> a small form factor and build for volume production making it ideal for
+> industrial and embedded applications.
 
-For me current order is correct and intuitive: you add new binding,
-because old binding was wrong, so the old binding should be deprecated.
-Otherwise you have a state with both new and old binding and one could
-question - why did we need new binding? For dtschema it does not matter,
-but it matters how we read the code.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
