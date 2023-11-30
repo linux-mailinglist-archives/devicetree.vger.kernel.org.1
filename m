@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-20263-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20264-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DDB67FEA1C
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 09:01:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 444817FEA22
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 09:03:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 13888B20DD6
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 08:01:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A5C1AB20DCD
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 08:03:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04F801F933;
-	Thu, 30 Nov 2023 08:01:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C89A20DE9;
+	Thu, 30 Nov 2023 08:03:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ytu8YzIU"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jd4Xai2E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2429310D9
-	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 00:01:43 -0800 (PST)
-Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-54c0bca218dso277685a12.3
-        for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 00:01:43 -0800 (PST)
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F154110DB
+	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 00:03:20 -0800 (PST)
+Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-54afd43c83cso554048a12.0
+        for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 00:03:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701331301; x=1701936101; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1701331399; x=1701936199; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=gk2JbtMlo6WQoDmF8ccbRSSYTd1fSytcQhz6DQC0L9M=;
-        b=Ytu8YzIUxJDm8gZxYeXVVTFCNLG2aV+fdkPX9Vm3O66sY95hAPA+pqYqtJOUOYTzRO
-         mntCHF3xruedwG70iXSkSH6tgVw6lHJQQvH1hdyCdH9kZx/iq6FqK8RuXnqNMs8XNrlk
-         IljCnriia0wV9vEjptlpByAC5yUhguxA/+BWsui9YXHbAtoc/KmnPv3Odv3kvOzCbqfC
-         Qt01FYRa3Gp3UpVtMxjld4flsZAbHRJZNJp6ncH0q5LbIWlkdIwB3Li0etS5pOCr+z4X
-         2BkVpo9X7/o/Ww2mjqoqB+5YfBOvFqNhMAXP+N63DmzKgoX6+5gUab1VZXZIy+LCNGee
-         qSvw==
+        bh=MJd9Uk6t7Y5o+xsifWwLGMs7qEY6VjicjwyZWtTxCgQ=;
+        b=jd4Xai2E+MMJOfWFGV9yiryo7hYBj1TPk5G3NP3BGZQYHeCCoavUT1chxfOyRuhgPV
+         P9tP1WDwX0uVRnhAgq8PGDKGpGNt/6GbKDSFcuCEGnFTAicUPC2TFcCYhaMU6NvfITu8
+         p5vs4SVSDLkNV4AlV9z+wn2zV0JilrzyGIduJcufYfsKIrlZ51Xdh0Y5DLUYTso6E2cw
+         Usmwn/Suubi8+1T/p7xadmgm6ILQZFpo7s7nXqWCuvD4CHA/tiiQyv+UPjICCk/90TUa
+         2hqoiMcTPt0jeGiuixJTTXv1MJFrG+ZKJpn1uTfSHaplAE2D53xtiSQjTWEwyTaVLa1S
+         nfRg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701331301; x=1701936101;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1701331399; x=1701936199;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gk2JbtMlo6WQoDmF8ccbRSSYTd1fSytcQhz6DQC0L9M=;
-        b=fxdiMXXXlDB4inQc8+9ZDYM0F+j6uVGZVTwdApi/UDTB+61WIfMrgTZbivAL+WGPv1
-         wgo2jRpJpdod0d8C8HLpYUpDL+e3+KjoMvPDizGy9UttFgNzRz8FvpaDid3/yBoXLakL
-         Evmn/rMvvmP8ORe+FGtz4JBwyOyBAj0tNcyFjem7xgPIPH+YGkSghayOC5Cq/F1AQeoN
-         Ytc5mKwe2mwB6eBKA/gpgiGxz+pWnbZxbstyQpnOeAX4th8cKVYx/4VqceHMWH37Abx5
-         Z55cnj8GZ0pUhagJUpHgnvAOu+8yevQu9nSD+I7lceCMnFYWonEnxyH0Cp+JY7c27oy6
-         MBXw==
-X-Gm-Message-State: AOJu0YztHejXtIj3XDYsExQLsxLDNaKiOjQLv4iSnOcy7YTVM7v8++sM
-	nCEiDkd3Si0qF5WWg7XLxRxTNQ==
-X-Google-Smtp-Source: AGHT+IHNM7VsJ8U2JIjdtjCguhq6a0MblOnIQOqCBIDRxqJp1d4EDgJ10iue6LDC42RswFndilTUKQ==
-X-Received: by 2002:aa7:db8d:0:b0:54b:dc3c:7c9e with SMTP id u13-20020aa7db8d000000b0054bdc3c7c9emr2540356edt.31.1701331301566;
-        Thu, 30 Nov 2023 00:01:41 -0800 (PST)
+        bh=MJd9Uk6t7Y5o+xsifWwLGMs7qEY6VjicjwyZWtTxCgQ=;
+        b=j5TDDLz0mNZS8bxAwN9sK9CBG7dZsQI1/CqwwQuEYthr/bt1KolkyBm6LhTCV2pa8c
+         ot2qje1Weqldb34WFFW0Ltvj2T/Pd63Lbg1s6QpWggCBtkdBDOxHnQBxWr7sHv/mLWBg
+         DMJzZ6T+suH/tMrtf33cCr7Bv7NKZR6cbi+QFNW+gl8QPZEUX5SySaUFIcdeOXXwcZYv
+         Zs84CLi9iFDODewPA9rQTL3naWlT3kBHt37mPkNXQXLxnge+iu4uOE6NZJFdZxQwziI0
+         0oyyLAh9tdLt+mzbLjCgxikKQuMoHjbH7Eiot8cj7NHH219qnosgVCX8xiTzUvxwxjiE
+         iIxA==
+X-Gm-Message-State: AOJu0YzUKQP9jIq5nF3E4lPJwh9DTLZqG0eCUJ48AGjqzwREemCSBvO3
+	AgLLw/ZNWnjyzz++q967SkSpew==
+X-Google-Smtp-Source: AGHT+IEahOaCi8GKojER7yMi7nGU5kYLnxeF+eW+RpCQYnWem49rP6WV1WaWzP3okeX8C53lX+WpsA==
+X-Received: by 2002:a50:bb63:0:b0:548:55f0:b5f2 with SMTP id y90-20020a50bb63000000b0054855f0b5f2mr14330965ede.6.1701331399465;
+        Thu, 30 Nov 2023 00:03:19 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.109])
-        by smtp.gmail.com with ESMTPSA id b22-20020aa7df96000000b0054b3a6243b1sm291363edy.71.2023.11.30.00.01.39
+        by smtp.gmail.com with ESMTPSA id b22-20020aa7df96000000b0054b3a6243b1sm291363edy.71.2023.11.30.00.03.17
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Nov 2023 00:01:41 -0800 (PST)
-Message-ID: <15a46a91-d539-4580-b676-1177fc0530a5@linaro.org>
-Date: Thu, 30 Nov 2023 09:01:38 +0100
+        Thu, 30 Nov 2023 00:03:18 -0800 (PST)
+Message-ID: <50e56220-8068-4e2e-a586-9d0474963085@linaro.org>
+Date: Thu, 30 Nov 2023 09:03:17 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,23 +62,31 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/4] clk: sophgo: Add SG2042 clock generator driver
+Subject: Re: [PATCH 1/2] dt-bindings: phy: mediatek: tphy: add a property for
+ force-mode switch
 Content-Language: en-US
-To: Chen Wang <unicorn_wang@outlook.com>, Chen Wang <unicornxw@gmail.com>,
- aou@eecs.berkeley.edu, chao.wei@sophgo.com, conor@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
- palmer@dabbelt.com, paul.walmsley@sifive.com, richardcochran@gmail.com,
- robh+dt@kernel.org, sboyd@kernel.org, devicetree@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org, haijiao.liu@sophgo.com,
- xiaoguang.xing@sophgo.com, guoren@kernel.org, jszhang@kernel.org,
- inochiama@outlook.com, samuel.holland@sifive.com
-References: <cover.1701044106.git.unicorn_wang@outlook.com>
- <c06130afb4bdc1890b4e8d29388fa6feef1f1826.1701044106.git.unicorn_wang@outlook.com>
- <81d421c8-bfd6-42b5-9da1-f067792f8f48@linaro.org>
- <MA0P287MB03329CFBA3BB6A4E4F322F99FEBDA@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
- <2a268c8c-ce55-4321-b390-092b8df61407@linaro.org>
- <MA0P287MB03320824AB953465E00394FEFE82A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
+To: =?UTF-8?B?Q2h1bmZlbmcgWXVuICjkupHmmKXls7Ap?= <Chunfeng.Yun@mediatek.com>,
+ "vkoul@kernel.org" <vkoul@kernel.org>,
+ =?UTF-8?B?TWFjcGF1bCBMaW4gKOael+aZuuaWjCk=?= <Macpaul.Lin@mediatek.com>,
+ "robh+dt@kernel.org" <robh+dt@kernel.org>
+Cc: =?UTF-8?B?UGFibG8gU3VuICjlravmr5Pnv5Qp?= <pablo.sun@mediatek.com>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ =?UTF-8?B?QmVhciBXYW5nICjokKnljp/mg5/lvrcp?= <bear.wang@mediatek.com>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+ "angelogioacchino.delregno@collabora.com"
+ <angelogioacchino.delregno@collabora.com>
+References: <20231125012303.760-1-chunfeng.yun@mediatek.com>
+ <e34c2746-8e93-48b8-9c96-690242fbf6e9@linaro.org>
+ <239def9b-437b-9211-7844-af4332651df0@mediatek.com>
+ <0dc24d82-e09d-45bc-98ae-1dfb6318cb96@linaro.org>
+ <74957a9cc4663815e200d222483541a1eec43bbe.camel@mediatek.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -124,88 +132,44 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <MA0P287MB03320824AB953465E00394FEFE82A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
+In-Reply-To: <74957a9cc4663815e200d222483541a1eec43bbe.camel@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 30/11/2023 07:37, Chen Wang wrote:
-> 
-> On 2023/11/27 17:16, Krzysztof Kozlowski wrote:
->> On 27/11/2023 09:07, Chen Wang wrote:
->>> On 2023/11/27 15:12, Krzysztof Kozlowski wrote:
->>>> On 27/11/2023 02:15, Chen Wang wrote:
->>>>> From: Chen Wang <unicorn_wang@outlook.com>
->>>>>
->>>>> Add a driver for the SOPHGO SG2042 clock generator.
->>>>>
->>>>> Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
->>>> ...
->>>>
->>>> +}
->>>> +
->>>> +CLK_OF_DECLARE(sg2042_clk, "sophgo,sg2042-clkgen", sg2042_clk_init);
->>>> No, this should be platform device. It's a child of another device, so
->>>> you cannot use other way of init ordering.
->>> hi, Krzysztof,
+On 30/11/2023 02:51, Chunfeng Yun (云春峰) wrote:
+>>> 3. How about we revise the description as follows for more
+>> precisely?
 >>>
->>> Thanks for your review.
->>>
->>> I don't quite understand your opinion. Do you mean CLK_OF_DECLARE is
->>> only used for platform device so it can not be use here? But I think
->> No, I meant you mix init ordering: you depend now on syscon earlier
->> initcall than CLK_OF_DECLARE. Do you remember which one is first? If
->> anything changes here, your driver is broken. There is no dependency, no
->> probe deferral.
-> 
-> hi, Krzysztof,
-> 
-> I found that the initcall method cannot be used for the clock controller 
-> of sg2042. We need to initialize the clock earlier because there are two 
-> dw-apb-timers in sg2042 (Sorry, I have not added them in the current DTS 
-> of sg2042, will be submitted later). The initialization of these timers 
-> (timer_probe()) depends on the initialization of the clock controller. 
-> If we use the initcall mechanism, it will be too late for the timer. So 
-> it seems better to use CLK_OF_DECLARE provided by CCF.
+>>> mediatek,force-mode:
+>>>    description:
+>>>      The force mode is used to manually switch the shared PHY mode
+>>>      between USB and PCIe. When force-mode is set, the USB 3.0 mode
+>>>      will be selected. This is typically required for older SoCs
+>>>      that do not automatically manage PHY mode switching.
+>>>      For newer SoCs that support it, it is preferable to use the
+>>>      "mediatek,syscon-type" property instead.
+>>>    type: boolean
+>>
+>> Again, what is force-mode? 
+> Our DE describe this behavior as force-mode, as you see, the driver
 
-Sure, that's fine, but don't use syscon in such case.
+What is "DE"?
 
-> 
-> I have a question here that I would like to discuss. The design of 
-> sg2042 is like this, according to the design of memorymap in its TRM:
-> 
-> 070:3001:0000 ~ 070:3001:0FFF SYS_CTRL 4K
-> 070:3001:1000 ~ 070:3001:1FFF PINMUX 4K
-> 070:3001:2000 ~ 070:3001:2FFF CLOCK 4K
-> 070:3001:3000 ~ 070:3001:3FFF RESET 4K
-> 
-> But also as per hw design (I don't know why and I don't like it also :( 
-> ), some of the PLL/GATE CLOCK control registers are defined in the scope 
-> of SYS_CTRL, and others are defined in the scope of CLOCK. That's why in 
-> the current code, I define the syscon node corresponding to SYS_CTRL. 
-> The purpose is just to get the regmap of syscon for the clock controller 
-> through the device tree (through device_node_to_regmap()), so that the 
-> syscon defined in SYS_CTRL can be accessed through the regmap from 
-> clock. The clock controller driver itself does not rely on other 
-> operations of syscon.
-> 
-> So based on the above analysis, is it still necessary for us to define 
-> the clock controller as a child node of syscon? In the version v1 of 
-> this patch, I actually did not define the clock controller as a child 
-> node of syscon, but only accessed syscon through the phandle method. [1]
+> power down controller and reset pipe to set the mode directly we want,
 
-I have impression you ask me if your solution is ok, but I already
-pointed the problem. Address the problem - how do you enforce ordering
-of syscon and CLK_OF_DECLARE? What initcalls are both?
+So force-mode is driver behavior?
 
+> but usually the phy controller switch to the mode automatically
+> according to the external signal, e.g. trapping pin, efuse etc.
 > 
-> After more read of the TRM, I believe this situation only exists for 
-> clock. That is to say, there will be only one child node of clook under 
-> syscon. From a hardware design perspective, CLOCK and SYS_CTRL are two 
-> different blocks. So I think it is better to restore the original 
-> method, that is, restore clock and syscon to nodes of the same level, 
-> and let clock use phandle to access syscon.
-> 
-> What do you think or do you have any good suggestions?
+>> It looks like you wrote bindings for the
+>> driver behavior. Bindings describe hardware, not how the driver
+>> should
+>> behave. The property might be reasonable, but you must describe here
+>> hardware characteristics/issue/etc.
+
+You must address this, in such case.
+
 
 
 Best regards,
