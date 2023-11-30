@@ -1,149 +1,156 @@
-Return-Path: <devicetree+bounces-20296-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20297-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3247A7FEBCA
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 10:23:52 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B69887FEBD8
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 10:29:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2F544B20EAF
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 09:23:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 365301F20F16
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 09:29:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D37338DCE;
-	Thu, 30 Nov 2023 09:23:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D756838DFB;
+	Thu, 30 Nov 2023 09:29:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BDsgNmm4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from Atcsqr.andestech.com (60-248-80-70.hinet-ip.hinet.net [60.248.80.70])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE35E10C2;
-	Thu, 30 Nov 2023 01:23:40 -0800 (PST)
-Received: from mail.andestech.com (ATCPCS16.andestech.com [10.0.1.222])
-	by Atcsqr.andestech.com with ESMTP id 3AU9L7OD077461;
-	Thu, 30 Nov 2023 17:21:07 +0800 (+08)
-	(envelope-from peterlin@andestech.com)
-Received: from APC323 (10.0.12.98) by ATCPCS16.andestech.com (10.0.1.222) with
- Microsoft SMTP Server id 14.3.498.0; Thu, 30 Nov 2023 17:21:04 +0800
-Date: Thu, 30 Nov 2023 17:21:01 +0800
-From: Yu-Chien Peter Lin <peterlin@andestech.com>
-To: Inochi Amaoto <inochiama@outlook.com>
-CC: Guo Ren <guoren@kernel.org>, <acme@kernel.org>, <adrian.hunter@intel.com>,
-        <ajones@ventanamicro.com>, <alexander.shishkin@linux.intel.com>,
-        <andre.przywara@arm.com>, <anup@brainfault.org>,
-        <aou@eecs.berkeley.edu>, <atishp@atishpatra.org>,
-        <conor+dt@kernel.org>, <conor.dooley@microchip.com>,
-        <conor@kernel.org>, <devicetree@vger.kernel.org>,
-        <dminus@andestech.com>, <evan@rivosinc.com>, <geert+renesas@glider.be>,
-        <heiko@sntech.de>, <irogers@google.com>, <jernej.skrabec@gmail.com>,
-        <jolsa@kernel.org>, <jszhang@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <linux-perf-users@vger.kernel.org>,
-        <linux-renesas-soc@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-        <linux-sunxi@lists.linux.dev>, <locus84@andestech.com>,
-        <magnus.damm@gmail.com>, <mark.rutland@arm.com>, <mingo@redhat.com>,
-        <n.shubin@yadro.com>, <namhyung@kernel.org>, <palmer@dabbelt.com>,
-        <paul.walmsley@sifive.com>, <peterz@infradead.org>,
-        <prabhakar.mahadev-lad.rj@bp.renesas.com>, <rdunlap@infradead.org>,
-        <robh+dt@kernel.org>, <samuel@sholland.org>,
-        <sunilvl@ventanamicro.com>, <tglx@linutronix.de>,
-        <tim609@andestech.com>, <uwu@icenowy.me>, <wens@csie.org>,
-        <will@kernel.org>, <ycliang@andestech.com>
-Subject: Re: [PATCH v4 09/13] dt-bindings: riscv: Add T-Head PMU extension
- description
-Message-ID: <ZWhT_VSpl2aksVK7@APC323>
-References: <ZWb6-LEkyh5RRpcP@APC323>
- <IA1PR20MB49537364BDF1ADE185CA8FE4BB82A@IA1PR20MB4953.namprd20.prod.outlook.com>
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D53F12A
+	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 01:29:10 -0800 (PST)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-a00f67f120aso93406066b.2
+        for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 01:29:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1701336548; x=1701941348; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=HlPaWYhCGlwV4il3F6O0Kb9pqVQr1UFc369PfCtXOW0=;
+        b=BDsgNmm47QF1Cd+h+1+YjQfV+nqwCCiSdduZYCXPojlJmx4qU1TXGspURklVY0bd1B
+         pinxOs5rEdKv4tmW1YP2ZI4ofESmJzthfpglJIUH+16SrDl9gvQy8sTxQqZb9xGDU5EM
+         YfOndHEN7efBY2LJTDPuKkDiumQREK94C534cW4zJCNxJ+TE+ZysH/blsfP55t0W0RJL
+         mMheUgOP9wEHmTKPQcQxPGWydWhn9FgEi8eTly7vLJv5OrxMg5A++DURYo9Zuzv/Y1jn
+         VnJdfB1Kwwmuxla+F6JYfjXq1m6jqN7IAnLpBSj8ykeUab1FnQHvjpElPGM5IFuUBNO/
+         U4Nw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701336548; x=1701941348;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=HlPaWYhCGlwV4il3F6O0Kb9pqVQr1UFc369PfCtXOW0=;
+        b=tJ0VZ94rEyv6ongs6JeOCJixDX9+xFfjQqz2iaLxD1VJk7DLOqovGdhmo37zhi3JWg
+         qTlzOn45TN0hxgrmNhgPlSmpKU28SEqjQVxIeFYUbS09PC27zuabnlYUzzDgbioOXk9f
+         n087uXiSZxtw3zoSSiHccltLzrM82HHkDRMTKFIDBeCLq2th5/LUvTmgIn1pbKj9ooZv
+         /bTNVIUsf+mrWdi391QZIRVY0DLCis6hPztJSI/zMB/TS3wwT1pkwjOLtwO0z7UjwahB
+         znGX3Im5icQH3lAP7AGuNA6/9H//wERE7uHe1nMqGkV7zunnUxMaZZdl5Yj2zLigf09X
+         yyzA==
+X-Gm-Message-State: AOJu0YzydXHQ1CiUH5WmIM6gyfoyGGUbOyT85L44HAX/md8k2pxlEoY3
+	kBP+Eiq8Y9pQ42XbtbCrqRo18g==
+X-Google-Smtp-Source: AGHT+IHVyMDTzQbcNrjN3KNPhQHI/Ps6tJWGHf/S35CIaJS0yKsbZAZTRs+KvEDb7O0mfnkNHhiTbQ==
+X-Received: by 2002:a17:906:5349:b0:9be:481c:60bf with SMTP id j9-20020a170906534900b009be481c60bfmr15874693ejo.55.1701336548485;
+        Thu, 30 Nov 2023 01:29:08 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.223.109])
+        by smtp.gmail.com with ESMTPSA id dx9-20020a170906a84900b009fbc655335dsm472465ejb.27.2023.11.30.01.29.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 Nov 2023 01:29:08 -0800 (PST)
+Message-ID: <79f65b96-9015-41c4-b4ee-a82526c9eefc@linaro.org>
+Date: Thu, 30 Nov 2023 10:29:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <IA1PR20MB49537364BDF1ADE185CA8FE4BB82A@IA1PR20MB4953.namprd20.prod.outlook.com>
-User-Agent: Mutt/2.2.10 (2023-03-25)
-X-DNSRBL: 
-X-SPAM-SOURCE-CHECK: pass
-X-MAIL:Atcsqr.andestech.com 3AU9L7OD077461
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: zynqmp: Add missing destination mailbox compatible
+Content-Language: en-US
+To: Michal Simek <michal.simek@amd.com>, linux-kernel@vger.kernel.org,
+ monstr@monstr.eu, michal.simek@xilinx.com, git@xilinx.com
+Cc: Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Michael Grzeschik <m.grzeschik@pengutronix.de>,
+ Parth Gajjar <parth.gajjar@amd.com>,
+ Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>,
+ Varalaxmi Bingi <varalaxmi.bingi@amd.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <96460adbb99ea829a2a95c72a40118f81946a559.1701335951.git.michal.simek@amd.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <96460adbb99ea829a2a95c72a40118f81946a559.1701335951.git.michal.simek@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Inochi,
-
-On Thu, Nov 30, 2023 at 04:29:22PM +0800, Inochi Amaoto wrote:
-> >
-> >Hi Guo Ren,
-> >
-> >On Thu, Nov 23, 2023 at 05:14:30AM +0800, Guo Ren wrote:
-> >> On Wed, Nov 22, 2023 at 8:17 PM Yu Chien Peter Lin
-> >> <peterlin@andestech.com> wrote:
-> >>>
-> >>> Document the ISA string for T-Head performance monitor extension
-> >>> which provides counter overflow interrupt mechanism.
-> >>>
-> >>> Signed-off-by: Yu Chien Peter Lin <peterlin@andestech.com>
-> >>> ---
-> >>> Changes v2 -> v3:
-> >>>   - New patch
-> >>> Changes v3 -> v4:
-> >>>   - No change
-> >>> ---
-> >>>  Documentation/devicetree/bindings/riscv/extensions.yaml | 6 ++++++
-> >>>  1 file changed, 6 insertions(+)
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Documentation/devicetree/bindings/riscv/extensions.yaml
-> >>> index c91ab0e46648..694efaea8fce 100644
-> >>> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
-> >>> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
-> >>> @@ -258,5 +258,11 @@ properties:
-> >>>              in commit 2e5236 ("Ztso is now ratified.") of the
-> >>>              riscv-isa-manual.
-> >>>
-> >>> +        - const: xtheadpmu
-> >>> +          description:
-> >>> +            The T-Head performance monitor extension for counter overflow. For more
-> >>> +            details, see the chapter 12 in the Xuantie C906 user manual.
-> >>> +            https://github.com/T-head-Semi/openc906/tree/main/doc
-> >>> +
-> >>>  additionalProperties: true
-> >>>  ...
-> >>> --
-> >>> 2.34.1
-> >>>
-> >> Reviewed-by: Guo Ren <guoren@kernel.org>
-> >
-> >Thanks for the review.
-> >Would you share document about T-Head PMU?
-> >
+On 30/11/2023 10:19, Michal Simek wrote:
+> The commit 81186dc16101 ("dt-bindings: zynqmp: add destination mailbox
+> compatible") make compatible string for child nodes mandatory that's why
+> add it.
 > 
-> Hi, Peter Lin:
+> Signed-off-by: Michal Simek <michal.simek@amd.com>
+> ---
 > 
-> You can use the following two document to get all events:
-> https://github.com/T-head-Semi/openc906/tree/main/doc
-> https://github.com/T-head-Semi/openc910/tree/main/doc
+>  arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> There are also some RTL code can describe these events:
-> https://github.com/T-head-Semi/openc910/blob/e0c4ad8ec7f8c70f649d826ebd6c949086453272/C910_RTL_FACTORY/gen_rtl/pmu/rtl/ct_hpcp_top.v#L1123
-> https://github.com/T-head-Semi/openc906/blob/af5614d72de7e5a4b8609c427d2e20af1deb21c4/C906_RTL_FACTORY/gen_rtl/pmu/rtl/aq_hpcp_top.v#L543
-> 
-> The perf events json can also be used as document, this is already
-> applied (with more detailed explanation):
-> https://lore.kernel.org/all/IA1PR20MB495325FCF603BAA841E29281BBBAA@IA1PR20MB4953.namprd20.prod.outlook.com/
+> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+> index f5e1eb8cb3b7..eaba466804bc 100644
+> --- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+> +++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+> @@ -141,6 +141,7 @@ zynqmp_ipi: zynqmp-ipi {
+>  
+>  		ipi_mailbox_pmu1: mailbox@ff9905c0 {
+>  			bootph-all;
+> +			compatible = "xlnx,zynqmp-ipi-dest-mailbox";
 
-Thanks for reaching out!
-The updated description will be:
-
-- const: xtheadpmu
-  description:
-    The T-Head performance monitor extension for counter overflow, as ratified
-    in commit bd9206 ("Initial commit") of Xuantie C906 user manual.
-    https://github.com/T-head-Semi/openc906/tree/main/doc
-
-Is it OK with you?
+Probably you want it as first property. Although then reg is also placed
+odd, but it's all because bootph-all was put at the beginning.
 
 Best regards,
-Peter Lin
+Krzysztof
 
-> Best regards,
-> Inochi
 
