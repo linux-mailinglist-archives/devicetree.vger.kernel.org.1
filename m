@@ -1,96 +1,75 @@
-Return-Path: <devicetree+bounces-20479-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20481-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E0A07FF820
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 18:25:35 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 536AB7FF82A
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 18:26:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BE4552816A0
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 17:25:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B3E7AB20B97
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 17:26:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95AEF56770;
-	Thu, 30 Nov 2023 17:25:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83EAE5674F;
+	Thu, 30 Nov 2023 17:26:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="geoC9/gW"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="tCGiikmX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60B2D56757;
-	Thu, 30 Nov 2023 17:25:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0731CC07615;
-	Thu, 30 Nov 2023 17:25:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701365126;
-	bh=hSnEWQ5BFd65oW3upSVnQ42R/owuCp6Usl1kLC5b1FA=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=geoC9/gWAv6GcCrKW2qGzId615qUlwWxVb1ElZClUBeFckIAtvXkxTszffYp2we0P
-	 LZvDG/pGS9thgKwWHFuRzGBlnTUD//23Y0E/7YEzE1O4jQcmOX8rIiBu/KhTgLnXd5
-	 q7oktWMzroeb+ay/Q7MgZv8ciwm6g60cu3+C2PJ3wdKliW2LjIDvtxaE+ZDbuifSu3
-	 S9iKTcKNJH+6PWb4pjfzyQx+srdgZjnJkTi0LNloxr8u2QDILbgszAUkXrUSeHFLhV
-	 vf+6v0p+Fs9QrjsED2O0nKERxwNX6J4UhVaFof94wAKpoG4UVBa/BuTg91CojLJDn0
-	 +ebrEI1FaseAg==
-Received: from johan by xi.lan with local (Exim 4.96.2)
-	(envelope-from <johan+linaro@kernel.org>)
-	id 1r8knX-0003H2-1m;
-	Thu, 30 Nov 2023 18:25:59 +0100
-From: Johan Hovold <johan+linaro@kernel.org>
-To: Lee Jones <lee@kernel.org>
-Cc: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	Johan Hovold <johan+linaro@kernel.org>
-Subject: [PATCH 4/4] dt-bindings: mfd: pm8008: fix example node names
-Date: Thu, 30 Nov 2023 18:25:47 +0100
-Message-ID: <20231130172547.12555-5-johan+linaro@kernel.org>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20231130172547.12555-1-johan+linaro@kernel.org>
-References: <20231130172547.12555-1-johan+linaro@kernel.org>
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3ECE133;
+	Thu, 30 Nov 2023 09:26:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=8uE72B/ZbsCd2fU3mnrHk7yTs0g881UEt43C00CniGU=; b=tCGiikmXA1Toh2xAc4IbKCLf23
+	UU8yrlZ7y2ehr8c63qU+z3aBbCS+vKCCKn5pG23ZCFb6gk/utmM3MD64mtt9c+xZNnuI+jbn0d62g
+	i3cJVrgHAMFwgDhwJf6CGxi1i9/XjHsGsXyjIH50HhMJCNaxn0h4RKPWHaPDMyeVTFEk=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1r8knl-001giW-Mj; Thu, 30 Nov 2023 18:26:13 +0100
+Date: Thu, 30 Nov 2023 18:26:13 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Tomer Maimon <tmaimon77@gmail.com>
+Cc: alexandre.torgue@foss.st.com, tali.perry1@gmail.com,
+	edumazet@google.com, krzysztof.kozlowski+dt@linaro.org,
+	linux-stm32@st-md-mailman.stormreply.com, benjaminfair@google.com,
+	openbmc@lists.ozlabs.org, joabreu@synopsys.com, joel@jms.id.au,
+	devicetree@vger.kernel.org, j.neuschaefer@gmx.net,
+	robh+dt@kernel.org, peppe.cavallaro@st.com,
+	linux-arm-kernel@lists.infradead.org, avifishman70@gmail.com,
+	venture@google.com, linux-kernel@vger.kernel.org,
+	mcoquelin.stm32@gmail.com, netdev@vger.kernel.org,
+	davem@davemloft.net
+Subject: Re: [PATCH v1 2/2] net: stmmac: Add NPCM support
+Message-ID: <25d0c091-3dce-4d62-a112-c82106809c65@lunn.ch>
+References: <20231121151733.2015384-1-tmaimon77@gmail.com>
+ <20231121151733.2015384-3-tmaimon77@gmail.com>
+ <6aeb28f5-04c2-4723-9da2-d168025c307c@lunn.ch>
+ <CAP6Zq1j0kyrg+uxkXH-HYqHz0Z4NwWRUGzprius=BPC9+WfKFQ@mail.gmail.com>
+ <9ad42fef-b210-496a-aafc-eb2a7416c4df@lunn.ch>
+ <CAP6Zq1jw9uLP_FQGR8=p3Y2NTP6XcNtzkJQ0dm3+xVNE1SpsVg@mail.gmail.com>
+ <CAP6Zq1ijfMSPjk1vPwDM2B+r_vAH3DShhSu_jr8xJyUkTQY89w@mail.gmail.com>
+ <a551aefa-777d-4fd3-b1a5-086dc3e62646@lunn.ch>
+ <CAP6Zq1jVO5y3ySeGNE5-=XWV6Djay5MhGxXCZb9y91q=EA71Vg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAP6Zq1jVO5y3ySeGNE5-=XWV6Djay5MhGxXCZb9y91q=EA71Vg@mail.gmail.com>
 
-Devicetree node names should be generic; fix up the pm8008 binding
-example accordingly.
+> I will check with the xpcs maintainer how can we add indirect access
+> to the xpcs module.
 
-Fixes: b0572a9b2397 ("dt-bindings: mfd: pm8008: Add bindings")
-Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
----
- Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+https://elixir.bootlin.com/linux/latest/source/drivers/net/ethernet/stmicro/stmmac/dwmac-socfpga.c#L449
 
-diff --git a/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml b/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml
-index 24c6158f73ae..32ea898e3ca9 100644
---- a/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml
-+++ b/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml
-@@ -88,10 +88,11 @@ examples:
-   - |
-     #include <dt-bindings/interrupt-controller/irq.h>
-     #include <dt-bindings/gpio/gpio.h>
--    qupv3_se13_i2c {
-+    i2c {
-       #address-cells = <1>;
-       #size-cells = <0>;
--      pm8008i@8 {
-+
-+      pmic@8 {
-         compatible = "qcom,pm8008";
-         reg = <0x8>;
- 
--- 
-2.41.0
+It creates a regmap for the memory range. On top of that it creates an
+MDIO bus. You can then access the PCS in the normal way.
 
+	Andrew
 
