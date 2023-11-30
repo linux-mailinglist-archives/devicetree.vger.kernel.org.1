@@ -1,59 +1,60 @@
-Return-Path: <devicetree+bounces-20328-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20329-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 508B57FED4E
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 11:51:22 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 080C17FED87
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 12:09:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4EB921C20DD3
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 10:51:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8BE74B20D48
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 11:09:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98F673B18F;
-	Thu, 30 Nov 2023 10:51:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 023AC3C07F;
+	Thu, 30 Nov 2023 11:09:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="J9gbblCP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OYzBZDxD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB7E7E6;
-	Thu, 30 Nov 2023 02:51:15 -0800 (PST)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id B0CBBC0004;
-	Thu, 30 Nov 2023 10:51:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1701341474;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=1OYuYwJSN0zBGGKCXcfpkKinnK6s4X1Q2mTmPEnqu0w=;
-	b=J9gbblCP/PJG4zi6R6neEcZSc4LAnSyAkuhoqSxz+p3EvsCRng3c01bFs7480l3HBd/TYg
-	E7vmyNRweFZ24LhqlmhWXiHiwup1WIkukPgc7J8Eptv78kETmVKlwdd/zWvHxJMmiafz7t
-	2gkBkLhJBsNY2ZUW8+3KaaAQ5bcl8PwxdrQkvazUdWfc/HGXSqkW+kDDtrwL/cZWPwfEy2
-	Irahif5uLwuDuY+oLH/xrCXDvqTq8yDN1JojFX2EAdi/HxG5D5IAH93NWrJ0LeVe6BMING
-	8K5BRggiIvjxiMgqVEWiEQlOgyDGiLYif3F58c9cI5XLCU9x13ogjGoBH/o/jw==
-From: Gregory CLEMENT <gregory.clement@bootlin.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Paul Burton
- <paulburton@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- linux-mips@vger.kernel.org, Jiaxun Yang <jiaxun.yang@flygoat.com>, Rob
- Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, Tawfik Bayouk
- <tawfik.bayouk@mobileye.com>, Alexandre Belloni
- <alexandre.belloni@bootlin.com>, =?utf-8?Q?Th=C3=A9o?= Lebrun
- <theo.lebrun@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Arnd Bergmann
- <arnd@arndb.de>, Philippe =?utf-8?Q?Mathieu-Daud=C3=A9?=
- <philmd@linaro.org>
-Subject: Re: [PATCH v2 15/21] dt-bindings: mips: cpu: Add I-Class I6500
- Multiprocessor Core
-In-Reply-To: <f443830a-ba16-4c5e-9260-6fb38a09cc10@linaro.org>
-References: <20231123152639.561231-1-gregory.clement@bootlin.com>
- <20231123152639.561231-16-gregory.clement@bootlin.com>
- <f443830a-ba16-4c5e-9260-6fb38a09cc10@linaro.org>
-Date: Thu, 30 Nov 2023 11:51:13 +0100
-Message-ID: <874jh3fra6.fsf@BL-laptop>
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFE1C3067F;
+	Thu, 30 Nov 2023 11:09:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2070EC433C7;
+	Thu, 30 Nov 2023 11:09:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701342562;
+	bh=Ru4WQmcJUKrycn4IJ/0atltkGnWEKud46x+afC3D4ys=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=OYzBZDxDRw0pSYCLScCWeeGgqgDTVIqDbXAuhJIvEfYo0ielkyz2KFHq3b9qfxKGV
+	 rV9EPS9Bifaidvw4JJetCCRXy7L3tfoUEDe7W5l4bdOzqiSt3YIOKJGd4TBORIZrMv
+	 7lbdAYMv01VGCOIk2CgfYHVjCQnw9Wz4E170T+mnh+XQF/qD8SNfovvG8Wlh7RBaGP
+	 Ee0dKV0IBoFoJ7+s7pqsBsGaxTtRqf5APKKKIvdGa2F0yPbmq6x0J9rKTD0SrZ2SlK
+	 Uel90TkuVj2/IuJt8JyX3gMtk5FbTG3A75j1M/KJpdF9omBE8DrWp1QjPrU1+JDbyC
+	 mb1DSAQS9rPDw==
+Date: Thu, 30 Nov 2023 16:39:09 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: Manivannan Sadhasivam <mani@kernel.org>,
+	Mrinmay Sarkar <quic_msarkar@quicinc.com>, agross@kernel.org,
+	andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, robh+dt@kernel.org, quic_shazhuss@quicinc.com,
+	quic_nitegupt@quicinc.com, quic_ramkri@quicinc.com,
+	quic_nayiluri@quicinc.com, dmitry.baryshkov@linaro.org,
+	robh@kernel.org, quic_krichai@quicinc.com,
+	quic_vbadigan@quicinc.com, quic_parass@quicinc.com,
+	quic_schintav@quicinc.com, quic_shijjose@quicinc.com,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Bjorn Helgaas <bhelgaas@google.com>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org
+Subject: Re: [PATCH v4 1/3] PCI: qcom: Enable cache coherency for SA8775P RC
+Message-ID: <20231130110909.GQ3043@thinkpad>
+References: <1700577493-18538-1-git-send-email-quic_msarkar@quicinc.com>
+ <1700577493-18538-2-git-send-email-quic_msarkar@quicinc.com>
+ <20231130052116.GA3043@thinkpad>
+ <a9c2532a-eaa6-4019-8ce9-5a58b1b720b2@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,88 +62,64 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: gregory.clement@bootlin.com
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <a9c2532a-eaa6-4019-8ce9-5a58b1b720b2@linaro.org>
 
-Hello Krzysztof,
+On Thu, Nov 30, 2023 at 11:09:59AM +0100, Konrad Dybcio wrote:
+> On 30.11.2023 06:21, Manivannan Sadhasivam wrote:
+> > On Tue, Nov 21, 2023 at 08:08:11PM +0530, Mrinmay Sarkar wrote:
+> >> In a multiprocessor system cache snooping maintains the consistency
+> >> of caches. Snooping logic is disabled from HW on this platform.
+> >> Cache coherency doesn’t work without enabling this logic.
+> >>
+> >> 8775 has IP version 1.34.0 so intruduce a new cfg(cfg_1_34_0) for this
+> >> platform. Assign no_snoop_override flag into struct qcom_pcie_cfg and
+> >> set it true in cfg_1_34_0 and enable cache snooping if this particular
+> >> flag is true.
+> >>
+> > 
+> > I just happen to check the internal register details of other platforms and I
+> > see this PCIE_PARF_NO_SNOOP_OVERIDE register with the reset value of 0x0. So
+> > going by the logic of this patch, this register needs to be configured for other
+> > platforms as well to enable cache coherency, but it seems like not the case as
+> > we never did and all are working fine (so far no issues reported).
+> 
+> Guess we know that already [1]
+> 
 
-> On 23/11/2023 16:26, Gregory CLEMENT wrote:
->> The MIPS Warrior I-class I6500 was announced by Imagination
->> Technologies in 2016 and is used in the Mobileye SoC EyeQ5.
->>=20
->> Acked-by: Arnd Bergmann <arnd@arndb.de>
->> Reviewed-by: Philippe Mathieu-Daud=C3=A9 <philmd@linaro.org>
->> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
->> ---
->>  Documentation/devicetree/bindings/mips/cpus.yaml | 1 +
->>  1 file changed, 1 insertion(+)
->>=20
->> diff --git a/Documentation/devicetree/bindings/mips/cpus.yaml b/Document=
-ation/devicetree/bindings/mips/cpus.yaml
->> index cf382dea3922c..b5165cf103e94 100644
->> --- a/Documentation/devicetree/bindings/mips/cpus.yaml
->> +++ b/Documentation/devicetree/bindings/mips/cpus.yaml
->> @@ -39,6 +39,7 @@ properties:
->>        - mti,mips24KEc
->>        - mti,mips14KEc
->>        - mti,mips14Kc
->> +      - img,i6500
->
-> Don't break the order of entries.
+Bummer! I didn't look close into that reply :/
 
-Do you mean alphabetic order ?
+> The question is whether this override is necessary, or the default
+> internal state is OK on other platforms
+> 
 
-because actually the entries are not really in alphabetic order.
+I digged into it further...
 
-Should I send first, a patch like the following one ?
+The register description says "Enable this bit x to override no_snoop". So
+NO_SNOOP is the default behavior unless bit x is set in this register.
 
-diff --git a/Documentation/devicetree/bindings/mips/cpus.yaml b/Documentati=
-on/devicetree/bindings/mips/cpus.yaml
-index cf382dea3922c..9bc47868d28b6 100644
---- a/Documentation/devicetree/bindings/mips/cpus.yaml
-+++ b/Documentation/devicetree/bindings/mips/cpus.yaml
-@@ -23,22 +23,22 @@ properties:
-       - brcm,bmips4380
-       - brcm,bmips5000
-       - brcm,bmips5200
--      - ingenic,xburst-mxu1.0
-       - ingenic,xburst-fpu1.0-mxu1.1
-       - ingenic,xburst-fpu2.0-mxu2.0
-+      - ingenic,xburst-mxu1.0
-       - ingenic,xburst2-fpu2.1-mxu2.1-smt
-       - loongson,gs264
-       - mips,m14Kc
--      - mips,mips4Kc
--      - mips,mips4KEc
--      - mips,mips24Kc
-+      - mips,mips1004Kc
-       - mips,mips24KEc
-+      - mips,mips24Kc
-+      - mips,mips4KEc
-+      - mips,mips4Kc
-       - mips,mips74Kc
--      - mips,mips1004Kc
-       - mti,interaptiv
--      - mti,mips24KEc
-       - mti,mips14KEc
-       - mti,mips14Kc
-+      - mti,mips24KEc
-=20
-   reg:
-     maxItems: 1
+This means if bit x is set, MRd and MWd TLPs originating from the desired PCIe
+controller (Requester) will have the NO_SNOOP bit set in the header. So the
+completer will not do any cache management for the transaction. But this also
+requires that the address referenced by the TLP is not cacheable.
 
+My guess here is that, hw designers have enabled the NO_SNOOP logic by default
+and running into coherency issues on the completer side. Maybe due to the
+addresses are cacheable always (?).
 
-Regards,
+And the default value of this register has no impact on the NO_SNOOP attribute
+unless specific bits are set.
 
-Gregory
+But I need to confirm my above observations with HW team. Until then, I will
+hold on to my Nack.
 
->
-> Best regards,
-> Krzysztof
->
+- Mani
 
---=20
-Gregory Clement, Bootlin
-Embedded Linux and Kernel engineering
-http://bootlin.com
+> Konrad
+> 
+> [1] https://lore.kernel.org/linux-arm-msm/cb4324aa-8035-ce6e-94ef-a31ed070225c@quicinc.com/
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
