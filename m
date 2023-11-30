@@ -1,113 +1,238 @@
-Return-Path: <devicetree+bounces-20300-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20301-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56B2A7FEC1B
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 10:46:15 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 694407FEC29
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 10:51:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 11314281D03
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 09:46:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0C926B20E2D
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 09:51:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0A4839848;
-	Thu, 30 Nov 2023 09:46:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42A7C3986A;
+	Thu, 30 Nov 2023 09:51:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="r0Uj9+5q"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="d9CNhZBK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DD8B10D4;
-	Thu, 30 Nov 2023 01:46:02 -0800 (PST)
-Received: from pyrite.rasen.tech (h175-177-049-156.catv02.itscom.jp [175.177.49.156])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 4C8FA8C1;
-	Thu, 30 Nov 2023 10:45:20 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1701337523;
-	bh=WV7upD+FFFLTGLLvYXanKOUa5AfZ/hueHZz/fvxdFs4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=r0Uj9+5qe67C6Pydq2UHI1hU/Hen3vw9eP2fegrtiiJHGHALBlTm9iQfnAvJSiw4t
-	 9iwswI/vIKzyTdqRk3QdkY/bbmflEs6SSb4KmmqmoXtjGVvLbq5+oWeFgWTWq/sant
-	 D4jRguRlCRe4weLwctTbLoDc81RjbkuwG4A7b2u4=
-Date: Thu, 30 Nov 2023 18:45:48 +0900
-From: Paul Elder <paul.elder@ideasonboard.com>
-To: Adam Ford <aford173@gmail.com>
-Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org, kieran.bingham@ideasonboard.com,
-	tomi.valkeinen@ideasonboard.com, umang.jain@ideasonboard.com
-Subject: Re: [PATCH v4 00/11] media: rkisp1: Add support for i.MX8MP
-Message-ID: <ZWhZzNQ6VWcfvWZy@pyrite.rasen.tech>
-References: <20231129092759.242641-1-paul.elder@ideasonboard.com>
- <CAHCN7xLgypy8YMhxM1g27DWU7hY3nwAYLYRSMMDtODeGdd_CQg@mail.gmail.com>
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC6FCD54;
+	Thu, 30 Nov 2023 01:51:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1701337886; x=1732873886;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=KwU8sh79wqm+8sbS+kXuTmgHNTBjtnFYoiNmANtujYc=;
+  b=d9CNhZBKm/ZVkppV4ueUjCxuR4gZvcjgxksyzJJyXLU+9r8a5A6zFI2/
+   trvF+zqfwB0jyV8yQ0xAfV9LKaMuGjWpY+r9QShfDABWgz2CUABXTA2Yn
+   /s0vWYHPwW2hEvBYVpwotP5Y4O5EgCz4y+OtTFAeyUCdkt+jFFrGLqYN+
+   OyKK6Ch4Q0oLDY0F3EOB6ZrQvkmy5IqK/+8YNLj5B/1OHKu9XM/eCJePg
+   WZ1FwKDM560NbKXQ8hZp87E29oIcQFJJpT4s3IskYOqcPnxTQiNyjE64I
+   hq0aDQVPzB/4V8aVH4qR4vQRbs4nirSxZWRvG5lmkRNSHEwlCUPgMe5Kv
+   w==;
+X-IronPort-AV: E=Sophos;i="6.04,237,1695679200"; 
+   d="scan'208";a="34256164"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 30 Nov 2023 10:51:23 +0100
+Received: from steina-w.localnet (steina-w.tq-net.de [10.123.53.18])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 3F3CD280075;
+	Thu, 30 Nov 2023 10:51:23 +0100 (CET)
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, Paul Elder <paul.elder@ideasonboard.com>, kieran.bingham@ideasonboard.com, tomi.valkeinen@ideasonboard.com, umang.jain@ideasonboard.com, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, Tim Harvey <tharvey@gateworks.com>, Philippe Schenker <philippe.schenker@toradex.com>, Marek Vasut <marex@denx.de>, Gregor Herburger <gregor.herburger@ew.tq-group.com>, Marcel Ziswiler <marcel.ziswiler@toradex.com>, open list <linux-kernel@vger.kernel.org>, "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH 2/2] arm64: dts: imx8mp: Add overlays for ISP instances
+Date: Thu, 30 Nov 2023 10:51:22 +0100
+Message-ID: <5734628.DvuYhMxLoT@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20231129151637.GG24293@pendragon.ideasonboard.com>
+References: <20231129093113.255161-1-paul.elder@ideasonboard.com> <7122934.GXAFRqVoOG@steina-w> <20231129151637.GG24293@pendragon.ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAHCN7xLgypy8YMhxM1g27DWU7hY3nwAYLYRSMMDtODeGdd_CQg@mail.gmail.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-On Wed, Nov 29, 2023 at 05:36:25AM -0600, Adam Ford wrote:
-> On Wed, Nov 29, 2023 at 3:28 AM Paul Elder <paul.elder@ideasonboard.com> wrote:
-> >
-> > This series extends the rkisp1 driver to support the ISP found in the
-> > NXP i.MX8MP SoC.
-> >
-> > The ISP IP cores in the Rockchip RK3399 (known as the "Rockchip ISP1")
-> > and in the NXP i.MX8MP have the same origin, and have slightly diverged
-> > over time as they are now independently developed (afaik) by Rockchip
-> > and VeriSilicon. The latter is marketed under the name "ISP8000Nano",
-> > and is close enough to the RK3399 ISP that it can easily be supported by
-> > the same driver.
-> >
-> > The last two patches add support for UYVY output format, which can be
-> > implemented on the ISP version in the i.MX8MP but not in the one in the
-> > RK3399.
-> >
-> > This version of the series specifically has been tested on a Polyhex
-> > Debix model A with an imx219 (Raspberry Pi cam v2).
-> 
-> I have tested previous versions with a imx219 camera running in 4-lane
-> mode with great success.  Should I apply this series against
-> linux-next, or do I need to apply it against something in the media
-> tree to test?  I hope to test it tonight or tomorrow.
+Hi Laurent,
 
-I have it applied on 6.7-rc1.
+Am Mittwoch, 29. November 2023, 16:16:37 CET schrieb Laurent Pinchart:
+> Hi Alexander,
+>=20
+> On Wed, Nov 29, 2023 at 11:20:07AM +0100, Alexander Stein wrote:
+> > Am Mittwoch, 29. November 2023, 10:31:13 CET schrieb Paul Elder:
+> > > From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > >=20
+> > > Add two overlay to enable each ISP instance. The ISP is wired directly
+> > > to the CSIS for now, bypassing the ISI completely.
+> >=20
+> > I'm not sure if this is worth adding in a separate overlay.
+>=20
+> The trouble is that, at this point, selection between the ISP and the
+> ISI can only be performed through DT :-S That's why this is implemented
+> as an overlay.
+
+I feel a better place would be the overlay which actually adds the sensor.=
+=20
+This knows best whether ISI or ISP should be used.
+
+> > > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > > Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
+> > > ---
+> > >=20
+> > >  arch/arm64/boot/dts/freescale/Makefile        |  2 ++
+> > >  .../arm64/boot/dts/freescale/imx8mp-isp1.dtso | 36 +++++++++++++++++=
+++
+> > >  .../arm64/boot/dts/freescale/imx8mp-isp2.dtso | 36 +++++++++++++++++=
+++
+> > >  3 files changed, 74 insertions(+)
+> > >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-isp1.dtso
+> > >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-isp2.dtso
+> > >=20
+> > > diff --git a/arch/arm64/boot/dts/freescale/Makefile
+> > > b/arch/arm64/boot/dts/freescale/Makefile index
+> > > 300049037eb0..f97dfac11189
+> > > 100644
+> > > --- a/arch/arm64/boot/dts/freescale/Makefile
+> > > +++ b/arch/arm64/boot/dts/freescale/Makefile
+> > > @@ -113,6 +113,8 @@ dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-dhcom-pdk2.dtb
+> > >=20
+> > >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-dhcom-pdk3.dtb
+> > >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-evk.dtb
+> > >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-icore-mx8mp-edimm2.2.dtb
+> > >=20
+> > > +dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-isp1.dtbo
+> > > +dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-isp2.dtbo
+> > >=20
+> > >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-msc-sm2s-ep1.dtb
+> > >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-phyboard-pollux-rdk.dtb
+> > >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-tqma8mpql-mba8mpxl.dtb
+> > >=20
+> > > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-isp1.dtso
+> > > b/arch/arm64/boot/dts/freescale/imx8mp-isp1.dtso new file mode 100644
+> > > index 000000000000..cf394ed224ab
+> > > --- /dev/null
+> > > +++ b/arch/arm64/boot/dts/freescale/imx8mp-isp1.dtso
+> > > @@ -0,0 +1,36 @@
+> > > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > > +/*
+> > > + * Copyright 2022 Ideas on Board Oy
+> > > + */
+> > > +
+> > > +/dts-v1/;
+> > > +/plugin/;
+> > > +
+> > > +#include <dt-bindings/media/video-interfaces.h>
+> > > +
+> > > +&isi_0 {
+> > > +	status =3D "disabled";
+> >=20
+> > ISI is disabled by default. What is your intention here?
+>=20
+> It could be enabled by an overlay for a camera module. Ideally we want
+> to be able to enable both the ISI and ISP at runtime, but that's not
+> possible yet and will require a very large amount of work.
+
+Again IMHO this is part of sensor setup, in a very specific overlay. To put=
+ it=20
+into different words: I barely see the gain of this small overlay.
+
+Runtime switching would require a combined media controller including both =
+ISI=20
+and ISP, no?
+
+Best regards,
+Alexander
+
+> > > +
+> > > +	ports {
+> > > +		port@0 {
+> > > +			/delete-node/ endpoint;
+> >=20
+> > This doesn't work in overlays. See [1]. Otherwise the OF graph connecti=
+ons
+> > look fine to me. I'm using the same in my local overlay.
+>=20
+> Interesting, I wasn't aware of that. Maybe we should fix it :-)
+>=20
+> > [1]
+> > https://lore.kernel.org/all/CAMuHMdWu4KZbBkvEofUV2wuA1g2S=3DXHHM3RUN1cN=
+rcZB
+> > khsPZA@mail.gmail.com/>=20
+> > > +		};
+> > > +	};
+> > > +};
+> > > +
+> > > +&isp_0 {
+> > > +	status =3D "okay";
+> > > +
+> > > +	ports {
+> > > +		port@1 {
+> > > +			isp0_in: endpoint {
+> > > +				bus-type =3D <MEDIA_BUS_TYPE_PARALLEL>;
+> > > +				remote-endpoint =3D <&mipi_csi_0_out>;
+> > > +			};
+> > > +		};
+> > > +	};
+> > > +};
+> > > +
+> > > +&mipi_csi_0_out {
+> > > +	remote-endpoint =3D <&isp0_in>;
+> > > +};
+> > > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-isp2.dtso
+> > > b/arch/arm64/boot/dts/freescale/imx8mp-isp2.dtso new file mode 100644
+> > > index 000000000000..14e2e7b2617f
+> > > --- /dev/null
+> > > +++ b/arch/arm64/boot/dts/freescale/imx8mp-isp2.dtso
+> > > @@ -0,0 +1,36 @@
+> > > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > > +/*
+> > > + * Copyright 2022 Ideas on Board Oy
+> > > + */
+> > > +
+> > > +/dts-v1/;
+> > > +/plugin/;
+> > > +
+> > > +#include <dt-bindings/media/video-interfaces.h>
+> > > +
+> > > +&isi_0 {
+> > > +	status =3D "disabled";
+> > > +
+> > > +	ports {
+> > > +		port@1 {
+> > > +			/delete-node/ endpoint;
+> > > +		};
+> > > +	};
+> > > +};
+> > > +
+> > > +&isp_1 {
+> > > +	status =3D "okay";
+> > > +
+> > > +	ports {
+> > > +		port@1 {
+> > > +			isp1_in: endpoint {
+> > > +				bus-type =3D <MEDIA_BUS_TYPE_PARALLEL>;
+> > > +				remote-endpoint =3D <&mipi_csi_1_out>;
+> > > +			};
+> > > +		};
+> > > +	};
+> > > +};
+> > > +
+> > > +&mipi_csi_1_out {
+> > > +	remote-endpoint =3D <&isp1_in>;
+> > > +};
 
 
-Thanks,
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
 
-Paul
 
-> >
-> > Laurent Pinchart (2):
-> >   media: rkisp1: Add and use rkisp1_has_feature() macro
-> >   media: rkisp1: Configure gasket on i.MX8MP
-> >
-> > Paul Elder (9):
-> >   media: rkisp1: Support setting memory stride for main path
-> >   media: rkisp1: Support devices lacking self path
-> >   media: rkisp1: Support devices lacking dual crop
-> >   media: rkisp1: Fix RSZ_CTRL bits for i.MX8MP
-> >   dt-bindings: media: rkisp1: Add i.MX8MP ISP to compatible
-> >   media: rkisp1: Add match data for i.MX8MP ISP
-> >   media: rkisp1: Shift DMA buffer addresses on i.MX8MP
-> >   media: rkisp1: Add YC swap capability
-> >   media: rkisp1: Add UYVY as an output format
-> >
-> >  .../bindings/media/rockchip-isp1.yaml         |  37 ++++-
-> >  .../platform/rockchip/rkisp1/rkisp1-capture.c | 128 ++++++++++++-----
-> >  .../platform/rockchip/rkisp1/rkisp1-common.h  |  35 ++++-
-> >  .../platform/rockchip/rkisp1/rkisp1-dev.c     |  66 +++++++--
-> >  .../platform/rockchip/rkisp1/rkisp1-isp.c     | 131 +++++++++++++++++-
-> >  .../platform/rockchip/rkisp1/rkisp1-regs.h    |  32 +++++
-> >  .../platform/rockchip/rkisp1/rkisp1-resizer.c |  27 ++--
-> >  include/uapi/linux/rkisp1-config.h            |   2 +
-> >  8 files changed, 398 insertions(+), 60 deletions(-)
-> >
-> > --
-> > 2.39.2
-> >
 
