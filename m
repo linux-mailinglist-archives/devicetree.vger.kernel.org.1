@@ -1,166 +1,222 @@
-Return-Path: <devicetree+bounces-20416-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20422-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6D777FF362
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 16:20:23 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13BB47FF37D
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 16:22:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 931E52819AE
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 15:20:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 440251C20D9D
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 15:22:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0899051C5F;
-	Thu, 30 Nov 2023 15:20:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D53BC524AD;
+	Thu, 30 Nov 2023 15:22:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="e26qgxaZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tH71F1PZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 860D910E2;
-	Thu, 30 Nov 2023 07:20:16 -0800 (PST)
-Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-40b472f98b1so8847355e9.3;
-        Thu, 30 Nov 2023 07:20:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701357615; x=1701962415; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=dylAbfVwWrPST5LX+rEqHAryAoBScVn+W4WcHE2nEOI=;
-        b=e26qgxaZQUw751NfhOtt2Cu+BCrQDrZRYA+SFoWKihDg4n8FiCmuQia4rC9ur0BCfk
-         FfQ8rXxNnxguzwSZGBOyp3wb5zlh6aaljjXBSCp76TIyLBBWSJVD+/sZaew6u6DfsSML
-         a8bNneSUHrP6XmLSo6IeT82AHdvdYfVShdxzr9qHmTu6K4a6eh0oAsr+ifYEtR4/Y9IA
-         2IqEJSVSa0K9rR+tPtSeMjDrJ7htq2ibNWm27ky4WFuoChJcwqfPwSh7kPPrkGvyzoDd
-         QBT/jo+/GOF+7f92PKD1DY+jUlIkS4BwAFnKyYr+nhSxW1CkFlAP+aswnpSoBbCL3AGd
-         I5IA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701357615; x=1701962415;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=dylAbfVwWrPST5LX+rEqHAryAoBScVn+W4WcHE2nEOI=;
-        b=RpToGzawPTJ+xPF40fnKp3owl2pepu8Lw+6ghCKjPwBS5p3UO4+aOgmJQLMO24knB4
-         LZNTXPCNQr8mw/40hmfczUxtwt31wlvjr6RdBiPGgjS+Es3uMrLOF5W+e2bi7OEjCp3W
-         6E2CE2mPa3lov/TCGMgPkhsJsmzJQ7x8i+ZuKZxOacXWx0TM/G0qUmv4z5yN7HnWExzK
-         Ee7yxV0DGl3msj4Ph/YPRu8k3RwnVdHWfJDOntfMY/JCvAO7YonO1FIleg4XLshfW2au
-         psndsy+IkJHjcCVzGWTvPmUkuTl5ZtCrOu2FFceghB/PZUzDtaM6uCasx0QvG42hzpJU
-         nZ9w==
-X-Gm-Message-State: AOJu0YyjbMS0FVhiaIwGO1nWD+U9IQmxcUQfFQ2idQq/IvwpNzxab7Rz
-	SQtyiGMsN2gzX1bZsGCP3Ok=
-X-Google-Smtp-Source: AGHT+IHaU+1NLBkGRIORteHD1wkr7Lf2zALQw4P5g1GtV9KJP/jQi+BhEliYHWpBOtLQe2de1htcFw==
-X-Received: by 2002:a05:6000:401f:b0:332:eee9:6e7f with SMTP id cp31-20020a056000401f00b00332eee96e7fmr13332710wrb.56.1701357614546;
-        Thu, 30 Nov 2023 07:20:14 -0800 (PST)
-Received: from ?IPv6:2001:a61:3456:4e01:6ae:b55a:bd1d:57fc? ([2001:a61:3456:4e01:6ae:b55a:bd1d:57fc])
-        by smtp.gmail.com with ESMTPSA id dd16-20020a0560001e9000b00332cc24a59bsm1760782wrb.109.2023.11.30.07.20.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Nov 2023 07:20:13 -0800 (PST)
-Message-ID: <a4bd59df0c5bc1be5d0d6f11b968fd61a59ee2e0.camel@gmail.com>
-Subject: Re: [PATCH v2 2/2] hwmon: ltc4282: add support for the LTC4282 chip
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Andy Shevchenko <andy@kernel.org>
-Cc: Linus Walleij <linus.walleij@linaro.org>, nuno.sa@analog.com, 
- linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-doc@vger.kernel.org, Jean Delvare <jdelvare@suse.com>, Guenter Roeck
- <linux@roeck-us.net>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
- Jonathan Corbet <corbet@lwn.net>, Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Thu, 30 Nov 2023 16:20:13 +0100
-In-Reply-To: <ZWiP3i80KnVk9qyx@smile.fi.intel.com>
-References: <20231124-ltc4282-support-v2-0-952bf926f83c@analog.com>
-	 <20231124-ltc4282-support-v2-2-952bf926f83c@analog.com>
-	 <CACRpkdaksfS4WLNQ6ohauAPq3z2LPG2uF37_jWtm0brQHaDtNw@mail.gmail.com>
-	 <6384831c05b8ceeaf4a16cf9229770252989b762.camel@gmail.com>
-	 <CACRpkdZr6TdQCLy73Yx2RdMgQifd67remdxENBKYx3UvEMm87A@mail.gmail.com>
-	 <971eb35068639ec404669ea5320c8183ea71a7d0.camel@gmail.com>
-	 <ZWiP3i80KnVk9qyx@smile.fi.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3A4A524A3;
+	Thu, 30 Nov 2023 15:22:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F112BC433C7;
+	Thu, 30 Nov 2023 15:22:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701357772;
+	bh=qkL/traqZYRhreQwWlBq0Fih3eZKxWuxg+IAiO0LgOA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=tH71F1PZXOL00uhIYMA+WMCwxITIiKNZ1KskmSoUJiUJMWY9VD5QKEueflTsxdnUl
+	 ZOhThyCyJ2adRZEs4xRiqwKRnxNwoFrwS+1GPoDJeAfYymcLiY1GXV29krH5jWdd7A
+	 /hiPxou8A0xW2GEQ1iSGg71JZBiuUFSdD3oMLA/yeog3qDSF3mSCHFCgFrSVpxIzAS
+	 mTuz523ozWSwy7Vuz9ZVNlNdK4MgR+TmbqTxCHf6dG0oeWuLmCdI+64yICbkm1d5gO
+	 KfO1YcygcRcO8WznF1NyEDB+XRMUarOT0cFaOFpRs75+bdO7CQ+FHknqgfkHkzYGSy
+	 P9P1+kO32rHaQ==
+Date: Thu, 30 Nov 2023 15:22:47 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Anand Moon <linux.amoon@gmail.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Icenowy Zheng <uwu@icenowy.me>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	linux-amlogic@lists.infradead.org, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 1/2] dt-bindings: usb: Add the binding example for the
+ Genesys Logic GL3523 hub
+Message-ID: <20231130-snub-backshift-2f69754cf58f@spud>
+References: <20231130053130.21966-1-linux.amoon@gmail.com>
+ <20231130053130.21966-2-linux.amoon@gmail.com>
+ <20231130-twig-stoning-58235b3195c8@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="RlRi2l6ZtvVLk88M"
+Content-Disposition: inline
+In-Reply-To: <20231130-twig-stoning-58235b3195c8@spud>
 
-On Thu, 2023-11-30 at 15:36 +0200, Andy Shevchenko wrote:
-> On Thu, Nov 30, 2023 at 11:20:32AM +0100, Nuno S=C3=A1 wrote:
-> > On Wed, 2023-11-29 at 21:55 +0100, Linus Walleij wrote:
-> > > On Wed, Nov 29, 2023 at 5:08=E2=80=AFPM Nuno S=C3=A1 <noname.nuno@gma=
-il.com> wrote:
-> > >=20
-> > > > Cool, I actually thought that having the direction + get/set stuff =
-would be
-> > > > weird
-> > > > given the fact that we can only PULL_LOW or HIGH_Z the pins.
-> > >=20
-> > > There are several drivers in the kernel that implement .set_config(),
-> > > it's existing and should be enabled if it has uses.
+
+--RlRi2l6ZtvVLk88M
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Thu, Nov 30, 2023 at 03:16:33PM +0000, Conor Dooley wrote:
+> On Thu, Nov 30, 2023 at 11:01:26AM +0530, Anand Moon wrote:
+> > Add the binding example for the USB3.1 Genesys Logic GL3523
+> > integrates with USB 3.1 Gen 1 Super Speed and USB 2.0 High-Speed
+> > hub.
 > >=20
-> > Yeah, it might make sense to support it specially for the input case. A=
-FAICT, if
-> > I
-> > use the .set_config() (but from a quick look I think we will need to ad=
-d support
-> > for
-> > it in gpiolib for the high-z configuration), then I can't use the gpio_=
-regmap
-> > stuff.
-> > As the driver stands I don't think I could do it anyways because settin=
-g gpio2-3
-> > and
-> > alert requires to write 0 on the register rather than 1. But again, I'm=
- still
-> > very
-> > suspicious about the whole thing. The datasheet states:
+> > For onboard hub controllers that support USB 3.x and USB 2.0 hubs
+> > with shared resets and power supplies, this property is used to identify
+> > the hubs with which these are shared.
 > >=20
-> > "GPIO1-GPIO3 and ALERT all have comparators monitoring
-> > the voltage on these pins with a threshold of 1.28V even when
-> > the pins are configured as outputs."
-> >=20
-> > But we can't really set the direction for gpio2-3 and the alert pins (o=
-nly
-> > getting
-> > the level and setting it as PULL_LOW or HIGH_Z. gpio1 is the only one w=
-here we
-> > can
-> > configure it as input or open drain ouput. Bah, I'll try to see if some=
-one
-> > internally
-> > can shed some light on this.
 >=20
-> I have better proposal. If these GPIOs are not needed for the main
-> functionality of the hardware, can we just left it out for now and implem=
-ent
-> later if required?
+> > [Conor Dooley: upgrade peer-hub description]
 >=20
+> This should not be in the commit message. Otherwise,
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+>=20
+> Cheers,
+> Conor.
+>=20
+> > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> > ---
+> > v5: upgrade peer-hub description : Conor Dooley
+> > [0] https://www.genesyslogic.com.tw/en/product_view.php?show=3D67 [Bloc=
+k Diagram]
+> > v4: Fix the description of peer-hub and update the commit message.
+> > Schematics of the Odroid N2+
+> > https://dn.odroid.com/S922X/ODROID-N2/Schematic/odroid-n2_rev0.6_202101=
+21.pdf
+> > V3: fix the dt_binding_check error, added new example for Genesys GL3523
+> > v2: added Genesys GL3523 binding
+> > v1: none
+> > ---
+> >  .../bindings/usb/genesys,gl850g.yaml          | 65 +++++++++++++++++--
+> >  1 file changed, 61 insertions(+), 4 deletions(-)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml =
+b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> > index ee08b9c3721f..499192ea4074 100644
+> > --- a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> > +++ b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> > @@ -9,9 +9,6 @@ title: Genesys Logic USB hub controller
+> >  maintainers:
+> >    - Icenowy Zheng <uwu@icenowy.me>
+> > =20
+> > -allOf:
+> > -  - $ref: usb-device.yaml#
+> > -
+> >  properties:
+> >    compatible:
+> >      enum:
+> > @@ -27,12 +24,46 @@ properties:
+> > =20
+> >    vdd-supply:
+> >      description:
+> > -      the regulator that provides 3.3V core power to the hub.
+> > +      phandle to the regulator that provides power to the hub.
 
-Well, I did spent some time on the gpio thing so I would like to have it in=
- but yeah,
-no hard feelings if it does not go in.
+Wait, why is this text changing? I don't see it mentioned anywhere why
+this is no longer specifically 3.3v
 
-So, I actually talk with some hw guys and the pull_low is not really like a=
- pull_low
-resistor. These pins are effectively an open drain. Which means, setting th=
-em as
-input means setting them in high-z (turning off the mosffet) - and I do hav=
-e a bug in
-my code regarding this - Or if you want them as outputs you can set the lev=
-el low
-(and it will always be low - just turn on the mosffet) or you can also set =
-high-z
-which means it will be either low or high depending on your external circui=
-try. The
-point is, you can still have your pin acting as a normal gpo if you accommo=
-date your
-circuitry for it (can also use these pins for things like buses).
+Thanks,
+Conor.
 
-Also got me thinking if a gpi vs gpo devicetree property would make sense. =
-But I
-would likely leave it more generic/relaxed for now (even though I think you=
- would
-need to be creative and actually use more HW to have the possibility of usi=
-ng these
-pins as GPIs and GPOs at the same time).
+> > +
+> > +  peer-hub:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    description:
+> > +      For onboard hub controllers that support USB 3.x and USB 2.0 hubs
+> > +      with shared resets and power supplies, this property is used to =
+identify
+> > +      the hubs with which these are shared.
+> > =20
+> >  required:
+> >    - compatible
+> >    - reg
+> > =20
+> > +allOf:
+> > +  - $ref: usb-device.yaml#
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - usb5e3,608
+> > +    then:
+> > +      properties:
+> > +        peer-hub: false
+> > +        vdd-supply: false
+> > +        reset-gpios: true
+> > +
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - usb5e3,610
+> > +              - usb5e3,620
+> > +    then:
+> > +      properties:
+> > +        peer-hub: true
+> > +        vdd-supply: true
+> > +        reset-gpios: true
+> > +
+> >  additionalProperties: false
+> > =20
+> >  examples:
+> > @@ -49,3 +80,29 @@ examples:
+> >              reset-gpios =3D <&pio 7 2 GPIO_ACTIVE_LOW>;
+> >          };
+> >      };
+> > +
+> > +  - |
+> > +    #include <dt-bindings/gpio/gpio.h>
+> > +    usb {
+> > +        dr_mode =3D "host";
+> > +        #address-cells =3D <1>;
+> > +        #size-cells =3D <0>;
+> > +
+> > +        /* 2.0 hub on port 1 */
+> > +        hub_2_0: hub@1 {
+> > +            compatible =3D "usb5e3,610";
+> > +            reg =3D <1>;
+> > +            peer-hub =3D <&hub_3_0>;
+> > +            reset-gpios =3D <&gpio 20 GPIO_ACTIVE_LOW>;
+> > +            vdd-supply =3D <&vcc_5v>;
+> > +        };
+> > +
+> > +        /* 3.1 hub on port 4 */
+> > +        hub_3_0: hub@2 {
+> > +            compatible =3D "usb5e3,620";
+> > +            reg =3D <2>;
+> > +            peer-hub =3D <&hub_2_0>;
+> > +            reset-gpios =3D <&gpio 20 GPIO_ACTIVE_LOW>;
+> > +            vdd-supply =3D <&vcc_5v>;
+> > +        };
+> > +    };
+> > --=20
+> > 2.42.0
+> >=20
 
-- Nuno S=C3=A1
+
+
+--RlRi2l6ZtvVLk88M
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZWioxwAKCRB4tDGHoIJi
+0kyvAP4mrFsSqjulILny2yGh8/2PbF9zjOgQLnavgZb2aA1pOwEAlbokM8AGRXLE
+vImZQShoC/U9RPHihysDgZlZ1qae1Aw=
+=xGZx
+-----END PGP SIGNATURE-----
+
+--RlRi2l6ZtvVLk88M--
 
