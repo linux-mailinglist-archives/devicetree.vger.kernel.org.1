@@ -1,124 +1,127 @@
-Return-Path: <devicetree+bounces-20411-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20412-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA66D7FF356
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 16:19:52 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 225C97FF35B
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 16:19:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 84CE8281952
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 15:19:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 513CF1C20F22
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 15:19:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BBB351C5C;
-	Thu, 30 Nov 2023 15:19:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BDFC524A9;
+	Thu, 30 Nov 2023 15:19:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Zq5m9SiU"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="bsIZfcxu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77D2310E4;
-	Thu, 30 Nov 2023 07:19:46 -0800 (PST)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AUFIA2H023978;
-	Thu, 30 Nov 2023 15:19:22 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=77cknAywjb3vJ0XHOP+azo+o2YZ4goxYI+iunv5cNkc=;
- b=Zq5m9SiUXxY2h1wbcV+obb8yRmbXrTqJosuMDX8dbAWqH2Ttp8dWh4gsroHOduC8ViEn
- B2pC7kjgnYnDTRwEENPtilgVy8oypg5+V9CYsrFVejDgVSseNnRkPj492YvLOpSaeABC
- 5nPBk7gDdEz/JrBIsvl+hk//TLbgPgZHiApKrNIQPPDCmRwA+8AY+3dkNOMPvNNT0rNc
- Czmmax0HW1IsBtPFEN0rn6ZOYFuEAAgkQIMglG7S3f1nfW8PWNSQBXojasQVFWDbows7
- NzXJvS9o5j0XsOZ9+jF6diujGGllgzca6WOoUGIrgPssubxxkG8Pk6s2a49o4IJxfPG3 pw== 
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3upbxsjep2-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 30 Nov 2023 15:19:22 +0000
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AUFJLw2003303
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 30 Nov 2023 15:19:21 GMT
-Received: from [10.251.45.12] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 30 Nov
- 2023 07:19:16 -0800
-Message-ID: <47f40099-4215-4c9e-9b7a-c5b981abc589@quicinc.com>
-Date: Thu, 30 Nov 2023 17:19:14 +0200
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F06A10EF
+	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 07:19:48 -0800 (PST)
+Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 7B74D42234
+	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 15:19:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1701357586;
+	bh=umcOEKGECYpQBlUdbsEVmcT1M/LVbcCDI05+VTUKHOE=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version;
+	b=bsIZfcxu6oOBMAxcaERG66KV7rpU3faN26czl6D3F3f7w/pLBBWnESFDUQDScqEaW
+	 OEByqrIKGnx8WhTHswd909isoHLLPOj+kzLkYdJOFJ3j5k135K1/vm6T5BEvwpPd5b
+	 tvWaB6dDsF4Md/vp71K8CZU8pyeTWT+efzB+66/FESBQ8mF7Ay/P/Xx3T8eoufbuc8
+	 JnyK8aJZHbKvlbmAuIbOIvPsSyv2mwbyInfeCNXX9Qfi2YzKBxiQgitFhi7/bhu2+i
+	 UIMVAcmkwqkpKQpJ6U1ZMhyUKXuGYWBQ4fGEz0LFGeYavIZNwXh5V9B2D+4jPDPfKp
+	 dmw6K54h17C4g==
+Received: by mail-pg1-f198.google.com with SMTP id 41be03b00d2f7-5b7f3f47547so919207a12.3
+        for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 07:19:46 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701357585; x=1701962385;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=umcOEKGECYpQBlUdbsEVmcT1M/LVbcCDI05+VTUKHOE=;
+        b=cDD/V2KEvzFb7vEV3LdnQjHc22nmiKfU2xNY+AscEUHaKdj4knPucv3Oq2SzrwhR6v
+         gJ6kJipXf8DCge2nCsu/DdtjW5TQkkXhdb1iBkexsE0zQDH8G9oPPcfxSrhOf5XVtcEO
+         IPBltYE6GdI5q3CPdhZBJUq7BwfVCU6f0g80kN21N5Lcv/Z4PwvDOFWPK5ZB/mAnjYZr
+         GbdOtDnW/zahMr6hsPfTOqf4eRP3yLxLFAZ+4hyPF5dNZr5NYakCXm/S2pewFKqgCUKE
+         ONpDZQLLWbH4F6XTYKw8j/14Pu9VFtuur75JN9weC6JUuVz+np40yNHY4NoV0gInlS/H
+         mhkA==
+X-Gm-Message-State: AOJu0Yy/LIqHIY8yHbKFV5KfmUM7WFQDaIOWMN6dVsOx88vp3W8kk4RZ
+	z7fBVOWraASbMUH9ytS8enExeH/vxpZmXwF/MzJXk3uiY9NrTfAfI8oo1tFFNIX5ckbM0v9VDqx
+	UJLf0lyFZytFu4dhCoq0rwHcQWmJBDuBFzINQXus=
+X-Received: by 2002:a05:6a20:7f98:b0:188:290d:17dc with SMTP id d24-20020a056a207f9800b00188290d17dcmr23726548pzj.60.1701357585115;
+        Thu, 30 Nov 2023 07:19:45 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEh65TpHQMiSKOAY4Ol//p0hGEk6OSzzktrSG601vYWHN3rGxFgZXjz0/38VtdY7gQaQkl+JA==
+X-Received: by 2002:a05:6a20:7f98:b0:188:290d:17dc with SMTP id d24-20020a056a207f9800b00188290d17dcmr23726523pzj.60.1701357584835;
+        Thu, 30 Nov 2023 07:19:44 -0800 (PST)
+Received: from stitch.. ([80.71.140.73])
+        by smtp.gmail.com with ESMTPSA id y125-20020a636483000000b005bd3d6e270dsm1356002pgb.68.2023.11.30.07.19.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 30 Nov 2023 07:19:44 -0800 (PST)
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+To: linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Conor Dooley <conor@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+	Geert Uytterhoeven <geert@linux-m68k.org>
+Subject: [PATCH v2 0/8] Add JH7100 errata and update device tree
+Date: Thu, 30 Nov 2023 16:19:24 +0100
+Message-Id: <20231130151932.729708-1-emil.renner.berthing@canonical.com>
+X-Mailer: git-send-email 2.40.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/6] Add support for Translation Buffer Units
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <will@kernel.org>, <robin.murphy@arm.com>, <joro@8bytes.org>
-CC: <devicetree@vger.kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <linux-arm-kernel@lists.infradead.org>,
-        <iommu@lists.linux.dev>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <quic_cgoldswo@quicinc.com>,
-        <quic_sukadev@quicinc.com>, <quic_pdaly@quicinc.com>,
-        <quic_sudaraja@quicinc.com>, <djakov@kernel.org>
-References: <20231118042730.2799-1-quic_c_gdjako@quicinc.com>
- <fe74b1ab-078d-4c53-9133-cf7ab00a656d@linaro.org>
-Content-Language: en-US
-From: Georgi Djakov <quic_c_gdjako@quicinc.com>
-In-Reply-To: <fe74b1ab-078d-4c53-9133-cf7ab00a656d@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: OBdVb95uphT6pHD6u44i1ixvLsUD4i29
-X-Proofpoint-GUID: OBdVb95uphT6pHD6u44i1ixvLsUD4i29
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-30_14,2023-11-30_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 adultscore=0
- suspectscore=0 mlxlogscore=804 lowpriorityscore=0 mlxscore=0 bulkscore=0
- priorityscore=1501 malwarescore=0 impostorscore=0 clxscore=1011
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311060000 definitions=main-2311300110
 
-On 11/18/2023 1:21 PM, Bryan O'Donoghue wrote:
-> On 18/11/2023 04:27, Georgi Djakov wrote:
->> The TCUs (Translation Control Units) and TBUs (Translation Buffer
->> Units) are key components of the MMU-500. Multiple TBUs are connected
->> to a single TCU over an interconnect. Each TBU contains a TLB that
->> caches page tables. The MMU-500 implements a TBU for each connected
->> master, and the TBU is designed, so that it is local to the master.
->>
->> The Qualcomm SDM845 platform has an implementation of the SMMU-500,
->> that has multiple TBUs. A DT schema is added to describe the resources
->> for each TBU (register space, power-domains, interconnects and clocks).
->>
->> The TBU driver will manage the resources and allow the system to
->> operate the TBUs during a context fault to obtain details by doing
->> s1 inv, software + hardware page table walks etc. This is implemented
->> with ATOS/eCATs as the ATS feature is not supported. Being able to
->> query the TBUs is useful for debugging various hardware/software
->> issues on these platforms.
->>
->> v2:
->> - Improve DT binding description, add full example. (Konrad)
->> - Drop Qcom specific stuff from the generic binding. (Rob)
->> - Unconditionally try to populate subnodes. (Konrad)
->> - Improve TBU driver commit text, remove memory barriers. (Bjorn)
->> - Move TBU stuff into separate file. Make the driver builtin.
->> - TODO: Evaluate whether to keep TBU support as a separate driver
->>    or just instantiate things from qcom_smmu_impl_init()
->>
->> v1: https://lore.kernel.org/r/20231019021923.13939-1-quic_c_gdjako@quicinc.com
-> 
-> What is your suggested way to test this series ?
+Now that the driver for the SiFive cache controller supports manual
+flushing as non-standard cache operations[1] we can add an errata option
+for the StarFive JH7100 SoC and update the device tree with the cache
+controller, dedicated DMA pool and add MMC nodes for the SD-card and
+wifi.
 
-Hi Bryan,
+This series needs the following commit in [1] to work properly:
 
-Just break some driver to initiate a memory transaction with no valid context. I used venus for that. Or the simplest would be to just specify an invalid stream ID in DT for some device.
+0d5701dc9cd6 ("soc: sifive: ccache: Add StarFive JH7100 support")
 
-Thanks,
-Georgi
+..and its parent for dtb_checks to pass.
+
+[1]: https://git.kernel.org/pub/scm/linux/kernel/git/conor/linux.git/log/?h=riscv-soc-for-next
+
+Changes in v2:
+- Add Conor's ack on patch 1/8
+- Add my SoB on patch 2/8
+- Update commit message on patch 4/8
+
+Emil Renner Berthing (7):
+  riscv: errata: Add StarFive JH7100 errata
+  riscv: dts: starfive: Mark the JH7100 as having non-coherent DMAs
+  riscv: dts: starfive: Add JH7100 cache controller
+  riscv: dts: starfive: Add pool for coherent DMA memory on JH7100
+    boards
+  riscv: dts: starfive: Add JH7100 MMC nodes
+  riscv: dts: starfive: Enable SD-card on JH7100 boards
+  riscv: dts: starfive: Enable SDIO wifi on JH7100 boards
+
+Geert Uytterhoeven (1):
+  riscv: dts: starfive: Group tuples in interrupt properties
+
+ arch/riscv/Kconfig.errata                     |  17 +++
+ .../boot/dts/starfive/jh7100-common.dtsi      | 131 ++++++++++++++++++
+ arch/riscv/boot/dts/starfive/jh7100.dtsi      |  48 ++++++-
+ 3 files changed, 192 insertions(+), 4 deletions(-)
+
+-- 
+2.40.1
+
 
