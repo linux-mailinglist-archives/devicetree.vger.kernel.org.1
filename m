@@ -1,130 +1,92 @@
-Return-Path: <devicetree+bounces-20534-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20535-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CA047FFE66
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 23:20:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53E2F7FFE80
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 23:33:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 913F0B20CDF
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 22:20:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 84F8E1C20ABF
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 22:33:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31D5861698;
-	Thu, 30 Nov 2023 22:19:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C222C5FF04;
+	Thu, 30 Nov 2023 22:33:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="M9/OgnM9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AB5VgJBE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBF3B10F3;
-	Thu, 30 Nov 2023 14:19:54 -0800 (PST)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3AUMJhRv042016;
-	Thu, 30 Nov 2023 16:19:43 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1701382783;
-	bh=R/qRqtIKA4EXGEtpCr54N5p1pvu+fDyDEO6B4AAfBpA=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=M9/OgnM9SX26rzYAUg2lKClsz35RtApdF1NQey7QTpJbENjMUDhwWlZf2R1qpeGYt
-	 L1YmRGn5dG/skILY6aB3t+gC7MFA0EgZ4sIO8kP1kR0iCHzHuR5EYyPimLrqDnCaJv
-	 sPxx+WlyqPOlqvXvDsODP+Pj3SlHYGfnnKWPD4r4=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3AUMJh4i026835
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 30 Nov 2023 16:19:43 -0600
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 30
- Nov 2023 16:19:43 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 30 Nov 2023 16:19:43 -0600
-Received: from [128.247.81.105] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3AUMJhbU050129;
-	Thu, 30 Nov 2023 16:19:43 -0600
-Message-ID: <43cb48da-6ce5-4501-a3c8-071595810bb3@ti.com>
-Date: Thu, 30 Nov 2023 16:19:43 -0600
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A47F461FBC
+	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 22:33:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E7C8C433CC;
+	Thu, 30 Nov 2023 22:33:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701383614;
+	bh=Mzz7UyD/BBxVfdWVs++u5WlKznlkI21DI2rHNivCDeU=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=AB5VgJBE2QS88NdhPNTsYAkRHY0G8gRTfNO/yWyHJe7jPduuhMHRsrcJObNSPiiMY
+	 qe/OXpu1fy9/QmqNq0YMygnJHi2oCa/9gPZg22PcMMGnf2G6tQDy5OTqPgbFUjKDyz
+	 DZbLNNMHpYLUrLw++ohz+jlVVP4/cSOsGxX/BjfsEb36MXLythMGvVS+vlMIjDRLxG
+	 PEkb2tVkOo2PxY3f9Ni8jOmOtw76avrbvARn9vhqc6byXUFhKH9Fo6Ig0sdU7Lhj5I
+	 iBumhX+B1rmxUnst7GTLGMTu5zEIxU4J4e0BCRjBGaE6wXEpOzv4j9nneEfbgMW8Jd
+	 KmrXiKIxliaHA==
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-50bbb79f97cso1504000e87.0;
+        Thu, 30 Nov 2023 14:33:34 -0800 (PST)
+X-Gm-Message-State: AOJu0YwjbDYAwt/nwDpxsc7aXsTpD3LzPentFTExwWnDjIR72u8Y2iXl
+	VBe/f/kefZdzcYlxUT3PqNa6duHcE/8Xln46bA==
+X-Google-Smtp-Source: AGHT+IGmccipeHU8snglPx6DimdrhUBaMNhdl3J4x9yrxb6krnN2M2Zo+SxNeWob4S5jWhHdbyb3Fh5KQATASB7DWsc=
+X-Received: by 2002:a05:6512:3e22:b0:50b:c7bd:2352 with SMTP id
+ i34-20020a0565123e2200b0050bc7bd2352mr163638lfv.14.1701383612257; Thu, 30 Nov
+ 2023 14:33:32 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] arm64: dts: ti: k3-am62a: Enable UHS mode support for
- SD cards
-To: Nitin Yadav <n-yadav@ti.com>, <nm@ti.com>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <vigneshr@ti.com>,
-        <robh+dt@kernel.org>, <kristo@kernel.org>, <conor+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>
-References: <20231026070155.1134063-1-n-yadav@ti.com>
- <20231026070155.1134063-2-n-yadav@ti.com>
-Content-Language: en-US
-From: Judith Mendez <jm@ti.com>
-In-Reply-To: <20231026070155.1134063-2-n-yadav@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20231130191815.2421978-1-robh@kernel.org> <CAOMZO5AZNz1cRg+aYQjDmpZ75ATJQUTWmC5mx+vgaYcBL6M+2w@mail.gmail.com>
+In-Reply-To: <CAOMZO5AZNz1cRg+aYQjDmpZ75ATJQUTWmC5mx+vgaYcBL6M+2w@mail.gmail.com>
+From: Rob Herring <robh@kernel.org>
+Date: Thu, 30 Nov 2023 16:33:19 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKLFpPo8xTh_vgWvDXSY5J8tQJZh9SrkW2EiK5V_ZNeeA@mail.gmail.com>
+Message-ID: <CAL_JsqKLFpPo8xTh_vgWvDXSY5J8tQJZh9SrkW2EiK5V_ZNeeA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: imx8mm-venice: Fix PCI bus nodes
+To: Fabio Estevam <festevam@gmail.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, NXP Linux Team <linux-imx@nxp.com>, 
+	Tim Harvey <tharvey@gateworks.com>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 10/26/23 2:01 AM, Nitin Yadav wrote:
-> Hook up required IO voltage regulators to support UHS modes on
-> SD cards.
-> 
-> Signed-off-by: Nitin Yadav <n-yadav@ti.com>
-> ---
->   arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 20 ++++++++++++++++++++
->   1 file changed, 20 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-> index 9f3dfbfbf369..3ae1ea1997a4 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-> @@ -102,6 +102,19 @@ vdd_mmc1: regulator-3 {
->   		gpio = <&exp1 3 GPIO_ACTIVE_HIGH>;
->   	};
->   
-> +	vddshv_sdio: regulator-4 {
-> +		compatible = "regulator-gpio";
-> +		regulator-name = "vddshv_sdio";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&vddshv_sdio_default_pins>;
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-boot-on;
-> +		gpios = <&main_gpio0 31 GPIO_ACTIVE_HIGH>;
-> +		states = <1800000 0x0>,
-> +			 <3300000 0x1>;
-> +	};
-> +
->   	leds {
->   		compatible = "gpio-leds";
->   		pinctrl-names = "default";
-> @@ -189,6 +202,12 @@ AM62AX_IOPAD(0x1f8, PIN_INPUT_PULLUP, 0) /* (AC2) MMC0_DAT7 */
->   		>;
->   	};
->   
-> +	vddshv_sdio_default_pins: vddshv-sdio-default-pins {
-> +		pinctrl-single,pins = <
-> +			AM62AX_IOPAD(0x07c, PIN_OUTPUT, 7) /* (M19) GPMC0_CLK.GPIO0_31 */
+On Thu, Nov 30, 2023 at 1:28=E2=80=AFPM Fabio Estevam <festevam@gmail.com> =
+wrote:
+>
+> Hi Rob,
+>
+> On Thu, Nov 30, 2023 at 4:18=E2=80=AFPM Rob Herring <robh@kernel.org> wro=
+te:
+> >
+> > The imx8mm-venice boards PCI bus nodes are a complete mess. The
+> > unit-addresses are wrong. The PCI bridge nodes are incomplete missing
+> > "device_type" and "ranges" and just wrong for "#address-cells" and
+> > "#size-cells" values.
+> >
+> > All of these issues are reported warnings if anyone bothered to pay
+> > attention. Sigh.
+>
+> The warnings are gone in linux-next:
+>
+> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commi=
+t/arch/arm64/boot/dts/freescale?h=3Dnext-20231130&id=3Dd61c5068729a76a6183a=
+897bcad4bf26e8d3d674
 
-Isn't this ball name N22? I might be wrong, but I did check using 
-SYSCONFIG tool and datasheet.
+Linux-next is wrong. The ethernet device should have a node name of
+'ethernet'. The 'pcie' node name and 'device_type =3D "pci"' is for PCI
+buses/bridges only.
 
-> +		>;
-> +	};
-> +
->   	main_mmc1_pins_default: main-mmc1-default-pins {
->   		pinctrl-single,pins = <
->   			AM62AX_IOPAD(0x23c, PIN_INPUT, 0) /* (A21) MMC1_CMD */
-> @@ -294,6 +313,7 @@ &sdhci1 {
->   	/* SD/MMC */
->   	status = "okay";
->   	vmmc-supply = <&vdd_mmc1>;
-> +	vqmmc-supply = <&vddshv_sdio>;
->   	pinctrl-names = "default";
->   	pinctrl-0 = <&main_mmc1_pins_default>;
->   	ti,driver-strength-ohm = <50>;
-
+Rob
 
