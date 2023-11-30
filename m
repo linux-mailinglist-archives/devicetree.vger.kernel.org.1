@@ -1,158 +1,281 @@
-Return-Path: <devicetree+bounces-20381-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20382-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93AC37FF04D
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 14:38:05 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0A9C7FF0A9
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 14:49:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C44FA1C20DC2
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 13:38:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 97A94281FE4
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 13:49:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DE6847A7B;
-	Thu, 30 Nov 2023 13:38:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D19CA482E2;
+	Thu, 30 Nov 2023 13:49:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="iAg/YnWE"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OjjG5kfu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF4ADC4;
-	Thu, 30 Nov 2023 05:37:58 -0800 (PST)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AUBt4CI032596;
-	Thu, 30 Nov 2023 13:37:53 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=D4urVbhmcVHg+zDN+1uI7L+DvfPy0F3NUE4iAdZuAMU=;
- b=iAg/YnWET+uB+v8h2hMrfuDlzbImm0aglXwfYSLmR8CkvKREDyetOhfXG2AY9NC9FMAG
- 0GWHV2RYIIO69gI8K6cMRwZrYcLdbq5fhxzY2pycAADYSitv0d4ap7h3D93bKC5Jwrqc
- W5PHs+oB+E6B4NxUw4GrpJ1iGLXX2NJMJj7Z8L8yXABlIXYlFRYMOgxqkzYSwty4HzC7
- NMu4zkYHADQUOYAv8X0jjnpD481/i74WkipnDty0k0pIf69eNA1EsUTJbvBk0JH3PbY4
- e/45cYC3B7WMeSVNZiGzourt5f8PHxHrxjjEoViYdNbBBhWDTF8PJsdaQdjOpH778KdC wg== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3up2byuwcr-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 30 Nov 2023 13:37:53 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AUDbqp6011305
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 30 Nov 2023 13:37:52 GMT
-Received: from [10.239.133.49] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 30 Nov
- 2023 05:37:49 -0800
-Message-ID: <22ddb4aa-a908-49c3-8eb4-2399c7c5bc37@quicinc.com>
-Date: Thu, 30 Nov 2023 21:37:47 +0800
+Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19E39B9;
+	Thu, 30 Nov 2023 05:49:11 -0800 (PST)
+Received: by mail-pj1-x1033.google.com with SMTP id 98e67ed59e1d1-28613d87c4cso927949a91.3;
+        Thu, 30 Nov 2023 05:49:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1701352150; x=1701956950; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=uNuxAy4+PElexRfQ7sEzap/pFZOn8VnLezaHyJK+6X8=;
+        b=OjjG5kfuMlwsMT/nqZkS1IqergPR/lUwrGiHI97CrdG0YT1C9aKrl9pO68UdfDpb+j
+         sXoR94OoqPS+Xffc9Fl6mG0Q5Opz9RcWeh93bOBY4iVo87YNpQ4RB0etGTBx6yqx7Rhi
+         CrLPaHicGYKDxdNaPCLhY/s3d7lLjECsRHBezbQevqRpDOsElcsjLDT8bXfDXy0hEgYq
+         xM0UZhet3YjRjtj/gLPocG7x5840lnlGreSle6U+W8r60omAX/ouOeyXomKSZyL9wqB8
+         IdI8XtlZwYtYKUOwJ47iq5P+8z11jfeg0Ty0x0SkBqZdHwBUjkFGOW2QwEUuk7FhqY/c
+         4mOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701352150; x=1701956950;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=uNuxAy4+PElexRfQ7sEzap/pFZOn8VnLezaHyJK+6X8=;
+        b=UBEm6AJZhiOJECPj1K4Lv06iBQv8R5k2TQyBdya41U7UJupgZo/pNJH4dkGQ4jqlZQ
+         jN1xgvlL0uPOiZc/EuG1Uxliz1k1pCcD7DzkPT3JfuqF0u/2R5BeUGT6mt0lg04NvZ+f
+         xNrmgpE/WQdYiRSAShgQdM/QuZr6/+M8Mx78KatUujKVpoOx4nud/DnzF5CK6Khtl5yb
+         otpXMCmElsGMTkBpEPoir9qa8IDYkWUAzGqL1kHyq9gdZdUsXr4Iqh2P8L5sqyh0J+Gv
+         Cq/Cwkr6pepuwxUr48I+7JrAnmyJO8f9KEv+gFNqP8QiGrVxL2hGKEveTRAHpu/J232b
+         ZRYA==
+X-Gm-Message-State: AOJu0Yzi4E1UvoziLZOHzTJjAUOiC5vmEzYsXDxpB34Uk4n1W3SNom5w
+	+9tJZkveAf+w0WXpcaeOf9MKMmM5lRmh/cNF5Rs=
+X-Google-Smtp-Source: AGHT+IFUXNo2QGXR54PDhl/6L7MWDHAGZgL2I38RByhjC2AkpACb/BVyGj1zILcvOqf3LpZjVq1tddj8vIeEewJ3wzA=
+X-Received: by 2002:a17:90b:3504:b0:280:5b33:d30 with SMTP id
+ ls4-20020a17090b350400b002805b330d30mr23336773pjb.44.1701352150332; Thu, 30
+ Nov 2023 05:49:10 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/3] arm64: dts: qcom: msm8996: Fix 'in-ports' is a
- required property
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross
-	<agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Tao Zhang
-	<quic_taozha@quicinc.com>
-References: <20231129143815.7892-1-quic_jinlmao@quicinc.com>
- <20231129143815.7892-2-quic_jinlmao@quicinc.com>
- <3527d540-3e3f-4edb-b5f2-6ac481132c06@linaro.org>
- <591e1aca-20ca-4d42-809d-12cd12ddadb3@quicinc.com>
- <35916812-af55-4b2a-99e5-8566e945cb6e@linaro.org>
- <5ef0372a-2b9d-4a19-bbb4-2c6ce29dbe79@quicinc.com>
- <5bc8b7e3-7a4f-48d4-a1fa-9e3cb0b39a3a@linaro.org>
-Content-Language: en-US
-From: Jinlong Mao <quic_jinlmao@quicinc.com>
-In-Reply-To: <5bc8b7e3-7a4f-48d4-a1fa-9e3cb0b39a3a@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: S0Mg-Hzo3MbnhYpjJn879lFcmTDDG2rT
-X-Proofpoint-ORIG-GUID: S0Mg-Hzo3MbnhYpjJn879lFcmTDDG2rT
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-30_11,2023-11-30_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 suspectscore=0
- phishscore=0 clxscore=1015 lowpriorityscore=0 malwarescore=0
- priorityscore=1501 adultscore=0 impostorscore=0 bulkscore=0
- mlxlogscore=617 spamscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2311060000 definitions=main-2311300101
+References: <20231129093113.255161-1-paul.elder@ideasonboard.com>
+ <7122934.GXAFRqVoOG@steina-w> <20231129151637.GG24293@pendragon.ideasonboard.com>
+ <5734628.DvuYhMxLoT@steina-w>
+In-Reply-To: <5734628.DvuYhMxLoT@steina-w>
+From: Adam Ford <aford173@gmail.com>
+Date: Thu, 30 Nov 2023 07:48:58 -0600
+Message-ID: <CAHCN7x+hBGmnJ2z8B9awpS1KU7rgVjseMw-uTE2Sc7DZ5+oTKA@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: imx8mp: Add overlays for ISP instances
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, linux-media@vger.kernel.org, 
+	devicetree@vger.kernel.org, Paul Elder <paul.elder@ideasonboard.com>, 
+	kieran.bingham@ideasonboard.com, tomi.valkeinen@ideasonboard.com, 
+	umang.jain@ideasonboard.com, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	NXP Linux Team <linux-imx@nxp.com>, Tim Harvey <tharvey@gateworks.com>, 
+	Philippe Schenker <philippe.schenker@toradex.com>, Marek Vasut <marex@denx.de>, 
+	Gregor Herburger <gregor.herburger@ew.tq-group.com>, 
+	Marcel Ziswiler <marcel.ziswiler@toradex.com>, open list <linux-kernel@vger.kernel.org>, 
+	"moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-
-
-On 11/30/2023 9:35 PM, Krzysztof Kozlowski wrote:
-> On 30/11/2023 14:12, Jinlong Mao wrote:
->>
->>
->> On 11/30/2023 8:06 PM, Krzysztof Kozlowski wrote:
->>> On 30/11/2023 12:15, Jinlong Mao wrote:
->>>>
->>>>
->>>> On 11/30/2023 4:55 PM, Krzysztof Kozlowski wrote:
->>>>> On 29/11/2023 15:38, Mao Jinlong wrote:
->>>>>> The inport of funnel@3023000 connects to a source which is not supported
->>>>>> in current linux kernel. Remove the device tree node of funnel@3023000
->>>>>> to fix the warning. It will be added once the driver support to the
->>>>>> source is added to linux kernel.
->>>>>
->>>>> Thanks for the changes, but that's not correct reason to remove DTS
->>>>> code. What kernel supports or not, should be irrelevant for the DTS. DTS
->>>>> for example is used in other projects - did you check if they have the
->>>>> same issues? Anyway, DTS describes the hardware, so how current kernel
->>>>> support defines what is and what is not in the hardware?
->>>>>
->>>>>
->>>>> Best regards,
->>>>> Krzysztof
->>>>
->>>> Hi Krzysztof,
->>>>
->>>> The funnel dt node must have in-ports node. It is to describe the input
->>>> connection of funnel HW. But there is no dt_binding doc to describe the
->>>> DT node of the HW connected to funnel@3023000. So remove the funnel to
->>>> solve the warning as of now. The funnel will be added back once driver
->>>> and dt_binding are added for the HW.
->>>>
->>>> Documentation/devicetree/bindings/arm/arm,coresight-dynamic-funnel.yaml
->>>
->>> Why we cannot add now the binding for the connected hardware? It's not
->>> really related to the driver.
->>>
->>> Best regards,
->>> Krzysztof
->>
->> Do you mean yaml file can be added before the driver code is merged ?
-> 
-> Yes, the binding. YAML is only the language. We don't write YAMLs, we
-> write bindings.
-> 
+On Thu, Nov 30, 2023 at 3:51=E2=80=AFAM Alexander Stein
+<alexander.stein@ew.tq-group.com> wrote:
+>
+> Hi Laurent,
+>
+> Am Mittwoch, 29. November 2023, 16:16:37 CET schrieb Laurent Pinchart:
+> > Hi Alexander,
+> >
+> > On Wed, Nov 29, 2023 at 11:20:07AM +0100, Alexander Stein wrote:
+> > > Am Mittwoch, 29. November 2023, 10:31:13 CET schrieb Paul Elder:
+> > > > From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > > >
+> > > > Add two overlay to enable each ISP instance. The ISP is wired direc=
+tly
+> > > > to the CSIS for now, bypassing the ISI completely.
+> > >
+> > > I'm not sure if this is worth adding in a separate overlay.
+> >
+> > The trouble is that, at this point, selection between the ISP and the
+> > ISI can only be performed through DT :-S That's why this is implemented
+> > as an overlay.
+>
+> I feel a better place would be the overlay which actually adds the sensor=
+.
+> This knows best whether ISI or ISP should be used.
+>
+> > > > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > > > Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
+> > > > ---
+> > > >
+> > > >  arch/arm64/boot/dts/freescale/Makefile        |  2 ++
+> > > >  .../arm64/boot/dts/freescale/imx8mp-isp1.dtso | 36 +++++++++++++++=
+++++
+> > > >  .../arm64/boot/dts/freescale/imx8mp-isp2.dtso | 36 +++++++++++++++=
+++++
+> > > >  3 files changed, 74 insertions(+)
+> > > >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-isp1.dtso
+> > > >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-isp2.dtso
+> > > >
+> > > > diff --git a/arch/arm64/boot/dts/freescale/Makefile
+> > > > b/arch/arm64/boot/dts/freescale/Makefile index
+> > > > 300049037eb0..f97dfac11189
+> > > > 100644
+> > > > --- a/arch/arm64/boot/dts/freescale/Makefile
+> > > > +++ b/arch/arm64/boot/dts/freescale/Makefile
+> > > > @@ -113,6 +113,8 @@ dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-dhcom-pdk2.d=
+tb
+> > > >
+> > > >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-dhcom-pdk3.dtb
+> > > >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-evk.dtb
+> > > >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-icore-mx8mp-edimm2.2.dtb
+> > > >
+> > > > +dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-isp1.dtbo
+> > > > +dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-isp2.dtbo
+> > > >
+> > > >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-msc-sm2s-ep1.dtb
+> > > >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-phyboard-pollux-rdk.dtb
+> > > >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-tqma8mpql-mba8mpxl.dtb
+> > > >
+> > > > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-isp1.dtso
+> > > > b/arch/arm64/boot/dts/freescale/imx8mp-isp1.dtso new file mode 1006=
+44
+> > > > index 000000000000..cf394ed224ab
+> > > > --- /dev/null
+> > > > +++ b/arch/arm64/boot/dts/freescale/imx8mp-isp1.dtso
+> > > > @@ -0,0 +1,36 @@
+> > > > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > > > +/*
+> > > > + * Copyright 2022 Ideas on Board Oy
+> > > > + */
+> > > > +
+> > > > +/dts-v1/;
+> > > > +/plugin/;
+> > > > +
+> > > > +#include <dt-bindings/media/video-interfaces.h>
+> > > > +
+> > > > +&isi_0 {
+> > > > + status =3D "disabled";
+> > >
+> > > ISI is disabled by default. What is your intention here?
+> >
+> > It could be enabled by an overlay for a camera module. Ideally we want
+> > to be able to enable both the ISI and ISP at runtime, but that's not
+> > possible yet and will require a very large amount of work.
+>
+> Again IMHO this is part of sensor setup, in a very specific overlay. To p=
+ut it
+> into different words: I barely see the gain of this small overlay.
+>
+> Runtime switching would require a combined media controller including bot=
+h ISI
+> and ISP, no?
+>
 > Best regards,
-> Krzysztof
+> Alexander
+>
+> > > > +
+> > > > + ports {
+> > > > +         port@0 {
+> > > > +                 /delete-node/ endpoint;
+> > >
+> > > This doesn't work in overlays. See [1]. Otherwise the OF graph connec=
+tions
+> > > look fine to me. I'm using the same in my local overlay.
+> >
+> > Interesting, I wasn't aware of that. Maybe we should fix it :-)
 
-ok, Thanks. I will prepare the binding file.
+When I did my camera implementation, I thought it was simpler to:
 
-Thanks
-Jinlong Mao
+/delete-node/ &isi_in_0;
 
-> 
+it's a one-line change.
 
+I would suggest we just drop the overlay and make users who have the
+cameras integrate the cameras and the isp routing into their
+respective overlays.
+
+adam
+> >
+> > > [1]
+> > > https://lore.kernel.org/all/CAMuHMdWu4KZbBkvEofUV2wuA1g2S=3DXHHM3RUN1=
+cNrcZB
+> > > khsPZA@mail.gmail.com/>
+> > > > +         };
+> > > > + };
+> > > > +};
+> > > > +
+> > > > +&isp_0 {
+> > > > + status =3D "okay";
+> > > > +
+> > > > + ports {
+> > > > +         port@1 {
+> > > > +                 isp0_in: endpoint {
+> > > > +                         bus-type =3D <MEDIA_BUS_TYPE_PARALLEL>;
+> > > > +                         remote-endpoint =3D <&mipi_csi_0_out>;
+> > > > +                 };
+> > > > +         };
+> > > > + };
+> > > > +};
+> > > > +
+> > > > +&mipi_csi_0_out {
+> > > > + remote-endpoint =3D <&isp0_in>;
+> > > > +};
+> > > > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-isp2.dtso
+> > > > b/arch/arm64/boot/dts/freescale/imx8mp-isp2.dtso new file mode 1006=
+44
+> > > > index 000000000000..14e2e7b2617f
+> > > > --- /dev/null
+> > > > +++ b/arch/arm64/boot/dts/freescale/imx8mp-isp2.dtso
+> > > > @@ -0,0 +1,36 @@
+> > > > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > > > +/*
+> > > > + * Copyright 2022 Ideas on Board Oy
+> > > > + */
+> > > > +
+> > > > +/dts-v1/;
+> > > > +/plugin/;
+> > > > +
+> > > > +#include <dt-bindings/media/video-interfaces.h>
+> > > > +
+> > > > +&isi_0 {
+> > > > + status =3D "disabled";
+> > > > +
+> > > > + ports {
+> > > > +         port@1 {
+> > > > +                 /delete-node/ endpoint;
+> > > > +         };
+> > > > + };
+> > > > +};
+> > > > +
+> > > > +&isp_1 {
+> > > > + status =3D "okay";
+> > > > +
+> > > > + ports {
+> > > > +         port@1 {
+> > > > +                 isp1_in: endpoint {
+> > > > +                         bus-type =3D <MEDIA_BUS_TYPE_PARALLEL>;
+> > > > +                         remote-endpoint =3D <&mipi_csi_1_out>;
+> > > > +                 };
+> > > > +         };
+> > > > + };
+> > > > +};
+> > > > +
+> > > > +&mipi_csi_1_out {
+> > > > + remote-endpoint =3D <&isp1_in>;
+> > > > +};
+>
+>
+> --
+> TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, Ge=
+rmany
+> Amtsgericht M=C3=BCnchen, HRB 105018
+> Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan S=
+chneider
+> http://www.tq-group.com/
+>
+>
+>
 
