@@ -1,199 +1,329 @@
-Return-Path: <devicetree+bounces-20375-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20376-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35CC07FEFD2
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 14:17:16 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0C537FEFF6
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 14:22:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E9E9C281F0D
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 13:17:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C2EBB1C20EBD
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 13:22:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 799333E47F;
-	Thu, 30 Nov 2023 13:17:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ragnatech-se.20230601.gappssmtp.com header.i=@ragnatech-se.20230601.gappssmtp.com header.b="c1zz94ao"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60D1C4778F;
+	Thu, 30 Nov 2023 13:21:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1ECB3D6C
-	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 05:17:06 -0800 (PST)
-Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2c9c1e39defso11618071fa.1
-        for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 05:17:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ragnatech-se.20230601.gappssmtp.com; s=20230601; t=1701350224; x=1701955024; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=NNu7981w+b/EsarpnTnNbtY/sRZQqtfWb3hWpd3oycg=;
-        b=c1zz94aoCFk2x8YbXh+aDxQnQ2iV5kB1rzFIFrDBuPUxqOqQ+C33mh1MZMD4aw30ef
-         NxRQAkp7yPfFnZB2fpjv5zMEwIPsXZi7aSsvb99EvUXiYmO7ho/3UOv82zw0r1ZGAVFh
-         rch9lO/w7GInVTOGSOrqaOTTcMpoOY5VMiLZXtWvNqe85tUIHvJg7o2AbarwQyO6xlHb
-         tSb2mUyz8io4oWc8E+1qGuYyTxY3LbpKbmfBs+CSuC3zpDe6c+BgTk/O2X0BHmudoBTg
-         HyH6+a6y238cg2lmbPq4pL7t5q+4sEcmpgO8QcQihKGnOiHaxMV7EzsWOOtVM7ilrSxQ
-         m0jQ==
+Received: from mail-oo1-f51.google.com (mail-oo1-f51.google.com [209.85.161.51])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2534B5;
+	Thu, 30 Nov 2023 05:21:54 -0800 (PST)
+Received: by mail-oo1-f51.google.com with SMTP id 006d021491bc7-58db15c68f3so30333eaf.0;
+        Thu, 30 Nov 2023 05:21:54 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701350224; x=1701955024;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NNu7981w+b/EsarpnTnNbtY/sRZQqtfWb3hWpd3oycg=;
-        b=TEfS8RMtWtW/q8MoDRe9XY9TYnFOcZFX48jkpHRrvgz2OM+zhVDJD2uldBPmyUn8av
-         nOH20er71zKRD1/WI1NhanrzzFijZ7eOWfTJcW/uyMlCmNBsBdI1/WbCF0onsDcgut5p
-         24fopVisluaHeZfsVg+R4tY94QVooAFeaW/10EeD2LCcPv1wZpvuLDVjXcKHBdFGYk0E
-         km8g6cedL+GZEud0nYjymuo6hCw+/kagKv4QZ67L8q5CrlK3fM2Co0VFLamk8zCtQNag
-         2nV5FKTwIxnHK46SrbOdm21I9s8VhloXhyQS2HUm46ed4tpghkc1iPg+oloPbSu6LuZ2
-         Ml4Q==
-X-Gm-Message-State: AOJu0YyHi4cV0JrOmCrMZ+xS060RDvF1xzMkw+KcjPz4/nNygL94z7vK
-	EEeIrFXxsaC/AzplMIsysDZZrg==
-X-Google-Smtp-Source: AGHT+IE6Fk5mUymExBFFbYGMykHg37q2l+bapF/at/yPgH4L69vguyhE9w1VT0LcWJ9+IM+shvK/5A==
-X-Received: by 2002:a2e:9d91:0:b0:2c9:c0c5:ab7d with SMTP id c17-20020a2e9d91000000b002c9c0c5ab7dmr3263228ljj.13.1701350224208;
-        Thu, 30 Nov 2023 05:17:04 -0800 (PST)
-Received: from localhost (h-46-59-36-206.A463.priv.bahnhof.se. [46.59.36.206])
-        by smtp.gmail.com with ESMTPSA id u3-20020a2e9b03000000b002c9c61cdcbasm140981lji.5.2023.11.30.05.17.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Nov 2023 05:17:02 -0800 (PST)
-Date: Thu, 30 Nov 2023 14:17:01 +0100
-From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: renesas: Document preferred compatible
- naming
-Message-ID: <ZWiLTYU_Hj0bl1gn@oden.dyn.berto.se>
-References: <20231125232821.234631-1-niklas.soderlund+renesas@ragnatech.se>
- <deacc7ea-6fad-47d6-978b-3f639aa5da35@linaro.org>
+        d=1e100.net; s=20230601; t=1701350513; x=1701955313;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ZvNfFwEaJe35P7DHOxBfctgrV0f0ocDgk3MHXYzHo/M=;
+        b=QJJXP0HxTNT45WJg58i7cl5X59xhb4koqTLeTMWU6EbER3R8YKga8GeNAVpmiAnskL
+         KnkWGfO9f+xSSbruJ+2UtHD7mJ48SqhqVxTEXeykhcm9G9pxTzEwoS0Ves8HOdbypD2o
+         NWV+YbSsFtku5Oan+UBuygin+mzQjmSsm6DZKn7sliXotnFoI1cudnzC71ydV1k1vd/a
+         xwg1Wq9cTR6fKAySPNpX6vPzN/JiVELaP1H/Wlqbtnc+SXVm9/DUMm/LncfdRrreTdrF
+         Gi5UeFzbmaRZpq9rVB5RPc1JV8cDD5us8UYzTICs3fLRi6cX938pjupP3XImae4MvBpz
+         zQww==
+X-Gm-Message-State: AOJu0YyvFu5CGAurBjpCwZsvyDtAUrjkxfAVI8N00II31HLD8vx+YEAp
+	jj4tPuMh5Y4d5kueZp+9XEGP53xs6Q1cEiARycQ=
+X-Google-Smtp-Source: AGHT+IHVXAHNIVex42KnwULFjGZK2tI3TPh5OlhmRjJZ4u6dNoVNOqThLGV/PQYjRCTwh4xYmS9IrHBLkf2HUiQDDjI=
+X-Received: by 2002:a4a:a2c8:0:b0:58d:ddcb:db1a with SMTP id
+ r8-20020a4aa2c8000000b0058dddcbdb1amr1875278ool.1.1701350513014; Thu, 30 Nov
+ 2023 05:21:53 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <deacc7ea-6fad-47d6-978b-3f639aa5da35@linaro.org>
+References: <0-v1-f82a05539a64+5042-iommu_fwspec_p2_jgg@nvidia.com> <3-v1-f82a05539a64+5042-iommu_fwspec_p2_jgg@nvidia.com>
+In-Reply-To: <3-v1-f82a05539a64+5042-iommu_fwspec_p2_jgg@nvidia.com>
+From: "Rafael J. Wysocki" <rafael@kernel.org>
+Date: Thu, 30 Nov 2023 14:21:41 +0100
+Message-ID: <CAJZ5v0h2=qHgG8qV0Yjm_mZSKBZcYZMfQYiFZF18RcmHM-+oMA@mail.gmail.com>
+Subject: Re: [PATCH 03/30] ACPI: IORT: Make a iort_iommu_for_each_id()
+To: Jason Gunthorpe <jgg@nvidia.com>
+Cc: acpica-devel@lists.linux.dev, Andy Gross <agross@kernel.org>, 
+	Alim Akhtar <alim.akhtar@samsung.com>, Alyssa Rosenzweig <alyssa@rosenzweig.io>, 
+	Bjorn Andersson <andersson@kernel.org>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, asahi@lists.linux.dev, 
+	Baolin Wang <baolin.wang@linux.alibaba.com>, devicetree@vger.kernel.org, 
+	Frank Rowand <frowand.list@gmail.com>, Hanjun Guo <guohanjun@huawei.com>, 
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>, Heiko Stuebner <heiko@sntech.de>, iommu@lists.linux.dev, 
+	Jean-Philippe Brucker <jean-philippe@linaro.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Jonathan Hunter <jonathanh@nvidia.com>, Joerg Roedel <joro@8bytes.org>, 
+	Kees Cook <keescook@chromium.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Len Brown <lenb@kernel.org>, 
+	linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-arm-msm@vger.kernel.org, linux-hardening@vger.kernel.org, 
+	linux-mediatek@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org, linux-sunxi@lists.linux.dev, 
+	linux-tegra@vger.kernel.org, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Marek Szyprowski <m.szyprowski@samsung.com>, Hector Martin <marcan@marcan.st>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, Orson Zhai <orsonzhai@gmail.com>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Rob Clark <robdclark@gmail.com>, 
+	Robert Moore <robert.moore@intel.com>, Rob Herring <robh+dt@kernel.org>, 
+	Robin Murphy <robin.murphy@arm.com>, Samuel Holland <samuel@sholland.org>, 
+	Sudeep Holla <sudeep.holla@arm.com>, Sven Peter <sven@svenpeter.dev>, 
+	Thierry Reding <thierry.reding@gmail.com>, Krishna Reddy <vdumpa@nvidia.com>, 
+	virtualization@lists.linux.dev, Chen-Yu Tsai <wens@csie.org>, 
+	Will Deacon <will@kernel.org>, Yong Wu <yong.wu@mediatek.com>, 
+	Chunyan Zhang <zhang.lyra@gmail.com>, =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+	patches@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Krzysztof,
+On Thu, Nov 30, 2023 at 2:11=E2=80=AFAM Jason Gunthorpe <jgg@nvidia.com> wr=
+ote:
+>
+> Similar to of_iommu_for_each_id() this parses the IORT ACPI description
+> and invokes a function over each entry in the table.
+>
+> Have iort_iommu_configure_id() use the new function to call
+> iort_iommu_xlate().
+>
+> Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
 
-On 2023-11-28 10:51:03 +0100, Krzysztof Kozlowski wrote:
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
-> > +      # Preferred naming style for compatibles of SoC components:
-> > +      - pattern: "^renesas,emev2-[a-z0-9-]+$"
-> > +      - pattern: "^renesas,r7s[0-9]+-[a-z0-9-]+$"
-> > +      - pattern: "^renesas,r8a[a-z0-9]+-[a-z0-9-]+$"
-> > +      - pattern: "^renesas,r9a[0-9]+g[a-z0-9]+-[a-z0-9-]+$"
-> > +      - pattern: "^renesas,rcar-[a-z0-9-]+$"
-> > +      - pattern: "^renesas,rz-[a-z0-9-]+$"
-> > +      - pattern: "^renesas,rza-[a-z0-9-]+$"
-> > +      - pattern: "^renesas,rza1-[a-z0-9-]+$"
-> > +      - pattern: "^renesas,rza2-[a-z0-9-]+$"
-> > +      - pattern: "^renesas,rzg2l-[a-z0-9-]+$"
-> > +      - pattern: "^renesas,rzn1[a-z0-9]*-[a-z0-9-]+$"
-> > +      - pattern: "^renesas,rzv2m-[a-z0-9-]+$"
-> > +      - pattern: "^renesas,sh-[a-z0-9-]+$"
-> > +      - pattern: "^renesas,sh7[a-z0-9]+-[a-z0-9-]+$"
-> 
-> Why so many different patterns? Why it cannot be for example:
-> "^renesas,rz[a-z0-9]*-[a-z0-9-]+$" to cover multiple entries?
-> 
-> The point is not to validate the devices. Other bindings do it. The
-> point is to have one or two patterns to enforce ordering of SoC-block.
-> 
-> The size of this file suggests you either over-complicated the thing or
-> there is little benefit of adding it.
+Acked-by: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
 
-As you point out below there is a lot of patterns that use the style not 
-preferred and the idea to detect future additions of this I thought it a 
-good idea to make these more specialized. If we think that is a bad idea 
-I can try to make fewer more generic ones.
-
-> 
-> > +
-> > +      # SoC agnostic compatibles - new compatibles are OK:
-> 
-> Why new compatibles are ok?
-> 
-> > +      - enum:
-> > +          - renesas,cpg-div6-clock
-> > +          - renesas,cpg-mstp-clocks
-> > +          - renesas,intc-irqpin
-> > +          - renesas,smp-sram
-> 
-> smp-sram can have new compatibles? I am sorry, but this needs explanation...
-
-The intention is to list SoC agnostic compatibles here, or put another 
-way false positives to the generic pattern "renesas,.*-.*". So no 
-"renesas,smp-sram" can't have new compatibles but there might be new 
-renesas compatible strings that hit the pattern that is not related to a 
-SoC. Does this make sens?
-
-> 
-> > +
-> > +      # Legacy namings - variations of existing patterns/compatibles are OK,
-> > +      # but do not add completely new entries to these:
-> > +      - pattern: "^renesas,can-[a-z0-9]+$"
-> > +      - pattern: "^renesas,dmac-[a-z0-9]+$"
-> > +      - pattern: "^renesas,du-[a-z0-9]+$"
-> > +      - pattern: "^renesas,ether-[a-z0-9]+$"
-> > +      - pattern: "^renesas,etheravb-[a-z0-9]+$"
-> > +      - pattern: "^renesas,etheravb-rcar-gen[0-9]$"
-> > +      - pattern: "^renesas,gether-[a-z0-9]+$"
-> > +      - pattern: "^renesas,gpio-[a-z0-9]+$"
-> > +      - pattern: "^renesas,hscif-[a-z0-9]+$"
-> > +      - pattern: "^renesas,i2c-[a-z0-9]+$"
-> > +      - pattern: "^renesas,iic-[a-z0-9]+$"
-> > +      - pattern: "^renesas,intc-ex-[a-z0-9]+$"
-> > +      - pattern: "^renesas,intc-irqpin-[a-z0-9]+$"
-> > +      - pattern: "^renesas,ipmmu-[a-z0-9]+$"
-> > +      - pattern: "^renesas,irqc-[a-z0-9]+$"
-> > +      - pattern: "^renesas,jpu-[a-z0-9]+$"
-> > +      - pattern: "^renesas,mmcif-[a-z0-9]+$"
-> > +      - pattern: "^renesas,msiof-[a-z0-9]+$"
-> > +      - pattern: "^renesas,pci-[a-z0-9]+$"
-> > +      - pattern: "^renesas,pci-rcar-gen[0-9]$"
-> > +      - pattern: "^renesas,pcie-[a-z0-9]+$"
-> > +      - pattern: "^renesas,pcie-rcar-gen[0-9]$"
-> > +      - pattern: "^renesas,pfc-[a-z0-9]+$"
-> > +      - pattern: "^renesas,pwm-[a-z0-9]+$"
-> > +      - pattern: "^renesas,qspi-[a-z0-9]+$"
-> > +      - pattern: "^renesas,rcar_sound-[a-z0-9]+$"
-> > +      - pattern: "^renesas,riic-[a-z0-9]+$"
-> > +      - pattern: "^renesas,rspi-[a-z0-9]+$"
-> > +      - pattern: "^renesas,sata-[a-z0-9]+(-es1)?$"
-> > +      - pattern: "^renesas,scif-[a-z0-9]+$"
-> > +      - pattern: "^renesas,scifa-[a-z0-9]+$"
-> > +      - pattern: "^renesas,scifb-[a-z0-9]+$"
-> > +      - pattern: "^renesas,sdhi-[a-z0-9]+$"
-> > +      - pattern: "^renesas,thermal-[a-z0-9]+$"
-> > +      - pattern: "^renesas,tmu-[a-z0-9]+$"
-> > +      - pattern: "^renesas,tpu-[a-z0-9]+$"
-> > +      - pattern: "^renesas,usb-phy-[a-z0-9]+$"
-> > +      - pattern: "^renesas,usb2-phy-[a-z0-9]+$"
-> > +      - pattern: "^renesas,usbhs-[a-z0-9]+$"
-> > +      - pattern: "^renesas,vin-[a-z0-9]+$"
-> > +      - pattern: "^renesas,xhci-[a-z0-9]+$"
-> 
-> No, wait, you basically listed most of the SoC as exceptions. What SoC
-> blocks exactly are you going to cover in such case with your rules?
-
-As Geert points out these exists for historical reasons, but we don't 
-want any more of this style.
-
-You ask in your reply to Geert that we should reconsider if this is 
-still useful. I think it is as it achieves the over all goal, detect if 
-any new of the not preferred style is added. But I won't press it, if 
-you or Geert think this is a bad route I won't spend more time on this 
-work.
-
-@Geert: What do you think?
-
--- 
-Kind Regards,
-Niklas Söderlund
+> ---
+>  drivers/acpi/arm64/iort.c | 118 ++++++++++++++++++++++++--------------
+>  include/linux/acpi_iort.h |  12 ++++
+>  2 files changed, 86 insertions(+), 44 deletions(-)
+>
+> diff --git a/drivers/acpi/arm64/iort.c b/drivers/acpi/arm64/iort.c
+> index bdaf9256870d92..5c9b4c23f96a87 100644
+> --- a/drivers/acpi/arm64/iort.c
+> +++ b/drivers/acpi/arm64/iort.c
+> @@ -1218,9 +1218,10 @@ static bool iort_pci_rc_supports_ats(struct acpi_i=
+ort_node *node)
+>         return pci_rc->ats_attribute & ACPI_IORT_ATS_SUPPORTED;
+>  }
+>
+> -static int iort_iommu_xlate(struct device *dev, struct acpi_iort_node *n=
+ode,
+> -                           u32 streamid)
+> +static int iort_iommu_xlate(struct acpi_iort_node *node, u32 streamid,
+> +                           void *info)
+>  {
+> +       struct device *dev =3D info;
+>         const struct iommu_ops *ops;
+>         struct fwnode_handle *iort_fwnode;
+>
+> @@ -1250,9 +1251,11 @@ static int iort_iommu_xlate(struct device *dev, st=
+ruct acpi_iort_node *node,
+>  struct iort_pci_alias_info {
+>         struct device *dev;
+>         struct acpi_iort_node *node;
+> +       iort_for_each_fn fn;
+> +       void *info;
+>  };
+>
+> -static int iort_pci_iommu_init(struct pci_dev *pdev, u16 alias, void *da=
+ta)
+> +static int __for_each_pci_alias(struct pci_dev *pdev, u16 alias, void *d=
+ata)
+>  {
+>         struct iort_pci_alias_info *info =3D data;
+>         struct acpi_iort_node *parent;
+> @@ -1260,7 +1263,7 @@ static int iort_pci_iommu_init(struct pci_dev *pdev=
+, u16 alias, void *data)
+>
+>         parent =3D iort_node_map_id(info->node, alias, &streamid,
+>                                   IORT_IOMMU_TYPE);
+> -       return iort_iommu_xlate(info->dev, parent, streamid);
+> +       return info->fn(parent, streamid, info->info);
+>  }
+>
+>  static void iort_named_component_init(struct device *dev,
+> @@ -1280,7 +1283,8 @@ static void iort_named_component_init(struct device=
+ *dev,
+>                 dev_warn(dev, "Could not add device properties\n");
+>  }
+>
+> -static int iort_nc_iommu_map(struct device *dev, struct acpi_iort_node *=
+node)
+> +static int __for_each_platform(struct acpi_iort_node *node, iort_for_eac=
+h_fn fn,
+> +                              void *info)
+>  {
+>         struct acpi_iort_node *parent;
+>         int err =3D -ENODEV, i =3D 0;
+> @@ -1293,27 +1297,71 @@ static int iort_nc_iommu_map(struct device *dev, =
+struct acpi_iort_node *node)
+>                                                    i++);
+>
+>                 if (parent)
+> -                       err =3D iort_iommu_xlate(dev, parent, streamid);
+> +                       err =3D fn(parent, streamid, info);
+>         } while (parent && !err);
+>
+>         return err;
+>  }
+>
+> -static int iort_nc_iommu_map_id(struct device *dev,
+> -                               struct acpi_iort_node *node,
+> -                               const u32 *in_id)
+> +int iort_iommu_for_each_id(struct device *dev, const u32 *id_in,
+> +                          struct iort_params *params, iort_for_each_fn f=
+n,
+> +                          void *info)
+>  {
+> -       struct acpi_iort_node *parent;
+> -       u32 streamid;
+> +       struct acpi_iort_named_component *nc;
+> +       struct acpi_iort_node *node;
+> +       int err =3D -ENODEV;
+>
+> -       parent =3D iort_node_map_id(node, *in_id, &streamid, IORT_IOMMU_T=
+YPE);
+> -       if (parent)
+> -               return iort_iommu_xlate(dev, parent, streamid);
+> +       memset(params, 0, sizeof(*params));
+> +       if (dev_is_pci(dev)) {
+> +               struct pci_bus *bus =3D to_pci_dev(dev)->bus;
+> +               struct iort_pci_alias_info pci_info =3D { .dev =3D dev,
+> +                                                       .fn =3D fn,
+> +                                                       .info =3D info };
+>
+> -       return -ENODEV;
+> +               node =3D iort_scan_node(ACPI_IORT_NODE_PCI_ROOT_COMPLEX,
+> +                                     iort_match_node_callback, &bus->dev=
+);
+> +               if (!node)
+> +                       return -ENODEV;
+> +
+> +               pci_info.node =3D node;
+> +               err =3D pci_for_each_dma_alias(to_pci_dev(dev),
+> +                                            __for_each_pci_alias, &pci_i=
+nfo);
+> +
+> +               if (iort_pci_rc_supports_ats(node))
+> +                       params->pci_rc_ats =3D true;
+> +               return 0;
+> +       }
+> +
+> +       node =3D iort_scan_node(ACPI_IORT_NODE_NAMED_COMPONENT,
+> +                             iort_match_node_callback, dev);
+> +       if (!node)
+> +               return -ENODEV;
+> +
+> +       if (id_in) {
+> +               struct acpi_iort_node *parent;
+> +               u32 streamid;
+> +
+> +               parent =3D iort_node_map_id(node, *id_in, &streamid,
+> +                                         IORT_IOMMU_TYPE);
+> +               if (!parent)
+> +                       return -ENODEV;
+> +               err =3D fn(parent, streamid, info);
+> +       } else {
+> +               err =3D __for_each_platform(node, fn, info);
+> +       }
+> +       if (err)
+> +               return err;
+> +
+> +       nc =3D (struct acpi_iort_named_component *)node->node_data;
+> +       params->pasid_num_bits =3D FIELD_GET(ACPI_IORT_NC_PASID_BITS,
+> +                                               nc->node_flags);
+> +       if (nc->node_flags & ACPI_IORT_NC_STALL_SUPPORTED)
+> +               params->dma_can_stall =3D true;
+> +
+> +       iort_named_component_init(dev, node);
+> +       return 0;
+>  }
+>
+> -
+>  /**
+>   * iort_iommu_configure_id - Set-up IOMMU configuration for a device.
+>   *
+> @@ -1324,40 +1372,22 @@ static int iort_nc_iommu_map_id(struct device *de=
+v,
+>   */
+>  int iort_iommu_configure_id(struct device *dev, const u32 *id_in)
+>  {
+> -       struct acpi_iort_node *node;
+> -       int err =3D -ENODEV;
+> +       struct iort_params params;
+> +       int err;
+>
+> -       if (dev_is_pci(dev)) {
+> +       err =3D iort_iommu_for_each_id(dev, id_in, &params, &iort_iommu_x=
+late,
+> +                                    dev);
+> +       if (err)
+> +               return err;
+> +
+> +       if (params.pci_rc_ats) {
+>                 struct iommu_fwspec *fwspec;
+> -               struct pci_bus *bus =3D to_pci_dev(dev)->bus;
+> -               struct iort_pci_alias_info info =3D { .dev =3D dev };
+> -
+> -               node =3D iort_scan_node(ACPI_IORT_NODE_PCI_ROOT_COMPLEX,
+> -                                     iort_match_node_callback, &bus->dev=
+);
+> -               if (!node)
+> -                       return -ENODEV;
+> -
+> -               info.node =3D node;
+> -               err =3D pci_for_each_dma_alias(to_pci_dev(dev),
+> -                                            iort_pci_iommu_init, &info);
+>
+>                 fwspec =3D dev_iommu_fwspec_get(dev);
+> -               if (fwspec && iort_pci_rc_supports_ats(node))
+> +               if (fwspec)
+>                         fwspec->flags |=3D IOMMU_FWSPEC_PCI_RC_ATS;
+> -       } else {
+> -               node =3D iort_scan_node(ACPI_IORT_NODE_NAMED_COMPONENT,
+> -                                     iort_match_node_callback, dev);
+> -               if (!node)
+> -                       return -ENODEV;
+> -
+> -               err =3D id_in ? iort_nc_iommu_map_id(dev, node, id_in) :
+> -                             iort_nc_iommu_map(dev, node);
+> -
+> -               if (!err)
+> -                       iort_named_component_init(dev, node);
+>         }
+> -
+> -       return err;
+> +       return 0;
+>  }
+>
+>  #else
+> diff --git a/include/linux/acpi_iort.h b/include/linux/acpi_iort.h
+> index 1cb65592c95dd3..5423abff9b6b09 100644
+> --- a/include/linux/acpi_iort.h
+> +++ b/include/linux/acpi_iort.h
+> @@ -29,6 +29,18 @@ void iort_deregister_domain_token(int trans_id);
+>  struct fwnode_handle *iort_find_domain_token(int trans_id);
+>  int iort_pmsi_get_dev_id(struct device *dev, u32 *dev_id);
+>
+> +struct iort_params {
+> +       unsigned int pasid_num_bits;
+> +       bool dma_can_stall : 1;
+> +       bool pci_rc_ats : 1;
+> +};
+> +
+> +typedef int (*iort_for_each_fn)(struct acpi_iort_node *iommu, u32 stream=
+id,
+> +                               void *info);
+> +int iort_iommu_for_each_id(struct device *dev, const u32 *id_in,
+> +                          struct iort_params *params, iort_for_each_fn f=
+n,
+> +                          void *info);
+> +
+>  #ifdef CONFIG_ACPI_IORT
+>  u32 iort_msi_map_id(struct device *dev, u32 id);
+>  struct irq_domain *iort_get_device_domain(struct device *dev, u32 id,
+> --
+> 2.42.0
+>
 
