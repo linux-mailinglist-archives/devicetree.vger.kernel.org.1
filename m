@@ -1,238 +1,247 @@
-Return-Path: <devicetree+bounces-20541-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20542-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B9847FFF6A
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 00:25:18 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 205FE7FFF77
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 00:31:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 31838281881
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 23:25:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 577A6B20FCE
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 23:31:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 527E35952E;
-	Thu, 30 Nov 2023 23:25:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7BA95953A;
+	Thu, 30 Nov 2023 23:31:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="JUlpujqb"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Rgrl6LR8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D63891710;
-	Thu, 30 Nov 2023 15:25:12 -0800 (PST)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AUMv1ds007817;
-	Thu, 30 Nov 2023 23:24:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=dzdwa52RQD+dDIN5fCjoN/RBg7vTB76JT4geO1rWUWs=;
- b=JUlpujqbfV3FJWXKWzbm+qCutDkbwjRAVycUZZ4U6h0HDb9nxyj7Md3e139Io7p/T0G2
- KNTh4CPupPHbDPAWM5cKxMgi72BYb0aV+Iw+2aRYA6feshcd/EuWcZfOI4F1PT7t3I/f
- H0NXVn1BVkVPJCOx6W7N/325jS73Ado/ASQ/NM8tdAr4iPHE96aVAzifePuVHZN+3rJ1
- 2G/HG6PkhIR57BywSnIpUQgs2KZ3T03neyZaowpY88nG8aRgYXnDKybCxOriA+6lzO1p
- 0Cu4Gb9lU7p3BQJv1j7UcWejJqeYxVd/O7/O6r++iqo0R5e6+KGYFCL2Nf9ZmXsaq/DK 8w== 
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3upv481b03-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 30 Nov 2023 23:24:56 +0000
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AUNOtCO030237
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 30 Nov 2023 23:24:55 GMT
-Received: from [10.251.45.12] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 30 Nov
- 2023 15:24:51 -0800
-Message-ID: <cc2eb772-ae0f-4861-a36e-304a5f45b1bf@quicinc.com>
-Date: Fri, 1 Dec 2023 01:24:48 +0200
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8939A10F3
+	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 15:30:53 -0800 (PST)
+Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2c9ccf36b25so14844051fa.3
+        for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 15:30:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1701387052; x=1701991852; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=OlkZfLy7XjVfeJnSAyVxLt4mO60J3JeK1Ayu4OTnn6g=;
+        b=Rgrl6LR8zpZCooUNieWI3jD+Rfv1Qqm1fKKdaI+Q65R5bv8wc/EGFsuqmC5XorZokG
+         er3Z1FJotq5XRS7Se/Gp/lgN+5yeZBHsMDLMiv4BL+n+3d9EYeLgsoq9aVytJ99v10QX
+         COPyEAl0XrA1eLOSXWGlg//9n7FWb04XrQRxNfAENxOsrlX6de6I4mHFLBGmeM7Ye8BR
+         7hsRPTGCwbmtbaxV+NpETD+76G8MxJojeIg+zx2uFqYEiGOOK+HI5u2115y/33nNMRec
+         gOBhu5QNuCrR40bHEjqQA7G5yUN24QI958vVcfBH0H07gpIstst4Ky0fNbSjRtr0u+Sc
+         KNhQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701387052; x=1701991852;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=OlkZfLy7XjVfeJnSAyVxLt4mO60J3JeK1Ayu4OTnn6g=;
+        b=n75Ib0KY0UTP/nZEV8J58wm5XANksZsF2oB/8eASxJWmZJ/mxOKYu/n/j/HRrh/1f9
+         u3AhpFoTdSrYIrsoAlNI/7Ae6XZbETQAZ4v74JsY4Nh6sRSAX0TONd359idxl8y7Ekpc
+         234ia89E+90w5AJ1hV1qtiOmRBb5c64GoQD7XqbCTW7DN5AvFrrMe1JOM4LGWHTHvQ0P
+         d64PDzqyA6mGkUOBoNGzx87vNmlkJScea8JGB1ZOdF8CWsUzgfbp/0JXzajKxYC/zPj8
+         Mz+WLirSGbgIeF4NpLdazWJrkJImuvAbjNCGeAB98qGtWnT+lEbosuaEF7pv6U5UHnNV
+         oMfw==
+X-Gm-Message-State: AOJu0YzN/LwiocvDTD7r7tIAs/tOXC1o4O1Dat7EZ+3Zvkn/pTEK5Whr
+	6GT7Ud2ditEOoS3KVh8tuyKvH8KlzT2WoEVAtK5y9A==
+X-Google-Smtp-Source: AGHT+IEXF8b8i2d8gUX/7XGbKeBhO5y4FoKURpNKXdVwOiELp1ycsJ9gIbh2TFOn8p7a8iYvPuGv0h95Jl3CjKO9auA=
+X-Received: by 2002:a2e:6e14:0:b0:2c9:d862:c66b with SMTP id
+ j20-20020a2e6e14000000b002c9d862c66bmr192908ljc.88.1701387051792; Thu, 30 Nov
+ 2023 15:30:51 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/6] dt-bindings: iommu: Add Translation Buffer Unit
- bindings
-Content-Language: en-US
-To: Rob Herring <robh@kernel.org>
-CC: <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <will@kernel.org>, <robin.murphy@arm.com>, <joro@8bytes.org>,
-        <devicetree@vger.kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <linux-arm-kernel@lists.infradead.org>,
-        <iommu@lists.linux.dev>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <quic_cgoldswo@quicinc.com>,
-        <quic_sukadev@quicinc.com>, <quic_pdaly@quicinc.com>,
-        <quic_sudaraja@quicinc.com>, <djakov@kernel.org>
-References: <20231118042730.2799-1-quic_c_gdjako@quicinc.com>
- <20231118042730.2799-2-quic_c_gdjako@quicinc.com>
- <20231127181347.GA1953740-robh@kernel.org>
-From: Georgi Djakov <quic_c_gdjako@quicinc.com>
-In-Reply-To: <20231127181347.GA1953740-robh@kernel.org>
+References: <20231121-dev-iio-backend-v1-0-6a3d542eba35@analog.com> <20231121-dev-iio-backend-v1-10-6a3d542eba35@analog.com>
+In-Reply-To: <20231121-dev-iio-backend-v1-10-6a3d542eba35@analog.com>
+From: David Lechner <dlechner@baylibre.com>
+Date: Thu, 30 Nov 2023 17:30:40 -0600
+Message-ID: <CAMknhBFbLju8UQJ7Uz85kHKrbK4mzt=wTRdnp40+PwWCJa5dsA@mail.gmail.com>
+Subject: Re: [PATCH 10/12] iio: adc: ad9467: convert to backend framework
+To: nuno.sa@analog.com
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-iio@vger.kernel.org, Olivier MOYSAN <olivier.moysan@foss.st.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>, 
+	Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: r9Ny_bSdGNAkhGlvkpVOItl5sxEyNfkt
-X-Proofpoint-ORIG-GUID: r9Ny_bSdGNAkhGlvkpVOItl5sxEyNfkt
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-30_23,2023-11-30_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 malwarescore=0
- spamscore=0 clxscore=1015 impostorscore=0 lowpriorityscore=0 mlxscore=0
- phishscore=0 suspectscore=0 bulkscore=0 priorityscore=1501 mlxlogscore=999
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2311060000
- definitions=main-2311300173
+Content-Transfer-Encoding: quoted-printable
 
-Hi Rob,
+On Tue, Nov 21, 2023 at 4:17=E2=80=AFAM Nuno Sa via B4 Relay
+<devnull+nuno.sa.analog.com@kernel.org> wrote:
+>
+> From: Nuno Sa <nuno.sa@analog.com>
+>
+> Convert the driver to use the new IIO backend framework. The device
+> functionality is expected to be the same (meaning no added or removed
+> features).
 
-Thanks for the feedback!
+Missing a devicetree bindings patch before this one?
 
-On 11/27/2023 8:13 PM, Rob Herring wrote:
-> On Fri, Nov 17, 2023 at 08:27:25PM -0800, Georgi Djakov wrote:
->> The "apps_smmu" on the Qualcomm sdm845 platform is an implementation
->> of the SMMU-500, that consists of a single TCU (Translation Control
->> Unit) and multiple TBUs (Translation Buffer Units). The TCU is already
->> being described in the generic SMMU DT schema. Add also bindings for
->> the TBUs to describe their properties and resources that needs to be
->> managed in order to operate them.
->>
->> In this DT schema, the TBUs are modelled as child devices of the TCU
->> and each of them is described with it's register space, clocks, power
->> domains, interconnects etc.
->>
->> Signed-off-by: Georgi Djakov <quic_c_gdjako@quicinc.com>
->> ---
->>  .../devicetree/bindings/iommu/arm,smmu.yaml   | 25 ++++++
->>  .../bindings/iommu/qcom,qsmmuv500-tbu.yaml    | 89 +++++++++++++++++++
->>  2 files changed, 114 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/iommu/qcom,qsmmuv500-tbu.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
->> index aa9e1c0895a5..f7f89be5f7a3 100644
->> --- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
->> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
->> @@ -231,6 +231,18 @@ properties:
->>        enabled for any given device.
->>      $ref: /schemas/types.yaml#/definitions/phandle
->>  
->> +  '#address-cells':
->> +    enum: [ 1, 2 ]
->> +
->> +  '#size-cells':
->> +    enum: [ 1, 2 ]
->> +
->> +  ranges: true
->> +
->> +patternProperties:
->> +  "^tbu@[0-9a-f]*":
->> +    type: object
->> +
->>  required:
->>    - compatible
->>    - reg
->> @@ -453,6 +465,19 @@ allOf:
->>              - description: Voter clock required for HLOS SMMU access
->>              - description: Interface clock required for register access
->>  
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            const: qcom,smmu-500
-> 
-> Doesn't match your example. No failure either, so there's some problem 
-> with your schema. The issue is the tbu@ entry above has no constraint on 
-> child properties. Dropping it would solve the issue. However, having a 
-> TBU is not QCom specific, so that doesn't feel right.
+>
+> Also note this patch effectively breaks ABI and that's needed so we can
+> properly support this device and add needed features making use of the
+> new IIO framework.
 
-Having a TBU is not Qcom specific. The ARM MMU-500 implementation for example has TBUs, but the registers are within the SMMU address space, there are no clocks, no power-domains or other resources. Not sure about other implementations. So should we just allow empty tbu child nodes with no properties?
+Can you be more specific about what is actually breaking?
 
->> +    then:
->> +      patternProperties:
->> +        "^tbu@[0-9a-f]*":
-> 
-> '+' rather than '*' as 1 is the minimum, not 0.
+>
+> Signed-off-by: Nuno Sa <nuno.sa@analog.com>
+> ---
+>  drivers/iio/adc/Kconfig  |   2 +-
+>  drivers/iio/adc/ad9467.c | 256 +++++++++++++++++++++++++++++------------=
+------
+>  2 files changed, 157 insertions(+), 101 deletions(-)
+>
+> diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
+> index 1e2b7a2c67c6..af56df63beff 100644
+> --- a/drivers/iio/adc/Kconfig
+> +++ b/drivers/iio/adc/Kconfig
+> @@ -275,7 +275,7 @@ config AD799X
+>  config AD9467
+>         tristate "Analog Devices AD9467 High Speed ADC driver"
+>         depends on SPI
+> -       depends on ADI_AXI_ADC
+> +       select IIO_BACKEND
+>         help
+>           Say yes here to build support for Analog Devices:
+>           * AD9467 16-Bit, 200 MSPS/250 MSPS Analog-to-Digital Converter
+> diff --git a/drivers/iio/adc/ad9467.c b/drivers/iio/adc/ad9467.c
+> index 5db5690ccee8..8b0402e73ace 100644
+> --- a/drivers/iio/adc/ad9467.c
+> +++ b/drivers/iio/adc/ad9467.c
 
-Ok.
+<snip>
 
->> +          $ref: qcom,qsmmuv500-tbu.yaml
->> +          unevaluatedProperties: false
->> +      properties:
->> +        ranges: true
->> +
->>    # Disallow clocks for all other platforms with specific compatibles
->>    - if:
->>        properties:
->> diff --git a/Documentation/devicetree/bindings/iommu/qcom,qsmmuv500-tbu.yaml b/Documentation/devicetree/bindings/iommu/qcom,qsmmuv500-tbu.yaml
->> new file mode 100644
->> index 000000000000..4dc9d0ca33c9
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/iommu/qcom,qsmmuv500-tbu.yaml
->> @@ -0,0 +1,89 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/iommu/qcom,qsmmuv500-tbu.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Qualcomm TBU (Translation Buffer Unit)
->> +
->> +maintainers:
->> +  - Georgi Djakov <quic_c_gdjako@quicinc.com>
->> +
->> +description:
->> +  The Qualcomm SMMU500 implementation consists of TCU and TBU. The TBU contains
->> +  a Translation Lookaside Buffer (TLB) that caches page tables. TBUs provides
->> +  debug features to trace and trigger debug transactions. There are multiple TBU
->> +  instances distributes with each client core.
->> +
->> +properties:
->> +  $nodename:
->> +    pattern: "^tbu@[0-9a-f]+$"
-> 
-> Drop. You defined this in the parent already.
+> +static int ad9467_buffer_get(struct iio_dev *indio_dev)
 
-Ok.
+perhaps a more descriptive name: ad9467_buffer_setup_optional?
 
->> +
->> +  compatible:
->> +    const: qcom,qsmmuv500-tbu
->> +
->> +  reg:
->> +    items:
->> +      - description: Address and size of the TBU's register space.
->> +
->> +  reg-names:
->> +    items:
->> +      - const: base
-> 
-> Not a useful name. Drop.
+> +{
+> +       struct device *dev =3D indio_dev->dev.parent;
+> +       const char *dma_name;
+> +
+> +       if (!device_property_present(dev, "dmas"))
+> +               return 0;
+> +
+> +       if (device_property_read_string(dev, "dma-names", &dma_name))
+> +               dma_name =3D "rx";
+> +
+> +       return devm_iio_dmaengine_buffer_setup(dev, indio_dev, dma_name);
 
-Agree.
+The device tree bindings for "adi,ad9467" don't include dma properties
+(nor should they). Perhaps the DMA lookup should be a callback to the
+backend? Or something similar to the SPI Engine offload that we are
+working on?
 
->> +
->> +  clocks:
->> +    maxItems: 1
->> +
->> +  interconnects:
->> +    maxItems: 1
->> +
->> +  power-domains:
->> +    maxItems: 1
->> +
->> +  qcom,stream-id-range:
->> +    $ref: /schemas/types.yaml#/definitions/uint32-array
->> +    description: Stream ID range (address and size) that is assigned by the TBU
->> +    items:
->> +      minItems: 2
->> +      maxItems: 2
-> 
-> Perhaps implementations other than QCom's needs this?
+> +}
+> +
+>  static int ad9467_probe(struct spi_device *spi)
+>  {
+> -       const struct ad9467_chip_info *info;
+> -       struct adi_axi_adc_conv *conv;
+> +       struct iio_dev *indio_dev;
+>         struct ad9467_state *st;
+>         unsigned int id;
+>         int ret;
+>
+> -       info =3D spi_get_device_match_data(spi);
+> -       if (!info)
+> -               return -ENODEV;
+> -
+> -       conv =3D devm_adi_axi_adc_conv_register(&spi->dev, sizeof(*st));
+> -       if (IS_ERR(conv))
+> -               return PTR_ERR(conv);
+> +       indio_dev =3D devm_iio_device_alloc(&spi->dev, sizeof(*st));
+> +       if (!indio_dev)
+> +               return -ENOMEM;
+>
+> -       st =3D adi_axi_adc_conv_priv(conv);
+> +       st =3D iio_priv(indio_dev);
+>         st->spi =3D spi;
+>
+> +       st->info =3D spi_get_device_match_data(spi);
+> +       if (!st->info)
+> +               return -ENODEV;
+> +
+>         st->clk =3D devm_clk_get_enabled(&spi->dev, "adc-clk");
+>         if (IS_ERR(st->clk))
+>                 return PTR_ERR(st->clk);
+> @@ -476,29 +522,39 @@ static int ad9467_probe(struct spi_device *spi)
+>         if (ret)
+>                 return ret;
+>
+> -       conv->chip_info =3D &info->axi_adc_info;
+> -
+> -       ret =3D ad9467_scale_fill(conv);
+> +       ret =3D ad9467_scale_fill(st);
+>         if (ret)
+>                 return ret;
+>
+>         id =3D ad9467_spi_read(spi, AN877_ADC_REG_CHIP_ID);
+> -       if (id !=3D conv->chip_info->id) {
+> +       if (id !=3D st->info->id) {
+>                 dev_err(&spi->dev, "Mismatch CHIP_ID, got 0x%X, expected =
+0x%X\n",
+> -                       id, conv->chip_info->id);
+> +                       id, st->info->id);
+>                 return -ENODEV;
+>         }
+>
+> -       conv->reg_access =3D ad9467_reg_access;
+> -       conv->write_raw =3D ad9467_write_raw;
+> -       conv->read_raw =3D ad9467_read_raw;
+> -       conv->read_avail =3D ad9467_read_avail;
+> -       conv->preenable_setup =3D ad9467_preenable_setup;
+> +       indio_dev->name =3D st->info->name;
+> +       indio_dev->channels =3D st->info->channels;
+> +       indio_dev->num_channels =3D st->info->num_channels;
+> +       indio_dev->info =3D &ad9467_info;
+> +
+> +       ret =3D ad9467_buffer_get(indio_dev);
+> +       if (ret)
+> +               return ret;
+>
+> -       st->output_mode =3D info->default_output_mode |
+> -                         AN877_ADC_OUTPUT_MODE_TWOS_COMPLEMENT;
+> +       st->back =3D devm_iio_backend_get(&spi->dev, NULL);
 
-Yes, maybe. A TBU can service a fixed amount of stream IDs and this looks like something common for all TBUs. I'll drop the vendor prefix.
+Based on the descriptions given of IIO frontend and backend, I was
+expecting this driver to be the backend since SPI is only used to
+configure the chip while the adi-axi-adc driver is the one determining
+the scan data format, providing the DMA (INDIO_BUFFER_HARDWARE), etc.
 
-Thanks,
-Georgi
+Also, from a devicetree "describe the hardware" mindset, it doesn't
+seem like this chip (AD9467) should dictate a specific backend. I know
+it doesn't make sense practlically for this chip to not use DMA given
+the high sample rate, but why should the devicetree for this chip
+require it when there is nothing intrensic about this chip itself
+related to DMA?
+
+> +       if (IS_ERR(st->back))
+> +               return PTR_ERR(st->back);
+>
+> -       return 0;
+> +       ret =3D iio_backend_enable(st->back);
+> +       if (ret)
+> +               return ret;
+> +
+> +       ret =3D ad9467_setup(st);
+> +       if (ret)
+> +               return ret;
+> +
+> +       return devm_iio_device_register(&spi->dev, indio_dev);
+>  }
+>
+>  static const struct of_device_id ad9467_of_match[] =3D {
+>
+> --
+> 2.42.1
+>
+>
 
