@@ -1,66 +1,52 @@
-Return-Path: <devicetree+bounces-20409-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20410-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E65C7FF335
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 16:08:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C93C7FF34B
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 16:16:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C32E2B20E70
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 15:08:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E005FB20E0B
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 15:16:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63F6B51C43;
-	Thu, 30 Nov 2023 15:08:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8155551C55;
+	Thu, 30 Nov 2023 15:16:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tlHuYFHT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jC6E0aAc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45E731DA41
-	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 15:08:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7266C433C9;
-	Thu, 30 Nov 2023 15:08:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60CF51DA41;
+	Thu, 30 Nov 2023 15:16:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9DAAAC433C7;
+	Thu, 30 Nov 2023 15:16:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701356904;
-	bh=4wdwU/K0jATvkk/atcXZBxJh/WUP8EwtMGcCyE3gUeM=;
+	s=k20201202; t=1701357397;
+	bh=cg7d/rMg3I2RsFPBbUzQIS4hsFzEfYLgoptbAfC9TqA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tlHuYFHTFVwq14ftdT6EnINBJeymXG/v3mOua2ezi5Xn/8MOP4eKlziMM0025U0YI
-	 ra36o/EOTsrXsl8qcps/T5RVOwYVRMyza/+yoaqHCwulQLvtj8dtfItbvbGz2esLai
-	 fa7POSmXASjbbjoANg+BhDbI0y4tDdbinq4LWgosoNxTeY9+34QySmeX9nvnAwtStF
-	 ZGrJM8vMgJ5R7mOk69Sr4eldKQ53rk89r6RtuB1G6Xujb1UPPtMoLzQT2dvnQSJEkO
-	 A8//ahSoj8QrVQAqRhl5o9O+oV8qY6oQK+tIEsyhYK12enynYWXwK47t9X4FuDsJjy
-	 e8I/Yki3ksb+Q==
-Date: Thu, 30 Nov 2023 15:08:18 +0000
+	b=jC6E0aAcM/h8zOAIvwpIVcj1iDnJtDO73UOMNtVkX+lVIb5h3XHTDFoYsvhwIz7dF
+	 eOjkHqXsNH19eIAuC22YjkHD7QZ9hgtXqA1MylD8Le9wvQ+t/8KRsPQ1ejoQaLe7Ag
+	 CSfRst5jB3YOMrZvG9kslP6I+rob9EuVvXNJuhTAm3wWRYrhTXPfVowVyN6RCwfqSB
+	 muHrWl3/RZUJU5L8BfnJXTIR6AvYRfu0QDrMC2eXK7VTMO++DpmrzPkxjs+dJipOwQ
+	 ydM8mq4Zgaf2/I9JHwXB8BUvwH/Ezry8DGpScCQaXaOOfVKgSn6ZR5VT8L8T/6623M
+	 zMYxiSr5rFqEA==
+Date: Thu, 30 Nov 2023 15:16:33 +0000
 From: Conor Dooley <conor@kernel.org>
-To: JeeHeng Sia <jeeheng.sia@starfivetech.com>
-Cc: "kernel@esmil.dk" <kernel@esmil.dk>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"krzk@kernel.org" <krzk@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"paul.walmsley@sifive.com" <paul.walmsley@sifive.com>,
-	"palmer@dabbelt.com" <palmer@dabbelt.com>,
-	"aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>,
-	"daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
-	"tglx@linutronix.de" <tglx@linutronix.de>,
-	"anup@brainfault.org" <anup@brainfault.org>,
-	"gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-	"jirislaby@kernel.org" <jirislaby@kernel.org>,
-	"michal.simek@amd.com" <michal.simek@amd.com>,
-	Michael Zhu <michael.zhu@starfivetech.com>,
-	"drew@beagleboard.org" <drew@beagleboard.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	Leyfoon Tan <leyfoon.tan@starfivetech.com>
-Subject: Re: [PATCH v2 1/6] dt-bindings: riscv: Add StarFive Dubhe compatibles
-Message-ID: <20231130-maturely-avert-e1dc87b36bbd@spud>
-References: <20231129060043.368874-1-jeeheng.sia@starfivetech.com>
- <20231129060043.368874-2-jeeheng.sia@starfivetech.com>
- <20231129-revisit-prefix-5327168e91f3@spud>
- <08daada77b3e40049ef83f4eb762240c@EXMBX066.cuchost.com>
+To: Anand Moon <linux.amoon@gmail.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Icenowy Zheng <uwu@icenowy.me>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	linux-amlogic@lists.infradead.org, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 1/2] dt-bindings: usb: Add the binding example for the
+ Genesys Logic GL3523 hub
+Message-ID: <20231130-twig-stoning-58235b3195c8@spud>
+References: <20231130053130.21966-1-linux.amoon@gmail.com>
+ <20231130053130.21966-2-linux.amoon@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,77 +54,158 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="RhPgo4Il/hPk7nxW"
+	protocol="application/pgp-signature"; boundary="lTL/T6EYqFtp7uZi"
 Content-Disposition: inline
-In-Reply-To: <08daada77b3e40049ef83f4eb762240c@EXMBX066.cuchost.com>
+In-Reply-To: <20231130053130.21966-2-linux.amoon@gmail.com>
 
 
---RhPgo4Il/hPk7nxW
+--lTL/T6EYqFtp7uZi
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Nov 30, 2023 at 06:04:51AM +0000, JeeHeng Sia wrote:
+On Thu, Nov 30, 2023 at 11:01:26AM +0530, Anand Moon wrote:
+> Add the binding example for the USB3.1 Genesys Logic GL3523
+> integrates with USB 3.1 Gen 1 Super Speed and USB 2.0 High-Speed
+> hub.
 >=20
+> For onboard hub controllers that support USB 3.x and USB 2.0 hubs
+> with shared resets and power supplies, this property is used to identify
+> the hubs with which these are shared.
 >=20
-> > -----Original Message-----
-> > From: Conor Dooley <conor@kernel.org>
-> > Sent: Wednesday, November 29, 2023 10:46 PM
-> > To: JeeHeng Sia <jeeheng.sia@starfivetech.com>
-> > Cc: kernel@esmil.dk; robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.=
-org; krzk@kernel.org; conor+dt@kernel.org;
-> > paul.walmsley@sifive.com; palmer@dabbelt.com; aou@eecs.berkeley.edu; da=
-niel.lezcano@linaro.org; tglx@linutronix.de;
-> > anup@brainfault.org; gregkh@linuxfoundation.org; jirislaby@kernel.org; =
-michal.simek@amd.com; Michael Zhu
-> > <michael.zhu@starfivetech.com>; drew@beagleboard.org; devicetree@vger.k=
-ernel.org; linux-riscv@lists.infradead.org; linux-
-> > kernel@vger.kernel.org; Leyfoon Tan <leyfoon.tan@starfivetech.com>
-> > Subject: Re: [PATCH v2 1/6] dt-bindings: riscv: Add StarFive Dubhe comp=
-atibles
-> >=20
-> > On Wed, Nov 29, 2023 at 02:00:38PM +0800, Sia Jee Heng wrote:
-> > > Add new compatible strings for Dubhe-80 and Dubhe-90. These are
-> > > RISC-V cpu core from StarFive Technology and are used in StarFive
-> > > JH8100 SoC.
-> > >
-> > > Signed-off-by: Sia Jee Heng <jeeheng.sia@starfivetech.com>
-> > > Reviewed-by: Ley Foon Tan <leyfoon.tan@starfivetech.com>
-> > > ---
-> > >  Documentation/devicetree/bindings/riscv/cpus.yaml | 2 ++
-> > >  1 file changed, 2 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Docu=
-mentation/devicetree/bindings/riscv/cpus.yaml
-> > > index f392e367d673..493972b29a22 100644
-> > > --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
-> > > +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
-> > > @@ -48,6 +48,8 @@ properties:
-> > >                - thead,c906
-> > >                - thead,c910
-> > >                - thead,c920
-> > > +              - starfive,dubhe-80
-> > > +              - starfive,dubhe-90
-> >=20
-> > s goes before t.
-> Noted. Will fix it.
 
-With the re-order,
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> [Conor Dooley: upgrade peer-hub description]
+
+This should not be in the commit message. Otherwise,
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
 Cheers,
 Conor.
 
---RhPgo4Il/hPk7nxW
+> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> ---
+> v5: upgrade peer-hub description : Conor Dooley
+> [0] https://www.genesyslogic.com.tw/en/product_view.php?show=3D67 [Block =
+Diagram]
+> v4: Fix the description of peer-hub and update the commit message.
+> Schematics of the Odroid N2+
+> https://dn.odroid.com/S922X/ODROID-N2/Schematic/odroid-n2_rev0.6_20210121=
+=2Epdf
+> V3: fix the dt_binding_check error, added new example for Genesys GL3523
+> v2: added Genesys GL3523 binding
+> v1: none
+> ---
+>  .../bindings/usb/genesys,gl850g.yaml          | 65 +++++++++++++++++--
+>  1 file changed, 61 insertions(+), 4 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml b/=
+Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> index ee08b9c3721f..499192ea4074 100644
+> --- a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> +++ b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> @@ -9,9 +9,6 @@ title: Genesys Logic USB hub controller
+>  maintainers:
+>    - Icenowy Zheng <uwu@icenowy.me>
+> =20
+> -allOf:
+> -  - $ref: usb-device.yaml#
+> -
+>  properties:
+>    compatible:
+>      enum:
+> @@ -27,12 +24,46 @@ properties:
+> =20
+>    vdd-supply:
+>      description:
+> -      the regulator that provides 3.3V core power to the hub.
+> +      phandle to the regulator that provides power to the hub.
+> +
+> +  peer-hub:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      For onboard hub controllers that support USB 3.x and USB 2.0 hubs
+> +      with shared resets and power supplies, this property is used to id=
+entify
+> +      the hubs with which these are shared.
+> =20
+>  required:
+>    - compatible
+>    - reg
+> =20
+> +allOf:
+> +  - $ref: usb-device.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - usb5e3,608
+> +    then:
+> +      properties:
+> +        peer-hub: false
+> +        vdd-supply: false
+> +        reset-gpios: true
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - usb5e3,610
+> +              - usb5e3,620
+> +    then:
+> +      properties:
+> +        peer-hub: true
+> +        vdd-supply: true
+> +        reset-gpios: true
+> +
+>  additionalProperties: false
+> =20
+>  examples:
+> @@ -49,3 +80,29 @@ examples:
+>              reset-gpios =3D <&pio 7 2 GPIO_ACTIVE_LOW>;
+>          };
+>      };
+> +
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    usb {
+> +        dr_mode =3D "host";
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        /* 2.0 hub on port 1 */
+> +        hub_2_0: hub@1 {
+> +            compatible =3D "usb5e3,610";
+> +            reg =3D <1>;
+> +            peer-hub =3D <&hub_3_0>;
+> +            reset-gpios =3D <&gpio 20 GPIO_ACTIVE_LOW>;
+> +            vdd-supply =3D <&vcc_5v>;
+> +        };
+> +
+> +        /* 3.1 hub on port 4 */
+> +        hub_3_0: hub@2 {
+> +            compatible =3D "usb5e3,620";
+> +            reg =3D <2>;
+> +            peer-hub =3D <&hub_2_0>;
+> +            reset-gpios =3D <&gpio 20 GPIO_ACTIVE_LOW>;
+> +            vdd-supply =3D <&vcc_5v>;
+> +        };
+> +    };
+> --=20
+> 2.42.0
+>=20
+
+--lTL/T6EYqFtp7uZi
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZWilYgAKCRB4tDGHoIJi
-0iCtAP4nKPPe89Aie1cg6UtOVOK8OT9ZB+Xb/O+6Am1DPsGhWwEA5igg7/ujUZcP
-J8H/nEGTpT7wdjwt5SqaGwLxKfGUNwA=
-=R4A9
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZWinUQAKCRB4tDGHoIJi
+0oBYAP9EyD0nfaT0/sje8xRsy43bcV3tjUrZMC7tQBdSN1URWwEAj3HN3gY9KtkI
+O/bdedDkZGY3dMMNQVG2guKxWaU4+wo=
+=yrvD
 -----END PGP SIGNATURE-----
 
---RhPgo4Il/hPk7nxW--
+--lTL/T6EYqFtp7uZi--
 
