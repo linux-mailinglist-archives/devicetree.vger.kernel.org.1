@@ -1,111 +1,100 @@
-Return-Path: <devicetree+bounces-20526-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20527-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 583E87FFC9B
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 21:35:01 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AAD87FFCA6
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 21:36:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DC573B210D9
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 20:34:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CAE161C2122A
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 20:35:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01D3A5674E;
-	Thu, 30 Nov 2023 20:34:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 272EB5A0FB;
+	Thu, 30 Nov 2023 20:35:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ZDiYNDVj"
+	dkim=pass (1024-bit key) header.d=z3ntu.xyz header.i=@z3ntu.xyz header.b="S64T9aAZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::221])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EB2A1703;
-	Thu, 30 Nov 2023 12:34:50 -0800 (PST)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 4FFB8240006;
-	Thu, 30 Nov 2023 20:34:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1701376488;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=IzQ3On710hTv4xHUxSRSe52ROEYKFUSjwFd+FRw9ZWo=;
-	b=ZDiYNDVjFXSdd+LTZVKANyqlnEkTWiTR8yc/VLuFsekCuu17tQQuKYpOMDajW5APgyyZgn
-	K/c4zgpvDVG+cc2AUL7Bo/kTCLhhz+QBP1BknOrBANFqUrIU9nnWBdMTcyHg44TN4JAuCU
-	1L+grucTiVpIrmCYvcsvxcBaFj0opmJp6PWECQ0NsgXWyKBlp2eMcWvfnj2uuYgatUS1wI
-	bQIhD6vcX0DlHmnQNKoXgzm4ogPNiRCBhbtPqU5k2scwA3MTTyGvgf8E3jSLWwnf9uqbiM
-	aHV/8bpcShrEg/vqzSLYKYmJ4+jHTjP5zGv3rKUmt7UINkA+DanGsptTm8CfSw==
-Date: Thu, 30 Nov 2023 21:34:41 +0100
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-To: Serge Semin <fancer.lancer@gmail.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Tomer Maimon <tmaimon77@gmail.com>,
- davem@davemloft.net, avifishman70@gmail.com, venture@google.com,
- openbmc@lists.ozlabs.org, robh+dt@kernel.org, tali.perry1@gmail.com,
- mcoquelin.stm32@gmail.com, edumazet@google.com, joabreu@synopsys.com,
- joel@jms.id.au, krzysztof.kozlowski+dt@linaro.org, peppe.cavallaro@st.com,
- j.neuschaefer@gmx.net, netdev@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, benjaminfair@google.com
-Subject: Re: [Linux-stm32] [PATCH v1 2/2] net: stmmac: Add NPCM support
-Message-ID: <20231130213441.032a661c@device.home>
-In-Reply-To: <xvy2coamb6cl3wcbkl32f6w7kksoxfocyd63t7k7bz4pne2gyx@lktivhqovy7p>
-References: <20231121151733.2015384-1-tmaimon77@gmail.com>
-	<20231121151733.2015384-3-tmaimon77@gmail.com>
-	<6aeb28f5-04c2-4723-9da2-d168025c307c@lunn.ch>
-	<CAP6Zq1j0kyrg+uxkXH-HYqHz0Z4NwWRUGzprius=BPC9+WfKFQ@mail.gmail.com>
-	<9ad42fef-b210-496a-aafc-eb2a7416c4df@lunn.ch>
-	<CAP6Zq1jw9uLP_FQGR8=p3Y2NTP6XcNtzkJQ0dm3+xVNE1SpsVg@mail.gmail.com>
-	<CAP6Zq1ijfMSPjk1vPwDM2B+r_vAH3DShhSu_jr8xJyUkTQY89w@mail.gmail.com>
-	<a551aefa-777d-4fd3-b1a5-086dc3e62646@lunn.ch>
-	<CAP6Zq1jVO5y3ySeGNE5-=XWV6Djay5MhGxXCZb9y91q=EA71Vg@mail.gmail.com>
-	<25d0c091-3dce-4d62-a112-c82106809c65@lunn.ch>
-	<xvy2coamb6cl3wcbkl32f6w7kksoxfocyd63t7k7bz4pne2gyx@lktivhqovy7p>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
+Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4288C1712;
+	Thu, 30 Nov 2023 12:35:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=z3ntu.xyz; s=z3ntu;
+	t=1701376551; bh=AfUfFkZlUVV8xnA1PoNR+te0G++zGye/8BENKSIEvPs=;
+	h=From:Subject:Date:To:Cc;
+	b=S64T9aAZQ/Y0yXhmFaL8xcNLp6L+jqL5h5lAEpxWZ9qqzowKOb3UObrMgWnFiFGfF
+	 hzmUeQ9PcyDcUIgWGZwTPn03S1EpsojK16kGmwlVZj2TCIqxCB+I3onx4WZ95yUG8Q
+	 dvM1AODbTmJVL5MtxwMj/lPX+SUbV9XgBpSUuMJo=
+From: Luca Weiss <luca@z3ntu.xyz>
+Subject: [PATCH 0/3] Add GPU support for MSM8226 (Adreno A305B)
+Date: Thu, 30 Nov 2023 21:35:17 +0100
+Message-Id: <20231130-msm8226-gpu-v1-0-6bb2f1b29e49@z3ntu.xyz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-GND-Sasl: maxime.chevallier@bootlin.com
+X-B4-Tracking: v=1; b=H4sIAAXyaGUC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI2NDQ2MD3dziXAsjIzPd9IJS3WSjtDQLE3PjRMu0NCWgjoKi1LTMCrBp0bG
+ 1tQASSii6XQAAAA==
+To: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>, 
+ Marijn Suijten <marijn.suijten@somainline.org>, 
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Luca Weiss <luca@z3ntu.xyz>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=860; i=luca@z3ntu.xyz;
+ h=from:subject:message-id; bh=AfUfFkZlUVV8xnA1PoNR+te0G++zGye/8BENKSIEvPs=;
+ b=owEBbQKS/ZANAwAIAXLYQ7idTddWAcsmYgBlaPIX4qWS7sr58b9UMT9Pnw41UlYig//AX8prq
+ MGX0XqPg0aJAjMEAAEIAB0WIQQ5utIvCCzakboVj/py2EO4nU3XVgUCZWjyFwAKCRBy2EO4nU3X
+ ViqxD/0QXEuGfMIQ8ksMhfE+hjDJ2k4hub4zyzhOzFTU33niAmwPkSxHI1bvfOlNdYGzjeqMz5s
+ hb8OKR0WCGJwEvqDUoCHyx/H+p++pz6FnSHfzkY19nec4uoo0jdIgM+m+tEwudIt+yqa2Vw5KJh
+ ysdFh+Tq9Osk6hMY0SPuEGMrPpmS6RO0FXsk7D+6uBRbmUQoas7DNtkYIhwLSky3t/rBGrccgj8
+ aH5SbYIJrU+It8v/yYrNThPpcy0meGqX5h12moUxgS0DMuazitdLBs4rmh+v3v9UblOkm4NKqCi
+ 1Z3rb6vyvy3aXQwoANEDVPAwZqmWs0t4n8DgT/laDQz+PdG8MGNY4lAmC8irjxWx7UGy1Q0+w+2
+ nafqOQvMnxoJOX3oYlrogxiRtvB/GZlaJq4snkBfVTaqVrlOX2To/0xmn9zC5a3IyuXhRk9Yw/7
+ JqQzuhrZY3EOQHhYZ6ry73NqU0Uej3Yu/is0UfapQXrlI4MjSgqS1PhS92ZwsnTFugyLxirKxYo
+ opr7+JM+iLKBo15zNyE+Re4UNN63qutzh0R7KKTmz9qwKkF7y3JEJ2gPb3JcwoW01covleYfw67
+ +77P6N7lTj7Pz+Y3mHeFKgHLhhKbYJwMQdg9y3iVSEKb1u+1bMpTmVQMAgRK/ev6XK+xt2UQsQC
+ JtPMcpvmyKOgecA==
+X-Developer-Key: i=luca@z3ntu.xyz; a=openpgp;
+ fpr=BD04DA24C971B8D587B2B8D7FAF69CF6CD2D02CD
 
-Hello,
+Add the necessary bits to bring up the GPU on msm8226.
 
-On Thu, 30 Nov 2023 22:59:32 +0300
-Serge Semin <fancer.lancer@gmail.com> wrote:
+Tested on apq8026-lg-lenok.
 
-> On Thu, Nov 30, 2023 at 06:26:13PM +0100, Andrew Lunn wrote:
-> > > I will check with the xpcs maintainer how can we add indirect access
-> > > to the xpcs module.  
-> > 
-> > https://elixir.bootlin.com/linux/latest/source/drivers/net/ethernet/stmicro/stmmac/dwmac-socfpga.c#L449
-> > 
-> > It creates a regmap for the memory range. On top of that it creates an
-> > MDIO bus. You can then access the PCS in the normal way.  
-> 
-> Actually Synopsys DW XPCS can be synthesized with two types of the CSR
-> interfaces:
-> 1. MDIO: device looks as a normal MDIO device. This option is currently
->    supported by the STMMAC MDIO driver.
-> 2. MCI/APB3: device MMD CSRs are directly (all CSRs are visible) or
->    indirectly (paged-base access) accessible over the system memory bus.
-> 
-> In addition to the above XPCS device can be equipped with separate
-> clock sources (at least to feed the MCI or APB3 interface) and may
-> have dedicated IRQ line to signal various events like link
-> establishing, failures, etc. From that perspective XPCS in both cases
-> looks as a normal platform device for which would be better to have a
-> special DT-node defined with all those resources supplied. Then the
-> XPCS DT-node could be passed to the DW MAC DT-node via the already
-> standardized "pcs-handle" DT-property.
+Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+---
+Luca Weiss (3):
+      dt-bindings: display/msm: gpu: Allow multiple digits for patchid
+      drm/msm/adreno: Add A305B support
+      ARM: dts: qcom: msm8226: Add GPU
 
-To my understanding, this should work, there's another PCS that works
-this way : 
-https://elixir.bootlin.com/linux/v6.7-rc3/source/drivers/net/pcs/pcs-rzn1-miic.c
+ .../devicetree/bindings/display/msm/gpu.yaml       |  6 ++--
+ arch/arm/boot/dts/qcom/qcom-msm8226.dtsi           | 40 ++++++++++++++++++++++
+ drivers/gpu/drm/msm/adreno/a3xx_gpu.c              | 15 ++++++--
+ drivers/gpu/drm/msm/adreno/adreno_device.c         | 15 +++++---
+ drivers/gpu/drm/msm/adreno/adreno_gpu.h            |  5 +++
+ 5 files changed, 71 insertions(+), 10 deletions(-)
+---
+base-commit: 32bbbdc6dbe6ca65a3e3e2ed2ca3c562793e7797
+change-id: 20231130-msm8226-gpu-c2ff8473a9ff
 
-Are you still able to use the mdio-regmap glue that Andrew mentioned,
-to avoid the duplication between the mdio and mmio register accesses ?
+Best regards,
+-- 
+Luca Weiss <luca@z3ntu.xyz>
 
-Maxime
 
