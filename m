@@ -1,122 +1,101 @@
-Return-Path: <devicetree+bounces-20426-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20430-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AADA97FF3C0
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 16:39:02 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D00A87FF3CC
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 16:43:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 353B8B20CF7
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 15:39:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8C38C2816F4
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 15:43:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF145524DA;
-	Thu, 30 Nov 2023 15:38:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2952E537EA;
+	Thu, 30 Nov 2023 15:43:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r6VxUD1L"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="cB52k5hY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB9BA524AD;
-	Thu, 30 Nov 2023 15:38:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76032C433C8;
-	Thu, 30 Nov 2023 15:38:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701358735;
-	bh=JyZrCEWuJr3UJ8ptLiE9BjwRcPlFLohLX1z4SZtoCc8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=r6VxUD1LQowjoVs9LvLC0iPEFMTeayaZsbGh9fEpkTzbU/s8ZasCi6OGr4QqRJl4i
-	 wyEH6YDAtumwM7d0HFn1SoVHPzxEt87wP+e7cvW3Yx+tY9q8KK/cBvZ2aupfb+dfm1
-	 iSYFDaYgLIAMtrtlLlxH5rHR/un6vO0P0IhMDLqluNd+7xyJ353BiQPh3XrTKfL6dD
-	 3X/PlCyW0X18LIt2KNGNg8qMPzpnTw10On00yWiGmITgojzcj+yj00AMR7n5rYTgsU
-	 CWgmgyMxOVX4zG0D64mcvFbD549vWMaHOq1HDEnbHjp+i1etlwA2MPwGfHvDSYgSt+
-	 jOsZSND46dRug==
-Date: Thu, 30 Nov 2023 15:38:50 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94C5610F0;
+	Thu, 30 Nov 2023 07:43:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+	s=s31663417; t=1701358972; x=1701963772; i=wahrenst@gmx.net;
+	bh=yy21d05ZZ5waMHdEE97FGH+AnuyHWZdHUoTZaUo85kg=;
+	h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
+	b=cB52k5hYTxLcwMwVBxH8isoo+QmPlhJSaZ47kAFmIO3rngoiH3v63PcEiCoKhfOg
+	 ueMKDoUksYPesVzlnoDk7JFpS75Kso6y14sYL0FNvcv2epYWUp+jtsNj9u0Vc0EwI
+	 K7Kkfm8ANnczkUJCUPiVNlansAi5yTnfN4GfXXKldxwzfj/yFGe6GQ5xXOwq/q+bz
+	 ygC2bc3YsDU+gr0eTQocMvw29OOB6sSEww6z7ZaT5arDqJMcBSpGhrlR1qwTZDTfr
+	 4E3ejT8vTRDi15EXLJL8Xb9ciMXFSliIj26jF5vRXXqLq7fzjnualbV2PKZjf0Yhj
+	 IaMHM2MHsUYjUr23eg==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from stefanw-SCHENKER ([37.4.248.43]) by mail.gmx.net (mrgmx104
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1Mk0JM-1rWkKK0mSW-00kPbU; Thu, 30
+ Nov 2023 16:42:52 +0100
+From: Stefan Wahren <wahrenst@gmx.net>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Abel Vesa <abel.vesa@linaro.org>
-Subject: Re: [PATCH] dt-bindings: pinctrl: qcom,sm8550-lpass-lpi: add
- X1E80100 LPASS LPI
-Message-ID: <20231130-cushy-hamlet-c8b3a1d183ed@spud>
-References: <20231129155738.167030-1-krzysztof.kozlowski@linaro.org>
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Mathias Nyman <mathias.nyman@intel.com>
+Cc: bcm-kernel-feedback-list@broadcom.com,
+	Cyril Brulebois <kibi@debian.org>,
+	linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Stefan Wahren <wahrenst@gmx.net>
+Subject: [PATCH V2 0/2] ARM: dts: bcm2711: Add generic xHCI
+Date: Thu, 30 Nov 2023 16:42:27 +0100
+Message-Id: <20231130154229.22334-1-wahrenst@gmx.net>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="BRctadQJgsOjKQYl"
-Content-Disposition: inline
-In-Reply-To: <20231129155738.167030-1-krzysztof.kozlowski@linaro.org>
-
-
---BRctadQJgsOjKQYl
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:dqi3/iyJkC+d0JvMkDzmVOvFvD58VLrqpt24F7WYohiihJz1h3u
+ 5tZgs/EgIsZazjR5w7cXFH3uWjkV7KgMJRTl9b1ufVHKhaKwI3SP4womw7z9mw4FU8/Ba71
+ pbf+vteLB+0plkwdlO7MI0UK8Us725xODxiRiNZTrvYySbV25r1xsjXICYQfA/ND/dlfMjQ
+ CQLSwGED7po3ACjmUoZsA==
+UI-OutboundReport: notjunk:1;M01:P0:DxSaJlUQl5Y=;nKLoGThw3tlAsFXGsKHq2bPO33q
+ oI/vn/ZA/ZbhUn2P9TmHu42Ukz12fbsb3dd7ttq0P7Co153ryfR+oDg9WurAR25ff3zYNxkRq
+ xN6SZcIDHtfFZLAhBrDEYWkFsvtmgsVqLLTfnXud2IOyx9EeAWHIQWfcKDfYppnG/JiN1M8qa
+ j/uGcqeBWSJTVPb5jZuS0r1Ld/WGs3sErxxU2OfxD4XYfikG1RwohvQHmEfeUtnVsp2DAxc42
+ EYLuG3XWpc/FLStlcq1ubXQptikYNHaqDUopGcGiDpo692HwAbsrEBp/YnOg7DCGUH5yQEJ4l
+ 9bGm/JHKpRCvD5pNB61PW7E+XXBwPjVCe3ORej8LaOdHlYlonii//kPmVLTIwWiBUdVfzpUQ5
+ Jsi2mZQVpqyKcKOe0JnBkkbkhyRyyKh7MGnJOJV+50Stod1kJKdtLHmjG7MEnmdOMpi7hORbN
+ S7HCy+eRRMahkXd7efL+xS3qFTAPChunG61vo5pXoIzngDCcmUMWj/BUa1+7ldZQCe7g3GB9O
+ ra4QpUJLyipF47vHID/JwtA5tW/kK1gfZplvayReHfWjjsDuG4vgBa0pcRQO47Z0b3v2MCNYd
+ TMcpQVz4X86Xy6F4KSqiZijly0qAxzFxuHAzjZAyVbZmiktKe2B5eCizSKX6/JlX30+ke8IwG
+ onJVMIV7WWFMWwtnzJzoWYSMyQT/7rpVs3CB+ulCUQLIYUGIUKq9Ym3DzhQwz4Tn53OwFQCKs
+ oFOu5FT8u3tUIFCQPgAu7foOQv3XzcqA1xRFsz6Kq/nLF59PUW+hySQtu6y9hEMYEaAop7nIO
+ 8yvbvG7tOVivYRyf3AdWREgvb43ReZPvBZlMhRqIbDgAYtDm//DkOCGMeL9cYyPaXDJM+qwo8
+ /HXdSy2jeXFfQHpWf9B5XH1JnAr1gFv91zzD9we8X/Z5fiydOvd06/RC7m858at6ThoC5Iw5G
+ UEemAg==
 
-On Wed, Nov 29, 2023 at 04:57:38PM +0100, Krzysztof Kozlowski wrote:
-> Document the Qualcomm X1E80100 SoC Low Power Audio SubSystem Low Power
-> Island (LPASS LPI) pin controller, compatible with earlier SM8550 model.
->=20
-> Cc: Abel Vesa <abel.vesa@linaro.org>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In contrast to the Raspberry Pi 4, the Compute Module 4 or the IO board
+does not have a VL805 USB 3.0 host controller, which is connected via
+PCIe. Instead, the BCM2711 on the Compute Module provides the built-in
+xHCI.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Changes in V2:
+- adjust xHCI compatible as suggested by Justin & Florian
+- keep xHCI disabled in order to let the bootloader decide which
+  USB block should be enabled, which result in a drop of patch 3
 
-Cheers,
-Conor.
+Stefan Wahren (2):
+  dt-bindings: usb: xhci: Add optional power-domains
+  ARM: dts: bcm2711: Add generic xHCI
 
-> ---
->  .../bindings/pinctrl/qcom,sm8550-lpass-lpi-pinctrl.yaml     | 6 +++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm8550-lpass-=
-lpi-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm8550-lp=
-ass-lpi-pinctrl.yaml
-> index ef9743246849..ad5e32130fd7 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/qcom,sm8550-lpass-lpi-pin=
-ctrl.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm8550-lpass-lpi-pin=
-ctrl.yaml
-> @@ -16,7 +16,11 @@ description:
-> =20
->  properties:
->    compatible:
-> -    const: qcom,sm8550-lpass-lpi-pinctrl
-> +    oneOf:
-> +      - const: qcom,sm8550-lpass-lpi-pinctrl
-> +      - items:
-> +          - const: qcom,x1e80100-lpass-lpi-pinctrl
-> +          - const: qcom,sm8550-lpass-lpi-pinctrl
-> =20
->    reg:
->      items:
-> --=20
-> 2.34.1
->=20
+ .../devicetree/bindings/usb/generic-xhci.yaml      |  3 +++
+ arch/arm/boot/dts/broadcom/bcm2711-rpi.dtsi        |  5 +++++
+ arch/arm/boot/dts/broadcom/bcm2711.dtsi            | 14 ++++++++++++++
+ 3 files changed, 22 insertions(+)
 
---BRctadQJgsOjKQYl
-Content-Type: application/pgp-signature; name="signature.asc"
+=2D-
+2.34.1
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZWisigAKCRB4tDGHoIJi
-0rOoAP4iSd2hLjqO+JZop/z26hiw97HgeEijD9cpN2iMMpFA4QD+LEM7VHDm/tnl
-Jpm63MsCmEo9QRQ3HN7PIohIJlRnbwg=
-=YhlU
------END PGP SIGNATURE-----
-
---BRctadQJgsOjKQYl--
 
