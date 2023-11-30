@@ -1,141 +1,130 @@
-Return-Path: <devicetree+bounces-20533-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20534-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D34367FFDF6
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 22:51:08 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CA047FFE66
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 23:20:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3DEE6B20B39
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 21:51:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 913F0B20CDF
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 22:20:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55A2B5B20C;
-	Thu, 30 Nov 2023 21:51:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31D5861698;
+	Thu, 30 Nov 2023 22:19:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="wPqbnp5q"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="M9/OgnM9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9651510FC
-	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 13:50:58 -0800 (PST)
-Received: by mail-lj1-x229.google.com with SMTP id 38308e7fff4ca-2c9b5b774f0so18006151fa.3
-        for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 13:50:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1701381057; x=1701985857; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aANyBr2T0t8LeKYSkonqHHH3ddTbNb3vuWdQ0g12q+Q=;
-        b=wPqbnp5qRtfp082LnkkE85atm3ai15hClOrgxH6TPBNETyZNCpcH/qjtLUfN7cQKtI
-         bMTA0rqlEolb32uyNkz1HxvbutaB6wTKhJCOGnzKhRi4UewsaSh/QM/8sAHq38spLDzT
-         KLoSUBpSmdV1eJgKTqeAz1Gzps830CBLFa2rMRRgDk/rjfINktB0nKMr8Gx8uRM72f/4
-         BukNYUQV/kZJRv8+XUYZ/GR3DkLp/+QQZymLbG/bWxIxe/gJSguC/9/mr6WVJO34LClf
-         G8h6xe7nP6ufrCRt3DWIoG52TC7gVCNhPKji9sTmZXB9szz4BnJjER6fF2GPRjdSFCzc
-         ID4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701381057; x=1701985857;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=aANyBr2T0t8LeKYSkonqHHH3ddTbNb3vuWdQ0g12q+Q=;
-        b=lryfpYtAPFjAbQWbgqE1SzwFGua5cE1gGIZ5+1sMiiXMvysL03LBzXVBfVBNAbA1rY
-         S6+s53Jw5Lu+fKSMWQzK1JVAwJpHQK4WBPsDAfiL2YzzqNuhkChK8NQ76XwqBRw07jq2
-         G2YfVvkEk8lB1nU1QSyIGdmYvyEefcfvg8IUDiXCezaL71QAA0gQPsqlcDmzSjXbIRFJ
-         TgWx2QXdH4ILMwYHoNXGtwngk12dCnIgNPH9PjcWPsqVavV8cSVxccoQ868ckYjHTk6p
-         URdCkKxMC4nD6fX9BaoSMNm63MSjSbIUfEq2qkVbbAY0VIQsqbv+qLC82O26LEJVbDkS
-         eOFQ==
-X-Gm-Message-State: AOJu0YyOZjOp6DGcueqq8a+pW5vUpLQWbykajYD4nK2ZdHcuhNeS8hrn
-	TnO9evbYMdmvzLI9OzDDVH60hU43vextiVFSpGPYoA==
-X-Google-Smtp-Source: AGHT+IGTreSyOMteX5Yn0pCJXOJ23n2w1uz7JmQUqmbNcKkrGMdUipIFSV2GkcHhgdqYisB6JJKbOnVn4oDTwdlFnHo=
-X-Received: by 2002:a2e:8503:0:b0:2c9:bacc:1285 with SMTP id
- j3-20020a2e8503000000b002c9bacc1285mr117766lji.47.1701381056908; Thu, 30 Nov
- 2023 13:50:56 -0800 (PST)
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBF3B10F3;
+	Thu, 30 Nov 2023 14:19:54 -0800 (PST)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3AUMJhRv042016;
+	Thu, 30 Nov 2023 16:19:43 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1701382783;
+	bh=R/qRqtIKA4EXGEtpCr54N5p1pvu+fDyDEO6B4AAfBpA=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=M9/OgnM9SX26rzYAUg2lKClsz35RtApdF1NQey7QTpJbENjMUDhwWlZf2R1qpeGYt
+	 L1YmRGn5dG/skILY6aB3t+gC7MFA0EgZ4sIO8kP1kR0iCHzHuR5EYyPimLrqDnCaJv
+	 sPxx+WlyqPOlqvXvDsODP+Pj3SlHYGfnnKWPD4r4=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3AUMJh4i026835
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 30 Nov 2023 16:19:43 -0600
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 30
+ Nov 2023 16:19:43 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 30 Nov 2023 16:19:43 -0600
+Received: from [128.247.81.105] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3AUMJhbU050129;
+	Thu, 30 Nov 2023 16:19:43 -0600
+Message-ID: <43cb48da-6ce5-4501-a3c8-071595810bb3@ti.com>
+Date: Thu, 30 Nov 2023 16:19:43 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231121-dev-iio-backend-v1-0-6a3d542eba35@analog.com> <20231121-dev-iio-backend-v1-6-6a3d542eba35@analog.com>
-In-Reply-To: <20231121-dev-iio-backend-v1-6-6a3d542eba35@analog.com>
-From: David Lechner <dlechner@baylibre.com>
-Date: Thu, 30 Nov 2023 15:50:46 -0600
-Message-ID: <CAMknhBHsFS5p-_250WRmkH2za+QPV6WyKNfgD-E1W8=HV3W3fg@mail.gmail.com>
-Subject: Re: [PATCH 06/12] iio: adc: ad9467: add mutex to struct ad9467_state
-To: nuno.sa@analog.com
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-iio@vger.kernel.org, Olivier MOYSAN <olivier.moysan@foss.st.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>, 
-	Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
-	Michael Hennerich <Michael.Hennerich@analog.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] arm64: dts: ti: k3-am62a: Enable UHS mode support for
+ SD cards
+To: Nitin Yadav <n-yadav@ti.com>, <nm@ti.com>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <vigneshr@ti.com>,
+        <robh+dt@kernel.org>, <kristo@kernel.org>, <conor+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+References: <20231026070155.1134063-1-n-yadav@ti.com>
+ <20231026070155.1134063-2-n-yadav@ti.com>
+Content-Language: en-US
+From: Judith Mendez <jm@ti.com>
+In-Reply-To: <20231026070155.1134063-2-n-yadav@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Tue, Nov 21, 2023 at 4:17=E2=80=AFAM Nuno Sa via B4 Relay
-<devnull+nuno.sa.analog.com@kernel.org> wrote:
->
-> From: Nuno Sa <nuno.sa@analog.com>
->
-> When calling ad9467_set_scale(), multiple calls to ad9467_spi_write()
-> are done which means we need to properly protect the whole operation so
-> we are sure we will be in a sane state if two concurrent calls occur.
->
-> Fixes: ad6797120238 ("iio: adc: ad9467: add support AD9467 ADC")
-> Signed-off-by: Nuno Sa <nuno.sa@analog.com>
+On 10/26/23 2:01 AM, Nitin Yadav wrote:
+> Hook up required IO voltage regulators to support UHS modes on
+> SD cards.
+> 
+> Signed-off-by: Nitin Yadav <n-yadav@ti.com>
 > ---
->  drivers/iio/adc/ad9467.c | 6 +++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/iio/adc/ad9467.c b/drivers/iio/adc/ad9467.c
-> index 04474dbfa631..91821dee03b7 100644
-> --- a/drivers/iio/adc/ad9467.c
-> +++ b/drivers/iio/adc/ad9467.c
-> @@ -4,7 +4,7 @@
->   *
->   * Copyright 2012-2020 Analog Devices Inc.
->   */
-> -
-> +#include <linux/cleanup.h>
->  #include <linux/module.h>
->  #include <linux/mutex.h>
+>   arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 20 ++++++++++++++++++++
+>   1 file changed, 20 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+> index 9f3dfbfbf369..3ae1ea1997a4 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+> @@ -102,6 +102,19 @@ vdd_mmc1: regulator-3 {
+>   		gpio = <&exp1 3 GPIO_ACTIVE_HIGH>;
+>   	};
+>   
+> +	vddshv_sdio: regulator-4 {
+> +		compatible = "regulator-gpio";
+> +		regulator-name = "vddshv_sdio";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&vddshv_sdio_default_pins>;
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-boot-on;
+> +		gpios = <&main_gpio0 31 GPIO_ACTIVE_HIGH>;
+> +		states = <1800000 0x0>,
+> +			 <3300000 0x1>;
+> +	};
+> +
+>   	leds {
+>   		compatible = "gpio-leds";
+>   		pinctrl-names = "default";
+> @@ -189,6 +202,12 @@ AM62AX_IOPAD(0x1f8, PIN_INPUT_PULLUP, 0) /* (AC2) MMC0_DAT7 */
+>   		>;
+>   	};
+>   
+> +	vddshv_sdio_default_pins: vddshv-sdio-default-pins {
+> +		pinctrl-single,pins = <
+> +			AM62AX_IOPAD(0x07c, PIN_OUTPUT, 7) /* (M19) GPMC0_CLK.GPIO0_31 */
 
-Ah, the case of the misplaced header from the previous patch is solved. :-)
+Isn't this ball name N22? I might be wrong, but I did check using 
+SYSCONFIG tool and datasheet.
 
->  #include <linux/device.h>
-> @@ -122,6 +122,8 @@ struct ad9467_state {
->         unsigned int                    output_mode;
->
->         struct gpio_desc                *pwrdown_gpio;
-> +       /* protect against concurrent accesses to the device */
-> +       struct mutex                    lock;
->  };
->
->  static int ad9467_spi_read(struct spi_device *spi, unsigned int reg)
-> @@ -162,6 +164,7 @@ static int ad9467_reg_access(struct adi_axi_adc_conv =
-*conv, unsigned int reg,
->         int ret;
->
->         if (!readval) {
-> +               guard(mutex)(&st->lock);
->                 ret =3D ad9467_spi_write(spi, reg, writeval);
->                 if (ret)
->                         return ret;
-> @@ -310,6 +313,7 @@ static int ad9467_set_scale(struct adi_axi_adc_conv *=
-conv, int val, int val2)
->                 if (scale_val[0] !=3D val || scale_val[1] !=3D val2)
->                         continue;
->
-> +               guard(mutex)(&st->lock);
->                 ret =3D ad9467_spi_write(st->spi, AN877_ADC_REG_VREF,
->                                        info->scale_table[i][1]);
->                 if (ret < 0)
->
-> --
-> 2.42.1
->
->
+> +		>;
+> +	};
+> +
+>   	main_mmc1_pins_default: main-mmc1-default-pins {
+>   		pinctrl-single,pins = <
+>   			AM62AX_IOPAD(0x23c, PIN_INPUT, 0) /* (A21) MMC1_CMD */
+> @@ -294,6 +313,7 @@ &sdhci1 {
+>   	/* SD/MMC */
+>   	status = "okay";
+>   	vmmc-supply = <&vdd_mmc1>;
+> +	vqmmc-supply = <&vddshv_sdio>;
+>   	pinctrl-names = "default";
+>   	pinctrl-0 = <&main_mmc1_pins_default>;
+>   	ti,driver-strength-ohm = <50>;
 
-Alternately, this could probably be solved with spi_bus_lock/unlock
-and spi_sync_locked rather than introducing a new mutex.
 
