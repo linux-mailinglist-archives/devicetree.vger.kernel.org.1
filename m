@@ -1,136 +1,175 @@
-Return-Path: <devicetree+bounces-20528-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20531-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 990787FFCA9
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 21:36:05 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBFD97FFDBB
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 22:41:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 38F70B211F1
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 20:36:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 81421B21059
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 21:41:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 432D75A10E;
-	Thu, 30 Nov 2023 20:35:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 263945A104;
+	Thu, 30 Nov 2023 21:41:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=z3ntu.xyz header.i=@z3ntu.xyz header.b="LHvHwkM+"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="2iOGjZfC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E845A170D;
-	Thu, 30 Nov 2023 12:35:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=z3ntu.xyz; s=z3ntu;
-	t=1701376553; bh=dIpkZwLcU5LO2iRQ3FvNUd54eLsB8oPxrLiyGCwvIk0=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=LHvHwkM+dXQfRQrcZqNmeRe/WEqzq/9iDRtfutrR/NE0ybkVqggRDkNbZhCVwzReN
-	 ef+shYUnwWGlgWkwlRuTBYDEn5SjuLj+Efr6aWub7cOUNEZCNreSbVMNaleD81Lauh
-	 Z0iKXz4W+gT1Hz88O6VlmdqZEqJfnO/ulCHVqHRo=
-From: Luca Weiss <luca@z3ntu.xyz>
-Date: Thu, 30 Nov 2023 21:35:20 +0100
-Subject: [PATCH 3/3] ARM: dts: qcom: msm8226: Add GPU
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EC2110D9
+	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 13:41:14 -0800 (PST)
+Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2c9d4afb7dfso9286411fa.1
+        for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 13:41:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1701380472; x=1701985272; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fd0YG7g3wby74JcgoZTxtodoh2Ma9koAtjIfAtnBqJI=;
+        b=2iOGjZfCoTX61S0IzTF8HAWGZHbpH0IEYWbQivxvA/ZxP+xHIYwH0+DikksWbd5mzO
+         AcK7xKSkEV8TZrCTG8vTH0Wd7tHM4NPxasAf4ufnqlWHc8vS+ktj5e4GXaAkYQfhY+zt
+         xITrQcSELi2udH6Ynwvm0HZo7hvuWM9GcO4lWKdei+1+NHrgTsT7eQCGF31XOUzbxFdE
+         9xaGtK4JxeWWNxpPDDHEagDv/7RBYlF5TQ/4xGVHRvgufZ1OUEAYjKckeFgg/0oNKyZh
+         Zk3mGJb7etbEBhn8vewD+Kp+g8s5loU58gUO5Bh6oreuQ/On7ERHcvPLkp7HewOpZbci
+         GgCQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701380472; x=1701985272;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=fd0YG7g3wby74JcgoZTxtodoh2Ma9koAtjIfAtnBqJI=;
+        b=lq7tAefTlm8YAbInDILBF7CdKz7UcIFJB6NX9KCywi+8ufgpP/1U+sh/9go5yO2Ojr
+         wRHF4l/UxNhhid/zfebxp26aCMzPPmvAfnidXpo4Cnc5NfMtScTEBMFZBVVqc47eYHEC
+         9c5zEZGGIKT8jWWE2jRUYoYhsvqApfE1oKBvafD9tMsJCrwEIb79kRwQL/nED1WvzzVf
+         5NHi0SuzaWLJ3IQHkq1m+O+Ty2r9KJa676DIj/DNPL6RqnPcI1xJgmQ5BxA7Rx/ZB/My
+         FkgFTE42YHhYuYiQHNdv0YK7/IA+RXEP/qxNeiyYWZ4QWkWoSScGZg2B11RKTqtXe3yH
+         sTaw==
+X-Gm-Message-State: AOJu0YwYuAgoFniRzcwt6EpoqDmr1V1B6yCMUNY1LgWAkp3OVXn3ASP7
+	jIbhjcXrdigUM/WbC0q5ZI+/m0kobzaGPVRfmYUjjg==
+X-Google-Smtp-Source: AGHT+IHOqy3zd2l2wLsrbsS+OGAQHC++9ntml8mSoabCouZoB5MU3hbrors/4KLRm6nsBU9nM5qo4UP0iLwzR7fLM1w=
+X-Received: by 2002:a2e:9ec1:0:b0:2c9:d872:abdf with SMTP id
+ h1-20020a2e9ec1000000b002c9d872abdfmr87880ljk.93.1701380472434; Thu, 30 Nov
+ 2023 13:41:12 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231130-msm8226-gpu-v1-3-6bb2f1b29e49@z3ntu.xyz>
-References: <20231130-msm8226-gpu-v1-0-6bb2f1b29e49@z3ntu.xyz>
-In-Reply-To: <20231130-msm8226-gpu-v1-0-6bb2f1b29e49@z3ntu.xyz>
-To: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>, 
- Marijn Suijten <marijn.suijten@somainline.org>, 
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Luca Weiss <luca@z3ntu.xyz>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1540; i=luca@z3ntu.xyz;
- h=from:subject:message-id; bh=dIpkZwLcU5LO2iRQ3FvNUd54eLsB8oPxrLiyGCwvIk0=;
- b=owEBbQKS/ZANAwAIAXLYQ7idTddWAcsmYgBlaPIlnpx7RKRqFvmDkHiyz3LX+JZOWvUXys5LH
- u+C4lYbvniJAjMEAAEIAB0WIQQ5utIvCCzakboVj/py2EO4nU3XVgUCZWjyJQAKCRBy2EO4nU3X
- VrgND/9nZ8rJNVtr/QjArZe3c3cRpOuXXFaFMZrWx8Wru4JrOcqubLb3fcvQ/mvnH4vKkvTpdxL
- m00Xh5X8lgMIYWzqbW+W2Zid0JsoST7c6cZXezgAleXkXPvFJb/gf+ExtL68MmQu/tAdzRblYW4
- aiYY6LrBZ3u7+XRk+Vez2qUzhZYOiolCTq5li/rAdDzZuQbA4lQaj3TzBjnZaYbEFQTQiMuHaCO
- iGW7ZQTCKPhcGMA2RXEfD+t4Ns8/L6EHRV//Jhs9TTOWk3xktSdAWRgzOS6ffRJ6fso54txIiFx
- stqfeXeBPDakjtq25ynw+ULehXb7JxlTm9DlcRZHjZ9B1Q5ixfIzdaitG6SEUFEFkIEFLOU+p3t
- Zaf0SA8thvQ5SgFIyrTsjpekMABAPfe5GmKBWDpAIW4UTQb/lFOJ5bFw+T7ulcd64u0snYVfU5R
- 61bXapRbk6tXDNoW7/01/oGtot+dUOVoronedMMy2DgQiYH6PtTCYtxf/zYr/2mLbc/oqBmA4Ht
- D6LF9rVI1mlUR7qb4l91ZWAZIKnEwC6Au5FywG2q/P9HZzoWXymbcdjjLtJ0xXHDliEdqExEVhX
- VSDPGXqDamO4aFncQhIMlQFdkXmWiQeklCGb+DYvLGzcFGkR1C+Xi/W8eEmU3xkf2RSlyWrArvu
- ReX1PTtBVBAGqkg==
-X-Developer-Key: i=luca@z3ntu.xyz; a=openpgp;
- fpr=BD04DA24C971B8D587B2B8D7FAF69CF6CD2D02CD
+References: <20231121-dev-iio-backend-v1-0-6a3d542eba35@analog.com> <20231121-dev-iio-backend-v1-4-6a3d542eba35@analog.com>
+In-Reply-To: <20231121-dev-iio-backend-v1-4-6a3d542eba35@analog.com>
+From: David Lechner <dlechner@baylibre.com>
+Date: Thu, 30 Nov 2023 15:41:01 -0600
+Message-ID: <CAMknhBGCqnzCp6vQ+59Z-SybScvbtU7aWdAD6KnP1e6=q60gVQ@mail.gmail.com>
+Subject: Re: [PATCH 04/12] iio: adc: ad9467: fix reset gpio handling
+To: nuno.sa@analog.com
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-iio@vger.kernel.org, Olivier MOYSAN <olivier.moysan@foss.st.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>, 
+	Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The msm8226 SoC contains an Adreno 305B. Add a node to configure it.
+On Tue, Nov 21, 2023 at 4:17=E2=80=AFAM Nuno Sa via B4 Relay
+<devnull+nuno.sa.analog.com@kernel.org> wrote:
+>
+> From: Nuno Sa <nuno.sa@analog.com>
+>
+> The reset gpio was being requested with GPIOD_OUT_LOW which means, not
+> asserted. Then it was being asserted but never de-asserted which means
+> the devices was left in reset. Fix it by de-asserting the gpio.
 
-Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
----
- arch/arm/boot/dts/qcom/qcom-msm8226.dtsi | 40 ++++++++++++++++++++++++++++++++
- 1 file changed, 40 insertions(+)
+It could be helpful to update the devicetree bindings to state the
+expected active-high or active-low setting for this gpio so it is
+clear which state means asserted.
 
-diff --git a/arch/arm/boot/dts/qcom/qcom-msm8226.dtsi b/arch/arm/boot/dts/qcom/qcom-msm8226.dtsi
-index 5cd03ea7b084..9b43766df8f8 100644
---- a/arch/arm/boot/dts/qcom/qcom-msm8226.dtsi
-+++ b/arch/arm/boot/dts/qcom/qcom-msm8226.dtsi
-@@ -1006,6 +1006,46 @@ mdss_dsi0_phy: phy@fd922a00 {
- 					      "ref";
- 			};
- 		};
-+
-+		gpu: adreno@fdb00000 {
-+			compatible = "qcom,adreno-305.18", "qcom,adreno";
-+			reg = <0xfdb00000 0x10000>;
-+			reg-names = "kgsl_3d0_reg_memory";
-+
-+			interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "kgsl_3d0_irq";
-+
-+			clocks = <&mmcc OXILI_GFX3D_CLK>,
-+				 <&mmcc OXILICX_AHB_CLK>,
-+				 <&mmcc OXILICX_AXI_CLK>;
-+			clock-names = "core", "iface", "mem_iface";
-+
-+			sram = <&gmu_sram>;
-+			power-domains = <&mmcc OXILICX_GDSC>;
-+			operating-points-v2 = <&gpu_opp_table>;
-+
-+			status = "disabled";
-+
-+			gpu_opp_table: opp-table {
-+				compatible = "operating-points-v2";
-+
-+				opp-450000000 {
-+					opp-hz = /bits/ 64 <450000000>;
-+				};
-+
-+				opp-320000000 {
-+					opp-hz = /bits/ 64 <320000000>;
-+				};
-+
-+				opp-200000000 {
-+					opp-hz = /bits/ 64 <200000000>;
-+				};
-+
-+				opp-19000000 {
-+					opp-hz = /bits/ 64 <19000000>;
-+				};
-+			};
-+		};
- 	};
- 
- 	thermal-zones {
+>
+> While at it, moved the handling to it's own function and dropped
+> 'reset_gpio' from the 'struct ad9467_state' as we only need it during
+> probe. On top of that, refactored things so that we now request the gpio
+> asserted (i.e in reset) and then de-assert it.
+>
+> Fixes: ad6797120238 ("iio: adc: ad9467: add support AD9467 ADC")
+> Signed-off-by: Nuno Sa <nuno.sa@analog.com>
+> ---
+>  drivers/iio/adc/ad9467.c | 33 ++++++++++++++++++++-------------
+>  1 file changed, 20 insertions(+), 13 deletions(-)
+>
+> diff --git a/drivers/iio/adc/ad9467.c b/drivers/iio/adc/ad9467.c
+> index 39eccc28debe..368ea57be117 100644
+> --- a/drivers/iio/adc/ad9467.c
+> +++ b/drivers/iio/adc/ad9467.c
+> @@ -121,7 +121,6 @@ struct ad9467_state {
+>         unsigned int                    output_mode;
+>
+>         struct gpio_desc                *pwrdown_gpio;
+> -       struct gpio_desc                *reset_gpio;
+>  };
+>
+>  static int ad9467_spi_read(struct spi_device *spi, unsigned int reg)
+> @@ -378,6 +377,23 @@ static int ad9467_preenable_setup(struct adi_axi_adc=
+_conv *conv)
+>         return ad9467_outputmode_set(st->spi, st->output_mode);
+>  }
+>
+> +static int ad9467_reset(struct device *dev)
+> +{
+> +       struct gpio_desc *gpio;
+> +
+> +       gpio =3D devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
+> +       if (IS_ERR(gpio))
+> +               return PTR_ERR(gpio);
+> +       if (!gpio)
+> +               return 0;
 
--- 
-2.43.0
+can be done in one test instead of 2:
 
+if (IS_ERR_OR_NULL(gpio))
+        return PTR_ERR_OR_ZERO(gpio);
+
+> +
+> +       fsleep(1);
+> +       gpiod_direction_output(gpio, 0);
+> +       fsleep(10);
+
+Previous version was 10 milliseconds instead of 10 microseconds. Was
+this change intentional? If yes, it should be mentioned it in the
+commit message.
+
+> +
+> +       return 0;
+> +}
+> +
+>  static int ad9467_probe(struct spi_device *spi)
+>  {
+>         const struct ad9467_chip_info *info;
+> @@ -408,18 +424,9 @@ static int ad9467_probe(struct spi_device *spi)
+>         if (IS_ERR(st->pwrdown_gpio))
+>                 return PTR_ERR(st->pwrdown_gpio);
+>
+> -       st->reset_gpio =3D devm_gpiod_get_optional(&spi->dev, "reset",
+> -                                                GPIOD_OUT_LOW);
+> -       if (IS_ERR(st->reset_gpio))
+> -               return PTR_ERR(st->reset_gpio);
+> -
+> -       if (st->reset_gpio) {
+> -               udelay(1);
+> -               ret =3D gpiod_direction_output(st->reset_gpio, 1);
+> -               if (ret)
+> -                       return ret;
+> -               mdelay(10);
+> -       }
+> +       ret =3D ad9467_reset(&spi->dev);
+> +       if (ret)
+> +               return ret;
+>
+>         conv->chip_info =3D &info->axi_adc_info;
+>
+>
+> --
+> 2.42.1
+>
+>
 
