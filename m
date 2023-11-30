@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-20280-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20281-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FF1B7FEADA
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 09:36:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB76F7FEAE7
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 09:38:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 449A1281E87
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 08:36:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 65E0A2820FC
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 08:38:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D86831F61A;
-	Thu, 30 Nov 2023 08:36:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D34FA14AA4;
+	Thu, 30 Nov 2023 08:38:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XSWp51/m"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qEEQgxpI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F33D10C2
-	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 00:36:28 -0800 (PST)
-Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-54b8a4d64b5so596013a12.0
-        for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 00:36:28 -0800 (PST)
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08E691B3
+	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 00:38:28 -0800 (PST)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-9ffb5a4f622so83405866b.0
+        for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 00:38:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701333386; x=1701938186; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701333506; x=1701938306; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=fEnWjWqb6bw/wLPUo7dggsoinos3NA+ggCCtssDkxFI=;
-        b=XSWp51/mLs/u39Y6kFNZFXnUiSKQIlGFYNT+JZZsLz5S3Mh4lspqaSEIv4zlkHsmqH
-         lWPIV4kxM20jdJ8raChb0mh8243StkcbbZ9tBYMzB2aWzOgfpi6uubMeg1thQyBQchkU
-         I2H9zccNoTqQPN4y0IVLEaR+N5m2I4CeXTnlmxHNGq24X5flCUC/3UtQ4HHIdRIJKmKS
-         lT5BBGwl2/SFphJGepdqqenxacVKAFxYL339h5WTTZBLQLDnuHxK6GsVT9+lGEOArNUg
-         hWrkZ2Gkv+L2khkmKS8pevmgV1htWH7KUvLWipDMARcdeS21xI2tFkSPm7Enrd2OadcX
-         5//g==
+        bh=ByMGgvmZASiQIVH9MAuEHTi1856dpriiJoIb9u+u7+w=;
+        b=qEEQgxpI2xIhuUmCgVb9oviTP56RubSs61J81zi4ym9BIEATBEhM61L/KOb2lQ8wX3
+         JLQUNS3mWLm0omj7DhCTiraUXG/opCi8nrpIRuEboGjxzWEaZgvQn2T22avitOLqnXZD
+         xZd62R9dChiKe3snJxs+F2/Ck2Kj+sFcMx5k4DAYALYpp2gsCiMqSkhya7DJj+JDtqry
+         /KXV5Z4YEy0jop/0GynYohy/iONA7DVTj6V+300WqdiJ8CNNRyAfp5P8x+ABCDiJ/PM7
+         NDGCYKveVd+WXiPwmv9z/X4O0iCj4jQPzZ88AgVsltNfB2H1Cb56QmfPDzTAskcAvZrt
+         Fkgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701333386; x=1701938186;
+        d=1e100.net; s=20230601; t=1701333506; x=1701938306;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fEnWjWqb6bw/wLPUo7dggsoinos3NA+ggCCtssDkxFI=;
-        b=iTT1Vl/WwL61k7yiKBOKnjuEUipEJkEPldRs5hDoovtpnok5YqtUjL9cx+K+oLhKXf
-         krfNelkLwEAv/RRhxla9Sgzk0xMfnUpSuPJ1J/LyhtezOJEyKXg2oZL8LK98T3anvrza
-         sZox270+ARfmKm37qi/B2e2d5k/5k81WrYVSyO/Qaeimqafxh7FQahyXDi4N8NGerJNN
-         Siqayioy9FeuDjIZhHpGfUaMzgC7O8Nyq0BshJ+ePqniub5bHRoLl/M4yI7GrYvcCC1g
-         aajVnaDb/4uVOAqZFlVQa7WHkXOqcl1Z/ke5yTmQg4yzTk+RlTru2Jvun+PIYV2jjwpD
-         l6dg==
-X-Gm-Message-State: AOJu0Ywj7hN+bMo/xHSD7F4JK4TRvdf5SUM1kJLBaIq3VhuKVDyoUx+3
-	EA97J7VH7SjvOvxte9Ue1GcQHA==
-X-Google-Smtp-Source: AGHT+IFqg8i2VD+28giSJBfiVjiEnfxLQADYK7/BMo+osqXBvwTar06z+gbWk6sjdr4amy2hfvMO0w==
-X-Received: by 2002:a05:6402:1c0b:b0:54b:eae2:31e9 with SMTP id ck11-20020a0564021c0b00b0054beae231e9mr2085190edb.18.1701333386642;
-        Thu, 30 Nov 2023 00:36:26 -0800 (PST)
+        bh=ByMGgvmZASiQIVH9MAuEHTi1856dpriiJoIb9u+u7+w=;
+        b=t4Gry1mzWjG1EpGQRd6REjTTU1G58uDwxV8mn83lnXtRw5o0MdeHq9iairGJpYl5ri
+         2QmvxcIVAGniNEuMTFdE5a4XI5iurkDnkSMQVwx+bPCFGinOYOoS4C7WK6ucp8u/PAww
+         k2YCUUCg3XLvcwIvw1UP3RZq7pZ9EU5FIBO9Wno4sD5HolHuDLWp/F2zWIsL5TXhk8/D
+         nsA4k3LvIwE7quGHaQb9lMuOV1i93c2Cf6B54+RxQJwhvt7hRWFaIsBgxgZCEzx0O8cM
+         iRwZ8uk381AaPPacYnbbuO88UO8PUKjFmJCDJ1tQS4eCkq3tTqm6Wmx9m4QLyFexg0Or
+         69pA==
+X-Gm-Message-State: AOJu0YzNwdRnTBJ6INqI0/4njGx/kcOVsGvZg1ZrMnkYWXRdoeTWMSI6
+	TtBm35WJd928zGTk/jSqIY3BIg==
+X-Google-Smtp-Source: AGHT+IEQQx94FuTdVfJw48iGjzJETkCL01QchtZ9pob4rAsilwf7HgMVhkZJXuS/hCi6Hk+Y4hCsyA==
+X-Received: by 2002:a17:906:8402:b0:a00:2e6d:3eb0 with SMTP id n2-20020a170906840200b00a002e6d3eb0mr15627187ejx.49.1701333506407;
+        Thu, 30 Nov 2023 00:38:26 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.109])
-        by smtp.gmail.com with ESMTPSA id y24-20020a056402135800b00548d649f638sm313478edw.96.2023.11.30.00.36.25
+        by smtp.gmail.com with ESMTPSA id a7-20020a1709062b0700b009fc8f309183sm428214ejg.51.2023.11.30.00.38.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Nov 2023 00:36:26 -0800 (PST)
-Message-ID: <063ce37b-a088-42bc-ac85-bd439692c2c7@linaro.org>
-Date: Thu, 30 Nov 2023 09:36:25 +0100
+        Thu, 30 Nov 2023 00:38:25 -0800 (PST)
+Message-ID: <5dbdf7bd-cfa3-492b-a0a3-fdc323cf11f8@linaro.org>
+Date: Thu, 30 Nov 2023 09:38:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,18 +62,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/2] dt-bindings: arm: fsl: add verdin imx8mp mallow
- board
+Subject: Re: [PATCH 1/2] dt-bindings: display: Add Sharp LS027B7DH01 Memory
+ LCD
 Content-Language: en-US
-To: Francesco Dolcini <francesco@dolcini.it>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>
-Cc: Joao Paulo Goncalves <joao.goncalves@toradex.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Francesco Dolcini <francesco.dolcini@toradex.com>
-References: <20231129164022.143340-1-francesco@dolcini.it>
- <20231129164022.143340-2-francesco@dolcini.it>
+To: Mehdi Djait <mehdi.djait@bootlin.com>, mripard@kernel.org,
+ maarten.lankhorst@linux.intel.com, tzimmermann@suse.de, airlied@gmail.com,
+ daniel@ffwll.ch, krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+ conor+dt@kernel.org
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ thomas.petazzoni@bootlin.com, alexandre.belloni@bootlin.com,
+ luca.ceresoli@bootlin.com, paul.kocialkowski@bootlin.com,
+ dri-devel@lists.freedesktop.org, geert@linux-m68k.org
+References: <cover.1701267411.git.mehdi.djait@bootlin.com>
+ <2a7c51b6e619c02ec175a5c219b0a0fd7a24499d.1701267411.git.mehdi.djait@bootlin.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -119,19 +120,53 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231129164022.143340-2-francesco@dolcini.it>
+In-Reply-To: <2a7c51b6e619c02ec175a5c219b0a0fd7a24499d.1701267411.git.mehdi.djait@bootlin.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 29/11/2023 17:40, Francesco Dolcini wrote:
-> From: Joao Paulo Goncalves <joao.goncalves@toradex.com>
-> 
-> Add Mallow carrier board for wifi and nonwifi variants of Toradex Verdin
-> IMX8MP SoM. Mallow is a low-cost carrier board in the Verdin family with
-> a small form factor and build for volume production making it ideal for
-> industrial and embedded applications.
+On 29/11/2023 15:29, Mehdi Djait wrote:
+> +  pwms:
+> +    maxItems: 1
+> +    description: External COM inversion signal
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - spi-lsb-first
+> +  - enable-gpios
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    spi {
+> +            #address-cells = <1>;
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+If there is going to be new version, then:
+Use 4 spaces for example indentation.
+
+Anyway:
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+
+---
+
+This is an automated instruction, just in case, because many review tags
+are being ignored. If you know the process, you can skip it (please do
+not feel offended by me posting it here - no bad intentions intended).
+If you do not know the process, here is a short explanation:
+
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions, under or above your Signed-off-by tag. Tag is "received", when
+provided in a message replied to you on the mailing list. Tools like b4
+can help here. However, there's no need to repost patches *only* to add
+the tags. The upstream maintainer will do that for tags received on the
+version they apply.
+
+https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
 
 Best regards,
 Krzysztof
