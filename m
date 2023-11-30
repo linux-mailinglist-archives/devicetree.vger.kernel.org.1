@@ -1,654 +1,212 @@
-Return-Path: <devicetree+bounces-20510-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20511-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4A327FF908
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 19:05:48 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2BB87FF916
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 19:10:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 644A22816F8
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 18:05:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2C1E3B20F6C
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 18:10:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88AFC58AAF;
-	Thu, 30 Nov 2023 18:05:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61C7F59157;
+	Thu, 30 Nov 2023 18:10:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="hbLev35n"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="LoTmiR27"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF53F10EA;
-	Thu, 30 Nov 2023 10:05:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1701367536; x=1732903536;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=NHcq8r0ujAMVjVSz+Sfa4tzu6xFi8PFYYoULDY5G8d8=;
-  b=hbLev35n3bW0j65o3hivoxxzDMTgq6fo7y3ZhoUExDySpjfPrz46e+Td
-   kJ/HYV3jifQZyGuF+B6kNl1dpYsKj7uPEaNuO678lOnwmDaIlQbCavvPQ
-   hfcl+1CSvsiMzfI2LYLNUfCSea9wAx2I9IXft3HT1WZpswqoaKZE3D0q8
-   GFMTjsIjpsft0OIN3GLjoOYhpiFaZ7GSRnX75htCOaaeaWMQC8KedcNG1
-   h+/UPbbImzmBSeFB1d5baqXV1Ayj6A0vg1MuhYN/bAuAU/ftuAmMZbBGu
-   dhaITHhyKLuOB9fQNFyUhgF+Ah33vbNGHjarXnWUuohYyreKxiad7XNQ9
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10910"; a="396174991"
-X-IronPort-AV: E=Sophos;i="6.04,239,1695711600"; 
-   d="scan'208";a="396174991"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Nov 2023 10:05:34 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10910"; a="887327390"
-X-IronPort-AV: E=Sophos;i="6.04,239,1695711600"; 
-   d="scan'208";a="887327390"
-Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
-  by fmsmga002.fm.intel.com with ESMTP; 30 Nov 2023 10:05:30 -0800
-Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1r8lPk-0002Vo-04;
-	Thu, 30 Nov 2023 18:05:28 +0000
-Date: Fri, 1 Dec 2023 02:04:27 +0800
-From: kernel test robot <lkp@intel.com>
-To: Shengyang Chen <shengyang.chen@starfivetech.com>,
-	devicetree@vger.kernel.org, linux-phy@lists.infradead.org
-Cc: oe-kbuild-all@lists.linux.dev, vkoul@kernel.org, kishon@kernel.org,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, p.zabel@pengutronix.de,
-	minda.chen@starfivetech.com, changhuang.liang@starfivetech.com,
-	rogerq@kernel.org, geert+renesas@glider.be,
-	keith.zhao@starfivetech.com, shengyang.chen@starfivetech.com,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 2/2] phy: starfive: Add mipi dphy tx support
-Message-ID: <202312010130.u41enWR4-lkp@intel.com>
-References: <20231117130421.79261-3-shengyang.chen@starfivetech.com>
+Received: from mail-qt1-x829.google.com (mail-qt1-x829.google.com [IPv6:2607:f8b0:4864:20::829])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E004D50
+	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 10:09:59 -0800 (PST)
+Received: by mail-qt1-x829.google.com with SMTP id d75a77b69052e-423dba21f1aso6683761cf.1
+        for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 10:09:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1701367799; x=1701972599; darn=vger.kernel.org;
+        h=in-reply-to:autocrypt:from:references:cc:to:subject:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4Ijehorf0viQFAzf3hyigeTxtOnqdpas+JSnwPR8Alw=;
+        b=LoTmiR27Si/n40XPxRXJ+DzAk1Plb6VesX5XOxO51czhnZ9SIaKR2RZZkeAgZCrCJ8
+         HN2tiiwBFP5X05U098idbrUS+JM7K1klSUe9Yyl56fzZc/HVDaGrPOB9iVNipiqPbYnv
+         vNcjDTb12eO5vNSDgMULd+cs2wRQJ5wxmy6JQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701367799; x=1701972599;
+        h=in-reply-to:autocrypt:from:references:cc:to:subject:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=4Ijehorf0viQFAzf3hyigeTxtOnqdpas+JSnwPR8Alw=;
+        b=H2eljfGtBk8o61a0+864BIEMqZPZy+1lQhwtWrTPEqqjmyGFNon7MoHHiP+oLKdaZy
+         iLDQj6140EtqBFPfBA8ospr/uzbZKJ7/nQ1sLCWdmgYiFly4Ok6Y6488xARPiEUQfYrC
+         SllKJ52oB+a7bnTr6IGo2WBH6e1rsJcLZunvxLvz53SDCztjo9kghfwT+YK+gWxO4ly+
+         GM2q2Ph7b+5nb6cQofdqPUd6zOqK94nyYidYUc3r5YmSLVjnZL1IqYLvbgCilnaxudGw
+         CUfKnL0/3ZT90r978gOpa/YJVqYghEXLoABx5ovr4fs14zbbVIfAs+J2fmVnxLfGvBxj
+         e3tA==
+X-Gm-Message-State: AOJu0YwnM+nuM1RUdN0hXMtEbdHtqbvZbttyJ1a3gcQp+J1IFSAcmcSA
+	oJX0RzIkrQqVDGrH1Jh2obyuuw==
+X-Google-Smtp-Source: AGHT+IEx0xJMN/MT7szKAsxzjqwWFAxGeTCpx6uy+U4fYIRGh6/Tvhakcbvi+TyHSAolCuKL1MjZxQ==
+X-Received: by 2002:a0c:e845:0:b0:67a:2745:3c8e with SMTP id l5-20020a0ce845000000b0067a27453c8emr20897740qvo.46.1701367798743;
+        Thu, 30 Nov 2023 10:09:58 -0800 (PST)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id g13-20020a0ce4cd000000b0067a3ad49979sm696722qvm.96.2023.11.30.10.09.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 Nov 2023 10:09:58 -0800 (PST)
+Message-ID: <946c67a4-67e3-4ffb-ab95-6905720e14f3@broadcom.com>
+Date: Thu, 30 Nov 2023 10:09:57 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231117130421.79261-3-shengyang.chen@starfivetech.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V2 2/2] ARM: dts: bcm2711: Add generic xHCI
+To: Stefan Wahren <wahrenst@gmx.net>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Mathias Nyman <mathias.nyman@intel.com>
+Cc: bcm-kernel-feedback-list@broadcom.com, Cyril Brulebois <kibi@debian.org>,
+ linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20231130154229.22334-1-wahrenst@gmx.net>
+ <20231130154229.22334-3-wahrenst@gmx.net>
+From: Florian Fainelli <florian.fainelli@broadcom.com>
+Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
+ 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
+In-Reply-To: <20231130154229.22334-3-wahrenst@gmx.net>
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+	boundary="0000000000004af376060b628f1c"
 
-Hi Shengyang,
+--0000000000004af376060b628f1c
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-kernel test robot noticed the following build warnings:
+On 11/30/23 07:42, Stefan Wahren wrote:
+> The BCM2711 SoC also has a generic xHCI. The USB port is currently
+> only usable on the Compute Module 4 (e.g. via IO board). Because
+> DWC2 and xHCI share the same PHY, we let the bootloader enable it
+> on demand.
+> 
+> Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
+> Tested-by: Florian Fainelli <florian.fainelli@broadcom.com>
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on linus/master v6.7-rc3 next-20231130]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Shengyang-Chen/dt-bindings-phy-Add-starfive-jh7110-dphy-tx/20231117-210751
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20231117130421.79261-3-shengyang.chen%40starfivetech.com
-patch subject: [PATCH v1 2/2] phy: starfive: Add mipi dphy tx support
-config: csky-randconfig-r111-20231118 (https://download.01.org/0day-ci/archive/20231201/202312010130.u41enWR4-lkp@intel.com/config)
-compiler: csky-linux-gcc (GCC) 13.2.0
-reproduce: (https://download.01.org/0day-ci/archive/20231201/202312010130.u41enWR4-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202312010130.u41enWR4-lkp@intel.com/
-
-sparse warnings: (new ones prefixed by >>)
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:189:40: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void *io_addr @@     got void [noderef] __iomem *topsys @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:189:40: sparse:     expected void *io_addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:189:40: sparse:     got void [noderef] __iomem *topsys
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:197:30: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void *io_addr @@     got void [noderef] __iomem *topsys @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:197:30: sparse:     expected void *io_addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:197:30: sparse:     got void [noderef] __iomem *topsys
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:222:30: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void *io_addr @@     got void [noderef] __iomem *topsys @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:222:30: sparse:     expected void *io_addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:222:30: sparse:     got void [noderef] __iomem *topsys
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:224:30: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void *io_addr @@     got void [noderef] __iomem *topsys @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:224:30: sparse:     expected void *io_addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:224:30: sparse:     got void [noderef] __iomem *topsys
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:226:30: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void *io_addr @@     got void [noderef] __iomem *topsys @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:226:30: sparse:     expected void *io_addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:226:30: sparse:     got void [noderef] __iomem *topsys
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:228:30: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void *io_addr @@     got void [noderef] __iomem *topsys @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:228:30: sparse:     expected void *io_addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:228:30: sparse:     got void [noderef] __iomem *topsys
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:230:30: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void *io_addr @@     got void [noderef] __iomem *topsys @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:230:30: sparse:     expected void *io_addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:230:30: sparse:     got void [noderef] __iomem *topsys
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:232:30: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void *io_addr @@     got void [noderef] __iomem *topsys @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:232:30: sparse:     expected void *io_addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:232:30: sparse:     got void [noderef] __iomem *topsys
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:234:30: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void *io_addr @@     got void [noderef] __iomem *topsys @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:234:30: sparse:     expected void *io_addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:234:30: sparse:     got void [noderef] __iomem *topsys
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:236:30: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void *io_addr @@     got void [noderef] __iomem *topsys @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:236:30: sparse:     expected void *io_addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:236:30: sparse:     got void [noderef] __iomem *topsys
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:238:30: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void *io_addr @@     got void [noderef] __iomem *topsys @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:238:30: sparse:     expected void *io_addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:238:30: sparse:     got void [noderef] __iomem *topsys
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:240:30: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void *io_addr @@     got void [noderef] __iomem *topsys @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:240:30: sparse:     expected void *io_addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:240:30: sparse:     got void [noderef] __iomem *topsys
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:250:46: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void *io_addr @@     got void [noderef] __iomem *topsys @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:250:46: sparse:     expected void *io_addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:250:46: sparse:     got void [noderef] __iomem *topsys
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:254:46: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void *io_addr @@     got void [noderef] __iomem *topsys @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:254:46: sparse:     expected void *io_addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:254:46: sparse:     got void [noderef] __iomem *topsys
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:260:46: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void *io_addr @@     got void [noderef] __iomem *topsys @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:260:46: sparse:     expected void *io_addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:260:46: sparse:     got void [noderef] __iomem *topsys
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:263:46: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void *io_addr @@     got void [noderef] __iomem *topsys @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:263:46: sparse:     expected void *io_addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:263:46: sparse:     got void [noderef] __iomem *topsys
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:266:46: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void *io_addr @@     got void [noderef] __iomem *topsys @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:266:46: sparse:     expected void *io_addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:266:46: sparse:     got void [noderef] __iomem *topsys
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:269:46: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void *io_addr @@     got void [noderef] __iomem *topsys @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:269:46: sparse:     expected void *io_addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:269:46: sparse:     got void [noderef] __iomem *topsys
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:272:46: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void *io_addr @@     got void [noderef] __iomem *topsys @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:272:46: sparse:     expected void *io_addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:272:46: sparse:     got void [noderef] __iomem *topsys
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:276:46: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void *io_addr @@     got void [noderef] __iomem *topsys @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:276:46: sparse:     expected void *io_addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:276:46: sparse:     got void [noderef] __iomem *topsys
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:279:46: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void *io_addr @@     got void [noderef] __iomem *topsys @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:279:46: sparse:     expected void *io_addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:279:46: sparse:     got void [noderef] __iomem *topsys
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:282:46: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void *io_addr @@     got void [noderef] __iomem *topsys @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:282:46: sparse:     expected void *io_addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:282:46: sparse:     got void [noderef] __iomem *topsys
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:286:46: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void *io_addr @@     got void [noderef] __iomem *topsys @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:286:46: sparse:     expected void *io_addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:286:46: sparse:     got void [noderef] __iomem *topsys
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:289:46: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void *io_addr @@     got void [noderef] __iomem *topsys @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:289:46: sparse:     expected void *io_addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:289:46: sparse:     got void [noderef] __iomem *topsys
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:292:46: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void *io_addr @@     got void [noderef] __iomem *topsys @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:292:46: sparse:     expected void *io_addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:292:46: sparse:     got void [noderef] __iomem *topsys
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:295:46: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void *io_addr @@     got void [noderef] __iomem *topsys @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:295:46: sparse:     expected void *io_addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:295:46: sparse:     got void [noderef] __iomem *topsys
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:298:46: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void *io_addr @@     got void [noderef] __iomem *topsys @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:298:46: sparse:     expected void *io_addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:298:46: sparse:     got void [noderef] __iomem *topsys
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:302:46: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void *io_addr @@     got void [noderef] __iomem *topsys @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:302:46: sparse:     expected void *io_addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:302:46: sparse:     got void [noderef] __iomem *topsys
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:306:46: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void *io_addr @@     got void [noderef] __iomem *topsys @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:306:46: sparse:     expected void *io_addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:306:46: sparse:     got void [noderef] __iomem *topsys
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:310:46: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void *io_addr @@     got void [noderef] __iomem *topsys @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:310:46: sparse:     expected void *io_addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:310:46: sparse:     got void [noderef] __iomem *topsys
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:314:46: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void *io_addr @@     got void [noderef] __iomem *topsys @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:314:46: sparse:     expected void *io_addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:314:46: sparse:     got void [noderef] __iomem *topsys
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:318:46: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void *io_addr @@     got void [noderef] __iomem *topsys @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:318:46: sparse:     expected void *io_addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:318:46: sparse:     got void [noderef] __iomem *topsys
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:322:46: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void *io_addr @@     got void [noderef] __iomem *topsys @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:322:46: sparse:     expected void *io_addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:322:46: sparse:     got void [noderef] __iomem *topsys
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:326:46: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void *io_addr @@     got void [noderef] __iomem *topsys @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:326:46: sparse:     expected void *io_addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:326:46: sparse:     got void [noderef] __iomem *topsys
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:330:46: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void *io_addr @@     got void [noderef] __iomem *topsys @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:330:46: sparse:     expected void *io_addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:330:46: sparse:     got void [noderef] __iomem *topsys
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:348:30: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void *io_addr @@     got void [noderef] __iomem *topsys @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:348:30: sparse:     expected void *io_addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:348:30: sparse:     got void [noderef] __iomem *topsys
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:350:30: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void *io_addr @@     got void [noderef] __iomem *topsys @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:350:30: sparse:     expected void *io_addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:350:30: sparse:     got void [noderef] __iomem *topsys
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:353:30: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void *io_addr @@     got void [noderef] __iomem *topsys @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:353:30: sparse:     expected void *io_addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:353:30: sparse:     got void [noderef] __iomem *topsys
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:172:15: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void *io_addr @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:172:15: sparse:     expected void const volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:172:15: sparse:     got void *io_addr
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     expected void const volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     expected void volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     expected void const volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     expected void volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     expected void const volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     expected void volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     expected void const volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     expected void volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     expected void const volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     expected void volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     expected void const volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     expected void volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     expected void const volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     expected void volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     expected void const volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     expected void volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     expected void const volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     expected void volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     expected void const volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     expected void volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     expected void const volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     expected void volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     expected void const volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     expected void volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     expected void const volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     expected void volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     expected void const volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     expected void volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     expected void const volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     expected void volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     expected void const volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     expected void volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     expected void const volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     expected void volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     expected void const volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     expected void volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     expected void const volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     expected void volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     expected void const volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     expected void volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     expected void const volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     expected void volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     expected void const volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     expected void volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     expected void const volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     expected void volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     expected void const volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     expected void volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     expected void const volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     expected void volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     expected void const volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     expected void volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     expected void const volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     expected void volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     expected void const volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     expected void volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     expected void const volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     expected void volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     expected void const volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     expected void volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     expected void const volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     expected void volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     expected void const volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     expected void volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     expected void const volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     expected void volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     expected void const volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     expected void volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     expected void const volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     expected void volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     expected void const volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     expected void volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     expected void const volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:181:15: sparse:     got void *
->> drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     expected void volatile [noderef] __iomem *addr
-   drivers/phy/starfive/phy-jh7110-dphy-tx.c:184:9: sparse:     got void *
-
-vim +189 drivers/phy/starfive/phy-jh7110-dphy-tx.c
-
-   167	
-   168	static inline u32 stf_dphy_get_reg(void *io_addr, u32 addr, u32 shift, u32 mask)
-   169	{
-   170		u32 tmp;
-   171	
- > 172		tmp = readl(io_addr);
-   173		tmp = (tmp & mask) >> shift;
-   174		return tmp;
-   175	}
-   176	
-   177	static inline void stf_dphy_set_reg(void *io_addr, u32 addr, u32 data, u32 shift, u32 mask)
-   178	{
-   179		u32 tmp;
-   180	
- > 181		tmp = readl(io_addr + addr);
-   182		tmp &= ~mask;
-   183		tmp |= (data << shift) & mask;
- > 184		writel(tmp, (io_addr + addr));
-   185	}
-   186	
-   187	static int is_pll_locked(struct stf_dphy *dphy)
-   188	{
- > 189		int tmp = stf_dphy_get_reg(dphy->topsys, STF_DPHY_APBIFSAIF_SYSCFG(8),
-   190					  STF_DPHY_RGS_CDTX_PLL_UNLOCK_SHIFT,
-   191					  STF_DPHY_RGS_CDTX_PLL_UNLOCK_MASK);
-   192		return !tmp;
-   193	}
-   194	
-   195	static void stf_dphy_hw_reset(struct stf_dphy *dphy, int assert)
-   196	{
-   197		stf_dphy_set_reg(dphy->topsys, STF_DPHY_APBIFSAIF_SYSCFG(100),
-   198				 !assert, STF_DPHY_RESETB_SHIFT, STF_DPHY_RESETB_MASK);
-   199	
-   200		if (!assert) {
-   201			/*the lock-in time of pll of M31 is 20us-50ms*/
-   202			while ((!is_pll_locked(dphy)) && msecs_to_jiffies(50))
-   203				;
-   204			dev_err(dphy->dev, "MIPI dphy-tx # PLL Locked\n");
-   205		}
-   206	}
-   207	
-   208	static int stf_dphy_configure(struct phy *phy, union phy_configure_opts *opts)
-   209	{
-   210		struct stf_dphy *dphy;
-   211		u32 bitrate;
-   212		unsigned long alignment;
-   213		int i;
-   214		const struct m31_dphy_config *p;
-   215		const u32 STF_DPHY_AON_POWER_READY_N_active = 0;
-   216		const struct stf_dphy_info *info;
-   217	
-   218		dphy = phy_get_drvdata(phy);
-   219		info = dphy->info;
-   220		bitrate = opts->mipi_dphy.hs_clk_rate;
-   221	
-   222		stf_dphy_set_reg(dphy->topsys, STF_DPHY_APBIFSAIF_SYSCFG(8), 0x10,
-   223				 STF_DPHY_RG_CDTX_L0N_HSTX_RES_SHIFT, STF_DPHY_RG_CDTX_L0N_HSTX_RES_MASK);
-   224		stf_dphy_set_reg(dphy->topsys, STF_DPHY_APBIFSAIF_SYSCFG(12), 0x10,
-   225				 STF_DPHY_RG_CDTX_L0N_HSTX_RES_SHIFT, STF_DPHY_RG_CDTX_L0N_HSTX_RES_MASK);
-   226		stf_dphy_set_reg(dphy->topsys, STF_DPHY_APBIFSAIF_SYSCFG(12), 0x10,
-   227				 STF_DPHY_RG_CDTX_L2N_HSTX_RES_SHIFT, STF_DPHY_RG_CDTX_L2N_HSTX_RES_MASK);
-   228		stf_dphy_set_reg(dphy->topsys, STF_DPHY_APBIFSAIF_SYSCFG(12), 0x10,
-   229				 STF_DPHY_RG_CDTX_L3N_HSTX_RES_SHIFT, STF_DPHY_RG_CDTX_L3N_HSTX_RES_MASK);
-   230		stf_dphy_set_reg(dphy->topsys, STF_DPHY_APBIFSAIF_SYSCFG(16), 0x10,
-   231				 STF_DPHY_RG_CDTX_L4N_HSTX_RES_SHIFT, STF_DPHY_RG_CDTX_L4N_HSTX_RES_MASK);
-   232		stf_dphy_set_reg(dphy->topsys, STF_DPHY_APBIFSAIF_SYSCFG(8), 0x10,
-   233				 STF_DPHY_RG_CDTX_L0P_HSTX_RES_SHIFT, STF_DPHY_RG_CDTX_L0P_HSTX_RES_MASK);
-   234		stf_dphy_set_reg(dphy->topsys, STF_DPHY_APBIFSAIF_SYSCFG(12), 0x10,
-   235				 STF_DPHY_RG_CDTX_L1P_HSTX_RES_SHIFT, STF_DPHY_RG_CDTX_L1P_HSTX_RES_MASK);
-   236		stf_dphy_set_reg(dphy->topsys, STF_DPHY_APBIFSAIF_SYSCFG(12), 0x10,
-   237				 STF_DPHY_RG_CDTX_L2P_HSTX_RES_SHIFT, STF_DPHY_RG_CDTX_L2P_HSTX_RES_MASK);
-   238		stf_dphy_set_reg(dphy->topsys, STF_DPHY_APBIFSAIF_SYSCFG(12), 0x10,
-   239				 STF_DPHY_RG_CDTX_L3P_HSTX_RES_SHIFT, STF_DPHY_RG_CDTX_L3P_HSTX_RES_MASK);
-   240		stf_dphy_set_reg(dphy->topsys, STF_DPHY_APBIFSAIF_SYSCFG(16), 0x10,
-   241				 STF_DPHY_RG_CDTX_L4P_HSTX_RES_SHIFT, STF_DPHY_RG_CDTX_L4P_HSTX_RES_MASK);
-   242	
-   243		alignment = STF_DPHY_BITRATE_ALIGN;
-   244		if (bitrate % alignment)
-   245			bitrate += alignment - (bitrate % alignment);
-   246	
-   247		p = m31_dphy_configs;
-   248		for (i = 0; i < ARRAY_SIZE(m31_dphy_configs); i++, p++) {
-   249			if (p->bitrate == bitrate) {
-   250				stf_dphy_set_reg(dphy->topsys, STF_DPHY_APBIFSAIF_SYSCFG(100),
-   251						 STF_DPHY_REFCLK_12M, STF_DPHY_REFCLK_IN_SEL_SHIFT,
-   252						 STF_DPHY_REFCLK_IN_SEL_MASK);
-   253	
-   254				stf_dphy_set_reg(dphy->topsys, STF_DPHY_APBIFSAIF_SYSCFG(0),
-   255						 STF_DPHY_AON_POWER_READY_N_active,
-   256						 STF_DPHY_AON_POWER_READY_N_SHIFT,
-   257						 STF_DPHY_AON_POWER_READY_N_MASK);
-   258	
-   259				/*Lane setting*/
-   260				stf_dphy_set_reg(dphy->topsys, STF_DPHY_APBIFSAIF_SYSCFG(0), info->maps[0],
-   261						 STF_DPHY_CFG_L0_SWAP_SEL_SHIFT,
-   262						 STF_DPHY_CFG_L0_SWAP_SEL_MASK);
-   263				stf_dphy_set_reg(dphy->topsys, STF_DPHY_APBIFSAIF_SYSCFG(0), info->maps[1],
-   264						 STF_DPHY_CFG_L1_SWAP_SEL_SHIFT,
-   265						 STF_DPHY_CFG_L1_SWAP_SEL_MASK);
-   266				stf_dphy_set_reg(dphy->topsys, STF_DPHY_APBIFSAIF_SYSCFG(0), info->maps[2],
-   267						 STF_DPHY_CFG_L2_SWAP_SEL_SHIFT,
-   268						 STF_DPHY_CFG_L2_SWAP_SEL_MASK);
-   269				stf_dphy_set_reg(dphy->topsys, STF_DPHY_APBIFSAIF_SYSCFG(0), info->maps[3],
-   270						 STF_DPHY_CFG_L3_SWAP_SEL_SHIFT,
-   271						 STF_DPHY_CFG_L3_SWAP_SEL_MASK);
-   272				stf_dphy_set_reg(dphy->topsys, STF_DPHY_APBIFSAIF_SYSCFG(0), info->maps[4],
-   273						 STF_DPHY_CFG_L4_SWAP_SEL_SHIFT,
-   274						 STF_DPHY_CFG_L4_SWAP_SEL_MASK);
-   275				/*PLL setting*/
-   276				stf_dphy_set_reg(dphy->topsys, STF_DPHY_APBIFSAIF_SYSCFG(28), 0x0,
-   277						 STF_DPHY_RG_CDTX_PLL_SSC_EN_SHIFT,
-   278						 STF_DPHY_RG_CDTX_PLL_SSC_EN_MASK);
-   279				stf_dphy_set_reg(dphy->topsys, STF_DPHY_APBIFSAIF_SYSCFG(24), 0x1,
-   280						 STF_DPHY_RG_CDTX_PLL_LDO_STB_X2_EN_SHIFT,
-   281						 STF_DPHY_RG_CDTX_PLL_LDO_STB_X2_EN_MASK);
-   282				stf_dphy_set_reg(dphy->topsys, STF_DPHY_APBIFSAIF_SYSCFG(24), 0x1,
-   283						 STF_DPHY_RG_CDTX_PLL_FM_EN_SHIFT,
-   284						 STF_DPHY_RG_CDTX_PLL_FM_EN_MASK);
-   285	
-   286				stf_dphy_set_reg(dphy->topsys, STF_DPHY_APBIFSAIF_SYSCFG(24),
-   287						 p->pll_prev_div, STF_DPHY_RG_CDTX_PLL_PRE_DIV_SHIFT,
-   288						 STF_DPHY_RG_CDTX_PLL_PRE_DIV_MASK);
-   289				stf_dphy_set_reg(dphy->topsys, STF_DPHY_APBIFSAIF_SYSCFG(24),
-   290						 p->pll_fbk_int, STF_DPHY_RG_CDTX_PLL_FBK_INT_SHIFT,
-   291						 STF_DPHY_RG_CDTX_PLL_FBK_INT_MASK);
-   292				stf_dphy_set_reg(dphy->topsys, STF_DPHY_APBIFSAIF_SYSCFG(20),
-   293						 p->pll_fbk_fra, STF_DPHY_RG_CDTX_PLL_FBK_FRA_SHIFT,
-   294						 STF_DPHY_RG_CDTX_PLL_FBK_FRA_MASK);
-   295				stf_dphy_set_reg(dphy->topsys, STF_DPHY_APBIFSAIF_SYSCFG(40),
-   296						 p->extd_cycle_sel, STF_DPHY_RG_EXTD_CYCLE_SEL_SHIFT,
-   297						 STF_DPHY_RG_EXTD_CYCLE_SEL_MASK);
-   298				stf_dphy_set_reg(dphy->topsys, STF_DPHY_APBIFSAIF_SYSCFG(36),
-   299						 p->dlane_hs_pre_time,
-   300						 STF_DPHY_RG_DLANE_HS_PRE_TIME_SHIFT,
-   301						 STF_DPHY_RG_DLANE_HS_PRE_TIME_MASK);
-   302				stf_dphy_set_reg(dphy->topsys, STF_DPHY_APBIFSAIF_SYSCFG(36),
-   303						 p->dlane_hs_pre_time,
-   304						 STF_DPHY_RG_DLANE_HS_PRE_TIME_SHIFT,
-   305						 STF_DPHY_RG_DLANE_HS_PRE_TIME_MASK);
-   306				stf_dphy_set_reg(dphy->topsys, STF_DPHY_APBIFSAIF_SYSCFG(36),
-   307						 p->dlane_hs_zero_time,
-   308						 STF_DPHY_RG_DLANE_HS_ZERO_TIME_SHIFT,
-   309						 STF_DPHY_RG_DLANE_HS_ZERO_TIME_MASK);
-   310				stf_dphy_set_reg(dphy->topsys, STF_DPHY_APBIFSAIF_SYSCFG(36),
-   311						 p->dlane_hs_trail_time,
-   312						 STF_DPHY_RG_DLANE_HS_TRAIL_TIME_SHIFT,
-   313						 STF_DPHY_RG_DLANE_HS_TRAIL_TIME_MASK);
-   314				stf_dphy_set_reg(dphy->topsys, STF_DPHY_APBIFSAIF_SYSCFG(32),
-   315						 p->clane_hs_pre_time,
-   316						 STF_DPHY_RG_CLANE_HS_PRE_TIME_SHIFT,
-   317						 STF_DPHY_RG_CLANE_HS_PRE_TIME_MASK);
-   318				stf_dphy_set_reg(dphy->topsys, STF_DPHY_APBIFSAIF_SYSCFG(36),
-   319						 p->clane_hs_zero_time,
-   320						 STF_DPHY_RG_CLANE_HS_ZERO_TIME_SHIFT,
-   321						 STF_DPHY_RG_CLANE_HS_ZERO_TIME_MASK);
-   322				stf_dphy_set_reg(dphy->topsys, STF_DPHY_APBIFSAIF_SYSCFG(32),
-   323						 p->clane_hs_trail_time,
-   324						 STF_DPHY_RG_CLANE_HS_TRAIL_TIME_SHIFT,
-   325						 STF_DPHY_RG_CLANE_HS_TRAIL_TIME_MASK);
-   326				stf_dphy_set_reg(dphy->topsys, STF_DPHY_APBIFSAIF_SYSCFG(32),
-   327						 p->clane_hs_clk_pre_time,
-   328						 STF_DPHY_RG_CLANE_HS_CLK_PRE_TIME_SHIFT,
-   329						 STF_DPHY_RG_CLANE_HS_CLK_PRE_TIME_MASK);
-   330				stf_dphy_set_reg(dphy->topsys, STF_DPHY_APBIFSAIF_SYSCFG(32),
-   331						 p->clane_hs_clk_post_time,
-   332						 STF_DPHY_RG_CLANE_HS_CLK_POST_TIME_SHIFT,
-   333						 STF_DPHY_RG_CLANE_HS_CLK_POST_TIME_MASK);
-   334	
-   335				break;
-   336			}
-   337		}
-   338	
-   339		return 0;
-   340	}
-   341	
-   342	static int stf_dphy_init(struct phy *phy)
-   343	{
-   344		struct stf_dphy *dphy = phy_get_drvdata(phy);
-   345		int ret;
-   346	
-   347		stf_dphy_hw_reset(dphy, 0);
- > 348		stf_dphy_set_reg(dphy->topsys, STF_DPHY_APBIFSAIF_SYSCFG(48), 0,
-   349				 STF_DPHY_SCFG_PPI_C_READY_SEL_SHIFT, STF_DPHY_SCFG_PPI_C_READY_SEL_MASK);
- > 350		stf_dphy_set_reg(dphy->topsys, STF_DPHY_APBIFSAIF_SYSCFG(48), 0,
-   351				 STF_DPHY_SCFG_DSI_TXREADY_ESC_SEL_SHIFT,
-   352				 STF_DPHY_SCFG_DSI_TXREADY_ESC_SEL_MASK);
- > 353		stf_dphy_set_reg(dphy->topsys, STF_DPHY_APBIFSAIF_SYSCFG(44), 0x30,
-   354				 STF_DPHY_SCFG_C_HS_PRE_ZERO_TIME_SHIFT,
-   355				 STF_DPHY_SCFG_C_HS_PRE_ZERO_TIME_MASK);
-   356	
-   357		ret = clk_prepare_enable(dphy->txesc_clk);
-   358		if (ret) {
-   359			dev_err(dphy->dev, "Failed to prepare/enable txesc_clk\n");
-   360			return ret;
-   361		}
-   362	
-   363		ret = reset_control_deassert(dphy->sys_rst);
-   364		if (ret) {
-   365			dev_err(dphy->dev, "Failed to deassert sys_rst\n");
-   366			return ret;
-   367		}
-   368	
-   369		ret = reset_control_deassert(dphy->txbytehs_rst);
-   370		if (ret < 0) {
-   371			dev_err(dphy->dev, "Failed to deassert txbytehs_rst\n");
-   372			return ret;
-   373		}
-   374	
-   375		return 0;
-   376	}
-   377	
-
+And this gives a consistent + 4MB/sec throughput compared to dwc2, so 
+this looks great!
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Florian
+
+
+--0000000000004af376060b628f1c
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
+
+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
+riBJ/K1AFUjRAjFhGV64l++td7dkmnq/X8ET75ti+w1s4FRpFqkD2m7pg5NxdsZphYIXAgMBAAGj
+QjBAMA4GA1UdDwEB/wQEAwIBBjAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBSP8Et/qC5FJK5N
+UPpjmove4t0bvDANBgkqhkiG9w0BAQsFAAOCAQEAS0DbwFCq/sgM7/eWVEVJu5YACUGssxOGhigH
+M8pr5nS5ugAtrqQK0/Xx8Q+Kv3NnSoPHRHt44K9ubG8DKY4zOUXDjuS5V2yq/BKW7FPGLeQkbLmU
+Y/vcU2hnVj6DuM81IcPJaP7O2sJTqsyQiunwXUaMld16WCgaLx3ezQA3QY/tRG3XUyiXfvNnBB4V
+14qWtNPeTCekTBtzc3b0F5nCH3oO4y0IrQocLP88q1UOD5F+NuvDV0m+4S4tfGCLw0FREyOdzvcy
+a5QBqJnnLDMfOjsl0oZAzjsshnjJYS8Uuu7bVW/fhO4FCU29KNhyztNiUGUe65KXgzHZs7XKR1g/
+XzCCBVgwggRAoAMCAQICDBP8P9hKRVySg3Qv5DANBgkqhkiG9w0BAQsFADBbMQswCQYDVQQGEwJC
+RTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMg
+UGVyc29uYWxTaWduIDIgQ0EgMjAyMDAeFw0yMjA5MTAxMjE4MTFaFw0yNTA5MTAxMjE4MTFaMIGW
+MQswCQYDVQQGEwJJTjESMBAGA1UECBMJS2FybmF0YWthMRIwEAYDVQQHEwlCYW5nYWxvcmUxFjAU
+BgNVBAoTDUJyb2FkY29tIEluYy4xGTAXBgNVBAMTEEZsb3JpYW4gRmFpbmVsbGkxLDAqBgkqhkiG
+9w0BCQEWHWZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tMIIBIjANBgkqhkiG9w0BAQEFAAOC
+AQ8AMIIBCgKCAQEA+oi3jMmHltY4LMUy8Up5+1zjd1iSgUBXhwCJLj1GJQF+GwP8InemBbk5rjlC
+UwbQDeIlOfb8xGqHoQFGSW8p9V1XUw+cthISLkycex0AJ09ufePshLZygRLREU0H4ecNPMejxCte
+KdtB4COST4uhBkUCo9BSy1gkl8DJ8j/BQ1KNUx6oYe0CntRag+EnHv9TM9BeXBBLfmMRnWNhvOSk
+nSmRX0J3d9/G2A3FIC6WY2XnLW7eAZCQPa1Tz3n2B5BGOxwqhwKLGLNu2SRCPHwOdD6e0drURF7/
+Vax85/EqkVnFNlfxtZhS0ugx5gn2pta7bTdBm1IG4TX+A3B1G57rVwIDAQABo4IB3jCCAdowDgYD
+VR0PAQH/BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3Vy
+ZS5nbG9iYWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEG
+CCsGAQUFBzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWdu
+MmNhMjAyMDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93
+d3cuZ2xvYmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6
+hjhodHRwOi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNy
+bDAoBgNVHREEITAfgR1mbG9yaWFuLmZhaW5lbGxpQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggr
+BgEFBQcDBDAfBgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUUwwfJ6/F
+KL0fRdVROal/Lp4lAF0wDQYJKoZIhvcNAQELBQADggEBAKBgfteDc1mChZjKBY4xAplC6uXGyBrZ
+kNGap1mHJ+JngGzZCz+dDiHRQKGpXLxkHX0BvEDZLW6LGOJ83ImrW38YMOo3ZYnCYNHA9qDOakiw
+2s1RH00JOkO5SkYdwCHj4DB9B7KEnLatJtD8MBorvt+QxTuSh4ze96Jz3kEIoHMvwGFkgObWblsc
+3/YcLBmCgaWpZ3Ksev1vJPr5n8riG3/N4on8gO5qinmmr9Y7vGeuf5dmZrYMbnb+yCBalkUmZQwY
+NxADYvcRBA0ySL6sZpj8BIIhWiXiuusuBmt2Mak2eEv0xDbovE6Z6hYyl/ZnRadbgK/ClgbY3w+O
+AfUXEZ0xggJtMIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52
+LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwT
+/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEICUqPh3rtq6/G1tS
+dOWcChUoha812ukit+eW3z+02fzMMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
+AQkFMQ8XDTIzMTEzMDE4MDk1OVowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
+AWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEH
+MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQAX5nASrh8fY0TbJq424j29WtVD1ZH7zs7V
+JI/taYY9rEUpQ0ZuqMeP28tuKGTJxHV9nMRG47DZTSZUXHcBKYyf7jSeBoCuHBK4OTjylAsM44w6
+9262TSYjqpAVMShJYZh6cPMqXojBxtqtFcnHkt+9CKX4eEperPiD/+hc5l180e5JLLKg9PCS0PAf
+iWvy6IAUfJDiVsI6y2lVdoq2RTCT4kc12/gQc4ovkujIpSXd4eNlllDdwQVVbQZ574EvBbjkwG1e
+aqDrMZzx6E6fOjimxalx1/Vwduu8q80cnSVkQ6uKdnTFZNZDQfJgk2m8MEki2Knb3t6GcZRSCZoZ
+Pbpu
+--0000000000004af376060b628f1c--
 
