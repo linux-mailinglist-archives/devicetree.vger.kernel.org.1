@@ -1,89 +1,122 @@
-Return-Path: <devicetree+bounces-20507-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20509-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 094647FF8DF
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 18:56:16 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 852667FF8ED
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 18:58:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A5BEFB20D87
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 17:56:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E68F1B20DBB
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 17:58:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C028B584E5;
-	Thu, 30 Nov 2023 17:56:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pWL/8XCQ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E446584EF;
+	Thu, 30 Nov 2023 17:58:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3ECD58103
-	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 17:56:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39605C433C9;
-	Thu, 30 Nov 2023 17:56:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701366969;
-	bh=gNNI6Vpn1UZq1RAioCl0smWD/0FRBB3YSPywtR360Dc=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=pWL/8XCQPjjyv2Z+YaeYOEMIAPX++Jzi3PJt2x27hS13WKN4IDrL66P2BFg2eNWjt
-	 L7VrK6rKGGfQ2JTN84Hum0YUGEVSEVj5Nx1kxjp4QdezxfrQAEQTvluJxCooI/7wf6
-	 Wq0eWusxG5BjV3rj4/3TmkrcMIah8RsPFZ4XS7fUyE2YAz7JxJoI03aXbK3WFjEKjQ
-	 CRhqBY9T450UtHMMkJa+MBl5umX6VPOGV0BRZEtS75G4UGY+dzAeIvkbPaO/PQxe7u
-	 dpC4jDuDl8e2oPXHn4fA4oX3z/hJ8626tlnl8l/BFDYxTlz2U+JYHDQiruREFxYxbP
-	 Wc9OFPs/03W2g==
-Received: from johan by xi.lan with local (Exim 4.96.2)
-	(envelope-from <johan+linaro@kernel.org>)
-	id 1r8lHG-0003iC-34;
-	Thu, 30 Nov 2023 18:56:42 +0100
-From: Johan Hovold <johan+linaro@kernel.org>
-To: Wei Xu <xuwei5@hisilicon.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Johan Hovold <johan+linaro@kernel.org>
-Subject: [PATCH 2/2] arm64: dts: hisilicon: hikey970-pmic: clean up SPMI node
-Date: Thu, 30 Nov 2023 18:56:35 +0100
-Message-ID: <20231130175635.14251-3-johan+linaro@kernel.org>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20231130175635.14251-1-johan+linaro@kernel.org>
-References: <20231130175635.14251-1-johan+linaro@kernel.org>
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B232103;
+	Thu, 30 Nov 2023 09:58:34 -0800 (PST)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+	by fd01.gateway.ufhost.com (Postfix) with ESMTP id 59AD38008;
+	Fri,  1 Dec 2023 01:58:26 +0800 (CST)
+Received: from EXMBX063.cuchost.com (172.16.7.63) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 1 Dec
+ 2023 01:58:26 +0800
+Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX063.cuchost.com
+ (172.16.6.63) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 1 Dec
+ 2023 01:58:25 +0800
+Received: from EXMBX061.cuchost.com ([fe80::413f:35c8:bf4f:599a]) by
+ EXMBX061.cuchost.com ([fe80::413f:35c8:bf4f:599a%14]) with mapi id
+ 15.00.1497.044; Fri, 1 Dec 2023 01:58:25 +0800
+From: Leyfoon Tan <leyfoon.tan@starfivetech.com>
+To: JeeHeng Sia <jeeheng.sia@starfivetech.com>, "kernel@esmil.dk"
+	<kernel@esmil.dk>, "robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"krzk@kernel.org" <krzk@kernel.org>, "conor+dt@kernel.org"
+	<conor+dt@kernel.org>, "paul.walmsley@sifive.com" <paul.walmsley@sifive.com>,
+	"palmer@dabbelt.com" <palmer@dabbelt.com>, "aou@eecs.berkeley.edu"
+	<aou@eecs.berkeley.edu>, "daniel.lezcano@linaro.org"
+	<daniel.lezcano@linaro.org>, "tglx@linutronix.de" <tglx@linutronix.de>,
+	"conor@kernel.org" <conor@kernel.org>, "anup@brainfault.org"
+	<anup@brainfault.org>, "gregkh@linuxfoundation.org"
+	<gregkh@linuxfoundation.org>, "jirislaby@kernel.org" <jirislaby@kernel.org>,
+	"michal.simek@amd.com" <michal.simek@amd.com>, Michael Zhu
+	<michael.zhu@starfivetech.com>, "drew@beagleboard.org" <drew@beagleboard.org>
+CC: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH v2 6/6] riscv: dts: starfive: Add initial StarFive JH8100
+ device tree
+Thread-Topic: [PATCH v2 6/6] riscv: dts: starfive: Add initial StarFive JH8100
+ device tree
+Thread-Index: AQHaIomdVH7y9/ivgUi9tWc7QoZ0WLCTJ8TA
+Date: Thu, 30 Nov 2023 17:58:25 +0000
+Message-ID: <21e2d194efee4bb6b870735e6fe2d65c@EXMBX061.cuchost.com>
+References: <20231129060043.368874-1-jeeheng.sia@starfivetech.com>
+ <20231129060043.368874-7-jeeheng.sia@starfivetech.com>
+In-Reply-To: <20231129060043.368874-7-jeeheng.sia@starfivetech.com>
+Accept-Language: en-US, zh-CN
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-ms-exchange-transport-fromentityheader: Hosted
+x-yovoleruleagent: yovoleflag
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 
-Clean up the SPMI node by dropping the redundant status property and
-moving the 'reg' property after 'compatible' for consistency.
 
-Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+
+-----Original Message-----
+From: JeeHeng Sia <jeeheng.sia@starfivetech.com>=20
+Sent: Wednesday, November 29, 2023 2:01 PM
+To: kernel@esmil.dk; robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org;=
+ krzk@kernel.org; conor+dt@kernel.org; paul.walmsley@sifive.com; palmer@dab=
+belt.com; aou@eecs.berkeley.edu; daniel.lezcano@linaro.org; tglx@linutronix=
+.de; conor@kernel.org; anup@brainfault.org; gregkh@linuxfoundation.org; jir=
+islaby@kernel.org; michal.simek@amd.com; Michael Zhu <michael.zhu@starfivet=
+ech.com>; drew@beagleboard.org
+Cc: devicetree@vger.kernel.org; linux-riscv@lists.infradead.org; linux-kern=
+el@vger.kernel.org; JeeHeng Sia <jeeheng.sia@starfivetech.com>; Leyfoon Tan=
+ <leyfoon.tan@starfivetech.com>
+Subject: [PATCH v2 6/6] riscv: dts: starfive: Add initial StarFive JH8100 d=
+evice tree
+
+Add initial device tree for the StarFive JH8100 RISC-V SoC.
+
+Signed-off-by: Sia Jee Heng <jeeheng.sia@starfivetech.com>
+Reviewed-by: Ley Foon Tan <leyfoon.tan@starfivetech.com>
 ---
- arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ arch/riscv/boot/dts/starfive/Makefile       |   1 +
+ arch/riscv/boot/dts/starfive/jh8100-evb.dts |  28 ++
+ arch/riscv/boot/dts/starfive/jh8100.dtsi    | 378 ++++++++++++++++++++
+ 3 files changed, 407 insertions(+)
+ create mode 100644 arch/riscv/boot/dts/starfive/jh8100-evb.dts
+ create mode 100644 arch/riscv/boot/dts/starfive/jh8100.dtsi
 
-diff --git a/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi b/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
-index c06e011a6c3f..299c4ab630e8 100644
---- a/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
-+++ b/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
-@@ -10,10 +10,9 @@
- / {
- 	spmi: spmi@fff24000 {
- 		compatible = "hisilicon,kirin970-spmi-controller";
-+		reg = <0x0 0xfff24000 0x0 0x1000>;
- 		#address-cells = <2>;
- 		#size-cells = <0>;
--		status = "okay";
--		reg = <0x0 0xfff24000 0x0 0x1000>;
- 		hisilicon,spmi-channel = <2>;
- 
- 		pmic: pmic@0 {
--- 
-2.41.0
+diff --git a/arch/riscv/boot/dts/starfive/Makefile b/arch/riscv/boot/dts/st=
+arfive/Makefile
+index 0141504c0f5c..fbb0dc619102 100644
+--- a/arch/riscv/boot/dts/starfive/Makefile
++++ b/arch/riscv/boot/dts/starfive/Makefile
+@@ -10,3 +10,4 @@ dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7100-starfive-visionfi=
+ve-v1.dtb
+=20
+ dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7110-starfive-visionfive-2-v1.2a.dtb
+ dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7110-starfive-visionfive-2-v1.3b.dtb
++dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh8100-evb.dtb
+Add empty line before this.
 
+[....]
+
+Regards
+Ley Foon
 
