@@ -1,126 +1,142 @@
-Return-Path: <devicetree+bounces-20283-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20284-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F3237FEB23
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 09:49:03 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C70DE7FEB2C
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 09:51:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3F07D1C20D82
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 08:49:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 58895B20FCA
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 08:51:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D30A3218A;
-	Thu, 30 Nov 2023 08:48:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A12D1F61A;
+	Thu, 30 Nov 2023 08:51:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SBOME/JV"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Hn10JkKB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-xa2d.google.com (mail-vk1-xa2d.google.com [IPv6:2607:f8b0:4864:20::a2d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 954D2B9;
-	Thu, 30 Nov 2023 00:48:53 -0800 (PST)
-Received: by mail-vk1-xa2d.google.com with SMTP id 71dfb90a1353d-4b28dc2797dso208165e0c.0;
-        Thu, 30 Nov 2023 00:48:53 -0800 (PST)
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DFF8D5C
+	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 00:51:03 -0800 (PST)
+Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-a00a9c6f1e9so89524066b.3
+        for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 00:51:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701334132; x=1701938932; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DF7XvGuHSm4q9cnkGKHl6GS7PieI8sIUSAiGVDbmtsI=;
-        b=SBOME/JVUNT3jAOV01LT0KvdIWnnsS+BvX9s+y0Xf57m+yJA/SHHuX39V5iowCONpl
-         vJvbZyHNikj6+E82SR5B53iGf4l2LojCDFiyUH99vB6DAbgkWKDVc9Rv3YbD7pYHY66w
-         koR5aCcTpemvD+8jCNdOLbuEBHYupm1mc8cwre4kyj1ksVZvu9sBn/7g7ILCYzzxrSdk
-         GbkiIzTK8O/8Ee0kPXdCTJEj7IHSnaD0+TOMkjwbt2UDcFWHcoTfuW1V7W0VzDYMv8lK
-         pVpVv3kHDldimcchjhZ4A35I9X9T3Nb56bRsi1KhyBV72a6D+hrYYVr2ybA1LjVcWJHQ
-         +UFw==
+        d=linaro.org; s=google; t=1701334262; x=1701939062; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=bfirJcDdbvd/fROPuvQ/hHvBL7U147hTFUn+CLwD0sY=;
+        b=Hn10JkKBrZfBSgKXB5X4reAi1KQfBXQhmrMeakDhpkqzKVoB733vzN5lN3sSAD0iku
+         1Cya6/SXZ9jLqzWE8/LvjLmV+25mpKeB6HQmSrCgoDUPucgZ9SSP0a8HzFfZIiAiwDUm
+         vDbIo+hXXIaBKp3TGN+6xu7zTCffCrFocioPuIYppUeslxFt1RfcL6RZHoqh4HY4jcKI
+         Tsyw1t20THS3RJhUVXgusoGr2k0z6FdmCxMt18KWZxHExFz0IXY6x3FbGm6hFxtmXBxn
+         0d3Ts6K1zSIoJYhiQ5B3Edy5a81s8SJHfmJ/De9mjtuQhwT9JIg0UzmhI6eXqzy8ksp8
+         D30A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701334132; x=1701938932;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=DF7XvGuHSm4q9cnkGKHl6GS7PieI8sIUSAiGVDbmtsI=;
-        b=HsLxultQJFs2oewRspJ6UeNG5xGHH6GVgRviFRDtv7aGrk8OFlyUDn6hRU6b1lSsXL
-         xCsOb+bCj42qISU5U07Pxl12dLypjXrKXKAMQ9Qqtl6jer21yDASIX6swDHpMNGHgQyu
-         O7SEud5J1FS+him/QvbPupa5gqM8cchnCqIX8Vz3fqXUD1D8gFg4JzJ6G4SA8Q1RVt0U
-         ctNaqmTmsxF3ZV/KoxQGhLagZ61QA9MzO0vojH8y/uihi3AqEIKQyT0iWZppV5QnbEDx
-         2jH+aWsMjXR6I+jZxeWLK5FoMy5bQRlyO/TOTROWxoeSVfS8MH7PKhDPwr+8XJ2kZUup
-         VO6g==
-X-Gm-Message-State: AOJu0Yz+yT3riG3+zh5hYm+Uk/knzbL3xlCTm2BwLlUEFsFyuWqJilHK
-	RXoxocJobLB+RvfEopbNocEwFZ8HgNZCyiE9IV0=
-X-Google-Smtp-Source: AGHT+IENbhoxvWJXvzBWw3lpE7WMLLrRbOa+oWZ/Vdtiq/Pa8Et2KtxYJnJpx4cNfg1W2UKBvV/KXrZi8TIXFysK/FA=
-X-Received: by 2002:ac5:c245:0:b0:4b2:83ab:7ebd with SMTP id
- n5-20020ac5c245000000b004b283ab7ebdmr4968715vkk.11.1701334132657; Thu, 30 Nov
- 2023 00:48:52 -0800 (PST)
+        d=1e100.net; s=20230601; t=1701334262; x=1701939062;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=bfirJcDdbvd/fROPuvQ/hHvBL7U147hTFUn+CLwD0sY=;
+        b=ikHNY6LfhHmtLiMnAB1UJWJ1PDuNQ3YJ/AzKgJWYeaeIPtKLhe5RUQJAXyHnNsylbh
+         F8McQEnxu6Bh3PsSy4jBZPzcC6TdSbmyUIyXFSWx4IHOcuJ18gQApAWMBtylU2zUFQTb
+         FAztbFNPNQH6WXVJPFCmWaV1llwTSCn0I2PxkpGLY2wbAlHafabAqylOFJKpGYQd6ksq
+         mtsui9AZkP276Tl0FBcJlGdbSsrtFkRLx4nS2xI1BSj9PgQbEq9g1d0VVWPjFslKfE+9
+         StdIzZPlBweMPvzKVOgYLE/VT8uuX/GXyVNsWlma4nwCEmNqNj6lVJlz6BhGacbxKt5E
+         isag==
+X-Gm-Message-State: AOJu0YzQLVKt3qE2apFYDd+G1KIbj1rYaQR7UjYZYF4uHwDjQNlJ2PGu
+	WXX/IKpDIOV8j2U25J8hNg+LSg==
+X-Google-Smtp-Source: AGHT+IH418nmy5rSk2mr6TF1pMJ9GgCUjSZRNpfe61bmlqehpOWyfPKC2N9NSQcSEj8SVzKNUhBi5A==
+X-Received: by 2002:a17:907:1c82:b0:9b2:cf77:a105 with SMTP id nb2-20020a1709071c8200b009b2cf77a105mr18280093ejc.15.1701334261879;
+        Thu, 30 Nov 2023 00:51:01 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.223.109])
+        by smtp.gmail.com with ESMTPSA id v20-20020a170906489400b009adc77fe164sm437639ejq.66.2023.11.30.00.51.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 Nov 2023 00:51:01 -0800 (PST)
+Message-ID: <66d74137-1537-448f-b742-a3c25db6f4dc@linaro.org>
+Date: Thu, 30 Nov 2023 09:50:59 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231017104638.201260-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <CA+V-a8t3sGn83vpgjECf5dw=bbz2yPXpnn+v2Dx2q3yJRPsKgA@mail.gmail.com> <CAMuHMdXMRj4quvO87LbLHCCLr14EK2AXsvr_muTDrBrA8+BMjg@mail.gmail.com>
-In-Reply-To: <CAMuHMdXMRj4quvO87LbLHCCLr14EK2AXsvr_muTDrBrA8+BMjg@mail.gmail.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Thu, 30 Nov 2023 08:48:26 +0000
-Message-ID: <CA+V-a8tjy2Ttp_TbZT63PC_UY12J8FLcziCtef-D-jgw_CmKaA@mail.gmail.com>
-Subject: Re: [PATCH v2 0/3] Add missing port pins for RZ/Five SoC
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Magnus Damm <magnus.damm@gmail.com>, Linus Walleij <linus.walleij@linaro.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] dt-bindings: interconnect: Add Qualcomm SM6115 NoC
+Content-Language: en-US
+To: Konrad Dybcio <konrad.dybcio@linaro.org>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>, Georgi Djakov <djakov@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ Konrad Dybcio <konradybcio@kernel.org>
+References: <20231125-topic-6115icc-v3-0-bd8907b8cfd7@linaro.org>
+ <20231125-topic-6115icc-v3-1-bd8907b8cfd7@linaro.org>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231125-topic-6115icc-v3-1-bd8907b8cfd7@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Geert,
+On 29/11/2023 15:41, Konrad Dybcio wrote:
+> Add bindings for Qualcomm SM6115 Network-On-Chip interconnect.
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+>  .../bindings/interconnect/qcom,sm6115.yaml         | 152 +++++++++++++++++++++
+>  include/dt-bindings/interconnect/qcom,sm6115.h     | 111 +++++++++++++++
+>  2 files changed, 263 insertions(+)
 
-On Wed, Nov 29, 2023 at 3:32=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68=
-k.org> wrote:
->
-> Hi Prabhakar,
->
-> On Wed, Nov 29, 2023 at 3:44=E2=80=AFPM Lad, Prabhakar
-> <prabhakar.csengg@gmail.com> wrote:
-> > On Tue, Oct 17, 2023 at 11:47=E2=80=AFAM Prabhakar <prabhakar.csengg@gm=
-ail.com> wrote:
-> > > This patch series intends to incorporate the absent port pins P19 to =
-P28,
-> > > which are exclusively available on the RZ/Five SoC.
-> > >
-> > > Cheers,
-> > > Prabhakar
-> > >
-> > > RFC -> v2:
-> > > * Fixed review comments pointed by Geert & Biju
-> > >
-> > > RFC: https://lore.kernel.org/lkml/20230630120433.49529-3-prabhakar.ma=
-hadev-lad.rj@bp.renesas.com/T/
-> > >
-> > > Lad Prabhakar (3):
-> > >   pinctrl: renesas: rzg2l: Include pinmap in RZG2L_GPIO_PORT_PACK()
-> > >     macro
-> > >   pinctrl: renesas: pinctrl-rzg2l: Add the missing port pins P19 to P=
-28
-> > >   riscv: dts: renesas: r9a07g043f: Update gpio-ranges property
-> > >
-> > >  arch/riscv/boot/dts/renesas/r9a07g043f.dtsi |   4 +
-> > >  drivers/pinctrl/renesas/pinctrl-rzg2l.c     | 263 ++++++++++++++++++=
---
-> > >  2 files changed, 242 insertions(+), 25 deletions(-)
-> > >
-> > Gentle ping.
->
-> As the kernel test robot reported a build issue for PATCH 1/3, I had
-> removed this series from my review queue.
-Strange patchwork status didnt mention it as "rejected".
 
-> Do you still want me to review v2, or do you want to send a v3 first?
->
-No worries, I'll send a v3 and we can go from there.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Cheers,
-Prabhakar
+Best regards,
+Krzysztof
+
 
