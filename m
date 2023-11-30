@@ -1,144 +1,205 @@
-Return-Path: <devicetree+bounces-20537-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20538-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AE8C7FFEC1
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 23:52:59 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E0157FFF2B
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 00:03:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CC5711C20B56
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 22:52:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A3F0BB20E57
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 23:03:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 170285EE93;
-	Thu, 30 Nov 2023 22:52:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D72961698;
+	Thu, 30 Nov 2023 23:03:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DuHPXXVG"
+	dkim=pass (1024-bit key) header.d=raptorengineering.com header.i=@raptorengineering.com header.b="dzBfxqOp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33A19139
-	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 14:52:55 -0800 (PST)
-Received: by mail-pl1-x62e.google.com with SMTP id d9443c01a7336-1d03f90b0cbso1589685ad.1
-        for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 14:52:55 -0800 (PST)
+Received: from raptorengineering.com (mail.raptorengineering.com [23.155.224.40])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47F49194;
+	Thu, 30 Nov 2023 15:03:04 -0800 (PST)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.rptsys.com (Postfix) with ESMTP id 539748285642;
+	Thu, 30 Nov 2023 17:03:03 -0600 (CST)
+Received: from mail.rptsys.com ([127.0.0.1])
+	by localhost (vali.starlink.edu [127.0.0.1]) (amavisd-new, port 10032)
+	with ESMTP id 0FjJotF92GqE; Thu, 30 Nov 2023 17:03:01 -0600 (CST)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.rptsys.com (Postfix) with ESMTP id C66B582856D3;
+	Thu, 30 Nov 2023 17:03:01 -0600 (CST)
+DKIM-Filter: OpenDKIM Filter v2.10.3 mail.rptsys.com C66B582856D3
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701384774; x=1701989574; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=MUKRgd1eTO2JF+wEJYG4KlDqucWkq8lzdJJKjwBewvM=;
-        b=DuHPXXVGuCVHk6qGow/oGQIzScj1CCnF+K2lFp84yarTnw+MBrF80yVjEepKvSahf7
-         peoxYmhFzSC7M65pGkoF2PvOipq8DrVLjDn0rYhzlufS1RjvSHuWmj6xrOgOYwRKZ1hu
-         zuwLapUYTR/1mBpUd0/KsnqrTAVBXQh3qWYC4v+4FdQaA2m4sW88MR9NCnwiI71PH4lg
-         YXHPW8k1jzZcr4mWY4w1jOSNVaZpYQZzXVu/Q/GjLPWWbPHLV+BCOblHUNb8WoBLI2Kw
-         FgQFVoQc5XzNeN8ZWcG9gixNckn4M8EH/mz0pVSRIMGIkBlrQAWjMzCWj3Stmy1Qn8QB
-         qO0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701384774; x=1701989574;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=MUKRgd1eTO2JF+wEJYG4KlDqucWkq8lzdJJKjwBewvM=;
-        b=Ehho11133DmCnfENmKNZal2b+/XH95JqIFvm8yXmaDLv8u9MluK8r0/5xI7H34qGif
-         2CopWzmPHzisva8bDukyYGsI35JeUwMyw44fuc/PBT0mScjpS7f2yj/ZkoRO7q6whB+g
-         mbJkWb7tCIvHWsLti2qQM/wC85/izhiO+CfQbHl02L9cGmx0exVyHEJqFtuUAYQO8+Yh
-         XtZb/xZ5iselCy35EOeXL/C6tVq6bk/NfutkMKnY7bEiiRRvhMhJJkAqsJxHcw5YlRoj
-         bD14o+W/djeOGtg4PWu+IuHMZaRZ3D+h1XKOMt1+8ZiHrirzPFMW4AoPQy8i1PNVEbMB
-         qQKg==
-X-Gm-Message-State: AOJu0Yy96Lxf9PSLPEX5BqY1Zdq59um8QEJSX6kMe/E6eDfPTPZSITW8
-	Ge9tOKYxkvKYgejUSNTadgQ=
-X-Google-Smtp-Source: AGHT+IEFq4afi7bN8Y7vYfFpwRDOS9iZkNL064aQGl2S6xacAHyUOU4R6b3I3c/DTX2EKUv0g+iDSg==
-X-Received: by 2002:a17:902:ed46:b0:1d0:45b2:d8b0 with SMTP id y6-20020a170902ed4600b001d045b2d8b0mr2112816plb.5.1701384774597;
-        Thu, 30 Nov 2023 14:52:54 -0800 (PST)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:7fe2:efb7:8d19:3ded])
-        by smtp.gmail.com with ESMTPSA id h6-20020a170902f7c600b001d0447e7fdasm1127413plw.269.2023.11.30.14.52.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Nov 2023 14:52:54 -0800 (PST)
-From: Fabio Estevam <festevam@gmail.com>
-To: shawnguo@kernel.org
-Cc: robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	tharvey@gateworks.com,
-	Fabio Estevam <festevam@denx.de>,
-	Rob Herring <robh@kernel.org>
-Subject: [PATCH] arm64: dts: imx8mm-venice-gw7: Adjust PCI Ethernet nodes
-Date: Thu, 30 Nov 2023 19:52:42 -0300
-Message-Id: <20231130225242.988336-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	d=raptorengineering.com; s=B8E824E6-0BE2-11E6-931D-288C65937AAD;
+	t=1701385381; bh=ZpJbgFQ3mdlbdMzmJojwLkrCW5phxu5raWPOTJk0NC8=;
+	h=Message-ID:Date:MIME-Version:To:From;
+	b=dzBfxqOp+tlY2NNmNLtywU3a1jrqlalYFaKM21/kouB+Lb2SHR9qfsGX1T1fBrLAZ
+	 XL4qJbVQSIEJ9J86VrGsqqkpQCXrRAmr3e/Ze/9zzwJ5DPYK8lGLUxykABgOEjvlT4
+	 icbL+lnY8iHkccQkgk47sH0jrpjNnOEMNc5VwF7I=
+X-Virus-Scanned: amavisd-new at rptsys.com
+Received: from mail.rptsys.com ([127.0.0.1])
+	by localhost (vali.starlink.edu [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id IpaV0MV63khI; Thu, 30 Nov 2023 17:03:01 -0600 (CST)
+Received: from [10.11.0.3] (5.edge.rptsys.com [23.155.224.38])
+	by mail.rptsys.com (Postfix) with ESMTPSA id 1A5188285642;
+	Thu, 30 Nov 2023 17:03:01 -0600 (CST)
+Message-ID: <eb29a877-8c71-498c-b5a1-320315b84cc7@raptorengineering.com>
+Date: Thu, 30 Nov 2023 17:03:00 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: mfd: Add sony,cronos-cpld
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Lee Jones <lee@kernel.org>, Georgy Yakovlev <Georgy.Yakovlev@sony.com>
+Cc: Timothy Pearson <tpearson@raptorengineering.com>
+References: <cover.1701203916.git.sanastasio@raptorengineering.com>
+ <27ac3bf6e5fecd62918eb096a88503a13a1f0b9c.1701203916.git.sanastasio@raptorengineering.com>
+ <c50e5224-7acd-4470-b18e-f223f150ba5b@linaro.org>
+From: Shawn Anastasio <sanastasio@raptorengineering.com>
+In-Reply-To: <c50e5224-7acd-4470-b18e-f223f150ba5b@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Fabio Estevam <festevam@denx.de>
+On 11/29/23 3:23 AM, Krzysztof Kozlowski wrote:
+> On 28/11/2023 22:00, Shawn Anastasio wrote:
+>> The Sony Cronos Platform Controller CPLD is a multi-purpose platform
+>> controller that provides both a watchdog timer and an LED controller for
+>> the Sony Interactive Entertainment Cronos x86 server platform. As both
+>> functions are provided by the same CPLD, a multi-function device is
+>> exposed as the parent of both functions.
+>>
+>> Add a DT binding for this device.
+>>
+>> Signed-off-by: Shawn Anastasio <sanastasio@raptorengineering.com>
+>> ---
+>> Changes in v2:
+>>   - Change SIE to Sony to use the already-established prefix.
+>>   - Clarify that Cronos is an x86 server platform in description
+>>   - Drop #address-cells/#size-cells
+>>   - Add missing additionalProperties to leds/watchdog objects
+>>   - Add sony,led-mask property to leds object
+>>   - Add sony,default-timeout property to watchdog object
+>>   - Update example
+>>
+>>  .../bindings/mfd/sony,cronos-cpld.yaml        | 92 +++++++++++++++++++
+>>  1 file changed, 92 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/mfd/sony,cronos-cpld.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/mfd/sony,cronos-cpld.yaml b/Documentation/devicetree/bindings/mfd/sony,cronos-cpld.yaml
+>> new file mode 100644
+>> index 000000000000..df2c2e83ccb4
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/mfd/sony,cronos-cpld.yaml
+>> @@ -0,0 +1,92 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +# Copyright 2023 Raptor Engineering, LLC
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/mfd/sony,cronos-cpld.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Sony Cronos Platform Controller CPLD multi-function device
+>> +
+>> +maintainers:
+>> +  - Timothy Pearson <tpearson@raptorengineering.com>
+>> +
+>> +description: |
+>> +  The Sony Cronos Platform Controller CPLD is a multi-purpose platform
+>> +  controller that provides both a watchdog timer and an LED controller for the
+>> +  Sony Interactive Entertainment Cronos x86 server platform. As both functions
+>> +  are provided by the same CPLD, a multi-function device is exposed as the
+>> +  parent of both functions.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: sony,cronos-cpld
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  leds:
+>> +    type: object
+>> +    description: Cronos Platform Status LEDs
+> 
+> Missing ref to LEDs common bindings.
+>
 
-As per Rob Herring's feedback:
+Will fix.
 
-"The ethernet device should have a node name of
-'ethernet'. The 'pcie' node name and 'device_type = "pci"' is for PCI
-buses/bridges only."
+>> +
+>> +    properties:
+>> +      compatible:
+>> +        const: sony,cronos-leds
+>> +
+>> +      sony,led-mask:
+>> +        $ref: /schemas/types.yaml#/definitions/uint32
+> 
+> Why aren't you using LEDs bindings? A node for one property is otherwise
+> quite useless. I already commented on this last time.
+>
 
-Do it as suggested.
+Our driver as-is doesn't support any of the properties in the LEDs
+common bindings, but it doesn't seem like there's anything that would
+preclude support in hardware, so this can be fixed.
 
-Fixes: d61c5068729a ("arm64: dts: imx8mm-venice-gw7: Fix pci sub-nodes")
-Suggested-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
- arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi | 3 +--
- arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi | 3 +--
- arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts  | 3 +--
- 3 files changed, 3 insertions(+), 6 deletions(-)
+Will use the LED bindings in v3.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi
-index a337e8f20441..3f3f2a2c89cd 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi
-@@ -178,9 +178,8 @@ pcie@3,0 {
- 				#size-cells = <2>;
- 				ranges;
- 
--				eth1: pcie@0,0 {
-+				eth1: ethernet@0,0 {
- 					reg = <0x0000 0 0 0 0>;
--					device_type = "pci";
- 					#address-cells = <3>;
- 					#size-cells = <2>;
- 					ranges;
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi
-index 2247d1c4e2af..06fed9376996 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi
-@@ -198,9 +198,8 @@ pcie@4,0 {
- 				#size-cells = <2>;
- 				ranges;
- 
--				eth1: pcie@0,0 {
-+				eth1: ethernet@0,0 {
- 					reg = <0x0000 0 0 0 0>;
--					device_type = "pci";
- 					#address-cells = <3>;
- 					#size-cells = <2>;
- 					ranges;
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
-index 7ef17c2b0e9d..c11260c26d0b 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
-@@ -640,9 +640,8 @@ pcie@0,0 {
- 		#size-cells = <2>;
- 		ranges;
- 
--		eth1: pcie@0,0 {
-+		eth1: ethernet@0,0 {
- 			reg = <0x0000 0 0 0 0>;
--			device_type = "pci";
- 			#address-cells = <3>;
- 			#size-cells = <2>;
- 			ranges;
--- 
-2.34.1
+>> +        minimum: 0x0
+>> +        maximum: 0x7fff
+>> +        description: |
+>> +          A bitmask that specifies which LEDs are present and can be controlled
+>> +          by the Cronos CPLD. Bits 0-5 correspond to platform Status LEDs, bits
+>> +          6-10 correspond to Link LEDs, and bits 11-14 correspond to the Power
+>> +          State LEDs. All other bits are unused. The default value is 0x7fff
+>> +          (all possible LEDs enabled).
+>> +
+>> +    additionalProperties: false
+>> +
+>> +  watchdog:
+>> +    type: object
+>> +    description: Cronos Platform Watchdog Timer
+> 
+> 
+>> +
+>> +    properties:
+>> +      compatible:
+>> +        const: sony,cronos-watchdog
+>> +
+>> +      sony,default-timeout:
+> 
+> No, you must use existing bindings. Missing ref to watchdog and drop all
+> duplicated properties like this one.
+>
 
+In this case the existing watchdog binding allows for arbitrary timeout
+values to be set, but the hardware only tolerates one of a few fixed
+values, enumerated below, which is why I felt it was appropriate to use
+a vendor-specific binding that documents the supported values.
+
+Would you still prefer we ref to watchdog and just handle unsupported
+values in the driver by e.g. rounding or rejecting unsupported values?
+
+>> +        $ref: /schemas/types.yaml#/definitions/uint32
+>> +        description: |
+>> +          The default timeout with which the watchdog timer is initialized, in
+>> +          seconds. Supported values are: 10, 20, 30, 40, 50, 60, 70, 80. All
+>> +          other values will be rounded down to the nearest supported value.  The
+>> +          default value is 80.
+>> +
+> 
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
+
+Thanks,
+Shawn
 
