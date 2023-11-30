@@ -1,164 +1,128 @@
-Return-Path: <devicetree+bounces-20330-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20331-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97B377FED8D
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 12:12:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 32DD07FEDA4
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 12:16:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CD7861C20C39
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 11:12:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 630981C20BD6
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 11:15:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 221783B78C;
-	Thu, 30 Nov 2023 11:12:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19F9F3C091;
+	Thu, 30 Nov 2023 11:15:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hS29cAae"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="hFy8T9d0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC8B118E01;
-	Thu, 30 Nov 2023 11:12:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CEC73C433C7;
-	Thu, 30 Nov 2023 11:12:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701342762;
-	bh=GGfXE9jnMr/28RJ1AbOcy/7HFYYF7xL3m95Mfm15Tps=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hS29cAaeUtXdeK+kiZWZ8qW3M4rlyGHM7IrFWTDxn8Nt0aXiAvnbAmRc/aoZ3Gp0j
-	 V7SRDf/8hQJMNOEslGbmVEQwuQ3v/n0aab4QU6apKhqRzbBW1fGVCc4o5+lNiYt0iI
-	 /7/amZz6HtQ5TNJ7z/1iEkJX2GzxXQ/d0Y8W3VVN2EeZqpbt6InWklo12ZeEHk9H/Z
-	 dLnoiGTasJF7l2Ws/GUmhIMMkZ/lsrZ8w7RC7r6TB1mn3zon1xzXFqjFmv6WUa2sKK
-	 u5jJfB5MNcKrcJC5o7DP2m9wYEaZRsNjXWMH0W1KpYnQMkdMULlFup8a//0ud2c0XX
-	 Dh6gxHxqd0DdA==
-Date: Thu, 30 Nov 2023 12:12:26 +0100
-From: Lorenzo Pieralisi <lpieralisi@kernel.org>
-To: Jason Gunthorpe <jgg@nvidia.com>
-Cc: linux-hyperv@vger.kernel.org, Karol Herbst <kherbst@redhat.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Jerry Snitselaar <jsnitsel@redhat.com>,
-	dri-devel@lists.freedesktop.org, patches@lists.linux.dev,
-	Laxman Dewangan <ldewangan@nvidia.com>,
-	Hanjun Guo <guohanjun@huawei.com>, linux-riscv@lists.infradead.org,
-	"K. Y. Srinivasan" <kys@microsoft.com>,
-	Frank Rowand <frowand.list@gmail.com>,
-	Christoph Hellwig <hch@lst.de>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Wei Liu <wei.liu@kernel.org>, Joerg Roedel <joro@8bytes.org>,
-	"Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
-	Dexuan Cui <decui@microsoft.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Jon Hunter <jonathanh@nvidia.com>, linux-acpi@vger.kernel.org,
-	iommu@lists.linux.dev, Danilo Krummrich <dakr@redhat.com>,
-	nouveau@lists.freedesktop.org, linux-snps-arc@lists.infradead.org,
-	Len Brown <lenb@kernel.org>, devicetree@vger.kernel.org,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
-	Will Deacon <will@kernel.org>, Sven Peter <sven@svenpeter.dev>,
-	Haiyang Zhang <haiyangz@microsoft.com>,
-	Vineet Gupta <vgupta@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Moritz Fischer <mdf@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	linux-tegra@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	Vinod Koul <vkoul@kernel.org>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Hector Martin <marcan@marcan.st>, linux-mips@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>, asahi@lists.linux.dev,
-	Sudeep Holla <sudeep.holla@arm.com>, dmaengine@vger.kernel.org,
-	David Woodhouse <dwmw2@infradead.org>,
-	Lu Baolu <baolu.lu@linux.intel.com>
-Subject: Re: [PATCH 10/10] ACPI: IORT: Allow COMPILE_TEST of IORT
-Message-ID: <ZWhuGl1l5V5b+w4P@lpieralisi>
-References: <0-v1-720585788a7d+811b-iommu_fwspec_p1_jgg@nvidia.com>
- <10-v1-720585788a7d+811b-iommu_fwspec_p1_jgg@nvidia.com>
- <ZWc0qPWzNWPkL8vt@lpieralisi>
- <20231129191240.GZ436702@nvidia.com>
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 632E510D9;
+	Thu, 30 Nov 2023 03:15:53 -0800 (PST)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AUAwMK5028247;
+	Thu, 30 Nov 2023 11:15:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=UCchgxk+aOjoKo5oPkKV27FHvQof4ATdkKGQOfFNAjI=;
+ b=hFy8T9d0tztjQBefR7ESdWDIbznkOygVzWCl8TQ+bsGX59JHjDuWP0mjMxYmMQ+4FzA+
+ 3gkqs3KdlzdIzMdEFHHBf2917rBqOdzSsPuwIfhzE/Mqy/6bPsQg58CUvGt6udVKbWwM
+ RFlZjELMWo4D5SCEVU93udOoPFqGoUKKGK/szTxgTi+G5l+QglB/BrUndjQw+OEWn/D4
+ hanL0JOWIOitItUopKT7VDQJ/ysazJrBY+KTyh4mg4njdgQ0fwSaLzOclH+YWUSF5c/q
+ 9rwV3DfNXlwz2DROEQtnz5Z5VSJsbg8zyC0hZa90wct3KIgjtvpCaaEFSuQJV5nEVzea zQ== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3up5e8u557-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 30 Nov 2023 11:15:50 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AUBFnhS020997
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 30 Nov 2023 11:15:49 GMT
+Received: from [10.239.133.49] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 30 Nov
+ 2023 03:15:46 -0800
+Message-ID: <591e1aca-20ca-4d42-809d-12cd12ddadb3@quicinc.com>
+Date: Thu, 30 Nov 2023 19:15:44 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231129191240.GZ436702@nvidia.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/3] arm64: dts: qcom: msm8996: Fix 'in-ports' is a
+ required property
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross
+	<agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Tao Zhang
+	<quic_taozha@quicinc.com>
+References: <20231129143815.7892-1-quic_jinlmao@quicinc.com>
+ <20231129143815.7892-2-quic_jinlmao@quicinc.com>
+ <3527d540-3e3f-4edb-b5f2-6ac481132c06@linaro.org>
+From: Jinlong Mao <quic_jinlmao@quicinc.com>
+In-Reply-To: <3527d540-3e3f-4edb-b5f2-6ac481132c06@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: mqyFt7FAdP1NBfbr0X_ak4x6n_WbNSaP
+X-Proofpoint-ORIG-GUID: mqyFt7FAdP1NBfbr0X_ak4x6n_WbNSaP
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-30_09,2023-11-30_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ suspectscore=0 phishscore=0 malwarescore=0 lowpriorityscore=0 spamscore=0
+ clxscore=1015 impostorscore=0 adultscore=0 mlxlogscore=675 mlxscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2311060000 definitions=main-2311300084
 
-On Wed, Nov 29, 2023 at 03:12:40PM -0400, Jason Gunthorpe wrote:
-> On Wed, Nov 29, 2023 at 01:55:04PM +0100, Lorenzo Pieralisi wrote:
+
+
+On 11/30/2023 4:55 PM, Krzysztof Kozlowski wrote:
+> On 29/11/2023 15:38, Mao Jinlong wrote:
+>> The inport of funnel@3023000 connects to a source which is not supported
+>> in current linux kernel. Remove the device tree node of funnel@3023000
+>> to fix the warning. It will be added once the driver support to the
+>> source is added to linux kernel.
 > 
-> > I don't think it should be done this way. Is the goal compile testing
-> > IORT code ? 
+> Thanks for the changes, but that's not correct reason to remove DTS
+> code. What kernel supports or not, should be irrelevant for the DTS. DTS
+> for example is used in other projects - did you check if they have the
+> same issues? Anyway, DTS describes the hardware, so how current kernel
+> support defines what is and what is not in the hardware?
 > 
-> Yes
 > 
-> > If so, why are we forcing it through the SMMU (only because
-> > it can be compile tested while eg SMMUv3 driver can't ?) menu entry ?
+> Best regards,
+> Krzysztof
+
+Hi Krzysztof,
+
+The funnel dt node must have in-ports node. It is to describe the input
+connection of funnel HW. But there is no dt_binding doc to describe the
+DT node of the HW connected to funnel@3023000. So remove the funnel to 
+solve the warning as of now. The funnel will be added back once driver 
+and dt_binding are added for the HW.
+
+Documentation/devicetree/bindings/arm/arm,coresight-dynamic-funnel.yaml
+
+Thanks
+Jinlong Mao
 > 
-> Because something needs to select it, and SMMU is one of the places
-> that are implicitly using it.
-> 
-> It isn't (and shouldn't be) a user selectable kconfig. Currently the
-> only thing that selects it is the ARM64 master kconfig.
-
-I never said it should be a user selectable kconfig. I said that
-I don't like using the SMMU entry (only) to select it just because
-that entry allows COMPILE_TEST.
-
-> > This looks a bit artificial (and it is unclear from the Kconfig
-> > file why only that driver selects IORT, it looks like eg the SMMUv3
-> > does not have the same dependency - there is also the SMMUv3 perf
-> > driver to consider).
-> 
-> SMMUv3 doesn't COMPILE_TEST so it picks up the dependency transitivity
-> through ARM64. I'm not sure why IORT was put as a global ARM64 kconfig
-> dependency and not put in the places that directly need it.
-
-Because IORT is used by few ARM64 system IPs (that are enabled by
-default, eg GIC), it makes sense to have a generic ARM64 select (if ACPI).
-
-> "perf driver" ? There is a bunch of GIC stuff that uses this too but I
-> don't know if it compile tests.
-
-"SMMUv3 perf driver" drivers/perf/arm_smmuv3_pmu.c
-
-> > Maybe we can move IORT code into drivers/acpi and add a silent config
-> > option there with a dependency on ARM64 || COMPILE_TEST.
-> 
-> That seems pretty weird to me, this is the right way to approach it,
-> IMHO. Making an entire directory condition is pretty incompatible with
-> COMPILE_TEST as a philosophy.
-
-That's not what I was suggesting. I was suggesting to move iort.c (or
-some portions of it) into drivers/acpi if we care enough to compile test
-it on arches !ARM64.
-
-It is also weird to have a file in drivers/acpi/arm64 that you want
-to compile test on other arches IMO (and I don't think it is very useful
-to compile test it either).
-
-> > Don't know but at least it is clearer. As for the benefits of compile
-> > testing IORT code - yes the previous patch is a warning to fix but
-> > I am not so sure about the actual benefits.
-> 
-> IMHO COMPILE_TEST is an inherently good thing. It makes development
-> easier for everyone because you have a less fractured code base to
-> work with.
-
-I am talking about IORT code, not COMPILE_TEST as a whole.
-
-I am not sure what "less fractured" means in this context.
-
-Anyway - it is not a big deal either way but I don't like selecting
-ACPI_IORT only on kconfig entries that allow COMPILE_TEST to implicitly
-compile test it so *if* we want to do it we will have to do it
-differently.
-
-Thanks,
-Lorenzo
 
