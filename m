@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-20487-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20488-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23B1D7FF848
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 18:32:07 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2B2D7FF84E
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 18:32:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D2AD3281883
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 17:32:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 45662B21258
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 17:32:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8080858108;
-	Thu, 30 Nov 2023 17:31:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E85E158122;
+	Thu, 30 Nov 2023 17:31:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="IfWT2Tvm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u3qz1RuO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EBA810DF;
-	Thu, 30 Nov 2023 09:31:54 -0800 (PST)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 8F512E000A;
-	Thu, 30 Nov 2023 17:31:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1701365513;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=M+WnBVPp/orBWqi+tGtSgIbyT8pSAzIoy9yyOa5BwcA=;
-	b=IfWT2TvmzgqeMa5T0LXgKsYiSPYzeKOQD0IOhwlLJkvTuHV1/48HcS0ZxNxcLEWm4J/pC+
-	9TIBnVFmSV2mAlH55EMcIqTJRkQyHxdMU6Zfe47CpW4RcZCkwQLzyiOHYxwYVSLoeCdLhP
-	cvpS4dKZD/b6wdN2v5YMYYFbpNqfdoqCZGo0rosjjuPlZZjLzQJtvfC7OOditzNyxEkBOm
-	j1wY3/aMoA3udAMJ+b4Wu5KvoQGhiaDN5hEkn3C1lZv+pyDx7WQjm98fynXMXIT8NFEqrT
-	tR5hokquTc9mkGRSm+cycXNmKq+DDrav+0AmESKFsjW4x8zfAvFpwiD2xvMqBQ==
-From: Mehdi Djait <mehdi.djait@bootlin.com>
-To: mchehab@kernel.org,
-	heiko@sntech.de,
-	hverkuil-cisco@xs4all.nl,
-	krzysztof.kozlowski+dt@linaro.org,
-	robh+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: linux-media@vger.kernel.org,
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA96A5677C;
+	Thu, 30 Nov 2023 17:31:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B982C433C8;
+	Thu, 30 Nov 2023 17:31:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701365519;
+	bh=wxg56W6HTHMTFYDW4lY4u8CY4BkNOVOP9bjh79kHVmE=;
+	h=From:To:Cc:Subject:Date:From;
+	b=u3qz1RuObFfuunerRon1cBHkIkU7XP6vXJNp5DiAMMPQkvPEoWkUOPZVq+ytWyqs8
+	 rh7hJHBIhJl33qrkpiM0Q7WWcXqao7Ry4bCOlPzT6CkSsubV+dC1TsLJfq8vjG/M6G
+	 1lPmceDj3EQS4HbiaHHU//CySGBJzKKF5qyYfQhZuEuIh8Ud59jTYgzKSELFJs147a
+	 26poZRPxdioOB5zkDpNDbkMay5YADZg7dhw89vYDNDT84MCO9f/ixv7XkCl24c9A5R
+	 6z5wPJ8p7zc/fYtt+eesdYQGHBEUagEoqH0nb141XlkzdUJShW5Rk9IWHNxUoGj+l0
+	 cucAy8DQJB6Hg==
+Received: from johan by xi.lan with local (Exim 4.96.2)
+	(envelope-from <johan+linaro@kernel.org>)
+	id 1r8kts-0003KX-1h;
+	Thu, 30 Nov 2023 18:32:32 +0100
+From: Johan Hovold <johan+linaro@kernel.org>
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Alessandro Zummo <a.zummo@towertech.it>
+Cc: Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
+	linux-rtc@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	thomas.petazzoni@bootlin.com,
-	alexandre.belloni@bootlin.com,
-	maxime.chevallier@bootlin.com,
-	paul.kocialkowski@bootlin.com,
-	michael.riesch@wolfvision.net,
-	Mehdi Djait <mehdi.djait@bootlin.com>
-Subject: [PATCH V12 3/3] arm64: dts: rockchip: Add the px30 camera interface
-Date: Thu, 30 Nov 2023 18:31:46 +0100
-Message-ID: <c6ed429258a4db6730ba43136d8d9e25762c8f0a.1701364052.git.mehdi.djait@bootlin.com>
+	Johan Hovold <johan+linaro@kernel.org>
+Subject: [PATCH] dt-bindings: rtc: qcom-pm8xxx: fix inconsistent example
+Date: Thu, 30 Nov 2023 18:32:23 +0100
+Message-ID: <20231130173223.12794-1-johan+linaro@kernel.org>
 X-Mailer: git-send-email 2.41.0
-In-Reply-To: <cover.1701364052.git.mehdi.djait@bootlin.com>
-References: <cover.1701364052.git.mehdi.djait@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,41 +61,69 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-GND-Sasl: mehdi.djait@bootlin.com
 
-The px30 has a video capture component, supporting the BT.656
-parallel interface. Add a DT description for it.
+The PM8921 is an SSBI PMIC but in the binding example it is described
+as being part of an SPMI PMIC while using an SSBI address.
 
-Reviewed-by: Michael Riesch <michael.riesch@wolfvision.net>
-Reviewed-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Signed-off-by: Mehdi Djait <mehdi.djait@bootlin.com>
+Make the example consistent by using the sibling PM8941 SPMI PMIC
+instead.
+
+Fixes: 8138c5f0318c ("dt-bindings: rtc: qcom-pm8xxx-rtc: Add qcom pm8xxx rtc bindings")
+Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
 ---
- arch/arm64/boot/dts/rockchip/px30.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ .../bindings/rtc/qcom-pm8xxx-rtc.yaml         | 36 +++++++++----------
+ 1 file changed, 18 insertions(+), 18 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/px30.dtsi b/arch/arm64/boot/dts/rockchip/px30.dtsi
-index 42ce78beb413..3a4e859e5a49 100644
---- a/arch/arm64/boot/dts/rockchip/px30.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/px30.dtsi
-@@ -1281,6 +1281,18 @@ isp_mmu: iommu@ff4a8000 {
- 		#iommu-cells = <0>;
- 	};
+diff --git a/Documentation/devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml b/Documentation/devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml
+index 774c34c3f8f6..cdc56dfbfac3 100644
+--- a/Documentation/devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml
++++ b/Documentation/devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml
+@@ -67,27 +67,27 @@ additionalProperties: false
  
-+	cif: video-capture@ff490000 {
-+		compatible = "rockchip,px30-vip";
-+		reg = <0x0 0xff490000 0x0 0x200>;
-+		interrupts = <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&cru ACLK_CIF>, <&cru HCLK_CIF>, <&cru PCLK_CIF>;
-+		clock-names = "aclk", "hclk", "pclk";
-+		power-domains = <&power PX30_PD_VI>;
-+		resets = <&cru SRST_CIF_A>, <&cru SRST_CIF_H>, <&cru SRST_CIF_PCLKIN>;
-+		reset-names = "axi", "ahb", "pclkin";
-+		status = "disabled";
-+	};
+ examples:
+   - |
++    #include <dt-bindings/interrupt-controller/irq.h>
+     #include <dt-bindings/spmi/spmi.h>
+-    spmi_bus: spmi@c440000 {
+-      reg = <0x0c440000 0x1100>;
+-      #address-cells = <2>;
+-      #size-cells = <0>;
+-      pmicintc: pmic@0 {
+-        reg = <0x0 SPMI_USID>;
+-        compatible = "qcom,pm8921";
+-        interrupts = <104 8>;
+-        #interrupt-cells = <2>;
+-        interrupt-controller;
+-        #address-cells = <1>;
 +
- 	qos_gmac: qos@ff518000 {
- 		compatible = "rockchip,px30-qos", "syscon";
- 		reg = <0x0 0xff518000 0x0 0x20>;
++    spmi {
++        #address-cells = <2>;
+         #size-cells = <0>;
+ 
+-        pm8921_rtc: rtc@11d {
+-          compatible = "qcom,pm8921-rtc";
+-          reg = <0x11d>;
+-          interrupts = <0x27 0>;
+-          nvmem-cells = <&rtc_offset>;
+-          nvmem-cell-names = "offset";
++        pmic@0 {
++            compatible = "qcom,pm8941", "qcom,spmi-pmic";
++            reg = <0x0 SPMI_USID>;
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            rtc@6000 {
++                compatible = "qcom,pm8941-rtc";
++                reg = <0x6000>, <0x6100>;
++                reg-names = "rtc", "alarm";
++                interrupts = <0x0 0x61 0x1 IRQ_TYPE_EDGE_RISING>;
++                nvmem-cells = <&rtc_offset>;
++                nvmem-cell-names = "offset";
++            };
+         };
+-      };
+     };
+ ...
 -- 
 2.41.0
 
