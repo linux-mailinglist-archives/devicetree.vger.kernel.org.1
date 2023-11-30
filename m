@@ -1,341 +1,128 @@
-Return-Path: <devicetree+bounces-20396-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20397-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95C987FF1B0
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 15:22:52 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C66327FF1BF
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 15:27:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EE249B20E75
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 14:22:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 02DFD1C20BDA
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 14:27:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B23F4A9B6;
-	Thu, 30 Nov 2023 14:22:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="APEFvsOr"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E598B4A9AE;
+	Thu, 30 Nov 2023 14:27:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6939C103;
-	Thu, 30 Nov 2023 06:22:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1701354159; x=1732890159;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=Gk6Lr/mLkcAzYJKKXK3mEyznPnvsvpZlhZ7hJ9+Q1Vs=;
-  b=APEFvsOrm9iDwwEoOA7IGlN7ZM5bp/i1KFOG04/Ooh/VlZIAI0N0F/ht
-   KKRTAvViLN6Cn6yufngaCUifXIWyFfKOIC5WGxCaHRcCuQVr2g0jhhuta
-   YRlbX3UwKKoynOD8YTHDQGcg1qO0F43YswBQTtMIVpYd20K7I2GgRgqbH
-   ZRtESa9RZxWpN4QuaNN4ocbfcw8X9n6LLelYziacWaFoo5Bj/kEsFntiU
-   X/2pTiBnaHDTOxT9VfMZUEybp/Yu2KF1VwtHKhqwfBf89QR9yjj3bjxgx
-   qtEuOFvsDAL0IYFS+z7u15mXWcsRrhiTKejalSvsvgjVqN5cBoqJoZZRv
-   Q==;
-X-IronPort-AV: E=Sophos;i="6.04,239,1695679200"; 
-   d="scan'208";a="34264102"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 30 Nov 2023 15:22:37 +0100
-Received: from steina-w.localnet (steina-w.tq-net.de [10.123.53.18])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 0B1FF280075;
-	Thu, 30 Nov 2023 15:22:37 +0100 (CET)
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Adam Ford <aford173@gmail.com>, Pantelis Antoniou <pantelis.antoniou@konsulko.com>, Kieran Bingham <kieran.bingham@ideasonboard.com>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, linux-media@vger.kernel.org, devicetree@vger.kernel.org, Paul Elder <paul.elder@ideasonboard.com>, tomi.valkeinen@ideasonboard.com, umang.jain@ideasonboard.com, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, Tim Harvey <tharvey@gateworks.com>, Philippe Schenker <philippe.schenker@toradex.com>, Marek Vasut <marex@denx.de>, Gregor Herburger <gregor.herburger@ew.tq-group.com>, Marcel Ziswiler <marcel.ziswiler@toradex.com>, open list <linux-kernel@vger.kernel.org>, ARM/FREESCALE IMX / MXC ARM ARCHITECTURE <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH 2/2] arm64: dts: imx8mp: Add overlays for ISP instances
-Date: Thu, 30 Nov 2023 15:22:36 +0100
-Message-ID: <5997862.lOV4Wx5bFT@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <170135295658.1400840.15195708825865805741@ping.linuxembedded.co.uk>
-References: <20231129093113.255161-1-paul.elder@ideasonboard.com> <CAHCN7x+hBGmnJ2z8B9awpS1KU7rgVjseMw-uTE2Sc7DZ5+oTKA@mail.gmail.com> <170135295658.1400840.15195708825865805741@ping.linuxembedded.co.uk>
+Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com [209.85.128.173])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E13183;
+	Thu, 30 Nov 2023 06:27:16 -0800 (PST)
+Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-5cc55b82ee5so10362997b3.2;
+        Thu, 30 Nov 2023 06:27:16 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701354435; x=1701959235;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=MUPLQxkPKo/lx9+zPsmkqSqbakwoSP37CzyXu4lnNwg=;
+        b=VuEjh464cQF7S+JXwZellJDWGR101ABBk3DiLQ1ms77GYtcFCMQxNVvLFVGVXKFaG7
+         FTj3CKpbgTb7t0sz6FIoO/eP3ItN2Qiz92p+M7XCmLxSCF/RTy21qx8y3N+K++yQB56e
+         ItVHeC0MPxorkMsA0naOPMAg8uhwR6SMWI7PgxvyrDTc5LwLad+E7/ybSxJFWh+nOlVN
+         Mhp9sMHc4zyjN0AEkfmctNfnE6Q3pxOmMg3Ivdo0n7fxppRXdihnmn9mx5EeFJky5rhc
+         c5oT/7l5g/KLkXQi8E1j8bBIrC3Amv7+JpUrGn0Ng3PlN8AZTC+snFf54HQVNRvyR4cA
+         iLTw==
+X-Gm-Message-State: AOJu0Yylaqpow1XLweRSemSdC6Ugiwfu4CkVlLqPakw0brPpuCCCz/2i
+	yT3QRgvcZwUUIHitI4MbHXac0b5pr+AIDw==
+X-Google-Smtp-Source: AGHT+IESB4QryHpSFLrQTBm2PZqwhmcm9QzO1CkqTJGozDBR9LMTGheFb4k6UDjuhU45qfCOx2kg/g==
+X-Received: by 2002:a0d:de82:0:b0:5cb:a6af:6a1c with SMTP id h124-20020a0dde82000000b005cba6af6a1cmr22186822ywe.31.1701354434983;
+        Thu, 30 Nov 2023 06:27:14 -0800 (PST)
+Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com. [209.85.128.174])
+        by smtp.gmail.com with ESMTPSA id q8-20020a815c08000000b005d0494763c1sm381521ywb.140.2023.11.30.06.27.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 Nov 2023 06:27:13 -0800 (PST)
+Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-5d35a952943so6104537b3.3;
+        Thu, 30 Nov 2023 06:27:13 -0800 (PST)
+X-Received: by 2002:a81:e30a:0:b0:5cf:b796:c40b with SMTP id
+ q10-20020a81e30a000000b005cfb796c40bmr14401875ywl.20.1701354433444; Thu, 30
+ Nov 2023 06:27:13 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+References: <20231125232821.234631-1-niklas.soderlund+renesas@ragnatech.se>
+ <deacc7ea-6fad-47d6-978b-3f639aa5da35@linaro.org> <CAMuHMdUcbr--3Cs4+2m=hOehXJt0WqiuYqV_j0DBmR+YgoEb-g@mail.gmail.com>
+ <c6c3c356-e0dc-469f-aa24-6701fa06fba8@linaro.org>
+In-Reply-To: <c6c3c356-e0dc-469f-aa24-6701fa06fba8@linaro.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 30 Nov 2023 15:27:02 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdU05FawKFMDMQbxDk6+TfXPhPwH3nuRk+r0ZOQefVMThw@mail.gmail.com>
+Message-ID: <CAMuHMdU05FawKFMDMQbxDk6+TfXPhPwH3nuRk+r0ZOQefVMThw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: renesas: Document preferred compatible naming
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Kieran,
+Hi Krzysztof,
 
-Am Donnerstag, 30. November 2023, 15:02:36 CET schrieb Kieran Bingham:
-> + Pantellis
->=20
-> Quoting Adam Ford (2023-11-30 13:48:58)
->=20
-> > On Thu, Nov 30, 2023 at 3:51=E2=80=AFAM Alexander Stein
-> >=20
-> > <alexander.stein@ew.tq-group.com> wrote:
-> > > Hi Laurent,
-> > >=20
-> > > Am Mittwoch, 29. November 2023, 16:16:37 CET schrieb Laurent Pinchart:
-> > > > Hi Alexander,
-> > > >=20
-> > > > On Wed, Nov 29, 2023 at 11:20:07AM +0100, Alexander Stein wrote:
-> > > > > Am Mittwoch, 29. November 2023, 10:31:13 CET schrieb Paul Elder:
-> > > > > > From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > > > > >=20
-> > > > > > Add two overlay to enable each ISP instance. The ISP is wired
-> > > > > > directly
-> > > > > > to the CSIS for now, bypassing the ISI completely.
-> > > > >=20
-> > > > > I'm not sure if this is worth adding in a separate overlay.
-> > > >=20
-> > > > The trouble is that, at this point, selection between the ISP and t=
-he
-> > > > ISI can only be performed through DT :-S That's why this is
-> > > > implemented
-> > > > as an overlay.
-> > >=20
-> > > I feel a better place would be the overlay which actually adds the
-> > > sensor.
-> > > This knows best whether ISI or ISP should be used.
-> > >=20
-> > > > > > Signed-off-by: Laurent Pinchart
-> > > > > > <laurent.pinchart@ideasonboard.com>
-> > > > > > Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
-> > > > > > ---
-> > > > > >=20
-> > > > > >  arch/arm64/boot/dts/freescale/Makefile        |  2 ++
-> > > > > >  .../arm64/boot/dts/freescale/imx8mp-isp1.dtso | 36
-> > > > > >  +++++++++++++++++++
-> > > > > >  .../arm64/boot/dts/freescale/imx8mp-isp2.dtso | 36
-> > > > > >  +++++++++++++++++++
-> > > > > >  3 files changed, 74 insertions(+)
-> > > > > >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-isp1.d=
-tso
-> > > > > >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-isp2.d=
-tso
-> > > > > >=20
-> > > > > > diff --git a/arch/arm64/boot/dts/freescale/Makefile
-> > > > > > b/arch/arm64/boot/dts/freescale/Makefile index
-> > > > > > 300049037eb0..f97dfac11189
-> > > > > > 100644
-> > > > > > --- a/arch/arm64/boot/dts/freescale/Makefile
-> > > > > > +++ b/arch/arm64/boot/dts/freescale/Makefile
-> > > > > > @@ -113,6 +113,8 @@ dtb-$(CONFIG_ARCH_MXC) +=3D
-> > > > > > imx8mp-dhcom-pdk2.dtb
-> > > > > >=20
-> > > > > >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-dhcom-pdk3.dtb
-> > > > > >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-evk.dtb
-> > > > > >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-icore-mx8mp-edimm2.2.dtb
-> > > > > >=20
-> > > > > > +dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-isp1.dtbo
-> > > > > > +dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-isp2.dtbo
-> > > > > >=20
-> > > > > >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-msc-sm2s-ep1.dtb
-> > > > > >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-phyboard-pollux-rdk.dtb
-> > > > > >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-tqma8mpql-mba8mpxl.dtb
-> > > > > >=20
-> > > > > > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-isp1.dtso
-> > > > > > b/arch/arm64/boot/dts/freescale/imx8mp-isp1.dtso new file mode
-> > > > > > 100644
-> > > > > > index 000000000000..cf394ed224ab
-> > > > > > --- /dev/null
-> > > > > > +++ b/arch/arm64/boot/dts/freescale/imx8mp-isp1.dtso
-> > > > > > @@ -0,0 +1,36 @@
-> > > > > > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > > > > > +/*
-> > > > > > + * Copyright 2022 Ideas on Board Oy
-> > > > > > + */
-> > > > > > +
-> > > > > > +/dts-v1/;
-> > > > > > +/plugin/;
-> > > > > > +
-> > > > > > +#include <dt-bindings/media/video-interfaces.h>
-> > > > > > +
-> > > > > > +&isi_0 {
-> > > > > > + status =3D "disabled";
-> > > > >=20
-> > > > > ISI is disabled by default. What is your intention here?
-> > > >=20
-> > > > It could be enabled by an overlay for a camera module. Ideally we w=
-ant
-> > > > to be able to enable both the ISI and ISP at runtime, but that's not
-> > > > possible yet and will require a very large amount of work.
-> > >=20
-> > > Again IMHO this is part of sensor setup, in a very specific overlay. =
-To
-> > > put it into different words: I barely see the gain of this small
-> > > overlay.
-> > >=20
-> > > Runtime switching would require a combined media controller including
-> > > both ISI and ISP, no?
-> > >=20
-> > > Best regards,
-> > > Alexander
-> > >=20
-> > > > > > +
-> > > > > > + ports {
-> > > > > > +         port@0 {
-> > > > > > +                 /delete-node/ endpoint;
-> > > > >=20
-> > > > > This doesn't work in overlays. See [1]. Otherwise the OF graph
-> > > > > connections
-> > > > > look fine to me. I'm using the same in my local overlay.
-> > > >=20
-> > > > Interesting, I wasn't aware of that. Maybe we should fix it :-)
-> >=20
-> > When I did my camera implementation, I thought it was simpler to:
-> >=20
-> > /delete-node/ &isi_in_0;
-> >=20
-> > it's a one-line change.
-> >=20
-> > I would suggest we just drop the overlay and make users who have the
-> > cameras integrate the cameras and the isp routing into their
-> > respective overlays.
->=20
-> I use these to factor out common parts between multiple cameras that can
-> be connected to multiple ports.
->=20
-> I can connect any of (Physically available to me right now)
->  IMX219, IMX477, IMX708, GC2145, OV5640(7?) IMX335, IMX283, IMX519,
-> Arducam64MP
->=20
-> to either of:
->=20
-> Debix-SOM-A Port CSI-1
-> Debix-SOM-A Port CSI-2
->=20
-> And I can connect those same cameras to two ports of a Pi5. So now
-> that's 27 overlays to manage the 9 cameras I have /on my desk/ to
-> connect to this board.
->=20
-> Uh Oh - sorry I can also connect them to a Debix Model A ... oh no ... I
-> need to stop thinking about what I can connect them to. I have rockchip
-> boards they'll work on too!
->=20
-> This explosion of overlays could be ... hard to manage. With /a lot/ of
-> repetition of the same data.
+On Tue, Nov 28, 2023 at 3:32=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+> On 28/11/2023 11:32, Geert Uytterhoeven wrote:
+> > On Tue, Nov 28, 2023 at 10:51=E2=80=AFAM Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> >> On 26/11/2023 00:28, Niklas S=C3=B6derlund wrote:
+> >>> Compatibles can come in two formats. Either "vendor,ip-soc" or
+> >>> "vendor,soc-ip". Add a DT schema file documenting Renesas preferred
+> >>> policy and enforcing it for all new compatibles, except few existing
+> >>> patterns.
+> >>>
+> >>> Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> >>> Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnat=
+ech.se>
+> >
+> >>> +      # Legacy namings - variations of existing patterns/compatibles=
+ are OK,
+> >>> +      # but do not add completely new entries to these:
+> >>> +      - pattern: "^renesas,can-[a-z0-9]+$"
 
-Maybe I am missing something, but how can the intermediate overlay reduce t=
-his=20
-amount of overlays? At least the remote-endpoint of the sensor needs the CS=
-I=20
-endpoint, which is different for CSI1/CSI2, and vice versa.
-I do not have rockchip hardware, but I would not assume the CSI endpoint to=
-=20
-not have the same label, so the phandle reference is different there as wel=
-l.
+[ deleted 40 legacy patterns]
 
->=20
-> I'm not opposed to dropping these intermediate helper overlays, but I'd
-> be interested to know if anyone has ideas on how we could define
-> 'connectors' and then abstract the cameras / overlays that can be moved
-> between different compatible ports.
+> >> No, wait, you basically listed most of the SoC as exceptions. What SoC
+> >> blocks exactly are you going to cover in such case with your rules?
+> >
+> > As Renesas was an early adopter of DT, there are a lot of compatible
+> > values that do not follow current best practices.
+> > Unfortunately there is not much we can do about that...
+>
+> Hm, ok, given how many exceptions you have, just please consider whether
+> this schema will be of any use. IOW, how many of new SoC blocks you have
+> which are not covered by the exceptions?
 
-You still would have the naming problem. How do you identify a connector? I=
-t's=20
-similar to label naming on device tree nodes.
+Given a modern SoC hardware manual contains +200 sections, there
+are still lots of opportunities for new SoC block bindings and drivers...
+We really do not want any new compatible values of the legacy form.
 
-Best regards,
-Alexander
+I guess the TI people could use a schema to reject new non-standard
+compatible values, too:
+https://lore.kernel.org/all/CAMuHMdUYOq=3Dq1j=3Dd+Eac28hthOUAaNUkuvxmRu-mUN=
+1pLKq69g@mail.gmail.com/
 
-> The [RFC 0/3] Portable Device Tree Connector [0] might be interesting to
-> resurrect. Did that go anywhere?
->=20
-> [0]
-> https://lore.kernel.org/all/1464986273-12039-1-git-send-email-pantelis.an=
-to
-> niou@konsulko.com/
->=20
-> --
-> Kieran
->=20
-> > adam
-> >=20
-> > > > > [1]
-> > > > > https://lore.kernel.org/all/CAMuHMdWu4KZbBkvEofUV2wuA1g2S=3DXHHM3=
-RUN1c
-> > > > > NrcZB
-> > > > > khsPZA@mail.gmail.com/>
-> > > > >=20
-> > > > > > +         };
-> > > > > > + };
-> > > > > > +};
-> > > > > > +
-> > > > > > +&isp_0 {
-> > > > > > + status =3D "okay";
-> > > > > > +
-> > > > > > + ports {
-> > > > > > +         port@1 {
-> > > > > > +                 isp0_in: endpoint {
-> > > > > > +                         bus-type =3D <MEDIA_BUS_TYPE_PARALLEL=
->;
-> > > > > > +                         remote-endpoint =3D <&mipi_csi_0_out>;
-> > > > > > +                 };
-> > > > > > +         };
-> > > > > > + };
-> > > > > > +};
-> > > > > > +
-> > > > > > +&mipi_csi_0_out {
-> > > > > > + remote-endpoint =3D <&isp0_in>;
-> > > > > > +};
-> > > > > > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-isp2.dtso
-> > > > > > b/arch/arm64/boot/dts/freescale/imx8mp-isp2.dtso new file mode
-> > > > > > 100644
-> > > > > > index 000000000000..14e2e7b2617f
-> > > > > > --- /dev/null
-> > > > > > +++ b/arch/arm64/boot/dts/freescale/imx8mp-isp2.dtso
-> > > > > > @@ -0,0 +1,36 @@
-> > > > > > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > > > > > +/*
-> > > > > > + * Copyright 2022 Ideas on Board Oy
-> > > > > > + */
-> > > > > > +
-> > > > > > +/dts-v1/;
-> > > > > > +/plugin/;
-> > > > > > +
-> > > > > > +#include <dt-bindings/media/video-interfaces.h>
-> > > > > > +
-> > > > > > +&isi_0 {
-> > > > > > + status =3D "disabled";
-> > > > > > +
-> > > > > > + ports {
-> > > > > > +         port@1 {
-> > > > > > +                 /delete-node/ endpoint;
-> > > > > > +         };
-> > > > > > + };
-> > > > > > +};
-> > > > > > +
-> > > > > > +&isp_1 {
-> > > > > > + status =3D "okay";
-> > > > > > +
-> > > > > > + ports {
-> > > > > > +         port@1 {
-> > > > > > +                 isp1_in: endpoint {
-> > > > > > +                         bus-type =3D <MEDIA_BUS_TYPE_PARALLEL=
->;
-> > > > > > +                         remote-endpoint =3D <&mipi_csi_1_out>;
-> > > > > > +                 };
-> > > > > > +         };
-> > > > > > + };
-> > > > > > +};
-> > > > > > +
-> > > > > > +&mipi_csi_1_out {
-> > > > > > + remote-endpoint =3D <&isp1_in>;
-> > > > > > +};
-> > >=20
-> > > --
-> > > TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld=
-, Germany
-> > > Amtsgericht M=C3=BCnchen, HRB 105018
-> > > Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stef=
-an Schneider
-> > > http://www.tq-group.com/
+Gr{oetje,eeting}s,
 
+                        Geert
 
-=2D-=20
-TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, Germ=
-any
-Amtsgericht M=C3=BCnchen, HRB 105018
-Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan Sch=
-neider
-http://www.tq-group.com/
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
