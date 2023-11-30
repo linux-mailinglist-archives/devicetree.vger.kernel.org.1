@@ -1,102 +1,158 @@
-Return-Path: <devicetree+bounces-20380-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20381-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F28E7FF046
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 14:36:48 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93AC37FF04D
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 14:38:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DE8192820BF
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 13:36:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C44FA1C20DC2
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 13:38:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA22947A74;
-	Thu, 30 Nov 2023 13:36:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DE6847A7B;
+	Thu, 30 Nov 2023 13:38:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="iAg/YnWE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67752E6;
-	Thu, 30 Nov 2023 05:36:38 -0800 (PST)
-X-IronPort-AV: E=McAfee;i="6600,9927,10910"; a="312155"
-X-IronPort-AV: E=Sophos;i="6.04,239,1695711600"; 
-   d="scan'208";a="312155"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Nov 2023 05:36:37 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10910"; a="745631312"
-X-IronPort-AV: E=Sophos;i="6.04,239,1695711600"; 
-   d="scan'208";a="745631312"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Nov 2023 05:36:34 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andy@kernel.org>)
-	id 1r8hDS-00000000hyq-2ge2;
-	Thu, 30 Nov 2023 15:36:30 +0200
-Date: Thu, 30 Nov 2023 15:36:30 +0200
-From: Andy Shevchenko <andy@kernel.org>
-To: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>, nuno.sa@analog.com,
-	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Bartosz Golaszewski <brgl@bgdev.pl>
-Subject: Re: [PATCH v2 2/2] hwmon: ltc4282: add support for the LTC4282 chip
-Message-ID: <ZWiP3i80KnVk9qyx@smile.fi.intel.com>
-References: <20231124-ltc4282-support-v2-0-952bf926f83c@analog.com>
- <20231124-ltc4282-support-v2-2-952bf926f83c@analog.com>
- <CACRpkdaksfS4WLNQ6ohauAPq3z2LPG2uF37_jWtm0brQHaDtNw@mail.gmail.com>
- <6384831c05b8ceeaf4a16cf9229770252989b762.camel@gmail.com>
- <CACRpkdZr6TdQCLy73Yx2RdMgQifd67remdxENBKYx3UvEMm87A@mail.gmail.com>
- <971eb35068639ec404669ea5320c8183ea71a7d0.camel@gmail.com>
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF4ADC4;
+	Thu, 30 Nov 2023 05:37:58 -0800 (PST)
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AUBt4CI032596;
+	Thu, 30 Nov 2023 13:37:53 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=D4urVbhmcVHg+zDN+1uI7L+DvfPy0F3NUE4iAdZuAMU=;
+ b=iAg/YnWET+uB+v8h2hMrfuDlzbImm0aglXwfYSLmR8CkvKREDyetOhfXG2AY9NC9FMAG
+ 0GWHV2RYIIO69gI8K6cMRwZrYcLdbq5fhxzY2pycAADYSitv0d4ap7h3D93bKC5Jwrqc
+ W5PHs+oB+E6B4NxUw4GrpJ1iGLXX2NJMJj7Z8L8yXABlIXYlFRYMOgxqkzYSwty4HzC7
+ NMu4zkYHADQUOYAv8X0jjnpD481/i74WkipnDty0k0pIf69eNA1EsUTJbvBk0JH3PbY4
+ e/45cYC3B7WMeSVNZiGzourt5f8PHxHrxjjEoViYdNbBBhWDTF8PJsdaQdjOpH778KdC wg== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3up2byuwcr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 30 Nov 2023 13:37:53 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AUDbqp6011305
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 30 Nov 2023 13:37:52 GMT
+Received: from [10.239.133.49] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 30 Nov
+ 2023 05:37:49 -0800
+Message-ID: <22ddb4aa-a908-49c3-8eb4-2399c7c5bc37@quicinc.com>
+Date: Thu, 30 Nov 2023 21:37:47 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <971eb35068639ec404669ea5320c8183ea71a7d0.camel@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/3] arm64: dts: qcom: msm8996: Fix 'in-ports' is a
+ required property
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross
+	<agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Tao Zhang
+	<quic_taozha@quicinc.com>
+References: <20231129143815.7892-1-quic_jinlmao@quicinc.com>
+ <20231129143815.7892-2-quic_jinlmao@quicinc.com>
+ <3527d540-3e3f-4edb-b5f2-6ac481132c06@linaro.org>
+ <591e1aca-20ca-4d42-809d-12cd12ddadb3@quicinc.com>
+ <35916812-af55-4b2a-99e5-8566e945cb6e@linaro.org>
+ <5ef0372a-2b9d-4a19-bbb4-2c6ce29dbe79@quicinc.com>
+ <5bc8b7e3-7a4f-48d4-a1fa-9e3cb0b39a3a@linaro.org>
+Content-Language: en-US
+From: Jinlong Mao <quic_jinlmao@quicinc.com>
+In-Reply-To: <5bc8b7e3-7a4f-48d4-a1fa-9e3cb0b39a3a@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: S0Mg-Hzo3MbnhYpjJn879lFcmTDDG2rT
+X-Proofpoint-ORIG-GUID: S0Mg-Hzo3MbnhYpjJn879lFcmTDDG2rT
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-30_11,2023-11-30_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 suspectscore=0
+ phishscore=0 clxscore=1015 lowpriorityscore=0 malwarescore=0
+ priorityscore=1501 adultscore=0 impostorscore=0 bulkscore=0
+ mlxlogscore=617 spamscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2311060000 definitions=main-2311300101
 
-On Thu, Nov 30, 2023 at 11:20:32AM +0100, Nuno Sá wrote:
-> On Wed, 2023-11-29 at 21:55 +0100, Linus Walleij wrote:
-> > On Wed, Nov 29, 2023 at 5:08 PM Nuno Sá <noname.nuno@gmail.com> wrote:
-> > 
-> > > Cool, I actually thought that having the direction + get/set stuff would be weird
-> > > given the fact that we can only PULL_LOW or HIGH_Z the pins.
-> > 
-> > There are several drivers in the kernel that implement .set_config(),
-> > it's existing and should be enabled if it has uses.
+
+
+On 11/30/2023 9:35 PM, Krzysztof Kozlowski wrote:
+> On 30/11/2023 14:12, Jinlong Mao wrote:
+>>
+>>
+>> On 11/30/2023 8:06 PM, Krzysztof Kozlowski wrote:
+>>> On 30/11/2023 12:15, Jinlong Mao wrote:
+>>>>
+>>>>
+>>>> On 11/30/2023 4:55 PM, Krzysztof Kozlowski wrote:
+>>>>> On 29/11/2023 15:38, Mao Jinlong wrote:
+>>>>>> The inport of funnel@3023000 connects to a source which is not supported
+>>>>>> in current linux kernel. Remove the device tree node of funnel@3023000
+>>>>>> to fix the warning. It will be added once the driver support to the
+>>>>>> source is added to linux kernel.
+>>>>>
+>>>>> Thanks for the changes, but that's not correct reason to remove DTS
+>>>>> code. What kernel supports or not, should be irrelevant for the DTS. DTS
+>>>>> for example is used in other projects - did you check if they have the
+>>>>> same issues? Anyway, DTS describes the hardware, so how current kernel
+>>>>> support defines what is and what is not in the hardware?
+>>>>>
+>>>>>
+>>>>> Best regards,
+>>>>> Krzysztof
+>>>>
+>>>> Hi Krzysztof,
+>>>>
+>>>> The funnel dt node must have in-ports node. It is to describe the input
+>>>> connection of funnel HW. But there is no dt_binding doc to describe the
+>>>> DT node of the HW connected to funnel@3023000. So remove the funnel to
+>>>> solve the warning as of now. The funnel will be added back once driver
+>>>> and dt_binding are added for the HW.
+>>>>
+>>>> Documentation/devicetree/bindings/arm/arm,coresight-dynamic-funnel.yaml
+>>>
+>>> Why we cannot add now the binding for the connected hardware? It's not
+>>> really related to the driver.
+>>>
+>>> Best regards,
+>>> Krzysztof
+>>
+>> Do you mean yaml file can be added before the driver code is merged ?
 > 
-> Yeah, it might make sense to support it specially for the input case. AFAICT, if I
-> use the .set_config() (but from a quick look I think we will need to add support for
-> it in gpiolib for the high-z configuration), then I can't use the gpio_regmap stuff.
-> As the driver stands I don't think I could do it anyways because setting gpio2-3 and
-> alert requires to write 0 on the register rather than 1. But again, I'm still very
-> suspicious about the whole thing. The datasheet states:
+> Yes, the binding. YAML is only the language. We don't write YAMLs, we
+> write bindings.
 > 
-> "GPIO1-GPIO3 and ALERT all have comparators monitoring
-> the voltage on these pins with a threshold of 1.28V even when
-> the pins are configured as outputs."
+> Best regards,
+> Krzysztof
+
+ok, Thanks. I will prepare the binding file.
+
+Thanks
+Jinlong Mao
+
 > 
-> But we can't really set the direction for gpio2-3 and the alert pins (only getting
-> the level and setting it as PULL_LOW or HIGH_Z. gpio1 is the only one where we can
-> configure it as input or open drain ouput. Bah, I'll try to see if someone internally
-> can shed some light on this.
-
-I have better proposal. If these GPIOs are not needed for the main
-functionality of the hardware, can we just left it out for now and implement
-later if required?
-
--- 
-With Best Regards,
-Andy Shevchenko
-
 
 
