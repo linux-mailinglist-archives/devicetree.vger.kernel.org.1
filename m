@@ -1,193 +1,166 @@
-Return-Path: <devicetree+bounces-20421-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20416-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D2B87FF370
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 16:20:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6D777FF362
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 16:20:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8E9111C2088C
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 15:20:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 931E52819AE
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 15:20:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0022451C56;
-	Thu, 30 Nov 2023 15:20:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0899051C5F;
+	Thu, 30 Nov 2023 15:20:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="Kaul0nED"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="e26qgxaZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56D5010EF
-	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 07:20:48 -0800 (PST)
-Received: from mail-oi1-f198.google.com (mail-oi1-f198.google.com [209.85.167.198])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id A368642241
-	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 15:20:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1701357644;
-	bh=Hegf0srFkbsTjzBuIfrKZwGyBpbOFAxXtDxYBC/BJOY=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version;
-	b=Kaul0nEDY9wrTIMaTztWeKgS+89ygJVSiRsmrefksU8nUguLXzpAflqdpvyRMecG1
-	 YV99372DkzAIlSdLdWjh9PzdkKGoWZDRXRpLKsvr47/91Rqo7jKxANPbAv2xoY5nS5
-	 MxkOe86Gpii47WcidrHZWIDvZh7jdvCiTP/DteirxJ8nYkl3cH0+m9Rjxad3wHGnX7
-	 TPCpSUogy/YjMyPwZQ948iUv3Zx06CDxwiWAIphbp7opfiqEx0KYuhP0Tzfx+lU6nM
-	 0/GQskSVT954vDYw1rnr/dqZZU3YIIotRfd1YUuNh5o4zg74X8H6ATnoio7bPLLWJR
-	 s6eAqwxFPEohg==
-Received: by mail-oi1-f198.google.com with SMTP id 5614622812f47-3b85fd1bdecso1280008b6e.1
-        for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 07:20:44 -0800 (PST)
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 860D910E2;
+	Thu, 30 Nov 2023 07:20:16 -0800 (PST)
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-40b472f98b1so8847355e9.3;
+        Thu, 30 Nov 2023 07:20:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1701357615; x=1701962415; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=dylAbfVwWrPST5LX+rEqHAryAoBScVn+W4WcHE2nEOI=;
+        b=e26qgxaZQUw751NfhOtt2Cu+BCrQDrZRYA+SFoWKihDg4n8FiCmuQia4rC9ur0BCfk
+         FfQ8rXxNnxguzwSZGBOyp3wb5zlh6aaljjXBSCp76TIyLBBWSJVD+/sZaew6u6DfsSML
+         a8bNneSUHrP6XmLSo6IeT82AHdvdYfVShdxzr9qHmTu6K4a6eh0oAsr+ifYEtR4/Y9IA
+         2IqEJSVSa0K9rR+tPtSeMjDrJ7htq2ibNWm27ky4WFuoChJcwqfPwSh7kPPrkGvyzoDd
+         QBT/jo+/GOF+7f92PKD1DY+jUlIkS4BwAFnKyYr+nhSxW1CkFlAP+aswnpSoBbCL3AGd
+         I5IA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701357643; x=1701962443;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Hegf0srFkbsTjzBuIfrKZwGyBpbOFAxXtDxYBC/BJOY=;
-        b=JQf3sG8DKEjrUoeeJ7Y4AYGRSrGkQOLQHcUU3A+1WegpAssqvTHrRggSPZ5gRp9YIJ
-         I3eoK50M/I/Zh8SMRhYbH0BX25ivB63FWhdzmMh2Gv6VTuMiDB9bCd+JJPD0GvFiVpE1
-         aMoiHQbp2pU/xRW0DjWMj46HulAAVpCQdcXU0wSH440dUDE49D8bXx1DHo4bPs5m+9Py
-         ddX9vpF3eC+/BAobGBPtP0TNodMV3QNT5Z+UQ2Q2pBOWxG1ikkAgVHnnmGpjQhgJT7jw
-         oBQ/Mt8RqSY9YykVubC+43iCT5OhJyo3QmxCyAYBPNVKAFqjzj4dwqimXlC+5KkDvOql
-         QJkw==
-X-Gm-Message-State: AOJu0Yx5L/Eg9HIHLSQt+wsZ6D7cCDhidFMZEfF2Fb3uTT8hncVlCyRe
-	WJ6M9jEZd/AEn7va3vn1x0vQsuZkEcDrGEEF7jcqmg2UUIdXb34dZkJ5zgXieAPWW9/Ket1nY/o
-	1YPfMMua5ztu2U2U+IfNqo1KKMJDXFa7c3WeXosg=
-X-Received: by 2002:a05:6808:20a0:b0:3b2:ee79:c0fd with SMTP id s32-20020a05680820a000b003b2ee79c0fdmr31848213oiw.1.1701357643584;
-        Thu, 30 Nov 2023 07:20:43 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEDv33VjZX5rToz283+PZ9me+zUyLCvtTvnVucpd5Vw8rGLY3r7NPHXqlLul8V0jCsywTS1sQ==
-X-Received: by 2002:a05:6808:20a0:b0:3b2:ee79:c0fd with SMTP id s32-20020a05680820a000b003b2ee79c0fdmr31848188oiw.1.1701357643362;
-        Thu, 30 Nov 2023 07:20:43 -0800 (PST)
-Received: from stitch.. ([80.71.140.73])
-        by smtp.gmail.com with ESMTPSA id y125-20020a636483000000b005bd3d6e270dsm1356002pgb.68.2023.11.30.07.20.36
+        d=1e100.net; s=20230601; t=1701357615; x=1701962415;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=dylAbfVwWrPST5LX+rEqHAryAoBScVn+W4WcHE2nEOI=;
+        b=RpToGzawPTJ+xPF40fnKp3owl2pepu8Lw+6ghCKjPwBS5p3UO4+aOgmJQLMO24knB4
+         LZNTXPCNQr8mw/40hmfczUxtwt31wlvjr6RdBiPGgjS+Es3uMrLOF5W+e2bi7OEjCp3W
+         6E2CE2mPa3lov/TCGMgPkhsJsmzJQ7x8i+ZuKZxOacXWx0TM/G0qUmv4z5yN7HnWExzK
+         Ee7yxV0DGl3msj4Ph/YPRu8k3RwnVdHWfJDOntfMY/JCvAO7YonO1FIleg4XLshfW2au
+         psndsy+IkJHjcCVzGWTvPmUkuTl5ZtCrOu2FFceghB/PZUzDtaM6uCasx0QvG42hzpJU
+         nZ9w==
+X-Gm-Message-State: AOJu0YyjbMS0FVhiaIwGO1nWD+U9IQmxcUQfFQ2idQq/IvwpNzxab7Rz
+	SQtyiGMsN2gzX1bZsGCP3Ok=
+X-Google-Smtp-Source: AGHT+IHaU+1NLBkGRIORteHD1wkr7Lf2zALQw4P5g1GtV9KJP/jQi+BhEliYHWpBOtLQe2de1htcFw==
+X-Received: by 2002:a05:6000:401f:b0:332:eee9:6e7f with SMTP id cp31-20020a056000401f00b00332eee96e7fmr13332710wrb.56.1701357614546;
+        Thu, 30 Nov 2023 07:20:14 -0800 (PST)
+Received: from ?IPv6:2001:a61:3456:4e01:6ae:b55a:bd1d:57fc? ([2001:a61:3456:4e01:6ae:b55a:bd1d:57fc])
+        by smtp.gmail.com with ESMTPSA id dd16-20020a0560001e9000b00332cc24a59bsm1760782wrb.109.2023.11.30.07.20.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Nov 2023 07:20:43 -0800 (PST)
-From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-To: linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Conor Dooley <conor@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-	Geert Uytterhoeven <geert@linux-m68k.org>
-Subject: [PATCH v2 8/8] riscv: dts: starfive: Enable SDIO wifi on JH7100 boards
-Date: Thu, 30 Nov 2023 16:19:32 +0100
-Message-Id: <20231130151932.729708-9-emil.renner.berthing@canonical.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20231130151932.729708-1-emil.renner.berthing@canonical.com>
-References: <20231130151932.729708-1-emil.renner.berthing@canonical.com>
+        Thu, 30 Nov 2023 07:20:13 -0800 (PST)
+Message-ID: <a4bd59df0c5bc1be5d0d6f11b968fd61a59ee2e0.camel@gmail.com>
+Subject: Re: [PATCH v2 2/2] hwmon: ltc4282: add support for the LTC4282 chip
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Andy Shevchenko <andy@kernel.org>
+Cc: Linus Walleij <linus.walleij@linaro.org>, nuno.sa@analog.com, 
+ linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-doc@vger.kernel.org, Jean Delvare <jdelvare@suse.com>, Guenter Roeck
+ <linux@roeck-us.net>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+ Jonathan Corbet <corbet@lwn.net>, Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Thu, 30 Nov 2023 16:20:13 +0100
+In-Reply-To: <ZWiP3i80KnVk9qyx@smile.fi.intel.com>
+References: <20231124-ltc4282-support-v2-0-952bf926f83c@analog.com>
+	 <20231124-ltc4282-support-v2-2-952bf926f83c@analog.com>
+	 <CACRpkdaksfS4WLNQ6ohauAPq3z2LPG2uF37_jWtm0brQHaDtNw@mail.gmail.com>
+	 <6384831c05b8ceeaf4a16cf9229770252989b762.camel@gmail.com>
+	 <CACRpkdZr6TdQCLy73Yx2RdMgQifd67remdxENBKYx3UvEMm87A@mail.gmail.com>
+	 <971eb35068639ec404669ea5320c8183ea71a7d0.camel@gmail.com>
+	 <ZWiP3i80KnVk9qyx@smile.fi.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 
-Add pinctrl and MMC controller nodes for the Broadcom wifi controller
-on the BeagleV Starlight and StarFive VisionFive V1 boards.
+On Thu, 2023-11-30 at 15:36 +0200, Andy Shevchenko wrote:
+> On Thu, Nov 30, 2023 at 11:20:32AM +0100, Nuno S=C3=A1 wrote:
+> > On Wed, 2023-11-29 at 21:55 +0100, Linus Walleij wrote:
+> > > On Wed, Nov 29, 2023 at 5:08=E2=80=AFPM Nuno S=C3=A1 <noname.nuno@gma=
+il.com> wrote:
+> > >=20
+> > > > Cool, I actually thought that having the direction + get/set stuff =
+would be
+> > > > weird
+> > > > given the fact that we can only PULL_LOW or HIGH_Z the pins.
+> > >=20
+> > > There are several drivers in the kernel that implement .set_config(),
+> > > it's existing and should be enabled if it has uses.
+> >=20
+> > Yeah, it might make sense to support it specially for the input case. A=
+FAICT, if
+> > I
+> > use the .set_config() (but from a quick look I think we will need to ad=
+d support
+> > for
+> > it in gpiolib for the high-z configuration), then I can't use the gpio_=
+regmap
+> > stuff.
+> > As the driver stands I don't think I could do it anyways because settin=
+g gpio2-3
+> > and
+> > alert requires to write 0 on the register rather than 1. But again, I'm=
+ still
+> > very
+> > suspicious about the whole thing. The datasheet states:
+> >=20
+> > "GPIO1-GPIO3 and ALERT all have comparators monitoring
+> > the voltage on these pins with a threshold of 1.28V even when
+> > the pins are configured as outputs."
+> >=20
+> > But we can't really set the direction for gpio2-3 and the alert pins (o=
+nly
+> > getting
+> > the level and setting it as PULL_LOW or HIGH_Z. gpio1 is the only one w=
+here we
+> > can
+> > configure it as input or open drain ouput. Bah, I'll try to see if some=
+one
+> > internally
+> > can shed some light on this.
+>=20
+> I have better proposal. If these GPIOs are not needed for the main
+> functionality of the hardware, can we just left it out for now and implem=
+ent
+> later if required?
+>=20
 
-Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
----
- .../boot/dts/starfive/jh7100-common.dtsi      | 60 +++++++++++++++++++
- 1 file changed, 60 insertions(+)
+Well, I did spent some time on the gpio thing so I would like to have it in=
+ but yeah,
+no hard feelings if it does not go in.
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7100-common.dtsi b/arch/riscv/boot/dts/starfive/jh7100-common.dtsi
-index adcdbbc4f57f..42fb61c36068 100644
---- a/arch/riscv/boot/dts/starfive/jh7100-common.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7100-common.dtsi
-@@ -13,6 +13,7 @@
- / {
- 	aliases {
- 		mmc0 = &sdio0;
-+		mmc1 = &sdio1;
- 		serial0 = &uart3;
- 	};
- 
-@@ -64,6 +65,11 @@ soc {
- 			     <0x00 0xfa000000 0x10 0x7a000000 0x00 0x01000000>,
- 			     <0x00 0xfb000000 0x00 0xfb000000 0x07 0x85000000>;
- 	};
-+
-+	wifi_pwrseq: wifi-pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		reset-gpios = <&gpio 37 GPIO_ACTIVE_LOW>;
-+	};
- };
- 
- &gpio {
-@@ -146,6 +152,41 @@ GPO_SDIO0_PAD_CDATA_OEN_BIT3,
- 		};
- 	};
- 
-+	sdio1_pins: sdio1-0 {
-+		clk-pins {
-+			pinmux = <GPIOMUX(33, GPO_SDIO1_PAD_CCLK_OUT,
-+				  GPO_ENABLE, GPI_NONE)>;
-+			bias-disable;
-+			input-disable;
-+			input-schmitt-disable;
-+		};
-+		sdio-pins {
-+			pinmux = <GPIOMUX(29,
-+				  GPO_SDIO1_PAD_CCMD_OUT,
-+				  GPO_SDIO1_PAD_CCMD_OEN,
-+				  GPI_SDIO1_PAD_CCMD_IN)>,
-+				 <GPIOMUX(36,
-+				  GPO_SDIO1_PAD_CDATA_OUT_BIT0,
-+				  GPO_SDIO1_PAD_CDATA_OEN_BIT0,
-+				  GPI_SDIO1_PAD_CDATA_IN_BIT0)>,
-+				 <GPIOMUX(30,
-+				  GPO_SDIO1_PAD_CDATA_OUT_BIT1,
-+				  GPO_SDIO1_PAD_CDATA_OEN_BIT1,
-+				  GPI_SDIO1_PAD_CDATA_IN_BIT1)>,
-+				 <GPIOMUX(34,
-+				  GPO_SDIO1_PAD_CDATA_OUT_BIT2,
-+				  GPO_SDIO1_PAD_CDATA_OEN_BIT2,
-+				  GPI_SDIO1_PAD_CDATA_IN_BIT2)>,
-+				 <GPIOMUX(31,
-+				  GPO_SDIO1_PAD_CDATA_OUT_BIT3,
-+				  GPO_SDIO1_PAD_CDATA_OEN_BIT3,
-+				  GPI_SDIO1_PAD_CDATA_IN_BIT3)>;
-+			bias-pull-up;
-+			input-enable;
-+			input-schmitt-enable;
-+		};
-+	};
-+
- 	uart3_pins: uart3-0 {
- 		rx-pins {
- 			pinmux = <GPIOMUX(13, GPO_LOW, GPO_DISABLE,
-@@ -225,6 +266,25 @@ &sdio0 {
- 	status = "okay";
- };
- 
-+&sdio1 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	cap-sdio-irq;
-+	cap-power-off-card;
-+	mmc-pwrseq = <&wifi_pwrseq>;
-+	non-removable;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&sdio1_pins>;
-+	status = "okay";
-+
-+	wifi@1 {
-+		compatible = "brcm,bcm4329-fmac";
-+		reg = <1>;
-+	};
-+};
-+
- &uart3 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&uart3_pins>;
--- 
-2.40.1
+So, I actually talk with some hw guys and the pull_low is not really like a=
+ pull_low
+resistor. These pins are effectively an open drain. Which means, setting th=
+em as
+input means setting them in high-z (turning off the mosffet) - and I do hav=
+e a bug in
+my code regarding this - Or if you want them as outputs you can set the lev=
+el low
+(and it will always be low - just turn on the mosffet) or you can also set =
+high-z
+which means it will be either low or high depending on your external circui=
+try. The
+point is, you can still have your pin acting as a normal gpo if you accommo=
+date your
+circuitry for it (can also use these pins for things like buses).
 
+Also got me thinking if a gpi vs gpo devicetree property would make sense. =
+But I
+would likely leave it more generic/relaxed for now (even though I think you=
+ would
+need to be creative and actually use more HW to have the possibility of usi=
+ng these
+pins as GPIs and GPOs at the same time).
+
+- Nuno S=C3=A1
 
