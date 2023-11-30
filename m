@@ -1,402 +1,301 @@
-Return-Path: <devicetree+bounces-20223-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20224-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EA8B7FE5E0
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 02:16:35 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A15297FE5EE
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 02:20:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AA2B1B20EFE
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 01:16:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4EE4228308F
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 01:20:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0ACA33C0D;
-	Thu, 30 Nov 2023 01:16:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B2BB4C7E;
+	Thu, 30 Nov 2023 01:20:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="Ddeg5LJe"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="BKEKh3gp"
 X-Original-To: devicetree@vger.kernel.org
-X-Greylist: delayed 148303 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 29 Nov 2023 17:16:23 PST
-Received: from mail-m49196.qiye.163.com (mail-m49196.qiye.163.com [45.254.49.196])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 305228E;
-	Wed, 29 Nov 2023 17:16:22 -0800 (PST)
-DKIM-Signature: a=rsa-sha256;
-	b=Ddeg5LJeS0phqWIWA8ac8OOhpg9ohiNBIkrIN8hf3/vPSe461U8JltYdz2kW6b6PJY5kByYLqF95OwQj0T7IucW+QYMuK8w6MLhv2NGbFS2zV9i3m0fjpCxLKKl6TWIgkkdn0yrG+t0BJEw72UyS/p8Qx11+Xc7wCuaF7DphVSg=;
-	c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=AeY7fk+9XNZsdcdHTvO2mlCsGOWJj1HjrFhx+lG+YOY=;
-	h=date:mime-version:subject:message-id:from;
-Received: from [172.16.12.141] (unknown [58.22.7.114])
-	by mail-m12779.qiye.163.com (Hmail) with ESMTPA id 3F5C47803DF;
-	Thu, 30 Nov 2023 09:15:47 +0800 (CST)
-Message-ID: <526c14a3-ab44-403c-ad36-2334cc5036a1@rock-chips.com>
-Date: Thu, 30 Nov 2023 09:15:46 +0800
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2075.outbound.protection.outlook.com [40.107.223.75])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D3B310A;
+	Wed, 29 Nov 2023 17:19:58 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=HSowehGXcEMEOrt0tlCYmaz4Q6XCtkEzzmKrteyWEvVvMl80DMzCEiZAr69OAdHUeqjmvExKlO3h87B5CFebHH5OM06YYpqdT/CPQXNUIz6BfL09qjMfVlEJ+FTtAR3WUG3X7IPyGwaO5PY/N46l1eGhu/4XRiDXzYtpRLDP/ywQ+fJEGzdmkS6IeGLjKKj6Mehz4rhwPU8zWERXSR5fLB9NZIzxzKOnseP2uTLx8vlEJUrNIZfx8zHxUEnPvFcqj2QYCllYqE4T1ofAT/84ftGb4mU+/P7jpP9/e7wzh90i5SOjFgemGjOMXG9gGdWji8d2cdAOLflUuLQ4gqJGhQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=9l7NVwE22OIQhX9zuHnvf4jXsUaT8lpqJkvGpSCoDGA=;
+ b=N7BcXRa0UQb5PFNrLDOVUeW7d2RmeomIjv0HZ2h7GqTBTcWpAZW4Lv4PYPJz5hsYsMEwBp6VPakK5+EeW7ZfG13om9qamNn4B8rh83XcosYD3+Ho0Lvh9G6JyqeSTbEYxwTgZz1nrjLs+xU1g+yVkthjNh8+vGuYHSkfgKV8yLw9LzXuNSrvCbAM5PCUJL9ZUuOQORiSkE1k6s/5gEoyC144e7Nx2abAE1rJ62Tuoib4XygHfZVq8tuXY7XCaq9zIp/UrRocSLnr7Yx98hnfRHAIKIyeGRadP862DEPQbO0f2JYL8QKBu17vGjGV9cpsxl9h5IQ1yTRSlce87AIVfQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=gmail.com smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9l7NVwE22OIQhX9zuHnvf4jXsUaT8lpqJkvGpSCoDGA=;
+ b=BKEKh3gpBFntFTc5Hq0utgXhyGhyTXedWY4tjxvRjzU2mpx3tFqUA03mT6oHWIl6D+J6sVLQmGfWKpRzTrx+sOKTjp0Y00VVWC9r6PV0z7IFmM3afFjcs7dNWkD4oEDtSfznmqeN8ZBkicJBK8jc4hjU3HEanrs/oATQ8Jln+UM=
+Received: from CH0PR03CA0430.namprd03.prod.outlook.com (2603:10b6:610:10e::15)
+ by SA1PR12MB8744.namprd12.prod.outlook.com (2603:10b6:806:38c::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7025.29; Thu, 30 Nov
+ 2023 01:19:55 +0000
+Received: from CY4PEPF0000EE37.namprd05.prod.outlook.com
+ (2603:10b6:610:10e:cafe::3a) by CH0PR03CA0430.outlook.office365.com
+ (2603:10b6:610:10e::15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7025.27 via Frontend
+ Transport; Thu, 30 Nov 2023 01:19:54 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ CY4PEPF0000EE37.mail.protection.outlook.com (10.167.242.43) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7046.17 via Frontend Transport; Thu, 30 Nov 2023 01:19:54 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Wed, 29 Nov
+ 2023 19:19:52 -0600
+Received: from xsjtanmays50.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.34 via Frontend
+ Transport; Wed, 29 Nov 2023 19:19:51 -0600
+From: Tanmay Shah <tanmay.shah@amd.com>
+To: <jassisinghbrar@gmail.com>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<shubhrajyoti.datta@amd.com>, <michal.simek@amd.com>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<ben.levinsky@amd.com>, Tanmay Shah <tanmay.shah@amd.com>
+Subject: [PATCH] dt-bindings: mailbox: add Versal IPI bindings
+Date: Wed, 29 Nov 2023 17:19:36 -0800
+Message-ID: <20231130011936.3753814-1-tanmay.shah@amd.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 11/12] drm/rockchip: vop2: Add debugfs support
-Content-Language: en-US
-To: Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Andy Yan <andyshrk@163.com>, heiko@sntech.de, hjc@rock-chips.com,
- dri-devel@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
- robh+dt@kernel.org, devicetree@vger.kernel.org,
- sebastian.reichel@collabora.com, kever.yang@rock-chips.com,
- chris.obbard@collabora.com
-References: <20231122125316.3454268-1-andyshrk@163.com>
- <20231122125601.3455031-1-andyshrk@163.com>
- <20231127101337.GU3359458@pengutronix.de>
- <ea24a638-d10f-4f58-9992-1c80bafdd6d4@rock-chips.com>
- <20231129085229.GC963049@pengutronix.de>
- <13a58162-6708-498c-84bd-68a1e814f30b@rock-chips.com>
- <20231129125910.GA1057032@pengutronix.de>
-From: Andy Yan <andy.yan@rock-chips.com>
-In-Reply-To: <20231129125910.GA1057032@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGkkaH1ZJHx1LT0xKTENPTE9VEwETFh
-	oSFyQUDg9ZV1kYEgtZQVlOQ1VJSVVMVUpKT1lXWRYaDxIVHRRZQVlPS0hVSk5MSUpJVUpLS1VKQl
-	kG
-X-HM-Tid: 0a8c1dcbd7f3b24fkuuu3f5c47803df
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Ojo6Lxw6GDw8DhJOQk8fMwM9
-	TzowCxRVSlVKTEtKSEtNQk9DSU1LVTMWGhIXVRoVHwJVAhoVOwkUGBBWGBMSCwhVGBQWRVlXWRIL
-	WUFZTkNVSUlVTFVKSk9ZV1kIAVlBSk1JSEI3Bg++
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE37:EE_|SA1PR12MB8744:EE_
+X-MS-Office365-Filtering-Correlation-Id: 69140516-8159-4494-1464-08dbf14275b1
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	KOZYde6CHDvj+uC6jtDeonOzF79KTOKKU7xC4YgNudh6ufxGg1HSepw1nDqZFPsam7QbZuA7hcC8XcNF1FFPv980ijNtRQ/dIE0zF6tNdOmzsVYtuKgzWWvbhzHMyGmSi7kkT5GdleJ4dNV2jfwN6e4ZM7ni41eFSGJroucIG4F5gtjmhIaYWrxK2OjWCxA3MwzfHsL2G5p20ZAn7/pXdqvTeR3hbR1ND2faFsTmvjVyWHSgT1Onbi2jX5j15DVE1Qz+5M5SM4wK5hd13pXVDPwy6VLgxE9fW8+v4dN+weatwH6lVxsHJTlAKbPq6ul6+gE4K0u4rcZGcS+j7fhr+326330JkPgx4qGraSTrAWJD5vMm2/s/NNSDDkgzqgpsLrrSurInNdJ9hdRn6SOj3ov4eGjXWPP9ozEwfJvx5hTz9/OH7A1/jj26E8hmIMx9Ef3Y1EcuecDEgDC1/8z8Jzm193kX/ZRZYgjyGtoXBDAghp/cQvJ31CEw12IbUh9xS3F3QVW8TR7H5Tvf2ZURYnLegQiXdBXsN+ZJq8bI4rir/vnZIjNxE1E2fgSV67Y2UBzwFjDVdYdwZkfWARFgh/JdscftR6I8Bk2H9cVNnRrCMNWcmB+V/L7j1ciZxrx/cVarcw5cdKM0F7cJQfniq3CmLrTuXEYjhAWd3UkP/cRnWxc9IndVsa8qqy7NPhK4wwKr+juYBKEEBhDhDgvX0bzIxjSC+9mkn9EZrHLsbnRebgi6tSZEaMUcojn4oYd+i6XADVQRSdJpsUPj7Uznv7f4kz2YAGFIKS3XASqToUi4KOaYTTb6uayDy1VcTgKsI5TT13gRSkuNzC+jgc68Ng==
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(376002)(346002)(39860400002)(136003)(396003)(230922051799003)(1800799012)(451199024)(186009)(82310400011)(64100799003)(40470700004)(36840700001)(46966006)(40460700003)(316002)(6636002)(82740400003)(40480700001)(15650500001)(202311291699003)(36756003)(356005)(81166007)(86362001)(966005)(426003)(44832011)(8676002)(8936002)(26005)(4326008)(110136005)(5660300002)(83380400001)(54906003)(70206006)(6666004)(1076003)(2616005)(478600001)(336012)(70586007)(36860700001)(2906002)(41300700001)(47076005)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Nov 2023 01:19:54.4919
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 69140516-8159-4494-1464-08dbf14275b1
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	CY4PEPF0000EE37.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB8744
 
-Hi Sascha:
+Add documentation for AMD-Xilinx Versal platform Inter Processor Interrupt
+controller. These bindings are different from previous
+xlnx,zynqmp-ipi-mailbox bindings and hence introduced in separate file.
+However, same existing driver will be extended for devices that are based
+on Versal bindings.
 
-On 11/29/23 20:59, Sascha Hauer wrote:
-> On Wed, Nov 29, 2023 at 07:01:37PM +0800, Andy Yan wrote:
->> Hi Sascha:
->>
->>
->>
->> On 11/29/23 16:52, Sascha Hauer wrote:
->>> On Mon, Nov 27, 2023 at 06:56:34PM +0800, Andy Yan wrote:
->>>>      Hi Sascha:
->>>>
->>>>      thanks for you review.
->>>>
->>>>      On 11/27/23 18:13, Sascha Hauer wrote:
->>>>
->>>>    On Wed, Nov 22, 2023 at 08:56:01PM +0800, Andy Yan wrote:
->>>>
->>>>    From: Andy Yan [1]<andy.yan@rock-chips.com>
->>>>
->>>>    /sys/kernel/debug/dri/vop2/summary:  dump vop display state
->>>>    /sys/kernel/debug/dri/vop2/regs: dump whole vop registers
->>>>    /sys/kernel/debug/dri/vop2/active_regs: only dump the registers of
->>>>    activated modules
->>>>
->>>>    Signed-off-by: Andy Yan [2]<andy.yan@rock-chips.com>
->>>>    ---
->>>>
->>>>    (no changes since v1)
->>>>
->>>>     drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 399 +++++++++++++++++++
->>>>     1 file changed, 399 insertions(+)
->>>>
->>>>    diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
->>>>    index 9eecbe1f71f9..4a2342209c15 100644
->>>>    --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
->>>>    +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
->>>>    @@ -27,6 +27,7 @@
->>>>     #include <drm/drm_debugfs.h>
->>>>     #include <drm/drm_flip_work.h>
->>>>     #include <drm/drm_framebuffer.h>
->>>>    +#include <drm/drm_gem_framebuffer_helper.h>
->>>>     #include <drm/drm_probe_helper.h>
->>>>     #include <drm/drm_vblank.h>
->>>>
->>>>    @@ -187,6 +188,7 @@ struct vop2 {
->>>>             */
->>>>            u32 registered_num_wins;
->>>>
->>>>    +       struct resource *res;
->>>>            void __iomem *regs;
->>>>            struct regmap *map;
->>>>
->>>>    @@ -228,6 +230,44 @@ struct vop2 {
->>>>     #define vop2_output_if_is_lvds(x)      (x == ROCKCHIP_VOP2_EP_LVDS0 || x == ROCKCHIP_VOP2_EP_LVDS1)
->>>>     #define vop2_output_if_is_dpi(x)       (x == ROCKCHIP_VOP2_EP_RGB0)
->>>>
->>>>    +struct vop2_regs_dump {
->>>>    +       const char *name;
->>>>    +       u32 base;
->>>>    +       u32 en_reg;
->>>>    +       u32 en_val;
->>>>    +       u32 en_mask;
->>>>    +};
->>>>    +
->>>>    +/*
->>>>    + * bus-format types.
->>>>    + */
->>>>    +struct drm_bus_format_enum_list {
->>>>    +       int type;
->>>>    +       const char *name;
->>>>    +};
->>>>    +
->>>>    +static const struct drm_bus_format_enum_list drm_bus_format_enum_list[] = {
->>>>    +       { DRM_MODE_CONNECTOR_Unknown, "Unknown" },
->>>>    +       { MEDIA_BUS_FMT_RGB565_1X16, "RGB565_1X16" },
->>>>    +       { MEDIA_BUS_FMT_RGB666_1X18, "RGB666_1X18" },
->>>>    +       { MEDIA_BUS_FMT_RGB666_1X24_CPADHI, "RGB666_1X24_CPADHI" },
->>>>    +       { MEDIA_BUS_FMT_RGB666_1X7X3_SPWG, "RGB666_1X7X3_SPWG" },
->>>>    +       { MEDIA_BUS_FMT_YUV8_1X24, "YUV8_1X24" },
->>>>    +       { MEDIA_BUS_FMT_UYYVYY8_0_5X24, "UYYVYY8_0_5X24" },
->>>>    +       { MEDIA_BUS_FMT_YUV10_1X30, "YUV10_1X30" },
->>>>    +       { MEDIA_BUS_FMT_UYYVYY10_0_5X30, "UYYVYY10_0_5X30" },
->>>>    +       { MEDIA_BUS_FMT_RGB888_3X8, "RGB888_3X8" },
->>>>    +       { MEDIA_BUS_FMT_RGB888_1X24, "RGB888_1X24" },
->>>>    +       { MEDIA_BUS_FMT_RGB888_1X7X4_SPWG, "RGB888_1X7X4_SPWG" },
->>>>    +       { MEDIA_BUS_FMT_RGB888_1X7X4_JEIDA, "RGB888_1X7X4_JEIDA" },
->>>>    +       { MEDIA_BUS_FMT_UYVY8_2X8, "UYVY8_2X8" },
->>>>    +       { MEDIA_BUS_FMT_YUYV8_1X16, "YUYV8_1X16" },
->>>>    +       { MEDIA_BUS_FMT_UYVY8_1X16, "UYVY8_1X16" },
->>>>    +       { MEDIA_BUS_FMT_RGB101010_1X30, "RGB101010_1X30" },
->>>>    +       { MEDIA_BUS_FMT_YUYV10_1X20, "YUYV10_1X20" },
->>>>    +};
->>>>    +static DRM_ENUM_NAME_FN(drm_get_bus_format_name, drm_bus_format_enum_list)
->>>>    +
->>>>     static const struct regmap_config vop2_regmap_config;
->>>>
->>>>     static struct vop2_video_port *to_vop2_video_port(struct drm_crtc *crtc)
->>>>    @@ -2487,6 +2527,363 @@ static const struct drm_crtc_helper_funcs vop2_crtc_helper_funcs = {
->>>>            .atomic_disable = vop2_crtc_atomic_disable,
->>>>     };
->>>>
->>>>    +static void vop2_dump_connector_on_crtc(struct drm_crtc *crtc, struct seq_file *s)
->>>>    +{
->>>>    +       struct drm_connector_list_iter conn_iter;
->>>>    +       struct drm_connector *connector;
->>>>    +
->>>>    +       drm_connector_list_iter_begin(crtc->dev, &conn_iter);
->>>>    +       drm_for_each_connector_iter(connector, &conn_iter) {
->>>>    +               if (crtc->state->connector_mask & drm_connector_mask(connector))
->>>>    +                       seq_printf(s, "    Connector: %s\n", connector->name);
->>>>    +
->>>>    +       }
->>>>    +       drm_connector_list_iter_end(&conn_iter);
->>>>    +}
->>>>    +
->>>>    +static int vop2_plane_state_dump(struct seq_file *s, struct drm_plane *plane)
->>>>    +{
->>>>    +       struct vop2_win *win = to_vop2_win(plane);
->>>>    +       struct drm_plane_state *pstate = plane->state;
->>>>    +       struct drm_rect *src, *dst;
->>>>    +       struct drm_framebuffer *fb;
->>>>    +       struct drm_gem_object *obj;
->>>>    +       struct rockchip_gem_object *rk_obj;
->>>>    +       bool xmirror;
->>>>    +       bool ymirror;
->>>>    +       bool rotate_270;
->>>>    +       bool rotate_90;
->>>>    +       dma_addr_t fb_addr;
->>>>    +       int i;
->>>>    +
->>>>    +       seq_printf(s, "    %s: %s\n", win->data->name, pstate->crtc ? "ACTIVE" : "DISABLED");
->>>>    +       if (!pstate || !pstate->fb)
->>>>    +               return 0;
->>>>    +
->>>>    +       fb = pstate->fb;
->>>>    +       src = &pstate->src;
->>>>    +       dst = &pstate->dst;
->>>>    +       xmirror = pstate->rotation & DRM_MODE_REFLECT_X ? true : false;
->>>>    +       ymirror = pstate->rotation & DRM_MODE_REFLECT_Y ? true : false;
->>>>    +       rotate_270 = pstate->rotation & DRM_MODE_ROTATE_270;
->>>>    +       rotate_90 = pstate->rotation & DRM_MODE_ROTATE_90;
->>>>    +
->>>>    +       seq_printf(s, "\twin_id: %d\n", win->win_id);
->>>>    +
->>>>    +       seq_printf(s, "\tformat: %p4cc%s glb_alpha[0x%x]\n",
->>>>    +                  &fb->format->format,
->>>>    +                  drm_is_afbc(fb->modifier) ? "[AFBC]" : "",
->>>>    +                  pstate->alpha >> 8);
->>>>    +       seq_printf(s, "\trotate: xmirror: %d ymirror: %d rotate_90: %d rotate_270: %d\n",
->>>>    +                  xmirror, ymirror, rotate_90, rotate_270);
->>>>    +       seq_printf(s, "\tzpos: %d\n", pstate->normalized_zpos);
->>>>    +       seq_printf(s, "\tsrc: pos[%d, %d] rect[%d x %d]\n", src->x1 >> 16,
->>>>    +                  src->y1 >> 16, drm_rect_width(src) >> 16,
->>>>    +                  drm_rect_height(src) >> 16);
->>>>    +       seq_printf(s, "\tdst: pos[%d, %d] rect[%d x %d]\n", dst->x1, dst->y1,
->>>>    +                  drm_rect_width(dst), drm_rect_height(dst));
->>>>    +
->>>>    +       for (i = 0; i < fb->format->num_planes; i++) {
->>>>    +               obj = fb->obj[0];
->>>>    +               rk_obj = to_rockchip_obj(obj);
->>>>    +               fb_addr = rk_obj->dma_addr + fb->offsets[0];
->>>>    +
->>>>    +               seq_printf(s, "\tbuf[%d]: addr: %pad pitch: %d offset: %d\n",
->>>>    +                          i, &fb_addr, fb->pitches[i], fb->offsets[i]);
->>>>    +       }
->>>>    +
->>>>    +       return 0;
->>>>    +}
->>>>    +
->>>>    +static int vop2_crtc_state_dump(struct drm_crtc *crtc, struct seq_file *s)
->>>>    +{
->>>>    +       struct vop2_video_port *vp = to_vop2_video_port(crtc);
->>>>    +       struct drm_crtc_state *cstate = crtc->state;
->>>>    +       struct rockchip_crtc_state *vcstate;
->>>>    +       struct drm_display_mode *mode;
->>>>    +       struct drm_plane *plane;
->>>>    +       bool interlaced;
->>>>    +
->>>>    +       seq_printf(s, "Video Port%d: %s\n", vp->id, !cstate ?
->>>>    +                  "DISABLED" : cstate->active ? "ACTIVE" : "DISABLED");
->>>>    +
->>>>    +       if (!cstate || !cstate->active)
->>>>    +               return 0;
->>>>    +
->>>>    +       mode = &crtc->state->adjusted_mode;
->>>>    +       vcstate = to_rockchip_crtc_state(cstate);
->>>>    +       interlaced = !!(mode->flags & DRM_MODE_FLAG_INTERLACE);
->>>>    +
->>>>    +       vop2_dump_connector_on_crtc(crtc, s);
->>>>    +       seq_printf(s, "\tbus_format[%x]: %s\n", vcstate->bus_format,
->>>>    +                   drm_get_bus_format_name(vcstate->bus_format));
->>>>    +       seq_printf(s, "\toutput_mode[%x]", vcstate->output_mode);
->>>>    +       seq_printf(s, " color_space[%d]\n", vcstate->color_space);
->>>>    +       seq_printf(s, "    Display mode: %dx%d%s%d\n",
->>>>    +                   mode->hdisplay, mode->vdisplay, interlaced ? "i" : "p",
->>>>    +                   drm_mode_vrefresh(mode));
->>>>    +       seq_printf(s, "\tclk[%d] real_clk[%d] type[%x] flag[%x]\n",
->>>>    +                   mode->clock, mode->crtc_clock, mode->type, mode->flags);
->>>>    +       seq_printf(s, "\tH: %d %d %d %d\n", mode->hdisplay, mode->hsync_start,
->>>>    +                   mode->hsync_end, mode->htotal);
->>>>    +       seq_printf(s, "\tV: %d %d %d %d\n", mode->vdisplay, mode->vsync_start,
->>>>    +                   mode->vsync_end, mode->vtotal);
->>>>    +
->>>>    +       drm_atomic_crtc_for_each_plane(plane, crtc) {
->>>>    +               vop2_plane_state_dump(s, plane);
->>>>    +       }
->>>>    +
->>>>    +       return 0;
->>>>    +}
->>>>    +
->>>>    +static int vop2_summary_show(struct seq_file *s, void *data)
->>>>    +{
->>>>    +       struct drm_info_node *node = s->private;
->>>>    +       struct drm_minor *minor = node->minor;
->>>>    +       struct drm_device *drm_dev = minor->dev;
->>>>    +       struct drm_crtc *crtc;
->>>>    +
->>>>    +       drm_modeset_lock_all(drm_dev);
->>>>    +       drm_for_each_crtc(crtc, drm_dev) {
->>>>    +               vop2_crtc_state_dump(crtc, s);
->>>>    +       }
->>>>    +       drm_modeset_unlock_all(drm_dev);
->>>>    +
->>>>    +       return 0;
->>>>    +}
->>>>    +
->>>>    +static void vop2_regs_print(struct vop2 *vop2, struct seq_file *s, struct vop2_regs_dump *dump)
->>>>    +{
->>>>    +       resource_size_t start;
->>>>    +       const int reg_num = 0x110 / 4;
->>>>
->>>>    If I'm not mistaken this prints a register space of 0x110 bytes.
->>>>    Shouldn't it be 0x100 bytes instead?
->>>>
->>>>    Also, are all these register spaces really have the same size? Does it
->>>>    make sense to add the size to struct vop2_regs_dump?
->>>>
->>>>      In fact, most used registers of the most blocks are not more than 100, but
->>>>      for Cluster windows,
->>>>
->>>>      there is a CLUSTER_CTRL register sting at 0x100.
->>>>
->>>>      I think i should add the size to struct vop2_regs_dump.
->>>>
->>>>
->>>>    +       u32 val;
->>>>    +       int i;
->>>>    +
->>>>    +       if (dump->en_mask) {
->>>>    +               val = vop2_readl(vop2, dump->base + dump->en_reg);
->>>>    +               if ((val & dump->en_mask) != dump->en_val)
->>>>    +                       return;
->>>>    +       }
->>>>    +       seq_printf(s, "\n%s:\n", dump->name);
->>>>    +
->>>>    +       start = vop2->res->start + dump->base;
->>>>    +       for (i = 0; i < reg_num;) {
->>>>    +               seq_printf(s, "%08x:  %08x %08x %08x %08x\n", (u32)start + i * 4,
->>>>    +                          vop2_readl(vop2, dump->base + (4 * i)),
->>>>    +                          vop2_readl(vop2, dump->base + (4 * (i + 1))),
->>>>    +                          vop2_readl(vop2, dump->base + (4 * (i + 2))),
->>>>    +                          vop2_readl(vop2, dump->base + (4 * (i + 3))));
->>>>    +               i += 4;
->>>>    +       }
->>>>    +
->>>>    +}
->>>>    +
->>>>    +static int vop2_regs_show(struct seq_file *s, void *arg)
->>>>    +{
->>>>    +       struct drm_info_node *node = s->private;
->>>>    +       struct vop2 *vop2 = (struct vop2 *)node->info_ent->data;
->>>>    +       struct drm_minor *minor = node->minor;
->>>>    +       struct drm_device *drm_dev = minor->dev;
->>>>    +
->>>>    +       struct vop2_regs_dump dump;
->>>>    +
->>>>    +       drm_modeset_lock_all(drm_dev);
->>>>    +
->>>>    +       if (vop2->enable_count) {
->>>>    +               dump.en_mask = 0;
->>>>    +
->>>>    +               dump.name = "SYS";
->>>>    +               dump.base = RK3568_REG_CFG_DONE;
->>>>    +               vop2_regs_print(vop2, s, &dump);
->>>>
->>>>    Can you create a statically initialized array of struct vop2_regs_dump
->>>>    and iterate over it?
->>>>    You would need an additional present_in_soc_xy flag in struct
->>>>    vop2_regs_dump, but other than that I don't see a problem and the result
->>>>    might look better.
->>>>
->>>>    For the windows it might also be an option to iterate over
->>>>    vop2->data->win instead. This array already contains the register base
->>>>    addresses and window names.
->>>>
->>>>      In fact, we have a dump_regs  arrar in vop2_data per soc in our bsp
->>>>      kernel[0],
->>>>
->>>>      do you like something like that?
->>>>
->>>>      [0]
->>>>      [3]https://github.com/armbian/linux-rockchip/blob/rk-5.10-rkr6/drivers/gpu/drm/rockchip/rockchip_vop2_reg.c#L3684
->>>
->>> This looks good from a first glance. I would suggest using C99
->>> initializers though.
->>
->>
->> Thanks for your reply, but am not quiet claer about the C99 initializers, would you plase make it more specific,
->> or give some example ?
-> 
-> Instead of:
-> 
-> static const struct vop_dump_regs rk3588_dump_regs[] = {
-> 	{ RK3568_REG_CFG_DONE, "SYS", {0}, 0 },
-> 
-> do:
-> 
-> static const struct vop_dump_regs rk3588_dump_regs[] = {
-> 	{
-> 		.offset = RK3568_REG_CFG_DONE.
-> 		.name = "SYS"
-> 	},
-> 	...
-> 
-> It's a bit more verbose but better readable for people who don't know
-> the order of the struct members.
+Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
+---
+ .../mailbox/xlnx,versal-ipi-mailbox.yaml      | 174 ++++++++++++++++++
+ 1 file changed, 174 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mailbox/xlnx,versal-ipi-mailbox.yaml
 
+diff --git a/Documentation/devicetree/bindings/mailbox/xlnx,versal-ipi-mailbox.yaml b/Documentation/devicetree/bindings/mailbox/xlnx,versal-ipi-mailbox.yaml
+new file mode 100644
+index 000000000000..4408b59d392d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mailbox/xlnx,versal-ipi-mailbox.yaml
+@@ -0,0 +1,174 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mailbox/xlnx,versal-ipi-mailbox.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Xilinx IPI(Inter Processor Interrupt) mailbox controller
++
++description: |
++  The Xilinx IPI(Inter Processor Interrupt) mailbox controller is to manage
++  messaging between two IPI agents. Each IPI agent owns registers used for
++  notification and buffers for message.
++
++               +-------------------------------------+
++               | Xilinx IPI Controller               |
++               +-------------------------------------+
++    +--------------------------------------------------+
++  TF-A                   |                     |
++                         |                     |
++                         |                     |
++    +--------------------------+               |
++                         |                     |
++                         |                     |
++    +--------------------------------------------------+
++              +------------------------------------------+
++              |  +----------------+   +----------------+ |
++  Hardware    |  |  IPI Agent     |   |  IPI Buffers   | |
++              |  |  Registers     |   |  (optional)    | |
++              |  |                |   |                | |
++              |  +----------------+   +----------------+ |
++              |                                          |
++              | Xilinx IPI Agent Block                   |
++              +------------------------------------------+
++
++maintainers:
++  - Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
++
++properties:
++  compatible:
++    const: xlnx,versal-ipi-mailbox
++
++  method:
++    description: |
++      The method of calling the PM-API firmware layer.
++      Permitted values are.
++      - "smc" : SMC
++      - "hvc" : HVC
++
++    $ref: /schemas/types.yaml#/definitions/string
++    enum:
++      - smc
++      - hvc
++    default: smc
++
++  '#address-cells':
++    const: 2
++
++  '#size-cells':
++    const: 2
++
++  reg:
++    minItems: 1
++    items:
++      - description: Host IPI agent control registers
++      - description: Host IPI agent optional message buffers
++
++  reg-names:
++    minItems: 1
++    items:
++      - const: ctrl
++      - const: msg
++
++  xlnx,ipi-id:
++    description: |
++      Remote Xilinx IPI agent ID of which the mailbox is connected to.
++    $ref: /schemas/types.yaml#/definitions/uint32
++
++  interrupts:
++    maxItems: 1
++
++  ranges: true
++
++patternProperties:
++  '^mailbox@[0-9a-f]+$':
++    description: Internal ipi mailbox node
++    type: object
++
++    properties:
++
++      compatible:
++        const: xlnx,versal-ipi-dest-mailbox
++
++      xlnx,ipi-id:
++        description:
++          Remote Xilinx IPI agent ID of which the mailbox is connected to.
++        $ref: /schemas/types.yaml#/definitions/uint32
++
++      '#mbox-cells':
++        const: 1
++        description:
++          It contains tx(0) or rx(1) channel IPI id number.
++
++      reg:
++        minItems: 1
++        items:
++          - description: Host IPI agent control registers
++          - description: Host IPI agent optional message buffers
++
++      reg-names:
++        minItems: 1
++        items:
++          - const: ctrl
++          - const: msg
++
++    additionalProperties: false
++
++    required:
++      - compatible
++      - reg
++      - reg-names
++      - xlnx,ipi-id
++      - "#mbox-cells"
++
++additionalProperties: false
++
++required:
++  - compatible
++  - interrupts
++  - '#address-cells'
++  - '#size-cells'
++  - reg
++  - reg-names
++  - xlnx,ipi-id
++
++examples:
++  - |
++    #include<dt-bindings/interrupt-controller/arm-gic.h>
++
++    amba {
++      #address-cells = <0x2>;
++      #size-cells = <0x2>;
++      zynqmp-mailbox@ff300000 {
++        compatible = "xlnx,versal-ipi-mailbox";
++        interrupts = <GIC_SPI 29 IRQ_TYPE_LEVEL_HIGH>;
++        xlnx,ipi-id = <0>;
++        #address-cells = <2>;
++        #size-cells = <2>;
++        reg = <0x0 0xff300000 0x0 0x1000>,
++              <0x0 0xff990000 0x0 0x1ff>;
++        reg-names = "ctrl", "msg";
++        ranges;
++
++        /* buffered IPI */
++        mailbox@ff340000 {
++          compatible = "xlnx,versal-ipi-dest-mailbox";
++          reg = <0x0 0xff340000 0x0 0x1000>,
++                <0x0 0xff990400 0x0 0x1ff>;
++          reg-names = "ctrl", "msg";
++          #mbox-cells = <1>;
++          xlnx,ipi-id = <4>;
++        };
++
++        /* bufferless IPI */
++        mailbox@ff370000 {
++          compatible = "xlnx,versal-ipi-dest-mailbox";
++          reg = <0x0 0xff370000 0x0 0x1000>;
++          reg-names = "ctrl";
++          #mbox-cells = <1>;
++          xlnx,ipi-id = <7>;
++        };
++      };
++    };
++
++...
 
-Got it, will do.
-> 
-> Sascha
-> 
+base-commit: 2cc14f52aeb78ce3f29677c2de1f06c0e91471ab
+-- 
+2.25.1
+
 
