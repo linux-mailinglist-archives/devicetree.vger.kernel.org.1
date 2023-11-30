@@ -1,175 +1,141 @@
-Return-Path: <devicetree+bounces-20292-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20293-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 587687FEB99
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 10:13:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80D1B7FEBA5
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 10:15:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 089AD1F20F11
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 09:13:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 336C6281EC9
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 09:15:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BEDE36AF5;
-	Thu, 30 Nov 2023 09:13:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73A84374FE;
+	Thu, 30 Nov 2023 09:15:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="c0i4MU6Q"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="WupfGTpF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D721510DF
-	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 01:13:15 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-333030a6537so491751f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 01:13:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701335594; x=1701940394; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=JucOyRuowajl55FaVJkCJ+iCL38xKPC8u2xNBw30DGI=;
-        b=c0i4MU6QzP0MJUj2ZYWRVGa+OwtTAapjrUJ3aqOremBwnYUgGKl3w4D7oTK201OXOi
-         KJ/xiQ8z2nfkDTqwWOhdFpuyEY/mf6WkLSS+tcwgQ3gYZY5PU3FLAgO5JWfkNnNltrlq
-         KFyAVuJ8edVots+IV5UTbsABqgZ3nq8wabj0pXYE2MwT5h925xta4ouZNNGQmLEMOW3q
-         lsCC0UKWHtRqGjYOWuZ1vmugFUfpRTC3Q0h6GbVR0Crx4ij5ILzMnFb2Alm6KSUH8GEp
-         Zmq9M0+3EJ00hDqKsRlhW+KD9QgweOzWErIlk/x25nizaEQcpgVflDqpfvYIzL5l6ZUs
-         kMPA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701335594; x=1701940394;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=JucOyRuowajl55FaVJkCJ+iCL38xKPC8u2xNBw30DGI=;
-        b=NR5xn4uWT0QDzsYdDS0HgO4h2KE4j7z7PTQwTc6nriG5ZxICrBQPfseF5v2TbLPNoe
-         cQlbvytN/UCpG2QXcMlta5hYD83gaIptAYj8D2fzJXhyvkTZb4nkk9UHIt83qQIYYg0R
-         V1TlH5x2lrcK/M9uM9Kqc73IOqVbTXU8/TK5GTpk2rKbesfogaZASY81JPPaIzVoa5IZ
-         +EbhaHDNmaFxvnM5zJaZWTGzNh82oWo3IL7MyqmQv5RWdt6bFrcgn0zvkhgVqdKPvrVg
-         PYfUOhNEcVwbdmVewelwWI2boyMrGHaMxz1YXs9IT/3AZLcaXGkfxKBfahVw92xruIlB
-         mIhg==
-X-Gm-Message-State: AOJu0YxvSFzfNnACtGsBEI3XdJkn/orDAjcn/EDSdXqTsihQK7FF5WVW
-	kAToRx4E3sTVrIGVIZNo+n76bw==
-X-Google-Smtp-Source: AGHT+IEwXMs51EeZF9IX22o6sl11L9KxmNjzlGnL8883eDT+U1ZjMdU5LdOCDfssHg7g38EHbxJtHg==
-X-Received: by 2002:adf:ea84:0:b0:332:eb80:874a with SMTP id s4-20020adfea84000000b00332eb80874amr16055939wrm.1.1701335594169;
-        Thu, 30 Nov 2023 01:13:14 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:41c9:3acd:a6e2:5242? ([2a01:e0a:982:cbb0:41c9:3acd:a6e2:5242])
-        by smtp.gmail.com with ESMTPSA id r13-20020adfe68d000000b00333040a4752sm954872wrm.114.2023.11.30.01.13.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Nov 2023 01:13:13 -0800 (PST)
-Message-ID: <f572c729-d007-46b4-b7ac-442f96b23969@linaro.org>
-Date: Thu, 30 Nov 2023 10:13:11 +0100
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2079.outbound.protection.outlook.com [40.107.94.79])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A2C394;
+	Thu, 30 Nov 2023 01:15:46 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=odu4uZeer1OyuBl5TH9lqEPtYsoZ2B+pM/ip0gqfkxxw5RE82vh1CqiVqjEQFK8d59+BXH0EsHd0alB2QAGdMAdhbQq4E6urHKdcXJ3i8pHtr6layylT4x7/7OodSVxsHGyMelYy0I0jnYuJmxAzq+gumkPsRSacMeRNHb7rgIcLsBy4VBzgkeG7vUVPnKgWTm+iHpfWyT+8Oao+2ZgQOIQDwtHvTwWeIy6K5juWo7yIkbM3yZCPb/PULBILSNX3/HeaAArR/NlCleF9badbEtJlbyxwqjhloBBeY0ibZZjWdgxzGducbWz5is6j6n66irvgmLLPKnnBsoODYwsc5w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=zeoSEjVcrvJzIjxTwr1J307RFmXYvnzxGBT0ehbB9co=;
+ b=NguFe9uCgS2CpeJUA2HLCtQm5qR5nnIBFCU5EdTHIDJI7izk6xpT8ebGg8y881EJaOzC/ygbk6tGvDtVtiMOPphHupdem0FYKc9+sKeVOBk2iZraC3TIeJckY/oLE8Ix+asiL1bg0KElc8FHo86CuL6vqFOIVANHXZIuUItPYszacQN7grnQgkxsSt9vUx54OIhsASuL3D+qkYeijs16G+PEr0Me8cG5wmQfEPrnIXmD5mKx/4Pte8o1lTzl3cCE8UhjLV7UCv61c0HjJNhCnBuBCgHnVMqL6uw81lyae75iZdyunW6SC8Ucng9MMVWmOaASsMjVXQ6cAWWYuB6i+w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zeoSEjVcrvJzIjxTwr1J307RFmXYvnzxGBT0ehbB9co=;
+ b=WupfGTpFdUYHjtO760rlnUkpg+Z+as6nmJFtLmCumeh7FXtCYUomLn2t19wFXdWFAoc5p0HH9iU6EUMVeCuZiSQqsofQg0T9KDg+H+p8uK4Y6Gid4RrgQnHwaQ06QKMfQ+Jwcmp6xhUZiZPRTwraWb327L8p2FFTfuRcHk7RQgc=
+Received: from BL0PR02CA0001.namprd02.prod.outlook.com (2603:10b6:207:3c::14)
+ by PH7PR12MB6740.namprd12.prod.outlook.com (2603:10b6:510:1ab::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.22; Thu, 30 Nov
+ 2023 09:15:43 +0000
+Received: from BL02EPF0001A105.namprd05.prod.outlook.com
+ (2603:10b6:207:3c:cafe::54) by BL0PR02CA0001.outlook.office365.com
+ (2603:10b6:207:3c::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.24 via Frontend
+ Transport; Thu, 30 Nov 2023 09:15:43 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BL02EPF0001A105.mail.protection.outlook.com (10.167.241.137) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7046.17 via Frontend Transport; Thu, 30 Nov 2023 09:15:43 +0000
+Received: from localhost (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Thu, 30 Nov
+ 2023 03:15:41 -0600
+From: Michal Simek <michal.simek@amd.com>
+To: <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
+	<michal.simek@xilinx.com>, <git@xilinx.com>
+CC: Andy Shevchenko <andy@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
+	Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Linus Walleij
+	<linus.walleij@linaro.org>, Piyush Mehta <piyush.mehta@amd.com>, Rob Herring
+	<robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-gpio@vger.kernel.org>
+Subject: [PATCH] dt-bindings: gpio: modepin: Describe label property
+Date: Thu, 30 Nov 2023 10:15:38 +0100
+Message-ID: <10db3021e8617c1f98eca51e26d350dc4b51b53c.1701335736.git.michal.simek@amd.com>
+X-Mailer: git-send-email 2.36.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v3 2/4] dt-bindings: pwm: amlogic: add new compatible for
- meson8 pwm type
-Content-Language: en-US, fr
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Jerome Brunet <jbrunet@baylibre.com>
-Cc: Thierry Reding <thierry.reding@gmail.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-pwm@vger.kernel.org,
- JunYi Zhao <junyi.zhao@amlogic.com>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-References: <20231129134004.3642121-1-jbrunet@baylibre.com>
- <20231129134004.3642121-3-jbrunet@baylibre.com>
- <8e78be99-3d4d-4f79-9791-404e60bcb67c@linaro.org>
- <1jfs0ojz1a.fsf@starbuckisacylon.baylibre.com>
- <11f8d986-3e97-4191-b46c-ad3166ee6dc7@linaro.org>
- <e127dcef-3149-443a-9a8c-d24ef4054f09@linaro.org>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <e127dcef-3149-443a-9a8c-d24ef4054f09@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-Developer-Signature: v=1; a=openpgp-sha256; l=959; i=michal.simek@amd.com; h=from:subject:message-id; bh=zpXLDTWTh2ozZ8XN51LzCP+B4tG8B4inI6OnqgeeDr0=; b=owGbwMvMwCR4yjP1tKYXjyLjabUkhtSMoB2xOe85G7InaXeockUplU96OONqOE/vlTDfwsZzE 5Zymf3viGVhEGRikBVTZJG2uXJmb+WMKcIXD8vBzGFlAhnCwMUpABOxSmCYydhXccyk9oRSXQwj e+i5B56LWGa1Mswv/aJw7TFbxqGOVYK+JxZy/vziwxcJAA==
+X-Developer-Key: i=michal.simek@amd.com; a=openpgp; fpr=67350C9BF5CCEE9B5364356A377C7F21FE3D1F91
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL02EPF0001A105:EE_|PH7PR12MB6740:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5e80decf-4761-42f7-4327-08dbf184edd0
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	FjCbcc0Z/2znHxW+Dzj8InSEld/jqPbPZcwyU35ulh7Z/GdiT6l3N9wusJGIzYFF+G0T/iB7jW8WJESYDz2E83HyD93kWMkbSYMfo93xmajS7bnb0Rr5xEGofE6+sYGj7wb/gHQJkUdBORZH2aZ+x8R9FXoz8m3R7btsorUF7ltMJUa5r2WZGcLQO3y3ID25x8kTT7ToASL7xhHSrHWQrzj0GIj9jH4W0R3CPV6sPC9DZTr8ZtGzPjOE7c0VvkdgWOK8tMNBboPHcZrsDJPOp0UNcQL869f49SYZHIEguRp0uEEhhCzUyrzOLFiWEfYABszBJDt/GrRLRfZS/ST7098fbgNmIlxSnEg0+2+Db9oPK4D6SVhHwy8zp7ttnotAHYVsohPRGDjq2dsblfMtyh2+LVIAnrYah2pZSt5+JJBhaTfYPwa419lga8Ez5IEgXBelTruftaF0tjgCIcKKN9qMQg9t6NSfexpbJUWYTZA0azDdKz7r4YOMRm6asEpncRRQMjBnC2Se8Wc/uS4pJTTy6fF2ZAD6PK+Wmj9aXtZ9CU0fuicXYJysYEzSiAIFmdfvobAxxIKa8GONbfxwCcVYbuWaZERwy6r7Z4CiLlL7u4rnvgdizQz3OH1ELUkb9xIOwsId6921h1szC0wSwuVNDEecwe9Du6O1mySgouNTz76IeqJrYLCjkrWAXavPTcBbDuvNL8PRzdP4U/M4DnXB2LTC1yBOXIgoUcmbXvVRsxQlSg95bbkfqH+dWB2LDQx8PpBW7UHlQkMNwv7EdW09UOdmbwmoFgfkxFHxd/9lJfc8Zn6OJOCj2lD+mrN3zp7PDg43x6HT1RPrPdIjxw==
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(396003)(39860400002)(376002)(136003)(346002)(230922051799003)(64100799003)(451199024)(82310400011)(186009)(1800799012)(46966006)(36840700001)(40470700004)(40460700003)(44832011)(81166007)(82740400003)(478600001)(4326008)(54906003)(316002)(36756003)(8676002)(8936002)(86362001)(70206006)(110136005)(26005)(16526019)(356005)(336012)(426003)(2616005)(70586007)(47076005)(36860700001)(41300700001)(6666004)(202311291699003)(40480700001)(2906002)(4744005)(5660300002)(7416002)(2101003)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Nov 2023 09:15:43.0570
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5e80decf-4761-42f7-4327-08dbf184edd0
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BL02EPF0001A105.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6740
 
-On 30/11/2023 09:36, Krzysztof Kozlowski wrote:
-> On 29/11/2023 17:41, neil.armstrong@linaro.org wrote:
->>>>>     .../devicetree/bindings/pwm/pwm-amlogic.yaml  | 52 ++++++++++++++++---
->>>>>     1 file changed, 46 insertions(+), 6 deletions(-)
->>>>> diff --git a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
->>>>> b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
->>>>> index 387976ed36d5..eece390114a3 100644
->>>>> --- a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
->>>>> +++ b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
->>>>> @@ -21,23 +21,35 @@ properties:
->>>>>               - amlogic,meson-g12a-ee-pwm
->>>>>               - amlogic,meson-g12a-ao-pwm-ab
->>>>>               - amlogic,meson-g12a-ao-pwm-cd
->>>>> -          - amlogic,meson-s4-pwm
->>>>> +        deprecated: true
->>>>>           - items:
->>>>>               - const: amlogic,meson-gx-pwm
->>>>>               - const: amlogic,meson-gxbb-pwm
->>>>> +        deprecated: true
->>>>>           - items:
->>>>>               - const: amlogic,meson-gx-ao-pwm
->>>>>               - const: amlogic,meson-gxbb-ao-pwm
->>>>> +        deprecated: true
->>>>>           - items:
->>>>>               - const: amlogic,meson8-pwm
->>>>>               - const: amlogic,meson8b-pwm
->>>>> +        deprecated: true
->>>>
->>>> I think deprecated should be moved in a third patch
->>>
->>> The complain on v2 was that it was not clear the new binding was making
->>> the old one obsolete. It looked to me that the deprecation old bindings
->>> needed to go together with the introduction of the new.
->>>
->>> I don't mind one way or the other
->>>
->>> Is there a rule somewhere about this ?
->>
->> Not sure about that, I don't think it's a problem to have both valid
->> at the same time, setting them deprecated afterwards looks cleaner
->> to avoid mixing too much changes at the same time.
-> 
-> For me current order is correct and intuitive: you add new binding,
-> because old binding was wrong, so the old binding should be deprecated.
-> Otherwise you have a state with both new and old binding and one could
-> question - why did we need new binding? For dtschema it does not matter,
-> but it matters how we read the code.
+Describe optional label property which can be used for better gpio
+identification.
 
-Ack thx for the clarification
+Signed-off-by: Michal Simek <michal.simek@amd.com>
+---
 
-> 
-> Best regards,
-> Krzysztof
-> 
+ .../devicetree/bindings/gpio/xlnx,zynqmp-gpio-modepin.yaml     | 3 +++
+ 1 file changed, 3 insertions(+)
 
-Thanks,
-Neil
+diff --git a/Documentation/devicetree/bindings/gpio/xlnx,zynqmp-gpio-modepin.yaml b/Documentation/devicetree/bindings/gpio/xlnx,zynqmp-gpio-modepin.yaml
+index 56143f1fe84a..b1fd632718d4 100644
+--- a/Documentation/devicetree/bindings/gpio/xlnx,zynqmp-gpio-modepin.yaml
++++ b/Documentation/devicetree/bindings/gpio/xlnx,zynqmp-gpio-modepin.yaml
+@@ -23,6 +23,8 @@ properties:
+   "#gpio-cells":
+     const: 2
+ 
++  label: true
++
+ required:
+   - compatible
+   - gpio-controller
+@@ -37,6 +39,7 @@ examples:
+             compatible = "xlnx,zynqmp-gpio-modepin";
+             gpio-controller;
+             #gpio-cells = <2>;
++            label = "modepin";
+         };
+     };
+ 
+-- 
+2.36.1
 
 
