@@ -1,40 +1,40 @@
-Return-Path: <devicetree+bounces-20492-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20493-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F8E47FF86C
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 18:37:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A9F2A7FF86B
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 18:37:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4064B1C21007
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 17:37:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D99941C20EB5
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 17:37:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B07DC58105;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B079E58104;
 	Thu, 30 Nov 2023 17:37:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lLpwMnO+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mchUzyVH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 938415677D
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9380256773
 	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 17:37:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30CADC433C9;
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30C8CC433C7;
 	Thu, 30 Nov 2023 17:37:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1701365851;
-	bh=I/RwekvEm5QIDGRUyxy7iKY4DFgOKjlEGNrv2EFM96M=;
-	h=From:To:Cc:Subject:Date:From;
-	b=lLpwMnO+XqPA54AmQ3tVbECUgmOZAfG8lfMvXi5Dn/U1HnTG2+Rjwf6gt1yeTbiIR
-	 /OQsKbX7sfiFDCjnu9AgGbl+1kMMmE6kY3b639B2JV85o8AvIewaNmXnkOdADM8g8a
-	 xsfnh2QYj+TlQJSwMO7rdzSroQuJuPsA71KuBWU5yv0Iyl6ufEPP5f6uWK1y6n5tbq
-	 znDvNhWWCYR8UwrLha683/ewXkAGBLmnH5XEd8uQvuR0sIMEF1m2EDbj779oR3rJhC
-	 oYwDQggOh+l2TuSNMCu1D8nrSgTS6quCtSzocycMQCd4Z11rJZF95DLaITq4YBatz2
-	 l9dPg2DvUZJ1A==
+	bh=WN/J7jFY+bfKMs/N2amMY0Qy46obkUkAx7OxDaTojL4=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=mchUzyVHazWPFjPM4KZSLxJ2wRspUREmAg/Kbx9mjJvBEE8L0BzgExztXgf+gEZok
+	 +KcoL6SLLmcyfP7mBIXdEflu3xXp0SFDOTtYgfXbDmFaKnp+lbzlQfCIXGGYocGejv
+	 dNnEqhTe2mjEbMgw1rMRO75UdaHVXJ/h//JcubhdmPzShAOUPHmeP2gviMjaBcitra
+	 RSWjK3BBFnm/PjTllc2VeBuMY8RJx8Tawme738MoETdgEU4hpfBG9rajE+Tpx6IsUU
+	 3uJtTWtSDOsvLJwI+SVnCuJhoYHZIXoaNHRlCW9vGuWFo00n0sUY3er3HtTnLSPrvV
+	 YCnHHhCbe3CsQ==
 Received: from johan by xi.lan with local (Exim 4.96.2)
 	(envelope-from <johan+linaro@kernel.org>)
-	id 1r8kzE-0003O6-0K;
+	id 1r8kzE-0003O8-2t;
 	Thu, 30 Nov 2023 18:38:04 +0100
 From: Johan Hovold <johan+linaro@kernel.org>
 To: Stephen Boyd <sboyd@kernel.org>
@@ -45,10 +45,12 @@ Cc: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
 	linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	Johan Hovold <johan+linaro@kernel.org>
-Subject: [PATCH 0/2] dt-bindings: spmi: clean up hisilicon binding
-Date: Thu, 30 Nov 2023 18:37:55 +0100
-Message-ID: <20231130173757.13011-1-johan+linaro@kernel.org>
+Subject: [PATCH 1/2] dt-bindings: spmi: hisilicon,hisi-spmi-controller: fix binding references
+Date: Thu, 30 Nov 2023 18:37:56 +0100
+Message-ID: <20231130173757.13011-2-johan+linaro@kernel.org>
 X-Mailer: git-send-email 2.41.0
+In-Reply-To: <20231130173757.13011-1-johan+linaro@kernel.org>
+References: <20231130173757.13011-1-johan+linaro@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,22 +59,38 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-When reviewing the various SPMI PMIC bindings, I noticed that several
-examples were incorrect and misleading and could also use some cleanup.
+Fix up the free text binding references which were not updated when
+moving the bindings out of staging and which had a leading current
+directory component, respectively.
 
-This series addresses the related hisilicon SPMI controller binding.
+Fixes: 9bd9e0de1cf5 ("mfd: hi6421-spmi-pmic: move driver from staging")
+Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+---
+ .../bindings/spmi/hisilicon,hisi-spmi-controller.yaml         | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Johan
-
-
-Johan Hovold (2):
-  dt-bindings: spmi: hisilicon,hisi-spmi-controller: fix binding
-    references
-  dt-bindings: spmi: hisilicon,hisi-spmi-controller: clean up example
-
- .../spmi/hisilicon,hisi-spmi-controller.yaml    | 17 +++++++----------
- 1 file changed, 7 insertions(+), 10 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/spmi/hisilicon,hisi-spmi-controller.yaml b/Documentation/devicetree/bindings/spmi/hisilicon,hisi-spmi-controller.yaml
+index f882903769f9..eee7c8d4cf4a 100644
+--- a/Documentation/devicetree/bindings/spmi/hisilicon,hisi-spmi-controller.yaml
++++ b/Documentation/devicetree/bindings/spmi/hisilicon,hisi-spmi-controller.yaml
+@@ -14,7 +14,7 @@ description: |
+   It is a MIPI System Power Management (SPMI) controller.
+ 
+   The PMIC part is provided by
+-  ./Documentation/devicetree/bindings/mfd/hisilicon,hi6421-spmi-pmic.yaml.
++  Documentation/devicetree/bindings/mfd/hisilicon,hi6421-spmi-pmic.yaml.
+ 
+ allOf:
+   - $ref: spmi.yaml#
+@@ -48,7 +48,7 @@ patternProperties:
+       PMIC properties, which are specific to the used SPMI PMIC device(s).
+       When used in combination with HiSilicon 6421v600, the properties
+       are documented at
+-      drivers/staging/hikey9xx/hisilicon,hi6421-spmi-pmic.yaml.
++      Documentation/devicetree/bindings/mfd/hisilicon,hi6421-spmi-pmic.yaml
+ 
+ unevaluatedProperties: false
+ 
 -- 
 2.41.0
 
