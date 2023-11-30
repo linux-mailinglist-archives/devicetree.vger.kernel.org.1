@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-20285-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20286-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D43807FEB35
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 09:53:00 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E14B7FEB3B
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 09:55:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 113F41C20930
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 08:53:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1A04B281F9A
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 08:55:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A2251F61A;
-	Thu, 30 Nov 2023 08:52:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43F583066E;
+	Thu, 30 Nov 2023 08:55:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BkqkUE8y"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="k1x2S9Yg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24AD2D5C
-	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 00:52:54 -0800 (PST)
-Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-a00cbb83c82so89703766b.2
-        for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 00:52:54 -0800 (PST)
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08311D1
+	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 00:55:48 -0800 (PST)
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-a187cd4eb74so52638666b.2
+        for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 00:55:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701334372; x=1701939172; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701334546; x=1701939346; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=vJyO2ODcQCs5UTxhCkHls9KbFQR9ZNvr9r+DWnC+3TE=;
-        b=BkqkUE8yS9y3Lv93sanTALhrYz1kXd9DPB27g05reJt9DqBLPTZeRFeqYJMSEqyD1a
-         nokIKYocDtFjsfnqaQH1R1x1K186Bb5gdK2WDdHi6HuJppQTzjGiD3guSPYaM69QRTns
-         SRG11BPZB8bs/8r9qKsgviJsm37Ijwu6dIMvjKjMcIXtixZmZ7tUdfuN2CNHYYaSyDPN
-         MHPkA0ZSmbPbYSeCPkPHsP6CqL1K5NSoFniSP6MY5BOdiNwaYR/jA3xW/KWVeOylCbAw
-         fTb04knrb4ZyAAAOeFlVIZcGw2q40/mkXbh1Plw3wOxzgwcKuWGm4Teg+6pVjkbdeJlH
-         uTlw==
+        bh=SzVNRJ2v77gzcGrwfRhCJj8f2KbnBXLl6wGiwEdVkns=;
+        b=k1x2S9YghgGT5sEV5v5SxeSacyuOzGcNMIP4owk6EkmnUc7g3f6UO+wkKnai85n3qX
+         q12zpQwTORKh6dIQfTjK8f2v8x0ADEvtfGW2J2G83nISu7EwDxNTSnZKtYyjhWF0UkgI
+         H5luUJYzxZjRpn+Kk6UoW9lFNlQTZh9eCqiL09UTSPwB27MJtMa7FIAmR/J71jB2+dbR
+         0BcNd2PFcCk8hEEi4Ah2z7muwg2Myc2fNzvSk0lgNknNGYqZlZIICN9G/50lMkUJcLkw
+         MAfW6Vr9c+43PYESU/E1roI7IE6jG3XFRRLUbHLx/MtCBpTTD6LYJ4uxiYUIZDACctAo
+         sYsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701334372; x=1701939172;
+        d=1e100.net; s=20230601; t=1701334546; x=1701939346;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vJyO2ODcQCs5UTxhCkHls9KbFQR9ZNvr9r+DWnC+3TE=;
-        b=FdMBXI8hK4uALbM7ixD3k13sWeEVk9hb/YgncWF339acSd5Vl8cV8ZFx1cReJP4NTq
-         /vz6DebUJp95/YDN8DfAdv/C3v80v7sUTzzJ+QJRN+v2SMNia5vxf52TmC/BoQMDghjZ
-         hmaW14sr/LY4ryw3L6foAWTfDxepc9qnqtSgFeS2vtetOWOoCMofIFC7/ppdMPQTOzUz
-         ijzm0eYoxsjbgwBiwYzFW4Yp5CMXPbRTqeQYPgUI14EVO01oBp3PwwodvgJh+Chn+9rG
-         tFwmj95LTEyAF9vB87g0CNLd9l/EbNVuKejEcR4TZeWfvyyDHD633WkXAmtibxzEg8yp
-         cphA==
-X-Gm-Message-State: AOJu0YzRaeYL6fQlvY5G74Vj0O/FYfl6j8tZ88BjgJXbe8YsDhEEJFxI
-	fr0T3mcaz000yeU/2WDxa7w8/A==
-X-Google-Smtp-Source: AGHT+IHMLDbCqKVezVMq6PEU+nmEAMrmEpn6kIhJ8uczSZsF5F1hnbKp0sbcMEfT7p6vG8jXgSSFbA==
-X-Received: by 2002:a17:906:f80a:b0:a0e:176:cf06 with SMTP id kh10-20020a170906f80a00b00a0e0176cf06mr9556012ejb.47.1701334372620;
-        Thu, 30 Nov 2023 00:52:52 -0800 (PST)
+        bh=SzVNRJ2v77gzcGrwfRhCJj8f2KbnBXLl6wGiwEdVkns=;
+        b=UWWNkkjUzUJcD/sIE5xT98mkBB043dhyakBnF13Otulj7vMgUIjZymXo/ycUVdkQEi
+         8jfZ6OhIA1xaD1WU/VowEFVwrO9/Y+THMphqk6sGbGAT16c5K0+PMymUCBAaYJAnJkp0
+         j65/82rltLBu5/Zhw9mMuN8gZSwf92v+ElNdOqj8Et9WNbw1LFuNVnDeF8B2jMWkSr72
+         /pDm/p9vjoRot6EWVVlLw/ALdTrWuh1jZYqXb2ApZST1Wd3ZsYVb/xekKcNBq5jt6kVA
+         YNun+gBNSNGfuitlHVshbS1AS44vPREG7rJcyJM/2n/FAnKyPtx3SGJL73ssbbGknOcL
+         FqZQ==
+X-Gm-Message-State: AOJu0Yw20k+ZlwEZAnjfJXvMzFZDMXfZFSR9F+OuQNF9+3Kp9Ouo6ME+
+	IqCcY4NX2VUIFCZYVN+Yt/e7Yw==
+X-Google-Smtp-Source: AGHT+IFq+i7OxDLEEJh36fA2pwodaIg1R1rFBDHM1FmPCSkHH6vZWfKPEWg7gYPUNmON/eEzXI5UrQ==
+X-Received: by 2002:a17:906:7495:b0:a18:891d:4dc3 with SMTP id e21-20020a170906749500b00a18891d4dc3mr819412ejl.34.1701334546190;
+        Thu, 30 Nov 2023 00:55:46 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.109])
-        by smtp.gmail.com with ESMTPSA id z21-20020a170906715500b00a173547a28dsm436787ejj.195.2023.11.30.00.52.51
+        by smtp.gmail.com with ESMTPSA id a10-20020a170906190a00b009fda627abd9sm438365eje.79.2023.11.30.00.55.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Nov 2023 00:52:52 -0800 (PST)
-Message-ID: <2288442b-9002-4711-9b64-16b204f19985@linaro.org>
-Date: Thu, 30 Nov 2023 09:52:50 +0100
+        Thu, 30 Nov 2023 00:55:45 -0800 (PST)
+Message-ID: <3527d540-3e3f-4edb-b5f2-6ac481132c06@linaro.org>
+Date: Thu, 30 Nov 2023 09:55:43 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,17 +62,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: mfd: cros-ec: Allow interrupts-extended
- property
+Subject: Re: [PATCH v1 1/3] arm64: dts: qcom: msm8996: Fix 'in-ports' is a
+ required property
 Content-Language: en-US
-To: Chen-Yu Tsai <wenst@chromium.org>, Lee Jones <lee@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
+To: Mao Jinlong <quic_jinlmao@quicinc.com>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Benson Leung <bleung@chromium.org>,
- Guenter Roeck <groeck@chromium.org>
-Cc: devicetree@vger.kernel.org, chrome-platform@lists.linux.dev,
- linux-kernel@vger.kernel.org
-References: <20231130083333.932862-1-wenst@chromium.org>
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Tingwei Zhang <quic_tingweiz@quicinc.com>,
+ Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+ Tao Zhang <quic_taozha@quicinc.com>
+References: <20231129143815.7892-1-quic_jinlmao@quicinc.com>
+ <20231129143815.7892-2-quic_jinlmao@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -118,37 +121,22 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231130083333.932862-1-wenst@chromium.org>
+In-Reply-To: <20231129143815.7892-2-quic_jinlmao@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 30/11/2023 09:33, Chen-Yu Tsai wrote:
-> "interrupts-extended" provides a more concise way of describing external
-> GPIO interrupts.
-> 
-> Allow using this instead of "interrupts" plus "interrupt-parent" for
-> cros-ec.
-> 
-> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
-> ---
->  .../devicetree/bindings/mfd/google,cros-ec.yaml          | 9 ++++++++-
->  1 file changed, 8 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-> index e1ca4f297c6d..e514eac9f4fc 100644
-> --- a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-> @@ -75,6 +75,9 @@ properties:
->    interrupts:
->      maxItems: 1
->  
-> +  interrupts-extended:
-> +    maxItems: 1
-> +
+On 29/11/2023 15:38, Mao Jinlong wrote:
+> The inport of funnel@3023000 connects to a source which is not supported
+> in current linux kernel. Remove the device tree node of funnel@3023000
+> to fix the warning. It will be added once the driver support to the
+> source is added to linux kernel.
 
-I don't understand why you need it. You already have interrupts there,
-so this is redundant. I suggest to drop the patch or provide real
-rationale (which I doubt you can get :) ).
+Thanks for the changes, but that's not correct reason to remove DTS
+code. What kernel supports or not, should be irrelevant for the DTS. DTS
+for example is used in other projects - did you check if they have the
+same issues? Anyway, DTS describes the hardware, so how current kernel
+support defines what is and what is not in the hardware?
+
 
 Best regards,
 Krzysztof
