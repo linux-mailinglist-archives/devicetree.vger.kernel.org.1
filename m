@@ -1,90 +1,79 @@
-Return-Path: <devicetree+bounces-20490-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20492-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FCF97FF85F
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 18:36:17 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F8E47FF86C
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 18:37:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9103D1C20A9F
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 17:36:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4064B1C21007
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 17:37:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 469555677C;
-	Thu, 30 Nov 2023 17:36:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B07DC58105;
+	Thu, 30 Nov 2023 17:37:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lLpwMnO+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a02:c205:3004:2154::1])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20A3B131;
-	Thu, 30 Nov 2023 09:36:11 -0800 (PST)
-Received: from p200301077700c3001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:107:7700:c300:1a3d:a2ff:febf:d33a] helo=aktux)
-	by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <andreas@kemnade.info>)
-	id 1r8kxC-006snc-0n; Thu, 30 Nov 2023 18:35:58 +0100
-Date: Thu, 30 Nov 2023 18:35:55 +0100
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Tony Lindgren <tony@atomide.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- bcousson@baylibre.com, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] ARM: dts: omap4-embt2ws: Add Bluetooth
-Message-ID: <20231130183555.1b329b78@aktux>
-In-Reply-To: <20231007072442.GW34982@atomide.com>
-References: <20231004070309.2408745-1-andreas@kemnade.info>
-	<6b4968d9-80d3-4a5a-b42e-3982825e45e9@linaro.org>
-	<20231007070015.GS34982@atomide.com>
-	<20231007072442.GW34982@atomide.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 938415677D
+	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 17:37:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30CADC433C9;
+	Thu, 30 Nov 2023 17:37:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701365851;
+	bh=I/RwekvEm5QIDGRUyxy7iKY4DFgOKjlEGNrv2EFM96M=;
+	h=From:To:Cc:Subject:Date:From;
+	b=lLpwMnO+XqPA54AmQ3tVbECUgmOZAfG8lfMvXi5Dn/U1HnTG2+Rjwf6gt1yeTbiIR
+	 /OQsKbX7sfiFDCjnu9AgGbl+1kMMmE6kY3b639B2JV85o8AvIewaNmXnkOdADM8g8a
+	 xsfnh2QYj+TlQJSwMO7rdzSroQuJuPsA71KuBWU5yv0Iyl6ufEPP5f6uWK1y6n5tbq
+	 znDvNhWWCYR8UwrLha683/ewXkAGBLmnH5XEd8uQvuR0sIMEF1m2EDbj779oR3rJhC
+	 oYwDQggOh+l2TuSNMCu1D8nrSgTS6quCtSzocycMQCd4Z11rJZF95DLaITq4YBatz2
+	 l9dPg2DvUZJ1A==
+Received: from johan by xi.lan with local (Exim 4.96.2)
+	(envelope-from <johan+linaro@kernel.org>)
+	id 1r8kzE-0003O6-0K;
+	Thu, 30 Nov 2023 18:38:04 +0100
+From: Johan Hovold <johan+linaro@kernel.org>
+To: Stephen Boyd <sboyd@kernel.org>
+Cc: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Johan Hovold <johan+linaro@kernel.org>
+Subject: [PATCH 0/2] dt-bindings: spmi: clean up hisilicon binding
+Date: Thu, 30 Nov 2023 18:37:55 +0100
+Message-ID: <20231130173757.13011-1-johan+linaro@kernel.org>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-Hi Tony,
+When reviewing the various SPMI PMIC bindings, I noticed that several
+examples were incorrect and misleading and could also use some cleanup.
 
-On Sat, 7 Oct 2023 10:24:42 +0300
-Tony Lindgren <tony@atomide.com> wrote:
+This series addresses the related hisilicon SPMI controller binding.
 
-> * Tony Lindgren <tony@atomide.com> [231007 07:00]:
-> > * Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> [231005 08:47]:  
-> > > On 04/10/2023 09:03, Andreas Kemnade wrote:  
-> > > > Since the required clock is now available, add bluetooth.
-> > > > 
-> > > > Note: Firmware (bts file) from device vendor reroutes tx for some time
-> > > > during initialisation and later put it back, producing timeouts in
-> > > > bluetooth initialisation but ignoring that command leads to proper
-> > > > initialisation.
-> > > > 
-> > > > Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
-> > > > ---  
-> > > 
-> > > 
-> > > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>  
-> > 
-> > Applying into omap-for-v6.7/dt thanks.  
-> 
-> Looks like this causes the following #clock-cells warning so dropping
-> this patch.
-> 
-> Regards,
-> 
-> Tony
-> 
-> arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts:457.17-462.4: Warning (clocks_property):
-> /ocp/interconnect@48000000/segment@0/target-module@6c000/serial@0/bluetooth-gnss:
-> Missing property '#clock-cells' in node /ocp/interconnect@48000000/segment@0/targe
->
+Johan
 
-I do not get this warning on top of omap-for-v6.8/dt. So I think the
-time is really there for this patch.
 
-Regards,
-Andreas
+Johan Hovold (2):
+  dt-bindings: spmi: hisilicon,hisi-spmi-controller: fix binding
+    references
+  dt-bindings: spmi: hisilicon,hisi-spmi-controller: clean up example
+
+ .../spmi/hisilicon,hisi-spmi-controller.yaml    | 17 +++++++----------
+ 1 file changed, 7 insertions(+), 10 deletions(-)
+
+-- 
+2.41.0
+
 
