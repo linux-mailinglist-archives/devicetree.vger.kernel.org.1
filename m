@@ -1,105 +1,144 @@
-Return-Path: <devicetree+bounces-20408-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20409-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2C287FF329
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 16:04:48 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E65C7FF335
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 16:08:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0FF681C20FC6
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 15:04:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C32E2B20E70
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 15:08:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD0AE51032;
-	Thu, 30 Nov 2023 15:04:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63F6B51C43;
+	Thu, 30 Nov 2023 15:08:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="JPkxJ3xp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tlHuYFHT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 225411B4
-	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 07:04:40 -0800 (PST)
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id D12E540337
-	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 15:04:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1701356677;
-	bh=FPCmM4heOBQnergRut0J3YYhJg2qbq6GVBQzZL89KsE=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type;
-	b=JPkxJ3xpjNX+FWoXBxIeDGOodPgYorjhIzNmbAuLsBEMXjLaXe69AecX29K+tfPuQ
-	 eTpF3sNkJ757LUm99TSoY8A5azePKOD0ONe0g/Ib8zkAjw5ok6WWHZaRHFwwX/d6z8
-	 9uq2hRfWw6iqB4JEqLdvfGD2N/nKTR/fpe6Hh8nmmyzKMhXieDMy06Eb4xlJCdOvVk
-	 cWttWSxzkPNvKL52HDItzILQ9SPnSZGMK4O9jjvkP8J6x5XLoJwTeQIngUBxkYWZXo
-	 5m8qPI0uWZS5HX2mSqeFRrekVub8aqzrpgmsu8SqPhkeWffHYoovSJM7ojDe/+S94z
-	 QYzHsDTUmS1bg==
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-423a1e19a76so11095331cf.1
-        for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 07:04:37 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701356676; x=1701961476;
-        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FPCmM4heOBQnergRut0J3YYhJg2qbq6GVBQzZL89KsE=;
-        b=Ow0EiZNfQiadVfVIHWMeX35fILuvrqocrSnAZfdjBe7nI5y/nc2okPV6FJWtfwaFJ2
-         9RhzatbOUQozPRnn+rzTJ04Rvs1qJSADautcvjiy4shaapUSI81OHEbcK/jNUIZJmOsO
-         43jDAkdbXslzW5TPyIURcyhzSETwPMQcibOKT4eO6kGoh3QuFn7H8qa/8K1i2ywQxnJx
-         gIKbueHGk1OBXmp6JEAD9/iU80RhSjzILToIbpv6r1vO5kvrdIMgZCWjzcqM0obt57Eu
-         KPQ/MrdfbVd5isIksWrzBh2HQBSjRoykig3fLa51Zd/3kQiTq/sy6cRGOfhNTrTwP2YX
-         CtNQ==
-X-Gm-Message-State: AOJu0YzdIu/UlHxfkFnLZYJF3nF9/epXurV8eGvHmaHd6H3xM1FmZEDE
-	7wDn9G2oR+uU1QV/1lBxNWBO50pdd84okhso4I4KT2dQUfbW4i2YzM5iUgEOSVIc2C0c3gGXe7c
-	zwQDDve/Vxhezy/cd25cHn/qkSz+PQ/ycvFeqUNUjPEuWrRuFoKeiw3A=
-X-Received: by 2002:a05:622a:22a8:b0:423:991e:8589 with SMTP id ay40-20020a05622a22a800b00423991e8589mr20147209qtb.33.1701356676666;
-        Thu, 30 Nov 2023 07:04:36 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IH9k158ZXjtgNdDUlZzVCNCmNLqRi+AOk+q/iadsE/+/aYALRFnyCxg84z0xW9r9HHy2iLKzeqhcclFfe7hrr0=
-X-Received: by 2002:a05:622a:22a8:b0:423:991e:8589 with SMTP id
- ay40-20020a05622a22a800b00423991e8589mr20147170qtb.33.1701356676224; Thu, 30
- Nov 2023 07:04:36 -0800 (PST)
-Received: from 348282803490 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 30 Nov 2023 16:04:35 +0100
-From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-In-Reply-To: <20231130-skating-shindig-af43058fc8ff@spud>
-References: <20231126232746.264302-1-emil.renner.berthing@canonical.com> <20231130-skating-shindig-af43058fc8ff@spud>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45E731DA41
+	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 15:08:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7266C433C9;
+	Thu, 30 Nov 2023 15:08:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701356904;
+	bh=4wdwU/K0jATvkk/atcXZBxJh/WUP8EwtMGcCyE3gUeM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=tlHuYFHTFVwq14ftdT6EnINBJeymXG/v3mOua2ezi5Xn/8MOP4eKlziMM0025U0YI
+	 ra36o/EOTsrXsl8qcps/T5RVOwYVRMyza/+yoaqHCwulQLvtj8dtfItbvbGz2esLai
+	 fa7POSmXASjbbjoANg+BhDbI0y4tDdbinq4LWgosoNxTeY9+34QySmeX9nvnAwtStF
+	 ZGrJM8vMgJ5R7mOk69Sr4eldKQ53rk89r6RtuB1G6Xujb1UPPtMoLzQT2dvnQSJEkO
+	 A8//ahSoj8QrVQAqRhl5o9O+oV8qY6oQK+tIEsyhYK12enynYWXwK47t9X4FuDsJjy
+	 e8I/Yki3ksb+Q==
+Date: Thu, 30 Nov 2023 15:08:18 +0000
+From: Conor Dooley <conor@kernel.org>
+To: JeeHeng Sia <jeeheng.sia@starfivetech.com>
+Cc: "kernel@esmil.dk" <kernel@esmil.dk>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"krzk@kernel.org" <krzk@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"paul.walmsley@sifive.com" <paul.walmsley@sifive.com>,
+	"palmer@dabbelt.com" <palmer@dabbelt.com>,
+	"aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>,
+	"daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
+	"tglx@linutronix.de" <tglx@linutronix.de>,
+	"anup@brainfault.org" <anup@brainfault.org>,
+	"gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+	"jirislaby@kernel.org" <jirislaby@kernel.org>,
+	"michal.simek@amd.com" <michal.simek@amd.com>,
+	Michael Zhu <michael.zhu@starfivetech.com>,
+	"drew@beagleboard.org" <drew@beagleboard.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	Leyfoon Tan <leyfoon.tan@starfivetech.com>
+Subject: Re: [PATCH v2 1/6] dt-bindings: riscv: Add StarFive Dubhe compatibles
+Message-ID: <20231130-maturely-avert-e1dc87b36bbd@spud>
+References: <20231129060043.368874-1-jeeheng.sia@starfivetech.com>
+ <20231129060043.368874-2-jeeheng.sia@starfivetech.com>
+ <20231129-revisit-prefix-5327168e91f3@spud>
+ <08daada77b3e40049ef83f4eb762240c@EXMBX066.cuchost.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Date: Thu, 30 Nov 2023 16:04:35 +0100
-Message-ID: <CAJM55Z_EPMuCbX-_8ABKwT27xdtDX7X2y_nv+o4knVL0DoK2xQ@mail.gmail.com>
-Subject: Re: [PATCH v1 0/8] Add JH7100 errata and update device tree
-To: Conor Dooley <conor@kernel.org>, 
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="RhPgo4Il/hPk7nxW"
+Content-Disposition: inline
+In-Reply-To: <08daada77b3e40049ef83f4eb762240c@EXMBX066.cuchost.com>
 
-Conor Dooley wrote:
-> On Mon, Nov 27, 2023 at 12:27:38AM +0100, Emil Renner Berthing wrote:
-> > Now that the driver for the SiFive cache controller supports manual
-> > flushing as non-standard cache operations[1] we can add an errata option
-> > for the StarFive JH7100 SoC and update the device tree with the cache
-> > controller, dedicated DMA pool and add MMC nodes for the SD-card and
-> > wifi.
-> >
-> > This series needs the following commit in [1] to work properly:
-> >
-> > 0d5701dc9cd6 ("soc: sifive: ccache: Add StarFive JH7100 support")
-> >
-> > [1]: https://git.kernel.org/pub/scm/linux/kernel/git/conor/linux.git/log/?h=riscv-soc-for-next
->
-> This stuff all seems fine to me. I'd like Palmer to take the first
-> patch, or I suppose I could take it alongside the cache driver changes
-> with an Ack.
 
-Thanks, makes sense. In addition to the missing Signed-off-by I also forgot to
-update the commit message for patch 4/8, so let me send a v2.
+--RhPgo4Il/hPk7nxW
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-/Emil
+On Thu, Nov 30, 2023 at 06:04:51AM +0000, JeeHeng Sia wrote:
+>=20
+>=20
+> > -----Original Message-----
+> > From: Conor Dooley <conor@kernel.org>
+> > Sent: Wednesday, November 29, 2023 10:46 PM
+> > To: JeeHeng Sia <jeeheng.sia@starfivetech.com>
+> > Cc: kernel@esmil.dk; robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.=
+org; krzk@kernel.org; conor+dt@kernel.org;
+> > paul.walmsley@sifive.com; palmer@dabbelt.com; aou@eecs.berkeley.edu; da=
+niel.lezcano@linaro.org; tglx@linutronix.de;
+> > anup@brainfault.org; gregkh@linuxfoundation.org; jirislaby@kernel.org; =
+michal.simek@amd.com; Michael Zhu
+> > <michael.zhu@starfivetech.com>; drew@beagleboard.org; devicetree@vger.k=
+ernel.org; linux-riscv@lists.infradead.org; linux-
+> > kernel@vger.kernel.org; Leyfoon Tan <leyfoon.tan@starfivetech.com>
+> > Subject: Re: [PATCH v2 1/6] dt-bindings: riscv: Add StarFive Dubhe comp=
+atibles
+> >=20
+> > On Wed, Nov 29, 2023 at 02:00:38PM +0800, Sia Jee Heng wrote:
+> > > Add new compatible strings for Dubhe-80 and Dubhe-90. These are
+> > > RISC-V cpu core from StarFive Technology and are used in StarFive
+> > > JH8100 SoC.
+> > >
+> > > Signed-off-by: Sia Jee Heng <jeeheng.sia@starfivetech.com>
+> > > Reviewed-by: Ley Foon Tan <leyfoon.tan@starfivetech.com>
+> > > ---
+> > >  Documentation/devicetree/bindings/riscv/cpus.yaml | 2 ++
+> > >  1 file changed, 2 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Docu=
+mentation/devicetree/bindings/riscv/cpus.yaml
+> > > index f392e367d673..493972b29a22 100644
+> > > --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
+> > > +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
+> > > @@ -48,6 +48,8 @@ properties:
+> > >                - thead,c906
+> > >                - thead,c910
+> > >                - thead,c920
+> > > +              - starfive,dubhe-80
+> > > +              - starfive,dubhe-90
+> >=20
+> > s goes before t.
+> Noted. Will fix it.
+
+With the re-order,
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+Cheers,
+Conor.
+
+--RhPgo4Il/hPk7nxW
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZWilYgAKCRB4tDGHoIJi
+0iCtAP4nKPPe89Aie1cg6UtOVOK8OT9ZB+Xb/O+6Am1DPsGhWwEA5igg7/ujUZcP
+J8H/nEGTpT7wdjwt5SqaGwLxKfGUNwA=
+=R4A9
+-----END PGP SIGNATURE-----
+
+--RhPgo4Il/hPk7nxW--
 
