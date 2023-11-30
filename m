@@ -1,238 +1,144 @@
-Return-Path: <devicetree+bounces-20301-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20302-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 694407FEC29
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 10:51:37 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 373B97FEC36
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 10:53:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0C926B20E2D
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 09:51:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 697DF1C20DF4
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 09:53:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42A7C3986A;
-	Thu, 30 Nov 2023 09:51:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC0D93A279;
+	Thu, 30 Nov 2023 09:52:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="d9CNhZBK"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gdMKiOF9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC6FCD54;
-	Thu, 30 Nov 2023 01:51:25 -0800 (PST)
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1522410CE
+	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 01:52:55 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-40b30308c67so5899025e9.0
+        for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 01:52:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1701337886; x=1732873886;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=KwU8sh79wqm+8sbS+kXuTmgHNTBjtnFYoiNmANtujYc=;
-  b=d9CNhZBKm/ZVkppV4ueUjCxuR4gZvcjgxksyzJJyXLU+9r8a5A6zFI2/
-   trvF+zqfwB0jyV8yQ0xAfV9LKaMuGjWpY+r9QShfDABWgz2CUABXTA2Yn
-   /s0vWYHPwW2hEvBYVpwotP5Y4O5EgCz4y+OtTFAeyUCdkt+jFFrGLqYN+
-   OyKK6Ch4Q0oLDY0F3EOB6ZrQvkmy5IqK/+8YNLj5B/1OHKu9XM/eCJePg
-   WZ1FwKDM560NbKXQ8hZp87E29oIcQFJJpT4s3IskYOqcPnxTQiNyjE64I
-   hq0aDQVPzB/4V8aVH4qR4vQRbs4nirSxZWRvG5lmkRNSHEwlCUPgMe5Kv
-   w==;
-X-IronPort-AV: E=Sophos;i="6.04,237,1695679200"; 
-   d="scan'208";a="34256164"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 30 Nov 2023 10:51:23 +0100
-Received: from steina-w.localnet (steina-w.tq-net.de [10.123.53.18])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 3F3CD280075;
-	Thu, 30 Nov 2023 10:51:23 +0100 (CET)
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, Paul Elder <paul.elder@ideasonboard.com>, kieran.bingham@ideasonboard.com, tomi.valkeinen@ideasonboard.com, umang.jain@ideasonboard.com, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, Tim Harvey <tharvey@gateworks.com>, Philippe Schenker <philippe.schenker@toradex.com>, Marek Vasut <marex@denx.de>, Gregor Herburger <gregor.herburger@ew.tq-group.com>, Marcel Ziswiler <marcel.ziswiler@toradex.com>, open list <linux-kernel@vger.kernel.org>, "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH 2/2] arm64: dts: imx8mp: Add overlays for ISP instances
-Date: Thu, 30 Nov 2023 10:51:22 +0100
-Message-ID: <5734628.DvuYhMxLoT@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20231129151637.GG24293@pendragon.ideasonboard.com>
-References: <20231129093113.255161-1-paul.elder@ideasonboard.com> <7122934.GXAFRqVoOG@steina-w> <20231129151637.GG24293@pendragon.ideasonboard.com>
+        d=linaro.org; s=google; t=1701337973; x=1701942773; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ZWwZC/V0wDXbj7+U19+s2XYbHOD77Anr4368lm9EqGo=;
+        b=gdMKiOF90oV5EJriqTzsgxOH7xnnBwxwp09O3sGs+6hLXGg1A93tI93RswImuVweEU
+         UUjOWSrFnSaDKgWhlZoYLcM6vZxg3uEJ5CaahasW8So5REiOJUKiWE25omHyvtChrXzQ
+         UQoqPPIn8dMgLfDNIm3fSCpqiwYQYjmwIqPxn5b9vR1fWZWcBmPkmmGwJ/HQ3jinAW7x
+         0ZAN4HDgGhDYnWl8Td5IgyHlR+PZUzLo20LfCzBN6WSFAznmisIRBK4tnk+5JVXtcqca
+         WL+bNqV9Z3kUDGLaRWwM6BGLci+BR8k+bOSxuxu0N6a9jUUbRGLu6X2WMlFtKDvnpNV0
+         oRJw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701337973; x=1701942773;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=ZWwZC/V0wDXbj7+U19+s2XYbHOD77Anr4368lm9EqGo=;
+        b=r4e/tvujSIyeJabykCOk5z7w09SZLr2++5ymgYUj4AhDiYskMookWioDgjc1tqA6Ob
+         sIbyQk0nvB2zmb0CYDFpSuE9HETgszVIIc7oXnN+ynhTirc+v8FxjTCq0Fz/ki279hnv
+         6Mbgg4/lsGq/x5eH7jOC1Ryfq8XlF57ckknwPEBl2hMtr0wMj7UrY65iAso4tVyXB4n2
+         ABKXCrcs/SMDSsbfBkYW4Xq/L50krt5f4PPmlJfVgv+zEtWo6wCXGwwVzs4zvXrC5hc5
+         WOsnoDRLmRZSLtXVISkwzw7INlYAXTuxGKfFWo4YbnLh+QSHmFR6mjqW8Aw+aiF4qCfc
+         U3oA==
+X-Gm-Message-State: AOJu0YzQF3Y2Y/Hk23RcE42CIJuGR15DHTfhB4TwoSkiX6bi7TUKPDSU
+	+Sao/C/AXkMJ1iKHeCjgGwPPfQ==
+X-Google-Smtp-Source: AGHT+IGTrAg/hwtnFBOTX6GiHM/FZmceDuyWR5BDRUvcKgMuHNpNkw29tTNc3TZ/F4WBbh95Bq14Ow==
+X-Received: by 2002:a05:600c:4447:b0:40b:3728:badb with SMTP id v7-20020a05600c444700b0040b3728badbmr14766919wmn.33.1701337973529;
+        Thu, 30 Nov 2023 01:52:53 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:41c9:3acd:a6e2:5242? ([2a01:e0a:982:cbb0:41c9:3acd:a6e2:5242])
+        by smtp.gmail.com with ESMTPSA id p36-20020a05600c1da400b0040b478da760sm1358964wms.48.2023.11.30.01.52.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 Nov 2023 01:52:53 -0800 (PST)
+Message-ID: <151b8a7b-062e-464e-8d8e-2dc9e1ff9dfd@linaro.org>
+Date: Thu, 30 Nov 2023 10:52:52 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: sm8450: correct TX Soundwire clock
+Content-Language: en-US, fr
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20231129140537.161720-1-krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro Developer Services
+In-Reply-To: <20231129140537.161720-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Laurent,
+On 29/11/2023 15:05, Krzysztof Kozlowski wrote:
+> The TX Soundwire controller should take clock from TX macro codec, not
+> VA macro codec clock, otherwise the clock stays disabled.  This looks
+> like a copy-paste issue, because the SC8280xp code uses here correctly
+> clock from TX macro.  The VA macro clock is already consumed by TX macro
+> codec, thus it won't be disabled by this change.
+> 
+> Fixes: 14341e76dbc7 ("arm64: dts: qcom: sm8450: add Soundwire and LPASS")
+> Reported-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> ---
+> 
+> Considering that in Downstream, the TX Soundwire is part of VA macro,
+> there is no clear reference code explaining this. Let's just go with
+> SC8280xp approach because it seems reasonable, but don't ask me "why".
+> ---
+>   arch/arm64/boot/dts/qcom/sm8450.dtsi | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> index a305f8c03f9e..28207c7423f0 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> @@ -2314,7 +2314,7 @@ swr2: soundwire@33b0000 {
+>   				     <GIC_SPI 520 IRQ_TYPE_LEVEL_HIGH>;
+>   			interrupt-names = "core", "wakeup";
+>   
+> -			clocks = <&vamacro>;
+> +			clocks = <&txmacro>;
+>   			clock-names = "iface";
+>   			label = "TX";
+>   
 
-Am Mittwoch, 29. November 2023, 16:16:37 CET schrieb Laurent Pinchart:
-> Hi Alexander,
->=20
-> On Wed, Nov 29, 2023 at 11:20:07AM +0100, Alexander Stein wrote:
-> > Am Mittwoch, 29. November 2023, 10:31:13 CET schrieb Paul Elder:
-> > > From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > >=20
-> > > Add two overlay to enable each ISP instance. The ISP is wired directly
-> > > to the CSIS for now, bypassing the ISI completely.
-> >=20
-> > I'm not sure if this is worth adding in a separate overlay.
->=20
-> The trouble is that, at this point, selection between the ISP and the
-> ISI can only be performed through DT :-S That's why this is implemented
-> as an overlay.
-
-I feel a better place would be the overlay which actually adds the sensor.=
-=20
-This knows best whether ISI or ISP should be used.
-
-> > > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > > Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
-> > > ---
-> > >=20
-> > >  arch/arm64/boot/dts/freescale/Makefile        |  2 ++
-> > >  .../arm64/boot/dts/freescale/imx8mp-isp1.dtso | 36 +++++++++++++++++=
-++
-> > >  .../arm64/boot/dts/freescale/imx8mp-isp2.dtso | 36 +++++++++++++++++=
-++
-> > >  3 files changed, 74 insertions(+)
-> > >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-isp1.dtso
-> > >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-isp2.dtso
-> > >=20
-> > > diff --git a/arch/arm64/boot/dts/freescale/Makefile
-> > > b/arch/arm64/boot/dts/freescale/Makefile index
-> > > 300049037eb0..f97dfac11189
-> > > 100644
-> > > --- a/arch/arm64/boot/dts/freescale/Makefile
-> > > +++ b/arch/arm64/boot/dts/freescale/Makefile
-> > > @@ -113,6 +113,8 @@ dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-dhcom-pdk2.dtb
-> > >=20
-> > >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-dhcom-pdk3.dtb
-> > >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-evk.dtb
-> > >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-icore-mx8mp-edimm2.2.dtb
-> > >=20
-> > > +dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-isp1.dtbo
-> > > +dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-isp2.dtbo
-> > >=20
-> > >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-msc-sm2s-ep1.dtb
-> > >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-phyboard-pollux-rdk.dtb
-> > >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-tqma8mpql-mba8mpxl.dtb
-> > >=20
-> > > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-isp1.dtso
-> > > b/arch/arm64/boot/dts/freescale/imx8mp-isp1.dtso new file mode 100644
-> > > index 000000000000..cf394ed224ab
-> > > --- /dev/null
-> > > +++ b/arch/arm64/boot/dts/freescale/imx8mp-isp1.dtso
-> > > @@ -0,0 +1,36 @@
-> > > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > > +/*
-> > > + * Copyright 2022 Ideas on Board Oy
-> > > + */
-> > > +
-> > > +/dts-v1/;
-> > > +/plugin/;
-> > > +
-> > > +#include <dt-bindings/media/video-interfaces.h>
-> > > +
-> > > +&isi_0 {
-> > > +	status =3D "disabled";
-> >=20
-> > ISI is disabled by default. What is your intention here?
->=20
-> It could be enabled by an overlay for a camera module. Ideally we want
-> to be able to enable both the ISI and ISP at runtime, but that's not
-> possible yet and will require a very large amount of work.
-
-Again IMHO this is part of sensor setup, in a very specific overlay. To put=
- it=20
-into different words: I barely see the gain of this small overlay.
-
-Runtime switching would require a combined media controller including both =
-ISI=20
-and ISP, no?
-
-Best regards,
-Alexander
-
-> > > +
-> > > +	ports {
-> > > +		port@0 {
-> > > +			/delete-node/ endpoint;
-> >=20
-> > This doesn't work in overlays. See [1]. Otherwise the OF graph connecti=
-ons
-> > look fine to me. I'm using the same in my local overlay.
->=20
-> Interesting, I wasn't aware of that. Maybe we should fix it :-)
->=20
-> > [1]
-> > https://lore.kernel.org/all/CAMuHMdWu4KZbBkvEofUV2wuA1g2S=3DXHHM3RUN1cN=
-rcZB
-> > khsPZA@mail.gmail.com/>=20
-> > > +		};
-> > > +	};
-> > > +};
-> > > +
-> > > +&isp_0 {
-> > > +	status =3D "okay";
-> > > +
-> > > +	ports {
-> > > +		port@1 {
-> > > +			isp0_in: endpoint {
-> > > +				bus-type =3D <MEDIA_BUS_TYPE_PARALLEL>;
-> > > +				remote-endpoint =3D <&mipi_csi_0_out>;
-> > > +			};
-> > > +		};
-> > > +	};
-> > > +};
-> > > +
-> > > +&mipi_csi_0_out {
-> > > +	remote-endpoint =3D <&isp0_in>;
-> > > +};
-> > > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-isp2.dtso
-> > > b/arch/arm64/boot/dts/freescale/imx8mp-isp2.dtso new file mode 100644
-> > > index 000000000000..14e2e7b2617f
-> > > --- /dev/null
-> > > +++ b/arch/arm64/boot/dts/freescale/imx8mp-isp2.dtso
-> > > @@ -0,0 +1,36 @@
-> > > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > > +/*
-> > > + * Copyright 2022 Ideas on Board Oy
-> > > + */
-> > > +
-> > > +/dts-v1/;
-> > > +/plugin/;
-> > > +
-> > > +#include <dt-bindings/media/video-interfaces.h>
-> > > +
-> > > +&isi_0 {
-> > > +	status =3D "disabled";
-> > > +
-> > > +	ports {
-> > > +		port@1 {
-> > > +			/delete-node/ endpoint;
-> > > +		};
-> > > +	};
-> > > +};
-> > > +
-> > > +&isp_1 {
-> > > +	status =3D "okay";
-> > > +
-> > > +	ports {
-> > > +		port@1 {
-> > > +			isp1_in: endpoint {
-> > > +				bus-type =3D <MEDIA_BUS_TYPE_PARALLEL>;
-> > > +				remote-endpoint =3D <&mipi_csi_1_out>;
-> > > +			};
-> > > +		};
-> > > +	};
-> > > +};
-> > > +
-> > > +&mipi_csi_1_out {
-> > > +	remote-endpoint =3D <&isp1_in>;
-> > > +};
-
-
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
-
-
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
