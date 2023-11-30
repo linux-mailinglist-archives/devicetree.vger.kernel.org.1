@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-20415-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20417-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3F667FF364
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 16:20:24 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 166AB7FF365
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 16:20:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 48A29B20BD6
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 15:20:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ABD5C1F20F1C
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 15:20:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B49F51C54;
-	Thu, 30 Nov 2023 15:20:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25274524AB;
+	Thu, 30 Nov 2023 15:20:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="bH67UIvj"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="d0EHTKtb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EFEA10DF
-	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 07:20:16 -0800 (PST)
-Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E542310E0
+	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 07:20:19 -0800 (PST)
+Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id E97B83FA56
-	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 15:20:14 +0000 (UTC)
+	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 8CE6E44440
+	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 15:20:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1701357614;
-	bh=O3TPicaObXUf+CQ2/13bF4S5EM9ZMGJpI/eXjOZpsCQ=;
+	s=20210705; t=1701357616;
+	bh=DJHVa7mIKQwhZz/JHltxB0iKVUnDkFEjfRvqGAQUx+4=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
 	 MIME-Version;
-	b=bH67UIvj/5fgbqOcd1emdDUqhPY8WGvyLrRhkk+IOIp1fxKV8Seb1EzgWNt3/A65S
-	 Nui4h5Z6eQGrpkySBga2N9mEM5TDI7la/AX1FbXlSSxmabqfHW7td8PaibBcA9oRtp
-	 VwVVCokRGCWKG3BvbGp8K+KcJ3ZtkZjWdiLSLi4nYhdR2xeCiLi58yH0gpv9mtMeRo
-	 hI3mjh5nDnZnofaMHDxM/aZTotFkiJcvFVhW1A7+JUaOpPD0Ao1V6hgaM6Dh1n6RdJ
-	 Vba0vPvA8QSyzOjUM11ww+yxvJVoQ/1c61wS+KpX75jXkKILYZEyIDYYT04Nu9z2JP
-	 6ba2zdBUPJM9g==
-Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-6cba754b041so1391436b3a.3
-        for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 07:20:14 -0800 (PST)
+	b=d0EHTKtbWwl3Iy2AaSzN1Aos19ZHoqh8eqsCNEB7TiGPusOiNt2sDxW9PVjcshRNH
+	 j2CquydUBg1ulwavAKzj8bpIyXJhB4IjMGGAGgNC7hcRhrmCtygpr3YQ+8KedZAYhK
+	 O6ovQNPlWJC69G9uvTmiyUtN5N54YEiEXjmlDWeZOdBKVn0ZQ+3BkDZqtI0Af8drCZ
+	 +oPRwPZUNynzk/VGGZEZ9vF3vCPUHAzGLVAYjHfvYRWfCaXE/rot8b7KikI48tIB2C
+	 eKEPmYCIiq0ciQPjFazabLQgdFjlEZcVmCLSLBRSbWDYB4CexP6IIsMTjDZwL0zo42
+	 FMSx8S3JBKeog==
+Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-6c415e09b1bso1133534b3a.0
+        for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 07:20:16 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701357607; x=1701962407;
+        d=1e100.net; s=20230601; t=1701357615; x=1701962415;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=O3TPicaObXUf+CQ2/13bF4S5EM9ZMGJpI/eXjOZpsCQ=;
-        b=c9X3Cge4MSJahqPxbE6LKwaCR9bpmUFiCS0gX2stYSuB0VYKOsCJ6OKUJA0mqjXhwQ
-         jYKOoqvGUCjPC0oJ5gYUrbsRrYTzJQxwn71jxrKjpY/1ZDYV1/aN5io53Lo1WoU0u8fz
-         +qnzTI+QeMZQTf0gNzwoh8K0QGWs/7W2oHqWxShirJJ/KWrGMlMINDNHch00vgaDTZzN
-         B1aWQDMaTuKTsrzFARJHL5TvgUv9U4jnRe1nrvfUaeyXzUQ7i6kP/xipa8nm5oMegbB8
-         lTouDh8hBalj6PStdFB9BacGnvX+Eq/m+DDB0gsyjCdUP0xdcfTfUF2du1NvnX1RUKha
-         NVSg==
-X-Gm-Message-State: AOJu0YwcfOtydwO+RlZaRjbD0e/+lBjTed9Sr2YM50wywhB82JU4+rgT
-	nC7k25ro8ppIejjGAxYdESgtJT/SxPFYa9E48qcPAbUHQDpVcaP1cI1G3yYDJ4hLQ+6sz3JH2SP
-	Lrnq3nQU/OdUF5tfLWCI6/aUg8dWdDDrlYrlWi9Q=
-X-Received: by 2002:a05:6a00:1914:b0:68f:f38d:f76c with SMTP id y20-20020a056a00191400b0068ff38df76cmr24404051pfi.6.1701357607362;
-        Thu, 30 Nov 2023 07:20:07 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGO2ck+Ida+RKRFtuLd6VUs98DdkRkXb2Q1rcWsF3vYMURGwbviCaQAdpZ1mHrt9Ipgx7Ym1A==
-X-Received: by 2002:a05:6a00:1914:b0:68f:f38d:f76c with SMTP id y20-20020a056a00191400b0068ff38df76cmr24404026pfi.6.1701357607117;
-        Thu, 30 Nov 2023 07:20:07 -0800 (PST)
+        bh=DJHVa7mIKQwhZz/JHltxB0iKVUnDkFEjfRvqGAQUx+4=;
+        b=E/UB0fhkhiOkc03IuoVjJhUXZMeqpHn9vujjFw2bdixtRIQrLVrOb6/Px6tEApd1UY
+         Bgva7rGU/r4AqUK6RKl8qLCD6JoogHDhv7z4Az+uZGUSO1Jem9tCyVOCqPrt8juBj5MB
+         fHLTmt8f5mpdbbmrsG5hs7Mro3l0wyKeZC+Pedcdk8zCYlJyLvoY3LW9AOBkhjhSyrex
+         vML5Oxcj6GIdXMdLgaG4WRdnMqTaRSYSr3cifb9mnDctGaJwVtl/UNEoQeC7XUNucOE0
+         2lcmp9w+cV1N51ZyW6tlyEKX4jR7GLW9z7sHEFiTtmb3ExgVbt+VOeDZRNJF56ZAZSol
+         vzRA==
+X-Gm-Message-State: AOJu0YwJt7jyYaspro+cywKjL04ABiLR7zkc77/ZrgdB5Fe9+Cem3ULy
+	2WlRvnSwpCYs5AJCnOowSY6LLyX/5sCPJWDWZ1cM6ODkUtqvQZ9vvLrF6i4+7j3g1CogEzTs0Ki
+	tK03IROkbxUuEdP4CWrt6Re7o2MPfXhr4H3eEeqNVSv4PIHI=
+X-Received: by 2002:a05:6a20:7f98:b0:188:290d:17dc with SMTP id d24-20020a056a207f9800b00188290d17dcmr23728141pzj.60.1701357614810;
+        Thu, 30 Nov 2023 07:20:14 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IE7Mu2nDLembDBF+YwfqitZTioRcWFBD0XGtNJbp2zbw7AJm8Uh5SE/GyfEnowTrFxztj1irA==
+X-Received: by 2002:a05:6a20:7f98:b0:188:290d:17dc with SMTP id d24-20020a056a207f9800b00188290d17dcmr23728123pzj.60.1701357614540;
+        Thu, 30 Nov 2023 07:20:14 -0800 (PST)
 Received: from stitch.. ([80.71.140.73])
-        by smtp.gmail.com with ESMTPSA id y125-20020a636483000000b005bd3d6e270dsm1356002pgb.68.2023.11.30.07.20.00
+        by smtp.gmail.com with ESMTPSA id y125-20020a636483000000b005bd3d6e270dsm1356002pgb.68.2023.11.30.07.20.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Nov 2023 07:20:06 -0800 (PST)
+        Thu, 30 Nov 2023 07:20:14 -0800 (PST)
 From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
 To: linux-riscv@lists.infradead.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Cc: Emil Renner Berthing <kernel@esmil.dk>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
+Cc: Paul Walmsley <paul.walmsley@sifive.com>,
 	Palmer Dabbelt <palmer@dabbelt.com>,
+	Emil Renner Berthing <kernel@esmil.dk>,
 	Conor Dooley <conor@kernel.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
 	Geert Uytterhoeven <geert@linux-m68k.org>
-Subject: [PATCH v2 3/8] riscv: dts: starfive: Mark the JH7100 as having non-coherent DMAs
-Date: Thu, 30 Nov 2023 16:19:27 +0100
-Message-Id: <20231130151932.729708-4-emil.renner.berthing@canonical.com>
+Subject: [PATCH v2 4/8] riscv: dts: starfive: Add JH7100 cache controller
+Date: Thu, 30 Nov 2023 16:19:28 +0100
+Message-Id: <20231130151932.729708-5-emil.renner.berthing@canonical.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20231130151932.729708-1-emil.renner.berthing@canonical.com>
 References: <20231130151932.729708-1-emil.renner.berthing@canonical.com>
@@ -87,29 +87,52 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-From: Emil Renner Berthing <kernel@esmil.dk>
+The StarFive JH7100 SoC also features the SiFive L2 cache controller,
+so add the device tree nodes for it.
 
-The StarFive JH7100 SoC has non-coherent device DMAs, so mark the
-soc bus as such.
-
-Link: https://github.com/starfive-tech/JH7100_Docs/blob/main/JH7100%20Cache%20Coherence%20V1.0.pdf
-Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
 ---
- arch/riscv/boot/dts/starfive/jh7100.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+ arch/riscv/boot/dts/starfive/jh7100.dtsi | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
 diff --git a/arch/riscv/boot/dts/starfive/jh7100.dtsi b/arch/riscv/boot/dts/starfive/jh7100.dtsi
-index a40a8544b860..7c1009428c1f 100644
+index 7c1009428c1f..0cafac437746 100644
 --- a/arch/riscv/boot/dts/starfive/jh7100.dtsi
 +++ b/arch/riscv/boot/dts/starfive/jh7100.dtsi
-@@ -144,6 +144,7 @@ soc {
- 		interrupt-parent = <&plic>;
- 		#address-cells = <2>;
- 		#size-cells = <2>;
-+		dma-noncoherent;
- 		ranges;
+@@ -32,6 +32,7 @@ U74_0: cpu@0 {
+ 			i-tlb-sets = <1>;
+ 			i-tlb-size = <32>;
+ 			mmu-type = "riscv,sv39";
++			next-level-cache = <&ccache>;
+ 			riscv,isa = "rv64imafdc";
+ 			riscv,isa-base = "rv64i";
+ 			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "zicntr", "zicsr",
+@@ -60,6 +61,7 @@ U74_1: cpu@1 {
+ 			i-tlb-sets = <1>;
+ 			i-tlb-size = <32>;
+ 			mmu-type = "riscv,sv39";
++			next-level-cache = <&ccache>;
+ 			riscv,isa = "rv64imafdc";
+ 			riscv,isa-base = "rv64i";
+ 			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "zicntr", "zicsr",
+@@ -154,6 +156,17 @@ clint: clint@2000000 {
+ 					      <&cpu1_intc 3>, <&cpu1_intc 7>;
+ 		};
  
- 		clint: clint@2000000 {
++		ccache: cache-controller@2010000 {
++			compatible = "starfive,jh7100-ccache", "sifive,ccache0", "cache";
++			reg = <0x0 0x2010000 0x0 0x1000>;
++			interrupts = <128>, <130>, <131>, <129>;
++			cache-block-size = <64>;
++			cache-level = <2>;
++			cache-sets = <2048>;
++			cache-size = <2097152>;
++			cache-unified;
++		};
++
+ 		plic: interrupt-controller@c000000 {
+ 			compatible = "starfive,jh7100-plic", "sifive,plic-1.0.0";
+ 			reg = <0x0 0xc000000 0x0 0x4000000>;
 -- 
 2.40.1
 
