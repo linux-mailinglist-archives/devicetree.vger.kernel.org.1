@@ -1,281 +1,116 @@
-Return-Path: <devicetree+bounces-20436-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20437-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 751F37FF403
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 16:54:20 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B70C7FF40B
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 16:56:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A3FEE1C20E4E
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 15:54:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4469D28195B
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 15:56:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB0B153806;
-	Thu, 30 Nov 2023 15:54:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7192953810;
+	Thu, 30 Nov 2023 15:56:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="H/UyJrHB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KA22Zx/y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8B0B10D0;
-	Thu, 30 Nov 2023 07:54:11 -0800 (PST)
-Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id DEE1489D;
-	Thu, 30 Nov 2023 16:53:31 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1701359612;
-	bh=NmKT9aIjebdgY3EDWpUbTKENWW9j1zh38cDwsp1VpD0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=H/UyJrHB4E1mb96H7irt2Npff6AWHPyufrZKb5RonThvFux1ZsDx8xyKrD0yIlNMx
-	 W1lI6k6tVz4DTmM5eEtKPc9Onwv0vXrkv68G5ksgvhdYaLT0UPeY3DEwyioIaZhruI
-	 ohVq+v0Izp+JSozv9TlACD8MfUrbeZPVXhVOLheo=
-Date: Thu, 30 Nov 2023 17:54:14 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	Paul Elder <paul.elder@ideasonboard.com>,
-	kieran.bingham@ideasonboard.com, tomi.valkeinen@ideasonboard.com,
-	umang.jain@ideasonboard.com, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Tim Harvey <tharvey@gateworks.com>,
-	Philippe Schenker <philippe.schenker@toradex.com>,
-	Marek Vasut <marex@denx.de>,
-	Gregor Herburger <gregor.herburger@ew.tq-group.com>,
-	Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-	open list <linux-kernel@vger.kernel.org>,
-	"moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH 2/2] arm64: dts: imx8mp: Add overlays for ISP instances
-Message-ID: <20231130155414.GT8402@pendragon.ideasonboard.com>
-References: <20231129093113.255161-1-paul.elder@ideasonboard.com>
- <5734628.DvuYhMxLoT@steina-w>
- <20231130142048.GR8402@pendragon.ideasonboard.com>
- <1874751.tdWV9SEqCh@steina-w>
+Received: from mail-ot1-x32f.google.com (mail-ot1-x32f.google.com [IPv6:2607:f8b0:4864:20::32f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC41E10D0;
+	Thu, 30 Nov 2023 07:56:36 -0800 (PST)
+Received: by mail-ot1-x32f.google.com with SMTP id 46e09a7af769-6d811615efeso671003a34.1;
+        Thu, 30 Nov 2023 07:56:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1701359796; x=1701964596; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=TvmqJO0ppzl3rJXfbHdcHrgR5dQ8u3NxPpJslKQqqYw=;
+        b=KA22Zx/y62DSGy7H16ukGGo/9fl6MD3mu1ECd0591zngDlAWqDpuT28pBHPXf87hBi
+         D7j7LqfJXhn1rWNatSHes93ULQCY4izmqK6LXh9lpoU6+IPyci77RbOjS1hO/bF3Z4X2
+         cm4gfBwBkP5L9wv7ft+JyZQah8LEGbJb6+byV+Na34WG3+GdqfCQ0fOviq435sNtjgLS
+         nVWNUAegw1PLZfm68SCwyDwqHftZPm0yrDiJK9ksiPUiLMUYY1wt9+C5Sr8WpiXHXlvR
+         WrVDudHVCB7V6A/MHPFTfel3nAoqcuABfz6Kd+vwOwDXoAShhJq3dQNLNVfLD3kPgzOp
+         M8qg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701359796; x=1701964596;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TvmqJO0ppzl3rJXfbHdcHrgR5dQ8u3NxPpJslKQqqYw=;
+        b=H91qKE6fr9yUl0HRPpUlgxU/xg6NhyNKVJ76UZCy5MVj3f4I6xLmAYze9bzxfWxfcc
+         svfZsjK+FoGW9pnoGiehrOtoqLZ5hk+IcA/bs7lMbMa6GgVymPfBFHTev4dDMURKVXXS
+         kaf4Gmci2H5fgSViZsBRloULl6gRFse3Coe3maFJQ0L2+feT2xX4nr8/PUopzBhGJ+IU
+         XlXWLikQyi44shUrO0mzezksy4QnmaAak6KcfJMGnywPk+ScFoPc9fq0iERzkvArpSxq
+         GYlFY3n7dwnkLiqFPnP0ODx7B2H0I0RErjPnoQd2HNe99mf0LXl59n5cBd0H5EHhjE5U
+         km4A==
+X-Gm-Message-State: AOJu0YwNpGXjFwgZaZ8HxBzVwhnwS/EHnl0QBS5KleCx1APCf8gd1nvG
+	Hu579nhCIcyX9yO/gYEwqyY=
+X-Google-Smtp-Source: AGHT+IGETl/gTp4AkG0pVc3uLa1QNZZM4WQtChA8x1bd0u1DJ9TEu3j4YaOt3w6rwoz7iauW3gsExw==
+X-Received: by 2002:a9d:7416:0:b0:6d8:17ea:e48e with SMTP id n22-20020a9d7416000000b006d817eae48emr16937254otk.30.1701359795998;
+        Thu, 30 Nov 2023 07:56:35 -0800 (PST)
+Received: from localhost.localdomain ([75.28.21.198])
+        by smtp.gmail.com with ESMTPSA id n25-20020a9d6f19000000b006d7ff27a47esm187852otq.77.2023.11.30.07.56.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 30 Nov 2023 07:56:35 -0800 (PST)
+From: Chris Morgan <macroalpha82@gmail.com>
+To: linux-rockchip@lists.infradead.org
+Cc: dri-devel@lists.freedesktop.org,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	sboyd@kernel.org,
+	mturquette@baylibre.com,
+	tzimmermann@suse.de,
+	mripard@kernel.org,
+	maarten.lankhorst@linux.intel.com,
+	daniel@ffwll.ch,
+	airlied@gmail.com,
+	sam@ravnborg.org,
+	quic_jesszhan@quicinc.com,
+	neil.armstrong@linaro.org,
+	javierm@redhat.com,
+	heiko@sntech.de,
+	conor+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	robh+dt@kernel.org,
+	Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH 0/9] rockchip: Add Powkiddy X55
+Date: Thu, 30 Nov 2023 09:56:15 -0600
+Message-Id: <20231130155624.405575-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1874751.tdWV9SEqCh@steina-w>
+Content-Transfer-Encoding: 8bit
 
-On Thu, Nov 30, 2023 at 04:34:11PM +0100, Alexander Stein wrote:
-> Am Donnerstag, 30. November 2023, 15:20:48 CET schrieb Laurent Pinchart:
-> > On Thu, Nov 30, 2023 at 10:51:22AM +0100, Alexander Stein wrote:
-> > > Am Mittwoch, 29. November 2023, 16:16:37 CET schrieb Laurent Pinchart:
-> > > > On Wed, Nov 29, 2023 at 11:20:07AM +0100, Alexander Stein wrote:
-> > > > > Am Mittwoch, 29. November 2023, 10:31:13 CET schrieb Paul Elder:
-> > > > > > From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > > > > > 
-> > > > > > Add two overlay to enable each ISP instance. The ISP is wired
-> > > > > > directly
-> > > > > > to the CSIS for now, bypassing the ISI completely.
-> > > > > 
-> > > > > I'm not sure if this is worth adding in a separate overlay.
-> > > > 
-> > > > The trouble is that, at this point, selection between the ISP and the
-> > > > ISI can only be performed through DT :-S That's why this is implemented
-> > > > as an overlay.
-> > > 
-> > > I feel a better place would be the overlay which actually adds the sensor.
-> > > This knows best whether ISI or ISP should be used.
-> > 
-> > Any sensor could be used with either the ISI or the ISP, so I don't
-> > think the camera module overlay would be the best place for this. Unless
-> > you want to duplicate all camera module overlays, with an ISI version
-> > and an ISP version :-)
-> 
-> True, that's a really good argument for having these small overlays.
-> But how to deal with dtc warnings?
-> > imx8mp-isp1.dtbo: Warning (graph_port): /fragment@2: graph port node name 
-> should be 'port'
-> > imx8mp-isp1.dtso:34.17-36.3: Warning (graph_endpoint): /fragment@2/
-> __overlay__: graph endpoint node name should be 'endpoint'
-> > imx8mp-isp1.dtso:34.17-36.3: Warning (graph_endpoint): /fragment@2/
-> __overlay__: graph connection to node '/fragment@1/__overlay__/ports/port@1/
-> endpoint' is not bidirectional
+From: Chris Morgan <macromorgan@hotmail.com>
 
-See below :-)
+Add support for the Rockchip RK3566 based Powkiddy X55 handheld gaming
+console.
 
-> But for the small overlay itself:
-> Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> 
-> > > > > > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > > > > > Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
-> > > > > > ---
-> > > > > > 
-> > > > > >  arch/arm64/boot/dts/freescale/Makefile        |  2 ++
-> > > > > >  .../arm64/boot/dts/freescale/imx8mp-isp1.dtso | 36 +++++++++++++++++++
-> > > > > >  .../arm64/boot/dts/freescale/imx8mp-isp2.dtso | 36 +++++++++++++++++++
-> > > > > >  3 files changed, 74 insertions(+)
-> > > > > >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-isp1.dtso
-> > > > > >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-isp2.dtso
-> > > > > > 
-> > > > > > diff --git a/arch/arm64/boot/dts/freescale/Makefile
-> > > > > > b/arch/arm64/boot/dts/freescale/Makefile index
-> > > > > > 300049037eb0..f97dfac11189
-> > > > > > 100644
-> > > > > > --- a/arch/arm64/boot/dts/freescale/Makefile
-> > > > > > +++ b/arch/arm64/boot/dts/freescale/Makefile
-> > > > > > @@ -113,6 +113,8 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mp-dhcom-pdk2.dtb
-> > > > > > 
-> > > > > >  dtb-$(CONFIG_ARCH_MXC) += imx8mp-dhcom-pdk3.dtb
-> > > > > >  dtb-$(CONFIG_ARCH_MXC) += imx8mp-evk.dtb
-> > > > > >  dtb-$(CONFIG_ARCH_MXC) += imx8mp-icore-mx8mp-edimm2.2.dtb
-> > > > > > 
-> > > > > > +dtb-$(CONFIG_ARCH_MXC) += imx8mp-isp1.dtbo
-> > > > > > +dtb-$(CONFIG_ARCH_MXC) += imx8mp-isp2.dtbo
+Chris Morgan (9):
+  drm/panel: himax-hx8394: Drop prepare/unprepare tracking
+  drm/panel: himax-hx8394: Drop shutdown logic
+  dt-bindings: display: Document Himax HX8394 panel rotation
+  drm/panel: himax-hx8394: Add Panel Rotation Support
+  dt-bindings: display: himax-hx8394: Add Powkiddy X55 panel
+  drm/panel: himax-hx8394: Add Support for Powkiddy X55 panel
+  clk: rockchip: Mark pclk_usb as critical on rk3568
+  dt-bindings: arm: rockchip: Add Powkiddy X55
+  arm64: dts: rockchip: Add Powkiddy X55
 
-Overlays need to be validated in the context of a base DT on which they
-apply. For instance, in the same Makefile, we have
-
---------
-dtb-$(CONFIG_ARCH_MXC) += imx8mm-tqma8mqml-mba8mx.dtb
-...
-imx8mm-tqma8mqml-mba8mx-lvds-tm070jvhg33-dtbs += imx8mm-tqma8mqml-mba8mx.dtb imx8mm-tqma8mqml-mba8mx-lvds-tm070jvhg33.dtbo
-dtb-$(CONFIG_ARCH_MXC) += imx8mm-tqma8mqml-mba8mx-lvds-tm070jvhg33.dtb
---------
-
-imx8mm-tqma8mqml-mba8mx.dts is the base board DT, and
-imx8mm-tqma8mqml-mba8mx-lvds-tm070jvhg33.dtso the overlay. As far as I
-understand, when compiling dtbs, the build system will compile
-imx8mm-tqma8mqml-mba8mx.dtb and
-imx8mm-tqma8mqml-mba8mx-lvds-tm070jvhg33-dtb. To create the latter, it
-will compile imx8mm-tqma8mqml-mba8mx-lvds-tm070jvhg33.dtbo and apply it
-to imx8mm-tqma8mqml-mba8mx.dtb. Then, it will validate the DTBs
-specified as part of dtb-$(CONFIG_ARCH_MXC), which are
-imx8mm-tqma8mqml-mba8mx.dtb standlone, and through
-imx8mm-tqma8mqml-mba8mx-lvds-tm070jvhg33-dtbs
-imx8mm-tqma8mqml-mba8mx.dtb with the overlay applied.
-
-TL;DR: a v2 of this patch should fix the Makefile, and be compile-tested
-with make dtbs.
-
-Rob, Conor or Krzysztof can correct me if I'm wrong.
-
-> > > > > > 
-> > > > > >  dtb-$(CONFIG_ARCH_MXC) += imx8mp-msc-sm2s-ep1.dtb
-> > > > > >  dtb-$(CONFIG_ARCH_MXC) += imx8mp-phyboard-pollux-rdk.dtb
-> > > > > >  dtb-$(CONFIG_ARCH_MXC) += imx8mp-tqma8mpql-mba8mpxl.dtb
-> > > > > > 
-> > > > > > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-isp1.dtso
-> > > > > > b/arch/arm64/boot/dts/freescale/imx8mp-isp1.dtso new file mode
-> > > > > > 100644
-> > > > > > index 000000000000..cf394ed224ab
-> > > > > > --- /dev/null
-> > > > > > +++ b/arch/arm64/boot/dts/freescale/imx8mp-isp1.dtso
-> > > > > > @@ -0,0 +1,36 @@
-> > > > > > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > > > > > +/*
-> > > > > > + * Copyright 2022 Ideas on Board Oy
-> > > > > > + */
-> > > > > > +
-> > > > > > +/dts-v1/;
-> > > > > > +/plugin/;
-> > > > > > +
-> > > > > > +#include <dt-bindings/media/video-interfaces.h>
-> > > > > > +
-> > > > > > +&isi_0 {
-> > > > > > +	status = "disabled";
-> > > > > 
-> > > > > ISI is disabled by default. What is your intention here?
-> > > > 
-> > > > It could be enabled by an overlay for a camera module. Ideally we want
-> > > > to be able to enable both the ISI and ISP at runtime, but that's not
-> > > > possible yet and will require a very large amount of work.
-> > > 
-> > > Again IMHO this is part of sensor setup, in a very specific overlay. To
-> > > put it into different words: I barely see the gain of this small overlay.
-> > > 
-> > > Runtime switching would require a combined media controller including both
-> > > ISI and ISP, no?
-> > 
-> > Correct, that's the hard part.
-> > 
-> > > > > > +
-> > > > > > +	ports {
-> > > > > > +		port@0 {
-> > > > > > +			/delete-node/ endpoint;
-> > > > > 
-> > > > > This doesn't work in overlays. See [1]. Otherwise the OF graph
-> > > > > connections
-> > > > > look fine to me. I'm using the same in my local overlay.
-> > > > 
-> > > > Interesting, I wasn't aware of that. Maybe we should fix it :-)
-> > > > 
-> > > > > [1] https://lore.kernel.org/all/CAMuHMdWu4KZbBkvEofUV2wuA1g2S=XHHM3RUN1cNrcZBkhsPZA@mail.gmail.com/
-> > > > > 
-> > > > > > +		};
-> > > > > > +	};
-> > > > > > +};
-> > > > > > +
-> > > > > > +&isp_0 {
-> > > > > > +	status = "okay";
-> > > > > > +
-> > > > > > +	ports {
-> > > > > > +		port@1 {
-> > > > > > +			isp0_in: endpoint {
-> > > > > > +				bus-type = <MEDIA_BUS_TYPE_PARALLEL>;
-> > > > > > +				remote-endpoint = <&mipi_csi_0_out>;
-> > > > > > +			};
-> > > > > > +		};
-> > > > > > +	};
-> > > > > > +};
-> > > > > > +
-> > > > > > +&mipi_csi_0_out {
-> > > > > > +	remote-endpoint = <&isp0_in>;
-> > > > > > +};
-> > > > > > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-isp2.dtso
-> > > > > > b/arch/arm64/boot/dts/freescale/imx8mp-isp2.dtso new file mode
-> > > > > > 100644
-> > > > > > index 000000000000..14e2e7b2617f
-> > > > > > --- /dev/null
-> > > > > > +++ b/arch/arm64/boot/dts/freescale/imx8mp-isp2.dtso
-> > > > > > @@ -0,0 +1,36 @@
-> > > > > > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > > > > > +/*
-> > > > > > + * Copyright 2022 Ideas on Board Oy
-> > > > > > + */
-> > > > > > +
-> > > > > > +/dts-v1/;
-> > > > > > +/plugin/;
-> > > > > > +
-> > > > > > +#include <dt-bindings/media/video-interfaces.h>
-> > > > > > +
-> > > > > > +&isi_0 {
-> > > > > > +	status = "disabled";
-> > > > > > +
-> > > > > > +	ports {
-> > > > > > +		port@1 {
-> > > > > > +			/delete-node/ endpoint;
-> > > > > > +		};
-> > > > > > +	};
-> > > > > > +};
-> > > > > > +
-> > > > > > +&isp_1 {
-> > > > > > +	status = "okay";
-> > > > > > +
-> > > > > > +	ports {
-> > > > > > +		port@1 {
-> > > > > > +			isp1_in: endpoint {
-> > > > > > +				bus-type = <MEDIA_BUS_TYPE_PARALLEL>;
-> > > > > > +				remote-endpoint = <&mipi_csi_1_out>;
-> > > > > > +			};
-> > > > > > +		};
-> > > > > > +	};
-> > > > > > +};
-> > > > > > +
-> > > > > > +&mipi_csi_1_out {
-> > > > > > +	remote-endpoint = <&isp1_in>;
-> > > > > > +};
+ .../devicetree/bindings/arm/rockchip.yaml     |   1 +
+ .../bindings/display/panel/himax,hx8394.yaml  |   3 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../boot/dts/rockchip/rk3566-powkiddy-x55.dts | 926 ++++++++++++++++++
+ drivers/clk/rockchip/clk-rk3568.c             |   1 +
+ drivers/gpu/drm/panel/panel-himax-hx8394.c    | 180 +++-
+ 6 files changed, 1084 insertions(+), 28 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-powkiddy-x55.dts
 
 -- 
-Regards,
+2.34.1
 
-Laurent Pinchart
 
