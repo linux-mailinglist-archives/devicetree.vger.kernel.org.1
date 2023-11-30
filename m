@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-20287-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20288-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6DE87FEB48
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 10:01:52 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31B837FEB4F
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 10:03:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E9B481C2085F
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 09:01:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C0CC4B2113D
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 09:03:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18A863218A;
-	Thu, 30 Nov 2023 09:01:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB759321A2;
+	Thu, 30 Nov 2023 09:03:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nwKF69Cc"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SYW9mQoe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE3EDD5C
-	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 01:01:46 -0800 (PST)
-Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-a06e59384b6so93530366b.1
-        for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 01:01:46 -0800 (PST)
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F836CF
+	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 01:03:48 -0800 (PST)
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-a18b478e4e9so39356266b.1
+        for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 01:03:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701334905; x=1701939705; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701335026; x=1701939826; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=c/Us8oVneVkSrXYGx1VHyFzAEG/952Zvs6JVIWe0JBw=;
-        b=nwKF69Cci+yuJmVg9Lf8uyUk+jla1VVl5HujhbMisgrE64g2ymKgWgA41lNvFiLtyL
-         qvxe8XFKgPF6yULhAMQkgOwGauCb1V6AjEu5KGe86QbnzAa+OpYOfDqjc4QnW97pWS1x
-         IWWXUU59qqV2SK0CUbdwuGeoKkhki/kJ5i/4Z0aanlIGMQxq206bofeku5luqwxq1aZg
-         v/HbdoSi8ABCU8yZF580sg3vbI+PcnEwteVl5SMzQHFLmQJfZYZvgJ3lttGzOmepwIQW
-         qGdbqmkb57+7yRip9Ip1XBC2MzyYvQQa0EwJ2TZtLzMjnA5y4jh59GR82TJk8h1zMS4R
-         13sw==
+        bh=GvqbWlNvTX16UEU7YocZBl0UyoGU+NLWVbKOK1YjRL8=;
+        b=SYW9mQoe7NveL47VAYQ09kIDsn7EbS/4x8EEFPIbJDx7OGoekcfFFdCnVfYe/BFQ3P
+         5aqX27pokUifyrcqB6iF5/BGFU2YuwYwB7zXlEDbXLO2YrquUFfDdyB/vVisnHDrgu8D
+         8ecyaQPv9lbJxgL976nKPUB9W3/wF/QcDP+dlWdDUJkA0xvllkREWYJKH2XdFUv/YXcu
+         J7laf4P2r6hQPMHC24NxfQZ6uQCnouuq+E2dzyPj2cOekUtgNcloPdJhj+G8Hv2+Snyh
+         WVZkVsC9smMVbZ0sCCB+rzoonmp7wyo3knHmyM0C2gFfgk/Jbh6fpVLDUGw0DG7B5ULu
+         trzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701334905; x=1701939705;
+        d=1e100.net; s=20230601; t=1701335026; x=1701939826;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=c/Us8oVneVkSrXYGx1VHyFzAEG/952Zvs6JVIWe0JBw=;
-        b=eOyQStR1ERhZEVG/Efl1YzazUBN8wpw5PT0WS2FrziqHoTgrMXEd9yiJCxc0jhI48h
-         x7LhDrCBCoxr/AosMNaEp6grOIIt4q81nTahD5ElmSHnAr/wsmwQv4O2wI/O8SIR7IQl
-         CmFTJM7ULODpz44hF1bclLWltqd4c57nqEYOnuB2ia9Kip3Ywq2bRZxZG5HuFeTNwK1J
-         kPLE1ujcEV90lGCweYUCNsnOq36UNUK3qAzDt2I5PuKGm26pWLYg40V11LqFWCO0DF+U
-         r+0X5gyunPz7sYGyJ8ME6McwHs8h7SRUxUTaFmFSkPT/lT3AVNRJzUmy1eQ6deWXBvT/
-         xqZQ==
-X-Gm-Message-State: AOJu0YzLYstj6bZPiLO0AU9LAmpjSnmP+vWucUjLwcYTPfntb+7OEQ8C
-	qQlkSJU2jcxnOPnRpwVdgcaxaQ==
-X-Google-Smtp-Source: AGHT+IFF9/7xby9d5Z1C7wgZ/A59zGyy3WTylTdicKDZbeXWpEjhKrQfSwq3UbfA15wTXmo8wSpaQQ==
-X-Received: by 2002:a17:906:2306:b0:9e4:b664:baa8 with SMTP id l6-20020a170906230600b009e4b664baa8mr14055106eja.7.1701334905432;
-        Thu, 30 Nov 2023 01:01:45 -0800 (PST)
+        bh=GvqbWlNvTX16UEU7YocZBl0UyoGU+NLWVbKOK1YjRL8=;
+        b=kgT569UbI9rRnztnjghMGGhtUpneWA7IvfSvqoMoC0OkQm/6RX61uh0rrSJyPlBH0s
+         OwliuPKg8ZC7+BbG5sZv1uPLBNCSRG3PctVVl87jCTVjruWApnl5WHwDC/Vp3/GfzD2T
+         fLFujXqtIrpTEjtq+Wb+DBxHFiZ8gnQf5mARAcOypUBBlPTtJ8fJIcrxWokGnxnMlp44
+         rpjxQIWCDj5nC9ltjBdW5U+MPNgEFMFJde5bdW9jKCQbBPPOJWPOIS/ihX6iLalCXKHc
+         CND31wXOqnTgCEJiuSa8rNHD4QWhA+cPDBkhnfqurttc4vx2fnVWyo93+AMUA1djFrZO
+         t81Q==
+X-Gm-Message-State: AOJu0YwJlSQ8SIZhcLwWSUXHZ/330S+A3TQ/IAkOI99ygM3Cp2fDccAX
+	vHAOCWzuwazanGLthnyg891FfA==
+X-Google-Smtp-Source: AGHT+IFydcKSLfbxgd/xYVVIEivzYH8xfaWF6LYysFtzJtfNisxu/zkka6MzWDCMzn/+WI2/bc6oLg==
+X-Received: by 2002:a17:906:10dc:b0:a0c:68d3:f528 with SMTP id v28-20020a17090610dc00b00a0c68d3f528mr12189158ejv.74.1701335026448;
+        Thu, 30 Nov 2023 01:03:46 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.109])
-        by smtp.gmail.com with ESMTPSA id h14-20020a170906398e00b009d2eb40ff9dsm449444eje.33.2023.11.30.01.01.44
+        by smtp.gmail.com with ESMTPSA id le12-20020a170907170c00b009dd90698893sm421877ejc.38.2023.11.30.01.03.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Nov 2023 01:01:45 -0800 (PST)
-Message-ID: <299f569f-c3e7-4807-a141-4bbc06435f03@linaro.org>
-Date: Thu, 30 Nov 2023 10:01:43 +0100
+        Thu, 30 Nov 2023 01:03:46 -0800 (PST)
+Message-ID: <9e4f9c9e-a9b8-409d-ae87-745c97b9205b@linaro.org>
+Date: Thu, 30 Nov 2023 10:03:41 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,17 +62,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: mediatek: mt8183-kukui-jacuzzi: fix dsi
- unnecessary cells properties
+Subject: Re: [PATCH v1 2/3] arm64: dts: qcom: msm8998: Fix 'out-ports' is a
+ required property
 Content-Language: en-US
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- linux-mediatek@lists.infradead.org,
- Eugen Hristev <eugen.hristev@collabora.com>
-Cc: krzysztof.kozlowski+dt@linaro.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- matthias.bgg@gmail.com, kernel@collabora.com, hsinyi@chromium.org
-References: <20230814071053.5459-1-eugen.hristev@collabora.com>
- <170126437824.153055.10626099314938040381.b4-ty@collabora.com>
+To: Mao Jinlong <quic_jinlmao@quicinc.com>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Tingwei Zhang <quic_tingweiz@quicinc.com>,
+ Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+ Tao Zhang <quic_taozha@quicinc.com>
+References: <20231129143815.7892-1-quic_jinlmao@quicinc.com>
+ <20231129143815.7892-3-quic_jinlmao@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -118,33 +121,18 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <170126437824.153055.10626099314938040381.b4-ty@collabora.com>
+In-Reply-To: <20231129143815.7892-3-quic_jinlmao@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 29/11/2023 14:27, AngeloGioacchino Del Regno wrote:
+On 29/11/2023 15:38, Mao Jinlong wrote:
+> out-ports is a required property for coresight ETM. Add out-ports for
+> ETM nodes to fix the warning.
 > 
-> On Mon, 14 Aug 2023 10:10:53 +0300, Eugen Hristev wrote:
->> dtbs_check throws a warning at the dsi node:
->> Warning (avoid_unnecessary_addr_size): /soc/dsi@14014000: unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
->>
->> Other DTS have a panel child node with a reg, so the parent dtsi
->> must have the address-cells and size-cells, however this specific DT
->> has the panel removed, but not the cells, hence the warning above.
->>
->> [...]
-> 
-> Applied, thanks!
-> 
-> [1/1] arm64: dts: mediatek: mt8183-kukui-jacuzzi: fix dsi unnecessary cells properties
->       commit: 4b66a34afe29d991155081b2f1e10482bd00cbaa
-> 
+> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
+> ---
 
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> 
-
-You know, your SoB implies review. Unless you want to say you
-usually apply code without reviewing it...
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
