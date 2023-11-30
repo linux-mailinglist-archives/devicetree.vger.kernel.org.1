@@ -1,137 +1,229 @@
-Return-Path: <devicetree+bounces-20309-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20310-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E06E7FEC4E
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 10:55:14 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85F937FEC60
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 10:57:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4F4251C20A45
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 09:55:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3BD22282102
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 09:57:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 305F83AC0B;
-	Thu, 30 Nov 2023 09:55:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 721233AC16;
+	Thu, 30 Nov 2023 09:57:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Abovv0qw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE90710E2;
-	Thu, 30 Nov 2023 01:55:06 -0800 (PST)
-Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-d9beb865a40so664163276.1;
-        Thu, 30 Nov 2023 01:55:06 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701338105; x=1701942905;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/kl3Cyom3VKHlW1GdXvF57049dn4ixhhiJNdSH5QXH4=;
-        b=ThV1zXVjgeL2o6qm/ngXJMTKvjPsXQRDbig3iCmK90rdA7SWVKTPHPIoeqjz+lnmhh
-         LVqgiBMlRJx/yf3glxVYxhTEFSLNW3ocKs56hanJW5SYwu3VXNv+xhSj/wKOq3s/XBMw
-         wRSzlVb19rGENx2nL6rJNEkXlvHWl4IT3/OtVrKP3nqQnO+nF6LhNdChr5toz+gf4yZc
-         /PslSlDz9jktsW2zoAmzHuOi7lA1p+UZKza4+00H+//bS6F1fIJiJKyDozFeNEtjuSHn
-         S9szfSdcAOe4JuLAfAWrDG6qENbbjyQaoc6fkJOsWK697OrZRVSrtmv+Jz4bao8YvmGa
-         lkLA==
-X-Gm-Message-State: AOJu0YycV+K2bQzfXSRn99gHL8gZURUQcqBRGYNjb8+6vz7Il4WZgUC+
-	H9fO7zcq0zYhX3+n/9rVxCEn5ls/T874Vg==
-X-Google-Smtp-Source: AGHT+IGad/xbG4AWM4LSIJNFYbwM6pNaT28G+jf3I/a25gC6jZTk3p0GLY2L+0DYJY9VobqtnG1vCQ==
-X-Received: by 2002:a0d:d146:0:b0:5cb:c143:cd90 with SMTP id t67-20020a0dd146000000b005cbc143cd90mr22789105ywd.35.1701338104996;
-        Thu, 30 Nov 2023 01:55:04 -0800 (PST)
-Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com. [209.85.128.179])
-        by smtp.gmail.com with ESMTPSA id z2-20020a816502000000b00597e912e67esm257647ywb.131.2023.11.30.01.55.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Nov 2023 01:55:03 -0800 (PST)
-Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-5d34d85e610so4119657b3.3;
-        Thu, 30 Nov 2023 01:55:03 -0800 (PST)
-X-Received: by 2002:a81:92d7:0:b0:5ca:e49:c98b with SMTP id
- j206-20020a8192d7000000b005ca0e49c98bmr23203204ywg.8.1701338103524; Thu, 30
- Nov 2023 01:55:03 -0800 (PST)
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55074125CC
+	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 09:57:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8F54C433C7;
+	Thu, 30 Nov 2023 09:57:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701338248;
+	bh=At+gyQ/xlCRkksDXB0AhXb0mnnG01bKhfjPTqRTzZXE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Abovv0qwUCZwPg8D/kLwSak9MM+KwQp+Imy7tTEjlQI4TY8Oj1MxhxXO/s1kfuj82
+	 +iNWONY+mKsQeZqsGsTjxZ78vbWI0QJNgET64WHrdMtNUEX1F1XHhHp/K4kQb+vfPl
+	 c3UMMRIvwhJVmfxykZmFGThLgoz1F2g2t400stCNhVt3YEK01lSqI8nrmPtYRfBuO0
+	 cHyQ2OHF+Bpf2/T9Y7a65VBDx9Bfl0EzNrLepERg6lfZLglPRu8z7IU7mtQUsN1E6k
+	 fGAFjaDM5ImkJBgXkNe8tTaU13bG5G1zA4VcbvgiFcgj72sJ/dLqa0TYu92+klwKcd
+	 YZWwy67I+TJZA==
+Date: Thu, 30 Nov 2023 09:57:22 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Anup Patel <apatel@ventanamicro.com>
+Cc: Inochi Amaoto <inochiama@outlook.com>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Anup Patel <anup@brainfault.org>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Guo Ren <guoren@kernel.org>, Jisheng Zhang <jszhang@kernel.org>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v4 1/2] dt-bindings: timer: thead,c900-aclint-mtimer:
+ separate mtime and mtimecmp regs
+Message-ID: <20231130-decibel-passenger-6e932b1ce554@spud>
+References: <IA1PR20MB4953C82499C5D81D2C6A020BBBB6A@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <IA1PR20MB4953F9D77FFC76A9D236922DBBB6A@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <CAK9=C2WAv5jJBt56xBea268DeyUA+YvbU7i+ahVjueafCi-r6A@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231017104638.201260-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <CA+V-a8t3sGn83vpgjECf5dw=bbz2yPXpnn+v2Dx2q3yJRPsKgA@mail.gmail.com>
- <CAMuHMdXMRj4quvO87LbLHCCLr14EK2AXsvr_muTDrBrA8+BMjg@mail.gmail.com> <CA+V-a8tjy2Ttp_TbZT63PC_UY12J8FLcziCtef-D-jgw_CmKaA@mail.gmail.com>
-In-Reply-To: <CA+V-a8tjy2Ttp_TbZT63PC_UY12J8FLcziCtef-D-jgw_CmKaA@mail.gmail.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 30 Nov 2023 10:54:52 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVcUXY+J36X6iG_jtT1mQhXFbEdF57oOT4DFZAridp2_A@mail.gmail.com>
-Message-ID: <CAMuHMdVcUXY+J36X6iG_jtT1mQhXFbEdF57oOT4DFZAridp2_A@mail.gmail.com>
-Subject: Re: [PATCH v2 0/3] Add missing port pins for RZ/Five SoC
-To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc: Magnus Damm <magnus.damm@gmail.com>, Linus Walleij <linus.walleij@linaro.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="MkvK8Enbv+3r7NNr"
+Content-Disposition: inline
+In-Reply-To: <CAK9=C2WAv5jJBt56xBea268DeyUA+YvbU7i+ahVjueafCi-r6A@mail.gmail.com>
+
+
+--MkvK8Enbv+3r7NNr
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi Prabhakar,
-
-On Thu, Nov 30, 2023 at 9:48=E2=80=AFAM Lad, Prabhakar
-<prabhakar.csengg@gmail.com> wrote:
-> On Wed, Nov 29, 2023 at 3:32=E2=80=AFPM Geert Uytterhoeven <geert@linux-m=
-68k.org> wrote:
-> > On Wed, Nov 29, 2023 at 3:44=E2=80=AFPM Lad, Prabhakar
-> > <prabhakar.csengg@gmail.com> wrote:
-> > > On Tue, Oct 17, 2023 at 11:47=E2=80=AFAM Prabhakar <prabhakar.csengg@=
-gmail.com> wrote:
-> > > > This patch series intends to incorporate the absent port pins P19 t=
-o P28,
-> > > > which are exclusively available on the RZ/Five SoC.
-> > > >
-> > > > Cheers,
-> > > > Prabhakar
-> > > >
-> > > > RFC -> v2:
-> > > > * Fixed review comments pointed by Geert & Biju
-> > > >
-> > > > RFC: https://lore.kernel.org/lkml/20230630120433.49529-3-prabhakar.=
-mahadev-lad.rj@bp.renesas.com/T/
-> > > >
-> > > > Lad Prabhakar (3):
-> > > >   pinctrl: renesas: rzg2l: Include pinmap in RZG2L_GPIO_PORT_PACK()
-> > > >     macro
-> > > >   pinctrl: renesas: pinctrl-rzg2l: Add the missing port pins P19 to=
- P28
-> > > >   riscv: dts: renesas: r9a07g043f: Update gpio-ranges property
-> > > >
-> > > >  arch/riscv/boot/dts/renesas/r9a07g043f.dtsi |   4 +
-> > > >  drivers/pinctrl/renesas/pinctrl-rzg2l.c     | 263 ++++++++++++++++=
-++--
-> > > >  2 files changed, 242 insertions(+), 25 deletions(-)
-> > > >
-> > > Gentle ping.
+On Thu, Nov 30, 2023 at 03:01:24PM +0530, Anup Patel wrote:
+> On Sat, Nov 18, 2023 at 12:39=E2=80=AFPM Inochi Amaoto <inochiama@outlook=
+=2Ecom> wrote:
 > >
-> > As the kernel test robot reported a build issue for PATCH 1/3, I had
-> > removed this series from my review queue.
-> Strange patchwork status didnt mention it as "rejected".
-
-Actually I do not use patchwork that much...
-
-> > Do you still want me to review v2, or do you want to send a v3 first?
+> > The timer registers of aclint don't follow the clint layout and can
+> > be mapped on any different offset. As sg2042 uses separated timer
+> > and mswi for its clint, it should follow the aclint spec and have
+> > separated registers.
 > >
-> No worries, I'll send a v3 and we can go from there.
+> > The previous patch introduced a new type of T-HEAD aclint timer which
+> > has clint timer layout. Although it has the clint timer layout, it
+> > should follow the aclint spec and uses the separated mtime and mtimecmp
+> > regs. So a ABI change is needed to make the timer fit the aclint spec.
+> >
+> > To make T-HEAD aclint timer more closer to the aclint spec, use
+> > regs-names to represent the mtimecmp register, which can avoid hack
+> > for unsupport mtime register of T-HEAD aclint timer.
+> >
+> > Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
+> > Fixes: 4734449f7311 ("dt-bindings: timer: Add Sophgo sg2042 CLINT timer=
+")
+> > Link: https://lists.infradead.org/pipermail/opensbi/2023-October/005693=
+=2Ehtml
+> > Link: https://github.com/riscv/riscv-aclint/blob/main/riscv-aclint.adoc
+>=20
+> The ratified Priv v1.12 specification defines platform specific M-mode ti=
+mer
+> registers without defining any layout of mtime and mtimecmp registers.
+> (Refer, "3.2.1 Machine Timer Registers (mtime and mtimecmp)")
+>=20
+> The "thead,c900-aclint-mtimer" can be thought of as is one possible
+> implementation of "riscv,mtimer" defined by the Priv v1.12 specificaiton.
+>=20
+> If it is not too late then I suggest making this binding into generic
+> "riscv,mtimer" binding.
 
-OK.
+We could definitely reorganise things, it's not too late for that as
+implementation specific compatibles would be needed regardless, so
+software that would've matched on those will continue to do so.
 
-Gr{oetje,eeting}s,
+That said, does this platform actually implement the 1.12 priv spec if
+there is no mtime register? The section you reference says:
+"Platforms provide a real-time counter, exposed as a memory-mapped
+machine-mode read-write register, mtime." It seems to me like this
+hardware is not suitable for a generic "riscv,mtimer" fallback.
 
-                        Geert
+Am I missing something there Anup?
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+It doesn't even implement the draft aclint spec, given that that says:
+"The MTIMER device provides machine-level timer functionality for a set
+of HARTs on a RISC-V platform. It has a single fixed-frequency monotonic
+time counter (MTIME) register and a time compare register (MTIMECMP) for
+each HART connected to the MTIMER device."
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+But I already said no to having a generic, "riscv" prefixed, compatible
+for that, given it is in draft form.
+
+Cheers,
+Conor.
+
+> > ---
+> >  .../timer/thead,c900-aclint-mtimer.yaml       | 42 ++++++++++++++++++-
+> >  1 file changed, 41 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/timer/thead,c900-aclint-=
+mtimer.yaml b/Documentation/devicetree/bindings/timer/thead,c900-aclint-mti=
+mer.yaml
+> > index fbd235650e52..053488fb1286 100644
+> > --- a/Documentation/devicetree/bindings/timer/thead,c900-aclint-mtimer.=
+yaml
+> > +++ b/Documentation/devicetree/bindings/timer/thead,c900-aclint-mtimer.=
+yaml
+> > @@ -17,7 +17,20 @@ properties:
+> >        - const: thead,c900-aclint-mtimer
+> >
+> >    reg:
+> > -    maxItems: 1
+> > +    oneOf:
+> > +      - items:
+> > +          - description: MTIME Registers
+> > +          - description: MTIMECMP Registers
+> > +      - items:
+> > +          - description: MTIMECMP Registers
+> > +
+> > +  reg-names:
+> > +    oneOf:
+> > +      - items:
+> > +          - const: mtime
+> > +          - const: mtimecmp
+> > +      - items:
+> > +          - const: mtimecmp
+> >
+> >    interrupts-extended:
+> >      minItems: 1
+> > @@ -28,8 +41,34 @@ additionalProperties: false
+> >  required:
+> >    - compatible
+> >    - reg
+> > +  - reg-names
+> >    - interrupts-extended
+> >
+> > +allOf:
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            const: thead,c900-aclint-mtimer
+> > +    then:
+> > +      properties:
+> > +        reg:
+> > +          items:
+> > +            - description: MTIMECMP Registers
+> > +        reg-names:
+> > +          items:
+> > +            - const: mtimecmp
+> > +    else:
+> > +      properties:
+> > +        reg:
+> > +          items:
+> > +            - description: MTIME Registers
+> > +            - description: MTIMECMP Registers
+> > +        reg-names:
+> > +          items:
+> > +            - const: mtime
+> > +            - const: mtimecmp
+> > +
+> >  examples:
+> >    - |
+> >      timer@ac000000 {
+> > @@ -39,5 +78,6 @@ examples:
+> >                              <&cpu3intc 7>,
+> >                              <&cpu4intc 7>;
+> >        reg =3D <0xac000000 0x00010000>;
+> > +      reg-names =3D "mtimecmp";
+> >      };
+> >  ...
+> > --
+> > 2.42.1
+> >
+> >
+
+--MkvK8Enbv+3r7NNr
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZWhcggAKCRB4tDGHoIJi
+0kn8AQDqzj5sPhrTZ4MnXUrint8opq95zpJJFvIiNf7BO7n8lAEA1WQHbj11P6xz
+RHWuZ9KBckPhPthVbmqyHo6rJmIi6A4=
+=YOvF
+-----END PGP SIGNATURE-----
+
+--MkvK8Enbv+3r7NNr--
 
