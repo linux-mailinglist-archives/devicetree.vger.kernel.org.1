@@ -1,82 +1,81 @@
-Return-Path: <devicetree+bounces-20413-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20414-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63AC67FF35D
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 16:20:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CC787FF360
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 16:20:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1E5A228196A
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 15:20:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB7A428194C
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 15:20:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2497A51C5E;
-	Thu, 30 Nov 2023 15:20:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C6BD51C5F;
+	Thu, 30 Nov 2023 15:20:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="tg2AgNrs"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="FIp9e0wD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C959010F2
-	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 07:19:56 -0800 (PST)
-Received: from mail-oi1-f198.google.com (mail-oi1-f198.google.com [209.85.167.198])
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7A851700
+	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 07:20:07 -0800 (PST)
+Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com [209.85.210.200])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 8ADCA42241
-	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 15:19:54 +0000 (UTC)
+	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id B1AF83FA55
+	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 15:20:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1701357594;
-	bh=kJozCoiP+8SSmbIdgX+XEOLC3TmZqjTi2KwgKhtjA04=;
+	s=20210705; t=1701357606;
+	bh=tj9HPh6BvRLNZqMKySfyhhevyeW6ZzHpiXvh8Tdk9iY=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
 	 MIME-Version;
-	b=tg2AgNrsOtlLHpxEc7uRzLLKEozhkNr+M545R6prrCUcJx8c3vpsNNeOFrZU2MM7e
-	 Em362apU0Ijd9yi8c4MAIzoI2EcmkrdXOI8xqVWzPoLAzayBS/vVYn/xfw87cC7wGi
-	 UHufiBSfp8/SsPkQD7yNR3gGkDLM4hXGqU7BBFkxiOoIWfBs0EU/N2yNzjBFD8fDWM
-	 ihZVyI6zJ3V8MTAfivnGc5Pk8aRp/zUvIDoCRyJJedyFmJuE43rdO7HFQZ15uODTQU
-	 0vuTNuU0RH1AflB0z76e59oZKoWJSvfe1sEBWJ1Wl6o2EaBIIsRH0Md7YmOUxPGV3Q
-	 2Ix3jSw/pLOCA==
-Received: by mail-oi1-f198.google.com with SMTP id 5614622812f47-3b85fd1bdecso1278864b6e.1
-        for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 07:19:54 -0800 (PST)
+	b=FIp9e0wD8k6I2Ba9Efn2UYzz/NdA2SdRlpn16jRq7PmZLqpUgA2Wb8HKs4Hyc+5Rd
+	 Rt6PoOY404dNKALUzQ+tLvlol8UgbxgxfsaygUTS9pW0AGaE9VjeiVu1SP21dCBFac
+	 vRfppGeWOJ3zw58p7+Vxo+8484y7jQEXG5e0Xd/jWSFvi4qqriZW/aw2qRADFNqRYb
+	 IpERqA6ggNQIRRyCA6nv38NMxAjRoV+XWp3PODe7XSlqrwFsxYdzUNv4oCjeUFYLRb
+	 iZg0HVGh/ra+XXBEUUwHZTAe08/jXWXNmnqCCpuQ0lxavOAEGDSUu+98rTsQ96EnOq
+	 8C3J5ewh7WLyQ==
+Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-6cde4342fe9so1114123b3a.2
+        for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 07:20:06 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701357592; x=1701962392;
+        d=1e100.net; s=20230601; t=1701357600; x=1701962400;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=kJozCoiP+8SSmbIdgX+XEOLC3TmZqjTi2KwgKhtjA04=;
-        b=c3OxBMidpm268XWOzw0v5i895NdGBWNuewMLVHaUpqDFW4p12V/Eu7Cz76uGdcwl0k
-         0ZD8CdvQmnaCBSIZidxB7QPjq4YUA03n2jffcicehZ8286ZARFi+01fte2cWbyEl5zM3
-         bJgQ5D1DJcD2WOYj1bxZzTy2pXlu3clHIDMOzjZLSDyXPEjPxPkRnTCKx1CYIFoaTisX
-         u7eVtb6ryHwcbdKp0wC8Kk1sKlstXrDvEDEt0cfjanV0APmyYHfOKTqISIquqBR9pghD
-         +tGZ/abJgORvaMmYfAiTvIIhFDl9tOjt8FOdvBAyOjXHVi2wF6Cxh9llsYp8pieu0jMZ
-         1JTg==
-X-Gm-Message-State: AOJu0Yx+2kaJvM/pffsb7ZrGhDrpAvRp//GbDv2Nv9vSDgBIgCoO3VVY
-	q2Z9wIi5+YDO7dOd/GOJozx9eN6m0GzQP313VzTH4uchZfoXkEM9FjGhGSAU1jrvAbGGAF0mnMJ
-	LB6D5E9wGFx4r0OszW9F5tLl0VW6UZXd90zRsq/0=
-X-Received: by 2002:a05:6808:114c:b0:3b8:616b:24e with SMTP id u12-20020a056808114c00b003b8616b024emr22271196oiu.49.1701357592729;
-        Thu, 30 Nov 2023 07:19:52 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IF/tZgpwM4g3D4RLe+xKwxGoAIWPI28s+VjwwPdoqac/L+nPUOpvs7DOtcRdrL5y9bTCAwjtg==
-X-Received: by 2002:a05:6808:114c:b0:3b8:616b:24e with SMTP id u12-20020a056808114c00b003b8616b024emr22271182oiu.49.1701357592537;
-        Thu, 30 Nov 2023 07:19:52 -0800 (PST)
+        bh=tj9HPh6BvRLNZqMKySfyhhevyeW6ZzHpiXvh8Tdk9iY=;
+        b=BYZaLs3GGe6sKxyEABBdBjFurPC5GxtFX7YYFLb0SG6HNdeYqUC/B+6iLVhZZq2tSw
+         2R31fsNZJCr4odu2jKc2q7p7Zg+1KaIf3ydrEQXE6MPVLYXNCltL4Dx8U4KN2XMkIDU8
+         ccQWCtPvb6Ta6nt7HoS0eRhRiTJKH3mRbjkeCplpySe1blhcdO6hm0kM9P20Ww4sve8r
+         rWtsv6Mjx7L+0JW6py+d5ij+jmPxAHlN40PghhXxErDYdKw63AVug0L3qZglBOJMRC7H
+         9PgKjLMiMOLKvdZvIZe5VtZY0wWDQd0mLSZ7W5jDggK5A+CihBZiJtQns9j2Q9zYjy4U
+         G2PQ==
+X-Gm-Message-State: AOJu0Yzn7bUD4HeFkIKnKYelZ+rhGU7ayQ/Izesa7ddosawo0LD3xjk3
+	L8R50C8toBf8Pl4ed8CPFNpinaoZ9F7Ogkzb4NMTCXtVxlBe+Lk9KJJlE3/8sHqcCSF2UGwjL/f
+	7taCmeBCC2PIVCBJk2g5DmjW5yG5EuwvKk6dYPg4=
+X-Received: by 2002:a05:6a20:2445:b0:187:f7d3:fe4 with SMTP id t5-20020a056a20244500b00187f7d30fe4mr23989913pzc.11.1701357600043;
+        Thu, 30 Nov 2023 07:20:00 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IH1mvOn1/uJNCv0eb4azsQCzjyj+9l3Hl/zvOgcVmnx6qLHRyWHQAlXD/AuQrB0F0f5KVnWrA==
+X-Received: by 2002:a05:6a20:2445:b0:187:f7d3:fe4 with SMTP id t5-20020a056a20244500b00187f7d30fe4mr23989897pzc.11.1701357599785;
+        Thu, 30 Nov 2023 07:19:59 -0800 (PST)
 Received: from stitch.. ([80.71.140.73])
-        by smtp.gmail.com with ESMTPSA id y125-20020a636483000000b005bd3d6e270dsm1356002pgb.68.2023.11.30.07.19.45
+        by smtp.gmail.com with ESMTPSA id y125-20020a636483000000b005bd3d6e270dsm1356002pgb.68.2023.11.30.07.19.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Nov 2023 07:19:52 -0800 (PST)
+        Thu, 30 Nov 2023 07:19:59 -0800 (PST)
 From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
 To: linux-riscv@lists.infradead.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Cc: Paul Walmsley <paul.walmsley@sifive.com>,
+Cc: Geert Uytterhoeven <geert@linux-m68k.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
 	Palmer Dabbelt <palmer@dabbelt.com>,
 	Emil Renner Berthing <kernel@esmil.dk>,
 	Conor Dooley <conor@kernel.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-	Geert Uytterhoeven <geert@linux-m68k.org>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v2 1/8] riscv: errata: Add StarFive JH7100 errata
-Date: Thu, 30 Nov 2023 16:19:25 +0100
-Message-Id: <20231130151932.729708-2-emil.renner.berthing@canonical.com>
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Subject: [PATCH v2 2/8] riscv: dts: starfive: Group tuples in interrupt properties
+Date: Thu, 30 Nov 2023 16:19:26 +0100
+Message-Id: <20231130151932.729708-3-emil.renner.berthing@canonical.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20231130151932.729708-1-emil.renner.berthing@canonical.com>
 References: <20231130151932.729708-1-emil.renner.berthing@canonical.com>
@@ -88,44 +87,45 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-This not really an errata, but since the JH7100 was made before
-the standard Zicbom extension it needs the DMA_GLOBAL_POOL and
-RISCV_NONSTANDARD_CACHE_OPS enabled to work correctly.
+From: Geert Uytterhoeven <geert@linux-m68k.org>
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+To improve human readability and enable automatic validation, the tuples
+in the various properties containing interrupt specifiers should be
+grouped.
+
+Fix this by grouping the tuples of "interrupts-extended" properties
+using angle brackets.
+
+Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
 Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
 ---
- arch/riscv/Kconfig.errata | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+ arch/riscv/boot/dts/starfive/jh7100.dtsi | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/arch/riscv/Kconfig.errata b/arch/riscv/Kconfig.errata
-index e2c731cfed8c..692de149141f 100644
---- a/arch/riscv/Kconfig.errata
-+++ b/arch/riscv/Kconfig.errata
-@@ -53,6 +53,23 @@ config ERRATA_SIFIVE_CIP_1200
+diff --git a/arch/riscv/boot/dts/starfive/jh7100.dtsi b/arch/riscv/boot/dts/starfive/jh7100.dtsi
+index e68cafe7545f..a40a8544b860 100644
+--- a/arch/riscv/boot/dts/starfive/jh7100.dtsi
++++ b/arch/riscv/boot/dts/starfive/jh7100.dtsi
+@@ -149,15 +149,15 @@ soc {
+ 		clint: clint@2000000 {
+ 			compatible = "starfive,jh7100-clint", "sifive,clint0";
+ 			reg = <0x0 0x2000000 0x0 0x10000>;
+-			interrupts-extended = <&cpu0_intc 3 &cpu0_intc 7
+-					       &cpu1_intc 3 &cpu1_intc 7>;
++			interrupts-extended = <&cpu0_intc 3>, <&cpu0_intc 7>,
++					      <&cpu1_intc 3>, <&cpu1_intc 7>;
+ 		};
  
- 	  If you don't know what to do here, say "Y".
- 
-+config ERRATA_STARFIVE_JH7100
-+	bool "StarFive JH7100 support"
-+	depends on ARCH_STARFIVE && NONPORTABLE
-+	select DMA_GLOBAL_POOL
-+	select RISCV_DMA_NONCOHERENT
-+	select RISCV_NONSTANDARD_CACHE_OPS
-+	select SIFIVE_CCACHE
-+	default n
-+	help
-+	  The StarFive JH7100 was a test chip for the JH7110 and has
-+	  caches that are non-coherent with respect to peripheral DMAs.
-+	  It was designed before the Zicbom extension so needs non-standard
-+	  cache operations through the SiFive cache controller.
-+
-+	  Say "Y" if you want to support the BeagleV Starlight and/or
-+	  StarFive VisionFive V1 boards.
-+
- config ERRATA_THEAD
- 	bool "T-HEAD errata"
- 	depends on RISCV_ALTERNATIVE
+ 		plic: interrupt-controller@c000000 {
+ 			compatible = "starfive,jh7100-plic", "sifive,plic-1.0.0";
+ 			reg = <0x0 0xc000000 0x0 0x4000000>;
+-			interrupts-extended = <&cpu0_intc 11 &cpu0_intc 9
+-					       &cpu1_intc 11 &cpu1_intc 9>;
++			interrupts-extended = <&cpu0_intc 11>, <&cpu0_intc 9>,
++					      <&cpu1_intc 11>, <&cpu1_intc 9>;
+ 			interrupt-controller;
+ 			#address-cells = <0>;
+ 			#interrupt-cells = <1>;
 -- 
 2.40.1
 
