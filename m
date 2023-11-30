@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-20321-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20322-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B37C77FECBA
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 11:20:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B27C37FECBE
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 11:20:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3C28728119B
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 10:20:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 625D8282029
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 10:20:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F34D3C06F;
-	Thu, 30 Nov 2023 10:20:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 827E63C076;
+	Thu, 30 Nov 2023 10:20:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="y2vZcbTx"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dUtTJrX0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65B8010FA
-	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 02:20:13 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-40b4a8db314so6201895e9.3
-        for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 02:20:13 -0800 (PST)
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68B3A10E2
+	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 02:20:14 -0800 (PST)
+Received: by mail-lj1-x22d.google.com with SMTP id 38308e7fff4ca-2c9d3aad61fso1242601fa.2
+        for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 02:20:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google; t=1701339612; x=1701944412; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=JZNRfKzPS7gzMtohSq7ZUHEbMViDl2jtLCZRHr8Haek=;
-        b=y2vZcbTxN8648kfIA+d1kCLiHa9PNb4YDKb0pRjaadXCA6kFhO4fHPgkqF1nNffOre
-         fLi0ACYTJMc3UHkXf9NoZ51lgxU+Jw3HOO2wphoxx9nBqbuV0PLlJc1z5kZNUErQd0wg
-         Hdz5KIGmmdrUg/TxesMMrCrJc8mzfrInyNCzrb6o0iIlfdI0OCDxNLxR8VMNW08GQfMd
-         edGudM+u+k/iSs5GskbhbtUXW0JOz/813Oq613Gdf2G+Uf14Pt9SMYT94qpziIjKQctp
-         XLG6vn0humu/Yng3O5WFk/tCoqcADpDCfn6xOJofUFb7PH2fkT/jDQ1pSLFVLkZ1p+bt
-         qH2Q==
+        bh=vT9hUgNzYB1zOLp54a+/OsTaQWvCNt+Be+PRH05ueKY=;
+        b=dUtTJrX0FTSKVLt9d0QAY3qBHYQkBpRhCXi/Gxn8Uf4HbrtZDyl4tk/mBOA5xwTakg
+         eETVXsNmsnAzBXOy8ATh0v/RJCcYov9YiUodOSA/7aXTHNcKxzUzjF/LHlx3gEDBvw4a
+         nvsjoXEbhrMf3zEUKxevbVx0LeNWz1ihWCKZv3TuR9dGSLSHsLhZ/pzEbBO8wf8yV4Ov
+         5Fd3Q+ENTKu9C5P0MkZy9y5yDNZUC4pHq0rCDDsaJq5qgO3SUxQ1P/WulPY8KGGnWzrc
+         TSQ+U1eMtYDzSpULudSEWtlD51yTi2sp/oCWURRLVu1I5yjIfWy++Iu9mALaFR/VSJKs
+         zPUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701339612; x=1701944412;
+        d=1e100.net; s=20230601; t=1701339613; x=1701944413;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=JZNRfKzPS7gzMtohSq7ZUHEbMViDl2jtLCZRHr8Haek=;
-        b=KePTpbEbMSm7MClKK/cGmpHfZ/MH/h7WPGuW8CZmHITmEYUqDzxRHIzMyTkXw+TMDF
-         4f6tuJVz6A1i+EfQiUULVdF9Pm54izXAC3v6hFF2ikYnUOMqEr8dHWgfjRSkXLSGi/R2
-         6uNVu80qoUlW0OgE8A9TLnRGlXzKVgmCzrTompCiMJOC4AcaoekjSqi5RvRY31zj6Ees
-         ox3WfLnKa2wa06HUA1gNNl0Wq6O8sT4iEGOue+JXMazfnv+YS/AHBIjzPXIbn/lTKH/K
-         74Ji00ZdvjEbid7LPPl99UVJMDNc6TuJNybHUqtQagno2dGaR+IOAyrppbkht+gKw/IL
-         zOnQ==
-X-Gm-Message-State: AOJu0YxCvTnxZKWrjxqinL6GPAQgi4Nk23w9eC4IpNtDSwhpqdfBOmNp
-	aZJkr2V/xSbZxdJvyJRuDhu+zw==
-X-Google-Smtp-Source: AGHT+IFfDyvZPYr6hzkeDcHcyw0xA1X/AxhdJxF0VL+TyLIi1Z+2TTRMIHZGRcUKSnhn4kKsFmnj3g==
-X-Received: by 2002:a05:600c:4f09:b0:40b:2c20:d044 with SMTP id l9-20020a05600c4f0900b0040b2c20d044mr16304917wmq.2.1701339611810;
-        Thu, 30 Nov 2023 02:20:11 -0800 (PST)
+        bh=vT9hUgNzYB1zOLp54a+/OsTaQWvCNt+Be+PRH05ueKY=;
+        b=Yi25hS5ML9cr/bKLOvFQ+dkZUswDZZig03gVMk8WF20aj20JCzrLwILdLs1OPxPFS9
+         DtA8ENAFUupHFTh5EZK0zTlpuK9a62xJJgOY6966p1x3TV6gopQ6f7F5Q5KDxBsu57Lj
+         reiva3vMwNTnOaCt90pJNbfKeV64ZzPTNo71ousu5fgJsRkvyRX99zFKFAIPMcXmF2eA
+         3VRMdk3LTN+uox5E9zRdqxXOyvhg3X/ieIL8sdQGt2V4Dt8gk3aS+PR8giRqPgADYZc2
+         y9vWG6OY3D1TbLL9XTjbQHjxILQivBZQpRf/QoSTZw6lJCvlIz3rUK5zkklPaj4VibSP
+         hOvw==
+X-Gm-Message-State: AOJu0YzrLgrC3kVkhdbeZk6LAAjVIeS19n9AWxg7qemfWeyFYBxRKy0h
+	VG7mAY9oy5iaAhn4Hdda1uHLjg==
+X-Google-Smtp-Source: AGHT+IFzPxvIV/m2rEZbZvSrCVKT4qBLP8YPoOQC7TIpz6L6uSq4kppQHgjOtNCCRbRL1PNfo/G+8Q==
+X-Received: by 2002:a2e:7c15:0:b0:2c9:ca6a:6963 with SMTP id x21-20020a2e7c15000000b002c9ca6a6963mr998529ljc.6.1701339612674;
+        Thu, 30 Nov 2023 02:20:12 -0800 (PST)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
         by smtp.gmail.com with ESMTPSA id l10-20020a05600c1d0a00b00407460234f9sm1465217wms.21.2023.11.30.02.20.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Nov 2023 02:20:11 -0800 (PST)
+        Thu, 30 Nov 2023 02:20:12 -0800 (PST)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Thu, 30 Nov 2023 11:19:59 +0100
-Subject: [PATCH v5 4/8] arm64: dts: qcom: sm8650: add initial SM8650 MTP
+Date: Thu, 30 Nov 2023 11:20:00 +0100
+Subject: [PATCH v5 5/8] arm64: dts: qcom: sm8650: add initial SM8650 QRD
  dts
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -65,7 +65,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20231130-topic-sm8650-upstream-dt-v5-4-b25fb781da52@linaro.org>
+Message-Id: <20231130-topic-sm8650-upstream-dt-v5-5-b25fb781da52@linaro.org>
 References: <20231130-topic-sm8650-upstream-dt-v5-0-b25fb781da52@linaro.org>
 In-Reply-To: <20231130-topic-sm8650-upstream-dt-v5-0-b25fb781da52@linaro.org>
 To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
@@ -75,48 +75,48 @@ To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
 Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
  linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=13668;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=15157;
  i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=NszVCn/r5b70FxoA5MqTMQZFy3PXQNRbkpg422urpTM=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBlaGHVnbHnt+hxzhxd6nZdStKUJUUergWt3LLkmmhh
- XjaEuPqJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZWhh1QAKCRB33NvayMhJ0WcSD/
- 9n7uDBtXPYFJnqdqQiYe9T66zckq9CH5BksZPYAQyCFpLIWXlh5hmH4qZZNIWwChO3xdhPrQ9TV8/T
- BO0eNAuBxyPy9vmvSjS4UDd3KCAfNSimpu2hDbxozuj2xMtJAhGj4/x5tLEJ9f+LQ8thnOi3DIX3YK
- GJReSx/paYA8a5NOEDB5RF5QJ8csm3q0jJspu/UItWSDciOKlQbU+zDA7lRFPyoMvj9owxOoacf2ga
- BbfQLwzQU8GgylexF2BqDh/R2her2ZHpaDzZv1rlMvbNtaWMX3pYtmI7A3X2I9B6JhxghQP3Dzv0H0
- eUlt3jXDweB2H156SSBkV2FLOmNjVtp694z46kPfjcNDs9+HI5oNRYiaPdYfmcwLib9tp88da9S/1t
- XVjNyZlGdc+jZj1jWi5fambsiC5I/x6ruCQ7M4IDnvkqQVcF+8XpRW+a1E2k2sgzFoFvTFZih1OX7m
- /MWi2TTxZtBH+dV+KrJdlVJ3K7LZINH2qLNuwN/Wkdhhu0Se8+Ck2pjxODVAQxecAoEv12ky1gSXxs
- GA9hiCoyMCyMduHGepvn5ALiCWJq7VgO7l5lO+D9aWX2Ii1YlAq5jeIatcC8hFYNiq1hX+7lbL4mXE
- mYO+y3S2cfhvwiWg9R1lHS5Unh4z/sNG1Ao3p7CtnTLl9p02WLBqsT/IaSbQ==
+ bh=UyEKqBWqWsM1vJA5wSdyVvxptYsLuZ/U87ZBCgYnMi0=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBlaGHVUCr8wY+O9zCe/lYB1tcGqqSQ9M1jDXHJ1wZR
+ CKVVx8yJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZWhh1QAKCRB33NvayMhJ0fJ2D/
+ 95vhBCSE84MJ3ulPWRXi9dvOKF1OB9jJVvjUFwwGKTCoiuBoiqg19vt60Mv9KuG11okWTI9MEAvVqX
+ rzccxsnTCi0ZNn1GT0ibJVQofkupuJCJULo6XjSGZ5EAqKNEC6GRLCQFIZDftd0y6TsdelsXyGVxrI
+ GvqJfk/sPYLKjSaE5BleVL/fiJPYCGjMYT2Qu60lUmi9RLw1CTgNt4HnugaK4j5yigcHLa9LU4Lh1J
+ Dv17O8VM2TDS6csbSa4ZwIL2fHWPkYroLgPN0QPNKsBbxe60EJ0P6RG43DOXuc37Kcz8HqUlNKBee7
+ SjnDqagPS8FVN6yAOuqm+6x4Tw5sqZEzLspWsnv4R+sI5/P/3XxqL9Yie84nO0P6H+QXywAtLqfIZj
+ 6fXpwDdDr1xNMcS2DSsMD/YSXMhzngF2/2S1g/LYQIIk/aOeQXyZ6596BgDY6za4yznPecv1GECqEf
+ HM8ZjVm2yycNIWBmLpoYK9Ioi64DQBKmvZgscBZMHOlvZdb7D3AUdrqWGhTODgLMzXSTDdSVARuSdJ
+ Y9aoSwmRdTWmS+chQ3b1MIeHeC49Ft1Wl2xpTb7gu+XqX42m/crPo78uvGK8vmkXr/B42G+QIXYc5S
+ TJk0OTMfihDkmB5dzuSYuyNm3D1VyD76U79FjTh/WqbqQxetoHHUkaJcMqew==
 X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
  fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-Add initial QRD (Qualcomm Reference Device) DT,
-only boots to shell with USB device support.
+Add initial QRD (Qualcomm Reference Device) DT, it supports
+boot to shell with buttons, leds and USB peripheral.
 
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
  arch/arm64/boot/dts/qcom/Makefile       |   1 +
- arch/arm64/boot/dts/qcom/sm8650-mtp.dts | 446 ++++++++++++++++++++++++++++++++
- 2 files changed, 447 insertions(+)
+ arch/arm64/boot/dts/qcom/sm8650-qrd.dts | 531 ++++++++++++++++++++++++++++++++
+ 2 files changed, 532 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index d6cb840b7050..d73fd2332a34 100644
+index d73fd2332a34..821bacf3ddb5 100644
 --- a/arch/arm64/boot/dts/qcom/Makefile
 +++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -231,3 +231,4 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sm8450-sony-xperia-nagara-pdx223.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm8450-sony-xperia-nagara-pdx224.dtb
+@@ -232,3 +232,4 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sm8450-sony-xperia-nagara-pdx224.dtb
  dtb-$(CONFIG_ARCH_QCOM)	+= sm8550-mtp.dtb
  dtb-$(CONFIG_ARCH_QCOM)	+= sm8550-qrd.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sm8650-mtp.dtb
-diff --git a/arch/arm64/boot/dts/qcom/sm8650-mtp.dts b/arch/arm64/boot/dts/qcom/sm8650-mtp.dts
+ dtb-$(CONFIG_ARCH_QCOM)	+= sm8650-mtp.dtb
++dtb-$(CONFIG_ARCH_QCOM)	+= sm8650-qrd.dtb
+diff --git a/arch/arm64/boot/dts/qcom/sm8650-qrd.dts b/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
 new file mode 100644
-index 000000000000..51092d20d610
+index 000000000000..4738112f7ad2
 --- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sm8650-mtp.dts
-@@ -0,0 +1,446 @@
++++ b/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
+@@ -0,0 +1,531 @@
 +// SPDX-License-Identifier: BSD-3-Clause
 +/*
 + * Copyright (c) 2023, Linaro Limited
@@ -124,6 +124,7 @@ index 000000000000..51092d20d610
 +
 +/dts-v1/;
 +
++#include <dt-bindings/leds/common.h>
 +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
 +#include "sm8650.dtsi"
 +#include "pm8010.dtsi"
@@ -136,8 +137,8 @@ index 000000000000..51092d20d610
 +#include "pmr735d_a.dtsi"
 +
 +/ {
-+	model = "Qualcomm Technologies, Inc. SM8650 MTP";
-+	compatible = "qcom,sm8650-mtp", "qcom,sm8650";
++	model = "Qualcomm Technologies, Inc. SM8650 QRD";
++	compatible = "qcom,sm8650-qrd", "qcom,sm8650";
 +
 +	aliases {
 +		serial0 = &uart15;
@@ -145,6 +146,22 @@ index 000000000000..51092d20d610
 +
 +	chosen {
 +		stdout-path = "serial0:115200n8";
++	};
++
++	gpio-keys {
++		compatible = "gpio-keys";
++
++		pinctrl-0 = <&volume_up_n>;
++		pinctrl-names = "default";
++
++		key-volume-up {
++			label = "Volume Up";
++			linux,code = <KEY_VOLUMEUP>;
++			gpios = <&pm8550_gpios 6 GPIO_ACTIVE_LOW>;
++			debounce-interval = <15>;
++			linux,can-disable;
++			wakeup-source;
++		};
 +	};
 +
 +	vph_pwr: vph-pwr-regulator {
@@ -196,6 +213,9 @@ index 000000000000..51092d20d610
 +			regulator-min-microvolt = <3008000>;
 +			regulator-max-microvolt = <3008000>;
 +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
++			regulator-allow-set-load;
++			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
++						   RPMH_REGULATOR_MODE_HPM>;
 +		};
 +
 +		vreg_l5b_3p1: ldo5 {
@@ -228,16 +248,6 @@ index 000000000000..51092d20d610
 +		vreg_l8b_1p8: ldo8 {
 +			regulator-name = "vreg_l8b_1p8";
 +			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <3008000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l9b_2p9: ldo9 {
-+			regulator-name = "vreg_l9b_2p9";
-+			regulator-min-microvolt = <2960000>;
 +			regulator-max-microvolt = <3008000>;
 +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
 +			regulator-allow-set-load;
@@ -508,9 +518,84 @@ index 000000000000..51092d20d610
 +	};
 +};
 +
++&pon_pwrkey {
++	status = "okay";
++};
++
++&pon_resin {
++	linux,code = <KEY_VOLUMEDOWN>;
++
++	status = "okay";
++};
++
++&pm8550_flash {
++	status = "okay";
++
++	led-0 {
++		function = LED_FUNCTION_FLASH;
++		color = <LED_COLOR_ID_YELLOW>;
++		led-sources = <1>, <4>;
++		led-max-microamp = <500000>;
++		flash-max-microamp = <2000000>;
++		flash-max-timeout-us = <1280000>;
++		function-enumerator = <0>;
++	};
++
++	led-1 {
++		function = LED_FUNCTION_FLASH;
++		color = <LED_COLOR_ID_WHITE>;
++		led-sources = <2>, <3>;
++		led-max-microamp = <500000>;
++		flash-max-microamp = <2000000>;
++		flash-max-timeout-us = <1280000>;
++		function-enumerator = <1>;
++	};
++};
++
++&pm8550_gpios {
++	volume_up_n: volume-up-n-state {
++		pins = "gpio6";
++		function = "normal";
++		bias-pull-up;
++		input-enable;
++		power-source = <1>;
++	};
++};
++
++&pm8550_pwm {
++	status = "okay";
++
++	multi-led {
++		color = <LED_COLOR_ID_RGB>;
++		function = LED_FUNCTION_STATUS;
++
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		led@1 {
++			reg = <1>;
++			color = <LED_COLOR_ID_RED>;
++		};
++
++		led@2 {
++			reg = <2>;
++			color = <LED_COLOR_ID_GREEN>;
++		};
++
++		led@3 {
++			reg = <3>;
++			color = <LED_COLOR_ID_BLUE>;
++		};
++	};
++};
++
 +&pm8550b_eusb2_repeater {
 +	vdd18-supply = <&vreg_l15b_1p8>;
 +	vdd3-supply = <&vreg_l5b_3p1>;
++};
++
++&pmk8550_rtc {
++	status = "okay";
 +};
 +
 +&qupv3_id_1 {
@@ -532,8 +617,8 @@ index 000000000000..51092d20d610
 +
 +/*
 + * DPAUX -> WCD9395 -> USB_SBU -> USB-C
-+ * eUSB2 DP/DM -> PM85550HS -> eUSB2 DP/DM -> USB-C
-+ * USB SS -> USB-C
++ * eUSB2 DP/DM -> PM85550HS -> eUSB2 DP/DM -> WCD9395 -> USB-C
++ * USB SS -> NB7VPQ904MMUTWG -> USB-C
 + */
 +
 +&usb_1 {
