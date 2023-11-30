@@ -1,62 +1,62 @@
-Return-Path: <devicetree+bounces-20305-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20306-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91AE87FEC42
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 10:54:02 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 145397FEC45
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 10:54:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1D056B20FC8
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 09:54:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A99711F20F2C
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 09:54:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D73DD3AC02;
-	Thu, 30 Nov 2023 09:53:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EF8D3AC0B;
+	Thu, 30 Nov 2023 09:54:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zNpheKnB"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SBDZlCez"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84FC410F9
-	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 01:53:52 -0800 (PST)
-Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2c9bbb30c34so9279171fa.1
-        for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 01:53:52 -0800 (PST)
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A730F1736
+	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 01:54:01 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-50bc21821a1so1087047e87.0
+        for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 01:54:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701338031; x=1701942831; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701338040; x=1701942840; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=c1E5/Z/+vvmVPYmXoHySxDBsGGOXtnkM6Blx9MbustI=;
-        b=zNpheKnB1fVggzIFGiGWanTz+NlQUtzogIbb2t9DHbI3CBfHsE9CQA6PDWMOjMbfaa
-         2BWE/8cpGhZVXgdf4i6JJvC38t43KFMe8LeHpxVCxa0vONarb/Z6032SituLu56Y4GvV
-         q8Q88NfKDfiy3yXsC87uYL8wEtKdjB2B39KZ4+tjbLWjYsoQP4dIWbcHXrq7f2VPOK8j
-         n4L+QZCJ6f8sFfmm3NSb3HC3LVmjrMrutqtSCoAn3vuTF7clWOXZidTCqw2pE3BKmUrt
-         W32mfGAD6/rqGWM1u+EU6lbjqb8WCepheZAQSl9TrSoLJM/mlZNN2lA0ddZDmcfwhPzt
-         MA2A==
+        bh=ypfBE2mUwRlOk1/UJSC/vFHOZBQNyijLp08IOFnj5HA=;
+        b=SBDZlCezLaDGrABDmgoAYMrQ5Sp0fC18n1xz8DYlUoRZ1Qv/BfVbRpzYVlLTs/OyaI
+         Myi8KMFzERrmLYt3vDjzjxU4k5F2WigL7SP8kQJQhQJKd9evJ11wO4PgBBfGV37zX9sI
+         9eKj0/VAg48tnD6SjC+cN8vBgLra0A5phSReQHVs2VQrg2tjwVzn+W+olSD3sDXPsKTr
+         p2QIILBY+s4nrFlGqZQA0vcZqRAGEtZN7NNE4gAVtJ0zWBjrp3MX455cW0A+vqIdMDgy
+         NysCHS5x+FatvWNt6ly7vVjJ6mAnGRlRdD8dokcGmwFcc2pV3jLJ9kXFpOE8RBhCJtds
+         0Jjg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701338031; x=1701942831;
+        d=1e100.net; s=20230601; t=1701338040; x=1701942840;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=c1E5/Z/+vvmVPYmXoHySxDBsGGOXtnkM6Blx9MbustI=;
-        b=qz5tk7szsE8XwCmBVoy7EdoQdo/TUkGHmFlDDPkTudyIrk7EHL2ZHSccFE52TPYU/B
-         rOW7u3oDGe8lkIkuAV+9VJ1bvm+S5Ga3Kkgr+IAZbCmiw8m1cL2ha8qlpJMs7THgtX+s
-         FH4ZH7jEEigmZgBPdb9HSjiR8zkpSfo5uuk0Z/5deD+4vQn647OZW4Vcs+YqW+67KEyC
-         l7icCW7VXFuqe1bFpuhrInORjUMejAMJ9eUjQGquW8ydI7rVliOAX0hc4+ObBlKQiRsw
-         UV2MOE5vTienvyj/2C7O9E0hVlfGHX0dEfa7xbg7GXfWF1pbVE6G6t51IzcJcCrGA2EC
-         ioFg==
-X-Gm-Message-State: AOJu0Yye5S2MXUtgZA/texw+hPzgoqtRn1l36TJ//88rDmz6tEtvj4ba
-	tJoBaFOCo1hgGp44xpcnSoairc8JKw1Ktv0B6Q0ImmfH
-X-Google-Smtp-Source: AGHT+IH+lFVvaBYKHmVV+aX0k3VepvzuZh+20oxY9X56mIr3K/UQPC74+u9c62xmmvrU3PdqJYPMqQ==
-X-Received: by 2002:a2e:3c0a:0:b0:2c9:b8fe:aece with SMTP id j10-20020a2e3c0a000000b002c9b8feaecemr5027085lja.51.1701338030780;
-        Thu, 30 Nov 2023 01:53:50 -0800 (PST)
+        bh=ypfBE2mUwRlOk1/UJSC/vFHOZBQNyijLp08IOFnj5HA=;
+        b=K2nIwaX/NQ+/Ms7ZBk0kEbVlF5z9RgpTLsGsS9WXvzISlnmpDzqJtL/mbLbo5vCTt9
+         9o4ZBFJsakLRTV72M52+4dRVD0I2iGbMQ7tYA3N87KrwIWi6ktIVY5w9g5CjVxyN48L0
+         H1Scsj+yH4HEFo1eD/L2vYv9ZxOBMtKhCeCfTFn4Xtl4zbllua4M/NYJ212BcK7v5vRI
+         spJjt85hCZITOEf+a/KH9bHutOzw6UhvUzps0TcqwN9+7fjZ/OrDDzxg7liCvfIQlNH7
+         yeFUlwhjcm8t0dX7oWaCRmtrkXAvyc/EiK+wTPMi0ra2pmneGNo9TdtPs+38k25WsgTY
+         7oWg==
+X-Gm-Message-State: AOJu0Yy3Fr1MoazbxGDy/7OqLqIYxlBp0gd2e2sJhYDnG5Bsu6ya2Fxd
+	vPip/z66a5zvlsRlPRbqDEfqSg==
+X-Google-Smtp-Source: AGHT+IFQF0CXVcTmNFy629odrwl/+5IqbhhxIfzAGd022vGwwKFmQ/6DCgniBrfFH0RwMSsmADJpjQ==
+X-Received: by 2002:ac2:52ba:0:b0:50b:bd23:75e0 with SMTP id r26-20020ac252ba000000b0050bbd2375e0mr4614022lfm.35.1701338039886;
+        Thu, 30 Nov 2023 01:53:59 -0800 (PST)
 Received: from ?IPV6:2a01:e0a:982:cbb0:41c9:3acd:a6e2:5242? ([2a01:e0a:982:cbb0:41c9:3acd:a6e2:5242])
-        by smtp.gmail.com with ESMTPSA id p36-20020a05600c1da400b0040b478da760sm1358964wms.48.2023.11.30.01.53.49
+        by smtp.gmail.com with ESMTPSA id p36-20020a05600c1da400b0040b478da760sm1358964wms.48.2023.11.30.01.53.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Nov 2023 01:53:50 -0800 (PST)
-Message-ID: <446792f4-4990-461c-9cc4-58943ca63af5@linaro.org>
-Date: Thu, 30 Nov 2023 10:53:49 +0100
+        Thu, 30 Nov 2023 01:53:59 -0800 (PST)
+Message-ID: <45fcc388-d0d8-49fe-bb51-d5f8f33236ad@linaro.org>
+Date: Thu, 30 Nov 2023 10:53:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,7 +66,7 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
 Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 4/6] arm64: dts: qcom: sm8550-qrd: Enable the A740 GPU
+Subject: Re: [PATCH 5/6] arm64: dts: qcom: sm8550-mtp: Enable the A740 GPU
 Content-Language: en-US, fr
 To: Konrad Dybcio <konrad.dybcio@linaro.org>, Will Deacon <will@kernel.org>,
  Robin Murphy <robin.murphy@arm.com>, Joerg Roedel <joro@8bytes.org>,
@@ -80,7 +80,7 @@ Cc: Marijn Suijten <marijn.suijten@somainline.org>,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-arm-msm@vger.kernel.org
 References: <20231127-topic-a7xx_dt-v1-0-a228b8122ebf@linaro.org>
- <20231127-topic-a7xx_dt-v1-4-a228b8122ebf@linaro.org>
+ <20231127-topic-a7xx_dt-v1-5-a228b8122ebf@linaro.org>
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
  GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
@@ -106,7 +106,7 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro Developer Services
-In-Reply-To: <20231127-topic-a7xx_dt-v1-4-a228b8122ebf@linaro.org>
+In-Reply-To: <20231127-topic-a7xx_dt-v1-5-a228b8122ebf@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
@@ -115,15 +115,15 @@ On 27/11/2023 17:20, Konrad Dybcio wrote:
 > 
 > Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > ---
->   arch/arm64/boot/dts/qcom/sm8550-qrd.dts | 8 ++++++++
+>   arch/arm64/boot/dts/qcom/sm8550-mtp.dts | 8 ++++++++
 >   1 file changed, 8 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-> index eef811def39b..9fe51d308675 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-> @@ -596,6 +596,14 @@ &gcc {
->   		 <&usb_dp_qmpphy QMP_USB43DP_USB3_PIPE_CLK>;
+> diff --git a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
+> index 9a70875028b7..52244e9bfdee 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
+> @@ -512,6 +512,14 @@ vreg_l3g_1p2: ldo3 {
+>   	};
 >   };
 >   
 > +&gpu {
@@ -134,9 +134,9 @@ On 27/11/2023 17:20, Konrad Dybcio wrote:
 > +	};
 > +};
 > +
->   &lpass_tlmm {
->   	spkr_1_sd_n_active: spkr-1-sd-n-active-state {
->   		pins = "gpio17";
+>   &i2c_master_hub_0 {
+>   	status = "okay";
+>   };
 > 
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
