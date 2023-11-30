@@ -1,227 +1,226 @@
-Return-Path: <devicetree+bounces-20269-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20270-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A1E17FEA40
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 09:12:48 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5287B7FEA4C
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 09:16:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7C92CB20E71
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 08:12:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 81B3A1C20C14
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 08:16:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 447082208D;
-	Thu, 30 Nov 2023 08:12:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AABC2209D;
+	Thu, 30 Nov 2023 08:16:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u3RxQ9UQ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jvjm0klh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23A002111E;
-	Thu, 30 Nov 2023 08:12:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5BBEC433C7;
-	Thu, 30 Nov 2023 08:12:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701331961;
-	bh=4TV1m4EuLOh648gIpJtq8IGZ08wvqJekfJH88iGr6Ng=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=u3RxQ9UQczk91u/zi7K1KU9msV/n8hdbHHsRonDyGX71dymI6SBvMBf5TQUP0Yp6w
-	 CjrghI0NJ86OoUv74pQV/ER3FPXhlDURbjUK0y0kW6xzI+kJ9IdhagQ/zGlanb7vk/
-	 HHeFpj3mfbx2245AqDkOFYRqgZ5YGeHrftl8+ye24EHnTGhyxe7EhXHpiAfb3+8whI
-	 YjEA4CEr6cRuoHzktMtVlzFb8vPLua46NdgY5z0NrYtTzZpjJeiKrsFRcVyPPTwmSI
-	 h0Me+8qveOYTB/4JgRsbnxHrv/PtbyW7jx4jm0AkywFvGDiNtmVAD+CnyNVZJrNuJ4
-	 4JqKWnbvZqRYQ==
-Date: Thu, 30 Nov 2023 08:12:34 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Chen Wang <unicorn_wang@outlook.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Chen Wang <unicornxw@gmail.com>, aou@eecs.berkeley.edu,
-	chao.wei@sophgo.com, krzysztof.kozlowski+dt@linaro.org,
-	mturquette@baylibre.com, palmer@dabbelt.com,
-	paul.walmsley@sifive.com, richardcochran@gmail.com,
-	robh+dt@kernel.org, sboyd@kernel.org, devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, haijiao.liu@sophgo.com,
-	xiaoguang.xing@sophgo.com, guoren@kernel.org, jszhang@kernel.org,
-	inochiama@outlook.com, samuel.holland@sifive.com
-Subject: Re: [PATCH v2 3/4] clk: sophgo: Add SG2042 clock generator driver
-Message-ID: <20231130-enlarging-decode-31dc66f4490b@spud>
-References: <cover.1701044106.git.unicorn_wang@outlook.com>
- <c06130afb4bdc1890b4e8d29388fa6feef1f1826.1701044106.git.unicorn_wang@outlook.com>
- <81d421c8-bfd6-42b5-9da1-f067792f8f48@linaro.org>
- <MA0P287MB03329CFBA3BB6A4E4F322F99FEBDA@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
- <2a268c8c-ce55-4321-b390-092b8df61407@linaro.org>
- <MA0P287MB03320824AB953465E00394FEFE82A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E703A3
+	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 00:16:45 -0800 (PST)
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-54b8a4d64b5so572066a12.0
+        for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 00:16:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1701332204; x=1701937004; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=E26I7mF32d7TZiN90S+MaDwaONY/27p8LP/G6VOqH6w=;
+        b=jvjm0klhB56i60FPsd6pdO2Nz5D9V5Ipt1+8KevAF9QIayrNgxiOHp3+LtRSs5Cu6O
+         1M2gzSSsSPZJB9lo4t8coMmd6oF0B5noQqTkYzNx/UnGXCEWZVUSwhCdD6HDR03WxA8q
+         jZaa3ls1dMfFmEfOE6MsB+MgzHfe10isp0BQ6DtR5Y096KUx/ozvwZiWFTWmgvjdUttl
+         uxb7TXPIdntaxjfH2GvCbFI5ZQNsqfL5Mih85WLV7G61sOQOyJZrts9KmxYT08Ohy3Rq
+         6N406Jbe6ZRacXRP+3PgtvWYr8bmsF8fBSfhsmFJIIy2aOLGvKiokGTzNE9zwn7jBeqh
+         207g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701332204; x=1701937004;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=E26I7mF32d7TZiN90S+MaDwaONY/27p8LP/G6VOqH6w=;
+        b=N/J+XLieHdBm7z3kIFhYWsJi2BMc4pgyOx+gcjlXvNoJlALyVHq5hgxpAOzoQWWip8
+         ygjI01fsW6Zf9JsnIQoVWw5E2fPK8waDUaWlnTOruPjy5Z5iJiA+P67k0Z7fZcPmjx4Q
+         p7fY8PKG1lnlgSCQpP21zHMfFNYdEKcMpSdWtmqROrQm5tUS8z3+MPQPTzrQ3TXSgT9a
+         sGn+Psi0GqQ+dHrie6fe8cA/nADDUdtQm42g1BLFf69WxJKSGv6WLXw5Qk/gGOpbOem1
+         N33Yeks5zyK+7uJB8MyruSHSmtD1RsYqb/ga0oT14RvguY7n8wY2/c/x58dSEN2ncz0i
+         XLuA==
+X-Gm-Message-State: AOJu0YyBcbQfdoSBqPEFq6/oZhPgluu7DFDh+n8JJRe0SrcmoeX9+Ixu
+	2IAr0pYX1r3Wh/IOP1+sPik5Pw==
+X-Google-Smtp-Source: AGHT+IG17hbQ90Xbowdr9xPnDYDdzsVr9taq8BAj8p0KyjiLAk7MDQBcUED2kuU8c2j/r+7UTKDZCg==
+X-Received: by 2002:a17:906:8b:b0:a18:abdc:17ca with SMTP id 11-20020a170906008b00b00a18abdc17camr580812ejc.68.1701332204034;
+        Thu, 30 Nov 2023 00:16:44 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.223.109])
+        by smtp.gmail.com with ESMTPSA id p7-20020a17090635c700b009fc576e26e6sm406533ejb.80.2023.11.30.00.16.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 Nov 2023 00:16:43 -0800 (PST)
+Message-ID: <85527699-f549-4728-b263-7d10c669b889@linaro.org>
+Date: Thu, 30 Nov 2023 09:16:41 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="5QzKJcKXThA97D7v"
-Content-Disposition: inline
-In-Reply-To: <MA0P287MB03320824AB953465E00394FEFE82A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/6] dt-bindings: usb: dwc3: Clean up hs_phy_irq in
+ bindings
+Content-Language: en-US
+To: Johan Hovold <johan@kernel.org>
+Cc: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>,
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, quic_wcheng@quicinc.com,
+ linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ quic_ppratap@quicinc.com, quic_jackp@quicinc.com
+References: <20231122191335.3058-1-quic_kriskura@quicinc.com>
+ <ZV9dYpTYRXn63tXe@hovoldconsulting.com>
+ <1192d91f-11bf-44af-953a-14e08e2b6ca8@quicinc.com>
+ <ZWCpGdJRexnk98IN@hovoldconsulting.com>
+ <004ddc69-1566-4de4-b260-0fca96a9395f@quicinc.com>
+ <ZWW_FOAKp95Cf9vN@hovoldconsulting.com>
+ <18965bb9-7afa-4892-8b71-981ba29d2cd4@quicinc.com>
+ <ZWXHrvUDnF2dMk6r@hovoldconsulting.com>
+ <6d7527bf-8c1a-49b5-a0cf-99a92098c971@quicinc.com>
+ <c8a28c72-5c0a-4a67-a4c9-e46a5716cda4@linaro.org>
+ <ZWcPZPX-eT-xHAOv@hovoldconsulting.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <ZWcPZPX-eT-xHAOv@hovoldconsulting.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+On 29/11/2023 11:16, Johan Hovold wrote:
+> On Wed, Nov 29, 2023 at 10:28:25AM +0100, Krzysztof Kozlowski wrote:
+>> On 28/11/2023 12:32, Krishna Kurapati PSSNV wrote:
+>>>
+>>>>
+>>>> So back to my initial proposal, with a slight modification moving
+>>>> pwr_event first (e.g. as it is not a wakeup interrupt):
+>>>>
+>>>> qusb2-:
+>>>>
+>>>> 	- const: pwr_event
+>>>> 	- const: qusb2_phy
+>>>> 	- const: ss_phy_irq	(optional)
+>>>>
+>>>> qusb2:
+>>>>
+>>>> 	- const: pwr_event
+>>>> 	- const: hs_phy_irq
+>>>> 	- const: qusb2_phy
+>>>> 	- const: ss_phy_irq	(optional)
+>>>>
+>>>> femto-:
+>>>> 	- const: pwr_event
+>>>> 	- const: dp_hs_phy_irq
+>>>> 	- const: dm_hs_phy_irq
+>>>> 	- const: ss_phy_irq	(optional)
+>>>>
+>>>> femto:
+>>>> 	- const: pwr_event
+>>>> 	- const: hs_phy_irq
+>>>> 	- const: dp_hs_phy_irq
+>>>> 	- const: dm_hs_phy_irq
+>>>> 	- const: ss_phy_irq	(optional)
+>>
+>> I did not follow entire thread and I do not know whether you change the
+>> order in existing bindings, but just in case: the entries in existing
+>> bindings cannot change the order. That's a strict ABI requirement
+>> recently also discussed with Bjorn, because we want to have stable DTB
+>> for laptop platforms. If my comment is not relevant, then please ignore.
+> 
+> Your comment is relevant, but I'm not sure I agree.
+> 
+> The Qualcomm bindings are a complete mess of DT snippets copied from
+> vendor trees and which have not been sanitised properly before being
+> merged upstream (partly due to there not being any public documentation
+> available).
+
+True.
+
+> 
+> This amounts to an unmaintainable mess which is reflected in the
+> binding schemas which similarly needs to encode every random order which
+> the SoC happened to use when being upstreamed. That makes the binding
+> documentation unreadable too, and the next time a new SoC is upstreamed
+> there is no clear hints of what the binding should look like, and we end
+> up with yet another permutation.
 
 
---5QzKJcKXThA97D7v
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+While in general I agree for the bindings, but here, for order of the
+interrupts, I am not really sure if this contributes to unreadable or
+unmaintainable binding.
 
-On Thu, Nov 30, 2023 at 02:37:53PM +0800, Chen Wang wrote:
->=20
-> On 2023/11/27 17:16, Krzysztof Kozlowski wrote:
-> > On 27/11/2023 09:07, Chen Wang wrote:
-> > > On 2023/11/27 15:12, Krzysztof Kozlowski wrote:
-> > > > On 27/11/2023 02:15, Chen Wang wrote:
-> > > > > From: Chen Wang <unicorn_wang@outlook.com>
-> > > > >=20
-> > > > > Add a driver for the SOPHGO SG2042 clock generator.
-> > > > >=20
-> > > > > Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
-> > > > ...
-> > > >=20
-> > > > +}
-> > > > +
-> > > > +CLK_OF_DECLARE(sg2042_clk, "sophgo,sg2042-clkgen", sg2042_clk_init=
-);
-> > > > No, this should be platform device. It's a child of another device,=
- so
-> > > > you cannot use other way of init ordering.
-> > > hi, Krzysztof,
-> > >=20
-> > > Thanks for your review.
-> > >=20
-> > > I don't quite understand your opinion. Do you mean CLK_OF_DECLARE is
-> > > only used for platform device so it can not be use here? But I think
-> > No, I meant you mix init ordering: you depend now on syscon earlier
-> > initcall than CLK_OF_DECLARE. Do you remember which one is first? If
-> > anything changes here, your driver is broken. There is no dependency, no
-> > probe deferral.
->=20
-> hi, Krzysztof,
->=20
-> I found that the initcall method cannot be used for the clock controller =
-of
-> sg2042. We need to initialize the clock earlier because there are two
-> dw-apb-timers in sg2042 (Sorry, I have not added them in the current DTS =
-of
-> sg2042, will be submitted later). The initialization of these timers
-> (timer_probe()) depends on the initialization of the clock controller. If=
- we
-> use the initcall mechanism, it will be too late for the timer. So it seems
-> better to use CLK_OF_DECLARE provided by CCF.
->=20
-> I have a question here that I would like to discuss. The design of sg2042=
- is
-> like this, according to the design of memorymap in its TRM:
->=20
-> 070:3001:0000 ~ 070:3001:0FFF SYS_CTRL 4K
-> 070:3001:1000 ~ 070:3001:1FFF PINMUX 4K
-> 070:3001:2000 ~ 070:3001:2FFF CLOCK 4K
-> 070:3001:3000 ~ 070:3001:3FFF RESET 4K
->=20
-> But also as per hw design (I don't know why and I don't like it also :( ),
-> some of the PLL/GATE CLOCK control registers are defined in the scope of
-> SYS_CTRL, and others are defined in the scope of CLOCK. That's why in the
-> current code, I define the syscon node corresponding to SYS_CTRL. The
-> purpose is just to get the regmap of syscon for the clock controller thro=
-ugh
-> the device tree (through device_node_to_regmap()), so that the syscon
-> defined in SYS_CTRL can be accessed through the regmap from clock. The cl=
-ock
-> controller driver itself does not rely on other operations of syscon.
->=20
-> So based on the above analysis, is it still necessary for us to define the
-> clock controller as a child node of syscon? In the version v1 of this pat=
-ch,
-> I actually did not define the clock controller as a child node of syscon,
-> but only accessed syscon through the phandle method. [1]
+> 
+> As part of this exercise, we've also determined that some of the
+> devicetrees that are already upstream are incorrect as well as
+> incomplete.
 
-In that version of the code, clkgen, your DTS, looked like:
-+	clkgen: clock-controller {
-+		compatible =3D "sophgo,sg2042-clkgen";
-+		#clock-cells =3D <1>;
-+		system-ctrl =3D <&sys_ctrl>;
-+		clocks =3D <&cgi>;
-+		assigned-clocks =3D \
+Sure, good explanation for an ABI break.
 
-+		assigned-clock-rates =3D \
+> 
+> I really see no alternative to ripping of the plaster and cleaning this
+> up once and for all even if it "breaks" some imaginary OS which (unlike
+> Linux) relies on the current random order of these interrupts.
+> 
+> [ If there were any real OSes actually relying on the order, then that
+> would be a different thing of course. ]
 
-+	};
+The commit breaking the ABI can justify the reasons, including expected
+impact (e.g. none for Linux).
 
-It had no register regions of its own, just what it got from the sys
-ctrl block, which is why I said that. The syscon block looked like:
+While the second part probably you can justify (interrupts are taken by
+name), the reason for ABI break like "I think it is poor code, so I will
+ignore ABI" is not enough.
 
-+		sys_ctrl: syscon@7030010000 {
-+			compatible =3D "sophgo,sg2042-syscon", "syscon";
-+			reg =3D <0x70 0x30010000 0x0 0x8000>;
-+		};
+Best regards,
+Krzysztof
 
-which given the register map does not seem like an accurate reflection
-of the size of this region. The "0x8000" should be "0x1000".
->=20
-> After more read of the TRM, I believe this situation only exists for cloc=
-k.
-> That is to say, there will be only one child node of clook under syscon.
-> From a hardware design perspective, CLOCK and SYS_CTRL are two different
-> blocks. So I think it is better to restore the original method, that is,
-> restore clock and syscon to nodes of the same level, and let clock use
-> phandle to access syscon.
-
-This sounds two me like there are two different devices. One the "CLOCK"
-region at 070:3001:2000 that should be documented as being
-"sophgo,sg2042-clkgen" or similar and the second being the "SYS_CTRL" at
-070:3001:0000 that is called something like "sophgo,sg2042-sysctrl".
-Having more than one clock controller is not a problem and sounds like a
-more accurate description of the hardware.
-
->=20
-> What do you think or do you have any good suggestions?
->=20
-> Link: https://lore.kernel.org/linux-riscv/20231114-timid-habitat-a06e52e5=
-9c9c@squawk/#t
-> [1]
->=20
-> Thanks
->=20
-> Chen
->=20
-> >=20
-> > > this driver is still for platform device though I move the clock
-> > > controller node as a child of the system contoller node. System
-> > > controller node is just a block of registers which are used to control
-> > > some other platform devices ,such as clock controller, reset controll=
-er
-> > > and pin controller for this SoC.
-> > >=20
-> > > And I also see other similar code in kernel, for example:
-> > > drivers/clk/clk-k210.c.
-> > >=20
-> > > And I'm confused by your input "so you cannot use other way of init
-> > > ordering." Do you mean "so you CAN use other way of init ordering"?
-> > No, I meant you cannot. If you want to use syscon, then your driver
-> > should be a proper driver. Therefore add a driver.
-> >=20
-> > > What's the other way of init ordering do you mean?
-> > The one coming not from initcalls but driver model.
-> >=20
-> > Best regards,
-> > Krzysztof
-> >=20
-
---5QzKJcKXThA97D7v
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZWhD8gAKCRB4tDGHoIJi
-0qD3APwKST0oQkyhMEP3YAoVteewNlDifbk9w0pWbLzVPSiZfwD/YwK56a15vfNL
-ZWr3VDx87CBcnDI47LgIMV4g2g/uSQs=
-=otoo
------END PGP SIGNATURE-----
-
---5QzKJcKXThA97D7v--
 
