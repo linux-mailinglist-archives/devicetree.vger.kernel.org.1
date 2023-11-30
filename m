@@ -1,114 +1,96 @@
-Return-Path: <devicetree+bounces-20473-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20474-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BD317FF7FE
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 18:17:50 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE9B97FF808
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 18:19:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EA426B20EE4
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 17:17:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0B7DB1C20E07
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 17:19:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 382A956465;
-	Thu, 30 Nov 2023 17:17:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4704A56459;
+	Thu, 30 Nov 2023 17:19:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="D2FEZlcJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="teH1Wywk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-x112f.google.com (mail-yw1-x112f.google.com [IPv6:2607:f8b0:4864:20::112f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5A6C1996;
-	Thu, 30 Nov 2023 09:17:34 -0800 (PST)
-Received: by mail-yw1-x112f.google.com with SMTP id 00721157ae682-5d05ff42db0so13790077b3.2;
-        Thu, 30 Nov 2023 09:17:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701364654; x=1701969454; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=S4ItrsGzT/WvTQH/WrTuyHNbLnHImVbBz/zIs/Lb/tg=;
-        b=D2FEZlcJWvOhJwSUEllnY2RaHaeX8OZfOZQLJ5Z5sknSuwjswt2HHR3PN1DF5hfwzl
-         UbtX7PSxHGHh5LFsB6ZdtPIW3LIQNHp6Aip7lsazOOEYBP/pNqvaVDdSBxokEmh3hKp2
-         KkEcIUAXFzCnp/hzWWrKREjwPuVudeOkVg8JcK7fxWXTT9aB+ua1tSHBcrBtjTH2G2ux
-         OGHS8p4uEbr3DqZON9iOVEZ/Pqrk0p6/jr0mSt0pFUYqVR3fZVGo7r/BQU+I1EJfyDA3
-         Q74Id7NgMsQRNyDXJrCvaMbOwzgtga0/98/MAxSqX+r/ICSv/NmAi9skxoQ/6v0KTASt
-         jkog==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701364654; x=1701969454;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=S4ItrsGzT/WvTQH/WrTuyHNbLnHImVbBz/zIs/Lb/tg=;
-        b=EuBsZRKLZIY3QTmptgRROHNxT6mYeeObhU+k530HoqlnUJnLQkglAMvXs6qs8UbX2Z
-         7jTa8gWiYqfoDBGYGZlnDx0RWWmtT4lKoi8IPO73TWh6UbitkpMNWuVU+1YX4ZV8oWii
-         bn3riWe+cXEjsbrzCSpyecpg9YZ8OH0T28C+3kiLBNxf5/V8a1KdCfPvT7VZwUeYDL8a
-         A7XRTdjjx9yB/Ewp6uBGQBkPo6kKET2oNqc8jEnpbHcB61jAQe7xDpEYwfSJcC1nPAxD
-         AS/bM7Unc495l5zybtglBlOC8Qr1g3FgFGG4CMn8qm+M/5FdHncT0cJGvKz5mom41QUF
-         uZwQ==
-X-Gm-Message-State: AOJu0YxDZdnBSQ/+VgyG/aJmWKWiJ68R89IkczUpzL8AfORtkASKlbKb
-	3AtUgzhrv0fyVza2GeOcV3y6PsLa75OgAU6krzI=
-X-Google-Smtp-Source: AGHT+IFRYlx8Y2pZgDDnTjk34oWVAWqB8FSjJ3g/yr2nSX2rg4cTZh7j2qWaWLqE1aKFFeAOp9O2b/2sC6qDD70RNAw=
-X-Received: by 2002:a0d:f2c7:0:b0:5cd:3d82:1ac6 with SMTP id
- b190-20020a0df2c7000000b005cd3d821ac6mr21961033ywf.42.1701364653930; Thu, 30
- Nov 2023 09:17:33 -0800 (PST)
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2599E55C09;
+	Thu, 30 Nov 2023 17:19:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E203FC433C8;
+	Thu, 30 Nov 2023 17:19:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701364752;
+	bh=PvCAxPOZ0lYTZaufhXNc1kd1nvehZHcqsT5UF6Hm2Uc=;
+	h=From:To:Cc:Subject:Date:From;
+	b=teH1WywkGfVlqYJZW1HF2OeJV/+7czbISREfpUEa0JFpjPG8dxsU+693qOiTVdrCj
+	 g4Ziymp3ou5G7v4cMX+lOsvI5Z6ead/MV+pueHv+UFoHTxypfY+o1jzuhmEhoMVb5Q
+	 yNoAW8i8W6vBcAc4tXmaBJ/dyX9Dh4tCzGrtoo9ETH9XobbXtAVP+VFJKUNPREDHJ0
+	 LMQm8gf+907AJBlCqfs68VKGtcsCiE8Y9+i7sRl6rpZU73d/zGie7B5CJFZSgAttOH
+	 aR/HDVTtkrHqXU1etkS7lorho5dwJXlSqmrUR5qChV2RfyzD+uYIHJzvcHBnGylcfD
+	 OETHBYCGATGfA==
+Received: from johan by xi.lan with local (Exim 4.96.2)
+	(envelope-from <johan+linaro@kernel.org>)
+	id 1r8khU-0003E6-2a;
+	Thu, 30 Nov 2023 18:19:44 +0100
+From: Johan Hovold <johan+linaro@kernel.org>
+To: Pavel Machek <pavel@ucw.cz>,
+	Lee Jones <lee@kernel.org>
+Cc: Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	inux-arm-msm@vger.kernel.org,
+	linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Johan Hovold <johan+linaro@kernel.org>
+Subject: [PATCH] dt-bindings: leds: qcom,spmi-flash-led: fix example node name
+Date: Thu, 30 Nov 2023 18:19:40 +0100
+Message-ID: <20231130171940.12391-1-johan+linaro@kernel.org>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231121151733.2015384-1-tmaimon77@gmail.com> <20231121151733.2015384-3-tmaimon77@gmail.com>
- <6aeb28f5-04c2-4723-9da2-d168025c307c@lunn.ch> <CAP6Zq1j0kyrg+uxkXH-HYqHz0Z4NwWRUGzprius=BPC9+WfKFQ@mail.gmail.com>
- <9ad42fef-b210-496a-aafc-eb2a7416c4df@lunn.ch> <CAP6Zq1jw9uLP_FQGR8=p3Y2NTP6XcNtzkJQ0dm3+xVNE1SpsVg@mail.gmail.com>
- <CAP6Zq1ijfMSPjk1vPwDM2B+r_vAH3DShhSu_jr8xJyUkTQY89w@mail.gmail.com> <a551aefa-777d-4fd3-b1a5-086dc3e62646@lunn.ch>
-In-Reply-To: <a551aefa-777d-4fd3-b1a5-086dc3e62646@lunn.ch>
-From: Tomer Maimon <tmaimon77@gmail.com>
-Date: Thu, 30 Nov 2023 19:17:22 +0200
-Message-ID: <CAP6Zq1jVO5y3ySeGNE5-=XWV6Djay5MhGxXCZb9y91q=EA71Vg@mail.gmail.com>
-Subject: Re: [PATCH v1 2/2] net: stmmac: Add NPCM support
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: alexandre.torgue@foss.st.com, tali.perry1@gmail.com, edumazet@google.com, 
-	krzysztof.kozlowski+dt@linaro.org, linux-stm32@st-md-mailman.stormreply.com, 
-	benjaminfair@google.com, openbmc@lists.ozlabs.org, joabreu@synopsys.com, 
-	joel@jms.id.au, devicetree@vger.kernel.org, j.neuschaefer@gmx.net, 
-	robh+dt@kernel.org, peppe.cavallaro@st.com, 
-	linux-arm-kernel@lists.infradead.org, avifishman70@gmail.com, 
-	venture@google.com, linux-kernel@vger.kernel.org, mcoquelin.stm32@gmail.com, 
-	netdev@vger.kernel.org, davem@davemloft.net
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-Hi Andrew,
+The led controller is a child of an SPMI PMIC, which in turn sits on an
+SPMI bus.
 
+While at it, add some newline separators to improve readability.
 
-On Wed, 29 Nov 2023 at 01:31, Andrew Lunn <andrew@lunn.ch> wrote:
->
-> On Mon, Nov 27, 2023 at 05:19:15PM +0200, Tomer Maimon wrote:
-> > Hi Andrew,
-> >
-> > I took a look at the xpcs driver and the stmmac driver and it doesn't
-> > cover NPCM use.
-> >
-> > in the NPCM case the stmmac ID=0x37 therefore the driver is linked to DWMAC1000
-> > https://elixir.bootlin.com/linux/v6.7-rc2/source/drivers/net/ethernet/stmicro/stmmac/hwif.c#L139
-> >
-> > to enable the xpcs, the stmmac should support xgmac or gmac4 and in
-> > the NPCM is support only gmac.
-> > https://elixir.bootlin.com/linux/v6.7-rc2/source/drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c#L555
-> > https://elixir.bootlin.com/linux/v6.7-rc2/source/drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c#L573
-> >
-> > and the most important thing is that the XPCS is handled through an
-> > indirect register access and not through MDIO. the MDIO is connected
-> > to the external PHY and not to the XPCS.
->
-> What really matters here is, is the PCS hardware block you have an
-> XPCS? We don't want two drivers for the same block of hardware.
->
-> MDIO vs indirect register access can be solved with a bit of
-> layering. That is not a reason to write a second driver.
-I will check with the xpcs maintainer how can we add indirect access
-to the xpcs module.
->
->         Andrew
+Fixes: 1aeff6216891 ("dt-bindings: leds: Add QCOM flash LED controller")
+Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+---
+ .../devicetree/bindings/leds/qcom,spmi-flash-led.yaml         | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-Thanks.
+diff --git a/Documentation/devicetree/bindings/leds/qcom,spmi-flash-led.yaml b/Documentation/devicetree/bindings/leds/qcom,spmi-flash-led.yaml
+index a8736fd5a539..1ba607685f5f 100644
+--- a/Documentation/devicetree/bindings/leds/qcom,spmi-flash-led.yaml
++++ b/Documentation/devicetree/bindings/leds/qcom,spmi-flash-led.yaml
+@@ -89,9 +89,11 @@ additionalProperties: false
+ examples:
+   - |
+     #include <dt-bindings/leds/common.h>
+-    spmi {
++
++    pmic {
+         #address-cells = <1>;
+         #size-cells = <0>;
++
+         led-controller@ee00 {
+             compatible = "qcom,pm8350c-flash-led", "qcom,spmi-flash-led";
+             reg = <0xee00>;
+-- 
+2.41.0
 
-Tomer
 
