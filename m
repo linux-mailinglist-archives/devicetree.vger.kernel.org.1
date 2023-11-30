@@ -1,116 +1,85 @@
-Return-Path: <devicetree+bounces-20397-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20398-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C66327FF1BF
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 15:27:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C7F27FF235
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 15:37:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 02DFD1C20BDA
-	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 14:27:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5CCB61C20CE2
+	for <lists+devicetree@lfdr.de>; Thu, 30 Nov 2023 14:37:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E598B4A9AE;
-	Thu, 30 Nov 2023 14:27:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6062482DD;
+	Thu, 30 Nov 2023 14:37:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com [209.85.128.173])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E13183;
-	Thu, 30 Nov 2023 06:27:16 -0800 (PST)
-Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-5cc55b82ee5so10362997b3.2;
-        Thu, 30 Nov 2023 06:27:16 -0800 (PST)
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3288C85;
+	Thu, 30 Nov 2023 06:37:07 -0800 (PST)
+Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-db538b07865so734321276.2;
+        Thu, 30 Nov 2023 06:37:07 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701354435; x=1701959235;
+        d=1e100.net; s=20230601; t=1701355026; x=1701959826;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=MUPLQxkPKo/lx9+zPsmkqSqbakwoSP37CzyXu4lnNwg=;
-        b=VuEjh464cQF7S+JXwZellJDWGR101ABBk3DiLQ1ms77GYtcFCMQxNVvLFVGVXKFaG7
-         FTj3CKpbgTb7t0sz6FIoO/eP3ItN2Qiz92p+M7XCmLxSCF/RTy21qx8y3N+K++yQB56e
-         ItVHeC0MPxorkMsA0naOPMAg8uhwR6SMWI7PgxvyrDTc5LwLad+E7/ybSxJFWh+nOlVN
-         Mhp9sMHc4zyjN0AEkfmctNfnE6Q3pxOmMg3Ivdo0n7fxppRXdihnmn9mx5EeFJky5rhc
-         c5oT/7l5g/KLkXQi8E1j8bBIrC3Amv7+JpUrGn0Ng3PlN8AZTC+snFf54HQVNRvyR4cA
-         iLTw==
-X-Gm-Message-State: AOJu0Yylaqpow1XLweRSemSdC6Ugiwfu4CkVlLqPakw0brPpuCCCz/2i
-	yT3QRgvcZwUUIHitI4MbHXac0b5pr+AIDw==
-X-Google-Smtp-Source: AGHT+IESB4QryHpSFLrQTBm2PZqwhmcm9QzO1CkqTJGozDBR9LMTGheFb4k6UDjuhU45qfCOx2kg/g==
-X-Received: by 2002:a0d:de82:0:b0:5cb:a6af:6a1c with SMTP id h124-20020a0dde82000000b005cba6af6a1cmr22186822ywe.31.1701354434983;
-        Thu, 30 Nov 2023 06:27:14 -0800 (PST)
-Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com. [209.85.128.174])
-        by smtp.gmail.com with ESMTPSA id q8-20020a815c08000000b005d0494763c1sm381521ywb.140.2023.11.30.06.27.13
+        bh=ubNrCHVyZzj2qPt/uf3pVQDDBxXzuXcyUHuCPh1smK8=;
+        b=mpHQlaCP3kORXX7PIU803IFZhg0NKW1ugb91YA5Az6vfOCq9xpdHOtHtnOrlzWLoSB
+         RS2IUF5vH6YIE+J3GZd5QJKAHWMUXBtyxhAetrEDSeGE2BAM+pZuW7TvGD0kEpo27L4/
+         63/29baMkcKRZClPYD9f42GrEtQUdQ4S+wqDyBmIM4l7sUYRKIhpX+bfUHphvzQCSKOj
+         F7spfe763BMCx28cz0r0dIx4B0vrUqZBTn0/03jvOvXXOs/r+fRiwjInzfIj9axUYrtE
+         ftQGSiP5Y512Udd4FELC4IB3Ez8dQMh4BENPe+7s0FnB8r9uUnzk7CEvVD6zv0PQfcii
+         NXRA==
+X-Gm-Message-State: AOJu0YytCjBBlSKRJGw9rMegJvKrwimVUefnewaKIt+W1T/124HjDTcw
+	tLWlQ7iaHX2syA/zpoSurZea6VDfc2af8A==
+X-Google-Smtp-Source: AGHT+IGTnFgt8fmV09WizIKjZvQSldeq9vwKFXMalfT8I0LjuChq3P1r1JDs4DvCZ0CwGv6AB7InIw==
+X-Received: by 2002:a25:ac90:0:b0:d9a:3bbb:8602 with SMTP id x16-20020a25ac90000000b00d9a3bbb8602mr22372652ybi.64.1701355026198;
+        Thu, 30 Nov 2023 06:37:06 -0800 (PST)
+Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com. [209.85.219.178])
+        by smtp.gmail.com with ESMTPSA id e127-20020a253785000000b00d9cd730e4d0sm265520yba.26.2023.11.30.06.37.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Nov 2023 06:27:13 -0800 (PST)
-Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-5d35a952943so6104537b3.3;
-        Thu, 30 Nov 2023 06:27:13 -0800 (PST)
-X-Received: by 2002:a81:e30a:0:b0:5cf:b796:c40b with SMTP id
- q10-20020a81e30a000000b005cfb796c40bmr14401875ywl.20.1701354433444; Thu, 30
- Nov 2023 06:27:13 -0800 (PST)
+        Thu, 30 Nov 2023 06:37:05 -0800 (PST)
+Received: by mail-yb1-f178.google.com with SMTP id 3f1490d57ef6-db49aa82c89so960196276.1;
+        Thu, 30 Nov 2023 06:37:04 -0800 (PST)
+X-Received: by 2002:a25:2e44:0:b0:db5:3f82:8d1f with SMTP id
+ b4-20020a252e44000000b00db53f828d1fmr1347891ybn.36.1701355024364; Thu, 30 Nov
+ 2023 06:37:04 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231125232821.234631-1-niklas.soderlund+renesas@ragnatech.se>
- <deacc7ea-6fad-47d6-978b-3f639aa5da35@linaro.org> <CAMuHMdUcbr--3Cs4+2m=hOehXJt0WqiuYqV_j0DBmR+YgoEb-g@mail.gmail.com>
- <c6c3c356-e0dc-469f-aa24-6701fa06fba8@linaro.org>
-In-Reply-To: <c6c3c356-e0dc-469f-aa24-6701fa06fba8@linaro.org>
+References: <87v89k0yyj.wl-kuninori.morimoto.gx@renesas.com> <87ttp40yxt.wl-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <87ttp40yxt.wl-kuninori.morimoto.gx@renesas.com>
 From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 30 Nov 2023 15:27:02 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdU05FawKFMDMQbxDk6+TfXPhPwH3nuRk+r0ZOQefVMThw@mail.gmail.com>
-Message-ID: <CAMuHMdU05FawKFMDMQbxDk6+TfXPhPwH3nuRk+r0ZOQefVMThw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: renesas: Document preferred compatible naming
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Date: Thu, 30 Nov 2023 15:36:53 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUEGH6zThE7JhwVJwNC-HORyabrFf_JZzw2h6hLU_vj-g@mail.gmail.com>
+Message-ID: <CAMuHMdUEGH6zThE7JhwVJwNC-HORyabrFf_JZzw2h6hLU_vj-g@mail.gmail.com>
+Subject: Re: [PATCH v3 1/4] of: add __of_device_is_status() and makes more
+ generic status check
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: Frank Rowand <frowand.list@gmail.com>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh+dt@kernel.org>, 
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	Aymeric Aillet <aymeric.aillet@iot.bzh>, Yusuke Goda <yusuke.goda.sx@renesas.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Krzysztof,
-
-On Tue, Nov 28, 2023 at 3:32=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
-> On 28/11/2023 11:32, Geert Uytterhoeven wrote:
-> > On Tue, Nov 28, 2023 at 10:51=E2=80=AFAM Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >> On 26/11/2023 00:28, Niklas S=C3=B6derlund wrote:
-> >>> Compatibles can come in two formats. Either "vendor,ip-soc" or
-> >>> "vendor,soc-ip". Add a DT schema file documenting Renesas preferred
-> >>> policy and enforcing it for all new compatibles, except few existing
-> >>> patterns.
-> >>>
-> >>> Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> >>> Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnat=
-ech.se>
-> >
-> >>> +      # Legacy namings - variations of existing patterns/compatibles=
- are OK,
-> >>> +      # but do not add completely new entries to these:
-> >>> +      - pattern: "^renesas,can-[a-z0-9]+$"
-
-[ deleted 40 legacy patterns]
-
-> >> No, wait, you basically listed most of the SoC as exceptions. What SoC
-> >> blocks exactly are you going to cover in such case with your rules?
-> >
-> > As Renesas was an early adopter of DT, there are a lot of compatible
-> > values that do not follow current best practices.
-> > Unfortunately there is not much we can do about that...
+On Thu, Nov 30, 2023 at 3:15=E2=80=AFAM Kuninori Morimoto
+<kuninori.morimoto.gx@renesas.com> wrote:
+> Linux Kernel has __of_device_is_available() / __of_device_is_fail(),
+> these are checking if the status was "okay" / "ok" / "fail" / "fail-".
 >
-> Hm, ok, given how many exceptions you have, just please consider whether
-> this schema will be of any use. IOW, how many of new SoC blocks you have
-> which are not covered by the exceptions?
+> Add more generic __of_device_is_status() function for these.
+>
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> Tested-by: Yusuke Goda <yusuke.goda.sx@renesas.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-Given a modern SoC hardware manual contains +200 sections, there
-are still lots of opportunities for new SoC block bindings and drivers...
-We really do not want any new compatible values of the legacy form.
-
-I guess the TI people could use a schema to reject new non-standard
-compatible values, too:
-https://lore.kernel.org/all/CAMuHMdUYOq=3Dq1j=3Dd+Eac28hthOUAaNUkuvxmRu-mUN=
-1pLKq69g@mail.gmail.com/
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
 Gr{oetje,eeting}s,
 
