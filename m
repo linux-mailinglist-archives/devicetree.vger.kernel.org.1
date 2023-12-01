@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-20562-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20563-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8106E8002D1
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 06:10:08 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 937C88002D2
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 06:10:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2AE4E1F20F04
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 05:10:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3847EB20950
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 05:10:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53328747C;
-	Fri,  1 Dec 2023 05:10:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F806441B;
+	Fri,  1 Dec 2023 05:10:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ehXjoCzf"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="XMVpgTUp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF41BD4A;
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 124BD10FD;
 	Thu, 30 Nov 2023 21:09:59 -0800 (PST)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3B159g65025764;
-	Thu, 30 Nov 2023 23:09:42 -0600
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3B159j6X049907;
+	Thu, 30 Nov 2023 23:09:45 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1701407382;
-	bh=CE16wh9zl1KgMuVJ0r2u9v6WuIGMBSyHIrUg3kv13nk=;
+	s=ti-com-17Q1; t=1701407385;
+	bh=Y2KXqIr6GkpmWHFBYq5JG+pjs0o2T4SLW2pvUSdpvKA=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=ehXjoCzfpmdcyBxJUcGTITMLFNM70r2EgfBiEt8EWltKFr0hObYyxQJU+0W0l031d
-	 EvktkvFSvhMKT0PZ3IDECDnrgXnFM/hxCORQwhNBR/MHUkT4B3Zrud9FrpwYUNWeQw
-	 GKrgLE57kGjGng3rSER2Q21h/eSqsxe15tR1CwJM=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3B159gkc006667
+	b=XMVpgTUpD7X8Xas0UpIPQDpn9bG7JO5exXfDT3r8mP38raWhirlP8HUelb+x2Fi8Q
+	 AJJmKR/HHBtaujXmwCjpazlTMWCusoNelJMZBLCbPr9qABQb6thE/konIqXF8sElmP
+	 K5BJAGn7UidVTrRgVy/lsojbPGxOE+zefGvopzas=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3B159jeN031236
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 30 Nov 2023 23:09:42 -0600
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 30 Nov 2023 23:09:45 -0600
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 30
- Nov 2023 23:09:42 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ Nov 2023 23:09:45 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 30 Nov 2023 23:09:42 -0600
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3B159fMA076122;
-	Thu, 30 Nov 2023 23:09:41 -0600
+ Frontend Transport; Thu, 30 Nov 2023 23:09:45 -0600
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3B159iAV076144;
+	Thu, 30 Nov 2023 23:09:45 -0600
 From: Jai Luthra <j-luthra@ti.com>
 To: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
         Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
@@ -63,9 +63,9 @@ CC: Jai Luthra <j-luthra@ti.com>, <linux-arm-kernel@lists.infradead.org>,
  Welch <martyn.welch@collabora.com>,
         Matthias Schiffer
 	<matthias.schiffer@ew.tq-group.com>
-Subject: [PATCH RESEND v3 1/9] arm64: defconfig: Enable AM62 CSI2RX
-Date: Fri, 1 Dec 2023 10:39:16 +0530
-Message-ID: <20231201-csi_dts-v3-1-9f06f31080fe@ti.com>
+Subject: [PATCH RESEND v3 2/9] arm64: dts: ti: Enable CSI-RX on AM62
+Date: Fri, 1 Dec 2023 10:39:17 +0530
+Message-ID: <20231201-csi_dts-v3-2-9f06f31080fe@ti.com>
 X-Mailer: git-send-email 2.42.1
 In-Reply-To: <20231201-csi_dts-v3-0-9f06f31080fe@ti.com>
 References: <20231201-csi_dts-v3-0-9f06f31080fe@ti.com>
@@ -77,61 +77,104 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1283; i=j-luthra@ti.com;
- h=from:subject:message-id; bh=rUb+tMOTZAb+lVYb64icNGmFWgAhMwWgJGOMQV1XTKI=;
- b=owEBbQKS/ZANAwAIAUPekfkkmnFFAcsmYgBlaWXnbtYT/7bihMySkDq/mSn3xsh5T1OJPeiAR
- G+4Xikrp82JAjMEAAEIAB0WIQRN4NgY5dV16NRar8VD3pH5JJpxRQUCZWll5wAKCRBD3pH5JJpx
- RcyUD/4+DTZGZtrwcu1KtJVk+66DBu0l5M8FG/Nwcq9XJKze0sHLVVopXZjkiCpZfhTVfwM5Mm2
- bWRAT57eaWvBpjfGJKAJX0iUnBAluguoQMZK92Zn9UQc1FPZIr6ZqcSDpW5knXVvO8KrSUKZInZ
- kfaidux+F5Naj8XnhkHnEl0gB4Upb5ECF5fa+4I4hlcClIUck3nu/uJ8FoLRmmShbwMqHm8xpQw
- +MdoTV13G1hY8mekjTBJvckA0A1WmfvbrhQ4pnp7vWMwxftzcWD9QG4BxUME27uEu1tcf9k4Sqa
- TMa6Js1O6QV/k2uFAc4O1SXrwvwu2lT92vWzess2QTqcX6ZHRktzfWOGQoXrRR3E1Onp+ONa1s4
- MJQE/tKYY1ZWfCL6W7ced50n+zIW9AyYvECeTTDTUT9zfXGucMDW/15Rse7CMxpHcCKBl8QkO+q
- qXF0zOAUwfX368VdSsgH/uAEHDTFSkFunMXt3XU3dAh8RJRji8aaRRW+oppBGmJon7FdXSbMVIx
- cT7kBRZwajCKcf4o6U0I0FSH72ejgVRvpvZ9KmlLKWGdxNDcdERJeiHNejW2IMjFhvE11ugMQxe
- +1LLIjoaFfCrs+lxPCQmxfYeInr7ZgqUG6j2W1SLofRi2dDSa5UOrF24yNACM+t2LmvBrNpU47w
- yyiy9Kme06CREfA==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2229; i=j-luthra@ti.com;
+ h=from:subject:message-id; bh=kqPUeOQSnHjljHs1KFWbF01F+dO4ppTwew4BygHBqvc=;
+ b=owEBbQKS/ZANAwAIAUPekfkkmnFFAcsmYgBlaWXobbb3eBUCOchNjKqjU+x+v60BvFj8r1KC7
+ 42piP8URWaJAjMEAAEIAB0WIQRN4NgY5dV16NRar8VD3pH5JJpxRQUCZWll6AAKCRBD3pH5JJpx
+ RXKVD/93C1IWwBRxmp9hpxBxNxhDqh3CWflOlnOVa5flisBL0QgKvdGPTE8klr/frvyrhG61SPC
+ /zmaCzeabF5LdkSyqLZdGozKMyKNZ5YK7FYHWZE2lbUZNxU0kQToSkBLkbP4hMLv9BjbqYiIaH4
+ uEd+wxz8yM2iGisyCnIlXZW3ZvlCK2aZGOdHx2YduQ271kja6Qw7KPEGK/2r8VYpQfwL1L6pR6n
+ GNWdBBX9YVSOUc/IVey9OkfxORuQFhITPi9jUJrMOv7M7VGVxw6RtXUppHA5hKarjZYel/0nqZG
+ ldPi0RBlQdKfvVN5gd65U8M0cT4w1oW7noLyo/Fm810pBky4t6agLBIRok0/pluOTa90aM6pIll
+ Z6YxS+3TkDGeLD4Obo4JLXMVTzFb4Uihs/sBPKtSXJfaGX8AuL9w2/y9iJogJRNEyUcJLkQCcgN
+ 39W2ZawOXAp+y6yO2pF7msrHd3Zdj08KhAyUGPiZyb0NNRAsLsuuSPRqWs5dp8Y//uaPpbCJ1no
+ ketLdffRw3rZ9GVbTXq+A6NdB/3abiH05nlGeAhJALxHqfHPjaxJva4xNhk25II8fmKkI/rf4s9
+ 4MEDnhXSuyYvpFlhXveY9dVE5aec+w9txrAdwhwHFu9sAwcdJZasW3TMuk9t1pk/Q73BNfUXG3Q
+ tnyuNLy//VzhZng==
 X-Developer-Key: i=j-luthra@ti.com; a=openpgp; fpr=4DE0D818E5D575E8D45AAFC543DE91F9249A7145
 Content-Transfer-Encoding: 8bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-AM62 and other K3 based SoCs use Cadence DPHY and CSI-RX bridge drivers,
-along with a DMA wrapper CSI IP for the camera pipeline.
+The CSI2RX subsystem can be used to capture video frames from CSI-2
+cameras. Add nodes for the CSI core, SHIM layer, and the DPHY.
 
 Tested-by: Martyn Welch <martyn.welch@collabora.com>
 Signed-off-by: Jai Luthra <j-luthra@ti.com>
 ---
- arch/arm64/configs/defconfig | 3 +++
- 1 file changed, 3 insertions(+)
+ arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 62 ++++++++++++++++++++++++++++++++
+ 1 file changed, 62 insertions(+)
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index b60aa1f89343..aa2df39d072e 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -783,6 +783,7 @@ CONFIG_USB_VIDEO_CLASS=m
- CONFIG_V4L_PLATFORM_DRIVERS=y
- CONFIG_SDR_PLATFORM_DRIVERS=y
- CONFIG_V4L_MEM2MEM_DRIVERS=y
-+CONFIG_VIDEO_CADENCE_CSI2RX=m
- CONFIG_VIDEO_MEDIATEK_JPEG=m
- CONFIG_VIDEO_MEDIATEK_VCODEC=m
- CONFIG_VIDEO_IMX7_CSI=m
-@@ -804,6 +805,7 @@ CONFIG_VIDEO_SAMSUNG_EXYNOS_GSC=m
- CONFIG_VIDEO_SAMSUNG_S5P_JPEG=m
- CONFIG_VIDEO_SAMSUNG_S5P_MFC=m
- CONFIG_VIDEO_SUN6I_CSI=m
-+CONFIG_VIDEO_TI_J721E_CSI2RX=m
- CONFIG_VIDEO_HANTRO=m
- CONFIG_VIDEO_IMX219=m
- CONFIG_VIDEO_IMX412=m
-@@ -1421,6 +1423,7 @@ CONFIG_PHY_XGENE=y
- CONFIG_PHY_CAN_TRANSCEIVER=m
- CONFIG_PHY_SUN4I_USB=y
- CONFIG_PHY_CADENCE_TORRENT=m
-+CONFIG_PHY_CADENCE_DPHY_RX=m
- CONFIG_PHY_CADENCE_SIERRA=m
- CONFIG_PHY_MIXEL_MIPI_DPHY=m
- CONFIG_PHY_FSL_IMX8M_PCIE=y
+diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+index e5c64c86d1d5..c0a95f6aff5e 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+@@ -965,4 +965,66 @@ mcasp2: audio-controller@2b20000 {
+ 		power-domains = <&k3_pds 192 TI_SCI_PD_EXCLUSIVE>;
+ 		status = "disabled";
+ 	};
++
++	ti_csi2rx0: ticsi2rx@30102000 {
++		compatible = "ti,j721e-csi2rx-shim";
++		dmas = <&main_bcdma 0 0x4700 0>;
++		dma-names = "rx0";
++		reg = <0x00 0x30102000 0x00 0x1000>;
++		power-domains = <&k3_pds 182 TI_SCI_PD_EXCLUSIVE>;
++		#address-cells = <2>;
++		#size-cells = <2>;
++		ranges;
++		status = "disabled";
++
++		cdns_csi2rx0: csi-bridge@30101000 {
++			compatible = "ti,j721e-csi2rx", "cdns,csi2rx";
++			reg = <0x00 0x30101000 0x00 0x1000>;
++			clocks = <&k3_clks 182 0>, <&k3_clks 182 3>, <&k3_clks 182 0>,
++				<&k3_clks 182 0>, <&k3_clks 182 4>, <&k3_clks 182 4>;
++			clock-names = "sys_clk", "p_clk", "pixel_if0_clk",
++				"pixel_if1_clk", "pixel_if2_clk", "pixel_if3_clk";
++			phys = <&dphy0>;
++			phy-names = "dphy";
++
++			ports {
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				csi0_port0: port@0 {
++					reg = <0>;
++					status = "disabled";
++				};
++
++				csi0_port1: port@1 {
++					reg = <1>;
++					status = "disabled";
++				};
++
++				csi0_port2: port@2 {
++					reg = <2>;
++					status = "disabled";
++				};
++
++				csi0_port3: port@3 {
++					reg = <3>;
++					status = "disabled";
++				};
++
++				csi0_port4: port@4 {
++					reg = <4>;
++					status = "disabled";
++				};
++			};
++		};
++	};
++
++	dphy0: phy@30110000 {
++		compatible = "cdns,dphy-rx";
++		reg = <0x00 0x30110000 0x00 0x1100>;
++		#phy-cells = <0>;
++		power-domains = <&k3_pds 185 TI_SCI_PD_EXCLUSIVE>;
++		status = "disabled";
++	};
++
+ };
 
 -- 
 2.42.1
