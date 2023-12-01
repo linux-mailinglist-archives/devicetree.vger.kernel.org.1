@@ -1,128 +1,140 @@
-Return-Path: <devicetree+bounces-20752-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20753-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2121D800C52
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 14:40:06 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3AAA800C58
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 14:40:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 199D21C20EAD
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 13:40:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5DD84281B63
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 13:40:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B390138DD6;
-	Fri,  1 Dec 2023 13:40:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="OzchKt2w"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B67B38FBF;
+	Fri,  1 Dec 2023 13:40:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2A5210E2;
-	Fri,  1 Dec 2023 05:39:56 -0800 (PST)
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3B1AZ2vk028341;
-	Fri, 1 Dec 2023 13:39:53 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=1LSvee1+eGudj7FevY2ut2VZM4EJlkixxNXvgdxdDAU=;
- b=OzchKt2w7Y1LpmkLATfoWg+EMLyGlD3iRbn4cMfFDCRrd5/qV/Ogns1xI4FGhz/Gm2tD
- rhtv+xT/hOi2eC71nPc0WTIwoAzA91biloiOr4jmkfIPfpWtOgxEhJ/RK5ZIbDKsqU39
- f720FjcFkDNddHCzx+6jTPNfu5yQmSUFYTG7pm+EULglU/BqC+5pcrlYETqRPrBHdX0N
- rccs0O8HK3vQBshcYbCrQXhirAkCp9VfxjUbI+OY2bPQf8CTCU7R2Dtb0ej3lCMvWcer
- w3J2KHzQ4nG/rdc9bgukpSZKhFf44/ZHbs93H6JtMXegzy+NpYhQqAQTWel5Is45ORiS dw== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uq9hyh5ky-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 01 Dec 2023 13:39:53 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3B1Ddqss007245
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 1 Dec 2023 13:39:52 GMT
-Received: from [10.216.10.184] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 1 Dec
- 2023 05:39:48 -0800
-Message-ID: <7c807cd2-8292-435a-834c-43dc218bb9ff@quicinc.com>
-Date: Fri, 1 Dec 2023 19:09:48 +0530
+Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3376D170F;
+	Fri,  1 Dec 2023 05:40:08 -0800 (PST)
+Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-5d3a7aa1ed5so15383487b3.2;
+        Fri, 01 Dec 2023 05:40:08 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701438007; x=1702042807;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=CeONMnbnc9ooOiJhSyauRgrdy4vIJP3VYKHaPtaPM+s=;
+        b=OiaX9DvTxwfbhIcE74Nj1XsxWLYxRtYD1rbaQp4LDq8s+8lPEo84ZemYxM/AWHimAb
+         Ghlh2hv02e8fBPlbwaUb9twrl2KXWXtm8oC2co6CNFVeJ9PkDWv9ZGizb9xB87bTnQn0
+         176uYpRODMlrVwuzCNI5V9LjQZsvcMzgfA6H8wRC89dqcoRakzvQvb2PbE/qeerP2fg0
+         UMsZhnijLGAw2cAfwPTpEicvGedYKBKCSO5JGJsK05BLq3HqWikJYDBkGw3L6c6raB1T
+         6QQjIwnovwNBdV18JlX2yOTxUHYOaH0BpHig8cMF6aYz63O2CQVYuikpkL+9xigSF1JQ
+         0ErQ==
+X-Gm-Message-State: AOJu0YwYiuR7B5nvDRwNmG3j9h9yli6JWg0+VzLaqw1VRw8dK7Skcr7W
+	2HPYXwk2tBsXYHE72p/xHmrUDLtzH9rqgg==
+X-Google-Smtp-Source: AGHT+IHK3hjJ6/enyV9lNxuDz0/yhF8tGLKuH7d/e0hOw09hna4IbeGA8VHGg4SQ6LltFxtXttBWTQ==
+X-Received: by 2002:a05:690c:c1c:b0:5d0:960c:e2b4 with SMTP id cl28-20020a05690c0c1c00b005d0960ce2b4mr19674710ywb.19.1701438003887;
+        Fri, 01 Dec 2023 05:40:03 -0800 (PST)
+Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com. [209.85.219.175])
+        by smtp.gmail.com with ESMTPSA id j66-20020a0de045000000b005cb3510c8b2sm1083998ywe.96.2023.12.01.05.40.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 01 Dec 2023 05:40:03 -0800 (PST)
+Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-d9fe0a598d8so511367276.2;
+        Fri, 01 Dec 2023 05:40:03 -0800 (PST)
+X-Received: by 2002:a25:dcd2:0:b0:db5:4677:6e1f with SMTP id
+ y201-20020a25dcd2000000b00db546776e1fmr3755738ybe.41.1701438003304; Fri, 01
+ Dec 2023 05:40:03 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: ipq5332: add missing properties to the
- GPIO LED node
-Content-Language: en-US
-To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20231025-ipq5332-gpio-led-v1-1-0f0f52617648@quicinc.com>
-From: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
-In-Reply-To: <20231025-ipq5332-gpio-led-v1-1-0f0f52617648@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: kBMIsaJzNVMjh8cZqI5aE2HjygyBZRsY
-X-Proofpoint-ORIG-GUID: kBMIsaJzNVMjh8cZqI5aE2HjygyBZRsY
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-01_11,2023-11-30_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 impostorscore=0
- lowpriorityscore=0 bulkscore=0 phishscore=0 priorityscore=1501
- mlxlogscore=842 spamscore=0 suspectscore=0 adultscore=0 malwarescore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311060000 definitions=main-2312010093
+References: <20231201110840.37408-1-biju.das.jz@bp.renesas.com> <20231201110840.37408-6-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20231201110840.37408-6-biju.das.jz@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 1 Dec 2023 14:39:52 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXH3VVg0KmC0rtjeb_A_Awj805Mirc4pZu=KDZO9pdZZQ@mail.gmail.com>
+Message-ID: <CAMuHMdXH3VVg0KmC0rtjeb_A_Awj805Mirc4pZu=KDZO9pdZZQ@mail.gmail.com>
+Subject: Re: [PATCH 5/6] arm64: dts: renesas: rzg2ul-smarc: Enable PMIC and
+ built-in RTC
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, 
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi Biju,
 
+On Fri, Dec 1, 2023 at 12:09=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.co=
+m> wrote:
+> Enable PMIC DA9062 and the built-in RTC on the RZ/{G2UL,Five} SMARC
+> EVK.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-On 10/25/2023 7:20 PM, Kathiravan Thirumoorthy wrote:
-> Add the color and function property to the GPIO LED node, which are
-> missed out in the initial submission.
-> 
+Thanks for your patch!
 
+> --- a/arch/arm64/boot/dts/renesas/rzg2ul-smarc.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/rzg2ul-smarc.dtsi
+> @@ -23,6 +23,35 @@ &cpu_dai {
+>  &i2c0 {
+>         clock-frequency =3D <400000>;
+>
+> +       da9062: pmic@58 {
+> +               compatible =3D "dlg,da9062";
+> +               reg =3D <0x58>;
+> +
+> +               da9062_rtc: rtc {
+> +                       compatible =3D "dlg,da9062-rtc";
+> +               };
+> +
+> +               da9062_onkey: onkey {
+> +                       compatible =3D "dlg,da9062-onkey";
+> +                       status =3D "disabled";
 
-Gentle Reminder...
+Why is this disabled? This is connected to the power button.
 
+> +               };
+> +
+> +               watchdog {
+> +                       compatible =3D "dlg,da9062-watchdog";
+> +                       status =3D "disabled";
+> +               };
+> +
+> +               thermal {
+> +                       compatible =3D "dlg,da9062-thermal";
+> +                       status =3D "disabled";
+> +               };
+> +
+> +               gpio {
+> +                       compatible =3D "dlg,da9062-gpio";
+> +                       status =3D "disabled";
+> +               };
 
-> Signed-off-by: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
-> ---
->   arch/arm64/boot/dts/qcom/ipq5332-rdp-common.dtsi | 3 +++
->   1 file changed, 3 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq5332-rdp-common.dtsi b/arch/arm64/boot/dts/qcom/ipq5332-rdp-common.dtsi
-> index 4870cdb764d0..b37ae7749083 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq5332-rdp-common.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq5332-rdp-common.dtsi
-> @@ -9,6 +9,7 @@
->   
->   #include <dt-bindings/gpio/gpio.h>
->   #include <dt-bindings/input/input.h>
-> +#include <dt-bindings/leds/common.h>
->   #include "ipq5332.dtsi"
->   
->   / {
-> @@ -39,6 +40,8 @@ leds {
->   		pinctrl-names = "default";
->   
->   		led-0 {
-> +			color = <LED_COLOR_ID_GREEN>;
-> +			function = LED_FUNCTION_WLAN;
->   			gpios = <&tlmm 36 GPIO_ACTIVE_HIGH>;
->   			linux,default-trigger = "phy0tx";
->   			default-state = "off";
-> 
-> ---
-> base-commit: fe1998aa935b44ef873193c0772c43bce74f17dc
-> change-id: 20231025-ipq5332-gpio-led-cd157e81d7b0
-> 
-> Best regards,
+Why are these three disabled?
+If they are truly unused, you can just drop the nodes instead.
+
+> +       };
+> +
+>         versa3: clock-generator@68 {
+>                 compatible =3D "renesas,5p35023";
+>                 reg =3D <0x68>;
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
