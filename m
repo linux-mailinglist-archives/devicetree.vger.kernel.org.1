@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-20595-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20596-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DFC3800520
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 09:03:19 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C736800526
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 09:04:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D82FA28163E
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 08:03:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B55B6B20DC6
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 08:04:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CAAA15E92;
-	Fri,  1 Dec 2023 08:03:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 476841643A;
+	Fri,  1 Dec 2023 08:04:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KclUSFWm"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wsHL9YAZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4917310F8
-	for <devicetree@vger.kernel.org>; Fri,  1 Dec 2023 00:03:13 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-50bce40bc4aso1990612e87.2
-        for <devicetree@vger.kernel.org>; Fri, 01 Dec 2023 00:03:13 -0800 (PST)
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CDC510FC
+	for <devicetree@vger.kernel.org>; Fri,  1 Dec 2023 00:04:39 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-50bc743c7f7so2507032e87.3
+        for <devicetree@vger.kernel.org>; Fri, 01 Dec 2023 00:04:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701417791; x=1702022591; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701417877; x=1702022677; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ponRrg7TizGLB9l+GsvRKwNCtFphHDbSfkIhNOwyzeY=;
-        b=KclUSFWmAmOSnW76TUC6RnBOXZ/CXeJsct/omW3w6YqA9kKZJieH1FyKCqUIto7isN
-         G3Nm5RuXlVc8Q7urIGe1LdJqE6TIX6yQFIilQTZCCLb4p13YFR+Y5vFO3pVwjdYCNkcg
-         ZuUrTvmcmjaPtncr0Tp4cF8bU/o9BgvqaH1hy/J0peYOqHd41N/YhwNGHVFVArwDGZpp
-         MAGt/i4+VLAvNNYwsp1a42GgyToG5WmmCyfxSxhRWow6KerteSmpNC22uo3Ou0WxqsWO
-         FEtBG+HeMvZp5/mx0ZYckheWKyxXxRzinie8eojqltCpBsKtThfujTgGdqVNa3tbl169
-         g4qw==
+        bh=LnMmC4OxC8/yl5Iv63kraQCqLS5wg0ARkey8Doj6j5M=;
+        b=wsHL9YAZAczPROHzhE/YMRRcLIUNb18eIOZJ35fh5lJlu0kZBPBOAk5aTo8+PmrNwA
+         aeB4Dibm7vibxNMxzU3iIVv0BXoNFZWHOHsjy2/UXuO6GRTScuPDGXBjPRZGEtSyWSPw
+         ynby0nc+nEwnOBtM/HADIqwTCV+60M6kv6WQqudgxspI3LV+y1yOAXfnu1Qx2LOaemHl
+         Y/RqEiTp0z1I/uIo+niAR8RNMVwMjb28ybf0Ah8xAUOUsrB8/bQ0W2I2OG3mOvWhlrui
+         YYmyUDPCmpOy2/k3fsUukW5ZWloSp80Cl+3mqwPK858XdX2kqcDl5GpEPL9RkwrwERSh
+         fkkw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701417791; x=1702022591;
+        d=1e100.net; s=20230601; t=1701417877; x=1702022677;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ponRrg7TizGLB9l+GsvRKwNCtFphHDbSfkIhNOwyzeY=;
-        b=ImP3qcFHOGK5yzYvSUwyCr3bGzM7r0H7YGHHflRhxEcbre8q75HBR+bCR9Jddv+3gE
-         t0xu3h/5Kg6NejDqzY8jzZLE5QnNg0dnKTvjC25ntk0KQJ/1+abWh6TvUrZtwCZhxfZu
-         VpxDEGmCAetKZ1RaitNg5++KEPcRozsAQs8sDZXZzcTAdiuvnQOHQ+fLY+GCyDcNdNUh
-         LMDK/mYNwAtUJ9+Df9Uw3Q4TjFpVMnwiY+j6/eEV9bHNLGhYuDQu6AazkeUyuybItz4F
-         FVXFSZ0guhFc3GRy7fkPWdktVIIwFKJ9v92wiBcxR2DqNl6N4UgDtEmzxegTm7osKuAQ
-         QbuA==
-X-Gm-Message-State: AOJu0YybAs+d8WwYkpxSnTCLqD6cgBF0foBIMViId4EyOXv90rq+XQT1
-	T8Hg+0W2t4GI+iGIXHVSb/m+xQ==
-X-Google-Smtp-Source: AGHT+IHliUm93Ad0LW8i7zaPsiYQdEunXgHDrktGw58FXlDj4H1fGDnGue5fQsTW7Eqp9lAlkp00Vg==
-X-Received: by 2002:a05:6512:1596:b0:50b:d764:804c with SMTP id bp22-20020a056512159600b0050bd764804cmr611926lfb.127.1701417791532;
-        Fri, 01 Dec 2023 00:03:11 -0800 (PST)
+        bh=LnMmC4OxC8/yl5Iv63kraQCqLS5wg0ARkey8Doj6j5M=;
+        b=LhPn+31Y0q/z/Id7OAJUFeUBf05B6LA+JmVf2gUBsa3YTNfX+eqwPLQvNytNI9Vsow
+         PR4G64r1ReqjAa4XFuT5wExRerVtbuBXyPmDLqfAX0NUIEMJlFBOwjftrlYIcoVLcC+q
+         alZzQI6FQLrJAmDcG57vEHu01uWeNZeXVtjnPBZXXjOdw8eQWr9Y1+a6PTqIpfwLB1Xz
+         8vt+lZ9lwHCYcROl8HaEV3u6+MKpJricDS312mq1XcG3ndc4lCt52rsZH8V/7Qbanydp
+         l2hB0aOzT1GVMm7rloUFZJCqEcVbciLGlKLXe/UsTqZpBB2R18/PXiOqU3Ge/cewixY+
+         Z9Ww==
+X-Gm-Message-State: AOJu0YzhFeXgdH7dTaLGy3xar+bGgE4aifOnKWXbTF1/YodkWbtK7mQ+
+	4uDxfto/Bb7K79wqUGn9yZYENQ==
+X-Google-Smtp-Source: AGHT+IGZyPAdP7LWnrBUQtc0Ne0rcesCeo1b8I3tC2M14VSOYkhsyvMIK+alG+bjNk3fNZODOwluIg==
+X-Received: by 2002:a05:6512:ea8:b0:50b:d764:64ba with SMTP id bi40-20020a0565120ea800b0050bd76464bamr658382lfb.111.1701417877260;
+        Fri, 01 Dec 2023 00:04:37 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.109])
-        by smtp.gmail.com with ESMTPSA id f15-20020a05600c4e8f00b0040b3632e993sm8204509wmq.46.2023.12.01.00.03.09
+        by smtp.gmail.com with ESMTPSA id f15-20020a05600c4e8f00b0040b3632e993sm8204509wmq.46.2023.12.01.00.04.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 01 Dec 2023 00:03:10 -0800 (PST)
-Message-ID: <7b9a2f1a-59d6-454c-95ed-6cb920751551@linaro.org>
-Date: Fri, 1 Dec 2023 09:03:09 +0100
+        Fri, 01 Dec 2023 00:04:36 -0800 (PST)
+Message-ID: <b6a18d66-6022-4947-9616-53cfbb17e759@linaro.org>
+Date: Fri, 1 Dec 2023 09:04:35 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,18 +62,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: mfd: cros-ec: Allow interrupts-extended
- property
+Subject: Re: [PATCH v2 1/2] dt-bindings: mfd: Add sony,cronos-cpld
 Content-Language: en-US
-To: Chen-Yu Tsai <wenst@chromium.org>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+To: Shawn Anastasio <sanastasio@raptorengineering.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Benson Leung <bleung@chromium.org>,
- Guenter Roeck <groeck@chromium.org>, devicetree@vger.kernel.org,
- chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org
-References: <20231130083333.932862-1-wenst@chromium.org>
- <2288442b-9002-4711-9b64-16b204f19985@linaro.org>
- <CAGXv+5HwzSX=x_0u-95i1+q+xbstrCmuMxRoKXJwEL5ErnRgOQ@mail.gmail.com>
+ Lee Jones <lee@kernel.org>, Georgy Yakovlev <Georgy.Yakovlev@sony.com>
+Cc: Timothy Pearson <tpearson@raptorengineering.com>
+References: <cover.1701203916.git.sanastasio@raptorengineering.com>
+ <27ac3bf6e5fecd62918eb096a88503a13a1f0b9c.1701203916.git.sanastasio@raptorengineering.com>
+ <c50e5224-7acd-4470-b18e-f223f150ba5b@linaro.org>
+ <eb29a877-8c71-498c-b5a1-320315b84cc7@raptorengineering.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -119,55 +119,90 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CAGXv+5HwzSX=x_0u-95i1+q+xbstrCmuMxRoKXJwEL5ErnRgOQ@mail.gmail.com>
+In-Reply-To: <eb29a877-8c71-498c-b5a1-320315b84cc7@raptorengineering.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 01/12/2023 05:37, Chen-Yu Tsai wrote:
-> On Thu, Nov 30, 2023 at 4:52 PM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 30/11/2023 09:33, Chen-Yu Tsai wrote:
->>> "interrupts-extended" provides a more concise way of describing external
->>> GPIO interrupts.
->>>
->>> Allow using this instead of "interrupts" plus "interrupt-parent" for
->>> cros-ec.
->>>
->>> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
->>> ---
->>>  .../devicetree/bindings/mfd/google,cros-ec.yaml          | 9 ++++++++-
->>>  1 file changed, 8 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
->>> index e1ca4f297c6d..e514eac9f4fc 100644
->>> --- a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
->>> +++ b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
->>> @@ -75,6 +75,9 @@ properties:
->>>    interrupts:
->>>      maxItems: 1
->>>
->>> +  interrupts-extended:
+On 01/12/2023 00:03, Shawn Anastasio wrote:
+>>> +properties:
+>>> +  compatible:
+>>> +    const: sony,cronos-cpld
+>>> +
+>>> +  reg:
 >>> +    maxItems: 1
 >>> +
+>>> +  leds:
+>>> +    type: object
+>>> +    description: Cronos Platform Status LEDs
 >>
->> I don't understand why you need it. You already have interrupts there,
->> so this is redundant. I suggest to drop the patch or provide real
->> rationale (which I doubt you can get :) ).
+>> Missing ref to LEDs common bindings.
+>>
 > 
-> I'm sorry, I should've included this in the commit message.
+> Will fix.
 > 
-> The other half of the patch gets rid of a DT validation fail when
-> interrupts-extended is used instead of interrupts:
+>>> +
+>>> +    properties:
+>>> +      compatible:
+>>> +        const: sony,cronos-leds
+>>> +
+>>> +      sony,led-mask:
+>>> +        $ref: /schemas/types.yaml#/definitions/uint32
+>>
+>> Why aren't you using LEDs bindings? A node for one property is otherwise
+>> quite useless. I already commented on this last time.
+>>
 > 
-> .../arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r1.dtb: ec@0:
-> 'interrupts' is a required property
->     from schema $id: http://devicetree.org/schemas/mfd/google,cros-ec.yaml#
-> 
+> Our driver as-is doesn't support any of the properties in the LEDs
+> common bindings, but it doesn't seem like there's anything that would
+> preclude support in hardware, so this can be fixed.
 
-That looks either like a bug in bindings or in dtschema or in your DTS.
-This patch should not be needed to solve that.
+Driver does not matter. We talk here about bindings, so about hardware,
+not driver.
 
+You must describe here hardware fully, not the driver.
+
+> 
+> Will use the LED bindings in v3.
+> 
+>>> +        minimum: 0x0
+>>> +        maximum: 0x7fff
+>>> +        description: |
+>>> +          A bitmask that specifies which LEDs are present and can be controlled
+>>> +          by the Cronos CPLD. Bits 0-5 correspond to platform Status LEDs, bits
+>>> +          6-10 correspond to Link LEDs, and bits 11-14 correspond to the Power
+>>> +          State LEDs. All other bits are unused. The default value is 0x7fff
+>>> +          (all possible LEDs enabled).
+>>> +
+>>> +    additionalProperties: false
+>>> +
+>>> +  watchdog:
+>>> +    type: object
+>>> +    description: Cronos Platform Watchdog Timer
+>>
+>>
+>>> +
+>>> +    properties:
+>>> +      compatible:
+>>> +        const: sony,cronos-watchdog
+>>> +
+>>> +      sony,default-timeout:
+>>
+>> No, you must use existing bindings. Missing ref to watchdog and drop all
+>> duplicated properties like this one.
+>>
+> 
+> In this case the existing watchdog binding allows for arbitrary timeout
+> values to be set, but the hardware only tolerates one of a few fixed
+> values, enumerated below, which is why I felt it was appropriate to use
+> a vendor-specific binding that documents the supported values.
+
+You can narrow the accepted values.
+
+> 
+> Would you still prefer we ref to watchdog and just handle unsupported
+> values in the driver by e.g. rounding or rejecting unsupported values?
+
+It's not preference, it's a must.
 
 Best regards,
 Krzysztof
