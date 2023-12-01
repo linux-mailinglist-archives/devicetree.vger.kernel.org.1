@@ -1,139 +1,180 @@
-Return-Path: <devicetree+bounces-20628-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20629-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3E63800618
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 09:43:57 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE6FE800623
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 09:47:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E3FA41C20BFF
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 08:43:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A5F1281983
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 08:47:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FE6D1BDC8;
-	Fri,  1 Dec 2023 08:43:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C6711C297;
+	Fri,  1 Dec 2023 08:47:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NNh+1KLn"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="c7wK3F3y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DB421717
-	for <devicetree@vger.kernel.org>; Fri,  1 Dec 2023 00:43:51 -0800 (PST)
-Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-54c1cd8d239so1521354a12.0
-        for <devicetree@vger.kernel.org>; Fri, 01 Dec 2023 00:43:51 -0800 (PST)
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 033C8C4;
+	Fri,  1 Dec 2023 00:47:27 -0800 (PST)
+Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-40b27b498c3so19381965e9.0;
+        Fri, 01 Dec 2023 00:47:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701420230; x=1702025030; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=LreaEOps/ITcKlz6Y6DRed+efQd2GpRA3o3lo1JZ76Q=;
-        b=NNh+1KLnBhpo16Tw6umdoOFYQX6IHY+wrI14pnDDfd4qRdUMZFO+qXSqc4IIh4fU8P
-         WndkFuQqPRUtSIGqdnLlhnFDnc5nOcoLeRFQm3qJmF0+59xJQZnMUyUi9NNs9vzgN1GT
-         jpBsKf25yko3mZ/Z+f2tPzqKql9n3nVLD3IFlW+YXOWFFxN6tuJve660yLtllJHgCrF7
-         IaSamdK8m40kWWwF/txKQYdeSflV8bXGvNqATONo7nHwIbAazXbYvLJTChpyKRKoMoS6
-         sO1hwlILRL0vmjcpq1oFsD3NXwk/EYauP5vSrnw7xrQu11HUijf+uDBgish5OkFq5edG
-         n44g==
+        d=gmail.com; s=20230601; t=1701420445; x=1702025245; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=Y5k3hp+Fps+KFaY2xy891TNAjRy9G6LGzZSmFk20j0I=;
+        b=c7wK3F3y6AdvN+ox6sT3JMWx5xxt/M7lxTFCNoXDX7vH887AMfYs9UVmnRKaBzfDV7
+         raAbFFdWh4ZJjRyVQfaL8Hv+AcqGlZvgYTkCXiH7ko61K9vf9M8OnYM+C4qjT6kfLQWe
+         +p3THRKVUSHuAXkqsoNMQLoHhqB6gjTZEZ2DBqLlcwxEi3+Q2i86nB2bpvDWitiwg+6d
+         +//D4hPfkkA3JB1+nTc9Zk1PtUfXKETcJGQn7l7Z4FEU1jka4bUNRcgsxfMdW1cuQG+/
+         SVgw0w2pM/Z6m8rwNLGTDJLJustXggva3WxW9klGtpgroIwEjVKQuS/iBkBOxkWgdEj9
+         p4sw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701420230; x=1702025030;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LreaEOps/ITcKlz6Y6DRed+efQd2GpRA3o3lo1JZ76Q=;
-        b=jfvrS/sTOTzf/2fq9BxGAW1OleV3TEwWlNuIe3ep0p0vXef40SRrRDVoITb0KDv136
-         i5r/jj37oTw1dTVUf5FR6avxZKCggM0A1dfSVFb739GxXJEanorJP+xJwMDVYUx71LRm
-         3L/4/pu0/X/UJL9/Zjd4TXDSzwIV49tnSR5VXEp5oySGs1ejgGUXNMNWXZUcVpggiUud
-         LBHi9CAypA2En71ArJypuIdSpMBisFXuojXUGYsPlUBD95pfbb44Jmb8X6Kp52yYhAHP
-         ZQrfx3mLlY3Ixh/lHTjvSwdQAyFi0iM/FWBPbD3X2w+i15/YMcQj7d4jfDYCc07jnmZS
-         Ok0Q==
-X-Gm-Message-State: AOJu0YwMXv14+IqYkaUK63akuAGtEY4CLwSjUfw6fyhCwGUylX1brvhf
-	D1MfMt+s8aVkIwhwvn4Hjbn+Kg==
-X-Google-Smtp-Source: AGHT+IFRWyGU8MxkZTvsGUMOMSPU4Xb2kFPSmfD1GgUVofsz/It26rDuCKPaeHkfdUxBwsfJmq0ZZg==
-X-Received: by 2002:a50:96d1:0:b0:54c:d2:ea3a with SMTP id z17-20020a5096d1000000b0054c00d2ea3amr349483eda.42.1701420230043;
-        Fri, 01 Dec 2023 00:43:50 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.223.109])
-        by smtp.gmail.com with ESMTPSA id n21-20020aa7c695000000b0054af73f3c72sm1394844edq.11.2023.12.01.00.43.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 01 Dec 2023 00:43:49 -0800 (PST)
-Message-ID: <ae58c04a-25e3-49f2-8f12-58a0483f8f9b@linaro.org>
-Date: Fri, 1 Dec 2023 09:43:47 +0100
+        d=1e100.net; s=20230601; t=1701420445; x=1702025245;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Y5k3hp+Fps+KFaY2xy891TNAjRy9G6LGzZSmFk20j0I=;
+        b=jXXtgPT1klV0WXXJj6Tqo7hh4vlR6enFaJW7nd/6Imr3deX0U79JK6pxun7TzrSIoK
+         aUqGnJUSHAptwwAoeYVxE0621AFiNSGbcH+/Aq1mHugFl1y97mb9uMJZzmFFAepI6MAW
+         ZQrLszyi0Ka8eClVSfET2gBAYObS95a44Ixv3HcPIekf7J2DFRh06YjJQhPLDIwOP2dn
+         0NYD92oE1S8eUoWMHoyB+b3uMNPPe1KSKtU14qQ3xYIgJQDlbWBFUMp0t9qBocGYnQlJ
+         owVX2hEC7uzFhGpzYYDeQuf8hpljM4u/0I02tmr4+paChgKlHadl+EUEqor6cG5OZvef
+         eENw==
+X-Gm-Message-State: AOJu0Yzr0F3TZWa95OA0K2sEF+4aXdJGrdXfGAgvcpqQ5U+5dTVJ1Y1y
+	bG6sa/HE+KAhyn5T+aBk67rhFZRftfNda4eq
+X-Google-Smtp-Source: AGHT+IFmXuOgohXVK84QCMKE/3yc6ZibYw+Ofbi/yAqp7du3fd6WZT7PuIGZsP4qN5OaNwgY5pAWPg==
+X-Received: by 2002:a05:600c:178a:b0:40b:5e59:ccce with SMTP id x10-20020a05600c178a00b0040b5e59cccemr282792wmo.175.1701420445117;
+        Fri, 01 Dec 2023 00:47:25 -0800 (PST)
+Received: from ?IPv6:2001:a61:3456:4e01:6ae:b55a:bd1d:57fc? ([2001:a61:3456:4e01:6ae:b55a:bd1d:57fc])
+        by smtp.gmail.com with ESMTPSA id fs16-20020a05600c3f9000b0040b48690c49sm4625136wmb.6.2023.12.01.00.47.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 01 Dec 2023 00:47:24 -0800 (PST)
+Message-ID: <d534c3323c32d4ed2aedae19a9f101be90ef0cc7.camel@gmail.com>
+Subject: Re: [PATCH 04/12] iio: adc: ad9467: fix reset gpio handling
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: David Lechner <dlechner@baylibre.com>, nuno.sa@analog.com
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-iio@vger.kernel.org, Olivier MOYSAN <olivier.moysan@foss.st.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>, Frank Rowand
+ <frowand.list@gmail.com>, Jonathan Cameron <jic23@kernel.org>, Lars-Peter
+ Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>
+Date: Fri, 01 Dec 2023 09:47:24 +0100
+In-Reply-To: <CAMknhBGCqnzCp6vQ+59Z-SybScvbtU7aWdAD6KnP1e6=q60gVQ@mail.gmail.com>
+References: <20231121-dev-iio-backend-v1-0-6a3d542eba35@analog.com>
+	 <20231121-dev-iio-backend-v1-4-6a3d542eba35@analog.com>
+	 <CAMknhBGCqnzCp6vQ+59Z-SybScvbtU7aWdAD6KnP1e6=q60gVQ@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: soc: qcom: stats: Add QMP handle
-Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@linaro.org>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Maulik Shah <quic_mkshah@quicinc.com>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20231130-topic-ddr_sleep_stats-v1-0-5981c2e764b6@linaro.org>
- <20231130-topic-ddr_sleep_stats-v1-1-5981c2e764b6@linaro.org>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231130-topic-ddr_sleep_stats-v1-1-5981c2e764b6@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 
-On 30/11/2023 15:58, Konrad Dybcio wrote:
-> The stats can be expanded by poking the Always-On Subsystem through QMP.
-> Allow passing a QMP handle for configurations that support it.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->  Documentation/devicetree/bindings/soc/qcom/qcom-stats.yaml | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
+On Thu, 2023-11-30 at 15:41 -0600, David Lechner wrote:
+> On Tue, Nov 21, 2023 at 4:17=E2=80=AFAM Nuno Sa via B4 Relay
+> <devnull+nuno.sa.analog.com@kernel.org> wrote:
+> >=20
+> > From: Nuno Sa <nuno.sa@analog.com>
+> >=20
+> > The reset gpio was being requested with GPIOD_OUT_LOW which means, not
+> > asserted. Then it was being asserted but never de-asserted which means
+> > the devices was left in reset. Fix it by de-asserting the gpio.
+>=20
+> It could be helpful to update the devicetree bindings to state the
+> expected active-high or active-low setting for this gpio so it is
+> clear which state means asserted.
+>=20
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+You could state that the chip is active low but I don't see that change tha=
+t
+important for now. Not sure if this is clear and maybe that's why your comm=
+ent.
+GPIOD_OUT_HIGH has nothing to do with active high or low. It just means, "g=
+et me the
+pin in the asserted state".
 
-Best regards,
-Krzysztof
+> > While at it, moved the handling to it's own function and dropped
+> > 'reset_gpio' from the 'struct ad9467_state' as we only need it during
+> > probe. On top of that, refactored things so that we now request the gpi=
+o
+> > asserted (i.e in reset) and then de-assert it.
+> >=20
+> > Fixes: ad6797120238 ("iio: adc: ad9467: add support AD9467 ADC")
+> > Signed-off-by: Nuno Sa <nuno.sa@analog.com>
+> > ---
+> > =C2=A0drivers/iio/adc/ad9467.c | 33 ++++++++++++++++++++-------------
+> > =C2=A01 file changed, 20 insertions(+), 13 deletions(-)
+> >=20
+> > diff --git a/drivers/iio/adc/ad9467.c b/drivers/iio/adc/ad9467.c
+> > index 39eccc28debe..368ea57be117 100644
+> > --- a/drivers/iio/adc/ad9467.c
+> > +++ b/drivers/iio/adc/ad9467.c
+> > @@ -121,7 +121,6 @@ struct ad9467_state {
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 unsigned int=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 output_mode;
+> >=20
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct gpio_desc=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 *pwrdown_gpio;
+> > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct gpio_desc=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ *reset_gpio;
+> > =C2=A0};
+> >=20
+> > =C2=A0static int ad9467_spi_read(struct spi_device *spi, unsigned int r=
+eg)
+> > @@ -378,6 +377,23 @@ static int ad9467_preenable_setup(struct adi_axi_a=
+dc_conv
+> > *conv)
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return ad9467_outputmode_set=
+(st->spi, st->output_mode);
+> > =C2=A0}
+> >=20
+> > +static int ad9467_reset(struct device *dev)
+> > +{
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct gpio_desc *gpio;
+> > +
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 gpio =3D devm_gpiod_get_optional(=
+dev, "reset", GPIOD_OUT_HIGH);
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (IS_ERR(gpio))
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 return PTR_ERR(gpio);
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (!gpio)
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 return 0;
+>=20
+> can be done in one test instead of 2:
+>=20
+> if (IS_ERR_OR_NULL(gpio))
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return PTR_ERR_OR_ZERO(gpio);
+>=20
 
+Yep, better that way...
+
+> > +
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 fsleep(1);
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 gpiod_direction_output(gpio, 0);
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 fsleep(10);
+>=20
+> Previous version was 10 milliseconds instead of 10 microseconds. Was
+> this change intentional? If yes, it should be mentioned it in the
+> commit message.
+
+Oh, good catch! Copy past thing with even realizing the differences in the =
+arguments
+:face_palm:
+
+- Nuno S=C3=A1
+
+
+>=20
 
