@@ -1,100 +1,159 @@
-Return-Path: <devicetree+bounces-20688-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20689-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF8FE800967
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 12:09:53 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E1B880096F
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 12:11:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E06DE1C20A88
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 11:09:52 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 07387B21109
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 11:10:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63799210F4;
-	Fri,  1 Dec 2023 11:09:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BBC321104;
+	Fri,  1 Dec 2023 11:10:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ObgOAzlG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="j4hmhtpw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41F0820B18;
-	Fri,  1 Dec 2023 11:09:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5EB25C433C8;
-	Fri,  1 Dec 2023 11:09:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701428988;
-	bh=o05AhYqQMl6gqIIPfGCy+BD9YDKBTaLzd34nySfyWC8=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=ObgOAzlGppLIARiW9BNQhCs7HUjaLBSKRMhtQ7DM97/eILMUSwzVUGLDlQLiNYPoG
-	 2kxr3XplZIBqxW1ofmIxBV6dQLD7kn8LTQ5Bi0D8PeQXOgJNfrtwVfs3hL2uWue4dK
-	 OxUsZwJzBVbfiOb5PXFNB+pTQtn3rIDcH5WnRwJ+AAxX4pXCZ67DjvAvayC71LWUE3
-	 SjHNf5Wr0ORlU4GAanKnhn+yHYxFhioAAmbfMORbjtY5iB6+FHHoB4BpXBJ6q6FGxg
-	 9M64qnfg1QKRRayQLXIRT2MzornCrSNSFf+jSNsaoeV05TP6Dx0qtsUU6a8WoOqgKE
-	 z5yGuxuI8zuTA==
-From: Lee Jones <lee@kernel.org>
-To: lee@kernel.org, pavel@ucw.cz, robh+dt@kernel.org, 
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
- andy.shevchenko@gmail.com, Dmitry Rokosov <ddrokosov@salutedevices.com>
-Cc: kernel@sberdevices.ru, rockosov@gmail.com, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org
-In-Reply-To: <20231125200519.1750-1-ddrokosov@salutedevices.com>
-References: <20231125200519.1750-1-ddrokosov@salutedevices.com>
-Subject: Re: [PATCH v5 00/11] leds: aw200xx: several driver updates
-Message-Id: <170142898612.3365188.2222761548333694548.b4-ty@kernel.org>
-Date: Fri, 01 Dec 2023 11:09:46 +0000
+Received: from mail-oa1-x32.google.com (mail-oa1-x32.google.com [IPv6:2001:4860:4864:20::32])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 515EE10DE
+	for <devicetree@vger.kernel.org>; Fri,  1 Dec 2023 03:10:47 -0800 (PST)
+Received: by mail-oa1-x32.google.com with SMTP id 586e51a60fabf-1faf56466baso114261fac.3
+        for <devicetree@vger.kernel.org>; Fri, 01 Dec 2023 03:10:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1701429046; x=1702033846; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=edpCM+r4M4/R7CxGMXVYffuZgPSvVTUvgVhnl4+XzgQ=;
+        b=j4hmhtpwzmbmJ2NftdTgSWUh+c3zsuS0Lm3pkdDmtCWdsWPmmPwTSZ5EM88HYW7GQi
+         8HP7B9x2LaRV39PWxMI/OfE4gVwKdzHb3pR4Cl5gr+HSId3SUc9WEb9As/8jbUmgXP0v
+         MQXsm39CmMM67lSS+7LCn0H0eKJLGhzMPWXohQnnUroMTSP1laefoeGuoq8ldn2ptN1V
+         yOBZ8AX7yWoqnAExM6LsBNeUQoEITe6EwBoxJqgqVG+g+EPp9UxUprLKCojt2+miwsTI
+         YCeDSXHFZ64C0gmjBzmAhruNaOqiaGr/fPzkfF7RPyAYvDCSehf1x8SK4XvTRQvy4Dge
+         WHdw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701429046; x=1702033846;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=edpCM+r4M4/R7CxGMXVYffuZgPSvVTUvgVhnl4+XzgQ=;
+        b=UI0fL1EP8vBbj8+kPSzTxfJUzPawSr3DpTSgR5RuOE4G2S9e9wzmqzoqSvVyG6lT3K
+         bzY1ol+/urb/hEM4n0H2zfeKLxDhlmUa5Fr5HrXAzBpqZrAPGXRdehqaNZXSpqfj1d+M
+         1SroBmUNZVfF3y/wRnU0+/fW52KlRuYHqF2iAvZodnFIzaaqvvbTBfzHmAV1PYANDk+v
+         sF3MN1M5+t/OItEg9AslrB0o41rrsqBzwfrFKYDSpN37heu7pLsL6eidArsuWrALRpnJ
+         hM+XNWXDJ6rVmAhh/nXQfqf072V4ylNTyFStergjI54T5zuZwAgE1ymazN0BBzAjPaqB
+         fx2Q==
+X-Gm-Message-State: AOJu0YxYbFl+kjvknKKgKYknX56w3+WuqA23w4Ciw/jM5mdu613iRfHv
+	TKYQa3uIQeoypAndlkUjKMXs
+X-Google-Smtp-Source: AGHT+IE9hpk7SsuRiq+lhQuZEppdkmL/H6bEvHrCH7Le0ftKkoFdTGYtEmATY9iOeyJwTiuL5WNNmQ==
+X-Received: by 2002:a05:6870:e0c9:b0:1f5:b5ca:438d with SMTP id a9-20020a056870e0c900b001f5b5ca438dmr27377051oab.16.1701429046585;
+        Fri, 01 Dec 2023 03:10:46 -0800 (PST)
+Received: from thinkpad ([117.213.102.92])
+        by smtp.gmail.com with ESMTPSA id s5-20020a0cb305000000b0066d12d1351fsm1385912qve.143.2023.12.01.03.10.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 01 Dec 2023 03:10:46 -0800 (PST)
+Date: Fri, 1 Dec 2023 16:40:33 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>,
+	Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, quic_vbadigan@quicinc.com,
+	quic_ramkri@quicinc.com, quic_nitegupt@quicinc.com,
+	quic_skananth@quicinc.com, quic_vpernami@quicinc.com,
+	quic_parass@quicinc.com
+Subject: Re: [PATCH v3 1/3] dt-bindings: phy: qcom,qmp: Add PCIe
+ qcom,refclk-always-on property
+Message-ID: <20231201111033.GL4009@thinkpad>
+References: <20231127-refclk_always_on-v3-0-26d969fa8f1d@quicinc.com>
+ <20231127-refclk_always_on-v3-1-26d969fa8f1d@quicinc.com>
+ <78815f1b-7390-40de-8afd-ac71806f4051@linaro.org>
+ <24fae40a-453b-b14c-923f-88758a246aa7@quicinc.com>
+ <20231201060716.GJ4009@thinkpad>
+ <166d307e-7d1b-48b5-90db-9b6df01d87c2@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.12.3
+In-Reply-To: <166d307e-7d1b-48b5-90db-9b6df01d87c2@linaro.org>
 
-On Sat, 25 Nov 2023 23:05:08 +0300, Dmitry Rokosov wrote:
-> The following patch series includes several updates for the AW200XX LED
-> driver:
->     - some small fixes and optimizations to the driver implementation:
->       delays, autodimming calculation, disable_locking regmap flag,
->       display_rows calculation in runtime;
->     - fix LED device tree node pattern to accept LED names counting not
->       only from 0 to f;
->     - add missing reg constraints;
->     - support HWEN hardware control, which allows enabling or disabling
->       AW200XX RTL logic from the main SoC using a GPIO pin;
->     - introduce the new AW20108 LED controller, the datasheet for this
->       controller can be found at [1].
+On Fri, Dec 01, 2023 at 09:01:43AM +0100, Krzysztof Kozlowski wrote:
+> On 01/12/2023 07:07, Manivannan Sadhasivam wrote:
+> > On Tue, Nov 28, 2023 at 02:49:18PM +0530, Krishna Chaitanya Chundru wrote:
+> >>
+> >> On 11/28/2023 2:26 PM, Krzysztof Kozlowski wrote:
+> >>> On 27/11/2023 13:13, Krishna chaitanya chundru wrote:
+> >>>> Document qcom,refclk-always-on property which is needed in some platforms
+> >>>> to supply refclk even in PCIe low power states.
+> >>>>
+> >>>> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+> >>>> ---
+> >>>>   .../devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml        | 7 +++++++
+> >>>>   1 file changed, 7 insertions(+)
+> >>>>
+> >>>> diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
+> >>>> index 2c3d6553a7ba..c747c9f35795 100644
+> >>>> --- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
+> >>>> +++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
+> >>>> @@ -93,6 +93,13 @@ properties:
+> >>>>     "#phy-cells":
+> >>>>       const: 0
+> >>>> +  qcom,refclk-always-on:
+> >>>> +    type: boolean
+> >>>> +    description: In some platform where PCIe switch is connected, pcie switch due to some design
+> >>> You received a comment to use proper wrapping: 80. Please implement it.
+> >> I will update this.
+> >>>> +      limitation fails to propage clkreq signal to the host and due to that host will not send
+> >>>> +      refclk, which  results in linkdown in L1.2 or L1.1 exit initiated by EP.
+> >>>> +      This property if set keeps refclk always on even in Low power states.
+> >>> The property name suggests that's the state of hardware - refclk is
+> >>> always on. Description suggests you want to instruct OS to do something.
+> >>>
+> >>> Again, third time (once from Bjorn, once from Dmitry), rephrase property
+> >>> name and description to describe the hardware issue. I see description
+> >>> improved, but not the property name. Again in the end of description you
+> >>
+> >> Both bjorn and Dmitry gave comments to change the description only, and not
+> >> the property name,
+> >>
+> >> correct if I am wrong.
+> >>
+> >>> say what Linux should do. Bindings do not describe Linux OS.
+> >>
+> >> I will remove the last line in the next patch.
+> >>
+> > 
+> > You should name the property as, "qcom,keep-refclk-always-on"
 > 
-> [...]
+> Keep the clock by who? By driver? Then not, property should describe
+> physical phenomena or hardware issue being fixed here, not what driver
+> should do.
+> 
 
-Applied, thanks!
+This property indeed fixes the hardware issue (though in board level) and I see
+a plenty of properties similar to this one instructing the OS to keep some
+resource ON to workaround hardware issues. So they are all wrong?
 
-[01/11] leds: aw200xx: fix write to DIM parameter
-        commit: 785fec3a8daff2957fd55e49cbdfe0a50866fdb7
-[02/11] leds: aw200xx: support HWEN hardware control
-        commit: eabe8239022cf3c75b90d9ee07dcfbbe4e50bcac
-[03/11] dt-bindings: leds: aw200xx: introduce optional enable-gpios property
-        commit: e91899ea3759d04e185721153a036e1a25e315b7
-[04/11] leds: aw200xx: calculate dts property display_rows in the driver
-        commit: 4ccd392c3ea7ceefbee58622e634d4997ef46acc
-[05/11] dt-bindings: leds: aw200xx: remove property "awinic,display-rows"
-        commit: 66d078f105837670c52bb31da29e26ad13bc2923
-[06/11] leds: aw200xx: add delay after software reset
-        commit: aac13e5630d6e081a9f6c5a57e5e6fc1152acca8
-[07/11] leds: aw200xx: enable disable_locking flag in regmap config
-        commit: 851fa70b9b162bbf5b5f5f92fc450633e6b21a3a
-[08/11] leds: aw200xx: improve autodim calculation method
-        commit: 5fcc24b92b43f012cbf430244f0698ff588ec9fc
-[09/11] leds: aw200xx: add support for aw20108 device
-        commit: abc74724d5e714bb3359124f3576d5318828a83e
-[10/11] dt-bindings: leds: awinic,aw200xx: add AW20108 device
-        commit: d6bbe677add2c560ae4aa2f9dab7a19c287e2193
-[11/11] dt-bindings: leds: aw200xx: fix led pattern and add reg constraints
-        commit: 5707a06e5391a4eeaf0c2705f973336537a41c79
+- Mani
 
---
-Lee Jones [李琼斯]
+> 
+> Best regards,
+> Krzysztof
+> 
 
+-- 
+மணிவண்ணன் சதாசிவம்
 
