@@ -1,175 +1,152 @@
-Return-Path: <devicetree+bounces-20762-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20763-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B47DD800CAB
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 14:57:54 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D36CE800CB4
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 14:58:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DA710B211D9
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 13:57:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F23741C21037
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 13:58:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B39CB3BB56;
-	Fri,  1 Dec 2023 13:57:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b="ZHDIx3O3"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4156C3C078;
+	Fri,  1 Dec 2023 13:58:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-x735.google.com (mail-qk1-x735.google.com [IPv6:2607:f8b0:4864:20::735])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7538DCC
-	for <devicetree@vger.kernel.org>; Fri,  1 Dec 2023 05:57:46 -0800 (PST)
-Received: by mail-qk1-x735.google.com with SMTP id af79cd13be357-77d6f853ba0so264873885a.0
-        for <devicetree@vger.kernel.org>; Fri, 01 Dec 2023 05:57:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ziepe.ca; s=google; t=1701439065; x=1702043865; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=w5RfSzjMMhEGY5HPP+VV7KP4PAnFpwToiPE40rmIjTE=;
-        b=ZHDIx3O3JFtKtmYM0wtN1DhovriW2rtgBX/vtkFKLmqvfTNp9tAhcOoybeJPJXY29q
-         kv2+USLr9TWBWMUCZTXiOq9MSCmaoj1j75l+f5l0yMAcUkPt6/1/LY4hcAkVZv/XBb/w
-         hVVjtNPUtURPYvYPS2l/igt4v4Z2MavAYa6U8PLUA2dzR3h7vHSs+80xTEXYfG1Ar0e0
-         5bgBF3cf9CLPoNdMk1iQb76z7opiGIMUGMqqkVERcf3mtcOiaTso86/ddgs33hazprbT
-         7c5EgMR3w/dPJyKZzyWQkbi8T59/eL3EJs91shCTNqXp7XkhbmLWyR/I+5NlFw+SoCq/
-         sCPg==
+Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 954DFCF;
+	Fri,  1 Dec 2023 05:58:27 -0800 (PST)
+Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-5d33574f64eso21260207b3.3;
+        Fri, 01 Dec 2023 05:58:27 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701439065; x=1702043865;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=w5RfSzjMMhEGY5HPP+VV7KP4PAnFpwToiPE40rmIjTE=;
-        b=Cb3TZ37sdqVlrWVwAK78tY6aQep881GspI+XpVq7BxF7dON2BY1UXdZ9booOxgHKN9
-         GDIA3RB0lIEXPreFyiko6Nfc2jiAiZL6jSpOi06zO80CHCS31L03yf2CRAE7jVl4BX8x
-         RAMbs+HuizbQK1k+trApl9dgtDnbvK9mp415LsfO32aNs9XzkZkqT8DkHaLVHfWrnlyH
-         nNc5Ozg8zPf3gNeA2nii6IYODdvln3UHgfUL9mR95erly1u3y/aRW0SnV+rRvUI1aDY+
-         /yFEIhkRTYqTD9A1QdcYXuCQr4uiyz+e0Z0eJo2mqXGMzEb2qYNJX5eiDHTm6lVi/sRp
-         Xy6g==
-X-Gm-Message-State: AOJu0YxfLq45BgR9BYwPzl8EaWBX1VY6YJaP4zPvXd0DehBire18k93U
-	6WA85j3IthMsfUjf4z0mRP5M8g==
-X-Google-Smtp-Source: AGHT+IGiHfUB0BG86D+k/H8bgXmfkHHxfAODJ1IDqy5rd6EVUw0TGcCvkgnXizQa+DzIHgV9yCckKw==
-X-Received: by 2002:a05:620a:29c9:b0:773:c43e:5e73 with SMTP id s9-20020a05620a29c900b00773c43e5e73mr47263709qkp.25.1701439065500;
-        Fri, 01 Dec 2023 05:57:45 -0800 (PST)
-Received: from ziepe.ca (hlfxns017vw-142-134-23-187.dhcp-dynamic.fibreop.ns.bellaliant.net. [142.134.23.187])
-        by smtp.gmail.com with ESMTPSA id vy13-20020a05620a490d00b0077da601f06csm1508858qkn.10.2023.12.01.05.57.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Dec 2023 05:57:44 -0800 (PST)
-Received: from jgg by wakko with local (Exim 4.95)
-	(envelope-from <jgg@ziepe.ca>)
-	id 1r941X-006F8M-UN;
-	Fri, 01 Dec 2023 09:57:43 -0400
-Date: Fri, 1 Dec 2023 09:57:43 -0400
-From: Jason Gunthorpe <jgg@ziepe.ca>
-To: Robin Murphy <robin.murphy@arm.com>
-Cc: Joerg Roedel <joro@8bytes.org>, Christoph Hellwig <hch@lst.de>,
-	Vineet Gupta <vgupta@kernel.org>,
-	Russell King <linux@armlinux.org.uk>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Huacai Chen <chenhuacai@kernel.org>,
-	WANG Xuerui <kernel@xen0n.name>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Hanjun Guo <guohanjun@huawei.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	"K. Y. Srinivasan" <kys@microsoft.com>,
-	Haiyang Zhang <haiyangz@microsoft.com>,
-	Wei Liu <wei.liu@kernel.org>, Dexuan Cui <decui@microsoft.com>,
-	Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
-	David Woodhouse <dwmw2@infradead.org>,
-	Lu Baolu <baolu.lu@linux.intel.com>,
-	Niklas Schnelle <schnelle@linux.ibm.com>,
-	Matthew Rosato <mjrosato@linux.ibm.com>,
-	Gerald Schaefer <gerald.schaefer@linux.ibm.com>,
-	Jean-Philippe Brucker <jean-philippe@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Frank Rowand <frowand.list@gmail.com>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-acpi@vger.kernel.org, iommu@lists.linux.dev,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 0/7] dma-mapping: Clean up arch_setup_dma_ops()
-Message-ID: <20231201135743.GI1394392@ziepe.ca>
-References: <cover.1701268753.git.robin.murphy@arm.com>
- <20231129203642.GO1312390@ziepe.ca>
- <ae27768f-a6fa-4971-b44c-92899a81a2b7@arm.com>
+        d=1e100.net; s=20230601; t=1701439106; x=1702043906;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=++6+OjzDPNE9iBiMEjK/LzWtgvbJm+3E8WxpGVHPw6M=;
+        b=M5ozXlhsW1bKc3Q9d/MbMOPfp4m6POApsNPfDzy9jC9TQ5nnSVLQ8dGnGvPdIWJEPG
+         5gjPm2tQc3M2C9xGyVSJmTMiz5qHC8m/tTfWmzAf53c7UmknxD8cepH1g1xFZSxsIocU
+         Q4q5u8O2uqcL0EwWQ1u1VmF4SocZnFEl9H3sLASHoXyaoTLsMPax2gPTa1JNbguB0J7X
+         Xuli3PbW5fDwKfEBlZxqDCbFzaW1moG2ezoJszC3pSlsBGeyP0VwAedMiTjeanPaRPJ7
+         mKjI2TPDPxRQ89MZMLKbJGutv7LIoT5a6WC9/BK8umwybi7o12a5Dip4Hjy9jJ5uzcFL
+         qUvw==
+X-Gm-Message-State: AOJu0YzgC4blp9pznaeQXWBbcAJOo90KrA9dIFjcc0Rn/1GBMMNv1sWB
+	cnwOTjr1p+FNpPlKQQhj1rguUQueZ/yz2g==
+X-Google-Smtp-Source: AGHT+IG7W8rkMlGoi1YZNYPQPwX4EfbsSkeQk/z4Y1K5UyInFtOxTnYtrxdlgR8iX3nAzTOm83L3MA==
+X-Received: by 2002:a0d:c607:0:b0:5c8:708f:1ea with SMTP id i7-20020a0dc607000000b005c8708f01eamr26684213ywd.32.1701439106674;
+        Fri, 01 Dec 2023 05:58:26 -0800 (PST)
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com. [209.85.128.178])
+        by smtp.gmail.com with ESMTPSA id n127-20020a0dcb85000000b005ccf7fc2197sm90012ywd.24.2023.12.01.05.58.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 01 Dec 2023 05:58:26 -0800 (PST)
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-5d3d0f862f7so12884517b3.0;
+        Fri, 01 Dec 2023 05:58:26 -0800 (PST)
+X-Received: by 2002:a25:660f:0:b0:da0:3d0d:3a18 with SMTP id
+ a15-20020a25660f000000b00da03d0d3a18mr25739065ybc.39.1701439106271; Fri, 01
+ Dec 2023 05:58:26 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ae27768f-a6fa-4971-b44c-92899a81a2b7@arm.com>
+References: <20231201110840.37408-1-biju.das.jz@bp.renesas.com>
+ <20231201110840.37408-6-biju.das.jz@bp.renesas.com> <CAMuHMdXH3VVg0KmC0rtjeb_A_Awj805Mirc4pZu=KDZO9pdZZQ@mail.gmail.com>
+ <TYVPR01MB1127976D50055BD345C7935F28681A@TYVPR01MB11279.jpnprd01.prod.outlook.com>
+In-Reply-To: <TYVPR01MB1127976D50055BD345C7935F28681A@TYVPR01MB11279.jpnprd01.prod.outlook.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 1 Dec 2023 14:58:15 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWjxMA_z-Zwf+WtKFOQRFfU-fF4t6y+AsH0Xrwhy+JqtQ@mail.gmail.com>
+Message-ID: <CAMuHMdWjxMA_z-Zwf+WtKFOQRFfU-fF4t6y+AsH0Xrwhy+JqtQ@mail.gmail.com>
+Subject: Re: [PATCH 5/6] arm64: dts: renesas: rzg2ul-smarc: Enable PMIC and
+ built-in RTC
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, 
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
+	"biju.das.au" <biju.das.au@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Dec 01, 2023 at 01:07:36PM +0000, Robin Murphy wrote:
-> On 29/11/2023 8:36 pm, Jason Gunthorpe wrote:
-> > On Wed, Nov 29, 2023 at 05:42:57PM +0000, Robin Murphy wrote:
-> > > Hi all,
-> > > 
-> > > Prompted by Jason's proposal[1], here's a first step towards truly
-> > > unpicking the dma_configure vs. IOMMU mess. As I commented before, we
-> > > have an awful lot of accumulated cruft and technical debt here making
-> > > things more complicated than they need to be, and we already have hacks
-> > > on top of hacks trying to work around it, so polishing those hacks even
-> > > further is really not a desirable direction of travel. And I do know
-> > > they're hacks, because I wrote most of them and still remember enough of
-> > > the context of the time ;)
-> > 
-> > I quite like this, I was also looking at getting rid of those other
-> > parameters.
-> > 
-> > I wanted to take smaller steps because it is all pretty hairy.
-> > 
-> > One thing that still concerns me is if the FW data restricts the valid
-> > IOVA window that really should be reflected into the reserved ranges
-> > and not just dumped into the struct device for use by the DMA API.
-> > 
-> > Or, perhaps, viof/iommufd should be using the struct device data to
-> > generate some additional reserved ranges?
-> > 
-> > Either way, I would like to see the dma_iommu and the rest of the
-> > subsystem agree on what the valid IOVA ranges actually are.
-> 
-> Note that there is some intentional divergence where iommu-dma reserves
-> IOVAs matching PCI outbound windows because it knows it wants to avoid
-> clashing with potential peer-to-peer addresses and doesn't want to have to
-> get into the details of ACS redirect etc., but we don't expose those as
-> generic reserved regions because they're firmly a property of the PCI host
-> bridge, not of the IOMMU group (and more practically, because we did do so
-> briefly and it made QEMU unhappy). I think there may also have been some
-> degree of conclusion that it's not the IOMMU API's place to get in the way
-> of other domain users trying to do weird P2P stuff if they really want to.
+Hi Biju,
 
-I'm not sure this is the fully correct conclusion - eg if today we
-take a NIC device on a non-ACS topology and run DPDK through VFIO it
-has a chance of failure because some IOVA simply cannot be used by
-DPDK for DMA at all.
+On Fri, Dec 1, 2023 at 2:48=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.com=
+> wrote:
+> > From: Geert Uytterhoeven <geert@linux-m68k.org>
+> > On Fri, Dec 1, 2023 at 12:09=E2=80=AFPM Biju Das <biju.das.jz@bp.renesa=
+s.com>
+> > wrote:
+> > > Enable PMIC DA9062 and the built-in RTC on the RZ/{G2UL,Five} SMARC
+> > > EVK.
+> > >
+> > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> >
+> > Thanks for your patch!
+> >
+> > > --- a/arch/arm64/boot/dts/renesas/rzg2ul-smarc.dtsi
+> > > +++ b/arch/arm64/boot/dts/renesas/rzg2ul-smarc.dtsi
+> > > @@ -23,6 +23,35 @@ &cpu_dai {
+> > >  &i2c0 {
+> > >         clock-frequency =3D <400000>;
+> > >
+> > > +       da9062: pmic@58 {
+> > > +               compatible =3D "dlg,da9062";
+> > > +               reg =3D <0x58>;
+> > > +
+> > > +               da9062_rtc: rtc {
+> > > +                       compatible =3D "dlg,da9062-rtc";
+> > > +               };
+> > > +
+> > > +               da9062_onkey: onkey {
+> > > +                       compatible =3D "dlg,da9062-onkey";
+> > > +                       status =3D "disabled";
+> >
+> > Why is this disabled? This is connected to the power button.
+>
+> I haven't tested this driver. OK I will test and enable it.
+>
+> >
+> > > +               };
+> > > +
+> > > +               watchdog {
+> > > +                       compatible =3D "dlg,da9062-watchdog";
+> > > +                       status =3D "disabled";
+> > > +               };
+> > > +
+> > > +               thermal {
+> > > +                       compatible =3D "dlg,da9062-thermal";
+> > > +                       status =3D "disabled";
+> > > +               };
+> > > +
+> > > +               gpio {
+> > > +                       compatible =3D "dlg,da9062-gpio";
+> > > +                       status =3D "disabled";
+> > > +               };
+> >
+> > Why are these three disabled?
+> > If they are truly unused, you can just drop the nodes instead.
+>
+> If I drop these, I get failed messages(eg: da9062-gpio: Failed to locate =
+of_node [id: -1])
+> for these nodes.
 
-qemu and kvm are a different situation that want different things. Eg
-it would want to identity map the PCI BAR spaces to the IOVA they are
-claiming.
+IC... They are indeed mandatory, but ignored when disabled.
+Hence the subnodes should be made required in the DT bindings.
 
-It should still somehow carve out any other IOVA that is unusable due
-to guest-invisible ACS and reflect it through FW tables into the VM.
+Gr{oetje,eeting}s,
 
-I'm starting to see people build non-ACS systems and want it to work
-with VFIO and I'm a little worried we have been too loose here.
+                        Geert
 
-> bridge and so inherits its restrictions. However I don't recall any
-> conscious decision for inbound windows to only be considered for DMA domain
-> reservations rather than for proper reserved regions - pretty sure that's
-> just a case of that code being added in the place where it seemed to fit
-> best at the time (because hey it's more host bridge windows and we already
-> have a thing for host bridge windows...)
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-Yeah, and I don't think anyone actually cared much..
-
-At least as a step it would be nice if the DMA API only restrictions
-can come out as a special type of reserved region. Then the caller
-could decide if they want to follow them or not. iommufd could provide
-an opt-in API to DPDK that matches DMA API's safe IOVA allocator.
-
-Jason
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
