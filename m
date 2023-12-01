@@ -1,60 +1,42 @@
-Return-Path: <devicetree+bounces-20651-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20653-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EBE48006AE
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 10:19:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 89E068006BB
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 10:23:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E40CE28154D
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 09:19:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 43FF42814C9
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 09:23:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 074241CF86;
-	Fri,  1 Dec 2023 09:19:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D90431CF8A;
+	Fri,  1 Dec 2023 09:23:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pxiTBCZ3"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="LMct2acA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E449F171F
-	for <devicetree@vger.kernel.org>; Fri,  1 Dec 2023 01:19:16 -0800 (PST)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-a00a9c6f1e9so276609466b.3
-        for <devicetree@vger.kernel.org>; Fri, 01 Dec 2023 01:19:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701422355; x=1702027155; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/pUisg/HAFsznbcf9vBzbMFf7OuIqovsaYXwlmUzHgk=;
-        b=pxiTBCZ3qeHgn8GPTC4fdKjCE5DWlljDY5JFvJwHUnPsFITwsFpUmj7MGdjbSL5CGx
-         i5UQbOjhH0nY9nqOKWI8KRGhBfAW8eCiXwcUiaAjA8Dz9Xf18W7BFH5mc4V31m7YezI/
-         +dlK1kI3ktVywC5A3OrwZLyG1nG7fMV5j3VdfnNZgk00MrBwpD7/OEPhJrBOAJKuNYRh
-         EhYq00tTfGF1svezB5dS3YvPEadvCvYB4lsyx9Nh329LcWgbfC1vEOBDgqvmHIZE1UVg
-         R8IiJqWgGRhn+rI6oExLwYrRIgOP9TpJFXr/n5Bx2zdjKcqSAlKSt5OqVHkxHY7UU0Ib
-         FFpw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701422355; x=1702027155;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/pUisg/HAFsznbcf9vBzbMFf7OuIqovsaYXwlmUzHgk=;
-        b=cQW3ZrJmfrOvDvoCwPLpb+n2WtpzGc9i2rWnxdvS5LdRJQ9dbOnvnYgtXsZFEKUtzy
-         FkOP5JYjFDfjmt2OJM40mzTJooj1vGGKo6bPwIMKgPJTDlf8e93CnO/MJ9EDydH79xYv
-         gSK2wRAMVq6gDwxjwgl3gOgQujHyT3ephcPOqeJfl4DxjlFWRBioewGuEpfzsagKTNsp
-         NWvH5VVC8waEqurQTcu5VVWYWTZmSxA5U9Dmm+En+lZdS8c0f+MQ/E35mPJ7sISOVB4/
-         DXciSJRqIElHNSkNrgyygSbPiFnDuttrstEfliZ0McDYP8e7ub/g7ghCjW1ewT71eeGF
-         wJRg==
-X-Gm-Message-State: AOJu0YwQ9Ai1KFjbcBwnMpyGmngGaCNV619D3cWqjVzXGux1/vrv7rWR
-	gFNn95SQguowE4riYUUwS4/2Mg==
-X-Google-Smtp-Source: AGHT+IFUnI7y9x836aG8/Dob2ZnzAntAXzYfxZ08TjINaMW87sr/od+26mi1Ay6w2XLHTzWru2UZ3w==
-X-Received: by 2002:a17:906:44:b0:a19:a19b:789e with SMTP id 4-20020a170906004400b00a19a19b789emr508487ejg.97.1701422355260;
-        Fri, 01 Dec 2023 01:19:15 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.223.109])
-        by smtp.gmail.com with ESMTPSA id ub12-20020a170907c80c00b009d268e3b801sm492032ejc.37.2023.12.01.01.19.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 01 Dec 2023 01:19:14 -0800 (PST)
-Message-ID: <9792147e-da08-4215-94fb-dadbddc23384@linaro.org>
-Date: Fri, 1 Dec 2023 10:19:12 +0100
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFBE7194;
+	Fri,  1 Dec 2023 01:22:59 -0800 (PST)
+Received: from [100.107.97.3] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 03C28660739D;
+	Fri,  1 Dec 2023 09:22:56 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1701422578;
+	bh=QgTeaIFG5TKHQs9edtTeIIGI6iDgYZhlD3cjaCISnnI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=LMct2acAVotYmUk4lB0+USCWpBs96wpATpyINXpvYuk+8xFxydBNdA651Kp4FNd3i
+	 RIPMz4/heGSBMa0I3t/LjN4j1Q8B7Eo5LZSfZ615sdFRwRrhzDHMv4JUMokQTe5PTt
+	 UGvLkbOLW+NCU0AMZLPHISGSVC/52VRWl/YMZ+jA2DXrwHXXGVwWOzsggzba2MwNRk
+	 6Akt3oQGJoVIfam61b/7fW2cRfylS0fuaSRNhyQKB2+mU7ODo31OgAA+VPCk7IUtBw
+	 DfTTfEZ67fCkYMQvOHq/qj2EkvIPoeJpdTgpWxpcBWG9Gx14kcOgGZbIIks7LN+NOc
+	 RWamvAwk80NuA==
+Message-ID: <8250291c-13ef-4072-92d6-f3d7953d6521@collabora.com>
+Date: Fri, 1 Dec 2023 10:22:54 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,91 +44,94 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: renesas: Document preferred compatible
- naming
+Subject: Re: [PATCH 4/4] drm/mediatek: support the DSI0 output on the MT8195
+ VDOSYS0
 Content-Language: en-US
-To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
+To: Michael Walle <mwalle@kernel.org>, Chun-Kuang Hu
+ <chunkuang.hu@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
  Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org
-References: <20231125232821.234631-1-niklas.soderlund+renesas@ragnatech.se>
- <deacc7ea-6fad-47d6-978b-3f639aa5da35@linaro.org>
- <ZWiLTYU_Hj0bl1gn@oden.dyn.berto.se>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <ZWiLTYU_Hj0bl1gn@oden.dyn.berto.se>
-Content-Type: text/plain; charset=UTF-8
+ Conor Dooley <conor+dt@kernel.org>, Chunfeng Yun
+ <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>, Jitao Shi
+ <jitao.shi@mediatek.com>, Xinlei Lee <xinlei.lee@mediatek.com>
+Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org
+References: <20231123133749.2030661-1-mwalle@kernel.org>
+ <20231123133749.2030661-5-mwalle@kernel.org>
+ <2d1bae2239626cb51977bf0803cec602@kernel.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <2d1bae2239626cb51977bf0803cec602@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-On 30/11/2023 14:17, Niklas Söderlund wrote:
+Il 30/11/23 13:47, Michael Walle ha scritto:
+>> With the latest dynamic selection of the output component, we can now
+>> support different outputs. Move current output component into the
+>> dynamic routes array and add the new DSI0 output.
 >>
->>> +      - enum:
->>> +          - renesas,cpg-div6-clock
->>> +          - renesas,cpg-mstp-clocks
->>> +          - renesas,intc-irqpin
->>> +          - renesas,smp-sram
+>> Signed-off-by: Michael Walle <mwalle@kernel.org>
+>> ---
+>>  drivers/gpu/drm/mediatek/mtk_drm_drv.c | 8 +++++++-
+>>  1 file changed, 7 insertions(+), 1 deletion(-)
 >>
->> smp-sram can have new compatibles? I am sorry, but this needs explanation...
+>> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c 
+>> b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+>> index 2b0c35cacbc6..6fa88976376e 100644
+>> --- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+>> +++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+>> @@ -222,7 +222,11 @@ static const unsigned int mt8195_mtk_ddp_main[] = {
+>>      DDP_COMPONENT_DITHER0,
+>>      DDP_COMPONENT_DSC0,
+>>      DDP_COMPONENT_MERGE0,
+>> -    DDP_COMPONENT_DP_INTF0,
 > 
-> The intention is to list SoC agnostic compatibles here, or put another 
-> way false positives to the generic pattern "renesas,.*-.*". So no 
-> "renesas,smp-sram" can't have new compatibles but there might be new 
-> renesas compatible strings that hit the pattern that is not related to a 
-> SoC. Does this make sens?
+> Please disregard this patch (the others are ok). There must gone something
+> wrong during my testing. DDP_COMPONENT_MERGE0 won't work with
+> DDP_COMPONENT_DSI0. If anyone has more insights, I'm all ears.
+> 
 
-Well, now I get the meaning, but I don't find this obvious especially
-considering that contributors many, many times misunderstand "SoC
-agnostic" with "generic is OK". Generic compatible is not OK for the
-SoC. I think it is still the most repeated feedback from me.
+I was *convinced* that the MERGE0 SOUT was connected to DSI0!!!
 
-I hope you will be explaining this for Renesas contributors :)
+...but you're right, here, and thanks for catching that: there's no way to
+get MERGE0 connected to DSI0; if you check in the datasheet for VDO_SEL_IN,
+you can get data from MERGE0 only for DSI*1*, not 0.
 
-Best regards,
-Krzysztof
+The only way is to connect DSC_WRAP0 (DDP_COMPONENT_DSC0 in mtk_drm_drv btw)
+directly to DSI0 (or dither to dsi0)... unless there is a way to change the
+pinmux to invert the pins for DSI0/1?
+
+You could assign the DSI1 controller to the one that is currently DSI0 for you.
+
+That would solve the issue here.
+
+Cheers!
+Angelo
+
+> -michael
+> 
+>> +};
+>> +
+>> +static const struct mtk_drm_route mt8195_mtk_ddp_main_routes[] = {
+>> +    { 0, DDP_COMPONENT_DP_INTF0 },
+>> +    { 0, DDP_COMPONENT_DSI0 },
+>>  };
+>>
+>>  static const unsigned int mt8195_mtk_ddp_ext[] = {
+>> @@ -308,6 +312,8 @@ static const struct mtk_mmsys_driver_data 
+>> mt8192_mmsys_driver_data = {
+>>  static const struct mtk_mmsys_driver_data mt8195_vdosys0_driver_data = {
+>>      .main_path = mt8195_mtk_ddp_main,
+>>      .main_len = ARRAY_SIZE(mt8195_mtk_ddp_main),
+>> +    .conn_routes = mt8195_mtk_ddp_main_routes,
+>> +    .num_conn_routes = ARRAY_SIZE(mt8195_mtk_ddp_main_routes),
+>>      .mmsys_dev_num = 2,
+>>  };
+
 
 
