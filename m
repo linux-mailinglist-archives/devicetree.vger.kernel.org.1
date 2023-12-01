@@ -1,107 +1,126 @@
-Return-Path: <devicetree+bounces-20843-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20844-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B25580103D
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 17:37:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 16FE1801065
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 17:40:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BCFE21C20C50
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 16:36:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 471EA1C20F70
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 16:40:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 053AE4CDEF;
-	Fri,  1 Dec 2023 16:36:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D0F34CDF5;
+	Fri,  1 Dec 2023 16:40:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="olZ1DBNJ"
+	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="Y6JEdGCp";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="quqkS7zf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFC694A985;
-	Fri,  1 Dec 2023 16:36:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3AF63C433C7;
-	Fri,  1 Dec 2023 16:36:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701448618;
-	bh=RnPR+XBq6lWymlucGaXH1Q9fUC0o3QSRY7BPPDl2A/s=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=olZ1DBNJRs1J10iZqvaOwhTBn1G+4W9E1qnGdgYAYiLfukGO13d8GVYduyw5j6ACQ
-	 6WeBCrXycQeMWLa/BuVYKdHaSwubOuB13inZWSqmEvtLr3WSJjsfhInatrFjnDUrBE
-	 ajP3Mw6AUuh3YqU2haz/WbsWPcyiUM+YHTMMpGBtKwf++YKREoS3E+HmiNccP77HQt
-	 PMj2vda64ICsGf3k1xTl3dQjKjKJS4I4JByohsoRJXhmDQtqloq7ByMfm3mNNzsWeW
-	 m53cVJ4+jm9bKy3E9GmjFG9mv4hMEuGZus6/kOBxYxqc7IHLS/GakCTxBH0FW+iNn5
-	 RLY4jh5xt/CqQ==
-Received: from johan by xi.lan with local (Exim 4.96.2)
-	(envelope-from <johan@kernel.org>)
-	id 1r96WD-0003Dg-3C;
-	Fri, 01 Dec 2023 17:37:34 +0100
-Date: Fri, 1 Dec 2023 17:37:33 +0100
-From: Johan Hovold <johan@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Johan Hovold <johan+linaro@kernel.org>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Alessandro Zummo <a.zummo@towertech.it>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: rtc: qcom-pm8xxx: fix inconsistent example
-Message-ID: <ZWoLzTX0zmCOxsVm@hovoldconsulting.com>
-References: <20231130173223.12794-1-johan+linaro@kernel.org>
- <ad96b95a-5f4f-4333-b767-762936932061@linaro.org>
- <ZWmn6uicNIqqSwoE@hovoldconsulting.com>
- <20231201-pursuable-endocrine-1318f4843597@spud>
+Received: from out5-smtp.messagingengine.com (out5-smtp.messagingengine.com [66.111.4.29])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2BC6171F;
+	Fri,  1 Dec 2023 08:39:55 -0800 (PST)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+	by mailout.nyi.internal (Postfix) with ESMTP id B20975C00E3;
+	Fri,  1 Dec 2023 11:39:54 -0500 (EST)
+Received: from imap51 ([10.202.2.101])
+  by compute5.internal (MEProxy); Fri, 01 Dec 2023 11:39:54 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-type:content-type:date:date:from:from:in-reply-to
+	:in-reply-to:message-id:mime-version:references:reply-to:sender
+	:subject:subject:to:to; s=fm3; t=1701448794; x=1701535194; bh=7Y
+	bpojJ95x+YivzTGtWaCT+gyLnu9JP8SfZ7cnDnPXI=; b=Y6JEdGCpnR0RWMt0CR
+	OpDqTKiG88nOaZg6uwk9nk8gWCqID9cftr8FSmUtaALyb6daCt6bWD5eh3ZXeE5r
+	KMGieoLH8ji6Bjy81JpGzNgYl5g6pNzt23fIwmtlXecmPtISffQueRQgK2640cih
+	PtTMmOognnyrEJraAJ0efGcybFhjuMEdWqWf9fd1oecu+VVbbqVKOBSth12KSltR
+	eCKQmdwTLt0R9mu09OtkhGbWyVAonn3kTGFwF9j3OvIyC5NYEiudYnC8kdVGWnRg
+	yP79Qyw71pssnCP4n31Sv5SyhK+Qf/MOBv9KYAUH3IVhOd5tQU0/CPdFDXPB/9gK
+	UC2A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-type:content-type:date:date
+	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:sender:subject
+	:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+	:x-sasl-enc; s=fm1; t=1701448794; x=1701535194; bh=7YbpojJ95x+Yi
+	vzTGtWaCT+gyLnu9JP8SfZ7cnDnPXI=; b=quqkS7zfXJILrSwueJwn0ouQTbnaT
+	/d85z0RfpaEGiDPrFSZBclh2fzPpl7ogafJxVtQLCEiHCF8zooEeWKSIpJIFjTsJ
+	59QPx/++KvuBX9rvLTq2iKTkqRqi05wE74TYeoNoHZFIeIdPGso2MejxLDdfy8+6
+	6xvM1Pch4l7GvA3zOat/4gGDrXjdtPVYwKbVlwH/p9wJoSSBzTIgSEZGkL3r+gqm
+	iEZZhAihGVJhxJFTWr9GDUcdI1Ao7p6QP7G2gPBw1j3AldGLTv0YG1BaxRTICQI0
+	qhSRDSHHZV3n8vLPYau6N+LQ16CLuUKrv8sDhPZCwNbpMCtMI/a/m9q4Q==
+X-ME-Sender: <xms:WgxqZQjdYvtkFmOnrZGhTZRlOhAH7Ockwra5_VmnOgoEpg-cQDSPYA>
+    <xme:WgxqZZBoA9fCaKgaFOoWPNNYnpnaukHrIprwceWSus_tm49fD4dy0VjUMTJYKS7kc
+    13oGH1Ie66Cv7m6_Og>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrudeiledgledvucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
+    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
+    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
+    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
+    hrnhgusegrrhhnuggsrdguvg
+X-ME-Proxy: <xmx:WgxqZYE9hdgetETy7F7lELEk2ATIInlprLvr7cZKRxkP8PyHZIzr8g>
+    <xmx:WgxqZRSCzLtX5L_pG9oFUP-ruARmv8IK1rMrsoErxbfVPESV5PgyJw>
+    <xmx:WgxqZdwepTGKY7GsUvMADoPPqrKcT6Hs0qp-VjENNkGDkw3s2JUmzQ>
+    <xmx:WgxqZTr_akoA1F9cnW6M8OPa20Q3s9JKEwsRSR5d_CAI7bEq705u8Q>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id 06D16B6008F; Fri,  1 Dec 2023 11:39:54 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-1178-geeaf0069a7-fm-20231114.001-geeaf0069
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="ry05RoAL5d6Ievs5"
-Content-Disposition: inline
-In-Reply-To: <20231201-pursuable-endocrine-1318f4843597@spud>
+Message-Id: <59b949a0-5aeb-4f01-8789-cb305513b626@app.fastmail.com>
+In-Reply-To: <20231201160925.3136868-10-peter.griffin@linaro.org>
+References: <20231201160925.3136868-1-peter.griffin@linaro.org>
+ <20231201160925.3136868-10-peter.griffin@linaro.org>
+Date: Fri, 01 Dec 2023 17:39:33 +0100
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Peter Griffin" <peter.griffin@linaro.org>,
+ "Rob Herring" <robh+dt@kernel.org>, krzysztof.kozlowski+dt@linaro.org,
+ "Michael Turquette" <mturquette@baylibre.com>,
+ "Conor Dooley" <conor+dt@kernel.org>, "Stephen Boyd" <sboyd@kernel.org>,
+ "Tomasz Figa" <tomasz.figa@gmail.com>,
+ "Sylwester Nawrocki" <s.nawrocki@samsung.com>,
+ "Linus Walleij" <linus.walleij@linaro.org>,
+ "Wim Van Sebroeck" <wim@linux-watchdog.org>,
+ "Guenter Roeck" <linux@roeck-us.net>,
+ "Catalin Marinas" <catalin.marinas@arm.com>, "Will Deacon" <will@kernel.org>,
+ "Olof Johansson" <olof@lixom.net>,
+ "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+ "Jiri Slaby" <jirislaby@kernel.org>, "Chanwoo Choi" <cw00.choi@samsung.com>,
+ "Alim Akhtar" <alim.akhtar@samsung.com>
+Cc: "Tudor Ambarus" <tudor.ambarus@linaro.org>,
+ =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ "Sam Protsenko" <semen.protsenko@linaro.org>, saravanak@google.com,
+ "William McVicker" <willmcvicker@google.com>, soc@kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+ "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+ linux-watchdog@vger.kernel.org, kernel-team@android.com,
+ linux-serial@vger.kernel.org
+Subject: Re: [PATCH v5 09/20] dt-bindings: serial: samsung: Make samsung,uart-fifosize
+ required property
+Content-Type: text/plain
 
+On Fri, Dec 1, 2023, at 17:09, Peter Griffin wrote:
+> 
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - google,gs101-uart
+> +    then:
+> +      required:
+> +        - samsung,uart-fifosize
+> +
 
---ry05RoAL5d6Ievs5
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Is there a way to reverse the list and make the property
+required for anything that is not explicitly enumerated?
 
-On Fri, Dec 01, 2023 at 04:27:33PM +0000, Conor Dooley wrote:
-> On Fri, Dec 01, 2023 at 10:31:22AM +0100, Johan Hovold wrote:
-
-> > A Fixes tag does not in itself imply that something should be
-> > backported, we have CC-stable tags for that.
->=20
-> IDK, I think at this point every highly active kernel developer should
-> be aware that the stable maintainers backport way more than just what
-> gets explicitly CCed to stable.
-
-I'm quite aware of that, and if one of my patches with a Fixes tag is
-picked up for backporting when it should not I complain loudly.
-
-For this patch, I would not necessarily complain however as the current
-example is misleading.
-
-Johan
-
---ry05RoAL5d6Ievs5
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQQHbPq+cpGvN/peuzMLxc3C7H1lCAUCZWoLyQAKCRALxc3C7H1l
-CGwAAQD4pdhkL7tYkLWSHzoZle5G4pVsi5t0oj4r8gD7HUcCwQD/cP5hu7Utw+ZG
-WSjEUNMapd6fy9dBqslr8+BX+/g39wY=
-=YNXt
------END PGP SIGNATURE-----
-
---ry05RoAL5d6Ievs5--
+      Arnd
 
