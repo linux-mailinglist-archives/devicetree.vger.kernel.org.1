@@ -1,176 +1,81 @@
-Return-Path: <devicetree+bounces-20894-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20895-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AF6D8015C4
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 22:54:00 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A222A80166D
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 23:35:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2EF49281CD4
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 21:53:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5A4FA281C2B
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 22:35:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33EC25A0F7;
-	Fri,  1 Dec 2023 21:53:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XhRR1QKt"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6BD41381;
+	Fri,  1 Dec 2023 22:35:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-x72d.google.com (mail-qk1-x72d.google.com [IPv6:2607:f8b0:4864:20::72d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB412FE
-	for <devicetree@vger.kernel.org>; Fri,  1 Dec 2023 13:53:52 -0800 (PST)
-Received: by mail-qk1-x72d.google.com with SMTP id af79cd13be357-77896da2118so156184485a.1
-        for <devicetree@vger.kernel.org>; Fri, 01 Dec 2023 13:53:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701467632; x=1702072432; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jrHo3xuqedRIfDFM3RFqZlEkD9CY6RqxHH0K+7ZtnxQ=;
-        b=XhRR1QKtxaAz+rb4YpyGexnfr9nolBMLOR/h0cBhuzOq+meIpezzrb6Pva5N1GWoFh
-         P7m/Sh7BI9rfd99TaHw/DT2SRq6ZOVO4iQZfBK12ksIIYMRPSKaNdVe6vGNl+Xf6M7Gj
-         VCQD7rXBEcuzxRWdyBNoJOpG5w6WAU0F9ODsUpTrZzlF2RFOlUikAiR5VojZoaXzKTaU
-         zOFE3I2YLHZqWTkdKemcNFf0pYJ4+uGS/yPhBKZ5311TkXKxVzWxLGl6LqutdXdfEeWO
-         HsDaj4WQ/pJj3jMzclrYj2HGuCbS2AXtuqBq6hvyPyvw/yPmPHx6t6DwPIIks4xEl4SN
-         KvAA==
+Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F31512A;
+	Fri,  1 Dec 2023 14:35:50 -0800 (PST)
+Received: by mail-oi1-f172.google.com with SMTP id 5614622812f47-3b83fc26e4cso685716b6e.2;
+        Fri, 01 Dec 2023 14:35:50 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701467632; x=1702072432;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jrHo3xuqedRIfDFM3RFqZlEkD9CY6RqxHH0K+7ZtnxQ=;
-        b=v7XYf1EwkMXU6PT3cTQZ2aRYTTRk/ZTIhcfAf0ujD3BBB2plWX3PrMo0NW9slDmsx1
-         uQo8WeNVroJy0V4aQf3H5oS22VcWblxToXLZnLJegO+cy7KHBsJ4tEeXMcMiOcnWEJGU
-         CFoa0NC0e6l6XtyvV/6IfqqkqD4+SLa1cSRZwyIboIVqoz+ifNB/MZMb2v3WcXj92VHU
-         rtrHVT/PjHtv/T+0ApzsxVcnaKIL2j5sOXhXsqWdRzXdrrzpP9h1lA/ohfZMaxPBO6Dc
-         l8wiOoFazzMTMgowLD8DS5EcktLyBiEOg8Gpn0e/twlk9MLcQtWeX677l+kUxDzdub4q
-         Ijig==
-X-Gm-Message-State: AOJu0Yy7IXcDbku36VgIufr+nqBHJr6jow/NqLIStQscTzCgIpZe3Ewn
-	PS31y1ODk9dDgHVNEbMv+Glpkw==
-X-Google-Smtp-Source: AGHT+IHTUJmHRh893X18NM3LJCP4XO/vSxZP0oWw/Y9wh8wa4UeH9g8oTwEOYj02IhSJ/5+opO6W7A==
-X-Received: by 2002:a05:620a:8a8a:b0:77e:fba3:9d2d with SMTP id qu10-20020a05620a8a8a00b0077efba39d2dmr137248qkn.145.1701467631830;
-        Fri, 01 Dec 2023 13:53:51 -0800 (PST)
-Received: from [192.168.209.83] (178235187166.dynamic-4-waw-k-2-3-0.vectranet.pl. [178.235.187.166])
-        by smtp.gmail.com with ESMTPSA id j5-20020a05620a288500b0077d8526bcdesm1858880qkp.86.2023.12.01.13.53.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 01 Dec 2023 13:53:51 -0800 (PST)
-Message-ID: <153ba359-fd73-47d8-8c6e-a70e24943bf1@linaro.org>
-Date: Fri, 1 Dec 2023 22:53:45 +0100
+        d=1e100.net; s=20230601; t=1701470149; x=1702074949;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JGJasswkYdLHXOGy4+u7HLtGB7BHJzBO85hkhTW3CI8=;
+        b=uUUAHPQpzd72gmKwGGB66rYxIA0lC8Cgd9oCDiCAHB/4ARpoUswJ3uTnEP3Ijh3oWc
+         2xOM1UngNyjA8Bfq1+wuMYmdnUehYsOqGlQLvYDPwT4h9FA6xvMqXk98rUO3fAqKcKoR
+         Km6BXPzUQaPKNc1bhuyvGrk+V5Tc5r/ViweSA//mtr7TgOo7wBGnK0+isR0WqFDkih83
+         aXsJ/ceenhrHCWMrhh1o0NxmC6Q5fV2Mm7X8eD11BANIwDSI1oXyqOLvYK9MjlFd9EKo
+         7MzWYo2svueBKnytGyiaBRvWb3o2cjbo8WZuN3Fyv2QWaujTVw1R+di50DniR0gvbEht
+         z5MQ==
+X-Gm-Message-State: AOJu0YwL2syo3DLcsdqXO4BGwPLloMuD+Q60lcYR/6Q6LXIyBr9WbTkb
+	3Dg5qsg8nQggVmHjrTrzrA==
+X-Google-Smtp-Source: AGHT+IGbdVZ9bp4Z5dQmi9MZinY+gldCiCs2w/YbnUTBcNdYwZH+IDEP4Ai4qUVO/zvCFjJX2lS4MA==
+X-Received: by 2002:a05:6808:1a81:b0:3b8:a591:73e3 with SMTP id bm1-20020a0568081a8100b003b8a59173e3mr234485oib.42.1701470149476;
+        Fri, 01 Dec 2023 14:35:49 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id fa16-20020a0568082a5000b003b89a0f70f9sm704002oib.19.2023.12.01.14.35.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 01 Dec 2023 14:35:48 -0800 (PST)
+Received: (nullmailer pid 2616442 invoked by uid 1000);
+	Fri, 01 Dec 2023 22:35:47 -0000
+Date: Fri, 1 Dec 2023 16:35:47 -0600
+From: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Andreas Klinger <ak@it-klinger.de>, Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: iio: honeywell,mprls0025pa: drop ref from
+ pressure properties
+Message-ID: <20231201223547.GA2615359-robh@kernel.org>
+References: <20231129111041.26782-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] drm/msm/adreno: Add A305B support
-Content-Language: en-US
-To: Luca Weiss <luca@z3ntu.xyz>, ~postmarketos/upstreaming@lists.sr.ht,
- phone-devel@vger.kernel.org, Rob Clark <robdclark@gmail.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
- freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20231130-msm8226-gpu-v1-0-6bb2f1b29e49@z3ntu.xyz>
- <20231130-msm8226-gpu-v1-2-6bb2f1b29e49@z3ntu.xyz>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20231130-msm8226-gpu-v1-2-6bb2f1b29e49@z3ntu.xyz>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231129111041.26782-1-krzysztof.kozlowski@linaro.org>
 
-On 30.11.2023 21:35, Luca Weiss wrote:
-> Add support for the Adreno 305B GPU that is found in MSM8226(v2) SoC.
-> Previously this was mistakenly claimed to be supported but using wrong
-> a configuration.
+On Wed, Nov 29, 2023 at 12:10:41PM +0100, Krzysztof Kozlowski wrote:
+> The dtschema treats now properties with '-pascal' suffix as standard one
+> and already defines $ref for them, thus the $ref should be dropped from
+> the bindings.
 > 
-> In MSM8226v1 there's also a A305B but with chipid 0x03000510 which
-> should work with the same configuration but due to lack of hardware for
-> testing this is not added.
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
 > ---
->  drivers/gpu/drm/msm/adreno/a3xx_gpu.c      | 15 ++++++++++++---
->  drivers/gpu/drm/msm/adreno/adreno_device.c | 15 +++++++++++----
->  drivers/gpu/drm/msm/adreno/adreno_gpu.h    |  5 +++++
->  3 files changed, 28 insertions(+), 7 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/msm/adreno/a3xx_gpu.c b/drivers/gpu/drm/msm/adreno/a3xx_gpu.c
-> index c86b377f6f0d..5fc29801c4c7 100644
-> --- a/drivers/gpu/drm/msm/adreno/a3xx_gpu.c
-> +++ b/drivers/gpu/drm/msm/adreno/a3xx_gpu.c
-> @@ -134,6 +134,13 @@ static int a3xx_hw_init(struct msm_gpu *gpu)
->  		/* Set up AOOO: */
->  		gpu_write(gpu, REG_A3XX_VBIF_OUT_AXI_AOOO_EN, 0x0000003c);
->  		gpu_write(gpu, REG_A3XX_VBIF_OUT_AXI_AOOO, 0x003c003c);
-> +	} else if (adreno_is_a305b(adreno_gpu)) {
-> +		gpu_write(gpu, REG_A3XX_VBIF_IN_RD_LIM_CONF0, 0x00181818);
-> +		gpu_write(gpu, REG_A3XX_VBIF_IN_WR_LIM_CONF0, 0x00181818);
-> +		gpu_write(gpu, REG_A3XX_VBIF_OUT_RD_LIM_CONF0, 0x00000018);
-> +		gpu_write(gpu, REG_A3XX_VBIF_OUT_WR_LIM_CONF0, 0x00000018);
-> +		gpu_write(gpu, REG_A3XX_VBIF_DDR_OUT_MAX_BURST, 0x00000303);
-> +		gpu_write(gpu, REG_A3XX_VBIF_ROUND_ROBIN_QOS_ARB, 0x0003);
->  	} else if (adreno_is_a306(adreno_gpu)) {
->  		gpu_write(gpu, REG_A3XX_VBIF_ROUND_ROBIN_QOS_ARB, 0x0003);
->  		gpu_write(gpu, REG_A3XX_VBIF_OUT_RD_LIM_CONF0, 0x0000000a);
-> @@ -230,7 +237,9 @@ static int a3xx_hw_init(struct msm_gpu *gpu)
->  	gpu_write(gpu, REG_A3XX_UCHE_CACHE_MODE_CONTROL_REG, 0x00000001);
->  
->  	/* Enable Clock gating: */
-> -	if (adreno_is_a306(adreno_gpu))
-> +	if (adreno_is_a305b(adreno_gpu))
-> +		gpu_write(gpu, REG_A3XX_RBBM_CLOCK_CTL, 0xaaaaaaaa);
-> +	else if (adreno_is_a306(adreno_gpu))
->  		gpu_write(gpu, REG_A3XX_RBBM_CLOCK_CTL, 0xaaaaaaaa);
-||?
+> dtschema change was merged:
+> https://github.com/devicetree-org/dt-schema/commit/2a1708dcf4ff0b25c4ec46304d6d6cc655c3e635
+> but not yet released as new dtschema version.
+> 
+> This change should be applied once new dtschema version is released or
+> Rob says otherwise.
 
-[...]
+I've made a release, so go ahead and apply this.
 
-Otherwise looks in line with msm-3.10
-
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-
-Konrad
+Acked-by: Rob Herring <robh@kernel.org>
 
