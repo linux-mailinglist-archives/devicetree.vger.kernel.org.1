@@ -1,191 +1,157 @@
-Return-Path: <devicetree+bounces-20755-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20754-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21927800C5C
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 14:40:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94FF6800C5B
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 14:40:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB8F4281211
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 13:40:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B387E1C20F09
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 13:40:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E9893AC29;
-	Fri,  1 Dec 2023 13:40:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AE7E38DC2;
+	Fri,  1 Dec 2023 13:40:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="w2NThVV+"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="IAmDk8Mh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-x1135.google.com (mail-yw1-x1135.google.com [IPv6:2607:f8b0:4864:20::1135])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5EFA193
-	for <devicetree@vger.kernel.org>; Fri,  1 Dec 2023 05:40:52 -0800 (PST)
-Received: by mail-yw1-x1135.google.com with SMTP id 00721157ae682-5d3eb2d465cso9552637b3.3
-        for <devicetree@vger.kernel.org>; Fri, 01 Dec 2023 05:40:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701438052; x=1702042852; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qmzD/Pwnj4/GW+eUeoARZQwXmIhab44iqPTcsYVxQKE=;
-        b=w2NThVV+NK/5VkAgg+rbds5EnG9RKAcngCI3bolCmc2vadUlu7HdLRXLA5PDL8mMZE
-         oR3m4v6Q/+xXndfRI4zrPu1VVuYum1rZaWqKgHUSz+CQuluKNoGx1oezAXg6w+bsm1h2
-         v6sVyITClTJFskCFC7nkCop5BM5dxp/ULnAgaV3va+UsTXlGUp8qnOQrxW+l3s+pzp4h
-         lY3vFt3nTGuJ6WdUGDGv93p0/gFYajGa9QMV4HIoiBVK/fBXxXLonfg9/4Iz84fh3FBn
-         spjf7DodlxVSEXBU6YIRlOV0e9zPe7xDmGIZn+yv8z2wkY7v7VFk93KeeVMubxPp5CpU
-         RddA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701438052; x=1702042852;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=qmzD/Pwnj4/GW+eUeoARZQwXmIhab44iqPTcsYVxQKE=;
-        b=fseltWNBmeT+EdErkPlPD33hB/+qIddNuR3x3/pX7wS/VBiMj0vH74CrjDQE973W+R
-         SFLPIhi2NSxmIyPo3Kylaw4d2BE7n8aQ5E6p0P0i0rD9+W55B8eJ4sQLzIiCLYR/E/XS
-         hhi/+sYLsVfhzzRNHMG0DGQ0OlkiUBt8cHQvV7hm1C/jGKojVkSQAdcj1tjl9AyQV/2z
-         dT7SM/slPBNdFUBrVtPHZxbEqCpI6drE+oZbHu9i+sCxr2fQC18L6wfjTRnRivU/pkG6
-         s/tvqceBG+hvc/aIpmcKyAbdd31bHq5IVBO44c/zfPoj/wtCGAcFWFEgNI95xKoiEkBK
-         apEw==
-X-Gm-Message-State: AOJu0YzEP9Jfkane6ZDOZjEJvZhbm0vzIicv9pOK3O0B6fnBluTw2G9z
-	+38PZcJICMIU8+L8Htepp3jcgSrD3npKlk/tswQEvg==
-X-Google-Smtp-Source: AGHT+IHXo+ZspGO/+lcMWMYum6v8pXufI+NXWF3lLZalGuzPJDUc8Zv1kLb0t1FNv4AxtO7QzbUvP7DfFHh5xkyJ/3E=
-X-Received: by 2002:a81:4322:0:b0:5d1:d1de:e8eb with SMTP id
- q34-20020a814322000000b005d1d1dee8ebmr11585906ywa.18.1701438052021; Fri, 01
- Dec 2023 05:40:52 -0800 (PST)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 482A710F8;
+	Fri,  1 Dec 2023 05:40:49 -0800 (PST)
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3B1BHMNS020177;
+	Fri, 1 Dec 2023 13:40:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=CkGWBcHneCmd2qfceAP+MTCrLIRQFrXItDvan7l6pD0=;
+ b=IAmDk8MhLrDXPneX6S98BKEa7zFVYg2QLHNqI5X8Vt99l0zsMOoUVPv1i83bVq2GCtmV
+ U57wihOY3LIBlTX/C/1/5BEnnk0PSHpUzADqCVlb0Aiief3FdL0vFvJTdXQgQm5tZHE2
+ oLMIV6BnLMHb5ifYoBjnjGkjTEsW8ftxdFP7aegfU1UHemMGT8AHcFB52zu+K0SH2PV9
+ jXhfAQhjCReLeFk+OELIpm6ol/8JqBa2akis+pss4LPuRKpdYcfzIuIx93YdIH+IYwc7
+ 2oBnvlzHcz14mZopR+GlhNDig1F9wFqfEkNfwVlA8hZAhRA11fMgijbmU4S10Oo7/lPa Fg== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uq3r2htu7-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 01 Dec 2023 13:40:45 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3B1DeiSi016470
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 1 Dec 2023 13:40:44 GMT
+Received: from [10.216.10.184] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 1 Dec
+ 2023 05:40:41 -0800
+Message-ID: <93419ba3-851c-48ab-828d-0d68b2cf45d4@quicinc.com>
+Date: Fri, 1 Dec 2023 19:10:40 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231124-ltc4282-support-v2-0-952bf926f83c@analog.com>
- <20231124-ltc4282-support-v2-2-952bf926f83c@analog.com> <CACRpkdaksfS4WLNQ6ohauAPq3z2LPG2uF37_jWtm0brQHaDtNw@mail.gmail.com>
- <6384831c05b8ceeaf4a16cf9229770252989b762.camel@gmail.com>
- <CACRpkdZr6TdQCLy73Yx2RdMgQifd67remdxENBKYx3UvEMm87A@mail.gmail.com>
- <971eb35068639ec404669ea5320c8183ea71a7d0.camel@gmail.com>
- <ZWiP3i80KnVk9qyx@smile.fi.intel.com> <a4bd59df0c5bc1be5d0d6f11b968fd61a59ee2e0.camel@gmail.com>
- <CACRpkdYz+qi42Pz8CgeWybksC0edaVux6rcEhwzjDWnWe9Jr1g@mail.gmail.com> <61a8f54835c10db7a9c650ee2e3706b47382c634.camel@gmail.com>
-In-Reply-To: <61a8f54835c10db7a9c650ee2e3706b47382c634.camel@gmail.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Fri, 1 Dec 2023 14:40:39 +0100
-Message-ID: <CACRpkda55HzPqus5KR-t=xEBkkdND5kYZj1sHdxK+j6QwDUPRg@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] hwmon: ltc4282: add support for the LTC4282 chip
-To: =?UTF-8?B?TnVubyBTw6E=?= <noname.nuno@gmail.com>
-Cc: Andy Shevchenko <andy@kernel.org>, nuno.sa@analog.com, linux-hwmon@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-doc@vger.kernel.org, 
-	Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Corbet <corbet@lwn.net>, Bartosz Golaszewski <brgl@bgdev.pl>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: ipq5018: add few more reserved memory
+ regions
+Content-Language: en-US
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20231025-ipq5018-misc-v1-1-7d14fde97fe7@quicinc.com>
+From: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
+In-Reply-To: <20231025-ipq5018-misc-v1-1-7d14fde97fe7@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: h_MCj--EuQUd_TuhAPJTo5VDvwjdkbA_
+X-Proofpoint-ORIG-GUID: h_MCj--EuQUd_TuhAPJTo5VDvwjdkbA_
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-01_11,2023-11-30_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 clxscore=1015
+ malwarescore=0 lowpriorityscore=0 suspectscore=0 adultscore=0
+ mlxlogscore=631 bulkscore=0 spamscore=0 priorityscore=1501 mlxscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2311060000 definitions=main-2312010093
 
-On Fri, Dec 1, 2023 at 1:34=E2=80=AFPM Nuno S=C3=A1 <noname.nuno@gmail.com>=
- wrote:
-> On Thu, 2023-11-30 at 21:15 +0100, Linus Walleij wrote:
 
-> I did not used libgpiod but I did tested it with gpio-sysfs. Well, I coul=
-d
-> effectively see the pull down behaviour but since my eval board has no pu=
-ll-ups I
-> could not drive the line high.
 
-libgpiod has the upside of offering you to set the pull down and open
-drain behaviour from userspace.
+On 10/25/2023 10:12 PM, Kathiravan Thirumoorthy wrote:
+> Like all other IPQ SoCs, bootloader will collect the system RAM contents
+> upon crash for the post morterm analysis. If we don't reserve the memory
+> region used by bootloader, obviously linux will consume it and upon next
+> boot on crash, bootloader will be loaded in the same region, which will
+> lead to loose some of the data, sometimes we may miss out critical
+> information. So lets reserve the region used by the bootloader.
+> 
+> Similarly SBL copies some data into the reserved region and it will be
+> used in the crash scenario. So reserve 1MB for SBL as well.
+> 
+> While at it, enable the SMEM support along with TCSR mutex.
 
-> > The gpiolib framework assumes we can do open drain emulation by
-> > setting lines as input. It is used as fallback unless the hardware has
-> > an explicit open drain setting.
->
-> Yeah, I did look at that after you pointed that out. There's just somethi=
-ng I'm still
-> not getting. This HW has no explicit open drain setting because open drai=
-n is all
-> that it is. So, I guess we could just specify the flag in devicetree so g=
-piolib could
-> use the emulation
-> but I wonder how would we have things in case we have the HW setup
-> to drive the pin high (so having this as GPOs)?
 
-If another device tree node uses:
+Gentle Reminder...
 
-foo-gpios =3D <&gpio0 5 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
-
-The result will be that gpiolib will emulate open drain.
-
-From userspace libgpiod can do the same request.
-
-> > > Also got me thinking if a gpi vs gpo devicetree property would make s=
-ense. But I
-> > > would likely leave it more generic/relaxed for now (even though I thi=
-nk you would
-> > > need to be creative and actually use more HW to have the possibility =
-of using
-> > > these
-> > > pins as GPIs and GPOs at the same time).
-> >
-> > We don't define that in the device tree currently, we just make the dri=
-ver
-> > not support output on input-only pins and vice versa, by returning erro=
-r
-> > codes on the .set_direction() callbacks.
->
-> I see, but in this case, the pins could be outputs depending on the HW se=
-tup but
-> there's no way for us to know that in the driver.
-
-We just specify the line in the device tree, and we just use it as
-intended in the
-driver, if it is present, whether that is as input or output.
-
-We do not try to over-protect users from misusing GPIO lines that have just
-one possible (electronic defined) mode. It would be over-engineering IMO.
-
-> And given the fact that (I think)
-> it's highly unlikely for pins like this to ever be GPIs and GPOs at the s=
-ame time, I
-> brought the devicetree property to define input and output only. So, roug=
-hly, what I
-> have in mind now for the chip is;
->
-> .set_config() -> with PULL_DOWN and HIGH_IMPEDANCE support
-> .direction_input() -> This is important for gpio1 where we do have an hw =
-setting to
-> set the direction. On the other pins I was thinking in just forcing high-=
-z. Or maybe
-> can I just rely on gpio_set_bias()?
-
-No just write some default set-up into the registers, that's fine.
-Or leave the power-on defaults.
-
-> .direction_ouput() -> Would only matter for gpio1
-
-The just return an error code for any other GPIO where this is called.
-
-> .get/set_value() -> And in this case we just assume that high value might=
- or might
-> not be possible (depending on the hw setup). Note that reading the pin st=
-ate is
-> always possible.
-
-If a pins .direction_output() fails, .set_value() will not be called
-on it either.
-
-> This means that I assume we can have both directions but that is not real=
-ly case and
-> one needs to know what it is doing :). Or in cases like this, we just ign=
-ore the
-> possibility of having GPO's and we let gpiolib do the emulation?
->
-> Sounds reasonable or not really how I should handle this open-drain only =
-pins?
-
-Open drain-only pins would be pins that can be set to electric LOW (grounde=
-d)
-or High-Z. Is this what we have?
-
-That's indeed a bit of an oddity...
-
-If you implement .set_config and handle PIN_CONFIG_DRIVE_OPEN_DRAIN
-for these lines then I think gpiolib will do the right thing for you.
-
-Yours,
-Linus Walleij
+> 
+> Signed-off-by: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
+> ---
+>   arch/arm64/boot/dts/qcom/ipq5018.dtsi | 24 ++++++++++++++++++++++++
+>   1 file changed, 24 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/ipq5018.dtsi b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
+> index 0b739077ed70..6fbdac7a73f5 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq5018.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
+> @@ -82,6 +82,24 @@ reserved-memory {
+>   		#size-cells = <2>;
+>   		ranges;
+>   
+> +		bootloader@4a800000 {
+> +			reg = <0x0 0x4a800000 0x0 0x200000>;
+> +			no-map;
+> +		};
+> +
+> +		sbl@4aa00000 {
+> +			reg = <0x0 0x4aa00000 0x0 0x100000>;
+> +			no-map;
+> +		};
+> +
+> +		smem@4ab00000 {
+> +			compatible = "qcom,smem";
+> +			reg = <0x0 0x4ab00000 0x0 0x100000>;
+> +			no-map;
+> +
+> +			hwlocks = <&tcsr_mutex 3>;
+> +		};
+> +
+>   		tz_region: tz@4ac00000 {
+>   			reg = <0x0 0x4ac00000 0x0 0x200000>;
+>   			no-map;
+> @@ -142,6 +160,12 @@ gcc: clock-controller@1800000 {
+>   			#power-domain-cells = <1>;
+>   		};
+>   
+> +		tcsr_mutex: hwlock@1905000 {
+> +			compatible = "qcom,tcsr-mutex";
+> +			reg = <0x01905000 0x20000>;
+> +			#hwlock-cells = <1>;
+> +		};
+> +
+>   		sdhc_1: mmc@7804000 {
+>   			compatible = "qcom,ipq5018-sdhci", "qcom,sdhci-msm-v5";
+>   			reg = <0x7804000 0x1000>;
+> 
+> ---
+> base-commit: fe1998aa935b44ef873193c0772c43bce74f17dc
+> change-id: 20231025-ipq5018-misc-414b32eed881
+> 
+> Best regards,
 
