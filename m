@@ -1,571 +1,290 @@
-Return-Path: <devicetree+bounces-20871-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20875-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5345801250
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 19:10:52 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C552B80125F
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 19:14:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D75731C20A31
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 18:10:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7AC8C2819B8
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 18:14:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 024FB4EB51;
-	Fri,  1 Dec 2023 18:10:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A2C34F219;
+	Fri,  1 Dec 2023 18:14:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="Kbit95VA"
+	dkim=pass (1024-bit key) header.d=mailoo.org header.i=@mailoo.org header.b="VzgnDh5c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2044.outbound.protection.outlook.com [40.107.223.44])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0452197;
-	Fri,  1 Dec 2023 10:10:41 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ftgmgVscezrWE+u8oVEcNvG/+vzcseguL6FdX3oAe/nZW5XmWgyK91EghCZUFWnoz0skMvfzzVQQ8460WEdSyiUK0pK08ff6zn9WGOQoqxMFahCiTz0zgvjFxog0dEZmuEDm1jT31sKe1alEkjxXyForIz2uDWYWHdVNC/uT3e4nVOwQlHkvIjedKE4M+nxHiM6gVvI0QxqH5CtIoyyTNbVSLkFENWG1/FlQqUAaO5IjZZcDu5dqq+hmsMpcZjDW3j6cF81poLwwOi5bWkvfk5Cf05A2vL53ZzVXm0soG5WHS+L7qvuwsQvQHBBOSaxPrS2tsfyIzcnbXIXlWdglGQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=c6VMEESb+fJeWIrOX6bLVwqg4HS5tXTX3avrJBfDZHA=;
- b=H5ZUgp2QvA2epxOm5mp3OdqD4jPKx7iZkjiDVZk2QdYwFxlCAGS1sVQjoaDT+IPRilavD0By7P71aa2q865ZrtIMainiNB/Ls1dUojipukfhGCbKGSyzhMIUAD9qfiffZbKAVCiVvrXb2ohceugWOBXNKQWTrNGw7cnDwyVhwcDyU5I49J/ofbyuDfPRR2S1nXcdi/K9UG/u5HdynSyf/EYoAwamFqkmbOBwqk8lW7Ce9o/3WPjGL3UMrvui9508luf67nSnyWohVGUkxWD74UNoki1AA7ihGvkWnvmiMJvOwLzdn7BlikXPwzaZ/oWF3jWU4wrR8eTbSBXdhS+SPQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=c6VMEESb+fJeWIrOX6bLVwqg4HS5tXTX3avrJBfDZHA=;
- b=Kbit95VA/M5njRktZOstBP0oCh8Di9uu+iWryaxhJ4mLt4A1PIJD3p92DqZPI8XfUGK1MdAlkp/PfNIPjXR63l4WMgNRQ1YhpUUCqWw2PciLVYlgpd0PpDqU0te3vvsPBJoEOWscpUDX9tNXQ+dVKCzP73hhQoRJprVFa/zVrXo=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BY5PR12MB3683.namprd12.prod.outlook.com (2603:10b6:a03:1a5::16)
- by DS0PR12MB8272.namprd12.prod.outlook.com (2603:10b6:8:fc::7) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7046.27; Fri, 1 Dec 2023 18:10:39 +0000
-Received: from BY5PR12MB3683.namprd12.prod.outlook.com
- ([fe80::dacc:66a0:6923:a5e]) by BY5PR12MB3683.namprd12.prod.outlook.com
- ([fe80::dacc:66a0:6923:a5e%4]) with mapi id 15.20.7046.027; Fri, 1 Dec 2023
- 18:10:39 +0000
-Message-ID: <ea2edc6e-6655-47f8-8b6d-242f5a0ef804@amd.com>
-Date: Fri, 1 Dec 2023 12:10:35 -0600
-User-Agent: Mozilla Thunderbird Beta
-Subject: Re: [PATCH v7 3/4] remoteproc: zynqmp: add pm domains support
-To: Mathieu Poirier <mathieu.poirier@linaro.org>
-Cc: andersson@kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- michal.simek@amd.com, ben.levinsky@amd.com,
- linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20231117174238.1876655-1-tanmay.shah@amd.com>
- <20231117174238.1876655-4-tanmay.shah@amd.com> <ZV02P3bHEhPLQHBo@p14s>
- <93487d3c-c324-4b9b-8b25-0b4ea52237b4@amd.com> <ZV+V6V2sEWgsqngk@p14s>
- <a75b22c1-66e3-4fce-ae64-de79e73f3cfa@amd.com> <ZWdwl/8LC2Nn+vCq@p14s>
-Content-Language: en-US
-From: Tanmay Shah <tanmay.shah@amd.com>
-In-Reply-To: <ZWdwl/8LC2Nn+vCq@p14s>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: DS7PR03CA0012.namprd03.prod.outlook.com
- (2603:10b6:5:3b8::17) To BY5PR12MB3683.namprd12.prod.outlook.com
- (2603:10b6:a03:1a5::16)
+Received: from mailo.com (msg-1.mailo.com [213.182.54.11])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3F93115;
+	Fri,  1 Dec 2023 10:14:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailoo.org; s=mailo;
+	t=1701454445; bh=LBso1uZhHt0uj5YhUuRR61vXVMULnFH6NsONGw2NEpk=;
+	h=X-EA-Auth:From:To:Cc:Subject:Date:Message-ID:X-Mailer:
+	 MIME-Version:Content-Transfer-Encoding;
+	b=VzgnDh5cI26kRDOulJEMi02YIIyNrzJ3ySeNexSc/p1u7r2U4dwxJ31HIWRuhaFQD
+	 ZaQM6REfkb/qpTcOW0/PXM9B/cFAwuKpUX3648ga17RiHjCgDtIsYhdJ+xiL5qEQ43
+	 44RI3fMMA/BAf/vGhC+cmfin6YfC8T4hKmBELb+U=
+Received: by b221-6.in.mailobj.net [192.168.90.26] with ESMTP
+	via ip-22.mailoo.org [213.182.54.22]
+	Fri,  1 Dec 2023 19:14:05 +0100 (CET)
+X-EA-Auth: wNN2j8v31ubmgWDts7TwNENjNsL7Af2Gz0y4d8MH0A1gYp9Tuc3v3G/ajOExFuYGjL6GItXot7p09v0A44vJjZemqAufFNdp3DcCh2bFGbs=
+From: Vincent Knecht <vincent.knecht@mailoo.org>
+To: Tianshu Qiu <tian.shu.qiu@intel.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Yassine Oudjana <y.oudjana@protonmail.com>,
+	linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Vincent Knecht <vincent.knecht@mailoo.org>
+Subject: [PATCH v2 1/3] media: i2c: ak7375: Prepare for supporting another chip
+Date: Fri,  1 Dec 2023 19:13:48 +0100
+Message-ID: <20231201181350.26454-1-vincent.knecht@mailoo.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BY5PR12MB3683:EE_|DS0PR12MB8272:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6c0235ff-5611-44a1-dc57-08dbf298d2bf
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	dwa/XSJmf72OblEVk7F2tQecamctlOv3dCOyfTneP1o3K87rlxHz+hfvFwfs/Q+4j3JRpqOMgXKOQv06Bgvigjp6J5aVyaYT9pk8QwtY3D6+UNjGMwfBBsrNmXKfL9u2wfLlfOR5cP9ZJnm8ofVbXWZCsSvFb913466zgA+plgqZaLHcpQ64ydf1ClL9XAIUwqXRPQxgA14jV78UmxYngkAEUk9gicf10ijC5604mUM1ga6oyCOM6TAsINZV8lJbQoGqik7o6F7/x5OgxUyIBDUac7IG8tI9hySoOSYEO6TP6gaXWeVePgFKjUTb+pbMGoE1L93QhC8OcrAl5QgEm13xEUlG94ILtl7/XHPaWmI5tpbDoVncJntH1/4rE5/RQRyBVCjRXEgS6KlumAXYzgzZMFqrHAPg1YeHDeEFA3Frm9zNxD8YRYXAcW6sFUiXCx5gpQlrgJwQnOU/x/iYMRKeBwfP8SYNzuc1FXQ6a/ZJ/6G7iF3WZx3DCfXrgBfOZJjCyvyP7Yxn8lpePrh2N5a5Q2xfHWXbf8Ys0Qy1E1PkOjKZSWnAktJXr0WA3ZaHBqug+uU1YforJXqnI//Qbn8yVhJXh+uh+q0+RhbNa3ZI+cWaXA9hQ4+0W4WgLCOpVVSdNQ/q6yi5jMwJ2d8Kyg==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR12MB3683.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(39860400002)(366004)(376002)(346002)(396003)(230922051799003)(186009)(64100799003)(1800799012)(451199024)(86362001)(31696002)(38100700002)(36756003)(6486002)(478600001)(6666004)(316002)(66946007)(66556008)(66476007)(6916009)(41300700001)(26005)(2616005)(6512007)(6506007)(53546011)(5660300002)(44832011)(30864003)(4326008)(8936002)(8676002)(31686004)(2906002)(83380400001)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?alRWNHdwcDZ3d3g3WWxDVXpOaEt0cEJRK3ZMMzl6WW85alZUdjd1N1VQYjV0?=
- =?utf-8?B?OXZValo4aTRpSTZtbThqUnRGUFhUalFpdng5YittR2tuSUdFeGhZRndNZzBR?=
- =?utf-8?B?cExuMVBhMkZEQWkwdStDcjIxLzloL1NNaFJ4SWdkZTBKWWFBakFJb2VYVUVC?=
- =?utf-8?B?UDQ1M0Y5MlpXdGcxMHlzMFlDZmJpTnA0SzN2NEFpMWI0RFQxVWdvWjZoUFQ4?=
- =?utf-8?B?SWZscncwdnNrcU1EOURBeUhKaWtKd0RBUkFUY29nSmQ2bVQvcVlGdU5yQTBv?=
- =?utf-8?B?OS8ySjNOY05DUlRIRXpwVnVaT3pibHQ4N3cwNEcrVGxGWGt0MDk1em9LcXB5?=
- =?utf-8?B?cTRIMTJWZW4vOWFyYVZ5MlQxWCthNHdrVDhPTFFLbHc0M0tTUm5rcENWTVZ3?=
- =?utf-8?B?NU1MWVhTOGdLaUZQRk5UQTN5ZTJXZUI1Tm1PN0ZBMWhqNTVmTlg0U0RjRFdC?=
- =?utf-8?B?WFFrQWNMajlYMlBRd2doejBVOHNPbkF1WWZPMEhKQVJNVzlVNm43OUZna3hp?=
- =?utf-8?B?cURLN3hvdXdSRVhFOWNhSHFSWDFIUWVUZHFvQlF0SnVJTktTOFBOdGxsUjkr?=
- =?utf-8?B?UU1sekN4aDcyWnAxUnlpcHBkMmpiNnp3QThOSXRjQ0dRVm9mVFNENWtTK2V0?=
- =?utf-8?B?VEtCcDY1ZTFiZ3E0enVsUW9uSGhKWlUwcVZBOFczRUh1ejM5VitTeUFuc09C?=
- =?utf-8?B?UTdvVnlXYVp6Q3duT1lQTm9WTnc4YUNtWGRQQmhwMWJoSmxoS2ZCWTJtcXdO?=
- =?utf-8?B?MlNEL2pCdWxTMkJzQUVPQ1JIdVIyOHhFUUExYy9QalBSdEoyMGcxUHBVN2pY?=
- =?utf-8?B?a0VvWFJNdm40MEo1d3NWSGtWU0Q5RXVVdlE5aW1YWDI5SzZWQnBKTGJONGI3?=
- =?utf-8?B?VXkwdnFjNzlwT05UL1hVQlNBc2tyV2dxMXk4S01KRE5LTHZqODhXbmhrN3cz?=
- =?utf-8?B?MFU1NmdtVy9rY1oyZGJqOFdYNGZpM2RDWUJNMnZHNDRjQTMzclVZd0VpQytX?=
- =?utf-8?B?WUNWS08raVQvN01DeE9BUlBwL3lyUGJUVEpZN09QVU5nQU1MNjFJNTZwMTZF?=
- =?utf-8?B?ekZiVnZQMXhNM3lKWUVZeS90UXp1TVJLSzlvdDArQkxpNTlVM0I3OC90N2Iv?=
- =?utf-8?B?b3E1VldrYkNVQ0dIM3pLemVvTlhaREpXK1lPWnRIZ3B6NzE1eWN4d2FNQ0RX?=
- =?utf-8?B?cnMrNFJvYTljZElnMGdVOEIvdlJUNEoxakZLbFk3K0I3cVNEcEFNNnBRWFNW?=
- =?utf-8?B?ZUdmZkJUdmwwSWFUMjF0ZzF1MVAwUEZrZTEyc3JmeDdGaXZWVHVzQURnWmtw?=
- =?utf-8?B?N0RkY1phQTJRR051MzVxVmlGZWFjemZRc1lqdUY2LzNLaUZTaWUvTFgva09O?=
- =?utf-8?B?MG9uaHIyTXV1TytSekVaelkzbDNkK2RiSGk5bnhRWW1Ic0llVHdhRHdZWWsy?=
- =?utf-8?B?a2haWktIbEFSYnJjNFhsM0lzQjNLNG9GRTVvU2E0OVRyRTZFWWpUaXNqNWJl?=
- =?utf-8?B?VUFzQ3lBN2hMY3ZLWTJTUXFTZEN3ZXdHZzg2MlBmUEFoOUVicjcrYlBUOHYv?=
- =?utf-8?B?U3BIcC9QdjY1ZUQrWnR3dlVSbXBJbW4zT0FZVERTMC91ejdndWRZMDAwc21E?=
- =?utf-8?B?V0pWVnBmZElLUnVtYmRTalZkckVSQko2OTJMK2hxbFhzYkVTNTkwZTk4Zkp6?=
- =?utf-8?B?UFBLd2UvOHVhQUloR2Y0TWhPVjMraElQMTFBcS90Smp6NHlmM2dvKzN3VkhS?=
- =?utf-8?B?TlMyVUh4bVNtKzR4c3ZJckFMWGRmbm0rRk5vcEFoYkhsaG82MW9VNzFnN3ph?=
- =?utf-8?B?c1c0Y3RYYWJvNXFZOURSUlJJSFhvdk83ZHkwWS9QeHo0eXFlWko2NnZ3bkxh?=
- =?utf-8?B?QitXc1lDeDZ4NWtsMlRzem5BZVBKUTdVeFU0cCswbkN5M2VnUEp5Z3Rhem9j?=
- =?utf-8?B?YS9pUnk0Mmo3TEUvcS8yQ0JJOXBmRVROZWErOHFOM2VpMHpOS2F3UkJxNkQx?=
- =?utf-8?B?T0RRQUV6NTZ6ZDI5SmxITEZyaUZWVmIrMlE1TTdieG9NWEpydXVSK1FiWi90?=
- =?utf-8?B?TjZrQUJSWi85V256UFMyd05FMURlcHUzU3BwaU5BdE9nZ3h0bnpLQXNQOHhH?=
- =?utf-8?Q?JCCT0Ugq11s3FX7LjxpK2VsJB?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6c0235ff-5611-44a1-dc57-08dbf298d2bf
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR12MB3683.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Dec 2023 18:10:39.0095
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: JFXzl7y1y5KdsuBdg21j1S8V/JjZ5r9AJKJcmUVf5Awe+FUmTpBDqJcvGDzYcPWr
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8272
+Content-Transfer-Encoding: 8bit
+
+In view of adding support for at least one other chip,
+change the driver to move chip-specific properties and
+values in a common structure.
+
+No functional changes.
+
+Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+---
+v2: no change
+---
+ drivers/media/i2c/ak7375.c | 110 ++++++++++++++++++++++---------------
+ 1 file changed, 66 insertions(+), 44 deletions(-)
+
+diff --git a/drivers/media/i2c/ak7375.c b/drivers/media/i2c/ak7375.c
+index 463b51d46320..3a14eff41531 100644
+--- a/drivers/media/i2c/ak7375.c
++++ b/drivers/media/i2c/ak7375.c
+@@ -10,30 +10,45 @@
+ #include <media/v4l2-ctrls.h>
+ #include <media/v4l2-device.h>
+ 
+-#define AK7375_MAX_FOCUS_POS	4095
+-/*
+- * This sets the minimum granularity for the focus positions.
+- * A value of 1 gives maximum accuracy for a desired focus position
+- */
+-#define AK7375_FOCUS_STEPS	1
+-/*
+- * This acts as the minimum granularity of lens movement.
+- * Keep this value power of 2, so the control steps can be
+- * uniformly adjusted for gradual lens movement, with desired
+- * number of control steps.
+- */
+-#define AK7375_CTRL_STEPS	64
+-#define AK7375_CTRL_DELAY_US	1000
+-/*
+- * The vcm may take up 10 ms (tDELAY) to power on and start taking
+- * I2C messages. Based on AK7371 datasheet.
+- */
+-#define AK7375_POWER_DELAY_US	10000
++struct ak73xx_chipdef {
++	u8 reg_position;
++	u8 reg_cont;
++	u8 shift_pos;
++	u8 mode_active;
++	u8 mode_standby;
++	u16 focus_pos_max;
++	/*
++	 * This sets the minimum granularity for the focus positions.
++	 * A value of 1 gives maximum accuracy for a desired focus position
++	 */
++	u16 focus_steps;
++	/*
++	 * This acts as the minimum granularity of lens movement.
++	 * Keep this value power of 2, so the control steps can be
++	 * uniformly adjusted for gradual lens movement, with desired
++	 * number of control steps.
++	 */
++	u16 ctrl_steps;
++	u16 ctrl_delay_us;
++	/*
++	 * The vcm may take time (tDELAY) to power on and start taking
++	 * I2C messages.
++	 */
++	u16 power_delay_us;
++};
+ 
+-#define AK7375_REG_POSITION	0x0
+-#define AK7375_REG_CONT		0x2
+-#define AK7375_MODE_ACTIVE	0x0
+-#define AK7375_MODE_STANDBY	0x40
++static const struct ak73xx_chipdef ak7375_cdef = {
++	.reg_position	= 0x0,
++	.reg_cont	= 0x2,
++	.shift_pos	= 4,	/* 12 bits position values, need to << 4 */
++	.mode_active	= 0x0,
++	.mode_standby	= 0x40,
++	.focus_pos_max	= 4095,
++	.focus_steps	= 1,
++	.ctrl_steps	= 64,
++	.ctrl_delay_us	= 1000,
++	.power_delay_us	= 10000,
++};
+ 
+ static const char * const ak7375_supply_names[] = {
+ 	"vdd",
+@@ -42,6 +57,7 @@ static const char * const ak7375_supply_names[] = {
+ 
+ /* ak7375 device structure */
+ struct ak7375_device {
++	const struct ak73xx_chipdef *cdef;
+ 	struct v4l2_ctrl_handler ctrls_vcm;
+ 	struct v4l2_subdev sd;
+ 	struct v4l2_ctrl *focus;
+@@ -86,10 +102,11 @@ static int ak7375_i2c_write(struct ak7375_device *ak7375,
+ static int ak7375_set_ctrl(struct v4l2_ctrl *ctrl)
+ {
+ 	struct ak7375_device *dev_vcm = to_ak7375_vcm(ctrl);
++	const struct ak73xx_chipdef *cdef = dev_vcm->cdef;
+ 
+ 	if (ctrl->id == V4L2_CID_FOCUS_ABSOLUTE)
+-		return ak7375_i2c_write(dev_vcm, AK7375_REG_POSITION,
+-					ctrl->val << 4, 2);
++		return ak7375_i2c_write(dev_vcm, cdef->reg_position,
++					ctrl->val << cdef->shift_pos, 2);
+ 
+ 	return -EINVAL;
+ }
+@@ -128,11 +145,12 @@ static int ak7375_init_controls(struct ak7375_device *dev_vcm)
+ {
+ 	struct v4l2_ctrl_handler *hdl = &dev_vcm->ctrls_vcm;
+ 	const struct v4l2_ctrl_ops *ops = &ak7375_vcm_ctrl_ops;
++	const struct ak73xx_chipdef *cdef = dev_vcm->cdef;
+ 
+ 	v4l2_ctrl_handler_init(hdl, 1);
+ 
+ 	dev_vcm->focus = v4l2_ctrl_new_std(hdl, ops, V4L2_CID_FOCUS_ABSOLUTE,
+-		0, AK7375_MAX_FOCUS_POS, AK7375_FOCUS_STEPS, 0);
++		0, cdef->focus_pos_max, cdef->focus_steps, 0);
+ 
+ 	if (hdl->error)
+ 		dev_err(dev_vcm->sd.dev, "%s fail error: 0x%x\n",
+@@ -153,6 +171,8 @@ static int ak7375_probe(struct i2c_client *client)
+ 	if (!ak7375_dev)
+ 		return -ENOMEM;
+ 
++	ak7375_dev->cdef = device_get_match_data(&client->dev);
++
+ 	for (i = 0; i < ARRAY_SIZE(ak7375_supply_names); i++)
+ 		ak7375_dev->supplies[i].supply = ak7375_supply_names[i];
+ 
+@@ -206,30 +226,31 @@ static void ak7375_remove(struct i2c_client *client)
+ 
+ /*
+  * This function sets the vcm position, so it consumes least current
+- * The lens position is gradually moved in units of AK7375_CTRL_STEPS,
++ * The lens position is gradually moved in units of ctrl_steps,
+  * to make the movements smoothly.
+  */
+ static int __maybe_unused ak7375_vcm_suspend(struct device *dev)
+ {
+ 	struct v4l2_subdev *sd = dev_get_drvdata(dev);
+ 	struct ak7375_device *ak7375_dev = sd_to_ak7375_vcm(sd);
++	const struct ak73xx_chipdef *cdef = ak7375_dev->cdef;
+ 	int ret, val;
+ 
+ 	if (!ak7375_dev->active)
+ 		return 0;
+ 
+-	for (val = ak7375_dev->focus->val & ~(AK7375_CTRL_STEPS - 1);
+-	     val >= 0; val -= AK7375_CTRL_STEPS) {
+-		ret = ak7375_i2c_write(ak7375_dev, AK7375_REG_POSITION,
+-				       val << 4, 2);
++	for (val = ak7375_dev->focus->val & ~(cdef->ctrl_steps - 1);
++	     val >= 0; val -= cdef->ctrl_steps) {
++		ret = ak7375_i2c_write(ak7375_dev, cdef->reg_position,
++				       val << cdef->shift_pos, 2);
+ 		if (ret)
+ 			dev_err_once(dev, "%s I2C failure: %d\n",
+ 				     __func__, ret);
+-		usleep_range(AK7375_CTRL_DELAY_US, AK7375_CTRL_DELAY_US + 10);
++		usleep_range(cdef->ctrl_delay_us, cdef->ctrl_delay_us + 10);
+ 	}
+ 
+-	ret = ak7375_i2c_write(ak7375_dev, AK7375_REG_CONT,
+-			       AK7375_MODE_STANDBY, 1);
++	ret = ak7375_i2c_write(ak7375_dev, cdef->reg_cont,
++			       cdef->mode_standby, 1);
+ 	if (ret)
+ 		dev_err(dev, "%s I2C failure: %d\n", __func__, ret);
+ 
+@@ -246,13 +267,14 @@ static int __maybe_unused ak7375_vcm_suspend(struct device *dev)
+ /*
+  * This function sets the vcm position to the value set by the user
+  * through v4l2_ctrl_ops s_ctrl handler
+- * The lens position is gradually moved in units of AK7375_CTRL_STEPS,
++ * The lens position is gradually moved in units of ctrl_steps,
+  * to make the movements smoothly.
+  */
+ static int __maybe_unused ak7375_vcm_resume(struct device *dev)
+ {
+ 	struct v4l2_subdev *sd = dev_get_drvdata(dev);
+ 	struct ak7375_device *ak7375_dev = sd_to_ak7375_vcm(sd);
++	const struct ak73xx_chipdef *cdef = ak7375_dev->cdef;
+ 	int ret, val;
+ 
+ 	if (ak7375_dev->active)
+@@ -264,24 +286,24 @@ static int __maybe_unused ak7375_vcm_resume(struct device *dev)
+ 		return ret;
+ 
+ 	/* Wait for vcm to become ready */
+-	usleep_range(AK7375_POWER_DELAY_US, AK7375_POWER_DELAY_US + 500);
++	usleep_range(cdef->power_delay_us, cdef->power_delay_us + 500);
+ 
+-	ret = ak7375_i2c_write(ak7375_dev, AK7375_REG_CONT,
+-		AK7375_MODE_ACTIVE, 1);
++	ret = ak7375_i2c_write(ak7375_dev, cdef->reg_cont,
++			       cdef->mode_active, 1);
+ 	if (ret) {
+ 		dev_err(dev, "%s I2C failure: %d\n", __func__, ret);
+ 		return ret;
+ 	}
+ 
+-	for (val = ak7375_dev->focus->val % AK7375_CTRL_STEPS;
++	for (val = ak7375_dev->focus->val % cdef->ctrl_steps;
+ 	     val <= ak7375_dev->focus->val;
+-	     val += AK7375_CTRL_STEPS) {
+-		ret = ak7375_i2c_write(ak7375_dev, AK7375_REG_POSITION,
+-				       val << 4, 2);
++	     val += cdef->ctrl_steps) {
++		ret = ak7375_i2c_write(ak7375_dev, cdef->reg_position,
++				       val << cdef->shift_pos, 2);
+ 		if (ret)
+ 			dev_err_ratelimited(dev, "%s I2C failure: %d\n",
+ 						__func__, ret);
+-		usleep_range(AK7375_CTRL_DELAY_US, AK7375_CTRL_DELAY_US + 10);
++		usleep_range(cdef->ctrl_delay_us, cdef->ctrl_delay_us + 10);
+ 	}
+ 
+ 	ak7375_dev->active = true;
+@@ -290,7 +312,7 @@ static int __maybe_unused ak7375_vcm_resume(struct device *dev)
+ }
+ 
+ static const struct of_device_id ak7375_of_table[] = {
+-	{ .compatible = "asahi-kasei,ak7375" },
++	{ .compatible = "asahi-kasei,ak7375", .data = &ak7375_cdef, },
+ 	{ /* sentinel */ }
+ };
+ MODULE_DEVICE_TABLE(of, ak7375_of_table);
+-- 
+2.43.0
 
 
-On 11/29/23 11:10 AM, Mathieu Poirier wrote:
-> On Mon, Nov 27, 2023 at 10:33:05AM -0600, Tanmay Shah wrote:
-> > 
-> > On 11/23/23 12:11 PM, Mathieu Poirier wrote:
-> > > On Wed, Nov 22, 2023 at 03:00:36PM -0600, Tanmay Shah wrote:
-> > > > Hi Mathieu,
-> > > > 
-> > > > Please find my comments below.
-> > > > 
-> > > > On 11/21/23 4:59 PM, Mathieu Poirier wrote:
-> > > > > Hi,
-> > > > >
-> > > > > On Fri, Nov 17, 2023 at 09:42:37AM -0800, Tanmay Shah wrote:
-> > > > > > Use TCM pm domains extracted from device-tree
-> > > > > > to power on/off TCM using general pm domain framework.
-> > > > > > 
-> > > > > > Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
-> > > > > > ---
-> > > > > > 
-> > > > > > Changes in v7:
-> > > > > >   - %s/pm_dev1/pm_dev_core0/r
-> > > > > >   - %s/pm_dev_link1/pm_dev_core0_link/r
-> > > > > >   - %s/pm_dev2/pm_dev_core1/r
-> > > > > >   - %s/pm_dev_link2/pm_dev_core1_link/r
-> > > > > >   - remove pm_domain_id check to move next patch
-> > > > > >   - add comment about how 1st entry in pm domain list is used
-> > > > > >   - fix loop when jump to fail_add_pm_domains loop
-> > > > > > 
-> > > > > >  drivers/remoteproc/xlnx_r5_remoteproc.c | 215 +++++++++++++++++++++++-
-> > > > > >  1 file changed, 212 insertions(+), 3 deletions(-)
-> > > > > > 
-> > > > > > diff --git a/drivers/remoteproc/xlnx_r5_remoteproc.c b/drivers/remoteproc/xlnx_r5_remoteproc.c
-> > > > > > index 4395edea9a64..22bccc5075a0 100644
-> > > > > > --- a/drivers/remoteproc/xlnx_r5_remoteproc.c
-> > > > > > +++ b/drivers/remoteproc/xlnx_r5_remoteproc.c
-> > > > > > @@ -16,6 +16,7 @@
-> > > > > >  #include <linux/of_reserved_mem.h>
-> > > > > >  #include <linux/platform_device.h>
-> > > > > >  #include <linux/remoteproc.h>
-> > > > > > +#include <linux/pm_domain.h>
-> > > > > >  
-> > > > > >  #include "remoteproc_internal.h"
-> > > > > >  
-> > > > > > @@ -102,6 +103,12 @@ static const struct mem_bank_data zynqmp_tcm_banks_lockstep[] = {
-> > > > > >   * @rproc: rproc handle
-> > > > > >   * @pm_domain_id: RPU CPU power domain id
-> > > > > >   * @ipi: pointer to mailbox information
-> > > > > > + * @num_pm_dev: number of tcm pm domain devices for this core
-> > > > > > + * @pm_dev_core0: pm domain virtual devices for power domain framework
-> > > > > > + * @pm_dev_core0_link: pm domain device links after registration
-> > > > > > + * @pm_dev_core1: used only in lockstep mode. second core's pm domain virtual devices
-> > > > > > + * @pm_dev_core1_link: used only in lockstep mode. second core's pm device links after
-> > > > > > + * registration
-> > > > > >   */
-> > > > > >  struct zynqmp_r5_core {
-> > > > > >  	struct device *dev;
-> > > > > > @@ -111,6 +118,11 @@ struct zynqmp_r5_core {
-> > > > > >  	struct rproc *rproc;
-> > > > > >  	u32 pm_domain_id;
-> > > > > >  	struct mbox_info *ipi;
-> > > > > > +	int num_pm_dev;
-> > > > > > +	struct device **pm_dev_core0;
-> > > > > > +	struct device_link **pm_dev_core0_link;
-> > > > > > +	struct device **pm_dev_core1;
-> > > > > > +	struct device_link **pm_dev_core1_link;
-> > > > > >  };
-> > > > > >  
-> > > > > >  /**
-> > > > > > @@ -651,7 +663,8 @@ static int add_tcm_carveout_lockstep_mode(struct rproc *rproc)
-> > > > > >  					     ZYNQMP_PM_CAPABILITY_ACCESS, 0,
-> > > > > >  					     ZYNQMP_PM_REQUEST_ACK_BLOCKING);
-> > > > > >  		if (ret < 0) {
-> > > > > > -			dev_err(dev, "failed to turn on TCM 0x%x", pm_domain_id);
-> > > > > > +			dev_err(dev, "failed to turn on TCM 0x%x",
-> > > > > > +				pm_domain_id);
-> > > > >
-> > > > > Spurious change, you should have caught that.
-> > > > 
-> > > > Ack, need to observe changes more closely before sending them.
-> > > > 
-> > > > >
-> > > > > >  			goto release_tcm_lockstep;
-> > > > > >  		}
-> > > > > >  
-> > > > > > @@ -758,6 +771,189 @@ static int zynqmp_r5_parse_fw(struct rproc *rproc, const struct firmware *fw)
-> > > > > >  	return ret;
-> > > > > >  }
-> > > > > >  
-> > > > > > +static void zynqmp_r5_remove_pm_domains(struct rproc *rproc)
-> > > > > > +{
-> > > > > > +	struct zynqmp_r5_core *r5_core = rproc->priv;
-> > > > > > +	struct device *dev = r5_core->dev;
-> > > > > > +	struct zynqmp_r5_cluster *cluster;
-> > > > > > +	int i;
-> > > > > > +
-> > > > > > +	cluster = platform_get_drvdata(to_platform_device(dev->parent));
-> > > > > > +
-> > > > > > +	for (i = 1; i < r5_core->num_pm_dev; i++) {
-> > > > > > +		device_link_del(r5_core->pm_dev_core0_link[i]);
-> > > > > > +		dev_pm_domain_detach(r5_core->pm_dev_core0[i], false);
-> > > > > > +	}
-> > > > > > +
-> > > > > > +	kfree(r5_core->pm_dev_core0);
-> > > > > > +	r5_core->pm_dev_core0 = NULL;
-> > > > > > +	kfree(r5_core->pm_dev_core0_link);
-> > > > > > +	r5_core->pm_dev_core0_link = NULL;
-> > > > > > +
-> > > > > > +	if (cluster->mode == SPLIT_MODE) {
-> > > > > > +		r5_core->num_pm_dev = 0;
-> > > > > > +		return;
-> > > > > > +	}
-> > > > > > +
-> > > > > > +	for (i = 1; i < r5_core->num_pm_dev; i++) {
-> > > > > > +		device_link_del(r5_core->pm_dev_core1_link[i]);
-> > > > > > +		dev_pm_domain_detach(r5_core->pm_dev_core1[i], false);
-> > > > > > +	}
-> > > > > > +
-> > > > > > +	kfree(r5_core->pm_dev_core1);
-> > > > > > +	r5_core->pm_dev_core1 = NULL;
-> > > > > > +	kfree(r5_core->pm_dev_core1_link);
-> > > > > > +	r5_core->pm_dev_core1_link = NULL;
-> > > > > > +	r5_core->num_pm_dev = 0;
-> > > > > > +}
-> > > > > > +
-> > > > > > +static int zynqmp_r5_add_pm_domains(struct rproc *rproc)
-> > > > > > +{
-> > > > > > +	struct zynqmp_r5_core *r5_core = rproc->priv;
-> > > > > > +	struct device *dev = r5_core->dev, *dev2;
-> > > > > > +	struct zynqmp_r5_cluster *cluster;
-> > > > > > +	struct platform_device *pdev;
-> > > > > > +	struct device_node *np;
-> > > > > > +	int i, j, num_pm_dev, ret;
-> > > > > > +
-> > > > > > +	cluster = dev_get_drvdata(dev->parent);
-> > > > > > +
-> > > > > > +	/* get number of power-domains */
-> > > > > > +	num_pm_dev = of_count_phandle_with_args(r5_core->np, "power-domains",
-> > > > > > +						"#power-domain-cells");
-> > > > > > +
-> > > > > > +	if (num_pm_dev <= 0)
-> > > > > > +		return -EINVAL;
-> > > > > > +
-> > > > > > +	r5_core->pm_dev_core0 = kcalloc(num_pm_dev,
-> > > > > > +					sizeof(struct device *),
-> > > > > > +					GFP_KERNEL);
-> > > > > > +	if (!r5_core->pm_dev_core0)
-> > > > > > +		ret = -ENOMEM;
-> > > > > > +
-> > > > > > +	r5_core->pm_dev_core0_link = kcalloc(num_pm_dev,
-> > > > > > +					     sizeof(struct device_link *),
-> > > > > > +					     GFP_KERNEL);
-> > > > > > +	if (!r5_core->pm_dev_core0_link) {
-> > > > > > +		kfree(r5_core->pm_dev_core0);
-> > > > > > +		r5_core->pm_dev_core0 = NULL;
-> > > > > > +		return -ENOMEM;
-> > > > > > +	}
-> > > > > > +
-> > > > > > +	r5_core->num_pm_dev = num_pm_dev;
-> > > > > > +
-> > > > > > +	/*
-> > > > > > +	 * start from 2nd entry in power-domains property list as
-> > > > > > +	 * for zynqmp we only add TCM power domains and not core's power domain.
-> > > > > > +	 * 1st entry is used to configure r5 operation mode.
-> > > > >
-> > > > > You are still not saying _where_ ->pm_dev_core0[0] gets added.
-> > > > 
-> > > > So, pm_dev_core0[0] isn't really need to be added for zynqmp platform, as firmware starts it with call,
-> > > > 
-> > > > zynqmp_pm_request_wake during rproc_start callback. I will document this in next
-> > > >
-> > >
-> > > That is exactly what I am looking for.  That way people don't have to go through
-> > > the entire driver trying to figure out what is happening with pm_dev_core[0].
-> > >
-> > > I'm also not sure about the power-up order.  Logically the TCMs should be
-> > > powered up before the R5 in order to put code in them.  The R5s are powered in
-> > > zynqmp_r5_rproc_start() but I am unclear as to where in the boot sequence the
-> > > TCMs are powered - can you expand on that?
-> > 
-> > 
-> > Sure. Following is call sequece
-> > 
-> > zynqmp_r5_rproc_prepare
-> > 
-> > zynqmp_r5_add_pm_domains -> Here TCM is powered on when device_link_add is called via zynqmp-pm-domains.c driver.
-> > 
-> > . . .
-> > 
-> > zynqmp_r5_rproc_start -> load firmware and Starts RPU
-> > 
-> > So what you mentioned is correct, TCM is being powerd-on before we load firmware and start RPU.
-> > 
-> > 
-> > >
-> > > > revision. For new platforms pm_dev_core0[0] will be added in future.
-> > >
-> > > Now I'm really confused - what do you mean by "pm_dev_core0[0] will be added in
-> > > future"?
-> > 
-> > 
-> > ZynqMP platform has platform management firmware running on microblaze.
-> > 
-> > This firmware design does not expect R5 pm domains to be requested explicitly.
-> > 
-> > This means, during zynqmp_r5_rproc_start when "zynqmp_pm_request_wake" is called,
-> > 
-> > firmware powers on R5. So, pm_dev_core[0] is not really used for ZynqMP.
-> > 
-> > However, this design was changed for new platforms i.e. "versal" and onwards.
-> > 
-> > Firmware of new platform expects pm domains to be requested explicitly for R5 cores before
-> > 
-> > waking them up.
-> > 
-> > That means, pm_dev_core[0] for R5 cores on new platform (Versal) needs to be used same as TCM.
-> > 
-> > Then, we should wake it up on r5_core.
-> > 
-> > To summarize:
-> > 
-> > For zynqmp only following call needed to start R5:
-> > 
-> > zynqmp_pm_request_wake
-> > 
-> > For "versal" and onwards we need two calls to start R5:
-> > 
-> > "device_link_add" and zynqmp_pm_request_wake
-> > 
-> > So, in future pm_core_dev[0] will be used.
-> >
->
-> Thanks for the clarification on both front.  The problem here is that we are
-> keeping R5 power domain information in two different places, i.e
-> zynqmp_r5_core::pm_domain_id and zynqmp_r5_core::pm_dev_core0[0].  
->
-> Please see if you can retreive the power domain ID from
-> zynqmp_r5_core::pm_dev_core0[0].  That way you can get the power domain ID when
-> calling zynqmp_pm_request_wake() and zynqmp_pm_force_pwrdwn() and get rid of
-> zynqmp_r5_core::pm_domain_id.
 
-Hi Mathieu,
-
-I looked into this. Probably I can't retrieve pm_domain_id from pm_dev_core0[0],
-
-However, I can retrieve it from device-tree when calling zynqmp_pm_request_wake
-
-and zynqmp_pm_force_pwrdwn.
-
-zynqmp_r5_core::pm_domain_id is caching that value during probe, and use it during
-rest of the driver lifecycle.
-
-I am okay either way, (keeping it as it is, or get it from device-tree). Let me know your
-
-preference.
-
-Thanks,
-
-Tanmay
-
-> > 
-> > > > 
-> > > > I hope this meets expectations.
-> > > > 
-> > > > 
-> > > > >
-> > > > > > +	 */
-> > > > > > +	for (i = 1; i < r5_core->num_pm_dev; i++) {
-> > > > > > +		r5_core->pm_dev_core0[i] = dev_pm_domain_attach_by_id(dev, i);
-> > > > > > +		if (IS_ERR_OR_NULL(r5_core->pm_dev_core0[i])) {
-> > > > >
-> > > > > Here IS_ERR_OR_NULL() is used while two if conditions for NULL and an error
-> > > > > code are used in the loop for the lockstep mode.  Please pick one heuristic and
-> > > > > stick with it.  I have no preference on which one.
-> > > > 
-> > > > Ok, I think IS_ERR_OR_NULL is more cleaner, I will address it in next revision.
-> > > > 
-> > > > 
-> > > > >
-> > > > > > +			dev_dbg(dev, "failed to attach pm domain %d, ret=%ld\n", i,
-> > > > > > +				PTR_ERR(r5_core->pm_dev_core0[i]));
-> > > > > > +			ret = -EINVAL;
-> > > > > > +			goto fail_add_pm_domains;
-> > > > > > +		}
-> > > > > > +		r5_core->pm_dev_core0_link[i] = device_link_add(dev,
-> > > > > > +								r5_core->pm_dev_core0[i],
-> > > > > > +								DL_FLAG_STATELESS |
-> > > > > > +								DL_FLAG_RPM_ACTIVE |
-> > > > > > +								DL_FLAG_PM_RUNTIME);
-> > > > > > +		if (!r5_core->pm_dev_core0_link[i]) {
-> > > > > > +			dev_pm_domain_detach(r5_core->pm_dev_core0[i], true);
-> > > > > > +			r5_core->pm_dev_core0[i] = NULL;
-> > > > > > +			ret = -EINVAL;
-> > > > > > +			goto fail_add_pm_domains;
-> > > > > > +		}
-> > > > > > +	}
-> > > > > > +
-> > > > > > +	if (cluster->mode == SPLIT_MODE)
-> > > > > > +		return 0;
-> > > > > > +
-> > > > > > +	r5_core->pm_dev_core1 = kcalloc(num_pm_dev,
-> > > > > > +					sizeof(struct device *),
-> > > > > > +					GFP_KERNEL);
-> > > > > > +	if (!r5_core->pm_dev_core1) {
-> > > > > > +		ret = -ENOMEM;
-> > > > > > +		goto fail_add_pm_domains;
-> > > > > > +	}
-> > > > > > +
-> > > > > > +	r5_core->pm_dev_core1_link = kcalloc(num_pm_dev,
-> > > > > > +					     sizeof(struct device_link *),
-> > > > > > +					     GFP_KERNEL);
-> > > > > > +	if (!r5_core->pm_dev_core1_link) {
-> > > > > > +		kfree(r5_core->pm_dev_core1);
-> > > > > > +		r5_core->pm_dev_core1 = NULL;
-> > > > > > +		ret = -ENOMEM;
-> > > > > > +		goto fail_add_pm_domains;
-> > > > > > +	}
-> > > > > > +
-> > > > > > +	/* get second core's device to detach its power-domains */
-> > > > > > +	np = of_get_next_child(cluster->dev->of_node, of_node_get(dev->of_node));
-> > > > > > +
-> > > > > > +	pdev = of_find_device_by_node(np);
-> > > > > > +	if (!pdev) {
-> > > > > > +		dev_err(cluster->dev, "core1 platform device not available\n");
-> > > > > > +		kfree(r5_core->pm_dev_core1);
-> > > > > > +		kfree(r5_core->pm_dev_core1_link);
-> > > > > > +		r5_core->pm_dev_core1 = NULL;
-> > > > > > +		r5_core->pm_dev_core1_link = NULL;
-> > > > > > +		ret = -EINVAL;
-> > > > > > +		goto fail_add_pm_domains;
-> > > > > > +	}
-> > > > > > +
-> > > > > > +	dev2 = &pdev->dev;
-> > > > > > +
-> > > > > > +	/* for zynqmp we only add TCM power domains and not core's power domain */
-> > > > > > +	for (j = 1; j < r5_core->num_pm_dev; j++) {
-> > > > > > +		r5_core->pm_dev_core1[j] = dev_pm_domain_attach_by_id(dev2, j);
-> > > > > > +		if (!r5_core->pm_dev_core1[j]) {
-> > > > > > +			dev_dbg(dev, "can't attach to pm domain %d\n", j);
-> > > > > > +			ret = -EINVAL;
-> > > > > > +			goto fail_add_pm_domains_lockstep;
-> > > > > > +		} else if (IS_ERR(r5_core->pm_dev_core1[j])) {
-> > > > > > +			dev_dbg(dev, "can't attach to pm domain %d\n", j);
-> > > > > > +			ret = PTR_ERR(r5_core->pm_dev_core1[j]);
-> > > > > > +			goto fail_add_pm_domains_lockstep;
-> > > > > > +		}
-> > > > > > +
-> > > > > > +		r5_core->pm_dev_core1_link[j] = device_link_add(dev,
-> > > > > > +								r5_core->pm_dev_core1[j],
-> > > > > > +								DL_FLAG_STATELESS |
-> > > > > > +								DL_FLAG_RPM_ACTIVE |
-> > > > > > +								DL_FLAG_PM_RUNTIME);
-> > > > > > +		if (!r5_core->pm_dev_core1_link[j]) {
-> > > > > > +			dev_pm_domain_detach(r5_core->pm_dev_core1[j], true);
-> > > > > > +			r5_core->pm_dev_core1[j] = NULL;
-> > > > > > +			ret = -ENODEV;
-> > > > > > +			goto fail_add_pm_domains_lockstep;
-> > > > > > +		}
-> > > > > > +	}
-> > > > > > +
-> > > > > > +fail_add_pm_domains_lockstep:
-> > > > > > +	while (--j >= 0) {
-> > > > > > +		device_link_del(r5_core->pm_dev_core1_link[j]);
-> > > > > > +		dev_pm_domain_detach(r5_core->pm_dev_core1[j], true);
-> > > > > > +	}
-> > > > > > +	kfree(r5_core->pm_dev_core1);
-> > > > > > +	r5_core->pm_dev_core1 = NULL;
-> > > > > > +	kfree(r5_core->pm_dev_core1_link);
-> > > > > > +	r5_core->pm_dev_core1_link = NULL;
-> > > > > > +
-> > > > > > +fail_add_pm_domains:
-> > > > > > +	while (--i >= 0) {
-> > > > > > +		device_link_del(r5_core->pm_dev_core0_link[i]);
-> > > > > > +		dev_pm_domain_detach(r5_core->pm_dev_core0[i], true);
-> > > > > > +	}
-> > > > > > +	kfree(r5_core->pm_dev_core0);
-> > > > > > +	r5_core->pm_dev_core0 = NULL;
-> > > > > > +	kfree(r5_core->pm_dev_core0_link);
-> > > > > > +	r5_core->pm_dev_core0_link = NULL;
-> > > > > > +
-> > > > >
-> > > > > The error path is much cleaner and readable now.
-> > > > >
-> > > > > I will continue tomorrow.
-> > > > >
-> > > > > Mathieu
-> > > > >
-> > > > > > +	return ret;
-> > > > > > +}
-> > > > > > +
-> > > > > >  /**
-> > > > > >   * zynqmp_r5_rproc_prepare()
-> > > > > >   * adds carveouts for TCM bank and reserved memory regions
-> > > > > > @@ -770,19 +966,30 @@ static int zynqmp_r5_rproc_prepare(struct rproc *rproc)
-> > > > > >  {
-> > > > > >  	int ret;
-> > > > > >  
-> > > > > > +	ret = zynqmp_r5_add_pm_domains(rproc);
-> > > > > > +	if (ret) {
-> > > > > > +		dev_err(&rproc->dev, "failed to add pm domains\n");
-> > > > > > +		return ret;
-> > > > > > +	}
-> > > > > > +
-> > > > > >  	ret = add_tcm_banks(rproc);
-> > > > > >  	if (ret) {
-> > > > > >  		dev_err(&rproc->dev, "failed to get TCM banks, err %d\n", ret);
-> > > > > > -		return ret;
-> > > > > > +		goto fail_prepare;
-> > > > > >  	}
-> > > > > >  
-> > > > > >  	ret = add_mem_regions_carveout(rproc);
-> > > > > >  	if (ret) {
-> > > > > >  		dev_err(&rproc->dev, "failed to get reserve mem regions %d\n", ret);
-> > > > > > -		return ret;
-> > > > > > +		goto fail_prepare;
-> > > > > >  	}
-> > > > > >  
-> > > > > >  	return 0;
-> > > > > > +
-> > > > > > +fail_prepare:
-> > > > > > +	zynqmp_r5_remove_pm_domains(rproc);
-> > > > > > +
-> > > > > > +	return ret;
-> > > > > >  }
-> > > > > >  
-> > > > > >  /**
-> > > > > > @@ -801,6 +1008,8 @@ static int zynqmp_r5_rproc_unprepare(struct rproc *rproc)
-> > > > > >  
-> > > > > >  	r5_core = rproc->priv;
-> > > > > >  
-> > > > > > +	zynqmp_r5_remove_pm_domains(rproc);
-> > > > > > +
-> > > > > >  	for (i = 0; i < r5_core->tcm_bank_count; i++) {
-> > > > > >  		pm_domain_id = r5_core->tcm_banks[i]->pm_domain_id;
-> > > > > >  		if (zynqmp_pm_release_node(pm_domain_id))
-> > > > > > -- 
-> > > > > > 2.25.1
-> > > > > > 
 
