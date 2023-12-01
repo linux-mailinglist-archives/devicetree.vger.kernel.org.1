@@ -1,64 +1,62 @@
-Return-Path: <devicetree+bounces-20575-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20576-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98E2C800388
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 07:07:43 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B9F480038E
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 07:09:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0EC37B2120A
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 06:07:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 07187281583
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 06:09:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAA888C17;
-	Fri,  1 Dec 2023 06:07:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAF23C120;
+	Fri,  1 Dec 2023 06:09:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MprJc8WC"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dsTJTU1H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-xf32.google.com (mail-qv1-xf32.google.com [IPv6:2607:f8b0:4864:20::f32])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C229493
-	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 22:07:31 -0800 (PST)
-Received: by mail-qv1-xf32.google.com with SMTP id 6a1803df08f44-67a44ee7ab3so10677536d6.0
-        for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 22:07:31 -0800 (PST)
+Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com [IPv6:2607:f8b0:4864:20::831])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57405171B
+	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 22:09:42 -0800 (PST)
+Received: by mail-qt1-x831.google.com with SMTP id d75a77b69052e-423dccefb68so24048151cf.0
+        for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 22:09:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701410851; x=1702015651; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701410981; x=1702015781; darn=vger.kernel.org;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=Kgy5hlcvWH3mv4+OMDEYg4gGuadNVhIN6Sw8oNb6ClE=;
-        b=MprJc8WCS3au6vGnDxfd3X5nt9Lzyovn8sGqZPtTb3RH5vp5Jaa9UiRmNZd/QRwKFs
-         xzT5G+6+UDFF1NRNx1iWfDDrMSpMPtTrTEGIfqkTzdQrGVQZbu41QHLM9AMRxliDmhX1
-         mpR2ODU+RbBUE3rUIS0v88FZbPLneqp9DiK6udeZE9QuGGx5YcHRYW6b66aLq3z8sV1Z
-         hxfaf13MtVd7+cvPI4QI1+646esMflrm3oVnvOoPE1pVrpUftnVCeGRVj7XeJiN5C8Vr
-         N2OKBcG6vgY9gh53uco53JQ29aQ40k8ue+GEWPMMj9PWha4DpRXQgYDydPkzOgRCjuCW
-         KeqA==
+        bh=HTBGY1oy5xfgo0+VO2qMvDpiGe30dNnP8Di6PCzHzfE=;
+        b=dsTJTU1H7LuTxSWTa5qiVwMAnija+WQse5Rh/TLZScHYLxLIeCeTn6CAPqs1ezLnkF
+         r+yBjsm7YWwkS7e/fJC6+c5DktV0ZsH/Y4V4K+WDPH+U1eeNUkuSFOCqUrcxJbDJj5LD
+         jOgwtt1MAqYvLwfbAezuwWQoVNhS0OC99UptHECrZ+6sWYzB7BNpKTzXM7eCLAp0JlbH
+         avfY7LS0S8uI5pOta7wXtdJAQD+oUnNtITv7Ncq2f0lsAFQqw9qriunjNv3/MBrBGjSq
+         gpsNFlHPhWSyrRaKJ5AOrb0ICphiYaCGsK+iROeDZrD1Q8kfUmDqFNC1u6d7Mg6FGn7H
+         Pf4w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701410851; x=1702015651;
+        d=1e100.net; s=20230601; t=1701410981; x=1702015781;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Kgy5hlcvWH3mv4+OMDEYg4gGuadNVhIN6Sw8oNb6ClE=;
-        b=cG+s5A3KBKUt68ix/HWFboddMNke6VwMBWIvyuk4/vFQ1w8A2pDexoWLTGEFzt2Ajx
-         Fzv4N3U6XlatYQlerTFi2oeuainnUAmGq/7uc5zUarY+JnC1XBxRdNvHgYuDoT2r1Np2
-         9zF5pguW2YkFUVMrNR6mwW1LSFJnSENfGsuU+KXvisbisK18u2kJGj4V78btv8EYkRQt
-         SdqnIaqqF3A6Q/iyUXZzDFnfv4cnVniwI31QDjqwYyVx6x6Ec8EIA5Wh4tareeuJK0Yr
-         CDQdmAwKmYNXZdRTHpJxEXzq3k3v2JKF9NhDUnBAgT1Jx/R3XWGql/SacQ8zs/Vt5Iw0
-         Pntg==
-X-Gm-Message-State: AOJu0Yxz1gwTtuzGHnX4ueKZkAv8u3D+RKBUiPR4pfK5l5C5rcxBB58r
-	afLYOT7Wq9MubQ9Le35LAHcj
-X-Google-Smtp-Source: AGHT+IHu2ksyKFCtF20WA7pQITHq93w/lCv7QCJfM5F0X7XunthNNyJrRVZbimdwRtLy0LpBiPTuQw==
-X-Received: by 2002:a05:620a:34d:b0:77d:cd41:1254 with SMTP id t13-20020a05620a034d00b0077dcd411254mr7559516qkm.12.1701410850808;
-        Thu, 30 Nov 2023 22:07:30 -0800 (PST)
+        bh=HTBGY1oy5xfgo0+VO2qMvDpiGe30dNnP8Di6PCzHzfE=;
+        b=RstCVnPT9ivtx92bLGMLsKUG+vzIuehOs0PoQSZ4xBuoRZW1v0niJPOcfMCl4aigUG
+         wF9yxyne8JdlkSCjBjbvOkRx7LzJ+adZAVAhAC1HnmwrO/VARgaP1o6BCFKZpK+abNxY
+         6H7fD/fd+dp0EwQcLAtafCtTB9jR+WuOOqUej+82vcNBsfHBHncvAjJaFYdV7EOKqXPp
+         9PhfUmT3DykNOuQcCwxkosXZbENVGNqglPjyX7wFC/OK9P270WyPinteoFkdrhmAV0ac
+         L6BR1mOHnHyjkcLegdxB9UiZw5LuGiq7XbzgSrkDfwNEIp6C64xO3OokpMqINr9JH2N1
+         cYqw==
+X-Gm-Message-State: AOJu0YzbQuXy25KBimOmn7/vMMuvbR+w+a3Nu5+ASAZ1CBs2bRoZNpOL
+	OYdOqlnvt620K81IYiTRi/lM
+X-Google-Smtp-Source: AGHT+IGAABQDU3axNxWPqU2DPDM9Qs/mgiEnVBVMMHF0/BtCPRJ3xlxbSW8ZA0IFsoPre5Xm6XtW/g==
+X-Received: by 2002:a05:622a:1b02:b0:423:a6c5:1924 with SMTP id bb2-20020a05622a1b0200b00423a6c51924mr34045005qtb.23.1701410981424;
+        Thu, 30 Nov 2023 22:09:41 -0800 (PST)
 Received: from thinkpad ([117.213.102.92])
-        by smtp.gmail.com with ESMTPSA id d23-20020a05620a159700b0077d749de2a3sm1199149qkk.67.2023.11.30.22.07.21
+        by smtp.gmail.com with ESMTPSA id h14-20020ac8568e000000b00423e6885152sm1200897qta.75.2023.11.30.22.09.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Nov 2023 22:07:30 -0800 (PST)
-Date: Fri, 1 Dec 2023 11:37:16 +0530
+        Thu, 30 Nov 2023 22:09:40 -0800 (PST)
+Date: Fri, 1 Dec 2023 11:39:28 +0530
 From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
+To: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
 	Konrad Dybcio <konrad.dybcio@linaro.org>,
 	Vinod Koul <vkoul@kernel.org>,
 	Kishon Vijay Abraham I <kishon@kernel.org>,
@@ -69,14 +67,13 @@ Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
 	linux-kernel@vger.kernel.org, quic_vbadigan@quicinc.com,
 	quic_ramkri@quicinc.com, quic_nitegupt@quicinc.com,
 	quic_skananth@quicinc.com, quic_vpernami@quicinc.com,
-	quic_parass@quicinc.com
-Subject: Re: [PATCH v3 1/3] dt-bindings: phy: qcom,qmp: Add PCIe
- qcom,refclk-always-on property
-Message-ID: <20231201060716.GJ4009@thinkpad>
+	quic_parass@quicinc.com,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: Re: [PATCH v3 3/3] phy: qcom-qmp-pcie: Add support for keeping
+ refclk always on
+Message-ID: <20231201060928.GK4009@thinkpad>
 References: <20231127-refclk_always_on-v3-0-26d969fa8f1d@quicinc.com>
- <20231127-refclk_always_on-v3-1-26d969fa8f1d@quicinc.com>
- <78815f1b-7390-40de-8afd-ac71806f4051@linaro.org>
- <24fae40a-453b-b14c-923f-88758a246aa7@quicinc.com>
+ <20231127-refclk_always_on-v3-3-26d969fa8f1d@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,65 +83,80 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <24fae40a-453b-b14c-923f-88758a246aa7@quicinc.com>
+In-Reply-To: <20231127-refclk_always_on-v3-3-26d969fa8f1d@quicinc.com>
 
-On Tue, Nov 28, 2023 at 02:49:18PM +0530, Krishna Chaitanya Chundru wrote:
+On Mon, Nov 27, 2023 at 05:43:51PM +0530, Krishna chaitanya chundru wrote:
+> In PCIe low power states like L1.1 or L1.2 the phy will stop
+> supplying refclk to endpoint. If endpoint asserts clkreq to bring
+> back link L0, then RC needs to provide refclk to endpoint.
 > 
-> On 11/28/2023 2:26 PM, Krzysztof Kozlowski wrote:
-> > On 27/11/2023 13:13, Krishna chaitanya chundru wrote:
-> > > Document qcom,refclk-always-on property which is needed in some platforms
-> > > to supply refclk even in PCIe low power states.
-> > > 
-> > > Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-> > > ---
-> > >   .../devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml        | 7 +++++++
-> > >   1 file changed, 7 insertions(+)
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
-> > > index 2c3d6553a7ba..c747c9f35795 100644
-> > > --- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
-> > > +++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
-> > > @@ -93,6 +93,13 @@ properties:
-> > >     "#phy-cells":
-> > >       const: 0
-> > > +  qcom,refclk-always-on:
-> > > +    type: boolean
-> > > +    description: In some platform where PCIe switch is connected, pcie switch due to some design
-> > You received a comment to use proper wrapping: 80. Please implement it.
-> I will update this.
-> > > +      limitation fails to propage clkreq signal to the host and due to that host will not send
-> > > +      refclk, which  results in linkdown in L1.2 or L1.1 exit initiated by EP.
-> > > +      This property if set keeps refclk always on even in Low power states.
-> > The property name suggests that's the state of hardware - refclk is
-> > always on. Description suggests you want to instruct OS to do something.
-> > 
-> > Again, third time (once from Bjorn, once from Dmitry), rephrase property
-> > name and description to describe the hardware issue. I see description
-> > improved, but not the property name. Again in the end of description you
+> Some platforms with pcie switch fail to drive the clkreq signal to
+> the host from the endpoints because of the switch board design.
+> Due to that refclk needs to supplied to the endpoint always.
 > 
-> Both bjorn and Dmitry gave comments to change the description only, and not
-> the property name,
+> Add a flag to keep refclk always supplied to endpoint.
 > 
-> correct if I am wrong.
+> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  drivers/phy/qualcomm/phy-qcom-qmp-pcie.c | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
 > 
-> > say what Linux should do. Bindings do not describe Linux OS.
-> 
-> I will remove the last line in the next patch.
-> 
+> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+> index 7fdf9b2596b6..e95f677817f7 100644
+> --- a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+> @@ -43,6 +43,8 @@
+>  /* QPHY_PCS_STATUS bit */
+>  #define PHYSTATUS				BIT(6)
+>  #define PHYSTATUS_4_20				BIT(7)
+> +/* PCS_PCIE_ENDPOINT_REFCLK_CNTRL */
+> +#define EPCLK_ALWAYS_ON_EN			BIT(6)
+>  
+>  #define PHY_INIT_COMPLETE_TIMEOUT		10000
+>  
+> @@ -2264,6 +2266,8 @@ struct qmp_pcie {
+>  	struct phy *phy;
+>  	int mode;
+>  
+> +	bool refclk_always_on;
+> +
+>  	struct clk_fixed_rate pipe_clk_fixed;
+>  };
+>  
+> @@ -3179,6 +3183,10 @@ static void qmp_pcie_init_registers(struct qmp_pcie *qmp, const struct qmp_phy_c
+>  	qmp_pcie_configure(pcs, tbls->pcs, tbls->pcs_num);
+>  	qmp_pcie_configure(pcs_misc, tbls->pcs_misc, tbls->pcs_misc_num);
+>  
+> +	if (qmp->refclk_always_on && cfg->regs[QPHY_PCS_ENDPOINT_REFCLK_CNTRL])
+> +		qphy_setbits(pcs_misc, cfg->regs[QPHY_PCS_ENDPOINT_REFCLK_CNTRL],
+> +			     EPCLK_ALWAYS_ON_EN);
+> +
+>  	if (cfg->lanes >= 4 && qmp->tcsr_4ln_config) {
+>  		qmp_pcie_configure(serdes, cfg->serdes_4ln_tbl, cfg->serdes_4ln_num);
+>  		qmp_pcie_init_port_b(qmp, tbls);
+> @@ -3701,6 +3709,12 @@ static int qmp_pcie_probe(struct platform_device *pdev)
+>  	if (ret)
+>  		goto err_node_put;
+>  
+> +	qmp->refclk_always_on = of_property_read_bool(dev->of_node, "qcom,refclk-always-on");
+> +	if (qmp->refclk_always_on && !qmp->cfg->regs[QPHY_PCS_ENDPOINT_REFCLK_CNTRL]) {
+> +		dev_err(dev, "refclk is always on is present but refclk cntrl offset is not present\n");
 
-You should name the property as, "qcom,keep-refclk-always-on"
-
-Also, no need to stuff the binding with "why this property is required", that
-info should be part of the patch description. Just describe what this property
-means in binding.
+"Firmware requested to keep REFCLK always ON, but driver missing offset\n"
 
 - Mani
 
-> - Krishna Chaitanya.
+> +		goto err_node_put;
+> +	}
+> +
+>  	ret = phy_pipe_clk_register(qmp, np);
+>  	if (ret)
+>  		goto err_node_put;
 > 
-> > 
-> > Best regards,
-> > Krzysztof
+> -- 
+> 2.42.0
+> 
 > 
 
 -- 
