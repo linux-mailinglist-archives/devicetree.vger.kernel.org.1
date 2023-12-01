@@ -1,89 +1,142 @@
-Return-Path: <devicetree+bounces-20852-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20853-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 945E9801087
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 17:48:10 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F799801092
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 17:51:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D8A7281C46
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 16:48:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EA6B72817E1
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 16:51:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24BFD4BA92;
-	Fri,  1 Dec 2023 16:48:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eV9nbcis"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BEED4CE0F;
+	Fri,  1 Dec 2023 16:51:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0401E8829;
-	Fri,  1 Dec 2023 16:48:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B125C433C8;
-	Fri,  1 Dec 2023 16:48:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701449285;
-	bh=8sMbd6mi2mj87HGmh87batrSeTGY2fLhxpZz+q6caBM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eV9nbcis9yjo11yFJxro674gDs6Nfps35naoLGXl05FYu7SdvXh/oJ0gQN/FXRe1e
-	 euC70GQID5vcLaXK6CkVr4FfafEkR4CVZzOifgDWjIVPo/yG1UpZeVjk4F0cRX8sdd
-	 x+qujdUr53RdSin6031VsWLZb6U8K4ZOJVcuWcELZuQEvz3LllvcBhVKRhe14h78Bz
-	 MAB769pdptvulk+10x2MH75ssmwDN0TaS7mHp+wzgyiJVGq72lmJ7SihZfVh82wLQY
-	 5q63PB1rW1NH9w4V0j7klEavilHb/JsdFNAKldNyPswHObuDktms76eUsj6DLgRYUL
-	 2vbFSAxwvPXOQ==
-Received: from johan by xi.lan with local (Exim 4.96.2)
-	(envelope-from <johan@kernel.org>)
-	id 1r96gz-0003J8-1E;
-	Fri, 01 Dec 2023 17:48:41 +0100
-Date: Fri, 1 Dec 2023 17:48:41 +0100
-From: Johan Hovold <johan@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, Johan Hovold <johan+linaro@kernel.org>,
-	Lee Jones <lee@kernel.org>,
-	Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 2/4] dt-bindings: mfd: hisilicon,hi6421-spmi-pmic: fix
- example regulator node
-Message-ID: <ZWoOaRLZGXMhwC_r@hovoldconsulting.com>
-References: <20231130172547.12555-1-johan+linaro@kernel.org>
- <20231130172547.12555-3-johan+linaro@kernel.org>
- <20231201144017.GA974717-robh@kernel.org>
- <b2400218-12d6-4d51-ab42-78412f616d88@linaro.org>
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69FCF84;
+	Fri,  1 Dec 2023 08:51:39 -0800 (PST)
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-5d3ffa1ea24so11198677b3.3;
+        Fri, 01 Dec 2023 08:51:39 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701449498; x=1702054298;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=yDzeyfGvLGKAd0t6wo+v/fNB/1C7/68ct1cBPBE+Rpo=;
+        b=SwTWdakvf7d5dgzXAfGXKETbfe8hdwBPyE8oUFrI4Sb6buwiU3CGJA9vaVqd12YQ5j
+         573GXzyI8v0CpdB28hXjSOtuFymn+VyITjkZlnRYwUmK9/OVXFBCTLrmIE7crmb67CId
+         HBgGYvpsnRQ+6xKaPEmj5zz0JM15abloxhmkJPHxG28L5U3u3A0FfQYNDmYjtfkTihrI
+         l6s7o5oNGokA6GC+uQ9SnGff48T1O4O7vfgrfZ9x9ako9FvdQi2JoDm8HY/MuNXf/CJ0
+         7J+K5f5s3svgXdkRR+bfUqwoCKIgIyjkt4trlYIuJvduz4kmZB1muMVHCbUxucz1kbdX
+         bXcg==
+X-Gm-Message-State: AOJu0YzxGbeHARavKFfII5H4TKDdpBC/DjXzpN7JDxq4WZTuatAdfkLa
+	4a78/D1O/q7H5FG+k6NJzaLzORmWv2QMmw==
+X-Google-Smtp-Source: AGHT+IH43T68ldw1tPhF5dB+8ElOyMxhmXs8LU1in/Neu6f21ET2d4Jav1dwhHJbLL7BzpcV5JKI5g==
+X-Received: by 2002:a81:ac56:0:b0:5d3:464d:18d9 with SMTP id z22-20020a81ac56000000b005d3464d18d9mr6201581ywj.21.1701449498364;
+        Fri, 01 Dec 2023 08:51:38 -0800 (PST)
+Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com. [209.85.128.169])
+        by smtp.gmail.com with ESMTPSA id u204-20020a8160d5000000b005d29344e625sm1193845ywb.114.2023.12.01.08.51.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 01 Dec 2023 08:51:36 -0800 (PST)
+Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-5c08c47c055so25662177b3.1;
+        Fri, 01 Dec 2023 08:51:35 -0800 (PST)
+X-Received: by 2002:a81:9b4b:0:b0:5d3:a789:4e0d with SMTP id
+ s72-20020a819b4b000000b005d3a7894e0dmr4657972ywg.17.1701449495359; Fri, 01
+ Dec 2023 08:51:35 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b2400218-12d6-4d51-ab42-78412f616d88@linaro.org>
+References: <20231120070024.4079344-1-claudiu.beznea.uj@bp.renesas.com> <20231120070024.4079344-7-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20231120070024.4079344-7-claudiu.beznea.uj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 1 Dec 2023 17:51:23 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdU6-jHrT6DjFkwHoBytOzT=E9=dujWBq0v++ow4CJW==g@mail.gmail.com>
+Message-ID: <CAMuHMdU6-jHrT6DjFkwHoBytOzT=E9=dujWBq0v++ow4CJW==g@mail.gmail.com>
+Subject: Re: [PATCH 06/14] pinctrl: renesas: rzg2l: Add pin configuration
+ support for pinmux groups
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: s.shtylyov@omp.ru, davem@davemloft.net, edumazet@google.com, 
+	kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, linux@armlinux.org.uk, 
+	magnus.damm@gmail.com, mturquette@baylibre.com, sboyd@kernel.org, 
+	linus.walleij@linaro.org, p.zabel@pengutronix.de, arnd@arndb.de, 
+	m.szyprowski@samsung.com, alexandre.torgue@foss.st.com, afd@ti.com, 
+	broonie@kernel.org, alexander.stein@ew.tq-group.com, 
+	eugen.hristev@collabora.com, sergei.shtylyov@gmail.com, 
+	prabhakar.mahadev-lad.rj@bp.renesas.com, biju.das.jz@bp.renesas.com, 
+	linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Dec 01, 2023 at 03:42:38PM +0100, Krzysztof Kozlowski wrote:
-> On 01/12/2023 15:40, Rob Herring wrote:
-> > On Thu, Nov 30, 2023 at 06:25:45PM +0100, Johan Hovold wrote:
-> >> The example regulator child nodes do not have unit addresses so drop the
-> >> incorrect '#address-cells' and '#size-cells' properties from the parent
-> >> node.
- 
-> >>        regulators {
-> >> -        #address-cells = <1>;
-> >> -        #size-cells = <0>;
-> >> -
-> > 
-> > It's the right fix, but I have to wonder why these are not schema 
-> > errors? Seems like something in the schemas needs fixing.
-> 
-> Good point. The fix is just not sufficient.  This binding explicitly
-> allow it, so it should be removed there as well.
+Hi Claudiu,
 
-Ah, I missed that. Now fixed up in v2.
+On Mon, Nov 20, 2023 at 8:01=E2=80=AFAM Claudiu <claudiu.beznea@tuxon.dev> =
+wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>
+> On RZ/G3S different Ethernet pins needs to be configured with different
+> settings (e.g. power-source need to be set, RGMII TXC, TX_CTL pins need
+> output-enable). Commit adjust driver to allow specifying pin configuratio=
+n
+> for pinmux groups. With this DT settings like the following are taken
+> into account by driver:
+>
+> eth0_pins: eth0 {
+>         tx_ctl {
+>                 pinmux =3D <RZG2L_PORT_PINMUX(1, 1, 1)>;  /* ET0_TX_CTL *=
+/
+>                 power-source =3D <1800>;
+>                 output-enable;
+>                 drive-strength-microamp =3D <5200>;
+>         };
+> };
+>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-Johan
+Thanks for your patch!
+
+> --- a/drivers/pinctrl/renesas/pinctrl-rzg2l.c
+> +++ b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
+> @@ -376,8 +376,11 @@ static int rzg2l_dt_subnode_to_map(struct pinctrl_de=
+v *pctldev,
+>                 goto done;
+>         }
+>
+> -       if (num_pinmux)
+> +       if (num_pinmux) {
+>                 nmaps +=3D 1;
+> +               if (num_configs)
+> +                       nmaps +=3D 1;
+
+I think this would be more readable, and better follow the style of
+the surrounding statements, if this new check would not be nested
+under the num_pinmux check.
+
+> +       }
+>
+>         if (num_pins)
+>                 nmaps +=3D num_pins;
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
