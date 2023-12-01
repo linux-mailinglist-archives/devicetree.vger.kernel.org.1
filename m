@@ -1,58 +1,58 @@
-Return-Path: <devicetree+bounces-20817-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20818-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36788800F3A
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 17:11:32 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CF74800F41
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 17:11:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6835B1C20D92
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 16:11:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DD99C281D97
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 16:11:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3A444C3B8;
-	Fri,  1 Dec 2023 16:11:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0F664C625;
+	Fri,  1 Dec 2023 16:11:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RcBhOKLT"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Tmzh80pH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04C0F1738
-	for <devicetree@vger.kernel.org>; Fri,  1 Dec 2023 08:11:02 -0800 (PST)
-Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-3316a4bc37dso2000126f8f.2
-        for <devicetree@vger.kernel.org>; Fri, 01 Dec 2023 08:11:01 -0800 (PST)
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D4DF1984
+	for <devicetree@vger.kernel.org>; Fri,  1 Dec 2023 08:11:03 -0800 (PST)
+Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-40b40423df8so20063875e9.0
+        for <devicetree@vger.kernel.org>; Fri, 01 Dec 2023 08:11:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701447060; x=1702051860; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701447062; x=1702051862; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=0h3wW3EqCfUl3aAlcYhLSxtfIdkOS0xIgf/1shl23vk=;
-        b=RcBhOKLTHiVtHnUoHZOHk/Em4AqHpDW7lPQ2ZMiEOHgVNrgPOV8fQlaK/z5SAF4iWB
-         mlMzEklVwjLhZGa22aHWdvrvnjMkEGFUQ5SIols2wsTSw1eqn9ozZpzFMmnuzJSguBOp
-         BOPxnVo9xRIYzzmhZ0dcblPc3jfBHy13sA7DWkVjynuzyVu1aw0qf/j1Uny9p4FPFyNr
-         wj1gKa/K3aUtHvxlFDmm0ZcRqiPXKbHJSfqCR+vL6TNdWxSwW7GO4ziBY9ldZCubSDqC
-         TvyRbjxqTKfpm//nuaHLGlK6kF/o0YysW58/UiKF/ZmcZOEc/Avaxhii6sSS685QC3si
-         vpsg==
+        bh=C7gV2bTYZ/8fGxngk+WgJOxqZzJsxGLjpBfcpof/uy0=;
+        b=Tmzh80pHc5h7KLr3qYaAlZFPqj6FBx5o3sAsKD/RJsC0npc7eqOmTmSNlq5RV0iNQI
+         dppcFaTBCkS8azhyvfanyuvWTyUxzkh9i6ACtVwoWgAFrsI36OSpV4QdxFlmtVUFM2Ix
+         hSMNPUC499JrKZg128MZEcjwSsZg14u7rVALwVC3mWe94DSZKfCDlIv55CAUE4HIu9tr
+         ReRooktyjv+R3zHH8e8EwvZn8UTYuodCw8tZOBMcc2a1uDCvKf1sVGUYwcBz0zaY5vor
+         2fPy3uL2FC0PMHanhpxMxSlGAqvpPzaIgc3qDD1VWUvGs2m8uFPYh8sTVUYnAhHoB6tR
+         n5Kw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701447060; x=1702051860;
+        d=1e100.net; s=20230601; t=1701447062; x=1702051862;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=0h3wW3EqCfUl3aAlcYhLSxtfIdkOS0xIgf/1shl23vk=;
-        b=gKX+/beVNUm3dZWBC0mi/lTpwNpDxcwc1bW3MOG8gaGaxNrgwrH8M5DN3AgZQYvSzk
-         G4vcSRNrX+6wO2T4N4MYJHOakh363dSA76mlEsrS72tTwft82FO6UpxkKkWIMu3Cf/ve
-         959SIKIgV6DOk+B70gZzaRKaT3EKsGHxc9uM/u/WixxeTwSt0u7G82lXMT+Xr3PfnkvJ
-         0C1j1JfrBnUSI7EEJfzlAWAfLj3otT3e3jxYQebE/DavmbIJFG292HEi5orif6Gp6AZT
-         gB7LQHy964JHP0baE5WXIaDf1avCL1tGX8L6lzCKcPSzpfGgG3LHVX8gjQBuqYR9Chvi
-         zNrg==
-X-Gm-Message-State: AOJu0YzA/71O6ReiivGbmAoCfK/wYoLXtmgHHAVH4WxNnKFEtBoNIKXI
-	LaZnb0yWSNA8ITvXolCXdckw6g==
-X-Google-Smtp-Source: AGHT+IHXt7Ufyov+rsHLlszoNSf7f3sNJD+B0NBwhA3cKdYZFov1Hno0tqVBpT59cwEnzsqksoAleg==
-X-Received: by 2002:a5d:58e1:0:b0:333:fd3:1a7f with SMTP id f1-20020a5d58e1000000b003330fd31a7fmr1221988wrd.52.1701447060579;
-        Fri, 01 Dec 2023 08:11:00 -0800 (PST)
+        bh=C7gV2bTYZ/8fGxngk+WgJOxqZzJsxGLjpBfcpof/uy0=;
+        b=BNPoQsWpG0nXCZdUcjlszmBmOOxqP8g++T0owG8B0kFQknF5tT7QYwzCuK5j9fGd5P
+         VXDh4VYBjyst3VdhsW6ZT7lXVrc/+oIxSJEGha8enUbXKjn841i/Susyf2vQMCAGBmDJ
+         N5RPJ3u7RIq9ia4wkjVofY5aU/CnD6kexCXEcQ46s7yC4VHwTlZYUM6X8w8uBSLZIK4H
+         DeGM3aF4VGda8FMUMeeR6Tb0Gey5r3PGx+BI9tNsCfayPNHbsEo5k6MRDtHGQWXyDNn3
+         /c5aKV3N1wwqBmYRK4OxmtJw+ufGDR6dcSaf+cK4ztPPXUrvCnV/mnD/s/ZqWk64/iFH
+         PCWA==
+X-Gm-Message-State: AOJu0Yy4ohjzE6rXgAZ4KFdESFxcimRYAo1Iq1IVUJqcQVFX0wwsS1WB
+	Gys0n7cOaRIYCWpAv9XG8MFEmA==
+X-Google-Smtp-Source: AGHT+IHifnPnjwfFbRUDi0Dq/CXTdTB+43Bv53XwrhOqE0a/iXWMk5yDdxyInhmCzVvC0YTegqDPjQ==
+X-Received: by 2002:a5d:63cb:0:b0:332:eaa7:56b0 with SMTP id c11-20020a5d63cb000000b00332eaa756b0mr1048507wrw.14.1701447062005;
+        Fri, 01 Dec 2023 08:11:02 -0800 (PST)
 Received: from gpeter-l.lan (host-92-29-24-243.as13285.net. [92.29.24.243])
-        by smtp.gmail.com with ESMTPSA id cg16-20020a5d5cd0000000b003332656cd73sm3907386wrb.105.2023.12.01.08.10.59
+        by smtp.gmail.com with ESMTPSA id cg16-20020a5d5cd0000000b003332656cd73sm3907386wrb.105.2023.12.01.08.11.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Dec 2023 08:10:59 -0800 (PST)
+        Fri, 01 Dec 2023 08:11:01 -0800 (PST)
 From: Peter Griffin <peter.griffin@linaro.org>
 To: robh+dt@kernel.org,
 	krzysztof.kozlowski+dt@linaro.org,
@@ -87,9 +87,9 @@ Cc: peter.griffin@linaro.org,
 	linux-watchdog@vger.kernel.org,
 	kernel-team@android.com,
 	linux-serial@vger.kernel.org
-Subject: [PATCH v5 08/20] dt-bindings: serial: samsung: Add google-gs101-uart compatible
-Date: Fri,  1 Dec 2023 16:09:13 +0000
-Message-ID: <20231201160925.3136868-9-peter.griffin@linaro.org>
+Subject: [PATCH v5 09/20] dt-bindings: serial: samsung: Make samsung,uart-fifosize required property
+Date: Fri,  1 Dec 2023 16:09:14 +0000
+Message-ID: <20231201160925.3136868-10-peter.griffin@linaro.org>
 X-Mailer: git-send-email 2.43.0.rc2.451.g8631bc7472-goog
 In-Reply-To: <20231201160925.3136868-1-peter.griffin@linaro.org>
 References: <20231201160925.3136868-1-peter.griffin@linaro.org>
@@ -101,27 +101,43 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add dedicated google-gs101-uart compatible to the dt-schema for
-representing uart of the Google Tensor gs101 SoC.
+Specifying samsung,uart-fifosize in both DT and driver static data is error
+prone and relies on driver probe order and dt aliases to be correct.
 
-Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
+Additionally on many Exynos platforms these are (USI) universal serial
+interfaces which can be uart, spi or i2c, so it can change per board.
+
+For google,gs101-uart and exynosautov9-uart make samsung,uart-fifosize a
+required property. For these platforms fifosize now *only* comes from DT.
+
+It is hoped other Exynos platforms will also switch over time.
+
 Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
 ---
- Documentation/devicetree/bindings/serial/samsung_uart.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ .../devicetree/bindings/serial/samsung_uart.yaml       | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
 diff --git a/Documentation/devicetree/bindings/serial/samsung_uart.yaml b/Documentation/devicetree/bindings/serial/samsung_uart.yaml
-index e32c1b462836..ccc3626779d9 100644
+index ccc3626779d9..65d5d361e8f4 100644
 --- a/Documentation/devicetree/bindings/serial/samsung_uart.yaml
 +++ b/Documentation/devicetree/bindings/serial/samsung_uart.yaml
-@@ -21,6 +21,7 @@ properties:
-       - enum:
-           - apple,s5l-uart
-           - axis,artpec8-uart
-+          - google,gs101-uart
-           - samsung,s3c6400-uart
-           - samsung,s5pv210-uart
-           - samsung,exynos4210-uart
+@@ -133,6 +133,16 @@ allOf:
+             - const: uart
+             - const: clk_uart_baud0
+ 
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - google,gs101-uart
++    then:
++      required:
++        - samsung,uart-fifosize
++
+ unevaluatedProperties: false
+ 
+ examples:
 -- 
 2.43.0.rc2.451.g8631bc7472-goog
 
