@@ -1,83 +1,73 @@
-Return-Path: <devicetree+bounces-20745-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20747-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1629B800B96
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 14:16:34 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC59F800BC0
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 14:23:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 453BD1C20D55
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 13:16:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7C65FB20EB5
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 13:23:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4567A2D625;
-	Fri,  1 Dec 2023 13:16:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CBE52D63F;
+	Fri,  1 Dec 2023 13:23:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nZvoYezt"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tF4YK+19"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CBB510E2;
-	Fri,  1 Dec 2023 05:16:28 -0800 (PST)
-Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-332ddd8e0bdso2097964f8f.0;
-        Fri, 01 Dec 2023 05:16:28 -0800 (PST)
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EA7E13E
+	for <devicetree@vger.kernel.org>; Fri,  1 Dec 2023 05:23:11 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-50bc8b7d8ffso3083563e87.0
+        for <devicetree@vger.kernel.org>; Fri, 01 Dec 2023 05:23:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701436586; x=1702041386; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=u5l4PLs5fq2iOORKwjJCX/3NWfa03zarQdKsLZDtVEc=;
-        b=nZvoYeztf7imlKMou3/7CdxtcY06s6av1D0uliPmyuaMvuWevQJ5pWJPs9wWcfvDlS
-         M+CtQL9k4gcpXGPljPoAR47Z8ZN4iLX9lAWtoUdg3YqTU9aNJsep3dOJIomyURJpXp4S
-         9EMZpTBEOmePKbm4Z0B69/7TXNs4+gVnZqSROgJ8caiMhEQ5Cze3eUwz59ldrnpEdKo/
-         yub1w/tQ0A16g8SGFYtaX0bPhKIENsfIYkXZyW5c56zgnn7USIHaE1JDF7ZNe3r0ON9C
-         SDqY97RgOIcrh0L6eVo/HYTYwAkZofhxO0Xx0CZIa+7QrajiEk9dHAbpQYSv6WBX1eum
-         NPZQ==
+        d=linaro.org; s=google; t=1701436989; x=1702041789; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Igs/1xxmdZDx69Ib2yYmnUGtoYW4fPjWxGWyWHxaXA0=;
+        b=tF4YK+19sNHdrbQlvMNiLnJJ96TCijF3XhC0LfbAhyePm4mlLQvnUdsix4Dp5cqZ30
+         lQFjBznd/gUyWVawbfDJDr8VZOkROyIgJ88G4zf6JdA6d+ntSP7bAk9Yj9CJ+TrKzlVx
+         CI6x0I4JInIbG/iylKCnI1jhfL1lQZn3JzhbBHZH32KsZVYsX9SfEJIjlzBmrO1ogPlw
+         DmBtcSTpXgEZQ4vcSqnCXsQKXW83EK218DpnYU26c7OrmQwkiGG+dXs0jUdOzA9Jx2AW
+         qHwHAWCXcVGtd3QamKrervsl1c2+cjqAgOpvxcQ5Zp4epPSmjaZfIUFoGvuogvKUSJkI
+         ubHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701436586; x=1702041386;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=u5l4PLs5fq2iOORKwjJCX/3NWfa03zarQdKsLZDtVEc=;
-        b=P6pJixs5uKy0FKWVkq3PoG465R2F+l4V80Oi5G90SLRmGPjI/KU+o8kBLfHKTHocA9
-         Qvw7zfYDt5/bdQtly6hfBXVyNERFF/8uxUQQvXkreeOYNC8Qxc7r9To2opYy+v43P5zk
-         htF9poKnBy9NgOjvYtlub+ZRSEXmBRdV9apRN1v0aJf8Ug/mLTP+rwZ+FpDeh3Q1NIgK
-         fINufRcNTtKgk9b5sO3TjyAlLAnw9E4S+CjvabNYi0Ejn9h2qEo8Tt5c612qyyp3PB3a
-         32fUJIalL+rX64blaGj0I2EzOfRRFhQ8cQFX9ZBIMtQzCSArQvVqCI7UzCzJ6qjmXFrd
-         yO8g==
-X-Gm-Message-State: AOJu0Yx48fEipDElhTzGLPPSw06nOTqaJc/PzxX86pkQXd77TiBqSQ1i
-	yRBhRalyAoI+wn/hhJaA6nU=
-X-Google-Smtp-Source: AGHT+IGFHBFbqH5osZlxZuBfMWde0sWWX+h48EXeHAzLRuF+VW+iOm/S1NzSCFL0u0ZDbGzQbWx3Dw==
-X-Received: by 2002:a05:600c:21cd:b0:40b:5e4a:236a with SMTP id x13-20020a05600c21cd00b0040b5e4a236amr766057wmj.108.1701436586518;
-        Fri, 01 Dec 2023 05:16:26 -0800 (PST)
-Received: from prasmi.home ([2a00:23c8:2500:a01:3c2e:cd45:f50f:f083])
-        by smtp.gmail.com with ESMTPSA id fm21-20020a05600c0c1500b0040b3dbb5c93sm1451723wmb.1.2023.12.01.05.16.25
+        d=1e100.net; s=20230601; t=1701436989; x=1702041789;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Igs/1xxmdZDx69Ib2yYmnUGtoYW4fPjWxGWyWHxaXA0=;
+        b=mP0JXUNmniytcp6ZRJheTInFDjsxBLl/22jRh2bc5uWQVC2AeR497PM1LIMfWamMRe
+         BuTs1U6rVXQSI3S/H5m88cbNDQhuWq36dWnp+eAe3eFqrhoNSCFVafld9I51KOqKeMdf
+         5dS9YksReEKoH8KMA1oTxHNtmT4JB/kojb9rNKe8CTsFJGC6bw0VN9gDmbVYm5wdL+zr
+         SeUkcG1BrLzRSN57U2WnJHhb0F1CbMMQoxtlDXZRGCoMs8R+Wlvb/9gzxpJEnNpCkCev
+         BQ4sMeDxefDsG4udby9Y1OjKXOwK4kYehA07D1YNq/433o+CaYa0kCdvXb5NBgYGk2ov
+         CsZQ==
+X-Gm-Message-State: AOJu0YzOCxcafBxb3yq81kHm6x3u02RAtHS92ykTVhM+i7M1Upq55hLU
+	qwrWemeyMZV5Z8XbTdHolhJdwg==
+X-Google-Smtp-Source: AGHT+IGC7piV6frnlDTmJAucTJLcGnBXEN4l2bs6VOfOWHWe7GrruFEgN+yKEvb3SCIRrhNJkHYZog==
+X-Received: by 2002:a05:6512:2027:b0:50b:c700:f976 with SMTP id s7-20020a056512202700b0050bc700f976mr529088lfs.0.1701436989392;
+        Fri, 01 Dec 2023 05:23:09 -0800 (PST)
+Received: from krzk-bin.. ([178.197.223.109])
+        by smtp.gmail.com with ESMTPSA id r16-20020a05600c459000b00406408dc788sm9067720wmo.44.2023.12.01.05.23.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Dec 2023 05:16:25 -0800 (PST)
-From: Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
+        Fri, 01 Dec 2023 05:23:08 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Andrew Lunn <andrew@lunn.ch>,
+	Gregory Clement <gregory.clement@bootlin.com>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Linus Walleij <linus.walleij@linaro.org>
-Cc: linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
+	Lubomir Rintel <lkundrak@v3.sk>,
+	linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-gpio@vger.kernel.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v3 3/3] riscv: dts: renesas: r9a07g043f: Update gpio-ranges property
-Date: Fri,  1 Dec 2023 13:15:51 +0000
-Message-Id: <20231201131551.201503-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: marvell: move MMP boards to common marvell directory
+Date: Fri,  1 Dec 2023 14:23:06 +0100
+Message-Id: <20231201132306.60753-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231201131551.201503-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20231201131551.201503-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,31 +76,36 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Marvell board bindings are spread over arm/marvell/ and arm/mrvl/
+directories.  Move MMP board bindings from the latter to the former, to
+keep all of them together.
 
-On RZ/Five we have additional pins compared to the RZ/G2UL SoC so update
-the gpio-ranges property in RZ/Five SoC DTSI.
-
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/riscv/boot/dts/renesas/r9a07g043f.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
+ .../bindings/arm/{mrvl/mrvl.yaml => marvell/marvell,mmp.yaml} | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+ rename Documentation/devicetree/bindings/arm/{mrvl/mrvl.yaml => marvell/marvell,mmp.yaml} (89%)
 
-diff --git a/arch/riscv/boot/dts/renesas/r9a07g043f.dtsi b/arch/riscv/boot/dts/renesas/r9a07g043f.dtsi
-index a92cfcfc021b..09ef10b39f46 100644
---- a/arch/riscv/boot/dts/renesas/r9a07g043f.dtsi
-+++ b/arch/riscv/boot/dts/renesas/r9a07g043f.dtsi
-@@ -46,6 +46,10 @@ cpu0_intc: interrupt-controller {
- 	};
- };
+diff --git a/Documentation/devicetree/bindings/arm/mrvl/mrvl.yaml b/Documentation/devicetree/bindings/arm/marvell/marvell,mmp.yaml
+similarity index 89%
+rename from Documentation/devicetree/bindings/arm/mrvl/mrvl.yaml
+rename to Documentation/devicetree/bindings/arm/marvell/marvell,mmp.yaml
+index 4c43eaf3632e..92a667e27ec8 100644
+--- a/Documentation/devicetree/bindings/arm/mrvl/mrvl.yaml
++++ b/Documentation/devicetree/bindings/arm/marvell/marvell,mmp.yaml
+@@ -1,10 +1,10 @@
+ # SPDX-License-Identifier: GPL-2.0
+ %YAML 1.2
+ ---
+-$id: http://devicetree.org/schemas/arm/mrvl/mrvl.yaml#
++$id: http://devicetree.org/schemas/arm/marvell/marvell,mmp.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
  
-+&pinctrl {
-+	gpio-ranges = <&pinctrl 0 0 232>;
-+};
-+
- &soc {
- 	dma-noncoherent;
- 	interrupt-parent = <&plic>;
+-title: Marvell Platforms
++title: Marvell MMP Platforms
+ 
+ maintainers:
+   - Lubomir Rintel <lkundrak@v3.sk>
 -- 
 2.34.1
 
