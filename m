@@ -1,110 +1,131 @@
-Return-Path: <devicetree+bounces-20835-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20831-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31081800FFB
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 17:22:11 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A71E4800FE0
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 17:17:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5FDC01C20AED
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 16:22:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 474AEB213DC
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 16:17:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25AC54C625;
-	Fri,  1 Dec 2023 16:22:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D3D44CB36;
+	Fri,  1 Dec 2023 16:17:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DXOtzgxT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f51.google.com (mail-oo1-f51.google.com [209.85.161.51])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B3ACD50;
-	Fri,  1 Dec 2023 08:22:03 -0800 (PST)
-Received: by mail-oo1-f51.google.com with SMTP id 006d021491bc7-58d9a4e9464so1144496eaf.0;
-        Fri, 01 Dec 2023 08:22:03 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701447722; x=1702052522;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=XMzJQkWl3UCqt9MwlcLP28F/WjmJ8PvNuz3o00YLjoc=;
-        b=AhEECuELoNFQJOyh58mkZdZ/MP+HM3W6XTkhM9vyTB+4sMMXQkvBB/+aqPSJng36Br
-         M/K1qM1u5B4YAgRa7CYisnCAZ4BhjnrDGcNlK9PT03HbmCc9I6FAV7bMMbpqbb+R4AAK
-         OOKcmhKpCH7S7qzqzoTZZIeYL8+GhR64twRfsY8ILBdTVgXKPCF4FCVfRRZLGKJlLz9g
-         kDfSVacrVANTjDohkes8V++sC3M80gIO/AOeSQZ6Vul/diPYGO42w7JhCFC+pR5jfkuR
-         EjKMLcT0aVPshSaF+BqKqNIxmTj+WPChYXUqezbC3cAr1pe1ORHHpsNobT/+CqeCibpd
-         /uMQ==
-X-Gm-Message-State: AOJu0Yw/MqX9xBpST/cgl6INpOxtA5OTMYSqjN4InAof/yXDqj+gl4VM
-	xD92a+OPRI8cg0nEhr50kwheSrIfGLLTkA==
-X-Google-Smtp-Source: AGHT+IEeTn1ywH3y2w92NrZfUJmeikZUGwFBsI/ecRejWx/2yva3XMTPLWpF6EsizqYwR2k7A9w9Zg==
-X-Received: by 2002:a4a:621e:0:b0:58d:b174:9af6 with SMTP id x30-20020a4a621e000000b0058db1749af6mr3301490ooc.3.1701447722143;
-        Fri, 01 Dec 2023 08:22:02 -0800 (PST)
-Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com. [209.85.160.43])
-        by smtp.gmail.com with ESMTPSA id v3-20020a4a3143000000b0058d592deb89sm620159oog.17.2023.12.01.08.22.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 01 Dec 2023 08:22:00 -0800 (PST)
-Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-1fa21f561a1so361498fac.3;
-        Fri, 01 Dec 2023 08:22:00 -0800 (PST)
-X-Received: by 2002:a81:5258:0:b0:5d3:4923:2fed with SMTP id
- g85-20020a815258000000b005d349232fedmr5600759ywb.36.1701447366859; Fri, 01
- Dec 2023 08:16:06 -0800 (PST)
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BBA71171C;
+	Fri,  1 Dec 2023 16:17:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D10DCC433C7;
+	Fri,  1 Dec 2023 16:17:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701447426;
+	bh=1clXQHaKlN3+Iey4fwvTDjGR7w5qW4bBovJgyAH6bm0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=DXOtzgxTZmqTX7UMTBKAELYx0R+uGIzx1B+2m8VO3+dC+h/phPJnHkvjZuHzYjrs0
+	 RA1ZG6+t7FLbFSgM648hNOOH313ZOvtkCkQoF2AsQBBwfYIasV3QECsUNrUaFgkBda
+	 ov6QgW4jCFO9P4m0vdcvg3eRPbrMkYTiSpp/xM6xH30feYpk4OneCB3d1eBJ2wUP4u
+	 nk5w3gjQ07fJriufkNUvdTnAh1WLcv9FAcR7HdRLuHhngaFOwTrFMycJ2M1IYAaRKb
+	 PXAKJ0dHhe011leboXXazfoD1N9l/EitARVA4/qPWNwkr9PESF4uUa60Qr0zIwdDvQ
+	 oBHkyZWd/C/Bw==
+Date: Fri, 1 Dec 2023 16:16:59 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Xu Yang <xu.yang_2@nxp.com>
+Cc: Frank Li <frank.li@nxp.com>, "will@kernel.org" <will@kernel.org>,
+	"mark.rutland@arm.com" <mark.rutland@arm.com>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"shawnguo@kernel.org" <shawnguo@kernel.org>,
+	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+	"kernel@pengutronix.de" <kernel@pengutronix.de>,
+	"festevam@gmail.com" <festevam@gmail.com>,
+	"irogers@google.com" <irogers@google.com>,
+	"namhyung@kernel.org" <namhyung@kernel.org>,
+	"acme@kernel.org" <acme@kernel.org>,
+	"john.g.garry@oracle.com" <john.g.garry@oracle.com>,
+	"james.clark@arm.com" <james.clark@arm.com>,
+	"mike.leach@linaro.org" <mike.leach@linaro.org>,
+	"leo.yan@linaro.org" <leo.yan@linaro.org>,
+	"peterz@infradead.org" <peterz@infradead.org>,
+	"mingo@redhat.com" <mingo@redhat.com>,
+	"alexander.shishkin@linux.intel.com" <alexander.shishkin@linux.intel.com>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-perf-users@vger.kernel.org" <linux-perf-users@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [EXT] Re: [PATCH 1/3] dt-bindings: perf: fsl-imx-ddr: Add i.MX95
+ compatible
+Message-ID: <20231201-pointer-statue-f30a42b8102e@spud>
+References: <20231127073208.1055466-1-xu.yang_2@nxp.com>
+ <20231127-whoever-magical-5a7cf2b142e1@spud>
+ <DB7PR04MB51460A715C6870642B6D7BBE8C81A@DB7PR04MB5146.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231120070024.4079344-1-claudiu.beznea.uj@bp.renesas.com> <20231120070024.4079344-6-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20231120070024.4079344-6-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 1 Dec 2023 17:15:55 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWJJ=pjY5YFG=UxL+rWhYtWKicjbGUj-7KC1tgaz4tB3Q@mail.gmail.com>
-Message-ID: <CAMuHMdWJJ=pjY5YFG=UxL+rWhYtWKicjbGUj-7KC1tgaz4tB3Q@mail.gmail.com>
-Subject: Re: [PATCH 05/14] pinctrl: renesas: rzg2l: Move arg in the main
- function block
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: s.shtylyov@omp.ru, davem@davemloft.net, edumazet@google.com, 
-	kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, linux@armlinux.org.uk, 
-	magnus.damm@gmail.com, mturquette@baylibre.com, sboyd@kernel.org, 
-	linus.walleij@linaro.org, p.zabel@pengutronix.de, arnd@arndb.de, 
-	m.szyprowski@samsung.com, alexandre.torgue@foss.st.com, afd@ti.com, 
-	broonie@kernel.org, alexander.stein@ew.tq-group.com, 
-	eugen.hristev@collabora.com, sergei.shtylyov@gmail.com, 
-	prabhakar.mahadev-lad.rj@bp.renesas.com, biju.das.jz@bp.renesas.com, 
-	linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="TkOZ/60oHOjywoPV"
+Content-Disposition: inline
+In-Reply-To: <DB7PR04MB51460A715C6870642B6D7BBE8C81A@DB7PR04MB5146.eurprd04.prod.outlook.com>
+
+
+--TkOZ/60oHOjywoPV
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi Claudiu,
+On Fri, Dec 01, 2023 at 06:41:59AM +0000, Xu Yang wrote:
+> Hi Conor,
+>=20
+> >=20
+> > On Mon, Nov 27, 2023 at 03:32:06PM +0800, Xu Yang wrote:
+> > > i.MX95 has a more precise counting capability than i.MX93. This will =
+add
+> > > a compatible for it.
+> >=20
+> > It is hard to tell from this comment, but I figure this "more precise
+> > capability" is not an option you can enable, but instead makes the
+> > programming model of this device different to that of the imx93?
+>=20
+> Actually, imx95 is compatible with imx93 except AXI ID filter capability.
+> But for AXI ID filter, imx95 is using different registers and bits from
+> imx93 for filter configuration.
 
-On Mon, Nov 20, 2023 at 8:01=E2=80=AFAM Claudiu <claudiu.beznea@tuxon.dev> =
-wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->
-> Move arg in the main block of the function as this is used by 3 out of 4
-> case blocks of switch-case. In this way some lines of code are removed.
->
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+This sounds like it conflicts with...
 
-Thanks for your patch!
+> To distinguish them, I need use different
+> compatible because programming model cannot recognize which device is
+> running.
+>=20
+> compatible =3D "fsl,imx95-ddr-pmu";
 
->  drivers/pinctrl/renesas/pinctrl-rzg2l.c | 11 ++++++-----
->  1 file changed, 6 insertions(+), 5 deletions(-)
+> compatible =3D "fsl,imx95-ddr-pmu", "fsl,imx93-ddr-pmu";
 
-Unfortunately your claim is not really backed by the diffstat.
-What about moving index, too?
+=2E..this. If drivers for the imx93 need changes to work on the imx95,
+then `compatible =3D "fsl,imx95-ddr-pmu", "fsl,imx93-ddr-pmu";` cannot be
+used. If they will work, with only the new imx95 features being
+non-functional, then you can use it.
 
-Gr{oetje,eeting}s,
+> Both above compatible is okay for me. Therefore, "fsl,imx95-ddr-pmu" is n=
+eeded.
 
-                        Geert
+--TkOZ/60oHOjywoPV
+Content-Type: application/pgp-signature; name="signature.asc"
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+-----BEGIN PGP SIGNATURE-----
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZWoG+wAKCRB4tDGHoIJi
+0vEhAP4wzNFvpXcJTLzerrD4dUi4x/ljKAP60wZOIvaUeVfIggEAmh++tRu2JE6H
+W9PxEUNaXYdEI2l4eUhUFMLEGSaNvws=
+=61zC
+-----END PGP SIGNATURE-----
+
+--TkOZ/60oHOjywoPV--
 
