@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-20888-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20889-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D899D801566
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 22:32:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76AC3801579
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 22:34:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 93B53281CBE
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 21:32:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2CDA31F2101E
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 21:34:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 656F059B4E;
-	Fri,  1 Dec 2023 21:32:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67A5259B54;
+	Fri,  1 Dec 2023 21:34:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wVIAMbQ+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vT+GpAUI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A30E10E5
-	for <devicetree@vger.kernel.org>; Fri,  1 Dec 2023 13:31:59 -0800 (PST)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-a0029289b1bso352082566b.1
-        for <devicetree@vger.kernel.org>; Fri, 01 Dec 2023 13:31:59 -0800 (PST)
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3210310DB
+	for <devicetree@vger.kernel.org>; Fri,  1 Dec 2023 13:34:28 -0800 (PST)
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-a196f84d217so217900566b.3
+        for <devicetree@vger.kernel.org>; Fri, 01 Dec 2023 13:34:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701466317; x=1702071117; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701466466; x=1702071266; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=i42oqIYNtkNxWLewTb6j+4Br3OsD3X8v4jbnNX+Tj4A=;
-        b=wVIAMbQ+gUOHniS+LuPvWhprGMoHNT20ti4lmZqoEPDUKWDdAd6ADjZta8F9/Cno7u
-         2XLrfopD9twFpUOONwyZuwajl9qY6SlLVaHzHA723/JwEuMMueKqYd6B0ONCg2b8LL5U
-         kqJHfdSzhzkPV3SsswrxkabMOaI7c1ysRzrzTS08JzdhT53967RWReKafViaLM3kcLjf
-         5AGLEs3isCTogO9qsnjlF3ZNLpXHXRgmLOwkyEyKWJ3tBCzTEbzsGZMcQTHfmDD9aCBP
-         JEYS/vOcLyBMOv/MnDkIf0y6AqHbN8A07gr/Vd6+sN2UfyDgT4ZFh2Bnk7BkRxp7G4XY
-         oETg==
+        bh=wuQTYJsJqw4DI6C+RR8zK3xqDGyvzi0cYXlGswxpAgQ=;
+        b=vT+GpAUICVNUFQJvxWpoZwID4vM7ykvSUAXxj+ixeLdiEzoZhHFAT5ZnLlztferREe
+         TiF5iDX3K/+WiCXEImpjax00uYE+HD6a9Y30gMNnSfO+1q66mtSP4f2Fic7u46AWYtxW
+         bJ2RXZNa+EjqePbOAVX28h99mHRGlbk+hyMRYBkxwkXz0hpwjrWlXHAheQL+uAaNhvRl
+         PjoxKVMb2FF0wi9qPpXYKnrHZkT//rmQ1G3duPd5TBcoZKSoEuBePCmkyCBot552920f
+         0t1XaiN50Um24hswUHhWhNV0INcQpXJrMMhTfrfSv+c4kKieOh9Xlh1dvSOHLQNqTwmT
+         o8UQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701466317; x=1702071117;
+        d=1e100.net; s=20230601; t=1701466466; x=1702071266;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=i42oqIYNtkNxWLewTb6j+4Br3OsD3X8v4jbnNX+Tj4A=;
-        b=p9xIeohgslEgNZu+DXBjYeZLVvJ+8PvYSvtQZ1HYdobOfEDeDBdCJu8iTkPLNo/pyu
-         FaGnVM8VdiYP0zuYxng9R0WeO0T6LIDdYFuQCwgVeyIRmq9VeZjDpdjh75QHT10pB35j
-         FIvI8ZnPPqkV7vGddl71NgxYi9ZOyPyIVohjW9ZMyzc5zwEJdd0Dp3gwCQin0Az30Kxm
-         SS0kXdWPDPnf6AEnR7v7NPRw/08l0PDubVkqmKwbexndZosWzFy/AIIAxqVp7Zy8cdym
-         ENgsJgi5l8LYLEUFkivj5SIvhNp9v5ZFHzeDd5XyWw2DRALQ8YUHsRc4txjaD3a3l0TQ
-         vyCw==
-X-Gm-Message-State: AOJu0YxeECWBLvTm9R/XcNmmM5CaHUWId4dISfzSnok2yGucej2lhpNU
-	DQFo9JbHU5Ult9hd/7FmQ0JOpA==
-X-Google-Smtp-Source: AGHT+IFJYchC8jH6Si8LIuVMRKB2xaiYfuKglsYxNDNqkyDzVSmjBJXm/YDMrye9iQ2xNbmNNLr6AA==
-X-Received: by 2002:a17:907:38f:b0:a19:a1ba:8cce with SMTP id ss15-20020a170907038f00b00a19a1ba8ccemr1281868ejb.108.1701466317550;
-        Fri, 01 Dec 2023 13:31:57 -0800 (PST)
+        bh=wuQTYJsJqw4DI6C+RR8zK3xqDGyvzi0cYXlGswxpAgQ=;
+        b=CiuKBfmdwcT72D277NBjgcHvVDJti1c675J6hQsSnaP5vbdZiTd+u3f+EVLY7ONhBB
+         l7U6drvpQj9b/AwbpKJNpR4NVsG6E3tc8AANI8FiCFLf4FudVETaVTmq2SrQo2ovGB7r
+         IogYaYrimL4PhUh0Onh42dgDYo69QW5bFL8VP/C5rqr+tBicPUj5b5NjPx7VeKMbUko1
+         xQZ87f7AEB1OkH//8fqD0Zzcn2wm3TnPhN1zpI0Hdc5NoV7gjuTkfY241WGHMzyoZ8Cs
+         /5bn70Xz4B6iKltv8bSm0fbX9iW5v76G3CrJkW/F5Ke0OueZIJvPM2ho3+NYPoF+eeLi
+         S56Q==
+X-Gm-Message-State: AOJu0YyeI8gz3h6nuxJmG+pdm9nULtjvldFdtPyV6yTbiwUGq3+jjPIX
+	2wHk4FHSXKyNAAk5eQBAtzfmlQ==
+X-Google-Smtp-Source: AGHT+IGzQtRAfq5T4eTKLNNVcJNb7DqCLAgSZbWBArqApjyk/dNlifdZ4NP16JYwVp+qB5DljUxVbQ==
+X-Received: by 2002:a17:906:aec4:b0:a0d:ebef:22fa with SMTP id me4-20020a170906aec400b00a0debef22famr1415383ejb.42.1701466466648;
+        Fri, 01 Dec 2023 13:34:26 -0800 (PST)
 Received: from [192.168.209.83] (178235187166.dynamic-4-waw-k-2-3-0.vectranet.pl. [178.235.187.166])
-        by smtp.gmail.com with ESMTPSA id dx9-20020a170906a84900b009fbc655335dsm2331617ejb.27.2023.12.01.13.31.55
+        by smtp.gmail.com with ESMTPSA id e20-20020a1709067e1400b00a17ca6996a2sm2346182ejr.178.2023.12.01.13.34.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 01 Dec 2023 13:31:57 -0800 (PST)
-Message-ID: <0770ad02-632c-4a77-a6b2-2f11a6b84880@linaro.org>
-Date: Fri, 1 Dec 2023 22:31:54 +0100
+        Fri, 01 Dec 2023 13:34:26 -0800 (PST)
+Message-ID: <24c6be96-fa79-46d9-be17-9eb198e215e3@linaro.org>
+Date: Fri, 1 Dec 2023 22:34:22 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,16 +62,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: sc8180x-primus: Fix HALL_INT polarity
+Subject: Re: [PATCH V4 3/5] arm64: dts: qcom: Add base X1E80100 dtsi and the
+ QCP dts
 Content-Language: en-US
-To: Bjorn Andersson <quic_bjorande@quicinc.com>,
- Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20231130-sc8180x-primus-lid-polarity-v1-1-da917b59604b@quicinc.com>
+To: Sibi Sankar <quic_sibis@quicinc.com>, andersson@kernel.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ catalin.marinas@arm.com, ulf.hansson@linaro.org
+Cc: agross@kernel.org, conor+dt@kernel.org, ayan.kumar.halder@amd.com,
+ j@jannau.net, dmitry.baryshkov@linaro.org, nfraprado@collabora.com,
+ m.szyprowski@samsung.com, u-kumar1@ti.com, peng.fan@nxp.com,
+ lpieralisi@kernel.org, quic_rjendra@quicinc.com, abel.vesa@linaro.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ quic_tsoni@quicinc.com, neil.armstrong@linaro.org
+References: <20231130192619.29702-1-quic_sibis@quicinc.com>
+ <20231130192619.29702-4-quic_sibis@quicinc.com>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -108,19 +113,23 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20231130-sc8180x-primus-lid-polarity-v1-1-da917b59604b@quicinc.com>
+In-Reply-To: <20231130192619.29702-4-quic_sibis@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 1.12.2023 01:11, Bjorn Andersson wrote:
-> The hall sensor interrupt on the Primus is active low, which means that
-> with the current configuration the device attempts to suspend when the
-> LID is open.
+On 30.11.2023 20:26, Sibi Sankar wrote:
+> From: Rajendra Nayak <quic_rjendra@quicinc.com>
 > 
-> Fix the polarity of the HALL_INT GPIO to avoid this.
+> Add base dtsi and QCP board (Qualcomm Compute Platform) dts file for
+> X1E80100 SoC, describing the CPUs, GCC and RPMHCC clock controllers,
+> geni UART, interrupt controller, TLMM, reserved memory, interconnects,
+> SMMU and LLCC nodes.
 > 
-> Fixes: 2ce38cc1e8fe ("arm64: dts: qcom: sc8180x: Introduce Primus")
-> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+> Co-developed-by: Abel Vesa <abel.vesa@linaro.org>
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
+> Co-developed-by: Sibi Sankar <quic_sibis@quicinc.com>
+> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
 > ---
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
