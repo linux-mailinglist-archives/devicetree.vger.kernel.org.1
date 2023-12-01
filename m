@@ -1,317 +1,187 @@
-Return-Path: <devicetree+bounces-20785-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20786-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87403800DFE
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 16:07:49 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id F19FA800E09
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 16:09:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B882B1C20EBF
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 15:07:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 82B2FB21313
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 15:09:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91E4948785;
-	Fri,  1 Dec 2023 15:07:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F54348CF1;
+	Fri,  1 Dec 2023 15:09:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="f+eMMXGc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2B11B9;
-	Fri,  1 Dec 2023 07:07:41 -0800 (PST)
-Received: from francesco-nb.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id 8F90B21393;
-	Fri,  1 Dec 2023 16:07:39 +0100 (CET)
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>
-Cc: Joao Paulo Goncalves <joao.goncalves@toradex.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Francesco Dolcini <francesco.dolcini@toradex.com>
-Subject: [PATCH v1 2/2] arm64: dts: freescale: verdin-imx8mm: add support to mallow board
-Date: Fri,  1 Dec 2023 16:07:33 +0100
-Message-Id: <20231201150733.24454-3-francesco@dolcini.it>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231201150733.24454-1-francesco@dolcini.it>
-References: <20231201150733.24454-1-francesco@dolcini.it>
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 322AF10D8
+	for <devicetree@vger.kernel.org>; Fri,  1 Dec 2023 07:09:01 -0800 (PST)
+Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-40b4744d603so22154645e9.2
+        for <devicetree@vger.kernel.org>; Fri, 01 Dec 2023 07:09:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1701443339; x=1702048139; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=gNZ7R4MQGFffrobU6ni4L3zapKkTqgLoMNn8PZTR5i0=;
+        b=f+eMMXGcDuKQHCiKsue+xlZUyHctDsSu+fJbb2LgSYGelLM3zlbg6KPhnsam19thhP
+         s8EFDjzADjxrVsCy2kl8TnTqRu2v8vt6LGjN61fGRPihJCWL/tHH52hTGgPbKLHHbC1E
+         XIA7qpwA1oOoGGIMm8yKDS5mndAJR4Abxl21Yw8UMwLjzJGoNys3G5LjRWhcEytusQQT
+         VRnqwnN9NxSwHoLW4Osp1S2irwxgw0EMbR3O5/E5IEgaxW0aS3x01NZFD6i1D7vZIep4
+         JfQZGB0tU39ofVqNe+31WQ5Pp0oxsVJakOiKYmYTf6Leajga9DqPkUlva3p3f7OaInzt
+         hWvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701443339; x=1702048139;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gNZ7R4MQGFffrobU6ni4L3zapKkTqgLoMNn8PZTR5i0=;
+        b=i1lVqzpQVf4AtQIgUN3KQMiUjjDPPa5gnZScllqRfkMlUMGtzE23xj/5woTmeTZIeO
+         8rl9veFcnfRtDLyZJLvMRHAR4vJAkq45HOrPnx+BQD3hxFUF6QTuGsFpw0ikbUWQ8UuW
+         SEkr8h2sOmZR8FhvDyQSxuGMBycZGEDIz+tqkcKY/lDRCvq6URcNZeXtBI4HUdkWu5XP
+         Qdgo1HILTgUxtQpoMbqwm26TulbKcf5Efq9FpqrLeVdSskMMW4x+IPW+P1U7Xw/KNr0C
+         A7Xj8oE1S4xNiioyEhOZ7LrcZT7MuZnRZC8lM32ybHqbEaAS37OXDPxX75dQqjZTfuYa
+         8a3w==
+X-Gm-Message-State: AOJu0YxPEump8VHihB3mDcEqO+nbvvHA+RmeX5RVfThTB/iqJFW+VCIn
+	5MsNrRnee9pM1woBV3Gwfne5jQ==
+X-Google-Smtp-Source: AGHT+IFsi7k0cOV2CTRev6zhLhejCpJuKEr2xRKSS7XaIC1GAnoHZJlhes2/zkILjlrM0IT/88e2rw==
+X-Received: by 2002:a1c:4c08:0:b0:40b:5e59:f70e with SMTP id z8-20020a1c4c08000000b0040b5e59f70emr273807wmf.128.1701443339595;
+        Fri, 01 Dec 2023 07:08:59 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id fs20-20020a05600c3f9400b0040b5517ae31sm8569539wmb.6.2023.12.01.07.08.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 01 Dec 2023 07:08:59 -0800 (PST)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH v2 0/5] ASoC: codecs: add support for WCD939x Codec
+Date: Fri, 01 Dec 2023 16:08:53 +0100
+Message-Id: <20231201-topic-sm8650-upstream-wcd939x-codec-v2-0-94ed814b25aa@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAX3aWUC/5WNQQ6CMBAAv0J6dg1doIon/2E41O4CmyglLSKG8
+ HcrP/A4c5hZVeQgHNUlW1XgWaL4IQEeMuV6O3QMQokV5lhojQVMfhQH8Xk2VQ6vMU6B7RPejuq
+ iXsB5YgeuNK1Bfa8qKlUqjYFbWfbLrUncS5x8+OzTWf/sf/1ZQw6oqbRU48kQXx8y2OCPPnSq2
+ bbtCy7L4JHXAAAA
+To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
+ Banajit Goswami <bgoswami@quicinc.com>, Andy Gross <agross@kernel.org>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
+ Takashi Iwai <tiwai@suse.com>
+Cc: linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org, 
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3757;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=38wj4TRML2NmpVWHDGWZ7lyYIsFw7bWFSFPePEL0QD4=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBlafcI7JbVO734mB4tTMVAtImtrBrBrmo6qM/8Odho
+ ZjHTfjuJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZWn3CAAKCRB33NvayMhJ0U/UEA
+ C8tw+QSmBj0o4fhv+oL9yLD5m+bFeoziZDnIipCce2w/ww24ga5Fkwm6PUYW9KPYeFERzIs7w6EkjM
+ Dsbka2UyO8UI195/MxiU4zYpPtjHik3fTsGKSS7J3Crh7ECZRHpXj9FjPPgyD1lXw4bMYW6iozc33A
+ 88KiVor6oxDHA5cJJAKjy5v5zQzQw8giP4vpQ1R74LCxpQgSJ9CKvyt4L0ri2iojmzbF+9h+BM3UoT
+ X1zRH0RldvIGzFx/GOtUMxu0XRRFo8t1s1mmxdLJ42Myk+wn8X8J7abf5VhrA5u69KUTI11hmaEcLo
+ CC1bzjotRh4ZJ5HACBLgXM8N2Sseqj/rab2getI1Rzwo2RZIFvxM7V0UjsAt9Pz/StpTW1jVkM+ABE
+ ng+Ve7/Nz5+1ub3k7pBkuRI3upQJz++SjGTxTeBsbw7KazeeEesEhTpvgv3bdGY5MhOig18CX2I5aQ
+ zse7mFAEgb38xDOK2O4Q/sXIqmTX4BU9/OkT2MM1jC9fbLk0ostLz41Twn55v9mUW3S1zBumCZJkM9
+ TyJle2hymBlbzvCNIt9EM4xp40tWq84vRyVrDZ6eIToupvW+5oF3zm55xJBPF8J3YyaCva8njiME9y
+ YJ5vpw3ifN/1lNrp9X5EhKvHxkYB+2xLc//So+bVjOzciiOSt6ot25HSQ0Kw==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-From: Joao Paulo Goncalves <joao.goncalves@toradex.com>
+Add the main WCD9390/WCD9395 Audio Codec driver to support:
+- 4 ADC inputs for up to 5 Analog Microphones
+- 4 DMIC inputs for up to 8 Digital Microphones
+- 4 Microphone BIAS
+- Stereo Headphone output
+- Mono EAR output
+- MBHC engine for Headset Detection
 
-Add Toradex Verdin IMX8MM Mallow carrier board support. Mallow is a
-low-cost carrier board in the Verdin family with a small form factor and
-build for volume production making it ideal for industrial and embedded
-applications.
+This adds:
+- bindings
+- MBHC changes to support Type-C muc
+- Soundwire Slave driver
+- Code driver
 
-https://www.toradex.com/products/carrier-board/mallow-carrier-board
+The USB Mux subsystem support will be submitted separalety
+since it's a functionally separate subsystem connected over
+I2C with it's own reset signal.
 
-Signed-off-by: Joao Paulo Goncalves <joao.goncalves@toradex.com>
-Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- arch/arm64/boot/dts/freescale/Makefile        |   2 +
- .../dts/freescale/imx8mm-verdin-mallow.dtsi   | 173 ++++++++++++++++++
- .../imx8mm-verdin-nonwifi-mallow.dts          |  18 ++
- .../freescale/imx8mm-verdin-wifi-mallow.dts   |  18 ++
- 4 files changed, 211 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin-mallow.dtsi
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi-mallow.dts
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi-mallow.dts
+Changes in v2:
+- Bindings:
+  - Dropped all references to "Slave" or "Host" terminology when possible
+  - Collected review for first patch
+  - Added wcd9395 as fallback of wcd9390
+  - Fixes typos errors
+- MBHC:
+  - Dropped all references to "Slave" or "Host" terminology when possible
+  - Fixed EXPORT_SYMBOL into EXPORT_SYMBOL_GPL
+  - Fixed typo in commit message
+- Soundwire Devices driver
+  - Dropped all references to "Slave" or "Host" terminology when possible
+  - Dropped comments and unused code
+  - Reworked wcd939x_swr_get_current_bank()
+  - Added comments to wcd9390_interrupt_callback()
+  - Reworked regmap's wcd939x_readonly/volatile_register checks
+  - Added comments explaining while bind/unbind are empty
+  - Added comment on SDW_SLAVE_ENTRY meaning
+  - Added more register fields defines
+  - Style fixes
+- Codec driver
+  - Dropped all references to "Slave" or "Host" terminology when possible
+  - Added MICB_BIAS_ values enum and used them in the code
+  - Moved zdet_param to the top
+  - Added TLV data for ear_pa_gain and used it
+  - Defined as much as possible every bit field used on/from register
+  - Replaced 1/0 to true/false when writing to single bit fields
+  - Replaced for loop on all bits with ffs(), simplified code
+  - Simplified MICB fields handling code
+  - Reworked and simplified wcd939x_get/set_compander and other kcontrol get/setters
+  - Reworked and simplified MHGC impedance/zdet/qval code, dropped dead code
+  - Added comments on wcd939x_wd_handle_irq() utility
+  - Added comment on the interrupt handling architecture
+- I've not moved common code yet, I'll probably do later since it would alter wcd939x code
+- Link to v1: https://lore.kernel.org/r/20231123-topic-sm8650-upstream-wcd939x-codec-v1-0-21d4ad9276de@linaro.org
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index 6d83f84090e1..98fc8171a885 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -84,9 +84,11 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw7904.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw7905-0x.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-verdin-nonwifi-dahlia.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-verdin-nonwifi-dev.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mm-verdin-nonwifi-mallow.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-verdin-nonwifi-yavia.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-verdin-wifi-dahlia.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-verdin-wifi-dev.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mm-verdin-wifi-mallow.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-verdin-wifi-yavia.dtb
- 
- imx8mm-tqma8mqml-mba8mx-lvds-tm070jvhg33-dtbs += imx8mm-tqma8mqml-mba8mx.dtb imx8mm-tqma8mqml-mba8mx-lvds-tm070jvhg33.dtbo
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-verdin-mallow.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-verdin-mallow.dtsi
-new file mode 100644
-index 000000000000..4a0799d63446
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-verdin-mallow.dtsi
-@@ -0,0 +1,173 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright 2023 Toradex
-+ *
-+ * Common dtsi for Verdin IMX8MM SoM on Mallow carrier board
-+ *
-+ * https://www.toradex.com/computer-on-modules/verdin-arm-family/nxp-imx-8m-mini-nano
-+ * https://www.toradex.com/products/carrier-board/mallow-carrier-board
-+ */
-+
-+#include <dt-bindings/leds/common.h>
-+
-+/ {
-+	leds {
-+		compatible = "gpio-leds";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_leds>;
-+
-+		/* SODIMM 52 - USER_LED_1_RED */
-+		led-0 {
-+			color = <LED_COLOR_ID_RED>;
-+			function = LED_FUNCTION_DEBUG;
-+			function-enumerator = <1>;
-+			gpios = <&gpio3 0 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		/* SODIMM 54 - USER_LED_1_GREEN */
-+		led-1 {
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_DEBUG;
-+			function-enumerator = <1>;
-+			gpios = <&gpio3 1 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		/* SODIMM 56 - USER_LED_2_RED */
-+		led-2 {
-+			color = <LED_COLOR_ID_RED>;
-+			function = LED_FUNCTION_DEBUG;
-+			function-enumerator = <2>;
-+			gpios = <&gpio3 6 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		/* SODIMM 58 - USER_LED_2_GREEN */
-+		led-3 {
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_DEBUG;
-+			function-enumerator = <2>;
-+			gpios = <&gpio3 7 GPIO_ACTIVE_HIGH>;
-+		};
-+	};
-+};
-+
-+/* Verdin SPI_1 */
-+&ecspi2 {
-+	pinctrl-0 = <&pinctrl_ecspi2>, <&pinctrl_tpm_cs>;
-+	cs-gpios = <&gpio5 13 GPIO_ACTIVE_LOW>, <&gpio3 2 GPIO_ACTIVE_LOW>;
-+	status = "okay";
-+
-+	tpm@1 {
-+		compatible = "infineon,slb9670", "tcg,tpm_tis-spi";
-+		reg = <1>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_tpm_irq>;
-+		interrupt-parent = <&gpio3>;
-+		interrupts = <14 IRQ_TYPE_LEVEL_LOW>;
-+		spi-max-frequency = <18500000>;
-+	};
-+};
-+
-+/* EEPROM on Mallow */
-+&eeprom_carrier_board {
-+	status = "okay";
-+};
-+
-+/* Verdin ETH_1 */
-+&fec1 {
-+	status = "okay";
-+};
-+
-+/* Temperature sensor on Mallow */
-+&hwmon_temp {
-+	compatible = "ti,tmp1075";
-+	status = "okay";
-+};
-+
-+/* Verdin I2C_2_DSI */
-+&i2c2 {
-+	status = "okay";
-+};
-+
-+/* Verdin I2C_4_CSI */
-+&i2c3 {
-+	status = "okay";
-+};
-+
-+/* Verdin I2C_1 */
-+&i2c4 {
-+	status = "okay";
-+};
-+
-+/* Verdin PCIE_1 */
-+&pcie0 {
-+	status = "okay";
-+};
-+
-+&pcie_phy {
-+	status = "okay";
-+};
-+
-+/* Verdin PWM_3_DSI */
-+&pwm1 {
-+	status = "okay";
-+};
-+
-+/* Verdin PWM_1 */
-+&pwm2 {
-+	status = "okay";
-+};
-+
-+/* Verdin PWM_2 */
-+&pwm3 {
-+	status = "okay";
-+};
-+
-+/* Verdin UART_3 */
-+&uart1 {
-+	status = "okay";
-+};
-+
-+/* Verdin UART_1 */
-+&uart2 {
-+	status = "okay";
-+};
-+
-+/* Verdin UART_2 */
-+&uart3 {
-+	status = "okay";
-+};
-+
-+/* Verdin USB_1 */
-+&usbotg1 {
-+	status = "okay";
-+};
-+
-+/* Verdin USB_2 */
-+&usbotg2 {
-+	status = "okay";
-+};
-+
-+/* Verdin SD_1 */
-+&usdhc2 {
-+	status = "okay";
-+};
-+
-+&iomuxc {
-+	pinctrl_leds: ledsgrp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_NAND_ALE_GPIO3_IO0	0x106>, /* SODIMM 52 */
-+			<MX8MM_IOMUXC_NAND_CE0_B_GPIO3_IO1	0x106>, /* SODIMM 54 */
-+			<MX8MM_IOMUXC_NAND_DATA00_GPIO3_IO6	0x106>, /* SODIMM 56 */
-+			<MX8MM_IOMUXC_NAND_DATA01_GPIO3_IO7	0x106>; /* SODIMM 58 */
-+	};
-+
-+	pinctrl_tpm_cs: tpmcsgrp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_NAND_CE1_B_GPIO3_IO2	0x146>; /* SODIMM 64 */
-+	};
-+
-+	pinctrl_tpm_irq: tpmirqgrp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_NAND_DQS_GPIO3_IO14	0x141>; /* SODIMM 66 */
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi-mallow.dts b/arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi-mallow.dts
-new file mode 100644
-index 000000000000..1b1999f3a80e
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi-mallow.dts
-@@ -0,0 +1,18 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright 2023 Toradex
-+ */
-+
-+/dts-v1/;
-+
-+#include "imx8mm-verdin.dtsi"
-+#include "imx8mm-verdin-nonwifi.dtsi"
-+#include "imx8mm-verdin-mallow.dtsi"
-+
-+/ {
-+	model = "Toradex Verdin iMX8M Mini on Mallow";
-+	compatible = "toradex,verdin-imx8mm-nonwifi-mallow",
-+		     "toradex,verdin-imx8mm-nonwifi",
-+		     "toradex,verdin-imx8mm",
-+		     "fsl,imx8mm";
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi-mallow.dts b/arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi-mallow.dts
-new file mode 100644
-index 000000000000..2916145f31bb
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi-mallow.dts
-@@ -0,0 +1,18 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright 2023 Toradex
-+ */
-+
-+/dts-v1/;
-+
-+#include "imx8mm-verdin.dtsi"
-+#include "imx8mm-verdin-wifi.dtsi"
-+#include "imx8mm-verdin-mallow.dtsi"
-+
-+/ {
-+	model = "Toradex Verdin iMX8M Mini WB on Mallow";
-+	compatible = "toradex,verdin-imx8mm-wifi-mallow",
-+		     "toradex,verdin-imx8mm-wifi",
-+		     "toradex,verdin-imx8mm",
-+		     "fsl,imx8mm";
-+};
+---
+Neil Armstrong (5):
+      ASoC: dt-bindings: qcom,wcd938x: move out common properties
+      ASoC: dt-bindings: document WCD939x Audio Codec
+      ASoC: codec: wcd-mbhc-v2: add support when connected behind an USB-C audio mux
+      ASoC: codecs: Add WCD939x Soundwire devices driver
+      ASoC: codecs: Add WCD939x Codec driver
+
+ .../devicetree/bindings/sound/qcom,wcd938x.yaml    |   81 +-
+ .../bindings/sound/qcom,wcd939x-sdw.yaml           |   69 +
+ .../devicetree/bindings/sound/qcom,wcd939x.yaml    |   96 +
+ .../bindings/sound/qcom,wcd93xx-common.yaml        |   95 +
+ sound/soc/codecs/Kconfig                           |   18 +
+ sound/soc/codecs/Makefile                          |    7 +
+ sound/soc/codecs/wcd-clsh-v2.h                     |    1 +
+ sound/soc/codecs/wcd-mbhc-v2.c                     |   95 +-
+ sound/soc/codecs/wcd-mbhc-v2.h                     |    3 +
+ sound/soc/codecs/wcd939x-sdw.c                     | 1584 +++++++++
+ sound/soc/codecs/wcd939x.c                         | 3655 ++++++++++++++++++++
+ sound/soc/codecs/wcd939x.h                         |  983 ++++++
+ 12 files changed, 6592 insertions(+), 95 deletions(-)
+---
+base-commit: 07b677953b9dca02928be323e2db853511305fa9
+change-id: 20231123-topic-sm8650-upstream-wcd939x-codec-c46f621b55d4
+
+Best regards,
 -- 
-2.25.1
+Neil Armstrong <neil.armstrong@linaro.org>
 
 
