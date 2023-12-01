@@ -1,155 +1,169 @@
-Return-Path: <devicetree+bounces-20679-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20680-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8041F8008E1
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 11:48:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E35EF800908
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 11:50:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3C38A281864
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 10:48:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9E55B2814BC
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 10:50:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EE7320B20;
-	Fri,  1 Dec 2023 10:48:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8894421344;
+	Fri,  1 Dec 2023 10:50:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Vag/pdaI"
+	dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b="p2g4QjVx";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="tpt0UfRq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CE351C6A9;
-	Fri,  1 Dec 2023 10:48:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E38BC433C9;
-	Fri,  1 Dec 2023 10:48:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701427706;
-	bh=bYTnVPbpbtB9dCl6tLzUGkhooFvdgeD9g8sXerKrUws=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Vag/pdaIry/wEOswBHKkPevJLTu5viOPQ+B8P35F9eUC/wIdR4uMvH3mo4N4rwTqE
-	 FBMwaDrS6mPTp7O6oJp9hvSjhf26wlvskqxQ3IqGs8c9APx8+YMxjphhjTei/mPOHo
-	 aS3usPHg4YrBT2T6ahOnzL1RcMdh79yQT8Lxi3Bl2OeMACyCdmkLDPlmjSnY9Ms8Pm
-	 KsudgtU0FmabCtQX1UTogPJP0PoRNkjnMFnsIco6wPio+KOSnS4gjxYHahzobnaMie
-	 QwswwPu4W8hsVj6j2O686b5H63A2ac63OgJbCOr+zrFEHEP1N/2K0IZjaOniUCiFQT
-	 yq/+zVHP+p/4Q==
-Date: Fri, 1 Dec 2023 10:48:20 +0000
-From: Lee Jones <lee@kernel.org>
-To: Andreas Kemnade <andreas@kemnade.info>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, bcousson@baylibre.com, tony@atomide.com,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-omap@vger.kernel.org
-Subject: Re: [PATCH v2 2/6] twl-core: add power off implementation for twl603x
-Message-ID: <20231201104820.GC3259151@google.com>
-References: <20231127221907.177442-1-andreas@kemnade.info>
- <20231127221907.177442-3-andreas@kemnade.info>
+Received: from wout5-smtp.messagingengine.com (wout5-smtp.messagingengine.com [64.147.123.21])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9781A1985;
+	Fri,  1 Dec 2023 02:50:00 -0800 (PST)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+	by mailout.west.internal (Postfix) with ESMTP id D0F4D3200C64;
+	Fri,  1 Dec 2023 05:49:56 -0500 (EST)
+Received: from imap44 ([10.202.2.94])
+  by compute3.internal (MEProxy); Fri, 01 Dec 2023 05:49:58 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:sender:subject:subject:to:to; s=fm2; t=
+	1701427796; x=1701514196; bh=w1TPaQlt1j+Yzi/AdEgjJ87bFQJVx6EVRnY
+	ldXhEoA0=; b=p2g4QjVxfltmOaT4hr8ZEQmfQNNnP+FG3LeRYMbRTM4dNNWy1wD
+	jo1xr7Aw7nw+SxXM/KOJS2o8/x8dCN1y3v9BWlhjcMomN6yuuHNBtCiUhU3X0lxM
+	4D3CZu6t0f7BYYWmvLHp2Nw4UKHsv9Oiyrkx0nwKiqWHwxuL5X9xC3ENpcDfWAu1
+	kX5dSUNAAwgAWbjjzPu7+o+DVrHC5IdglL9HWlQVAIRlNdfdlgyt1GySqo49uZOJ
+	3dbkOILPvjTTl5gv4L/sigSmsTBpJw6cXqnERkYNd0ZySIAgFCKJ2qwtbqgLn+FD
+	1v45DxWYB1/9EM8jEpfC4ccGLZh6tFwRFfQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:sender:subject:subject:to:to:x-me-proxy
+	:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=
+	1701427796; x=1701514196; bh=w1TPaQlt1j+Yzi/AdEgjJ87bFQJVx6EVRnY
+	ldXhEoA0=; b=tpt0UfRq81Fq/vvm1MJV+khkgKzTbigqpwABKUosSHKjp7uXgT4
+	x1mecn7vmvtPMdegwSPDF1X06966Ob9u33GtSYi1RCAJibc6fIB7cUeqnNbR5HKy
+	jNgTs5S2DsKQP7RT7dYkRnoDkOYR25Ix/en9aPHZ9iHJLjmOyzlRcfUJ9l7X0X76
+	8ryK014rBULzp6CBeT+hvvCsW34e1vfGi+51wo4suQoV/bXfqiMMRRLGVOO97yIa
+	LM7pDHq8UmC0d9lbCh9P97mzcVLuhMZ3FABKlqd+BZdLZftQXFeQIs71RoVzAHFe
+	EUkfKjKHG4scDeEbwubKF3S3FWYfjJeCuTg==
+X-ME-Sender: <xms:U7ppZT1EWQDr55SjwLyscnC_3lJWnNujVqG2lzezA5CiGuUmv08kTA>
+    <xme:U7ppZSH4gm92xyHkxtyQwXByy2X63rmmxo4L5LTJAkbMRdXXZuQZ9T8WLGvlhXiSO
+    6Gj7zN4MyMCazEI8Tk>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrudeiledgvdduucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtgfesthhqredtreerjeenucfhrhhomhepfdfl
+    ihgrgihunhcujggrnhhgfdcuoehjihgrgihunhdrhigrnhhgsehflhihghhorghtrdgtoh
+    hmqeenucggtffrrghtthgvrhhnpedtleduffeiieffjedtiedvjeehfedvteeuhfelvefh
+    hfdvheeugefgffegleetleenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucevlh
+    hushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehjihgrgihunhdr
+    higrnhhgsehflhihghhorghtrdgtohhm
+X-ME-Proxy: <xmx:VLppZT6kfXmO0fmO-FlDlVa_mPq_4ZL1D5Rb-qw5K8hX3dSWWyka8A>
+    <xmx:VLppZY0OGg6kH8iqUmh7GJHPzVzqlHvsrMIDSwKdwcoxoxedYcQGAQ>
+    <xmx:VLppZWGkalY7zIuUmz3l-54sDXpvLvGUdW3Wp7kY0Q7DatCvVzuqLQ>
+    <xmx:VLppZe8QtzLNBkq1sYYRldd8CI0kIuJA4roXIgLjdS-vqyjW3DII7Q>
+Feedback-ID: ifd894703:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id E1A9736A0075; Fri,  1 Dec 2023 05:49:55 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-1178-geeaf0069a7-fm-20231114.001-geeaf0069
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231127221907.177442-3-andreas@kemnade.info>
+Message-Id: <7cdf280c-c3b4-4996-9854-d24c4842ff4d@app.fastmail.com>
+In-Reply-To: <87ttp2dxe1.fsf@BL-laptop>
+References: <20231123152639.561231-1-gregory.clement@bootlin.com>
+ <20231123152639.561231-21-gregory.clement@bootlin.com>
+ <db993514-7daa-41cb-8e6e-179305c16e24@app.fastmail.com>
+ <87ttp2dxe1.fsf@BL-laptop>
+Date: Fri, 01 Dec 2023 10:49:19 +0000
+From: "Jiaxun Yang" <jiaxun.yang@flygoat.com>
+To: "Gregory CLEMENT" <gregory.clement@bootlin.com>,
+ "paulburton@kernel.org" <paulburton@kernel.org>,
+ "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
+ "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
+ "Rob Herring" <robh+dt@kernel.org>,
+ "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: "Vladimir Kondratiev" <vladimir.kondratiev@mobileye.com>,
+ "Tawfik Bayouk" <tawfik.bayouk@mobileye.com>,
+ "Alexandre Belloni" <alexandre.belloni@bootlin.com>,
+ =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
+ "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 20/21] MIPS: generic: Add support for Mobileye EyeQ5
+Content-Type: text/plain;charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, 27 Nov 2023, Andreas Kemnade wrote:
 
-> If the system-power-controller property is there, enable power off.
-> Implementation is based on a Linux v3.0 vendor kernel.
-> 
-> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
-> ---
->  drivers/mfd/twl-core.c  | 34 ++++++++++++++++++++++++++++++++++
->  include/linux/mfd/twl.h |  1 +
->  2 files changed, 35 insertions(+)
-> 
-> diff --git a/drivers/mfd/twl-core.c b/drivers/mfd/twl-core.c
-> index 6e384a79e3418..54482d5d8888b 100644
-> --- a/drivers/mfd/twl-core.c
-> +++ b/drivers/mfd/twl-core.c
-> @@ -687,6 +687,31 @@ static void twl_remove(struct i2c_client *client)
->  	twl_priv->ready = false;
->  }
->  
-> +static void twl6030_power_off(void)
-> +{
-> +#define APP_DEVOFF      (1<<0)
-> +#define CON_DEVOFF      (1<<1)
-> +#define MOD_DEVOFF      (1<<2)
 
-Please place these at the top somewhere.
+=E5=9C=A82023=E5=B9=B412=E6=9C=881=E6=97=A5=E5=8D=81=E4=BA=8C=E6=9C=88 =E4=
+=B8=8A=E5=8D=8810:34=EF=BC=8CGregory CLEMENT=E5=86=99=E9=81=93=EF=BC=9A
+> "Jiaxun Yang" <jiaxun.yang@flygoat.com> writes:
+>
+>> =E5=9C=A82023=E5=B9=B411=E6=9C=8823=E6=97=A5=E5=8D=81=E4=B8=80=E6=9C=88=
+ =E4=B8=8B=E5=8D=883:26=EF=BC=8CGregory CLEMENT=E5=86=99=E9=81=93=EF=BC=9A
+>>> Introduce support for the MIPS based Mobileye EyeQ5 SoCs.
+>>>
+>>> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+>>> ---
+>> [...]
+>>> diff --git a/arch/mips/generic/Kconfig b/arch/mips/generic/Kconfig
+>>> index 7dc5b3821cc6e..04e1fc6f789b5 100644
+>>> --- a/arch/mips/generic/Kconfig
+>>> +++ b/arch/mips/generic/Kconfig
+>>> @@ -48,6 +48,13 @@ config SOC_VCOREIII
+>>>  config MSCC_OCELOT
+>>>  	bool
+>>>=20
+>>> +config SOC_EYEQ5
+>>> +	select ARM_AMBA
+>>> +	select WEAK_ORDERING
+>>> +	select WEAK_REORDERING_BEYOND_LLSC
+>>> +	select PHYSICAL_START_BOOL
+>>> +	bool
+>>
+>> ^ I believe WEAK_ORDERING is already selected by MIPS_CPS,
+>
+> But MIPS_CPS can be disabled: it is not selected by
+> MIPS_GENERIC_KERNEL.
 
-You should also have spaces around the '<<'s.
+IMO if MIPS_CPS is not select then there is no SMP support on this platf=
+orm.
+WEAK_ORDERING only make sense for SMP system.
 
-These look like they should be BIT()s though.
+>
+>> and WEAK_REORDERING_BEYOND_LLSC should be selected by MIPS_CPS as wel=
+l.
+>
+> WEAK_REORDERING_BEYOND_LLSC is only selected by CPU_LOONGSON64 for
+> now not by MIPS_CPS
 
-> +
-> +	int err;
-> +	u8 val;
-> +
-> +	err = twl_i2c_read_u8(TWL_MODULE_PM_MASTER, &val,
-> +			      TWL6030_PHOENIX_DEV_ON);
+I believe this applies to all SMP cores from MTI, I'll check with hardwa=
+re
+folks.
 
-You can use 100-chars if you like.
+Thanks
+- Jiaxun
 
-> +	if (err) {
-> +		pr_err("I2C error %d reading PHOENIX_DEV_ON\n", err);
+>
+> Thanks,
+>
+> Gregory
+>> =20
+>> Thanks
+>> --=20
+>> - Jiaxun
+>
+> --=20
+> Gregory Clement, Bootlin
+> Embedded Linux and Kernel engineering
+> http://bootlin.com
 
-It would save an awful lot of lines and space if we could place these
-warnings/errors inside twl_i2c_read_u8().
-
-> +		return;
-> +	}
-> +
-> +	val |= APP_DEVOFF | CON_DEVOFF | MOD_DEVOFF;
-> +
-> +	err = twl_i2c_write_u8(TWL_MODULE_PM_MASTER, val,
-> +			       TWL6030_PHOENIX_DEV_ON);
-> +	if (err)
-> +		pr_err("TWL6030 Unable to power off\n");
-> +}
-> +
-> +
->  static struct of_dev_auxdata twl_auxdata_lookup[] = {
->  	OF_DEV_AUXDATA("ti,twl4030-gpio", 0, "twl4030-gpio", NULL),
->  	{ /* sentinel */ },
-> @@ -852,6 +877,15 @@ twl_probe(struct i2c_client *client)
->  			goto free;
->  	}
->  
-> +	if (twl_class_is_6030()) {
-> +		if (of_device_is_system_power_controller(client->dev.of_node)) {
-
-Use 'node' instead.
-
-> +			if (!pm_power_off)
-> +				pm_power_off = twl6030_power_off;
-> +			else
-> +				dev_warn(&client->dev, "Poweroff callback already assigned\n");
-> +		}
-> +	}
-> +
->  	status = of_platform_populate(node, NULL, twl_auxdata_lookup,
->  				      &client->dev);
->  
-> diff --git a/include/linux/mfd/twl.h b/include/linux/mfd/twl.h
-> index c062d91a67d92..85dc406173dba 100644
-> --- a/include/linux/mfd/twl.h
-> +++ b/include/linux/mfd/twl.h
-> @@ -461,6 +461,7 @@ static inline int twl6030_mmc_card_detect(struct device *dev, int slot)
->  
->  #define TWL4030_PM_MASTER_GLOBAL_TST		0xb6
->  
-> +#define TWL6030_PHOENIX_DEV_ON                  0x06
->  /*----------------------------------------------------------------------*/
->  
->  /* Power bus message definitions */
-> -- 
-> 2.39.2
-> 
-
--- 
-Lee Jones [李琼斯]
+--=20
+- Jiaxun
 
