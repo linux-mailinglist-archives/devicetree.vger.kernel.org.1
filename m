@@ -1,62 +1,62 @@
-Return-Path: <devicetree+bounces-20657-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20659-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D68A80071E
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 10:34:10 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BEB63800723
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 10:34:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 01210B21309
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 09:34:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A1012816DE
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 09:34:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98A931E51D;
-	Fri,  1 Dec 2023 09:33:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A21B91F934;
+	Fri,  1 Dec 2023 09:33:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="EeD95u3m"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="3/USKZBT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 408CD3580
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C43A6358D
 	for <devicetree@vger.kernel.org>; Fri,  1 Dec 2023 01:33:46 -0800 (PST)
-Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-54af1daf6a9so3173683a12.1
+Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-548f0b7ab11so2192399a12.1
         for <devicetree@vger.kernel.org>; Fri, 01 Dec 2023 01:33:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1701423224; x=1702028024; darn=vger.kernel.org;
+        d=fairphone.com; s=fair; t=1701423225; x=1702028025; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=niGbj670flkgPie6QF876KkLwnZEAB/QBU6SIajf+Qs=;
-        b=EeD95u3mVtGo/1uuMTq9lGsHSm2JbpAUkH2nRPe0QRKZhr/XIkqRvlwp+Y3yNHdx1r
-         moVhNc3PvJd9S2sX3BcjuSEnZenCKg3c0Ggb2JX7XRInjkpzw9nLZSWUn5AcxHSTeJI8
-         BzXb1vhQY7e8IxTgs/4Yu/6xeZkNEb2ms/kwqSNUVlensm3Fj6IOjpGPORL5DJU4fN5j
-         GrB2JQQwWJw4u0mmI2q+I3zLbwdisBSuXcOnNVs5eD72pq4C3qESmrxxIfC5A2I33DeY
-         YXWNyKdC91Ph+3dGjlPpLCczoN1adoIwBZTNI5w8C4MySJAD9ps5jKRwhSmxZ99JG+aH
-         PKFw==
+        bh=oZnkqmBniHnZdrQ3H0Htq6tTPHmc+KBhKFIvMd2nGfo=;
+        b=3/USKZBT9U5r3ON8z0C/0FP2StuPZ1WOGuqLuXknWK7ZRXXycnvwSRR05xuyomNL6x
+         1DekGSE/GKymCfwW/ZuzO6cYgq5En2Lq/9VBgm7OS60rUyqO28oy9etmS86EQuSPlAgw
+         hTQoBR5nFNgKwD+HtlGOryGSgAdTkXdN568R4pTbt+PfudPgRErJ1lboNvwrmyxHNLcp
+         GBjM1hjCPq9XiKyoKw0slZWrsvDa4CGrphUghhFRdJnL6b4/2mk29pjjeutobT9kIFEG
+         3jUfoTMSLr5teHPJ9eVotvPQnULCt0U/ub6/oYyBwnmLiDyNQjoSTzAgQZRonVTg41OD
+         OemQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701423224; x=1702028024;
+        d=1e100.net; s=20230601; t=1701423225; x=1702028025;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=niGbj670flkgPie6QF876KkLwnZEAB/QBU6SIajf+Qs=;
-        b=AozZVF/xQcBWYCaVBiinlM7yhALxbetG29MKcryj2SUyEu0wCfVxPWHQrOWYHkZRVd
-         dUD21pEICBHKtuvbc2eExtVL9GZpbHSH+wZmnAb3oHF5VnCYoaXHXRt6Zg+qJDQPMQKw
-         nc7soQCt8AeOXRqwAswOpF3cyafn5Sp57yoBt8hfXExYR7g8Go1KJKUBdt2XxD0BqRBn
-         95ty8SiL7UczADFfBmR7lNdayHXga0iGAe+kQ2IOeZXRX/2AWBy5lZuR8dLhPPqU57yp
-         v7iU1Z/ygehfV+HsTOioeVA1l2GnaWduYO1GEAiWr3A/XIKfl1HFDUnd2yh1KNHU600J
-         T/jQ==
-X-Gm-Message-State: AOJu0YxxUHqy49s8A32qHDFv4GTw5V0DWfUCNf458SQL+vaaHdUH17Sf
-	pCezYguxPLfklZj0p35yyh4L1Q==
-X-Google-Smtp-Source: AGHT+IFJZAiqLGITBB9Yi0hCcn8yRnUqkmyP8eOY/RIfQMB3OI8uDZT1rn/dXA6QXyfX1QB/Ha0Z1A==
-X-Received: by 2002:a50:8d52:0:b0:54c:48aa:cd0e with SMTP id t18-20020a508d52000000b0054c48aacd0emr1134309edt.30.1701423224409;
-        Fri, 01 Dec 2023 01:33:44 -0800 (PST)
+        bh=oZnkqmBniHnZdrQ3H0Htq6tTPHmc+KBhKFIvMd2nGfo=;
+        b=oo5+RRpcgAngy3pyPgZq8KZsR/i+P/r9fC4+v7HzrEbAhJiyYsd8glxhdtI0WspCnk
+         BT8PKEm1+tG+xCvf8BMHlb+LW9dhUSuLpNRin1vG458mVSu9EljOpoEgZg6slRr+kct3
+         mzhpxKVNsgAicuDnWJP1OO04nIVT6MEqhN94xtofHMDYQ+tQGWmz9rPvMCOGvYVOKk7C
+         jOU2rsCgSQaChIONCK1+HvV9P319uQbuxa88eRD6vdRxwlFYrYoduO9bMo4a2WUYR5VD
+         YHkt8XyJC9EHXJHyhzzIXWDsIaOZh4rMaMThHZbSFC+bHyo/dnFoGiWPGS8kTJ1aQSRt
+         RyAA==
+X-Gm-Message-State: AOJu0YzR/PCuSgK92GBopDyL8Dbk5LS7hzdC0YZqBmv7XHp6n2wYwka2
+	Z1tpdkDYuLUoacMHftHS6/zJtg==
+X-Google-Smtp-Source: AGHT+IEx7bQWlk5Sk9+GArc/75DMVD8pdS1erYGGQPg6u7WQZOoG9DtK6vetGtm9IzaAPWFLj7T3Kg==
+X-Received: by 2002:a50:d756:0:b0:54b:7e11:c1 with SMTP id i22-20020a50d756000000b0054b7e1100c1mr584027edj.10.1701423225346;
+        Fri, 01 Dec 2023 01:33:45 -0800 (PST)
 Received: from otso.luca.vpn.lucaweiss.eu (dhcp-089-099-055-216.chello.nl. [89.99.55.216])
-        by smtp.gmail.com with ESMTPSA id b16-20020a05640202d000b0054bbc6b6580sm1423708edx.31.2023.12.01.01.33.43
+        by smtp.gmail.com with ESMTPSA id b16-20020a05640202d000b0054bbc6b6580sm1423708edx.31.2023.12.01.01.33.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Fri, 01 Dec 2023 01:33:44 -0800 (PST)
 From: Luca Weiss <luca.weiss@fairphone.com>
-Date: Fri, 01 Dec 2023 10:33:18 +0100
-Subject: [PATCH v3 1/3] media: venus: core: Set up secure memory ranges for
- SC7280
+Date: Fri, 01 Dec 2023 10:33:19 +0100
+Subject: [PATCH v3 2/3] arm64: dts: qcom: sc7280: Move video-firmware to
+ chrome-common
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,7 +65,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20231201-sc7280-venus-pas-v3-1-bc132dc5fc30@fairphone.com>
+Message-Id: <20231201-sc7280-venus-pas-v3-2-bc132dc5fc30@fairphone.com>
 References: <20231201-sc7280-venus-pas-v3-0-bc132dc5fc30@fairphone.com>
 In-Reply-To: <20231201-sc7280-venus-pas-v3-0-bc132dc5fc30@fairphone.com>
 To: Stanimir Varbanov <stanimir.k.varbanov@gmail.com>, 
@@ -83,33 +83,74 @@ Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
  Luca Weiss <luca.weiss@fairphone.com>
 X-Mailer: b4 0.12.4
 
-Not all SC7280 devices ship with ChromeOS firmware. Other devices need
-PAS for image authentication. That requires the predefined virtual
-address ranges to be passed via scm calls. Define them to enable Venus
-on non-CrOS SC7280 devices.
+If the video-firmware node is present, the venus driver assumes we're on
+a system that doesn't use TZ for starting venus, like on ChromeOS
+devices.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Move the video-firmware node to chrome-common.dtsi so we can use venus
+on a non-ChromeOS devices. We also need to move the secure SID 0x2184
+for iommu since (on some boards) we cannot touch that.
+
+At the same time also disable the venus node by default in the dtsi,
+like it's done on other SoCs.
+
 Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Reviewed-by: Vikash Garodia <quic_vgarodia@quicinc.com>
 Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 ---
- drivers/media/platform/qcom/venus/core.c | 4 ++++
- 1 file changed, 4 insertions(+)
+ arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi | 11 +++++++++++
+ arch/arm64/boot/dts/qcom/sc7280.dtsi               |  9 +++------
+ 2 files changed, 14 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/media/platform/qcom/venus/core.c b/drivers/media/platform/qcom/venus/core.c
-index 9cffe975581b..a712dd4f02a5 100644
---- a/drivers/media/platform/qcom/venus/core.c
-+++ b/drivers/media/platform/qcom/venus/core.c
-@@ -881,6 +881,10 @@ static const struct venus_resources sc7280_res = {
- 	.vmem_size = 0,
- 	.vmem_addr = 0,
- 	.dma_mask = 0xe0000000 - 1,
-+	.cp_start = 0,
-+	.cp_size = 0x25800000,
-+	.cp_nonpixel_start = 0x1000000,
-+	.cp_nonpixel_size = 0x24800000,
- 	.fwname = "qcom/vpu-2.0/venus.mbn",
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi b/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
+index 5d462ae14ba1..459ff877df54 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
+@@ -104,6 +104,17 @@ &scm {
+ 	dma-coherent;
  };
+ 
++&venus {
++	iommus = <&apps_smmu 0x2180 0x20>,
++		 <&apps_smmu 0x2184 0x20>;
++
++	status = "okay";
++
++	video-firmware {
++		iommus = <&apps_smmu 0x21a2 0x0>;
++	};
++};
++
+ &watchdog {
+ 	status = "okay";
+ };
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index 326897af117a..0ff9a2484096 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -3836,10 +3836,11 @@ venus: video-codec@aa00000 {
+ 					<&mmss_noc MASTER_VIDEO_P0 0 &mc_virt SLAVE_EBI1 0>;
+ 			interconnect-names = "cpu-cfg", "video-mem";
+ 
+-			iommus = <&apps_smmu 0x2180 0x20>,
+-				 <&apps_smmu 0x2184 0x20>;
++			iommus = <&apps_smmu 0x2180 0x20>;
+ 			memory-region = <&video_mem>;
+ 
++			status = "disabled";
++
+ 			video-decoder {
+ 				compatible = "venus-decoder";
+ 			};
+@@ -3848,10 +3849,6 @@ video-encoder {
+ 				compatible = "venus-encoder";
+ 			};
+ 
+-			video-firmware {
+-				iommus = <&apps_smmu 0x21a2 0x0>;
+-			};
+-
+ 			venus_opp_table: opp-table {
+ 				compatible = "operating-points-v2";
  
 
 -- 
