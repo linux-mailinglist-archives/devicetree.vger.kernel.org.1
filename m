@@ -1,147 +1,106 @@
-Return-Path: <devicetree+bounces-20839-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20840-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C38980100F
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 17:25:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 181E7801015
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 17:27:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AFD5B1C20A57
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 16:25:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 49A641C20DAD
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 16:27:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 086004CDEA;
-	Fri,  1 Dec 2023 16:25:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B0CE4CDF3;
+	Fri,  1 Dec 2023 16:27:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kO8eVe2O"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NkZ/J/sb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF852A6;
-	Fri,  1 Dec 2023 08:25:24 -0800 (PST)
-Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-50bdebb1786so496299e87.1;
-        Fri, 01 Dec 2023 08:25:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701447923; x=1702052723; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=1Fe9LinVeEIS31sVu9a8Ip9icgC4gCnScZC9xWW4pX4=;
-        b=kO8eVe2Om6W7oe8P2GtUiPRM6d//ZVGK8ZKlWqc3qpCabfCj5QhOliNY8AzBWpVh9S
-         6erIbTR60xmsZvMEcGYDLxCZy3HBz8eCcApG5tt90EOvgFrfQ34n5Tdk7YD+vOKydo0s
-         eBbQTDjJtORLSaz/5hwVjATqT8Oygfb6kOQkIPxmib/hGNc8Fg1zKT4iv3imRJj6ZXD1
-         p10v262tO1cRmhiMjxhqOrLUq6qs0C8bxpR8Z6JXeLWh2X1LgK50BKVH2w0m8hiL7bbm
-         Y3GJ1yDE5T4WGA0tQ82og9/B7oS3pZ8PYogts2+MNO2SkVw8ssnOuxIxptPGoivQr/Bo
-         IAZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701447923; x=1702052723;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1Fe9LinVeEIS31sVu9a8Ip9icgC4gCnScZC9xWW4pX4=;
-        b=pQayqNNZBc0Kdmf1KPXI+JyWVQrEyX4e2OBlH1EHIY/Q0GmZHbmE7pbcng0KYdaY9U
-         z0o4iXBIm60nuntTa/5NXFeU5ZEbU/w/ddZVJJU9yAhzTlyiBNlK/TIbwGNh3Ob1cDia
-         2Qp5ZWnDxUNkkBD6k9sKZe1yX6t5grnhyKYmJHO9OA/pbUkA2/+XNf6OYFgBr6RSSaY0
-         wr+slLbf0XzNIwDDR2cMX80iiwTvCVCDtgrS7ZrD7Y4ewSeYtcaLPgx4OI9JKJLJaaxG
-         S98tQsWdm0Z56SKBeUFWuXz+01gnj7cSaFYJukm0k+mznwiP957NK9iJugoGlk3N0eKD
-         kXGA==
-X-Gm-Message-State: AOJu0Yzp1WuUQUsQyZcGufMCHbEWalnuT20eX1MReqjREGdpK5xKsagN
-	FoX4I6Dj3666PTGhJh8ggSE=
-X-Google-Smtp-Source: AGHT+IED2w+hujxue7bm9bOGpjjCdvrKzr90/3i7E5Xd7uj7qqmqvOaSeS01ayw0GAygOWScKCMiaA==
-X-Received: by 2002:a05:6512:280b:b0:50b:d764:64c0 with SMTP id cf11-20020a056512280b00b0050bd76464c0mr1188134lfb.117.1701447922712;
-        Fri, 01 Dec 2023 08:25:22 -0800 (PST)
-Received: from mobilestation ([178.176.56.174])
-        by smtp.gmail.com with ESMTPSA id i15-20020a056512340f00b0050bc303f3cbsm232121lfr.173.2023.12.01.08.25.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Dec 2023 08:25:22 -0800 (PST)
-Date: Fri, 1 Dec 2023 19:25:19 +0300
-From: Serge Semin <fancer.lancer@gmail.com>
-To: Maxime Chevallier <maxime.chevallier@bootlin.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Tomer Maimon <tmaimon77@gmail.com>, davem@davemloft.net, 
-	avifishman70@gmail.com, venture@google.com, openbmc@lists.ozlabs.org, robh+dt@kernel.org, 
-	tali.perry1@gmail.com, mcoquelin.stm32@gmail.com, edumazet@google.com, 
-	joabreu@synopsys.com, joel@jms.id.au, krzysztof.kozlowski+dt@linaro.org, 
-	peppe.cavallaro@st.com, j.neuschaefer@gmx.net, netdev@vger.kernel.org, 
-	linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, benjaminfair@google.com
-Subject: Re: [Linux-stm32] [PATCH v1 2/2] net: stmmac: Add NPCM support
-Message-ID: <dfbwvsvefbkj6lodj5nmj2up32vnai32u3qk667mpfjytvmp4z@uvny7nhaykzi>
-References: <6aeb28f5-04c2-4723-9da2-d168025c307c@lunn.ch>
- <CAP6Zq1j0kyrg+uxkXH-HYqHz0Z4NwWRUGzprius=BPC9+WfKFQ@mail.gmail.com>
- <9ad42fef-b210-496a-aafc-eb2a7416c4df@lunn.ch>
- <CAP6Zq1jw9uLP_FQGR8=p3Y2NTP6XcNtzkJQ0dm3+xVNE1SpsVg@mail.gmail.com>
- <CAP6Zq1ijfMSPjk1vPwDM2B+r_vAH3DShhSu_jr8xJyUkTQY89w@mail.gmail.com>
- <a551aefa-777d-4fd3-b1a5-086dc3e62646@lunn.ch>
- <CAP6Zq1jVO5y3ySeGNE5-=XWV6Djay5MhGxXCZb9y91q=EA71Vg@mail.gmail.com>
- <25d0c091-3dce-4d62-a112-c82106809c65@lunn.ch>
- <xvy2coamb6cl3wcbkl32f6w7kksoxfocyd63t7k7bz4pne2gyx@lktivhqovy7p>
- <20231130213441.032a661c@device.home>
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D0133D38F;
+	Fri,  1 Dec 2023 16:27:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A783DC433C9;
+	Fri,  1 Dec 2023 16:27:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701448058;
+	bh=njXVksqgpE1XeclAX3UMkcIW+TVRAqYLZ+gVVzqrnbY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=NkZ/J/sbsMCfgSaZ2qbNVoy9pRtzAQUwewg5iqJLNBjvYUwr9aBD685a+74w1LyU7
+	 IwvL5riWnox7sdV7wlbcmdBzAlT8G5RCwW6eN6jnNeVxXIi6QrLvyE95azDn5lGf25
+	 IAuvkbfRnCMyBR/LEjLsyQBOPtUWw8zHE75fIKOxJcUyoWKx6mFvMKVUKExEwr5Ch6
+	 7EdQTm7UrcyRFqOLLNfSWwiqkfQD97eGR/ymDR/Njcscx1iC0FmXvU5WnvhFVGWwIc
+	 xoV3nhGcOB7wr1wP/COiDojfZjTZN0nXeTndkFDdu1pZUZYnAfYZKpTehCIHohTzmB
+	 PrSHvuh+M74GQ==
+Date: Fri, 1 Dec 2023 16:27:33 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Johan Hovold <johan@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Johan Hovold <johan+linaro@kernel.org>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Alessandro Zummo <a.zummo@towertech.it>,
+	Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: rtc: qcom-pm8xxx: fix inconsistent example
+Message-ID: <20231201-pursuable-endocrine-1318f4843597@spud>
+References: <20231130173223.12794-1-johan+linaro@kernel.org>
+ <ad96b95a-5f4f-4333-b767-762936932061@linaro.org>
+ <ZWmn6uicNIqqSwoE@hovoldconsulting.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="1Rvoo8TjijJDXryr"
+Content-Disposition: inline
+In-Reply-To: <ZWmn6uicNIqqSwoE@hovoldconsulting.com>
+
+
+--1Rvoo8TjijJDXryr
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231130213441.032a661c@device.home>
+Content-Transfer-Encoding: quoted-printable
 
-Hi Maxime
+On Fri, Dec 01, 2023 at 10:31:22AM +0100, Johan Hovold wrote:
+> On Fri, Dec 01, 2023 at 09:32:46AM +0100, Krzysztof Kozlowski wrote:
+> > On 30/11/2023 18:32, Johan Hovold wrote:
+> > > The PM8921 is an SSBI PMIC but in the binding example it is described
+> > > as being part of an SPMI PMIC while using an SSBI address.
+> > >=20
+> > > Make the example consistent by using the sibling PM8941 SPMI PMIC
+> > > instead.
+> > >=20
+> > > Fixes: 8138c5f0318c ("dt-bindings: rtc: qcom-pm8xxx-rtc: Add qcom pm8=
+xxx rtc bindings")
+> >=20
+> > Similarly to your thermal patch - this is just an example, not a
+> > binding. No bugs are fixed here, no need for backports.
+>=20
+> A Fixes tag does not in itself imply that something should be
+> backported, we have CC-stable tags for that.
 
-On Thu, Nov 30, 2023 at 09:34:41PM +0100, Maxime Chevallier wrote:
-> Hello,
-> 
-> On Thu, 30 Nov 2023 22:59:32 +0300
-> Serge Semin <fancer.lancer@gmail.com> wrote:
-> 
-> > On Thu, Nov 30, 2023 at 06:26:13PM +0100, Andrew Lunn wrote:
-> > > > I will check with the xpcs maintainer how can we add indirect access
-> > > > to the xpcs module.  
-> > > 
-> > > https://elixir.bootlin.com/linux/latest/source/drivers/net/ethernet/stmicro/stmmac/dwmac-socfpga.c#L449
-> > > 
-> > > It creates a regmap for the memory range. On top of that it creates an
-> > > MDIO bus. You can then access the PCS in the normal way.  
-> > 
-> > Actually Synopsys DW XPCS can be synthesized with two types of the CSR
-> > interfaces:
-> > 1. MDIO: device looks as a normal MDIO device. This option is currently
-> >    supported by the STMMAC MDIO driver.
-> > 2. MCI/APB3: device MMD CSRs are directly (all CSRs are visible) or
-> >    indirectly (paged-base access) accessible over the system memory bus.
-> > 
-> > In addition to the above XPCS device can be equipped with separate
-> > clock sources (at least to feed the MCI or APB3 interface) and may
-> > have dedicated IRQ line to signal various events like link
-> > establishing, failures, etc. From that perspective XPCS in both cases
-> > looks as a normal platform device for which would be better to have a
-> > special DT-node defined with all those resources supplied. Then the
-> > XPCS DT-node could be passed to the DW MAC DT-node via the already
-> > standardized "pcs-handle" DT-property.
-> 
+IDK, I think at this point every highly active kernel developer should
+be aware that the stable maintainers backport way more than just what
+gets explicitly CCed to stable.
 
-> To my understanding, this should work, there's another PCS that works
-> this way : 
-> https://elixir.bootlin.com/linux/v6.7-rc3/source/drivers/net/pcs/pcs-rzn1-miic.c
+--1Rvoo8TjijJDXryr
+Content-Type: application/pgp-signature; name="signature.asc"
 
-It is similar to that, but since DW XPCS can reside on the normal MDIO
-bus and in the system memory I took a liberty to implement the DW XPCS
-MCI/APB3 interface support in the framework of the MDIO subsystem,
-especially seeing Synopsys call them just "Management Interfaces", the
-MMD CSRs can be indirectly accessible and since potentially there can
-be more than one XPCS device on the same MCI/APB3 bus.
+-----BEGIN PGP SIGNATURE-----
 
-> 
-> Are you still able to use the mdio-regmap glue that Andrew mentioned,
-> to avoid the duplication between the mdio and mmio register accesses ?
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZWoJdQAKCRB4tDGHoIJi
+0kcpAPwOBPDbYEHIiIG5ZgnuEYXaQxnncECWz71C4cPI0PFljgD/RllSKhlIYHPQ
+GqC2jbpH54ZYcJgNTHRgB5Ukpd91GQ4=
+=ZTcF
+-----END PGP SIGNATURE-----
 
-Andrew cited the glue code using the Lynx PCS driver. In my case it's
-DW XPCS driver. In anycase my patchset is designed in a way so not to
-break (hopefully) the current DW XPCS driver users (STMMAC Eth for
-sure, WangSun XGBE, SJA1105 DSA). So it will be still possible to create a
-dedicated MDIO bus (using mdio-regmap API too) with the XPCS device
-being detectable on it.
-
--Serge(y)
-
-> 
-> Maxime
+--1Rvoo8TjijJDXryr--
 
