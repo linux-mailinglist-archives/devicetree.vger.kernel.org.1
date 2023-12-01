@@ -1,110 +1,149 @@
-Return-Path: <devicetree+bounces-20650-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20652-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 079978006AA
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 10:17:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 854B78006B2
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 10:19:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B70BB2816B0
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 09:17:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D265B28159B
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 09:19:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5C531CABC;
-	Fri,  1 Dec 2023 09:17:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 808851CF87;
+	Fri,  1 Dec 2023 09:19:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Hmmgrh6d"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="aWkydWqr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D584210A;
-	Fri,  1 Dec 2023 01:17:27 -0800 (PST)
-Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-40b57fa7a85so10955045e9.1;
-        Fri, 01 Dec 2023 01:17:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701422246; x=1702027046; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=YY8x4EOrjg+5RcRtDzP4+OrB4jINEh0R/4Xw8daSVdw=;
-        b=Hmmgrh6d10DzkNpfPXiIBnUfZ8ZhP6rFHjB+gYkzxK4iqjulvRqypXwJXsxZrYPdMI
-         KXpKSht14u8cuIanSlU+m78yH42fJmP3yaJjJwuQCuJutNf40QXV3Ohke0qOsk+1/kzF
-         0whKXuWol/VMzC0dBM5LmuTXc5BDoXI0pMCquPW+GNXLLYAA/xtDGIfhgYqRopVxQJ1v
-         NtohBJdt4v2rpZfkE/D6yQXh5qc5olPolLBCDUpiNbdXD1HR5rDPnP1Yj1ct+GCTY04+
-         XLPk2UAKZjnhHwF9C3TkT8VrnPp3D5VVvqVkbiCWxtXPuBL+M8P2nYyY9oVWRcJDe1gz
-         FPWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701422246; x=1702027046;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=YY8x4EOrjg+5RcRtDzP4+OrB4jINEh0R/4Xw8daSVdw=;
-        b=YpZsT5vIEP93E/F2AYQkasPoPEgSBGK1xcfPysPxNazg8r6lo7Zxo1DZnCZXGQeuOI
-         TC3Ar2GG1Ko3dk/x7pJGm+WaB7MOKvFaSsaubqLC9+fsZEpTZfQO+ud+OS//9B3DOBy4
-         QJqcxrDT10rnRjJSo5hyukQmnqMLsLYxrSavlhS8xjnK7E6RTaObR5XE6YEtFUvFVU0q
-         Xb5NkHULMjBgOiq3A+xFKnZcyWb7E2flEAJxFKS7/lrvt5YjFziZCyubR4IiwFJvf1Oe
-         MH1WA7D2G4XYMikEpIV4inxeiFI2IHz+2lDTt8WdfptI7xHHM3TdOBrFCeW76IxNaqr4
-         HrCg==
-X-Gm-Message-State: AOJu0Yw5kcvzaMf1jkTr3w/0/NCq7JYbQ2YoPT4sFSj/l/eui0iYxMLh
-	rYegaJ7FkTUQ+mwqA05TkpIltHMkhrSG5ijb
-X-Google-Smtp-Source: AGHT+IGZLnNmIZ4M3p6jiid/cJ/m6duNJckpZ34y6yN2cssBQr9jEQ5vAveCcNshoi0HNyu2/EaF0g==
-X-Received: by 2002:a7b:c041:0:b0:40b:5e56:7b38 with SMTP id u1-20020a7bc041000000b0040b5e567b38mr445560wmc.129.1701422246174;
-        Fri, 01 Dec 2023 01:17:26 -0800 (PST)
-Received: from ?IPv6:2001:a61:3456:4e01:6ae:b55a:bd1d:57fc? ([2001:a61:3456:4e01:6ae:b55a:bd1d:57fc])
-        by smtp.gmail.com with ESMTPSA id q10-20020adfcd8a000000b0031980294e9fsm3639149wrj.116.2023.12.01.01.17.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Dec 2023 01:17:25 -0800 (PST)
-Message-ID: <66957bdfe89826d22641f418f237af4104a44d67.camel@gmail.com>
-Subject: Re: [PATCH 10/12] iio: adc: ad9467: convert to backend framework
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: David Lechner <dlechner@baylibre.com>, nuno.sa@analog.com
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-iio@vger.kernel.org, Olivier MOYSAN <olivier.moysan@foss.st.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>, Frank Rowand
- <frowand.list@gmail.com>, Jonathan Cameron <jic23@kernel.org>, Lars-Peter
- Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>
-Date: Fri, 01 Dec 2023 10:17:25 +0100
-In-Reply-To: <CAMknhBFbLju8UQJ7Uz85kHKrbK4mzt=wTRdnp40+PwWCJa5dsA@mail.gmail.com>
-References: <20231121-dev-iio-backend-v1-0-6a3d542eba35@analog.com>
-	 <20231121-dev-iio-backend-v1-10-6a3d542eba35@analog.com>
-	 <CAMknhBFbLju8UQJ7Uz85kHKrbK4mzt=wTRdnp40+PwWCJa5dsA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F15A10FA;
+	Fri,  1 Dec 2023 01:19:30 -0800 (PST)
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3B15cHvc022539;
+	Fri, 1 Dec 2023 09:19:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=Zka4KzIUcTY1DnFiW9G0zPvTAMcdwMCa69wvvZaIvwg=;
+ b=aWkydWqruTEOIxl6gXrgbPzkAHePPA/4EVZc3PSFkeJ7KrXKvMtkwhd8kROB8o5Tx8FV
+ F6Cixw1mBZZ3qWqohGmHSU5eYHxKCgCLSX5kVS+IVnm2WOJ7PrMZv0eHJeNq4GVif77M
+ N+0Y/iyX5AtT+tnagNd7k6GEbgBw6n6gOYuIsZwLXrk4f7l1yyCcQbdGEnU2e8avgvpQ
+ hiIbvKFgHhsN3qKOHe2Gz9ZZZnJr7iTxOcVNK/eEayBfdV2bsXoBxd1PowW6i7VSoniB
+ f/mxSP0+4tx+BWyfCSoQVP1cfkWa/TxJh7C8ocHYYVsFAK1jxSkNNYx18uz0OGetmoxX DQ== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3upv482ek2-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 01 Dec 2023 09:19:24 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3B19JNei024942
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 1 Dec 2023 09:19:23 GMT
+Received: from [10.216.46.214] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 1 Dec
+ 2023 01:19:17 -0800
+Message-ID: <f38fa45b-6b57-f941-7bf9-5b6c2d0ea1b8@quicinc.com>
+Date: Fri, 1 Dec 2023 14:49:12 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [PATCH V2 0/4] Add runtime PM support for videocc on SM8150
+Content-Language: en-US
+To: Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Michael Turquette
+	<mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+References: <20231118123944.2202630-1-quic_skakitap@quicinc.com>
+ <47925f9e-32aa-4762-a4ec-aa559e18ff12@kernel.org>
+ <26b69814-201b-8d07-d844-27e804aa3016@quicinc.com>
+ <2ca148cc-564c-499a-8fdf-487391c9024c@linaro.org>
+From: "Satya Priya Kakitapalli (Temp)" <quic_skakitap@quicinc.com>
+In-Reply-To: <2ca148cc-564c-499a-8fdf-487391c9024c@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: NCiTyvsxjcNA6kaVhnTlc3f9a5qWfh18
+X-Proofpoint-ORIG-GUID: NCiTyvsxjcNA6kaVhnTlc3f9a5qWfh18
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-01_06,2023-11-30_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 malwarescore=0
+ spamscore=0 clxscore=1015 impostorscore=0 lowpriorityscore=0 mlxscore=0
+ phishscore=0 suspectscore=0 bulkscore=0 priorityscore=1501 mlxlogscore=999
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2311060000
+ definitions=main-2312010061
 
-On Thu, 2023-11-30 at 17:30 -0600, David Lechner wrote:
-> On Tue, Nov 21, 2023 at 4:17=E2=80=AFAM Nuno Sa via B4 Relay
-> <devnull+nuno.sa.analog.com@kernel.org> wrote:
-> >=20
-> > From: Nuno Sa <nuno.sa@analog.com>
-> >=20
-> > Convert the driver to use the new IIO backend framework. The device
-> > functionality is expected to be the same (meaning no added or removed
-> > features).
->=20
-> Missing a devicetree bindings patch before this one?
->=20
-> >=20
-> > Also note this patch effectively breaks ABI and that's needed so we can
-> > properly support this device and add needed features making use of the
-> > new IIO framework.
->=20
-> Can you be more specific about what is actually breaking?
 
-Device name for example changed. And it might be some other subtle breakage=
- but that
-was kind of agreed that would an ADI problem. I'm also fairly confident no =
-one is
-actually using the upstream version of the driver because it lacks some dev=
-ices and
-important features (like interface tuning).
+On 11/29/2023 7:30 PM, Konrad Dybcio wrote:
+> On 28.11.2023 17:11, Satya Priya Kakitapalli (Temp) wrote:
+>> On 11/20/2023 5:18 PM, Konrad Dybcio wrote:
+>>> On 18.11.2023 13:39, Satya Priya Kakitapalli wrote:
+>>>> Add runtime support for videocc on SM8150 and update the resets
+>>>> and video_pll0_config configuration.
+>>>>
+>>>> Satya Priya Kakitapalli (4):
+>>>>     dt-bindings: clock: Update the videocc resets for sm8150
+>>>>     clk: qcom: videocc-sm8150: Update the videocc resets
+>>>>     clk: qcom: videocc-sm8150: Add missing PLL config properties
+>>>>     clk: qcom: videocc-sm8150: Add runtime PM support
+>>> Hi, it's good practive to include a link to the previous revision
+>>> and a summary of changes.
+>>>
+>>> The b4 tool [1] does that for you, please consider using it.
+>>
+>> Hi, I have installed b4 and followed all the steps, but it doesn't populate my cover letter with change log and previous series link, do i need to use some option for that?
+> You probably did something like this:
+>
+> b4 prep -n 8150vidcc --from-thread 26b69814-201b-8d07-d844-27e804aa3016@quicinc.com
+>
+> Then if you do:
+>
+> b4 prep --edit-cover
+>
+> you'll see a note like
+>
+> EDITME: Imported from f26b69814-201b-8d07-d844-27e804aa3016@quicinc.com
+>          Please review before sending.
+>
+> so you need to do it manually.
+>
+>
+> Generally, when the series has been sent at least once with b4 already,
+> you'll notice that `b4 send` appends something like this to the cover
+> letter:
+>
+> Changes in v2:
+> - EDITME: describe what is new in this series revision.
+> - EDITME: use bulletpoints and terse descriptions.
+> - Link to v1: https://lore.kernel.org/r/20230830-topic-refgenphy-v1-0-892db196a1c0@linaro.org
+>
+>
+> This should be only necessary to do by hand once, since as mentioned it's
+> the first time b4 sees this series
+>
 
-- Nuno S=C3=A1
+Thanks for the information, will add them manually.
 
+
+> Konrad
 
