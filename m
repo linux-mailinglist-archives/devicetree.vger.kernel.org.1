@@ -1,140 +1,132 @@
-Return-Path: <devicetree+bounces-20874-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20872-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A774780125E
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 19:14:51 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15510801256
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 19:14:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 429CAB21350
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 18:14:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3F0F31C20A31
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 18:14:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE2764F210;
-	Fri,  1 Dec 2023 18:14:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mailoo.org header.i=@mailoo.org header.b="BlRJe1Xo"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 972164F1E5;
+	Fri,  1 Dec 2023 18:14:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailo.com (msg-2.mailo.com [213.182.54.12])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3F3A10D;
-	Fri,  1 Dec 2023 10:14:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailoo.org; s=mailo;
-	t=1701454446; bh=8ItrQJpfnYJNBvx9/ZxfYVCB4X1PSHGmZpReeVMVCbM=;
-	h=X-EA-Auth:From:To:Cc:Subject:Date:Message-ID:X-Mailer:In-Reply-To:
-	 References:MIME-Version:Content-Transfer-Encoding;
-	b=BlRJe1XoLRRfLfBlqX9FKJXDcczc9GjGwiHexrrf2wJDGyH4QwQYFcMP2gml325Ew
-	 x7N8QzhHSsMKY7CiqKsYPa6vBzklsiX/NIoj3ILcNFVOLU8i9gQdnDCOwfhj/oiF8Q
-	 B3zFDEDOCYN62u80TcrXeY4f3rb7yGbgSSfNzuis=
-Received: by b221-6.in.mailobj.net [192.168.90.26] with ESMTP
-	via ip-22.mailoo.org [213.182.54.22]
-	Fri,  1 Dec 2023 19:14:05 +0100 (CET)
-X-EA-Auth: ym1ciIqVgZ9eNjymoAMtLEFtuPM6bDp74qWVWVEHmy5LVtFvlqvwNHZnHGLyOdmKhJr18Ui7S9JftJCkKqCam+ZcJB/sbMs1XtBetbwXJJ0=
-From: Vincent Knecht <vincent.knecht@mailoo.org>
-To: Tianshu Qiu <tian.shu.qiu@intel.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Yassine Oudjana <y.oudjana@protonmail.com>,
-	linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Vincent Knecht <vincent.knecht@mailoo.org>
-Subject: [PATCH v2 3/3] media: i2c: ak7375: Add support for ak7345
-Date: Fri,  1 Dec 2023 19:13:50 +0100
-Message-ID: <20231201181350.26454-3-vincent.knecht@mailoo.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20231201181350.26454-1-vincent.knecht@mailoo.org>
-References: <20231201181350.26454-1-vincent.knecht@mailoo.org>
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DED0C106;
+	Fri,  1 Dec 2023 10:14:35 -0800 (PST)
+Received: from mail.maildlp.com (unknown [172.18.186.216])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4Shh0t1H5Wz6813Y;
+	Sat,  2 Dec 2023 02:09:50 +0800 (CST)
+Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
+	by mail.maildlp.com (Postfix) with ESMTPS id 56646140135;
+	Sat,  2 Dec 2023 02:14:32 +0800 (CST)
+Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
+ (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Fri, 1 Dec
+ 2023 18:14:31 +0000
+Date: Fri, 1 Dec 2023 18:14:30 +0000
+From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+CC: Jonathan Cameron <jic23@kernel.org>, <579lpy@gmail.com>,
+	<lars@metafoo.de>, <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+	<conor+dt@kernel.org>, <linux-iio@vger.kernel.org>,
+	<devicetree@vger.kernel.org>
+Subject: Re: [PATCH v3 1/2] iio: humidity: Add driver for ti HDC302x
+ humidity sensors
+Message-ID: <20231201181430.00002634@Huawei.com>
+In-Reply-To: <570ea978-4ffc-48fa-92df-463f84610a5f@gmail.com>
+References: <20231125102221.2795-1-579lpy@gmail.com>
+	<20231125145208.01194d91@jic23-huawei>
+	<570ea978-4ffc-48fa-92df-463f84610a5f@gmail.com>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: lhrpeml100003.china.huawei.com (7.191.160.210) To
+ lhrpeml500005.china.huawei.com (7.191.163.240)
 
-Add support for ak7345 VCM, which has 9 bits position values,
-longer power-up delay, and no known standby register setting.
-Might be compatible as-is with ak7348.
+On Thu, 30 Nov 2023 19:59:03 +0100
+Javier Carrasco <javier.carrasco.cruz@gmail.com> wrote:
 
-Tested on msm8916-alcatel-idol347 phone.
+> Hi,
+> 
+> On 25.11.23 15:52, Jonathan Cameron wrote:
+> >> +
+> >> +static const struct iio_chan_spec hdc3020_channels[] = {
+> >> +	{
+> >> +		.type = IIO_TEMP,  
+> > 
+> > There is only one temp channel so I'd like to see the peaks added to this
+> > one as well.  Can be done if we add a new bit of ABI for the min value
+> > seen.
+> > 
+> > Whilst naming .index = 0, .channel = 0 is different from this case
+> > the ABI and all userspace software should treat them the same hence this
+> > is an ambiguous channel specification.
+> >   
+> >> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
+> >> +		BIT(IIO_CHAN_INFO_SCALE),
+> >> +	},
+> >> +	{
+> >> +		/* For minimum value during measurement */  
+> > 
+> > Please add some docs for this - preferably in patch description
+> > or cover letter if it is too long for there. You are using the ABI in a fashion
+> > not previously considered.
+> > 
+> > I don't think it is a good solution.  Perhaps keeping IIO_CHAN_INFO_PEAK
+> > as assumed to be maximum, we could add a new IIO_CHAN_INFO_TROUGH
+> > perhaps?  Hopefully the scale applies to both peak and trough so we
+> > don't need separate attributes.
+> >   
+> If only IIO_CHAN_INFO_TROUGH is added without an additional _SCALE, in
+> this particular case you end up having the following sysfs entries:
+> 
+> in_humidityrelative_peak_raw
+> in_humidityrelative_peak_scale
+> in_temp_peak_raw
+> in_temp_peak_scale
+> in_humidityrelative_trough_raw
+> in_temp_trough_raw
+> 
+> I just would like to know if documenting the trough attribute in a way
+> that it is clear that the peak_scale applies for it as well is better
+> than adding a TROUGH_SCALE. We would save the additional attribute, but
+> at first sight it is not that obvious (it makes sense that the scale is
+> the same for both peaks, but the names are not so consistent anymore).
 
-Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
----
-v2: no change
----
- drivers/media/i2c/ak7375.c | 26 ++++++++++++++++++++++----
- 1 file changed, 22 insertions(+), 4 deletions(-)
+Agreed this isn't that intuitive. 
 
-diff --git a/drivers/media/i2c/ak7375.c b/drivers/media/i2c/ak7375.c
-index 3a14eff41531..9a2432cea3ff 100644
---- a/drivers/media/i2c/ak7375.c
-+++ b/drivers/media/i2c/ak7375.c
-@@ -16,6 +16,7 @@ struct ak73xx_chipdef {
- 	u8 shift_pos;
- 	u8 mode_active;
- 	u8 mode_standby;
-+	bool has_standby;	/* Some chips may not have standby mode */
- 	u16 focus_pos_max;
- 	/*
- 	 * This sets the minimum granularity for the focus positions.
-@@ -37,12 +38,26 @@ struct ak73xx_chipdef {
- 	u16 power_delay_us;
- };
- 
-+static const struct ak73xx_chipdef ak7345_cdef = {
-+	.reg_position	= 0x0,
-+	.reg_cont	= 0x2,
-+	.shift_pos	= 7,	/* 9 bits position values, need to << 7 */
-+	.mode_active	= 0x0,
-+	.has_standby	= false,
-+	.focus_pos_max	= 511,
-+	.focus_steps	= 1,
-+	.ctrl_steps	= 16,
-+	.ctrl_delay_us	= 1000,
-+	.power_delay_us	= 20000,
-+};
-+
- static const struct ak73xx_chipdef ak7375_cdef = {
- 	.reg_position	= 0x0,
- 	.reg_cont	= 0x2,
- 	.shift_pos	= 4,	/* 12 bits position values, need to << 4 */
- 	.mode_active	= 0x0,
- 	.mode_standby	= 0x40,
-+	.has_standby	= true,
- 	.focus_pos_max	= 4095,
- 	.focus_steps	= 1,
- 	.ctrl_steps	= 64,
-@@ -249,10 +264,12 @@ static int __maybe_unused ak7375_vcm_suspend(struct device *dev)
- 		usleep_range(cdef->ctrl_delay_us, cdef->ctrl_delay_us + 10);
- 	}
- 
--	ret = ak7375_i2c_write(ak7375_dev, cdef->reg_cont,
--			       cdef->mode_standby, 1);
--	if (ret)
--		dev_err(dev, "%s I2C failure: %d\n", __func__, ret);
-+	if (cdef->has_standby) {
-+		ret = ak7375_i2c_write(ak7375_dev, cdef->reg_cont,
-+				       cdef->mode_standby, 1);
-+		if (ret)
-+			dev_err(dev, "%s I2C failure: %d\n", __func__, ret);
-+	}
- 
- 	ret = regulator_bulk_disable(ARRAY_SIZE(ak7375_supply_names),
- 				     ak7375_dev->supplies);
-@@ -312,6 +329,7 @@ static int __maybe_unused ak7375_vcm_resume(struct device *dev)
- }
- 
- static const struct of_device_id ak7375_of_table[] = {
-+	{ .compatible = "asahi-kasei,ak7345", .data = &ak7345_cdef, },
- 	{ .compatible = "asahi-kasei,ak7375", .data = &ak7375_cdef, },
- 	{ /* sentinel */ }
- };
--- 
-2.43.0
+> 
+> I suppose that often the raw and peak scales are also the same, but
+> there are indeed two separate attributes. On the other hand I don't know
+> if the additional attribute would imply bigger issues (maintenance,
+> documentation, etc) than just adding the line, so I leave the question open.
 
+I wonder if we should have the ABI state that peak_scale is only applicable
+it it overrides the _scale value.  Here I think they are the same anyway
+thus not providing peak_scale would leave us with a single attribute reflecting
+scale of _raw, _peak_raw and _trough_raw
 
+I think this is already the case in reality.  We have two users of the peak interface
+and only one of them provides peak_scale.  Hopefully hdc2010 is
+assuming _scale applies to it.
+
+So maybe this is just a documentation update and drop peak_scale from this
+driver.
+
+Jonathan
+> 
+> Thank you and best regards,
+> Javier Carrasco
+> 
 
 
