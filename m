@@ -1,189 +1,154 @@
-Return-Path: <devicetree+bounces-20750-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20751-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB938800C44
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 14:33:50 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7393800C51
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 14:39:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E6AFC1C210D4
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 13:33:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 65F2EB2116C
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 13:39:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11FD7374FD;
-	Fri,  1 Dec 2023 13:33:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4206038F8C;
+	Fri,  1 Dec 2023 13:39:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Nb5gKnVS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74F56A6;
-	Fri,  1 Dec 2023 05:33:43 -0800 (PST)
-Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-5c85e8fdd2dso23571827b3.2;
-        Fri, 01 Dec 2023 05:33:43 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701437622; x=1702042422;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Pi5CLdTBD3o6A552c2yKlmz+TRIKCo5UoCCyICzwCGA=;
-        b=RTr6A4c9iHeApMB5eH9NtZFLA6c3l1JgupkgHOXcT7o46sn52CtPybdXFx+OgV+Yk0
-         S6lvb78R3pXAxgC8wm8oaIKptnpNUyRTL+P6Zc21cQnoUDImh6g+ttZVpl2dqu5b5SIM
-         u9EpF+giH489hXIarTNaTMPOjLdLLGRY13dc+Bc3Tkcdz5C5GDszjOfnG5RqcvY5L/Rj
-         L0CLRSAGgdxet9VNRYY0CKEpG0OdmioXp1ZC6gXjNm4l72i4XscA7bsTCTIKW6Yf5IBG
-         LD8wulVSyvrq9xIXrApUCsd09Ja1f+6oocfw/vy578L3HMWrNqLY/KczT4WWY2aIKLnb
-         3ITg==
-X-Gm-Message-State: AOJu0YyNGit0Rm5ZFZsg/ssNTT58rUwN0Jm3R9wgNXVsjKCej0ro6eAP
-	32TPyyNWT+FbShYQ9sLVxmEnvJwM2g5cMw==
-X-Google-Smtp-Source: AGHT+IHOFcWoD4tNySYUF4If0O72uowXXFBBZUMPQPPyc2ssWiYBgtwCQoM74PcBYb0zxVVNKFuR1Q==
-X-Received: by 2002:a05:690c:3348:b0:5ce:a72e:a30a with SMTP id fk8-20020a05690c334800b005cea72ea30amr25402000ywb.24.1701437622441;
-        Fri, 01 Dec 2023 05:33:42 -0800 (PST)
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com. [209.85.128.180])
-        by smtp.gmail.com with ESMTPSA id u204-20020a8160d5000000b005d29344e625sm1077058ywb.114.2023.12.01.05.33.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 01 Dec 2023 05:33:41 -0800 (PST)
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-5c85e8fdd2dso23571357b3.2;
-        Fri, 01 Dec 2023 05:33:40 -0800 (PST)
-X-Received: by 2002:a81:9b46:0:b0:5d3:627c:7e11 with SMTP id
- s67-20020a819b46000000b005d3627c7e11mr4775995ywg.34.1701437620680; Fri, 01
- Dec 2023 05:33:40 -0800 (PST)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC4A5193;
+	Fri,  1 Dec 2023 05:38:59 -0800 (PST)
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3B1DYkGS022287;
+	Fri, 1 Dec 2023 13:38:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=vVEpKP86CU7nYjYMXZfEOvTvqo1GuRr5nR9ERFbnOc0=;
+ b=Nb5gKnVSjEgBMS60bvVJp/fpSMgxXpChyyc3pi5rhA8y7mQCugb+tYQffTKOxYBwQVjq
+ 1uHz/wW9dX1b/QfhS4IJtKe2CyLXOod99gdqpBKv5WCGnS5mEU7e1SAFjzH59qB4J9IB
+ K3OmsvFV2TOtl25Zn8IX4vkv8q89TYk+eUDlHFI9amlWUcX46eATnk2LAdikg/aspKXe
+ 8CVtVCy0W7n7HboLPO+5eqNvmXFgkUi0FJ2BlorDgFc7cxu5ohCtwcoj0OhE385fdupJ
+ dpZh0bijZLg57/IIAWdYwTN/mN9AWO8Qcqau0Z2apP48PzjrNNQI01J3tXmYyMbyRQIO Xw== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uqggar0n0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 01 Dec 2023 13:38:55 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3B1Dcsme002462
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 1 Dec 2023 13:38:54 GMT
+Received: from [10.216.10.184] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 1 Dec
+ 2023 05:38:50 -0800
+Message-ID: <dad1f9e0-50dc-4d45-ae67-dada197b2a2b@quicinc.com>
+Date: Fri, 1 Dec 2023 19:08:47 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231201110840.37408-1-biju.das.jz@bp.renesas.com> <20231201110840.37408-5-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20231201110840.37408-5-biju.das.jz@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 1 Dec 2023 14:33:29 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVGuEKOeXkK8wbUzjx3UMOOcpyW2yp=i2A6V4auGbqoEQ@mail.gmail.com>
-Message-ID: <CAMuHMdVGuEKOeXkK8wbUzjx3UMOOcpyW2yp=i2A6V4auGbqoEQ@mail.gmail.com>
-Subject: Re: [PATCH 4/6] dt-bindings: mfd: Convert da9062 to json-schema
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Support Opensource <support.opensource@diasemi.com>, devicetree@vger.kernel.org, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>, 
-	linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] arm64: dts: qcom: ipq9574: enable GPIO based LED
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20231025-ipq9574-led-v2-1-59b2725697ad@quicinc.com>
+Content-Language: en-US
+From: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
+In-Reply-To: <20231025-ipq9574-led-v2-1-59b2725697ad@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: PsIFAKbVc8Tp9amb3-5ELsBdVgBOtjMc
+X-Proofpoint-ORIG-GUID: PsIFAKbVc8Tp9amb3-5ELsBdVgBOtjMc
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-01_11,2023-11-30_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxscore=0
+ clxscore=1015 lowpriorityscore=0 spamscore=0 phishscore=0 malwarescore=0
+ impostorscore=0 mlxlogscore=912 adultscore=0 priorityscore=1501
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2311060000 definitions=main-2312010093
 
-Hi Biju,
 
-On Fri, Dec 1, 2023 at 12:09=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.co=
-m> wrote:
-> Convert the da9062 PMIC device tree binding documentation to json-schema.
->
-> Update the example to match reality.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-Thanks for your patch!
+On 10/25/2023 7:01 PM, Kathiravan Thirumoorthy wrote:
+> Add support for wlan-2g LED on GPIO64.
 
-> --- a/Documentation/devicetree/bindings/mfd/da9062.txt
-> +++ /dev/null
+Gentle Reminder...
 
-This file is still referred to from other files:
-
-    $ git grep Documentation/devicetree/bindings/mfd/da9062.txt
-    Documentation/devicetree/bindings/input/da9062-onkey.txt:DA9062
-and DA9061 chips see Documentation/devicetree/bindings/mfd/da9062.txt
-    Documentation/devicetree/bindings/thermal/da9062-thermal.txt:DA9062
-and DA9061 chips see Documentation/devicetree/bindings/mfd/da9062.txt
-
-> -- onkey : See ../input/da9062-onkey.txt
-
-Documentation/devicetree/bindings/input/da9062-onkey.txt still exists,
-and covers more variants than your new dlg,da9062.yaml.
-
-> -
-> -- watchdog: See ../watchdog/da9062-wdt.txt
-
-This was replaced by
-Documentation/devicetree/bindings/watchdog/dlg,da9062-watchdog.yaml
-a while ago, and covers more variants than your new dlg,da9062.yaml.
-
-> -
-> -- thermal : See ../thermal/da9062-thermal.txt
-
-Documentation/devicetree/bindings/thermal/da9062-thermal.txt still exists,
-and covers more variants than your new dlg,da9062.yaml.
-
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/dlg,da9062.yaml
-> @@ -0,0 +1,220 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/dlg,da9062.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> 
+> Signed-off-by: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
+> ---
+> Changes in v2:
+> - Added function and color property
+> - Link to v1: https://lore.kernel.org/r/20231025-ipq9574-led-v1-1-b8217e997dfb@quicinc.com
+> ---
+>   arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi | 22 ++++++++++++++++++++++
+>   1 file changed, 22 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi b/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi
+> index 49c9b6478357..91e104b0f865 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi
+> @@ -10,6 +10,7 @@
+>   
+>   #include <dt-bindings/gpio/gpio.h>
+>   #include <dt-bindings/input/input.h>
+> +#include <dt-bindings/leds/common.h>
+>   #include "ipq9574.dtsi"
+>   
+>   / {
+> @@ -51,6 +52,20 @@ button-wps {
+>   			debounce-interval = <60>;
+>   		};
+>   	};
 > +
-> +title: Dialog DA9062 Power Management Integrated Circuit (PMIC)
+> +	leds {
+> +		compatible = "gpio-leds";
+> +		pinctrl-0 = <&gpio_leds_default>;
+> +		pinctrl-names = "default";
 > +
-> +maintainers:
-> +  - Biju Das <biju.das.jz@bp.renesas.com>
+> +		led-0 {
+> +			color = <LED_COLOR_ID_GREEN>;
+> +			function = LED_FUNCTION_WLAN;
+> +			gpios = <&tlmm 64 GPIO_ACTIVE_LOW>;
+> +			linux,default-trigger = "phy0tx";
+> +			default-state = "off";
+> +		};
+> +	};
+>   };
+>   
+>   &blsp1_spi0 {
+> @@ -117,6 +132,13 @@ gpio_keys_default: gpio-keys-default-state {
+>   		drive-strength = <8>;
+>   		bias-pull-up;
+>   	};
 > +
-> +description: |
-> +  Product information for the DA9062 and DA9061 devices can be found her=
-e:
-> +  - https://www.dialog-semiconductor.com/products/da9062
-> +  - https://www.dialog-semiconductor.com/products/da9061
-> +
-> +  The DA9062 PMIC consists of:
-> +
-> +  Device                   Supply Names    Description
-> +  ------                   ------------    -----------
-> +  da9062-regulator        :               : LDOs & BUCKs
-> +  da9062-rtc              :               : Real-Time Clock
-> +  da9062-onkey            :               : On Key
-> +  da9062-watchdog         :               : Watchdog Timer
-> +  da9062-thermal          :               : Thermal
-> +  da9062-gpio             :               : GPIOs
-> +
-> +  The DA9061 PMIC consists of:
-> +
-> +  Device                   Supply Names    Description
-> +  ------                   ------------    -----------
-> +  da9062-regulator        :               : LDOs & BUCKs
-> +  da9062-onkey            :               : On Key
-> +  da9062-watchdog         :               : Watchdog Timer
-> +  da9062-thermal          :               : Thermal
-
-da9061 (x4)
-
-> +
-> +properties:
-
-> +  watchdog:
-
-Please sort subnodes alphabetically.
-
-> +    type: object
-> +    $ref: /schemas/watchdog/watchdog.yaml#
-> +    unevaluatedProperties: false
-> +    properties:
-> +      compatible:
-> +        const: dlg,da9062-watchdog
-
-What about dlg,da9061-watchdog? Probably this should refer to
-Documentation/devicetree/bindings/watchdog/dlg,da9062-watchdog.yaml
-instead?
-
-This applies to the other subnodes, too.
-
-Perhaps this binding should be merged with dlg,da9063.yaml?
-Or should it be split in dlg,da9061.yaml and dlg,da9062.yaml?
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+> +	gpio_leds_default: gpio-leds-default-state {
+> +		pins = "gpio64";
+> +		function = "gpio";
+> +		drive-strength = <8>;
+> +		bias-pull-up;
+> +	};
+>   };
+>   
+>   &usb_0_dwc3 {
+> 
+> ---
+> base-commit: fe1998aa935b44ef873193c0772c43bce74f17dc
+> change-id: 20231025-ipq9574-led-8bdaab4c9cf6
+> 
+> Best regards,
 
