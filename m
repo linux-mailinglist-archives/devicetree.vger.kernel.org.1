@@ -1,119 +1,155 @@
-Return-Path: <devicetree+bounces-20678-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20679-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D11B800874
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 11:38:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8041F8008E1
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 11:48:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9B91B1C20F0E
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 10:38:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3C38A281864
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 10:48:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8856171C2;
-	Fri,  1 Dec 2023 10:38:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EE7320B20;
+	Fri,  1 Dec 2023 10:48:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="kEJAUXez"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Vag/pdaI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-xe33.google.com (mail-vs1-xe33.google.com [IPv6:2607:f8b0:4864:20::e33])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93D2B196
-	for <devicetree@vger.kernel.org>; Fri,  1 Dec 2023 02:38:11 -0800 (PST)
-Received: by mail-vs1-xe33.google.com with SMTP id ada2fe7eead31-4644f2e611bso662354137.2
-        for <devicetree@vger.kernel.org>; Fri, 01 Dec 2023 02:38:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1701427090; x=1702031890; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UTTB5Qf3NGi+WB3GCJHG37DhU59Gl9ODLb3haNT1v/c=;
-        b=kEJAUXezhcezJLZxMjtGjmmwIBcxqs+4A2DBK2At1NFG4VXACwh4I+X4Z5X6yja1lJ
-         F2ESnvA0dnxy2jC87uy7dPz+HuVPHbcQLwsthM/Jjh13zRLzl+7WXan2CNE2w0aTDOX6
-         2NVQENlG5BJw6FwWlmt2fkbh5kHFVpn8HOrrbzlTkxVX4P/TjecdWGfE3PB533uF++7H
-         Sj7TIgNjvdESagMEbr41pg38lJ3JiC5rLFZj5Eg4dRm4Ez01/9rHHQdUO/gOb7My+ja6
-         OuvuwWLdPBW3eWljkWFFNO/5gNi5S9rOv8cSTXx5d68se+xwosg0JzDSgEI9QMT9uJnz
-         q4AA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701427090; x=1702031890;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=UTTB5Qf3NGi+WB3GCJHG37DhU59Gl9ODLb3haNT1v/c=;
-        b=dE2njjoWO0xlPx8DNv8TlGHZvxo0AtFu+QYUYyxg1tb/aAr2rZp+amlrxPladMeDYt
-         niF7pMkIWeQtr2pd3R2d7pfXZGonDQX7y9MBZCZg/EEe21xRS/6eD4C3pLwRgPQXQQhL
-         ttl5+cOef1Hx7c6sQxyqOeBTMW8B0MLL9RBk+TJHpcmsWhZLLkh1Tw9oQYZ1Hawe2FJ3
-         2xeRDqKjw1xz91PSUSxfqf6JBOVVSRREB8M8Jmn1jFXrVKFnYVhZ6uWa1uXqfKPnAi/q
-         tqrYSanHaOTq8dKxjVqgr3CYHz/jFQH4EvfgORX7gGUgUFDunEcMMgfS/uxtD6H7cKgM
-         OZ9A==
-X-Gm-Message-State: AOJu0YwgLUSi0wpTc/sf/fhM8W8/3ZsWYN9PDGwpP1N1pcb/B3QW7dvB
-	CrTASBZ8ZPKZFyixifn/kXp6BeCFiZLKt+0IIQjkIQ==
-X-Google-Smtp-Source: AGHT+IHD3C4jeU8YUMrsywQzBJT50HuwUQ8yJRyHKKpw9tFA3HPIcqu/SHTN20FoIPSzlf2zVyUp/WJHxr0sgyP3xm4=
-X-Received: by 2002:a67:bc19:0:b0:464:4891:cce4 with SMTP id
- t25-20020a67bc19000000b004644891cce4mr8735525vsn.20.1701427090706; Fri, 01
- Dec 2023 02:38:10 -0800 (PST)
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CE351C6A9;
+	Fri,  1 Dec 2023 10:48:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E38BC433C9;
+	Fri,  1 Dec 2023 10:48:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701427706;
+	bh=bYTnVPbpbtB9dCl6tLzUGkhooFvdgeD9g8sXerKrUws=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Vag/pdaIry/wEOswBHKkPevJLTu5viOPQ+B8P35F9eUC/wIdR4uMvH3mo4N4rwTqE
+	 FBMwaDrS6mPTp7O6oJp9hvSjhf26wlvskqxQ3IqGs8c9APx8+YMxjphhjTei/mPOHo
+	 aS3usPHg4YrBT2T6ahOnzL1RcMdh79yQT8Lxi3Bl2OeMACyCdmkLDPlmjSnY9Ms8Pm
+	 KsudgtU0FmabCtQX1UTogPJP0PoRNkjnMFnsIco6wPio+KOSnS4gjxYHahzobnaMie
+	 QwswwPu4W8hsVj6j2O686b5H63A2ac63OgJbCOr+zrFEHEP1N/2K0IZjaOniUCiFQT
+	 yq/+zVHP+p/4Q==
+Date: Fri, 1 Dec 2023 10:48:20 +0000
+From: Lee Jones <lee@kernel.org>
+To: Andreas Kemnade <andreas@kemnade.info>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, bcousson@baylibre.com, tony@atomide.com,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-omap@vger.kernel.org
+Subject: Re: [PATCH v2 2/6] twl-core: add power off implementation for twl603x
+Message-ID: <20231201104820.GC3259151@google.com>
+References: <20231127221907.177442-1-andreas@kemnade.info>
+ <20231127221907.177442-3-andreas@kemnade.info>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <10db3021e8617c1f98eca51e26d350dc4b51b53c.1701335736.git.michal.simek@amd.com>
-In-Reply-To: <10db3021e8617c1f98eca51e26d350dc4b51b53c.1701335736.git.michal.simek@amd.com>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Fri, 1 Dec 2023 11:37:59 +0100
-Message-ID: <CAMRc=Md7iQnkOp+nB3=haakpt5jF_STtYgDAcxRVQJjYWnjFKA@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: gpio: modepin: Describe label property
-To: Michal Simek <michal.simek@amd.com>
-Cc: linux-kernel@vger.kernel.org, monstr@monstr.eu, michal.simek@xilinx.com, 
-	git@xilinx.com, Andy Shevchenko <andy@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Linus Walleij <linus.walleij@linaro.org>, Piyush Mehta <piyush.mehta@amd.com>, 
-	Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20231127221907.177442-3-andreas@kemnade.info>
 
-On Thu, Nov 30, 2023 at 10:15=E2=80=AFAM Michal Simek <michal.simek@amd.com=
-> wrote:
->
-> Describe optional label property which can be used for better gpio
-> identification.
->
-> Signed-off-by: Michal Simek <michal.simek@amd.com>
+On Mon, 27 Nov 2023, Andreas Kemnade wrote:
+
+> If the system-power-controller property is there, enable power off.
+> Implementation is based on a Linux v3.0 vendor kernel.
+> 
+> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
 > ---
->
->  .../devicetree/bindings/gpio/xlnx,zynqmp-gpio-modepin.yaml     | 3 +++
->  1 file changed, 3 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/gpio/xlnx,zynqmp-gpio-mode=
-pin.yaml b/Documentation/devicetree/bindings/gpio/xlnx,zynqmp-gpio-modepin.=
-yaml
-> index 56143f1fe84a..b1fd632718d4 100644
-> --- a/Documentation/devicetree/bindings/gpio/xlnx,zynqmp-gpio-modepin.yam=
-l
-> +++ b/Documentation/devicetree/bindings/gpio/xlnx,zynqmp-gpio-modepin.yam=
-l
-> @@ -23,6 +23,8 @@ properties:
->    "#gpio-cells":
->      const: 2
->
-> +  label: true
+>  drivers/mfd/twl-core.c  | 34 ++++++++++++++++++++++++++++++++++
+>  include/linux/mfd/twl.h |  1 +
+>  2 files changed, 35 insertions(+)
+> 
+> diff --git a/drivers/mfd/twl-core.c b/drivers/mfd/twl-core.c
+> index 6e384a79e3418..54482d5d8888b 100644
+> --- a/drivers/mfd/twl-core.c
+> +++ b/drivers/mfd/twl-core.c
+> @@ -687,6 +687,31 @@ static void twl_remove(struct i2c_client *client)
+>  	twl_priv->ready = false;
+>  }
+>  
+> +static void twl6030_power_off(void)
+> +{
+> +#define APP_DEVOFF      (1<<0)
+> +#define CON_DEVOFF      (1<<1)
+> +#define MOD_DEVOFF      (1<<2)
+
+Please place these at the top somewhere.
+
+You should also have spaces around the '<<'s.
+
+These look like they should be BIT()s though.
+
 > +
->  required:
->    - compatible
->    - gpio-controller
-> @@ -37,6 +39,7 @@ examples:
->              compatible =3D "xlnx,zynqmp-gpio-modepin";
->              gpio-controller;
->              #gpio-cells =3D <2>;
-> +            label =3D "modepin";
->          };
->      };
->
-> --
-> 2.36.1
->
+> +	int err;
+> +	u8 val;
+> +
+> +	err = twl_i2c_read_u8(TWL_MODULE_PM_MASTER, &val,
+> +			      TWL6030_PHOENIX_DEV_ON);
 
-Applied, thanks!
+You can use 100-chars if you like.
 
-Bart
+> +	if (err) {
+> +		pr_err("I2C error %d reading PHOENIX_DEV_ON\n", err);
+
+It would save an awful lot of lines and space if we could place these
+warnings/errors inside twl_i2c_read_u8().
+
+> +		return;
+> +	}
+> +
+> +	val |= APP_DEVOFF | CON_DEVOFF | MOD_DEVOFF;
+> +
+> +	err = twl_i2c_write_u8(TWL_MODULE_PM_MASTER, val,
+> +			       TWL6030_PHOENIX_DEV_ON);
+> +	if (err)
+> +		pr_err("TWL6030 Unable to power off\n");
+> +}
+> +
+> +
+>  static struct of_dev_auxdata twl_auxdata_lookup[] = {
+>  	OF_DEV_AUXDATA("ti,twl4030-gpio", 0, "twl4030-gpio", NULL),
+>  	{ /* sentinel */ },
+> @@ -852,6 +877,15 @@ twl_probe(struct i2c_client *client)
+>  			goto free;
+>  	}
+>  
+> +	if (twl_class_is_6030()) {
+> +		if (of_device_is_system_power_controller(client->dev.of_node)) {
+
+Use 'node' instead.
+
+> +			if (!pm_power_off)
+> +				pm_power_off = twl6030_power_off;
+> +			else
+> +				dev_warn(&client->dev, "Poweroff callback already assigned\n");
+> +		}
+> +	}
+> +
+>  	status = of_platform_populate(node, NULL, twl_auxdata_lookup,
+>  				      &client->dev);
+>  
+> diff --git a/include/linux/mfd/twl.h b/include/linux/mfd/twl.h
+> index c062d91a67d92..85dc406173dba 100644
+> --- a/include/linux/mfd/twl.h
+> +++ b/include/linux/mfd/twl.h
+> @@ -461,6 +461,7 @@ static inline int twl6030_mmc_card_detect(struct device *dev, int slot)
+>  
+>  #define TWL4030_PM_MASTER_GLOBAL_TST		0xb6
+>  
+> +#define TWL6030_PHOENIX_DEV_ON                  0x06
+>  /*----------------------------------------------------------------------*/
+>  
+>  /* Power bus message definitions */
+> -- 
+> 2.39.2
+> 
+
+-- 
+Lee Jones [李琼斯]
 
