@@ -1,156 +1,252 @@
-Return-Path: <devicetree+bounces-20792-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20793-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB93D800E63
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 16:17:33 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB3D6800E81
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 16:24:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8587A1C20D43
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 15:17:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5D7A5B20D08
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 15:24:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B63894A9A9;
-	Fri,  1 Dec 2023 15:17:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D9714A9AC;
+	Fri,  1 Dec 2023 15:24:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="H3V87bzN"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ILR7TR3X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D08A199F
-	for <devicetree@vger.kernel.org>; Fri,  1 Dec 2023 07:17:22 -0800 (PST)
-Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-332ddd8e0bdso2193876f8f.0
-        for <devicetree@vger.kernel.org>; Fri, 01 Dec 2023 07:17:22 -0800 (PST)
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A35F7B6;
+	Fri,  1 Dec 2023 07:24:38 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-40b4d9e81deso21598065e9.0;
+        Fri, 01 Dec 2023 07:24:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701443841; x=1702048641; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=GJ/zmDaafYBtxK2RZ34uz7JfvZ6Ky2tUE/ZdX3A4Gr4=;
-        b=H3V87bzNsnVR+uwuzN5KAJh5vYtmASfiFO2r4hoZi0adAuQfa4JsjunHjjYjCGqKBx
-         oRXv3YBY9ECCC4N2Upy9bCEc44GQJVyo0RfQzS+4yOOOJZq8s4H/h3X3xdhUDELDTczr
-         YAy9j7utVvww1aQKgjA79q2Pfj9w7MIV8XQ0K4asi54m3zPUiuoWq948j1XeyuojYk+F
-         oA1G7rwYxMAo2rhhM3KSACcOrN2HNPprxtwFhkO7cFQ4KkVT8r4fF8MfktMVst8bZT6r
-         yPICuItxQ21r665TFgNpVocTFIJ/4oEZodX5fCs2H3wvkI5UH247He/uO0V4EW98mVsN
-         0gZA==
+        d=gmail.com; s=20230601; t=1701444277; x=1702049077; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=kUVggj7H05+jc8KV6s86Fymv9Fiq8TZ5cXBdF9FzLWo=;
+        b=ILR7TR3XiPuJMnaoaVcGy3GtvUKfqCETyLKkEG70/TIkgj/yb0wK/m5/WAT4zFGAXK
+         MhDXdsX0NQd0YC8i2mg8Ri9d2q7DOrAWH0qNdA/AGjgDc3zwebGfKgJPUaCEhxnvwSg0
+         FH32MyojsvnDpq60NQ8IWfeq+cUP4Kt4h0qUlxwkZlv+Lwey2T4ZkaweqWemNqmPPRuJ
+         QL/jRn+qcYlhP0zXw4a7H77O71cqjKjoaIGVlsufEgFHdxlCgAD6RkEXhzYXZj1XPmkt
+         CxcwIizm4Tr4sU8tJJ57e+/g30EcIBZPzORYKnp9L5Rmb95SgfuOH8BSGt4rBUvG7ZUH
+         6/0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701443841; x=1702048641;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GJ/zmDaafYBtxK2RZ34uz7JfvZ6Ky2tUE/ZdX3A4Gr4=;
-        b=TRJoZaafR3ftE5MRNz9XrBvCRJJ4adLI4RRVanZiQ4xgyNA5xwpQ3xTCXJCyo+rJA7
-         blkr1nmHFIXY8Y/nOWwtlk+AN9iuMEENHZFgIlyH4vaco31eAbYTNdE9fL3jjL1sbKr6
-         MqoIKaH65p9lKBXK4xo4TPtKC2o+NZ3CZAA1wOPeL+INQIDObdWmBQCH0Qpr0goqJC7H
-         NnannjjY795Howi1W9UrdFqQSwrXeJ3NHP4SoV4VE3HCNOVSND6X2E00xkzyNOIpputr
-         1ibKzZdNXH+QovUC10ZOr4wHgRFMVWShmOVP8/jrqavtdkDY7i1VsGclMNKwmlPPRqqw
-         6CWQ==
-X-Gm-Message-State: AOJu0YzPTLkH89F0lgs3JQazi/8YQWWlxRzPZYgpjowa7DHtRlwC/HJ5
-	I9vKNUKgoYpL8CE+d0PV12O86Q==
-X-Google-Smtp-Source: AGHT+IG4nVUuf0LMrqvKpHgkzL6HIKaCiBWZUD7rDM56abR1QOHLmLSj2bpVrlqkF3pktEQOFtquSA==
-X-Received: by 2002:adf:e641:0:b0:333:2fd7:95f8 with SMTP id b1-20020adfe641000000b003332fd795f8mr746698wrn.51.1701443840987;
-        Fri, 01 Dec 2023 07:17:20 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.223.109])
-        by smtp.gmail.com with ESMTPSA id x4-20020a5d60c4000000b00332cbd59f8bsm4428210wrt.25.2023.12.01.07.17.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 01 Dec 2023 07:17:20 -0800 (PST)
-Message-ID: <95537d14-facc-4e27-937b-6650bc99ace0@linaro.org>
-Date: Fri, 1 Dec 2023 16:17:18 +0100
+        d=1e100.net; s=20230601; t=1701444277; x=1702049077;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=kUVggj7H05+jc8KV6s86Fymv9Fiq8TZ5cXBdF9FzLWo=;
+        b=CdlBcTiKfz82pFyPRMpSwc4Xd/LUMFqJf3bp4coi8uXzxS9+LJqmcq6rJFrSjRi5Aa
+         l/tbVxIrXjsLtMfeeUrdjNTW74M3crZFKOwzQ2iZM0kVU8MX+ri6EovCjWSfm9qC4mdu
+         afHQOJkzoe2To7yaFcc+lNNuuFj+56xoUzXZ3B4vWpvaVANy5Gzb3TG/0lui2l9STq/T
+         /NQ/DqiqB15QUF8Q4y6q7cT6f3f4lFgqVp5ZWs5CzUB8NLK4NO88Zvr+2InlzxyrDrwd
+         /FIeFfo8r9+Rzk6jVj14Xdzd9Ehm/9sQPw/MVQOSrUeHuTYa1nSnCzZfgS/9l6g+nuK8
+         bYAw==
+X-Gm-Message-State: AOJu0YxaGz1leqKWLsYjVJKapzDvMutEwqDHwVXgtP8chrpakay8yHHP
+	xy6jemlQUaz25TLhZTXlaPkUnifmwgDFfDF0
+X-Google-Smtp-Source: AGHT+IEplOaTQtqhczQb1eabTMF5zobNELu9zQKblW4Avk6rbJ9kS0zpLL1gPinKGHMVX1Vrpp7Q7A==
+X-Received: by 2002:a05:600c:16d3:b0:408:fe93:a2f7 with SMTP id l19-20020a05600c16d300b00408fe93a2f7mr434619wmn.37.1701444276733;
+        Fri, 01 Dec 2023 07:24:36 -0800 (PST)
+Received: from ?IPv6:2001:a61:3456:4e01:6ae:b55a:bd1d:57fc? ([2001:a61:3456:4e01:6ae:b55a:bd1d:57fc])
+        by smtp.gmail.com with ESMTPSA id fm24-20020a05600c0c1800b0040b3e26872dsm9680717wmb.8.2023.12.01.07.24.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 01 Dec 2023 07:24:36 -0800 (PST)
+Message-ID: <b761d2497462664d541779857398b2aa893cbee5.camel@gmail.com>
+Subject: Re: [PATCH v2 2/2] hwmon: ltc4282: add support for the LTC4282 chip
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Andy Shevchenko <andy@kernel.org>, nuno.sa@analog.com, 
+ linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-doc@vger.kernel.org, Jean Delvare <jdelvare@suse.com>, Guenter Roeck
+ <linux@roeck-us.net>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+ Jonathan Corbet <corbet@lwn.net>, Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Fri, 01 Dec 2023 16:24:35 +0100
+In-Reply-To: <CACRpkda55HzPqus5KR-t=xEBkkdND5kYZj1sHdxK+j6QwDUPRg@mail.gmail.com>
+References: <20231124-ltc4282-support-v2-0-952bf926f83c@analog.com>
+	 <20231124-ltc4282-support-v2-2-952bf926f83c@analog.com>
+	 <CACRpkdaksfS4WLNQ6ohauAPq3z2LPG2uF37_jWtm0brQHaDtNw@mail.gmail.com>
+	 <6384831c05b8ceeaf4a16cf9229770252989b762.camel@gmail.com>
+	 <CACRpkdZr6TdQCLy73Yx2RdMgQifd67remdxENBKYx3UvEMm87A@mail.gmail.com>
+	 <971eb35068639ec404669ea5320c8183ea71a7d0.camel@gmail.com>
+	 <ZWiP3i80KnVk9qyx@smile.fi.intel.com>
+	 <a4bd59df0c5bc1be5d0d6f11b968fd61a59ee2e0.camel@gmail.com>
+	 <CACRpkdYz+qi42Pz8CgeWybksC0edaVux6rcEhwzjDWnWe9Jr1g@mail.gmail.com>
+	 <61a8f54835c10db7a9c650ee2e3706b47382c634.camel@gmail.com>
+	 <CACRpkda55HzPqus5KR-t=xEBkkdND5kYZj1sHdxK+j6QwDUPRg@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/5] ASoC: dt-bindings: document WCD939x Audio Codec
-Content-Language: en-US
-To: Neil Armstrong <neil.armstrong@linaro.org>,
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Banajit Goswami <bgoswami@quicinc.com>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Liam Girdwood
- <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>
-Cc: linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20231201-topic-sm8650-upstream-wcd939x-codec-v2-0-94ed814b25aa@linaro.org>
- <20231201-topic-sm8650-upstream-wcd939x-codec-v2-2-94ed814b25aa@linaro.org>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231201-topic-sm8650-upstream-wcd939x-codec-v2-2-94ed814b25aa@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 
-On 01/12/2023 16:08, Neil Armstrong wrote:
-> Document the Qualcomm WCD9390/WCD9395 Audio Codec and the
-> Soundwire devices than can be found on Qualcomm SM8650 based platforms.
-> 
-> The Qualcomm WCD9390/WCD9395 Audio Codec communicates
-> with the host SoC over 2 Soundwire links to provide:
-> - 4 ADC inputs for up to 5 Analog Microphones
-> - 4 DMIC inputs for up to 8 Digital Microphones
-> - 4 Microphone BIAS
-> - Stereo Headphone output
-> - Mono EAR output
-> - MBHC engine for Headset Detection
-> 
-> The WCD9390/WCD9395 IC has separate I2C subsystem for USB-C
-> DP Altmode/Audio Accessory mode Mux which is not documented
-> here but requires port/endpoint graph and properties to handle
-> Altmode/Audio Accessory switch and orientation.
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+On Fri, 2023-12-01 at 14:40 +0100, Linus Walleij wrote:
+> On Fri, Dec 1, 2023 at 1:34=E2=80=AFPM Nuno S=C3=A1 <noname.nuno@gmail.co=
+m> wrote:
+> > On Thu, 2023-11-30 at 21:15 +0100, Linus Walleij wrote:
+>=20
+> > I did not used libgpiod but I did tested it with gpio-sysfs. Well, I co=
+uld
+> > effectively see the pull down behaviour but since my eval board has no =
+pull-ups I
+> > could not drive the line high.
+>=20
+> libgpiod has the upside of offering you to set the pull down and open
+> drain behaviour from userspace.
+>=20
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Yeah, I can also just come up with a minimal test driver and devicetree.
 
-Best regards,
-Krzysztof
+> > > The gpiolib framework assumes we can do open drain emulation by
+> > > setting lines as input. It is used as fallback unless the hardware ha=
+s
+> > > an explicit open drain setting.
+> >=20
+> > Yeah, I did look at that after you pointed that out. There's just somet=
+hing I'm
+> > still
+> > not getting. This HW has no explicit open drain setting because open dr=
+ain is all
+> > that it is. So, I guess we could just specify the flag in devicetree so=
+ gpiolib
+> > could
+> > use the emulation
+> > but I wonder how would we have things in case we have the HW setup
+> > to drive the pin high (so having this as GPOs)?
+>=20
+> If another device tree node uses:
+>=20
+> foo-gpios =3D <&gpio0 5 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
+>=20
+> The result will be that gpiolib will emulate open drain.
+>=20
+> From userspace libgpiod can do the same request.
+>=20
+> > > > Also got me thinking if a gpi vs gpo devicetree property would make=
+ sense.
+> > > > But I
+> > > > would likely leave it more generic/relaxed for now (even though I t=
+hink you
+> > > > would
+> > > > need to be creative and actually use more HW to have the possibilit=
+y of using
+> > > > these
+> > > > pins as GPIs and GPOs at the same time).
+> > >=20
+> > > We don't define that in the device tree currently, we just make the d=
+river
+> > > not support output on input-only pins and vice versa, by returning er=
+ror
+> > > codes on the .set_direction() callbacks.
+> >=20
+> > I see, but in this case, the pins could be outputs depending on the HW =
+setup but
+> > there's no way for us to know that in the driver.
+>=20
+> We just specify the line in the device tree, and we just use it as
+> intended in the
+> driver, if it is present, whether that is as input or output.
+>=20
+> We do not try to over-protect users from misusing GPIO lines that have ju=
+st
+> one possible (electronic defined) mode. It would be over-engineering IMO.
+>=20
 
+Fair enough...
+
+> > And given the fact that (I think)
+> > it's highly unlikely for pins like this to ever be GPIs and GPOs at the=
+ same
+> > time, I
+> > brought the devicetree property to define input and output only. So, ro=
+ughly,
+> > what I
+> > have in mind now for the chip is;
+> >=20
+> > .set_config() -> with PULL_DOWN and HIGH_IMPEDANCE support
+> > .direction_input() -> This is important for gpio1 where we do have an h=
+w setting
+> > to
+> > set the direction. On the other pins I was thinking in just forcing hig=
+h-z. Or
+> > maybe
+> > can I just rely on gpio_set_bias()?
+>=20
+> No just write some default set-up into the registers, that's fine.
+> Or leave the power-on defaults.
+>=20
+> > .direction_ouput() -> Would only matter for gpio1
+>=20
+> The just return an error code for any other GPIO where this is called.
+>=20
+> > .get/set_value() -> And in this case we just assume that high value mig=
+ht or
+> > might
+> > not be possible (depending on the hw setup). Note that reading the pin =
+state is
+> > always possible.
+>=20
+> If a pins .direction_output() fails, .set_value() will not be called
+> on it either.
+
+This is where I lost you :(. So, I'm might be overcomplicating things but..=
+. Again,
+the case where someone wired up HW so that we can actually use the pin to d=
+rive the
+line high (having an external pull up). In that case, If I return error, th=
+en I won't
+be able to effectively set the line high (as you said, set_value will not b=
+e called
+on it either).
+
+Now, I do understand that if we have the line flagged as GPIO_OPEN_DRAIN, t=
+hen
+gpiolib will switch the line to input which means we will set the line in h=
+igh-z
+which means that if we have a pull up, then the line will be high. I mean, =
+it works
+but it would be strange if someone wants to have the line as output high an=
+d after
+trying to set the it high, it sees the pin moving to input.=C2=A0But if thi=
+s is how it
+should be, fine by me.
+
+I do understand this is the definition of open drain so I guess someone sho=
+uld know
+what to expect when operating with pins like this.
+
+>=20
+> > This means that I assume we can have both directions but that is not re=
+ally case
+> > and
+> > one needs to know what it is doing :). Or in cases like this, we just i=
+gnore the
+> > possibility of having GPO's and we let gpiolib do the emulation?
+> >=20
+> > Sounds reasonable or not really how I should handle this open-drain onl=
+y pins?
+>=20
+> Open drain-only pins would be pins that can be set to electric LOW (groun=
+ded)
+> or High-Z. Is this what we have?
+>=20
+
+Yes, that is the only thing we have. Meaning that there is no hw setting to=
+ set the
+pins to open drain. Open drain is what they are. That is why I'm not seeing=
+ the point
+in having PIN_CONFIG_DRIVE_OPEN_DRAIN implemented.
+
+Anyways, I'll try to have something cooked next week. I'll be slow since th=
+e winter
+(not even there yet) in Germany already got me!
+
+
+- Nuno S=C3=A1
 
