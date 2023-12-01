@@ -1,73 +1,131 @@
-Return-Path: <devicetree+bounces-20578-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20579-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93E808003D5
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 07:26:06 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD1388003E9
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 07:33:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C62101C209AB
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 06:26:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3F26DB210B6
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 06:33:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31C8CC8EA;
-	Fri,  1 Dec 2023 06:26:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81437DDCF;
+	Fri,  1 Dec 2023 06:33:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b="edUlIFBJ"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="yNkbszn6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail5.25mail.st (mail5.25mail.st [74.50.62.9])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5ED68199D;
-	Thu, 30 Nov 2023 22:26:00 -0800 (PST)
-Received: from localhost (91-158-86-216.elisa-laajakaista.fi [91.158.86.216])
-	by mail5.25mail.st (Postfix) with ESMTPSA id 0CC2560862;
-	Fri,  1 Dec 2023 06:25:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=atomide.com;
-	s=25mailst; t=1701411959;
-	bh=ZJAwNvSXMC8cowLrTynxRvpm84SZ2cxEGo3qzsfogxc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=edUlIFBJaucLIgcQi96n2pKUElAOdQ/fXOnxG0qKWCPJ9JQ0Jjm8W1O18a+0A1QO3
-	 2zMAUaNhOUU3guy1IwJSeLNWHF/nmqfUmAIBvLwVZHcKi6yLF1DGDC0mFqIJH62y5Z
-	 7mJV0MKk9WcRFntz6lcb/gaJ+K+6oX8I4hYKhCsFdDuUws3Lv2X7KvpsDK0yViIglT
-	 9+72fo1SA9hDFHH7ziOZLzb/xEJKyJxsnjHkw8XPVXdblbJSBRWhse8hQy7CtMVaul
-	 XeVqX2i8+G9hKbPALyZdD4lcQ2r0SSFldOEeFdr860M9d46Jl8YUnTHeU8PLHObtrv
-	 Q1opwUMqdJ3Mw==
-Date: Fri, 1 Dec 2023 08:25:38 +0200
-From: Tony Lindgren <tony@atomide.com>
-To: Andreas Kemnade <andreas@kemnade.info>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	bcousson@baylibre.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] ARM: dts: omap4-embt2ws: Add Bluetooth
-Message-ID: <20231201062538.GF5169@atomide.com>
-References: <20231004070309.2408745-1-andreas@kemnade.info>
- <6b4968d9-80d3-4a5a-b42e-3982825e45e9@linaro.org>
- <20231007070015.GS34982@atomide.com>
- <20231007072442.GW34982@atomide.com>
- <20231130183555.1b329b78@aktux>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C51DDE;
+	Thu, 30 Nov 2023 22:33:31 -0800 (PST)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3B16XAPa046868;
+	Fri, 1 Dec 2023 00:33:10 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1701412390;
+	bh=R3JOMs+GLcTvTmXuGQ+uZWSEdM5pv0lZocvcKZHDUSY=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=yNkbszn6/F7jIaLVqhcX0SwjspqMmcnD/VB+kCC6iGtV3l64BIVvBDdvnaSprN/k1
+	 D5nFt/F8uioG9/TU7eoMTdPtsb39NVv6GXZsYbqvDn3QtdAAmcNSIqefXpne0KkoAF
+	 R4bzE1sRH+xUmR54Nj0rK4BqcwG8TuRs+eszBTB4=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3B16XAIt004605
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 1 Dec 2023 00:33:10 -0600
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 1
+ Dec 2023 00:33:10 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 1 Dec 2023 00:33:10 -0600
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3B16X9SM105901;
+	Fri, 1 Dec 2023 00:33:09 -0600
+Date: Fri, 1 Dec 2023 00:33:09 -0600
+From: Nishanth Menon <nm@ti.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+CC: Sebastian Fricke <sebastian.fricke@collabora.com>,
+        Mauro Carvalho Chehab
+	<mchehab@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel
+ Team <kernel@pengutronix.de>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Nas Chung
+	<nas.chung@chipsnmedia.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jackson Lee
+	<jackson.lee@chipsnmedia.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer
+	<s.hauer@pengutronix.de>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Philipp Zabel
+	<p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>, Ivan Bornyakov
+	<brnkv.i1@gmail.com>,
+        Deborah Brouwer <deborah.brouwer@collabora.com>,
+        Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+        <devicetree@vger.kernel.org>,
+        Robert Beckett <bob.beckett@collabora.com>,
+        <linux-arm-kernel@lists.infradead.org>, <kernel@collabora.com>,
+        <linux-kernel@vger.kernel.org>, <linux-media@vger.kernel.org>,
+        "R, Vignesh"
+	<vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>
+Subject: Re: [PATCH v14 6/8] dt-bindings: media: wave5: add yaml devicetree
+ bindings
+Message-ID: <20231201063309.tingjc3cjhsqb6r7@confusing>
+References: <20231108-wave5-v14-rebased-v14-0-0b4af1258656@collabora.com>
+ <20231108-wave5-v14-rebased-v14-6-0b4af1258656@collabora.com>
+ <CAMuHMdUYOq=q1j=d+Eac28hthOUAaNUkuvxmRu-mUN1pLKq69g@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20231130183555.1b329b78@aktux>
+In-Reply-To: <CAMuHMdUYOq=q1j=d+Eac28hthOUAaNUkuvxmRu-mUN1pLKq69g@mail.gmail.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-* Andreas Kemnade <andreas@kemnade.info> [231130 17:36]:
-> On Sat, 7 Oct 2023 10:24:42 +0300
-> Tony Lindgren <tony@atomide.com> wrote:
-> > arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts:457.17-462.4: Warning (clocks_property):
-> > /ocp/interconnect@48000000/segment@0/target-module@6c000/serial@0/bluetooth-gnss:
-> > Missing property '#clock-cells' in node /ocp/interconnect@48000000/segment@0/targe
-> >
+On 11:27-20231128, Geert Uytterhoeven wrote:
+> Hi Sebastian,
 > 
-> I do not get this warning on top of omap-for-v6.8/dt. So I think the
-> time is really there for this patch.
+> CC TI K3
 
-OK thanks applying into omap-for-v6.8/dt.
+Thanks for looping us in Geert.
 
-Tony
+
+[...]
+> > +
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - enum:
+> > +          - ti,k3-j721s2-wave521c
+> 
+> This is the only compatible value defined which contains both "k3"
+> and "j72*".  I assume the "k3-" part should be dropped?
+
+Correct - we have not been using architecture prefix such as k3- in
+compatibles for any other peripheral and that lines up with DT spec[1]
+
+$ git grep ti, Documentation/|grep compatible|grep yaml|cut -d ':' -f2|grep k3-
+is empty.
+
+I have for asked this to be cleared up[2] before I can pick the dts changes
+corresponding to the binding.. I will wait for the bindings to hit linus
+master prior to looking at the dts changes.
+
+[1] https://github.com/devicetree-org/devicetree-specification/releases/tag/v0.4
+[2] https://lore.kernel.org/all/20231201062427.6fw5gn2zgkkurv4q@shadow/
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
