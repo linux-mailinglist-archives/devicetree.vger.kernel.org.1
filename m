@@ -1,127 +1,79 @@
-Return-Path: <devicetree+bounces-20684-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20685-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6028A800927
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 11:56:33 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1864180095C
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 12:09:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1A31F2814AA
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 10:56:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8946DB2130E
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 11:08:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C9FD20B2C;
-	Fri,  1 Dec 2023 10:56:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="iEZjQQCW"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E104F210FC;
+	Fri,  1 Dec 2023 11:08:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::224])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 982658E;
-	Fri,  1 Dec 2023 02:56:24 -0800 (PST)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id A6509E000A;
-	Fri,  1 Dec 2023 10:56:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1701428183;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=+aHykdI2ZYd1V9EjT5KVj02Y0Ap+cQgVJzA3meTQI8g=;
-	b=iEZjQQCWe6qrlWcccMIHxYXYpai7JvMmIwbARLlXoLnLmilJAoiCMiike1Pcq0ppcc3F7H
-	FUvg02eTR4x8vnnXl8aJoVKmNFgpjSgSvdnQCH9ggxCpvx6tInGPi1s6R+Jh3LkESVgs5x
-	27eSkWLQ9QE8+9FSBXiiypTvq/h1fTJJSUVRQ8zAjNfaCvjaWHmuvOajwnChg8wERuzScm
-	aN4plzh4zs/MQmMFQkuAP+QuMN+nd5lbkOigA1cJ2jLJGjGI1QQXh6YHcFTgOj8Iz9/qDu
-	FtQ2MjYJM0gQ574dGqDiFtPCkpN+sKJr6oVKgEllR4bopdeWkq47g7wPycheSQ==
-From: Gregory CLEMENT <gregory.clement@bootlin.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Paul Burton
- <paulburton@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- linux-mips@vger.kernel.org, Jiaxun Yang <jiaxun.yang@flygoat.com>, Rob
- Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, Tawfik Bayouk
- <tawfik.bayouk@mobileye.com>, Alexandre Belloni
- <alexandre.belloni@bootlin.com>, =?utf-8?Q?Th=C3=A9o?= Lebrun
- <theo.lebrun@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 18/21] MIPS: mobileye: Add EyeQ5 dtsi
-In-Reply-To: <46bba00c-00b7-46db-984c-4391f7fc11f6@linaro.org>
-References: <20231123152639.561231-1-gregory.clement@bootlin.com>
- <20231123152639.561231-19-gregory.clement@bootlin.com>
- <46bba00c-00b7-46db-984c-4391f7fc11f6@linaro.org>
-Date: Fri, 01 Dec 2023 11:56:22 +0100
-Message-ID: <87r0k6dwdl.fsf@BL-laptop>
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1C4C3193;
+	Fri,  1 Dec 2023 03:08:47 -0800 (PST)
+X-IronPort-AV: E=Sophos;i="6.04,241,1695654000"; 
+   d="scan'208";a="185005220"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 01 Dec 2023 20:08:47 +0900
+Received: from localhost.localdomain (unknown [10.226.93.2])
+	by relmlir5.idc.renesas.com (Postfix) with ESMTP id B9FDA40108F2;
+	Fri,  1 Dec 2023 20:08:42 +0900 (JST)
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Alessandro Zummo <a.zummo@towertech.it>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Lee Jones <lee@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+	Support Opensource <support.opensource@diasemi.com>,
+	linux-rtc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>,
+	linux-renesas-soc@vger.kernel.org
+Subject: [PATCH 0/6] Add DA9062 PMIC and built-in RTC support for RZ/G2UL SMARC EVK
+Date: Fri,  1 Dec 2023 11:08:34 +0000
+Message-Id: <20231201110840.37408-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-GND-Sasl: gregory.clement@bootlin.com
+Content-Transfer-Encoding: 8bit
 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> writes:
+The patch series aims to add support for DA9062 PMIC and built-in RTC found
+on RZ/{G2UL,Five} SMARC EVK. On these platforms there is no IRQ populated
+by default. Add irq optional support and convert the bindings to
+json-schema.
 
-> On 23/11/2023 16:26, Gregory CLEMENT wrote:
->> Add a device tree include file for the Mobileye EyeQ5 SoC.
->> 
->> Based on the work of Slava Samsonov <stanislav.samsonov@intel.com>
->> 
->> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
->> ---
->
->
->> +	aliases {
->> +		serial0 = &uart0;
->> +		serial1 = &uart1;
->> +		serial2 = &uart2;
->> +	};
->> +
->> +	cpu_intc: interrupt-controller {
->> +		compatible = "mti,cpu-interrupt-controller";
->> +		interrupt-controller;
->> +		#address-cells = <0>;
->> +		#interrupt-cells = <1>;
->> +	};
->> +
->> +	gic: interrupt-controller@140000 {
->
-> Why do you put MMIO nodes in top-level?
+Biju Das (6):
+  rtc: da9063: Make IRQ as optional
+  rtc: da9063: Use device_get_match_data()
+  rtc: da9063: Use dev_err_probe()
+  dt-bindings: mfd: Convert da9062 to json-schema
+  arm64: dts: renesas: rzg2ul-smarc: Enable PMIC and built-in RTC
+  arm64: defconfig: Enable Renesas DA9062 defconfig
 
-I can move it back under the soc node I think
-
->
->> +		compatible = "mti,gic";
->> +		reg = <0x0 0x140000 0x0 0x20000>;
->> +		interrupt-controller;
->> +		#interrupt-cells = <3>;
->> +
->> +		/*
->> +		* Declare the interrupt-parent even though the mti,gic
->> +		* binding doesn't require it, such that the kernel can
->> +		* figure out that cpu_intc is the root interrupt
->> +		* controller & should be probed first.
->> +		*/
->> +		interrupt-parent = <&cpu_intc>;
->> +
->> +		timer {
->> +			compatible = "mti,gic-timer";
->> +			interrupts = <GIC_LOCAL 1 IRQ_TYPE_NONE>;
->> +			clocks = <&core0_clk>;
->> +		};
->> +	};
->> +
->> +	soc: soc {
->
-> Are you sure dtbs_check W=1 does not complain? I think you miss here
-> address.
-
-Yes dtbs_check W=1 does not complain. There is no reg property in this
-node, so there is no address to add to the name of the node.
-
-Gregory
+ .../devicetree/bindings/mfd/da9062.txt        | 124 ----------
+ .../devicetree/bindings/mfd/dlg,da9062.yaml   | 220 ++++++++++++++++++
+ arch/arm64/boot/dts/renesas/rzg2ul-smarc.dtsi |  29 +++
+ arch/arm64/configs/defconfig                  |   2 +
+ drivers/rtc/rtc-da9063.c                      |  88 ++++---
+ 5 files changed, 290 insertions(+), 173 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mfd/da9062.txt
+ create mode 100644 Documentation/devicetree/bindings/mfd/dlg,da9062.yaml
 
 -- 
-Gregory Clement, Bootlin
-Embedded Linux and Kernel engineering
-http://bootlin.com
+2.25.1
+
 
