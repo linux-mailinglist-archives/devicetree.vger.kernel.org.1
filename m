@@ -1,195 +1,218 @@
-Return-Path: <devicetree+bounces-20674-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20675-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0889D800819
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 11:21:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E7B780082C
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 11:27:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8CB9AB21053
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 10:21:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E82D4281332
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 10:27:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F3C020B02;
-	Fri,  1 Dec 2023 10:21:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBF8720B18;
+	Fri,  1 Dec 2023 10:27:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="THk4CnIn"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ouanmi1u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C513A8
-	for <devicetree@vger.kernel.org>; Fri,  1 Dec 2023 02:21:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1701426066;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=+Bh0vGQqG6k9jMrVj2KcvFrOUEDKVV6QIbcGZMpO/NE=;
-	b=THk4CnInihMMOP5d+HzTJXiN8RgYyaMXQM7Y6VhJ3sCKNW1B+VgbRktdtIcoUElg94brXh
-	qH9MoEFXXL0KUfadBU16gAm5MqFV3+HuImarJMdri22fC40IWBge3TfhEophBfMUdKg9yY
-	yRS1ZRf4jx10AUT7uiMP+NcAeOSUZew=
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
- [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-131-x4D20l3zPNCi53LsKvHNHg-1; Fri, 01 Dec 2023 05:21:04 -0500
-X-MC-Unique: x4D20l3zPNCi53LsKvHNHg-1
-Received: by mail-wm1-f72.google.com with SMTP id 5b1f17b1804b1-40b310b5453so12973515e9.1
-        for <devicetree@vger.kernel.org>; Fri, 01 Dec 2023 02:21:04 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701426064; x=1702030864;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+Bh0vGQqG6k9jMrVj2KcvFrOUEDKVV6QIbcGZMpO/NE=;
-        b=UwPLrj3YUQ/ySF+14UADa1lKostBfaUWAP4LOwlKaYL+/fwv3m9SqlZ/y9Hf6T13uU
-         kxz0GrpLB8y+0Nt5NrYrXrlECqzP/obzrIX2Szn3IbJNBo1h7VVLtBUB3AK7bxXgnd0Y
-         qulVqW2B8AzJMoEDvwc52EWrUiCfAkGIMnL91/7tyLFNn30+QGnry5sOf9koDA5gClWM
-         2v+7cJOFKvE6W7nWKaAOQzvn8Hx8ocYoPm1WcuNGsem6a6QsMNYVtDCsMvO7B8JHF7ZB
-         QU+mNapQwbGtvS51bul5OZZU5G5QpikbJCo61SUsOUvUjIDJ5DWDweQk1Ba9r9l6o+2n
-         WIHQ==
-X-Gm-Message-State: AOJu0YydpV+5ydGXDyHURk4LOAwliB0/SV0qt89xwSkVfajl2B893Ps5
-	26SHCWdq8lgg7A2yD5eOjsS25SL+MJHcHXdAdskulv+vdd9H9VX68VqlXwFPl0jAp/CcFIcf248
-	YhGW/6LwgvEZPVEMH06VwxQ==
-X-Received: by 2002:a05:600c:4504:b0:40b:5e21:d366 with SMTP id t4-20020a05600c450400b0040b5e21d366mr314302wmo.111.1701426063770;
-        Fri, 01 Dec 2023 02:21:03 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IH48dNlPqlwgO2N+pjIvLSQ7hASCsvohHOe8o2Sdt8EJlyAAewTySsrbSEPww2SelJYsI4ukw==
-X-Received: by 2002:a05:600c:4504:b0:40b:5e21:d366 with SMTP id t4-20020a05600c450400b0040b5e21d366mr314294wmo.111.1701426063464;
-        Fri, 01 Dec 2023 02:21:03 -0800 (PST)
-Received: from localhost (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
-        by smtp.gmail.com with ESMTPSA id h7-20020adf9cc7000000b0032d8eecf901sm3859764wre.3.2023.12.01.02.21.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Dec 2023 02:21:03 -0800 (PST)
-From: Javier Martinez Canillas <javierm@redhat.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>, Ard Biesheuvel
- <ardb@kernel.org>, Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, Sergio Lopez <slp@redhat.com>, Sima Vetter
- <daniel.vetter@ffwll.ch>, Hector Martin <marcan@marcan.st>, Andrew Worsley
- <amworsley@gmail.com>, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>
-Subject: Re: [RFC PATCH] of/platform: Disable sysfb if a simple-framebuffer
- node is found
-In-Reply-To: <58672ab8-99bf-4a2a-af79-031d1e8fcba0@suse.de>
-References: <20231113085305.1823455-1-javierm@redhat.com>
- <CAL_JsqKHTN5hfd4qpg5RXbmQLKZNVywDkSj9mxvfGmjrcChQQg@mail.gmail.com>
- <87jzqi59bt.fsf@minerva.mail-host-address-is-not-set>
- <CAL_JsqJM9+cbNviwuKGB5+3YbyAP3UH+TxCxsU5nUtX-iRGP2w@mail.gmail.com>
- <CAMj1kXG7Xyk0ys9j-XRo7Rr8gYz1qJE8fFSixBOwVbm-pjeX+A@mail.gmail.com>
- <874jhj1fm3.fsf@minerva.mail-host-address-is-not-set>
- <58672ab8-99bf-4a2a-af79-031d1e8fcba0@suse.de>
-Date: Fri, 01 Dec 2023 11:21:02 +0100
-Message-ID: <87fs0mxlyp.fsf@minerva.mail-host-address-is-not-set>
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EEC694;
+	Fri,  1 Dec 2023 02:27:02 -0800 (PST)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3B1AQl8x008067;
+	Fri, 1 Dec 2023 04:26:47 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1701426407;
+	bh=plZsQfClx4t0b8BjeAgucQhd0DJo14/Wq29E+6hYZj0=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=ouanmi1ui0kwPmzK40GzzM26PhgoVuuxr5BAZs3C2N/i0MDZSmAZh8ghKU+VKGv1w
+	 GQ6lVxF++Bkn4AkgjjDU8dKatmhWbS2eVpQA1BPBNLgeljY7ajEDjyO/xA1g1l6uid
+	 6QzLCDrAuk780R51vXmx+XHt487f542u3twKiQnA=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3B1AQl65111919
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 1 Dec 2023 04:26:47 -0600
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 1
+ Dec 2023 04:26:46 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 1 Dec 2023 04:26:46 -0600
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3B1AQkrD021126;
+	Fri, 1 Dec 2023 04:26:46 -0600
+Date: Fri, 1 Dec 2023 15:56:45 +0530
+From: Manorit Chawdhry <m-chawdhry@ti.com>
+To: Neha Malcom Francis <n-francis@ti.com>
+CC: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <a-nandan@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <eblanc@baylibre.com>, <jneanne@baylibre.com>,
+        <aseketeli@baylibre.com>, <jpanis@baylibre.com>, <u-kumar1@ti.com>,
+        <j-luthra@ti.com>, <vaishnav.a@ti.com>, <hnagalla@ti.com>,
+        <devarsht@ti.com>
+Subject: Re: [PATCH v8 5/7] arm64: dts: ti: k3-am69-sk: Add support for
+ TPS6594 PMIC
+Message-ID: <20231201102645.u3embsudo55vm6pi@ula0497581>
+References: <20231128055230.342547-1-n-francis@ti.com>
+ <20231128055230.342547-6-n-francis@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20231128055230.342547-6-n-francis@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Thomas Zimmermann <tzimmermann@suse.de> writes:
+Hi Neha,
 
-> Hi
->
-> Am 18.11.23 um 12:10 schrieb Javier Martinez Canillas:
->> Ard Biesheuvel <ardb@kernel.org> writes:
->> 
->> Hello Ard,
->> 
->>> On Fri, 17 Nov 2023 at 00:09, Rob Herring <robh@kernel.org> wrote:
->> 
->> [...]
->> 
->>>>>>
->>>>>> This could also lead to an interesting scenario. As simple-framebuffer
->>>>>> can define its memory in a /reserved-memory node, but that is ignored
->>>>>> in EFI boot. Probably would work, but only because EFI probably
->>>>>> generates its memory map table from the /reserved-memory nodes.
->>>>>>
->>>>>
->>>>> I see. So what would be the solution then? Ignoring creating a platform
->>>>> device for "simple-framebuffer" if booted using EFI and have an EFI-GOP?
->>>>
->>>> Shrug. I don't really know anything more about EFI FB, but I would
->>>> guess it can't support handling resources like clocks, power domains,
->>>> regulators, etc. that simple-fb can. So if a platform needs those, do
->>>> we say they should not setup EFI-GOP? Or is there a use case for
->>>> having both? Clients that don't muck with resources can use EFI-GOP
->>>> and those that do use simple-fb. For example, does/can grub use
->>>> EFI-GOP, but not simple-fb?
->>>>
->>>
->>> The EFI GOP is just a dumb framebuffer, and it is not even generally
->>> possible to cross reference the GOP with a particular device in the
->>> device hierarchy unless you e.g., compare the BARs of each device with
->>> the region described by the GOP protocol.
->>>
->>> GRUB for EFI will use the GOP and nothing else, but only at boot time
->>> (the GOP protocol is more than a magic linear memory region, it also
->>> implements a Blt() abstraction that permits the use of framebuffers
->>> that are not mapped linearly into the address space at all, and GRUB
->>> makes use of this)
->>>
->>> The EFI stub will only expose GOPs to the kernel if they are in fact
->>> linear framebuffers, but has zero insight into whether the hardware
->>> needs clocks and regulators, and whether or not the framebuffer needs
->>> IOMMU pass through (which might be the case if the scanout is using
->>> DMA into system memory)
->>>
->>> So calling EFI GOP 'source of truth' is rather generous, and I think
->>> it makes sense to prioritize more accurate descriptions of the
->>> underlying framebuffer over EFI GOP.
->>>
->> 
->> That was my opinion as well and the reason why I called the DTB the
->> single source of truth.
->> 
->>> However, making 'simple-framebuffer' magic in this regard doesn't seem
->>> like a great approach to me. Is there a better way we could get the
->>> resource conflict to be decided in a way where the EFI GOP gets
->>> superseded if its resources are claimed by another device?
->>>
->> 
->> There is an aperture [0] framework that is used by the fbdev and DRM
->> subsystems to allow native drivers to remove any conflicting devices
->> that share the same framebuffer aperture.
->> 
->> But it only makes sense for native drivers to use that I think, but
->> in this case is about two drivers that attempt to use the same frame
->> buffer provided by the firmware but getting it from different places.
->> 
->> I don't have a better idea than this patch but maybe Thomas or Sima do?
->
-> At SUSE, we've carried such a patch in our repos for some time. It works 
-> around the double-framebuffer problem in a similar way. [1]
->
+On 11:22-20231128, Neha Malcom Francis wrote:
+> This patch adds support for TPS6594 PMIC on wkup I2C0 bus. This device
+> provides regulators (bucks and LDOs), but also GPIOs, a RTC, a watchdog,
+> an ESM (Error Signal Monitor) which monitors the SoC error output
+> signal, and a PFSM (Pre-configurable Finite State Machine) which manages
+> the operational modes of the PMIC.
+> 
+> Signed-off-by: Neha Malcom Francis <n-francis@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-am69-sk.dts | 100 ++++++++++++++++++++++++++
+>  1 file changed, 100 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am69-sk.dts b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
+> index 9868c7049bfb..dec27acb4e96 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am69-sk.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
+> @@ -431,6 +431,17 @@ J784S4_IOPAD(0x000, PIN_INPUT, 7) /* (AN35) EXTINTN.GPIO0_0 */
+>  	};
+>  };
+>  
+> +&wkup_pmx1 {
+> +	status = "okay";
+> +
+> +	pmic_irq_pins_default: pmic-irq-default-pins {
+> +		pinctrl-single,pins = <
+> +			/* (AA37) MCU_ADC1_AIN4.WKUP_GPIO0_83 */
+> +			J784S4_WKUP_IOPAD(0x12c, PIN_INPUT, 7)
+> +		>;
+> +	};
+> +};
+> +
+>  &wkup_pmx2 {
+>  	bootph-all;
+>  	wkup_uart0_pins_default: wkup-uart0-default-pins {
+> @@ -631,6 +642,95 @@ eeprom@51 {
+>  		compatible = "atmel,24c512";
+>  		reg = <0x51>;
+>  	};
+> +
+> +	tps659413: pmic@48 {
+> +		compatible = "ti,tps6594-q1";
+> +		reg = <0x48>;
+> +		system-power-controller;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pmic_irq_pins_default>;
+> +		interrupt-parent = <&wkup_gpio0>;
+> +		interrupts = <39 IRQ_TYPE_EDGE_FALLING>;
+> +		ti,primary-pmic;
+> +
+> +		gpio-controller;
+> +		#gpio-cells = <2>;
+> +
+> +		buck12-supply = <&vsys_3v3>;
+> +		buck3-supply = <&vsys_3v3>;
+> +		buck4-supply = <&vsys_3v3>;
+> +		buck5-supply = <&vsys_3v3>;
+> +		ldo1-supply = <&vsys_3v3>;
+> +		ldo2-supply = <&vsys_3v3>;
+> +		ldo3-supply = <&vsys_3v3>;
+> +		ldo4-supply = <&vsys_3v3>;
+> +
+> +		regulators {
+> +			bucka12: buck12 {
+> +				regulator-name = "vdd_ddr_1v1";
+> +				regulator-min-microvolt = <1100000>;
+> +				regulator-max-microvolt = <1100000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			bucka3: buck3 {
+> +				regulator-name = "vdd_ram_0v85";
+> +				regulator-min-microvolt = <850000>;
+> +				regulator-max-microvolt = <850000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			bucka4: buck4 {
+> +				regulator-name = "vdd_io_1v8";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			bucka5: buck5 {
+> +				regulator-name = "vdd_mcu_0v85";
+> +				regulator-min-microvolt = <850000>;
+> +				regulator-max-microvolt = <850000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldoa1: ldo1 {
+> +				regulator-name = "vdd_mcuio_1v8";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldoa2: ldo2 {
+> +				regulator-name = "vdd_mcuio_3v3";
+> +				regulator-min-microvolt = <3300000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldoa3: ldo3 {
+> +				regulator-name = "vds_dll_0v8";
+> +				regulator-min-microvolt = <800000>;
+> +				regulator-max-microvolt = <800000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldoa4: ldo4 {
+> +				regulator-name = "vda_mcu_1v8";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +		};
+> +	};
+>  };
+>  
 
-Thanks for the information. I see that your patch is basically mine but
-doing it unconditionally while this one only does the sysfb_disable() if
-a "simple-framebuffer" DT node has been found.
+With the full series applied:
+https://gist.github.com/manorit2001/7e794a7cbf58af4d7fbbee03eac88e86
 
-> As Javier mentioned, we do track the framebuffer ranges for EFI/VESA/OF 
-> framebuffers in the graphics aperture helpers. Fbdev has done this for 
-> decades, and the current codebase extends and harmonizes this 
-> functionality among fbdev and DRM drivers.
->
-> WRT DT vs EFI: AFAIK the EFI support on affected platforms looks at the 
-> DT to set up the EFI framebuffer. So IMHO the DT is the authoritative 
-> source on the framebuffer.
->
+[ For AM69-SK ]
+Tested-by: Manorit Chawdhry <m-chawdhry@ti.com>
 
-Agreed. Sima Vetter also mentioned on IRC that they think this patch is
-the least bad option. Rob, Ard any thoughts? Maybe we can land this as
-a fix and then figure how this could be better handled in the long term?
+Regards,
+Manorit
 
-> Best regards
-> Thomas
->
-> [1] https://bugzilla.suse.com/show_bug.cgi?id=1204315
->
-
--- 
-Best regards,
-
-Javier Martinez Canillas
-Core Platforms
-Red Hat
-
+>  &wkup_gpio0 {
+> -- 
+> 2.34.1
+> 
 
