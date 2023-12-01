@@ -1,177 +1,189 @@
-Return-Path: <devicetree+bounces-20749-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20750-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69A10800C42
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 14:33:39 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB938800C44
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 14:33:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ECF54B210EE
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 13:33:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E6AFC1C210D4
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 13:33:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFC9B374FD;
-	Fri,  1 Dec 2023 13:33:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11FD7374FD;
+	Fri,  1 Dec 2023 13:33:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D851A6;
-	Fri,  1 Dec 2023 05:33:24 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-	by ex01.ufhost.com (Postfix) with ESMTP id CCFA524E269;
-	Fri,  1 Dec 2023 21:33:21 +0800 (CST)
-Received: from EXMBX167.cuchost.com (172.16.6.77) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 1 Dec
- 2023 21:33:21 +0800
-Received: from EXMBX066.cuchost.com (172.16.7.66) by EXMBX167.cuchost.com
- (172.16.6.77) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 1 Dec
- 2023 21:33:21 +0800
-Received: from EXMBX066.cuchost.com ([fe80::5947:9245:907e:339f]) by
- EXMBX066.cuchost.com ([fe80::5947:9245:907e:339f%17]) with mapi id
- 15.00.1497.044; Fri, 1 Dec 2023 21:33:21 +0800
-From: JeeHeng Sia <jeeheng.sia@starfivetech.com>
-To: Conor Dooley <conor@kernel.org>, "linux-riscv@lists.infradead.org"
-	<linux-riscv@lists.infradead.org>
-CC: Conor Dooley <conor.dooley@microchip.com>, Emil Renner Berthing
-	<kernel@esmil.dk>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Paul Walmsley
-	<paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, Walker Chen
-	<walker.chen@starfivetech.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>
-Subject: RE: [PATCH v1] riscv: dts: starfive: move timebase-frequency to .dtsi
-Thread-Topic: [PATCH v1] riscv: dts: starfive: move timebase-frequency to
- .dtsi
-Thread-Index: AQHaI6gRxG1b5YxtoUOShnBrfnkFMrCUbWfw
-Date: Fri, 1 Dec 2023 13:33:21 +0000
-Message-ID: <d40dcd7a1ee247c3821c4186497ed3d4@EXMBX066.cuchost.com>
-References: <20231130-bobbing-valid-b97f26fe8edc@spud>
-In-Reply-To: <20231130-bobbing-valid-b97f26fe8edc@spud>
-Accept-Language: en-US, zh-CN
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-ms-exchange-transport-fromentityheader: Hosted
-x-yovoleruleagent: yovoleflag
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74F56A6;
+	Fri,  1 Dec 2023 05:33:43 -0800 (PST)
+Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-5c85e8fdd2dso23571827b3.2;
+        Fri, 01 Dec 2023 05:33:43 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701437622; x=1702042422;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Pi5CLdTBD3o6A552c2yKlmz+TRIKCo5UoCCyICzwCGA=;
+        b=RTr6A4c9iHeApMB5eH9NtZFLA6c3l1JgupkgHOXcT7o46sn52CtPybdXFx+OgV+Yk0
+         S6lvb78R3pXAxgC8wm8oaIKptnpNUyRTL+P6Zc21cQnoUDImh6g+ttZVpl2dqu5b5SIM
+         u9EpF+giH489hXIarTNaTMPOjLdLLGRY13dc+Bc3Tkcdz5C5GDszjOfnG5RqcvY5L/Rj
+         L0CLRSAGgdxet9VNRYY0CKEpG0OdmioXp1ZC6gXjNm4l72i4XscA7bsTCTIKW6Yf5IBG
+         LD8wulVSyvrq9xIXrApUCsd09Ja1f+6oocfw/vy578L3HMWrNqLY/KczT4WWY2aIKLnb
+         3ITg==
+X-Gm-Message-State: AOJu0YyNGit0Rm5ZFZsg/ssNTT58rUwN0Jm3R9wgNXVsjKCej0ro6eAP
+	32TPyyNWT+FbShYQ9sLVxmEnvJwM2g5cMw==
+X-Google-Smtp-Source: AGHT+IHOFcWoD4tNySYUF4If0O72uowXXFBBZUMPQPPyc2ssWiYBgtwCQoM74PcBYb0zxVVNKFuR1Q==
+X-Received: by 2002:a05:690c:3348:b0:5ce:a72e:a30a with SMTP id fk8-20020a05690c334800b005cea72ea30amr25402000ywb.24.1701437622441;
+        Fri, 01 Dec 2023 05:33:42 -0800 (PST)
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com. [209.85.128.180])
+        by smtp.gmail.com with ESMTPSA id u204-20020a8160d5000000b005d29344e625sm1077058ywb.114.2023.12.01.05.33.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 01 Dec 2023 05:33:41 -0800 (PST)
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-5c85e8fdd2dso23571357b3.2;
+        Fri, 01 Dec 2023 05:33:40 -0800 (PST)
+X-Received: by 2002:a81:9b46:0:b0:5d3:627c:7e11 with SMTP id
+ s67-20020a819b46000000b005d3627c7e11mr4775995ywg.34.1701437620680; Fri, 01
+ Dec 2023 05:33:40 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20231201110840.37408-1-biju.das.jz@bp.renesas.com> <20231201110840.37408-5-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20231201110840.37408-5-biju.das.jz@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 1 Dec 2023 14:33:29 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVGuEKOeXkK8wbUzjx3UMOOcpyW2yp=i2A6V4auGbqoEQ@mail.gmail.com>
+Message-ID: <CAMuHMdVGuEKOeXkK8wbUzjx3UMOOcpyW2yp=i2A6V4auGbqoEQ@mail.gmail.com>
+Subject: Re: [PATCH 4/6] dt-bindings: mfd: Convert da9062 to json-schema
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Support Opensource <support.opensource@diasemi.com>, devicetree@vger.kernel.org, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>, 
+	linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi Biju,
 
+On Fri, Dec 1, 2023 at 12:09=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.co=
+m> wrote:
+> Convert the da9062 PMIC device tree binding documentation to json-schema.
+>
+> Update the example to match reality.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-> -----Original Message-----
-> From: Conor Dooley <conor@kernel.org>
-> Sent: Friday, December 1, 2023 12:11 AM
-> To: linux-riscv@lists.infradead.org
-> Cc: conor@kernel.org; Conor Dooley <conor.dooley@microchip.com>; Emil Ren=
-ner Berthing <kernel@esmil.dk>; Rob Herring
-> <robh+dt@kernel.org>; Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.=
-org>; Paul Walmsley <paul.walmsley@sifive.com>;
-> Palmer Dabbelt <palmer@dabbelt.com>; devicetree@vger.kernel.org; linux-ke=
-rnel@vger.kernel.org; Walker Chen
-> <walker.chen@starfivetech.com>; JeeHeng Sia <jeeheng.sia@starfivetech.com=
->; Leyfoon Tan <leyfoon.tan@starfivetech.com>
-> Subject: [PATCH v1] riscv: dts: starfive: move timebase-frequency to .dts=
-i
->=20
-> From: Conor Dooley <conor.dooley@microchip.com>
->=20
-> Properties fixed by the SoC should be defined in the $soc.dtsi, and the
-> timebase-frequency is not sourced directly from an off-chip oscillator.
->=20
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
-> I actually have no idea whether this is true or not, I asked on the
-> jh8100 series but only got an answer for that SoC and not the existing
-> ones. I'm hoping that a patch envokes more of a reaction!
-I believe it is controlled by the internal clock, but I will let Walker
-have the final say.
->=20
-> CC: Emil Renner Berthing <kernel@esmil.dk>
-> CC: Conor Dooley <conor@kernel.org>
-> CC: Rob Herring <robh+dt@kernel.org>
-> CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> CC: Paul Walmsley <paul.walmsley@sifive.com>
-> CC: Palmer Dabbelt <palmer@dabbelt.com>
-> CC: linux-riscv@lists.infradead.org
-> CC: devicetree@vger.kernel.org
-> CC: linux-kernel@vger.kernel.org
-> CC: Walker Chen <walker.chen@starfivetech.com>
-> CC: JeeHeng Sia <jeeheng.sia@starfivetech.com>
-> CC: Leyfoon Tan <leyfoon.tan@starfivetech.com>
-> ---
->  arch/riscv/boot/dts/starfive/jh7100-common.dtsi               | 4 ----
->  arch/riscv/boot/dts/starfive/jh7100.dtsi                      | 1 +
->  .../riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi | 4 ----
->  arch/riscv/boot/dts/starfive/jh7110.dtsi                      | 1 +
->  4 files changed, 2 insertions(+), 8 deletions(-)
->=20
-> diff --git a/arch/riscv/boot/dts/starfive/jh7100-common.dtsi b/arch/riscv=
-/boot/dts/starfive/jh7100-common.dtsi
-> index b93ce351a90f..214f27083d7b 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7100-common.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7100-common.dtsi
-> @@ -19,10 +19,6 @@ chosen {
->  		stdout-path =3D "serial0:115200n8";
->  	};
->=20
-> -	cpus {
-> -		timebase-frequency =3D <6250000>;
-> -	};
+Thanks for your patch!
+
+> --- a/Documentation/devicetree/bindings/mfd/da9062.txt
+> +++ /dev/null
+
+This file is still referred to from other files:
+
+    $ git grep Documentation/devicetree/bindings/mfd/da9062.txt
+    Documentation/devicetree/bindings/input/da9062-onkey.txt:DA9062
+and DA9061 chips see Documentation/devicetree/bindings/mfd/da9062.txt
+    Documentation/devicetree/bindings/thermal/da9062-thermal.txt:DA9062
+and DA9061 chips see Documentation/devicetree/bindings/mfd/da9062.txt
+
+> -- onkey : See ../input/da9062-onkey.txt
+
+Documentation/devicetree/bindings/input/da9062-onkey.txt still exists,
+and covers more variants than your new dlg,da9062.yaml.
+
 > -
->  	memory@80000000 {
->  		device_type =3D "memory";
->  		reg =3D <0x0 0x80000000 0x2 0x0>;
-> diff --git a/arch/riscv/boot/dts/starfive/jh7100.dtsi b/arch/riscv/boot/d=
-ts/starfive/jh7100.dtsi
-> index e68cafe7545f..c50b32424721 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7100.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7100.dtsi
-> @@ -16,6 +16,7 @@ / {
->  	cpus {
->  		#address-cells =3D <1>;
->  		#size-cells =3D <0>;
-> +		timebase-frequency =3D <6250000>;
->=20
->  		U74_0: cpu@0 {
->  			compatible =3D "sifive,u74-mc", "riscv";
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dt=
-si b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-
-> 2.dtsi
-> index b89e9791efa7..7873c7ffde4d 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> @@ -26,10 +26,6 @@ chosen {
->  		stdout-path =3D "serial0:115200n8";
->  	};
->=20
-> -	cpus {
-> -		timebase-frequency =3D <4000000>;
-> -	};
-> -
->  	memory@40000000 {
->  		device_type =3D "memory";
->  		reg =3D <0x0 0x40000000 0x1 0x0>;
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/d=
-ts/starfive/jh7110.dtsi
-> index 45213cdf50dc..ee7d4bb1f537 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> @@ -18,6 +18,7 @@ / {
->  	cpus {
->  		#address-cells =3D <1>;
->  		#size-cells =3D <0>;
-> +		timebase-frequency =3D <4000000>;
->=20
->  		S7_0: cpu@0 {
->  			compatible =3D "sifive,s7", "riscv";
-> --
-> 2.39.2
+> -- watchdog: See ../watchdog/da9062-wdt.txt
 
+This was replaced by
+Documentation/devicetree/bindings/watchdog/dlg,da9062-watchdog.yaml
+a while ago, and covers more variants than your new dlg,da9062.yaml.
+
+> -
+> -- thermal : See ../thermal/da9062-thermal.txt
+
+Documentation/devicetree/bindings/thermal/da9062-thermal.txt still exists,
+and covers more variants than your new dlg,da9062.yaml.
+
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/dlg,da9062.yaml
+> @@ -0,0 +1,220 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/dlg,da9062.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Dialog DA9062 Power Management Integrated Circuit (PMIC)
+> +
+> +maintainers:
+> +  - Biju Das <biju.das.jz@bp.renesas.com>
+> +
+> +description: |
+> +  Product information for the DA9062 and DA9061 devices can be found her=
+e:
+> +  - https://www.dialog-semiconductor.com/products/da9062
+> +  - https://www.dialog-semiconductor.com/products/da9061
+> +
+> +  The DA9062 PMIC consists of:
+> +
+> +  Device                   Supply Names    Description
+> +  ------                   ------------    -----------
+> +  da9062-regulator        :               : LDOs & BUCKs
+> +  da9062-rtc              :               : Real-Time Clock
+> +  da9062-onkey            :               : On Key
+> +  da9062-watchdog         :               : Watchdog Timer
+> +  da9062-thermal          :               : Thermal
+> +  da9062-gpio             :               : GPIOs
+> +
+> +  The DA9061 PMIC consists of:
+> +
+> +  Device                   Supply Names    Description
+> +  ------                   ------------    -----------
+> +  da9062-regulator        :               : LDOs & BUCKs
+> +  da9062-onkey            :               : On Key
+> +  da9062-watchdog         :               : Watchdog Timer
+> +  da9062-thermal          :               : Thermal
+
+da9061 (x4)
+
+> +
+> +properties:
+
+> +  watchdog:
+
+Please sort subnodes alphabetically.
+
+> +    type: object
+> +    $ref: /schemas/watchdog/watchdog.yaml#
+> +    unevaluatedProperties: false
+> +    properties:
+> +      compatible:
+> +        const: dlg,da9062-watchdog
+
+What about dlg,da9061-watchdog? Probably this should refer to
+Documentation/devicetree/bindings/watchdog/dlg,da9062-watchdog.yaml
+instead?
+
+This applies to the other subnodes, too.
+
+Perhaps this binding should be merged with dlg,da9063.yaml?
+Or should it be split in dlg,da9061.yaml and dlg,da9062.yaml?
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
