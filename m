@@ -1,137 +1,292 @@
-Return-Path: <devicetree+bounces-20653-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20655-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89E068006BB
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 10:23:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1284480070C
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 10:31:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 43FF42814C9
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 09:23:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EEF2C1C20A2E
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 09:31:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D90431CF8A;
-	Fri,  1 Dec 2023 09:23:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 644471D542;
+	Fri,  1 Dec 2023 09:31:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="LMct2acA"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="X2N9ZUfb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFBE7194;
-	Fri,  1 Dec 2023 01:22:59 -0800 (PST)
-Received: from [100.107.97.3] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 03C28660739D;
-	Fri,  1 Dec 2023 09:22:56 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1701422578;
-	bh=QgTeaIFG5TKHQs9edtTeIIGI6iDgYZhlD3cjaCISnnI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=LMct2acAVotYmUk4lB0+USCWpBs96wpATpyINXpvYuk+8xFxydBNdA651Kp4FNd3i
-	 RIPMz4/heGSBMa0I3t/LjN4j1Q8B7Eo5LZSfZ615sdFRwRrhzDHMv4JUMokQTe5PTt
-	 UGvLkbOLW+NCU0AMZLPHISGSVC/52VRWl/YMZ+jA2DXrwHXXGVwWOzsggzba2MwNRk
-	 6Akt3oQGJoVIfam61b/7fW2cRfylS0fuaSRNhyQKB2+mU7ODo31OgAA+VPCk7IUtBw
-	 DfTTfEZ67fCkYMQvOHq/qj2EkvIPoeJpdTgpWxpcBWG9Gx14kcOgGZbIIks7LN+NOc
-	 RWamvAwk80NuA==
-Message-ID: <8250291c-13ef-4072-92d6-f3d7953d6521@collabora.com>
-Date: Fri, 1 Dec 2023 10:22:54 +0100
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B58833A80
+	for <devicetree@vger.kernel.org>; Fri,  1 Dec 2023 01:30:58 -0800 (PST)
+Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-54c109ed07aso2584942a12.0
+        for <devicetree@vger.kernel.org>; Fri, 01 Dec 2023 01:30:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1701423049; x=1702027849; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ygGbZBo+TdwBHujrvJwJMkwLK25AL7Tn/jyxEY8WKY4=;
+        b=X2N9ZUfbSenInkzUsP02aUgjkHVLrFdMftu1tl052Gw3lvxyV5VNqybPwqPE75P+mT
+         aBtKnbNn4+i+DKFtaurpVsbsavF32oN2vCshHND2VyrR7XOhpn++ZkKS6hdTbfC45hnU
+         iSrV4/fNRjHhPB3uQ3HYvX3dxhPZcC58Rz/MqV3LAU9SIlXLbKzjy7acVKDcnQG1OLe5
+         JugudTDDn2+qXmHCuuGhwLD/P537ff8Hc52CITjALm1tc7MHdQvOClo9DtyMMkHV809S
+         ytkgAs3/9PQ+tNa1pkI+R92FpKTJIN5cgl1N1ynxu2NSNXmQjj2gCcxvAXNvCG3kuCW3
+         w0kQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701423049; x=1702027849;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=ygGbZBo+TdwBHujrvJwJMkwLK25AL7Tn/jyxEY8WKY4=;
+        b=GSLM8kmpknNnruQVpOlllGoPLJyYVz9heSdJCX/te8Lrnnf0BPjan3C3X75bmo2OKe
+         YS/t+kvC20iRdSHzY5tIxuqjSTgp5EdycHriLfsx1ZFohKWf+edXuOAWNcZ5QkGZNZSm
+         NE3q0m8aInkDrU2HJFz2LwQbhJq028jWkBc4xmM+XBsLc+5+OQNaKsuRWDVm6jte3VW5
+         +6D2T/0aRLwnURZHZw4xAD1HbP3H9GqjuH5DwwLeedMCPd9kUgN3cNc9Ul51rtssxrLG
+         C434AWc3ScnNZQOzA/f39HWUjd7BV/sR/DIn9+0Ppjlu1tA1IqEm2rakapW9omXFEZFm
+         aPaw==
+X-Gm-Message-State: AOJu0Yx5w0aK85Y2DpMCmXsPiKwEQVycAKJ8RlnwEXyG+/enfW1rYZ1a
+	Y0MZ0ARM0hoJiTU+fc/DHfFSiw==
+X-Google-Smtp-Source: AGHT+IHYfJYwHA0j2Y4AKuDUFx7AebDZ3NL4yorO1OdFEKvIaaFqBiFiYcRJE7VdicrbRk/IR7RQ1g==
+X-Received: by 2002:a17:906:3b9a:b0:a19:a409:37d9 with SMTP id u26-20020a1709063b9a00b00a19a40937d9mr1009266ejf.50.1701423048902;
+        Fri, 01 Dec 2023 01:30:48 -0800 (PST)
+Received: from localhost (dhcp-089-099-055-216.chello.nl. [89.99.55.216])
+        by smtp.gmail.com with ESMTPSA id d15-20020a170906344f00b009eff65e6942sm1673780ejb.197.2023.12.01.01.30.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 01 Dec 2023 01:30:48 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] drm/mediatek: support the DSI0 output on the MT8195
- VDOSYS0
-Content-Language: en-US
-To: Michael Walle <mwalle@kernel.org>, Chun-Kuang Hu
- <chunkuang.hu@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Chunfeng Yun
- <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>, Jitao Shi
- <jitao.shi@mediatek.com>, Xinlei Lee <xinlei.lee@mediatek.com>
-Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org
-References: <20231123133749.2030661-1-mwalle@kernel.org>
- <20231123133749.2030661-5-mwalle@kernel.org>
- <2d1bae2239626cb51977bf0803cec602@kernel.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <2d1bae2239626cb51977bf0803cec602@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 01 Dec 2023 10:30:47 +0100
+Message-Id: <CXCW4TRVE6RX.32BBAPRTOPGR9@fairphone.com>
+Cc: "Stanimir Varbanov" <stanimir.k.varbanov@gmail.com>, "Bryan O'Donoghue"
+ <bryan.odonoghue@linaro.org>, "Andy Gross" <agross@kernel.org>, "Bjorn
+ Andersson" <andersson@kernel.org>, "Konrad Dybcio"
+ <konrad.dybcio@linaro.org>, "Mauro Carvalho Chehab" <mchehab@kernel.org>,
+ <cros-qcom-dts-watchers@chromium.org>, "Rob Herring" <robh+dt@kernel.org>,
+ "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, <~postmarketos/upstreaming@lists.sr.ht>,
+ <phone-devel@vger.kernel.org>, <linux-media@vger.kernel.org>,
+ <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2 2/3] arm64: dts: qcom: sc7280: Move video-firmware to
+ chrome-common
+From: "Luca Weiss" <luca.weiss@fairphone.com>
+To: "Vikash Garodia" <quic_vgarodia@quicinc.com>, "Dmitry Baryshkov"
+ <dmitry.baryshkov@linaro.org>
+X-Mailer: aerc 0.15.2
+References: <20231002-sc7280-venus-pas-v2-0-bd2408891317@fairphone.com>
+ <20231002-sc7280-venus-pas-v2-2-bd2408891317@fairphone.com>
+ <4cfad910-1821-3a31-c372-3f6b199e8f71@quicinc.com>
+ <CX5ENKY70B5J.2D6DXKGI4EGX3@fairphone.com>
+ <ff021f49-f81b-0fd1-bd2c-895dbbb03d56@quicinc.com>
+ <CX70EBXCOB66.3998C482R86CN@fairphone.com>
+ <a29123a3-afe1-8f92-ff6c-835926d411af@quicinc.com>
+ <CAA8EJppkjpMmcHCvxomgUMPxGpf77iN9roRvb=NEcxdk237-UA@mail.gmail.com>
+ <e6d80982-1674-d0c4-9dbe-94d77079f6ba@quicinc.com>
+ <CX75Y1X2QIN7.1GRH1YI56MMZ@fairphone.com>
+ <a4e8b531-49f9-f4a1-51cb-e422c56281cc@quicinc.com>
+In-Reply-To: <a4e8b531-49f9-f4a1-51cb-e422c56281cc@quicinc.com>
 
-Il 30/11/23 13:47, Michael Walle ha scritto:
->> With the latest dynamic selection of the output component, we can now
->> support different outputs. Move current output component into the
->> dynamic routes array and add the new DSI0 output.
->>
->> Signed-off-by: Michael Walle <mwalle@kernel.org>
->> ---
->>  drivers/gpu/drm/mediatek/mtk_drm_drv.c | 8 +++++++-
->>  1 file changed, 7 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c 
->> b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
->> index 2b0c35cacbc6..6fa88976376e 100644
->> --- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
->> +++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
->> @@ -222,7 +222,11 @@ static const unsigned int mt8195_mtk_ddp_main[] = {
->>      DDP_COMPONENT_DITHER0,
->>      DDP_COMPONENT_DSC0,
->>      DDP_COMPONENT_MERGE0,
->> -    DDP_COMPONENT_DP_INTF0,
-> 
-> Please disregard this patch (the others are ok). There must gone something
-> wrong during my testing. DDP_COMPONENT_MERGE0 won't work with
-> DDP_COMPONENT_DSI0. If anyone has more insights, I'm all ears.
-> 
+On Tue Nov 28, 2023 at 9:14 AM CET, Vikash Garodia wrote:
+>
+> On 11/24/2023 9:26 PM, Luca Weiss wrote:
+> > On Fri Nov 24, 2023 at 2:35 PM CET, Vikash Garodia wrote:
+> >>
+> >>
+> >> On 11/24/2023 6:23 PM, Dmitry Baryshkov wrote:
+> >>> On Fri, 24 Nov 2023 at 14:30, Vikash Garodia <quic_vgarodia@quicinc.c=
+om> wrote:
+> >>>>
+> >>>> On 11/24/2023 5:05 PM, Luca Weiss wrote:
+> >>>>> On Fri Nov 24, 2023 at 7:38 AM CET, Vikash Garodia wrote:
+> >>>>>>
+> >>>>>> On 11/22/2023 7:50 PM, Luca Weiss wrote:
+> >>>>>>> On Wed Nov 22, 2023 at 2:17 PM CET, Vikash Garodia wrote:
+> >>>>>>>>
+> >>>>>>>> On 10/2/2023 7:50 PM, Luca Weiss wrote:
+> >>>>>>>>> If the video-firmware node is present, the venus driver assumes=
+ we're on
+> >>>>>>>>> a system that doesn't use TZ for starting venus, like on Chrome=
+OS
+> >>>>>>>>> devices.
+> >>>>>>>>>
+> >>>>>>>>> Move the video-firmware node to chrome-common.dtsi so we can us=
+e venus
+> >>>>>>>>> on a non-ChromeOS devices.
+> >>>>>>>>>
+> >>>>>>>>> At the same time also disable the venus node by default in the =
+dtsi,
+> >>>>>>>>> like it's done on other SoCs.
+> >>>>>>>>>
+> >>>>>>>>> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> >>>>>>>>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> >>>>>>>>> ---
+> >>>>>>>>>  arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi | 8 +++++++=
++
+> >>>>>>>>>  arch/arm64/boot/dts/qcom/sc7280.dtsi               | 6 ++----
+> >>>>>>>>>  2 files changed, 10 insertions(+), 4 deletions(-)
+> >>>>>>>>>
+> >>>>>>>>> diff --git a/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi=
+ b/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
+> >>>>>>>>> index 5d462ae14ba1..cd491e46666d 100644
+> >>>>>>>>> --- a/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
+> >>>>>>>>> +++ b/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
+> >>>>>>>>> @@ -104,6 +104,14 @@ &scm {
+> >>>>>>>>>   dma-coherent;
+> >>>>>>>>>  };
+> >>>>>>>>>
+> >>>>>>>>> +&venus {
+> >>>>>>>>> + status =3D "okay";
+> >>>>>>>>> +
+> >>>>>>>>> + video-firmware {
+> >>>>>>>>> +         iommus =3D <&apps_smmu 0x21a2 0x0>;
+> >>>>>>>>> + };
+> >>>>>>>>> +};
+> >>>>>>>>> +
+> >>>>>>>>>  &watchdog {
+> >>>>>>>>>   status =3D "okay";
+> >>>>>>>>>  };
+> >>>>>>>>> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/=
+boot/dts/qcom/sc7280.dtsi
+> >>>>>>>>> index 66f1eb83cca7..fa53f54d4675 100644
+> >>>>>>>>> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> >>>>>>>>> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> >>>>>>>>> @@ -3740,6 +3740,8 @@ venus: video-codec@aa00000 {
+> >>>>>>>>>                            <&apps_smmu 0x2184 0x20>;
+> >>>>>> 0x2184 is a secure SID. I think qcm6490-fairphone-fp5.dts needs to=
+ override the
+> >>>>>> iommus property as well to retain only the non secure SID i.e 0x21=
+80 ? I am
+> >>>>>> seeing below crash
+> >>>>>>
+> >>>>>> Call trace:
+> >>>>>> [   47.663593]  qcom_smmu_write_s2cr+0x64/0xa4
+> >>>>>> [   47.663616]  arm_smmu_attach_dev+0x120/0x284
+> >>>>>> [   47.663647]  __iommu_attach_device+0x24/0xf8
+> >>>>>> [   47.676845]  __iommu_device_set_domain+0x70/0xd0
+> >>>>>> [   47.681632]  __iommu_group_set_domain_internal+0x60/0x1b4
+> >>>>>> [   47.687218]  iommu_setup_default_domain+0x358/0x418
+> >>>>>> [   47.692258]  __iommu_probe_device+0x3e4/0x404
+> >>>>>>
+> >>>>>> Could you please reconfirm if Video SID 0x2184 (and mask) is allow=
+ed by the
+> >>>>>> qcm6490-fairphone-fp5 hardware having TZ ?
+> >>>>>
+> >>>>> Hi,
+> >>>>>
+> >>>>> On FP5 it seems it's no problem to have both SIDs in there, probe a=
+nd
+> >>>>> using venus appears to work fine.
+> >>>>>
+> >>>>> Are you using different firmware than QCM6490.LA.3.0 on the device =
+where
+> >>>>> you tested this?
+> >>>> I was testing this on RB3 board which uses firmware [1].
+> >>>
+> >>> There is something wrong here.
+> >>>
+> >>> RB3 board uses venus-5.2
+> >>> RB5 board uses vpu-1.0
+> >>> Only sc7280 uses vpu-2.0
+> >>
+> >> Tested on QCM6490 IDP board, which is QCOM internal board similar to R=
+B3 gen2.
+> >=20
+> > In any case, I don't know much about the venus & iommu setup here. I ca=
+n
+> > try removing the 0x2184 SID and test if venus still works on FP5.
+>
+> Please remove 0x2184 SID and confirm specifically encoder works. This SID=
+ is for
+> encoder.
+>
+> > Also should the chromebooks keep that iommu entry or not?
+> Chrome-common can have 0x2184 since its no-TZ based solution. So in sc728=
+0.dtsi,
+> you can keep the default SID i.e 0x2180 (with respective mask) and in
+> chrome-common, we can override the iommus property with 0x2180 and 0x2184=
+.
 
-I was *convinced* that the MERGE0 SOUT was connected to DSI0!!!
+Hi Vikash,
 
-...but you're right, here, and thanks for catching that: there's no way to
-get MERGE0 connected to DSI0; if you check in the datasheet for VDO_SEL_IN,
-you can get data from MERGE0 only for DSI*1*, not 0.
+I'm moving 0x2184 to chrome-common in v3 but I couldn't test venus
+encoding myself since I just don't know *how* to test it.
 
-The only way is to connect DSC_WRAP0 (DDP_COMPONENT_DSC0 in mtk_drm_drv btw)
-directly to DSI0 (or dither to dsi0)... unless there is a way to change the
-pinmux to invert the pins for DSI0/1?
+Would be nice if you could share how you test venus (decoding &
+encoding) since seemingly nobody (at least in the postmarketOS
+community) seems to know how to test/use it properly. See also
+https://wiki.postmarketos.org/wiki/Hardware_video_acceleration
 
-You could assign the DSI1 controller to the one that is currently DSI0 for you.
+Regards
+Luca
 
-That would solve the issue here.
-
-Cheers!
-Angelo
-
-> -michael
-> 
->> +};
->> +
->> +static const struct mtk_drm_route mt8195_mtk_ddp_main_routes[] = {
->> +    { 0, DDP_COMPONENT_DP_INTF0 },
->> +    { 0, DDP_COMPONENT_DSI0 },
->>  };
->>
->>  static const unsigned int mt8195_mtk_ddp_ext[] = {
->> @@ -308,6 +312,8 @@ static const struct mtk_mmsys_driver_data 
->> mt8192_mmsys_driver_data = {
->>  static const struct mtk_mmsys_driver_data mt8195_vdosys0_driver_data = {
->>      .main_path = mt8195_mtk_ddp_main,
->>      .main_len = ARRAY_SIZE(mt8195_mtk_ddp_main),
->> +    .conn_routes = mt8195_mtk_ddp_main_routes,
->> +    .num_conn_routes = ARRAY_SIZE(mt8195_mtk_ddp_main_routes),
->>      .mmsys_dev_num = 2,
->>  };
-
+>
+> Regards,
+> Vikash
+>
+> > Regards
+> > Luca
+> >=20
+> >>
+> >>>>
+> >>>> Regards,
+> >>>> Vikash
+> >>>>
+> >>>> [1]
+> >>>> https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmw=
+are.git/tree/qcom/vpu-2.0
+> >>>>
+> >>>>>>
+> >>>>>>>>>                   memory-region =3D <&video_mem>;
+> >>>>>>>>>
+> >>>>>>>>> +                 status =3D "disabled";
+> >>>>>>>>> +
+> >>>>>>>>>                   video-decoder {
+> >>>>>>>>>                           compatible =3D "venus-decoder";
+> >>>>>>>>>                   };
+> >>>>>>>>> @@ -3748,10 +3750,6 @@ video-encoder {
+> >>>>>>>>>                           compatible =3D "venus-encoder";
+> >>>>>>>>>                   };
+> >>>>>>>>>
+> >>>>>>>>> -                 video-firmware {
+> >>>>>>>>> -                         iommus =3D <&apps_smmu 0x21a2 0x0>;
+> >>>>>>>>> -                 };
+> >>>>>>>>> -
+> >>>>>>>>>                   venus_opp_table: opp-table {
+> >>>>>>>>>                           compatible =3D "operating-points-v2";
+> >>>>>>>>>
+> >>>>>>>>>
+> >>>>>>>> Changes look good. Is this tested on SC7280 ?
+> >>>>>>>
+> >>>>>>> Hi Vikash,
+> >>>>>>>
+> >>>>>>> I didn't test it myself on sc7280 (just qcm6490-fp5) but dtx_diff
+> >>>>>>> reports no differences except for status =3D okay property being =
+added, so
+> >>>>>>> there should be no change on those boards. See below.
+> >>>>>>>
+> >>>>>>> Regards
+> >>>>>>> Luca
+> >>>>>>
+> >>>>>> I tested on SC7280 (herobrine) and all good.
+> >>>>>
+> >>>>> Great, thanks!
+> >>>>>
+> >>>>> Regards
+> >>>>> Luca
+> >>>>>
+> >>>>>>
+> >>>>>> Regards,
+> >>>>>> Vikash
+> >>>>>
+> >>>>
+> >>>
+> >>>
+> >=20
 
 
