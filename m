@@ -1,260 +1,225 @@
-Return-Path: <devicetree+bounces-20715-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20716-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC470800A0B
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 12:47:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6767800A2F
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 13:01:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8A77A28166A
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 11:47:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8DF4F281A09
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 12:01:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7D29219FE;
-	Fri,  1 Dec 2023 11:47:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9E2721A11;
+	Fri,  1 Dec 2023 12:01:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b="cti0Sb3G";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="KiYhWAYq"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UibRQBdQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from wout5-smtp.messagingengine.com (wout5-smtp.messagingengine.com [64.147.123.21])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A67A1B3;
-	Fri,  1 Dec 2023 03:47:47 -0800 (PST)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-	by mailout.west.internal (Postfix) with ESMTP id E714A3200A8E;
-	Fri,  1 Dec 2023 06:47:45 -0500 (EST)
-Received: from imap44 ([10.202.2.94])
-  by compute3.internal (MEProxy); Fri, 01 Dec 2023 06:47:47 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:sender:subject:subject:to:to; s=fm2; t=
-	1701431265; x=1701517665; bh=7ri5tWAUJf5m69RwLv3NcQqa3J7mZD+4VnE
-	JqjN5jpM=; b=cti0Sb3GU7HoMOuPP9fGsYx+/uuDBCHB/PT1vW7jwhW1F4Uye+C
-	vI55yEmiRg6AG8vh8P254lCMS1Xp5f5aCW+PILNu4AX2up6wkp5oGj3+OuFQgIRg
-	5vxT1ULbCv3mUctmBb9UO5SQWvVUTyuQQOAIkI7lboezTvnKJN6oB/uHdLg1mqK5
-	MuWU2BUZ/b/6anWebeoIyuN7E0AjSuxuN/KD7bNDEplvDzRTLkv9ssdzz9VTg4E1
-	FovAeaIkynAYJn6IURzDKYp4Z3EjvvL41WQ1N5BZkN4u9Iaa8GKiqo7xCWoTyNHe
-	SAnaUpTc8zrlT7KicP+F4vzSNgWT4vXuG3A==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:sender:subject:subject:to:to:x-me-proxy
-	:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=
-	1701431265; x=1701517665; bh=7ri5tWAUJf5m69RwLv3NcQqa3J7mZD+4VnE
-	JqjN5jpM=; b=KiYhWAYqXPGFmvkgUsTNo4otFI1qgTbiywt89/Bq9CEkRvGLt1S
-	lQy0EPd4oKpmWSXnUwPHMvsx4/swdI81PE21aQzMBPp1GpfkA2CQC198A4IdtyX+
-	HVKATxbd8rcxHYtd0gelltOHeJxnt2l7C7I2cIbmuOIvj+P8p+Ey9GnkxNA5Ee15
-	aKUc4rVbw8jx1Cr+eNi221KSSqul5YJOVdbCDYJIKYJSm4pgWrpF8oQ9tFQOQDqD
-	fLVMI2jIic2QSaVpICvNKWnUxWNcyYh5DZVQFWcDMgRxT4L4Lryp26Vfu+2vLSdb
-	vJx9azWezVFYvYEHNSPQO7r7V4kj8KW1HkA==
-X-ME-Sender: <xms:4cdpZchjquCZxF_jug5S__RCc5dNASZ7uj6JWF59ncLH-zJjNMIa0A>
-    <xme:4cdpZVBIiHIys14tQL0Fqd542V6CAHEXeckkibXE0gPvS2C-3TUpBhYowi9uzsvDY
-    2SEBCZNnW51J1fhX90>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrudeiledgfeduucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtgfesthhqredtreerjeenucfhrhhomhepfdfl
-    ihgrgihunhcujggrnhhgfdcuoehjihgrgihunhdrhigrnhhgsehflhihghhorghtrdgtoh
-    hmqeenucggtffrrghtthgvrhhnpeetvdegffdtgfegjeetgeegjeeitddvvefgieettefg
-    hfeuhfevleduieeffedugeenucffohhmrghinhepihhtshdrshgsnecuvehluhhsthgvrh
-    fuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepjhhirgiguhhnrdihrghnghes
-    fhhlhihgohgrthdrtghomh
-X-ME-Proxy: <xmx:4cdpZUECHzYyOYjyZYJSfsYjSqupdS-c9sTYhH281jGgFNlTGJRS6Q>
-    <xmx:4cdpZdTHCZ5jLtsjiUqZjnzkKicEmpB2z2sb03R8hR_6WT4YmrG-dg>
-    <xmx:4cdpZZxRZl8GUKVXTerF_VVh3hqASWRmAKAXVRYDhMduPS1Y4NFsFA>
-    <xmx:4cdpZeqCtBBWz_1eiiJtZQc-8_SytZ3GkvbiOqH6cheam9rnFrwAhg>
-Feedback-ID: ifd894703:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id 0BE6C36A0075; Fri,  1 Dec 2023 06:47:44 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-1178-geeaf0069a7-fm-20231114.001-geeaf0069
+Received: from mail-oo1-xc2a.google.com (mail-oo1-xc2a.google.com [IPv6:2607:f8b0:4864:20::c2a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 827AE1707
+	for <devicetree@vger.kernel.org>; Fri,  1 Dec 2023 04:01:30 -0800 (PST)
+Received: by mail-oo1-xc2a.google.com with SMTP id 006d021491bc7-58d54fd8c5aso978163eaf.2
+        for <devicetree@vger.kernel.org>; Fri, 01 Dec 2023 04:01:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1701432090; x=1702036890; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nqr2nx7EOHUR5Y4hfhQw728v568+AKwyIx25pZkKlds=;
+        b=UibRQBdQNvd1oR1O5Us5sSBXMi7kXxb15mRL57gzg9qMcTn1h9hm2jHpZpkgM0szr9
+         TaKE9ee0XcnKjyMd2eCyx+s1TOP2WWZB4E61wNIih1AZ+/lz8eNxz7/hAgIYTzs0vYvZ
+         PhI48ibAmXVLqbV5r7nw3ttYL4G7FkFJBAUT843kc9xaxOg/8CzKm7TgMqE7AihTVtDX
+         C5VxCA5pzGGRwheTpkyTr2KlWy2YoyohVe0b6p8TofjEyAmzh925/Lknyj7JFsR77Vuk
+         UvC/wJKPb38+AjhMolwPUdLG53V1fs7z+oxSLZdk2MJzRdBUSG27ur5LTcCuspePatbn
+         Vrpw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701432090; x=1702036890;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=nqr2nx7EOHUR5Y4hfhQw728v568+AKwyIx25pZkKlds=;
+        b=N2KbqtxfGe3oiiDZQ5Y8+rGHNx0lNkqJly8Vi1lN6KaYb+qmBmSrOsh2jpxlhhaFEs
+         rK2TDB2QV3A0zQOHEhMRyr0G+We+xikroFbqeNnYzookKyMBd7P4k1+9RQvZgo1DRH1w
+         wb3BAAnpwOCaVhLHbllnfTN+wSnwi9hPpT+6Un+GNvyrAaQzWgvk9DutRELh7CEoh21z
+         0F9NQtFKYgvNuc2MnXTYZyT054UFQftBueqU+WveabIdS0BYkWVqWbA+QNQl7aL5yn/l
+         4Cz9I3h+grIT9XLc7GAPB4cecOnciLljMbWlAGSyK8/l71s1FnVa9FoOrh8W4cdHxpLm
+         2B6Q==
+X-Gm-Message-State: AOJu0Ywau60On6NFItYqSfUeLpIPdCADIBmGEZBxP7i0j38j9rqNO9z9
+	CSiI9ALlnKcDkborIT8r65Xenqz8/+PSQRoogpWNKg==
+X-Google-Smtp-Source: AGHT+IEaVymyT4zngunznKYVd+LC7Ualf/L3X9ECNL23Q0+vmG0MBNBYVzrxhh9Wp1sn8PZeKLWznfrlwVe1KoQ8knI=
+X-Received: by 2002:a05:6358:e90:b0:16e:4162:2ae5 with SMTP id
+ 16-20020a0563580e9000b0016e41622ae5mr11320311rwg.8.1701432089401; Fri, 01 Dec
+ 2023 04:01:29 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-Id: <4eb150cf-3fb7-41c8-accc-06b13e46f086@app.fastmail.com>
-In-Reply-To: <20231201111512.803120-22-gregory.clement@bootlin.com>
-References: <20231201111512.803120-1-gregory.clement@bootlin.com>
- <20231201111512.803120-22-gregory.clement@bootlin.com>
-Date: Fri, 01 Dec 2023 11:47:16 +0000
-From: "Jiaxun Yang" <jiaxun.yang@flygoat.com>
-To: "Gregory CLEMENT" <gregory.clement@bootlin.com>,
- "paulburton@kernel.org" <paulburton@kernel.org>,
- "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
- "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
- "Rob Herring" <robh+dt@kernel.org>,
- "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: "Vladimir Kondratiev" <vladimir.kondratiev@mobileye.com>,
- "Tawfik Bayouk" <tawfik.bayouk@mobileye.com>,
- "Alexandre Belloni" <alexandre.belloni@bootlin.com>,
- =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
- "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v3 21/22] MIPS: generic: Add support for Mobileye EyeQ5
-Content-Type: text/plain;charset=utf-8
+References: <20231120212037.911774-1-peter.griffin@linaro.org>
+ <20231120212037.911774-19-peter.griffin@linaro.org> <CAPLW+4k=M1q1thr2RXG4fGkvD51H7NxS1A3Ck+Up7W1nTcUPcw@mail.gmail.com>
+In-Reply-To: <CAPLW+4k=M1q1thr2RXG4fGkvD51H7NxS1A3Ck+Up7W1nTcUPcw@mail.gmail.com>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Fri, 1 Dec 2023 12:01:16 +0000
+Message-ID: <CADrjBPoimnYhB3t5wSCKMTr8MbkDCVXvRmtsGzXrjZCW_7fF5A@mail.gmail.com>
+Subject: Re: [PATCH v4 18/19] arm64: dts: exynos: google: Add initial
+ Oriole/pixel 6 board support
+To: Sam Protsenko <semen.protsenko@linaro.org>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	mturquette@baylibre.com, conor+dt@kernel.org, sboyd@kernel.org, 
+	tomasz.figa@gmail.com, s.nawrocki@samsung.com, linus.walleij@linaro.org, 
+	wim@linux-watchdog.org, linux@roeck-us.net, catalin.marinas@arm.com, 
+	will@kernel.org, arnd@arndb.de, olof@lixom.net, gregkh@linuxfoundation.org, 
+	jirislaby@kernel.org, cw00.choi@samsung.com, alim.akhtar@samsung.com, 
+	tudor.ambarus@linaro.org, andre.draszik@linaro.org, saravanak@google.com, 
+	willmcvicker@google.com, soc@kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-watchdog@vger.kernel.org, kernel-team@android.com, 
+	linux-serial@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
+Hi Sam,
 
-
-=E5=9C=A82023=E5=B9=B412=E6=9C=881=E6=97=A5=E5=8D=81=E4=BA=8C=E6=9C=88 =E4=
-=B8=8A=E5=8D=8811:15=EF=BC=8CGregory CLEMENT=E5=86=99=E9=81=93=EF=BC=9A
-> Introduce support for the MIPS based Mobileye EyeQ5 SoCs.
+On Tue, 21 Nov 2023 at 18:39, Sam Protsenko <semen.protsenko@linaro.org> wr=
+ote:
 >
-> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
-> ---
->  arch/mips/configs/generic/board-eyeq5.config | 43 ++++++++++++++++++++
->  arch/mips/generic/Kconfig                    | 15 +++++++
->  arch/mips/generic/Platform                   |  2 +
->  arch/mips/generic/board-epm5.its.S           | 24 +++++++++++
->  4 files changed, 84 insertions(+)
->  create mode 100644 arch/mips/configs/generic/board-eyeq5.config
->  create mode 100644 arch/mips/generic/board-epm5.its.S
+> On Mon, Nov 20, 2023 at 3:21=E2=80=AFPM Peter Griffin <peter.griffin@lina=
+ro.org> wrote:
+> >
+> > Add initial board support for the Pixel 6 phone code named Oriole. This
+> > has been tested with a minimal busybox initramfs and boots to a shell.
+
+Will fix it in v5.
+
+Peter
+> >
+> > Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+> > ---
+> >  arch/arm64/boot/dts/exynos/Makefile           |  2 +
+> >  arch/arm64/boot/dts/exynos/google/Makefile    |  4 +
+> >  .../boot/dts/exynos/google/gs101-oriole.dts   | 79 +++++++++++++++++++
+> >  3 files changed, 85 insertions(+)
+> >  create mode 100644 arch/arm64/boot/dts/exynos/google/Makefile
+> >  create mode 100644 arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
+> >
+> > diff --git a/arch/arm64/boot/dts/exynos/Makefile b/arch/arm64/boot/dts/=
+exynos/Makefile
+> > index 6e4ba69268e5..44c24a8ad9e1 100644
+> > --- a/arch/arm64/boot/dts/exynos/Makefile
+> > +++ b/arch/arm64/boot/dts/exynos/Makefile
+> > @@ -1,4 +1,6 @@
+> >  # SPDX-License-Identifier: GPL-2.0
+> > +subdir-y +=3D google
+> > +
+> >  dtb-$(CONFIG_ARCH_EXYNOS) +=3D \
+> >         exynos5433-tm2.dtb              \
+> >         exynos5433-tm2e.dtb             \
+> > diff --git a/arch/arm64/boot/dts/exynos/google/Makefile b/arch/arm64/bo=
+ot/dts/exynos/google/Makefile
+> > new file mode 100644
+> > index 000000000000..0a6d5e1fe4ee
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/exynos/google/Makefile
+> > @@ -0,0 +1,4 @@
+> > +# SPDX-License-Identifier: GPL-2.0
+> > +
+> > +dtb-$(CONFIG_ARCH_EXYNOS) +=3D \
+> > +       gs101-oriole.dtb \
+> > diff --git a/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts b/arch/=
+arm64/boot/dts/exynos/google/gs101-oriole.dts
+> > new file mode 100644
+> > index 000000000000..111665490840
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
+> > @@ -0,0 +1,79 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +/*
+> > + * Oriole Device Tree
+> > + *
+> > + * Copyright 2021-2023 Google,LLC
+> > + */
+> > +
+> > +/dts-v1/;
+> > +/plugin/;
 >
-> diff --git a/arch/mips/configs/generic/board-eyeq5.config=20
-> b/arch/mips/configs/generic/board-eyeq5.config
-> new file mode 100644
-> index 0000000000000..d5109fda6e821
-> --- /dev/null
-> +++ b/arch/mips/configs/generic/board-eyeq5.config
-> @@ -0,0 +1,43 @@
-> +CONFIG_HIGH_RES_TIMERS=3Dy
-> +CONFIG_TASKSTATS=3Dy
-> +CONFIG_FIT_IMAGE_FDT_EPM5=3Dy
-> +CONFIG_BOARD_EYEQ5=3Dy
-> +CONFIG_USE_XKPHYS=3Dy
-> +CONFIG_PHYSICAL_START=3D0xa800000808000000
-> +CONFIG_ZBOOT_LOAD_ADDRESS=3D0xA800000080480000
-^ I wonder why are you overriding CONFIG_ZBOOT_LOAD_ADDRESS here, automa=
-tic
-calculation should work well.
-
-Also I think by adding board-eyeq5.config you are hijacking CONFIG_PHYSI=
-CAL_START
-for `make 32r2el_defconfig` without BOARDS option as well.
-
-Probably we should implement something to backlist this board from gener=
-ic
-config.
-
-Thanks
-- Jiaxun
-
-> +CONFIG_CPU_HAS_MSA=3Dy
-> +CONFIG_NET_KEY=3Dy
-> +CONFIG_CAN=3Dy
-> +CONFIG_PCI=3Dy
-> +CONFIG_PCI_MSI=3Dy
-> +CONFIG_PCI_DEBUG=3Dy
-> +CONFIG_PCI_ENDPOINT=3Dy
-> +CONFIG_CONNECTOR=3Dy
-> +CONFIG_MTD=3Dy
-> +CONFIG_MTD_CMDLINE_PARTS=3Dy
-> +CONFIG_MTD_BLOCK=3Dy
-> +CONFIG_MTD_RAM=3Dy
-> +CONFIG_MTD_ROM=3Dy
-> +CONFIG_MTD_PHYSMAP=3Dy
-> +CONFIG_MTD_PHYSMAP_OF=3Dy
-> +CONFIG_MTD_BLOCK2MTD=3Dy
-> +CONFIG_MTD_UBI=3Dy
-> +CONFIG_MTD_UBI_BLOCK=3Dy
-> +CONFIG_NETDEVICES=3Dy
-> +CONFIG_MACVLAN=3Dy
-> +CONFIG_IPVLAN=3Dy
-> +CONFIG_MACB=3Dy
-> +CONFIG_MARVELL_PHY=3Dy
-> +CONFIG_MICREL_PHY=3Dy
-> +CONFIG_CAN_M_CAN=3Dy
-> +CONFIG_SERIAL_AMBA_PL011=3Dy
-> +CONFIG_SERIAL_AMBA_PL011_CONSOLE=3Dy
-> +CONFIG_PINCTRL=3Dy
-> +CONFIG_MMC=3Dy
-> +CONFIG_MMC_SDHCI=3Dy
-> +CONFIG_MMC_SDHCI_CADENCE=3Dy
-> +CONFIG_RESET_CONTROLLER=3Dy
-> +CONFIG_FANOTIFY=3Dy
-> +CONFIG_ROMFS_FS=3Dy
-> +CONFIG_ROMFS_BACKED_BY_BOTH=3Dy
-> +CONFIG_PAGE_SIZE_16KB=3Dy
-> \ No newline at end of file
-> diff --git a/arch/mips/generic/Kconfig b/arch/mips/generic/Kconfig
-> index 7dc5b3821cc6e..04e1fc6f789b5 100644
-> --- a/arch/mips/generic/Kconfig
-> +++ b/arch/mips/generic/Kconfig
-> @@ -48,6 +48,13 @@ config SOC_VCOREIII
->  config MSCC_OCELOT
->  	bool
->=20
-> +config SOC_EYEQ5
-> +	select ARM_AMBA
-> +	select WEAK_ORDERING
-> +	select WEAK_REORDERING_BEYOND_LLSC
-> +	select PHYSICAL_START_BOOL
-> +	bool
-> +
->  comment "FIT/UHI Boards"
->=20
->  config FIT_IMAGE_FDT_BOSTON
-> @@ -124,4 +131,12 @@ config VIRT_BOARD_RANCHU
->  	  Android emulator. Android emulator is based on Qemu, and contains
->  	  the support for the same set of virtual devices.
->=20
-> +config FIT_IMAGE_FDT_EPM5
-> +	bool "Include FDT for Mobileye EyeQ5 development platforms"
-> +	select SOC_EYEQ5
-> +	default n
-> +	help
-> +	  Enable this to include the FDT for the EyeQ5 development platforms
-> +	  from Mobileye in the FIT kernel image.
-> +	  This requires u-boot on the platform.
->  endif
-> diff --git a/arch/mips/generic/Platform b/arch/mips/generic/Platform
-> index 0c03623f38970..45db9824a11d6 100644
-> --- a/arch/mips/generic/Platform
-> +++ b/arch/mips/generic/Platform
-> @@ -24,3 +24,5 @@ its-$(CONFIG_FIT_IMAGE_FDT_JAGUAR2)	+=3D=20
-> board-jaguar2.its.S
->  its-$(CONFIG_FIT_IMAGE_FDT_SERVAL)	+=3D board-serval.its.S
->  its-$(CONFIG_FIT_IMAGE_FDT_XILFPGA)	+=3D board-xilfpga.its.S
->  its-$(CONFIG_FIT_IMAGE_FDT_MARDUK)	+=3D board-marduk.its.S
-> +its-$(CONFIG_FIT_IMAGE_FDT_EPM5)	+=3D board-epm5.its.S
-> +
-> diff --git a/arch/mips/generic/board-epm5.its.S=20
-> b/arch/mips/generic/board-epm5.its.S
-> new file mode 100644
-> index 0000000000000..08e8c4f183d63
-> --- /dev/null
-> +++ b/arch/mips/generic/board-epm5.its.S
-> @@ -0,0 +1,24 @@
-> +/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
-> +/ {
-> +	images {
-> +		fdt-mobileye-epm5 {
-> +			description =3D "Mobileeye MP5 Device Tree";
-> +			data =3D /incbin/("boot/dts/mobileye/eyeq5-epm5.dtb");
-> +			type =3D "flat_dt";
-> +			arch =3D "mips";
-> +			compression =3D "none";
-> +			hash {
-> +				algo =3D "sha1";
-> +			};
-> +		};
-> +	};
-> +
-> +    configurations {
-> +		default =3D "conf-1";
-> +		conf-1 {
-> +			description =3D "Mobileye EPM5 Linux kernel";
-> +			kernel =3D "kernel";
-> +			fdt =3D "fdt-mobileye-epm5";
-> +		};
-> +	};
-> +};
-> --=20
-> 2.42.0
-
---=20
-- Jiaxun
+> Now that the dts is being built as a dtb (not dtbo), I don' think this
+> /plugin/ bit is needed here?
+>
+> > +
+> > +#include <dt-bindings/gpio/gpio.h>
+> > +#include <dt-bindings/input/input.h>
+> > +#include "gs101-pinctrl.h"
+> > +#include "gs101.dtsi"
+> > +
+> > +/ {
+> > +       model =3D "Oriole";
+> > +       compatible =3D "google,gs101-oriole", "google,gs101";
+> > +
+> > +       chosen {
+> > +               bootargs =3D "earlycon=3Dexynos4210,mmio32,0x10A00000 c=
+onsole=3DttySAC0";
+> > +       };
+> > +
+> > +       gpio-keys {
+> > +               compatible =3D "gpio-keys";
+> > +               pinctrl-names =3D "default";
+> > +               pinctrl-0 =3D <&key_voldown>, <&key_volup>, <&key_power=
+>;
+> > +
+> > +               button-vol-down {
+> > +                       label =3D "KEY_VOLUMEDOWN";
+> > +                       linux,code =3D <KEY_VOLUMEDOWN>;
+> > +                       gpios =3D <&gpa7 3 GPIO_ACTIVE_LOW>;
+> > +                       wakeup-source;
+> > +               };
+> > +
+> > +               button-vol-up {
+> > +                       label =3D "KEY_VOLUMEUP";
+> > +                       linux,code =3D <KEY_VOLUMEUP>;
+> > +                       gpios =3D <&gpa8 1 GPIO_ACTIVE_LOW>;
+> > +                       wakeup-source;
+> > +               };
+> > +
+> > +               button-power {
+> > +                       label =3D "KEY_POWER";
+> > +                       linux,code =3D <KEY_POWER>;
+> > +                       gpios =3D <&gpa10 1 GPIO_ACTIVE_LOW>;
+> > +                       wakeup-source;
+> > +               };
+> > +       };
+> > +};
+> > +
+> > +&pinctrl_1 {
+> > +       key_voldown: key-voldown-pins {
+> > +               samsung,pins =3D "gpa7-3";
+> > +               samsung,pin-function =3D <0xf>;
+> > +               samsung,pin-pud =3D <0>;
+> > +               samsung,pin-drv =3D <GS101_PIN_DRV_2_5_MA>;
+> > +       };
+> > +
+> > +       key_volup: key-volup-pins {
+> > +               samsung,pins =3D "gpa8-1";
+> > +               samsung,pin-function =3D <0xf>;
+> > +               samsung,pin-pud =3D <0>;
+> > +               samsung,pin-drv =3D <GS101_PIN_DRV_2_5_MA>;
+> > +       };
+> > +};
+> > +
+> > +&pinctrl_0 {
+> > +       key_power: key-power-pins {
+> > +               samsung,pins =3D "gpa10-1";
+> > +               samsung,pin-function =3D <0xf>;
+> > +               samsung,pin-pud =3D <0>;
+> > +               samsung,pin-drv =3D <GS101_PIN_DRV_2_5_MA>;
+> > +       };
+> > +};
+> > +
+> > +&watchdog_cl0 {
+> > +       timeout-sec =3D <30>;
+> > +};
+> > --
+> > 2.43.0.rc1.413.gea7ed67945-goog
+> >
 
