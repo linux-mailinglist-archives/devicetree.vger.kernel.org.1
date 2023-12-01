@@ -1,140 +1,191 @@
-Return-Path: <devicetree+bounces-20753-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20755-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3AAA800C58
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 14:40:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 21927800C5C
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 14:40:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5DD84281B63
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 13:40:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB8F4281211
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 13:40:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B67B38FBF;
-	Fri,  1 Dec 2023 13:40:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E9893AC29;
+	Fri,  1 Dec 2023 13:40:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="w2NThVV+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3376D170F;
-	Fri,  1 Dec 2023 05:40:08 -0800 (PST)
-Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-5d3a7aa1ed5so15383487b3.2;
-        Fri, 01 Dec 2023 05:40:08 -0800 (PST)
+Received: from mail-yw1-x1135.google.com (mail-yw1-x1135.google.com [IPv6:2607:f8b0:4864:20::1135])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5EFA193
+	for <devicetree@vger.kernel.org>; Fri,  1 Dec 2023 05:40:52 -0800 (PST)
+Received: by mail-yw1-x1135.google.com with SMTP id 00721157ae682-5d3eb2d465cso9552637b3.3
+        for <devicetree@vger.kernel.org>; Fri, 01 Dec 2023 05:40:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1701438052; x=1702042852; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qmzD/Pwnj4/GW+eUeoARZQwXmIhab44iqPTcsYVxQKE=;
+        b=w2NThVV+NK/5VkAgg+rbds5EnG9RKAcngCI3bolCmc2vadUlu7HdLRXLA5PDL8mMZE
+         oR3m4v6Q/+xXndfRI4zrPu1VVuYum1rZaWqKgHUSz+CQuluKNoGx1oezAXg6w+bsm1h2
+         v6sVyITClTJFskCFC7nkCop5BM5dxp/ULnAgaV3va+UsTXlGUp8qnOQrxW+l3s+pzp4h
+         lY3vFt3nTGuJ6WdUGDGv93p0/gFYajGa9QMV4HIoiBVK/fBXxXLonfg9/4Iz84fh3FBn
+         spjf7DodlxVSEXBU6YIRlOV0e9zPe7xDmGIZn+yv8z2wkY7v7VFk93KeeVMubxPp5CpU
+         RddA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701438007; x=1702042807;
+        d=1e100.net; s=20230601; t=1701438052; x=1702042852;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=CeONMnbnc9ooOiJhSyauRgrdy4vIJP3VYKHaPtaPM+s=;
-        b=OiaX9DvTxwfbhIcE74Nj1XsxWLYxRtYD1rbaQp4LDq8s+8lPEo84ZemYxM/AWHimAb
-         Ghlh2hv02e8fBPlbwaUb9twrl2KXWXtm8oC2co6CNFVeJ9PkDWv9ZGizb9xB87bTnQn0
-         176uYpRODMlrVwuzCNI5V9LjQZsvcMzgfA6H8wRC89dqcoRakzvQvb2PbE/qeerP2fg0
-         UMsZhnijLGAw2cAfwPTpEicvGedYKBKCSO5JGJsK05BLq3HqWikJYDBkGw3L6c6raB1T
-         6QQjIwnovwNBdV18JlX2yOTxUHYOaH0BpHig8cMF6aYz63O2CQVYuikpkL+9xigSF1JQ
-         0ErQ==
-X-Gm-Message-State: AOJu0YwYiuR7B5nvDRwNmG3j9h9yli6JWg0+VzLaqw1VRw8dK7Skcr7W
-	2HPYXwk2tBsXYHE72p/xHmrUDLtzH9rqgg==
-X-Google-Smtp-Source: AGHT+IHK3hjJ6/enyV9lNxuDz0/yhF8tGLKuH7d/e0hOw09hna4IbeGA8VHGg4SQ6LltFxtXttBWTQ==
-X-Received: by 2002:a05:690c:c1c:b0:5d0:960c:e2b4 with SMTP id cl28-20020a05690c0c1c00b005d0960ce2b4mr19674710ywb.19.1701438003887;
-        Fri, 01 Dec 2023 05:40:03 -0800 (PST)
-Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com. [209.85.219.175])
-        by smtp.gmail.com with ESMTPSA id j66-20020a0de045000000b005cb3510c8b2sm1083998ywe.96.2023.12.01.05.40.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 01 Dec 2023 05:40:03 -0800 (PST)
-Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-d9fe0a598d8so511367276.2;
-        Fri, 01 Dec 2023 05:40:03 -0800 (PST)
-X-Received: by 2002:a25:dcd2:0:b0:db5:4677:6e1f with SMTP id
- y201-20020a25dcd2000000b00db546776e1fmr3755738ybe.41.1701438003304; Fri, 01
- Dec 2023 05:40:03 -0800 (PST)
+        bh=qmzD/Pwnj4/GW+eUeoARZQwXmIhab44iqPTcsYVxQKE=;
+        b=fseltWNBmeT+EdErkPlPD33hB/+qIddNuR3x3/pX7wS/VBiMj0vH74CrjDQE973W+R
+         SFLPIhi2NSxmIyPo3Kylaw4d2BE7n8aQ5E6p0P0i0rD9+W55B8eJ4sQLzIiCLYR/E/XS
+         hhi/+sYLsVfhzzRNHMG0DGQ0OlkiUBt8cHQvV7hm1C/jGKojVkSQAdcj1tjl9AyQV/2z
+         dT7SM/slPBNdFUBrVtPHZxbEqCpI6drE+oZbHu9i+sCxr2fQC18L6wfjTRnRivU/pkG6
+         s/tvqceBG+hvc/aIpmcKyAbdd31bHq5IVBO44c/zfPoj/wtCGAcFWFEgNI95xKoiEkBK
+         apEw==
+X-Gm-Message-State: AOJu0YzEP9Jfkane6ZDOZjEJvZhbm0vzIicv9pOK3O0B6fnBluTw2G9z
+	+38PZcJICMIU8+L8Htepp3jcgSrD3npKlk/tswQEvg==
+X-Google-Smtp-Source: AGHT+IHXo+ZspGO/+lcMWMYum6v8pXufI+NXWF3lLZalGuzPJDUc8Zv1kLb0t1FNv4AxtO7QzbUvP7DfFHh5xkyJ/3E=
+X-Received: by 2002:a81:4322:0:b0:5d1:d1de:e8eb with SMTP id
+ q34-20020a814322000000b005d1d1dee8ebmr11585906ywa.18.1701438052021; Fri, 01
+ Dec 2023 05:40:52 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231201110840.37408-1-biju.das.jz@bp.renesas.com> <20231201110840.37408-6-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20231201110840.37408-6-biju.das.jz@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 1 Dec 2023 14:39:52 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXH3VVg0KmC0rtjeb_A_Awj805Mirc4pZu=KDZO9pdZZQ@mail.gmail.com>
-Message-ID: <CAMuHMdXH3VVg0KmC0rtjeb_A_Awj805Mirc4pZu=KDZO9pdZZQ@mail.gmail.com>
-Subject: Re: [PATCH 5/6] arm64: dts: renesas: rzg2ul-smarc: Enable PMIC and
- built-in RTC
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Rob Herring <robh+dt@kernel.org>, 
+References: <20231124-ltc4282-support-v2-0-952bf926f83c@analog.com>
+ <20231124-ltc4282-support-v2-2-952bf926f83c@analog.com> <CACRpkdaksfS4WLNQ6ohauAPq3z2LPG2uF37_jWtm0brQHaDtNw@mail.gmail.com>
+ <6384831c05b8ceeaf4a16cf9229770252989b762.camel@gmail.com>
+ <CACRpkdZr6TdQCLy73Yx2RdMgQifd67remdxENBKYx3UvEMm87A@mail.gmail.com>
+ <971eb35068639ec404669ea5320c8183ea71a7d0.camel@gmail.com>
+ <ZWiP3i80KnVk9qyx@smile.fi.intel.com> <a4bd59df0c5bc1be5d0d6f11b968fd61a59ee2e0.camel@gmail.com>
+ <CACRpkdYz+qi42Pz8CgeWybksC0edaVux6rcEhwzjDWnWe9Jr1g@mail.gmail.com> <61a8f54835c10db7a9c650ee2e3706b47382c634.camel@gmail.com>
+In-Reply-To: <61a8f54835c10db7a9c650ee2e3706b47382c634.camel@gmail.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Fri, 1 Dec 2023 14:40:39 +0100
+Message-ID: <CACRpkda55HzPqus5KR-t=xEBkkdND5kYZj1sHdxK+j6QwDUPRg@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] hwmon: ltc4282: add support for the LTC4282 chip
+To: =?UTF-8?B?TnVubyBTw6E=?= <noname.nuno@gmail.com>
+Cc: Andy Shevchenko <andy@kernel.org>, nuno.sa@analog.com, linux-hwmon@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-doc@vger.kernel.org, 
+	Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh+dt@kernel.org>, 
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>
+	Jonathan Corbet <corbet@lwn.net>, Bartosz Golaszewski <brgl@bgdev.pl>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Biju,
+On Fri, Dec 1, 2023 at 1:34=E2=80=AFPM Nuno S=C3=A1 <noname.nuno@gmail.com>=
+ wrote:
+> On Thu, 2023-11-30 at 21:15 +0100, Linus Walleij wrote:
 
-On Fri, Dec 1, 2023 at 12:09=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.co=
-m> wrote:
-> Enable PMIC DA9062 and the built-in RTC on the RZ/{G2UL,Five} SMARC
-> EVK.
+> I did not used libgpiod but I did tested it with gpio-sysfs. Well, I coul=
+d
+> effectively see the pull down behaviour but since my eval board has no pu=
+ll-ups I
+> could not drive the line high.
+
+libgpiod has the upside of offering you to set the pull down and open
+drain behaviour from userspace.
+
+> > The gpiolib framework assumes we can do open drain emulation by
+> > setting lines as input. It is used as fallback unless the hardware has
+> > an explicit open drain setting.
 >
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Yeah, I did look at that after you pointed that out. There's just somethi=
+ng I'm still
+> not getting. This HW has no explicit open drain setting because open drai=
+n is all
+> that it is. So, I guess we could just specify the flag in devicetree so g=
+piolib could
+> use the emulation
+> but I wonder how would we have things in case we have the HW setup
+> to drive the pin high (so having this as GPOs)?
 
-Thanks for your patch!
+If another device tree node uses:
 
-> --- a/arch/arm64/boot/dts/renesas/rzg2ul-smarc.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/rzg2ul-smarc.dtsi
-> @@ -23,6 +23,35 @@ &cpu_dai {
->  &i2c0 {
->         clock-frequency =3D <400000>;
+foo-gpios =3D <&gpio0 5 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
+
+The result will be that gpiolib will emulate open drain.
+
+From userspace libgpiod can do the same request.
+
+> > > Also got me thinking if a gpi vs gpo devicetree property would make s=
+ense. But I
+> > > would likely leave it more generic/relaxed for now (even though I thi=
+nk you would
+> > > need to be creative and actually use more HW to have the possibility =
+of using
+> > > these
+> > > pins as GPIs and GPOs at the same time).
+> >
+> > We don't define that in the device tree currently, we just make the dri=
+ver
+> > not support output on input-only pins and vice versa, by returning erro=
+r
+> > codes on the .set_direction() callbacks.
 >
-> +       da9062: pmic@58 {
-> +               compatible =3D "dlg,da9062";
-> +               reg =3D <0x58>;
-> +
-> +               da9062_rtc: rtc {
-> +                       compatible =3D "dlg,da9062-rtc";
-> +               };
-> +
-> +               da9062_onkey: onkey {
-> +                       compatible =3D "dlg,da9062-onkey";
-> +                       status =3D "disabled";
+> I see, but in this case, the pins could be outputs depending on the HW se=
+tup but
+> there's no way for us to know that in the driver.
 
-Why is this disabled? This is connected to the power button.
+We just specify the line in the device tree, and we just use it as
+intended in the
+driver, if it is present, whether that is as input or output.
 
-> +               };
-> +
-> +               watchdog {
-> +                       compatible =3D "dlg,da9062-watchdog";
-> +                       status =3D "disabled";
-> +               };
-> +
-> +               thermal {
-> +                       compatible =3D "dlg,da9062-thermal";
-> +                       status =3D "disabled";
-> +               };
-> +
-> +               gpio {
-> +                       compatible =3D "dlg,da9062-gpio";
-> +                       status =3D "disabled";
-> +               };
+We do not try to over-protect users from misusing GPIO lines that have just
+one possible (electronic defined) mode. It would be over-engineering IMO.
 
-Why are these three disabled?
-If they are truly unused, you can just drop the nodes instead.
+> And given the fact that (I think)
+> it's highly unlikely for pins like this to ever be GPIs and GPOs at the s=
+ame time, I
+> brought the devicetree property to define input and output only. So, roug=
+hly, what I
+> have in mind now for the chip is;
+>
+> .set_config() -> with PULL_DOWN and HIGH_IMPEDANCE support
+> .direction_input() -> This is important for gpio1 where we do have an hw =
+setting to
+> set the direction. On the other pins I was thinking in just forcing high-=
+z. Or maybe
+> can I just rely on gpio_set_bias()?
 
-> +       };
-> +
->         versa3: clock-generator@68 {
->                 compatible =3D "renesas,5p35023";
->                 reg =3D <0x68>;
+No just write some default set-up into the registers, that's fine.
+Or leave the power-on defaults.
 
-Gr{oetje,eeting}s,
+> .direction_ouput() -> Would only matter for gpio1
 
-                        Geert
+The just return an error code for any other GPIO where this is called.
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+> .get/set_value() -> And in this case we just assume that high value might=
+ or might
+> not be possible (depending on the hw setup). Note that reading the pin st=
+ate is
+> always possible.
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+If a pins .direction_output() fails, .set_value() will not be called
+on it either.
+
+> This means that I assume we can have both directions but that is not real=
+ly case and
+> one needs to know what it is doing :). Or in cases like this, we just ign=
+ore the
+> possibility of having GPO's and we let gpiolib do the emulation?
+>
+> Sounds reasonable or not really how I should handle this open-drain only =
+pins?
+
+Open drain-only pins would be pins that can be set to electric LOW (grounde=
+d)
+or High-Z. Is this what we have?
+
+That's indeed a bit of an oddity...
+
+If you implement .set_config and handle PIN_CONFIG_DRIVE_OPEN_DRAIN
+for these lines then I think gpiolib will do the right thing for you.
+
+Yours,
+Linus Walleij
 
