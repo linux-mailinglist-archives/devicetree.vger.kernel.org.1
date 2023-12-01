@@ -1,506 +1,170 @@
-Return-Path: <devicetree+bounces-20732-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20733-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 797BF800A9F
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 13:16:03 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D20B5800AAA
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 13:17:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9E2A21C209FF
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 12:16:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 882C5281B27
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 12:17:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4FB824B2A;
-	Fri,  1 Dec 2023 12:15:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D28EB24B58;
+	Fri,  1 Dec 2023 12:17:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=Analogixsemi.onmicrosoft.com header.i=@Analogixsemi.onmicrosoft.com header.b="b7mtSIKc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4021E1717;
-	Fri,  1 Dec 2023 04:15:53 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-	by ex01.ufhost.com (Postfix) with ESMTP id 317B324E2A0;
-	Fri,  1 Dec 2023 20:15:51 +0800 (CST)
-Received: from EXMBX066.cuchost.com (172.16.7.66) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 1 Dec
- 2023 20:15:51 +0800
-Received: from jsia-virtual-machine.localdomain (60.54.3.230) by
- EXMBX066.cuchost.com (172.16.6.66) with Microsoft SMTP Server (TLS) id
- 15.0.1497.42; Fri, 1 Dec 2023 20:15:39 +0800
-From: Sia Jee Heng <jeeheng.sia@starfivetech.com>
-To: <kernel@esmil.dk>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <krzk@kernel.org>,
-	<conor+dt@kernel.org>, <paul.walmsley@sifive.com>, <palmer@dabbelt.com>,
-	<aou@eecs.berkeley.edu>, <daniel.lezcano@linaro.org>, <tglx@linutronix.de>,
-	<conor@kernel.org>, <anup@brainfault.org>, <gregkh@linuxfoundation.org>,
-	<jirislaby@kernel.org>, <michal.simek@amd.com>,
-	<michael.zhu@starfivetech.com>, <drew@beagleboard.org>
-CC: <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <jeeheng.sia@starfivetech.com>,
-	<leyfoon.tan@starfivetech.com>
-Subject: [PATCH v3 6/6] riscv: dts: starfive: Add initial StarFive JH8100 device tree
-Date: Fri, 1 Dec 2023 20:14:10 +0800
-Message-ID: <20231201121410.95298-7-jeeheng.sia@starfivetech.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231201121410.95298-1-jeeheng.sia@starfivetech.com>
-References: <20231201121410.95298-1-jeeheng.sia@starfivetech.com>
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2127.outbound.protection.outlook.com [40.107.93.127])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49BFD1725;
+	Fri,  1 Dec 2023 04:17:04 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Aci2b+uTVU0lMlrUO/1q8NvJKoFntUW11qEYtqDzqSmej14+/9S4+4IUWKu5yoP5kmH22F5PJTds85mIcTpzr0u57E0giMeYkNTbLiJLpPo0RxJwwZc5XahHVGaeKR3UiQhOuQFH1wQc5q3SjolHh0xd+XrFnR5nQmQoq8xEXp/K5UQZe99TfnhKuP0eMDCf9HK6D7/naAHIpNAu6Z0R7ieR41TI5rxycWMmMDcz4Rlw93Q+/XscON3vLg/9PJ9h26Sp4GemimCS2qRgaDz9s4G3BeY1KiRdX1c00IkDqmuWrarFgu89m77VF6dAjt6o9F4bmHIZ+Z0uf8wBaVL0ng==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=SZ7WQ2jDPsqUi7JpdabgQgKW5ufx5tWtBc0hyieHOnY=;
+ b=nY5TXdSGVk5ecUh9tAdQnDMeyBnVICYsKl6BnDmZKHq/1JgBdRlQAkU8VHlZjelNHaBxirnM3cC1DualYQWrraJ3j6DdweYYYSMC79sBBaODeOltRp+98V0XcZ1eU6keGFg1hMfKcTPyrcpVT5Sp1e2JUc+G93fTCX64b3lxasGSIm9g2m6ITqj41yXfjNGaI4Cv3SyVKuEa9L0bmKcotyBADl0Ujj3aMIB7iyFucjcKH5I5tyY37Swf4To/19RShXT/P5UCvi3m1e3Xjb0S5KiuhFWT20mI1KjpZf9T3DuyDC3n/iIk5Av+4PBrRcwFNiaJYFJNhiPfz9tcMUllcw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=analogixsemi.com; dmarc=pass action=none
+ header.from=analogixsemi.com; dkim=pass header.d=analogixsemi.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=Analogixsemi.onmicrosoft.com; s=selector2-Analogixsemi-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=SZ7WQ2jDPsqUi7JpdabgQgKW5ufx5tWtBc0hyieHOnY=;
+ b=b7mtSIKc7nqgWlLGhch+6huQerPI9QYGEQXdhHr0+WOSr66QTVRpODvYpHEy0AqsXA9aF2r/u0+OiBwsDAPPqV65g02PhLMBbNIyzRjUxofw5G3Alcihue8swxRGVqeP8+ED8dExdRPQRNYlsNwWlCA/er96IxpBDdzncMmc4p0=
+Received: from BY5PR04MB6739.namprd04.prod.outlook.com (2603:10b6:a03:229::8)
+ by CH2PR04MB7030.namprd04.prod.outlook.com (2603:10b6:610:9e::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.27; Fri, 1 Dec
+ 2023 12:17:00 +0000
+Received: from BY5PR04MB6739.namprd04.prod.outlook.com
+ ([fe80::6552:26cd:6ff4:9b3d]) by BY5PR04MB6739.namprd04.prod.outlook.com
+ ([fe80::6552:26cd:6ff4:9b3d%4]) with mapi id 15.20.7046.027; Fri, 1 Dec 2023
+ 12:16:59 +0000
+From: Xin Ji <xji@analogixsemi.com>
+To: Fabio Estevam <festevam@gmail.com>, Laurent Pinchart
+	<laurent.pinchart@ideasonboard.com>
+CC: "sakari.ailus@linux.intel.com" <sakari.ailus@linux.intel.com>,
+	"rfoss@kernel.org" <rfoss@kernel.org>, "robh+dt@kernel.org"
+	<robh+dt@kernel.org>, "krzysztof.kozlowski+dt@linaro.org"
+	<krzysztof.kozlowski+dt@linaro.org>, "conor+dt@kernel.org"
+	<conor+dt@kernel.org>, "mchehab@kernel.org" <mchehab@kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>, Fabio Estevam
+	<festevam@denx.de>
+Subject: RE: [PATCH 2/2] media: dt-bindings: Use bus-types definitions from
+ video-interfaces.h
+Thread-Topic: [PATCH 2/2] media: dt-bindings: Use bus-types definitions from
+ video-interfaces.h
+Thread-Index: AQHaIZI0L8jQTM3U4EuC6guyhXfSzbCUXOEQ
+Date: Fri, 1 Dec 2023 12:16:59 +0000
+Message-ID:
+ <BY5PR04MB67390E694BD5C8FD21E584EDC781A@BY5PR04MB6739.namprd04.prod.outlook.com>
+References: <20231126125320.4024456-1-festevam@gmail.com>
+ <20231126125320.4024456-2-festevam@gmail.com>
+ <20231128000033.GD25590@pendragon.ideasonboard.com>
+ <CAOMZO5DMhTFtVJ8wnn9JNXtb5Rs7zatJcEkBBohVmz5vmwqTmw@mail.gmail.com>
+In-Reply-To:
+ <CAOMZO5DMhTFtVJ8wnn9JNXtb5Rs7zatJcEkBBohVmz5vmwqTmw@mail.gmail.com>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=analogixsemi.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BY5PR04MB6739:EE_|CH2PR04MB7030:EE_
+x-ms-office365-filtering-correlation-id: 0cc664c0-09bd-4651-0961-08dbf2676b3f
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ o3YwfKT17On8S5QxfLJm46WGf5NIp5SvScX9jZ3FKayJEoCr5SYTyHa44o7GwSV5axUv38c02t6Ur3zWrmKj9hkkGoKwFKARdfyc729PV7Mj/6rWzlcX8aicT//oHwJOt5lHzJJPtTGt3yyseoW/+BeeBnCqvqc7a+Gs4XimyaEeGfkaMXzflxFFwjaDkRQSshf4ojB586hZH/gZevnQlCmDi7DABDP8O/9sgtIkeWzQOI9GriKcqvR21ZzYtJFiFcoeL3nb7O6vADJNDhlupVNiZP7qFUeYl8+FWu3OCKj4NgtZOx5gnGbHAaskfN5wRTCJxqg8sLWErgRcuHsjl78+b5f8KAPfyRkkIgkNPvoklqOgOBxQg+P0XJ8PQhg8ytzqZE7LmO+jHRd5nAJ85mNjw9o4ZpbmXK9lR2mSi4ekjMqruW/1CBmltwRwpqBG/oxLcPIIlJTuIREhYQZSl5+cjrO6wPMlXiCDsPRCPLVafGhYLzCrhLW/Tshn0LtTi3Tx+TbOuoPLXzipNNoEAMc2Lby5FCZswFLsLO515kVz7g1URUfUU7i6O208WAAqqtjAZEXBhRTQ8qHQDNTqrs0kk4jstZxdokCaT7z5s6E/pSMFfJgoq/0kyaug5wjpgcC4TwMRuCNy/JdDRj+nkjyyifC33vWJOFizhB3PRNA=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR04MB6739.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(366004)(136003)(346002)(376002)(39850400004)(230273577357003)(230173577357003)(230922051799003)(451199024)(1800799012)(64100799003)(186009)(55016003)(38070700009)(86362001)(54906003)(66446008)(66946007)(66556008)(66476007)(64756008)(76116006)(38100700002)(33656002)(26005)(83380400001)(6506007)(53546011)(122000001)(9686003)(7696005)(71200400001)(2906002)(110136005)(316002)(478600001)(4326008)(5660300002)(8676002)(8936002)(52536014)(41300700001)(7416002);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?NzdCa0JkdmxzOENiTVZ2WmtMYWliVmp1dXIzbkVWN2pBeDcxYnZ0d1FMR3JM?=
+ =?utf-8?B?aXVmVG9EYUVyc1VpcjFPZ2IySTQ4dkY0SEpDRGFCL0FPSkZ6Q1gwMXlha2Rj?=
+ =?utf-8?B?SUo3NEt3RS9PSmwvcVlTd3ovNExwN3RVMDFySi93bjRJcUo5SnBZYXdhL3cx?=
+ =?utf-8?B?aGlBWmZBS25wWWVMZDIzUHdkL05xV011QnRDSjU4aFArT1hkbExjQ2xGbkpr?=
+ =?utf-8?B?WlZua3dSYmlqVDBOMGVub2dQRkRrRVJGOTN6OE5pL0t0c1F5bTNGRnl6RklH?=
+ =?utf-8?B?TVZHUDYwZ1FuN3F4TE81TVZzZFpPVks3L2NMMkVKTDBqeWFxUkttZGYvZkhi?=
+ =?utf-8?B?d0RueGtKUUM1ZHJ1YmViTlRrUENCOXFBby9oT3l0ajNKQ29vbmhUSDBnTzRP?=
+ =?utf-8?B?NEpIMXhXMjlhWkVsV2NSTDF2cWtsZHRSQ21CTEJpTDZnZVZKSExnQWF3ZXNh?=
+ =?utf-8?B?QlhkWmp4MktmK0NzWmcvb3d2L0ErRTNlMGNjem1XcXU4bE9XVVF6a2VWd0tl?=
+ =?utf-8?B?cVBBQmdjQVMvczVyZFVIMldSY2FqSTAxQ05qc0tKTmdoN3VIZVBYckU1anZO?=
+ =?utf-8?B?bFJCS3Z3RHdkU1BwWFllbmRMeGZubVVQTmlqVXIyRXNhVFhIYmtZN2FrOEhn?=
+ =?utf-8?B?S3JlZkdwTWppaUozR0NKbDJwemRXM2JMdzJBQm13UFFBSE1tQjlobVRNQ3Fk?=
+ =?utf-8?B?OWFJN2FaQUFoQmcxRWFTaE9DT1V3dmcraENtR0hsWkp1N2RVSUw3SHVPakdP?=
+ =?utf-8?B?RzRNQkRtRUdpSVNuczBNOEgxV2MwWFRVaUF0ZHhsWFVScmpjbmhROUFNZEl3?=
+ =?utf-8?B?NDh2disweUcyazhkWnBvSEEvbjgySUlUV2pKWVhuemNmQUkvRUttZ1ZseGhx?=
+ =?utf-8?B?T2ZDRlhQYnovWGdZa1REaWVNQ2hMQzNTejhZVjBUaGYxYnBjVU55ZXRSK2Yv?=
+ =?utf-8?B?WmdIeGRLWGJUY2R4dVhNU3k2bVJScytmSHd5eEp6QXQ2cVpqc2d0Q0ZJbjRK?=
+ =?utf-8?B?MEMwVDNuSXRZT1hYNkNaaXYwZ2JtUWtseExLK2NFdFRMSHVabXJhcjdHeDZF?=
+ =?utf-8?B?WW9SM2x3V0Q3Mlo2ZVNucXZmeUtud0ttYVJZMG5oK3J1VW1IcDZzUGRDOVhN?=
+ =?utf-8?B?YXlVckloYW5jdFpKRUQ0ai85SXdFcmY4VitBdU1zQ1BwQVdYTWtNYklKOGlJ?=
+ =?utf-8?B?SFZCZTZaSTdhdTNFQW5vRDgyNnZMMGVpWGZ3YmZWSnFyTHhEelYyalU5QVF1?=
+ =?utf-8?B?RWNWYVVyaHZ2alVjR3Z3TkFNcmRyUlEzY3NDWVBHUnIvcnlWV2tkWFdwcitp?=
+ =?utf-8?B?VkJBOXE2b0N4N1ovbkdCVTZNNjBid0l1VnZSV3JqYkduOEJJZUhVYmIwQ0Q5?=
+ =?utf-8?B?S3lMNFNhZlhWVEtiY3I1dFhCQnZySTI0ZU9xU1hRcklJT0I3d2xYMVB4OTBt?=
+ =?utf-8?B?NitxVVgxQ00zNy9BRG9sTjhaR2gyU1lnQURZdlRNbkFXSGQ5V2hyQUQ3VUpv?=
+ =?utf-8?B?RnF2NUJncW96STgyN2gzS1F2US9oMzlKNnp6Q05Eci9LVXg1aCt5UTNBNzBu?=
+ =?utf-8?B?VmZrelFXL0ZPelZkMUMxRmxwWUpXcmkrTEpITmtYNk1nMWZ2RnQvdHQyKzZJ?=
+ =?utf-8?B?T05sVnJRb2pFQ1VKOFM4a1BYSFJkUy8vWHc2Y3poaHQxYzNrSXVHNjRIWDNX?=
+ =?utf-8?B?djVWOEV0NXN6a0d6aDE0M3lNQVRYWVprVlhXWUFRU1MyV0UxVHlDTUV4S045?=
+ =?utf-8?B?SmppbGZUb08vcmZCS0hXcy9qVHJOUHFiT28vSVVmdEF1WS9JQ1M3WmJSNytW?=
+ =?utf-8?B?bkFDS2xJOGlyMmJDd0lHeC8vR203Y3hxWkk0OFdrN3NhMnI4NGNHNXZ4ZHpj?=
+ =?utf-8?B?NVhKamNTOUo2alpLVk9LcytRVnR6VWJ2dkQ0dGJrTXlJb2lDcC9qZFVrNTJB?=
+ =?utf-8?B?SEJvOGsrUVZXQzVVMW1oRmRpMCtBR3lCOEt4aEQvaHJITlJwdXY0YVczcjh2?=
+ =?utf-8?B?MzF5WEc2a3FuVUx4TzFrdTRPQitMbHhVc2JuSlRzc2NuVTZGYmxGSnJ2K0I4?=
+ =?utf-8?B?eHFOK2FMK0M4NnB2aTZYUnZpQ3pSNngvN0FtVmhhMkZEQUpiSjhvUVQxZjVI?=
+ =?utf-8?Q?fBA4pu+SwBV0E3ATh9ujmdVgT?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX066.cuchost.com
- (172.16.6.66)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: quoted-printable
+X-OriginatorOrg: analogixsemi.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR04MB6739.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0cc664c0-09bd-4651-0961-08dbf2676b3f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Dec 2023 12:16:59.7395
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: b099b0b4-f26c-4cf5-9a0f-d5be9acab205
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: zQJO7d88HrukBY5d/Q89XjfeFyZP5ZBmD5MEhUae5cXS17PO4ISoz3IBkTdX7fjG/msOdAecjExcZWXyss2d5A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR04MB7030
 
-Add initial device tree for the StarFive JH8100 RISC-V SoC.
-
-Signed-off-by: Sia Jee Heng <jeeheng.sia@starfivetech.com>
-Reviewed-by: Ley Foon Tan <leyfoon.tan@starfivetech.com>
----
- arch/riscv/boot/dts/starfive/Makefile       |   2 +
- arch/riscv/boot/dts/starfive/jh8100-evb.dts |  28 ++
- arch/riscv/boot/dts/starfive/jh8100.dtsi    | 378 ++++++++++++++++++++
- 3 files changed, 408 insertions(+)
- create mode 100644 arch/riscv/boot/dts/starfive/jh8100-evb.dts
- create mode 100644 arch/riscv/boot/dts/starfive/jh8100.dtsi
-
-diff --git a/arch/riscv/boot/dts/starfive/Makefile b/arch/riscv/boot/dts/=
-starfive/Makefile
-index 0141504c0f5c..ef5c7331c7ec 100644
---- a/arch/riscv/boot/dts/starfive/Makefile
-+++ b/arch/riscv/boot/dts/starfive/Makefile
-@@ -10,3 +10,5 @@ dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7100-starfive-vision=
-five-v1.dtb
-=20
- dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7110-starfive-visionfive-2-v1.2a.dtb
- dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7110-starfive-visionfive-2-v1.3b.dtb
-+
-+dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh8100-evb.dtb
-diff --git a/arch/riscv/boot/dts/starfive/jh8100-evb.dts b/arch/riscv/boo=
-t/dts/starfive/jh8100-evb.dts
-new file mode 100644
-index 000000000000..c16bc25d8988
---- /dev/null
-+++ b/arch/riscv/boot/dts/starfive/jh8100-evb.dts
-@@ -0,0 +1,28 @@
-+// SPDX-License-Identifier: GPL-2.0 OR MIT
-+/*
-+ * Copyright (c) 2021-2023 StarFive Technology Co., Ltd.
-+ */
-+
-+#include "jh8100.dtsi"
-+
-+/ {
-+	model =3D "StarFive JH8100 EVB";
-+	compatible =3D "starfive,jh8100-evb", "starfive,jh8100";
-+
-+	aliases {
-+		serial0 =3D &uart0;
-+	};
-+
-+	chosen {
-+		stdout-path =3D "serial0:115200n8";
-+	};
-+
-+	memory@40000000 {
-+		device_type =3D "memory";
-+		reg =3D <0x0 0x40000000 0x2 0x00000000>;
-+	};
-+};
-+
-+&uart0 {
-+	status =3D "okay";
-+};
-diff --git a/arch/riscv/boot/dts/starfive/jh8100.dtsi b/arch/riscv/boot/d=
-ts/starfive/jh8100.dtsi
-new file mode 100644
-index 000000000000..f26aff5c1ddf
---- /dev/null
-+++ b/arch/riscv/boot/dts/starfive/jh8100.dtsi
-@@ -0,0 +1,378 @@
-+// SPDX-License-Identifier: GPL-2.0 OR MIT
-+/*
-+ * Copyright (c) 2021-2023 StarFive Technology Co., Ltd.
-+ */
-+
-+/dts-v1/;
-+
-+/ {
-+	compatible =3D "starfive,jh8100";
-+	#address-cells =3D <2>;
-+	#size-cells =3D <2>;
-+
-+	cpus {
-+		#address-cells =3D <1>;
-+		#size-cells =3D <0>;
-+		timebase-frequency =3D <4000000>;
-+
-+		cpu0: cpu@0 {
-+			compatible =3D "starfive,dubhe-80", "riscv";
-+			capacity-dmips-mhz =3D <768>;
-+			d-cache-block-size =3D <64>;
-+			d-cache-sets =3D <512>;
-+			d-cache-size =3D <32768>;
-+			d-tlb-sets =3D <1>;
-+			d-tlb-size =3D <48>;
-+			device_type =3D "cpu";
-+			i-cache-block-size =3D <64>;
-+			i-cache-sets =3D <512>;
-+			i-cache-size =3D <32768>;
-+			i-tlb-sets =3D <1>;
-+			i-tlb-size =3D <48>;
-+			mmu-type =3D "riscv,sv48";
-+			next-level-cache =3D <&l2c0>;
-+			reg =3D <0x0>;
-+			riscv,isa =3D "rv64imafdch";
-+			riscv,isa-base =3D "rv64i";
-+			riscv,isa-extensions =3D "i", "m", "a", "f", "d", "c", "h", "zicntr",
-+					       "zicsr", "zifencei", "zihintpause", "zihpm",
-+					       "zba", "zbb", "zbs", "sscofpmf";
-+			tlb-split;
-+
-+			cpu0_intc: interrupt-controller {
-+				compatible =3D "riscv,cpu-intc";
-+				interrupt-controller;
-+				#interrupt-cells =3D <1>;
-+			};
-+		};
-+
-+		cpu1: cpu@1 {
-+			compatible =3D "starfive,dubhe-80", "riscv";
-+			capacity-dmips-mhz =3D <768>;
-+			d-cache-block-size =3D <64>;
-+			d-cache-sets =3D <512>;
-+			d-cache-size =3D <32768>;
-+			d-tlb-sets =3D <1>;
-+			d-tlb-size =3D <48>;
-+			device_type =3D "cpu";
-+			i-cache-block-size =3D <64>;
-+			i-cache-sets =3D <512>;
-+			i-cache-size =3D <32768>;
-+			i-tlb-sets =3D <1>;
-+			i-tlb-size =3D <48>;
-+			mmu-type =3D "riscv,sv48";
-+			next-level-cache =3D <&l2c1>;
-+			reg =3D <0x1>;
-+			riscv,isa =3D "rv64imafdch";
-+			riscv,isa-base =3D "rv64i";
-+			riscv,isa-extensions =3D "i", "m", "a", "f", "d", "c", "h", "zicntr",
-+					       "zicsr", "zifencei", "zihintpause", "zihpm",
-+					       "zba", "zbb", "zbs", "sscofpmf";
-+			tlb-split;
-+
-+			cpu1_intc: interrupt-controller {
-+				compatible =3D "riscv,cpu-intc";
-+				interrupt-controller;
-+				#interrupt-cells =3D <1>;
-+			};
-+		};
-+
-+		cpu2: cpu@2 {
-+			compatible =3D "starfive,dubhe-90", "riscv";
-+			capacity-dmips-mhz =3D <1024>;
-+			d-cache-block-size =3D <64>;
-+			d-cache-sets =3D <1024>;
-+			d-cache-size =3D <65536>;
-+			d-tlb-sets =3D <1>;
-+			d-tlb-size =3D <48>;
-+			device_type =3D "cpu";
-+			i-cache-block-size =3D <64>;
-+			i-cache-sets =3D <1024>;
-+			i-cache-size =3D <65536>;
-+			i-tlb-sets =3D <1>;
-+			i-tlb-size =3D <48>;
-+			mmu-type =3D "riscv,sv48";
-+			next-level-cache =3D <&l2c2>;
-+			reg =3D <0x2>;
-+			riscv,isa =3D "rv64imafdch";
-+			riscv,isa-base =3D "rv64i";
-+			riscv,isa-extensions =3D "i", "m", "a", "f", "d", "c", "h", "zicntr",
-+					       "zicsr", "zifencei", "zihintpause", "zihpm",
-+					       "zba", "zbb", "zbs", "sscofpmf";
-+			tlb-split;
-+
-+			cpu2_intc: interrupt-controller {
-+				compatible =3D "riscv,cpu-intc";
-+				interrupt-controller;
-+				#interrupt-cells =3D <1>;
-+			};
-+		};
-+
-+		cpu3: cpu@3 {
-+			compatible =3D "starfive,dubhe-90", "riscv";
-+			capacity-dmips-mhz =3D <1024>;
-+			d-cache-block-size =3D <64>;
-+			d-cache-sets =3D <1024>;
-+			d-cache-size =3D <65536>;
-+			d-tlb-sets =3D <1>;
-+			d-tlb-size =3D <48>;
-+			device_type =3D "cpu";
-+			i-cache-block-size =3D <64>;
-+			i-cache-sets =3D <1024>;
-+			i-cache-size =3D <65536>;
-+			i-tlb-sets =3D <1>;
-+			i-tlb-size =3D <48>;
-+			mmu-type =3D "riscv,sv48";
-+			next-level-cache =3D <&l2c2>;
-+			reg =3D <0x3>;
-+			riscv,isa =3D "rv64imafdch";
-+			riscv,isa-base =3D "rv64i";
-+			riscv,isa-extensions =3D "i", "m", "a", "f", "d", "c", "h", "zicntr",
-+					       "zicsr", "zifencei", "zihintpause", "zihpm",
-+					       "zba", "zbb", "zbs", "sscofpmf";
-+			tlb-split;
-+
-+			cpu3_intc: interrupt-controller {
-+				compatible =3D "riscv,cpu-intc";
-+				interrupt-controller;
-+				#interrupt-cells =3D <1>;
-+			};
-+		};
-+
-+		cpu4: cpu@4 {
-+			compatible =3D "starfive,dubhe-90", "riscv";
-+			capacity-dmips-mhz =3D <1024>;
-+			d-cache-block-size =3D <64>;
-+			d-cache-sets =3D <1024>;
-+			d-cache-size =3D <65536>;
-+			d-tlb-sets =3D <1>;
-+			d-tlb-size =3D <48>;
-+			device_type =3D "cpu";
-+			i-cache-block-size =3D <64>;
-+			i-cache-sets =3D <1024>;
-+			i-cache-size =3D <65536>;
-+			i-tlb-sets =3D <1>;
-+			i-tlb-size =3D <48>;
-+			mmu-type =3D "riscv,sv48";
-+			next-level-cache =3D <&l2c2>;
-+			reg =3D <0x4>;
-+			riscv,isa =3D "rv64imafdch";
-+			riscv,isa-base =3D "rv64i";
-+			riscv,isa-extensions =3D "i", "m", "a", "f", "d", "c", "h", "zicntr",
-+					       "zicsr", "zifencei", "zihintpause", "zihpm",
-+					       "zba", "zbb", "zbs", "sscofpmf";
-+			tlb-split;
-+
-+			cpu4_intc: interrupt-controller {
-+				compatible =3D "riscv,cpu-intc";
-+				interrupt-controller;
-+				#interrupt-cells =3D <1>;
-+			};
-+		};
-+
-+		cpu5: cpu@5 {
-+			compatible =3D "starfive,dubhe-90", "riscv";
-+			capacity-dmips-mhz =3D <1024>;
-+			d-cache-block-size =3D <64>;
-+			d-cache-sets =3D <1024>;
-+			d-cache-size =3D <65536>;
-+			d-tlb-sets =3D <1>;
-+			d-tlb-size =3D <48>;
-+			device_type =3D "cpu";
-+			i-cache-block-size =3D <64>;
-+			i-cache-sets =3D <1024>;
-+			i-cache-size =3D <65536>;
-+			i-tlb-sets =3D <1>;
-+			i-tlb-size =3D <48>;
-+			mmu-type =3D "riscv,sv48";
-+			next-level-cache =3D <&l2c2>;
-+			reg =3D <0x5>;
-+			riscv,isa =3D "rv64imafdch";
-+			riscv,isa-base =3D "rv64i";
-+			riscv,isa-extensions =3D "i", "m", "a", "f", "d", "c", "h", "zicntr",
-+					       "zicsr", "zifencei", "zihintpause", "zihpm",
-+					       "zba", "zbb", "zbs", "sscofpmf";
-+			tlb-split;
-+
-+			cpu5_intc: interrupt-controller {
-+				compatible =3D "riscv,cpu-intc";
-+				interrupt-controller;
-+				#interrupt-cells =3D <1>;
-+			};
-+		};
-+
-+		cpu-map {
-+			cluster0 {
-+				core0 {
-+					cpu =3D <&cpu0>;
-+				};
-+			};
-+
-+			cluster1 {
-+				core0 {
-+					cpu =3D <&cpu1>;
-+				};
-+			};
-+
-+			cluster2 {
-+				core0 {
-+					cpu =3D <&cpu2>;
-+				};
-+
-+				core1 {
-+					cpu =3D <&cpu3>;
-+				};
-+
-+				core2 {
-+					cpu =3D <&cpu4>;
-+				};
-+
-+				core3 {
-+					cpu =3D <&cpu5>;
-+				};
-+			};
-+		};
-+
-+		l2c0: cache-controller-0 {
-+			compatible =3D "cache";
-+			cache-block-size =3D <64>;
-+			cache-level =3D <2>;
-+			cache-sets =3D <512>;
-+			cache-size =3D <0x40000>;
-+			cache-unified;
-+			next-level-cache =3D <&l3_cache>;
-+		};
-+
-+		l2c1: cache-controller-1 {
-+			compatible =3D "cache";
-+			cache-block-size =3D <64>;
-+			cache-level =3D <2>;
-+			cache-sets =3D <512>;
-+			cache-size =3D <0x40000>;
-+			cache-unified;
-+			next-level-cache =3D <&l3_cache>;
-+		};
-+
-+		l2c2: cache-controller-2{
-+			compatible =3D "cache";
-+			cache-block-size =3D <64>;
-+			cache-level =3D <2>;
-+			cache-sets =3D <4096>;
-+			cache-size =3D <0x200000>;
-+			cache-unified;
-+			next-level-cache =3D <&l3_cache>;
-+		};
-+
-+		l3_cache: cache-controller-3 {
-+			compatible =3D "cache";
-+			cache-block-size =3D <64>;
-+			cache-level =3D <3>;
-+			cache-sets =3D <8192>;
-+			cache-size =3D <0x400000>;
-+			cache-unified;
-+		};
-+	};
-+
-+	clk_uart: clk-uart {
-+		compatible =3D "fixed-clock"; /* Initial clock handler for UART */
-+		#clock-cells =3D <0>;
-+		clock-frequency =3D <24000000>;
-+	};
-+
-+	soc {
-+		compatible =3D "simple-bus";
-+		interrupt-parent =3D <&plic>;
-+		#address-cells =3D <2>;
-+		#size-cells =3D <2>;
-+		ranges;
-+
-+		clint: clint@2000000 {
-+			compatible =3D "starfive,jh8100-clint", "sifive,clint0";
-+			reg =3D <0x0 0x2000000 0x0 0x10000>;
-+			interrupts-extended =3D <&cpu0_intc 3>, <&cpu0_intc 7>,
-+					      <&cpu1_intc 3>, <&cpu1_intc 7>,
-+					      <&cpu2_intc 3>, <&cpu2_intc 7>,
-+					      <&cpu3_intc 3>, <&cpu3_intc 7>,
-+					      <&cpu4_intc 3>, <&cpu4_intc 7>,
-+					      <&cpu5_intc 3>, <&cpu5_intc 7>;
-+		};
-+
-+		plic: interrupt-controller@c000000 {
-+			#interrupt-cells =3D <1>;
-+			#address-cells =3D <0>;
-+			compatible =3D "starfive,jh8100-plic", "sifive,plic-1.0.0";
-+			reg =3D <0x0 0x0c000000 0x0 0x4000000>;
-+			riscv,ndev =3D <200>;
-+			interrupt-controller;
-+			interrupts-extended =3D <&cpu0_intc 11>, <&cpu1_intc 11>,
-+					      <&cpu0_intc 9>, <&cpu1_intc 9>,
-+					      <&cpu2_intc 11>, <&cpu3_intc 11>,
-+					      <&cpu4_intc 11>, <&cpu5_intc 11>,
-+					      <&cpu2_intc 9>, <&cpu3_intc 9>,
-+					      <&cpu4_intc 9>, <&cpu5_intc 9>;
-+		};
-+
-+		uart0: serial@12160000 {
-+			compatible =3D "starfive,jh8100-uart", "cdns,uart-r1p8";
-+			reg =3D <0x0 0x12160000 0x0 0x10000>;
-+			clock-names =3D "uart_clk", "pclk";
-+			clocks =3D <&clk_uart>, <&clk_uart>;
-+			interrupts =3D <67>;
-+			status =3D "disabled";
-+		};
-+
-+		uart1: serial@12170000  {
-+			compatible =3D "starfive,jh8100-uart", "cdns,uart-r1p8";
-+			reg =3D <0x0 0x12170000 0x0 0x10000>;
-+			clock-names =3D "uart_clk", "pclk";
-+			clocks =3D <&clk_uart>, <&clk_uart>;
-+			interrupts =3D <68>;
-+			status =3D "disabled";
-+		};
-+
-+		uart2: serial@12180000  {
-+			compatible =3D "starfive,jh8100-uart", "cdns,uart-r1p8";
-+			reg =3D <0x0 0x12180000 0x0 0x10000>;
-+			clock-names =3D "uart_clk", "pclk";
-+			clocks =3D <&clk_uart>, <&clk_uart>;
-+			interrupts =3D <69>;
-+			status =3D "disabled";
-+		};
-+
-+		uart3: serial@12190000  {
-+			compatible =3D "starfive,jh8100-uart", "cdns,uart-r1p8";
-+			reg =3D <0x0 0x12190000 0x0 0x10000>;
-+			clock-names =3D "uart_clk", "pclk";
-+			clocks =3D <&clk_uart>, <&clk_uart>;
-+			interrupts =3D <70>;
-+			status =3D "disabled";
-+		};
-+
-+		uart4: serial@121a0000  {
-+			compatible =3D "starfive,jh8100-uart", "cdns,uart-r1p8";
-+			reg =3D <0x0 0x121a0000 0x0 0x10000>;
-+			clock-names =3D "uart_clk", "pclk";
-+			clocks =3D <&clk_uart>, <&clk_uart>;
-+			interrupts =3D <71>;
-+			status =3D "disabled";
-+		};
-+
-+		uart5: serial@127d0000  {
-+			compatible =3D "starfive,jh8100-uart", "cdns,uart-r1p8";
-+			reg =3D <0x0 0x127d0000 0x0 0x10000>;
-+			clock-names =3D "uart_clk", "pclk";
-+			clocks =3D <&clk_uart>, <&clk_uart>;
-+			interrupts =3D <72>;
-+			status =3D "disabled";
-+		};
-+
-+		uart6: serial@127e0000  {
-+			compatible =3D "starfive,jh8100-uart", "cdns,uart-r1p8";
-+			reg =3D <0x0 0x127e0000 0x0 0x10000>;
-+			clock-names =3D "uart_clk", "pclk";
-+			clocks =3D <&clk_uart>, <&clk_uart>;
-+			interrupts =3D <73>;
-+			status =3D "disabled";
-+		};
-+	};
-+};
---=20
-2.34.1
-
+SGkgRmFiaW8gRXN0ZXZhbSwgeWVzLCA3IGlzIGZvciBEUEksIHBsZWFzZSByZW1vdmUgaXQuDQoN
+ClJldmlld2VkLWJ5OiBYaW4gSmkgPHhqaUBhbmFsb2dpeHNlbWkuY29tPg0KDQo+IC0tLS0tT3Jp
+Z2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IEZhYmlvIEVzdGV2YW0gPGZlc3RldmFtQGdtYWls
+LmNvbT4NCj4gU2VudDogVHVlc2RheSwgTm92ZW1iZXIgMjgsIDIwMjMgODozMSBBTQ0KPiBUbzog
+TGF1cmVudCBQaW5jaGFydCA8bGF1cmVudC5waW5jaGFydEBpZGVhc29uYm9hcmQuY29tPjsgWGlu
+IEppDQo+IDx4amlAYW5hbG9naXhzZW1pLmNvbT4NCj4gQ2M6IHNha2FyaS5haWx1c0BsaW51eC5p
+bnRlbC5jb207IHJmb3NzQGtlcm5lbC5vcmc7IHJvYmgrZHRAa2VybmVsLm9yZzsNCj4ga3J6eXN6
+dG9mLmtvemxvd3NraStkdEBsaW5hcm8ub3JnOyBjb25vcitkdEBrZXJuZWwub3JnOyBtY2hlaGFi
+QGtlcm5lbC5vcmc7DQo+IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnOyBsaW51eC1tZWRpYUB2
+Z2VyLmtlcm5lbC5vcmc7IEZhYmlvIEVzdGV2YW0NCj4gPGZlc3RldmFtQGRlbnguZGU+DQo+IFN1
+YmplY3Q6IFJlOiBbUEFUQ0ggMi8yXSBtZWRpYTogZHQtYmluZGluZ3M6IFVzZSBidXMtdHlwZXMg
+ZGVmaW5pdGlvbnMgZnJvbQ0KPiB2aWRlby1pbnRlcmZhY2VzLmgNCj4gDQo+IENBVVRJT046IFRo
+aXMgZW1haWwgb3JpZ2luYXRlZCBmcm9tIG91dHNpZGUgb2YgdGhlIG9yZ2FuaXphdGlvbi4gUGxl
+YXNlIGRvIG5vdA0KPiBjbGljayBsaW5rcyBvciBvcGVuIGF0dGFjaG1lbnRzIHVubGVzcyB5b3Ug
+cmVjb2duaXplIHRoZSBzZW5kZXIsIGFuZCBrbm93IHRoZQ0KPiBjb250ZW50IGlzIHNhZmUuDQo+
+IA0KPiANCj4gSGkgTGF1cmVudCwNCj4gDQo+IE9uIE1vbiwgTm92IDI3LCAyMDIzIGF0IDk6MDDi
+gK9QTSBMYXVyZW50IFBpbmNoYXJ0DQo+IDxsYXVyZW50LnBpbmNoYXJ0QGlkZWFzb25ib2FyZC5j
+b20+IHdyb3RlOg0KPiANCj4gPiA+IEBAIC0xNTcsNyArMTU4LDcgQEAgZXhhbXBsZXM6DQo+ID4g
+PiAgICAgICAgICAgICAgICAgICAgICByZWcgPSA8MD47DQo+ID4gPiAgICAgICAgICAgICAgICAg
+ICAgICBhbng3NjI1X2luOiBlbmRwb2ludCB7DQo+ID4gPiAgICAgICAgICAgICAgICAgICAgICAg
+ICAgcmVtb3RlLWVuZHBvaW50ID0gPCZtaXBpX2RzaT47DQo+ID4gPiAtICAgICAgICAgICAgICAg
+ICAgICAgICAgYnVzLXR5cGUgPSA8Nz47DQo+ID4NCj4gPiA3IHNlZW1zIHRvIGhhdmUgYmVlbiBh
+IG1pc3Rha2UsIGFzIHRoaXMgaXMgYSBEU0kgZW5kcG9pbnQsIG5vdCBhIERQSQ0KPiA+IGVuZHBv
+aW50Lg0KPiANCj4gYnVzLXR5cGUgPSA8Nz4gd2FzIGFkZGVkIGluIGNvbW1pdCAwYTYxZWY5Y2Mz
+MGQNCj4gKCJkdC1iaW5kaW5nczpkcm0vYnJpZGdlOmFueDc2MjU6IGFkZCBwb3J0QDAgcHJvcGVy
+dHkiKS4NCj4gDQo+IEFkZGluZyBYaW4gSmkgb24gQ0MgZm9yIGNsYXJpZmljYXRpb24uDQo=
 
