@@ -1,191 +1,185 @@
-Return-Path: <devicetree+bounces-20768-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20769-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C92B800CF3
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 15:16:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 986F5800CFA
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 15:17:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 51E7D1C208FB
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 14:16:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BB9F21C209C2
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 14:17:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E7BC3D968;
-	Fri,  1 Dec 2023 14:16:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECD1E3D96C;
+	Fri,  1 Dec 2023 14:17:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VAoqrfB2"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="afVsPJ/e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43EB73B2B5
-	for <devicetree@vger.kernel.org>; Fri,  1 Dec 2023 14:16:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBEE7C43391;
-	Fri,  1 Dec 2023 14:16:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701440210;
-	bh=MJQPrjEbwnWoXRgfWZMLIA19K+UrEYt4GGLLJInlnkw=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=VAoqrfB2+2J4i4OGNP/3tHLhCaStYAJg2OWwtGZ7ghy+SXR5LCpWIcvdBLm90tp9f
-	 8Wfa2u30Z7n4sxrmBwmQCx2493wxi7ZGRgKpacU9qPTk9yevf/brhE7u+stHfyEfUD
-	 lFN2R6uGZ6At7QK6/13kngH7xGIMMQ92/VyI1zrtez5/SIgbF346XmhW/3CPUT8s4K
-	 73u41AZzdgvO9CKY7IqyKhCGzqQcbHc5ELkb/xLM15CrhdbVGEiqNWXgxTcIS3BxTy
-	 jrvlzpxi/hybq4kv2iOI6hzr/CtbAIgotLHRbb3uBw3IfxqCGQENFPMMiFTnyMf7Lk
-	 x3gtHSaJ7IwWA==
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-50bdebb1786so281412e87.1;
-        Fri, 01 Dec 2023 06:16:50 -0800 (PST)
-X-Gm-Message-State: AOJu0YxTVu5hUf5X76XNYlerVJ+7nqNdGI42S4Ddz6I4Qr+3Cgt0ORmx
-	Y6KPLeF+mLe67S5DTUIbSeA6GCVDu61bZ/QtAA==
-X-Google-Smtp-Source: AGHT+IFvdXLlccvsGinrIBKW4A0GOxFYg+cmQXKwotpjG+QcEogIvSJGIwTd8+Y3Cma0S4B2G66D47ghVfowf1JtDjU=
-X-Received: by 2002:a19:430d:0:b0:50b:e03b:ebc7 with SMTP id
- q13-20020a19430d000000b0050be03bebc7mr83514lfa.20.1701440208798; Fri, 01 Dec
- 2023 06:16:48 -0800 (PST)
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C75A01B2
+	for <devicetree@vger.kernel.org>; Fri,  1 Dec 2023 06:17:50 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-50be03cc8a3so123329e87.1
+        for <devicetree@vger.kernel.org>; Fri, 01 Dec 2023 06:17:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1701440269; x=1702045069; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=dS/VbPECbYH+oSA/PSIJz8GFSptb5QIDmEdIGI/hnl4=;
+        b=afVsPJ/eeQ+2jgDEpVuFlHj9e2GvcyDWEz1OmhKXTPZrn6B8b+GmFV+Yf+DgFFvedr
+         3kDNEb2qQfoj7F5+CGC2veQ312WtC1pU12IJKN6Ky6ILg8YzIXhuD+xCKCS3Ck5ZVKLk
+         VOUq6KPhMs89rgR6zNaZd6ttr8I3Te49rI7Fas7k6xHcwfWQ19xfvA+NhikZ9VYWiv5l
+         UKz6+CwWCeT8DhSBuNtyatj9gzTvuqNCCKGgvP0fKOaxB6RHk2mouk8+MtpK688vsF/X
+         5Kt7s+fdbTUdIvOdqqtA5lymI3nCeHK8FfhhhJg2OVnUyO15o2M/pXPJvtZWWhuDZSNT
+         Lxlw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701440269; x=1702045069;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=dS/VbPECbYH+oSA/PSIJz8GFSptb5QIDmEdIGI/hnl4=;
+        b=ZR6GIbpQl8s9xwa8gSmhAcCkF4g4S43LBuqfuWjM6Id3Nk4+EZgJ6IZPidqIZfjZol
+         EkskTn7SxCc5QEmMwG9O2gBHDT2fNcdKycKt7m9ToZ7HKfFpSDI34ZGZ0D2u7dGX0Nch
+         5XSF19GT5XHAS065NBc39HkesUuMwZZnOa3xe+Eu11bVejfAosUIEZIPynGystURpdrr
+         lwlKSPC7HVxiyO8wMo8MMy3XExVzS7+EcAH0bl7earBHlOh52m6yt1ouGDZjhAM8eOYs
+         1uIoWneWnuVM/5hAvQfJwZJa7R6SNqGgh7mfXp1E7xonPkqSAs0tjCSpOJQs2LKuoBql
+         3ToA==
+X-Gm-Message-State: AOJu0Yz13jaxS/CQF1VNzaqF3eyge9zCL0u3JfG6RM+2IMUxEMXcr+uz
+	I3KyX4gMIZMidbhInp1G7SLTQQ==
+X-Google-Smtp-Source: AGHT+IGhfzqW22MczkjnR+L75DDw1xhlpjFPn9mwiqVbJaxXJY/AuNzngmeZcGKs64QZ8PkobdKQ+Q==
+X-Received: by 2002:a05:6512:1149:b0:50b:de2c:3d1f with SMTP id m9-20020a056512114900b0050bde2c3d1fmr350496lfg.15.1701440268922;
+        Fri, 01 Dec 2023 06:17:48 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.223.109])
+        by smtp.gmail.com with ESMTPSA id g18-20020a05600c311200b0040b42df75fcsm5551309wmo.39.2023.12.01.06.17.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 01 Dec 2023 06:17:48 -0800 (PST)
+Message-ID: <7aaea1e4-b7bd-47e4-a6e6-32b8195ea1bf@linaro.org>
+Date: Fri, 1 Dec 2023 15:17:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231113085305.1823455-1-javierm@redhat.com> <CAL_JsqKHTN5hfd4qpg5RXbmQLKZNVywDkSj9mxvfGmjrcChQQg@mail.gmail.com>
- <87jzqi59bt.fsf@minerva.mail-host-address-is-not-set> <CAL_JsqJM9+cbNviwuKGB5+3YbyAP3UH+TxCxsU5nUtX-iRGP2w@mail.gmail.com>
- <CAMj1kXG7Xyk0ys9j-XRo7Rr8gYz1qJE8fFSixBOwVbm-pjeX+A@mail.gmail.com>
- <874jhj1fm3.fsf@minerva.mail-host-address-is-not-set> <58672ab8-99bf-4a2a-af79-031d1e8fcba0@suse.de>
- <87fs0mxlyp.fsf@minerva.mail-host-address-is-not-set>
-In-Reply-To: <87fs0mxlyp.fsf@minerva.mail-host-address-is-not-set>
-From: Rob Herring <robh@kernel.org>
-Date: Fri, 1 Dec 2023 08:16:36 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJbZ736iV+bRbSNNaimkbJLpB9MbeKLSct16Yi67ttFcw@mail.gmail.com>
-Message-ID: <CAL_JsqJbZ736iV+bRbSNNaimkbJLpB9MbeKLSct16Yi67ttFcw@mail.gmail.com>
-Subject: Re: [RFC PATCH] of/platform: Disable sysfb if a simple-framebuffer
- node is found
-To: Javier Martinez Canillas <javierm@redhat.com>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>, Ard Biesheuvel <ardb@kernel.org>, devicetree@vger.kernel.org, 
-	Sergio Lopez <slp@redhat.com>, Sima Vetter <daniel.vetter@ffwll.ch>, 
-	Hector Martin <marcan@marcan.st>, Andrew Worsley <amworsley@gmail.com>, dri-devel@lists.freedesktop.org, 
-	linux-kernel@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: clock: ti: Convert interface.txt to
+ json-schema
+Content-Language: en-US
+To: Andreas Kemnade <andreas@kemnade.info>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, kristo@kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org
+References: <20231127202359.145778-1-andreas@kemnade.info>
+ <7a62ed8a-b0e3-4881-90d7-b8f5d38e482e@linaro.org>
+ <20231128093241.707a4fa0@aktux>
+ <7361082a-f271-4ef4-9dad-06ee7445c749@linaro.org>
+ <20231128214116.22dfff1e@akair>
+ <221ba6a3-c4c2-40cd-b1d8-8170af78c784@linaro.org>
+ <20231201150937.3631ee99@akair>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231201150937.3631ee99@akair>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, Dec 1, 2023 at 4:21=E2=80=AFAM Javier Martinez Canillas
-<javierm@redhat.com> wrote:
->
-> Thomas Zimmermann <tzimmermann@suse.de> writes:
->
-> > Hi
-> >
-> > Am 18.11.23 um 12:10 schrieb Javier Martinez Canillas:
-> >> Ard Biesheuvel <ardb@kernel.org> writes:
-> >>
-> >> Hello Ard,
-> >>
-> >>> On Fri, 17 Nov 2023 at 00:09, Rob Herring <robh@kernel.org> wrote:
-> >>
-> >> [...]
-> >>
-> >>>>>>
-> >>>>>> This could also lead to an interesting scenario. As simple-framebu=
-ffer
-> >>>>>> can define its memory in a /reserved-memory node, but that is igno=
-red
-> >>>>>> in EFI boot. Probably would work, but only because EFI probably
-> >>>>>> generates its memory map table from the /reserved-memory nodes.
-> >>>>>>
-> >>>>>
-> >>>>> I see. So what would be the solution then? Ignoring creating a plat=
-form
-> >>>>> device for "simple-framebuffer" if booted using EFI and have an EFI=
--GOP?
-> >>>>
-> >>>> Shrug. I don't really know anything more about EFI FB, but I would
-> >>>> guess it can't support handling resources like clocks, power domains=
-,
-> >>>> regulators, etc. that simple-fb can. So if a platform needs those, d=
-o
-> >>>> we say they should not setup EFI-GOP? Or is there a use case for
-> >>>> having both? Clients that don't muck with resources can use EFI-GOP
-> >>>> and those that do use simple-fb. For example, does/can grub use
-> >>>> EFI-GOP, but not simple-fb?
-> >>>>
-> >>>
-> >>> The EFI GOP is just a dumb framebuffer, and it is not even generally
-> >>> possible to cross reference the GOP with a particular device in the
-> >>> device hierarchy unless you e.g., compare the BARs of each device wit=
-h
-> >>> the region described by the GOP protocol.
-> >>>
-> >>> GRUB for EFI will use the GOP and nothing else, but only at boot time
-> >>> (the GOP protocol is more than a magic linear memory region, it also
-> >>> implements a Blt() abstraction that permits the use of framebuffers
-> >>> that are not mapped linearly into the address space at all, and GRUB
-> >>> makes use of this)
-> >>>
-> >>> The EFI stub will only expose GOPs to the kernel if they are in fact
-> >>> linear framebuffers, but has zero insight into whether the hardware
-> >>> needs clocks and regulators, and whether or not the framebuffer needs
-> >>> IOMMU pass through (which might be the case if the scanout is using
-> >>> DMA into system memory)
-> >>>
-> >>> So calling EFI GOP 'source of truth' is rather generous, and I think
-> >>> it makes sense to prioritize more accurate descriptions of the
-> >>> underlying framebuffer over EFI GOP.
-> >>>
-> >>
-> >> That was my opinion as well and the reason why I called the DTB the
-> >> single source of truth.
-> >>
-> >>> However, making 'simple-framebuffer' magic in this regard doesn't see=
-m
-> >>> like a great approach to me. Is there a better way we could get the
-> >>> resource conflict to be decided in a way where the EFI GOP gets
-> >>> superseded if its resources are claimed by another device?
-> >>>
-> >>
-> >> There is an aperture [0] framework that is used by the fbdev and DRM
-> >> subsystems to allow native drivers to remove any conflicting devices
-> >> that share the same framebuffer aperture.
-> >>
-> >> But it only makes sense for native drivers to use that I think, but
-> >> in this case is about two drivers that attempt to use the same frame
-> >> buffer provided by the firmware but getting it from different places.
-> >>
-> >> I don't have a better idea than this patch but maybe Thomas or Sima do=
-?
-> >
-> > At SUSE, we've carried such a patch in our repos for some time. It work=
-s
-> > around the double-framebuffer problem in a similar way. [1]
-> >
->
-> Thanks for the information. I see that your patch is basically mine but
-> doing it unconditionally while this one only does the sysfb_disable() if
-> a "simple-framebuffer" DT node has been found.
->
-> > As Javier mentioned, we do track the framebuffer ranges for EFI/VESA/OF
-> > framebuffers in the graphics aperture helpers. Fbdev has done this for
-> > decades, and the current codebase extends and harmonizes this
-> > functionality among fbdev and DRM drivers.
-> >
-> > WRT DT vs EFI: AFAIK the EFI support on affected platforms looks at the
-> > DT to set up the EFI framebuffer. So IMHO the DT is the authoritative
-> > source on the framebuffer.
-> >
->
-> Agreed. Sima Vetter also mentioned on IRC that they think this patch is
-> the least bad option. Rob, Ard any thoughts? Maybe we can land this as
-> a fix and then figure how this could be better handled in the long term?
+On 01/12/2023 15:09, Andreas Kemnade wrote:
+> Am Wed, 29 Nov 2023 09:15:57 +0100
+> schrieb Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>:
+> 
+>> On 28/11/2023 21:41, Andreas Kemnade wrote:
+>>> Am Tue, 28 Nov 2023 09:41:23 +0100
+>>> schrieb Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>:  
+>>>>> If the interface clock is not below a ti,clksel then we have reg.
+>>>>>    
+>>>>
+>>>> This should be expressed in the bindings. It's fine to make the reg
+>>>> optional (skip the description, it's confusing), but the ti,clksel
+>>>> should reference this schema and enforce it on the children.
+>>>>  
+>>> Well there are other compatibles below ti,clksel, too, so should we
+>>> rather add them when the other .txt files are converted?  
+>>
+>> This binding should already be referenced by ti,clksel. When the other
+>> are ready, you will change additionalProperties from object to false.
+>>
+> I played around with it:
+> 
+> --- a/Documentation/devicetree/bindings/clock/ti/ti,clksel.yaml
+> +++ b/Documentation/devicetree/bindings/clock/ti/ti,clksel.yaml
+> @@ -33,6 +33,11 @@ properties:
+>      const: 2
+>      description: The CLKSEL register and bit offset
+>  
+> +patternProperties:
+> +  "-ick$":
+> +    $ref: /schemas/clock/ti/ti,interface-clock.yaml#
+> +    type: object
+> +
+>  required:
+>    - compatible
+>    - reg
+> 
+>  
+> That generates warnings, which look more serious than just a
+> non-converted compatible, so lowering the overall "signal-noise-ratio".
+> 
+> e.g.
+> from schema $id:
+> http://devicetree.org/schemas/clock/ti/ti,clksel.yaml#
+> /home/andi/linux-dtbs/arch/arm/boot/dts/ti/omap/omap3-overo-tobiduo.dtb:
+> clock@c40: clock-rm-ick: 'ti,index-starts-at-one', 'ti,max-div' do not
+> match any of the regexes: 'pinctrl-[0-9]+'
+> 
+> I think we should rather postpone such referencing.
 
-What about moving the DT setup code here to sysfb? Then we just setup
-the right thing up front.
+Are you sure in such case that your binding is correct? The warnings
+suggest that not, therefore please do not postpone.
 
-However, there might be one other issue with that and this fix. The DT
-simplefb can have resources such as clocks and regulators. With
-fw_devlink, the driver won't probe until those dependencies are met.
-So if you want the framebuffer console up early, then you may want to
-register the EFI framebuffer first and then handoff to the DT simplefb
-when it probes (rather than registering the device).
+Best regards,
+Krzysztof
 
-But I agree, probably better to take this patch now and have those
-quirks instead of flat out not working.
-
-Rob
 
