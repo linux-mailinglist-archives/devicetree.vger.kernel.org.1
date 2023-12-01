@@ -1,157 +1,185 @@
-Return-Path: <devicetree+bounces-20754-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20756-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94FF6800C5B
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 14:40:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 464FE800C71
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 14:45:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B387E1C20F09
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 13:40:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 84B71281242
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 13:45:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AE7E38DC2;
-	Fri,  1 Dec 2023 13:40:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FD943A295;
+	Fri,  1 Dec 2023 13:45:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="IAmDk8Mh"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="lJfVPYBM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 482A710F8;
-	Fri,  1 Dec 2023 05:40:49 -0800 (PST)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3B1BHMNS020177;
-	Fri, 1 Dec 2023 13:40:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=CkGWBcHneCmd2qfceAP+MTCrLIRQFrXItDvan7l6pD0=;
- b=IAmDk8MhLrDXPneX6S98BKEa7zFVYg2QLHNqI5X8Vt99l0zsMOoUVPv1i83bVq2GCtmV
- U57wihOY3LIBlTX/C/1/5BEnnk0PSHpUzADqCVlb0Aiief3FdL0vFvJTdXQgQm5tZHE2
- oLMIV6BnLMHb5ifYoBjnjGkjTEsW8ftxdFP7aegfU1UHemMGT8AHcFB52zu+K0SH2PV9
- jXhfAQhjCReLeFk+OELIpm6ol/8JqBa2akis+pss4LPuRKpdYcfzIuIx93YdIH+IYwc7
- 2oBnvlzHcz14mZopR+GlhNDig1F9wFqfEkNfwVlA8hZAhRA11fMgijbmU4S10Oo7/lPa Fg== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uq3r2htu7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 01 Dec 2023 13:40:45 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3B1DeiSi016470
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 1 Dec 2023 13:40:44 GMT
-Received: from [10.216.10.184] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 1 Dec
- 2023 05:40:41 -0800
-Message-ID: <93419ba3-851c-48ab-828d-0d68b2cf45d4@quicinc.com>
-Date: Fri, 1 Dec 2023 19:10:40 +0530
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 476A7193
+	for <devicetree@vger.kernel.org>; Fri,  1 Dec 2023 05:45:04 -0800 (PST)
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 21EFA404AC
+	for <devicetree@vger.kernel.org>; Fri,  1 Dec 2023 13:45:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1701438301;
+	bh=aIjaCW3pUrXp+pTpaK834thD0tFwpmqmqseWMXTUtMQ=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type;
+	b=lJfVPYBMJyAwvJfqMZzEYJKspBsM6suBWYY0btqL9WHMBewzLbsrI/pWzADENo3lr
+	 gY4N2QKm1237X/3w0zzuyRw73RJ1wXbO9mytTSW/P6LNUwWwucOfw9+1T2zLj1Ihhf
+	 5DHt0AUk9Kh+AOZWsVtgYHg1I7yauNQnCQhnOJJFYbRQjpz0SAeKSw0+FY5Cll7omq
+	 fex1cwq578pEGOB2RlM1XtleKyHmFesBm7PsSNYfPJGmkhPxXGlYF2e5Qtv4E8vNgh
+	 8/1aUdKIU779z+5gJpdHao/4Eg/v7KPIuADuTnsA97nEhQ7rQAiW1pCTkh3XIRR0I2
+	 PFjKwkurrXgrA==
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-423e22075f4so24317751cf.0
+        for <devicetree@vger.kernel.org>; Fri, 01 Dec 2023 05:45:01 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701438299; x=1702043099;
+        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=aIjaCW3pUrXp+pTpaK834thD0tFwpmqmqseWMXTUtMQ=;
+        b=wQ6NwNWUW7BMLE/RmyDPPaUXMIj1NmwYWlUiHTcL/DVOGFtUXR3csXdN6MpFTJ8Um8
+         IzRE96qrhxmU/1wRjjXlwMqo+YfJIZqHEdMtnHlZJ6kLaeJGQvg0WJ6pZ3mA3X6xVL33
+         TyztY0+ryc9xL2cZbLC438/Ur9dWKPxmmajQikHz65lPKq0jWjfbazH/iAHfSIcLQ3hH
+         3tkT/jevO9N1B4uQRWgKVEvhUYDWWPyTfpqWq1z12oO1orgJd5JbXY8lqi53D5ufvXoQ
+         M9mnat1jyaQPVbqxXAOYtK7czwxZ0cDBVpHrD0J3RLVxqdUFHBGXJiqI8xdxcu4N/BlU
+         GsjA==
+X-Gm-Message-State: AOJu0Yyrf+Htxv7n6+dYbQ9jhqFlH2Q/XQYjkQjtjTvi3tw4KNbSom3A
+	JyyMqpTiBd9SLqFwmvFJn5G+t0tnibg9Js1Ky5+MC4OMYfAHlrqOhk/i88sFuuJjpUhk0hzZ3sy
+	atsXtYImA57WiSWPK0tfbXdRbZmAae5dSa+yXO5y/50blbKNU6BqwpiI=
+X-Received: by 2002:ac8:40c1:0:b0:423:a89d:df9c with SMTP id f1-20020ac840c1000000b00423a89ddf9cmr18752004qtm.60.1701438299406;
+        Fri, 01 Dec 2023 05:44:59 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEHu8/CBHAQYpaT2ANfVt7np+IE7Kk+pb17J4F9RrGzYnoZjQle0hRYNK96EYSsKkM1msPRiaodJCBtMDr0rLA=
+X-Received: by 2002:ac8:40c1:0:b0:423:a89d:df9c with SMTP id
+ f1-20020ac840c1000000b00423a89ddf9cmr18751983qtm.60.1701438299151; Fri, 01
+ Dec 2023 05:44:59 -0800 (PST)
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Fri, 1 Dec 2023 14:44:58 +0100
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+In-Reply-To: <20231130-bobbing-valid-b97f26fe8edc@spud>
+References: <20231130-bobbing-valid-b97f26fe8edc@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: ipq5018: add few more reserved memory
- regions
-Content-Language: en-US
-To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20231025-ipq5018-misc-v1-1-7d14fde97fe7@quicinc.com>
-From: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
-In-Reply-To: <20231025-ipq5018-misc-v1-1-7d14fde97fe7@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: h_MCj--EuQUd_TuhAPJTo5VDvwjdkbA_
-X-Proofpoint-ORIG-GUID: h_MCj--EuQUd_TuhAPJTo5VDvwjdkbA_
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-01_11,2023-11-30_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 clxscore=1015
- malwarescore=0 lowpriorityscore=0 suspectscore=0 adultscore=0
- mlxlogscore=631 bulkscore=0 spamscore=0 priorityscore=1501 mlxscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311060000 definitions=main-2312010093
+Mime-Version: 1.0
+Date: Fri, 1 Dec 2023 14:44:58 +0100
+Message-ID: <CAJM55Z9=smqcZ=su1oNdk1YZL_XdYAKrwtrZS7ScS=cAVmxZOA@mail.gmail.com>
+Subject: Re: [PATCH v1] riscv: dts: starfive: move timebase-frequency to .dtsi
+To: Conor Dooley <conor@kernel.org>, linux-riscv@lists.infradead.org
+Cc: Conor Dooley <conor.dooley@microchip.com>, Emil Renner Berthing <kernel@esmil.dk>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Walker Chen <walker.chen@starfivetech.com>, JeeHeng Sia <jeeheng.sia@starfivetech.com>, 
+	Leyfoon Tan <leyfoon.tan@starfivetech.com>
+Content-Type: text/plain; charset="UTF-8"
 
+Conor Dooley wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
+>
+> Properties fixed by the SoC should be defined in the $soc.dtsi, and the
+> timebase-frequency is not sourced directly from an off-chip oscillator.
 
+Yes, according to the JH7100 docs[1] the mtime register is sourced from the
+osc_sys external oscillator through u74rtc_toggle. However I haven't yet found
+a place in the docs that describe where that clock is divided by 4 to get
+6.25MHz from the 25MHz.
 
-On 10/25/2023 10:12 PM, Kathiravan Thirumoorthy wrote:
-> Like all other IPQ SoCs, bootloader will collect the system RAM contents
-> upon crash for the post morterm analysis. If we don't reserve the memory
-> region used by bootloader, obviously linux will consume it and upon next
-> boot on crash, bootloader will be loaded in the same region, which will
-> lead to loose some of the data, sometimes we may miss out critical
-> information. So lets reserve the region used by the bootloader.
-> 
-> Similarly SBL copies some data into the reserved region and it will be
-> used in the crash scenario. So reserve 1MB for SBL as well.
-> 
-> While at it, enable the SMEM support along with TCSR mutex.
+I expect the JH7110 mtime is set up in a similar way, but haven't yet dug into
+the available documentation.
 
+[1]: https://github.com/starfive-tech/JH7100_Docs/blob/main/vic_u7_manual_with_creativecommons.pdf
 
-Gentle Reminder...
+/Emil
 
-> 
-> Signed-off-by: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
+>
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 > ---
->   arch/arm64/boot/dts/qcom/ipq5018.dtsi | 24 ++++++++++++++++++++++++
->   1 file changed, 24 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq5018.dtsi b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-> index 0b739077ed70..6fbdac7a73f5 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-> @@ -82,6 +82,24 @@ reserved-memory {
->   		#size-cells = <2>;
->   		ranges;
->   
-> +		bootloader@4a800000 {
-> +			reg = <0x0 0x4a800000 0x0 0x200000>;
-> +			no-map;
-> +		};
-> +
-> +		sbl@4aa00000 {
-> +			reg = <0x0 0x4aa00000 0x0 0x100000>;
-> +			no-map;
-> +		};
-> +
-> +		smem@4ab00000 {
-> +			compatible = "qcom,smem";
-> +			reg = <0x0 0x4ab00000 0x0 0x100000>;
-> +			no-map;
-> +
-> +			hwlocks = <&tcsr_mutex 3>;
-> +		};
-> +
->   		tz_region: tz@4ac00000 {
->   			reg = <0x0 0x4ac00000 0x0 0x200000>;
->   			no-map;
-> @@ -142,6 +160,12 @@ gcc: clock-controller@1800000 {
->   			#power-domain-cells = <1>;
->   		};
->   
-> +		tcsr_mutex: hwlock@1905000 {
-> +			compatible = "qcom,tcsr-mutex";
-> +			reg = <0x01905000 0x20000>;
-> +			#hwlock-cells = <1>;
-> +		};
-> +
->   		sdhc_1: mmc@7804000 {
->   			compatible = "qcom,ipq5018-sdhci", "qcom,sdhci-msm-v5";
->   			reg = <0x7804000 0x1000>;
-> 
+> I actually have no idea whether this is true or not, I asked on the
+> jh8100 series but only got an answer for that SoC and not the existing
+> ones. I'm hoping that a patch envokes more of a reaction!
+>
+> CC: Emil Renner Berthing <kernel@esmil.dk>
+> CC: Conor Dooley <conor@kernel.org>
+> CC: Rob Herring <robh+dt@kernel.org>
+> CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> CC: Paul Walmsley <paul.walmsley@sifive.com>
+> CC: Palmer Dabbelt <palmer@dabbelt.com>
+> CC: linux-riscv@lists.infradead.org
+> CC: devicetree@vger.kernel.org
+> CC: linux-kernel@vger.kernel.org
+> CC: Walker Chen <walker.chen@starfivetech.com>
+> CC: JeeHeng Sia <jeeheng.sia@starfivetech.com>
+> CC: Leyfoon Tan <leyfoon.tan@starfivetech.com>
 > ---
-> base-commit: fe1998aa935b44ef873193c0772c43bce74f17dc
-> change-id: 20231025-ipq5018-misc-414b32eed881
-> 
-> Best regards,
+>  arch/riscv/boot/dts/starfive/jh7100-common.dtsi               | 4 ----
+>  arch/riscv/boot/dts/starfive/jh7100.dtsi                      | 1 +
+>  .../riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi | 4 ----
+>  arch/riscv/boot/dts/starfive/jh7110.dtsi                      | 1 +
+>  4 files changed, 2 insertions(+), 8 deletions(-)
+>
+> diff --git a/arch/riscv/boot/dts/starfive/jh7100-common.dtsi b/arch/riscv/boot/dts/starfive/jh7100-common.dtsi
+> index b93ce351a90f..214f27083d7b 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7100-common.dtsi
+> +++ b/arch/riscv/boot/dts/starfive/jh7100-common.dtsi
+> @@ -19,10 +19,6 @@ chosen {
+>  		stdout-path = "serial0:115200n8";
+>  	};
+>
+> -	cpus {
+> -		timebase-frequency = <6250000>;
+> -	};
+> -
+>  	memory@80000000 {
+>  		device_type = "memory";
+>  		reg = <0x0 0x80000000 0x2 0x0>;
+> diff --git a/arch/riscv/boot/dts/starfive/jh7100.dtsi b/arch/riscv/boot/dts/starfive/jh7100.dtsi
+> index e68cafe7545f..c50b32424721 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7100.dtsi
+> +++ b/arch/riscv/boot/dts/starfive/jh7100.dtsi
+> @@ -16,6 +16,7 @@ / {
+>  	cpus {
+>  		#address-cells = <1>;
+>  		#size-cells = <0>;
+> +		timebase-frequency = <6250000>;
+>
+>  		U74_0: cpu@0 {
+>  			compatible = "sifive,u74-mc", "riscv";
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> index b89e9791efa7..7873c7ffde4d 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> @@ -26,10 +26,6 @@ chosen {
+>  		stdout-path = "serial0:115200n8";
+>  	};
+>
+> -	cpus {
+> -		timebase-frequency = <4000000>;
+> -	};
+> -
+>  	memory@40000000 {
+>  		device_type = "memory";
+>  		reg = <0x0 0x40000000 0x1 0x0>;
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> index 45213cdf50dc..ee7d4bb1f537 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> @@ -18,6 +18,7 @@ / {
+>  	cpus {
+>  		#address-cells = <1>;
+>  		#size-cells = <0>;
+> +		timebase-frequency = <4000000>;
+>
+>  		S7_0: cpu@0 {
+>  			compatible = "sifive,s7", "riscv";
+> --
+> 2.39.2
+>
 
