@@ -1,110 +1,119 @@
-Return-Path: <devicetree+bounces-20677-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20678-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8341800847
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 11:34:38 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D11B800874
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 11:38:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 919422813D6
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 10:34:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9B91B1C20F0E
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 10:38:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B87D1945F;
-	Fri,  1 Dec 2023 10:34:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8856171C2;
+	Fri,  1 Dec 2023 10:38:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Efp+K6pp"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="kEJAUXez"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::227])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5456DDE;
-	Fri,  1 Dec 2023 02:34:33 -0800 (PST)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 3D85120003;
-	Fri,  1 Dec 2023 10:34:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1701426871;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=x9QLIDvjWUePyTNPo1KyKIxmABI1QYlXqcofIXZnDv4=;
-	b=Efp+K6ppRKNmXRXC312z4I4B/6CUBUuHRLy8PLz+V/UGueyXXhjUby1z/imQlO2LUhYGLR
-	GLCiyYckN/srl+stf7jfzn6vO8+xatIFz1FFvYGMSuvYAi3wqhfzOT3fcrulMkGFlAu1wJ
-	6sfsj3uvzn9oKJQUzs7Nsw2oDCTQ7M3ErnbzRY7fohDNl9k2hSPTae29J1N6eUF5QhPVDe
-	cf/keirVpnBJrg6utYHwPH1+cFVRs0rSUSj/XvDwYB8MoeDtu35HIV2LS2XSCu2aqyWtBx
-	zv8qYSdo+dMxNt9XMG8q/3X1Sff/mM5tgB3tImLUaHFEtH/5iGRG0Tpgo/cy/Q==
-From: Gregory CLEMENT <gregory.clement@bootlin.com>
-To: Jiaxun Yang <jiaxun.yang@flygoat.com>, "paulburton@kernel.org"
- <paulburton@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, Tawfik Bayouk
- <tawfik.bayouk@mobileye.com>, Alexandre Belloni
- <alexandre.belloni@bootlin.com>, =?utf-8?Q?Th=C3=A9o?= Lebrun
- <theo.lebrun@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 20/21] MIPS: generic: Add support for Mobileye EyeQ5
-In-Reply-To: <db993514-7daa-41cb-8e6e-179305c16e24@app.fastmail.com>
-References: <20231123152639.561231-1-gregory.clement@bootlin.com>
- <20231123152639.561231-21-gregory.clement@bootlin.com>
- <db993514-7daa-41cb-8e6e-179305c16e24@app.fastmail.com>
-Date: Fri, 01 Dec 2023 11:34:30 +0100
-Message-ID: <87ttp2dxe1.fsf@BL-laptop>
+Received: from mail-vs1-xe33.google.com (mail-vs1-xe33.google.com [IPv6:2607:f8b0:4864:20::e33])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93D2B196
+	for <devicetree@vger.kernel.org>; Fri,  1 Dec 2023 02:38:11 -0800 (PST)
+Received: by mail-vs1-xe33.google.com with SMTP id ada2fe7eead31-4644f2e611bso662354137.2
+        for <devicetree@vger.kernel.org>; Fri, 01 Dec 2023 02:38:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1701427090; x=1702031890; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=UTTB5Qf3NGi+WB3GCJHG37DhU59Gl9ODLb3haNT1v/c=;
+        b=kEJAUXezhcezJLZxMjtGjmmwIBcxqs+4A2DBK2At1NFG4VXACwh4I+X4Z5X6yja1lJ
+         F2ESnvA0dnxy2jC87uy7dPz+HuVPHbcQLwsthM/Jjh13zRLzl+7WXan2CNE2w0aTDOX6
+         2NVQENlG5BJw6FwWlmt2fkbh5kHFVpn8HOrrbzlTkxVX4P/TjecdWGfE3PB533uF++7H
+         Sj7TIgNjvdESagMEbr41pg38lJ3JiC5rLFZj5Eg4dRm4Ez01/9rHHQdUO/gOb7My+ja6
+         OuvuwWLdPBW3eWljkWFFNO/5gNi5S9rOv8cSTXx5d68se+xwosg0JzDSgEI9QMT9uJnz
+         q4AA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701427090; x=1702031890;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=UTTB5Qf3NGi+WB3GCJHG37DhU59Gl9ODLb3haNT1v/c=;
+        b=dE2njjoWO0xlPx8DNv8TlGHZvxo0AtFu+QYUYyxg1tb/aAr2rZp+amlrxPladMeDYt
+         niF7pMkIWeQtr2pd3R2d7pfXZGonDQX7y9MBZCZg/EEe21xRS/6eD4C3pLwRgPQXQQhL
+         ttl5+cOef1Hx7c6sQxyqOeBTMW8B0MLL9RBk+TJHpcmsWhZLLkh1Tw9oQYZ1Hawe2FJ3
+         2xeRDqKjw1xz91PSUSxfqf6JBOVVSRREB8M8Jmn1jFXrVKFnYVhZ6uWa1uXqfKPnAi/q
+         tqrYSanHaOTq8dKxjVqgr3CYHz/jFQH4EvfgORX7gGUgUFDunEcMMgfS/uxtD6H7cKgM
+         OZ9A==
+X-Gm-Message-State: AOJu0YwgLUSi0wpTc/sf/fhM8W8/3ZsWYN9PDGwpP1N1pcb/B3QW7dvB
+	CrTASBZ8ZPKZFyixifn/kXp6BeCFiZLKt+0IIQjkIQ==
+X-Google-Smtp-Source: AGHT+IHD3C4jeU8YUMrsywQzBJT50HuwUQ8yJRyHKKpw9tFA3HPIcqu/SHTN20FoIPSzlf2zVyUp/WJHxr0sgyP3xm4=
+X-Received: by 2002:a67:bc19:0:b0:464:4891:cce4 with SMTP id
+ t25-20020a67bc19000000b004644891cce4mr8735525vsn.20.1701427090706; Fri, 01
+ Dec 2023 02:38:10 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+References: <10db3021e8617c1f98eca51e26d350dc4b51b53c.1701335736.git.michal.simek@amd.com>
+In-Reply-To: <10db3021e8617c1f98eca51e26d350dc4b51b53c.1701335736.git.michal.simek@amd.com>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Fri, 1 Dec 2023 11:37:59 +0100
+Message-ID: <CAMRc=Md7iQnkOp+nB3=haakpt5jF_STtYgDAcxRVQJjYWnjFKA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: gpio: modepin: Describe label property
+To: Michal Simek <michal.simek@amd.com>
+Cc: linux-kernel@vger.kernel.org, monstr@monstr.eu, michal.simek@xilinx.com, 
+	git@xilinx.com, Andy Shevchenko <andy@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Linus Walleij <linus.walleij@linaro.org>, Piyush Mehta <piyush.mehta@amd.com>, 
+	Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: gregory.clement@bootlin.com
 
-"Jiaxun Yang" <jiaxun.yang@flygoat.com> writes:
-
-> =E5=9C=A82023=E5=B9=B411=E6=9C=8823=E6=97=A5=E5=8D=81=E4=B8=80=E6=9C=88 =
-=E4=B8=8B=E5=8D=883:26=EF=BC=8CGregory CLEMENT=E5=86=99=E9=81=93=EF=BC=9A
->> Introduce support for the MIPS based Mobileye EyeQ5 SoCs.
->>
->> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
->> ---
-> [...]
->> diff --git a/arch/mips/generic/Kconfig b/arch/mips/generic/Kconfig
->> index 7dc5b3821cc6e..04e1fc6f789b5 100644
->> --- a/arch/mips/generic/Kconfig
->> +++ b/arch/mips/generic/Kconfig
->> @@ -48,6 +48,13 @@ config SOC_VCOREIII
->>  config MSCC_OCELOT
->>  	bool
->>=20
->> +config SOC_EYEQ5
->> +	select ARM_AMBA
->> +	select WEAK_ORDERING
->> +	select WEAK_REORDERING_BEYOND_LLSC
->> +	select PHYSICAL_START_BOOL
->> +	bool
+On Thu, Nov 30, 2023 at 10:15=E2=80=AFAM Michal Simek <michal.simek@amd.com=
+> wrote:
 >
-> ^ I believe WEAK_ORDERING is already selected by MIPS_CPS,
+> Describe optional label property which can be used for better gpio
+> identification.
+>
+> Signed-off-by: Michal Simek <michal.simek@amd.com>
+> ---
+>
+>  .../devicetree/bindings/gpio/xlnx,zynqmp-gpio-modepin.yaml     | 3 +++
+>  1 file changed, 3 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/gpio/xlnx,zynqmp-gpio-mode=
+pin.yaml b/Documentation/devicetree/bindings/gpio/xlnx,zynqmp-gpio-modepin.=
+yaml
+> index 56143f1fe84a..b1fd632718d4 100644
+> --- a/Documentation/devicetree/bindings/gpio/xlnx,zynqmp-gpio-modepin.yam=
+l
+> +++ b/Documentation/devicetree/bindings/gpio/xlnx,zynqmp-gpio-modepin.yam=
+l
+> @@ -23,6 +23,8 @@ properties:
+>    "#gpio-cells":
+>      const: 2
+>
+> +  label: true
+> +
+>  required:
+>    - compatible
+>    - gpio-controller
+> @@ -37,6 +39,7 @@ examples:
+>              compatible =3D "xlnx,zynqmp-gpio-modepin";
+>              gpio-controller;
+>              #gpio-cells =3D <2>;
+> +            label =3D "modepin";
+>          };
+>      };
+>
+> --
+> 2.36.1
+>
 
-But MIPS_CPS can be disabled: it is not selected by
-MIPS_GENERIC_KERNEL.
+Applied, thanks!
 
-> and WEAK_REORDERING_BEYOND_LLSC should be selected by MIPS_CPS as well.
-
-WEAK_REORDERING_BEYOND_LLSC is only selected by CPU_LOONGSON64 for
-now not by MIPS_CPS
-
-Thanks,
-
-Gregory
->=20=20
-> Thanks
-> --=20
-> - Jiaxun
-
---=20
-Gregory Clement, Bootlin
-Embedded Linux and Kernel engineering
-http://bootlin.com
+Bart
 
