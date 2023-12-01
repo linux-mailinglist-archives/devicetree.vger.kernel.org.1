@@ -1,58 +1,58 @@
-Return-Path: <devicetree+bounces-20814-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20815-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC691800F29
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 17:11:23 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC8BD800F35
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 17:11:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4F978B21599
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 16:11:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 18EA21C209BD
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 16:11:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A74E44C619;
-	Fri,  1 Dec 2023 16:11:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3A3F4C63B;
+	Fri,  1 Dec 2023 16:11:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aqzI+8Va"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XUOMjZnl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F6C3172B
-	for <devicetree@vger.kernel.org>; Fri,  1 Dec 2023 08:10:57 -0800 (PST)
-Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-332e40315bdso1624271f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 01 Dec 2023 08:10:57 -0800 (PST)
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7D2D172E
+	for <devicetree@vger.kernel.org>; Fri,  1 Dec 2023 08:10:58 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-3333131e08dso634185f8f.2
+        for <devicetree@vger.kernel.org>; Fri, 01 Dec 2023 08:10:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701447056; x=1702051856; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701447057; x=1702051857; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=RqUq8HgRrGxmt9Sh9WkyxYYOgIWePrhLH04C32o9WIM=;
-        b=aqzI+8Vaa+EIQqQ9IDQ5mLO+OuGQ74HOjDTaGFLIG62yh7lkQRCNCCX9/hZ+XrN6QC
-         n0yXnlskULgxoF+bDqiFUtw4GHRsDDhxg9X430rqoEV3oRr0jFxsKYEChPPiJZsU13fj
-         GwPoSCT8VoHyRwARhTxY5/2L6w4zJdVHEo7JruSxXG0J11/wuudPYxukoTJk/e9lBlOi
-         Z3kckVrCCVEI92F2AIiFyuGmS/m6xlizKQoS6kWZsa7/oXrFIkGVFoY4JrVlRJOsOvlu
-         YnlNtka/KkJkq9mv9A8tTwkQ2LcA2tgK4fTq+JLnFOcY/xsD9UA1qG9zgUGnA59niuBa
-         Ju1g==
+        bh=6V1UUtwAmpCe4BOx2n9je9qb/QMltwNIij4rqLKsGDM=;
+        b=XUOMjZnlJqJuQwDM9lnM3QFa6Uen2BdJHP2eUWh9BOkdPtpbuN+iDiTlxD4xykaJiW
+         EoAJsx0BJd+KtE/5ko+ydEFaQBnduSW2dKQuOeYe3Dc2FXSsoSLkR3pX9k4XtE0uHHLI
+         GXJFEjzot0ShhOdwAldmNv+PXAs831z1g7ZF+FqEr7ixrS/RIaOnk3PtWYfX+NOcmhdh
+         3dyP76k7vYa9UnxSKKlbU6L0ZLNDhdtrk6w5MUz1/c9R2CEBNscRfxWa3McxUF7GxQhQ
+         Z9Ejji9ta/IcBtsa+ynD47e0z7iH1mecqtJ7a8P9+9tOzxediCxu7A4Y3e0ZP9mROF2K
+         7baQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701447056; x=1702051856;
+        d=1e100.net; s=20230601; t=1701447057; x=1702051857;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=RqUq8HgRrGxmt9Sh9WkyxYYOgIWePrhLH04C32o9WIM=;
-        b=QSjZiH8t2X0PSWjieqgX3DuN9TcMTf8Fc7+bIN2il9vXSk5BR8DozOn5RsgvVj5sLD
-         yTCeyBUTTtaMIJb4wzDf2FPI6CNQKmFy4rpQi1BSPPUhgBgLkot6+eVjGTQKU3pcg1/9
-         ckVmTBQ1ubOltI6tif/8TNPsCqNth3KuM6Xjqlo0AfutAq7cJmfZL/7jiEEi7N9EVRQZ
-         olyLn4Ge9ARwK1wLHo5yF8kGatm9WtNhraCT8R5jWG9Q233GvxgcG+jng5bE6KiWIOpA
-         4BpKwjdfHGKUS+E3W1FzmdekfVBX8Pzs3N7aIH3F3mEUc8BWl5Z8byKtpIsXDQPzebqA
-         ChPg==
-X-Gm-Message-State: AOJu0YxBIZFb8kOGr4xq877FV6znggV8nSH43czwVDvpRW/iIu8+LXKW
-	2eCrzgu/52S72xNLambfW/tcKw==
-X-Google-Smtp-Source: AGHT+IGxH3HZRD9B1F0nvSoZso66FA8TLrJx4cs/LpqBZQYZyLd3azB4kfjBGCl5Q90eurcfEWOWWg==
-X-Received: by 2002:adf:ef83:0:b0:333:2fd2:51fa with SMTP id d3-20020adfef83000000b003332fd251famr1015597wro.115.1701447055983;
-        Fri, 01 Dec 2023 08:10:55 -0800 (PST)
+        bh=6V1UUtwAmpCe4BOx2n9je9qb/QMltwNIij4rqLKsGDM=;
+        b=l7ACxGwa0MfR0f32DPJRGKrZz2Jze2beSjwPQbBu1FQCV6N0DnciGPcAI+UHZyTrxF
+         0T6AWbVLIS1TTvPKl5rF6EkvqDIBs6mthcJEpuwWXsqf30QVRnrubPqMWhlDWXaBBDeH
+         /HtCZRW1JxIRvLa2O3zOqoFt/Uy5Lb9kggeZabTtuF4WR2CRk+lg5nSgYKWte2VI29Mc
+         5u2FdYF5u4EJhPx4U2ctrVODRTIm3lWYkpDli9vzLQd7Okh2RPdvYqszQrLJtoW2F8/o
+         pQdanQM1YWi90B79AEQxngsywg8mySqopILda6b4rKyMqXlVCSFAphGHFm6pfkkH1EBF
+         IurA==
+X-Gm-Message-State: AOJu0Ywei2xq8f18JcUYxxYnBuWW/0VhymkwIsn+a3HKdq1vlZnJxiJ9
+	UNn8lVijWSf/T+D4/dvkJGgP3Q==
+X-Google-Smtp-Source: AGHT+IHcniH93ls2L4js8Defcoe1/o0gUisiuD4Xta5PPEUQLQ4rpfJ0BqVOXkpofKNdpYD9Sa4B/A==
+X-Received: by 2002:a5d:4051:0:b0:333:eb7:cc15 with SMTP id w17-20020a5d4051000000b003330eb7cc15mr940801wrp.45.1701447057474;
+        Fri, 01 Dec 2023 08:10:57 -0800 (PST)
 Received: from gpeter-l.lan (host-92-29-24-243.as13285.net. [92.29.24.243])
-        by smtp.gmail.com with ESMTPSA id cg16-20020a5d5cd0000000b003332656cd73sm3907386wrb.105.2023.12.01.08.10.54
+        by smtp.gmail.com with ESMTPSA id cg16-20020a5d5cd0000000b003332656cd73sm3907386wrb.105.2023.12.01.08.10.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Dec 2023 08:10:55 -0800 (PST)
+        Fri, 01 Dec 2023 08:10:56 -0800 (PST)
 From: Peter Griffin <peter.griffin@linaro.org>
 To: robh+dt@kernel.org,
 	krzysztof.kozlowski+dt@linaro.org,
@@ -86,11 +86,10 @@ Cc: peter.griffin@linaro.org,
 	linux-gpio@vger.kernel.org,
 	linux-watchdog@vger.kernel.org,
 	kernel-team@android.com,
-	linux-serial@vger.kernel.org,
-	Rob Herring <robh@kernel.org>
-Subject: [PATCH v5 05/20] dt-bindings: arm: google: Add bindings for Google ARM platforms
-Date: Fri,  1 Dec 2023 16:09:10 +0000
-Message-ID: <20231201160925.3136868-6-peter.griffin@linaro.org>
+	linux-serial@vger.kernel.org
+Subject: [PATCH v5 06/20] dt-bindings: pinctrl: samsung: add google,gs101-pinctrl compatible
+Date: Fri,  1 Dec 2023 16:09:11 +0000
+Message-ID: <20231201160925.3136868-7-peter.griffin@linaro.org>
 X-Mailer: git-send-email 2.43.0.rc2.451.g8631bc7472-goog
 In-Reply-To: <20231201160925.3136868-1-peter.griffin@linaro.org>
 References: <20231201160925.3136868-1-peter.griffin@linaro.org>
@@ -102,75 +101,27 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-This introduces bindings and dt-schema for the Google tensor SoCs.
-Currently just gs101 and pixel 6 are supported.
+Add the "google,gs101-pinctrl" compatible to the dt-schema bindings
+documentation.
 
+Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
 Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
-Reviewed-by: Rob Herring <robh@kernel.org>
 ---
- .../devicetree/bindings/arm/google.yaml       | 53 +++++++++++++++++++
- 1 file changed, 53 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/arm/google.yaml
+ Documentation/devicetree/bindings/pinctrl/samsung,pinctrl.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/arm/google.yaml b/Documentation/devicetree/bindings/arm/google.yaml
-new file mode 100644
-index 000000000000..be191e70192d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/google.yaml
-@@ -0,0 +1,53 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/arm/google.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Google Tensor platforms
-+
-+maintainers:
-+  - Peter Griffin <peter.griffin@linaro.org>
-+
-+description: |
-+  ARM platforms using SoCs designed by Google branded "Tensor" used in Pixel
-+  devices.
-+
-+  Currently upstream this is devices using "gs101" SoC which is found in Pixel
-+  6, Pixel 6 Pro and Pixel 6a.
-+
-+  Google have a few different names for the SoC.
-+  - Marketing name ("Tensor")
-+  - Codename ("Whitechapel")
-+  - SoC ID ("gs101")
-+  - Die ID ("S5P9845");
-+
-+  Likewise there are a couple of names for the actual device
-+  - Marketing name ("Pixel 6")
-+  - Codename ("Oriole")
-+
-+  Devicetrees should use the lowercased SoC ID and lowercased board codename.
-+  e.g. gs101 and gs101-oriole
-+
-+properties:
-+  $nodename:
-+    const: '/'
-+  compatible:
-+    oneOf:
-+      - description: Google Pixel 6 / Oriole
-+        items:
-+          - enum:
-+              - google,gs101-oriole
-+          - const: google,gs101
-+
-+  # Bootloader requires empty ect node to be present
-+  ect:
-+    type: object
-+    additionalProperties: false
-+
-+required:
-+  - ect
-+
-+additionalProperties: true
-+
-+...
+diff --git a/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl.yaml
+index 9f04a0c76403..118549c25976 100644
+--- a/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl.yaml
+@@ -35,6 +35,7 @@ properties:
+ 
+   compatible:
+     enum:
++      - google,gs101-pinctrl
+       - samsung,s3c2412-pinctrl
+       - samsung,s3c2416-pinctrl
+       - samsung,s3c2440-pinctrl
 -- 
 2.43.0.rc2.451.g8631bc7472-goog
 
