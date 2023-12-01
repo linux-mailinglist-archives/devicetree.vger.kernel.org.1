@@ -1,89 +1,197 @@
-Return-Path: <devicetree+bounces-20803-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20804-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCA1B800EC8
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 16:47:33 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42ED7800EDA
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 16:54:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ED85E1C20D55
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 15:47:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 73A8F1C209F8
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 15:54:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 489974B5A6;
-	Fri,  1 Dec 2023 15:47:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7CF44B5C4;
+	Fri,  1 Dec 2023 15:54:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gRIP9moF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 015111B2;
-	Fri,  1 Dec 2023 07:47:26 -0800 (PST)
-X-IronPort-AV: E=McAfee;i="6600,9927,10911"; a="395058"
-X-IronPort-AV: E=Sophos;i="6.04,241,1695711600"; 
-   d="scan'208";a="395058"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Dec 2023 07:47:26 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10911"; a="769715259"
-X-IronPort-AV: E=Sophos;i="6.04,241,1695711600"; 
-   d="scan'208";a="769715259"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Dec 2023 07:47:22 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andy@kernel.org>)
-	id 1r95jb-000000011kj-2Ljl;
-	Fri, 01 Dec 2023 17:47:19 +0200
-Date: Fri, 1 Dec 2023 17:47:19 +0200
-From: Andy Shevchenko <andy@kernel.org>
-To: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>, nuno.sa@analog.com,
-	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>,
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A48A84AF78;
+	Fri,  1 Dec 2023 15:54:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A09FAC433C8;
+	Fri,  1 Dec 2023 15:54:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701446092;
+	bh=Jtu29b+nOsCTYQenPURoVfRuZhdP2TIPsH0zcju5w4w=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=gRIP9moFcb+aF3ZyUlKmTL+xHjvRS03ZH9ayXoFwHKTvTVFbd9fyfKFQLW74XN175
+	 VRVx6FsRhQN0OdK/UFwoEuz1m+8MHwNf3eMgxR8sgMZC9wJ+m1IUSfE5WGu2K1mgMg
+	 S1251vmjVEEzwYBeEW9zvAr375NMWcyfLBXMYCYLIFHfJS2C4UQsWKn0adZljRaTcm
+	 SJsppbmtig1RGghtVzw5jbx1yBhk/iuVPkSI/NdW6WNZ7yLIoRtCRA6oSClzibhYdt
+	 taa+SyvcxNsoWJdaHf0EkfbENOtj7XwvTpQrsWoRJBBxxqR2T54BMtVINrcBDbKTi5
+	 LChHPGruv8sDw==
+Date: Fri, 1 Dec 2023 15:54:47 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>, Lee Jones <lee@kernel.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Bartosz Golaszewski <brgl@bgdev.pl>
-Subject: Re: [PATCH v2 2/2] hwmon: ltc4282: add support for the LTC4282 chip
-Message-ID: <ZWoABzufPkdXnrMT@smile.fi.intel.com>
-References: <CACRpkdaksfS4WLNQ6ohauAPq3z2LPG2uF37_jWtm0brQHaDtNw@mail.gmail.com>
- <6384831c05b8ceeaf4a16cf9229770252989b762.camel@gmail.com>
- <CACRpkdZr6TdQCLy73Yx2RdMgQifd67remdxENBKYx3UvEMm87A@mail.gmail.com>
- <971eb35068639ec404669ea5320c8183ea71a7d0.camel@gmail.com>
- <ZWiP3i80KnVk9qyx@smile.fi.intel.com>
- <a4bd59df0c5bc1be5d0d6f11b968fd61a59ee2e0.camel@gmail.com>
- <CACRpkdYz+qi42Pz8CgeWybksC0edaVux6rcEhwzjDWnWe9Jr1g@mail.gmail.com>
- <61a8f54835c10db7a9c650ee2e3706b47382c634.camel@gmail.com>
- <CACRpkda55HzPqus5KR-t=xEBkkdND5kYZj1sHdxK+j6QwDUPRg@mail.gmail.com>
- <b761d2497462664d541779857398b2aa893cbee5.camel@gmail.com>
+	Support Opensource <support.opensource@diasemi.com>,
+	devicetree@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH 4/6] dt-bindings: mfd: Convert da9062 to json-schema
+Message-ID: <20231201-rockstar-automated-cdbc70605ca7@spud>
+References: <20231201110840.37408-1-biju.das.jz@bp.renesas.com>
+ <20231201110840.37408-5-biju.das.jz@bp.renesas.com>
+ <CAMuHMdVGuEKOeXkK8wbUzjx3UMOOcpyW2yp=i2A6V4auGbqoEQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="Y0XkUaylXbXKLGco"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <b761d2497462664d541779857398b2aa893cbee5.camel@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-
-On Fri, Dec 01, 2023 at 04:24:35PM +0100, Nuno Sá wrote:
-> On Fri, 2023-12-01 at 14:40 +0100, Linus Walleij wrote:
-
-...
-
-> Yes, that is the only thing we have. Meaning that there is no hw setting to set the
-> pins to open drain. Open drain is what they are. That is why I'm not seeing the point
-> in having PIN_CONFIG_DRIVE_OPEN_DRAIN implemented.
-
-At least you have to implement error for PUSH_PULL mode and other modes,
-so from the (core) software point of view the user should be able to ask for
-anything and get an answer from the certain driver that "hey, i do support OD",
-or "hey, push-pull can't be supported with this hw".
-
--- 
-With Best Regards,
-Andy Shevchenko
+In-Reply-To: <CAMuHMdVGuEKOeXkK8wbUzjx3UMOOcpyW2yp=i2A6V4auGbqoEQ@mail.gmail.com>
 
 
+--Y0XkUaylXbXKLGco
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Fri, Dec 01, 2023 at 02:33:29PM +0100, Geert Uytterhoeven wrote:
+> Hi Biju,
+>=20
+> On Fri, Dec 1, 2023 at 12:09=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.=
+com> wrote:
+> > Convert the da9062 PMIC device tree binding documentation to json-schem=
+a.
+> >
+> > Update the example to match reality.
+> >
+> > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+>=20
+> Thanks for your patch!
+>=20
+> > --- a/Documentation/devicetree/bindings/mfd/da9062.txt
+> > +++ /dev/null
+>=20
+> This file is still referred to from other files:
+>=20
+>     $ git grep Documentation/devicetree/bindings/mfd/da9062.txt
+>     Documentation/devicetree/bindings/input/da9062-onkey.txt:DA9062
+> and DA9061 chips see Documentation/devicetree/bindings/mfd/da9062.txt
+>     Documentation/devicetree/bindings/thermal/da9062-thermal.txt:DA9062
+> and DA9061 chips see Documentation/devicetree/bindings/mfd/da9062.txt
+>=20
+> > -- onkey : See ../input/da9062-onkey.txt
+>=20
+> Documentation/devicetree/bindings/input/da9062-onkey.txt still exists,
+> and covers more variants than your new dlg,da9062.yaml.
+>=20
+> > -
+> > -- watchdog: See ../watchdog/da9062-wdt.txt
+>=20
+> This was replaced by
+> Documentation/devicetree/bindings/watchdog/dlg,da9062-watchdog.yaml
+> a while ago, and covers more variants than your new dlg,da9062.yaml.
+>=20
+> > -
+> > -- thermal : See ../thermal/da9062-thermal.txt
+>=20
+> Documentation/devicetree/bindings/thermal/da9062-thermal.txt still exists,
+> and covers more variants than your new dlg,da9062.yaml.
+>=20
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/mfd/dlg,da9062.yaml
+> > @@ -0,0 +1,220 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/mfd/dlg,da9062.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Dialog DA9062 Power Management Integrated Circuit (PMIC)
+> > +
+> > +maintainers:
+> > +  - Biju Das <biju.das.jz@bp.renesas.com>
+> > +
+> > +description: |
+> > +  Product information for the DA9062 and DA9061 devices can be found h=
+ere:
+> > +  - https://www.dialog-semiconductor.com/products/da9062
+> > +  - https://www.dialog-semiconductor.com/products/da9061
+> > +
+> > +  The DA9062 PMIC consists of:
+> > +
+
+> > +  Device                   Supply Names    Description
+> > +  ------                   ------------    -----------
+> > +  da9062-regulator        :               : LDOs & BUCKs
+> > +  da9062-rtc              :               : Real-Time Clock
+> > +  da9062-onkey            :               : On Key
+> > +  da9062-watchdog         :               : Watchdog Timer
+> > +  da9062-thermal          :               : Thermal
+> > +  da9062-gpio             :               : GPIOs
+> > +
+> > +  The DA9061 PMIC consists of:
+> > +
+> > +  Device                   Supply Names    Description
+> > +  ------                   ------------    -----------
+> > +  da9062-regulator        :               : LDOs & BUCKs
+> > +  da9062-onkey            :               : On Key
+> > +  da9062-watchdog         :               : Watchdog Timer
+> > +  da9062-thermal          :               : Thermal
+>=20
+> da9061 (x4)
+
+Is retaining this even needed with a yaml binding that correctly
+constrains the children?
+
+>=20
+> > +
+> > +properties:
+>=20
+> > +  watchdog:
+>=20
+> Please sort subnodes alphabetically.
+>=20
+> > +    type: object
+> > +    $ref: /schemas/watchdog/watchdog.yaml#
+> > +    unevaluatedProperties: false
+> > +    properties:
+> > +      compatible:
+> > +        const: dlg,da9062-watchdog
+>=20
+> What about dlg,da9061-watchdog? Probably this should refer to
+> Documentation/devicetree/bindings/watchdog/dlg,da9062-watchdog.yaml
+> instead?
+>=20
+> This applies to the other subnodes, too.
+>=20
+
+> Perhaps this binding should be merged with dlg,da9063.yaml?
+> Or should it be split in dlg,da9061.yaml and dlg,da9062.yaml?
+
+The former sounds like a noble goal to me.
+
+--Y0XkUaylXbXKLGco
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZWoBxwAKCRB4tDGHoIJi
+0g4nAP9DzL9WvU1oaXmeRo+xqDm9uDpnlqhUFG1+NFE5x4id1AD9Ht4G/Syqdm4v
+WW9USV2B/b1H+nJKgwdStTjmPYfhYAE=
+=XWny
+-----END PGP SIGNATURE-----
+
+--Y0XkUaylXbXKLGco--
 
