@@ -1,131 +1,121 @@
-Return-Path: <devicetree+bounces-20831-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20832-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A71E4800FE0
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 17:17:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D81C5800FE5
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 17:17:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 474AEB213DC
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 16:17:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9388A281C65
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 16:17:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D3D44CB36;
-	Fri,  1 Dec 2023 16:17:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D34804C63A;
+	Fri,  1 Dec 2023 16:17:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DXOtzgxT"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="ghfi8mtK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BBA71171C;
-	Fri,  1 Dec 2023 16:17:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D10DCC433C7;
-	Fri,  1 Dec 2023 16:17:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701447426;
-	bh=1clXQHaKlN3+Iey4fwvTDjGR7w5qW4bBovJgyAH6bm0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DXOtzgxTZmqTX7UMTBKAELYx0R+uGIzx1B+2m8VO3+dC+h/phPJnHkvjZuHzYjrs0
-	 RA1ZG6+t7FLbFSgM648hNOOH313ZOvtkCkQoF2AsQBBwfYIasV3QECsUNrUaFgkBda
-	 ov6QgW4jCFO9P4m0vdcvg3eRPbrMkYTiSpp/xM6xH30feYpk4OneCB3d1eBJ2wUP4u
-	 nk5w3gjQ07fJriufkNUvdTnAh1WLcv9FAcR7HdRLuHhngaFOwTrFMycJ2M1IYAaRKb
-	 PXAKJ0dHhe011leboXXazfoD1N9l/EitARVA4/qPWNwkr9PESF4uUa60Qr0zIwdDvQ
-	 oBHkyZWd/C/Bw==
-Date: Fri, 1 Dec 2023 16:16:59 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Xu Yang <xu.yang_2@nxp.com>
-Cc: Frank Li <frank.li@nxp.com>, "will@kernel.org" <will@kernel.org>,
-	"mark.rutland@arm.com" <mark.rutland@arm.com>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"shawnguo@kernel.org" <shawnguo@kernel.org>,
-	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-	"kernel@pengutronix.de" <kernel@pengutronix.de>,
-	"festevam@gmail.com" <festevam@gmail.com>,
-	"irogers@google.com" <irogers@google.com>,
-	"namhyung@kernel.org" <namhyung@kernel.org>,
-	"acme@kernel.org" <acme@kernel.org>,
-	"john.g.garry@oracle.com" <john.g.garry@oracle.com>,
-	"james.clark@arm.com" <james.clark@arm.com>,
-	"mike.leach@linaro.org" <mike.leach@linaro.org>,
-	"leo.yan@linaro.org" <leo.yan@linaro.org>,
-	"peterz@infradead.org" <peterz@infradead.org>,
-	"mingo@redhat.com" <mingo@redhat.com>,
-	"alexander.shishkin@linux.intel.com" <alexander.shishkin@linux.intel.com>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-perf-users@vger.kernel.org" <linux-perf-users@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [EXT] Re: [PATCH 1/3] dt-bindings: perf: fsl-imx-ddr: Add i.MX95
- compatible
-Message-ID: <20231201-pointer-statue-f30a42b8102e@spud>
-References: <20231127073208.1055466-1-xu.yang_2@nxp.com>
- <20231127-whoever-magical-5a7cf2b142e1@spud>
- <DB7PR04MB51460A715C6870642B6D7BBE8C81A@DB7PR04MB5146.eurprd04.prod.outlook.com>
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3908F1BDD;
+	Fri,  1 Dec 2023 08:17:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=MIlmoJpSr6Vcy4UC9StocEZWKTbyTCPOWvNn2xIAcU8=; b=ghfi8mtKvcjM95EjlN11GFmSKQ
+	yMe7CJI0QjdMUayeTCJIoHoFq/M7WxtmhLQv58Gv1Wn/4g75F+ean2ydL3I0rjsyaRE7ISA0hu8xa
+	M64kwhzqkjD3FsdpgvqEIqZ6AuROMB44ABCqDZr4h/IoYM/S/TKoIFvJkDWMmsOHwjZI=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1r96Cm-001mF3-BS; Fri, 01 Dec 2023 17:17:28 +0100
+Date: Fri, 1 Dec 2023 17:17:28 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Gregory Clement <gregory.clement@bootlin.com>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: marvell: move MMP boards to common marvell
+ directory
+Message-ID: <9c50d09e-98a0-416f-b779-9cf39d1a94b5@lunn.ch>
+References: <20231201132306.60753-1-krzysztof.kozlowski@linaro.org>
+ <1e25e2f4-e4b9-4219-a9c2-cb6230a62549@lunn.ch>
+ <a44b7bb2-34ac-45ab-84c6-630d604f1bcf@linaro.org>
+ <5d511e31-8ff5-4c23-a65e-8660833a9799@lunn.ch>
+ <944c02f5-d0e6-4367-bb4d-b366054b3e4e@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="TkOZ/60oHOjywoPV"
-Content-Disposition: inline
-In-Reply-To: <DB7PR04MB51460A715C6870642B6D7BBE8C81A@DB7PR04MB5146.eurprd04.prod.outlook.com>
-
-
---TkOZ/60oHOjywoPV
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <944c02f5-d0e6-4367-bb4d-b366054b3e4e@linaro.org>
 
-On Fri, Dec 01, 2023 at 06:41:59AM +0000, Xu Yang wrote:
-> Hi Conor,
->=20
-> >=20
-> > On Mon, Nov 27, 2023 at 03:32:06PM +0800, Xu Yang wrote:
-> > > i.MX95 has a more precise counting capability than i.MX93. This will =
-add
-> > > a compatible for it.
-> >=20
-> > It is hard to tell from this comment, but I figure this "more precise
-> > capability" is not an option you can enable, but instead makes the
-> > programming model of this device different to that of the imx93?
->=20
-> Actually, imx95 is compatible with imx93 except AXI ID filter capability.
-> But for AXI ID filter, imx95 is using different registers and bits from
-> imx93 for filter configuration.
+On Fri, Dec 01, 2023 at 03:38:36PM +0100, Krzysztof Kozlowski wrote:
+> On 01/12/2023 15:34, Andrew Lunn wrote:
+> > On Fri, Dec 01, 2023 at 03:21:05PM +0100, Krzysztof Kozlowski wrote:
+> >> On 01/12/2023 14:51, Andrew Lunn wrote:
+> >>> On Fri, Dec 01, 2023 at 02:23:06PM +0100, Krzysztof Kozlowski wrote:
+> >>>> Marvell board bindings are spread over arm/marvell/ and arm/mrvl/
+> >>>> directories.  Move MMP board bindings from the latter to the former, to
+> >>>> keep all of them together.
+> >>>
+> >>> Hi Krzysztof
+> >>>
+> >>> Did you test get_maintainers.pl? MMP has a different maintainer to
+> >>> many of the other Marvell SoCs. We want emails going to the correct
+> >>> Maintainers, and ideally not spamming the others.
+> >>
+> >> The old binding was not referenced in MAINTAINERS, at least I could not
+> >> find it.
+> >> My change does not affect status quo - orphaned files.
+> >>
+> >> OTOH, some entries like Orion list specific files. Others like Marvell
+> >> list entire directory, which is their mistake in the first place.
+> >>
+> >> There is a mess in this approach, but the mess exists before my patch.
+> > 
+> > I think these moved files will now match:
+> > 
+> > ARM/Marvell Kirkwood and Armada 370, 375, 38x, 39x, XP, 3700, 7K/8K, CN9130 SOC support
+> > M:      Andrew Lunn <andrew@lunn.ch>
+> > M:      Gregory Clement <gregory.clement@bootlin.com>
+> > M:      Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
+> > L:      linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
+> > S:      Maintained
+> > T:      git git://git.kernel.org/pub/scm/linux/kernel/git/gclement/mvebu.git
+> > F:      Documentation/devicetree/bindings/arm/marvell/
+> > 
+> > But these files are not Gregory or my problem.
+> 
+> Yeah, that's what I meant by listing entire directory.
+> 
+> > 
+> > If they were orphaned before, i would prefer they are either orphaned
+> > after the move, or associated to the correct maintainer. Being
+> > associated to the wrong maintainers is worse than having no
+> > maintainers at all.
+> 
+> I can add this to existing maintainers entry. Which one? I see only two
+> ARM/Marvell.
 
-This sounds like it conflicts with...
+MMP SUPPORT
+R:      Lubomir Rintel <lkundrak@v3.sk>
+L:      linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
+S:      Odd Fixes
+T:      git git://git.kernel.org/pub/scm/linux/kernel/git/lkundrak/linux-mmp.git
+F:      arch/arm/boot/dts/marvell/mmp*
+F:      arch/arm/mach-mmp/
+F:      include/linux/soc/mmp/
 
-> To distinguish them, I need use different
-> compatible because programming model cannot recognize which device is
-> running.
->=20
-> compatible =3D "fsl,imx95-ddr-pmu";
+But you also need to modify the ARM/Marvell Kirkwood and ... so that
+it excludes these MMP files.
 
-> compatible =3D "fsl,imx95-ddr-pmu", "fsl,imx93-ddr-pmu";
-
-=2E..this. If drivers for the imx93 need changes to work on the imx95,
-then `compatible =3D "fsl,imx95-ddr-pmu", "fsl,imx93-ddr-pmu";` cannot be
-used. If they will work, with only the new imx95 features being
-non-functional, then you can use it.
-
-> Both above compatible is okay for me. Therefore, "fsl,imx95-ddr-pmu" is n=
-eeded.
-
---TkOZ/60oHOjywoPV
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZWoG+wAKCRB4tDGHoIJi
-0vEhAP4wzNFvpXcJTLzerrD4dUi4x/ljKAP60wZOIvaUeVfIggEAmh++tRu2JE6H
-W9PxEUNaXYdEI2l4eUhUFMLEGSaNvws=
-=61zC
------END PGP SIGNATURE-----
-
---TkOZ/60oHOjywoPV--
+   Andrew
 
