@@ -1,181 +1,190 @@
-Return-Path: <devicetree+bounces-20869-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20870-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7187C8011DD
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 18:39:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CAF098011F9
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 18:45:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E9D25B20FC1
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 17:39:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 87ECA2813C0
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 17:45:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 484334E614;
-	Fri,  1 Dec 2023 17:39:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 148824E62A;
+	Fri,  1 Dec 2023 17:45:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=debian.org header.i=@debian.org header.b="Fb+dWlkR"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="ACT9a4GH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from stravinsky.debian.org (stravinsky.debian.org [IPv6:2001:41b8:202:deb::311:108])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEB75AC;
-	Fri,  1 Dec 2023 09:39:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=debian.org;
-	s=smtpauto.stravinsky; h=X-Debian-User:In-Reply-To:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=4Wa8j3r7oEbKExuEnkuTJYGC17oL27mFCTw6RoYzmI0=; b=Fb+dWlkRVIIVFybolBlC5F7O0P
-	3YTdexrMgwY7EA5B2D69Vj4XffOB5WGwwUKAfG+Lc27UeKVpUqRbUZul3jzqnRCZdVcF85uhhA3NB
-	+OHy7d3HwXC8gBzJMBOEx047vQ9/FbRFqO0Ztlxd/ZxR/ntaHIoHeaTFle5vG8LVXQPjVWLwieGS7
-	3W6h+c7wVbP0M4qmtJxLeUS4hOj0tsFUIZgBlAUHk87j+jKp2bjYhSkii713VDnGZCLhgKerYLsbd
-	F66cdmL6EdvxnKPDFtaagCGhx4a+ysa0fFzicOSo0Xqgryvb792PEPRgFvepWt2y+1smpIiUGkgyR
-	V4W4LPww==;
-Received: from authenticated user
-	by stravinsky.debian.org with esmtpsa (TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
-	(Exim 4.94.2)
-	(envelope-from <kibi@debian.org>)
-	id 1r97TS-00Dtb8-6G; Fri, 01 Dec 2023 17:38:47 +0000
-Date: Fri, 1 Dec 2023 18:38:43 +0100
-From: Cyril Brulebois <kibi@debian.org>
-To: Stefan Wahren <wahrenst@gmx.net>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Mathias Nyman <mathias.nyman@intel.com>,
-	bcm-kernel-feedback-list@broadcom.com, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	Jim Quinlan <james.quinlan@broadcom.com>
-Subject: Re: [PATCH V2 0/2] ARM: dts: bcm2711: Add generic xHCI
-Message-ID: <20231201173843.isjlp7zphdvvyvbt@mraw.org>
-Organization: Debian
-References: <20231130154229.22334-1-wahrenst@gmx.net>
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0B21D3
+	for <devicetree@vger.kernel.org>; Fri,  1 Dec 2023 09:44:58 -0800 (PST)
+Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2c9c82a976bso30386961fa.3
+        for <devicetree@vger.kernel.org>; Fri, 01 Dec 2023 09:44:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1701452697; x=1702057497; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jt6YTmgmj7iHRCIb8aRUB98S7dTyKCu/pLm3UrF1Jr4=;
+        b=ACT9a4GHRYu1AHXugYO/YLKi3cSD6nsyIe4qIjpxkZKDfmU2LLyLJvkXkDJ9UhudoP
+         +OE31pxmarbiZjV/LUDubQ7PR+zVsRp4H1coAZ9fFAdZhip96moTUMSJAbhPWBWIWZi0
+         Za+ws1D+inXIhiCG1aMHisUe16TbeFdsvnyJzAiHnioXemP8exNOeOaERg6ZHbw8z8rT
+         UJCJGCfngeAZH6ApoiYQUeCFmGneUb9H+OqT6EoOUqn0vkCKgsnONWHpdZ2fbDkJ57V0
+         FGtbGwQd81XzAXCXLPoxJ7My7k7UwB33A8lZvBLLoj7sgkkW9e1mFnM//s0653qh79Gg
+         3UZg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701452697; x=1702057497;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=jt6YTmgmj7iHRCIb8aRUB98S7dTyKCu/pLm3UrF1Jr4=;
+        b=do+1dnJP41v+I7NNdtwxQ8kwisAgD+aT4KDZ/MFoGyHM1yCVDFMrTVkzvoDeW1liHc
+         7ilbUPfMxdBYcHpXp4Pv4c7zUPQVIGT5zgVj16zU/5jvsJTkhlZOgFNTO+uWNBB+NOWL
+         MMAQOhuc/mO8hjAckpSj9Ds6A+gbaIq2efop9AYtFB0EZ9VBeCxuwI+R7QnjmEuDODez
+         Ecwj/FmDvC06dt723Tg2rXWk4/CyCICqRpJY9KZwPWCqzpsbdr7CZtK4tTNlB6Zrq9WW
+         H3o2efM4bNrcFTaiVTfedMJNPCeBJweu6gpya1m/EEqo6Tpz0hc0vvhby3OH7v7X4VNN
+         CHsA==
+X-Gm-Message-State: AOJu0YwqkVZ0wJd75o2p4dnNm4HbG0KQ9fpSQjAwTwjh8MqvqKvpfZLW
+	IWEnC14Pm3p0S+qGcMOgqYAD/cz5Wn2sVNzCBDC3RQ==
+X-Google-Smtp-Source: AGHT+IGAnn8shoJyJhphhMJF7rJzMphyv7oA+NPuxZS/0Ve6G4mWdVjon60SyeGQGgrMs9ZL043Zzi0e2H96pRaFoKk=
+X-Received: by 2002:a2e:9541:0:b0:2c9:cf5d:e156 with SMTP id
+ t1-20020a2e9541000000b002c9cf5de156mr1089131ljh.36.1701452696763; Fri, 01 Dec
+ 2023 09:44:56 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="2t6bpiev3kckksbh"
-Content-Disposition: inline
-In-Reply-To: <20231130154229.22334-1-wahrenst@gmx.net>
-X-Debian-User: kibi
-
-
---2t6bpiev3kckksbh
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20231121-dev-iio-backend-v1-0-6a3d542eba35@analog.com>
+ <20231121-dev-iio-backend-v1-10-6a3d542eba35@analog.com> <CAMknhBFbLju8UQJ7Uz85kHKrbK4mzt=wTRdnp40+PwWCJa5dsA@mail.gmail.com>
+ <026fa80d29054750937cd077b7f4f689de4e18f2.camel@gmail.com>
+In-Reply-To: <026fa80d29054750937cd077b7f4f689de4e18f2.camel@gmail.com>
+From: David Lechner <dlechner@baylibre.com>
+Date: Fri, 1 Dec 2023 11:44:45 -0600
+Message-ID: <CAMknhBGKinZB==QHLazZ9ZkfALyj2N=rVfZfsOk22p6X9SZSrQ@mail.gmail.com>
+Subject: Re: [PATCH 10/12] iio: adc: ad9467: convert to backend framework
+To: =?UTF-8?B?TnVubyBTw6E=?= <noname.nuno@gmail.com>
+Cc: nuno.sa@analog.com, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-iio@vger.kernel.org, 
+	Olivier MOYSAN <olivier.moysan@foss.st.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>, 
+	Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Stefan,
+On Fri, Dec 1, 2023 at 3:08=E2=80=AFAM Nuno S=C3=A1 <noname.nuno@gmail.com>=
+ wrote:
+>
+> On Thu, 2023-11-30 at 17:30 -0600, David Lechner wrote:
+> > On Tue, Nov 21, 2023 at 4:17=E2=80=AFAM Nuno Sa via B4 Relay
+> > <devnull+nuno.sa.analog.com@kernel.org> wrote:
+> > >
+> > > From: Nuno Sa <nuno.sa@analog.com>
+> > >
+> > > Convert the driver to use the new IIO backend framework. The device
+> > > functionality is expected to be the same (meaning no added or removed
+> > > features).
+> >
+> > Missing a devicetree bindings patch before this one?
+> >
+> > >
+> > > Also note this patch effectively breaks ABI and that's needed so we c=
+an
+> > > properly support this device and add needed features making use of th=
+e
+> > > new IIO framework.
+> >
+> > Can you be more specific about what is actually breaking?
+> >
+> > >
+> > > Signed-off-by: Nuno Sa <nuno.sa@analog.com>
+> > > ---
+> > >  drivers/iio/adc/Kconfig  |   2 +-
+> > >  drivers/iio/adc/ad9467.c | 256 +++++++++++++++++++++++++++++--------=
+----------
+> > >  2 files changed, 157 insertions(+), 101 deletions(-)
+> > >
+> > > diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
+> > > index 1e2b7a2c67c6..af56df63beff 100644
+> > > --- a/drivers/iio/adc/Kconfig
+> > > +++ b/drivers/iio/adc/Kconfig
+> > > @@ -275,7 +275,7 @@ config AD799X
+> > >  config AD9467
+> > >         tristate "Analog Devices AD9467 High Speed ADC driver"
+> > >         depends on SPI
+> > > -       depends on ADI_AXI_ADC
+> > > +       select IIO_BACKEND
+> > >         help
+> > >           Say yes here to build support for Analog Devices:
+> > >           * AD9467 16-Bit, 200 MSPS/250 MSPS Analog-to-Digital Conver=
+ter
+> > > diff --git a/drivers/iio/adc/ad9467.c b/drivers/iio/adc/ad9467.c
+> > > index 5db5690ccee8..8b0402e73ace 100644
+> > > --- a/drivers/iio/adc/ad9467.c
+> > > +++ b/drivers/iio/adc/ad9467.c
+> >
+> > <snip>
+> >
+> > > +static int ad9467_buffer_get(struct iio_dev *indio_dev)
+> >
+> > perhaps a more descriptive name: ad9467_buffer_setup_optional?
+> >
+>
+> Hmm, no strong feeling. So yeah, can do as you suggest. Even though, now =
+that I'm
+> thinking, I'm not so sure if this is just some legacy thing we had in ADI=
+ tree. I
+> wonder if it actually makes sense for a device like with no buffering sup=
+port?!
+>
+> > > +{
+> > > +       struct device *dev =3D indio_dev->dev.parent;
+> > > +       const char *dma_name;
+> > > +
+> > > +       if (!device_property_present(dev, "dmas"))
+> > > +               return 0;
+> > > +
+> > > +       if (device_property_read_string(dev, "dma-names", &dma_name))
+> > > +               dma_name =3D "rx";
+> > > +
+> > > +       return devm_iio_dmaengine_buffer_setup(dev, indio_dev, dma_na=
+me);
+> >
+> > The device tree bindings for "adi,ad9467" don't include dma properties
+> > (nor should they). Perhaps the DMA lookup should be a callback to the
+> > backend? Or something similar to the SPI Engine offload that we are
+> > working on?
+> >
+>
+> Oh yes, I need to update the bindings. In the link I sent you we can see =
+my thoughts
+> on this. In theory, hardwarewise, it would actually make sense for the DM=
+A to be on
+> the backend device because that's where the connection is in HW. However,=
+ since we
+> want to have the IIO interface in the frontend, it would be hard to do th=
+at without
+> hacking devm_iio_dmaengine_buffer_setup(). I mean, lifetime wise it would=
+ be far from
+> wise to have the DMA buffer associated to a completely different device t=
+han the IIO
+> parent device. I mean, one way could just be export iio_dmaengine_buffer_=
+free() and
+> iio_dmaengine_buffer_alloc() so we can actually control the lifetime of t=
+he buffer
+> from the frontend device. If Jonathan is fine with this, I'm on board for=
+ it....
+>
+> - Nuno S=C3=A1
+> >
+>
 
-Stefan Wahren <wahrenst@gmx.net> (2023-11-30):
-> In contrast to the Raspberry Pi 4, the Compute Module 4 or the IO board
-> does not have a VL805 USB 3.0 host controller, which is connected via
-> PCIe. Instead, the BCM2711 on the Compute Module provides the built-in
-> xHCI.
->=20
-> Changes in V2:
-> - adjust xHCI compatible as suggested by Justin & Florian
-> - keep xHCI disabled in order to let the bootloader decide which
->   USB block should be enabled, which result in a drop of patch 3
->=20
-> Stefan Wahren (2):
->   dt-bindings: usb: xhci: Add optional power-domains
->   ARM: dts: bcm2711: Add generic xHCI
->=20
->  .../devicetree/bindings/usb/generic-xhci.yaml      |  3 +++
->  arch/arm/boot/dts/broadcom/bcm2711-rpi.dtsi        |  5 +++++
->  arch/arm/boot/dts/broadcom/bcm2711.dtsi            | 14 ++++++++++++++
->  3 files changed, 22 insertions(+)
+I was planning on exporting iio_dmaengine_buffer_alloc() [1] for SPI
+Engine offload support, so I hope that is the right way to go. ;-)
 
-Thanks, tests look much better this time!
-
-Tested-by: Cyril Brulebois <cyril@debamax.com>
-
-
-With CM4 Lite on CM4 IO Board, with a Samsung flash drive and a USB
-keyboard connected to onboard USB ports, I'm getting the following
-results (still with a Debian 12 arm64 userspace):
-
-1. With unpatched kernel and unmodified config.txt:
-     Both USB devices are working fine.
-
-2. With unpatched kernel and otg_mode=3D1 in config.txt:
-     Both USB devices disappear. lsmod reports dwc2 is no longer loaded,
-     along with all USB and SCSI related modules.
-
-3. With patched kernel and unmodified config.txt:
-     Both USB devices are still working fine. lsmod confirms dwc2 is
-     still used.
-
-4. With patched kernel and otg_mode=3D1 in config.txt:
-     Both USB devices are still working fine. lsmod reports dwc2 is
-     going away, and other USB modules come up: usbhid, xhci_hcd,
-     xhci_plat_hcd, along with others like hid, hid_generic, joydev.=20
-
-     Reading from the Samsung flash drive gives a little boost, from
-     37.5 MB/s to 38.7 MB/s. Writing to it gives a little boost, from
-     16.5 MB/s to 17.4 MB/s. Not as spectacular as Florian's results but
-     still not a regression! :)
-
-I tested that initially with a CM4 Lite Rev 1.0 (which was breaking case
-number 3 with the v1 of this patch series), then extended testing to CM4
-8/32 Rev 1.0 and CM4 4/32 Rev 1.1, which confirmed those results.
-
-
-Adding a PCIe-to-USB expansion board to see if this has side effects on
-other USB things, that still works fine in cases 3 and 4 (so without or
-with otg_mode=3D1), having a Samsung flash drive on the PCIe-to-USB board
-and another one the onboard USB port. At this point, I only verified the
-block devices were reported by lsblk though (no actual transfer tests).
-
-Of course that relies on also applying Jim Quinlan's PCIe patch series
-v8 to make sure PCIe isn't an issue:
-  https://lore.kernel.org/all/20231126201946.ffm3bhg5du2xgztv@mraw.org/
-
-I've confirmed the presence of both Samsung flash drives with three
-different cards (adding CONFIG_USB_XHCI_PCI_RENESAS=3Dm to the config
-shared in the v1 thread, and adding /lib/firmware/renesas_usb_fw.mem):
- - SupaHub PCE6U1C-R02, VER 006
- - SupaHub PCE6U1C-R02, VER 006S
- - Waveshare PCIe TO USB 3.2 Gen1 (B)
-   https://www.waveshare.com/wiki/PCIe_TO_USB_3.2_Gen1_(B)
-
-
-Finally, I've deployed the patched kernel (still this v2 plus Jim's v8)
-in a CM4-based product that uses both onboard USB ports and PCIe-to-USB
-ports, and all USB components still work fine (3 RF adapters, 1 modem).
-That's the case with an unmodified config.txt, but also when adding
-otg_mode=3D1:
- - xhci_pci and xhci_pci_renesas were already loaded;
- - xhci_plat_hcd appears in OTG mode, while dwc2 goes away.
-
-
-Cheers,
---=20
-Cyril Brulebois (kibi@debian.org)            <https://debamax.com/>
-D-I release manager -- Release team member -- Freelance Consultant
-
---2t6bpiev3kckksbh
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEtg6/KYRFPHDXTPR4/5FK8MKzVSAFAmVqGh0ACgkQ/5FK8MKz
-VSDCQBAAlJhWu697rQThaKLv9VPjrfrHclcBoraECyQiXlCCW0H4b3lAKyE9qBRi
-XJjyRtxDrVvEsL2AqsWzhwKTm6Vjl1Lghmp+LfAN2IzWScTOINnaV8V5H3/B/02U
-eMGPg9XvfWqfs55ubQxvk2sM3x8wn5bOts5YGCWfpI9dIJQjvk+o2E9hxanKGpSp
-+YUyF9SBvU57mvZjJLbzvGwOwcH72tiuwPFm7/dUniikIrBUNv+FvezE4ovTRJ5A
-/mV043WinWOYl/DF34eLcT4xByiQhj+U6OYSUhc15MnbROOsAvfR/eZXdFB2fgPg
-qAsDH9TqEOFpSoyEkMjZ4d2PNmF7yCEoFAasqcBh+XNk8bOl4SVkC+9E7TVfShhT
-9tR2UlHiXLVm7vqPjvh1ozP9wfs4axuNrXAL6nw26fd8uc54Gv3hXbPWw7yAOR8E
-EgKXSL8mYKnX0SUDVxOo78G4/2m/3YNtRbYlI6HzjjwAEIBxPBEthjPX+tcxea0Z
-mkhGzy1axMOSOiOshU6W3MH89JGnPKw5C3A+hvJRA6s90grtHrab1bnzk/eLVUZf
-u9ah4Mo5d/xzdTQpCJAYuiT7fcoFiEcMsjwCYkFhQv36Rmkh66vSRap6otxSXbIW
-BNQz3XRzi6KsIeR3JerFz+nrim9HpGiM/iADrjyHOI0XwLUxXPQ=
-=68RH
------END PGP SIGNATURE-----
-
---2t6bpiev3kckksbh--
+[1]: https://github.com/analogdevicesinc/linux/pull/2341/commits/71048ff83a=
+63e9d0a5ddb9ffa331871edd6bd2a5
 
