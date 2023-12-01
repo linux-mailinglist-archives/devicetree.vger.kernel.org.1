@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-20770-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20771-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86DF1800D01
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 15:18:24 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D658800D10
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 15:21:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B833A1C20924
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 14:18:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8E9C21C20968
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 14:21:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A775C3D973;
-	Fri,  1 Dec 2023 14:18:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21AC23D973;
+	Fri,  1 Dec 2023 14:21:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vnJp8g6y"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="e3bZx2wh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D615319E
-	for <devicetree@vger.kernel.org>; Fri,  1 Dec 2023 06:18:17 -0800 (PST)
-Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-40b4744d603so21609165e9.2
-        for <devicetree@vger.kernel.org>; Fri, 01 Dec 2023 06:18:17 -0800 (PST)
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B970210F0
+	for <devicetree@vger.kernel.org>; Fri,  1 Dec 2023 06:21:08 -0800 (PST)
+Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-40b472f98b1so20036695e9.3
+        for <devicetree@vger.kernel.org>; Fri, 01 Dec 2023 06:21:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701440296; x=1702045096; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701440467; x=1702045267; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=FS+WjqQpYUDQECaBhbz1tAeOxXG5jK78RjkjXlhAMRk=;
-        b=vnJp8g6y3nuBY9JJCvan7t0U2B7tG1BoDHwAr1bCxaOUH9+P8lRFJFVXllZtuuAlsq
-         l5Fbqs4vWb++1eCuNRHxalqE2O152wGECzyTZQc1NbnMm9dIaWYvOI1hJ94XD9LxfyDE
-         lv+d9V1Qx2EflOPT2q69aopTXFvK5Li5RD2zn3xITG+9u3mcBH7HwaOxuJz2MxJlzGnz
-         bpykXUaPtwMXR4Sz7g/JtvXY/zvjZs4ON0OukPLif4Y7lSNCtKhWrGIjQs0JqYJNxjMp
-         F/HMqazBNyqaxyyStV/oUJ5MgyS0Qt3wiSVWbBw0GBbay/GVluESg1p79IlKmjg9YCub
-         DjvQ==
+        bh=9SHrQzoDukHuHCFDqbm2JYoczU5EOoJfo9aw9/NPj8E=;
+        b=e3bZx2whNIi1i1Sh0z9aAxcBEw77S/hKukqVt2tz5LNX5VUwY5kFha+t5McE/vWnF4
+         PLEkybeERb6exhX1pXDz2W0O/nDmYAf5gqJ89lY5yTwtZstPnKxOrHpkRDNsDxOO9V5D
+         +t1APqE8KNb61seSaTCDjfSapGSucB0rC+gHBG2JjcbV34fJuIyv1sumdfwPcpoYqne5
+         8+2k8St6Y17zgvgTImd4XieJrFW0f1JqUd4UNq0KmXAouiXzCIajfodW9IzrBfVRkO8V
+         ZahEpEXq8SdZhkwRCIfMLAfbdgQsGnKeyyoIWS7JZGbkpLn8wS4US8IXM1dThIR+bbtr
+         0QuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701440296; x=1702045096;
+        d=1e100.net; s=20230601; t=1701440467; x=1702045267;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FS+WjqQpYUDQECaBhbz1tAeOxXG5jK78RjkjXlhAMRk=;
-        b=NrSmH0BasunNvjtMN/j0ip9fhX8NqAKaWZSUgaNib6O2yyBBsWx8XitiMm9sWhyQka
-         nxsM47cZj7pSCNJyLMvt50ZUACJrdFKDzlZ4WX3b8vVPY2kWG+Egwom1YtZMUriwEZpj
-         Uo6/xQY35VGolgj5zf/HdbtD6xeQEAF9MCoBwklVd/yjuqh+HPUQ8a1VFtFlrYSEM8m/
-         mImofXZ/fGSpiMaGpFB59bLFY04j8iUH93z5r6q39Dqq46i/gdOkbtvfeOr4rhEbRRbi
-         woe0itKAaLItAcepHgbDLi6q4BNh8PCTDbP3W+0IJaGD8uMF7bXm3gTFPPtaVD3/YFi3
-         m0SA==
-X-Gm-Message-State: AOJu0YzEa/Myx85Q3g72QNncti+bb8d+9xjWpvGpqkWCR8yO/vLMXzc1
-	3QZtQ0KlZ50mTVl+3cI+y3RHVQ==
-X-Google-Smtp-Source: AGHT+IH4G4jvMoTfsYemUsqfpRa7LrCc+tz4U3Kcd+4VZVVP8T79d20autpaZeSOlzbLhu5s/esa9g==
-X-Received: by 2002:a05:600c:3309:b0:40b:5f03:b3ff with SMTP id q9-20020a05600c330900b0040b5f03b3ffmr179162wmp.289.1701440296256;
-        Fri, 01 Dec 2023 06:18:16 -0800 (PST)
+        bh=9SHrQzoDukHuHCFDqbm2JYoczU5EOoJfo9aw9/NPj8E=;
+        b=PjymK1Lj670kkIvNXUlX8KKWytzN5VNuA64GAgFMd7G63HRZ704eJviTeDmYjneyGt
+         INyQkVnAgNN4sl94crtybT3xQvw0SYknSbKTodmFeE57LrJMZ82I4BPucCOcEtfWbeEm
+         oyOUryUei5NulVz0irGGIB+fOvnlKT+xQ3xk/P36sI9UQkKEY+9h90MeFUaQePHAML3E
+         d62ZBZDrL7tm4jxs2pAoUsV7vwAUGzkWgQFdMZb5RdjtY35C1DXWmV2ECNL7mzxSaQEm
+         3rWFDtY4yYEYZD6K0bHNFK6xEl88MtY0Nk20eJRtGkyGeglOMaw2m8x6Gh7zIcUZ+pH4
+         MRZw==
+X-Gm-Message-State: AOJu0YzUzw6Kf9rFisa1zlorjAuQNUVEqyAJ4dzxEXL9K4RPh0IS5Lqg
+	8f2HntLxo2wZOkqQe44+YxPNwQ==
+X-Google-Smtp-Source: AGHT+IHIICkHJeoMal0DnMr8TzVGKdkoLdqE45DyONJt5VPDnRsnyKH25NUL/W3i/CNXA4xwgZ/0uA==
+X-Received: by 2002:a05:6000:12ca:b0:333:2fd2:6f59 with SMTP id l10-20020a05600012ca00b003332fd26f59mr987524wrx.99.1701440467229;
+        Fri, 01 Dec 2023 06:21:07 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.109])
-        by smtp.gmail.com with ESMTPSA id g18-20020a05600c311200b0040b42df75fcsm5551309wmo.39.2023.12.01.06.18.14
+        by smtp.gmail.com with ESMTPSA id j7-20020adff007000000b00332f02123d2sm4269106wro.54.2023.12.01.06.21.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 01 Dec 2023 06:18:15 -0800 (PST)
-Message-ID: <ad9a107c-4545-4e9c-8f98-53c3ee0ab567@linaro.org>
-Date: Fri, 1 Dec 2023 15:18:14 +0100
+        Fri, 01 Dec 2023 06:21:06 -0800 (PST)
+Message-ID: <a44b7bb2-34ac-45ab-84c6-630d604f1bcf@linaro.org>
+Date: Fri, 1 Dec 2023 15:21:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,16 +62,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: gpio: rockchip: add a pattern for gpio hogs
+Subject: Re: [PATCH] dt-bindings: marvell: move MMP boards to common marvell
+ directory
 Content-Language: en-US
-To: Heiko Stuebner <heiko@sntech.de>, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc: linus.walleij@linaro.org, brgl@bgdev.pl, andy@kernel.org,
- linux-gpio@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- quentin.schulz@theobroma-systems.com,
- Heiko Stuebner <heiko.stuebner@cherry.de>
-References: <20231201140840.323762-1-heiko@sntech.de>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Gregory Clement <gregory.clement@bootlin.com>,
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20231201132306.60753-1-krzysztof.kozlowski@linaro.org>
+ <1e25e2f4-e4b9-4219-a9c2-cb6230a62549@lunn.ch>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -117,19 +120,30 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231201140840.323762-1-heiko@sntech.de>
+In-Reply-To: <1e25e2f4-e4b9-4219-a9c2-cb6230a62549@lunn.ch>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 01/12/2023 15:08, Heiko Stuebner wrote:
-> From: Heiko Stuebner <heiko.stuebner@cherry.de>
+On 01/12/2023 14:51, Andrew Lunn wrote:
+> On Fri, Dec 01, 2023 at 02:23:06PM +0100, Krzysztof Kozlowski wrote:
+>> Marvell board bindings are spread over arm/marvell/ and arm/mrvl/
+>> directories.  Move MMP board bindings from the latter to the former, to
+>> keep all of them together.
 > 
-> Allow validating gpio-hogs defined inside the gpio controller node.
+> Hi Krzysztof
 > 
-> Signed-off-by: Heiko Stuebner <heiko.stuebner@cherry.de>
-> ---
+> Did you test get_maintainers.pl? MMP has a different maintainer to
+> many of the other Marvell SoCs. We want emails going to the correct
+> Maintainers, and ideally not spamming the others.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+The old binding was not referenced in MAINTAINERS, at least I could not
+find it.
+My change does not affect status quo - orphaned files.
+
+OTOH, some entries like Orion list specific files. Others like Marvell
+list entire directory, which is their mistake in the first place.
+
+There is a mess in this approach, but the mess exists before my patch.
 
 Best regards,
 Krzysztof
