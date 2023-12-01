@@ -1,61 +1,60 @@
-Return-Path: <devicetree+bounces-20594-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20595-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2457680051F
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 09:02:01 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DFC3800520
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 09:03:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8AAF5B210D5
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 08:01:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D82FA28163E
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 08:03:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7250216423;
-	Fri,  1 Dec 2023 08:01:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CAAA15E92;
+	Fri,  1 Dec 2023 08:03:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BVJNzLX8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KclUSFWm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54BDF170B
-	for <devicetree@vger.kernel.org>; Fri,  1 Dec 2023 00:01:49 -0800 (PST)
-Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-50bbef0e5d5so2520946e87.1
-        for <devicetree@vger.kernel.org>; Fri, 01 Dec 2023 00:01:49 -0800 (PST)
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4917310F8
+	for <devicetree@vger.kernel.org>; Fri,  1 Dec 2023 00:03:13 -0800 (PST)
+Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-50bce40bc4aso1990612e87.2
+        for <devicetree@vger.kernel.org>; Fri, 01 Dec 2023 00:03:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701417707; x=1702022507; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Te2RXqY2Sco0rI+xCJNEVLf7vxOYu7csLewf6HLYNqE=;
-        b=BVJNzLX8YbbJkPTIbAYCLhtAiwsnpdSEhfyEKW0YgyWU5/QLjeQ+g50+T13OQ/5I4a
-         ePrOcg+NpADH24OkkWG6oIQHznpvpS2CAVmfNB95052v+LILa5QPGdJEh6eA9UZ9ihHd
-         5L3HwaqME2MFCq4MhaqFjgVlwCj+8Gr+4a7XSJyB/q6TPTEgdVJmD5AhaRXwN1es8Tpa
-         uklhmAWuQZxrlEKidAJ8CNBK2I47Dexa01nyueaCnAY3Px5BZFZdOFlm9HL1D4j2My8Y
-         2UBezjNfVBXt0bqawAaBR8MkQOR8ORhtChEcsSLg7iTbA0MQAIXl4dxXpS67EI/qTJHG
-         S/IA==
+        d=linaro.org; s=google; t=1701417791; x=1702022591; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ponRrg7TizGLB9l+GsvRKwNCtFphHDbSfkIhNOwyzeY=;
+        b=KclUSFWmAmOSnW76TUC6RnBOXZ/CXeJsct/omW3w6YqA9kKZJieH1FyKCqUIto7isN
+         G3Nm5RuXlVc8Q7urIGe1LdJqE6TIX6yQFIilQTZCCLb4p13YFR+Y5vFO3pVwjdYCNkcg
+         ZuUrTvmcmjaPtncr0Tp4cF8bU/o9BgvqaH1hy/J0peYOqHd41N/YhwNGHVFVArwDGZpp
+         MAGt/i4+VLAvNNYwsp1a42GgyToG5WmmCyfxSxhRWow6KerteSmpNC22uo3Ou0WxqsWO
+         FEtBG+HeMvZp5/mx0ZYckheWKyxXxRzinie8eojqltCpBsKtThfujTgGdqVNa3tbl169
+         g4qw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701417707; x=1702022507;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Te2RXqY2Sco0rI+xCJNEVLf7vxOYu7csLewf6HLYNqE=;
-        b=M6KCu/Wg2diRnvgkFISky+psd8kMDtmRW6JO2aeNTGhocDH63ahb4vk8/WjEVdiTyX
-         f5nTC8JPEWtmZMuUT7xoss+cKu2awMwBe2k3UC8YDXdrdTKJ4tmW1hnnPofWEUmmUAcI
-         l7lyQ8CiYENumPiSClhobgv5xz6knW8QW4D1aobWj9k33/b/xCPlzE7rg7FTptNhyLiV
-         oWk/u6QjG6uoHa0aeKBzebWlyn+oxJbuBx75q3CY/ZyxBVcm3V7YJmEYhpy7HogRr6y8
-         qKOJrAmW607M+8te1piJmSflLxum+9XqQfhJ3k+s5+Wlq5vNrDwon2yP/X6q2A1h91RR
-         mktg==
-X-Gm-Message-State: AOJu0Yx/yq8suft4PNeO/ZAAquFUIzCTkbnRRx3TF0UKH8KZiqWIpeH8
-	vlY7QD4qNtIfKc0yRNH9LnhzFw==
-X-Google-Smtp-Source: AGHT+IFHVT9rMveJ1aE+qOP/GH+THy6Sk03zaAOpJCTg7MLoCM4iYct2wqaS1eqLgWG3OaZgsKRh2w==
-X-Received: by 2002:a05:6512:3d18:b0:50b:bc9a:b8b with SMTP id d24-20020a0565123d1800b0050bbc9a0b8bmr611235lfv.28.1701417707386;
-        Fri, 01 Dec 2023 00:01:47 -0800 (PST)
+        d=1e100.net; s=20230601; t=1701417791; x=1702022591;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ponRrg7TizGLB9l+GsvRKwNCtFphHDbSfkIhNOwyzeY=;
+        b=ImP3qcFHOGK5yzYvSUwyCr3bGzM7r0H7YGHHflRhxEcbre8q75HBR+bCR9Jddv+3gE
+         t0xu3h/5Kg6NejDqzY8jzZLE5QnNg0dnKTvjC25ntk0KQJ/1+abWh6TvUrZtwCZhxfZu
+         VpxDEGmCAetKZ1RaitNg5++KEPcRozsAQs8sDZXZzcTAdiuvnQOHQ+fLY+GCyDcNdNUh
+         LMDK/mYNwAtUJ9+Df9Uw3Q4TjFpVMnwiY+j6/eEV9bHNLGhYuDQu6AazkeUyuybItz4F
+         FVXFSZ0guhFc3GRy7fkPWdktVIIwFKJ9v92wiBcxR2DqNl6N4UgDtEmzxegTm7osKuAQ
+         QbuA==
+X-Gm-Message-State: AOJu0YybAs+d8WwYkpxSnTCLqD6cgBF0foBIMViId4EyOXv90rq+XQT1
+	T8Hg+0W2t4GI+iGIXHVSb/m+xQ==
+X-Google-Smtp-Source: AGHT+IHliUm93Ad0LW8i7zaPsiYQdEunXgHDrktGw58FXlDj4H1fGDnGue5fQsTW7Eqp9lAlkp00Vg==
+X-Received: by 2002:a05:6512:1596:b0:50b:d764:804c with SMTP id bp22-20020a056512159600b0050bd764804cmr611926lfb.127.1701417791532;
+        Fri, 01 Dec 2023 00:03:11 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.109])
-        by smtp.gmail.com with ESMTPSA id f15-20020a05600c4e8f00b0040b3632e993sm8204509wmq.46.2023.12.01.00.01.44
+        by smtp.gmail.com with ESMTPSA id f15-20020a05600c4e8f00b0040b3632e993sm8204509wmq.46.2023.12.01.00.03.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 01 Dec 2023 00:01:46 -0800 (PST)
-Message-ID: <166d307e-7d1b-48b5-90db-9b6df01d87c2@linaro.org>
-Date: Fri, 1 Dec 2023 09:01:43 +0100
+        Fri, 01 Dec 2023 00:03:10 -0800 (PST)
+Message-ID: <7b9a2f1a-59d6-454c-95ed-6cb920751551@linaro.org>
+Date: Fri, 1 Dec 2023 09:03:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,26 +62,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] dt-bindings: phy: qcom,qmp: Add PCIe
- qcom,refclk-always-on property
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- quic_vbadigan@quicinc.com, quic_ramkri@quicinc.com,
- quic_nitegupt@quicinc.com, quic_skananth@quicinc.com,
- quic_vpernami@quicinc.com, quic_parass@quicinc.com
-References: <20231127-refclk_always_on-v3-0-26d969fa8f1d@quicinc.com>
- <20231127-refclk_always_on-v3-1-26d969fa8f1d@quicinc.com>
- <78815f1b-7390-40de-8afd-ac71806f4051@linaro.org>
- <24fae40a-453b-b14c-923f-88758a246aa7@quicinc.com>
- <20231201060716.GJ4009@thinkpad>
+Subject: Re: [PATCH] dt-bindings: mfd: cros-ec: Allow interrupts-extended
+ property
 Content-Language: en-US
+To: Chen-Yu Tsai <wenst@chromium.org>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Benson Leung <bleung@chromium.org>,
+ Guenter Roeck <groeck@chromium.org>, devicetree@vger.kernel.org,
+ chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org
+References: <20231130083333.932862-1-wenst@chromium.org>
+ <2288442b-9002-4711-9b64-16b204f19985@linaro.org>
+ <CAGXv+5HwzSX=x_0u-95i1+q+xbstrCmuMxRoKXJwEL5ErnRgOQ@mail.gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -128,60 +119,54 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231201060716.GJ4009@thinkpad>
+In-Reply-To: <CAGXv+5HwzSX=x_0u-95i1+q+xbstrCmuMxRoKXJwEL5ErnRgOQ@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 01/12/2023 07:07, Manivannan Sadhasivam wrote:
-> On Tue, Nov 28, 2023 at 02:49:18PM +0530, Krishna Chaitanya Chundru wrote:
+On 01/12/2023 05:37, Chen-Yu Tsai wrote:
+> On Thu, Nov 30, 2023 at 4:52 PM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
 >>
->> On 11/28/2023 2:26 PM, Krzysztof Kozlowski wrote:
->>> On 27/11/2023 13:13, Krishna chaitanya chundru wrote:
->>>> Document qcom,refclk-always-on property which is needed in some platforms
->>>> to supply refclk even in PCIe low power states.
->>>>
->>>> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
->>>> ---
->>>>   .../devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml        | 7 +++++++
->>>>   1 file changed, 7 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
->>>> index 2c3d6553a7ba..c747c9f35795 100644
->>>> --- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
->>>> +++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
->>>> @@ -93,6 +93,13 @@ properties:
->>>>     "#phy-cells":
->>>>       const: 0
->>>> +  qcom,refclk-always-on:
->>>> +    type: boolean
->>>> +    description: In some platform where PCIe switch is connected, pcie switch due to some design
->>> You received a comment to use proper wrapping: 80. Please implement it.
->> I will update this.
->>>> +      limitation fails to propage clkreq signal to the host and due to that host will not send
->>>> +      refclk, which  results in linkdown in L1.2 or L1.1 exit initiated by EP.
->>>> +      This property if set keeps refclk always on even in Low power states.
->>> The property name suggests that's the state of hardware - refclk is
->>> always on. Description suggests you want to instruct OS to do something.
+>> On 30/11/2023 09:33, Chen-Yu Tsai wrote:
+>>> "interrupts-extended" provides a more concise way of describing external
+>>> GPIO interrupts.
 >>>
->>> Again, third time (once from Bjorn, once from Dmitry), rephrase property
->>> name and description to describe the hardware issue. I see description
->>> improved, but not the property name. Again in the end of description you
+>>> Allow using this instead of "interrupts" plus "interrupt-parent" for
+>>> cros-ec.
+>>>
+>>> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+>>> ---
+>>>  .../devicetree/bindings/mfd/google,cros-ec.yaml          | 9 ++++++++-
+>>>  1 file changed, 8 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+>>> index e1ca4f297c6d..e514eac9f4fc 100644
+>>> --- a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+>>> +++ b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+>>> @@ -75,6 +75,9 @@ properties:
+>>>    interrupts:
+>>>      maxItems: 1
+>>>
+>>> +  interrupts-extended:
+>>> +    maxItems: 1
+>>> +
 >>
->> Both bjorn and Dmitry gave comments to change the description only, and not
->> the property name,
->>
->> correct if I am wrong.
->>
->>> say what Linux should do. Bindings do not describe Linux OS.
->>
->> I will remove the last line in the next patch.
->>
+>> I don't understand why you need it. You already have interrupts there,
+>> so this is redundant. I suggest to drop the patch or provide real
+>> rationale (which I doubt you can get :) ).
 > 
-> You should name the property as, "qcom,keep-refclk-always-on"
+> I'm sorry, I should've included this in the commit message.
+> 
+> The other half of the patch gets rid of a DT validation fail when
+> interrupts-extended is used instead of interrupts:
+> 
+> .../arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r1.dtb: ec@0:
+> 'interrupts' is a required property
+>     from schema $id: http://devicetree.org/schemas/mfd/google,cros-ec.yaml#
+> 
 
-Keep the clock by who? By driver? Then not, property should describe
-physical phenomena or hardware issue being fixed here, not what driver
-should do.
+That looks either like a bug in bindings or in dtschema or in your DTS.
+This patch should not be needed to solve that.
 
 
 Best regards,
