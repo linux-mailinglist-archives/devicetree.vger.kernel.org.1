@@ -1,49 +1,54 @@
-Return-Path: <devicetree+bounces-20801-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20802-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72244800EB9
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 16:41:57 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54618800EC3
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 16:46:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A3C551C209C2
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 15:41:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B203FB20E27
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 15:46:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0BA04AF8C;
-	Fri,  1 Dec 2023 15:41:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C97734AF8F;
+	Fri,  1 Dec 2023 15:46:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VBvTh41K"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kpkGqEah"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF7914AF87;
-	Fri,  1 Dec 2023 15:41:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07DAEC433C9;
-	Fri,  1 Dec 2023 15:41:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABB6920B27
+	for <devicetree@vger.kernel.org>; Fri,  1 Dec 2023 15:46:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 212B9C433C9;
+	Fri,  1 Dec 2023 15:46:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701445311;
-	bh=JGX/Z3BTWHIf5qRlqFz/16EnPOGE2v0/UGv9oJWij2U=;
+	s=k20201202; t=1701445584;
+	bh=0a5xvA+EE/HD2de4oTACqSgMGZmPpL1HYg7E91OIbjo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VBvTh41K3htiHVvOXeF2xq0TovBOYbSQnYtZ7onB7gNOqr46wMQNhy41h/9YkWIJc
-	 UKKmOuGeImfn0stD5ZejQhae+qgNneoCJ+t3yKCC12NdMAZcmfL0uNYpMMjjGKOhj4
-	 azb/kAIlJZFRKtmz/+4eORtZ1JzpXli1Fb0DXl+wvPlvbI4zYqHfl2rQL+VJaVatS0
-	 KPYRpfoOYZjw4AD4MBVyZ0nlSdqBA9JOonb3pEUfYwVT2PjaxYixPoFv7A8kKwr5qt
-	 beAwPhKfnDdB4p01Rt9XFOS/n8+ZbjB4taZ0oiqJOER0z2rBNJu1xZs3s6izFGWhTm
-	 yft3boi4ZkflQ==
-Date: Fri, 1 Dec 2023 15:41:46 +0000
+	b=kpkGqEahS7E0OW2nucL/ztL6qJKWQx0MxMxLmZAdDDfZ89ofp2IjPwIA5I6aGAPjV
+	 CjesnHpkG/h8E6KJ9BsmnDCk2q+sxtS6cbKYUor+MIJ59zFh7Clb/cotQ+EjuNsZ2s
+	 PocD6TcHSUChgpIJa4Cu9/P1bvYm44vaRaRGMKkTvBTAABQ7NxL4RtxitFOhs5Shta
+	 6+eSxDgts1UMKBkdy1Rxrgxo0yeqUqt353LJPLcvck4fzM6UjHiYqm2LZlZcmXztxB
+	 mWLmQ6vfKy4eRBPu60CDjcIZn33jvcfmHFToypG8qpcBqEQjqxY1rH04mudpa/UWDE
+	 L6ITLblOSO8ZA==
+Date: Fri, 1 Dec 2023 15:46:17 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: sakari.ailus@linux.intel.com, rfoss@kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	mchehab@kernel.org, laurent.pinchart@ideasonboard.com,
-	devicetree@vger.kernel.org, linux-media@vger.kernel.org,
-	xji@analogixsemi.com, Fabio Estevam <festevam@denx.de>
-Subject: Re: [PATCH v2 1/3] dt-bindings: drm/bridge: anx7625: Remove
- incorrect bus-type
-Message-ID: <20231201-blush-hate-165029f3e2c9@spud>
-References: <20231201123935.1057929-1-festevam@gmail.com>
+To: Sia Jee Heng <jeeheng.sia@starfivetech.com>
+Cc: kernel@esmil.dk, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	krzk@kernel.org, conor+dt@kernel.org, paul.walmsley@sifive.com,
+	palmer@dabbelt.com, aou@eecs.berkeley.edu,
+	daniel.lezcano@linaro.org, tglx@linutronix.de, anup@brainfault.org,
+	gregkh@linuxfoundation.org, jirislaby@kernel.org,
+	michal.simek@amd.com, michael.zhu@starfivetech.com,
+	drew@beagleboard.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	leyfoon.tan@starfivetech.com
+Subject: Re: [PATCH v3 5/6] dt-bindings: serial: cdns: Add new compatible
+ string for StarFive JH8100 UART
+Message-ID: <20231201-retrace-unruffled-b755da60912e@spud>
+References: <20231201121410.95298-1-jeeheng.sia@starfivetech.com>
+ <20231201121410.95298-6-jeeheng.sia@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -51,24 +56,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="a0SSux8lcc0JVEmQ"
+	protocol="application/pgp-signature"; boundary="b6G910+EpcX16ELw"
 Content-Disposition: inline
-In-Reply-To: <20231201123935.1057929-1-festevam@gmail.com>
+In-Reply-To: <20231201121410.95298-6-jeeheng.sia@starfivetech.com>
 
 
---a0SSux8lcc0JVEmQ
+--b6G910+EpcX16ELw
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Dec 01, 2023 at 09:39:33AM -0300, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
+On Fri, Dec 01, 2023 at 08:14:09PM +0800, Sia Jee Heng wrote:
+> Add new compatible string for UART in the StarFive JH8100 SoC.
 >=20
-> bus-type =3D <7> is incorrect as this is a DSI endpoint, not a DPI
-> endpoint.
->=20
-> Reported-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> Signed-off-by: Sia Jee Heng <jeeheng.sia@starfivetech.com>
+> Reviewed-by: Ley Foon Tan <leyfoon.tan@starfivetech.com>
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
@@ -76,42 +78,38 @@ Cheers,
 Conor.
 
 > ---
-> Changes since v1:
-> - Newly introduced.
+>  Documentation/devicetree/bindings/serial/cdns,uart.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
 >=20
->  .../devicetree/bindings/display/bridge/analogix,anx7625.yaml     | 1 -
->  1 file changed, 1 deletion(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/display/bridge/analogix,an=
-x7625.yaml b/Documentation/devicetree/bindings/display/bridge/analogix,anx7=
-625.yaml
-> index a1ed1004651b..f043d57dd25a 100644
-> --- a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.y=
-aml
-> +++ b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.y=
-aml
-> @@ -157,7 +157,6 @@ examples:
->                      reg =3D <0>;
->                      anx7625_in: endpoint {
->                          remote-endpoint =3D <&mipi_dsi>;
-> -                        bus-type =3D <7>;
->                          data-lanes =3D <0 1 2 3>;
->                      };
->                  };
+> diff --git a/Documentation/devicetree/bindings/serial/cdns,uart.yaml b/Do=
+cumentation/devicetree/bindings/serial/cdns,uart.yaml
+> index e35ad1109efc..07732ae60007 100644
+> --- a/Documentation/devicetree/bindings/serial/cdns,uart.yaml
+> +++ b/Documentation/devicetree/bindings/serial/cdns,uart.yaml
+> @@ -12,6 +12,9 @@ maintainers:
+>  properties:
+>    compatible:
+>      oneOf:
+> +      - items:
+> +          - const: starfive,jh8100-uart
+> +          - const: cdns,uart-r1p8
+>        - description: UART controller for Zynq-7xxx SoC
+>          items:
+>            - const: xlnx,xuartps
 > --=20
 > 2.34.1
 >=20
 
---a0SSux8lcc0JVEmQ
+--b6G910+EpcX16ELw
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZWn+ugAKCRB4tDGHoIJi
-0pwbAP4kUsMwJf9u4n8qY79s14gi3VfWFhuvGADbI8Owh+jBpwEAjOvwNa+ntY8u
-/Rmldu7f38EDDH716Tcm+1GrOtvqQA4=
-=S40e
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZWn/yQAKCRB4tDGHoIJi
+0k/0AQDtPnPwSdRJ029ZXgtTtqL+qNU1ejsQjcuMF0cVd85EHAEAxwLKjgVy43m6
+Uy3JksLeRxTyyf4uxKhbKdlCsPTjTQw=
+=8FHo
 -----END PGP SIGNATURE-----
 
---a0SSux8lcc0JVEmQ--
+--b6G910+EpcX16ELw--
 
