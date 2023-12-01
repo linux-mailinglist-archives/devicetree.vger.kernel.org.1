@@ -1,48 +1,98 @@
-Return-Path: <devicetree+bounces-20761-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20762-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFB71800C95
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 14:51:42 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B47DD800CAB
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 14:57:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2C83C1C20BD1
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 13:51:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DA710B211D9
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 13:57:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27BED3B2B3;
-	Fri,  1 Dec 2023 13:51:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B39CB3BB56;
+	Fri,  1 Dec 2023 13:57:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="gCTDf9AK"
+	dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b="ZHDIx3O3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E41F01734;
-	Fri,  1 Dec 2023 05:51:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=AvV8JJJxcriT9Y3w0PKezGi7UKnqKJcMe2L3N57bRPI=; b=gCTDf9AKh80iH7/jlDZTCIN76n
-	PRR1oFOe4hTzVENWvQWqgmHCdUoJq7kocrD1LCHmtFSGYDrdFjecx7oeDfyyTsZH97WarAhsLbs5T
-	fqDdR/5MT73cnLr0187tw+moyu5y6ObuOIulDteevnaAObXKLMgLhVS/hOSaOlEE+S68=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1r93vK-001lXZ-0X; Fri, 01 Dec 2023 14:51:18 +0100
-Date: Fri, 1 Dec 2023 14:51:17 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Gregory Clement <gregory.clement@bootlin.com>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+Received: from mail-qk1-x735.google.com (mail-qk1-x735.google.com [IPv6:2607:f8b0:4864:20::735])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7538DCC
+	for <devicetree@vger.kernel.org>; Fri,  1 Dec 2023 05:57:46 -0800 (PST)
+Received: by mail-qk1-x735.google.com with SMTP id af79cd13be357-77d6f853ba0so264873885a.0
+        for <devicetree@vger.kernel.org>; Fri, 01 Dec 2023 05:57:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ziepe.ca; s=google; t=1701439065; x=1702043865; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=w5RfSzjMMhEGY5HPP+VV7KP4PAnFpwToiPE40rmIjTE=;
+        b=ZHDIx3O3JFtKtmYM0wtN1DhovriW2rtgBX/vtkFKLmqvfTNp9tAhcOoybeJPJXY29q
+         kv2+USLr9TWBWMUCZTXiOq9MSCmaoj1j75l+f5l0yMAcUkPt6/1/LY4hcAkVZv/XBb/w
+         hVVjtNPUtURPYvYPS2l/igt4v4Z2MavAYa6U8PLUA2dzR3h7vHSs+80xTEXYfG1Ar0e0
+         5bgBF3cf9CLPoNdMk1iQb76z7opiGIMUGMqqkVERcf3mtcOiaTso86/ddgs33hazprbT
+         7c5EgMR3w/dPJyKZzyWQkbi8T59/eL3EJs91shCTNqXp7XkhbmLWyR/I+5NlFw+SoCq/
+         sCPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701439065; x=1702043865;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=w5RfSzjMMhEGY5HPP+VV7KP4PAnFpwToiPE40rmIjTE=;
+        b=Cb3TZ37sdqVlrWVwAK78tY6aQep881GspI+XpVq7BxF7dON2BY1UXdZ9booOxgHKN9
+         GDIA3RB0lIEXPreFyiko6Nfc2jiAiZL6jSpOi06zO80CHCS31L03yf2CRAE7jVl4BX8x
+         RAMbs+HuizbQK1k+trApl9dgtDnbvK9mp415LsfO32aNs9XzkZkqT8DkHaLVHfWrnlyH
+         nNc5Ozg8zPf3gNeA2nii6IYODdvln3UHgfUL9mR95erly1u3y/aRW0SnV+rRvUI1aDY+
+         /yFEIhkRTYqTD9A1QdcYXuCQr4uiyz+e0Z0eJo2mqXGMzEb2qYNJX5eiDHTm6lVi/sRp
+         Xy6g==
+X-Gm-Message-State: AOJu0YxfLq45BgR9BYwPzl8EaWBX1VY6YJaP4zPvXd0DehBire18k93U
+	6WA85j3IthMsfUjf4z0mRP5M8g==
+X-Google-Smtp-Source: AGHT+IGiHfUB0BG86D+k/H8bgXmfkHHxfAODJ1IDqy5rd6EVUw0TGcCvkgnXizQa+DzIHgV9yCckKw==
+X-Received: by 2002:a05:620a:29c9:b0:773:c43e:5e73 with SMTP id s9-20020a05620a29c900b00773c43e5e73mr47263709qkp.25.1701439065500;
+        Fri, 01 Dec 2023 05:57:45 -0800 (PST)
+Received: from ziepe.ca (hlfxns017vw-142-134-23-187.dhcp-dynamic.fibreop.ns.bellaliant.net. [142.134.23.187])
+        by smtp.gmail.com with ESMTPSA id vy13-20020a05620a490d00b0077da601f06csm1508858qkn.10.2023.12.01.05.57.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 01 Dec 2023 05:57:44 -0800 (PST)
+Received: from jgg by wakko with local (Exim 4.95)
+	(envelope-from <jgg@ziepe.ca>)
+	id 1r941X-006F8M-UN;
+	Fri, 01 Dec 2023 09:57:43 -0400
+Date: Fri, 1 Dec 2023 09:57:43 -0400
+From: Jason Gunthorpe <jgg@ziepe.ca>
+To: Robin Murphy <robin.murphy@arm.com>
+Cc: Joerg Roedel <joro@8bytes.org>, Christoph Hellwig <hch@lst.de>,
+	Vineet Gupta <vgupta@kernel.org>,
+	Russell King <linux@armlinux.org.uk>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Huacai Chen <chenhuacai@kernel.org>,
+	WANG Xuerui <kernel@xen0n.name>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Hanjun Guo <guohanjun@huawei.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	"K. Y. Srinivasan" <kys@microsoft.com>,
+	Haiyang Zhang <haiyangz@microsoft.com>,
+	Wei Liu <wei.liu@kernel.org>, Dexuan Cui <decui@microsoft.com>,
+	Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
+	David Woodhouse <dwmw2@infradead.org>,
+	Lu Baolu <baolu.lu@linux.intel.com>,
+	Niklas Schnelle <schnelle@linux.ibm.com>,
+	Matthew Rosato <mjrosato@linux.ibm.com>,
+	Gerald Schaefer <gerald.schaefer@linux.ibm.com>,
+	Jean-Philippe Brucker <jean-philippe@linaro.org>,
 	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: marvell: move MMP boards to common marvell
- directory
-Message-ID: <1e25e2f4-e4b9-4219-a9c2-cb6230a62549@lunn.ch>
-References: <20231201132306.60753-1-krzysztof.kozlowski@linaro.org>
+	Frank Rowand <frowand.list@gmail.com>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-acpi@vger.kernel.org, iommu@lists.linux.dev,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 0/7] dma-mapping: Clean up arch_setup_dma_ops()
+Message-ID: <20231201135743.GI1394392@ziepe.ca>
+References: <cover.1701268753.git.robin.murphy@arm.com>
+ <20231129203642.GO1312390@ziepe.ca>
+ <ae27768f-a6fa-4971-b44c-92899a81a2b7@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -51,18 +101,75 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231201132306.60753-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <ae27768f-a6fa-4971-b44c-92899a81a2b7@arm.com>
 
-On Fri, Dec 01, 2023 at 02:23:06PM +0100, Krzysztof Kozlowski wrote:
-> Marvell board bindings are spread over arm/marvell/ and arm/mrvl/
-> directories.  Move MMP board bindings from the latter to the former, to
-> keep all of them together.
+On Fri, Dec 01, 2023 at 01:07:36PM +0000, Robin Murphy wrote:
+> On 29/11/2023 8:36 pm, Jason Gunthorpe wrote:
+> > On Wed, Nov 29, 2023 at 05:42:57PM +0000, Robin Murphy wrote:
+> > > Hi all,
+> > > 
+> > > Prompted by Jason's proposal[1], here's a first step towards truly
+> > > unpicking the dma_configure vs. IOMMU mess. As I commented before, we
+> > > have an awful lot of accumulated cruft and technical debt here making
+> > > things more complicated than they need to be, and we already have hacks
+> > > on top of hacks trying to work around it, so polishing those hacks even
+> > > further is really not a desirable direction of travel. And I do know
+> > > they're hacks, because I wrote most of them and still remember enough of
+> > > the context of the time ;)
+> > 
+> > I quite like this, I was also looking at getting rid of those other
+> > parameters.
+> > 
+> > I wanted to take smaller steps because it is all pretty hairy.
+> > 
+> > One thing that still concerns me is if the FW data restricts the valid
+> > IOVA window that really should be reflected into the reserved ranges
+> > and not just dumped into the struct device for use by the DMA API.
+> > 
+> > Or, perhaps, viof/iommufd should be using the struct device data to
+> > generate some additional reserved ranges?
+> > 
+> > Either way, I would like to see the dma_iommu and the rest of the
+> > subsystem agree on what the valid IOVA ranges actually are.
+> 
+> Note that there is some intentional divergence where iommu-dma reserves
+> IOVAs matching PCI outbound windows because it knows it wants to avoid
+> clashing with potential peer-to-peer addresses and doesn't want to have to
+> get into the details of ACS redirect etc., but we don't expose those as
+> generic reserved regions because they're firmly a property of the PCI host
+> bridge, not of the IOMMU group (and more practically, because we did do so
+> briefly and it made QEMU unhappy). I think there may also have been some
+> degree of conclusion that it's not the IOMMU API's place to get in the way
+> of other domain users trying to do weird P2P stuff if they really want to.
 
-Hi Krzysztof
+I'm not sure this is the fully correct conclusion - eg if today we
+take a NIC device on a non-ACS topology and run DPDK through VFIO it
+has a chance of failure because some IOVA simply cannot be used by
+DPDK for DMA at all.
 
-Did you test get_maintainers.pl? MMP has a different maintainer to
-many of the other Marvell SoCs. We want emails going to the correct
-Maintainers, and ideally not spamming the others.
+qemu and kvm are a different situation that want different things. Eg
+it would want to identity map the PCI BAR spaces to the IOVA they are
+claiming.
 
-	Andrew
+It should still somehow carve out any other IOVA that is unusable due
+to guest-invisible ACS and reflect it through FW tables into the VM.
+
+I'm starting to see people build non-ACS systems and want it to work
+with VFIO and I'm a little worried we have been too loose here.
+
+> bridge and so inherits its restrictions. However I don't recall any
+> conscious decision for inbound windows to only be considered for DMA domain
+> reservations rather than for proper reserved regions - pretty sure that's
+> just a case of that code being added in the place where it seemed to fit
+> best at the time (because hey it's more host bridge windows and we already
+> have a thing for host bridge windows...)
+
+Yeah, and I don't think anyone actually cared much..
+
+At least as a step it would be nice if the DMA API only restrictions
+can come out as a special type of reserved region. Then the caller
+could decide if they want to follow them or not. iommufd could provide
+an opt-in API to DPDK that matches DMA API's safe IOVA allocator.
+
+Jason
 
