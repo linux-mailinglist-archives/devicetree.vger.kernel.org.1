@@ -1,100 +1,114 @@
-Return-Path: <devicetree+bounces-20837-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20838-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B9E280100A
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 17:24:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50D3580100B
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 17:25:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3C2941C20B4E
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 16:24:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0C1BB2810A3
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 16:25:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDDEB4CDE0;
-	Fri,  1 Dec 2023 16:24:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09EE54CDE5;
+	Fri,  1 Dec 2023 16:25:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ls4evAN1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A338DF;
-	Fri,  1 Dec 2023 08:24:21 -0800 (PST)
-X-IronPort-AV: E=McAfee;i="6600,9927,10911"; a="378549495"
-X-IronPort-AV: E=Sophos;i="6.04,242,1695711600"; 
-   d="scan'208";a="378549495"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Dec 2023 08:24:20 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10911"; a="835815703"
-X-IronPort-AV: E=Sophos;i="6.04,242,1695711600"; 
-   d="scan'208";a="835815703"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Dec 2023 08:24:17 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andy@kernel.org>)
-	id 1r96JK-000000012L5-02Wy;
-	Fri, 01 Dec 2023 18:24:14 +0200
-Date: Fri, 1 Dec 2023 18:24:13 +0200
-From: Andy Shevchenko <andy@kernel.org>
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>,
-	Linus Walleij <linus.walleij@linaro.org>, nuno.sa@analog.com,
-	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEBEE4205E;
+	Fri,  1 Dec 2023 16:25:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24DACC433CA;
+	Fri,  1 Dec 2023 16:24:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701447901;
+	bh=WHX+WsXOPW9nED7NSLzCA0t/DtZhNiJWBJNAXgWODOE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ls4evAN1EVItfj420OdQsIDOxVkJZXVmhbzXXBr034w5T7NhZP1DizYgvq8O1DTIK
+	 5ukikE/FN8itWO6kF3Dj0AquR2Ss6wHKfFimoTRe1knhpY0OkCV5xF/lR/nCEGlDce
+	 uDjMQx899XB6lKb/JzJisCdmn/qQE541gZJ6giA3U8Cp4CcSAhMqlmzc/fEFFUGNQ6
+	 RY5KPHPzy5qJycwIlnmIy+2zLEzrrir38l5guVguuDB+OSpIlVXcbe3+FzpC+5t/0P
+	 yKkpHZ/vSi03wEJoJFB5PuNvAnAFKG5Pn+QXUefpKAM6I0ly+pP8+zQfXaRlYvLie/
+	 jPplpV6/qWciQ==
+Date: Fri, 1 Dec 2023 16:24:56 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: Stefan Wahren <wahrenst@gmx.net>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Bartosz Golaszewski <brgl@bgdev.pl>
-Subject: Re: [PATCH v2 2/2] hwmon: ltc4282: add support for the LTC4282 chip
-Message-ID: <ZWoIrVAaE04Zs6Xy@smile.fi.intel.com>
-References: <CACRpkdZr6TdQCLy73Yx2RdMgQifd67remdxENBKYx3UvEMm87A@mail.gmail.com>
- <971eb35068639ec404669ea5320c8183ea71a7d0.camel@gmail.com>
- <ZWiP3i80KnVk9qyx@smile.fi.intel.com>
- <a4bd59df0c5bc1be5d0d6f11b968fd61a59ee2e0.camel@gmail.com>
- <CACRpkdYz+qi42Pz8CgeWybksC0edaVux6rcEhwzjDWnWe9Jr1g@mail.gmail.com>
- <61a8f54835c10db7a9c650ee2e3706b47382c634.camel@gmail.com>
- <CACRpkda55HzPqus5KR-t=xEBkkdND5kYZj1sHdxK+j6QwDUPRg@mail.gmail.com>
- <b761d2497462664d541779857398b2aa893cbee5.camel@gmail.com>
- <ZWoABzufPkdXnrMT@smile.fi.intel.com>
- <7dc3f137-6073-4262-afb5-439d024bbbd2@roeck-us.net>
+	Mathias Nyman <mathias.nyman@intel.com>,
+	bcm-kernel-feedback-list@broadcom.com,
+	Cyril Brulebois <kibi@debian.org>, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH V2 1/2] dt-bindings: usb: xhci: Add optional power-domains
+Message-ID: <20231201-scandal-zap-c55d403d683b@spud>
+References: <20231130154229.22334-1-wahrenst@gmx.net>
+ <20231130154229.22334-2-wahrenst@gmx.net>
+ <c9f14a17-0dd8-4bf8-a969-8592593b39c5@broadcom.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="IOhvxCgFFqC7KSVg"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <7dc3f137-6073-4262-afb5-439d024bbbd2@roeck-us.net>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-
-On Fri, Dec 01, 2023 at 08:04:12AM -0800, Guenter Roeck wrote:
-> On 12/1/23 07:47, Andy Shevchenko wrote:
-> > On Fri, Dec 01, 2023 at 04:24:35PM +0100, Nuno Sá wrote:
-> > > On Fri, 2023-12-01 at 14:40 +0100, Linus Walleij wrote:
-
-...
-
-> > > Yes, that is the only thing we have. Meaning that there is no hw setting to set the
-> > > pins to open drain. Open drain is what they are. That is why I'm not seeing the point
-> > > in having PIN_CONFIG_DRIVE_OPEN_DRAIN implemented.
-> > 
-> > At least you have to implement error for PUSH_PULL mode and other modes,
-> > so from the (core) software point of view the user should be able to ask for
-> > anything and get an answer from the certain driver that "hey, i do support OD",
-> > or "hey, push-pull can't be supported with this hw".
-> > 
-> 
-> It seems to me that this is heading towards a mfd driver. I don't feel comfortable
-> with all that gpio specific code in the hwmon subsystem.
-> 
-> Maybe I should request that all hwmon chips with gpio support must be implemented
-> as mfd drivers. I'll have to think about that.
-
-Or auxiliary bus?
-
--- 
-With Best Regards,
-Andy Shevchenko
+In-Reply-To: <c9f14a17-0dd8-4bf8-a969-8592593b39c5@broadcom.com>
 
 
+--IOhvxCgFFqC7KSVg
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Thu, Nov 30, 2023 at 09:50:17AM -0800, Florian Fainelli wrote:
+> On 11/30/23 07:42, Stefan Wahren wrote:
+> > BCM2711 SoC use a power domain for the xHCI. So allow supplying this
+> > domain in bindings.
+> >=20
+> > Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
+> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> > ---
+> >   Documentation/devicetree/bindings/usb/generic-xhci.yaml | 3 +++
+> >   1 file changed, 3 insertions(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/usb/generic-xhci.yaml b/=
+Documentation/devicetree/bindings/usb/generic-xhci.yaml
+> > index 594ebb3ee432..e48beaff7d0d 100644
+> > --- a/Documentation/devicetree/bindings/usb/generic-xhci.yaml
+> > +++ b/Documentation/devicetree/bindings/usb/generic-xhci.yaml
+> > @@ -49,6 +49,9 @@ properties:
+> >         - const: core
+> >         - const: reg
+> >=20
+> > +  power-domains:
+> > +    maxItems: 1
+>=20
+> That works, I am not sure whether we want to key off based upon the
+> compatible string, but either way:
+
+If by "key it off" you mean selectively permit "power-domains" based on
+the compatible, I think that would be a good idea. There is no bcm2711
+specific compatible though at present and I figured there could well be
+god-knows-how-many other users of generic-xhci out there that also make
+use of power domains, which is why I did not request it of Stefan.
+
+--IOhvxCgFFqC7KSVg
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZWoI2AAKCRB4tDGHoIJi
+0mrpAQDgUgyrK+x8GSX/dHdxDugO91zYvg+HF+Ieg+KlXO1+sgEA0ws6ZRVXOoqd
+3xJDyd56FjPjGTR7/tSQT5P/fhwDHgU=
+=YpRX
+-----END PGP SIGNATURE-----
+
+--IOhvxCgFFqC7KSVg--
 
