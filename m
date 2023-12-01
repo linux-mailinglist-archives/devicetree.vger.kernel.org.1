@@ -1,140 +1,110 @@
-Return-Path: <devicetree+bounces-20824-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20835-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F21BD800F6A
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 17:11:57 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31081800FFB
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 17:22:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AD604281D86
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 16:11:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5FDC01C20AED
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 16:22:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E28CC4C60A;
-	Fri,  1 Dec 2023 16:11:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mPZYGYdx"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25AC54C625;
+	Fri,  1 Dec 2023 16:22:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 726E34C3C8
-	for <devicetree@vger.kernel.org>; Fri,  1 Dec 2023 16:11:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E02FC43397;
-	Fri,  1 Dec 2023 16:11:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701447092;
-	bh=jRf4b5sq3QMU3+oPL9KR9b7Qo2nIgS11b+cRCI+8FZg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mPZYGYdxTQWcyIytDWTWB5LF6ebaaxz2r1aubp545Jlwv2J7mesf+vOXLS2cuvxqo
-	 O3UBoS0CA0Or4dATNhWoqHvoz1KafKEKxUMuFXWkOGO7MvkFehA4XT68Iu6ucLx/K3
-	 wWZaoU0i+5LmGbB2D76RKIxsG8rCQ5wZr6wE5SNaWQKM7l7u7bBEdhCtuDnj0347//
-	 VzmJzIGguIekvZftYeVeilrCQ1JbpgQGZ2HQef4Z8Oiw31JbVYY/g4czshOkZMVJCp
-	 flgHvVizrg975oOJfJUIpVqSFx3DKU8DPTfZTHCsTQWXGQlmHmVa4YLtrr6+29XEdz
-	 R3upqjMZyiflg==
-Date: Fri, 1 Dec 2023 16:11:27 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Chen-Yu Tsai <wenst@chromium.org>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Doug Anderson <dianders@chromium.org>
-Subject: Re: [PATCH v2 0/9] arm64: dts: mediatek: Add MT8186 Corsola
- Chromebooks
-Message-ID: <20231201-esteemed-finch-84782fad14cc@spud>
-References: <20231201070719.1229447-1-wenst@chromium.org>
+Received: from mail-oo1-f51.google.com (mail-oo1-f51.google.com [209.85.161.51])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B3ACD50;
+	Fri,  1 Dec 2023 08:22:03 -0800 (PST)
+Received: by mail-oo1-f51.google.com with SMTP id 006d021491bc7-58d9a4e9464so1144496eaf.0;
+        Fri, 01 Dec 2023 08:22:03 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701447722; x=1702052522;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=XMzJQkWl3UCqt9MwlcLP28F/WjmJ8PvNuz3o00YLjoc=;
+        b=AhEECuELoNFQJOyh58mkZdZ/MP+HM3W6XTkhM9vyTB+4sMMXQkvBB/+aqPSJng36Br
+         M/K1qM1u5B4YAgRa7CYisnCAZ4BhjnrDGcNlK9PT03HbmCc9I6FAV7bMMbpqbb+R4AAK
+         OOKcmhKpCH7S7qzqzoTZZIeYL8+GhR64twRfsY8ILBdTVgXKPCF4FCVfRRZLGKJlLz9g
+         kDfSVacrVANTjDohkes8V++sC3M80gIO/AOeSQZ6Vul/diPYGO42w7JhCFC+pR5jfkuR
+         EjKMLcT0aVPshSaF+BqKqNIxmTj+WPChYXUqezbC3cAr1pe1ORHHpsNobT/+CqeCibpd
+         /uMQ==
+X-Gm-Message-State: AOJu0Yw/MqX9xBpST/cgl6INpOxtA5OTMYSqjN4InAof/yXDqj+gl4VM
+	xD92a+OPRI8cg0nEhr50kwheSrIfGLLTkA==
+X-Google-Smtp-Source: AGHT+IEeTn1ywH3y2w92NrZfUJmeikZUGwFBsI/ecRejWx/2yva3XMTPLWpF6EsizqYwR2k7A9w9Zg==
+X-Received: by 2002:a4a:621e:0:b0:58d:b174:9af6 with SMTP id x30-20020a4a621e000000b0058db1749af6mr3301490ooc.3.1701447722143;
+        Fri, 01 Dec 2023 08:22:02 -0800 (PST)
+Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com. [209.85.160.43])
+        by smtp.gmail.com with ESMTPSA id v3-20020a4a3143000000b0058d592deb89sm620159oog.17.2023.12.01.08.22.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 01 Dec 2023 08:22:00 -0800 (PST)
+Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-1fa21f561a1so361498fac.3;
+        Fri, 01 Dec 2023 08:22:00 -0800 (PST)
+X-Received: by 2002:a81:5258:0:b0:5d3:4923:2fed with SMTP id
+ g85-20020a815258000000b005d349232fedmr5600759ywb.36.1701447366859; Fri, 01
+ Dec 2023 08:16:06 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="RfsLZDnPaa0m/Otx"
-Content-Disposition: inline
-In-Reply-To: <20231201070719.1229447-1-wenst@chromium.org>
-
-
---RfsLZDnPaa0m/Otx
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20231120070024.4079344-1-claudiu.beznea.uj@bp.renesas.com> <20231120070024.4079344-6-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20231120070024.4079344-6-claudiu.beznea.uj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 1 Dec 2023 17:15:55 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWJJ=pjY5YFG=UxL+rWhYtWKicjbGUj-7KC1tgaz4tB3Q@mail.gmail.com>
+Message-ID: <CAMuHMdWJJ=pjY5YFG=UxL+rWhYtWKicjbGUj-7KC1tgaz4tB3Q@mail.gmail.com>
+Subject: Re: [PATCH 05/14] pinctrl: renesas: rzg2l: Move arg in the main
+ function block
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: s.shtylyov@omp.ru, davem@davemloft.net, edumazet@google.com, 
+	kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, linux@armlinux.org.uk, 
+	magnus.damm@gmail.com, mturquette@baylibre.com, sboyd@kernel.org, 
+	linus.walleij@linaro.org, p.zabel@pengutronix.de, arnd@arndb.de, 
+	m.szyprowski@samsung.com, alexandre.torgue@foss.st.com, afd@ti.com, 
+	broonie@kernel.org, alexander.stein@ew.tq-group.com, 
+	eugen.hristev@collabora.com, sergei.shtylyov@gmail.com, 
+	prabhakar.mahadev-lad.rj@bp.renesas.com, biju.das.jz@bp.renesas.com, 
+	linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Dec 01, 2023 at 03:07:04PM +0800, Chen-Yu Tsai wrote:
-> Hi everyone,
->=20
-> This is v2 of the MT8186 Chromebook device tree series.
->=20
-> Changes since v1:
-> - Reorder SKU numbers in descending order.
-> - Fixed pinconfig node names
-> - Moved pinctrl-* properties after interrupts-*
-> - Switched to interrupts-extended for external components
-> - Marked ADSP as explicitly disabled, with a comment explaining that it
->   stalls the system
-> - Renamed "touchpad" to "trackpad"
-> - Dropped bogus "no-laneswap" property from it6505 node
-> - Moved "realtek,jd-src" property to after all the regulator supplies
-> - Switched to macros for MT6366 regulator "regulator-allowed-modes"
-> - Renamed "vgpu" regulator name to allow coupling, with a comment
->   containing the name used in the design
-> - Renamed "cr50" node name to "tpm"
-> - Moved trackpad_pins reference up to i2c2; workaround for second source
->   component resource sharing.
-> - Fix copyright year
-> - Fixed touchscreen supply name
-> - Mark missing components as disabled instead of deleting the node
-> - Dropped reset-gpios from touchscreen nodes
-> - Drop status =3D "okay", which is the default
->=20
->=20
-> This series adds device trees for the various MT8186 Chromebooks that
-> were initially released. These are the Tentacruel / Tentacool devices
-> released by ASUS, and the Steelix / Rusty / Magneton devices released
-> by Lenovo. The device trees are taken from the downstream ChromeOS v5.15
-> kernel, ported to mainline and cleaned up.
->=20
-> Corsola is the Google codename given to the MT8186 platform. This
-> platform has two reference designs, Krabby and Kingler. Kingler was not
-> used in any actual product, and is therefor not included. Steelix is
-> an alternative design put forward and is effectively a mix-and-match of
-> the two reference designs.
->=20
-> Most of the core design is shared between the variants. The differences
-> are on which external components, such as the display bridges, are used.
->=20
-> Patch 1 cleans up the current list of MediaTek boards. The entries are
-> reordered by SoC model first, then by board name.
->=20
-> Patch 2 through 5 add DT binding entries for the Tentacruel/Tentacool,
-> Steelix, Rusty, and Magneton Chromebooks.
->=20
-> Patch 6 through 9 add board device tree files for these devices. Patch 6
-> also adds the corsola dtsi file for the commonalities between the designs,
-> as well as a dtsi file for the krabby reference design.
->=20
-> Currently external display support is missing. Audio is not working, as
-> enabling the audio DSP causes my test systems to hang.
+Hi Claudiu,
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+On Mon, Nov 20, 2023 at 8:01=E2=80=AFAM Claudiu <claudiu.beznea@tuxon.dev> =
+wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>
+> Move arg in the main block of the function as this is used by 3 out of 4
+> case blocks of switch-case. In this way some lines of code are removed.
+>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-Thanks,
-Conor.
+Thanks for your patch!
 
---RfsLZDnPaa0m/Otx
-Content-Type: application/pgp-signature; name="signature.asc"
+>  drivers/pinctrl/renesas/pinctrl-rzg2l.c | 11 ++++++-----
+>  1 file changed, 6 insertions(+), 5 deletions(-)
 
------BEGIN PGP SIGNATURE-----
+Unfortunately your claim is not really backed by the diffstat.
+What about moving index, too?
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZWoFrwAKCRB4tDGHoIJi
-0r+7AP9/1M++ZVkAg204HKeqqsE9wsncwLCYXX7Bx+uL1pXlAQEA7Uc5XHDttJoV
-wdpfT6zxPe57C2wIW3XC3uHuB/kcvAI=
-=OEBa
------END PGP SIGNATURE-----
+Gr{oetje,eeting}s,
 
---RfsLZDnPaa0m/Otx--
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
