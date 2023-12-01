@@ -1,102 +1,61 @@
-Return-Path: <devicetree+bounces-20877-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20878-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BC33801285
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 19:20:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 205F0801369
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 20:11:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 267991F20EE8
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 18:20:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D2730280DA9
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 19:11:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 900204F21C;
-	Fri,  1 Dec 2023 18:20:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96B454E60C;
+	Fri,  1 Dec 2023 19:11:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 637D4F9;
-	Fri,  1 Dec 2023 10:20:47 -0800 (PST)
-Received: from mail.maildlp.com (unknown [172.18.186.31])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4ShhDz0xc5z689rj;
-	Sat,  2 Dec 2023 02:20:19 +0800 (CST)
-Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
-	by mail.maildlp.com (Postfix) with ESMTPS id 06FF8140B33;
-	Sat,  2 Dec 2023 02:20:45 +0800 (CST)
-Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Fri, 1 Dec
- 2023 18:20:44 +0000
-Date: Fri, 1 Dec 2023 18:20:43 +0000
-From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To: Marek Vasut <marex@denx.de>
-CC: "Dr.-Ing. Andre Werner" <andre.werner@systec-electronic.com>,
-	<linux-iio@vger.kernel.org>, Andy Shevchenko
-	<andriy.shevchenko@linux.intel.com>, Matti Vaittinen
-	<mazziesaccount@gmail.com>, Alexander Stein
-	<alexander.stein@ew.tq-group.com>, Bjorn Helgaas <bhelgaas@google.com>, Conor
- Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@denx.de>, Guenter Roeck
-	<linux@roeck-us.net>, Jonathan Cameron <jic23@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Lars-Peter Clausen
-	<lars@metafoo.de>, Luca Ceresoli <luca.ceresoli@bootlin.com>, Mark Brown
-	<broonie@kernel.org>, Naresh Solanki <naresh.solanki@9elements.com>, Patrick
- Rudolph <patrick.rudolph@9elements.com>, Rob Herring <robh+dt@kernel.org>,
-	Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>, Vincent Tremblay
-	<vincent@vtremblay.dev>, <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v5 2/2] iio: light: isl76682: Add ISL76682 driver
-Message-ID: <20231201182043.000043a3@Huawei.com>
-In-Reply-To: <124ca1d8-5569-4c6c-8019-24e58dd8a5fc@denx.de>
-References: <20231125222738.97875-1-marex@denx.de>
-	<20231125222738.97875-2-marex@denx.de>
-	<907048010.848203.1701027206602.JavaMail.zimbra@systec-electronic.com>
-	<124ca1d8-5569-4c6c-8019-24e58dd8a5fc@denx.de>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A96998E
+	for <devicetree@vger.kernel.org>; Fri,  1 Dec 2023 11:11:25 -0800 (PST)
+Received: from i53875b61.versanet.de ([83.135.91.97] helo=phil.lan)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1r98v1-00023n-0A; Fri, 01 Dec 2023 20:11:19 +0100
+From: Heiko Stuebner <heiko@sntech.de>
+To: linux-rockchip@lists.infradead.org
+Cc: robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	quentin.schulz@theobroma-systems.com,
+	heiko@sntech.de
+Subject: [PATCH 0/2] Theobroma-Systems Jaguar single board computer
+Date: Fri,  1 Dec 2023 20:11:01 +0100
+Message-Id: <20231201191103.343097-1-heiko@sntech.de>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml100003.china.huawei.com (7.191.160.210) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
+Content-Transfer-Encoding: 8bit
 
-On Sun, 26 Nov 2023 23:17:55 +0100
-Marek Vasut <marex@denx.de> wrote:
+This adds the Jaguar SBC from Theobroma Systems.
 
-> On 11/26/23 20:33, Dr.-Ing. Andre Werner wrote:
-> 
-> [...]
-> 
-> > +static int isl76682_write_raw(struct iio_dev *indio_dev,
-> > +			      struct iio_chan_spec const *chan,
-> > +			      int val, int val2, long mask)
-> > +{
-> > +	struct isl76682_chip *chip = iio_priv(indio_dev);
-> > +	int i;
-> > +
-> > +	if (chan->type != IIO_LIGHT && chan->type != IIO_INTENSITY)
-> > +		return -EINVAL;
-> > 
-> > In my understanding, this is not necessary as you use that 'iio_chan_spec' to specify
-> > the channels available at all. So there will be no other channel types created by the IIO environment, I think.  
-> 
-> That's a good point, I think we can drop it in this case and the next one.
-> 
-> Jonathan , is there any reason you can think of why this shouldn't be 
-> dropped ?
 
-I don't mind a little paranoia, but fine with dropping it as well.
+Heiko Stuebner (2):
+  dt-bindings: arm: rockchip: Add Theobroma-Systems Jaguar SBC
+  arm64: dts: rockchip: add Theobroma Jaguar SBC
 
-The reason paranoia is fine is that if other channels are added in future
-we might not remember to fix this up if they happen to have no writeable attributes.
-I leave that assessment up to driver authors.
+ .../devicetree/bindings/arm/rockchip.yaml     |   5 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../arm64/boot/dts/rockchip/rk3588-jaguar.dts | 803 ++++++++++++++++++
+ 3 files changed, 809 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-jaguar.dts
 
-Jonathan
-
-> 
-> I'll add it into V6, thanks.
-> 
+-- 
+2.39.2
 
 
