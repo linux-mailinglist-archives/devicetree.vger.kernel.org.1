@@ -1,107 +1,201 @@
-Return-Path: <devicetree+bounces-20546-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20547-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE51F7FFFF3
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 01:12:36 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA919800061
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 01:40:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3E315B2122C
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 00:12:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DC1581C20D96
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 00:40:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31C611381;
-	Fri,  1 Dec 2023 00:12:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37F4610E5;
+	Fri,  1 Dec 2023 00:40:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="EgkiEx+V"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZJWxdQjH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC46A10FC
-	for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 16:12:24 -0800 (PST)
-Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2c9c39b7923so20555931fa.0
-        for <devicetree@vger.kernel.org>; Thu, 30 Nov 2023 16:12:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1701389543; x=1701994343; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=w+S6ZNm0KY70bzKBdaXHGr9e7p3t5vwxIYL3G+hCH9Y=;
-        b=EgkiEx+Vcd230vMg3k+g1khMK+c/37irFitUfftbLmkI4ENDgI9Hg11raTawsFLvBg
-         ThtPknKqohzR7RhnFKEi0fh8/BUGUhpO7meziEFNb+uNz4Mrifx8ZGIcNL9qtbONjUh0
-         MS07QKpp73AUuaD2UcQOp+uSSM+wKSXnh1JlYClAl7sFd/ZN1HSA5LX7WtZC1jv9xrpS
-         Ft2jse4sT+pgn/7jiIDv6JkhHsJoZWpyTbDOATsrGrR0OaibWQDkfQEURJRZUG1+piTX
-         Kd+WCKjx5d9+FlO9qX9O0speDuN7qjHmZrArsy6r3uViBuOE492X6gueHImwp+WHY1fq
-         Wh5Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701389543; x=1701994343;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=w+S6ZNm0KY70bzKBdaXHGr9e7p3t5vwxIYL3G+hCH9Y=;
-        b=G8W0+RfVrj90R5uFKmHy1cJf2kYkvFxBmV6cJL+aQEB9ZBWRlC27+G//jlz2x2NTQH
-         JaYvvnTkJYROHt6KMxESQhyiNEzYTGZB/r2oGRaTO0GrVIiDviFtAsuneOqM/jvnVGKn
-         wgNssdejDSj1nxYW/637bqTD9LhNJjb6YMH5vEtGIsUXdJpsvlCDYlsZFurNx4qecVNw
-         9gzrWMe73BrcPgVweLIuu3SrTxI96h128jDe4i/SO3L4Q7zfz3e2RAr3mxryrXJdOk/T
-         3hhnpSMfPjLDkjLJchBpqfQ9GBWe//ek3F/YEs9zPgi2qRuMU7Cjf7mRpFHWHDcWgsNH
-         jPZA==
-X-Gm-Message-State: AOJu0YyP6HXUEu8mento13e7WYkfkP1t2HRGpQaQwGOMw/eoU9OJEOvC
-	jiu0Fqjo3ymFdv+qtb+r4E2+Qclah8x93IQNS4xiug==
-X-Google-Smtp-Source: AGHT+IGsS1+sHRmFzKHBh3sQJBe24WgzbWubLmdDK9T41aJOvKZPFcBk2x+6D8vxIXt5dM/JwNd7Cmh+ItiUzD/BwPg=
-X-Received: by 2002:a05:651c:23a:b0:2c9:d862:c66f with SMTP id
- z26-20020a05651c023a00b002c9d862c66fmr217019ljn.92.1701389542959; Thu, 30 Nov
- 2023 16:12:22 -0800 (PST)
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDE83387;
+	Fri,  1 Dec 2023 00:40:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE544C433C7;
+	Fri,  1 Dec 2023 00:40:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701391214;
+	bh=Bwi6rHBnTF4XvJJlKCsW+lAw3yuN1E/2bSWXjFUXBlo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ZJWxdQjHwFwzN3MDNBVDR9RVIKZHH+ZYWbc+bsJ3IEuZxNsvfUAdPFaMh8SqqcEpe
+	 pGBa87uCh0j+Lv/eilOH/rMkvTe69hfhziRTHvL47PeiWR+/WFBiNvdN35yA7RHo6a
+	 eSto+KrCfTk37oNICO5zL0io4r/qCny2XTAgIqgrcXiovqvj7O25sK0Hg/xMFxuIFx
+	 94ZnLTXkFr3gYPVwFqJcYHNqqmcy4HtjQmHdCDtBpj48WK/YpokXA2x9ctnUeVqYTl
+	 ULUC/rQPetIL8xAghf3/VmAmfbSnztqMRVIpwaLCgwVYEc4F5LLhfYONb6qoTk/nHX
+	 7MagA3g4gefBg==
+Date: Fri, 1 Dec 2023 00:40:03 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Inochi Amaoto <inochiama@outlook.com>
+Cc: Yu-Chien Peter Lin <peterlin@andestech.com>,
+	Guo Ren <guoren@kernel.org>, acme@kernel.org,
+	adrian.hunter@intel.com, ajones@ventanamicro.com,
+	alexander.shishkin@linux.intel.com, andre.przywara@arm.com,
+	anup@brainfault.org, aou@eecs.berkeley.edu, atishp@atishpatra.org,
+	conor+dt@kernel.org, conor.dooley@microchip.com,
+	devicetree@vger.kernel.org, dminus@andestech.com, evan@rivosinc.com,
+	geert+renesas@glider.be, heiko@sntech.de, irogers@google.com,
+	jernej.skrabec@gmail.com, jolsa@kernel.org, jszhang@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-perf-users@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	locus84@andestech.com, magnus.damm@gmail.com, mark.rutland@arm.com,
+	mingo@redhat.com, n.shubin@yadro.com, namhyung@kernel.org,
+	palmer@dabbelt.com, paul.walmsley@sifive.com, peterz@infradead.org,
+	prabhakar.mahadev-lad.rj@bp.renesas.com, rdunlap@infradead.org,
+	robh+dt@kernel.org, samuel@sholland.org, sunilvl@ventanamicro.com,
+	tglx@linutronix.de, tim609@andestech.com, uwu@icenowy.me,
+	wens@csie.org, will@kernel.org, ycliang@andestech.com
+Subject: Re: [PATCH v4 09/13] dt-bindings: riscv: Add T-Head PMU extension
+ description
+Message-ID: <20231201-hatchback-lustily-a516298c3556@spud>
+References: <20231130-isotope-runaround-9afb98579734@spud>
+ <IA1PR20MB495378652B09B37E92D8BB04BB82A@IA1PR20MB4953.namprd20.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231121-dev-iio-backend-v1-0-6a3d542eba35@analog.com>
- <20231121-dev-iio-backend-v1-10-6a3d542eba35@analog.com> <CAMknhBFbLju8UQJ7Uz85kHKrbK4mzt=wTRdnp40+PwWCJa5dsA@mail.gmail.com>
-In-Reply-To: <CAMknhBFbLju8UQJ7Uz85kHKrbK4mzt=wTRdnp40+PwWCJa5dsA@mail.gmail.com>
-From: David Lechner <dlechner@baylibre.com>
-Date: Thu, 30 Nov 2023 18:12:12 -0600
-Message-ID: <CAMknhBEdXNkpEt-kXBez7zC0XGvo8AZ1G0Y9Y0XVr2EmpA_Qpw@mail.gmail.com>
-Subject: Re: [PATCH 10/12] iio: adc: ad9467: convert to backend framework
-To: nuno.sa@analog.com
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-iio@vger.kernel.org, Olivier MOYSAN <olivier.moysan@foss.st.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>, 
-	Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
-	Michael Hennerich <Michael.Hennerich@analog.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="aS5JTpy0ABLKb+d2"
+Content-Disposition: inline
+In-Reply-To: <IA1PR20MB495378652B09B37E92D8BB04BB82A@IA1PR20MB4953.namprd20.prod.outlook.com>
+
+
+--aS5JTpy0ABLKb+d2
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Nov 30, 2023 at 5:30=E2=80=AFPM David Lechner <dlechner@baylibre.co=
-m> wrote:
->
-> On Tue, Nov 21, 2023 at 4:17=E2=80=AFAM Nuno Sa via B4 Relay
+On Fri, Dec 01, 2023 at 07:11:31AM +0800, Inochi Amaoto wrote:
+> >
+> >On Thu, Nov 30, 2023 at 08:16:38PM +0800, Inochi Amaoto wrote:
+> >>>
+> >>> Hi Inochi,
+> >>>
+> >>> On Thu, Nov 30, 2023 at 04:29:22PM +0800, Inochi Amaoto wrote:
+> >>>>>
+> >>>>> Hi Guo Ren,
+> >>>>>
+> >>>>> On Thu, Nov 23, 2023 at 05:14:30AM +0800, Guo Ren wrote:
+> >>>>>> On Wed, Nov 22, 2023 at 8:17=E2=80=AFPM Yu Chien Peter Lin
+> >>>>>> <peterlin@andestech.com> wrote:
+> >>>>>>>
+> >>>>>>> Document the ISA string for T-Head performance monitor extension
+> >>>>>>> which provides counter overflow interrupt mechanism.
+> >>>>>>>
+> >>>>>>> Signed-off-by: Yu Chien Peter Lin <peterlin@andestech.com>
+> >>>>>>> ---
+> >>>>>>> Changes v2 -> v3:
+> >>>>>>>   - New patch
+> >>>>>>> Changes v3 -> v4:
+> >>>>>>>   - No change
+> >>>>>>> ---
+> >>>>>>>  Documentation/devicetree/bindings/riscv/extensions.yaml | 6 ++++=
+++
+> >>>>>>>  1 file changed, 6 insertions(+)
+> >>>>>>>
+> >>>>>>> diff --git a/Documentation/devicetree/bindings/riscv/extensions.y=
+aml b/Documentation/devicetree/bindings/riscv/extensions.yaml
+> >>>>>>> index c91ab0e46648..694efaea8fce 100644
+> >>>>>>> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
+> >>>>>>> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
+> >>>>>>> @@ -258,5 +258,11 @@ properties:
+> >>>>>>>              in commit 2e5236 ("Ztso is now ratified.") of the
+> >>>>>>>              riscv-isa-manual.
+> >>>>>>>
+> >>>>>>> +        - const: xtheadpmu
+> >>>>>>> +          description:
+> >>>>>>> +            The T-Head performance monitor extension for counter=
+ overflow. For more
+> >>>>>>> +            details, see the chapter 12 in the Xuantie C906 user=
+ manual.
+> >>>>>>> +            https://github.com/T-head-Semi/openc906/tree/main/doc
+> >>>>>>> +
+> >>>>>>>  additionalProperties: true
+> >>>>>>>  ...
+> >>>>>>> --
+> >>>>>>> 2.34.1
+> >>>>>>>
+> >>>>>> Reviewed-by: Guo Ren <guoren@kernel.org>
+> >>>>>
+> >>>>> Thanks for the review.
+> >>>>> Would you share document about T-Head PMU?
+> >>>>>
+> >>>>
+> >>>> Hi, Peter Lin:
+> >>>>
+> >>>> You can use the following two document to get all events:
+> >>>> https://github.com/T-head-Semi/openc906/tree/main/doc
+> >>>> https://github.com/T-head-Semi/openc910/tree/main/doc
+> >>>>
+> >>>> There are also some RTL code can describe these events:
+> >>>> https://github.com/T-head-Semi/openc910/blob/e0c4ad8ec7f8c70f649d826=
+ebd6c949086453272/C910_RTL_FACTORY/gen_rtl/pmu/rtl/ct_hpcp_top.v#L1123
+> >>>> https://github.com/T-head-Semi/openc906/blob/af5614d72de7e5a4b8609c4=
+27d2e20af1deb21c4/C906_RTL_FACTORY/gen_rtl/pmu/rtl/aq_hpcp_top.v#L543
+> >>>>
+> >>>> The perf events json can also be used as document, this is already
+> >>>> applied (with more detailed explanation):
+> >>>> https://lore.kernel.org/all/IA1PR20MB495325FCF603BAA841E29281BBBAA@I=
+A1PR20MB4953.namprd20.prod.outlook.com/
+> >>>
+> >>> Thanks for reaching out!
+> >>> The updated description will be:
+> >>>
+> >>> - const: xtheadpmu
+> >>>  description:
+> >>>    The T-Head performance monitor extension for counter overflow, as =
+ratified
+> >>>    in commit bd9206 ("Initial commit") of Xuantie C906 user manual.
+> >>>    https://github.com/T-head-Semi/openc906/tree/main/doc
+> >>>
+> >>> Is it OK with you?
+> >>>
+> >>
+> >> I suggest using perf event json as event description. The jsons provide
+> >> more detailed explanation for these events than the user manual.
+> >
+> >Does the "perf event json" describe the registers and interrupt behaviou=
+r?
+> >
+>=20
+> It does not. IIRC, the linux just uses SBI as perf driver backend. So
+> the registers and interrupt behaviour is primarily for SBI developer.
 
-<snip>
+Interrupts and registers are the reason that this patch (and the rest of
+the patchset) exists :)
 
-> > +       st->back =3D devm_iio_backend_get(&spi->dev, NULL);
->
-> Based on the descriptions given of IIO frontend and backend, I was
-> expecting this driver to be the backend since SPI is only used to
-> configure the chip while the adi-axi-adc driver is the one determining
-> the scan data format, providing the DMA (INDIO_BUFFER_HARDWARE), etc.
->
-> Also, from a devicetree "describe the hardware" mindset, it doesn't
-> seem like this chip (AD9467) should dictate a specific backend. I know
-> it doesn't make sense practlically for this chip to not use DMA given
-> the high sample rate, but why should the devicetree for this chip
-> require it when there is nothing intrensic about this chip itself
-> related to DMA?
->
+> For registers and interrup detail, just reference the openc910 doc url
+> (https://github.com/T-head-Semi/openc910/tree/main/doc) and the T-HEAD
+> PMU driver in OpenSBI.
 
-Afterthought:
+The former, sure. But I will not accept driver implementations as the
+reference in this context.
 
-Put another way, it seems like it would be much easier to say "I, the
-arbitrary frontend that actually handles the data from the LVDS
-outputs, need a backend that provides a SPI connection to an AD9467
-chip and takes care of turning on power supplies" than it is to say
-"I, the AD9467 chip frontend, need an arbitrary backend that handles
-reading data from the LVDS outputs in a very specific manner that is
-determined by the driver, not the hardware".
+Thanks,
+Conor.
+
+--aS5JTpy0ABLKb+d2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZWkrYwAKCRB4tDGHoIJi
+0pwIAPwK17iPJiDp9ipZS/utYpBvkvx0ll5v01jA4ntru7UxxQEA4aGN5NO3jlaA
+IGvR1UvnavydACZeMLUy8t+jGSuPzAA=
+=bY70
+-----END PGP SIGNATURE-----
+
+--aS5JTpy0ABLKb+d2--
 
