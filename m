@@ -1,200 +1,80 @@
-Return-Path: <devicetree+bounces-20778-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20779-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB26C800D9A
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 15:45:17 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27481800DC8
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 15:56:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0EBC91F20F5E
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 14:45:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D96651F20F8D
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 14:56:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDA9B3D999;
-	Fri,  1 Dec 2023 14:45:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oFtMD8CB"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0DB23E470;
+	Fri,  1 Dec 2023 14:56:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A94831711
-	for <devicetree@vger.kernel.org>; Fri,  1 Dec 2023 06:45:10 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-50bba1dd05fso3094206e87.0
-        for <devicetree@vger.kernel.org>; Fri, 01 Dec 2023 06:45:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701441909; x=1702046709; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=scP7Kc4UKaObh0xtEvS6wmL9HVThK4eE79a/A4jC0hM=;
-        b=oFtMD8CB+QmsOLVCmDENuAEM/Auz/tRCS6ww8FNecUBX3lO2I3Fd3y2uYWhYvrKaNa
-         uJsj4hyrHAuQriav2RLG3qUSFhXcPQQLpZjHQLNFpKHEa464JiQ/8aIfwVFRgiKoQzFf
-         H9coFG4q3BATygX8BvxDM6L22AT8HHXJGaBicfY4/efJ2iZA+HNy/80iwdqX4UMOoeRW
-         Sd0mB890v2Fzd9KDq2jnbUllYPMsr08zzrlsIpAPJHzNiPe2Occf9UclA+gE0MJsAMo4
-         5sgBYT2XlmkJxuewmS5Q9U8GjGTs3C+V2jMX5SWRxW/Fh33ZJz4yWfZFGbruPVHS/kMt
-         M+fg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701441909; x=1702046709;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=scP7Kc4UKaObh0xtEvS6wmL9HVThK4eE79a/A4jC0hM=;
-        b=INUm8d+OFQ+mhmYaJgWl9KPTKVpYhqFiciR0zKbXyvSaYupv1CcFPrh/J6pAmWhO8J
-         fhWoqbOelEYB4fdCVWiLOGH8n2TksqGA413kWcd1tB541uhvhv1ipAr0fYh183Erf+Nt
-         M5Cd5Uz5tOF9W/t3QJby5eXJcoZfgDGmd7xtJbh2R9qTJIoZNA2wAM/fIr1Wq4NcSzdf
-         2eCReqHwfOiBKPmdDsOh6dUqWeiSf+GrhZzvQAGYI0wnaHAbKdUXAky9Xh7Z+FPgP4fr
-         3b6j9qmR8VmMRlfvPqZOvHQmbf48Rou92uMhQjI9N8n7nzVf53ZurXGR//BnguLXUhsu
-         VkzQ==
-X-Gm-Message-State: AOJu0YwFcOd4GKow+V9CrzoB5q+v/3LyAJ6wjYIpSAbF0HIJ7IXzUCHD
-	ZoGcwLUUiBoQGisPr5aN6+xSgQ==
-X-Google-Smtp-Source: AGHT+IFDmURw/1+0f/gPfkxoCzyZRCnMV6E3uGmE46G6VlApf1ssgiIC5tj7lB+C26laAk8i+mLtMw==
-X-Received: by 2002:a05:6512:21ac:b0:50b:cbb1:3c08 with SMTP id c12-20020a05651221ac00b0050bcbb13c08mr756768lft.36.1701441908913;
-        Fri, 01 Dec 2023 06:45:08 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.223.109])
-        by smtp.gmail.com with ESMTPSA id m9-20020a056000024900b0033334bc1338sm645717wrz.113.2023.12.01.06.45.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 01 Dec 2023 06:45:08 -0800 (PST)
-Message-ID: <48cf2111-46a0-4907-8d55-5ce80b585111@linaro.org>
-Date: Fri, 1 Dec 2023 15:45:06 +0100
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D218BD;
+	Fri,  1 Dec 2023 06:55:57 -0800 (PST)
+Received: from francesco-nb.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id 0D30220A0E;
+	Fri,  1 Dec 2023 15:55:55 +0100 (CET)
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Francesco Dolcini <francesco.dolcini@toradex.com>,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/3] arm64: dts: ti: add verdin am62 mallow board
+Date: Fri,  1 Dec 2023 15:55:48 +0100
+Message-Id: <20231201145551.23337-1-francesco@dolcini.it>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: clock: ti: Convert interface.txt to
- json-schema
-Content-Language: en-US
-To: Andreas Kemnade <andreas@kemnade.info>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, kristo@kernel.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org
-References: <20231127202359.145778-1-andreas@kemnade.info>
- <7a62ed8a-b0e3-4881-90d7-b8f5d38e482e@linaro.org>
- <20231128093241.707a4fa0@aktux>
- <7361082a-f271-4ef4-9dad-06ee7445c749@linaro.org>
- <20231128214116.22dfff1e@akair>
- <221ba6a3-c4c2-40cd-b1d8-8170af78c784@linaro.org>
- <20231201150937.3631ee99@akair>
- <7aaea1e4-b7bd-47e4-a6e6-32b8195ea1bf@linaro.org>
- <20231201154112.2ecfdab2@aktux>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231201154112.2ecfdab2@aktux>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 01/12/2023 15:41, Andreas Kemnade wrote:
-> On Fri, 1 Dec 2023 15:17:46 +0100
-> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> 
->> On 01/12/2023 15:09, Andreas Kemnade wrote:
->>> Am Wed, 29 Nov 2023 09:15:57 +0100
->>> schrieb Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>:
->>>   
->>>> On 28/11/2023 21:41, Andreas Kemnade wrote:  
->>>>> Am Tue, 28 Nov 2023 09:41:23 +0100
->>>>> schrieb Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>:    
->>>>>>> If the interface clock is not below a ti,clksel then we have reg.
->>>>>>>      
->>>>>>
->>>>>> This should be expressed in the bindings. It's fine to make the reg
->>>>>> optional (skip the description, it's confusing), but the ti,clksel
->>>>>> should reference this schema and enforce it on the children.
->>>>>>    
->>>>> Well there are other compatibles below ti,clksel, too, so should we
->>>>> rather add them when the other .txt files are converted?    
->>>>
->>>> This binding should already be referenced by ti,clksel. When the other
->>>> are ready, you will change additionalProperties from object to false.
->>>>  
->>> I played around with it:
->>>
->>> --- a/Documentation/devicetree/bindings/clock/ti/ti,clksel.yaml
->>> +++ b/Documentation/devicetree/bindings/clock/ti/ti,clksel.yaml
->>> @@ -33,6 +33,11 @@ properties:
->>>      const: 2
->>>      description: The CLKSEL register and bit offset
->>>  
->>> +patternProperties:
->>> +  "-ick$":
->>> +    $ref: /schemas/clock/ti/ti,interface-clock.yaml#
->>> +    type: object
->>> +
->>>  required:
->>>    - compatible
->>>    - reg
->>>
->>>  
->>> That generates warnings, which look more serious than just a
->>> non-converted compatible, so lowering the overall "signal-noise-ratio".
->>>
->>> e.g.
->>> from schema $id:
->>> http://devicetree.org/schemas/clock/ti/ti,clksel.yaml#
->>> /home/andi/linux-dtbs/arch/arm/boot/dts/ti/omap/omap3-overo-tobiduo.dtb:
->>> clock@c40: clock-rm-ick: 'ti,index-starts-at-one', 'ti,max-div' do not
->>> match any of the regexes: 'pinctrl-[0-9]+'
->>>
->>> I think we should rather postpone such referencing.  
->>
->> Are you sure in such case that your binding is correct? The warnings
->> suggest that not, therefore please do not postpone.
->>
-> well, there is not only stuff from clock/ti/ti,interface.yaml but also from
-> clock/ti/divider.txt below ti,clksel. So I have one warning about the missing
-> compatible there and also about the properties belonging to that compatible.
+From: Francesco Dolcini <francesco.dolcini@toradex.com>
 
-Ah, you have other bindings for the "-ick" nodes? Then you cannot match
-by pattern now, indeed. Maybe skipping ref but adding "compatible" into
-node, like we do for Qualcomm mdss bindings, would work. But in general
-all these should be converted at the same time.
+Add Toradex Verdin AM62 Mallow carrier board support. Mallow is a
+low-cost carrier board in the Verdin family with a small form factor and
+build for volume production making it ideal for industrial and embedded
+applications.
 
-Best regards,
-Krzysztof
+https://www.toradex.com/products/carrier-board/mallow-carrier-board
+
+v1:
+ - https://lore.kernel.org/all/20231123112826.16549-1-francesco@dolcini.it/
+
+v2:
+ - fixed temperature sensor compatible (s/tmp75c/tmp1075)
+ - add Acked-by: Krzysztof
+
+Joao Paulo Goncalves (3):
+  arm64: dts: ti: verdin-am62: improve spi1 chip-select pinctrl
+  dt-bindings: arm: ti: add verdin am62 mallow board
+  arm64: dts: ti: add verdin am62 mallow board
+
+ .../devicetree/bindings/arm/ti/k3.yaml        |   2 +
+ arch/arm64/boot/dts/ti/Makefile               |   2 +
+ .../boot/dts/ti/k3-am62-verdin-mallow.dtsi    | 198 ++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi    |  17 +-
+ .../dts/ti/k3-am625-verdin-nonwifi-mallow.dts |  22 ++
+ .../dts/ti/k3-am625-verdin-wifi-mallow.dts    |  22 ++
+ 6 files changed, 261 insertions(+), 2 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am62-verdin-mallow.dtsi
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am625-verdin-nonwifi-mallow.dts
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am625-verdin-wifi-mallow.dts
+
+-- 
+2.25.1
 
 
