@@ -1,99 +1,236 @@
-Return-Path: <devicetree+bounces-20571-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20572-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD8688002EB
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 06:15:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2833380034F
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 06:51:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 84FF5281564
-	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 05:15:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D111F281583
+	for <lists+devicetree@lfdr.de>; Fri,  1 Dec 2023 05:51:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7D913D6D;
-	Fri,  1 Dec 2023 05:15:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 942EB8BE6;
+	Fri,  1 Dec 2023 05:51:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Mc6kK/1A"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hiur9O1H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 654FFD40;
-	Thu, 30 Nov 2023 21:15:00 -0800 (PST)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3B15EoT9047666;
-	Thu, 30 Nov 2023 23:14:50 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1701407690;
-	bh=2wgLnlB2+AAD6SMHLKN+Mx8rRG8xXOM6yHtTkoDMsc8=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=Mc6kK/1AqIkspKljO4CSE1c9a/YkiJx4hh9yuwO0jeWJOCCfWk8DeTBPQs8fnTyBA
-	 BHXwXmMYVGgaoKCzj7QeIxMDsimnLEjesiIJbwjqWphJmnpQvDADhuw6+vc4HazCXH
-	 Oo0EeqA70IBQUyxeRaU4pznh3iQRXIpC76CC8WB4=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3B15EoNo018737
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 30 Nov 2023 23:14:50 -0600
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 30
- Nov 2023 23:14:49 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 30 Nov 2023 23:14:49 -0600
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3B15EnaF027477;
-	Thu, 30 Nov 2023 23:14:49 -0600
-Date: Thu, 30 Nov 2023 23:14:49 -0600
-From: Nishanth Menon <nm@ti.com>
-To: Thomas Richard <thomas.richard@bootlin.com>
-CC: <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <gregory.clement@bootlin.com>,
-        <thomas.petazzoni@bootlin.com>, <u-kumar1@ti.com>,
-        Esteban Blanc
-	<eblanc@baylibre.com>, Jai Luthra <j-luthra@ti.com>
-Subject: Re: [PATCH] arm64: dts: ti: k3-j7200-som-p0: Add TP6594 family PMICs
-Message-ID: <20231201051449.sijqtozzup4z6exd@ladder>
-References: <20231027082852.2922552-1-thomas.richard@bootlin.com>
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6453A883B;
+	Fri,  1 Dec 2023 05:51:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4416C433C7;
+	Fri,  1 Dec 2023 05:51:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701409882;
+	bh=+VnGs6Seo0e7jvF3XvNq79ffhry+pZ72obFBhYKEFHA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Hiur9O1H+pALNUUYUIxgg42umh9EA0kMeqOXgI22vNjkNhwE0LRnzxIbwiIMtlkyM
+	 DmK3zm2nq99QGQ6iDu9c5Gw5Oxdpx0Z9oMf/NFku18SKqTGAJWUt6fU3qRqImnnMCv
+	 p0yYyLwWzRpbfHn/ZXPJnrHW6DoNKYITR/gXQ01m3fBb5Pj+yisdH5VPRKnNzC76Ff
+	 i8T6oFZSr/jBnJwdz6GFjhCY9ONCD0Q85EuV3Cy7soLFCT0WwunhwLPcZO+q8NqPSX
+	 pXCA0+x71uQalT3G/fvcO08AnJGDzSYTbDZFxfcCXvh8Hyl0vk1L1vSka9cySo29CZ
+	 gv7FgqlCZYdOA==
+Date: Fri, 1 Dec 2023 11:21:03 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Mrinmay Sarkar <quic_msarkar@quicinc.com>
+Cc: agross@kernel.org, andersson@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	konrad.dybcio@linaro.org, robh+dt@kernel.org,
+	quic_shazhuss@quicinc.com, quic_nitegupt@quicinc.com,
+	quic_ramkri@quicinc.com, quic_nayiluri@quicinc.com,
+	dmitry.baryshkov@linaro.org, robh@kernel.org,
+	quic_krichai@quicinc.com, quic_vbadigan@quicinc.com,
+	quic_parass@quicinc.com, quic_schintav@quicinc.com,
+	quic_shijjose@quicinc.com, Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	mhi@lists.linux.dev
+Subject: Re: [PATCH v8 1/5] dt-bindings: PCI: qcom-ep: Add support for
+ SA8775P SoC
+Message-ID: <20231201055103.GG4009@thinkpad>
+References: <1699669982-7691-1-git-send-email-quic_msarkar@quicinc.com>
+ <1699669982-7691-2-git-send-email-quic_msarkar@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20231027082852.2922552-1-thomas.richard@bootlin.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1699669982-7691-2-git-send-email-quic_msarkar@quicinc.com>
 
-On 10:28-20231027, Thomas Richard wrote:
-> From: Esteban Blanc <eblanc@baylibre.com>
+On Sat, Nov 11, 2023 at 08:02:57AM +0530, Mrinmay Sarkar wrote:
+> Add devicetree bindings support for SA8775P SoC. It has DMA register
+> space and dma interrupt to support HDMA.
 > 
-> This patch adds support for TPS6594 PMIC family on wakup I2C0 bus.
-> Theses devices provides regulators (bucks and LDOs), but also
-> GPIOs, a RTC, a watchdog, an ESM (Error Signal Monitor)
-> which monitors the SoC error output signal, and a PFSM
-> (Pre-configurable Finite State Machine) which manages the
-> operational modes of the PMIC.
-> 
-> Signed-off-by: Esteban Blanc <eblanc@baylibre.com>
-> Signed-off-by: Jai Luthra <j-luthra@ti.com>
-> Signed-off-by: Thomas Richard <thomas.richard@bootlin.com>
+> Signed-off-by: Mrinmay Sarkar <quic_msarkar@quicinc.com>
+
+Acked-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+
+- Mani
+
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
+>  .../devicetree/bindings/pci/qcom,pcie-ep.yaml      | 64 +++++++++++++++++++++-
+>  1 file changed, 62 insertions(+), 2 deletions(-)
 > 
-> Notes:
->     This patch was picked from:
->     https://lore.kernel.org/all/20230810-tps6594-v6-0-2b2e2399e2ef@ti.com/
->     
->     I reviewed it, and checked that there is no issue during the boot.
+> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+> index a223ce0..46802f7 100644
+> --- a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+> @@ -13,6 +13,7 @@ properties:
+>    compatible:
+>      oneOf:
+>        - enum:
+> +          - qcom,sa8775p-pcie-ep
+>            - qcom,sdx55-pcie-ep
+>            - qcom,sm8450-pcie-ep
+>        - items:
+> @@ -20,6 +21,7 @@ properties:
+>            - const: qcom,sdx55-pcie-ep
+>  
+>    reg:
+> +    minItems: 6
+>      items:
+>        - description: Qualcomm-specific PARF configuration registers
+>        - description: DesignWare PCIe registers
+> @@ -27,8 +29,10 @@ properties:
+>        - description: Address Translation Unit (ATU) registers
+>        - description: Memory region used to map remote RC address space
+>        - description: BAR memory region
+> +      - description: DMA register space
+>  
+>    reg-names:
+> +    minItems: 6
+>      items:
+>        - const: parf
+>        - const: dbi
+> @@ -36,13 +40,14 @@ properties:
+>        - const: atu
+>        - const: addr_space
+>        - const: mmio
+> +      - const: dma
+>  
+>    clocks:
+> -    minItems: 7
+> +    minItems: 5
+>      maxItems: 8
+>  
+>    clock-names:
+> -    minItems: 7
+> +    minItems: 5
+>      maxItems: 8
+>  
+>    qcom,perst-regs:
+> @@ -57,14 +62,18 @@ properties:
+>            - description: Perst separation enable offset
+>  
+>    interrupts:
+> +    minItems: 2
+>      items:
+>        - description: PCIe Global interrupt
+>        - description: PCIe Doorbell interrupt
+> +      - description: DMA interrupt
+>  
+>    interrupt-names:
+> +    minItems: 2
+>      items:
+>        - const: global
+>        - const: doorbell
+> +      - const: dma
+>  
+>    reset-gpios:
+>      description: GPIO used as PERST# input signal
+> @@ -125,6 +134,10 @@ allOf:
+>                - qcom,sdx55-pcie-ep
+>      then:
+>        properties:
+> +        reg:
+> +          maxItems: 6
+> +        reg-names:
+> +          maxItems: 6
+>          clocks:
+>            items:
+>              - description: PCIe Auxiliary clock
+> @@ -143,6 +156,10 @@ allOf:
+>              - const: slave_q2a
+>              - const: sleep
+>              - const: ref
+> +        interrupts:
+> +          maxItems: 2
+> +        interrupt-names:
+> +          maxItems: 2
+>  
+>    - if:
+>        properties:
+> @@ -152,6 +169,10 @@ allOf:
+>                - qcom,sm8450-pcie-ep
+>      then:
+>        properties:
+> +        reg:
+> +          maxItems: 6
+> +        reg-names:
+> +          maxItems: 6
+>          clocks:
+>            items:
+>              - description: PCIe Auxiliary clock
+> @@ -172,6 +193,45 @@ allOf:
+>              - const: ref
+>              - const: ddrss_sf_tbu
+>              - const: aggre_noc_axi
+> +        interrupts:
+> +          maxItems: 2
+> +        interrupt-names:
+> +          maxItems: 2
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - qcom,sa8775p-pcie-ep
+> +    then:
+> +      properties:
+> +        reg:
+> +          minItems: 7
+> +          maxItems: 7
+> +        reg-names:
+> +          minItems: 7
+> +          maxItems: 7
+> +        clocks:
+> +          items:
+> +            - description: PCIe Auxiliary clock
+> +            - description: PCIe CFG AHB clock
+> +            - description: PCIe Master AXI clock
+> +            - description: PCIe Slave AXI clock
+> +            - description: PCIe Slave Q2A AXI clock
+> +        clock-names:
+> +          items:
+> +            - const: aux
+> +            - const: cfg
+> +            - const: bus_master
+> +            - const: bus_slave
+> +            - const: slave_q2a
+> +        interrupts:
+> +          minItems: 3
+> +          maxItems: 3
+> +        interrupt-names:
+> +          minItems: 3
+> +          maxItems: 3
+>  
+>  unevaluatedProperties: false
+>  
+> -- 
+> 2.7.4
+> 
 
-Thank you, but I am considering a more comprehensive series from Neha[1]
-instead, if you don't mind.
-
-[1] https://lore.kernel.org/all/20231128055230.342547-1-n-francis@ti.com/
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+மணிவண்ணன் சதாசிவம்
 
