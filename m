@@ -1,214 +1,256 @@
-Return-Path: <devicetree+bounces-20922-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20923-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E269F80198C
-	for <lists+devicetree@lfdr.de>; Sat,  2 Dec 2023 02:37:18 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 085D78019A2
+	for <lists+devicetree@lfdr.de>; Sat,  2 Dec 2023 02:45:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 200771C209E0
-	for <lists+devicetree@lfdr.de>; Sat,  2 Dec 2023 01:37:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AD0551F21075
+	for <lists+devicetree@lfdr.de>; Sat,  2 Dec 2023 01:45:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44067EC3;
-	Sat,  2 Dec 2023 01:37:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD3EC15A6;
+	Sat,  2 Dec 2023 01:45:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="Ec6Fc+r4"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="ddWQY+K8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46979116;
-	Fri,  1 Dec 2023 17:37:08 -0800 (PST)
-Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
-	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20231202013704epoutp0314a96f3c01f44f6f9faf51e3ca51dd67~c3-oHhd680848308483epoutp03E;
-	Sat,  2 Dec 2023 01:37:04 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20231202013704epoutp0314a96f3c01f44f6f9faf51e3ca51dd67~c3-oHhd680848308483epoutp03E
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1701481024;
-	bh=NAUOP5glSSEGnnndp5/S6z3pH6Eg7w9HHN5zGthYgYA=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=Ec6Fc+r47Rs+3Gd9fGyIlmC87RTwHDImblyF5I48EnZqFXu7t6fJaPSVlRF1Xa8xt
-	 9DeCrQfWjNnP7GMxBlZl6hXXa5g7noUcHxpemh/3xdtgury3pOhiUv14XXercMlEJG
-	 XPtjJ1xxKSwlxCdQKAC85JxSPpvsSeCmWRrB6AuM=
-Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
-	epcas5p3.samsung.com (KnoxPortal) with ESMTP id
-	20231202013703epcas5p37b6db3daf203919987775e5ba43dd5af~c3-nrZGUz2539825398epcas5p31;
-	Sat,  2 Dec 2023 01:37:03 +0000 (GMT)
-Received: from epsmgec5p1-new.samsung.com (unknown [182.195.38.182]) by
-	epsnrtp1.localdomain (Postfix) with ESMTP id 4Shswt4BnDz4x9Pp; Sat,  2 Dec
-	2023 01:37:02 +0000 (GMT)
-Received: from epcas5p3.samsung.com ( [182.195.41.41]) by
-	epsmgec5p1-new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	6F.69.19369.E3A8A656; Sat,  2 Dec 2023 10:37:02 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-	epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
-	20231202013701epcas5p3e38615b5df70212fd8107a683b17a166~c3-lPdmnM1425014250epcas5p3l;
-	Sat,  2 Dec 2023 01:37:01 +0000 (GMT)
-Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
-	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-	20231202013701epsmtrp187add00342b07418ef07cb0bf98dba74~c3-lOQwBB3066630666epsmtrp1Y;
-	Sat,  2 Dec 2023 01:37:01 +0000 (GMT)
-X-AuditID: b6c32a50-9e1ff70000004ba9-9a-656a8a3e9edd
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-	epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	91.34.08817.C3A8A656; Sat,  2 Dec 2023 10:37:00 +0900 (KST)
-Received: from INBRO000447 (unknown [107.122.12.5]) by epsmtip2.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20231202013655epsmtip2f8e6d48c1daad106fce0da14d719f17b~c3-gDer4Z2613526135epsmtip2V;
-	Sat,  2 Dec 2023 01:36:55 +0000 (GMT)
-From: "Alim Akhtar" <alim.akhtar@samsung.com>
-To: "'Sam Protsenko'" <semen.protsenko@linaro.org>, "'Peter Griffin'"
-	<peter.griffin@linaro.org>
-Cc: <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-	<mturquette@baylibre.com>, <conor+dt@kernel.org>, <sboyd@kernel.org>,
-	<tomasz.figa@gmail.com>, <s.nawrocki@samsung.com>,
-	<linus.walleij@linaro.org>, <wim@linux-watchdog.org>, <linux@roeck-us.net>,
-	<catalin.marinas@arm.com>, <will@kernel.org>, <arnd@arndb.de>,
-	<olof@lixom.net>, <gregkh@linuxfoundation.org>, <jirislaby@kernel.org>,
-	<cw00.choi@samsung.com>, <tudor.ambarus@linaro.org>,
-	<andre.draszik@linaro.org>, <saravanak@google.com>,
-	<willmcvicker@google.com>, <soc@kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-samsung-soc@vger.kernel.org>,
-	<linux-clk@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-	<linux-watchdog@vger.kernel.org>, <kernel-team@android.com>,
-	<linux-serial@vger.kernel.org>
-In-Reply-To: <CAPLW+4kBOWFPx3Hr-=UoLWvRxCorzBY9RCOiBhfkKcU0LAa21Q@mail.gmail.com>
-Subject: RE: [PATCH v5 14/20] pinctrl: samsung: Add gs101 SoC pinctrl
- configuration
-Date: Sat, 2 Dec 2023 07:06:53 +0530
-Message-ID: <000001da24c0$0b83aab0$228b0010$@samsung.com>
+Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BB0ED5
+	for <devicetree@vger.kernel.org>; Fri,  1 Dec 2023 17:45:09 -0800 (PST)
+Received: by mail-ot1-x334.google.com with SMTP id 46e09a7af769-6d87501d6e6so230693a34.1
+        for <devicetree@vger.kernel.org>; Fri, 01 Dec 2023 17:45:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1701481508; x=1702086308; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=AEhBHN8VbNTSZ80HrOax/U+nyc8vUjuAU0nMFJkgYg0=;
+        b=ddWQY+K8z4Na3b3mDxDDDpEvCV/Hq3xR/VezTBCxlH+6oe7Qi0Vh2975oN4ioCr9yC
+         d+g0iTbIPvjFIpVQz1bVYGc2eVPE1I7YJnLsqOzwSRWrM+FnJ+dLB1qI3zktgeZKpbnK
+         0T7V2V25S4iofwIXRpFfEa/32rk2XRgbTFEiY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701481508; x=1702086308;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=AEhBHN8VbNTSZ80HrOax/U+nyc8vUjuAU0nMFJkgYg0=;
+        b=FyBbtZcuF9KZOS1tNuUAWpDFMljKQq50K/9kUQLvmQmhy+YT6JnZN3SbA5Kpdd7nX/
+         aJ0c554KXc6AexKV3HvGrMwfTRRWqeHpBHWdk5jC05KVve4l4/LPYq+ZJewN+oygYWbf
+         Vqq6LGIXXbb7w49xb+UMCfUzqBdOiS7A1cW0vN5zmAgvAExWLi18EHkhMl2EeSGbJriY
+         9REC5MML+5Yltv+dApergRNHcHlsku121usDz26/U4lVwW8BEErH7a01WXOY7tA2G0gL
+         g04tco5TD2WnFloT7oBniL2zTDwItp1ofwpFwZPnjk5I++x36xNYoX+1F+bT4J9sJOPo
+         9gBA==
+X-Gm-Message-State: AOJu0YzPpbiMmPKkGm8f7TF1BFMIt9kN7bLCNqWsB8og4FExXsEz6LfJ
+	dV34puednNzZBtrLo4OQLJsqA0j2Ar2d8Rcu79AwVZMOLj7nX4+u
+X-Google-Smtp-Source: AGHT+IHm6JkQcChFtigJpby7DNcj+ghLGqdLy7xAZomgEUCmwUBtA96uNNJnkhGNGGUMwe4XdXtWmX53OPnA/nRo31I=
+X-Received: by 2002:a05:6830:1696:b0:6d8:5534:61f9 with SMTP id
+ k22-20020a056830169600b006d8553461f9mr541143otr.35.1701481508614; Fri, 01 Dec
+ 2023 17:45:08 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20231201070719.1229447-1-wenst@chromium.org> <20231201070719.1229447-7-wenst@chromium.org>
+In-Reply-To: <20231201070719.1229447-7-wenst@chromium.org>
+From: Hsin-Yi Wang <hsinyi@chromium.org>
+Date: Fri, 1 Dec 2023 17:44:42 -0800
+Message-ID: <CAJMQK-iPT6p1izqQCHmJD2+E_RmnDKQfxsgMetnKtwNgLUmx1A@mail.gmail.com>
+Subject: Re: [PATCH v2 6/9] arm64: dts: mediatek: Add MT8186 Krabby platform
+ based Tentacruel / Tentacool
+To: Chen-Yu Tsai <wenst@chromium.org>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQMZG2Jo00AXYc5gpqO7ljuo7OX79gFwV0FnAdd5hcEBr5czMK3vif9w
-Content-Language: en-us
-X-Brightmail-Tracker: H4sIAAAAAAAAA02Te0zTVxTHc/tr+ytIt58F5qUaLY3GIc9ulF0cOJIB+WUss87wz5INK/xC
-	GdB2faAzC4IIQwQEdAQaEZBRHpaBhfF+uAIKyljcoDDEDQUERGAD4+TVreXnNv773nM+537P
-	OTeXg/G6cD4nRq6hVHJpnJBtz2zsdnPzPJLxOeXzaMEZNTytZ6LNvNs4WtJnAmToGGSgkecz
-	LFTcM8hCKWW1bLRYtAc1Nzmh7NlHGLqyUcFAxkkzC/2Z+RsL1RdvAFTwUycDDZRl4Wj0u04c
-	TZUOMND9uyHo7sgKG9UVWJgotaMHR93PvmahDNMmG1nMN5loJttaNTmywUbVrdZLlsc+Q+fH
-	xah6+W+AJucsWJCAbGxrZJGGawZArq/lAXJpNBUnW3QPcbLEqCWN1RfY5Li5nU1WGQwssqvI
-	gJP1354lh/rOsciWv5JwMruhGpArxr2S1z+JDZBR0ihKJaDkkYqoGHl0oDDseMT7EWI/H5Gn
-	yB+9IxTIpfFUoDD4Q4lnaEycdV1CQYI0TmsNSaRqtdD7SIBKodVQAplCrQkUUsqoOKWv0kst
-	jVdr5dFeckpzWOTj85bYCp6IlZUbqzDltYOn9ZXPsCTQeyADcDiQ8IWZXeoMYM/hEe0AVplS
-	QQawsx6WAfxjmEMnXgBoMuYxbAlbQX/ZAkZDHQCOJbNpaBbAlbpLuC3BJjxhc1ka26adiJOw
-	rO4cboMwopUNLfnJW5AdcQyWjDeybNqRCIfLWT9sxZnEftinH8Ns7XEJf9hWHmQLc4mdsL9w
-	imnTGOEO9aXzGN2QAK5O61m0Vyi8VT6K0cwuONfbg9NMtj0sXfuY1sHwcpqRRWtH+PROwyuG
-	D+cupeH0Vkh4fYNPh2VwoaIW0Po9eGvoKtOGYIQbrG31pp1eg1nrUwy6kgvT03g0fQCmLA4z
-	ab0b5l68+MqUhD8OVmI5wFW3bS7dtrl02/rX/W9WApjVgE8p1fHRVKRYKfKUU6f+e+xIRbwR
-	bP2kQ5JmcKNu08sEGBxgApCDCZ24I9PRFI8bJf3yDKVSRKi0cZTaBMTWZedifOdIhfUryjUR
-	Il9/H18/Pz9f/7f9RMJd3PnUoigeES3VULEUpaRU/9YxOHb8JAY/qEMztE9X8TKHU1PZFZAw
-	bXbwFoadDj7LelzDLMx3H/Z0rXleZXzpd+zgKj+PberGFtolTuc54onJIveCFjJEn1tYNbR4
-	+IKlTS25Kp3nJkaGzGYJwnYqzDu+ydgxnBz1e+pSY87IV5u7eQ3ywPtPgsDx5SuirJTaXJfY
-	0F8TKzYbHPqWyGTL8MI9F4/wGf7aeOzjoNb+o2eaipvCBhfSUh0XS8Z+7kWJG/sTT04f/eBB
-	jENcWhb1y0RCyYnRPQO1Hq2fPsANmn35rm/c63vSjb84NfFw8MbIbQ9Z+rudw+nOXwj3htx5
-	03zT4uIh9b6+vhpcOVP1PQpPxl20H3Xy6oRMtUwqOoSp1NJ/ANvC98/SBAAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrNKsWRmVeSWpSXmKPExsWy7bCSvK5NV1aqweFmC4strzazWPyddIzd
-	4v2yHkaLNXvPMVlc//Kc1WL+kXOsFs2L17NZvJsrY7Fju4hF34uHzBZT/ixnstj0+Bqrxcee
-	e6wWm+f/YbSYcX4fk8WZxb3sFjfW7WO3eLLwDJPFxVOuFqeuf2az2DDjH4tF694j7BaH37Sz
-	WnQd+stm8e/aRhaL531AXY+v/2GzWLULaMinW3EWLXdMLVZ9+s9o8fjlP2YHBY9tu7exeqyZ
-	t4bR4/evSYwe72+0snvsnHWX3WPBplKPTas62TzuXNvD5rFyzRpWj/1z17B7bF5S73HlRBOr
-	x87vDewefVtWMXp83iQXwB/FZZOSmpNZllqkb5fAlfH32kPGguMyFYu617I1MC4U72Lk5JAQ
-	MJE4ufgtcxcjF4eQwG5Gia5n+9ggEtIS1zdOYIewhSVW/nsOZgsJPGOU6LmbBGKzCehK7Fjc
-	BlYvIpAk8fTjMnaQQcwCd9gk/r1ewwIxtZtJ4sS9X8wgVZwCgRIL7mxjBbGFBYIlWv5dZgKx
-	WQRUJE4suwVUw8HBK2ApsXupA0iYV0BQ4uTMJywgNrOAtkTvw1ZGGHvZwtfMEMcpSPx8uowV
-	4gg3iQNLbzBD1IhLvDx6hH0Co/AsJKNmIRk1C8moWUhaFjCyrGKUTC0ozk3PLTYsMMpLLdcr
-	TswtLs1L10vOz93ECE5PWlo7GPes+qB3iJGJg/EQowQHs5II7/Wn6alCvCmJlVWpRfnxRaU5
-	qcWHGKU5WJTEeb+97k0REkhPLEnNTk0tSC2CyTJxcEo1MLWbfmpdWlZxS3LnVHnOhFk/K6YV
-	+z3TajCpqjzY05Y20yKfnSvm6qyjxWsOcErq9z6dLrzOqrpK1zNK4/eOLY4uRue4nx5mW7p9
-	8VXuK4GP1Cr3V/RdnGi6fFJ9Q0hsxP6leznl528Tny75UcV5jRKL7i797DtFf9TDQ6dzlOio
-	rlVs89vH/uc9Z8mt/GN7PZ/oL5ho5Nskeu9XwWk2LcdWz0WTrrDt3Xl6ldLW57uDWyWOcM1R
-	C7y/8cTyq0uqrgdZb7cOPewfN9tuZ37Bit0vPqlVTy//aRZ9TcNG7YS6tVWOsZDc9ix3pddJ
-	r+PcLIMdVe/XP4ia869a481BkUvLVGXXb55aN9+u4o7+GSWW4oxEQy3mouJEAL9e0hm+AwAA
-X-CMS-MailID: 20231202013701epcas5p3e38615b5df70212fd8107a683b17a166
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20231202004026epcas5p4d3947d7bb99e54f70ca37272cfdc5e55
-References: <20231201160925.3136868-1-peter.griffin@linaro.org>
-	<20231201160925.3136868-15-peter.griffin@linaro.org>
-	<CGME20231202004026epcas5p4d3947d7bb99e54f70ca37272cfdc5e55@epcas5p4.samsung.com>
-	<CAPLW+4kBOWFPx3Hr-=UoLWvRxCorzBY9RCOiBhfkKcU0LAa21Q@mail.gmail.com>
 
+On Fri, Dec 1, 2023 at 5:39=E2=80=AFPM Chen-Yu Tsai <wenst@chromium.org> wr=
+ote:
+>
+> Tentacruel and Tentacool are MT8186 based Chromebooks based on the
+> Krabby design.
+>
+> Tentacruel, also known as the ASUS Chromebook CM14 Flip CM1402F, is a
+> convertible device with touchscreen and stylus.
+>
+> Tentacool, also known as the ASUS Chromebook CM14 CM1402C, is a laptop
+> device. It does not have a touchscreen or stylus.
+>
+> The two devices both have two variants. The difference is a second
+> source touchpad controller that shares the same address as the original,
+> but is incompatible.
+>
+> The extra SKU IDs for the Tentacruel devices map to different sensor
+> components attached to the Embedded Controller. These are not visible
+> to the main processor.
+>
+> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+> ---
+> Changes since v1:
+> - Reorder SKU numbers in descending order.
+> - Fixed pinconfig node names
+> - Moved pinctrl-* properties after interrupts-*
+> - Switched to interrupts-extended for external components
+> - Marked ADSP as explicitly disabled, with a comment explaining that it
+>   stalls the system
+> - Renamed "touchpad" to "trackpad"
+> - Dropped bogus "no-laneswap" property from it6505 node
+> - Moved "realtek,jd-src" property to after all the regulator supplies
+> - Switched to macros for MT6366 regulator "regulator-allowed-modes"
+> - Renamed "vgpu" regulator name to allow coupling, with a comment
+>   containing the name used in the design
+> - Renamed "cr50" node name to "tpm"
+> - Moved trackpad_pins reference up to i2c2; workaround for second source
+>   component resource sharing.
+> - Fix copyright year
+> - Fixed touchscreen supply name
+>
+>  arch/arm64/boot/dts/mediatek/Makefile         |    4 +
+>  .../dts/mediatek/mt8186-corsola-krabby.dtsi   |  129 ++
+>  .../mt8186-corsola-tentacool-sku327681.dts    |   57 +
+>  .../mt8186-corsola-tentacool-sku327683.dts    |   26 +
+>  .../mt8186-corsola-tentacruel-sku262144.dts   |   44 +
+>  .../mt8186-corsola-tentacruel-sku262148.dts   |   28 +
+>  .../boot/dts/mediatek/mt8186-corsola.dtsi     | 1719 +++++++++++++++++
+>  7 files changed, 2007 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-krabby.dt=
+si
+>  create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-tentacool=
+-sku327681.dts
+>  create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-tentacool=
+-sku327683.dts
+>  create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-tentacrue=
+l-sku262144.dts
+>  create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-tentacrue=
+l-sku262148.dts
+>  create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
+>
+> diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/=
+mediatek/Makefile
+> index e6e7592a3645..442af61b1305 100644
+> --- a/arch/arm64/boot/dts/mediatek/Makefile
 
+<snip>
 
-> -----Original Message-----
-> From: Sam Protsenko <semen.protsenko=40linaro.org>
-> Sent: Saturday, December 2, 2023 6:10 AM
-> To: Peter Griffin <peter.griffin=40linaro.org>
-> Cc: robh+dt=40kernel.org; krzysztof.kozlowski+dt=40linaro.org;
-> mturquette=40baylibre.com; conor+dt=40kernel.org; sboyd=40kernel.org;
-> tomasz.figa=40gmail.com; s.nawrocki=40samsung.com; linus.walleij=40linaro=
-.org;
-> wim=40linux-watchdog.org; linux=40roeck-us.net; catalin.marinas=40arm.com=
-;
-> will=40kernel.org; arnd=40arndb.de; olof=40lixom.net;
-> gregkh=40linuxfoundation.org; jirislaby=40kernel.org;
-> cw00.choi=40samsung.com; alim.akhtar=40samsung.com;
-> tudor.ambarus=40linaro.org; andre.draszik=40linaro.org;
-> saravanak=40google.com; willmcvicker=40google.com; soc=40kernel.org;
-> devicetree=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org; lin=
-ux-
-> samsung-soc=40vger.kernel.org; linux-clk=40vger.kernel.org; linux-
-> gpio=40vger.kernel.org; linux-watchdog=40vger.kernel.org; kernel-
-> team=40android.com; linux-serial=40vger.kernel.org
-> Subject: Re: =5BPATCH v5 14/20=5D pinctrl: samsung: Add gs101 SoC pinctrl
-> configuration
->=20
-> On Fri, Dec 1, 2023 at 10:11=E2=80=AFAM=20Peter=20Griffin=20<peter.griffi=
-n=40linaro.org>=0D=0A>=20wrote:=0D=0A>=20>=0D=0A>=20>=20Add=20support=20for=
-=20the=20pin-controller=20found=20on=20the=20gs101=20SoC=20used=20in=0D=0A>=
-=20>=20Pixel=206=20phones.=0D=0A>=20>=0D=0A>=20>=20Signed-off-by:=20Peter=
-=20Griffin=20<peter.griffin=40linaro.org>=0D=0A>=20>=20---=0D=0A>=20>=20=20=
-.../pinctrl/samsung/pinctrl-exynos-arm64.c=20=20=20=20=7C=20159=20+++++++++=
-+++++++++=0D=0A>=20>=20=20drivers/pinctrl/samsung/pinctrl-exynos.c=20=20=20=
-=20=20=20=7C=20=20=202=20+=0D=0A>=20>=20=20drivers/pinctrl/samsung/pinctrl-=
-exynos.h=20=20=20=20=20=20=7C=20=2034=20++++=0D=0A>=20>=20=20drivers/pinctr=
-l/samsung/pinctrl-samsung.c=20=20=20=20=20=7C=20=20=202=20+=0D=0A>=20>=20=
-=20drivers/pinctrl/samsung/pinctrl-samsung.h=20=20=20=20=20=7C=20=20=201=20=
-+=0D=0A>=20>=20=205=20files=20changed,=20198=20insertions(+)=0D=0A>=20>=0D=
-=0A>=20>=20diff=20--git=20a/drivers/pinctrl/samsung/pinctrl-exynos-arm64.c=
-=0D=0A>=20>=20b/drivers/pinctrl/samsung/pinctrl-exynos-arm64.c=0D=0A>=20>=
-=20index=20cb965cf93705..e1a0668ecb16=20100644=0D=0A>=20>=20---=20a/drivers=
-/pinctrl/samsung/pinctrl-exynos-arm64.c=0D=0A>=20>=20+++=20b/drivers/pinctr=
-l/samsung/pinctrl-exynos-arm64.c=0D=0A>=20>=20=40=40=20-796,3=20+796,162=20=
-=40=40=20const=20struct=20samsung_pinctrl_of_match_data=0D=0A>=20fsd_of_dat=
-a=20__initconst=20=3D=20=7B=0D=0A>=20>=20=20=20=20=20=20=20=20=20.ctrl=20=
-=20=20=20=20=20=20=20=20=20=20=3D=20fsd_pin_ctrl,=0D=0A>=20>=20=20=20=20=20=
-=20=20=20=20.num_ctrl=20=20=20=20=20=20=20=3D=20ARRAY_SIZE(fsd_pin_ctrl),=
-=0D=0A>=20>=20=20=7D;=0D=0A>=20>=20+=0D=0A>=20>=20+/*=0D=0A>=20>=20+=20*=20=
-bank=20type=20for=20non-alive=20type=0D=0A>=20>=20+=20*=20(CON=20bit=20fiel=
-d:=204,=20DAT=20bit=20field:=201,=20PUD=20bit=20field:=204,=20DRV=20bit=0D=
-=0A>=20>=20+field:=204)=0D=0A>=20>=20+=20*=20(CONPDN=20bit=20field:=202,=20=
-PUDPDN=20bit=20field:=204)=20=20*/=20static=20struct=0D=0A>=20>=20+samsung_=
-pin_bank_type=20gs101_bank_type_off=20=20=3D=20=7B=0D=0A>=20>=20+=20=20=20=
-=20=20=20=20.fld_width=20=3D=20=7B=204,=201,=204,=204,=202,=204,=20=7D,=0D=
-=0A>=20>=20+=20=20=20=20=20=20=20.reg_offset=20=3D=20=7B=200x00,=200x04,=20=
-0x08,=200x0c,=200x10,=200x14,=20=7D,=20=7D;=0D=0A>=20=0D=0A>=20This=20is=20=
-just=20the=20same=20as=20exynos850_bank_type_off=20(100%=20duplication).=0D=
-=0A>=20Here=20is=20what=20I=20suggest.=20Now=20that=20it's=20obvious=20ther=
-e=20is=20some=20common=20platform=0D=0A>=20for=20moder=20Exynos=20SoCs,=20a=
-nd=20it's=20probably=20Exynos9,=20I'd=20suggest=20next=20course=20of=0D=0A>=
-=20action=20(if=20maintainers=20agree):=0D=0A>=20=20=201.=20Remove=20this=
-=20one=0D=0A>=20=20=202.=20Rename=20exynos850_bank_type_off=20to=20exynos9_=
-bank_type_off=0D=0A>=20=20=203.=20Use=20it=20for=20both=20gs101=20and=20exy=
-nos850=0D=0A>=20=0D=0A>=20Does=20it=20make=20sense?=0D=0A>=20=0D=0AMy=20opi=
-nion=20is=20to=20reuse=20exynos850=20for=20gs101=20(wherever=20applicable),=
-=20same=20philosophy=20was=20historically=20followed=20in=20this=20file.=0D=
-=0AThat=20way=20(using=20exynos850=20for=20gs101)=20things=20will=20be=20si=
-mple.=20=0D=0AAdding=20exynos9_*=20is=20not=20adding=20any=20benefit,=20rat=
-her=20it=20create=20confusion.=0D=0A=0D=0A>=20>=20+=0D=0A>=20>=20+/*=0D=0A>=
-=20>=20+=20*=20bank=20type=20for=20alive=20type=0D=0A>=20>=20+=20*=20(CON=
-=20bit=20field:=204,=20DAT=20bit=20field:=201,=20PUD=20bit=20field:=204,=20=
-DRV=20bit=0D=0A>=20>=20+field:=204)=20=20*/=20static=20const=20struct=20sam=
-sung_pin_bank_type=0D=0A>=20>=20+gs101_bank_type_alive=20=3D=20=7B=0D=0A>=
-=20>=20+=20=20=20=20=20=20=20.fld_width=20=3D=20=7B=204,=201,=204,=204,=20=
-=7D,=0D=0A>=20>=20+=20=20=20=20=20=20=20.reg_offset=20=3D=20=7B=200x00,=200=
-x04,=200x08,=200x0c,=20=7D,=20=7D;=0D=0A=5B...=5D=0D=0A=0D=0A
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola-tentacool-sku327=
+683.dts b/arch/arm64/boot/dts/mediatek/mt8186-corsola-tentacool-sku327683.d=
+ts
+> new file mode 100644
+> index 000000000000..2e4d8df978c1
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola-tentacool-sku327683.dts
+> @@ -0,0 +1,26 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/*
+> + * Copyright 2023 Google LLC
+> + */
+> +
+> +#include "mt8186-corsola-tentacool-sku327681.dts"
+> +
+> +/ {
+> +       compatible =3D "google,tentacruel-sku327683", "google,tentacruel"=
+, "mediatek,mt8186";
+> +};
+> +
+> +/* This variant replaces only the touchpad controller. */
+> +&i2c2 {
+> +       /delete-node/ touchpad@15;
+
+corsola.dtsi has this node named trackpad@15.
+
+> +
+> +       touchpad@15 {
+> +               pinctrl-names =3D "default";
+> +               pinctrl-0 =3D <&trackpad_pin>;
+> +               compatible =3D "hid-over-i2c";
+> +               reg =3D <0x15>;
+> +               interrupts-extended =3D <&pio 11 IRQ_TYPE_LEVEL_LOW>;
+> +               hid-descr-addr =3D <0x0001>;
+> +               vdd-supply =3D <&pp3300_s3>;
+> +               wakeup-source;
+> +       };
+> +};
+
+<snip>
+
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola-tentacruel-sku26=
+2148.dts b/arch/arm64/boot/dts/mediatek/mt8186-corsola-tentacruel-sku262148=
+.dts
+> new file mode 100644
+> index 000000000000..7841046084dc
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola-tentacruel-sku262148.dt=
+s
+> @@ -0,0 +1,28 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/*
+> + * Copyright 2023 Google LLC
+> + */
+> +
+> +#include "mt8186-corsola-tentacruel-sku262144.dts"
+> +
+> +/ {
+> +       compatible =3D "google,tentacruel-sku262151", "google,tentacruel-=
+sku262150",
+> +                    "google,tentacruel-sku262149", "google,tentacruel-sk=
+u262148",
+> +                    "google,tentacruel", "mediatek,mt8186";
+> +};
+> +
+> +/* This variant replaces only the touchpad controller. */
+> +&i2c2 {
+> +       /delete-node/ touchpad@15;
+> +
+
+ditto.
+
+> +       touchpad@15 {
+> +               pinctrl-names =3D "default";
+> +               pinctrl-0 =3D <&trackpad_pin>;
+> +               compatible =3D "hid-over-i2c";
+> +               reg =3D <0x15>;
+> +               interrupts-extended =3D <&pio 11 IRQ_TYPE_LEVEL_LOW>;
+> +               hid-descr-addr =3D <0x0001>;
+> +               vdd-supply =3D <&pp3300_s3>;
+> +               wakeup-source;
+> +       };
+> +};
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi b/arch/arm6=
+4/boot/dts/mediatek/mt8186-corsola.dtsi
+> new file mode 100644
+> index 000000000000..c5446b18783d
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
+> @@ -0,0 +1,1719 @@
+
+<snip>
+
+> +
+> +&i2c2 {
+> +       pinctrl-names =3D "default";
+> +       /*
+> +        * Trackpad pin put here to work around second source components
+> +        * sharing the pinmux
+> +        */
+> +       pinctrl-0 =3D <&i2c2_pins>, <&trackpad_pin>;
+> +       clock-frequency =3D <400000>;
+> +       i2c-scl-internal-delay-ns =3D <10000>;
+> +       status =3D "okay";
+> +
+> +       trackpad@15 {
+> +               compatible =3D "elan,ekth3000";
+> +               reg =3D <0x15>;
+> +               interrupts-extended =3D <&pio 11 IRQ_TYPE_LEVEL_LOW>;
+> +               vcc-supply =3D <&pp3300_s3>;
+> +               wakeup-source;
+> +       };
+> +};
+> +
+
+<snip>
 
