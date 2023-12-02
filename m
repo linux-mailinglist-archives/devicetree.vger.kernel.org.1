@@ -1,521 +1,78 @@
-Return-Path: <devicetree+bounces-21008-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21009-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CB7C801F1A
-	for <lists+devicetree@lfdr.de>; Sat,  2 Dec 2023 23:36:21 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09D6E801F31
+	for <lists+devicetree@lfdr.de>; Sat,  2 Dec 2023 23:43:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DF46E1F20F87
-	for <lists+devicetree@lfdr.de>; Sat,  2 Dec 2023 22:36:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9FC7BB20ABD
+	for <lists+devicetree@lfdr.de>; Sat,  2 Dec 2023 22:43:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CBA21D524;
-	Sat,  2 Dec 2023 22:36:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A7C622098;
+	Sat,  2 Dec 2023 22:43:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="Ihrzn+2V"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Le2RtE6a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ixit.cz (ip-89-177-23-149.bb.vodafone.cz [89.177.23.149])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63B9C11F;
-	Sat,  2 Dec 2023 14:36:06 -0800 (PST)
-Received: from newone.lan (unknown [10.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by ixit.cz (Postfix) with ESMTPSA id 9F73F1612B2;
-	Sat,  2 Dec 2023 23:30:37 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-	t=1701556237;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=H06nUo8NYq1Srt6kCqyIjmT3qxIhv0OVvzkrHAKz+wE=;
-	b=Ihrzn+2V+Iz+hI6yCIEVTqpk6Q3K7UnJXSZ4rYwvVsIPjENhOW1FI/YBj074krzAVsooNN
-	XklGxMFylJ7g45GED+wDRwzMZD5fx55O1EaG9ymIn9qhYRSERG25rERltsDRJBWPiKhA0y
-	HSr0oG6aXm2/KCjE7KBWnICaCwCrY0g=
-From: David Heidelberg <david@ixit.cz>
-To: Andrew Lunn <andrew@lunn.ch>,
-	Gregory Clement <gregory.clement@bootlin.com>,
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B565A4;
+	Sat,  2 Dec 2023 14:43:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=wsur4cooD2ikDX+1j0hmv8bEdcDbDiNq3c9HAKF1KWc=; b=Le2RtE6aBoIgT9mlf//zAabcom
+	uKLh69SyRu0EerJs4Sug8CgghxI3GL2ygkjqTFocDILg8dqNtkxxFM9o5Ew3v4iBSrH9fZfNfIS0Y
+	If5GIQmFFEdXeBDIvWiREQYMFH0rPCc6P+ymQzGBx/kuCyq9cyvWdpBFSt6pOGV5Osb4=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1r9YhE-001s1i-4q; Sat, 02 Dec 2023 23:42:48 +0100
+Date: Sat, 2 Dec 2023 23:42:48 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: David Heidelberg <david@ixit.cz>
+Cc: Gregory Clement <gregory.clement@bootlin.com>,
 	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Andre Przywara <andre.przywara@arm.com>,
-	Peter Rosin <peda@axentia.se>,
-	Heiko Stuebner <heiko@sntech.de>,
+	Peter Rosin <peda@axentia.se>, Heiko Stuebner <heiko@sntech.de>,
 	Nick Hawkins <nick.hawkins@hpe.com>,
 	Viresh Kumar <viresh.kumar@linaro.org>,
-	David Heidelberg <david@ixit.cz>
-Cc: Simon Guinot <simon.guinot@sequanux.org>,
+	Simon Guinot <simon.guinot@sequanux.org>,
 	Wei Xu <xuwei5@hisilicon.com>,
 	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
 	Enric Balletbo i Serra <eballetbo@gmail.com>,
-	Baruch Siach <baruch@tkos.co.il>,
-	Rob Herring <robh@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
+	Baruch Siach <baruch@tkos.co.il>, Rob Herring <robh@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v3 5/5] ARM: dts: marvell: make dts use gpio-fan matrix instead of array
-Date: Sat,  2 Dec 2023 23:29:04 +0100
-Message-ID: <20231202222934.137191-5-david@ixit.cz>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231202222934.137191-1-david@ixit.cz>
+Subject: Re: [PATCH v3 5/5] ARM: dts: marvell: make dts use gpio-fan matrix
+ instead of array
+Message-ID: <cb86b7bd-7dec-42dd-8d90-fa0eea321ae1@lunn.ch>
 References: <20231202222934.137191-1-david@ixit.cz>
+ <20231202222934.137191-5-david@ixit.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231202222934.137191-5-david@ixit.cz>
 
-No functional changes.
+On Sat, Dec 02, 2023 at 11:29:04PM +0100, David Heidelberg wrote:
+> No functional changes.
+> 
+> Adjust to comply with dt-schema requirements
+> and make possible to validate values.
+> 
+> Acked-by: Simon Guinot <simon.guinot@sequanux.org>
+> Signed-off-by: David Heidelberg <david@ixit.cz>
 
-Adjust to comply with dt-schema requirements
-and make possible to validate values.
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-Acked-by: Simon Guinot <simon.guinot@sequanux.org>
-Signed-off-by: David Heidelberg <david@ixit.cz>
----
- arch/arm/boot/dts/marvell/armada-370-rd.dts   |   2 +-
- .../marvell/armada-370-seagate-nas-2bay.dts   |   8 +-
- .../marvell/armada-370-seagate-nas-4bay.dts   |   8 +-
- .../marvell/armada-370-synology-ds213j.dts    |  16 +--
- .../dts/marvell/armada-385-synology-ds116.dts |  16 +--
- arch/arm/boot/dts/marvell/armada-388-gp.dts   |   4 +-
- arch/arm/boot/dts/marvell/kirkwood-dnskw.dtsi |   6 +-
- .../marvell/kirkwood-linkstation-6282.dtsi    |   9 +-
- .../marvell/kirkwood-linkstation-lswxl.dts    |   9 +-
- arch/arm/boot/dts/marvell/kirkwood-lsxl.dtsi  |   9 +-
- arch/arm/boot/dts/marvell/kirkwood-ns2max.dts |  18 ++--
- .../arm/boot/dts/marvell/kirkwood-ns2mini.dts |  18 ++--
- .../boot/dts/marvell/kirkwood-synology.dtsi   | 102 +++++++++---------
- .../dts/marvell/mvebu-linkstation-fan.dtsi    |   8 +-
- 14 files changed, 121 insertions(+), 112 deletions(-)
-
-diff --git a/arch/arm/boot/dts/marvell/armada-370-rd.dts b/arch/arm/boot/dts/marvell/armada-370-rd.dts
-index b459a670f615..4b5789b73dac 100644
---- a/arch/arm/boot/dts/marvell/armada-370-rd.dts
-+++ b/arch/arm/boot/dts/marvell/armada-370-rd.dts
-@@ -95,7 +95,7 @@ button {
- 			gpio-fan {
- 				compatible = "gpio-fan";
- 				gpios = <&gpio0 8 GPIO_ACTIVE_HIGH>;
--				gpio-fan,speed-map = <0 0 3000 1>;
-+				gpio-fan,speed-map = <0 0>, <3000 1>;
- 				pinctrl-0 = <&fan_pins>;
- 				pinctrl-names = "default";
- 			};
-diff --git a/arch/arm/boot/dts/marvell/armada-370-seagate-nas-2bay.dts b/arch/arm/boot/dts/marvell/armada-370-seagate-nas-2bay.dts
-index 8dd242e668e6..6ec3dd3337f4 100644
---- a/arch/arm/boot/dts/marvell/armada-370-seagate-nas-2bay.dts
-+++ b/arch/arm/boot/dts/marvell/armada-370-seagate-nas-2bay.dts
-@@ -25,9 +25,9 @@ / {
- 
- 	gpio-fan {
- 		gpio-fan,speed-map =
--			<   0 3
--			  950 2
--			 1400 1
--			 1800 0>;
-+			<   0 3>,
-+			< 950 2>,
-+			<1400 1>,
-+			<1800 0>;
- 	};
- };
-diff --git a/arch/arm/boot/dts/marvell/armada-370-seagate-nas-4bay.dts b/arch/arm/boot/dts/marvell/armada-370-seagate-nas-4bay.dts
-index 370ca9c43247..3011578a3124 100644
---- a/arch/arm/boot/dts/marvell/armada-370-seagate-nas-4bay.dts
-+++ b/arch/arm/boot/dts/marvell/armada-370-seagate-nas-4bay.dts
-@@ -106,10 +106,10 @@ NS_V2_LED_ON   1 0
- 
- 	gpio-fan {
- 		gpio-fan,speed-map =
--			<   0 3
--			  800 2
--			  1050 1
--			  1300 0>;
-+			<   0 3>,
-+			< 800 2>,
-+			<1050 1>,
-+			<1300 0>;
- 	};
- };
- 
-diff --git a/arch/arm/boot/dts/marvell/armada-370-synology-ds213j.dts b/arch/arm/boot/dts/marvell/armada-370-synology-ds213j.dts
-index b07d11d1f124..02599a3e9816 100644
---- a/arch/arm/boot/dts/marvell/armada-370-synology-ds213j.dts
-+++ b/arch/arm/boot/dts/marvell/armada-370-synology-ds213j.dts
-@@ -113,14 +113,14 @@ gpio-fan-32-38 {
- 			 &gpio2  0 GPIO_ACTIVE_HIGH
- 			 &gpio2  1 GPIO_ACTIVE_HIGH>;
- 		alarm-gpios = <&gpio1 6 GPIO_ACTIVE_HIGH>;
--		gpio-fan,speed-map = <    0 0
--				       1000 1
--				       1150 2
--				       1350 4
--				       1500 3
--				       1650 5
--				       1750 6
--				       1900 7 >;
-+		gpio-fan,speed-map = <   0 0>,
-+				     <1000 1>,
-+				     <1150 2>,
-+				     <1350 4>,
-+				     <1500 3>,
-+				     <1650 5>,
-+				     <1750 6>,
-+				     <1900 7>;
- 	};
- 
- 	gpio-leds {
-diff --git a/arch/arm/boot/dts/marvell/armada-385-synology-ds116.dts b/arch/arm/boot/dts/marvell/armada-385-synology-ds116.dts
-index ea91ff964d94..6caa5c50175a 100644
---- a/arch/arm/boot/dts/marvell/armada-385-synology-ds116.dts
-+++ b/arch/arm/boot/dts/marvell/armada-385-synology-ds116.dts
-@@ -131,14 +131,14 @@ gpio-fan {
- 			gpios = <&gpio1 18 GPIO_ACTIVE_HIGH>,
- 				<&gpio1 17 GPIO_ACTIVE_HIGH>,
- 				<&gpio1 16 GPIO_ACTIVE_HIGH>;
--			gpio-fan,speed-map = <   0 0
--					      1500 1
--					      2500 2
--					      3000 3
--					      3400 4
--					      3700 5
--					      3900 6
--					      4000 7>;
-+			gpio-fan,speed-map = <   0 0>,
-+					     <1500 1>,
-+					     <2500 2>,
-+					     <3000 3>,
-+					     <3400 4>,
-+					     <3700 5>,
-+					     <3900 6>,
-+					     <4000 7>;
- 			#cooling-cells = <2>;
- 		};
- 
-diff --git a/arch/arm/boot/dts/marvell/armada-388-gp.dts b/arch/arm/boot/dts/marvell/armada-388-gp.dts
-index e2ba50520b6b..1de0a172aa5f 100644
---- a/arch/arm/boot/dts/marvell/armada-388-gp.dts
-+++ b/arch/arm/boot/dts/marvell/armada-388-gp.dts
-@@ -237,8 +237,8 @@ pcie@3,0 {
- 		gpio-fan {
- 			compatible = "gpio-fan";
- 			gpios = <&expander1 3 GPIO_ACTIVE_HIGH>;
--			gpio-fan,speed-map = <	 0 0
--					      3000 1>;
-+			gpio-fan,speed-map = <	 0 0>,
-+					     <3000 1>;
- 		};
- 	};
- 
-diff --git a/arch/arm/boot/dts/marvell/kirkwood-dnskw.dtsi b/arch/arm/boot/dts/marvell/kirkwood-dnskw.dtsi
-index eb917462b219..0738eb679fcd 100644
---- a/arch/arm/boot/dts/marvell/kirkwood-dnskw.dtsi
-+++ b/arch/arm/boot/dts/marvell/kirkwood-dnskw.dtsi
-@@ -38,9 +38,9 @@ gpio_fan {
- 		pinctrl-names = "default";
- 		gpios = <&gpio1 14 GPIO_ACTIVE_HIGH
- 			 &gpio1 13 GPIO_ACTIVE_HIGH>;
--		gpio-fan,speed-map = <0    0
--				      3000 1
--				      6000 2>;
-+		gpio-fan,speed-map = <0    0>,
-+				     <3000 1>,
-+				     <6000 2>;
- 	};
- 
- 	gpio_poweroff {
-diff --git a/arch/arm/boot/dts/marvell/kirkwood-linkstation-6282.dtsi b/arch/arm/boot/dts/marvell/kirkwood-linkstation-6282.dtsi
-index 377b6e970259..dfac2045a1eb 100644
---- a/arch/arm/boot/dts/marvell/kirkwood-linkstation-6282.dtsi
-+++ b/arch/arm/boot/dts/marvell/kirkwood-linkstation-6282.dtsi
-@@ -118,10 +118,11 @@ gpio_fan {
- 		gpios = <&gpio0 17 GPIO_ACTIVE_LOW
- 			 &gpio0 16 GPIO_ACTIVE_LOW>;
- 
--		gpio-fan,speed-map = <0 3
--				1500 2
--				3250 1
--				5000 0>;
-+		gpio-fan,speed-map =
-+				<   0 3>,
-+				<1500 2>,
-+				<3250 1>,
-+				<5000 0>;
- 
- 		alarm-gpios = <&gpio1 11 GPIO_ACTIVE_HIGH>;
- 	};
-diff --git a/arch/arm/boot/dts/marvell/kirkwood-linkstation-lswxl.dts b/arch/arm/boot/dts/marvell/kirkwood-linkstation-lswxl.dts
-index c6024b569423..0425df8cb91c 100644
---- a/arch/arm/boot/dts/marvell/kirkwood-linkstation-lswxl.dts
-+++ b/arch/arm/boot/dts/marvell/kirkwood-linkstation-lswxl.dts
-@@ -69,10 +69,11 @@ gpio_fan {
- 		gpios = <&gpio1 16 GPIO_ACTIVE_LOW
- 			 &gpio1 15 GPIO_ACTIVE_LOW>;
- 
--		gpio-fan,speed-map = <0 3
--				1500 2
--				3250 1
--				5000 0>;
-+		gpio-fan,speed-map =
-+				<   0 3>,
-+				<1500 2>,
-+				<3250 1>,
-+				<5000 0>;
- 
- 		alarm-gpios = <&gpio1 8 GPIO_ACTIVE_HIGH>;
- 	};
-diff --git a/arch/arm/boot/dts/marvell/kirkwood-lsxl.dtsi b/arch/arm/boot/dts/marvell/kirkwood-lsxl.dtsi
-index 88b70ba1c8fe..f80af24b9e90 100644
---- a/arch/arm/boot/dts/marvell/kirkwood-lsxl.dtsi
-+++ b/arch/arm/boot/dts/marvell/kirkwood-lsxl.dtsi
-@@ -172,10 +172,11 @@ gpio_fan {
- 		pinctrl-names = "default";
- 		gpios = <&gpio0 19 GPIO_ACTIVE_LOW
- 		         &gpio0 18 GPIO_ACTIVE_LOW>;
--		gpio-fan,speed-map = <0    3
--		                      1500 2
--		                      3250 1
--		                      5000 0>;
-+		gpio-fan,speed-map =
-+				<0    3>,
-+				<1500 2>,
-+				<3250 1>,
-+				<5000 0>;
- 		alarm-gpios = <&gpio1 8 GPIO_ACTIVE_HIGH>;
- 	};
- 
-diff --git a/arch/arm/boot/dts/marvell/kirkwood-ns2max.dts b/arch/arm/boot/dts/marvell/kirkwood-ns2max.dts
-index c0a087e77408..044958bc55da 100644
---- a/arch/arm/boot/dts/marvell/kirkwood-ns2max.dts
-+++ b/arch/arm/boot/dts/marvell/kirkwood-ns2max.dts
-@@ -29,15 +29,15 @@ &gpio0  7 GPIO_ACTIVE_LOW
- 			 &gpio1  1 GPIO_ACTIVE_LOW
- 			 &gpio0 23 GPIO_ACTIVE_LOW>;
- 		gpio-fan,speed-map =
--			<   0  0
--			 1500 15
--			 1700 14
--			 1800 13
--			 2100 12
--			 3100 11
--			 3300 10
--			 4300  9
--			 5500  8>;
-+			<   0  0>,
-+			<1500 15>,
-+			<1700 14>,
-+			<1800 13>,
-+			<2100 12>,
-+			<3100 11>,
-+			<3300 10>,
-+			<4300  9>,
-+			<5500  8>;
- 		alarm-gpios = <&gpio0 25 GPIO_ACTIVE_LOW>;
- 	};
- 
-diff --git a/arch/arm/boot/dts/marvell/kirkwood-ns2mini.dts b/arch/arm/boot/dts/marvell/kirkwood-ns2mini.dts
-index 5b9fa14b6428..3fbe008f9141 100644
---- a/arch/arm/boot/dts/marvell/kirkwood-ns2mini.dts
-+++ b/arch/arm/boot/dts/marvell/kirkwood-ns2mini.dts
-@@ -30,15 +30,15 @@ &gpio0  7 GPIO_ACTIVE_LOW
- 			 &gpio1  1 GPIO_ACTIVE_LOW
- 			 &gpio0 23 GPIO_ACTIVE_LOW>;
- 		gpio-fan,speed-map =
--			<   0  0
--			 3000 15
--			 3180 14
--			 4140 13
--			 4570 12
--			 6760 11
--			 7140 10
--			 7980  9
--			 9200  8>;
-+			<   0  0>,
-+			<3000 15>,
-+			<3180 14>,
-+			<4140 13>,
-+			<4570 12>,
-+			<6760 11>,
-+			<7140 10>,
-+			<7980  9>,
-+			<9200  8>;
- 		alarm-gpios = <&gpio0 25 GPIO_ACTIVE_LOW>;
- 	};
- 
-diff --git a/arch/arm/boot/dts/marvell/kirkwood-synology.dtsi b/arch/arm/boot/dts/marvell/kirkwood-synology.dtsi
-index 9b6666020cdd..20964eb48fd7 100644
---- a/arch/arm/boot/dts/marvell/kirkwood-synology.dtsi
-+++ b/arch/arm/boot/dts/marvell/kirkwood-synology.dtsi
-@@ -286,14 +286,15 @@ gpio-fan-150-32-35 {
- 		gpios = <&gpio1 0 GPIO_ACTIVE_HIGH
- 			 &gpio1 1 GPIO_ACTIVE_HIGH
- 			 &gpio1 2 GPIO_ACTIVE_HIGH>;
--		gpio-fan,speed-map = <    0 0
--				       2200 1
--				       2500 2
--				       3000 4
--				       3300 3
--				       3700 5
--				       3800 6
--				       4200 7 >;
-+		gpio-fan,speed-map =
-+				<   0 0>,
-+				<2200 1>,
-+				<2500 2>,
-+				<3000 4>,
-+				<3300 3>,
-+				<3700 5>,
-+				<3800 6>,
-+				<4200 7>;
- 	};
- 
- 	gpio-fan-150-15-18 {
-@@ -306,14 +307,15 @@ gpio-fan-150-15-18 {
- 			 &gpio0 16 GPIO_ACTIVE_HIGH
- 			 &gpio0 17 GPIO_ACTIVE_HIGH>;
- 		alarm-gpios = <&gpio0 18 GPIO_ACTIVE_HIGH>;
--		gpio-fan,speed-map = <    0 0
--				       2200 1
--				       2500 2
--				       3000 4
--				       3300 3
--				       3700 5
--				       3800 6
--				       4200 7 >;
-+		gpio-fan,speed-map =
-+				<   0 0>,
-+				<2200 1>,
-+				<2500 2>,
-+				<3000 4>,
-+				<3300 3>,
-+				<3700 5>,
-+				<3800 6>,
-+				<4200 7>;
- 	};
- 
- 	gpio-fan-100-32-35 {
-@@ -326,14 +328,15 @@ gpio-fan-100-32-35 {
- 			 &gpio1 1 GPIO_ACTIVE_HIGH
- 			 &gpio1 2 GPIO_ACTIVE_HIGH>;
- 		alarm-gpios = <&gpio1 3 GPIO_ACTIVE_HIGH>;
--		gpio-fan,speed-map = <    0 0
--				       2500 1
--				       3100 2
--				       3800 3
--				       4600 4
--				       4800 5
--				       4900 6
--				       5000 7 >;
-+		gpio-fan,speed-map =
-+				<   0 0>,
-+				<2500 1>,
-+				<3100 2>,
-+				<3800 3>,
-+				<4600 4>,
-+				<4800 5>,
-+				<4900 6>,
-+				<5000 7>;
- 	};
- 
- 	gpio-fan-100-15-18 {
-@@ -346,14 +349,15 @@ gpio-fan-100-15-18 {
- 			 &gpio0 16 GPIO_ACTIVE_HIGH
- 			 &gpio0 17 GPIO_ACTIVE_HIGH>;
- 		alarm-gpios = <&gpio0 18 GPIO_ACTIVE_HIGH>;
--		gpio-fan,speed-map = <    0 0
--				       2500 1
--				       3100 2
--				       3800 3
--				       4600 4
--				       4800 5
--				       4900 6
--				       5000 7 >;
-+		gpio-fan,speed-map =
-+				<   0 0>,
-+				<2500 1>,
-+				<3100 2>,
-+				<3800 3>,
-+				<4600 4>,
-+				<4800 5>,
-+				<4900 6>,
-+				<5000 7>;
- 	};
- 
- 	gpio-fan-100-15-35-1 {
-@@ -366,14 +370,15 @@ gpio-fan-100-15-35-1 {
- 			 &gpio0 16 GPIO_ACTIVE_HIGH
- 			 &gpio0 17 GPIO_ACTIVE_HIGH>;
- 		alarm-gpios = <&gpio1 3 GPIO_ACTIVE_HIGH>;
--		gpio-fan,speed-map = <    0 0
--				       2500 1
--				       3100 2
--				       3800 3
--				       4600 4
--				       4800 5
--				       4900 6
--				       5000 7 >;
-+		gpio-fan,speed-map =
-+				<   0 0>,
-+				<2500 1>,
-+				<3100 2>,
-+				<3800 3>,
-+				<4600 4>,
-+				<4800 5>,
-+				<4900 6>,
-+				<5000 7>;
- 	};
- 
- 	gpio-fan-100-15-35-3 {
-@@ -388,14 +393,15 @@ &gpio0 16 GPIO_ACTIVE_HIGH
- 		alarm-gpios = <&gpio1 3 GPIO_ACTIVE_HIGH
- 			       &gpio1 12 GPIO_ACTIVE_HIGH
- 			       &gpio1 13 GPIO_ACTIVE_HIGH>;
--		gpio-fan,speed-map = <    0 0
--				       2500 1
--				       3100 2
--				       3800 3
--				       4600 4
--				       4800 5
--				       4900 6
--				       5000 7 >;
-+		gpio-fan,speed-map =
-+				<   0 0>,
-+				<2500 1>,
-+				<3100 2>,
-+				<3800 3>,
-+				<4600 4>,
-+				<4800 5>,
-+				<4900 6>,
-+				<5000 7>;
- 	};
- 
- 	gpio-leds-alarm-12 {
-diff --git a/arch/arm/boot/dts/marvell/mvebu-linkstation-fan.dtsi b/arch/arm/boot/dts/marvell/mvebu-linkstation-fan.dtsi
-index e172029a0c4d..a260c42dbda3 100644
---- a/arch/arm/boot/dts/marvell/mvebu-linkstation-fan.dtsi
-+++ b/arch/arm/boot/dts/marvell/mvebu-linkstation-fan.dtsi
-@@ -50,10 +50,10 @@ gpio_fan {
- 		pinctrl-names = "default";
- 
- 		gpio-fan,speed-map =
--			<0		3
--			1500	2
--			3250	1
--			5000	0>;
-+			<   0 3>,
-+			<1500 2>,
-+			<3250 1>,
-+			<5000 0>;
- 	};
- };
- 
--- 
-2.42.0
-
+    Andrew
 
