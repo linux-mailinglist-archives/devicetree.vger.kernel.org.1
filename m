@@ -1,83 +1,237 @@
-Return-Path: <devicetree+bounces-20985-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20986-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 808D4801DD4
-	for <lists+devicetree@lfdr.de>; Sat,  2 Dec 2023 17:42:25 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 988CF801DFB
+	for <lists+devicetree@lfdr.de>; Sat,  2 Dec 2023 18:47:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1A4A71F21082
-	for <lists+devicetree@lfdr.de>; Sat,  2 Dec 2023 16:42:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2F3FEB20B75
+	for <lists+devicetree@lfdr.de>; Sat,  2 Dec 2023 17:47:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D19316436;
-	Sat,  2 Dec 2023 16:42:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76AFE1C6B1;
+	Sat,  2 Dec 2023 17:47:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59E71115;
-	Sat,  2 Dec 2023 08:42:17 -0800 (PST)
-X-SpamFilter-By: ArmorX SpamTrap 5.78 with qID 3B2Gg6ksD981563, This message is accepted by code: ctloc85258
-Received: from mail.realtek.com (rtexh36505.realtek.com.tw[172.21.6.25])
-	by rtits2.realtek.com.tw (8.15.2/2.95/5.92) with ESMTPS id 3B2Gg6ksD981563
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Sun, 3 Dec 2023 00:42:06 +0800
-Received: from RTEXMBS06.realtek.com.tw (172.21.6.99) by
- RTEXH36505.realtek.com.tw (172.21.6.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.32; Sun, 3 Dec 2023 00:42:06 +0800
-Received: from RTEXMBS03.realtek.com.tw (172.21.6.96) by
- RTEXMBS06.realtek.com.tw (172.21.6.99) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.34; Sun, 3 Dec 2023 00:42:05 +0800
-Received: from RTEXMBS03.realtek.com.tw ([fe80::5510:ad08:5390:1ed3]) by
- RTEXMBS03.realtek.com.tw ([fe80::5510:ad08:5390:1ed3%2]) with mapi id
- 15.01.2375.007; Sun, 3 Dec 2023 00:42:05 +0800
-From: =?utf-8?B?SmFtZXMgVGFpIFvmiLTlv5fls7Bd?= <james.tai@realtek.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Thomas Gleixner
-	<tglx@linutronix.de>, Marc Zyngier <maz@kernel.org>,
-        Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: RE: [PATCH v2 1/6] dt-bindings: interrupt-controller: Add support for Realtek DHC SoCs
-Thread-Topic: [PATCH v2 1/6] dt-bindings: interrupt-controller: Add support
- for Realtek DHC SoCs
-Thread-Index: AQHaGXMHJnbDooY4VkyEcMH4aisPjrCBFAaAgBU1g6A=
-Date: Sat, 2 Dec 2023 16:42:05 +0000
-Message-ID: <68ed7ef5ee794ce2b3dd9007e8fc0dcb@realtek.com>
-References: <20231117162709.1096585-1-james.tai@realtek.com>
- <20231117162709.1096585-2-james.tai@realtek.com>
- <c3a98e2c-ba62-4798-a0d0-a8bc1fe5bb6b@linaro.org>
-In-Reply-To: <c3a98e2c-ba62-4798-a0d0-a8bc1fe5bb6b@linaro.org>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-x-kse-serverinfo: RTEXMBS06.realtek.com.tw, 9
-x-kse-antispam-interceptor-info: fallback
-x-kse-antivirus-interceptor-info: fallback
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BA1D124;
+	Sat,  2 Dec 2023 09:47:11 -0800 (PST)
+Received: from i53875b61.versanet.de ([83.135.91.97] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1r9U4v-0003Lc-Qz; Sat, 02 Dec 2023 18:46:57 +0100
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>, Alex Bee <knaerzche@gmail.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Maxime Ripard <mripard@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-pm@vger.kernel.org
+Subject:
+ Re: [PATCH v2 2/5] ARM: dts: rockchip: Add power-controller for RK3128
+Date: Sat, 02 Dec 2023 18:46:56 +0100
+Message-ID: <4891026.6YUMPnJmAY@diego>
+In-Reply-To: <7a6eed43-477a-48a4-bd64-4528da920ffd@gmail.com>
+References:
+ <20231202125144.66052-1-knaerzche@gmail.com> <6926340.F8r316W7xa@diego>
+ <7a6eed43-477a-48a4-bd64-4528da920ffd@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-KSE-ServerInfo: RTEXH36505.realtek.com.tw, 9
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-KSE-Antivirus-Interceptor-Info: fallback
-X-KSE-AntiSpam-Interceptor-Info: fallback
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-SGkgS3J6eXN6dG9mLA0KDQo+PiArDQo+PiArbWFpbnRhaW5lcnM6DQo+PiArICAtIEphbWVzIFRh
-aSA8amFtZXMudGFpQHJlYWx0ZWsuY29tPg0KPj4gKw0KPj4gK2FsbE9mOg0KPj4gKyAgLSAkcmVm
-OiAvc2NoZW1hcy9pbnRlcnJ1cHQtY29udHJvbGxlci55YW1sIw0KPj4gKw0KPj4gK3Byb3BlcnRp
-ZXM6DQo+PiArICAiI2ludGVycnVwdC1jZWxscyI6DQo+PiArICAgIGNvbnN0OiAxDQo+PiArDQo+
-PiArICBjb21wYXRpYmxlOg0KPj4gKyAgICBlbnVtOg0KPj4gKyAgICAgIC0gcmVhbHRlayxydGQx
-MzI1LWludGMtaXNvDQo+PiArICAgICAgLSByZWFsdGVrLHJ0ZDEzMjUtaW50Yy1taXNjDQo+DQo+
-QWxsIG15IGNvbW1lbnRzIGFwcGx5IHRvIGFsbCB5b3VyIGJpbmRpbmdzLi4uDQo+DQoNCk9rYXks
-IEkgd2lsbCBhcHBseSB0byBhbGwgTXkgYmluZGluZ3MuDQoNClJlZ2FyZHMsDQpKYW1lcw0K
+Hi Alex,
+
+Am Samstag, 2. Dezember 2023, 17:36:15 CET schrieb Alex Bee:
+> Am 02.12.23 um 16:51 schrieb Heiko St=FCbner:
+> > Am Samstag, 2. Dezember 2023, 13:51:41 CET schrieb Alex Bee:
+> >> Add power controller and qos nodes for RK3128 in order to use
+> >> them as powerdomains.
+> > does the power-domain controller work with the incomplete set of
+> > pm-domains too?
+>=20
+> Yes, it does - the missing domains can request idle only and can't be=20
+> powered on/off - if no one requests idle they are just up all the time.
+>=20
+> > What I have in mind is
+> > - adding the power-controller node with the existing set of power-domai=
+ns
+> > - the gpu pm-domain is in there
+> > - adding the gpu parts
+>=20
+> My main concern about adding them later was the change of the ABI after=20
+> they've been exposed in the SoC DT. If that's not an issue - sure: I can=
+=20
+> add them in a separate series.
+
+An ABI change would be _changing_ the domain-ids in the rk3128-power.h
+I think :-) .
+
+Right now the existing domain ids in the header are already exposed to the
+world, so someone could already use them, but not the new ones.
+
+
+
+Heiko
+
+> > And a second series with
+> > - patch1 from here
+> > - a dts patch adding the additional pm-domains to rk3128.dtsi
+> > - I guess patch1 also should be split into a patch adding the binding-i=
+ds
+> >    and a separate patch for the code addition.
+>=20
+> Yeah, I noticed this also :)
+>=20
+> Regards,
+>=20
+> Alex
+>=20
+> >
+> >
+> > Heiko
+> >
+> >> Signed-off-by: Alex Bee <knaerzche@gmail.com>
+> >> ---
+> >>   arch/arm/boot/dts/rockchip/rk3128.dtsi | 101 +++++++++++++++++++++++=
+++
+> >>   1 file changed, 101 insertions(+)
+> >>
+> >> diff --git a/arch/arm/boot/dts/rockchip/rk3128.dtsi b/arch/arm/boot/dt=
+s/rockchip/rk3128.dtsi
+> >> index 4e8b38604ecd..b72905db04f7 100644
+> >> --- a/arch/arm/boot/dts/rockchip/rk3128.dtsi
+> >> +++ b/arch/arm/boot/dts/rockchip/rk3128.dtsi
+> >> @@ -8,6 +8,7 @@
+> >>   #include <dt-bindings/interrupt-controller/arm-gic.h>
+> >>   #include <dt-bindings/interrupt-controller/irq.h>
+> >>   #include <dt-bindings/pinctrl/rockchip.h>
+> >> +#include <dt-bindings/power/rk3128-power.h>
+> >>  =20
+> >>   / {
+> >>   	compatible =3D "rockchip,rk3128";
+> >> @@ -133,6 +134,106 @@ smp-sram@0 {
+> >>   	pmu: syscon@100a0000 {
+> >>   		compatible =3D "rockchip,rk3128-pmu", "syscon", "simple-mfd";
+> >>   		reg =3D <0x100a0000 0x1000>;
+> >> +
+> >> +		power: power-controller {
+> >> +			compatible =3D "rockchip,rk3128-power-controller";
+> >> +			#power-domain-cells =3D <1>;
+> >> +			#address-cells =3D <1>;
+> >> +			#size-cells =3D <0>;
+> >> +
+> >> +			power-domain@RK3128_PD_VIO {
+> >> +				reg =3D <RK3128_PD_VIO>;
+> >> +				clocks =3D <&cru ACLK_CIF>,
+> >> +					 <&cru HCLK_CIF>,
+> >> +					 <&cru DCLK_EBC>,
+> >> +					 <&cru HCLK_EBC>,
+> >> +					 <&cru ACLK_IEP>,
+> >> +					 <&cru HCLK_IEP>,
+> >> +					 <&cru ACLK_LCDC0>,
+> >> +					 <&cru HCLK_LCDC0>,
+> >> +					 <&cru PCLK_MIPI>,
+> >> +					 <&cru ACLK_RGA>,
+> >> +					 <&cru HCLK_RGA>,
+> >> +					 <&cru ACLK_VIO0>,
+> >> +					 <&cru ACLK_VIO1>,
+> >> +					 <&cru HCLK_VIO>,
+> >> +					 <&cru HCLK_VIO_H2P>,
+> >> +					 <&cru DCLK_VOP>,
+> >> +					 <&cru SCLK_VOP>;
+> >> +				pm_qos =3D <&qos_ebc>,
+> >> +					 <&qos_iep>,
+> >> +					 <&qos_lcdc>,
+> >> +					 <&qos_rga>,
+> >> +					 <&qos_vip>;
+> >> +				#power-domain-cells =3D <0>;
+> >> +			};
+> >> +
+> >> +			power-domain@RK3128_PD_VIDEO {
+> >> +				reg =3D <RK3128_PD_VIDEO>;
+> >> +				clocks =3D <&cru ACLK_VDPU>,
+> >> +					 <&cru HCLK_VDPU>,
+> >> +					 <&cru ACLK_VEPU>,
+> >> +					 <&cru HCLK_VEPU>,
+> >> +					 <&cru SCLK_HEVC_CORE>;
+> >> +				pm_qos =3D <&qos_vpu>;
+> >> +				#power-domain-cells =3D <0>;
+> >> +			};
+> >> +
+> >> +			power-domain@RK3128_PD_GPU {
+> >> +				reg =3D <RK3128_PD_GPU>;
+> >> +				clocks =3D <&cru ACLK_GPU>;
+> >> +				pm_qos =3D <&qos_gpu>;
+> >> +				#power-domain-cells =3D <0>;
+> >> +			};
+> >> +
+> >> +			power-domain@RK3128_PD_CRYPTO {
+> >> +				reg =3D <RK3128_PD_CRYPTO>;
+> >> +				clocks =3D <&cru HCLK_CRYPTO>,
+> >> +					 <&cru SCLK_CRYPTO>;
+> >> +				pm_qos =3D <&qos_crypto>;
+> >> +				#power-domain-cells =3D <0>;
+> >> +			};
+> >> +		};
+> >> +	};
+> >> +
+> >> +	qos_crypto: qos@10128080 {
+> >> +		compatible =3D "rockchip,rk3128-qos", "syscon";
+> >> +		reg =3D <0x10128080 0x20>;
+> >> +	};
+> >> +
+> >> +	qos_gpu: qos@1012d000 {
+> >> +		compatible =3D "rockchip,rk3128-qos", "syscon";
+> >> +		reg =3D <0x1012d000 0x20>;
+> >> +	};
+> >> +
+> >> +	qos_vpu: qos@1012e000 {
+> >> +		compatible =3D "rockchip,rk3128-qos", "syscon";
+> >> +		reg =3D <0x1012e000 0x20>;
+> >> +	};
+> >> +
+> >> +	qos_rga: qos@1012f000 {
+> >> +		compatible =3D "rockchip,rk3128-qos", "syscon";
+> >> +		reg =3D <0x1012f000 0x20>;
+> >> +	};
+> >> +
+> >> +	qos_ebc: qos@1012f080 {
+> >> +		compatible =3D "rockchip,rk3128-qos", "syscon";
+> >> +		reg =3D <0x1012f080 0x20>;
+> >> +	};
+> >> +
+> >> +	qos_iep: qos@1012f100 {
+> >> +		compatible =3D "rockchip,rk3128-qos", "syscon";
+> >> +		reg =3D <0x1012f100 0x20>;
+> >> +	};
+> >> +
+> >> +	qos_lcdc: qos@1012f180 {
+> >> +		compatible =3D "rockchip,rk3128-qos", "syscon";
+> >> +		reg =3D <0x1012f180 0x20>;
+> >> +	};
+> >> +
+> >> +	qos_vip: qos@1012f200 {
+> >> +		compatible =3D "rockchip,rk3128-qos", "syscon";
+> >> +		reg =3D <0x1012f200 0x20>;
+> >>   	};
+> >>  =20
+> >>   	gic: interrupt-controller@10139000 {
+> >>
+> >
+> >
+> >
+>=20
+
+
+
+
 
