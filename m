@@ -1,36 +1,36 @@
-Return-Path: <devicetree+bounces-20935-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20936-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60E79801B38
-	for <lists+devicetree@lfdr.de>; Sat,  2 Dec 2023 08:57:30 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A11DD801B39
+	for <lists+devicetree@lfdr.de>; Sat,  2 Dec 2023 08:58:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1F0FFB20D95
-	for <lists+devicetree@lfdr.de>; Sat,  2 Dec 2023 07:57:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 56DE61F2114F
+	for <lists+devicetree@lfdr.de>; Sat,  2 Dec 2023 07:58:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 160D7BE6F;
-	Sat,  2 Dec 2023 07:57:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B334DBE76;
+	Sat,  2 Dec 2023 07:58:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b="YbxoMelj"
+	dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b="FfrmXavK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail5.25mail.st (mail5.25mail.st [74.50.62.9])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFF1C116
-	for <devicetree@vger.kernel.org>; Fri,  1 Dec 2023 23:57:19 -0800 (PST)
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04372116
+	for <devicetree@vger.kernel.org>; Fri,  1 Dec 2023 23:58:10 -0800 (PST)
 Received: from localhost (91-158-86-216.elisa-laajakaista.fi [91.158.86.216])
-	by mail5.25mail.st (Postfix) with ESMTPSA id EBB176049B;
-	Sat,  2 Dec 2023 07:56:16 +0000 (UTC)
+	by mail5.25mail.st (Postfix) with ESMTPSA id 31C0D60406;
+	Sat,  2 Dec 2023 07:57:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=atomide.com;
-	s=25mailst; t=1701503839;
-	bh=HWs1Jb+EiXvhQNMp0z9SgweFLx0LNj+D/nipqQhZAMM=;
+	s=25mailst; t=1701503890;
+	bh=pYZDqv60J0kWtQmrHNDGXYKDdbKD0ihTl1dkeCNc3YY=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=YbxoMeljA7L0qrMnf61jyzqqMeU1RU8ZxpxkEocWsmKy98DtzTWYRE9Ihngn5DCc0
-	 HmnPZlTJrux6wYLxVacZCRtnuk2FVMGK43TMrOfzfPsy1gK3R4vhE6p/SnF1XyLHij
-	 KJdpgU+QOS5WkPRBxd+U0+gTT46gEPTImAT4kh6NYOXpw1sBMTmjrRIue6qQL5TZHC
-	 24qPp8D8uHn5DT3QbH9qWzlNtETRynG7WJTU8A4DQw7uK38/ST7Mtc6eWpe+mqrln6
-	 Wk/Btmmdd+vON3MFfk74JWXkJuA0IDP1yyKKOIR4yDAs3AWcpgQYDQKzDItro77Lp4
-	 /p7OD9mNwERCA==
+	b=FfrmXavKTVtsrOQZGM6nHFamXh1BERMhcSsO/Dk31xYwoubD37esSl9aizRlyp6rT
+	 AEbSxWZDipGJmS6OxfVuLNE9SzceegNG9p3V37z5F1IBo/PPSjwE72e+hmF6TmlfZn
+	 Selk/G7p0kWGUrEEZPJHtxmtw0UPYTX6tFG+S1I4J/YG/DGZAptajBbg+zLDFEwqsL
+	 kmwWNOTiMxgTkSfPIh9OuQiT8QnJzaJx6VDv6oINnr66yzoxXKFr1qPY4As+XHjc2e
+	 qGhsbLuyYwrMao4RozTQ8BnlcENMNopECg9bKAUkXvhD0BcQjCpyvOVvHC9X6SBFPS
+	 9proOG5au1oxg==
 From: Tony Lindgren <tony@atomide.com>
 To: Andrzej Hajda <andrzej.hajda@intel.com>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
@@ -53,12 +53,11 @@ Cc: Carl Philipp Klemm <philipp@uvos.xyz>,
 	Merlijn Wajer <merlijn@wizzup.org>,
 	Pavel Machek <pavel@ucw.cz>,
 	Sebastian Reichel <sre@kernel.org>,
-	Michael Walle <mwalle@kernel.org>,
 	dri-devel@lists.freedesktop.org,
 	devicetree@vger.kernel.org
-Subject: [PATCH v2 01/10] dt-bindings: display: bridge: tc358775: make stby gpio and vdd supplies optional
-Date: Sat,  2 Dec 2023 09:54:40 +0200
-Message-ID: <20231202075514.44474-2-tony@atomide.com>
+Subject: [PATCH v2 02/10] dt-bindings: display: bridge: tc358775: Add data-lanes
+Date: Sat,  2 Dec 2023 09:54:41 +0200
+Message-ID: <20231202075514.44474-3-tony@atomide.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20231202075514.44474-1-tony@atomide.com>
 References: <20231202075514.44474-1-tony@atomide.com>
@@ -70,34 +69,82 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-From: Michael Walle <mwalle@kernel.org>
+The device uses a clock lane, and 1 to 4 DSI data lanes. Let's add the
+data-lanes property starting at 1 similar to what the other bridge
+bindings are doing.
 
-For a normal operation, the vdd supplies nor the stby GPIO is needed.
-There are boards, where these voltages are statically enabled during
-board power-up.
+Let's also drop the data-lanes properties in the example for the DSI host
+controller to avoid confusion. The configuration of the DSI host depends
+on the controller used and is unrelated to the bridge binding.
 
-The reset pin is required because once the PPI (PHY protocol interface)
-is started, it can only be stopped by asserting the reset pin.
-
-Signed-off-by: Michael Walle <mwalle@kernel.org>
 Signed-off-by: Tony Lindgren <tony@atomide.com>
 ---
- .../devicetree/bindings/display/bridge/toshiba,tc358775.yaml   | 3 ---
- 1 file changed, 3 deletions(-)
+ .../display/bridge/toshiba,tc358775.yaml      | 21 ++++++++++++++++---
+ 1 file changed, 18 insertions(+), 3 deletions(-)
 
 diff --git a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358775.yaml b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358775.yaml
 --- a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358775.yaml
 +++ b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358775.yaml
-@@ -68,9 +68,6 @@ properties:
- required:
-   - compatible
-   - reg
--  - vdd-supply
--  - vddio-supply
--  - stby-gpios
-   - reset-gpios
-   - ports
+@@ -46,11 +46,26 @@ properties:
  
+     properties:
+       port@0:
+-        $ref: /schemas/graph.yaml#/properties/port
++        $ref: /schemas/graph.yaml#/$defs/port-base
+         description: |
+           DSI Input. The remote endpoint phandle should be a
+           reference to a valid mipi_dsi_host device node.
+ 
++        properties:
++          endpoint:
++            $ref: /schemas/media/video-interfaces.yaml#
++            unevaluatedProperties: false
++
++            properties:
++              data-lanes:
++                description: array of physical DSI data lane indexes.
++                minItems: 1
++                items:
++                  - const: 1
++                  - const: 2
++                  - const: 3
++                  - const: 4
++
+       port@1:
+         $ref: /schemas/graph.yaml#/properties/port
+         description: |
+@@ -105,6 +120,7 @@ examples:
+                     reg = <0>;
+                     d2l_in_test: endpoint {
+                         remote-endpoint = <&dsi0_out>;
++                        data-lanes = <1 2 3 4>;
+                     };
+                 };
+ 
+@@ -129,7 +145,6 @@ examples:
+                 reg = <1>;
+                 dsi0_out: endpoint {
+                     remote-endpoint = <&d2l_in_test>;
+-                    data-lanes = <0 1 2 3>;
+                 };
+              };
+          };
+@@ -164,6 +179,7 @@ examples:
+                     reg = <0>;
+                     d2l_in_dual: endpoint {
+                         remote-endpoint = <&dsi0_out_dual>;
++                        data-lanes = <1 2 3 4>;
+                     };
+                 };
+ 
+@@ -195,7 +211,6 @@ examples:
+                 reg = <1>;
+                 dsi0_out_dual: endpoint {
+                     remote-endpoint = <&d2l_in_dual>;
+-                    data-lanes = <0 1 2 3>;
+                 };
+              };
+          };
 -- 
 2.43.0
 
