@@ -1,115 +1,145 @@
-Return-Path: <devicetree+bounces-20946-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20947-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0377801B6F
-	for <lists+devicetree@lfdr.de>; Sat,  2 Dec 2023 09:13:47 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76354801B88
+	for <lists+devicetree@lfdr.de>; Sat,  2 Dec 2023 09:36:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 850D61F2116E
-	for <lists+devicetree@lfdr.de>; Sat,  2 Dec 2023 08:13:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A3C6D1C20BBF
+	for <lists+devicetree@lfdr.de>; Sat,  2 Dec 2023 08:36:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26AF2C8E3;
-	Sat,  2 Dec 2023 08:13:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E519D2F44;
+	Sat,  2 Dec 2023 08:36:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b="XhAXba3q"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="F8GXHgIm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail5.25mail.st (mail5.25mail.st [74.50.62.9])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6649DF4
-	for <devicetree@vger.kernel.org>; Sat,  2 Dec 2023 00:13:39 -0800 (PST)
-Received: from localhost (91-158-86-216.elisa-laajakaista.fi [91.158.86.216])
-	by mail5.25mail.st (Postfix) with ESMTPSA id A8EF16036E;
-	Sat,  2 Dec 2023 08:12:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=atomide.com;
-	s=25mailst; t=1701504818;
-	bh=i0Qu86EoRhOUVg9WF10PoY0z73qE6Fd4XRJM8U2Gwnw=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=XhAXba3q4As+JAWyfJ9V+Wtm3bNibIxJV1nk4dV+DzoM4D+BOg8qFmOKE7VNk5rUi
-	 duEpAjKZkBkEobwfoMa37I0oLF5bm5ErQwDCygwPxkrHlDGNtNnRJ5QGXagt9CoGdk
-	 hUtL56xuaFboTocC78Q91JGxdkKugfTsW0/qRO1w9FuysMoMLE8YLGzg3QzFg9oVxU
-	 SaT3zf8sCEI6TJ7zo+H9tGkGprElAfW/KnDCzszG7X8CSePYpoDCKCDS2HdInjZ0Mq
-	 StEragMxDY0ExNm0PCJVuSthhg/n7bNdNHf+qxOROEwQdXsJYbxl9GG12CVUaQNVnZ
-	 5KzETygaMPpFg==
-From: Tony Lindgren <tony@atomide.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	Sam Ravnborg <sam@ravnborg.org>,
-	David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>
-Cc: Carl Philipp Klemm <philipp@uvos.xyz>,
-	Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>,
-	Merlijn Wajer <merlijn@wizzup.org>,
-	Pavel Machek <pavel@ucw.cz>,
-	Sebastian Reichel <sre@kernel.org>,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH 2/2] drm/panel: simple: Add BOE BP082WX1-100 8.2" panel
-Date: Sat,  2 Dec 2023 10:11:53 +0200
-Message-ID: <20231202081157.47222-2-tony@atomide.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20231202081157.47222-1-tony@atomide.com>
-References: <20231202081157.47222-1-tony@atomide.com>
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D957D6C;
+	Sat,  2 Dec 2023 00:36:50 -0800 (PST)
+Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-33330305372so1261768f8f.3;
+        Sat, 02 Dec 2023 00:36:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1701506209; x=1702111009; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=W1Cz0Am5xXhDu9ok/VyPf97AG12MnC7CAXjo29WYQyA=;
+        b=F8GXHgImotqHhG1331JclfAugip4b6+Hbx2zn+P9NaE6JdfDP/zZJPQGstZd917Awd
+         dZ6NRBn8CfRMU8bkS2xg17M1yHrDY/3yzUR6zNVoNkANcxzjxD5BfFUevNR3VQVZ+pDs
+         Ga30V6peVOhmrbWi9OzXKTOsjtOzzauNvTa7hzstLB50S09kfln0n2aRl5FfPmWaEe/x
+         l1kQJuA2JPIGroxY8/hsUlT86wc2qHjWpQcOWtI0h1LROYGXIM7dwt4BHsFPtNKNEtfI
+         Zp66Dw3B0HZoZMsziuI/eMtyHnvEIuTcdUnpcgIYszaTBqxW93td5XM5sD+cpdzn5vJ/
+         TyqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701506209; x=1702111009;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=W1Cz0Am5xXhDu9ok/VyPf97AG12MnC7CAXjo29WYQyA=;
+        b=OXM34YHQd7Asf4tSnumT+SwFQd+z20sWQDBfcx+JxzGcKEntoGvVfIeEpdZzFpitkO
+         np05VCALtZggVJtBD0EQfbY6BDj2Ew5Txn2dc0w3w/3tnHG+gaAvzckNuPBOO2qNBenN
+         Unei1kQmJfvj4Dq8GvviWZvlzgiZ4YDWcbhkKnrpB0rJIM1J1YmPXEBm5tNCXHrPwaIT
+         syOxBkxyDWYOgujazs0S+lbcYhUkuXtO1ESfcmb3/ocjwr9qwQPdxeJdIG0IJFufuJgP
+         gCiy5lu0MjP3/qCKzDbVHDeGdx6DsIQi5ny3r2JNoDwTuCcAcMJkr4ssej5MmHpt7uIg
+         6IbA==
+X-Gm-Message-State: AOJu0YzC4zcDXqmWcBPSTIB+2E86hXTXKp2a8Yvx57pzvCD3ItuRlTrc
+	4gjHb1BxGNfWSJtBGL6swd42jKwJiDTh5OYg
+X-Google-Smtp-Source: AGHT+IHfOF9eY0WrOu55dMkRd4h3vvFangyeO/vbLfS+S7/JyE28Xxaslwnvil95OAMEwGRBkNthTw==
+X-Received: by 2002:a05:6000:8c:b0:332:d504:c138 with SMTP id m12-20020a056000008c00b00332d504c138mr1564309wrx.1.1701506208355;
+        Sat, 02 Dec 2023 00:36:48 -0800 (PST)
+Received: from ?IPv6:2001:a61:3456:4e01:6ae:b55a:bd1d:57fc? ([2001:a61:3456:4e01:6ae:b55a:bd1d:57fc])
+        by smtp.gmail.com with ESMTPSA id l7-20020a05600002a700b00332eb16d215sm6278953wry.23.2023.12.02.00.36.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 02 Dec 2023 00:36:47 -0800 (PST)
+Message-ID: <3925cb4b6453644c889675c20329b3477a06fcd5.camel@gmail.com>
+Subject: Re: [PATCH 04/12] iio: adc: ad9467: fix reset gpio handling
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: David Lechner <dlechner@baylibre.com>
+Cc: nuno.sa@analog.com, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-iio@vger.kernel.org, Olivier MOYSAN
+ <olivier.moysan@foss.st.com>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>,  "Rafael J. Wysocki" <rafael@kernel.org>, Rob
+ Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
+ Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>
+Date: Sat, 02 Dec 2023 09:36:47 +0100
+In-Reply-To: <CAMknhBGjm2ja9HOenOWi9O5Ao8qUg=gT=_Vz8CyxQ=pfNX2EJQ@mail.gmail.com>
+References: <20231121-dev-iio-backend-v1-0-6a3d542eba35@analog.com>
+	 <20231121-dev-iio-backend-v1-4-6a3d542eba35@analog.com>
+	 <CAMknhBGCqnzCp6vQ+59Z-SybScvbtU7aWdAD6KnP1e6=q60gVQ@mail.gmail.com>
+	 <d534c3323c32d4ed2aedae19a9f101be90ef0cc7.camel@gmail.com>
+	 <CAMknhBGjm2ja9HOenOWi9O5Ao8qUg=gT=_Vz8CyxQ=pfNX2EJQ@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 
-The BOE BP082WX1-100 is a 8.2" panel similar to the 10.1" panel
-BP101WX1-100. Both panels use the same timings.
+On Fri, 2023-12-01 at 11:01 -0600, David Lechner wrote:
+> On Fri, Dec 1, 2023 at 2:47=E2=80=AFAM Nuno S=C3=A1 <noname.nuno@gmail.co=
+m> wrote:
+> >=20
+> > On Thu, 2023-11-30 at 15:41 -0600, David Lechner wrote:
+> > > On Tue, Nov 21, 2023 at 4:17=E2=80=AFAM Nuno Sa via B4 Relay
+> > > <devnull+nuno.sa.analog.com@kernel.org> wrote:
+> > > >=20
+> > > > From: Nuno Sa <nuno.sa@analog.com>
+> > > >=20
+> > > > The reset gpio was being requested with GPIOD_OUT_LOW which means, =
+not
+> > > > asserted. Then it was being asserted but never de-asserted which me=
+ans
+> > > > the devices was left in reset. Fix it by de-asserting the gpio.
+> > >=20
+> > > It could be helpful to update the devicetree bindings to state the
+> > > expected active-high or active-low setting for this gpio so it is
+> > > clear which state means asserted.
+> > >=20
+> >=20
+> > You could state that the chip is active low but I don't see that change=
+ that
+> > important for now. Not sure if this is clear and maybe that's why your =
+comment.
+> > GPIOD_OUT_HIGH has nothing to do with active high or low. It just means=
+, "get me
+> > the
+> > pin in the asserted state".
+> >=20
+>=20
+> I would assume that this bug happened in the first place because
+> someone forgot GPIOD_OUT_LOW in the devicetree when they were
+> developing the driver. So this is why I suggested that updating the
+> devicetree binding docs so that future users are less likely to make
+> the same mistake. Currently, the bindings don't even have reset-gpios
+> in the examples.
 
-Signed-off-by: Tony Lindgren <tony@atomide.com>
----
- drivers/gpu/drm/panel/panel-simple.c | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+Hmm, I think you're missing the point... The bug has nothing to do with dev=
+icetree.
+This is what was happening:
 
-diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
---- a/drivers/gpu/drm/panel/panel-simple.c
-+++ b/drivers/gpu/drm/panel/panel-simple.c
-@@ -1336,6 +1336,23 @@ static const struct drm_display_mode boe_bp101wx1_100_mode = {
- 	.vtotal = 800 + 6 + 8 + 2,
- };
- 
-+static const struct panel_desc boe_bp082wx1_100 = {
-+	.modes = &boe_bp101wx1_100_mode,
-+	.num_modes = 1,
-+	.bpc = 8,
-+	.size = {
-+		.width = 180,
-+		.height = 114,
-+	},
-+	.delay = {
-+		.enable = 50,
-+		.disable = 50,
-+	},
-+	.bus_format = MEDIA_BUS_FMT_RGB888_1X7X4_JEIDA,
-+	.bus_flags = DRM_BUS_FLAG_DE_HIGH,
-+	.connector_type = DRM_MODE_CONNECTOR_LVDS,
-+};
-+
- static const struct panel_desc boe_bp101wx1_100 = {
- 	.modes = &boe_bp101wx1_100_mode,
- 	.num_modes = 1,
-@@ -4281,6 +4298,9 @@ static const struct of_device_id platform_of_match[] = {
- 	}, {
- 		.compatible = "bananapi,s070wv20-ct16",
- 		.data = &bananapi_s070wv20_ct16,
-+	}, {
-+		.compatible = "boe,bp082wx1-100",
-+		.data = &boe_bp082wx1_100,
- 	}, {
- 		.compatible = "boe,bp101wx1-100",
- 		.data = &boe_bp101wx1_100,
--- 
-2.43.0
+1) We were calling devm_gpiod_get_optional() with GPIOD_OUT_LOW. What this =
+means is
+that you get an output gpio deasserted. Hence the device is out of reset. A=
+nd here is
+the important part... what you have in dts does not matter. If you have act=
+ive low,
+it means the pin level will be 1. If you have high, the pin level is 0. And=
+ this is
+all handled by gpiolib for you.
+
+2) Then, we called gpiod_direction_output(..., 1), which means set the dire=
+ction out
+(which is actually not needed since it was already done when getting the pi=
+n) and
+assert the pin. Hence, reset the device. And we were never de-asserting the=
+ pin so
+the device would be left in reset.
+
+- Nuno S=C3=A1
 
