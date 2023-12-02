@@ -1,104 +1,216 @@
-Return-Path: <devicetree+bounces-20918-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20919-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC6B9801937
-	for <lists+devicetree@lfdr.de>; Sat,  2 Dec 2023 01:59:00 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FC6680193F
+	for <lists+devicetree@lfdr.de>; Sat,  2 Dec 2023 02:02:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AEC9E281AE8
-	for <lists+devicetree@lfdr.de>; Sat,  2 Dec 2023 00:58:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 42BCC1C20AD4
+	for <lists+devicetree@lfdr.de>; Sat,  2 Dec 2023 01:02:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FDD67E2;
-	Sat,  2 Dec 2023 00:58:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81F5EEC3;
+	Sat,  2 Dec 2023 01:02:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="WCI/DR5/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NB4TNb6I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8F5CB6
-	for <devicetree@vger.kernel.org>; Fri,  1 Dec 2023 16:58:54 -0800 (PST)
-Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-a1a0bc1e415so157006466b.0
-        for <devicetree@vger.kernel.org>; Fri, 01 Dec 2023 16:58:54 -0800 (PST)
+Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27B38F2
+	for <devicetree@vger.kernel.org>; Fri,  1 Dec 2023 17:02:47 -0800 (PST)
+Received: by mail-pj1-x102d.google.com with SMTP id 98e67ed59e1d1-280351c32afso2573507a91.1
+        for <devicetree@vger.kernel.org>; Fri, 01 Dec 2023 17:02:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1701478731; x=1702083531; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701478966; x=1702083766; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=2AjpI9QlzX4/sI/azrgjTOEsQmOURin+5qeGoAR1AD0=;
-        b=WCI/DR5/9p728sN41+4asESbmkp4mDQuHFzUzdy+nAVhY8SYf+5u1lzKdNb+sQcoSO
-         iI0/xUBjBDKS5id0jLDXeIPQIGqZF3WOVH+8NLDCVRCFc7LrbvK5oIyDoBVYIxYtqKCI
-         xDREkHl7LA+gz/klqmiQvVPvILD0V3se9KS3Q=
+        bh=ON7TKe5HRlUXmxrdzzQVwohGw5eKAdzkW1tIPF6YTsU=;
+        b=NB4TNb6IY7ZhOfZ5oMWolytwvOLDDzpH6zzVP4BPz1KGWTNXOpO//13euXMPia+8O9
+         tjRdsNThvgoZJ5nnD7uTYy21q7aXbuSGiF6ZukSHXW1npHHklMES3ckZgO51elXDBrHo
+         xUS2CROcbOyhr1prd7LaoaACVeR7uOfm4g7+o1SMX+j37+BDarG2lFaQ9QMvCOUx22ld
+         0RmmFVziO1lpbiCrtXyZ1mlNES+sN0Pq4M92YkRSdnMu2J4yjctKbVDs9StpsjjVaZw+
+         YSH3Z1oCor0y2MpYh9QEULZbySoTaFUWV3EwhQnl7vxuZTn8ncEh/ZMv09Kp1A3rb/Hd
+         7BUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701478731; x=1702083531;
+        d=1e100.net; s=20230601; t=1701478966; x=1702083766;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=2AjpI9QlzX4/sI/azrgjTOEsQmOURin+5qeGoAR1AD0=;
-        b=C/4JamseoKuvAmTwKWcTi8pdxXqFIECOQs736cEZN8ods7DCPxzC3yFZjtj02SSFvl
-         AgYYmVvyb04ITRcJGrI18IBAjOcYFGgqBlT4c878fpb5a2UXAr3Rtqy40Sqnym1DNQ0p
-         QXvGajwQI/Nc1iZI/utf4OpWC9xLU9HRTLn8qWBvPsxqrhxxf7OGjXf11qxoT6jVlwYV
-         O8JDro81QO74DzkPC0xuCWK4o2laV2Qpm3ewPzRV+LLuH8FzEV6SViz8Qlyc8yBGLP/T
-         DeoG5/3+YJsTEN/f/96w4MsrdgamXAqOx21jpj3wcYsaYBmyIl81IrFQpcjCTQl1HYMH
-         pFlg==
-X-Gm-Message-State: AOJu0Yxn3XsjR7HBnO7Uf53HK3gg7FdAk/ey409OUV2IErtfmOliqnGE
-	Ap98EfEfNNf8ERQWiwN/gzwOEHpVr+A8HzOd5aKNCmWI
-X-Google-Smtp-Source: AGHT+IGHTZJUlT8QgdjVbAVA1qA1tE5POKG97OpGAKG1wiUS9CUUBGKTXJ6oA7z0h9D7fJ94ZCc5rg==
-X-Received: by 2002:a17:906:5611:b0:a19:a1ba:8cb7 with SMTP id f17-20020a170906561100b00a19a1ba8cb7mr1246397ejq.85.1701478731300;
-        Fri, 01 Dec 2023 16:58:51 -0800 (PST)
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com. [209.85.128.54])
-        by smtp.gmail.com with ESMTPSA id uz14-20020a170907118e00b00a0104d5758dsm2463349ejb.50.2023.12.01.16.58.50
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 01 Dec 2023 16:58:50 -0800 (PST)
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-40b51e26a7aso12195e9.1
-        for <devicetree@vger.kernel.org>; Fri, 01 Dec 2023 16:58:50 -0800 (PST)
-X-Received: by 2002:a7b:c4c6:0:b0:40b:3d89:ba70 with SMTP id
- g6-20020a7bc4c6000000b0040b3d89ba70mr237236wmk.7.1701478730440; Fri, 01 Dec
- 2023 16:58:50 -0800 (PST)
+        bh=ON7TKe5HRlUXmxrdzzQVwohGw5eKAdzkW1tIPF6YTsU=;
+        b=Lv8ssc8PxLDsMeqSnkDRPAS+sDbreTC4EBoidAPvusFZdibfZpAoScQR3vwFM8xJ/g
+         lRHDRS+Nja/YQMpMsYym9jH5Fk1a68yHpCmc40BtnuCanYqTSllL49WVHEkzhftSEkQ2
+         M4IyC1L7Y5/ZYMo+1F/YF1rXgwfEwJxRRJ81NRno3DvWciDDhQsYIa588fOJMRUOuM2z
+         grvwX2GauzTTUwPgCYEYXtzstQYBwXS/YCZnE/4n+YCGtVyDpjUqOOh3FfmRE1OFF8In
+         mcaZDkvWRfwn5Zt0Pe14dBcXWr+Cd3eXnY4QScMSbwRMLxOvSzN8goW5J0UgZycA5ILQ
+         GEUA==
+X-Gm-Message-State: AOJu0Yy2dgaiMK3xZga65MlXPuI+XIJ7tJRBLHPP25R6y4QuLXhDYFum
+	54GlI6aTdZnG/ChVnswWljPbvoeVluiHEcw4jl1yZQ==
+X-Google-Smtp-Source: AGHT+IEIJQTcxf2fR+Siy6DreRVrtY2OvPfv8TUAGPOb86XUUOoNnIM/iRPTYAZgTV8wPy36xz+rJ2xLVYlHHq85ZnU=
+X-Received: by 2002:a17:90a:4385:b0:286:6cc1:781d with SMTP id
+ r5-20020a17090a438500b002866cc1781dmr352836pjg.96.1701478966597; Fri, 01 Dec
+ 2023 17:02:46 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231128084236.157152-1-wenst@chromium.org> <20231128084236.157152-5-wenst@chromium.org>
-In-Reply-To: <20231128084236.157152-5-wenst@chromium.org>
-From: Doug Anderson <dianders@chromium.org>
-Date: Fri, 1 Dec 2023 16:58:34 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=W01gfxV6RN2o6CVS7jjf8qgKP-jUy9Bp94d2hWzVC48A@mail.gmail.com>
-Message-ID: <CAD=FV=W01gfxV6RN2o6CVS7jjf8qgKP-jUy9Bp94d2hWzVC48A@mail.gmail.com>
-Subject: Re: [RFC PATCH v3 4/5] arm64: dts: mediatek: mt8173-elm-hana: Mark
- touchscreens and trackpads as fail
-To: Chen-Yu Tsai <wenst@chromium.org>
-Cc: Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Wolfram Sang <wsa@kernel.org>, 
-	Benson Leung <bleung@chromium.org>, Tzung-Bi Shih <tzungbi@kernel.org>, 
-	chrome-platform@lists.linux.dev, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Johan Hovold <johan@kernel.org>, 
-	Hsin-Yi Wang <hsinyi@chromium.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
-	andriy.shevchenko@linux.intel.com, Jiri Kosina <jikos@kernel.org>, 
-	linus.walleij@linaro.org, broonie@kernel.org, gregkh@linuxfoundation.org, 
-	hdegoede@redhat.com, james.clark@arm.com, james@equiv.tech, 
-	keescook@chromium.org, rafael@kernel.org, tglx@linutronix.de, 
-	Jeff LaBundy <jeff@labundy.com>, linux-input@vger.kernel.org, linux-i2c@vger.kernel.org
+References: <20231201160925.3136868-1-peter.griffin@linaro.org> <20231201160925.3136868-17-peter.griffin@linaro.org>
+In-Reply-To: <20231201160925.3136868-17-peter.griffin@linaro.org>
+From: Sam Protsenko <semen.protsenko@linaro.org>
+Date: Fri, 1 Dec 2023 19:02:35 -0600
+Message-ID: <CAPLW+4mxzu4d_9i=ouDGtnSRMbhibfBnT5aXhkC4cGEC1bm6Bw@mail.gmail.com>
+Subject: Re: [PATCH v5 16/20] watchdog: s3c2410_wdt: Add support for Google
+ gs101 SoC
+To: Peter Griffin <peter.griffin@linaro.org>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	mturquette@baylibre.com, conor+dt@kernel.org, sboyd@kernel.org, 
+	tomasz.figa@gmail.com, s.nawrocki@samsung.com, linus.walleij@linaro.org, 
+	wim@linux-watchdog.org, linux@roeck-us.net, catalin.marinas@arm.com, 
+	will@kernel.org, arnd@arndb.de, olof@lixom.net, gregkh@linuxfoundation.org, 
+	jirislaby@kernel.org, cw00.choi@samsung.com, alim.akhtar@samsung.com, 
+	tudor.ambarus@linaro.org, andre.draszik@linaro.org, saravanak@google.com, 
+	willmcvicker@google.com, soc@kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-watchdog@vger.kernel.org, kernel-team@android.com, 
+	linux-serial@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
-
-On Tue, Nov 28, 2023 at 12:45=E2=80=AFAM Chen-Yu Tsai <wenst@chromium.org> =
-wrote:
+On Fri, Dec 1, 2023 at 10:11=E2=80=AFAM Peter Griffin <peter.griffin@linaro=
+.org> wrote:
 >
-> @@ -44,6 +46,7 @@ trackpad2: trackpad@2c {
->                 reg =3D <0x2c>;
->                 hid-descr-addr =3D <0x0020>;
->                 wakeup-source;
-> +               status =3D "fail-needs-probe";
+> This patch adds the compatibles and drvdata for the Google
+> gs101 SoC found in Pixel 6, Pixel 6a & Pixel 6 pro phones.
+>
+> Similar to Exynos850 it has two watchdog instances, one for
+> each cluster and has some control bits in PMU registers.
+>
+> gs101 also has the dbgack_mask bit in wtcon register, so
+> we also enable QUIRK_HAS_DBGACK_BIT.
+>
+> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+> ---
+>  drivers/watchdog/s3c2410_wdt.c | 47 ++++++++++++++++++++++++++++++----
+>  1 file changed, 42 insertions(+), 5 deletions(-)
+>
+> diff --git a/drivers/watchdog/s3c2410_wdt.c b/drivers/watchdog/s3c2410_wd=
+t.c
+> index 39f3489e41d6..c1ae71574457 100644
+> --- a/drivers/watchdog/s3c2410_wdt.c
+> +++ b/drivers/watchdog/s3c2410_wdt.c
+> @@ -68,6 +68,13 @@
+>  #define EXYNOSAUTOV9_CLUSTER0_WDTRESET_BIT     25
+>  #define EXYNOSAUTOV9_CLUSTER1_WDTRESET_BIT     24
+>
+> +#define GS_CLUSTER0_NONCPU_OUT                 0x1220
+> +#define GS_CLUSTER1_NONCPU_OUT                 0x1420
+> +#define GS_CLUSTER0_NONCPU_INT_EN              0x1244
+> +#define GS_CLUSTER1_NONCPU_INT_EN              0x1444
+> +#define GS_CLUSTER2_NONCPU_INT_EN              0x1644
+> +#define GS_RST_STAT_REG_OFFSET                 0x3B44
+> +
+>  /**
+>   * DOC: Quirk flags for different Samsung watchdog IP-cores
+>   *
+> @@ -269,6 +276,30 @@ static const struct s3c2410_wdt_variant drv_data_exy=
+nosautov9_cl1 =3D {
+>                   QUIRK_HAS_PMU_RST_STAT | QUIRK_HAS_PMU_CNT_EN,
+>  };
+>
+> +static const struct s3c2410_wdt_variant drv_data_gs101_cl0 =3D {
+> +       .mask_reset_reg =3D GS_CLUSTER0_NONCPU_INT_EN,
+> +       .mask_bit =3D 2,
+> +       .mask_reset_inv =3D true,
+> +       .rst_stat_reg =3D GS_RST_STAT_REG_OFFSET,
+> +       .rst_stat_bit =3D 0,
+> +       .cnt_en_reg =3D GS_CLUSTER0_NONCPU_OUT,
+> +       .cnt_en_bit =3D 8,
+> +       .quirks =3D QUIRK_HAS_PMU_RST_STAT | QUIRK_HAS_PMU_MASK_RESET | Q=
+UIRK_HAS_PMU_CNT_EN |
 
-While doing this, you could also remove the hack where the trackpad
-IRQ pinctrl is listed under i2c4.
+Please keep it at 80 characters limit.
+
+> +                 QUIRK_HAS_WTCLRINT_REG | QUIRK_HAS_DBGACK_BIT,
+> +};
+> +
+> +static const struct s3c2410_wdt_variant drv_data_gs101_cl1 =3D {
+> +       .mask_reset_reg =3D GS_CLUSTER1_NONCPU_INT_EN,
+> +       .mask_bit =3D 2,
+> +       .mask_reset_inv =3D true,
+> +       .rst_stat_reg =3D GS_RST_STAT_REG_OFFSET,
+> +       .rst_stat_bit =3D 1,
+> +       .cnt_en_reg =3D GS_CLUSTER1_NONCPU_OUT,
+> +       .cnt_en_bit =3D 7,
+> +       .quirks =3D QUIRK_HAS_PMU_RST_STAT | QUIRK_HAS_PMU_MASK_RESET | Q=
+UIRK_HAS_PMU_CNT_EN |
+
+Please keep it at 80 characters limit.
+
+> +                 QUIRK_HAS_WTCLRINT_REG | QUIRK_HAS_DBGACK_BIT,
+> +};
+> +
+>  static const struct of_device_id s3c2410_wdt_match[] =3D {
+>         { .compatible =3D "samsung,s3c2410-wdt",
+>           .data =3D &drv_data_s3c2410 },
+> @@ -284,6 +315,8 @@ static const struct of_device_id s3c2410_wdt_match[] =
+=3D {
+>           .data =3D &drv_data_exynos850_cl0 },
+>         { .compatible =3D "samsung,exynosautov9-wdt",
+>           .data =3D &drv_data_exynosautov9_cl0 },
+> +       { .compatible =3D "google,gs101-wdt",
+> +         .data =3D &drv_data_gs101_cl0 },
+>         {},
+>  };
+>  MODULE_DEVICE_TABLE(of, s3c2410_wdt_match);
+> @@ -604,9 +637,10 @@ s3c2410_get_wdt_drv_data(struct platform_device *pde=
+v, struct s3c2410_wdt *wdt)
+>         }
+>
+>  #ifdef CONFIG_OF
+> -       /* Choose Exynos850/ExynosAutov9 driver data w.r.t. cluster index=
+ */
+> +       /* Choose Exynos850/ExynosAutov9/gs101 driver data w.r.t. cluster=
+ index */
+
+Please keep it at 80 characters limit. Also, maybe just make it more
+generic and mention "Exynos9 platforms" instead of listing all SoCs?
+
+Other than that:
+
+Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
+
+
+>         if (variant =3D=3D &drv_data_exynos850_cl0 ||
+> -           variant =3D=3D &drv_data_exynosautov9_cl0) {
+> +           variant =3D=3D &drv_data_exynosautov9_cl0 ||
+> +           variant =3D=3D &drv_data_gs101_cl0) {
+>                 u32 index;
+>                 int err;
+>
+> @@ -619,9 +653,12 @@ s3c2410_get_wdt_drv_data(struct platform_device *pde=
+v, struct s3c2410_wdt *wdt)
+>                 case 0:
+>                         break;
+>                 case 1:
+> -                       variant =3D (variant =3D=3D &drv_data_exynos850_c=
+l0) ?
+> -                               &drv_data_exynos850_cl1 :
+> -                               &drv_data_exynosautov9_cl1;
+> +                       if (variant =3D=3D &drv_data_exynos850_cl0)
+> +                               variant =3D &drv_data_exynos850_cl1;
+> +                       else if (variant =3D=3D &drv_data_exynosautov9_cl=
+0)
+> +                               variant =3D &drv_data_exynosautov9_cl1;
+> +                       else if (variant =3D=3D &drv_data_gs101_cl0)
+> +                               variant =3D &drv_data_gs101_cl1;
+>                         break;
+>                 default:
+>                         return dev_err_probe(dev, -EINVAL, "wrong cluster=
+ index: %u\n", index);
+> --
+> 2.43.0.rc2.451.g8631bc7472-goog
+>
 
