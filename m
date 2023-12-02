@@ -1,104 +1,137 @@
-Return-Path: <devicetree+bounces-21001-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21003-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15BDC801EB1
-	for <lists+devicetree@lfdr.de>; Sat,  2 Dec 2023 22:40:05 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CAD0801EE9
+	for <lists+devicetree@lfdr.de>; Sat,  2 Dec 2023 23:08:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1AE5D1C2074E
-	for <lists+devicetree@lfdr.de>; Sat,  2 Dec 2023 21:40:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 53A71280F60
+	for <lists+devicetree@lfdr.de>; Sat,  2 Dec 2023 22:08:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FEB9219F4;
-	Sat,  2 Dec 2023 21:40:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FCD422087;
+	Sat,  2 Dec 2023 22:07:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="DyHa6fTF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com [209.85.161.47])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8935FE8;
-	Sat,  2 Dec 2023 13:39:57 -0800 (PST)
-Received: by mail-oo1-f47.google.com with SMTP id 006d021491bc7-58cecfb4412so2152676eaf.3;
-        Sat, 02 Dec 2023 13:39:57 -0800 (PST)
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5819FD
+	for <devicetree@vger.kernel.org>; Sat,  2 Dec 2023 14:07:54 -0800 (PST)
+Received: from mail-ot1-f71.google.com (mail-ot1-f71.google.com [209.85.210.71])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id AA0F73F1D9
+	for <devicetree@vger.kernel.org>; Sat,  2 Dec 2023 22:07:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1701554872;
+	bh=VhuiHjzGmesIrY/hSc2y05bK2i7Am6FUImDyu0cEMgU=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type;
+	b=DyHa6fTFxrMFdfW1mld8lFQEIwtgft806aM7Gp7qnP/CXyLGYLMm5DCkb8KAzxIqo
+	 7shdaaZODXsjTqNkkfRy3HBsCWhIwKN08OcVr0U6neOPpsXQZz0U7MJ/eXmQWjUYgM
+	 XwbnyWVqFWzjju1tZj0iWxvd5aOjd7Uj0pr+FUCAwhFuLQgBeOvVp5foN3jvTCv1c6
+	 Z5GYMS7hOPXDpTDHLMSRH5IyH5apPLVLYofDZ8Wofab1m7k/Qvzf6HLVbNtQKZtx6A
+	 Y/CYjALKLDxc/ak38EIV8hoXWcG6Y7A/roQkx42pGTJfgU9Pto4G+XQAL8duCDZDs2
+	 jPmMDDKY8Y5Og==
+Received: by mail-ot1-f71.google.com with SMTP id 46e09a7af769-6d88143b45bso47990a34.0
+        for <devicetree@vger.kernel.org>; Sat, 02 Dec 2023 14:07:52 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701553197; x=1702157997;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=ztgcbKHwCkK1zXqhE4JS+hbWqLKGMalxU9N925zsFjU=;
-        b=YuCDM6S/Lg07+SWGkQ/3nrFhAomY1sYKU3anHaa2mecaxOpgP8iSnWbWpd6NUhaIqH
-         M/jvZ9+c4gjqTY3j3lGFVp/HF3zagiVIpfEQYntTHg0GGDuFUSNla5A08FQNBlz31qNw
-         4UaQwZ/YaBgW9ONCYalNEl2tXgkdgGhSSwOXEhvBz8CMsJJyBmXigl3CmOvOO25XKXdT
-         jykmaiS/FEELw3MvIqF0ODLB+LoJHSPdBRgKKK5SB/A/kvhzzwQad6EUW/ImPyW+/GYW
-         LOkkJZe2QsFiK4Ez/z9b1ZavQlWqczd59RlPxt0kthzu+Vel5Xe+mHiK29qy9D5E4bD7
-         sOhw==
-X-Gm-Message-State: AOJu0YwqXfMDup2ZFCKoTCu86Y7aH0jjoStLKB58r95yQfG0KIXkchuk
-	otVSeFc9GMTbjVMSjMlbNg==
-X-Google-Smtp-Source: AGHT+IFYWKztai95IBE5HnuNax1eUKxvaWbB9DWs7lAPYqpPmoenjKf8kqaazZVMEvsVxB0NfKr6JQ==
-X-Received: by 2002:a4a:a74d:0:b0:58e:1c48:1edc with SMTP id h13-20020a4aa74d000000b0058e1c481edcmr1443150oom.14.1701553196705;
-        Sat, 02 Dec 2023 13:39:56 -0800 (PST)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id 68-20020a4a1747000000b0057b74352e3asm1093968ooe.25.2023.12.02.13.39.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 02 Dec 2023 13:39:56 -0800 (PST)
-Received: (nullmailer pid 438823 invoked by uid 1000);
-	Sat, 02 Dec 2023 21:39:54 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        d=1e100.net; s=20230601; t=1701554871; x=1702159671;
+        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=VhuiHjzGmesIrY/hSc2y05bK2i7Am6FUImDyu0cEMgU=;
+        b=BCcSa7zXjKuteEfEOmqQvTnC1jvweOpVPY7R/4mYRxk1UknsY3r9SdpcU1J6hCa61u
+         obya/ThNxeCj7MgYzPxWR4cqWp81nuh77Pi2rWurX/Wv8gSvIlV7fHafalfq9AaMC2Pv
+         ifBbuR2rLyLUlTFOO1uMrtJL3nsa9/KTI7kzaWnVaq9CsYqYZeSe3kpn2HbrXSDQpuBW
+         EGmWL65FCqgHTu83nKWEJ/H4vi17b6eRn+AfpN3T6uqFxnrxSMQdTFahIohRK9owfIVT
+         xxXbiH2cpf2E02u68hR5lQH9w6Ip4TGFuIFdwi84UrQw95hn9IOWYHwTk/ZL0tpgjzPw
+         pRcQ==
+X-Gm-Message-State: AOJu0Yx1kfRfoAWfidCS70FiGx0RpIIYXNjltnWODI30iRedad97fFUn
+	k2Zw2g3A5kr15byG4bh3LCYr8gFVdQiL6Tv6L9JAe/Cuco6C4YTXkNDKvxRef8x1ZvXgNVGYE/J
+	K+uRVv4Buzq5U/CzgEb9u0efnbgxS0CAEBRB4pJX8GKK7rcuBpJP4dGg=
+X-Received: by 2002:a05:6358:4e:b0:170:17eb:7c67 with SMTP id 14-20020a056358004e00b0017017eb7c67mr1396020rwx.58.1701554871287;
+        Sat, 02 Dec 2023 14:07:51 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGDgcC7p1ZVM37WrYOl9g6KwCFC9ba5aGWjLgxDGJ2WolVrkOMQ2nYCO3RuaqPRlAtCZA3dv3QColkp70DC18E=
+X-Received: by 2002:a05:6358:4e:b0:170:17eb:7c67 with SMTP id
+ 14-20020a056358004e00b0017017eb7c67mr1396010rwx.58.1701554870917; Sat, 02 Dec
+ 2023 14:07:50 -0800 (PST)
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Sat, 2 Dec 2023 14:07:50 -0800
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+In-Reply-To: <20231202153353.635-1-jszhang@kernel.org>
+References: <20231202153353.635-1-jszhang@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Rob Herring <robh+dt@kernel.org>, Zhang Rui <rui.zhang@intel.com>, Daniel Lezcano <daniel.lezcano@linaro.org>, Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, linux-renesas-soc@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Geert Uytterhoeven <geert+renesas@glider.be>, devicetree@vger.kernel.org, Biju Das <biju.das.au@gmail.com>, Lukasz Luba <lukasz.luba@arm.com>, linux-pm@vger.kernel.org, "Rafael J. Wysocki" <rafael@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Support Opensource <support.opensource@diasemi.com>
-In-Reply-To: <20231202192536.266885-5-biju.das.jz@bp.renesas.com>
-References: <20231202192536.266885-1-biju.das.jz@bp.renesas.com>
- <20231202192536.266885-5-biju.das.jz@bp.renesas.com>
-Message-Id: <170155319437.438762.13341872732989255147.robh@kernel.org>
-Subject: Re: [PATCH v2 04/11] dt-bindings: thermal: Convert da906{1,2}
- thermal to json-schema
-Date: Sat, 02 Dec 2023 15:39:54 -0600
+Mime-Version: 1.0
+Date: Sat, 2 Dec 2023 14:07:50 -0800
+Message-ID: <CAJM55Z-9Y=QitvAX+z=XTTMM0CGRzGMD5z0H_Bzv=Q85b49rpQ@mail.gmail.com>
+Subject: Re: [PATCH v2 0/3] riscv: dts: starfive: add Milkv Mars board device tree
+To: Jisheng Zhang <jszhang@kernel.org>, Conor Dooley <conor@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Emil Renner Berthing <kernel@esmil.dk>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>
+Cc: linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
+Jisheng Zhang wrote:
+> The Milkv Mars is a development board based on the Starfive JH7110 SoC.
+> The board features:
+>
+> - JH7110 SoC
+> - 1/2/4/8 GiB LPDDR4 DRAM
+> - AXP15060 PMIC
+> - 40 pin GPIO header
+> - 3x USB 3.0 host port
+> - 1x USB 2.0 host port
+> - 1x M.2 E-Key
+> - 1x eMMC slot
+> - 1x MicroSD slot
+> - 1x QSPI Flash
+> - 1x 1Gbps Ethernet port
+> - 1x HDMI port
+> - 1x 2-lane DSI and 1x 4-lane DSI
+> - 1x 2-lane CSI
+>
+> patch1 adds 'cpus' label
+> patch2 adds "milkv,mars" board dt-binding
+> patch3 adds the devicetree file describing the currently supported
+> features:
+> Namely PMIC, UART, I2C, GPIO, SD card, QSPI Flash, eMMC and Ethernet.
+>
+> Since v1:
+>  - add two new patches which add "cpus" label and board dt-binding
+>  - adopt Krzysztof's suggestions, thanks
+>
+> Hi Conor,
+>
+> I see you have sent a patch which moves the timebase-frequency property
+> to soc dtsi, but this series doesn't rebase on that. I can update it
+> once your patch is merged.
 
-On Sat, 02 Dec 2023 19:25:28 +0000, Biju Das wrote:
-> Convert the da906{1,2} thermal device tree binding documentation to
-> json-schema.
-> 
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
->  .../bindings/thermal/da9062-thermal.txt       | 36 ------------
->  .../bindings/thermal/dlg,da9062-thermal.yaml  | 58 +++++++++++++++++++
->  2 files changed, 58 insertions(+), 36 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/thermal/da9062-thermal.txt
->  create mode 100644 Documentation/devicetree/bindings/thermal/dlg,da9062-thermal.yaml
-> 
+Hi Jisheng,
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Thanks for working on this! On the JH7110 the mtime derives almost directly
+from the external oscillator like this:
 
-yamllint warnings/errors:
+osc (24MHz) -> rtc_toggle (div 6) -> mtime (4MHz)
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/thermal/dlg,da9062-thermal.example.dtb: /example-0/i2c/pmic@58: failed to match any schema with compatible: ['dlg,da9062']
+So to me it makes sense to define the timebase-frequency in the same file as
+the frequency of the external oscillator.
 
-doc reference errors (make refcheckdocs):
-Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/thermal/da90??-thermal.txt
-MAINTAINERS: Documentation/devicetree/bindings/thermal/da90??-thermal.txt
+In general it looks good, but if you do
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231202192536.266885-5-biju.das.jz@bp.renesas.com
+  diff -Naur jh7110-{starfive-visionfive-2.dtsi,milkv-mars.dts}
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+you'll see that those two files are almost identical. Even external clock
+speeds and all the pin configuration are the same. I'd strongly prefer to have
+all that factored out in a common .dtsi so fixes don't get out of sync.
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+/Emil
 
