@@ -1,237 +1,180 @@
-Return-Path: <devicetree+bounces-20986-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20987-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 988CF801DFB
-	for <lists+devicetree@lfdr.de>; Sat,  2 Dec 2023 18:47:24 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17191801E11
+	for <lists+devicetree@lfdr.de>; Sat,  2 Dec 2023 19:22:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2F3FEB20B75
-	for <lists+devicetree@lfdr.de>; Sat,  2 Dec 2023 17:47:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5A507281039
+	for <lists+devicetree@lfdr.de>; Sat,  2 Dec 2023 18:22:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76AFE1C6B1;
-	Sat,  2 Dec 2023 17:47:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CF601F5E7;
+	Sat,  2 Dec 2023 18:22:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FfvvRKPC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BA1D124;
-	Sat,  2 Dec 2023 09:47:11 -0800 (PST)
-Received: from i53875b61.versanet.de ([83.135.91.97] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1r9U4v-0003Lc-Qz; Sat, 02 Dec 2023 18:46:57 +0100
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Rob Herring <robh+dt@kernel.org>, Alex Bee <knaerzche@gmail.com>
-Cc: Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, Maxime Ripard <mripard@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-pm@vger.kernel.org
-Subject:
- Re: [PATCH v2 2/5] ARM: dts: rockchip: Add power-controller for RK3128
-Date: Sat, 02 Dec 2023 18:46:56 +0100
-Message-ID: <4891026.6YUMPnJmAY@diego>
-In-Reply-To: <7a6eed43-477a-48a4-bd64-4528da920ffd@gmail.com>
-References:
- <20231202125144.66052-1-knaerzche@gmail.com> <6926340.F8r316W7xa@diego>
- <7a6eed43-477a-48a4-bd64-4528da920ffd@gmail.com>
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA54BFF;
+	Sat,  2 Dec 2023 10:22:04 -0800 (PST)
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-54af4f2838dso3947599a12.2;
+        Sat, 02 Dec 2023 10:22:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1701541323; x=1702146123; darn=vger.kernel.org;
+        h=content-transfer-encoding:content-language:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TyFCiKZiHWD5dcEIPfQHHPlDxT1woqLl54OWaAFXfos=;
+        b=FfvvRKPCccA6kFiUOHkD1J4+b/HM0jj9Q10nUfqnJkNent3Fg7za7i6mMDjpd4j7as
+         7QTutoDDY4iuVg73nxGfkm1fX7S7e9Be65DZQTJYhkgcgUtrdWXpiiGyPVSSjqpBxW+6
+         E8JPztVyVX4UQAIp7GJvjKWS1wfRjr0A7rniO4OyxkDdOnVMuSwpRKG8DPdJehZcoFM0
+         0+8ahklCPC/wJ7upuWRB5r3uuq20M+3PNRX2Y2v9VRUobDMKV1xMpJcfPhA4ECLv9wnm
+         nNyXjUHJV+K9fJx+LOhoo/1AwCEaxaot3jUkwcx+8rPzBdEF8bd0U4TiyvHDNY2GPASe
+         jEkw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701541323; x=1702146123;
+        h=content-transfer-encoding:content-language:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=TyFCiKZiHWD5dcEIPfQHHPlDxT1woqLl54OWaAFXfos=;
+        b=bEaypq72eo78RaRFd9QuN+4GMUJ+ub10gB/pu4C6p36WYz8cBaMrZBl4oXcRhSZmcG
+         XVBeXVqDRMQ+caAIS9NRypSB3Qsvkxu7oRrRDUe1p29zOMsY6bCMkE2xUZTnvqW2/jWn
+         PMkY7SXF0lJ52a6w4PXJ+mVkeYiYdG408XQ8Jehh96Tp3ZxwgNVtLFvsLt+TeNo2LG2z
+         ERWhgJIF6KNK3/3ib7/GNONPCwyuZgumSMQZes72jRMNjuV6lYID/LfE7bWOno5dO+uW
+         Px7/4eAgHTHkvEFrd+k6sXDGrB23emBQow7P9CD85m09+fBehusU6qojFeWDyPitdlVF
+         TqFg==
+X-Gm-Message-State: AOJu0YzhinLXFZm3FQVBcvoDhgWN1G4CicPWnjy/RqhHOfP9o/zGBoYW
+	7BdPQsmXbRE0VQHfaAWaEpk=
+X-Google-Smtp-Source: AGHT+IGjhja9zQfmHEPloTPetsXirLklrAI+SSzAqtY1tPIIcu8nnQ8h24bB3rkMbTIyy3R/7qu9Hw==
+X-Received: by 2002:a50:bac5:0:b0:54c:4837:93fc with SMTP id x63-20020a50bac5000000b0054c483793fcmr1938993ede.67.1701541322838;
+        Sat, 02 Dec 2023 10:22:02 -0800 (PST)
+Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id q11-20020a50c34b000000b0054ca7afdf35sm57615edb.86.2023.12.02.10.22.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 02 Dec 2023 10:22:02 -0800 (PST)
+Message-ID: <89f2a229-9f14-d43f-c53d-5d4688e70456@gmail.com>
+Date: Sat, 2 Dec 2023 19:22:01 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+From: Johan Jonker <jbx6244@gmail.com>
+Subject: [PATCH v1 1/2] ARM: dts: rockchip: add gpio alias for gpio dt nodes
+To: heiko@sntech.de
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, jay.xu@rock-chips.com, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Alex,
+Rockchip SoC TRM, SoC datasheet and board schematics always refer to
+the same gpio numbers - even if not all are used for a specific board.
+In order to not have to re-define them for every board add the
+aliases to SoC dtsi files.
 
-Am Samstag, 2. Dezember 2023, 17:36:15 CET schrieb Alex Bee:
-> Am 02.12.23 um 16:51 schrieb Heiko St=FCbner:
-> > Am Samstag, 2. Dezember 2023, 13:51:41 CET schrieb Alex Bee:
-> >> Add power controller and qos nodes for RK3128 in order to use
-> >> them as powerdomains.
-> > does the power-domain controller work with the incomplete set of
-> > pm-domains too?
->=20
-> Yes, it does - the missing domains can request idle only and can't be=20
-> powered on/off - if no one requests idle they are just up all the time.
->=20
-> > What I have in mind is
-> > - adding the power-controller node with the existing set of power-domai=
-ns
-> > - the gpu pm-domain is in there
-> > - adding the gpu parts
->=20
-> My main concern about adding them later was the change of the ABI after=20
-> they've been exposed in the SoC DT. If that's not an issue - sure: I can=
-=20
-> add them in a separate series.
+Signed-off-by: Jianqun Xu <jay.xu@rock-chips.com>
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+---
 
-An ABI change would be _changing_ the domain-ids in the rk3128-power.h
-I think :-) .
+Changed V1:
+  rebase
+  remove rk3066 gpio5 alias
+---
+ arch/arm/boot/dts/rockchip/rk3036.dtsi  | 3 +++
+ arch/arm/boot/dts/rockchip/rk3066a.dtsi | 5 +++++
+ arch/arm/boot/dts/rockchip/rk322x.dtsi  | 4 ++++
+ arch/arm/boot/dts/rockchip/rk3288.dtsi  | 9 +++++++++
+ arch/arm/boot/dts/rockchip/rk3xxx.dtsi  | 4 ++++
+ 5 files changed, 25 insertions(+)
 
-Right now the existing domain ids in the header are already exposed to the
-world, so someone could already use them, but not the new ones.
+diff --git a/arch/arm/boot/dts/rockchip/rk3036.dtsi b/arch/arm/boot/dts/rockchip/rk3036.dtsi
+index 78686fc72ce6..8aa2e0864fed 100644
+--- a/arch/arm/boot/dts/rockchip/rk3036.dtsi
++++ b/arch/arm/boot/dts/rockchip/rk3036.dtsi
+@@ -17,6 +17,9 @@ / {
+ 	interrupt-parent = <&gic>;
 
+ 	aliases {
++		gpio0 = &gpio0;
++		gpio1 = &gpio1;
++		gpio2 = &gpio2;
+ 		i2c0 = &i2c0;
+ 		i2c1 = &i2c1;
+ 		i2c2 = &i2c2;
+diff --git a/arch/arm/boot/dts/rockchip/rk3066a.dtsi b/arch/arm/boot/dts/rockchip/rk3066a.dtsi
+index de9915d946f7..30139f21de64 100644
+--- a/arch/arm/boot/dts/rockchip/rk3066a.dtsi
++++ b/arch/arm/boot/dts/rockchip/rk3066a.dtsi
+@@ -13,6 +13,11 @@
+ / {
+ 	compatible = "rockchip,rk3066a";
 
++	aliases {
++		gpio4 = &gpio4;
++		gpio6 = &gpio6;
++	};
++
+ 	cpus {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+diff --git a/arch/arm/boot/dts/rockchip/rk322x.dtsi b/arch/arm/boot/dts/rockchip/rk322x.dtsi
+index a721744cbfd1..831561fc1814 100644
+--- a/arch/arm/boot/dts/rockchip/rk322x.dtsi
++++ b/arch/arm/boot/dts/rockchip/rk322x.dtsi
+@@ -15,6 +15,10 @@ / {
+ 	interrupt-parent = <&gic>;
 
-Heiko
+ 	aliases {
++		gpio0 = &gpio0;
++		gpio1 = &gpio1;
++		gpio2 = &gpio2;
++		gpio3 = &gpio3;
+ 		serial0 = &uart0;
+ 		serial1 = &uart1;
+ 		serial2 = &uart2;
+diff --git a/arch/arm/boot/dts/rockchip/rk3288.dtsi b/arch/arm/boot/dts/rockchip/rk3288.dtsi
+index cb9cdaddffd4..ead343dc3df1 100644
+--- a/arch/arm/boot/dts/rockchip/rk3288.dtsi
++++ b/arch/arm/boot/dts/rockchip/rk3288.dtsi
+@@ -19,6 +19,15 @@ / {
 
-> > And a second series with
-> > - patch1 from here
-> > - a dts patch adding the additional pm-domains to rk3128.dtsi
-> > - I guess patch1 also should be split into a patch adding the binding-i=
-ds
-> >    and a separate patch for the code addition.
->=20
-> Yeah, I noticed this also :)
->=20
-> Regards,
->=20
-> Alex
->=20
-> >
-> >
-> > Heiko
-> >
-> >> Signed-off-by: Alex Bee <knaerzche@gmail.com>
-> >> ---
-> >>   arch/arm/boot/dts/rockchip/rk3128.dtsi | 101 +++++++++++++++++++++++=
-++
-> >>   1 file changed, 101 insertions(+)
-> >>
-> >> diff --git a/arch/arm/boot/dts/rockchip/rk3128.dtsi b/arch/arm/boot/dt=
-s/rockchip/rk3128.dtsi
-> >> index 4e8b38604ecd..b72905db04f7 100644
-> >> --- a/arch/arm/boot/dts/rockchip/rk3128.dtsi
-> >> +++ b/arch/arm/boot/dts/rockchip/rk3128.dtsi
-> >> @@ -8,6 +8,7 @@
-> >>   #include <dt-bindings/interrupt-controller/arm-gic.h>
-> >>   #include <dt-bindings/interrupt-controller/irq.h>
-> >>   #include <dt-bindings/pinctrl/rockchip.h>
-> >> +#include <dt-bindings/power/rk3128-power.h>
-> >>  =20
-> >>   / {
-> >>   	compatible =3D "rockchip,rk3128";
-> >> @@ -133,6 +134,106 @@ smp-sram@0 {
-> >>   	pmu: syscon@100a0000 {
-> >>   		compatible =3D "rockchip,rk3128-pmu", "syscon", "simple-mfd";
-> >>   		reg =3D <0x100a0000 0x1000>;
-> >> +
-> >> +		power: power-controller {
-> >> +			compatible =3D "rockchip,rk3128-power-controller";
-> >> +			#power-domain-cells =3D <1>;
-> >> +			#address-cells =3D <1>;
-> >> +			#size-cells =3D <0>;
-> >> +
-> >> +			power-domain@RK3128_PD_VIO {
-> >> +				reg =3D <RK3128_PD_VIO>;
-> >> +				clocks =3D <&cru ACLK_CIF>,
-> >> +					 <&cru HCLK_CIF>,
-> >> +					 <&cru DCLK_EBC>,
-> >> +					 <&cru HCLK_EBC>,
-> >> +					 <&cru ACLK_IEP>,
-> >> +					 <&cru HCLK_IEP>,
-> >> +					 <&cru ACLK_LCDC0>,
-> >> +					 <&cru HCLK_LCDC0>,
-> >> +					 <&cru PCLK_MIPI>,
-> >> +					 <&cru ACLK_RGA>,
-> >> +					 <&cru HCLK_RGA>,
-> >> +					 <&cru ACLK_VIO0>,
-> >> +					 <&cru ACLK_VIO1>,
-> >> +					 <&cru HCLK_VIO>,
-> >> +					 <&cru HCLK_VIO_H2P>,
-> >> +					 <&cru DCLK_VOP>,
-> >> +					 <&cru SCLK_VOP>;
-> >> +				pm_qos =3D <&qos_ebc>,
-> >> +					 <&qos_iep>,
-> >> +					 <&qos_lcdc>,
-> >> +					 <&qos_rga>,
-> >> +					 <&qos_vip>;
-> >> +				#power-domain-cells =3D <0>;
-> >> +			};
-> >> +
-> >> +			power-domain@RK3128_PD_VIDEO {
-> >> +				reg =3D <RK3128_PD_VIDEO>;
-> >> +				clocks =3D <&cru ACLK_VDPU>,
-> >> +					 <&cru HCLK_VDPU>,
-> >> +					 <&cru ACLK_VEPU>,
-> >> +					 <&cru HCLK_VEPU>,
-> >> +					 <&cru SCLK_HEVC_CORE>;
-> >> +				pm_qos =3D <&qos_vpu>;
-> >> +				#power-domain-cells =3D <0>;
-> >> +			};
-> >> +
-> >> +			power-domain@RK3128_PD_GPU {
-> >> +				reg =3D <RK3128_PD_GPU>;
-> >> +				clocks =3D <&cru ACLK_GPU>;
-> >> +				pm_qos =3D <&qos_gpu>;
-> >> +				#power-domain-cells =3D <0>;
-> >> +			};
-> >> +
-> >> +			power-domain@RK3128_PD_CRYPTO {
-> >> +				reg =3D <RK3128_PD_CRYPTO>;
-> >> +				clocks =3D <&cru HCLK_CRYPTO>,
-> >> +					 <&cru SCLK_CRYPTO>;
-> >> +				pm_qos =3D <&qos_crypto>;
-> >> +				#power-domain-cells =3D <0>;
-> >> +			};
-> >> +		};
-> >> +	};
-> >> +
-> >> +	qos_crypto: qos@10128080 {
-> >> +		compatible =3D "rockchip,rk3128-qos", "syscon";
-> >> +		reg =3D <0x10128080 0x20>;
-> >> +	};
-> >> +
-> >> +	qos_gpu: qos@1012d000 {
-> >> +		compatible =3D "rockchip,rk3128-qos", "syscon";
-> >> +		reg =3D <0x1012d000 0x20>;
-> >> +	};
-> >> +
-> >> +	qos_vpu: qos@1012e000 {
-> >> +		compatible =3D "rockchip,rk3128-qos", "syscon";
-> >> +		reg =3D <0x1012e000 0x20>;
-> >> +	};
-> >> +
-> >> +	qos_rga: qos@1012f000 {
-> >> +		compatible =3D "rockchip,rk3128-qos", "syscon";
-> >> +		reg =3D <0x1012f000 0x20>;
-> >> +	};
-> >> +
-> >> +	qos_ebc: qos@1012f080 {
-> >> +		compatible =3D "rockchip,rk3128-qos", "syscon";
-> >> +		reg =3D <0x1012f080 0x20>;
-> >> +	};
-> >> +
-> >> +	qos_iep: qos@1012f100 {
-> >> +		compatible =3D "rockchip,rk3128-qos", "syscon";
-> >> +		reg =3D <0x1012f100 0x20>;
-> >> +	};
-> >> +
-> >> +	qos_lcdc: qos@1012f180 {
-> >> +		compatible =3D "rockchip,rk3128-qos", "syscon";
-> >> +		reg =3D <0x1012f180 0x20>;
-> >> +	};
-> >> +
-> >> +	qos_vip: qos@1012f200 {
-> >> +		compatible =3D "rockchip,rk3128-qos", "syscon";
-> >> +		reg =3D <0x1012f200 0x20>;
-> >>   	};
-> >>  =20
-> >>   	gic: interrupt-controller@10139000 {
-> >>
-> >
-> >
-> >
->=20
+ 	aliases {
+ 		ethernet0 = &gmac;
++		gpio0 = &gpio0;
++		gpio1 = &gpio1;
++		gpio2 = &gpio2;
++		gpio3 = &gpio3;
++		gpio4 = &gpio4;
++		gpio5 = &gpio5;
++		gpio6 = &gpio6;
++		gpio7 = &gpio7;
++		gpio8 = &gpio8;
+ 		i2c0 = &i2c0;
+ 		i2c1 = &i2c1;
+ 		i2c2 = &i2c2;
+diff --git a/arch/arm/boot/dts/rockchip/rk3xxx.dtsi b/arch/arm/boot/dts/rockchip/rk3xxx.dtsi
+index cb4e42ede56a..f37137f298d5 100644
+--- a/arch/arm/boot/dts/rockchip/rk3xxx.dtsi
++++ b/arch/arm/boot/dts/rockchip/rk3xxx.dtsi
+@@ -16,6 +16,10 @@ / {
 
-
-
+ 	aliases {
+ 		ethernet0 = &emac;
++		gpio0 = &gpio0;
++		gpio1 = &gpio1;
++		gpio2 = &gpio2;
++		gpio3 = &gpio3;
+ 		i2c0 = &i2c0;
+ 		i2c1 = &i2c1;
+ 		i2c2 = &i2c2;
+--
+2.39.2
 
 
