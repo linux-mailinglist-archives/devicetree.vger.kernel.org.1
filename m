@@ -1,76 +1,164 @@
-Return-Path: <devicetree+bounces-20978-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20979-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 947B6801D9A
-	for <lists+devicetree@lfdr.de>; Sat,  2 Dec 2023 16:57:37 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E801801DB3
+	for <lists+devicetree@lfdr.de>; Sat,  2 Dec 2023 17:17:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C62451C208CD
-	for <lists+devicetree@lfdr.de>; Sat,  2 Dec 2023 15:57:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C8A131C20932
+	for <lists+devicetree@lfdr.de>; Sat,  2 Dec 2023 16:17:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 987051A59E;
-	Sat,  2 Dec 2023 15:57:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB2521C6B1;
+	Sat,  2 Dec 2023 16:17:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="0XjPTP4p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A58F11F;
-	Sat,  2 Dec 2023 07:57:28 -0800 (PST)
-Received: from i53875b61.versanet.de ([83.135.91.97] helo=phil.lan)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1r9SMq-0002DL-9W; Sat, 02 Dec 2023 16:57:20 +0100
-From: Heiko Stuebner <heiko@sntech.de>
-To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alex Bee <knaerzche@gmail.com>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	Maxime Ripard <mripard@kernel.org>,
-	David Airlie <airlied@gmail.com>,
-	linux-pm@vger.kernel.org,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	dri-devel@lists.freedesktop.org,
-	linux-rockchip@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	devicetree@vger.kernel.org,
-	Daniel Vetter <daniel@ffwll.ch>,
-	linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH v2 0/5] Add power-controller and gpu for RK3128
-Date: Sat,  2 Dec 2023 16:57:18 +0100
-Message-Id: <170153263025.376455.12737085983971621612.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20231202125144.66052-1-knaerzche@gmail.com>
-References: <20231202125144.66052-1-knaerzche@gmail.com>
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A5F3FA
+	for <devicetree@vger.kernel.org>; Sat,  2 Dec 2023 08:17:06 -0800 (PST)
+Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2c9f559b82cso3177461fa.0
+        for <devicetree@vger.kernel.org>; Sat, 02 Dec 2023 08:17:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1701533824; x=1702138624; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bzfMNFR2RcSekMCUUDcS+18RzZyh3kK2Ah+a6XkE5FM=;
+        b=0XjPTP4pd6+7E/av628bNSI4Gfb2LQZynyKQLfSrqt17roQJi+y1LY3Xe1+IEjtQ/U
+         FEkEB7yyRDivxWzjBn61i9m5/giGeDJYGhkHx75RiUPFmrDOqNrmK6v6Y3/nsAFv8BQA
+         5CnuXwm+Lkvddw05W2xRK23sMX4o/3WnpVtBFpEmSIyAe+qn6y4HSx9rU13WE+sB5tu/
+         Ij8p3Mxu/aU54DNz/fL5G6WcRfwhO6HGaOsh+w+lBYECmskTtlhEE51P/DGiSeNZBcTD
+         k884/3st1xlA/0yAgYc3SIMnJqaDLxZt6sS63rahIOLf4LIICIxJ+7gF0kprf2hOzYME
+         YvuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701533824; x=1702138624;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=bzfMNFR2RcSekMCUUDcS+18RzZyh3kK2Ah+a6XkE5FM=;
+        b=KP21YadaMXL4A7Nybgrgh9+mm7MC6agdpPYJLHIMrqcinUTNwhgPh2TEZ/PMp+YMBw
+         A2tXs+9Oc+toVZ6b83UENlLHjFPUbXFL+3cSHT0sQgqHVDbrv43c17nYM8rSk1sMXA1l
+         tCQNiDPrYkIZNiyisXZLTRrr075YRKJ9RzWqfV2EtsPYS2eQBqXwOh1/+KnWjjYL/EkU
+         +0NWbGRTA/WRt+nAJzdwI7hFjMAGhlE8l2k+o95c26gHRuT0xDzDf5qrEVmdZKc2x8rj
+         Stu9ESsByR/As50e84DlntG6Nlxj3Mi1M70o1mSK5b4mtl9vMiZ1SOvZ9Vw/9NfpfNkP
+         OgHA==
+X-Gm-Message-State: AOJu0Ywj+rHj+f5a+x5AbqlUKYixjzMkOexMVjj/znm3IxUaDPAm38tJ
+	dpUR77paAXltr9tuux4UTJVEGeIHcBgSSPXz2Y/Ecw==
+X-Google-Smtp-Source: AGHT+IHGc/Y0RKfa/ls3Hcoi5FIbQXzLBBlP/80GqZ+xoMdLm0vsByPjMl928t2d7+fiT/tfo40b9KZE0xsq8VSY/Cc=
+X-Received: by 2002:a2e:8ed4:0:b0:2c9:d874:6eec with SMTP id
+ e20-20020a2e8ed4000000b002c9d8746eecmr1736546ljl.73.1701533823967; Sat, 02
+ Dec 2023 08:17:03 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+References: <20231121-dev-iio-backend-v1-0-6a3d542eba35@analog.com>
+ <CAMknhBH0pF_+z_JqWGscELBmAEDyxLAtgQ-j3=6P2MeFXnzhWQ@mail.gmail.com>
+ <CAMknhBEcEJ01nO0p5_vy4jVBVTL_rhEk+pvBpXdMtaDurc-05A@mail.gmail.com> <369a72dd34c0bc457620b88594a975d96aa85a22.camel@gmail.com>
+In-Reply-To: <369a72dd34c0bc457620b88594a975d96aa85a22.camel@gmail.com>
+From: David Lechner <dlechner@baylibre.com>
+Date: Sat, 2 Dec 2023 10:16:52 -0600
+Message-ID: <CAMknhBEg+cFrm9kQh1G+8nxGPCFsBaca3rnLEnXZ1h=XDS1aeQ@mail.gmail.com>
+Subject: Re: [PATCH 00/12] iio: add new backend framework
+To: =?UTF-8?B?TnVubyBTw6E=?= <noname.nuno@gmail.com>
+Cc: nuno.sa@analog.com, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-iio@vger.kernel.org, 
+	Olivier MOYSAN <olivier.moysan@foss.st.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>, 
+	Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Sat, 2 Dec 2023 13:51:39 +0100, Alex Bee wrote:
-> The first patch in this series fixes the pm-domain driver and adds
-> power-domains which are currently missing. This touches the ABI which is
-> not and was never used until now. Not all of them are used yet, but when
-> the power-controller is added to the DT in patch 2 the ABI should not
-> be changed again.
-> Patch 3-5 are adding the the gpu compatible to dt-bindings, adding the gpu
-> node and the respective operating points to SoC DT and finally enabling it
-> for XPI-3128 board.
-> 
-> [...]
+On Sat, Dec 2, 2023 at 3:37=E2=80=AFAM Nuno S=C3=A1 <noname.nuno@gmail.com>=
+ wrote:
+>
+> On Fri, 2023-12-01 at 21:53 -0600, David Lechner wrote:
+> > On Thu, Nov 30, 2023 at 5:54=E2=80=AFPM David Lechner <dlechner@baylibr=
+e.com> wrote:
+> > >
+> > > On Tue, Nov 21, 2023 at 4:17=E2=80=AFAM Nuno Sa via B4 Relay
+> > > <devnull+nuno.sa.analog.com@kernel.org> wrote:
+> > > >
+> > > > Hi all,
+> > > >
+> > > > This is a Framework to handle complex IIO aggregate devices.
+> > > >
+> > > > The typical architecture is to have one device as the frontend devi=
+ce which
+> > > > can be "linked" against one or multiple backend devices. All the II=
+O and
+> > > > userspace interface is expected to be registers/managed by the fron=
+tend
+> > > > device which will callback into the backends when needed (to get/se=
+t
+> > > > some configuration that it does not directly control).
+> > > >
+> > > > The basic framework interface is pretty simple:
+> > > >  - Backends should register themselves with @devm_iio_backend_regis=
+ter()
+> > > >  - Frontend devices should get backends with @devm_iio_backend_get(=
+)
+> > > >
+> > > > (typical provider - consumer stuff)
+> > > >
+> > >
+> > > The "typical provider - consumer stuff" seems pretty straight forward
+> > > for finding and connecting two different devices, but the definition
+> > > of what is a frontend and what is a backend seems a bit nebulous. It
+> > > would be nice to seem some example devicetree to be able to get a
+> > > better picture of how this will be used in practices (links to the th=
+e
+> > > hardware docs for those examples would be nice too).
+> > >
+> >
+> > Fulfilling my own request here...
+> >
+> > Since AD9467 is being use as the example first user of the IIO offload =
+framework
+> > I did a deep dive into how it is actually being used. It looks like thi=
+s:
+> >
+>
+> This is not an offload framework... I think somehow you're connecting thi=
+s to the
+> spi_engine offload and these are two completely different things. Maybe t=
+hey can
+> intersect at some point but as of now, I don't see any benefit in doing i=
+t. The goal
+> of this patchseries is to have a simple and generic framework so we can c=
+onnect IIO
+> devices (frontends) to a backend device having kind of an IIO aggregate d=
+evice so to
+> say. Moreover, we just want to have the ad9467 driver in the same state i=
+t was before
+> to keep things simple. I'm already fixing some things but I don't want ex=
+tend that
+> too much as the primary goal is to have the framework in. Cleanups can co=
+me
+> afterwards.
+>
+> That said, is fine to have this kind of discussion but I honestly think y=
+ou're over
+> engineering the whole thing. Maybe you're already too ahead of me :), but=
+ where we
+> stand right now, I don't see any reason for anything so complicated as th=
+e below.
+> Also note this should be simple and generic. As I already said, this is n=
+ot supposed
+> to be an ADI only thing and STM also wants to make use of this infrastruc=
+ture. But
+> see below some of my comments on why I think it's too much...
 
-Applied, thanks!
+This is a very fair point. I do have a tendency to overthink things. :-)
 
-[3/5] dt-bindings: gpu: mali-utgard: Add Rockchip RK3128 compatible
-      commit: 5d86c15c3171c3ecebd84d53e30d9812b5591c84
-
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+At the very least, being able to see the schematic of how it all fits
+together filled in the holes of my understanding and now everything
+you are doing in this series makes sense to me. And I totally agree
+with keeping it simpler is better.
 
